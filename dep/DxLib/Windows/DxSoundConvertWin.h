@@ -1,6 +1,6 @@
 // -------------------------------------------------------------------------------
 // 
-// 		‚c‚wƒ‰ƒCƒuƒ‰ƒŠ		WindowsOS—pƒTƒEƒ“ƒhƒf[ƒ^•ÏŠ·ƒvƒƒOƒ‰ƒ€ƒwƒbƒ_ƒtƒ@ƒCƒ‹
+// 		ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒª		WindowsOSç”¨ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿å¤‰æ›ãƒ—ãƒ­ã‚°ãƒ©ãƒ ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«
 // 
 // 				Ver 3.25a
 // 
@@ -11,7 +11,7 @@
 
 #include "../DxCompileConfig.h"
 
-// ƒCƒ“ƒNƒ‹[ƒh ------------------------------------------------------------------
+// ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ ------------------------------------------------------------------
 #include "../DxLib.h"
 #include "../DxThread.h"
 
@@ -31,13 +31,13 @@ namespace DxLib
 
 #endif // DX_NON_NAMESPACE
 
-// ƒ}ƒNƒ’è‹` --------------------------------------------------------------------
+// ãƒã‚¯ãƒ­å®šç¾© --------------------------------------------------------------------
 
-#define SOUND_METHODTYPE_ACM				(SOUND_METHODTYPE_DEFAULT_NUM + 0)		// ‚`‚b‚l‚ğg—p
-#define SOUND_METHODTYPE_DSMP3				(SOUND_METHODTYPE_DEFAULT_NUM + 1)		// ‚c‚‰‚’‚…‚ƒ‚”‚r‚ˆ‚‚—‚ğg—p‚µ‚½‚l‚o‚RÄ¶
-#define SOUND_METHODTYPE_MF					(SOUND_METHODTYPE_DEFAULT_NUM + 2)		// ‚l‚…‚„‚‰‚@‚e‚‚•‚‚„‚‚”‚‰‚‚‚ğg—p
+#define SOUND_METHODTYPE_ACM				(SOUND_METHODTYPE_DEFAULT_NUM + 0)		// ï¼¡ï¼£ï¼­ã‚’ä½¿ç”¨
+#define SOUND_METHODTYPE_DSMP3				(SOUND_METHODTYPE_DEFAULT_NUM + 1)		// ï¼¤ï½‰ï½’ï½…ï½ƒï½”ï¼³ï½ˆï½ï½—ã‚’ä½¿ç”¨ã—ãŸï¼­ï¼°ï¼“å†ç”Ÿ
+#define SOUND_METHODTYPE_MF					(SOUND_METHODTYPE_DEFAULT_NUM + 2)		// ï¼­ï½…ï½„ï½‰ï½ã€€ï¼¦ï½ï½•ï½ï½„ï½ï½”ï½‰ï½ï½ã‚’ä½¿ç”¨
 
-// \‘¢‘Ì’è‹` --------------------------------------------------------------------
+// æ§‹é€ ä½“å®šç¾© --------------------------------------------------------------------
 
 #ifndef DX_NON_ACM
 
@@ -116,21 +116,21 @@ typedef struct D_tACMSTREAMHEADER
 } D_ACMSTREAMHEADER, *D_PACMSTREAMHEADER, FAR *D_LPACMSTREAMHEADER;
 // #endif
 
-// ‚`‚b‚lƒf[ƒ^•ÏŠ·—p\‘¢‘Ì
+// ï¼¡ï¼£ï¼­ãƒ‡ãƒ¼ã‚¿å¤‰æ›ç”¨æ§‹é€ ä½“
 struct SOUNDCONV_ACM
 {
-	WAVEFORMATEX				*Format ;				// •ÏŠ·Œ³‚ÌƒtƒH[ƒ}ƒbƒg
-	D_HACMSTREAM				AcmStreamHandle[2]	;	// ˆ³k‚³‚ê‚½ƒf[ƒ^‚ğˆµ‚¤Û‚Ég‚¤‚`‚b‚l‚Ìƒnƒ“ƒhƒ‹
+	WAVEFORMATEX				*Format ;				// å¤‰æ›å…ƒã®ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆ
+	D_HACMSTREAM				AcmStreamHandle[2]	;	// åœ§ç¸®ã•ã‚ŒãŸãƒ‡ãƒ¼ã‚¿ã‚’æ‰±ã†éš›ã«ä½¿ã†ï¼¡ï¼£ï¼­ã®ãƒãƒ³ãƒ‰ãƒ«
 
-	void						*SrcData ;				// •ÏŠ·Œ³‚Ìƒf[ƒ^‚ğˆê“I‚É•Û‘¶‚µ‚Ä‚¨‚­ƒƒ‚ƒŠ—Ìˆæ
-	int							SrcDataSize ;			// •ÏŠ·Œ³‚Ìƒf[ƒ^‚ğˆê“I‚É•Û‘¶‚µ‚Ä‚¨‚­ƒƒ‚ƒŠ—Ìˆæ‚ÌƒTƒCƒY
-//	int							SrcDataValidSize ;		// •ÏŠ·Œ³‚Ìƒf[ƒ^‚Ì—LŒø‚ÈƒTƒCƒY
-	LONGLONG					SrcDataPosition ;		// •ÏŠ·Œ³‚Ìƒf[ƒ^‚Ì•ÏŠ·‚ªŠ®—¹‚µ‚½ƒTƒCƒY
-	LONGLONG					DestDataSampleNum ;		// •ÏŠ·Œã‚Ìƒf[ƒ^‚ÌƒTƒ“ƒvƒ‹”( -1:ˆÈŠO‚Ìê‡‚Ì‚İ—LŒø )
+	void						*SrcData ;				// å¤‰æ›å…ƒã®ãƒ‡ãƒ¼ã‚¿ã‚’ä¸€æ™‚çš„ã«ä¿å­˜ã—ã¦ãŠããƒ¡ãƒ¢ãƒªé ˜åŸŸ
+	int							SrcDataSize ;			// å¤‰æ›å…ƒã®ãƒ‡ãƒ¼ã‚¿ã‚’ä¸€æ™‚çš„ã«ä¿å­˜ã—ã¦ãŠããƒ¡ãƒ¢ãƒªé ˜åŸŸã®ã‚µã‚¤ã‚º
+//	int							SrcDataValidSize ;		// å¤‰æ›å…ƒã®ãƒ‡ãƒ¼ã‚¿ã®æœ‰åŠ¹ãªã‚µã‚¤ã‚º
+	LONGLONG					SrcDataPosition ;		// å¤‰æ›å…ƒã®ãƒ‡ãƒ¼ã‚¿ã®å¤‰æ›ãŒå®Œäº†ã—ãŸã‚µã‚¤ã‚º
+	LONGLONG					DestDataSampleNum ;		// å¤‰æ›å¾Œã®ãƒ‡ãƒ¼ã‚¿ã®ã‚µãƒ³ãƒ—ãƒ«æ•°( -1:ä»¥å¤–ã®å ´åˆã®ã¿æœ‰åŠ¹ )
 
-	LONGLONG					BeginSeekCompSrcSize ;	// ƒV[ƒN—\’èˆÊ’u‚Ü‚ÅƒTƒuACMƒnƒ“ƒhƒ‹‚Å•ÏŠ·‚µ‚Ä‚¨‚­ˆ—‚ÅAŠù‚É•ÏŠ·‚ªŠ®—¹‚µ‚Ä‚¢‚éˆ³kƒf[ƒ^‚ÌƒTƒCƒY
-	LONGLONG					BeginSeekPosition ;		// ƒV[ƒN—\’èˆÊ’u‚Ü‚ÅƒTƒuACMƒnƒ“ƒhƒ‹‚Å•ÏŠ·‚µ‚Ä‚¨‚­ˆ—‚ÅAŠù‚É•ÏŠ·‚ªŠ®—¹‚µ‚Ä‚¢‚é“WŠJŒãƒf[ƒ^‚ÌƒTƒCƒY(ƒV[ƒN—\’èˆÊ’u‚Í SOUNDCONV ŠÖ”‚Ì SeekLockPosition ƒƒ“ƒo[)
-	void						*BeginSeekBuffer ;		// ƒV[ƒN—\’èˆÊ’u‚Ü‚ÅƒTƒuACMƒnƒ“ƒhƒ‹‚Å•ÏŠ·‚µ‚Ä‚¨‚­ˆ—‚Åg—p‚·‚éƒoƒbƒtƒ@
+	LONGLONG					BeginSeekCompSrcSize ;	// ã‚·ãƒ¼ã‚¯äºˆå®šä½ç½®ã¾ã§ã‚µãƒ–ACMãƒãƒ³ãƒ‰ãƒ«ã§å¤‰æ›ã—ã¦ãŠãå‡¦ç†ã§ã€æ—¢ã«å¤‰æ›ãŒå®Œäº†ã—ã¦ã„ã‚‹åœ§ç¸®ãƒ‡ãƒ¼ã‚¿ã®ã‚µã‚¤ã‚º
+	LONGLONG					BeginSeekPosition ;		// ã‚·ãƒ¼ã‚¯äºˆå®šä½ç½®ã¾ã§ã‚µãƒ–ACMãƒãƒ³ãƒ‰ãƒ«ã§å¤‰æ›ã—ã¦ãŠãå‡¦ç†ã§ã€æ—¢ã«å¤‰æ›ãŒå®Œäº†ã—ã¦ã„ã‚‹å±•é–‹å¾Œãƒ‡ãƒ¼ã‚¿ã®ã‚µã‚¤ã‚º(ã‚·ãƒ¼ã‚¯äºˆå®šä½ç½®ã¯ SOUNDCONV é–¢æ•°ã® SeekLockPosition ãƒ¡ãƒ³ãƒãƒ¼)
+	void						*BeginSeekBuffer ;		// ã‚·ãƒ¼ã‚¯äºˆå®šä½ç½®ã¾ã§ã‚µãƒ–ACMãƒãƒ³ãƒ‰ãƒ«ã§å¤‰æ›ã—ã¦ãŠãå‡¦ç†ã§ä½¿ç”¨ã™ã‚‹ãƒãƒƒãƒ•ã‚¡
 } ;
 
 #endif // DX_NON_ACM
@@ -138,11 +138,11 @@ struct SOUNDCONV_ACM
 #ifndef DX_NON_MOVIE
 #ifndef DX_NON_DSHOW_MOVIE
 
-// ‚c‚‰‚’‚…‚ƒ‚”‚r‚ˆ‚‚—‚ğg‚Á‚½‚l‚o‚Rƒf[ƒ^•ÏŠ·ˆ—‚Åg—p‚·‚éƒoƒbƒtƒ@ƒNƒ‰ƒX
+// ï¼¤ï½‰ï½’ï½…ï½ƒï½”ï¼³ï½ˆï½ï½—ã‚’ä½¿ã£ãŸï¼­ï¼°ï¼“ãƒ‡ãƒ¼ã‚¿å¤‰æ›å‡¦ç†ã§ä½¿ç”¨ã™ã‚‹ãƒãƒƒãƒ•ã‚¡ã‚¯ãƒ©ã‚¹
 class SOUNDCONV_DSMP3_BUF : public D_ISampleGrabberCB
 {
 public :
-	struct SOUNDCONV			*SoundConvData ;		// ‰¹ºƒf[ƒ^•ÏŠ·ˆ——p\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	struct SOUNDCONV			*SoundConvData ;		// éŸ³å£°ãƒ‡ãƒ¼ã‚¿å¤‰æ›å‡¦ç†ç”¨æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 
 	ULONG __stdcall				AddRef() ;
 	ULONG __stdcall				Release() ;
@@ -152,19 +152,19 @@ public :
 	HRESULT __stdcall			BufferCB( double SampleTime, BYTE *pBuffer, long BufferLen ) ;
 } ;
 
-// ‚c‚‰‚’‚…‚ƒ‚”‚r‚ˆ‚‚—‚ğg‚Á‚½‚l‚o‚Rƒf[ƒ^•ÏŠ·—p\‘¢‘Ì
+// ï¼¤ï½‰ï½’ï½…ï½ƒï½”ï¼³ï½ˆï½ï½—ã‚’ä½¿ã£ãŸï¼­ï¼°ï¼“ãƒ‡ãƒ¼ã‚¿å¤‰æ›ç”¨æ§‹é€ ä½“
 struct SOUNDCONV_DSMP3
 {
-	void						*PCMBuffer ;			// ‚o‚b‚l‚É•ÏŠ·‚³‚ê‚½ƒf[ƒ^‚ğŠi”[‚·‚éƒƒ‚ƒŠ—Ìˆæ
-	DWORD						PCMBufferSize ;			// ‚o‚b‚lƒoƒbƒtƒ@‚ÌƒTƒCƒY
-	DWORD						PCMValidDataSize ;		// —LŒø‚È‚o‚b‚l‚ÌƒTƒCƒY
-	DWORD						PCMDestCopySize ;		// –{ƒoƒbƒtƒ@‚Ö‚ÌƒRƒs[‚ªŠ®—¹‚µ‚½ƒTƒCƒY
+	void						*PCMBuffer ;			// ï¼°ï¼£ï¼­ã«å¤‰æ›ã•ã‚ŒãŸãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹ãƒ¡ãƒ¢ãƒªé ˜åŸŸ
+	DWORD						PCMBufferSize ;			// ï¼°ï¼£ï¼­ãƒãƒƒãƒ•ã‚¡ã®ã‚µã‚¤ã‚º
+	DWORD						PCMValidDataSize ;		// æœ‰åŠ¹ãªï¼°ï¼£ï¼­ã®ã‚µã‚¤ã‚º
+	DWORD						PCMDestCopySize ;		// æœ¬ãƒãƒƒãƒ•ã‚¡ã¸ã®ã‚³ãƒ”ãƒ¼ãŒå®Œäº†ã—ãŸã‚µã‚¤ã‚º
 } ;
 
 #endif  // DX_NON_DSHOW_MOVIE
 #endif	// DX_NON_MOVIE
 
-// ƒTƒEƒ“ƒh•ÏŠ·ˆ—‘S‘Ì‚Åg—p‚·‚éƒf[ƒ^\‘¢‘Ì‚Å Windows ‚ÉˆË‘¶‚µ‚Ä‚¢‚éî•ñ‚Ì\‘¢‘Ì
+// ã‚µã‚¦ãƒ³ãƒ‰å¤‰æ›å‡¦ç†å…¨ä½“ã§ä½¿ç”¨ã™ã‚‹ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“ã§ Windows ã«ä¾å­˜ã—ã¦ã„ã‚‹æƒ…å ±ã®æ§‹é€ ä½“
 struct SOUNDCONVERTDATA_WIN
 {
 	int							Dummy ;
@@ -181,39 +181,39 @@ struct SOUNDCONVERTDATA_WIN
 #endif
 } ;
 
-// “à•”‘åˆæ•Ï”éŒ¾ --------------------------------------------------------------
+// å†…éƒ¨å¤§åŸŸå¤‰æ•°å®£è¨€ --------------------------------------------------------------
 
-// ŠÖ”ƒvƒƒgƒ^ƒCƒvéŒ¾-----------------------------------------------------------
+// é–¢æ•°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€-----------------------------------------------------------
 
 #ifndef DX_NON_ACM
-extern	int      SetupSoundConvert_ACM(            struct SOUNDCONV *SoundConv ) ;								// ‚`‚b‚l‚ğg—p‚µ‚½ƒtƒ@ƒCƒ‹‚ÌƒZƒbƒgƒAƒbƒvˆ—‚ğs‚¤( [–ß] -1:ƒGƒ‰[ )
-extern	int      SetupSoundConvert_MP3(            struct SOUNDCONV *SoundConv ) ;								// ‚l‚o‚Rƒtƒ@ƒCƒ‹‚ÌƒZƒbƒgƒAƒbƒvˆ—‚ğs‚¤( [–ß] -1:ƒGƒ‰[ )
-extern	int      TerminateSoundConvert_ACM(        struct SOUNDCONV *SoundConv ) ;								// ‚`‚b‚l‚ğg—p‚µ‚½ƒtƒ@ƒCƒ‹‚ÌŒãn––ˆ—‚ğs‚¤
-extern	int      ConvertProcessSoundConvert_ACM(   struct SOUNDCONV *SoundConv ) ;								// •ÏŠ·Œã‚Ìƒoƒbƒtƒ@‚Éƒf[ƒ^‚ğ•â[‚·‚é
-//extern int     SetTimeSoundConvert_ACM(          struct SOUNDCONV *SoundConv, int Time ) ;					// •ÏŠ·ˆ—‚ğˆÊ’u‚ğ•ÏX‚·‚é( ƒ~ƒŠ•b’PˆÊ )
-extern	int      SetSampleTimeSoundConvert_ACM(    struct SOUNDCONV *SoundConv, LONGLONG SampleTime ) ;			// •ÏŠ·ˆ—‚ÌˆÊ’u‚ğ•ÏX‚·‚é( ƒTƒ“ƒvƒ‹’PˆÊ )
-extern	LONGLONG GetSoundConvertDestSize_Fast_ACM( struct SOUNDCONV *SoundConv ) ;								// •ÏŠ·Œã‚Ì‘å–}‚Ìƒf[ƒ^ƒTƒCƒY‚ğ“¾‚é
+extern	int      SetupSoundConvert_ACM(            struct SOUNDCONV *SoundConv ) ;								// ï¼¡ï¼£ï¼­ã‚’ä½¿ç”¨ã—ãŸãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—å‡¦ç†ã‚’è¡Œã†( [æˆ»] -1:ã‚¨ãƒ©ãƒ¼ )
+extern	int      SetupSoundConvert_MP3(            struct SOUNDCONV *SoundConv ) ;								// ï¼­ï¼°ï¼“ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—å‡¦ç†ã‚’è¡Œã†( [æˆ»] -1:ã‚¨ãƒ©ãƒ¼ )
+extern	int      TerminateSoundConvert_ACM(        struct SOUNDCONV *SoundConv ) ;								// ï¼¡ï¼£ï¼­ã‚’ä½¿ç”¨ã—ãŸãƒ•ã‚¡ã‚¤ãƒ«ã®å¾Œå§‹æœ«å‡¦ç†ã‚’è¡Œã†
+extern	int      ConvertProcessSoundConvert_ACM(   struct SOUNDCONV *SoundConv ) ;								// å¤‰æ›å¾Œã®ãƒãƒƒãƒ•ã‚¡ã«ãƒ‡ãƒ¼ã‚¿ã‚’è£œå……ã™ã‚‹
+//extern int     SetTimeSoundConvert_ACM(          struct SOUNDCONV *SoundConv, int Time ) ;					// å¤‰æ›å‡¦ç†ã‚’ä½ç½®ã‚’å¤‰æ›´ã™ã‚‹( ãƒŸãƒªç§’å˜ä½ )
+extern	int      SetSampleTimeSoundConvert_ACM(    struct SOUNDCONV *SoundConv, LONGLONG SampleTime ) ;			// å¤‰æ›å‡¦ç†ã®ä½ç½®ã‚’å¤‰æ›´ã™ã‚‹( ã‚µãƒ³ãƒ—ãƒ«å˜ä½ )
+extern	LONGLONG GetSoundConvertDestSize_Fast_ACM( struct SOUNDCONV *SoundConv ) ;								// å¤‰æ›å¾Œã®å¤§å‡¡ã®ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºã‚’å¾—ã‚‹
 #endif
 
 #ifndef DX_NON_MOVIE
 #ifndef DX_NON_DSHOW_MOVIE
 #ifndef DX_NON_DSHOW_MP3
-extern	int      TerminateSoundConvert_DSMP3(        struct SOUNDCONV *SoundConv ) ;							// MP3‚ğg—p‚µ‚½ƒtƒ@ƒCƒ‹‚ÌŒãn––ˆ—‚ğs‚¤
-extern	int      ConvertProcessSoundConvert_DSMP3(   struct SOUNDCONV *SoundConv ) ;							// •ÏŠ·Œã‚Ìƒoƒbƒtƒ@‚Éƒf[ƒ^‚ğ•â[‚·‚é
-//extern int     SetTimeSoundConvert_DSMP3(          struct SOUNDCONV *SoundConv, int Time ) ;					// •ÏŠ·ˆ—‚ğˆÊ’u‚ğ•ÏX‚·‚é( ƒ~ƒŠ•b’PˆÊ )
-extern	int      SetSampleTimeSoundConvert_DSMP3(    struct SOUNDCONV *SoundConv, LONGLONG SampleTime ) ;		// •ÏŠ·ˆ—‚ÌˆÊ’u‚ğ•ÏX‚·‚é( ƒTƒ“ƒvƒ‹’PˆÊ )
-extern	LONGLONG GetSoundConvertDestSize_Fast_DSMP3( struct SOUNDCONV *SoundConv ) ;							// •ÏŠ·Œã‚Ì‘å–}‚Ìƒf[ƒ^ƒTƒCƒY‚ğ“¾‚é
+extern	int      TerminateSoundConvert_DSMP3(        struct SOUNDCONV *SoundConv ) ;							// MP3ã‚’ä½¿ç”¨ã—ãŸãƒ•ã‚¡ã‚¤ãƒ«ã®å¾Œå§‹æœ«å‡¦ç†ã‚’è¡Œã†
+extern	int      ConvertProcessSoundConvert_DSMP3(   struct SOUNDCONV *SoundConv ) ;							// å¤‰æ›å¾Œã®ãƒãƒƒãƒ•ã‚¡ã«ãƒ‡ãƒ¼ã‚¿ã‚’è£œå……ã™ã‚‹
+//extern int     SetTimeSoundConvert_DSMP3(          struct SOUNDCONV *SoundConv, int Time ) ;					// å¤‰æ›å‡¦ç†ã‚’ä½ç½®ã‚’å¤‰æ›´ã™ã‚‹( ãƒŸãƒªç§’å˜ä½ )
+extern	int      SetSampleTimeSoundConvert_DSMP3(    struct SOUNDCONV *SoundConv, LONGLONG SampleTime ) ;		// å¤‰æ›å‡¦ç†ã®ä½ç½®ã‚’å¤‰æ›´ã™ã‚‹( ã‚µãƒ³ãƒ—ãƒ«å˜ä½ )
+extern	LONGLONG GetSoundConvertDestSize_Fast_DSMP3( struct SOUNDCONV *SoundConv ) ;							// å¤‰æ›å¾Œã®å¤§å‡¡ã®ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºã‚’å¾—ã‚‹
 #endif
 #endif
 #endif
 
 #ifndef DX_NON_MEDIA_FOUNDATION
-extern	int      SetupSoundConvert_MF(            SOUNDCONV *SoundConv ) ;										// Media Foundation ‚ğg—p‚µ‚½ƒtƒ@ƒCƒ‹‚ÌƒZƒbƒgƒAƒbƒvˆ—‚ğs‚¤( [–ß] -1:ƒGƒ‰[ )
-extern	int      TerminateSoundConvert_MF(        SOUNDCONV *SoundConv ) ;										// Media Foundation ‚ğg—p‚µ‚½ƒtƒ@ƒCƒ‹‚ÌŒãn––ˆ—‚ğs‚¤
-extern	int      ConvertProcessSoundConvert_MF(   SOUNDCONV *SoundConv ) ;										// •ÏŠ·Œã‚Ìƒoƒbƒtƒ@‚Éƒf[ƒ^‚ğ•â[‚·‚é
-//extern int     SetTimeSoundConvert_MF(          SOUNDCONV *SoundConv, int Time ) ;							// •ÏŠ·ˆ—‚ğˆÊ’u‚ğ•ÏX‚·‚é( ƒ~ƒŠ•b’PˆÊ )
-extern	int      SetSampleTimeSoundConvert_MF(    SOUNDCONV *SoundConv, LONGLONG SampleTime ) ;					// •ÏŠ·ˆ—‚ÌˆÊ’u‚ğ•ÏX‚·‚é( ƒTƒ“ƒvƒ‹’PˆÊ )
-extern	LONGLONG GetSoundConvertDestSize_Fast_MF( SOUNDCONV *SoundConv ) ;										// •ÏŠ·Œã‚Ì‘å–}‚Ìƒf[ƒ^ƒTƒCƒY‚ğ“¾‚é
+extern	int      SetupSoundConvert_MF(            SOUNDCONV *SoundConv ) ;										// Media Foundation ã‚’ä½¿ç”¨ã—ãŸãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—å‡¦ç†ã‚’è¡Œã†( [æˆ»] -1:ã‚¨ãƒ©ãƒ¼ )
+extern	int      TerminateSoundConvert_MF(        SOUNDCONV *SoundConv ) ;										// Media Foundation ã‚’ä½¿ç”¨ã—ãŸãƒ•ã‚¡ã‚¤ãƒ«ã®å¾Œå§‹æœ«å‡¦ç†ã‚’è¡Œã†
+extern	int      ConvertProcessSoundConvert_MF(   SOUNDCONV *SoundConv ) ;										// å¤‰æ›å¾Œã®ãƒãƒƒãƒ•ã‚¡ã«ãƒ‡ãƒ¼ã‚¿ã‚’è£œå……ã™ã‚‹
+//extern int     SetTimeSoundConvert_MF(          SOUNDCONV *SoundConv, int Time ) ;							// å¤‰æ›å‡¦ç†ã‚’ä½ç½®ã‚’å¤‰æ›´ã™ã‚‹( ãƒŸãƒªç§’å˜ä½ )
+extern	int      SetSampleTimeSoundConvert_MF(    SOUNDCONV *SoundConv, LONGLONG SampleTime ) ;					// å¤‰æ›å‡¦ç†ã®ä½ç½®ã‚’å¤‰æ›´ã™ã‚‹( ã‚µãƒ³ãƒ—ãƒ«å˜ä½ )
+extern	LONGLONG GetSoundConvertDestSize_Fast_MF( SOUNDCONV *SoundConv ) ;										// å¤‰æ›å¾Œã®å¤§å‡¡ã®ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºã‚’å¾—ã‚‹
 #endif // DX_NON_MEDIA_FOUNDATION
 
 #ifndef DX_NON_NAMESPACE

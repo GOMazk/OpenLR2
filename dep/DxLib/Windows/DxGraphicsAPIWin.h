@@ -1,6 +1,6 @@
 // -------------------------------------------------------------------------------
 // 
-// 		‚c‚wƒ‰ƒCƒuƒ‰ƒŠ		•`‰æ‚`‚o‚hƒvƒƒOƒ‰ƒ€ƒwƒbƒ_ƒtƒ@ƒCƒ‹
+// 		ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒª		æç”»ï¼¡ï¼°ï¼©ãƒ—ãƒ­ã‚°ãƒ©ãƒ ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«
 // 
 // 				Ver 3.25a
 // 
@@ -13,7 +13,7 @@
 
 #ifndef DX_NON_GRAPHICS
 
-// ƒCƒ“ƒNƒ‹[ƒh ------------------------------------------------------------------
+// ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ ------------------------------------------------------------------
 #include "DxDirectX.h"
 
 #ifndef DX_NON_NAMESPACE
@@ -23,41 +23,41 @@ namespace DxLib
 
 #endif // DX_NON_NAMESPACE
 
-// ƒ}ƒNƒ’è‹` --------------------------------------------------------------------
+// ãƒã‚¯ãƒ­å®šç¾© --------------------------------------------------------------------
 
-// \‘¢‘Ì’è‹` --------------------------------------------------------------------
+// æ§‹é€ ä½“å®šç¾© --------------------------------------------------------------------
 
 struct GRAPHICSAPIINFO_WIN
 {
-	D_IDirectDraw7			*DirectDraw7Object ;					// ‚c‚‰‚’‚…‚ƒ‚”‚c‚’‚‚—ƒCƒ“ƒ^[ƒtƒFƒCƒX
-	LONGLONG				DirectDraw7_VSyncWaitTime ;				// ‘O‰ñ‚u‚r‚x‚m‚b‘Ò‚¿‚ğ‚µ‚Ä‚©‚çŸ‚Éƒ`ƒFƒbƒN‚·‚é‚Ü‚Å‚É‘Ò‚ÂŠÔ
-	ULONGLONG				DirectDraw7_VSyncTime ;					// ‘O‰ñ‚u‚r‚x‚m‚b‘Ò‚¿‚ğ‚µ‚½ŠÔ
+	D_IDirectDraw7			*DirectDraw7Object ;					// ï¼¤ï½‰ï½’ï½…ï½ƒï½”ï¼¤ï½’ï½ï½—ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ã‚¤ã‚¹
+	LONGLONG				DirectDraw7_VSyncWaitTime ;				// å‰å›ï¼¶ï¼³ï¼¹ï¼®ï¼£å¾…ã¡ã‚’ã—ã¦ã‹ã‚‰æ¬¡ã«ãƒã‚§ãƒƒã‚¯ã™ã‚‹ã¾ã§ã«å¾…ã¤æ™‚é–“
+	ULONGLONG				DirectDraw7_VSyncTime ;					// å‰å›ï¼¶ï¼³ï¼¹ï¼®ï¼£å¾…ã¡ã‚’ã—ãŸæ™‚é–“
 
 #ifndef DX_NON_DIRECT3D9
-	HINSTANCE				Direct3D9DLL ;							// ‚c‚‰‚’‚…‚ƒ‚”‚R‚c‚XD‚c‚k‚k
-	D_IDirect3D9			*Direct3D9Object ;						// ‚c‚‰‚’‚…‚ƒ‚”‚R‚c‚XƒCƒ“ƒ^[ƒtƒFƒCƒX
-	D_IDirect3D9Ex			*Direct3D9ExObject ;					// ‚c‚‰‚’‚…‚ƒ‚”‚R‚c‚X‚d‚˜ƒCƒ“ƒ^[ƒtƒFƒCƒX
-	D_IDirect3DDevice9		*Direct3DDevice9Object ;				// ‚c‚‰‚’‚…‚ƒ‚”‚R‚c‚c‚…‚–‚‰‚ƒ‚…‚XƒCƒ“ƒ^[ƒtƒFƒCƒX
-	D_IDirect3DDevice9Ex	*Direct3DDevice9ExObject ;				// ‚c‚‰‚’‚…‚ƒ‚”‚R‚c‚c‚…‚–‚‰‚ƒ‚…‚X‚d‚˜ƒCƒ“ƒ^[ƒtƒFƒCƒX
-	D_IDirect3DSwapChain9	*Direct3DSwapChain9Object ;				// ‚c‚‰‚’‚…‚ƒ‚”‚R‚c‚r‚—‚‚‚b‚ˆ‚‚‰‚‚XƒCƒ“ƒ^[ƒtƒFƒCƒX
+	HINSTANCE				Direct3D9DLL ;							// ï¼¤ï½‰ï½’ï½…ï½ƒï½”ï¼“ï¼¤ï¼™ï¼ï¼¤ï¼¬ï¼¬
+	D_IDirect3D9			*Direct3D9Object ;						// ï¼¤ï½‰ï½’ï½…ï½ƒï½”ï¼“ï¼¤ï¼™ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ã‚¤ã‚¹
+	D_IDirect3D9Ex			*Direct3D9ExObject ;					// ï¼¤ï½‰ï½’ï½…ï½ƒï½”ï¼“ï¼¤ï¼™ï¼¥ï½˜ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ã‚¤ã‚¹
+	D_IDirect3DDevice9		*Direct3DDevice9Object ;				// ï¼¤ï½‰ï½’ï½…ï½ƒï½”ï¼“ï¼¤ï¼¤ï½…ï½–ï½‰ï½ƒï½…ï¼™ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ã‚¤ã‚¹
+	D_IDirect3DDevice9Ex	*Direct3DDevice9ExObject ;				// ï¼¤ï½‰ï½’ï½…ï½ƒï½”ï¼“ï¼¤ï¼¤ï½…ï½–ï½‰ï½ƒï½…ï¼™ï¼¥ï½˜ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ã‚¤ã‚¹
+	D_IDirect3DSwapChain9	*Direct3DSwapChain9Object ;				// ï¼¤ï½‰ï½’ï½…ï½ƒï½”ï¼“ï¼¤ï¼³ï½—ï½ï½ï¼£ï½ˆï½ï½‰ï½ï¼™ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ã‚¤ã‚¹
 #endif // DX_NON_DIRECT3D9
 
 #ifndef DX_NON_DIRECT3D11
-	HINSTANCE				Direct3D11DLL ;							// ‚c‚‰‚’‚…‚ƒ‚”‚R‚c‚P‚PD‚c‚k‚k
-	HINSTANCE				DXGIDLL ;								// ‚„‚˜‚‡‚‰D‚„‚Œ‚Œ
-	D_IDXGIDevice1			*DXGIDevice1Object ;					// ‚c‚w‚f‚h‚c‚…‚–‚‰‚ƒ‚…‚PƒCƒ“ƒ^[ƒtƒFƒCƒX
-	D_IDXGIAdapter			*DXGIAdapterObject ;					// ‚c‚w‚f‚h‚`‚„‚‚‚”‚…‚’ƒCƒ“ƒ^[ƒtƒFƒCƒX
-	D_IDXGIAdapter1			*DXGIAdapter1Object ;					// ‚c‚w‚f‚h‚`‚„‚‚‚”‚…‚’‚PƒCƒ“ƒ^[ƒtƒFƒCƒX
-	D_IDXGIAdapter2			*DXGIAdapter2Object ;					// ‚c‚w‚f‚h‚`‚„‚‚‚”‚…‚’‚QƒCƒ“ƒ^[ƒtƒFƒCƒX
-	D_IDXGIAdapter3			*DXGIAdapter3Object ;					// ‚c‚w‚f‚h‚`‚„‚‚‚”‚…‚’‚RƒCƒ“ƒ^[ƒtƒFƒCƒX
-	D_IDXGIAdapter4			*DXGIAdapter4Object ;					// ‚c‚w‚f‚h‚`‚„‚‚‚”‚…‚’‚SƒCƒ“ƒ^[ƒtƒFƒCƒX
-	D_IDXGIFactory			*DXGIFactoryObject ;					// ‚c‚w‚f‚h‚e‚‚ƒ‚”‚‚’‚™ƒCƒ“ƒ^[ƒtƒFƒCƒX
-	D_IDXGIFactory1			*DXGIFactory1Object ;					// ‚c‚w‚f‚h‚e‚‚ƒ‚”‚‚’‚™‚PƒCƒ“ƒ^[ƒtƒFƒCƒX
-	D_IDXGIFactory2			*DXGIFactory2Object ;					// ‚c‚w‚f‚h‚e‚‚ƒ‚”‚‚’‚™‚QƒCƒ“ƒ^[ƒtƒFƒCƒX
-	D_IDXGIFactory6			*DXGIFactory6Object ;					// ‚c‚w‚f‚h‚e‚‚ƒ‚”‚‚’‚™‚UƒCƒ“ƒ^[ƒtƒFƒCƒX
-	D_ID3D11Device			*D3D11DeviceObject ;					// ‚c‚R‚c‚P‚P‚c‚…‚–‚‰‚ƒ‚…ƒCƒ“ƒ^[ƒtƒFƒCƒX
-	D_ID3D11DeviceContext	*D3D11DeviceContext ;					// ‚c‚R‚c‚P‚P‚c‚…‚–‚‰‚ƒ‚…‚b‚‚‚”‚…‚˜‚”ƒCƒ“ƒ^[ƒtƒFƒCƒX
-	D_ID3D11DeviceContext	*D3D11DeferredContext ;					// ‚c‚R‚c‚P‚P‚c‚…‚–‚‰‚ƒ‚…‚b‚‚‚”‚…‚˜‚”ƒCƒ“ƒ^[ƒtƒFƒCƒX( DeferredContext )
+	HINSTANCE				Direct3D11DLL ;							// ï¼¤ï½‰ï½’ï½…ï½ƒï½”ï¼“ï¼¤ï¼‘ï¼‘ï¼ï¼¤ï¼¬ï¼¬
+	HINSTANCE				DXGIDLL ;								// ï½„ï½˜ï½‡ï½‰ï¼ï½„ï½Œï½Œ
+	D_IDXGIDevice1			*DXGIDevice1Object ;					// ï¼¤ï¼¸ï¼§ï¼©ï¼¤ï½…ï½–ï½‰ï½ƒï½…ï¼‘ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ã‚¤ã‚¹
+	D_IDXGIAdapter			*DXGIAdapterObject ;					// ï¼¤ï¼¸ï¼§ï¼©ï¼¡ï½„ï½ï½ï½”ï½…ï½’ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ã‚¤ã‚¹
+	D_IDXGIAdapter1			*DXGIAdapter1Object ;					// ï¼¤ï¼¸ï¼§ï¼©ï¼¡ï½„ï½ï½ï½”ï½…ï½’ï¼‘ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ã‚¤ã‚¹
+	D_IDXGIAdapter2			*DXGIAdapter2Object ;					// ï¼¤ï¼¸ï¼§ï¼©ï¼¡ï½„ï½ï½ï½”ï½…ï½’ï¼’ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ã‚¤ã‚¹
+	D_IDXGIAdapter3			*DXGIAdapter3Object ;					// ï¼¤ï¼¸ï¼§ï¼©ï¼¡ï½„ï½ï½ï½”ï½…ï½’ï¼“ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ã‚¤ã‚¹
+	D_IDXGIAdapter4			*DXGIAdapter4Object ;					// ï¼¤ï¼¸ï¼§ï¼©ï¼¡ï½„ï½ï½ï½”ï½…ï½’ï¼”ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ã‚¤ã‚¹
+	D_IDXGIFactory			*DXGIFactoryObject ;					// ï¼¤ï¼¸ï¼§ï¼©ï¼¦ï½ï½ƒï½”ï½ï½’ï½™ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ã‚¤ã‚¹
+	D_IDXGIFactory1			*DXGIFactory1Object ;					// ï¼¤ï¼¸ï¼§ï¼©ï¼¦ï½ï½ƒï½”ï½ï½’ï½™ï¼‘ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ã‚¤ã‚¹
+	D_IDXGIFactory2			*DXGIFactory2Object ;					// ï¼¤ï¼¸ï¼§ï¼©ï¼¦ï½ï½ƒï½”ï½ï½’ï½™ï¼’ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ã‚¤ã‚¹
+	D_IDXGIFactory6			*DXGIFactory6Object ;					// ï¼¤ï¼¸ï¼§ï¼©ï¼¦ï½ï½ƒï½”ï½ï½’ï½™ï¼–ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ã‚¤ã‚¹
+	D_ID3D11Device			*D3D11DeviceObject ;					// ï¼¤ï¼“ï¼¤ï¼‘ï¼‘ï¼¤ï½…ï½–ï½‰ï½ƒï½…ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ã‚¤ã‚¹
+	D_ID3D11DeviceContext	*D3D11DeviceContext ;					// ï¼¤ï¼“ï¼¤ï¼‘ï¼‘ï¼¤ï½…ï½–ï½‰ï½ƒï½…ï¼£ï½ï½ï½”ï½…ï½˜ï½”ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ã‚¤ã‚¹
+	D_ID3D11DeviceContext	*D3D11DeferredContext ;					// ï¼¤ï¼“ï¼¤ï¼‘ï¼‘ï¼¤ï½…ï½–ï½‰ï½ƒï½…ï¼£ï½ï½ï½”ï½…ï½˜ï½”ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ã‚¤ã‚¹( DeferredContext )
 	int						D3D11BufferNum ;
 	int						D3D11Texture1DNum ;
 	int						D3D11Texture2DNum ;
@@ -76,11 +76,11 @@ struct GRAPHICSAPIINFO_WIN
 #endif // DX_NON_DIRECT3D11
 } ;
 
-// “à•”‘åˆæ•Ï”éŒ¾ --------------------------------------------------------------
+// å†…éƒ¨å¤§åŸŸå¤‰æ•°å®£è¨€ --------------------------------------------------------------
 
 extern GRAPHICSAPIINFO_WIN GAPIWin ;
 
-// ŠÖ”ƒvƒƒgƒ^ƒCƒvéŒ¾-----------------------------------------------------------
+// é–¢æ•°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€-----------------------------------------------------------
 
 
 
@@ -213,7 +213,7 @@ extern	HRESULT	D3D11Device_CreateRasterizerState		( const D_D3D11_RASTERIZER_DES
 extern	HRESULT	D3D11Device_CreateSamplerState			( const D_D3D11_SAMPLER_DESC *pSamplerDesc, D_ID3D11SamplerState **ppSamplerState ) ;
 extern	HRESULT	D3D11Device_CheckFormatSupport			( D_DXGI_FORMAT Format, UINT *pFormatSupport ) ;
 extern	long	D3D11Device_CheckMultisampleQualityLevels( D_DXGI_FORMAT Format, UINT SampleCount, UINT *pNumQualityLevels ) ;
-extern	int		D3D11Device_CheckMultiSampleParam		( D_DXGI_FORMAT Format, UINT *Samples, UINT *Quality, int SamplesFailedBreak ) ;	// ƒ}ƒ‹ƒ`ƒTƒ“ƒvƒ‹ƒŒƒ“ƒ_ƒŠƒ“ƒO‚ÌƒTƒ“ƒvƒ‹”‚ÆƒNƒIƒŠƒeƒB‚ğƒ`ƒFƒbƒN
+extern	int		D3D11Device_CheckMultiSampleParam		( D_DXGI_FORMAT Format, UINT *Samples, UINT *Quality, int SamplesFailedBreak ) ;	// ãƒãƒ«ãƒã‚µãƒ³ãƒ—ãƒ«ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã®ã‚µãƒ³ãƒ—ãƒ«æ•°ã¨ã‚¯ã‚ªãƒªãƒ†ã‚£ã‚’ãƒã‚§ãƒƒã‚¯
 
 extern	void *	D3D11DeviceContext_Get					( void ) ;
 extern	void *	D3D11DeviceContext_Deferred_Get			( void ) ;
@@ -269,7 +269,7 @@ extern	void	D3D11RenderTargetView_GetDesc			( D_ID3D11RenderTargetView *RenderTa
 #ifndef DX_NON_DIRECT3D9
 
 extern	ULONG	Direct3D9_ObjectRelease_ASync						( void *pObject, int ASyncThread = FALSE ) ;
-extern	int		Direct3D9_CheckMultiSampleParam_ASync				( D_D3DFORMAT Format, D_D3DMULTISAMPLE_TYPE *Samples, DWORD *Quality, int SamplesFailedBreak, int ASyncThread = FALSE ) ;	// ƒ}ƒ‹ƒ`ƒTƒ“ƒvƒ‹ƒŒƒ“ƒ_ƒŠƒ“ƒO‚ÌƒTƒ“ƒvƒ‹”‚ÆƒNƒIƒŠƒeƒB‚ğƒ`ƒFƒbƒN
+extern	int		Direct3D9_CheckMultiSampleParam_ASync				( D_D3DFORMAT Format, D_D3DMULTISAMPLE_TYPE *Samples, DWORD *Quality, int SamplesFailedBreak, int ASyncThread = FALSE ) ;	// ãƒãƒ«ãƒã‚µãƒ³ãƒ—ãƒ«ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã®ã‚µãƒ³ãƒ—ãƒ«æ•°ã¨ã‚¯ã‚ªãƒªãƒ†ã‚£ã‚’ãƒã‚§ãƒƒã‚¯
 
 extern	HRESULT	Direct3DDevice9_CreateRenderTarget_ASync			( UINT Width, UINT Height, D_D3DFORMAT Format, D_D3DMULTISAMPLE_TYPE MultiSample, DWORD MultisampleQuality, BOOL Lockable, D_IDirect3DSurface9** ppSurface, HANDLE* pSharedHandle, int ASyncThread ) ;
 extern	HRESULT	Direct3DDevice9_CreateDepthStencilSurface_ASync		( UINT Width, UINT Height, D_D3DFORMAT Format, D_D3DMULTISAMPLE_TYPE MultiSample, DWORD MultisampleQuality, BOOL Discard, D_IDirect3DSurface9** ppSurface, HANDLE* pSharedHandle, int ASyncThread ) ;
@@ -281,8 +281,8 @@ extern	HRESULT	Direct3DDevice9_UpdateSurface_ASync					( D_IDirect3DSurface9* pS
 extern	HRESULT	Direct3DDevice9_UpdateTexture_ASync					( D_IDirect3DBaseTexture9* pSourceTexture, D_IDirect3DBaseTexture9* pDestinationTexture, int ASyncThread ) ;
 extern	HRESULT	Direct3DDevice9_CreateVertexShader_ASync			( CONST DWORD* pFunction, D_IDirect3DVertexShader9** ppShader, int ASyncThread ) ;
 extern	HRESULT	Direct3DDevice9_CreatePixelShader_ASync				( CONST DWORD* pFunction, D_IDirect3DPixelShader9** ppShader, int ASyncThread ) ;
-extern	int		Direct3DDevice9_CreateVertexBuffer_ASync			( DWORD Length, DWORD Usage, DWORD FVFFlag, D_D3DPOOL Pool, D_IDirect3DVertexBuffer9 **BufferP, int ASyncThread = FALSE ) ;		// ’¸“_ƒoƒbƒtƒ@‚ğì¬‚·‚é
-extern	int		Direct3DDevice9_CreateIndexBuffer_ASync				( DWORD Length, DWORD Usage, D_D3DFORMAT Format, D_D3DPOOL Pool, D_IDirect3DIndexBuffer9 **BufferP, int ASyncThread = FALSE ) ;	// ƒCƒ“ƒfƒbƒNƒXƒoƒbƒtƒ@‚ğì¬‚·‚é
+extern	int		Direct3DDevice9_CreateVertexBuffer_ASync			( DWORD Length, DWORD Usage, DWORD FVFFlag, D_D3DPOOL Pool, D_IDirect3DVertexBuffer9 **BufferP, int ASyncThread = FALSE ) ;		// é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã‚’ä½œæˆã™ã‚‹
+extern	int		Direct3DDevice9_CreateIndexBuffer_ASync				( DWORD Length, DWORD Usage, D_D3DFORMAT Format, D_D3DPOOL Pool, D_IDirect3DIndexBuffer9 **BufferP, int ASyncThread = FALSE ) ;	// ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒãƒƒãƒ•ã‚¡ã‚’ä½œæˆã™ã‚‹
 
 extern	HRESULT	Direct3DTexture9_GetSurfaceLevel_ASync				( D_IDirect3DTexture9 *Texture, UINT Level,  D_IDirect3DSurface9** ppSurfaceLevel, int ASyncThread ) ;
 extern	HRESULT	Direct3DTexture9_LockRect_ASync						( D_IDirect3DTexture9 *Texture, UINT Level, D_D3DLOCKED_RECT* pLockedRect, CONST RECT* pRect, DWORD Flags, int ASyncThread ) ;
@@ -321,7 +321,7 @@ extern	long	Direct3D9_CheckDepthStencilMatch		( DWORD Adapter, D_D3DDEVTYPE Devi
 extern	long	Direct3D9_GetDeviceCaps					( DWORD Adapter, D_D3DDEVTYPE DeviceType, D_D3DCAPS9* pCaps) ;
 extern	HANDLE	Direct3D9_GetAdapterMonitor				( DWORD Adapter ) ;
 extern	int		Direct3D9_CreateDevice					( void ) ;
-extern	int		Direct3D9_CheckMultiSampleParam			( D_D3DFORMAT Format, D_D3DMULTISAMPLE_TYPE *Samples, DWORD *Quality, int SamplesFailedBreak ) ;	// ƒ}ƒ‹ƒ`ƒTƒ“ƒvƒ‹ƒŒƒ“ƒ_ƒŠƒ“ƒO‚ÌƒTƒ“ƒvƒ‹”‚ÆƒNƒIƒŠƒeƒB‚ğƒ`ƒFƒbƒN
+extern	int		Direct3D9_CheckMultiSampleParam			( D_D3DFORMAT Format, D_D3DMULTISAMPLE_TYPE *Samples, DWORD *Quality, int SamplesFailedBreak ) ;	// ãƒãƒ«ãƒã‚µãƒ³ãƒ—ãƒ«ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã®ã‚µãƒ³ãƒ—ãƒ«æ•°ã¨ã‚¯ã‚ªãƒªãƒ†ã‚£ã‚’ãƒã‚§ãƒƒã‚¯
 extern	int		Direct3D9_IsValid						( void ) ;
 extern	int		Direct3D9_IsExObject					( void ) ;
 

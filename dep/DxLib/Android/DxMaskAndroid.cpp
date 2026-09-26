@@ -1,19 +1,19 @@
 //-----------------------------------------------------------------------------
 // 
-// 		‚c‚wƒ‰ƒCƒuƒ‰ƒŠ		Android—pƒ}ƒXƒNƒf[ƒ^ŠÇ—ƒvƒƒOƒ‰ƒ€
+// 		ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒª		Androidç”¨ãƒã‚¹ã‚¯ãƒ‡ãƒ¼ã‚¿ç®¡ç†ãƒ—ãƒ­ã‚°ãƒ©ãƒ 
 // 
 //  	Ver 3.25a
 // 
 //-----------------------------------------------------------------------------
 
-// ‚c‚wƒ‰ƒCƒuƒ‰ƒŠì¬—p’è‹`
+// ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªä½œæˆæ™‚ç”¨å®šç¾©
 #define DX_MAKE
 
 #include "../DxCompileConfig.h"
 
 #ifndef DX_NON_MASK
 
-// ƒCƒ“ƒNƒ‹[ƒh ---------------------------------------------------------------
+// ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ ---------------------------------------------------------------
 #include "DxGraphicsAndroid.h"
 #include "DxMaskAndroid.h"
 #include "../DxModel.h"
@@ -29,21 +29,21 @@ namespace DxLib
 
 #endif // DX_NON_NAMESPACE
 
-// ƒ}ƒNƒ’è‹` -----------------------------------------------------------------
+// ãƒã‚¯ãƒ­å®šç¾© -----------------------------------------------------------------
 
-// \‘¢‘ÌéŒ¾ -----------------------------------------------------------------
+// æ§‹é€ ä½“å®£è¨€ -----------------------------------------------------------------
 
-// ƒf[ƒ^’è‹` -----------------------------------------------------------------
+// ãƒ‡ãƒ¼ã‚¿å®šç¾© -----------------------------------------------------------------
 
 MASKMANAGEDATA_ANDR MaskManageData_Android ;
 
-// ŠÖ”éŒ¾ -------------------------------------------------------------------
+// é–¢æ•°å®£è¨€ -------------------------------------------------------------------
 
-// ƒvƒƒOƒ‰ƒ€ -----------------------------------------------------------------
+// ãƒ—ãƒ­ã‚°ãƒ©ãƒ  -----------------------------------------------------------------
 
-// ŠÂ‹«ˆË‘¶ŠÖ”
+// ç’°å¢ƒä¾å­˜é–¢æ•°
 
-// ƒ}ƒXƒNƒXƒNƒŠ[ƒ“‚ğì¬‚·‚éŠÖ”
+// ãƒã‚¹ã‚¯ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚’ä½œæˆã™ã‚‹é–¢æ•°
 extern	int			Mask_CreateScreenFunction_Timing0_PF( void )
 {
 	MASKANDR.MaskScreenOldFrameBuffer   = MASKANDR.MaskScreenFrameBuffer ;
@@ -56,17 +56,17 @@ extern	int			Mask_CreateScreenFunction_Timing0_PF( void )
 		MASKANDR.MaskImageTextureBuffer = 0 ;
 	}
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// ƒ}ƒXƒNƒXƒNƒŠ[ƒ“‚ğì¬‚·‚éŠÖ”
+// ãƒã‚¹ã‚¯ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚’ä½œæˆã™ã‚‹é–¢æ•°
 extern	int			Mask_CreateScreenFunction_Timing1_PF( int Width, int Height )
 {
 	MASKANDR.MaskTextureSizeX = Width ;
 	MASKANDR.MaskTextureSizeY = Height ;
 
-	// ƒ}ƒXƒN—pƒCƒ[ƒWƒeƒNƒXƒ`ƒƒ‚Ìì¬
+	// ãƒã‚¹ã‚¯ç”¨ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ä½œæˆ
 	if( MASKANDR.MaskImageTextureBuffer == 0 )
 	{
 		PIXELFORMAT_INFO_ANDR *PixelFormat ;
@@ -110,7 +110,7 @@ extern	int			Mask_CreateScreenFunction_Timing1_PF( int Width, int Height )
 			) ;
 		}
 
-		// ƒ}ƒXƒN—pƒCƒ[ƒW‚Ì“]‘—
+		// ãƒã‚¹ã‚¯ç”¨ã‚¤ãƒ¡ãƒ¼ã‚¸ã®è»¢é€
 		{
 			RECT SrcRect ;
 			RECT DestRect ;
@@ -152,7 +152,7 @@ extern	int			Mask_CreateScreenFunction_Timing1_PF( int Width, int Height )
 		}
 	}
 
-	// ƒ}ƒXƒN—pƒXƒNƒŠ[ƒ“ƒeƒNƒXƒ`ƒƒ‚Ìì¬
+	// ãƒã‚¹ã‚¯ç”¨ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ä½œæˆ
 	if( MASKANDR.MaskScreenFrameBuffer == 0 )
 	{
 		// Offscreen position framebuffer texture target
@@ -168,44 +168,44 @@ extern	int			Mask_CreateScreenFunction_Timing1_PF( int Width, int Height )
 		glGenFramebuffers( 1, &MASKANDR.MaskScreenFrameBuffer ) ;
 		glBindFramebuffer( GL_FRAMEBUFFER, MASKANDR.MaskScreenFrameBuffer ) ;
 
-		// ƒŒƒ“ƒ_[ƒoƒbƒtƒ@¯•Êq‚ğ¶¬‚µ‚Ü‚·B
+		// ãƒ¬ãƒ³ãƒ€ãƒ¼ãƒãƒƒãƒ•ã‚¡è­˜åˆ¥å­ã‚’ç”Ÿæˆã—ã¾ã™ã€‚
 		glGenRenderbuffers( 1, &MASKANDR.MaskScreenDepthBuffer ) ;
 
-		// ƒŒƒ“ƒ_[ƒoƒbƒtƒ@¯•Êq‚É‘Î‰‚µ‚½ƒŒƒ“ƒ_[ƒoƒbƒtƒ@ƒIƒuƒWƒFƒNƒg‚ğ¶¬‚µ‚Ü‚·B
+		// ãƒ¬ãƒ³ãƒ€ãƒ¼ãƒãƒƒãƒ•ã‚¡è­˜åˆ¥å­ã«å¯¾å¿œã—ãŸãƒ¬ãƒ³ãƒ€ãƒ¼ãƒãƒƒãƒ•ã‚¡ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ç”Ÿæˆã—ã¾ã™ã€‚
 		glBindRenderbuffer( GL_RENDERBUFFER, MASKANDR.MaskScreenDepthBuffer ) ;
 
-		// ƒŒƒ“ƒ_[ƒoƒbƒtƒ@‚Ì•‚Æ‚‚³‚ğw’è‚µ‚Ü‚·B
+		// ãƒ¬ãƒ³ãƒ€ãƒ¼ãƒãƒƒãƒ•ã‚¡ã®å¹…ã¨é«˜ã•ã‚’æŒ‡å®šã—ã¾ã™ã€‚
 		glRenderbufferStorage( GL_RENDERBUFFER, GL_DEPTH_COMPONENT16, MASKANDR.MaskTextureSizeX, MASKANDR.MaskTextureSizeY ) ;
 
-		// ƒtƒŒ[ƒ€ƒoƒbƒtƒ@‚ÌƒAƒ^ƒbƒ`ƒƒ“ƒg‚Æ‚µ‚ÄƒŒƒ“ƒ_[ƒoƒbƒtƒ@‚ğƒAƒ^ƒbƒ`‚µ‚Ü‚·B
+		// ãƒ•ãƒ¬ãƒ¼ãƒ ãƒãƒƒãƒ•ã‚¡ã®ã‚¢ã‚¿ãƒƒãƒãƒ¡ãƒ³ãƒˆã¨ã—ã¦ãƒ¬ãƒ³ãƒ€ãƒ¼ãƒãƒƒãƒ•ã‚¡ã‚’ã‚¢ã‚¿ãƒƒãƒã—ã¾ã™ã€‚
 		glFramebufferRenderbuffer( GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, MASKANDR.MaskScreenDepthBuffer ) ;
 
-		// ƒtƒŒ[ƒ€ƒoƒbƒtƒ@‚ÌƒAƒ^ƒbƒ`ƒƒ“ƒg‚Æ‚µ‚Ä 2D ƒeƒNƒXƒ`ƒƒ‚ğƒAƒ^ƒbƒ`‚µ‚Ü‚·B
+		// ãƒ•ãƒ¬ãƒ¼ãƒ ãƒãƒƒãƒ•ã‚¡ã®ã‚¢ã‚¿ãƒƒãƒãƒ¡ãƒ³ãƒˆã¨ã—ã¦ 2D ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ã‚¢ã‚¿ãƒƒãƒã—ã¾ã™ã€‚
 		glFramebufferTexture2D( GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, MASKANDR.MaskScreenTextureBuffer, 0 ) ;
 
-		// ƒtƒŒ[ƒ€ƒoƒbƒtƒ@‚ªŠ®‘S‚©‚Ç‚¤‚©ƒ`ƒFƒbƒN‚µ‚Ü‚·B
+		// ãƒ•ãƒ¬ãƒ¼ãƒ ãƒãƒƒãƒ•ã‚¡ãŒå®Œå…¨ã‹ã©ã†ã‹ãƒã‚§ãƒƒã‚¯ã—ã¾ã™ã€‚
 		GLint status = glCheckFramebufferStatus( GL_FRAMEBUFFER ) ;
 		if( status != GL_FRAMEBUFFER_COMPLETE )
 		{
-			DXST_LOGFILE_ADDUTF16LE( "\xde\x30\xb9\x30\xaf\x30\x28\x75\xd5\x30\xec\x30\xfc\x30\xe0\x30\xd0\x30\xc3\x30\xd5\x30\xa1\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ƒ}ƒXƒN—pƒtƒŒ[ƒ€ƒoƒbƒtƒ@‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+			DXST_LOGFILE_ADDUTF16LE( "\xde\x30\xb9\x30\xaf\x30\x28\x75\xd5\x30\xec\x30\xfc\x30\xe0\x30\xd0\x30\xc3\x30\xd5\x30\xa1\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ãƒã‚¹ã‚¯ç”¨ãƒ•ãƒ¬ãƒ¼ãƒ ãƒãƒƒãƒ•ã‚¡ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 			return -1 ;
 		}
 		glBindFramebuffer( GL_FRAMEBUFFER, 0 ) ;
 	}
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// ƒ}ƒXƒNƒXƒNƒŠ[ƒ“‚ğì¬‚·‚éŠÖ”
+// ãƒã‚¹ã‚¯ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚’ä½œæˆã™ã‚‹é–¢æ•°
 extern	int			Mask_CreateScreenFunction_Timing2_PF( int MaskBufferSizeXOld, int MaskBufferSizeYOld )
 {
 	RECT UpdateRect ;
 
-	// •`‰æ‚ğI—¹‚µ‚Ä‚¨‚­
+	// æç”»ã‚’çµ‚äº†ã—ã¦ãŠã
 	Graphics_Android_RenderEnd() ;
 
-	// ƒ}ƒXƒN—pƒCƒ[ƒW‚Ì“]‘—
+	// ãƒã‚¹ã‚¯ç”¨ã‚¤ãƒ¡ãƒ¼ã‚¸ã®è»¢é€
 	{
 		RECT SrcRect ;
 		RECT DestRect ;
@@ -246,7 +246,7 @@ extern	int			Mask_CreateScreenFunction_Timing2_PF( int MaskBufferSizeXOld, int M
 		) ;
 	}
 
-	// ƒ}ƒXƒN—pƒXƒNƒŠ[ƒ“ƒeƒNƒXƒ`ƒƒ‚É¡‚Ü‚Å‚Ì“à—e‚ğ“]‘—
+	// ãƒã‚¹ã‚¯ç”¨ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ†ã‚¯ã‚¹ãƒãƒ£ã«ä»Šã¾ã§ã®å†…å®¹ã‚’è»¢é€
 	UpdateRect.left   = 0 ;
 	UpdateRect.top    = 0 ;
 	UpdateRect.right  = MaskBufferSizeXOld ;
@@ -256,13 +256,13 @@ extern	int			Mask_CreateScreenFunction_Timing2_PF( int MaskBufferSizeXOld, int M
 		MASKANDR.MaskScreenFrameBuffer,      MASKANDR.MaskTextureSizeX, MASKANDR.MaskTextureSizeY, &UpdateRect
 	) ;
 
-	// ƒŒƒ“ƒ_[ƒ^[ƒQƒbƒg‚É‚³‚ê‚Ä‚¢‚½‚ç•ÏX‚·‚é
+	// ãƒ¬ãƒ³ãƒ€ãƒ¼ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã«ã•ã‚Œã¦ã„ãŸã‚‰å¤‰æ›´ã™ã‚‹
 	if( GANDR.Device.State.TargetFrameBuffer == MASKANDR.MaskScreenOldFrameBuffer )
 	{
 		Graphics_Android_DeviceState_SetRenderTarget( MASKANDR.MaskScreenFrameBuffer, MASKANDR.MaskTextureSizeX, MASKANDR.MaskTextureSizeY ) ;
 	}
 
-	// ˆÈ‘O‚Ìƒ}ƒXƒNƒXƒNƒŠ[ƒ“î•ñ‚ğŠJ•ú
+	// ä»¥å‰ã®ãƒã‚¹ã‚¯ã‚¹ã‚¯ãƒªãƒ¼ãƒ³æƒ…å ±ã‚’é–‹æ”¾
 	{
 		if( MASKANDR.MaskScreenOldFrameBuffer != 0 )
 		{
@@ -283,11 +283,11 @@ extern	int			Mask_CreateScreenFunction_Timing2_PF( int MaskBufferSizeXOld, int M
 		}
 	}
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// ƒ}ƒXƒNƒXƒNƒŠ[ƒ“‚ğˆêíœ‚·‚é
+// ãƒã‚¹ã‚¯ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚’ä¸€æ™‚å‰Šé™¤ã™ã‚‹
 extern	int			Mask_ReleaseSurface_PF( void )
 {
 	if( MASKANDR.MaskImageTextureBuffer != 0 )
@@ -317,13 +317,13 @@ extern	int			Mask_ReleaseSurface_PF( void )
 	return 0 ;
 }
 
-// ƒ}ƒXƒNg—pƒ‚[ƒh‚ğ•ÏX
+// ãƒã‚¹ã‚¯ä½¿ç”¨ãƒ¢ãƒ¼ãƒ‰ã‚’å¤‰æ›´
 extern	int			Mask_SetUseMaskScreenFlag_PF( void )
 {
 	IMAGEDATA     *Image     = NULL ;
 	SHADOWMAPDATA *ShadowMap = NULL ;
 
-	// •`‰ææ‚Ì‰æ‘œƒf[ƒ^ƒAƒhƒŒƒX‚ğæ“¾‚·‚é
+	// æç”»å…ˆã®ç”»åƒãƒ‡ãƒ¼ã‚¿ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å–å¾—ã™ã‚‹
 	if( GSYS.DrawSetting.ShadowMapDrawSetupRequest )
 	{
 		ShadowMap = Graphics_ShadowMap_GetData( GSYS.DrawSetting.ShadowMapDrawHandle ) ;
@@ -333,27 +333,27 @@ extern	int			Mask_SetUseMaskScreenFlag_PF( void )
 		Image = Graphics_Image_GetData( GSYS.DrawSetting.TargetScreen[ 0 ] ) ;
 	}
 
-	// •`‰æ‘Ò‹@‚µ‚Ä‚¢‚é•`‰æ•¨‚ğ•`‰æ
+	// æç”»å¾…æ©Ÿã—ã¦ã„ã‚‹æç”»ç‰©ã‚’æç”»
 	DRAWSTOCKINFO
 
-	// •`‰æ‚ğI—¹‚·‚é
+	// æç”»ã‚’çµ‚äº†ã™ã‚‹
 	Graphics_Android_RenderEnd() ;
 
-	// •`‰ææ‚ğ•ÏX‚·‚é
+	// æç”»å…ˆã‚’å¤‰æ›´ã™ã‚‹
 
-	// ƒ}ƒXƒNƒT[ƒtƒFƒX‚ª‘¶İ‚µ‚Ä‚¢‚ÄŠ‚Â—LŒø‚Èê‡‚Íƒ}ƒXƒNƒT[ƒtƒFƒX‚ğ•`‰æ‘ÎÛ‚É‚·‚é
+	// ãƒã‚¹ã‚¯ã‚µãƒ¼ãƒ•ã‚§ã‚¹ãŒå­˜åœ¨ã—ã¦ã„ã¦ä¸”ã¤æœ‰åŠ¹ãªå ´åˆã¯ãƒã‚¹ã‚¯ã‚µãƒ¼ãƒ•ã‚§ã‚¹ã‚’æç”»å¯¾è±¡ã«ã™ã‚‹
 	if( MASKD.MaskValidFlag && MASKANDR.MaskScreenFrameBuffer )
 	{
 		Graphics_Android_DeviceState_SetRenderTarget( MASKANDR.MaskScreenFrameBuffer, MASKANDR.MaskTextureSizeX, MASKANDR.MaskTextureSizeY ) ;
 	}
 	else
-	// ƒVƒƒƒhƒEƒ}ƒbƒv‚ª—LŒø‚Èê‡‚ÍƒVƒƒƒhƒEƒ}ƒbƒv‚ğ•`‰æ‘ÎÛ‚É‚·‚é
+	// ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ãŒæœ‰åŠ¹ãªå ´åˆã¯ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ã‚’æç”»å¯¾è±¡ã«ã™ã‚‹
 	if( ShadowMap )
 	{
 		Graphics_Android_DeviceState_SetRenderTarget( ShadowMap->PF->FrameBuffer, ShadowMap->PF->Texture.Width, ShadowMap->PF->Texture.Height ) ;
 	}
 	else
-	// •`‰æ‰Â”\‰æ‘œ‚ª—LŒø‚Èê‡‚Í•`‰æ‰Â”\‰æ‘œ‚ğ•`‰æ‘ÎÛ‚É‚·‚é
+	// æç”»å¯èƒ½ç”»åƒãŒæœ‰åŠ¹ãªå ´åˆã¯æç”»å¯èƒ½ç”»åƒã‚’æç”»å¯¾è±¡ã«ã™ã‚‹
 	if( Image )
 	{
 		if( Image->Hard.Draw[ 0 ].Tex->PF->MSRenderTarget != 0 )
@@ -366,15 +366,15 @@ extern	int			Mask_SetUseMaskScreenFlag_PF( void )
 		}
 	}
 	else
-	// ‚»‚êˆÈŠO‚Ìê‡‚ÍƒTƒuƒoƒbƒNƒoƒbƒtƒ@‚ğ•`‰æ‘ÎÛ‚É‚·‚é
+	// ãã‚Œä»¥å¤–ã®å ´åˆã¯ã‚µãƒ–ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã‚’æç”»å¯¾è±¡ã«ã™ã‚‹
 	{
 		Graphics_Android_DeviceState_SetRenderTarget( GANDR.Device.Screen.SubBackBufferFrameBuffer, GANDR.Device.Screen.SubBackBufferTextureSizeX, GANDR.Device.Screen.SubBackBufferTextureSizeY ) ;
 	}
 
-	// g—p‚·‚é‚yƒoƒbƒtƒ@‚ÌƒZƒbƒgƒAƒbƒv
+	// ä½¿ç”¨ã™ã‚‹ï¼ºãƒãƒƒãƒ•ã‚¡ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 	Graphics_Screen_SetupUseZBuffer() ;
 
-	// ƒrƒ…[ƒ|[ƒg‚ğŒ³‚É–ß‚·
+	// ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆã‚’å…ƒã«æˆ»ã™
 	GANDR.Device.DrawSetting.CancelSettingEqualCheck = TRUE ;
 	Graphics_Android_DeviceState_SetViewportEasy(
 		GSYS.DrawSetting.DrawArea.left,
@@ -384,17 +384,17 @@ extern	int			Mask_SetUseMaskScreenFlag_PF( void )
 	) ;
 	GANDR.Device.DrawSetting.CancelSettingEqualCheck = FALSE ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// ƒ}ƒXƒN‚ğg—p‚µ‚½•`‰æ‚Ì‘O‚ÉŒÄ‚ÔŠÖ”( ‚Â‚¢‚Å‚ÉƒTƒuƒoƒbƒtƒ@‚ğg—p‚µ‚½•`‰æƒGƒŠƒA‹@”\‚ğg—p‚µ‚Ä‚¢‚éê‡‚Ìˆ—‚à‚¢‚ê‚Ä‚µ‚Ü‚Á‚Ä‚¢‚é‚æ )
+// ãƒã‚¹ã‚¯ã‚’ä½¿ç”¨ã—ãŸæç”»ã®å‰ã«å‘¼ã¶é–¢æ•°( ã¤ã„ã§ã«ã‚µãƒ–ãƒãƒƒãƒ•ã‚¡ã‚’ä½¿ç”¨ã—ãŸæç”»ã‚¨ãƒªã‚¢æ©Ÿèƒ½ã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹å ´åˆã®å‡¦ç†ã‚‚ã„ã‚Œã¦ã—ã¾ã£ã¦ã„ã‚‹ã‚ˆ )
 extern	int			Mask_DrawBeginFunction_PF( RECT *Rect )
 {
 	IMAGEDATA     *Image     = NULL ;
 	SHADOWMAPDATA *ShadowMap = NULL ;
 
-	// •`‰ææ‚Ì‰æ‘œƒf[ƒ^ƒAƒhƒŒƒX‚ğæ“¾‚·‚é
+	// æç”»å…ˆã®ç”»åƒãƒ‡ãƒ¼ã‚¿ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å–å¾—ã™ã‚‹
 	if( GSYS.DrawSetting.ShadowMapDraw == FALSE )
 	{
 		ShadowMap = Graphics_ShadowMap_GetData( GSYS.DrawSetting.ShadowMapDrawHandle ) ;
@@ -404,13 +404,13 @@ extern	int			Mask_DrawBeginFunction_PF( RECT *Rect )
 		Image = Graphics_Image_GetData( GSYS.DrawSetting.TargetScreen[ 0 ] ) ;
 	}
 
-	// ƒ}ƒXƒN‚ğg—p‚µ‚Ä‚¢‚é‚Æ‚«‚Ì‚İ“Á•Ê‚Èˆ—‚ğ‚·‚é
+	// ãƒã‚¹ã‚¯ã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹ã¨ãã®ã¿ç‰¹åˆ¥ãªå‡¦ç†ã‚’ã™ã‚‹
 	if( MASKD.MaskValidFlag && MASKANDR.MaskScreenFrameBuffer )
 	{
-		// ÅIo—Íæ‚ÌŒˆ’è
+		// æœ€çµ‚å‡ºåŠ›å…ˆã®æ±ºå®š
 		
-		// •`‰æ‰Â”\‰æ‘œ‚ª•`‰ææ‚Ìê‡‚Í‚»‚ê‚ğA‚»‚êˆÈŠO‚Ìê‡‚ÍƒTƒuƒoƒbƒNƒoƒbƒtƒ@‚ğg—p‚µ‚Ä‚¢‚éê‡‚ÍƒTƒuƒoƒbƒNƒoƒbƒtƒ@‚ğA
-		// ‚»‚¤‚Å‚Í‚È‚¢ê‡‚ÍƒoƒbƒNƒoƒbƒtƒ@‚ğo—Íæ‚É‚·‚é
+		// æç”»å¯èƒ½ç”»åƒãŒæç”»å…ˆã®å ´åˆã¯ãã‚Œã‚’ã€ãã‚Œä»¥å¤–ã®å ´åˆã¯ã‚µãƒ–ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹å ´åˆã¯ã‚µãƒ–ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã‚’ã€
+		// ãã†ã§ã¯ãªã„å ´åˆã¯ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã‚’å‡ºåŠ›å…ˆã«ã™ã‚‹
 		if( ShadowMap )
 		{
 			MASKANDR.DestTargetTextureBuffer = ShadowMap->PF->Texture.TextureBuffer ;
@@ -441,21 +441,21 @@ extern	int			Mask_DrawBeginFunction_PF( RECT *Rect )
 			MASKANDR.DestTargetHeight        = GANDR.Device.Screen.SubBackBufferTextureSizeY ;
 		}
 
-		// ÅIo—Íæ‚©‚çƒ}ƒXƒNƒXƒNƒŠ[ƒ“‚ÉŒ»İ‚Ì•`‰æó‹µ‚ğƒRƒs[‚·‚é
+		// æœ€çµ‚å‡ºåŠ›å…ˆã‹ã‚‰ãƒã‚¹ã‚¯ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã«ç¾åœ¨ã®æç”»çŠ¶æ³ã‚’ã‚³ãƒ”ãƒ¼ã™ã‚‹
 		Graphics_Android_StretchRect(
 			MASKANDR.DestTargetTextureBuffer, MASKANDR.DestTargetWidth,  MASKANDR.DestTargetHeight, Rect,
 			MASKANDR.MaskScreenFrameBuffer,   MASKANDR.MaskTextureSizeX, MASKANDR.MaskTextureSizeY, Rect
 		) ; 
 	}
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// ƒ}ƒXƒN‚ğg—p‚µ‚½•`‰æ‚ÌŒã‚ÉŒÄ‚ÔŠÖ”( ‚Â‚¢‚Å‚ÉƒTƒuƒoƒbƒtƒ@‚ğg—p‚µ‚½•`‰æƒGƒŠƒA‹@”\‚ğg—p‚µ‚Ä‚¢‚éê‡‚Ìˆ—‚à‚¢‚ê‚Ä‚µ‚Ü‚Á‚Ä‚¢‚é‚æ )
+// ãƒã‚¹ã‚¯ã‚’ä½¿ç”¨ã—ãŸæç”»ã®å¾Œã«å‘¼ã¶é–¢æ•°( ã¤ã„ã§ã«ã‚µãƒ–ãƒãƒƒãƒ•ã‚¡ã‚’ä½¿ç”¨ã—ãŸæç”»ã‚¨ãƒªã‚¢æ©Ÿèƒ½ã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹å ´åˆã®å‡¦ç†ã‚‚ã„ã‚Œã¦ã—ã¾ã£ã¦ã„ã‚‹ã‚ˆ )
 extern	int			Mask_DrawAfterFunction_PF( RECT *Rect )
 {
-	// ƒ}ƒXƒN‚ğg—p‚µ‚Ä‚¢‚éê‡‚Ì‚İƒ}ƒXƒN‰æ‘œ‚Æ‡¬‚µ‚Ä“]‘—
+	// ãƒã‚¹ã‚¯ã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹å ´åˆã®ã¿ãƒã‚¹ã‚¯ç”»åƒã¨åˆæˆã—ã¦è»¢é€
 	if( MASKD.MaskValidFlag && MASKANDR.MaskScreenFrameBuffer )
 	{
 		IMAGEDATA               *MaskScreenImage = NULL ;
@@ -465,19 +465,19 @@ extern	int			Mask_DrawAfterFunction_PF( RECT *Rect )
 		GRAPHICS_ANDROID_SHADER *MaskShader ;
 		int                     AlphaBlend ;
 
-		// ƒ}ƒXƒN—pƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ª—LŒø‚Èê‡‚Íƒ}ƒXƒN—pƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚Ìî•ñ‚ğæ“¾‚·‚é
+		// ãƒã‚¹ã‚¯ç”¨ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ãŒæœ‰åŠ¹ãªå ´åˆã¯ãƒã‚¹ã‚¯ç”¨ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã®æƒ…å ±ã‚’å–å¾—ã™ã‚‹
 		if( MASKD.MaskScreenGraphHandle != 0 )
 		{
 			MaskScreenImage = Graphics_Image_GetData( MASKD.MaskScreenGraphHandle ) ;
 
-			// Šù‚É–³Œø‚É‚È‚Á‚Ä‚¢‚½‚çİ’è‚à 0 ‚É‚·‚é
+			// æ—¢ã«ç„¡åŠ¹ã«ãªã£ã¦ã„ãŸã‚‰è¨­å®šã‚‚ 0 ã«ã™ã‚‹
 			if( MaskScreenImage == NULL )
 			{
 				MASKD.MaskScreenGraphHandle = 0 ;
 			}
 		}
 
-		// g—p‚·‚éƒ}ƒXƒNƒCƒ[ƒWƒeƒNƒXƒ`ƒƒ‚ğƒZƒbƒg
+		// ä½¿ç”¨ã™ã‚‹ãƒã‚¹ã‚¯ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ã‚»ãƒƒãƒˆ
 		if( MaskScreenImage != NULL )
 		{
 			MaskImageTextureBuffer = MaskScreenImage->Hard.Draw[ 0 ].Tex->PF->Texture.TextureBuffer ;
@@ -510,18 +510,18 @@ extern	int			Mask_DrawAfterFunction_PF( RECT *Rect )
 	return 0 ;
 }
 
-// ƒ}ƒXƒNƒXƒNƒŠ[ƒ“‚ğw’è‚ÌF‚Å“h‚è‚Â‚Ô‚·
+// ãƒã‚¹ã‚¯ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚’æŒ‡å®šã®è‰²ã§å¡—ã‚Šã¤ã¶ã™
 extern	int			Mask_FillMaskScreen_PF( int Flag )
 {
 //	int i ;
 
-	// •`‰æ‘Ò‹@‚µ‚Ä‚¢‚é•`‰æ•¨‚ğ•`‰æ
+	// æç”»å¾…æ©Ÿã—ã¦ã„ã‚‹æç”»ç‰©ã‚’æç”»
 	DRAWSTOCKINFO
 
-	// •`‰æ‚ğI—¹‚·‚é
+	// æç”»ã‚’çµ‚äº†ã™ã‚‹
 	Graphics_Android_RenderEnd() ;
 
-	// ƒ}ƒXƒN—pƒCƒ[ƒW‚Ì“]‘—
+	// ãƒã‚¹ã‚¯ç”¨ã‚¤ãƒ¡ãƒ¼ã‚¸ã®è»¢é€
 	{
 		RECT SrcRect ;
 		RECT DestRect ;
@@ -565,18 +565,18 @@ extern	int			Mask_FillMaskScreen_PF( int Flag )
 	return 0 ;
 }
 
-// w’è—Ìˆæ‚Ìƒ}ƒXƒNƒCƒ[ƒWƒeƒNƒXƒ`ƒƒ‚ğXV‚·‚é
+// æŒ‡å®šé ˜åŸŸã®ãƒã‚¹ã‚¯ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’æ›´æ–°ã™ã‚‹
 extern	int			Mask_UpdateMaskImageTexture_PF( RECT *Rect )
 {
 //	int i ;
 
-	// •`‰æ‘Ò‹@‚µ‚Ä‚¢‚é•`‰æ•¨‚ğ•`‰æ
+	// æç”»å¾…æ©Ÿã—ã¦ã„ã‚‹æç”»ç‰©ã‚’æç”»
 	DRAWSTOCKINFO
 
-	// •`‰æ‚ğI—¹‚·‚é
+	// æç”»ã‚’çµ‚äº†ã™ã‚‹
 	Graphics_Android_RenderEnd() ;
 
-	// ƒ}ƒXƒN—pƒCƒ[ƒW‚Ì“]‘—
+	// ãƒã‚¹ã‚¯ç”¨ã‚¤ãƒ¡ãƒ¼ã‚¸ã®è»¢é€
 	{
 		BASEIMAGE MaskBaseImage ;
 		BASEIMAGE AlphaBaseImage ;

@@ -1,43 +1,43 @@
 // -------------------------------------------------------------------------------
 // 
-// 		‚c‚wƒ‰ƒCƒuƒ‰ƒŠ		ƒsƒNƒZƒ‹ƒVƒF[ƒ_[ŠÖ˜A’è‹`
+// 		ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒª		ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼é–¢é€£å®šç¾©
 // 
 // 				Ver 3.25a
 // 
 // -------------------------------------------------------------------------------
 
 #define DX_PS_CONSTF_ZERO_HALF_ONE_TWO          0		// x=0.0f, y=0.5f, z=1.0f, w=2.0f
-#define DX_PS_CONSTF_AMBIENT_EMISSIVE           1		// ƒ}ƒeƒŠƒAƒ‹ƒGƒ~ƒbƒVƒuƒJƒ‰[ + ƒ}ƒeƒŠƒAƒ‹ƒAƒ“ƒrƒGƒ“ƒgƒJƒ‰[ * ƒOƒ[ƒoƒ‹ƒAƒ“ƒrƒGƒ“ƒgƒJƒ‰[
-#define DX_PS_CONSTF_MATERIAL_START             2		// ƒ}ƒeƒŠƒAƒ‹î•ñ‚ÌŠi”[ŠJŽnƒAƒhƒŒƒX
-#define DX_PS_CONSTF_MATERIAL_SIZE              3		// ƒ}ƒeƒŠƒAƒ‹—p‚ÌƒŒƒWƒXƒ^‚Ì”
-#define DX_PS_CONSTF_MAT_DIFFUSE                0		// ƒ}ƒeƒŠƒAƒ‹‚ÌƒfƒBƒtƒ…[ƒYƒJƒ‰[
-#define DX_PS_CONSTF_MAT_SPECULAR               1		// ƒ}ƒeƒŠƒAƒ‹‚ÌƒXƒyƒLƒ…ƒ‰ƒJƒ‰[
-#define DX_PS_CONSTF_MAT_POWER_TYPEPARAM012     2		// x:ƒ}ƒeƒŠƒAƒ‹‚ÌƒXƒyƒLƒ…ƒ‰ƒnƒCƒ‰ƒCƒg‚Ìƒpƒ[  y.z.w:ƒ}ƒeƒŠƒAƒ‹ƒ^ƒCƒvƒpƒ‰ƒ[ƒ^0,1,2
-#define DX_PS_CONSTF_FACTORCOLOR                5		// “§–¾“x“™
-#define DX_PS_CONSTF_TOON_OUTLINE_COLOR         6		// ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚Ì—ÖŠsü‚ÌF
-#define DX_PS_CONSTF_TOON_OUTLINE_WIDTH         7		// ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚Ì—ÖŠsü‚Ì‘¾‚³
-#define DX_PS_CONSTF_FOG_COLOR                  8		// ƒtƒHƒOƒJƒ‰[
-#define DX_PS_CONSTF_LIGHT_START                9		// ƒ‰ƒCƒgî•ñ‚ÌŠi”[ŠJŽnƒAƒhƒŒƒX
-#define DX_PS_CONSTF_LIGHT_UNITSIZE             3		// ƒ‰ƒCƒg‚Ìî•ñˆê‚Â•Ó‚è‚ÌŽg—pƒŒƒWƒXƒ^‚Ì”
-#define DX_PS_CONSTF_LGT_DIFFUSE                0		// ƒ‰ƒCƒg‚ÌƒfƒBƒtƒ…[ƒYƒJƒ‰[
-#define DX_PS_CONSTF_LGT_SPECULAR               1		// ƒ‰ƒCƒg‚ÌƒXƒyƒLƒ…ƒ‰ƒJƒ‰[
-#define DX_PS_CONSTF_LGT_AMBIENT                2		// ƒ‰ƒCƒg‚ÌƒAƒ“ƒrƒGƒ“ƒgƒJƒ‰[‚Æƒ}ƒeƒŠƒAƒ‹‚ÌƒAƒ“ƒrƒGƒ“ƒgƒJƒ‰[‚ðæŽZ‚µ‚½‚à‚Ì
-#define DX_PS_CONSTF_SHADOW1_DADJ_GRAD_ENBL0_1             18	// ƒVƒƒƒhƒEƒ}ƒbƒv‚P—p‚Ìî•ñ( x:è‡’l[“x•â³’l  y:ƒOƒ‰ƒf[ƒVƒ‡ƒ“”ÍˆÍ  zw:ƒ‰ƒCƒg‚OE‚P‚Ö‚Ì“K—pî•ñ)
-#define DX_PS_CONSTF_SHADOW1_ENBL2_SHADOW2_DADJ_GRAD_ENBL0 19	// ƒVƒƒƒhƒEƒ}ƒbƒv‚P—p‚Ìî•ñ( x:ƒ‰ƒCƒg‚Q‚Ö‚Ì“K—pî•ñ )AƒVƒƒƒhƒEƒ}ƒbƒv‚Q—p‚Ìî•ñ( y:è‡’l[“x•â³’l  z:ƒOƒ‰ƒf[ƒVƒ‡ƒ“”ÍˆÍ  w:ƒ‰ƒCƒg‚O‚Ö‚Ì“K—pî•ñ )
-#define DX_PS_CONSTF_SHADOW2_ENBL1_2_SHADOW3_DADJ_GRAD     20	// ƒVƒƒƒhƒEƒ}ƒbƒv‚Q—p‚Ìî•ñ( xy:ƒ‰ƒCƒg‚PE‚Q‚Ö‚Ì“K—pî•ñ)AƒVƒƒƒhƒEƒ}ƒbƒv‚R—p‚Ìî•ñ( z:è‡’l[“x•â³’l  w:ƒOƒ‰ƒf[ƒVƒ‡ƒ“”ÍˆÍ )
-#define DX_PS_CONSTF_SHADOW3_ENBL0_1_2_LGT_NO_GEN          21	// ƒVƒƒƒhƒEƒ}ƒbƒv‚R—p‚Ìî•ñ( xyz:ƒ‰ƒCƒg‚O`‚Q‚Ö‚Ì“K—pî•ñ )Aƒ‰ƒCƒgŒ¸Š‚È‚µ‚©( w )
-#define DX_PS_CONSTF_MUL_ALPHA_COLOR_ADD_COLOR  22		// ƒJƒ‰[‚ÉƒAƒ‹ƒtƒ@’l‚ðæŽZ‚·‚é‚©‚Ç‚¤‚©( x( 0.0f:æŽZ‚µ‚È‚¢  1.0f:æŽZ‚·‚é ) ), ‰ÁŽZ‚·‚éF( RGB=yzw )
-#define DX_PS_CONSTF_IGNORE_TEX_COLOR           23		// ƒeƒNƒXƒ`ƒƒƒJƒ‰[–³Ž‹ˆ——pƒJƒ‰[
-#define DX_PS_CONSTF_USE_HALFLAMBERT            24		// ƒn[ƒtƒ‰ƒ“ƒo[ƒg‚ðŽg—p‚·‚é‚©( x )
-#define DX_PS_CONSTF_VERTICAL_FOG_COLOR         25		// ‚‚³ƒtƒHƒOƒJƒ‰[
-#define DX_PS_CONSTF_LIGHT2_START               32		// ƒ‰ƒCƒgŠg’£î•ñ‚ÌŠi”[ŠJŽnƒAƒhƒŒƒX
-#define DX_PS_CONSTF_LIGHT2_UNITSIZE            7		// ƒ‰ƒCƒgŠg’£î•ñˆê‚Â•Ó‚è‚ÉŽg—p‚·‚éƒŒƒWƒXƒ^‚Ì”
-#define DX_PS_CONSTB_LIGHT2_NUM                 6		// “K—p‚Å‚«‚éƒ‰ƒCƒg‚ÌÅ‘å”
-#define DX_PS_CONSTF_LGT2_POSITION              0		// ƒ‰ƒCƒg‚ÌˆÊ’u( ƒrƒ…[‹óŠÔ )
-#define DX_PS_CONSTF_LGT2_DIRECTION             1		// ƒ‰ƒCƒg‚Ì•ûŒü( ƒrƒ…[‹óŠÔ )
-#define DX_PS_CONSTF_LGT2_DIFFUSE               2		// ƒ‰ƒCƒg‚ÌƒfƒBƒt[ƒYF
-#define DX_PS_CONSTF_LGT2_SPECULAR              3		// ƒ‰ƒCƒg‚ÌƒXƒyƒLƒ…ƒ‰F
-#define DX_PS_CONSTF_LGT2_AMBIENT               4		// ƒ‰ƒCƒg‚ÌƒAƒ“ƒrƒGƒ“ƒgF‚Æƒ}ƒeƒŠƒAƒ‹‚ÌƒAƒ“ƒrƒGƒ“ƒgƒJƒ‰[‚ðæŽZ‚µ‚½‚à‚Ì
-#define DX_PS_CONSTF_LGT2_RANGE_FALLOFF_AT0_AT1 5		// ƒ‰ƒCƒg‚Ì x:—LŒø‹——£‚Ì“ñæ y:ƒtƒH[ƒ‹ƒIƒt z:‹——£Œ¸Šƒpƒ‰ƒ[ƒ^‚O w:‹——£Œ¸Šƒpƒ‰ƒ[ƒ^‚P
-#define DX_PS_CONSTF_LGT2_AT2_SPOTP0_SPOTP1     6		// ƒ‰ƒCƒg‚Ì x:‹——£Œ¸Šƒpƒ‰ƒ[ƒ^‚Q y:ƒXƒ|ƒbƒgƒ‰ƒCƒg—pƒpƒ‰ƒ[ƒ^‚O( cos( Phi / 2.0f ) ) z:ƒXƒ|ƒbƒgƒ‰ƒCƒg—pƒpƒ‰ƒ[ƒ^‚P( 1.0f / ( cos( Theta / 2.0f ) - cos( Phi / 2.0f ) ) )
+#define DX_PS_CONSTF_AMBIENT_EMISSIVE           1		// ãƒžãƒ†ãƒªã‚¢ãƒ«ã‚¨ãƒŸãƒƒã‚·ãƒ–ã‚«ãƒ©ãƒ¼ + ãƒžãƒ†ãƒªã‚¢ãƒ«ã‚¢ãƒ³ãƒ“ã‚¨ãƒ³ãƒˆã‚«ãƒ©ãƒ¼ * ã‚°ãƒ­ãƒ¼ãƒãƒ«ã‚¢ãƒ³ãƒ“ã‚¨ãƒ³ãƒˆã‚«ãƒ©ãƒ¼
+#define DX_PS_CONSTF_MATERIAL_START             2		// ãƒžãƒ†ãƒªã‚¢ãƒ«æƒ…å ±ã®æ ¼ç´é–‹å§‹ã‚¢ãƒ‰ãƒ¬ã‚¹
+#define DX_PS_CONSTF_MATERIAL_SIZE              3		// ãƒžãƒ†ãƒªã‚¢ãƒ«ç”¨ã®ãƒ¬ã‚¸ã‚¹ã‚¿ã®æ•°
+#define DX_PS_CONSTF_MAT_DIFFUSE                0		// ãƒžãƒ†ãƒªã‚¢ãƒ«ã®ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚«ãƒ©ãƒ¼
+#define DX_PS_CONSTF_MAT_SPECULAR               1		// ãƒžãƒ†ãƒªã‚¢ãƒ«ã®ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã‚«ãƒ©ãƒ¼
+#define DX_PS_CONSTF_MAT_POWER_TYPEPARAM012     2		// x:ãƒžãƒ†ãƒªã‚¢ãƒ«ã®ã‚¹ãƒšã‚­ãƒ¥ãƒ©ãƒã‚¤ãƒ©ã‚¤ãƒˆã®ãƒ‘ãƒ¯ãƒ¼  y.z.w:ãƒžãƒ†ãƒªã‚¢ãƒ«ã‚¿ã‚¤ãƒ—ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿0,1,2
+#define DX_PS_CONSTF_FACTORCOLOR                5		// é€æ˜Žåº¦ç­‰
+#define DX_PS_CONSTF_TOON_OUTLINE_COLOR         6		// ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã®è¼ªéƒ­ç·šã®è‰²
+#define DX_PS_CONSTF_TOON_OUTLINE_WIDTH         7		// ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã®è¼ªéƒ­ç·šã®å¤ªã•
+#define DX_PS_CONSTF_FOG_COLOR                  8		// ãƒ•ã‚©ã‚°ã‚«ãƒ©ãƒ¼
+#define DX_PS_CONSTF_LIGHT_START                9		// ãƒ©ã‚¤ãƒˆæƒ…å ±ã®æ ¼ç´é–‹å§‹ã‚¢ãƒ‰ãƒ¬ã‚¹
+#define DX_PS_CONSTF_LIGHT_UNITSIZE             3		// ãƒ©ã‚¤ãƒˆã®æƒ…å ±ä¸€ã¤è¾ºã‚Šã®ä½¿ç”¨ãƒ¬ã‚¸ã‚¹ã‚¿ã®æ•°
+#define DX_PS_CONSTF_LGT_DIFFUSE                0		// ãƒ©ã‚¤ãƒˆã®ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚«ãƒ©ãƒ¼
+#define DX_PS_CONSTF_LGT_SPECULAR               1		// ãƒ©ã‚¤ãƒˆã®ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã‚«ãƒ©ãƒ¼
+#define DX_PS_CONSTF_LGT_AMBIENT                2		// ãƒ©ã‚¤ãƒˆã®ã‚¢ãƒ³ãƒ“ã‚¨ãƒ³ãƒˆã‚«ãƒ©ãƒ¼ã¨ãƒžãƒ†ãƒªã‚¢ãƒ«ã®ã‚¢ãƒ³ãƒ“ã‚¨ãƒ³ãƒˆã‚«ãƒ©ãƒ¼ã‚’ä¹—ç®—ã—ãŸã‚‚ã®
+#define DX_PS_CONSTF_SHADOW1_DADJ_GRAD_ENBL0_1             18	// ã‚·ãƒ£ãƒ‰ã‚¦ãƒžãƒƒãƒ—ï¼‘ç”¨ã®æƒ…å ±( x:é–¾å€¤æ·±åº¦è£œæ­£å€¤  y:ã‚°ãƒ©ãƒ‡ãƒ¼ã‚·ãƒ§ãƒ³ç¯„å›²  zw:ãƒ©ã‚¤ãƒˆï¼ãƒ»ï¼‘ã¸ã®é©ç”¨æƒ…å ±)
+#define DX_PS_CONSTF_SHADOW1_ENBL2_SHADOW2_DADJ_GRAD_ENBL0 19	// ã‚·ãƒ£ãƒ‰ã‚¦ãƒžãƒƒãƒ—ï¼‘ç”¨ã®æƒ…å ±( x:ãƒ©ã‚¤ãƒˆï¼’ã¸ã®é©ç”¨æƒ…å ± )ã€ã‚·ãƒ£ãƒ‰ã‚¦ãƒžãƒƒãƒ—ï¼’ç”¨ã®æƒ…å ±( y:é–¾å€¤æ·±åº¦è£œæ­£å€¤  z:ã‚°ãƒ©ãƒ‡ãƒ¼ã‚·ãƒ§ãƒ³ç¯„å›²  w:ãƒ©ã‚¤ãƒˆï¼ã¸ã®é©ç”¨æƒ…å ± )
+#define DX_PS_CONSTF_SHADOW2_ENBL1_2_SHADOW3_DADJ_GRAD     20	// ã‚·ãƒ£ãƒ‰ã‚¦ãƒžãƒƒãƒ—ï¼’ç”¨ã®æƒ…å ±( xy:ãƒ©ã‚¤ãƒˆï¼‘ãƒ»ï¼’ã¸ã®é©ç”¨æƒ…å ±)ã€ã‚·ãƒ£ãƒ‰ã‚¦ãƒžãƒƒãƒ—ï¼“ç”¨ã®æƒ…å ±( z:é–¾å€¤æ·±åº¦è£œæ­£å€¤  w:ã‚°ãƒ©ãƒ‡ãƒ¼ã‚·ãƒ§ãƒ³ç¯„å›² )
+#define DX_PS_CONSTF_SHADOW3_ENBL0_1_2_LGT_NO_GEN          21	// ã‚·ãƒ£ãƒ‰ã‚¦ãƒžãƒƒãƒ—ï¼“ç”¨ã®æƒ…å ±( xyz:ãƒ©ã‚¤ãƒˆï¼ï½žï¼’ã¸ã®é©ç”¨æƒ…å ± )ã€ãƒ©ã‚¤ãƒˆæ¸›è¡°ãªã—ã‹( w )
+#define DX_PS_CONSTF_MUL_ALPHA_COLOR_ADD_COLOR  22		// ã‚«ãƒ©ãƒ¼ã«ã‚¢ãƒ«ãƒ•ã‚¡å€¤ã‚’ä¹—ç®—ã™ã‚‹ã‹ã©ã†ã‹( x( 0.0f:ä¹—ç®—ã—ãªã„  1.0f:ä¹—ç®—ã™ã‚‹ ) ), åŠ ç®—ã™ã‚‹è‰²( RGB=yzw )
+#define DX_PS_CONSTF_IGNORE_TEX_COLOR           23		// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚«ãƒ©ãƒ¼ç„¡è¦–å‡¦ç†ç”¨ã‚«ãƒ©ãƒ¼
+#define DX_PS_CONSTF_USE_HALFLAMBERT            24		// ãƒãƒ¼ãƒ•ãƒ©ãƒ³ãƒãƒ¼ãƒˆã‚’ä½¿ç”¨ã™ã‚‹ã‹( x )
+#define DX_PS_CONSTF_VERTICAL_FOG_COLOR         25		// é«˜ã•ãƒ•ã‚©ã‚°ã‚«ãƒ©ãƒ¼
+#define DX_PS_CONSTF_LIGHT2_START               32		// ãƒ©ã‚¤ãƒˆæ‹¡å¼µæƒ…å ±ã®æ ¼ç´é–‹å§‹ã‚¢ãƒ‰ãƒ¬ã‚¹
+#define DX_PS_CONSTF_LIGHT2_UNITSIZE            7		// ãƒ©ã‚¤ãƒˆæ‹¡å¼µæƒ…å ±ä¸€ã¤è¾ºã‚Šã«ä½¿ç”¨ã™ã‚‹ãƒ¬ã‚¸ã‚¹ã‚¿ã®æ•°
+#define DX_PS_CONSTB_LIGHT2_NUM                 6		// é©ç”¨ã§ãã‚‹ãƒ©ã‚¤ãƒˆã®æœ€å¤§æ•°
+#define DX_PS_CONSTF_LGT2_POSITION              0		// ãƒ©ã‚¤ãƒˆã®ä½ç½®( ãƒ“ãƒ¥ãƒ¼ç©ºé–“ )
+#define DX_PS_CONSTF_LGT2_DIRECTION             1		// ãƒ©ã‚¤ãƒˆã®æ–¹å‘( ãƒ“ãƒ¥ãƒ¼ç©ºé–“ )
+#define DX_PS_CONSTF_LGT2_DIFFUSE               2		// ãƒ©ã‚¤ãƒˆã®ãƒ‡ã‚£ãƒ•ãƒ¼ã‚ºè‰²
+#define DX_PS_CONSTF_LGT2_SPECULAR              3		// ãƒ©ã‚¤ãƒˆã®ã‚¹ãƒšã‚­ãƒ¥ãƒ©è‰²
+#define DX_PS_CONSTF_LGT2_AMBIENT               4		// ãƒ©ã‚¤ãƒˆã®ã‚¢ãƒ³ãƒ“ã‚¨ãƒ³ãƒˆè‰²ã¨ãƒžãƒ†ãƒªã‚¢ãƒ«ã®ã‚¢ãƒ³ãƒ“ã‚¨ãƒ³ãƒˆã‚«ãƒ©ãƒ¼ã‚’ä¹—ç®—ã—ãŸã‚‚ã®
+#define DX_PS_CONSTF_LGT2_RANGE_FALLOFF_AT0_AT1 5		// ãƒ©ã‚¤ãƒˆã® x:æœ‰åŠ¹è·é›¢ã®äºŒä¹— y:ãƒ•ã‚©ãƒ¼ãƒ«ã‚ªãƒ• z:è·é›¢æ¸›è¡°ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ï¼ w:è·é›¢æ¸›è¡°ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ï¼‘
+#define DX_PS_CONSTF_LGT2_AT2_SPOTP0_SPOTP1     6		// ãƒ©ã‚¤ãƒˆã® x:è·é›¢æ¸›è¡°ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ï¼’ y:ã‚¹ãƒãƒƒãƒˆãƒ©ã‚¤ãƒˆç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ï¼( cos( Phi / 2.0f ) ) z:ã‚¹ãƒãƒƒãƒˆãƒ©ã‚¤ãƒˆç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ï¼‘( 1.0f / ( cos( Theta / 2.0f ) - cos( Phi / 2.0f ) ) )
 

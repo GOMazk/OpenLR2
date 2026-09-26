@@ -1,6 +1,6 @@
 // -------------------------------------------------------------------------------
 // 
-// 		‚c‚wƒ‰ƒCƒuƒ‰ƒŠ		WindowsOS—pƒ‚ƒfƒ‹ƒf[ƒ^§ŒäƒvƒƒOƒ‰ƒ€ƒwƒbƒ_ƒtƒ@ƒCƒ‹
+// 		ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒª		WindowsOSç”¨ãƒ¢ãƒ‡ãƒ«ãƒ‡ãƒ¼ã‚¿åˆ¶å¾¡ãƒ—ãƒ­ã‚°ãƒ©ãƒ ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«
 // 
 // 				Ver 3.25a
 // 
@@ -9,7 +9,7 @@
 #ifndef DX_MODELWIN_H
 #define DX_MODELWIN_H
 
-// ƒCƒ“ƒNƒ‹[ƒh ------------------------------------------------------------------
+// ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ ------------------------------------------------------------------
 #include "../DxCompileConfig.h"
 
 #ifndef DX_NON_MODEL
@@ -26,58 +26,58 @@ namespace DxLib
 
 #endif // DX_NON_NAMESPACE
 
-// ƒ}ƒNƒ’è‹` --------------------------------------------------------------------
+// ãƒžã‚¯ãƒ­å®šç¾© --------------------------------------------------------------------
 
-// \‘¢‘Ì’è‹` --------------------------------------------------------------------
+// æ§‹é€ ä½“å®šç¾© --------------------------------------------------------------------
 
-// Windows—p ’¸“_ƒoƒbƒtƒ@ŠÂ‹«ˆË‘¶î•ñ
+// Windowsç”¨ é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ç’°å¢ƒä¾å­˜æƒ…å ±
 struct MV1_VERTEXBUFFER_PF
 {
 	union
 	{
 		int									Dummy ;
 #ifndef DX_NON_DIRECT3D11
-		MV1_VERTEXBUFFER_DIRECT3D11			D3D11 ;		// Direct3D11—p’¸“_ƒoƒbƒtƒ@î•ñ
+		MV1_VERTEXBUFFER_DIRECT3D11			D3D11 ;		// Direct3D11ç”¨é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡æƒ…å ±
 #endif // DX_NON_DIRECT3D11
 #ifndef DX_NON_DIRECT3D9
-		MV1_VERTEXBUFFER_DIRECT3D9			D3D9 ;		// Direct3D9—p’¸“_ƒoƒbƒtƒ@î•ñ
+		MV1_VERTEXBUFFER_DIRECT3D9			D3D9 ;		// Direct3D9ç”¨é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡æƒ…å ±
 #endif // DX_NON_DIRECT3D9
 	} ;
 } ;
 
-// Windows—p ƒgƒ‰ƒCƒAƒ“ƒOƒ‹ƒŠƒXƒgŠÂ‹«ˆË‘¶î•ñ
+// Windowsç”¨ ãƒˆãƒ©ã‚¤ã‚¢ãƒ³ã‚°ãƒ«ãƒªã‚¹ãƒˆç’°å¢ƒä¾å­˜æƒ…å ±
 struct MV1_TRIANGLE_LIST_PF
 {
 	union
 	{
 		int									Dummy ;
 #ifndef DX_NON_DIRECT3D11
-		MV1_TRIANGLE_LIST_DIRECT3D11		D3D11 ;		// Direct3D11—pƒgƒ‰ƒCƒAƒ“ƒOƒ‹ƒŠƒXƒgî•ñ
+		MV1_TRIANGLE_LIST_DIRECT3D11		D3D11 ;		// Direct3D11ç”¨ãƒˆãƒ©ã‚¤ã‚¢ãƒ³ã‚°ãƒ«ãƒªã‚¹ãƒˆæƒ…å ±
 #endif // DX_NON_DIRECT3D11
 #ifndef DX_NON_DIRECT3D9
-		MV1_TRIANGLE_LIST_DIRECT3D9			D3D9 ;		// Direct3D9—pƒgƒ‰ƒCƒAƒ“ƒOƒ‹ƒŠƒXƒgî•ñ
+		MV1_TRIANGLE_LIST_DIRECT3D9			D3D9 ;		// Direct3D9ç”¨ãƒˆãƒ©ã‚¤ã‚¢ãƒ³ã‚°ãƒ«ãƒªã‚¹ãƒˆæƒ…å ±
 #endif // DX_NON_DIRECT3D9
 	} ;
 } ;
 
-// Windows—p ƒgƒ‰ƒCƒAƒ“ƒOƒ‹ƒŠƒXƒgŠîƒf[ƒ^ŠÂ‹«ˆË‘¶î•ñ
+// Windowsç”¨ ãƒˆãƒ©ã‚¤ã‚¢ãƒ³ã‚°ãƒ«ãƒªã‚¹ãƒˆåŸºãƒ‡ãƒ¼ã‚¿ç’°å¢ƒä¾å­˜æƒ…å ±
 struct MV1_TRIANGLE_LIST_BASE_PF
 {
 	union
 	{
 		int									Dummy ;
 #ifndef DX_NON_DIRECT3D11
-		MV1_TRIANGLE_LIST_BASE_DIRECT3D11	D3D11 ;		// Direct3D11—pƒgƒ‰ƒCƒAƒ“ƒOƒ‹ƒŠƒXƒgŠîƒf[ƒ^î•ñ
+		MV1_TRIANGLE_LIST_BASE_DIRECT3D11	D3D11 ;		// Direct3D11ç”¨ãƒˆãƒ©ã‚¤ã‚¢ãƒ³ã‚°ãƒ«ãƒªã‚¹ãƒˆåŸºãƒ‡ãƒ¼ã‚¿æƒ…å ±
 #endif // DX_NON_DIRECT3D11
 #ifndef DX_NON_DIRECT3D9
-		MV1_TRIANGLE_LIST_BASE_DIRECT3D9	D3D9 ;		// Direct3D9—pƒgƒ‰ƒCƒAƒ“ƒOƒ‹ƒŠƒXƒgŠîƒf[ƒ^î•ñ
+		MV1_TRIANGLE_LIST_BASE_DIRECT3D9	D3D9 ;		// Direct3D9ç”¨ãƒˆãƒ©ã‚¤ã‚¢ãƒ³ã‚°ãƒ«ãƒªã‚¹ãƒˆåŸºãƒ‡ãƒ¼ã‚¿æƒ…å ±
 #endif // DX_NON_DIRECT3D9
 	} ;
 } ;
 
-// “à•”‘åˆæ•Ï”éŒ¾ --------------------------------------------------------------
+// å†…éƒ¨å¤§åŸŸå¤‰æ•°å®£è¨€ --------------------------------------------------------------
 
-// ŠÖ”ƒvƒƒgƒ^ƒCƒvéŒ¾-----------------------------------------------------------
+// é–¢æ•°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€-----------------------------------------------------------
 
 #ifndef DX_NON_NAMESPACE
 

@@ -1,15 +1,15 @@
 // -------------------------------------------------------------------------------
 // 
-// 		‚c‚wƒ‰ƒCƒuƒ‰ƒŠ		ƒEƒCƒ“ƒhƒEŠÖŒW§ŒäƒvƒƒOƒ‰ƒ€
+// 		ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒª		ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦é–¢ä¿‚åˆ¶å¾¡ãƒ—ãƒ­ã‚°ãƒ©ãƒ 
 // 
 // 				Ver 3.25a
 // 
 // -------------------------------------------------------------------------------
 
-// ‚c‚wƒ‰ƒCƒuƒ‰ƒŠì¬—p’è‹`
+// ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªä½œæˆæ™‚ç”¨å®šç¾©
 #define DX_MAKE
 
-// ƒCƒ“ƒNƒ‹[ƒh ------------------------------------------------------------------
+// ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ ------------------------------------------------------------------
 #include "DxWindow.h"
 #include "DxGraphicsD3D9.h"
 #include "DxGraphicsWin.h"
@@ -84,7 +84,7 @@ namespace DxLib
 
 #endif // DX_NON_NAMESPACE
 
-// ƒ}ƒNƒ’è‹` -------------------------------------
+// ãƒã‚¯ãƒ­å®šç¾© -------------------------------------
 #ifdef BC_COMPILER
 	#ifdef sprintf
 	#undef sprintf
@@ -95,10 +95,10 @@ namespace DxLib
 	#endif
 #endif
 
-//ƒƒCƒ“ƒEƒCƒ“ƒhƒE‚ÌƒNƒ‰ƒX–¼
+//ãƒ¡ã‚¤ãƒ³ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ã‚¯ãƒ©ã‚¹å
 #define DXCLASSNAME		L"D123987X"
 
-//ƒƒCƒ“ƒEƒCƒ“ƒhƒE‚ÌƒfƒtƒHƒ‹ƒgƒ^ƒCƒgƒ‹
+//ãƒ¡ã‚¤ãƒ³ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã‚¿ã‚¤ãƒˆãƒ«
 #ifndef DX_NON_LITERAL_STRING
 	#define WIN_DEFAULT_TITLE	L"DxLib"
 #else
@@ -112,7 +112,7 @@ namespace DxLib
 
 #ifndef DX_NON_INLINE_ASM
 
-// RDTSC ƒj[ƒ‚ƒjƒbƒN‚Æ cpuid ƒj[ƒjƒbƒN‚Ì’è‹`
+// RDTSC ãƒ‹ãƒ¼ãƒ¢ãƒ‹ãƒƒã‚¯ã¨ cpuid ãƒ‹ãƒ¼ãƒ‹ãƒƒã‚¯ã®å®šç¾©
 #ifdef BC_COMPILER
 	#define RDTSC __emit__(0fh) ;	__emit__(031h) ;
 	#define cpuid __emit__(0xf) ; __emit__(0xa2) ;
@@ -141,7 +141,7 @@ namespace DxLib
 #define LLKHF_UP           			(0x00000080)
 #endif
 #ifndef WM_MOUSEWHEEL
-#define WM_MOUSEWHEEL 				(0x20A)				// ƒ}ƒEƒX‚ÌƒzƒC[ƒ‹“®ìƒƒbƒZ[ƒW‚Ì’è‹`
+#define WM_MOUSEWHEEL 				(0x20A)				// ãƒã‚¦ã‚¹ã®ãƒ›ã‚¤ãƒ¼ãƒ«å‹•ä½œãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®å®šç¾©
 #endif
 #ifndef WM_MOUSEHWHEEL
 #define WM_MOUSEHWHEEL				(0x20E)
@@ -165,24 +165,24 @@ namespace DxLib
 #endif
 
 
-//#define CHECKMULTIBYTECHAR(CP)		(( (unsigned char)*(CP) >= 0x81 && (unsigned char)*(CP) <= 0x9F ) || ( (unsigned char)*(CP) >= 0xE0 && (unsigned char)*(CP) <= 0xFC ))	// TRUE:‚QƒoƒCƒg•¶š  FALSE:‚PƒoƒCƒg•¶š
+//#define CHECKMULTIBYTECHAR(CP)		(( (unsigned char)*(CP) >= 0x81 && (unsigned char)*(CP) <= 0x9F ) || ( (unsigned char)*(CP) >= 0xE0 && (unsigned char)*(CP) <= 0xFC ))	// TRUE:ï¼’ãƒã‚¤ãƒˆæ–‡å­—  FALSE:ï¼‘ãƒã‚¤ãƒˆæ–‡å­—
 
-// ƒc[ƒ‹ƒo[—p’è‹`
+// ãƒ„ãƒ¼ãƒ«ãƒãƒ¼ç”¨å®šç¾©
 #define TOOLBAR_COMMANDID_BASE		(0x500)
 
 
-// ƒEƒCƒ“ƒhƒEƒXƒ^ƒCƒ‹’è‹`
-//#define WSTYLE_WINDOWMODE			(WS_MINIMIZEBOX | WS_POPUP | WS_SYSMENU | WS_CAPTION | WS_VISIBLE)	// ’Êí
-//#define WSTYLE_WINDOWMODE			(WS_POPUP | WS_SYSMENU | WS_VISIBLE)								// ƒ^ƒXƒNƒo[‚È‚µ
+// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚¹ã‚¿ã‚¤ãƒ«å®šç¾©
+//#define WSTYLE_WINDOWMODE			(WS_MINIMIZEBOX | WS_POPUP | WS_SYSMENU | WS_CAPTION | WS_VISIBLE)	// é€šå¸¸
+//#define WSTYLE_WINDOWMODE			(WS_POPUP | WS_SYSMENU | WS_VISIBLE)								// ã‚¿ã‚¹ã‚¯ãƒãƒ¼ãªã—
 //#define WEXSTYLE_WINDOWMODE		(WS_EX_CLIENTEDGE | WS_EX_WINDOWEDGE)
 //#define WSTYLE_FULLSCREENMODE		(WS_POPUP)
 //#define WEXSTYLE_FULLSCREENMODE	(WS_EX_TOPMOST)
 
-// ƒEƒCƒ“ƒhƒEƒXƒ^ƒCƒ‹‚Ì’è‹`
-#define WSTYLE_NUM					(12)		// ƒEƒCƒ“ƒhƒEƒXƒ^ƒCƒ‹‚Ì”
+// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚¹ã‚¿ã‚¤ãƒ«ã®å®šç¾©
+#define WSTYLE_NUM					(12)		// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚¹ã‚¿ã‚¤ãƒ«ã®æ•°
 
 #ifndef DX_GCC_COMPILE
-// ƒŒƒCƒ„[ƒhƒEƒCƒ“ƒhƒE—p‚Ì’è‹`
+// ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒ‰ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ç”¨ã®å®šç¾©
 #define WS_EX_LAYERED				0x00080000
 #endif
 
@@ -240,18 +240,18 @@ struct __MEMORYSTATUSEX
 typedef WINBASEAPI BOOL ( WINAPI * GLOBALMEMORYSTATUSEX_FUNC )( __MEMORYSTATUSEX * ) ;
 
 
-//  0 :ƒfƒtƒHƒ‹ƒg
-//  1 :ƒ^ƒXƒNƒo[‚È‚µ
-//  2 :ƒ^ƒXƒNƒo[‚È‚µ˜g‚È‚µ
-//  3 :˜g‚È‚µ
-//  4 :‰½‚à‚È‚µ
-//  5 :Å¬‰»–³‚µ
-//  6 :ƒc[ƒ‹ƒo[‚É“K‚µ‚½ƒEƒCƒ“ƒhƒE
-//  7 :Å‘å‰»ƒ{ƒ^ƒ“‚Â‚«ƒEƒCƒ“ƒhƒEA‰Šúó‘Ô‚ª’ÊíƒTƒCƒY
-//  8 :Å‘å‰»ƒ{ƒ^ƒ“‚Â‚«ƒEƒCƒ“ƒhƒEA‰Šúó‘Ô‚ªÅ‘å‰»ó‘Ô
-//  9 :ƒfƒtƒHƒ‹ƒg‚É‰‚Ì—§‘Ì‰»–³‚µ
-// 10 :Å‘å‰»ƒ{ƒ^ƒ“‚Â‚«ƒEƒCƒ“ƒhƒEA‰‚Ì—§‘Ì‰»–³‚µ
-// 11 :•Â‚¶‚é–³‚µAÅ¬‰»–³‚µ
+//  0 :ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ
+//  1 :ã‚¿ã‚¹ã‚¯ãƒãƒ¼ãªã—
+//  2 :ã‚¿ã‚¹ã‚¯ãƒãƒ¼ãªã—æ ãªã—
+//  3 :æ ãªã—
+//  4 :ä½•ã‚‚ãªã—
+//  5 :æœ€å°åŒ–ç„¡ã—
+//  6 :ãƒ„ãƒ¼ãƒ«ãƒãƒ¼ã«é©ã—ãŸã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦
+//  7 :æœ€å¤§åŒ–ãƒœã‚¿ãƒ³ã¤ãã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã€åˆæœŸçŠ¶æ…‹ãŒé€šå¸¸ã‚µã‚¤ã‚º
+//  8 :æœ€å¤§åŒ–ãƒœã‚¿ãƒ³ã¤ãã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã€åˆæœŸçŠ¶æ…‹ãŒæœ€å¤§åŒ–çŠ¶æ…‹
+//  9 :ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã«ç¸ã®ç«‹ä½“åŒ–ç„¡ã—
+// 10 :æœ€å¤§åŒ–ãƒœã‚¿ãƒ³ã¤ãã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã€ç¸ã®ç«‹ä½“åŒ–ç„¡ã—
+// 11 :é–‰ã˜ã‚‹ç„¡ã—ã€æœ€å°åŒ–ç„¡ã—
 const int WStyle_ShowWindow_Param[ WSTYLE_NUM ] = 
 {
 	SW_SHOW,
@@ -332,7 +332,7 @@ const DWORD WExStyle_FullScreenModeTable[ WSTYLE_NUM ] =
 	WS_EX_TOPMOST,
 } ;
 
-// ƒEƒCƒ“ƒhƒE‚Ì‰œs‚«ˆÊ’uİ’èƒ^ƒCƒv‚Æ‘Î‰‚·‚é Win32API ‚Ì’l
+// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®å¥¥è¡Œãä½ç½®è¨­å®šã‚¿ã‚¤ãƒ—ã¨å¯¾å¿œã™ã‚‹ Win32API ã®å€¤
 static HWND WindowZType_Win32Param[] =
 {
 	HWND_TOP,			// DX_WIN_ZTYPE_NORMAL
@@ -341,55 +341,55 @@ static HWND WindowZType_Win32Param[] =
 	HWND_TOPMOST,		// DX_WIN_ZTYPE_TOPMOST
 };
 
-//typedef LRESULT ( CALLBACK *MSGFUNC)(int, WPARAM, LPARAM) ;		// ƒƒbƒZ[ƒWƒtƒbƒN‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+//typedef LRESULT ( CALLBACK *MSGFUNC)(int, WPARAM, LPARAM) ;		// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ•ãƒƒã‚¯ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 #define F10MES				( WM_USER + 111 )
 #define F12MES				( WM_USER + 112 )
 
-// \‘¢‘Ì’è‹` --------------------------------------------------------------------
+// æ§‹é€ ä½“å®šç¾© --------------------------------------------------------------------
 
-// “à•”‘åˆæ•Ï”éŒ¾ --------------------------------------------------------------
+// å†…éƒ¨å¤§åŸŸå¤‰æ•°å®£è¨€ --------------------------------------------------------------
 
-// ˆ³kƒL[ƒ{[ƒhƒtƒbƒN‚c‚k‚kƒoƒCƒiƒŠƒf[ƒ^
+// åœ§ç¸®ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ãƒ•ãƒƒã‚¯ï¼¤ï¼¬ï¼¬ãƒã‚¤ãƒŠãƒªãƒ‡ãƒ¼ã‚¿
 extern int  DxKeyHookBinaryConvert ;
 extern BYTE DxKeyHookBinary[] ;
 extern int  DxKeyHookBinary_x64_Convert ;
 extern BYTE DxKeyHookBinary_x64[] ;
 
-WINDATA WinData ;												// ƒEƒCƒ“ƒhƒE‚Ìƒf[ƒ^
+WINDATA WinData ;												// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ãƒ‡ãƒ¼ã‚¿
 
-// ŠÖ”ƒvƒƒgƒ^ƒCƒvéŒ¾-----------------------------------------------------------
+// é–¢æ•°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€-----------------------------------------------------------
 
-// ƒEƒCƒ“ƒhƒEŠÖ˜A
-static void			GetMainWindowSize( int *SizeX, int *SizeY ) ;								// ƒƒCƒ“ƒEƒCƒ“ƒhƒE‚ÌƒTƒCƒY‚ğæ“¾‚·‚é
-static void			SetupWindowClassName() ;													// ƒNƒ‰ƒX–¼‚ÌƒZƒbƒgƒAƒbƒv‚ğs‚¤
+// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦é–¢é€£
+static void			GetMainWindowSize( int *SizeX, int *SizeY ) ;								// ãƒ¡ã‚¤ãƒ³ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ã‚µã‚¤ã‚ºã‚’å–å¾—ã™ã‚‹
+static void			SetupWindowClassName() ;													// ã‚¯ãƒ©ã‚¹åã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã‚’è¡Œã†
 
-// ƒƒbƒZ[ƒWˆ—ŠÖ”
-static	LRESULT		CALLBACK DxLib_WinProc( HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam ) ;	// ƒƒCƒ“ƒEƒCƒ“ƒhƒE‚ÌƒƒbƒZ[ƒWƒR[ƒ‹ƒoƒbƒNŠÖ”
+// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å‡¦ç†é–¢æ•°
+static	LRESULT		CALLBACK DxLib_WinProc( HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam ) ;	// ãƒ¡ã‚¤ãƒ³ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 #ifndef DX_NON_STOPTASKSWITCH
-LRESULT CALLBACK	LowLevelKeyboardProc (INT nCode, WPARAM wParam, LPARAM lParam)	;			// ƒtƒbƒN‚³‚ê‚½‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+LRESULT CALLBACK	LowLevelKeyboardProc (INT nCode, WPARAM wParam, LPARAM lParam)	;			// ãƒ•ãƒƒã‚¯ã•ã‚ŒãŸæ™‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 #endif // DX_NON_STOPTASKSWITCH
 #ifdef DX_THREAD_SAFE
-DWORD	WINAPI		ProcessMessageThreadFunction( LPVOID ) ;									// ProcessMessage ‚ğ‚Ğ‚½‚·‚çŒÄ‚Ñ‚Â‚Ã‚¯‚éƒXƒŒƒbƒh
+DWORD	WINAPI		ProcessMessageThreadFunction( LPVOID ) ;									// ProcessMessage ã‚’ã²ãŸã™ã‚‰å‘¼ã³ã¤ã¥ã‘ã‚‹ã‚¹ãƒ¬ãƒƒãƒ‰
 #endif
 
-// ƒc[ƒ‹ƒo[ŠÖŒW
-static	int			SearchToolBarButton( int ID ) ;												// w’è‚Ì‚h‚c‚Ìƒ{ƒ^ƒ“‚ÌƒCƒ“ƒfƒbƒNƒX‚ğ“¾‚é
+// ãƒ„ãƒ¼ãƒ«ãƒãƒ¼é–¢ä¿‚
+static	int			SearchToolBarButton( int ID ) ;												// æŒ‡å®šã®ï¼©ï¼¤ã®ãƒœã‚¿ãƒ³ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’å¾—ã‚‹
 
-// ƒƒjƒ…[ŠÖŒW
-static	int			SearchMenuItem( const wchar_t *ItemName, int ItemID, HMENU SearchMenu, HMENU *Menu, int *Index ) ;					// ƒƒjƒ…[\‘¢‚Ì’†‚©‚çA‘I‘ğ€–Ú‚ÌˆÊ’uî•ñ‚ğ“¾‚é( -1:ƒGƒ‰[  0:Œ©‚Â‚©‚ç‚È‚©‚Á‚½  1:Œ©‚Â‚©‚Á‚½ )
+// ãƒ¡ãƒ‹ãƒ¥ãƒ¼é–¢ä¿‚
+static	int			SearchMenuItem( const wchar_t *ItemName, int ItemID, HMENU SearchMenu, HMENU *Menu, int *Index ) ;					// ãƒ¡ãƒ‹ãƒ¥ãƒ¼æ§‹é€ ã®ä¸­ã‹ã‚‰ã€é¸æŠé …ç›®ã®ä½ç½®æƒ…å ±ã‚’å¾—ã‚‹( -1:ã‚¨ãƒ©ãƒ¼  0:è¦‹ã¤ã‹ã‚‰ãªã‹ã£ãŸ  1:è¦‹ã¤ã‹ã£ãŸ )
 
-static	int			GetDisplayMenuState( void ) ;												// ƒƒjƒ…[‚ª•\¦‚·‚é‚×‚«‚©‚Ç‚¤‚©‚ğæ“¾‚·‚é
-static	int			CheckMousePosClientArea( void ) ;											// ƒ}ƒEƒXƒJ[ƒ\ƒ‹‚ªƒNƒ‰ƒCƒAƒ“ƒg—Ìˆæ‚Ì’†‚É‚ ‚é‚©‚Ç‚¤‚©‚ğ’²‚×‚é
-static	int			_GetMenuItemInfo( HMENU Menu, int Index, MENUITEMINFOW *Buffer ) ;			// ƒƒjƒ…[ƒAƒCƒeƒ€‚Ìî•ñ‚ğæ“¾‚·‚é
-static	HMENU		MenuItemSubMenuSetup( const wchar_t *ItemName, int ItemID ) ;				// w’è‚Ì‘I‘ğ€–Ú‚ÉƒTƒuƒƒjƒ…[‚ğ•t‚¯‚ç‚ê‚é‚æ‚¤‚É€”õ‚ğ‚·‚é
+static	int			GetDisplayMenuState( void ) ;												// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãŒè¡¨ç¤ºã™ã‚‹ã¹ãã‹ã©ã†ã‹ã‚’å–å¾—ã™ã‚‹
+static	int			CheckMousePosClientArea( void ) ;											// ãƒã‚¦ã‚¹ã‚«ãƒ¼ã‚½ãƒ«ãŒã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆé ˜åŸŸã®ä¸­ã«ã‚ã‚‹ã‹ã©ã†ã‹ã‚’èª¿ã¹ã‚‹
+static	int			_GetMenuItemInfo( HMENU Menu, int Index, MENUITEMINFOW *Buffer ) ;			// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¢ã‚¤ãƒ†ãƒ ã®æƒ…å ±ã‚’å–å¾—ã™ã‚‹
+static	HMENU		MenuItemSubMenuSetup( const wchar_t *ItemName, int ItemID ) ;				// æŒ‡å®šã®é¸æŠé …ç›®ã«ã‚µãƒ–ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’ä»˜ã‘ã‚‰ã‚Œã‚‹ã‚ˆã†ã«æº–å‚™ã‚’ã™ã‚‹
 
-static	int			ListupMenuItemInfo( HMENU Menu ) ;											// ƒƒjƒ…[‚Ì‘I‘ğ€–Ú‚Ìî•ñ‚Ìˆê——‚ğì¬‚·‚é‚Ég—p‚·‚éŠÖ”
-static	int			AddMenuItemInfo( HMENU Menu, int Index, int ID, const wchar_t *Name ) ;		// ƒƒjƒ…[‚Ì‘I‘ğ€–Ú‚Ìî•ñ‚ğ’Ç‰Á‚·‚é
-static	int			DeleteMenuItemInfo( const wchar_t *Name, int ID ) ;							// ƒƒjƒ…[‚Ì‘I‘ğ€–Ú‚Ìî•ñ‚ğíœ‚·‚é
-static	WINMENUITEMINFO *SearchMenuItemInfo( const wchar_t *Name, int ID ) ;					// ƒƒjƒ…[‚Ì‘I‘ğ€–Ú‚Ìî•ñ‚ğæ“¾‚·‚é
-static	int			GetNewMenuItemID( void ) ;													// V‚µ‚¢‘I‘ğ€–Ú‚Ì‚h‚c‚ğæ“¾‚·‚é
+static	int			ListupMenuItemInfo( HMENU Menu ) ;											// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®é¸æŠé …ç›®ã®æƒ…å ±ã®ä¸€è¦§ã‚’ä½œæˆã™ã‚‹æ™‚ã«ä½¿ç”¨ã™ã‚‹é–¢æ•°
+static	int			AddMenuItemInfo( HMENU Menu, int Index, int ID, const wchar_t *Name ) ;		// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®é¸æŠé …ç›®ã®æƒ…å ±ã‚’è¿½åŠ ã™ã‚‹
+static	int			DeleteMenuItemInfo( const wchar_t *Name, int ID ) ;							// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®é¸æŠé …ç›®ã®æƒ…å ±ã‚’å‰Šé™¤ã™ã‚‹
+static	WINMENUITEMINFO *SearchMenuItemInfo( const wchar_t *Name, int ID ) ;					// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®é¸æŠé …ç›®ã®æƒ…å ±ã‚’å–å¾—ã™ã‚‹
+static	int			GetNewMenuItemID( void ) ;													// æ–°ã—ã„é¸æŠé …ç›®ã®ï¼©ï¼¤ã‚’å–å¾—ã™ã‚‹
 
-// ƒƒbƒZ[ƒWˆ—ŠÖ”
+// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å‡¦ç†é–¢æ•°
 		int			WM_PAINTProcess( HDC Dc, RECT *FillRect, int AlwaysFillFlag = FALSE ) ;
 		int			WM_SIZEProcess( void ) ;
 		int			WM_SIZINGProcess( WPARAM wParam, LPARAM lParam ) ;
@@ -398,13 +398,13 @@ static	int			GetNewMenuItemID( void ) ;													// V‚µ‚¢‘I‘ğ€–Ú‚Ì‚h‚c‚ğæ“
 
 
 
-// ƒvƒƒOƒ‰ƒ€ --------------------------------------------------------------------
+// ãƒ—ãƒ­ã‚°ãƒ©ãƒ  --------------------------------------------------------------------
 
-// ‰Šú‰»I—¹ŒnŠÖ”
+// åˆæœŸåŒ–çµ‚äº†ç³»é–¢æ•°
 
 #pragma optimize("", off)
 
-// ƒEƒCƒ“ƒhƒEŠÖŒW‚Ì‰Šú‰»ŠÖ”
+// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦é–¢ä¿‚ã®åˆæœŸåŒ–é–¢æ•°
 extern int InitializeWindow( void )
 {
 	WNDCLASSEXW wc ;
@@ -507,7 +507,7 @@ extern int InitializeWindow( void )
 	_WCSCPY_S( ClassName, sizeof( ClassName ), WinData.ClassName ) ;
 	_WCSCPY_S( ShutdownMessage, sizeof( ShutdownMessage ), WinData.ShutdownMessage ) ;
 
-	// ‰Šú‰»
+	// åˆæœŸåŒ–
 	_MEMSET( &WinData, 0, sizeof( WINDATA ) ) ;
 
 	_WCSCPY_S( WinData.CurrentDirectory, sizeof( WinData.CurrentDirectory ), CurrentDirectory ) ;
@@ -601,31 +601,31 @@ extern int InitializeWindow( void )
 	WinData.ComInitializeFlag						= ComInitializeFlag ;
 
 #ifdef DX_NON_GRAPHICS
-	// ƒOƒ‰ƒtƒBƒbƒNƒXˆ—‚ª–³Œø‚Èê‡‚Í•K‚¸ƒEƒCƒ“ƒhƒEƒ‚[ƒh
+	// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¹å‡¦ç†ãŒç„¡åŠ¹ãªå ´åˆã¯å¿…ãšã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ¢ãƒ¼ãƒ‰
 	WinData.WindowModeFlag = TRUE ;
 #endif // DX_NON_GRAPHICS
 
 	SETUP_WIN_API
 
-	// ƒCƒ“ƒXƒ^ƒ“ƒXƒnƒ“ƒhƒ‹‚Ìæ“¾
+	// ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ãƒãƒ³ãƒ‰ãƒ«ã®å–å¾—
 	WinData.Instance = GetModuleHandleWFunc( NULL ) ;
 
-	// ƒXƒŒƒbƒh‚h‚c‚Ìæ“¾
+	// ã‚¹ãƒ¬ãƒƒãƒ‰ï¼©ï¼¤ã®å–å¾—
 	WinData.MainThreadID = WinAPIData.Win32Func.GetCurrentThreadIdFunc() ;
 
 
 #ifndef DX_NON_ASYNCLOAD
-	// ”ñ“¯Šú“Ç‚İ‚İˆ—‚Ì‰Šú‰»
+	// éåŒæœŸèª­ã¿è¾¼ã¿å‡¦ç†ã®åˆæœŸåŒ–
 	InitializeASyncLoad( WinData.MainThreadID ) ;
 #endif // DX_NON_ASYNCLOAD
 
-	// ƒtƒ@ƒCƒ‹ƒAƒNƒZƒXˆ—‚Ì‰Šú‰»
+	// ãƒ•ã‚¡ã‚¤ãƒ«ã‚¢ã‚¯ã‚»ã‚¹å‡¦ç†ã®åˆæœŸåŒ–
 	InitializeFile() ;
 
-	// ƒNƒ‰ƒX–¼‚ÌƒZƒbƒgƒAƒbƒv
+	// ã‚¯ãƒ©ã‚¹åã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 	SetupWindowClassName() ;
 
-	// ‹ó‚«ƒƒ‚ƒŠ—e—Ê‚Ì‘‚«o‚µ
+	// ç©ºããƒ¡ãƒ¢ãƒªå®¹é‡ã®æ›¸ãå‡ºã—
 	{
 		wchar_t str[256];
 
@@ -645,7 +645,7 @@ extern int InitializeWindow( void )
 					_MEMSET( &MemEx, 0, sizeof( MemEx ) ) ;
 					MemEx.dwLength = sizeof( MemEx ) ;
 					mhr = GlobalMemoryStatusExFunc( &MemEx ) ;
-					DXST_LOGFILEFMT_ADDUTF16LE(( "\xe1\x30\xe2\x30\xea\x30\xcf\x7d\xcf\x91\x3a\x00\x25\x00\x2e\x00\x32\x00\x66\x00\x4d\x00\x42\x00\x20\x00\x20\x00\x7a\x7a\x4d\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x3a\x00\x25\x00\x2e\x00\x32\x00\x66\x00\x4d\x00\x42\x00\x20\x00\x00"/*@ L"ƒƒ‚ƒŠ‘—Ê:%.2fMB  ‹ó‚«ƒƒ‚ƒŠ—Ìˆæ:%.2fMB " @*/,
+					DXST_LOGFILEFMT_ADDUTF16LE(( "\xe1\x30\xe2\x30\xea\x30\xcf\x7d\xcf\x91\x3a\x00\x25\x00\x2e\x00\x32\x00\x66\x00\x4d\x00\x42\x00\x20\x00\x20\x00\x7a\x7a\x4d\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x3a\x00\x25\x00\x2e\x00\x32\x00\x66\x00\x4d\x00\x42\x00\x20\x00\x00"/*@ L"ãƒ¡ãƒ¢ãƒªç·é‡:%.2fMB  ç©ºããƒ¡ãƒ¢ãƒªé ˜åŸŸ:%.2fMB " @*/,
 								( double )( LONGLONG )MemEx.ullTotalPhys / 0x100000 , ( double )( LONGLONG )MemEx.ullAvailPhys / 0x100000 )) ;  
 
 					WinData.PcInfo.FreeMemorySize  = ( LONGLONG )MemEx.ullAvailPhys ;
@@ -661,7 +661,7 @@ extern int InitializeWindow( void )
 			MEMORYSTATUS Mem ;
 
 			WinAPIData.Win32Func.GlobalMemoryStatusFunc( &Mem ) ;
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\xe1\x30\xe2\x30\xea\x30\xcf\x7d\xcf\x91\x3a\x00\x25\x00\x2e\x00\x32\x00\x66\x00\x4d\x00\x42\x00\x20\x00\x20\x00\x7a\x7a\x4d\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x3a\x00\x25\x00\x2e\x00\x32\x00\x66\x00\x4d\x00\x42\x00\x20\x00\x00"/*@ L"ƒƒ‚ƒŠ‘—Ê:%.2fMB  ‹ó‚«ƒƒ‚ƒŠ—Ìˆæ:%.2fMB " @*/,
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\xe1\x30\xe2\x30\xea\x30\xcf\x7d\xcf\x91\x3a\x00\x25\x00\x2e\x00\x32\x00\x66\x00\x4d\x00\x42\x00\x20\x00\x20\x00\x7a\x7a\x4d\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x3a\x00\x25\x00\x2e\x00\x32\x00\x66\x00\x4d\x00\x42\x00\x20\x00\x00"/*@ L"ãƒ¡ãƒ¢ãƒªç·é‡:%.2fMB  ç©ºããƒ¡ãƒ¢ãƒªé ˜åŸŸ:%.2fMB " @*/,
 						( double )Mem.dwTotalPhys / 0x100000 , ( double )Mem.dwAvailPhys / 0x100000 )) ;  
 			_SWNPRINTF( str, sizeof( str ) / 2, L"%.2fMB\n", ( double )Mem.dwAvailPhys / 0x100000 );
 			WinAPIData.Win32Func.OutputDebugStringWFunc( str ) ;
@@ -671,7 +671,7 @@ extern int InitializeWindow( void )
 		}
 	}
 
-	// ƒfƒXƒNƒ`ƒbƒv‚ÌƒTƒCƒY‚ÆƒJƒ‰[ƒrƒbƒg[“x‚ğ•Û‘¶
+	// ãƒ‡ã‚¹ã‚¯ãƒãƒƒãƒ—ã®ã‚µã‚¤ã‚ºã¨ã‚«ãƒ©ãƒ¼ãƒ“ãƒƒãƒˆæ·±åº¦ã‚’ä¿å­˜
 //	WinData.DefaultScreenSize.cx = WinAPIData.Win32Func.GetSystemMetricsFunc( SM_CXSCREEN ) ;
 //	WinData.DefaultScreenSize.cy = WinAPIData.Win32Func.GetSystemMetricsFunc( SM_CYSCREEN ) ;
 //	hdc = WinAPIData.Win32Func.GetDCFunc( NULL ) ;
@@ -679,34 +679,34 @@ extern int InitializeWindow( void )
 //	WinData.DefaultRefreshRate = WinAPIData.Win32Func.GetDeviceCapsFunc( hdc, VREFRESH ) ;
 //	WinAPIData.Win32Func.ReleaseDCFunc( NULL , hdc ) ;
 
-	// •`‰æ—Ìˆæ‚ÌƒTƒCƒY‚ğæ“¾
+	// æç”»é ˜åŸŸã®ã‚µã‚¤ã‚ºã‚’å–å¾—
 	GetMainWindowSize( &WindowSizeX, &WindowSizeY ) ;
 
-	// ƒpƒtƒH[ƒ}ƒ“ƒXƒJƒEƒ“ƒ^[î•ñ‚Ì‰Šú‰»
+	// ãƒ‘ãƒ•ã‚©ãƒ¼ãƒãƒ³ã‚¹ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼æƒ…å ±ã®åˆæœŸåŒ–
 	{
-		// ƒpƒtƒH[ƒ}ƒ“ƒXƒJƒEƒ“ƒ^[‚Ìü”g”‚ğæ“¾‚·‚é
+		// ãƒ‘ãƒ•ã‚©ãƒ¼ãƒãƒ³ã‚¹ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼ã®å‘¨æ³¢æ•°ã‚’å–å¾—ã™ã‚‹
 		WinAPIData.Win32Func.QueryPerformanceFrequencyFunc( ( LARGE_INTEGER * )&WinData.PerformanceTimerFrequency ) ;
 
-		// g‚¦‚é‚©‚Ç‚¤‚©‚ğ•Û‘¶‚µ‚Ä‚¨‚­
+		// ä½¿ãˆã‚‹ã‹ã©ã†ã‹ã‚’ä¿å­˜ã—ã¦ãŠã
 		WinData.PerformanceTimerFlag = WinData.PerformanceTimerFrequency != 0 ;
 	}
 
-	// ƒ^ƒCƒ}‚Ì¸“x‚ğİ’è‚·‚é
+	// ã‚¿ã‚¤ãƒã®ç²¾åº¦ã‚’è¨­å®šã™ã‚‹
 	{
 		WinAPIData.Win32Func.timeGetDevCapsFunc( &tc , sizeof(TIMECAPS) );
 
-		// ƒ}ƒ‹ƒ`ƒƒfƒBƒAƒ^ƒCƒ}[‚ÌƒT[ƒrƒX¸“x‚ğÅ‘å‚É 
+		// ãƒãƒ«ãƒãƒ¡ãƒ‡ã‚£ã‚¢ã‚¿ã‚¤ãƒãƒ¼ã®ã‚µãƒ¼ãƒ“ã‚¹ç²¾åº¦ã‚’æœ€å¤§ã« 
 		WinAPIData.Win32Func.timeBeginPeriodFunc( tc.wPeriodMin ) ;
 	}
 
-	// ƒ^ƒCƒ}[‚Ì¸“x‚ğŒŸ¸‚·‚é
+	// ã‚¿ã‚¤ãƒãƒ¼ã®ç²¾åº¦ã‚’æ¤œæŸ»ã™ã‚‹
 	if( WinData.PerformanceTimerFlag )
 	{
 		int Cnt1 , Cnt2 ;
 		DWORD Time1 , NowTime1, StartTime ;
 		LONGLONG Time2 , NowTime2 ;
 
-		DXST_LOGFILE_ADDUTF16LE( "\xbf\x30\xa4\x30\xde\x30\xfc\x30\x6e\x30\xbe\x7c\xa6\x5e\x92\x30\x1c\x69\xfb\x67\x57\x30\x7e\x30\x59\x30\x0a\x00\x00"/*@ L"ƒ^ƒCƒ}[‚Ì¸“x‚ğŒŸ¸‚µ‚Ü‚·\n" @*/ ) ;
+		DXST_LOGFILE_ADDUTF16LE( "\xbf\x30\xa4\x30\xde\x30\xfc\x30\x6e\x30\xbe\x7c\xa6\x5e\x92\x30\x1c\x69\xfb\x67\x57\x30\x7e\x30\x59\x30\x0a\x00\x00"/*@ L"ã‚¿ã‚¤ãƒãƒ¼ã®ç²¾åº¦ã‚’æ¤œæŸ»ã—ã¾ã™\n" @*/ ) ;
 
 		Cnt1 = 0 ;
 		Cnt2 = 0 ;
@@ -730,65 +730,65 @@ extern int InitializeWindow( void )
 		}
 
 		{
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\xbe\x7c\xa6\x5e\x50\x7d\x9c\x67\x20\x00\xf4\x66\xb0\x65\xde\x56\x70\x65\x20\x00\xde\x30\xeb\x30\xc1\x30\xe1\x30\xc7\x30\xa3\x30\xa2\x30\xbf\x30\xa4\x30\xde\x30\xfc\x30\x1a\xff\x25\x00\x64\x00\x20\x00\x20\x00\xd1\x30\xd5\x30\xa9\x30\xfc\x30\xde\x30\xf3\x30\xb9\x30\xab\x30\xa6\x30\xf3\x30\xbf\x30\xfc\x30\x1a\xff\x25\x00\x64\x00\x00"/*@ L"¸“xŒ‹‰Ê XV‰ñ” ƒ}ƒ‹ƒ`ƒƒfƒBƒAƒ^ƒCƒ}[F%d  ƒpƒtƒH[ƒ}ƒ“ƒXƒJƒEƒ“ƒ^[F%d" @*/, Cnt1 , Cnt2 )) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\xbe\x7c\xa6\x5e\x50\x7d\x9c\x67\x20\x00\xf4\x66\xb0\x65\xde\x56\x70\x65\x20\x00\xde\x30\xeb\x30\xc1\x30\xe1\x30\xc7\x30\xa3\x30\xa2\x30\xbf\x30\xa4\x30\xde\x30\xfc\x30\x1a\xff\x25\x00\x64\x00\x20\x00\x20\x00\xd1\x30\xd5\x30\xa9\x30\xfc\x30\xde\x30\xf3\x30\xb9\x30\xab\x30\xa6\x30\xf3\x30\xbf\x30\xfc\x30\x1a\xff\x25\x00\x64\x00\x00"/*@ L"ç²¾åº¦çµæœ æ›´æ–°å›æ•° ãƒãƒ«ãƒãƒ¡ãƒ‡ã‚£ã‚¢ã‚¿ã‚¤ãƒãƒ¼ï¼š%d  ãƒ‘ãƒ•ã‚©ãƒ¼ãƒãƒ³ã‚¹ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼ï¼š%d" @*/, Cnt1 , Cnt2 )) ;
 
 #ifndef DX_NON_LOG
 			if( LogData.NotSystemLogOutFlag == FALSE )
 			{
-				NS_LogFileAdd( _T( " " ) ); // “ä‚ÌƒoƒO‰ñ”ğ—p
+				NS_LogFileAdd( _T( " " ) ); // è¬ã®ãƒã‚°å›é¿ç”¨
 			}
 #endif
 			if( Cnt1 > Cnt2 )
 			{
-				DXST_LOGFILEFMT_ADDUTF16LE(( "\x4d\x00\x75\x00\x6c\x00\x74\x00\x69\x00\x20\x00\x4d\x00\x65\x00\x64\x00\x69\x00\x61\x00\x20\x00\x54\x00\x69\x00\x6d\x00\x65\x00\x72\x00\x20\x00\x92\x30\x7f\x4f\x28\x75\x57\x30\x7e\x30\x59\x30\x20\x00\x54\x00\x69\x00\x6d\x00\x65\x00\x72\x00\x20\x00\xbe\x7c\xa6\x5e\x20\x00\x3a\x00\x20\x00\x25\x00\x64\x00\x2e\x00\x30\x00\x30\x00\x20\x00\x6d\x00\x73\x00\x20\x00\x00"/*@ L"Multi Media Timer ‚ğg—p‚µ‚Ü‚· Timer ¸“x : %d.00 ms " @*/, tc.wPeriodMin )) ;
+				DXST_LOGFILEFMT_ADDUTF16LE(( "\x4d\x00\x75\x00\x6c\x00\x74\x00\x69\x00\x20\x00\x4d\x00\x65\x00\x64\x00\x69\x00\x61\x00\x20\x00\x54\x00\x69\x00\x6d\x00\x65\x00\x72\x00\x20\x00\x92\x30\x7f\x4f\x28\x75\x57\x30\x7e\x30\x59\x30\x20\x00\x54\x00\x69\x00\x6d\x00\x65\x00\x72\x00\x20\x00\xbe\x7c\xa6\x5e\x20\x00\x3a\x00\x20\x00\x25\x00\x64\x00\x2e\x00\x30\x00\x30\x00\x20\x00\x6d\x00\x73\x00\x20\x00\x00"/*@ L"Multi Media Timer ã‚’ä½¿ç”¨ã—ã¾ã™ Timer ç²¾åº¦ : %d.00 ms " @*/, tc.wPeriodMin )) ;
 				WinData.PerformanceTimerFlag = FALSE ;
 			}
 			else
 			{
-				DXST_LOGFILEFMT_ADDUTF16LE(( "\xd1\x30\xd5\x30\xa9\x30\xfc\x30\xde\x30\xf3\x30\xb9\x30\xab\x30\xa6\x30\xf3\x30\xbf\x30\xfc\x30\x92\x30\x7f\x4f\x28\x75\x57\x30\x7e\x30\x59\x30\x20\x00\xbf\x30\xa4\x30\xde\x30\xfc\x30\xbe\x7c\xa6\x5e\x20\x00\x3a\x00\x20\x00\x25\x00\x6c\x00\x66\x00\x20\x00\x4b\x00\x48\x00\x7a\x00\x20\x00\x00"/*@ L"ƒpƒtƒH[ƒ}ƒ“ƒXƒJƒEƒ“ƒ^[‚ğg—p‚µ‚Ü‚· ƒ^ƒCƒ}[¸“x : %lf KHz " @*/, WinData.PerformanceTimerFrequency / 1000.0 )) ;
+				DXST_LOGFILEFMT_ADDUTF16LE(( "\xd1\x30\xd5\x30\xa9\x30\xfc\x30\xde\x30\xf3\x30\xb9\x30\xab\x30\xa6\x30\xf3\x30\xbf\x30\xfc\x30\x92\x30\x7f\x4f\x28\x75\x57\x30\x7e\x30\x59\x30\x20\x00\xbf\x30\xa4\x30\xde\x30\xfc\x30\xbe\x7c\xa6\x5e\x20\x00\x3a\x00\x20\x00\x25\x00\x6c\x00\x66\x00\x20\x00\x4b\x00\x48\x00\x7a\x00\x20\x00\x00"/*@ L"ãƒ‘ãƒ•ã‚©ãƒ¼ãƒãƒ³ã‚¹ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼ã‚’ä½¿ç”¨ã—ã¾ã™ ã‚¿ã‚¤ãƒãƒ¼ç²¾åº¦ : %lf KHz " @*/, WinData.PerformanceTimerFrequency / 1000.0 )) ;
 			}
 #ifndef DX_NON_LOG
 			if( LogData.NotSystemLogOutFlag == FALSE )
 			{
-				NS_LogFileAdd( _T( " \n" ) ); // “ä‚ÌƒoƒO‰ñ”ğ—p
+				NS_LogFileAdd( _T( " \n" ) ); // è¬ã®ãƒã‚°å›é¿ç”¨
 			}
 #endif
 		}
 	}
 
-	// ƒ‰ƒ“ƒ_ƒ€ŒW”‚ğ‰Šú‰»
+	// ãƒ©ãƒ³ãƒ€ãƒ ä¿‚æ•°ã‚’åˆæœŸåŒ–
 #ifndef DX_NON_MERSENNE_TWISTER
 	srandMT( ( unsigned int )NS_GetNowCount( FALSE ) ) ;
 #else
 	srand( NS_GetNowCount( FALSE ) ) ;
 #endif
 
-	// ƒXƒNƒŠ[ƒ“ƒZ[ƒo[–³Œø
+	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚»ãƒ¼ãƒãƒ¼ç„¡åŠ¹
 	SystemParametersInfoWFunc( SPI_SETSCREENSAVEACTIVE, FALSE, NULL, SPIF_SENDWININICHANGE ) ;
 
-	// ƒEƒCƒ“ƒhƒE‚ÉŠÖ˜A‚·‚éˆ—‚Í NotWinFlag ‚ª—§‚Á‚Ä‚¢‚éê‡‚ÍÀs‚µ‚È‚¢
+	// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã«é–¢é€£ã™ã‚‹å‡¦ç†ã¯ NotWinFlag ãŒç«‹ã£ã¦ã„ã‚‹å ´åˆã¯å®Ÿè¡Œã—ãªã„
 	if( DxSysData.NotWinFlag == FALSE )
 	{
-		// “ñd‹N“®–h~ˆ—
-		DXST_LOGFILE_ADDUTF16LE( "\xbd\x30\xd5\x30\xc8\x30\x6e\x30\x8c\x4e\xcd\x91\x77\x8d\xd5\x52\x1c\x69\xfb\x67\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"ƒ\ƒtƒg‚Ì“ñd‹N“®ŒŸ¸... " @*/ ) ;
+		// äºŒé‡èµ·å‹•é˜²æ­¢å‡¦ç†
+		DXST_LOGFILE_ADDUTF16LE( "\xbd\x30\xd5\x30\xc8\x30\x6e\x30\x8c\x4e\xcd\x91\x77\x8d\xd5\x52\x1c\x69\xfb\x67\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"ã‚½ãƒ•ãƒˆã®äºŒé‡èµ·å‹•æ¤œæŸ»... " @*/ ) ;
 		{
 			if( FindWindowWFunc( WinData.ClassName , NULL ) != NULL )
 			{
 				if( WinData.DoubleStartValidFlag == FALSE )
 				{
-					DXST_LOGFILE_ERRCODE_ADDUTF16LE( DX_ERRORCODE_WIN_DOUBLE_START, "\x8c\x4e\xcd\x91\x77\x8d\xd5\x52\x55\x30\x8c\x30\x66\x30\x44\x30\x7e\x30\x59\x30\x01\x30\xbd\x30\xd5\x30\xc8\x30\x92\x30\x42\x7d\x86\x4e\x57\x30\x7e\x30\x59\x30\x0a\x00\x00"/*@ L"“ñd‹N“®‚³‚ê‚Ä‚¢‚Ü‚·Aƒ\ƒtƒg‚ğI—¹‚µ‚Ü‚·\n" @*/ ) ;
+					DXST_LOGFILE_ERRCODE_ADDUTF16LE( DX_ERRORCODE_WIN_DOUBLE_START, "\x8c\x4e\xcd\x91\x77\x8d\xd5\x52\x55\x30\x8c\x30\x66\x30\x44\x30\x7e\x30\x59\x30\x01\x30\xbd\x30\xd5\x30\xc8\x30\x92\x30\x42\x7d\x86\x4e\x57\x30\x7e\x30\x59\x30\x0a\x00\x00"/*@ L"äºŒé‡èµ·å‹•ã•ã‚Œã¦ã„ã¾ã™ã€ã‚½ãƒ•ãƒˆã‚’çµ‚äº†ã—ã¾ã™\n" @*/ ) ;
 					WinData.QuitMessageFlag = TRUE;
 					DxLib_EndRequest() ;
 					return -1 ;
 				}
 				else
 				{
-					DXST_LOGFILE_ADDUTF16LE( "\x8c\x4e\xcd\x91\x77\x8d\xd5\x52\x55\x30\x8c\x30\x66\x30\x44\x30\x7e\x30\x59\x30\x4c\x30\x9a\x7d\x4c\x88\x57\x30\x7e\x30\x59\x30\x0a\x00\x00"/*@ L"“ñd‹N“®‚³‚ê‚Ä‚¢‚Ü‚·‚ª‘±s‚µ‚Ü‚·\n" @*/ ) ;
+					DXST_LOGFILE_ADDUTF16LE( "\x8c\x4e\xcd\x91\x77\x8d\xd5\x52\x55\x30\x8c\x30\x66\x30\x44\x30\x7e\x30\x59\x30\x4c\x30\x9a\x7d\x4c\x88\x57\x30\x7e\x30\x59\x30\x0a\x00\x00"/*@ L"äºŒé‡èµ·å‹•ã•ã‚Œã¦ã„ã¾ã™ãŒç¶šè¡Œã—ã¾ã™\n" @*/ ) ;
 				}
 			}
 			else
 			{
-				DXST_LOGFILE_ADDUTF16LE( "\x8c\x4e\xcd\x91\x77\x8d\xd5\x52\x6f\x30\x55\x30\x8c\x30\x66\x30\x44\x30\x7e\x30\x5b\x30\x93\x30\x67\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"“ñd‹N“®‚Í‚³‚ê‚Ä‚¢‚Ü‚¹‚ñ‚Å‚µ‚½\n" @*/ ) ;
+				DXST_LOGFILE_ADDUTF16LE( "\x8c\x4e\xcd\x91\x77\x8d\xd5\x52\x6f\x30\x55\x30\x8c\x30\x66\x30\x44\x30\x7e\x30\x5b\x30\x93\x30\x67\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"äºŒé‡èµ·å‹•ã¯ã•ã‚Œã¦ã„ã¾ã›ã‚“ã§ã—ãŸ\n" @*/ ) ;
 			}
 		}
 
@@ -798,14 +798,14 @@ extern int InitializeWindow( void )
 			ListupMenuItemInfo( WinData.Menu ) ;
 		}
 
-		// ƒƒjƒ…[‚ğ“Ç‚İ‚Ş
+		// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’èª­ã¿è¾¼ã‚€
 	/*	if( WinData.MenuUseFlag )
 		{
-			// ƒƒjƒ…[‚ğƒ[ƒh
+			// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’ãƒ­ãƒ¼ãƒ‰
 			WinData.Menu = LoadMenuWFunc( WinData.Instance, MAKEINTRESOURCE( WinData.MenuResourceID ) ) ;
 	//		WinData.MenuResourceID = FALSE ;
 
-			// ¸”s‚µ‚Ä‚¢‚½‚çI—¹
+			// å¤±æ•—ã—ã¦ã„ãŸã‚‰çµ‚äº†
 			if( WinData.Menu == NULL ) WinData.MenuUseFlag = FALSE ;
 		}
 		else
@@ -814,12 +814,12 @@ extern int InitializeWindow( void )
 		}
 	*/
 
-		// ƒ\ƒtƒgƒvƒƒZƒX‚ÌÀs—Dæ‡ˆÊ‚ğÅ‚ƒŒƒxƒ‹‚ÉƒZƒbƒg
-	//	DXST_LOGFILE_ADDW( L"ƒ\ƒtƒg‚ÌÀs—DæƒŒƒxƒ‹‚ğã‚°‚Ü‚µ‚½\n" ) ;
+		// ã‚½ãƒ•ãƒˆãƒ—ãƒ­ã‚»ã‚¹ã®å®Ÿè¡Œå„ªå…ˆé †ä½ã‚’æœ€é«˜ãƒ¬ãƒ™ãƒ«ã«ã‚»ãƒƒãƒˆ
+	//	DXST_LOGFILE_ADDW( L"ã‚½ãƒ•ãƒˆã®å®Ÿè¡Œå„ªå…ˆãƒ¬ãƒ™ãƒ«ã‚’ä¸Šã’ã¾ã—ãŸ\n" ) ;
 	//	SetPriorityClass( GetCurrentProcess() , HIGH_PRIORITY_CLASS );
 
-		// ƒEƒCƒ“ƒhƒE‚ªƒ†[ƒU[‚©‚ç’ñ‹Ÿ‚³‚ê‚Ä‚¢‚È‚¢ê‡‚Í‚c‚wƒ‰ƒCƒuƒ‰ƒŠ‚ªì¬‚·‚é
-		// ƒ†[ƒU[‚©‚ç’ñ‹Ÿ‚³‚ê‚Ä‚¢‚éê‡‚ÍƒvƒƒV[ƒWƒƒ‚ªŒÄ‚Î‚ê‚é‚æ‚¤‚É‚·‚é
+		// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãŒãƒ¦ãƒ¼ã‚¶ãƒ¼ã‹ã‚‰æä¾›ã•ã‚Œã¦ã„ãªã„å ´åˆã¯ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªãŒä½œæˆã™ã‚‹
+		// ãƒ¦ãƒ¼ã‚¶ãƒ¼ã‹ã‚‰æä¾›ã•ã‚Œã¦ã„ã‚‹å ´åˆã¯ãƒ—ãƒ­ã‚·ãƒ¼ã‚¸ãƒ£ãŒå‘¼ã°ã‚Œã‚‹ã‚ˆã†ã«ã™ã‚‹
 		if( WinData.UserWindowFlag == TRUE )
 		{
 #ifdef _WIN64
@@ -830,10 +830,10 @@ extern int InitializeWindow( void )
 		}
 		else
 		{
-			// ƒEƒCƒ“ƒhƒEì¬’†ƒtƒ‰ƒO‚ğ—§‚Ä‚é
+			// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ä½œæˆä¸­ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 			WinData.WindowCreateFlag = TRUE ;
 
-			// ƒƒCƒ“ƒEƒCƒ“ƒhƒE‚ÌƒEƒCƒ“ƒhƒEƒNƒ‰ƒX‚ğ“o˜^
+			// ãƒ¡ã‚¤ãƒ³ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚¯ãƒ©ã‚¹ã‚’ç™»éŒ²
 			_MEMSET( &wc , 0, sizeof( wc ) ) ;
 			{
 				wc.style			= CS_HREDRAW | CS_VREDRAW ;
@@ -851,26 +851,26 @@ extern int InitializeWindow( void )
 				wc.cbSize			= sizeof( WNDCLASSEX );
 				wc.hIconSm			= NULL ;
 
-				DXST_LOGFILE_ADDUTF16LE( "\xa6\x30\xa4\x30\xf3\x30\xc9\x30\xa6\x30\xaf\x30\xe9\x30\xb9\x30\x92\x30\x7b\x76\x32\x93\x57\x30\x7e\x30\x59\x30\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"ƒEƒCƒ“ƒhƒEƒNƒ‰ƒX‚ğ“o˜^‚µ‚Ü‚·... " @*/ ) ;
+				DXST_LOGFILE_ADDUTF16LE( "\xa6\x30\xa4\x30\xf3\x30\xc9\x30\xa6\x30\xaf\x30\xe9\x30\xb9\x30\x92\x30\x7b\x76\x32\x93\x57\x30\x7e\x30\x59\x30\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚¯ãƒ©ã‚¹ã‚’ç™»éŒ²ã—ã¾ã™... " @*/ ) ;
 				if( !RegisterClassExWFunc( &wc ) )
 				{
 					WinData.QuitMessageFlag = TRUE;
 					DxLib_EndRequest() ;
-					//return 	DXST_LOGFILE_ADDW( L"ƒEƒCƒ“ƒhƒEƒNƒ‰ƒX‚Ì“o˜^‚É¸”s‚µ‚Ü‚µ‚½\n" ) ;
+					//return 	DXST_LOGFILE_ADDW( L"ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚¯ãƒ©ã‚¹ã®ç™»éŒ²ã«å¤±æ•—ã—ã¾ã—ãŸ\n" ) ;
 				}
 				else
 				{
-					DXST_LOGFILE_ADDUTF16LE( "\x7b\x76\x32\x93\x6b\x30\x10\x62\x9f\x52\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"“o˜^‚É¬Œ÷‚µ‚Ü‚µ‚½\n" @*/ ) ;
+					DXST_LOGFILE_ADDUTF16LE( "\x7b\x76\x32\x93\x6b\x30\x10\x62\x9f\x52\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ç™»éŒ²ã«æˆåŠŸã—ã¾ã—ãŸ\n" @*/ ) ;
 				}
 			}
 
-			// ƒEƒCƒ“ƒhƒEƒl[ƒ€‚ğƒZƒbƒg
+			// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒãƒ¼ãƒ ã‚’ã‚»ãƒƒãƒˆ
 			if( WinData.EnableWindowText == FALSE )
 			{
 				_WCSCPY_S( WinData.WindowText, sizeof( WinData.WindowText ), WIN_DEFAULT_TITLE ) ;
 			}
 			
-			// ƒEƒCƒ“ƒhƒE‚ğ¶¬
+			// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚’ç”Ÿæˆ
 #ifndef DX_NON_GRAPHICS
 			if( WinData.WindowModeFlag )
 #endif // DX_NON_GRAPHICS
@@ -880,45 +880,45 @@ extern int InitializeWindow( void )
 				int DesktopW, DesktopH, DesktopX, DesktopY ;
 				int XDpi, YDpi ;
 
-				// ƒEƒCƒ“ƒhƒEƒ‚[ƒh
-				DXST_LOGFILE_ADDUTF16LE( "\xa6\x30\xa4\x30\xf3\x30\xc9\x30\xa6\x30\xe2\x30\xfc\x30\xc9\x30\x77\x8d\xd5\x52\x28\x75\x6e\x30\xa6\x30\xa4\x30\xf3\x30\xc9\x30\xa6\x30\x92\x30\x5c\x4f\x10\x62\x57\x30\x7e\x30\x59\x30\x0a\x00\x00"/*@ L"ƒEƒCƒ“ƒhƒEƒ‚[ƒh‹N“®—p‚ÌƒEƒCƒ“ƒhƒE‚ğì¬‚µ‚Ü‚·\n" @*/ ) ;
+				// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ¢ãƒ¼ãƒ‰æ™‚
+				DXST_LOGFILE_ADDUTF16LE( "\xa6\x30\xa4\x30\xf3\x30\xc9\x30\xa6\x30\xe2\x30\xfc\x30\xc9\x30\x77\x8d\xd5\x52\x28\x75\x6e\x30\xa6\x30\xa4\x30\xf3\x30\xc9\x30\xa6\x30\x92\x30\x5c\x4f\x10\x62\x57\x30\x7e\x30\x59\x30\x0a\x00\x00"/*@ L"ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ¢ãƒ¼ãƒ‰èµ·å‹•ç”¨ã®ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚’ä½œæˆã—ã¾ã™\n" @*/ ) ;
 
 				AddExStyle = 0 ;
 //				if( WinData.NotWindowVisibleFlag == TRUE ) AddExStyle |= WS_EX_TRANSPARENT ;
 
-				// ƒoƒbƒNƒoƒbƒtƒ@‚Ì“§‰ßF‚Ì•”•ª‚ğ“§‰ß‚³‚¹‚éƒtƒ‰ƒO‚ª—§‚Á‚Ä‚¢‚é‚©A
-				// UpdateLayerdWindow ‚ğg—p‚·‚éƒtƒ‰ƒO‚ªŒo‚Á‚Ä‚¢‚éê‡‚Í WS_EX_LAYERED ‚ğ’Ç‰Á‚·‚é
+				// ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã®é€éè‰²ã®éƒ¨åˆ†ã‚’é€éã•ã›ã‚‹ãƒ•ãƒ©ã‚°ãŒç«‹ã£ã¦ã„ã‚‹ã‹ã€
+				// UpdateLayerdWindow ã‚’ä½¿ç”¨ã™ã‚‹ãƒ•ãƒ©ã‚°ãŒçµŒã£ã¦ã„ã‚‹å ´åˆã¯ WS_EX_LAYERED ã‚’è¿½åŠ ã™ã‚‹
 				if( WinData.BackBufferTransColorFlag == TRUE ||
 					WinData.UseUpdateLayerdWindowFlag == TRUE ) AddExStyle |= WS_EX_LAYERED | ( WinData.UseTransparentWindowFlag ? WS_EX_TRANSPARENT : 0 ) ;
 
 				AddStyle = 0 ;
-				// ”ñ“¯ŠúƒEƒCƒ“ƒhƒEƒ‚[ƒh•ÏX‹@”\‚ª—LŒø‚É‚È‚Á‚Ä‚¢‚é‚Æ‚«‚Í WS_MAXIMIZEBOX ‚ğ’Ç‰Á‚·‚é
+				// éåŒæœŸã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ¢ãƒ¼ãƒ‰å¤‰æ›´æ©Ÿèƒ½ãŒæœ‰åŠ¹ã«ãªã£ã¦ã„ã‚‹ã¨ãã¯ WS_MAXIMIZEBOX ã‚’è¿½åŠ ã™ã‚‹
 				if( WinData.UseChangeWindowModeFlag == TRUE ) AddStyle |= WS_MAXIMIZEBOX ;
 
-				// •\¦ƒtƒ‰ƒO‚ª—§‚Á‚Ä‚¢‚éê‡‚Í WS_VISIBLE ‚ğ’Ç‰Á‚·‚é
+				// è¡¨ç¤ºãƒ•ãƒ©ã‚°ãŒç«‹ã£ã¦ã„ã‚‹å ´åˆã¯ WS_VISIBLE ã‚’è¿½åŠ ã™ã‚‹
 				if( WinData.VisibleFlag             == TRUE ) AddStyle |= WS_VISIBLE ;
 
-				// ƒEƒCƒ“ƒhƒEƒTƒCƒY‚ª•ÏX‚Å‚«‚é‚æ‚¤‚É‚È‚Á‚Ä‚¢‚éê‡‚Í WS_THICKFRAME ‚ğ’Ç‰Á‚·‚é
+				// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚µã‚¤ã‚ºãŒå¤‰æ›´ã§ãã‚‹ã‚ˆã†ã«ãªã£ã¦ã„ã‚‹å ´åˆã¯ WS_THICKFRAME ã‚’è¿½åŠ ã™ã‚‹
 				if( WinData.WindowSizeChangeEnable  == TRUE ) AddStyle |= WS_THICKFRAME ;
 
-				// ƒ}ƒEƒX•\¦ƒtƒ‰ƒO‚ğ—§‚Ä‚é
+				// ãƒã‚¦ã‚¹è¡¨ç¤ºãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 				WinData.MouseDispFlag = TRUE ;
 
-				// ƒfƒXƒNƒgƒbƒv‚Ìî•ñ‚ğæ“¾
+				// ãƒ‡ã‚¹ã‚¯ãƒˆãƒƒãƒ—ã®æƒ…å ±ã‚’å–å¾—
 				NS_GetDefaultState( &DesktopW, &DesktopH, NULL, NULL, &DesktopX, &DesktopY, NULL, NULL, &XDpi, &YDpi ) ;
 
-				// ƒNƒ‰ƒCƒAƒ“ƒg—Ìˆæ‚ÌZo
+				// ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆé ˜åŸŸã®ç®—å‡º
 				if( WinData.WindowSizeValid == TRUE )
 				{
 					if( WinData.ScreenNotFitWindowSize )
 					{
-						// ƒtƒBƒbƒgw’è‚ª–³‚¢ê‡‚Í‚»‚Ì‚Ü‚Ü‚ÌƒEƒCƒ“ƒhƒEƒTƒCƒY‚ğƒZƒbƒg
+						// ãƒ•ã‚£ãƒƒãƒˆæŒ‡å®šãŒç„¡ã„å ´åˆã¯ãã®ã¾ã¾ã®ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚µã‚¤ã‚ºã‚’ã‚»ãƒƒãƒˆ
 						WindowSizeX = WinData.WindowWidth ;
 						WindowSizeY = WinData.WindowHeight ;
 					}
 					else
 					{
-						// ƒtƒBƒbƒgw’è‚ª‚ ‚éê‡‚ÍŠg‘å—¦‚ğw’è‚·‚é
+						// ãƒ•ã‚£ãƒƒãƒˆæŒ‡å®šãŒã‚ã‚‹å ´åˆã¯æ‹¡å¤§ç‡ã‚’æŒ‡å®šã™ã‚‹
 						ExtendRateX = ( double )WinData.WindowWidth / WindowSizeX ;
 						ExtendRateY = ( double )WinData.WindowHeight / WindowSizeY ;
 						NS_SetWindowSizeExtendRate( ExtendRateX, ExtendRateY ) ;
@@ -932,8 +932,8 @@ extern int InitializeWindow( void )
 				{
 					NS_GetWindowSizeExtendRate( &ExtendRateX, &ExtendRateY ) ;
 
-					// ƒEƒBƒ“ƒhƒEƒTƒCƒY‚ª–¾¦“I‚Éİ’è‚³‚ê‚Ä‚¨‚ç‚¸AŠ‚Â
-					// DPI ‚ª]—ˆ‚ÌƒfƒtƒHƒ‹ƒg‚Å‚ ‚é 96 ‚Å‚Í‚È‚©‚Á‚½‚çŠg‘å—¦‚ğ•ÏX‚·‚é
+					// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚µã‚¤ã‚ºãŒæ˜ç¤ºçš„ã«è¨­å®šã•ã‚Œã¦ãŠã‚‰ãšã€ä¸”ã¤
+					// DPI ãŒå¾“æ¥ã®ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã§ã‚ã‚‹ 96 ã§ã¯ãªã‹ã£ãŸã‚‰æ‹¡å¤§ç‡ã‚’å¤‰æ›´ã™ã‚‹
 					if( WinData.EnableWindowSizeExRate == FALSE &&
 						( XDpi != DEFAULT_DPI || YDpi != DEFAULT_DPI ) )
 					{
@@ -946,7 +946,7 @@ extern int InitializeWindow( void )
 					WindowSizeY = _DTOL( WindowSizeY * ExtendRateY ) ;
 				}
 
-				// ƒVƒXƒeƒ€ƒo[‚ğŠÜ‚ß‚½ƒEƒCƒ“ƒhƒE‚ÌƒTƒCƒY‚ğæ“¾
+				// ã‚·ã‚¹ãƒ†ãƒ ãƒãƒ¼ã‚’å«ã‚ãŸã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ã‚µã‚¤ã‚ºã‚’å–å¾—
 				SETRECT( Rect, 0, 0, WindowSizeX, WindowSizeY ) ;
 				WinAPIData.Win32Func.AdjustWindowRectExFunc( &Rect ,
 									WStyle_WindowModeTable[ WinData.WindowStyle ]   + AddStyle, FALSE,
@@ -957,13 +957,13 @@ extern int InitializeWindow( void )
 				WinData.WindowTopEdgeWidth    = -Rect.top ;
 				WinData.WindowBottomEdgeWidth =  Rect.bottom - WindowSizeY ;
 
-				// İ’è—Ìˆæ‚ğ‚¿‚å‚¢‚Æ×H
+				// è¨­å®šé ˜åŸŸã‚’ã¡ã‚‡ã„ã¨ç´°å·¥
 		//		Rect.left   += - 3;
 		//		Rect.top    += - 3;
 		//		Rect.right  += + 3;
 		//		Rect.bottom += + 3;
 
-				// ’†S‚É‚Á‚Ä‚­‚é
+				// ä¸­å¿ƒã«æŒã£ã¦ãã‚‹
 				WindowSizeX = Rect.right  - Rect.left ;
 				WindowSizeY = Rect.bottom - Rect.top  ;
 				Rect.left   += ( DesktopW - WindowSizeX ) / 2 + DesktopX ;
@@ -971,9 +971,9 @@ extern int InitializeWindow( void )
 				Rect.right  += ( DesktopW - WindowSizeX ) / 2 + DesktopX ;
 				Rect.bottom += ( DesktopH - WindowSizeY ) / 2 + DesktopY ;
 
-				DXST_LOGFILEFMT_ADDUTF16LE(( "\xa6\x30\xa4\x30\xf3\x30\xc9\x30\xa6\x30\xe9\x77\x62\x5f\x20\x00\x28\x00\x20\x00\x25\x00\x64\x00\x2c\x00\x20\x00\x25\x00\x64\x00\x20\x00\x29\x00\x2d\x00\x28\x00\x20\x00\x25\x00\x64\x00\x2c\x00\x20\x00\x25\x00\x64\x00\x20\x00\x29\x00\x00"/*@ L"ƒEƒCƒ“ƒhƒE‹éŒ` ( %d, %d )-( %d, %d )" @*/, Rect.left, Rect.top, Rect.right, Rect.bottom )) ;
+				DXST_LOGFILEFMT_ADDUTF16LE(( "\xa6\x30\xa4\x30\xf3\x30\xc9\x30\xa6\x30\xe9\x77\x62\x5f\x20\x00\x28\x00\x20\x00\x25\x00\x64\x00\x2c\x00\x20\x00\x25\x00\x64\x00\x20\x00\x29\x00\x2d\x00\x28\x00\x20\x00\x25\x00\x64\x00\x2c\x00\x20\x00\x25\x00\x64\x00\x20\x00\x29\x00\x00"/*@ L"ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦çŸ©å½¢ ( %d, %d )-( %d, %d )" @*/, Rect.left, Rect.top, Rect.right, Rect.bottom )) ;
 
-				// ƒEƒCƒ“ƒhƒE‚Ìì¬
+				// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ä½œæˆ
 				WinData.MainWindow = 
 					CreateWindowExWFunc(
 						WExStyle_WindowModeTable[ WinData.WindowStyle ] + AddExStyle,
@@ -994,8 +994,8 @@ extern int InitializeWindow( void )
 				GRAPHICSSYS_DISPLAYINFO *DisplayInfo ;
 				int XDpi, YDpi ;
 
-				DXST_LOGFILE_ADDUTF16LE( "\xd5\x30\xeb\x30\xb9\x30\xaf\x30\xea\x30\xfc\x30\xf3\x30\xe2\x30\xfc\x30\xc9\x30\x28\x75\x6e\x30\xa6\x30\xa4\x30\xf3\x30\xc9\x30\xa6\x30\x92\x30\x5c\x4f\x10\x62\x57\x30\x7e\x30\x59\x30\x0a\x00\x00"/*@ L"ƒtƒ‹ƒXƒNƒŠ[ƒ“ƒ‚[ƒh—p‚ÌƒEƒCƒ“ƒhƒE‚ğì¬‚µ‚Ü‚·\n" @*/ ) ;
-				// ƒtƒ‹ƒXƒNƒŠ[ƒ“ƒ‚[ƒh
+				DXST_LOGFILE_ADDUTF16LE( "\xd5\x30\xeb\x30\xb9\x30\xaf\x30\xea\x30\xfc\x30\xf3\x30\xe2\x30\xfc\x30\xc9\x30\x28\x75\x6e\x30\xa6\x30\xa4\x30\xf3\x30\xc9\x30\xa6\x30\x92\x30\x5c\x4f\x10\x62\x57\x30\x7e\x30\x59\x30\x0a\x00\x00"/*@ L"ãƒ•ãƒ«ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ¢ãƒ¼ãƒ‰ç”¨ã®ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚’ä½œæˆã—ã¾ã™\n" @*/ ) ;
+				// ãƒ•ãƒ«ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ¢ãƒ¼ãƒ‰æ™‚
 
 				if( GSYS.Screen.DisplayInfo == NULL )
 				{
@@ -1003,8 +1003,8 @@ extern int InitializeWindow( void )
 				}
 				DisplayInfo = &GSYS.Screen.DisplayInfo[ GSYS.Screen.ValidUseDisplayIndex ? GSYS.Screen.UseDisplayIndex : GSYS.Screen.PrimaryDisplayIndex ] ;
 
-				// ƒEƒBƒ“ƒhƒEƒTƒCƒY‚ª–¾¦“I‚Éİ’è‚³‚ê‚Ä‚¨‚ç‚¸AŠ‚Â
-				// DPI ‚ª]—ˆ‚ÌƒfƒtƒHƒ‹ƒg‚Å‚ ‚é 96 ‚Å‚Í‚È‚©‚Á‚½‚çŠg‘å—¦‚ğ•ÏX‚·‚é
+				// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚µã‚¤ã‚ºãŒæ˜ç¤ºçš„ã«è¨­å®šã•ã‚Œã¦ãŠã‚‰ãšã€ä¸”ã¤
+				// DPI ãŒå¾“æ¥ã®ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã§ã‚ã‚‹ 96 ã§ã¯ãªã‹ã£ãŸã‚‰æ‹¡å¤§ç‡ã‚’å¤‰æ›´ã™ã‚‹
 				NS_GetWindowSizeExtendRate( &ExtendRateX, &ExtendRateY ) ;
 				NS_GetDefaultState( NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, &XDpi, &YDpi ) ;
 				if( WinData.EnableWindowSizeExRate == FALSE &&
@@ -1015,7 +1015,7 @@ extern int InitializeWindow( void )
 					NS_SetWindowSizeExtendRate( ExtendRateX, ExtendRateY ) ;
 				}
 
-				// ƒ}ƒEƒX•\¦ƒtƒ‰ƒO‚ğ“|‚·
+				// ãƒã‚¦ã‚¹è¡¨ç¤ºãƒ•ãƒ©ã‚°ã‚’å€’ã™
 				WinData.MouseDispFlag = FALSE ;
 
 				WinData.MainWindow = 
@@ -1046,11 +1046,11 @@ extern int InitializeWindow( void )
 			{
 				WinData.QuitMessageFlag = TRUE;
 				DxLib_EndRequest() ;
-				return DXST_LOGFILE_ERRCODE_ADDUTF16LE( DX_ERRORCODE_WIN_FAILED_CREATEWINDOW, "\xa6\x30\xa4\x30\xf3\x30\xc9\x30\xa6\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ƒEƒCƒ“ƒhƒE‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+				return DXST_LOGFILE_ERRCODE_ADDUTF16LE( DX_ERRORCODE_WIN_FAILED_CREATEWINDOW, "\xa6\x30\xa4\x30\xf3\x30\xc9\x30\xa6\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 			}
-			DXST_LOGFILE_ADDUTF16LE( "\xa6\x30\xa4\x30\xf3\x30\xc9\x30\xa6\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x10\x62\x9f\x52\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ƒEƒCƒ“ƒhƒE‚Ìì¬‚É¬Œ÷‚µ‚Ü‚µ‚½\n" @*/ ) ;
+			DXST_LOGFILE_ADDUTF16LE( "\xa6\x30\xa4\x30\xf3\x30\xc9\x30\xa6\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x10\x62\x9f\x52\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ä½œæˆã«æˆåŠŸã—ã¾ã—ãŸ\n" @*/ ) ;
 
-			// ƒEƒCƒ“ƒhƒE‚Ì•\¦AXV
+			// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®è¡¨ç¤ºã€æ›´æ–°
 			if( WinData.NotWindowVisibleFlag )
 			{
 				WinAPIData.Win32Func.ShowWindowFunc( WinData.MainWindow , SW_HIDE ) ;
@@ -1063,29 +1063,29 @@ extern int InitializeWindow( void )
 			}
 			else
 			{
-				DXST_LOGFILE_ADDUTF16LE( "\xa6\x30\xa4\x30\xf3\x30\xc9\x30\xa6\x30\x92\x30\x68\x88\x3a\x79\x57\x30\x7e\x30\x59\x30\x0a\x00\x00"/*@ L"ƒEƒCƒ“ƒhƒE‚ğ•\¦‚µ‚Ü‚·\n" @*/ ) ;
+				DXST_LOGFILE_ADDUTF16LE( "\xa6\x30\xa4\x30\xf3\x30\xc9\x30\xa6\x30\x92\x30\x68\x88\x3a\x79\x57\x30\x7e\x30\x59\x30\x0a\x00\x00"/*@ L"ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚’è¡¨ç¤ºã—ã¾ã™\n" @*/ ) ;
 				WinAPIData.Win32Func.ShowWindowFunc( WinData.MainWindow , WStyle_ShowWindow_Param[ WinData.WindowStyle ] ) ;
 				WinAPIData.Win32Func.UpdateWindowFunc( WinData.MainWindow ) ;
 			}
 
-			// ƒEƒCƒ“ƒhƒE‚ğƒ^ƒbƒ`‘Î‰‚É“o˜^‚·‚é
+			// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚’ã‚¿ãƒƒãƒå¯¾å¿œã«ç™»éŒ²ã™ã‚‹
 			if( WinAPIData.Win32Func.RegisterTouchWindowFunc != NULL )
 			{
 				WinAPIData.Win32Func.RegisterTouchWindowFunc( WinData.MainWindow,  0 /* TWF_WANTPALM */ ) ;
 			}
 		}
 
-		// Šeíƒf[ƒ^‚ğƒZƒbƒg‚·‚é
+		// å„ç¨®ãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 		{
-			WinData.CloseMessagePostFlag = FALSE ;							// WM_CLOSEƒƒbƒZ[ƒW‚ª‘—‚ç‚ê‚é‚Æ‚s‚q‚t‚d‚É‚È‚éƒtƒ‰ƒO•Ï”‚ğ‚e‚`‚k‚r‚d‚É‚µ‚Ä’u‚­
-			WinData.DestroyMessageCatchFlag = FALSE ;						// WM_DESTROYƒƒbƒZ[ƒW‚ğó‚¯æ‚Á‚½‚É‚s‚q‚t‚d‚É‚È‚éƒtƒ‰ƒO•Ï”‚ğ‚e‚`‚k‚r‚d‚É‚µ‚Ä‚¨‚­
-			WinData.ActiveFlag = TRUE ;										// ƒAƒNƒeƒBƒuƒtƒ‰ƒO‚ğ‚½‚Ä‚é
+			WinData.CloseMessagePostFlag = FALSE ;							// WM_CLOSEãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãŒé€ã‚‰ã‚Œã‚‹ã¨ï¼´ï¼²ï¼µï¼¥ã«ãªã‚‹ãƒ•ãƒ©ã‚°å¤‰æ•°ã‚’ï¼¦ï¼¡ï¼¬ï¼³ï¼¥ã«ã—ã¦ç½®ã
+			WinData.DestroyMessageCatchFlag = FALSE ;						// WM_DESTROYãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å—ã‘å–ã£ãŸæ™‚ã«ï¼´ï¼²ï¼µï¼¥ã«ãªã‚‹ãƒ•ãƒ©ã‚°å¤‰æ•°ã‚’ï¼¦ï¼¡ï¼¬ï¼³ï¼¥ã«ã—ã¦ãŠã
+			WinData.ActiveFlag = TRUE ;										// ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ãƒ•ãƒ©ã‚°ã‚’ãŸã¦ã‚‹
 			if( WinData.WindowModeFlag == FALSE && NS_GetUseFullScreenResolutionMode() != DX_FSRESOLUTIONMODE_BORDERLESS_WINDOW )
 			{
-				DXST_LOGFILE_ADDUTF16LE( "\xab\x30\xfc\x30\xbd\x30\xeb\x30\x92\x30\x0d\x4e\xef\x53\x96\x89\x6b\x30\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ƒJ[ƒ\ƒ‹‚ğ•s‰Â‹‚É‚µ‚Ü‚µ‚½\n" @*/ ) ;
-				WinAPIData.Win32Func.SetCursorFunc( NULL ) ;										// ƒtƒ‹ƒXƒNƒŠ[ƒ“ƒ‚[ƒh‚¾‚Á‚½ê‡ƒJ[ƒ\ƒ‹‚ğÁ‹
+				DXST_LOGFILE_ADDUTF16LE( "\xab\x30\xfc\x30\xbd\x30\xeb\x30\x92\x30\x0d\x4e\xef\x53\x96\x89\x6b\x30\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ã‚«ãƒ¼ã‚½ãƒ«ã‚’ä¸å¯è¦–ã«ã—ã¾ã—ãŸ\n" @*/ ) ;
+				WinAPIData.Win32Func.SetCursorFunc( NULL ) ;										// ãƒ•ãƒ«ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ¢ãƒ¼ãƒ‰ã ã£ãŸå ´åˆã‚«ãƒ¼ã‚½ãƒ«ã‚’æ¶ˆå»
 			}
-			DXST_LOGFILE_ADDUTF16LE( "\x29\xff\x2d\xff\x25\xff\x92\x30\x21\x71\xb9\x52\x6b\x30\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"‚h‚l‚d‚ğ–³Œø‚É‚µ‚Ü‚µ‚½\n" @*/ ) ;
+			DXST_LOGFILE_ADDUTF16LE( "\x29\xff\x2d\xff\x25\xff\x92\x30\x21\x71\xb9\x52\x6b\x30\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ï¼©ï¼­ï¼¥ã‚’ç„¡åŠ¹ã«ã—ã¾ã—ãŸ\n" @*/ ) ;
 
 			if( WinData.WindowMinimizeFlag == FALSE 
 #ifndef DX_NON_INPUTSTRING
@@ -1094,7 +1094,7 @@ extern int InitializeWindow( void )
 			)
 			{
 				if( WinAPIData.Win32Func.WINNLSEnableIME_Func )
-					WinAPIData.Win32Func.WINNLSEnableIME_Func( WinData.MainWindow , FALSE ) ;						// MS_IME–³Œø
+					WinAPIData.Win32Func.WINNLSEnableIME_Func( WinData.MainWindow , FALSE ) ;						// MS_IMEç„¡åŠ¹
 			}
 			else
 			{
@@ -1102,12 +1102,12 @@ extern int InitializeWindow( void )
 				if( CharBuf.IMEUseFlag )
 				{
 					if( WinAPIData.Win32Func.WINNLSEnableIME_Func )
-						WinAPIData.Win32Func.WINNLSEnableIME_Func( WinData.MainWindow , TRUE ) ;						// MS_IME–³Œø
+						WinAPIData.Win32Func.WINNLSEnableIME_Func( WinData.MainWindow , TRUE ) ;						// MS_IMEç„¡åŠ¹
 				}
 #endif // DX_NON_INPUTSTRING
 			}
 
-			// ƒEƒCƒ“ƒhƒE‚ÌƒNƒ‰ƒCƒAƒ“ƒg—Ìˆæ‚ğ•Û‘¶‚·‚é
+			// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆé ˜åŸŸã‚’ä¿å­˜ã™ã‚‹
 			if( WinData.WindowModeFlag || NS_GetUseFullScreenResolutionMode() == DX_FSRESOLUTIONMODE_BORDERLESS_WINDOW )
 			{
 				WinAPIData.Win32Func.GetClientRectFunc( GetDisplayWindowHandle() , &WinData.WindowRect )  ;
@@ -1116,20 +1116,20 @@ extern int InitializeWindow( void )
 			}
 		}
 
-		// ƒ}ƒEƒX‚Ì•\¦İ’è‚ğ”½‰f‚³‚¹‚é
+		// ãƒã‚¦ã‚¹ã®è¡¨ç¤ºè¨­å®šã‚’åæ˜ ã•ã›ã‚‹
 		NS_SetMouseDispFlag( WinData.MouseDispFlag ) ;
 
-		// ‹­§I—¹‚©Cƒtƒ‰ƒO‚ğ“|‚·
+		// å¼·åˆ¶çµ‚äº†ã‹ï¼Œãƒ•ãƒ©ã‚°ã‚’å€’ã™
 		WinData.AltF4_EndFlag = FALSE ;
 
 		if( WinData.UserWindowFlag == FALSE )
 		{
-			// ƒƒCƒ“ƒEƒCƒ“ƒhƒE‚ğƒAƒNƒeƒBƒu‚É‚·‚é
+			// ãƒ¡ã‚¤ãƒ³ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚’ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ã™ã‚‹
 			if( WinData.NotWindowVisibleFlag == FALSE &&
 				WinData.WindowMinimizeFlag == FALSE )
 				WinAPIData.Win32Func.BringWindowToTopFunc( WinData.MainWindow ) ;
 
-			// ­‚µ‚¾‚¯‘Ò‚Â
+			// å°‘ã—ã ã‘å¾…ã¤
 /*
 			{
 				int Time = NS_GetNowCount( FALSE ) ;
@@ -1137,96 +1137,96 @@ extern int InitializeWindow( void )
 					NS_ProcessMessage() ;
 			}
 */
-			// ƒTƒCƒY•â³ˆ—
+			// ã‚µã‚¤ã‚ºè£œæ­£å‡¦ç†
 			if( WinData.NotWindowVisibleFlag == FALSE &&
 				WinData.WindowMinimizeFlag == FALSE )
 			{
 				WM_SIZEProcess() ;
 			}
 
-			// ƒEƒCƒ“ƒhƒEì¬’†ƒtƒ‰ƒO‚ğ“|‚·
+			// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ä½œæˆä¸­ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 			WinData.WindowCreateFlag = FALSE ;
 		}
 
-		// ‰ŠúƒTƒCƒYw’è‚ÍŠ®—¹‚µ‚Ä‚¢‚é‚Ì‚Åƒtƒ‰ƒO‚ğ“|‚·
+		// åˆæœŸã‚µã‚¤ã‚ºæŒ‡å®šã¯å®Œäº†ã—ã¦ã„ã‚‹ã®ã§ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 		WinData.WindowPosValid = FALSE ;
 
-		// ƒhƒ‰ƒbƒO•ƒhƒƒbƒv‹@”\‚ğ—LŒø‚É‚·‚éƒtƒ‰ƒO‚ª—§‚Á‚Ä‚¢‚½‚ç‚±‚±‚Å—LŒø‚É‚·‚é
+		// ãƒ‰ãƒ©ãƒƒã‚°ï¼†ãƒ‰ãƒ­ãƒƒãƒ—æ©Ÿèƒ½ã‚’æœ‰åŠ¹ã«ã™ã‚‹ãƒ•ãƒ©ã‚°ãŒç«‹ã£ã¦ã„ãŸã‚‰ã“ã“ã§æœ‰åŠ¹ã«ã™ã‚‹
 		RefreshDragFileValidFlag() ;
 	}
 
 #ifdef DX_THREAD_SAFE
-	// ProcessMessage ‚ğ‚Ğ‚½‚·‚çŒÄ‚Ñ‚Â‚Ã‚¯‚éƒXƒŒƒbƒh‚ğ—§‚Ä‚é
+	// ProcessMessage ã‚’ã²ãŸã™ã‚‰å‘¼ã³ã¤ã¥ã‘ã‚‹ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’ç«‹ã¦ã‚‹
 	WinData.ProcessMessageThreadHandle = WinAPIData.Win32Func.CreateThreadFunc( NULL, 0, ProcessMessageThreadFunction, NULL, 0, &WinData.ProcessMessageThreadID ) ;
 //	WinData.ProcessMessageThreadHandle = NULL ;
 	if( WinData.ProcessMessageThreadHandle == NULL )
 	{
-		DXST_LOGFILE_ADDUTF16LE( "\x50\x00\x72\x00\x6f\x00\x63\x00\x65\x00\x73\x00\x73\x00\x4d\x00\x65\x00\x73\x00\x73\x00\x61\x00\x67\x00\x65\x00\x20\x00\x92\x30\x72\x30\x5f\x30\x59\x30\x89\x30\x7c\x54\x73\x30\x64\x30\x65\x30\x51\x30\x8b\x30\xb9\x30\xec\x30\xc3\x30\xc9\x30\x6e\x30\xcb\x7a\x61\x30\x0a\x4e\x52\x30\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ProcessMessage ‚ğ‚Ğ‚½‚·‚çŒÄ‚Ñ‚Â‚Ã‚¯‚éƒXƒŒƒbƒh‚Ì—§‚¿ã‚°‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+		DXST_LOGFILE_ADDUTF16LE( "\x50\x00\x72\x00\x6f\x00\x63\x00\x65\x00\x73\x00\x73\x00\x4d\x00\x65\x00\x73\x00\x73\x00\x61\x00\x67\x00\x65\x00\x20\x00\x92\x30\x72\x30\x5f\x30\x59\x30\x89\x30\x7c\x54\x73\x30\x64\x30\x65\x30\x51\x30\x8b\x30\xb9\x30\xec\x30\xc3\x30\xc9\x30\x6e\x30\xcb\x7a\x61\x30\x0a\x4e\x52\x30\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ProcessMessage ã‚’ã²ãŸã™ã‚‰å‘¼ã³ã¤ã¥ã‘ã‚‹ã‚¹ãƒ¬ãƒƒãƒ‰ã®ç«‹ã¡ä¸Šã’ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 	}
 #endif
 
 #ifndef DX_NON_ASYNCLOAD
-	// ”ñ“¯Šú“Ç‚İ‚İˆ—‚ğs‚¤ƒXƒŒƒbƒh‚ğ—§‚Ä‚é
+	// éåŒæœŸèª­ã¿è¾¼ã¿å‡¦ç†ã‚’è¡Œã†ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’ç«‹ã¦ã‚‹
 	if( SetupASyncLoadThread( WinData.ProcessorNum ) < 0 )
 	{
-		DXST_LOGFILE_ERRCODE_ADDUTF16LE( DX_ERRORCODE_WIN_FAILED_ASYNCLOAD_CREATE_THREAD, "\x5e\x97\x0c\x54\x1f\x67\xad\x8a\x7f\x30\xbc\x8f\x7f\x30\xe6\x51\x06\x74\x92\x30\x4c\x88\x46\x30\xb9\x30\xec\x30\xc3\x30\xc9\x30\x6e\x30\xcb\x7a\x61\x30\x0a\x4e\x52\x30\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"”ñ“¯Šú“Ç‚İ‚İˆ—‚ğs‚¤ƒXƒŒƒbƒh‚Ì—§‚¿ã‚°‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+		DXST_LOGFILE_ERRCODE_ADDUTF16LE( DX_ERRORCODE_WIN_FAILED_ASYNCLOAD_CREATE_THREAD, "\x5e\x97\x0c\x54\x1f\x67\xad\x8a\x7f\x30\xbc\x8f\x7f\x30\xe6\x51\x06\x74\x92\x30\x4c\x88\x46\x30\xb9\x30\xec\x30\xc3\x30\xc9\x30\x6e\x30\xcb\x7a\x61\x30\x0a\x4e\x52\x30\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"éåŒæœŸèª­ã¿è¾¼ã¿å‡¦ç†ã‚’è¡Œã†ã‚¹ãƒ¬ãƒƒãƒ‰ã®ç«‹ã¡ä¸Šã’ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 		WinData.QuitMessageFlag = TRUE;
 		DxLib_EndRequest() ;
 		return -1 ;
 	}
 #endif // DX_NON_ASYNCLOAD
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
 #pragma optimize("", on)
 
-// ƒEƒCƒ“ƒhƒEŠÖŒW‚Ìˆ—I—¹ŠÖ”
+// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦é–¢ä¿‚ã®å‡¦ç†çµ‚äº†é–¢æ•°
 extern int TerminateWindow( void )
 {
-	// ‚à‚µŠù‚ÉƒEƒCƒ“ƒhƒE‚ª–³‚¢ê‡‚Í‰½‚à‚¹‚¸I—¹
+	// ã‚‚ã—æ—¢ã«ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãŒç„¡ã„å ´åˆã¯ä½•ã‚‚ã›ãšçµ‚äº†
 	if( WinData.MainWindow == NULL ) return 0 ;
 
-	DXST_LOGFILE_ADDUTF16LE( "\xa6\x30\xa3\x30\xf3\x30\xc9\x30\xa6\x30\xa2\x95\x23\x90\x6e\x30\x42\x7d\x86\x4e\xe6\x51\x06\x74\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"ƒEƒBƒ“ƒhƒEŠÖ˜A‚ÌI—¹ˆ—... " @*/ ) ;
+	DXST_LOGFILE_ADDUTF16LE( "\xa6\x30\xa3\x30\xf3\x30\xc9\x30\xa6\x30\xa2\x95\x23\x90\x6e\x30\x42\x7d\x86\x4e\xe6\x51\x06\x74\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦é–¢é€£ã®çµ‚äº†å‡¦ç†... " @*/ ) ;
 
 	SETUP_WIN_API
 
-	// ƒXƒNƒŠ[ƒ“ƒZ[ƒo[—LŒø
+	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚»ãƒ¼ãƒãƒ¼æœ‰åŠ¹
 	SystemParametersInfoWFunc( SPI_SETSCREENSAVEACTIVE, TRUE, NULL, SPIF_SENDWININICHANGE ) ;
 
-	// ƒEƒCƒ“ƒhƒE‚ÉŠÖ˜A‚·‚éˆ—‚Í DxSysData.NotWinFlag ‚ª—§‚Á‚Ä‚¢‚È‚¢ê‡‚Ì‚İÀs‚·‚é
+	// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã«é–¢é€£ã™ã‚‹å‡¦ç†ã¯ DxSysData.NotWinFlag ãŒç«‹ã£ã¦ã„ãªã„å ´åˆã®ã¿å®Ÿè¡Œã™ã‚‹
 	if( DxSysData.NotWinFlag == FALSE )
 	{
-		// MS_IME—LŒø
+		// MS_IMEæœ‰åŠ¹
 		if( WinAPIData.Win32Func.WINNLSEnableIME_Func )
 			WinAPIData.Win32Func.WINNLSEnableIME_Func( WinData.MainWindow, TRUE ) ;
 
-		// ƒ}ƒEƒXƒJ[ƒ\ƒ‹‚ğ•\¦‚·‚é
+		// ãƒã‚¦ã‚¹ã‚«ãƒ¼ã‚½ãƒ«ã‚’è¡¨ç¤ºã™ã‚‹
 		NS_SetMouseDispFlag( TRUE ) ;
 
 #ifndef DX_NON_STOPTASKSWITCH
-		// ƒ^ƒXƒNƒXƒCƒbƒ`‚Ì—LŒøA–³Œø‚ğƒZƒbƒg‚·‚é
+		// ã‚¿ã‚¹ã‚¯ã‚¹ã‚¤ãƒƒãƒã®æœ‰åŠ¹ã€ç„¡åŠ¹ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 		{
 	/*		if( WinData.WindowsVersion < DX_WINDOWSVERSION_NT31 )
 			{
-				// Win95 ƒJ[ƒlƒ‹‚Ìê‡‚Ìˆ—
+				// Win95 ã‚«ãƒ¼ãƒãƒ«ã®å ´åˆã®å‡¦ç†
 				UINT nPreviousState;
 				if( WinData.SysCommandOffFlag == TRUE )
 					SystemParametersInfoWFunc( SPI_SETSCREENSAVERRUNNING, FALSE, &nPreviousState, 0 ) ;
 			}
 			else
 	*/		{
-				// WinNT ƒJ[ƒlƒ‹‚Ìê‡‚Ìˆ—
+				// WinNT ã‚«ãƒ¼ãƒãƒ«ã®å ´åˆã®å‡¦ç†
 
-				// ƒL[ƒ{[ƒhƒtƒbƒN‚ğ–³Œø‚É
+				// ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ãƒ•ãƒƒã‚¯ã‚’ç„¡åŠ¹ã«
 				if( WinData.TaskHookHandle != NULL )
 				{
 					WinAPIData.Win32Func.UnhookWindowsHookExFunc( WinData.TaskHookHandle ) ;
 					WinData.TaskHookHandle = NULL ;
 				}
 
-// 				// ƒƒbƒZ[ƒWƒtƒbƒN‚ğ–³Œø‚É
+// 				// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ•ãƒƒã‚¯ã‚’ç„¡åŠ¹ã«
 // //				if( WinData.GetMessageHookHandle != NULL )
 // 				{
 // 					if( WinData.MessageHookDLL != NULL )
@@ -1242,7 +1242,7 @@ extern int TerminateWindow( void )
 // 					}
 //				}
 
-				// ƒL[ƒ{[ƒhƒtƒbƒN‚c‚k‚k‚Æ‚µ‚Äƒeƒ“ƒ|ƒ‰ƒŠƒtƒ@ƒCƒ‹‚ğg—p‚µ‚Ä‚¢‚½ê‡‚Íƒtƒ@ƒCƒ‹‚ğíœ‚·‚é
+				// ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ãƒ•ãƒƒã‚¯ï¼¤ï¼¬ï¼¬ã¨ã—ã¦ãƒ†ãƒ³ãƒãƒ©ãƒªãƒ•ã‚¡ã‚¤ãƒ«ã‚’ä½¿ç”¨ã—ã¦ã„ãŸå ´åˆã¯ãƒ•ã‚¡ã‚¤ãƒ«ã‚’å‰Šé™¤ã™ã‚‹
 				if( WinData.NotUseUserHookDllFlag )
 				{
 					DeleteFileWFunc( WinData.HookDLLFilePath ) ;
@@ -1253,59 +1253,59 @@ extern int TerminateWindow( void )
 
 #endif // DX_NON_STOPTASKSWITCH
 
-		// ƒŠ[ƒWƒ‡ƒ“‚ğíœ‚·‚é
+		// ãƒªãƒ¼ã‚¸ãƒ§ãƒ³ã‚’å‰Šé™¤ã™ã‚‹
 		NS_SetWindowRgnGraph( NULL ) ;
 
-		// ƒƒjƒ…[‚ğ–³Œø‚É‚·‚é
+		// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’ç„¡åŠ¹ã«ã™ã‚‹
 		NS_SetUseMenuFlag( FALSE ) ;
 
-		// ƒc[ƒ‹ƒo[‚ğ–³Œø‚É‚·‚é
+		// ãƒ„ãƒ¼ãƒ«ãƒãƒ¼ã‚’ç„¡åŠ¹ã«ã™ã‚‹
 		NS_SetupToolBar( NULL, 0, -1 ) ;
 
-		// ƒ†[ƒU[‚ÌƒEƒCƒ“ƒhƒE‚ğg—p‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+		// ãƒ¦ãƒ¼ã‚¶ãƒ¼ã®ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 		if( WinData.UserWindowFlag == TRUE )
 		{
-			// ƒEƒCƒ“ƒhƒEƒvƒ[ƒWƒƒ‚ğŒ³‚É–ß‚·
+			// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ—ãƒ­ãƒ¼ã‚¸ãƒ£ã‚’å…ƒã«æˆ»ã™
 #ifdef _WIN64
 			SetWindowLongPtrWFunc( WinData.MainWindow, GWLP_WNDPROC, ( LONG_PTR )WinData.DefaultUserWindowProc ) ;
 #else
 			SetWindowLongWFunc( WinData.MainWindow, GWL_WNDPROC, (LONG)WinData.DefaultUserWindowProc ) ;
 #endif
 
-			// I—¹ó‘Ô‚É‚·‚é
+			// çµ‚äº†çŠ¶æ…‹ã«ã™ã‚‹
 			WinData.QuitMessageFlag = TRUE ;
 			DxLib_EndRequest() ;
 		}
 		else
 		{
-			// ƒNƒ[ƒYƒtƒ‰ƒO‚ª“|‚ê‚Ä‚¢‚½‚çWM_CLOSEƒƒbƒZ[ƒW‚ğ‘—‚é
+			// ã‚¯ãƒ­ãƒ¼ã‚ºãƒ•ãƒ©ã‚°ãŒå€’ã‚Œã¦ã„ãŸã‚‰WM_CLOSEãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’é€ã‚‹
 			if( WinData.CloseMessagePostFlag == FALSE )
 			{
 				WinData.CloseMessagePostFlag = TRUE ;
 				PostMessageWFunc( WinData.MainWindow , WM_CLOSE, 0, 0 );
 			}
 
-			// ƒGƒ“ƒhˆ—‚ªI‚é‚Ü‚Åƒ‹[ƒv
+			// ã‚¨ãƒ³ãƒ‰å‡¦ç†ãŒçµ‚ã‚‹ã¾ã§ãƒ«ãƒ¼ãƒ—
 			while( NS_ProcessMessage() == 0 && WinData.DestroyMessageCatchFlag == FALSE ){}
 
-			// ƒŒƒWƒXƒgƒŠ‚Ìíœ
+			// ãƒ¬ã‚¸ã‚¹ãƒˆãƒªã®å‰Šé™¤
 			UnregisterClassWFunc( WinData.ClassName, WinData.Instance ) ;
 		}
 
 	#ifndef DX_NON_KEYEX
-		// ƒL[“ü—Íƒnƒ“ƒhƒ‹‚Ì‰Šú‰»
+		// ã‚­ãƒ¼å…¥åŠ›ãƒãƒ³ãƒ‰ãƒ«ã®åˆæœŸåŒ–
 		NS_InitKeyInput() ;
 	#endif
 
 	/*
-		// ”wŒi—p‚a‚l‚oƒIƒuƒWƒFƒNƒg‚Ìíœ
+		// èƒŒæ™¯ç”¨ï¼¢ï¼­ï¼°ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®å‰Šé™¤
 		if( WinData.PauseGraph )
 		{
 			WinAPIData.Win32Func.DeleteObjectFunc( ( HGDIOBJ )WinData.PauseGraph ) ;
 			WinData.PauseGraph = NULL ;
 		}o
 	*/
-		// ”wŒi—p‚a‚l‚oƒIƒuƒWƒFƒNƒg‚Ìíœ
+		// èƒŒæ™¯ç”¨ï¼¢ï¼­ï¼°ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®å‰Šé™¤
 		if( WinData.PauseGraph.GraphData != NULL )
 		{
 			NS_ReleaseGraphImage( &WinData.PauseGraph ) ;
@@ -1315,7 +1315,7 @@ extern int TerminateWindow( void )
 			WinData.PauseGraphHandle = 0 ;
 		}
 
-		// ƒhƒ‰ƒbƒO•ƒhƒƒbƒv‚³‚ê‚½ƒtƒ@ƒCƒ‹–¼‚Ìƒoƒbƒtƒ@‚ğ‰ğ•ú
+		// ãƒ‰ãƒ©ãƒƒã‚°ï¼†ãƒ‰ãƒ­ãƒƒãƒ—ã•ã‚ŒãŸãƒ•ã‚¡ã‚¤ãƒ«åã®ãƒãƒƒãƒ•ã‚¡ã‚’è§£æ”¾
 		NS_DragFileInfoClear() ;
 	}
 	else
@@ -1326,52 +1326,52 @@ extern int TerminateWindow( void )
 
 #ifdef DX_THREAD_SAFE
 
-	// ProcessMessage ‚ğ‚Ğ‚½‚·‚çŒÄ‚Ñ‚Â‚Ã‚¯‚éƒXƒŒƒbƒh‚ğ•Â‚¶‚é
+	// ProcessMessage ã‚’ã²ãŸã™ã‚‰å‘¼ã³ã¤ã¥ã‘ã‚‹ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’é–‰ã˜ã‚‹
 	if( WinData.ProcessMessageThreadHandle != NULL )
 	{
-		// ƒXƒŒƒbƒh‚ªI—¹‚·‚é‚Ü‚Å‘Ò‚Â
+		// ã‚¹ãƒ¬ãƒƒãƒ‰ãŒçµ‚äº†ã™ã‚‹ã¾ã§å¾…ã¤
 		while( WinData.ProcessMessageThreadExitFlag == 0 )
 		{
 			WinAPIData.Win32Func.SleepFunc( 1 ) ;
 		}
 
-		// ƒXƒŒƒbƒh‚Ìƒnƒ“ƒhƒ‹‚ğ•Â‚¶‚é
+		// ã‚¹ãƒ¬ãƒƒãƒ‰ã®ãƒãƒ³ãƒ‰ãƒ«ã‚’é–‰ã˜ã‚‹
 		WinAPIData.Win32Func.CloseHandleFunc( WinData.ProcessMessageThreadHandle ) ;
 	}
 
 #endif
 
-	// ƒtƒ@ƒCƒ‹ƒAƒNƒZƒXˆ—‚ÌŒãn––
+	// ãƒ•ã‚¡ã‚¤ãƒ«ã‚¢ã‚¯ã‚»ã‚¹å‡¦ç†ã®å¾Œå§‹æœ«
 	TerminateFile() ;
 
 #ifndef DX_NON_ASYNCLOAD
-	// ”ñ“¯Šú“Ç‚İ‚İˆ——p‚ÌƒXƒŒƒbƒh‚ğ•Â‚¶‚é
+	// éåŒæœŸèª­ã¿è¾¼ã¿å‡¦ç†ç”¨ã®ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’é–‰ã˜ã‚‹
 	CloseASyncLoadThread() ;
 #endif // DX_NON_ASYNCLOAD
 
 #ifndef DX_NON_ASYNCLOAD
-	// ”ñ“¯Šú“Ç‚İ‚İˆ—‚ÌŒãn––
+	// éåŒæœŸèª­ã¿è¾¼ã¿å‡¦ç†ã®å¾Œå§‹æœ«
 	TerminateASyncLoad() ;
 #endif // DX_NON_ASYNCLOAD
 	
-	// ƒ^ƒCƒ}‚Ì¸“x‚ğŒ³‚É–ß‚·
+	// ã‚¿ã‚¤ãƒã®ç²¾åº¦ã‚’å…ƒã«æˆ»ã™
 	{
 		TIMECAPS tc ;
 
 		WinAPIData.Win32Func.timeGetDevCapsFunc( &tc , sizeof(TIMECAPS) );
 
-		// ƒ}ƒ‹ƒ`ƒƒfƒBƒAƒ^ƒCƒ}[‚ÌƒT[ƒrƒX¸“x‚ğÅ‘å‚É
+		// ãƒãƒ«ãƒãƒ¡ãƒ‡ã‚£ã‚¢ã‚¿ã‚¤ãƒãƒ¼ã®ã‚µãƒ¼ãƒ“ã‚¹ç²¾åº¦ã‚’æœ€å¤§ã«
 		WinAPIData.Win32Func.timeEndPeriodFunc( tc.wPeriodMin ) ;
 	}
 
-	// ƒoƒbƒNƒoƒbƒtƒ@‚Ì“§‰ßF‚Ì•”•ª‚ğ“§‰ß‚³‚¹‚é‚½‚ß‚Ìƒrƒbƒgƒ}ƒbƒv‚ª‚ ‚éê‡‚Ííœ‚·‚é
+	// ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã®é€éè‰²ã®éƒ¨åˆ†ã‚’é€éã•ã›ã‚‹ãŸã‚ã®ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ãŒã‚ã‚‹å ´åˆã¯å‰Šé™¤ã™ã‚‹
 	if( WinData.BackBufferTransBitmap )
 	{
 		WinAPIData.Win32Func.DeleteObjectFunc( WinData.BackBufferTransBitmap ) ;
 		WinData.BackBufferTransBitmap = NULL ;
 	}
 
-	// GetDesktopScreenGraphMemImage ‚Åg—p‚µ‚Ä‚¢‚½ HBITMAP ‚ª‚ ‚Á‚½‚ç‚±‚±‚Åíœ‚·‚é
+	// GetDesktopScreenGraphMemImage ã§ä½¿ç”¨ã—ã¦ã„ãŸ HBITMAP ãŒã‚ã£ãŸã‚‰ã“ã“ã§å‰Šé™¤ã™ã‚‹
 	if( WinData.DesktopImageHBitmap != NULL )
 	{
 		WinAPIData.Win32Func.DeleteObjectFunc( WinData.DesktopImageHBitmap ) ;
@@ -1379,22 +1379,22 @@ extern int TerminateWindow( void )
 		WinData.DesktopImageAddress = NULL ;
 	}
 
-	// GetDesktopScreenGraphMemImage ‚Åg—p‚µ‚Ä‚¢‚½ƒoƒbƒtƒ@‚ª‚ ‚Á‚½‚ç‚±‚±‚Åíœ‚·‚é
+	// GetDesktopScreenGraphMemImage ã§ä½¿ç”¨ã—ã¦ã„ãŸãƒãƒƒãƒ•ã‚¡ãŒã‚ã£ãŸã‚‰ã“ã“ã§å‰Šé™¤ã™ã‚‹
 	if( WinData.DXGIDesktopImageAddress != NULL )
 	{
 		DXFREE( WinData.DXGIDesktopImageAddress ) ;
 		WinData.DXGIDesktopImageAddress = NULL ;
 	}
 
-	// ƒƒCƒ“ƒEƒCƒ“ƒhƒEƒnƒ“ƒhƒ‹‚Éƒkƒ‹‚ğƒZƒbƒg‚·‚é
+	// ãƒ¡ã‚¤ãƒ³ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒãƒ³ãƒ‰ãƒ«ã«ãƒŒãƒ«ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 	//WinData.MainWindow = NULL ;
 
-	// •‚“®¬”“_‚ÌŒvZ¸“x‚ğŒ³‚É–ß‚·
+	// æµ®å‹•å°æ•°ç‚¹ã®è¨ˆç®—ç²¾åº¦ã‚’å…ƒã«æˆ»ã™
 //	_control87( 0x00000000, 0x00030000 );
 
-	DXST_LOGFILE_ADDUTF16LE( "\x8c\x5b\x86\x4e\x0a\x00\x00"/*@ L"Š®—¹\n" @*/ ) ;
+	DXST_LOGFILE_ADDUTF16LE( "\x8c\x5b\x86\x4e\x0a\x00\x00"/*@ L"å®Œäº†\n" @*/ ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
@@ -1404,44 +1404,44 @@ extern int TerminateWindow( void )
 
 
 
-// ‚b‚n‚l‰Šú‰»AI—¹ŠÖŒWŠÖ”
+// ï¼£ï¼¯ï¼­åˆæœŸåŒ–ã€çµ‚äº†é–¢ä¿‚é–¢æ•°
 
-// ‚b‚n‚lƒCƒ“ƒ^[ƒtƒF[ƒX‚ğ‰Šú‰»‚·‚é
+// ï¼£ï¼¯ï¼­ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ã‚’åˆæœŸåŒ–ã™ã‚‹
 extern	int	InitializeCom( void )
 {
 	if( WinData.ComInitializeFlag ) return -1 ;
 
 	SETUP_WIN_API
 
-	DXST_LOGFILE_ADDUTF16LE( "\x23\xff\x2f\xff\x2d\xff\x6e\x30\x1d\x52\x1f\x67\x16\x53\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"‚b‚n‚l‚Ì‰Šú‰»... " @*/ ) ;
+	DXST_LOGFILE_ADDUTF16LE( "\x23\xff\x2f\xff\x2d\xff\x6e\x30\x1d\x52\x1f\x67\x16\x53\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"ï¼£ï¼¯ï¼­ã®åˆæœŸåŒ–... " @*/ ) ;
 
-	// ‚b‚n‚l‚Ì‰Šú‰»
+	// ï¼£ï¼¯ï¼­ã®åˆæœŸåŒ–
 	if( FAILED( WinAPIData.Win32Func.CoInitializeExFunc( NULL, COINIT_APARTMENTTHREADED ) ) )
-		return DXST_LOGFILE_ADDUTF16LE( "\x31\x59\x57\x65\x0a\x00\x00"/*@ L"¸”s\n" @*/ ) ;
+		return DXST_LOGFILE_ADDUTF16LE( "\x31\x59\x57\x65\x0a\x00\x00"/*@ L"å¤±æ•—\n" @*/ ) ;
 
-	DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"¬Œ÷\n" @*/ ) ;
+	DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"æˆåŠŸ\n" @*/ ) ;
 
 	WinData.ComInitializeFlag = TRUE ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ‚b‚n‚lƒCƒ“ƒ^[ƒtƒF[ƒX‚ğI—¹‚·‚é
+// ï¼£ï¼¯ï¼­ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ã‚’çµ‚äº†ã™ã‚‹
 extern	int	TerminateCom( void )
 {
 	if( WinData.ComInitializeFlag == FALSE ) return -1 ;
 	
 	SETUP_WIN_API
 
-	// ‚b‚n‚l‚ÌI—¹
+	// ï¼£ï¼¯ï¼­ã®çµ‚äº†
 	WinAPIData.Win32Func.CoUninitializeFunc () ;
 
-	DXST_LOGFILE_ADDUTF16LE( "\x23\xff\x2f\xff\x2d\xff\x92\x30\x42\x7d\x86\x4e\x2e\x00\x2e\x00\x2e\x00\x20\x00\x8c\x5b\x86\x4e\x0a\x00\x00"/*@ L"‚b‚n‚l‚ğI—¹... Š®—¹\n" @*/ ) ;
+	DXST_LOGFILE_ADDUTF16LE( "\x23\xff\x2f\xff\x2d\xff\x92\x30\x42\x7d\x86\x4e\x2e\x00\x2e\x00\x2e\x00\x20\x00\x8c\x5b\x86\x4e\x0a\x00\x00"/*@ L"ï¼£ï¼¯ï¼­ã‚’çµ‚äº†... å®Œäº†\n" @*/ ) ;
 
 	WinData.ComInitializeFlag = FALSE ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
@@ -1507,9 +1507,9 @@ extern	int	TerminateCom( void )
 
 
 
-// •Ö—˜ŠÖ”
+// ä¾¿åˆ©é–¢æ•°
 
-// w’è‚ÌƒŠƒ\[ƒX‚ğæ“¾‚·‚é( -1:¸”s  0:¬Œ÷ )
+// æŒ‡å®šã®ãƒªã‚½ãƒ¼ã‚¹ã‚’å–å¾—ã™ã‚‹( -1:å¤±æ•—  0:æˆåŠŸ )
 extern int NS_GetResourceInfo( const TCHAR *ResourceName, const TCHAR *ResourceType, void **DataPointerP, size_t *DataSizeP )
 {
 #ifdef UNICODE
@@ -1561,7 +1561,7 @@ ERR :
 #endif
 }
 
-// w’è‚Ì–¼‘OAƒ^ƒCƒv‚ÌƒŠƒ\[ƒX‚ÌƒAƒhƒŒƒX‚ÆƒTƒCƒY‚ğæ“¾‚·‚é( –ß‚è’l  -1:¸”s  0:¬Œ÷ )
+// æŒ‡å®šã®åå‰ã€ã‚¿ã‚¤ãƒ—ã®ãƒªã‚½ãƒ¼ã‚¹ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã¨ã‚µã‚¤ã‚ºã‚’å–å¾—ã™ã‚‹( æˆ»ã‚Šå€¤  -1:å¤±æ•—  0:æˆåŠŸ )
 extern int NS_GetResourceInfoWithStrLen( const TCHAR *ResourceName, size_t ResourceNameLength, const TCHAR *ResourceType, size_t ResourceTypeLength, void **DataPointerP, size_t *DataSizeP )
 {
 	int Result = -1 ;
@@ -1579,7 +1579,7 @@ ERR :
 	return Result ;
 }
 
-// w’è‚ÌƒŠƒ\[ƒX‚ğæ“¾‚·‚é( -1:¸”s  0:¬Œ÷ )
+// æŒ‡å®šã®ãƒªã‚½ãƒ¼ã‚¹ã‚’å–å¾—ã™ã‚‹( -1:å¤±æ•—  0:æˆåŠŸ )
 extern int GetResourceInfo_WCHAR_T( const wchar_t *ResourceName, const wchar_t *ResourceType, void **DataPointerP, size_t *DataSizeP )
 {
 	HRSRC   ResourceHandle = NULL ;
@@ -1590,7 +1590,7 @@ extern int GetResourceInfo_WCHAR_T( const wchar_t *ResourceName, const wchar_t *
 
 	SETUP_WIN_API
 
-	// ƒŠƒ\[ƒXƒnƒ“ƒhƒ‹‚ğæ“¾‚·‚é
+	// ãƒªã‚½ãƒ¼ã‚¹ãƒãƒ³ãƒ‰ãƒ«ã‚’å–å¾—ã™ã‚‹
 	ResourceModule = WinData.LoadResourModule == NULL ? GetModuleHandleWFunc( NULL ) : WinData.LoadResourModule ;
 	ResourceHandle = WinAPIData.Win32Func.FindResourceWFunc( ResourceModule, ResourceName, ResourceType ) ;
 	if( ResourceHandle == NULL )
@@ -1598,28 +1598,28 @@ extern int GetResourceInfo_WCHAR_T( const wchar_t *ResourceName, const wchar_t *
 		return -1 ;
 	}
 
-	// ƒŠƒ\[ƒX‚ÌƒTƒCƒY‚ğæ“¾‚·‚é
+	// ãƒªã‚½ãƒ¼ã‚¹ã®ã‚µã‚¤ã‚ºã‚’å–å¾—ã™ã‚‹
 	ResourceSize = WinAPIData.Win32Func.SizeofResourceFunc( ResourceModule, ResourceHandle ) ;
 	if( ResourceSize == 0 )
 	{
 		return -1 ;
 	}
 
-	// ƒŠƒ\[ƒX‚ğƒƒ‚ƒŠ‚É“Ç‚İ‚Ş
+	// ãƒªã‚½ãƒ¼ã‚¹ã‚’ãƒ¡ãƒ¢ãƒªã«èª­ã¿è¾¼ã‚€
 	ResourceMem = WinAPIData.Win32Func.LoadResourceFunc( ResourceModule, ResourceHandle ) ;
 	if( ResourceMem == NULL )
 	{
 		return -1 ;
 	}
 
-	// ƒŠƒ\[ƒXƒf[ƒ^‚ª‘¶İ‚·‚éƒƒ‚ƒŠ‚ğæ“¾‚·‚é
+	// ãƒªã‚½ãƒ¼ã‚¹ãƒ‡ãƒ¼ã‚¿ãŒå­˜åœ¨ã™ã‚‹ãƒ¡ãƒ¢ãƒªã‚’å–å¾—ã™ã‚‹
 	ResourceData = WinAPIData.Win32Func.LockResourceFunc( ResourceMem ) ;
 	if( ResourceData == NULL )
 	{
 		return -1 ;
 	}
 
-	// æ“¾‚µ‚½î•ñ‚ğ‘‚«‚Ş
+	// å–å¾—ã—ãŸæƒ…å ±ã‚’æ›¸ãè¾¼ã‚€
 	if( DataPointerP != NULL )
 	{
 		*DataPointerP = ResourceData ;
@@ -1630,11 +1630,11 @@ extern int GetResourceInfo_WCHAR_T( const wchar_t *ResourceName, const wchar_t *
 		*DataSizeP = ( size_t )ResourceSize ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒŠƒ\[ƒX‚h‚c‚©‚çƒŠƒ\[ƒX‚h‚c•¶š—ñ‚ğ“¾‚é 
+// ãƒªã‚½ãƒ¼ã‚¹ï¼©ï¼¤ã‹ã‚‰ãƒªã‚½ãƒ¼ã‚¹ï¼©ï¼¤æ–‡å­—åˆ—ã‚’å¾—ã‚‹ 
 extern const TCHAR *NS_GetResourceIDString( int ResourceID )
 {
 	return MAKEINTRESOURCE( ResourceID ) ;
@@ -1642,7 +1642,7 @@ extern const TCHAR *NS_GetResourceIDString( int ResourceID )
 
 #if defined( DX_THREAD_SAFE ) || defined( DX_THREAD_SAFE_NETWORK_ONLY )
 
-// “¯‚É‚c‚wƒ‰ƒCƒuƒ‰ƒŠ‚ÌŠÖ”‚ªŒÄ‚Î‚ê‚Ä‚¢‚È‚¢‚©ƒ`ƒFƒbƒN‚µ‚ÄA“¯‚ÉŒÄ‚Î‚ê‚Ä‚¢‚½‚ç‘Ò‚ÂŠÖ”
+// åŒæ™‚ã«ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®é–¢æ•°ãŒå‘¼ã°ã‚Œã¦ã„ãªã„ã‹ãƒã‚§ãƒƒã‚¯ã—ã¦ã€åŒæ™‚ã«å‘¼ã°ã‚Œã¦ã„ãŸã‚‰å¾…ã¤é–¢æ•°
 extern void CheckConflictAndWaitDxFunction( void )
 {
 //	int Time ;
@@ -1652,38 +1652,38 @@ extern void CheckConflictAndWaitDxFunction( void )
 
 	SETUP_WIN_API
 
-	// DxConflictWaitThreadID ‚ª‰Šú‰»‚³‚ê‚Ä‚¢‚È‚©‚Á‚½‚ç‰Šú‰»‚·‚é
+	// DxConflictWaitThreadID ãŒåˆæœŸåŒ–ã•ã‚Œã¦ã„ãªã‹ã£ãŸã‚‰åˆæœŸåŒ–ã™ã‚‹
 	if( WinData.DxConflictWaitThreadIDInitializeFlag == FALSE )
 	{
 		int i ;
 
-		// ‰Šú‰»ƒtƒ‰ƒO‚ğ—§‚Ä‚é
+		// åˆæœŸåŒ–ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 		WinData.DxConflictWaitThreadIDInitializeFlag = TRUE ;
 
-		// Õ“Ë‚Ég—p‚·‚éƒCƒxƒ“ƒg‚Ìì¬
+		// è¡çªæ™‚ã«ä½¿ç”¨ã™ã‚‹ã‚¤ãƒ™ãƒ³ãƒˆã®ä½œæˆ
 		for( i = 0 ; i < MAX_THREADWAIT_NUM ; i ++ )
 		{
 			WinData.DxConflictWaitThreadID[ i ][ 1 ] = ( DWORD_PTR )WinAPIData.Win32Func.CreateEventAFunc( NULL, TRUE, FALSE, NULL ) ;
 		}
 
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚à‰Šú‰»‚·‚é
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã‚‚åˆæœŸåŒ–ã™ã‚‹
 		CriticalSection_Initialize( &WinData.DxConflictCheckCriticalSection ) ;
 	}
 
-	// ‚±‚ÌŠÖ”‚ğŒÄ‚Ño‚µ‚½ƒXƒŒƒbƒh‚Ì‚h‚c‚ğ“¾‚é
+	// ã“ã®é–¢æ•°ã‚’å‘¼ã³å‡ºã—ãŸã‚¹ãƒ¬ãƒƒãƒ‰ã®ï¼©ï¼¤ã‚’å¾—ã‚‹
 	ThreadID = WinAPIData.Win32Func.GetCurrentThreadIdFunc() ;
 
 START :
 
-	// ‚±‚ÌŠÖ”‚ªg—p’†‚Ìê‡‚Í‘Ò‚Â
+	// ã“ã®é–¢æ•°ãŒä½¿ç”¨ä¸­ã®å ´åˆã¯å¾…ã¤
 	CRITICALSECTION_LOCK( &WinData.DxConflictCheckCriticalSection ) ;
 //	CheckConflict( &WinData.DxConflictCheckFlag ) ;
 
-	// ‚Ç‚ÌƒXƒŒƒbƒh‚à‚c‚wƒ‰ƒCƒuƒ‰ƒŠ‚ÌŠÖ”‚ğg—p‚µ‚Ä‚¢‚È‚¢‚©A
-	// ‚à‚µ‚­‚Íg—p‚µ‚Ä‚¢‚Ä‚à‚»‚ê‚ª©•ª‚ÌƒXƒŒƒbƒh‚¾‚Á‚½‚ç’Ê‰ß
+	// ã©ã®ã‚¹ãƒ¬ãƒƒãƒ‰ã‚‚ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®é–¢æ•°ã‚’ä½¿ç”¨ã—ã¦ã„ãªã„ã‹ã€
+	// ã‚‚ã—ãã¯ä½¿ç”¨ã—ã¦ã„ã¦ã‚‚ãã‚ŒãŒè‡ªåˆ†ã®ã‚¹ãƒ¬ãƒƒãƒ‰ã ã£ãŸã‚‰é€šé
 	if( WinData.DxUseThreadFlag == FALSE || WinData.DxUseThreadID == ThreadID )
 	{
-		// ‘Ò‚Á‚Ä‚¢‚éƒXƒŒƒbƒh‚ª‹‚ÄA‚»‚ê‚ª©•ª‚ÌƒXƒŒƒbƒh‚Å‚Í‚È‚¢ê‡‚Í‘Ò‚¿
+		// å¾…ã£ã¦ã„ã‚‹ã‚¹ãƒ¬ãƒƒãƒ‰ãŒå±…ã¦ã€ãã‚ŒãŒè‡ªåˆ†ã®ã‚¹ãƒ¬ãƒƒãƒ‰ã§ã¯ãªã„å ´åˆã¯å¾…ã¡
 		if( WinData.DxUseThreadFlag == FALSE && WinData.DxConflictWaitThreadNum != 0 && WinData.DxUseThreadID != ThreadID )
 		{
 			if( WinData.DxConflictWaitThreadID[ 0 ][ 0 ] != ThreadID )
@@ -1692,7 +1692,7 @@ START :
 			}
 			else
 			{
-				// ‚à‚µ‘Ò‚Á‚Ä‚¢‚½‚Ì‚ª©•ª‚¾‚Á‚½‚çƒŠƒXƒg‚ğƒXƒ‰ƒCƒh‚³‚¹‚é
+				// ã‚‚ã—å¾…ã£ã¦ã„ãŸã®ãŒè‡ªåˆ†ã ã£ãŸã‚‰ãƒªã‚¹ãƒˆã‚’ã‚¹ãƒ©ã‚¤ãƒ‰ã•ã›ã‚‹
 				if( WinData.DxConflictWaitThreadNum != 1 )
 				{
 					EventHandle = ( HANDLE )WinData.DxConflictWaitThreadID[ 0 ][ 1 ] ;
@@ -1701,54 +1701,54 @@ START :
 					WinData.DxConflictWaitThreadID[ WinData.DxConflictWaitThreadNum - 1 ][ 0 ] = ( DWORD_PTR )0 ;
 				}
 
-				// ‘Ò‚Á‚Ä‚¢‚é”‚ğŒ¸‚ç‚·
+				// å¾…ã£ã¦ã„ã‚‹æ•°ã‚’æ¸›ã‚‰ã™
 				WinData.DxConflictWaitThreadNum -- ;
 			}
 		}
 
-		// î•ñ‚ğƒZƒbƒg
+		// æƒ…å ±ã‚’ã‚»ãƒƒãƒˆ
 		WinData.DxUseThreadFlag = TRUE ;
 		WinData.DxUseThreadID = ThreadID ;
 
-		// g—p’†ƒJƒEƒ“ƒ^‚ğƒCƒ“ƒNƒŠƒƒ“ƒg‚·‚é
+		// ä½¿ç”¨ä¸­ã‚«ã‚¦ãƒ³ã‚¿ã‚’ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆã™ã‚‹
 //		if( WinData.DxConflictCheckCounter != 0 )
 //		{
-//			DXST_LOGFILE_ADDW( L"ƒGƒ‰[:Õ“Ë”­¶ No.0 \n" ) ;
+//			DXST_LOGFILE_ADDW( L"ã‚¨ãƒ©ãƒ¼:è¡çªç™ºç”Ÿ No.0 \n" ) ;
 //		}
 		WinData.DxConflictCheckCounter ++ ;
 
 		goto END ;
 	}
 
-	// ‚»‚¤‚¶‚á‚È‚¢ê‡‚Í‘Ò‚¿
+	// ãã†ã˜ã‚ƒãªã„å ´åˆã¯å¾…ã¡
 WAIT:
 
-	// ‚à‚µ‘Ò‚Á‚Ä‚¢‚éƒXƒŒƒbƒh‚ªŒÀŠE‚ğ‰z‚¦‚Ä‚¢‚½‚ç’Pƒ‚È‘Ò‚¿ˆ—‚ğs‚¤
+	// ã‚‚ã—å¾…ã£ã¦ã„ã‚‹ã‚¹ãƒ¬ãƒƒãƒ‰ãŒé™ç•Œã‚’è¶Šãˆã¦ã„ãŸã‚‰å˜ç´”ãªå¾…ã¡å‡¦ç†ã‚’è¡Œã†
 	if( WinData.DxConflictWaitThreadNum == MAX_THREADWAIT_NUM )
 	{
-		// ‚Æ‚è‚ ‚¦‚¸‚±‚ÌŠÖ”‚ğg—p’†Aƒtƒ‰ƒO‚ğ“|‚·
+		// ã¨ã‚Šã‚ãˆãšã“ã®é–¢æ•°ã‚’ä½¿ç”¨ä¸­ã€ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 		CriticalSection_Unlock( &WinData.DxConflictCheckCriticalSection ) ;
 //		WinData.DxConflictCheckFlag -- ;
 
-//		DXST_LOGFILE_ADDW( L"ƒGƒ‰[:Õ“Ë”­¶ No.4 \n" ) ;
+//		DXST_LOGFILE_ADDW( L"ã‚¨ãƒ©ãƒ¼:è¡çªç™ºç”Ÿ No.4 \n" ) ;
 
-		// ­‚µQ‚é
+		// å°‘ã—å¯ã‚‹
 		WinAPIData.Win32Func.SleepFunc( 1 ) ;
 
-		// Å‰‚É–ß‚é
+		// æœ€åˆã«æˆ»ã‚‹
 		goto START ;
 	}
 
-	// ‘Ò‚Á‚Ä‚éƒXƒŒƒbƒh‚ª‚¢‚Ü‚·‚æ‚Æ‚¢‚¤î•ñ‚ğ’Ç‰Á‚·‚é
+	// å¾…ã£ã¦ã‚‹ã‚¹ãƒ¬ãƒƒãƒ‰ãŒã„ã¾ã™ã‚ˆã¨ã„ã†æƒ…å ±ã‚’è¿½åŠ ã™ã‚‹
 	WinData.DxConflictWaitThreadID[WinData.DxConflictWaitThreadNum][0] = ThreadID ;
 	EventHandle = (HANDLE)WinData.DxConflictWaitThreadID[WinData.DxConflictWaitThreadNum][1] ;
 	WinData.DxConflictWaitThreadNum ++ ;
 
-	// ‚Æ‚è‚ ‚¦‚¸‚±‚ÌŠÖ”‚ğg—p’†Aƒtƒ‰ƒO‚ğ“|‚·
+	// ã¨ã‚Šã‚ãˆãšã“ã®é–¢æ•°ã‚’ä½¿ç”¨ä¸­ã€ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 	CriticalSection_Unlock( &WinData.DxConflictCheckCriticalSection ) ;
 //	WinData.DxConflictCheckFlag -- ;
 
-	// ©•ª‚Ì”Ô‚ª—ˆ‚é‚Ü‚Å‘Ò‚Â
+	// è‡ªåˆ†ã®ç•ªãŒæ¥ã‚‹ã¾ã§å¾…ã¤
 	WinAPIData.Win32Func.WaitForSingleObjectFunc( EventHandle, INFINITE ) ;
 	WinAPIData.Win32Func.ResetEventFunc( EventHandle ) ;
 /*
@@ -1761,19 +1761,19 @@ WAIT:
 		{
 			HANDLE fp ;
 			DWORD WriteSize ;
-//			const char *ErrorStr = "’·ŠÔ’â~‚µ‚Á‚Ï‚È‚µ‚Å‚·\n" ;
+//			const char *ErrorStr = "é•·æ™‚é–“åœæ­¢ã—ã£ã±ãªã—ã§ã™\n" ;
 			char ErrorStr[128] ;
 			char String[256] ;
 			Time = WinAPIData.Win32Func.timeGetTimeFunc() ;
 			
-			_SNPRINTF( ErrorStr, sizeof( ErrorStr ), "’·ŠÔ’â~‚µ‚Á‚Ï‚È‚µ‚Å‚· con:%d consub:%d\n", WinData.DxConflictCheckCounter, WinData.DxConflictCheckCounterSub ) ;
+			_SNPRINTF( ErrorStr, sizeof( ErrorStr ), "é•·æ™‚é–“åœæ­¢ã—ã£ã±ãªã—ã§ã™ con:%d consub:%d\n", WinData.DxConflictCheckCounter, WinData.DxConflictCheckCounterSub ) ;
 			
-			// ƒƒOo—Í—}§ƒtƒ‰ƒO‚ª—§‚Á‚Ä‚¢‚½ê‡‚Ío—Í‚ğs‚í‚È‚¢
+			// ãƒ­ã‚°å‡ºåŠ›æŠ‘åˆ¶ãƒ•ãƒ©ã‚°ãŒç«‹ã£ã¦ã„ãŸå ´åˆã¯å‡ºåŠ›ã‚’è¡Œã‚ãªã„
 			if( DxSysData.NotLogOutFlag == FALSE && WinData.LogOutDirectory[0] != '\0' )
 			{
 				char MotoPath[FILEPATH_MAX] ;
 
-				// ƒGƒ‰[ƒƒOƒtƒ@ƒCƒ‹‚ğŠJ‚­
+				// ã‚¨ãƒ©ãƒ¼ãƒ­ã‚°ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‹ã
 				DX_FGETDIR( MotoPath, sizeof( MotoPath ) ) ;
 				DX_FSETDIR( WinData.LogOutDirectory ) ;
 #ifdef UNICODE
@@ -1785,12 +1785,12 @@ WAIT:
 				{
 					WinAPIData.Win32Func.SetFilePointerFunc( fp, 0, NULL, FILE_END ) ;
 
-					// ‹K’è•ª‚¾‚¯ƒ^ƒu‚ğ”ro
+					// è¦å®šåˆ†ã ã‘ã‚¿ãƒ–ã‚’æ’å‡º
 					if( DxSysData.LogFileTabStop == FALSE )
 					{
 						int i ;	
 
-						// ƒ^ƒCƒ€ƒXƒ^ƒ“ƒv‚ğo—Í
+						// ã‚¿ã‚¤ãƒ ã‚¹ã‚¿ãƒ³ãƒ—ã‚’å‡ºåŠ›
 						if( WinData.NonUseTimeStampFlag == 0 )
 						{
 							_SNPRINTF( String, sizeof( String ), "%d:", WinAPIData.Win32Func.timeGetTimeFunc() - DxSysData.LogStartTime ) ;
@@ -1804,14 +1804,14 @@ WAIT:
 						OutputDebugString( String ) ;
 					}
 
-					// ƒGƒ‰[ƒƒOƒtƒ@ƒCƒ‹‚É‘‚«o‚·
+					// ã‚¨ãƒ©ãƒ¼ãƒ­ã‚°ãƒ•ã‚¡ã‚¤ãƒ«ã«æ›¸ãå‡ºã™
 					WinAPIData.Win32Func.WriteFileFunc( fp, ErrorStr, WinAPIData.Win32Func.lstrlenAFunc( String ), &WriteSize, NULL ) ;
 //					fputs( ErrorStr , fp ) ;
 
-					// ƒGƒ‰[ƒƒO‚ğƒAƒEƒgƒvƒbƒg‚É‘‚«o‚·
+					// ã‚¨ãƒ©ãƒ¼ãƒ­ã‚°ã‚’ã‚¢ã‚¦ãƒˆãƒ—ãƒƒãƒˆã«æ›¸ãå‡ºã™
 					OutputDebugString( ErrorStr ) ;
 
-					// ÅŒã‚Ì•¶š‚ª‰üsˆÓŠO‚¾‚Á‚½ê‡‚Íƒ^ƒuƒXƒgƒbƒvƒtƒ‰ƒO‚ğ—§‚Ä‚é
+					// æœ€å¾Œã®æ–‡å­—ãŒæ”¹è¡Œæ„å¤–ã ã£ãŸå ´åˆã¯ã‚¿ãƒ–ã‚¹ãƒˆãƒƒãƒ—ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 					DxSysData.LogFileTabStop = ErrorStr[ WinAPIData.Win32Func.lstrlenAFunc( ErrorStr ) - 1 ] != '\n' ;
 
 //					fclose( fp ) ;
@@ -1823,19 +1823,19 @@ WAIT:
 	}
 */
 	
-	// ‘Ò‚Á‚Ä‚éƒXƒŒƒbƒh‚ª‚ ‚é‚æƒJƒEƒ“ƒ^‚ğƒfƒNƒŠƒƒ“ƒg‚·‚é
+	// å¾…ã£ã¦ã‚‹ã‚¹ãƒ¬ãƒƒãƒ‰ãŒã‚ã‚‹ã‚ˆã‚«ã‚¦ãƒ³ã‚¿ã‚’ãƒ‡ã‚¯ãƒªãƒ¡ãƒ³ãƒˆã™ã‚‹
 //	WinData.DxConflictWaitThreadCounter -- ;
 //	if( WinData.DxConflictWaitThreadCounter < 0 )
 //	{
 //		WinData.DxConflictWaitThreadCounter = 0 ;
 //	}
 
-	// Å‰‚É–ß‚é
+	// æœ€åˆã«æˆ»ã‚‹
 	goto START ;
 
 END :
 
-	// g—p’†ƒtƒ‰ƒO‚ğ“|‚·
+	// ä½¿ç”¨ä¸­ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 	CriticalSection_Unlock( &WinData.DxConflictCheckCriticalSection ) ;
 //	WinData.DxConflictCheckFlag -- ;
 }
@@ -1844,53 +1844,53 @@ END :
 
 #if defined( DX_THREAD_SAFE ) || defined( DX_THREAD_SAFE_NETWORK_ONLY )
 
-// CheckConfictAndWaitDxFunction ‚ğg—p‚µ‚½‚c‚wƒ‰ƒCƒuƒ‰ƒŠ‚ÌŠÖ”‚ª return ‚·‚é‘O‚ÉŒÄ‚Ô‚×‚«ŠÖ”
+// CheckConfictAndWaitDxFunction ã‚’ä½¿ç”¨ã—ãŸï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®é–¢æ•°ãŒ return ã™ã‚‹å‰ã«å‘¼ã¶ã¹ãé–¢æ•°
 extern void PostConflictProcessDxFunction( void )
 {
 	int WaitFlag = 0 ;
 
 	SETUP_WIN_API
 	
-	// ‚±‚ÌŠÖ”‚ªg—p’†‚Ìê‡‚Í‘Ò‚Â
+	// ã“ã®é–¢æ•°ãŒä½¿ç”¨ä¸­ã®å ´åˆã¯å¾…ã¤
 	CRITICALSECTION_LOCK( &WinData.DxConflictCheckCriticalSection ) ;
 //	CheckConflict( &WinData.DxConflictCheckFlag ) ;
 
-	// ƒJƒEƒ“ƒ^‚ª‚P‚Ìê‡‚ÍA‚±‚ê‚Å‚c‚wƒ‰ƒCƒuƒ‰ƒŠg—p’†ó‘Ô‚ª
-	// ‰ğœ‚³‚ê‚é‚±‚Æ‚É‚È‚é‚Ì‚ÅAˆ—‚ğ•ªŠò
+	// ã‚«ã‚¦ãƒ³ã‚¿ãŒï¼‘ã®å ´åˆã¯ã€ã“ã‚Œã§ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªä½¿ç”¨ä¸­çŠ¶æ…‹ãŒ
+	// è§£é™¤ã•ã‚Œã‚‹ã“ã¨ã«ãªã‚‹ã®ã§ã€å‡¦ç†ã‚’åˆ†å²
 	if( WinData.DxConflictCheckCounter == 1 )
 	{
-		// î•ñ‚ğƒŠƒZƒbƒg‚·‚é
+		// æƒ…å ±ã‚’ãƒªã‚»ãƒƒãƒˆã™ã‚‹
 		WinData.DxUseThreadFlag = FALSE ;
 		WinData.DxUseThreadID = 0xffffffff ;
 
-		// ‚à‚µ‘Ò‚Á‚Ä‚¢‚éƒXƒŒƒbƒh‚ª‚ ‚éê‡‚ÍAƒXƒŠ[ƒv‚·‚éƒtƒ‰ƒO‚ğ—§‚Ä‚é
+		// ã‚‚ã—å¾…ã£ã¦ã„ã‚‹ã‚¹ãƒ¬ãƒƒãƒ‰ãŒã‚ã‚‹å ´åˆã¯ã€ã‚¹ãƒªãƒ¼ãƒ—ã™ã‚‹ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 		if( WinData.DxConflictWaitThreadNum > 0 )
 			WaitFlag = 1 ;
 	}
 //	else
 //	{
-//		DXST_LOGFILE_ADDW( L"ƒGƒ‰[:Õ“Ë”­¶ No.1\n" ) ;
+//		DXST_LOGFILE_ADDW( L"ã‚¨ãƒ©ãƒ¼:è¡çªç™ºç”Ÿ No.1\n" ) ;
 //	}
 
-	// ƒJƒEƒ“ƒ^‚ğƒfƒNƒŠƒƒ“ƒg‚µ‚ÄI—¹
+	// ã‚«ã‚¦ãƒ³ã‚¿ã‚’ãƒ‡ã‚¯ãƒªãƒ¡ãƒ³ãƒˆã—ã¦çµ‚äº†
 	WinData.DxConflictCheckCounter -- ;
 
-	// ‚±‚ÌŠÖ”‚ğg—p’†Aƒtƒ‰ƒO‚ğ“|‚·
+	// ã“ã®é–¢æ•°ã‚’ä½¿ç”¨ä¸­ã€ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 	CriticalSection_Unlock( &WinData.DxConflictCheckCriticalSection ) ;
 //	WinData.DxConflictCheckFlag -- ;
 
-	// ƒXƒŠ[ƒv‚·‚éƒtƒ‰ƒO‚ª—§‚Á‚Ä‚¢‚½‚çƒXƒŠ[ƒv‚·‚é
+	// ã‚¹ãƒªãƒ¼ãƒ—ã™ã‚‹ãƒ•ãƒ©ã‚°ãŒç«‹ã£ã¦ã„ãŸã‚‰ã‚¹ãƒªãƒ¼ãƒ—ã™ã‚‹
 	if( WaitFlag == 1 )
 	{
 //		DWORD ThreadID = WinAPIData.Win32Func.GetCurrentThreadIdFunc() ;
 
-		// Ÿ‚ÉÀs‚·‚×‚«ƒXƒŒƒbƒh‚ÌƒCƒxƒ“ƒg‚ğƒVƒOƒiƒ‹ó‘Ô‚É‚·‚é
+		// æ¬¡ã«å®Ÿè¡Œã™ã¹ãã‚¹ãƒ¬ãƒƒãƒ‰ã®ã‚¤ãƒ™ãƒ³ãƒˆã‚’ã‚·ã‚°ãƒŠãƒ«çŠ¶æ…‹ã«ã™ã‚‹
 		WinAPIData.Win32Func.SetEventFunc( (HANDLE)WinData.DxConflictWaitThreadID[0][1] ) ;
 
-		// Q‚é
+		// å¯ã‚‹
 		WinAPIData.Win32Func.SleepFunc( 0 ) ;
 
-/*		// ‘Ò‚Á‚Ä‚éƒXƒŒƒbƒh‚ª‚ ‚é‚æƒJƒEƒ“ƒ^‚ª‚O‚É‚È‚é‚Ì‚ğ‘Ò‚Â
+/*		// å¾…ã£ã¦ã‚‹ã‚¹ãƒ¬ãƒƒãƒ‰ãŒã‚ã‚‹ã‚ˆã‚«ã‚¦ãƒ³ã‚¿ãŒï¼ã«ãªã‚‹ã®ã‚’å¾…ã¤
 		while( WinData.DxConflictWaitThreadNum > 0 )
 		{
 			WinAPIData.Win32Func.SleepFunc( 0 ) ;
@@ -1920,9 +1920,9 @@ extern void PostConflictProcessDxFunction( void )
 
 
 
-// ƒƒbƒZ[ƒWˆ—ŠÖ”
+// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å‡¦ç†é–¢æ•°
 
-// WM_PAINT—pŠÖ”
+// WM_PAINTç”¨é–¢æ•°
 int DrawBackGraph( HDC /*DestDC*/ )
 {
 #ifndef DX_NON_GRAPHICS
@@ -1937,7 +1937,7 @@ int DrawBackGraph( HDC /*DestDC*/ )
 	NonActiveRunFlag = WinData.NonActiveRunFlag ;
 	WinData.NonActiveRunFlag = TRUE ;
 
-	// ƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ª–³Œø‚É‚È‚Á‚Ä‚¢‚½‚çì‚è’¼‚·
+	// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ãŒç„¡åŠ¹ã«ãªã£ã¦ã„ãŸã‚‰ä½œã‚Šç›´ã™
 //	if( Graphics_Image_GetData( WinData.PauseGraphHandle ) < 0 )
 	if( Graphics_Image_IsValidHandle( WinData.PauseGraphHandle ) == FALSE )
 	{
@@ -1949,13 +1949,13 @@ int DrawBackGraph( HDC /*DestDC*/ )
 		}
 	}
 
-	// DrawBackGraph ‚ğÀs’†ƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// DrawBackGraph ã‚’å®Ÿè¡Œä¸­ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	WinData.DrawBackGraphFlag = TRUE ;
 
-	// Šeí•`‰æİ’èî•ñ‚ğæ“¾
+	// å„ç¨®æç”»è¨­å®šæƒ…å ±ã‚’å–å¾—
 	Graphics_DrawSetting_GetScreenDrawSettingInfo( &ScreenDrawSettingInfo ) ;
 
-	// İ’è‚ğˆê“I‚É•ÏX‚·‚é
+	// è¨­å®šã‚’ä¸€æ™‚çš„ã«å¤‰æ›´ã™ã‚‹
 /*	DrawScreen = NS_GetActiveGraph() ;
 	DrawMode = NS_GetDrawMode() ;
 	WaitVSync = NS_GetWaitVSyncFlag() ;
@@ -1963,10 +1963,10 @@ int DrawBackGraph( HDC /*DestDC*/ )
 	NS_SetDrawMode( DX_DRAWMODE_BILINEAR ) ;
 	NS_SetWaitVSyncFlag( FALSE ) ;
 
-	// Œ»İ‚ÌƒEƒCƒ“ƒhƒE‚ÌƒNƒ‰ƒCƒAƒ“ƒg—Ìˆæ‚ÌƒTƒCƒY‚ğ“¾‚é
+	// ç¾åœ¨ã®ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆé ˜åŸŸã®ã‚µã‚¤ã‚ºã‚’å¾—ã‚‹
 	NS_GetDrawScreenSize( &DrawScreenWidth, &DrawScreenHeight ) ;
 
-	// ‰æ–ÊˆêŸ•Û‘¶—p‰æ‘œ‚Ìì¬
+	// ç”»é¢ä¸€æ¬¡ä¿å­˜ç”¨ç”»åƒã®ä½œæˆ
 	{
 		SETUP_GRAPHHANDLE_GPARAM GParam ;
 
@@ -1974,13 +1974,13 @@ int DrawBackGraph( HDC /*DestDC*/ )
 		BackUpScreen = Graphics_Image_MakeGraph_UseGParam( &GParam, DrawScreenWidth, DrawScreenHeight, FALSE, FALSE, 0, FALSE ) ;
 	}
 
-	// ‰æ–Ê‰æ‘œ‚Ìæ“¾
+	// ç”»é¢ç”»åƒã®å–å¾—
 	NS_GetDrawScreenGraph( 0, 0, DrawScreenWidth, DrawScreenHeight, BackUpScreen, TRUE ) ;
 
-	// ƒ|[ƒY‰æ‘œ‚ÌƒTƒCƒY‚ğæ“¾‚·‚é
+	// ãƒãƒ¼ã‚ºç”»åƒã®ã‚µã‚¤ã‚ºã‚’å–å¾—ã™ã‚‹
 	NS_GetGraphSize( WinData.PauseGraphHandle, &Width, &Height ) ;
 
-	// ‰æ–Êˆê”t‚É•`‰æ‚·‚é
+	// ç”»é¢ä¸€æ¯ã«æç”»ã™ã‚‹
 	if( Width == DrawScreenWidth && Height == DrawScreenHeight )
 	{
 		NS_DrawGraph( 0, 0, WinData.PauseGraphHandle, FALSE ) ;
@@ -1990,36 +1990,36 @@ int DrawBackGraph( HDC /*DestDC*/ )
 		NS_DrawExtendGraph( 0, 0, DrawScreenWidth, DrawScreenHeight, WinData.PauseGraphHandle, FALSE ) ;
 	}
 
-	// •\‰æ–Ê‚ÉƒRƒs[
+	// è¡¨ç”»é¢ã«ã‚³ãƒ”ãƒ¼
 	NS_ScreenCopy() ;
 
-	// — ‰æ–Ê‚É‚à‚Æ‚Ì‰æ‘œ‚ğ•`‰æ‚·‚é
+	// è£ç”»é¢ã«ã‚‚ã¨ã®ç”»åƒã‚’æç”»ã™ã‚‹
 	NS_DrawGraph( 0, 0, BackUpScreen, FALSE ) ;
 
-	// ˆêŸ•Û‘¶—p‰æ‘œ‚Ìíœ
+	// ä¸€æ¬¡ä¿å­˜ç”¨ç”»åƒã®å‰Šé™¤
 	SubHandle( BackUpScreen, FALSE, FALSE ) ;
 
-	// Šeí•`‰æİ’èî•ñ‚ğŒ³‚É–ß‚·
+	// å„ç¨®æç”»è¨­å®šæƒ…å ±ã‚’å…ƒã«æˆ»ã™
 	Graphics_DrawSetting_SetScreenDrawSettingInfo( &ScreenDrawSettingInfo ) ;
 
-	// •`‰æİ’è‚ğŒ³‚É–ß‚·
+	// æç”»è¨­å®šã‚’å…ƒã«æˆ»ã™
 /*	NS_SetDrawScreen( DrawScreen ) ;
 	NS_SetDrawMode( DrawMode ) ;
 	NS_SetWaitVSyncFlag( WaitVSync ) ;
 */	WinData.NonActiveRunFlag = NonActiveRunFlag ;
 
-	// DrawBackGraph ‚ğÀs’†ƒtƒ‰ƒO‚ğ“|‚·
+	// DrawBackGraph ã‚’å®Ÿè¡Œä¸­ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 	WinData.DrawBackGraphFlag = FALSE ;
 #endif // DX_NON_GRAPHICS
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
 
-// ƒEƒCƒ“ƒhƒEŠÖ˜A
+// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦é–¢é€£
 
-// ƒƒCƒ“ƒEƒCƒ“ƒhƒE‚ÌƒTƒCƒY‚ğæ“¾‚·‚é
+// ãƒ¡ã‚¤ãƒ³ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ã‚µã‚¤ã‚ºã‚’å–å¾—ã™ã‚‹
 static void	GetMainWindowSize( int *SizeX, int *SizeY )
 {
 #ifndef DX_NON_GRAPHICS
@@ -2058,7 +2058,7 @@ static void	GetMainWindowSize( int *SizeX, int *SizeY )
 }
 
 
-// ƒƒCƒ“ƒEƒCƒ“ƒhƒE‚ÌƒƒbƒZ[ƒWƒR[ƒ‹ƒoƒbƒNŠÖ”
+// ãƒ¡ã‚¤ãƒ³ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 extern LRESULT CALLBACK DxLib_WinProc( HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam )
 {
 	int PrevWindowMinSizeFlag ;
@@ -2066,7 +2066,7 @@ extern LRESULT CALLBACK DxLib_WinProc( HWND hWnd, UINT message, WPARAM wParam, L
 
 	SETUP_WIN_API
 
-	// ƒƒbƒZ[ƒWo—Í
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å‡ºåŠ›
 #if 0
 	{
 		const char *MessageName = NULL ;
@@ -2190,7 +2190,7 @@ extern LRESULT CALLBACK DxLib_WinProc( HWND hWnd, UINT message, WPARAM wParam, L
 MESNAMEEND:
 #endif
 
-	// ƒ†[ƒU[‚©‚ç’ñ‹Ÿ‚³‚ê‚½ƒEƒCƒ“ƒhƒE‚ğg—p‚µ‚Ä‚¢‚éê‡‚Í‚»‚ÌƒEƒCƒ“ƒhƒE‚ÌƒvƒƒV[ƒWƒƒ‚ğŒÄ‚Ô
+	// ãƒ¦ãƒ¼ã‚¶ãƒ¼ã‹ã‚‰æä¾›ã•ã‚ŒãŸã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹å ´åˆã¯ãã®ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ãƒ—ãƒ­ã‚·ãƒ¼ã‚¸ãƒ£ã‚’å‘¼ã¶
 	if( WinData.UserWindowFlag == TRUE )
 	{
 		if( WinData.DefaultUserWindowProc != NULL )
@@ -2199,7 +2199,7 @@ MESNAMEEND:
 		}
 	}
 
-	// ƒ†[ƒU[’è‹`‚Ìƒvƒ[ƒWƒƒŠÖ”‚ª‚ ‚Á‚½‚ç‚»‚ê‚ğŒÄ‚Ô
+	// ãƒ¦ãƒ¼ã‚¶ãƒ¼å®šç¾©ã®ãƒ—ãƒ­ãƒ¼ã‚¸ãƒ£é–¢æ•°ãŒã‚ã£ãŸã‚‰ãã‚Œã‚’å‘¼ã¶
 	if( WinData.UserWindowProc != NULL ) 
 	{
 		LRESULT RetValue ;
@@ -2208,7 +2208,7 @@ MESNAMEEND:
 
 		RetValue = WinData.UserWindowProc( hWnd, message, wParam, lParam ) ;
 
-		// ƒtƒ‰ƒO‚ª—§‚Á‚Ä‚¢‚½‚ç‚±‚±‚ÅI—¹
+		// ãƒ•ãƒ©ã‚°ãŒç«‹ã£ã¦ã„ãŸã‚‰ã“ã“ã§çµ‚äº†
 		if( WinData.UseUserWindowProcReturnValue )
 		{
 			return RetValue ;
@@ -2218,37 +2218,37 @@ MESNAMEEND:
 	switch( message )
 	{
 	case WM_DROPFILES :
-		// ƒtƒ@ƒCƒ‹‚ªƒhƒ‰ƒbƒO•ƒhƒƒbƒv‚³‚ê‚½ê‡‚Ìˆ—
+		// ãƒ•ã‚¡ã‚¤ãƒ«ãŒãƒ‰ãƒ©ãƒƒã‚°ï¼†ãƒ‰ãƒ­ãƒƒãƒ—ã•ã‚ŒãŸå ´åˆã®å‡¦ç†
 		{
 			DWORD FileNum ;
 			DWORD i ;
 			DWORD size ;
 			HDROP hDrop = ( HDROP )wParam ;
 			
-			// ƒtƒ@ƒCƒ‹‚Ì”‚ğæ“¾
+			// ãƒ•ã‚¡ã‚¤ãƒ«ã®æ•°ã‚’å–å¾—
 			FileNum = DragQueryFileWFunc( hDrop, 0xffffffff, NULL, 0 ) ;
 
-			// ƒtƒ@ƒCƒ‹‚Ì”‚¾‚¯ŒJ‚è•Ô‚µ
+			// ãƒ•ã‚¡ã‚¤ãƒ«ã®æ•°ã ã‘ç¹°ã‚Šè¿”ã—
 			for( i = 0 ; i < FileNum && WinData.DragFileNum < MAX_DRAGFILE_NUM ; i ++, WinData.DragFileNum ++ )
 			{
-				// •K—v‚Èƒoƒbƒtƒ@‚ÌƒTƒCƒY‚ğæ“¾‚·‚é
+				// å¿…è¦ãªãƒãƒƒãƒ•ã‚¡ã®ã‚µã‚¤ã‚ºã‚’å–å¾—ã™ã‚‹
 				size = DragQueryFileWFunc( hDrop, ( DWORD )i, NULL, 0 ) ;
 				
-				// ƒoƒbƒtƒ@‚ÌŠm•Û
+				// ãƒãƒƒãƒ•ã‚¡ã®ç¢ºä¿
 				WinData.DragFileName[ WinData.DragFileNum ] = ( wchar_t * )DXALLOC( ( size + 1 ) * sizeof( wchar_t ) ) ;
 				if( WinData.DragFileName[WinData.DragFileNum] == NULL ) break ;
 				
-				// ƒtƒ@ƒCƒ‹–¼‚Ìæ“¾
+				// ãƒ•ã‚¡ã‚¤ãƒ«åã®å–å¾—
 				DragQueryFileWFunc( hDrop, i, WinData.DragFileName[WinData.DragFileNum], size + 1 ) ;
 			}
 			
-			// æ“¾‚ÌI—¹
+			// å–å¾—ã®çµ‚äº†
 			WinAPIData.Win32Func.DragFinishFunc( hDrop ) ;
 		}
 		break ;
 	
 	case WM_CREATE :
-		// ƒEƒCƒ“ƒhƒE‚ªì¬‚³‚ê‚½’¼Œã‚Ì‚Ìˆ—
+		// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãŒä½œæˆã•ã‚ŒãŸç›´å¾Œã®æ™‚ã®å‡¦ç†
 		if( WinData.WindowRgn != NULL )
 		{
 			WinAPIData.Win32Func.SetWindowRgnFunc( hWnd, WinData.WindowRgn, FALSE ) ;
@@ -2257,7 +2257,7 @@ MESNAMEEND:
 
 #ifndef DX_NON_INPUT
 	case WM_DEVICECHANGE :
-		// ƒfƒoƒCƒX‚Ì’Ç‰Á‚âíœ‚ªs‚í‚ê‚½ê‡Aƒpƒbƒh‚ª’Ç‰Á‚³‚ê‚½‚èíœ‚³‚ê‚½‰Â”\«‚à‚ ‚é‚Ì‚ÅƒWƒ‡ƒCƒpƒbƒh‚ğÄƒZƒbƒgƒAƒbƒv‚·‚é
+		// ãƒ‡ãƒã‚¤ã‚¹ã®è¿½åŠ ã‚„å‰Šé™¤ãŒè¡Œã‚ã‚ŒãŸå ´åˆã€ãƒ‘ãƒƒãƒ‰ãŒè¿½åŠ ã•ã‚ŒãŸã‚Šå‰Šé™¤ã•ã‚ŒãŸå¯èƒ½æ€§ã‚‚ã‚ã‚‹ã®ã§ã‚¸ãƒ§ã‚¤ãƒ‘ãƒƒãƒ‰ã‚’å†ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã™ã‚‹
 		if( wParam == 0x0007 /* DBT_DEVNODES_CHANGED */ )
 		{
 			WinData.RecvWM_DEVICECHANGEFlag = TRUE ;
@@ -2266,7 +2266,7 @@ MESNAMEEND:
 #endif // DX_NON_INPUT
 
 	case WM_COMMAND :
-		// ƒc[ƒ‹ƒo[‚ÌƒRƒ}ƒ“ƒh‚©’²‚×‚é
+		// ãƒ„ãƒ¼ãƒ«ãƒãƒ¼ã®ã‚³ãƒãƒ³ãƒ‰ã‹èª¿ã¹ã‚‹
 		if( WinData.ToolBarUseFlag == TRUE && LOWORD( wParam ) >= TOOLBAR_COMMANDID_BASE )
 		{
 			int Index ;
@@ -2277,23 +2277,23 @@ MESNAMEEND:
 			{
 				but = &WinData.ToolBarItem[ Index ] ;
 
-				// ƒ^ƒCƒv‚ª•’Ê‚Ìƒ{ƒ^ƒ“‚Ìê‡‚Ì‚İ Clik ‚ğ TRUE ‚É‚·‚é
+				// ã‚¿ã‚¤ãƒ—ãŒæ™®é€šã®ãƒœã‚¿ãƒ³ã®å ´åˆã®ã¿ Clik ã‚’ TRUE ã«ã™ã‚‹
 				if( but->Type == TOOLBUTTON_TYPE_NORMAL )
 					but->Click = TRUE ;
 
-				// I—¹
+				// çµ‚äº†
 				break ;
 			}
 		}
 
-		// ƒƒjƒ…[‚ÌƒRƒ}ƒ“ƒh‚©’²‚×‚é
+		// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®ã‚³ãƒãƒ³ãƒ‰ã‹èª¿ã¹ã‚‹
 		if( WinData.MenuUseFlag == TRUE /*&& HIWORD( wParam ) == 0*/ )
 		{
 			WORD ItemID ;
 
 			ItemID = LOWORD( wParam ) ;
 			
-			// ƒR[ƒ‹ƒoƒbƒNŠÖ”‚ª“o˜^‚³‚ê‚Ä‚¢‚éê‡‚ÍƒR[ƒ‹ƒoƒbƒNŠÖ”‚ğŒÄ‚Ô
+			// ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ãŒç™»éŒ²ã•ã‚Œã¦ã„ã‚‹å ´åˆã¯ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã‚’å‘¼ã¶
 			if( WinData.MenuProc != NULL )
 			{
 				WinData.MenuProc( ItemID ) ;
@@ -2303,23 +2303,23 @@ MESNAMEEND:
 			{
 				TCHAR NameBuffer[128] ;
 				
-				// ‘I‘ğ€–Ú‚Ì–¼‘O‚ğæ“¾‚·‚é
+				// é¸æŠé …ç›®ã®åå‰ã‚’å–å¾—ã™ã‚‹
 				NS_GetMenuItemName( (int)ItemID, NameBuffer ) ;
 				
-				// ƒR[ƒ‹ƒoƒbƒNŠÖ”‚ğŒÄ‚Ô
+				// ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã‚’å‘¼ã¶
 				WinData.MenuCallBackFunction( NameBuffer, (int)ItemID ) ;
 			}
 
-			// ‘I‘ğ‚³‚ê‚½€–Ú‚Ìî•ñ‚É’Ç‰Á
+			// é¸æŠã•ã‚ŒãŸé …ç›®ã®æƒ…å ±ã«è¿½åŠ 
 			if( WinData.SelectMenuItemNum < MAX_MENUITEMSELECT_NUM )
 			{
 				int i ;
 			
-				// Šù‚É‚ ‚Á‚½‚ç’Ç‰Á‚µ‚È‚¢
+				// æ—¢ã«ã‚ã£ãŸã‚‰è¿½åŠ ã—ãªã„
 				for( i = 0 ; i < WinData.SelectMenuItemNum ; i ++ )
 					if( WinData.SelectMenuItem[i] == ItemID ) break ;
 
-				// –³‚©‚Á‚½ê‡‚Ì‚İ’Ç‰Á
+				// ç„¡ã‹ã£ãŸå ´åˆã®ã¿è¿½åŠ 
 				if( i == WinData.SelectMenuItemNum )
 				{
 					WinData.SelectMenuItem[WinData.SelectMenuItemNum] = ItemID ;
@@ -2330,7 +2330,7 @@ MESNAMEEND:
 		break ;
 
 #ifndef DX_NON_KEYEX
-	// ‚h‚l‚dƒƒbƒZ[ƒW‚ª—ˆ‚½ê‡‚Í“Æ©ŠÖ”‚É“n‚·
+	// ï¼©ï¼­ï¼¥ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãŒæ¥ãŸå ´åˆã¯ç‹¬è‡ªé–¢æ•°ã«æ¸¡ã™
 	case WM_IME_SETCONTEXT :
 	case WM_IME_STARTCOMPOSITION :
 	case WM_IME_ENDCOMPOSITION :
@@ -2340,14 +2340,14 @@ MESNAMEEND:
 		return IMEProc( hWnd , message , wParam , lParam ) ;
 #endif
 
-	// ƒEƒCƒ“ƒhƒE‚ÌƒTƒCƒY‚ª•ÏX‚³‚ê‚Ä‚¢‚é‚Ìˆ—
+	// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ã‚µã‚¤ã‚ºãŒå¤‰æ›´ã•ã‚Œã¦ã„ã‚‹æ™‚ã®å‡¦ç†
 	case WM_SIZING :
 		WinAPIData.Win32Func.GetWindowRectFunc( hWnd, &WinData.WindowEdgeRect ) ;
 
-		// ƒEƒCƒ“ƒhƒEƒ‚[ƒh‚Ìê‡‚Ì‚İˆ—
+		// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ¢ãƒ¼ãƒ‰ã®å ´åˆã®ã¿å‡¦ç†
 		if( WinData.WindowModeFlag == TRUE || NS_GetUseFullScreenResolutionMode() == DX_FSRESOLUTIONMODE_BORDERLESS_WINDOW )
 		{
-			// ƒ†[ƒU[‚ÌƒEƒCƒ“ƒhƒE‚ğg—p‚µ‚Ä‚¢‚éê‡‚Í•‚Ì’²®‚Í‚µ‚È‚¢
+			// ãƒ¦ãƒ¼ã‚¶ãƒ¼ã®ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹å ´åˆã¯å¹…ã®èª¿æ•´ã¯ã—ãªã„
 #ifndef DX_NON_GRAPHICS
 			if( WinData.UserWindowFlag == FALSE )
 			{
@@ -2361,32 +2361,32 @@ MESNAMEEND:
 				int WidthBigFlag ;
 				int ToolBarHeight = GetToolBarHeight() ;
 
-				// ƒfƒXƒNƒgƒbƒv‚ÌƒTƒCƒY‚ğæ“¾‚·‚é
+				// ãƒ‡ã‚¹ã‚¯ãƒˆãƒƒãƒ—ã®ã‚µã‚¤ã‚ºã‚’å–å¾—ã™ã‚‹
 				NS_GetDefaultState( &DesktopW, &DesktopH, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL ) ; 
 
-				// •`‰æ‰æ–Ê‚ÌƒTƒCƒY‚ğæ“¾‚·‚é
+				// æç”»ç”»é¢ã®ã‚µã‚¤ã‚ºã‚’å–å¾—ã™ã‚‹
 				NS_GetDrawScreenSize( &Width, &Height ) ;
 
-				// Œ»İ‚ÌƒEƒCƒ“ƒhƒE‚Ì—Ìˆæ‚ÆƒNƒ‰ƒCƒAƒ“ƒg—Ìˆæ‚ğæ“¾‚·‚é
+				// ç¾åœ¨ã®ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®é ˜åŸŸã¨ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆé ˜åŸŸã‚’å–å¾—ã™ã‚‹
 				WinAPIData.Win32Func.GetWindowRectFunc( hWnd, &WinRect ) ;
 				WinAPIData.Win32Func.GetClientRectFunc( hWnd, &CliRect ) ;
 
-				// ƒNƒ‰ƒCƒAƒ“ƒg—ÌˆæˆÈŠO‚Ì•”•ª‚Ì•‚Æ‚‚³‚ğZo
+				// ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆé ˜åŸŸä»¥å¤–ã®éƒ¨åˆ†ã®å¹…ã¨é«˜ã•ã‚’ç®—å‡º
 				AddWidth  = ( WinRect.right  - WinRect.left ) - ( CliRect.right  - CliRect.left ) ;
 				AddHeight = ( WinRect.bottom - WinRect.top  ) - ( CliRect.bottom - CliRect.top  ) ;
 
-				// ƒNƒ‰ƒCƒAƒ“ƒg—Ìˆæ‚ÌƒTƒCƒY‚ğ“¾‚é
+				// ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆé ˜åŸŸã®ã‚µã‚¤ã‚ºã‚’å¾—ã‚‹
 				NextWidth  = ( NextRect->right  - NextRect->left ) - AddWidth ;
 				NextHeight = ( NextRect->bottom - NextRect->top  ) - AddHeight ;
 				if( NextWidth  + AddWidth  > DesktopW ) NextWidth  = DesktopW - AddWidth ;
 				if( NextHeight + AddHeight > DesktopH ) NextHeight = DesktopH - AddHeight ;
 
-				// ƒNƒ‰ƒCƒAƒ“ƒg—Ìˆæ‚É‰æ–Ê‚ğƒtƒBƒbƒg‚³‚¹‚é‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+				// ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆé ˜åŸŸã«ç”»é¢ã‚’ãƒ•ã‚£ãƒƒãƒˆã•ã›ã‚‹ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 				if( WinData.ScreenNotFitWindowSize == FALSE && WinData.WindowSizeValid == FALSE )
 				{
-					// ƒtƒBƒbƒg‚³‚¹‚éê‡
+					// ãƒ•ã‚£ãƒƒãƒˆã•ã›ã‚‹å ´åˆ
 
-					// ƒ†[ƒU[w’è‚ÌÅ¬ƒTƒCƒY‚ª—LŒø‚Èê‡‚Í“K—p‚·‚é
+					// ãƒ¦ãƒ¼ã‚¶ãƒ¼æŒ‡å®šã®æœ€å°ã‚µã‚¤ã‚ºãŒæœ‰åŠ¹ãªå ´åˆã¯é©ç”¨ã™ã‚‹
 					if( WinData.WindowMinSizeValid )
 					{
 						if( WinData.WindowMinWidth > NextWidth )
@@ -2400,7 +2400,7 @@ MESNAMEEND:
 						}
 					}
 
-					// ƒ†[ƒU[w’è‚ÌÅ‘åƒTƒCƒY‚ª—LŒø‚Èê‡‚Í“K—p‚·‚é
+					// ãƒ¦ãƒ¼ã‚¶ãƒ¼æŒ‡å®šã®æœ€å¤§ã‚µã‚¤ã‚ºãŒæœ‰åŠ¹ãªå ´åˆã¯é©ç”¨ã™ã‚‹
 					if( WinData.WindowMaxSizeValid )
 					{
 						if( WinData.WindowMaxWidth < NextWidth )
@@ -2414,10 +2414,10 @@ MESNAMEEND:
 						}
 					}
 
-					// •‚Æ‚‚³A”ä—¦“I‚É‚Ç‚¿‚ç‚ª‚æ‚è‘å‚«‚¢‚©‚ğZo
+					// å¹…ã¨é«˜ã•ã€æ¯”ç‡çš„ã«ã©ã¡ã‚‰ãŒã‚ˆã‚Šå¤§ãã„ã‹ã‚’ç®—å‡º
 					WidthBigFlag = ( (double)NextWidth / Width > (double)NextHeight / Height ) ? TRUE : FALSE ;
 
-					// V‚µ‚¢•\¦”ä—¦‚ğİ’è‚·‚é
+					// æ–°ã—ã„è¡¨ç¤ºæ¯”ç‡ã‚’è¨­å®šã™ã‚‹
 					switch( Side )
 					{
 					case WMSZ_LEFT :
@@ -2428,14 +2428,14 @@ MESNAMEEND:
 						WinData.WindowSizeExRateX = (double)NextWidth / Width ;
 						NextHeight = NextWidth * Height / Width ;
 
-						// ƒ†[ƒU[w’è‚ÌÅ¬ƒTƒCƒY‚ª—LŒø‚Èê‡‚Í“K—p‚·‚é
+						// ãƒ¦ãƒ¼ã‚¶ãƒ¼æŒ‡å®šã®æœ€å°ã‚µã‚¤ã‚ºãŒæœ‰åŠ¹ãªå ´åˆã¯é©ç”¨ã™ã‚‹
 						if( WinData.WindowMinSizeValid && WinData.WindowMinHeight > NextHeight )
 						{
 							NextHeight = WinData.WindowMinHeight ;
 							goto HEIGHT_SIZE_BASE ;
 						}
 
-						// ƒ†[ƒU[w’è‚ÌÅ‘åƒTƒCƒY‚ª—LŒø‚Èê‡‚Í“K—p‚·‚é
+						// ãƒ¦ãƒ¼ã‚¶ãƒ¼æŒ‡å®šã®æœ€å¤§ã‚µã‚¤ã‚ºãŒæœ‰åŠ¹ãªå ´åˆã¯é©ç”¨ã™ã‚‹
 						if( WinData.WindowMaxSizeValid && WinData.WindowMaxHeight < NextHeight )
 						{
 							NextHeight = WinData.WindowMaxHeight ;
@@ -2452,14 +2452,14 @@ MESNAMEEND:
 						WinData.WindowSizeExRateX = (double)( NextHeight - ToolBarHeight ) / Height ;
 						NextWidth = NextHeight * Width / Height ;
 
-						// ƒ†[ƒU[w’è‚ÌÅ¬ƒTƒCƒY‚ª—LŒø‚Èê‡‚Í“K—p‚·‚é
+						// ãƒ¦ãƒ¼ã‚¶ãƒ¼æŒ‡å®šã®æœ€å°ã‚µã‚¤ã‚ºãŒæœ‰åŠ¹ãªå ´åˆã¯é©ç”¨ã™ã‚‹
 						if( WinData.WindowMinSizeValid && WinData.WindowMinWidth > NextWidth )
 						{
 							NextWidth = WinData.WindowMinWidth ;
 							goto WIDTH_SIZE_BASE ;
 						}
 
-						// ƒ†[ƒU[w’è‚ÌÅ‘åƒTƒCƒY‚ª—LŒø‚Èê‡‚Í“K—p‚·‚é
+						// ãƒ¦ãƒ¼ã‚¶ãƒ¼æŒ‡å®šã®æœ€å¤§ã‚µã‚¤ã‚ºãŒæœ‰åŠ¹ãªå ´åˆã¯é©ç”¨ã™ã‚‹
 						if( WinData.WindowMaxSizeValid && WinData.WindowMaxWidth < NextWidth )
 						{
 							NextWidth = WinData.WindowMaxWidth ;
@@ -2482,7 +2482,7 @@ MESNAMEEND:
 						break ;
 					}
 
-					// ƒTƒCƒY‚ª 16 ˆÈ‰º‚É‚Í‚È‚ç‚È‚¢‚æ‚¤‚É‚·‚é
+					// ã‚µã‚¤ã‚ºãŒ 16 ä»¥ä¸‹ã«ã¯ãªã‚‰ãªã„ã‚ˆã†ã«ã™ã‚‹
 					if( NextWidth < 16 || NextHeight < 16 )
 					{
 						if( Width > Height )
@@ -2500,7 +2500,7 @@ MESNAMEEND:
 						WinData.WindowSizeExRateX = (double)NextWidth / Width ;
 					}
 
-					// ƒEƒCƒ“ƒhƒE‚ÌŒ`‚ğ•â³‚·‚é
+					// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®å½¢ã‚’è£œæ­£ã™ã‚‹
 					switch( Side )
 					{
 					case WMSZ_TOPLEFT :
@@ -2550,20 +2550,20 @@ MESNAMEEND:
 					int MinSizeW, MinSizeH ;
 					int MainScreenW, MainScreenH ;
 
-					// ƒtƒBƒbƒg‚³‚¹‚È‚¢ê‡
+					// ãƒ•ã‚£ãƒƒãƒˆã•ã›ãªã„å ´åˆ
 
-					// •A‚‚³‚ª‰æ–Ê‚ÌƒTƒCƒYˆÈã‚É‚È‚Á‚Ä‚¢‚½‚ç§ŒÀ‚·‚é
+					// å¹…ã€é«˜ã•ãŒç”»é¢ã®ã‚µã‚¤ã‚ºä»¥ä¸Šã«ãªã£ã¦ã„ãŸã‚‰åˆ¶é™ã™ã‚‹
 					NS_GetDrawScreenSize( &MainScreenW, &MainScreenH ) ;
 					MainScreenW = _DTOL( MainScreenW * WinData.WindowSizeExRateX ) ;
 					MainScreenH = _DTOL( MainScreenH * WinData.WindowSizeExRateY ) ;
 
-					// ƒ†[ƒU[w’è‚ÌÅ¬ƒTƒCƒY‚ª•`‰æ‰æ–Ê‚ÌƒTƒCƒY‚æ‚è‘å‚«‚¯‚ê‚Î( Š‚Â•`‰ææ‰æ–Ê‚æ‚è¬‚³‚¯‚ê‚Î )‚»‚¿‚ç‚ğg—p‚·‚é
+					// ãƒ¦ãƒ¼ã‚¶ãƒ¼æŒ‡å®šã®æœ€å°ã‚µã‚¤ã‚ºãŒæç”»ç”»é¢ã®ã‚µã‚¤ã‚ºã‚ˆã‚Šå¤§ãã‘ã‚Œã°( ä¸”ã¤æç”»å…ˆç”»é¢ã‚ˆã‚Šå°ã•ã‘ã‚Œã° )ãã¡ã‚‰ã‚’ä½¿ç”¨ã™ã‚‹
 					if( WinData.WindowMinSizeValid )
 					{
 						MinSizeW = WinData.WindowMinWidth ;
 						MinSizeH = WinData.WindowMinHeight ;
 
-						// 128ƒsƒNƒZƒ‹ˆÈ‰º‚É‚Í‚Å‚«‚È‚¢
+						// 128ãƒ”ã‚¯ã‚»ãƒ«ä»¥ä¸‹ã«ã¯ã§ããªã„
 //						if( MinSizeW < 128 )
 //						{
 //							MinSizeW = 128 ;
@@ -2579,7 +2579,7 @@ MESNAMEEND:
 						MinSizeH = 16 ;
 					}
 
-					// ƒ†[ƒU[w’è‚ÌÅ‘åƒTƒCƒY‚ª•`‰æ‰æ–Ê‚ÌƒTƒCƒY‚æ‚è¬‚³‚¯‚ê‚Î‚»‚¿‚ç‚ğg—p‚·‚é
+					// ãƒ¦ãƒ¼ã‚¶ãƒ¼æŒ‡å®šã®æœ€å¤§ã‚µã‚¤ã‚ºãŒæç”»ç”»é¢ã®ã‚µã‚¤ã‚ºã‚ˆã‚Šå°ã•ã‘ã‚Œã°ãã¡ã‚‰ã‚’ä½¿ç”¨ã™ã‚‹
 					if( WinData.WindowMaxSizeValid )
 					{
 						if( WinData.WindowMaxWidth < MainScreenW )
@@ -2593,7 +2593,7 @@ MESNAMEEND:
 						}
 					}
 
-					// ƒEƒCƒ“ƒhƒE‚ÌŒ`‚ğ•â³‚·‚é
+					// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®å½¢ã‚’è£œæ­£ã™ã‚‹
 					if( NextWidth > MainScreenW )
 					{
 						if( Side == WMSZ_RIGHT ||
@@ -2669,11 +2669,11 @@ MESNAMEEND:
 		}
 		break ;
 
-	// ƒEƒCƒ“ƒhƒE‚ÌƒTƒCƒY‚ğˆê’è‚É•Û‚Âˆ—
+	// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ã‚µã‚¤ã‚ºã‚’ä¸€å®šã«ä¿ã¤å‡¦ç†
 	case WM_SIZE :
 		WinAPIData.Win32Func.GetWindowRectFunc( hWnd, &WinData.WindowEdgeRect ) ;
 
-		// Å‘å‰»‚Å‚Í‚È‚©‚Á‚½‚çÅ‘å‰»ó‘Ôƒtƒ‰ƒO‚ğ“|‚·
+		// æœ€å¤§åŒ–ã§ã¯ãªã‹ã£ãŸã‚‰æœ€å¤§åŒ–çŠ¶æ…‹ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 		if( wParam != SIZE_MAXIMIZED )
 		{
 			WinData.WindowMaximizeFlag = FALSE ;
@@ -2682,21 +2682,21 @@ MESNAMEEND:
 		PrevWindowMinSizeFlag = WinData.WindowMinSizeFlag ;
 		WinData.WindowMinSizeFlag = wParam == SIZE_MINIMIZED ? TRUE : FALSE ;
 
-		// ‚à‚µÅ‘å‰»‚³‚ê‚½ê‡‚ÅŠ‚Â”ñ“¯ŠúƒEƒCƒ“ƒhƒEƒ‚[ƒh•ÏX‹@”\‚ª—LŒø‚É‚È‚Á‚Ä‚¢‚éê‡‚ÍƒEƒCƒ“ƒhƒEƒ‚[ƒh•ÏXˆ—‚ğs‚¤
+		// ã‚‚ã—æœ€å¤§åŒ–ã•ã‚ŒãŸå ´åˆã§ä¸”ã¤éåŒæœŸã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ¢ãƒ¼ãƒ‰å¤‰æ›´æ©Ÿèƒ½ãŒæœ‰åŠ¹ã«ãªã£ã¦ã„ã‚‹å ´åˆã¯ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ¢ãƒ¼ãƒ‰å¤‰æ›´å‡¦ç†ã‚’è¡Œã†
 		if( wParam == SIZE_MAXIMIZED && WinData.UseChangeWindowModeFlag )
 		{
-			// ‚à‚µƒEƒCƒ“ƒhƒEƒ‚[ƒh•ÏX’†‚âƒEƒCƒ“ƒhƒEì¬’¼ŒãA‚»‚ê‚©ƒEƒCƒ“ƒhƒEƒ‚[ƒh‚Å‚Í‚È‚©‚Á‚½ê‡‚Í‰½‚à‚¹‚¸‚ÉI—¹
+			// ã‚‚ã—ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ¢ãƒ¼ãƒ‰å¤‰æ›´ä¸­ã‚„ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ä½œæˆç›´å¾Œã€ãã‚Œã‹ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ¢ãƒ¼ãƒ‰ã§ã¯ãªã‹ã£ãŸå ´åˆã¯ä½•ã‚‚ã›ãšã«çµ‚äº†
 			if( WinData.ChangeWindodwFlag == FALSE &&
 				WinData.WindowCreateFlag == FALSE &&
 				( WinData.WindowModeFlag == TRUE || NS_GetUseFullScreenResolutionMode() == DX_FSRESOLUTIONMODE_BORDERLESS_WINDOW ) )
 			{
-				// ƒEƒCƒ“ƒhƒEƒ‚[ƒh‚©‚çƒtƒ‹ƒXƒNƒŠ[ƒ“ƒ‚[ƒh‚ÉˆÚs‚·‚é
+				// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ¢ãƒ¼ãƒ‰ã‹ã‚‰ãƒ•ãƒ«ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ¢ãƒ¼ãƒ‰ã«ç§»è¡Œã™ã‚‹
 				WinData.ChangeWindowModeFlag = TRUE ;
 			}
 		}
 		else
 		{
-			// Å‘å‰»‚¾‚Á‚½ê‡‚Å‚Ü‚¾Å‘å‰»ˆ—‚ğs‚Á‚Ä‚¨‚ç‚¸AŠ‚ÂƒNƒ‰ƒCƒAƒ“ƒg—Ìˆæ‚É‰æ–Ê‚ğƒtƒBƒbƒg‚³‚¹‚éê‡‚ÍƒEƒCƒ“ƒhƒE‚ÌƒXƒP[ƒ‹‚ğ•ÏX‚·‚é
+			// æœ€å¤§åŒ–ã ã£ãŸå ´åˆã§ã¾ã æœ€å¤§åŒ–å‡¦ç†ã‚’è¡Œã£ã¦ãŠã‚‰ãšã€ä¸”ã¤ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆé ˜åŸŸã«ç”»é¢ã‚’ãƒ•ã‚£ãƒƒãƒˆã•ã›ã‚‹å ´åˆã¯ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ã‚¹ã‚±ãƒ¼ãƒ«ã‚’å¤‰æ›´ã™ã‚‹
 			if( wParam == SIZE_MAXIMIZED && 
 				WinData.WindowMaximizeFlag == FALSE /* &&
 				WinData.ScreenNotFitWindowSize == FALSE &&
@@ -2705,17 +2705,17 @@ MESNAMEEND:
 //				RECT CliRect ;
 //				int Width, Height, NextWidth, NextHeight ;
 
-				// •`‰æ‰æ–Ê‚ÌƒTƒCƒY‚ğæ“¾‚·‚é
+				// æç”»ç”»é¢ã®ã‚µã‚¤ã‚ºã‚’å–å¾—ã™ã‚‹
 //				NS_GetDrawScreenSize( &Width, &Height ) ;
 
-				// ¡‚Ü‚ÅÅ¬‰»‚³‚ê‚Ä‚¢‚½ê‡‚Í’l‚ğXV‚µ‚È‚¢
+				// ä»Šã¾ã§æœ€å°åŒ–ã•ã‚Œã¦ã„ãŸå ´åˆã¯å€¤ã‚’æ›´æ–°ã—ãªã„
 				if( PrevWindowMinSizeFlag == FALSE )
 				{
-					// ƒEƒCƒ“ƒhƒE‚ÌƒNƒ‰ƒCƒAƒ“ƒg—Ìˆæ‚ğæ“¾‚·‚é
+					// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆé ˜åŸŸã‚’å–å¾—ã™ã‚‹
 					RECT PrevWindowMaximizeClientRect = WinData.WindowMaximizedClientRect ;
 					WinAPIData.Win32Func.GetClientRectFunc( hWnd, &WinData.WindowMaximizedClientRect ) ;
 
-					// ƒEƒCƒ“ƒhƒE‚Ì—Ìˆæ‚ğæ“¾‚·‚é
+					// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®é ˜åŸŸã‚’å–å¾—ã™ã‚‹
 					RECT PrevWindowMaximizeRect = WinData.WindowMaximizedRect ;
 					WinAPIData.Win32Func.GetWindowRectFunc( hWnd, &WinData.WindowMaximizedRect ) ;
 
@@ -2724,7 +2724,7 @@ MESNAMEEND:
 					WinData.WindowMaximizedRect.top    -= WinData.WindowMaximizedAdjustRect.top  - PrevWindowMaximizeRect.top ;
 					WinData.WindowMaximizedRect.bottom -= WinData.WindowMaximizedAdjustRect.top  - PrevWindowMaximizeRect.top ;
 
-					// ‚S‹÷‚Ì“àˆê‚Â‚¾‚¯’l‚ªˆÙ‚È‚éê‡‚ÍA‚»‚Ì—v‘f‚à‚Ğ‚Æ‚Â‘O‚Ì’l‚ğg—p‚·‚é
+					// ï¼”éš…ã®å†…ä¸€ã¤ã ã‘å€¤ãŒç•°ãªã‚‹å ´åˆã¯ã€ãã®è¦ç´ ã‚‚ã²ã¨ã¤å‰ã®å€¤ã‚’ä½¿ç”¨ã™ã‚‹
 					{
 						int EqualCount = 0 ;
 
@@ -2740,8 +2740,8 @@ MESNAMEEND:
 						}
 					}
 
-					// ˆê”ÔÅ‰‚ÌÅ‘å‰»‚Ì‹éŒ`‚ª—LŒø‚ÅAŠ‚Â•Ê‚ÌƒfƒBƒXƒvƒŒƒC‚ÅÅ‘å‰»‚³‚ê‚½‚Æv‚µ‚«ê‡‚Í
-					// ˆê”ÔÅ‰‚ÌÅ‘å‰»‚Ì‹éŒ`‚ğ–³Œø‚É‚·‚é
+					// ä¸€ç•ªæœ€åˆã®æœ€å¤§åŒ–ã®çŸ©å½¢ãŒæœ‰åŠ¹ã§ã€ä¸”ã¤åˆ¥ã®ãƒ‡ã‚£ã‚¹ãƒ—ãƒ¬ã‚¤ã§æœ€å¤§åŒ–ã•ã‚ŒãŸã¨æ€ã—ãå ´åˆã¯
+					// ä¸€ç•ªæœ€åˆã®æœ€å¤§åŒ–ã®çŸ©å½¢ã‚’ç„¡åŠ¹ã«ã™ã‚‹
 					if( WinData.ValidFirstWindowMaximizedRect )
 					{
 						if( WinData.FirstWindowMaximizedRect.right  - 32 <= WinData.WindowMaximizedRect.left      ||
@@ -2753,7 +2753,7 @@ MESNAMEEND:
 						}
 					}
 
-					// ˆê”ÔÅ‰‚ÌÅ‘å‰»‚Ìê‡‚Í FirstWindowMaximizeRect ‚É‚à•Û‘¶‚·‚é
+					// ä¸€ç•ªæœ€åˆã®æœ€å¤§åŒ–ã®å ´åˆã¯ FirstWindowMaximizeRect ã«ã‚‚ä¿å­˜ã™ã‚‹
 					if( WinData.ValidFirstWindowMaximizedRect == FALSE )
 					{
 						WinData.ValidFirstWindowMaximizedRect = TRUE ;
@@ -2761,7 +2761,7 @@ MESNAMEEND:
 					}
 				}
 
-				// WM_PAINT ‚Ìˆ—‚ğs‚¤
+				// WM_PAINT ã®å‡¦ç†ã‚’è¡Œã†
 //				{
 //					HDC Dc = WinAPIData.Win32Func.GetDCFunc( hWnd ) ;
 //
@@ -2770,13 +2770,13 @@ MESNAMEEND:
 //					WinAPIData.Win32Func.ReleaseDCFunc( hWnd, Dc ) ;
 //				}
 
-				// Å‘å‰»ó‘Ôƒtƒ‰ƒO‚ğ—§‚Ä‚é
+				// æœ€å¤§åŒ–çŠ¶æ…‹ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 				WinData.WindowMaximizeFlag = TRUE ;
 			}
 			WM_SIZEProcess() ;
 		}
 
-		// ƒc[ƒ‹ƒo[‚ª—LŒø‚Èê‡‚Íƒc[ƒ‹ƒo[‚É‚à‘—‚é
+		// ãƒ„ãƒ¼ãƒ«ãƒãƒ¼ãŒæœ‰åŠ¹ãªå ´åˆã¯ãƒ„ãƒ¼ãƒ«ãƒãƒ¼ã«ã‚‚é€ã‚‹
 		if( WinData.ToolBarUseFlag == TRUE )
 		{
 			SendMessageWFunc( WinData.ToolBarHandle, WM_SIZE, wParam, lParam ) ;
@@ -2786,47 +2786,47 @@ MESNAMEEND:
 
 
 
-	// ‰æ–Ê‰ğ‘œ“x•ÏX‚Ìˆ—
+	// ç”»é¢è§£åƒåº¦å¤‰æ›´æ™‚ã®å‡¦ç†
 	case WM_DISPLAYCHANGE :
 #ifndef DX_NON_GRAPHICS
-//		// ƒtƒ‹ƒXƒNƒŠ[ƒ“ƒ‚[ƒh‚ÅAŠù‚ÉƒƒCƒ“ƒEƒCƒ“ƒhƒEˆÈŠO‚ªƒAƒNƒeƒBƒu‚É‚È‚Á‚Ä‚¢‚½
-//		// ê‡‚ÍAX‚É•Ê‚ÌƒEƒCƒ“ƒhƒE‚ªƒAƒNƒeƒBƒu‚É‚È‚èƒfƒXƒNƒgƒbƒv‰æ–Ê‚É–ß‚Á‚½‚Æ”»’f
+//		// ãƒ•ãƒ«ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ¢ãƒ¼ãƒ‰ã§ã€æ—¢ã«ãƒ¡ã‚¤ãƒ³ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ä»¥å¤–ãŒã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ãªã£ã¦ã„ãŸ
+//		// å ´åˆã¯ã€æ›´ã«åˆ¥ã®ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãŒã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ãªã‚Šãƒ‡ã‚¹ã‚¯ãƒˆãƒƒãƒ—ç”»é¢ã«æˆ»ã£ãŸã¨åˆ¤æ–­
 //		if( WinData.WindowModeFlag == FALSE && WinData.StopFlag == TRUE )
 //		{
 //			int Cx = LOWORD( lParam ), Cy = HIWORD( lParam ), Ccb = wParam ;
 //			int Sx, Sy, Scb ;
 //
-//			// Œ³X‚ÌƒfƒXƒNƒgƒbƒv‰æ–Ê‚ÌƒTƒCƒY‚ğ“¾‚é
+//			// å…ƒã€…ã®ãƒ‡ã‚¹ã‚¯ãƒˆãƒƒãƒ—ç”»é¢ã®ã‚µã‚¤ã‚ºã‚’å¾—ã‚‹
 //			NS_GetDefaultState( &Sx , &Sy , &Scb ) ;
 //
-//			// ‚à‚µƒfƒXƒNƒgƒbƒv‰æ–Ê‚Æ“¯‚¶‰æ–Êƒ‚[ƒh‚Å‚ ‚ê‚ÎŠmÀ
+//			// ã‚‚ã—ãƒ‡ã‚¹ã‚¯ãƒˆãƒƒãƒ—ç”»é¢ã¨åŒã˜ç”»é¢ãƒ¢ãƒ¼ãƒ‰ã§ã‚ã‚Œã°ç¢ºå®Ÿ
 //			if( Scb == Ccb && Sx == Cx && Sy == Cy )
 //			{
-//				// DirectX ŠÖ˜AƒIƒuƒWƒFƒNƒg‚Ìˆê“I‰ğ•úˆ—‚ğs‚¤
+//				// DirectX é–¢é€£ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ä¸€æ™‚çš„è§£æ”¾å‡¦ç†ã‚’è¡Œã†
 ////			DestroyGraphSystem() ;
 //			}
 //		}
 //		else
-		// ƒEƒCƒ“ƒhƒEƒ‚[ƒh‚ÌƒGƒ‰[I—¹
+		// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ¢ãƒ¼ãƒ‰æ™‚ã®ã‚¨ãƒ©ãƒ¼çµ‚äº†
 		if( ( WinData.WindowModeFlag == TRUE || NS_GetUseFullScreenResolutionMode() == DX_FSRESOLUTIONMODE_BORDERLESS_WINDOW ) && WinData.ChangeWindodwFlag == FALSE )
 		{
 			WPARAM ColorBit = wParam ;
 //			int Cx = LOWORD( lParam ) , Cy = HIWORD( lParam ) ;
 			int Sx , Sy , Cb;
 
-			// –]‚İ‚Ì‰æ–Êƒ‚[ƒh‚ğæ“¾
+			// æœ›ã¿ã®ç”»é¢ãƒ¢ãƒ¼ãƒ‰ã‚’å–å¾—
 			NS_GetScreenState( &Sx, &Sy, &Cb ) ;
 
-			// ‚à‚µ•œŒ³ƒXƒŒƒbƒh‚ª“o˜^‚³‚ê‚Ä‚¢‚È‚¢ê‡‚Íƒ\ƒtƒgI—¹A‚Q‚SƒrƒbƒgƒJƒ‰[ƒ‚[ƒh‚Ìê‡‚àI—¹
+			// ã‚‚ã—å¾©å…ƒã‚¹ãƒ¬ãƒƒãƒ‰ãŒç™»éŒ²ã•ã‚Œã¦ã„ãªã„å ´åˆã¯ã‚½ãƒ•ãƒˆçµ‚äº†ã€ï¼’ï¼”ãƒ“ãƒƒãƒˆã‚«ãƒ©ãƒ¼ãƒ¢ãƒ¼ãƒ‰ã®å ´åˆã‚‚çµ‚äº†
 			if( ColorBit != ( UINT_PTR )Cb /*|| Sx != Cx || Sy != Cy*/ )
 			{
 				if( !NS_GetValidRestoreShredPoint() || ColorBit == 24 || ColorBit == 8
 					/* ( ColorBit != ( UINT_PTR )Cb && ColorBit == 8 )*/  /*|| Sx > Cx || Sy > Cy*/ )
 				{
-					DXST_LOGFILE_ADDUTF16LE( "\xa9\x5f\x43\x51\xa2\x95\x70\x65\x4c\x30\x7b\x76\x32\x93\x55\x30\x8c\x30\x66\x30\x44\x30\x6a\x30\x44\x30\x5f\x30\x81\x30\x4b\x30\x3b\x75\x62\x97\x4c\x30\x32\x00\x34\x00\xd3\x30\xc3\x30\xc8\x30\xab\x30\xe9\x30\xfc\x30\x01\x30\xc8\x53\x6f\x30\x38\x00\xd3\x30\xc3\x30\xc8\x30\xab\x30\xe9\x30\xfc\x30\x6b\x30\x09\x59\xf4\x66\x55\x30\x8c\x30\x5f\x30\x5f\x30\x81\x30\x42\x7d\x86\x4e\x57\x30\x7e\x30\x59\x30\x0a\x00\x00"/*@ L"•œŒ³ŠÖ”‚ª“o˜^‚³‚ê‚Ä‚¢‚È‚¢‚½‚ß‚©‰æ–Ê‚ª24ƒrƒbƒgƒJƒ‰[A–”‚Í8ƒrƒbƒgƒJƒ‰[‚É•ÏX‚³‚ê‚½‚½‚ßI—¹‚µ‚Ü‚·\n" @*/ ) ;
-//					DXST_LOGFILE_ADDUTF16LE( "\x7e\x30\x5f\x30\x6f\x30\xb9\x30\xaf\x30\xea\x30\xfc\x30\xf3\x30\x4c\x30\x0f\x5c\x55\x30\x59\x30\x4e\x30\x8b\x30\x5f\x30\x81\x30\x4b\x30\x72\x82\xd3\x30\xc3\x30\xc8\x30\x70\x65\x6e\x30\x55\x90\x44\x30\x4c\x30\x27\x59\x4d\x30\x44\x30\x5f\x30\x81\x30\x4b\x30\x42\x7d\x86\x4e\x57\x30\x7e\x30\x59\x30\x0a\x00\x00"/*@ L"‚Ü‚½‚ÍƒXƒNƒŠ[ƒ“‚ª¬‚³‚·‚¬‚é‚½‚ß‚©Fƒrƒbƒg”‚Ìˆá‚¢‚ª‘å‚«‚¢‚½‚ß‚©I—¹‚µ‚Ü‚·\n" @*/ ) ;
+					DXST_LOGFILE_ADDUTF16LE( "\xa9\x5f\x43\x51\xa2\x95\x70\x65\x4c\x30\x7b\x76\x32\x93\x55\x30\x8c\x30\x66\x30\x44\x30\x6a\x30\x44\x30\x5f\x30\x81\x30\x4b\x30\x3b\x75\x62\x97\x4c\x30\x32\x00\x34\x00\xd3\x30\xc3\x30\xc8\x30\xab\x30\xe9\x30\xfc\x30\x01\x30\xc8\x53\x6f\x30\x38\x00\xd3\x30\xc3\x30\xc8\x30\xab\x30\xe9\x30\xfc\x30\x6b\x30\x09\x59\xf4\x66\x55\x30\x8c\x30\x5f\x30\x5f\x30\x81\x30\x42\x7d\x86\x4e\x57\x30\x7e\x30\x59\x30\x0a\x00\x00"/*@ L"å¾©å…ƒé–¢æ•°ãŒç™»éŒ²ã•ã‚Œã¦ã„ãªã„ãŸã‚ã‹ç”»é¢ãŒ24ãƒ“ãƒƒãƒˆã‚«ãƒ©ãƒ¼ã€åˆã¯8ãƒ“ãƒƒãƒˆã‚«ãƒ©ãƒ¼ã«å¤‰æ›´ã•ã‚ŒãŸãŸã‚çµ‚äº†ã—ã¾ã™\n" @*/ ) ;
+//					DXST_LOGFILE_ADDUTF16LE( "\x7e\x30\x5f\x30\x6f\x30\xb9\x30\xaf\x30\xea\x30\xfc\x30\xf3\x30\x4c\x30\x0f\x5c\x55\x30\x59\x30\x4e\x30\x8b\x30\x5f\x30\x81\x30\x4b\x30\x72\x82\xd3\x30\xc3\x30\xc8\x30\x70\x65\x6e\x30\x55\x90\x44\x30\x4c\x30\x27\x59\x4d\x30\x44\x30\x5f\x30\x81\x30\x4b\x30\x42\x7d\x86\x4e\x57\x30\x7e\x30\x59\x30\x0a\x00\x00"/*@ L"ã¾ãŸã¯ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãŒå°ã•ã™ãã‚‹ãŸã‚ã‹è‰²ãƒ“ãƒƒãƒˆæ•°ã®é•ã„ãŒå¤§ãã„ãŸã‚ã‹çµ‚äº†ã—ã¾ã™\n" @*/ ) ;
 				
-					// ƒNƒ[ƒYƒtƒ‰ƒO‚ª“|‚ê‚Ä‚¢‚½‚çWM_CLOSEƒƒbƒZ[ƒW‚ğ‘—‚é
+					// ã‚¯ãƒ­ãƒ¼ã‚ºãƒ•ãƒ©ã‚°ãŒå€’ã‚Œã¦ã„ãŸã‚‰WM_CLOSEãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’é€ã‚‹
 					if( !WinData.CloseMessagePostFlag )
 					{
 						WinData.CloseMessagePostFlag = TRUE ;
@@ -2837,15 +2837,15 @@ MESNAMEEND:
 				}
 
 #ifndef DX_NON_MOVIE
-				// Ä¶’†‚Ìƒ€[ƒr[ƒIƒuƒWƒFƒNƒg‚ğ‚·‚×‚Ä~‚ß‚é
+				// å†ç”Ÿä¸­ã®ãƒ ãƒ¼ãƒ“ãƒ¼ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ã™ã¹ã¦æ­¢ã‚ã‚‹
 				DisableMovieAll() ;
 
-				// ƒ€[ƒr[ƒOƒ‰ƒtƒBƒbƒN‚ÌÄ¶
+				// ãƒ ãƒ¼ãƒ“ãƒ¼ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®å†ç”Ÿ
 				PlayMovieAll() ;
 #endif
 
-//				WinAPIData.Win32Func.MessageBoxAFunc( hWnd , "“®ì•ÛØŠO‚Ì“®ì‚ª”­¶‚µ‚½‚½‚ßI—¹‚µ‚Ü‚·" , "ƒGƒ‰[" , MB_OK ) ;
-//				return DxLib_Error( DXSTRING( "ƒEƒCƒ“ƒhƒEƒ‚[ƒh‚ÉƒfƒXƒNƒgƒbƒv‚Ì‰ğ‘œ“x‚ª•ÏX‚³‚ê‚Ü‚µ‚½AI—¹‚µ‚Ü‚·" ) ;
+//				WinAPIData.Win32Func.MessageBoxAFunc( hWnd , "å‹•ä½œä¿è¨¼å¤–ã®å‹•ä½œãŒç™ºç”Ÿã—ãŸãŸã‚çµ‚äº†ã—ã¾ã™" , "ã‚¨ãƒ©ãƒ¼" , MB_OK ) ;
+//				return DxLib_Error( DXSTRING( "ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ¢ãƒ¼ãƒ‰æ™‚ã«ãƒ‡ã‚¹ã‚¯ãƒˆãƒƒãƒ—ã®è§£åƒåº¦ãŒå¤‰æ›´ã•ã‚Œã¾ã—ãŸã€çµ‚äº†ã—ã¾ã™" ) ;
 			}
 		}
 #endif // DX_NON_GRAPHICS
@@ -2853,7 +2853,7 @@ MESNAMEEND:
 		WinData.DisplayChangeMessageFlag = TRUE ;
 		break ;
 
-	// ƒƒjƒ…[‚Éd‚È‚Á‚Ä‚¢‚é‚©ƒeƒXƒg
+	// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã«é‡ãªã£ã¦ã„ã‚‹ã‹ãƒ†ã‚¹ãƒˆ
 	case WM_NCHITTEST :
 #ifndef DX_NON_GRAPHICS
 		if( GSYS.Setting.ValidHardware && ( WinData.WindowModeFlag == FALSE && NS_GetUseFullScreenResolutionMode() != DX_FSRESOLUTIONMODE_BORDERLESS_WINDOW ) )
@@ -2864,7 +2864,7 @@ MESNAMEEND:
 #endif // DX_NON_GRAPHICS
 		break ;
 
-	// ƒEƒCƒ“ƒhƒE‚ÌƒTƒCƒY‚âˆÊ’u‚Ì•ÏX‚ªŠJn‚³‚ê‚é‚©AƒVƒXƒeƒ€ƒƒjƒ…[‚Ì‘I‘ğ‚ªŠJn‚³‚ê‚½‚ç”ñƒAƒNƒeƒBƒu‚Æ“¯‚¶ˆµ‚¢‚É‚·‚é
+	// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ã‚µã‚¤ã‚ºã‚„ä½ç½®ã®å¤‰æ›´ãŒé–‹å§‹ã•ã‚Œã‚‹ã‹ã€ã‚·ã‚¹ãƒ†ãƒ ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®é¸æŠãŒé–‹å§‹ã•ã‚ŒãŸã‚‰éã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã¨åŒã˜æ‰±ã„ã«ã™ã‚‹
 	case WM_ENTERSIZEMOVE :
 	case WM_ENTERMENULOOP :
 		if( WinData.WindowModeFlag == FALSE && NS_GetUseFullScreenResolutionMode() != DX_FSRESOLUTIONMODE_BORDERLESS_WINDOW )
@@ -2877,7 +2877,7 @@ MESNAMEEND:
 		}
 		break ;
 
-	// ƒ^ƒCƒgƒ‹ƒo[ã‚Å‰EƒNƒŠƒbƒN‚ª‚³‚ê‚½ê‡‚Í”ñƒAƒNƒeƒBƒuˆµ‚¢‚É‚·‚é
+	// ã‚¿ã‚¤ãƒˆãƒ«ãƒãƒ¼ä¸Šã§å³ã‚¯ãƒªãƒƒã‚¯ãŒã•ã‚ŒãŸå ´åˆã¯éã‚¢ã‚¯ãƒ†ã‚£ãƒ–æ‰±ã„ã«ã™ã‚‹
 	case WM_NCRBUTTONDOWN :
 		if( WinData.WindowModeFlag == FALSE && NS_GetUseFullScreenResolutionMode() != DX_FSRESOLUTIONMODE_BORDERLESS_WINDOW )
 			break ;
@@ -2889,7 +2889,7 @@ MESNAMEEND:
 		}
 		break ;
 
-	// ƒEƒCƒ“ƒhƒE‚ÌƒTƒCƒY‚âˆÊ’u‚Ì•ÏX‚ªŠJn‚³‚ê‚é‚©AƒVƒXƒeƒ€ƒƒjƒ…[‚Ì‘I‘ğ‚ªI—¹
+	// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ã‚µã‚¤ã‚ºã‚„ä½ç½®ã®å¤‰æ›´ãŒé–‹å§‹ã•ã‚Œã‚‹ã‹ã€ã‚·ã‚¹ãƒ†ãƒ ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®é¸æŠãŒçµ‚äº†
 	case WM_EXITSIZEMOVE :
 	case WM_EXITMENULOOP :
 		if( WinData.NotActive_WindowMoveOrSystemMenu )
@@ -2899,7 +2899,7 @@ MESNAMEEND:
 		}
 		break ;
 
-	// ƒJ[ƒ\ƒ‹XV
+	// ã‚«ãƒ¼ã‚½ãƒ«æ›´æ–°æ™‚
 	case WM_SETCURSOR :
 		if( WinData.NotActive_WindowMoveOrSystemMenu )
 		{
@@ -2943,7 +2943,7 @@ MESNAMEEND:
 #ifndef DX_NON_INPUT
 			int MouseX, MouseY ;
 
-			// À•W‚ğ•â³
+			// åº§æ¨™ã‚’è£œæ­£
 			if( WinData.WindowModeFlag || NS_GetUseFullScreenResolutionMode() == DX_FSRESOLUTIONMODE_BORDERLESS_WINDOW )
 			{
 				ConvScreenPositionToDxScreenPosition(
@@ -2963,7 +2963,7 @@ MESNAMEEND:
 				) ;
 			}
 
-			// ƒ{ƒ^ƒ““ü—ÍƒR[ƒh‚ğƒZƒbƒg‚·‚é
+			// ãƒœã‚¿ãƒ³å…¥åŠ›ã‚³ãƒ¼ãƒ‰ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 			switch( message )
 			{
 			case WM_LBUTTONDOWN :
@@ -2995,7 +2995,7 @@ MESNAMEEND:
 			}
 #endif // DX_NON_INPUT
 
-			// ƒ}ƒEƒX‚ğg—p‚µ‚È‚¢İ’è‚É‚È‚Á‚Ä‚¢‚½ê‡ƒ}ƒEƒXƒJ[ƒ\ƒ‹‚ğÁ‚·
+			// ãƒã‚¦ã‚¹ã‚’ä½¿ç”¨ã—ãªã„è¨­å®šã«ãªã£ã¦ã„ãŸå ´åˆãƒã‚¦ã‚¹ã‚«ãƒ¼ã‚½ãƒ«ã‚’æ¶ˆã™
 			if( /*!WinData.WindowModeFlag &&*/ /*!WinData.MouseDispFlag*/ WinData.MouseDispState == FALSE && ( WinData.WindowModeFlag == FALSE || CheckMousePosClientArea() == TRUE ) )
 			{
 				WinAPIData.Win32Func.SetCursorFunc( NULL ) ;
@@ -3008,23 +3008,23 @@ MESNAMEEND:
 		}
 		break ;
 
-	// Ä•`‰æƒƒbƒZ[ƒW
+	// å†æç”»ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 	case WM_PAINT :
 #ifndef DX_NON_GRAPHICS
 		{
 			PAINTSTRUCT PaintStr ;
 
-			// WM_PAINT ƒƒbƒZ[ƒW‚ª—ˆ‚½‚±‚Æ‚ğ‹L˜^‚µ‚Ä‚¨‚­
+			// WM_PAINT ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãŒæ¥ãŸã“ã¨ã‚’è¨˜éŒ²ã—ã¦ãŠã
 			WinData.RecvWM_PAINTFlag = TRUE;
 
 			if( WinAPIData.Win32Func.BeginPaintFunc( hWnd , &PaintStr ) == NULL ) break ;
 
-			// ƒEƒCƒ“ƒhƒEƒ‚[ƒh‚Ìê‡‚Ì‚İˆ—‚ğs‚¤
+			// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ¢ãƒ¼ãƒ‰ã®å ´åˆã®ã¿å‡¦ç†ã‚’è¡Œã†
 			if( WinData.WindowModeFlag == TRUE || NS_GetUseFullScreenResolutionMode() == DX_FSRESOLUTIONMODE_BORDERLESS_WINDOW )
 			{
 				WinData.WM_PAINTFlag = TRUE ;
 
-				// WM_PAINT ‚Ìˆ—‚ğs‚¤
+				// WM_PAINT ã®å‡¦ç†ã‚’è¡Œã†
 				WM_PAINTProcess( PaintStr.hdc, &PaintStr.rcPaint ) ;
 
 				WinData.WM_PAINTFlag = FALSE ;
@@ -3034,16 +3034,16 @@ MESNAMEEND:
 #endif // DX_NON_GRAPHICS
 		break ;
 
-	// ƒVƒXƒeƒ€•¶šƒR[ƒhƒƒbƒZ[ƒW
+	// ã‚·ã‚¹ãƒ†ãƒ æ–‡å­—ã‚³ãƒ¼ãƒ‰ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 	case WM_SYSCHAR :
 		{
-			// “ü—Í‚³‚ê‚½ƒVƒXƒeƒ€•¶šƒR[ƒh‚ğ•Û‘¶
+			// å…¥åŠ›ã•ã‚ŒãŸã‚·ã‚¹ãƒ†ãƒ æ–‡å­—ã‚³ãƒ¼ãƒ‰ã‚’ä¿å­˜
 			WinData.InputSysChara = (wchar_t)wParam ;
 
-			// ‚à‚µALT+ENTER‚ª‚¨‚³‚êA”ñ“¯ŠúƒEƒCƒ“ƒhƒEƒ‚[ƒh•ÏX‹@”\‚ª—LŒø‚É‚È‚Á‚Ä‚¢‚½‚ç
+			// ã‚‚ã—ALT+ENTERãŒãŠã•ã‚Œã€éåŒæœŸã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ¢ãƒ¼ãƒ‰å¤‰æ›´æ©Ÿèƒ½ãŒæœ‰åŠ¹ã«ãªã£ã¦ã„ãŸã‚‰
 			if( (wchar_t)wParam == CTRL_CODE_CR )
 			{
-				// ƒEƒCƒ“ƒhƒEƒ‚[ƒh•ÏXƒtƒ‰ƒO‚ğ—§‚Ä‚é
+				// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ¢ãƒ¼ãƒ‰å¤‰æ›´ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 				if( WinData.UseChangeWindowModeFlag )
 				{
 					WinData.ChangeWindowModeFlag = TRUE ;
@@ -3059,7 +3059,7 @@ MESNAMEEND:
 		break ;
 
 #ifndef DX_NON_INPUTSTRING
-	// •¶šƒR[ƒhƒƒbƒZ[ƒW
+	// æ–‡å­—ã‚³ãƒ¼ãƒ‰ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 	case WM_CHAR :
 		{
 			int Time = NS_GetNowCount( FALSE ) ;
@@ -3067,31 +3067,31 @@ MESNAMEEND:
 			WPARAM PrevWParam = WinData.WM_CHAR_wParam ;
 			int CancelTime = 40 ;
 
-			// Windows10 ‚ÅIME—LŒøó‘Ô‚Å‚Í•¶š“ü—Í‚ğ–³Œø‰»AIME•¶š“ü—Í’†‚Ìê‡‚Í WM_CHAR ‚ÌƒƒbƒZ[ƒW©‘Ì‚ğ–³‹‚·‚é
+			// Windows10 ã§IMEæœ‰åŠ¹çŠ¶æ…‹ã§ã¯æ–‡å­—å…¥åŠ›ã‚’ç„¡åŠ¹åŒ–ã€IMEæ–‡å­—å…¥åŠ›ä¸­ã®å ´åˆã¯ WM_CHAR ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è‡ªä½“ã‚’ç„¡è¦–ã™ã‚‹
 			if( WinData.WindowsVersion >= DX_WINDOWSVERSION_10 &&
 				( ( CharBuf.IMEUseFlag_OSSet && CharBuf.IMESwitch && wParam > CTRL_CODE_CMP ) || CharBuf.IMEInputFlag ) )
 			{
 				break ;
 			}
 
-			// SetWindows10_WM_CHAR_CancelTime ‚ªg—p‚³‚ê‚Ä‚¢‚½‚çİ’è‚³‚ê‚½’l‚ğg—p‚·‚é
+			// SetWindows10_WM_CHAR_CancelTime ãŒä½¿ç”¨ã•ã‚Œã¦ã„ãŸã‚‰è¨­å®šã•ã‚ŒãŸå€¤ã‚’ä½¿ç”¨ã™ã‚‹
 			if( WinData.EnableWindows10_WM_CHAR_CancelTime )
 			{
 				CancelTime = WinData.Windows10_WM_CHAR_CancelTime ;
 			}
 
-			// Windows10 ‚Ìê‡‚Í 40ms ˆÈã‚‘¬‚É“¯‚¶•¶š‚ğ“ü—Í‚Å‚«‚È‚¢‚æ‚¤‚É‚·‚é
-			// ( ƒXƒNƒŠ[ƒ“ƒL[ƒ{[ƒh‚Åˆê‰ñ‚Ì“ü—Í‚Å“¯‚¶•¶š‚ª‚Q•¶š“ü—Í‚³‚ê‚Ä‚µ‚Ü‚¤Œ»Û‚É‘Î‚·‚é‹ê“÷‚Ìô )
+			// Windows10 ã®å ´åˆã¯ 40ms ä»¥ä¸Šé«˜é€Ÿã«åŒã˜æ–‡å­—ã‚’å…¥åŠ›ã§ããªã„ã‚ˆã†ã«ã™ã‚‹
+			// ( ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ã§ä¸€å›ã®å…¥åŠ›ã§åŒã˜æ–‡å­—ãŒï¼’æ–‡å­—å…¥åŠ›ã•ã‚Œã¦ã—ã¾ã†ç¾è±¡ã«å¯¾ã™ã‚‹è‹¦è‚‰ã®ç­– )
 			if( WinData.DisableWindows10_WM_CHAR_CancelTime == TRUE ||
 				WinData.WindowsVersion < DX_WINDOWSVERSION_10 ||
 				Time - PrevTime >= CancelTime ||
 				PrevWParam != wParam )
 			{
-				// WM_CHAR ‚ª”­¶‚µ‚½ŠÔ‚Æ wParam ‚ğ•Û‘¶
+				// WM_CHAR ãŒç™ºç”Ÿã—ãŸæ™‚é–“ã¨ wParam ã‚’ä¿å­˜
 				WinData.WM_CHAR_Time = Time ;
 				WinData.WM_CHAR_wParam = wParam ;
 
-				// •¶š‚ğƒoƒbƒtƒ@‚ÉƒRƒs[
+				// æ–‡å­—ã‚’ãƒãƒƒãƒ•ã‚¡ã«ã‚³ãƒ”ãƒ¼
 				if( wParam == 10 )
 				{
 					StockInputChar_WCHAR_T( ( wchar_t )CTRL_CODE_CR ) ;
@@ -3135,10 +3135,10 @@ MESNAMEEND:
 			return 0 ;
 
 		if( ( wParam & 0xfff0 ) == SC_MONITORPOWER )
-			return 1 ;		// È“d—Íƒ‚[ƒh‚ğ–h~‚·‚é
+			return 1 ;		// çœé›»åŠ›ãƒ¢ãƒ¼ãƒ‰ã‚’é˜²æ­¢ã™ã‚‹
 
 		if( ( wParam & 0xfff0 ) == SC_SCREENSAVE )
-			return 1 ;		// ƒXƒNƒŠ[ƒ“ƒZ[ƒo[‚Ì‹N“®‚ğ–h~‚·‚é
+			return 1 ;		// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚»ãƒ¼ãƒãƒ¼ã®èµ·å‹•ã‚’é˜²æ­¢ã™ã‚‹
 //		if( wParam == SC_CLOSE && WinData.SysCommandOffFlag == TRUE )
 //			return 0 ;
 		break ;
@@ -3167,7 +3167,7 @@ MESNAMEEND:
 */
 
 #ifndef DX_NON_INPUT
-	// ‚e‚P‚OƒƒbƒZ[ƒW
+	// ï¼¦ï¼‘ï¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 	case F10MES :
 		{
 			if( wParam == 1 )
@@ -3181,7 +3181,7 @@ MESNAMEEND:
 		}
 		break ;
 
-	// ‚e‚P‚QƒƒbƒZ[ƒW
+	// ï¼¦ï¼‘ï¼’ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 	case F12MES :
 		{
 			if( wParam == 1 )
@@ -3197,16 +3197,16 @@ MESNAMEEND:
 #endif // DX_NON_INPUT
 
 #ifndef DX_NON_INPUTSTRING
-	// ƒL[‰Ÿ‰ºƒƒbƒZ[ƒW
+	// ã‚­ãƒ¼æŠ¼ä¸‹ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 	case WM_KEYDOWN:
 		{
-			// ƒoƒbƒtƒ@‚ªˆê”t‚Ìê‡‚Í‚È‚É‚à‚µ‚È‚¢
+			// ãƒãƒƒãƒ•ã‚¡ãŒä¸€æ¯ã®å ´åˆã¯ãªã«ã‚‚ã—ãªã„
 			if( ( CharBuf.EdPoint + 1 == CharBuf.StPoint ) ||
 				( CharBuf.StPoint == 0 && CharBuf.EdPoint == CHARBUFFER_SIZE ) ) break ;
 
-			// ƒRƒ“ƒgƒ[ƒ‹•¶šƒR[ƒh‚É‘Î‰‚·‚éƒL[‚ª
-			// ‰Ÿ‚³‚ê‚Ä‚¢‚½‚çƒoƒbƒtƒ@‚ÉŠi”[‚·‚é
-			// ( Windows10 ‚ÅIME•¶š“ü—Í’†‚Ìê‡‚ÍƒRƒ“ƒgƒ[ƒ‹ƒL[‚ğ–³‹‚·‚é )
+			// ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«æ–‡å­—ã‚³ãƒ¼ãƒ‰ã«å¯¾å¿œã™ã‚‹ã‚­ãƒ¼ãŒ
+			// æŠ¼ã•ã‚Œã¦ã„ãŸã‚‰ãƒãƒƒãƒ•ã‚¡ã«æ ¼ç´ã™ã‚‹
+			// ( Windows10 ã§IMEæ–‡å­—å…¥åŠ›ä¸­ã®å ´åˆã¯ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã‚­ãƒ¼ã‚’ç„¡è¦–ã™ã‚‹ )
 			if( WinData.WindowsVersion < DX_WINDOWSVERSION_10 || CharBuf.IMEInputFlag == FALSE )
 			{
 				int   VKey  = ( int )wParam ;
@@ -3219,17 +3219,17 @@ MESNAMEEND:
 					int PrevTime = WinData.WM_CHAR_Time ;
 					WPARAM PrevWParam = WinData.WM_CHAR_wParam ;
 
-					// Windows10 ‚Ìê‡‚Í 40ms ˆÈã‚‘¬‚É“¯‚¶•¶š‚ğ“ü—Í‚Å‚«‚È‚¢‚æ‚¤‚É‚·‚é
-					// ( ƒXƒNƒŠ[ƒ“ƒL[ƒ{[ƒh‚Åˆê‰ñ‚Ì“ü—Í‚Å“¯‚¶•¶š‚ª‚Q•¶š“ü—Í‚³‚ê‚Ä‚µ‚Ü‚¤Œ»Û‚É‘Î‚·‚é‹ê“÷‚Ìô )
+					// Windows10 ã®å ´åˆã¯ 40ms ä»¥ä¸Šé«˜é€Ÿã«åŒã˜æ–‡å­—ã‚’å…¥åŠ›ã§ããªã„ã‚ˆã†ã«ã™ã‚‹
+					// ( ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ã§ä¸€å›ã®å…¥åŠ›ã§åŒã˜æ–‡å­—ãŒï¼’æ–‡å­—å…¥åŠ›ã•ã‚Œã¦ã—ã¾ã†ç¾è±¡ã«å¯¾ã™ã‚‹è‹¦è‚‰ã®ç­– )
 					if( WinData.WindowsVersion < DX_WINDOWSVERSION_10 ||
 						Time - PrevTime > 40 ||
 						PrevWParam != ( WPARAM )*( CCode + 1 ) )
 					{
-						// WM_CHAR ‚ª”­¶‚µ‚½ŠÔ‚Æ‚µ‚Ä’l‚ğ•Û‘¶
+						// WM_CHAR ãŒç™ºç”Ÿã—ãŸæ™‚é–“ã¨ã—ã¦å€¤ã‚’ä¿å­˜
 						WinData.WM_CHAR_Time = Time ;
 						WinData.WM_CHAR_wParam = *( CCode + 1 ) ;
 
-						// ƒoƒbƒtƒ@‚É•¶šƒR[ƒh‚ğ‘ã“ü
+						// ãƒãƒƒãƒ•ã‚¡ã«æ–‡å­—ã‚³ãƒ¼ãƒ‰ã‚’ä»£å…¥
 						StockInputChar_WCHAR_T( ( wchar_t )*( CCode + 1 ) ) ;
 					}
 				}
@@ -3238,12 +3238,12 @@ MESNAMEEND:
 		break ;
 #endif // DX_NON_INPUTSTRING
 
-	// ƒzƒC[ƒ‹‚ÌˆÚ“®—Êæ“¾
+	// ãƒ›ã‚¤ãƒ¼ãƒ«ã®ç§»å‹•é‡å–å¾—
 	case WM_MOUSEWHEEL :
 		{
 			int MoveParamZ = ( SHORT )HIWORD( wParam ) ;
 
-			// ¡‚Ü‚Å‚ÌˆÚ“®‚Æ•ûŒü‚ªˆÙ‚È‚éê‡‚Í‚O‚ÉdØ‚è‚È‚¨‚·
+			// ä»Šã¾ã§ã®ç§»å‹•ã¨æ–¹å‘ãŒç•°ãªã‚‹å ´åˆã¯ï¼ã«ä»•åˆ‡ã‚ŠãªãŠã™
 			if( ( MoveParamZ < 0 && WinData.MouseMoveZ > 0 ) ||
 				( MoveParamZ > 0 && WinData.MouseMoveZ < 0 ) )
 			{
@@ -3256,12 +3256,12 @@ MESNAMEEND:
 		}
 		break ;
 
-	// ƒzƒC[ƒ‹‚Ì‰¡ˆÚ“®—Êæ“¾
+	// ãƒ›ã‚¤ãƒ¼ãƒ«ã®æ¨ªç§»å‹•é‡å–å¾—
 	case WM_MOUSEHWHEEL :
 		{
 			int MoveParamHZ = ( SHORT )HIWORD( wParam ) ;
 
-			// ¡‚Ü‚Å‚ÌˆÚ“®‚Æ•ûŒü‚ªˆÙ‚È‚éê‡‚Í‚O‚ÉdØ‚è‚È‚¨‚·
+			// ä»Šã¾ã§ã®ç§»å‹•ã¨æ–¹å‘ãŒç•°ãªã‚‹å ´åˆã¯ï¼ã«ä»•åˆ‡ã‚ŠãªãŠã™
 			if( ( MoveParamHZ < 0 && WinData.MouseMoveHZ > 0 ) ||
 				( MoveParamHZ > 0 && WinData.MouseMoveHZ < 0 ) )
 			{
@@ -3275,7 +3275,7 @@ MESNAMEEND:
 		break ;
 
 #ifndef DX_NON_INPUT
-	// ƒ^ƒbƒ`
+	// ã‚¿ãƒƒãƒ
 	case WM_TOUCH :
 		{
 			UINT TouchInputNum ;
@@ -3338,7 +3338,7 @@ MESNAMEEND:
 		break ;
 #endif // DX_NON_INPUT
 
-	// ƒEƒCƒ“ƒhƒEˆÚ“®ˆ—
+	// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ç§»å‹•æ™‚å‡¦ç†
 	case WM_MOVE :
 		WinAPIData.Win32Func.GetWindowRectFunc( hWnd, &WinData.WindowEdgeRect ) ;
 		if( ( WinData.WindowModeFlag || NS_GetUseFullScreenResolutionMode() == DX_FSRESOLUTIONMODE_BORDERLESS_WINDOW ) && !WinData.ChangeWindodwFlag )
@@ -3347,7 +3347,7 @@ MESNAMEEND:
 		}
 		break ;
 
-	// ƒEƒCƒ“ƒhƒEˆÚ“®‚Ì—}§
+	// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ç§»å‹•ã®æŠ‘åˆ¶
 	case WM_MOVING :
 		WinAPIData.Win32Func.GetWindowRectFunc( hWnd, &WinData.WindowEdgeRect ) ;
 		if( WinData.WindowModeFlag == FALSE && NS_GetUseFullScreenResolutionMode() != DX_FSRESOLUTIONMODE_BORDERLESS_WINDOW )
@@ -3358,9 +3358,9 @@ MESNAMEEND:
 		}
 		break ;
 
-	// ƒAƒNƒeƒBƒuó‘Ô•Ï‰»
+	// ã‚¢ã‚¯ãƒ†ã‚£ãƒ–çŠ¶æ…‹å¤‰åŒ–æ™‚
 	case WM_ACTIVATEAPP :
-		// ”ñƒAƒNƒeƒBƒu‚É‚È‚Á‚½ê‡‚Ì‚İ WM_ACTIVATE ‚Æ‚µ‚Äˆ—‚·‚é
+		// éã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ãªã£ãŸå ´åˆã®ã¿ WM_ACTIVATE ã¨ã—ã¦å‡¦ç†ã™ã‚‹
 		if( wParam == 0 ) goto ACTIVATELABEL ;
 		break ;
 
@@ -3368,7 +3368,7 @@ MESNAMEEND:
 ACTIVATELABEL:
 #ifndef DX_NON_ASYNCLOAD
 		/*
-		// ”ñ“¯Šú“Ç‚İ‚İ‚Ì“r’†‚Ìê‡‚ÍA”ñ“¯Šú“Ç‚İ‚İ‚ªI—¹‚·‚é‚Ü‚Å‘Ò‚Â
+		// éåŒæœŸèª­ã¿è¾¼ã¿ã®é€”ä¸­ã®å ´åˆã¯ã€éåŒæœŸèª­ã¿è¾¼ã¿ãŒçµ‚äº†ã™ã‚‹ã¾ã§å¾…ã¤
 		if( WinData.QuitMessageFlag == FALSE && WinData.CloseMessagePostFlag == FALSE )
 		{
 			while( NS_GetASyncLoadNum() > 0 )
@@ -3390,41 +3390,41 @@ ACTIVATELABEL:
 		WM_ACTIVATEProcessUseStock( wParam, lParam, message == WM_ACTIVATEAPP ? TRUE : FALSE, FALSE ) ;
 		break;
 
-	// ƒEƒCƒ“ƒhƒEƒNƒ[ƒY
+	// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚¯ãƒ­ãƒ¼ã‚ºæ™‚
 	case WM_CLOSE :
-		// ƒ†[ƒU[’ñ‹Ÿ‚ÌƒEƒCƒ“ƒhƒE‚¾‚Á‚½‚ç‰½‚à‚µ‚È‚¢
+		// ãƒ¦ãƒ¼ã‚¶ãƒ¼æä¾›ã®ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã ã£ãŸã‚‰ä½•ã‚‚ã—ãªã„
 		if( WinData.UserWindowFlag == FALSE )
 		{
-			DXST_LOGFILE_ADDUTF16LE( "\xa6\x30\xa4\x30\xf3\x30\xc9\x30\xa6\x30\x92\x30\x89\x95\x58\x30\x88\x30\x46\x30\x68\x30\x57\x30\x66\x30\x44\x30\x7e\x30\x59\x30\x0a\x00\x00"/*@ L"ƒEƒCƒ“ƒhƒE‚ğ•Â‚¶‚æ‚¤‚Æ‚µ‚Ä‚¢‚Ü‚·\n" @*/ ) ;
+			DXST_LOGFILE_ADDUTF16LE( "\xa6\x30\xa4\x30\xf3\x30\xc9\x30\xa6\x30\x92\x30\x89\x95\x58\x30\x88\x30\x46\x30\x68\x30\x57\x30\x66\x30\x44\x30\x7e\x30\x59\x30\x0a\x00\x00"/*@ L"ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚’é–‰ã˜ã‚ˆã†ã¨ã—ã¦ã„ã¾ã™\n" @*/ ) ;
 
-			// WM_DESTROYƒƒbƒZ[ƒW‚ğ¶¬
+			// WM_DESTROYãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’ç”Ÿæˆ
 			if( WinData.NonUserCloseEnableFlag == FALSE || WinData.AltF4_EndFlag == 1 )
 				WinAPIData.Win32Func.DestroyWindowFunc( WinData.MainWindow ) ;
 
-			// ‹­§I—¹‚©”»’è
+			// å¼·åˆ¶çµ‚äº†ã‹åˆ¤å®š
 			if( WinData.AltF4_EndFlag == 0 ) WinData.AltF4_EndFlag = 4 ;
 
 			return 0 ;
 		}
 		break ;
 
-	// ƒEƒCƒ“ƒhƒE”jŠü
+	// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ç ´æ£„æ™‚
 	case WM_DESTROY :
-		// ƒ†[ƒU[’ñ‹Ÿ‚ÌƒEƒCƒ“ƒhƒE‚¾‚Á‚½‚ç‰½‚à‚µ‚È‚¢
+		// ãƒ¦ãƒ¼ã‚¶ãƒ¼æä¾›ã®ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã ã£ãŸã‚‰ä½•ã‚‚ã—ãªã„
 		if( WinData.UserWindowFlag == FALSE )
 		{
-			DXST_LOGFILE_ADDUTF16LE( "\xa6\x30\xa4\x30\xf3\x30\xc9\x30\xa6\x30\x4c\x30\x34\x78\xc4\x68\x55\x30\x8c\x30\x88\x30\x46\x30\x68\x30\x57\x30\x66\x30\x44\x30\x7e\x30\x59\x30\x0a\x00\x00"/*@ L"ƒEƒCƒ“ƒhƒE‚ª”jŠü‚³‚ê‚æ‚¤‚Æ‚µ‚Ä‚¢‚Ü‚·\n" @*/ ) ;
+			DXST_LOGFILE_ADDUTF16LE( "\xa6\x30\xa4\x30\xf3\x30\xc9\x30\xa6\x30\x4c\x30\x34\x78\xc4\x68\x55\x30\x8c\x30\x88\x30\x46\x30\x68\x30\x57\x30\x66\x30\x44\x30\x7e\x30\x59\x30\x0a\x00\x00"/*@ L"ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãŒç ´æ£„ã•ã‚Œã‚ˆã†ã¨ã—ã¦ã„ã¾ã™\n" @*/ ) ;
 
-			// WM_DESTROYƒƒbƒZ[ƒW‚ğó‚¯‚½Ø‹’‚ğc‚·
+			// WM_DESTROYãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å—ã‘ãŸè¨¼æ‹ ã‚’æ®‹ã™
 			WinData.DestroyMessageCatchFlag = TRUE ;
 
-			// ƒ\ƒtƒg‚ÌI—¹ƒƒbƒZ[ƒW‚ğ‘—‚é
+			// ã‚½ãƒ•ãƒˆã®çµ‚äº†ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’é€ã‚‹
 			if( WinData.NonDxLibEndPostQuitMessageFlag == FALSE )
 				WinAPIData.Win32Func.PostQuitMessageFunc( 0 ) ;
 			WinData.QuitMessageFlag = TRUE ;
 			DxLib_EndRequest() ;
 
-			DXST_LOGFILE_ADDUTF16LE( "\xbd\x30\xd5\x30\xc8\x30\x92\x30\x42\x7d\x86\x4e\x59\x30\x8b\x30\x96\x6e\x99\x50\x4c\x30\x74\x65\x44\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ƒ\ƒtƒg‚ğI—¹‚·‚é€”õ‚ª®‚¢‚Ü‚µ‚½\n" @*/ ) ;
+			DXST_LOGFILE_ADDUTF16LE( "\xbd\x30\xd5\x30\xc8\x30\x92\x30\x42\x7d\x86\x4e\x59\x30\x8b\x30\x96\x6e\x99\x50\x4c\x30\x74\x65\x44\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ã‚½ãƒ•ãƒˆã‚’çµ‚äº†ã™ã‚‹æº–å‚™ãŒæ•´ã„ã¾ã—ãŸ\n" @*/ ) ;
 		}
 		break ;
 
@@ -3432,7 +3432,7 @@ ACTIVATELABEL:
 		break ;
 
 	case WM_ENDSESSION :
-		// ƒVƒƒƒbƒgƒ_ƒEƒ“‘O‚ÉŒÄ‚ÔŠÖ”‚ª‚ ‚éê‡‚Í‚»‚ÌŠÖ”‚ğŒÄ‚Ô
+		// ã‚·ãƒ£ãƒƒãƒˆãƒ€ã‚¦ãƒ³å‰ã«å‘¼ã¶é–¢æ•°ãŒã‚ã‚‹å ´åˆã¯ãã®é–¢æ•°ã‚’å‘¼ã¶
 		if( WinData.ShutdownCallBackFunction != NULL &&
 			WinAPIData.Win32Func.ShutdownBlockReasonCreateFunc != NULL &&
 			WinAPIData.Win32Func.ShutdownBlockReasonDestroyFunc != NULL )
@@ -3444,14 +3444,14 @@ ACTIVATELABEL:
 		break ;
 
 #ifndef DX_NON_SOUND
-	// ‚l‚h‚c‚h‰‰‘tI—¹
+	// ï¼­ï¼©ï¼¤ï¼©æ¼”å¥çµ‚äº†æ™‚
 	case MM_MCINOTIFY:	
-		MidiCallBackProcess() ;					// ‚l‚h‚c‚h‰‰‘tI—¹‚Ìˆ—
+		MidiCallBackProcess() ;					// ï¼­ï¼©ï¼¤ï¼©æ¼”å¥çµ‚äº†æ™‚ã®å‡¦ç†
 		break;
 #endif // DX_NON_SOUND
 
 #ifndef DX_NON_NETWORK
-	// ‚v‚‰‚‚r‚‚ƒ‚‹ƒƒbƒZ[ƒW
+	// ï¼·ï½‰ï½ï¼³ï½ï½ƒï½‹ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 	case WSA_WINSOCKMESSAGE :
 		return WinSockProc( hWnd , message , wParam , lParam ) ;
 #endif
@@ -3469,7 +3469,7 @@ ACTIVATELABEL:
 	}
 }
 
-// ”ñƒAƒNƒeƒBƒu‚©‚Ç‚¤‚©‚ğƒ`ƒFƒbƒN‚·‚é
+// éã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã‹ã©ã†ã‹ã‚’ãƒã‚§ãƒƒã‚¯ã™ã‚‹
 extern int CheckActiveWait( void )
 {
 	if(
@@ -3500,7 +3500,7 @@ extern int CheckActiveWait( void )
 	}
 }
 
-// ƒAƒNƒeƒBƒu‚É‚È‚é‚Ü‚Å‰½‚à‚µ‚È‚¢
+// ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ãªã‚‹ã¾ã§ä½•ã‚‚ã—ãªã„
 extern void DxActiveWait( void )
 {
 	if( CheckActiveWait() == TRUE && WinData.QuitMessageFlag == FALSE && WinData.MainWindow != NULL )
@@ -3517,7 +3517,7 @@ extern void DxActiveWait( void )
 	}
 }
 
-// WM_QUIT ‚ª”­s‚³‚ê‚Ä‚¢‚é‚©‚Ç‚¤‚©‚ğæ“¾‚·‚é
+// WM_QUIT ãŒç™ºè¡Œã•ã‚Œã¦ã„ã‚‹ã‹ã©ã†ã‹ã‚’å–å¾—ã™ã‚‹
 extern int GetQuitMessageFlag( void )
 {
 	return WinData.QuitMessageFlag;
@@ -3526,9 +3526,9 @@ extern int GetQuitMessageFlag( void )
 
 
 
-// ƒEƒCƒ“ƒhƒEŠÖŒWî•ñæ“¾ŠÖ”
+// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦é–¢ä¿‚æƒ…å ±å–å¾—é–¢æ•°
 
-// ƒEƒCƒ“ƒhƒE‚ÌƒNƒ‰ƒCƒAƒ“ƒg—Ìˆæ‚ğæ“¾‚·‚é
+// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆé ˜åŸŸã‚’å–å¾—ã™ã‚‹
 extern int NS_GetWindowCRect( RECT *RectBuf )
 {
 	int H;
@@ -3541,7 +3541,7 @@ extern int NS_GetWindowCRect( RECT *RectBuf )
 	return 0 ;
 }
 
-// ƒƒCƒ“ƒEƒCƒ“ƒhƒE‚ÌƒNƒ‰ƒCƒAƒ“ƒg—Ìˆæ‚ğæ“¾‚·‚é
+// ãƒ¡ã‚¤ãƒ³ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆé ˜åŸŸã‚’å–å¾—ã™ã‚‹
 extern int NS_GetWindowClientRect( RECT *RectBuf )
 {
 	int H;
@@ -3554,7 +3554,7 @@ extern int NS_GetWindowClientRect( RECT *RectBuf )
 	return 0 ;
 }
 
-// ƒƒCƒ“ƒEƒCƒ“ƒhƒE‚Ì˜g‚Ì•”•ª‚àŠÜ‚ß‚½‘S‘Ì‚Ì—Ìˆæ‚ğæ“¾‚·‚é
+// ãƒ¡ã‚¤ãƒ³ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®æ ã®éƒ¨åˆ†ã‚‚å«ã‚ãŸå…¨ä½“ã®é ˜åŸŸã‚’å–å¾—ã™ã‚‹
 extern int NS_GetWindowFrameRect( RECT *RectBuf )
 {
 	SETUP_WIN_API
@@ -3577,37 +3577,37 @@ extern int NS_GetWindowFrameRect( RECT *RectBuf )
 	return 0 ;
 }
 
-// ƒEƒCƒ“ƒhƒE‚ÌƒAƒNƒeƒBƒuƒtƒ‰ƒO‚ğæ“¾
+// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ãƒ•ãƒ©ã‚°ã‚’å–å¾—
 extern int NS_GetWindowActiveFlag( void )
 {
 	return WinData.ActiveFlag ;
 }
 
-// ƒƒCƒ“ƒEƒCƒ“ƒhƒE‚ªÅ¬‰»‚³‚ê‚Ä‚¢‚é‚©‚Ç‚¤‚©‚ğæ“¾‚·‚é( –ß‚è’l  TRUE:Å¬‰»‚³‚ê‚Ä‚¢‚é  FALSE:Å¬‰»‚³‚ê‚Ä‚¢‚È‚¢ )
+// ãƒ¡ã‚¤ãƒ³ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãŒæœ€å°åŒ–ã•ã‚Œã¦ã„ã‚‹ã‹ã©ã†ã‹ã‚’å–å¾—ã™ã‚‹( æˆ»ã‚Šå€¤  TRUE:æœ€å°åŒ–ã•ã‚Œã¦ã„ã‚‹  FALSE:æœ€å°åŒ–ã•ã‚Œã¦ã„ãªã„ )
 extern int NS_GetWindowMinSizeFlag( void )
 {
 	return WinData.WindowMinSizeFlag ;
 }
 
-// ƒƒCƒ“ƒEƒCƒ“ƒhƒE‚ªÅ‘å‰»‚³‚ê‚Ä‚¢‚é‚©‚Ç‚¤‚©‚ğæ“¾‚·‚é( –ß‚è’l  TRUE:Å‘å‰»‚³‚ê‚Ä‚¢‚é  FALSE:Å‘å‰»‚³‚ê‚Ä‚¢‚È‚¢ )
+// ãƒ¡ã‚¤ãƒ³ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãŒæœ€å¤§åŒ–ã•ã‚Œã¦ã„ã‚‹ã‹ã©ã†ã‹ã‚’å–å¾—ã™ã‚‹( æˆ»ã‚Šå€¤  TRUE:æœ€å¤§åŒ–ã•ã‚Œã¦ã„ã‚‹  FALSE:æœ€å¤§åŒ–ã•ã‚Œã¦ã„ãªã„ )
 extern int NS_GetWindowMaxSizeFlag( void )
 {
 	return WinData.WindowMaximizeFlag ;
 }
 
-// ƒƒCƒ“ƒEƒCƒ“ƒhƒE‚Ìƒnƒ“ƒhƒ‹‚ğæ“¾‚·‚é
+// ãƒ¡ã‚¤ãƒ³ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ãƒãƒ³ãƒ‰ãƒ«ã‚’å–å¾—ã™ã‚‹
 extern HWND NS_GetMainWindowHandle( void )
 {
 	return WinData.MainWindow ;
 }
 
-// ƒEƒCƒ“ƒhƒEƒ‚[ƒh‚Å‹N“®‚µ‚Ä‚¢‚é‚©A‚Ìƒtƒ‰ƒO‚ğæ“¾‚·‚é
+// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ¢ãƒ¼ãƒ‰ã§èµ·å‹•ã—ã¦ã„ã‚‹ã‹ã€ã®ãƒ•ãƒ©ã‚°ã‚’å–å¾—ã™ã‚‹
 extern int NS_GetWindowModeFlag( void )
 {
 	return WinData.WindowModeFlag ;
 }
 
-// ‹N“®‚ÌƒfƒXƒNƒgƒbƒv‚Ì‰æ–Êƒ‚[ƒh‚ğæ“¾‚·‚é
+// èµ·å‹•æ™‚ã®ãƒ‡ã‚¹ã‚¯ãƒˆãƒƒãƒ—ã®ç”»é¢ãƒ¢ãƒ¼ãƒ‰ã‚’å–å¾—ã™ã‚‹
 extern int NS_GetDefaultState( int *SizeX, int *SizeY, int *ColorBitDepth, int *RefreshRate , int *LeftTopX, int *LeftTopY, int *PixelSizeX, int *PixelSizeY, int *XDpi, int *YDpi )
 {
 	SETUP_WIN_API
@@ -3708,11 +3708,11 @@ extern int NS_GetDefaultState( int *SizeX, int *SizeY, int *ColorBitDepth, int *
 
 #endif // DX_NON_GRAPHICS
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒ‚ƒjƒ^[‚ÌDPI‚ğæ“¾‚·‚é
+// ãƒ¢ãƒ‹ã‚¿ãƒ¼ã®DPIã‚’å–å¾—ã™ã‚‹
 extern int NS_GetMonitorDpi( int *XDpi, int *YDpi, int MonitorIndex )
 {
 	SETUP_WIN_API
@@ -3759,17 +3759,17 @@ extern int NS_GetMonitorDpi( int *XDpi, int *YDpi, int MonitorIndex )
 
 #endif // DX_NON_GRAPHICS
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒ\ƒtƒg‚ªƒAƒNƒeƒBƒu‚©‚Ç‚¤‚©‚ğæ“¾‚·‚é
+// ã‚½ãƒ•ãƒˆãŒã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã‹ã©ã†ã‹ã‚’å–å¾—ã™ã‚‹
 extern int NS_GetActiveFlag( void )
 {
 	return WinData.ActiveFlag ;
 }
 
-// ”ñƒAƒNƒeƒBƒu‚É‚È‚èAˆ—‚ªˆê’â~‚µ‚Ä‚¢‚½‚©‚Ç‚¤‚©‚ğæ“¾‚·‚é(ˆø” ResetFlag=TRUE:ó‘Ô‚ğƒŠƒZƒbƒg FALSE:ó‘Ô‚ğƒŠƒZƒbƒg‚µ‚È‚¢    –ß‚è’l: 0=ˆê’â~‚Í‚µ‚Ä‚¢‚È‚¢  1=ˆê’â~‚µ‚Ä‚¢‚½ )
+// éã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ãªã‚Šã€å‡¦ç†ãŒä¸€æ™‚åœæ­¢ã—ã¦ã„ãŸã‹ã©ã†ã‹ã‚’å–å¾—ã™ã‚‹(å¼•æ•° ResetFlag=TRUE:çŠ¶æ…‹ã‚’ãƒªã‚»ãƒƒãƒˆ FALSE:çŠ¶æ…‹ã‚’ãƒªã‚»ãƒƒãƒˆã—ãªã„    æˆ»ã‚Šå€¤: 0=ä¸€æ™‚åœæ­¢ã¯ã—ã¦ã„ãªã„  1=ä¸€æ™‚åœæ­¢ã—ã¦ã„ãŸ )
 extern int NS_GetNoActiveState( int ResetFlag )
 {
 	int Return;
@@ -3783,40 +3783,40 @@ extern int NS_GetNoActiveState( int ResetFlag )
 	return Return ;
 }
 
-// ƒ}ƒEƒX‚ğ•\¦‚·‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğæ“¾‚·‚é
+// ãƒã‚¦ã‚¹ã‚’è¡¨ç¤ºã™ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’å–å¾—ã™ã‚‹
 extern int NS_GetMouseDispFlag( void )
 {
 	return WinData.MouseDispFlag ;
 }
 
-// ƒEƒCƒ“ƒhƒE‚ªƒAƒNƒeƒBƒu‚Å‚Í‚È‚¢ó‘Ô‚Å‚àˆ—‚ğ‘±s‚·‚é‚©Aƒtƒ‰ƒO‚ğæ“¾‚·‚é
+// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãŒã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã§ã¯ãªã„çŠ¶æ…‹ã§ã‚‚å‡¦ç†ã‚’ç¶šè¡Œã™ã‚‹ã‹ã€ãƒ•ãƒ©ã‚°ã‚’å–å¾—ã™ã‚‹
 extern int NS_GetAlwaysRunFlag( void )
 {
 	return WinData.NonActiveRunFlag ;
 }
 
-// ‚c‚wƒ‰ƒCƒuƒ‰ƒŠ‚Æ DirectX ‚Ìƒo[ƒWƒ‡ƒ“‚Æ Windows ‚Ìƒo[ƒWƒ‡ƒ“‚ğ“¾‚é
+// ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã¨ DirectX ã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã¨ Windows ã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã‚’å¾—ã‚‹
 extern int NS_GetSystemInfo_( int *DxLibVer, int *DirectXVer, int *WindowsVer )
 {
 	if( DxLibVer ) *DxLibVer = DXLIB_VERSION ;
 	if( DirectXVer ) *DirectXVer = WinData.DirectXVersion ;
 	if( WindowsVer ) *WindowsVer = WinData.WindowsVersion ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ‚o‚b‚Ìî•ñ‚ğ“¾‚é
+// ï¼°ï¼£ã®æƒ…å ±ã‚’å¾—ã‚‹
 extern int NS_GetPcInfo(
 	TCHAR	*OSString,
 	TCHAR	*DirectXString,
 	TCHAR	*CPUString,
-	int		*CPUSpeed/*’PˆÊMHz*/,
-	double	*FreeMemorySize/*’PˆÊMByte*/,
+	int		*CPUSpeed/*å˜ä½MHz*/,
+	double	*FreeMemorySize/*å˜ä½MByte*/,
 	double	*TotalMemorySize,
 	TCHAR	*VideoDriverFileName,
 	TCHAR	*VideoDriverString,
-	double	*FreeVideoMemorySize/*’PˆÊMByte*/,
+	double	*FreeVideoMemorySize/*å˜ä½MByte*/,
 	double	*TotalVideoMemorySize
 )
 {
@@ -3825,12 +3825,12 @@ extern int NS_GetPcInfo(
 		OSString,
 		DirectXString,
 		CPUString,
-		CPUSpeed/*’PˆÊMHz*/,
-		FreeMemorySize/*’PˆÊMByte*/,
+		CPUSpeed/*å˜ä½MHz*/,
+		FreeMemorySize/*å˜ä½MByte*/,
 		TotalMemorySize,
 		VideoDriverFileName,
 		VideoDriverString,
-		FreeVideoMemorySize/*’PˆÊMByte*/,
+		FreeVideoMemorySize/*å˜ä½MByte*/,
 		TotalVideoMemorySize
 	) ;
 #else
@@ -3845,12 +3845,12 @@ extern int NS_GetPcInfo(
 		OSStringBuffer,
 		DirectXStringBuffer,
 		CPUStringBuffer,
-		CPUSpeed/*’PˆÊMHz*/,
-		FreeMemorySize/*’PˆÊMByte*/,
+		CPUSpeed/*å˜ä½MHz*/,
+		FreeMemorySize/*å˜ä½MByte*/,
 		TotalMemorySize,
 		VideoDriverFileNameBuffer,
 		VideoDriverStringBuffer,
-		FreeVideoMemorySize/*’PˆÊMByte*/,
+		FreeVideoMemorySize/*å˜ä½MByte*/,
 		TotalVideoMemorySize
 	) ;
 
@@ -3864,17 +3864,17 @@ extern int NS_GetPcInfo(
 #endif
 }
 
-// ‚o‚b‚Ìî•ñ‚ğ“¾‚é
+// ï¼°ï¼£ã®æƒ…å ±ã‚’å¾—ã‚‹
 extern int GetPcInfo_WCHAR_T(
 	wchar_t	*OSString,
 	wchar_t	*DirectXString,
 	wchar_t	*CPUString,
-	int		*CPUSpeed/*’PˆÊMHz*/,
-	double	*FreeMemorySize/*’PˆÊMByte*/,
+	int		*CPUSpeed/*å˜ä½MHz*/,
+	double	*FreeMemorySize/*å˜ä½MByte*/,
 	double	*TotalMemorySize,
 	wchar_t	*VideoDriverFileName,
 	wchar_t	*VideoDriverString,
-	double	*FreeVideoMemorySize/*’PˆÊMByte*/,
+	double	*FreeVideoMemorySize/*å˜ä½MByte*/,
 	double	*TotalVideoMemorySize
 )
 {
@@ -3892,56 +3892,56 @@ extern int GetPcInfo_WCHAR_T(
 	return 0 ;
 }
 
-// WindowsOS‚Ìƒo[ƒWƒ‡ƒ“‚ğæ“¾‚·‚é( –ß‚è’l : DX_WINDOWSVERSION_10 ‚È‚Ç )
+// WindowsOSã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã‚’å–å¾—ã™ã‚‹( æˆ»ã‚Šå€¤ : DX_WINDOWSVERSION_10 ãªã© )
 extern int NS_GetWindowOSVersion( void )
 {
 	return WinData.WindowsVersion ;
 }
 
-// ‚l‚l‚w‚ªg‚¦‚é‚©‚Ç‚¤‚©‚Ìî•ñ‚ğ“¾‚é
+// ï¼­ï¼­ï¼¸ãŒä½¿ãˆã‚‹ã‹ã©ã†ã‹ã®æƒ…å ±ã‚’å¾—ã‚‹
 extern int NS_GetUseMMXFlag( void ) 
 {
 	return WinData.UseMMXFlag ;
 }
 
-// ‚r‚r‚d‚ªg‚¦‚é‚©‚Ç‚¤‚©‚Ìî•ñ‚ğ“¾‚é
+// ï¼³ï¼³ï¼¥ãŒä½¿ãˆã‚‹ã‹ã©ã†ã‹ã®æƒ…å ±ã‚’å¾—ã‚‹
 extern int NS_GetUseSSEFlag( void )
 {
 	return WinData.UseSSEFlag ;
 }
 
-// ‚r‚r‚d‚Q‚ªg‚¦‚é‚©‚Ç‚¤‚©‚Ìî•ñ‚ğ“¾‚é
+// ï¼³ï¼³ï¼¥ï¼’ãŒä½¿ãˆã‚‹ã‹ã©ã†ã‹ã®æƒ…å ±ã‚’å¾—ã‚‹
 extern int NS_GetUseSSE2Flag( void )
 {
 	return WinData.UseSSE2Flag ;
 }
 
-// ƒEƒCƒ“ƒhƒE‚ğ•Â‚¶‚æ‚¤‚Æ‚µ‚Ä‚¢‚é‚©‚Ìî•ñ‚ğ“¾‚é
+// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚’é–‰ã˜ã‚ˆã†ã¨ã—ã¦ã„ã‚‹ã‹ã®æƒ…å ±ã‚’å¾—ã‚‹
 extern int NS_GetWindowCloseFlag( void )
 {
 	return WinData.CloseMessagePostFlag ;
 }
 
-// ƒ\ƒtƒg‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğæ“¾‚·‚é
+// ã‚½ãƒ•ãƒˆã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’å–å¾—ã™ã‚‹
 extern HINSTANCE NS_GetTaskInstance( void )
 {
 	return WinData.Instance ;
 }
 
-// ƒŠ[ƒWƒ‡ƒ“‚ğg‚Á‚Ä‚¢‚é‚©‚Ç‚¤‚©‚ğæ“¾‚·‚é
+// ãƒªãƒ¼ã‚¸ãƒ§ãƒ³ã‚’ä½¿ã£ã¦ã„ã‚‹ã‹ã©ã†ã‹ã‚’å–å¾—ã™ã‚‹
 extern int NS_GetUseWindowRgnFlag( void )
 {
 	return WinData.WindowRgn != NULL ;
 }
 
-// ƒEƒCƒ“ƒhƒE‚ÌƒTƒCƒY‚ğ•ÏX‚Å‚«‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğæ“¾‚·‚é
+// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ã‚µã‚¤ã‚ºã‚’å¤‰æ›´ã§ãã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’å–å¾—ã™ã‚‹
 extern int NS_GetWindowSizeChangeEnableFlag( int *FitScreen )
 {
 	if( FitScreen ) *FitScreen = WinData.ScreenNotFitWindowSize == TRUE ? FALSE : TRUE ;
 	return WinData.WindowSizeChangeEnable ;
 }
 
-// •`‰æ‰æ–Ê‚ÌƒTƒCƒY‚É‘Î‚·‚éƒEƒCƒ“ƒhƒEƒTƒCƒY‚Ì”ä—¦‚ğæ“¾‚·‚é
+// æç”»ç”»é¢ã®ã‚µã‚¤ã‚ºã«å¯¾ã™ã‚‹ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚µã‚¤ã‚ºã®æ¯”ç‡ã‚’å–å¾—ã™ã‚‹
 extern double NS_GetWindowSizeExtendRate( double *ExRateX, double *ExRateY )
 {
 	if( WinData.WindowSizeExRateX <= 0.0 )
@@ -3950,11 +3950,11 @@ extern double NS_GetWindowSizeExtendRate( double *ExRateX, double *ExRateY )
 	if( WinData.WindowSizeExRateY <= 0.0 )
 		WinData.WindowSizeExRateY = 1.0 ;
 
-	// ƒEƒCƒ“ƒhƒEƒ‚[ƒh‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+	// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ¢ãƒ¼ãƒ‰ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 	if( WinData.WindowModeFlag || NS_GetUseFullScreenResolutionMode() == DX_FSRESOLUTIONMODE_BORDERLESS_WINDOW )
 	{
 #ifndef DX_NON_GRAPHICS
-		// Å‘å‰»ó‘Ô‚Ìê‡‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+		// æœ€å¤§åŒ–çŠ¶æ…‹ã®å ´åˆã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 		if( WinData.WindowMaximizeFlag &&
 			WinData.ScreenNotFitWindowSize == FALSE &&
 			WinData.WindowSizeValid == FALSE )
@@ -3966,22 +3966,22 @@ extern double NS_GetWindowSizeExtendRate( double *ExRateX, double *ExRateY )
 			double MaxCExRateX ;
 			double MaxCExRateY ;
 
-			// ‰æ–Ê‚ÌƒTƒCƒY‚ğæ“¾
+			// ç”»é¢ã®ã‚µã‚¤ã‚ºã‚’å–å¾—
 			NS_GetDrawScreenSize( &Width, &Height ) ;
 
-			// Å‘å‰»ó‘Ô‚ÌƒNƒ‰ƒCƒAƒ“ƒg—Ìˆæ‚ÌƒTƒCƒY‚ğæ“¾‚·‚é
+			// æœ€å¤§åŒ–çŠ¶æ…‹ã®ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆé ˜åŸŸã®ã‚µã‚¤ã‚ºã‚’å–å¾—ã™ã‚‹
 			MaxCWidth  = WinData.WindowMaximizedClientRect.right  - WinData.WindowMaximizedClientRect.left ;
 			MaxCHeight = WinData.WindowMaximizedClientRect.bottom - WinData.WindowMaximizedClientRect.top ;
 
-			// ŒvZŒë·‘Î‰‚Ì‚½‚ß‚Pƒhƒbƒg‚¾‚¯¬‚³‚¢ƒTƒCƒY‚É‚·‚é
+			// è¨ˆç®—èª¤å·®å¯¾å¿œã®ãŸã‚ï¼‘ãƒ‰ãƒƒãƒˆã ã‘å°ã•ã„ã‚µã‚¤ã‚ºã«ã™ã‚‹
 			MaxCWidth  -= 1 ;
 			MaxCHeight -= 1 ;
 
-			// ”{—¦‚ğZo‚·‚é
+			// å€ç‡ã‚’ç®—å‡ºã™ã‚‹
 			MaxCExRateX = ( double )MaxCWidth  / Width ;
 			MaxCExRateY = ( double )MaxCHeight / Height ;
 
-			// ”{—¦‚Ì¬‚³‚¢‚Ù‚¤‚É‡‚í‚¹‚é
+			// å€ç‡ã®å°ã•ã„ã»ã†ã«åˆã‚ã›ã‚‹
 			if( MaxCExRateX < MaxCExRateY )
 			{
 				MaxCExRateY = MaxCExRateX ;
@@ -4011,7 +4011,7 @@ extern double NS_GetWindowSizeExtendRate( double *ExRateX, double *ExRateY )
 	}
 }
 
-// ƒEƒCƒ“ƒhƒEƒ‚[ƒh‚ÌƒEƒCƒ“ƒhƒE‚ÌƒNƒ‰ƒCƒAƒ“ƒg—Ìˆæ‚ÌƒTƒCƒY‚ğæ“¾‚·‚é
+// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ¢ãƒ¼ãƒ‰ã®ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆé ˜åŸŸã®ã‚µã‚¤ã‚ºã‚’å–å¾—ã™ã‚‹
 extern int NS_GetWindowSize( int *Width, int *Height )
 {
 	RECT Rect ;
@@ -4022,11 +4022,11 @@ extern int NS_GetWindowSize( int *Width, int *Height )
 	if( Width  ) *Width  = Rect.right  - Rect.left ;
 	if( Height ) *Height = Rect.bottom - Rect.top  ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒEƒCƒ“ƒhƒE‚Ìã‰º¶‰E‚Ì‰‚Ì•‚ğæ“¾‚·‚é
+// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ä¸Šä¸‹å·¦å³ã®ç¸ã®å¹…ã‚’å–å¾—ã™ã‚‹
 extern int NS_GetWindowEdgeWidth( int *LeftWidth, int *RightWidth, int *TopWidth, int *BottomWidth )
 {
 	if( LeftWidth   != NULL ) *LeftWidth   = WinData.WindowLeftEdgeWidth ;
@@ -4037,7 +4037,7 @@ extern int NS_GetWindowEdgeWidth( int *LeftWidth, int *RightWidth, int *TopWidth
 	return 0 ;
 }
 
-// ƒEƒCƒ“ƒhƒEƒ‚[ƒh‚ÌƒEƒCƒ“ƒhƒE‚ÌˆÊ’u‚ğæ“¾‚·‚é( ˜g‚àŠÜ‚ß‚½¶ãÀ•W )
+// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ¢ãƒ¼ãƒ‰ã®ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ä½ç½®ã‚’å–å¾—ã™ã‚‹( æ ã‚‚å«ã‚ãŸå·¦ä¸Šåº§æ¨™ )
 extern int NS_GetWindowPosition( int *x, int *y )
 {
 	RECT Rect ;
@@ -4048,19 +4048,19 @@ extern int NS_GetWindowPosition( int *x, int *y )
 	if( x ) *x = Rect.left ;
 	if( y ) *y = Rect.top ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
 
-// ƒEƒCƒ“ƒhƒE‚Ì•Â‚¶‚éƒ{ƒ^ƒ“‚ª‰Ÿ‚³‚ê‚½‚©‚Ç‚¤‚©‚ğæ“¾‚·‚é
+// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®é–‰ã˜ã‚‹ãƒœã‚¿ãƒ³ãŒæŠ¼ã•ã‚ŒãŸã‹ã©ã†ã‹ã‚’å–å¾—ã™ã‚‹
 extern int NS_GetWindowUserCloseFlag( int StateResetFlag )
 {
 	int Result ;
 
 	Result = WinData.AltF4_EndFlag == 4 ? TRUE : FALSE ;
 
-	// ó‘Ô‚ğƒŠƒZƒbƒg‚µ‚ëƒtƒ‰ƒO‚ª—§‚Á‚Ä‚¢‚½‚çƒtƒ‰ƒO‚ğƒŠƒZƒbƒg‚·‚é
+	// çŠ¶æ…‹ã‚’ãƒªã‚»ãƒƒãƒˆã—ã‚ãƒ•ãƒ©ã‚°ãŒç«‹ã£ã¦ã„ãŸã‚‰ãƒ•ãƒ©ã‚°ã‚’ãƒªã‚»ãƒƒãƒˆã™ã‚‹
 	if( StateResetFlag == TRUE && WinData.AltF4_EndFlag == 4 && WinData.NonUserCloseEnableFlag == TRUE )
 	{
 		WinData.AltF4_EndFlag = FALSE ;
@@ -4069,14 +4069,14 @@ extern int NS_GetWindowUserCloseFlag( int StateResetFlag )
 	return Result ;
 }
 
-// ƒƒCƒ“ƒEƒCƒ“ƒhƒE‚ÌÅ‘å‰»ƒ{ƒ^ƒ“‚ª‰Ÿ‚³‚ê‚½‚©‚Ç‚¤‚©‚ğæ“¾‚·‚éASetWindowMaximizeButtonBehavior( 1 ); ‚ªÀs‚³‚ê‚Ä‚¢‚éê‡‚Ì‚İ—LŒø‚ÈŠÖ”( StateResetFlag  TRUE = ‰Ÿ‚³‚ê‚½ó‘Ô‚ğƒŠƒZƒbƒg‚·‚é   FALSE = ‰Ÿ‚³‚ê‚½ó‘Ô‚ğƒŠƒZƒbƒg‚µ‚È‚¢ )
+// ãƒ¡ã‚¤ãƒ³ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®æœ€å¤§åŒ–ãƒœã‚¿ãƒ³ãŒæŠ¼ã•ã‚ŒãŸã‹ã©ã†ã‹ã‚’å–å¾—ã™ã‚‹ã€SetWindowMaximizeButtonBehavior( 1 ); ãŒå®Ÿè¡Œã•ã‚Œã¦ã„ã‚‹å ´åˆã®ã¿æœ‰åŠ¹ãªé–¢æ•°( StateResetFlag  TRUE = æŠ¼ã•ã‚ŒãŸçŠ¶æ…‹ã‚’ãƒªã‚»ãƒƒãƒˆã™ã‚‹   FALSE = æŠ¼ã•ã‚ŒãŸçŠ¶æ…‹ã‚’ãƒªã‚»ãƒƒãƒˆã—ãªã„ )
 extern int NS_CheckWindowMaximizeButtonInput( int StateResetFlag )
 {
 	int Result ;
 
 	Result = WinData.WindowMaximizeButtonInputFlag ;
 
-	// ‰Ÿ‰ºó‘Ô‚ğƒŠƒZƒbƒg‚·‚éw’è‚Ìê‡‚Í‰Ÿ‰ºó‘Ô‚ğƒŠƒZƒbƒg‚·‚é
+	// æŠ¼ä¸‹çŠ¶æ…‹ã‚’ãƒªã‚»ãƒƒãƒˆã™ã‚‹æŒ‡å®šã®å ´åˆã¯æŠ¼ä¸‹çŠ¶æ…‹ã‚’ãƒªã‚»ãƒƒãƒˆã™ã‚‹
 	if( StateResetFlag )
 	{
 		WinData.WindowMaximizeButtonInputFlag = FALSE ;
@@ -4085,9 +4085,9 @@ extern int NS_CheckWindowMaximizeButtonInput( int StateResetFlag )
 	return Result ;
 }
 
-// WM_PAINT ƒƒbƒZ[ƒW‚ª—ˆ‚½‚©‚Ç‚¤‚©‚ğæ“¾‚·‚é
-// (–ß‚è’l   TRUE:WM_PAINTƒƒbƒZ[ƒW‚ª—ˆ‚½(ˆê“xæ“¾‚·‚é‚ÆˆÈŒãAÄ‚Ñ WM_PAINTƒƒbƒZ[ƒW‚ª—ˆ‚é‚Ü‚Å FALSE ‚ª•Ô‚Á‚Ä‚­‚é‚æ‚¤‚É‚È‚é)
-//          FALSE:WM_PAINT ƒƒbƒZ[ƒW‚Í—ˆ‚Ä‚¢‚È‚¢)
+// WM_PAINT ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãŒæ¥ãŸã‹ã©ã†ã‹ã‚’å–å¾—ã™ã‚‹
+// (æˆ»ã‚Šå€¤   TRUE:WM_PAINTãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãŒæ¥ãŸ(ä¸€åº¦å–å¾—ã™ã‚‹ã¨ä»¥å¾Œã€å†ã³ WM_PAINTãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãŒæ¥ã‚‹ã¾ã§ FALSE ãŒè¿”ã£ã¦ãã‚‹ã‚ˆã†ã«ãªã‚‹)
+//          FALSE:WM_PAINT ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã¯æ¥ã¦ã„ãªã„)
 extern int NS_GetPaintMessageFlag( void )
 {
 	int Result;
@@ -4098,13 +4098,13 @@ extern int NS_GetPaintMessageFlag( void )
 	return Result;
 }
 
-// ƒpƒtƒH[ƒ}ƒ“ƒXƒJƒEƒ“ƒ^‚ª—LŒø‚©‚Ç‚¤‚©‚ğæ“¾‚·‚é(–ß‚è’l  TRUE:—LŒø  FALSE:–³Œø)
+// ãƒ‘ãƒ•ã‚©ãƒ¼ãƒãƒ³ã‚¹ã‚«ã‚¦ãƒ³ã‚¿ãŒæœ‰åŠ¹ã‹ã©ã†ã‹ã‚’å–å¾—ã™ã‚‹(æˆ»ã‚Šå€¤  TRUE:æœ‰åŠ¹  FALSE:ç„¡åŠ¹)
 extern int NS_GetValidHiPerformanceCounter( void )
 {
 	return WinData.PerformanceTimerFlag;
 }
 
-// “ü—Í‚³‚ê‚½ƒVƒXƒeƒ€•¶š‚ğæ“¾‚·‚é
+// å…¥åŠ›ã•ã‚ŒãŸã‚·ã‚¹ãƒ†ãƒ æ–‡å­—ã‚’å–å¾—ã™ã‚‹
 extern TCHAR NS_GetInputSystemChar( int DeleteFlag )
 {
 #ifdef UNICODE
@@ -4118,7 +4118,7 @@ extern TCHAR NS_GetInputSystemChar( int DeleteFlag )
 #endif
 }
 
-// “ü—Í‚³‚ê‚½ƒVƒXƒeƒ€•¶š‚ğæ“¾‚·‚é
+// å…¥åŠ›ã•ã‚ŒãŸã‚·ã‚¹ãƒ†ãƒ æ–‡å­—ã‚’å–å¾—ã™ã‚‹
 extern wchar_t GetInputSystemChar_WCHAR_T( int DeleteFlag )
 {
 	wchar_t Result ;
@@ -4144,10 +4144,10 @@ extern wchar_t GetInputSystemChar_WCHAR_T( int DeleteFlag )
 
 
 
-// Aero ‚Ì—LŒøA–³Œøİ’è
+// Aero ã®æœ‰åŠ¹ã€ç„¡åŠ¹è¨­å®š
 extern int SetEnableAero( int Flag )
 {
-	// ƒtƒ‰ƒO‚ª“¯‚¶‚¾‚Á‚½‚ç‰½‚à‚µ‚È‚¢
+	// ãƒ•ãƒ©ã‚°ãŒåŒã˜ã ã£ãŸã‚‰ä½•ã‚‚ã—ãªã„
 	if( WinData.AeroDisableFlag == !Flag )
 		return 0 ;
 
@@ -4158,10 +4158,10 @@ extern int SetEnableAero( int Flag )
 		WinAPIData.DF_DwmEnableComposition( ( UINT )Flag ) ;
 	}
 
-	// ƒtƒ‰ƒO‚ğ•Û‘¶
+	// ãƒ•ãƒ©ã‚°ã‚’ä¿å­˜
 	WinData.AeroDisableFlag = !Flag ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
@@ -4171,21 +4171,21 @@ extern int SetEnableAero( int Flag )
 
 
 
-// İ’èŠÖŒWŠÖ”
+// è¨­å®šé–¢ä¿‚é–¢æ•°
 
-// ƒEƒCƒ“ƒhƒEƒ‚[ƒh‚Å‹N“®‚·‚é‚©‚ğƒZƒbƒg
+// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ¢ãƒ¼ãƒ‰ã§èµ·å‹•ã™ã‚‹ã‹ã‚’ã‚»ãƒƒãƒˆ
 extern int	SetWindowModeFlag( int Flag )
 {
 	SETUP_WIN_API
 
-	// ƒtƒ‰ƒO‚ğ•Û‘¶
+	// ãƒ•ãƒ©ã‚°ã‚’ä¿å­˜
 	WinData.WindowModeFlag = Flag ;
 
 	if( Flag ) 
 	{
-		DXST_LOGFILE_ADDUTF16LE( "\xa6\x30\xa4\x30\xf3\x30\xc9\x30\xa6\x30\xe2\x30\xfc\x30\xc9\x30\xd5\x30\xe9\x30\xb0\x30\x4c\x30\xcb\x7a\x66\x30\x89\x30\x8c\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ƒEƒCƒ“ƒhƒEƒ‚[ƒhƒtƒ‰ƒO‚ª—§‚Ä‚ç‚ê‚Ü‚µ‚½\n" @*/ ) ;
+		DXST_LOGFILE_ADDUTF16LE( "\xa6\x30\xa4\x30\xf3\x30\xc9\x30\xa6\x30\xe2\x30\xfc\x30\xc9\x30\xd5\x30\xe9\x30\xb0\x30\x4c\x30\xcb\x7a\x66\x30\x89\x30\x8c\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ¢ãƒ¼ãƒ‰ãƒ•ãƒ©ã‚°ãŒç«‹ã¦ã‚‰ã‚Œã¾ã—ãŸ\n" @*/ ) ;
 
-		// ƒƒjƒ…[‚ª‘¶İ‚·‚é‚Íƒƒjƒ…[‚ğƒZƒbƒg‚·‚é
+		// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãŒå­˜åœ¨ã™ã‚‹æ™‚ã¯ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 		if( WinData.MenuUseFlag == TRUE ) 
 		{
 			WinAPIData.Win32Func.SetMenuFunc( WinData.MainWindow, WinData.Menu ) ;
@@ -4193,20 +4193,20 @@ extern int	SetWindowModeFlag( int Flag )
 	}
 	else
 	{
-		DXST_LOGFILE_ADDUTF16LE( "\xa6\x30\xa4\x30\xf3\x30\xc9\x30\xa6\x30\xe2\x30\xfc\x30\xc9\x30\xd5\x30\xe9\x30\xb0\x30\x4c\x30\x12\x50\x55\x30\x8c\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ƒEƒCƒ“ƒhƒEƒ‚[ƒhƒtƒ‰ƒO‚ª“|‚³‚ê‚Ü‚µ‚½\n" @*/ ) ;
+		DXST_LOGFILE_ADDUTF16LE( "\xa6\x30\xa4\x30\xf3\x30\xc9\x30\xa6\x30\xe2\x30\xfc\x30\xc9\x30\xd5\x30\xe9\x30\xb0\x30\x4c\x30\x12\x50\x55\x30\x8c\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ¢ãƒ¼ãƒ‰ãƒ•ãƒ©ã‚°ãŒå€’ã•ã‚Œã¾ã—ãŸ\n" @*/ ) ;
 
-		// ƒƒjƒ…[‚ª‘¶İ‚·‚é‚Íƒƒjƒ…[‚ğŠO‚·
+		// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãŒå­˜åœ¨ã™ã‚‹æ™‚ã¯ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’å¤–ã™
 		if( WinData.MenuUseFlag == TRUE ) 
 		{
 			WinAPIData.Win32Func.SetMenuFunc( WinData.MainWindow, NULL ) ;
 		}
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒEƒCƒ“ƒhƒE‚ÌƒXƒ^ƒCƒ‹‚ğƒZƒbƒg‚·‚é
+// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ã‚¹ã‚¿ã‚¤ãƒ«ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern int SetWindowStyle( int CenterPosition )
 {
 	RECT Rect ;
@@ -4218,23 +4218,23 @@ extern int SetWindowStyle( int CenterPosition )
 
 	if( WinData.MainWindow == NULL || WinData.UserWindowFlag == TRUE ) return 0 ;
 
-	// Œ»İ‚ÌƒEƒCƒ“ƒhƒE—Ìˆæ‚ğæ“¾
+	// ç¾åœ¨ã®ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦é ˜åŸŸã‚’å–å¾—
 	WinAPIData.Win32Func.GetWindowRectFunc( WinData.MainWindow, &PrevWindowRect ) ;
 
-	// ƒNƒ‰ƒCƒAƒ“ƒg—Ìˆæ‚ÌƒTƒCƒY‚ğ•Û‘¶
+	// ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆé ˜åŸŸã®ã‚µã‚¤ã‚ºã‚’ä¿å­˜
 	WinAPIData.Win32Func.GetClientRectFunc( WinData.MainWindow, &Rect ) ;
 	ClientRectWidth  = Rect.right  - Rect.left ;
 	ClientRectHeight = Rect.bottom - Rect.top ;
 
-	// ƒ†[ƒU[’ñ‹Ÿ‚ÌƒEƒCƒ“ƒhƒE‚¾‚Á‚½‚çƒpƒ‰ƒ[ƒ^æ“¾ˆÈŠO‚Í‰½‚à‚µ‚È‚¢
+	// ãƒ¦ãƒ¼ã‚¶ãƒ¼æä¾›ã®ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã ã£ãŸã‚‰ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿å–å¾—ä»¥å¤–ã¯ä½•ã‚‚ã—ãªã„
 	if( WinData.UserWindowFlag == TRUE )
 	{
-		// ƒEƒCƒ“ƒhƒE‚ÌƒNƒ‰ƒCƒAƒ“ƒg—Ìˆæ‚ğ•Û‘¶‚·‚é
+		// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆé ˜åŸŸã‚’ä¿å­˜ã™ã‚‹
 		WinAPIData.Win32Func.GetClientRectFunc( WinData.MainWindow, &WinData.WindowRect )  ;
 		WinAPIData.Win32Func.ClientToScreenFunc( WinData.MainWindow, ( LPPOINT )&WinData.WindowRect ) ;
 		WinAPIData.Win32Func.ClientToScreenFunc( WinData.MainWindow, ( LPPOINT )&WinData.WindowRect + 1 ) ;
 
-		// ƒEƒCƒ“ƒhƒEƒXƒ^ƒCƒ‹‚ğ•ÏX
+		// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚¹ã‚¿ã‚¤ãƒ«ã‚’å¤‰æ›´
 		if( WinData.WindowModeFlag == TRUE || NS_GetUseFullScreenResolutionMode() == DX_FSRESOLUTIONMODE_BORDERLESS_WINDOW )
 		{
 			NS_SetMouseDispFlag( TRUE ) ;
@@ -4246,10 +4246,10 @@ extern int SetWindowStyle( int CenterPosition )
 	}
 	else
 	{
-		// •`‰æ—Ìˆæ‚ÌƒTƒCƒY‚ğæ“¾
+		// æç”»é ˜åŸŸã®ã‚µã‚¤ã‚ºã‚’å–å¾—
 		GetMainWindowSize( &WindowSizeX, &WindowSizeY ) ;
 
-		// ƒEƒCƒ“ƒhƒEƒXƒ^ƒCƒ‹‚ğ•ÏX
+		// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚¹ã‚¿ã‚¤ãƒ«ã‚’å¤‰æ›´
 		if( WinData.WindowModeFlag == TRUE )
 		{
 			LONG AddStyle, AddExStyle ;
@@ -4258,39 +4258,39 @@ extern int SetWindowStyle( int CenterPosition )
 			int IsExtendRate1x ;
 			int DesktopW, DesktopH, DesktopX, DesktopY ;
 
-			// ƒEƒCƒ“ƒhƒEƒ‚[ƒh‚Ìê‡
+			// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ¢ãƒ¼ãƒ‰ã®å ´åˆ
 
-			DXST_LOGFILE_ADDUTF16LE( "\xa6\x30\xa4\x30\xf3\x30\xc9\x30\xa6\x30\xb9\x30\xbf\x30\xa4\x30\xeb\x30\x92\x30\xa6\x30\xa4\x30\xf3\x30\xc9\x30\xa6\x30\xe2\x30\xfc\x30\xc9\x30\x28\x75\x6b\x30\x09\x59\xf4\x66\x57\x30\x7e\x30\x59\x30\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"ƒEƒCƒ“ƒhƒEƒXƒ^ƒCƒ‹‚ğƒEƒCƒ“ƒhƒEƒ‚[ƒh—p‚É•ÏX‚µ‚Ü‚·... " @*/ ) ;
+			DXST_LOGFILE_ADDUTF16LE( "\xa6\x30\xa4\x30\xf3\x30\xc9\x30\xa6\x30\xb9\x30\xbf\x30\xa4\x30\xeb\x30\x92\x30\xa6\x30\xa4\x30\xf3\x30\xc9\x30\xa6\x30\xe2\x30\xfc\x30\xc9\x30\x28\x75\x6b\x30\x09\x59\xf4\x66\x57\x30\x7e\x30\x59\x30\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚¹ã‚¿ã‚¤ãƒ«ã‚’ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ¢ãƒ¼ãƒ‰ç”¨ã«å¤‰æ›´ã—ã¾ã™... " @*/ ) ;
 
 			AddExStyle = 0 ;
 			//if( WinData.NotWindowVisibleFlag == TRUE ) AddExStyle |= WS_EX_TRANSPARENT ;
 
-			// ƒoƒbƒNƒoƒbƒtƒ@‚Ì“§‰ßF‚Ì•”•ª‚ğ“§‰ß‚³‚¹‚éƒtƒ‰ƒO‚ª—§‚Á‚Ä‚¢‚é‚©A
-			// UpdateLayerdWindow ‚ğg—p‚·‚éƒtƒ‰ƒO‚ªŒo‚Á‚Ä‚¢‚éê‡‚Í WS_EX_LAYERED ‚ğ’Ç‰Á‚·‚é
+			// ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã®é€éè‰²ã®éƒ¨åˆ†ã‚’é€éã•ã›ã‚‹ãƒ•ãƒ©ã‚°ãŒç«‹ã£ã¦ã„ã‚‹ã‹ã€
+			// UpdateLayerdWindow ã‚’ä½¿ç”¨ã™ã‚‹ãƒ•ãƒ©ã‚°ãŒçµŒã£ã¦ã„ã‚‹å ´åˆã¯ WS_EX_LAYERED ã‚’è¿½åŠ ã™ã‚‹
 			if( WinData.BackBufferTransColorFlag == TRUE ||
 				WinData.UseUpdateLayerdWindowFlag == TRUE ) AddExStyle |= WS_EX_LAYERED | ( WinData.UseTransparentWindowFlag ? WS_EX_TRANSPARENT : 0 ) ;
 
 			AddStyle = 0 ;
-			// ”ñ“¯ŠúƒEƒCƒ“ƒhƒEƒ‚[ƒh•ÏX‹@”\‚ª—LŒø‚É‚È‚Á‚Ä‚¢‚é‚Æ‚«‚Í WS_MAXIMIZEBOX ‚ğ’Ç‰Á‚·‚é
+			// éåŒæœŸã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ¢ãƒ¼ãƒ‰å¤‰æ›´æ©Ÿèƒ½ãŒæœ‰åŠ¹ã«ãªã£ã¦ã„ã‚‹ã¨ãã¯ WS_MAXIMIZEBOX ã‚’è¿½åŠ ã™ã‚‹
 			if( WinData.UseChangeWindowModeFlag == TRUE ) AddStyle |= WS_MAXIMIZEBOX ;
 
-			// •\¦ƒtƒ‰ƒO‚ª—§‚Á‚Ä‚¢‚éê‡‚Í WS_VISIBLE ‚ğ’Ç‰Á‚·‚é
+			// è¡¨ç¤ºãƒ•ãƒ©ã‚°ãŒç«‹ã£ã¦ã„ã‚‹å ´åˆã¯ WS_VISIBLE ã‚’è¿½åŠ ã™ã‚‹
 			if( WinData.VisibleFlag == TRUE ) AddStyle |= WS_VISIBLE ;
 
-			// ƒEƒCƒ“ƒhƒEƒTƒCƒY‚ª•ÏX‚Å‚«‚é‚æ‚¤‚É‚È‚Á‚Ä‚¢‚éê‡‚Í WS_THICKFRAME ‚ğ’Ç‰Á‚·‚é
+			// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚µã‚¤ã‚ºãŒå¤‰æ›´ã§ãã‚‹ã‚ˆã†ã«ãªã£ã¦ã„ã‚‹å ´åˆã¯ WS_THICKFRAME ã‚’è¿½åŠ ã™ã‚‹
 			if( WinData.WindowSizeChangeEnable == TRUE ) AddStyle |= WS_THICKFRAME ;
 
-			// ƒXƒ^ƒCƒ‹‚Ì•ÏX
+			// ã‚¹ã‚¿ã‚¤ãƒ«ã®å¤‰æ›´
 			SetWindowLongWFunc( WinData.MainWindow , GWL_EXSTYLE , ( LONG )( WExStyle_WindowModeTable[ WinData.WindowStyle ] + AddExStyle ) ) ;
 			SetWindowLongWFunc( WinData.MainWindow , GWL_STYLE   , ( LONG )( WStyle_WindowModeTable[ WinData.WindowStyle ]   + AddStyle   ) ) ;
 
-			// ƒ‚ƒjƒ^[‚ÌDPI‚ğæ“¾
+			// ãƒ¢ãƒ‹ã‚¿ãƒ¼ã®DPIã‚’å–å¾—
 			NS_GetMonitorDpi( &XDpi, &YDpi, -1 ) ;
 
-			// ƒEƒBƒ“ƒhƒE‚ÌŠg‘å—¦‚ğæ“¾
+			// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®æ‹¡å¤§ç‡ã‚’å–å¾—
 			NS_GetWindowSizeExtendRate( &ExtendRateX, &ExtendRateY ) ;
 
-			// ƒEƒBƒ“ƒhƒE‚ÌŠg‘å—¦‚ª“™”{‚©‚Ç‚¤‚©‚ğ”»’è( DPI ‚ª 96 ˆÈŠO‚Ìê‡‚Í 96 Š·Z‚Å“™”{‚©‚Ç‚¤‚©‚à”»’è )
+			// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®æ‹¡å¤§ç‡ãŒç­‰å€ã‹ã©ã†ã‹ã‚’åˆ¤å®š( DPI ãŒ 96 ä»¥å¤–ã®å ´åˆã¯ 96 æ›ç®—ã§ç­‰å€ã‹ã©ã†ã‹ã‚‚åˆ¤å®š )
 			IsExtendRate1x = _DABS( ExtendRateX - 1.0 ) < 0.0000001 && _DABS( ExtendRateY - 1.0 ) < 0.0000001 ? TRUE : FALSE ;
 			if( IsExtendRate1x == FALSE &&
 				( XDpi != DEFAULT_DPI || YDpi != DEFAULT_DPI ) )
@@ -4300,7 +4300,7 @@ extern int SetWindowStyle( int CenterPosition )
 				IsExtendRate1x = _DABS( ExtendRateX - BaseScaleX ) < 0.0000001 && _DABS( ExtendRateY - BaseScaleY ) < 0.0000001 ? TRUE : FALSE ;
 			}
 
-			// ƒNƒ‰ƒCƒAƒ“ƒg—Ìˆæ‚ÌZo
+			// ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆé ˜åŸŸã®ç®—å‡º
 			if( WinData.WindowSizeValid == TRUE )
 			{
 				WindowSizeX = WinData.WindowWidth ;
@@ -4319,10 +4319,10 @@ extern int SetWindowStyle( int CenterPosition )
 			}
 			GetToolBarHeight();
 
-			// ƒfƒXƒNƒgƒbƒv‚ÌƒTƒCƒY‚ğæ“¾
+			// ãƒ‡ã‚¹ã‚¯ãƒˆãƒƒãƒ—ã®ã‚µã‚¤ã‚ºã‚’å–å¾—
 			NS_GetDefaultState( &DesktopW, &DesktopH, NULL, NULL, &DesktopX, &DesktopY, NULL, NULL, NULL, NULL ) ;
 
-			// ‰‚Ì•‚ğæ“¾
+			// ç¸ã®å¹…ã‚’å–å¾—
 			SETRECT( Rect, 0, 0, WindowSizeX, WindowSizeY ) ;
 			WinAPIData.Win32Func.AdjustWindowRectExFunc( &Rect,
 								WStyle_WindowModeTable[ WinData.WindowStyle ] + AddStyle, FALSE,
@@ -4333,13 +4333,13 @@ extern int SetWindowStyle( int CenterPosition )
 			WinData.WindowTopEdgeWidth    = -Rect.top ;
 			WinData.WindowBottomEdgeWidth =  Rect.bottom - WindowSizeY ;
 
-			// ƒEƒBƒ“ƒhƒE‚ÌŠg‘å—¦‚ğ•ÏX’†‚Å‚Í–³‚­AƒEƒBƒ“ƒhƒEƒ‚[ƒh•ÏX’†‚Å‚à‚È‚­AŠ‚ÂƒEƒBƒ“ƒhƒE‚ÌŠg‘å—¦‚ª“™”{‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+			// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®æ‹¡å¤§ç‡ã‚’å¤‰æ›´ä¸­ã§ã¯ç„¡ãã€ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ¢ãƒ¼ãƒ‰å¤‰æ›´ä¸­ã§ã‚‚ãªãã€ä¸”ã¤ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®æ‹¡å¤§ç‡ãŒç­‰å€ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 			if( WinData.ChangeWindowSizeExRate == FALSE && WinData.ChangeWindodwFlag == FALSE && IsExtendRate1x )
 			{
-				// Œ»İ‚ÌƒEƒBƒ“ƒhƒE‚ÌˆÊ’u‚ğæ“¾
+				// ç¾åœ¨ã®ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ä½ç½®ã‚’å–å¾—
 				WinAPIData.Win32Func.GetWindowRectFunc( WinData.MainWindow, &Rect ) ;
 
-				// İ’è—Ìˆæ‚ğ‚¿‚å‚¢‚Æ×H
+				// è¨­å®šé ˜åŸŸã‚’ã¡ã‚‡ã„ã¨ç´°å·¥
 		//		Rect.left   += - 3;
 		//		Rect.top    += - 3;
 		//		Rect.right  += + 3;
@@ -4347,7 +4347,7 @@ extern int SetWindowStyle( int CenterPosition )
 
 
 #ifndef DX_NON_GRAPHICS
-				// ‰æ–Êƒ‚[ƒh•ÏX’†‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+				// ç”»é¢ãƒ¢ãƒ¼ãƒ‰å¤‰æ›´ä¸­ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 				if( GSYS.Screen.Graphics_Screen_ChangeModeFlag )
 				{
 					WindowSizeX += ( Rect.right  - Rect.left ) - GSYS.Screen.Graphics_Screen_Change_BackScreenW ;
@@ -4368,10 +4368,10 @@ extern int SetWindowStyle( int CenterPosition )
 
 			if( CenterPosition )
 			{
-				// ‰æ–Ê’†S‚ÉˆÚ“®‚·‚é
+				// ç”»é¢ä¸­å¿ƒã«ç§»å‹•ã™ã‚‹
 				HWND TrayWindow ;
 
-				// ƒ^ƒXƒNƒo[‚Ì•ª‚¾‚¯ƒZƒ“ƒ^ƒŠƒ“ƒO‘ÎÛ‚Ì—Ìˆæ‚ğ‹·‚ß‚Â‚ÂƒZƒ“ƒ^ƒŠƒ“ƒO‚·‚é
+				// ã‚¿ã‚¹ã‚¯ãƒãƒ¼ã®åˆ†ã ã‘ã‚»ãƒ³ã‚¿ãƒªãƒ³ã‚°å¯¾è±¡ã®é ˜åŸŸã‚’ç‹­ã‚ã¤ã¤ã‚»ãƒ³ã‚¿ãƒªãƒ³ã‚°ã™ã‚‹
 				TrayWindow = FindWindowWFunc( L"Shell_TrayWnd", NULL ) ;
 				if( TrayWindow == NULL )
 				{
@@ -4380,7 +4380,7 @@ extern int SetWindowStyle( int CenterPosition )
 					Rect.left    = 0 ;
 					Rect.top     = 0 ;
 
-					// ƒ^ƒXƒNƒo[‚ÌƒEƒBƒ“ƒhƒEƒnƒ“ƒhƒ‹‚ªŒ©‚Â‚©‚ç‚È‚©‚Á‚½‚ç’Êí‚ÌƒZƒ“ƒ^ƒŠƒ“ƒOˆ—
+					// ã‚¿ã‚¹ã‚¯ãƒãƒ¼ã®ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒãƒ³ãƒ‰ãƒ«ãŒè¦‹ã¤ã‹ã‚‰ãªã‹ã£ãŸã‚‰é€šå¸¸ã®ã‚»ãƒ³ã‚¿ãƒªãƒ³ã‚°å‡¦ç†
 					Rect.left   += ( DesktopW - WindowSizeX ) / 2 + DesktopX ;
 					Rect.top    += ( DesktopH - WindowSizeY ) / 2 + DesktopY ;
 					Rect.right  += ( DesktopW - WindowSizeX ) / 2 + DesktopX ;
@@ -4393,38 +4393,38 @@ extern int SetWindowStyle( int CenterPosition )
 					int TrayW = TrayRect.right  - TrayRect.left ;
 					int TrayH = TrayRect.bottom - TrayRect.top ;
 
-					// ã‰º¶‰E‚Ç‚¿‚ç‚Éƒ^ƒXƒNƒo[‚ª‚ ‚é‚©‚Åˆ—‚ğ•ªŠò
+					// ä¸Šä¸‹å·¦å³ã©ã¡ã‚‰ã«ã‚¿ã‚¹ã‚¯ãƒãƒ¼ãŒã‚ã‚‹ã‹ã§å‡¦ç†ã‚’åˆ†å²
 					if( TrayRect.left <= 0 && TrayRect.top <= 0 && TrayRect.right >= DesktopW )
 					{
-						// ã‘¤
+						// ä¸Šå´
 						Rect.left = (   DesktopW           - WindowSizeX ) / 2         + DesktopX ;
 						Rect.top  = ( ( DesktopH - TrayH ) - WindowSizeY ) / 2 + TrayH + DesktopY ;
 					}
 					else
 					if( TrayRect.top <= 0 && TrayRect.right >= DesktopW && TrayRect.bottom >= DesktopH )
 					{
-						// ‰E‘¤
+						// å³å´
 						Rect.left = ( ( DesktopW - TrayW ) - WindowSizeX ) / 2         + DesktopX ;
 						Rect.top  = (   DesktopH           - WindowSizeY ) / 2         + DesktopY ;
 					}
 					else
 					if( TrayRect.left <= 0 && TrayRect.bottom >= DesktopH && TrayRect.right >= DesktopW )
 					{
-						// ‰º‘¤
+						// ä¸‹å´
 						Rect.left = (   DesktopW           - WindowSizeX ) / 2         + DesktopX ;
 						Rect.top  = ( ( DesktopH - TrayH ) - WindowSizeY ) / 2         + DesktopY ;
 					}
 					else
 					if( TrayRect.left <= 0 && TrayRect.top <= 0 && TrayRect.bottom >= DesktopH )
 					{
-						// ¶‘¤
+						// å·¦å´
 						Rect.left = ( ( DesktopW - TrayW ) - WindowSizeX ) / 2 + TrayW + DesktopX ;
 						Rect.top  = (   DesktopH           - WindowSizeY ) / 2         + DesktopY ;
 					}
 					else
-					// ‚»‚êˆÈŠO‚Ìê‡‚Í‰º‘¤‚É‚ ‚é‚Æ‰¼’è‚·‚é
+					// ãã‚Œä»¥å¤–ã®å ´åˆã¯ä¸‹å´ã«ã‚ã‚‹ã¨ä»®å®šã™ã‚‹
 					{
-						// ‰º‘¤
+						// ä¸‹å´
 						Rect.left = (   DesktopW           - WindowSizeX ) / 2         + DesktopX ;
 						Rect.top  = ( ( DesktopH - TrayH ) - WindowSizeY ) / 2         + DesktopY ;
 					}
@@ -4435,14 +4435,14 @@ extern int SetWindowStyle( int CenterPosition )
 			}
 			else
 			{
-				// Œ³‚ÌˆÊ’u‚ÉƒZƒbƒg‚·‚é
+				// å…ƒã®ä½ç½®ã«ã‚»ãƒƒãƒˆã™ã‚‹
 				Rect.left   = PrevWindowRect.left ;
 				Rect.top    = PrevWindowRect.top ;
 				Rect.right  = Rect.left + WindowSizeX ;
 				Rect.bottom = Rect.top  + WindowSizeY ;
 			}
 
-			// ƒEƒCƒ“ƒhƒE‚ÌˆÊ’u‚ÆƒTƒCƒY‚ğ•ÏX
+			// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ä½ç½®ã¨ã‚µã‚¤ã‚ºã‚’å¤‰æ›´
 			if( WinData.WindowZType == DX_WIN_ZTYPE_NORMAL )
 			{
 				WinAPIData.Win32Func.SetWindowPosFunc( WinData.MainWindow,
@@ -4471,12 +4471,12 @@ extern int SetWindowStyle( int CenterPosition )
 								0/*SWP_NOZORDER*/ | ( WinData.WindowZTypeNoActivateFlag ? SWP_NOACTIVATE : 0 ) );
 			}
 
-			// ƒEƒCƒ“ƒhƒE‚ÌƒNƒ‰ƒCƒAƒ“ƒg—Ìˆæ‚ğ•Û‘¶‚·‚é
+			// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆé ˜åŸŸã‚’ä¿å­˜ã™ã‚‹
 			WinAPIData.Win32Func.GetClientRectFunc( WinData.MainWindow , &WinData.WindowRect )  ;
 			WinAPIData.Win32Func.ClientToScreenFunc( WinData.MainWindow , ( LPPOINT )&WinData.WindowRect ) ;
 			WinAPIData.Win32Func.ClientToScreenFunc( WinData.MainWindow , ( LPPOINT )&WinData.WindowRect + 1 ) ;
 
-			// •â³
+			// è£œæ­£
 			if( WinData.WindowPosValid == FALSE && ( WinData.WindowRect.left < DesktopX || WinData.WindowRect.top < DesktopY ) )
 			{
 				int left, top ;
@@ -4509,20 +4509,20 @@ extern int SetWindowStyle( int CenterPosition )
 			}
 
 			NS_SetMouseDispFlag( WinData.MouseDispFlag ) ;
-			DXST_LOGFILE_ADDUTF16LE( "\x8c\x5b\x86\x4e\x0a\x00\x00"/*@ L"Š®—¹\n" @*/ ) ;
+			DXST_LOGFILE_ADDUTF16LE( "\x8c\x5b\x86\x4e\x0a\x00\x00"/*@ L"å®Œäº†\n" @*/ ) ;
 		}
 		else
 		{
 			GRAPHICSSYS_DISPLAYINFO *DisplayInfo ;
 			DisplayInfo = &GSYS.Screen.DisplayInfo[ GSYS.Screen.ValidUseDisplayIndex ? GSYS.Screen.UseDisplayIndex : GSYS.Screen.PrimaryDisplayIndex ] ;
 
-			DXST_LOGFILE_ADDUTF16LE( "\xa6\x30\xa4\x30\xf3\x30\xc9\x30\xa6\x30\xb9\x30\xbf\x30\xa4\x30\xeb\x30\x92\x30\xd5\x30\xeb\x30\xb9\x30\xaf\x30\xea\x30\xfc\x30\xf3\x30\xe2\x30\xfc\x30\xc9\x30\x28\x75\x6b\x30\x09\x59\xf4\x66\x57\x30\x7e\x30\x59\x30\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"ƒEƒCƒ“ƒhƒEƒXƒ^ƒCƒ‹‚ğƒtƒ‹ƒXƒNƒŠ[ƒ“ƒ‚[ƒh—p‚É•ÏX‚µ‚Ü‚·... " @*/ ) ;
+			DXST_LOGFILE_ADDUTF16LE( "\xa6\x30\xa4\x30\xf3\x30\xc9\x30\xa6\x30\xb9\x30\xbf\x30\xa4\x30\xeb\x30\x92\x30\xd5\x30\xeb\x30\xb9\x30\xaf\x30\xea\x30\xfc\x30\xf3\x30\xe2\x30\xfc\x30\xc9\x30\x28\x75\x6b\x30\x09\x59\xf4\x66\x57\x30\x7e\x30\x59\x30\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚¹ã‚¿ã‚¤ãƒ«ã‚’ãƒ•ãƒ«ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ¢ãƒ¼ãƒ‰ç”¨ã«å¤‰æ›´ã—ã¾ã™... " @*/ ) ;
 
-			// ƒtƒ‹ƒXƒNƒŠ[ƒ“ƒ‚[ƒh‚Ìê‡
+			// ãƒ•ãƒ«ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ¢ãƒ¼ãƒ‰ã®å ´åˆ
 			SetWindowLongWFunc( WinData.MainWindow, GWL_EXSTYLE, ( LONG )( WExStyle_FullScreenModeTable[ WinData.WindowStyle ] ) ) ;
 			SetWindowLongWFunc( WinData.MainWindow, GWL_STYLE  , ( LONG )( WStyle_FullScreenModeTable[ WinData.WindowStyle ]   ) ) ;
 
-			// ƒEƒCƒ“ƒhƒE‹éŒ`‚ğ•ÏX
+			// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦çŸ©å½¢ã‚’å¤‰æ›´
 			WinData.WindowRect = DisplayInfo->DesktopRect ;
 			switch( NS_GetUseFullScreenResolutionMode() )
 			{
@@ -4533,15 +4533,15 @@ extern int SetWindowStyle( int CenterPosition )
 				break ;
 			}
 
-			// ƒEƒCƒ“ƒhƒE‚ğ•\¦
+			// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚’è¡¨ç¤º
 			WinAPIData.Win32Func.ShowWindowFunc( WinData.MainWindow , SW_SHOW ) ;
 			WinAPIData.Win32Func.UpdateWindowFunc( WinData.MainWindow ) ;
 
-			// ‚yƒI[ƒ_[‚ÌˆÛ
+			// ï¼ºã‚ªãƒ¼ãƒ€ãƒ¼ã®ç¶­æŒ
 			WinAPIData.Win32Func.SetWindowPosFunc( WinData.MainWindow, HWND_TOPMOST, WinData.WindowRect.left, WinData.WindowRect.top, WindowSizeX, WindowSizeY, /*SWP_NOSIZE | SWP_NOMOVE |*/ SWP_NOREDRAW ) ; 
 
 			NS_SetMouseDispFlag( FALSE ) ;
-			DXST_LOGFILE_ADDUTF16LE( "\x8c\x5b\x86\x4e\x0a\x00\x00"/*@ L"Š®—¹\n" @*/ ) ;
+			DXST_LOGFILE_ADDUTF16LE( "\x8c\x5b\x86\x4e\x0a\x00\x00"/*@ L"å®Œäº†\n" @*/ ) ;
 		}
 
 		if( WinData.WindowZTypeNoActivateFlag == FALSE )
@@ -4550,60 +4550,60 @@ extern int SetWindowStyle( int CenterPosition )
 		}
 	}
 
-	// ƒhƒ‰ƒbƒO•ƒhƒƒbƒv‚Å‚«‚é‚©‚Ç‚¤‚©‚Ìİ’è‚ğs‚¤
+	// ãƒ‰ãƒ©ãƒƒã‚°ï¼†ãƒ‰ãƒ­ãƒƒãƒ—ã§ãã‚‹ã‹ã©ã†ã‹ã®è¨­å®šã‚’è¡Œã†
 	RefreshDragFileValidFlag() ;
 
-	// ƒ}ƒEƒX‚ÌƒZƒbƒgM†‚ğo‚·
+	// ãƒã‚¦ã‚¹ã®ã‚»ãƒƒãƒˆä¿¡å·ã‚’å‡ºã™
 	PostMessageWFunc( WinData.MainWindow , WM_SETCURSOR , ( WPARAM )WinData.MainWindow , 0 ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// î•ñæ“¾ŒxŠ¯”
+// æƒ…å ±å–å¾—è­¦å®˜æ•°
 
-// ‚o‚bî•ñ\‘¢‘Ì‚ÌƒAƒhƒŒƒX‚ğ“¾‚é
+// ï¼°ï¼£æƒ…å ±æ§‹é€ ä½“ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å¾—ã‚‹
 extern PCINFO *GetPcInfoStructP( void ) 
 {
 	return &WinData.PcInfo ;
 }
 
 
-// ƒEƒCƒ“ƒhƒEƒ‚[ƒh‚ğ•ÏX‚·‚é
+// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ¢ãƒ¼ãƒ‰ã‚’å¤‰æ›´ã™ã‚‹
 extern int NS_ChangeWindowMode( int Flag )
 {
 #ifndef DX_NON_GRAPHICS
 	int Ret ;
 
-	DXST_LOGFILE_ADDUTF16LE( "\x43\x00\x68\x00\x61\x00\x6e\x00\x67\x00\x65\x00\x57\x00\x69\x00\x6e\x00\x64\x00\x6f\x00\x77\x00\x4d\x00\x6f\x00\x64\x00\x65\x00\x9f\x5b\x4c\x88\x20\x00\x0a\x00\x00"/*@ L"ChangeWindowModeÀs \n" @*/ ) ;
+	DXST_LOGFILE_ADDUTF16LE( "\x43\x00\x68\x00\x61\x00\x6e\x00\x67\x00\x65\x00\x57\x00\x69\x00\x6e\x00\x64\x00\x6f\x00\x77\x00\x4d\x00\x6f\x00\x64\x00\x65\x00\x9f\x5b\x4c\x88\x20\x00\x0a\x00\x00"/*@ L"ChangeWindowModeå®Ÿè¡Œ \n" @*/ ) ;
 
-	// ¡‚Ü‚Å‚Æ“¯‚¶ƒ‚[ƒh‚¾‚Á‚½ê‡‚Í‚È‚É‚à‚¹‚¸I—¹
+	// ä»Šã¾ã§ã¨åŒã˜ãƒ¢ãƒ¼ãƒ‰ã ã£ãŸå ´åˆã¯ãªã«ã‚‚ã›ãšçµ‚äº†
 	if( Flag == WinData.WindowModeFlag ) return 0 ;
 
 	WinData.VisibleFlag = TRUE ;
 
-	// WM_DISPLAYCHANGE ƒƒbƒZ[ƒW‚ª—ˆ‚½‚©ƒtƒ‰ƒO‚ğ“|‚·
+	// WM_DISPLAYCHANGE ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãŒæ¥ãŸã‹ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 	WinData.DisplayChangeMessageFlag = FALSE ;
 
-	// ƒEƒCƒ“ƒhƒEƒ‚[ƒhƒtƒ‰ƒO‚ğ•ÏX‚·‚é
+	// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ¢ãƒ¼ãƒ‰ãƒ•ãƒ©ã‚°ã‚’å¤‰æ›´ã™ã‚‹
 	if( SetWindowModeFlag( Flag ) == -1 ) return -1 ;
 
-	// ‚Ü‚¾ƒEƒCƒ“ƒhƒE‚³‚¦ì¬‚³‚ê‚Ä‚¢‚È‚¢‚©Aƒ†[ƒU[‚ªì¬‚µ‚½ƒEƒCƒ“ƒhƒE‚ğg—p‚µ‚Ä‚¢‚éê‡‚Í‚±‚±‚ÅI—¹
+	// ã¾ã ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã•ãˆä½œæˆã•ã‚Œã¦ã„ãªã„ã‹ã€ãƒ¦ãƒ¼ã‚¶ãƒ¼ãŒä½œæˆã—ãŸã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹å ´åˆã¯ã“ã“ã§çµ‚äº†
 	if( WinData.MainWindow == NULL || WinData.UserWindowFlag == TRUE ) return 0 ;
 
-	// ƒEƒCƒ“ƒhƒEƒ‚[ƒh•ÏX’†ƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ¢ãƒ¼ãƒ‰å¤‰æ›´ä¸­ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	WinData.ChangeWindodwFlag = TRUE ;
 
-	// ƒEƒCƒ“ƒhƒEƒXƒ^ƒCƒ‹‚ğ•ÏX‚·‚é
+	// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚¹ã‚¿ã‚¤ãƒ«ã‚’å¤‰æ›´ã™ã‚‹
 	SetWindowStyle() ;
 
-	// ‰æ–Êƒ‚[ƒh‚ğ•ÏX‚·‚é
+	// ç”»é¢ãƒ¢ãƒ¼ãƒ‰ã‚’å¤‰æ›´ã™ã‚‹
 	Ret = Graphics_Screen_ChangeMode( -1, -1, -1, TRUE, -1, FALSE ) ;
 
-	// ƒEƒCƒ“ƒhƒEƒ‚[ƒh•ÏX’†ƒtƒ‰ƒO‚ğ“|‚·
+	// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ¢ãƒ¼ãƒ‰å¤‰æ›´ä¸­ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 	WinData.ChangeWindodwFlag = FALSE ;
 
-	// ƒtƒ‹ƒXƒNƒŠ[ƒ“‚É‚È‚Á‚½’¼Œã‚Íƒƒjƒ…[‚ğ•\¦‚µ‚Ä‚¢‚È‚¢ó‘Ô‚É‚·‚é
+	// ãƒ•ãƒ«ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã«ãªã£ãŸç›´å¾Œã¯ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’è¡¨ç¤ºã—ã¦ã„ãªã„çŠ¶æ…‹ã«ã™ã‚‹
 	if( Flag == FALSE )
 	{
 		WinData.MousePosInMenuBarFlag = FALSE ;
@@ -4615,8 +4615,8 @@ extern int NS_ChangeWindowMode( int Flag )
 #endif // DX_NON_GRAPHICS
 }
 
-// ‚c‚wƒ‰ƒCƒuƒ‰ƒŠ‚Ì•¶š—ñˆ—‚Å‘O’ñ‚Æ‚·‚é•¶š—ñƒZƒbƒg‚ğİ’è‚·‚é
-extern int NS_SetUseCharSet( int CharSet /* = DX_CHARSET_SHFTJIS “™ */ )
+// ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®æ–‡å­—åˆ—å‡¦ç†ã§å‰æã¨ã™ã‚‹æ–‡å­—åˆ—ã‚»ãƒƒãƒˆã‚’è¨­å®šã™ã‚‹
+extern int NS_SetUseCharSet( int CharSet /* = DX_CHARSET_SHFTJIS ç­‰ */ )
 {
 	switch( CharSet )
 	{
@@ -4657,23 +4657,23 @@ extern int NS_SetUseCharSet( int CharSet /* = DX_CHARSET_SHFTJIS “™ */ )
 		break ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒAƒNƒeƒBƒuƒEƒCƒ“ƒhƒE‚ª‘¼‚Ìƒ\ƒtƒg‚ÉˆÚ‚Á‚Ä‚¢‚éÛ‚É•\¦‚·‚é‰æ‘œ‚Ìƒ[ƒh(NULL ‚Å‰ğœ)
+// ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãŒä»–ã®ã‚½ãƒ•ãƒˆã«ç§»ã£ã¦ã„ã‚‹éš›ã«è¡¨ç¤ºã™ã‚‹ç”»åƒã®ãƒ­ãƒ¼ãƒ‰(NULL ã§è§£é™¤)
 static int LoadPauseGraphToBase( const wchar_t *FileName, const void *MemImage, int MemImageSize )
 {
 #ifndef DX_NON_GRAPHICS
 	BASEIMAGE RgbBaseImage ;
 
-	// ‰æ‘œƒf[ƒ^‚Ìî•ñ‚ª‚È‚©‚Á‚½‚ç‰½‚à‚¹‚¸I—¹
+	// ç”»åƒãƒ‡ãƒ¼ã‚¿ã®æƒ…å ±ãŒãªã‹ã£ãŸã‚‰ä½•ã‚‚ã›ãšçµ‚äº†
 	if( FileName == NULL && MemImage == NULL ) return 0 ;
 
-	// ‰Šú‰»‘O‚Í‰½‚à‚¹‚¸I—¹
+	// åˆæœŸåŒ–å‰ã¯ä½•ã‚‚ã›ãšçµ‚äº†
 	if( WinData.MainWindow == NULL ) return 0 ;
 
-	// ‰æ‘œ‚Ìƒ[ƒh
+	// ç”»åƒã®ãƒ­ãƒ¼ãƒ‰
 	if( FileName != NULL )
 	{
 		if( CreateGraphImage_plus_Alpha_WCHAR_T( FileName, NULL, 0, LOADIMAGE_TYPE_FILE,
@@ -4693,22 +4693,22 @@ static int LoadPauseGraphToBase( const wchar_t *FileName, const void *MemImage, 
 		}
 	}
 
-	// ‚·‚Å‚ÉƒOƒ‰ƒtƒBƒbƒN‚ª‚ ‚éê‡‚Í”jŠü
+	// ã™ã§ã«ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãŒã‚ã‚‹å ´åˆã¯ç ´æ£„
 	if( WinData.PauseGraph.GraphData != NULL )
 	{
 		NS_ReleaseGraphImage( &WinData.PauseGraph ) ;
 		SubHandle( WinData.PauseGraphHandle, FALSE, FALSE ) ;
 	}
 
-	// V‚µ‚¢‰æ‘œƒf[ƒ^‚ÌƒZƒbƒg
+	// æ–°ã—ã„ç”»åƒãƒ‡ãƒ¼ã‚¿ã®ã‚»ãƒƒãƒˆ
 	WinData.PauseGraph = RgbBaseImage ;
 
-	// ƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ğì¬‚·‚é
+	// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã‚’ä½œæˆã™ã‚‹
 	WinData.PauseGraphHandle = Graphics_Image_CreateGraphFromGraphImageBase( &RgbBaseImage, NULL, TRUE, FALSE ) ;
 /*
 	SETUP_WIN_API
 
-	// ‚·‚Å‚ÉƒOƒ‰ƒtƒBƒbƒN‚ª‚ ‚éê‡‚Í”jŠü
+	// ã™ã§ã«ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãŒã‚ã‚‹å ´åˆã¯ç ´æ£„
 	if( WinData.PauseGraph )
 	{
 		WinAPIData.Win32Func.DeleteObjectFunc( ( HGDIOBJ )WinData.PauseGraph ) ;
@@ -4726,14 +4726,14 @@ static int LoadPauseGraphToBase( const wchar_t *FileName, const void *MemImage, 
 	}
 */
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 #else // DX_NON_GRAPHICS
 	return -1 ;
 #endif // DX_NON_GRAPHICS
 }
 
-// ƒAƒNƒeƒBƒuƒEƒCƒ“ƒhƒE‚ª‘¼‚Ìƒ\ƒtƒg‚ÉˆÚ‚Á‚Ä‚¢‚éÛ‚É•\¦‚·‚é‰æ‘œ‚Ìƒ[ƒh(NULL ‚Å‰ğœ)
+// ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãŒä»–ã®ã‚½ãƒ•ãƒˆã«ç§»ã£ã¦ã„ã‚‹éš›ã«è¡¨ç¤ºã™ã‚‹ç”»åƒã®ãƒ­ãƒ¼ãƒ‰(NULL ã§è§£é™¤)
 extern int NS_LoadPauseGraph( const TCHAR *FileName )
 {
 #ifdef UNICODE
@@ -4751,7 +4751,7 @@ extern int NS_LoadPauseGraph( const TCHAR *FileName )
 #endif
 }
 
-// ƒAƒNƒeƒBƒuƒEƒCƒ“ƒhƒE‚ª‘¼‚Ìƒ\ƒtƒg‚ÉˆÚ‚Á‚Ä‚¢‚éÛ‚É•\¦‚·‚é‰æ‘œ‚ğƒtƒ@ƒCƒ‹‚©‚ç“Ç‚İ‚Ş( FileName ‚É NULL ‚ğ“n‚·‚±‚Æ‚Å‰ğœ)
+// ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãŒä»–ã®ã‚½ãƒ•ãƒˆã«ç§»ã£ã¦ã„ã‚‹éš›ã«è¡¨ç¤ºã™ã‚‹ç”»åƒã‚’ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰èª­ã¿è¾¼ã‚€( FileName ã« NULL ã‚’æ¸¡ã™ã“ã¨ã§è§£é™¤)
 extern int NS_LoadPauseGraphWithStrLen( const TCHAR *FileName, size_t FileNameLength )
 {
 	int Result ;
@@ -4767,32 +4767,32 @@ extern int NS_LoadPauseGraphWithStrLen( const TCHAR *FileName, size_t FileNameLe
 	return Result ;
 }
 
-// ƒAƒNƒeƒBƒuƒEƒCƒ“ƒhƒE‚ª‘¼‚Ìƒ\ƒtƒg‚ÉˆÚ‚Á‚Ä‚¢‚éÛ‚É•\¦‚·‚é‰æ‘œ‚Ìƒ[ƒh(NULL ‚Å‰ğœ)
+// ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãŒä»–ã®ã‚½ãƒ•ãƒˆã«ç§»ã£ã¦ã„ã‚‹éš›ã«è¡¨ç¤ºã™ã‚‹ç”»åƒã®ãƒ­ãƒ¼ãƒ‰(NULL ã§è§£é™¤)
 extern int LoadPauseGraph_WCHAR_T( const wchar_t *FileName )
 {
 	return LoadPauseGraphToBase( FileName, NULL, 0 ) ;
 }
 
-// ƒAƒNƒeƒBƒuƒEƒCƒ“ƒhƒE‚ª‘¼‚Ìƒ\ƒtƒg‚ÉˆÚ‚Á‚Ä‚¢‚éÛ‚É•\¦‚·‚é‰æ‘œ‚Ìƒ[ƒh(NULL ‚Å‰ğœ)
+// ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãŒä»–ã®ã‚½ãƒ•ãƒˆã«ç§»ã£ã¦ã„ã‚‹éš›ã«è¡¨ç¤ºã™ã‚‹ç”»åƒã®ãƒ­ãƒ¼ãƒ‰(NULL ã§è§£é™¤)
 extern int NS_LoadPauseGraphFromMem( const void *MemImage, int MemImageSize )
 {
 	return LoadPauseGraphToBase( NULL, MemImage, MemImageSize ) ;
 }
 
-// ƒEƒCƒ“ƒhƒE‚ÌƒAƒNƒeƒBƒuó‘Ô‚É•Ï‰»‚ª‚ ‚Á‚½‚Æ‚«‚ÉŒÄ‚Î‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”‚ğƒZƒbƒg‚·‚é( NULL ‚ğƒZƒbƒg‚·‚é‚ÆŒÄ‚Î‚ê‚È‚­‚È‚é )
+// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ã‚¢ã‚¯ãƒ†ã‚£ãƒ–çŠ¶æ…‹ã«å¤‰åŒ–ãŒã‚ã£ãŸã¨ãã«å‘¼ã°ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã‚’ã‚»ãƒƒãƒˆã™ã‚‹( NULL ã‚’ã‚»ãƒƒãƒˆã™ã‚‹ã¨å‘¼ã°ã‚Œãªããªã‚‹ )
 extern int NS_SetActiveStateChangeCallBackFunction( int (*CallBackFunction)( int ActiveState, void *UserData ), void *UserData )
 {
-	// ƒ|ƒCƒ“ƒ^‚ğ•Û‘¶
+	// ãƒã‚¤ãƒ³ã‚¿ã‚’ä¿å­˜
 	WinData.ActiveStateChangeCallBackFunction = CallBackFunction ;
 	WinData.ActiveStateChangeCallBackFunctionData = UserData ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
 #ifndef DX_COMPILE_TYPE_C_LANGUAGE
 
-// ƒƒCƒ“ƒEƒCƒ“ƒhƒE‚ÌƒEƒCƒ“ƒhƒEƒeƒLƒXƒg‚ğ•ÏX‚·‚é
+// ãƒ¡ã‚¤ãƒ³ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ†ã‚­ã‚¹ãƒˆã‚’å¤‰æ›´ã™ã‚‹
 extern int NS_SetWindowText( const TCHAR *WindowText )
 {
 	return NS_SetMainWindowText( WindowText ) ;
@@ -4800,13 +4800,13 @@ extern int NS_SetWindowText( const TCHAR *WindowText )
 
 #endif // DX_COMPILE_TYPE_C_LANGUAGE
 
-// ƒƒCƒ“ƒEƒCƒ“ƒhƒE‚ÌƒEƒCƒ“ƒhƒEƒeƒLƒXƒg‚ğ•ÏX‚·‚é
+// ãƒ¡ã‚¤ãƒ³ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ†ã‚­ã‚¹ãƒˆã‚’å¤‰æ›´ã™ã‚‹
 extern int NS_SetWindowTextDX( const TCHAR *WindowText )
 {
 	return NS_SetMainWindowText( WindowText ) ;
 }
 
-// ƒƒCƒ“ƒEƒCƒ“ƒhƒE‚ÌƒEƒCƒ“ƒhƒEƒeƒLƒXƒg‚ğ•ÏX‚·‚é
+// ãƒ¡ã‚¤ãƒ³ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ†ã‚­ã‚¹ãƒˆã‚’å¤‰æ›´ã™ã‚‹
 extern int NS_SetWindowTextWithStrLen( const TCHAR *WindowText, size_t WindowTextLength )
 {
 	int Result ;
@@ -4816,7 +4816,7 @@ extern int NS_SetWindowTextWithStrLen( const TCHAR *WindowText, size_t WindowTex
 	return Result ;
 }
 
-// ƒƒCƒ“ƒEƒCƒ“ƒhƒE‚ÌƒEƒCƒ“ƒhƒEƒeƒLƒXƒg‚ğ•ÏX‚·‚é
+// ãƒ¡ã‚¤ãƒ³ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ†ã‚­ã‚¹ãƒˆã‚’å¤‰æ›´ã™ã‚‹
 extern int NS_SetMainWindowText( const TCHAR *WindowText )
 {
 #ifdef UNICODE
@@ -4834,7 +4834,7 @@ extern int NS_SetMainWindowText( const TCHAR *WindowText )
 #endif
 }
 
-// SetWindowText ‚Ì•Ê–¼ŠÖ”
+// SetWindowText ã®åˆ¥åé–¢æ•°
 extern int NS_SetMainWindowTextWithStrLen( const TCHAR *WindowText, size_t WindowTextLength )
 {
 	int Result ;
@@ -4850,29 +4850,29 @@ extern int NS_SetMainWindowTextWithStrLen( const TCHAR *WindowText, size_t Windo
 	return Result ;
 }
 
-// ƒƒCƒ“ƒEƒCƒ“ƒhƒE‚ÌƒEƒCƒ“ƒhƒEƒeƒLƒXƒg‚ğ•ÏX‚·‚é
+// ãƒ¡ã‚¤ãƒ³ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ†ã‚­ã‚¹ãƒˆã‚’å¤‰æ›´ã™ã‚‹
 extern int SetMainWindowText_WCHAR_T( const wchar_t *WindowText )
 {
 	SETUP_WIN_API
 
-	// ƒeƒLƒXƒg‚Ì•Û‘¶
+	// ãƒ†ã‚­ã‚¹ãƒˆã®ä¿å­˜
 	_WCSCPY_S( WinData.WindowText, sizeof( WinData.WindowText ), WindowText ) ;
 
-	// WindowText ‚Í—LŒøA‚Ìƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// WindowText ã¯æœ‰åŠ¹ã€ã®ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	WinData.EnableWindowText = TRUE ;
 
-	// ƒƒCƒ“ƒEƒCƒ“ƒhƒE‚ªì‚ç‚ê‚Ä‚¢‚È‚¢ê‡‚Í•Û‘¶‚Ì‚İs‚¤
+	// ãƒ¡ã‚¤ãƒ³ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãŒä½œã‚‰ã‚Œã¦ã„ãªã„å ´åˆã¯ä¿å­˜ã®ã¿è¡Œã†
 	if( WinData.MainWindow )
 	{
-		// ƒƒCƒ“ƒEƒCƒ“ƒhƒEƒeƒLƒXƒg‚Ì•ÏX
+		// ãƒ¡ã‚¤ãƒ³ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ†ã‚­ã‚¹ãƒˆã®å¤‰æ›´
 		SetWindowTextWFunc( WinData.MainWindow , WinData.WindowText ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒƒCƒ“ƒEƒCƒ“ƒhƒE‚ÌƒNƒ‰ƒX–¼‚ğİ’è‚·‚é
+// ãƒ¡ã‚¤ãƒ³ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ã‚¯ãƒ©ã‚¹åã‚’è¨­å®šã™ã‚‹
 extern int NS_SetMainWindowClassName( const TCHAR *ClassName )
 {
 #ifdef UNICODE
@@ -4890,7 +4890,7 @@ extern int NS_SetMainWindowClassName( const TCHAR *ClassName )
 #endif
 }
 
-// ƒƒCƒ“ƒEƒCƒ“ƒhƒE‚ÌƒNƒ‰ƒX–¼‚ğİ’è‚·‚é( DxLib_Init ‚Ì‘O‚Å‚Ì‚İg—p‰Â”\ )
+// ãƒ¡ã‚¤ãƒ³ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ã‚¯ãƒ©ã‚¹åã‚’è¨­å®šã™ã‚‹( DxLib_Init ã®å‰ã§ã®ã¿ä½¿ç”¨å¯èƒ½ )
 extern int NS_SetMainWindowClassNameWithStrLen( const TCHAR *ClassName, size_t ClassNameLength )
 {
 	int Result ;
@@ -4906,40 +4906,40 @@ extern int NS_SetMainWindowClassNameWithStrLen( const TCHAR *ClassName, size_t C
 	return Result ;
 }
 
-// ƒƒCƒ“ƒEƒCƒ“ƒhƒE‚ÌƒNƒ‰ƒX–¼‚ğİ’è‚·‚é
+// ãƒ¡ã‚¤ãƒ³ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ã‚¯ãƒ©ã‚¹åã‚’è¨­å®šã™ã‚‹
 extern int SetMainWindowClassName_WCHAR_T( const wchar_t *ClassName )
 {
-	// ƒƒCƒ“ƒEƒCƒ“ƒhƒE‚ªŠù‚Éì¬‚³‚ê‚Ä‚¢‚éê‡‚Íİ’è•s‰Â
+	// ãƒ¡ã‚¤ãƒ³ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãŒæ—¢ã«ä½œæˆã•ã‚Œã¦ã„ã‚‹å ´åˆã¯è¨­å®šä¸å¯
 	if( WinData.MainWindow != NULL )
 	{
 		return -1 ;
 	}
 
-	// ƒeƒLƒXƒg‚Ì•Û‘¶
+	// ãƒ†ã‚­ã‚¹ãƒˆã®ä¿å­˜
 	_WCSCPY_S( WinData.ClassName, sizeof( WinData.ClassName ), ClassName ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒEƒCƒ“ƒhƒE‚ªƒAƒNƒeƒBƒu‚Å‚Í‚È‚¢ó‘Ô‚Å‚àˆ—‚ğ‘±s‚·‚é‚©Aƒtƒ‰ƒO‚ğƒZƒbƒg‚·‚é
+// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãŒã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã§ã¯ãªã„çŠ¶æ…‹ã§ã‚‚å‡¦ç†ã‚’ç¶šè¡Œã™ã‚‹ã‹ã€ãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern int NS_SetAlwaysRunFlag( int Flag )
 {
-	// ƒtƒ‰ƒO‚ğƒZƒbƒg
+	// ãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆ
 	WinData.NonActiveRunFlag = Flag ;
 	
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// g—p‚·‚éƒAƒCƒRƒ“‚Ì‚h‚c‚ğƒZƒbƒg‚·‚é
+// ä½¿ç”¨ã™ã‚‹ã‚¢ã‚¤ã‚³ãƒ³ã®ï¼©ï¼¤ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern int NS_SetWindowIconID( int ID )
 {
 	WinData.IconID = ID ;
 
 	SETUP_WIN_API
 
-	// ‚à‚µŠù‚ÉƒEƒCƒ“ƒhƒE‚ªì¬‚³‚ê‚Ä‚¢‚½‚çAƒAƒCƒRƒ“‚ğ•ÏX‚·‚é
+	// ã‚‚ã—æ—¢ã«ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãŒä½œæˆã•ã‚Œã¦ã„ãŸã‚‰ã€ã‚¢ã‚¤ã‚³ãƒ³ã‚’å¤‰æ›´ã™ã‚‹
 	if( WinData.MainWindow != NULL )
 	{
 #ifdef _WIN64
@@ -4949,18 +4949,18 @@ extern int NS_SetWindowIconID( int ID )
 #endif
     }
 	
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// g—p‚·‚éƒAƒCƒRƒ“‚Ìƒnƒ“ƒhƒ‹‚ğƒZƒbƒg‚·‚é
+// ä½¿ç”¨ã™ã‚‹ã‚¢ã‚¤ã‚³ãƒ³ã®ãƒãƒ³ãƒ‰ãƒ«ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern int NS_SetWindowIconHandle( HICON Icon )
 {
 	WinData.IconHandle = Icon ;
 
 	SETUP_WIN_API
 
-	// ‚à‚µŠù‚ÉƒEƒCƒ“ƒhƒE‚ªì¬‚³‚ê‚Ä‚¢‚½‚çAƒAƒCƒRƒ“‚ğ•ÏX‚·‚é
+	// ã‚‚ã—æ—¢ã«ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãŒä½œæˆã•ã‚Œã¦ã„ãŸã‚‰ã€ã‚¢ã‚¤ã‚³ãƒ³ã‚’å¤‰æ›´ã™ã‚‹
 	if( WinData.MainWindow != NULL )
 	{
 #ifdef _WIN64
@@ -4970,31 +4970,31 @@ extern int NS_SetWindowIconHandle( HICON Icon )
 #endif
     }
 	
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// Å‘å‰»ƒ{ƒ^ƒ“‚âALT+ENTERƒL[‚É‚æ‚é”ñ“¯Šú‚ÈƒEƒCƒ“ƒhƒEƒ‚[ƒh‚Ì•ÏX‚Ì‹@”\‚Ìİ’è‚ğs‚¤
+// æœ€å¤§åŒ–ãƒœã‚¿ãƒ³ã‚„ALT+ENTERã‚­ãƒ¼ã«ã‚ˆã‚‹éåŒæœŸãªã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ¢ãƒ¼ãƒ‰ã®å¤‰æ›´ã®æ©Ÿèƒ½ã®è¨­å®šã‚’è¡Œã†
 extern int NS_SetUseASyncChangeWindowModeFunction( int Flag, void (*CallBackFunction)(void*), void *Data )
 {
-	// ƒtƒ‰ƒO‚ÌƒZƒbƒg
+	// ãƒ•ãƒ©ã‚°ã®ã‚»ãƒƒãƒˆ
 	WinData.UseChangeWindowModeFlag = Flag ;
 
-	// ƒtƒ‰ƒO‚É]‚Á‚½ƒEƒCƒ“ƒhƒE‚ÌƒXƒ^ƒCƒ‹‚ğİ’è‚·‚é
+	// ãƒ•ãƒ©ã‚°ã«å¾“ã£ãŸã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ã‚¹ã‚¿ã‚¤ãƒ«ã‚’è¨­å®šã™ã‚‹
 	if( WinData.WindowModeFlag || NS_GetUseFullScreenResolutionMode() == DX_FSRESOLUTIONMODE_BORDERLESS_WINDOW )
 		SetWindowStyle() ;
 
-	// ƒR[ƒ‹ƒoƒbƒNŠÖ”‚Ì•Û‘¶
+	// ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã®ä¿å­˜
 	WinData.ChangeWindowModeCallBackFunction = CallBackFunction ;
 
-	// ƒR[ƒ‹ƒoƒbƒNŠÖ”‚É“n‚·ƒf[ƒ^‚Ì•Û‘¶
+	// ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã«æ¸¡ã™ãƒ‡ãƒ¼ã‚¿ã®ä¿å­˜
 	WinData.ChangeWindowModeCallBackFunctionData = Data ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒVƒƒƒbƒgƒ_ƒEƒ“‚É‚æ‚éƒ\ƒtƒg‚Ì‹­§I—¹‚ÌÛ‚ÉŒÄ‚Î‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”‚ğ“o˜^‚·‚é
+// ã‚·ãƒ£ãƒƒãƒˆãƒ€ã‚¦ãƒ³ã«ã‚ˆã‚‹ã‚½ãƒ•ãƒˆã®å¼·åˆ¶çµ‚äº†ã®éš›ã«å‘¼ã°ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã‚’ç™»éŒ²ã™ã‚‹
 extern int NS_SetShutdownCallbackFunction( void (* CallbackFunction )( void * ), void *Data, const TCHAR *Message )
 {
 #ifdef UNICODE
@@ -5012,121 +5012,121 @@ extern int NS_SetShutdownCallbackFunction( void (* CallbackFunction )( void * ),
 #endif
 }
 
-// ƒVƒƒƒbƒgƒ_ƒEƒ“‚É‚æ‚éƒ\ƒtƒg‚Ì‹­§I—¹‚ÌÛ‚ÉŒÄ‚Î‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”‚ğ“o˜^‚·‚é
+// ã‚·ãƒ£ãƒƒãƒˆãƒ€ã‚¦ãƒ³ã«ã‚ˆã‚‹ã‚½ãƒ•ãƒˆã®å¼·åˆ¶çµ‚äº†ã®éš›ã«å‘¼ã°ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã‚’ç™»éŒ²ã™ã‚‹
 extern int SetShutdownCallbackFunction_WCHAR_T( void (* CallbackFunction )( void * ), void *Data, const wchar_t *Message )
 {
-	// ƒR[ƒ‹ƒoƒbƒNŠÖ”‚Ì•Û‘¶
+	// ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã®ä¿å­˜
 	WinData.ShutdownCallBackFunction = CallbackFunction ;
 
-	// ƒR[ƒ‹ƒoƒbƒNŠÖ”‚É“n‚·ƒf[ƒ^‚Ì•Û‘¶
+	// ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã«æ¸¡ã™ãƒ‡ãƒ¼ã‚¿ã®ä¿å­˜
 	WinData.ShutdownCallBackFunctionData = Data ;
 
-	// ƒƒbƒZ[ƒW‚Ì•Û‘¶
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®ä¿å­˜
 	if( Message == NULL || Message[ 0 ] == L'\0' )
 	{
 		Message = L"Wait..." ;
 	}
 	_WCSCPY_S( WinData.ShutdownMessage, sizeof( WinData.ShutdownMessage ), Message ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒEƒCƒ“ƒhƒE‚ÌƒXƒ^ƒCƒ‹‚ğ•ÏX‚·‚é
+// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ã‚¹ã‚¿ã‚¤ãƒ«ã‚’å¤‰æ›´ã™ã‚‹
 extern int NS_SetWindowStyleMode( int Mode )
 {
 	if( Mode < 0 || Mode >= WSTYLE_NUM ) return -1 ; 
 
 	SETUP_WIN_API
 
-	// ƒXƒ^ƒCƒ‹’l‚Ì•ÏX
+	// ã‚¹ã‚¿ã‚¤ãƒ«å€¤ã®å¤‰æ›´
 	WinData.WindowStyle = Mode ;
 
-	// ƒEƒCƒ“ƒhƒE‚Ì‘®«‚ğ•ÏX
+	// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®å±æ€§ã‚’å¤‰æ›´
 	if( WinData.WindowModeFlag || NS_GetUseFullScreenResolutionMode() == DX_FSRESOLUTIONMODE_BORDERLESS_WINDOW ) SetWindowStyle() ;
 
-	// ˜g‚ÌXV
+	// æ ã®æ›´æ–°
 	if( WinData.MainWindow != NULL )
 	{
 		SetWindowPos( WinData.MainWindow, NULL, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE | SWP_NOZORDER | SWP_FRAMECHANGED ) ;
 	}
 
-	// ƒEƒCƒ“ƒhƒE‚ÌÄ•`‰æ
+	// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®å†æç”»
 	WinAPIData.Win32Func.UpdateWindowFunc( WinData.MainWindow ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒƒCƒ“ƒEƒCƒ“ƒhƒE‚Ì‰œs‚«ˆÊ’u‚ğ•ÏX‚·‚é
+// ãƒ¡ã‚¤ãƒ³ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®å¥¥è¡Œãä½ç½®ã‚’å¤‰æ›´ã™ã‚‹
 extern int NS_SetWindowZOrder( int ZType, int WindowActivateFlag )
 {
 	if( ZType < 0 || ZType > DX_WIN_ZTYPE_TOPMOST ) return -1 ; 
 
 	SETUP_WIN_API
 
-	// ‰œs‚«ˆÊ’uƒ^ƒCƒv‚Ì•Û‘¶
+	// å¥¥è¡Œãä½ç½®ã‚¿ã‚¤ãƒ—ã®ä¿å­˜
 	WinData.WindowZType = ZType ;
 
-	// ƒEƒCƒ“ƒhƒE‚ğƒAƒNƒeƒBƒu‚É‚µ‚È‚¢‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğ•Û‘¶
+	// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚’ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ã—ãªã„ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’ä¿å­˜
 	WinData.WindowZTypeNoActivateFlag = WindowActivateFlag ? FALSE : TRUE ;
 
-	// ƒEƒCƒ“ƒhƒE‚Ì‘®«‚ğÄİ’è
+	// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®å±æ€§ã‚’å†è¨­å®š
 	if( WinData.WindowModeFlag || NS_GetUseFullScreenResolutionMode() == DX_FSRESOLUTIONMODE_BORDERLESS_WINDOW )
 	{
 		SetWindowStyle( FALSE ) ;
 	}
 
-	// ƒEƒCƒ“ƒhƒE‚ÌÄ•`‰æ
+	// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®å†æç”»
 	WinAPIData.Win32Func.UpdateWindowFunc( WinData.MainWindow ) ;
 
-	// ƒEƒCƒ“ƒhƒE‚ğƒAƒNƒeƒBƒu‚É‚µ‚È‚¢‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚Íˆê“I‚È‚à‚Ì‚È‚Ì‚Å•K‚¸“|‚·
+	// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚’ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ã—ãªã„ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã¯ä¸€æ™‚çš„ãªã‚‚ã®ãªã®ã§å¿…ãšå€’ã™
 	WinData.WindowZTypeNoActivateFlag = FALSE ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒEƒCƒ“ƒhƒE‚ÌƒTƒCƒY‚ğ•ÏX‚Å‚«‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğƒZƒbƒg‚·‚é
-// NotFitScreen:ƒEƒCƒ“ƒhƒE‚ÌƒNƒ‰ƒCƒAƒ“ƒg—Ìˆæ‚É‰æ–Ê‚ğƒtƒBƒbƒg‚³‚¹‚é(Šg‘å‚³‚¹‚é)‚©‚Ç‚¤‚©  TRUE:ƒtƒBƒbƒg‚³‚¹‚é  FALSE:ƒtƒBƒbƒg‚³‚¹‚È‚¢
+// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ã‚µã‚¤ã‚ºã‚’å¤‰æ›´ã§ãã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
+// NotFitScreen:ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆé ˜åŸŸã«ç”»é¢ã‚’ãƒ•ã‚£ãƒƒãƒˆã•ã›ã‚‹(æ‹¡å¤§ã•ã›ã‚‹)ã‹ã©ã†ã‹  TRUE:ãƒ•ã‚£ãƒƒãƒˆã•ã›ã‚‹  FALSE:ãƒ•ã‚£ãƒƒãƒˆã•ã›ãªã„
 extern int NS_SetWindowSizeChangeEnableFlag( int Flag, int FitScreen )
 {
 	int NotFitWindowSize ;
 
 	NotFitWindowSize = FitScreen == TRUE ? FALSE : TRUE ;
 
-	// ƒtƒ‰ƒO‚ª“¯‚¶ê‡‚Í‰½‚à‚µ‚È‚¢
+	// ãƒ•ãƒ©ã‚°ãŒåŒã˜å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( WinData.WindowSizeChangeEnable == Flag &&
 		WinData.ScreenNotFitWindowSize == NotFitWindowSize ) return 0 ;
 
-	// ƒtƒ‰ƒO‚ğ•Û‘¶
+	// ãƒ•ãƒ©ã‚°ã‚’ä¿å­˜
 	WinData.WindowSizeChangeEnable = Flag ;
 	WinData.ScreenNotFitWindowSize = NotFitWindowSize ;
 
-	// ƒEƒCƒ“ƒhƒE‚ÉƒtƒBƒbƒg‚³‚¹‚éê‡‚Í SetWindowSize ‚Å‚ÍƒEƒCƒ“ƒhƒE‚ÌŠg‘å—¦‚ª•Ï‰»‚·‚é‚æ‚¤‚É‚µ‚½
+	// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã«ãƒ•ã‚£ãƒƒãƒˆã•ã›ã‚‹å ´åˆã¯ SetWindowSize ã§ã¯ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®æ‹¡å¤§ç‡ãŒå¤‰åŒ–ã™ã‚‹ã‚ˆã†ã«ã—ãŸ
 	/*
-	// ƒEƒCƒ“ƒhƒE‚ÉƒtƒBƒbƒg‚³‚¹‚éê‡‚Í SetWindowSize ‚Ìİ’è‚Í–³Œø‚É‚·‚é
+	// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã«ãƒ•ã‚£ãƒƒãƒˆã•ã›ã‚‹å ´åˆã¯ SetWindowSize ã®è¨­å®šã¯ç„¡åŠ¹ã«ã™ã‚‹
 	if( FitScreen == TRUE )
 	{
 		WinData.WindowSizeValid = FALSE ;
 	}
 	*/
 
-	// ƒEƒCƒ“ƒhƒEƒ‚[ƒh‚Ìê‡‚Ì‚İƒEƒCƒ“ƒhƒEƒXƒ^ƒCƒ‹‚ğXV
+	// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ¢ãƒ¼ãƒ‰ã®å ´åˆã®ã¿ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚¹ã‚¿ã‚¤ãƒ«ã‚’æ›´æ–°
 	if( WinData.WindowModeFlag == TRUE || NS_GetUseFullScreenResolutionMode() == DX_FSRESOLUTIONMODE_BORDERLESS_WINDOW )
 		SetWindowStyle() ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// •`‰æ‰æ–Ê‚ÌƒTƒCƒY‚É‘Î‚·‚éƒEƒCƒ“ƒhƒEƒTƒCƒY‚Ì”ä—¦‚ğİ’è‚·‚é
+// æç”»ç”»é¢ã®ã‚µã‚¤ã‚ºã«å¯¾ã™ã‚‹ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚µã‚¤ã‚ºã®æ¯”ç‡ã‚’è¨­å®šã™ã‚‹
 extern int NS_SetWindowSizeExtendRate( double ExRateX, double ExRateY )
 {
-	// ExRateY ‚ªƒ}ƒCƒiƒX‚Ì’l‚Ìê‡‚Í ExRateX ‚Ì’l‚ğ ExRateY ‚Å‚àg—p‚·‚é
+	// ExRateY ãŒãƒã‚¤ãƒŠã‚¹ã®å€¤ã®å ´åˆã¯ ExRateX ã®å€¤ã‚’ ExRateY ã§ã‚‚ä½¿ç”¨ã™ã‚‹
 	if( ExRateY <= 0.0 ) ExRateY = ExRateX ;
 
-	// ¡‚Ü‚Å‚Æ“¯‚¶ê‡‚Í‰½‚à‚µ‚È‚¢
+	// ä»Šã¾ã§ã¨åŒã˜å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( WinData.WindowSizeExRateX == ExRateX &&
 		WinData.WindowSizeExRateY == ExRateY ) return 0 ;
 
@@ -5143,30 +5143,30 @@ extern int NS_SetWindowSizeExtendRate( double ExRateX, double ExRateY )
 		WinData.WindowSizeExRateY = 1.0 ;
 	}
 
-	// SetWindowSize ‚Ìİ’è‚Í–³Œø‚É‚·‚é
+	// SetWindowSize ã®è¨­å®šã¯ç„¡åŠ¹ã«ã™ã‚‹
 	WinData.WindowSizeValid = FALSE ;
 
-	// ƒEƒCƒ“ƒhƒEƒ‚[ƒh‚Ìê‡‚ÍV‚µ‚¢”ä—¦‚ğ”½‰f‚·‚é
+	// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ¢ãƒ¼ãƒ‰ã®å ´åˆã¯æ–°ã—ã„æ¯”ç‡ã‚’åæ˜ ã™ã‚‹
 	if( WinData.WindowModeFlag == TRUE || NS_GetUseFullScreenResolutionMode() == DX_FSRESOLUTIONMODE_BORDERLESS_WINDOW )
 	{
-		// ƒEƒBƒ“ƒhƒE‚ÌƒTƒCƒY‚Ì”ä—¦‚ğ•ÏX’†ƒtƒ‰ƒO‚ğ—§‚Ä‚é
+		// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ã‚µã‚¤ã‚ºã®æ¯”ç‡ã‚’å¤‰æ›´ä¸­ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 		WinData.ChangeWindowSizeExRate = TRUE ;
 
 		SetWindowStyle() ;
 
-		// ƒEƒBƒ“ƒhƒE‚ÌƒTƒCƒY‚Ì”ä—¦‚ğ•ÏX’†ƒtƒ‰ƒO‚ğ“|‚·
+		// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ã‚µã‚¤ã‚ºã®æ¯”ç‡ã‚’å¤‰æ›´ä¸­ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 		WinData.ChangeWindowSizeExRate = FALSE ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒEƒCƒ“ƒhƒEƒ‚[ƒh‚ÌƒEƒCƒ“ƒhƒE‚ÌƒNƒ‰ƒCƒAƒ“ƒg—Ìˆæ‚ÌƒTƒCƒY‚ğİ’è‚·‚é
+// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ¢ãƒ¼ãƒ‰æ™‚ã®ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆé ˜åŸŸã®ã‚µã‚¤ã‚ºã‚’è¨­å®šã™ã‚‹
 extern int NS_SetWindowSize( int Width, int Height )
 {
 #ifndef DX_NON_GRAPHICS
-	// ƒEƒCƒ“ƒhƒE‚ªì¬Ï‚İ‚ÅƒEƒCƒ“ƒhƒE‚ÉƒtƒBƒbƒg‚³‚¹‚éİ’è‚Ìê‡‚ÍŠg‘å—¦‚ğ•ÏX‚·‚é
+	// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãŒä½œæˆæ¸ˆã¿ã§ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã«ãƒ•ã‚£ãƒƒãƒˆã•ã›ã‚‹è¨­å®šã®å ´åˆã¯æ‹¡å¤§ç‡ã‚’å¤‰æ›´ã™ã‚‹
 	if( WinData.MainWindow != NULL && WinData.ScreenNotFitWindowSize == FALSE )
 	{
 		double ExtendRateX ;
@@ -5174,10 +5174,10 @@ extern int NS_SetWindowSize( int Width, int Height )
 		int ScreenSizeX ;
 		int ScreenSizeY ;
 
-		// •`‰æ—Ìˆæ‚ÌƒTƒCƒY‚ğæ“¾
+		// æç”»é ˜åŸŸã®ã‚µã‚¤ã‚ºã‚’å–å¾—
 		NS_GetDrawScreenSize( &ScreenSizeX , &ScreenSizeY ) ;
 
-		// Šg‘å—¦‚ğw’è‚·‚é
+		// æ‹¡å¤§ç‡ã‚’æŒ‡å®šã™ã‚‹
 		ExtendRateX = ( double )Width  / ScreenSizeX ;
 		ExtendRateY = ( double )Height / ScreenSizeY ;
 		NS_SetWindowSizeExtendRate( ExtendRateX, ExtendRateY ) ;
@@ -5185,58 +5185,58 @@ extern int NS_SetWindowSize( int Width, int Height )
 	else
 #endif // DX_NON_GRAPHICS
 	{
-		// ‚»‚êˆÈŠO‚Ìê‡‚ÍƒEƒCƒ“ƒhƒEƒTƒCƒY‚ğ•ÏX‚·‚é
+		// ãã‚Œä»¥å¤–ã®å ´åˆã¯ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚µã‚¤ã‚ºã‚’å¤‰æ›´ã™ã‚‹
 		WinData.WindowWidth = Width ;
 		WinData.WindowHeight = Height ;
 		WinData.WindowSizeValid = TRUE ;
 
-		// ”½‰f‚³‚¹‚é
+		// åæ˜ ã•ã›ã‚‹
 		WM_SIZEProcess() ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒƒCƒ“ƒEƒCƒ“ƒhƒE‚ÌƒNƒ‰ƒCƒAƒ“ƒg—Ìˆæ‚ÌÅ‘åƒTƒCƒY‚ğİ’è‚·‚é( SetWindowSizeChangeEnableFlag ‚Ì‘æˆêˆø”‚ğ TRUE ‚ÅŒÄ‚Ño‚µ‚ÄAƒEƒCƒ“ƒhƒE‚ÌƒTƒCƒY‚ª•ÏX‚Å‚«‚éó‘Ô‚Å‚Ì‚İg—p‚³‚ê‚éƒpƒ‰ƒ[ƒ^‚Å‚· )
+// ãƒ¡ã‚¤ãƒ³ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆé ˜åŸŸã®æœ€å¤§ã‚µã‚¤ã‚ºã‚’è¨­å®šã™ã‚‹( SetWindowSizeChangeEnableFlag ã®ç¬¬ä¸€å¼•æ•°ã‚’ TRUE ã§å‘¼ã³å‡ºã—ã¦ã€ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ã‚µã‚¤ã‚ºãŒå¤‰æ›´ã§ãã‚‹çŠ¶æ…‹ã§ã®ã¿ä½¿ç”¨ã•ã‚Œã‚‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã§ã™ )
 extern int NS_SetWindowMaxSize( int MaxWidth, int MaxHeight )
 {
 	WinData.WindowMaxWidth = MaxWidth ;
 	WinData.WindowMaxHeight = MaxHeight ;
 	WinData.WindowMaxSizeValid = TRUE ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒƒCƒ“ƒEƒCƒ“ƒhƒE‚ÌƒNƒ‰ƒCƒAƒ“ƒg—Ìˆæ‚ÌÅ¬ƒTƒCƒY‚ğİ’è‚·‚é( SetWindowSizeChangeEnableFlag ‚Ì‘æˆêˆø”‚ğ TRUE ‚ÅŒÄ‚Ño‚µ‚ÄAƒEƒCƒ“ƒhƒE‚ÌƒTƒCƒY‚ª•ÏX‚Å‚«‚éó‘Ô‚Å‚Ì‚İg—p‚³‚ê‚éƒpƒ‰ƒ[ƒ^‚Å‚· )
+// ãƒ¡ã‚¤ãƒ³ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆé ˜åŸŸã®æœ€å°ã‚µã‚¤ã‚ºã‚’è¨­å®šã™ã‚‹( SetWindowSizeChangeEnableFlag ã®ç¬¬ä¸€å¼•æ•°ã‚’ TRUE ã§å‘¼ã³å‡ºã—ã¦ã€ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ã‚µã‚¤ã‚ºãŒå¤‰æ›´ã§ãã‚‹çŠ¶æ…‹ã§ã®ã¿ä½¿ç”¨ã•ã‚Œã‚‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã§ã™ )
 extern int NS_SetWindowMinSize( int MinWidth, int MinHeight )
 {
 	WinData.WindowMinWidth = MinWidth ;
 	WinData.WindowMinHeight = MinHeight ;
 	WinData.WindowMinSizeValid = TRUE ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒEƒCƒ“ƒhƒEƒ‚[ƒh‚ÌƒEƒCƒ“ƒhƒE‚ÌˆÊ’u‚ğİ’è‚·‚é( ˜g‚àŠÜ‚ß‚½¶ãÀ•W )
+// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ¢ãƒ¼ãƒ‰ã®ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ä½ç½®ã‚’è¨­å®šã™ã‚‹( æ ã‚‚å«ã‚ãŸå·¦ä¸Šåº§æ¨™ )
 extern int NS_SetWindowPosition( int x, int y )
 {
 	WinData.WindowX = x ;
 	WinData.WindowY = y ;
 	WinData.WindowPosValid = TRUE ;
 
-	// ”½‰f‚³‚¹‚é
+	// åæ˜ ã•ã›ã‚‹
 	WM_SIZEProcess() ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
 #ifndef DX_NON_STOPTASKSWITCH
 
-// _KBDLLHOOKSTRUCT \‘¢‘Ì‚Ì’è‹`
+// _KBDLLHOOKSTRUCT æ§‹é€ ä½“ã®å®šç¾©
 typedef struct tag_KBDLLHOOKSTRUCT
 {
     DWORD   vkCode;
@@ -5246,11 +5246,11 @@ typedef struct tag_KBDLLHOOKSTRUCT
     DWORD   dwExtraInfo;
 } _KBDLLHOOKSTRUCT, FAR *LP_KBDLLHOOKSTRUCT, *P_KBDLLHOOKSTRUCT;
 
-// ƒtƒbƒN‚³‚ê‚½‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+// ãƒ•ãƒƒã‚¯ã•ã‚ŒãŸæ™‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 LRESULT CALLBACK LowLevelKeyboardProc (INT nCode, WPARAM wParam, LPARAM lParam)
 {
-    // ƒtƒbƒN ƒvƒƒV[ƒWƒƒ‚©‚ç”ñƒ[ƒ‚Ì’l‚ğ•Ô‚·‚±‚Æ‚É‚æ‚èA
-    // ƒƒbƒZ[ƒW‚ªƒ^[ƒQƒbƒg ƒEƒBƒ“ƒhƒE‚É“n‚³‚ê‚È‚­‚È‚è‚Ü‚·
+    // ãƒ•ãƒƒã‚¯ ãƒ—ãƒ­ã‚·ãƒ¼ã‚¸ãƒ£ã‹ã‚‰éã‚¼ãƒ­ã®å€¤ã‚’è¿”ã™ã“ã¨ã«ã‚ˆã‚Šã€
+    // ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãŒã‚¿ãƒ¼ã‚²ãƒƒãƒˆ ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã«æ¸¡ã•ã‚Œãªããªã‚Šã¾ã™
     _KBDLLHOOKSTRUCT *pkbhs = (_KBDLLHOOKSTRUCT *) lParam;
     BOOL bControlKeyDown = 0;
 
@@ -5260,26 +5260,26 @@ LRESULT CALLBACK LowLevelKeyboardProc (INT nCode, WPARAM wParam, LPARAM lParam)
 		{
 			case HC_ACTION:
 			{
-				// Ctrl ƒL[‚ª‰Ÿ‚³‚ê‚½‚©‚Ç‚¤‚©‚ğƒ`ƒFƒbƒN
+				// Ctrl ã‚­ãƒ¼ãŒæŠ¼ã•ã‚ŒãŸã‹ã©ã†ã‹ã‚’ãƒã‚§ãƒƒã‚¯
 				bControlKeyDown = GetAsyncKeyState (VK_CONTROL) >> ((sizeof(SHORT) * 8) - 1);
 
-				// Ctrl + Esc ‚ğ–³Œø‚É‚µ‚Ü‚·
+				// Ctrl + Esc ã‚’ç„¡åŠ¹ã«ã—ã¾ã™
 				if (pkbhs->vkCode == VK_ESCAPE && bControlKeyDown)
 					return 1;
 
-				// Alt + Tab ‚ğ–³Œø‚É‚µ‚Ü‚·
+				// Alt + Tab ã‚’ç„¡åŠ¹ã«ã—ã¾ã™
 				if (pkbhs->vkCode == VK_TAB && ( pkbhs->flags & LLKHF_ALTDOWN ) )
 					return 1;
 
-				// Alt + Esc ‚ğ–³Œø‚É‚µ‚Ü‚·
+				// Alt + Esc ã‚’ç„¡åŠ¹ã«ã—ã¾ã™
 				if (pkbhs->vkCode == VK_ESCAPE && ( pkbhs->flags & LLKHF_ALTDOWN ) )
 					return 1;
 
-				// Alt + F4 ‚ğ–³Œø‚É‚µ‚Ü‚·
+				// Alt + F4 ã‚’ç„¡åŠ¹ã«ã—ã¾ã™
 				if (pkbhs->vkCode == VK_F4 && ( pkbhs->flags & LLKHF_ALTDOWN ) )
 					return 1 ;
 
-				// Alt up ‚ğ–³Œø‚É‚µ‚Ü‚·
+				// Alt up ã‚’ç„¡åŠ¹ã«ã—ã¾ã™
 				if ((pkbhs->vkCode == VK_LMENU || pkbhs->vkCode == VK_LMENU ) && ( pkbhs->flags & LLKHF_UP ) )
 					return 1 ;
 
@@ -5297,7 +5297,7 @@ LRESULT CALLBACK LowLevelKeyboardProc (INT nCode, WPARAM wParam, LPARAM lParam)
 
 #ifdef DX_THREAD_SAFE
 
-// ProcessMessage ‚ğ‚Ğ‚½‚·‚çŒÄ‚Ñ‚Â‚Ã‚¯‚éƒXƒŒƒbƒh
+// ProcessMessage ã‚’ã²ãŸã™ã‚‰å‘¼ã³ã¤ã¥ã‘ã‚‹ã‚¹ãƒ¬ãƒƒãƒ‰
 DWORD WINAPI ProcessMessageThreadFunction( LPVOID )
 {
 	int Result ;
@@ -5307,24 +5307,24 @@ DWORD WINAPI ProcessMessageThreadFunction( LPVOID )
 
 	SETUP_WIN_API
 
-	// ƒXƒŒƒbƒh‚Ì‚h‚c‚ğ“¾‚Ä‚¨‚­
+	// ã‚¹ãƒ¬ãƒƒãƒ‰ã®ï¼©ï¼¤ã‚’å¾—ã¦ãŠã
 	ThreadID = WinAPIData.Win32Func.GetCurrentThreadIdFunc() ;
 
-	// ‚Ğ‚½‚·‚ç ProcessMessage ‚ğŒÄ‚Ñ‚Â‚Ã‚¯‚é
+	// ã²ãŸã™ã‚‰ ProcessMessage ã‚’å‘¼ã³ã¤ã¥ã‘ã‚‹
 	for(;;)
 	{
-		// ƒ\ƒtƒg‚ÌI—¹ƒtƒ‰ƒO‚ª—§‚Á‚½‚çƒ‹[ƒv‚©‚çŠO‚ê‚é
+		// ã‚½ãƒ•ãƒˆã®çµ‚äº†ãƒ•ãƒ©ã‚°ãŒç«‹ã£ãŸã‚‰ãƒ«ãƒ¼ãƒ—ã‹ã‚‰å¤–ã‚Œã‚‹
 		if( WinData.QuitMessageFlag == TRUE ) break ;
 
-		// CheckConflictAndWaitDxFunction ‚ªŒÄ‚Î‚ê‚Ä‚¢‚½‚çAŒÄ‚Î‚êI‚í‚é‚Ü‚Å‘Ò‚Â
+		// CheckConflictAndWaitDxFunction ãŒå‘¼ã°ã‚Œã¦ã„ãŸã‚‰ã€å‘¼ã°ã‚Œçµ‚ã‚ã‚‹ã¾ã§å¾…ã¤
 		CRITICALSECTION_LOCK( &WinData.DxConflictCheckCriticalSection ) ;
 //		CheckConflict( &WinData.DxConflictCheckFlag ) ;
 
-		// ‚c‚wƒ‰ƒCƒuƒ‰ƒŠ‚ªg—p‚³‚ê‚Ä‚¢‚é‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+		// ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªãŒä½¿ç”¨ã•ã‚Œã¦ã„ã‚‹ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 		if( WinData.DxUseThreadFlag == FALSE || WinData.DxUseThreadID == ThreadID )
 		{
 //RUN:
-			// ‘Ò‚Á‚Ä‚¢‚éƒXƒŒƒbƒh‚ª‹‚ÄA‚»‚ê‚ª©•ª‚ÌƒXƒŒƒbƒh‚Å‚Í‚È‚¢ê‡‚Í‘Ò‚¿
+			// å¾…ã£ã¦ã„ã‚‹ã‚¹ãƒ¬ãƒƒãƒ‰ãŒå±…ã¦ã€ãã‚ŒãŒè‡ªåˆ†ã®ã‚¹ãƒ¬ãƒƒãƒ‰ã§ã¯ãªã„å ´åˆã¯å¾…ã¡
 			if( WinData.DxUseThreadFlag == FALSE && WinData.DxConflictWaitThreadNum != 0 && WinData.DxUseThreadID != ThreadID )
 			{
 				if( WinData.DxConflictWaitThreadID[0][0] != ThreadID )
@@ -5333,7 +5333,7 @@ DWORD WINAPI ProcessMessageThreadFunction( LPVOID )
 				}
 				else
 				{
-					// ‚à‚µ‘Ò‚Á‚Ä‚¢‚½‚Ì‚ª©•ª‚¾‚Á‚½‚çƒŠƒXƒg‚ğƒXƒ‰ƒCƒh‚³‚¹‚é
+					// ã‚‚ã—å¾…ã£ã¦ã„ãŸã®ãŒè‡ªåˆ†ã ã£ãŸã‚‰ãƒªã‚¹ãƒˆã‚’ã‚¹ãƒ©ã‚¤ãƒ‰ã•ã›ã‚‹
 					if( WinData.DxConflictWaitThreadNum != 1 )
 					{
 						EventHandle = (HANDLE)WinData.DxConflictWaitThreadID[0][1] ;
@@ -5342,103 +5342,103 @@ DWORD WINAPI ProcessMessageThreadFunction( LPVOID )
 						WinData.DxConflictWaitThreadID[WinData.DxConflictWaitThreadNum - 1][0] = (DWORD_PTR)0 ;
 					}
 
-					// ‘Ò‚Á‚Ä‚¢‚é”‚ğŒ¸‚ç‚·
+					// å¾…ã£ã¦ã„ã‚‹æ•°ã‚’æ¸›ã‚‰ã™
 					WinData.DxConflictWaitThreadNum -- ;
 				}
 			}
 
-			// î•ñ‚ğƒZƒbƒg
+			// æƒ…å ±ã‚’ã‚»ãƒƒãƒˆ
 			WinData.DxUseThreadFlag = TRUE ;
 			WinData.DxUseThreadID = ThreadID ;
 
-			// g—p’†ƒJƒEƒ“ƒ^‚ğƒCƒ“ƒNƒŠƒƒ“ƒg‚·‚é
+			// ä½¿ç”¨ä¸­ã‚«ã‚¦ãƒ³ã‚¿ã‚’ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆã™ã‚‹
 //			if( WinData.DxConflictCheckCounter != 0 )
 //			{
-//				DXST_LOGFILE_ADDW( L"ƒGƒ‰[:Õ“Ë”­¶ No.2\n" ) ;
+//				DXST_LOGFILE_ADDW( L"ã‚¨ãƒ©ãƒ¼:è¡çªç™ºç”Ÿ No.2\n" ) ;
 //			}
 			WinData.DxConflictCheckCounter ++ ;
 
-			// ƒƒbƒNƒtƒ‰ƒO‚ğ“|‚·
+			// ãƒ­ãƒƒã‚¯ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 			CriticalSection_Unlock( &WinData.DxConflictCheckCriticalSection ) ;
 //			WinData.DxConflictCheckFlag -- ;
 
-			// ProcessMessage ‚ğŒÄ‚Ô
+			// ProcessMessage ã‚’å‘¼ã¶
 			Result = NS_ProcessMessage() ;
 
-			// CheckConflictAndWaitDxFunction ‚ªŒÄ‚Î‚ê‚Ä‚¢‚½‚çAŒÄ‚Î‚êI‚í‚é‚Ü‚Å‘Ò‚Â
+			// CheckConflictAndWaitDxFunction ãŒå‘¼ã°ã‚Œã¦ã„ãŸã‚‰ã€å‘¼ã°ã‚Œçµ‚ã‚ã‚‹ã¾ã§å¾…ã¤
 			CRITICALSECTION_LOCK( &WinData.DxConflictCheckCriticalSection ) ;
 //			CheckConflict( &WinData.DxConflictCheckFlag ) ;
 
-			// ƒJƒEƒ“ƒ^‚ª‚O‚É‚È‚Á‚Ä‚½‚çg—p’†ó‘Ô‚ğ‰ğœ
+			// ã‚«ã‚¦ãƒ³ã‚¿ãŒï¼ã«ãªã£ã¦ãŸã‚‰ä½¿ç”¨ä¸­çŠ¶æ…‹ã‚’è§£é™¤
 			if( WinData.DxConflictCheckCounter == 1 )
 			{
 				WinData.DxUseThreadFlag = FALSE ;
 				WinData.DxUseThreadID = 0xffffffff ;
 
-				// ‚à‚µ‘Ò‚Á‚Ä‚¢‚éƒXƒŒƒbƒh‚ª‚ ‚éê‡‚ÍAƒXƒŠ[ƒv‚·‚éƒtƒ‰ƒO‚ğ—§‚Ä‚é
+				// ã‚‚ã—å¾…ã£ã¦ã„ã‚‹ã‚¹ãƒ¬ãƒƒãƒ‰ãŒã‚ã‚‹å ´åˆã¯ã€ã‚¹ãƒªãƒ¼ãƒ—ã™ã‚‹ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 				if( WinData.DxConflictWaitThreadNum > 0 )
 					WaitFlag = 1 ;
 			}
 //			else
 //			{
-//				DXST_LOGFILE_ADDW( L"ƒGƒ‰[:Õ“Ë”­¶ No.3 \n" ) ;
+//				DXST_LOGFILE_ADDW( L"ã‚¨ãƒ©ãƒ¼:è¡çªç™ºç”Ÿ No.3 \n" ) ;
 //			}
 
-			// ƒJƒEƒ“ƒ^‚ğƒfƒNƒŠƒƒ“ƒg
+			// ã‚«ã‚¦ãƒ³ã‚¿ã‚’ãƒ‡ã‚¯ãƒªãƒ¡ãƒ³ãƒˆ
 			WinData.DxConflictCheckCounter -- ;
 
-			// ƒƒbƒNƒtƒ‰ƒO‚ğ“|‚·
+			// ãƒ­ãƒƒã‚¯ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 			CriticalSection_Unlock( &WinData.DxConflictCheckCriticalSection ) ;
 //			WinData.DxConflictCheckFlag -- ;
 
-			// ƒXƒŠ[ƒv‚·‚éƒtƒ‰ƒO‚ª—§‚Á‚Ä‚¢‚½‚çƒXƒŠ[ƒv‚·‚é
+			// ã‚¹ãƒªãƒ¼ãƒ—ã™ã‚‹ãƒ•ãƒ©ã‚°ãŒç«‹ã£ã¦ã„ãŸã‚‰ã‚¹ãƒªãƒ¼ãƒ—ã™ã‚‹
 			if( WaitFlag == 1 )
 			{
-				// Ÿ‚ÉÀs‚·‚×‚«ƒXƒŒƒbƒh‚ÌƒCƒxƒ“ƒg‚ğƒVƒOƒiƒ‹ó‘Ô‚É‚·‚é
+				// æ¬¡ã«å®Ÿè¡Œã™ã¹ãã‚¹ãƒ¬ãƒƒãƒ‰ã®ã‚¤ãƒ™ãƒ³ãƒˆã‚’ã‚·ã‚°ãƒŠãƒ«çŠ¶æ…‹ã«ã™ã‚‹
 				WinAPIData.Win32Func.SetEventFunc( (HANDLE)WinData.DxConflictWaitThreadID[0][1] ) ;
 				WaitFlag = 0 ;
 			}
 
-			// WinAPIData.Win32Func.PostMessageWFunc ‚Ì–ß‚è’l‚ª -1 ‚¾‚Á‚½‚çƒ‹[ƒv‚ğ”²‚¯‚é
+			// WinAPIData.Win32Func.PostMessageWFunc ã®æˆ»ã‚Šå€¤ãŒ -1 ã ã£ãŸã‚‰ãƒ«ãƒ¼ãƒ—ã‚’æŠœã‘ã‚‹
 			if( Result < 0 ) break ;
 
-			// b‚­Q‚é
+			// æš«ãå¯ã‚‹
 			WinAPIData.Win32Func.SleepFunc( 17 ) ;
 		}
 		else
 		{
 WAIT:
-			// ‚à‚µ‘Ò‚Á‚Ä‚¢‚éƒXƒŒƒbƒh‚ªŒÀŠE‚ğ‰z‚¦‚Ä‚¢‚½‚ç’Pƒ‚È‘Ò‚¿ˆ—‚ğs‚¤
+			// ã‚‚ã—å¾…ã£ã¦ã„ã‚‹ã‚¹ãƒ¬ãƒƒãƒ‰ãŒé™ç•Œã‚’è¶Šãˆã¦ã„ãŸã‚‰å˜ç´”ãªå¾…ã¡å‡¦ç†ã‚’è¡Œã†
 			if( WinData.DxConflictWaitThreadNum == MAX_THREADWAIT_NUM )
 			{
-				// ‚Æ‚è‚ ‚¦‚¸‚±‚ÌŠÖ”‚ğg—p’†Aƒtƒ‰ƒO‚ğ“|‚·
+				// ã¨ã‚Šã‚ãˆãšã“ã®é–¢æ•°ã‚’ä½¿ç”¨ä¸­ã€ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 				CriticalSection_Unlock( &WinData.DxConflictCheckCriticalSection ) ;
 //				WinData.DxConflictCheckFlag -- ;
 
-//				DXST_LOGFILE_ADDW( L"ƒGƒ‰[:Õ“Ë”­¶ No.5 \n" ) ;
+//				DXST_LOGFILE_ADDW( L"ã‚¨ãƒ©ãƒ¼:è¡çªç™ºç”Ÿ No.5 \n" ) ;
 
-				// ­‚µQ‚é
+				// å°‘ã—å¯ã‚‹
 				WinAPIData.Win32Func.SleepFunc( 1 ) ;
 
-				// Å‰‚É–ß‚é
+				// æœ€åˆã«æˆ»ã‚‹
 				continue ;
 			}
 
-			// ‘Ò‚Á‚Ä‚éƒXƒŒƒbƒh‚ª‚¢‚Ü‚·‚æ‚Æ‚¢‚¤î•ñ‚ğ’Ç‰Á‚·‚é
+			// å¾…ã£ã¦ã‚‹ã‚¹ãƒ¬ãƒƒãƒ‰ãŒã„ã¾ã™ã‚ˆã¨ã„ã†æƒ…å ±ã‚’è¿½åŠ ã™ã‚‹
 			WinData.DxConflictWaitThreadID[WinData.DxConflictWaitThreadNum][0] = ThreadID ;
 			EventHandle = (HANDLE)WinData.DxConflictWaitThreadID[WinData.DxConflictWaitThreadNum][1] ;
 			WinData.DxConflictWaitThreadNum ++ ;
 
-			// ‚±‚ÌŠÖ”‚ğg—p’†Aƒtƒ‰ƒO‚ğ“|‚·
+			// ã“ã®é–¢æ•°ã‚’ä½¿ç”¨ä¸­ã€ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 			CriticalSection_Unlock( &WinData.DxConflictCheckCriticalSection ) ;
 //			WinData.DxConflictCheckFlag -- ;
 
-//			// ‘Ò‚Á‚Ä‚éƒXƒŒƒbƒh‚ª‚¢‚Ü‚·‚æƒJƒEƒ“ƒ^[‚ğƒCƒ“ƒNƒŠƒƒ“ƒg‚·‚é
+//			// å¾…ã£ã¦ã‚‹ã‚¹ãƒ¬ãƒƒãƒ‰ãŒã„ã¾ã™ã‚ˆã‚«ã‚¦ãƒ³ã‚¿ãƒ¼ã‚’ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆã™ã‚‹
 //			WinData.DxConflictWaitThreadCounter ++ ;
 //			if( WinData.DxConflictWaitThreadCounter <= 0 )
 //				WinData.DxConflictWaitThreadCounter = 1 ;
 
-			// g—p’†ƒtƒ‰ƒO‚ª“|‚ê‚é‚©AQuitMessageFlag ‚ª—§‚Â‚Ü‚Å‘Ò‚Â
+			// ä½¿ç”¨ä¸­ãƒ•ãƒ©ã‚°ãŒå€’ã‚Œã‚‹ã‹ã€QuitMessageFlag ãŒç«‹ã¤ã¾ã§å¾…ã¤
 //			while( WinData.DxUseThreadFlag == TRUE && WinData.QuitMessageFlag != TRUE )
 
 			while( WinAPIData.Win32Func.WaitForSingleObjectFunc( EventHandle, 0 ) == WAIT_TIMEOUT && WinData.QuitMessageFlag != TRUE )
@@ -5448,12 +5448,12 @@ WAIT:
 			}
 //			WinAPIData.Win32Func.WaitForSingleObjectFunc( EventHandle, INFINITE ) ;
 			WinAPIData.Win32Func.ResetEventFunc( EventHandle ) ;
-			// ‘Ò‚Á‚Ä‚éƒXƒŒƒbƒh‚ª‚ ‚é‚æƒJƒEƒ“ƒ^‚ğƒfƒNƒŠƒƒ“ƒg‚·‚é
+			// å¾…ã£ã¦ã‚‹ã‚¹ãƒ¬ãƒƒãƒ‰ãŒã‚ã‚‹ã‚ˆã‚«ã‚¦ãƒ³ã‚¿ã‚’ãƒ‡ã‚¯ãƒªãƒ¡ãƒ³ãƒˆã™ã‚‹
 //			WinData.DxConflictWaitThreadCounter -- ;
 //			if( WinData.DxConflictWaitThreadCounter < 0 )
 //				WinData.DxConflictWaitThreadCounter = 0 ;
 
-			// CheckConflictAndWaitDxFunction ‚ªŒÄ‚Î‚ê‚Ä‚¢‚½‚çAŒÄ‚Î‚êI‚í‚é‚Ü‚Å‘Ò‚Â
+			// CheckConflictAndWaitDxFunction ãŒå‘¼ã°ã‚Œã¦ã„ãŸã‚‰ã€å‘¼ã°ã‚Œçµ‚ã‚ã‚‹ã¾ã§å¾…ã¤
 //			CRITICALSECTION_LOCK( &WinData.DxConflictCheckCriticalSection ) ;
 //			CheckConflict( &WinData.DxConflictCheckFlag ) ;
 
@@ -5461,11 +5461,11 @@ WAIT:
 		}
 	}
 
-	// ‚à‚µƒXƒŒƒbƒh‚Ì‘Ò‚¿‡‚Ì’†‚É©•ª‚ª‚¢‚½‚ç‹l‚ß‚é
+	// ã‚‚ã—ã‚¹ãƒ¬ãƒƒãƒ‰ã®å¾…ã¡é †ã®ä¸­ã«è‡ªåˆ†ãŒã„ãŸã‚‰è©°ã‚ã‚‹
 	{
 		int i ;
 
-		// CheckConflictAndWaitDxFunction ‚ªŒÄ‚Î‚ê‚Ä‚¢‚½‚çAŒÄ‚Î‚êI‚í‚é‚Ü‚Å‘Ò‚Â
+		// CheckConflictAndWaitDxFunction ãŒå‘¼ã°ã‚Œã¦ã„ãŸã‚‰ã€å‘¼ã°ã‚Œçµ‚ã‚ã‚‹ã¾ã§å¾…ã¤
 		CRITICALSECTION_LOCK( &WinData.DxConflictCheckCriticalSection ) ;
 //		CheckConflict( &WinData.DxConflictCheckFlag ) ;
 
@@ -5489,30 +5489,30 @@ WAIT:
 			break ;
 		}
 
-		// ƒtƒ‰ƒO‚ğ“|‚·
+		// ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 		CriticalSection_Unlock( &WinData.DxConflictCheckCriticalSection ) ;
 //		WinData.DxConflictCheckFlag -- ;
 
-		// ‚à‚µŒ³X©•ª‚Ì”Ô‚¾‚Á‚½‚çŸ‚ÌƒXƒŒƒbƒh‚ÌƒCƒxƒ“ƒg‚ğƒVƒOƒiƒ‹ó‘Ô‚É‚·‚é
+		// ã‚‚ã—å…ƒã€…è‡ªåˆ†ã®ç•ªã ã£ãŸã‚‰æ¬¡ã®ã‚¹ãƒ¬ãƒƒãƒ‰ã®ã‚¤ãƒ™ãƒ³ãƒˆã‚’ã‚·ã‚°ãƒŠãƒ«çŠ¶æ…‹ã«ã™ã‚‹
 		if( i == 0 && WinData.DxConflictWaitThreadNum > 0 )
 		{
 			WinAPIData.Win32Func.SetEventFunc( (HANDLE)WinData.DxConflictWaitThreadID[0][1] ) ;
 		}
 	}
 
-	// ƒXƒŒƒbƒh‚ªI—¹‚µ‚½‚±‚Æ‚ğ¦‚·ƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// ã‚¹ãƒ¬ãƒƒãƒ‰ãŒçµ‚äº†ã—ãŸã“ã¨ã‚’ç¤ºã™ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	WinData.ProcessMessageThreadExitFlag = TRUE ;
 
-	// ƒXƒŒƒbƒhI—¹
+	// ã‚¹ãƒ¬ãƒƒãƒ‰çµ‚äº†
 	WinAPIData.Win32Func.ExitThreadFunc( 0 ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
 #endif
 
-//// ƒtƒbƒN‚³‚ê‚½‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+//// ãƒ•ãƒƒã‚¯ã•ã‚ŒãŸæ™‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 //LRESULT CALLBACK MsgHook(int /*nCnode*/, WPARAM /* wParam */, LPARAM lParam)
 //{
 //	MSG *pmsg;
@@ -5526,7 +5526,7 @@ WAIT:
 //	return 0;
 //}
 
-// ƒ^ƒXƒNƒXƒCƒbƒ`‚ğ—LŒø‚É‚·‚é‚©‚Ç‚¤‚©‚ğİ’è‚·‚é
+// ã‚¿ã‚¹ã‚¯ã‚¹ã‚¤ãƒƒãƒã‚’æœ‰åŠ¹ã«ã™ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹
 extern int NS_SetSysCommandOffFlag( int Flag, const TCHAR *HookDllPath )
 {
 #ifdef UNICODE
@@ -5544,7 +5544,7 @@ extern int NS_SetSysCommandOffFlag( int Flag, const TCHAR *HookDllPath )
 #endif
 }
 
-// ƒ^ƒXƒNƒXƒCƒbƒ`‚ğ—LŒø‚É‚·‚é‚©‚Ç‚¤‚©‚ğİ’è‚·‚é
+// ã‚¿ã‚¹ã‚¯ã‚¹ã‚¤ãƒƒãƒã‚’æœ‰åŠ¹ã«ã™ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹
 extern int NS_SetSysCommandOffFlagWithStrLen( int Flag , const TCHAR *HookDllPath, size_t HookDllPathLength )
 {
 	int Result ;
@@ -5560,7 +5560,7 @@ extern int NS_SetSysCommandOffFlagWithStrLen( int Flag , const TCHAR *HookDllPat
 	return Result ;
 }
 
-// ƒ^ƒXƒNƒXƒCƒbƒ`‚ğ—LŒø‚É‚·‚é‚©‚Ç‚¤‚©‚ğİ’è‚·‚é
+// ã‚¿ã‚¹ã‚¯ã‚¹ã‚¤ãƒƒãƒã‚’æœ‰åŠ¹ã«ã™ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹
 extern int SetSysCommandOffFlag_WCHAR_T( int Flag, const wchar_t *HookDllPath )
 {
 #ifndef DX_NON_STOPTASKSWITCH
@@ -5568,10 +5568,10 @@ extern int SetSysCommandOffFlag_WCHAR_T( int Flag, const wchar_t *HookDllPath )
 
 	SETUP_WIN_API
 
-	// —LŒø‚É‚·‚éw’è‚Ìê‡‚Íƒtƒ@ƒCƒ‹ƒpƒX‚ğ•Û‘¶‚·‚é
+	// æœ‰åŠ¹ã«ã™ã‚‹æŒ‡å®šã®å ´åˆã¯ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹ã‚’ä¿å­˜ã™ã‚‹
 //	if( Flag == TRUE )
 //	{
-//		// ƒtƒ@ƒCƒ‹ƒpƒX‚ğ•Û‘¶
+//		// ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹ã‚’ä¿å­˜
 //		if( HookDllPath == NULL )
 //		{
 //			int Length, FileSize ;
@@ -5589,10 +5589,10 @@ extern int SetSysCommandOffFlag_WCHAR_T( int Flag, const wchar_t *HookDllPath )
 //			pDxKeyHookBinary        = DxKeyHookBinary ;
 //#endif // _WIN64
 //
-//			// ƒpƒX–¼‚ª“Á‚Éw’è‚³‚ê‚È‚©‚Á‚½ê‡‚Í“à‘ ‚Ì‚c‚k‚k‚ğ
-//			// ƒeƒ“ƒ|ƒ‰ƒŠƒtƒ@ƒCƒ‹‚Éo—Í‚µ‚Äg—p‚·‚é
+//			// ãƒ‘ã‚¹åãŒç‰¹ã«æŒ‡å®šã•ã‚Œãªã‹ã£ãŸå ´åˆã¯å†…è”µã®ï¼¤ï¼¬ï¼¬ã‚’
+//			// ãƒ†ãƒ³ãƒãƒ©ãƒªãƒ•ã‚¡ã‚¤ãƒ«ã«å‡ºåŠ›ã—ã¦ä½¿ç”¨ã™ã‚‹
 //
-//			// ƒL[ƒ{[ƒhƒtƒbƒN‚c‚k‚kƒtƒ@ƒCƒ‹‚ÌƒTƒCƒY‚ğæ“¾‚·
+//			// ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ãƒ•ãƒƒã‚¯ï¼¤ï¼¬ï¼¬ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚µã‚¤ã‚ºã‚’å–å¾—ã™
 //			if( *pDxKeyHookBinaryConvert == 0 )
 //			{
 //				*pDxKeyHookBinaryConvert = 1 ;
@@ -5600,22 +5600,22 @@ extern int SetSysCommandOffFlag_WCHAR_T( int Flag, const wchar_t *HookDllPath )
 //			}
 //			FileSize = DXA_Decode( pDxKeyHookBinary, NULL ) ;
 //
-//			// ƒƒ‚ƒŠ‚ÌŠm•Û
+//			// ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿
 //			DestBuffer = DXALLOC( ( size_t )FileSize ) ;
 //			if( DestBuffer == NULL )
 //				return -1 ;
 //
-//			// ‰ğ“€
+//			// è§£å‡
 //			DXA_Decode( pDxKeyHookBinary, DestBuffer ) ;
 //
-//			// ƒeƒ“ƒ|ƒ‰ƒŠƒtƒ@ƒCƒ‹‚ÌƒfƒBƒŒƒNƒgƒŠƒpƒX‚ğæ“¾‚·‚é
+//			// ãƒ†ãƒ³ãƒãƒ©ãƒªãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªãƒ‘ã‚¹ã‚’å–å¾—ã™ã‚‹
 //			if( GetTempPathWFunc( FILEPATH_MAX, WinData.HookDLLFilePath ) == 0 )
 //			{
 //				DXFREE( DestBuffer ) ;
 //				return -1 ;
 //			}
 //
-//			// •¶š—ñ‚ÌÅŒã‚Éƒ}[ƒN‚ğ‚Â‚¯‚é
+//			// æ–‡å­—åˆ—ã®æœ€å¾Œã«ï¿¥ãƒãƒ¼ã‚¯ã‚’ã¤ã‘ã‚‹
 //			Length = ( int )_WCSLEN( WinData.HookDLLFilePath ) ;
 //			if( WinData.HookDLLFilePath[Length-1] != L'\\' ) 
 //			{
@@ -5623,10 +5623,10 @@ extern int SetSysCommandOffFlag_WCHAR_T( int Flag, const wchar_t *HookDllPath )
 //				WinData.HookDLLFilePath[Length+1] = L'\0' ;
 //			}
 //
-//			// ’N‚àg‚¢‚»‚¤‚É–³‚¢ƒtƒ@ƒCƒ‹–¼‚ğ’Ç‰Á‚·‚é
+//			// èª°ã‚‚ä½¿ã„ãã†ã«ç„¡ã„ãƒ•ã‚¡ã‚¤ãƒ«åã‚’è¿½åŠ ã™ã‚‹
 //			_WCSCAT_S( WinData.HookDLLFilePath, sizeof( WinData.HookDLLFilePath ), L"ddxx_MesHoooooook.dll" );
 //
-//			// ƒeƒ“ƒ|ƒ‰ƒŠƒtƒ@ƒCƒ‹‚ğŠJ‚­
+//			// ãƒ†ãƒ³ãƒãƒ©ãƒªãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‹ã
 //			DeleteFileWFunc( WinData.HookDLLFilePath ) ;
 //			FileHandle = CreateFileWFunc( WinData.HookDLLFilePath, GENERIC_WRITE, 0, NULL, CREATE_NEW, FILE_ATTRIBUTE_NORMAL, NULL ) ;
 //			if( FileHandle == NULL )
@@ -5635,31 +5635,31 @@ extern int SetSysCommandOffFlag_WCHAR_T( int Flag, const wchar_t *HookDllPath )
 //				return -1 ;
 //			}
 //
-//			// ƒeƒ“ƒ|ƒ‰ƒŠƒtƒ@ƒCƒ‹‚Éƒf[ƒ^‚ğ‘‚«o‚·
+//			// ãƒ†ãƒ³ãƒãƒ©ãƒªãƒ•ã‚¡ã‚¤ãƒ«ã«ãƒ‡ãƒ¼ã‚¿ã‚’æ›¸ãå‡ºã™
 //			WinAPIData.Win32Func.WriteFileFunc( FileHandle, DestBuffer, ( DWORD )FileSize, &WriteSize, NULL ) ;
 //
-//			// •Â‚¶‚é
+//			// é–‰ã˜ã‚‹
 //			WinAPIData.Win32Func.CloseHandleFunc( FileHandle ) ;
 //
-//			// ƒƒ‚ƒŠ‚Ì‰ğ•ú
+//			// ãƒ¡ãƒ¢ãƒªã®è§£æ”¾
 //			DXFREE( DestBuffer ) ;
 //
-//			// ƒ†[ƒU[w’è‚ÌƒtƒbƒN‚c‚k‚k‚ğg‚Á‚Ä‚¢‚È‚¢ƒtƒ‰ƒO‚ğ—§‚Ä‚é
+//			// ãƒ¦ãƒ¼ã‚¶ãƒ¼æŒ‡å®šã®ãƒ•ãƒƒã‚¯ï¼¤ï¼¬ï¼¬ã‚’ä½¿ã£ã¦ã„ãªã„ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 //			WinData.NotUseUserHookDllFlag = TRUE ;
 //		}
 //		else
 //		{
 //			_WCSCPY_S( WinData.HookDLLFilePath, sizeof( WinData.HookDLLFilePath ), HookDllPath ) ; 
 //
-//			// ƒ†[ƒU[w’è‚ÌƒtƒbƒN‚c‚k‚k‚ğg‚Á‚Ä‚¢‚È‚¢ƒtƒ‰ƒO‚ğ“|‚·
+//			// ãƒ¦ãƒ¼ã‚¶ãƒ¼æŒ‡å®šã®ãƒ•ãƒƒã‚¯ï¼¤ï¼¬ï¼¬ã‚’ä½¿ã£ã¦ã„ãªã„ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 //			WinData.NotUseUserHookDllFlag = FALSE ;
 //		}
 //	}
 
-	// ƒEƒCƒ“ƒhƒEƒY‚Ìƒo[ƒWƒ‡ƒ“‚É‚æ‚Á‚Äˆ—‚ğ•ªŠò
+	// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚ºã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã«ã‚ˆã£ã¦å‡¦ç†ã‚’åˆ†å²
 	if( WinData.WindowsVersion < DX_WINDOWSVERSION_NT31 )
 	{
-		// Win95 ƒJ[ƒlƒ‹‚Ìê‡‚Ìˆ—
+		// Win95 ã‚«ãƒ¼ãƒãƒ«ã®å ´åˆã®å‡¦ç†
 		UINT nPreviousState;
 //		SystemParametersInfoWFunc( SPI_SETSCREENSAVERRUNNING, Flag, &nPreviousState, 0 ) ;
 //		SystemParametersInfoWFunc( SPI_SCREENSAVERRUNNING, TRUE, &nPreviousState, 0 ) ;
@@ -5667,23 +5667,23 @@ extern int SetSysCommandOffFlag_WCHAR_T( int Flag, const wchar_t *HookDllPath )
 	}
 	else
 	{
-		// WinNT ƒJ[ƒlƒ‹‚Ìê‡‚Ìˆ—
+		// WinNT ã‚«ãƒ¼ãƒãƒ«ã®å ´åˆã®å‡¦ç†
 		if( Flag == TRUE )
 		{
-			// ƒL[ƒ{[ƒhƒtƒbƒN‚ÌƒZƒbƒg
+			// ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ãƒ•ãƒƒã‚¯ã®ã‚»ãƒƒãƒˆ
 			if( WinData.TaskHookHandle == NULL )
 			{
 				WinData.TaskHookHandle = WinAPIData.Win32Func.SetWindowsHookExWFunc( WH_KEYBOARD_LL, LowLevelKeyboardProc, WinData.Instance, 0 ) ;
 			}
 
-// 			// ƒƒbƒZ[ƒWƒtƒbƒN‚ÌƒZƒbƒg
+// 			// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ•ãƒƒã‚¯ã®ã‚»ãƒƒãƒˆ
 // //			if( WinData.GetMessageHookHandle == NULL )
 // 			{
 // //				WinData.MessageHookThredID = WinAPIData.Win32Func.GetWindowThreadProcessIdFunc( WinData.MainWindow, NULL ) ;
 // //				WinData.MessageHookThredID = WinAPIData.Win32Func.GetWindowThreadProcessIdFunc( WinAPIData.Win32Func.GetDesktopWindowFunc(), NULL ) ;
 // 				WinData.MessageHookDLL = LoadLibraryW( WinData.HookDLLFilePath ) ;
 // 
-// 				// DLL ‚ª–³‚©‚Á‚½‚çi‚Ü‚È‚¢
+// 				// DLL ãŒç„¡ã‹ã£ãŸã‚‰é€²ã¾ãªã„
 // 				if( WinData.MessageHookDLL != NULL )
 // 				{
 // 					WinData.MessageHookCallBack = ( MSGFUNC )GetProcAddress( WinData.MessageHookDLL, "SetMSGHookDll" ) ;
@@ -5698,7 +5698,7 @@ extern int SetSysCommandOffFlag_WCHAR_T( int Flag, const wchar_t *HookDllPath )
 		}
 		else
 		{
-			// ƒL[ƒ{[ƒhƒtƒbƒN‚ğ–³Œø‚É
+			// ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ãƒ•ãƒƒã‚¯ã‚’ç„¡åŠ¹ã«
 			if( WinData.KeyboardHookHandle != NULL )
 			{
 				WinAPIData.Win32Func.UnhookWindowsHookExFunc( WinData.KeyboardHookHandle ) ;
@@ -5722,10 +5722,10 @@ extern int SetSysCommandOffFlag_WCHAR_T( int Flag, const wchar_t *HookDllPath )
 		}
 	}
 
-	// ‘Sƒo[ƒWƒ‡ƒ“‹¤’Ê
+	// å…¨ãƒãƒ¼ã‚¸ãƒ§ãƒ³å…±é€š
 /*	if( Flag == TRUE )
 	{
-		// Ÿè‚É‘¼‚ÌƒEƒCƒ“ƒhƒE‚ªƒAƒNƒeƒBƒu‚É‚È‚ç‚È‚¢‚æ‚¤‚É‚·‚é
+		// å‹æ‰‹ã«ä»–ã®ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãŒã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ãªã‚‰ãªã„ã‚ˆã†ã«ã™ã‚‹
 		while( WinData.ActiveFlag != TRUE )
 		{
 			if( NS_ProcessMessage() == -1 ) break ;
@@ -5733,55 +5733,55 @@ extern int SetSysCommandOffFlag_WCHAR_T( int Flag, const wchar_t *HookDllPath )
 		LockSetForegroundWindow( LSFW_LOCK ) ;
 	}
 */
-	// ƒtƒ‰ƒO‚ğ•Û‘¶
+	// ãƒ•ãƒ©ã‚°ã‚’ä¿å­˜
 	WinData.SysCommandOffFlag = Flag ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 #else
 	return -1;
 #endif
 }
 
-// ƒƒCƒ“ƒEƒCƒ“ƒhƒE‚ÌÅ‘å‰»ƒ{ƒ^ƒ“‚ª‰Ÿ‚³‚ê‚½‚Æ‚«‚Ì‹““®‚ğİ’è‚·‚é( BehaviorType 0=•W€“®ì 1=•W€“®ì‚Ís‚í‚¸AÅ‘å‰»ƒ{ƒ^ƒ“‚ª‰Ÿ‚³‚ê‚½‚©‚Ç‚¤‚©‚Í CheckWindowMaximizeButtonInput ‚Å”»’è‚·‚é )
+// ãƒ¡ã‚¤ãƒ³ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®æœ€å¤§åŒ–ãƒœã‚¿ãƒ³ãŒæŠ¼ã•ã‚ŒãŸã¨ãã®æŒ™å‹•ã‚’è¨­å®šã™ã‚‹( BehaviorType 0=æ¨™æº–å‹•ä½œ 1=æ¨™æº–å‹•ä½œã¯è¡Œã‚ãšã€æœ€å¤§åŒ–ãƒœã‚¿ãƒ³ãŒæŠ¼ã•ã‚ŒãŸã‹ã©ã†ã‹ã¯ CheckWindowMaximizeButtonInput ã§åˆ¤å®šã™ã‚‹ )
 extern int NS_SetWindowMaximizeButtonBehavior( int BehaviorType )
 {
 	WinData.WindowMaximizeButtonBehaviorType = BehaviorType ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒƒbƒZ[ƒW‚ğƒtƒbƒN‚·‚éƒEƒCƒ“ƒhƒEƒvƒ[ƒWƒƒ‚ğ“o˜^‚·‚é
+// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’ãƒ•ãƒƒã‚¯ã™ã‚‹ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ—ãƒ­ãƒ¼ã‚¸ãƒ£ã‚’ç™»éŒ²ã™ã‚‹
 extern int NS_SetHookWinProc( WNDPROC WinProc )
 {
-	// “o˜^‚·‚é
+	// ç™»éŒ²ã™ã‚‹
 	WinData.UserWindowProc = WinProc ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// SetHookWinProc ‚Åİ’è‚µ‚½ƒEƒCƒ“ƒhƒEƒvƒ[ƒWƒƒ‚Ì–ß‚è’l‚ğg—p‚·‚é‚©‚Ç‚¤‚©‚ğİ’è‚·‚éASetHookWinProc ‚Åİ’è‚µ‚½ƒEƒCƒ“ƒhƒEƒvƒ[ƒWƒƒ‚Ì’†‚Å‚Ì‚İg—p‰Â”\( UseFlag TRUE:–ß‚è’l‚ğg—p‚µ‚ÄA‚c‚wƒ‰ƒCƒuƒ‰ƒŠ‚ÌƒEƒCƒ“ƒhƒEƒvƒ[ƒWƒƒ‚Ìˆ—‚Ís‚í‚È‚¢  FALSE:–ß‚è’l‚Íg—p‚¹‚¸AƒEƒCƒ“ƒhƒEƒvƒ[ƒWƒƒ‚©‚ço‚½ŒãA‚c‚wƒ‰ƒCƒuƒ‰ƒŠ‚ÌƒEƒCƒ“ƒhƒEƒvƒ[ƒWƒƒ‚Ìˆ—‚ğs‚¤ )
+// SetHookWinProc ã§è¨­å®šã—ãŸã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ—ãƒ­ãƒ¼ã‚¸ãƒ£ã®æˆ»ã‚Šå€¤ã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹ã€SetHookWinProc ã§è¨­å®šã—ãŸã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ—ãƒ­ãƒ¼ã‚¸ãƒ£ã®ä¸­ã§ã®ã¿ä½¿ç”¨å¯èƒ½( UseFlag TRUE:æˆ»ã‚Šå€¤ã‚’ä½¿ç”¨ã—ã¦ã€ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ—ãƒ­ãƒ¼ã‚¸ãƒ£ã®å‡¦ç†ã¯è¡Œã‚ãªã„  FALSE:æˆ»ã‚Šå€¤ã¯ä½¿ç”¨ã›ãšã€ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ—ãƒ­ãƒ¼ã‚¸ãƒ£ã‹ã‚‰å‡ºãŸå¾Œã€ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ—ãƒ­ãƒ¼ã‚¸ãƒ£ã®å‡¦ç†ã‚’è¡Œã† )
 extern int NS_SetUseHookWinProcReturnValue( int UseFlag )
 {
-	// ƒtƒ‰ƒO‚ğ•Û‘¶‚·‚é
+	// ãƒ•ãƒ©ã‚°ã‚’ä¿å­˜ã™ã‚‹
 	WinData.UseUserWindowProcReturnValue = UseFlag ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ‚Qd‹N“®‚ğ‹–‚·‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğƒZƒbƒg‚·‚é
+// ï¼’é‡èµ·å‹•ã‚’è¨±ã™ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern int NS_SetDoubleStartValidFlag( int Flag )
 {
 	WinData.DoubleStartValidFlag = Flag ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ‚c‚wƒ‰ƒCƒuƒ‰ƒŠ‚ğg—p‚µ‚½ƒ\ƒtƒg‚ªŠù‚É‹N“®‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©‚ğæ“¾‚·‚é( TRUE:Šù‚É‹N“®‚µ‚Ä‚¢‚é  FALSE:‹N“®‚µ‚Ä‚¢‚È‚¢ )
+// ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã‚’ä½¿ç”¨ã—ãŸã‚½ãƒ•ãƒˆãŒæ—¢ã«èµ·å‹•ã—ã¦ã„ã‚‹ã‹ã©ã†ã‹ã‚’å–å¾—ã™ã‚‹( TRUE:æ—¢ã«èµ·å‹•ã—ã¦ã„ã‚‹  FALSE:èµ·å‹•ã—ã¦ã„ãªã„ )
 extern int NS_CheckDoubleStart( void )
 {
 	SETUP_WIN_API
@@ -5791,39 +5791,39 @@ extern int NS_CheckDoubleStart( void )
 	return FindWindowWFunc( WinData.ClassName , NULL ) != NULL ? TRUE : FALSE ;
 }
 
-// ƒƒbƒZ[ƒWˆ—‚ğ‚c‚wƒ‰ƒCƒuƒ‰ƒŠ‚ÉŒ¨‘ã‚í‚è‚µ‚Ä‚à‚ç‚¤ƒEƒCƒ“ƒhƒE‚ğ’Ç‰Á‚·‚é
+// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å‡¦ç†ã‚’ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã«è‚©ä»£ã‚ã‚Šã—ã¦ã‚‚ã‚‰ã†ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚’è¿½åŠ ã™ã‚‹
 extern int NS_AddMessageTakeOverWindow( HWND Window )
 {
 	if( WinData.MesTakeOverWindowNum == MAX_MESTAKEOVERWIN_NUM ) return -1 ;
 
-	// ’Ç‰Á‚·‚é
+	// è¿½åŠ ã™ã‚‹
 	WinData.MesTakeOverWindow[WinData.MesTakeOverWindowNum] = Window ;
 	WinData.MesTakeOverWindowNum ++ ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒƒbƒZ[ƒWˆ—‚ğ‚c‚wƒ‰ƒCƒuƒ‰ƒŠ‚ÉŒ¨‘ã‚í‚è‚µ‚Ä‚à‚ç‚¤ƒEƒCƒ“ƒhƒE‚ğŒ¸‚ç‚·
+// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å‡¦ç†ã‚’ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã«è‚©ä»£ã‚ã‚Šã—ã¦ã‚‚ã‚‰ã†ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚’æ¸›ã‚‰ã™
 extern	int	NS_SubMessageTakeOverWindow( HWND Window )
 {
 	int i ;
 
-	// ’T‚·
+	// æ¢ã™
 	for( i = 0 ; i < MAX_MESTAKEOVERWIN_NUM && WinData.MesTakeOverWindow[i] != Window ; i ++ ){}
 	if( i == MAX_MESTAKEOVERWIN_NUM ) return -1 ;
 
-	// Œ¸‚ç‚·
+	// æ¸›ã‚‰ã™
 	WinData.MesTakeOverWindowNum -- ;
 
-	// ‚Â‚Ô‚·
+	// ã¤ã¶ã™
 	_MEMMOVE( &WinData.MesTakeOverWindow[i], &WinData.MesTakeOverWindow[i+1], sizeof( HWND ) * ( WinData.MesTakeOverWindowNum - i ) ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒEƒCƒ“ƒhƒE‚Ì‰ŠúˆÊ’u‚ğİ’è‚·‚é
+// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®åˆæœŸä½ç½®ã‚’è¨­å®šã™ã‚‹
 extern int NS_SetWindowInitPosition( int x, int y )
 {
 	WinData.WindowX = x ;
@@ -5833,7 +5833,7 @@ extern int NS_SetWindowInitPosition( int x, int y )
 	return 0 ;
 }
 
-// ‚c‚wƒ‰ƒCƒuƒ‰ƒŠ‚ÅƒƒbƒZ[ƒWˆ—‚ğs‚¤ƒ_ƒCƒAƒƒOƒ{ƒbƒNƒX‚ğ“o˜^‚·‚é
+// ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã§ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å‡¦ç†ã‚’è¡Œã†ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ãƒœãƒƒã‚¯ã‚¹ã‚’ç™»éŒ²ã™ã‚‹
 extern int NS_SetDialogBoxHandle( HWND WindowHandle )
 {
 	WinData.DialogBoxHandle = WindowHandle ;
@@ -5841,7 +5841,7 @@ extern int NS_SetDialogBoxHandle( HWND WindowHandle )
 	return 0 ;
 }
 
-// ƒƒCƒ“ƒEƒCƒ“ƒhƒE‚ğ•\¦‚·‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğƒZƒbƒg‚·‚é
+// ãƒ¡ã‚¤ãƒ³ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚’è¡¨ç¤ºã™ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern int NS_SetWindowVisibleFlag( int Flag )
 {
 	SETUP_WIN_API
@@ -5876,11 +5876,11 @@ extern int NS_SetWindowVisibleFlag( int Flag )
 		WinAPIData.Win32Func.UpdateWindowFunc( WinData.MainWindow ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒƒCƒ“ƒEƒCƒ“ƒhƒE‚ğÅ¬‰»‚·‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğƒZƒbƒg‚·‚é
+// ãƒ¡ã‚¤ãƒ³ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚’æœ€å°åŒ–ã™ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern int NS_SetWindowMinimizeFlag( int Flag )
 {
 	SETUP_WIN_API
@@ -5907,20 +5907,20 @@ extern int NS_SetWindowMinimizeFlag( int Flag )
 		WinAPIData.Win32Func.UpdateWindowFunc( WinData.MainWindow ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒƒCƒ“ƒEƒCƒ“ƒhƒE‚Ì~ƒ{ƒ^ƒ“‚ğ‰Ÿ‚µ‚½‚Éƒ‰ƒCƒuƒ‰ƒŠ‚ª©“®“I‚ÉƒEƒCƒ“ƒhƒE‚ğ•Â‚¶‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğƒZƒbƒg‚·‚é
+// ãƒ¡ã‚¤ãƒ³ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®Ã—ãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸæ™‚ã«ãƒ©ã‚¤ãƒ–ãƒ©ãƒªãŒè‡ªå‹•çš„ã«ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚’é–‰ã˜ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern int NS_SetWindowUserCloseEnableFlag( int Flag )
 {
 	WinData.NonUserCloseEnableFlag = !Flag ;
 	
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒƒCƒ“ƒEƒCƒ“ƒhƒE‚ğƒ{[ƒ_[ƒŒƒXƒEƒBƒ“ƒhƒE‚É‚·‚é‚©‚Ç‚¤‚©‚ğİ’è‚·‚é( TRUE:ƒ{[ƒ_[ƒŒƒXƒEƒBƒ“ƒhƒE@FALSE:’ÊíƒEƒBƒ“ƒhƒE )
+// ãƒ¡ã‚¤ãƒ³ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚’ãƒœãƒ¼ãƒ€ãƒ¼ãƒ¬ã‚¹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã«ã™ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹( TRUE:ãƒœãƒ¼ãƒ€ãƒ¼ãƒ¬ã‚¹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã€€FALSE:é€šå¸¸ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ )
 extern int NS_SetUseBorderlessWindowFlag( int Flag )
 {
 	if( WinData.BorderlessWindowFlag == Flag )
@@ -5928,29 +5928,29 @@ extern int NS_SetUseBorderlessWindowFlag( int Flag )
 		return 0 ;
 	}
 
-	// ƒtƒ‰ƒO‚ğ•Û‘¶
+	// ãƒ•ãƒ©ã‚°ã‚’ä¿å­˜
 	WinData.BorderlessWindowFlag = Flag ;
 
-	// ˜g‚ÌXV
+	// æ ã®æ›´æ–°
 	if( WinData.MainWindow != NULL )
 	{
 		SetWindowPos( WinData.MainWindow, NULL, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE | SWP_NOZORDER | SWP_FRAMECHANGED ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ‚c‚wƒ‰ƒCƒuƒ‰ƒŠI—¹‚É PostQuitMessage ‚ğŒÄ‚Ô‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğƒZƒbƒg‚·‚é
+// ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªçµ‚äº†æ™‚ã« PostQuitMessage ã‚’å‘¼ã¶ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern int NS_SetDxLibEndPostQuitMessageFlag( int Flag )
 {
 	WinData.NonDxLibEndPostQuitMessageFlag = !Flag ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// •\¦‚Ég—p‚·‚éƒEƒCƒ“ƒhƒE‚Ìƒnƒ“ƒhƒ‹‚ğæ“¾‚·‚é
+// è¡¨ç¤ºã«ä½¿ç”¨ã™ã‚‹ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ãƒãƒ³ãƒ‰ãƒ«ã‚’å–å¾—ã™ã‚‹
 extern HWND GetDisplayWindowHandle( void )
 {
 	if( WinData.UserWindowFlag )
@@ -5961,16 +5961,16 @@ extern HWND GetDisplayWindowHandle( void )
 	return WinData.MainWindow ;
 }
 
-// ƒ†[ƒU[ƒEƒCƒ“ƒhƒE‚Ìî•ñ‚ğXV
+// ãƒ¦ãƒ¼ã‚¶ãƒ¼ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®æƒ…å ±ã‚’æ›´æ–°
 static void UpdateUserWindowInfo( void )
 {
 	SETUP_WIN_API
 
-	// ‰æ–Êƒ‚[ƒh‚ÍƒEƒCƒ“ƒhƒEƒ‚[ƒh
+	// ç”»é¢ãƒ¢ãƒ¼ãƒ‰ã¯ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ¢ãƒ¼ãƒ‰
 	NS_ChangeWindowMode( TRUE ) ;
 
 #ifndef DX_NON_GRAPHICS
-	// ‰æ–ÊƒTƒCƒY‚ÍƒNƒ‰ƒCƒAƒ“ƒg—Ìˆæ‚ÌƒTƒCƒY
+	// ç”»é¢ã‚µã‚¤ã‚ºã¯ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆé ˜åŸŸã®ã‚µã‚¤ã‚º
 	{
 		RECT ClientRect ;
 
@@ -5981,7 +5981,7 @@ static void UpdateUserWindowInfo( void )
 #endif // DX_NON_GRAPHICS
 }
 
-// ‚c‚wƒ‰ƒCƒuƒ‰ƒŠ‚Å—˜—p‚·‚éƒEƒCƒ“ƒhƒE‚Ìƒnƒ“ƒhƒ‹‚ğƒZƒbƒg‚·‚é
+// ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã§åˆ©ç”¨ã™ã‚‹ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ãƒãƒ³ãƒ‰ãƒ«ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern int NS_SetUserWindow( HWND WindowHandle )
 {
 	if( DxSysData.DxLib_InitializeFlag == TRUE ) return -1 ;
@@ -5989,61 +5989,61 @@ extern int NS_SetUserWindow( HWND WindowHandle )
 	WinData.MainWindow = WindowHandle ;
 	WinData.UserWindowFlag = WindowHandle == NULL ? FALSE : TRUE ;
 
-	// î•ñ‚ğXV
+	// æƒ…å ±ã‚’æ›´æ–°
 	UpdateUserWindowInfo() ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ‚c‚wƒ‰ƒCƒuƒ‰ƒŠ‚Åg—p‚·‚é•\¦—p‚ÌqƒEƒCƒ“ƒhƒE‚Ìƒnƒ“ƒhƒ‹‚ğƒZƒbƒg‚·‚é(DxLib_Init ‚ğÀs‚·‚éˆÈ‘O‚Å‚Ì‚İ—LŒø)
+// ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã§ä½¿ç”¨ã™ã‚‹è¡¨ç¤ºç”¨ã®å­ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ãƒãƒ³ãƒ‰ãƒ«ã‚’ã‚»ãƒƒãƒˆã™ã‚‹(DxLib_Init ã‚’å®Ÿè¡Œã™ã‚‹ä»¥å‰ã§ã®ã¿æœ‰åŠ¹)
 extern int NS_SetUserChildWindow( HWND WindowHandle )
 {
 	if( DxSysData.DxLib_InitializeFlag == TRUE ) return -1 ;
 
 	WinData.UserChildWindow = WindowHandle ;
 
-	// î•ñ‚ğXV
+	// æƒ…å ±ã‚’æ›´æ–°
 	UpdateUserWindowInfo() ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// SetUseWindow ‚Åİ’è‚µ‚½ƒEƒCƒ“ƒhƒE‚ÌƒƒbƒZ[ƒWƒ‹[ƒvˆ—‚ğ‚c‚wƒ‰ƒCƒuƒ‰ƒŠ‚Ås‚¤‚©‚Ç‚¤‚©Aƒtƒ‰ƒO‚ğƒZƒbƒg‚·‚é
+// SetUseWindow ã§è¨­å®šã—ãŸã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ«ãƒ¼ãƒ—å‡¦ç†ã‚’ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã§è¡Œã†ã‹ã©ã†ã‹ã€ãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern int NS_SetUserWindowMessageProcessDXLibFlag( int Flag )
 {
 	WinData.NotUserWindowMessageProcessDXLibFlag = !Flag ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// FPU‚Ì¸“x‚ğ—‚Æ‚³‚È‚¢İ’è‚ğg—p‚·‚é‚©‚Ç‚¤‚©‚ğİ’è‚·‚éADxLib_Init ‚ğŒÄ‚Ño‚·‘O‚Ì‚İ—LŒø( TRUE:g—p‚·‚é(¸“x‚ª—‚¿‚È‚¢)  FALSE:g—p‚µ‚È‚¢(¸“x‚ğ—‚Æ‚·(ƒfƒtƒHƒ‹ƒg) )
+// FPUã®ç²¾åº¦ã‚’è½ã¨ã•ãªã„è¨­å®šã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹ã€DxLib_Init ã‚’å‘¼ã³å‡ºã™å‰ã®ã¿æœ‰åŠ¹( TRUE:ä½¿ç”¨ã™ã‚‹(ç²¾åº¦ãŒè½ã¡ãªã„)  FALSE:ä½¿ç”¨ã—ãªã„(ç²¾åº¦ã‚’è½ã¨ã™(ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ) )
 extern int NS_SetUseFPUPreserveFlag( int Flag )
 {
-	// ‰Šú‰»‘O‚Ì‚İ—LŒø
+	// åˆæœŸåŒ–å‰ã®ã¿æœ‰åŠ¹
 	if( DxSysData.DxLib_InitializeFlag ) return -1 ;
 
-	// ƒtƒ‰ƒO‚ğ•Û‘¶
+	// ãƒ•ãƒ©ã‚°ã‚’ä¿å­˜
 	WinData.UseFPUPreserve = Flag ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒ}ƒEƒXƒ|ƒCƒ“ƒ^‚ªƒEƒCƒ“ƒhƒE‚ÌƒNƒ‰ƒCƒAƒ“ƒgƒGƒŠƒA‚ÌŠO‚É‚¢‚¯‚é‚©‚Ç‚¤‚©‚ğİ’è‚·‚é( TRUE:‚¢‚¯‚é( ƒfƒtƒHƒ‹ƒgİ’è )  FALSE:‚¢‚¯‚È‚¢ )
+// ãƒã‚¦ã‚¹ãƒã‚¤ãƒ³ã‚¿ãŒã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã‚¨ãƒªã‚¢ã®å¤–ã«ã„ã‘ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹( TRUE:ã„ã‘ã‚‹( ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆè¨­å®š )  FALSE:ã„ã‘ãªã„ )
 extern int NS_SetValidMousePointerWindowOutClientAreaMoveFlag( int Flag )
 {
 	Flag = Flag ? FALSE : TRUE ;
 
-	// ¡‚Ü‚Å‚Æƒtƒ‰ƒO‚ª“¯‚¶ê‡‚Í‰½‚à‚µ‚È‚¢
+	// ä»Šã¾ã§ã¨ãƒ•ãƒ©ã‚°ãŒåŒã˜å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( WinData.NotMoveMousePointerOutClientAreaFlag == Flag )
 		return 0 ;
 
 	SETUP_WIN_API
 
-	// ƒtƒ‰ƒO‚ğ•Û‘¶
+	// ãƒ•ãƒ©ã‚°ã‚’ä¿å­˜
 	WinData.NotMoveMousePointerOutClientAreaFlag = Flag ;
 
 	if( DxSysData.DxLib_InitializeFlag == TRUE )
@@ -6058,80 +6058,80 @@ extern int NS_SetValidMousePointerWindowOutClientAreaMoveFlag( int Flag )
 		}
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒoƒbƒNƒoƒbƒtƒ@‚Ì“§‰ßF‚Ì•”•ª‚ğ“§‰ß‚³‚¹‚é‚©‚Ç‚¤‚©‚ğİ’è‚·‚é( TRUE:“§‰ß‚³‚¹‚é  FALSE:“§‰ß‚³‚¹‚È‚¢ )
+// ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã®é€éè‰²ã®éƒ¨åˆ†ã‚’é€éã•ã›ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹( TRUE:é€éã•ã›ã‚‹  FALSE:é€éã•ã›ãªã„ )
 extern int NS_SetUseBackBufferTransColorFlag( int Flag )
 {
-	// ¡‚Ü‚Å‚Æƒtƒ‰ƒO‚ª“¯‚¶ê‡‚Í‰½‚à‚µ‚È‚¢
+	// ä»Šã¾ã§ã¨ãƒ•ãƒ©ã‚°ãŒåŒã˜å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( WinData.BackBufferTransColorFlag == Flag )
 		return 0 ;
 
-	// ƒtƒ‰ƒO‚ğ•Û‘¶
+	// ãƒ•ãƒ©ã‚°ã‚’ä¿å­˜
 	WinData.BackBufferTransColorFlag = Flag ;
 
-	// ƒEƒCƒ“ƒhƒEƒ‚[ƒh‚ğ•ÏX‚·‚é
+	// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ¢ãƒ¼ãƒ‰ã‚’å¤‰æ›´ã™ã‚‹
 	NS_SetWindowStyleMode( WinData.WindowStyle ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// UpdateLayerdWindowForBaseImage ‚â UpdateLayerdWindowForSoftImage ‚ğg—p‚·‚é‚©‚Ç‚¤‚©‚ğİ’è‚·‚é( TRUE:g—p‚·‚é  FALSE:g—p‚µ‚È‚¢ )
+// UpdateLayerdWindowForBaseImage ã‚„ UpdateLayerdWindowForSoftImage ã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹( TRUE:ä½¿ç”¨ã™ã‚‹  FALSE:ä½¿ç”¨ã—ãªã„ )
 extern int NS_SetUseUpdateLayerdWindowFlag( int Flag )
 {
-	// ¡‚Ü‚Å‚Æƒtƒ‰ƒO‚ª“¯‚¶ê‡‚Í‰½‚à‚µ‚È‚¢
+	// ä»Šã¾ã§ã¨ãƒ•ãƒ©ã‚°ãŒåŒã˜å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( WinData.UseUpdateLayerdWindowFlag == Flag )
 		return 0 ;
 
-	// ƒtƒ‰ƒO‚ğ•Û‘¶
+	// ãƒ•ãƒ©ã‚°ã‚’ä¿å­˜
 	WinData.UseUpdateLayerdWindowFlag = Flag ;
 
-	// ƒEƒCƒ“ƒhƒEƒ‚[ƒh‚ğ•ÏX‚·‚é
+	// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ¢ãƒ¼ãƒ‰ã‚’å¤‰æ›´ã™ã‚‹
 	NS_SetWindowStyleMode( WinData.WindowStyle ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// SetUseUpdateLayerdWindowFlag( TRUE ); ‚Ìİ’è‚ÌÛ‚Éƒ}ƒEƒXŠÖŒW‚ÌƒCƒxƒ“ƒg‚ğ”wŒã‚ÌƒEƒBƒ“ƒhƒE‚É“§‰ß‚³‚¹‚é‚©‚ğİ’è‚·‚é( TRUE:“§‰ß‚·‚é   FALSE:“§‰ß‚µ‚È‚¢( ƒfƒtƒHƒ‹ƒg ) )
+// SetUseUpdateLayerdWindowFlag( TRUE ); ã®è¨­å®šã®éš›ã«ãƒã‚¦ã‚¹é–¢ä¿‚ã®ã‚¤ãƒ™ãƒ³ãƒˆã‚’èƒŒå¾Œã®ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã«é€éã•ã›ã‚‹ã‹ã‚’è¨­å®šã™ã‚‹( TRUE:é€éã™ã‚‹   FALSE:é€éã—ãªã„( ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ ) )
 extern int NS_SetUseMouseEventTransparentWindowFlag( int Flag )
 {
-	// ¡‚Ü‚Å‚Æƒtƒ‰ƒO‚ª“¯‚¶ê‡‚Í‰½‚à‚µ‚È‚¢
+	// ä»Šã¾ã§ã¨ãƒ•ãƒ©ã‚°ãŒåŒã˜å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( WinData.UseTransparentWindowFlag == Flag )
 		return 0 ;
 
-	// ƒtƒ‰ƒO‚ğ•Û‘¶
+	// ãƒ•ãƒ©ã‚°ã‚’ä¿å­˜
 	WinData.UseTransparentWindowFlag = Flag ;
 
-	// ƒEƒCƒ“ƒhƒEƒ‚[ƒh‚ğ•ÏX‚·‚é
+	// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ¢ãƒ¼ãƒ‰ã‚’å¤‰æ›´ã™ã‚‹
 	NS_SetWindowStyleMode( WinData.WindowStyle ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒŠƒ\[ƒX‚ğ“Ç‚İ‚ŞÛ‚Ég—p‚·‚éƒ‚ƒWƒ…[ƒ‹‚ğİ’è‚·‚é( NULL ‚ğw’è‚·‚é‚Æ‰Šúó‘Ô‚É–ß‚è‚Ü‚·AƒfƒtƒHƒ‹ƒg‚Å‚Í NULL )
+// ãƒªã‚½ãƒ¼ã‚¹ã‚’èª­ã¿è¾¼ã‚€éš›ã«ä½¿ç”¨ã™ã‚‹ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã‚’è¨­å®šã™ã‚‹( NULL ã‚’æŒ‡å®šã™ã‚‹ã¨åˆæœŸçŠ¶æ…‹ã«æˆ»ã‚Šã¾ã™ã€ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã§ã¯ NULL )
 extern int NS_SetResourceModule( HMODULE ResourceModule )
 {
 	WinData.LoadResourModule = ResourceModule ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// WM_PAINT ƒƒbƒZ[ƒW‚ª—ˆ‚½Û‚Éw‚c‚wƒ‰ƒCƒuƒ‰ƒŠ‚Ì WM_PAINTƒƒbƒZ[ƒW‚ª—ˆ‚½Û‚Ìˆ—x‚ğs‚¤‚©‚Ç‚¤‚©‚ğİ’è‚·‚é( •ÊƒXƒŒƒbƒh‚Å•`‰æˆ—‚ğs‚¤ê‡‚È‚Ç‚Åg—p )
+// WM_PAINT ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãŒæ¥ãŸéš›ã«ã€ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã® WM_PAINTãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãŒæ¥ãŸéš›ã®å‡¦ç†ã€ã‚’è¡Œã†ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹( åˆ¥ã‚¹ãƒ¬ãƒƒãƒ‰ã§æç”»å‡¦ç†ã‚’è¡Œã†å ´åˆãªã©ã§ä½¿ç”¨ )
 extern int NS_SetUseDxLibWM_PAINTProcess( int Flag )
 {
 	WinData.NotUseDxLibWM_PAINTProcess = Flag ? FALSE : TRUE ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// Windows10 ‚Å WM_CHAR ‚Å’ZŠÔ‚É˜A‘±‚µ‚Ä“¯‚¶•¶š‚ª“ü—Í‚³‚ê‚½ê‡‚Ì–³Œøˆµ‚¢‚É‚·‚éŠÔ‚ğİ’è‚·‚é( MilliSecond ‚Ìƒ~ƒŠ•bˆÈ“à‚É˜A‘±‚µ‚Ä“¯‚¶•¶š‚ª“ü—Í‚³‚ê‚½ê‡‚É–³Œø‚É‚·‚éAMilliSecond ‚Ì’l‚ğƒ}ƒCƒiƒX‚É‚·‚é‚ÆƒfƒtƒHƒ‹ƒg‚Ìİ’è‚É–ß‚é )
+// Windows10 ã§ WM_CHAR ã§çŸ­æ™‚é–“ã«é€£ç¶šã—ã¦åŒã˜æ–‡å­—ãŒå…¥åŠ›ã•ã‚ŒãŸå ´åˆã®ç„¡åŠ¹æ‰±ã„ã«ã™ã‚‹æ™‚é–“ã‚’è¨­å®šã™ã‚‹( MilliSecond ã®ãƒŸãƒªç§’ä»¥å†…ã«é€£ç¶šã—ã¦åŒã˜æ–‡å­—ãŒå…¥åŠ›ã•ã‚ŒãŸå ´åˆã«ç„¡åŠ¹ã«ã™ã‚‹ã€MilliSecond ã®å€¤ã‚’ãƒã‚¤ãƒŠã‚¹ã«ã™ã‚‹ã¨ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®è¨­å®šã«æˆ»ã‚‹ )
 extern int NS_SetWindows10_WM_CHAR_CancelTime( int MilliSecond )
 {
 	if( MilliSecond < 0 )
@@ -6144,17 +6144,17 @@ extern int NS_SetWindows10_WM_CHAR_CancelTime( int MilliSecond )
 		WinData.Windows10_WM_CHAR_CancelTime = MilliSecond ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// Windows10 ‚Å WM_CHAR ‚Å’ZŠÔ‚É˜A‘±‚µ‚Ä“¯‚¶•¶š‚ª“ü—Í‚³‚ê‚½ê‡‚Ì–³Œøˆµ‚¢‚É‚·‚é‚©‚Ç‚¤‚©‚ğİ’è‚·‚é( TRUE:’ZŠÔ˜A‘±“ü—Í‚Í–³Œøˆµ‚¢‚É‚·‚é(ƒfƒtƒHƒ‹ƒg)  FALSE:’ZŠÔ˜A‘±“ü—Í‚à–³Œø‚É‚µ‚È‚¢ )
+// Windows10 ã§ WM_CHAR ã§çŸ­æ™‚é–“ã«é€£ç¶šã—ã¦åŒã˜æ–‡å­—ãŒå…¥åŠ›ã•ã‚ŒãŸå ´åˆã®ç„¡åŠ¹æ‰±ã„ã«ã™ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹( TRUE:çŸ­æ™‚é–“é€£ç¶šå…¥åŠ›ã¯ç„¡åŠ¹æ‰±ã„ã«ã™ã‚‹(ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ)  FALSE:çŸ­æ™‚é–“é€£ç¶šå…¥åŠ›ã‚‚ç„¡åŠ¹ã«ã—ãªã„ )
 extern int NS_SetUseWindows10_WM_CHAR_CancelTime( int Flag )
 {
-	// ƒtƒ‰ƒO‚ğ•Û‘¶
+	// ãƒ•ãƒ©ã‚°ã‚’ä¿å­˜
 	WinData.DisableWindows10_WM_CHAR_CancelTime = Flag == TRUE ? FALSE : TRUE ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
@@ -6175,61 +6175,61 @@ extern int NS_SetUseWindows10_WM_CHAR_CancelTime( int Flag )
 
 
 
-// ƒhƒ‰ƒbƒO•ƒhƒƒbƒv‚³‚ê‚½ƒtƒ@ƒCƒ‹ŠÖŒW
+// ãƒ‰ãƒ©ãƒƒã‚°ï¼†ãƒ‰ãƒ­ãƒƒãƒ—ã•ã‚ŒãŸãƒ•ã‚¡ã‚¤ãƒ«é–¢ä¿‚
 
-// ƒtƒ@ƒCƒ‹‚Ìƒhƒ‰ƒbƒO•ƒhƒƒbƒv‹@”\‚ğ—LŒø‚É‚·‚é‚©‚Ç‚¤‚©‚Ìİ’è‚ğÄİ’è‚·‚é
+// ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ‰ãƒ©ãƒƒã‚°ï¼†ãƒ‰ãƒ­ãƒƒãƒ—æ©Ÿèƒ½ã‚’æœ‰åŠ¹ã«ã™ã‚‹ã‹ã©ã†ã‹ã®è¨­å®šã‚’å†è¨­å®šã™ã‚‹
 extern int RefreshDragFileValidFlag()
 {
 	SETUP_WIN_API
 
-	// —LŒøó‘Ô‚ğ•ÏX
+	// æœ‰åŠ¹çŠ¶æ…‹ã‚’å¤‰æ›´
 	WinAPIData.Win32Func.DragAcceptFilesFunc( WinData.MainWindow, WinData.DragFileValidFlag ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒtƒ@ƒCƒ‹‚Ìƒhƒ‰ƒbƒO•ƒhƒƒbƒv‹@”\‚ğ—LŒø‚É‚·‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğƒZƒbƒg‚·‚é
+// ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ‰ãƒ©ãƒƒã‚°ï¼†ãƒ‰ãƒ­ãƒƒãƒ—æ©Ÿèƒ½ã‚’æœ‰åŠ¹ã«ã™ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern int NS_SetDragFileValidFlag( int Flag )
 {
 	SETUP_WIN_API
 
-	// w’è‚ÆŠù‚É“¯‚¶ê‡‚Í‰½‚à‚¹‚¸I—¹
+	// æŒ‡å®šã¨æ—¢ã«åŒã˜å ´åˆã¯ä½•ã‚‚ã›ãšçµ‚äº†
 	if( WinData.DragFileValidFlag == Flag ) return 0 ;
 	
-	// —LŒøó‘Ô‚ğ•ÏX
+	// æœ‰åŠ¹çŠ¶æ…‹ã‚’å¤‰æ›´
 	if( WinData.MainWindow != NULL )
 	{
 		WinAPIData.Win32Func.DragAcceptFilesFunc( WinData.MainWindow, Flag ) ;
 	}
 	
-	// ƒtƒ‰ƒO‚ğ•Û‘¶
+	// ãƒ•ãƒ©ã‚°ã‚’ä¿å­˜
 	WinData.DragFileValidFlag = Flag ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒhƒ‰ƒbƒO•ƒhƒƒbƒv‚³‚ê‚½ƒtƒ@ƒCƒ‹‚Ìî•ñ‚ğ‰Šú‰»‚·‚é
+// ãƒ‰ãƒ©ãƒƒã‚°ï¼†ãƒ‰ãƒ­ãƒƒãƒ—ã•ã‚ŒãŸãƒ•ã‚¡ã‚¤ãƒ«ã®æƒ…å ±ã‚’åˆæœŸåŒ–ã™ã‚‹
 extern int NS_DragFileInfoClear( void )
 {
 	int i ;
 	
-	// ‘S‚Ä‚Ìƒtƒ@ƒCƒ‹–¼—p‚ÉŠm•Û‚µ‚½ƒƒ‚ƒŠ—Ìˆæ‚ğ‰ğ•ú‚·‚é
+	// å…¨ã¦ã®ãƒ•ã‚¡ã‚¤ãƒ«åç”¨ã«ç¢ºä¿ã—ãŸãƒ¡ãƒ¢ãƒªé ˜åŸŸã‚’è§£æ”¾ã™ã‚‹
 	for( i = 0 ; i < WinData.DragFileNum ; i ++ )
 	{
 		DXFREE( WinData.DragFileName[i] ) ;
 		WinData.DragFileName[i] = NULL ;
 	}
 	
-	// ƒtƒ@ƒCƒ‹‚Ì”‚ğ‚O‚É‚·‚é
+	// ãƒ•ã‚¡ã‚¤ãƒ«ã®æ•°ã‚’ï¼ã«ã™ã‚‹
 	WinData.DragFileNum = 0 ;
 	
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒhƒ‰ƒbƒO•ƒhƒƒbƒv‚³‚ê‚½ƒtƒ@ƒCƒ‹–¼‚ğæ“¾‚·‚é( -1:æ“¾‚Å‚«‚È‚©‚Á‚½  0:æ“¾‚Å‚«‚½ )
+// ãƒ‰ãƒ©ãƒƒã‚°ï¼†ãƒ‰ãƒ­ãƒƒãƒ—ã•ã‚ŒãŸãƒ•ã‚¡ã‚¤ãƒ«åã‚’å–å¾—ã™ã‚‹( -1:å–å¾—ã§ããªã‹ã£ãŸ  0:å–å¾—ã§ããŸ )
 extern int NS_GetDragFilePath( TCHAR *FilePathBuffer, int FilePathBufferBytes )
 {
 #ifdef UNICODE
@@ -6237,55 +6237,55 @@ extern int NS_GetDragFilePath( TCHAR *FilePathBuffer, int FilePathBufferBytes )
 #else
 	int Size ;
 
-	// ƒtƒ@ƒCƒ‹–¼‚ªˆê‚Â‚à–³‚©‚Á‚½‚ç -1 ‚ğ•Ô‚·
+	// ãƒ•ã‚¡ã‚¤ãƒ«åãŒä¸€ã¤ã‚‚ç„¡ã‹ã£ãŸã‚‰ -1 ã‚’è¿”ã™
 	if( WinData.DragFileNum == 0 )
 	{
 		return -1 ;
 	}
 
-	// •¶š—ñ‚ğƒRƒs[‚·‚é
+	// æ–‡å­—åˆ—ã‚’ã‚³ãƒ”ãƒ¼ã™ã‚‹
 	Size = ConvString( ( const char * )WinData.DragFileName[ 0 ], -1, WCHAR_T_CHARCODEFORMAT, ( char * )FilePathBuffer, FilePathBufferBytes <= 0 ? BUFFERBYTES_CANCEL : ( size_t )FilePathBufferBytes, _TCHARCODEFORMAT ) ;
 
-	// NULL ‚ğ“n‚³‚ê‚½‚ç•¶š—ñŠi”[‚É•K—v‚ÈƒTƒCƒY‚ğ•Ô‚·
+	// NULL ã‚’æ¸¡ã•ã‚ŒãŸã‚‰æ–‡å­—åˆ—æ ¼ç´ã«å¿…è¦ãªã‚µã‚¤ã‚ºã‚’è¿”ã™
 	if( FilePathBuffer == NULL ) 
 	{
 		return Size ;
 	}
 
-	// “n‚µI‚í‚Á‚½•¶š—ñ‚Í‰ğ•ú‚·‚é
+	// æ¸¡ã—çµ‚ã‚ã£ãŸæ–‡å­—åˆ—ã¯è§£æ”¾ã™ã‚‹
 	DXFREE( WinData.DragFileName[ 0 ] ) ;
 	WinData.DragFileName[ 0 ] = NULL ;
 
-	// ƒhƒ‰ƒbƒO•ƒhƒƒbƒv‚³‚ê‚½ƒtƒ@ƒCƒ‹‚Ì”‚ğŒ¸‚ç‚·
+	// ãƒ‰ãƒ©ãƒƒã‚°ï¼†ãƒ‰ãƒ­ãƒƒãƒ—ã•ã‚ŒãŸãƒ•ã‚¡ã‚¤ãƒ«ã®æ•°ã‚’æ¸›ã‚‰ã™
 	WinData.DragFileNum -- ;
 
-	// ƒhƒ‰ƒbƒO•ƒhƒƒbƒv‚³‚ê‚½ƒtƒ@ƒCƒ‹‚Ìî•ñ‚ğˆê‚Â•ª‹l‚ß‚é
+	// ãƒ‰ãƒ©ãƒƒã‚°ï¼†ãƒ‰ãƒ­ãƒƒãƒ—ã•ã‚ŒãŸãƒ•ã‚¡ã‚¤ãƒ«ã®æƒ…å ±ã‚’ä¸€ã¤åˆ†è©°ã‚ã‚‹
 	if( WinData.DragFileNum > 0 )
 	{
 		_MEMMOVE( &WinData.DragFileName[ 0 ], &WinData.DragFileName[ 1 ], sizeof( wchar_t * ) * WinData.DragFileNum ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 #endif
 }
 
-// ƒhƒ‰ƒbƒO•ƒhƒƒbƒv‚³‚ê‚½ƒtƒ@ƒCƒ‹–¼‚ğæ“¾‚·‚é( -1:æ“¾‚Å‚«‚È‚©‚Á‚½  0:æ“¾‚Å‚«‚½ )
+// ãƒ‰ãƒ©ãƒƒã‚°ï¼†ãƒ‰ãƒ­ãƒƒãƒ—ã•ã‚ŒãŸãƒ•ã‚¡ã‚¤ãƒ«åã‚’å–å¾—ã™ã‚‹( -1:å–å¾—ã§ããªã‹ã£ãŸ  0:å–å¾—ã§ããŸ )
 extern int GetDragFilePath_WCHAR_T( wchar_t *FilePathBuffer, int FilePathBufferBytes )
 {
-	// ƒtƒ@ƒCƒ‹–¼‚ªˆê‚Â‚à–³‚©‚Á‚½‚ç -1 ‚ğ•Ô‚·
+	// ãƒ•ã‚¡ã‚¤ãƒ«åãŒä¸€ã¤ã‚‚ç„¡ã‹ã£ãŸã‚‰ -1 ã‚’è¿”ã™
 	if( WinData.DragFileNum == 0 )
 	{
 		return -1 ;
 	}
 
-	// NULL ‚ğ“n‚³‚ê‚½‚ç•¶š—ñŠi”[‚É•K—v‚ÈƒTƒCƒY‚ğ•Ô‚·
+	// NULL ã‚’æ¸¡ã•ã‚ŒãŸã‚‰æ–‡å­—åˆ—æ ¼ç´ã«å¿…è¦ãªã‚µã‚¤ã‚ºã‚’è¿”ã™
 	if( FilePathBuffer == NULL ) 
 	{
 		return ( int )( ( _WCSLEN( WinData.DragFileName[ 0 ] ) + 1 ) * sizeof( wchar_t ) ) ;
 	}
 
-	// •¶š—ñ‚ğƒRƒs[‚·‚é
+	// æ–‡å­—åˆ—ã‚’ã‚³ãƒ”ãƒ¼ã™ã‚‹
 	if( FilePathBufferBytes >= 0 )
 	{
 		_WCSCPY_S( FilePathBuffer, FilePathBufferBytes, WinData.DragFileName[ 0 ] ) ;
@@ -6295,24 +6295,24 @@ extern int GetDragFilePath_WCHAR_T( wchar_t *FilePathBuffer, int FilePathBufferB
 		_WCSCPY( FilePathBuffer, WinData.DragFileName[ 0 ] ) ;
 	}
 
-	// “n‚µI‚í‚Á‚½•¶š—ñ‚Í‰ğ•ú‚·‚é
+	// æ¸¡ã—çµ‚ã‚ã£ãŸæ–‡å­—åˆ—ã¯è§£æ”¾ã™ã‚‹
 	DXFREE( WinData.DragFileName[ 0 ] ) ;
 	WinData.DragFileName[ 0 ] = NULL ;
 
-	// ƒhƒ‰ƒbƒO•ƒhƒƒbƒv‚³‚ê‚½ƒtƒ@ƒCƒ‹‚Ì”‚ğŒ¸‚ç‚·
+	// ãƒ‰ãƒ©ãƒƒã‚°ï¼†ãƒ‰ãƒ­ãƒƒãƒ—ã•ã‚ŒãŸãƒ•ã‚¡ã‚¤ãƒ«ã®æ•°ã‚’æ¸›ã‚‰ã™
 	WinData.DragFileNum -- ;
 
-	// ƒhƒ‰ƒbƒO•ƒhƒƒbƒv‚³‚ê‚½ƒtƒ@ƒCƒ‹‚Ìî•ñ‚ğˆê‚Â•ª‹l‚ß‚é
+	// ãƒ‰ãƒ©ãƒƒã‚°ï¼†ãƒ‰ãƒ­ãƒƒãƒ—ã•ã‚ŒãŸãƒ•ã‚¡ã‚¤ãƒ«ã®æƒ…å ±ã‚’ä¸€ã¤åˆ†è©°ã‚ã‚‹
 	if( WinData.DragFileNum > 0 )
 	{
 		_MEMMOVE( &WinData.DragFileName[ 0 ], &WinData.DragFileName[ 1 ], sizeof( wchar_t * ) * WinData.DragFileNum ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒhƒ‰ƒbƒO•ƒhƒƒbƒv‚³‚ê‚½ƒtƒ@ƒCƒ‹‚Ì”‚ğæ“¾‚·‚é
+// ãƒ‰ãƒ©ãƒƒã‚°ï¼†ãƒ‰ãƒ­ãƒƒãƒ—ã•ã‚ŒãŸãƒ•ã‚¡ã‚¤ãƒ«ã®æ•°ã‚’å–å¾—ã™ã‚‹
 extern int NS_GetDragFileNum( void )
 {
 	return WinData.DragFileNum ;
@@ -6337,9 +6337,9 @@ extern int NS_GetDragFileNum( void )
 
 
 
-// ƒEƒCƒ“ƒhƒE•`‰æ—Ìˆæİ’èŒnŠÖ”
+// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦æç”»é ˜åŸŸè¨­å®šç³»é–¢æ•°
 
-// ”CˆÓ‚ÌƒOƒ‰ƒtƒBƒbƒN‚©‚çRGNƒnƒ“ƒhƒ‹‚ğì¬‚·‚é
+// ä»»æ„ã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‹ã‚‰RGNãƒãƒ³ãƒ‰ãƒ«ã‚’ä½œæˆã™ã‚‹
 extern HRGN NS_CreateRgnFromGraph( int Width, int Height, const void *MaskData, int Pitch, int Byte )
 {
 #ifndef DX_NON_GRAPHICS
@@ -6350,14 +6350,14 @@ extern HRGN NS_CreateRgnFromGraph( int Width, int Height, const void *MaskData, 
 
 	SETUP_WIN_API
 
-	// ‘åŒ³‚ÌRGNƒnƒ“ƒhƒ‹‚ğì¬‚·‚é
+	// å¤§å…ƒã®RGNãƒãƒ³ãƒ‰ãƒ«ã‚’ä½œæˆã™ã‚‹
 	NS_GetDrawScreenSize( &SizeX, &SizeY ) ;
 	Rgn = WinAPIData.Win32Func.CreateRectRgnFunc( 0, 0, SizeX, SizeY ) ;
 	RgnTmp = WinAPIData.Win32Func.CreateRectRgnFunc( 0, 0, SizeX, SizeY ) ;
 	WinAPIData.Win32Func.CombineRgnFunc( Rgn, Rgn, RgnTmp, RGN_XOR ) ;
 	WinAPIData.Win32Func.DeleteObjectFunc( RgnTmp ) ;
 
-	// “§‰ßRGN‚Ì‘–¸
+	// é€éRGNã®èµ°æŸ»
 	AddPitch = Pitch - Width * Byte ;
 	Data = ( BYTE * )MaskData ;
 	for( i = 0 ; i < Height ; i ++, Data += AddPitch )
@@ -6396,14 +6396,14 @@ extern HRGN NS_CreateRgnFromGraph( int Width, int Height, const void *MaskData, 
 		}
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return Rgn ;
 #else // DX_NON_GRAPHICS
 	return NULL ;
 #endif // DX_NON_GRAPHICS
 }
 
-// ”CˆÓ‚ÌŠî–{ƒCƒ[ƒWƒf[ƒ^‚Æ“§‰ßF‚©‚çRGNƒnƒ“ƒhƒ‹‚ğì¬‚·‚é
+// ä»»æ„ã®åŸºæœ¬ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ã¨é€éè‰²ã‹ã‚‰RGNãƒãƒ³ãƒ‰ãƒ«ã‚’ä½œæˆã™ã‚‹
 extern HRGN NS_CreateRgnFromBaseImage( BASEIMAGE *BaseImage, int TransColorR, int TransColorG, int TransColorB )
 {
 	HRGN RgnTmp, Rgn ;
@@ -6415,7 +6415,7 @@ extern HRGN NS_CreateRgnFromBaseImage( BASEIMAGE *BaseImage, int TransColorR, in
 
 	SETUP_WIN_API
 
-	// Šî–{ƒCƒ[ƒWƒf[ƒ^‚ÌƒtƒH[ƒ}ƒbƒg‚ªXRGB8ˆÈŠO‚Ìê‡‚ÍXRGB8Œ`®‚É‚·‚é
+	// åŸºæœ¬ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ã®ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆãŒXRGB8ä»¥å¤–ã®å ´åˆã¯XRGB8å½¢å¼ã«ã™ã‚‹
 	if( BaseImage->ColorData.AlphaMask != 0x00000000 ||
 		BaseImage->ColorData.RedMask   != 0x00ff0000 ||
 		BaseImage->ColorData.GreenMask != 0x0000ff00 ||
@@ -6430,7 +6430,7 @@ extern HRGN NS_CreateRgnFromBaseImage( BASEIMAGE *BaseImage, int TransColorR, in
 		UseBaseImage = BaseImage ;
 	}
 
-	// ‘åŒ³‚ÌRGNƒnƒ“ƒhƒ‹‚ğì¬‚·‚é
+	// å¤§å…ƒã®RGNãƒãƒ³ãƒ‰ãƒ«ã‚’ä½œæˆã™ã‚‹
 	Width = UseBaseImage->Width ;
 	Height = UseBaseImage->Height ;
 	Rgn = WinAPIData.Win32Func.CreateRectRgnFunc( 0, 0, Width, Height ) ;
@@ -6438,7 +6438,7 @@ extern HRGN NS_CreateRgnFromBaseImage( BASEIMAGE *BaseImage, int TransColorR, in
 	WinAPIData.Win32Func.CombineRgnFunc( Rgn, Rgn, RgnTmp, RGN_XOR ) ;
 	WinAPIData.Win32Func.DeleteObjectFunc( RgnTmp ) ;
 
-	// “§‰ßRGN‚Ì‘–¸
+	// é€éRGNã®èµ°æŸ»
 	Byte = UseBaseImage->ColorData.PixelByte ;
 	AddPitch = UseBaseImage->Pitch - UseBaseImage->Width * Byte ;
 	Data = ( BYTE * )UseBaseImage->GraphData ;
@@ -6478,12 +6478,12 @@ extern HRGN NS_CreateRgnFromBaseImage( BASEIMAGE *BaseImage, int TransColorR, in
 		ReleaseBaseImage( &TempBaseImage ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return Rgn ;
 }
 
 
-// ”CˆÓ‚ÌƒOƒ‰ƒtƒBƒbƒN‚©‚ç‚q‚f‚m‚ğƒZƒbƒg‚·‚é
+// ä»»æ„ã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‹ã‚‰ï¼²ï¼§ï¼®ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern int NS_SetWindowRgnGraph( const TCHAR *FileName )
 {
 #ifdef UNICODE
@@ -6501,7 +6501,7 @@ extern int NS_SetWindowRgnGraph( const TCHAR *FileName )
 #endif
 }
 
-// ”CˆÓ‚Ì‰æ‘œƒtƒ@ƒCƒ‹‚©‚ç‚q‚f‚m‚ğƒZƒbƒg‚·‚é
+// ä»»æ„ã®ç”»åƒãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰ï¼²ï¼§ï¼®ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern int NS_SetWindowRgnGraphWithStrLen( const TCHAR *FileName, size_t FileNameLength )
 {
 	int Result ;
@@ -6517,7 +6517,7 @@ extern int NS_SetWindowRgnGraphWithStrLen( const TCHAR *FileName, size_t FileNam
 	return Result ;
 }
 
-// ”CˆÓ‚ÌƒOƒ‰ƒtƒBƒbƒN‚©‚ç‚q‚f‚m‚ğƒZƒbƒg‚·‚é
+// ä»»æ„ã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‹ã‚‰ï¼²ï¼§ï¼®ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern int SetWindowRgnGraph_WCHAR_T( const wchar_t *FileName )
 {
 	HBITMAP bmp ;
@@ -6539,38 +6539,38 @@ extern int SetWindowRgnGraph_WCHAR_T( const wchar_t *FileName )
 	}
 	else
 	{
-		// ƒtƒ@ƒCƒ‹‚ğ“Ç‚İ‚Ş
+		// ãƒ•ã‚¡ã‚¤ãƒ«ã‚’èª­ã¿è¾¼ã‚€
 		bmp = CreateDIBGraph_WCHAR_T( FileName, FALSE, NULL ) ;
 		if( bmp == NULL )
 		{
 			return -1 ;
 		}
 
-		// ƒOƒ‰ƒtƒBƒbƒN‚Ìî•ñ‚ğæ“¾‚·‚é
+		// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®æƒ…å ±ã‚’å–å¾—ã™ã‚‹
 		WinAPIData.Win32Func.GetObjectAFunc( bmp, sizeof( BITMAP ), &bm ) ;
 
-		// ƒsƒbƒ`•â³
+		// ãƒ”ãƒƒãƒè£œæ­£
 		bm.bmWidthBytes += bm.bmWidthBytes % 4 ? 4 - bm.bmWidthBytes % 4 : 0 ;
 
-		// ƒŠ[ƒWƒ‡ƒ“ì¬
+		// ãƒªãƒ¼ã‚¸ãƒ§ãƒ³ä½œæˆ
 		if( WinData.WindowRgn != NULL )
 		{
 			WinAPIData.Win32Func.DeleteObjectFunc( WinData.WindowRgn ) ;
 		}
 		WinData.WindowRgn = NS_CreateRgnFromGraph( bm.bmWidth, bm.bmHeight, bm.bmBits, bm.bmWidthBytes, bm.bmBitsPixel / 8 ) ;
 
-		// ƒŠ[ƒWƒ‡ƒ“‚ğŠ„‚è“–‚Ä‚é
+		// ãƒªãƒ¼ã‚¸ãƒ§ãƒ³ã‚’å‰²ã‚Šå½“ã¦ã‚‹
 		if( WinData.MainWindow != NULL )
 		{
 			WinAPIData.Win32Func.SetWindowRgnFunc( WinData.MainWindow, WinData.WindowRgn, TRUE ) ;
 		}
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// •`‰ææ‚Ì‰æ–Ê‚Ì“§‰ßF‚Ì•”•ª‚ğ“§‰ß‚³‚¹‚é‚q‚f‚m‚ğƒZƒbƒg‚·‚é
+// æç”»å…ˆã®ç”»é¢ã®é€éè‰²ã®éƒ¨åˆ†ã‚’é€éã•ã›ã‚‹ï¼²ï¼§ï¼®ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern int NS_UpdateTransColorWindowRgn( void )
 {
 #ifndef DX_NON_GRAPHICS
@@ -6583,19 +6583,19 @@ extern int NS_UpdateTransColorWindowRgn( void )
 	NS_CreateXRGB8ColorBaseImage( Width, Height, &ScreenImage ) ;
 	NS_GetDrawScreenBaseImage( 0, 0, Width, Height, &ScreenImage ) ;
 
-	// ƒŠ[ƒWƒ‡ƒ“ì¬
+	// ãƒªãƒ¼ã‚¸ãƒ§ãƒ³ä½œæˆ
 	if( WinData.WindowRgn != NULL ) WinAPIData.Win32Func.DeleteObjectFunc( WinData.WindowRgn ) ;
 	WinData.WindowRgn = NS_CreateRgnFromBaseImage( &ScreenImage,
 		( int )( ( GSYS.CreateImage.TransColor >> 16 ) & 0xff ),
 		( int )( ( GSYS.CreateImage.TransColor >>  8 ) & 0xff ),
 		( int )(   GSYS.CreateImage.TransColor         & 0xff ) ) ;
 
-	// ƒŠ[ƒWƒ‡ƒ“‚ğŠ„‚è“–‚Ä‚é
+	// ãƒªãƒ¼ã‚¸ãƒ§ãƒ³ã‚’å‰²ã‚Šå½“ã¦ã‚‹
 	if( WinData.MainWindow != NULL ) WinAPIData.Win32Func.SetWindowRgnFunc( WinData.MainWindow, WinData.WindowRgn, TRUE ) ;
 
 	NS_ReleaseBaseImage( &ScreenImage ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 #else // DX_NON_GRAPHICS
 	return -1 ;
@@ -6616,33 +6616,33 @@ extern int NS_UpdateTransColorWindowRgn( void )
 
 
 
-// ƒc[ƒ‹ƒo[ŠÖŒW
+// ãƒ„ãƒ¼ãƒ«ãƒãƒ¼é–¢ä¿‚
 
-// w’è‚Ì‚h‚c‚Ìƒ{ƒ^ƒ“‚ÌƒCƒ“ƒfƒbƒNƒX‚ğ“¾‚é
+// æŒ‡å®šã®ï¼©ï¼¤ã®ãƒœã‚¿ãƒ³ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’å¾—ã‚‹
 static int SearchToolBarButton( int ID )
 {
 	int i ;
 	WINTOOLBARITEMINFO *but ;
 
-	// ƒc[ƒ‹ƒo[‚ÌƒZƒbƒgƒAƒbƒv‚ªŠ®—¹‚µ‚Ä‚¢‚È‚¢ê‡‚Í‰½‚à‚¹‚¸‚ÉI—¹
+	// ãƒ„ãƒ¼ãƒ«ãƒãƒ¼ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ãŒå®Œäº†ã—ã¦ã„ãªã„å ´åˆã¯ä½•ã‚‚ã›ãšã«çµ‚äº†
 	if( WinData.ToolBarUseFlag == FALSE ) return -1 ;
 
-	// w’è‚Ì‚h‚c‚Ìƒ{ƒ^ƒ“‚ğ’T‚·
+	// æŒ‡å®šã®ï¼©ï¼¤ã®ãƒœã‚¿ãƒ³ã‚’æ¢ã™
 	but = WinData.ToolBarItem ;
 	for( i = 0 ; i < WinData.ToolBarItemNum ; i ++, but ++ )
 	{
-		if( but->Type == TOOLBUTTON_TYPE_SEP ) continue ;	// Œ„ŠÔ‚ÍœŠO
-		if( but->ID == ID ) break ;							// ‚h‚c‚ªˆê’v‚µ‚½ê‡‚Í”²‚¯‚é
+		if( but->Type == TOOLBUTTON_TYPE_SEP ) continue ;	// éš™é–“ã¯é™¤å¤–
+		if( but->ID == ID ) break ;							// ï¼©ï¼¤ãŒä¸€è‡´ã—ãŸå ´åˆã¯æŠœã‘ã‚‹
 	}
 
-	// –³‚©‚Á‚½‚çƒGƒ‰[
+	// ç„¡ã‹ã£ãŸã‚‰ã‚¨ãƒ©ãƒ¼
 	if( i == WinData.ToolBarItemNum ) return -1;
 
-	// ‚ ‚Á‚½‚çƒCƒ“ƒfƒbƒNƒX‚ğ•Ô‚·
+	// ã‚ã£ãŸã‚‰ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’è¿”ã™
 	return i ;
 }
 
-// ƒc[ƒ‹ƒo[‚Ì‚‚³‚ğ“¾‚é
+// ãƒ„ãƒ¼ãƒ«ãƒãƒ¼ã®é«˜ã•ã‚’å¾—ã‚‹
 extern int GetToolBarHeight( void )
 {
 	RECT rect ;
@@ -6655,7 +6655,7 @@ extern int GetToolBarHeight( void )
 	return rect.bottom - rect.top ;
 }
 
-// ƒc[ƒ‹ƒo[‚Ì€”õ( NULL ‚ğw’è‚·‚é‚Æƒc[ƒ‹ƒo[‚ğ‰ğœ )
+// ãƒ„ãƒ¼ãƒ«ãƒãƒ¼ã®æº–å‚™( NULL ã‚’æŒ‡å®šã™ã‚‹ã¨ãƒ„ãƒ¼ãƒ«ãƒãƒ¼ã‚’è§£é™¤ )
 extern int NS_SetupToolBar( const TCHAR *BitmapName, int DivNum, int ResourceID )
 {
 #ifdef UNICODE
@@ -6673,7 +6673,7 @@ extern int NS_SetupToolBar( const TCHAR *BitmapName, int DivNum, int ResourceID 
 #endif
 }
 
-// ƒc[ƒ‹ƒo[‚Ì€”õABitmapName ‚É NULL, ResourceID ‚É -1 ‚ğ“n‚·‚Æƒc[ƒ‹ƒo[‚ğ‰ğœ( BitmapName:ƒc[ƒ‹ƒo[‚Ìƒ{ƒ^ƒ“‚Ég—p‚·‚é‰æ‘œƒtƒ@ƒCƒ‹ƒpƒXAResourceID ‚É -1 ˆÈŠO‚ğ“n‚·ê‡‚Í NULL ‚É‚·‚é  DivNum:ƒ{ƒ^ƒ“‰æ‘œ’†‚Ìƒ{ƒ^ƒ“‚Ì”  ResourceID:ƒc[ƒ‹ƒo[‚Ìƒ{ƒ^ƒ“‚Ég—p‚·‚éƒrƒbƒgƒ}ƒbƒvƒŠƒ\[ƒX‚Ì‚h‚cABitmapName ‚É NULL ‚ğ“n‚·‚Æ‚±‚Ìˆø”‚ªg—p‚³‚ê‚é )
+// ãƒ„ãƒ¼ãƒ«ãƒãƒ¼ã®æº–å‚™ã€BitmapName ã« NULL, ResourceID ã« -1 ã‚’æ¸¡ã™ã¨ãƒ„ãƒ¼ãƒ«ãƒãƒ¼ã‚’è§£é™¤( BitmapName:ãƒ„ãƒ¼ãƒ«ãƒãƒ¼ã®ãƒœã‚¿ãƒ³ã«ä½¿ç”¨ã™ã‚‹ç”»åƒãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹ã€ResourceID ã« -1 ä»¥å¤–ã‚’æ¸¡ã™å ´åˆã¯ NULL ã«ã™ã‚‹  DivNum:ãƒœã‚¿ãƒ³ç”»åƒä¸­ã®ãƒœã‚¿ãƒ³ã®æ•°  ResourceID:ãƒ„ãƒ¼ãƒ«ãƒãƒ¼ã®ãƒœã‚¿ãƒ³ã«ä½¿ç”¨ã™ã‚‹ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ãƒªã‚½ãƒ¼ã‚¹ã®ï¼©ï¼¤ã€BitmapName ã« NULL ã‚’æ¸¡ã™ã¨ã“ã®å¼•æ•°ãŒä½¿ç”¨ã•ã‚Œã‚‹ )
 extern int NS_SetupToolBarWithStrLen( const TCHAR *BitmapName, size_t BitmapNameLength, int DivNum, int ResourceID )
 {
 	int Result ;
@@ -6689,7 +6689,7 @@ extern int NS_SetupToolBarWithStrLen( const TCHAR *BitmapName, size_t BitmapName
 	return Result ;
 }
 
-// ƒc[ƒ‹ƒo[‚Ì€”õ( NULL ‚ğw’è‚·‚é‚Æƒc[ƒ‹ƒo[‚ğ‰ğœ )
+// ãƒ„ãƒ¼ãƒ«ãƒãƒ¼ã®æº–å‚™( NULL ã‚’æŒ‡å®šã™ã‚‹ã¨ãƒ„ãƒ¼ãƒ«ãƒãƒ¼ã‚’è§£é™¤ )
 extern int SetupToolBar_WCHAR_T( const wchar_t *BitmapName, int DivNum, int ResourceID )
 {
 	HBITMAP NewBitmap = NULL ;
@@ -6702,38 +6702,38 @@ extern int SetupToolBar_WCHAR_T( const wchar_t *BitmapName, int DivNum, int Reso
 		return -1 ;
 	}
 
-	// BitmapName ‚ª NULL ‚ÅAŠ‚Âƒc[ƒ‹ƒo[‚ğg‚Á‚Ä‚¢‚È‚¢ê‡‚Í‰½‚à‚¹‚¸‚ÉI—¹
+	// BitmapName ãŒ NULL ã§ã€ä¸”ã¤ãƒ„ãƒ¼ãƒ«ãƒãƒ¼ã‚’ä½¿ã£ã¦ã„ãªã„å ´åˆã¯ä½•ã‚‚ã›ãšã«çµ‚äº†
 	if( BitmapName == NULL && ResourceID < 0 && WinData.ToolBarUseFlag == FALSE )
 	{
 		return 0 ;
 	}
 
-	// ƒtƒ‹ƒXƒNƒŠ[ƒ“‚Å‹N“®‚µ‚Ä‚¢‚éê‡‚à‰½‚à‚¹‚¸‚ÉI—¹
+	// ãƒ•ãƒ«ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã§èµ·å‹•ã—ã¦ã„ã‚‹å ´åˆã‚‚ä½•ã‚‚ã›ãšã«çµ‚äº†
 	if( WinData.WindowModeFlag == FALSE && NS_GetUseFullScreenResolutionMode() != DX_FSRESOLUTIONMODE_BORDERLESS_WINDOW )
 	{
 		return 0 ;
 	}
 
-	// ‚Æ‚è‚ ‚¦‚¸‘S‚Ä‚Ìƒ{ƒ^ƒ“‚ğíœ
+	// ã¨ã‚Šã‚ãˆãšå…¨ã¦ã®ãƒœã‚¿ãƒ³ã‚’å‰Šé™¤
 	NS_DeleteAllToolBarButton() ;
 
-	// BitmapName ‚ª NULL ‚ÅAResouceID ‚à -1 ‚Ìê‡‚Íƒc[ƒ‹ƒo[‚ğíœ‚·‚é
+	// BitmapName ãŒ NULL ã§ã€ResouceID ã‚‚ -1 ã®å ´åˆã¯ãƒ„ãƒ¼ãƒ«ãƒãƒ¼ã‚’å‰Šé™¤ã™ã‚‹
 	if( BitmapName == NULL && ResourceID < 0 )
 	{
-		// ƒc[ƒ‹ƒo[ƒEƒCƒ“ƒhƒE‚É WM_CLOSE ƒƒbƒZ[ƒW‚ğ‘—‚é
+		// ãƒ„ãƒ¼ãƒ«ãƒãƒ¼ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã« WM_CLOSE ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’é€ã‚‹
 		SendMessageWFunc( WinData.ToolBarHandle, WM_CLOSE, 0, 0 ) ;
 		WinData.ToolBarHandle = NULL ;
 
-		// ƒrƒbƒgƒ}ƒbƒvƒtƒ@ƒCƒ‹‚ğíœ‚·‚é
+		// ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ãƒ•ã‚¡ã‚¤ãƒ«ã‚’å‰Šé™¤ã™ã‚‹
 		WinAPIData.Win32Func.DeleteObjectFunc( WinData.ToolBarButtonImage ) ;
 		WinData.ToolBarButtonImage = NULL ;
 
-		// ƒc[ƒ‹ƒo[‚ğg—p‚µ‚Ä‚¢‚éƒtƒ‰ƒO‚ğ“|‚·
+		// ãƒ„ãƒ¼ãƒ«ãƒãƒ¼ã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 		WinData.ToolBarUseFlag = FALSE ;
 	}
 	else
 	{
-		// ƒrƒbƒgƒ}ƒbƒvƒtƒ@ƒCƒ‹‚ğ“Ç‚İ‚Ş
+		// ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ãƒ•ã‚¡ã‚¤ãƒ«ã‚’èª­ã¿è¾¼ã‚€
 		if( BitmapName != NULL )
 		{
 			NewBitmap = CreateDIBGraph_WCHAR_T( BitmapName, 0, NULL ) ;
@@ -6746,38 +6746,38 @@ extern int SetupToolBar_WCHAR_T( const wchar_t *BitmapName, int DivNum, int Reso
 			BITMAPINFO *BmpInfo ;
 			HGLOBAL Global ;
 
-			// ƒŠƒ\[ƒX‚ğæ“¾
+			// ãƒªã‚½ãƒ¼ã‚¹ã‚’å–å¾—
 			RSrc = WinAPIData.Win32Func.FindResourceWFunc( WinData.LoadResourModule == NULL ? GetModuleHandleWFunc( NULL ) : WinData.LoadResourModule, MAKEINTRESOURCEW( ResourceID ), MAKEINTRESOURCEW(2)/*RT_BITMAP*/ ) ;
 			if( RSrc )
 			{
-				// ƒŠƒ\[ƒX‚ªŠi”[‚³‚ê‚Ä‚¢‚éƒƒ‚ƒŠ—Ìˆæ‚ğæ“¾
+				// ãƒªã‚½ãƒ¼ã‚¹ãŒæ ¼ç´ã•ã‚Œã¦ã„ã‚‹ãƒ¡ãƒ¢ãƒªé ˜åŸŸã‚’å–å¾—
 				Global = WinAPIData.Win32Func.LoadResourceFunc( WinData.LoadResourModule == NULL ? GetModuleHandleWFunc( NULL ) : WinData.LoadResourModule, RSrc ) ;
 				if( Global )
 				{
 					DataP = ( BYTE * )WinAPIData.Win32Func.LockResourceFunc( Global ) ;
 					if( DataP )
 					{
-						// ƒCƒ[ƒWƒf[ƒ^‚ÌˆÊ’u‚ğæ“¾
+						// ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ã®ä½ç½®ã‚’å–å¾—
 						BmpInfo = ( BITMAPINFO * )DataP ;
 						DataP += sizeof( BITMAPINFOHEADER ) ;
 
-						// ƒJƒ‰[ƒrƒbƒg”‚ª‚WˆÈ‰º‚Ì‚ÍƒpƒŒƒbƒg‚ª‚ ‚é
+						// ã‚«ãƒ©ãƒ¼ãƒ“ãƒƒãƒˆæ•°ãŒï¼˜ä»¥ä¸‹ã®æ™‚ã¯ãƒ‘ãƒ¬ãƒƒãƒˆãŒã‚ã‚‹
 						if( BmpInfo->bmiHeader.biBitCount <= 8 )
 						{
 							DataP += ( size_t )( 1 << BmpInfo->bmiHeader.biBitCount ) * sizeof( RGBQUAD ) ;
 						}
 						else
-						// ƒJƒ‰[ƒrƒbƒg”‚ª‚R‚Q‚©‚P‚U‚ÅƒJƒ‰[ƒ}ƒXƒN‚ª‚ ‚é
+						// ã‚«ãƒ©ãƒ¼ãƒ“ãƒƒãƒˆæ•°ãŒï¼“ï¼’ã‹ï¼‘ï¼–ã§ã‚«ãƒ©ãƒ¼ãƒã‚¹ã‚¯ãŒã‚ã‚‹
 						if( BmpInfo->bmiHeader.biBitCount == 16 || BmpInfo->bmiHeader.biBitCount == 32 || BmpInfo->bmiHeader.biCompression == BI_BITFIELDS )
 						{
 							DataP += sizeof( RGBQUAD ) * 3 ;
 						}
 
-						// HBITMAP ‚Ìì¬
+						// HBITMAP ã®ä½œæˆ
 						NewBitmap = NS_CreateDIBGraphToMem( BmpInfo, DataP, FALSE, NULL ) ;
 					}
 
-					// ƒŠƒ\[ƒX‰ğ•ú
+					// ãƒªã‚½ãƒ¼ã‚¹è§£æ”¾
 					UnlockResource( Global ) ;
 				}
 			}
@@ -6786,19 +6786,19 @@ extern int SetupToolBar_WCHAR_T( const wchar_t *BitmapName, int DivNum, int Reso
 
 		if( NewBitmap == NULL )
 		{
-			DXST_LOGFILE_ADDUTF16LE( "\xc4\x30\xfc\x30\xeb\x30\xd0\x30\xfc\x30\x6e\x30\xdc\x30\xbf\x30\xf3\x30\x28\x75\x6e\x30\xd3\x30\xc3\x30\xc8\x30\xde\x30\xc3\x30\xd7\x30\xd5\x30\xa1\x30\xa4\x30\xeb\x30\x6e\x30\xad\x8a\x7f\x30\xbc\x8f\x7f\x30\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ƒc[ƒ‹ƒo[‚Ìƒ{ƒ^ƒ“—p‚Ìƒrƒbƒgƒ}ƒbƒvƒtƒ@ƒCƒ‹‚Ì“Ç‚İ‚İ‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+			DXST_LOGFILE_ADDUTF16LE( "\xc4\x30\xfc\x30\xeb\x30\xd0\x30\xfc\x30\x6e\x30\xdc\x30\xbf\x30\xf3\x30\x28\x75\x6e\x30\xd3\x30\xc3\x30\xc8\x30\xde\x30\xc3\x30\xd7\x30\xd5\x30\xa1\x30\xa4\x30\xeb\x30\x6e\x30\xad\x8a\x7f\x30\xbc\x8f\x7f\x30\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ãƒ„ãƒ¼ãƒ«ãƒãƒ¼ã®ãƒœã‚¿ãƒ³ç”¨ã®ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ãƒ•ã‚¡ã‚¤ãƒ«ã®èª­ã¿è¾¼ã¿ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 			return -1 ;
 		}
 
-		// ƒrƒbƒgƒ}ƒbƒv‚ÌƒTƒCƒY‚ğ“¾‚é
+		// ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã®ã‚µã‚¤ã‚ºã‚’å¾—ã‚‹
 		WinAPIData.Win32Func.GetObjectAFunc( NewBitmap, sizeof( bm ), &bm ) ;
 
-		// ƒc[ƒ‹ƒo[‚ğŠù‚Ég‚Á‚Ä‚¢‚é‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+		// ãƒ„ãƒ¼ãƒ«ãƒãƒ¼ã‚’æ—¢ã«ä½¿ã£ã¦ã„ã‚‹ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 		if( WinData.ToolBarUseFlag == FALSE )
 		{
 			TBADDBITMAP AddBitmap ;
 
-			// ¡‚Ü‚Åg‚Á‚Ä‚¢‚È‚©‚Á‚½ê‡‚Íƒc[ƒ‹ƒo[ƒEƒCƒ“ƒhƒE‚ğì¬‚·‚é
+			// ä»Šã¾ã§ä½¿ã£ã¦ã„ãªã‹ã£ãŸå ´åˆã¯ãƒ„ãƒ¼ãƒ«ãƒãƒ¼ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚’ä½œæˆã™ã‚‹
 			WinAPIData.Win32Func.InitCommonControlsFunc();
 			WinData.ToolBarHandle = CreateWindowExWFunc(
 				0,
@@ -6813,29 +6813,29 @@ extern int SetupToolBar_WCHAR_T( const wchar_t *BitmapName, int DivNum, int Reso
 				NULL ) ;
 			if( WinData.ToolBarHandle == NULL )
 			{
-				DXST_LOGFILE_ADDUTF16LE( "\xc4\x30\xfc\x30\xeb\x30\xd0\x30\xfc\x30\xa6\x30\xa4\x30\xf3\x30\xc9\x30\xa6\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ƒc[ƒ‹ƒo[ƒEƒCƒ“ƒhƒE‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+				DXST_LOGFILE_ADDUTF16LE( "\xc4\x30\xfc\x30\xeb\x30\xd0\x30\xfc\x30\xa6\x30\xa4\x30\xf3\x30\xc9\x30\xa6\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ãƒ„ãƒ¼ãƒ«ãƒãƒ¼ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 				return -1 ;
 			}
 
-			// TBBUTTON \‘¢‘Ì‚ÌƒTƒCƒY‚ğ‘—‚Á‚Ä‚¨‚­
+			// TBBUTTON æ§‹é€ ä½“ã®ã‚µã‚¤ã‚ºã‚’é€ã£ã¦ãŠã
 			SendMessageWFunc( WinData.ToolBarHandle, TB_BUTTONSTRUCTSIZE,
 						 (WPARAM)sizeof( TBBUTTON ), 0 ) ;
 
-			// ƒc[ƒ‹ƒo[‚ğg—p‚µ‚Ä‚¢‚éó‘Ô‚É‚·‚é
+			// ãƒ„ãƒ¼ãƒ«ãƒãƒ¼ã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹çŠ¶æ…‹ã«ã™ã‚‹
 			WinData.ToolBarUseFlag = TRUE ;
 
-			// ƒrƒbƒgƒ}ƒbƒvƒtƒ@ƒCƒ‹‚ğİ’è‚·‚é
+			// ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ãƒ•ã‚¡ã‚¤ãƒ«ã‚’è¨­å®šã™ã‚‹
 			AddBitmap.hInst = NULL ;
 			AddBitmap.nID   = (UINT_PTR)NewBitmap ;
 			SendMessageWFunc( WinData.ToolBarHandle, TB_ADDBITMAP, ( WPARAM )DivNum, ( LPARAM )&AddBitmap ) ;
 			WinData.ToolBarButtonImage = NewBitmap ;
 
-			// î•ñ‚ğ‰Šú‰»‚·‚é
+			// æƒ…å ±ã‚’åˆæœŸåŒ–ã™ã‚‹
 			WinData.ToolBarItemNum = 0 ;
 		}
 		else
 		{
-			// Šù‚Éì‚ç‚ê‚Ä‚¢‚éê‡‚Íƒrƒbƒgƒ}ƒbƒvƒtƒ@ƒCƒ‹‚ğŒğŠ·‚·‚é
+			// æ—¢ã«ä½œã‚‰ã‚Œã¦ã„ã‚‹å ´åˆã¯ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ãƒ•ã‚¡ã‚¤ãƒ«ã‚’äº¤æ›ã™ã‚‹
 			TBREPLACEBITMAP RepBitmap ;
 
 			RepBitmap.hInstOld = NULL ;
@@ -6845,15 +6845,15 @@ extern int SetupToolBar_WCHAR_T( const wchar_t *BitmapName, int DivNum, int Reso
 			RepBitmap.nButtons = DivNum ;
 			SendMessageWFunc( WinData.ToolBarHandle, TB_REPLACEBITMAP, 0, (LPARAM)&RepBitmap ) ;
 
-			// ¡‚Ü‚Å‚Ìƒrƒbƒgƒ}ƒbƒv‚ğ”jŠü‚·‚é
+			// ä»Šã¾ã§ã®ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚’ç ´æ£„ã™ã‚‹
 			WinAPIData.Win32Func.DeleteObjectFunc( WinData.ToolBarButtonImage ) ;
 			WinData.ToolBarButtonImage = NewBitmap ;
 		}
 
-		// ƒrƒbƒgƒ}ƒbƒv‚ÌƒTƒCƒY‚ğİ’è‚·‚é
+		// ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã®ã‚µã‚¤ã‚ºã‚’è¨­å®šã™ã‚‹
 		SendMessageWFunc( WinData.ToolBarHandle, TB_SETBITMAPSIZE, 0, ( bm.bmWidth / DivNum ) | ( bm.bmHeight << 16 ) ) ;
 
-		// ƒXƒ^ƒCƒ‹‚ğ•ÏX‚·‚é
+		// ã‚¹ã‚¿ã‚¤ãƒ«ã‚’å¤‰æ›´ã™ã‚‹
 		if( WinData.WindowStyle != 6 &&
 			WinData.WindowStyle != 7 &&
 			WinData.WindowStyle != 8 &&
@@ -6866,13 +6866,13 @@ extern int SetupToolBar_WCHAR_T( const wchar_t *BitmapName, int DivNum, int Reso
 
 	WM_SIZEProcess() ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒc[ƒ‹ƒo[‚Éƒ{ƒ^ƒ“‚ğ’Ç‰Á
-// int Type   : TOOLBUTTON_TYPE_NORMAL “™
-// int State  : TOOLBUTTON_STATE_ENABLE “™
+// ãƒ„ãƒ¼ãƒ«ãƒãƒ¼ã«ãƒœã‚¿ãƒ³ã‚’è¿½åŠ 
+// int Type   : TOOLBUTTON_TYPE_NORMAL ç­‰
+// int State  : TOOLBUTTON_STATE_ENABLE ç­‰
 extern int NS_AddToolBarButton( int Type, int State, int ImageIndex, int ID )
 {
 	WINTOOLBARITEMINFO *but ;
@@ -6888,29 +6888,29 @@ extern int NS_AddToolBarButton( int Type, int State, int ImageIndex, int ID )
 
 	SETUP_WIN_API
 
-	// ƒc[ƒ‹ƒo[‚ÌƒZƒbƒgƒAƒbƒv‚ªŠ®—¹‚µ‚Ä‚¢‚È‚¢ê‡‚Í‰½‚à‚¹‚¸‚ÉI—¹
+	// ãƒ„ãƒ¼ãƒ«ãƒãƒ¼ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ãŒå®Œäº†ã—ã¦ã„ãªã„å ´åˆã¯ä½•ã‚‚ã›ãšã«çµ‚äº†
 	if( WinData.ToolBarUseFlag == FALSE ) return -1 ;
 
-	// ƒc[ƒ‹ƒo[‚Ìƒ{ƒ^ƒ“‚Ì”‚ªÅ‘å”‚É’B‚µ‚Ä‚¢‚½‚ç‰½‚à‚¹‚¸‚ÉI—¹
+	// ãƒ„ãƒ¼ãƒ«ãƒãƒ¼ã®ãƒœã‚¿ãƒ³ã®æ•°ãŒæœ€å¤§æ•°ã«é”ã—ã¦ã„ãŸã‚‰ä½•ã‚‚ã›ãšã«çµ‚äº†
 	if( WinData.ToolBarItemNum == MAX_TOOLBARITEM_NUM )
 	{
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\xc4\x30\xfc\x30\xeb\x30\xd0\x30\xfc\x30\x6e\x30\xdc\x30\xbf\x30\xf3\x30\x6e\x30\x70\x65\x4c\x30\x00\x67\x27\x59\x70\x65\x6e\x30\x20\x00\x25\x00\x64\x00\x20\x00\x6b\x30\x54\x90\x57\x30\x66\x30\x44\x30\x8b\x30\xba\x70\xdc\x30\xbf\x30\xf3\x30\x92\x30\xfd\x8f\xa0\x52\x67\x30\x4d\x30\x7e\x30\x5b\x30\x93\x30\x67\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ƒc[ƒ‹ƒo[‚Ìƒ{ƒ^ƒ“‚Ì”‚ªÅ‘å”‚Ì %d ‚É’B‚µ‚Ä‚¢‚éˆ×ƒ{ƒ^ƒ“‚ğ’Ç‰Á‚Å‚«‚Ü‚¹‚ñ‚Å‚µ‚½\n" @*/, MAX_TOOLBARITEM_NUM )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\xc4\x30\xfc\x30\xeb\x30\xd0\x30\xfc\x30\x6e\x30\xdc\x30\xbf\x30\xf3\x30\x6e\x30\x70\x65\x4c\x30\x00\x67\x27\x59\x70\x65\x6e\x30\x20\x00\x25\x00\x64\x00\x20\x00\x6b\x30\x54\x90\x57\x30\x66\x30\x44\x30\x8b\x30\xba\x70\xdc\x30\xbf\x30\xf3\x30\x92\x30\xfd\x8f\xa0\x52\x67\x30\x4d\x30\x7e\x30\x5b\x30\x93\x30\x67\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ãƒ„ãƒ¼ãƒ«ãƒãƒ¼ã®ãƒœã‚¿ãƒ³ã®æ•°ãŒæœ€å¤§æ•°ã® %d ã«é”ã—ã¦ã„ã‚‹ç‚ºãƒœã‚¿ãƒ³ã‚’è¿½åŠ ã§ãã¾ã›ã‚“ã§ã—ãŸ\n" @*/, MAX_TOOLBARITEM_NUM )) ;
 		return -1 ;
 	}
 
-	// ƒpƒ‰ƒ[ƒ^‚Ì’l‚ªˆÙí‚Èê‡‚ÍƒGƒ‰[
+	// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®å€¤ãŒç•°å¸¸ãªå ´åˆã¯ã‚¨ãƒ©ãƒ¼
 	if( Type >= TOOLBUTTON_TYPE_NUM )
 	{
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\xc4\x30\xfc\x30\xeb\x30\xd0\x30\xfc\x30\x6e\x30\xdc\x30\xbf\x30\xf3\x30\xfd\x8f\xa0\x52\xa2\x95\x70\x65\x6b\x30\x4a\x30\x44\x30\x66\x30\x20\x00\x53\x00\x74\x00\x61\x00\x74\x00\x65\x00\x20\x00\x6e\x30\x24\x50\x4c\x30\x0d\x4e\x63\x6b\x6a\x30\x24\x50\x20\x00\x25\x00\x64\x00\x20\x00\x68\x30\x6a\x30\x63\x30\x66\x30\x44\x30\x7e\x30\x59\x30\x0a\x00\x00"/*@ L"ƒc[ƒ‹ƒo[‚Ìƒ{ƒ^ƒ“’Ç‰ÁŠÖ”‚É‚¨‚¢‚Ä State ‚Ì’l‚ª•s³‚È’l %d ‚Æ‚È‚Á‚Ä‚¢‚Ü‚·\n" @*/, State )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\xc4\x30\xfc\x30\xeb\x30\xd0\x30\xfc\x30\x6e\x30\xdc\x30\xbf\x30\xf3\x30\xfd\x8f\xa0\x52\xa2\x95\x70\x65\x6b\x30\x4a\x30\x44\x30\x66\x30\x20\x00\x53\x00\x74\x00\x61\x00\x74\x00\x65\x00\x20\x00\x6e\x30\x24\x50\x4c\x30\x0d\x4e\x63\x6b\x6a\x30\x24\x50\x20\x00\x25\x00\x64\x00\x20\x00\x68\x30\x6a\x30\x63\x30\x66\x30\x44\x30\x7e\x30\x59\x30\x0a\x00\x00"/*@ L"ãƒ„ãƒ¼ãƒ«ãƒãƒ¼ã®ãƒœã‚¿ãƒ³è¿½åŠ é–¢æ•°ã«ãŠã„ã¦ State ã®å€¤ãŒä¸æ­£ãªå€¤ %d ã¨ãªã£ã¦ã„ã¾ã™\n" @*/, State )) ;
 		return -1 ;
 	}
 	if( State >= TOOLBUTTON_STATE_NUM )
 	{
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\xc4\x30\xfc\x30\xeb\x30\xd0\x30\xfc\x30\x6e\x30\xdc\x30\xbf\x30\xf3\x30\xfd\x8f\xa0\x52\xa2\x95\x70\x65\x6b\x30\x4a\x30\x44\x30\x66\x30\x20\x00\x54\x00\x79\x00\x70\x00\x65\x00\x20\x00\x6e\x30\x24\x50\x4c\x30\x0d\x4e\x63\x6b\x6a\x30\x24\x50\x20\x00\x25\x00\x64\x00\x20\x00\x68\x30\x6a\x30\x63\x30\x66\x30\x44\x30\x7e\x30\x59\x30\x0a\x00\x00"/*@ L"ƒc[ƒ‹ƒo[‚Ìƒ{ƒ^ƒ“’Ç‰ÁŠÖ”‚É‚¨‚¢‚Ä Type ‚Ì’l‚ª•s³‚È’l %d ‚Æ‚È‚Á‚Ä‚¢‚Ü‚·\n" @*/, Type )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\xc4\x30\xfc\x30\xeb\x30\xd0\x30\xfc\x30\x6e\x30\xdc\x30\xbf\x30\xf3\x30\xfd\x8f\xa0\x52\xa2\x95\x70\x65\x6b\x30\x4a\x30\x44\x30\x66\x30\x20\x00\x54\x00\x79\x00\x70\x00\x65\x00\x20\x00\x6e\x30\x24\x50\x4c\x30\x0d\x4e\x63\x6b\x6a\x30\x24\x50\x20\x00\x25\x00\x64\x00\x20\x00\x68\x30\x6a\x30\x63\x30\x66\x30\x44\x30\x7e\x30\x59\x30\x0a\x00\x00"/*@ L"ãƒ„ãƒ¼ãƒ«ãƒãƒ¼ã®ãƒœã‚¿ãƒ³è¿½åŠ é–¢æ•°ã«ãŠã„ã¦ Type ã®å€¤ãŒä¸æ­£ãªå€¤ %d ã¨ãªã£ã¦ã„ã¾ã™\n" @*/, Type )) ;
 		return -1 ;
 	}
 
-	// V‚µ‚¢ƒ{ƒ^ƒ“‚ğ’Ç‰Á
+	// æ–°ã—ã„ãƒœã‚¿ãƒ³ã‚’è¿½åŠ 
 	_MEMSET( &tbbut, 0, sizeof( tbbut ) ) ;
 	tbbut.iBitmap = ImageIndex ;
 	tbbut.idCommand = TOOLBAR_COMMANDID_BASE + ID ;
@@ -6918,7 +6918,7 @@ extern int NS_AddToolBarButton( int Type, int State, int ImageIndex, int ID )
 	tbbut.fsStyle = TypeTable[ Type ] ;
 	SendMessageWFunc( WinData.ToolBarHandle, TB_ADDBUTTONS, 1, (LPARAM)&tbbut ) ;
 
-	// V‚µ‚¢ƒ{ƒ^ƒ“‚Ìî•ñ‚ğƒZƒbƒg
+	// æ–°ã—ã„ãƒœã‚¿ãƒ³ã®æƒ…å ±ã‚’ã‚»ãƒƒãƒˆ
 	but = &WinData.ToolBarItem[ WinData.ToolBarItemNum ] ;
 	but->ID         = ID ;
 	but->ImageIndex = ImageIndex ;
@@ -6926,32 +6926,32 @@ extern int NS_AddToolBarButton( int Type, int State, int ImageIndex, int ID )
 	but->State      = State ;
 	but->Click      = FALSE ;
 
-	// ƒ{ƒ^ƒ“‚Ì”‚ğ‘‚â‚·
+	// ãƒœã‚¿ãƒ³ã®æ•°ã‚’å¢—ã‚„ã™
 	WinData.ToolBarItemNum ++ ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒc[ƒ‹ƒo[‚ÉŒ„ŠÔ‚ğ’Ç‰Á
+// ãƒ„ãƒ¼ãƒ«ãƒãƒ¼ã«éš™é–“ã‚’è¿½åŠ 
 extern int NS_AddToolBarSep( void )
 {
 	WINTOOLBARITEMINFO *but ;
 	TBBUTTON tbbut ;
 
-	// ƒc[ƒ‹ƒo[‚ÌƒZƒbƒgƒAƒbƒv‚ªŠ®—¹‚µ‚Ä‚¢‚È‚¢ê‡‚Í‰½‚à‚¹‚¸‚ÉI—¹
+	// ãƒ„ãƒ¼ãƒ«ãƒãƒ¼ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ãŒå®Œäº†ã—ã¦ã„ãªã„å ´åˆã¯ä½•ã‚‚ã›ãšã«çµ‚äº†
 	if( WinData.ToolBarUseFlag == FALSE ) return -1 ;
 
 	SETUP_WIN_API
 
-	// ƒc[ƒ‹ƒo[‚Ìƒ{ƒ^ƒ“‚Ì”‚ªÅ‘å”‚É’B‚µ‚Ä‚¢‚½‚ç‰½‚à‚¹‚¸‚ÉI—¹
+	// ãƒ„ãƒ¼ãƒ«ãƒãƒ¼ã®ãƒœã‚¿ãƒ³ã®æ•°ãŒæœ€å¤§æ•°ã«é”ã—ã¦ã„ãŸã‚‰ä½•ã‚‚ã›ãšã«çµ‚äº†
 	if( WinData.ToolBarItemNum == MAX_TOOLBARITEM_NUM )
 	{
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\xc4\x30\xfc\x30\xeb\x30\xd0\x30\xfc\x30\x6e\x30\xa2\x30\xa4\x30\xc6\x30\xe0\x30\x6e\x30\x70\x65\x4c\x30\x00\x67\x27\x59\x70\x65\x6e\x30\x20\x00\x25\x00\x64\x00\x20\x00\x6b\x30\x54\x90\x57\x30\x66\x30\x44\x30\x8b\x30\xba\x70\x99\x96\x93\x95\x92\x30\xfd\x8f\xa0\x52\x67\x30\x4d\x30\x7e\x30\x5b\x30\x93\x30\x67\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ƒc[ƒ‹ƒo[‚ÌƒAƒCƒeƒ€‚Ì”‚ªÅ‘å”‚Ì %d ‚É’B‚µ‚Ä‚¢‚éˆ×Œ„ŠÔ‚ğ’Ç‰Á‚Å‚«‚Ü‚¹‚ñ‚Å‚µ‚½\n" @*/, MAX_TOOLBARITEM_NUM )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\xc4\x30\xfc\x30\xeb\x30\xd0\x30\xfc\x30\x6e\x30\xa2\x30\xa4\x30\xc6\x30\xe0\x30\x6e\x30\x70\x65\x4c\x30\x00\x67\x27\x59\x70\x65\x6e\x30\x20\x00\x25\x00\x64\x00\x20\x00\x6b\x30\x54\x90\x57\x30\x66\x30\x44\x30\x8b\x30\xba\x70\x99\x96\x93\x95\x92\x30\xfd\x8f\xa0\x52\x67\x30\x4d\x30\x7e\x30\x5b\x30\x93\x30\x67\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ãƒ„ãƒ¼ãƒ«ãƒãƒ¼ã®ã‚¢ã‚¤ãƒ†ãƒ ã®æ•°ãŒæœ€å¤§æ•°ã® %d ã«é”ã—ã¦ã„ã‚‹ç‚ºéš™é–“ã‚’è¿½åŠ ã§ãã¾ã›ã‚“ã§ã—ãŸ\n" @*/, MAX_TOOLBARITEM_NUM )) ;
 		return -1 ;
 	}
 
-	// V‚µ‚­Œ„ŠÔ‚ğ’Ç‰Á
+	// æ–°ã—ãéš™é–“ã‚’è¿½åŠ 
 	_MEMSET( &tbbut, 0, sizeof( tbbut ) ) ;
 	tbbut.iBitmap   = 0 ;
 	tbbut.idCommand = 0 ;
@@ -6959,7 +6959,7 @@ extern int NS_AddToolBarSep( void )
 	tbbut.fsStyle   = TBSTYLE_SEP ;
 	SendMessageWFunc( WinData.ToolBarHandle, TB_ADDBUTTONS, 1, (LPARAM)&tbbut ) ;
 
-	// V‚µ‚¢ƒ{ƒ^ƒ“‚Ìî•ñ‚ğƒZƒbƒg
+	// æ–°ã—ã„ãƒœã‚¿ãƒ³ã®æƒ…å ±ã‚’ã‚»ãƒƒãƒˆ
 	but = &WinData.ToolBarItem[ WinData.ToolBarItemNum ] ;
 	but->ID         = 0 ;
 	but->ImageIndex = 0 ;
@@ -6967,14 +6967,14 @@ extern int NS_AddToolBarSep( void )
 	but->State      = TOOLBUTTON_STATE_ENABLE ;
 	but->Click      = FALSE ;
 
-	// ƒ{ƒ^ƒ“‚Ì”‚ğ‘‚â‚·
+	// ãƒœã‚¿ãƒ³ã®æ•°ã‚’å¢—ã‚„ã™
 	WinData.ToolBarItemNum ++ ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒc[ƒ‹ƒo[‚Ìƒ{ƒ^ƒ“‚Ìó‘Ô‚ğæ“¾
+// ãƒ„ãƒ¼ãƒ«ãƒãƒ¼ã®ãƒœã‚¿ãƒ³ã®çŠ¶æ…‹ã‚’å–å¾—
 extern int NS_GetToolBarButtonState( int ID )
 {
 	int i ;
@@ -6982,27 +6982,27 @@ extern int NS_GetToolBarButtonState( int ID )
 	int State = 0 ;
 	LRESULT Result ;
 
-	// ƒc[ƒ‹ƒo[‚ÌƒZƒbƒgƒAƒbƒv‚ªŠ®—¹‚µ‚Ä‚¢‚È‚¢ê‡‚Í‰½‚à‚¹‚¸‚ÉI—¹
+	// ãƒ„ãƒ¼ãƒ«ãƒãƒ¼ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ãŒå®Œäº†ã—ã¦ã„ãªã„å ´åˆã¯ä½•ã‚‚ã›ãšã«çµ‚äº†
 	if( WinData.ToolBarUseFlag == FALSE ) return -1 ;
 
 	SETUP_WIN_API
 
-	// w’è‚Ì‚h‚c‚Ìƒ{ƒ^ƒ“‚ğ’T‚·
+	// æŒ‡å®šã®ï¼©ï¼¤ã®ãƒœã‚¿ãƒ³ã‚’æ¢ã™
 	i = SearchToolBarButton( ID ) ;
 	if( i == -1 )
 	{
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\x07\x63\x9a\x5b\x6e\x30\x29\xff\x24\xff\x20\x00\x25\x00\x64\x00\x20\x00\x92\x30\x01\x63\x63\x30\x5f\x30\xc4\x30\xfc\x30\xeb\x30\xd0\x30\xfc\x30\x6e\x30\xdc\x30\xbf\x30\xf3\x30\x4c\x30\x42\x30\x8a\x30\x7e\x30\x5b\x30\x93\x30\x67\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"w’è‚Ì‚h‚c %d ‚ğ‚Á‚½ƒc[ƒ‹ƒo[‚Ìƒ{ƒ^ƒ“‚ª‚ ‚è‚Ü‚¹‚ñ‚Å‚µ‚½\n" @*/, ID )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\x07\x63\x9a\x5b\x6e\x30\x29\xff\x24\xff\x20\x00\x25\x00\x64\x00\x20\x00\x92\x30\x01\x63\x63\x30\x5f\x30\xc4\x30\xfc\x30\xeb\x30\xd0\x30\xfc\x30\x6e\x30\xdc\x30\xbf\x30\xf3\x30\x4c\x30\x42\x30\x8a\x30\x7e\x30\x5b\x30\x93\x30\x67\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"æŒ‡å®šã®ï¼©ï¼¤ %d ã‚’æŒã£ãŸãƒ„ãƒ¼ãƒ«ãƒãƒ¼ã®ãƒœã‚¿ãƒ³ãŒã‚ã‚Šã¾ã›ã‚“ã§ã—ãŸ\n" @*/, ID )) ;
 		return -1;
 	}
 	but = &WinData.ToolBarItem[i] ;
 
-	// ƒ{ƒ^ƒ“‚Ìƒ^ƒCƒv‚É‚æ‚Á‚Äˆ—‚ğ•ªŠò
+	// ãƒœã‚¿ãƒ³ã®ã‚¿ã‚¤ãƒ—ã«ã‚ˆã£ã¦å‡¦ç†ã‚’åˆ†å²
 	switch( but->Type )
 	{
-	case TOOLBUTTON_TYPE_NORMAL :	// •’Ê‚Ìƒ{ƒ^ƒ“‚Ìê‡
+	case TOOLBUTTON_TYPE_NORMAL :	// æ™®é€šã®ãƒœã‚¿ãƒ³ã®å ´åˆ
 		if( but->State == TOOLBUTTON_STATE_ENABLE )
 		{
-			// ˆê“x‚Å‚à‰Ÿ‚³‚ê‚½‚ç TRUE ó‘Ô‚É‚È‚é•Ï”‚ğ•Ô‚·
+			// ä¸€åº¦ã§ã‚‚æŠ¼ã•ã‚ŒãŸã‚‰ TRUE çŠ¶æ…‹ã«ãªã‚‹å¤‰æ•°ã‚’è¿”ã™
 			State = but->Click ;
 			but->Click = FALSE ;
 		}
@@ -7012,45 +7012,45 @@ extern int NS_GetToolBarButtonState( int ID )
 		}
 		break ;
 
-	case TOOLBUTTON_TYPE_CHECK :	// ‰Ÿ‚·‚²‚Æ‚É‚n‚m^‚n‚e‚e‚ªØ‚è‘Ö‚í‚éƒ{ƒ^ƒ“
-	case TOOLBUTTON_TYPE_GROUP :	// •Ê‚Ì TOOLBUTTON_TYPE_GROUP ƒ^ƒCƒv‚Ìƒ{ƒ^ƒ“‚ª‰Ÿ‚³‚ê‚é‚Æ‚n‚e‚e‚É‚È‚éƒ^ƒCƒv‚Ìƒ{ƒ^ƒ“(ƒOƒ‹[ƒv‚Ì‹æØ‚è‚ÍŒ„ŠÔ‚Å)
-		// ƒ{ƒ^ƒ“‚Ìó‘Ô‚ğæ“¾‚·‚é
+	case TOOLBUTTON_TYPE_CHECK :	// æŠ¼ã™ã”ã¨ã«ï¼¯ï¼®ï¼ï¼¯ï¼¦ï¼¦ãŒåˆ‡ã‚Šæ›¿ã‚ã‚‹ãƒœã‚¿ãƒ³
+	case TOOLBUTTON_TYPE_GROUP :	// åˆ¥ã® TOOLBUTTON_TYPE_GROUP ã‚¿ã‚¤ãƒ—ã®ãƒœã‚¿ãƒ³ãŒæŠ¼ã•ã‚Œã‚‹ã¨ï¼¯ï¼¦ï¼¦ã«ãªã‚‹ã‚¿ã‚¤ãƒ—ã®ãƒœã‚¿ãƒ³(ã‚°ãƒ«ãƒ¼ãƒ—ã®åŒºåˆ‡ã‚Šã¯éš™é–“ã§)
+		// ãƒœã‚¿ãƒ³ã®çŠ¶æ…‹ã‚’å–å¾—ã™ã‚‹
 		Result = SendMessageWFunc( WinData.ToolBarHandle, TB_GETSTATE, ( WPARAM )( TOOLBAR_COMMANDID_BASE + but->ID ), 0 ) ;
 		if( Result & ( TBSTATE_CHECKED | TBSTATE_PRESSED ) ) State = TRUE  ;
 		else                                                 State = FALSE ;
 		break ;
 	}
 
-	// ó‘Ô‚ğ•Ô‚·
+	// çŠ¶æ…‹ã‚’è¿”ã™
 	return State ;
 }
 
-// ƒc[ƒ‹ƒo[‚Ìƒ{ƒ^ƒ“‚Ìó‘Ô‚ğİ’è
+// ãƒ„ãƒ¼ãƒ«ãƒãƒ¼ã®ãƒœã‚¿ãƒ³ã®çŠ¶æ…‹ã‚’è¨­å®š
 extern int NS_SetToolBarButtonState( int ID, int State )
 {
 	int i ;
 	int SetState = 0 ;
 	WINTOOLBARITEMINFO *but ;
 
-	// ƒc[ƒ‹ƒo[‚ÌƒZƒbƒgƒAƒbƒv‚ªŠ®—¹‚µ‚Ä‚¢‚È‚¢ê‡‚Í‰½‚à‚¹‚¸‚ÉI—¹
+	// ãƒ„ãƒ¼ãƒ«ãƒãƒ¼ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ãŒå®Œäº†ã—ã¦ã„ãªã„å ´åˆã¯ä½•ã‚‚ã›ãšã«çµ‚äº†
 	if( WinData.ToolBarUseFlag == FALSE ) return -1 ;
 
 	SETUP_WIN_API
 
-	// w’è‚Ì‚h‚c‚Ìƒ{ƒ^ƒ“‚ğ’T‚·
+	// æŒ‡å®šã®ï¼©ï¼¤ã®ãƒœã‚¿ãƒ³ã‚’æ¢ã™
 	i = SearchToolBarButton( ID ) ;
 	if( i == -1 )
 	{
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\x07\x63\x9a\x5b\x6e\x30\x29\xff\x24\xff\x20\x00\x25\x00\x64\x00\x20\x00\x92\x30\x01\x63\x63\x30\x5f\x30\xc4\x30\xfc\x30\xeb\x30\xd0\x30\xfc\x30\x6e\x30\xdc\x30\xbf\x30\xf3\x30\x4c\x30\x42\x30\x8a\x30\x7e\x30\x5b\x30\x93\x30\x67\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"w’è‚Ì‚h‚c %d ‚ğ‚Á‚½ƒc[ƒ‹ƒo[‚Ìƒ{ƒ^ƒ“‚ª‚ ‚è‚Ü‚¹‚ñ‚Å‚µ‚½\n" @*/, ID )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\x07\x63\x9a\x5b\x6e\x30\x29\xff\x24\xff\x20\x00\x25\x00\x64\x00\x20\x00\x92\x30\x01\x63\x63\x30\x5f\x30\xc4\x30\xfc\x30\xeb\x30\xd0\x30\xfc\x30\x6e\x30\xdc\x30\xbf\x30\xf3\x30\x4c\x30\x42\x30\x8a\x30\x7e\x30\x5b\x30\x93\x30\x67\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"æŒ‡å®šã®ï¼©ï¼¤ %d ã‚’æŒã£ãŸãƒ„ãƒ¼ãƒ«ãƒãƒ¼ã®ãƒœã‚¿ãƒ³ãŒã‚ã‚Šã¾ã›ã‚“ã§ã—ãŸ\n" @*/, ID )) ;
 		return -1;
 	}
 	but = &WinData.ToolBarItem[i] ;
 
-	// ƒ{ƒ^ƒ“‚Ìó‘Ô‚ğ•Û‘¶
+	// ãƒœã‚¿ãƒ³ã®çŠ¶æ…‹ã‚’ä¿å­˜
 	but->State = State ;
 	but->Click = FALSE ;
 
-	// ƒ{ƒ^ƒ“‚Ìó‘Ô‚ğİ’è‚·‚é
+	// ãƒœã‚¿ãƒ³ã®çŠ¶æ…‹ã‚’è¨­å®šã™ã‚‹
 	switch( State )
 	{
 	case TOOLBUTTON_STATE_ENABLE  :
@@ -7072,28 +7072,28 @@ extern int NS_SetToolBarButtonState( int ID, int State )
 	}
 	SendMessageWFunc( WinData.ToolBarHandle, TB_SETSTATE, ( WPARAM )( TOOLBAR_COMMANDID_BASE + but->ID ), SetState ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒc[ƒ‹ƒo[‚Ìƒ{ƒ^ƒ“‚ğ‘S‚Äíœ
+// ãƒ„ãƒ¼ãƒ«ãƒãƒ¼ã®ãƒœã‚¿ãƒ³ã‚’å…¨ã¦å‰Šé™¤
 extern int NS_DeleteAllToolBarButton( void )
 {
 	int i ;
 
-	// ƒc[ƒ‹ƒo[‚ÌƒZƒbƒgƒAƒbƒv‚ªŠ®—¹‚µ‚Ä‚¢‚È‚¢ê‡‚Í‰½‚à‚¹‚¸‚ÉI—¹
+	// ãƒ„ãƒ¼ãƒ«ãƒãƒ¼ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ãŒå®Œäº†ã—ã¦ã„ãªã„å ´åˆã¯ä½•ã‚‚ã›ãšã«çµ‚äº†
 	if( WinData.ToolBarUseFlag == FALSE ) return -1 ;
 
 	SETUP_WIN_API
 
-	// ƒ{ƒ^ƒ“‚Ì”‚¾‚¯íœƒƒbƒZ[ƒW‚ğ‘—‚é
+	// ãƒœã‚¿ãƒ³ã®æ•°ã ã‘å‰Šé™¤ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’é€ã‚‹
 	for( i = 0 ; i < WinData.ToolBarItemNum ; i ++ )
 		SendMessageWFunc( WinData.ToolBarHandle, TB_DELETEBUTTON, 0, 0 ) ;
 
-	// ƒ{ƒ^ƒ“‚Ì”‚ğ‚O‚É‚·‚é
+	// ãƒœã‚¿ãƒ³ã®æ•°ã‚’ï¼ã«ã™ã‚‹
 	WinData.ToolBarItemNum = 0 ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
@@ -7113,61 +7113,61 @@ extern int NS_DeleteAllToolBarButton( void )
 
 
 
-// ƒƒjƒ…[ŠÖŒW
+// ãƒ¡ãƒ‹ãƒ¥ãƒ¼é–¢ä¿‚
 
-// ƒƒjƒ…[‚ğ—LŒø‚É‚·‚é‚©‚Ç‚¤‚©‚ğİ’è‚·‚é
+// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’æœ‰åŠ¹ã«ã™ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹
 extern int NS_SetUseMenuFlag( int Flag )
 {
 	SETUP_WIN_API
 
-	// ‚à‚µ¡‚Ü‚Å‚Æ“¯‚¶ê‡‚Í‰½‚à‚¹‚¸I—¹
+	// ã‚‚ã—ä»Šã¾ã§ã¨åŒã˜å ´åˆã¯ä½•ã‚‚ã›ãšçµ‚äº†
 	if( Flag == WinData.MenuUseFlag ) return 0 ;
 
-	// ƒtƒ‰ƒO‚É‚æ‚Á‚Äˆ—‚ğ•ªŠò
+	// ãƒ•ãƒ©ã‚°ã«ã‚ˆã£ã¦å‡¦ç†ã‚’åˆ†å²
 	if( Flag == FALSE )
 	{
-		// ƒƒjƒ…[‚ğíœ‚·‚é
+		// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’å‰Šé™¤ã™ã‚‹
 		if( WinData.Menu != NULL )
 		{
-			// ƒƒjƒ…[‚ğƒEƒCƒ“ƒhƒE‚©‚çŠO‚·
+			// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‹ã‚‰å¤–ã™
 			NS_SetDisplayMenuFlag( FALSE ) ;
 
-			// ƒƒjƒ…[‚ğíœ
+			// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’å‰Šé™¤
 			WinAPIData.Win32Func.DestroyMenuFunc( WinData.Menu ) ;
 			WinData.Menu = NULL ;
 		}
 		
-		// ƒƒjƒ…[‚ğ–³Œø‚É‚·‚é
+		// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’ç„¡åŠ¹ã«ã™ã‚‹
 		WinData.MenuUseFlag = FALSE ;
 	}
 	else
 	{
-		// ƒƒjƒ…[‚ª–³‚¢ê‡‚Í‹ó‚Ìƒƒjƒ…[‚ğì¬‚·‚é
+		// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãŒç„¡ã„å ´åˆã¯ç©ºã®ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’ä½œæˆã™ã‚‹
 		if( WinData.Menu == NULL )
 		{
 			WinData.Menu = WinAPIData.Win32Func.CreateMenuFunc() ;
 			if( WinData.Menu == NULL ) return -1 ;
 		}
 		
-		// ƒƒjƒ…[‚ğ—LŒø‚É‚·‚é
+		// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’æœ‰åŠ¹ã«ã™ã‚‹
 		WinData.MenuUseFlag = TRUE ;
 		
-		// ‰Šúó‘Ô‚Å•\¦
+		// åˆæœŸçŠ¶æ…‹ã§è¡¨ç¤º
 		WinData.MenuDisplayState = FALSE ;
 		NS_SetDisplayMenuFlag( TRUE ) ;
 	}
 
-	// ‘I‘ğ‚³‚ê‚½ƒƒjƒ…[€–Ú‚Ì”‚ğ‰Šú‰»
+	// é¸æŠã•ã‚ŒãŸãƒ¡ãƒ‹ãƒ¥ãƒ¼é …ç›®ã®æ•°ã‚’åˆæœŸåŒ–
 	WinData.SelectMenuItemNum = 0 ;
 
-	// ƒƒjƒ…[€–Ú‚Ì”‚ğ‰Šú‰»‚·‚é
+	// ãƒ¡ãƒ‹ãƒ¥ãƒ¼é …ç›®ã®æ•°ã‚’åˆæœŸåŒ–ã™ã‚‹
 	WinData.MenuItemInfoNum = 0 ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒL[ƒ{[ƒhƒAƒNƒZƒ‰ƒŒ[ƒ^[‚ğg—p‚·‚é‚©‚Ç‚¤‚©‚ğİ’è‚·‚é
+// ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚¿ãƒ¼ã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹
 extern int NS_SetUseKeyAccelFlag( int Flag )
 {
 	if( WinData.AltF4_EndFlag == TRUE ) Flag = FALSE ;
@@ -7175,11 +7175,11 @@ extern int NS_SetUseKeyAccelFlag( int Flag )
 	WinData.UseAccelFlag = Flag ;
 	if( Flag == FALSE ) NS_ClearKeyAccel() ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒVƒ‡[ƒgƒJƒbƒgƒL[‚ğ’Ç‰Á‚·‚é
+// ã‚·ãƒ§ãƒ¼ãƒˆã‚«ãƒƒãƒˆã‚­ãƒ¼ã‚’è¿½åŠ ã™ã‚‹
 extern int NS_AddKeyAccel( const TCHAR *ItemName, int ItemID,
 							int KeyCode, int CtrlFlag, int AltFlag, int ShiftFlag )
 {
@@ -7198,7 +7198,7 @@ extern int NS_AddKeyAccel( const TCHAR *ItemName, int ItemID,
 #endif
 }
 
-// ƒVƒ‡[ƒgƒJƒbƒgƒL[‚ğ’Ç‰Á‚·‚é( ItemName:ƒVƒ‡[ƒgƒJƒbƒgƒL[‚ğŠ„‚è“–‚Ä‚éƒƒjƒ…[‚ÌƒAƒCƒeƒ€–¼( AddMenuItem ‚Å NewItemName ‚É“n‚µ‚½–¼‘O )AItemID ‚ğg—p‚·‚éê‡‚Í NULL ‚ğ“n‚·  ItemID:ƒƒjƒ…[€–Ú‚Ì¯•Ê”Ô†( AddMenuItem ‚Ìˆø” NewItemID ‚Åw’è‚µ‚½‚à‚Ì )AItemName ‚ğg—p‚·‚éê‡‚Í -1 ‚ğ“n‚·  KeyCode:ƒVƒ‡[ƒgƒJƒbƒgƒL[‚ÌƒL[( KEY_INPUT_L “™ )  CtrlFlag:“¯‚ÉCTRLƒL[‚ğ‰Ÿ‚·•K—v‚ª‚ ‚é‚æ‚¤‚É‚·‚é‚©‚Ç‚¤‚©( TRUE:‰Ÿ‚·•K—v‚ª‚ ‚é  FALSE:‰Ÿ‚³‚È‚­‚Ä‚à—Ç‚¢ )  AltFlag:“¯‚ÉALTƒL[‚ğ‰Ÿ‚·•K—v‚ª‚ ‚é‚æ‚¤‚É‚·‚é‚©‚Ç‚¤‚©( TRUE:‰Ÿ‚·•K—v‚ª‚ ‚é  FALSE:‰Ÿ‚³‚È‚­‚Ä‚à—Ç‚¢ )  ShiftFlag:“¯‚ÉSHIFTƒL[‚ğ‰Ÿ‚·•K—v‚ª‚ ‚é‚æ‚¤‚É‚·‚é‚©‚Ç‚¤‚©( TRUE:‰Ÿ‚·•K—v‚ª‚ ‚é  FALSE:‰Ÿ‚³‚È‚­‚Ä‚à—Ç‚¢ )
+// ã‚·ãƒ§ãƒ¼ãƒˆã‚«ãƒƒãƒˆã‚­ãƒ¼ã‚’è¿½åŠ ã™ã‚‹( ItemName:ã‚·ãƒ§ãƒ¼ãƒˆã‚«ãƒƒãƒˆã‚­ãƒ¼ã‚’å‰²ã‚Šå½“ã¦ã‚‹ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®ã‚¢ã‚¤ãƒ†ãƒ å( AddMenuItem ã§ NewItemName ã«æ¸¡ã—ãŸåå‰ )ã€ItemID ã‚’ä½¿ç”¨ã™ã‚‹å ´åˆã¯ NULL ã‚’æ¸¡ã™  ItemID:ãƒ¡ãƒ‹ãƒ¥ãƒ¼é …ç›®ã®è­˜åˆ¥ç•ªå·( AddMenuItem ã®å¼•æ•° NewItemID ã§æŒ‡å®šã—ãŸã‚‚ã® )ã€ItemName ã‚’ä½¿ç”¨ã™ã‚‹å ´åˆã¯ -1 ã‚’æ¸¡ã™  KeyCode:ã‚·ãƒ§ãƒ¼ãƒˆã‚«ãƒƒãƒˆã‚­ãƒ¼ã®ã‚­ãƒ¼( KEY_INPUT_L ç­‰ )  CtrlFlag:åŒæ™‚ã«CTRLã‚­ãƒ¼ã‚’æŠ¼ã™å¿…è¦ãŒã‚ã‚‹ã‚ˆã†ã«ã™ã‚‹ã‹ã©ã†ã‹( TRUE:æŠ¼ã™å¿…è¦ãŒã‚ã‚‹  FALSE:æŠ¼ã•ãªãã¦ã‚‚è‰¯ã„ )  AltFlag:åŒæ™‚ã«ALTã‚­ãƒ¼ã‚’æŠ¼ã™å¿…è¦ãŒã‚ã‚‹ã‚ˆã†ã«ã™ã‚‹ã‹ã©ã†ã‹( TRUE:æŠ¼ã™å¿…è¦ãŒã‚ã‚‹  FALSE:æŠ¼ã•ãªãã¦ã‚‚è‰¯ã„ )  ShiftFlag:åŒæ™‚ã«SHIFTã‚­ãƒ¼ã‚’æŠ¼ã™å¿…è¦ãŒã‚ã‚‹ã‚ˆã†ã«ã™ã‚‹ã‹ã©ã†ã‹( TRUE:æŠ¼ã™å¿…è¦ãŒã‚ã‚‹  FALSE:æŠ¼ã•ãªãã¦ã‚‚è‰¯ã„ )
 extern int NS_AddKeyAccelWithStrLen( const TCHAR *ItemName, size_t ItemNameLength, int ItemID , int KeyCode , int CtrlFlag , int AltFlag , int ShiftFlag )
 {
 	int Result ;
@@ -7214,7 +7214,7 @@ extern int NS_AddKeyAccelWithStrLen( const TCHAR *ItemName, size_t ItemNameLengt
 	return Result ;
 }
 
-// ƒVƒ‡[ƒgƒJƒbƒgƒL[‚ğ’Ç‰Á‚·‚é
+// ã‚·ãƒ§ãƒ¼ãƒˆã‚«ãƒƒãƒˆã‚­ãƒ¼ã‚’è¿½åŠ ã™ã‚‹
 extern int AddKeyAccel_WCHAR_T( const wchar_t *ItemName, int ItemID,
 							int KeyCode, int CtrlFlag, int AltFlag, int ShiftFlag )
 {
@@ -7236,7 +7236,7 @@ extern int AddKeyAccel_WCHAR_T( const wchar_t *ItemName, int ItemID,
 		goto ERR ;
 	}
 
-	// w’è‚Ì‘I‘ğ€–Ú‚ªŒ©‚Â‚©‚ç‚È‚©‚Á‚½‚ç‰½‚à‚µ‚È‚¢
+	// æŒ‡å®šã®é¸æŠé …ç›®ãŒè¦‹ã¤ã‹ã‚‰ãªã‹ã£ãŸã‚‰ä½•ã‚‚ã—ãªã„
 	WinItemInfo = SearchMenuItemInfo( ItemName, ItemID ) ;
 	if( WinItemInfo == NULL )
 	{
@@ -7253,31 +7253,31 @@ extern int AddKeyAccel_WCHAR_T( const wchar_t *ItemName, int ItemID,
 		goto ERR ;
 	}
 
-	// Šù‚ÉƒAƒNƒZƒ‰ƒŒ[ƒ^[‚ªİ’è‚³‚ê‚Ä‚¢‚é‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+	// æ—¢ã«ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚¿ãƒ¼ãŒè¨­å®šã•ã‚Œã¦ã„ã‚‹ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 	if( WinData.Accel != NULL )
 	{
-		// Šù‚Éİ’è‚³‚ê‚Ä‚¢‚éê‡‚ÍŒ»İ‚ÌƒAƒNƒZƒ‰ƒŒ[ƒ^[‚Ìî•ñ‚ğæ“¾‚·‚é
+		// æ—¢ã«è¨­å®šã•ã‚Œã¦ã„ã‚‹å ´åˆã¯ç¾åœ¨ã®ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚¿ãƒ¼ã®æƒ…å ±ã‚’å–å¾—ã™ã‚‹
 		AccelNum = CopyAcceleratorTableWFunc( WinData.Accel, NULL, 0 ) ;
 
-		// ƒf[ƒ^‚ªˆê‚Â‘‚¦‚é‚Ì‚Å”‚ğˆê‚Â‘‚â‚·
+		// ãƒ‡ãƒ¼ã‚¿ãŒä¸€ã¤å¢—ãˆã‚‹ã®ã§æ•°ã‚’ä¸€ã¤å¢—ã‚„ã™
 		AccelNum ++ ;
 
-		// ƒf[ƒ^‚ğŠi”[‚·‚é‚½‚ß‚Ìƒƒ‚ƒŠ—Ìˆæ‚ğŠm•Û
+		// ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹ãŸã‚ã®ãƒ¡ãƒ¢ãƒªé ˜åŸŸã‚’ç¢ºä¿
 		Accel = (ACCEL *)DXALLOC( sizeof( ACCEL ) * AccelNum ) ;
 		if( Accel == NULL ) goto ERR ;
 
-		// Œ»İ‚Ìƒf[ƒ^‚ğæ“¾‚·‚é
+		// ç¾åœ¨ã®ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—ã™ã‚‹
 		CopyAcceleratorTableWFunc( WinData.Accel, Accel, AccelNum ) ;
 	}
 	else
 	{
-		// ƒf[ƒ^‚ª‚Ğ‚Æ‚Â‚¾‚¯“ü‚éƒƒ‚ƒŠ—Ìˆæ‚ğŠm•Û
+		// ãƒ‡ãƒ¼ã‚¿ãŒã²ã¨ã¤ã ã‘å…¥ã‚‹ãƒ¡ãƒ¢ãƒªé ˜åŸŸã‚’ç¢ºä¿
 		AccelNum = 1 ;
 		Accel = (ACCEL *)DXALLOC( sizeof( ACCEL ) * AccelNum ) ;
 		if( Accel == NULL ) goto ERR ;
 	}
 
-	// ƒAƒNƒZƒ‰ƒŒ[ƒ^‚Ìî•ñ‚ğì¬
+	// ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚¿ã®æƒ…å ±ã‚’ä½œæˆ
 	ac = &Accel[AccelNum-1] ;
 	ac->fVirt = FNOINVERT | FVIRTKEY ;
 	if( CtrlFlag != FALSE ) ac->fVirt |= FCONTROL ;
@@ -7286,22 +7286,22 @@ extern int AddKeyAccel_WCHAR_T( const wchar_t *ItemName, int ItemID,
 	ac->key = (WORD)NS_ConvertKeyCodeToVirtualKey( KeyCode ) ;
 	ac->cmd = (WORD)WinItemInfo->ID ;
 
-	// ƒAƒNƒZƒ‰ƒŒ[ƒ^‚ğì¬
+	// ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚¿ã‚’ä½œæˆ
 	NewAccel = CreateAcceleratorTableWFunc( Accel, AccelNum ) ;
 	if( NewAccel == NULL ) goto ERR ;
 
-	// ƒƒ‚ƒŠ‚Ì‰ğ•ú
+	// ãƒ¡ãƒ¢ãƒªã®è§£æ”¾
 	_MEMSET( Accel, 0, sizeof( ACCEL ) * AccelNum ) ;
 	DXFREE( Accel ) ;
 
-	// ì¬‚É¬Œ÷‚µ‚½‚çŒ»İ‚ÌƒAƒNƒZƒ‰ƒŒ[ƒ^‚ğíœ‚·‚é
+	// ä½œæˆã«æˆåŠŸã—ãŸã‚‰ç¾åœ¨ã®ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚¿ã‚’å‰Šé™¤ã™ã‚‹
 	if( WinData.Accel != NULL )
 		WinAPIData.Win32Func.DestroyAcceleratorTableFunc( WinData.Accel ) ;
 
-	// V‚µ‚¢ƒAƒNƒZƒ‰ƒŒ[ƒ^‚ğƒZƒbƒg‚·‚é
+	// æ–°ã—ã„ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 	WinData.Accel = NewAccel ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 	
 ERR:
@@ -7309,13 +7309,13 @@ ERR:
 #endif // DX_NON_INPUT
 }
 
-// ƒVƒ‡[ƒgƒJƒbƒgƒL[‚ğ’Ç‰Á‚·‚é
+// ã‚·ãƒ§ãƒ¼ãƒˆã‚«ãƒƒãƒˆã‚­ãƒ¼ã‚’è¿½åŠ ã™ã‚‹
 extern int NS_AddKeyAccel_Name( const TCHAR *ItemName, int KeyCode, int CtrlFlag, int AltFlag, int ShiftFlag )
 {
 	return NS_AddKeyAccel( ItemName, 0, KeyCode, CtrlFlag, AltFlag, ShiftFlag ) ;
 }
 
-// ƒVƒ‡[ƒgƒJƒbƒgƒL[‚ğ’Ç‰Á‚·‚é( Šeˆø”‚Ì‰ğà‚Í AddKeyAccel ‚Æ“¯‚¶AItemID ‚ª–³‚­‚È‚Á‚½‚¾‚¯ )
+// ã‚·ãƒ§ãƒ¼ãƒˆã‚«ãƒƒãƒˆã‚­ãƒ¼ã‚’è¿½åŠ ã™ã‚‹( å„å¼•æ•°ã®è§£èª¬ã¯ AddKeyAccel ã¨åŒã˜ã€ItemID ãŒç„¡ããªã£ãŸã ã‘ )
 extern int NS_AddKeyAccel_NameWithStrLen( const TCHAR *ItemName, size_t ItemNameLength, int KeyCode , int CtrlFlag , int AltFlag , int ShiftFlag )
 {
 	int Result ;
@@ -7325,22 +7325,22 @@ extern int NS_AddKeyAccel_NameWithStrLen( const TCHAR *ItemName, size_t ItemName
 	return Result ;
 }
 
-// ƒVƒ‡[ƒgƒJƒbƒgƒL[‚ğ’Ç‰Á‚·‚é
+// ã‚·ãƒ§ãƒ¼ãƒˆã‚«ãƒƒãƒˆã‚­ãƒ¼ã‚’è¿½åŠ ã™ã‚‹
 extern int AddKeyAccel_Name_WCHAR_T( const wchar_t *ItemName , int KeyCode , int CtrlFlag , int AltFlag , int ShiftFlag )
 {
 	return AddKeyAccel_WCHAR_T( ItemName, 0, KeyCode, CtrlFlag, AltFlag, ShiftFlag ) ;
 }
 
-// ƒVƒ‡[ƒgƒJƒbƒgƒL[‚ğ’Ç‰Á‚·‚é
+// ã‚·ãƒ§ãƒ¼ãƒˆã‚«ãƒƒãƒˆã‚­ãƒ¼ã‚’è¿½åŠ ã™ã‚‹
 extern int NS_AddKeyAccel_ID( int ItemID, int KeyCode, int CtrlFlag, int AltFlag, int ShiftFlag )
 {
 	return NS_AddKeyAccel( NULL, ItemID, KeyCode, CtrlFlag, AltFlag, ShiftFlag ) ;
 }
 
-// ƒVƒ‡[ƒgƒJƒbƒgƒL[‚Ìî•ñ‚ğ‰Šú‰»‚·‚é
+// ã‚·ãƒ§ãƒ¼ãƒˆã‚«ãƒƒãƒˆã‚­ãƒ¼ã®æƒ…å ±ã‚’åˆæœŸåŒ–ã™ã‚‹
 extern int NS_ClearKeyAccel( void )
 {
-	// ƒAƒNƒZƒ‰ƒŒ[ƒ^‚ª—LŒø‚É‚È‚Á‚Ä‚¢‚½ê‡‚Ííœ‚·‚é
+	// ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚¿ãŒæœ‰åŠ¹ã«ãªã£ã¦ã„ãŸå ´åˆã¯å‰Šé™¤ã™ã‚‹
 	if( WinData.Accel != NULL )
 	{
 		SETUP_WIN_API
@@ -7349,11 +7349,11 @@ extern int NS_ClearKeyAccel( void )
 		WinData.Accel = NULL ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒƒjƒ…[‚É€–Ú‚ğ’Ç‰Á‚·‚é
+// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã«é …ç›®ã‚’è¿½åŠ ã™ã‚‹
 extern int NS_AddMenuItem( int AddType, const TCHAR *ItemName, int ItemID,
 						int SeparatorFlag, const TCHAR *NewItemName, int NewItemID )
 {
@@ -7381,7 +7381,7 @@ ERR:
 #endif
 }
 
-// ƒƒjƒ…[‚É€–Ú‚ğ’Ç‰Á‚·‚é( AddType:€–Úƒ^ƒCƒv( MENUITEM_ADD_CHILD “™( ‰ğà‚Í #define ‚Ì’è‹`‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢ ) )    ItemName:AddType ‚ª MENUITEM_ADD_CHILD‚Ìê‡‚Íe‚Æ‚È‚é€–Ú‚Ì–¼‘OAMENUITEM_ADD_INSERT‚Ìê‡‚Í‘}“üˆÊ’u‚Æ‚È‚é€–Ú‚Ì–¼‘OANULL ‚ğw’è‚·‚é‚Æ ItemID ‚ªg—p‚³‚ê‚é   ItemID:ItemName ‚Ì‘ã‚í‚è‚É¯•Ê”Ô†‚Åw’è‚·‚é‚à‚ÌAAddType–ˆ‚Ìˆá‚¢‚Í ItemName ‚Ì‰ğà‚Ì’Ê‚èA-1‚ğw’è‚·‚é‚Æ ItemName ‚ªg—p‚³‚ê‚é@@SeparatorFlag:‹æØ‚èü‚ğ’Ç‰Á‚·‚é‚©‚Ç‚¤‚©( TRUE:‹æØ‚èü‚ğ’Ç‰ÁA‚±‚Ìê‡ NewItemName ‚Æ NewItemID ‚Í–³‹‚³‚ê‚é  FALSE:’Ç‰Á‚·‚é‚Ì‚Í‹æØ‚èü‚Å‚Í‚È‚¢ )@@NewItemName:V‚µ‚¢€–Ú‚Ì–¼‘O  NewItemID:V‚µ‚¢€–Ú‚Ì¯•Ê”Ô†A-1‚ğw’è‚·‚é‚Æ“à•”‚Å“K“–‚È”Ô†‚ªŠ„‚è“–‚Ä‚ç‚ê‚é )
+// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã«é …ç›®ã‚’è¿½åŠ ã™ã‚‹( AddType:é …ç›®ã‚¿ã‚¤ãƒ—( MENUITEM_ADD_CHILD ç­‰( è§£èª¬ã¯ #define ã®å®šç¾©ã‚’å‚ç…§ã—ã¦ãã ã•ã„ ) )    ItemName:AddType ãŒ MENUITEM_ADD_CHILDã®å ´åˆã¯è¦ªã¨ãªã‚‹é …ç›®ã®åå‰ã€MENUITEM_ADD_INSERTã®å ´åˆã¯æŒ¿å…¥ä½ç½®ã¨ãªã‚‹é …ç›®ã®åå‰ã€NULL ã‚’æŒ‡å®šã™ã‚‹ã¨ ItemID ãŒä½¿ç”¨ã•ã‚Œã‚‹   ItemID:ItemName ã®ä»£ã‚ã‚Šã«è­˜åˆ¥ç•ªå·ã§æŒ‡å®šã™ã‚‹ã‚‚ã®ã€AddTypeæ¯ã®é•ã„ã¯ ItemName ã®è§£èª¬ã®é€šã‚Šã€-1ã‚’æŒ‡å®šã™ã‚‹ã¨ ItemName ãŒä½¿ç”¨ã•ã‚Œã‚‹ã€€ã€€SeparatorFlag:åŒºåˆ‡ã‚Šç·šã‚’è¿½åŠ ã™ã‚‹ã‹ã©ã†ã‹( TRUE:åŒºåˆ‡ã‚Šç·šã‚’è¿½åŠ ã€ã“ã®å ´åˆ NewItemName ã¨ NewItemID ã¯ç„¡è¦–ã•ã‚Œã‚‹  FALSE:è¿½åŠ ã™ã‚‹ã®ã¯åŒºåˆ‡ã‚Šç·šã§ã¯ãªã„ )ã€€ã€€NewItemName:æ–°ã—ã„é …ç›®ã®åå‰  NewItemID:æ–°ã—ã„é …ç›®ã®è­˜åˆ¥ç•ªå·ã€-1ã‚’æŒ‡å®šã™ã‚‹ã¨å†…éƒ¨ã§é©å½“ãªç•ªå·ãŒå‰²ã‚Šå½“ã¦ã‚‰ã‚Œã‚‹ )
 extern int NS_AddMenuItemWithStrLen( int AddType, const TCHAR *ItemName, size_t ItemNameLength, int ItemID, int SeparatorFlag, const TCHAR *NewItemName, size_t NewItemNameLength, int NewItemID )
 {
 	int Result = -1 ;
@@ -7399,7 +7399,7 @@ ERR :
 	return Result ;
 }
 
-// ƒƒjƒ…[‚É€–Ú‚ğ’Ç‰Á‚·‚é
+// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã«é …ç›®ã‚’è¿½åŠ ã™ã‚‹
 extern int AddMenuItem_WCHAR_T( int AddType, const wchar_t *ItemName, int ItemID,
 						int SeparatorFlag, const wchar_t *NewItemName, int NewItemID )
 {
@@ -7412,47 +7412,47 @@ extern int AddMenuItem_WCHAR_T( int AddType, const wchar_t *ItemName, int ItemID
 
 	if( WinData.AltF4_EndFlag != 0 ) return -1 ;
 
-	// î•ñ‚ªˆê”t‚¾‚Á‚½‚çƒGƒ‰[
+	// æƒ…å ±ãŒä¸€æ¯ã ã£ãŸã‚‰ã‚¨ãƒ©ãƒ¼
 	if( WinData.MenuItemInfoNum == MAX_MENUITEM_NUM ) return -1 ;
 
-	// ƒƒjƒ…[‚ª–³Œø‚¾‚Á‚½‚ç—LŒø‚É‚·‚é
+	// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãŒç„¡åŠ¹ã ã£ãŸã‚‰æœ‰åŠ¹ã«ã™ã‚‹
 	if( WinData.MenuUseFlag == FALSE ) NS_SetUseMenuFlag( TRUE ) ;
 
-	// ’Ç‰Á‚Ìƒ^ƒCƒv‚É‚æ‚Á‚Äˆ—‚ğ•ªŠò
+	// è¿½åŠ ã®ã‚¿ã‚¤ãƒ—ã«ã‚ˆã£ã¦å‡¦ç†ã‚’åˆ†å²
 	switch( AddType )
 	{
-	case MENUITEM_ADD_CHILD :	// w’è‚Ì€–Ú‚Ìq‚Æ‚µ‚Ä’Ç‰Á‚·‚éê‡
+	case MENUITEM_ADD_CHILD :	// æŒ‡å®šã®é …ç›®ã®å­ã¨ã—ã¦è¿½åŠ ã™ã‚‹å ´åˆ
 		{
-			// e‚Ìw’è‚ª‚ ‚é‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+			// è¦ªã®æŒ‡å®šãŒã‚ã‚‹ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 			if( ItemID == MENUITEM_IDTOP )
 			{
 				Menu = WinData.Menu ;
 			}
 			else
 			{
-				// w’è‚Ì‘I‘ğ€–Ú‚ÌƒTƒuƒƒjƒ…[‚ğæ“¾‚·‚é(–³‚©‚Á‚½‚çì¬‚·‚é)
+				// æŒ‡å®šã®é¸æŠé …ç›®ã®ã‚µãƒ–ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’å–å¾—ã™ã‚‹(ç„¡ã‹ã£ãŸã‚‰ä½œæˆã™ã‚‹)
 				Menu = MenuItemSubMenuSetup( ItemName, ItemID ) ;
 
-				// w’è‚Ì‘I‘ğ€–Ú‚ª–³‚©‚Á‚½‚çˆê”Ôã‚É’Ç‰Á‚·‚é
+				// æŒ‡å®šã®é¸æŠé …ç›®ãŒç„¡ã‹ã£ãŸã‚‰ä¸€ç•ªä¸Šã«è¿½åŠ ã™ã‚‹
 				if( Menu == NULL )
 				{
 					Menu = WinData.Menu ;
 				}
 			}
 
-			// ’Ç‰Áæ‚ğƒTƒuƒƒjƒ…[“à‚Ì––”ö‚É‚·‚é
+			// è¿½åŠ å…ˆã‚’ã‚µãƒ–ãƒ¡ãƒ‹ãƒ¥ãƒ¼å†…ã®æœ«å°¾ã«ã™ã‚‹
 			AddIndex = WinAPIData.Win32Func.GetMenuItemCountFunc( Menu ) ;
 		}
 		break ;
 		
-	case MENUITEM_ADD_INSERT :	// w’è‚Ì€–Ú‚Æw’è‚Ì€–Ú‚æ‚èˆê‚Âã‚Ì€–Ú‚ÌŠÔ‚É’Ç‰Á‚·‚éê‡
+	case MENUITEM_ADD_INSERT :	// æŒ‡å®šã®é …ç›®ã¨æŒ‡å®šã®é …ç›®ã‚ˆã‚Šä¸€ã¤ä¸Šã®é …ç›®ã®é–“ã«è¿½åŠ ã™ã‚‹å ´åˆ
 		{
 			WINMENUITEMINFO *WinItemInfo ;
 
-			// w’è‚Ì€–Ú‚Ìî•ñ‚ğæ“¾‚·‚é
+			// æŒ‡å®šã®é …ç›®ã®æƒ…å ±ã‚’å–å¾—ã™ã‚‹
 			WinItemInfo = SearchMenuItemInfo( ItemName, ItemID ) ;
 			
-			// –³‚©‚Á‚½‚ç‘I‘ğ€–Ú‚Ìˆê”Ôã‚É’Ç‰Á‚·‚é
+			// ç„¡ã‹ã£ãŸã‚‰é¸æŠé …ç›®ã®ä¸€ç•ªä¸Šã«è¿½åŠ ã™ã‚‹
 			if( WinItemInfo == NULL )
 			{
 				Menu = WinData.Menu ;
@@ -7460,7 +7460,7 @@ extern int AddMenuItem_WCHAR_T( int AddType, const wchar_t *ItemName, int ItemID
 			}
 			else
 			{
-				// İ‚Á‚½‚ç‚»‚Ì€–Ú‚Æ‚»‚Ì€–Ú‚æ‚èˆê‚Âã‚Ì€–Ú‚ÌŠÔ‚É’Ç‰Á‚·‚é
+				// åœ¨ã£ãŸã‚‰ãã®é …ç›®ã¨ãã®é …ç›®ã‚ˆã‚Šä¸€ã¤ä¸Šã®é …ç›®ã®é–“ã«è¿½åŠ ã™ã‚‹
 				Menu = WinItemInfo->Menu ;
 				AddIndex = WinItemInfo->Index ;
 			}
@@ -7468,18 +7468,18 @@ extern int AddMenuItem_WCHAR_T( int AddType, const wchar_t *ItemName, int ItemID
 		break ;
 	}
 
-	// ‹æØ‚èü‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+	// åŒºåˆ‡ã‚Šç·šã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 	if( SeparatorFlag == TRUE )
 	{
-		// ‹æØ‚èü‚Ìê‡
+		// åŒºåˆ‡ã‚Šç·šã®å ´åˆ
 
-		// ‹æØ‚èü‚Ìî•ñ‚ğƒZƒbƒg‚·‚é
+		// åŒºåˆ‡ã‚Šç·šã®æƒ…å ±ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 		_MEMSET( &ItemInfo, 0, sizeof( ItemInfo ) ) ;
-		ItemInfo.cbSize = sizeof( MENUITEMINFOW ) ;	// \‘¢‘Ì‚ÌƒTƒCƒY
-		ItemInfo.fMask = MIIM_TYPE ;				// æ“¾‚Ü‚½‚Íİ’è‚·‚éƒƒ“ƒo
-		ItemInfo.fType = MFT_SEPARATOR ; 			// ƒAƒCƒeƒ€‚Ìƒ^ƒCƒv
+		ItemInfo.cbSize = sizeof( MENUITEMINFOW ) ;	// æ§‹é€ ä½“ã®ã‚µã‚¤ã‚º
+		ItemInfo.fMask = MIIM_TYPE ;				// å–å¾—ã¾ãŸã¯è¨­å®šã™ã‚‹ãƒ¡ãƒ³ãƒ
+		ItemInfo.fType = MFT_SEPARATOR ; 			// ã‚¢ã‚¤ãƒ†ãƒ ã®ã‚¿ã‚¤ãƒ—
 
-		// ‹æØ‚èü€–Ú‚Ì’Ç‰Á
+		// åŒºåˆ‡ã‚Šç·šé …ç›®ã®è¿½åŠ 
 		if( InsertMenuItemWFunc( Menu, ( UINT )AddIndex, TRUE, &ItemInfo ) == 0 )
 		{
 			return -1 ;
@@ -7487,50 +7487,50 @@ extern int AddMenuItem_WCHAR_T( int AddType, const wchar_t *ItemName, int ItemID
 	}
 	else
 	{
-		// ‘I‘ğ€–Ú‚Ìê‡
+		// é¸æŠé …ç›®ã®å ´åˆ
 
-		// V‚µ‚¢ƒAƒCƒeƒ€‚Ì‚h‚c‚ª|‚P‚¾‚Á‚½ê‡g‚í‚ê‚Ä‚¢‚È‚¢‚h‚c‚ğ•t‚¯‚é
+		// æ–°ã—ã„ã‚¢ã‚¤ãƒ†ãƒ ã®ï¼©ï¼¤ãŒï¼ï¼‘ã ã£ãŸå ´åˆä½¿ã‚ã‚Œã¦ã„ãªã„ï¼©ï¼¤ã‚’ä»˜ã‘ã‚‹
 		if( NewItemID == -1 )
 			NewItemID = GetNewMenuItemID() ;
 		WItemInfo = &WinData.MenuItemInfo[ WinData.MenuItemInfoNum ] ;
 
-		// ‘I‘ğ€–Ú‚ğ’Ç‰Á‚·‚é
+		// é¸æŠé …ç›®ã‚’è¿½åŠ ã™ã‚‹
 		{
-			// V‚µ‚¢€–Ú‚Ìî•ñ‚ğƒZƒbƒg‚·‚é
+			// æ–°ã—ã„é …ç›®ã®æƒ…å ±ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 			_MEMSET( &ItemInfo, 0, sizeof( ItemInfo ) ) ;
-			ItemInfo.cbSize     = sizeof( MENUITEMINFOW ) ;				// \‘¢‘Ì‚ÌƒTƒCƒY
-			ItemInfo.fMask      = MIIM_STATE | MIIM_TYPE | MIIM_ID ;	// æ“¾‚Ü‚½‚Íİ’è‚·‚éƒƒ“ƒo
-			ItemInfo.fType      = MFT_STRING ;							// ƒAƒCƒeƒ€‚Ìƒ^ƒCƒv
-			ItemInfo.fState     = MFS_ENABLED ;							// ƒAƒCƒeƒ€‚Ìó‘Ô
-			ItemInfo.wID        = ( UINT )NewItemID ;					// ƒAƒCƒeƒ€ID
+			ItemInfo.cbSize     = sizeof( MENUITEMINFOW ) ;				// æ§‹é€ ä½“ã®ã‚µã‚¤ã‚º
+			ItemInfo.fMask      = MIIM_STATE | MIIM_TYPE | MIIM_ID ;	// å–å¾—ã¾ãŸã¯è¨­å®šã™ã‚‹ãƒ¡ãƒ³ãƒ
+			ItemInfo.fType      = MFT_STRING ;							// ã‚¢ã‚¤ãƒ†ãƒ ã®ã‚¿ã‚¤ãƒ—
+			ItemInfo.fState     = MFS_ENABLED ;							// ã‚¢ã‚¤ãƒ†ãƒ ã®çŠ¶æ…‹
+			ItemInfo.wID        = ( UINT )NewItemID ;					// ã‚¢ã‚¤ãƒ†ãƒ ID
 			_WCSCPY_S( WItemInfo->Name, sizeof( WItemInfo->Name ), NewItemName ) ;
-			ItemInfo.dwTypeData = WItemInfo->Name ;						// ƒAƒCƒeƒ€‚Ì“à—eƒZƒbƒg
-			ItemInfo.cch        = ( UINT )_WCSLEN( WItemInfo->Name ) ;		// ƒAƒCƒeƒ€‚Ì•¶š—ñ‚Ì’·‚³
+			ItemInfo.dwTypeData = WItemInfo->Name ;						// ã‚¢ã‚¤ãƒ†ãƒ ã®å†…å®¹ã‚»ãƒƒãƒˆ
+			ItemInfo.cch        = ( UINT )_WCSLEN( WItemInfo->Name ) ;		// ã‚¢ã‚¤ãƒ†ãƒ ã®æ–‡å­—åˆ—ã®é•·ã•
 
-			// €–Ú‚Ì’Ç‰Á
+			// é …ç›®ã®è¿½åŠ 
 			if( InsertMenuItemWFunc( Menu, ( UINT )AddIndex, TRUE, &ItemInfo ) == 0 )
 			{
 				return -1 ;
 			}
 		}
 
-		// ƒƒjƒ…[€–Ú‚Ìî•ñ‚ğ’Ç‰Á‚·‚é
+		// ãƒ¡ãƒ‹ãƒ¥ãƒ¼é …ç›®ã®æƒ…å ±ã‚’è¿½åŠ ã™ã‚‹
 		AddMenuItemInfo( Menu, AddIndex, NewItemID, NewItemName ) ;
 	}
 
-	// ˆê”ÔÅ‰‚Ìƒƒjƒ…[ƒo[‚Ö‚Ì€–Ú’Ç‰Á‚Ìê‡‚ÍƒEƒCƒ“ƒhƒEƒTƒCƒY‚ğ’²®‚·‚é
+	// ä¸€ç•ªæœ€åˆã®ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒãƒ¼ã¸ã®é …ç›®è¿½åŠ ã®å ´åˆã¯ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚µã‚¤ã‚ºã‚’èª¿æ•´ã™ã‚‹
 	if( ( WinData.WindowModeFlag == TRUE || NS_GetUseFullScreenResolutionMode() == DX_FSRESOLUTIONMODE_BORDERLESS_WINDOW ) && Menu == WinData.Menu && WinAPIData.Win32Func.GetMenuItemCountFunc( WinData.Menu ) == 1 )
 	{
-		// ƒEƒCƒ“ƒhƒE‚ğƒAƒNƒeƒBƒu‚É‚µ‚È‚¢
+		// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚’ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ã—ãªã„
 		WinData.WindowZTypeNoActivateFlag = TRUE ;
 
 		SetWindowStyle( FALSE ) ;
 
-		// ƒEƒCƒ“ƒhƒE‚ğƒAƒNƒeƒBƒu‚É‚µ‚È‚¢ƒtƒ‰ƒO‚ğ“|‚·
+		// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚’ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ã—ãªã„ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 		WinData.WindowZTypeNoActivateFlag = FALSE ;
 	}
 
-	// ƒƒjƒ…[‚ğÄ•`‰æ‚·‚é
+	// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’å†æç”»ã™ã‚‹
 	if( GetDisplayMenuState() == TRUE )
 	{
 #ifndef DX_NON_GRAPHICS
@@ -7543,18 +7543,18 @@ extern int AddMenuItem_WCHAR_T( int AddType, const wchar_t *ItemName, int ItemID
 		WinAPIData.Win32Func.DrawMenuBarFunc( WinData.MainWindow ) ;
 	}
 
-	// ‘}“ü‚Ìê‡‚ÍƒŠƒXƒg‚ğÄ\’z‚·‚é
+	// æŒ¿å…¥ã®å ´åˆã¯ãƒªã‚¹ãƒˆã‚’å†æ§‹ç¯‰ã™ã‚‹
 	if( AddType == MENUITEM_ADD_INSERT )
 	{
 		WinData.MenuItemInfoNum = 0 ;
 		ListupMenuItemInfo( WinData.Menu ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒƒjƒ…[‚©‚ç€–Ú‚ğíœ‚·‚é
+// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‹ã‚‰é …ç›®ã‚’å‰Šé™¤ã™ã‚‹
 extern int NS_DeleteMenuItem( const TCHAR *ItemName, int ItemID )
 {
 #ifdef UNICODE
@@ -7572,7 +7572,7 @@ extern int NS_DeleteMenuItem( const TCHAR *ItemName, int ItemID )
 #endif
 }
 
-// ƒƒjƒ…[‚©‚ç‘I‘ğ€–Ú‚ğíœ‚·‚é( ItemName:íœ‚·‚é€–Ú‚Ì–¼‘O( AddMenuItem ‚Å NewItemName ‚É“n‚µ‚½–¼‘O )ANULL ‚ğw’è‚·‚é‚Æ ItemID ‚ªg—p‚³‚ê‚é  ItemID:íœ‚·‚é€–Ú‚Ì¯•Ê”Ô†( AddMenuItem ‚Å NewItemID ‚É“n‚µ‚½”Ô† )A-1 ‚ğw’è‚·‚é‚Æ ItemName ‚ªg—p‚³‚ê‚é )
+// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‹ã‚‰é¸æŠé …ç›®ã‚’å‰Šé™¤ã™ã‚‹( ItemName:å‰Šé™¤ã™ã‚‹é …ç›®ã®åå‰( AddMenuItem ã§ NewItemName ã«æ¸¡ã—ãŸåå‰ )ã€NULL ã‚’æŒ‡å®šã™ã‚‹ã¨ ItemID ãŒä½¿ç”¨ã•ã‚Œã‚‹  ItemID:å‰Šé™¤ã™ã‚‹é …ç›®ã®è­˜åˆ¥ç•ªå·( AddMenuItem ã§ NewItemID ã«æ¸¡ã—ãŸç•ªå· )ã€-1 ã‚’æŒ‡å®šã™ã‚‹ã¨ ItemName ãŒä½¿ç”¨ã•ã‚Œã‚‹ )
 extern int NS_DeleteMenuItemWithStrLen( const TCHAR *ItemName, size_t ItemNameLength, int ItemID )
 {
 	int Result ;
@@ -7588,7 +7588,7 @@ extern int NS_DeleteMenuItemWithStrLen( const TCHAR *ItemName, size_t ItemNameLe
 	return Result ;
 }
 
-// ƒƒjƒ…[‚©‚ç€–Ú‚ğíœ‚·‚é
+// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‹ã‚‰é …ç›®ã‚’å‰Šé™¤ã™ã‚‹
 extern int DeleteMenuItem_WCHAR_T( const wchar_t *ItemName, int ItemID )
 {
 	HMENU Menu ;
@@ -7601,20 +7601,20 @@ extern int DeleteMenuItem_WCHAR_T( const wchar_t *ItemName, int ItemID )
 		return -1 ;
 	}
 
-	// w’è‚Ì€–Ú‚ğ’T‚·
+	// æŒ‡å®šã®é …ç›®ã‚’æ¢ã™
 	if( SearchMenuItem( ItemName, ItemID, WinData.Menu, &Menu, &Index ) != 1 )
 	{
 		return -1 ;
 	}
 
-	// ‘I‘ğ€–Ú‚ğíœ‚·‚é
+	// é¸æŠé …ç›®ã‚’å‰Šé™¤ã™ã‚‹
 	WinAPIData.Win32Func.DeleteMenuFunc( Menu, ( UINT )Index, MF_BYPOSITION ) ;
 
-	// ƒŠƒXƒg‚ğÄ\’z‚·‚é
+	// ãƒªã‚¹ãƒˆã‚’å†æ§‹ç¯‰ã™ã‚‹
 	WinData.MenuItemInfoNum = 0 ;
 	ListupMenuItemInfo( WinData.Menu ) ;
 
-	// ƒƒjƒ…[‚ğÄ•`‰æ‚·‚é
+	// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’å†æç”»ã™ã‚‹
 	if( GetDisplayMenuState() == TRUE )
 	{
 #ifndef DX_NON_GRAPHICS
@@ -7627,11 +7627,11 @@ extern int DeleteMenuItem_WCHAR_T( const wchar_t *ItemName, int ItemID )
 		WinAPIData.Win32Func.DrawMenuBarFunc( WinData.MainWindow ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒƒjƒ…[‚ª‘I‘ğ‚³‚ê‚½‚©‚Ç‚¤‚©‚ğæ“¾‚·‚é( 0:‘I‘ğ‚³‚ê‚Ä‚¢‚È‚¢  1:‘I‘ğ‚³‚ê‚½ )
+// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãŒé¸æŠã•ã‚ŒãŸã‹ã©ã†ã‹ã‚’å–å¾—ã™ã‚‹( 0:é¸æŠã•ã‚Œã¦ã„ãªã„  1:é¸æŠã•ã‚ŒãŸ )
 extern int NS_CheckMenuItemSelect( const TCHAR *ItemName, int ItemID )
 {
 #ifdef UNICODE
@@ -7649,7 +7649,7 @@ extern int NS_CheckMenuItemSelect( const TCHAR *ItemName, int ItemID )
 #endif
 }
 
-// ƒƒjƒ…[‚ª‘I‘ğ‚³‚ê‚½‚©‚Ç‚¤‚©‚ğæ“¾‚·‚é( –ß‚è’l@ 0:‘I‘ğ‚³‚ê‚Ä‚¢‚È‚¢  1:‘I‘ğ‚³‚ê‚½   ItemName ‚Æ ItemID ‚É‚Â‚¢‚Ä‚ÍŠÖ” DeleteMenuItem ‚Ì’ß‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢ )
+// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãŒé¸æŠã•ã‚ŒãŸã‹ã©ã†ã‹ã‚’å–å¾—ã™ã‚‹( æˆ»ã‚Šå€¤ã€€ 0:é¸æŠã•ã‚Œã¦ã„ãªã„  1:é¸æŠã•ã‚ŒãŸ   ItemName ã¨ ItemID ã«ã¤ã„ã¦ã¯é–¢æ•° DeleteMenuItem ã®æ³¨é‡ˆã‚’å‚ç…§ã—ã¦ãã ã•ã„ )
 extern int NS_CheckMenuItemSelectWithStrLen( const TCHAR *ItemName, size_t ItemNameLength, int ItemID )
 {
 	int Result ;
@@ -7665,39 +7665,39 @@ extern int NS_CheckMenuItemSelectWithStrLen( const TCHAR *ItemName, size_t ItemN
 	return Result ;
 }
 
-// ƒƒjƒ…[‚ª‘I‘ğ‚³‚ê‚½‚©‚Ç‚¤‚©‚ğæ“¾‚·‚é( 0:‘I‘ğ‚³‚ê‚Ä‚¢‚È‚¢  1:‘I‘ğ‚³‚ê‚½ )
+// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãŒé¸æŠã•ã‚ŒãŸã‹ã©ã†ã‹ã‚’å–å¾—ã™ã‚‹( 0:é¸æŠã•ã‚Œã¦ã„ãªã„  1:é¸æŠã•ã‚ŒãŸ )
 extern int CheckMenuItemSelect_WCHAR_T( const wchar_t *ItemName, int ItemID )
 {
 	int i, InfoNum ;
 
 	if( WinData.MenuUseFlag == FALSE ) return -1 ;
 
-	// –¼‘O‚ªw’è‚³‚ê‚Ä‚¢‚½ê‡‚Í‚h‚c‚ğæ“¾‚·‚é
+	// åå‰ãŒæŒ‡å®šã•ã‚Œã¦ã„ãŸå ´åˆã¯ï¼©ï¼¤ã‚’å–å¾—ã™ã‚‹
 	if( ItemName != NULL )
 	{
 		ItemID = GetMenuItemID_WCHAR_T( ItemName ) ;
 	}
 
-	// w’è‚ÌƒAƒCƒeƒ€‚ª‘¶İ‚·‚é‚©’²‚×‚é
+	// æŒ‡å®šã®ã‚¢ã‚¤ãƒ†ãƒ ãŒå­˜åœ¨ã™ã‚‹ã‹èª¿ã¹ã‚‹
 	InfoNum = WinData.SelectMenuItemNum ;
 	for( i = 0 ; i < InfoNum ; i ++ )
 		if( WinData.SelectMenuItem[i] == ItemID ) break ;
 
-	// –³‚©‚Á‚½‚ç‚O‚ğ•Ô‚·
+	// ç„¡ã‹ã£ãŸã‚‰ï¼ã‚’è¿”ã™
 	if( i == InfoNum ) return 0 ;
 	
-	// İ‚Á‚½‚çAî•ñ‚©‚çŠO‚·
+	// åœ¨ã£ãŸã‚‰ã€æƒ…å ±ã‹ã‚‰å¤–ã™
 	if( i != InfoNum - 1 )
 		_MEMMOVE( &WinData.SelectMenuItem[i], &WinData.SelectMenuItem[i+1], sizeof( int ) * ( InfoNum - i - 1 ) ) ;
 	
-	// î•ñ‚Ì”‚ğŒ¸‚ç‚·
+	// æƒ…å ±ã®æ•°ã‚’æ¸›ã‚‰ã™
 	WinData.SelectMenuItemNum -- ;
 
-	// ‚ ‚Á‚½‚Ì‚Å‚P‚ğ•Ô‚·
+	// ã‚ã£ãŸã®ã§ï¼‘ã‚’è¿”ã™
 	return 1 ;
 }
 
-// ƒƒjƒ…[‚Ì‘S‚Ä‚Ì‘I‘ğ€–Ú‚ğíœ‚·‚é
+// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®å…¨ã¦ã®é¸æŠé …ç›®ã‚’å‰Šé™¤ã™ã‚‹
 extern int NS_DeleteMenuItemAll( void )
 {
 	HMENU NewMenu ;
@@ -7707,22 +7707,22 @@ extern int NS_DeleteMenuItemAll( void )
 
 	SETUP_WIN_API
 
-	// V‚µ‚¢ƒƒjƒ…[‚ğì¬
+	// æ–°ã—ã„ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’ä½œæˆ
 	NewMenu = WinAPIData.Win32Func.CreateMenuFunc() ;
 	if( NewMenu == NULL ) return -1 ;
 
 	DispFlag = NS_GetDisplayMenuFlag() ;
 	
-	// ‘å–{‚Ìƒƒjƒ…[‚ğíœ‚µ‚Äì‚è’¼‚·
+	// å¤§æœ¬ã®ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’å‰Šé™¤ã—ã¦ä½œã‚Šç›´ã™
 	if( WinData.Menu != NULL )
 	{
-		// ‚Æ‚è‚ ‚¦‚¸ƒEƒCƒ“ƒhƒE‚©‚çŠO‚·
+		// ã¨ã‚Šã‚ãˆãšã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‹ã‚‰å¤–ã™
 		NS_SetDisplayMenuFlag( FALSE ) ;
 		
-		// ƒtƒ‹ƒXƒNƒŠ[ƒ“‚Ìê‡
+		// ãƒ•ãƒ«ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã®å ´åˆ
 		if( WinData.WindowModeFlag == FALSE && NS_GetUseFullScreenResolutionMode() != DX_FSRESOLUTIONMODE_BORDERLESS_WINDOW )
 		{
-			// ƒƒjƒ…[‚ğŠO‚·
+			// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’å¤–ã™
 			if( WinData.MenuSetupFlag == TRUE )
 			{
 				WinAPIData.Win32Func.SetMenuFunc( WinData.MainWindow, NULL ) ;
@@ -7730,20 +7730,20 @@ extern int NS_DeleteMenuItemAll( void )
 			}
 		}
 
-		// ƒƒjƒ…[‚ğíœ
+		// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’å‰Šé™¤
 		WinAPIData.Win32Func.DestroyMenuFunc( WinData.Menu ) ;
 	}
 
-	// V‚µ‚¢ƒƒjƒ…[‚ğƒZƒbƒg
+	// æ–°ã—ã„ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’ã‚»ãƒƒãƒˆ
 	WinData.Menu = NewMenu ;
 
-	// •\¦ó‘Ô‚ğŒ³‚É–ß‚·
+	// è¡¨ç¤ºçŠ¶æ…‹ã‚’å…ƒã«æˆ»ã™
 	NS_SetDisplayMenuFlag( DispFlag ) ;
 
-	// ƒtƒ‹ƒXƒNƒŠ[ƒ“‚Ìê‡
+	// ãƒ•ãƒ«ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã®å ´åˆ
 	if( WinData.WindowModeFlag == FALSE && NS_GetUseFullScreenResolutionMode() != DX_FSRESOLUTIONMODE_BORDERLESS_WINDOW )
 	{
-		// ƒƒjƒ…[‚ÌƒZƒbƒg
+		// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®ã‚»ãƒƒãƒˆ
 		if( WinData.MenuSetupFlag == FALSE && WinData.MenuDisplayState != FALSE )
 		{
 			WinAPIData.Win32Func.SetMenuFunc( WinData.MainWindow, WinData.Menu ) ;
@@ -7751,26 +7751,26 @@ extern int NS_DeleteMenuItemAll( void )
 		}
 	}
 
-	// ‘I‘ğ‚³‚ê‚½ƒƒjƒ…[€–Ú‚Ì”‚ğ‰Šú‰»
+	// é¸æŠã•ã‚ŒãŸãƒ¡ãƒ‹ãƒ¥ãƒ¼é …ç›®ã®æ•°ã‚’åˆæœŸåŒ–
 	WinData.SelectMenuItemNum = 0 ;
 
-	// ƒŠƒXƒg‚à‰Šú‰»
+	// ãƒªã‚¹ãƒˆã‚‚åˆæœŸåŒ–
 	WinData.MenuItemInfoNum = 0 ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒƒjƒ…[‚ª‘I‘ğ‚³‚ê‚½‚©‚Ç‚¤‚©‚Ìî•ñ‚ğ‰Šú‰»
+// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãŒé¸æŠã•ã‚ŒãŸã‹ã©ã†ã‹ã®æƒ…å ±ã‚’åˆæœŸåŒ–
 extern int NS_ClearMenuItemSelect( void )
 {
 	WinData.SelectMenuItemNum = 0 ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒƒjƒ…[‚Ì€–Ú‚ğ‘I‘ğo—ˆ‚é‚©‚Ç‚¤‚©‚ğİ’è‚·‚é
+// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®é …ç›®ã‚’é¸æŠå‡ºæ¥ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹
 extern int NS_SetMenuItemEnable( const TCHAR *ItemName, int ItemID, int EnableFlag )
 {
 #ifdef UNICODE
@@ -7788,7 +7788,7 @@ extern int NS_SetMenuItemEnable( const TCHAR *ItemName, int ItemID, int EnableFl
 #endif
 }
 
-// ƒƒjƒ…[‚Ì€–Ú‚ğ‘I‘ğo—ˆ‚é‚©‚Ç‚¤‚©‚ğİ’è‚·‚é( EnableFlag:€–Ú‚ª‘I‘ğ‚Å‚«‚é‚©‚Ç‚¤‚©( TRUE:‘I‘ğ‚Å‚«‚é   FALSE:‘I‘ğ‚Å‚«‚È‚¢ )   ItemName ‚Æ ItemID ‚É‚Â‚¢‚Ä‚ÍŠÖ” DeleteMenuItem ‚Ì’ß‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢ )
+// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®é …ç›®ã‚’é¸æŠå‡ºæ¥ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹( EnableFlag:é …ç›®ãŒé¸æŠã§ãã‚‹ã‹ã©ã†ã‹( TRUE:é¸æŠã§ãã‚‹   FALSE:é¸æŠã§ããªã„ )   ItemName ã¨ ItemID ã«ã¤ã„ã¦ã¯é–¢æ•° DeleteMenuItem ã®æ³¨é‡ˆã‚’å‚ç…§ã—ã¦ãã ã•ã„ )
 extern int NS_SetMenuItemEnableWithStrLen( const TCHAR *ItemName, size_t ItemNameLength, int ItemID, int EnableFlag )
 {
 	int Result ;
@@ -7804,7 +7804,7 @@ extern int NS_SetMenuItemEnableWithStrLen( const TCHAR *ItemName, size_t ItemNam
 	return Result ;
 }
 
-// ƒƒjƒ…[‚Ì€–Ú‚ğ‘I‘ğo—ˆ‚é‚©‚Ç‚¤‚©‚ğİ’è‚·‚é
+// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®é …ç›®ã‚’é¸æŠå‡ºæ¥ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹
 extern int SetMenuItemEnable_WCHAR_T( const wchar_t *ItemName, int ItemID, int EnableFlag )
 {
 	WINMENUITEMINFO *WinItemInfo ;
@@ -7813,14 +7813,14 @@ extern int SetMenuItemEnable_WCHAR_T( const wchar_t *ItemName, int ItemID, int E
 
 	if( WinData.MenuUseFlag == FALSE ) return -1 ;
 
-	// ‘I‘ğ€–Ú‚Ìî•ñ‚ğæ“¾
+	// é¸æŠé …ç›®ã®æƒ…å ±ã‚’å–å¾—
 	WinItemInfo = SearchMenuItemInfo( ItemName, ItemID ) ;
 	if( WinItemInfo == NULL ) return -1 ;
 
-	// ‘I‘ğo—ˆ‚é‚©‚Ç‚¤‚©‚ğİ’è‚·‚é
+	// é¸æŠå‡ºæ¥ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹
 	WinAPIData.Win32Func.EnableMenuItemFunc( WinItemInfo->Menu, ( UINT )WinItemInfo->Index, ( UINT )( MF_BYPOSITION | ( EnableFlag == TRUE ? MF_ENABLED : MF_GRAYED ) ) ) ;
 
-	// •\¦‚ğXV‚·‚é
+	// è¡¨ç¤ºã‚’æ›´æ–°ã™ã‚‹
 	if( GetDisplayMenuState() == TRUE )
 	{
 #ifndef DX_NON_GRAPHICS
@@ -7833,11 +7833,11 @@ extern int SetMenuItemEnable_WCHAR_T( const wchar_t *ItemName, int ItemID, int E
 		WinAPIData.Win32Func.DrawMenuBarFunc( WinData.MainWindow ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒƒjƒ…[‚Ì€–Ú‚Éƒ`ƒFƒbƒNƒ}[ƒN‚âƒ‰ƒWƒIƒ{ƒ^ƒ“‚ğ•\¦‚·‚é‚©‚Ç‚¤‚©‚ğİ’è‚·‚é
+// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®é …ç›®ã«ãƒã‚§ãƒƒã‚¯ãƒãƒ¼ã‚¯ã‚„ãƒ©ã‚¸ã‚ªãƒœã‚¿ãƒ³ã‚’è¡¨ç¤ºã™ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹
 extern int NS_SetMenuItemMark( const TCHAR *ItemName, int ItemID, int Mark )
 {
 #ifdef UNICODE
@@ -7855,7 +7855,7 @@ extern int NS_SetMenuItemMark( const TCHAR *ItemName, int ItemID, int Mark )
 #endif
 }
 
-// ƒƒjƒ…[‚Ì€–Ú‚Éƒ`ƒFƒbƒNƒ}[ƒN‚âƒ‰ƒWƒIƒ{ƒ^ƒ“‚ğ•\¦‚·‚é‚©‚Ç‚¤‚©‚ğİ’è‚·‚é( Mark:İ’è‚·‚éƒ}[ƒN( MENUITEM_MARK_NONE “™( ‰ğà‚Í #define ‚Ì’è‹`‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢ )    ItemName ‚Æ ItemID ‚É‚Â‚¢‚Ä‚ÍŠÖ” DeleteMenuItem ‚Ì’ß‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢ ) )
+// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®é …ç›®ã«ãƒã‚§ãƒƒã‚¯ãƒãƒ¼ã‚¯ã‚„ãƒ©ã‚¸ã‚ªãƒœã‚¿ãƒ³ã‚’è¡¨ç¤ºã™ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹( Mark:è¨­å®šã™ã‚‹ãƒãƒ¼ã‚¯( MENUITEM_MARK_NONE ç­‰( è§£èª¬ã¯ #define ã®å®šç¾©ã‚’å‚ç…§ã—ã¦ãã ã•ã„ )    ItemName ã¨ ItemID ã«ã¤ã„ã¦ã¯é–¢æ•° DeleteMenuItem ã®æ³¨é‡ˆã‚’å‚ç…§ã—ã¦ãã ã•ã„ ) )
 extern int NS_SetMenuItemMarkWithStrLen( const TCHAR *ItemName, size_t ItemNameLength, int ItemID, int Mark )
 {
 	int Result ;
@@ -7871,7 +7871,7 @@ extern int NS_SetMenuItemMarkWithStrLen( const TCHAR *ItemName, size_t ItemNameL
 	return Result ;
 }
 
-// ƒƒjƒ…[‚Ì€–Ú‚Éƒ`ƒFƒbƒNƒ}[ƒN‚âƒ‰ƒWƒIƒ{ƒ^ƒ“‚ğ•\¦‚·‚é‚©‚Ç‚¤‚©‚ğİ’è‚·‚é
+// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®é …ç›®ã«ãƒã‚§ãƒƒã‚¯ãƒãƒ¼ã‚¯ã‚„ãƒ©ã‚¸ã‚ªãƒœã‚¿ãƒ³ã‚’è¡¨ç¤ºã™ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹
 extern int SetMenuItemMark_WCHAR_T( const wchar_t *ItemName, int ItemID, int Mark )
 {
 	MENUITEMINFOW ItemInfo ;
@@ -7881,30 +7881,30 @@ extern int SetMenuItemMark_WCHAR_T( const wchar_t *ItemName, int ItemID, int Mar
 
 	SETUP_WIN_API
 
-	// ‘I‘ğ€–Ú‚Ìî•ñ‚ğæ“¾
+	// é¸æŠé …ç›®ã®æƒ…å ±ã‚’å–å¾—
 	WinItemInfo = SearchMenuItemInfo( ItemName, ItemID ) ;
 	if( WinItemInfo == NULL ) return -1 ;
 
-	// Œ»İ‚Ìî•ñ‚ğ“¾‚é
+	// ç¾åœ¨ã®æƒ…å ±ã‚’å¾—ã‚‹
 	_GetMenuItemInfo( WinItemInfo->Menu, WinItemInfo->Index, &ItemInfo ) ;
 	
-	// î•ñ‚ğ‘‚«Š·‚¦‚é
+	// æƒ…å ±ã‚’æ›¸ãæ›ãˆã‚‹
 	switch( Mark )
 	{
-	case MENUITEM_MARK_NONE :	// ‰½‚à•t‚¯‚È‚¢
+	case MENUITEM_MARK_NONE :	// ä½•ã‚‚ä»˜ã‘ãªã„
 		ItemInfo.fMask |= MIIM_TYPE ;
 		ItemInfo.fState &= ~MFS_CHECKED ;
 		ItemInfo.fType &= ~MFT_RADIOCHECK ;
 		break ;
 		
-	case MENUITEM_MARK_CHECK :	// •’Ê‚Ìƒ`ƒFƒbƒN
+	case MENUITEM_MARK_CHECK :	// æ™®é€šã®ãƒã‚§ãƒƒã‚¯
 		ItemInfo.fMask |= MIIM_TYPE ;
 		ItemInfo.fType &= ~MFT_RADIOCHECK ;
 		ItemInfo.fState |= MFS_CHECKED ;
 		ItemInfo.hbmpChecked = NULL ;
 		break ;
 
-	case MENUITEM_MARK_RADIO :	// ƒ‰ƒWƒIƒ{ƒ^ƒ“
+	case MENUITEM_MARK_RADIO :	// ãƒ©ã‚¸ã‚ªãƒœã‚¿ãƒ³
 		ItemInfo.fMask |= MIIM_TYPE ;
 		ItemInfo.fType = MFT_RADIOCHECK ;
 		ItemInfo.fState |= MFS_CHECKED ;
@@ -7913,7 +7913,7 @@ extern int SetMenuItemMark_WCHAR_T( const wchar_t *ItemName, int ItemID, int Mar
 	}
 	SetMenuItemInfoWFunc( WinItemInfo->Menu, ( UINT )WinItemInfo->Index, TRUE, &ItemInfo ) ;
 	
-	// •\¦‚ğXV‚·‚é
+	// è¡¨ç¤ºã‚’æ›´æ–°ã™ã‚‹
 	if( GetDisplayMenuState() == TRUE )
 	{
 #ifndef DX_NON_GRAPHICS
@@ -7926,17 +7926,17 @@ extern int SetMenuItemMark_WCHAR_T( const wchar_t *ItemName, int ItemID, int Mar
 		WinAPIData.Win32Func.DrawMenuBarFunc( WinData.MainWindow ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒƒjƒ…[‚Ì€–Ú‚ª‚Ç‚ê‚©‘I‘ğ‚³‚ê‚½‚©‚Ç‚¤‚©‚ğæ“¾‚·‚é( –ß‚è’l  TRUE:‚Ç‚ê‚©‘I‘ğ‚³‚ê‚½  FALSE:‘I‘ğ‚³‚ê‚Ä‚¢‚È‚¢ )
+// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®é …ç›®ãŒã©ã‚Œã‹é¸æŠã•ã‚ŒãŸã‹ã©ã†ã‹ã‚’å–å¾—ã™ã‚‹( æˆ»ã‚Šå€¤  TRUE:ã©ã‚Œã‹é¸æŠã•ã‚ŒãŸ  FALSE:é¸æŠã•ã‚Œã¦ã„ãªã„ )
 extern int NS_CheckMenuItemSelectAll( void )
 {
 	return WinData.SelectMenuItemNum != 0 ? TRUE : FALSE ;
 }
 
-// ƒƒjƒ…[‚É€–Ú‚ğ’Ç‰Á‚·‚é
+// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã«é …ç›®ã‚’è¿½åŠ ã™ã‚‹
 extern int NS_AddMenuItem_Name( const TCHAR *ParentItemName, const TCHAR *NewItemName )
 {
 	if( ParentItemName == NULL )
@@ -7951,7 +7951,7 @@ extern int NS_AddMenuItem_Name( const TCHAR *ParentItemName, const TCHAR *NewIte
 	}
 }
 
-// ƒƒjƒ…[‚É‘I‘ğ€–Ú‚ğ’Ç‰Á‚·‚é( ParentItemName:e‚Æ‚È‚é€–Ú‚Ì–¼‘OAe‚ª‚ÂƒŠƒXƒg‚Ì––’[‚ÉV‚µ‚¢€–Ú‚ğ’Ç‰Á‚µ‚Ü‚·  NewItemName:V‚µ‚¢€–Ú‚Ì–¼‘O )
+// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã«é¸æŠé …ç›®ã‚’è¿½åŠ ã™ã‚‹( ParentItemName:è¦ªã¨ãªã‚‹é …ç›®ã®åå‰ã€è¦ªãŒæŒã¤ãƒªã‚¹ãƒˆã®æœ«ç«¯ã«æ–°ã—ã„é …ç›®ã‚’è¿½åŠ ã—ã¾ã™  NewItemName:æ–°ã—ã„é …ç›®ã®åå‰ )
 extern int NS_AddMenuItem_NameWithStrLen( const TCHAR *ParentItemName, size_t ParentItemNameLength, const TCHAR *NewItemName, size_t NewItemNameLength )
 {
 	int Result = -1 ;
@@ -7971,7 +7971,7 @@ ERR :
 	return Result ;
 }
 
-// ƒƒjƒ…[‚É€–Ú‚ğ’Ç‰Á‚·‚é
+// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã«é …ç›®ã‚’è¿½åŠ ã™ã‚‹
 extern int AddMenuItem_Name_WCHAR_T( const wchar_t *ParentItemName, const wchar_t *NewItemName )
 {
 	if( ParentItemName == NULL )
@@ -7986,7 +7986,7 @@ extern int AddMenuItem_Name_WCHAR_T( const wchar_t *ParentItemName, const wchar_
 	}
 }
 
-// w’è‚Ì€–Ú‚ÆAw’è‚Ì€–Ú‚Ìˆê‚Âã‚Ì€–Ú‚Æ‚ÌŠÔ‚ÉV‚µ‚¢€–Ú‚ğ’Ç‰Á‚·‚é
+// æŒ‡å®šã®é …ç›®ã¨ã€æŒ‡å®šã®é …ç›®ã®ä¸€ã¤ä¸Šã®é …ç›®ã¨ã®é–“ã«æ–°ã—ã„é …ç›®ã‚’è¿½åŠ ã™ã‚‹
 extern int NS_InsertMenuItem_Name( const TCHAR *ItemName, const TCHAR *NewItemName )
 {
 	if( ItemName == NULL )
@@ -8001,7 +8001,7 @@ extern int NS_InsertMenuItem_Name( const TCHAR *ItemName, const TCHAR *NewItemNa
 	}
 }
 
-// w’è‚Ì€–Ú‚ÆAw’è‚Ì€–Ú‚Ìˆê‚Âã‚Ì€–Ú‚Æ‚ÌŠÔ‚ÉV‚µ‚¢€–Ú‚ğ’Ç‰Á‚·‚é
+// æŒ‡å®šã®é …ç›®ã¨ã€æŒ‡å®šã®é …ç›®ã®ä¸€ã¤ä¸Šã®é …ç›®ã¨ã®é–“ã«æ–°ã—ã„é …ç›®ã‚’è¿½åŠ ã™ã‚‹
 extern int NS_InsertMenuItem_NameWithStrLen( const TCHAR *ItemName, size_t ItemNameLength, const TCHAR *NewItemName, size_t NewItemNameLength )
 {
 	int Result = -1 ;
@@ -8021,7 +8021,7 @@ ERR :
 	return Result ;
 }
 
-// w’è‚Ì€–Ú‚ÆAw’è‚Ì€–Ú‚Ìˆê‚Âã‚Ì€–Ú‚Æ‚ÌŠÔ‚ÉV‚µ‚¢€–Ú‚ğ’Ç‰Á‚·‚é
+// æŒ‡å®šã®é …ç›®ã¨ã€æŒ‡å®šã®é …ç›®ã®ä¸€ã¤ä¸Šã®é …ç›®ã¨ã®é–“ã«æ–°ã—ã„é …ç›®ã‚’è¿½åŠ ã™ã‚‹
 extern int InsertMenuItem_Name_WCHAR_T( const wchar_t *ItemName, const wchar_t *NewItemName )
 {
 	if( ItemName == NULL )
@@ -8036,7 +8036,7 @@ extern int InsertMenuItem_Name_WCHAR_T( const wchar_t *ItemName, const wchar_t *
 	}
 }
 
-// ƒƒjƒ…[‚ÌƒŠƒXƒg‚É‹æØ‚èü‚ğ’Ç‰Á‚·‚é
+// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®ãƒªã‚¹ãƒˆã«åŒºåˆ‡ã‚Šç·šã‚’è¿½åŠ ã™ã‚‹
 extern int NS_AddMenuLine_Name( const TCHAR *ParentItemName )
 {
 	if( ParentItemName == NULL )
@@ -8051,7 +8051,7 @@ extern int NS_AddMenuLine_Name( const TCHAR *ParentItemName )
 	}
 }
 
-// ƒƒjƒ…[‚ÌƒŠƒXƒg‚É‹æØ‚èü‚ğ’Ç‰Á‚·‚é( ParentItemName:‹æØ‚èü‚ğ•t‚¯‚é€–ÚƒŠƒXƒg‚Ìe‚Ì–¼‘OAƒŠƒXƒg‚Ì––’[‚É‹æØ‚èü‚ğ’Ç‰Á‚µ‚Ü‚· )
+// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®ãƒªã‚¹ãƒˆã«åŒºåˆ‡ã‚Šç·šã‚’è¿½åŠ ã™ã‚‹( ParentItemName:åŒºåˆ‡ã‚Šç·šã‚’ä»˜ã‘ã‚‹é …ç›®ãƒªã‚¹ãƒˆã®è¦ªã®åå‰ã€ãƒªã‚¹ãƒˆã®æœ«ç«¯ã«åŒºåˆ‡ã‚Šç·šã‚’è¿½åŠ ã—ã¾ã™ )
 extern int NS_AddMenuLine_NameWithStrLen( const TCHAR *ParentItemName, size_t ParentItemNameLength )
 {
 	int Result ;
@@ -8061,7 +8061,7 @@ extern int NS_AddMenuLine_NameWithStrLen( const TCHAR *ParentItemName, size_t Pa
 	return Result ;
 }
 
-// ƒƒjƒ…[‚ÌƒŠƒXƒg‚É‹æØ‚èü‚ğ’Ç‰Á‚·‚é
+// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®ãƒªã‚¹ãƒˆã«åŒºåˆ‡ã‚Šç·šã‚’è¿½åŠ ã™ã‚‹
 extern int AddMenuLine_Name_WCHAR_T( const wchar_t *ParentItemName )
 {
 	if( ParentItemName == NULL )
@@ -8076,7 +8076,7 @@ extern int AddMenuLine_Name_WCHAR_T( const wchar_t *ParentItemName )
 	}
 }
 
-// w’è‚Ì€–Ú‚ÆAw’è‚Ì€–Ú‚Ìˆê‚Âã‚Ì€–Ú‚Æ‚ÌŠÔ‚É‹æØ‚èü‚ğ’Ç‰Á‚·‚é
+// æŒ‡å®šã®é …ç›®ã¨ã€æŒ‡å®šã®é …ç›®ã®ä¸€ã¤ä¸Šã®é …ç›®ã¨ã®é–“ã«åŒºåˆ‡ã‚Šç·šã‚’è¿½åŠ ã™ã‚‹
 extern int NS_InsertMenuLine_Name( const TCHAR *ItemName )
 {
 	if( ItemName == NULL )
@@ -8091,7 +8091,7 @@ extern int NS_InsertMenuLine_Name( const TCHAR *ItemName )
 	}
 }
 
-// w’è‚Ì€–Ú‚ÆAw’è‚Ì€–Ú‚Ìˆê‚Âã‚Ì€–Ú‚Æ‚ÌŠÔ‚É‹æØ‚èü‚ğ’Ç‰Á‚·‚é
+// æŒ‡å®šã®é …ç›®ã¨ã€æŒ‡å®šã®é …ç›®ã®ä¸€ã¤ä¸Šã®é …ç›®ã¨ã®é–“ã«åŒºåˆ‡ã‚Šç·šã‚’è¿½åŠ ã™ã‚‹
 extern int NS_InsertMenuLine_NameWithStrLen( const TCHAR *ItemName, size_t ItemNameLength )
 {
 	int Result ;
@@ -8101,7 +8101,7 @@ extern int NS_InsertMenuLine_NameWithStrLen( const TCHAR *ItemName, size_t ItemN
 	return Result ;
 }
 
-// w’è‚Ì€–Ú‚ÆAw’è‚Ì€–Ú‚Ìˆê‚Âã‚Ì€–Ú‚Æ‚ÌŠÔ‚É‹æØ‚èü‚ğ’Ç‰Á‚·‚é
+// æŒ‡å®šã®é …ç›®ã¨ã€æŒ‡å®šã®é …ç›®ã®ä¸€ã¤ä¸Šã®é …ç›®ã¨ã®é–“ã«åŒºåˆ‡ã‚Šç·šã‚’è¿½åŠ ã™ã‚‹
 extern int InsertMenuLine_Name_WCHAR_T( const wchar_t *ItemName )
 {
 	if( ItemName == NULL )
@@ -8116,13 +8116,13 @@ extern int InsertMenuLine_Name_WCHAR_T( const wchar_t *ItemName )
 	}
 }
 
-// ƒƒjƒ…[‚©‚ç€–Ú‚ğíœ‚·‚é
+// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‹ã‚‰é …ç›®ã‚’å‰Šé™¤ã™ã‚‹
 extern int NS_DeleteMenuItem_Name( const TCHAR *ItemName )
 {
 	return NS_DeleteMenuItem( ItemName, -1 ) ;
 }
 
-// ƒƒjƒ…[‚©‚ç‘I‘ğ€–Ú‚ğíœ‚·‚é
+// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‹ã‚‰é¸æŠé …ç›®ã‚’å‰Šé™¤ã™ã‚‹
 extern int NS_DeleteMenuItem_NameWithStrLen( const TCHAR *ItemName, size_t ItemNameLength )
 {
 	int Result ;
@@ -8132,19 +8132,19 @@ extern int NS_DeleteMenuItem_NameWithStrLen( const TCHAR *ItemName, size_t ItemN
 	return Result ;
 }
 
-// ƒƒjƒ…[‚©‚ç€–Ú‚ğíœ‚·‚é
+// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‹ã‚‰é …ç›®ã‚’å‰Šé™¤ã™ã‚‹
 extern int DeleteMenuItem_Name_WCHAR_T( const wchar_t *ItemName )
 {
 	return DeleteMenuItem_WCHAR_T( ItemName, -1 ) ;
 }
 
-// ƒƒjƒ…[‚ª‘I‘ğ‚³‚ê‚½‚©‚Ç‚¤‚©‚ğæ“¾‚·‚é( 0:‘I‘ğ‚³‚ê‚Ä‚¢‚È‚¢  1:‘I‘ğ‚³‚ê‚½ )
+// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãŒé¸æŠã•ã‚ŒãŸã‹ã©ã†ã‹ã‚’å–å¾—ã™ã‚‹( 0:é¸æŠã•ã‚Œã¦ã„ãªã„  1:é¸æŠã•ã‚ŒãŸ )
 extern int NS_CheckMenuItemSelect_Name( const TCHAR *ItemName )
 {
 	return NS_CheckMenuItemSelect( ItemName, -1 ) ;
 }
 
-// ƒƒjƒ…[‚ª‘I‘ğ‚³‚ê‚½‚©‚Ç‚¤‚©‚ğæ“¾‚·‚é( –ß‚è’l@0:‘I‘ğ‚³‚ê‚Ä‚¢‚È‚¢  1:‘I‘ğ‚³‚ê‚½ )
+// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãŒé¸æŠã•ã‚ŒãŸã‹ã©ã†ã‹ã‚’å–å¾—ã™ã‚‹( æˆ»ã‚Šå€¤ã€€0:é¸æŠã•ã‚Œã¦ã„ãªã„  1:é¸æŠã•ã‚ŒãŸ )
 extern int NS_CheckMenuItemSelect_NameWithStrLen( const TCHAR *ItemName, size_t ItemNameLength )
 {
 	int Result ;
@@ -8154,19 +8154,19 @@ extern int NS_CheckMenuItemSelect_NameWithStrLen( const TCHAR *ItemName, size_t 
 	return Result ;
 }
 
-// ƒƒjƒ…[‚ª‘I‘ğ‚³‚ê‚½‚©‚Ç‚¤‚©‚ğæ“¾‚·‚é( 0:‘I‘ğ‚³‚ê‚Ä‚¢‚È‚¢  1:‘I‘ğ‚³‚ê‚½ )
+// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãŒé¸æŠã•ã‚ŒãŸã‹ã©ã†ã‹ã‚’å–å¾—ã™ã‚‹( 0:é¸æŠã•ã‚Œã¦ã„ãªã„  1:é¸æŠã•ã‚ŒãŸ )
 extern int CheckMenuItemSelect_Name_WCHAR_T( const wchar_t *ItemName )
 {
 	return CheckMenuItemSelect_WCHAR_T( ItemName, -1 ) ;
 }
 
-// ƒƒjƒ…[‚Ì€–Ú‚ğ‘I‘ğo—ˆ‚é‚©‚Ç‚¤‚©‚ğİ’è‚·‚é
+// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®é …ç›®ã‚’é¸æŠå‡ºæ¥ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹
 extern int NS_SetMenuItemEnable_Name( const TCHAR *ItemName, int EnableFlag )
 {
 	return NS_SetMenuItemEnable( ItemName, -1, EnableFlag ) ;
 }
 
-// ƒƒjƒ…[‚Ì€–Ú‚ğ‘I‘ğo—ˆ‚é‚©‚Ç‚¤‚©‚ğİ’è‚·‚é( EnableFlag@1:‘I‘ğ‚Å‚«‚é  0:‘I‘ğ‚Å‚«‚È‚¢ )
+// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®é …ç›®ã‚’é¸æŠå‡ºæ¥ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹( EnableFlagã€€1:é¸æŠã§ãã‚‹  0:é¸æŠã§ããªã„ )
 extern int NS_SetMenuItemEnable_NameWithStrLen( const TCHAR *ItemName, size_t ItemNameLength, int EnableFlag )
 {
 	int Result ;
@@ -8176,19 +8176,19 @@ extern int NS_SetMenuItemEnable_NameWithStrLen( const TCHAR *ItemName, size_t It
 	return Result ;
 }
 
-// ƒƒjƒ…[‚Ì€–Ú‚ğ‘I‘ğo—ˆ‚é‚©‚Ç‚¤‚©‚ğİ’è‚·‚é
+// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®é …ç›®ã‚’é¸æŠå‡ºæ¥ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹
 extern int SetMenuItemEnable_Name_WCHAR_T( const wchar_t *ItemName, int EnableFlag )
 {
 	return SetMenuItemEnable_WCHAR_T( ItemName, -1, EnableFlag ) ;
 }
 
-// ƒƒjƒ…[‚Ì€–Ú‚Éƒ`ƒFƒbƒNƒ}[ƒN‚âƒ‰ƒWƒIƒ{ƒ^ƒ“‚ğ•\¦‚·‚é‚©‚Ç‚¤‚©‚ğİ’è‚·‚é
+// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®é …ç›®ã«ãƒã‚§ãƒƒã‚¯ãƒãƒ¼ã‚¯ã‚„ãƒ©ã‚¸ã‚ªãƒœã‚¿ãƒ³ã‚’è¡¨ç¤ºã™ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹
 extern int NS_SetMenuItemMark_Name( const TCHAR *ItemName, int Mark )
 {
 	return NS_SetMenuItemMark( ItemName, -1, Mark ) ;
 }
 
-// ƒƒjƒ…[‚Ì€–Ú‚Éƒ`ƒFƒbƒNƒ}[ƒN‚âƒ‰ƒWƒIƒ{ƒ^ƒ“‚ğ•\¦‚·‚é‚©‚Ç‚¤‚©‚ğİ’è‚·‚é( Mark:İ’è‚·‚éƒ}[ƒN( MENUITEM_MARK_NONE “™ ) )
+// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®é …ç›®ã«ãƒã‚§ãƒƒã‚¯ãƒãƒ¼ã‚¯ã‚„ãƒ©ã‚¸ã‚ªãƒœã‚¿ãƒ³ã‚’è¡¨ç¤ºã™ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹( Mark:è¨­å®šã™ã‚‹ãƒãƒ¼ã‚¯( MENUITEM_MARK_NONE ç­‰ ) )
 extern int NS_SetMenuItemMark_NameWithStrLen( const TCHAR *ItemName, size_t ItemNameLength, int Mark )
 {
 	int Result ;
@@ -8198,21 +8198,21 @@ extern int NS_SetMenuItemMark_NameWithStrLen( const TCHAR *ItemName, size_t Item
 	return Result ;
 }
 
-// ƒƒjƒ…[‚Ì€–Ú‚Éƒ`ƒFƒbƒNƒ}[ƒN‚âƒ‰ƒWƒIƒ{ƒ^ƒ“‚ğ•\¦‚·‚é‚©‚Ç‚¤‚©‚ğİ’è‚·‚é
+// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®é …ç›®ã«ãƒã‚§ãƒƒã‚¯ãƒãƒ¼ã‚¯ã‚„ãƒ©ã‚¸ã‚ªãƒœã‚¿ãƒ³ã‚’è¡¨ç¤ºã™ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹
 extern int SetMenuItemMark_Name_WCHAR_T( const wchar_t *ItemName, int Mark )
 {
 	return SetMenuItemMark_WCHAR_T( ItemName, -1, Mark ) ;
 }
 
 
-// ƒƒjƒ…[‚É€–Ú‚ğ’Ç‰Á‚·‚é
+// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã«é …ç›®ã‚’è¿½åŠ ã™ã‚‹
 extern int NS_AddMenuItem_ID( int ParentItemID, const TCHAR *NewItemName, int NewItemID )
 {
 	return NS_AddMenuItem( MENUITEM_ADD_CHILD, NULL, ParentItemID,
 							FALSE, NewItemName, NewItemID ) ;
 }
 
-// ƒƒjƒ…[‚É‘I‘ğ€–Ú‚ğ’Ç‰Á‚·‚é
+// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã«é¸æŠé …ç›®ã‚’è¿½åŠ ã™ã‚‹
 extern int NS_AddMenuItem_IDWithStrLen( int ParentItemID, const TCHAR *NewItemName, size_t NewItemNameLength, int NewItemID )
 {
 	int Result ;
@@ -8222,53 +8222,53 @@ extern int NS_AddMenuItem_IDWithStrLen( int ParentItemID, const TCHAR *NewItemNa
 	return Result ;
 }
 
-// ƒƒjƒ…[‚É€–Ú‚ğ’Ç‰Á‚·‚é
+// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã«é …ç›®ã‚’è¿½åŠ ã™ã‚‹
 extern int AddMenuItem_ID_WCHAR_T( int ParentItemID, const wchar_t *NewItemName, int NewItemID )
 {
 	return AddMenuItem_WCHAR_T( MENUITEM_ADD_CHILD, NULL, ParentItemID,
 							FALSE, NewItemName, NewItemID ) ;
 }
 
-// w’è‚Ì€–Ú‚ÆAw’è‚Ì€–Ú‚Ìˆê‚Âã‚Ì€–Ú‚Æ‚ÌŠÔ‚ÉV‚µ‚¢€–Ú‚ğ’Ç‰Á‚·‚é
+// æŒ‡å®šã®é …ç›®ã¨ã€æŒ‡å®šã®é …ç›®ã®ä¸€ã¤ä¸Šã®é …ç›®ã¨ã®é–“ã«æ–°ã—ã„é …ç›®ã‚’è¿½åŠ ã™ã‚‹
 extern int NS_InsertMenuItem_ID( int ItemID, int NewItemID )
 {
 	return NS_AddMenuItem( MENUITEM_ADD_INSERT, NULL, ItemID,
 							FALSE, NULL, NewItemID ) ;
 }
 
-// ƒƒjƒ…[‚ÌƒŠƒXƒg‚É‹æØ‚èü‚ğ’Ç‰Á‚·‚é
+// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®ãƒªã‚¹ãƒˆã«åŒºåˆ‡ã‚Šç·šã‚’è¿½åŠ ã™ã‚‹
 extern int NS_AddMenuLine_ID( int ParentItemID )
 {
 	return NS_AddMenuItem( MENUITEM_ADD_CHILD, NULL, ParentItemID,
 							TRUE, NULL, -1 ) ;
 }
 
-// w’è‚Ì€–Ú‚ÆAw’è‚Ì€–Ú‚Ìˆê‚Âã‚Ì€–Ú‚Æ‚ÌŠÔ‚É‹æØ‚èü‚ğ’Ç‰Á‚·‚é
+// æŒ‡å®šã®é …ç›®ã¨ã€æŒ‡å®šã®é …ç›®ã®ä¸€ã¤ä¸Šã®é …ç›®ã¨ã®é–“ã«åŒºåˆ‡ã‚Šç·šã‚’è¿½åŠ ã™ã‚‹
 extern int NS_InsertMenuLine_ID( int ItemID, int NewItemID )
 {
 	return NS_AddMenuItem( MENUITEM_ADD_INSERT, NULL, ItemID,
 							TRUE, NULL, NewItemID ) ;
 }
 
-// ƒƒjƒ…[‚©‚ç€–Ú‚ğíœ‚·‚é
+// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‹ã‚‰é …ç›®ã‚’å‰Šé™¤ã™ã‚‹
 extern int NS_DeleteMenuItem_ID( int ItemID )
 {
 	return NS_DeleteMenuItem( NULL, ItemID ) ;
 }
 
-// ƒƒjƒ…[‚ª‘I‘ğ‚³‚ê‚½‚©‚Ç‚¤‚©‚ğæ“¾‚·‚é( 0:‘I‘ğ‚³‚ê‚Ä‚¢‚È‚¢  1:‘I‘ğ‚³‚ê‚½ )
+// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãŒé¸æŠã•ã‚ŒãŸã‹ã©ã†ã‹ã‚’å–å¾—ã™ã‚‹( 0:é¸æŠã•ã‚Œã¦ã„ãªã„  1:é¸æŠã•ã‚ŒãŸ )
 extern int NS_CheckMenuItemSelect_ID( int ItemID )
 {
 	return NS_CheckMenuItemSelect( NULL, ItemID ) ;
 }
 
-// ƒƒjƒ…[‚Ì€–Ú‚ğ‘I‘ğo—ˆ‚é‚©‚Ç‚¤‚©‚ğİ’è‚·‚é
+// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®é …ç›®ã‚’é¸æŠå‡ºæ¥ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹
 extern int NS_SetMenuItemEnable_ID( int ItemID, int EnableFlag )
 {
 	return NS_SetMenuItemEnable( NULL, ItemID, EnableFlag ) ;
 }
 
-// ƒƒjƒ…[‚Ì€–Ú‚Éƒ`ƒFƒbƒNƒ}[ƒN‚âƒ‰ƒWƒIƒ{ƒ^ƒ“‚ğ•\¦‚·‚é‚©‚Ç‚¤‚©‚ğİ’è‚·‚é
+// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®é …ç›®ã«ãƒã‚§ãƒƒã‚¯ãƒãƒ¼ã‚¯ã‚„ãƒ©ã‚¸ã‚ªãƒœã‚¿ãƒ³ã‚’è¡¨ç¤ºã™ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹
 extern int NS_SetMenuItemMark_ID( int ItemID, int Mark )
 {
 	return NS_SetMenuItemMark( NULL, ItemID, Mark ) ;
@@ -8277,7 +8277,7 @@ extern int NS_SetMenuItemMark_ID( int ItemID, int Mark )
 
 #ifndef DX_COMPILE_TYPE_C_LANGUAGE
 
-// ƒƒjƒ…[‚Ì€–Ú–¼‚©‚ç‚h‚c‚ğæ“¾‚·‚é
+// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®é …ç›®åã‹ã‚‰ï¼©ï¼¤ã‚’å–å¾—ã™ã‚‹
 extern int NS_GetMenuItemID( const TCHAR *ItemName )
 {
 	return NS_GetMenuItemIDDX( ItemName ) ;
@@ -8285,7 +8285,7 @@ extern int NS_GetMenuItemID( const TCHAR *ItemName )
 
 #endif // DX_COMPILE_TYPE_C_LANGUAGE
 
-// ƒƒjƒ…[‚Ì€–Ú–¼‚©‚ç‚h‚c‚ğæ“¾‚·‚é
+// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®é …ç›®åã‹ã‚‰ï¼©ï¼¤ã‚’å–å¾—ã™ã‚‹
 extern int NS_GetMenuItemIDDX( const TCHAR *ItemName )
 {
 #ifdef UNICODE
@@ -8303,7 +8303,7 @@ extern int NS_GetMenuItemIDDX( const TCHAR *ItemName )
 #endif
 }
 
-// ƒƒjƒ…[‚Ì€–Ú–¼‚©‚ç€–Ú¯•Ê”Ô†‚ğæ“¾‚·‚é
+// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®é …ç›®åã‹ã‚‰é …ç›®è­˜åˆ¥ç•ªå·ã‚’å–å¾—ã™ã‚‹
 extern int NS_GetMenuItemIDWithStrLen( const TCHAR *ItemName, size_t ItemNameLength )
 {
 	int Result ;
@@ -8319,7 +8319,7 @@ extern int NS_GetMenuItemIDWithStrLen( const TCHAR *ItemName, size_t ItemNameLen
 	return Result ;
 }
 
-// ƒƒjƒ…[‚Ì€–Ú–¼‚©‚ç‚h‚c‚ğæ“¾‚·‚é
+// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®é …ç›®åã‹ã‚‰ï¼©ï¼¤ã‚’å–å¾—ã™ã‚‹
 extern int GetMenuItemID_WCHAR_T( const wchar_t *ItemName )
 {
 	WINMENUITEMINFO *WinItemInfo ;
@@ -8327,16 +8327,16 @@ extern int GetMenuItemID_WCHAR_T( const wchar_t *ItemName )
 
 	if( WinData.MenuUseFlag == FALSE ) return -1 ;
 	
-	// ‘I‘ğ€–Ú‚Ìî•ñ‚ğæ“¾
+	// é¸æŠé …ç›®ã®æƒ…å ±ã‚’å–å¾—
 	WinItemInfo = SearchMenuItemInfo( ItemName, -1 ) ;
 	if( WinItemInfo == NULL ) return -1 ;
 	Result = (int)WinItemInfo->ID ;
 	
-	// ‚h‚c‚ğ•Ô‚·
+	// ï¼©ï¼¤ã‚’è¿”ã™
 	return Result ;
 }
 
-// ƒƒjƒ…[‚Ì‚h‚c‚©‚ç€–Ú–¼‚ğæ“¾‚·‚é
+// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®ï¼©ï¼¤ã‹ã‚‰é …ç›®åã‚’å–å¾—ã™ã‚‹
 extern int NS_GetMenuItemName( int ItemID, TCHAR *NameBuffer )
 {
 #ifdef UNICODE
@@ -8348,23 +8348,23 @@ extern int NS_GetMenuItemName( int ItemID, TCHAR *NameBuffer )
 
 	if( WinData.MenuUseFlag == FALSE ) return -1 ;
 	
-	// e‚Ì‚h‚c‚ğ‚Â‘I‘ğ€–Ú‚Ìî•ñ‚ğæ“¾		
+	// è¦ªã®ï¼©ï¼¤ã‚’æŒã¤é¸æŠé …ç›®ã®æƒ…å ±ã‚’å–å¾—		
 	WinItemInfo = SearchMenuItemInfo( NULL, ItemID ) ;
 	if( WinItemInfo == NULL ) return -1 ;
 
-	// Œ»İ‚Ìî•ñ‚ğ“¾‚é
+	// ç¾åœ¨ã®æƒ…å ±ã‚’å¾—ã‚‹
 	Result = _GetMenuItemInfo( WinItemInfo->Menu, WinItemInfo->Index, &ItemInfo ) ;
 	if( Result != 0 ) return -1 ;
 
-	// €–Ú–¼‚ğƒRƒs[
+	// é …ç›®åã‚’ã‚³ãƒ”ãƒ¼
 	ConvString( ( const char * )ItemInfo.dwTypeData, -1, WCHAR_T_CHARCODEFORMAT, ( char * )NameBuffer, BUFFERBYTES_CANCEL, _TCHARCODEFORMAT ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 #endif
 }
 
-// ƒƒjƒ…[‚Ì‚h‚c‚©‚ç€–Ú–¼‚ğæ“¾‚·‚é
+// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®ï¼©ï¼¤ã‹ã‚‰é …ç›®åã‚’å–å¾—ã™ã‚‹
 extern int GetMenuItemName_WCHAR_T( int ItemID, wchar_t *NameBuffer )
 {
 	int Result ;
@@ -8373,74 +8373,74 @@ extern int GetMenuItemName_WCHAR_T( int ItemID, wchar_t *NameBuffer )
 
 	if( WinData.MenuUseFlag == FALSE ) return -1 ;
 	
-	// e‚Ì‚h‚c‚ğ‚Â‘I‘ğ€–Ú‚Ìî•ñ‚ğæ“¾		
+	// è¦ªã®ï¼©ï¼¤ã‚’æŒã¤é¸æŠé …ç›®ã®æƒ…å ±ã‚’å–å¾—		
 	WinItemInfo = SearchMenuItemInfo( NULL, ItemID ) ;
 	if( WinItemInfo == NULL ) return -1 ;
 
-	// Œ»İ‚Ìî•ñ‚ğ“¾‚é
+	// ç¾åœ¨ã®æƒ…å ±ã‚’å¾—ã‚‹
 	Result = _GetMenuItemInfo( WinItemInfo->Menu, WinItemInfo->Index, &ItemInfo ) ;
 	if( Result != 0 ) return -1 ;
 
-	// €–Ú–¼‚ğƒRƒs[
+	// é …ç›®åã‚’ã‚³ãƒ”ãƒ¼
 	_WCSCPY( NameBuffer, ItemInfo.dwTypeData ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒƒjƒ…[‚ğƒŠƒ\[ƒX‚©‚ç“Ç‚İ‚Ş
+// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’ãƒªã‚½ãƒ¼ã‚¹ã‹ã‚‰èª­ã¿è¾¼ã‚€
 extern int NS_LoadMenuResource( int MenuResourceID )
 {
 	HMENU Menu ;
 
 	SETUP_WIN_API
 
-	// w’è‚ÌƒŠƒ\[ƒX‚ğ“Ç‚İ‚Ş
+	// æŒ‡å®šã®ãƒªã‚½ãƒ¼ã‚¹ã‚’èª­ã¿è¾¼ã‚€
 	Menu = LoadMenuWFunc( 
 		WinData.LoadResourModule == NULL ? GetModuleHandleWFunc( NULL ) : WinData.LoadResourModule,
 		MAKEINTRESOURCEW( MenuResourceID )
 	) ;
 	if( Menu == NULL ) return -1 ;
 	
-	// ƒƒjƒ…[‚ğ—LŒø‚É‚·‚é
+	// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’æœ‰åŠ¹ã«ã™ã‚‹
 	NS_SetUseMenuFlag( TRUE ) ;
 	
-	// Šù‚Éì¬‚³‚ê‚Ä‚¢‚éƒƒjƒ…[‚ğíœ‚·‚é
+	// æ—¢ã«ä½œæˆã•ã‚Œã¦ã„ã‚‹ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’å‰Šé™¤ã™ã‚‹
 	if( WinData.Menu != NULL )
 	{
-		// ƒƒjƒ…[‚ğƒEƒCƒ“ƒhƒE‚©‚çŠO‚·
+		// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‹ã‚‰å¤–ã™
 		NS_SetDisplayMenuFlag( FALSE ) ;
 
-		// ƒƒjƒ…[‚ğíœ
+		// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’å‰Šé™¤
 		WinAPIData.Win32Func.DestroyMenuFunc( WinData.Menu ) ;
 		WinData.Menu = NULL ;
 	}
 
-	// V‚µ‚¢ƒƒjƒ…[‚ğƒZƒbƒg
+	// æ–°ã—ã„ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’ã‚»ãƒƒãƒˆ
 	WinData.Menu = Menu ;
 	
-	// ƒƒjƒ…[‚ğ•\¦ó‘Ô‚ÉƒZƒbƒg
+	// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’è¡¨ç¤ºçŠ¶æ…‹ã«ã‚»ãƒƒãƒˆ
 	WinData.MenuDisplayState = FALSE ;
 	NS_SetDisplayMenuFlag( TRUE ) ;
 
-	// ‘I‘ğ€–Ú‚Ìî•ñ‚ğXV‚·‚é
+	// é¸æŠé …ç›®ã®æƒ…å ±ã‚’æ›´æ–°ã™ã‚‹
 	WinData.MenuItemInfoNum = 0 ;
 	ListupMenuItemInfo( WinData.Menu ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒƒjƒ…[‚Ì€–Ú‚ª‘I‘ğ‚³‚ê‚½‚Æ‚«‚ÉŒÄ‚Î‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”‚ğİ’è‚·‚é
+// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®é …ç›®ãŒé¸æŠã•ã‚ŒãŸã¨ãã«å‘¼ã°ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã‚’è¨­å®šã™ã‚‹
 extern int NS_SetMenuItemSelectCallBackFunction( void (*CallBackFunction)( const TCHAR *ItemName, int ItemID ) )
 {
 	WinData.MenuCallBackFunction = CallBackFunction ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒƒjƒ…[\‘¢‚Ì’†‚©‚çA‘I‘ğ€–Ú‚Ì‚h‚c‚ğŒ³‚ÉˆÊ’uî•ñ‚ğ“¾‚é( -1:ƒGƒ‰[  0:Œ©‚Â‚©‚ç‚È‚©‚Á‚½  1:Œ©‚Â‚©‚Á‚½ )
+// ãƒ¡ãƒ‹ãƒ¥ãƒ¼æ§‹é€ ã®ä¸­ã‹ã‚‰ã€é¸æŠé …ç›®ã®ï¼©ï¼¤ã‚’å…ƒã«ä½ç½®æƒ…å ±ã‚’å¾—ã‚‹( -1:ã‚¨ãƒ©ãƒ¼  0:è¦‹ã¤ã‹ã‚‰ãªã‹ã£ãŸ  1:è¦‹ã¤ã‹ã£ãŸ )
 static int SearchMenuItem( const wchar_t *ItemName, int ItemID, HMENU SearchMenu, HMENU *Menu, int *Index )
 {
 	int ItemNum, i ;
@@ -8450,23 +8450,23 @@ static int SearchMenuItem( const wchar_t *ItemName, int ItemID, HMENU SearchMenu
 
 	SETUP_WIN_API
 
-	// ƒƒjƒ…[‚ª—LŒø‚Å‚Í‚È‚©‚Á‚½‚ç‰½‚à‚µ‚È‚¢
+	// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãŒæœ‰åŠ¹ã§ã¯ãªã‹ã£ãŸã‚‰ä½•ã‚‚ã—ãªã„
 	if( WinData.MenuUseFlag == FALSE ) return -1 ;
 
-	// ƒƒjƒ…[“à‚Ì€–Ú”‚ğ“¾‚é	
+	// ãƒ¡ãƒ‹ãƒ¥ãƒ¼å†…ã®é …ç›®æ•°ã‚’å¾—ã‚‹	
 	ItemNum = WinAPIData.Win32Func.GetMenuItemCountFunc( SearchMenu ) ;
 	if( ItemNum == -1 ) return -1 ;
 
-	// ƒƒjƒ…[“à‚Éw’è‚Ì‚h‚c‚Ì‘I‘ğ€–Ú‚ª–³‚¢‚©’²‚×‚é
+	// ãƒ¡ãƒ‹ãƒ¥ãƒ¼å†…ã«æŒ‡å®šã®ï¼©ï¼¤ã®é¸æŠé …ç›®ãŒç„¡ã„ã‹èª¿ã¹ã‚‹
 	for( i = 0 ; i < ItemNum ; i ++ )
 	{
-		// €–Ú‚Ìî•ñ‚ğ“¾‚é
+		// é …ç›®ã®æƒ…å ±ã‚’å¾—ã‚‹
 		Result = _GetMenuItemInfo( SearchMenu, i, &ItemInfo ) ;
 		
-		// ‹æØ‚èü‚¾‚Á‚½‚çƒXƒLƒbƒv
+		// åŒºåˆ‡ã‚Šç·šã ã£ãŸã‚‰ã‚¹ã‚­ãƒƒãƒ—
 		if( Result == 1 ) continue ;
 		
-		// –Ú“I‚Ì€–Ú‚¾‚Á‚½‚ç‚±‚±‚ÅI—¹
+		// ç›®çš„ã®é …ç›®ã ã£ãŸã‚‰ã“ã“ã§çµ‚äº†
 		if( ItemName )
 		{
 			if( _WCSCMP( ItemInfo.dwTypeData, ItemName ) == 0 ) break ;
@@ -8476,34 +8476,34 @@ static int SearchMenuItem( const wchar_t *ItemName, int ItemID, HMENU SearchMenu
 			if( ItemInfo.wID == (UINT)ItemID ) break ;
 		}
 
-		// ƒTƒuƒƒjƒ…[‚ğ‚Á‚Ä‚¢‚½‚ç‚»‚¿‚ç‚àŒŸõ‚·‚é
+		// ã‚µãƒ–ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’æŒã£ã¦ã„ãŸã‚‰ãã¡ã‚‰ã‚‚æ¤œç´¢ã™ã‚‹
 		SubMenu = ItemInfo.hSubMenu ;
 		if( SubMenu != NULL )
 		{
 			Result = SearchMenuItem( ItemName, ItemID, SubMenu, Menu, Index ) ;
 			
-			// ƒGƒ‰[‚ª”­¶‚·‚é‚©A–Ú“I‚Ì‚h‚c‚ªŒ©‚Â‚©‚Á‚½‚ç‚±‚±‚ÅI—¹
+			// ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã™ã‚‹ã‹ã€ç›®çš„ã®ï¼©ï¼¤ãŒè¦‹ã¤ã‹ã£ãŸã‚‰ã“ã“ã§çµ‚äº†
 			if( Result == -1 || Result == 1 ) return Result ;
 		}
 	}
 	
-	// İ‚Á‚½‚çî•ñ‚ğŠi”[‚µ‚ÄŠÖ”‚ğo‚é
+	// åœ¨ã£ãŸã‚‰æƒ…å ±ã‚’æ ¼ç´ã—ã¦é–¢æ•°ã‚’å‡ºã‚‹
 	if( i != ItemNum )
 	{
 		*Menu = SearchMenu ;
 		*Index = i ;
 		
-		// ¬Œ÷I—¹‚Í‚P
+		// æˆåŠŸçµ‚äº†ã¯ï¼‘
 		return 1 ;
 	}
 	
-	// –³‚©‚Á‚½‚ç‚O‚ğ•Ô‚·
+	// ç„¡ã‹ã£ãŸã‚‰ï¼ã‚’è¿”ã™
 	return 0 ;
 }
 
 
 
-// (ŒÃ‚¢ŠÖ”)ƒEƒCƒ“ƒhƒE‚Éƒƒjƒ…[‚ğİ’è‚·‚é
+// (å¤ã„é–¢æ•°)ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã«ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’è¨­å®šã™ã‚‹
 extern int NS_SetWindowMenu( int MenuID, int (*MenuProc)( WORD ID ) )
 {
 	int DispFlag ;
@@ -8512,91 +8512,91 @@ extern int NS_SetWindowMenu( int MenuID, int (*MenuProc)( WORD ID ) )
 
 	DispFlag = NS_GetDisplayMenuFlag() ;
 
-	// ‚à‚µŠù‚Éƒƒjƒ…[‚ªƒ[ƒh‚³‚ê‚Ä‚¢‚½‚çƒƒjƒ…[‚ğíœ‚·‚é
+	// ã‚‚ã—æ—¢ã«ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãŒãƒ­ãƒ¼ãƒ‰ã•ã‚Œã¦ã„ãŸã‚‰ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’å‰Šé™¤ã™ã‚‹
 	if( WinData.Menu != NULL )
 	{
-		// ƒƒjƒ…[‚ğœ‹
+		// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’é™¤å»
 		NS_SetDisplayMenuFlag( FALSE ) ;
 
-		// ƒƒjƒ…[‚ğíœ
+		// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’å‰Šé™¤
 		WinAPIData.Win32Func.DestroyMenuFunc( WinData.Menu ) ;
 		WinData.Menu = NULL ;
 	}
 
-	// ‚à‚µƒƒjƒ…[‚h‚c‚ª -1 ‚¾‚Á‚½‚çƒƒjƒ…[‚ğíœ
+	// ã‚‚ã—ãƒ¡ãƒ‹ãƒ¥ãƒ¼ï¼©ï¼¤ãŒ -1 ã ã£ãŸã‚‰ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’å‰Šé™¤
 	if( MenuID == -1 )
 	{
-		// ƒƒjƒ…[‚ğ–³Œø‚É‚·‚é
+		// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’ç„¡åŠ¹ã«ã™ã‚‹
 		WinData.MenuUseFlag = FALSE ;
 	}
 	else
 	{
-		// ƒƒjƒ…[‚ğƒ[ƒh
+		// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’ãƒ­ãƒ¼ãƒ‰
 		WinData.Menu = LoadMenuWFunc( GetModuleHandleWFunc( NULL ), MAKEINTRESOURCEW( MenuID ) ) ;
 		if( WinData.Menu == NULL ) return -1 ;
 
-		// ƒƒjƒ…[‚ğ—LŒø‚É‚·‚é
+		// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’æœ‰åŠ¹ã«ã™ã‚‹
 		WinData.MenuUseFlag = TRUE ;
 
-		// ƒƒjƒ…[‚ğ•\¦ó‘Ô‚ğXV‚·‚é
+		// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’è¡¨ç¤ºçŠ¶æ…‹ã‚’æ›´æ–°ã™ã‚‹
 		NS_SetDisplayMenuFlag( DispFlag ) ;
 
-		// ƒR[ƒ‹ƒoƒbƒNŠÖ”‚Ìƒ|ƒCƒ“ƒ^‚ğ•Û‘¶
+		// ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã®ãƒã‚¤ãƒ³ã‚¿ã‚’ä¿å­˜
 		WinData.MenuProc = MenuProc ;
 	}
 	
-	// ‘I‘ğ€–Ú‚Ìî•ñ‚ğXV‚·‚é
+	// é¸æŠé …ç›®ã®æƒ…å ±ã‚’æ›´æ–°ã™ã‚‹
 	WinData.MenuItemInfoNum = 0 ;
 	ListupMenuItemInfo( WinData.Menu ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒEƒCƒ“ƒhƒEƒƒjƒ…[•\¦ŠJn‚Ég—p‚·‚éƒL[‚ğİ’è‚·‚é
+// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ¡ãƒ‹ãƒ¥ãƒ¼è¡¨ç¤ºé–‹å§‹ã«ä½¿ç”¨ã™ã‚‹ã‚­ãƒ¼ã‚’è¨­å®šã™ã‚‹
 /*extern int SetWindowMenuStartKey( int KeyID )
 {
-	// ƒL[‚ğİ’è‚·‚é
+	// ã‚­ãƒ¼ã‚’è¨­å®šã™ã‚‹
 	WinData.MenuStartKey = KeyID ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 */
 
-// ƒƒjƒ…[‚ğ•\¦‚·‚é‚©‚Ç‚¤‚©‚ğƒZƒbƒg‚·‚é
+// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’è¡¨ç¤ºã™ã‚‹ã‹ã©ã†ã‹ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern int NS_SetDisplayMenuFlag( int Flag )
 {
 	int DispState ;
 
-	// ƒƒjƒ…[‚ª—LŒø‚Å‚Í‚È‚¢ê‡‚Í‰½‚à‚µ‚È‚¢
+	// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãŒæœ‰åŠ¹ã§ã¯ãªã„å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( WinData.MenuUseFlag == FALSE ) return 0 ;
 
 	SETUP_WIN_API
 
-	// ƒtƒ‰ƒO‚ğ•Û‘¶
+	// ãƒ•ãƒ©ã‚°ã‚’ä¿å­˜
 	WinData.NotMenuDisplayFlag = !Flag ;
 	
-	// ƒEƒCƒ“ƒhƒE‚ªì¬‚³‚ê‚Ä‚¢‚È‚¢ê‡‚Í‰½‚à‚µ‚È‚¢
+	// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãŒä½œæˆã•ã‚Œã¦ã„ãªã„å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( WinData.MainWindow == NULL ) return 0 ;
 
-	// •\¦ó‘Ô‚ª“¯‚¶ê‡‚Í‰½‚à‚¹‚¸I—¹
+	// è¡¨ç¤ºçŠ¶æ…‹ãŒåŒã˜å ´åˆã¯ä½•ã‚‚ã›ãšçµ‚äº†
 	DispState = GetDisplayMenuState() ;
 	if( DispState == WinData.MenuDisplayState ) return 0 ;
 
-	// ƒƒjƒ…[‚ğ•\¦‚·‚×‚«‚©‚Ç‚¤‚©‚É‚æ‚Á‚Äˆ—‚ğ•ªŠò
+	// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’è¡¨ç¤ºã™ã¹ãã‹ã©ã†ã‹ã«ã‚ˆã£ã¦å‡¦ç†ã‚’åˆ†å²
 	if( DispState == TRUE )
 	{
-		// •\¦‚·‚éê‡‚Ìˆ—
+		// è¡¨ç¤ºã™ã‚‹å ´åˆã®å‡¦ç†
 
-		// ƒƒjƒ…[‚ÌƒZƒbƒg
+		// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®ã‚»ãƒƒãƒˆ
 		if( WinData.MenuSetupFlag == FALSE )
 		{
 			WinAPIData.Win32Func.SetMenuFunc( WinData.MainWindow, WinData.Menu ) ;
 			WinData.MenuSetupFlag = TRUE ;
 		}
 
-		// ƒEƒCƒ“ƒhƒE‚Ì‘®«‚ğ•ÏX
+		// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®å±æ€§ã‚’å¤‰æ›´
 		if( WinData.WindowModeFlag || NS_GetUseFullScreenResolutionMode() == DX_FSRESOLUTIONMODE_BORDERLESS_WINDOW )
 		{
 			SetWindowStyle( FALSE ) ;
@@ -8604,40 +8604,40 @@ extern int NS_SetDisplayMenuFlag( int Flag )
 	}
 	else
 	{
-		// ”ñ•\¦‚É‚·‚éê‡‚Ìˆ—
+		// éè¡¨ç¤ºã«ã™ã‚‹å ´åˆã®å‡¦ç†
 
-		// ƒƒjƒ…[‚ğŠO‚·
+		// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’å¤–ã™
 		if( WinData.MenuSetupFlag == TRUE )
 		{
 			WinAPIData.Win32Func.SetMenuFunc( WinData.MainWindow, NULL ) ;
 			WinData.MenuSetupFlag = FALSE ;
 		}
 
-		// ƒEƒCƒ“ƒhƒE‚Ì‘®«‚ğ•ÏX
+		// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®å±æ€§ã‚’å¤‰æ›´
 		if( WinData.WindowModeFlag || NS_GetUseFullScreenResolutionMode() == DX_FSRESOLUTIONMODE_BORDERLESS_WINDOW )
 		{
 			SetWindowStyle( FALSE ) ;
 		}
 	}
 
-	// ƒƒjƒ…[‚ÌÄ•`‰æ
+	// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®å†æç”»
 	WinAPIData.Win32Func.UpdateWindowFunc( WinData.MainWindow ) ;
 //	WinAPIData.Win32Func.DrawMenuBarFunc( WinData.MainWindow ) ;
 
-	// ƒtƒ‰ƒO‚Ì•Û‘¶
+	// ãƒ•ãƒ©ã‚°ã®ä¿å­˜
 	WinData.MenuDisplayState = DispState ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒƒjƒ…[‚ğ•\¦‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©‚ğæ“¾‚·‚é
+// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’è¡¨ç¤ºã—ã¦ã„ã‚‹ã‹ã©ã†ã‹ã‚’å–å¾—ã™ã‚‹
 extern int NS_GetDisplayMenuFlag( void )
 {
 	return WinData.NotMenuDisplayFlag == FALSE ;
 }
 
-// ƒƒjƒ…[‚ª•\¦‚·‚é‚×‚«‚©‚Ç‚¤‚©‚ğæ“¾‚·‚é( FALSE:•\¦‚·‚×‚«‚Å‚È‚¢  TRUE:•\¦‚·‚×‚« )
+// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãŒè¡¨ç¤ºã™ã‚‹ã¹ãã‹ã©ã†ã‹ã‚’å–å¾—ã™ã‚‹( FALSE:è¡¨ç¤ºã™ã¹ãã§ãªã„  TRUE:è¡¨ç¤ºã™ã¹ã )
 static int GetDisplayMenuState( void )
 {
 	if( WinData.MainWindow == NULL ) return FALSE ;
@@ -8648,7 +8648,7 @@ static int GetDisplayMenuState( void )
 	return TRUE ;
 }
 
-// ƒ}ƒEƒXƒJ[ƒ\ƒ‹‚ªƒNƒ‰ƒCƒAƒ“ƒg—Ìˆæ‚Ì’†‚É‚ ‚é‚©‚Ç‚¤‚©‚ğ’²‚×‚é
+// ãƒã‚¦ã‚¹ã‚«ãƒ¼ã‚½ãƒ«ãŒã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆé ˜åŸŸã®ä¸­ã«ã‚ã‚‹ã‹ã©ã†ã‹ã‚’èª¿ã¹ã‚‹
 static int CheckMousePosClientArea( void )
 {
 	POINT MousePos ;
@@ -8666,23 +8666,23 @@ static int CheckMousePosClientArea( void )
 	return FALSE ;
 }
 
-// ƒƒjƒ…[ƒAƒCƒeƒ€‚Ìî•ñ‚ğæ“¾‚·‚é( 0:³íI—¹  -1:ƒGƒ‰[  1:‹æØ‚èü )
+// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¢ã‚¤ãƒ†ãƒ ã®æƒ…å ±ã‚’å–å¾—ã™ã‚‹( 0:æ­£å¸¸çµ‚äº†  -1:ã‚¨ãƒ©ãƒ¼  1:åŒºåˆ‡ã‚Šç·š )
 static int _GetMenuItemInfo( HMENU Menu, int Index, MENUITEMINFOW *Buffer )
 {
 	static wchar_t NameBuffer[128] ;
 
 	SETUP_WIN_API
 
-	// ‹æØ‚èü‚©‚Ç‚¤‚©’²‚×‚é
+	// åŒºåˆ‡ã‚Šç·šã‹ã©ã†ã‹èª¿ã¹ã‚‹
 	_MEMSET( Buffer, 0, sizeof( MENUITEMINFOW ) ) ;
 	Buffer->cbSize = sizeof( MENUITEMINFOW ) ;
 	Buffer->fMask = MIIM_TYPE ;
 	if( GetMenuItemInfoWFunc( Menu, ( UINT )Index, TRUE, Buffer ) == 0 ) return -1 ;
 
-	// ‹æØ‚èü‚¾‚Á‚½‚ç‚P‚ğ•Ô‚·
+	// åŒºåˆ‡ã‚Šç·šã ã£ãŸã‚‰ï¼‘ã‚’è¿”ã™
 	if( Buffer->fType & MFT_SEPARATOR ) return 1 ;
 
-	// ‹æØ‚èü‚Å‚Í‚È‚©‚Á‚½‚ç‚»‚êˆÈŠO‚ÌƒXƒe[ƒ^ƒX‚ğæ“¾‚·‚é
+	// åŒºåˆ‡ã‚Šç·šã§ã¯ãªã‹ã£ãŸã‚‰ãã‚Œä»¥å¤–ã®ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚’å–å¾—ã™ã‚‹
 	_MEMSET( Buffer, 0, sizeof( MENUITEMINFOW ) ) ;
 	Buffer->cbSize = sizeof( MENUITEMINFOW ) ;
 	Buffer->fMask = MIIM_STATE | MIIM_ID | MIIM_SUBMENU | MIIM_TYPE ;
@@ -8695,7 +8695,7 @@ static int _GetMenuItemInfo( HMENU Menu, int Index, MENUITEMINFOW *Buffer )
 }
 
 
-// w’è‚Ì‘I‘ğ€–Ú‚ÉƒTƒuƒƒjƒ…[‚ğ•t‚¯‚ç‚ê‚é‚æ‚¤‚É€”õ‚ğ‚·‚é
+// æŒ‡å®šã®é¸æŠé …ç›®ã«ã‚µãƒ–ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’ä»˜ã‘ã‚‰ã‚Œã‚‹ã‚ˆã†ã«æº–å‚™ã‚’ã™ã‚‹
 static HMENU MenuItemSubMenuSetup( const wchar_t *ItemName, int ItemID )
 {
 	HMENU SubMenu ;
@@ -8704,45 +8704,45 @@ static HMENU MenuItemSubMenuSetup( const wchar_t *ItemName, int ItemID )
 
 	SETUP_WIN_API
 
-	// w’è‚Ì€–Ú‚Ìî•ñ‚ğ“¾‚é
+	// æŒ‡å®šã®é …ç›®ã®æƒ…å ±ã‚’å¾—ã‚‹
 	WinItemInfo = SearchMenuItemInfo( ItemName, ItemID ) ;
 	
-	// Œ©‚Â‚©‚ç‚È‚©‚Á‚½‚çƒGƒ‰[
+	// è¦‹ã¤ã‹ã‚‰ãªã‹ã£ãŸã‚‰ã‚¨ãƒ©ãƒ¼
 	if( WinItemInfo == NULL ) return NULL ;
 
-	// ƒTƒuƒƒjƒ…[‚ªŠù‚É‚ ‚é‚©‚Ç‚¤‚©’²‚×‚é
+	// ã‚µãƒ–ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãŒæ—¢ã«ã‚ã‚‹ã‹ã©ã†ã‹èª¿ã¹ã‚‹
 	SubMenu = WinAPIData.Win32Func.GetSubMenuFunc( WinItemInfo->Menu, WinItemInfo->Index ) ;
 
-	// Šù‚Éİ‚Á‚½‚ç‚»‚ê‚ğ•Ô‚·
+	// æ—¢ã«åœ¨ã£ãŸã‚‰ãã‚Œã‚’è¿”ã™
 	if( SubMenu != NULL ) return SubMenu ;
 
-	// ‚È‚©‚Á‚½‚çƒTƒuƒƒjƒ…[‚ğ’Ç‰Á‚·‚é
+	// ãªã‹ã£ãŸã‚‰ã‚µãƒ–ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’è¿½åŠ ã™ã‚‹
 	SubMenu = WinAPIData.Win32Func.CreateMenuFunc() ;
 
-	// ‘I‘ğ€–Ú‚Ìî•ñ‚ÉƒTƒuƒƒjƒ…[‚ğ‰Á‚¦‚é
+	// é¸æŠé …ç›®ã®æƒ…å ±ã«ã‚µãƒ–ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’åŠ ãˆã‚‹
 	{
-		// Œ»İ‚Ìî•ñ‚ğæ“¾
+		// ç¾åœ¨ã®æƒ…å ±ã‚’å–å¾—
 		_GetMenuItemInfo( WinItemInfo->Menu, WinItemInfo->Index, &ItemInfo ) ;
 		
-		// ƒTƒuƒƒjƒ…[‚ğ’Ç‰Á
+		// ã‚µãƒ–ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’è¿½åŠ 
 		ItemInfo.hSubMenu = SubMenu ;
 
-		// V‚µ‚¢î•ñ‚ğƒZƒbƒg
+		// æ–°ã—ã„æƒ…å ±ã‚’ã‚»ãƒƒãƒˆ
 		SetMenuItemInfoWFunc( WinItemInfo->Menu, ( UINT )WinItemInfo->Index, TRUE, &ItemInfo ) ;
 	}
 
-	// ì¬‚µ‚½ƒTƒuƒƒjƒ…[‚ğ•Ô‚·
+	// ä½œæˆã—ãŸã‚µãƒ–ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’è¿”ã™
 	return SubMenu ;
 }
 
-// ƒƒjƒ…[‚ğg—p‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©‚ğ“¾‚é
+// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹ã‹ã©ã†ã‹ã‚’å¾—ã‚‹
 extern int NS_GetUseMenuFlag( void )
 {
 	return WinData.MenuUseFlag ;
 }
 
-// ƒtƒ‹ƒXƒNƒŠ[ƒ“‚Éƒƒjƒ…[‚ğ©“®‚Å•\¦‚µ‚½‚è”ñ•\¦‚É‚µ‚½‚è
-// ‚·‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğƒZƒbƒg‚·‚é
+// ãƒ•ãƒ«ã‚¹ã‚¯ãƒªãƒ¼ãƒ³æ™‚ã«ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’è‡ªå‹•ã§è¡¨ç¤ºã—ãŸã‚Šéè¡¨ç¤ºã«ã—ãŸã‚Š
+// ã™ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern int NS_SetAutoMenuDisplayFlag( int Flag )
 {
 	WinData.NotMenuAutoDisplayFlag = !Flag ;
@@ -8750,7 +8750,7 @@ extern int NS_SetAutoMenuDisplayFlag( int Flag )
 	return 0 ;
 }
 
-// ƒƒjƒ…[‚Ì‘I‘ğ€–Ú‚Ìî•ñ‚Ìˆê——‚ğì¬‚·‚é‚Ég—p‚·‚éŠÖ”
+// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®é¸æŠé …ç›®ã®æƒ…å ±ã®ä¸€è¦§ã‚’ä½œæˆã™ã‚‹æ™‚ã«ä½¿ç”¨ã™ã‚‹é–¢æ•°
 static int ListupMenuItemInfo( HMENU Menu )
 {
 	int i, Num, Result ;
@@ -8759,19 +8759,19 @@ static int ListupMenuItemInfo( HMENU Menu )
 
 	SETUP_WIN_API
 	
-	// ‘S‚Ä‚Ì€–Ú‚Ì‚h‚c‚ğƒŠƒXƒg‚É’Ç‰Á‚·‚é
+	// å…¨ã¦ã®é …ç›®ã®ï¼©ï¼¤ã‚’ãƒªã‚¹ãƒˆã«è¿½åŠ ã™ã‚‹
 	Num = WinAPIData.Win32Func.GetMenuItemCountFunc( Menu ) ;
 	if( Num == -1 ) return -1 ;
 	
 	for( i = 0 ; i < Num ; i ++ )
 	{
-		// €–Ú‚Ìî•ñ‚ğæ“¾
+		// é …ç›®ã®æƒ…å ±ã‚’å–å¾—
 		Result = _GetMenuItemInfo( Menu, i, &ItemInfo ) ;
 		
-		// ƒGƒ‰[‚ª”­¶‚µ‚½‚çI—¹
+		// ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ãŸã‚‰çµ‚äº†
 		if( Result == -1 ) return -1 ;
 		
-		// ‹æØ‚èüˆÈŠO‚¾‚Á‚½‚çî•ñ‚ğ’Ç‰Á
+		// åŒºåˆ‡ã‚Šç·šä»¥å¤–ã ã£ãŸã‚‰æƒ…å ±ã‚’è¿½åŠ 
 		if( Result != 1 )
 		{
 			WinItemInfo = &WinData.MenuItemInfo[ WinData.MenuItemInfoNum ] ;
@@ -8782,52 +8782,52 @@ static int ListupMenuItemInfo( HMENU Menu )
 
 			WinData.MenuItemInfoNum ++ ;
 
-			// ƒTƒuƒƒjƒ…[‚ª‚ ‚Á‚½‚ç‚»‚ê‚àˆ—
+			// ã‚µãƒ–ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãŒã‚ã£ãŸã‚‰ãã‚Œã‚‚å‡¦ç†
 			if( ItemInfo.hSubMenu != NULL )
 				ListupMenuItemInfo( ItemInfo.hSubMenu ) ;
 		}
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒƒjƒ…[‚Ì‘I‘ğ€–Ú‚Ìî•ñ‚ğ’Ç‰Á‚·‚é
+// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®é¸æŠé …ç›®ã®æƒ…å ±ã‚’è¿½åŠ ã™ã‚‹
 static int AddMenuItemInfo( HMENU Menu, int Index, int ID, const wchar_t *Name )
 {
 	WINMENUITEMINFO *ItemInfo ;
 
-	// î•ñ‚ªˆê”t‚¾‚Á‚½‚çƒGƒ‰[
+	// æƒ…å ±ãŒä¸€æ¯ã ã£ãŸã‚‰ã‚¨ãƒ©ãƒ¼
 	if( WinData.MenuItemInfoNum == MAX_MENUITEM_NUM ) return -1 ;
 
-	// î•ñ‚Ì’Ç‰Á
+	// æƒ…å ±ã®è¿½åŠ 
 	ItemInfo = &WinData.MenuItemInfo[WinData.MenuItemInfoNum] ;
 	ItemInfo->Menu  = Menu ;
 	ItemInfo->Index = ( short )Index ;
 	ItemInfo->ID    = ( unsigned short )ID ;
 	_WCSCPY_S( ItemInfo->Name, sizeof( ItemInfo->Name ), Name ) ;
 
-	// ”‚ğ‘‚â‚·
+	// æ•°ã‚’å¢—ã‚„ã™
 	WinData.MenuItemInfoNum ++ ;
 	
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒƒjƒ…[‚Ì‘I‘ğ€–Ú‚Ìî•ñ‚ğíœ‚·‚é
+// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®é¸æŠé …ç›®ã®æƒ…å ±ã‚’å‰Šé™¤ã™ã‚‹
 static int DeleteMenuItemInfo( const wchar_t *Name, int ID )
 {
 	LONG_PTR Index ;
 	WINMENUITEMINFO *WinItemInfo ;
 	
-	// íœ‚·‚é€–Ú‚Ìî•ñ‚ğ“¾‚é
+	// å‰Šé™¤ã™ã‚‹é …ç›®ã®æƒ…å ±ã‚’å¾—ã‚‹
 	WinItemInfo = SearchMenuItemInfo( Name, ID ) ;
 	if( WinItemInfo == NULL ) return -1 ;
 	
-	// ƒCƒ“ƒfƒbƒNƒX‚ğZo
+	// ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’ç®—å‡º
 	Index = WinItemInfo - WinData.MenuItemInfo ;
 
-	// î•ñ‚ğ‹l‚ß‚é
+	// æƒ…å ±ã‚’è©°ã‚ã‚‹
 	if( Index != ( LONG_PTR )( WinData.MenuItemInfoNum - 1 ) )
 	{
 		_MEMMOVE( &WinData.MenuItemInfo[Index],
@@ -8835,14 +8835,14 @@ static int DeleteMenuItemInfo( const wchar_t *Name, int ID )
 				 sizeof( WINMENUITEMINFO ) * ( WinData.MenuItemInfoNum - Index - 1 ) ) ;
 	}
 	
-	// ”‚ğŒ¸‚ç‚·
+	// æ•°ã‚’æ¸›ã‚‰ã™
 	WinData.MenuItemInfoNum -- ;
 	
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒƒjƒ…[‚Ì‘I‘ğ€–Ú‚Ìî•ñ‚ğæ“¾‚·‚é
+// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®é¸æŠé …ç›®ã®æƒ…å ±ã‚’å–å¾—ã™ã‚‹
 static WINMENUITEMINFO *SearchMenuItemInfo( const wchar_t *Name, int ID )
 {
 	int i, ItemInfoNum ;
@@ -8851,7 +8851,7 @@ static WINMENUITEMINFO *SearchMenuItemInfo( const wchar_t *Name, int ID )
 	ItemInfoNum = WinData.MenuItemInfoNum ;
 	WinItemInfo = WinData.MenuItemInfo ;
 
-	// –¼‘O‚ª—LŒø‚Èê‡‚Í–¼‘O‚Å’²‚×‚é
+	// åå‰ãŒæœ‰åŠ¹ãªå ´åˆã¯åå‰ã§èª¿ã¹ã‚‹
 	if( Name != NULL )
 	{
 		for( i = 0 ; i < ItemInfoNum ; i ++, WinItemInfo ++ )
@@ -8867,14 +8867,14 @@ static WINMENUITEMINFO *SearchMenuItemInfo( const wchar_t *Name, int ID )
 		}
 	}
 
-	// Œ©‚Â‚©‚ç‚È‚©‚Á‚½ê‡‚Í‚m‚t‚k‚k‚ğ•Ô‚·
+	// è¦‹ã¤ã‹ã‚‰ãªã‹ã£ãŸå ´åˆã¯ï¼®ï¼µï¼¬ï¼¬ã‚’è¿”ã™
 	if( i == ItemInfoNum ) return NULL ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return WinItemInfo ;
 }
 
-// V‚µ‚¢‘I‘ğ€–Ú‚Ì‚h‚c‚ğæ“¾‚·‚é
+// æ–°ã—ã„é¸æŠé …ç›®ã®ï¼©ï¼¤ã‚’å–å¾—ã™ã‚‹
 static int GetNewMenuItemID( void )
 {
 	int NewItemID ;
@@ -8882,21 +8882,21 @@ static int GetNewMenuItemID( void )
 	NewItemID = WinData.MenuItemInfoNum ;
 	for(;;)
 	{
-		// “¯‚¶‚h‚c‚ª–³‚©‚Á‚½‚çƒ‹[ƒv‚ğ”²‚¯‚é
+		// åŒã˜ï¼©ï¼¤ãŒç„¡ã‹ã£ãŸã‚‰ãƒ«ãƒ¼ãƒ—ã‚’æŠœã‘ã‚‹
 		if( SearchMenuItemInfo( NULL, NewItemID ) == NULL ) break ;
 
-		// İ‚Á‚½‚çŸ‚Ì‚h‚c‚ğ‚·
+		// åœ¨ã£ãŸã‚‰æ¬¡ã®ï¼©ï¼¤ã‚’è©¦ã™
 		NewItemID ++ ;
 		
-		// ‚h‚c‚Ì—LŒø”ÍˆÍ‚ğ’´‚¦‚½‚ç‚O‚É‚·‚é
+		// ï¼©ï¼¤ã®æœ‰åŠ¹ç¯„å›²ã‚’è¶…ãˆãŸã‚‰ï¼ã«ã™ã‚‹
 		if( NewItemID == 0x10000 ) NewItemID = 0 ;
 	}
 
-	// V‚µ‚¢‚h‚c‚ğ•Ô‚·
+	// æ–°ã—ã„ï¼©ï¼¤ã‚’è¿”ã™
 	return NewItemID ;
 }
 
-// ƒƒjƒ…[‚ğ©“®“I‚É•\¦‚µ‚½‚è”ñ•\¦‚É‚µ‚½‚è‚·‚éˆ—‚ğs‚¤
+// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’è‡ªå‹•çš„ã«è¡¨ç¤ºã—ãŸã‚Šéè¡¨ç¤ºã«ã—ãŸã‚Šã™ã‚‹å‡¦ç†ã‚’è¡Œã†
 extern int MenuAutoDisplayProcess( void )
 {
 //	MENUBARINFO MBInfo ;
@@ -8905,10 +8905,10 @@ extern int MenuAutoDisplayProcess( void )
 
 	SETUP_WIN_API
 
-	// ƒEƒCƒ“ƒhƒEƒ‚[ƒh‚Ìê‡‚Í‰½‚à‚µ‚È‚¢
+	// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ¢ãƒ¼ãƒ‰ã®å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( WinData.WindowModeFlag == TRUE || NS_GetUseFullScreenResolutionMode() == DX_FSRESOLUTIONMODE_BORDERLESS_WINDOW ) return 0 ;
 
-	// ƒƒjƒ…[ƒo[‚Ì‚‚³‚ğ“¾‚é
+	// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒãƒ¼ã®é«˜ã•ã‚’å¾—ã‚‹
 /*	_MEMSET( &MBInfo, 0, sizeof( MBInfo ) ) ;
 	MBInfo.cbSize = sizeof( MBInfo ) ;
 	GetMenuBarInfo( WinData.MainWindow, OBJID_MENU, 0, &MBInfo ) ;
@@ -8917,23 +8917,23 @@ extern int MenuAutoDisplayProcess( void )
 	MenuBarHeight = 60 ;
 
 #ifndef DX_NON_INPUT
-	// ƒ}ƒEƒXƒ|ƒCƒ“ƒ^‚ÌÀ•W‚ğ“¾‚é
+	// ãƒã‚¦ã‚¹ãƒã‚¤ãƒ³ã‚¿ã®åº§æ¨™ã‚’å¾—ã‚‹
 	NS_GetMousePoint( &MouseX, &MouseY ) ;
 #endif // DX_NON_INPUT
 
 #ifndef DX_NON_GRAPHICS
-	// Direct3D9 ‚ğg—p‚µ‚Ä‚¢‚éê‡‚Íƒƒjƒ…[ˆÊ’u‚æ‚è‰º‚É—ˆ‚½‚çƒ}ƒEƒXƒ|ƒCƒ“ƒ^‚Ì•\¦ó‘Ô‚ğXV‚·‚é
+	// Direct3D9 ã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹å ´åˆã¯ãƒ¡ãƒ‹ãƒ¥ãƒ¼ä½ç½®ã‚ˆã‚Šä¸‹ã«æ¥ãŸã‚‰ãƒã‚¦ã‚¹ãƒã‚¤ãƒ³ã‚¿ã®è¡¨ç¤ºçŠ¶æ…‹ã‚’æ›´æ–°ã™ã‚‹
 	if( GSYS.Setting.ValidHardware )
 	{
-		// Direct3D9 ‚ğg—p‚µ‚Ä‚¢‚éê‡‚Íƒƒjƒ…[‚ª‘¶İ‚·‚éê‡‚Í
-		// ƒtƒ‹ƒXƒNƒŠ[ƒ“ƒ‚[ƒh‚Å‚àí‚ÉƒZƒbƒg‚µ‚Ä‚¨‚­
+		// Direct3D9 ã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹å ´åˆã¯ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãŒå­˜åœ¨ã™ã‚‹å ´åˆã¯
+		// ãƒ•ãƒ«ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ¢ãƒ¼ãƒ‰ã§ã‚‚å¸¸ã«ã‚»ãƒƒãƒˆã—ã¦ãŠã
 		if( WinData.Menu && WinData.MenuSetupFlag == FALSE )
 		{
 			WinAPIData.Win32Func.SetMenuFunc( WinData.MainWindow, WinData.Menu ) ;
 			WinData.MenuSetupFlag = TRUE ;
 		}
 
-		// ‚xÀ•W‚ª‹K’èˆÈã‚É‚È‚Á‚½‚ç”ñ•\¦‚É‚·‚é
+		// ï¼¹åº§æ¨™ãŒè¦å®šä»¥ä¸Šã«ãªã£ãŸã‚‰éè¡¨ç¤ºã«ã™ã‚‹
 		if( MouseY > MenuBarHeight )
 		{
 			NS_SetMouseDispFlag( NS_GetMouseDispFlag() ) ;
@@ -8942,7 +8942,7 @@ extern int MenuAutoDisplayProcess( void )
 	else
 #endif // DX_NON_GRAPHICS
 	{
-		// ƒ}ƒEƒXƒ|ƒCƒ“ƒ^‚ªƒƒjƒ…[‚ÌˆÊ’u‚É‚ ‚éê‡‚Íƒƒjƒ…[ƒo[‚ğ•\¦‚·‚é
+		// ãƒã‚¦ã‚¹ãƒã‚¤ãƒ³ã‚¿ãŒãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®ä½ç½®ã«ã‚ã‚‹å ´åˆã¯ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒãƒ¼ã‚’è¡¨ç¤ºã™ã‚‹
 		WinData.MousePosInMenuBarFlag = TRUE ;
 		if( MouseY < MenuBarHeight )
 			WinData.MousePosInMenuBarFlag = TRUE ;
@@ -8950,16 +8950,16 @@ extern int MenuAutoDisplayProcess( void )
 			WinData.MousePosInMenuBarFlag = FALSE ;
 
 #ifndef DX_NON_GRAPHICS
-		// ‚f‚c‚h‚ğg—p‚·‚é‚©‚Ç‚¤‚©‚ğƒZƒbƒg‚·‚é
+		// ï¼§ï¼¤ï¼©ã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 		NS_SetUseGDIFlag( NS_GetUseGDIFlag() ) ;
 #endif // DX_NON_GRAPHICS
 
-		// ƒƒjƒ…[ƒo[‚Æƒ}ƒEƒX‚Ì•\¦ó‘Ô‚ğXV‚·‚é
+		// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒãƒ¼ã¨ãƒã‚¦ã‚¹ã®è¡¨ç¤ºçŠ¶æ…‹ã‚’æ›´æ–°ã™ã‚‹
 		NS_SetMouseDispFlag( NS_GetMouseDispFlag() ) ;
 		NS_SetDisplayMenuFlag( NS_GetDisplayMenuFlag() ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;	
 }
 
@@ -8972,16 +8972,16 @@ extern int MenuAutoDisplayProcess( void )
 
 
 
-// ƒ}ƒEƒXŠÖŒWŠÖ”
+// ãƒã‚¦ã‚¹é–¢ä¿‚é–¢æ•°
 
-// ƒ}ƒEƒX‚Ì•\¦ƒtƒ‰ƒO‚ÌƒZƒbƒg
+// ãƒã‚¦ã‚¹ã®è¡¨ç¤ºãƒ•ãƒ©ã‚°ã®ã‚»ãƒƒãƒˆ
 extern int NS_SetMouseDispFlag( int DispFlag )
 {
 	int DispState ;
 
 	SETUP_WIN_API
 
-	// ¡‚Ü‚Å‚Æƒtƒ‰ƒO‚ª“¯‚¶‚ÅAŠ‚Âƒƒjƒ…[‚ª”ñ•\¦‚¾‚Á‚½ê‡‚È‚É‚à‚¹‚¸I—¹
+	// ä»Šã¾ã§ã¨ãƒ•ãƒ©ã‚°ãŒåŒã˜ã§ã€ä¸”ã¤ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãŒéè¡¨ç¤ºã ã£ãŸå ´åˆãªã«ã‚‚ã›ãšçµ‚äº†
 //	if( DispFlag == WinData.MouseDispFlag &&
 //		GetDisplayMenuState() == 0 )
 //	{
@@ -8990,22 +8990,22 @@ extern int NS_SetMouseDispFlag( int DispFlag )
 //		return 0 ;
 //	}
 
-	// ƒ}ƒEƒX‚Ì•\¦ƒtƒ‰ƒO‚ğƒZƒbƒg‚µ‚ÄƒƒbƒZ[ƒW‚ğ¶¬‚·‚é
+	// ãƒã‚¦ã‚¹ã®è¡¨ç¤ºãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆã—ã¦ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’ç”Ÿæˆã™ã‚‹
 	if( DispFlag != -1 )
 	{
 		WinData.MouseDispFlag = DispFlag ;
 	}
 
-	// ƒ}ƒEƒX‚ğ•\¦‚·‚é‚©‚Ç‚¤‚©‚ğæ“¾
+	// ãƒã‚¦ã‚¹ã‚’è¡¨ç¤ºã™ã‚‹ã‹ã©ã†ã‹ã‚’å–å¾—
 	DispState = WinData.MouseDispFlag == TRUE || ( WinData.MouseDispIgnoreMenuFlag == FALSE && GetDisplayMenuState() == TRUE ) ;
 
-	// ƒ}ƒEƒX‚Ì•\¦ó‘Ô‚ª¡‚Ü‚Å‚Æ“¯‚¶ê‡‚Í‰½‚à‚µ‚È‚¢
+	// ãƒã‚¦ã‚¹ã®è¡¨ç¤ºçŠ¶æ…‹ãŒä»Šã¾ã§ã¨åŒã˜å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( DispFlag != -1 && DispState == WinData.MouseDispState )
 	{
 		return 0 ;
 	}
 
-	// ƒ}ƒEƒX‚Ì•\¦ó‘Ô‚ğƒZƒbƒg
+	// ãƒã‚¦ã‚¹ã®è¡¨ç¤ºçŠ¶æ…‹ã‚’ã‚»ãƒƒãƒˆ
 //	if( 1/*!WinData.WindowModeFlag && !WinData.MouseDispFlag*/ )
 	{
 		if( DispState == FALSE && ( ( WinData.WindowModeFlag == FALSE && NS_GetUseFullScreenResolutionMode() != DX_FSRESOLUTIONMODE_BORDERLESS_WINDOW ) || CheckMousePosClientArea() == TRUE ) )
@@ -9018,36 +9018,36 @@ extern int NS_SetMouseDispFlag( int DispFlag )
 		}
 	}
 
-	// ƒ}ƒEƒX‚ÌƒZƒbƒgM†‚ğo‚·
+	// ãƒã‚¦ã‚¹ã®ã‚»ãƒƒãƒˆä¿¡å·ã‚’å‡ºã™
 	PostMessageWFunc( WinData.MainWindow, WM_SETCURSOR, ( WPARAM )WinData.MainWindow, 0 ) ;
 
-	// ƒ}ƒEƒX‚Ì•\¦ó‘Ô‚ğ•Û‘¶‚·‚é
+	// ãƒã‚¦ã‚¹ã®è¡¨ç¤ºçŠ¶æ…‹ã‚’ä¿å­˜ã™ã‚‹
 	WinData.MouseDispState = DispState ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒ}ƒEƒXƒ|ƒCƒ“ƒ^‚Ì•\¦ó‘Ô‚É‚Â‚¢‚Äƒƒjƒ…[‚Ì•\¦ó‘Ô‚ğ–³‹‚·‚é‚©‚Ç‚¤‚©‚ğİ’è‚·‚é( TRUE:ƒƒjƒ…[‚Ì•\¦ó‘Ô‚ğ–³‹‚·‚é  FALSE:ƒƒjƒ…[‚Ì•\¦ó‘Ô‚ğl—¶‚·‚é( ƒfƒtƒHƒ‹ƒg ) )
+// ãƒã‚¦ã‚¹ãƒã‚¤ãƒ³ã‚¿ã®è¡¨ç¤ºçŠ¶æ…‹ã«ã¤ã„ã¦ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®è¡¨ç¤ºçŠ¶æ…‹ã‚’ç„¡è¦–ã™ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹( TRUE:ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®è¡¨ç¤ºçŠ¶æ…‹ã‚’ç„¡è¦–ã™ã‚‹  FALSE:ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®è¡¨ç¤ºçŠ¶æ…‹ã‚’è€ƒæ…®ã™ã‚‹( ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ ) )
 extern int NS_SetMouseDispIgnoreMenuFlag( int IgnoreMenuFlag )
 {
-	// ƒtƒ‰ƒO‚É•Ï‰»‚ª‚È‚¢ê‡‚Í‰½‚à‚¹‚¸I—¹
+	// ãƒ•ãƒ©ã‚°ã«å¤‰åŒ–ãŒãªã„å ´åˆã¯ä½•ã‚‚ã›ãšçµ‚äº†
 	if( WinData.MouseDispIgnoreMenuFlag == IgnoreMenuFlag )
 	{
 		return 0 ;
 	}
 
-	// ƒtƒ‰ƒO‚ğ•Û‘¶
+	// ãƒ•ãƒ©ã‚°ã‚’ä¿å­˜
 	WinData.MouseDispIgnoreMenuFlag = IgnoreMenuFlag ;
 
-	// ó‘Ô‚ğ”½‰f
+	// çŠ¶æ…‹ã‚’åæ˜ 
 	NS_SetMouseDispFlag( WinData.MouseDispFlag ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒXƒNƒŠ[ƒ“À•W‚ğ‚c‚wƒ‰ƒCƒuƒ‰ƒŠ‰æ–ÊÀ•W‚É•ÏŠ·‚·‚é
+// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³åº§æ¨™ã‚’ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªç”»é¢åº§æ¨™ã«å¤‰æ›ã™ã‚‹
 extern int ConvScreenPositionToDxScreenPosition( int ScreenX, int ScreenY, int *DxScreenX, int *DxScreenY )
 {
 	double ExRateX ;
@@ -9057,7 +9057,7 @@ extern int ConvScreenPositionToDxScreenPosition( int ScreenX, int ScreenY, int *
 	int SubBackBufferY ;
 #endif // DX_NON_GRAPHICS
 
-	// ƒEƒCƒ“ƒhƒEƒ‚[ƒh‚Ìê‡ƒNƒ‰ƒCƒAƒ“ƒg—Ìˆæ“à‚ÉÀ•W‚ğ•ÏŠ·
+	// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ¢ãƒ¼ãƒ‰ã®å ´åˆã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆé ˜åŸŸå†…ã«åº§æ¨™ã‚’å¤‰æ›
 	if( WinData.WindowModeFlag )
 	{
 		if( WinData.BackBufferTransColorFlag || WinData.UseUpdateLayerdWindowFlag )
@@ -9070,7 +9070,7 @@ extern int ConvScreenPositionToDxScreenPosition( int ScreenX, int ScreenY, int *
 		}
 		ScreenY -= WinData.WindowRect.top + GetToolBarHeight() ;
 
-		// ‰æ–Ê‚ªŠg‘å‚³‚ê‚Ä‚¢‚éê‡‚Í‚»‚Ì‰e‹¿‚ğl—¶‚·‚é
+		// ç”»é¢ãŒæ‹¡å¤§ã•ã‚Œã¦ã„ã‚‹å ´åˆã¯ãã®å½±éŸ¿ã‚’è€ƒæ…®ã™ã‚‹
 		NS_GetWindowSizeExtendRate( &ExRateX, &ExRateY ) ;
 
 #ifndef DX_NON_GRAPHICS
@@ -9132,17 +9132,17 @@ extern int ConvScreenPositionToDxScreenPosition( int ScreenX, int ScreenY, int *
 	}
 #endif // DX_NON_GRAPHICS
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒNƒ‰ƒX–¼‚ÌƒZƒbƒgƒAƒbƒv‚ğs‚¤
+// ã‚¯ãƒ©ã‚¹åã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã‚’è¡Œã†
 static void SetupWindowClassName()
 {
-	// ƒNƒ‰ƒX–¼‚ª‰½‚àİ’è‚³‚ê‚Ä‚¢‚È‚¢ê‡‚ÍƒfƒtƒHƒ‹ƒg‚Ì–¼‘O‚ğİ’è‚·‚é
+	// ã‚¯ãƒ©ã‚¹åãŒä½•ã‚‚è¨­å®šã•ã‚Œã¦ã„ãªã„å ´åˆã¯ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®åå‰ã‚’è¨­å®šã™ã‚‹
 	if( WinData.ClassName[0] == L'\0' )
 	{
-		// ƒEƒCƒ“ƒhƒEƒ^ƒCƒgƒ‹‚ªİ’è‚³‚ê‚Ä‚¢‚éê‡‚Í‚»‚ê‚ğİ’è‚·‚é
+		// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚¿ã‚¤ãƒˆãƒ«ãŒè¨­å®šã•ã‚Œã¦ã„ã‚‹å ´åˆã¯ãã‚Œã‚’è¨­å®šã™ã‚‹
 		if( WinData.WindowText[0] != L'\0' )
 		{
 			_WCSCPY_S( WinData.ClassName, sizeof( WinData.ClassName ), WinData.WindowText );
@@ -9154,29 +9154,29 @@ static void SetupWindowClassName()
 	}
 }
 
-// ƒ}ƒEƒX‚ÌˆÊ’u‚ğæ“¾‚·‚é
+// ãƒã‚¦ã‚¹ã®ä½ç½®ã‚’å–å¾—ã™ã‚‹
 extern int GetMousePoint_PF( int *XBuf, int *YBuf )
 {
 	POINT MousePos ;
 
 	SETUP_WIN_API
 
-	// ƒXƒNƒŠ[ƒ“ã‚Å‚ÌˆÊ’u‚ğæ“¾
+	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ä¸Šã§ã®ä½ç½®ã‚’å–å¾—
 	WinAPIData.Win32Func.GetCursorPosFunc( &MousePos ) ; 
 
-	// ƒXƒNƒŠ[ƒ“À•W‚ğƒNƒ‰ƒCƒAƒ“ƒg—Ìˆæ“à‚ÌÀ•W‚É•ÏŠ·
+	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³åº§æ¨™ã‚’ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆé ˜åŸŸå†…ã®åº§æ¨™ã«å¤‰æ›
 	ConvScreenPositionToDxScreenPosition( MousePos.x, MousePos.y, XBuf, YBuf ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒ}ƒEƒX‚ÌˆÊ’u‚ğƒZƒbƒg‚·‚é
+// ãƒã‚¦ã‚¹ã®ä½ç½®ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern int SetMousePoint_PF( int PointX , int PointY )
 {
 	SETUP_WIN_API
 
-	// ƒEƒCƒ“ƒhƒEƒ‚[ƒh‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+	// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ¢ãƒ¼ãƒ‰ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 	if( WinData.WindowModeFlag )
 	{
 		int ScreenSizeX ;
@@ -9187,12 +9187,12 @@ extern int SetMousePoint_PF( int PointX , int PointY )
 
 		NS_GetDrawScreenSize( &ScreenSizeX , &ScreenSizeY ) ;
 
-		// ‰æ–Ê‚ªŠg‘å‚³‚ê‚Ä‚¢‚éê‡‚Í‚»‚Ì‰e‹¿‚ğl—¶‚·‚é
+		// ç”»é¢ãŒæ‹¡å¤§ã•ã‚Œã¦ã„ã‚‹å ´åˆã¯ãã®å½±éŸ¿ã‚’è€ƒæ…®ã™ã‚‹
 		NS_GetWindowSizeExtendRate( &ExRateX, &ExRateY ) ;
 		ScreenSizeX = _DTOL( ScreenSizeX * ExRateX ) ;
 		ScreenSizeY = _DTOL( ScreenSizeY * ExRateY ) ;
 
-		// ƒEƒCƒ“ƒhƒE‚ÌƒXƒP[ƒŠƒ“ƒO‚É‰‚¶‚ÄÀ•W‚ğ•â³
+		// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ã‚¹ã‚±ãƒ¼ãƒªãƒ³ã‚°ã«å¿œã˜ã¦åº§æ¨™ã‚’è£œæ­£
 		PointX = _DTOL( PointX * ExRateX ) ;
 		PointY = _DTOL( PointY * ExRateY ) ;
 #else // DX_NON_GRAPHICS
@@ -9200,7 +9200,7 @@ extern int SetMousePoint_PF( int PointX , int PointY )
 		ScreenSizeY = WinAPIData.Win32Func.GetSystemMetricsFunc( SM_CYSCREEN ) ;
 #endif // DX_NON_GRAPHICS
 
-		// ‰æ–ÊŠO‚ÉƒJ[ƒ\ƒ‹‚ªo‚Ä‚¢‚½ê‡‚Ì•â³
+		// ç”»é¢å¤–ã«ã‚«ãƒ¼ã‚½ãƒ«ãŒå‡ºã¦ã„ãŸå ´åˆã®è£œæ­£
 		if( PointX < 0 ) 			PointX = 0 ;
 		else
 		if( PointX > ScreenSizeX )	PointX = ScreenSizeX ;
@@ -9209,7 +9209,7 @@ extern int SetMousePoint_PF( int PointX , int PointY )
 		else
 		if( PointY > ScreenSizeY )	PointY = ScreenSizeY ;
 
-		// ƒEƒCƒ“ƒhƒEƒ‚[ƒh‚Ìê‡‚ÌˆÊ’u•â³
+		// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ¢ãƒ¼ãƒ‰ã®å ´åˆã®ä½ç½®è£œæ­£
 		if( WinData.WindowModeFlag || NS_GetUseFullScreenResolutionMode() == DX_FSRESOLUTIONMODE_BORDERLESS_WINDOW )
 		{
 			PointX += WinData.WindowRect.left ;
@@ -9238,10 +9238,10 @@ extern int SetMousePoint_PF( int PointX , int PointY )
 	}
 #endif // DX_NON_GRAPHICS
 
-	// ˆÊ’u‚ğƒZƒbƒg‚·‚é
+	// ä½ç½®ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 	WinAPIData.Win32Func.SetCursorPosFunc( PointX , PointY ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
@@ -9281,7 +9281,7 @@ extern int SetMousePoint_PF( int PointX , int PointY )
 
 
 
-// •â•ŠÖ”
+// è£œåŠ©é–¢æ•°
 extern void _FileTimeToLocalDateData( FILETIME *FileTime, DATEDATA *DateData )
 {
 	SYSTEMTIME SysTime;
@@ -9299,7 +9299,7 @@ extern void _FileTimeToLocalDateData( FILETIME *FileTime, DATEDATA *DateData )
 	DateData->Sec  = SysTime.wSecond ;
 }
 
-// w’è‚ÌŠî–{ƒCƒ[ƒW‚ğg—p‚µ‚Ä UpdateLayeredWindow ‚ğs‚¤
+// æŒ‡å®šã®åŸºæœ¬ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’ä½¿ç”¨ã—ã¦ UpdateLayeredWindow ã‚’è¡Œã†
 extern int UpdateBackBufferTransColorWindow( const BASEIMAGE *SrcImage, const RECT *SrcImageRect, HDC Direct3DDC, int NotColorKey, int PreMultipliedAlphaImage )
 {
 	HDC dc, ddc, memdc ;
@@ -9317,10 +9317,10 @@ extern int UpdateBackBufferTransColorWindow( const BASEIMAGE *SrcImage, const RE
 
 	SETUP_WIN_API
 
-	// ƒVƒXƒeƒ€ƒo[‚ğ‚ÂƒEƒCƒ“ƒhƒEƒXƒ^ƒCƒ‹‚©‚Ç‚¤‚©‚ğZo
+	// ã‚·ã‚¹ãƒ†ãƒ ãƒãƒ¼ã‚’æŒã¤ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚¹ã‚¿ã‚¤ãƒ«ã‹ã©ã†ã‹ã‚’ç®—å‡º
 	Systembar = ( WStyle_WindowModeTable[ WinData.WindowStyle ] & WS_CAPTION ) != 0;
 
-	// ‹¤’Êˆ—
+	// å…±é€šå‡¦ç†
 	ddc = WinAPIData.Win32Func.GetDCFunc( NULL ) ;
 	dc = WinAPIData.Win32Func.GetDCFunc( GetDisplayWindowHandle() ) ;
 
@@ -9354,7 +9354,7 @@ extern int UpdateBackBufferTransColorWindow( const BASEIMAGE *SrcImage, const RE
 			  ( BaseTransColor & 0x00ff00 ) ;
 
 #ifndef DX_NON_GRAPHICS
-	// Direct3DDC ‚ª—LŒø‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+	// Direct3DDC ãŒæœ‰åŠ¹ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 	if( Direct3DDC )
 	{
 		WinAPIData.Win32Func.UpdateLayeredWindow( GetDisplayWindowHandle(), ddc, &wpos, &wsize, Direct3DDC, &pos, trans, &blend, ULW_COLORKEY ) ;
@@ -9365,7 +9365,7 @@ extern int UpdateBackBufferTransColorWindow( const BASEIMAGE *SrcImage, const RE
 		RECT SrcRect ;
 		BASEIMAGE SrcImageTemp ;
 
-		// SrcImage ‚ª NULL ˆÈŠO‚ÅAŠ‚Â SrcImageRect ‚ª NULL ˆÈŠO‚Ìê‡‚Í‰¼‚Ì BASEIMAGE ‚ğ—pˆÓ‚·‚é
+		// SrcImage ãŒ NULL ä»¥å¤–ã§ã€ä¸”ã¤ SrcImageRect ãŒ NULL ä»¥å¤–ã®å ´åˆã¯ä»®ã® BASEIMAGE ã‚’ç”¨æ„ã™ã‚‹
 		if( SrcImage != NULL && SrcImageRect != NULL )
 		{
 			if( NS_DerivationBaseImage( SrcImage, SrcImageRect->left, SrcImageRect->top, SrcImageRect->right, SrcImageRect->bottom, &SrcImageTemp ) < 0 )
@@ -9376,7 +9376,7 @@ extern int UpdateBackBufferTransColorWindow( const BASEIMAGE *SrcImage, const RE
 			SrcImage = &SrcImageTemp ;
 		}
 
-		// ƒrƒbƒgƒ}ƒbƒv‚ÌƒTƒCƒY‚ªˆá‚Á‚½‚çƒrƒbƒgƒ}ƒbƒv‚Ìì‚è’¼‚µ
+		// ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã®ã‚µã‚¤ã‚ºãŒé•ã£ãŸã‚‰ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã®ä½œã‚Šç›´ã—
 		if( WinData.BackBufferTransBitmapSize.cx != SrcImage->Width ||
 			WinData.BackBufferTransBitmapSize.cy != SrcImage->Height )
 		{
@@ -9409,7 +9409,7 @@ extern int UpdateBackBufferTransColorWindow( const BASEIMAGE *SrcImage, const RE
 			WinData.BackBufferTransBitmapSize.cy = SrcImage->Height ;
 		}
 
-		// ƒCƒ[ƒW‚ÌƒAƒhƒŒƒX‚ğƒZƒbƒg
+		// ã‚¤ãƒ¡ãƒ¼ã‚¸ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ã‚»ãƒƒãƒˆ
 		Dst = ( BYTE * )WinData.BackBufferTransBitmapImage ;
 		if( Systembar )
 		{
@@ -9417,14 +9417,14 @@ extern int UpdateBackBufferTransColorWindow( const BASEIMAGE *SrcImage, const RE
 		}
 		Src = ( BYTE * )SrcImage->GraphData ;
 
-		// ƒrƒbƒgƒ}ƒbƒv‚Éƒf[ƒ^‚ğ“]‘—
+		// ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã«ãƒ‡ãƒ¼ã‚¿ã‚’è»¢é€
 		SrcRect.left = 0 ;
 		SrcRect.top = 0 ;
 		SrcRect.right = SrcImage->Width ;
 		SrcRect.bottom = SrcImage->Height ;
 		if( NotColorKey == FALSE )
 		{
-			// VISTAˆÈ~‚Ìê‡‚Æ‚»‚êˆÈŠO‚Åˆ—‚ğ•ªŠò
+			// VISTAä»¥é™ã®å ´åˆã¨ãã‚Œä»¥å¤–ã§å‡¦ç†ã‚’åˆ†å²
 			if( WinData.WindowsVersion >= DX_WINDOWSVERSION_VISTA )
 			{
 				DWORD i, j, Size, PackNum, NokoriNum ;
@@ -9701,11 +9701,11 @@ extern int UpdateBackBufferTransColorWindow( const BASEIMAGE *SrcImage, const RE
 			}
 		}
 
-		// ì¬‚µ‚½ƒrƒbƒgƒ}ƒbƒv‚ğŒ³‚É UpdateLeyeredWindow ‚ğs‚¤
+		// ä½œæˆã—ãŸãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚’å…ƒã« UpdateLeyeredWindow ã‚’è¡Œã†
 		memdc = WinAPIData.Win32Func.CreateCompatibleDCFunc( dc ) ;
 		old = WinAPIData.Win32Func.SelectObjectFunc( memdc, WinData.BackBufferTransBitmap ) ;
 
-		// Vista ˆÈ~‚Ìê‡‚Í•K‚¸ƒAƒ‹ƒtƒ@ƒuƒŒƒ“ƒh‚·‚é
+		// Vista ä»¥é™ã®å ´åˆã¯å¿…ãšã‚¢ãƒ«ãƒ•ã‚¡ãƒ–ãƒ¬ãƒ³ãƒ‰ã™ã‚‹
 		if( Systembar )
 		{
 			wsize.cy += WinData.SystembarHeight ;
@@ -9758,49 +9758,49 @@ extern int UpdateBackBufferTransColorWindow( const BASEIMAGE *SrcImage, const RE
 
 
 
-// î•ño—ÍŒn
+// æƒ…å ±å‡ºåŠ›ç³»
 
-// ‚b‚o‚t‚h‚c–½—ß’è‹`
+// ï¼£ï¼°ï¼µï¼©ï¼¤å‘½ä»¤å®šç¾©
 #define CPUID	__asm _emit 0fH  __asm _emit 0A2H
 
 
-// ‚n‚r‚â‚c‚‰‚’‚…‚ƒ‚”‚w‚Ìƒo[ƒWƒ‡ƒ“‚ğo—Í‚·‚é
+// ï¼¯ï¼³ã‚„ï¼¤ï½‰ï½’ï½…ï½ƒï½”ï¼¸ã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã‚’å‡ºåŠ›ã™ã‚‹
 extern int OutSystemInfo( void )
 {
 	wchar_t Str[ 256 ] ;
 
 	SETUP_WIN_API
 
-	DXST_LOGFILE_ADDUTF16LE( "\xb7\x30\xb9\x30\xc6\x30\xe0\x30\x6e\x30\xc5\x60\x31\x58\x92\x30\xfa\x51\x9b\x52\x57\x30\x7e\x30\x59\x30\x0a\x00\x00"/*@ L"ƒVƒXƒeƒ€‚Ìî•ñ‚ğo—Í‚µ‚Ü‚·\n" @*/ ) ;
+	DXST_LOGFILE_ADDUTF16LE( "\xb7\x30\xb9\x30\xc6\x30\xe0\x30\x6e\x30\xc5\x60\x31\x58\x92\x30\xfa\x51\x9b\x52\x57\x30\x7e\x30\x59\x30\x0a\x00\x00"/*@ L"ã‚·ã‚¹ãƒ†ãƒ ã®æƒ…å ±ã‚’å‡ºåŠ›ã—ã¾ã™\n" @*/ ) ;
 	DXST_LOGFILE_TABADD ;
 
 #ifndef DX_NON_LITERAL_STRING
-	// ‚c‚wƒ‰ƒCƒuƒ‰ƒŠ‚Ìƒo[ƒWƒ‡ƒ“‚ğo—Í‚·‚é
+	// ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã‚’å‡ºåŠ›ã™ã‚‹
 	{
 		char UTF16LE_Buffer[ 128 ] ;
 		char DestBuffer[ 128 ] ;
 		ConvString( ( const char * )DXLIB_VERSION_STR_W, -1, WCHAR_T_CHARCODEFORMAT, UTF16LE_Buffer, sizeof( UTF16LE_Buffer ), DX_CHARCODEFORMAT_UTF16LE ) ;
-		CL_snprintf( DX_CHARCODEFORMAT_UTF16LE, TRUE, DX_CHARCODEFORMAT_SHIFTJIS, DX_CHARCODEFORMAT_UTF16LE, DestBuffer, sizeof( DestBuffer ) / 2, "\x24\xff\x38\xff\xe9\x30\xa4\x30\xd6\x30\xe9\x30\xea\x30\x20\x00\x56\x00\x65\x00\x72\x00\x25\x00\x73\x00\x0a\x00\x00"/*@ L"‚c‚wƒ‰ƒCƒuƒ‰ƒŠ Ver%s\n" @*/, UTF16LE_Buffer ) ;
+		CL_snprintf( DX_CHARCODEFORMAT_UTF16LE, TRUE, DX_CHARCODEFORMAT_SHIFTJIS, DX_CHARCODEFORMAT_UTF16LE, DestBuffer, sizeof( DestBuffer ) / 2, "\x24\xff\x38\xff\xe9\x30\xa4\x30\xd6\x30\xe9\x30\xea\x30\x20\x00\x56\x00\x65\x00\x72\x00\x25\x00\x73\x00\x0a\x00\x00"/*@ L"ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒª Ver%s\n" @*/, UTF16LE_Buffer ) ;
 
 		DXST_LOGFILE_ADDUTF16LE( DestBuffer ) ;
 	}
 #endif
 
-	// ‚b‚o‚t‚ÌƒRƒA”‚ğæ“¾‚·‚é
+	// ï¼£ï¼°ï¼µã®ã‚³ã‚¢æ•°ã‚’å–å¾—ã™ã‚‹
 	{
 		SYSTEM_INFO SystemInfo ;
 
 		WinAPIData.Win32Func.GetSystemInfoFunc( &SystemInfo ) ;
 		WinData.ProcessorNum = ( int )SystemInfo.dwNumberOfProcessors ;
 
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\xd6\x8a\x06\x74\xd7\x30\xed\x30\xbb\x30\xc3\x30\xb5\x30\x6e\x30\x70\x65\x20\x00\x3a\x00\x20\x00\x25\x00\x64\x00\x00"/*@ L"˜_—ƒvƒƒZƒbƒT‚Ì” : %d" @*/, WinData.ProcessorNum )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\xd6\x8a\x06\x74\xd7\x30\xed\x30\xbb\x30\xc3\x30\xb5\x30\x6e\x30\x70\x65\x20\x00\x3a\x00\x20\x00\x25\x00\x64\x00\x00"/*@ L"è«–ç†ãƒ—ãƒ­ã‚»ãƒƒã‚µã®æ•° : %d" @*/, WinData.ProcessorNum )) ;
 	}
 
-	// ‚n‚r‚Ìƒo[ƒWƒ‡ƒ“‚ğo—Í‚·‚é
+	// ï¼¯ï¼³ã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã‚’å‡ºåŠ›ã™ã‚‹
 	{
 		OSVERSIONINFOW OsVersionInfo ;
 
-		DXST_LOGFILE_ADDUTF16LE( "\x2f\xff\x33\xff\x20\x00\x20\x00\x00"/*@ L"‚n‚r  " @*/ ) ;
+		DXST_LOGFILE_ADDUTF16LE( "\x2f\xff\x33\xff\x20\x00\x20\x00\x00"/*@ L"ï¼¯ï¼³  " @*/ ) ;
 		_WCSCPY( Str, L"Windows" ) ;
 
 		_MEMSET( &OsVersionInfo, 0, sizeof( OsVersionInfo ) ) ;
@@ -9808,10 +9808,10 @@ extern int OutSystemInfo( void )
 
 		GetVersionExWFunc( &OsVersionInfo ) ;
 
-		// ƒvƒ‰ƒbƒgƒtƒH[ƒ€‚É‚æ‚Á‚Äˆ—‚ğ•ª‚¯‚é
+		// ãƒ—ãƒ©ãƒƒãƒˆãƒ•ã‚©ãƒ¼ãƒ ã«ã‚ˆã£ã¦å‡¦ç†ã‚’åˆ†ã‘ã‚‹
 		switch( OsVersionInfo.dwPlatformId )
 		{
-		// Windows3.1Œn(‚Ü‚¸‚±‚±‚É‚­‚é‚±‚Æ‚Í‚È‚¢‚Æv‚¤‚ªc)
+		// Windows3.1ç³»(ã¾ãšã“ã“ã«ãã‚‹ã“ã¨ã¯ãªã„ã¨æ€ã†ãŒâ€¦)
 		case VER_PLATFORM_WIN32s :
 			_WCSCAT_S( Str, sizeof( Str ), L"3.1" ) ;
 			WinData.WindowsVersion = DX_WINDOWSVERSION_31 ;
@@ -9820,7 +9820,7 @@ extern int OutSystemInfo( void )
 		// Windows95, 98, Me
 		case VER_PLATFORM_WIN32_WINDOWS :
 
-			// ƒ}ƒCƒi[ƒo[ƒWƒ‡ƒ“‚É‚æ‚Á‚Ä•ªŠò
+			// ãƒã‚¤ãƒŠãƒ¼ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã«ã‚ˆã£ã¦åˆ†å²
 			switch( OsVersionInfo.dwMinorVersion )
 			{
 			case 0 :	// Windows95 
@@ -9848,10 +9848,10 @@ extern int OutSystemInfo( void )
 			}
 			break ;
 
-		// NT Œn
+		// NT ç³»
 		case VER_PLATFORM_WIN32_NT :
 
-			// ƒo[ƒWƒ‡ƒ“‚ª Windows8 ˆÈ~‚Ìê‡‚Í•ªŠò
+			// ãƒãƒ¼ã‚¸ãƒ§ãƒ³ãŒ Windows8 ä»¥é™ã®å ´åˆã¯åˆ†å²
 			if( OsVersionInfo.dwMajorVersion >= 6 && OsVersionInfo.dwMinorVersion >= 2 &&
 				( ( WinAPIData.Win32Func.VerifyVersionInfoWFunc != NULL && WinAPIData.Win32Func.VerSetConditionMaskFunc != NULL ) ||
 				    WinAPIData.Win32Func.RtlGetVersionFunc      != NULL ) )
@@ -9862,7 +9862,7 @@ extern int OutSystemInfo( void )
 				_MEMSET( &OsVersionInfoW, 0, sizeof( OsVersionInfoW ) ) ;
 				OsVersionInfoW.dwOSVersionInfoSize = sizeof( OsVersionInfoW ) ;
 
-				// RtlGetVersion ‚ªg—p‚Å‚«‚éê‡‚Í RtlGetVersion ‚ğg—p‚·‚é
+				// RtlGetVersion ãŒä½¿ç”¨ã§ãã‚‹å ´åˆã¯ RtlGetVersion ã‚’ä½¿ç”¨ã™ã‚‹
 				if( WinAPIData.Win32Func.RtlGetVersionFunc != NULL )
 				{
 					WinAPIData.Win32Func.RtlGetVersionFunc( &OsVersionInfoW ) ;
@@ -9870,7 +9870,7 @@ extern int OutSystemInfo( void )
 					_WCSCPY( OsVersionInfo.szCSDVersion, OsVersionInfoW.szCSDVersion ) ;
 					OsVersionInfo.dwBuildNumber = OsVersionInfoW.dwBuildNumber ;
 
-					// ƒƒWƒƒ[ƒo[ƒWƒ‡ƒ“‚É‚æ‚Á‚Äˆ—‚ğ•ªŠò
+					// ãƒ¡ã‚¸ãƒ£ãƒ¼ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã«ã‚ˆã£ã¦å‡¦ç†ã‚’åˆ†å²
 					switch( OsVersionInfoW.dwMajorVersion )
 					{
 					case 6 :
@@ -9924,14 +9924,14 @@ extern int OutSystemInfo( void )
 				}
 				else
 				{
-					// g—p‚Å‚«‚È‚¢ê‡‚Í VerifyVersionInfo ‚ğg—p‚µ‚Äƒo[ƒWƒ‡ƒ“‚ğƒ`ƒFƒbƒN‚·‚é
+					// ä½¿ç”¨ã§ããªã„å ´åˆã¯ VerifyVersionInfo ã‚’ä½¿ç”¨ã—ã¦ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã‚’ãƒã‚§ãƒƒã‚¯ã™ã‚‹
 
 					OsVersionInfo.dwBuildNumber = 0 ;
 					OsVersionInfo.szCSDVersion[ 0 ] = '\0' ;
 
 					for(;;)
 					{
-						// Windows10ˆÈ~‚Ìƒ`ƒFƒbƒN
+						// Windows10ä»¥é™ã®ãƒã‚§ãƒƒã‚¯
 						condition = 0 ;
 						condition = WinAPIData.Win32Func.VerSetConditionMaskFunc( condition, VER_MAJORVERSION, VER_GREATER ) ;
 						condition = WinAPIData.Win32Func.VerSetConditionMaskFunc( condition, VER_MINORVERSION, VER_GREATER ) ;
@@ -9944,7 +9944,7 @@ extern int OutSystemInfo( void )
 							break ;
 						}
 
-						// Windows10‚Ìƒ`ƒFƒbƒN
+						// Windows10ã®ãƒã‚§ãƒƒã‚¯
 						condition = 0 ;
 						condition = WinAPIData.Win32Func.VerSetConditionMaskFunc( condition, VER_MAJORVERSION, VER_GREATER_EQUAL ) ;
 						condition = WinAPIData.Win32Func.VerSetConditionMaskFunc( condition, VER_MINORVERSION, VER_GREATER_EQUAL ) ;
@@ -9965,7 +9965,7 @@ extern int OutSystemInfo( void )
 							break ;
 						}
 
-						// Windows8.1‚Ìƒ`ƒFƒbƒN
+						// Windows8.1ã®ãƒã‚§ãƒƒã‚¯
 						OsVersionInfoW.dwMajorVersion = 6 ;
 						OsVersionInfoW.dwMinorVersion = 3 ;
 						if( VerifyVersionInfoWFunc( &OsVersionInfoW, VER_MAJORVERSION | VER_MINORVERSION, condition ) )
@@ -9975,7 +9975,7 @@ extern int OutSystemInfo( void )
 							break ;
 						}
 
-						// ‚±‚±‚É‚«‚½‚ç Windows8
+						// ã“ã“ã«ããŸã‚‰ Windows8
 						_WCSCAT_S( Str, sizeof( Str ), L"8" ) ;
 						WinData.WindowsVersion = DX_WINDOWSVERSION_8 ;
 						break ;
@@ -9984,7 +9984,7 @@ extern int OutSystemInfo( void )
 			}
 			else
 			{
-				// ƒƒWƒƒ[ƒo[ƒWƒ‡ƒ“‚É‚æ‚Á‚Äˆ—‚ğ•ªŠò
+				// ãƒ¡ã‚¸ãƒ£ãƒ¼ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã«ã‚ˆã£ã¦å‡¦ç†ã‚’åˆ†å²
 				switch( OsVersionInfo.dwMajorVersion )
 				{
 				case 3 :
@@ -10065,21 +10065,21 @@ extern int OutSystemInfo( void )
 		DXST_LOGFILEFMT_ADDW(( L"%s", WinData.PcInfo.OSString )) ;
 	}
 
-	// ‚c‚‰‚’‚…‚ƒ‚”‚w‚Ìƒo[ƒWƒ‡ƒ“‚ğo—Í
+	// ï¼¤ï½‰ï½’ï½…ï½ƒï½”ï¼¸ã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã‚’å‡ºåŠ›
 
-	// ¡ DirectX 7.0 ‚ªƒCƒ“ƒXƒg[ƒ‹‚³‚ê‚Ä‚¢‚È‚¢ŠÂ‹«‚Í‚Ü‚¸–³‚¢‚Ì‚ÅA‹N“®ŠÔ‚ğ’Z‚­‚·‚éˆ×‚Éƒ`ƒFƒbƒN‚Í‚µ‚È‚¢
+	// ä»Šæ™‚ DirectX 7.0 ãŒã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«ã•ã‚Œã¦ã„ãªã„ç’°å¢ƒã¯ã¾ãšç„¡ã„ã®ã§ã€èµ·å‹•æ™‚é–“ã‚’çŸ­ãã™ã‚‹ç‚ºã«ãƒã‚§ãƒƒã‚¯ã¯ã—ãªã„
 	WinData.DirectXVersion = DX_DIRECTXVERSION_7 ;
 
-	// ƒ^ƒCƒ}‚Ì¸“x‚ğİ’è‚·‚é
+	// ã‚¿ã‚¤ãƒã®ç²¾åº¦ã‚’è¨­å®šã™ã‚‹
 	{
 		TIMECAPS tc ;
 		WinAPIData.Win32Func.timeGetDevCapsFunc( &tc , sizeof(TIMECAPS) );
 
-		// ƒ}ƒ‹ƒ`ƒƒfƒBƒAƒ^ƒCƒ}[‚ÌƒT[ƒrƒX¸“x‚ğÅ‘å‚É 
+		// ãƒãƒ«ãƒãƒ¡ãƒ‡ã‚£ã‚¢ã‚¿ã‚¤ãƒãƒ¼ã®ã‚µãƒ¼ãƒ“ã‚¹ç²¾åº¦ã‚’æœ€å¤§ã« 
 		WinAPIData.Win32Func.timeBeginPeriodFunc( tc.wPeriodMin ) ;
 	}
 
-	// CPU ‚Ìƒ`ƒFƒbƒN
+	// CPU ã®ãƒã‚§ãƒƒã‚¯
 	{
 		int CPUCODE = 0 ;
 		int ENDMODE = 0, RDTSCUse = 0 ;
@@ -10096,23 +10096,23 @@ extern int OutSystemInfo( void )
 
 			ENDMODE = 1 ;
 
-			// ‚b‚o‚tƒxƒ“ƒ_–¼‚ğæ“¾
+			// ï¼£ï¼°ï¼µãƒ™ãƒ³ãƒ€åã‚’å–å¾—
 			___CPUID( CPUInfo, 0 ) ;
 			CPUCODE = CPUInfo[ 0 ] ;
 			Str1 = CPUInfo[ 1 ] ;
 			Str2 = CPUInfo[ 3 ] ;
 			Str3 = CPUInfo[ 2 ] ;
 
-			// ƒpƒtƒH[ƒ}ƒ“ƒXƒJƒEƒ“ƒ^‚ª‚Â‚©‚¦‚é‚©‚ğƒ`ƒFƒbƒN
+			// ãƒ‘ãƒ•ã‚©ãƒ¼ãƒãƒ³ã‚¹ã‚«ã‚¦ãƒ³ã‚¿ãŒã¤ã‹ãˆã‚‹ã‹ã‚’ãƒã‚§ãƒƒã‚¯
 			___CPUID( CPUInfo, 1 ) ;
 			RDTSCUse = ( CPUInfo[ 3 ] & 0x10 ) != 0 ? TRUE : FALSE ;
 
-			// ¡“x‚ÍŠg’£‚b‚o‚t‚h‚c‚ªg‚¦‚é‚©ŒŸ¸
+			// ä»Šåº¦ã¯æ‹¡å¼µï¼£ï¼°ï¼µï¼©ï¼¤ãŒä½¿ãˆã‚‹ã‹æ¤œæŸ»
 			___CPUID( CPUInfo, 0x80000000 ) ;
 			if( ( unsigned int )CPUInfo[ 0 ] >= 0x80000004 )
 			{
 
-				// g‚¦‚é‚Ì‚Å‚b‚o‚t–¼‚ğæ“¾
+				// ä½¿ãˆã‚‹ã®ã§ï¼£ï¼°ï¼µåã‚’å–å¾—
 				___CPUID( CPUInfo, 0x80000002 ) ;
 				( ( int * )CpuName )[  0 ] = CPUInfo[ 0 ] ;
 				( ( int * )CpuName )[  1 ] = CPUInfo[ 1 ] ;
@@ -10132,18 +10132,18 @@ extern int OutSystemInfo( void )
 				( ( int * )CpuName )[ 11 ] = CPUInfo[ 3 ] ;
 			}
 
-			// ¡“x‚Í‚l‚l‚w‚ªg‚¦‚é‚©ŒŸ¸
+			// ä»Šåº¦ã¯ï¼­ï¼­ï¼¸ãŒä½¿ãˆã‚‹ã‹æ¤œæŸ»
 			___CPUID( CPUInfo, 1 ) ;
 			if( ( CPUInfo[ 3 ] & 0x00800000 ) != 0 )
 			{
 				ENDMODE = 3 ;
 
-				//SSE‚ªg‚¦‚é‚©ŒŸ¸
+				//SSEãŒä½¿ãˆã‚‹ã‹æ¤œæŸ»
 				if( ( CPUInfo[ 3 ] & 0x02000000 ) != 0 )
 				{
 					ENDMODE	++ ;
 
-					//SSE2‚ªg‚¦‚é‚©ŒŸ¸
+					//SSE2ãŒä½¿ãˆã‚‹ã‹æ¤œæŸ»
 					if( ( CPUInfo[ 3 ] & 0x04000000 ) != 0 )
 					{
 						ENDMODE ++ ;
@@ -10154,7 +10154,7 @@ extern int OutSystemInfo( void )
 	#endif // _WIN64
 #else // DX_NON_INLINE_ASM
 		__asm{
-			// CPUID ‚ªg‚¦‚é‚©ŒŸ¸
+			// CPUID ãŒä½¿ãˆã‚‹ã‹æ¤œæŸ»
 			PUSHFD
 			PUSHFD
 			POP		EAX
@@ -10174,14 +10174,14 @@ extern int OutSystemInfo( void )
 		__asm{
 			CMP		EAX , 0
 
-			// g‚¦‚é‚Ì‚Å‚b‚o‚tƒxƒ“ƒ_–¼‚Å‚àƒ[ƒh
+			// ä½¿ãˆã‚‹ã®ã§ï¼£ï¼°ï¼µãƒ™ãƒ³ãƒ€åã§ã‚‚ãƒ­ãƒ¼ãƒ‰
 			MOV		CPUCODE , EAX
 			MOV		Str1, EBX
 			MOV		Str2, EDX
 			MOV		Str3, ECX
 			MOV		ENDMODE , 1
 
-			// ‚Â‚¢‚Å‚ÉƒpƒtƒH[ƒ}ƒ“ƒXƒJƒEƒ“ƒ^‚ª‚Â‚©‚¦‚é‚©ƒ`ƒFƒbƒN
+			// ã¤ã„ã§ã«ãƒ‘ãƒ•ã‚©ãƒ¼ãƒãƒ³ã‚¹ã‚«ã‚¦ãƒ³ã‚¿ãŒã¤ã‹ãˆã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 			MOV		EAX , 1
 		}
 //			db 0fh
@@ -10192,7 +10192,7 @@ extern int OutSystemInfo( void )
 			SHR		EDX , 4
 			MOV		RDTSCUse , EDX
 
-			// ¡“x‚ÍŠg’£‚b‚o‚t‚h‚c‚ªg‚¦‚é‚©ŒŸ¸
+			// ä»Šåº¦ã¯æ‹¡å¼µï¼£ï¼°ï¼µï¼©ï¼¤ãŒä½¿ãˆã‚‹ã‹æ¤œæŸ»
 			MOV		EAX , 80000000H
 //			db 0fh
 //			db 0a2h
@@ -10202,7 +10202,7 @@ extern int OutSystemInfo( void )
 			CMP		EAX , 80000004H
 			JB		CHECKMMX
 
-			// g‚¦‚é‚Ì‚Å‚b‚o‚t–¼‚ğæ“¾
+			// ä½¿ãˆã‚‹ã®ã§ï¼£ï¼°ï¼µåã‚’å–å¾—
 			MOV		EAX , 80000002H
 		}
 //			db 0fh
@@ -10235,7 +10235,7 @@ extern int OutSystemInfo( void )
 			MOV		DWORD PTR [CpuName + 44] , EDX
 
 CHECKMMX:
-			// ¡“x‚Í‚l‚l‚w‚ªg‚¦‚é‚©ŒŸ¸
+			// ä»Šåº¦ã¯ï¼­ï¼­ï¼¸ãŒä½¿ãˆã‚‹ã‹æ¤œæŸ»
 			MOV		EAX , 1
 		}
 //			db 0fh
@@ -10245,7 +10245,7 @@ CHECKMMX:
 			AND		EDX , 00800000H
 			JZ		MMXEND
 			MOV		ENDMODE , 3
-			//SSE‚ªg‚¦‚é‚©ŒŸ¸
+			//SSEãŒä½¿ãˆã‚‹ã‹æ¤œæŸ»
 			MOV		EAX , 1
 		}
 		cpuid
@@ -10253,7 +10253,7 @@ CHECKMMX:
 			AND		EDX	, 02000000H
 			JZ		MMXEND
 			ADD		ENDMODE	, 1
-			//SSE2‚ªg‚¦‚é‚©ŒŸ¸
+			//SSE2ãŒä½¿ãˆã‚‹ã‹æ¤œæŸ»
 			MOV		EAX	, 1
 		}
 		cpuid
@@ -10266,12 +10266,12 @@ MMXEND:
 		}
 #endif  // DX_NON_INLINE_ASM
 			
-		// ƒpƒtƒH[ƒ}ƒ“ƒXƒJƒEƒ“ƒ^ƒtƒ‰ƒO‚ğ•Û‘¶
+		// ãƒ‘ãƒ•ã‚©ãƒ¼ãƒãƒ³ã‚¹ã‚«ã‚¦ãƒ³ã‚¿ãƒ•ãƒ©ã‚°ã‚’ä¿å­˜
 		WinData.UseRDTSCFlag = RDTSCUse ;
 
 #ifdef DX_NON_INLINE_ASM
 	#ifdef _WIN64
-		// ƒpƒtƒH[ƒ}ƒ“ƒXƒJƒEƒ“ƒ^‚ª‚Â‚©‚¦‚éê‡‚ÍƒNƒƒbƒN”‚ğŠÈ’P‚ÉŒv‘ª
+		// ãƒ‘ãƒ•ã‚©ãƒ¼ãƒãƒ³ã‚¹ã‚«ã‚¦ãƒ³ã‚¿ãŒã¤ã‹ãˆã‚‹å ´åˆã¯ã‚¯ãƒ­ãƒƒã‚¯æ•°ã‚’ç°¡å˜ã«è¨ˆæ¸¬
 		if( RDTSCUse )
 		{
 			ULONGLONG Clock1, Clock2 ;
@@ -10288,12 +10288,12 @@ MMXEND:
 			Clock = ( DWORD )_DTOL( ( double )( Clock2 - Clock1 ) / 100000 ) ; 
 			WinData.OneSecCount = ( Clock2 - Clock1 ) * 10 ;
 
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\xfe\x73\x42\x66\xb9\x70\x6e\x30\x23\xff\x30\xff\x35\xff\xd5\x52\x5c\x4f\x1f\x90\xa6\x5e\x1a\xff\x27\x59\x53\x4f\x25\x00\x2e\x00\x32\x00\x66\x00\x47\x00\x48\x00\x7a\x00\x00"/*@ L"Œ»“_‚Ì‚b‚o‚t“®ì‘¬“xF‘å‘Ì%.2fGHz" @*/, (float)Clock / 1000.0f )) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\xfe\x73\x42\x66\xb9\x70\x6e\x30\x23\xff\x30\xff\x35\xff\xd5\x52\x5c\x4f\x1f\x90\xa6\x5e\x1a\xff\x27\x59\x53\x4f\x25\x00\x2e\x00\x32\x00\x66\x00\x47\x00\x48\x00\x7a\x00\x00"/*@ L"ç¾æ™‚ç‚¹ã®ï¼£ï¼°ï¼µå‹•ä½œé€Ÿåº¦ï¼šå¤§ä½“%.2fGHz" @*/, (float)Clock / 1000.0f )) ;
 			WinData.PcInfo.CPUSpeed = ( int )Clock ;
 		}
 	#endif // _WIN64
 #else
-		// ƒpƒtƒH[ƒ}ƒ“ƒXƒJƒEƒ“ƒ^‚ª‚Â‚©‚¦‚éê‡‚ÍƒNƒƒbƒN”‚ğŠÈ’P‚ÉŒv‘ª
+		// ãƒ‘ãƒ•ã‚©ãƒ¼ãƒãƒ³ã‚¹ã‚«ã‚¦ãƒ³ã‚¿ãŒã¤ã‹ãˆã‚‹å ´åˆã¯ã‚¯ãƒ­ãƒƒã‚¯æ•°ã‚’ç°¡å˜ã«è¨ˆæ¸¬
 		if( RDTSCUse )
 		{
 			LARGE_INTEGER Clock1, Clock2 ;
@@ -10346,7 +10346,7 @@ MMXEND:
 			Clock = ( DWORD )_DTOL( (double)( Clock2.QuadPart - Clock1.QuadPart ) / 100000 ) ; 
 			WinData.OneSecCount = ( Clock2.QuadPart - Clock1.QuadPart ) * 10 ;
 
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\xfe\x73\x42\x66\xb9\x70\x6e\x30\x23\xff\x30\xff\x35\xff\xd5\x52\x5c\x4f\x1f\x90\xa6\x5e\x1a\xff\x27\x59\x53\x4f\x25\x00\x2e\x00\x32\x00\x66\x00\x47\x00\x48\x00\x7a\x00\x00"/*@ L"Œ»“_‚Ì‚b‚o‚t“®ì‘¬“xF‘å‘Ì%.2fGHz" @*/, (float)Clock / 1000.0f )) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\xfe\x73\x42\x66\xb9\x70\x6e\x30\x23\xff\x30\xff\x35\xff\xd5\x52\x5c\x4f\x1f\x90\xa6\x5e\x1a\xff\x27\x59\x53\x4f\x25\x00\x2e\x00\x32\x00\x66\x00\x47\x00\x48\x00\x7a\x00\x00"/*@ L"ç¾æ™‚ç‚¹ã®ï¼£ï¼°ï¼µå‹•ä½œé€Ÿåº¦ï¼šå¤§ä½“%.2fGHz" @*/, (float)Clock / 1000.0f )) ;
 			WinData.PcInfo.CPUSpeed = ( int )Clock ;
 		}
 #endif // DX_NON_INLINE_ASM
@@ -10355,30 +10355,30 @@ MMXEND:
 		{
 		case 0 :
 #ifndef DX_NON_INLINE_ASM
-			DXST_LOGFILE_ADDUTF16LE( "\x23\xff\x30\xff\x35\xff\x29\xff\x24\xff\x7d\x54\xe4\x4e\x6f\x30\x7f\x4f\x48\x30\x7e\x30\x5b\x30\x93\x30\x0a\x00\x00"/*@ L"‚b‚o‚t‚h‚c–½—ß‚Íg‚¦‚Ü‚¹‚ñ\n" @*/ ) ;
+			DXST_LOGFILE_ADDUTF16LE( "\x23\xff\x30\xff\x35\xff\x29\xff\x24\xff\x7d\x54\xe4\x4e\x6f\x30\x7f\x4f\x48\x30\x7e\x30\x5b\x30\x93\x30\x0a\x00\x00"/*@ L"ï¼£ï¼°ï¼µï¼©ï¼¤å‘½ä»¤ã¯ä½¿ãˆã¾ã›ã‚“\n" @*/ ) ;
 #endif // DX_NON_INLINE_ASM
 			break ;
 
 		case 1 :
-			DXST_LOGFILE_ADDUTF16LE( "\x2d\xff\x2d\xff\x38\xff\x6f\x30\x7f\x4f\x48\x30\x7e\x30\x5b\x30\x93\x30\x0a\x00\x00"/*@ L"‚l‚l‚w‚Íg‚¦‚Ü‚¹‚ñ\n" @*/ ) ;
+			DXST_LOGFILE_ADDUTF16LE( "\x2d\xff\x2d\xff\x38\xff\x6f\x30\x7f\x4f\x48\x30\x7e\x30\x5b\x30\x93\x30\x0a\x00\x00"/*@ L"ï¼­ï¼­ï¼¸ã¯ä½¿ãˆã¾ã›ã‚“\n" @*/ ) ;
 			break ;
 
 		case 3 :
-			DXST_LOGFILE_ADDUTF16LE( "\x2d\xff\x2d\xff\x38\xff\x7d\x54\xe4\x4e\x92\x30\x7f\x4f\x28\x75\x57\x30\x7e\x30\x59\x30\x0a\x00\x00"/*@ L"‚l‚l‚w–½—ß‚ğg—p‚µ‚Ü‚·\n" @*/ ) ;
+			DXST_LOGFILE_ADDUTF16LE( "\x2d\xff\x2d\xff\x38\xff\x7d\x54\xe4\x4e\x92\x30\x7f\x4f\x28\x75\x57\x30\x7e\x30\x59\x30\x0a\x00\x00"/*@ L"ï¼­ï¼­ï¼¸å‘½ä»¤ã‚’ä½¿ç”¨ã—ã¾ã™\n" @*/ ) ;
 			WinData.UseMMXFlag = TRUE ;
 			break ;
 
 		case 4 :
-			DXST_LOGFILE_ADDUTF16LE( "\x2d\xff\x2d\xff\x38\xff\x7d\x54\xe4\x4e\x92\x30\x7f\x4f\x28\x75\x57\x30\x7e\x30\x59\x30\x0a\x00\x00"/*@ L"‚l‚l‚w–½—ß‚ğg—p‚µ‚Ü‚·\n" @*/ ) ;
-			DXST_LOGFILE_ADDUTF16LE( "\x33\xff\x33\xff\x25\xff\x7d\x54\xe4\x4e\x4c\x30\x7f\x4f\x28\x75\xef\x53\xfd\x80\x67\x30\x59\x30\x0a\x00\x00"/*@ L"‚r‚r‚d–½—ß‚ªg—p‰Â”\‚Å‚·\n" @*/ ) ;
+			DXST_LOGFILE_ADDUTF16LE( "\x2d\xff\x2d\xff\x38\xff\x7d\x54\xe4\x4e\x92\x30\x7f\x4f\x28\x75\x57\x30\x7e\x30\x59\x30\x0a\x00\x00"/*@ L"ï¼­ï¼­ï¼¸å‘½ä»¤ã‚’ä½¿ç”¨ã—ã¾ã™\n" @*/ ) ;
+			DXST_LOGFILE_ADDUTF16LE( "\x33\xff\x33\xff\x25\xff\x7d\x54\xe4\x4e\x4c\x30\x7f\x4f\x28\x75\xef\x53\xfd\x80\x67\x30\x59\x30\x0a\x00\x00"/*@ L"ï¼³ï¼³ï¼¥å‘½ä»¤ãŒä½¿ç”¨å¯èƒ½ã§ã™\n" @*/ ) ;
 			WinData.UseMMXFlag = TRUE ;
 			WinData.UseSSEFlag = TRUE ;
 			break ;
 
 		case 5 :
-			DXST_LOGFILE_ADDUTF16LE( "\x2d\xff\x2d\xff\x38\xff\x7d\x54\xe4\x4e\x92\x30\x7f\x4f\x28\x75\x57\x30\x7e\x30\x59\x30\x0a\x00\x00"/*@ L"‚l‚l‚w–½—ß‚ğg—p‚µ‚Ü‚·\n" @*/ ) ;
-			DXST_LOGFILE_ADDUTF16LE( "\x33\xff\x33\xff\x25\xff\x7d\x54\xe4\x4e\x4c\x30\x7f\x4f\x28\x75\xef\x53\xfd\x80\x67\x30\x59\x30\x0a\x00\x00"/*@ L"‚r‚r‚d–½—ß‚ªg—p‰Â”\‚Å‚·\n" @*/ ) ;
-			DXST_LOGFILE_ADDUTF16LE( "\x33\xff\x33\xff\x25\xff\x12\xff\x7d\x54\xe4\x4e\x4c\x30\x7f\x4f\x28\x75\xef\x53\xfd\x80\x67\x30\x59\x30\x0a\x00\x00"/*@ L"‚r‚r‚d‚Q–½—ß‚ªg—p‰Â”\‚Å‚·\n" @*/ ) ;
+			DXST_LOGFILE_ADDUTF16LE( "\x2d\xff\x2d\xff\x38\xff\x7d\x54\xe4\x4e\x92\x30\x7f\x4f\x28\x75\x57\x30\x7e\x30\x59\x30\x0a\x00\x00"/*@ L"ï¼­ï¼­ï¼¸å‘½ä»¤ã‚’ä½¿ç”¨ã—ã¾ã™\n" @*/ ) ;
+			DXST_LOGFILE_ADDUTF16LE( "\x33\xff\x33\xff\x25\xff\x7d\x54\xe4\x4e\x4c\x30\x7f\x4f\x28\x75\xef\x53\xfd\x80\x67\x30\x59\x30\x0a\x00\x00"/*@ L"ï¼³ï¼³ï¼¥å‘½ä»¤ãŒä½¿ç”¨å¯èƒ½ã§ã™\n" @*/ ) ;
+			DXST_LOGFILE_ADDUTF16LE( "\x33\xff\x33\xff\x25\xff\x12\xff\x7d\x54\xe4\x4e\x4c\x30\x7f\x4f\x28\x75\xef\x53\xfd\x80\x67\x30\x59\x30\x0a\x00\x00"/*@ L"ï¼³ï¼³ï¼¥ï¼’å‘½ä»¤ãŒä½¿ç”¨å¯èƒ½ã§ã™\n" @*/ ) ;
 			WinData.UseMMXFlag = TRUE ;
 			WinData.UseSSEFlag = TRUE ;
 			WinData.UseSSE2Flag = TRUE ;
@@ -10387,7 +10387,7 @@ MMXEND:
 
 		if( ENDMODE > 0 )
 		{
-			DXST_LOGFILE_ADDUTF16LE( "\x23\xff\x30\xff\x35\xff\xd9\x30\xf3\x30\xc0\x30\x1a\xff\x00"/*@ L"‚b‚o‚tƒxƒ“ƒ_F" @*/ ) ;
+			DXST_LOGFILE_ADDUTF16LE( "\x23\xff\x30\xff\x35\xff\xd9\x30\xf3\x30\xc0\x30\x1a\xff\x00"/*@ L"ï¼£ï¼°ï¼µãƒ™ãƒ³ãƒ€ï¼š" @*/ ) ;
 
 			String[4] = 0 ;
 			*( ( int * )&String[0] ) = Str1 ;
@@ -10403,7 +10403,7 @@ MMXEND:
 
 			if( CpuName[0] != '\0' )
 			{
-				DXST_LOGFILEFMT_ADDA(( "\x82\x62\x82\x6f\x82\x74\x96\xbc\x81\x46%s"/*@ "‚b‚o‚t–¼F%s" @*/, CpuName )) ;
+				DXST_LOGFILEFMT_ADDA(( "\x82\x62\x82\x6f\x82\x74\x96\xbc\x81\x46%s"/*@ "ï¼£ï¼°ï¼µåï¼š%s" @*/, CpuName )) ;
 
 				ConvString( ( const char * )CpuName, -1, DX_CHARCODEFORMAT_ASCII, ( char * )WinData.PcInfo.CPUString, sizeof( WinData.PcInfo.CPUString ), WCHAR_T_CHARCODEFORMAT ) ;
 			}
@@ -10412,23 +10412,23 @@ MMXEND:
 
 	DXST_LOGFILE_TABSUB ;
 
-	// ‚à‚µ DirectX ‚Ìƒo[ƒWƒ‡ƒ“‚ª‚VˆÈ‰º‚¾‚Á‚½ê‡‚Í‚±‚±‚Åƒ\ƒtƒg‚ğI—¹
+	// ã‚‚ã— DirectX ã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³ãŒï¼—ä»¥ä¸‹ã ã£ãŸå ´åˆã¯ã“ã“ã§ã‚½ãƒ•ãƒˆã‚’çµ‚äº†
 	if( WinData.DirectXVersion < DX_DIRECTXVERSION_7 )
 	{
 #ifndef DX_NON_LITERAL_STRING
 		if( WinData.DirectXVersion == DX_DIRECTXVERSION_NON )
 		{
-			MessageBoxWFunc( NULL, ( wchar_t * )"\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x58\x00\x20\x00\x4c\x30\xa4\x30\xf3\x30\xb9\x30\xc8\x30\xfc\x30\xeb\x30\x55\x30\x8c\x30\x66\x30\x44\x30\x6a\x30\x44\x30\x6e\x30\x67\x30\x53\x30\x53\x30\x67\x30\x42\x7d\x86\x4e\x57\x30\x7e\x30\x59\x30\x00"/*@ L"DirectX ‚ªƒCƒ“ƒXƒg[ƒ‹‚³‚ê‚Ä‚¢‚È‚¢‚Ì‚Å‚±‚±‚ÅI—¹‚µ‚Ü‚·" @*/, ( wchar_t * )"\xa8\x30\xe9\x30\xfc\x30\x00"/*@ L"ƒGƒ‰[" @*/, MB_OK ) ;
+			MessageBoxWFunc( NULL, ( wchar_t * )"\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x58\x00\x20\x00\x4c\x30\xa4\x30\xf3\x30\xb9\x30\xc8\x30\xfc\x30\xeb\x30\x55\x30\x8c\x30\x66\x30\x44\x30\x6a\x30\x44\x30\x6e\x30\x67\x30\x53\x30\x53\x30\x67\x30\x42\x7d\x86\x4e\x57\x30\x7e\x30\x59\x30\x00"/*@ L"DirectX ãŒã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«ã•ã‚Œã¦ã„ãªã„ã®ã§ã“ã“ã§çµ‚äº†ã—ã¾ã™" @*/, ( wchar_t * )"\xa8\x30\xe9\x30\xfc\x30\x00"/*@ L"ã‚¨ãƒ©ãƒ¼" @*/, MB_OK ) ;
 		}
 		else
 		{
-			MessageBoxWFunc( NULL, ( wchar_t * )"\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x58\x00\x20\x00\xd0\x30\xfc\x30\xb8\x30\xe7\x30\xf3\x30\x20\x00\x37\x00\x20\x00\xe5\x4e\x4d\x52\x6a\x30\x6e\x30\x67\x30\xbd\x30\xd5\x30\xc8\x30\x92\x30\x77\x8d\xd5\x52\x59\x30\x8b\x30\x53\x30\x68\x30\x4c\x30\xfa\x51\x65\x67\x7e\x30\x5b\x30\x93\x30\x00"/*@ L"DirectX ƒo[ƒWƒ‡ƒ“ 7 ˆÈ‘O‚È‚Ì‚Åƒ\ƒtƒg‚ğ‹N“®‚·‚é‚±‚Æ‚ªo—ˆ‚Ü‚¹‚ñ" @*/, ( wchar_t * )"\xa8\x30\xe9\x30\xfc\x30\x00"/*@ L"ƒGƒ‰[" @*/, MB_OK ) ;
+			MessageBoxWFunc( NULL, ( wchar_t * )"\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x58\x00\x20\x00\xd0\x30\xfc\x30\xb8\x30\xe7\x30\xf3\x30\x20\x00\x37\x00\x20\x00\xe5\x4e\x4d\x52\x6a\x30\x6e\x30\x67\x30\xbd\x30\xd5\x30\xc8\x30\x92\x30\x77\x8d\xd5\x52\x59\x30\x8b\x30\x53\x30\x68\x30\x4c\x30\xfa\x51\x65\x67\x7e\x30\x5b\x30\x93\x30\x00"/*@ L"DirectX ãƒãƒ¼ã‚¸ãƒ§ãƒ³ 7 ä»¥å‰ãªã®ã§ã‚½ãƒ•ãƒˆã‚’èµ·å‹•ã™ã‚‹ã“ã¨ãŒå‡ºæ¥ã¾ã›ã‚“" @*/, ( wchar_t * )"\xa8\x30\xe9\x30\xfc\x30\x00"/*@ L"ã‚¨ãƒ©ãƒ¼" @*/, MB_OK ) ;
 		}
 #endif
 		WinAPIData.Win32Func.ExitProcessFunc( (DWORD)-1 ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
@@ -10453,26 +10453,26 @@ MMXEND:
 
 
 
-// ƒƒbƒZ[ƒWˆ—ŠÖ”
+// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å‡¦ç†é–¢æ•°
 
 int WM_PAINTProcess( HDC Dc, RECT *fillRect, int AlwaysFillFlag )
 {
 	SETUP_WIN_API
 
-	// WM_PAINT ƒƒbƒZ[ƒW‚ª—ˆ‚½ƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// WM_PAINT ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãŒæ¥ãŸãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	WinData.WM_PAINTMessageFlag = TRUE ;
 
-	// ‚c‚wƒ‰ƒCƒuƒ‰ƒŠ‚Ì WM_PAINT ‚Ìˆ—‚ğÀs‚µ‚È‚¢ê‡‚Í‚±‚±‚ÅI—¹
+	// ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã® WM_PAINT ã®å‡¦ç†ã‚’å®Ÿè¡Œã—ãªã„å ´åˆã¯ã“ã“ã§çµ‚äº†
 	if( WinData.NotUseDxLibWM_PAINTProcess )
 	{
 		return 0 ;
 	}
 
-	// ”ñƒAƒNƒeƒBƒu‚ÅAŠ‚Â”ñƒAƒNƒeƒBƒu‚É•\¦‚·‚éê—p‚Ì‰æ‘œ‚ª‚ ‚éê‡‚Í‚»‚ê‚ğ•`‰æ‚·‚é
+	// éã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã§ã€ä¸”ã¤éã‚¢ã‚¯ãƒ†ã‚£ãƒ–æ™‚ã«è¡¨ç¤ºã™ã‚‹å°‚ç”¨ã®ç”»åƒãŒã‚ã‚‹å ´åˆã¯ãã‚Œã‚’æç”»ã™ã‚‹
 	if( ( WinData.ActiveFlag == FALSE && WinData.PauseGraph.GraphData != NULL && WinData.NonActiveRunFlag == FALSE ) /*|| 
 		( WinData.MenuUseFlag == TRUE && WinData.MenuShredRunFlag == TRUE )*/ )
 	{
-		// ƒoƒbƒNƒOƒ‰ƒEƒ“ƒh•`‰æ
+		// ãƒãƒƒã‚¯ã‚°ãƒ©ã‚¦ãƒ³ãƒ‰æç”»
 		if( WinData.WindowMinSizeFlag == FALSE ) 
 		{
 			DrawBackGraph( Dc ) ;
@@ -10480,14 +10480,14 @@ int WM_PAINTProcess( HDC Dc, RECT *fillRect, int AlwaysFillFlag )
 	}
 	else
 	{
-		// ‚»‚êˆÈŠO‚Ìê‡
+		// ãã‚Œä»¥å¤–ã®å ´åˆ
 
-		// ‚c‚wƒ‰ƒCƒuƒ‰ƒŠ‚ğ‰Šú‰»’†‚ÅAŠ‚ÂƒŠ[ƒWƒ‡ƒ“‚ªİ’è‚³‚ê‚Ä
-		// ‚¢‚È‚¢ê‡‚Í‰æ–Ê‚ğ•‚­‰Šú‰»‚·‚é
+		// ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã‚’åˆæœŸåŒ–ä¸­ã§ã€ä¸”ã¤ãƒªãƒ¼ã‚¸ãƒ§ãƒ³ãŒè¨­å®šã•ã‚Œã¦
+		// ã„ãªã„å ´åˆã¯ç”»é¢ã‚’é»’ãåˆæœŸåŒ–ã™ã‚‹
 		if( ( DxSysData.DxLib_InitializeFlag == FALSE && WinData.WindowRgn == NULL ) || AlwaysFillFlag )
 		{
 #ifndef DX_NON_GRAPHICS
-			// ƒoƒbƒNƒOƒ‰ƒEƒ“ƒhƒJƒ‰[‚ª—LŒø‚Èê‡‚Í‚»‚ÌF‚ğg—p‚·‚é
+			// ãƒãƒƒã‚¯ã‚°ãƒ©ã‚¦ãƒ³ãƒ‰ã‚«ãƒ©ãƒ¼ãŒæœ‰åŠ¹ãªå ´åˆã¯ãã®è‰²ã‚’ä½¿ç”¨ã™ã‚‹
 			if( GSYS.Screen.EnableBackgroundColor == TRUE )
 			{
 				HBRUSH Brush;
@@ -10513,7 +10513,7 @@ int WM_PAINTProcess( HDC Dc, RECT *fillRect, int AlwaysFillFlag )
 #ifndef DX_NON_GRAPHICS
 		if( DxSysData.DxLib_InitializeFlag || WinData.WindowRgn != NULL )
 		{
-			// ‚Æ‚è‚ ‚¦‚¸— ‰æ–Ê‚ğƒRƒs[‚µ‚Ä‚¨‚­
+			// ã¨ã‚Šã‚ãˆãšè£ç”»é¢ã‚’ã‚³ãƒ”ãƒ¼ã—ã¦ãŠã
 			if( NS_GetActiveGraph() == DX_SCREEN_BACK )
 			{
 				RECT ClientRect ;
@@ -10567,19 +10567,19 @@ int WM_SIZEProcess( void )
 
 	SETUP_WIN_API
 
-	// ƒ†[ƒU[‚ÌƒEƒCƒ“ƒhƒE‚ğg—p‚µ‚Ä‚¢‚È‚¢ê‡‚Ì‚İƒTƒCƒY‚Ì•â³‚ğs‚¤
+	// ãƒ¦ãƒ¼ã‚¶ãƒ¼ã®ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚’ä½¿ç”¨ã—ã¦ã„ãªã„å ´åˆã®ã¿ã‚µã‚¤ã‚ºã®è£œæ­£ã‚’è¡Œã†
 	if( WinData.UserWindowFlag == TRUE )
 	{
 		return 0 ;
 	}
 
-	// ƒtƒ‹ƒXƒNƒŠ[ƒ“ƒ‚[ƒh‚Ìê‡‚Í‰½‚à‚µ‚È‚¢
+	// ãƒ•ãƒ«ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ¢ãƒ¼ãƒ‰ã®å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( WinData.WindowModeFlag == FALSE && NS_GetUseFullScreenResolutionMode() != DX_FSRESOLUTIONMODE_BORDERLESS_WINDOW )
 	{
 		return 0 ;
 	}
 
-	// ƒ{[ƒ_[ƒŒƒXƒEƒBƒ“ƒhƒE‚Ìˆ—
+	// ãƒœãƒ¼ãƒ€ãƒ¼ãƒ¬ã‚¹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®å‡¦ç†
 	if( WinData.WindowModeFlag == FALSE && NS_GetUseFullScreenResolutionMode() == DX_FSRESOLUTIONMODE_BORDERLESS_WINDOW )
 	{
 		GRAPHICSSYS_DISPLAYINFO *DisplayInfo ;
@@ -10599,7 +10599,7 @@ int WM_SIZEProcess( void )
 
 		GetMainWindowSize( &Width, &Height ) ;
 
-		// ƒEƒCƒ“ƒhƒE‚Ö‚Ìo—ÍƒTƒCƒY‚ğ”½‰f‚³‚¹‚é
+		// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã¸ã®å‡ºåŠ›ã‚µã‚¤ã‚ºã‚’åæ˜ ã•ã›ã‚‹
 		NS_GetWindowSizeExtendRate( &ExRateX, &ExRateY ) ;
 		Width  = _DTOL( Width  * ExRateX ) ;
 		Height = _DTOL( Height * ExRateY ) ;
@@ -10613,22 +10613,22 @@ int WM_SIZEProcess( void )
 	WinData.WindowRect.right  = WinData.WindowRect.left + ClientRect.right ;
 	WinData.WindowRect.bottom = WinData.WindowRect.top  + ClientRect.bottom ;
 
-	// ƒNƒ‰ƒCƒAƒ“ƒg—Ìˆæ‚ÌƒTƒCƒY‚ğ“¾‚é
+	// ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆé ˜åŸŸã®ã‚µã‚¤ã‚ºã‚’å¾—ã‚‹
 	CWidth  = ClientRect.right  - ClientRect.left ;
 	CHeight = ClientRect.bottom - ClientRect.top ;
 
-	// ˜g‚Ì•‚Æ‚‚³‚ğ“¾‚é
+	// æ ã®å¹…ã¨é«˜ã•ã‚’å¾—ã‚‹
 	NotCWidth  = ( rect.right  - rect.left ) - CWidth ;
 	NotCHeight = ( rect.bottom - rect.top  ) - CHeight ;
 
-	// ƒNƒ‰ƒCƒAƒ“ƒg—ÌˆæŠO‚Ì•”•ª‚Ì•E‚‚³‚ğ“¾‚é
+	// ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆé ˜åŸŸå¤–ã®éƒ¨åˆ†ã®å¹…ãƒ»é«˜ã•ã‚’å¾—ã‚‹
 	rect.right  -= CWidth ;
 	rect.bottom -= CHeight ;
 
-	// ƒEƒCƒ“ƒhƒE‚É‰æ–Ê‚ğƒtƒBƒbƒg‚³‚¹‚é‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+	// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã«ç”»é¢ã‚’ãƒ•ã‚£ãƒƒãƒˆã•ã›ã‚‹ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 	if( WinData.ScreenNotFitWindowSize == TRUE || WinData.WindowSizeValid == TRUE )
 	{
-		// ƒEƒCƒ“ƒhƒEƒTƒCƒYİ’è‚ªw’è‚³‚ê‚Ä‚¢‚½‚ç‚»‚ê‚ğg—p‚·‚é
+		// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚µã‚¤ã‚ºè¨­å®šãŒæŒ‡å®šã•ã‚Œã¦ã„ãŸã‚‰ãã‚Œã‚’ä½¿ç”¨ã™ã‚‹
 		if( WinData.WindowSizeValid == TRUE )
 		{
 			CWidth  = WinData.WindowWidth ;
@@ -10647,11 +10647,11 @@ int WM_SIZEProcess( void )
 			}
 		}
 
-		// ƒNƒ‰ƒCƒAƒ“ƒg—Ìˆæ‚ª‰æ–Ê—Ìˆæ‚æ‚è‘å‚«‚­‚È‚Á‚Ä‚¢‚éê‡‚Í•â³‚·‚é
+		// ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆé ˜åŸŸãŒç”»é¢é ˜åŸŸã‚ˆã‚Šå¤§ãããªã£ã¦ã„ã‚‹å ´åˆã¯è£œæ­£ã™ã‚‹
 		if( CWidth  > Width  ) CWidth  = Width  ;
 		if( CHeight > Height ) CHeight = Height ;
 
-		// ƒ†[ƒU[w’è‚ÌÅ¬ƒTƒCƒY‚ª—LŒø‚Èê‡‚Í“K—p‚·‚é
+		// ãƒ¦ãƒ¼ã‚¶ãƒ¼æŒ‡å®šã®æœ€å°ã‚µã‚¤ã‚ºãŒæœ‰åŠ¹ãªå ´åˆã¯é©ç”¨ã™ã‚‹
 		if( WinData.WindowMinSizeValid )
 		{
 			if( WinData.WindowMinWidth > CWidth )
@@ -10665,7 +10665,7 @@ int WM_SIZEProcess( void )
 			}
 		}
 
-		// ƒ†[ƒU[w’è‚ÌÅ‘åƒTƒCƒY‚ª—LŒø‚Èê‡‚Í“K—p‚·‚é
+		// ãƒ¦ãƒ¼ã‚¶ãƒ¼æŒ‡å®šã®æœ€å¤§ã‚µã‚¤ã‚ºãŒæœ‰åŠ¹ãªå ´åˆã¯é©ç”¨ã™ã‚‹
 		if( WinData.WindowMaxSizeValid )
 		{
 			if( WinData.WindowMaxWidth < CWidth )
@@ -10681,20 +10681,20 @@ int WM_SIZEProcess( void )
 	}
 	else
 	{
-		// ƒNƒ‰ƒCƒAƒ“ƒg—Ìˆæ‚ª‰æ–Ê—Ìˆæ‚ÆˆÙ‚È‚Á‚Ä‚¢‚éê‡‚Í•â³‚·‚é
+		// ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆé ˜åŸŸãŒç”»é¢é ˜åŸŸã¨ç•°ãªã£ã¦ã„ã‚‹å ´åˆã¯è£œæ­£ã™ã‚‹
 		if( CWidth  != Width  ) CWidth  = Width  ;
 		if( CHeight != Height ) CHeight = Height ;
 	}
 	rect.right  += CWidth ;
 	rect.bottom += CHeight ;
 	
-	// ƒNƒ‰ƒCƒAƒ“ƒg—Ìˆæ‚É‰æ–Ê‚ğƒtƒBƒbƒg‚³‚¹‚éê‡‚Íƒc[ƒ‹ƒo[‚Ì‚‚³‚ğ‰ÁZ‚·‚é
+	// ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆé ˜åŸŸã«ç”»é¢ã‚’ãƒ•ã‚£ãƒƒãƒˆã•ã›ã‚‹å ´åˆã¯ãƒ„ãƒ¼ãƒ«ãƒãƒ¼ã®é«˜ã•ã‚’åŠ ç®—ã™ã‚‹
 	if( WinData.ScreenNotFitWindowSize == FALSE && WinData.WindowSizeValid == FALSE )
 	{
 		rect.bottom += GetToolBarHeight() ;
 	}
 
-	// ƒEƒCƒ“ƒhƒE‚ÌˆÊ’uw’è‚ª‚ ‚éê‡‚Í”½‰f
+	// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ä½ç½®æŒ‡å®šãŒã‚ã‚‹å ´åˆã¯åæ˜ 
 	if( WinData.WindowPosValid == TRUE )
 	{
 		int SX, SY;
@@ -10730,7 +10730,7 @@ int WM_SIZEProcess( void )
 #endif // DX_NON_GRAPHICS
 	}
 	else
-	// Å‘å‰»ó‘Ô‚Ìê‡‚ÍƒEƒCƒ“ƒhƒE‚ğƒfƒXƒNƒgƒbƒv‚Ì’†S‚É”z’u‚·‚é
+	// æœ€å¤§åŒ–çŠ¶æ…‹ã®å ´åˆã¯ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚’ãƒ‡ã‚¹ã‚¯ãƒˆãƒƒãƒ—ã®ä¸­å¿ƒã«é…ç½®ã™ã‚‹
 	if( WinData.WindowMaximizeFlag )
 	{
 		int WindowX ;
@@ -10756,7 +10756,7 @@ int WM_SIZEProcess( void )
 		WindowX     = WindowCenterX - WindowSizeX / 2 ;
 		WindowY     = WindowCenterY - WindowSizeY / 2 ;
 
-		// ˆÊ’u‚âƒTƒCƒY‚ªŒ³‚Ì‹éŒ`‚Æ‚P‚¾‚¯ˆÙ‚È‚éê‡‚Í•â³‚·‚é
+		// ä½ç½®ã‚„ã‚µã‚¤ã‚ºãŒå…ƒã®çŸ©å½¢ã¨ï¼‘ã ã‘ç•°ãªã‚‹å ´åˆã¯è£œæ­£ã™ã‚‹
 		if( _ABS( WindowX - WinData.WindowMaximizedRect.left ) == 1 )
 		{
 			WindowX = WinData.WindowMaximizedRect.left ;
@@ -10779,7 +10779,7 @@ int WM_SIZEProcess( void )
 		rect.right  = rect.left + WindowSizeX ;
 		rect.bottom = rect.top  + WindowSizeY ;
 
-		// ( Å‘å‰»Œã‚ÌƒEƒCƒ“ƒhƒE‚ÌˆÊ’u‚âƒTƒCƒY‚ğ•ÏX‚·‚é‚ÆA‚Q‰ñ–ÚˆÈ~‚ÌÅ‘å‰»‚ÌƒEƒCƒ“ƒhƒE‚ÌƒTƒCƒY‚âˆÊ’u‚ª•Ï‚É‚È‚é‚Ì‚ÅAˆê’U•â³‚ğ–³Œø‰» )
+		// ( æœ€å¤§åŒ–å¾Œã®ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ä½ç½®ã‚„ã‚µã‚¤ã‚ºã‚’å¤‰æ›´ã™ã‚‹ã¨ã€ï¼’å›ç›®ä»¥é™ã®æœ€å¤§åŒ–ã®ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ã‚µã‚¤ã‚ºã‚„ä½ç½®ãŒå¤‰ã«ãªã‚‹ã®ã§ã€ä¸€æ—¦è£œæ­£ã‚’ç„¡åŠ¹åŒ– )
 		rect = WinData.WindowMaximizedRect ;
 		WinData.WindowMaximizedAdjustRect = rect ;
 	}
@@ -10791,7 +10791,7 @@ int WM_SIZEProcess( void )
 		SetWindowStyle() ;
 	}
 
-	// ƒc[ƒ‹ƒo[‚ª—LŒø‚Èê‡‚Íƒc[ƒ‹ƒo[‚É‚à‘—‚é
+	// ãƒ„ãƒ¼ãƒ«ãƒãƒ¼ãŒæœ‰åŠ¹ãªå ´åˆã¯ãƒ„ãƒ¼ãƒ«ãƒãƒ¼ã«ã‚‚é€ã‚‹
 	if( WinData.ToolBarUseFlag == TRUE )
 	{
 		int NewCWidth, NewCHeight ;
@@ -10802,7 +10802,7 @@ int WM_SIZEProcess( void )
 		SendMessageWFunc( WinData.ToolBarHandle, WM_SIZE, 0, NewCWidth | ( NewCHeight << 16 ) ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
@@ -10813,10 +10813,10 @@ int WM_MOVEProcess( LPARAM lParam )
 
 	SETUP_WIN_API
 
-	// ƒ†[ƒU[‚ÌƒEƒCƒ“ƒhƒE‚ğg—p‚µ‚Ä‚¢‚éê‡‚Ì‚İˆÚ“®‚ğs‚¤
+	// ãƒ¦ãƒ¼ã‚¶ãƒ¼ã®ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹å ´åˆã®ã¿ç§»å‹•ã‚’è¡Œã†
 	if( WinData.UserWindowFlag == TRUE ) return 0 ;
 
-	// ƒEƒCƒ“ƒhƒE‚ÌˆÊ’u‚ğ•Û‘¶
+	// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ä½ç½®ã‚’ä¿å­˜
 	if( WinAPIData.Win32Func.GetClientRectFunc( WinData.MainWindow , &rect ) == 0 ) return 0 ;
 
 	WindowSize.cx = rect.right - rect.left ;
@@ -10834,24 +10834,24 @@ int WM_MOVEProcess( LPARAM lParam )
 #ifndef DX_NON_MASK
 		int Flag ;
 
-		// ƒ}ƒXƒN‚ğg—pI—¹‚·‚éè‘±‚«‚ğæ‚é
+		// ãƒã‚¹ã‚¯ã‚’ä½¿ç”¨çµ‚äº†ã™ã‚‹æ‰‹ç¶šãã‚’å–ã‚‹
 		Flag = NS_GetUseMaskScreenFlag() ;
 		NS_SetUseMaskScreenFlag( FALSE ) ;
 
-		// ƒ}ƒXƒN‚ğg—p‚·‚éè‘±‚«‚ğæ‚é
+		// ãƒã‚¹ã‚¯ã‚’ä½¿ç”¨ã™ã‚‹æ‰‹ç¶šãã‚’å–ã‚‹
 		NS_SetUseMaskScreenFlag( Flag ) ;
 #endif
 	}
 #endif // DX_NON_GRAPHICS
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
 int WM_ACTIVATEProcessUseStock( WPARAM wParam, LPARAM lParam, int APPMes, int Dummy )
 {
-	// ProcessMessage ‚©‚ç‚±‚±‚É—ˆ‚½ê‡( Š‚Â‚Ü‚¾ƒŠƒNƒGƒXƒg‚ª‚³‚ê‚Ä‚¢‚È‚­AƒEƒCƒ“ƒhƒEì¬’¼Œã‚Å‚à‚È‚¢ê‡ )‚Í
-	// ProcessMessage ‚ÌÅŒã‚É WM_ACTIVATE ‚ğs‚¤‚æ‚¤‚É‚·‚é
+	// ProcessMessage ã‹ã‚‰ã“ã“ã«æ¥ãŸå ´åˆ( ä¸”ã¤ã¾ã ãƒªã‚¯ã‚¨ã‚¹ãƒˆãŒã•ã‚Œã¦ã„ãªãã€ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ä½œæˆç›´å¾Œã§ã‚‚ãªã„å ´åˆ )ã¯
+	// ProcessMessage ã®æœ€å¾Œã« WM_ACTIVATE ã‚’è¡Œã†ã‚ˆã†ã«ã™ã‚‹
 	if( WinData.ProcessMessageFlag == TRUE &&
 		WinData.WindowCreateFlag == FALSE &&
 		WinData.WM_ACTIVATE_StockNum < 512 )
@@ -10877,46 +10877,46 @@ int WM_ACTIVATEProcess( WPARAM wParam, LPARAM /*lParam*/, int APPMes, int Dummy 
 
 	SETUP_WIN_API
 
-	// WM_ACTIVATEProcess Às’†ƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// WM_ACTIVATEProcess å®Ÿè¡Œä¸­ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	WinData.WM_ACTIVATE_ProcessFlag = TRUE ;
 
-	// ƒAƒNƒeƒBƒu‚©‚Ç‚¤‚©‚ğæ“¾
+	// ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã‹ã©ã†ã‹ã‚’å–å¾—
 	ActiveFlag = LOWORD( wParam ) != 0 ;
 
-	// ƒEƒCƒ“ƒhƒEì¬’¼Œã‚¾‚Á‚½ê‡‚Í‰½‚à‚¹‚¸I—¹
+	// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ä½œæˆç›´å¾Œã ã£ãŸå ´åˆã¯ä½•ã‚‚ã›ãšçµ‚äº†
 	if( WinData.WindowCreateFlag == TRUE )
 	{
-		// ƒAƒNƒeƒBƒu‚©‚Ç‚¤‚©‚ğ•Û‘¶
+		// ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã‹ã©ã†ã‹ã‚’ä¿å­˜
 		WinData.ActiveFlag = ActiveFlag ;
 
-		// WM_ACTIVATEProcess Às’†ƒtƒ‰ƒO‚ğ“|‚·
+		// WM_ACTIVATEProcess å®Ÿè¡Œä¸­ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 		WinData.WM_ACTIVATE_ProcessFlag = FALSE ;
 		return 0 ;
 	}
 
-	// Å¬‰»‚³‚ê‚½ó‘Ô‚ÌƒAƒNƒeƒBƒuî•ñ(wParam ‚Ì HIWORD ‚ª 0 ˆÈŠO)‚Í”ñƒAƒNƒeƒBƒu‚Æ‚µ‚Äˆ—‚ğ‚·‚é
+	// æœ€å°åŒ–ã•ã‚ŒãŸçŠ¶æ…‹ã®ã‚¢ã‚¯ãƒ†ã‚£ãƒ–æƒ…å ±(wParam ã® HIWORD ãŒ 0 ä»¥å¤–)ã¯éã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã¨ã—ã¦å‡¦ç†ã‚’ã™ã‚‹
 	if( HIWORD( wParam ) != 0 )
 	{
 		ActiveFlag = FALSE ;
 	}
 
-	// ƒAƒNƒeƒBƒuî•ñ‚ª¡‚Ü‚Å‚Æ“¯‚¶ê‡‚Í‰½‚à‚µ‚È‚¢
+	// ã‚¢ã‚¯ãƒ†ã‚£ãƒ–æƒ…å ±ãŒä»Šã¾ã§ã¨åŒã˜å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( WinData.ActiveFlag == ActiveFlag )
 	{
-		// WM_ACTIVATEProcess Às’†ƒtƒ‰ƒO‚ğ“|‚·
+		// WM_ACTIVATEProcess å®Ÿè¡Œä¸­ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 		WinData.WM_ACTIVATE_ProcessFlag = FALSE ;
 		return 0 ;
 	}
 
-	// ƒAƒNƒeƒBƒu‚©‚Ç‚¤‚©‚ğ•Û‘¶
+	// ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã‹ã©ã†ã‹ã‚’ä¿å­˜
 	WinData.ActiveFlag = ActiveFlag ;
 
 	if( ActiveFlag == TRUE )
 	{
-//		DXST_LOGFILE_ADDW( L"ƒAƒNƒeƒBƒu‚É‚È‚è‚Ü‚µ‚½\n" ) ;
+//		DXST_LOGFILE_ADDW( L"ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ãªã‚Šã¾ã—ãŸ\n" ) ;
 
 #ifndef DX_NON_INPUTSTRING
-		// ‚h‚l‚d‚Å•¶š—ñ‚ğ“ü—Í’†‚¾‚Á‚½ê‡‚Í•¶š—ñ‚ğŠm’è‚µ‚Ä‚µ‚Ü‚¤
+		// ï¼©ï¼­ï¼¥ã§æ–‡å­—åˆ—ã‚’å…¥åŠ›ä¸­ã ã£ãŸå ´åˆã¯æ–‡å­—åˆ—ã‚’ç¢ºå®šã—ã¦ã—ã¾ã†
 		if( CharBuf.IMEUseFlag_OSSet == TRUE && CharBuf.IMESwitch == TRUE )
 		{
 			CharBuf.IMERefreshStep = 1;
@@ -10934,7 +10934,7 @@ int WM_ACTIVATEProcess( WPARAM wParam, LPARAM /*lParam*/, int APPMes, int Dummy 
 		{
 #ifndef DX_NON_GRAPHICS
 #ifndef DX_NON_DIRECT3D11
-			// Direct3D 11 ‚Ìê‡‚Íƒtƒ‹ƒXƒNƒŠ[ƒ“İ’è‚ğŒ³‚É–ß‚·‚¾‚¯
+			// Direct3D 11 ã®å ´åˆã¯ãƒ•ãƒ«ã‚¹ã‚¯ãƒªãƒ¼ãƒ³è¨­å®šã‚’å…ƒã«æˆ»ã™ã ã‘
 			if( GRAWIN.Setting.UseGraphicsAPI == GRAPHICS_API_DIRECT3D11_WIN32 )
 			{
 				Graphics_D3D11_FullscreenSetup( TRUE ) ;
@@ -10942,7 +10942,7 @@ int WM_ACTIVATEProcess( WPARAM wParam, LPARAM /*lParam*/, int APPMes, int Dummy 
 			else
 #endif // DX_NON_DIRECT3D11
 			{
-				// ƒOƒ‰ƒtƒBƒbƒNƒVƒXƒeƒ€‚Ì•œ‹Aˆ—
+				// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚·ã‚¹ãƒ†ãƒ ã®å¾©å¸°å‡¦ç†
 				NS_RestoreGraphSystem() ;
 			}
 #endif // DX_NON_GRAPHICS
@@ -10950,12 +10950,12 @@ int WM_ACTIVATEProcess( WPARAM wParam, LPARAM /*lParam*/, int APPMes, int Dummy 
 			WinData.StopFlag = FALSE ;
 
 #ifndef DX_NON_MOVIE
-			// ƒ€[ƒr[ƒOƒ‰ƒtƒBƒbƒN‚ÌÄ¶ó‘Ô‚ğ–ß‚·
+			// ãƒ ãƒ¼ãƒ“ãƒ¼ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®å†ç”ŸçŠ¶æ…‹ã‚’æˆ»ã™
 			PlayMovieAll() ;
 #endif
 
 #ifndef DX_NON_SOUND
-			// ƒTƒEƒ“ƒh‚ÌÄ¶‚ğÄŠJ‚·‚é
+			// ã‚µã‚¦ãƒ³ãƒ‰ã®å†ç”Ÿã‚’å†é–‹ã™ã‚‹
 			PauseSoundMemAll( FALSE ) ;
 			PauseSoftSoundAll( FALSE ) ;
 #endif // DX_NON_SOUND
@@ -10965,18 +10965,18 @@ int WM_ACTIVATEProcess( WPARAM wParam, LPARAM /*lParam*/, int APPMes, int Dummy 
 			if( WinData.NonActiveRunFlag == FALSE )
 			{
 #ifndef DX_NON_MOVIE
-				// ƒ€[ƒr[ƒOƒ‰ƒtƒBƒbƒN‚ÌÄ¶ó‘Ô‚ğ–ß‚·
+				// ãƒ ãƒ¼ãƒ“ãƒ¼ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®å†ç”ŸçŠ¶æ…‹ã‚’æˆ»ã™
 				PlayMovieAll() ;
 #endif
 
 #ifndef DX_NON_SOUND
-				// ƒTƒEƒ“ƒh‚ÌÄ¶‚ğÄŠJ‚·‚é
+				// ã‚µã‚¦ãƒ³ãƒ‰ã®å†ç”Ÿã‚’å†é–‹ã™ã‚‹
 				PauseSoundMemAll( FALSE ) ;
 				PauseSoftSoundAll( FALSE ) ;
 #endif // DX_NON_SOUND
 			}
 
-			// ƒ{[ƒ_[ƒŒƒXƒEƒBƒ“ƒhƒE‚Ìê‡‚Ì‚İƒEƒBƒ“ƒhƒEÅ‘O–Ê‚ÉƒZƒbƒg‚·‚é
+			// ãƒœãƒ¼ãƒ€ãƒ¼ãƒ¬ã‚¹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®å ´åˆã®ã¿ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æœ€å‰é¢ã«ã‚»ãƒƒãƒˆã™ã‚‹
 			if( WinData.WindowModeFlag == FALSE && NS_GetUseFullScreenResolutionMode() == DX_FSRESOLUTIONMODE_BORDERLESS_WINDOW )
 			{
 				WinAPIData.Win32Func.SetWindowPosFunc(
@@ -10988,14 +10988,14 @@ int WM_ACTIVATEProcess( WPARAM wParam, LPARAM /*lParam*/, int APPMes, int Dummy 
 			}
 		}
 
-		// DirectInputƒfƒoƒCƒXƒIƒuƒWƒFƒNƒg‚ÌÄæ“¾
+		// DirectInputãƒ‡ãƒã‚¤ã‚¹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®å†å–å¾—
 #ifndef DX_NON_INPUT
 		RefreshInputDeviceAcquireState() ;
 #endif // DX_NON_INPUT
 	}
 	else
 	{
-//		DXST_LOGFILE_ADDW( L"”ñƒAƒNƒeƒBƒu‚É‚È‚è‚Ü‚µ‚½\n" ) ;
+//		DXST_LOGFILE_ADDW( L"éã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ãªã‚Šã¾ã—ãŸ\n" ) ;
 
 		if( WinData.WindowModeFlag == FALSE && NS_GetUseFullScreenResolutionMode() != DX_FSRESOLUTIONMODE_BORDERLESS_WINDOW )
 		{
@@ -11003,7 +11003,7 @@ int WM_ACTIVATEProcess( WPARAM wParam, LPARAM /*lParam*/, int APPMes, int Dummy 
 			{
 #ifndef DX_NON_GRAPHICS
 #ifndef DX_NON_DIRECT3D11
-				// Direct3D 11 ‚Ìê‡‚Íƒtƒ‹ƒXƒNƒŠ[ƒ“İ’è‚ğ‰ğœ‚·‚é‚¾‚¯
+				// Direct3D 11 ã®å ´åˆã¯ãƒ•ãƒ«ã‚¹ã‚¯ãƒªãƒ¼ãƒ³è¨­å®šã‚’è§£é™¤ã™ã‚‹ã ã‘
 				if( GRAWIN.Setting.UseGraphicsAPI == GRAPHICS_API_DIRECT3D11_WIN32 )
 				{
 					Graphics_D3D11_FullscreenSetup( FALSE ) ;
@@ -11011,7 +11011,7 @@ int WM_ACTIVATEProcess( WPARAM wParam, LPARAM /*lParam*/, int APPMes, int Dummy 
 				else
 #endif // DX_NON_DIRECT3D11
 				{
-					// DirectX ‚ÌƒIƒuƒWƒFƒNƒg‚ğ‰ğ•ú‚·‚é
+					// DirectX ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’è§£æ”¾ã™ã‚‹
 					Graphics_ReleaseDirectXObject() ;
 				}
 #endif // DX_NON_GRAPHICS
@@ -11026,41 +11026,41 @@ int WM_ACTIVATEProcess( WPARAM wParam, LPARAM /*lParam*/, int APPMes, int Dummy 
 #endif // DX_NON_GRAPHICS
 		}
 
-		// ƒtƒ‹ƒXƒNƒŠ[ƒ“ƒ‚[ƒh‚Ìê‡‚Ìˆ—
+		// ãƒ•ãƒ«ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ¢ãƒ¼ãƒ‰ã®å ´åˆã®å‡¦ç†
 #ifndef DX_NON_GRAPHICS
 		if( ( WinData.WindowModeFlag == FALSE && NS_GetUseFullScreenResolutionMode() != DX_FSRESOLUTIONMODE_BORDERLESS_WINDOW ) && NS_GetChangeDisplayFlag() && NS_GetUseDDrawObj() != NULL )
 		{
-			// ƒtƒ‹ƒXƒNƒŠ[ƒ“‚Ìê‡‚Í•K‚¸ DWM ‚ğ—LŒø‚É‚·‚é
+			// ãƒ•ãƒ«ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã®å ´åˆã¯å¿…ãš DWM ã‚’æœ‰åŠ¹ã«ã™ã‚‹
 			SetEnableAero( TRUE ) ;
 
-			// ‚à‚µ•œŒ³ƒXƒŒƒbƒh‚ª“o˜^‚³‚ê‚Ä‚¢‚È‚¢ê‡‚Íƒ\ƒtƒgI—¹
+			// ã‚‚ã—å¾©å…ƒã‚¹ãƒ¬ãƒƒãƒ‰ãŒç™»éŒ²ã•ã‚Œã¦ã„ãªã„å ´åˆã¯ã‚½ãƒ•ãƒˆçµ‚äº†
 			if( NS_GetValidRestoreShredPoint() == FALSE ) 
 			{
-				// ƒ†[ƒU[’ñ‹Ÿ‚ÌƒEƒCƒ“ƒhƒE‚¾‚Á‚½‚ç‰½‚à‚µ‚È‚¢
+				// ãƒ¦ãƒ¼ã‚¶ãƒ¼æä¾›ã®ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã ã£ãŸã‚‰ä½•ã‚‚ã—ãªã„
 				if( WinData.UserWindowFlag == FALSE )
 				{
-					DXST_LOGFILE_ADDUTF16LE( "\xa9\x5f\x43\x51\xa2\x95\x70\x65\x4c\x30\x7b\x76\x32\x93\x55\x30\x8c\x30\x66\x30\x44\x30\x6a\x30\x44\x30\x5f\x30\x81\x30\x42\x7d\x86\x4e\x57\x30\x7e\x30\x59\x30\x0a\x00\x00"/*@ L"•œŒ³ŠÖ”‚ª“o˜^‚³‚ê‚Ä‚¢‚È‚¢‚½‚ßI—¹‚µ‚Ü‚·\n" @*/ ) ;
+					DXST_LOGFILE_ADDUTF16LE( "\xa9\x5f\x43\x51\xa2\x95\x70\x65\x4c\x30\x7b\x76\x32\x93\x55\x30\x8c\x30\x66\x30\x44\x30\x6a\x30\x44\x30\x5f\x30\x81\x30\x42\x7d\x86\x4e\x57\x30\x7e\x30\x59\x30\x0a\x00\x00"/*@ L"å¾©å…ƒé–¢æ•°ãŒç™»éŒ²ã•ã‚Œã¦ã„ãªã„ãŸã‚çµ‚äº†ã—ã¾ã™\n" @*/ ) ;
 				
-					// ƒNƒ[ƒYƒtƒ‰ƒO‚ª“|‚ê‚Ä‚¢‚½‚çWM_CLOSEƒƒbƒZ[ƒW‚ğ‘—‚é
+					// ã‚¯ãƒ­ãƒ¼ã‚ºãƒ•ãƒ©ã‚°ãŒå€’ã‚Œã¦ã„ãŸã‚‰WM_CLOSEãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’é€ã‚‹
 					if( WinData.CloseMessagePostFlag == FALSE )
 					{
 						WinData.CloseMessagePostFlag = TRUE ;
 						PostMessageWFunc( WinData.MainWindow, WM_CLOSE, 0, 0 );
 					}
 
-					// WM_ACTIVATEProcess Às’†ƒtƒ‰ƒO‚ğ“|‚·
+					// WM_ACTIVATEProcess å®Ÿè¡Œä¸­ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 					WinData.WM_ACTIVATE_ProcessFlag = FALSE ;
 					return -1 ;
 				}
 			}
 
 #ifndef DX_NON_MOVIE
-			// ƒ€[ƒr[ƒOƒ‰ƒtƒBƒbƒN‚ÌÄ¶ó‘Ô‚ğ‚Æ‚ß‚é
+			// ãƒ ãƒ¼ãƒ“ãƒ¼ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®å†ç”ŸçŠ¶æ…‹ã‚’ã¨ã‚ã‚‹
 			PauseMovieAll() ;
 #endif
 
 #ifndef DX_NON_SOUND
-			// ƒTƒEƒ“ƒh‚ÌÄ¶‚ğ~‚ß‚é
+			// ã‚µã‚¦ãƒ³ãƒ‰ã®å†ç”Ÿã‚’æ­¢ã‚ã‚‹
 			PauseSoundMemAll( TRUE ) ;
 			PauseSoftSoundAll( TRUE ) ;
 #endif // DX_NON_SOUND
@@ -11073,18 +11073,18 @@ int WM_ACTIVATEProcess( WPARAM wParam, LPARAM /*lParam*/, int APPMes, int Dummy 
 			if( WinData.NonActiveRunFlag == FALSE )
 			{
 #ifndef DX_NON_MOVIE
-				// ƒ€[ƒr[ƒOƒ‰ƒtƒBƒbƒN‚ÌÄ¶ó‘Ô‚ğ‚Æ‚ß‚é
+				// ãƒ ãƒ¼ãƒ“ãƒ¼ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®å†ç”ŸçŠ¶æ…‹ã‚’ã¨ã‚ã‚‹
 				PauseMovieAll() ;
 #endif
 
 #ifndef DX_NON_SOUND
-				// ƒTƒEƒ“ƒh‚ÌÄ¶‚ğ~‚ß‚é
+				// ã‚µã‚¦ãƒ³ãƒ‰ã®å†ç”Ÿã‚’æ­¢ã‚ã‚‹
 				PauseSoundMemAll( TRUE ) ;
 				PauseSoftSoundAll( TRUE ) ;
 #endif // DX_NON_SOUND
 			}
 
-			// DirectInputƒfƒoƒCƒXƒIƒuƒWƒFƒNƒg‚ÌÄæ“¾
+			// DirectInputãƒ‡ãƒã‚¤ã‚¹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®å†å–å¾—
 #ifndef DX_NON_INPUT
 			RefreshInputDeviceAcquireState() ;
 #endif // DX_NON_INPUT
@@ -11096,7 +11096,7 @@ int WM_ACTIVATEProcess( WPARAM wParam, LPARAM /*lParam*/, int APPMes, int Dummy 
 			WinData.SetClipCursorFlag = FALSE ;
 		}
 
-		// ƒ{[ƒ_[ƒŒƒXƒEƒBƒ“ƒhƒE‚Ìê‡‚Ì‚İƒEƒBƒ“ƒhƒEÅ‘O–ÊŒÅ’è‚ğ‰ğœ‚·‚é
+		// ãƒœãƒ¼ãƒ€ãƒ¼ãƒ¬ã‚¹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®å ´åˆã®ã¿ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æœ€å‰é¢å›ºå®šã‚’è§£é™¤ã™ã‚‹
 		if( WinData.WindowModeFlag == FALSE && NS_GetUseFullScreenResolutionMode() == DX_FSRESOLUTIONMODE_BORDERLESS_WINDOW )
 		{
 			WinAPIData.Win32Func.SetWindowPosFunc(
@@ -11107,7 +11107,7 @@ int WM_ACTIVATEProcess( WPARAM wParam, LPARAM /*lParam*/, int APPMes, int Dummy 
 			) ;
 		}
 
-		// ƒoƒbƒNƒOƒ‰ƒEƒ“ƒh•`‰æ
+		// ãƒãƒƒã‚¯ã‚°ãƒ©ã‚¦ãƒ³ãƒ‰æç”»
 		if( Dummy == FALSE )
 		{
 			HDC hdc ;
@@ -11121,39 +11121,39 @@ int WM_ACTIVATEProcess( WPARAM wParam, LPARAM /*lParam*/, int APPMes, int Dummy 
 		}
 	}
 
-	// ƒpƒbƒh‚ÌƒoƒCƒuƒŒ[ƒVƒ‡ƒ“ó‘Ô‚ğXV
+	// ãƒ‘ãƒƒãƒ‰ã®ãƒã‚¤ãƒ–ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³çŠ¶æ…‹ã‚’æ›´æ–°
 #ifndef DX_NON_INPUT
 	RefreshEffectPlayState() ;
 #endif // DX_NON_INPUT
 
-	// ƒAƒNƒeƒBƒuó‘Ô‚ª•Ï‰»‚µ‚½‚ÉŒÄ‚ÔƒR[ƒ‹ƒoƒbƒNŠÖ”‚ªİ’è‚³‚ê‚Ä‚¢‚½‚çŒÄ‚Ô
+	// ã‚¢ã‚¯ãƒ†ã‚£ãƒ–çŠ¶æ…‹ãŒå¤‰åŒ–ã—ãŸæ™‚ã«å‘¼ã¶ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ãŒè¨­å®šã•ã‚Œã¦ã„ãŸã‚‰å‘¼ã¶
 	if( WinData.ActiveStateChangeCallBackFunction != NULL && APPMes == FALSE )
 	{
 		WinData.ActiveStateChangeCallBackFunction( ActiveFlag, WinData.ActiveStateChangeCallBackFunctionData ) ;
 	}
 
-	// ƒ\ƒtƒgƒvƒƒZƒX‚ÌÀs—Dæ‡ˆÊ‚ğƒZƒbƒg‚·‚é
+	// ã‚½ãƒ•ãƒˆãƒ—ãƒ­ã‚»ã‚¹ã®å®Ÿè¡Œå„ªå…ˆé †ä½ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 //	SetPriorityClass( GetCurrentProcess() , ActiveFlag ? HIGH_PRIORITY_CLASS : IDLE_PRIORITY_CLASS );
 
-	// ƒ^ƒXƒNƒXƒCƒbƒ`‚Ì—LŒø–³Œø‚ğƒZƒbƒg
+	// ã‚¿ã‚¹ã‚¯ã‚¹ã‚¤ãƒƒãƒã®æœ‰åŠ¹ç„¡åŠ¹ã‚’ã‚»ãƒƒãƒˆ
 	if( WinData.SysCommandOffFlag == TRUE )
 	{
 #ifndef DX_NON_STOPTASKSWITCH
 
 		if( WinData.WindowsVersion < DX_WINDOWSVERSION_NT31 )
 		{
-			// Win95 ƒJ[ƒlƒ‹‚Ìê‡‚Ìˆ—
+			// Win95 ã‚«ãƒ¼ãƒãƒ«ã®å ´åˆã®å‡¦ç†
 			UINT nPreviousState;
 //			SystemParametersInfoWFunc( SPI_SETSCREENSAVERRUNNING, ActiveFlag, &nPreviousState, 0 ) ;
 			SystemParametersInfoWFunc( SPI_SETSCREENSAVERRUNNING/*SPI_SCREENSAVERRUNNING*/, ( UINT )ActiveFlag, &nPreviousState, 0 ) ;
 		}
 		else
 		{
-			// WinNT ƒJ[ƒlƒ‹‚Ìê‡‚Ìˆ—
+			// WinNT ã‚«ãƒ¼ãƒãƒ«ã®å ´åˆã®å‡¦ç†
 
 			if( /*WinData.GetMessageHookHandle == NULL &&*/ ActiveFlag == TRUE )
 			{
-				// ƒL[ƒ{[ƒhƒtƒbƒN‚ÌƒZƒbƒg
+				// ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ãƒ•ãƒƒã‚¯ã®ã‚»ãƒƒãƒˆ
 				if( WinData.TaskHookHandle == NULL )
 				{
 					WinData.TaskHookHandle = WinAPIData.Win32Func.SetWindowsHookExWFunc( WH_KEYBOARD_LL, LowLevelKeyboardProc, WinData.Instance, 0 ) ;
@@ -11163,7 +11163,7 @@ int WM_ACTIVATEProcess( WPARAM wParam, LPARAM /*lParam*/, int APPMes, int Dummy 
 // //				WinData.MessageHookThredID = WinAPIData.Win32Func.GetWindowThreadProcessIdFunc( WinAPIData.Win32Func.GetDesktopWindowFunc(), NULL ) ;
 // 				WinData.MessageHookDLL = LoadLibraryW( WinData.HookDLLFilePath ) ;
 // 
-// 				// DLL ‚ª–³‚©‚Á‚½‚çi‚Ü‚È‚¢
+// 				// DLL ãŒç„¡ã‹ã£ãŸã‚‰é€²ã¾ãªã„
 // 				if( WinData.MessageHookDLL != NULL )
 // 				{
 // 					WinData.MessageHookCallBack = ( MSGFUNC )GetProcAddress( WinData.MessageHookDLL, "SetMSGHookDll" ) ;
@@ -11178,14 +11178,14 @@ int WM_ACTIVATEProcess( WPARAM wParam, LPARAM /*lParam*/, int APPMes, int Dummy 
 			else
 			if( /*WinData.GetMessageHookHandle != NULL &&*/ ActiveFlag == FALSE )
 			{
-				// ƒL[ƒ{[ƒhƒtƒbƒN‚ğ–³Œø‚É
+				// ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ãƒ•ãƒƒã‚¯ã‚’ç„¡åŠ¹ã«
 				if( WinData.KeyboardHookHandle != NULL )
 				{
 					WinAPIData.Win32Func.UnhookWindowsHookExFunc( WinData.KeyboardHookHandle ) ;
 					WinData.KeyboardHookHandle = NULL ;
 				}
 
-//				// ƒƒbƒZ[ƒWƒtƒbƒN‚ğ–³Œø‚É
+//				// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ•ãƒƒã‚¯ã‚’ç„¡åŠ¹ã«
 // 				if( WinData.MessageHookDLL != NULL )
 // 				{
 // 					WinData.MessageHookCallBack( WinData.MainWindow, &WinData.KeyboardHookHandle, FALSE ) ;
@@ -11202,26 +11202,26 @@ int WM_ACTIVATEProcess( WPARAM wParam, LPARAM /*lParam*/, int APPMes, int Dummy 
 
 #endif // DX_NON_STOPTASKSWITCH
 
-		// ‹¤’Ê
+		// å…±é€š
 		WinData.LockInitializeFlag = TRUE ;
 	}
 
-	// WM_ACTIVATEProcess Às’†ƒtƒ‰ƒO‚ğ“|‚·
+	// WM_ACTIVATEProcess å®Ÿè¡Œä¸­ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 	WinData.WM_ACTIVATE_ProcessFlag = FALSE ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
 
 
-// SPI_GETFOREGROUNDLOCKTIMEOUT ‚Ì’è‹`
+// SPI_GETFOREGROUNDLOCKTIMEOUT ã®å®šç¾©
 #if !defined(SPI_GETFOREGROUNDLOCKTIMEOUT) 
 #define SPI_GETFOREGROUNDLOCKTIMEOUT 0x2000 
 #define SPI_SETFOREGROUNDLOCKTIMEOUT 0x2001 
 #endif 
 
-// ƒ\ƒtƒg‚ÌƒEƒCƒ“ƒhƒE‚ÉƒtƒH[ƒJƒX‚ğˆÚ‚·
+// ã‚½ãƒ•ãƒˆã®ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã«ãƒ•ã‚©ãƒ¼ã‚«ã‚¹ã‚’ç§»ã™
 extern void SetAbsoluteForegroundWindow( HWND hWnd, int Flag )
 {
     DWORD nTargetID, nForegroundID;
@@ -11229,42 +11229,42 @@ extern void SetAbsoluteForegroundWindow( HWND hWnd, int Flag )
 
 	SETUP_WIN_API
 
-    // ƒtƒHƒAƒOƒ‰ƒEƒ“ƒhƒEƒBƒ“ƒhƒE‚ğì¬‚µ‚½ƒXƒŒƒbƒh‚ÌID‚ğæ“¾
+    // ãƒ•ã‚©ã‚¢ã‚°ãƒ©ã‚¦ãƒ³ãƒ‰ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’ä½œæˆã—ãŸã‚¹ãƒ¬ãƒƒãƒ‰ã®IDã‚’å–å¾—
     nForegroundID = WinAPIData.Win32Func.GetWindowThreadProcessIdFunc( WinAPIData.Win32Func.GetForegroundWindowFunc(), NULL);
 
-    // –Ú“I‚ÌƒEƒBƒ“ƒhƒE‚ğì¬‚µ‚½ƒXƒŒƒbƒh‚ÌID‚ğæ“¾
+    // ç›®çš„ã®ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’ä½œæˆã—ãŸã‚¹ãƒ¬ãƒƒãƒ‰ã®IDã‚’å–å¾—
     nTargetID = WinAPIData.Win32Func.GetWindowThreadProcessIdFunc(hWnd, NULL );
 
 
-    // ƒXƒŒƒbƒh‚ÌƒCƒ“ƒvƒbƒgó‘Ô‚ğŒ‹‚Ñ•t‚¯‚é
-    WinAPIData.Win32Func.AttachThreadInputFunc( nTargetID, nForegroundID, TRUE );  // TRUE ‚ÅŒ‹‚Ñ•t‚¯
+    // ã‚¹ãƒ¬ãƒƒãƒ‰ã®ã‚¤ãƒ³ãƒ—ãƒƒãƒˆçŠ¶æ…‹ã‚’çµã³ä»˜ã‘ã‚‹
+    WinAPIData.Win32Func.AttachThreadInputFunc( nTargetID, nForegroundID, TRUE );  // TRUE ã§çµã³ä»˜ã‘
 
 
-    // Œ»İ‚Ìİ’è‚ğ sp_time ‚É•Û‘¶
+    // ç¾åœ¨ã®è¨­å®šã‚’ sp_time ã«ä¿å­˜
     SystemParametersInfoWFunc( SPI_GETFOREGROUNDLOCKTIMEOUT,0,&sp_time,0);
 
-    // ƒEƒBƒ“ƒhƒE‚ÌØ‚è‘Ö‚¦ŠÔ‚ğ 0ms ‚É‚·‚é
+    // ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®åˆ‡ã‚Šæ›¿ãˆæ™‚é–“ã‚’ 0ms ã«ã™ã‚‹
     SystemParametersInfoWFunc( SPI_SETFOREGROUNDLOCKTIMEOUT,0,(LPVOID)0,0);
 
 
-    // ƒEƒBƒ“ƒhƒE‚ğƒtƒHƒAƒOƒ‰ƒEƒ“ƒh‚É‚Á‚Ä‚­‚é
+    // ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’ãƒ•ã‚©ã‚¢ã‚°ãƒ©ã‚¦ãƒ³ãƒ‰ã«æŒã£ã¦ãã‚‹
     WinAPIData.Win32Func.SetForegroundWindowFunc( hWnd ) ;
 
 
-    // İ’è‚ğŒ³‚É–ß‚·
+    // è¨­å®šã‚’å…ƒã«æˆ»ã™
     SystemParametersInfoWFunc( SPI_SETFOREGROUNDLOCKTIMEOUT,0,&sp_time,0);
 
 
-    // ƒXƒŒƒbƒh‚ÌƒCƒ“ƒvƒbƒgó‘Ô‚ğØ‚è—£‚·
-    WinAPIData.Win32Func.AttachThreadInputFunc( nTargetID, nForegroundID, FALSE );  // FALSE ‚ÅØ‚è—£‚µ
+    // ã‚¹ãƒ¬ãƒƒãƒ‰ã®ã‚¤ãƒ³ãƒ—ãƒƒãƒˆçŠ¶æ…‹ã‚’åˆ‡ã‚Šé›¢ã™
+    WinAPIData.Win32Func.AttachThreadInputFunc( nTargetID, nForegroundID, FALSE );  // FALSE ã§åˆ‡ã‚Šé›¢ã—
 
-	// ƒEƒCƒ“ƒhƒE‚ğÅ‘O–Ê‚É‚Á‚Ä‚­‚é
+	// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚’æœ€å‰é¢ã«æŒã£ã¦ãã‚‹
 	if( Flag == TRUE ) WinAPIData.Win32Func.SetWindowPosFunc( WinData.MainWindow , HWND_TOPMOST, 0, 0, 0, 0, SWP_NOSIZE | SWP_NOMOVE | SWP_NOREDRAW ) ;
 }
 
 
 
-// ‚a‚l‚oƒŠƒ\[ƒX‚©‚ç BITMAPINFO ‚Æ‰æ‘œƒCƒ[ƒW‚ğ\’z‚·‚é
+// ï¼¢ï¼­ï¼°ãƒªã‚½ãƒ¼ã‚¹ã‹ã‚‰ BITMAPINFO ã¨ç”»åƒã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’æ§‹ç¯‰ã™ã‚‹
 extern int GetBmpImageToResource( int ResourceID, BITMAPINFO **BmpInfoP, void **GraphDataP )
 {
 	BITMAPINFO *BmpInfo = NULL ;
@@ -11277,71 +11277,71 @@ extern int GetBmpImageToResource( int ResourceID, BITMAPINFO **BmpInfoP, void **
 
 	SETUP_WIN_API
 
-	// ƒŠƒ\[ƒX‚ğæ“¾
+	// ãƒªã‚½ãƒ¼ã‚¹ã‚’å–å¾—
 	RSrc = WinAPIData.Win32Func.FindResourceWFunc( WinData.LoadResourModule == NULL ? GetModuleHandleWFunc( NULL ) : WinData.LoadResourModule, MAKEINTRESOURCEW( ResourceID ), MAKEINTRESOURCEW(2)/*RT_BITMAP*/ ) ;
 	if( RSrc == NULL ) return -1 ;
 
-	// ƒŠƒ\[ƒX‚ªŠi”[‚³‚ê‚Ä‚¢‚éƒƒ‚ƒŠ—Ìˆæ‚ğæ“¾
+	// ãƒªã‚½ãƒ¼ã‚¹ãŒæ ¼ç´ã•ã‚Œã¦ã„ã‚‹ãƒ¡ãƒ¢ãƒªé ˜åŸŸã‚’å–å¾—
 	Global = WinAPIData.Win32Func.LoadResourceFunc( WinData.LoadResourModule == NULL ? GetModuleHandleWFunc( NULL ) : WinData.LoadResourModule, RSrc ) ;
 	DataP = ( BYTE * )( DataBuf = WinAPIData.Win32Func.LockResourceFunc( Global ) ) ;
 	if( DataBuf == NULL ) return -1 ;
 
-	// ƒf[ƒ^‚ğ‰ğÍ
+	// ãƒ‡ãƒ¼ã‚¿ã‚’è§£æ
 	{
 		BITMAPINFO			BmpInfoT ;
 		int					ImageSize ;
 
-		// BITMAPINFO‚ğ“Ç‚İ‚±‚Ş
+		// BITMAPINFOã‚’èª­ã¿ã“ã‚€
 		memcpy( &BmpInfoT, DataP, sizeof( BITMAPINFOHEADER ) ) ;
 		DataP += sizeof( BITMAPINFOHEADER ) ;
 
-		// ƒJƒ‰[ƒrƒbƒg”‚ª‚WˆÈ‰º‚Ì‚ÍƒpƒŒƒbƒg‚ğ“Ç‚Ş
+		// ã‚«ãƒ©ãƒ¼ãƒ“ãƒƒãƒˆæ•°ãŒï¼˜ä»¥ä¸‹ã®æ™‚ã¯ãƒ‘ãƒ¬ãƒƒãƒˆã‚’èª­ã‚€
 		if( BmpInfoT.bmiHeader.biBitCount <= 8 )
 		{
-			// ‚a‚l‚o‚h‚m‚e‚n\‘¢‘Ì‚ÌŠi”[—pƒƒ‚ƒŠ‚ğŠm•Û
+			// ï¼¢ï¼­ï¼°ï¼©ï¼®ï¼¦ï¼¯æ§‹é€ ä½“ã®æ ¼ç´ç”¨ãƒ¡ãƒ¢ãƒªã‚’ç¢ºä¿
 			if( ( BmpInfo = ( BITMAPINFO * )DXCALLOC( ( size_t )( sizeof( BITMAPINFOHEADER ) + ( ( size_t )1 << BmpInfoT.bmiHeader.biBitCount ) * sizeof( RGBQUAD ) ) ) ) == NULL )
 			{
 				Er = TRUE ; goto END1 ;
 			}
 
-			// ‚a‚l‚o‚h‚m‚e‚n\‘¢‘Ì‚Ì“à—e‚ğƒRƒs[
+			// ï¼¢ï¼­ï¼°ï¼©ï¼®ï¼¦ï¼¯æ§‹é€ ä½“ã®å†…å®¹ã‚’ã‚³ãƒ”ãƒ¼
 			memcpy( BmpInfo, &BmpInfoT, sizeof( BITMAPINFOHEADER ) ) ;
 
-			// c‚è‚ÌƒJƒ‰[ƒpƒŒƒbƒg‚Ì“Ç‚İ‚±‚İ
+			// æ®‹ã‚Šã®ã‚«ãƒ©ãƒ¼ãƒ‘ãƒ¬ãƒƒãƒˆã®èª­ã¿ã“ã¿
 			memcpy( ( ( BYTE * )BmpInfo ) + sizeof( BITMAPINFOHEADER ), DataP, ( ( size_t )1 << BmpInfoT.bmiHeader.biBitCount ) * sizeof( RGBQUAD ) ) ;
 			DataP += ( ( size_t )1 << BmpInfoT.bmiHeader.biBitCount ) * sizeof( RGBQUAD ) ;
 		}
 		else
-		// ƒJƒ‰[ƒrƒbƒg”‚ª‚R‚Q‚©‚P‚U‚ÅƒJƒ‰[ƒ}ƒXƒNg—p‚Ìˆ—
+		// ã‚«ãƒ©ãƒ¼ãƒ“ãƒƒãƒˆæ•°ãŒï¼“ï¼’ã‹ï¼‘ï¼–ã§ã‚«ãƒ©ãƒ¼ãƒã‚¹ã‚¯ä½¿ç”¨æ™‚ã®å‡¦ç†
 		if( BmpInfoT.bmiHeader.biBitCount == 16 || BmpInfoT.bmiHeader.biBitCount == 32 || BmpInfoT.bmiHeader.biCompression == BI_BITFIELDS )
 		{
-			// ‚a‚l‚o‚h‚m‚e‚n\‘¢‘Ì‚ÌŠi”[—pƒƒ‚ƒŠ‚ğŠm•Û
+			// ï¼¢ï¼­ï¼°ï¼©ï¼®ï¼¦ï¼¯æ§‹é€ ä½“ã®æ ¼ç´ç”¨ãƒ¡ãƒ¢ãƒªã‚’ç¢ºä¿
 			if( ( BmpInfo = ( BITMAPINFO * )DXCALLOC( sizeof( BITMAPINFOHEADER ) + sizeof( RGBQUAD ) * 3 ) ) == NULL )
 			{
 				Er = TRUE ; goto END1 ;
 			}
 
-			// ‚a‚l‚o‚h‚m‚e‚n‚g‚d‚`‚c‚d‚q\‘¢‘Ì‚Ì“à—e‚ğƒRƒs[
+			// ï¼¢ï¼­ï¼°ï¼©ï¼®ï¼¦ï¼¯ï¼¨ï¼¥ï¼¡ï¼¤ï¼¥ï¼²æ§‹é€ ä½“ã®å†…å®¹ã‚’ã‚³ãƒ”ãƒ¼
 			memcpy( BmpInfo, &BmpInfoT, sizeof( BITMAPINFOHEADER ) ) ;
 
-			// ƒJƒ‰[ƒ}ƒXƒN‚Ì“Ç‚İ‚±‚İ
+			// ã‚«ãƒ©ãƒ¼ãƒã‚¹ã‚¯ã®èª­ã¿ã“ã¿
 			memcpy( ( ( BYTE * )BmpInfo ) + sizeof( BITMAPINFOHEADER ), DataP, sizeof( RGBQUAD ) * 3 ) ;
 			DataP += sizeof( RGBQUAD ) * 3 ;
 		}
 		else
-		// ‚»‚êˆÈŠO‚Ìê‡‚Ìˆ—
+		// ãã‚Œä»¥å¤–ã®å ´åˆã®å‡¦ç†
 		{
-			// ‚a‚l‚o‚h‚m‚e‚n\‘¢‘Ì‚ÌŠi”[—pƒƒ‚ƒŠ‚ğŠm•Û
+			// ï¼¢ï¼­ï¼°ï¼©ï¼®ï¼¦ï¼¯æ§‹é€ ä½“ã®æ ¼ç´ç”¨ãƒ¡ãƒ¢ãƒªã‚’ç¢ºä¿
 			if( ( BmpInfo = ( BITMAPINFO * )DXCALLOC( sizeof( BITMAPINFO ) ) ) == NULL )
 			{
 				Er = TRUE ; goto END1 ;
 			}
 
-			// ‚a‚l‚o‚h‚m‚e‚n‚g‚d‚`‚c‚d‚q\‘¢‘Ì‚Ì“à—e‚ğƒRƒs[
+			// ï¼¢ï¼­ï¼°ï¼©ï¼®ï¼¦ï¼¯ï¼¨ï¼¥ï¼¡ï¼¤ï¼¥ï¼²æ§‹é€ ä½“ã®å†…å®¹ã‚’ã‚³ãƒ”ãƒ¼
 			memcpy( BmpInfo, &BmpInfoT, sizeof( BITMAPINFOHEADER ) ) ;
 		}
 
-		// ƒCƒ[ƒWƒTƒCƒY‚ğŒvZ‚·‚é
+		// ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚µã‚¤ã‚ºã‚’è¨ˆç®—ã™ã‚‹
 		{
 			int Byte ;
 
@@ -11351,20 +11351,20 @@ extern int GetBmpImageToResource( int ResourceID, BITMAPINFO **BmpInfoP, void **
 			ImageSize = Byte * _ABS( BmpInfoT.bmiHeader.biHeight ) ;
 		}
 
-		// ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^—Ìˆæ‚ğŠm•Û
+		// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿é ˜åŸŸã‚’ç¢ºä¿
 		if( ( GraphData = DXALLOC( ( size_t )ImageSize ) ) == NULL )
 		{
 			DXFREE( BmpInfo ) ; BmpInfo = NULL ;
 			goto END1 ;
 		}
 
-		// ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‚Ì“Ç‚İ‚±‚İ
+		// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã®èª­ã¿ã“ã¿
 		memcpy( GraphData, DataP, ( size_t )ImageSize ) ;
 		DataP += ImageSize ;
 	}
 
 END1 :
-	// ƒŠƒ\[ƒX‰ğ•ú
+	// ãƒªã‚½ãƒ¼ã‚¹è§£æ”¾
 	UnlockResource( Global ) ;
 
 	if( Er == TRUE ) return -1 ;
@@ -11372,7 +11372,7 @@ END1 :
 	*BmpInfoP = BmpInfo ;
 	*GraphDataP = GraphData ;
 
-	// ¬Œ÷
+	// æˆåŠŸ
 	return 0 ;
 }
 

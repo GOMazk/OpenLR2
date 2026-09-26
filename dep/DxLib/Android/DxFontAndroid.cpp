@@ -1,19 +1,19 @@
 //-----------------------------------------------------------------------------
 // 
-// 		‚c‚wƒ‰ƒCƒuƒ‰ƒŠ		Android—pƒtƒHƒ“ƒgŠÖŒWƒvƒƒOƒ‰ƒ€
+// 		ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒª		Androidç”¨ãƒ•ã‚©ãƒ³ãƒˆé–¢ä¿‚ãƒ—ãƒ­ã‚°ãƒ©ãƒ 
 // 
 //  	Ver 3.25a
 // 
 //-----------------------------------------------------------------------------
 
-// ‚c‚wƒ‰ƒCƒuƒ‰ƒŠì¬—p’è‹`
+// ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªä½œæˆæ™‚ç”¨å®šç¾©
 #define DX_MAKE
 
 #include "../DxCompileConfig.h"
 
 #ifndef DX_NON_FONT
 
-// ƒCƒ“ƒNƒ‹[ƒh ---------------------------------------------------------------
+// ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ ---------------------------------------------------------------
 #include "DxFontAndroid.h"
 #include "DxJavaAndroid.h"
 #include "DxBaseFuncAndroid.h"
@@ -32,22 +32,22 @@ namespace DxLib
 
 #endif // DX_NON_NAMESPACE
 
-// ƒ}ƒNƒ’è‹` -----------------------------------------------------------------
+// ãƒã‚¯ãƒ­å®šç¾© -----------------------------------------------------------------
 
-// \‘¢‘ÌéŒ¾ -----------------------------------------------------------------
+// æ§‹é€ ä½“å®£è¨€ -----------------------------------------------------------------
 
-// ƒf[ƒ^’è‹` -----------------------------------------------------------------
+// ãƒ‡ãƒ¼ã‚¿å®šç¾© -----------------------------------------------------------------
 
 FONTSYSTEM_ANDR FontSystemAndroid ;
 
-// ŠÖ”éŒ¾ -------------------------------------------------------------------
+// é–¢æ•°å®£è¨€ -------------------------------------------------------------------
 
-// ƒvƒƒOƒ‰ƒ€ -----------------------------------------------------------------
+// ãƒ—ãƒ­ã‚°ãƒ©ãƒ  -----------------------------------------------------------------
 
-// ƒtƒHƒ“ƒg‚Ì Android ê—pƒf[ƒ^‚ğ‰ğ•ú‚·‚é
+// ãƒ•ã‚©ãƒ³ãƒˆã® Android å°‚ç”¨ãƒ‡ãƒ¼ã‚¿ã‚’è§£æ”¾ã™ã‚‹
 static int TerminateFontHandle_Android( JNIEnv *env, FONTMANAGE *ManageData )
 {
-	// ƒIƒuƒWƒFƒNƒg‚Ì‰ğ•ú
+	// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®è§£æ”¾
 	if( ManageData->PF->object_Canvas != NULL )
 	{
 		env->DeleteGlobalRef( ManageData->PF->object_Canvas ) ;
@@ -96,28 +96,28 @@ static int TerminateFontHandle_Android( JNIEnv *env, FONTMANAGE *ManageData )
 		ManageData->PF->ImageBuffer = NULL ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// InitFontManage ‚ÌŠÂ‹«ˆË‘¶ˆ—‚ğs‚¤ŠÖ”
+// InitFontManage ã®ç’°å¢ƒä¾å­˜å‡¦ç†ã‚’è¡Œã†é–¢æ•°
 extern int InitFontManage_PF( void )
 {
-	// “Á‚É‰½‚à‚µ‚È‚¢
+	// ç‰¹ã«ä½•ã‚‚ã—ãªã„
 	return 0 ;
 }
 
-// TermFontManage ‚ÌŠÂ‹«ˆË‘¶ˆ—‚ğs‚¤ŠÖ”
+// TermFontManage ã®ç’°å¢ƒä¾å­˜å‡¦ç†ã‚’è¡Œã†é–¢æ•°
 extern int TermFontManage_PF( void )
 {
-	// “Á‚É‰½‚à‚µ‚È‚¢
+	// ç‰¹ã«ä½•ã‚‚ã—ãªã„
 	return 0 ;
 }
 
-// CreateFontToHandle ‚ÌŠÂ‹«ˆË‘¶ˆ—‚ğs‚¤ŠÖ”
+// CreateFontToHandle ã®ç’°å¢ƒä¾å­˜å‡¦ç†ã‚’è¡Œã†é–¢æ•°
 extern int CreateFontToHandle_PF( CREATEFONTTOHANDLE_GPARAM *GParam, FONTMANAGE *ManageData, int DefaultCharSet )
 {
-	// ƒtƒHƒ“ƒgƒf[ƒ^ƒtƒ@ƒCƒ‹‚ğg—p‚·‚éê‡‚Í‰½‚à‚¹‚¸‚ÉI—¹
+	// ãƒ•ã‚©ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ä½¿ç”¨ã™ã‚‹å ´åˆã¯ä½•ã‚‚ã›ãšã«çµ‚äº†
 	if( ManageData->UseFontDataFile )
 	{
 		return 0 ;
@@ -135,7 +135,7 @@ extern int CreateFontToHandle_PF( CREATEFONTTOHANDLE_GPARAM *GParam, FONTMANAGE 
 		return -1 ;
 	}
 
-	// JavaVM ‚Æƒ\ƒtƒgÀs—pƒXƒŒƒbƒh‚ğŠÖ˜A•t‚¯
+	// JavaVM ã¨ã‚½ãƒ•ãƒˆå®Ÿè¡Œç”¨ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’é–¢é€£ä»˜ã‘
 	JNIEnv *env ;
 	if( g_AndroidSys.NativeActivity->vm->AttachCurrentThreadAsDaemon( &env, NULL ) != JNI_OK )
 	{
@@ -154,7 +154,7 @@ extern int CreateFontToHandle_PF( CREATEFONTTOHANDLE_GPARAM *GParam, FONTMANAGE 
 	ManageData->PF->intArray_BitmapBuffer		= NULL ;
 	ManageData->PF->ImageBuffer					= NULL ;
 
-	// Paint ‚Ìì¬
+	// Paint ã®ä½œæˆ
 	{
 		jobject object_Paint = env->NewObject( JAVAANDR.class_Paint, JAVAANDR.methodID_Paint_newPaint ) ;
 		if( object_Paint != NULL )
@@ -165,7 +165,7 @@ extern int CreateFontToHandle_PF( CREATEFONTTOHANDLE_GPARAM *GParam, FONTMANAGE 
 		}
 	}
 
-	// Typeface ‚Ìì¬
+	// Typeface ã®ä½œæˆ
 	{
 		char UTF16LE_FontName[ 128 * 4 ] ;
 		int UTF16LE_FontNameLength ;
@@ -195,7 +195,7 @@ extern int CreateFontToHandle_PF( CREATEFONTTOHANDLE_GPARAM *GParam, FONTMANAGE 
 
 	if( ManageData->PF->object_Paint  != NULL )
 	{
-		// ƒtƒHƒ“ƒg•`‰æ‚Ìİ’è
+		// ãƒ•ã‚©ãƒ³ãƒˆæç”»ã®è¨­å®š
 		env->CallVoidMethod( ManageData->PF->object_Paint, JAVAANDR.methodID_Paint_setTextSize,  ( jfloat   )ManageData->BaseInfo.FontSize ) ;
 		env->CallVoidMethod( ManageData->PF->object_Paint, JAVAANDR.methodID_Paint_setAntiAlias, ( jboolean )JNI_TRUE ) ;
 		env->CallVoidMethod( ManageData->PF->object_Paint, JAVAANDR.methodID_Paint_setARGB, 255, 255, 255, 255 ) ;
@@ -214,7 +214,7 @@ extern int CreateFontToHandle_PF( CREATEFONTTOHANDLE_GPARAM *GParam, FONTMANAGE 
 			}
 		}
 
-		// ƒtƒHƒ“ƒg‚Ìî•ñæ“¾
+		// ãƒ•ã‚©ãƒ³ãƒˆã®æƒ…å ±å–å¾—
 		{
 			jobject object_FontMetrics = env->CallObjectMethod( ManageData->PF->object_Paint, JAVAANDR.methodID_Paint_getFontMetrics ) ;
 			if( object_FontMetrics != NULL )
@@ -230,7 +230,7 @@ extern int CreateFontToHandle_PF( CREATEFONTTOHANDLE_GPARAM *GParam, FONTMANAGE 
 			}
 		}
 
-		// Bitmap ‚Ìì¬
+		// Bitmap ã®ä½œæˆ
 		{
 			ManageData->PF->BitmapSizeX = ( int )( ManageData->BaseInfo.FontSize * 3 / 2 ) ;
 			ManageData->PF->BitmapSizeY = ( int )( ManageData->PF->PaintFontMetrics_bottom - ManageData->PF->PaintFontMetrics_top + 4.0f ) ;
@@ -249,7 +249,7 @@ extern int CreateFontToHandle_PF( CREATEFONTTOHANDLE_GPARAM *GParam, FONTMANAGE 
 			}
 		}
 
-		// Canvas ‚Ìì¬
+		// Canvas ã®ä½œæˆ
 		if( ManageData->PF->object_Bitmap != NULL )
 		{
 			jobject object_Canvas = env->NewObject( JAVAANDR.class_Canvas, JAVAANDR.methodID_Canvas_newCanvas, ManageData->PF->object_Bitmap ) ;
@@ -261,7 +261,7 @@ extern int CreateFontToHandle_PF( CREATEFONTTOHANDLE_GPARAM *GParam, FONTMANAGE 
 			}
 		}
 
-		// setPixels—p‚Ìƒoƒbƒtƒ@‚ğì¬
+		// setPixelsç”¨ã®ãƒãƒƒãƒ•ã‚¡ã‚’ä½œæˆ
 		{
 			jintArray intArray_ClearBitmapBuffer = env->NewIntArray( ManageData->PF->BitmapSizeX * ManageData->PF->BitmapSizeY ) ;
 			if( intArray_ClearBitmapBuffer != NULL )
@@ -270,7 +270,7 @@ extern int CreateFontToHandle_PF( CREATEFONTTOHANDLE_GPARAM *GParam, FONTMANAGE 
 				env->DeleteLocalRef( intArray_ClearBitmapBuffer ) ;
 				intArray_ClearBitmapBuffer = NULL ;
 
-				// ƒ[ƒƒNƒŠƒA‚·‚é
+				// ã‚¼ãƒ­ã‚¯ãƒªã‚¢ã™ã‚‹
 				{
 					jint *jint_Element = env->GetIntArrayElements( ManageData->PF->intArray_ClearBitmapBuffer, NULL ) ;
 					if( jint_Element != NULL )
@@ -283,7 +283,7 @@ extern int CreateFontToHandle_PF( CREATEFONTTOHANDLE_GPARAM *GParam, FONTMANAGE 
 			}
 		}
 
-		// getPixels—p‚Ìƒoƒbƒtƒ@‚ğì¬
+		// getPixelsç”¨ã®ãƒãƒƒãƒ•ã‚¡ã‚’ä½œæˆ
 		{
 			jintArray intArray_BitmapBuffer = env->NewIntArray( ManageData->PF->BitmapSizeX * ManageData->PF->BitmapSizeY ) ;
 			if( intArray_BitmapBuffer != NULL )
@@ -294,10 +294,10 @@ extern int CreateFontToHandle_PF( CREATEFONTTOHANDLE_GPARAM *GParam, FONTMANAGE 
 			}
 		}
 
-		// “]‘——p‚Ìƒf[ƒ^‚ğŠi”[‚·‚éƒƒ‚ƒŠ‚ÌŠm•Û
+		// è»¢é€ç”¨ã®ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿
 		ManageData->PF->ImageBuffer = DXALLOC( ManageData->PF->BitmapSizeX * ManageData->PF->BitmapSizeY ) ;
 
-		// ƒIƒuƒWƒFƒNƒg‚ÌŠm•Û‚É¬Œ÷‚µ‚Ä‚¢‚½‚ç¬Œ÷I—¹
+		// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ç¢ºä¿ã«æˆåŠŸã—ã¦ã„ãŸã‚‰æˆåŠŸçµ‚äº†
 		if( ManageData->PF->object_Bitmap              != NULL &&
 			ManageData->PF->ImageBuffer                != NULL &&
 			ManageData->PF->intArray_ClearBitmapBuffer != NULL &&
@@ -307,30 +307,30 @@ extern int CreateFontToHandle_PF( CREATEFONTTOHANDLE_GPARAM *GParam, FONTMANAGE 
 		}
 	}
 
-	// ¸”s‚Í‰ğ•ú
+	// å¤±æ•—æ™‚ã¯è§£æ”¾
 	if( res == -1 )
 	{
 		TerminateFontHandle_Android( env, ManageData ) ;
 	}
 	else
 	{
-		// ¬Œ÷‚Íƒpƒ‰ƒ[ƒ^‚ğƒZƒbƒg
+		// æˆåŠŸæ™‚ã¯ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆ
 		ManageData->BaseInfo.FontHeight    = ManageData->PF->BitmapSizeY ;
 		ManageData->BaseInfo.FontAddHeight = 0 ;
 		ManageData->BaseInfo.MaxWidth      = ManageData->PF->BitmapSizeX > ManageData->PF->BitmapSizeY ? ManageData->PF->BitmapSizeX : ManageData->PF->BitmapSizeY ;
 		ManageData->BaseInfo.Ascent        = -ManageData->PF->PaintFontMetrics_ascent ;
 	}
 
-	// JavaVM ‚Æ‚±‚ÌƒXƒŒƒbƒh‚ÌŠÖ˜A•t‚¯I—¹
+	// JavaVM ã¨ã“ã®ã‚¹ãƒ¬ãƒƒãƒ‰ã®é–¢é€£ä»˜ã‘çµ‚äº†
 	g_AndroidSys.NativeActivity->vm->DetachCurrentThread() ;
 
 	pthread_mutex_unlock( &g_AndroidSys.NativeActivityMutex ) ;
 
-	// –ß‚è’l‚ğ•Ô‚·
+	// æˆ»ã‚Šå€¤ã‚’è¿”ã™
 	return res ;
 }
 
-// CreateFontToHandle ‚ÌŠÂ‹«ˆË‘¶ƒGƒ‰[ˆ—‚ğs‚¤ŠÖ”
+// CreateFontToHandle ã®ç’°å¢ƒä¾å­˜ã‚¨ãƒ©ãƒ¼å‡¦ç†ã‚’è¡Œã†é–¢æ•°
 extern int CreateFontToHandle_Error_PF( FONTMANAGE * ManageData )
 {
 	pthread_mutex_lock( &g_AndroidSys.NativeActivityMutex ) ;
@@ -341,7 +341,7 @@ extern int CreateFontToHandle_Error_PF( FONTMANAGE * ManageData )
 		return -1 ;
 	}
 
-	// JavaVM ‚Æƒ\ƒtƒgÀs—pƒXƒŒƒbƒh‚ğŠÖ˜A•t‚¯
+	// JavaVM ã¨ã‚½ãƒ•ãƒˆå®Ÿè¡Œç”¨ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’é–¢é€£ä»˜ã‘
 	JNIEnv *env ;
 	if( g_AndroidSys.NativeActivity->vm->AttachCurrentThreadAsDaemon( &env, NULL ) != JNI_OK )
 	{
@@ -349,19 +349,19 @@ extern int CreateFontToHandle_Error_PF( FONTMANAGE * ManageData )
 		return -1 ;
 	}
 
-	// ‰ğ•úˆ—‚ğÀs
+	// è§£æ”¾å‡¦ç†ã‚’å®Ÿè¡Œ
 	TerminateFontHandle_Android( env, ManageData ) ;
 
-	// JavaVM ‚Æ‚±‚ÌƒXƒŒƒbƒh‚ÌŠÖ˜A•t‚¯I—¹
+	// JavaVM ã¨ã“ã®ã‚¹ãƒ¬ãƒƒãƒ‰ã®é–¢é€£ä»˜ã‘çµ‚äº†
 	g_AndroidSys.NativeActivity->vm->DetachCurrentThread() ;
 
 	pthread_mutex_unlock( &g_AndroidSys.NativeActivityMutex ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// TerminateFontHandle ‚ÌŠÂ‹«ˆË‘¶ˆ—‚ğs‚¤ŠÖ”
+// TerminateFontHandle ã®ç’°å¢ƒä¾å­˜å‡¦ç†ã‚’è¡Œã†é–¢æ•°
 extern int TerminateFontHandle_PF( FONTMANAGE *ManageData )
 {
 	pthread_mutex_lock( &g_AndroidSys.NativeActivityMutex ) ;
@@ -372,7 +372,7 @@ extern int TerminateFontHandle_PF( FONTMANAGE *ManageData )
 		return -1 ;
 	}
 
-	// JavaVM ‚Æƒ\ƒtƒgÀs—pƒXƒŒƒbƒh‚ğŠÖ˜A•t‚¯
+	// JavaVM ã¨ã‚½ãƒ•ãƒˆå®Ÿè¡Œç”¨ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’é–¢é€£ä»˜ã‘
 	JNIEnv *env ;
 	if( g_AndroidSys.NativeActivity->vm->AttachCurrentThreadAsDaemon( &env, NULL ) != JNI_OK )
 	{
@@ -380,33 +380,33 @@ extern int TerminateFontHandle_PF( FONTMANAGE *ManageData )
 		return -1 ;
 	}
 
-	// ‰ğ•úˆ—‚ğÀs
+	// è§£æ”¾å‡¦ç†ã‚’å®Ÿè¡Œ
 	TerminateFontHandle_Android( env, ManageData ) ;
 
-	// JavaVM ‚Æ‚±‚ÌƒXƒŒƒbƒh‚ÌŠÖ˜A•t‚¯I—¹
+	// JavaVM ã¨ã“ã®ã‚¹ãƒ¬ãƒƒãƒ‰ã®é–¢é€£ä»˜ã‘çµ‚äº†
 	g_AndroidSys.NativeActivity->vm->DetachCurrentThread() ;
 
 	pthread_mutex_unlock( &g_AndroidSys.NativeActivityMutex ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// SetupFontCache ‚ÌŠÂ‹«ˆË‘¶ˆ—‚ğs‚¤ŠÖ”
+// SetupFontCache ã®ç’°å¢ƒä¾å­˜å‡¦ç†ã‚’è¡Œã†é–¢æ•°
 extern int SetupFontCache_PF( CREATEFONTTOHANDLE_GPARAM * /* GParam */, FONTMANAGE * /* ManageData */, int /* ASyncThread */ )
 {
-	// “Á‚É‰½‚à‚µ‚È‚¢
+	// ç‰¹ã«ä½•ã‚‚ã—ãªã„
 	return 0 ;
 }
 
-// FontCacheCharaAddToHandle‚ÌŠÂ‹«ˆË‘¶ˆ—‚ğs‚¤ŠÖ”( Às‰ÓŠ‹æ•Ê 0 )
+// FontCacheCharaAddToHandleã®ç’°å¢ƒä¾å­˜å‡¦ç†ã‚’è¡Œã†é–¢æ•°( å®Ÿè¡Œç®‡æ‰€åŒºåˆ¥ 0 )
 extern int FontCacheCharAddToHandle_Timing0_PF( FONTMANAGE *ManageData )
 {
-	// ‚Æ‚­‚É‚·‚é‚±‚Æ–³‚µ
+	// ã¨ãã«ã™ã‚‹ã“ã¨ç„¡ã—
 	return 0 ;
 }
 
-// FontCacheCharaAddToHandle‚ÌŠÂ‹«ˆË‘¶ˆ—‚ğs‚¤ŠÖ”( Às‰ÓŠ‹æ•Ê 1 )
+// FontCacheCharaAddToHandleã®ç’°å¢ƒä¾å­˜å‡¦ç†ã‚’è¡Œã†é–¢æ•°( å®Ÿè¡Œç®‡æ‰€åŒºåˆ¥ 1 )
 extern int FontCacheCharAddToHandle_Timing1_PF( FONTMANAGE *ManageData, FONTCHARDATA *CharData, DWORD CharCode, DWORD IVSCode, int TextureCacheUpdate )
 {
 	int	Space ;
@@ -424,7 +424,7 @@ extern int FontCacheCharAddToHandle_Timing1_PF( FONTMANAGE *ManageData, FONTCHAR
 		return -1 ;
 	}
 
-	// JavaVM ‚Æƒ\ƒtƒgÀs—pƒXƒŒƒbƒh‚ğŠÖ˜A•t‚¯
+	// JavaVM ã¨ã‚½ãƒ•ãƒˆå®Ÿè¡Œç”¨ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’é–¢é€£ä»˜ã‘
 	JNIEnv *env ;
 	if( g_AndroidSys.NativeActivity->vm->AttachCurrentThreadAsDaemon( &env, NULL ) != JNI_OK )
 	{
@@ -432,10 +432,10 @@ extern int FontCacheCharAddToHandle_Timing1_PF( FONTMANAGE *ManageData, FONTCHAR
 		return -1 ;
 	}
 
-	// ƒXƒy[ƒX‚©‚Ç‚¤‚©‚ğæ“¾‚µ‚Ä‚¨‚­
+	// ã‚¹ãƒšãƒ¼ã‚¹ã‹ã©ã†ã‹ã‚’å–å¾—ã—ã¦ãŠã
 	Space = CharCode == L' ' ? 1 : ( CharCode == ( DWORD )FSYS.DoubleByteSpaceCharCode ? 2 : 0 ) ;
 
-	// •¶šƒR[ƒh‚ğƒZƒbƒg
+	// æ–‡å­—ã‚³ãƒ¼ãƒ‰ã‚’ã‚»ãƒƒãƒˆ
 	if( CharCode > 0xffff )
 	{
 		DrawChar[ 0 ] = ( jchar )( CharCode & 0xffff ) ;
@@ -448,7 +448,7 @@ extern int FontCacheCharAddToHandle_Timing1_PF( FONTMANAGE *ManageData, FONTCHAR
 		CharNum = 1 ;
 	}
 
-	// •`‰æ•¶š‚Ì€”õ
+	// æç”»æ–‡å­—ã®æº–å‚™
 	{
 		charArray_DrawChar = env->NewCharArray( ( jsize )CharNum ) ;
 		if( charArray_DrawChar == NULL )
@@ -472,10 +472,10 @@ extern int FontCacheCharAddToHandle_Timing1_PF( FONTMANAGE *ManageData, FONTCHAR
 		jchar_Element = NULL ;
 	}
 
-	// •¶š‚Ì‰¡•‚ğæ“¾
+	// æ–‡å­—ã®æ¨ªå¹…ã‚’å–å¾—
 	DrawWidth = env->CallFloatMethod( ManageData->PF->object_Paint, JAVAANDR.methodID_Paint_measureText, charArray_DrawChar, 0, ( jint )CharNum ) ;
 
-	// ƒXƒy[ƒX•¶š‚¾‚Á‚½ê‡
+	// ã‚¹ãƒšãƒ¼ã‚¹æ–‡å­—ã ã£ãŸå ´åˆ
 	if( Space != 0 )
 	{
 		FontCacheCharImageBltToHandle(
@@ -499,7 +499,7 @@ extern int FontCacheCharAddToHandle_Timing1_PF( FONTMANAGE *ManageData, FONTCHAR
 	}
 	else
 	{
-		// ƒoƒbƒtƒ@‚ğƒNƒŠƒA
+		// ãƒãƒƒãƒ•ã‚¡ã‚’ã‚¯ãƒªã‚¢
 		env->CallVoidMethod(
 			ManageData->PF->object_Bitmap,
 			JAVAANDR.methodID_Bitmap_setPixels,
@@ -509,7 +509,7 @@ extern int FontCacheCharAddToHandle_Timing1_PF( FONTMANAGE *ManageData, FONTCHAR
 			ManageData->PF->BitmapSizeX, ManageData->PF->BitmapSizeY
 		) ;
 
-		// •¶š‚ğ•`‰æ
+		// æ–‡å­—ã‚’æç”»
 		env->CallVoidMethod(
 			ManageData->PF->object_Canvas,
 			JAVAANDR.methodID_Canvas_drawText,
@@ -520,7 +520,7 @@ extern int FontCacheCharAddToHandle_Timing1_PF( FONTMANAGE *ManageData, FONTCHAR
 			ManageData->PF->object_Paint
 		) ;
 
-		// •`‰æŒ‹‰Ê‚ğæ“¾
+		// æç”»çµæœã‚’å–å¾—
 		env->CallVoidMethod(
 			ManageData->PF->object_Bitmap,
 			JAVAANDR.methodID_Bitmap_getPixels,
@@ -530,7 +530,7 @@ extern int FontCacheCharAddToHandle_Timing1_PF( FONTMANAGE *ManageData, FONTCHAR
 			ManageData->PF->BitmapSizeX, ManageData->PF->BitmapSizeY
 		) ;
 
-		// •`‰æŒ‹‰Ê‚©‚çƒtƒHƒ“ƒgƒf[ƒ^‚ğ“]‘—
+		// æç”»çµæœã‹ã‚‰ãƒ•ã‚©ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ã‚’è»¢é€
 		{
 			jint *jint_Element = env->GetIntArrayElements( ManageData->PF->intArray_BitmapBuffer, NULL ) ;
 			if( jint_Element != NULL )
@@ -540,7 +540,7 @@ extern int FontCacheCharAddToHandle_Timing1_PF( FONTMANAGE *ManageData, FONTCHAR
 				int i, j ;
 				int BltWidth ;
 
-				// “]‘——pƒf[ƒ^‚ğ\’z
+				// è»¢é€ç”¨ãƒ‡ãƒ¼ã‚¿ã‚’æ§‹ç¯‰
 				BltWidth = DrawWidth + 4 ;
 				if( BltWidth > ManageData->PF->BitmapSizeX )
 				{
@@ -559,7 +559,7 @@ extern int FontCacheCharAddToHandle_Timing1_PF( FONTMANAGE *ManageData, FONTCHAR
 					}
 				}
 
-				// ƒCƒ[ƒW‚ğ“]‘—
+				// ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’è»¢é€
 				FontCacheCharImageBltToHandle(
 					ManageData,
 					CharData,
@@ -593,26 +593,26 @@ END :
 		charArray_DrawChar = NULL ;
 	}
 
-	// JavaVM ‚Æ‚±‚ÌƒXƒŒƒbƒh‚ÌŠÖ˜A•t‚¯I—¹
+	// JavaVM ã¨ã“ã®ã‚¹ãƒ¬ãƒƒãƒ‰ã®é–¢é€£ä»˜ã‘çµ‚äº†
 	g_AndroidSys.NativeActivity->vm->DetachCurrentThread() ;
 
 	pthread_mutex_unlock( &g_AndroidSys.NativeActivityMutex ) ;
 
-	// –ß‚è’l‚ğ•Ô‚·
+	// æˆ»ã‚Šå€¤ã‚’è¿”ã™
 	return res ;
 }
 
-// FontCacheCharaAddToHandle‚ÌŠÂ‹«ˆË‘¶ˆ—‚ğs‚¤ŠÖ”( Às‰ÓŠ‹æ•Ê 2 )
+// FontCacheCharaAddToHandleã®ç’°å¢ƒä¾å­˜å‡¦ç†ã‚’è¡Œã†é–¢æ•°( å®Ÿè¡Œç®‡æ‰€åŒºåˆ¥ 2 )
 extern int FontCacheCharAddToHandle_Timing2_PF( FONTMANAGE *ManageData )
 {
-	// “Á‚É‰½‚à‚µ‚È‚¢
+	// ç‰¹ã«ä½•ã‚‚ã—ãªã„
 	return 0 ;
 }
 
-// EnumFontName ‚ÌŠÂ‹«ˆË‘¶ˆ—‚ğs‚¤ŠÖ”
+// EnumFontName ã®ç’°å¢ƒä¾å­˜å‡¦ç†ã‚’è¡Œã†é–¢æ•°
 extern int EnumFontName_PF( ENUMFONTDATA *EnumFontData, int IsEx, int CharSet )
 {
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 

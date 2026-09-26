@@ -1,15 +1,15 @@
 // -------------------------------------------------------------------------------
 // 
-// 		‚c‚wƒ‰ƒCƒuƒ‰ƒŠ		”ñ“¯Šú“Ç‚İ‚İˆ—ƒvƒƒOƒ‰ƒ€
+// 		ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒª		éåŒæœŸèª­ã¿è¾¼ã¿å‡¦ç†ãƒ—ãƒ­ã‚°ãƒ©ãƒ 
 // 
 // 				Ver 3.25a
 // 
 // -------------------------------------------------------------------------------
 
-// ‚c‚wƒ‰ƒCƒuƒ‰ƒŠì¬—p’è‹`
+// ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªä½œæˆæ™‚ç”¨å®šç¾©
 #define DX_MAKE
 
-// ƒCƒ“ƒNƒ‹[ƒh ------------------------------------------------------------------
+// ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ ------------------------------------------------------------------
 #include "DxASyncLoad.h"
 
 #ifndef DX_NON_ASYNCLOAD
@@ -27,20 +27,20 @@ namespace DxLib
 
 #endif // DX_NON_NAMESPACE
 
-// ƒ}ƒNƒ’è‹` --------------------------------------------------------------------
+// ãƒã‚¯ãƒ­å®šç¾© --------------------------------------------------------------------
 
-// \‘¢‘Ì’è‹` --------------------------------------------------------------------
+// æ§‹é€ ä½“å®šç¾© --------------------------------------------------------------------
 	
-// “à•”‘åˆæ•Ï”éŒ¾ --------------------------------------------------------------
+// å†…éƒ¨å¤§åŸŸå¤‰æ•°å®£è¨€ --------------------------------------------------------------
 
-// ”ñ“¯Šú“Ç‚İ‚İˆ—‚ªg—p‚·‚éƒOƒ[ƒoƒ‹ƒf[ƒ^
+// éåŒæœŸèª­ã¿è¾¼ã¿å‡¦ç†ãŒä½¿ç”¨ã™ã‚‹ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
 ASYNCLOADDATA GASyncLoadData ;
 
-// ŠÖ”ƒvƒƒgƒ^ƒCƒvéŒ¾-----------------------------------------------------------
+// é–¢æ•°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€-----------------------------------------------------------
 
 static void ASyncLoadThreadFunction( THREAD_INFO *pThreadInfo, void *ASyncLoadThreadData ) ;
 
-// ”ñ“¯Šú“Ç‚İ‚İ‚ğs‚¤ƒXƒŒƒbƒh‚Ìƒ}ƒNƒ
+// éåŒæœŸèª­ã¿è¾¼ã¿ã‚’è¡Œã†ã‚¹ãƒ¬ãƒƒãƒ‰ã®ãƒã‚¯ãƒ­
 #define ASYNCLOADTHREADFUNCTION_MACRO( Number )		\
 	void ASyncLoadThreadFunctionT##Number( THREAD_INFO *pThreadInfo, void *ASyncLoadThreadData )\
 {\
@@ -118,35 +118,35 @@ void ( *ASyncLoadThreadFunctionList[ ASYNCLOADTHREAD_MAXNUM + 1 ] )( THREAD_INFO
 	ASyncLoadThreadFunctionT32,
 } ;
 
-// ƒvƒƒOƒ‰ƒ€ --------------------------------------------------------------------
+// ãƒ—ãƒ­ã‚°ãƒ©ãƒ  --------------------------------------------------------------------
 
-// ”ñ“¯Šú“Ç‚İ‚İˆ—‚Ì‰Šú‰»‚ÆŒãn––
+// éåŒæœŸèª­ã¿è¾¼ã¿å‡¦ç†ã®åˆæœŸåŒ–ã¨å¾Œå§‹æœ«
 
-// ”ñ“¯Šú“Ç‚İ‚İˆ—‚Ì‰Šú‰»
+// éåŒæœŸèª­ã¿è¾¼ã¿å‡¦ç†ã®åˆæœŸåŒ–
 extern int InitializeASyncLoad( DWORD_PTR MainThreadID )
 {
-	// Šù‚É‰Šú‰»Ï‚İ‚Ìê‡‚Í‰½‚à‚µ‚È‚¢
+	// æ—¢ã«åˆæœŸåŒ–æ¸ˆã¿ã®å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( GASyncLoadData.InitializeFlag == TRUE )
 		return -1 ;
 
-	DXST_LOGFILE_ADDUTF16LE( "\x5e\x97\x0c\x54\x1f\x67\xad\x8a\x7f\x30\xbc\x8f\x7f\x30\xe6\x51\x06\x74\x6e\x30\x1d\x52\x1f\x67\x16\x53\x2e\x00\x2e\x00\x2e\x00\x00"/*@ L"”ñ“¯Šú“Ç‚İ‚İˆ—‚Ì‰Šú‰»..." @*/ ) ;  
+	DXST_LOGFILE_ADDUTF16LE( "\x5e\x97\x0c\x54\x1f\x67\xad\x8a\x7f\x30\xbc\x8f\x7f\x30\xe6\x51\x06\x74\x6e\x30\x1d\x52\x1f\x67\x16\x53\x2e\x00\x2e\x00\x2e\x00\x00"/*@ L"éåŒæœŸèª­ã¿è¾¼ã¿å‡¦ç†ã®åˆæœŸåŒ–..." @*/ ) ;  
 
-	// ƒƒCƒ“ƒXƒŒƒbƒh‚Ì‚h‚c‚ğ•Û‘¶‚·‚é
+	// ãƒ¡ã‚¤ãƒ³ã‚¹ãƒ¬ãƒƒãƒ‰ã®ï¼©ï¼¤ã‚’ä¿å­˜ã™ã‚‹
 	GASyncLoadData.MainThreadID = MainThreadID ;
 
-	// ”ñ“¯Šú“Ç‚İ‚İˆ——p‚ÌƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰Šú‰»
+	// éåŒæœŸèª­ã¿è¾¼ã¿å‡¦ç†ç”¨ã®ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®åˆæœŸåŒ–
 	CriticalSection_Initialize( &GASyncLoadData.CriticalSection ) ;
 
-	DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"¬Œ÷\n" @*/ ) ;
+	DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"æˆåŠŸ\n" @*/ ) ;
 
-	// ‰Šú‰»Š®—¹ƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// åˆæœŸåŒ–å®Œäº†ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	GASyncLoadData.InitializeFlag = TRUE ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// ”ñ“¯Šú“Ç‚İ‚İˆ—‚ğs‚¤ƒXƒŒƒbƒh‚ğ—§‚Ä‚é
+// éåŒæœŸèª­ã¿è¾¼ã¿å‡¦ç†ã‚’è¡Œã†ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’ç«‹ã¦ã‚‹
 extern int SetupASyncLoadThread( int ProcessorNum )
 {
 	int i ;
@@ -158,7 +158,7 @@ extern int SetupASyncLoadThread( int ProcessorNum )
 	GASyncLoadData.ThreadNum = 32 ;
 #endif
 
-	// ‰Šú‰»‘O‚É’l‚ªİ’è‚³‚ê‚Ä‚¢‚½‚ç NS_SetASyncLoadThreadNum ‚ğŒÄ‚Ño‚·
+	// åˆæœŸåŒ–å‰ã«å€¤ãŒè¨­å®šã•ã‚Œã¦ã„ãŸã‚‰ NS_SetASyncLoadThreadNum ã‚’å‘¼ã³å‡ºã™
 	if( GASyncLoadData.ThreadMaxResumeNum != 0 )
 	{
 		NS_SetASyncLoadThreadNum( GASyncLoadData.ThreadMaxResumeNum ) ;
@@ -183,14 +183,14 @@ extern int SetupASyncLoadThread( int ProcessorNum )
 		AInfo->SuspendStartTime = NS_GetNowCount( FALSE ) ;
 	}
 
-	// ­‚µQ‚ÄA‘S•”‚ÌƒXƒŒƒbƒh‚ªQ‚é‚Ì‚ğ‘Ò‚Â
+	// å°‘ã—å¯ã¦ã€å…¨éƒ¨ã®ã‚¹ãƒ¬ãƒƒãƒ‰ãŒå¯ã‚‹ã®ã‚’å¾…ã¤
 	Thread_Sleep( 16 ) ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// ”ñ“¯Šú“Ç‚İ‚İˆ—‚ÌƒXƒŒƒbƒh‚ğ•Â‚¶‚é
+// éåŒæœŸèª­ã¿è¾¼ã¿å‡¦ç†ã®ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’é–‰ã˜ã‚‹
 extern int CloseASyncLoadThread( void )
 {
 	int i ;
@@ -203,7 +203,7 @@ extern int CloseASyncLoadThread( void )
 	{
 		if( Thread_IsValid( &AInfo->ThreadInfo ) != 0 )
 		{
-			// ƒXƒŒƒbƒh‚ªI—¹‚·‚é‚Ü‚Å‘Ò‚Â
+			// ã‚¹ãƒ¬ãƒƒãƒ‰ãŒçµ‚äº†ã™ã‚‹ã¾ã§å¾…ã¤
 			while( AInfo->ExitFlag == 0 )
 			{
 				ProcessASyncLoadRequestMainThread() ;
@@ -216,31 +216,31 @@ extern int CloseASyncLoadThread( void )
 				Thread_Sleep( 1 ) ;
 			}
 
-			// ƒXƒŒƒbƒh‚Ìƒnƒ“ƒhƒ‹‚ğ•Â‚¶‚é
+			// ã‚¹ãƒ¬ãƒƒãƒ‰ã®ãƒãƒ³ãƒ‰ãƒ«ã‚’é–‰ã˜ã‚‹
 			Thread_Delete( &AInfo->ThreadInfo ) ;
 		}
 	}
 
 	GASyncLoadData.ThreadEndRequestFlag = FALSE ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// ”ñ“¯Šú“Ç‚İ‚İˆ—‚ÌŒãn––
+// éåŒæœŸèª­ã¿è¾¼ã¿å‡¦ç†ã®å¾Œå§‹æœ«
 extern int TerminateASyncLoad( void )
 {
-	// Šù‚ÉŒãn––ˆ—Ï‚İ‚Ìê‡‚Í‰½‚à‚µ‚È‚¢
+	// æ—¢ã«å¾Œå§‹æœ«å‡¦ç†æ¸ˆã¿ã®å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( GASyncLoadData.InitializeFlag == FALSE )
 		return -1 ;
 
-	// ”ñ“¯Šú“Ç‚İ‚İˆ——p‚ÌƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìíœ
+	// éåŒæœŸèª­ã¿è¾¼ã¿å‡¦ç†ç”¨ã®ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å‰Šé™¤
 	CriticalSection_Delete( &GASyncLoadData.CriticalSection ) ;
 
-	// ‰Šú‰»Š®—¹ƒtƒ‰ƒO‚ğ“|‚·
+	// åˆæœŸåŒ–å®Œäº†ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 	GASyncLoadData.InitializeFlag = FALSE ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
@@ -257,26 +257,26 @@ extern int TerminateASyncLoad( void )
 
 
 
-// ”ñ“¯Šú“Ç‚İ‚İŠÖŒW
+// éåŒæœŸèª­ã¿è¾¼ã¿é–¢ä¿‚
 
-// ”ñ“¯Šú“Ç‚İ‚İƒf[ƒ^‚ğŠi”[‚·‚éƒƒ‚ƒŠ—Ìˆæ‚ğŠm•Û‚·‚é
+// éåŒæœŸèª­ã¿è¾¼ã¿ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹ãƒ¡ãƒ¢ãƒªé ˜åŸŸã‚’ç¢ºä¿ã™ã‚‹
 extern ASYNCLOADDATA_COMMON *AllocASyncLoadDataMemory( int AddAllocSize )
 {
 	ASYNCLOADDATA_COMMON *ASyncData ;
 
-	// ƒƒ‚ƒŠ‚ÌŠm•Û
+	// ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿
 	ASyncData = ( ASYNCLOADDATA_COMMON * )DXALLOC( sizeof( ASYNCLOADDATA_COMMON ) + AddAllocSize ) ;
 	if( ASyncData == NULL )
 	{
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\x5e\x97\x0c\x54\x1f\x67\xad\x8a\x7f\x30\xbc\x8f\x7f\x30\xc7\x30\xfc\x30\xbf\x30\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x20\x00\x25\x00\x64\x00\x42\x00\x79\x00\x74\x00\x65\x00\x20\x00\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"”ñ“¯Šú“Ç‚İ‚İƒf[ƒ^‚ğŠi”[‚·‚éƒƒ‚ƒŠ—Ìˆæ %dByte ‚ÌŠm•Û‚É¸”s‚µ‚Ü‚µ‚½" @*/, AddAllocSize + sizeof( ASYNCLOADDATA_COMMON ) )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\x5e\x97\x0c\x54\x1f\x67\xad\x8a\x7f\x30\xbc\x8f\x7f\x30\xc7\x30\xfc\x30\xbf\x30\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x20\x00\x25\x00\x64\x00\x42\x00\x79\x00\x74\x00\x65\x00\x20\x00\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"éåŒæœŸèª­ã¿è¾¼ã¿ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹ãƒ¡ãƒ¢ãƒªé ˜åŸŸ %dByte ã®ç¢ºä¿ã«å¤±æ•—ã—ã¾ã—ãŸ" @*/, AddAllocSize + sizeof( ASYNCLOADDATA_COMMON ) )) ;
 		return NULL ;
 	}
 
-	// ƒAƒhƒŒƒX‚ğ•Ô‚·
+	// ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’è¿”ã™
 	return ASyncData ;
 }
 
-// ”ñ“¯Šú“Ç‚İ‚İƒf[ƒ^‚Ìƒpƒ‰ƒ[ƒ^‚É\‘¢‘Ìƒpƒ‰ƒ[ƒ^‚ğ’Ç‰Á
+// éåŒæœŸèª­ã¿è¾¼ã¿ãƒ‡ãƒ¼ã‚¿ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã«æ§‹é€ ä½“ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’è¿½åŠ 
 extern	void	AddASyncLoadParamStruct( BYTE *Data, int *Addr, const void *Param, int Size )
 {
 	if( Data )
@@ -287,7 +287,7 @@ extern	void	AddASyncLoadParamStruct( BYTE *Data, int *Addr, const void *Param, i
 	*Addr += Size + sizeof( WORD ) ;
 }
 
-// ”ñ“¯Šú“Ç‚İ‚İƒf[ƒ^‚Ìƒpƒ‰ƒ[ƒ^‚É void Œ^ƒ|ƒCƒ“ƒ^‚Ìƒpƒ‰ƒ[ƒ^‚ğ’Ç‰Á
+// éåŒæœŸèª­ã¿è¾¼ã¿ãƒ‡ãƒ¼ã‚¿ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã« void å‹ãƒã‚¤ãƒ³ã‚¿ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’è¿½åŠ 
 extern	void	AddASyncLoadParamConstVoidP( BYTE *Data, int *Addr, const void *Param )
 {
 	if( Data )
@@ -297,7 +297,7 @@ extern	void	AddASyncLoadParamConstVoidP( BYTE *Data, int *Addr, const void *Para
 	*Addr += sizeof( const void * ) ;
 }
 
-// ”ñ“¯Šú“Ç‚İ‚İƒf[ƒ^‚Ìƒpƒ‰ƒ[ƒ^‚É DWORD_PTR Œ^‚Ìƒpƒ‰ƒ[ƒ^‚ğ’Ç‰Á
+// éåŒæœŸèª­ã¿è¾¼ã¿ãƒ‡ãƒ¼ã‚¿ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã« DWORD_PTR å‹ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’è¿½åŠ 
 extern	void	AddASyncLoadParamDWORD_PTR( BYTE *Data, int *Addr, DWORD_PTR Param )
 {
 	if( Data )
@@ -307,7 +307,7 @@ extern	void	AddASyncLoadParamDWORD_PTR( BYTE *Data, int *Addr, DWORD_PTR Param )
 	*Addr += sizeof( DWORD_PTR ) ;
 }
 
-// ”ñ“¯Šú“Ç‚İ‚İƒf[ƒ^‚Ìƒpƒ‰ƒ[ƒ^‚É size_t Œ^‚Ìƒpƒ‰ƒ[ƒ^‚ğ’Ç‰Á
+// éåŒæœŸèª­ã¿è¾¼ã¿ãƒ‡ãƒ¼ã‚¿ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã« size_t å‹ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’è¿½åŠ 
 extern void AddASyncLoadParamSize_t( BYTE *Data, int *Addr, size_t Param )
 {
 	if( Data )
@@ -317,7 +317,7 @@ extern void AddASyncLoadParamSize_t( BYTE *Data, int *Addr, size_t Param )
 	*Addr += sizeof( size_t ) ;
 }
 
-// ”ñ“¯Šú“Ç‚İ‚İƒf[ƒ^‚Ìƒpƒ‰ƒ[ƒ^‚É LONGLONG Œ^‚Ìƒpƒ‰ƒ[ƒ^‚ğ’Ç‰Á
+// éåŒæœŸèª­ã¿è¾¼ã¿ãƒ‡ãƒ¼ã‚¿ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã« LONGLONG å‹ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’è¿½åŠ 
 extern void AddASyncLoadParamLONGLONG( BYTE *Data, int *Addr, LONGLONG Param )
 {
 	if( Data )
@@ -327,7 +327,7 @@ extern void AddASyncLoadParamLONGLONG( BYTE *Data, int *Addr, LONGLONG Param )
 	*Addr += sizeof( LONGLONG ) ;
 }
 
-// ”ñ“¯Šú“Ç‚İ‚İƒf[ƒ^‚Ìƒpƒ‰ƒ[ƒ^‚É int Œ^‚Ìƒpƒ‰ƒ[ƒ^‚ğ’Ç‰Á
+// éåŒæœŸèª­ã¿è¾¼ã¿ãƒ‡ãƒ¼ã‚¿ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã« int å‹ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’è¿½åŠ 
 extern	void	AddASyncLoadParamInt( BYTE *Data, int *Addr, int Param )
 {
 	if( Data )
@@ -337,7 +337,7 @@ extern	void	AddASyncLoadParamInt( BYTE *Data, int *Addr, int Param )
 	*Addr += sizeof( int ) ;
 }
 
-// ”ñ“¯Šú“Ç‚İ‚İƒf[ƒ^‚Ìƒpƒ‰ƒ[ƒ^‚É BYTE Œ^‚Ìƒpƒ‰ƒ[ƒ^‚ğ’Ç‰Á
+// éåŒæœŸèª­ã¿è¾¼ã¿ãƒ‡ãƒ¼ã‚¿ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã« BYTE å‹ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’è¿½åŠ 
 extern	void	AddASyncLoadParamByte( BYTE *Data, int *Addr, BYTE Param )
 {
 	if( Data )
@@ -347,7 +347,7 @@ extern	void	AddASyncLoadParamByte( BYTE *Data, int *Addr, BYTE Param )
 	*Addr += sizeof( BYTE ) ;
 }
 
-// ”ñ“¯Šú“Ç‚İ‚İƒf[ƒ^‚Ìƒpƒ‰ƒ[ƒ^‚É float Œ^‚Ìƒpƒ‰ƒ[ƒ^‚ğ’Ç‰Á
+// éåŒæœŸèª­ã¿è¾¼ã¿ãƒ‡ãƒ¼ã‚¿ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã« float å‹ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’è¿½åŠ 
 extern	void	AddASyncLoadParamFloat( BYTE *Data, int *Addr, float Param )
 {
 	if( Data )
@@ -357,7 +357,7 @@ extern	void	AddASyncLoadParamFloat( BYTE *Data, int *Addr, float Param )
 	*Addr += sizeof( float ) ;
 }
 
-// ”ñ“¯Šú“Ç‚İ‚İƒf[ƒ^‚Ìƒpƒ‰ƒ[ƒ^‚É•¶š—ñƒpƒ‰ƒ[ƒ^‚ğ’Ç‰Á
+// éåŒæœŸèª­ã¿è¾¼ã¿ãƒ‡ãƒ¼ã‚¿ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã«æ–‡å­—åˆ—ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’è¿½åŠ 
 extern	void	AddASyncLoadParamString( BYTE *Data, int *Addr, const wchar_t *Param )
 {
 	DWORD StrLen ;
@@ -382,7 +382,7 @@ extern	void	AddASyncLoadParamString( BYTE *Data, int *Addr, const wchar_t *Param
 	*Addr += sizeof( WORD ) + StrLen ;
 }
 
-// ”ñ“¯Šú“Ç‚İ‚İƒf[ƒ^‚Ìƒpƒ‰ƒ[ƒ^‚©‚ç\‘¢‘Ìƒpƒ‰ƒ[ƒ^‚ğæ“¾
+// éåŒæœŸèª­ã¿è¾¼ã¿ãƒ‡ãƒ¼ã‚¿ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‹ã‚‰æ§‹é€ ä½“ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’å–å¾—
 extern	void *	GetASyncLoadParamStruct( BYTE *Data, int *Addr )
 {
 	void *Ret ;
@@ -393,7 +393,7 @@ extern	void *	GetASyncLoadParamStruct( BYTE *Data, int *Addr )
 	return Ret ;
 }
 
-// ”ñ“¯Šú“Ç‚İ‚İƒf[ƒ^‚Ìƒpƒ‰ƒ[ƒ^‚©‚ç void Œ^ƒ|ƒCƒ“ƒ^‚Ìƒpƒ‰ƒ[ƒ^‚ğæ“¾
+// éåŒæœŸèª­ã¿è¾¼ã¿ãƒ‡ãƒ¼ã‚¿ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‹ã‚‰ void å‹ãƒã‚¤ãƒ³ã‚¿ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’å–å¾—
 extern	void *	GetASyncLoadParamVoidP( BYTE *Data, int *Addr )
 {
 	void *Ret ;
@@ -404,7 +404,7 @@ extern	void *	GetASyncLoadParamVoidP( BYTE *Data, int *Addr )
 	return Ret ;
 }
 
-// ”ñ“¯Šú“Ç‚İ‚İƒf[ƒ^‚Ìƒpƒ‰ƒ[ƒ^‚©‚ç DWORD_PTR Œ^‚Ìƒpƒ‰ƒ[ƒ^‚ğæ“¾
+// éåŒæœŸèª­ã¿è¾¼ã¿ãƒ‡ãƒ¼ã‚¿ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‹ã‚‰ DWORD_PTR å‹ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’å–å¾—
 extern	DWORD_PTR GetASyncLoadParamDWORD_PTR( BYTE *Data, int *Addr )
 {
 	DWORD_PTR Ret ;
@@ -415,7 +415,7 @@ extern	DWORD_PTR GetASyncLoadParamDWORD_PTR( BYTE *Data, int *Addr )
 	return Ret ;
 }
 
-// ”ñ“¯Šú“Ç‚İ‚İƒf[ƒ^‚Ìƒpƒ‰ƒ[ƒ^‚©‚ç size_t Œ^‚Ìƒpƒ‰ƒ[ƒ^‚ğæ“¾
+// éåŒæœŸèª­ã¿è¾¼ã¿ãƒ‡ãƒ¼ã‚¿ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‹ã‚‰ size_t å‹ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’å–å¾—
 extern size_t GetASyncLoadParamSize_t( BYTE *Data, int *Addr )
 {
 	size_t Ret ;
@@ -426,7 +426,7 @@ extern size_t GetASyncLoadParamSize_t( BYTE *Data, int *Addr )
 	return Ret ;
 }
 
-// ”ñ“¯Šú“Ç‚İ‚İƒf[ƒ^‚Ìƒpƒ‰ƒ[ƒ^‚©‚ç LONGLONG Œ^‚Ìƒpƒ‰ƒ[ƒ^‚ğæ“¾
+// éåŒæœŸèª­ã¿è¾¼ã¿ãƒ‡ãƒ¼ã‚¿ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‹ã‚‰ LONGLONG å‹ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’å–å¾—
 extern LONGLONG GetASyncLoadParamLONGLONG( BYTE *Data, int *Addr )
 {
 	LONGLONG Ret ;
@@ -437,7 +437,7 @@ extern LONGLONG GetASyncLoadParamLONGLONG( BYTE *Data, int *Addr )
 	return Ret ;
 }
 
-// ”ñ“¯Šú“Ç‚İ‚İƒf[ƒ^‚Ìƒpƒ‰ƒ[ƒ^‚©‚ç int Œ^‚Ìƒpƒ‰ƒ[ƒ^‚ğæ“¾
+// éåŒæœŸèª­ã¿è¾¼ã¿ãƒ‡ãƒ¼ã‚¿ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‹ã‚‰ int å‹ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’å–å¾—
 extern	int		GetASyncLoadParamInt( BYTE *Data, int *Addr )
 {
 	int Ret ;
@@ -448,7 +448,7 @@ extern	int		GetASyncLoadParamInt( BYTE *Data, int *Addr )
 	return Ret ;
 }
 
-// ”ñ“¯Šú“Ç‚İ‚İƒf[ƒ^‚Ìƒpƒ‰ƒ[ƒ^‚©‚ç BYTE Œ^‚Ìƒpƒ‰ƒ[ƒ^‚ğæ“¾
+// éåŒæœŸèª­ã¿è¾¼ã¿ãƒ‡ãƒ¼ã‚¿ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‹ã‚‰ BYTE å‹ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’å–å¾—
 extern	BYTE	GetASyncLoadParamByte( BYTE *Data, int *Addr )
 {
 	BYTE Ret ;
@@ -459,7 +459,7 @@ extern	BYTE	GetASyncLoadParamByte( BYTE *Data, int *Addr )
 	return Ret ;
 }
 
-// ”ñ“¯Šú“Ç‚İ‚İƒf[ƒ^‚Ìƒpƒ‰ƒ[ƒ^‚©‚ç float Œ^‚Ìƒpƒ‰ƒ[ƒ^‚ğæ“¾
+// éåŒæœŸèª­ã¿è¾¼ã¿ãƒ‡ãƒ¼ã‚¿ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‹ã‚‰ float å‹ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’å–å¾—
 extern	float	GetASyncLoadParamFloat( BYTE *Data, int *Addr )
 {
 	float Ret ;
@@ -470,7 +470,7 @@ extern	float	GetASyncLoadParamFloat( BYTE *Data, int *Addr )
 	return Ret ;
 }
 
-// ”ñ“¯Šú“Ç‚İ‚İƒf[ƒ^‚Ìƒpƒ‰ƒ[ƒ^‚©‚ç•¶š—ñƒpƒ‰ƒ[ƒ^‚ğæ“¾
+// éåŒæœŸèª­ã¿è¾¼ã¿ãƒ‡ãƒ¼ã‚¿ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‹ã‚‰æ–‡å­—åˆ—ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’å–å¾—
 extern	wchar_t *	GetASyncLoadParamString( BYTE *Data, int *Addr )
 {
 	wchar_t *Ret ;
@@ -483,24 +483,24 @@ extern	wchar_t *	GetASyncLoadParamString( BYTE *Data, int *Addr )
 	return StrLen == 0 ? NULL : Ret ;
 }
 
-// ”ñ“¯Šú“Ç‚İ‚İƒf[ƒ^‚ğ’Ç‰Á‚·‚é
+// éåŒæœŸèª­ã¿è¾¼ã¿ãƒ‡ãƒ¼ã‚¿ã‚’è¿½åŠ ã™ã‚‹
 extern int AddASyncLoadData( ASYNCLOADDATA_COMMON *ASyncData )
 {
 	int NewIndex ;
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 	CRITICALSECTION_LOCK( &GASyncLoadData.CriticalSection ) ;
 
-	// Šù‚É”ñ“¯Šú“Ç‚İ‚İƒf[ƒ^‚ªÅ‘å”‚É’B‚µ‚Ä‚¢‚éê‡‚ÍƒGƒ‰[
+	// æ—¢ã«éåŒæœŸèª­ã¿è¾¼ã¿ãƒ‡ãƒ¼ã‚¿ãŒæœ€å¤§æ•°ã«é”ã—ã¦ã„ã‚‹å ´åˆã¯ã‚¨ãƒ©ãƒ¼
 	if( GASyncLoadData.DataNum == ASYNCLOADDATA_MAXNUM )
 	{
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 		CriticalSection_Unlock( &GASyncLoadData.CriticalSection ) ;
 
-		return DXST_LOGFILE_ADDUTF16LE( "\x5e\x97\x0c\x54\x1f\x67\xad\x8a\x7f\x30\xbc\x8f\x7f\x30\xc7\x30\xfc\x30\xbf\x30\x6e\x30\x70\x65\x4c\x30\x31\x8a\xb9\x5b\xcf\x91\x92\x30\x8a\x8d\x48\x30\x7e\x30\x57\x30\x5f\x30\x42\x7d\x86\x4e\x57\x30\x7e\x30\x59\x30\x00"/*@ L"”ñ“¯Šú“Ç‚İ‚İƒf[ƒ^‚Ì”‚ª‹–—e—Ê‚ğ‰z‚¦‚Ü‚µ‚½I—¹‚µ‚Ü‚·" @*/ ) ;
+		return DXST_LOGFILE_ADDUTF16LE( "\x5e\x97\x0c\x54\x1f\x67\xad\x8a\x7f\x30\xbc\x8f\x7f\x30\xc7\x30\xfc\x30\xbf\x30\x6e\x30\x70\x65\x4c\x30\x31\x8a\xb9\x5b\xcf\x91\x92\x30\x8a\x8d\x48\x30\x7e\x30\x57\x30\x5f\x30\x42\x7d\x86\x4e\x57\x30\x7e\x30\x59\x30\x00"/*@ L"éåŒæœŸèª­ã¿è¾¼ã¿ãƒ‡ãƒ¼ã‚¿ã®æ•°ãŒè¨±å®¹é‡ã‚’è¶Šãˆã¾ã—ãŸçµ‚äº†ã—ã¾ã™" @*/ ) ;
 	}
 
-	// g—p‚³‚ê‚Ä‚¢‚È‚¢”z—ñ—v‘f‚ğ’T‚·
+	// ä½¿ç”¨ã•ã‚Œã¦ã„ãªã„é…åˆ—è¦ç´ ã‚’æ¢ã™
 	if( GASyncLoadData.DataArea != ASYNCLOADDATA_MAXNUM )
 	{
 		NewIndex = GASyncLoadData.DataArea ;
@@ -510,71 +510,71 @@ extern int AddASyncLoadData( ASYNCLOADDATA_COMMON *ASyncData )
 		for( NewIndex = 0 ; NewIndex < ASYNCLOADDATA_MAXNUM && GASyncLoadData.Data[ NewIndex ] != NULL ; NewIndex ++ ){}
 	}
 
-	// ‰Šú‰»“à—e‚ªŠm’è‚µ‚Ä‚¢‚éƒƒ“ƒo•Ï”‚Ì‚İ‰Šú‰»
+	// åˆæœŸåŒ–å†…å®¹ãŒç¢ºå®šã—ã¦ã„ã‚‹ãƒ¡ãƒ³ãƒå¤‰æ•°ã®ã¿åˆæœŸåŒ–
 	ASyncData->Index = NewIndex ;
 	ASyncData->Run = FALSE ;
 	ASyncData->DeleteOneSetAddr = NULL ;
 
-	// “o˜^ŠÔ‚ğ•Û‘¶
+	// ç™»éŒ²æ™‚é–“ã‚’ä¿å­˜
 	ASyncData->StartTime = NS_GetNowCount( FALSE ) ;
 
-	// g—p‚³‚ê‚Ä‚¢‚éƒ|ƒCƒ“ƒ^‚ª‘¶İ‚·‚é”ÍˆÍ‚ğXV‚·‚é
+	// ä½¿ç”¨ã•ã‚Œã¦ã„ã‚‹ãƒã‚¤ãƒ³ã‚¿ãŒå­˜åœ¨ã™ã‚‹ç¯„å›²ã‚’æ›´æ–°ã™ã‚‹
 	if( GASyncLoadData.DataArea == NewIndex ) GASyncLoadData.DataArea ++ ;
 
-	// ƒf[ƒ^ƒ|ƒCƒ“ƒ^‚Ì•Û‘¶
+	// ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿ã®ä¿å­˜
 	GASyncLoadData.Data[ NewIndex ] = ASyncData ;
 
-	// ”ñ“¯Šú“Ç‚İ‚İƒf[ƒ^‚Ì”‚ğ‘‚â‚·
+	// éåŒæœŸèª­ã¿è¾¼ã¿ãƒ‡ãƒ¼ã‚¿ã®æ•°ã‚’å¢—ã‚„ã™
 	GASyncLoadData.DataNum ++ ;
 
-	// “Ç‚İ‚İƒXƒŒƒbƒh‚ğˆê‚Â‰Ò“®ó‘Ô‚É‚·‚é
+	// èª­ã¿è¾¼ã¿ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’ä¸€ã¤ç¨¼å‹•çŠ¶æ…‹ã«ã™ã‚‹
 	ResumeASyncLoadThread() ;
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 	CriticalSection_Unlock( &GASyncLoadData.CriticalSection ) ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
 
-// w’è‚Ì”ñ“¯Šú“Ç‚İ‚İƒf[ƒ^‚ğíœ‚·‚é
+// æŒ‡å®šã®éåŒæœŸèª­ã¿è¾¼ã¿ãƒ‡ãƒ¼ã‚¿ã‚’å‰Šé™¤ã™ã‚‹
 extern int DeleteASyncLoadData( int DeleteIndex, int MainThread )
 {
 	ASYNCLOADDATA_COMMON *ASyncData ;
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 	CRITICALSECTION_LOCK( &GASyncLoadData.CriticalSection ) ;
 
-	// ƒf[ƒ^‚ÌƒAƒhƒŒƒX‚ğæ“¾
+	// ãƒ‡ãƒ¼ã‚¿ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å–å¾—
 	ASyncData = GASyncLoadData.Data[ DeleteIndex ] ;
 
-	// w’è‚ÌƒCƒ“ƒfƒbƒNƒX‚ªŠù‚É‰ğ•ú‚³‚ê‚Ä‚¢‚½‚ç‰½‚à‚µ‚È‚¢
+	// æŒ‡å®šã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãŒæ—¢ã«è§£æ”¾ã•ã‚Œã¦ã„ãŸã‚‰ä½•ã‚‚ã—ãªã„
 	if( ASyncData == NULL )
 	{
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 		CriticalSection_Unlock( &GASyncLoadData.CriticalSection ) ;
 		return -1 ;
 	}
 
-	// Šù‚Éˆ—‚ª‘–‚Á‚Ä‚¢‚½‚çƒGƒ‰[
+	// æ—¢ã«å‡¦ç†ãŒèµ°ã£ã¦ã„ãŸã‚‰ã‚¨ãƒ©ãƒ¼
 	if( MainThread && ASyncData->Run )
 	{
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 		CriticalSection_Unlock( &GASyncLoadData.CriticalSection ) ;
 		return -2 ;
 	}
 
-	// íœ‚É 1 ‚ğ‘ã“ü‚·‚éƒAƒhƒŒƒX‚ªİ’è‚³‚ê‚Ä‚¢‚½‚ç 1 ‚ğ‘ã“ü‚·‚é
+	// å‰Šé™¤æ™‚ã« 1 ã‚’ä»£å…¥ã™ã‚‹ã‚¢ãƒ‰ãƒ¬ã‚¹ãŒè¨­å®šã•ã‚Œã¦ã„ãŸã‚‰ 1 ã‚’ä»£å…¥ã™ã‚‹
 	if( ASyncData->DeleteOneSetAddr != NULL )
 	{
 		*ASyncData->DeleteOneSetAddr = 1 ;
 	}
 
-	// ”ñ“¯Šú“Ç‚İ‚İƒf[ƒ^‚Ì‘”‚ğŒ¸‚ç‚·
+	// éåŒæœŸèª­ã¿è¾¼ã¿ãƒ‡ãƒ¼ã‚¿ã®ç·æ•°ã‚’æ¸›ã‚‰ã™
 	GASyncLoadData.DataNum -- ;
 
-	// —LŒø‚È”ñ“¯Šú“Ç‚İ‚İƒf[ƒ^‚ª‘¶İ‚·‚é”ÍˆÍ‚ÌXV
+	// æœ‰åŠ¹ãªéåŒæœŸèª­ã¿è¾¼ã¿ãƒ‡ãƒ¼ã‚¿ãŒå­˜åœ¨ã™ã‚‹ç¯„å›²ã®æ›´æ–°
 	if( DeleteIndex == GASyncLoadData.DataArea - 1 )
 	{
 		if( GASyncLoadData.DataNum == 0 ) GASyncLoadData.DataArea = 0 ;
@@ -586,55 +586,55 @@ extern int DeleteASyncLoadData( int DeleteIndex, int MainThread )
 		}
 	}
 
-	// ƒf[ƒ^—Ìˆæ‚ğ‰ğ•ú‚·‚é
+	// ãƒ‡ãƒ¼ã‚¿é ˜åŸŸã‚’è§£æ”¾ã™ã‚‹
 	DXFREE( ASyncData ) ;
 
-	// ƒe[ƒuƒ‹‚É NULL ‚ğƒZƒbƒg‚·‚é
+	// ãƒ†ãƒ¼ãƒ–ãƒ«ã« NULL ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 	GASyncLoadData.Data[ DeleteIndex ] = NULL ;
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 	CriticalSection_Unlock( &GASyncLoadData.CriticalSection ) ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// w’è‚Ì”ñ“¯Šú“Ç‚İ‚İƒf[ƒ^‚ğƒƒCƒ“ƒXƒŒƒbƒh‚ÅÀs‚·‚éAƒƒCƒ“ƒXƒŒƒbƒh‚Å‚Ì‚İg—p‰Â”\( –ß‚è’l  0:³íI—¹  -1:ƒGƒ‰[ )
+// æŒ‡å®šã®éåŒæœŸèª­ã¿è¾¼ã¿ãƒ‡ãƒ¼ã‚¿ã‚’ãƒ¡ã‚¤ãƒ³ã‚¹ãƒ¬ãƒƒãƒ‰ã§å®Ÿè¡Œã™ã‚‹ã€ãƒ¡ã‚¤ãƒ³ã‚¹ãƒ¬ãƒƒãƒ‰ã§ã®ã¿ä½¿ç”¨å¯èƒ½( æˆ»ã‚Šå€¤  0:æ­£å¸¸çµ‚äº†  -1:ã‚¨ãƒ©ãƒ¼ )
 extern int MainThreadProcessASyncLoadData( int Index )
 {
 	ASYNCLOADDATA_COMMON *ASyncData ;
 
-	// ƒƒCƒ“ƒXƒŒƒbƒh‚Å‚Í‚È‚©‚Á‚½‚çƒGƒ‰[
+	// ãƒ¡ã‚¤ãƒ³ã‚¹ãƒ¬ãƒƒãƒ‰ã§ã¯ãªã‹ã£ãŸã‚‰ã‚¨ãƒ©ãƒ¼
 	if( CheckMainThread() == FALSE )
 	{
 		return -1 ;
 	}
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 	CRITICALSECTION_LOCK( &GASyncLoadData.CriticalSection ) ;
 
-	// ƒf[ƒ^‚ÌƒAƒhƒŒƒX‚ğæ“¾
+	// ãƒ‡ãƒ¼ã‚¿ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å–å¾—
 	ASyncData = GASyncLoadData.Data[ Index ] ;
 
-	// w’è‚ÌƒCƒ“ƒfƒbƒNƒX‚ªŠù‚É‰ğ•ú‚³‚ê‚Ä‚¢‚½‚ç‰½‚à‚µ‚È‚¢
+	// æŒ‡å®šã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãŒæ—¢ã«è§£æ”¾ã•ã‚Œã¦ã„ãŸã‚‰ä½•ã‚‚ã—ãªã„
 	if( ASyncData == NULL )
 	{
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 		CriticalSection_Unlock( &GASyncLoadData.CriticalSection ) ;
 		return -1 ;
 	}
 
-	// Šù‚Éˆ—‚ª‘–‚Á‚Ä‚¢‚½‚çÀs‚ªI—¹‚·‚é‚Ü‚Å‘Ò‚Â
+	// æ—¢ã«å‡¦ç†ãŒèµ°ã£ã¦ã„ãŸã‚‰å®Ÿè¡ŒãŒçµ‚äº†ã™ã‚‹ã¾ã§å¾…ã¤
 	if( ASyncData->Run )
 	{
 		volatile int DeleteFlag = 0 ;
 
 		ASyncData->DeleteOneSetAddr = &DeleteFlag ;
 
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 		CriticalSection_Unlock( &GASyncLoadData.CriticalSection ) ;
 
-		// ˆ—‚ªI—¹‚·‚é‚Ü‚Åƒ‹[ƒv
+		// å‡¦ç†ãŒçµ‚äº†ã™ã‚‹ã¾ã§ãƒ«ãƒ¼ãƒ—
 		while( DeleteFlag == 0 )
 		{
 			ProcessASyncLoadRequestMainThread() ;
@@ -642,32 +642,32 @@ extern int MainThreadProcessASyncLoadData( int Index )
 		}
 	}
 	else
-	// ‚Ü‚¾ˆ—‚ª‘–‚Á‚Ä‚¢‚È‚¢ê‡‚Íê—p‚ÌƒXƒŒƒbƒh‚ÅÀs‚·‚é
+	// ã¾ã å‡¦ç†ãŒèµ°ã£ã¦ã„ãªã„å ´åˆã¯å°‚ç”¨ã®ã‚¹ãƒ¬ãƒƒãƒ‰ã§å®Ÿè¡Œã™ã‚‹
 	{
-		// ˆ—‚ğŠJn‚µ‚Ä‚¢‚éƒtƒ‰ƒO‚ğ—§‚Ä‚é
+		// å‡¦ç†ã‚’é–‹å§‹ã—ã¦ã„ã‚‹ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 		ASyncData->Run = TRUE ;
 
-		// ˆ—‚µ‚Ä‚Ù‚µ‚¢ƒf[ƒ^”Ô†‚ğƒZƒbƒg
+		// å‡¦ç†ã—ã¦ã»ã—ã„ãƒ‡ãƒ¼ã‚¿ç•ªå·ã‚’ã‚»ãƒƒãƒˆ
 		GASyncLoadData.MainThread_RunDataIndex = Index ;
 		GASyncLoadData.MainThread_RunDataIndex_Enable = TRUE ;
 
-		// ƒƒCƒ“ƒXƒŒƒbƒh‚©‚çÀs‚ğw’è‚³‚ê‚½”ñ“¯Šú“Ç‚İ‚İƒf[ƒ^‚ğˆ—‚·‚éê—p‚ÌƒXƒŒƒbƒh‚ğ‹N‚±‚·
+		// ãƒ¡ã‚¤ãƒ³ã‚¹ãƒ¬ãƒƒãƒ‰ã‹ã‚‰å®Ÿè¡Œã‚’æŒ‡å®šã•ã‚ŒãŸéåŒæœŸèª­ã¿è¾¼ã¿ãƒ‡ãƒ¼ã‚¿ã‚’å‡¦ç†ã™ã‚‹å°‚ç”¨ã®ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’èµ·ã“ã™
 		GASyncLoadData.Thread[ GASyncLoadData.ThreadNum ].SuspendFlag = FALSE ;
 		GASyncLoadData.ThreadResumeNum ++ ;
 
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 		CriticalSection_Unlock( &GASyncLoadData.CriticalSection ) ;
 
 		while( Thread_Resume( &GASyncLoadData.Thread[ GASyncLoadData.ThreadNum ].ThreadInfo ) == 0 ){}
 
-		// ˆ—‚ªI—¹‚·‚é‚Ü‚Åƒ‹[ƒv
+		// å‡¦ç†ãŒçµ‚äº†ã™ã‚‹ã¾ã§ãƒ«ãƒ¼ãƒ—
 		while( GASyncLoadData.MainThread_RunDataIndex_Enable && NS_ProcessMessage() == 0 )
 		{
 			ProcessASyncLoadRequestMainThread() ;
 			Thread_Sleep( 1 ) ;
 		}
 
-		// ƒXƒŒƒbƒh‚ªQ‚é‚Ü‚Åƒ‹[ƒv
+		// ã‚¹ãƒ¬ãƒƒãƒ‰ãŒå¯ã‚‹ã¾ã§ãƒ«ãƒ¼ãƒ—
 		while( GASyncLoadData.Thread[ GASyncLoadData.ThreadNum ].SuspendFlag == FALSE && NS_ProcessMessage() == 0 )
 		{
 			ProcessASyncLoadRequestMainThread() ;
@@ -675,12 +675,12 @@ extern int MainThreadProcessASyncLoadData( int Index )
 		}
 	}
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
 
-// ”ñ“¯Šú“Ç‚İ‚İ‚Ìˆ—‚ğs‚¤
+// éåŒæœŸèª­ã¿è¾¼ã¿ã®å‡¦ç†ã‚’è¡Œã†
 extern int ProcessASyncLoad( int ThreadNumber )
 {
 	int i ;
@@ -689,25 +689,25 @@ extern int ProcessASyncLoad( int ThreadNumber )
 
 	AInfo = &GASyncLoadData.Thread[ ThreadNumber ] ;
 
-	// ƒf[ƒ^‚ª–³‚©‚Á‚½‚ç‰½‚à‚µ‚È‚¢
+	// ãƒ‡ãƒ¼ã‚¿ãŒç„¡ã‹ã£ãŸã‚‰ä½•ã‚‚ã—ãªã„
 	if( GASyncLoadData.DataArea == 0 )
 		return -2 ;
 
-	// ˆ—‚³‚ê‚Ä‚¢‚È‚¢ƒf[ƒ^‚ğ’T‚·
+	// å‡¦ç†ã•ã‚Œã¦ã„ãªã„ãƒ‡ãƒ¼ã‚¿ã‚’æ¢ã™
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 	CRITICALSECTION_LOCK( &GASyncLoadData.CriticalSection ) ;
 
-	// ƒf[ƒ^‚Ì”ÍˆÍ‚Ì‚İƒ‹[ƒv
+	// ãƒ‡ãƒ¼ã‚¿ã®ç¯„å›²ã®ã¿ãƒ«ãƒ¼ãƒ—
 	Data = NULL ;
 	for( i = 0 ; i < GASyncLoadData.DataArea ; i ++ )
 	{
-		// ƒf[ƒ^‚ª–³‚©‚Á‚½‚ç‰½‚à‚µ‚È‚¢
+		// ãƒ‡ãƒ¼ã‚¿ãŒç„¡ã‹ã£ãŸã‚‰ä½•ã‚‚ã—ãªã„
 		if( GASyncLoadData.Data[ i ] == NULL ) continue ;
 
 		Data = GASyncLoadData.Data[ i ] ;
 
-		// Šù‚É‚Ç‚ê‚©‚ÌƒXƒŒƒbƒh‚ªˆ—‚µ‚Ä‚¢‚éê‡‚Í‰½‚à‚µ‚È‚¢
+		// æ—¢ã«ã©ã‚Œã‹ã®ã‚¹ãƒ¬ãƒƒãƒ‰ãŒå‡¦ç†ã—ã¦ã„ã‚‹å ´åˆã¯ä½•ã‚‚ã—ãªã„
 		if( Data->Run )
 		{
 			Data = NULL ;
@@ -717,38 +717,38 @@ extern int ProcessASyncLoad( int ThreadNumber )
 		break ;
 	}
 
-	// ˆ—‚ğÀs’†ƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// å‡¦ç†ã‚’å®Ÿè¡Œä¸­ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	if( Data )
 	{
 		Data->Run = TRUE ;
 	}
 
-	// d–’†ƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// ä»•äº‹ä¸­ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	AInfo->JobFlag = TRUE ;
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 	CriticalSection_Unlock( &GASyncLoadData.CriticalSection ) ;
 
 	if( Data )
 	{
-		// “Ç‚İ‚İˆ—
+		// èª­ã¿è¾¼ã¿å‡¦ç†
 		Data->ProcessFunction( Data ) ;
 
-		// “Ç‚İ‚İˆ—‚ªI—¹‚µ‚½‚çíœ‚·‚é
+		// èª­ã¿è¾¼ã¿å‡¦ç†ãŒçµ‚äº†ã—ãŸã‚‰å‰Šé™¤ã™ã‚‹
 		DeleteASyncLoadData( i ) ;
 	}
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// Œ»İ‚ÌƒXƒŒƒbƒh‚ªƒƒCƒ“ƒXƒŒƒbƒh‚©‚Ç‚¤‚©‚ğæ“¾‚·‚é( TRUE:ƒƒCƒ“ƒXƒŒƒbƒh  FALSE:‚»‚êˆÈŠO‚ÌƒXƒŒƒbƒh )
+// ç¾åœ¨ã®ã‚¹ãƒ¬ãƒƒãƒ‰ãŒãƒ¡ã‚¤ãƒ³ã‚¹ãƒ¬ãƒƒãƒ‰ã‹ã©ã†ã‹ã‚’å–å¾—ã™ã‚‹( TRUE:ãƒ¡ã‚¤ãƒ³ã‚¹ãƒ¬ãƒƒãƒ‰  FALSE:ãã‚Œä»¥å¤–ã®ã‚¹ãƒ¬ãƒƒãƒ‰ )
 extern int CheckMainThread( void )
 {
 	return Thread_GetCurrentId() == GASyncLoadData.MainThreadID ? TRUE : FALSE ;
 }
 
-// ”ñ“¯Šú“Ç‚İ‚İ‚ğs‚¤ƒXƒŒƒbƒh
+// éåŒæœŸèª­ã¿è¾¼ã¿ã‚’è¡Œã†ã‚¹ãƒ¬ãƒƒãƒ‰
 void ASyncLoadThreadFunction( THREAD_INFO *pThreadInfo, void * /*ASyncLoadThreadData*/ )
 {
 	int i ;
@@ -759,7 +759,7 @@ void ASyncLoadThreadFunction( THREAD_INFO *pThreadInfo, void * /*ASyncLoadThread
 	ASYNCLOADDATA_COMMON *Data ;
 	ASYNCLOADTHREADINFO *AInfo ;
 
-	// ƒXƒŒƒbƒh‚Ì”Ô†‚ğæ“¾‚µ‚Ä‚¨‚­
+	// ã‚¹ãƒ¬ãƒƒãƒ‰ã®ç•ªå·ã‚’å–å¾—ã—ã¦ãŠã
 	AInfo = GASyncLoadData.Thread ;
 	for( ThreadNumber = 0 ; ThreadNumber < ASYNCLOADTHREAD_MAXNUM + 1 ; ThreadNumber ++, AInfo ++ )
 	{
@@ -770,36 +770,36 @@ void ASyncLoadThreadFunction( THREAD_INFO *pThreadInfo, void * /*ASyncLoadThread
 
 	for(;;)
 	{
-		// ƒXƒŒƒbƒh‚ğI—¹‚·‚×‚«‚Æ‚¢‚¤ƒtƒ‰ƒO‚ª—§‚Á‚½‚çƒ‹[ƒv‚©‚çŠO‚ê‚é
+		// ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’çµ‚äº†ã™ã¹ãã¨ã„ã†ãƒ•ãƒ©ã‚°ãŒç«‹ã£ãŸã‚‰ãƒ«ãƒ¼ãƒ—ã‹ã‚‰å¤–ã‚Œã‚‹
 		if( GASyncLoadData.ThreadEndRequestFlag == TRUE ) goto ENDLABEL ;
 
-		// ƒf[ƒ^‚ª–³‚©‚Á‚½‚ç‰½‚à‚µ‚È‚¢
+		// ãƒ‡ãƒ¼ã‚¿ãŒç„¡ã‹ã£ãŸã‚‰ä½•ã‚‚ã—ãªã„
 		if( ( MainThread_RunDataThread == FALSE && GASyncLoadData.DataArea == 0 ) ||
 			( MainThread_RunDataThread == TRUE  && GASyncLoadData.MainThread_RunDataIndex_Enable == FALSE ) )
 		{
 SLEEP_LABEL :
-			// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+			// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 			CRITICALSECTION_LOCK( &GASyncLoadData.CriticalSection ) ;
 
-			// ƒXƒŒƒbƒh‚ğQ‚©‚·€”õ
+			// ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’å¯ã‹ã™æº–å‚™
 			AInfo->SuspendFlag = TRUE ;
 			AInfo->SuspendStartTime = NS_GetNowCount( FALSE ) ;
 			GASyncLoadData.ThreadResumeNum -- ;
 
-			// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+			// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 			CriticalSection_Unlock( &GASyncLoadData.CriticalSection ) ;
 
-			// ‹x~ó‘Ô‚É‚·‚é
+			// ä¼‘æ­¢çŠ¶æ…‹ã«ã™ã‚‹
 			Thread_Suspend( pThreadInfo ) ;
 
-			// Å‰‚É–ß‚é
+			// æœ€åˆã«æˆ»ã‚‹
 			continue ;
 		}
 
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 		CRITICALSECTION_LOCK( &GASyncLoadData.CriticalSection ) ;
 
-		// ƒƒCƒ“ƒXƒŒƒbƒh‚©‚çw’è‚³‚ê‚½”ñ“¯Šú“Ç‚İ‚İƒf[ƒ^‚ğˆ—‚·‚éƒXƒŒƒbƒh‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+		// ãƒ¡ã‚¤ãƒ³ã‚¹ãƒ¬ãƒƒãƒ‰ã‹ã‚‰æŒ‡å®šã•ã‚ŒãŸéåŒæœŸèª­ã¿è¾¼ã¿ãƒ‡ãƒ¼ã‚¿ã‚’å‡¦ç†ã™ã‚‹ã‚¹ãƒ¬ãƒƒãƒ‰ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 		if( MainThread_RunDataThread )
 		{
 			Index = GASyncLoadData.MainThread_RunDataIndex ;
@@ -807,9 +807,9 @@ SLEEP_LABEL :
 		}
 		else
 		{
-			// ˆ—‚³‚ê‚Ä‚¢‚È‚¢ˆê”ÔŒÃ‚¢ƒf[ƒ^‚ğ’T‚·
+			// å‡¦ç†ã•ã‚Œã¦ã„ãªã„ä¸€ç•ªå¤ã„ãƒ‡ãƒ¼ã‚¿ã‚’æ¢ã™
 
-			// ƒf[ƒ^‚Ì”ÍˆÍ‚Ì‚İƒ‹[ƒv
+			// ãƒ‡ãƒ¼ã‚¿ã®ç¯„å›²ã®ã¿ãƒ«ãƒ¼ãƒ—
 			Data = NULL ;
 			for( i = 0 ; i < GASyncLoadData.DataArea ; i ++ )
 			{
@@ -824,67 +824,67 @@ SLEEP_LABEL :
 			}
 			if( Data == NULL )
 			{
-				// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+				// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 				CriticalSection_Unlock( &GASyncLoadData.CriticalSection ) ;
 
-				// ’N‚©‹‚½‚çƒXƒŒƒbƒh‚ğ‹N‚±‚·
+				// èª°ã‹å±…ãŸã‚‰ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’èµ·ã“ã™
 				ResumeASyncLoadThread( 1 ) ;
 
-				// Q‚é
+				// å¯ã‚‹
 				goto SLEEP_LABEL ;
 			}
 		}
 
-		// ƒf[ƒ^‚ğˆ—’†ƒtƒ‰ƒO‚ğ—§‚Ä‚é
+		// ãƒ‡ãƒ¼ã‚¿ã‚’å‡¦ç†ä¸­ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 		Data->Run = TRUE ;
 
-		// d–’†ƒtƒ‰ƒO‚ğ—§‚Ä‚é
+		// ä»•äº‹ä¸­ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 		AInfo->JobFlag = TRUE ;
 
-		// ’S“–‚Ìƒf[ƒ^‚ÌƒAƒhƒŒƒX‚ğ•Û‘¶
+		// æ‹…å½“ã®ãƒ‡ãƒ¼ã‚¿ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ä¿å­˜
 		AInfo->Data = Data ;
 
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 		CriticalSection_Unlock( &GASyncLoadData.CriticalSection ) ;
 
-		// “Ç‚İ‚İˆ—
+		// èª­ã¿è¾¼ã¿å‡¦ç†
 		Data->ProcessFunction( Data ) ;
 
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 		CRITICALSECTION_LOCK( &GASyncLoadData.CriticalSection ) ;
 
-		// “Ç‚İ‚İˆ—‚ªI—¹‚µ‚½‚çíœ‚·‚é
+		// èª­ã¿è¾¼ã¿å‡¦ç†ãŒçµ‚äº†ã—ãŸã‚‰å‰Šé™¤ã™ã‚‹
 		DeleteASyncLoadData( Index ) ;
 
-		// d–’†ƒtƒ‰ƒO‚ğ“|‚·
+		// ä»•äº‹ä¸­ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 		AInfo->JobFlag = FALSE ;
 
-		// ’S“–‚Ìƒf[ƒ^‚ÌƒAƒhƒŒƒX‚ğ‰Šú‰»
+		// æ‹…å½“ã®ãƒ‡ãƒ¼ã‚¿ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’åˆæœŸåŒ–
 		AInfo->Data = NULL ;
 
-		// ƒƒCƒ“ƒXƒŒƒbƒh‚©‚çÀs‚ğw’è‚³‚ê‚½”ñ“¯Šú“Ç‚İ‚İƒf[ƒ^‚Ì‚İ‚ğˆ—‚·‚éƒXƒŒƒbƒh‚¾‚Á‚½ê‡‚Íˆ—Š®—¹ó‘Ô‚É‚·‚é
+		// ãƒ¡ã‚¤ãƒ³ã‚¹ãƒ¬ãƒƒãƒ‰ã‹ã‚‰å®Ÿè¡Œã‚’æŒ‡å®šã•ã‚ŒãŸéåŒæœŸèª­ã¿è¾¼ã¿ãƒ‡ãƒ¼ã‚¿ã®ã¿ã‚’å‡¦ç†ã™ã‚‹ã‚¹ãƒ¬ãƒƒãƒ‰ã ã£ãŸå ´åˆã¯å‡¦ç†å®Œäº†çŠ¶æ…‹ã«ã™ã‚‹
 		if( MainThread_RunDataThread )
 		{
 			GASyncLoadData.MainThread_RunDataIndex_Enable = FALSE ;
 		}
 
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 		CriticalSection_Unlock( &GASyncLoadData.CriticalSection ) ;
 	}
 
 ENDLABEL :
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 	CRITICALSECTION_LOCK( &GASyncLoadData.CriticalSection ) ;
 
-	// ƒXƒŒƒbƒh‚ªI—¹‚µ‚½‚±‚Æ‚ğ¦‚·ƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// ã‚¹ãƒ¬ãƒƒãƒ‰ãŒçµ‚äº†ã—ãŸã“ã¨ã‚’ç¤ºã™ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	AInfo->ExitFlag = TRUE ;
 	GASyncLoadData.ThreadResumeNum -- ;
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 	CriticalSection_Unlock( &GASyncLoadData.CriticalSection ) ;
 }
 
-// Q‚Ä‚¢‚éƒXƒŒƒbƒh‚ğˆê‚Â‹N‚±‚·
+// å¯ã¦ã„ã‚‹ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’ä¸€ã¤èµ·ã“ã™
 extern int ResumeASyncLoadThread( int AddMaxThreadNum )
 {
 	int i ;
@@ -893,10 +893,10 @@ extern int ResumeASyncLoadThread( int AddMaxThreadNum )
 	int LastSelectNoCount ;
 	ASYNCLOADTHREADINFO *AInfo ;
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 	CRITICALSECTION_LOCK( &GASyncLoadData.CriticalSection ) ;
 
-	// ƒƒCƒ“ƒXƒŒƒbƒh‚É‚æ‚éˆ—Š®—¹‘Ò‚¿‚ÅƒXƒŒƒbƒh‚ğ~‚ß‚Ä‚¢‚ÄAŠ‚ÂƒƒCƒ“ƒXƒŒƒbƒh‚É‚æ‚éˆ—‚ªŠ®—¹‚µ‚Ä‚¢‚éƒXƒŒƒbƒh‚ğˆê‚Â‹N‚±‚·
+	// ãƒ¡ã‚¤ãƒ³ã‚¹ãƒ¬ãƒƒãƒ‰ã«ã‚ˆã‚‹å‡¦ç†å®Œäº†å¾…ã¡ã§ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’æ­¢ã‚ã¦ã„ã¦ã€ä¸”ã¤ãƒ¡ã‚¤ãƒ³ã‚¹ãƒ¬ãƒƒãƒ‰ã«ã‚ˆã‚‹å‡¦ç†ãŒå®Œäº†ã—ã¦ã„ã‚‹ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’ä¸€ã¤èµ·ã“ã™
 	AInfo = GASyncLoadData.Thread ;
 	for( i = 0 ; i < GASyncLoadData.ThreadNum + 1 ; i ++, AInfo ++ )
 	{
@@ -907,34 +907,34 @@ extern int ResumeASyncLoadThread( int AddMaxThreadNum )
 
 		if( AInfo->MainThreadRequestSuspend == TRUE && AInfo->MainThreadRequest == FALSE )
 		{
-			// ‹N‚±‚·
+			// èµ·ã“ã™
 			AInfo = &GASyncLoadData.Thread[ i ] ;
 			if( Thread_Resume( &AInfo->ThreadInfo ) == 0 )
 			{
-				// Šù‚É‹N‚«‚Ä‚¢‚½‚ç‰½‚à‚¹‚¸Ÿ‚Ìƒ‹[ƒv‚Ö
+				// æ—¢ã«èµ·ãã¦ã„ãŸã‚‰ä½•ã‚‚ã›ãšæ¬¡ã®ãƒ«ãƒ¼ãƒ—ã¸
 				continue ;
 			}
 
-			// ƒƒCƒ“ƒXƒŒƒbƒh‚É‚æ‚éˆ—Š®—¹‘Ò‚¿‚ÅƒXƒŒƒbƒh‚ğ~‚ß‚Ä‚¢‚éƒtƒ‰ƒO‚ğ“|‚·
+			// ãƒ¡ã‚¤ãƒ³ã‚¹ãƒ¬ãƒƒãƒ‰ã«ã‚ˆã‚‹å‡¦ç†å®Œäº†å¾…ã¡ã§ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’æ­¢ã‚ã¦ã„ã‚‹ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 			if( AInfo->MainThreadRequestSuspend )
 			{
 				AInfo->MainThreadRequestSuspend = FALSE ;
 				GASyncLoadData.MainThreadRequestSuspendThreadNum -- ;
 			}
 
-			// Q‚Ä‚¢‚éƒtƒ‰ƒO‚ğ“|‚·
+			// å¯ã¦ã„ã‚‹ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 			AInfo->SuspendFlag = FALSE ;
 			GASyncLoadData.ThreadResumeNum ++ ;
 
-			// ‹N‚±‚·‚Ì‚Íˆê‚Â‚¾‚¯‚È‚Ì‚Å‚±‚±‚Åƒ‹[ƒv‚ğ”²‚¯‚é
+			// èµ·ã“ã™ã®ã¯ä¸€ã¤ã ã‘ãªã®ã§ã“ã“ã§ãƒ«ãƒ¼ãƒ—ã‚’æŠœã‘ã‚‹
 			break ;
 		}
 	}
 
-	// ‹N‚«‚Ä‚¢‚éƒXƒŒƒbƒh‚ªˆê’è”ˆÈã‚¾‚Á‚½‚ç‹N‚±‚³‚È‚¢
+	// èµ·ãã¦ã„ã‚‹ã‚¹ãƒ¬ãƒƒãƒ‰ãŒä¸€å®šæ•°ä»¥ä¸Šã ã£ãŸã‚‰èµ·ã“ã•ãªã„
 	if( GASyncLoadData.ThreadResumeNum >= GASyncLoadData.ThreadMaxResumeNum + AddMaxThreadNum )
 	{
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 		CriticalSection_Unlock( &GASyncLoadData.CriticalSection ) ;
 
 		return 0 ;
@@ -944,7 +944,7 @@ extern int ResumeASyncLoadThread( int AddMaxThreadNum )
 	LastSelectNoCount = 0 ;
 	for(;;)
 	{
-		// d–‚ğ‚µ‚Ä‚¢‚ÄƒƒCƒ“ƒXƒŒƒbƒhˆ—‘Ò‚¿‚Å‚Í‚È‚¢ˆê”ÔŒÃ‚¢ƒf[ƒ^‚ğ’S“–‚µ‚Ä‚¢‚éƒXƒŒƒbƒh‚ğŒŸõ‚·‚é
+		// ä»•äº‹ã‚’ã—ã¦ã„ã¦ãƒ¡ã‚¤ãƒ³ã‚¹ãƒ¬ãƒƒãƒ‰å‡¦ç†å¾…ã¡ã§ã¯ãªã„ä¸€ç•ªå¤ã„ãƒ‡ãƒ¼ã‚¿ã‚’æ‹…å½“ã—ã¦ã„ã‚‹ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’æ¤œç´¢ã™ã‚‹
 		SelectNo = -1 ;
 		AInfo = GASyncLoadData.Thread ;
 		for( i = 0 ; i < GASyncLoadData.ThreadNum ; i ++, AInfo ++ )
@@ -962,7 +962,7 @@ extern int ResumeASyncLoadThread( int AddMaxThreadNum )
 			}
 		}
 
-		// d–‚ğ‚µ‚Ä‚¢‚éƒƒCƒ“ƒXƒŒƒbƒhˆ—‘Ò‚¿‚Å‚Í‚È‚¢ƒXƒŒƒbƒh‚ª–³‚©‚Á‚½‚çˆê”ÔQ‚Ä‚¢‚éŠÔ‚Ì’·‚¢ƒXƒŒƒbƒh‚ğŒŸõ‚·‚é
+		// ä»•äº‹ã‚’ã—ã¦ã„ã‚‹ãƒ¡ã‚¤ãƒ³ã‚¹ãƒ¬ãƒƒãƒ‰å‡¦ç†å¾…ã¡ã§ã¯ãªã„ã‚¹ãƒ¬ãƒƒãƒ‰ãŒç„¡ã‹ã£ãŸã‚‰ä¸€ç•ªå¯ã¦ã„ã‚‹æ™‚é–“ã®é•·ã„ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’æ¤œç´¢ã™ã‚‹
 		if( SelectNo == -1 )
 		{
 			SelectNo = -1 ;
@@ -982,28 +982,28 @@ extern int ResumeASyncLoadThread( int AddMaxThreadNum )
 			}
 		}
 
-		// ‚»‚ê‚à–³‚©‚Á‚½ê‡
+		// ãã‚Œã‚‚ç„¡ã‹ã£ãŸå ´åˆ
 		if( SelectNo == -1 )
 		{
-			// ”ñ“¯Šú“Ç‚İ‚İˆ—ƒXƒŒƒbƒh•Â‚¶‘Ò’†‚Å‚Í‚È‚¢ê‡‚ÍƒXƒŒƒbƒh‚ğ‹N‚±‚·‚Ì‚ğ’f”O‚·‚é
+			// éåŒæœŸèª­ã¿è¾¼ã¿å‡¦ç†ã‚¹ãƒ¬ãƒƒãƒ‰é–‰ã˜å¾…ä¸­ã§ã¯ãªã„å ´åˆã¯ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’èµ·ã“ã™ã®ã‚’æ–­å¿µã™ã‚‹
 			if( GASyncLoadData.ThreadEndRequestFlag == FALSE )
 			{
 				break ;
 			}
 			else
 			{
-				// ”ñ“¯Šú“Ç‚İ‚İˆ—ƒXƒŒƒbƒh•Â‚¶’†‚Ìê‡‚ÍƒƒCƒ“ƒXƒŒƒbƒhˆË—Š‚Ì”ñ“¯Šú“Ç‚İ‚İƒf[ƒ^‚ğˆ—‚·‚éê—p‚ÌƒXƒŒƒbƒh‚ğ‹N‚±‚·
+				// éåŒæœŸèª­ã¿è¾¼ã¿å‡¦ç†ã‚¹ãƒ¬ãƒƒãƒ‰é–‰ã˜ä¸­ã®å ´åˆã¯ãƒ¡ã‚¤ãƒ³ã‚¹ãƒ¬ãƒƒãƒ‰ä¾é ¼ã®éåŒæœŸèª­ã¿è¾¼ã¿ãƒ‡ãƒ¼ã‚¿ã‚’å‡¦ç†ã™ã‚‹å°‚ç”¨ã®ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’èµ·ã“ã™
 				SelectNo = GASyncLoadData.ThreadNum ;
 			}
 		}
 
-		// ‹N‚±‚·
+		// èµ·ã“ã™
 		AInfo = &GASyncLoadData.Thread[ SelectNo ] ;
 		if( Thread_Resume( &AInfo->ThreadInfo ) == 0 )
 		{
-			// Šù‚É‹N‚«‚Ä‚¢‚½‚ç‚â‚è’¼‚·
+			// æ—¢ã«èµ·ãã¦ã„ãŸã‚‰ã‚„ã‚Šç›´ã™
 
-			// “¯‚¶ƒXƒŒƒbƒh‚É‘Î‚µ‚Ä‚R‰ñ˜A‘±‚Å‚±‚±‚É—ˆ‚Ä‚¢‚½‚çƒXƒŒƒbƒh‚ğ‹N‚±‚·‚Ì‚ğ’f”O‚·‚é
+			// åŒã˜ã‚¹ãƒ¬ãƒƒãƒ‰ã«å¯¾ã—ã¦ï¼“å›é€£ç¶šã§ã“ã“ã«æ¥ã¦ã„ãŸã‚‰ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’èµ·ã“ã™ã®ã‚’æ–­å¿µã™ã‚‹
 			if( LastSelectNo != SelectNo )
 			{
 				LastSelectNo = SelectNo ;
@@ -1021,22 +1021,22 @@ extern int ResumeASyncLoadThread( int AddMaxThreadNum )
 			continue ;
 		}
 
-		// Q‚Ä‚¢‚éƒtƒ‰ƒO‚ğ“|‚·
+		// å¯ã¦ã„ã‚‹ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 		AInfo->SuspendFlag = FALSE ;
 		GASyncLoadData.ThreadResumeNum ++ ;
 
-		// ƒ‹[ƒv‚©‚ç”²‚¯‚é
+		// ãƒ«ãƒ¼ãƒ—ã‹ã‚‰æŠœã‘ã‚‹
 		break ;
 	}
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 	CriticalSection_Unlock( &GASyncLoadData.CriticalSection ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ”ñ“¯Šú“Ç‚İ‚İƒXƒŒƒbƒh‚©‚çƒƒCƒ“ƒXƒŒƒbƒh‚Ö‚Ìˆ—ˆË—Š‚ğˆ—‚·‚é
+// éåŒæœŸèª­ã¿è¾¼ã¿ã‚¹ãƒ¬ãƒƒãƒ‰ã‹ã‚‰ãƒ¡ã‚¤ãƒ³ã‚¹ãƒ¬ãƒƒãƒ‰ã¸ã®å‡¦ç†ä¾é ¼ã‚’å‡¦ç†ã™ã‚‹
 extern int ProcessASyncLoadRequestMainThread( void )
 {
 	int i ;
@@ -1044,25 +1044,25 @@ extern int ProcessASyncLoadRequestMainThread( void )
 	int StartTime ;
 	int RunNum ;
 
-	// ‰Šú‰»‚³‚ê‚Ä‚¢‚È‚©‚Á‚½‚ç‰½‚à‚¹‚¸I—¹
+	// åˆæœŸåŒ–ã•ã‚Œã¦ã„ãªã‹ã£ãŸã‚‰ä½•ã‚‚ã›ãšçµ‚äº†
 	if( GASyncLoadData.InitializeFlag == FALSE )
 	{
 		return -1 ;
 	}
 
-	// ƒƒCƒ“ƒXƒŒƒbƒhˆÈŠO‚©‚çŒÄ‚Î‚ê‚½‚ç‰½‚à‚µ‚È‚¢
+	// ãƒ¡ã‚¤ãƒ³ã‚¹ãƒ¬ãƒƒãƒ‰ä»¥å¤–ã‹ã‚‰å‘¼ã°ã‚ŒãŸã‚‰ä½•ã‚‚ã—ãªã„
 	if( Thread_GetCurrentId() != GASyncLoadData.MainThreadID )
 	{
 		return -1 ;
 	}
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 	CRITICALSECTION_LOCK( &GASyncLoadData.CriticalSection ) ;
 
-	// ˆË—Š‚ª‚ ‚éê‡‚Ì‚İˆË—Š‚ğˆ—
+	// ä¾é ¼ãŒã‚ã‚‹å ´åˆã®ã¿ä¾é ¼ã‚’å‡¦ç†
 	if( GASyncLoadData.MainThreadRequestInfoNum != 0 )
 	{
-		// ˆË—Š‚Ì”‚¾‚¯ŒJ‚è•Ô‚µ
+		// ä¾é ¼ã®æ•°ã ã‘ç¹°ã‚Šè¿”ã—
 		StartTime = NS_GetNowCount( FALSE ) ;
 		for( i = 0 ; i < GASyncLoadData.MainThreadRequestInfoNum ; i ++ )
 		{
@@ -1073,11 +1073,11 @@ extern int ProcessASyncLoadRequestMainThread( void )
 			Data->Result = Data->Function( Data ) ;
 			GASyncLoadData.Thread[ Data->ThreadNo ].MainThreadRequest = FALSE ;
 
-			// ƒXƒŒƒbƒh‚ğÄŠJ‚·‚é
+			// ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’å†é–‹ã™ã‚‹
 			ResumeASyncLoadThread() ;
 		}
 
-		// c‚Á‚½‚çŸ‰ñ‚É‚¿‰z‚µ
+		// æ®‹ã£ãŸã‚‰æ¬¡å›ã«æŒã¡è¶Šã—
 		if( i != GASyncLoadData.MainThreadRequestInfoNum )
 		{
 			int Num ;
@@ -1088,12 +1088,12 @@ extern int ProcessASyncLoadRequestMainThread( void )
 		}
 		else
 		{
-			// ˆË—Š‚Ì”‚ğƒŠƒZƒbƒg
+			// ä¾é ¼ã®æ•°ã‚’ãƒªã‚»ãƒƒãƒˆ
 			GASyncLoadData.MainThreadRequestInfoNum = 0 ;
 		}
 	}
 
-	// ƒf[ƒ^‚Í‚ ‚é‚Ì‚É“®‚¢‚Ä‚¢‚éƒXƒŒƒbƒh‚ª­‚È‚¢ê‡‚ÍƒXƒŒƒbƒh‚ğ“®‚©‚·
+	// ãƒ‡ãƒ¼ã‚¿ã¯ã‚ã‚‹ã®ã«å‹•ã„ã¦ã„ã‚‹ã‚¹ãƒ¬ãƒƒãƒ‰ãŒå°‘ãªã„å ´åˆã¯ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’å‹•ã‹ã™
 	RunNum = GASyncLoadData.ThreadMaxResumeNum - 1 ;
 	if( RunNum == 0 )
 	{
@@ -1111,87 +1111,87 @@ extern int ProcessASyncLoadRequestMainThread( void )
 		}
 	}
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 	CriticalSection_Unlock( &GASyncLoadData.CriticalSection ) ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// ƒƒCƒ“ƒXƒŒƒbƒh‚Åˆ—‚µ‚Ä‚Ù‚µ‚¢ƒf[ƒ^‚Ìî•ñ‚ğ’Ç‰Á‚·‚é
+// ãƒ¡ã‚¤ãƒ³ã‚¹ãƒ¬ãƒƒãƒ‰ã§å‡¦ç†ã—ã¦ã»ã—ã„ãƒ‡ãƒ¼ã‚¿ã®æƒ…å ±ã‚’è¿½åŠ ã™ã‚‹
 extern int AddASyncLoadRequestMainThreadInfo( ASYNCLOAD_MAINTHREAD_REQUESTINFO *Info )
 {
 	int i ;
 	DWORD_PTR CurrentThreadId ;
 	ASYNCLOADTHREADINFO *AInfo ;
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 	CRITICALSECTION_LOCK( &GASyncLoadData.CriticalSection ) ;
 
-	// Šù‚ÉƒƒCƒ“ƒXƒŒƒbƒh‚Ö‚Ìˆ—ˆË—Š”‚ªÅ‘å”‚É’B‚µ‚Ä‚¢‚éê‡‚ÍƒGƒ‰[
+	// æ—¢ã«ãƒ¡ã‚¤ãƒ³ã‚¹ãƒ¬ãƒƒãƒ‰ã¸ã®å‡¦ç†ä¾é ¼æ•°ãŒæœ€å¤§æ•°ã«é”ã—ã¦ã„ã‚‹å ´åˆã¯ã‚¨ãƒ©ãƒ¼
 	if( GASyncLoadData.MainThreadRequestInfoNum == ASYNCLOADDATA_MAXNUM )
 	{
-		DXST_LOGFILE_ADDUTF16LE( "\x5e\x97\x0c\x54\x1f\x67\xad\x8a\x7f\x30\xbc\x8f\x7f\x30\xb9\x30\xec\x30\xc3\x30\xc9\x30\x4b\x30\x89\x30\xe1\x30\xa4\x30\xf3\x30\xb9\x30\xec\x30\xc3\x30\xc9\x30\x78\x30\x6e\x30\xe6\x51\x06\x74\x9d\x4f\x3c\x98\x70\x65\x4c\x30\x31\x8a\xb9\x5b\xcf\x91\x92\x30\x8a\x8d\x48\x30\x7e\x30\x57\x30\x5f\x30\x42\x7d\x86\x4e\x57\x30\x7e\x30\x59\x30\x00"/*@ L"”ñ“¯Šú“Ç‚İ‚İƒXƒŒƒbƒh‚©‚çƒƒCƒ“ƒXƒŒƒbƒh‚Ö‚Ìˆ—ˆË—Š”‚ª‹–—e—Ê‚ğ‰z‚¦‚Ü‚µ‚½I—¹‚µ‚Ü‚·" @*/ ) ;
+		DXST_LOGFILE_ADDUTF16LE( "\x5e\x97\x0c\x54\x1f\x67\xad\x8a\x7f\x30\xbc\x8f\x7f\x30\xb9\x30\xec\x30\xc3\x30\xc9\x30\x4b\x30\x89\x30\xe1\x30\xa4\x30\xf3\x30\xb9\x30\xec\x30\xc3\x30\xc9\x30\x78\x30\x6e\x30\xe6\x51\x06\x74\x9d\x4f\x3c\x98\x70\x65\x4c\x30\x31\x8a\xb9\x5b\xcf\x91\x92\x30\x8a\x8d\x48\x30\x7e\x30\x57\x30\x5f\x30\x42\x7d\x86\x4e\x57\x30\x7e\x30\x59\x30\x00"/*@ L"éåŒæœŸèª­ã¿è¾¼ã¿ã‚¹ãƒ¬ãƒƒãƒ‰ã‹ã‚‰ãƒ¡ã‚¤ãƒ³ã‚¹ãƒ¬ãƒƒãƒ‰ã¸ã®å‡¦ç†ä¾é ¼æ•°ãŒè¨±å®¹é‡ã‚’è¶Šãˆã¾ã—ãŸçµ‚äº†ã—ã¾ã™" @*/ ) ;
 		goto ERR ;
 	}
 
-	// î•ñ‚ğ’Ç‰Á
+	// æƒ…å ±ã‚’è¿½åŠ 
 	GASyncLoadData.MainThreadRequestInfo[ GASyncLoadData.MainThreadRequestInfoNum ] = Info ;
 	Info->Result = 0 ;
 
-	// ƒXƒŒƒbƒh”Ô†ŒŸo
+	// ã‚¹ãƒ¬ãƒƒãƒ‰ç•ªå·æ¤œå‡º
 	CurrentThreadId = Thread_GetCurrentId() ;
 	AInfo = GASyncLoadData.Thread ;
 	for( i = 0 ; i < ASYNCLOADTHREAD_MAXNUM + 1 && Thread_GetId( &AInfo->ThreadInfo ) != CurrentThreadId ; i ++, AInfo ++ ){}
 	if( i == ASYNCLOADTHREAD_MAXNUM + 1 )
 	{
-		DXST_LOGFILE_ADDUTF16LE( "\x5e\x97\x0c\x54\x1f\x67\xad\x8a\x7f\x30\xbc\x8f\x7f\x30\xb9\x30\xec\x30\xc3\x30\xc9\x30\xe5\x4e\x16\x59\x4b\x30\x89\x30\xe1\x30\xa4\x30\xf3\x30\xb9\x30\xec\x30\xc3\x30\xc9\x30\x78\x30\x6e\x30\xe6\x51\x06\x74\x9d\x4f\x3c\x98\x4c\x30\x4c\x88\x8f\x30\x8c\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"”ñ“¯Šú“Ç‚İ‚İƒXƒŒƒbƒhˆÈŠO‚©‚çƒƒCƒ“ƒXƒŒƒbƒh‚Ö‚Ìˆ—ˆË—Š‚ªs‚í‚ê‚Ü‚µ‚½" @*/ ) ;
+		DXST_LOGFILE_ADDUTF16LE( "\x5e\x97\x0c\x54\x1f\x67\xad\x8a\x7f\x30\xbc\x8f\x7f\x30\xb9\x30\xec\x30\xc3\x30\xc9\x30\xe5\x4e\x16\x59\x4b\x30\x89\x30\xe1\x30\xa4\x30\xf3\x30\xb9\x30\xec\x30\xc3\x30\xc9\x30\x78\x30\x6e\x30\xe6\x51\x06\x74\x9d\x4f\x3c\x98\x4c\x30\x4c\x88\x8f\x30\x8c\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"éåŒæœŸèª­ã¿è¾¼ã¿ã‚¹ãƒ¬ãƒƒãƒ‰ä»¥å¤–ã‹ã‚‰ãƒ¡ã‚¤ãƒ³ã‚¹ãƒ¬ãƒƒãƒ‰ã¸ã®å‡¦ç†ä¾é ¼ãŒè¡Œã‚ã‚Œã¾ã—ãŸ" @*/ ) ;
 		goto ERR ;
 	}
 
-	// ƒCƒxƒ“ƒg‚ğæ“¾
+	// ã‚¤ãƒ™ãƒ³ãƒˆã‚’å–å¾—
 //	Info->EndEvent = GASyncLoadData.ThreadEvent[ i ] ;
 
-	// ƒXƒŒƒbƒh”Ô†‚ğ•Û‘¶
+	// ã‚¹ãƒ¬ãƒƒãƒ‰ç•ªå·ã‚’ä¿å­˜
 	Info->ThreadNo = i ;
 
-	// ƒƒCƒ“ƒXƒŒƒbƒh‚Ö‚ÌƒŠƒNƒGƒXƒg‚ğs‚Á‚Ä‚¢‚éƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// ãƒ¡ã‚¤ãƒ³ã‚¹ãƒ¬ãƒƒãƒ‰ã¸ã®ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚’è¡Œã£ã¦ã„ã‚‹ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	AInfo->MainThreadRequest = TRUE ;
 
-	// ƒf[ƒ^‚Ì”‚ğƒCƒ“ƒNƒŠƒƒ“ƒg
+	// ãƒ‡ãƒ¼ã‚¿ã®æ•°ã‚’ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆ
 	GASyncLoadData.MainThreadRequestInfoNum ++ ;
 
-	// Q‚é‘ã‚í‚è‚ÉƒXƒŒƒbƒh‚ğˆê‚Â‹N‚±‚·
+	// å¯ã‚‹ä»£ã‚ã‚Šã«ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’ä¸€ã¤èµ·ã“ã™
 	ResumeASyncLoadThread( 1 ) ;
 
-	// ƒXƒŒƒbƒh‚ğQ‚©‚·€”õ
+	// ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’å¯ã‹ã™æº–å‚™
 	AInfo->SuspendFlag = TRUE ;
 	AInfo->SuspendStartTime = NS_GetNowCount( FALSE ) ;
 	GASyncLoadData.ThreadResumeNum -- ;
 
-	// ƒƒCƒ“ƒXƒŒƒbƒh‚Ö‚ÌƒŠƒNƒGƒXƒg‚ğs‚¤‚©‚çƒXƒŒƒbƒh‚ğ~‚ß‚Ä‚¢‚é‚©‚Ìƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// ãƒ¡ã‚¤ãƒ³ã‚¹ãƒ¬ãƒƒãƒ‰ã¸ã®ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚’è¡Œã†ã‹ã‚‰ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’æ­¢ã‚ã¦ã„ã‚‹ã‹ã®ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	AInfo->MainThreadRequestSuspend = TRUE ;
 
-	// ƒƒCƒ“ƒXƒŒƒbƒh‚Ö‚ÌƒŠƒNƒGƒXƒg‚ğs‚¤‚©‚ç~‚ß‚Ä‚¢‚éƒXƒŒƒbƒh‚Ì”‚ğƒCƒ“ƒNƒŠƒƒ“ƒg
+	// ãƒ¡ã‚¤ãƒ³ã‚¹ãƒ¬ãƒƒãƒ‰ã¸ã®ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚’è¡Œã†ã‹ã‚‰æ­¢ã‚ã¦ã„ã‚‹ã‚¹ãƒ¬ãƒƒãƒ‰ã®æ•°ã‚’ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆ
 	GASyncLoadData.MainThreadRequestSuspendThreadNum ++ ;
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 	CriticalSection_Unlock( &GASyncLoadData.CriticalSection ) ;
 
-	// ƒXƒŒƒbƒh‚ğ~‚ß‚é
+	// ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’æ­¢ã‚ã‚‹
 	Thread_Suspend( &AInfo->ThreadInfo ) ;
 
-	// ˆ—I—¹‘Ò‚¿
+	// å‡¦ç†çµ‚äº†å¾…ã¡
 //	WinAPIData.Win32Func.WaitForSingleObjectFunc( Info->EndEvent, INFINITE ) ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return Info->Result ;
 
 ERR :
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 	CriticalSection_Unlock( &GASyncLoadData.CriticalSection ) ;
 
-	// ƒGƒ‰[I—¹
+	// ã‚¨ãƒ©ãƒ¼çµ‚äº†
 	return -1 ;
 }
 
@@ -1199,26 +1199,26 @@ ERR :
 
 
 
-// ”ñ“¯Šú“Ç‚İ‚İ’†‚Ìˆ—‚Ì”‚ğæ“¾‚·‚é
+// éåŒæœŸèª­ã¿è¾¼ã¿ä¸­ã®å‡¦ç†ã®æ•°ã‚’å–å¾—ã™ã‚‹
 extern int NS_GetASyncLoadNum( void )
 {
 	int Result ;
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 	CRITICALSECTION_LOCK( &GASyncLoadData.CriticalSection ) ;
 
 	Result = GASyncLoadData.DataNum ;
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 	CriticalSection_Unlock( &GASyncLoadData.CriticalSection ) ;
 
 	return Result ;
 }
 
-// ”ñ“¯Šú“Ç‚İ‚İˆ—‚ğs‚¤ƒXƒŒƒbƒh‚Ì”‚ğİ’è‚·‚é
+// éåŒæœŸèª­ã¿è¾¼ã¿å‡¦ç†ã‚’è¡Œã†ã‚¹ãƒ¬ãƒƒãƒ‰ã®æ•°ã‚’è¨­å®šã™ã‚‹
 extern int NS_SetASyncLoadThreadNum( int ThreadNum )
 {
-	// –¢‰Šú‰»‚Ìê‡‚Í’l‚¾‚¯‚ğ•Û‘¶‚·‚é
+	// æœªåˆæœŸåŒ–ã®å ´åˆã¯å€¤ã ã‘ã‚’ä¿å­˜ã™ã‚‹
 	if( GASyncLoadData.InitializeFlag == FALSE )
 	{
 		GASyncLoadData.ThreadMaxResumeNum = ThreadNum ;
@@ -1234,12 +1234,12 @@ extern int NS_SetASyncLoadThreadNum( int ThreadNum )
 			ThreadNum = GASyncLoadData.ThreadNum ;
 		}
 
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 		CRITICALSECTION_LOCK( &GASyncLoadData.CriticalSection ) ;
 
 		GASyncLoadData.ThreadMaxResumeNum = ThreadNum ;
 
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 		CriticalSection_Unlock( &GASyncLoadData.CriticalSection ) ;
 	}
 

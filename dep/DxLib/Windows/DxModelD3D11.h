@@ -1,6 +1,6 @@
 // -------------------------------------------------------------------------------
 // 
-// 		‚c‚wƒ‰ƒCƒuƒ‰ƒŠ		ƒ‚ƒfƒ‹ƒf[ƒ^§ŒäƒvƒƒOƒ‰ƒ€( Direct3D11 )ƒwƒbƒ_ƒtƒ@ƒCƒ‹
+// 		ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒª		ãƒ¢ãƒ‡ãƒ«ãƒ‡ãƒ¼ã‚¿åˆ¶å¾¡ãƒ—ãƒ­ã‚°ãƒ©ãƒ ( Direct3D11 )ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«
 // 
 // 				Ver 3.25a
 // 
@@ -15,7 +15,7 @@
 
 #ifndef DX_NON_DIRECT3D11
 
-// ƒCƒ“ƒNƒ‹[ƒh ------------------------------------------------------------------
+// ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ ------------------------------------------------------------------
 
 #ifndef DX_NON_MODEL
 
@@ -30,61 +30,61 @@ namespace DxLib
 
 #endif // DX_NON_NAMESPACE
 
-// ƒ}ƒNƒ’è‹` --------------------------------------------------------------------
+// ãƒã‚¯ãƒ­å®šç¾© --------------------------------------------------------------------
 
-// \‘¢‘Ì’è‹` --------------------------------------------------------------------
+// æ§‹é€ ä½“å®šç¾© --------------------------------------------------------------------
 
-// Direct3D11—p ƒ‚ƒfƒ‹ƒf[ƒ^ŠÇ——p\‘¢‘Ì
+// Direct3D11ç”¨ ãƒ¢ãƒ‡ãƒ«ãƒ‡ãƒ¼ã‚¿ç®¡ç†ç”¨æ§‹é€ ä½“
 struct MV1_MODEL_MANAGE_DIRECT3D11
 {
-	void *					CommonBuffer ;						// å‚ÉƒVƒFƒCƒvÀ•W‚ÌXV‚Åg—p‚·‚é”Ä—pƒoƒbƒtƒ@
-	int						CommonBufferSize ;					// å‚ÉƒVƒFƒCƒvÀ•W‚ÌXV‚Åg—p‚·‚é”Ä—pƒoƒbƒtƒ@‚ÌƒTƒCƒY
+	void *					CommonBuffer ;						// ä¸»ã«ã‚·ã‚§ã‚¤ãƒ—åº§æ¨™ã®æ›´æ–°ã§ä½¿ç”¨ã™ã‚‹æ±ç”¨ãƒãƒƒãƒ•ã‚¡
+	int						CommonBufferSize ;					// ä¸»ã«ã‚·ã‚§ã‚¤ãƒ—åº§æ¨™ã®æ›´æ–°ã§ä½¿ç”¨ã™ã‚‹æ±ç”¨ãƒãƒƒãƒ•ã‚¡ã®ã‚µã‚¤ã‚º
 } ;
 
-// Direct3D11—p’¸“_ƒoƒbƒtƒ@î•ñ
+// Direct3D11ç”¨é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡æƒ…å ±
 struct MV1_VERTEXBUFFER_DIRECT3D11
 {
-	D_ID3D11Buffer *		VertexBuffer ;						// ’¸“_ƒoƒbƒtƒ@
-	D_ID3D11Buffer *		IndexBuffer ;						// ƒCƒ“ƒfƒbƒNƒXƒoƒbƒtƒ@
+	D_ID3D11Buffer *		VertexBuffer ;						// é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡
+	D_ID3D11Buffer *		IndexBuffer ;						// ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒãƒƒãƒ•ã‚¡
 } ;
 
-// Direct3D11—pƒgƒ‰ƒCƒAƒ“ƒOƒ‹ƒŠƒXƒgŠîƒf[ƒ^î•ñ
+// Direct3D11ç”¨ãƒˆãƒ©ã‚¤ã‚¢ãƒ³ã‚°ãƒ«ãƒªã‚¹ãƒˆåŸºãƒ‡ãƒ¼ã‚¿æƒ…å ±
 struct MV1_TRIANGLE_LIST_BASE_DIRECT3D11
 {
-	BYTE					SkinFreeBoneVertexBufferUpdate ;	// ‚Xƒ{[ƒ“ˆÈã‚ÌƒXƒLƒjƒ“ƒOƒƒbƒVƒ…ˆ——p’¸“_ƒf[ƒ^‚ğXV‚µ‚½‚©‚Ç‚¤‚©( TRUE:XVÏ‚İ  FALSE:–¢XV )
-	void *					SkinFreeBoneVertexBuffer ;			// ‚Xƒ{[ƒ“ˆÈã‚ÌƒXƒLƒjƒ“ƒOƒƒbƒVƒ…ˆ——p’¸“_ƒf[ƒ^
+	BYTE					SkinFreeBoneVertexBufferUpdate ;	// ï¼™ãƒœãƒ¼ãƒ³ä»¥ä¸Šã®ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥å‡¦ç†ç”¨é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ã‚’æ›´æ–°ã—ãŸã‹ã©ã†ã‹( TRUE:æ›´æ–°æ¸ˆã¿  FALSE:æœªæ›´æ–° )
+	void *					SkinFreeBoneVertexBuffer ;			// ï¼™ãƒœãƒ¼ãƒ³ä»¥ä¸Šã®ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥å‡¦ç†ç”¨é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿
 } ;
 
-// Direct3D11—pƒgƒ‰ƒCƒAƒ“ƒOƒ‹ƒŠƒXƒgî•ñ
+// Direct3D11ç”¨ãƒˆãƒ©ã‚¤ã‚¢ãƒ³ã‚°ãƒ«ãƒªã‚¹ãƒˆæƒ…å ±
 struct MV1_TRIANGLE_LIST_DIRECT3D11
 {
-	void *					SkinFreeBoneVertexPositionBuffer ;	// ‚Xƒ{[ƒ“ˆÈã‚ÌƒXƒLƒjƒ“ƒOƒƒbƒVƒ…ˆ——p’¸“_À•Wƒf[ƒ^
-	D_ID3D11Buffer *		VertexBuffer ;						// ’¸“_ƒoƒbƒtƒ@
+	void *					SkinFreeBoneVertexPositionBuffer ;	// ï¼™ãƒœãƒ¼ãƒ³ä»¥ä¸Šã®ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥å‡¦ç†ç”¨é ‚ç‚¹åº§æ¨™ãƒ‡ãƒ¼ã‚¿
+	D_ID3D11Buffer *		VertexBuffer ;						// é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡
 } ;
 
-// “à•”‘åˆæ•Ï”éŒ¾ --------------------------------------------------------------
+// å†…éƒ¨å¤§åŸŸå¤‰æ•°å®£è¨€ --------------------------------------------------------------
 
 extern MV1_MODEL_MANAGE_DIRECT3D11 MV1Man_D3D11 ;
 
-// ŠÖ”ƒvƒƒgƒ^ƒCƒvéŒ¾-----------------------------------------------------------
+// é–¢æ•°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€-----------------------------------------------------------
 
-// ”Ä—pƒoƒbƒtƒ@ŠÖ”
-extern	int				MV1_D3D11_CommonBuffer_Setup( int Size ) ;						// w’èƒTƒCƒY‚Ì”Ä—pƒoƒbƒtƒ@‚Ì€”õ‚ğs‚¤
-extern	int				MV1_D3D11_CommonBuffer_Terminate( void ) ;						// ”Ä—pƒoƒbƒtƒ@‚ÌŒãn––‚ğs‚¤
+// æ±ç”¨ãƒãƒƒãƒ•ã‚¡é–¢æ•°
+extern	int				MV1_D3D11_CommonBuffer_Setup( int Size ) ;						// æŒ‡å®šã‚µã‚¤ã‚ºã®æ±ç”¨ãƒãƒƒãƒ•ã‚¡ã®æº–å‚™ã‚’è¡Œã†
+extern	int				MV1_D3D11_CommonBuffer_Terminate( void ) ;						// æ±ç”¨ãƒãƒƒãƒ•ã‚¡ã®å¾Œå§‹æœ«ã‚’è¡Œã†
 
-// ŠÂ‹«ˆË‘¶ŠÖ”
-extern	int				MV1_D3D11_Terminate_PF( void ) ;																// ƒ‚ƒfƒ‹‹@”\‚ÌŒãn––
-extern	int				MV1_D3D11_TerminateModelBaseHandle_PF( MV1_MODEL_BASE *ModelBase ) ;							// ƒ‚ƒfƒ‹ƒf[ƒ^ƒnƒ“ƒhƒ‹‚ÌŒãn––
-extern	int				MV1_D3D11_TerminateTriangleListBaseTempBuffer_PF( MV1_TRIANGLE_LIST_BASE *MBTList ) ;				// ƒgƒ‰ƒCƒAƒ“ƒOƒ‹ƒŠƒXƒg‚Ìˆêˆ——p‚Ìƒoƒbƒtƒ@‚ğŠJ•ú‚·‚é
-extern	void			MV1_D3D11_SetupPackDrawInfo_PF( MV1_MODEL_BASE *ModelBase ) ;									// “¯•¡”•`‰æŠÖŒW‚Ìî•ñ‚ğƒZƒbƒgƒAƒbƒv‚·‚é
-extern	int				MV1_D3D11_SetupVertexBufferBase_PF( int MV1ModelBaseHandle, int DuplicateNum = 1, int ASyncThread = FALSE ) ;	// ƒ‚ƒfƒ‹Šîƒf[ƒ^‚Ì’¸“_ƒoƒbƒtƒ@‚ÌƒZƒbƒgƒAƒbƒv‚ğ‚·‚é( -1:ƒGƒ‰[ )
-extern	int				MV1_D3D11_SetupVertexBuffer_PF( int MHandle, int ASyncThread = FALSE ) ;						// ƒ‚ƒfƒ‹ƒf[ƒ^‚Ì’¸“_ƒoƒbƒtƒ@‚ÌƒZƒbƒgƒAƒbƒv‚ğ‚·‚é( -1:ƒGƒ‰[ )
-extern	int				MV1_D3D11_TerminateVertexBufferBase_PF( int MV1ModelBaseHandle ) ;								// ’¸“_ƒoƒbƒtƒ@‚ÌŒãn––‚ğ‚·‚é( -1:ƒGƒ‰[ )
-extern	int				MV1_D3D11_TerminateVertexBuffer_PF( int MV1ModelHandle ) ;										// ’¸“_ƒoƒbƒtƒ@‚ÌŒãn––‚ğ‚·‚é( -1:ƒGƒ‰[ )
-extern	int				MV1_D3D11_SetupShapeVertex_PF( int MHandle ) ;													// ƒVƒFƒCƒvƒf[ƒ^‚ÌƒZƒbƒgƒAƒbƒv‚ğ‚·‚é
-extern	int				MV1_D3D11_BeginRender_PF( MV1_MODEL *Model ) ;													// ‚R‚cƒ‚ƒfƒ‹‚ÌƒŒƒ“ƒ_ƒŠƒ“ƒO‚Ì€”õ‚ğs‚¤
-extern	int				MV1_D3D11_EndRender_PF( void ) ;																// ‚R‚cƒ‚ƒfƒ‹‚ÌƒŒƒ“ƒ_ƒŠƒ“ƒO‚ÌŒãn––‚ğs‚¤
-extern	void			MV1_D3D11_DrawMesh_PF( MV1_MESH *Mesh, int TriangleListIndex = -1 ) ;							// ƒƒbƒVƒ…•`‰æ•”•ª‚ğ”²‚«o‚µ‚½‚à‚Ì
+// ç’°å¢ƒä¾å­˜é–¢æ•°
+extern	int				MV1_D3D11_Terminate_PF( void ) ;																// ãƒ¢ãƒ‡ãƒ«æ©Ÿèƒ½ã®å¾Œå§‹æœ«
+extern	int				MV1_D3D11_TerminateModelBaseHandle_PF( MV1_MODEL_BASE *ModelBase ) ;							// ãƒ¢ãƒ‡ãƒ«ãƒ‡ãƒ¼ã‚¿ãƒãƒ³ãƒ‰ãƒ«ã®å¾Œå§‹æœ«
+extern	int				MV1_D3D11_TerminateTriangleListBaseTempBuffer_PF( MV1_TRIANGLE_LIST_BASE *MBTList ) ;				// ãƒˆãƒ©ã‚¤ã‚¢ãƒ³ã‚°ãƒ«ãƒªã‚¹ãƒˆã®ä¸€æ™‚å‡¦ç†ç”¨ã®ãƒãƒƒãƒ•ã‚¡ã‚’é–‹æ”¾ã™ã‚‹
+extern	void			MV1_D3D11_SetupPackDrawInfo_PF( MV1_MODEL_BASE *ModelBase ) ;									// åŒæ™‚è¤‡æ•°æç”»é–¢ä¿‚ã®æƒ…å ±ã‚’ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã™ã‚‹
+extern	int				MV1_D3D11_SetupVertexBufferBase_PF( int MV1ModelBaseHandle, int DuplicateNum = 1, int ASyncThread = FALSE ) ;	// ãƒ¢ãƒ‡ãƒ«åŸºãƒ‡ãƒ¼ã‚¿ã®é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã‚’ã™ã‚‹( -1:ã‚¨ãƒ©ãƒ¼ )
+extern	int				MV1_D3D11_SetupVertexBuffer_PF( int MHandle, int ASyncThread = FALSE ) ;						// ãƒ¢ãƒ‡ãƒ«ãƒ‡ãƒ¼ã‚¿ã®é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã‚’ã™ã‚‹( -1:ã‚¨ãƒ©ãƒ¼ )
+extern	int				MV1_D3D11_TerminateVertexBufferBase_PF( int MV1ModelBaseHandle ) ;								// é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã®å¾Œå§‹æœ«ã‚’ã™ã‚‹( -1:ã‚¨ãƒ©ãƒ¼ )
+extern	int				MV1_D3D11_TerminateVertexBuffer_PF( int MV1ModelHandle ) ;										// é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã®å¾Œå§‹æœ«ã‚’ã™ã‚‹( -1:ã‚¨ãƒ©ãƒ¼ )
+extern	int				MV1_D3D11_SetupShapeVertex_PF( int MHandle ) ;													// ã‚·ã‚§ã‚¤ãƒ—ãƒ‡ãƒ¼ã‚¿ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã‚’ã™ã‚‹
+extern	int				MV1_D3D11_BeginRender_PF( MV1_MODEL *Model ) ;													// ï¼“ï¼¤ãƒ¢ãƒ‡ãƒ«ã®ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã®æº–å‚™ã‚’è¡Œã†
+extern	int				MV1_D3D11_EndRender_PF( void ) ;																// ï¼“ï¼¤ãƒ¢ãƒ‡ãƒ«ã®ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã®å¾Œå§‹æœ«ã‚’è¡Œã†
+extern	void			MV1_D3D11_DrawMesh_PF( MV1_MESH *Mesh, int TriangleListIndex = -1 ) ;							// ãƒ¡ãƒƒã‚·ãƒ¥æç”»éƒ¨åˆ†ã‚’æŠœãå‡ºã—ãŸã‚‚ã®
 
 #ifndef DX_NON_NAMESPACE
 

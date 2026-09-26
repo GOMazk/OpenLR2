@@ -1,19 +1,19 @@
 //-----------------------------------------------------------------------------
 // 
-// 		‚c‚wƒ‰ƒCƒuƒ‰ƒŠ		GraphFilterŒnƒvƒƒOƒ‰ƒ€
+// 		ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒª		GraphFilterç³»ãƒ—ãƒ­ã‚°ãƒ©ãƒ 
 // 
 //  	Ver 3.25a
 // 
 //-----------------------------------------------------------------------------
 
-// ‚c‚wƒ‰ƒCƒuƒ‰ƒŠì¬—p’è‹`
+// ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªä½œæˆæ™‚ç”¨å®šç¾©
 #define DX_MAKE
 
 #include "DxGraphicsFilter.h"
 
 #ifndef DX_NON_FILTER
 
-// ƒCƒ“ƒNƒ‹[ƒh ---------------------------------------------------------------
+// ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ ---------------------------------------------------------------
 #include "DxGraphics.h"
 #include "DxBaseFunc.h"
 #include "DxBaseImage.h"
@@ -43,13 +43,13 @@ namespace DxLib
 
 #endif // DX_NON_NAMESPACE
 
-// ƒ}ƒNƒ’è‹` -----------------------------------------------------------------
+// ãƒã‚¯ãƒ­å®šç¾© -----------------------------------------------------------------
 
-// \‘¢‘ÌéŒ¾ -----------------------------------------------------------------
+// æ§‹é€ ä½“å®£è¨€ -----------------------------------------------------------------
 
-// ƒf[ƒ^’è‹` -----------------------------------------------------------------
+// ãƒ‡ãƒ¼ã‚¿å®šç¾© -----------------------------------------------------------------
 
-// SSAO‚Åg—p‚·‚éƒe[ƒuƒ‹
+// SSAOã§ä½¿ç”¨ã™ã‚‹ãƒ†ãƒ¼ãƒ–ãƒ«
 float SSAO_Kernel[ /*32*//*18*/64 * 4 ] =
 {
 	// Test
@@ -215,65 +215,65 @@ float SSAO_Kernel[ /*32*//*18*/64 * 4 ] =
 GRAPHFILTER_SHADER_HANDLE GraphFilterShaderHandle ;
 GRAPHFILTER_SYSTEM_DATA GraphFilterSystemData ;
 
-// ŠÖ”éŒ¾ -------------------------------------------------------------------
+// é–¢æ•°å®£è¨€ -------------------------------------------------------------------
 
 static int	GraphFilter_GetSoftImage( int GrHandle, BASEIMAGE *BaseImage, RECT *GetRect = NULL ) ;
 static int	GraphFilter_SoftImageSetup( GRAPHFILTER_INFO *Info, int DestDiscard = TRUE, int DestWidth = -1, int DestHeight = -1, RECT *SrcRect = NULL ) ;
 static int	GraphFilter_SoftImageTerminate( GRAPHFILTER_INFO *Info ) ;
 
-// ƒvƒƒOƒ‰ƒ€ -----------------------------------------------------------------
+// ãƒ—ãƒ­ã‚°ãƒ©ãƒ  -----------------------------------------------------------------
 
-// ƒtƒBƒ‹ƒ^[ˆ—‚Ì‰Šú‰»
+// ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼å‡¦ç†ã®åˆæœŸåŒ–
 extern int GraphFilter_Initialize( void )
 {
-	// ƒVƒF[ƒ_[ƒnƒ“ƒhƒ‹’l‚ğƒŠƒZƒbƒg‚·‚é
+	// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒãƒ³ãƒ‰ãƒ«å€¤ã‚’ãƒªã‚»ãƒƒãƒˆã™ã‚‹
 	_MEMSET( &GraphFilterShaderHandle, 0xff, sizeof( GraphFilterShaderHandle ) ) ;
 
-	// ŠÂ‹«ˆË‘¶ˆ—
+	// ç’°å¢ƒä¾å­˜å‡¦ç†
 	GraphFilter_Initialize_PF() ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒtƒBƒ‹ƒ^[ˆ—‚ÌŒãn––
+// ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼å‡¦ç†ã®å¾Œå§‹æœ«
 extern int GraphFilter_Terminate( void )
 {
-	// ŠÂ‹«ˆË‘¶ˆ—
+	// ç’°å¢ƒä¾å­˜å‡¦ç†
 	GraphFilter_Terminate_PF() ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// GraphFilterBlt ‚â GraphBlendBlt ‚ÌŒ‹‰Ê‚ğ“]‘—æ‚É“]‘—‚·‚éÛ‚ÌƒuƒŒƒ“ƒhƒ‚[ƒh‚ğİ’è‚·‚é( Œ»ó‚Å‘Î‰‚µ‚Ä‚¢‚é‚Ì‚Í DX_BLENDMODE_NOBLEND ‚Æ DX_BLENDMODE_ALPHA ‚Ì‚İ )
-extern int NS_SetGraphFilterBltBlendMode( int BlendMode /* DX_BLENDMODE_ALPHA ‚È‚Ç */ )
+// GraphFilterBlt ã‚„ GraphBlendBlt ã®çµæœã‚’è»¢é€å…ˆã«è»¢é€ã™ã‚‹éš›ã®ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã‚’è¨­å®šã™ã‚‹( ç¾çŠ¶ã§å¯¾å¿œã—ã¦ã„ã‚‹ã®ã¯ DX_BLENDMODE_NOBLEND ã¨ DX_BLENDMODE_ALPHA ã®ã¿ )
+extern int NS_SetGraphFilterBltBlendMode( int BlendMode /* DX_BLENDMODE_ALPHA ãªã© */ )
 {
-	// –¢‘Î‰‚ÌƒuƒŒƒ“ƒhƒ‚[ƒh‚Ìê‡‚ÍƒGƒ‰[
+	// æœªå¯¾å¿œã®ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã®å ´åˆã¯ã‚¨ãƒ©ãƒ¼
 	if( BlendMode != DX_BLENDMODE_ALPHA && BlendMode != DX_BLENDMODE_NOBLEND )
 	{
 		return -1 ;
 	}
 
-	// ƒuƒŒƒ“ƒhƒ‚[ƒh‚ğ•Û‘¶
+	// ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã‚’ä¿å­˜
 	GraphFilterSystemData.BltBlendMode = BlendMode ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// GraphBlend ‚Å GrHandle ‚Æ BlendGrHandle ‚ÌƒTƒCƒY‚ªˆÙ‚È‚éê‡‚É“K—p‚³‚ê‚éŠg‘åƒtƒBƒ‹ƒ^[ƒ‚[ƒh‚ğİ’è‚·‚é
+// GraphBlend ã§ GrHandle ã¨ BlendGrHandle ã®ã‚µã‚¤ã‚ºãŒç•°ãªã‚‹å ´åˆã«é©ç”¨ã•ã‚Œã‚‹æ‹¡å¤§ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ãƒ¢ãƒ¼ãƒ‰ã‚’è¨­å®šã™ã‚‹
 extern int NS_SetGraphBlendScalingFilterMode( int IsBilinearFilter )
 {
-	// ƒtƒ‰ƒO‚ğ•Û‘¶
+	// ãƒ•ãƒ©ã‚°ã‚’ä¿å­˜
 	GraphFilterSystemData.BlendGraphScalingFilterIsNotBilinear = IsBilinearFilter ? FALSE : TRUE ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ‰æ‘œ‚ÉƒtƒBƒ‹ƒ^[ˆ—‚ğs‚¤
-extern int NS_GraphFilter( int GrHandle, int FilterType /* DX_GRAPH_FILTER_GAUSS_H “™ */ , ... )
+// ç”»åƒã«ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼å‡¦ç†ã‚’è¡Œã†
+extern int NS_GraphFilter( int GrHandle, int FilterType /* DX_GRAPH_FILTER_GAUSS_H ç­‰ */ , ... )
 {
 	int Result ;
 	va_list VaList ;
@@ -290,7 +290,7 @@ extern int NS_GraphFilter( int GrHandle, int FilterType /* DX_GRAPH_FILTER_GAUSS
 	return Result ;
 }
 
-// ‰æ‘œ‚ÌƒtƒBƒ‹ƒ^[•t‚«“]‘—‚ğs‚¤
+// ç”»åƒã®ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ä»˜ãè»¢é€ã‚’è¡Œã†
 extern int NS_GraphFilterBlt( int SrcGrHandle, int DestGrHandle, int FilterType, ... )
 {
 	int Result ;
@@ -308,7 +308,7 @@ extern int NS_GraphFilterBlt( int SrcGrHandle, int DestGrHandle, int FilterType,
 	return Result ;
 }
 
-// ‰æ‘œ‚ÌƒtƒBƒ‹ƒ^[•t‚«“]‘—‚ğs‚¤( ‹éŒ`w’è )
+// ç”»åƒã®ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ä»˜ãè»¢é€ã‚’è¡Œã†( çŸ©å½¢æŒ‡å®š )
 extern int NS_GraphFilterRectBlt( int SrcGrHandle, int DestGrHandle, int SrcX1, int SrcY1, int SrcX2, int SrcY2, int DestX, int DestY, int FilterType, ... )
 {
 	int Result ;
@@ -323,7 +323,7 @@ extern int NS_GraphFilterRectBlt( int SrcGrHandle, int DestGrHandle, int SrcX1, 
 	return Result ;
 }
 
-// “ñ‚Â‚Ì‰æ‘œ‚ğƒuƒŒƒ“ƒh‚·‚é
+// äºŒã¤ã®ç”»åƒã‚’ãƒ–ãƒ¬ãƒ³ãƒ‰ã™ã‚‹
 extern	int	NS_GraphBlend( int GrHandle, int BlendGrHandle, int BlendRatio, int BlendType, ... )
 {
 	int Result ;
@@ -341,7 +341,7 @@ extern	int	NS_GraphBlend( int GrHandle, int BlendGrHandle, int BlendRatio, int B
 	return Result ;
 }
 
-// “ñ‚Â‚Ì‰æ‘œ‚ğƒuƒŒƒ“ƒh‚µ‚ÄŒ‹‰Ê‚ğw’è‚Ì‰æ‘œ‚Éo—Í‚·‚é
+// äºŒã¤ã®ç”»åƒã‚’ãƒ–ãƒ¬ãƒ³ãƒ‰ã—ã¦çµæœã‚’æŒ‡å®šã®ç”»åƒã«å‡ºåŠ›ã™ã‚‹
 extern	int	NS_GraphBlendBlt( int SrcGrHandle, int BlendGrHandle, int DestGrHandle, int BlendRatio, int BlendType, ... )
 {
 	int Result ;
@@ -359,7 +359,7 @@ extern	int	NS_GraphBlendBlt( int SrcGrHandle, int BlendGrHandle, int DestGrHandl
 	return Result ;
 }
 
-// “ñ‚Â‚Ì‰æ‘œ‚ğƒuƒŒƒ“ƒh‚µ‚ÄŒ‹‰Ê‚ğw’è‚Ì‰æ‘œ‚Éo—Í‚·‚é( ‹éŒ`w’è )
+// äºŒã¤ã®ç”»åƒã‚’ãƒ–ãƒ¬ãƒ³ãƒ‰ã—ã¦çµæœã‚’æŒ‡å®šã®ç”»åƒã«å‡ºåŠ›ã™ã‚‹( çŸ©å½¢æŒ‡å®š )
 extern	int	NS_GraphBlendRectBlt( int SrcGrHandle, int BlendGrHandle, int DestGrHandle, int SrcX1, int SrcY1, int SrcX2, int SrcY2, int BlendX, int BlendY, int DestX, int DestY, int BlendRatio, int BlendType, ... )
 {
 	int Result ;
@@ -374,7 +374,7 @@ extern	int	NS_GraphBlendRectBlt( int SrcGrHandle, int BlendGrHandle, int DestGrH
 	return Result ;
 }
 
-// “ñ‚Â‚Ì‰æ‘œ‚ğƒuƒŒƒ“ƒh‚µ‚ÄŒ‹‰Ê‚ğw’è‚Ì‰æ‘œ‚Éo—Í‚·‚é( ‹éŒ`w’èAƒuƒŒƒ“ƒh‰æ‘œ‚Ì‹éŒ`‚àw’è )
+// äºŒã¤ã®ç”»åƒã‚’ãƒ–ãƒ¬ãƒ³ãƒ‰ã—ã¦çµæœã‚’æŒ‡å®šã®ç”»åƒã«å‡ºåŠ›ã™ã‚‹( çŸ©å½¢æŒ‡å®šã€ãƒ–ãƒ¬ãƒ³ãƒ‰ç”»åƒã®çŸ©å½¢ã‚‚æŒ‡å®š )
 extern	int	NS_GraphBlendRectBlt2( int SrcGrHandle, int BlendGrHandle, int DestGrHandle, int SrcX1, int SrcY1, int SrcX2, int SrcY2, int BlendX1, int BlendY1, int BlendX2, int BlendY2, int DestX, int DestY, int BlendRatio, int BlendType, ... )
 {
 	int Result ;
@@ -494,7 +494,7 @@ static int GraphFilter_GetSoftImage( int GrHandle, BASEIMAGE *BaseImage, RECT *G
 	}
 
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
@@ -563,7 +563,7 @@ static int	GraphFilter_SoftImageSetup( GRAPHFILTER_INFO *Info, int DestDiscard, 
 			goto ERR ;
 	}
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 
 ERR :
@@ -685,7 +685,7 @@ extern int GraphFilter_RectBltBase(
 	int									TempA = 0 ;
 	int									IsPMA = 0 ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( !GRAPHCHK( SrcGrHandle, SrcImage ) )
 	{
 		SrcImageWidth  = SrcImage->WidthI ;
@@ -761,7 +761,7 @@ extern int GraphFilter_RectBltBase(
 			return -1;
 	}
 
-	// ’l‚Ì•â³
+	// å€¤ã®è£œæ­£
 	if( BlendRatio < 0 )
 	{
 		BlendRatio = 0 ;
@@ -773,7 +773,7 @@ extern int GraphFilter_RectBltBase(
 	}
 	BlendRatioF = BlendRatio / 255.0f ;
 
-	// À•W‚Ì•â³
+	// åº§æ¨™ã®è£œæ­£
 	if( SrcX1 < 0 )
 	{
 		DestX += -SrcX1 ;
@@ -892,7 +892,7 @@ extern int GraphFilter_RectBltBase(
 	{
 		Info.SrcDivNum = va_arg( ParamList, int ) ;
 
-		// ƒpƒ‰ƒ[ƒ^‚ğ•â³
+		// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’è£œæ­£
 		if( Info.SrcDivNum <= 1 )
 		{
 			Info.SrcDivNum = 1 ;
@@ -940,7 +940,7 @@ extern int GraphFilter_RectBltBase(
 		Height <= 0 )
 		return 0 ;
 	
-	// î•ñ‚ÌƒZƒbƒg
+	// æƒ…å ±ã®ã‚»ãƒƒãƒˆ
 	Info.BlendGraphScalingFilterIsBilinear = GraphFilterSystemData.BlendGraphScalingFilterIsNotBilinear ? FALSE : TRUE ;
 	Info.BltBlendMode      = SrcGrHandle == DestGrHandle ? DX_BLENDMODE_NOBLEND : GraphFilterSystemData.BltBlendMode ;
 	Info.IsBlend           = IsBlend ;
@@ -965,7 +965,7 @@ extern int GraphFilter_RectBltBase(
 	Info.BlendImage        = BlendImage ;
 	Info.TargetScreenImage = TargetScreenImage ;
 
-	// ƒtƒBƒ‹ƒ^[–ˆ‚Ìˆø”‚ğæ“¾
+	// ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼æ¯ã®å¼•æ•°ã‚’å–å¾—
 	if( IsBlend )
 	{
 		switch( FilterOrBlendType )
@@ -1159,11 +1159,11 @@ extern int GraphFilter_RectBltBase(
 
 	GraphFilter_RectBltBase_Timing0_PF( &Info, &Param ) ;
 
-	// ƒ‹[ƒvˆ—‚ÌŠJn
+	// ãƒ«ãƒ¼ãƒ—å‡¦ç†ã®é–‹å§‹
 	UseSrcGrHandle = SrcGrHandle ;
 	for( Info.Pass = 0 ; Info.Pass < Info.PassNum ; Info.Pass ++ )
 	{
-		// o—Íæ‚ÌƒZƒbƒgƒAƒbƒv
+		// å‡ºåŠ›å…ˆã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 		Info.SrcGrHandle  = SrcGrHandle ;
 		Info.DestGrHandle = DestGrHandle ;
 		if( GraphFilter_DestGraphSetup_PF( &Info, &UseSrcGrHandle, &UseDestGrHandle ) < 0 )
@@ -1176,13 +1176,13 @@ extern int GraphFilter_RectBltBase(
 			SHADOWMAPCHK( UseDestGrHandle, DestShadowMap  ) )
 			break ;
 
-		// î•ñ‚ÌƒZƒbƒg
+		// æƒ…å ±ã®ã‚»ãƒƒãƒˆ
 		Info.SrcGrHandle  = UseSrcGrHandle ;
 		Info.DestGrHandle = UseDestGrHandle ;
 
 		if( IsBlend )
 		{
-			// ƒuƒŒƒ“ƒhƒ^ƒCƒv‚É‚æ‚Á‚Äˆ—‚ğ•ªŠò
+			// ãƒ–ãƒ¬ãƒ³ãƒ‰ã‚¿ã‚¤ãƒ—ã«ã‚ˆã£ã¦å‡¦ç†ã‚’åˆ†å²
 			switch( FilterOrBlendType )
 			{
 			case DX_GRAPH_BLEND_PMA_RGBA_SELECT_MIX :
@@ -1231,7 +1231,7 @@ extern int GraphFilter_RectBltBase(
 		}
 		else
 		{
-			// ƒtƒBƒ‹ƒ^[‚É‚æ‚Á‚Äˆ—‚ğ•ªŠò
+			// ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ã«ã‚ˆã£ã¦å‡¦ç†ã‚’åˆ†å²
 			switch( FilterOrBlendType )
 			{
 			case DX_GRAPH_FILTER_MONO :
@@ -1324,8 +1324,8 @@ extern int GraphFilter_RectBltBase(
 			}
 		}
 
-		// o—ÍŒ³‚Ææ‚ª“¯‚¶ê‡‚ÅAo—ÍŒ³‚Ææ‚ª“¯‚¶ê‡‚Ío—ÍŒ³‚ğƒNƒŠƒA‚·‚éƒtƒ‰ƒO‚ª—§‚Á‚Ä‚¢‚½ê‡‚Í
-		// Å‰‚ÌƒpƒX‚ªI‚í‚Á‚½“_‚Åo—ÍŒ³‚Ì‹éŒ`‚ğƒNƒŠƒA‚·‚é
+		// å‡ºåŠ›å…ƒã¨å…ˆãŒåŒã˜å ´åˆã§ã€å‡ºåŠ›å…ƒã¨å…ˆãŒåŒã˜å ´åˆã¯å‡ºåŠ›å…ƒã‚’ã‚¯ãƒªã‚¢ã™ã‚‹ãƒ•ãƒ©ã‚°ãŒç«‹ã£ã¦ã„ãŸå ´åˆã¯
+		// æœ€åˆã®ãƒ‘ã‚¹ãŒçµ‚ã‚ã£ãŸæ™‚ç‚¹ã§å‡ºåŠ›å…ƒã®çŸ©å½¢ã‚’ã‚¯ãƒªã‚¢ã™ã‚‹
 		if( GSYS.HardInfo.UseShader == TRUE && Info.SrcEqualDestClearFlag && SrcGrHandle == DestGrHandle && Info.Pass == 0 )
 		{
 			BASEIMAGE TempImage ;
@@ -1338,26 +1338,26 @@ extern int GraphFilter_RectBltBase(
 			}
 		}
 
-		// o—ÍŒ³‚Ì•ÏX
+		// å‡ºåŠ›å…ƒã®å¤‰æ›´
 		UseSrcGrHandle = UseDestGrHandle ;
 	}
 
 	GraphFilter_RectBltBase_Timing1_PF() ;
 
-	// o—Íæ‚ÌXV
+	// å‡ºåŠ›å…ˆã®æ›´æ–°
 	Info.SrcGrHandle  = SrcGrHandle ;
 	Info.DestGrHandle = DestGrHandle ;
 	GraphFilter_DestGraphUpdate_PF( &Info, UseDestGrHandle, FilterResult ) ;
 
 //	GSYS.HardInfo.UseShader = TRUE ;
 
-	// I—¹
+	// çµ‚äº†
 	return Info.Pass == Info.PassNum ? 0 : -1 ;
 }
 
 extern int GraphFilter_Mono( GRAPHFILTER_INFO *Info, float Cb, float Cr )
 {
-	// ’l‚ğ•â³
+	// å€¤ã‚’è£œæ­£
 	Cb /= 200.0f ;
 	if( Cb < -0.5f )
 	{
@@ -1380,14 +1380,14 @@ extern int GraphFilter_Mono( GRAPHFILTER_INFO *Info, float Cb, float Cr )
 		Cr = 0.5f ;
 	}
 
-	// ƒVƒF[ƒ_[‚ªg‚¦‚é‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+	// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãŒä½¿ãˆã‚‹ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 	if( GSYS.HardInfo.UseShader == TRUE )
 	{
 		GraphFilter_Mono_PF( Info, Cb, Cr ) ;
 	}
 	else
 	{
-		// ƒVƒF[ƒ_[‚ªg‚¦‚È‚¢ê‡
+		// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãŒä½¿ãˆãªã„å ´åˆ
 
 		BYTE *Src ;
 		BYTE *Dest ;
@@ -1449,7 +1449,7 @@ extern int GraphFilter_Mono( GRAPHFILTER_INFO *Info, float Cb, float Cr )
 		GraphFilter_SoftImageTerminate( Info ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
@@ -1460,7 +1460,7 @@ extern int GraphFilter_Gauss( GRAPHFILTER_INFO *Info, int PixelWidth, float Para
 	static float Table[ 16 ] ;
 	int WeightNum ;
 
-	// PixelWidth ‚Ì•â³
+	// PixelWidth ã®è£œæ­£
 	if( PixelWidth <= 8 )
 	{
 		PixelWidth = 8 ;
@@ -1515,14 +1515,14 @@ extern int GraphFilter_Gauss( GRAPHFILTER_INFO *Info, int PixelWidth, float Para
 		}
 	}
 
-	// ƒVƒF[ƒ_[‚ªg‚¦‚é‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+	// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãŒä½¿ãˆã‚‹ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 	if( GSYS.HardInfo.UseShader == TRUE )
 	{
 		GraphFilter_Gauss_PF( Info, PixelWidth, Param, Table ) ;
 	}
 	else
 	{
-		// ƒVƒF[ƒ_[‚ªg‚¦‚È‚¢ê‡
+		// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãŒä½¿ãˆãªã„å ´åˆ
 
 		BYTE *Src ;
 		BYTE *Dest ;
@@ -2197,20 +2197,20 @@ extern int GraphFilter_Gauss( GRAPHFILTER_INFO *Info, int PixelWidth, float Para
 		GraphFilter_SoftImageTerminate( Info ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
 extern int GraphFilter_Down_Scale( GRAPHFILTER_INFO *Info, int DivNum )
 {
-	// ƒVƒF[ƒ_[‚ªg‚¦‚é‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+	// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãŒä½¿ãˆã‚‹ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 	if( GSYS.HardInfo.UseShader == TRUE )
 	{
 		GraphFilter_Down_Scale_PF( Info, DivNum ) ;
 	}
 	else
 	{
-		// ƒVƒF[ƒ_[‚ªg‚¦‚È‚¢ê‡
+		// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãŒä½¿ãˆãªã„å ´åˆ
 
 		BYTE *Src ;
 		BYTE *Dest ;
@@ -2379,17 +2379,17 @@ extern int GraphFilter_Down_Scale( GRAPHFILTER_INFO *Info, int DivNum )
 		GraphFilter_SoftImageTerminate( Info ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// CmpType:”äŠrƒ^ƒCƒv( DX_CMP_LESS ‚Æ DX_CMP_GREATER ‚Ì‚İw’è‚Å‚«‚Ü‚· )
-// CmpParam:”äŠr’l( 0.0f`255.0f )
-// ClipFillFlag:ƒNƒŠƒbƒv‚µ‚½ƒsƒNƒZƒ‹‚ğ“Á’è‚ÌF‚Å“h‚è‚Â‚Ô‚·‚©( TRUE:“h‚è‚Â‚Ô‚·  FALSE:“h‚è‚Â‚Ô‚³‚È‚¢ )
-// ClipFillColor:ƒNƒŠƒbƒv‚µ‚½ƒsƒNƒZƒ‹‚É“h‚éF( GetColorF‚Åæ“¾‚·‚é‚à‚Ì )
+// CmpType:æ¯”è¼ƒã‚¿ã‚¤ãƒ—( DX_CMP_LESS ã¨ DX_CMP_GREATER ã®ã¿æŒ‡å®šã§ãã¾ã™ )
+// CmpParam:æ¯”è¼ƒå€¤( 0.0fï½255.0f )
+// ClipFillFlag:ã‚¯ãƒªãƒƒãƒ—ã—ãŸãƒ”ã‚¯ã‚»ãƒ«ã‚’ç‰¹å®šã®è‰²ã§å¡—ã‚Šã¤ã¶ã™ã‹( TRUE:å¡—ã‚Šã¤ã¶ã™  FALSE:å¡—ã‚Šã¤ã¶ã•ãªã„ )
+// ClipFillColor:ã‚¯ãƒªãƒƒãƒ—ã—ãŸãƒ”ã‚¯ã‚»ãƒ«ã«å¡—ã‚‹è‰²( GetColorFã§å–å¾—ã™ã‚‹ã‚‚ã® )
 extern int GraphFilter_Bright_Clip( GRAPHFILTER_INFO *Info, int CmpType, float CmpParam, int ClipFillFlag, COLOR_F *ClipFillColor, int IsPMA )
 {
-	// ’l‚Ì•â³
+	// å€¤ã®è£œæ­£
 	if( CmpType != DX_CMP_LESS && CmpType != DX_CMP_GREATER )
 		return -1 ;
 
@@ -2407,14 +2407,14 @@ extern int GraphFilter_Bright_Clip( GRAPHFILTER_INFO *Info, int CmpType, float C
 		CmpParam = 1.0f ;
 	}
 
-	// ƒVƒF[ƒ_[‚ªg‚¦‚é‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+	// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãŒä½¿ãˆã‚‹ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 	if( GSYS.HardInfo.UseShader == TRUE )
 	{
 		GraphFilter_Bright_Clip_PF( Info, CmpType, CmpParam, ClipFillFlag, ClipFillColor, IsPMA ) ;
 	}
 	else
 	{
-		// ƒVƒF[ƒ_[‚ªg‚¦‚È‚¢ê‡
+		// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãŒä½¿ãˆãªã„å ´åˆ
 
 		BYTE *Src ;
 		BYTE *Dest ;
@@ -2693,15 +2693,15 @@ extern int GraphFilter_Bright_Clip( GRAPHFILTER_INFO *Info, int CmpType, float C
 		GraphFilter_SoftImageTerminate( Info ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// BrightMin:•ÏŠ·Œã‚É^‚Á•‚É‚È‚é–¾‚é‚³
-// BrightMax:•ÏŠ·Œã‚É^‚Á”’‚É‚È‚é–¾‚é‚³
+// BrightMin:å¤‰æ›å¾Œã«çœŸã£é»’ã«ãªã‚‹æ˜ã‚‹ã•
+// BrightMax:å¤‰æ›å¾Œã«çœŸã£ç™½ã«ãªã‚‹æ˜ã‚‹ã•
 extern int GraphFilter_Bright_Scale( GRAPHFILTER_INFO *Info, int BrightMin, int BrightMax, int IsPMA )
 {
-	// ’l‚Ì•â³
+	// å€¤ã®è£œæ­£
 	if( BrightMin < 0 )
 	{
 		BrightMin = 0 ;
@@ -2725,14 +2725,14 @@ extern int GraphFilter_Bright_Scale( GRAPHFILTER_INFO *Info, int BrightMin, int 
 		BrightMax = BrightMin + 1 ;
 	}
 
-	// ƒVƒF[ƒ_[‚ªg‚¦‚é‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+	// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãŒä½¿ãˆã‚‹ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 	if( GSYS.HardInfo.UseShader == TRUE )
 	{
 		GraphFilter_Bright_Scale_PF( Info, BrightMin, BrightMax, IsPMA ) ;
 	}
 	else
 	{
-		// ƒVƒF[ƒ_[‚ªg‚¦‚È‚¢ê‡
+		// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãŒä½¿ãˆãªã„å ´åˆ
 
 		BYTE *Src ;
 		BYTE *Dest ;
@@ -2900,13 +2900,13 @@ extern int GraphFilter_Bright_Scale( GRAPHFILTER_INFO *Info, int BrightMin, int 
 		GraphFilter_SoftImageTerminate( Info ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
 extern int GraphFilter_HSB( GRAPHFILTER_INFO *Info, int HueType, float Hue, float Saturation, float Bright, int IsPMA )
 {
-	// ’l‚ğ•â³
+	// å€¤ã‚’è£œæ­£
 	Hue = Hue / 360.0f ;
 	if( HueType == 0 )
 	{
@@ -2945,14 +2945,14 @@ extern int GraphFilter_HSB( GRAPHFILTER_INFO *Info, int HueType, float Hue, floa
 	}
 	Bright /= 100.0f;
 
-	// ƒVƒF[ƒ_[‚ªg‚¦‚é‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+	// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãŒä½¿ãˆã‚‹ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 	if( GSYS.HardInfo.UseShader == TRUE )
 	{
 		GraphFilter_HSB_PF( Info, HueType, Hue, Saturation, Bright, IsPMA ) ;
 	}
 	else
 	{
-		// ƒVƒF[ƒ_[‚ªg‚¦‚È‚¢ê‡
+		// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãŒä½¿ãˆãªã„å ´åˆ
 
 		BYTE *Src ;
 		BYTE *Dest ;
@@ -3301,20 +3301,20 @@ extern int GraphFilter_HSB( GRAPHFILTER_INFO *Info, int HueType, float Hue, floa
 		GraphFilter_SoftImageTerminate( Info ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
 extern int GraphFilter_Invert( GRAPHFILTER_INFO *Info, int IsPMA )
 {
-	// ƒVƒF[ƒ_[‚ªg‚¦‚é‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+	// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãŒä½¿ãˆã‚‹ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 	if( GSYS.HardInfo.UseShader == TRUE )
 	{
 		GraphFilter_Invert_PF( Info, IsPMA ) ;
 	}
 	else
 	{
-		// ƒVƒF[ƒ_[‚ªg‚¦‚È‚¢ê‡
+		// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãŒä½¿ãˆãªã„å ´åˆ
 
 		BYTE *Src ;
 		BYTE *Dest ;
@@ -3380,13 +3380,13 @@ extern int GraphFilter_Invert( GRAPHFILTER_INFO *Info, int IsPMA )
 		GraphFilter_SoftImageTerminate( Info ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
 extern int GraphFilter_Level( GRAPHFILTER_INFO *Info, float Min, float Max, float Gamma, float AfterMin, float AfterMax, int IsPMA )
 {
-	// ’l‚ğ•â³
+	// å€¤ã‚’è£œæ­£
 	Min /= 255.0f ;
 	Max /= 255.0f ;
 	AfterMin /= 255.0f ;
@@ -3434,12 +3434,12 @@ extern int GraphFilter_Level( GRAPHFILTER_INFO *Info, float Min, float Max, floa
 	if( Min > Max ) Min = Max ;
 	if( AfterMin > AfterMax ) AfterMin = AfterMax ;
 
-	// ƒVƒF[ƒ_[‚ªg‚¦‚é‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+	// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãŒä½¿ãˆã‚‹ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 	if( GSYS.HardInfo.UseShader == TRUE )
 	{
 		int  Always ;
 
-		// ƒKƒ“ƒ}•â³ƒe[ƒuƒ‹‚ÌƒZƒbƒgƒAƒbƒv
+		// ã‚¬ãƒ³ãƒè£œæ­£ãƒ†ãƒ¼ãƒ–ãƒ«ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 		Always = FALSE ;
 		if( GraphFilterShaderHandle.GammaTex < 0 )
 		{
@@ -3492,7 +3492,7 @@ extern int GraphFilter_Level( GRAPHFILTER_INFO *Info, float Min, float Max, floa
 	}
 	else
 	{
-		// ƒVƒF[ƒ_[‚ªg‚¦‚È‚¢ê‡
+		// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãŒä½¿ãˆãªã„å ´åˆ
 
 		BYTE *Src ;
 		BYTE *Dest ;
@@ -3617,24 +3617,24 @@ extern int GraphFilter_Level( GRAPHFILTER_INFO *Info, float Min, float Max, floa
 		GraphFilter_SoftImageTerminate( Info ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
 extern int GraphFilter_TwoColor( GRAPHFILTER_INFO *Info, float Threshold, COLOR_F *LowColor, COLOR_F *HighColor, int IsPMA )
 {
-	// ’l‚ğ•â³
+	// å€¤ã‚’è£œæ­£
 	if( LowColor == NULL || HighColor == NULL )
 		return -1 ;
 
-	// ƒVƒF[ƒ_[‚ªg‚¦‚é‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+	// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãŒä½¿ãˆã‚‹ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 	if( GSYS.HardInfo.UseShader == TRUE )
 	{
 		GraphFilter_TwoColor_PF( Info, Threshold, LowColor, HighColor, IsPMA ) ;
 	}
 	else
 	{
-		// ƒVƒF[ƒ_[‚ªg‚¦‚È‚¢ê‡
+		// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãŒä½¿ãˆãªã„å ´åˆ
 
 		BYTE *Src ;
 		BYTE *Dest ;
@@ -3759,20 +3759,20 @@ extern int GraphFilter_TwoColor( GRAPHFILTER_INFO *Info, float Threshold, COLOR_
 		GraphFilter_SoftImageTerminate( Info ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
 extern int	GraphFilter_GradientMap( GRAPHFILTER_INFO *Info, int MapGrHandle, int Reverse, int IsPMA )
 {
-	// ƒVƒF[ƒ_[‚ªg‚¦‚é‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+	// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãŒä½¿ãˆã‚‹ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 	if( GSYS.HardInfo.UseShader == TRUE )
 	{
 		GraphFilter_GradientMap_PF( Info, MapGrHandle, Reverse, IsPMA ) ;
 	}
 	else
 	{
-		// ƒVƒF[ƒ_[‚ªg‚¦‚È‚¢ê‡
+		// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãŒä½¿ãˆãªã„å ´åˆ
 
 		BYTE *Src ;
 		BYTE *Dest ;
@@ -3784,7 +3784,7 @@ extern int	GraphFilter_GradientMap( GRAPHFILTER_INFO *Info, int MapGrHandle, int
 		BASEIMAGE GradImage ;
 		DWORD GradMap[ 256 ] ;
 
-		// ƒOƒ‰ƒf[ƒVƒ‡ƒ“ƒ}ƒbƒv‚Ì”z—ñ‚ğƒZƒbƒgƒAƒbƒv‚·‚é
+		// ã‚°ãƒ©ãƒ‡ãƒ¼ã‚·ãƒ§ãƒ³ãƒãƒƒãƒ—ã®é…åˆ—ã‚’ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã™ã‚‹
 		{
 			int GradWidth, GradHeight ;
 
@@ -3872,20 +3872,20 @@ extern int	GraphFilter_GradientMap( GRAPHFILTER_INFO *Info, int MapGrHandle, int
 		GraphFilter_SoftImageTerminate( Info ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
 extern int GraphFilter_Replacement( GRAPHFILTER_INFO *Info, COLOR_U8 TargetColor, COLOR_U8 NextColor, int IsPMA )
 {
-	// ƒVƒF[ƒ_[‚ªg‚¦‚é‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+	// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãŒä½¿ãˆã‚‹ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 	if( GSYS.HardInfo.UseShader == TRUE )
 	{
 		GraphFilter_Replacement_PF( Info, TargetColor, NextColor, IsPMA ) ;
 	}
 	else
 	{
-		// ƒVƒF[ƒ_[‚ªg‚¦‚È‚¢ê‡
+		// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãŒä½¿ãˆãªã„å ´åˆ
 
 		BYTE *Src ;
 		BYTE *Dest ;
@@ -3981,36 +3981,36 @@ extern int GraphFilter_Replacement( GRAPHFILTER_INFO *Info, COLOR_U8 TargetColor
 		GraphFilter_SoftImageTerminate( Info ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
 extern int GraphFilter_BilateralBlur( GRAPHFILTER_INFO *Info, int IsPMA )
 {
-	// ƒVƒF[ƒ_[‚ªg‚¦‚é‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+	// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãŒä½¿ãˆã‚‹ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 	if( GSYS.HardInfo.UseShader == TRUE )
 	{
 		GraphFilter_BilateralBlur_PF( Info, IsPMA ) ;
 	}
 	else
 	{
-		// ƒVƒF[ƒ_[‚ªg‚¦‚È‚¢ê‡
+		// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãŒä½¿ãˆãªã„å ´åˆ
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
 extern int	GraphFilter_PremulAlpha( GRAPHFILTER_INFO *Info )
 {
-	// ƒVƒF[ƒ_[‚ªg‚¦‚é‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+	// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãŒä½¿ãˆã‚‹ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 	if( GSYS.HardInfo.UseShader == TRUE )
 	{
 		GraphFilter_PremulAlpha_PF( Info ) ;
 	}
 	else
 	{
-		// ƒVƒF[ƒ_[‚ªg‚¦‚È‚¢ê‡
+		// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãŒä½¿ãˆãªã„å ´åˆ
 
 		BYTE *Src ;
 		BYTE *Dest ;
@@ -4053,20 +4053,20 @@ extern int	GraphFilter_PremulAlpha( GRAPHFILTER_INFO *Info )
 		GraphFilter_SoftImageTerminate( Info ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
 extern int	GraphFilter_InterpAlpha( GRAPHFILTER_INFO *Info )
 {
-	// ƒVƒF[ƒ_[‚ªg‚¦‚é‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+	// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãŒä½¿ãˆã‚‹ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 	if( GSYS.HardInfo.UseShader == TRUE )
 	{
 		GraphFilter_InterpAlpha_PF( Info ) ;
 	}
 	else
 	{
-		// ƒVƒF[ƒ_[‚ªg‚¦‚È‚¢ê‡
+		// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãŒä½¿ãˆãªã„å ´åˆ
 
 		BYTE *Src ;
 		BYTE *Dest ;
@@ -4119,20 +4119,20 @@ extern int	GraphFilter_InterpAlpha( GRAPHFILTER_INFO *Info )
 		GraphFilter_SoftImageTerminate( Info ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
 extern int	GraphFilter_YUVtoRGB( GRAPHFILTER_INFO *Info, int UVGrHandle )
 {
-	// ƒVƒF[ƒ_[‚ªg‚¦‚é‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+	// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãŒä½¿ãˆã‚‹ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 	if( GSYS.HardInfo.UseShader == TRUE )
 	{
 		GraphFilter_YUVtoRGB_PF( Info, UVGrHandle ) ;
 	}
 	else
 	{
-		// ƒVƒF[ƒ_[‚ªg‚¦‚È‚¢ê‡
+		// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãŒä½¿ãˆãªã„å ´åˆ
 		BYTE *SrcY ;
 		BYTE *SrcUV ;
 		BYTE *Dest ;
@@ -4763,84 +4763,84 @@ extern int	GraphFilter_YUVtoRGB( GRAPHFILTER_INFO *Info, int UVGrHandle )
 		GraphFilter_SoftImageTerminate( Info ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
 extern int	GraphFilter_BicubicScale( GRAPHFILTER_INFO *Info, int DestSizeX, int DestSizeY )
 {
-	// ƒVƒF[ƒ_[‚ªg‚¦‚é‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+	// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãŒä½¿ãˆã‚‹ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 	if( GSYS.HardInfo.UseShader == TRUE )
 	{
 		GraphFilter_BicubicScale_PF( Info, DestSizeX, DestSizeY ) ;
 	}
 	else
 	{
-		// ƒVƒF[ƒ_[‚ªg‚¦‚È‚¢ê‡( –¢À‘• )
+		// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãŒä½¿ãˆãªã„å ´åˆ( æœªå®Ÿè£… )
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
 extern int	GraphFilter_Lanczos3Scale( GRAPHFILTER_INFO *Info, int DestSizeX, int DestSizeY )
 {
-	// ƒVƒF[ƒ_[‚ªg‚¦‚é‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+	// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãŒä½¿ãˆã‚‹ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 	if( GSYS.HardInfo.UseShader == TRUE )
 	{
 		GraphFilter_Lanczos3Scale_PF( Info, DestSizeX, DestSizeY ) ;
 	}
 	else
 	{
-		// ƒVƒF[ƒ_[‚ªg‚¦‚È‚¢ê‡( –¢À‘• )
+		// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãŒä½¿ãˆãªã„å ´åˆ( æœªå®Ÿè£… )
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
 extern int	GraphFilter_SSAO( GRAPHFILTER_INFO *Info, int DepthMapGrHandle, float KernelRadius, float MinDistance, float MaxDistance, float Strength, int OcclusionColor, float OcclusionPower, int ColorMapGrHandle )
 {
-	// ƒVƒF[ƒ_[‚ªg‚¦‚é‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+	// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãŒä½¿ãˆã‚‹ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 	if( GSYS.HardInfo.UseShader == TRUE )
 	{
 		GraphFilter_SSAO_PF( Info, DepthMapGrHandle, KernelRadius, MinDistance, MaxDistance, Strength, OcclusionColor, OcclusionPower, ColorMapGrHandle ) ;
 	}
 	else
 	{
-		// ƒVƒF[ƒ_[‚ªg‚¦‚È‚¢ê‡( –¢À‘• )
+		// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãŒä½¿ãˆãªã„å ´åˆ( æœªå®Ÿè£… )
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
 extern int	GraphFilter_FloatColorScale( GRAPHFILTER_INFO *Info, COLOR_F ColorScale, COLOR_F ColorPreSub )
 {
-	// ƒVƒF[ƒ_[‚ªg‚¦‚é‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+	// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãŒä½¿ãˆã‚‹ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 	if( GSYS.HardInfo.UseShader == TRUE )
 	{
 		GraphFilter_FloatColorScale_PF( Info, ColorScale, ColorPreSub ) ;
 	}
 	else
 	{
-		// ƒVƒF[ƒ_[‚ªg‚¦‚È‚¢ê‡( –¢À‘• )
+		// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãŒä½¿ãˆãªã„å ´åˆ( æœªå®Ÿè£… )
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
 extern int	GraphBlend_Basic( GRAPHFILTER_INFO *Info, int IsPMA )
 {
-	// ƒVƒF[ƒ_[‚ªg‚¦‚é‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+	// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãŒä½¿ãˆã‚‹ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 	if( GSYS.HardInfo.UseShader == TRUE )
 	{
 		GraphBlend_Basic_PF( Info, IsPMA ) ;
 	}
 	else
 	{
-		// ƒVƒF[ƒ_[‚ªg‚¦‚È‚¢ê‡
+		// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãŒä½¿ãˆãªã„å ´åˆ
 
 		BYTE *Src ;
 		BYTE *Blend ;
@@ -6358,20 +6358,20 @@ DX_GRAPH_BLEND_PMA_MASK_LABEL :
 		GraphFilter_SoftImageTerminate( Info ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
 extern int	GraphBlend_RGBA_Select_Mix( GRAPHFILTER_INFO *Info, int SelectR, int SelectG, int SelectB, int SelectA, int IsPMA )
 {
-	// ƒVƒF[ƒ_[‚ªg‚¦‚é‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+	// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãŒä½¿ãˆã‚‹ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 	if( GSYS.HardInfo.UseShader == TRUE )
 	{
 		GraphBlend_RGBA_Select_Mix_PF( Info, SelectR, SelectG, SelectB, SelectA, IsPMA ) ;
 	}
 	else
 	{
-		// ƒVƒF[ƒ_[‚ªg‚¦‚È‚¢ê‡
+		// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãŒä½¿ãˆãªã„å ´åˆ
 
 		BYTE *Src ;
 		BYTE *Blend ;
@@ -6463,7 +6463,7 @@ extern int	GraphBlend_RGBA_Select_Mix( GRAPHFILTER_INFO *Info, int SelectR, int 
 		GraphFilter_SoftImageTerminate( Info ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
@@ -6474,10 +6474,10 @@ extern int	GraphBlend_RGBA_Select_Mix( GRAPHFILTER_INFO *Info, int SelectR, int 
 
 
 
-// va_list ŠÖ”
+// va_list é–¢æ•°
 
-// ‰æ‘œ‚ÉƒtƒBƒ‹ƒ^[ˆ—‚ğs‚¤
-extern int GraphFilter_VaList( int GrHandle, int FilterType /* DX_GRAPH_FILTER_GAUSS “™ */, va_list VaList )
+// ç”»åƒã«ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼å‡¦ç†ã‚’è¡Œã†
+extern int GraphFilter_VaList( int GrHandle, int FilterType /* DX_GRAPH_FILTER_GAUSS ç­‰ */, va_list VaList )
 {
 	int Result ;
 	int W, H ;
@@ -6489,8 +6489,8 @@ extern int GraphFilter_VaList( int GrHandle, int FilterType /* DX_GRAPH_FILTER_G
 	return Result ;
 }
 
-// ‰æ‘œ‚ÌƒtƒBƒ‹ƒ^[•t‚«“]‘—‚ğs‚¤
-extern int GraphFilterBlt_VaList( int SrcGrHandle, int DestGrHandle, int FilterType /* DX_GRAPH_FILTER_GAUSS “™ */, va_list VaList )
+// ç”»åƒã®ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ä»˜ãè»¢é€ã‚’è¡Œã†
+extern int GraphFilterBlt_VaList( int SrcGrHandle, int DestGrHandle, int FilterType /* DX_GRAPH_FILTER_GAUSS ç­‰ */, va_list VaList )
 {
 	int Result ;
 	int SrcW, SrcH ;
@@ -6502,8 +6502,8 @@ extern int GraphFilterBlt_VaList( int SrcGrHandle, int DestGrHandle, int FilterT
 	return Result ;
 }
 
-// ‰æ‘œ‚ÌƒtƒBƒ‹ƒ^[•t‚«“]‘—‚ğs‚¤( ‹éŒ`w’è )
-extern int GraphFilterRectBlt_VaList( int SrcGrHandle, int DestGrHandle, int SrcX1, int SrcY1, int SrcX2, int SrcY2, int DestX, int DestY, int FilterType /* DX_GRAPH_FILTER_GAUSS “™ */, va_list VaList )
+// ç”»åƒã®ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ä»˜ãè»¢é€ã‚’è¡Œã†( çŸ©å½¢æŒ‡å®š )
+extern int GraphFilterRectBlt_VaList( int SrcGrHandle, int DestGrHandle, int SrcX1, int SrcY1, int SrcX2, int SrcY2, int DestX, int DestY, int FilterType /* DX_GRAPH_FILTER_GAUSS ç­‰ */, va_list VaList )
 {
 	int Result ;
 
@@ -6512,8 +6512,8 @@ extern int GraphFilterRectBlt_VaList( int SrcGrHandle, int DestGrHandle, int Src
 	return Result ;
 }
 
-// “ñ‚Â‚Ì‰æ‘œ‚ğƒuƒŒƒ“ƒh‚·‚é
-extern int GraphBlend_VaList( int GrHandle, int BlendGrHandle, int BlendRatio /* ƒuƒŒƒ“ƒhŒø‰Ê‚Ì‰e‹¿“x( 0:‚O“  255:‚P‚O‚O“ ) */, int BlendType /* DX_GRAPH_BLEND_ADD “™ */, va_list VaList )
+// äºŒã¤ã®ç”»åƒã‚’ãƒ–ãƒ¬ãƒ³ãƒ‰ã™ã‚‹
+extern int GraphBlend_VaList( int GrHandle, int BlendGrHandle, int BlendRatio /* ãƒ–ãƒ¬ãƒ³ãƒ‰åŠ¹æœã®å½±éŸ¿åº¦( 0:ï¼ï¼…  255:ï¼‘ï¼ï¼ï¼… ) */, int BlendType /* DX_GRAPH_BLEND_ADD ç­‰ */, va_list VaList )
 {
 	int Result ;
 	int W, H ;
@@ -6525,8 +6525,8 @@ extern int GraphBlend_VaList( int GrHandle, int BlendGrHandle, int BlendRatio /*
 	return Result ;
 }
 
-// “ñ‚Â‚Ì‰æ‘œ‚ğƒuƒŒƒ“ƒh‚µ‚ÄŒ‹‰Ê‚ğw’è‚Ì‰æ‘œ‚Éo—Í‚·‚é
-extern int GraphBlendBlt_VaList( int SrcGrHandle, int BlendGrHandle, int DestGrHandle, int BlendRatio /* ƒuƒŒƒ“ƒhŒø‰Ê‚Ì‰e‹¿“x( 0:‚O“  255:‚P‚O‚O“ ) */, int BlendType /* DX_GRAPH_BLEND_ADD “™ */, va_list VaList )
+// äºŒã¤ã®ç”»åƒã‚’ãƒ–ãƒ¬ãƒ³ãƒ‰ã—ã¦çµæœã‚’æŒ‡å®šã®ç”»åƒã«å‡ºåŠ›ã™ã‚‹
+extern int GraphBlendBlt_VaList( int SrcGrHandle, int BlendGrHandle, int DestGrHandle, int BlendRatio /* ãƒ–ãƒ¬ãƒ³ãƒ‰åŠ¹æœã®å½±éŸ¿åº¦( 0:ï¼ï¼…  255:ï¼‘ï¼ï¼ï¼… ) */, int BlendType /* DX_GRAPH_BLEND_ADD ç­‰ */, va_list VaList )
 {
 	int Result ;
 	int SrcW, SrcH ;
@@ -6538,8 +6538,8 @@ extern int GraphBlendBlt_VaList( int SrcGrHandle, int BlendGrHandle, int DestGrH
 	return Result ;
 }
 
-// “ñ‚Â‚Ì‰æ‘œ‚ğƒuƒŒƒ“ƒh‚µ‚ÄŒ‹‰Ê‚ğw’è‚Ì‰æ‘œ‚Éo—Í‚·‚é( ‹éŒ`w’è )
-extern int GraphBlendRectBlt_VaList( int SrcGrHandle, int BlendGrHandle, int DestGrHandle, int SrcX1, int SrcY1, int SrcX2, int SrcY2, int BlendX, int BlendY, int DestX, int DestY, int BlendRatio /* ƒuƒŒƒ“ƒhŒø‰Ê‚Ì‰e‹¿“x( 0:‚O“  255:‚P‚O‚O“ ) */, int BlendType /* DX_GRAPH_BLEND_ADD “™ */, va_list VaList )
+// äºŒã¤ã®ç”»åƒã‚’ãƒ–ãƒ¬ãƒ³ãƒ‰ã—ã¦çµæœã‚’æŒ‡å®šã®ç”»åƒã«å‡ºåŠ›ã™ã‚‹( çŸ©å½¢æŒ‡å®š )
+extern int GraphBlendRectBlt_VaList( int SrcGrHandle, int BlendGrHandle, int DestGrHandle, int SrcX1, int SrcY1, int SrcX2, int SrcY2, int BlendX, int BlendY, int DestX, int DestY, int BlendRatio /* ãƒ–ãƒ¬ãƒ³ãƒ‰åŠ¹æœã®å½±éŸ¿åº¦( 0:ï¼ï¼…  255:ï¼‘ï¼ï¼ï¼… ) */, int BlendType /* DX_GRAPH_BLEND_ADD ç­‰ */, va_list VaList )
 {
 	int Result ;
 
@@ -6548,8 +6548,8 @@ extern int GraphBlendRectBlt_VaList( int SrcGrHandle, int BlendGrHandle, int Des
 	return Result ;
 }
 
-// “ñ‚Â‚Ì‰æ‘œ‚ğƒuƒŒƒ“ƒh‚µ‚ÄŒ‹‰Ê‚ğw’è‚Ì‰æ‘œ‚Éo—Í‚·‚é( ‹éŒ`w’èAƒuƒŒƒ“ƒh‰æ‘œ‚Ì‹éŒ`‚àw’è )
-extern	int	GraphBlendRectBlt2_VaList(	int SrcGrHandle, int BlendGrHandle, int DestGrHandle, int SrcX1, int SrcY1, int SrcX2, int SrcY2, int BlendX1, int BlendY1, int BlendX2,  int BlendY2, int DestX, int DestY, int BlendRatio /* ƒuƒŒƒ“ƒhŒø‰Ê‚Ì‰e‹¿“x( 0:‚O“  255:‚P‚O‚O“ ) */ , int BlendType /* DX_GRAPH_BLEND_ADD “™ */ , va_list VaList )
+// äºŒã¤ã®ç”»åƒã‚’ãƒ–ãƒ¬ãƒ³ãƒ‰ã—ã¦çµæœã‚’æŒ‡å®šã®ç”»åƒã«å‡ºåŠ›ã™ã‚‹( çŸ©å½¢æŒ‡å®šã€ãƒ–ãƒ¬ãƒ³ãƒ‰ç”»åƒã®çŸ©å½¢ã‚‚æŒ‡å®š )
+extern	int	GraphBlendRectBlt2_VaList(	int SrcGrHandle, int BlendGrHandle, int DestGrHandle, int SrcX1, int SrcY1, int SrcX2, int SrcY2, int BlendX1, int BlendY1, int BlendX2,  int BlendY2, int DestX, int DestY, int BlendRatio /* ãƒ–ãƒ¬ãƒ³ãƒ‰åŠ¹æœã®å½±éŸ¿åº¦( 0:ï¼ï¼…  255:ï¼‘ï¼ï¼ï¼… ) */ , int BlendType /* DX_GRAPH_BLEND_ADD ç­‰ */ , va_list VaList )
 {
 	int Result ;
 

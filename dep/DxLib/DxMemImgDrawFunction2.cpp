@@ -1,15 +1,15 @@
 // -------------------------------------------------------------------------------
 // 
-// 		‚c‚wƒ‰ƒCƒuƒ‰ƒŠ		ƒƒ‚ƒŠƒCƒ[ƒW§Œä—pƒvƒƒOƒ‰ƒ€
+// 		ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒª		ãƒ¡ãƒ¢ãƒªã‚¤ãƒ¡ãƒ¼ã‚¸åˆ¶å¾¡ç”¨ãƒ—ãƒ­ã‚°ãƒ©ãƒ 
 // 
 // 				Ver 3.25a
 // 
 // -------------------------------------------------------------------------------
 
-// ‚c‚wƒ‰ƒCƒuƒ‰ƒŠì¬Žž—p’è‹`
+// ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªä½œæˆæ™‚ç”¨å®šç¾©
 #define DX_MAKE
 
-// ƒCƒ“ƒNƒ‹[ƒh----------------------------------------------------------------
+// ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰----------------------------------------------------------------
 #include "DxMemImg.h"
 #include "DxLib.h"
 #include "DxStatic.h"
@@ -23,15 +23,15 @@ namespace DxLib
 
 #endif // DX_NON_NAMESPACE
 
-// ƒ}ƒNƒ’è‹`------------------------------------------------------------------
+// ãƒžã‚¯ãƒ­å®šç¾©------------------------------------------------------------------
 
-// ƒf[ƒ^Œ^’è‹`----------------------------------------------------------------
+// ãƒ‡ãƒ¼ã‚¿åž‹å®šç¾©----------------------------------------------------------------
 
-// ƒf[ƒ^éŒ¾------------------------------------------------------------------
+// ãƒ‡ãƒ¼ã‚¿å®£è¨€------------------------------------------------------------------
 
-// ŠÖ”ƒvƒƒgƒ^ƒCƒvéŒ¾--------------------------------------------------------
+// é–¢æ•°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€--------------------------------------------------------
 
-// ƒvƒƒOƒ‰ƒ€------------------------------------------------------------------
+// ãƒ—ãƒ­ã‚°ãƒ©ãƒ ------------------------------------------------------------------
 
 #ifndef DX_NON_GRAPHICS
 
@@ -278,7 +278,7 @@ extern void DrawPolygonMemImg( MEMIMG *DestImg, MEMIMG *ZImg, const MEMIMG *SrcI
 */
 
 
-// ƒCƒ[ƒW‚ðŽg—p‚µ‚Äƒ|ƒŠƒSƒ“‚ð•`‰æ‚·‚é( ‚R‚c‹óŠÔ‚É‚R‚cƒ|ƒŠƒSƒ“‚ð•`‰æ‚·‚é‚Ì‚ª–Ú“I )
+// ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’ä½¿ç”¨ã—ã¦ãƒãƒªã‚´ãƒ³ã‚’æç”»ã™ã‚‹( ï¼“ï¼¤ç©ºé–“ã«ï¼“ï¼¤ãƒãƒªã‚´ãƒ³ã‚’æç”»ã™ã‚‹ã®ãŒç›®çš„ )
 #define PAL16	PaletteWP[ *SrcBPT ]
 #define DST16	*DestWPT
 #define SRC16	*SrcWPT
@@ -316,21 +316,21 @@ extern void DrawPolygonMemImg( MEMIMG *DestImg, MEMIMG *ZImg, const MEMIMG *SrcI
 	int DrawRectRight,  DrawRectLeft ;
 	int DrawRectBottom, DrawRectTop ;
 
-	float tuPX, tuPY, tvPX, tvPY ;		// a, b, c, d ‚Ì‘ã‚í‚èAƒXƒNƒŠ[ƒ“À•W‚©‚çƒeƒNƒXƒ`ƒƒÀ•W‚É•ÏŠ·‚·‚éˆ×‚Ì‚à‚Ì
-	float tu0, tv0 ;					// U00, V00 ‚Ì‘ã‚í‚èA•ÏŠ·Œã‚ÌƒeƒNƒXƒ`ƒƒÀ•W‚ÌŒ´“_‚Æ‚È‚éÀ•W
-	float rhwPX, rhwPY ;				// ƒXƒNƒŠ[ƒ“À•W‚©‚ç RHW ‚É•ÏŠ·‚·‚éˆ×‚Ì‚à‚Ì
-	float rhw0 ;						// •ÏŠ·Œã‚Ì RHW ‚ÌŒ´“_‚Æ‚È‚é’l
-	float zPX, zPY ;					// ƒXƒNƒŠ[ƒ“À•W‚©‚ç Z ‚É•ÏŠ·‚·‚éˆ×‚Ì‚à‚Ì
-	float z0 ;							// •ÏŠ·Œã‚Ì Z ‚ÌŒ´“_‚Æ‚È‚é’l
-	float rPX, rPY, gPX, gPY, bPX, bPY, aPX, aPY ;	// ƒXƒNƒŠ[ƒ“À•W‚©‚çF’l‚É•ÏŠ·‚·‚éˆ×‚Ì‚à‚Ì
-	float r0, g0, b0, a0 ;				// •ÏŠ·Œã‚ÌF’l‚ÌŒ´“_‚Æ‚È‚é’l
-	float px0, py0 ;					// x0, y0 ‚Ì‘ã‚í‚èAƒeƒNƒXƒ`ƒƒÀ•W‚É•ÏŠ·‚·‚éÛ‚ÌƒXƒNƒŠ[ƒ“À•W‚ÌŒ´“_‚Æ‚È‚éÀ•W
-	float StartPLX[2], StartPLY[2], StartPRX[2], StartPRY[2] ;	// BS1X, BS2Y “™‚Ì‘ã‚í‚èAŠe’¸“_‚Ì•`‰æŠJŽnÀ•W
-//	float PLX, PLY, PRX, PRY ;			// B1X, B1Y, B2X, B2Y ‚Ì‘ã‚í‚èAˆ—’†‚Ì¶‰E‚ÌÀ•W‚ð•ÛŽ‚·‚é
-	float AddPLX[2], AddPRX[2] ;		// BAA1X “™‚Ì‘ã‚í‚èA‚Pƒ‰ƒCƒ“–ˆ‚É•`‰æŠJŽnÀ•W‚É‰ÁŽZ‚·‚é’l
-//	float AdPLX, AdPRX ;				// BA1X, BA2X ‚Ì‘ã‚í‚èAŒ»Ý‚ÌƒtƒF[ƒY‚ÅŽg—p‚·‚é AddPLX, AddPRX ‚Ì’l‚ð•Û‘¶‚·‚é
-	static short StartX_NumX[MAXLINE][2] ; // Šeƒ‰ƒCƒ“‚ÌŠJŽn‚wÀ•W‚Æˆ—ƒhƒbƒg”( 0:ŠJŽn‚wÀ•W  1:ˆ—ƒhƒbƒg” )
-	int StartY, NumY ;					// ˆ—‚ðŠJŽn‚·‚é‚xÀ•W‚ÆAˆ—‚·‚éƒ‰ƒCƒ“”
+	float tuPX, tuPY, tvPX, tvPY ;		// a, b, c, d ã®ä»£ã‚ã‚Šã€ã‚¹ã‚¯ãƒªãƒ¼ãƒ³åº§æ¨™ã‹ã‚‰ãƒ†ã‚¯ã‚¹ãƒãƒ£åº§æ¨™ã«å¤‰æ›ã™ã‚‹ç‚ºã®ã‚‚ã®
+	float tu0, tv0 ;					// U00, V00 ã®ä»£ã‚ã‚Šã€å¤‰æ›å¾Œã®ãƒ†ã‚¯ã‚¹ãƒãƒ£åº§æ¨™ã®åŽŸç‚¹ã¨ãªã‚‹åº§æ¨™
+	float rhwPX, rhwPY ;				// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³åº§æ¨™ã‹ã‚‰ RHW ã«å¤‰æ›ã™ã‚‹ç‚ºã®ã‚‚ã®
+	float rhw0 ;						// å¤‰æ›å¾Œã® RHW ã®åŽŸç‚¹ã¨ãªã‚‹å€¤
+	float zPX, zPY ;					// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³åº§æ¨™ã‹ã‚‰ Z ã«å¤‰æ›ã™ã‚‹ç‚ºã®ã‚‚ã®
+	float z0 ;							// å¤‰æ›å¾Œã® Z ã®åŽŸç‚¹ã¨ãªã‚‹å€¤
+	float rPX, rPY, gPX, gPY, bPX, bPY, aPX, aPY ;	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³åº§æ¨™ã‹ã‚‰è‰²å€¤ã«å¤‰æ›ã™ã‚‹ç‚ºã®ã‚‚ã®
+	float r0, g0, b0, a0 ;				// å¤‰æ›å¾Œã®è‰²å€¤ã®åŽŸç‚¹ã¨ãªã‚‹å€¤
+	float px0, py0 ;					// x0, y0 ã®ä»£ã‚ã‚Šã€ãƒ†ã‚¯ã‚¹ãƒãƒ£åº§æ¨™ã«å¤‰æ›ã™ã‚‹éš›ã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³åº§æ¨™ã®åŽŸç‚¹ã¨ãªã‚‹åº§æ¨™
+	float StartPLX[2], StartPLY[2], StartPRX[2], StartPRY[2] ;	// BS1X, BS2Y ç­‰ã®ä»£ã‚ã‚Šã€å„é ‚ç‚¹ã®æç”»é–‹å§‹åº§æ¨™
+//	float PLX, PLY, PRX, PRY ;			// B1X, B1Y, B2X, B2Y ã®ä»£ã‚ã‚Šã€å‡¦ç†ä¸­ã®å·¦å³ã®åº§æ¨™ã‚’ä¿æŒã™ã‚‹
+	float AddPLX[2], AddPRX[2] ;		// BAA1X ç­‰ã®ä»£ã‚ã‚Šã€ï¼‘ãƒ©ã‚¤ãƒ³æ¯Žã«æç”»é–‹å§‹åº§æ¨™ã«åŠ ç®—ã™ã‚‹å€¤
+//	float AdPLX, AdPRX ;				// BA1X, BA2X ã®ä»£ã‚ã‚Šã€ç¾åœ¨ã®ãƒ•ã‚§ãƒ¼ã‚ºã§ä½¿ç”¨ã™ã‚‹ AddPLX, AddPRX ã®å€¤ã‚’ä¿å­˜ã™ã‚‹
+	static short StartX_NumX[MAXLINE][2] ; // å„ãƒ©ã‚¤ãƒ³ã®é–‹å§‹ï¼¸åº§æ¨™ã¨å‡¦ç†ãƒ‰ãƒƒãƒˆæ•°( 0:é–‹å§‹ï¼¸åº§æ¨™  1:å‡¦ç†ãƒ‰ãƒƒãƒˆæ•° )
+	int StartY, NumY ;					// å‡¦ç†ã‚’é–‹å§‹ã™ã‚‹ï¼¹åº§æ¨™ã¨ã€å‡¦ç†ã™ã‚‹ãƒ©ã‚¤ãƒ³æ•°
 	int tu, tv ;
 //	float rhw, u, v, z, r, g, b, a ;
 	int x, /*y,*/ xcon, ycon ;
@@ -397,14 +397,14 @@ extern void DrawPolygonMemImg( MEMIMG *DestImg, MEMIMG *ZImg, const MEMIMG *SrcI
 		DWORD *DestDPT ;
 	} ;
 
-	// “§‰ßF–³Œø‚Ìê‡‚Í TransFlag ‚ð“|‚·
+	// é€éŽè‰²ç„¡åŠ¹ã®å ´åˆã¯ TransFlag ã‚’å€’ã™
 	if( SrcImg->Base->UseTransColor == 0 )
 	{
 		TransFlag = FALSE ;
 	}
 
-	// ƒVƒUƒŠƒ“ƒOƒeƒXƒg‚ÌŽw’è‚ª‚ ‚éê‡‚ÍƒVƒUƒŠƒ“ƒO‚Ì•K—v‚ª‚ ‚é‚©’²‚×
-	// •K—v‚ª‚ ‚éê‡‚ÍƒVƒUƒŠƒ“ƒO‚ðs‚¤
+	// ã‚·ã‚¶ãƒªãƒ³ã‚°ãƒ†ã‚¹ãƒˆã®æŒ‡å®šãŒã‚ã‚‹å ´åˆã¯ã‚·ã‚¶ãƒªãƒ³ã‚°ã®å¿…è¦ãŒã‚ã‚‹ã‹èª¿ã¹
+	// å¿…è¦ãŒã‚ã‚‹å ´åˆã¯ã‚·ã‚¶ãƒªãƒ³ã‚°ã‚’è¡Œã†
 	if( ScissorTest == TRUE )
 	{
 		int SrcVertNum, DestVertNum, Flag ;
@@ -414,7 +414,7 @@ extern void DrawPolygonMemImg( MEMIMG *DestImg, MEMIMG *ZImg, const MEMIMG *SrcI
 		VERTEX_2D *dvP, *dvN ;
 		int cflag[7], all ;
 
-		// ŒŸ¸
+		// æ¤œæŸ»
 		all  = cflag[0] = Vertex3[0].pos.z < 0.0F ;
 		all += cflag[1] = Vertex3[1].pos.z < 0.0F ;
 		all += cflag[2] = Vertex3[2].pos.z < 0.0F ;
@@ -422,13 +422,13 @@ extern void DrawPolygonMemImg( MEMIMG *DestImg, MEMIMG *ZImg, const MEMIMG *SrcI
 		all += cflag[4] = Vertex3[1].pos.z > 1.0F ;
 		all += cflag[5] = Vertex3[2].pos.z > 1.0F ;
 
-		// ‘S‚Ä‚Ì’¸“_‚ªƒNƒŠƒbƒsƒ“ƒO‘ÎÛ‚Ìê‡‚Í‚±‚±‚ÅI—¹
+		// å…¨ã¦ã®é ‚ç‚¹ãŒã‚¯ãƒªãƒƒãƒ”ãƒ³ã‚°å¯¾è±¡ã®å ´åˆã¯ã“ã“ã§çµ‚äº†
 		if( all >= 3 ) return ;
 		
-		// ƒVƒUƒŠƒ“ƒO‚Ì•K—v‚ª‚ ‚éê‡‚ÍƒVƒUƒŠƒ“ƒO
+		// ã‚·ã‚¶ãƒªãƒ³ã‚°ã®å¿…è¦ãŒã‚ã‚‹å ´åˆã¯ã‚·ã‚¶ãƒªãƒ³ã‚°
 		if( all != 0 )
 		{
-			// ‚±‚±‚É—ˆ‚½‚ÆŒ¾‚¤‚±‚Æ‚ÍƒVƒUƒŠƒ“ƒO‚ª•K—v‚Æ‚¢‚¤‚±‚Æ
+			// ã“ã“ã«æ¥ãŸã¨è¨€ã†ã“ã¨ã¯ã‚·ã‚¶ãƒªãƒ³ã‚°ãŒå¿…è¦ã¨ã„ã†ã“ã¨
 			SrcVertNum = 3 ;
 			DestVertNum = 3 ;
 			Flag = 1 ;
@@ -458,7 +458,7 @@ extern void DrawPolygonMemImg( MEMIMG *DestImg, MEMIMG *ZImg, const MEMIMG *SrcI
 				DestVertNum = 0 ;
 				switch( k )
 				{
-				case 0 :	// ‚y{ƒNƒŠƒbƒv–Ê
+				case 0 :	// ï¼ºï¼‹ã‚¯ãƒªãƒƒãƒ—é¢
 					cflag[0] = ChkSrc[0].pos.z > ChkSrc[0].rhw ;
 					for( j = 0 ; j < SrcVertNum ; j ++, ChkSrc ++ )
 					{
@@ -501,7 +501,7 @@ extern void DrawPolygonMemImg( MEMIMG *DestImg, MEMIMG *ZImg, const MEMIMG *SrcI
 					}
 					break ;
 
-				case 1 :	// ‚y|ƒNƒŠƒbƒv–Ê
+				case 1 :	// ï¼ºï¼ã‚¯ãƒªãƒƒãƒ—é¢
 					cflag[0] = ChkSrc[0].pos.z < 0.0F ;
 					for( j = 0 ; j < SrcVertNum ; j ++, ChkSrc ++ )
 					{
@@ -554,7 +554,7 @@ extern void DrawPolygonMemImg( MEMIMG *DestImg, MEMIMG *ZImg, const MEMIMG *SrcI
 				ChkDst[j].pos.z *= ChkDst[j].rhw ;
 			}
 
-			// ƒVƒUƒŠƒ“ƒO‚µ‚½Œ‹‰Ê‚ðÄ“x‚±‚ÌŠÖ”‚É“n‚·
+			// ã‚·ã‚¶ãƒªãƒ³ã‚°ã—ãŸçµæžœã‚’å†åº¦ã“ã®é–¢æ•°ã«æ¸¡ã™
 			DrawPolygonMemImg( DestImg, ZImg, SrcImg, &ChkDst[0], TransFlag, BlendImg, PerspectiveEnable, FALSE ) ;
 			for( j = 3 ; j < DestVertNum ; j ++ )
 			{
@@ -564,15 +564,15 @@ extern void DrawPolygonMemImg( MEMIMG *DestImg, MEMIMG *ZImg, const MEMIMG *SrcI
 				DrawPolygonMemImg( DestImg, ZImg, SrcImg, TempVert, TransFlag, BlendImg, PerspectiveEnable, FALSE ) ;
 			}
 			
-			// ƒVƒUƒŠƒ“ƒO‚µ‚½ê‡‚Í‚±‚±‚ÅI—¹
+			// ã‚·ã‚¶ãƒªãƒ³ã‚°ã—ãŸå ´åˆã¯ã“ã“ã§çµ‚äº†
 			return ;
 		}
 	}
 
-	// ‚yƒoƒbƒtƒ@‚ª•`‰ææ‚Æ“¯‚¶ƒTƒCƒY‚Å‚Í‚È‚©‚Á‚½‚çƒGƒ‰[
+	// ï¼ºãƒãƒƒãƒ•ã‚¡ãŒæç”»å…ˆã¨åŒã˜ã‚µã‚¤ã‚ºã§ã¯ãªã‹ã£ãŸã‚‰ã‚¨ãƒ©ãƒ¼
 	if( ZImg != NULL && ( ZImg->Width != DestImg->Width || ZImg->Height != DestImg->Height ) ) return ;
 
-	// ƒeƒNƒXƒ`ƒƒ‚ª–³‚¢ê‡‚Í¬‚³‚¢ƒeƒNƒXƒ`ƒƒ‚ð‚Å‚Á‚¿ã‚°‚é
+	// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãŒç„¡ã„å ´åˆã¯å°ã•ã„ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ã§ã£ã¡ä¸Šã’ã‚‹
 	if( SrcImg == NULL )
 	{
 		UseTempMemImg = true;
@@ -582,17 +582,17 @@ extern void DrawPolygonMemImg( MEMIMG *DestImg, MEMIMG *ZImg, const MEMIMG *SrcI
 		SrcImg = &TempMemImg;
 	}
 
-	// ƒJƒ‰[ƒ^ƒCƒv‚ªˆá‚¤‚©A•`‰ææ‚ªƒ¿ƒ`ƒƒƒ“ƒlƒ‹•t‚©ƒpƒŒƒbƒg•t‚«‚¾‚Á‚½ê‡‚ÍƒGƒ‰[
+	// ã‚«ãƒ©ãƒ¼ã‚¿ã‚¤ãƒ—ãŒé•ã†ã‹ã€æç”»å…ˆãŒÎ±ãƒãƒ£ãƒ³ãƒãƒ«ä»˜ã‹ãƒ‘ãƒ¬ãƒƒãƒˆä»˜ãã ã£ãŸå ´åˆã¯ã‚¨ãƒ©ãƒ¼
 	if( SrcImg->Base->ColorType != DestImg->Base->ColorType || DestImg->Base->UsePalette == 1 || DestImg->Base->UseAlpha == 1 ) return ;
 
-	// ˆê”Ôã‚É—ˆ‚Ä‚¢‚éÀ•W‚É‚æ‚Á‚Ä•`‰æ‹N“_À•W“™‚ðŒˆ’è
+	// ä¸€ç•ªä¸Šã«æ¥ã¦ã„ã‚‹åº§æ¨™ã«ã‚ˆã£ã¦æç”»èµ·ç‚¹åº§æ¨™ç­‰ã‚’æ±ºå®š
 	{
 		const VERTEX_2D *LP, *RP ;
 		int DMODEL, DMODER ;
 
 		DMODEL = DMODER = 0 ;
 
-		// XTable ‚É x ‚Ì¬‚³‚¢‡‚ÌƒAƒhƒŒƒX‚ð‘ã“ü‚·‚é
+		// XTable ã« x ã®å°ã•ã„é †ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ä»£å…¥ã™ã‚‹
 		if( Vertex3[0].pos.x > Vertex3[1].pos.x ){
 			if( Vertex3[1].pos.x > Vertex3[2].pos.x ){
 				XTable[0] = &Vertex3[2] ;
@@ -625,7 +625,7 @@ extern void DrawPolygonMemImg( MEMIMG *DestImg, MEMIMG *ZImg, const MEMIMG *SrcI
 			}
 		}
 
-		// YTable ‚É y ‚Ì¬‚³‚¢‡‚ÌƒAƒhƒŒƒX‚ð‘ã“ü‚·‚é
+		// YTable ã« y ã®å°ã•ã„é †ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ä»£å…¥ã™ã‚‹
 		if( Vertex3[0].pos.y > Vertex3[1].pos.y ){
 			if( Vertex3[1].pos.y > Vertex3[2].pos.y ){
 				YTable[0] = &Vertex3[2] ;
@@ -658,7 +658,7 @@ extern void DrawPolygonMemImg( MEMIMG *DestImg, MEMIMG *ZImg, const MEMIMG *SrcI
 			}
 		}
 
-		// ZTable ‚É z ‚Ì¬‚³‚¢‡‚ÌƒAƒhƒŒƒX‚ð‘ã“ü‚·‚é
+		// ZTable ã« z ã®å°ã•ã„é †ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ä»£å…¥ã™ã‚‹
 		if( Vertex3[0].pos.z > Vertex3[1].pos.z ){
 			if( Vertex3[1].pos.z > Vertex3[2].pos.z ){
 				ZTable[0] = &Vertex3[2] ;
@@ -691,26 +691,26 @@ extern void DrawPolygonMemImg( MEMIMG *DestImg, MEMIMG *ZImg, const MEMIMG *SrcI
 			}
 		}
 
-		// Š®‘S‚É‰æ–ÊŠO‚Éo‚Ä‚¢‚È‚¢‚©’²‚×‚é
+		// å®Œå…¨ã«ç”»é¢å¤–ã«å‡ºã¦ã„ãªã„ã‹èª¿ã¹ã‚‹
 		if( XTable[2]->pos.x < (float)MemImgManage.DrawArea.left || XTable[0]->pos.x >= (float)MemImgManage.DrawArea.right ||
 			YTable[2]->pos.y < (float)MemImgManage.DrawArea.top  || YTable[0]->pos.y >= (float)MemImgManage.DrawArea.bottom ||
 			ZTable[2]->pos.z < 0.0F                              || ZTable[0]->pos.z >= 1.0F )
 			goto END ;
 
-		// ƒTƒCƒY‚ª‚QƒhƒbƒgˆÈ‰º‚¾‚Á‚½‚ç‰½‚à‚¹‚¸‚ÉI—¹
+		// ã‚µã‚¤ã‚ºãŒï¼’ãƒ‰ãƒƒãƒˆä»¥ä¸‹ã ã£ãŸã‚‰ä½•ã‚‚ã›ãšã«çµ‚äº†
 		if( ( YTable[2]->pos.y - YTable[0]->pos.y < 1.1F ) ||
 			( XTable[2]->pos.x - XTable[0]->pos.x < 1.1F ) ) goto END ;
 
-		// ƒXƒNƒŠ[ƒ“À•W‚©‚çUVÀ•WARHWARGBA ‚ð‹‚ß‚éˆ×‚ÌŒvŽZ’l‚ðŽZo‚·‚é
+		// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³åº§æ¨™ã‹ã‚‰UVåº§æ¨™ã€RHWã€RGBA ã‚’æ±‚ã‚ã‚‹ç‚ºã®è¨ˆç®—å€¤ã‚’ç®—å‡ºã™ã‚‹
 		// Vx = V1x * p1 + V2x * p2 ;
 		// Vy = V1y * p1 + V2y * p2 ;
 		// Tu = T1u * p1 + T2u * p2 ;
 		// Tv = T1v * p1 + T2v * p2 ;
-		// “™‚ÌŽ®‚©‚ç Vx ‚Æ Vy ‚©‚çŠe’l‚É•ÏŠ·‚Å‚«‚é‚Q’l‚ðŽZo‚µ‚Ä‚¢‚Ü‚·B
-		// ‘S•” px20 * py10 - py20 * px10 ----(1) ‚ÅŠ„‚Á‚Ä‚¢‚é‚Ì‚ÍA•Ð•û‚Í
-		// –{—ˆ‚È‚ç py10 * px20 - px10 * py20 ----(2) ‚È‚Ì‚Å‚·‚ªA‚Ç‚¿‚ç‚à
-		// ŠOÏ‚ÌŒvŽZ‚É“™‚µ‚­A’š“xƒvƒ‰ƒXƒ}ƒCƒiƒX‚ªˆá‚¤‚¾‚¯‚È‚Ì‚Å (2) ‚Å
-		// Š„‚Á‚Ä‚¢‚é•”•ª‚Ì•„†‚ð‘S‚Ä”½“]‚·‚é‚±‚Æ‚ÅA‘S‚Ä‚ÌœŽZ‚ð (1) ‚ÅÏ‚Ü‚¹‚Ä‚¢‚Ü‚·
+		// ç­‰ã®å¼ã‹ã‚‰ Vx ã¨ Vy ã‹ã‚‰å„å€¤ã«å¤‰æ›ã§ãã‚‹ï¼’å€¤ã‚’ç®—å‡ºã—ã¦ã„ã¾ã™ã€‚
+		// å…¨éƒ¨ px20 * py10 - py20 * px10 ----(1) ã§å‰²ã£ã¦ã„ã‚‹ã®ã¯ã€ç‰‡æ–¹ã¯
+		// æœ¬æ¥ãªã‚‰ py10 * px20 - px10 * py20 ----(2) ãªã®ã§ã™ãŒã€ã©ã¡ã‚‰ã‚‚
+		// å¤–ç©ã®è¨ˆç®—ã«ç­‰ã—ãã€ä¸åº¦ãƒ—ãƒ©ã‚¹ãƒžã‚¤ãƒŠã‚¹ãŒé•ã†ã ã‘ãªã®ã§ (2) ã§
+		// å‰²ã£ã¦ã„ã‚‹éƒ¨åˆ†ã®ç¬¦å·ã‚’å…¨ã¦åè»¢ã™ã‚‹ã“ã¨ã§ã€å…¨ã¦ã®é™¤ç®—ã‚’ (1) ã§æ¸ˆã¾ã›ã¦ã„ã¾ã™
 		{
 			float tmp ;
 			float px20, py20, px10, py10 ;
@@ -766,13 +766,13 @@ extern void DrawPolygonMemImg( MEMIMG *DestImg, MEMIMG *ZImg, const MEMIMG *SrcI
 			a0   = ((BYTE *)&XTable[0]->color)[3] - aPX * px0 - aPY * py0 ;
 		}
 
-		// ƒCƒŒƒMƒ…ƒ‰[—pˆ—
+		// ã‚¤ãƒ¬ã‚®ãƒ¥ãƒ©ãƒ¼ç”¨å‡¦ç†
 		if( _FTOL( YTable[0]->pos.y ) == _FTOL( YTable[1]->pos.y ) )
 		{
-			// ã•”‚Q’¸“_‚Ì‚x¬•ª‚ª“¯‚¶ê‡‚Ìˆ—
+			// ä¸Šéƒ¨ï¼’é ‚ç‚¹ã®ï¼¹æˆåˆ†ãŒåŒã˜å ´åˆã®å‡¦ç†
 			DMODEL = DMODER = 1 ;
 
-			// ã‚Q’¸“_‚Ì‚Ç‚¿‚ç‚ª¶‘¤‚Å‚Ç‚¿‚ç‚ª‰E‘¤‚©’²‚×‚é
+			// ä¸Šï¼’é ‚ç‚¹ã®ã©ã¡ã‚‰ãŒå·¦å´ã§ã©ã¡ã‚‰ãŒå³å´ã‹èª¿ã¹ã‚‹
 			if( YTable[0]->pos.x > YTable[1]->pos.x )
 			{
 				LP = YTable[1] ;
@@ -784,25 +784,25 @@ extern void DrawPolygonMemImg( MEMIMG *DestImg, MEMIMG *ZImg, const MEMIMG *SrcI
 				RP = YTable[1] ;
 			}
 
-			// ¶‰E‚Ì’¸“_‚ÌŠJŽnÀ•W‚ðƒZƒbƒg
+			// å·¦å³ã®é ‚ç‚¹ã®é–‹å§‹åº§æ¨™ã‚’ã‚»ãƒƒãƒˆ
 			StartPLX[1] = LP->pos.x ; StartPLY[1] = LP->pos.y ;
 			StartPRX[1] = RP->pos.x ; StartPRY[1] = RP->pos.y ;
 
-			// ¶‰E‚Ì’¸“_‚Ì‚Pƒ‰ƒCƒ“‚²‚Æ‚Ì‚wÀ•W‚Ì‰ÁŽZ’l‚ðŽZo
+			// å·¦å³ã®é ‚ç‚¹ã®ï¼‘ãƒ©ã‚¤ãƒ³ã”ã¨ã®ï¼¸åº§æ¨™ã®åŠ ç®—å€¤ã‚’ç®—å‡º
 			AddPLX[1] = ( YTable[2]->pos.x - StartPLX[1] ) / ( YTable[2]->pos.y - StartPLY[1] ) ;
 			AddPRX[1] = ( YTable[2]->pos.x - StartPRX[1] ) / ( YTable[2]->pos.y - StartPRY[1] ) ;
 		}
 		else
-		// ‰º•”‚Q’¸“_‚Ì‚x¬•ª‚ª“¯‚¶ê‡‚Ìˆ—
+		// ä¸‹éƒ¨ï¼’é ‚ç‚¹ã®ï¼¹æˆåˆ†ãŒåŒã˜å ´åˆã®å‡¦ç†
 		if( _FTOL( YTable[1]->pos.y ) == _FTOL( YTable[2]->pos.y ) )
 		{
 			DMODEL = DMODER = 1 ;
 
-			// ˆ—ŠJŽnÀ•W‚Í¶‰E‚Æ‚à“¯‚¶‚É‚È‚é
+			// å‡¦ç†é–‹å§‹åº§æ¨™ã¯å·¦å³ã¨ã‚‚åŒã˜ã«ãªã‚‹
 			StartPLX[1] = StartPRX[1] = YTable[0]->pos.x ;
 			StartPLY[1] = StartPRY[1] = YTable[0]->pos.y ;
 
-			// ‰º‘¤‚Ì‚Q’¸“_‚ª‚Ç‚¿‚ç‚ª¶‘¤‚Å‚Ç‚¿‚ç‚ª‰E‘¤‚©’²‚×‚é
+			// ä¸‹å´ã®ï¼’é ‚ç‚¹ãŒã©ã¡ã‚‰ãŒå·¦å´ã§ã©ã¡ã‚‰ãŒå³å´ã‹èª¿ã¹ã‚‹
 			if( YTable[1]->pos.x > YTable[2]->pos.x )
 			{
 				LP = YTable[2] ;
@@ -814,98 +814,98 @@ extern void DrawPolygonMemImg( MEMIMG *DestImg, MEMIMG *ZImg, const MEMIMG *SrcI
 				RP = YTable[2] ;
 			}
 
-			// ¶‰E‚Ì’¸“_‚Ì‚Pƒ‰ƒCƒ“‚²‚Æ‚Ì‚wÀ•W‚Ì‰ÁŽZ’l‚ðŽZo
+			// å·¦å³ã®é ‚ç‚¹ã®ï¼‘ãƒ©ã‚¤ãƒ³ã”ã¨ã®ï¼¸åº§æ¨™ã®åŠ ç®—å€¤ã‚’ç®—å‡º
 			AddPLX[1] = ( LP->pos.x - StartPLX[1] ) / ( LP->pos.y - StartPLY[1] ) ;
 			AddPRX[1] = ( RP->pos.x - StartPRX[1] ) / ( RP->pos.y - StartPRY[1] ) ;
 		}
 		else
-		// “ÁŽê‚ÈƒP[ƒX‚Å‚Í‚È‚¢ê‡
+		// ç‰¹æ®Šãªã‚±ãƒ¼ã‚¹ã§ã¯ãªã„å ´åˆ
 		{
-			// “r’†‚É’†Œp“_‚ð’Ê‚é‚Ì‚Í¶‘¤‚©A‰E‘¤‚©‚É‚æ‚Á‚Äˆ—‚ð•ªŠò
+			// é€”ä¸­ã«ä¸­ç¶™ç‚¹ã‚’é€šã‚‹ã®ã¯å·¦å´ã‹ã€å³å´ã‹ã«ã‚ˆã£ã¦å‡¦ç†ã‚’åˆ†å²
 			if( ( YTable[1]->pos.x - YTable[0]->pos.x ) / ( YTable[1]->pos.y - YTable[0]->pos.y ) <
 				( YTable[2]->pos.x - YTable[0]->pos.x ) / ( YTable[2]->pos.y - YTable[0]->pos.y ) ) 
 			{
-				// ’†Œp“_‚ð’Ê‚é‚Ì‚Í¶‘¤
+				// ä¸­ç¶™ç‚¹ã‚’é€šã‚‹ã®ã¯å·¦å´
 				DMODEL = 0 ;
 				DMODER = 1 ;
 
-				// ¶‰E‚ÌŠJŽn“_‚Í‚Ç‚¿‚ç‚àˆê”Ôã‚Ì’¸“_
+				// å·¦å³ã®é–‹å§‹ç‚¹ã¯ã©ã¡ã‚‰ã‚‚ä¸€ç•ªä¸Šã®é ‚ç‚¹
 				StartPLX[0] = StartPRX[1] = YTable[0]->pos.x ;
 				StartPLY[0] = StartPRY[1] = YTable[0]->pos.y ;
 
-				// ¶‘¤‚Ìü‚Ì‚Pƒ‰ƒCƒ“‚²‚Æ‚É‰ÁŽZ‚·‚é‚wÀ•W’l‚ðŽZo
+				// å·¦å´ã®ç·šã®ï¼‘ãƒ©ã‚¤ãƒ³ã”ã¨ã«åŠ ç®—ã™ã‚‹ï¼¸åº§æ¨™å€¤ã‚’ç®—å‡º
 				AddPLX[0] = ( YTable[1]->pos.x - StartPLX[0] ) / ( YTable[1]->pos.y - StartPLY[0] ) ;
 
-				// ‰E‘¤‚Ì‘B‚Ì‚Pƒ‰ƒCƒ“‚²‚Æ‚É‰ÁŽZ‚·‚é‚wÀ•W’l‚ðŽZo
+				// å³å´ã®è…ºã®ï¼‘ãƒ©ã‚¤ãƒ³ã”ã¨ã«åŠ ç®—ã™ã‚‹ï¼¸åº§æ¨™å€¤ã‚’ç®—å‡º
 				AddPRX[1] = ( YTable[2]->pos.x - StartPRX[1] ) / ( YTable[2]->pos.y - StartPRY[1] ) ;
 
 				
-				// ¶‘¤‚¾‚¯’†Œp“_‚ð’Ê‚é‚Ì‚ÅA’†Œp“_‚©‚çI“_‚ÉŒü‚©‚¤Žž‚ÌŠJŽn“_‚ðƒZƒbƒg
+				// å·¦å´ã ã‘ä¸­ç¶™ç‚¹ã‚’é€šã‚‹ã®ã§ã€ä¸­ç¶™ç‚¹ã‹ã‚‰çµ‚ç‚¹ã«å‘ã‹ã†æ™‚ã®é–‹å§‹ç‚¹ã‚’ã‚»ãƒƒãƒˆ
 				StartPLX[1] = YTable[1]->pos.x ;
 				StartPLY[1] = YTable[1]->pos.y ;
 
-				// ¶‘¤‚Ì’†Œp“_‚©‚çI“_‚ÖŒü‚©‚¤Žž‚Ì‚Pƒ‰ƒCƒ“‚²‚Æ‚É‰ÁŽZ‚·‚é‚wÀ•W’l‚ðŽZo
+				// å·¦å´ã®ä¸­ç¶™ç‚¹ã‹ã‚‰çµ‚ç‚¹ã¸å‘ã‹ã†æ™‚ã®ï¼‘ãƒ©ã‚¤ãƒ³ã”ã¨ã«åŠ ç®—ã™ã‚‹ï¼¸åº§æ¨™å€¤ã‚’ç®—å‡º
 				AddPLX[1] = ( YTable[2]->pos.x - StartPLX[1] ) / ( YTable[2]->pos.y - StartPLY[1] ) ;
 			}
 			else
 			{
-				// ’†Œp“_‚ð’Ê‚é‚Ì‚Í‰E‘¤
+				// ä¸­ç¶™ç‚¹ã‚’é€šã‚‹ã®ã¯å³å´
 				DMODEL = 1 ;
 				DMODER = 0 ;
 
-				// ¶‰E‚ÌŠJŽn“_‚Í‚Ç‚¿‚ç‚àˆê”Ôã‚Ì’¸“_
+				// å·¦å³ã®é–‹å§‹ç‚¹ã¯ã©ã¡ã‚‰ã‚‚ä¸€ç•ªä¸Šã®é ‚ç‚¹
 				StartPLX[1] = StartPRX[0] = YTable[0]->pos.x ;
 				StartPLY[1] = StartPRY[0] = YTable[0]->pos.y ;
 
-				// ‰E‘¤‚Ì‘B‚Ì‚Pƒ‰ƒCƒ“‚²‚Æ‚É‰ÁŽZ‚·‚é‚wÀ•W’l‚ðŽZo
+				// å³å´ã®è…ºã®ï¼‘ãƒ©ã‚¤ãƒ³ã”ã¨ã«åŠ ç®—ã™ã‚‹ï¼¸åº§æ¨™å€¤ã‚’ç®—å‡º
 				AddPRX[0] = ( YTable[1]->pos.x - StartPRX[0] ) / ( YTable[1]->pos.y - StartPRY[0] ) ;
 
-				// ¶‘¤‚Ìü‚Ì‚Pƒ‰ƒCƒ“‚²‚Æ‚É‰ÁŽZ‚·‚é‚wÀ•W’l‚ðŽZo
+				// å·¦å´ã®ç·šã®ï¼‘ãƒ©ã‚¤ãƒ³ã”ã¨ã«åŠ ç®—ã™ã‚‹ï¼¸åº§æ¨™å€¤ã‚’ç®—å‡º
 				AddPLX[1] = ( YTable[2]->pos.x - StartPLX[1] ) / ( YTable[2]->pos.y - StartPLY[1] ) ;
 
 				
-				// ‰E‘¤‚¾‚¯’†Œp“_‚ð’Ê‚é‚Ì‚ÅA’†Œp“_‚©‚çI“_‚ÉŒü‚©‚¤Žž‚ÌŠJŽn“_‚ðƒZƒbƒg
+				// å³å´ã ã‘ä¸­ç¶™ç‚¹ã‚’é€šã‚‹ã®ã§ã€ä¸­ç¶™ç‚¹ã‹ã‚‰çµ‚ç‚¹ã«å‘ã‹ã†æ™‚ã®é–‹å§‹ç‚¹ã‚’ã‚»ãƒƒãƒˆ
 				StartPRX[1] = YTable[1]->pos.x + 1 ;
 				StartPRY[1] = YTable[1]->pos.y ;
 
-				// ‰E‘¤‚Ì’†Œp“_‚©‚çI“_‚ÖŒü‚©‚¤Žž‚Ì‚Pƒ‰ƒCƒ“‚²‚Æ‚É‰ÁŽZ‚·‚é‚wÀ•W’l‚ðŽZo
+				// å³å´ã®ä¸­ç¶™ç‚¹ã‹ã‚‰çµ‚ç‚¹ã¸å‘ã‹ã†æ™‚ã®ï¼‘ãƒ©ã‚¤ãƒ³ã”ã¨ã«åŠ ç®—ã™ã‚‹ï¼¸åº§æ¨™å€¤ã‚’ç®—å‡º
 				AddPRX[1] = ( YTable[2]->pos.x - StartPRX[1] ) / ( YTable[2]->pos.y - StartPRY[1] ) ;
 			}
 		}
 		
-		// •`‰æˆ—‚ðŠJŽn‚·‚é‚xÀ•W‚ÆAŠeƒ‰ƒCƒ“‚Å‚Ì•`‰æŠJŽn‚wÀ•WA•`‰æƒhƒbƒg”‚ðŽZo
+		// æç”»å‡¦ç†ã‚’é–‹å§‹ã™ã‚‹ï¼¹åº§æ¨™ã¨ã€å„ãƒ©ã‚¤ãƒ³ã§ã®æç”»é–‹å§‹ï¼¸åº§æ¨™ã€æç”»ãƒ‰ãƒƒãƒˆæ•°ã‚’ç®—å‡º
 		{
 			int y, lx, rx, addLX, addRX, endY, cly, cry ;
 			
-			// •`‰æŠJŽn‚xÀ•W‚ðŽZo
+			// æç”»é–‹å§‹ï¼¹åº§æ¨™ã‚’ç®—å‡º
 			StartY = ( _FTOL( YTable[0]->pos.y * QUALI ) + QUALI / 2 ) / QUALI ;
 			endY   = _FTOL( YTable[2]->pos.y * QUALI ) ;
 
-			// ‰æ–Ê‚©‚ç‚Í‚Ýo‚µ‚Ä‚¢‚½‚ç•â³
+			// ç”»é¢ã‹ã‚‰ã¯ã¿å‡ºã—ã¦ã„ãŸã‚‰è£œæ­£
 			if( StartY < MemImgManage.DrawArea.top ) StartY = MemImgManage.DrawArea.top ;
 			if( endY > MemImgManage.DrawArea.bottom * QUALI ) endY = MemImgManage.DrawArea.bottom * QUALI ;
 
-			// ‰Šú‚xÀ•W‚ÌƒZƒbƒg
+			// åˆæœŸï¼¹åº§æ¨™ã®ã‚»ãƒƒãƒˆ
 			y      = StartY * QUALI + QUALI / 2 ;
 
-			// ¶‰E‚Ìƒ‰ƒCƒ“‚Ì‰ŠúÀ•W‚Æ‰ÁŽZÀ•W‚ðƒZƒbƒg
+			// å·¦å³ã®ãƒ©ã‚¤ãƒ³ã®åˆæœŸåº§æ¨™ã¨åŠ ç®—åº§æ¨™ã‚’ã‚»ãƒƒãƒˆ
 			lx     = _FTOL( ( StartPLX[DMODEL] + ( ( (float)StartY + 0.5F ) - StartPLY[DMODEL] ) * AddPLX[DMODEL] ) * QUALI ) ;
 			rx     = _FTOL( ( StartPRX[DMODER] + ( ( (float)StartY + 0.5F ) - StartPLY[DMODEL] ) * AddPRX[DMODER] ) * QUALI ) ;
 			addLX  = _FTOL( AddPLX[DMODEL]    * QUALI ) ;
 			addRX  = _FTOL( AddPRX[DMODER]    * QUALI ) ;
 
-			// ’†Œp“_’l‚ðƒZƒbƒg( ŽŸ‚Ì’†Œp“_‚ÍI“_‚Ìê‡‚Í•K‚¸“ž’B‚µ‚È‚¢’l(4096 * QUALI)‚ðƒZƒbƒg‚µ‚Ä‚¨‚­ )
+			// ä¸­ç¶™ç‚¹å€¤ã‚’ã‚»ãƒƒãƒˆ( æ¬¡ã®ä¸­ç¶™ç‚¹ã¯çµ‚ç‚¹ã®å ´åˆã¯å¿…ãšåˆ°é”ã—ãªã„å€¤(4096 * QUALI)ã‚’ã‚»ãƒƒãƒˆã—ã¦ãŠã )
 			cly = ( DMODEL == 0 ) ? _FTOL( StartPLY[1] * QUALI ) : 4096 * QUALI ;
 			cry = ( DMODER == 0 ) ? _FTOL( StartPRY[1] * QUALI ) : 4096 * QUALI ;
 
 			NumY = 0 ;
 			while( endY > y )
 			{
-				// •`‰æŠJŽn‚wÀ•W‚ÆA•`‰æƒhƒbƒg”‚ðŽZo
+				// æç”»é–‹å§‹ï¼¸åº§æ¨™ã¨ã€æç”»ãƒ‰ãƒƒãƒˆæ•°ã‚’ç®—å‡º
 				StartX_NumX[NumY][0] = (short)( ( lx + QUALI / 2 ) / QUALI ) ;
 				StartX_NumX[NumY][1] = (short)( ( rx - QUALI / 2 ) / QUALI - StartX_NumX[NumY][0] + 1 ) ;
 
-				// ‰æ–Ê‚©‚ç‚Í‚Ýo‚µ‚Ä‚¢‚½‚ç•â³
+				// ç”»é¢ã‹ã‚‰ã¯ã¿å‡ºã—ã¦ã„ãŸã‚‰è£œæ­£
 				if( StartX_NumX[NumY][0] < MemImgManage.DrawArea.left )
 				{
 					StartX_NumX[NumY][1] -= (short)( MemImgManage.DrawArea.left - StartX_NumX[NumY][0] ) ;
@@ -916,7 +916,7 @@ extern void DrawPolygonMemImg( MEMIMG *DestImg, MEMIMG *ZImg, const MEMIMG *SrcI
 					StartX_NumX[NumY][1] = (short)( MemImgManage.DrawArea.right - StartX_NumX[NumY][0] ) ;
 				}
 				
-				// ‚à‚µ•`‰æ‚·‚éƒhƒbƒg”‚ª‚OŒÂ‚¾‚Á‚½ê‡‚ÍƒLƒƒƒ“ƒZƒ‹
+				// ã‚‚ã—æç”»ã™ã‚‹ãƒ‰ãƒƒãƒˆæ•°ãŒï¼å€‹ã ã£ãŸå ´åˆã¯ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 				if( StartX_NumX[NumY][1] <= 0 ) StartX_NumX[NumY][1] = 0 ;
 				NumY ++ ;
 				
@@ -925,32 +925,32 @@ extern void DrawPolygonMemImg( MEMIMG *DestImg, MEMIMG *ZImg, const MEMIMG *SrcI
 
 				y += QUALI ;
 
-				// ‚à‚µ¶‘¤‚Ìƒ‰ƒCƒ“‚ª’†Œp“_‚ð’´‚¦‚Ä‚¢‚½‚ç‘–¸‚·‚éƒ‰ƒCƒ“‚ð•ÏX‚·‚é
+				// ã‚‚ã—å·¦å´ã®ãƒ©ã‚¤ãƒ³ãŒä¸­ç¶™ç‚¹ã‚’è¶…ãˆã¦ã„ãŸã‚‰èµ°æŸ»ã™ã‚‹ãƒ©ã‚¤ãƒ³ã‚’å¤‰æ›´ã™ã‚‹
 				if( cly <= y )
 				{
-					// ¶‰E‚Ìƒ‰ƒCƒ“‚Ì‰ŠúÀ•W‚Æ‰ÁŽZÀ•W‚ðƒZƒbƒg
+					// å·¦å³ã®ãƒ©ã‚¤ãƒ³ã®åˆæœŸåº§æ¨™ã¨åŠ ç®—åº§æ¨™ã‚’ã‚»ãƒƒãƒˆ
 					lx     = _FTOL( ( StartPLX[1] + ( (float)y / QUALI - StartPLY[1] ) * AddPLX[1] ) * QUALI ) ;
 					addLX  = _FTOL( AddPLX[1] * QUALI ) ;
 
-					// ŽŸ‚Ì’†Œp“_‚Í–³‚¢‚Ì‚Å•K‚¸“ž’B‚µ‚È‚¢’l(4096 * QUALI)‚ðƒZƒbƒg‚µ‚Ä‚¨‚­
+					// æ¬¡ã®ä¸­ç¶™ç‚¹ã¯ç„¡ã„ã®ã§å¿…ãšåˆ°é”ã—ãªã„å€¤(4096 * QUALI)ã‚’ã‚»ãƒƒãƒˆã—ã¦ãŠã
 					cly = 4096 * QUALI ;
 				}
 				
-				// ‚à‚µ‰E‘¤‚Ìƒ‰ƒCƒ“‚ª’†Œp“_‚ð’´‚¦‚Ä‚¢‚½‚ç‘–¸‚·‚éƒ‰ƒCƒ“‚ð•ÏX‚·‚é
+				// ã‚‚ã—å³å´ã®ãƒ©ã‚¤ãƒ³ãŒä¸­ç¶™ç‚¹ã‚’è¶…ãˆã¦ã„ãŸã‚‰èµ°æŸ»ã™ã‚‹ãƒ©ã‚¤ãƒ³ã‚’å¤‰æ›´ã™ã‚‹
 				if( cry <= y )
 				{
-					// ¶‰E‚Ìƒ‰ƒCƒ“‚Ì‰ŠúÀ•W‚Æ‰ÁŽZÀ•W‚ðƒZƒbƒg
+					// å·¦å³ã®ãƒ©ã‚¤ãƒ³ã®åˆæœŸåº§æ¨™ã¨åŠ ç®—åº§æ¨™ã‚’ã‚»ãƒƒãƒˆ
 					rx     = _FTOL( ( StartPRX[1] + ( (float)y / QUALI - StartPRY[1] ) * AddPRX[1] ) * QUALI ) ;
 					addRX  = _FTOL( AddPRX[1] * QUALI ) ;
 
-					// ŽŸ‚Ì’†Œp“_‚Í–³‚¢‚Ì‚Å•K‚¸“ž’B‚µ‚È‚¢’l(4096 * QUALI)‚ðƒZƒbƒg‚µ‚Ä‚¨‚­
+					// æ¬¡ã®ä¸­ç¶™ç‚¹ã¯ç„¡ã„ã®ã§å¿…ãšåˆ°é”ã—ãªã„å€¤(4096 * QUALI)ã‚’ã‚»ãƒƒãƒˆã—ã¦ãŠã
 					cry = 4096 * QUALI ;
 				}
 			}
 		}
 	}
 
-	// “]‘—Œ³A“]‘—æ‚ÌƒAƒhƒŒƒX‚ðƒZƒbƒg
+	// è»¢é€å…ƒã€è»¢é€å…ˆã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ã‚»ãƒƒãƒˆ
 	if( SrcImg != NULL )
 	{
 		SrcBP     = SrcImg->UseImage ;
@@ -980,7 +980,7 @@ extern void DrawPolygonMemImg( MEMIMG *DestImg, MEMIMG *ZImg, const MEMIMG *SrcI
 	GreenTable = MemImgManage.RateTable[MemImgManage.DrawBright.Green] ;
 	BlueTable  = MemImgManage.RateTable[MemImgManage.DrawBright.Blue] ;
 
-	// •`‰æ€”õ
+	// æç”»æº–å‚™
 	{
 		DrawRectRight  = MemImgManage.DrawArea.right ;
 		DrawRectLeft   = MemImgManage.DrawArea.left ;
@@ -1034,22 +1034,22 @@ extern void DrawPolygonMemImg( MEMIMG *DestImg, MEMIMG *ZImg, const MEMIMG *SrcI
 		texHeight = ( int )SrcImg->Height ;
 	}
 	
-	// ƒOƒ[ƒVƒF[ƒfƒBƒ“ƒO‚Ìê‡‚Æ‚»‚¤‚Å‚È‚¢ê‡‚Åˆ—‚ð•ªŠò
+	// ã‚°ãƒ­ãƒ¼ã‚·ã‚§ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°ã®å ´åˆã¨ãã†ã§ãªã„å ´åˆã§å‡¦ç†ã‚’åˆ†å²
 	if( GouraudShadeMode == FALSE )
 	{
-		// ƒOƒ[ƒVƒF[ƒfƒBƒ“ƒO‚Å‚Í‚È‚¢ê‡
+		// ã‚°ãƒ­ãƒ¼ã‚·ã‚§ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°ã§ã¯ãªã„å ´åˆ
 
-		// ƒJƒ‰[ƒ‚[ƒh‚É‚æ‚Á‚Äˆ—‚ð•ªŠò
+		// ã‚«ãƒ©ãƒ¼ãƒ¢ãƒ¼ãƒ‰ã«ã‚ˆã£ã¦å‡¦ç†ã‚’åˆ†å²
 		switch( SrcImg->Base->ColorType )
 		{
-		case 0 :	// 16bit ƒ‚[ƒh
+		case 0 :	// 16bit ãƒ¢ãƒ¼ãƒ‰
 			if( SrcImg->Base->UsePalette == 1 )
-			// ƒpƒŒƒbƒg‚ª‚ ‚éê‡
+			// ãƒ‘ãƒ¬ãƒƒãƒˆãŒã‚ã‚‹å ´åˆ
 			{
-				// ƒuƒŒƒ“ƒhƒ‚[ƒh‚É‚æ‚Á‚Äˆ—‚ð•ªŠò
+				// ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã«ã‚ˆã£ã¦å‡¦ç†ã‚’åˆ†å²
 				switch( MemImgManage.BlendMode )
 				{
-				case DX_BLENDMODE_NOBLEND :		// ƒuƒŒƒ“ƒh–³‚µ
+				case DX_BLENDMODE_NOBLEND :		// ãƒ–ãƒ¬ãƒ³ãƒ‰ç„¡ã—
 	NOMALDRAW_C16_USEPAL_BNO:
 					if( BlendImg != NULL ){
 						if( ( MemImgManage.bDrawBright & 0xffffff ) == 0xffffff ){
@@ -1070,7 +1070,7 @@ extern void DrawPolygonMemImg( MEMIMG *DestImg, MEMIMG *ZImg, const MEMIMG *SrcI
 					}
 					break ;
 					
-				case DX_BLENDMODE_ALPHA :		// ƒ¿ƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_ALPHA :		// Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
 					if( MemImgManage.BlendParam == 255 ) goto NOMALDRAW_C16_USEPAL_BNO ;
 					else
 					if( MemImgManage.BlendParam == 0 ) goto END ;
@@ -1094,7 +1094,7 @@ extern void DrawPolygonMemImg( MEMIMG *DestImg, MEMIMG *ZImg, const MEMIMG *SrcI
 					}
 					break ;
 					
-				case DX_BLENDMODE_ADD :			// ‰ÁŽZƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_ADD :			// åŠ ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 					if( MemImgManage.BlendParam == 0 ) goto END ;
 					
 					if( BlendImg != NULL ){
@@ -1116,7 +1116,7 @@ extern void DrawPolygonMemImg( MEMIMG *DestImg, MEMIMG *ZImg, const MEMIMG *SrcI
 					}
 					break ;
 
-				case DX_BLENDMODE_SUB :			// Œ¸ŽZƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_SUB :			// æ¸›ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 					if( BlendImg != NULL ){
 						if( ( MemImgManage.bDrawBright & 0xffffff ) == 0xffffff ){
 							if( TransFlag )		DRAWPOLYGONMEMIMG_UBI_ND( if( *SrcBP != TransColor )	CODE_UBI_C16_NBR_NAC_BSB( PAL16, DST16, DSTP16, BLND ), 1, 2 )
@@ -1136,7 +1136,7 @@ extern void DrawPolygonMemImg( MEMIMG *DestImg, MEMIMG *ZImg, const MEMIMG *SrcI
 					}
 					break ;
 					
-				case DX_BLENDMODE_MUL :			// æŽZƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_MUL :			// ä¹—ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 					if( BlendImg != NULL ){
 						if( ( MemImgManage.bDrawBright & 0xffffff ) == 0xffffff ){
 							if( TransFlag )		DRAWPOLYGONMEMIMG_UBI_ND( if( *SrcBP != TransColor )	CODE_UBI_C16_NBR_NAC_BML( PAL16, DST16, DSTP16, BLND ), 1, 2 )
@@ -1156,7 +1156,7 @@ extern void DrawPolygonMemImg( MEMIMG *DestImg, MEMIMG *ZImg, const MEMIMG *SrcI
 					}
 					break ;
 
-				case DX_BLENDMODE_MULA :		// æŽZ+ƒ¿ƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_MULA :		// ä¹—ç®—+Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
 					if( BlendImg != NULL ){
 						if( ( MemImgManage.bDrawBright & 0xffffff ) == 0xffffff ){
 							if( TransFlag )		DRAWPOLYGONMEMIMG_UBI_ND( if( *SrcBP != TransColor )	CODE_UBI_C16_NBR_NAC_BMA( PAL16, DST16, DSTP16, BLND ), 1, 2 )
@@ -1176,7 +1176,7 @@ extern void DrawPolygonMemImg( MEMIMG *DestImg, MEMIMG *ZImg, const MEMIMG *SrcI
 					}
 					break ;
 
-				case DX_BLENDMODE_INVSRC :		// •`‰æŒ³‚ÌF‚ð”½“]{ƒ¿ƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_INVSRC :		// æç”»å…ƒã®è‰²ã‚’åè»¢ï¼‹Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
 					if( BlendImg != NULL ){
 						if( ( MemImgManage.bDrawBright & 0xffffff ) == 0xffffff ){
 							if( TransFlag )		DRAWPOLYGONMEMIMG_UBI_ND( if( *SrcBP != TransColor )	CODE_UBI_C16_NBR_NAC_BIS( PAL16, DST16, DSTP16, BLND ), 1, 2 )
@@ -1198,12 +1198,12 @@ extern void DrawPolygonMemImg( MEMIMG *DestImg, MEMIMG *ZImg, const MEMIMG *SrcI
 				}
 			}
 			else
-			// ƒpƒŒƒbƒg‚ª–³‚¢ê‡
+			// ãƒ‘ãƒ¬ãƒƒãƒˆãŒç„¡ã„å ´åˆ
 			{
-				// ƒuƒŒƒ“ƒhƒ‚[ƒh‚É‚æ‚Á‚Äˆ—‚ð•ªŠò
+				// ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã«ã‚ˆã£ã¦å‡¦ç†ã‚’åˆ†å²
 				switch( MemImgManage.BlendMode )
 				{
-				case DX_BLENDMODE_NOBLEND :		// ƒuƒŒƒ“ƒh–³‚µ
+				case DX_BLENDMODE_NOBLEND :		// ãƒ–ãƒ¬ãƒ³ãƒ‰ç„¡ã—
 	NOMALDRAW_C16_NOPAL_BNO:
 					if( BlendImg != NULL ){
 						if( ( MemImgManage.bDrawBright & 0xffffff ) == 0xffffff ){
@@ -1309,7 +1309,7 @@ extern void DrawPolygonMemImg( MEMIMG *DestImg, MEMIMG *ZImg, const MEMIMG *SrcI
 					}
 					break ;
 
-				case DX_BLENDMODE_ALPHA :		// ƒ¿ƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_ALPHA :		// Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
 					if( MemImgManage.BlendParam == 255 ) goto NOMALDRAW_C16_NOPAL_BNO ;
 					else
 					if( MemImgManage.BlendParam == 0 ) goto END ;
@@ -1353,7 +1353,7 @@ extern void DrawPolygonMemImg( MEMIMG *DestImg, MEMIMG *ZImg, const MEMIMG *SrcI
 					}
 					break ;
 
-				case DX_BLENDMODE_ADD :		// ‰ÁŽZƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_ADD :		// åŠ ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 					if( MemImgManage.BlendParam == 0 ) goto END ;
 					
 					if( BlendImg != NULL ){
@@ -1395,7 +1395,7 @@ extern void DrawPolygonMemImg( MEMIMG *DestImg, MEMIMG *ZImg, const MEMIMG *SrcI
 					}
 					break ;
 
-				case DX_BLENDMODE_SUB :		// Œ¸ŽZƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_SUB :		// æ¸›ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 					if( MemImgManage.BlendParam == 0 ) goto END ;
 					
 					if( BlendImg != NULL ){
@@ -1437,7 +1437,7 @@ extern void DrawPolygonMemImg( MEMIMG *DestImg, MEMIMG *ZImg, const MEMIMG *SrcI
 					}
 					break ;
 
-				case DX_BLENDMODE_MUL :		// æŽZƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_MUL :		// ä¹—ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 					if( BlendImg != NULL ){
 						if( ( MemImgManage.bDrawBright & 0xffffff ) == 0xffffff ){
 							if( SrcImg->Base->UseAlpha == 1 ){
@@ -1477,7 +1477,7 @@ extern void DrawPolygonMemImg( MEMIMG *DestImg, MEMIMG *ZImg, const MEMIMG *SrcI
 					}
 					break ;
 
-				case DX_BLENDMODE_MULA :	// æŽZ+ƒ¿ƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_MULA :	// ä¹—ç®—+Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
 					if( BlendImg != NULL ){
 						if( ( MemImgManage.bDrawBright & 0xffffff ) == 0xffffff ){
 							if( SrcImg->Base->UseAlpha == 1 ){
@@ -1517,7 +1517,7 @@ extern void DrawPolygonMemImg( MEMIMG *DestImg, MEMIMG *ZImg, const MEMIMG *SrcI
 					}
 					break ;
 
-				case DX_BLENDMODE_INVSRC :		// •`‰æŒ³‚ÌF‚ð”½“]{ƒ¿ƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_INVSRC :		// æç”»å…ƒã®è‰²ã‚’åè»¢ï¼‹Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
 					if( BlendImg != NULL ){
 						if( ( MemImgManage.bDrawBright & 0xffffff ) == 0xffffff ){
 							if( SrcImg->Base->UseAlpha == 1 ){
@@ -1560,14 +1560,14 @@ extern void DrawPolygonMemImg( MEMIMG *DestImg, MEMIMG *ZImg, const MEMIMG *SrcI
 			}
 			break ;
 			
-		case 1 :	// 32bit ƒ‚[ƒh
+		case 1 :	// 32bit ãƒ¢ãƒ¼ãƒ‰
 			if( SrcImg->Base->UsePalette == 1 )
-			// ƒpƒŒƒbƒg‚ª‚ ‚éê‡
+			// ãƒ‘ãƒ¬ãƒƒãƒˆãŒã‚ã‚‹å ´åˆ
 			{
-				// ƒuƒŒƒ“ƒhƒ‚[ƒh‚É‚æ‚Á‚Äˆ—‚ð•ªŠò
+				// ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã«ã‚ˆã£ã¦å‡¦ç†ã‚’åˆ†å²
 				switch( MemImgManage.BlendMode )
 				{
-				case DX_BLENDMODE_NOBLEND :		// ƒuƒŒƒ“ƒh–³‚µ
+				case DX_BLENDMODE_NOBLEND :		// ãƒ–ãƒ¬ãƒ³ãƒ‰ç„¡ã—
 	NOMALDRAW_C32_USEPAL_BNO:
 					if( BlendImg != NULL ){
 						if( ( MemImgManage.bDrawBright & 0xffffff ) == 0xffffff ){
@@ -1588,7 +1588,7 @@ extern void DrawPolygonMemImg( MEMIMG *DestImg, MEMIMG *ZImg, const MEMIMG *SrcI
 					}
 					break ;
 					
-				case DX_BLENDMODE_ALPHA :		// ƒ¿ƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_ALPHA :		// Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
 					if( MemImgManage.BlendParam == 255 ) goto NOMALDRAW_C32_USEPAL_BNO ;
 					else
 					if( MemImgManage.BlendParam == 0 ) goto END ;
@@ -1612,7 +1612,7 @@ extern void DrawPolygonMemImg( MEMIMG *DestImg, MEMIMG *ZImg, const MEMIMG *SrcI
 					}
 					break ;
 					
-				case DX_BLENDMODE_ADD :			// ‰ÁŽZƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_ADD :			// åŠ ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 					if( MemImgManage.BlendParam == 0 ) goto END ;
 					
 					if( BlendImg != NULL ){
@@ -1634,7 +1634,7 @@ extern void DrawPolygonMemImg( MEMIMG *DestImg, MEMIMG *ZImg, const MEMIMG *SrcI
 					}
 					break ;
 
-				case DX_BLENDMODE_SUB :			// Œ¸ŽZƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_SUB :			// æ¸›ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 					if( BlendImg != NULL ){
 						if( ( MemImgManage.bDrawBright & 0xffffff ) == 0xffffff ){
 							if( TransFlag )		DRAWPOLYGONMEMIMG_UBI_ND( if( *SrcBP != TransColor )	CODE_UBI_C32_NBR_NAC_BSB( PALP32, DSTP32, BLND ), 1, 4 )
@@ -1654,7 +1654,7 @@ extern void DrawPolygonMemImg( MEMIMG *DestImg, MEMIMG *ZImg, const MEMIMG *SrcI
 					}
 					break ;
 					
-				case DX_BLENDMODE_MUL :			// æŽZƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_MUL :			// ä¹—ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 					if( BlendImg != NULL ){
 						if( ( MemImgManage.bDrawBright & 0xffffff ) == 0xffffff ){
 							if( TransFlag )		DRAWPOLYGONMEMIMG_UBI_ND( if( *SrcBP != TransColor )	CODE_UBI_C32_NBR_NAC_BML( PALP32, DSTP32, BLND ), 1, 4 )
@@ -1674,7 +1674,7 @@ extern void DrawPolygonMemImg( MEMIMG *DestImg, MEMIMG *ZImg, const MEMIMG *SrcI
 					}
 					break ;
 
-				case DX_BLENDMODE_MULA :		// æŽZ+ƒ¿ƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_MULA :		// ä¹—ç®—+Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
 					if( BlendImg != NULL ){
 						if( ( MemImgManage.bDrawBright & 0xffffff ) == 0xffffff ){
 							if( TransFlag )		DRAWPOLYGONMEMIMG_UBI_ND( if( *SrcBP != TransColor )	CODE_UBI_C32_NBR_NAC_BMA( PALP32, DSTP32, BLND ), 1, 4 )
@@ -1694,7 +1694,7 @@ extern void DrawPolygonMemImg( MEMIMG *DestImg, MEMIMG *ZImg, const MEMIMG *SrcI
 					}
 					break ;
 
-				case DX_BLENDMODE_INVSRC :		// •`‰æŒ³‚ÌF‚ð”½“]{ƒ¿ƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_INVSRC :		// æç”»å…ƒã®è‰²ã‚’åè»¢ï¼‹Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
 					if( BlendImg != NULL ){
 						if( ( MemImgManage.bDrawBright & 0xffffff ) == 0xffffff ){
 							if( TransFlag )		DRAWPOLYGONMEMIMG_UBI_ND( if( *SrcBP != TransColor )	CODE_UBI_C32_NBR_NAC_BIS( PALP32, DSTP32, BLND ), 1, 4 )
@@ -1716,12 +1716,12 @@ extern void DrawPolygonMemImg( MEMIMG *DestImg, MEMIMG *ZImg, const MEMIMG *SrcI
 				}
 			}
 			else
-			// ƒpƒŒƒbƒg‚ª–³‚¢ê‡
+			// ãƒ‘ãƒ¬ãƒƒãƒˆãŒç„¡ã„å ´åˆ
 			{
-				// ƒuƒŒƒ“ƒhƒ‚[ƒh‚É‚æ‚Á‚Äˆ—‚ð•ªŠò
+				// ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã«ã‚ˆã£ã¦å‡¦ç†ã‚’åˆ†å²
 				switch( MemImgManage.BlendMode )
 				{
-				case DX_BLENDMODE_NOBLEND :		// ƒuƒŒƒ“ƒh–³‚µ
+				case DX_BLENDMODE_NOBLEND :		// ãƒ–ãƒ¬ãƒ³ãƒ‰ç„¡ã—
 	NOMALDRAW_C32_NOPAL_BNO:
 					if( BlendImg != NULL ){
 						if( ( MemImgManage.bDrawBright & 0xffffff ) == 0xffffff ){
@@ -1762,7 +1762,7 @@ extern void DrawPolygonMemImg( MEMIMG *DestImg, MEMIMG *ZImg, const MEMIMG *SrcI
 					}
 					break ;
 
-				case DX_BLENDMODE_ALPHA :		// ƒ¿ƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_ALPHA :		// Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
 					if( MemImgManage.BlendParam == 255 ) goto NOMALDRAW_C32_NOPAL_BNO ;
 					else
 					if( MemImgManage.BlendParam == 0 ) goto END ;
@@ -1806,7 +1806,7 @@ extern void DrawPolygonMemImg( MEMIMG *DestImg, MEMIMG *ZImg, const MEMIMG *SrcI
 					}
 					break ;
 
-				case DX_BLENDMODE_ADD :		// ‰ÁŽZƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_ADD :		// åŠ ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 					if( MemImgManage.BlendParam == 0 ) goto END ;
 					
 					if( BlendImg != NULL ){
@@ -1848,7 +1848,7 @@ extern void DrawPolygonMemImg( MEMIMG *DestImg, MEMIMG *ZImg, const MEMIMG *SrcI
 					}
 					break ;
 
-				case DX_BLENDMODE_SUB :		// Œ¸ŽZƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_SUB :		// æ¸›ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 					if( MemImgManage.BlendParam == 0 ) goto END ;
 					
 					if( BlendImg != NULL ){
@@ -1890,7 +1890,7 @@ extern void DrawPolygonMemImg( MEMIMG *DestImg, MEMIMG *ZImg, const MEMIMG *SrcI
 					}
 					break ;
 
-				case DX_BLENDMODE_MUL :		// æŽZƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_MUL :		// ä¹—ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 					if( BlendImg != NULL ){
 						if( ( MemImgManage.bDrawBright & 0xffffff ) == 0xffffff ){
 							if( SrcImg->Base->UseAlpha == 1 ){
@@ -1930,7 +1930,7 @@ extern void DrawPolygonMemImg( MEMIMG *DestImg, MEMIMG *ZImg, const MEMIMG *SrcI
 					}
 					break ;
 
-				case DX_BLENDMODE_MULA :	// æŽZ+ƒ¿ƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_MULA :	// ä¹—ç®—+Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
 					if( BlendImg != NULL ){
 						if( ( MemImgManage.bDrawBright & 0xffffff ) == 0xffffff ){
 							if( SrcImg->Base->UseAlpha == 1 ){
@@ -1970,7 +1970,7 @@ extern void DrawPolygonMemImg( MEMIMG *DestImg, MEMIMG *ZImg, const MEMIMG *SrcI
 					}
 					break ;
 
-				case DX_BLENDMODE_INVSRC :		// •`‰æŒ³‚ÌF‚ð”½“]{ƒ¿ƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_INVSRC :		// æç”»å…ƒã®è‰²ã‚’åè»¢ï¼‹Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
 					if( BlendImg != NULL ){
 						if( ( MemImgManage.bDrawBright & 0xffffff ) == 0xffffff ){
 							if( SrcImg->Base->UseAlpha == 1 ){
@@ -2016,19 +2016,19 @@ extern void DrawPolygonMemImg( MEMIMG *DestImg, MEMIMG *ZImg, const MEMIMG *SrcI
 	}
 	else
 	{
-		// ƒOƒ[ƒVƒF[ƒfƒBƒ“ƒO‚Ìê‡
+		// ã‚°ãƒ­ãƒ¼ã‚·ã‚§ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°ã®å ´åˆ
 
-		// ƒJƒ‰[ƒ‚[ƒh‚É‚æ‚Á‚Äˆ—‚ð•ªŠò
+		// ã‚«ãƒ©ãƒ¼ãƒ¢ãƒ¼ãƒ‰ã«ã‚ˆã£ã¦å‡¦ç†ã‚’åˆ†å²
 		switch( SrcImg->Base->ColorType )
 		{
-		case 0 :	// 16bit ƒ‚[ƒh
+		case 0 :	// 16bit ãƒ¢ãƒ¼ãƒ‰
 			if( SrcImg->Base->UsePalette == 1 )
-			// ƒpƒŒƒbƒg‚ª‚ ‚éê‡
+			// ãƒ‘ãƒ¬ãƒƒãƒˆãŒã‚ã‚‹å ´åˆ
 			{
-				// ƒuƒŒƒ“ƒhƒ‚[ƒh‚É‚æ‚Á‚Äˆ—‚ð•ªŠò
+				// ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã«ã‚ˆã£ã¦å‡¦ç†ã‚’åˆ†å²
 				switch( MemImgManage.BlendMode )
 				{
-				case DX_BLENDMODE_NOBLEND :		// ƒuƒŒƒ“ƒh–³‚µ
+				case DX_BLENDMODE_NOBLEND :		// ãƒ–ãƒ¬ãƒ³ãƒ‰ç„¡ã—
 					if( BlendImg != NULL ){
 						if( TransFlag )		DRAWPOLYGONMEMIMG_UBI_ND( if( *SrcBP != TransColor )	CODE_UBI_C16_UBR_NAC_BNO_NTBL( PAL16, DST16, DSTP16, BLND, RB, GB, BB ), 1, 2 )
 						else				DRAWPOLYGONMEMIMG_UBI_ND( 								CODE_UBI_C16_UBR_NAC_BNO_NTBL( PAL16, DST16, DSTP16, BLND, RB, GB, BB ), 1, 2 )
@@ -2038,7 +2038,7 @@ extern void DrawPolygonMemImg( MEMIMG *DestImg, MEMIMG *ZImg, const MEMIMG *SrcI
 					}
 					break ;
 					
-				case DX_BLENDMODE_ALPHA :		// ƒ¿ƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_ALPHA :		// Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
 					if( BlendImg != NULL ){
 						if( TransFlag )		DRAWPOLYGONMEMIMG_UBI_ND( if( *SrcBP != TransColor )	CODE_UBI_C16_UBR_NAC_BAL_NTBL( PAL16, DST16, DSTP16, BLND, AB, RB, GB, BB ), 1, 2 )
 						else				DRAWPOLYGONMEMIMG_UBI_ND( 								CODE_UBI_C16_UBR_NAC_BAL_NTBL( PAL16, DST16, DSTP16, BLND, AB, RB, GB, BB ), 1, 2 )
@@ -2048,7 +2048,7 @@ extern void DrawPolygonMemImg( MEMIMG *DestImg, MEMIMG *ZImg, const MEMIMG *SrcI
 					}
 					break ;
 					
-				case DX_BLENDMODE_ADD :			// ‰ÁŽZƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_ADD :			// åŠ ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 					if( BlendImg != NULL ){
 						if( TransFlag )		DRAWPOLYGONMEMIMG_UBI_ND( if( *SrcBP != TransColor )	CODE_UBI_C16_UBR_NAC_BAD_NTBL( PAL16, DST16, DSTP16, BLND, AB, RB, GB, BB ), 1, 2 )
 						else				DRAWPOLYGONMEMIMG_UBI_ND( 								CODE_UBI_C16_UBR_NAC_BAD_NTBL( PAL16, DST16, DSTP16, BLND, AB, RB, GB, BB ), 1, 2 )
@@ -2058,7 +2058,7 @@ extern void DrawPolygonMemImg( MEMIMG *DestImg, MEMIMG *ZImg, const MEMIMG *SrcI
 					}
 					break ;
 
-				case DX_BLENDMODE_SUB :			// Œ¸ŽZƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_SUB :			// æ¸›ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 					if( BlendImg != NULL ){
 						if( TransFlag )		DRAWPOLYGONMEMIMG_UBI_ND( if( *SrcBP != TransColor )	CODE_UBI_C16_UBR_NAC_BSB_NTBL( PAL16, DST16, DSTP16, BLND, AB, RB, GB, BB ), 1, 2 )
 						else				DRAWPOLYGONMEMIMG_UBI_ND( 								CODE_UBI_C16_UBR_NAC_BSB_NTBL( PAL16, DST16, DSTP16, BLND, AB, RB, GB, BB ), 1, 2 )
@@ -2068,7 +2068,7 @@ extern void DrawPolygonMemImg( MEMIMG *DestImg, MEMIMG *ZImg, const MEMIMG *SrcI
 					}
 					break ;
 					
-				case DX_BLENDMODE_MUL :			// æŽZƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_MUL :			// ä¹—ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 					if( BlendImg != NULL ){
 						if( TransFlag )		DRAWPOLYGONMEMIMG_UBI_ND( if( *SrcBP != TransColor )	CODE_UBI_C16_UBR_NAC_BML_NTBL( PAL16, DST16, DSTP16, BLND, RB, GB, BB ), 1, 2 )
 						else				DRAWPOLYGONMEMIMG_UBI_ND( 								CODE_UBI_C16_UBR_NAC_BML_NTBL( PAL16, DST16, DSTP16, BLND, RB, GB, BB ), 1, 2 )
@@ -2078,7 +2078,7 @@ extern void DrawPolygonMemImg( MEMIMG *DestImg, MEMIMG *ZImg, const MEMIMG *SrcI
 					}
 					break ;
 
-				case DX_BLENDMODE_MULA :		// æŽZ+ƒ¿ƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_MULA :		// ä¹—ç®—+Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
 					if( BlendImg != NULL ){
 						if( TransFlag )		DRAWPOLYGONMEMIMG_UBI_ND( if( *SrcBP != TransColor )	CODE_UBI_C16_UBR_NAC_BMA_NTBL( PAL16, DST16, DSTP16, BLND, AB, RB, GB, BB ), 1, 2 )
 						else				DRAWPOLYGONMEMIMG_UBI_ND( 								CODE_UBI_C16_UBR_NAC_BMA_NTBL( PAL16, DST16, DSTP16, BLND, AB, RB, GB, BB ), 1, 2 )
@@ -2088,7 +2088,7 @@ extern void DrawPolygonMemImg( MEMIMG *DestImg, MEMIMG *ZImg, const MEMIMG *SrcI
 					}
 					break ;
 
-				case DX_BLENDMODE_INVSRC :		// •`‰æŒ³‚ÌF‚ð”½“]{ƒ¿ƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_INVSRC :		// æç”»å…ƒã®è‰²ã‚’åè»¢ï¼‹Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
 					if( BlendImg != NULL ){
 						if( TransFlag )		DRAWPOLYGONMEMIMG_UBI_ND( if( *SrcBP != TransColor )	CODE_UBI_C16_UBR_NAC_BIS_NTBL( PAL16, DST16, DSTP16, BLND, AB, RB, GB, BB ), 1, 2 )
 						else				DRAWPOLYGONMEMIMG_UBI_ND( 								CODE_UBI_C16_UBR_NAC_BIS_NTBL( PAL16, DST16, DSTP16, BLND, AB, RB, GB, BB ), 1, 2 )
@@ -2100,12 +2100,12 @@ extern void DrawPolygonMemImg( MEMIMG *DestImg, MEMIMG *ZImg, const MEMIMG *SrcI
 				}
 			}
 			else
-			// ƒpƒŒƒbƒg‚ª–³‚¢ê‡
+			// ãƒ‘ãƒ¬ãƒƒãƒˆãŒç„¡ã„å ´åˆ
 			{
-				// ƒuƒŒƒ“ƒhƒ‚[ƒh‚É‚æ‚Á‚Äˆ—‚ð•ªŠò
+				// ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã«ã‚ˆã£ã¦å‡¦ç†ã‚’åˆ†å²
 				switch( MemImgManage.BlendMode )
 				{
-				case DX_BLENDMODE_NOBLEND :		// ƒuƒŒƒ“ƒh–³‚µ
+				case DX_BLENDMODE_NOBLEND :		// ãƒ–ãƒ¬ãƒ³ãƒ‰ç„¡ã—
 					if( BlendImg != NULL ){
 						if( SrcImg->Base->UseAlpha == 1 ){
 							if( TransFlag )		DRAWPOLYGONMEMIMG_UBI_ND( CODE_UBI_C16_UBR_UAC_BNO_ACK_NTBL( SRC16, SRCA16, DST16, DSTP16, BLND, RB, GB, BB ), 4, 2 )
@@ -2125,7 +2125,7 @@ extern void DrawPolygonMemImg( MEMIMG *DestImg, MEMIMG *ZImg, const MEMIMG *SrcI
 					}
 					break ;
 
-				case DX_BLENDMODE_ALPHA :		// ƒ¿ƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_ALPHA :		// Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
 					if( BlendImg != NULL ){
 						if( SrcImg->Base->UseAlpha == 1 ){
 							if( TransFlag )		DRAWPOLYGONMEMIMG_UBI_ND( CODE_UBI_C16_UBR_UAC_BAL_ACK_NTBL( SRC16, SRCA16, DST16, DSTP16, BLND, AB, RB, GB, BB ), 4, 2 )
@@ -2145,7 +2145,7 @@ extern void DrawPolygonMemImg( MEMIMG *DestImg, MEMIMG *ZImg, const MEMIMG *SrcI
 					}
 					break ;
 
-				case DX_BLENDMODE_ADD :		// ‰ÁŽZƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_ADD :		// åŠ ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 					if( BlendImg != NULL ){
 						if( SrcImg->Base->UseAlpha == 1 ){
 							if( TransFlag )		DRAWPOLYGONMEMIMG_UBI_ND( CODE_UBI_C16_UBR_UAC_BAD_ACK_NTBL( SRC16, SRCA16, DST16, DSTP16, BLND, AB, RB, GB, BB ), 4, 2 )
@@ -2165,7 +2165,7 @@ extern void DrawPolygonMemImg( MEMIMG *DestImg, MEMIMG *ZImg, const MEMIMG *SrcI
 					}
 					break ;
 
-				case DX_BLENDMODE_SUB :		// Œ¸ŽZƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_SUB :		// æ¸›ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 					if( BlendImg != NULL ){
 						if( SrcImg->Base->UseAlpha == 1 ){
 							if( TransFlag )		DRAWPOLYGONMEMIMG_UBI_ND( CODE_UBI_C16_UBR_UAC_BSB_ACK_NTBL( SRC16, SRCA16, DST16, DSTP16, BLND, AB, RB, GB, BB ), 4, 2 )
@@ -2185,7 +2185,7 @@ extern void DrawPolygonMemImg( MEMIMG *DestImg, MEMIMG *ZImg, const MEMIMG *SrcI
 					}
 					break ;
 
-				case DX_BLENDMODE_MUL :		// æŽZƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_MUL :		// ä¹—ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 					if( BlendImg != NULL ){
 						if( SrcImg->Base->UseAlpha == 1 ){
 							if( TransFlag )		DRAWPOLYGONMEMIMG_UBI_ND( CODE_UBI_C16_UBR_UAC_BML_ACK_NTBL( SRC16, SRCA16, DST16, DSTP16, BLND, RB, GB, BB ), 4, 2 )
@@ -2205,7 +2205,7 @@ extern void DrawPolygonMemImg( MEMIMG *DestImg, MEMIMG *ZImg, const MEMIMG *SrcI
 					}
 					break ;
 
-				case DX_BLENDMODE_MULA :	// æŽZ+ƒ¿ƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_MULA :	// ä¹—ç®—+Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
 					if( BlendImg != NULL ){
 						if( SrcImg->Base->UseAlpha == 1 ){
 							if( TransFlag )		DRAWPOLYGONMEMIMG_UBI_ND( CODE_UBI_C16_UBR_UAC_BMA_ACK_NTBL( SRC16, SRCA16, DST16, DSTP16, BLND, AB, RB, GB, BB ), 4, 2 )
@@ -2225,7 +2225,7 @@ extern void DrawPolygonMemImg( MEMIMG *DestImg, MEMIMG *ZImg, const MEMIMG *SrcI
 					}
 					break ;
 
-				case DX_BLENDMODE_INVSRC :		// •`‰æŒ³‚ÌF‚ð”½“]{ƒ¿ƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_INVSRC :		// æç”»å…ƒã®è‰²ã‚’åè»¢ï¼‹Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
 					if( BlendImg != NULL ){
 						if( SrcImg->Base->UseAlpha == 1 ){
 							if( TransFlag )		DRAWPOLYGONMEMIMG_UBI_ND( CODE_UBI_C16_UBR_UAC_BIS_ACK_NTBL( SRC16, SRCA16, DST16, DSTP16, BLND, AB, RB, GB, BB ), 4, 2 )
@@ -2248,14 +2248,14 @@ extern void DrawPolygonMemImg( MEMIMG *DestImg, MEMIMG *ZImg, const MEMIMG *SrcI
 			}
 			break ;
 			
-		case 1 :	// 32bit ƒ‚[ƒh
+		case 1 :	// 32bit ãƒ¢ãƒ¼ãƒ‰
 			if( SrcImg->Base->UsePalette == 1 )
-			// ƒpƒŒƒbƒg‚ª‚ ‚éê‡
+			// ãƒ‘ãƒ¬ãƒƒãƒˆãŒã‚ã‚‹å ´åˆ
 			{
-				// ƒuƒŒƒ“ƒhƒ‚[ƒh‚É‚æ‚Á‚Äˆ—‚ð•ªŠò
+				// ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã«ã‚ˆã£ã¦å‡¦ç†ã‚’åˆ†å²
 				switch( MemImgManage.BlendMode )
 				{
-				case DX_BLENDMODE_NOBLEND :		// ƒuƒŒƒ“ƒh–³‚µ
+				case DX_BLENDMODE_NOBLEND :		// ãƒ–ãƒ¬ãƒ³ãƒ‰ç„¡ã—
 					if( BlendImg != NULL ){
 						if( TransFlag )		DRAWPOLYGONMEMIMG_UBI_ND( if( *SrcBP != TransColor )	CODE_UBI_C32_UBR_NAC_BNO_NTBL( PALP32, DSTP32, BLND, RB, GB, BB ), 1, 4 )
 						else				DRAWPOLYGONMEMIMG_UBI_ND( 								CODE_UBI_C32_UBR_NAC_BNO_NTBL( PALP32, DSTP32, BLND, RB, GB, BB ), 1, 4 )
@@ -2265,7 +2265,7 @@ extern void DrawPolygonMemImg( MEMIMG *DestImg, MEMIMG *ZImg, const MEMIMG *SrcI
 					}
 					break ;
 					
-				case DX_BLENDMODE_ALPHA :		// ƒ¿ƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_ALPHA :		// Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
 					if( BlendImg != NULL ){
 						if( TransFlag )		DRAWPOLYGONMEMIMG_UBI_ND( if( *SrcBP != TransColor )	CODE_UBI_C32_UBR_NAC_BAL_NTBL( PALP32, DSTP32, BLND, AB, RB, GB, BB ), 1, 4 )
 						else				DRAWPOLYGONMEMIMG_UBI_ND( 								CODE_UBI_C32_UBR_NAC_BAL_NTBL( PALP32, DSTP32, BLND, AB, RB, GB, BB ), 1, 4 )
@@ -2275,7 +2275,7 @@ extern void DrawPolygonMemImg( MEMIMG *DestImg, MEMIMG *ZImg, const MEMIMG *SrcI
 					}
 					break ;
 					
-				case DX_BLENDMODE_ADD :			// ‰ÁŽZƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_ADD :			// åŠ ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 					if( BlendImg != NULL ){
 						if( TransFlag )		DRAWPOLYGONMEMIMG_UBI_ND( if( *SrcBP != TransColor )	CODE_UBI_C32_UBR_NAC_BAD_NTBL( PALP32, DSTP32, BLND, AB, RB, GB, BB ), 1, 4 )
 						else				DRAWPOLYGONMEMIMG_UBI_ND( 								CODE_UBI_C32_UBR_NAC_BAD_NTBL( PALP32, DSTP32, BLND, AB, RB, GB, BB ), 1, 4 )
@@ -2285,7 +2285,7 @@ extern void DrawPolygonMemImg( MEMIMG *DestImg, MEMIMG *ZImg, const MEMIMG *SrcI
 					}
 					break ;
 
-				case DX_BLENDMODE_SUB :			// Œ¸ŽZƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_SUB :			// æ¸›ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 					if( BlendImg != NULL ){
 						if( TransFlag )		DRAWPOLYGONMEMIMG_UBI_ND( if( *SrcBP != TransColor )	CODE_UBI_C32_UBR_NAC_BSB_NTBL( PALP32, DSTP32, BLND, AB, RB, GB, BB ), 1, 4 )
 						else				DRAWPOLYGONMEMIMG_UBI_ND( 								CODE_UBI_C32_UBR_NAC_BSB_NTBL( PALP32, DSTP32, BLND, AB, RB, GB, BB ), 1, 4 )
@@ -2295,7 +2295,7 @@ extern void DrawPolygonMemImg( MEMIMG *DestImg, MEMIMG *ZImg, const MEMIMG *SrcI
 					}
 					break ;
 					
-				case DX_BLENDMODE_MUL :			// æŽZƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_MUL :			// ä¹—ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 					if( BlendImg != NULL ){
 						if( TransFlag )		DRAWPOLYGONMEMIMG_UBI_ND( if( *SrcBP != TransColor )	CODE_UBI_C32_UBR_NAC_BML_NTBL( PALP32, DSTP32, BLND, RB, GB, BB ), 1, 4 )
 						else				DRAWPOLYGONMEMIMG_UBI_ND( 								CODE_UBI_C32_UBR_NAC_BML_NTBL( PALP32, DSTP32, BLND, RB, GB, BB ), 1, 4 )
@@ -2305,7 +2305,7 @@ extern void DrawPolygonMemImg( MEMIMG *DestImg, MEMIMG *ZImg, const MEMIMG *SrcI
 					}
 					break ;
 
-				case DX_BLENDMODE_MULA :		// æŽZ+ƒ¿ƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_MULA :		// ä¹—ç®—+Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
 					if( BlendImg != NULL ){
 						if( TransFlag )		DRAWPOLYGONMEMIMG_UBI_ND( if( *SrcBP != TransColor )	CODE_UBI_C32_UBR_NAC_BMA_NTBL( PALP32, DSTP32, BLND, AB, RB, GB, BB ), 1, 4 )
 						else				DRAWPOLYGONMEMIMG_UBI_ND( 								CODE_UBI_C32_UBR_NAC_BMA_NTBL( PALP32, DSTP32, BLND, AB, RB, GB, BB ), 1, 4 )
@@ -2315,7 +2315,7 @@ extern void DrawPolygonMemImg( MEMIMG *DestImg, MEMIMG *ZImg, const MEMIMG *SrcI
 					}
 					break ;
 
-				case DX_BLENDMODE_INVSRC :		// •`‰æŒ³‚ÌF‚ð”½“]{ƒ¿ƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_INVSRC :		// æç”»å…ƒã®è‰²ã‚’åè»¢ï¼‹Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
 					if( BlendImg != NULL ){
 						if( TransFlag )		DRAWPOLYGONMEMIMG_UBI_ND( if( *SrcBP != TransColor )	CODE_UBI_C32_UBR_NAC_BIS_NTBL( PALP32, DSTP32, BLND, AB, RB, GB, BB ), 1, 4 )
 						else				DRAWPOLYGONMEMIMG_UBI_ND( 								CODE_UBI_C32_UBR_NAC_BIS_NTBL( PALP32, DSTP32, BLND, AB, RB, GB, BB ), 1, 4 )
@@ -2327,12 +2327,12 @@ extern void DrawPolygonMemImg( MEMIMG *DestImg, MEMIMG *ZImg, const MEMIMG *SrcI
 				}
 			}
 			else
-			// ƒpƒŒƒbƒg‚ª–³‚¢ê‡
+			// ãƒ‘ãƒ¬ãƒƒãƒˆãŒç„¡ã„å ´åˆ
 			{
-				// ƒuƒŒƒ“ƒhƒ‚[ƒh‚É‚æ‚Á‚Äˆ—‚ð•ªŠò
+				// ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã«ã‚ˆã£ã¦å‡¦ç†ã‚’åˆ†å²
 				switch( MemImgManage.BlendMode )
 				{
-				case DX_BLENDMODE_NOBLEND :		// ƒuƒŒƒ“ƒh–³‚µ
+				case DX_BLENDMODE_NOBLEND :		// ãƒ–ãƒ¬ãƒ³ãƒ‰ç„¡ã—
 					if( BlendImg != NULL ){
 						if( SrcImg->Base->UseAlpha == 1 ){
 							if( TransFlag )		DRAWPOLYGONMEMIMG_UBI_ND( CODE_UBI_C32_UBR_UAC_BNO_ACK_NTBL( SRCP32, DSTP32, BLND, RB, GB, BB ), 4, 4 )
@@ -2352,7 +2352,7 @@ extern void DrawPolygonMemImg( MEMIMG *DestImg, MEMIMG *ZImg, const MEMIMG *SrcI
 					}
 					break ;
 
-				case DX_BLENDMODE_ALPHA :		// ƒ¿ƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_ALPHA :		// Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
 					if( BlendImg != NULL ){
 						if( SrcImg->Base->UseAlpha == 1 ){
 							if( TransFlag )		DRAWPOLYGONMEMIMG_UBI_ND( CODE_UBI_C32_UBR_UAC_BAL_ACK_NTBL( SRCP32, DSTP32, BLND, AB, RB, GB, BB ), 4, 4 )
@@ -2372,7 +2372,7 @@ extern void DrawPolygonMemImg( MEMIMG *DestImg, MEMIMG *ZImg, const MEMIMG *SrcI
 					}
 					break ;
 
-				case DX_BLENDMODE_ADD :		// ‰ÁŽZƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_ADD :		// åŠ ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 					if( BlendImg != NULL ){
 						if( SrcImg->Base->UseAlpha == 1 ){
 							if( TransFlag )		DRAWPOLYGONMEMIMG_UBI_ND( CODE_UBI_C32_UBR_UAC_BAD_ACK_NTBL( SRCP32, DSTP32, BLND, AB, RB, GB, BB ), 4, 4 )
@@ -2392,7 +2392,7 @@ extern void DrawPolygonMemImg( MEMIMG *DestImg, MEMIMG *ZImg, const MEMIMG *SrcI
 					}
 					break ;
 
-				case DX_BLENDMODE_SUB :		// Œ¸ŽZƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_SUB :		// æ¸›ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 					if( BlendImg != NULL ){
 						if( SrcImg->Base->UseAlpha == 1 ){
 							if( TransFlag )		DRAWPOLYGONMEMIMG_UBI_ND( CODE_UBI_C32_UBR_UAC_BSB_ACK_NTBL( SRCP32, DSTP32, BLND, AB, RB, GB, BB ), 4, 4 )
@@ -2412,7 +2412,7 @@ extern void DrawPolygonMemImg( MEMIMG *DestImg, MEMIMG *ZImg, const MEMIMG *SrcI
 					}
 					break ;
 
-				case DX_BLENDMODE_MUL :		// æŽZƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_MUL :		// ä¹—ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 					if( BlendImg != NULL ){
 						if( SrcImg->Base->UseAlpha == 1 ){
 							if( TransFlag )		DRAWPOLYGONMEMIMG_UBI_ND( CODE_UBI_C32_UBR_UAC_BML_ACK_NTBL( SRCP32, DSTP32, BLND, RB, GB, BB ), 4, 4 )
@@ -2432,7 +2432,7 @@ extern void DrawPolygonMemImg( MEMIMG *DestImg, MEMIMG *ZImg, const MEMIMG *SrcI
 					}
 					break ;
 
-				case DX_BLENDMODE_MULA :	// æŽZ+ƒ¿ƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_MULA :	// ä¹—ç®—+Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
 					if( BlendImg != NULL ){
 						if( SrcImg->Base->UseAlpha == 1 ){
 							if( TransFlag )		DRAWPOLYGONMEMIMG_UBI_ND( CODE_UBI_C32_UBR_UAC_BMA_ACK_NTBL( SRCP32, DSTP32, BLND, AB, RB, GB, BB ), 4, 4 )
@@ -2452,7 +2452,7 @@ extern void DrawPolygonMemImg( MEMIMG *DestImg, MEMIMG *ZImg, const MEMIMG *SrcI
 					}
 					break ;
 
-				case DX_BLENDMODE_INVSRC :		// •`‰æŒ³‚ÌF‚ð”½“]{ƒ¿ƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_INVSRC :		// æç”»å…ƒã®è‰²ã‚’åè»¢ï¼‹Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
 					if( BlendImg != NULL ){
 						if( SrcImg->Base->UseAlpha == 1 ){
 							if( TransFlag )		DRAWPOLYGONMEMIMG_UBI_ND( CODE_UBI_C32_UBR_UAC_BIS_ACK_NTBL( SRCP32, DSTP32, BLND, AB, RB, GB, BB ), 4, 4 )
@@ -2482,9 +2482,9 @@ END:
 		TerminateMemImg( &TempMemImg );
 
 /*	else
-	// ƒeƒNƒXƒ`ƒƒ‚ª–³‚¢ê‡
+	// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãŒç„¡ã„å ´åˆ
 	{
-		// •`‰æ€”õ
+		// æç”»æº–å‚™
 		if( SrcImg->Base->ColorType == 0 )
 		{
 			ColorD = RUP16( RT( RBOT16( Color ) ) ) |
@@ -2500,19 +2500,19 @@ END:
 		}
 		SrcBPT = ColorB ;
 
-		// ƒJƒ‰[ƒ‚[ƒh‚É‚æ‚Á‚Äˆ—‚ð•ªŠò
+		// ã‚«ãƒ©ãƒ¼ãƒ¢ãƒ¼ãƒ‰ã«ã‚ˆã£ã¦å‡¦ç†ã‚’åˆ†å²
 		switch( SrcImg->Base->ColorType )
 		{
-		case 0 :	// 16bit ƒ‚[ƒh
-			// ƒuƒŒƒ“ƒhƒ‚[ƒh‚É‚æ‚Á‚Äˆ—‚ð•ªŠò
+		case 0 :	// 16bit ãƒ¢ãƒ¼ãƒ‰
+			// ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã«ã‚ˆã£ã¦å‡¦ç†ã‚’åˆ†å²
 			switch( MemImgManage.BlendMode )
 			{
-			case DX_BLENDMODE_NOBLEND :		// ƒuƒŒƒ“ƒh–³‚µ
+			case DX_BLENDMODE_NOBLEND :		// ãƒ–ãƒ¬ãƒ³ãƒ‰ç„¡ã—
 NOTEX_NOMALDRAW_C16_NOPAL_BNO:
 				DRAWBASICPOLYGONMEMIMG_NTEX_NBI_ND( CODE_NBI_C16_NBR_NAC_BNO( SRC16, DST16, DSTP16 ), 2 )
 				break ;
 
-			case DX_BLENDMODE_ALPHA :		// ƒ¿ƒuƒŒƒ“ƒh
+			case DX_BLENDMODE_ALPHA :		// Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
 				if( MemImgManage.BlendParam == 255 ) goto NOTEX_NOMALDRAW_C16_NOPAL_BNO ;
 				else
 				if( MemImgManage.BlendParam == 0 ) return ;
@@ -2520,34 +2520,34 @@ NOTEX_NOMALDRAW_C16_NOPAL_BNO:
 				DRAWBASICPOLYGONMEMIMG_NTEX_NBI_ND( CODE_NBI_C16_NBR_NAC_BAL( SRC16, DST16, DSTP16 ), 2 )
 				break ;
 
-			case DX_BLENDMODE_ADD :		// ‰ÁŽZƒuƒŒƒ“ƒh
+			case DX_BLENDMODE_ADD :		// åŠ ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 				if( MemImgManage.BlendParam == 0 ) return ;
 				
 				DRAWBASICPOLYGONMEMIMG_NTEX_NBI_ND( CODE_NBI_C16_NBR_NAC_BAD( SRC16, DST16, DSTP16 ), 2 )
 				break ;
 
-			case DX_BLENDMODE_SUB :		// Œ¸ŽZƒuƒŒƒ“ƒh
+			case DX_BLENDMODE_SUB :		// æ¸›ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 				if( MemImgManage.BlendParam == 0 ) return ;
 				
 				DRAWBASICPOLYGONMEMIMG_NTEX_NBI_ND( CODE_NBI_C16_NBR_NAC_BSB( SRC16, DST16, DSTP16 ), 2 )
 				break ;
 
-			case DX_BLENDMODE_MUL :		// æŽZƒuƒŒƒ“ƒh
+			case DX_BLENDMODE_MUL :		// ä¹—ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 				DRAWBASICPOLYGONMEMIMG_NTEX_NBI_ND( CODE_NBI_C16_NBR_NAC_BML( SRC16, DST16, DSTP16 ), 2 )
 				break ;
 			}
 			break ;
 			
-		case 1 :	// 32bit ƒ‚[ƒh
-			// ƒuƒŒƒ“ƒhƒ‚[ƒh‚É‚æ‚Á‚Äˆ—‚ð•ªŠò
+		case 1 :	// 32bit ãƒ¢ãƒ¼ãƒ‰
+			// ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã«ã‚ˆã£ã¦å‡¦ç†ã‚’åˆ†å²
 			switch( MemImgManage.BlendMode )
 			{
-			case DX_BLENDMODE_NOBLEND :		// ƒuƒŒƒ“ƒh–³‚µ
+			case DX_BLENDMODE_NOBLEND :		// ãƒ–ãƒ¬ãƒ³ãƒ‰ç„¡ã—
 NOTEX_NOMALDRAW_C32_NOPAL_BNO:
 				DRAWBASICPOLYGONMEMIMG_NTEX_NBI_ND( CODE_NBI_C32_NBR_NAC_BNO( SRCP32, DSTP32 ), 4 )
 				break ;
 
-			case DX_BLENDMODE_ALPHA :		// ƒ¿ƒuƒŒƒ“ƒh
+			case DX_BLENDMODE_ALPHA :		// Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
 				if( MemImgManage.BlendParam == 255 ) goto NOTEX_NOMALDRAW_C32_NOPAL_BNO ;
 				else
 				if( MemImgManage.BlendParam == 0 ) return ;
@@ -2555,19 +2555,19 @@ NOTEX_NOMALDRAW_C32_NOPAL_BNO:
 				DRAWBASICPOLYGONMEMIMG_NTEX_NBI_ND( CODE_NBI_C32_NBR_NAC_BAL( SRCP32, DSTP32 ), 4 )
 				break ;
 
-			case DX_BLENDMODE_ADD :		// ‰ÁŽZƒuƒŒƒ“ƒh
+			case DX_BLENDMODE_ADD :		// åŠ ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 				if( MemImgManage.BlendParam == 0 ) return ;
 				
 				DRAWBASICPOLYGONMEMIMG_NTEX_NBI_ND( CODE_NBI_C32_NBR_NAC_BAD( SRCP32, DSTP32 ), 4 )
 				break ;
 
-			case DX_BLENDMODE_SUB :		// Œ¸ŽZƒuƒŒƒ“ƒh
+			case DX_BLENDMODE_SUB :		// æ¸›ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 				if( MemImgManage.BlendParam == 0 ) return ;
 				
 				DRAWBASICPOLYGONMEMIMG_NTEX_NBI_ND( CODE_NBI_C32_NBR_NAC_BSB( SRCP32, DSTP32 ), 4 )
 				break ;
 
-			case DX_BLENDMODE_MUL :		// æŽZƒuƒŒƒ“ƒh
+			case DX_BLENDMODE_MUL :		// ä¹—ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 				DRAWBASICPOLYGONMEMIMG_NTEX_NBI_ND( CODE_NBI_C32_NBR_NAC_BML( SRCP32, DSTP32 ), 4 )
 				break ;
 			}
@@ -2575,7 +2575,7 @@ NOTEX_NOMALDRAW_C32_NOPAL_BNO:
 		}
 	}
 */
-	// I—¹
+	// çµ‚äº†
 	return ;
 }
 #undef PAL16

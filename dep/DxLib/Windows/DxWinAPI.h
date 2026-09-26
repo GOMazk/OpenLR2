@@ -1,6 +1,6 @@
 // -------------------------------------------------------------------------------
 // 
-// 		‚c‚wƒ‰ƒCƒuƒ‰ƒŠ		WinAPIƒvƒƒOƒ‰ƒ€ƒwƒbƒ_ƒtƒ@ƒCƒ‹
+// 		ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒª		WinAPIãƒ—ãƒ­ã‚°ãƒ©ãƒ ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«
 // 
 // 				Ver 3.25a
 // 
@@ -9,7 +9,7 @@
 #ifndef DX_WINAPI_H
 #define DX_WINAPI_H
 
-// ƒCƒ“ƒNƒ‹[ƒh ------------------------------------------------------------------
+// ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ ------------------------------------------------------------------
 #include "../DxCompileConfig.h"
 
 #if !defined(CINTERFACE) && defined(__c2__) &&  __clang_major__ == 3 && __clang_minor__ == 8
@@ -36,11 +36,11 @@ namespace DxLib
 
 #endif // DX_NON_NAMESPACE
 
-// ƒ}ƒNƒ’è‹` --------------------------------------------------------------------
+// ãƒã‚¯ãƒ­å®šç¾© --------------------------------------------------------------------
 
 #define D_HTOUCHINPUT		void *
 
-// API ‚ª‰Šú‰»‚³‚ê‚Ä‚¢‚È‚©‚Á‚½‚ç‰Šú‰»‚·‚éƒ}ƒNƒ
+// API ãŒåˆæœŸåŒ–ã•ã‚Œã¦ã„ãªã‹ã£ãŸã‚‰åˆæœŸåŒ–ã™ã‚‹ãƒã‚¯ãƒ­
 #ifndef DX_NON_NAMESPACE
 
 #define SETUP_WIN_API		\
@@ -48,7 +48,7 @@ namespace DxLib
 	{\
 		DxLib::LoadWinAPI() ;\
 	\
-		/* DPIİ’è‚É‚Í‘Î‰‚µ‚Ä‚¢‚éA‚Éİ’è‚·‚é */\
+		/* DPIè¨­å®šã«ã¯å¯¾å¿œã—ã¦ã„ã‚‹ã€ã«è¨­å®šã™ã‚‹ */\
 		if( DxLib::WinAPIData.Win32Func.SetProcessDpiAwarenessFunc != NULL )\
 		{\
 			DxLib::WinAPIData.Win32Func.SetProcessDpiAwarenessFunc( DxLib::D_PROCESS_SYSTEM_DPI_AWARE ) ;\
@@ -62,7 +62,7 @@ namespace DxLib
 	{\
 		LoadWinAPI() ;\
 	\
-		/* DPIİ’è‚É‚Í‘Î‰‚µ‚Ä‚¢‚éA‚Éİ’è‚·‚é */\
+		/* DPIè¨­å®šã«ã¯å¯¾å¿œã—ã¦ã„ã‚‹ã€ã«è¨­å®šã™ã‚‹ */\
 		if( WinAPIData.Win32Func.SetProcessDpiAwarenessFunc != NULL )\
 		{\
 			WinAPIData.Win32Func.SetProcessDpiAwarenessFunc( D_PROCESS_SYSTEM_DPI_AWARE ) ;\
@@ -71,10 +71,10 @@ namespace DxLib
 
 #endif // DX_NON_NAMESPACE
 
-// ƒfƒtƒHƒ‹ƒg‚ÌDPI
+// ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®DPI
 #define DEFAULT_DPI			96
 
-// DPI‘Î‰“xİ’è
+// DPIå¯¾å¿œåº¦è¨­å®š
 typedef enum tagD_PROCESS_DPI_AWARENESS
 {
 	D_PROCESS_DPI_UNAWARE				= 0,
@@ -82,7 +82,7 @@ typedef enum tagD_PROCESS_DPI_AWARENESS
 	D_PROCESS_PER_MONITOR_DPI_AWARE		= 2
 } D_PROCESS_DPI_AWARENESS ;
 
-// DPI‘Î‰“xİ’è
+// DPIå¯¾å¿œåº¦è¨­å®š
 typedef enum tagD_MONITOR_DPI_TYPE
 {
 	D_MDT_EFFECTIVE_DPI					= 0,
@@ -91,7 +91,7 @@ typedef enum tagD_MONITOR_DPI_TYPE
 	D_MDT_DEFAULT						= D_MDT_EFFECTIVE_DPI
 } D_MONITOR_DPI_TYPE ;
 
-// ƒR[ƒ‹ƒoƒbƒNŠÖ”’è‹` ----------------------------------------------------------
+// ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°å®šç¾© ----------------------------------------------------------
 
 #if _MSC_VER > 1200 || defined( DX_GCC_COMPILE_4_9_2 )
 typedef void ( CALLBACK D_TIMECALLBACK )( UINT uTimerID, UINT uMsg, DWORD_PTR dwUser, DWORD_PTR dw1, DWORD_PTR dw2 ) ;
@@ -102,7 +102,7 @@ typedef VOID ( CALLBACK* D_TIMERPROC )( HWND, UINT, UINT, DWORD ) ;
 #endif
 typedef D_TIMECALLBACK FAR *LPD_TIMECALLBACK ;
 
-// \‘¢‘Ì’è‹` --------------------------------------------------------------------
+// æ§‹é€ ä½“å®šç¾© --------------------------------------------------------------------
 
 typedef struct D_tagWCRANGE
 {
@@ -407,7 +407,7 @@ typedef struct tagD_RAWINPUTDEVICELIST
 
 #ifndef DX_NON_NETWORK
 
-// WinSock ‚Ì DLL ‚Ìƒ|ƒCƒ“ƒ^‚â’†‚ÌAPI‚Ìƒ|ƒCƒ“ƒ^‚È‚Ç
+// WinSock ã® DLL ã®ãƒã‚¤ãƒ³ã‚¿ã‚„ä¸­ã®APIã®ãƒã‚¤ãƒ³ã‚¿ãªã©
 struct WINSOCKFUNCTION
 {
 	HMODULE					WinSockDLL ;						// WinSockDLL
@@ -439,7 +439,7 @@ struct WINSOCKFUNCTION
 
 #endif // DX_NON_NETWORK
 
-// Input Method Manager DLL ‚Ìƒ|ƒCƒ“ƒ^‚â’†‚ÌAPI‚Ìƒ|ƒCƒ“ƒ^‚È‚Ç
+// Input Method Manager DLL ã®ãƒã‚¤ãƒ³ã‚¿ã‚„ä¸­ã®APIã®ãƒã‚¤ãƒ³ã‚¿ãªã©
 struct IMMFUNCTION
 {
 	HMODULE					Imm32DLL ;
@@ -457,7 +457,7 @@ struct IMMFUNCTION
 	BOOL					( WINAPI *ImmSetCompositionStringFunc )( HIMC hIMC, DWORD dwIndex, LPCVOID lpComp, DWORD dwCompLen, LPCVOID lpRead, DWORD dwReadLen ) ;
 } ;
 
-// Win32 API DLL ‚Ìƒ|ƒCƒ“ƒ^‚â API ‚Ìƒ|ƒCƒ“ƒ^‚È‚Ç
+// Win32 API DLL ã®ãƒã‚¤ãƒ³ã‚¿ã‚„ API ã®ãƒã‚¤ãƒ³ã‚¿ãªã©
 struct WIN32APIFUNCTION
 {
 	HMODULE					WinMMDLL ;
@@ -597,8 +597,8 @@ struct WIN32APIFUNCTION
 	void					( WINAPI *InitCommonControlsFunc )( VOID ) ;
 
 	HMODULE					User32DLL ;
-	BOOL					( WINAPI *WINNLSEnableIME_Func )( HWND hwnd, BOOL bFlag ) ;	// WINNLSEnableIME API‚ÌƒAƒhƒŒƒX
-	BOOL					( WINAPI *UpdateLayeredWindow )( HWND, HDC, POINT*, SIZE*, HDC, POINT*, COLORREF, BLENDFUNCTION*, DWORD ) ;		// UpdateLayeredWindow ‚Ì‚`‚o‚hƒ|ƒCƒ“ƒ^
+	BOOL					( WINAPI *WINNLSEnableIME_Func )( HWND hwnd, BOOL bFlag ) ;	// WINNLSEnableIME APIã®ã‚¢ãƒ‰ãƒ¬ã‚¹
+	BOOL					( WINAPI *UpdateLayeredWindow )( HWND, HDC, POINT*, SIZE*, HDC, POINT*, COLORREF, BLENDFUNCTION*, DWORD ) ;		// UpdateLayeredWindow ã®ï¼¡ï¼°ï¼©ãƒã‚¤ãƒ³ã‚¿
 	HWND					( WINAPI *CreateWindowExAFunc )( DWORD dwExStyle, LPCSTR lpClassName, LPCSTR lpWindowName, DWORD dwStyle, int X, int Y, int nWidth, int nHeight, HWND hWndParent, HMENU hMenu, HINSTANCE hInstance, LPVOID lpParam ) ;
 	HWND					( WINAPI *CreateWindowExWFunc )( DWORD dwExStyle, LPCWSTR lpClassName, LPCWSTR lpWindowName, DWORD dwStyle, int X, int Y, int nWidth, int nHeight, HWND hWndParent, HMENU hMenu, HINSTANCE hInstance, LPVOID lpParam ) ;
 	BOOL					( WINAPI *DestroyWindowFunc )( HWND hWnd ) ;
@@ -846,42 +846,42 @@ struct WIN32APIFUNCTION
 	HRESULT					( WINAPI *PropVariantClearFunc )( D_PROPVARIANT *pvar ) ;
 } ;
 
-// WinAPI î•ñ\‘¢‘Ì
+// WinAPI æƒ…å ±æ§‹é€ ä½“
 struct WINAPIDATA
 {
 	volatile int			InitializeFlag ;
-	volatile int			EnableWideCharaFunction ;			// Wide•¶š‚ÌŠÖ”‚ª—LŒø‚©‚Ç‚¤‚©
+	volatile int			EnableWideCharaFunction ;			// Wideæ–‡å­—ã®é–¢æ•°ãŒæœ‰åŠ¹ã‹ã©ã†ã‹
 
 #ifndef DX_NON_NETWORK
-	WINSOCKFUNCTION			WinSockFunc ;						// WinSock API ŠÖŒW‚Ìƒf[ƒ^
+	WINSOCKFUNCTION			WinSockFunc ;						// WinSock API é–¢ä¿‚ã®ãƒ‡ãƒ¼ã‚¿
 #endif
 
 #ifndef DX_NON_KEYEX
-	IMMFUNCTION				ImmFunc ;							// IMM API ŠÖŒW‚Ìƒf[ƒ^
+	IMMFUNCTION				ImmFunc ;							// IMM API é–¢ä¿‚ã®ãƒ‡ãƒ¼ã‚¿
 #endif
 
-	WIN32APIFUNCTION		Win32Func ;							// Win32 API ŠÖŒW‚Ìƒf[ƒ^
+	WIN32APIFUNCTION		Win32Func ;							// Win32 API é–¢ä¿‚ã®ãƒ‡ãƒ¼ã‚¿
 
 	HMODULE					DwmApiDLL ;							// Desktop Window Manager API DLL
-	HRESULT					( WINAPI *DF_DwmEnableComposition )( UINT uCompositionAction ) ;	// DwmEnableComposition API ‚ÌƒAƒhƒŒƒX
+	HRESULT					( WINAPI *DF_DwmEnableComposition )( UINT uCompositionAction ) ;	// DwmEnableComposition API ã®ã‚¢ãƒ‰ãƒ¬ã‚¹
 	HRESULT					( WINAPI *DwmGetWindowAttributeFunc )( HWND hwnd, DWORD dwAttribute, PVOID pvAttribute, DWORD cbAttribute ) ;
 } ;
 
-// “à•”‘åˆæ•Ï”éŒ¾ --------------------------------------------------------------
+// å†…éƒ¨å¤§åŸŸå¤‰æ•°å®£è¨€ --------------------------------------------------------------
 
 extern WINAPIDATA WinAPIData ;
 
-// ŠÖ”ƒvƒƒgƒ^ƒCƒvéŒ¾-----------------------------------------------------------
+// é–¢æ•°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€-----------------------------------------------------------
 
-extern int LoadWinAPI( void ) ;				// WindowsOS ‚Ì DLL ‚ğ“Ç‚İ‚Ş
-extern int ReleaseWinAPI( void ) ;			// WindowsOS ‚Ì DLL ‚ğ‰ğ•ú‚·‚é
+extern int LoadWinAPI( void ) ;				// WindowsOS ã® DLL ã‚’èª­ã¿è¾¼ã‚€
+extern int ReleaseWinAPI( void ) ;			// WindowsOS ã® DLL ã‚’è§£æ”¾ã™ã‚‹
 
 extern HRESULT WinAPI_CoCreateInstance_ASync( REFCLSID rclsid, D_IUnknown * pUnkOuter, DWORD dwClsContext, REFIID riid, LPVOID *ppv, int ASyncThread = FALSE ) ;
 
-extern int LoadDirect3DShaderCompiler( void ) ;					// Direct3D 9 —pƒVƒF[ƒ_[ƒRƒ“ƒpƒCƒ‰[‚ğ“Ç‚İ‚Ş
-extern int LoadDirect3D11ShaderCompiler( void ) ;				// Direct3D 11 —pƒVƒF[ƒ_[ƒRƒ“ƒpƒCƒ‰[‚ğ“Ç‚İ‚Ş
+extern int LoadDirect3DShaderCompiler( void ) ;					// Direct3D 9 ç”¨ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚³ãƒ³ãƒ‘ã‚¤ãƒ©ãƒ¼ã‚’èª­ã¿è¾¼ã‚€
+extern int LoadDirect3D11ShaderCompiler( void ) ;				// Direct3D 11 ç”¨ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚³ãƒ³ãƒ‘ã‚¤ãƒ©ãƒ¼ã‚’èª­ã¿è¾¼ã‚€
 
-// ƒ‰ƒbƒp[ŠÖ”
+// ãƒ©ãƒƒãƒ‘ãƒ¼é–¢æ•°
 extern	HMODULE				WINAPI GetModuleHandleWFunc( LPCWSTR lpModuleName ) ;
 extern	BOOL				WINAPI VerifyVersionInfoWFunc( D_OSVERSIONINFOEXW *lpVersionInformation, DWORD dwTypeMask, DWORDLONG dwlConditionMask ) ;
 extern	BOOL				WINAPI GetVersionExWFunc( LPOSVERSIONINFOW lpVersionInformation ) ;

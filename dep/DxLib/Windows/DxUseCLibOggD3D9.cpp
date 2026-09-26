@@ -1,12 +1,12 @@
 //-----------------------------------------------------------------------------
 // 
-// 		�c�w���C�u����		Ogg�֌W�v���O����( Direct3D9 )
+// 		ＤＸライブラリ		Ogg関係プログラム( Direct3D9 )
 // 
 //  	Ver 3.25a
 // 
 //-----------------------------------------------------------------------------
 
-// �c�w���C�u�����쐬���p��`
+// ＤＸライブラリ作成時用定義
 #define DX_MAKE
 
 #include "../DxCompileConfig.h"
@@ -23,7 +23,7 @@ using namespace DxLib ;
 
 #if !defined( DX_NON_OGGVORBIS ) || !defined( DX_NON_OGGTHEORA )
 
-// �C���N���[�h----------------------------------------------------------------
+// インクルード----------------------------------------------------------------
 #include "../DxLib.h"
 #include "../DxStatic.h"
 #include "../DxUseCLib.h"
@@ -36,33 +36,33 @@ using namespace DxLib ;
 //namespace DxLib
 //{
 
-// �}�N����`------------------------------------------------------------------
+// マクロ定義------------------------------------------------------------------
 
-// �^��`----------------------------------------------------------------------
+// 型定義----------------------------------------------------------------------
 
-// �f�[�^�錾------------------------------------------------------------------
+// データ宣言------------------------------------------------------------------
 
 
-// �֐��v���g�^�C�v�錾 -------------------------------------------------------
+// 関数プロトタイプ宣言 -------------------------------------------------------
 
-// �v���O����------------------------------------------------------------------
+// プログラム------------------------------------------------------------------
 
-// ���ˑ��֐�
+// 環境依存関数
 
 #ifndef DX_NON_OGGTHEORA
 
-// �n�[�h�E�G�A�@�\���L���ȏꍇ�� YUV �t�H�[�}�b�g�̈ꎞ�ۑ��p�e�N�X�`�����쐬����
+// ハードウエア機能が有効な場合は YUV フォーマットの一時保存用テクスチャを作成する
 extern	int	TheoraDecode_D3D9_CreateSurface_PF( DECODE_THEORA *DT )
 {
 //	ogg_uint32_t w, h ;
 
-	// YUV�t�H�[�}�b�g�̑Ή��𖳌���
+	// YUVフォーマットの対応を無効化
 	DT->YUVImageFourCC = 0 ;
 	DT->ValidYUVSurface = FALSE ;
 
 	return 0 ;
 
-//	// �n�[�h�E�G�A�@�\���L���ȏꍇ�� YUV �t�H�[�}�b�g�̈ꎞ�ۑ��p�e�N�X�`�����쐬����
+//	// ハードウエア機能が有効な場合は YUV フォーマットの一時保存用テクスチャを作成する
 //	if( DT->NotUseYUVFormatSurface || GSYS.Setting.ValidHardware == FALSE || Graphics_Hardware_CheckValid_PF() == 0 )
 //	{
 //		return 0 ;
@@ -73,25 +73,25 @@ extern	int	TheoraDecode_D3D9_CreateSurface_PF( DECODE_THEORA *DT )
 //	w = DT->TheoraInfo.width ;
 //	h = DT->TheoraInfo.height ;
 //
-//	// �ŏ��� YV12 �`��������
+//	// 最初は YV12 形式を試す
 //	DT->YUVImageFourCC = MAKEFOURCC( 'Y', 'V', '1', '2' ) ;
 //	Direct3DDevice9_CreateOffscreenPlainSurface( w, h, ( D_D3DFORMAT )DT->YUVImageFourCC, D_D3DPOOL_DEFAULT, ( D_IDirect3DSurface9 ** )&DT->PF->D3D9.YUVSurface, NULL ) ;
 //
-//	// �쐬�Ɏ��s������ YUY2 �t�H�[�}�b�g�������Ă݂�
+//	// 作成に失敗したら YUY2 フォーマットを試してみる
 //	if( DT->PF->D3D9.YUVSurface == NULL )
 //	{
 //		DT->YUVImageFourCC = MAKEFOURCC( 'Y', 'U', 'Y', '2' ) ;
 //		Direct3DDevice9_CreateOffscreenPlainSurface( w, h, ( D_D3DFORMAT )DT->YUVImageFourCC, D_D3DPOOL_DEFAULT, ( D_IDirect3DSurface9 ** )&DT->PF->D3D9.YUVSurface, NULL ) ;
 //	}
 //
-//	// ����ł��ʖڂȂ� UYVY �t�H�[�}�b�g������
+//	// それでも駄目なら UYVY フォーマットを試す
 //	if( DT->PF->D3D9.YUVSurface == NULL )
 //	{
 //		DT->YUVImageFourCC = MAKEFOURCC( 'U', 'Y', 'V', 'Y' ) ;
 //		Direct3DDevice9_CreateOffscreenPlainSurface( w, h, ( D_D3DFORMAT )DT->YUVImageFourCC, D_D3DPOOL_DEFAULT, ( D_IDirect3DSurface9 ** )&DT->PF->D3D9.YUVSurface, NULL ) ;
 //	}
 //
-//	// ����ł��ʖڂȂ� YUV �t�H�[�}�b�g����߂�
+//	// それでも駄目なら YUV フォーマットを諦める
 //	if( DT->PF->D3D9.YUVSurface == NULL )
 //	{
 //		DT->YUVImageFourCC = 0 ;
@@ -102,7 +102,7 @@ extern	int	TheoraDecode_D3D9_CreateSurface_PF( DECODE_THEORA *DT )
 //		DT->ValidYUVSurface = TRUE ;
 //	}
 //
-//	// ����I��
+//	// 正常終了
 //	return 0 ;
 }
 
@@ -117,7 +117,7 @@ extern	void	TheoraDecode_D3D9_ReleaseSurface_PF( DECODE_THEORA *DT )
 	}
 }
 
-// �J�����g�t���[����RGB�摜���쐬����( �߂�l  1:�쐬���ꂽ  0:����Ȃ����� )
+// カレントフレームのRGB画像を作成する( 戻り値  1:作成された  0:されなかった )
 extern	int		TheoraDecode_D3D9_SetupImage_PF( DECODE_THEORA *DT, volatile THEORA_STOCKFRAME *Stock, int ASyncThread )
 {
 	D_D3DLOCKED_RECT LockRect = { 0 } ;
@@ -134,7 +134,7 @@ extern	int		TheoraDecode_D3D9_SetupImage_PF( DECODE_THEORA *DT, volatile THEORA_
 	int              h ;
 	int              dpitch ;
 
-	// ���b�N�Ɏ��s������T�[�t�F�X�̍쐬���Ȃ���
+	// ロックに失敗したらサーフェスの作成しなおし
 	Ok = 0 ;
 	for( i = 0 ; i < 3 ; i ++ )
 	{
@@ -149,16 +149,16 @@ extern	int		TheoraDecode_D3D9_SetupImage_PF( DECODE_THEORA *DT, volatile THEORA_
 		}
 	}
 
-	// �쐬���Ȃ����Ă��ʖڂ����������
+	// 作成しなおしても駄目だったら諦め
 	if( Ok == 1 )
 	{
-		// �t�H�[�}�b�g�ɂ���ď����𕪊�
+		// フォーマットによって処理を分岐
 		d   = ( unsigned char * )LockRect.pBits ;
 		ys  = ( unsigned char * )Stock->YBuffer ;
 		uvs = ( unsigned char * )Stock->UVBuffer ;
 		dpitch = LockRect.Pitch ;
 
-		// YV12 �̏ꍇ
+		// YV12 の場合
 		if( DT->YUVImageFourCC == MAKEFOURCC( 'Y', 'V', '1', '2' ) )
 		{
 			if( Stock->YWidth  == Stock->UVWidth  * 2 &&
@@ -197,7 +197,7 @@ extern	int		TheoraDecode_D3D9_SetupImage_PF( DECODE_THEORA *DT, volatile THEORA_
 			}
 		}
 		else
-		// YUY2 �̏ꍇ
+		// YUY2 の場合
 		if( DT->YUVImageFourCC == MAKEFOURCC( 'Y', 'U', 'Y', '2' ) )
 		{
 			if( Stock->YWidth  == Stock->UVWidth  * 2 &&
@@ -227,7 +227,7 @@ extern	int		TheoraDecode_D3D9_SetupImage_PF( DECODE_THEORA *DT, volatile THEORA_
 			}
 		}
 		else
-		// UYVY �̏ꍇ
+		// UYVY の場合
 		if( DT->YUVImageFourCC == MAKEFOURCC( 'U', 'Y', 'V', 'Y' ) )
 		{
 			if( Stock->YWidth  == Stock->UVWidth  * 2 &&
@@ -257,21 +257,21 @@ extern	int		TheoraDecode_D3D9_SetupImage_PF( DECODE_THEORA *DT, volatile THEORA_
 			}
 		}
 
-		// ���b�N������
+		// ロックを解除
 		Direct3DSurface9_UnlockRect_ASync( DT->PF->D3D9.YUVSurface, ASyncThread ) ;
 
-		// �Z�b�g�A�b�v�t���O�𗧂Ă�
+		// セットアップフラグを立てる
 		DT->YUVImageSetup = 1 ;
 	}
 
-	// ����I��
+	// 正常終了
 	return 0 ;
 }
 
-// �ꎞ�o�b�t�@�� YUV �t�H�[�}�b�g�̃e�N�X�`���𓾂�
+// 一時バッファの YUV フォーマットのテクスチャを得る
 extern	const void *TheoraDecode_D3D9_GetYUVImage_PF( DECODE_THEORA *DT )
 {
-	// �A�h���X��Ԃ�
+	// アドレスを返す
 	return DT->PF->D3D9.YUVSurface ;
 }
 

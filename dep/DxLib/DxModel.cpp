@@ -1,6 +1,6 @@
 // -------------------------------------------------------------------------------
 // 
-// 		‚c‚wѓ‰ѓCѓuѓ‰ѓЉ		ѓ‚ѓfѓ‹ѓfЃ[ѓ^ђ§ЊдѓvѓЌѓOѓ‰ѓЂ
+// 		пј¤пјёгѓ©г‚¤гѓ–гѓ©гѓЄ		гѓўгѓ‡гѓ«гѓ‡гѓјг‚їе€¶еѕЎгѓ—гѓ­г‚°гѓ©гѓ 
 // 
 // 				Ver 3.25a
 // 
@@ -14,7 +14,7 @@
 
 #ifndef DX_NON_MODEL
 
-// ѓCѓ“ѓNѓ‹Ѓ[ѓh ---------------------------------
+// г‚¤гѓіг‚Їгѓ«гѓјгѓ‰ ---------------------------------
 #include "DxModelFile.h"
 #include "DxModelRead.h"
 
@@ -65,231 +65,231 @@ namespace DxLib
 
 #endif // DX_NON_NAMESPACE
 
-// ѓ}ѓNѓЌ’и‹` -----------------------------------
+// гѓћг‚Їгѓ­е®љзѕ© -----------------------------------
 
 
-// ѓ‚ѓfѓ‹ѓfЃ[ѓ^‚ѕ‚Ї‚р€µ‚¤ЉЦђ”‚М–`“Є‹¤’К•¶
+// гѓўгѓ‡гѓ«гѓ‡гѓјг‚їгЃ гЃ‘г‚’ж‰±гЃ†й–ўж•°гЃ®е†’й ­е…±йЂљж–‡
 #define MV1START( MODELHAND, MODEL, MODELBASE, ERR )\
 	MV1_MODEL *MODEL ;\
 	MV1_MODEL_BASE *MODELBASE ;\
 \
-	/* Џ‰Љъ‰»‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[ */\
+	/* е€ќжњџеЊ–гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј */\
 	if( MV1Man.Initialize == false )\
 		return ERR ;\
 \
-	/* ѓAѓhѓЊѓXЋж“ѕ */\
+	/* г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ— */\
 	if( MV1MDLCHK( MODELHAND, MODEL ) )\
 		return ERR ;\
 	MODELBASE = MODEL->BaseData ;
 
 
 
-// ѓtѓЊЃ[ѓЂ‚р€µ‚¤ЉЦђ”‚М–`“Є‹¤’К•¶
+// гѓ•гѓ¬гѓјгѓ г‚’ж‰±гЃ†й–ўж•°гЃ®е†’й ­е…±йЂљж–‡
 #define MV1FRAMESTART( MODELHAND, MODEL, MODELBASE, FRAME, FRAMEIND, ERR )\
 	MV1_MODEL *MODEL ;\
 	MV1_MODEL_BASE *MODELBASE ;\
 	MV1_FRAME *FRAME ;\
 \
-	/* Џ‰Љъ‰»‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[ */\
+	/* е€ќжњџеЊ–гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј */\
 	if( MV1Man.Initialize == false )\
 		return ERR ;\
 \
-	/* ѓAѓhѓЊѓXЋж“ѕ */\
+	/* г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ— */\
 	if( MV1MDLCHK( MODELHAND, MODEL ) )\
 		return ERR ;\
 	MODELBASE = MODEL->BaseData ;\
 \
-	/* ѓCѓ“ѓfѓbѓNѓX‚Є•sђі‚ѕ‚Б‚Ѕ‚зѓGѓ‰Ѓ[ */\
+	/* г‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃЊдёЌж­ЈгЃ гЃЈгЃџг‚‰г‚Ёгѓ©гѓј */\
 	if( FRAMEIND < 0 || FRAMEIND >= MODELBASE->FrameNum )\
 		return ERR ;\
 	FRAME = &MODEL->Frame[ FRAMEIND ] ;
 
 
-// ѓЃѓbѓVѓ…‚р€µ‚¤ЉЦђ”‚М–`“Є‹¤’К•¶
+// гѓЎгѓѓг‚·гѓҐг‚’ж‰±гЃ†й–ўж•°гЃ®е†’й ­е…±йЂљж–‡
 #define MV1MESHSTART( MODELHAND, MODEL, MODELBASE, MESH, MESHIND, ERR )\
 	MV1_MODEL *MODEL ;\
 	MV1_MODEL_BASE *MODELBASE ;\
 	MV1_MESH *MESH ;\
 \
-	/* Џ‰Љъ‰»‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[ */\
+	/* е€ќжњџеЊ–гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј */\
 	if( MV1Man.Initialize == false )\
 		return ERR ;\
 \
-	/* ѓAѓhѓЊѓXЋж“ѕ */\
+	/* г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ— */\
 	if( MV1MDLCHK( MODELHAND, MODEL ) )\
 		return ERR ;\
 	MODELBASE = MODEL->BaseData ;\
 \
-	/* ѓCѓ“ѓfѓbѓNѓX‚Є•sђі‚ѕ‚Б‚Ѕ‚зѓGѓ‰Ѓ[ */\
+	/* г‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃЊдёЌж­ЈгЃ гЃЈгЃџг‚‰г‚Ёгѓ©гѓј */\
 	if( MESHIND < 0 || MESHIND >= MODELBASE->MeshNum )\
 		return ERR ;\
 	MESH = &MODEL->Mesh[ MESHIND ] ;
 
 
-// ѓVѓFѓCѓv‚р€µ‚¤ЉЦђ”‚М–`“Є‹¤’К•¶
+// г‚·г‚§г‚¤гѓ—г‚’ж‰±гЃ†й–ўж•°гЃ®е†’й ­е…±йЂљж–‡
 #define MV1SHAPESTART( MODELHAND, MODEL, MODELBASE, SHAPE, SHAPEIND, ERR )\
 	MV1_MODEL *MODEL ;\
 	MV1_MODEL_BASE *MODELBASE ;\
 	MV1_SHAPE *SHAPE ;\
 \
-	/* Џ‰Љъ‰»‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[ */\
+	/* е€ќжњџеЊ–гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј */\
 	if( MV1Man.Initialize == false )\
 		return ERR ;\
 \
-	/* ѓAѓhѓЊѓXЋж“ѕ */\
+	/* г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ— */\
 	if( MV1MDLCHK( MODELHAND, MODEL ) )\
 		return ERR ;\
 	MODELBASE = MODEL->BaseData ;\
 \
-	/* ѓCѓ“ѓfѓbѓNѓX‚Є•sђі‚ѕ‚Б‚Ѕ‚зѓGѓ‰Ѓ[ */\
+	/* г‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃЊдёЌж­ЈгЃ гЃЈгЃџг‚‰г‚Ёгѓ©гѓј */\
 	if( SHAPEIND < 0 || SHAPEIND >= MODELBASE->ShapeNum )\
 		return ERR ;\
 	SHAPE = &MODEL->Shape[ SHAPEIND ] ;
 
 
-// ѓgѓ‰ѓCѓAѓ“ѓOѓ‹ѓЉѓXѓg‚р€µ‚¤ЉЦђ”‚М–`“Є‹¤’К•¶
+// гѓ€гѓ©г‚¤г‚ўгѓіг‚°гѓ«гѓЄг‚№гѓ€г‚’ж‰±гЃ†й–ўж•°гЃ®е†’й ­е…±йЂљж–‡
 #define MV1TLISTSTART( MODELHAND, MODEL, MODELBASE, TLIST, TLISTIND, ERR )\
 	MV1_MODEL *MODEL ;\
 	MV1_MODEL_BASE *MODELBASE ;\
 	MV1_TRIANGLE_LIST_BASE *TLIST ;\
 \
-	/* Џ‰Љъ‰»‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[ */\
+	/* е€ќжњџеЊ–гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј */\
 	if( MV1Man.Initialize == false )\
 		return ERR ;\
 \
-	/* ѓAѓhѓЊѓXЋж“ѕ */\
+	/* г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ— */\
 	if( MV1MDLCHK( MODELHAND, MODEL ) )\
 		return ERR ;\
 	MODELBASE = MODEL->BaseData ;\
 \
-	/* ѓCѓ“ѓfѓbѓNѓX‚Є•sђі‚ѕ‚Б‚Ѕ‚зѓGѓ‰Ѓ[ */\
+	/* г‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃЊдёЌж­ЈгЃ гЃЈгЃџг‚‰г‚Ёгѓ©гѓј */\
 	if( TLISTIND < 0 || TLISTIND >= MODELBASE->TriangleNum )\
 		return ERR ;\
 	TLIST = &MODELBASE->TriangleList[ TLISTIND ] ;
 
 
-// ѓ}ѓeѓЉѓAѓ‹‚р€µ‚¤ЉЦђ”‚М–`“Є‹¤’К•¶
+// гѓћгѓ†гѓЄг‚ўгѓ«г‚’ж‰±гЃ†й–ўж•°гЃ®е†’й ­е…±йЂљж–‡
 #define MV1MATERIALSTART( MODELHAND, MODEL, MODELBASE, MATERIAL, MATERIALIND, ERR )\
 	MV1_MODEL *MODEL ;\
 	MV1_MODEL_BASE *MODELBASE ;\
 	MV1_MATERIAL *MATERIAL ;\
 \
-	/* Џ‰Љъ‰»‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[ */\
+	/* е€ќжњџеЊ–гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј */\
 	if( MV1Man.Initialize == false )\
 		return ERR ;\
 \
-	/* ѓAѓhѓЊѓXЋж“ѕ */\
+	/* г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ— */\
 	if( MV1MDLCHK( MODELHAND, MODEL ) )\
 		return ERR ;\
 	MODELBASE = MODEL->BaseData ;\
 \
-	/* ѓCѓ“ѓfѓbѓNѓX‚Є•sђі‚ѕ‚Б‚Ѕ‚зѓGѓ‰Ѓ[ */\
+	/* г‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃЊдёЌж­ЈгЃ гЃЈгЃџг‚‰г‚Ёгѓ©гѓј */\
 	if( MATERIALIND < 0 || MATERIALIND >= MODELBASE->MaterialNum )\
 		return ERR ;\
 	MATERIAL = &MODEL->Material[ MATERIALIND ] ;
 
 
-// ѓeѓNѓXѓ`ѓѓ‚р€µ‚¤ЉЦђ”‚М–`“Є‹¤’К•¶
+// гѓ†г‚Їг‚№гѓЃгѓЈг‚’ж‰±гЃ†й–ўж•°гЃ®е†’й ­е…±йЂљж–‡
 #define MV1TEXTURESTART( MODELHAND, MODEL, MODELBASE, TEXTURE, TEXTUREIND, ERR )\
 	MV1_MODEL *MODEL ;\
 	MV1_MODEL_BASE *MODELBASE ;\
 	MV1_TEXTURE *TEXTURE ;\
 \
-	/* Џ‰Љъ‰»‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[ */\
+	/* е€ќжњџеЊ–гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј */\
 	if( MV1Man.Initialize == false )\
 		return ERR ;\
 \
-	/* ѓAѓhѓЊѓXЋж“ѕ */\
+	/* г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ— */\
 	if( MV1MDLCHK( MODELHAND, MODEL ) )\
 		return ERR ;\
 	MODELBASE = MODEL->BaseData ;\
 \
-	/* ѓCѓ“ѓfѓbѓNѓX‚Є•sђі‚ѕ‚Б‚Ѕ‚зѓGѓ‰Ѓ[ */\
+	/* г‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃЊдёЌж­ЈгЃ гЃЈгЃџг‚‰г‚Ёгѓ©гѓј */\
 	if( TEXTUREIND < 0 || TEXTUREIND >= MODELBASE->TextureNum )\
 		return ERR ;\
 	TEXTURE = &MODEL->Texture[ TEXTUREIND ] ;
 
 
-// Љо–{ѓfЃ[ѓ^‚Мѓ}ѓeѓЉѓAѓ‹‚р€µ‚¤ЉЦђ”‚М–`“Є‹¤’К•¶
+// еџєжњ¬гѓ‡гѓјг‚їгЃ®гѓћгѓ†гѓЄг‚ўгѓ«г‚’ж‰±гЃ†й–ўж•°гЃ®е†’й ­е…±йЂљж–‡
 #define MV1BASEMATERIALSTART( MODELBASEHAND, MODELBASE, MATERIAL, MATERIALIND, ERR )\
 	MV1_MODEL_BASE *MODELBASE ;\
 	MV1_MATERIAL_BASE *MATERIAL ;\
 \
-	/* Џ‰Љъ‰»‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[ */\
+	/* е€ќжњџеЊ–гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј */\
 	if( MV1Man.Initialize == false )\
 		return ERR ;\
 \
-	/* ѓAѓhѓЊѓXЋж“ѕ */\
+	/* г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ— */\
 	if( MV1BMDLCHK( MODELBASEHAND, MODELBASE ) )\
 		return ERR ;\
 \
-	/* ѓCѓ“ѓfѓbѓNѓX‚Є•sђі‚ѕ‚Б‚Ѕ‚зѓGѓ‰Ѓ[ */\
+	/* г‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃЊдёЌж­ЈгЃ гЃЈгЃџг‚‰г‚Ёгѓ©гѓј */\
 	if( MATERIALIND < 0 || MATERIALIND >= MODELBASE->MaterialNum )\
 		return ERR ;\
 	MATERIAL = &MODELBASE->Material[ MATERIALIND ] ;
 
 
 
-// Љо–{ѓfЃ[ѓ^‚МѓeѓNѓXѓ`ѓѓ‚р€µ‚¤ЉЦђ”‚М–`“Є‹¤’К•¶
+// еџєжњ¬гѓ‡гѓјг‚їгЃ®гѓ†г‚Їг‚№гѓЃгѓЈг‚’ж‰±гЃ†й–ўж•°гЃ®е†’й ­е…±йЂљж–‡
 #define MV1BASETEXTURELSTART( MODELBASEHAND, MODELBASE, TEXTURE, TEXTUREIND, ERR )\
 	MV1_MODEL_BASE *MODELBASE ;\
 	MV1_TEXTURE_BASE *TEXTURE ;\
 \
-	/* Џ‰Љъ‰»‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[ */\
+	/* е€ќжњџеЊ–гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј */\
 	if( MV1Man.Initialize == false )\
 		return ERR ;\
 \
-	/* ѓAѓhѓЊѓXЋж“ѕ */\
+	/* г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ— */\
 	if( MV1BMDLCHK( MODELBASEHAND, MODELBASE ) )\
 		return ERR ;\
 \
-	/* ѓCѓ“ѓfѓbѓNѓX‚Є•sђі‚ѕ‚Б‚Ѕ‚зѓGѓ‰Ѓ[ */\
+	/* г‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃЊдёЌж­ЈгЃ гЃЈгЃџг‚‰г‚Ёгѓ©гѓј */\
 	if( TEXTUREIND < 0 || TEXTUREIND >= MODELBASE->TextureNum )\
 		return ERR ;\
 	TEXTURE = &MODELBASE->Texture[ TEXTUREIND ] ;
 
 
 
-// Љо–{ѓfЃ[ѓ^‚МѓЃѓbѓVѓ…‚р€µ‚¤ЉЦђ”‚М–`“Є‹¤’К•¶
+// еџєжњ¬гѓ‡гѓјг‚їгЃ®гѓЎгѓѓг‚·гѓҐг‚’ж‰±гЃ†й–ўж•°гЃ®е†’й ­е…±йЂљж–‡
 #define MV1BASEMESHSTART( MODELBASEHAND, MODELBASE, MESH, MESHIND, ERR )\
 	MV1_MODEL_BASE *MODELBASE ;\
 	MV1_MESH_BASE *MESH ;\
 \
-	/* Џ‰Љъ‰»‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[ */\
+	/* е€ќжњџеЊ–гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј */\
 	if( MV1Man.Initialize == false )\
 		return ERR ;\
 \
-	/* ѓAѓhѓЊѓXЋж“ѕ */\
+	/* г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ— */\
 	if( MV1BMDLCHK( MODELBASEHAND, MODELBASE ) )\
 		return ERR ;\
 \
-	/* ѓCѓ“ѓfѓbѓNѓX‚Є•sђі‚ѕ‚Б‚Ѕ‚зѓGѓ‰Ѓ[ */\
+	/* г‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃЊдёЌж­ЈгЃ гЃЈгЃџг‚‰г‚Ёгѓ©гѓј */\
 	if( MESHIND < 0 || MESHIND >= MODELBASE->MeshNum )\
 		return ERR ;\
 	MESH = &MODELBASE->Mesh[ MESHIND ] ;
 
 
 
-// Љо–{ѓfЃ[ѓ^‚МѓVѓFѓCѓv‚р€µ‚¤ЉЦђ”‚М–`“Є‹¤’К•¶
+// еџєжњ¬гѓ‡гѓјг‚їгЃ®г‚·г‚§г‚¤гѓ—г‚’ж‰±гЃ†й–ўж•°гЃ®е†’й ­е…±йЂљж–‡
 #define MV1BASESHAPESTART( MODELBASEHAND, MODELBASE, SHAPE, SHAPEIND, ERR )\
 	MV1_MODEL_BASE *MODELBASE ;\
 	MV1_SHAPE_BASE *SHAPE ;\
 \
-	/* Џ‰Љъ‰»‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[ */\
+	/* е€ќжњџеЊ–гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј */\
 	if( MV1Man.Initialize == false )\
 		return ERR ;\
 \
-	/* ѓAѓhѓЊѓXЋж“ѕ */\
+	/* г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ— */\
 	if( MV1BMDLCHK( MODELBASEHAND, MODELBASE ) )\
 		return ERR ;\
 \
-	/* ѓCѓ“ѓfѓbѓNѓX‚Є•sђі‚ѕ‚Б‚Ѕ‚зѓGѓ‰Ѓ[ */\
+	/* г‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃЊдёЌж­ЈгЃ гЃЈгЃџг‚‰г‚Ёгѓ©гѓј */\
 	if( SHAPEIND < 0 || SHAPEIND >= MODELBASE->ShapeNum )\
 		return ERR ;\
 	SHAPE = &MODELBASE->Shape[ SHAPEIND ] ;
 
 
-// ѓЃѓbѓVѓ…‚М”ј“§–ѕѓXѓeЃ[ѓ^ѓXѓZѓbѓgѓAѓbѓvЉ®—№ѓtѓ‰ѓO‚Є—§‚Б‚Д‚ў‚Ѕ‚з“|‚·
+// гѓЎгѓѓг‚·гѓҐгЃ®еЌЉйЂЏжЋг‚№гѓ†гѓјг‚їг‚№г‚»гѓѓгѓ€г‚ўгѓѓгѓ—е®Њдє†гѓ•гѓ©г‚°гЃЊз«‹гЃЈгЃ¦гЃ„гЃџг‚‰еЂ’гЃ™
 #define MV1MESH_RESET_SEMITRANSSETUP( MESH )\
 	if( (MESH)->SemiTransStateSetupFlag )\
 	{\
@@ -301,7 +301,7 @@ namespace DxLib
 	}
 
 
-// ѓtѓЊЃ[ѓЂ‚М”ј“§–ѕѓXѓeЃ[ѓ^ѓXѓZѓbѓgѓAѓbѓvЉ®—№ѓtѓ‰ѓO‚Є—§‚Б‚Д‚ў‚Ѕ‚з“|‚·
+// гѓ•гѓ¬гѓјгѓ гЃ®еЌЉйЂЏжЋг‚№гѓ†гѓјг‚їг‚№г‚»гѓѓгѓ€г‚ўгѓѓгѓ—е®Њдє†гѓ•гѓ©г‚°гЃЊз«‹гЃЈгЃ¦гЃ„гЃџг‚‰еЂ’гЃ™
 #define MV1FRAME_RESET_SEMITRANSSETUP( FRAME )\
 	if( (FRAME)->SemiTransStateSetupFlag )\
 	{\
@@ -314,29 +314,29 @@ namespace DxLib
 
 
 
-// ЌXђV‚Є•K—v‚©ѓ`ѓFѓbѓN( •K—v‚И‚з 0 €ИЉO )
+// ж›ґж–°гЃЊеї…и¦ЃгЃ‹гѓЃг‚§гѓѓг‚Ї( еї…и¦ЃгЃЄг‚‰ 0 д»Ґе¤– )
 #define MV1CCHK( CHANGE )				( *( CHANGE ).Target & ( CHANGE ).BaseData->CheckBit )
 
-// Ћ©•Є‚Мѓrѓbѓg‚рѓЉѓZѓbѓg‚·‚й
+// и‡Єе€†гЃ®гѓ“гѓѓгѓ€г‚’гѓЄг‚»гѓѓгѓ€гЃ™г‚‹
 #define MV1CRST( CHANGE )				( *( CHANGE ).Target &= ~( CHANGE ).BaseData->CheckBit )
 
-// ѓ‚ѓfѓ‹‚Мѓ‹Ѓ[ѓgЌs—с‚рЌXђV‚·‚й•K—v‚Є‚ ‚йЏкЌ‡‚ЙЌXђV‚р‚·‚й
+// гѓўгѓ‡гѓ«гЃ®гѓ«гѓјгѓ€иЎЊе€—г‚’ж›ґж–°гЃ™г‚‹еї…и¦ЃгЃЊгЃ‚г‚‹е ґеђ€гЃ«ж›ґж–°г‚’гЃ™г‚‹
 #define MV1SETUPMATRIX( MODEL )	\
 	if( ( MODEL )->LocalWorldMatrixSetupFlag == false )\
 		MV1SetupMatrix( ( MODEL ) ) ;
 
-// ѓЃѓbѓVѓ…‚М•`‰жѓ}ѓeѓЉѓAѓ‹Џо•с‚рЌXђV‚·‚й•K—v‚Є‚ ‚йЏкЌ‡‚ЙЌXђV‚р‚·‚й
+// гѓЎгѓѓг‚·гѓҐгЃ®жЏЏз”»гѓћгѓ†гѓЄг‚ўгѓ«жѓ…е ±г‚’ж›ґж–°гЃ™г‚‹еї…и¦ЃгЃЊгЃ‚г‚‹е ґеђ€гЃ«ж›ґж–°г‚’гЃ™г‚‹
 #define MV1SETUPDRAWMATERIALMESH( MESH )	\
 	if( MV1CCHK( ( MESH )->DrawMaterialChange ) )	\
 		MV1SetupDrawMaterial( NULL, ( MESH ) ) ;
 
-// ѓtѓЊЃ[ѓЂ‚М•`‰жѓ}ѓeѓЉѓAѓ‹Џо•с‚рЌXђV‚·‚й•K—v‚Є‚ ‚йЏкЌ‡‚ЙЌXђV‚р‚·‚й
+// гѓ•гѓ¬гѓјгѓ гЃ®жЏЏз”»гѓћгѓ†гѓЄг‚ўгѓ«жѓ…е ±г‚’ж›ґж–°гЃ™г‚‹еї…и¦ЃгЃЊгЃ‚г‚‹е ґеђ€гЃ«ж›ґж–°г‚’гЃ™г‚‹
 #define MV1SETUPDRAWMATERIALFRAME( FRAME )	\
 	if( MV1CCHK( ( FRAME )->DrawMaterialChange ) )	\
 		MV1SetupDrawMaterial( ( FRAME ), NULL ) ;
 
 
-// ѓ}ѓeѓЉѓAѓ‹‚Мѓ^ѓCѓv•Кѓpѓ‰ѓЃЃ[ѓ^‚рѓZѓbѓg‚·‚йѓ}ѓNѓЌ
+// гѓћгѓ†гѓЄг‚ўгѓ«гЃ®г‚їг‚¤гѓ—е€Ґгѓ‘гѓ©гѓЎгѓјг‚їг‚’г‚»гѓѓгѓ€гЃ™г‚‹гѓћг‚Їгѓ­
 #define MATERIAL_SET_TYPE_PARAM( Type, TypeParam, ParamList )	\
 		switch( Type )\
 		{\
@@ -360,9 +360,9 @@ namespace DxLib
 			break ;\
 		}
 
-// ѓfЃ[ѓ^Њ^ђйЊѕ ---------------------------------
+// гѓ‡гѓјг‚їећ‹е®ЈиЁЂ ---------------------------------
 
-// ѓfЃ[ѓ^ђйЊѕ -----------------------------------
+// гѓ‡гѓјг‚їе®ЈиЁЂ -----------------------------------
 
 extern BYTE Tga256x8ToonTextureFileImage[ 172 ] ;
 extern BYTE TgaSpecularDefaultGradFileImage[ 172 /*124*/ ] ;
@@ -375,51 +375,51 @@ extern BYTE Tga8x8BlackTextureFileImage[ 76 ] ;
 
 MV1_MODEL_MANAGE MV1Man;
 
-// ЉЦђ”ђйЊѕ -------------------------------------
+// й–ўж•°е®ЈиЁЂ -------------------------------------
 
-static	void *				MV1SetupWorkBuffer( size_t AllocSize ) ;														// Ќм‹Ж—pѓoѓbѓtѓ@‚МѓZѓbѓgѓAѓbѓv
+static	void *				MV1SetupWorkBuffer( size_t AllocSize ) ;														// дЅњжҐ­з”Ёгѓђгѓѓгѓ•г‚ЎгЃ®г‚»гѓѓгѓ€г‚ўгѓѓгѓ—
 
-static  int					_MV1GetAnimKeyDataIndexFromTime( MV1_ANIM_KEYSET_BASE *AnimKeySetBase, float Time, float &Rate ) ;		// Ћw’и‚МЋћЉФ‚р’ґ‚¦‚й€к”ФЏ¬‚і‚ў”ФЌ†‚МѓLЃ[‚МѓCѓ“ѓfѓbѓNѓX‚рЋж“ѕ‚·‚й
-static	int					_MV1AnimSetSyncNowKey( MV1_MODEL *Model, int AttachIndex, MV1_ANIMSET *AnimSet, bool AboutSetting = false ) ;	// Њ»ЌЭ‚МѓAѓjѓЃЃ[ѓVѓ‡ѓ“ЌДђ¶ЋћЉФ‚ЙЉeѓLЃ[‚М NowKey ‚М’l‚рЌ‡‚н‚№‚й
-static	MV1_ANIMSET_BASE	*MV1GetAnimSetBase( int MV1ModelHandle, const wchar_t *Name = NULL, int Index = -1 ) ;			// –ј‘O‚вѓCѓ“ѓfѓbѓNѓX‚©‚зѓ‚ѓfѓ‹Љо–{ѓfЃ[ѓ^“а‚МѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚рЋж“ѕ‚·‚й
-static	MV1_ANIMSET			*MV1CreateAnimSet( MV1_ANIMSET_BASE *MV1AnimSetBase ) ;											// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“ѓZѓbѓgЉо–{ѓfЃ[ѓ^‚©‚зЋАЌs—pѓAѓjѓЃЃ[ѓVѓ‡ѓ“ѓZѓbѓg‚рЌмђ¬‚·‚й
-static	MV1_ANIM			*MV1GetAnimSetAnim( MV1_ANIMSET *AnimSet, const wchar_t *Name = NULL, int Index = -1 ) ;		// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“ѓZѓbѓg‚©‚з“Б’и‚М–ј‘OЃAЋб‚µ‚­‚НѓCѓ“ѓfѓbѓNѓX‚МѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚р“ѕ‚й
-//static	int					MV1PlayAnimSet( MV1_ANIMSET *AnimSet, int Loop ) ;											// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚рЌДђ¶‚·‚й
-static	int					MV1SetAnimSetTime( MV1_MODEL *Model, int AttachIndex, MV1_ANIMSET *AnimSet, float Time ) ;		// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚рЋw’и‚МЋћЉФ‚ЙђЭ’и‚·‚й
+static  int					_MV1GetAnimKeyDataIndexFromTime( MV1_ANIM_KEYSET_BASE *AnimKeySetBase, float Time, float &Rate ) ;		// жЊ‡е®љгЃ®ж™‚й–“г‚’и¶…гЃ€г‚‹дёЂз•Єе°ЏгЃ•гЃ„з•ЄеЏ·гЃ®г‚­гѓјгЃ®г‚¤гѓігѓ‡гѓѓг‚Їг‚№г‚’еЏ–еѕ—гЃ™г‚‹
+static	int					_MV1AnimSetSyncNowKey( MV1_MODEL *Model, int AttachIndex, MV1_ANIMSET *AnimSet, bool AboutSetting = false ) ;	// зЏѕењЁгЃ®г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓіе†Ќз”џж™‚й–“гЃ«еђ„г‚­гѓјгЃ® NowKey гЃ®еЂ¤г‚’еђ€г‚ЏгЃ›г‚‹
+static	MV1_ANIMSET_BASE	*MV1GetAnimSetBase( int MV1ModelHandle, const wchar_t *Name = NULL, int Index = -1 ) ;			// еђЌе‰Ќг‚„г‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃ‹г‚‰гѓўгѓ‡гѓ«еџєжњ¬гѓ‡гѓјг‚їе†…гЃ®г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓіг‚’еЏ–еѕ—гЃ™г‚‹
+static	MV1_ANIMSET			*MV1CreateAnimSet( MV1_ANIMSET_BASE *MV1AnimSetBase ) ;											// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓіг‚»гѓѓгѓ€еџєжњ¬гѓ‡гѓјг‚їгЃ‹г‚‰е®џиЎЊз”Ёг‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓіг‚»гѓѓгѓ€г‚’дЅњж€ђгЃ™г‚‹
+static	MV1_ANIM			*MV1GetAnimSetAnim( MV1_ANIMSET *AnimSet, const wchar_t *Name = NULL, int Index = -1 ) ;		// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓіг‚»гѓѓгѓ€гЃ‹г‚‰з‰№е®љгЃ®еђЌе‰ЌгЂЃи‹ҐгЃ—гЃЏгЃЇг‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃ®г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓіг‚’еѕ—г‚‹
+//static	int					MV1PlayAnimSet( MV1_ANIMSET *AnimSet, int Loop ) ;											// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓіг‚’е†Ќз”џгЃ™г‚‹
+static	int					MV1SetAnimSetTime( MV1_MODEL *Model, int AttachIndex, MV1_ANIMSET *AnimSet, float Time ) ;		// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓіг‚’жЊ‡е®љгЃ®ж™‚й–“гЃ«иЁ­е®љгЃ™г‚‹
 
-//static	int					MV1AnimSetAddTime( MV1_ANIMSET *AnimSet, float AddTime ) ;									// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚рђi‚Я‚й
-//static	int					MV1StopAnimSet( MV1_ANIMSET *AnimSet ) ;													// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚рЋ~‚Я‚й
-//static	int					MV1GetAnimSetState( MV1_ANIMSET *AnimSet ) ;												// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚ЄЌДђ¶’†‚©‚З‚¤‚©‚рЋж“ѕ‚·‚й( TRUE:ЌДђ¶’†  FALSE:’вЋ~’† )
-static	int					MV1AnimSetSetupParam( MV1_MODEL *Model, int AttachIndex, MV1_ANIMSET *AnimSet ) ;								// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚МЊ»ЌЭ‚МЌДђ¶Њo‰ЯЋћЉФ‚ЙЌ‡‚н‚№‚Ѕѓpѓ‰ѓЃЃ[ѓ^‚рЊvЋZ‚·‚й
-static	void				MV1SetupTransformMatrix( MATRIX_4X4CT_F * RST BlendMatrix, int ValidFlag, VECTOR * RST Translate, VECTOR * RST Scale, int RotateOrder, VECTOR * RST PreRotate, VECTOR * RST Rotate, VECTOR * RST PostRotate, FLOAT4 * RST Quaternion ) ;	// ЌА•W•ПЉ·Џо•с‚рЋg—p‚µ‚ДЌА•W•ПЉ·Ќs—с‚рЌмђ¬‚·‚й
-static	int					MV1SetupReferenceMeshFrame( MV1_MODEL *Model, MV1_MODEL_BASE *ModelBase, MV1_FRAME *Frame, MV1_MESH *Mesh, MV1_REF_POLYGONLIST *DestBuffer, int VIndexTarget, bool IsTransform, bool IsPositionOnly ) ;	// ЋQЏЖ—pѓЃѓbѓVѓ…‚МѓZѓbѓgѓAѓbѓv‚рЌs‚¤
-static	int					MV1RefreshReferenceMeshFrame( MV1_FRAME *Frame, MV1_MESH *Mesh, int IsPositionOnly, MV1_REF_POLYGONLIST *DestBuffer ) ;	// ЋQЏЖ—pѓЃѓbѓVѓ…‚МѓЉѓtѓЊѓbѓVѓ…‚рЌs‚¤
-static	void				MV1SetupAnimMatrix( MV1_MODEL *Model ) ;														// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚МЌs—с‚рѓZѓbѓgѓAѓbѓv‚·‚й
-static	void				MV1SetupMatrix( MV1_MODEL *Model, bool PhysicsSkip = false ) ;									// •`‰ж—p‚МЌs—с‚рЌ\’z‚·‚й
-static	void				MV1SetupDrawMaterial( MV1_FRAME *Frame = NULL, MV1_MESH *Mesh = NULL ) ;						// •`‰ж—p‚Мѓ}ѓeѓЉѓAѓ‹Џо•с‚рЌ\’z‚·‚йЃAFrame ‚рЋw’и‚µ‚ЅЏкЌ‡‚Н Mesh ‚Н NULL‚ЕЃAMesh ‚рЋw’и‚µ‚ЅЏкЌ‡‚Н Frame ‚Н NULL‚Е‚ ‚й•K—v‚Є‚ ‚и‚Ь‚·( ’†‚Е“n‚і‚к‚ЅѓЃѓbѓVѓ…Ћ©‘М‚МЌXђVѓ`ѓFѓbѓN‚Н‚µ‚И‚ў )
-static	void				MV1BitSetChange( MV1_CHANGE *Change ) ;															// Џу‘Ф•ПЌXЉЗ—ќѓfЃ[ѓ^‚ЙђЭ’и‚і‚к‚Д‚ў‚й‘ОЏЫѓrѓbѓg‚р—§‚Д‚й
-static	void				MV1BitResetChange( MV1_CHANGE *Change ) ;														// Џу‘Ф•ПЌXЉЗ—ќѓfЃ[ѓ^‚ЙђЭ’и‚і‚к‚Д‚ў‚й‘ОЏЫѓrѓbѓg‚р“|‚·
-static	bool				MV1SetDrawMaterialDif( MV1_DRAW_MATERIAL *DrawMaterial, MV1_CHANGE *Change, COLOR_F Scale ) ;	// •`‰ж—pѓ}ѓeѓЉѓAѓ‹Џо•с‚МѓfѓBѓtѓ…Ѓ[ѓYѓJѓ‰Ѓ[‚р•ПЌX‚·‚й
-static	bool				MV1SetDrawMaterialAmb( MV1_DRAW_MATERIAL *DrawMaterial, MV1_CHANGE *Change, COLOR_F Scale ) ;	// •`‰ж—pѓ}ѓeѓЉѓAѓ‹Џо•с‚МѓAѓ“ѓrѓGѓ“ѓgѓJѓ‰Ѓ[‚р•ПЌX‚·‚й
-static	bool				MV1SetDrawMaterialSpc( MV1_DRAW_MATERIAL *DrawMaterial, MV1_CHANGE *Change, COLOR_F Scale ) ;	// •`‰ж—pѓ}ѓeѓЉѓAѓ‹Џо•с‚МѓXѓyѓLѓ…ѓ‰ѓJѓ‰Ѓ[‚р•ПЌX‚·‚й
-static	bool				MV1SetDrawMaterialEmi( MV1_DRAW_MATERIAL *DrawMaterial, MV1_CHANGE *Change, COLOR_F Scale ) ;	// •`‰ж—pѓ}ѓeѓЉѓAѓ‹Џо•с‚МѓGѓ~ѓbѓVѓuѓJѓ‰Ѓ[‚р•ПЌX‚·‚й
-static	bool				MV1SetDrawMaterialOpacityRate( MV1_DRAW_MATERIAL *DrawMaterial, MV1_CHANGE *Change, float Rate) ;	// •`‰ж—pѓ}ѓeѓЉѓAѓ‹Џо•с‚М•s“§–ѕ“x‚р•ПЌX‚·‚й
-static	bool				MV1SetDrawMaterialVisible( MV1_DRAW_MATERIAL *DrawMaterial, MV1_CHANGE *Change, BYTE Visible ) ;	// •`‰ж—pѓ}ѓeѓЉѓAѓ‹Џо•с‚М•\Ћ¦ђЭ’и‚р•ПЌX‚·‚й
-static	int					MV1DrawModelBase( MV1_MODEL *Model ) ;															// ѓ‚ѓfѓ‹‚М•`‰жЏ€—ќ‚рЌs‚¤
-static	int					_MV1ReCreateGradationGraph( int GrHandle ) ;													// ѓOѓ‰ѓfЃ[ѓVѓ‡ѓ“‰ж‘њ‚рЌДЌмђ¬‚·‚й
-static	int					_MV1ReMakeNormalFrameBase( MV1_FRAME_BASE *Frame, float SmoothingAngle ) ;						// ѓtѓЊЃ[ѓЂ‚М–@ђь‚рЌДЊvЋZ‚·‚й
-static	int					_MV1PositionOptimizeFrameBase( MV1_FRAME_BASE *Frame ) ;										// ѓtѓЊЃ[ѓЂ‚МЌА•WЏо•с‚рЌЕ“K‰»‚·‚й
-//static	int					_MV1SetupCombineMesh( MV1_FRAME_BASE *Frame ) ;													// ѓRѓ“ѓoѓCѓ“ѓЃѓbѓVѓ…‚МѓZѓbѓgѓAѓbѓv‚рЌs‚¤
-static	void				_MV1SetupReferenceMeshMaxAndMinPosition( MV1_REF_POLYGONLIST *PolyList ) ;						// ЋQЏЖ—pѓЃѓbѓVѓ…‚МЌЕ‘е’l‚ЖЌЕЏ¬’l‚рЌXђV‚·‚й
-static	bool				_MV1CreateWideCharNameBase( MV1_MODEL_BASE *MBase, const char *NameA, wchar_t **NameWP ) ;		// ѓ}ѓ‹ѓ`ѓoѓCѓg•¶Ћљ–ј‚©‚зѓЏѓCѓh•¶Ћљ–ј‚рЌмђ¬‚·‚й
-static	bool				_MV1CreateMultiByteNameBase( MV1_MODEL_BASE *MBase, const wchar_t *NameW, char **NameAP ) ;		// ѓЏѓCѓh•¶Ћљ–ј‚©‚зѓ}ѓ‹ѓ`ѓoѓCѓg•¶Ћљ–ј‚рЌмђ¬‚·‚й
-static	bool				_MV1CreateWideCharName( const char *NameA, wchar_t **NameWP ) ;									// ѓ}ѓ‹ѓ`ѓoѓCѓg•¶Ћљ–ј‚©‚зѓЏѓCѓh•¶Ћљ–ј‚рЌмђ¬‚·‚й
-static	bool				_MV1CreateMultiByteName( const wchar_t *NameW, char **NameAP ) ;								// ѓЏѓCѓh•¶Ћљ–ј‚©‚зѓ}ѓ‹ѓ`ѓoѓCѓg•¶Ћљ–ј‚рЌмђ¬‚·‚й
-static	bool				_MV1AllocAndMultiByteNameCopy( const char *NameA, char **NameAP ) ;								// ѓ}ѓ‹ѓ`ѓoѓCѓg•¶Ћљ–ј‚рђV‚Ѕ‚ЙѓЃѓ‚ѓЉ‚рЉm•Ы‚µ‚ДѓRѓsЃ[‚·‚й
-static	bool				_MV1AllocAndWideCharNameCopy( const wchar_t *NameW, wchar_t **NameWP ) ;						// ѓЏѓCѓh•¶Ћљ–ј‚рђV‚Ѕ‚ЙѓЃѓ‚ѓЉ‚рЉm•Ы‚µ‚ДѓRѓsЃ[‚·‚й
-static	void				_MV1CreateFileNameAndCurrentDirectory( const wchar_t *FilePath, wchar_t *FileName, size_t FileNameBytes, wchar_t *CurrentDirectory, size_t CurrentDirectoryBytes ) ;	// ѓtѓ@ѓCѓ‹ѓpѓX‚©‚зѓtѓ@ѓCѓ‹–ј‚ЖѓfѓBѓЊѓNѓgѓЉѓpѓX‚рЌмђ¬‚·‚й
+//static	int					MV1AnimSetAddTime( MV1_ANIMSET *AnimSet, float AddTime ) ;									// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓіг‚’йЂІг‚Ѓг‚‹
+//static	int					MV1StopAnimSet( MV1_ANIMSET *AnimSet ) ;													// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓіг‚’ж­ўг‚Ѓг‚‹
+//static	int					MV1GetAnimSetState( MV1_ANIMSET *AnimSet ) ;												// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігЃЊе†Ќз”џдё­гЃ‹гЃ©гЃ†гЃ‹г‚’еЏ–еѕ—гЃ™г‚‹( TRUE:е†Ќз”џдё­  FALSE:еЃњж­ўдё­ )
+static	int					MV1AnimSetSetupParam( MV1_MODEL *Model, int AttachIndex, MV1_ANIMSET *AnimSet ) ;								// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігЃ®зЏѕењЁгЃ®е†Ќз”џзµЊйЃЋж™‚й–“гЃ«еђ€г‚ЏгЃ›гЃџгѓ‘гѓ©гѓЎгѓјг‚їг‚’иЁ€з®—гЃ™г‚‹
+static	void				MV1SetupTransformMatrix( MATRIX_4X4CT_F * RST BlendMatrix, int ValidFlag, VECTOR * RST Translate, VECTOR * RST Scale, int RotateOrder, VECTOR * RST PreRotate, VECTOR * RST Rotate, VECTOR * RST PostRotate, FLOAT4 * RST Quaternion ) ;	// еє§жЁ™е¤‰жЏ›жѓ…е ±г‚’дЅїз”ЁгЃ—гЃ¦еє§жЁ™е¤‰жЏ›иЎЊе€—г‚’дЅњж€ђгЃ™г‚‹
+static	int					MV1SetupReferenceMeshFrame( MV1_MODEL *Model, MV1_MODEL_BASE *ModelBase, MV1_FRAME *Frame, MV1_MESH *Mesh, MV1_REF_POLYGONLIST *DestBuffer, int VIndexTarget, bool IsTransform, bool IsPositionOnly ) ;	// еЏ‚з…§з”ЁгѓЎгѓѓг‚·гѓҐгЃ®г‚»гѓѓгѓ€г‚ўгѓѓгѓ—г‚’иЎЊгЃ†
+static	int					MV1RefreshReferenceMeshFrame( MV1_FRAME *Frame, MV1_MESH *Mesh, int IsPositionOnly, MV1_REF_POLYGONLIST *DestBuffer ) ;	// еЏ‚з…§з”ЁгѓЎгѓѓг‚·гѓҐгЃ®гѓЄгѓ•гѓ¬гѓѓг‚·гѓҐг‚’иЎЊгЃ†
+static	void				MV1SetupAnimMatrix( MV1_MODEL *Model ) ;														// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігЃ®иЎЊе€—г‚’г‚»гѓѓгѓ€г‚ўгѓѓгѓ—гЃ™г‚‹
+static	void				MV1SetupMatrix( MV1_MODEL *Model, bool PhysicsSkip = false ) ;									// жЏЏз”»з”ЁгЃ®иЎЊе€—г‚’ж§‹зЇ‰гЃ™г‚‹
+static	void				MV1SetupDrawMaterial( MV1_FRAME *Frame = NULL, MV1_MESH *Mesh = NULL ) ;						// жЏЏз”»з”ЁгЃ®гѓћгѓ†гѓЄг‚ўгѓ«жѓ…е ±г‚’ж§‹зЇ‰гЃ™г‚‹гЂЃFrame г‚’жЊ‡е®љгЃ—гЃџе ґеђ€гЃЇ Mesh гЃЇ NULLгЃ§гЂЃMesh г‚’жЊ‡е®љгЃ—гЃџе ґеђ€гЃЇ Frame гЃЇ NULLгЃ§гЃ‚г‚‹еї…и¦ЃгЃЊгЃ‚г‚ЉгЃѕгЃ™( дё­гЃ§жёЎгЃ•г‚ЊгЃџгѓЎгѓѓг‚·гѓҐи‡ЄдЅ“гЃ®ж›ґж–°гѓЃг‚§гѓѓг‚ЇгЃЇгЃ—гЃЄгЃ„ )
+static	void				MV1BitSetChange( MV1_CHANGE *Change ) ;															// зЉ¶ж…‹е¤‰ж›ґз®Ўзђ†гѓ‡гѓјг‚їгЃ«иЁ­е®љгЃ•г‚ЊгЃ¦гЃ„г‚‹еЇѕи±Ўгѓ“гѓѓгѓ€г‚’з«‹гЃ¦г‚‹
+static	void				MV1BitResetChange( MV1_CHANGE *Change ) ;														// зЉ¶ж…‹е¤‰ж›ґз®Ўзђ†гѓ‡гѓјг‚їгЃ«иЁ­е®љгЃ•г‚ЊгЃ¦гЃ„г‚‹еЇѕи±Ўгѓ“гѓѓгѓ€г‚’еЂ’гЃ™
+static	bool				MV1SetDrawMaterialDif( MV1_DRAW_MATERIAL *DrawMaterial, MV1_CHANGE *Change, COLOR_F Scale ) ;	// жЏЏз”»з”Ёгѓћгѓ†гѓЄг‚ўгѓ«жѓ…е ±гЃ®гѓ‡г‚Јгѓ•гѓҐгѓјг‚єг‚«гѓ©гѓјг‚’е¤‰ж›ґгЃ™г‚‹
+static	bool				MV1SetDrawMaterialAmb( MV1_DRAW_MATERIAL *DrawMaterial, MV1_CHANGE *Change, COLOR_F Scale ) ;	// жЏЏз”»з”Ёгѓћгѓ†гѓЄг‚ўгѓ«жѓ…е ±гЃ®г‚ўгѓігѓ“г‚Ёгѓігѓ€г‚«гѓ©гѓјг‚’е¤‰ж›ґгЃ™г‚‹
+static	bool				MV1SetDrawMaterialSpc( MV1_DRAW_MATERIAL *DrawMaterial, MV1_CHANGE *Change, COLOR_F Scale ) ;	// жЏЏз”»з”Ёгѓћгѓ†гѓЄг‚ўгѓ«жѓ…е ±гЃ®г‚№гѓљг‚­гѓҐгѓ©г‚«гѓ©гѓјг‚’е¤‰ж›ґгЃ™г‚‹
+static	bool				MV1SetDrawMaterialEmi( MV1_DRAW_MATERIAL *DrawMaterial, MV1_CHANGE *Change, COLOR_F Scale ) ;	// жЏЏз”»з”Ёгѓћгѓ†гѓЄг‚ўгѓ«жѓ…е ±гЃ®г‚Ёгѓџгѓѓг‚·гѓ–г‚«гѓ©гѓјг‚’е¤‰ж›ґгЃ™г‚‹
+static	bool				MV1SetDrawMaterialOpacityRate( MV1_DRAW_MATERIAL *DrawMaterial, MV1_CHANGE *Change, float Rate) ;	// жЏЏз”»з”Ёгѓћгѓ†гѓЄг‚ўгѓ«жѓ…е ±гЃ®дёЌйЂЏжЋеє¦г‚’е¤‰ж›ґгЃ™г‚‹
+static	bool				MV1SetDrawMaterialVisible( MV1_DRAW_MATERIAL *DrawMaterial, MV1_CHANGE *Change, BYTE Visible ) ;	// жЏЏз”»з”Ёгѓћгѓ†гѓЄг‚ўгѓ«жѓ…е ±гЃ®иЎЁз¤єиЁ­е®љг‚’е¤‰ж›ґгЃ™г‚‹
+static	int					MV1DrawModelBase( MV1_MODEL *Model ) ;															// гѓўгѓ‡гѓ«гЃ®жЏЏз”»е‡¦зђ†г‚’иЎЊгЃ†
+static	int					_MV1ReCreateGradationGraph( int GrHandle ) ;													// г‚°гѓ©гѓ‡гѓјг‚·гѓ§гѓіз”»еѓЏг‚’е†ЌдЅњж€ђгЃ™г‚‹
+static	int					_MV1ReMakeNormalFrameBase( MV1_FRAME_BASE *Frame, float SmoothingAngle ) ;						// гѓ•гѓ¬гѓјгѓ гЃ®жі•з·љг‚’е†ЌиЁ€з®—гЃ™г‚‹
+static	int					_MV1PositionOptimizeFrameBase( MV1_FRAME_BASE *Frame ) ;										// гѓ•гѓ¬гѓјгѓ гЃ®еє§жЁ™жѓ…е ±г‚’жњЂйЃ©еЊ–гЃ™г‚‹
+//static	int					_MV1SetupCombineMesh( MV1_FRAME_BASE *Frame ) ;													// г‚ігѓігѓђг‚¤гѓігѓЎгѓѓг‚·гѓҐгЃ®г‚»гѓѓгѓ€г‚ўгѓѓгѓ—г‚’иЎЊгЃ†
+static	void				_MV1SetupReferenceMeshMaxAndMinPosition( MV1_REF_POLYGONLIST *PolyList ) ;						// еЏ‚з…§з”ЁгѓЎгѓѓг‚·гѓҐгЃ®жњЂе¤§еЂ¤гЃЁжњЂе°ЏеЂ¤г‚’ж›ґж–°гЃ™г‚‹
+static	bool				_MV1CreateWideCharNameBase( MV1_MODEL_BASE *MBase, const char *NameA, wchar_t **NameWP ) ;		// гѓћгѓ«гѓЃгѓђг‚¤гѓ€ж–‡е­—еђЌгЃ‹г‚‰гѓЇг‚¤гѓ‰ж–‡е­—еђЌг‚’дЅњж€ђгЃ™г‚‹
+static	bool				_MV1CreateMultiByteNameBase( MV1_MODEL_BASE *MBase, const wchar_t *NameW, char **NameAP ) ;		// гѓЇг‚¤гѓ‰ж–‡е­—еђЌгЃ‹г‚‰гѓћгѓ«гѓЃгѓђг‚¤гѓ€ж–‡е­—еђЌг‚’дЅњж€ђгЃ™г‚‹
+static	bool				_MV1CreateWideCharName( const char *NameA, wchar_t **NameWP ) ;									// гѓћгѓ«гѓЃгѓђг‚¤гѓ€ж–‡е­—еђЌгЃ‹г‚‰гѓЇг‚¤гѓ‰ж–‡е­—еђЌг‚’дЅњж€ђгЃ™г‚‹
+static	bool				_MV1CreateMultiByteName( const wchar_t *NameW, char **NameAP ) ;								// гѓЇг‚¤гѓ‰ж–‡е­—еђЌгЃ‹г‚‰гѓћгѓ«гѓЃгѓђг‚¤гѓ€ж–‡е­—еђЌг‚’дЅњж€ђгЃ™г‚‹
+static	bool				_MV1AllocAndMultiByteNameCopy( const char *NameA, char **NameAP ) ;								// гѓћгѓ«гѓЃгѓђг‚¤гѓ€ж–‡е­—еђЌг‚’ж–°гЃџгЃ«гѓЎгѓўгѓЄг‚’зўєдїќгЃ—гЃ¦г‚ігѓ”гѓјгЃ™г‚‹
+static	bool				_MV1AllocAndWideCharNameCopy( const wchar_t *NameW, wchar_t **NameWP ) ;						// гѓЇг‚¤гѓ‰ж–‡е­—еђЌг‚’ж–°гЃџгЃ«гѓЎгѓўгѓЄг‚’зўєдїќгЃ—гЃ¦г‚ігѓ”гѓјгЃ™г‚‹
+static	void				_MV1CreateFileNameAndCurrentDirectory( const wchar_t *FilePath, wchar_t *FileName, size_t FileNameBytes, wchar_t *CurrentDirectory, size_t CurrentDirectoryBytes ) ;	// гѓ•г‚Ўг‚¤гѓ«гѓ‘г‚№гЃ‹г‚‰гѓ•г‚Ўг‚¤гѓ«еђЌгЃЁгѓ‡г‚Јгѓ¬г‚Їгѓ€гѓЄгѓ‘г‚№г‚’дЅњж€ђгЃ™г‚‹
 
-// ѓeѓNѓXѓ`ѓѓ‚р“З‚ЭЌћ‚Ю
+// гѓ†г‚Їг‚№гѓЃгѓЈг‚’иЄ­гЃїиѕјг‚Ђ
 
 static	int					_MV1TextureLoadBase(
 									MV1_MODEL_BASE *ModelBase, MV1_TEXTURE_BASE *Texture,
@@ -438,7 +438,7 @@ static	int					_MV1TextureLoad(
 
 
 
-// ѓvѓЌѓOѓ‰ѓЂ -----------------------------------
+// гѓ—гѓ­г‚°гѓ©гѓ  -----------------------------------
 
 static __inline int DrawMeshListResize( int RequestSize )
 {
@@ -455,7 +455,7 @@ static __inline int DrawMeshListResize( int RequestSize )
 	return 0 ;
 }
 
-// ѓNѓHЃ[ѓ^ѓjѓIѓ“‚©‚з‰с“]Ќs—с‚рЌмђ¬‚·‚й
+// г‚Їг‚©гѓјг‚їгѓ‹г‚ЄгѓігЃ‹г‚‰е›ћи»ўиЎЊе€—г‚’дЅњж€ђгЃ™г‚‹
 static __inline void CreateQuaternionRotateMatrix4X4CTD( MATRIX_4X4CT_D * RST Out, FLOAT4 * RST In )
 {
 	MATRIX_D RotateQ1Mat, RotateQ2Mat, RotateMat ;
@@ -504,7 +504,7 @@ static __inline void CreateQuaternionRotateMatrix4X4CT( MATRIX_4X4CT * RST Out, 
 	}
 }
 
-// ’P€КЌs—с‚рЌмђ¬‚·‚й
+// еЌдЅЌиЎЊе€—г‚’дЅњж€ђгЃ™г‚‹
 static __inline void CreateIdentityMatrix4X4CTF( MATRIX_4X4CT_F * RST Out )
 {
 	Out->m[ 0 ][ 0 ] = 1.0f ;
@@ -553,7 +553,7 @@ static __inline void CreateIdentityMatrix4X4CTD( MATRIX_4X4CT * RST Out )
 	}
 }
 
-// •ЅЌs€Ъ“®Ќs—с‚рЌмђ¬‚·‚й
+// е№іиЎЊз§»е‹•иЎЊе€—г‚’дЅњж€ђгЃ™г‚‹
 static __inline void CreateTranslationMatrix4X4CTF( MATRIX_4X4CT_F *Out, float x, float y, float z )
 {
 	_MEMSET( Out, 0, sizeof( *Out ) ) ;
@@ -588,7 +588,7 @@ static __inline void CreateTranslationMatrix4X4CT( MATRIX_4X4CT *Out, double x, 
 	}
 }
 
-// ѓXѓPЃ[ѓЉѓ“ѓOЌs—с‚рЌмђ¬‚·‚й
+// г‚№г‚±гѓјгѓЄгѓіг‚°иЎЊе€—г‚’дЅњж€ђгЃ™г‚‹
 static __inline void CreateScalingMatrix4X4CTF( MATRIX_4X4CT_F *Out, float sx, float sy, float sz )
 {
 	_MEMSET( Out, 0, sizeof( *Out ) ) ;
@@ -619,7 +619,7 @@ static __inline void CreateScalingMatrix4X4CT( MATRIX_4X4CT *Out, double sx, dou
 	}
 }
 
-// ‚wЋІ‰с“]ЃЁ‚xЋІ‰с“]ЃЁ‚yЋІ‰с“]‚рЌ‡ђ¬‚µ‚ЅЌs—с‚рЌмђ¬‚·‚й
+// пјёи»ёе›ћи»ўв†’пј№и»ёе›ћи»ўв†’пјєи»ёе›ћи»ўг‚’еђ€ж€ђгЃ—гЃџиЎЊе€—г‚’дЅњж€ђгЃ™г‚‹
 static __inline void CreateRotationXYZMatrix4X4CTF( MATRIX_4X4CT_F * RST Out, float XRot, float YRot, float ZRot )
 {
 	float SinX, CosX, SinY, CosY, SinZ, CosZ ;
@@ -684,7 +684,7 @@ static __inline void CreateRotationXYZMatrix4X4CT( MATRIX_4X4CT * RST Out, float
 	}
 }
 
-// ‚wЋІ‰с“]ЃЁ‚yЋІ‰с“]ЃЁ‚xЋІ‰с“]‚рЌ‡ђ¬‚µ‚ЅЌs—с‚рЌмђ¬‚·‚й
+// пјёи»ёе›ћи»ўв†’пјєи»ёе›ћи»ўв†’пј№и»ёе›ћи»ўг‚’еђ€ж€ђгЃ—гЃџиЎЊе€—г‚’дЅњж€ђгЃ™г‚‹
 static __inline void CreateRotationXZYMatrix4X4CTF( MATRIX_4X4CT_F * RST Out, float XRot, float YRot, float ZRot )
 {
 	float SinX, CosX, SinY, CosY, SinZ, CosZ ;
@@ -749,7 +749,7 @@ static __inline void CreateRotationXZYMatrix4X4CT( MATRIX_4X4CT * RST Out, float
 	}
 }
 
-// ‚xЋІ‰с“]ЃЁ‚wЋІ‰с“]ЃЁ‚yЋІ‰с“]‚рЌ‡ђ¬‚µ‚ЅЌs—с‚рЌмђ¬‚·‚й
+// пј№и»ёе›ћи»ўв†’пјёи»ёе›ћи»ўв†’пјєи»ёе›ћи»ўг‚’еђ€ж€ђгЃ—гЃџиЎЊе€—г‚’дЅњж€ђгЃ™г‚‹
 static __inline void CreateRotationYXZMatrix4X4CTF( MATRIX_4X4CT_F * RST Out, float XRot, float YRot, float ZRot )
 {
 	float SinX, CosX, SinY, CosY, SinZ, CosZ ;
@@ -814,7 +814,7 @@ static __inline void CreateRotationYXZMatrix4X4CT( MATRIX_4X4CT * RST Out, float
 	}
 }
 
-// ‚xЋІ‰с“]ЃЁ‚yЋІ‰с“]ЃЁ‚wЋІ‰с“]‚рЌ‡ђ¬‚µ‚ЅЌs—с‚рЌмђ¬‚·‚й
+// пј№и»ёе›ћи»ўв†’пјєи»ёе›ћи»ўв†’пјёи»ёе›ћи»ўг‚’еђ€ж€ђгЃ—гЃџиЎЊе€—г‚’дЅњж€ђгЃ™г‚‹
 static __inline void CreateRotationYZXMatrix4X4CTF( MATRIX_4X4CT_F * RST Out, float XRot, float YRot, float ZRot )
 {
 	float SinX, CosX, SinY, CosY, SinZ, CosZ ;
@@ -879,7 +879,7 @@ static __inline void CreateRotationYZXMatrix4X4CT( MATRIX_4X4CT * RST Out, float
 	}
 }
 
-// ‚yЋІ‰с“]ЃЁ‚wЋІ‰с“]ЃЁ‚xЋІ‰с“]‚рЌ‡ђ¬‚µ‚ЅЌs—с‚рЌмђ¬‚·‚й
+// пјєи»ёе›ћи»ўв†’пјёи»ёе›ћи»ўв†’пј№и»ёе›ћи»ўг‚’еђ€ж€ђгЃ—гЃџиЎЊе€—г‚’дЅњж€ђгЃ™г‚‹
 static __inline void CreateRotationZXYMatrix4X4CTF( MATRIX_4X4CT_F * RST Out, float XRot, float YRot, float ZRot )
 {
 	float SinX, CosX, SinY, CosY, SinZ, CosZ ;
@@ -944,7 +944,7 @@ static __inline void CreateRotationZXYMatrix4X4CT( MATRIX_4X4CT * RST Out, float
 	}
 }
 
-// ‚yЋІ‰с“]ЃЁ‚xЋІ‰с“]ЃЁ‚wЋІ‰с“]‚рЌ‡ђ¬‚µ‚ЅЌs—с‚рЌмђ¬‚·‚й
+// пјєи»ёе›ћи»ўв†’пј№и»ёе›ћи»ўв†’пјёи»ёе›ћи»ўг‚’еђ€ж€ђгЃ—гЃџиЎЊе€—г‚’дЅњж€ђгЃ™г‚‹
 static __inline void CreateRotationZYXMatrix4X4CTF( MATRIX_4X4CT_F * RST Out, float XRot, float YRot, float ZRot )
 {
 	float SinX, CosX, SinY, CosY, SinZ, CosZ ;
@@ -1402,7 +1402,7 @@ static __inline void SetupSkiningBoneMatrix( MV1_MODEL &Model, MV1_FRAME &Frame 
 				UnSafeTranslateOnlyMultiplyMatrix4X4CT_FC( &Model.SkinBoneMatrix[ index ], &SkinW->ModelLocalMatrix, &Frame.LocalWorldMatrix ) ;
 			}
 
-			// ѓ|ѓЉѓSѓ“ѓЉѓXѓgЌXђVѓtѓ‰ѓO‚р“|‚·
+			// гѓќгѓЄг‚ґгѓігѓЄг‚№гѓ€ж›ґж–°гѓ•гѓ©г‚°г‚’еЂ’гЃ™
 			for( j = 0 ; j < SkinW->UseFrameNum ; j ++ )
 			{
 				MV1_FRAME *FrameT ;
@@ -1448,10 +1448,10 @@ int __FTOL( float Real )
 #endif
 }
 
-// ЌА•W•ПЉ·Џо•с‚рЋg—p‚µ‚ДЌА•W•ПЉ·Ќs—с‚рЌмђ¬‚·‚й
+// еє§жЁ™е¤‰жЏ›жѓ…е ±г‚’дЅїз”ЁгЃ—гЃ¦еє§жЁ™е¤‰жЏ›иЎЊе€—г‚’дЅњж€ђгЃ™г‚‹
 static void MV1SetupTransformMatrix( MATRIX_4X4CT_F * RST BlendMatrix, int ValidFlag, VECTOR * RST Translate, VECTOR * RST Scale, int RotateOrder, VECTOR * RST PreRotate, VECTOR * RST Rotate, VECTOR * RST PostRotate, FLOAT4 * RST Quaternion )
 {
-	// ѓNѓHЃ[ѓ^ѓjѓIѓ“‰с“]
+	// г‚Їг‚©гѓјг‚їгѓ‹г‚Єгѓіе›ћи»ў
 	if( ValidFlag & MV1_ANIMVALUE_QUATERNION_X )
 	{
 		MATRIX TempMatrix1, TempMatrix2 ;
@@ -1497,7 +1497,7 @@ static void MV1SetupTransformMatrix( MATRIX_4X4CT_F * RST BlendMatrix, int Valid
 		BlendMatrix->m[ 2 ][ 3 ] = 0.0f ;
 	}
 	else
-	// ‰с“]
+	// е›ћи»ў
 	if( ( ValidFlag & MV1_ANIMVALUE_ROTATE ) || PreRotate != NULL || PostRotate != NULL )
 	{
 		if( PreRotate == NULL && PostRotate == NULL )
@@ -1586,7 +1586,7 @@ static void MV1SetupTransformMatrix( MATRIX_4X4CT_F * RST BlendMatrix, int Valid
 		BlendMatrix->m[ 2 ][ 2 ] = 1.0f ;
 	}
 
-	// •ЅЌs€Ъ“®
+	// е№іиЎЊз§»е‹•
 	if( ValidFlag & MV1_ANIMVALUE_TRANSLATE )
 	{
 		BlendMatrix->m[ 0 ][ 3 ] = Translate->x ;
@@ -1600,7 +1600,7 @@ static void MV1SetupTransformMatrix( MATRIX_4X4CT_F * RST BlendMatrix, int Valid
 		BlendMatrix->m[ 2 ][ 3 ] = 0.0f ;
 	}
 
-	// ѓXѓPЃ[ѓЉѓ“ѓO
+	// г‚№г‚±гѓјгѓЄгѓіг‚°
 	if( ValidFlag & MV1_ANIMVALUE_SCALE )
 	{
 		BlendMatrix->m[ 0 ][ 0 ] *= Scale->x ;
@@ -1615,7 +1615,7 @@ static void MV1SetupTransformMatrix( MATRIX_4X4CT_F * RST BlendMatrix, int Valid
 	}
 }
 
-// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚МЌs—с‚рѓZѓbѓgѓAѓbѓv‚·‚й
+// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігЃ®иЎЊе€—г‚’г‚»гѓѓгѓ€г‚ўгѓѓгѓ—гЃ™г‚‹
 static void MV1SetupAnimMatrix( MV1_MODEL *Model )
 {
 	int i ;
@@ -1629,7 +1629,7 @@ static void MV1SetupAnimMatrix( MV1_MODEL *Model )
 	Model->AnimSetupFlag = true ;
 }
 
-// •`‰ж—p‚МЌs—с‚рЌ\’z‚·‚й
+// жЏЏз”»з”ЁгЃ®иЎЊе€—г‚’ж§‹зЇ‰гЃ™г‚‹
 static void MV1SetupMatrix( MV1_MODEL *Model, bool PhysicsSkip )
 {
 	int i, j, mcon ;
@@ -1641,44 +1641,44 @@ static void MV1SetupMatrix( MV1_MODEL *Model, bool PhysicsSkip )
 
 	MBase = Model->BaseData ;
 
-	// Ќs—с‚ЄѓZѓbѓgѓAѓbѓvЉ®—№Џу‘Ф‚МЏкЌ‡‚Н‰Ѕ‚а‚№‚ё‚ЙЏI—№
+	// иЎЊе€—гЃЊг‚»гѓѓгѓ€г‚ўгѓѓгѓ—е®Њдє†зЉ¶ж…‹гЃ®е ґеђ€гЃЇдЅ•г‚‚гЃ›гЃљгЃ«зµ‚дє†
 	if( Model->LocalWorldMatrixSetupFlag == true )
 		return ;
 
-	// ѓ|ѓЉѓSѓ“ѓЉѓXѓgЌXђVѓtѓ‰ѓO‚р“|‚·
+	// гѓќгѓЄг‚ґгѓігѓЄг‚№гѓ€ж›ґж–°гѓ•гѓ©г‚°г‚’еЂ’гЃ™
 	Model->SetupRefPolygon[ 1 ][ 0 ] = false ;
 	Model->SetupRefPolygon[ 1 ][ 1 ] = false ;
 
-	// ѓAѓ^ѓbѓ`‚µ‚Д‚ў‚йѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚Мѓpѓ‰ѓЃЃ[ѓ^‚Й•П‰»‚Є‚ ‚йЏкЌ‡‚НЌs—с‚рЊvЋZ
+	// г‚ўг‚їгѓѓгѓЃгЃ—гЃ¦гЃ„г‚‹г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігЃ®гѓ‘гѓ©гѓЎгѓјг‚їгЃ«е¤‰еЊ–гЃЊгЃ‚г‚‹е ґеђ€гЃЇиЎЊе€—г‚’иЁ€з®—
 	if( Model->AnimSetupFlag == false )
 		MV1SetupAnimMatrix( Model ) ;
 
-	// ѓgѓbѓv‚МЌXђVѓ`ѓFѓbѓN
+	// гѓ€гѓѓгѓ—гЃ®ж›ґж–°гѓЃг‚§гѓѓг‚Ї
 	if( Model->ChangeMatrixFlag[ 0 ] & 1 )
 	{
-		// ѓXѓPЃ[ѓЉѓ“ѓO‚рЋg—p‚µ‚Д‚ў‚й‚©‚З‚¤‚©‚Мѓtѓ‰ѓO‚р“|‚·
+		// г‚№г‚±гѓјгѓЄгѓіг‚°г‚’дЅїз”ЁгЃ—гЃ¦гЃ„г‚‹гЃ‹гЃ©гЃ†гЃ‹гЃ®гѓ•гѓ©г‚°г‚’еЂ’гЃ™
 		Model->LocalWorldMatrixUseScaling = false ;
 
-		// Ќs—с‚Є—LЊш‚ИЏкЌ‡‚Ж–іЊш‚ИЏкЌ‡‚ЕЏ€—ќ‚р•ЄЉт
+		// иЎЊе€—гЃЊжњ‰еЉ№гЃЄе ґеђ€гЃЁз„ЎеЉ№гЃЄе ґеђ€гЃ§е‡¦зђ†г‚’е€†еІђ
 		if( Model->ValidMatrix )
 		{
-			// Ќs—с‚Є—LЊш‚ИЏкЌ‡‚Н‚»‚М‚Ь‚ЬЋg—p‚·‚й
+			// иЎЊе€—гЃЊжњ‰еЉ№гЃЄе ґеђ€гЃЇгЃќгЃ®гЃѕгЃѕдЅїз”ЁгЃ™г‚‹
 			Model->LocalWorldMatrix = Model->Matrix ;
 
-			// ѓXѓPЃ[ѓЉѓ“ѓO‚рЋg—p‚µ‚Д‚ў‚й‚©‚З‚¤‚©‚Мѓtѓ‰ѓO‚р—§‚Д‚й
+			// г‚№г‚±гѓјгѓЄгѓіг‚°г‚’дЅїз”ЁгЃ—гЃ¦гЃ„г‚‹гЃ‹гЃ©гЃ†гЃ‹гЃ®гѓ•гѓ©г‚°г‚’з«‹гЃ¦г‚‹
 			Model->LocalWorldMatrixUseScaling = true ;
 		}
 		else
 		{
 			MATRIX_4X4CT TranslateMat, ScaleMat, RotateMat, TransformMat ;
 
-			// –іЊш‚ИЏкЌ‡‚Нѓgѓ‰ѓ“ѓXѓtѓHЃ[ѓЂѓpѓ‰ѓЃЃ[ѓ^‚©‚зЌs—с‚рЌмђ¬‚·‚й
+			// з„ЎеЉ№гЃЄе ґеђ€гЃЇгѓ€гѓ©гѓіг‚№гѓ•г‚©гѓјгѓ гѓ‘гѓ©гѓЎгѓјг‚їгЃ‹г‚‰иЎЊе€—г‚’дЅњж€ђгЃ™г‚‹
 			CreateTranslationMatrix4X4CT( &TranslateMat, Model->Translation.x, Model->Translation.y, Model->Translation.z ) ;
 			if( Model->Scale.x != 1.0f || Model->Scale.y != 1.0f || Model->Scale.z != 1.0f )
 			{
 				CreateScalingMatrix4X4CT( &ScaleMat, Model->Scale.x, Model->Scale.y, Model->Scale.z ) ;
 
-				// ѓXѓPЃ[ѓЉѓ“ѓO‚рЋg—p‚µ‚Д‚ў‚й‚©‚З‚¤‚©‚Мѓtѓ‰ѓO‚р—§‚Д‚й
+				// г‚№г‚±гѓјгѓЄгѓіг‚°г‚’дЅїз”ЁгЃ—гЃ¦гЃ„г‚‹гЃ‹гЃ©гЃ†гЃ‹гЃ®гѓ•гѓ©г‚°г‚’з«‹гЃ¦г‚‹
 				Model->LocalWorldMatrixUseScaling = true ;
 			}
 			else
@@ -1698,7 +1698,7 @@ static void MV1SetupMatrix( MV1_MODEL *Model, bool PhysicsSkip )
 			case MV1_ROTATE_TYPE_MATRIX :
 				ConvertMatrix4x4cFToMatrix4x4c( &RotateMat, &Model->Rotation.Mat ) ;
 
-				// ѓXѓPЃ[ѓЉѓ“ѓO‚рЋg—p‚µ‚Д‚ў‚й‚©‚З‚¤‚©‚Мѓtѓ‰ѓO‚р—§‚Д‚й
+				// г‚№г‚±гѓјгѓЄгѓіг‚°г‚’дЅїз”ЁгЃ—гЃ¦гЃ„г‚‹гЃ‹гЃ©гЃ†гЃ‹гЃ®гѓ•гѓ©г‚°г‚’з«‹гЃ¦г‚‹
 				Model->LocalWorldMatrixUseScaling = true ;
 				break ;
 
@@ -1717,7 +1717,7 @@ static void MV1SetupMatrix( MV1_MODEL *Model, bool PhysicsSkip )
 		}
 	}
 
-	// ѓtѓЊЃ[ѓЂ‚МЌXђVѓ`ѓFѓbѓN
+	// гѓ•гѓ¬гѓјгѓ гЃ®ж›ґж–°гѓЃг‚§гѓѓг‚Ї
 	Frame = Model->Frame ;
 	MAnim = Model->Anim ;
 	for( i = 0 ; i < MBase->FrameNum ; i ++, Frame ++, MAnim += Model->AnimSetMaxNum )
@@ -1725,14 +1725,14 @@ static void MV1SetupMatrix( MV1_MODEL *Model, bool PhysicsSkip )
 		MATRIX_4X4CT *ParentMatrix ;
 		bool ParentUseScaling ;
 
-		// •Ё—ќ‰‰ЋZ‚ЕЌs—с‚р“±‚«Џo‚·‚ж‚¤‚Й‚И‚Б‚Д‚ў‚йЏкЌ‡‚Н‰Ѕ‚а‚µ‚И‚ў
+		// з‰©зђ†жј”з®—гЃ§иЎЊе€—г‚’е°ЋгЃЌе‡єгЃ™г‚€гЃ†гЃ«гЃЄгЃЈгЃ¦гЃ„г‚‹е ґеђ€гЃЇдЅ•г‚‚гЃ—гЃЄгЃ„
 		if( ( Frame->PhysicsRigidBody != NULL || ( Model->PrioritizePhysicsOverAnimFlag && Frame->BaseData->PhysicsRigidBody != NULL ) ) && PhysicsSkip ) continue ;
 
-		// ЌXђV‚Є•K—v‚И‚ўЏкЌ‡‚Н‰Ѕ‚а‚µ‚И‚ў
+		// ж›ґж–°гЃЊеї…и¦ЃгЃЄгЃ„е ґеђ€гЃЇдЅ•г‚‚гЃ—гЃЄгЃ„
 		if( MV1CCHK( Frame->LocalWorldMatrixChange ) == 0 ) continue ;
 		FrameBase = Frame->BaseData ;
 
-		// ѓ|ѓЉѓSѓ“ѓЉѓXѓgЌXђVѓtѓ‰ѓO‚р“|‚·
+		// гѓќгѓЄг‚ґгѓігѓЄг‚№гѓ€ж›ґж–°гѓ•гѓ©г‚°г‚’еЂ’гЃ™
 		Frame->SetupRefPolygon[ 1 ][ 0 ] = false ;
 		Frame->SetupRefPolygon[ 1 ][ 1 ] = false ;
 		Mesh = Frame->Mesh ;
@@ -1741,10 +1741,10 @@ static void MV1SetupMatrix( MV1_MODEL *Model, bool PhysicsSkip )
 			Mesh->SetupRefPolygon[ 1 ] = false ;
 		}
 
-		// ѓXѓPЃ[ѓЉѓ“ѓO‚рЋg—p‚µ‚Д‚ў‚й‚©‚З‚¤‚©‚Мѓtѓ‰ѓO‚р“|‚·
+		// г‚№г‚±гѓјгѓЄгѓіг‚°г‚’дЅїз”ЁгЃ—гЃ¦гЃ„г‚‹гЃ‹гЃ©гЃ†гЃ‹гЃ®гѓ•гѓ©г‚°г‚’еЂ’гЃ™
 		Frame->LocalWorldMatrixUseScaling = false ;
 
-		// ђeЌs—с‚рѓZѓbѓg‚·‚й
+		// и¦ЄиЎЊе€—г‚’г‚»гѓѓгѓ€гЃ™г‚‹
 		if( FrameBase->IgnoreParentTransform || Frame->Parent == NULL )
 		{
 			ParentMatrix = &Model->LocalWorldMatrix ;
@@ -1756,34 +1756,34 @@ static void MV1SetupMatrix( MV1_MODEL *Model, bool PhysicsSkip )
 			ParentUseScaling = Frame->Parent->LocalWorldMatrixUseScaling ;
 		}
 
-		// ѓ†Ѓ[ѓUЃ[Ћw’и‚МѓЌЃ[ѓJѓ‹Ќs—с‚Є‚ ‚йЏкЌ‡‚Н‚»‚к‚рЋg—p‚·‚й
+		// гѓ¦гѓјг‚¶гѓјжЊ‡е®љгЃ®гѓ­гѓјг‚«гѓ«иЎЊе€—гЃЊгЃ‚г‚‹е ґеђ€гЃЇгЃќг‚Њг‚’дЅїз”ЁгЃ™г‚‹
 		if( Frame->ValidUserLocalTransformMatrix )
 		{
-			// ѓЌЃ[ѓJѓ‹Ќs—с‚ЖђeѓtѓЊЃ[ѓЂ‚МЌs—с‚рЉ|‚ЇЌ‡‚н‚№‚й
+			// гѓ­гѓјг‚«гѓ«иЎЊе€—гЃЁи¦Єгѓ•гѓ¬гѓјгѓ гЃ®иЎЊе€—г‚’жЋ›гЃ‘еђ€г‚ЏгЃ›г‚‹
 			UnSafeMultiplyMatrix4X4CT( &Frame->LocalWorldMatrix, &Frame->UserLocalTransformMatrix, ParentMatrix ) ;
 
-			// ѓXѓPЃ[ѓЉѓ“ѓO‚рЋg—p‚µ‚Д‚ў‚й‚©‚З‚¤‚©‚Мѓtѓ‰ѓO‚р—§‚Д‚й
+			// г‚№г‚±гѓјгѓЄгѓіг‚°г‚’дЅїз”ЁгЃ—гЃ¦гЃ„г‚‹гЃ‹гЃ©гЃ†гЃ‹гЃ®гѓ•гѓ©г‚°г‚’з«‹гЃ¦г‚‹
 			Frame->LocalWorldMatrixUseScaling = true ;
 		}
 		else
-		// ѓ†Ѓ[ѓUЃ[Ћw’и‚МѓЌЃ[ѓJѓ‹ЃЁѓЏЃ[ѓ‹ѓhЌs—с‚Є‚ ‚йЏкЌ‡‚Н‚»‚к‚рЋg—p‚·‚й
+		// гѓ¦гѓјг‚¶гѓјжЊ‡е®љгЃ®гѓ­гѓјг‚«гѓ«в†’гѓЇгѓјгѓ«гѓ‰иЎЊе€—гЃЊгЃ‚г‚‹е ґеђ€гЃЇгЃќг‚Њг‚’дЅїз”ЁгЃ™г‚‹
 		if( Frame->ValidUserLocalWorldTransformMatrix )
 		{
-			// ѓtѓЊЃ[ѓЂ‚МѓЌЃ[ѓJѓ‹ЃЁѓЏЃ[ѓ‹ѓhЌs—с‚Ж‚µ‚Д‚»‚М‚Ь‚Ь‘г“ь
+			// гѓ•гѓ¬гѓјгѓ гЃ®гѓ­гѓјг‚«гѓ«в†’гѓЇгѓјгѓ«гѓ‰иЎЊе€—гЃЁгЃ—гЃ¦гЃќгЃ®гЃѕгЃѕд»Је…Ґ
 			Frame->LocalWorldMatrix = Frame->UserLocalWorldTransformMatrix ;
 
-			// ѓXѓPЃ[ѓЉѓ“ѓO‚рЋg—p‚µ‚Д‚ў‚й‚©‚З‚¤‚©‚Мѓtѓ‰ѓO‚р—§‚Д‚й
+			// г‚№г‚±гѓјгѓЄгѓіг‚°г‚’дЅїз”ЁгЃ—гЃ¦гЃ„г‚‹гЃ‹гЃ©гЃ†гЃ‹гЃ®гѓ•гѓ©г‚°г‚’з«‹гЃ¦г‚‹
 			Frame->LocalWorldMatrixUseScaling = true ;
 		}
 		else
-		// ѓtѓЊЃ[ѓЂ‚М‰с“]‚рЋg—p‚µ‚И‚ўЋw’и‚Є‚ ‚йЏкЌ‡‚НЏ€—ќ‚р•ЄЉт‚·‚й
+		// гѓ•гѓ¬гѓјгѓ гЃ®е›ћи»ўг‚’дЅїз”ЁгЃ—гЃЄгЃ„жЊ‡е®љгЃЊгЃ‚г‚‹е ґеђ€гЃЇе‡¦зђ†г‚’е€†еІђгЃ™г‚‹
 		if( Model->NotUseFrameRotation )
 		{
 			VECTOR TempRotate = { 0.0f, 0.0f, 0.0f } ;
 			MATRIX TempMatrix ;
 			MATRIX_4X4CT_F Temp4x4CTMatrixF ;
 
-			// ‰с“]‚р–іЋ‹‚µ‚ЅЌs—с‚МЌмђ¬
+			// е›ћи»ўг‚’з„Ўи¦–гЃ—гЃџиЎЊе€—гЃ®дЅњж€ђ
 			MV1RMakeMatrix(
 				( FrameBase->Flag & MV1_FRAMEFLAG_PREROTATE ) != 0 ? &FrameBase->PreRotate : NULL,
 				&TempRotate,
@@ -1798,13 +1798,13 @@ static void MV1SetupMatrix( MV1_MODEL *Model, bool PhysicsSkip )
 			UnSafeMultiplyMatrix4X4CT_FC( &Frame->LocalWorldMatrix, &Temp4x4CTMatrixF, ParentMatrix ) ;
 		}
 		else
-		// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚Є‚ ‚йЏкЌ‡‚Ж–і‚ўЏкЌ‡‚ЕЏ€—ќ‚р•ЄЉт
+		// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігЃЊгЃ‚г‚‹е ґеђ€гЃЁз„ЎгЃ„е ґеђ€гЃ§е‡¦зђ†г‚’е€†еІђ
 		if( Model->AnimSetNum == 0 )
 		{
-			// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚Є‚И‚ўЏкЌ‡
+			// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігЃЊгЃЄгЃ„е ґеђ€
 			UnSafeMultiplyMatrix4X4CT_FC( &Frame->LocalWorldMatrix, &FrameBase->LocalTransformMatrix, ParentMatrix ) ;
 
-			// ђe‚МѓtѓЊЃ[ѓЂ–”‚НѓfѓtѓHѓ‹ѓg‚МђЭ’и‚ЕѓXѓPЃ[ѓЉѓ“ѓO‚рЋg—p‚µ‚Д‚ў‚Ѕ‚зѓXѓPЃ[ѓЉѓ“ѓO‚рЋg—p‚µ‚Д‚ў‚й‚©‚З‚¤‚©‚Мѓtѓ‰ѓO‚р—§‚Д‚й
+			// и¦ЄгЃ®гѓ•гѓ¬гѓјгѓ еЏ€гЃЇгѓ‡гѓ•г‚©гѓ«гѓ€гЃ®иЁ­е®љгЃ§г‚№г‚±гѓјгѓЄгѓіг‚°г‚’дЅїз”ЁгЃ—гЃ¦гЃ„гЃџг‚‰г‚№г‚±гѓјгѓЄгѓіг‚°г‚’дЅїз”ЁгЃ—гЃ¦гЃ„г‚‹гЃ‹гЃ©гЃ†гЃ‹гЃ®гѓ•гѓ©г‚°г‚’з«‹гЃ¦г‚‹
 			if( FrameBase->LocalTransformMatrixUseScaling || ParentUseScaling )
 			{
 				Frame->LocalWorldMatrixUseScaling = true ;
@@ -1812,14 +1812,14 @@ static void MV1SetupMatrix( MV1_MODEL *Model, bool PhysicsSkip )
 		}
 		else
 		{
-			// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚Є‚ ‚йЏкЌ‡
+			// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігЃЊгЃ‚г‚‹е ґеђ€
 			MATRIX_4X4CT_F BlendMat ;
 			float BlendRate ;
 			VECTOR Translate, Scale, Rotate ;
 			FLOAT4 Quaternion ;
 			int BlendFlag ;
 
-			// ѓpѓ‰ѓЃЃ[ѓ^ѓЊѓxѓ‹‚МѓuѓЊѓ“ѓh‚ЄЌs‚¦‚й‚©‚р’І‚Ч‚й
+			// гѓ‘гѓ©гѓЎгѓјг‚їгѓ¬гѓ™гѓ«гЃ®гѓ–гѓ¬гѓігѓ‰гЃЊиЎЊгЃ€г‚‹гЃ‹г‚’иЄїгЃ№г‚‹
 			MAnim2 = MAnim ;
 			BlendFlag = 0 ;
 			mcon = 0 ;
@@ -1835,7 +1835,7 @@ static void MV1SetupMatrix( MV1_MODEL *Model, bool PhysicsSkip )
 				BlendFlag |= MAnim2->Anim->ValidFlag ;
 			}
 
-			// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚ЄЌДђ¶‚і‚к‚Д‚ў‚И‚ўЏкЌ‡‚НѓfѓtѓHѓ‹ѓg‚МЌs—с‚р“K‰ћ‚·‚й
+			// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігЃЊе†Ќз”џгЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ„е ґеђ€гЃЇгѓ‡гѓ•г‚©гѓ«гѓ€гЃ®иЎЊе€—г‚’йЃ©еїњгЃ™г‚‹
 			if( mcon == 0 )
 			{
 				if( FrameBase->LocalTransformMatrixType == 0 )
@@ -1870,20 +1870,20 @@ static void MV1SetupMatrix( MV1_MODEL *Model, bool PhysicsSkip )
 				}
 			}
 			else
-			// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚Є€к‚В‚ѕ‚ЇЌДђ¶‚і‚к‚Д‚ў‚ДЉЋ‚ВѓuѓЊѓ“ѓhѓЊЃ[ѓg‚а1.0‚МЏкЌ‡‚Н•КЏ€—ќ
+			// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігЃЊдёЂгЃ¤гЃ гЃ‘е†Ќз”џгЃ•г‚ЊгЃ¦гЃ„гЃ¦дё”гЃ¤гѓ–гѓ¬гѓігѓ‰гѓ¬гѓјгѓ€г‚‚1.0гЃ®е ґеђ€гЃЇе€Ґе‡¦зђ†
 			if( mcon == 1 && BlendRate == 1.0f )
 			{
-				// Ќs—с‚МѓZѓbѓgѓAѓbѓv
+				// иЎЊе€—гЃ®г‚»гѓѓгѓ€г‚ўгѓѓгѓ—
 				if( BlendFlag & MV1_ANIMVALUE_MATRIX )
 				{
-					// ђeѓtѓЊЃ[ѓЂ‚МЌs—с‚рЉ|‚Ї‚й
+					// и¦Єгѓ•гѓ¬гѓјгѓ гЃ®иЎЊе€—г‚’жЋ›гЃ‘г‚‹
 					UnSafeMultiplyMatrix4X4CT_FC( &Frame->LocalWorldMatrix, &MAnim3->Anim->Matrix, ParentMatrix ) ;
 
 					Frame->LocalWorldMatrixUseScaling = true ;
 				}
 				else
 				{
-					// ђeѓtѓЊЃ[ѓЂ‚МЌs—с‚рЉ|‚Ї‚й
+					// и¦Єгѓ•гѓ¬гѓјгѓ гЃ®иЎЊе€—г‚’жЋ›гЃ‘г‚‹
 					if( MAnim3->Anim->ValidBlendMatrix == false )
 					{
 						MV1SetupTransformMatrix(
@@ -1940,8 +1940,8 @@ static void MV1SetupMatrix( MV1_MODEL *Model, bool PhysicsSkip )
 			{
 				MV1_ANIM * RST Anim ;
 
-				// Ќs—с‚Є‚ ‚й‚©ЃAѓNѓHЃ[ѓ^ѓjѓIѓ“‚Ж‚w‚x‚yЋІ‰с“]‚ЄЌ¬“Ї‚µ‚Д‚ў‚й‚©
-				// ѓfѓtѓHѓ‹ѓgѓpѓ‰ѓЃЃ[ѓ^‚Є–іЊш‚ИЏг‚Й“–‚Д‚Д‚ ‚йѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚МЋн—Ю‚Є€б‚¤ЏкЌ‡‚НЌs—сѓuѓЊѓ“ѓh
+				// иЎЊе€—гЃЊгЃ‚г‚‹гЃ‹гЂЃг‚Їг‚©гѓјг‚їгѓ‹г‚ЄгѓігЃЁпјёпј№пјєи»ёе›ћи»ўгЃЊж··еђЊгЃ—гЃ¦гЃ„г‚‹гЃ‹
+				// гѓ‡гѓ•г‚©гѓ«гѓ€гѓ‘гѓ©гѓЎгѓјг‚їгЃЊз„ЎеЉ№гЃЄдёЉгЃ«еЅ“гЃ¦гЃ¦гЃ‚г‚‹г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігЃ®зЁ®йЎћгЃЊйЃ•гЃ†е ґеђ€гЃЇиЎЊе€—гѓ–гѓ¬гѓігѓ‰
 //				if( ( BlendFlag & MV1_ANIMVALUE_MATRIX ) ||
 //					( BlendFlag & ( MV1_ANIMVALUE_ROTATE | MV1_ANIMVALUE_QUATERNION_X   ) ) == ( MV1_ANIMVALUE_ROTATE | MV1_ANIMVALUE_QUATERNION_X   ) ||
 //					( BlendFlag & ( MV1_ANIMVALUE_ROTATE | MV1_ANIMVALUE_QUATERNION_VMD ) ) == ( MV1_ANIMVALUE_ROTATE | MV1_ANIMVALUE_QUATERNION_VMD ) )
@@ -1981,7 +1981,7 @@ static void MV1SetupMatrix( MV1_MODEL *Model, bool PhysicsSkip )
 						}
 						else
 						{
-							// Ќs—с‚МѓZѓbѓgѓAѓbѓv
+							// иЎЊе€—гЃ®г‚»гѓѓгѓ€г‚ўгѓѓгѓ—
 							if( Anim->ValidBlendMatrix == false )
 							{
 								MV1SetupTransformMatrix(
@@ -2032,7 +2032,7 @@ static void MV1SetupMatrix( MV1_MODEL *Model, bool PhysicsSkip )
 						Frame->LocalWorldMatrixUseScaling = true ;
 					}
 
-					// Ќs—с‚М‰с“]•”•Є‚МXЃEYЃEZЋІ‚Є’јЌs‚·‚й‚ж‚¤‚Й•вђі
+					// иЎЊе€—гЃ®е›ћи»ўйѓЁе€†гЃ®Xгѓ»Yгѓ»Zи»ёгЃЊз›ґиЎЊгЃ™г‚‹г‚€гЃ†гЃ«иЈњж­Ј
 					{
 						float DivNum ;
 
@@ -2055,7 +2055,7 @@ static void MV1SetupMatrix( MV1_MODEL *Model, bool PhysicsSkip )
 						BlendMat.m[ 1 ][ 2 ] = BlendMat.m[ 2 ][ 0 ] * BlendMat.m[ 0 ][ 1 ] - BlendMat.m[ 2 ][ 1 ] * BlendMat.m[ 0 ][ 0 ] ;
 					}
 
-					// ѓXѓPЃ[ѓЉѓ“ѓOђ¬•Є‚Є‚ ‚йЏкЌ‡‚НѓXѓPЃ[ѓЉѓ“ѓO
+					// г‚№г‚±гѓјгѓЄгѓіг‚°ж€ђе€†гЃЊгЃ‚г‚‹е ґеђ€гЃЇг‚№г‚±гѓјгѓЄгѓіг‚°
 					if( BlendScaling.x != 1.0f || BlendScaling.y != 1.0f || BlendScaling.z != 1.0f )
 					{
 						BlendMat.m[ 0 ][ 0 ] *= BlendScaling.x ;
@@ -2073,7 +2073,7 @@ static void MV1SetupMatrix( MV1_MODEL *Model, bool PhysicsSkip )
 				}
 				else
 				{
-					// ‚»‚к€ИЉO‚МЏкЌ‡‚Нѓpѓ‰ѓЃЃ[ѓ^ѓЊѓxѓ‹‚МѓuѓЊѓ“ѓhЏ€—ќ
+					// гЃќг‚Њд»Ґе¤–гЃ®е ґеђ€гЃЇгѓ‘гѓ©гѓЎгѓјг‚їгѓ¬гѓ™гѓ«гЃ®гѓ–гѓ¬гѓігѓ‰е‡¦зђ†
 					Translate.x = 0.0f ;
 					Translate.y = 0.0f ;
 					Translate.z = 0.0f ;
@@ -2182,7 +2182,7 @@ static void MV1SetupMatrix( MV1_MODEL *Model, bool PhysicsSkip )
 					Quaternion.z *= DivNum ;
 					Quaternion.w *= DivNum ;
 
-					// Ќs—с‚МѓZѓbѓgѓAѓbѓv
+					// иЎЊе€—гЃ®г‚»гѓѓгѓ€г‚ўгѓѓгѓ—
 					MV1SetupTransformMatrix(
 						&BlendMat,
 						BlendFlag,
@@ -2201,7 +2201,7 @@ static void MV1SetupMatrix( MV1_MODEL *Model, bool PhysicsSkip )
 					}
 				}
 
-				// ђeѓtѓЊЃ[ѓЂ‚МЌs—с‚рЉ|‚Ї‚й
+				// и¦Єгѓ•гѓ¬гѓјгѓ гЃ®иЎЊе€—г‚’жЋ›гЃ‘г‚‹
 				UnSafeMultiplyMatrix4X4CT_FC( &Frame->LocalWorldMatrix, &BlendMat, ParentMatrix ) ;
 				if( ParentUseScaling )
 				{
@@ -2210,10 +2210,10 @@ static void MV1SetupMatrix( MV1_MODEL *Model, bool PhysicsSkip )
 			}
 		}
 
-		// ЊЕ’и‹@”\ѓpѓCѓvѓ‰ѓCѓ“—pЌs—с‚р–іЊш‚Й‚·‚й
+		// е›єе®љж©џиѓЅгѓ‘г‚¤гѓ—гѓ©г‚¤гѓіз”ЁиЎЊе€—г‚’з„ЎеЉ№гЃ«гЃ™г‚‹
 		Frame->ValidLocalWorldMatrixNM = false ;
 
-		// ‚±‚МѓtѓЊЃ[ѓЂ‚р‘ОЏЫ‚Ж‚µ‚Д‚ў‚йѓ{Ѓ[ѓ“‚Є‚ ‚йЏкЌ‡‚НЃA‚»‚Мѓ{Ѓ[ѓ“‚МЌs—с‚аЌXђV‚·‚й
+		// гЃ“гЃ®гѓ•гѓ¬гѓјгѓ г‚’еЇѕи±ЎгЃЁгЃ—гЃ¦гЃ„г‚‹гѓњгѓјгѓігЃЊгЃ‚г‚‹е ґеђ€гЃЇгЂЃгЃќгЃ®гѓњгѓјгѓігЃ®иЎЊе€—г‚‚ж›ґж–°гЃ™г‚‹
 		SetupSkiningBoneMatrix( *Model, *Frame ) ;
 
 		//NS_LogFileFmtAdd( "no:%d parent:%d", i, Frame->Parent != NULL ? ( Frame - Model->Frame ) - ( Frame->Parent - Model->Frame ) : -1 );
@@ -2236,10 +2236,10 @@ static void MV1SetupMatrix( MV1_MODEL *Model, bool PhysicsSkip )
 			Model->SkinBoneMatrix[i].m[2][0], Model->SkinBoneMatrix[i].m[2][1], Model->SkinBoneMatrix[i].m[2][2], Model->SkinBoneMatrix[i].m[2][3] );
 	}
 */
-	// ЌXђV‚Є•K—vѓtѓ‰ѓO‚рѓЉѓZѓbѓg‚·‚й
+	// ж›ґж–°гЃЊеї…и¦Ѓгѓ•гѓ©г‚°г‚’гѓЄг‚»гѓѓгѓ€гЃ™г‚‹
 	_MEMSET( Model->ChangeMatrixFlag, 0, Model->ChangeMatrixFlagSize ) ;
 
-	// ѓ‚ѓfѓ‹’†‚МЌs—сѓZѓbѓgѓAѓbѓvЉ®—№ѓtѓ‰ѓO‚р—§‚Д‚й
+	// гѓўгѓ‡гѓ«дё­гЃ®иЎЊе€—г‚»гѓѓгѓ€г‚ўгѓѓгѓ—е®Њдє†гѓ•гѓ©г‚°г‚’з«‹гЃ¦г‚‹
 	Model->LocalWorldMatrixSetupFlag = true ;
 }
 
@@ -2291,7 +2291,7 @@ static void MV1SetupMatrix( MV1_MODEL *Model, bool PhysicsSkip )
 	( CHILD )->SetupDrawMaterial.OpacityRate = ( CHILD )->DrawMaterial.OpacityRate * ( PARENT ).OpacityRate ;\
 	( CHILD )->SetupDrawMaterial.Visible     = ( BYTE )( ( CHILD )->DrawMaterial.Visible != 0 && ( PARENT ).Visible != 0 ? 1 : 0 ) ;
 
-// •`‰ж—p‚Мѓ}ѓeѓЉѓAѓ‹Џо•с‚рЌ\’z‚·‚й( ’†‚ЕѓЃѓbѓVѓ…Ћ©‘М‚МЌXђVѓ`ѓFѓbѓN‚Н‚µ‚Ь‚№‚с )
+// жЏЏз”»з”ЁгЃ®гѓћгѓ†гѓЄг‚ўгѓ«жѓ…е ±г‚’ж§‹зЇ‰гЃ™г‚‹( дё­гЃ§гѓЎгѓѓг‚·гѓҐи‡ЄдЅ“гЃ®ж›ґж–°гѓЃг‚§гѓѓг‚ЇгЃЇгЃ—гЃѕгЃ›г‚“ )
 static void MV1SetupDrawMaterial( MV1_FRAME *Frame, MV1_MESH *Mesh )
 {
 	int StackNum, i ;
@@ -2303,10 +2303,10 @@ static void MV1SetupDrawMaterial( MV1_FRAME *Frame, MV1_MESH *Mesh )
 	if( Frame == NULL ) Frame = Mesh->Container ;
 	Model = Frame->Container ;
 
-	// Ћ©•Є‚Й‰e‹ї‚Є‚ ‚йЌЕЏг‹‰ѓtѓЊЃ[ѓЂ‚МЌXђV
+	// и‡Єе€†гЃ«еЅ±йџїгЃЊгЃ‚г‚‹жњЂдёЉзґљгѓ•гѓ¬гѓјгѓ гЃ®ж›ґж–°
 	if( MV1CCHK( Frame->DrawMaterialChange ) != 0 )
 	{
-		// ѓgѓbѓv‚ЄЌXђV‚і‚к‚Д‚ў‚Ѕ‚з‚»‚±‚©‚з
+		// гѓ€гѓѓгѓ—гЃЊж›ґж–°гЃ•г‚ЊгЃ¦гЃ„гЃџг‚‰гЃќгЃ“гЃ‹г‚‰
 		if( Model->ChangeDrawMaterialFlag[ 0 ] & 1 )
 		{
 			_MEMSET( Model->ChangeDrawMaterialFlag, 0, Model->ChangeDrawMaterialFlagSize ) ;
@@ -2377,10 +2377,10 @@ static void MV1SetupDrawMaterial( MV1_FRAME *Frame, MV1_MESH *Mesh )
 	}
 }
 
-// Џу‘Ф•ПЌXЉЗ—ќѓfЃ[ѓ^‚ЙђЭ’и‚і‚к‚Д‚ў‚й‘ОЏЫѓrѓbѓg‚р—§‚Д‚й
+// зЉ¶ж…‹е¤‰ж›ґз®Ўзђ†гѓ‡гѓјг‚їгЃ«иЁ­е®љгЃ•г‚ЊгЃ¦гЃ„г‚‹еЇѕи±Ўгѓ“гѓѓгѓ€г‚’з«‹гЃ¦г‚‹
 static void MV1BitSetChange( MV1_CHANGE *Change )
 {
-	// Љщ‚Йѓrѓbѓg‚Є—§‚Б‚Д‚ў‚Ѕ‚з‰Ѕ‚а‚µ‚И‚ў
+	// ж—ўгЃ«гѓ“гѓѓгѓ€гЃЊз«‹гЃЈгЃ¦гЃ„гЃџг‚‰дЅ•г‚‚гЃ—гЃЄгЃ„
 	if( MV1CCHK( *Change ) ) return ;
 
 	if( Change->BaseData->Fill )
@@ -2400,7 +2400,7 @@ static void MV1BitSetChange( MV1_CHANGE *Change )
 	}
 }
 
-// Џу‘Ф•ПЌXЉЗ—ќѓfЃ[ѓ^‚ЙђЭ’и‚і‚к‚Д‚ў‚й‘ОЏЫѓrѓbѓg‚р“|‚·
+// зЉ¶ж…‹е¤‰ж›ґз®Ўзђ†гѓ‡гѓјг‚їгЃ«иЁ­е®љгЃ•г‚ЊгЃ¦гЃ„г‚‹еЇѕи±Ўгѓ“гѓѓгѓ€г‚’еЂ’гЃ™
 static void MV1BitResetChange( MV1_CHANGE *Change )
 {
 	if( Change->BaseData->Fill )
@@ -2420,29 +2420,29 @@ static void MV1BitResetChange( MV1_CHANGE *Change )
 	}
 }
 
-// •`‰ж—pѓ}ѓeѓЉѓAѓ‹Џо•с‚МѓfѓBѓtѓ…Ѓ[ѓYѓJѓ‰Ѓ[‚р•ПЌX‚·‚й
+// жЏЏз”»з”Ёгѓћгѓ†гѓЄг‚ўгѓ«жѓ…е ±гЃ®гѓ‡г‚Јгѓ•гѓҐгѓјг‚єг‚«гѓ©гѓјг‚’е¤‰ж›ґгЃ™г‚‹
 static bool MV1SetDrawMaterialDif( MV1_DRAW_MATERIAL *DrawMaterial, MV1_CHANGE *Change, COLOR_F Scale )
 {
-	// ЌЎ‚Ь‚Е‚Ж’l‚Є“Ї‚¶ЏкЌ‡‚Н‰Ѕ‚а‚№‚ёЏI—№
+	// д»ЉгЃѕгЃ§гЃЁеЂ¤гЃЊеђЊгЃе ґеђ€гЃЇдЅ•г‚‚гЃ›гЃљзµ‚дє†
 	if( *( ( DWORD * )&Scale.r ) == *( ( DWORD * )&DrawMaterial->DiffuseScale.r ) &&
 		*( ( DWORD * )&Scale.g ) == *( ( DWORD * )&DrawMaterial->DiffuseScale.g ) &&
 		*( ( DWORD * )&Scale.b ) == *( ( DWORD * )&DrawMaterial->DiffuseScale.b ) &&
 		*( ( DWORD * )&Scale.a ) == *( ( DWORD * )&DrawMaterial->DiffuseScale.a ) )
 		return false ;
 
-	// ‘S‚Д‚М—v‘f‚Є 1.0f ‚©‚З‚¤‚©‚ЕЏ€—ќ‚р•ЄЉт
+	// е…ЁгЃ¦гЃ®и¦Ѓзґ гЃЊ 1.0f гЃ‹гЃ©гЃ†гЃ‹гЃ§е‡¦зђ†г‚’е€†еІђ
 	if( *( ( DWORD * )&Scale.r ) == 0x3f800000 &&
 		*( ( DWORD * )&Scale.g ) == 0x3f800000 &&
 		*( ( DWORD * )&Scale.b ) == 0x3f800000 &&
 		*( ( DWORD * )&Scale.a ) == 0x3f800000 )
 	{
-		// ѓfѓBѓtѓ…Ѓ[ѓYѓJѓ‰Ѓ[‚Й 1.0f ‚р‘г“ь
+		// гѓ‡г‚Јгѓ•гѓҐгѓјг‚єг‚«гѓ©гѓјгЃ« 1.0f г‚’д»Је…Ґ
 		*( ( DWORD * )&DrawMaterial->DiffuseScale.r ) = 0x3f800000 ;
 		*( ( DWORD * )&DrawMaterial->DiffuseScale.g ) = 0x3f800000 ;
 		*( ( DWORD * )&DrawMaterial->DiffuseScale.b ) = 0x3f800000 ;
 		*( ( DWORD * )&DrawMaterial->DiffuseScale.a ) = 0x3f800000 ;
 
-		// ‘ј‚М—v‘f‚Є 1.0f €ИЉO‚©’І‚Ч‚й
+		// д»–гЃ®и¦Ѓзґ гЃЊ 1.0f д»Ґе¤–гЃ‹иЄїгЃ№г‚‹
 		if( *( ( DWORD * )&DrawMaterial->AmbientScale.r ) == 0x3f800000 &&
 			*( ( DWORD * )&DrawMaterial->AmbientScale.g ) == 0x3f800000 &&
 			*( ( DWORD * )&DrawMaterial->AmbientScale.b ) == 0x3f800000 &&
@@ -2456,48 +2456,48 @@ static bool MV1SetDrawMaterialDif( MV1_DRAW_MATERIAL *DrawMaterial, MV1_CHANGE *
 			*( ( DWORD * )&DrawMaterial->EmissiveScale.b ) == 0x3f800000 &&
 			*( ( DWORD * )&DrawMaterial->EmissiveScale.a ) == 0x3f800000 )
 		{
-			// ѓJѓ‰Ѓ[ѓXѓPЃ[ѓ‹‚НЋg—p‚µ‚Д‚ў‚И‚ўЃA‚Й‚·‚й
+			// г‚«гѓ©гѓјг‚№г‚±гѓјгѓ«гЃЇдЅїз”ЁгЃ—гЃ¦гЃ„гЃЄгЃ„гЂЃгЃ«гЃ™г‚‹
 			DrawMaterial->UseColorScale = false ;
 		}
 	}
 	else
 	{
-		// ѓfѓBѓtЃ[ѓYѓJѓ‰Ѓ[‚Й’l‚р‘г“ь
+		// гѓ‡г‚Јгѓ•гѓјг‚єг‚«гѓ©гѓјгЃ«еЂ¤г‚’д»Је…Ґ
 		DrawMaterial->DiffuseScale = Scale ;
 
-		// ѓJѓ‰Ѓ[ѓXѓPЃ[ѓ‹‚рЋg—p‚µ‚Д‚ў‚йЃA‚Й‚·‚й
+		// г‚«гѓ©гѓјг‚№г‚±гѓјгѓ«г‚’дЅїз”ЁгЃ—гЃ¦гЃ„г‚‹гЂЃгЃ«гЃ™г‚‹
 		DrawMaterial->UseColorScale = true ;
 	}
 
-	// •ПЌX‚М€у‚р•t‚Ї‚й
+	// е¤‰ж›ґгЃ®еЌ°г‚’д»гЃ‘г‚‹
 	if( Change ) MV1BitSetChange( Change ) ;
 
 	return true ;
 }
 
-// •`‰ж—pѓ}ѓeѓЉѓAѓ‹Џо•с‚МѓAѓ“ѓrѓGѓ“ѓgѓJѓ‰Ѓ[‚р•ПЌX‚·‚й
+// жЏЏз”»з”Ёгѓћгѓ†гѓЄг‚ўгѓ«жѓ…е ±гЃ®г‚ўгѓігѓ“г‚Ёгѓігѓ€г‚«гѓ©гѓјг‚’е¤‰ж›ґгЃ™г‚‹
 static bool MV1SetDrawMaterialAmb( MV1_DRAW_MATERIAL *DrawMaterial, MV1_CHANGE *Change, COLOR_F Scale )
 {
-	// ЌЎ‚Ь‚Е‚Ж’l‚Є“Ї‚¶ЏкЌ‡‚Н‰Ѕ‚а‚№‚ёЏI—№
+	// д»ЉгЃѕгЃ§гЃЁеЂ¤гЃЊеђЊгЃе ґеђ€гЃЇдЅ•г‚‚гЃ›гЃљзµ‚дє†
 	if( *( ( DWORD * )&Scale.r ) == *( ( DWORD * )&DrawMaterial->AmbientScale.r ) &&
 		*( ( DWORD * )&Scale.g ) == *( ( DWORD * )&DrawMaterial->AmbientScale.g ) &&
 		*( ( DWORD * )&Scale.b ) == *( ( DWORD * )&DrawMaterial->AmbientScale.b ) &&
 		*( ( DWORD * )&Scale.a ) == *( ( DWORD * )&DrawMaterial->AmbientScale.a ) )
 		return false ;
 
-	// ‘S‚Д‚М—v‘f‚Є 1.0f ‚©‚З‚¤‚©‚ЕЏ€—ќ‚р•ЄЉт
+	// е…ЁгЃ¦гЃ®и¦Ѓзґ гЃЊ 1.0f гЃ‹гЃ©гЃ†гЃ‹гЃ§е‡¦зђ†г‚’е€†еІђ
 	if( *( ( DWORD * )&Scale.r ) == 0x3f800000 &&
 		*( ( DWORD * )&Scale.g ) == 0x3f800000 &&
 		*( ( DWORD * )&Scale.b ) == 0x3f800000 &&
 		*( ( DWORD * )&Scale.a ) == 0x3f800000 )
 	{
-		// ѓAѓ“ѓrѓGѓ“ѓgѓJѓ‰Ѓ[‚Й 1.0f ‚р‘г“ь
+		// г‚ўгѓігѓ“г‚Ёгѓігѓ€г‚«гѓ©гѓјгЃ« 1.0f г‚’д»Је…Ґ
 		*( ( DWORD * )&DrawMaterial->AmbientScale.r ) = 0x3f800000 ;
 		*( ( DWORD * )&DrawMaterial->AmbientScale.g ) = 0x3f800000 ;
 		*( ( DWORD * )&DrawMaterial->AmbientScale.b ) = 0x3f800000 ;
 		*( ( DWORD * )&DrawMaterial->AmbientScale.a ) = 0x3f800000 ;
 
-		// ‘ј‚М—v‘f‚Є 1.0f €ИЉO‚©’І‚Ч‚й
+		// д»–гЃ®и¦Ѓзґ гЃЊ 1.0f д»Ґе¤–гЃ‹иЄїгЃ№г‚‹
 		if( *( ( DWORD * )&DrawMaterial->DiffuseScale.r ) == 0x3f800000 &&
 			*( ( DWORD * )&DrawMaterial->DiffuseScale.g ) == 0x3f800000 &&
 			*( ( DWORD * )&DrawMaterial->DiffuseScale.b ) == 0x3f800000 &&
@@ -2511,48 +2511,48 @@ static bool MV1SetDrawMaterialAmb( MV1_DRAW_MATERIAL *DrawMaterial, MV1_CHANGE *
 			*( ( DWORD * )&DrawMaterial->EmissiveScale.b ) == 0x3f800000 &&
 			*( ( DWORD * )&DrawMaterial->EmissiveScale.a ) == 0x3f800000 )
 		{
-			// ѓJѓ‰Ѓ[ѓXѓPЃ[ѓ‹‚НЋg—p‚µ‚Д‚ў‚И‚ўЃA‚Й‚·‚й
+			// г‚«гѓ©гѓјг‚№г‚±гѓјгѓ«гЃЇдЅїз”ЁгЃ—гЃ¦гЃ„гЃЄгЃ„гЂЃгЃ«гЃ™г‚‹
 			DrawMaterial->UseColorScale = false ;
 		}
 	}
 	else
 	{
-		// ѓAѓ“ѓrѓGѓ“ѓgѓJѓ‰Ѓ[‚Й’l‚р‘г“ь
+		// г‚ўгѓігѓ“г‚Ёгѓігѓ€г‚«гѓ©гѓјгЃ«еЂ¤г‚’д»Је…Ґ
 		DrawMaterial->AmbientScale = Scale ;
 
-		// ѓJѓ‰Ѓ[ѓXѓPЃ[ѓ‹‚рЋg—p‚µ‚Д‚ў‚йЃA‚Й‚·‚й
+		// г‚«гѓ©гѓјг‚№г‚±гѓјгѓ«г‚’дЅїз”ЁгЃ—гЃ¦гЃ„г‚‹гЂЃгЃ«гЃ™г‚‹
 		DrawMaterial->UseColorScale = true ;
 	}
 
-	// •ПЌX‚М€у‚р•t‚Ї‚й
+	// е¤‰ж›ґгЃ®еЌ°г‚’д»гЃ‘г‚‹
 	if( Change ) MV1BitSetChange( Change ) ;
 
 	return true ;
 }
 
-// •`‰ж—pѓ}ѓeѓЉѓAѓ‹Џо•с‚МѓXѓyѓLѓ…ѓ‰ѓJѓ‰Ѓ[‚р•ПЌX‚·‚й
+// жЏЏз”»з”Ёгѓћгѓ†гѓЄг‚ўгѓ«жѓ…е ±гЃ®г‚№гѓљг‚­гѓҐгѓ©г‚«гѓ©гѓјг‚’е¤‰ж›ґгЃ™г‚‹
 static bool MV1SetDrawMaterialSpc( MV1_DRAW_MATERIAL *DrawMaterial, MV1_CHANGE *Change, COLOR_F Scale )
 {
-	// ЌЎ‚Ь‚Е‚Ж’l‚Є“Ї‚¶ЏкЌ‡‚Н‰Ѕ‚а‚№‚ёЏI—№
+	// д»ЉгЃѕгЃ§гЃЁеЂ¤гЃЊеђЊгЃе ґеђ€гЃЇдЅ•г‚‚гЃ›гЃљзµ‚дє†
 	if( *( ( DWORD * )&Scale.r ) == *( ( DWORD * )&DrawMaterial->SpecularScale.r ) &&
 		*( ( DWORD * )&Scale.g ) == *( ( DWORD * )&DrawMaterial->SpecularScale.g ) &&
 		*( ( DWORD * )&Scale.b ) == *( ( DWORD * )&DrawMaterial->SpecularScale.b ) &&
 		*( ( DWORD * )&Scale.a ) == *( ( DWORD * )&DrawMaterial->SpecularScale.a ) )
 		return false ;
 
-	// ‘S‚Д‚М—v‘f‚Є 1.0f ‚©‚З‚¤‚©‚ЕЏ€—ќ‚р•ЄЉт
+	// е…ЁгЃ¦гЃ®и¦Ѓзґ гЃЊ 1.0f гЃ‹гЃ©гЃ†гЃ‹гЃ§е‡¦зђ†г‚’е€†еІђ
 	if( *( ( DWORD * )&Scale.r ) == 0x3f800000 &&
 		*( ( DWORD * )&Scale.g ) == 0x3f800000 &&
 		*( ( DWORD * )&Scale.b ) == 0x3f800000 &&
 		*( ( DWORD * )&Scale.a ) == 0x3f800000 )
 	{
-		// ѓXѓyѓLѓ…ѓ‰ѓJѓ‰Ѓ[‚Й 1.0f ‚р‘г“ь
+		// г‚№гѓљг‚­гѓҐгѓ©г‚«гѓ©гѓјгЃ« 1.0f г‚’д»Је…Ґ
 		*( ( DWORD * )&DrawMaterial->SpecularScale.r ) = 0x3f800000 ;
 		*( ( DWORD * )&DrawMaterial->SpecularScale.g ) = 0x3f800000 ;
 		*( ( DWORD * )&DrawMaterial->SpecularScale.b ) = 0x3f800000 ;
 		*( ( DWORD * )&DrawMaterial->SpecularScale.a ) = 0x3f800000 ;
 
-		// ‘ј‚М—v‘f‚Є 1.0f €ИЉO‚©’І‚Ч‚й
+		// д»–гЃ®и¦Ѓзґ гЃЊ 1.0f д»Ґе¤–гЃ‹иЄїгЃ№г‚‹
 		if( *( ( DWORD * )&DrawMaterial->DiffuseScale.r ) == 0x3f800000 &&
 			*( ( DWORD * )&DrawMaterial->DiffuseScale.g ) == 0x3f800000 &&
 			*( ( DWORD * )&DrawMaterial->DiffuseScale.b ) == 0x3f800000 &&
@@ -2566,48 +2566,48 @@ static bool MV1SetDrawMaterialSpc( MV1_DRAW_MATERIAL *DrawMaterial, MV1_CHANGE *
 			*( ( DWORD * )&DrawMaterial->EmissiveScale.b ) == 0x3f800000 &&
 			*( ( DWORD * )&DrawMaterial->EmissiveScale.a ) == 0x3f800000 )
 		{
-			// ѓJѓ‰Ѓ[ѓXѓPЃ[ѓ‹‚НЋg—p‚µ‚Д‚ў‚И‚ўЃA‚Й‚·‚й
+			// г‚«гѓ©гѓјг‚№г‚±гѓјгѓ«гЃЇдЅїз”ЁгЃ—гЃ¦гЃ„гЃЄгЃ„гЂЃгЃ«гЃ™г‚‹
 			DrawMaterial->UseColorScale = false ;
 		}
 	}
 	else
 	{
-		// ѓXѓyѓLѓ…ѓ‰ѓJѓ‰Ѓ[‚Й’l‚р‘г“ь
+		// г‚№гѓљг‚­гѓҐгѓ©г‚«гѓ©гѓјгЃ«еЂ¤г‚’д»Је…Ґ
 		DrawMaterial->SpecularScale = Scale ;
 
-		// ѓJѓ‰Ѓ[ѓXѓPЃ[ѓ‹‚рЋg—p‚µ‚Д‚ў‚йЃA‚Й‚·‚й
+		// г‚«гѓ©гѓјг‚№г‚±гѓјгѓ«г‚’дЅїз”ЁгЃ—гЃ¦гЃ„г‚‹гЂЃгЃ«гЃ™г‚‹
 		DrawMaterial->UseColorScale = true ;
 	}
 
-	// •ПЌX‚М€у‚р•t‚Ї‚й
+	// е¤‰ж›ґгЃ®еЌ°г‚’д»гЃ‘г‚‹
 	if( Change ) MV1BitSetChange( Change ) ;
 
 	return true ;
 }
 
-// •`‰ж—pѓ}ѓeѓЉѓAѓ‹Џо•с‚МѓGѓ~ѓbѓVѓuѓJѓ‰Ѓ[‚р•ПЌX‚·‚й
+// жЏЏз”»з”Ёгѓћгѓ†гѓЄг‚ўгѓ«жѓ…е ±гЃ®г‚Ёгѓџгѓѓг‚·гѓ–г‚«гѓ©гѓјг‚’е¤‰ж›ґгЃ™г‚‹
 static bool MV1SetDrawMaterialEmi( MV1_DRAW_MATERIAL *DrawMaterial, MV1_CHANGE *Change, COLOR_F Scale )
 {
-	// ЌЎ‚Ь‚Е‚Ж’l‚Є“Ї‚¶ЏкЌ‡‚Н‰Ѕ‚а‚№‚ёЏI—№
+	// д»ЉгЃѕгЃ§гЃЁеЂ¤гЃЊеђЊгЃе ґеђ€гЃЇдЅ•г‚‚гЃ›гЃљзµ‚дє†
 	if( *( ( DWORD * )&Scale.r ) == *( ( DWORD * )&DrawMaterial->EmissiveScale.r ) &&
 		*( ( DWORD * )&Scale.g ) == *( ( DWORD * )&DrawMaterial->EmissiveScale.g ) &&
 		*( ( DWORD * )&Scale.b ) == *( ( DWORD * )&DrawMaterial->EmissiveScale.b ) &&
 		*( ( DWORD * )&Scale.a ) == *( ( DWORD * )&DrawMaterial->EmissiveScale.a ) )
 		return false ;
 
-	// ‘S‚Д‚М—v‘f‚Є 1.0f ‚©‚З‚¤‚©‚ЕЏ€—ќ‚р•ЄЉт
+	// е…ЁгЃ¦гЃ®и¦Ѓзґ гЃЊ 1.0f гЃ‹гЃ©гЃ†гЃ‹гЃ§е‡¦зђ†г‚’е€†еІђ
 	if( *( ( DWORD * )&Scale.r ) == 0x3f800000 &&
 		*( ( DWORD * )&Scale.g ) == 0x3f800000 &&
 		*( ( DWORD * )&Scale.b ) == 0x3f800000 &&
 		*( ( DWORD * )&Scale.a ) == 0x3f800000 )
 	{
-		// ѓGѓ~ѓbѓVѓuѓJѓ‰Ѓ[‚Й 1.0f ‚р‘г“ь
+		// г‚Ёгѓџгѓѓг‚·гѓ–г‚«гѓ©гѓјгЃ« 1.0f г‚’д»Је…Ґ
 		*( ( DWORD * )&DrawMaterial->EmissiveScale.r ) = 0x3f800000 ;
 		*( ( DWORD * )&DrawMaterial->EmissiveScale.g ) = 0x3f800000 ;
 		*( ( DWORD * )&DrawMaterial->EmissiveScale.b ) = 0x3f800000 ;
 		*( ( DWORD * )&DrawMaterial->EmissiveScale.a ) = 0x3f800000 ;
 
-		// ‘ј‚М—v‘f‚Є 1.0f €ИЉO‚©’І‚Ч‚й
+		// д»–гЃ®и¦Ѓзґ гЃЊ 1.0f д»Ґе¤–гЃ‹иЄїгЃ№г‚‹
 		if( *( ( DWORD * )&DrawMaterial->DiffuseScale.r ) == 0x3f800000 &&
 			*( ( DWORD * )&DrawMaterial->DiffuseScale.g ) == 0x3f800000 &&
 			*( ( DWORD * )&DrawMaterial->DiffuseScale.b ) == 0x3f800000 &&
@@ -2621,58 +2621,58 @@ static bool MV1SetDrawMaterialEmi( MV1_DRAW_MATERIAL *DrawMaterial, MV1_CHANGE *
 			*( ( DWORD * )&DrawMaterial->SpecularScale.b ) == 0x3f800000 &&
 			*( ( DWORD * )&DrawMaterial->SpecularScale.a ) == 0x3f800000 )
 		{
-			// ѓJѓ‰Ѓ[ѓXѓPЃ[ѓ‹‚НЋg—p‚µ‚Д‚ў‚И‚ўЃA‚Й‚·‚й
+			// г‚«гѓ©гѓјг‚№г‚±гѓјгѓ«гЃЇдЅїз”ЁгЃ—гЃ¦гЃ„гЃЄгЃ„гЂЃгЃ«гЃ™г‚‹
 			DrawMaterial->UseColorScale = false ;
 		}
 	}
 	else
 	{
-		// ѓGѓ~ѓbѓVѓuѓJѓ‰Ѓ[‚Й’l‚р‘г“ь
+		// г‚Ёгѓџгѓѓг‚·гѓ–г‚«гѓ©гѓјгЃ«еЂ¤г‚’д»Је…Ґ
 		DrawMaterial->EmissiveScale = Scale ;
 
-		// ѓJѓ‰Ѓ[ѓXѓPЃ[ѓ‹‚рЋg—p‚µ‚Д‚ў‚йЃA‚Й‚·‚й
+		// г‚«гѓ©гѓјг‚№г‚±гѓјгѓ«г‚’дЅїз”ЁгЃ—гЃ¦гЃ„г‚‹гЂЃгЃ«гЃ™г‚‹
 		DrawMaterial->UseColorScale = true ;
 	}
 
-	// •ПЌX‚М€у‚р•t‚Ї‚й
+	// е¤‰ж›ґгЃ®еЌ°г‚’д»гЃ‘г‚‹
 	if( Change ) MV1BitSetChange( Change ) ;
 
 	return true ;
 }
 
-// •`‰ж—pѓ}ѓeѓЉѓAѓ‹Џо•с‚М•s“§–ѕ“x‚р•ПЌX‚·‚й
+// жЏЏз”»з”Ёгѓћгѓ†гѓЄг‚ўгѓ«жѓ…е ±гЃ®дёЌйЂЏжЋеє¦г‚’е¤‰ж›ґгЃ™г‚‹
 static bool MV1SetDrawMaterialOpacityRate( MV1_DRAW_MATERIAL *DrawMaterial, MV1_CHANGE *Change, float Rate )
 {
-	// ЌЎ‚Ь‚Е‚Ж’l‚Є“Ї‚¶ЏкЌ‡‚Н‰Ѕ‚а‚№‚ёЏI—№
+	// д»ЉгЃѕгЃ§гЃЁеЂ¤гЃЊеђЊгЃе ґеђ€гЃЇдЅ•г‚‚гЃ›гЃљзµ‚дє†
 	if( *( ( DWORD * )&Rate ) == *( ( DWORD * )&DrawMaterial->OpacityRate ) )
 		return false ;
 
-	// ’l‚р‘г“ь
+	// еЂ¤г‚’д»Је…Ґ
 	DrawMaterial->OpacityRate = Rate ;
 
-	// •ПЌX‚М€у‚р•t‚Ї‚й
+	// е¤‰ж›ґгЃ®еЌ°г‚’д»гЃ‘г‚‹
 	if( Change ) MV1BitSetChange( Change ) ;
 
 	return true ;
 }
 
-// •`‰ж—pѓ}ѓeѓЉѓAѓ‹Џо•с‚М•\Ћ¦ђЭ’и‚р•ПЌX‚·‚й
+// жЏЏз”»з”Ёгѓћгѓ†гѓЄг‚ўгѓ«жѓ…е ±гЃ®иЎЁз¤єиЁ­е®љг‚’е¤‰ж›ґгЃ™г‚‹
 static bool MV1SetDrawMaterialVisible( MV1_DRAW_MATERIAL *DrawMaterial, MV1_CHANGE *Change, BYTE Visible )
 {
-	// ЌЎ‚Ь‚Е‚Ж’l‚Є“Ї‚¶ЏкЌ‡‚Н‰Ѕ‚а‚№‚ёЏI—№
+	// д»ЉгЃѕгЃ§гЃЁеЂ¤гЃЊеђЊгЃе ґеђ€гЃЇдЅ•г‚‚гЃ›гЃљзµ‚дє†
 	if( Visible == DrawMaterial->Visible )
 		return false ;
 
-	// ’l‚р‘г“ь
+	// еЂ¤г‚’д»Је…Ґ
 	DrawMaterial->Visible = Visible ;
 
-	// •ПЌX‚М€у‚р•t‚Ї‚й
+	// е¤‰ж›ґгЃ®еЌ°г‚’д»гЃ‘г‚‹
 	if( Change ) MV1BitSetChange( Change ) ;
 
 	return true ;
 }
 
-// ѓOѓ‰ѓfЃ[ѓVѓ‡ѓ“‰ж‘њ‚рЌДЌмђ¬‚·‚й
+// г‚°гѓ©гѓ‡гѓјг‚·гѓ§гѓіз”»еѓЏг‚’е†ЌдЅњж€ђгЃ™г‚‹
 static int _MV1ReCreateGradationGraph( int GrHandle )
 {
 	DWORD i ;
@@ -2710,7 +2710,7 @@ static int _MV1ReCreateGradationGraph( int GrHandle )
 
 
 
-// ѓrѓbѓgѓfЃ[ѓ^ѓЉѓXѓg‚рЏ‰Љъ‰»‚·‚й( -1:Ћё”s  0:ђ¬Њч )
+// гѓ“гѓѓгѓ€гѓ‡гѓјг‚їгѓЄг‚№гѓ€г‚’е€ќжњџеЊ–гЃ™г‚‹( -1:е¤±ж•—  0:ж€ђеЉџ )
 int InitBitList( BITLIST *BitList, int BitDepth, int DataNum, MEMINFO **FirstMem )
 {
 	BitList->BitDepth = BitDepth ;
@@ -2721,67 +2721,67 @@ int InitBitList( BITLIST *BitList, int BitDepth, int DataNum, MEMINFO **FirstMem
 	BitList->Data = ADDMEMAREA( ( size_t )( ( BitList->UnitSize + 4 ) * DataNum ), FirstMem ) ;
 	if( BitList->Data == NULL )
 	{
-		DXST_LOGFILE_ADDUTF16LE( "\xd3\x30\xc3\x30\xc8\x30\xc7\x30\xfc\x30\xbf\x30\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ѓrѓbѓgѓfЃ[ѓ^‚рЉi”[‚·‚йѓЃѓ‚ѓЉ‚МЉm•Ы‚ЙЋё”s‚µ‚Ь‚µ‚Ѕ\n" @*/ ) ;
+		DXST_LOGFILE_ADDUTF16LE( "\xd3\x30\xc3\x30\xc8\x30\xc7\x30\xfc\x30\xbf\x30\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"гѓ“гѓѓгѓ€гѓ‡гѓјг‚їг‚’ж јзґЌгЃ™г‚‹гѓЎгѓўгѓЄгЃ®зўєдїќгЃ«е¤±ж•—гЃ—гЃѕгЃ—гЃџ\n" @*/ ) ;
 		return -1 ;
 	}
 	BitList->PressData = ( int * )( ( BYTE * )BitList->Data + BitList->UnitSize * DataNum ) ;
 
-	// ђіЏнЏI—№
+	// ж­Јеёёзµ‚дє†
 	return 0 ;
 }
 
-// ѓrѓbѓgѓfЃ[ѓ^ѓЉѓXѓg’†‚МЋw’и‚М—v‘f‚Мѓrѓbѓg‚р—§‚Д‚й
+// гѓ“гѓѓгѓ€гѓ‡гѓјг‚їгѓЄг‚№гѓ€дё­гЃ®жЊ‡е®љгЃ®и¦Ѓзґ гЃ®гѓ“гѓѓгѓ€г‚’з«‹гЃ¦г‚‹
 int SetBitList( BITLIST *BitList, int Index, int SetBitIndex )
 {
 	BYTE *Addr, *SetAddr, *FlagAddr ;
 	int SetBit ;
 
-	// ѓfЃ[ѓ^ѓAѓhѓЊѓX‚МЊvЋZ
+	// гѓ‡гѓјг‚їг‚ўгѓ‰гѓ¬г‚№гЃ®иЁ€з®—
 	Addr = ( BYTE * )BitList->Data + BitList->UnitSize * Index ;
 
-	// ѓrѓbѓg‚рѓZѓbѓg‚·‚йѓAѓhѓЊѓX‚МЊvЋZ
+	// гѓ“гѓѓгѓ€г‚’г‚»гѓѓгѓ€гЃ™г‚‹г‚ўгѓ‰гѓ¬г‚№гЃ®иЁ€з®—
 	SetAddr = Addr + SetBitIndex / 8 ;
 
-	// ѓtѓ‰ѓO‚Є‚ ‚йѓAѓhѓЊѓX‚МЊvЋZ
+	// гѓ•гѓ©г‚°гЃЊгЃ‚г‚‹г‚ўгѓ‰гѓ¬г‚№гЃ®иЁ€з®—
 	FlagAddr = Addr + BitList->UnitSize - 1 ;
 
-	// —§‚Д‚йѓrѓbѓg‚рЊvЋZ
+	// з«‹гЃ¦г‚‹гѓ“гѓѓгѓ€г‚’иЁ€з®—
 	SetBit = 1 << ( SetBitIndex % 8 ) ;
 
-	// ЌЎ‚Ь‚Е€к“x‚Е‚аѓfЃ[ѓ^‚р‘г“ь‚і‚к‚Ѕ‚±‚Ж‚Є–і‚©‚Б‚Ѕ‚зѓrѓbѓg‚р—§‚Д‚й
+	// д»ЉгЃѕгЃ§дёЂеє¦гЃ§г‚‚гѓ‡гѓјг‚їг‚’д»Је…ҐгЃ•г‚ЊгЃџгЃ“гЃЁгЃЊз„ЎгЃ‹гЃЈгЃџг‚‰гѓ“гѓѓгѓ€г‚’з«‹гЃ¦г‚‹
 	if( *FlagAddr == 0 )
 	{
 		*FlagAddr = 1 ;
 
-		// ѓfЃ[ѓ^‚Мђ”‚рѓCѓ“ѓNѓЉѓЃѓ“ѓg
+		// гѓ‡гѓјг‚їгЃ®ж•°г‚’г‚¤гѓіг‚ЇгѓЄгѓЎгѓігѓ€
 		BitList->DataNum ++ ;
 	}
 
-	// ѓrѓbѓg‚р—§‚Д‚й
+	// гѓ“гѓѓгѓ€г‚’з«‹гЃ¦г‚‹
 	*SetAddr |= SetBit ;
 
-	// ђіЏнЏI—№
+	// ж­Јеёёзµ‚дє†
 	return 0 ;
 }
 
-// ѓrѓbѓgѓfЃ[ѓ^ѓЉѓXѓg’†‚М’l‚МЋн—Ю‚р’ЉЏo‚·‚й( Џo—Н‘¤‚НЏ‰Љъ‰»‚і‚к‚Д‚ў‚й•K—v‚Н–і‚ў )( -1:Ћё”s  0:ђ¬Њч )
+// гѓ“гѓѓгѓ€гѓ‡гѓјг‚їгѓЄг‚№гѓ€дё­гЃ®еЂ¤гЃ®зЁ®йЎћг‚’жЉЅе‡єгЃ™г‚‹( е‡єеЉ›еЃґгЃЇе€ќжњџеЊ–гЃ•г‚ЊгЃ¦гЃ„г‚‹еї…и¦ЃгЃЇз„ЎгЃ„ )( -1:е¤±ж•—  0:ж€ђеЉџ )
 int PressBitList( BITLIST *BitListDest, BITLIST *BitListSrc, MEMINFO **FirstMem )
 {
 	int i, j, k, l, m, UnitSize, vnum ;
 	BYTE *SrcData ;
 	BYTE *DestData ;
 
-	// ’ЉЏo‚µ‚ЅѓfЃ[ѓ^‚рЉi”[‚·‚йѓrѓbѓgѓfЃ[ѓ^ѓЉѓXѓg‚МЏ‰Љъ‰»
+	// жЉЅе‡єгЃ—гЃџгѓ‡гѓјг‚їг‚’ж јзґЌгЃ™г‚‹гѓ“гѓѓгѓ€гѓ‡гѓјг‚їгѓЄг‚№гѓ€гЃ®е€ќжњџеЊ–
 	if( InitBitList( BitListDest, BitListSrc->BitDepth, BitListSrc->MaxDataNum, FirstMem ) == -1 )
 		return -1 ;
 
-	// ’ЉЏoЊі‚МѓfЃ[ѓ^‚Мђ”‚ѕ‚ЇЊJ‚и•Ф‚µ
+	// жЉЅе‡єе…ѓгЃ®гѓ‡гѓјг‚їгЃ®ж•°гЃ гЃ‘з№°г‚Љиї”гЃ—
 	UnitSize = BitListSrc->UnitSize ;
 	SrcData = ( BYTE * )BitListSrc->Data ;
 	vnum = 0 ;
 	for( i = 0 ; vnum < BitListSrc->DataNum ; i ++, SrcData += UnitSize )
 	{
-		// Ћg—p‚і‚к‚Д‚ў‚И‚ўѓfЃ[ѓ^‚МЏкЌ‡‚Н‰Ѕ‚а‚µ‚И‚ў
+		// дЅїз”ЁгЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ„гѓ‡гѓјг‚їгЃ®е ґеђ€гЃЇдЅ•г‚‚гЃ—гЃЄгЃ„
 		if( SrcData[ UnitSize - 1 ] == 0 )
 		{
 			BitListSrc->PressData[ i ] = -1 ;
@@ -2789,7 +2789,7 @@ int PressBitList( BITLIST *BitListDest, BITLIST *BitListSrc, MEMINFO **FirstMem 
 		}
 		vnum ++ ;
 
-		// ’ЉЏoђж‚ЙЉщ‚Й“Ї‚¶ѓfЃ[ѓ^‚Є‚ ‚й‚©‚З‚¤‚©‚р’І‚Ч‚й
+		// жЉЅе‡єе…€гЃ«ж—ўгЃ«еђЊгЃгѓ‡гѓјг‚їгЃЊгЃ‚г‚‹гЃ‹гЃ©гЃ†гЃ‹г‚’иЄїгЃ№г‚‹
 		DestData = ( BYTE * )BitListDest->Data ;
 		for( j = 0 ; j < BitListDest->DataNum ; j ++, DestData += UnitSize )
 		{
@@ -2797,12 +2797,12 @@ int PressBitList( BITLIST *BitListDest, BITLIST *BitListSrc, MEMINFO **FirstMem 
 			if( k == UnitSize - 1 ) break ;
 		}
 
-		// –і‚©‚Б‚Ѕ‚з’З‰Б
+		// з„ЎгЃ‹гЃЈгЃџг‚‰иїЅеЉ 
 		if( j == BitListDest->DataNum )
 		{
 			DestData = ( BYTE * )BitListDest->Data + UnitSize * BitListDest->DataNum ;
 
-			// ѓfЃ[ѓ^‚рѓRѓsЃ[‚·‚й‚Ж“ЇЋћ‚Й—§‚Б‚Д‚ў‚йѓrѓbѓg‚Мђ”‚ађ”‚¦‚й
+			// гѓ‡гѓјг‚їг‚’г‚ігѓ”гѓјгЃ™г‚‹гЃЁеђЊж™‚гЃ«з«‹гЃЈгЃ¦гЃ„г‚‹гѓ“гѓѓгѓ€гЃ®ж•°г‚‚ж•°гЃ€г‚‹
 			m = 0 ;
 			for( k = 0 ; k < UnitSize - 1 ; k ++ )
 			{
@@ -2811,34 +2811,34 @@ int PressBitList( BITLIST *BitListDest, BITLIST *BitListSrc, MEMINFO **FirstMem 
 				DestData[ k ] = SrcData[ k ] ;
 			}
 
-			// ѓrѓbѓg‚Мђ”‚р•Ы‘¶
+			// гѓ“гѓѓгѓ€гЃ®ж•°г‚’дїќе­
 			DestData[ k ] = ( BYTE )m ;
 
-			// Џo—НђжѓfЃ[ѓ^‚Мђ”‚р‘ќ‚в‚·
+			// е‡єеЉ›е…€гѓ‡гѓјг‚їгЃ®ж•°г‚’еў—г‚„гЃ™
 			BitListDest->DataNum ++ ;
 			BitListDest->PressData[ j ] = 1 ;
 		}
 		else
 		{
-			// ‚ ‚Б‚Ѕ‚зѓfЃ[ѓ^‚Мђ”‚рѓCѓ“ѓNѓЉѓЃѓ“ѓg
+			// гЃ‚гЃЈгЃџг‚‰гѓ‡гѓјг‚їгЃ®ж•°г‚’г‚¤гѓіг‚ЇгѓЄгѓЎгѓігѓ€
 			BitListDest->PressData[ j ] ++ ;
 		}
 
-		// ’ЉЏo”ФЌ†‚рѓZѓbѓg
+		// жЉЅе‡єз•ЄеЏ·г‚’г‚»гѓѓгѓ€
 		BitListSrc->PressData[ i ] = j ;
 	}
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// Ћw’и‚МѓrѓbѓgѓfЃ[ѓ^‚Й€к’v‚·‚йѓ^Ѓ[ѓQѓbѓg‘¤‚МѓfЃ[ѓ^ѓCѓ“ѓfѓbѓNѓX‚р“ѕ‚й( -1:ѓGѓ‰Ѓ[ЃA–”‚Н–і‚©‚Б‚Ѕ  -1€ИЉO:ѓfЃ[ѓ^ѓCѓ“ѓfѓbѓNѓX )
+// жЊ‡е®љгЃ®гѓ“гѓѓгѓ€гѓ‡гѓјг‚їгЃ«дёЂи‡ґгЃ™г‚‹г‚їгѓјг‚Ігѓѓгѓ€еЃґгЃ®гѓ‡гѓјг‚їг‚¤гѓігѓ‡гѓѓг‚Їг‚№г‚’еѕ—г‚‹( -1:г‚Ёгѓ©гѓјгЂЃеЏ€гЃЇз„ЎгЃ‹гЃЈгЃџ  -1д»Ґе¤–:гѓ‡гѓјг‚їг‚¤гѓігѓ‡гѓѓг‚Їг‚№ )
 int SearchBitList( BITLIST *BitListTarget, void *Buffer )
 {
 	int i, j, vnum, UnitSize ;
 	BYTE *TargetData ;
 
-	// Ћw’и‚МѓfЃ[ѓ^‚Ж“Ї‚¶ѓfЃ[ѓ^‚Є‘ОЏЫ‚МѓrѓbѓgѓfЃ[ѓ^ѓЉѓXѓg‚Й‚ ‚й‚©‚З‚¤‚©’І‚Ч‚й
+	// жЊ‡е®љгЃ®гѓ‡гѓјг‚їгЃЁеђЊгЃгѓ‡гѓјг‚їгЃЊеЇѕи±ЎгЃ®гѓ“гѓѓгѓ€гѓ‡гѓјг‚їгѓЄг‚№гѓ€гЃ«гЃ‚г‚‹гЃ‹гЃ©гЃ†гЃ‹иЄїгЃ№г‚‹
 	UnitSize = BitListTarget->UnitSize ;
 	TargetData = ( BYTE * )BitListTarget->Data ;
 	vnum = BitListTarget->DataNum ;
@@ -2855,11 +2855,11 @@ int SearchBitList( BITLIST *BitListTarget, void *Buffer )
 		}
 	}
 
-	// Њ‹‰К‚р•Ф‚·
+	// зµђжћњг‚’иї”гЃ™
 	return vnum ? i : -1 ;
 }
 
-// “с‚В‚М—v‘f‚Є€к’v‚µ‚Д‚ў‚й‚©‚З‚¤‚©‚рЋж“ѕ‚·‚й( 0:€к’v‚µ‚Д‚ў‚й  0:€к’v‚µ‚Д‚ў‚И‚ў )
+// дєЊгЃ¤гЃ®и¦Ѓзґ гЃЊдёЂи‡ґгЃ—гЃ¦гЃ„г‚‹гЃ‹гЃ©гЃ†гЃ‹г‚’еЏ–еѕ—гЃ™г‚‹( 0:дёЂи‡ґгЃ—гЃ¦гЃ„г‚‹  0:дёЂи‡ґгЃ—гЃ¦гЃ„гЃЄгЃ„ )
 int CmpBitList( BITLIST *BitList1, int Index1, BITLIST *BitList2, int Index2 )
 {
 	return _MEMCMP( ( BYTE * )BitList1->Data + BitList1->UnitSize * Index1,
@@ -2867,19 +2867,19 @@ int CmpBitList( BITLIST *BitList1, int Index1, BITLIST *BitList2, int Index2 )
 					BitList1->UnitSize - 1 ) == 0 ? 0 : 1 ;
 }
 
-// ѓ\Ѓ[ѓX‘¤‚МЋw’и‚МѓfЃ[ѓ^‚Й€к’v‚·‚йѓ^Ѓ[ѓQѓbѓg‘¤‚МѓfЃ[ѓ^ѓCѓ“ѓfѓbѓNѓX‚р“ѕ‚й( -1:ѓGѓ‰Ѓ[ЃA–”‚Н–і‚©‚Б‚Ѕ  -1€ИЉO:ѓfЃ[ѓ^ѓCѓ“ѓfѓbѓNѓX )
+// г‚Ѕгѓјг‚№еЃґгЃ®жЊ‡е®љгЃ®гѓ‡гѓјг‚їгЃ«дёЂи‡ґгЃ™г‚‹г‚їгѓјг‚Ігѓѓгѓ€еЃґгЃ®гѓ‡гѓјг‚їг‚¤гѓігѓ‡гѓѓг‚Їг‚№г‚’еѕ—г‚‹( -1:г‚Ёгѓ©гѓјгЂЃеЏ€гЃЇз„ЎгЃ‹гЃЈгЃџ  -1д»Ґе¤–:гѓ‡гѓјг‚їг‚¤гѓігѓ‡гѓѓг‚Їг‚№ )
 int SearchBitList( BITLIST *BitListTarget, BITLIST *BitListSrc, int SrcIndex )
 {
-	// ‚PѓfЃ[ѓ^‚МѓTѓCѓY‚Є€б‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// пј‘гѓ‡гѓјг‚їгЃ®г‚µг‚¤г‚єгЃЊйЃ•гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( BitListSrc->UnitSize != BitListTarget->UnitSize )
 		return -1 ;
 
-	// ’І‚Ч‚й
+	// иЄїгЃ№г‚‹
 	return SearchBitList( BitListTarget, ( BYTE * )BitListSrc->Data + BitListSrc->UnitSize * SrcIndex ) ;
 }
 
 
-// ѓrѓbѓgѓfЃ[ѓ^ѓЉѓXѓg‚©‚зЋw’и”ФЌ†‚МѓfЃ[ѓ^‚рЋж“ѕ‚·‚й
+// гѓ“гѓѓгѓ€гѓ‡гѓјг‚їгѓЄг‚№гѓ€гЃ‹г‚‰жЊ‡е®љз•ЄеЏ·гЃ®гѓ‡гѓјг‚їг‚’еЏ–еѕ—гЃ™г‚‹
 int GetBitList( BITLIST *BitList, int Index, void *Buffer )
 {
 	int i ;
@@ -2892,32 +2892,32 @@ int GetBitList( BITLIST *BitList, int Index, void *Buffer )
 
 	*( ( BYTE * )Buffer + BitList->UnitSize - 1 ) = 0 ;
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// Ћw’и‚МѓrѓbѓgѓfЃ[ѓ^‚рЋw’и‚МѓCѓ“ѓfѓbѓNѓX‚ЙѓRѓsЃ[‚·‚й
+// жЊ‡е®љгЃ®гѓ“гѓѓгѓ€гѓ‡гѓјг‚їг‚’жЊ‡е®љгЃ®г‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃ«г‚ігѓ”гѓјгЃ™г‚‹
 int CopyBitList( BITLIST *BitListDest, int Index, void *Buffer )
 {
 	BYTE *Dest ;
 	int i ;
 
-	// ЌЎ‚Ь‚ЕЋg—p‚і‚к‚Д‚ў‚И‚©‚Б‚ЅѓfЃ[ѓ^‚МЏкЌ‡‚НѓfЃ[ѓ^ђ”‚р‘ќ‚в‚·
+	// д»ЉгЃѕгЃ§дЅїз”ЁгЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџгѓ‡гѓјг‚їгЃ®е ґеђ€гЃЇгѓ‡гѓјг‚їж•°г‚’еў—г‚„гЃ™
 	Dest = ( BYTE * )BitListDest->Data + BitListDest->UnitSize * Index ;
 	if( ( Dest[ BitListDest->UnitSize - 1 ] & 1 ) == 0 )
 	{
 		BitListDest->DataNum ++ ;
 	}
 
-	// ѓfЃ[ѓ^‚рѓRѓsЃ[
+	// гѓ‡гѓјг‚їг‚’г‚ігѓ”гѓј
 	for( i = 0 ; i < BitListDest->UnitSize ; i ++ )
 		Dest[ i ] = ( ( BYTE * )Buffer )[ i ] ;
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// ”C€У‚МѓrѓbѓgѓfЃ[ѓ^‚ЖѓrѓbѓgѓfЃ[ѓ^ѓЉѓXѓg’†‚МЋw’и‚МѓfЃ[ѓ^‚р Or ‰‰ЋZ‚·‚й
+// д»»ж„ЏгЃ®гѓ“гѓѓгѓ€гѓ‡гѓјг‚їгЃЁгѓ“гѓѓгѓ€гѓ‡гѓјг‚їгѓЄг‚№гѓ€дё­гЃ®жЊ‡е®љгЃ®гѓ‡гѓјг‚їг‚’ Or жј”з®—гЃ™г‚‹
 int OrBitList( BITLIST *BitList, int Index, void *Buffer )
 {
 	int i ;
@@ -2928,11 +2928,11 @@ int OrBitList( BITLIST *BitList, int Index, void *Buffer )
 	for( i = BitList->UnitSize - 2 ; i >= 0 ; i -- )
 		Dest[ i ] |= Src[ i ] ;
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// Ћw’и‚МѓrѓbѓgѓfЃ[ѓ^’†ЃA‰Ѕѓrѓbѓg—§‚Б‚Д‚ў‚й‚©’І‚Ч‚й
+// жЊ‡е®љгЃ®гѓ“гѓѓгѓ€гѓ‡гѓјг‚їдё­гЂЃдЅ•гѓ“гѓѓгѓ€з«‹гЃЈгЃ¦гЃ„г‚‹гЃ‹иЄїгЃ№г‚‹
 int GetBitCount( void *Buffer, int UnitSize )
 {
 	int i, m ;
@@ -2953,7 +2953,7 @@ int GetBitCount( void *Buffer, int UnitSize )
 	return m ;
 }
 
-// Ћw’и‚МѓrѓbѓgѓfЃ[ѓ^‚рЃAѓ^Ѓ[ѓQѓbѓg‘¤‚МѓrѓbѓgѓfЃ[ѓ^‚Й‰Б‚¦‚й
+// жЊ‡е®љгЃ®гѓ“гѓѓгѓ€гѓ‡гѓјг‚їг‚’гЂЃг‚їгѓјг‚Ігѓѓгѓ€еЃґгЃ®гѓ“гѓѓгѓ€гѓ‡гѓјг‚їгЃ«еЉ гЃ€г‚‹
 int AddBitList( BITLIST *BitListDest, void *Buffer, int RefCount )
 {
 	int DestIndex, i, UnitSize ;
@@ -2961,44 +2961,44 @@ int AddBitList( BITLIST *BitListDest, void *Buffer, int RefCount )
 
 	UnitSize = BitListDest->UnitSize ;
 
-	// Љщ‚Й‚ ‚й‚©‚З‚¤‚©’І‚Ч‚й
+	// ж—ўгЃ«гЃ‚г‚‹гЃ‹гЃ©гЃ†гЃ‹иЄїгЃ№г‚‹
 	DestIndex = SearchBitList( BitListDest, Buffer ) ;
 	if( DestIndex == -1 )
 	{
-		// –і‚©‚Б‚Ѕ‚зђV‹K’З‰Б
+		// з„ЎгЃ‹гЃЈгЃџг‚‰ж–°и¦ЏиїЅеЉ 
 		Dest = ( BYTE * )BitListDest->Data + UnitSize * BitListDest->DataNum ;
 		for( i = 0 ; i < UnitSize ; i ++ )
 			*( Dest + i ) = *( ( BYTE * )Buffer + i ) ;
 		*( Dest + UnitSize - 1 ) |= 1 ;
 
-		// ЋQЏЖђ”‚рѓZѓbѓg
+		// еЏ‚з…§ж•°г‚’г‚»гѓѓгѓ€
 		BitListDest->PressData[ BitListDest->DataNum ] = RefCount ;
 
-		// ѓfЃ[ѓ^‚Мђ”‚рѓCѓ“ѓNѓЉѓЃѓ“ѓg
+		// гѓ‡гѓјг‚їгЃ®ж•°г‚’г‚¤гѓіг‚ЇгѓЄгѓЎгѓігѓ€
 		BitListDest->DataNum ++ ;
 	}
 	else
 	{
-		// ‚ ‚Б‚Ѕ‚зЋQЏЖђ”‚р’З‰Б
+		// гЃ‚гЃЈгЃџг‚‰еЏ‚з…§ж•°г‚’иїЅеЉ 
 		BitListDest->PressData[ DestIndex ] += RefCount ;
 	}
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// ѓ\Ѓ[ѓX‘¤‚МЋw’и‚МѓrѓbѓgѓfЃ[ѓ^‚рЃAѓ^Ѓ[ѓQѓbѓg‘¤‚МѓrѓbѓgѓfЃ[ѓ^‚Й‰Б‚¦‚й
+// г‚Ѕгѓјг‚№еЃґгЃ®жЊ‡е®љгЃ®гѓ“гѓѓгѓ€гѓ‡гѓјг‚їг‚’гЂЃг‚їгѓјг‚Ігѓѓгѓ€еЃґгЃ®гѓ“гѓѓгѓ€гѓ‡гѓјг‚їгЃ«еЉ гЃ€г‚‹
 int AddBitList( BITLIST *BitListDest, BITLIST *BitListSrc, int SrcIndex, int RefCount )
 {
-	// ѓfЃ[ѓ^ѓTѓCѓY‚Є€б‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// гѓ‡гѓјг‚їг‚µг‚¤г‚єгЃЊйЃ•гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( BitListDest->UnitSize != BitListSrc->UnitSize )
 		return -1 ;
 
-	// ’З‰Б‚·‚й
+	// иїЅеЉ гЃ™г‚‹
 	return AddBitList( BitListDest, ( BYTE * )BitListSrc->Data + BitListSrc->UnitSize * SrcIndex, RefCount ) ;
 }
 
-// Ћw’и‚МѓrѓbѓgѓfЃ[ѓ^’†‚Е—§‚Б‚Д‚ў‚йѓrѓbѓg‚МѓЉѓXѓg‚рЋж“ѕ‚·‚й( –Я‚и’l  -1:ѓGѓ‰Ѓ[  0€ИЏг:—§‚Б‚Д‚ў‚йѓrѓbѓg‚Мђ” )
+// жЊ‡е®љгЃ®гѓ“гѓѓгѓ€гѓ‡гѓјг‚їдё­гЃ§з«‹гЃЈгЃ¦гЃ„г‚‹гѓ“гѓѓгѓ€гЃ®гѓЄг‚№гѓ€г‚’еЏ–еѕ—гЃ™г‚‹( ж€»г‚ЉеЂ¤  -1:г‚Ёгѓ©гѓј  0д»ҐдёЉ:з«‹гЃЈгЃ¦гЃ„г‚‹гѓ“гѓѓгѓ€гЃ®ж•° )
 int GetBitListNumber( BITLIST *BitList, int Index, WORD *Buffer )
 {
 	BYTE *Src ;
@@ -3031,19 +3031,19 @@ int GetBitListNumber( BITLIST *BitList, int Index, WORD *Buffer )
 		}
 	}
 
-	// ЏI—№
+	// зµ‚дє†
 	return Num ;
 }
 
 
-// 16bit•вЏ•Џо•сЉЦЊW
+// 16bitиЈњеЉ©жѓ…е ±й–ўдї‚
 
-// floatЊ^‚М’l‚©‚з MV1_ANIM_KEY_16BITЌ\‘ў‘М‚М Min •Пђ”—p‚М’l‚рЌмђ¬‚·‚й
+// floatећ‹гЃ®еЂ¤гЃ‹г‚‰ MV1_ANIM_KEY_16BITж§‹йЂ дЅ“гЃ® Min е¤‰ж•°з”ЁгЃ®еЂ¤г‚’дЅњж€ђгЃ™г‚‹
 extern BYTE MV1AnimKey16BitMinFtoB( float Min )
 {
 	float f ;
 
-	// ЌЕЏ‰‚Й—л‚©‚З‚¤‚©‚р’І‚Ч‚й
+	// жњЂе€ќгЃ«й›¶гЃ‹гЃ©гЃ†гЃ‹г‚’иЄїгЃ№г‚‹
 	if( ( *( ( DWORD * )&Min ) & 0x7fffffff ) == 0 )
 	{
 		return 0x80;
@@ -3052,23 +3052,23 @@ extern BYTE MV1AnimKey16BitMinFtoB( float Min )
 	{
 		BYTE ret ;
 
-		// –Я‚и’l‚рЏ‰Љъ‰»
+		// ж€»г‚ЉеЂ¤г‚’е€ќжњџеЊ–
 		ret = 0 ;
 
-		// •„Ќ†‚рѓZѓbѓg
+		// з¬¦еЏ·г‚’г‚»гѓѓгѓ€
 		if( *( ( DWORD * )&Min ) & 0x80000000 )
 		{
 			ret |= 0x40 ;
 			*( ( DWORD * )&Min ) &= 0x7fffffff ;
 		}
 
-		// Џжђ”•ыЊь‚Й‚ж‚Б‚ДЏ€—ќ‚р•ЄЉт
+		// д№—ж•°ж–№еђ‘гЃ«г‚€гЃЈгЃ¦е‡¦зђ†г‚’е€†еІђ
 		if( Min < 1.0f )
 		{
-			// 1.0f €И‰є
+			// 1.0f д»Ґдё‹
 			ret |= 0x20 ;
 
-			// ѓsѓbѓ^ѓЉ‚И’l‚Є‚ ‚й‚©’І‚Ч‚й
+			// гѓ”гѓѓг‚їгѓЄгЃЄеЂ¤гЃЊгЃ‚г‚‹гЃ‹иЄїгЃ№г‚‹
 			f = 0.1f ;               if( *( ( DWORD * )&f ) == *( ( DWORD * )&Min ) ) return ( BYTE )( ret | 1 ) ;
 			f = 0.01f ;              if( *( ( DWORD * )&f ) == *( ( DWORD * )&Min ) ) return ( BYTE )( ret | 2 ) ;
 			f = 0.001f ;             if( *( ( DWORD * )&f ) == *( ( DWORD * )&Min ) ) return ( BYTE )( ret | 3 ) ;
@@ -3085,11 +3085,11 @@ extern BYTE MV1AnimKey16BitMinFtoB( float Min )
 			f = 0.00000000000001f ;  if( *( ( DWORD * )&f ) == *( ( DWORD * )&Min ) ) return ( BYTE )( ret | 14 ) ;
 			f = 0.000000000000001f ; if( *( ( DWORD * )&f ) == *( ( DWORD * )&Min ) ) return ( BYTE )( ret | 15 ) ;
 
-			// ѓ}ѓCѓiѓX‚©‚З‚¤‚©‚ЕЏ€—ќ‚р•ЄЉт
-			// Њі‚М’l‚ж‚иЏ¬‚і‚ў’l‚рђЭ’и‚·‚й
+			// гѓћг‚¤гѓЉг‚№гЃ‹гЃ©гЃ†гЃ‹гЃ§е‡¦зђ†г‚’е€†еІђ
+			// е…ѓгЃ®еЂ¤г‚€г‚Ље°ЏгЃ•гЃ„еЂ¤г‚’иЁ­е®љгЃ™г‚‹
 			if( ret & 0x40 )
 			{
-				// ѓ}ѓCѓiѓX‚МЏкЌ‡
+				// гѓћг‚¤гѓЉг‚№гЃ®е ґеђ€
 				if( Min < 0.00000000000001f && Min >= 0.000000000000001f ) return ( BYTE )( ret | 14 ) ;
 				if( Min < 0.0000000000001f  && Min >= 0.00000000000001f  ) return ( BYTE )( ret | 13 ) ;
 				if( Min < 0.000000000001f   && Min >= 0.0000000000001f   ) return ( BYTE )( ret | 12 ) ;
@@ -3109,7 +3109,7 @@ extern BYTE MV1AnimKey16BitMinFtoB( float Min )
 			}
 			else
 			{
-				// ѓvѓ‰ѓX‚МЏкЌ‡
+				// гѓ—гѓ©г‚№гЃ®е ґеђ€
 				if( Min < 0.00000000000001f && Min >= 0.000000000000001f ) return ( BYTE )( ret | 15 ) ;
 				if( Min < 0.0000000000001f  && Min >= 0.00000000000001f  ) return ( BYTE )( ret | 14 ) ;
 				if( Min < 0.000000000001f   && Min >= 0.0000000000001f   ) return ( BYTE )( ret | 13 ) ;
@@ -3130,7 +3130,7 @@ extern BYTE MV1AnimKey16BitMinFtoB( float Min )
 		}
 		else
 		{
-			// ѓsѓbѓ^ѓЉ‚И’l‚Є‚ ‚й‚©’І‚Ч‚й
+			// гѓ”гѓѓг‚їгѓЄгЃЄеЂ¤гЃЊгЃ‚г‚‹гЃ‹иЄїгЃ№г‚‹
 			f = 1.0f ;                if( *( ( DWORD * )&f ) == *( ( DWORD * )&Min ) ) return ( BYTE )( ret | 0 ) ;
 			f = 10.0f ;               if( *( ( DWORD * )&f ) == *( ( DWORD * )&Min ) ) return ( BYTE )( ret | 1 ) ;
 			f = 100.0f ;              if( *( ( DWORD * )&f ) == *( ( DWORD * )&Min ) ) return ( BYTE )( ret | 2 ) ;
@@ -3148,11 +3148,11 @@ extern BYTE MV1AnimKey16BitMinFtoB( float Min )
 			f = 100000000000000.0f ;  if( *( ( DWORD * )&f ) == *( ( DWORD * )&Min ) ) return ( BYTE )( ret | 14 ) ;
 			f = 1000000000000000.0f ; if( *( ( DWORD * )&f ) == *( ( DWORD * )&Min ) ) return ( BYTE )( ret | 15 ) ;
 
-			// ѓ}ѓCѓiѓX‚©‚З‚¤‚©‚ЕЏ€—ќ‚р•ЄЉт
-			// Њі‚М’l‚ж‚иЏ¬‚і‚ў’l‚рђЭ’и‚·‚й
+			// гѓћг‚¤гѓЉг‚№гЃ‹гЃ©гЃ†гЃ‹гЃ§е‡¦зђ†г‚’е€†еІђ
+			// е…ѓгЃ®еЂ¤г‚€г‚Ље°ЏгЃ•гЃ„еЂ¤г‚’иЁ­е®љгЃ™г‚‹
 			if( ret & 0x40 )
 			{
-				// ѓ}ѓCѓiѓX‚МЏкЌ‡
+				// гѓћг‚¤гѓЉг‚№гЃ®е ґеђ€
 				if( Min < 1.0f                && Min >= 0.0f               ) return ( BYTE )( ret | 0 ) ;
 				if( Min < 10.0f               && Min >= 1.0f               ) return ( BYTE )( ret | 1 ) ;
 				if( Min < 100.0f              && Min >= 10.0f              ) return ( BYTE )( ret | 2 ) ;
@@ -3173,7 +3173,7 @@ extern BYTE MV1AnimKey16BitMinFtoB( float Min )
 			}
 			else
 			{
-				// ѓvѓ‰ѓX‚МЏкЌ‡
+				// гѓ—гѓ©г‚№гЃ®е ґеђ€
 				if( Min < 1.0f                 && Min >= 0.0f                ) return 0x80 ;
 				if( Min < 10.0f                && Min >= 1.0f                ) return ( BYTE )( ret | 0 ) ;
 				if( Min < 100.0f               && Min >= 10.0f               ) return ( BYTE )( ret | 1 ) ;
@@ -3197,16 +3197,16 @@ extern BYTE MV1AnimKey16BitMinFtoB( float Min )
 	}
 }
 
-// floatЊ^‚М’l‚©‚з MV1_ANIM_KEY_16BITЌ\‘ў‘М‚М Unit •Пђ”—p‚М’l‚рЌмђ¬‚·‚й
+// floatећ‹гЃ®еЂ¤гЃ‹г‚‰ MV1_ANIM_KEY_16BITж§‹йЂ дЅ“гЃ® Unit е¤‰ж•°з”ЁгЃ®еЂ¤г‚’дЅњж€ђгЃ™г‚‹
 extern BYTE MV1AnimKey16BitUnitFtoB( float Unit )
 {
-	// ѓ}ѓCѓiѓX‚ѕ‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// гѓћг‚¤гѓЉг‚№гЃ гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( Unit < 0.0f )
 	{
 		return 0 ;
 	}
 
-	// ЌЕЏ‰‚Йѓ[ѓЌ‚©‚З‚¤‚©’І‚Ч‚й
+	// жњЂе€ќгЃ«г‚јгѓ­гЃ‹гЃ©гЃ†гЃ‹иЄїгЃ№г‚‹
 	if( * ( ( DWORD * )&Unit ) == 0.0f )
 	{
 		return 0 ;
@@ -3216,7 +3216,7 @@ extern BYTE MV1AnimKey16BitUnitFtoB( float Unit )
 		int i, ret, mb, mi ;
 		float f, mf ;
 
-		// ѓsѓbѓ^ѓЉ‚М’l‚Є–і‚ў‚©’І‚Ч‚й
+		// гѓ”гѓѓг‚їгѓЄгЃ®еЂ¤гЃЊз„ЎгЃ„гЃ‹иЄїгЃ№г‚‹
 		mf = 1000000000000.0f ;
 		mb = -1 ;
 		mi = -1 ;
@@ -3224,7 +3224,7 @@ extern BYTE MV1AnimKey16BitUnitFtoB( float Unit )
 		{
 			ret = 0x80 ;
 
-			// Џ¬ђ”“_€И‰є
+			// е°Џж•°з‚№д»Ґдё‹
 			for( i = 1 ; i < 15 ; i ++ ){ f = i / 10.0f       - Unit ; if( f > -0.0000000001f   && f < 0.0000000001f   ) return ( BYTE )( ret | ( 1 << 4 ) | i ) ; if( f > 0.0f && mf > f ){ mi = i ; mb = 1 ; mf = f ; } }
 			for( i = 1 ; i < 15 ; i ++ ){ f = i / 100.0f      - Unit ; if( f > -0.0000000001f   && f < 0.0000000001f   ) return ( BYTE )( ret | ( 2 << 4 ) | i ) ; if( f > 0.0f && mf > f ){ mi = i ; mb = 2 ; mf = f ; } }
 			for( i = 1 ; i < 15 ; i ++ ){ f = i / 1000.0f     - Unit ; if( f > -0.00000000001f  && f < 0.00000000001f  ) return ( BYTE )( ret | ( 3 << 4 ) | i ) ; if( f > 0.0f && mf > f ){ mi = i ; mb = 3 ; mf = f ; } }
@@ -3238,7 +3238,7 @@ extern BYTE MV1AnimKey16BitUnitFtoB( float Unit )
 		{
 			ret = 0 ;
 
-			// ‚PЃD‚O€ИЏг
+			// пј‘пјЋпјђд»ҐдёЉ
 			for( i = 1 ; i < 15 ; i ++ ){ f = i * 1.0f        - Unit ; if( f > -0.000000001f && f < 0.000000001f ) return ( BYTE )( ret | ( 0 << 4 ) | i ) ; if( f > 0.0f && mf > f ){ mi = i ; mb = 0 ; mf = f ; } }
 			for( i = 1 ; i < 15 ; i ++ ){ f = i * 10.0f       - Unit ; if( f > -0.000000001f && f < 0.000000001f ) return ( BYTE )( ret | ( 1 << 4 ) | i ) ; if( f > 0.0f && mf > f ){ mi = i ; mb = 1 ; mf = f ; } }
 			for( i = 1 ; i < 15 ; i ++ ){ f = i * 100.0f      - Unit ; if( f > -0.000000001f && f < 0.000000001f ) return ( BYTE )( ret | ( 2 << 4 ) | i ) ; if( f > 0.0f && mf > f ){ mi = i ; mb = 2 ; mf = f ; } }
@@ -3252,7 +3252,7 @@ extern BYTE MV1AnimKey16BitUnitFtoB( float Unit )
 	}
 }
 
-// MV1_ANIM_KEY_16BITЌ\‘ў‘М‚М Min •Пђ”‚М’l‚©‚з floatЊ^‚М’l‚рЌмђ¬‚·‚й
+// MV1_ANIM_KEY_16BITж§‹йЂ дЅ“гЃ® Min е¤‰ж•°гЃ®еЂ¤гЃ‹г‚‰ floatећ‹гЃ®еЂ¤г‚’дЅњж€ђгЃ™г‚‹
 extern float MV1AnimKey16BitMinBtoF( BYTE Min )
 {
 	static float Table[ 2 ][ 16 ] =
@@ -3306,7 +3306,7 @@ extern float MV1AnimKey16BitMinBtoF( BYTE Min )
 	}
 }
 
-// MV1_ANIM_KEY_16BITЌ\‘ў‘М‚М Unit •Пђ”‚М’l‚©‚з floatЊ^‚М’l‚рЌмђ¬‚·‚й
+// MV1_ANIM_KEY_16BITж§‹йЂ дЅ“гЃ® Unit е¤‰ж•°гЃ®еЂ¤гЃ‹г‚‰ floatећ‹гЃ®еЂ¤г‚’дЅњж€ђгЃ™г‚‹
 extern float MV1AnimKey16BitUnitBtoF( BYTE Unit )
 {
 	static float Table[ 2 ][ 8 ] =
@@ -3347,7 +3347,7 @@ extern float MV1AnimKey16BitUnitBtoF( BYTE Unit )
 
 
 
-// MATRIX Ќ\‘ў‘М‚р MATRIX_4X4CT_F Ќ\‘ў‘М‚Й•ПЉ·‚·‚й
+// MATRIX ж§‹йЂ дЅ“г‚’ MATRIX_4X4CT_F ж§‹йЂ дЅ“гЃ«е¤‰жЏ›гЃ™г‚‹
 extern void ConvertMatrixFToMatrix4x4cF( MATRIX_4X4CT_F *Out, const MATRIX *In )
 {
 	Out->m[ 0 ][ 0 ] = In->m[ 0 ][ 0 ] ;
@@ -3367,7 +3367,7 @@ extern void ConvertMatrixFToMatrix4x4cF( MATRIX_4X4CT_F *Out, const MATRIX *In )
 	Out->m[ 2 ][ 3 ] = In->m[ 3 ][ 2 ] ;
 }
 
-// MATRIX_D Ќ\‘ў‘М‚р MATRIX_4X4CT_D Ќ\‘ў‘М‚Й•ПЉ·‚·‚й
+// MATRIX_D ж§‹йЂ дЅ“г‚’ MATRIX_4X4CT_D ж§‹йЂ дЅ“гЃ«е¤‰жЏ›гЃ™г‚‹
 extern void ConvertMatrixDToMatrix4x4cD( MATRIX_4X4CT_D *Out, const MATRIX_D *In )
 {
 	Out->m[ 0 ][ 0 ] = In->m[ 0 ][ 0 ] ;
@@ -3387,7 +3387,7 @@ extern void ConvertMatrixDToMatrix4x4cD( MATRIX_4X4CT_D *Out, const MATRIX_D *In
 	Out->m[ 2 ][ 3 ] = In->m[ 3 ][ 2 ] ;
 }
 
-// MATRIX_D Ќ\‘ў‘М‚р MATRIX_4X4CT_F Ќ\‘ў‘М‚Й•ПЉ·‚·‚й
+// MATRIX_D ж§‹йЂ дЅ“г‚’ MATRIX_4X4CT_F ж§‹йЂ дЅ“гЃ«е¤‰жЏ›гЃ™г‚‹
 extern void ConvertMatrixDToMatrix4x4cF( MATRIX_4X4CT_F *Out, const MATRIX_D *In )
 {
 	Out->m[ 0 ][ 0 ] = ( float )In->m[ 0 ][ 0 ] ;
@@ -3407,7 +3407,7 @@ extern void ConvertMatrixDToMatrix4x4cF( MATRIX_4X4CT_F *Out, const MATRIX_D *In
 	Out->m[ 2 ][ 3 ] = ( float )In->m[ 3 ][ 2 ] ;
 }
 
-// MATRIX Ќ\‘ў‘М‚р MATRIX_4X4CT_D Ќ\‘ў‘М‚Й•ПЉ·‚·‚й
+// MATRIX ж§‹йЂ дЅ“г‚’ MATRIX_4X4CT_D ж§‹йЂ дЅ“гЃ«е¤‰жЏ›гЃ™г‚‹
 extern void ConvertMatrixFToMatrix4x4cD( MATRIX_4X4CT_D *Out, const MATRIX *In )
 {
 	Out->m[ 0 ][ 0 ] = In->m[ 0 ][ 0 ] ;
@@ -3427,7 +3427,7 @@ extern void ConvertMatrixFToMatrix4x4cD( MATRIX_4X4CT_D *Out, const MATRIX *In )
 	Out->m[ 2 ][ 3 ] = In->m[ 3 ][ 2 ] ;
 }
 
-// MATRIX_4X4CT_F Ќ\‘ў‘М‚р MATRIX Ќ\‘ў‘М‚Й•ПЉ·‚·‚й
+// MATRIX_4X4CT_F ж§‹йЂ дЅ“г‚’ MATRIX ж§‹йЂ дЅ“гЃ«е¤‰жЏ›гЃ™г‚‹
 extern void ConvertMatrix4x4cFToMatrixF( MATRIX *Out, const MATRIX_4X4CT_F *In )
 {
 	Out->m[ 0 ][ 0 ] = In->m[ 0 ][ 0 ] ;
@@ -3448,7 +3448,7 @@ extern void ConvertMatrix4x4cFToMatrixF( MATRIX *Out, const MATRIX_4X4CT_F *In )
 	Out->m[ 3 ][ 3 ] = 1.0f ;
 }
 
-// MATRIX_4X4CT_D Ќ\‘ў‘М‚р MATRIX_D Ќ\‘ў‘М‚Й•ПЉ·‚·‚й
+// MATRIX_4X4CT_D ж§‹йЂ дЅ“г‚’ MATRIX_D ж§‹йЂ дЅ“гЃ«е¤‰жЏ›гЃ™г‚‹
 extern void ConvertMatrix4x4cDToMatrixD( MATRIX_D *Out, const MATRIX_4X4CT_D *In )
 {
 	Out->m[ 0 ][ 0 ] = In->m[ 0 ][ 0 ] ;
@@ -3469,7 +3469,7 @@ extern void ConvertMatrix4x4cDToMatrixD( MATRIX_D *Out, const MATRIX_4X4CT_D *In
 	Out->m[ 3 ][ 3 ] = 1.0 ;
 }
 
-// MATRIX_4X4CT_D Ќ\‘ў‘М‚р MATRIX   Ќ\‘ў‘М‚Й•ПЉ·‚·‚й
+// MATRIX_4X4CT_D ж§‹йЂ дЅ“г‚’ MATRIX   ж§‹йЂ дЅ“гЃ«е¤‰жЏ›гЃ™г‚‹
 extern void ConvertMatrix4x4cDToMatrixF( MATRIX   *Out, const MATRIX_4X4CT_D *In )
 {
 	Out->m[ 0 ][ 0 ] = ( float )In->m[ 0 ][ 0 ] ;
@@ -3490,7 +3490,7 @@ extern void ConvertMatrix4x4cDToMatrixF( MATRIX   *Out, const MATRIX_4X4CT_D *In
 	Out->m[ 3 ][ 3 ] = 1.0f ;
 }
 
-// MATRIX_4X4CT_F Ќ\‘ў‘М‚р MATRIX_D Ќ\‘ў‘М‚Й•ПЉ·‚·‚й
+// MATRIX_4X4CT_F ж§‹йЂ дЅ“г‚’ MATRIX_D ж§‹йЂ дЅ“гЃ«е¤‰жЏ›гЃ™г‚‹
 extern void ConvertMatrix4x4cFToMatrixD( MATRIX_D *Out, const MATRIX_4X4CT_F *In )
 {
 	Out->m[ 0 ][ 0 ] = In->m[ 0 ][ 0 ] ;
@@ -3511,7 +3511,7 @@ extern void ConvertMatrix4x4cFToMatrixD( MATRIX_D *Out, const MATRIX_4X4CT_F *In
 	Out->m[ 3 ][ 3 ] = 1.0 ;
 }
 
-// MATRIX_4X4CT_F   Ќ\‘ў‘М‚р MATRIX_4X4CT_D Ќ\‘ў‘М‚Й•ПЉ·‚·‚й
+// MATRIX_4X4CT_F   ж§‹йЂ дЅ“г‚’ MATRIX_4X4CT_D ж§‹йЂ дЅ“гЃ«е¤‰жЏ›гЃ™г‚‹
 extern void ConvertMatrix4x4cFToMatrix4x4cD(  MATRIX_4X4CT_D *Out, const MATRIX_4X4CT_F *In )
 {
 	Out->m[ 0 ][ 0 ] = In->m[ 0 ][ 0 ] ;
@@ -3530,7 +3530,7 @@ extern void ConvertMatrix4x4cFToMatrix4x4cD(  MATRIX_4X4CT_D *Out, const MATRIX_
 	Out->m[ 2 ][ 3 ] = In->m[ 2 ][ 3 ] ;
 }
 
-// MATRIX_4X4CT_F   Ќ\‘ў‘М‚р MATRIX_4X4CT_D Ќ\‘ў‘М‚Й•ПЉ·‚·‚й
+// MATRIX_4X4CT_F   ж§‹йЂ дЅ“г‚’ MATRIX_4X4CT_D ж§‹йЂ дЅ“гЃ«е¤‰жЏ›гЃ™г‚‹
 extern void ConvertMatrix4x4cDToMatrix4x4cF(  MATRIX_4X4CT_F   *Out, const MATRIX_4X4CT_D *In )
 {
 	Out->m[ 0 ][ 0 ] = ( float )In->m[ 0 ][ 0 ] ;
@@ -3549,7 +3549,7 @@ extern void ConvertMatrix4x4cDToMatrix4x4cF(  MATRIX_4X4CT_F   *Out, const MATRI
 	Out->m[ 2 ][ 3 ] = ( float )In->m[ 2 ][ 3 ] ;
 }
 
-// MATRIX Ќ\‘ў‘М‚р MATRIX_4X4CT Ќ\‘ў‘М‚Й•ПЉ·‚·‚й
+// MATRIX ж§‹йЂ дЅ“г‚’ MATRIX_4X4CT ж§‹йЂ дЅ“гЃ«е¤‰жЏ›гЃ™г‚‹
 extern void ConvertMatrixFToMatrix4x4c( MATRIX_4X4CT *Out, const MATRIX   *In )
 {
 	if( GSYS.DrawSetting.Large3DPositionSupport )
@@ -3562,7 +3562,7 @@ extern void ConvertMatrixFToMatrix4x4c( MATRIX_4X4CT *Out, const MATRIX   *In )
 	}
 }
 
-// MATRIX_D Ќ\‘ў‘М‚р MATRIX_4X4CT Ќ\‘ў‘М‚Й•ПЉ·‚·‚й
+// MATRIX_D ж§‹йЂ дЅ“г‚’ MATRIX_4X4CT ж§‹йЂ дЅ“гЃ«е¤‰жЏ›гЃ™г‚‹
 extern void ConvertMatrixDToMatrix4x4c( MATRIX_4X4CT *Out, const MATRIX_D *In )
 {
 	if( GSYS.DrawSetting.Large3DPositionSupport )
@@ -3575,7 +3575,7 @@ extern void ConvertMatrixDToMatrix4x4c( MATRIX_4X4CT *Out, const MATRIX_D *In )
 	}
 }
 
-// MATRIX_4X4CT Ќ\‘ў‘М‚р MATRIX Ќ\‘ў‘М‚Й•ПЉ·‚·‚й
+// MATRIX_4X4CT ж§‹йЂ дЅ“г‚’ MATRIX ж§‹йЂ дЅ“гЃ«е¤‰жЏ›гЃ™г‚‹
 extern void ConvertMatrix4x4cToMatrixF( MATRIX   *Out, const MATRIX_4X4CT *In )
 {
 	if( GSYS.DrawSetting.Large3DPositionSupport )
@@ -3588,7 +3588,7 @@ extern void ConvertMatrix4x4cToMatrixF( MATRIX   *Out, const MATRIX_4X4CT *In )
 	}
 }
 
-// MATRIX_4X4CT   Ќ\‘ў‘М‚р MATRIX_D Ќ\‘ў‘М‚Й•ПЉ·‚·‚й
+// MATRIX_4X4CT   ж§‹йЂ дЅ“г‚’ MATRIX_D ж§‹йЂ дЅ“гЃ«е¤‰жЏ›гЃ™г‚‹
 extern void ConvertMatrix4x4cToMatrixD( MATRIX_D *Out, const MATRIX_4X4CT *In )
 {
 	if( GSYS.DrawSetting.Large3DPositionSupport )
@@ -3601,7 +3601,7 @@ extern void ConvertMatrix4x4cToMatrixD( MATRIX_D *Out, const MATRIX_4X4CT *In )
 	}
 }
 
-// MATRIX_4X4CT   Ќ\‘ў‘М‚р MATRIX_4X4CT_F Ќ\‘ў‘М‚Й•ПЉ·‚·‚й
+// MATRIX_4X4CT   ж§‹йЂ дЅ“г‚’ MATRIX_4X4CT_F ж§‹йЂ дЅ“гЃ«е¤‰жЏ›гЃ™г‚‹
 extern void ConvertMatrix4x4cToMatrix4x4cF(  MATRIX_4X4CT_F *Out, const MATRIX_4X4CT *In )
 {
 	if( GSYS.DrawSetting.Large3DPositionSupport )
@@ -3614,7 +3614,7 @@ extern void ConvertMatrix4x4cToMatrix4x4cF(  MATRIX_4X4CT_F *Out, const MATRIX_4
 	}
 }
 
-// MATRIX_4X4CT   Ќ\‘ў‘М‚р MATRIX_4X4CT_D Ќ\‘ў‘М‚Й•ПЉ·‚·‚й
+// MATRIX_4X4CT   ж§‹йЂ дЅ“г‚’ MATRIX_4X4CT_D ж§‹йЂ дЅ“гЃ«е¤‰жЏ›гЃ™г‚‹
 extern void ConvertMatrix4x4cToMatrix4x4cD(  MATRIX_4X4CT_D *Out, const MATRIX_4X4CT *In )
 {
 	if( GSYS.DrawSetting.Large3DPositionSupport )
@@ -3627,7 +3627,7 @@ extern void ConvertMatrix4x4cToMatrix4x4cD(  MATRIX_4X4CT_D *Out, const MATRIX_4
 	}
 }
 
-// MATRIX_4X4CT_F Ќ\‘ў‘М‚р MATRIX_4X4CT Ќ\‘ў‘М‚Й•ПЉ·‚·‚й
+// MATRIX_4X4CT_F ж§‹йЂ дЅ“г‚’ MATRIX_4X4CT ж§‹йЂ дЅ“гЃ«е¤‰жЏ›гЃ™г‚‹
 extern void ConvertMatrix4x4cFToMatrix4x4c( MATRIX_4X4CT *Out, const MATRIX_4X4CT_F *In )
 {
 	if( GSYS.DrawSetting.Large3DPositionSupport )
@@ -3640,7 +3640,7 @@ extern void ConvertMatrix4x4cFToMatrix4x4c( MATRIX_4X4CT *Out, const MATRIX_4X4C
 	}
 }
 
-// MATRIX_4X4CT_D Ќ\‘ў‘М‚р MATRIX_4X4CT Ќ\‘ў‘М‚Й•ПЉ·‚·‚й
+// MATRIX_4X4CT_D ж§‹йЂ дЅ“г‚’ MATRIX_4X4CT ж§‹йЂ дЅ“гЃ«е¤‰жЏ›гЃ™г‚‹
 extern void ConvertMatrix4x4cDToMatrix4x4c( MATRIX_4X4CT *Out, const MATRIX_4X4CT_D *In )
 {
 	if( GSYS.DrawSetting.Large3DPositionSupport )
@@ -3657,7 +3657,7 @@ extern void ConvertMatrix4x4cDToMatrix4x4c( MATRIX_4X4CT *Out, const MATRIX_4X4C
 
 
 
-// Ќм‹Ж—pѓoѓbѓtѓ@‚МѓZѓbѓgѓAѓbѓv
+// дЅњжҐ­з”Ёгѓђгѓѓгѓ•г‚ЎгЃ®г‚»гѓѓгѓ€г‚ўгѓѓгѓ—
 static void * MV1SetupWorkBuffer( size_t AllocSize )
 {
 	void *NewBuffer = NULL ;
@@ -3687,7 +3687,7 @@ static void * MV1SetupWorkBuffer( size_t AllocSize )
 	return MV1Man.WorkBuffer ;
 }
 
-// Ћw’и‚МЋћЉФ‚р’ґ‚¦‚й€к”ФЏ¬‚і‚ў”ФЌ†‚МѓLЃ[‚МѓCѓ“ѓfѓbѓNѓX‚рЋж“ѕ‚·‚й
+// жЊ‡е®љгЃ®ж™‚й–“г‚’и¶…гЃ€г‚‹дёЂз•Єе°ЏгЃ•гЃ„з•ЄеЏ·гЃ®г‚­гѓјгЃ®г‚¤гѓігѓ‡гѓѓг‚Їг‚№г‚’еЏ–еѕ—гЃ™г‚‹
 __inline static int _MV1GetAnimKeyDataIndexFromTime_inline( MV1_ANIM_KEYSET_BASE *AnimKeySetBase, float Time, float TotalRate, int NowKey, bool AboutSetting )
 {
 	int KeyNum ;
@@ -3695,21 +3695,21 @@ __inline static int _MV1GetAnimKeyDataIndexFromTime_inline( MV1_ANIM_KEYSET_BASE
 
 	KeyNum = AnimKeySetBase->Num ;
 
-	// ѓLЃ[‚р€к‚В€к‚ВЋќ‚Б‚Д‚ў‚й‚©‚З‚¤‚©‚ЕЏ€—ќ‚р•ЄЉт
+	// г‚­гѓјг‚’дёЂгЃ¤дёЂгЃ¤жЊЃгЃЈгЃ¦гЃ„г‚‹гЃ‹гЃ©гЃ†гЃ‹гЃ§е‡¦зђ†г‚’е€†еІђ
 	if( AnimKeySetBase->TimeType == MV1_ANIMKEY_TIME_TYPE_KEY )
 	{
-		// ѓAѓoѓEѓgѓZѓbѓeѓBѓ“ѓOЋw’и‚МЏкЌ‡‚НЌЕЏ‰‚Й‘е‘М‚МѓAѓNѓeѓBѓuѓLЃ[‚рѓZѓbѓg‚·‚й
+		// г‚ўгѓђг‚¦гѓ€г‚»гѓѓгѓ†г‚Јгѓіг‚°жЊ‡е®љгЃ®е ґеђ€гЃЇжњЂе€ќгЃ«е¤§дЅ“гЃ®г‚ўг‚Їгѓ†г‚Јгѓ–г‚­гѓјг‚’г‚»гѓѓгѓ€гЃ™г‚‹
 		if( AboutSetting )
 		{
-			// ‘е‘М‚МѓLЃ[”ФЌ†‚р’І‚Ч‚й
+			// е¤§дЅ“гЃ®г‚­гѓјз•ЄеЏ·г‚’иЄїгЃ№г‚‹
 			NowKey = _FTOL( AnimKeySetBase->Num * TotalRate ) ;
 
-			// –OaЏ€—ќ
+			// йЈЅе’Ње‡¦зђ†
 				 if( NowKey <                    0 ) NowKey = 0 ;
 			else if( NowKey >= AnimKeySetBase->Num ) NowKey = AnimKeySetBase->Num - 1 ;
 		}
 
-		// “KЌ‡‚µ‚ЅѓLЃ[‚Й€Ъ“®‚·‚й
+		// йЃ©еђ€гЃ—гЃџг‚­гѓјгЃ«з§»е‹•гЃ™г‚‹
 		TimeList = AnimKeySetBase->KeyTime ;
 		if( TimeList[ NowKey ] > Time )
 		{
@@ -3724,7 +3724,7 @@ __inline static int _MV1GetAnimKeyDataIndexFromTime_inline( MV1_ANIM_KEYSET_BASE
 	}
 	else
 	{
-		// ЉeѓLЃ[‚МЉФЉu‚Є€к’и‚МЏкЌ‡‚Н’PЏѓЊvЋZ
+		// еђ„г‚­гѓјгЃ®й–“йљ”гЃЊдёЂе®љгЃ®е ґеђ€гЃЇеЌзґ”иЁ€з®—
 		if( AnimKeySetBase->UnitTime < 0.0000001f && AnimKeySetBase->UnitTime > -0.0000001f )
 		{
 			NowKey = 0 ;
@@ -3744,7 +3744,7 @@ static int _MV1GetAnimKeyDataIndexFromTime( MV1_ANIM_KEYSET_BASE *AnimKeySetBase
 {
 	int KeyIndex ;
 
-	// ѓLЃ[‚р€к‚В€к‚ВЋќ‚Б‚Д‚ў‚й‚©‚З‚¤‚©‚ЕЏ€—ќ‚р•ЄЉт
+	// г‚­гѓјг‚’дёЂгЃ¤дёЂгЃ¤жЊЃгЃЈгЃ¦гЃ„г‚‹гЃ‹гЃ©гЃ†гЃ‹гЃ§е‡¦зђ†г‚’е€†еІђ
 	if( AnimKeySetBase->TimeType == MV1_ANIMKEY_TIME_TYPE_KEY )
 	{
 		KeyIndex = _MV1GetAnimKeyDataIndexFromTime_inline( AnimKeySetBase, Time, ( Time - AnimKeySetBase->StartTime ) / ( AnimKeySetBase->KeyTime[ AnimKeySetBase->Num - 1 ] - AnimKeySetBase->StartTime ), 0, true ) ;
@@ -3761,7 +3761,7 @@ static int _MV1GetAnimKeyDataIndexFromTime( MV1_ANIM_KEYSET_BASE *AnimKeySetBase
 	}
 	else
 	{
-		// ѓLЃ[‚р€к‚В€к‚ВЋќ‚Б‚Д‚ў‚й‚©‚З‚¤‚©‚ЕЏ€—ќ‚р•ЄЉт
+		// г‚­гѓјг‚’дёЂгЃ¤дёЂгЃ¤жЊЃгЃЈгЃ¦гЃ„г‚‹гЃ‹гЃ©гЃ†гЃ‹гЃ§е‡¦зђ†г‚’е€†еІђ
 		if( AnimKeySetBase->TimeType == MV1_ANIMKEY_TIME_TYPE_KEY )
 		{
 			Rate = ( Time - AnimKeySetBase->KeyTime[ KeyIndex ] ) / (  AnimKeySetBase->KeyTime[ KeyIndex + 1 ] - AnimKeySetBase->KeyTime[ KeyIndex ] ) ;
@@ -3775,7 +3775,7 @@ static int _MV1GetAnimKeyDataIndexFromTime( MV1_ANIM_KEYSET_BASE *AnimKeySetBase
 	return KeyIndex ;
 }
 
-// Њ»ЌЭ‚МѓAѓjѓЃЃ[ѓVѓ‡ѓ“ЌДђ¶ЋћЉФ‚ЙЉeѓLЃ[‚М NowKey ‚М’l‚рЌ‡‚н‚№‚й
+// зЏѕењЁгЃ®г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓіе†Ќз”џж™‚й–“гЃ«еђ„г‚­гѓјгЃ® NowKey гЃ®еЂ¤г‚’еђ€г‚ЏгЃ›г‚‹
 static int _MV1AnimSetSyncNowKey( MV1_MODEL *Model, int AttachIndex, MV1_ANIMSET *AnimSet, bool AboutSetting )
 {
 	MV1_ANIM				*Anim ;
@@ -3784,13 +3784,13 @@ static int _MV1AnimSetSyncNowKey( MV1_MODEL *Model, int AttachIndex, MV1_ANIMSET
 	int i, j ;
 	float NowTime, NowRate ;
 
-	// Њ»ЌЭ‚МЌДђ¶ЋћЉФ‚рѓZѓbѓg
+	// зЏѕењЁгЃ®е†Ќз”џж™‚й–“г‚’г‚»гѓѓгѓ€
 	NowTime = AnimSet->NowTime ;
 
-	// ‘S‘М‚МЋћЉФ‚Й‘О‚·‚йЋw’иЋћЉФ‚М”д—¦‚р‹Ѓ‚Я‚й
+	// е…ЁдЅ“гЃ®ж™‚й–“гЃ«еЇѕгЃ™г‚‹жЊ‡е®љж™‚й–“гЃ®жЇ”зЋ‡г‚’ж±‚г‚Ѓг‚‹
 	NowRate = NowTime / AnimSet->BaseData->MaxTime ;
 
-	// ђЭ’и‚і‚к‚Д‚ў‚йѓAѓNѓeѓBѓuѓLЃ[‚©‚зЊ»ЌЭ‚М“KђШ‚ИѓAѓNѓeѓBѓuѓLЃ[‚рЊџЌх‚·‚й
+	// иЁ­е®љгЃ•г‚ЊгЃ¦гЃ„г‚‹г‚ўг‚Їгѓ†г‚Јгѓ–г‚­гѓјгЃ‹г‚‰зЏѕењЁгЃ®йЃ©е€‡гЃЄг‚ўг‚Їгѓ†г‚Јгѓ–г‚­гѓјг‚’ж¤њзґўгЃ™г‚‹
 	Anim = AnimSet->Anim ;
 	for( i = 0 ; i < AnimSet->BaseData->AnimNum ; i ++, Anim ++ )
 	{
@@ -3814,38 +3814,38 @@ static int _MV1AnimSetSyncNowKey( MV1_MODEL *Model, int AttachIndex, MV1_ANIMSET
 		}
 	}
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// –ј‘O‚вѓCѓ“ѓfѓbѓNѓX‚©‚зѓ‚ѓfѓ‹Љо–{ѓfЃ[ѓ^“а‚МѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚рЋж“ѕ‚·‚й
+// еђЌе‰Ќг‚„г‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃ‹г‚‰гѓўгѓ‡гѓ«еџєжњ¬гѓ‡гѓјг‚їе†…гЃ®г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓіг‚’еЏ–еѕ—гЃ™г‚‹
 static MV1_ANIMSET_BASE *MV1GetAnimSetBase( int MV1ModelHandle, const wchar_t *Name, int Index )
 {
 	MV1_MODEL_BASE *ModelBase ;
 	MV1_ANIMSET_BASE *AnimSetBase ;
 	int i ;
 
-	// ѓAѓhѓЊѓXЋж“ѕ
+	// г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ—
 	if( MV1BMDLCHK( MV1ModelHandle, ModelBase ) )
 		return NULL ;
 
-	// Ћw’и‚МѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚р’І‚Ч‚й
+	// жЊ‡е®љгЃ®г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓіг‚’иЄїгЃ№г‚‹
 	if( Index >= 0 )
 	{
-		// Ћw’и‚МѓCѓ“ѓfѓbѓNѓX‚ЄѓAѓjѓЃЃ[ѓVѓ‡ѓ“ѓZѓbѓg‚Мђ”‚©‚зЉO‚к‚Д‚ў‚Ѕ‚зѓGѓ‰Ѓ[
+		// жЊ‡е®љгЃ®г‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃЊг‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓіг‚»гѓѓгѓ€гЃ®ж•°гЃ‹г‚‰е¤–г‚ЊгЃ¦гЃ„гЃџг‚‰г‚Ёгѓ©гѓј
 		if( Index >= ModelBase->AnimSetNum ) return NULL ;
 		return &ModelBase->AnimSet[ Index ] ;
 	}
 	else
 	{
-		// –ј‘O‚Є“Ї‚¶‚ИѓAѓjѓЃЃ[ѓVѓ‡ѓ“ѓZѓbѓg‚р’T‚·
+		// еђЌе‰ЌгЃЊеђЊгЃгЃЄг‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓіг‚»гѓѓгѓ€г‚’жЋўгЃ™
 		AnimSetBase = ModelBase->AnimSet ;
 		for( i = 0 ; i < ModelBase->AnimSetNum && _WCSCMP( AnimSetBase->NameW, Name ) != 0 ; i ++, AnimSetBase ++ ){}
 		return i == ModelBase->AnimSetNum ? NULL : &ModelBase->AnimSet[ i ] ;
 	}
 }
 
-// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“ѓZѓbѓgЉо–{ѓfЃ[ѓ^‚©‚зЋАЌs—pѓAѓjѓЃЃ[ѓVѓ‡ѓ“ѓZѓbѓg‚рЌмђ¬‚·‚й
+// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓіг‚»гѓѓгѓ€еџєжњ¬гѓ‡гѓјг‚їгЃ‹г‚‰е®џиЎЊз”Ёг‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓіг‚»гѓѓгѓ€г‚’дЅњж€ђгЃ™г‚‹
 static MV1_ANIMSET *MV1CreateAnimSet( MV1_ANIMSET_BASE *MV1AnimSetBase )
 {
 	MV1_ANIM_BASE *AnimBase ;
@@ -3854,7 +3854,7 @@ static MV1_ANIMSET *MV1CreateAnimSet( MV1_ANIMSET_BASE *MV1AnimSetBase )
 	int AllocSize ;
 	int i, j ;
 
-	// Љm•Ы‚·‚Ч‚«ѓЃѓ‚ѓЉ‚МѓTѓCѓY‚рЋZЏo‚·‚й
+	// зўєдїќгЃ™гЃ№гЃЌгѓЎгѓўгѓЄгЃ®г‚µг‚¤г‚єг‚’з®—е‡єгЃ™г‚‹
 	AllocSize = sizeof( MV1_ANIMSET ) ;
 	AllocSize += MV1AnimSetBase->AnimNum * sizeof( MV1_ANIM ) ;
 	AnimBase = MV1AnimSetBase->Anim ;
@@ -3864,12 +3864,12 @@ static MV1_ANIMSET *MV1CreateAnimSet( MV1_ANIMSET_BASE *MV1AnimSetBase )
 		AllocSize += sizeof( float ) * AnimBase->TargetFrame->ShapeNum ;
 	}
 
-	// ѓЃѓ‚ѓЉ‚МЉm•Ы
+	// гѓЎгѓўгѓЄгЃ®зўєдїќ
 	AnimSet = ( MV1_ANIMSET * )MDALLOCMEM( ( size_t )AllocSize ) ;
 	if( AnimSet == NULL ) return NULL ;
 	_MEMSET( AnimSet, 0, ( size_t )AllocSize ) ;
 
-	// Џо•с‚МѓZѓbѓg
+	// жѓ…е ±гЃ®г‚»гѓѓгѓ€
 	AllocSize = 0 ;
 	AnimSet->BaseData = MV1AnimSetBase ;
 	AllocSize += sizeof( MV1_ANIMSET ) ;
@@ -3897,21 +3897,21 @@ static MV1_ANIMSET *MV1CreateAnimSet( MV1_ANIMSET_BASE *MV1AnimSetBase )
 		}
 	}
 
-	// ЏI—№
+	// зµ‚дє†
 	return AnimSet ;
 }
 
-// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“ѓZѓbѓg‚©‚з“Б’и‚М–ј‘OЃAЋб‚µ‚­‚НѓCѓ“ѓfѓbѓNѓX‚МѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚р“ѕ‚й
+// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓіг‚»гѓѓгѓ€гЃ‹г‚‰з‰№е®љгЃ®еђЌе‰ЌгЂЃи‹ҐгЃ—гЃЏгЃЇг‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃ®г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓіг‚’еѕ—г‚‹
 static MV1_ANIM *MV1GetAnimSetAnim( MV1_ANIMSET *AnimSet, const wchar_t *Name, int Index )
 {
 	MV1_ANIM_BASE *AnimBase ;
 	MV1_ANIMSET_BASE *AnimSetBase ;
 	int i ;
 
-	// –ј‘O‚Є–іЊш‚ИЏкЌ‡‚НѓCѓ“ѓfѓbѓNѓX‚©‚зѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚р•Ф‚·
+	// еђЌе‰ЌгЃЊз„ЎеЉ№гЃЄе ґеђ€гЃЇг‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃ‹г‚‰г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓіг‚’иї”гЃ™
 	if( Name == NULL ) return AnimSet->Anim + Index ;
 
-	// –ј‘O‚Є—LЊш‚ИЏкЌ‡‚Н–ј‘O‚©‚зЊџЌх
+	// еђЌе‰ЌгЃЊжњ‰еЉ№гЃЄе ґеђ€гЃЇеђЌе‰ЌгЃ‹г‚‰ж¤њзґў
 	AnimSetBase = AnimSet->BaseData ;
 	AnimBase = AnimSetBase->Anim ;
 	for( i = 0 ; i < AnimSetBase->AnimNum ; i ++, AnimBase ++ )
@@ -3921,27 +3921,27 @@ static MV1_ANIM *MV1GetAnimSetAnim( MV1_ANIMSET *AnimSet, const wchar_t *Name, i
 	return i == AnimSetBase->AnimNum ? NULL : AnimSet->Anim + i ;
 }
 
-// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚рЋw’и‚МЋћЉФ‚Ь‚Еђi‚Я‚й
+// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓіг‚’жЊ‡е®љгЃ®ж™‚й–“гЃѕгЃ§йЂІг‚Ѓг‚‹
 static int MV1SetAnimSetTime( MV1_MODEL *Model, int AttachIndex, MV1_ANIMSET *AnimSet, float Time )
 {
-	// Ћw’и‚МЋћЉФ‚Є”Н€Н‚р’ґ‚¦‚Д‚ў‚Ѕ‚зѓNѓ‰ѓ“ѓv‚·‚й
+	// жЊ‡е®љгЃ®ж™‚й–“гЃЊзЇ„е›Іг‚’и¶…гЃ€гЃ¦гЃ„гЃџг‚‰г‚Їгѓ©гѓігѓ—гЃ™г‚‹
 	     if( AnimSet->BaseData->MaxTime < Time ) Time = AnimSet->BaseData->MaxTime ;
 	else if(                       0.0f > Time ) Time = 0.0f ;
 
-	// ѓ^ѓCѓЂ‚рѓZѓbѓg‚·‚й
+	// г‚їг‚¤гѓ г‚’г‚»гѓѓгѓ€гЃ™г‚‹
 	AnimSet->NowTime = Time ;
 
-	// ‘е‘М‚М€К’u‚рѓZѓbѓg‚·‚й
+	// е¤§дЅ“гЃ®дЅЌзЅ®г‚’г‚»гѓѓгѓ€гЃ™г‚‹
 	_MV1AnimSetSyncNowKey( Model, AttachIndex, AnimSet, true ) ;
 
-	// ѓ‹Ѓ[ѓvѓtѓ‰ѓO‚р“|‚·
+	// гѓ«гѓјгѓ—гѓ•гѓ©г‚°г‚’еЂ’гЃ™
 //	AnimSet->LoopCompFlag = false ;
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚МЊ»ЌЭ‚МЌДђ¶Њo‰ЯЋћЉФ‚ЙЌ‡‚н‚№‚Ѕѓpѓ‰ѓЃЃ[ѓ^‚рЊvЋZ‚·‚й
+// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігЃ®зЏѕењЁгЃ®е†Ќз”џзµЊйЃЋж™‚й–“гЃ«еђ€г‚ЏгЃ›гЃџгѓ‘гѓ©гѓЎгѓјг‚їг‚’иЁ€з®—гЃ™г‚‹
 static int MV1AnimSetSetupParam( MV1_MODEL *Model, int AttachIndex, MV1_ANIMSET *AnimSet )
 {
 	MV1_MODEL_ANIM               *MAnim ;
@@ -3975,14 +3975,14 @@ static int MV1AnimSetSetupParam( MV1_MODEL *Model, int AttachIndex, MV1_ANIMSET 
 	float                         Sub ;
 	VECTOR                        SubVec ;
 
-	// ѓpѓ‰ѓЃЃ[ѓ^‚МѓZѓbѓgѓAѓbѓv‚ЄЌП‚с‚Е‚ў‚йЏкЌ‡‚Н‰Ѕ‚а‚№‚ё‚ЙЏI—№
+	// гѓ‘гѓ©гѓЎгѓјг‚їгЃ®г‚»гѓѓгѓ€г‚ўгѓѓгѓ—гЃЊжё€г‚“гЃ§гЃ„г‚‹е ґеђ€гЃЇдЅ•г‚‚гЃ›гЃљгЃ«зµ‚дє†
 	if( AnimSet->ParamSetup ) return 0 ;
 
-	// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚Мђ”‚ѕ‚ЇЊJ‚и•Ф‚µ
+	// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігЃ®ж•°гЃ гЃ‘з№°г‚Љиї”гЃ—
 	AnimSetBase = AnimSet->BaseData ;
 	AddParam = AnimSetBase->IsAddAnim == 1 ;
 
-	// Ќs—сѓЊѓxѓ‹‚МѓuѓЊѓ“ѓhЏ€—ќ‚рЌs‚¤‚©‚З‚¤‚©‚ЕЏ€—ќ‚р•ЄЉт
+	// иЎЊе€—гѓ¬гѓ™гѓ«гЃ®гѓ–гѓ¬гѓігѓ‰е‡¦зђ†г‚’иЎЊгЃ†гЃ‹гЃ©гЃ†гЃ‹гЃ§е‡¦зђ†г‚’е€†еІђ
 	if( AnimSetBase->IsMatrixLinearBlend )
 //	if( 1 )
 	{
@@ -4003,10 +4003,10 @@ MATRIXLINEARBLEND :
 			MATRIX_4X4CT_F PreRotMat, PostRotMat ;
 			float NowTime = AnimSet->NowTime ;
 
-			// ѓZѓbѓgѓAѓbѓvЏо•с‚рѓЉѓZѓbѓg
+			// г‚»гѓѓгѓ€г‚ўгѓѓгѓ—жѓ…е ±г‚’гѓЄг‚»гѓѓгѓ€
 			Anim->ValidFlag = 0 ;
 
-			// Џ‰ЉъЏу‘Ф‚Е‚Н–Ъ•WѓmЃ[ѓh‚МѓfѓtѓHѓ‹ѓg’l‚р“ь‚к‚Д‚Ё‚­
+			// е€ќжњџзЉ¶ж…‹гЃ§гЃЇз›®жЁ™гѓЋгѓјгѓ‰гЃ®гѓ‡гѓ•г‚©гѓ«гѓ€еЂ¤г‚’е…Ґг‚ЊгЃ¦гЃЉгЃЏ
 			RotRate = -1.0f ;
 			RotRateX = -1.0f ;
 			RotRateY = -1.0f ;
@@ -4090,7 +4090,7 @@ MATRIXLINEARBLEND :
 			}
 			RotateOrder = Anim->RotateOrder ;
 
-			// Љe—v‘f‚МЊ»ЌЭ’lЉ„‚иЏo‚·
+			// еђ„и¦Ѓзґ гЃ®зЏѕењЁеЂ¤е‰Іг‚Ље‡єгЃ™
 			for( j = 0 ; j < Anim->BaseData->KeySetNum ; j ++ )
 			{
 				NowKey     = Anim->KeySet[ j ].NowKey ;
@@ -4224,7 +4224,7 @@ MATRIXLINEARBLEND :
 				}
 			}
 
-			// Џо•с‚рѓZѓbѓg
+			// жѓ…е ±г‚’г‚»гѓѓгѓ€
 			Anim->ValidFlag = MV1_ANIMVALUE_MATRIX ;
 
 			if( RotRate > -0.5f )
@@ -4278,7 +4278,7 @@ MATRIXLINEARBLEND :
 					{
  						FLOAT4 mixqt ;
 
-						// ‹…–КђьЊ`•вЉФ
+						// зђѓйќўз·љеЅўиЈњй–“
 						_MV1SphereLinear( &NowQt, &NextQt, QtRate, &mixqt ) ;
 
 						float	x2 = mixqt.x * mixqt.x * 2.0f ;
@@ -4516,7 +4516,7 @@ MATRIXLINEARBLEND :
 				}
 			}
 
-			// ‘OЊгЌs—с‚МЉ|‚ЇЌ‡‚н‚№
+			// е‰ЌеѕЊиЎЊе€—гЃ®жЋ›гЃ‘еђ€г‚ЏгЃ›
 			{
 				MATRIX_4X4CT_F TempMatrix ;
 
@@ -4543,7 +4543,7 @@ MATRIXLINEARBLEND :
 			Anim->Matrix.m[ 1 ][ 3 ] = Pos.y ;
 			Anim->Matrix.m[ 2 ][ 3 ] = Pos.z ;
 
-			// Ќs—с‚М‰с“]•”•Є‚МXЃEYЃEZЋІ‚Є’јЌs‚·‚й‚ж‚¤‚Й•вђі
+			// иЎЊе€—гЃ®е›ћи»ўйѓЁе€†гЃ®Xгѓ»Yгѓ»Zи»ёгЃЊз›ґиЎЊгЃ™г‚‹г‚€гЃ†гЃ«иЈњж­Ј
 			{
 				float DivNum ;
 
@@ -4581,7 +4581,7 @@ MATRIXLINEARBLEND :
 
 			Anim->Scale = Scale ;
 
-			// –Ъ•WѓmЃ[ѓh‚МЌs—с‚рЌXђV‚·‚й‚ж‚¤‚ЙѓZѓbѓg
+			// з›®жЁ™гѓЋгѓјгѓ‰гЃ®иЎЊе€—г‚’ж›ґж–°гЃ™г‚‹г‚€гЃ†гЃ«г‚»гѓѓгѓ€
 			if( Anim->Frame )
 			{
 				Anim->Frame->Container->LocalWorldMatrixSetupFlag = false ;
@@ -4596,10 +4596,10 @@ MATRIXLINEARBLEND :
 		{
 			float NowTime = AnimSet->NowTime ;
 
-			// ѓZѓbѓgѓAѓbѓvЏо•с‚рѓЉѓZѓbѓg
+			// г‚»гѓѓгѓ€г‚ўгѓѓгѓ—жѓ…е ±г‚’гѓЄг‚»гѓѓгѓ€
 			Anim->ValidFlag = 0 ;
 
-			// Џ‰ЉъЏу‘Ф‚Е‚Н–Ъ•WѓmЃ[ѓh‚МѓfѓtѓHѓ‹ѓg’l‚р“ь‚к‚Д‚Ё‚­
+			// е€ќжњџзЉ¶ж…‹гЃ§гЃЇз›®жЁ™гѓЋгѓјгѓ‰гЃ®гѓ‡гѓ•г‚©гѓ«гѓ€еЂ¤г‚’е…Ґг‚ЊгЃ¦гЃЉгЃЏ
 			ValidMatrix = FALSE ;
 			if( Anim->Frame )
 			{
@@ -4635,7 +4635,7 @@ MATRIXLINEARBLEND :
 			}
 			RotateOrder = Anim->RotateOrder ;
 
-			// Љe—v‘f‚МЊ»ЌЭ’lЉ„‚иЏo‚·
+			// еђ„и¦Ѓзґ гЃ®зЏѕењЁеЂ¤е‰Іг‚Ље‡єгЃ™
 			for( j = 0 ; j < Anim->BaseData->KeySetNum ; j ++ )
 			{
 				NowKey     = Anim->KeySet[ j ].NowKey ;
@@ -4672,7 +4672,7 @@ MATRIXLINEARBLEND :
 					KeyLinear2 = &KeySetBase->KeyLinear[ NextKey ] ;
 
 					Sub = *KeyLinear2 - *KeyLinear1 ;
-					// 90“x€ИЏг‚М‹}Њѓ‚И•П‰»‚Є‚ ‚Б‚ЅЏкЌ‡‚НЌs—сѓuѓЊѓ“ѓh‚рЌs‚¤
+					// 90еє¦д»ҐдёЉгЃ®жЂҐжїЂгЃЄе¤‰еЊ–гЃЊгЃ‚гЃЈгЃџе ґеђ€гЃЇиЎЊе€—гѓ–гѓ¬гѓігѓ‰г‚’иЎЊгЃ†
 					if( KeySetBase->DataType >= MV1_ANIMKEY_DATATYPE_ROTATE_X &&
 						KeySetBase->DataType <= MV1_ANIMKEY_DATATYPE_ROTATE_Z &&
 						( Sub < -DX_PI_F * 0.5f || Sub > DX_PI_F * 0.5f ) )
@@ -4806,7 +4806,7 @@ MATRIXLINEARBLEND :
 					SubVec.x = KeyVector2->x - KeyVector1->x ;
 					SubVec.y = KeyVector2->y - KeyVector1->y ;
 					SubVec.z = KeyVector2->z - KeyVector1->z ;
-					// 90“x€ИЏг‚М‹}Њѓ‚И•П‰»‚Є‚ ‚Б‚ЅЏкЌ‡‚НЌs—сѓuѓЊѓ“ѓh‚рЌs‚¤
+					// 90еє¦д»ҐдёЉгЃ®жЂҐжїЂгЃЄе¤‰еЊ–гЃЊгЃ‚гЃЈгЃџе ґеђ€гЃЇиЎЊе€—гѓ–гѓ¬гѓігѓ‰г‚’иЎЊгЃ†
 					if( KeySetBase->DataType == MV1_ANIMKEY_DATATYPE_ROTATE &&
 						( SubVec.x < -DX_PI_F * 0.5f || SubVec.x > DX_PI_F * 0.5f ||
 						  SubVec.y < -DX_PI_F * 0.5f || SubVec.y > DX_PI_F * 0.5f ||
@@ -4843,7 +4843,7 @@ MATRIXLINEARBLEND :
 					q2 = &KeySetBase->KeyFloat4[ NextKey ] ;
 
 #if 0
-					// ‹…–КђьЊ`•вЉФ
+					// зђѓйќўз·љеЅўиЈњй–“
 					float d, f, angle, sin1, sin2, sin3 ;
 					f = q2->x * q1->x + q2->y * q1->y + q2->z * q1->z + q2->w * q1->w ;
 					if( f >  0.999999f ) f =  0.999999f ;
@@ -4919,13 +4919,13 @@ MATRIXLINEARBLEND :
 				}
 			}
 
-			// Џо•с‚рѓZѓbѓg
+			// жѓ…е ±г‚’г‚»гѓѓгѓ€
 			if( ValidMatrix )
 			{
 				Anim->Matrix = Matrix ;
 				Anim->ValidFlag = MV1_ANIMVALUE_MATRIX ;
 
-				// ѓXѓPЃ[ѓ‹’l‚р’ЉЏo‚·‚й
+				// г‚№г‚±гѓјгѓ«еЂ¤г‚’жЉЅе‡єгЃ™г‚‹
 				Anim->Scale.x = _SQRT( Matrix.m[ 0 ][ 0 ] * Matrix.m[ 0 ][ 0 ] + Matrix.m[ 0 ][ 1 ] * Matrix.m[ 0 ][ 1 ] + Matrix.m[ 0 ][ 2 ] * Matrix.m[ 0 ][ 2 ] ) ;
 				Anim->Scale.y = _SQRT( Matrix.m[ 1 ][ 0 ] * Matrix.m[ 1 ][ 0 ] + Matrix.m[ 1 ][ 1 ] * Matrix.m[ 1 ][ 1 ] + Matrix.m[ 1 ][ 2 ] * Matrix.m[ 1 ][ 2 ] ) ;
 				Anim->Scale.z = _SQRT( Matrix.m[ 2 ][ 0 ] * Matrix.m[ 2 ][ 0 ] + Matrix.m[ 2 ][ 1 ] * Matrix.m[ 2 ][ 1 ] + Matrix.m[ 2 ][ 2 ] * Matrix.m[ 2 ][ 2 ] ) ;
@@ -4953,22 +4953,22 @@ MATRIXLINEARBLEND :
 				}
 			}
 
-			// –Ъ•WѓmЃ[ѓh‚МЌs—с‚рЌXђV‚·‚й‚ж‚¤‚ЙѓZѓbѓg
+			// з›®жЁ™гѓЋгѓјгѓ‰гЃ®иЎЊе€—г‚’ж›ґж–°гЃ™г‚‹г‚€гЃ†гЃ«г‚»гѓѓгѓ€
 			if( Anim->Frame )
 			{
 				Anim->Frame->Container->LocalWorldMatrixSetupFlag = false ;
 				MV1BitSetChange( &Anim->Frame->LocalWorldMatrixChange ) ;
 			}
 
-			// ѓuѓЊѓ“ѓhЌs—с‚рЌмђ¬‚µ‚Ѕѓtѓ‰ѓO‚р“|‚·
+			// гѓ–гѓ¬гѓігѓ‰иЎЊе€—г‚’дЅњж€ђгЃ—гЃџгѓ•гѓ©г‚°г‚’еЂ’гЃ™
 			Anim->ValidBlendMatrix = false ;
 		}
 	}
 
-	// ѓpѓ‰ѓЃЃ[ѓ^‚МѓZѓbѓgѓAѓbѓv‚ЄЌП‚с‚ѕѓtѓ‰ѓO‚р—§‚Д‚й
+	// гѓ‘гѓ©гѓЎгѓјг‚їгЃ®г‚»гѓѓгѓ€г‚ўгѓѓгѓ—гЃЊжё€г‚“гЃ гѓ•гѓ©г‚°г‚’з«‹гЃ¦г‚‹
 	AnimSet->ParamSetup = true ;
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
@@ -4978,9 +4978,9 @@ MATRIXLINEARBLEND :
 
 
 
-// ѓЃѓ‚ѓЉЉЗ—ќЊn
+// гѓЎгѓўгѓЄз®Ўзђ†зі»
 
-// ѓЃѓ‚ѓЉ—М€ж‚МЉm•Ы
+// гѓЎгѓўгѓЄй еџџгЃ®зўєдїќ
 #if !defined( BC_COMPILER ) || defined( _DEBUG )
 extern void *AddMemArea( size_t Size, MEMINFO **FirstMem, const char *FileName, int Line )
 #else
@@ -4989,24 +4989,24 @@ extern void *AddMemArea( size_t Size, MEMINFO **FirstMem )
 {
 	MEMINFO *MI ;
 
-	// ѓЃѓ‚ѓЉѓAѓhѓЊѓX•Ы‘¶ѓfЃ[ѓ^‚р•Ы‘¶‚·‚йѓЃѓ‚ѓЉ—М€ж‚ЖЋАЌЫ‚МѓfЃ[ѓ^‚р•Ы‘¶‚·‚йѓЃѓ‚ѓЉ—М€ж‚рЉm•Ы‚·‚й
+	// гѓЎгѓўгѓЄг‚ўгѓ‰гѓ¬г‚№дїќе­гѓ‡гѓјг‚їг‚’дїќе­гЃ™г‚‹гѓЎгѓўгѓЄй еџџгЃЁе®џйљ›гЃ®гѓ‡гѓјг‚їг‚’дїќе­гЃ™г‚‹гѓЎгѓўгѓЄй еџџг‚’зўєдїќгЃ™г‚‹
 #if !defined( BC_COMPILER ) || defined( _DEBUG )
 	if( ( MI = ( MEMINFO * )NS_DxAlloc( sizeof( MEMINFO ) + Size , FileName, Line ) ) == NULL )
 #else
 	if( ( MI = ( MEMINFO * )NS_DxAlloc( sizeof( MEMINFO ) + Size ) ) == NULL )
 #endif
 	{
-		DXST_LOGFILE_ADDUTF16LE( "\xe1\x30\xe2\x30\xea\x30\xa2\x30\xc9\x30\xec\x30\xb9\x30\xdd\x4f\x58\x5b\xc7\x30\xfc\x30\xbf\x30\x0b\xff\x9f\x5b\x9b\x96\x6e\x30\xc7\x30\xfc\x30\xbf\x30\x92\x30\xdd\x4f\x58\x5b\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ѓЃѓ‚ѓЉѓAѓhѓЊѓX•Ы‘¶ѓfЃ[ѓ^Ѓ{ЋАЌЫ‚МѓfЃ[ѓ^‚р•Ы‘¶‚·‚йѓЃѓ‚ѓЉ—М€ж‚МЉm•Ы‚ЙЋё”s‚µ‚Ь‚µ‚Ѕ\n" @*/ ) ;
+		DXST_LOGFILE_ADDUTF16LE( "\xe1\x30\xe2\x30\xea\x30\xa2\x30\xc9\x30\xec\x30\xb9\x30\xdd\x4f\x58\x5b\xc7\x30\xfc\x30\xbf\x30\x0b\xff\x9f\x5b\x9b\x96\x6e\x30\xc7\x30\xfc\x30\xbf\x30\x92\x30\xdd\x4f\x58\x5b\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"гѓЎгѓўгѓЄг‚ўгѓ‰гѓ¬г‚№дїќе­гѓ‡гѓјг‚їпј‹е®џйљ›гЃ®гѓ‡гѓјг‚їг‚’дїќе­гЃ™г‚‹гѓЎгѓўгѓЄй еџџгЃ®зўєдїќгЃ«е¤±ж•—гЃ—гЃѕгЃ—гЃџ\n" @*/ ) ;
 		return NULL ;
 	}
 
-	// ѓfЃ[ѓ^‚рѓNѓЉѓA
+	// гѓ‡гѓјг‚їг‚’г‚ЇгѓЄг‚ў
 	_MEMSET( MI, 0, sizeof( MEMINFO ) + Size ) ;
 
-	// ЋАЌЫ‚МѓfЃ[ѓ^‚М—М€ж‚рѓZѓbѓg‚·‚й
+	// е®џйљ›гЃ®гѓ‡гѓјг‚їгЃ®й еџџг‚’г‚»гѓѓгѓ€гЃ™г‚‹
 	MI->Data = ( BYTE * )MI + sizeof( MEMINFO ) ;
 
-	// ѓfЃ[ѓ^‚р‰Б‚¦‚й
+	// гѓ‡гѓјг‚їг‚’еЉ гЃ€г‚‹
 	MI->PrevInfo = NULL ;
 	MI->NextInfo = *FirstMem ;
 	if( *FirstMem == NULL )
@@ -5020,11 +5020,11 @@ extern void *AddMemArea( size_t Size, MEMINFO **FirstMem )
 	}
 	*FirstMem = MI;
 
-	// Љm•Ы‚µ‚ЅѓЃѓ‚ѓЉ—М€ж‚МѓAѓhѓЊѓX‚р•Ф‚·
+	// зўєдїќгЃ—гЃџгѓЎгѓўгѓЄй еџџгЃ®г‚ўгѓ‰гѓ¬г‚№г‚’иї”гЃ™
 	return MI->Data ;
 }
 
-// ѓЃѓ‚ѓЉ—М€ж‚М‰р•ъ
+// гѓЎгѓўгѓЄй еџџгЃ®и§Јж”ѕ
 extern int SubMemArea( MEMINFO **FirstMem, void *Buffer )
 {
 	MEMINFO *MI/*, *MIB*/ ;
@@ -5052,7 +5052,7 @@ extern int SubMemArea( MEMINFO **FirstMem, void *Buffer )
 	DXFREE( MI ) ;
 
 /*
-	// Ћw’и‚МѓЃѓ‚ѓЉ—М€ж‚рЊџЌх‚·‚й
+	// жЊ‡е®љгЃ®гѓЎгѓўгѓЄй еџџг‚’ж¤њзґўгЃ™г‚‹
 	MI = *FirstMem ;
 	MIB = NULL ;
 	while( MI && MI->Data != Buffer )
@@ -5061,7 +5061,7 @@ extern int SubMemArea( MEMINFO **FirstMem, void *Buffer )
 		MI = MI->NextInfo ;
 	}
 
-	// Њ©‚В‚Ї‚Ѕ‚з‰р•ъ‚·‚й
+	// и¦‹гЃ¤гЃ‘гЃџг‚‰и§Јж”ѕгЃ™г‚‹
 	if( MI != NULL )
 	{
 		if( MIB == NULL )
@@ -5076,16 +5076,16 @@ extern int SubMemArea( MEMINFO **FirstMem, void *Buffer )
 	}
 */
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// ‘S‚Д‚МѓЃѓ‚ѓЉ—М€ж‚М‰р•ъ
+// е…ЁгЃ¦гЃ®гѓЎгѓўгѓЄй еџџгЃ®и§Јж”ѕ
 extern int ClearMemArea( MEMINFO **FirstMem )
 {
 	MEMINFO *MI, *MIB ;
 
-	// ѓ‚ѓfѓ‹‚Є AddMemArea ЉЦђ”‚ЕЉm•Ы‚µ‚Д‚ў‚ЅѓЃѓ‚ѓЉ—М€ж‚р‚·‚Ч‚Д‰р•ъ
+	// гѓўгѓ‡гѓ«гЃЊ AddMemArea й–ўж•°гЃ§зўєдїќгЃ—гЃ¦гЃ„гЃџгѓЎгѓўгѓЄй еџџг‚’гЃ™гЃ№гЃ¦и§Јж”ѕ
 	MI = *FirstMem ;
 	while( MI != NULL )
 	{
@@ -5094,10 +5094,10 @@ extern int ClearMemArea( MEMINFO **FirstMem )
 		MI = MIB ;
 	}
 
-	// ‚m‚t‚k‚k‚рѓZѓbѓg
+	// пј®пјµпј¬пј¬г‚’г‚»гѓѓгѓ€
 	*FirstMem = NULL ;
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
@@ -5124,24 +5124,24 @@ extern int ClearMemArea( MEMINFO **FirstMem )
 
 
 
-// ѓfЃ[ѓ^€к’vЊџЌёЊn
+// гѓ‡гѓјг‚їдёЂи‡ґж¤њжџ»зі»
 
-// ѓoѓCѓiѓЉѓCѓЃЃ[ѓW‚©‚зѓfЃ[ѓ^€к’vЊџЌёѓfЃ[ѓ^‚рЌмђ¬‚·‚й
+// гѓђг‚¤гѓЉгѓЄг‚¤гѓЎгѓјг‚ёгЃ‹г‚‰гѓ‡гѓјг‚їдёЂи‡ґж¤њжџ»гѓ‡гѓјг‚їг‚’дЅњж€ђгЃ™г‚‹
 extern void MakeDataCmpInfo( DATACMPINFO *CmpInfo, void *Image, int Size )
 {
 	int PackNum, AmariNum, i ;
 	DWORD *Src ;
 
-	// ѓ[ѓЌЏ‰Љъ‰»
+	// г‚јгѓ­е€ќжњџеЊ–
 	_MEMSET( CmpInfo, 0, sizeof( DATACMPINFO ) ) ;
 
-	// ѓTѓCѓY‚р•Ы‘¶
+	// г‚µг‚¤г‚єг‚’дїќе­
 	CmpInfo->Size = ( DWORD )Size ;
 
-	// ‚R‚QѓoѓCѓg‰ЅЊВ•Є‚©’І‚Ч‚й
+	// пј“пј’гѓђг‚¤гѓ€дЅ•еЂ‹е€†гЃ‹иЄїгЃ№г‚‹
 	PackNum = Size / 32 ;
 
-	// ѓpѓbѓN‚Мђ”‚ѕ‚Їѓ`ѓFѓbѓN—pѓfЃ[ѓ^‚рЌмђ¬
+	// гѓ‘гѓѓг‚ЇгЃ®ж•°гЃ гЃ‘гѓЃг‚§гѓѓг‚Їз”Ёгѓ‡гѓјг‚їг‚’дЅњж€ђ
 	Src = ( DWORD * )Image ;
 	for( i = PackNum ; i ; i --, Src += 8 )
 	{
@@ -5155,7 +5155,7 @@ extern void MakeDataCmpInfo( DATACMPINFO *CmpInfo, void *Image, int Size )
 		CmpInfo->Data[ 7 ] += Src[ 7 ] ;
 	}
 
-	// ‚R‚QѓoѓCѓg‚М—]‚и‚М•”•Є‚р’З‰Б
+	// пј“пј’гѓђг‚¤гѓ€гЃ®дЅ™г‚ЉгЃ®йѓЁе€†г‚’иїЅеЉ 
 	AmariNum = Size - PackNum * 32 ;
 	for( i = 0 ; i < AmariNum ; i ++ )
 	{
@@ -5163,7 +5163,7 @@ extern void MakeDataCmpInfo( DATACMPINFO *CmpInfo, void *Image, int Size )
 	}
 }
 
-// “с‚В‚Мѓ`ѓFѓbѓNѓfЃ[ѓ^‚Є€к’v‚µ‚Д‚ў‚й‚©‚З‚¤‚©‚рЋж“ѕ‚·‚й( 1:€к’v‚µ‚Д‚ў‚й  0:€к’v‚µ‚Д‚ў‚И‚ў )
+// дєЊгЃ¤гЃ®гѓЃг‚§гѓѓг‚Їгѓ‡гѓјг‚їгЃЊдёЂи‡ґгЃ—гЃ¦гЃ„г‚‹гЃ‹гЃ©гЃ†гЃ‹г‚’еЏ–еѕ—гЃ™г‚‹( 1:дёЂи‡ґгЃ—гЃ¦гЃ„г‚‹  0:дёЂи‡ґгЃ—гЃ¦гЃ„гЃЄгЃ„ )
 extern int CheckDataCmpInfo( DATACMPINFO *CmpInfo1, DATACMPINFO *CmpInfo2 )
 {
 	return CmpInfo1->Size != CmpInfo2->Size ||
@@ -5186,9 +5186,9 @@ extern int CheckDataCmpInfo( DATACMPINFO *CmpInfo1, DATACMPINFO *CmpInfo2 )
 
 
 
-// ЌXђVЊџЏoЏо•сЌ\’z—pЉЦђ”
+// ж›ґж–°ж¤ње‡єжѓ…е ±ж§‹зЇ‰з”Ёй–ўж•°
 
-// Џу‘Ф•П‰»ЉЗ—ќ—pЌ\‘ў‘М‚МѓZѓbѓgѓAѓbѓv‚рЌs‚¤
+// зЉ¶ж…‹е¤‰еЊ–з®Ўзђ†з”Ёж§‹йЂ дЅ“гЃ®г‚»гѓѓгѓ€г‚ўгѓѓгѓ—г‚’иЎЊгЃ†
 extern void MV1ChangeInfoSetup( MV1_CHANGE_BASE *ChangeB, void *FillTable, int BitAddress, int FillBitNum )
 {
 	DWORD *Dest ;
@@ -5221,9 +5221,9 @@ extern void MV1ChangeInfoSetup( MV1_CHANGE_BASE *ChangeB, void *FillTable, int B
 
 
 
-// ѓ‚ѓfѓ‹“З‚ЭЌћ‚Э•вЏ•Њn
+// гѓўгѓ‡гѓ«иЄ­гЃїиѕјгЃїиЈњеЉ©зі»
 
-// MV1_MAKEVERTINDEXINFO ‚р——p‚µ‚ЅЌ‚‘¬“Ї€кѓfЃ[ѓ^ЊџЌх‚р•вЏ•‚·‚йЉЦђ”
+// MV1_MAKEVERTINDEXINFO г‚’е€©з”ЁгЃ—гЃџй«йЂџеђЊдёЂгѓ‡гѓјг‚їж¤њзґўг‚’иЈњеЉ©гЃ™г‚‹й–ўж•°
 extern int AddVertexInfo( MV1_MAKEVERTINDEXINFO **InfoTable, MV1_MAKEVERTINDEXINFO *InfoBuffer, int *InfoNum, void *DataBuffer, int DataUnitSize, int DataNum, int AddDataIndex, void *AddData )
 {
 	MV1_MAKEVERTINDEXINFO *IInfo ;
@@ -5245,7 +5245,7 @@ extern int AddVertexInfo( MV1_MAKEVERTINDEXINFO **InfoTable, MV1_MAKEVERTINDEXIN
 }
 
 
-// ѓЃѓbѓVѓ…‚МЏ]–@ђь‚ЖђЪђь‚рЊvЋZ‚·‚й
+// гѓЎгѓѓг‚·гѓҐгЃ®еѕ“жі•з·љгЃЁжЋҐз·љг‚’иЁ€з®—гЃ™г‚‹
 extern int MV1MakeMeshBinormalsAndTangents( MV1_MESH_BASE *Mesh )
 {
 	int i, VertUnitSize, PosUnitSize, NormalNum ;
@@ -5256,7 +5256,7 @@ extern int MV1MakeMeshBinormalsAndTangents( MV1_MESH_BASE *Mesh )
 	VECTOR v1, v2, vt, du, dv, vb, vn ;
 	BYTE *UseFlag ;
 
-	// •вЏ•Џо•с‚МЏЂ”х
+	// иЈњеЉ©жѓ…е ±гЃ®жє–е‚™
 	Normal = Mesh->Container->Normal ;
 	NormalNum = Mesh->Container->NormalNum ;
 	Position = Mesh->Container->Position ;
@@ -5264,12 +5264,12 @@ extern int MV1MakeMeshBinormalsAndTangents( MV1_MESH_BASE *Mesh )
 	VertUnitSize = Mesh->VertUnitSize ;
 	PosUnitSize = Mesh->Container->PosUnitSize ;
 
-	// Ћg—p‚µ‚Д‚ў‚й’ё“_‚МѓeЃ[ѓuѓ‹‚рЌмђ¬‚·‚й
+	// дЅїз”ЁгЃ—гЃ¦гЃ„г‚‹й ‚з‚№гЃ®гѓ†гѓјгѓ–гѓ«г‚’дЅњж€ђгЃ™г‚‹
 	{
 		UseFlag = ( BYTE * )DXALLOC( sizeof( BYTE ) * NormalNum ) ;
 		if( UseFlag == NULL )
 		{
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\x02\x98\xb9\x70\x6e\x30\xa5\x63\xda\x7d\x68\x30\x93\x5f\xd5\x6c\xda\x7d\x6e\x30\x5c\x4f\x10\x62\x5c\x4f\x6d\x69\x6b\x30\xc5\x5f\x81\x89\x6a\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"’ё“_‚МђЪђь‚ЖЏ]–@ђь‚МЌмђ¬Ќм‹Ж‚Й•K—v‚ИѓЃѓ‚ѓЉ—М€ж‚МЉm•Ы‚ЙЋё”s‚µ‚Ь‚µ‚Ѕ\n" @*/ )) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\x02\x98\xb9\x70\x6e\x30\xa5\x63\xda\x7d\x68\x30\x93\x5f\xd5\x6c\xda\x7d\x6e\x30\x5c\x4f\x10\x62\x5c\x4f\x6d\x69\x6b\x30\xc5\x5f\x81\x89\x6a\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"й ‚з‚№гЃ®жЋҐз·љгЃЁеѕ“жі•з·љгЃ®дЅњж€ђдЅњжҐ­гЃ«еї…и¦ЃгЃЄгѓЎгѓўгѓЄй еџџгЃ®зўєдїќгЃ«е¤±ж•—гЃ—гЃѕгЃ—гЃџ\n" @*/ )) ;
 			return -1 ;
 		}
 		_MEMSET( UseFlag, 0, ( size_t )Mesh->Container->NormalNum ) ;
@@ -5281,7 +5281,7 @@ extern int MV1MakeMeshBinormalsAndTangents( MV1_MESH_BASE *Mesh )
 		}
 	}
 
-	// ђЪђь‚ЖЏ]–@ђь‚МЏ‰Љъ‰»
+	// жЋҐз·љгЃЁеѕ“жі•з·љгЃ®е€ќжњџеЊ–
 	NM = Normal ;
 	for( i = 0 ; i < NormalNum ; i ++, NM ++ )
 	{
@@ -5294,7 +5294,7 @@ extern int MV1MakeMeshBinormalsAndTangents( MV1_MESH_BASE *Mesh )
 		NM->Tangent.z = 0.0f ;
 	}
 
-	// ‘S‚Д‚М–К‚Мђ”‚ѕ‚ЇЊJ‚и•Ф‚µ
+	// е…ЁгЃ¦гЃ®йќўгЃ®ж•°гЃ гЃ‘з№°г‚Љиї”гЃ—
 	Face = Mesh->Face ;
 	for( i = 0 ; i < Mesh->FaceNum ; i ++, Face ++ )
 	{
@@ -5355,7 +5355,7 @@ extern int MV1MakeMeshBinormalsAndTangents( MV1_MESH_BASE *Mesh )
 		VectorAdd( &Norm[ 2 ]->Binormal, &Norm[ 2 ]->Binormal, &dv ) ;
 	}
 
-	// –@ђь‚МЋZЏo‚Жђі‹K‰»
+	// жі•з·љгЃ®з®—е‡єгЃЁж­Ји¦ЏеЊ–
 	NM = Normal ;
 	for( i = 0 ; i < NormalNum ; i ++, NM ++ )
 	{
@@ -5365,7 +5365,7 @@ extern int MV1MakeMeshBinormalsAndTangents( MV1_MESH_BASE *Mesh )
 		vn = VNorm( VCross( vt, NM->Binormal ) ) ;
 		vb = VNorm( VCross( vn, vt ) ) ;
 
-		// –@ђь‚М•ыЊь‚рЉm”F
+		// жі•з·љгЃ®ж–№еђ‘г‚’зўєиЄЌ
 		if( VDot( vn, NM->Normal ) < 0.0f )
 		{
 			vn.x = -vn.x ;
@@ -5373,20 +5373,20 @@ extern int MV1MakeMeshBinormalsAndTangents( MV1_MESH_BASE *Mesh )
 			vn.z = -vn.z ;
 		}
 
-		// ђі‹K‰»
+		// ж­Ји¦ЏеЊ–
 		NM->Tangent  = vt ;
 		NM->Binormal = vb ;
 //		NM->Normal   = vn ;
 	}
 
-	// ѓЃѓ‚ѓЉ‚М‰р•ъ
+	// гѓЎгѓўгѓЄгЃ®и§Јж”ѕ
 	DXFREE( UseFlag ) ;
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// ѓgѓ‰ѓCѓAѓ“ѓOѓ‹ѓЉѓXѓg‚МЌА•W‚Ж–@ђьЏо•с‚МѓZѓbѓgѓAѓbѓv‚рЌs‚¤
+// гѓ€гѓ©г‚¤г‚ўгѓіг‚°гѓ«гѓЄг‚№гѓ€гЃ®еє§жЁ™гЃЁжі•з·љжѓ…е ±гЃ®г‚»гѓѓгѓ€г‚ўгѓѓгѓ—г‚’иЎЊгЃ†
 extern int MV1SetupTriangleListPositionAndNormal( MV1_TRIANGLE_LIST_BASE *List )
 {
 	int i, j, k ;
@@ -5519,11 +5519,11 @@ extern int MV1SetupTriangleListPositionAndNormal( MV1_TRIANGLE_LIST_BASE *List )
 		break ;
 	}
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// ѓVѓFѓCѓv—pѓgѓ‰ѓCѓAѓ“ѓOѓ‹ѓЉѓXѓg‚МЌА•W‚Ж–@ђьЏо•с‚МѓZѓbѓgѓAѓbѓv‚рЌs‚¤
+// г‚·г‚§г‚¤гѓ—з”Ёгѓ€гѓ©г‚¤г‚ўгѓіг‚°гѓ«гѓЄг‚№гѓ€гЃ®еє§жЁ™гЃЁжі•з·љжѓ…е ±гЃ®г‚»гѓѓгѓ€г‚ўгѓѓгѓ—г‚’иЎЊгЃ†
 extern int MV1SetupShapeTriangleListPositionAndNormal( MV1_TRIANGLE_LIST *TList )
 {
 	int i, j, k ;
@@ -5658,7 +5658,7 @@ extern int MV1SetupShapeTriangleListPositionAndNormal( MV1_TRIANGLE_LIST *TList 
 		break ;
 	}
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
@@ -5679,9 +5679,9 @@ extern int MV1SetupShapeTriangleListPositionAndNormal( MV1_TRIANGLE_LIST *TList 
 
 
 
-// ‹¤’КѓfЃ[ѓ^Њn
+// е…±йЂљгѓ‡гѓјг‚їзі»
 
-// ѓOѓ‰ѓfЃ[ѓVѓ‡ѓ“‰ж‘њ‚рЌмђ¬‚·‚й
+// г‚°гѓ©гѓ‡гѓјг‚·гѓ§гѓіз”»еѓЏг‚’дЅњж€ђгЃ™г‚‹
 extern int MV1CreateGradationGraph( void )
 {
 	DWORD i ;
@@ -5717,7 +5717,7 @@ extern int MV1CreateGradationGraph( void )
 	return Handle ;
 }
 
-// ѓfѓtѓHѓ‹ѓgѓgѓDЃ[ѓ“ѓeѓNѓXѓ`ѓѓ‚рЋж“ѕ‚·‚й
+// гѓ‡гѓ•г‚©гѓ«гѓ€гѓ€г‚Ґгѓјгѓігѓ†г‚Їг‚№гѓЃгѓЈг‚’еЏ–еѕ—гЃ™г‚‹
 extern int MV1GetDefaultToonTexture( int Type )
 {
 	switch( Type )
@@ -5749,7 +5749,7 @@ extern int MV1GetDefaultToonTexture( int Type )
 	return -1 ;
 }
 
-// TexNoneHandle ‚МѓZѓbѓgѓAѓbѓv‚рЌs‚¤
+// TexNoneHandle гЃ®г‚»гѓѓгѓ€г‚ўгѓѓгѓ—г‚’иЎЊгЃ†
 extern void MV1SetupTexNoneHandle( void )
 {
 	LOADGRAPH_GPARAM GParam ;
@@ -5784,30 +5784,30 @@ extern void MV1SetupTexNoneHandle( void )
 
 
 
-// ѓ‚ѓfѓ‹‹@”\‚МЏ‰Љъ‰»
+// гѓўгѓ‡гѓ«ж©џиѓЅгЃ®е€ќжњџеЊ–
 extern int MV1Initialize()
 {
-	// Љщ‚ЙЏ‰Љъ‰»‚і‚к‚Д‚ў‚Ѕ‚з‰Ѕ‚а‚№‚ё‚ЙЏI—№
+	// ж—ўгЃ«е€ќжњџеЊ–гЃ•г‚ЊгЃ¦гЃ„гЃџг‚‰дЅ•г‚‚гЃ›гЃљгЃ«зµ‚дє†
 	if( MV1Man.Initialize ) return 0 ;
 
-	// ѓnЃ[ѓhѓEѓGѓA‚М‹@”\‚рЋg—p‚Е‚«‚И‚ўЏкЌ‡‚Н‰Ѕ‚а‚№‚ёЏI—№
+	// гѓЏгѓјгѓ‰г‚¦г‚Ёг‚ўгЃ®ж©џиѓЅг‚’дЅїз”ЁгЃ§гЃЌгЃЄгЃ„е ґеђ€гЃЇдЅ•г‚‚гЃ›гЃљзµ‚дє†
 	if( GSYS.Setting.ValidHardware == FALSE || GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode ) return 0 ;
 
-	// ѓgѓ‰ѓCѓAѓ“ѓOѓ‹ѓЉѓXѓgЉоѓfЃ[ѓ^‚МЉВ‹«€Л‘¶—pѓoѓbѓtѓ@‚МѓTѓCѓYѓ`ѓFѓbѓN
+	// гѓ€гѓ©г‚¤г‚ўгѓіг‚°гѓ«гѓЄг‚№гѓ€еџєгѓ‡гѓјг‚їгЃ®з’°еўѓдѕќе­з”Ёгѓђгѓѓгѓ•г‚ЎгЃ®г‚µг‚¤г‚єгѓЃг‚§гѓѓг‚Ї
 	if( MV1_TRIANGLE_LIST_BASE_PF_BUFFER_SIZE < sizeof( MV1_TRIANGLE_LIST_BASE_PF ) )
 	{
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\xc8\x30\xe9\x30\xa4\x30\xa2\x30\xf3\x30\xb0\x30\xeb\x30\xea\x30\xb9\x30\xc8\x30\xfa\x57\xc7\x30\xfc\x30\xbf\x30\x6e\x30\xb0\x74\x83\x58\x9d\x4f\x58\x5b\x28\x75\xd0\x30\xc3\x30\xd5\x30\xa1\x30\x6e\x30\xb5\x30\xa4\x30\xba\x30\x4c\x30\xb3\x8d\x8a\x30\x7e\x30\x5b\x30\x93\x30\x20\x00\x4d\x00\x56\x00\x31\x00\x5f\x00\x54\x00\x52\x00\x49\x00\x41\x00\x4e\x00\x47\x00\x4c\x00\x45\x00\x5f\x00\x4c\x00\x49\x00\x53\x00\x54\x00\x5f\x00\x42\x00\x41\x00\x53\x00\x45\x00\x5f\x00\x50\x00\x46\x00\x5f\x00\x42\x00\x55\x00\x46\x00\x46\x00\x45\x00\x52\x00\x5f\x00\x53\x00\x49\x00\x5a\x00\x45\x00\x3a\x00\x25\x00\x64\x00\x62\x00\x79\x00\x74\x00\x65\x00\x20\x00\x20\x00\x73\x00\x69\x00\x7a\x00\x65\x00\x6f\x00\x66\x00\x28\x00\x20\x00\x4d\x00\x56\x00\x31\x00\x5f\x00\x54\x00\x52\x00\x49\x00\x41\x00\x4e\x00\x47\x00\x4c\x00\x45\x00\x5f\x00\x4c\x00\x49\x00\x53\x00\x54\x00\x5f\x00\x42\x00\x41\x00\x53\x00\x45\x00\x5f\x00\x50\x00\x46\x00\x20\x00\x29\x00\x3a\x00\x25\x00\x64\x00\x62\x00\x79\x00\x74\x00\x65\x00\x00"/*@ L"ѓgѓ‰ѓCѓAѓ“ѓOѓ‹ѓЉѓXѓgЉоѓfЃ[ѓ^‚МЉВ‹«€Л‘¶—pѓoѓbѓtѓ@‚МѓTѓCѓY‚Є‘«‚и‚Ь‚№‚с MV1_TRIANGLE_LIST_BASE_PF_BUFFER_SIZE:%dbyte  sizeof( MV1_TRIANGLE_LIST_BASE_PF ):%dbyte" @*/,
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\xc8\x30\xe9\x30\xa4\x30\xa2\x30\xf3\x30\xb0\x30\xeb\x30\xea\x30\xb9\x30\xc8\x30\xfa\x57\xc7\x30\xfc\x30\xbf\x30\x6e\x30\xb0\x74\x83\x58\x9d\x4f\x58\x5b\x28\x75\xd0\x30\xc3\x30\xd5\x30\xa1\x30\x6e\x30\xb5\x30\xa4\x30\xba\x30\x4c\x30\xb3\x8d\x8a\x30\x7e\x30\x5b\x30\x93\x30\x20\x00\x4d\x00\x56\x00\x31\x00\x5f\x00\x54\x00\x52\x00\x49\x00\x41\x00\x4e\x00\x47\x00\x4c\x00\x45\x00\x5f\x00\x4c\x00\x49\x00\x53\x00\x54\x00\x5f\x00\x42\x00\x41\x00\x53\x00\x45\x00\x5f\x00\x50\x00\x46\x00\x5f\x00\x42\x00\x55\x00\x46\x00\x46\x00\x45\x00\x52\x00\x5f\x00\x53\x00\x49\x00\x5a\x00\x45\x00\x3a\x00\x25\x00\x64\x00\x62\x00\x79\x00\x74\x00\x65\x00\x20\x00\x20\x00\x73\x00\x69\x00\x7a\x00\x65\x00\x6f\x00\x66\x00\x28\x00\x20\x00\x4d\x00\x56\x00\x31\x00\x5f\x00\x54\x00\x52\x00\x49\x00\x41\x00\x4e\x00\x47\x00\x4c\x00\x45\x00\x5f\x00\x4c\x00\x49\x00\x53\x00\x54\x00\x5f\x00\x42\x00\x41\x00\x53\x00\x45\x00\x5f\x00\x50\x00\x46\x00\x20\x00\x29\x00\x3a\x00\x25\x00\x64\x00\x62\x00\x79\x00\x74\x00\x65\x00\x00"/*@ L"гѓ€гѓ©г‚¤г‚ўгѓіг‚°гѓ«гѓЄг‚№гѓ€еџєгѓ‡гѓјг‚їгЃ®з’°еўѓдѕќе­з”Ёгѓђгѓѓгѓ•г‚ЎгЃ®г‚µг‚¤г‚єгЃЊи¶іг‚ЉгЃѕгЃ›г‚“ MV1_TRIANGLE_LIST_BASE_PF_BUFFER_SIZE:%dbyte  sizeof( MV1_TRIANGLE_LIST_BASE_PF ):%dbyte" @*/,
 			MV1_TRIANGLE_LIST_BASE_PF_BUFFER_SIZE, sizeof( MV1_TRIANGLE_LIST_BASE_PF ) ));
 		return -1 ;
 	}
 
-	// ѓ‚ѓfѓ‹Љо–{ѓfЃ[ѓ^ѓnѓ“ѓhѓ‹‚МЏ‰Љъ‰»
+	// гѓўгѓ‡гѓ«еџєжњ¬гѓ‡гѓјг‚їгѓЏгѓігѓ‰гѓ«гЃ®е€ќжњџеЊ–
 	InitializeHandleManage( DX_HANDLETYPE_MODEL_BASE, sizeof( MV1_MODEL_BASE ), MAX_MODEL_BASE_NUM, InitializeModelBaseHandle, TerminateModelBaseHandle, NULL, L"ModelBase" ) ;
 
-	// ѓ‚ѓfѓ‹ѓfЃ[ѓ^ѓnѓ“ѓhѓ‹‚МЏ‰Љъ‰»
+	// гѓўгѓ‡гѓ«гѓ‡гѓјг‚їгѓЏгѓігѓ‰гѓ«гЃ®е€ќжњџеЊ–
 	InitializeHandleManage( DX_HANDLETYPE_MODEL, sizeof( MV1_MODEL ), MAX_MODEL_NUM, InitializeModelHandle, TerminateModelHandle, NULL, L"Model" ) ;
 
-	// ЉeЋн•Пђ”‚рЏ‰Љъ‰»
+	// еђ„зЁ®е¤‰ж•°г‚’е€ќжњџеЊ–
 	MV1Man.ModelBaseNum = 0 ;
 	MV1Man.ModelBaseMaxNum = 0 ;
 	MV1Man.ModelBaseNextIndex = 0 ;
@@ -5826,31 +5826,31 @@ extern int MV1Initialize()
 
 	MV1Man.LoadModelToReMakeNormalSmoothingAngle = 89.5f * ( float )DX_PI / 180.0f ;
 
-	// ѓfѓtѓHѓ‹ѓgѓeѓNѓXѓ`ѓѓ‚Мѓnѓ“ѓhѓ‹’l‚р–іЊш‰»
+	// гѓ‡гѓ•г‚©гѓ«гѓ€гѓ†г‚Їг‚№гѓЃгѓЈгЃ®гѓЏгѓігѓ‰гѓ«еЂ¤г‚’з„ЎеЉ№еЊ–
 	MV1Man.TexNoneHandle = -1 ;
 	MV1Man.ToonDefaultGradTexHandle[ 0 ] = -1 ;
 	MV1Man.ToonDefaultGradTexHandle[ 1 ] = -1 ;
 
-	// Џ‰Љъ‰»ѓtѓ‰ѓO‚р—§‚Д‚й
+	// е€ќжњџеЊ–гѓ•гѓ©г‚°г‚’з«‹гЃ¦г‚‹
 	MV1Man.Initialize = true ;
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// ѓ‚ѓfѓ‹‹@”\‚МЊгЋn––
+// гѓўгѓ‡гѓ«ж©џиѓЅгЃ®еѕЊе§‹жњ«
 extern int MV1Terminate()
 {
-	// Џ‰Љъ‰»‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚з‰Ѕ‚а‚№‚ё‚ЙЏI—№
+	// е€ќжњџеЊ–гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰дЅ•г‚‚гЃ›гЃљгЃ«зµ‚дє†
 	if( MV1Man.Initialize == false ) return 0 ;
 
-	// —LЊш‚И‚·‚Ч‚Д‚Мѓ‚ѓfѓ‹‚р‰р•ъ‚·‚й
+	// жњ‰еЉ№гЃЄгЃ™гЃ№гЃ¦гЃ®гѓўгѓ‡гѓ«г‚’и§Јж”ѕгЃ™г‚‹
 	NS_MV1InitModel() ;
 
-	// —LЊш‚И‚·‚Ч‚Д‚Мѓ‚ѓfѓ‹ЉоѓfЃ[ѓ^‚р‰р•ъ‚·‚й
+	// жњ‰еЉ№гЃЄгЃ™гЃ№гЃ¦гЃ®гѓўгѓ‡гѓ«еџєгѓ‡гѓјг‚їг‚’и§Јж”ѕгЃ™г‚‹
 	MV1InitModelBase() ;
 
-	// •`‰ж—p‚ЙЉm•Ы‚і‚к‚ЅѓЃѓ‚ѓЉ—М€ж‚МЉm•Ы
+	// жЏЏз”»з”ЁгЃ«зўєдїќгЃ•г‚ЊгЃџгѓЎгѓўгѓЄй еџџгЃ®зўєдїќ
 	if( MV1Man.DrawMeshList )
 	{
 		DXFREE( MV1Man.DrawMeshList ) ;
@@ -5858,31 +5858,31 @@ extern int MV1Terminate()
 		MV1Man.DrawMeshListSize = 0 ;
 	}
 
-	// ЉВ‹«€Л‘¶‚МЊгЋn––Џ€—ќ‚рЋАЌs
+	// з’°еўѓдѕќе­гЃ®еѕЊе§‹жњ«е‡¦зђ†г‚’е®џиЎЊ
 	MV1_Terminate_PF() ;
 
-	// ѓ‚ѓfѓ‹ѓfЃ[ѓ^ѓnѓ“ѓhѓ‹ЉЗ—ќЏо•с‚МЊгЋn––
+	// гѓўгѓ‡гѓ«гѓ‡гѓјг‚їгѓЏгѓігѓ‰гѓ«з®Ўзђ†жѓ…е ±гЃ®еѕЊе§‹жњ«
 	TerminateHandleManage( DX_HANDLETYPE_MODEL ) ;
 
-	// ѓ‚ѓfѓ‹Љо–{ѓfЃ[ѓ^ѓnѓ“ѓhѓ‹ЉЗ—ќЏо•с‚МЊгЋn––
+	// гѓўгѓ‡гѓ«еџєжњ¬гѓ‡гѓјг‚їгѓЏгѓігѓ‰гѓ«з®Ўзђ†жѓ…е ±гЃ®еѕЊе§‹жњ«
 	TerminateHandleManage( DX_HANDLETYPE_MODEL_BASE ) ;
 
-	// Ќм‹Ж—pѓoѓbѓtѓ@‚М‰р•ъ
+	// дЅњжҐ­з”Ёгѓђгѓѓгѓ•г‚ЎгЃ®и§Јж”ѕ
 	if( MV1Man.WorkBuffer != NULL )
 	{
 		DXFREE( MV1Man.WorkBuffer ) ;
 		MV1Man.WorkBuffer = NULL ;
 	}
 
-	// Џ‰Љъ‰»ѓtѓ‰ѓO‚р“|‚·
+	// е€ќжњџеЊ–гѓ•гѓ©г‚°г‚’еЂ’гЃ™
 	MV1Man.Initialize = false ;
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
 
-// ѓ‚ѓfѓ‹—pѓeѓNѓXѓ`ѓѓ‚МѓJѓ‰Ѓ[ѓCѓЃЃ[ѓW‚рЌмђ¬‚·‚й
+// гѓўгѓ‡гѓ«з”Ёгѓ†г‚Їг‚№гѓЃгѓЈгЃ®г‚«гѓ©гѓјг‚¤гѓЎгѓјг‚ёг‚’дЅњж€ђгЃ™г‚‹
 extern int MV1CreateTextureColorBaseImage(
 				BASEIMAGE *DestColorBaseImage,
 				BASEIMAGE *DestAlphaBaseImage,
@@ -5894,7 +5894,7 @@ extern int MV1CreateTextureColorBaseImage(
 	BASEIMAGE ScaleBaseImage, ScaleAlphaBaseImage ;
 	int SizeX, SizeY ;
 
-	// ѓtѓ@ѓCѓ‹‚Є“З‚ЭЌћ‚Я‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// гѓ•г‚Ўг‚¤гѓ«гЃЊиЄ­гЃїиѕјг‚ЃгЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( ColorFileImage )
 	{
 		if( NS_CreateBaseImage( NULL, ColorFileImage, ColorFileSize, LOADIMAGE_TYPE_MEM, DestColorBaseImage, FALSE ) < 0 )
@@ -5914,7 +5914,7 @@ extern int MV1CreateTextureColorBaseImage(
 		}
 	}
 
-	// ѓJѓ‰Ѓ[ѓeѓNѓXѓ`ѓѓ‚Є–і‚ўЏкЌ‡‚Н‘г‘Ц‰ж‘њ‚рЏ[‚Д‚й
+	// г‚«гѓ©гѓјгѓ†г‚Їг‚№гѓЃгѓЈгЃЊз„ЎгЃ„е ґеђ€гЃЇд»Јж›їз”»еѓЏг‚’е……гЃ¦г‚‹
 	if( ColorFileImage == NULL )
 	{
 		if( NS_CreateXRGB8ColorBaseImage( DestAlphaBaseImage->Width, DestAlphaBaseImage->Height, DestColorBaseImage ) < 0 )
@@ -5926,7 +5926,7 @@ extern int MV1CreateTextureColorBaseImage(
 		_MEMSET( DestColorBaseImage->GraphData, 0xff, ( size_t )( DestColorBaseImage->Pitch * DestColorBaseImage->Height ) ) ;
 	}
 
-	// ѓoѓ“ѓvѓ}ѓbѓvЋw’и‚МЏкЌ‡‚Н–@ђьѓ}ѓbѓv‰»‚·‚й
+	// гѓђгѓігѓ—гѓћгѓѓгѓ—жЊ‡е®љгЃ®е ґеђ€гЃЇжі•з·љгѓћгѓѓгѓ—еЊ–гЃ™г‚‹
 	if( BumpImageFlag )
 	{
 		int c00, c01, c10, i, j, g, b ;
@@ -5934,8 +5934,8 @@ extern int MV1CreateTextureColorBaseImage(
 		BASEIMAGE NormalBaseImage ;
 		int GrayscaleCheck = FALSE ;
 
-		// ѓoѓ“ѓvѓ}ѓbѓv‚Е‚Н‚И‚­–@ђьѓ}ѓbѓv‚М‰В”\ђ«‚Є‚ ‚й‚М‚ЕЃAFloatѓ^ѓCѓv‚ЕRGBѓ`ѓѓѓ“ѓlѓ‹‚Є‚ ‚й‚©ЃA
-		// 8bitѓJѓ‰Ѓ[‚ж‚иѓrѓbѓgђ[“x‚Є‘е‚«‚­ЃARGBѓ`ѓѓѓ“ѓlѓ‹‚Є‚ ‚йЏкЌ‡‚НѓOѓЊЃ[ѓXѓPЃ[ѓ‹‚©‚З‚¤‚©‚рѓ`ѓFѓbѓN‚·‚й
+		// гѓђгѓігѓ—гѓћгѓѓгѓ—гЃ§гЃЇгЃЄгЃЏжі•з·љгѓћгѓѓгѓ—гЃ®еЏЇиѓЅжЂ§гЃЊгЃ‚г‚‹гЃ®гЃ§гЂЃFloatг‚їг‚¤гѓ—гЃ§RGBгѓЃгѓЈгѓігѓЌгѓ«гЃЊгЃ‚г‚‹гЃ‹гЂЃ
+		// 8bitг‚«гѓ©гѓјг‚€г‚Љгѓ“гѓѓгѓ€ж·±еє¦гЃЊе¤§гЃЌгЃЏгЂЃRGBгѓЃгѓЈгѓігѓЌгѓ«гЃЊгЃ‚г‚‹е ґеђ€гЃЇг‚°гѓ¬гѓјг‚№г‚±гѓјгѓ«гЃ‹гЃ©гЃ†гЃ‹г‚’гѓЃг‚§гѓѓг‚ЇгЃ™г‚‹
 		if( ( DestColorBaseImage->ColorData.FloatTypeFlag == TRUE &&
 			  DestColorBaseImage->ColorData.ChannelNum >= 3 ) ||
 
@@ -5986,27 +5986,27 @@ extern int MV1CreateTextureColorBaseImage(
 		{
 //			NS_SaveBaseImageToBmp( _T( "TestNormalMap.bmp" ), &NormalBaseImage ) ; 
 
-			// ѓJѓ‰Ѓ[‰ж‘њ‚р‰р•ъ
+			// г‚«гѓ©гѓјз”»еѓЏг‚’и§Јж”ѕ
 			NS_ReleaseBaseImage( DestColorBaseImage ) ;
 
-			// –@ђьѓ}ѓbѓv‰ж‘њ‚рѓJѓ‰Ѓ[‰ж‘њ‚Ж‚·‚й
+			// жі•з·љгѓћгѓѓгѓ—з”»еѓЏг‚’г‚«гѓ©гѓјз”»еѓЏгЃЁгЃ™г‚‹
 			*DestColorBaseImage = NormalBaseImage ;
 		}
 		else
 		{
-			// ѓJѓ‰Ѓ[‰ж‘њ‚р‰р•ъ
+			// г‚«гѓ©гѓјз”»еѓЏг‚’и§Јж”ѕ
 			NS_ReleaseBaseImage( &NormalBaseImage ) ;
 		}
 	}
 
-	// ѓJѓ‰Ѓ[‰ж‘њ‚МѓTѓCѓY‚Є‚Q‚М‚ЋЏж‚Е‚Н‚И‚©‚Б‚Ѕ‚зѓXѓPЃ[ѓЉѓ“ѓO‚·‚й
+	// г‚«гѓ©гѓјз”»еѓЏгЃ®г‚µг‚¤г‚єгЃЊпј’гЃ®пЅЋд№—гЃ§гЃЇгЃЄгЃ‹гЃЈгЃџг‚‰г‚№г‚±гѓјгѓЄгѓіг‚°гЃ™г‚‹
 	if( ColorFileImage != NULL )
 	{
 		for( SizeX = 1 ; SizeX < DestColorBaseImage->Width  ; SizeX <<= 1 ){}
 		for( SizeY = 1 ; SizeY < DestColorBaseImage->Height ; SizeY <<= 1 ){}
 		if( SizeX != DestColorBaseImage->Width || SizeY != DestColorBaseImage->Height )
 		{
-			// ѓnЃ[ѓhѓEѓGѓA‚Є‘О‰ћ‚µ‚Д‚ў‚йЌЕ‘еѓeѓNѓXѓ`ѓѓѓTѓCѓY / 2‚Н’ґ‚¦‚И‚ў‚ж‚¤‚Й‚·‚й
+			// гѓЏгѓјгѓ‰г‚¦г‚Ёг‚ўгЃЊеЇѕеїњгЃ—гЃ¦гЃ„г‚‹жњЂе¤§гѓ†г‚Їг‚№гѓЃгѓЈг‚µг‚¤г‚є / 2гЃЇи¶…гЃ€гЃЄгЃ„г‚€гЃ†гЃ«гЃ™г‚‹
 			if( GSYS.HardInfo.MaxTextureSize / 2 < SizeX ) SizeX = GSYS.HardInfo.MaxTextureSize / 2 ;
 			if( GSYS.HardInfo.MaxTextureSize / 2 < SizeY ) SizeY = GSYS.HardInfo.MaxTextureSize / 2 ;
 
@@ -6026,21 +6026,21 @@ extern int MV1CreateTextureColorBaseImage(
 			*DestColorBaseImage = ScaleBaseImage ;
 		}
 
-		// ”Ѕ“]ѓtѓ‰ѓO‚Є—§‚Б‚Д‚ў‚Ѕ‚з”Ѕ“]‚·‚й
+		// еЏЌи»ўгѓ•гѓ©г‚°гЃЊз«‹гЃЈгЃ¦гЃ„гЃџг‚‰еЏЌи»ўгЃ™г‚‹
 		if( ReverseFlag )
 		{
 			NS_ReverseBaseImage( DestColorBaseImage ) ;
 		}
 	}
 
-	// ѓї‰ж‘њ‚МѓTѓCѓY‚Є‚Q‚М‚ЋЏж‚Е‚Н‚И‚©‚Б‚Ѕ‚зѓXѓPЃ[ѓЉѓ“ѓO‚·‚й
+	// О±з”»еѓЏгЃ®г‚µг‚¤г‚єгЃЊпј’гЃ®пЅЋд№—гЃ§гЃЇгЃЄгЃ‹гЃЈгЃџг‚‰г‚№г‚±гѓјгѓЄгѓіг‚°гЃ™г‚‹
 	if( AlphaFileImage != NULL )
 	{
 		for( SizeX = 1 ; SizeX < DestAlphaBaseImage->Width  ; SizeX <<= 1 ){}
 		for( SizeY = 1 ; SizeY < DestAlphaBaseImage->Height ; SizeY <<= 1 ){}
 		if( SizeX != DestAlphaBaseImage->Width || SizeY != DestAlphaBaseImage->Height )
 		{
-			// ѓnЃ[ѓhѓEѓGѓA‚Є‘О‰ћ‚µ‚Д‚ў‚йЌЕ‘еѓeѓNѓXѓ`ѓѓѓTѓCѓY‚Н’ґ‚¦‚И‚ў‚ж‚¤‚Й‚·‚й
+			// гѓЏгѓјгѓ‰г‚¦г‚Ёг‚ўгЃЊеЇѕеїњгЃ—гЃ¦гЃ„г‚‹жњЂе¤§гѓ†г‚Їг‚№гѓЃгѓЈг‚µг‚¤г‚єгЃЇи¶…гЃ€гЃЄгЃ„г‚€гЃ†гЃ«гЃ™г‚‹
 			if( GSYS.HardInfo.MaxTextureSize / 2 < SizeX ) SizeX = GSYS.HardInfo.MaxTextureSize / 2 ;
 			if( GSYS.HardInfo.MaxTextureSize / 2 < SizeY ) SizeY = GSYS.HardInfo.MaxTextureSize / 2 ;
 
@@ -6060,14 +6060,14 @@ extern int MV1CreateTextureColorBaseImage(
 			*DestAlphaBaseImage = ScaleAlphaBaseImage ;
 		}
 
-		// ”Ѕ“]ѓtѓ‰ѓO‚Є—§‚Б‚Д‚ў‚Ѕ‚з”Ѕ“]‚·‚й
+		// еЏЌи»ўгѓ•гѓ©г‚°гЃЊз«‹гЃЈгЃ¦гЃ„гЃџг‚‰еЏЌи»ўгЃ™г‚‹
 		if( ReverseFlag )
 		{
 			NS_ReverseBaseImage( DestAlphaBaseImage ) ;
 		}
 	}
 
-	// “с‚В‚М‰ж‘њ‚МѓTѓCѓY‚Є€Щ‚И‚йЏкЌ‡‚Н‘е‚«‚ў•ы‚ЙЌ‡‚н‚№‚й
+	// дєЊгЃ¤гЃ®з”»еѓЏгЃ®г‚µг‚¤г‚єгЃЊз•°гЃЄг‚‹е ґеђ€гЃЇе¤§гЃЌгЃ„ж–№гЃ«еђ€г‚ЏгЃ›г‚‹
 	if( AlphaFileImage != NULL && ColorFileImage != NULL )
 	{
 		if( DestColorBaseImage->Width > DestAlphaBaseImage->Width ||
@@ -6107,14 +6107,14 @@ extern int MV1CreateTextureColorBaseImage(
 		}
 	}
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// ѓeѓNѓXѓ`ѓѓ‚МЌД“З‚ЭЌћ‚Э
+// гѓ†г‚Їг‚№гѓЃгѓЈгЃ®е†ЌиЄ­гЃїиѕјгЃї
 extern int MV1ReloadTexture( void )
 {
-#if 0  // ѓOѓ‰ѓtѓBѓbѓNѓnѓ“ѓhѓ‹‘¤‚Е‘S•”•Ы‘¶‚µ‚Д‚­‚к‚й‚ж‚¤‚Й‚И‚Б‚Ѕ
+#if 0  // г‚°гѓ©гѓ•г‚Јгѓѓг‚ЇгѓЏгѓігѓ‰гѓ«еЃґгЃ§е…ЁйѓЁдїќе­гЃ—гЃ¦гЃЏг‚Њг‚‹г‚€гЃ†гЃ«гЃЄгЃЈгЃџ
 	int i, j ;
 	MV1_TEXTURE_BASE *TexBase ;
 	MV1_TEXTURE *Tex ;
@@ -6185,14 +6185,14 @@ extern int MV1ReloadTexture( void )
 	}
 #endif
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
 
-// ’З‰БѓЌЃ[ѓhЉЦђ”ЉЦЊW
+// иїЅеЉ гѓ­гѓјгѓ‰й–ўж•°й–ўдї‚
 
-// ѓ‚ѓfѓ‹“З‚ЭЌћ‚ЭЉЦђ”‚р’З‰Б‚·‚й
+// гѓўгѓ‡гѓ«иЄ­гЃїиѕјгЃїй–ўж•°г‚’иїЅеЉ гЃ™г‚‹
 extern int MV1AddLoadFunc( int ( *AddLoadFunc )( const MV1_MODEL_LOAD_PARAM *LoadParam ) )
 {
 	int i ;
@@ -6205,11 +6205,11 @@ extern int MV1AddLoadFunc( int ( *AddLoadFunc )( const MV1_MODEL_LOAD_PARAM *Loa
 	MV1Man.AddLoadFunc[ MV1Man.AddLoadFuncNum ] = AddLoadFunc ;
 	MV1Man.AddLoadFuncNum ++ ;
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// ѓ‚ѓfѓ‹“З‚ЭЌћ‚ЭЉЦђ”‚рЌнЏњ‚·‚й
+// гѓўгѓ‡гѓ«иЄ­гЃїиѕјгЃїй–ўж•°г‚’е‰Љй™¤гЃ™г‚‹
 extern int MV1SubLoadFunc( int ( *AddLoadFunc )( const MV1_MODEL_LOAD_PARAM *LoadParam ) )
 {
 	int i ;
@@ -6224,25 +6224,25 @@ extern int MV1SubLoadFunc( int ( *AddLoadFunc )( const MV1_MODEL_LOAD_PARAM *Loa
 		_MEMMOVE( &MV1Man.AddLoadFunc[ i ], &MV1Man.AddLoadFunc[ i + 1 ], ( MV1Man.AddLoadFuncNum - i ) * sizeof( int ( * )( const MV1_MODEL_LOAD_PARAM * ) ) ) ;
 	}
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
 
-// —LЊш‚Иѓ‚ѓfѓ‹Љо–{ѓfЃ[ѓ^‚р‚·‚Ч‚ДЌнЏњ‚·‚й
+// жњ‰еЉ№гЃЄгѓўгѓ‡гѓ«еџєжњ¬гѓ‡гѓјг‚їг‚’гЃ™гЃ№гЃ¦е‰Љй™¤гЃ™г‚‹
 extern int MV1InitModelBase( void )
 {
 	return AllHandleSub( DX_HANDLETYPE_MODEL_BASE ) ;
 }
 
-// ѓ‚ѓfѓ‹ѓfЃ[ѓ^ѓnѓ“ѓhѓ‹‚МЏ‰Љъ‰»
+// гѓўгѓ‡гѓ«гѓ‡гѓјг‚їгѓЏгѓігѓ‰гѓ«гЃ®е€ќжњџеЊ–
 extern int InitializeModelBaseHandle( HANDLEINFO * )
 {
-	// “Б‚Й‰Ѕ‚а‚µ‚И‚ў
+	// з‰№гЃ«дЅ•г‚‚гЃ—гЃЄгЃ„
 	return 0 ;
 }
 
-// ѓ‚ѓfѓ‹ѓfЃ[ѓ^ѓnѓ“ѓhѓ‹‚МЊгЋn––
+// гѓўгѓ‡гѓ«гѓ‡гѓјг‚їгѓЏгѓігѓ‰гѓ«гЃ®еѕЊе§‹жњ«
 extern int TerminateModelBaseHandle( HANDLEINFO *HandleInfo )
 {
 	MV1_MODEL_BASE *MBase = ( MV1_MODEL_BASE * )HandleInfo ;
@@ -6251,20 +6251,20 @@ extern int TerminateModelBaseHandle( HANDLEINFO *HandleInfo )
 	MV1_TEXTURE_BASE *Texture ;
 	int i ;
 
-	// ЋQЏЖѓJѓEѓ“ѓg‚рѓfѓNѓЉѓЃѓ“ѓg
+	// еЏ‚з…§г‚«г‚¦гѓігѓ€г‚’гѓ‡г‚ЇгѓЄгѓЎгѓігѓ€
 	MBase->RefCount -- ;
 
-	// ЋQЏЖѓJѓEѓ“ѓg‚Є‚O€ИЏг‚МЏкЌ‡‚Н‚Ь‚ѕ‰р•ъ‚µ‚И‚ў
+	// еЏ‚з…§г‚«г‚¦гѓігѓ€гЃЊпјђд»ҐдёЉгЃ®е ґеђ€гЃЇгЃѕгЃ и§Јж”ѕгЃ—гЃЄгЃ„
 	if( MBase->RefCount > 0 )
 		return 1 ;
 
-	// ’ё“_ѓoѓbѓtѓ@‚рЉJ•ъ
+	// й ‚з‚№гѓђгѓѓгѓ•г‚Ўг‚’й–‹ж”ѕ
 	MV1_TerminateVertexBufferBase_PF( HandleInfo->Handle ) ;
 
-	// ЉВ‹«€Л‘¶‚МѓfЃ[ѓ^‚МЊгЋn––
+	// з’°еўѓдѕќе­гЃ®гѓ‡гѓјг‚їгЃ®еѕЊе§‹жњ«
 	MV1_TerminateModelBaseHandle_PF( MBase ) ;
 
-	// ’ё“_ѓfЃ[ѓ^‚М‰р•ъ
+	// й ‚з‚№гѓ‡гѓјг‚їгЃ®и§Јж”ѕ
 	if( MBase->VertexData != NULL )
 		DXFREE( MBase->VertexData ) ;
 	MBase->TriangleListNormalPosition = NULL ;
@@ -6277,11 +6277,11 @@ extern int TerminateModelBaseHandle( HANDLEINFO *HandleInfo )
 	MBase->MeshFace = NULL ;
 	MBase->MeshVertex = NULL ;
 
-	// ѓeѓNѓXѓ`ѓѓ‚р‰р•ъ‚·‚й
+	// гѓ†г‚Їг‚№гѓЃгѓЈг‚’и§Јж”ѕгЃ™г‚‹
 	Texture = MBase->Texture ;
 	for( i = 0 ; i < MBase->TextureNum ; i ++, Texture ++ )
 	{
-		// –ј‘O‚М‰р•ъ
+		// еђЌе‰ЌгЃ®и§Јж”ѕ
 		if( Texture->NameAllocMem )
 		{
 #ifndef UNICODE
@@ -6299,11 +6299,11 @@ extern int TerminateModelBaseHandle( HANDLEINFO *HandleInfo )
 			}
 		}
 
-		// ‰ж‘њѓnѓ“ѓhѓ‹‚рЌнЏњ
+		// з”»еѓЏгѓЏгѓігѓ‰гѓ«г‚’е‰Љй™¤
 		SubHandle( Texture->GraphHandle, GetASyncLoadFlag(), FALSE ) ;
 		Texture->GraphHandle = 0 ;
 
-		// ѓtѓ@ѓCѓ‹ѓpѓX‚М‰р•ъ
+		// гѓ•г‚Ўг‚¤гѓ«гѓ‘г‚№гЃ®и§Јж”ѕ
 		if( Texture->ColorImageFilePathAllocMem )
 		{
 #ifndef UNICODE
@@ -6336,7 +6336,7 @@ extern int TerminateModelBaseHandle( HANDLEINFO *HandleInfo )
 			Texture->AlphaFilePathW = NULL ;
 		}
 
-		// ѓtѓ@ѓCѓ‹ѓCѓЃЃ[ѓW‚М‰р•ъ
+		// гѓ•г‚Ўг‚¤гѓ«г‚¤гѓЎгѓјг‚ёгЃ®и§Јж”ѕ
 		if( Texture->ColorImage )
 		{
 			DXFREE( Texture->ColorImage ) ;
@@ -6355,7 +6355,7 @@ extern int TerminateModelBaseHandle( HANDLEINFO *HandleInfo )
 		MBase->Texture = NULL ;
 	}
 
-	// •КЊВ‚ЙѓVѓFѓCѓv’ё“_ѓfЃ[ѓ^—p‚МѓЃѓ‚ѓЉ‚рЉm•Ы‚µ‚Д‚ў‚ЅЏкЌ‡‚Н‰р•ъ‚·‚й
+	// е€ҐеЂ‹гЃ«г‚·г‚§г‚¤гѓ—й ‚з‚№гѓ‡гѓјг‚їз”ЁгЃ®гѓЎгѓўгѓЄг‚’зўєдїќгЃ—гЃ¦гЃ„гЃџе ґеђ€гЃЇи§Јж”ѕгЃ™г‚‹
 	for( i = 0 ; i < MBase->ShapeMeshNum ; i ++ )
 	{
 		if( MBase->ShapeMesh[ i ].VertexAllocMem )
@@ -6365,7 +6365,7 @@ extern int TerminateModelBaseHandle( HANDLEINFO *HandleInfo )
 		}
 	}
 
-	// •КЊВ‚Й–@ђьѓfЃ[ѓ^—p‚МѓЃѓ‚ѓЉ‚рЉm•Ы‚µ‚Д‚ў‚ЅЏкЌ‡‚Н‰р•ъ‚·‚й
+	// е€ҐеЂ‹гЃ«жі•з·љгѓ‡гѓјг‚їз”ЁгЃ®гѓЎгѓўгѓЄг‚’зўєдїќгЃ—гЃ¦гЃ„гЃџе ґеђ€гЃЇи§Јж”ѕгЃ™г‚‹
 	for( i = 0 ; i < MBase->FrameNum ; i ++ )
 	{
 		if( MBase->Frame[ i ].NormalAllocMem )
@@ -6375,7 +6375,7 @@ extern int TerminateModelBaseHandle( HANDLEINFO *HandleInfo )
 		}
 	}
 
-	// •КЊВ‚Й’ё“_ѓfЃ[ѓ^—p‚МѓЃѓ‚ѓЉ‚рЉm•Ы‚µ‚Д‚ў‚ЅЏкЌ‡‚Н‰р•ъ‚·‚й
+	// е€ҐеЂ‹гЃ«й ‚з‚№гѓ‡гѓјг‚їз”ЁгЃ®гѓЎгѓўгѓЄг‚’зўєдїќгЃ—гЃ¦гЃ„гЃџе ґеђ€гЃЇи§Јж”ѕгЃ™г‚‹
 	for( i = 0 ; i < MBase->MeshNum ; i ++ )
 	{
 		if( MBase->Mesh[ i ].VertexAllocMem )
@@ -6385,7 +6385,7 @@ extern int TerminateModelBaseHandle( HANDLEINFO *HandleInfo )
 		}
 	}
 
-	// •КЊВ‚ЙЉm•Ы‚µ‚Д‚ў‚ЅѓЃѓ‚ѓЉ‚Є‚ ‚Б‚ЅЏкЌ‡‚Н‰р•ъ‚·‚й
+	// е€ҐеЂ‹гЃ«зўєдїќгЃ—гЃ¦гЃ„гЃџгѓЎгѓўгѓЄгЃЊгЃ‚гЃЈгЃџе ґеђ€гЃЇи§Јж”ѕгЃ™г‚‹
 	TList = MBase->TriangleList ;
 	for( i = 0 ; i < MBase->TriangleListNum ; i ++, TList ++ )
 	{
@@ -6407,7 +6407,7 @@ extern int TerminateModelBaseHandle( HANDLEINFO *HandleInfo )
 		MV1_TerminateTriangleListBaseTempBuffer_PF( TList ) ;
 	}
 
-	// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“–ј‚рЊг‚©‚з•ПЌX‚µ‚ЅЏкЌ‡‚НЉJ•ъ‚·‚й
+	// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓіеђЌг‚’еѕЊгЃ‹г‚‰е¤‰ж›ґгЃ—гЃџе ґеђ€гЃЇй–‹ж”ѕгЃ™г‚‹
 	AnimSetBase = MBase->AnimSet ;
 	for( i = 0 ; i < MBase->AnimSetNum ; i ++, AnimSetBase ++ )
 	{
@@ -6429,33 +6429,33 @@ extern int TerminateModelBaseHandle( HANDLEINFO *HandleInfo )
 	}
 
 
-	// ’З‰БЉm•ЫѓЃѓ‚ѓЉ‚М‰р•ъ
+	// иїЅеЉ зўєдїќгѓЎгѓўгѓЄгЃ®и§Јж”ѕ
 	ClearMemArea( &MBase->AddFirstMem ) ;
 
-	// ѓfЃ[ѓ^‚рЉi”[‚µ‚Д‚ў‚ЅѓЃѓ‚ѓЉ‚М‰р•ъ
+	// гѓ‡гѓјг‚їг‚’ж јзґЌгЃ—гЃ¦гЃ„гЃџгѓЎгѓўгѓЄгЃ®и§Јж”ѕ
 	if( MBase->DataBuffer )
 	{
 		DXFREE( MBase->DataBuffer ) ;
 		MBase->DataBuffer = NULL ;
 	}
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// ѓ‚ѓfѓ‹Љо–{ѓfЃ[ѓ^‚р’З‰Б‚·‚й( -1:ѓGѓ‰Ѓ[  0€ИЏг:ѓ‚ѓfѓ‹Љо–{ѓfЃ[ѓ^ѓnѓ“ѓhѓ‹ )
+// гѓўгѓ‡гѓ«еџєжњ¬гѓ‡гѓјг‚їг‚’иїЅеЉ гЃ™г‚‹( -1:г‚Ёгѓ©гѓј  0д»ҐдёЉ:гѓўгѓ‡гѓ«еџєжњ¬гѓ‡гѓјг‚їгѓЏгѓігѓ‰гѓ« )
 int MV1AddModelBase( int ASyncThread )
 {
 	return AddHandle( DX_HANDLETYPE_MODEL_BASE, ASyncThread, -1 ) ;
 }
 
-// ѓ‚ѓfѓ‹Љо–{ѓfЃ[ѓ^‚рЌнЏњ‚·‚й
+// гѓўгѓ‡гѓ«еџєжњ¬гѓ‡гѓјг‚їг‚’е‰Љй™¤гЃ™г‚‹
 extern int MV1SubModelBase( int MBHandle )
 {
 	return SubHandle( MBHandle, GetASyncLoadFlag(), FALSE ) ;
 }
 
-// ѓ‚ѓfѓ‹Љо–{ѓfЃ[ѓ^‚р•Ўђ»‚·‚й
+// гѓўгѓ‡гѓ«еџєжњ¬гѓ‡гѓјг‚їг‚’и¤‡иЈЅгЃ™г‚‹
 extern int MV1CreateCloneModelBase( int SrcMBHandle, int ASyncThread )
 {
 	MV1_MODEL_BASE MTBase, *MBase = NULL, *FHeader ;
@@ -6493,14 +6493,14 @@ extern int MV1CreateCloneModelBase( int SrcMBHandle, int ASyncThread )
 	int i, j, k, NewHandle = 0 ;
 	DWORD_PTR AllocSize ;
 
-	// Џ‰Љъ‰»‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// е€ќжњџеЊ–гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( MV1Man.Initialize == false ) return -1 ;
 
-	// ѓnѓ“ѓhѓ‹ѓ`ѓFѓbѓN
+	// гѓЏгѓігѓ‰гѓ«гѓЃг‚§гѓѓг‚Ї
 	if( MV1BMDLCHK( SrcMBHandle, FHeader ) )
 		return -1 ;
 
-	// •K—v‚ИѓЃѓ‚ѓЉѓTѓCѓY‚МЋZЏo
+	// еї…и¦ЃгЃЄгѓЎгѓўгѓЄг‚µг‚¤г‚єгЃ®з®—е‡є
 	{
 		_MEMSET( &MTBase, 0, sizeof( MTBase ) ) ;
 		AllocSize = 0 ;
@@ -6591,14 +6591,14 @@ extern int MV1CreateCloneModelBase( int SrcMBHandle, int ASyncThread )
 		}
 	}
 
-	// ѓ‚ѓfѓ‹ЉоѓfЃ[ѓ^ѓnѓ“ѓhѓ‹‚МЌмђ¬
+	// гѓўгѓ‡гѓ«еџєгѓ‡гѓјг‚їгѓЏгѓігѓ‰гѓ«гЃ®дЅњж€ђ
 	NewHandle = MV1AddModelBase( ASyncThread ) ;
 	if( NewHandle < 0 )
 	{
 		goto ERRORLABEL ;
 	}
 
-	// ѓЃѓ‚ѓЉ‚МЉm•Ы
+	// гѓЎгѓўгѓЄгЃ®зўєдїќ
 	if( MV1BMDLCHK_ASYNC( NewHandle, MBase ) )
 	{
 		return -1 ;
@@ -6611,7 +6611,7 @@ extern int MV1CreateCloneModelBase( int SrcMBHandle, int ASyncThread )
 	_MEMSET( MBase->DataBuffer, 0, AllocSize ) ;
 	MBase->AllocMemorySize = AllocSize ;
 
-	// ѓЃѓ‚ѓЉѓAѓhѓЊѓX‚МѓZѓbѓg
+	// гѓЎгѓўгѓЄг‚ўгѓ‰гѓ¬г‚№гЃ®г‚»гѓѓгѓ€
 	MBase->Name                   = ( wchar_t * )                   ( ( BYTE * )MBase->DataBuffer + ( DWORD_PTR )MTBase.Name                 ) ;
 	MBase->FilePath               = ( wchar_t * )                   ( ( BYTE * )MBase->DataBuffer + ( DWORD_PTR )MTBase.FilePath             ) ;
 	MBase->DirectoryPath          = ( wchar_t * )                   ( ( BYTE * )MBase->DataBuffer + ( DWORD_PTR )MTBase.DirectoryPath        ) ;
@@ -6647,55 +6647,55 @@ extern int MV1CreateCloneModelBase( int SrcMBHandle, int ASyncThread )
 		MBase->PhysicsJoint       = ( MV1_PHYSICS_JOINT_BASE *     )( ( BYTE * )MBase->DataBuffer + ( DWORD_PTR )MTBase.PhysicsJoint         ) ;
 	}
 
-	// ’ё“_ѓfЃ[ѓ^ѓCѓ“ѓfѓbѓNѓX’l‚МѓRѓsЃ[
+	// й ‚з‚№гѓ‡гѓјг‚їг‚¤гѓігѓ‡гѓѓг‚Їг‚№еЂ¤гЃ®г‚ігѓ”гѓј
 	if( FHeader->TriangleListIndexNum != 0 )
 	{
 		_MEMCPY( MBase->TriangleListIndex, FHeader->TriangleListIndex, FHeader->TriangleListIndexNum * sizeof( WORD ) * 2 ) ;
 	}
 
-	// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“ѓLЃ[ѓfЃ[ѓ^‚МѓRѓsЃ[
+	// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓіг‚­гѓјгѓ‡гѓјг‚їгЃ®г‚ігѓ”гѓј
 	if( FHeader->AnimKeyDataSize != 0 )
 	{
 		_MEMCPY( MBase->AnimKeyData, FHeader->AnimKeyData, ( size_t )FHeader->AnimKeyDataSize ) ;
 	}
 
-	// ѓ‚ѓfѓ‹–ј‚Жѓtѓ@ѓCѓ‹ѓpѓX‚ЖѓtѓHѓ‹ѓ_ѓpѓX‚р•Ы‘¶
+	// гѓўгѓ‡гѓ«еђЌгЃЁгѓ•г‚Ўг‚¤гѓ«гѓ‘г‚№гЃЁгѓ•г‚©гѓ«гѓЂгѓ‘г‚№г‚’дїќе­
 	_WCSCPY( MBase->Name,          FHeader->Name ) ;
 	_WCSCPY( MBase->FilePath,      FHeader->FilePath ) ;
 	_WCSCPY( MBase->DirectoryPath, FHeader->DirectoryPath ) ;
 
-	// “ЇЋћ•Ўђ”•`‰ж‚Й‘О‰ћ‚·‚й‚©‚З‚¤‚©‚р•Ы‘¶
+	// еђЊж™‚и¤‡ж•°жЏЏз”»гЃ«еЇѕеїњгЃ™г‚‹гЃ‹гЃ©гЃ†гЃ‹г‚’дїќе­
 	MBase->UsePackDraw = FHeader->UsePackDraw ;
 
-	// ЌА•WЊnЏо•с‚р•Ы‘¶
+	// еє§жЁ™зі»жѓ…е ±г‚’дїќе­
 	MBase->RightHandType = FHeader->RightHandType ;
 
-	// Љ„‚и“–‚Д‚з‚к‚Д‚ў‚йѓ}ѓeѓЉѓAѓ‹‚М”ФЌ†‚Є’б‚ўѓЃѓbѓVѓ…‚©‚з•`‰ж‚·‚й‚©‚З‚¤‚©‚МЏо•с‚р•Ы‘¶
+	// е‰Іг‚ЉеЅ“гЃ¦г‚‰г‚ЊгЃ¦гЃ„г‚‹гѓћгѓ†гѓЄг‚ўгѓ«гЃ®з•ЄеЏ·гЃЊдЅЋгЃ„гѓЎгѓѓг‚·гѓҐгЃ‹г‚‰жЏЏз”»гЃ™г‚‹гЃ‹гЃ©гЃ†гЃ‹гЃ®жѓ…е ±г‚’дїќе­
 	MBase->MaterialNumberOrderDraw = FHeader->MaterialNumberOrderDraw ;
 
-	// •ПЌXѓ`ѓFѓbѓN—pѓeЃ[ѓuѓ‹‚Й•K—v‚ИѓfЃ[ѓ^‚МѓTѓCѓY‚М•Ы‘¶‚ЖѓRѓsЃ[
+	// е¤‰ж›ґгѓЃг‚§гѓѓг‚Їз”Ёгѓ†гѓјгѓ–гѓ«гЃ«еї…и¦ЃгЃЄгѓ‡гѓјг‚їгЃ®г‚µг‚¤г‚єгЃ®дїќе­гЃЁг‚ігѓ”гѓј
 	MBase->ChangeDrawMaterialTableSize  = FHeader->ChangeDrawMaterialTableSize ;
 	MBase->ChangeMatrixTableSize        = FHeader->ChangeMatrixTableSize ;
 	_MEMCPY( MBase->ChangeDrawMaterialTable, FHeader->ChangeDrawMaterialTable, ( size_t )FHeader->ChangeDrawMaterialTableSize ) ;
 	_MEMCPY( MBase->ChangeMatrixTable,       FHeader->ChangeMatrixTable,       ( size_t )FHeader->ChangeMatrixTableSize ) ;
 
-	// ѓ|ѓЉѓSѓ“ђ”‚р•Ы‘¶
+	// гѓќгѓЄг‚ґгѓіж•°г‚’дїќе­
 	MBase->TriangleNum = FHeader->TriangleNum ;
 
-	// ’ё“_ѓfЃ[ѓ^‚Мђ”‚р•Ы‘¶
+	// й ‚з‚№гѓ‡гѓјг‚їгЃ®ж•°г‚’дїќе­
 	MBase->TriangleListVertexNum = FHeader->TriangleListVertexNum ;
 
-	// ѓtѓЊЃ[ѓЂ‚ЄЋg—p‚µ‚Д‚ў‚йѓ{Ѓ[ѓ“‚Ц‚Мѓ|ѓCѓ“ѓ^‚МЏо•с‚рѓRѓsЃ[
+	// гѓ•гѓ¬гѓјгѓ гЃЊдЅїз”ЁгЃ—гЃ¦гЃ„г‚‹гѓњгѓјгѓігЃёгЃ®гѓќг‚¤гѓіг‚їгЃ®жѓ…е ±г‚’г‚ігѓ”гѓј
 	MBase->FrameUseSkinBoneNum = FHeader->FrameUseSkinBoneNum ;
 	for( i = 0 ; i < MBase->FrameUseSkinBoneNum ; i ++ )
 	{
 		MBase->FrameUseSkinBone[ i ] = MBase->SkinBone + ( FHeader->FrameUseSkinBone[ i ] - FHeader->SkinBone ) ;
 	}
 
-	// ѓXѓLѓjѓ“ѓO—pѓ{Ѓ[ѓ“‚рЋg—p‚·‚йѓtѓЊЃ[ѓЂ‚МЏо•с‚рѓRѓsЃ[
+	// г‚№г‚­гѓ‹гѓіг‚°з”Ёгѓњгѓјгѓіг‚’дЅїз”ЁгЃ™г‚‹гѓ•гѓ¬гѓјгѓ гЃ®жѓ…е ±г‚’г‚ігѓ”гѓј
 	_MEMCPY( MBase->SkinBoneUseFrame, FHeader->SkinBoneUseFrame, FHeader->SkinBoneUseFrameNum * sizeof( MV1_SKIN_BONE_USE_FRAME_F1 ) ) ;
 
-	// •¶Ћљ—сѓfЃ[ѓ^‚рѓRѓsЃ[
+	// ж–‡е­—е€—гѓ‡гѓјг‚їг‚’г‚ігѓ”гѓј
 #ifndef UNICODE
 	_MEMCPY( MBase->StringBufferA, FHeader->StringBufferA, ( size_t )FHeader->StringSizeA ) ;
 	MBase->StringSizeA = FHeader->StringSizeA ;
@@ -6703,7 +6703,7 @@ extern int MV1CreateCloneModelBase( int SrcMBHandle, int ASyncThread )
 	_MEMCPY( MBase->StringBufferW, FHeader->StringBufferW, ( size_t )FHeader->StringSizeW ) ;
 	MBase->StringSizeW = FHeader->StringSizeW ;
 
-	// ЉeѓIѓuѓWѓFѓNѓg‚Мђ”‚МЏо•с‚р•Ы‘¶
+	// еђ„г‚Єгѓ–г‚ёг‚§г‚Їгѓ€гЃ®ж•°гЃ®жѓ…е ±г‚’дїќе­
 	MBase->FrameNum              = FHeader->FrameNum ;
 	MBase->MaterialNum           = FHeader->MaterialNum ;
 	MBase->LightNum              = FHeader->LightNum ;
@@ -6736,7 +6736,7 @@ extern int MV1CreateCloneModelBase( int SrcMBHandle, int ASyncThread )
 		MBase->PhysicsJointNum   = FHeader->PhysicsJointNum ;
 	}
 
-	// ’ё“_ѓfЃ[ѓ^‚рЉi”[‚·‚й‚Ѕ‚Я‚МѓЃѓ‚ѓЉ—М€ж‚МЉm•Ы
+	// й ‚з‚№гѓ‡гѓјг‚їг‚’ж јзґЌгЃ™г‚‹гЃџг‚ЃгЃ®гѓЎгѓўгѓЄй еџџгЃ®зўєдїќ
 	{
 		MBase->VertexDataSize = 
 			FHeader->MeshVertexIndexNum                * sizeof( DWORD )                 +
@@ -6794,7 +6794,7 @@ extern int MV1CreateCloneModelBase( int SrcMBHandle, int ASyncThread )
 		if( FHeader->Shape == NULL || FHeader->ShapeVertexNum == 0 ) MBase->ShapeVertex = NULL ;
 	}
 
-	// ѓtѓЊЃ[ѓЂ‚МЏо•с‚рѓZѓbѓg
+	// гѓ•гѓ¬гѓјгѓ гЃ®жѓ…е ±г‚’г‚»гѓѓгѓ€
 	MBase->TopFrameNum  = FHeader->TopFrameNum ;
 	MBase->FirstTopFrame = FHeader->FirstTopFrame ? MBase->Frame + FHeader->FirstTopFrame->Index : NULL ;
 	MBase->LastTopFrame  = FHeader->LastTopFrame  ? MBase->Frame + FHeader->LastTopFrame->Index  : NULL ;
@@ -6887,7 +6887,7 @@ extern int MV1CreateCloneModelBase( int SrcMBHandle, int ASyncThread )
 		Frame->PositionNum     = F1Frame->PositionNum ;
 		Frame->NormalNum       = F1Frame->NormalNum ;
 
-		// ЌА•WѓfЃ[ѓ^‚Ж–@ђьѓfЃ[ѓ^‚МѓRѓsЃ[
+		// еє§жЁ™гѓ‡гѓјг‚їгЃЁжі•з·љгѓ‡гѓјг‚їгЃ®г‚ігѓ”гѓј
 		if( F1Frame->PositionNum == 0 )
 		{
 			Frame->Position = NULL ;
@@ -6902,40 +6902,40 @@ extern int MV1CreateCloneModelBase( int SrcMBHandle, int ASyncThread )
 			MBase->MeshPositionSize += Frame->PosUnitSize * Frame->PositionNum ;
 			MBase->MeshNormalNum    += Frame->NormalNum ;
 
-			// ’ё“_ѓfЃ[ѓ^‚МѓRѓsЃ[
+			// й ‚з‚№гѓ‡гѓјг‚їгЃ®г‚ігѓ”гѓј
 			_MEMCPY( Frame->Position, F1Frame->Position, ( size_t )( Frame->PosUnitSize * Frame->PositionNum ) ) ;
 
-			// –@ђьѓfЃ[ѓ^‚МѓRѓsЃ[
+			// жі•з·љгѓ‡гѓјг‚їгЃ®г‚ігѓ”гѓј
 			_MEMCPY( Frame->Normal, F1Frame->Normal, sizeof( MV1_MESH_NORMAL ) * Frame->NormalNum ) ;
 		}
 	}
 
-	// ѓeѓNѓXѓ`ѓѓ‚МЏо•с‚рѓZѓbѓg
+	// гѓ†г‚Їг‚№гѓЃгѓЈгЃ®жѓ…е ±г‚’г‚»гѓѓгѓ€
 	MBase->TextureAllocMem = FALSE ;
 	Texture = MBase->Texture ;
 	F1Texture = FHeader->Texture ;
 	for( i = 0 ; i < MBase->TextureNum ; i ++, Texture ++, F1Texture ++ )
 	{
-		// ѓ†Ѓ[ѓUЃ[ѓfЃ[ѓ^‚рЏ‰Љъ‰»
+		// гѓ¦гѓјг‚¶гѓјгѓ‡гѓјг‚їг‚’е€ќжњџеЊ–
 		Texture->UserData[ 0 ] = 0 ;
 		Texture->UserData[ 1 ] = 0 ;
 		Texture->UseUserGraphHandle = 0 ;
 		Texture->UserGraphHandle = 0 ;
 
-		// –ј‘O‚р•Ы‘¶
+		// еђЌе‰Ќг‚’дїќе­
 		Texture->NameAllocMem = FALSE ;
 #ifndef UNICODE
 		Texture->NameA = MBase->StringBufferA + ( F1Texture->NameA - FHeader->StringBufferA ) ;
 #endif
 		Texture->NameW = MBase->StringBufferW + ( F1Texture->NameW - FHeader->StringBufferW ) ;
 
-		// ”Ѕ“]ѓtѓ‰ѓO‚рѓZѓbѓg‚·‚й
+		// еЏЌи»ўгѓ•гѓ©г‚°г‚’г‚»гѓѓгѓ€гЃ™г‚‹
 		Texture->ReverseFlag = F1Texture->ReverseFlag ;
 
-		// ‚R‚Qѓrѓbѓg‚a‚l‚o‚МѓAѓ‹ѓtѓ@’l‚Є‘S•”‚O‚ѕ‚Б‚Ѕ‚з XRGB8 ‚Ж‚µ‚Д€µ‚¤‚©‚З‚¤‚©‚Мѓtѓ‰ѓO‚рѓZѓbѓg‚·‚й
+		// пј“пј’гѓ“гѓѓгѓ€пјўпј­пј°гЃ®г‚ўгѓ«гѓ•г‚ЎеЂ¤гЃЊе…ЁйѓЁпјђгЃ гЃЈгЃџг‚‰ XRGB8 гЃЁгЃ—гЃ¦ж‰±гЃ†гЃ‹гЃ©гЃ†гЃ‹гЃ®гѓ•гѓ©г‚°г‚’г‚»гѓѓгѓ€гЃ™г‚‹
 		Texture->Bmp32AllZeroAlphaToXRGB8Flag = F1Texture->Bmp32AllZeroAlphaToXRGB8Flag ;
 
-		// ѓeѓNѓXѓ`ѓѓ‚М“З‚ЭЌћ‚Э
+		// гѓ†г‚Їг‚№гѓЃгѓЈгЃ®иЄ­гЃїиѕјгЃї
 		Texture->GraphHandle = 0 ;
 		if( __MV1LoadTexture(
 				&F1Texture->ColorImage, &F1Texture->ColorImageSize,
@@ -6963,11 +6963,11 @@ extern int MV1CreateCloneModelBase( int SrcMBHandle, int ASyncThread )
 			goto ERRORLABEL ;
 		}
 
-		// ѓtѓ@ѓCѓ‹ѓpѓX—p‚ЙѓЃѓ‚ѓЉ‚рЉm•Ы‚µ‚Ѕѓtѓ‰ѓO‚р“|‚·
+		// гѓ•г‚Ўг‚¤гѓ«гѓ‘г‚№з”ЁгЃ«гѓЎгѓўгѓЄг‚’зўєдїќгЃ—гЃџгѓ•гѓ©г‚°г‚’еЂ’гЃ™
 		Texture->ColorImageFilePathAllocMem = FALSE ;
 		Texture->AlphaImageFilePathAllocMem = FALSE ;
 
-		// ѓtѓ@ѓCѓ‹ѓpѓX‚р•Ы‘¶
+		// гѓ•г‚Ўг‚¤гѓ«гѓ‘г‚№г‚’дїќе­
 		if( Texture->ColorImage )
 		{
 #ifndef UNICODE
@@ -6983,26 +6983,26 @@ extern int MV1CreateCloneModelBase( int SrcMBHandle, int ASyncThread )
 			Texture->AlphaFilePathW = MBase->StringBufferW + ( F1Texture->AlphaFilePathW - FHeader->StringBufferW ) ;
 		}
 
-		// ѓAѓhѓЊѓbѓVѓ“ѓOѓ‚Ѓ[ѓh‚МѓZѓbѓg
+		// г‚ўгѓ‰гѓ¬гѓѓг‚·гѓіг‚°гѓўгѓјгѓ‰гЃ®г‚»гѓѓгѓ€
 		Texture->AddressModeU = F1Texture->AddressModeU ;
 		Texture->AddressModeV = F1Texture->AddressModeV ;
 
-		// ‚t‚u‚МѓXѓPЃ[ѓ‹’l‚рѓZѓbѓg
+		// пјµпј¶гЃ®г‚№г‚±гѓјгѓ«еЂ¤г‚’г‚»гѓѓгѓ€
 		Texture->ScaleU = F1Texture->ScaleU ;
 		Texture->ScaleV = F1Texture->ScaleV ;
 
-		// ѓtѓBѓ‹ѓ^ѓЉѓ“ѓOѓ‚Ѓ[ѓh‚МѓZѓbѓg
+		// гѓ•г‚Јгѓ«г‚їгѓЄгѓіг‚°гѓўгѓјгѓ‰гЃ®г‚»гѓѓгѓ€
 		Texture->FilterMode = F1Texture->FilterMode ;
 
-		// ѓoѓ“ѓvѓ}ѓbѓvЏо•с‚р•Ы‘¶
+		// гѓђгѓігѓ—гѓћгѓѓгѓ—жѓ…е ±г‚’дїќе­
 		Texture->BumpImageFlag = F1Texture->BumpImageFlag ;
 		Texture->BumpImageNextPixelLength = F1Texture->BumpImageNextPixelLength ;
 
-		// ‰ж‘њ‚МѓTѓCѓY‚рЋж“ѕ
+		// з”»еѓЏгЃ®г‚µг‚¤г‚єг‚’еЏ–еѕ—
 		NS_GetGraphSize( Texture->GraphHandle, &Texture->Width, &Texture->Height ) ;
 	}
 
-	// ѓ}ѓeѓЉѓAѓ‹‚МЏо•с‚рѓZѓbѓg
+	// гѓћгѓ†гѓЄг‚ўгѓ«гЃ®жѓ…е ±г‚’г‚»гѓѓгѓ€
 	Material = MBase->Material ;
 	F1Material = FHeader->Material ;
 	for( i = 0 ; i < MBase->MaterialNum ; i ++, Material ++, F1Material ++ )
@@ -7065,7 +7065,7 @@ extern int MV1CreateCloneModelBase( int SrcMBHandle, int ASyncThread )
 		Material->OutLineDotWidth = F1Material->OutLineDotWidth ;
 	}
 
-	// ѓ‰ѓCѓg‚МЏо•с‚рѓZѓbѓg
+	// гѓ©г‚¤гѓ€гЃ®жѓ…е ±г‚’г‚»гѓѓгѓ€
 	Light = MBase->Light ;
 	F1Light = FHeader->Light ;
 	for( i = 0 ; i < MBase->LightNum ; i ++, Light ++, F1Light ++ )
@@ -7090,7 +7090,7 @@ extern int MV1CreateCloneModelBase( int SrcMBHandle, int ASyncThread )
 		Light->Phi = F1Light->Phi ;
 	}
 
-	// ѓЃѓbѓVѓ…‚МЏо•с‚рѓZѓbѓg
+	// гѓЎгѓѓг‚·гѓҐгЃ®жѓ…е ±г‚’г‚»гѓѓгѓ€
 	Mesh = MBase->Mesh ;
 	F1Mesh = FHeader->Mesh ;
 	for( i = 0 ; i < MBase->MeshNum ; i ++, Mesh ++, F1Mesh ++ )
@@ -7132,7 +7132,7 @@ extern int MV1CreateCloneModelBase( int SrcMBHandle, int ASyncThread )
 
 		Mesh->VertUnitSize = ( int )( sizeof( MV1_MESH_VERTEX ) + Mesh->UVSetUnitNum * Mesh->UVUnitNum * sizeof( float ) - sizeof( float ) * 2 ) ;
 
-		// ’ё“_ѓfЃ[ѓ^‚рЋж“ѕ‚·‚й
+		// й ‚з‚№гѓ‡гѓјг‚їг‚’еЏ–еѕ—гЃ™г‚‹
 		{
 			Mesh->Vertex = ( MV1_MESH_VERTEX * )( ( BYTE * )MBase->MeshVertex + MBase->MeshVertexSize ) ;
 			Mesh->Face   = MBase->MeshFace + MBase->MeshFaceNum ;
@@ -7143,7 +7143,7 @@ extern int MV1CreateCloneModelBase( int SrcMBHandle, int ASyncThread )
 
 	if( FHeader->Shape )
 	{
-		// ѓVѓFѓCѓv‚МЏо•с‚рѓZѓbѓg
+		// г‚·г‚§г‚¤гѓ—гЃ®жѓ…е ±г‚’г‚»гѓѓгѓ€
 		Shape = MBase->Shape ;
 		F1Shape = FHeader->Shape ;
 		for( i = 0 ; i < MBase->ShapeNum ; i ++, Shape ++, F1Shape ++ )
@@ -7166,7 +7166,7 @@ extern int MV1CreateCloneModelBase( int SrcMBHandle, int ASyncThread )
 			}
 		}
 
-		// ѓVѓFѓCѓvѓЃѓbѓVѓ…‚МЏо•с‚рѓZѓbѓg
+		// г‚·г‚§г‚¤гѓ—гѓЎгѓѓг‚·гѓҐгЃ®жѓ…е ±г‚’г‚»гѓѓгѓ€
 		ShapeMesh = MBase->ShapeMesh ;
 		F1ShapeMesh = FHeader->ShapeMesh ;
 		for( i = 0 ; i < MBase->ShapeMeshNum ; i ++, ShapeMesh ++, F1ShapeMesh ++ )
@@ -7188,7 +7188,7 @@ extern int MV1CreateCloneModelBase( int SrcMBHandle, int ASyncThread )
 
 	if( FHeader->PhysicsRigidBody )
 	{
-		// Ќ„‘М‚МЏо•с‚рѓZѓbѓg
+		// е‰›дЅ“гЃ®жѓ…е ±г‚’г‚»гѓѓгѓ€
 		PhysicsRigidBody = MBase->PhysicsRigidBody ;
 		F1PhysicsRigidBody = FHeader->PhysicsRigidBody ;
 		for( i = 0 ; i < MBase->PhysicsRigidBodyNum ; i ++, PhysicsRigidBody ++, F1PhysicsRigidBody ++ )
@@ -7222,7 +7222,7 @@ extern int MV1CreateCloneModelBase( int SrcMBHandle, int ASyncThread )
 			PhysicsRigidBody->NoCopyToBone = F1PhysicsRigidBody->NoCopyToBone ;
 		}
 
-		// Ќ„‘М‚МѓWѓ‡ѓCѓ“ѓgЏо•с‚рѓZѓbѓg
+		// е‰›дЅ“гЃ®г‚ёгѓ§г‚¤гѓігѓ€жѓ…е ±г‚’г‚»гѓѓгѓ€
 		PhysicsJoint = MBase->PhysicsJoint ;
 		F1PhysicsJoint = FHeader->PhysicsJoint ;
 		for( i = 0 ; i < MBase->PhysicsJointNum ; i ++, PhysicsJoint ++, F1PhysicsJoint ++ )
@@ -7255,7 +7255,7 @@ extern int MV1CreateCloneModelBase( int SrcMBHandle, int ASyncThread )
 		}
 	}
 
-	// ѓXѓLѓjѓ“ѓOѓЃѓbѓVѓ…—p‚Мѓ{Ѓ[ѓ“Џо•с‚рѓZѓbѓg
+	// г‚№г‚­гѓ‹гѓіг‚°гѓЎгѓѓг‚·гѓҐз”ЁгЃ®гѓњгѓјгѓіжѓ…е ±г‚’г‚»гѓѓгѓ€
 	SkinBone = MBase->SkinBone ;
 	F1SkinBone = FHeader->SkinBone ;
 	for( i = 0 ; i < MBase->SkinBoneNum ; i ++, SkinBone ++, F1SkinBone ++ )
@@ -7270,7 +7270,7 @@ extern int MV1CreateCloneModelBase( int SrcMBHandle, int ASyncThread )
 		}
 	}
 
-	// ѓgѓ‰ѓCѓAѓ“ѓOѓ‹ѓЉѓXѓg‚МЏо•с‚рѓZѓbѓg
+	// гѓ€гѓ©г‚¤г‚ўгѓіг‚°гѓ«гѓЄг‚№гѓ€гЃ®жѓ…е ±г‚’г‚»гѓѓгѓ€
 	TriangleList = MBase->TriangleList ;
 	F1TriangleList = FHeader->TriangleList ;
 	for( i = 0 ; i < MBase->TriangleListNum ; i ++, TriangleList ++, F1TriangleList ++ )
@@ -7283,7 +7283,7 @@ extern int MV1CreateCloneModelBase( int SrcMBHandle, int ASyncThread )
 		TriangleList->VertexNum = F1TriangleList->VertexNum ;
 		TriangleList->IndexNum = F1TriangleList->IndexNum ;
 
-		// ’ё“_ѓfЃ[ѓ^‚М“З‚ЭЌћ‚Э
+		// й ‚з‚№гѓ‡гѓјг‚їгЃ®иЄ­гЃїиѕјгЃї
 		{
 			TriangleList->Index = MBase->TriangleListIndex + MBase->TriangleListIndexNum ;
 			TriangleList->ToonOutLineIndex = TriangleList->Index + FHeader->TriangleListIndexNum ;
@@ -7292,7 +7292,7 @@ extern int MV1CreateCloneModelBase( int SrcMBHandle, int ASyncThread )
 			MBase->TriangleListIndexNum += TriangleList->IndexNum ;
 			MBase->MeshVertexIndexNum   += TriangleList->VertexNum ;
 
-			// ѓ{Ѓ[ѓ“‚МЏо•с‚рЋж“ѕ
+			// гѓњгѓјгѓігЃ®жѓ…е ±г‚’еЏ–еѕ—
 			switch( TriangleList->VertexType )
 			{
 			case MV1_VERTEX_TYPE_SKIN_4BONE :
@@ -7309,7 +7309,7 @@ extern int MV1CreateCloneModelBase( int SrcMBHandle, int ASyncThread )
 				break ;
 			}
 
-			// Ќ‚‘¬ѓAѓNѓZѓX—p‚М’ё“_ЌА•WѓfЃ[ѓ^‚рѓZѓbѓg
+			// й«йЂџг‚ўг‚Їг‚»г‚№з”ЁгЃ®й ‚з‚№еє§жЁ™гѓ‡гѓјг‚їг‚’г‚»гѓѓгѓ€
 			switch( TriangleList->VertexType )
 			{
 			case MV1_VERTEX_TYPE_NORMAL :
@@ -7345,7 +7345,7 @@ extern int MV1CreateCloneModelBase( int SrcMBHandle, int ASyncThread )
 		}
 	}
 
-	// ѓЃѓbѓVѓ…‚МѓtѓFѓCѓXЏо•с‚рЌ\’z‚·‚й
+	// гѓЎгѓѓг‚·гѓҐгЃ®гѓ•г‚§г‚¤г‚№жѓ…е ±г‚’ж§‹зЇ‰гЃ™г‚‹
 	{
 		WORD *Ind ;
 		DWORD *MInd, TListInd ;
@@ -7370,17 +7370,17 @@ extern int MV1CreateCloneModelBase( int SrcMBHandle, int ASyncThread )
 		}
 	}
 
-	// –@ђь‚МЌДђ¶ђ¬‚МЋw’и‚Є‚ ‚йЏкЌ‡‚Нђ¶ђ¬‚рЌs‚¤
+	// жі•з·љгЃ®е†Ќз”џж€ђгЃ®жЊ‡е®љгЃЊгЃ‚г‚‹е ґеђ€гЃЇз”џж€ђг‚’иЎЊгЃ†
 	if( MV1Man.LoadModelToReMakeNormal )
 	{
-		// –@ђь‚МЋ©“®ђ¶ђ¬
+		// жі•з·љгЃ®и‡Єе‹•з”џж€ђ
 		{
 			VECTOR Nrm ;
 			MV1_MESH_NORMAL *MNrm ;
 			MV1_MESH_VERTEX *Vertex[ 3 ] ;
 			DWORD VertUnitSize, PosUnitSize ;
 
-			// ‘S‚Д‚МѓtѓЊЃ[ѓЂ‚рЏ€—ќ
+			// е…ЁгЃ¦гЃ®гѓ•гѓ¬гѓјгѓ г‚’е‡¦зђ†
 			Frame = MBase->Frame ;
 			for( i = 0 ; i < MBase->FrameNum ; i ++, Frame ++ )
 			{
@@ -7388,7 +7388,7 @@ extern int MV1CreateCloneModelBase( int SrcMBHandle, int ASyncThread )
 
 				PosUnitSize = ( DWORD )Frame->PosUnitSize ;
 
-				// –К‚М–@ђь‚рЋZЏo‚µ‚И‚Є‚з‘«‚µ‚Д‚ў‚­
+				// йќўгЃ®жі•з·љг‚’з®—е‡єгЃ—гЃЄгЃЊг‚‰и¶ігЃ—гЃ¦гЃ„гЃЏ
 				Mesh = Frame->Mesh ;
 				for( j = 0 ; j < Frame->MeshNum ; j ++, Mesh ++ )
 				{
@@ -7418,7 +7418,7 @@ extern int MV1CreateCloneModelBase( int SrcMBHandle, int ASyncThread )
 					}
 				}
 
-				// –@ђь‚рђі‹K‰»‚·‚й
+				// жі•з·љг‚’ж­Ји¦ЏеЊ–гЃ™г‚‹
 				MNrm = Frame->Normal ;
 				for( j = 0 ; j < Frame->NormalNum ; j ++, MNrm ++ )
 				{
@@ -7427,7 +7427,7 @@ extern int MV1CreateCloneModelBase( int SrcMBHandle, int ASyncThread )
 			}
 		}
 
-		// ђЪђь‚ЖЏ]–@ђь‚МЌ\’z
+		// жЋҐз·љгЃЁеѕ“жі•з·љгЃ®ж§‹зЇ‰
 		Mesh = MBase->Mesh ;
 		for( i = 0 ; i < MBase->MeshNum ; i ++, Mesh ++ )
 		{
@@ -7435,7 +7435,7 @@ extern int MV1CreateCloneModelBase( int SrcMBHandle, int ASyncThread )
 		}
 	}
 
-	// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“ѓLЃ[ѓZѓbѓg‚МЏо•с‚рѓZѓbѓg
+	// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓіг‚­гѓјг‚»гѓѓгѓ€гЃ®жѓ…е ±г‚’г‚»гѓѓгѓ€
 	AnimKeySet = MBase->AnimKeySet ;
 	F1AnimKeySet = FHeader->AnimKeySet ;
 	for( i = 0 ; i < MBase->AnimKeySetNum ; i ++, AnimKeySet ++, F1AnimKeySet ++ )
@@ -7461,7 +7461,7 @@ extern int MV1CreateCloneModelBase( int SrcMBHandle, int ASyncThread )
 		AnimKeySet->KeyLinear = ( float * )( ( DWORD_PTR )MBase->AnimKeyData  + ( ( DWORD_PTR )F1AnimKeySet->KeyLinear - ( DWORD_PTR )FHeader->AnimKeyData ) ) ;
 	}
 
-	// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“ѓZѓbѓg‚МЏо•с‚рѓZѓbѓg
+	// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓіг‚»гѓѓгѓ€гЃ®жѓ…е ±г‚’г‚»гѓѓгѓ€
 	AnimSet = MBase->AnimSet ;
 	F1AnimSet = FHeader->AnimSet ;
 	for( i = 0 ; i < MBase->AnimSetNum ; i ++, AnimSet ++, F1AnimSet ++ )
@@ -7483,7 +7483,7 @@ extern int MV1CreateCloneModelBase( int SrcMBHandle, int ASyncThread )
 		AnimSet->IsLoopAnim = F1AnimSet->IsLoopAnim ;
 	}
 
-	// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚МЏо•с‚рѓZѓbѓg
+	// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігЃ®жѓ…е ±г‚’г‚»гѓѓгѓ€
 	Anim = MBase->Anim ;
 	F1Anim = FHeader->Anim ;
 	for( i = 0 ; i < MBase->AnimNum ; i ++, Anim ++, F1Anim ++ )
@@ -7503,34 +7503,34 @@ extern int MV1CreateCloneModelBase( int SrcMBHandle, int ASyncThread )
 		MBase->AnimTargetFrameTable[ Anim->Container->Index * MBase->FrameNum + Anim->TargetFrameIndex ] = Anim ;
 	}
 
-	// Ќs—с‚МѓZѓbѓgѓAѓbѓv
+	// иЎЊе€—гЃ®г‚»гѓѓгѓ€г‚ўгѓѓгѓ—
 	MV1SetupInitializeMatrixBase( MBase ) ;
 
-	// ѓЃѓbѓVѓ…‚М”ј“§–ѕ‚©‚З‚¤‚©‚МЏо•с‚рѓZѓbѓgѓAѓbѓv‚·‚й
+	// гѓЎгѓѓг‚·гѓҐгЃ®еЌЉйЂЏжЋгЃ‹гЃ©гЃ†гЃ‹гЃ®жѓ…е ±г‚’г‚»гѓѓгѓ€г‚ўгѓѓгѓ—гЃ™г‚‹
 	MV1SetupMeshSemiTransStateBase( MBase ) ;
 
-	// “ЇЋћ•Ўђ”•`‰жЉЦЊW‚МЏо•с‚рѓZѓbѓgѓAѓbѓv‚·‚й
+	// еђЊж™‚и¤‡ж•°жЏЏз”»й–ўдї‚гЃ®жѓ…е ±г‚’г‚»гѓѓгѓ€г‚ўгѓѓгѓ—гЃ™г‚‹
 	if( MBase->UsePackDraw )
 	{
 		MV1SetupPackDrawInfo( MBase ) ;
 	}
 
-	// ѓЃѓ‚ѓЉ‚М‰р•ъ
+	// гѓЎгѓўгѓЄгЃ®и§Јж”ѕ
 	//DXFREE( FHeader ) ;
 
-	// Ћw’и‚Є‚ ‚йЏкЌ‡‚НЌА•W‚МЌЕ“K‰»‚рЌs‚¤
+	// жЊ‡е®љгЃЊгЃ‚г‚‹е ґеђ€гЃЇеє§жЁ™гЃ®жњЂйЃ©еЊ–г‚’иЎЊгЃ†
 	if( MV1Man.LoadModelToPositionOptimize )
 	{
 		MV1PositionOptimizeBase( NewHandle ) ;
 	}
 
-	// Ћw’и‚Є‚ ‚йЏкЌ‡‚Н–@ђь‚МЌДЊvЋZ‚рЌs‚¤
+	// жЊ‡е®љгЃЊгЃ‚г‚‹е ґеђ€гЃЇжі•з·љгЃ®е†ЌиЁ€з®—г‚’иЎЊгЃ†
 	if( MV1Man.LoadModelToReMakeNormal )
 	{
 		MV1ReMakeNormalBase( NewHandle, MV1Man.LoadModelToReMakeNormalSmoothingAngle, ASyncThread ) ;
 	}
 
-	// Ќ‚‘¬Џ€—ќ—p’ё“_ѓfЃ[ѓ^‚МЌ\’z
+	// й«йЂџе‡¦зђ†з”Ёй ‚з‚№гѓ‡гѓјг‚їгЃ®ж§‹зЇ‰
 	TriangleList = MBase->TriangleList ;
 	for( i = 0 ; i < MBase->TriangleListNum ; i ++, TriangleList ++ )
 	{
@@ -7545,10 +7545,10 @@ extern int MV1CreateCloneModelBase( int SrcMBHandle, int ASyncThread )
 	}
 #endif // DX_NON_ASYNCLOAD
 
-	// ђіЏнЏI—№
+	// ж­Јеёёзµ‚дє†
 	return NewHandle ;
 
-	// ѓGѓ‰Ѓ[Џ€—ќ
+	// г‚Ёгѓ©гѓје‡¦зђ†
 ERRORLABEL :
 	if( NewHandle )
 	{
@@ -7563,15 +7563,15 @@ ERRORLABEL :
 		NewHandle = 0 ;
 	}
 
-	// ѓGѓ‰Ѓ[ЏI—№
+	// г‚Ёгѓ©гѓјзµ‚дє†
 	return -1 ;
 }
 
 
 
-// Џ‰ЉъѓZѓbѓgѓAѓbѓvЊn
+// е€ќжњџг‚»гѓѓгѓ€г‚ўгѓѓгѓ—зі»
 
-// Џ‰ЉъЏу‘Ф‚М•ПЉ·Ќs—с‚рѓZѓbѓgѓAѓbѓv‚·‚й
+// е€ќжњџзЉ¶ж…‹гЃ®е¤‰жЏ›иЎЊе€—г‚’г‚»гѓѓгѓ€г‚ўгѓѓгѓ—гЃ™г‚‹
 extern void MV1SetupInitializeMatrixBase( MV1_MODEL_BASE *ModelBase )
 {
 	MV1_FRAME_BASE *MBFrame ;
@@ -7581,13 +7581,13 @@ extern void MV1SetupInitializeMatrixBase( MV1_MODEL_BASE *ModelBase )
 	MBFrame = ModelBase->Frame ;
 	for( i = 0 ; i < ModelBase->FrameNum ; i ++, MBFrame ++ )
 	{
-		// ѓXѓPЃ[ѓЉѓ“ѓO‚рЋg—p‚µ‚Д‚ў‚й‚©‚З‚¤‚©‚Мѓtѓ‰ѓO‚рѓZѓbѓg‚·‚й
+		// г‚№г‚±гѓјгѓЄгѓіг‚°г‚’дЅїз”ЁгЃ—гЃ¦гЃ„г‚‹гЃ‹гЃ©гЃ†гЃ‹гЃ®гѓ•гѓ©г‚°г‚’г‚»гѓѓгѓ€гЃ™г‚‹
 		MBFrame->LocalTransformMatrixUseScaling =
 			MBFrame->Scale.x < 0.9999999f || MBFrame->Scale.x > 1.0000001f ||
 			MBFrame->Scale.y < 0.9999999f || MBFrame->Scale.y > 1.0000001f ||
 			MBFrame->Scale.z < 0.9999999f || MBFrame->Scale.z > 1.0000001f;
 
-		// ’P€КЌs—с‚©‚З‚¤‚©‚р’І‚Ч‚й
+		// еЌдЅЌиЎЊе€—гЃ‹гЃ©гЃ†гЃ‹г‚’иЄїгЃ№г‚‹
 		if( ( MBFrame->Flag & MV1_FRAMEFLAG_PREROTATE ) == 0 &&
 			( MBFrame->Flag & MV1_FRAMEFLAG_POSTROTATE ) == 0 &&
 			( *( ( DWORD * )&MBFrame->Rotate.x ) & 0x7fffffff ) == 0 &&
@@ -7612,7 +7612,7 @@ extern void MV1SetupInitializeMatrixBase( MV1_MODEL_BASE *ModelBase )
 		{
 			MBFrame->LocalTransformMatrixType = 2 ;
 
-			// ѓfѓtѓHѓ‹ѓgЌА•W’l‚рЊі‚Й•ПЉ·Ќs—с‚рЌмђ¬‚·‚й
+			// гѓ‡гѓ•г‚©гѓ«гѓ€еє§жЁ™еЂ¤г‚’е…ѓгЃ«е¤‰жЏ›иЎЊе€—г‚’дЅњж€ђгЃ™г‚‹
 			MV1RMakeMatrix(
 				( MBFrame->Flag & MV1_FRAMEFLAG_PREROTATE ) != 0 ? &MBFrame->PreRotate : NULL,
 				&MBFrame->Rotate,
@@ -7626,7 +7626,7 @@ extern void MV1SetupInitializeMatrixBase( MV1_MODEL_BASE *ModelBase )
 		}
 		ConvertMatrixFToMatrix4x4cF( &MBFrame->LocalTransformMatrix, &TempMatrix ) ;
 
-		// Џ‰Љъ‚МѓЌЃ[ѓJѓ‹ЃЁѓЏЃ[ѓ‹ѓhЌs—с‚рЌмђ¬
+		// е€ќжњџгЃ®гѓ­гѓјг‚«гѓ«в†’гѓЇгѓјгѓ«гѓ‰иЎЊе€—г‚’дЅњж€ђ
 		if( MBFrame->Parent == NULL )
 		{
 			ConvertMatrix4x4cFToMatrixF( &TempMatrix, &MBFrame->LocalTransformMatrix ) ;
@@ -7646,42 +7646,42 @@ extern void MV1SetupInitializeMatrixBase( MV1_MODEL_BASE *ModelBase )
 	}
 }
 
-// “ЇЋћ•Ўђ”•`‰жЉЦЊW‚МЏо•с‚рѓZѓbѓgѓAѓbѓv‚·‚й
+// еђЊж™‚и¤‡ж•°жЏЏз”»й–ўдї‚гЃ®жѓ…е ±г‚’г‚»гѓѓгѓ€г‚ўгѓѓгѓ—гЃ™г‚‹
 extern void MV1SetupPackDrawInfo( MV1_MODEL_BASE *ModelBase )
 {
 	MV1_TRIANGLE_LIST_BASE *MBTList ;
 	int i ;
 	int UseBoneNum ;
 
-	// ѓgѓ‰ѓCѓAѓ“ѓOѓ‹ѓЉѓXѓg‚Є–і‚ўЏкЌ‡‚Н“K—p‚Е‚«‚И‚ў
+	// гѓ€гѓ©г‚¤г‚ўгѓіг‚°гѓ«гѓЄг‚№гѓ€гЃЊз„ЎгЃ„е ґеђ€гЃЇйЃ©з”ЁгЃ§гЃЌгЃЄгЃ„
 	if( ModelBase->TriangleListNum == 0 )
 	{
 		ModelBase->UsePackDraw = FALSE ;
 		return ;
 	}
 
-	// ’ё“_ѓVѓFЃ[ѓ_Ѓ[‚ЄЋg—p‚Е‚«‚И‚ўЏкЌ‡‚Н“ЇЋћ•Ўђ”•`‰ж‚Н“K—p‚Е‚«‚И‚ў
+	// й ‚з‚№г‚·г‚§гѓјгѓЂгѓјгЃЊдЅїз”ЁгЃ§гЃЌгЃЄгЃ„е ґеђ€гЃЇеђЊж™‚и¤‡ж•°жЏЏз”»гЃЇйЃ©з”ЁгЃ§гЃЌгЃЄгЃ„
 	if( GSYS.HardInfo.UseShader == FALSE )
 	{
 		ModelBase->UsePackDraw = FALSE ;
 		return ;
 	}
 
-	// ‚Pѓgѓ‰ѓCѓAѓ“ѓOѓ‹ѓЉѓXѓg‚Е“ЇЋћ‚ЙЋg—p‚·‚йѓ{Ѓ[ѓ“ђ”‚Є‚W‚ж‚и‘Ѕ‚ў‚а‚М‚Є‚ ‚йЏкЌ‡‚Н“ЇЋћ•Ўђ”•`‰ж‚Н“K—p‚Е‚«‚И‚ў
+	// пј‘гѓ€гѓ©г‚¤г‚ўгѓіг‚°гѓ«гѓЄг‚№гѓ€гЃ§еђЊж™‚гЃ«дЅїз”ЁгЃ™г‚‹гѓњгѓјгѓіж•°гЃЊпјг‚€г‚Ље¤љгЃ„г‚‚гЃ®гЃЊгЃ‚г‚‹е ґеђ€гЃЇеђЊж™‚и¤‡ж•°жЏЏз”»гЃЇйЃ©з”ЁгЃ§гЃЌгЃЄгЃ„
 	if( ModelBase->TriangleListSkinPositionFREEBSize > 0 )
 	{
 		ModelBase->UsePackDraw = FALSE ;
 		return ;
 	}
 
-	// ѓVѓFѓCѓv‚ЄЋg—p‚і‚к‚Д‚ў‚йѓ‚ѓfѓ‹‚Е‚Н“ЇЋћ•Ўђ”•`‰ж‚М“K—p‚Н‚Е‚«‚И‚ў
+	// г‚·г‚§г‚¤гѓ—гЃЊдЅїз”ЁгЃ•г‚ЊгЃ¦гЃ„г‚‹гѓўгѓ‡гѓ«гЃ§гЃЇеђЊж™‚и¤‡ж•°жЏЏз”»гЃ®йЃ©з”ЁгЃЇгЃ§гЃЌгЃЄгЃ„
 	if( ModelBase->ShapeNum > 0 )
 	{
 		ModelBase->UsePackDraw = FALSE ;
 		return ;
 	}
 
-	// ЌЕЏ¬ЃEЌЕ‘е’ё“_ђ”‚ЖЌЕЏ¬ЃEЌЕ‘еЋg—pЌs—сђ”‚рЋж“ѕ‚·‚й
+	// жњЂе°Џгѓ»жњЂе¤§й ‚з‚№ж•°гЃЁжњЂе°Џгѓ»жњЂе¤§дЅїз”ЁиЎЊе€—ж•°г‚’еЏ–еѕ—гЃ™г‚‹
 	MBTList = ModelBase->TriangleList ;
 	ModelBase->TriangleListMaxVertexNum = 0 ;
 	ModelBase->TriangleListMinVertexNum = 0x7fffffff ;
@@ -7736,7 +7736,7 @@ extern void MV1SetupPackDrawInfo( MV1_MODEL_BASE *ModelBase )
 		}
 	}
 
-	// ’ё“_‚вѓCѓ“ѓfѓbѓNѓX‚Є€к‚В‚а–і‚ўЏкЌ‡‚Н“K—p‚Е‚«‚И‚ў
+	// й ‚з‚№г‚„г‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃЊдёЂгЃ¤г‚‚з„ЎгЃ„е ґеђ€гЃЇйЃ©з”ЁгЃ§гЃЌгЃЄгЃ„
 	if( ModelBase->TriangleListMaxVertexNum == 0 ||
 		ModelBase->TriangleListMaxIndexNum  == 0 ||
 		ModelBase->TriangleListMaxMatrixNum == 0 )
@@ -7745,14 +7745,14 @@ extern void MV1SetupPackDrawInfo( MV1_MODEL_BASE *ModelBase )
 		return ;
 	}
 
-	// “ЇЋћ•Ўђ”•`‰жЉЦЊW‚МЏо•с‚МѓZѓbѓgѓAѓbѓv‚МЉВ‹«€Л‘¶Џ€—ќ
+	// еђЊж™‚и¤‡ж•°жЏЏз”»й–ўдї‚гЃ®жѓ…е ±гЃ®г‚»гѓѓгѓ€г‚ўгѓѓгѓ—гЃ®з’°еўѓдѕќе­е‡¦зђ†
 	MV1_SetupPackDrawInfo_PF( ModelBase ) ;
 
-	// “ЇЋћ•Ўђ”•`‰ж‚М€к•`‰ж•Є‚ЕЋg—p‚·‚йЌs—с‚Мђ”‚рѓZѓbѓg‚·‚й
+	// еђЊж™‚и¤‡ж•°жЏЏз”»гЃ®дёЂжЏЏз”»е€†гЃ§дЅїз”ЁгЃ™г‚‹иЎЊе€—гЃ®ж•°г‚’г‚»гѓѓгѓ€гЃ™г‚‹
 	ModelBase->PackDrawMatrixUnitNum = ModelBase->SkinBoneNum + ModelBase->FrameNum ;
 }
 
-// ѓgѓDЃ[ѓ“—ЦЉsђь—p‚МѓЃѓbѓVѓ…‚рЌмђ¬‚·‚й
+// гѓ€г‚ҐгѓјгѓіијЄйѓ­з·љз”ЁгЃ®гѓЎгѓѓг‚·гѓҐг‚’дЅњж€ђгЃ™г‚‹
 //#define CHECKPARAM	( 0.125f / 2.0f )
 #define CHECKPARAM	( 0.0f )
 extern void MV1SetupToonOutLineTriangleList( MV1_TRIANGLE_LIST_BASE *MBTList )
@@ -7763,7 +7763,7 @@ extern void MV1SetupToonOutLineTriangleList( MV1_TRIANGLE_LIST_BASE *MBTList )
 //	VECTOR FaceDir ;
 	MV1_MESH_BASE *MBMesh ;
 
-	// ’ё“_‚Мђ”‚ѕ‚ЇЊJ‚и•Ф‚µ
+	// й ‚з‚№гЃ®ж•°гЃ гЃ‘з№°г‚Љиї”гЃ—
 	ind = MBTList->Index ;
 	tind = MBTList->ToonOutLineIndex ;
 	tindNum = 0 ;
@@ -7961,7 +7961,7 @@ extern void MV1SetupToonOutLineTriangleList( MV1_TRIANGLE_LIST_BASE *MBTList )
 	return ;
 }
 
-// ѓ‚ѓfѓ‹’†‚МѓЃѓbѓVѓ…‚М”ј“§–ѕ—v‘f‚Є‚ ‚й‚©‚З‚¤‚©‚р’І‚Ч‚й
+// гѓўгѓ‡гѓ«дё­гЃ®гѓЎгѓѓг‚·гѓҐгЃ®еЌЉйЂЏжЋи¦Ѓзґ гЃЊгЃ‚г‚‹гЃ‹гЃ©гЃ†гЃ‹г‚’иЄїгЃ№г‚‹
 extern void MV1SetupMeshSemiTransStateBase( MV1_MODEL_BASE *ModelBase )
 {
 	MV1_MESH_BASE     *MBMesh ;
@@ -7969,7 +7969,7 @@ extern void MV1SetupMeshSemiTransStateBase( MV1_MODEL_BASE *ModelBase )
 	MV1_TEXTURE_BASE  *MBTexture ;
 	int               i ;
 
-	// ѓЃѓbѓVѓ…‚Мђ”‚ѕ‚ЇЊJ‚и•Ф‚µ
+	// гѓЎгѓѓг‚·гѓҐгЃ®ж•°гЃ гЃ‘з№°г‚Љиї”гЃ—
 	MBMesh = ModelBase->Mesh ;
 	for( i = 0 ; i < ModelBase->MeshNum ; i ++, MBMesh ++ )
 	{
@@ -7979,29 +7979,29 @@ extern void MV1SetupMeshSemiTransStateBase( MV1_MODEL_BASE *ModelBase )
 
 			MBMaterial = MBMesh->Material ;
 
-			// •`‰жѓ‚Ѓ[ѓh‚ЄѓAѓ‹ѓtѓ@ѓuѓЊѓ“ѓh€ИЉO‚И‚з”ј“§–ѕ
+			// жЏЏз”»гѓўгѓјгѓ‰гЃЊг‚ўгѓ«гѓ•г‚Ўгѓ–гѓ¬гѓігѓ‰д»Ґе¤–гЃЄг‚‰еЌЉйЂЏжЋ
 			if( MBMaterial->DrawBlendMode != DX_BLENDMODE_ALPHA )
 				break ;
 
-			// ѓuѓЊѓ“ѓhѓpѓ‰ѓЃЃ[ѓ^‚Є 255 €ИЉO‚И‚з”ј“§–ѕ
+			// гѓ–гѓ¬гѓігѓ‰гѓ‘гѓ©гѓЎгѓјг‚їгЃЊ 255 д»Ґе¤–гЃЄг‚‰еЌЉйЂЏжЋ
 			if( MBMaterial->DrawBlendParam != 255 )
 				break ;
 
-			// ’ё“_ѓJѓ‰Ѓ[‚рЋg—p‚·‚й‚©‚З‚¤‚©‚Е•ЄЉт
+			// й ‚з‚№г‚«гѓ©гѓјг‚’дЅїз”ЁгЃ™г‚‹гЃ‹гЃ©гЃ†гЃ‹гЃ§е€†еІђ
 			if( MBMesh->UseVertexDiffuseColor )
 			{
-				// ’ё“_ѓfѓBѓtѓ…Ѓ[ѓYѓJѓ‰Ѓ[‚Й 1.0 €ИЉO‚МѓAѓ‹ѓtѓ@’l‚Є‚ ‚Б‚Ѕ‚з”ј“§–ѕ
+				// й ‚з‚№гѓ‡г‚Јгѓ•гѓҐгѓјг‚єг‚«гѓ©гѓјгЃ« 1.0 д»Ґе¤–гЃ®г‚ўгѓ«гѓ•г‚ЎеЂ¤гЃЊгЃ‚гЃЈгЃџг‚‰еЌЉйЂЏжЋ
 				if( MBMesh->NotOneDiffuseAlpha )
 					break ;
 			}
 			else
 			{
-				// ѓ}ѓeѓЉѓAѓ‹‚МѓfѓBѓtѓ…Ѓ[ѓYѓJѓ‰Ѓ[‚МѓAѓ‹ѓtѓ@’l‚Є‚PЃD‚O€ИЉO‚И‚з”ј“§–ѕ
+				// гѓћгѓ†гѓЄг‚ўгѓ«гЃ®гѓ‡г‚Јгѓ•гѓҐгѓјг‚єг‚«гѓ©гѓјгЃ®г‚ўгѓ«гѓ•г‚ЎеЂ¤гЃЊпј‘пјЋпјђд»Ґе¤–гЃЄг‚‰еЌЉйЂЏжЋ
 				if( MBMaterial->Diffuse.a != 1.0f )
 					break ;
 			}
 
-			// ”ј“§–ѕѓeѓNѓXѓ`ѓѓ‚рЋg—p‚µ‚Д‚ў‚Ѕ‚з”ј“§–ѕ
+			// еЌЉйЂЏжЋгѓ†г‚Їг‚№гѓЃгѓЈг‚’дЅїз”ЁгЃ—гЃ¦гЃ„гЃџг‚‰еЌЉйЂЏжЋ
 			if( MBMaterial->DiffuseLayerNum )
 			{
 				MBTexture = &ModelBase->Texture[ MBMaterial->DiffuseLayer[ 0 ].Texture ] ;
@@ -8011,30 +8011,30 @@ extern void MV1SetupMeshSemiTransStateBase( MV1_MODEL_BASE *ModelBase )
 				}
 			}
 
-			// ‚±‚±‚Й‚«‚Ѕ‚з”ј“§–ѕ—v‘f‚Н‚И‚ў‚Ж‚ў‚¤‚±‚Ж
+			// гЃ“гЃ“гЃ«гЃЌгЃџг‚‰еЌЉйЂЏжЋи¦Ѓзґ гЃЇгЃЄгЃ„гЃЁгЃ„гЃ†гЃ“гЃЁ
 			MBMesh->SemiTransState = 0 ;
 		}while( 0 ) ;
 	}
 }
 
-// ѓ‚ѓfѓ‹‘S‘М‚М–@ђь‚рЌДЊvЋZ‚·‚й
+// гѓўгѓ‡гѓ«е…ЁдЅ“гЃ®жі•з·љг‚’е†ЌиЁ€з®—гЃ™г‚‹
 extern int MV1ReMakeNormalBase( int MBHandle, float SmoothingAngle, int ASyncThread )
 {
 	MV1_MODEL_BASE *ModelBase ;
 	MV1_FRAME_BASE *Frame ;
 	int i ;
 
-	// Џ‰Љъ‰»‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// е€ќжњџеЊ–гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( MV1Man.Initialize == false ) return -1 ;
 
-	// ѓAѓhѓЊѓXЋж“ѕ
+	// г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ—
 	if( MV1BMDLCHK( MBHandle, ModelBase ) )
 		return -1 ;
 
-	// ’ё“_ѓoѓbѓtѓ@‚р‰р•ъ‚·‚й
+	// й ‚з‚№гѓђгѓѓгѓ•г‚Ўг‚’и§Јж”ѕгЃ™г‚‹
 	MV1_TerminateVertexBufferBase_PF( MBHandle ) ;
 
-	// ѓtѓЊЃ[ѓЂ‚Мђ”‚ѕ‚ЇЊJ‚и•Ф‚µ
+	// гѓ•гѓ¬гѓјгѓ гЃ®ж•°гЃ гЃ‘з№°г‚Љиї”гЃ—
 	Frame = ModelBase->Frame ;
 	for( i = 0 ; i < ModelBase->FrameNum ; i ++, Frame ++ )
 	{
@@ -8044,50 +8044,50 @@ extern int MV1ReMakeNormalBase( int MBHandle, float SmoothingAngle, int ASyncThr
 			return -1 ;
 	}
 
-	// ’ё“_ѓoѓbѓtѓ@‚рЌ\’z‚·‚й
+	// й ‚з‚№гѓђгѓѓгѓ•г‚Ўг‚’ж§‹зЇ‰гЃ™г‚‹
 	MV1_SetupVertexBufferBase_PF( MBHandle, 1, ASyncThread ) ;
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// Ћw’иѓtѓЊЃ[ѓЂ‚ЄЋќ‚ВѓЃѓbѓVѓ…‚М–@ђь‚рЌДЊvЋZ‚·‚й
+// жЊ‡е®љгѓ•гѓ¬гѓјгѓ гЃЊжЊЃгЃ¤гѓЎгѓѓг‚·гѓҐгЃ®жі•з·љг‚’е†ЌиЁ€з®—гЃ™г‚‹
 extern int MV1ReMakeNormalFrameBase( int MBHandle, int FrameIndex, float SmoothingAngle )
 {
 	MV1_MODEL_BASE *ModelBase ;
 	MV1_FRAME_BASE *Frame ;
 
-	// Џ‰Љъ‰»‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// е€ќжњџеЊ–гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( MV1Man.Initialize == false ) return -1 ;
 
-	// ѓAѓhѓЊѓXЋж“ѕ
+	// г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ—
 	if( MV1BMDLCHK( MBHandle, ModelBase ) )
 		return -1 ;
 
-	// ѓtѓЊЃ[ѓЂѓCѓ“ѓfѓbѓNѓX‚Мѓ`ѓFѓbѓN
+	// гѓ•гѓ¬гѓјгѓ г‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃ®гѓЃг‚§гѓѓг‚Ї
 	if( FrameIndex < 0 || FrameIndex >= ModelBase->FrameNum )
 		return -1 ;
 	Frame = ModelBase->Frame + FrameIndex ;
 
-	// ѓЃѓbѓVѓ…‚Є–і‚Ї‚к‚О‰Ѕ‚а‚№‚ёЏI—№
+	// гѓЎгѓѓг‚·гѓҐгЃЊз„ЎгЃ‘г‚ЊгЃ°дЅ•г‚‚гЃ›гЃљзµ‚дє†
 	if( Frame->MeshNum == 0 )
 		return -1 ;
 
-	// ’ё“_ѓoѓbѓtѓ@‚р‰р•ъ‚·‚й
+	// й ‚з‚№гѓђгѓѓгѓ•г‚Ўг‚’и§Јж”ѕгЃ™г‚‹
 	MV1_TerminateVertexBufferBase_PF( MBHandle ) ;
 
-	// ѓtѓЊЃ[ѓЂ‚МЌДЊvЋZ
+	// гѓ•гѓ¬гѓјгѓ гЃ®е†ЌиЁ€з®—
 	if( _MV1ReMakeNormalFrameBase( Frame, SmoothingAngle ) == -1 )
 		return -1 ;
 
-	// ’ё“_ѓoѓbѓtѓ@‚рЌ\’z‚·‚й
+	// й ‚з‚№гѓђгѓѓгѓ•г‚Ўг‚’ж§‹зЇ‰гЃ™г‚‹
 	MV1_SetupVertexBufferBase_PF( MBHandle ) ;
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// ѓtѓЊЃ[ѓЂ‚М–@ђь‚рЌДЊvЋZ‚·‚й
+// гѓ•гѓ¬гѓјгѓ гЃ®жі•з·љг‚’е†ЌиЁ€з®—гЃ™г‚‹
 static int _MV1ReMakeNormalFrameBase( MV1_FRAME_BASE *Frame, float SmoothingAngle )
 {
 	MV1_MODEL_BASE *ModelBase ;
@@ -8117,13 +8117,13 @@ static int _MV1ReMakeNormalFrameBase( MV1_FRAME_BASE *Frame, float SmoothingAngl
 	MV1_SHAPE_MESH_BASE *ShapeMesh ;
 	MV1_SHAPE_BASE *Shape ;
 
-	// Џ‰Љъ‰»‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// е€ќжњџеЊ–гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( MV1Man.Initialize == false ) return -1 ;
 
-	// ѓЃѓbѓVѓ…‚Є–і‚Ї‚к‚О‰Ѕ‚а‚№‚ё‚ЙЏI—№
+	// гѓЎгѓѓг‚·гѓҐгЃЊз„ЎгЃ‘г‚ЊгЃ°дЅ•г‚‚гЃ›гЃљгЃ«зµ‚дє†
 	if( Frame->MeshNum == 0 ) return 0 ;
 
-	// ѓ|ѓCѓ“ѓ^‚МЏ‰Љъ‰»
+	// гѓќг‚¤гѓіг‚їгЃ®е€ќжњџеЊ–
 	ModelBase = Frame->Container ;
 	FaceNormal = NULL ;
 	FaceNormalIndex = NULL ;
@@ -8132,32 +8132,32 @@ static int _MV1ReMakeNormalFrameBase( MV1_FRAME_BASE *Frame, float SmoothingAngl
 	NewMeshVertexIndex = NULL ;
 	NewShapeVertBuffer = NULL ;
 
-	// ѓXѓЂЃ[ѓWѓ“ѓO‚рЌs‚¤Љp“x‚МѓRѓTѓCѓ“’l‚р‹Ѓ‚Я‚Д‚Ё‚­
+	// г‚№гѓ гѓјг‚ёгѓіг‚°г‚’иЎЊгЃ†и§’еє¦гЃ®г‚іг‚µг‚¤гѓіеЂ¤г‚’ж±‚г‚ЃгЃ¦гЃЉгЃЏ
 	Frame->SmoothingAngle = SmoothingAngle ;
 	_SINCOS_PLATFORM( Frame->SmoothingAngle, &Sin, &SmoothCos ) ;
 	Frame->AutoCreateNormal = TRUE ;
 
-	// –К‚Мђ”‚рђ”‚¦‚й
+	// йќўгЃ®ж•°г‚’ж•°гЃ€г‚‹
 	Mesh = Frame->Mesh ;
 	FaceNum = 0 ;
 	for( i = 0 ; i < Frame->MeshNum ; i ++, Mesh ++ )
 		FaceNum += Mesh->FaceNum ;
 
-	// –К‚М–@ђь‚Ж–К‚ЄЋg—p‚·‚й–@ђь‚МѓCѓ“ѓfѓbѓNѓX‚ЖЃAѓVѓFѓCѓv’ё“_‚МѓtѓЊЃ[ѓЂ’ё“_‚Ж‚М
-	// ЉЦAѓfЃ[ѓ^‚р•Ы‘¶‚·‚йѓЃѓ‚ѓЉ—М€ж‚МЉm•Ы‚·‚й
+	// йќўгЃ®жі•з·љгЃЁйќўгЃЊдЅїз”ЁгЃ™г‚‹жі•з·љгЃ®г‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃЁгЂЃг‚·г‚§г‚¤гѓ—й ‚з‚№гЃ®гѓ•гѓ¬гѓјгѓ й ‚з‚№гЃЁгЃ®
+	// й–ўйЂЈгѓ‡гѓјг‚їг‚’дїќе­гЃ™г‚‹гѓЎгѓўгѓЄй еџџгЃ®зўєдїќгЃ™г‚‹
 	FaceNormal = ( VECTOR * )DXALLOC(
 		sizeof( VECTOR ) * FaceNum +
 		sizeof( int ) * 3 * FaceNum +
 		sizeof( MV1_SHAPE_VERTEX_BASE ) * Frame->PositionNum * Frame->ShapeNum ) ;
 	if( FaceNormal == NULL )
 	{
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\xd5\x6c\xda\x7d\x8d\x51\x08\x8a\x97\x7b\x28\x75\x6e\x30\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"–@ђьЌДЊvЋZ—p‚МѓЃѓ‚ѓЉ‚МЉm•Ы‚ЙЋё”s‚µ‚Ь‚µ‚Ѕ\n" @*/ )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\xd5\x6c\xda\x7d\x8d\x51\x08\x8a\x97\x7b\x28\x75\x6e\x30\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"жі•з·ље†ЌиЁ€з®—з”ЁгЃ®гѓЎгѓўгѓЄгЃ®зўєдїќгЃ«е¤±ж•—гЃ—гЃѕгЃ—гЃџ\n" @*/ )) ;
 		goto ERR ;
 	}
 	FaceNormalIndex = ( int * )( FaceNormal + FaceNum ) ;
 	ShapeFrameVertBuffer = ( MV1_SHAPE_VERTEX_BASE * )( FaceNormalIndex + 3 * FaceNum ) ;
 
-	// ѓVѓFѓCѓvЏо•с‚ЖѓtѓЊЃ[ѓЂ’ё“_‚МЉЦAѓfЃ[ѓ^‚рЌ\’z‚·‚й
+	// г‚·г‚§г‚¤гѓ—жѓ…е ±гЃЁгѓ•гѓ¬гѓјгѓ й ‚з‚№гЃ®й–ўйЂЈгѓ‡гѓјг‚їг‚’ж§‹зЇ‰гЃ™г‚‹
 	if( Frame->ShapeNum )
 	{
 		_MEMSET( ShapeFrameVertBuffer, 0xff, sizeof( MV1_SHAPE_VERTEX_BASE ) * Frame->PositionNum * Frame->ShapeNum ) ;
@@ -8179,7 +8179,7 @@ static int _MV1ReMakeNormalFrameBase( MV1_FRAME_BASE *Frame, float SmoothingAngl
 		}
 	}
 
-	// –КЏо•с‚©‚зЉф‚В–@ђь‚Є•K—v‚©’І‚Ч‚й
+	// йќўжѓ…е ±гЃ‹г‚‰е№ѕгЃ¤жі•з·љгЃЊеї…и¦ЃгЃ‹иЄїгЃ№г‚‹
 	NormalNum = 0 ;
 	FaceNum = 0 ;
 	FNInd = FaceNormalIndex ;
@@ -8189,7 +8189,7 @@ static int _MV1ReMakeNormalFrameBase( MV1_FRAME_BASE *Frame, float SmoothingAngl
 		Face = Mesh->Face ;
 		for( j = 0 ; j < Mesh->FaceNum ; j ++, Face ++, FaceNum ++ )
 		{
-			// ‚В‚ў‚Е‚Й–К‚М–@ђь‚рЊvЋZ‚·‚й
+			// гЃ¤гЃ„гЃ§гЃ«йќўгЃ®жі•з·љг‚’иЁ€з®—гЃ™г‚‹
 			P0 = &( ( MV1_MESH_POSITION * )( ( BYTE * )Frame->Position + Frame->PosUnitSize * ( ( MV1_MESH_VERTEX * )( ( BYTE * )Mesh->Vertex + Mesh->VertUnitSize * Face->VertexIndex[ 0 ] ) )->PositionIndex ) )->Position ;
 			P1 = &( ( MV1_MESH_POSITION * )( ( BYTE * )Frame->Position + Frame->PosUnitSize * ( ( MV1_MESH_VERTEX * )( ( BYTE * )Mesh->Vertex + Mesh->VertUnitSize * Face->VertexIndex[ 1 ] ) )->PositionIndex ) )->Position ;
 			P2 = &( ( MV1_MESH_POSITION * )( ( BYTE * )Frame->Position + Frame->PosUnitSize * ( ( MV1_MESH_VERTEX * )( ( BYTE * )Mesh->Vertex + Mesh->VertUnitSize * Face->VertexIndex[ 2 ] ) )->PositionIndex ) )->Position ;
@@ -8199,23 +8199,23 @@ static int _MV1ReMakeNormalFrameBase( MV1_FRAME_BASE *Frame, float SmoothingAngl
 			VectorOuterProduct( &Norm, &V1, &V2 ) ;
 			VectorNormalize( &FaceNormal[ FaceNum ], &Norm ) ;
 
-			// –@ђьѓCѓ“ѓfѓbѓNѓX‚рѓZѓbѓg
+			// жі•з·љг‚¤гѓігѓ‡гѓѓг‚Їг‚№г‚’г‚»гѓѓгѓ€
 			FNInd[ 0 ] = NormalNum ;
 			FNInd[ 1 ] = NormalNum + 1 ;
 			FNInd[ 2 ] = NormalNum + 2 ;
 
-			// –@ђь‚Мђ”‚рѓCѓ“ѓfѓbѓNѓX‚Мђ”‚ѕ‚Ї‘ќ‚в‚·
+			// жі•з·љгЃ®ж•°г‚’г‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃ®ж•°гЃ гЃ‘еў—г‚„гЃ™
 			FNInd += 3 ;
 			NormalNum += 3 ;
 		}
 	}
 	IndexNum = NormalNum ;
 
-	// –@ђь‚рЉi”[‚·‚йѓЃѓ‚ѓЉ‚рЉm•Ы‚·‚й
+	// жі•з·љг‚’ж јзґЌгЃ™г‚‹гѓЎгѓўгѓЄг‚’зўєдїќгЃ™г‚‹
 	NormalBuf = ( VECTOR * )DXALLOC( ( sizeof( VECTOR ) + sizeof( BYTE ) + sizeof( DWORD ) + sizeof( DWORD ) ) * NormalNum ) ;
 	if( NormalBuf == NULL )
 	{
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\xd5\x6c\xda\x7d\x8d\x51\x08\x8a\x97\x7b\x28\x75\x6e\x30\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x5f\x00\x32\x00\x0a\x00\x00"/*@ L"–@ђьЌДЊvЋZ—p‚МѓЃѓ‚ѓЉ‚МЉm•Ы‚ЙЋё”s‚µ‚Ь‚µ‚Ѕ_2\n" @*/ )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\xd5\x6c\xda\x7d\x8d\x51\x08\x8a\x97\x7b\x28\x75\x6e\x30\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x5f\x00\x32\x00\x0a\x00\x00"/*@ L"жі•з·ље†ЌиЁ€з®—з”ЁгЃ®гѓЎгѓўгѓЄгЃ®зўєдїќгЃ«е¤±ж•—гЃ—гЃѕгЃ—гЃџ_2\n" @*/ )) ;
 		goto ERR ;
 	}
 	_MEMSET( NormalBuf, 0, ( sizeof( VECTOR ) + sizeof( BYTE ) + sizeof( DWORD ) + sizeof( DWORD ) ) * NormalNum ) ;
@@ -8224,18 +8224,18 @@ static int _MV1ReMakeNormalFrameBase( MV1_FRAME_BASE *Frame, float SmoothingAngl
 	UseNormalIndex = ( DWORD * )( NormalUseTable + NormalNum ) ;
 	NewNormalIndex = UseNormalIndex + NormalNum ;
 
-	// Љe’ё“_‚ЙЉЦЊW‚·‚й–К‚МѓЉѓXѓg‚рЌмђ¬‚·‚й
+	// еђ„й ‚з‚№гЃ«й–ўдї‚гЃ™г‚‹йќўгЃ®гѓЄг‚№гѓ€г‚’дЅњж€ђгЃ™г‚‹
 	{
 		VertexFaceList = ( MV1_MAKEVERTINDEXINFO ** )DXALLOC( sizeof( MV1_MAKEVERTINDEXINFO * ) * Frame->PositionNum + sizeof( MV1_MAKEVERTINDEXINFO ) * IndexNum ) ;
 		if( VertexFaceList == NULL )
 		{
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\xd5\x6c\xda\x7d\x8d\x51\x08\x8a\x97\x7b\x28\x75\x6e\x30\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x5f\x00\x33\x00\x0a\x00\x00"/*@ L"–@ђьЌДЊvЋZ—p‚МѓЃѓ‚ѓЉ‚МЉm•Ы‚ЙЋё”s‚µ‚Ь‚µ‚Ѕ_3\n" @*/ )) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\xd5\x6c\xda\x7d\x8d\x51\x08\x8a\x97\x7b\x28\x75\x6e\x30\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x5f\x00\x33\x00\x0a\x00\x00"/*@ L"жі•з·ље†ЌиЁ€з®—з”ЁгЃ®гѓЎгѓўгѓЄгЃ®зўєдїќгЃ«е¤±ж•—гЃ—гЃѕгЃ—гЃџ_3\n" @*/ )) ;
 			goto ERR ;
 		}
 		_MEMSET( VertexFaceList, 0, sizeof( MV1_MAKEVERTINDEXINFO * ) * Frame->PositionNum ) ;
 		VertexFaceBuffer = ( MV1_MAKEVERTINDEXINFO * )( VertexFaceList + Frame->PositionNum ) ;
 
-		// ‘S‚Д‚М–К‚МЋQЏЖ‚µ‚Д‚ў‚й’ё“_‚МЏо•с‚рѓZѓbѓg‚·‚й
+		// е…ЁгЃ¦гЃ®йќўгЃ®еЏ‚з…§гЃ—гЃ¦гЃ„г‚‹й ‚з‚№гЃ®жѓ…е ±г‚’г‚»гѓѓгѓ€гЃ™г‚‹
 		Mesh = Frame->Mesh ;
 		VFBuf = VertexFaceBuffer ;
 		for( i = 0 ; i < Frame->MeshNum ; i ++, Mesh ++ )
@@ -8268,7 +8268,7 @@ static int _MV1ReMakeNormalFrameBase( MV1_FRAME_BASE *Frame, float SmoothingAngl
 		}
 	}
 
-	// –К‚М–@ђь‚рЌ\’z‚·‚й
+	// йќўгЃ®жі•з·љг‚’ж§‹зЇ‰гЃ™г‚‹
 	FNorm = FaceNormal ;
 	FNInd = FaceNormalIndex ;
 	Mesh = Frame->Mesh ;
@@ -8277,19 +8277,19 @@ static int _MV1ReMakeNormalFrameBase( MV1_FRAME_BASE *Frame, float SmoothingAngl
 		Face = Mesh->Face ;
 		for( j = 0 ; j < Mesh->FaceNum ; j ++, Face ++, FNInd += 3, FNorm ++ )
 		{
-			// Љщ‚ЙЏ€—ќЌП‚Э‚МЏкЌ‡‚Н‰Ѕ‚а‚µ‚И‚ў
+			// ж—ўгЃ«е‡¦зђ†жё€гЃїгЃ®е ґеђ€гЃЇдЅ•г‚‚гЃ—гЃЄгЃ„
 			if( NormalSetFlag[ FNInd[ 0 ] ] &&
 				NormalSetFlag[ FNInd[ 1 ] ] &&
 				NormalSetFlag[ FNInd[ 2 ] ] )
 				continue ;
 
-			// ’ё“_‚Мђ”‚ѕ‚ЇЊJ‚и•Ф‚µ
+			// й ‚з‚№гЃ®ж•°гЃ гЃ‘з№°г‚Љиї”гЃ—
 			for( k = 0 ; k < 3 ; k ++ )
 			{
-				// Љщ‚ЙЊvЋZЌП‚Э‚МЏкЌ‡‚Н‰Ѕ‚а‚µ‚И‚ў
+				// ж—ўгЃ«иЁ€з®—жё€гЃїгЃ®е ґеђ€гЃЇдЅ•г‚‚гЃ—гЃЄгЃ„
 				if( NormalSetFlag[ FNInd[ k ] ] ) continue ;
 
-				// AЊ‹–К‚рѓЉѓXѓgѓAѓbѓv
+				// йЂЈзµђйќўг‚’гѓЄг‚№гѓ€г‚ўгѓѓгѓ—
 				{
 					FaceList[ 0 ] = Face ;
 					FaceNorm = *FNorm ;
@@ -8297,7 +8297,7 @@ static int _MV1ReMakeNormalFrameBase( MV1_FRAME_BASE *Frame, float SmoothingAngl
 					NormalSetFlag[ FNInd[ k ] ] |= 2 ;
 					FaceCount = 1 ;
 
-					// •Р•ы‚МAЊ‹–К‚рѓЉѓXѓgѓAѓbѓv
+					// з‰‡ж–№гЃ®йЂЈзµђйќўг‚’гѓЄг‚№гѓ€г‚ўгѓѓгѓ—
 					CurFace = Face ;
 					CurMesh = Mesh ;
 					BackCurFace = NULL ;
@@ -8311,17 +8311,17 @@ static int _MV1ReMakeNormalFrameBase( MV1_FRAME_BASE *Frame, float SmoothingAngl
 						MPosInd[ 1 ] = -1 ;
 						MPosInd[ 2 ] = -1 ;
 
-						// ЌА•WѓCѓ“ѓfѓbѓNѓX‚рѓZѓbѓg‚µ‚Д‚Ё‚­
+						// еє§жЁ™г‚¤гѓігѓ‡гѓѓг‚Їг‚№г‚’г‚»гѓѓгѓ€гЃ—гЃ¦гЃЉгЃЏ
 						PosInd[ 0 ] = ( int )( ( MV1_MESH_VERTEX * )( ( BYTE * )CurMesh->Vertex + CurMesh->VertUnitSize * CurFace->VertexIndex[ 0 ] ) )->PositionIndex ;
 						PosInd[ 1 ] = ( int )( ( MV1_MESH_VERTEX * )( ( BYTE * )CurMesh->Vertex + CurMesh->VertUnitSize * CurFace->VertexIndex[ 1 ] ) )->PositionIndex ;
 						PosInd[ 2 ] = ( int )( ( MV1_MESH_VERTEX * )( ( BYTE * )CurMesh->Vertex + CurMesh->VertUnitSize * CurFace->VertexIndex[ 2 ] ) )->PositionIndex ;
 
-						// ЌА•W‚рѓZѓbѓg‚µ‚Д‚Ё‚­
+						// еє§жЁ™г‚’г‚»гѓѓгѓ€гЃ—гЃ¦гЃЉгЃЏ
 						Pos[ 0 ] = ( ( MV1_MESH_POSITION * )( ( BYTE * )Frame->Position + Frame->PosUnitSize * PosInd[ 0 ] ) )->Position ;
 						Pos[ 1 ] = ( ( MV1_MESH_POSITION * )( ( BYTE * )Frame->Position + Frame->PosUnitSize * PosInd[ 1 ] ) )->Position ;
 						Pos[ 2 ] = ( ( MV1_MESH_POSITION * )( ( BYTE * )Frame->Position + Frame->PosUnitSize * PosInd[ 2 ] ) )->Position ;
 
-						// –@ђь‚рЉ„‚иЏo‚µ‚Ѕ‚ў’ё“_‚©‚з—ЧђЪ‚µ‚Д‚ў‚й‚©’І‚Ч‚Ѕ‚ў•У‚М’ё“_‚ЦЊь‚©‚¤ѓxѓNѓgѓ‹‚р‚yЃA‚а‚¤•Р•ы‚М’ё“_‚ЦЊь‚©‚¤ѓxѓNѓgѓ‹‚р‚w‚Ж‚µ‚ЅЋOЋІ‚МЌмђ¬
+						// жі•з·љг‚’е‰Іг‚Ље‡єгЃ—гЃџгЃ„й ‚з‚№гЃ‹г‚‰йљЈжЋҐгЃ—гЃ¦гЃ„г‚‹гЃ‹иЄїгЃ№гЃџгЃ„иѕєгЃ®й ‚з‚№гЃёеђ‘гЃ‹гЃ†гѓ™г‚Їгѓ€гѓ«г‚’пјєгЂЃг‚‚гЃ†з‰‡ж–№гЃ®й ‚з‚№гЃёеђ‘гЃ‹гЃ†гѓ™г‚Їгѓ€гѓ«г‚’пјёгЃЁгЃ—гЃџдё‰и»ёгЃ®дЅњж€ђ
 						VectorSub( &zv, &Pos[ ( CurFaceIndex + 1 ) % 3 ], &Pos[ CurFaceIndex % 3 ] ) ;
 						VectorSub( &xv, &Pos[ ( CurFaceIndex + 2 ) % 3 ], &Pos[ CurFaceIndex % 3 ] ) ;
 						VectorOuterProduct( &yv, &zv, &xv ) ;
@@ -8330,7 +8330,7 @@ static int _MV1ReMakeNormalFrameBase( MV1_FRAME_BASE *Frame, float SmoothingAngl
 						VectorNormalize( &yv, &yv ) ;
 						VectorNormalize( &zv, &zv ) ;
 
-						// —ЧђЪ‚µ‚Д‚ў‚й‚©’І‚Ч‚Ѕ‚ў•У‚М’ё“_‚Ж‚Н•К‚М‚а‚¤€к‚В‚М’ё“_‚ЦЊь‚©‚¤ѓxѓNѓgѓ‹‚рЏг‹L‚ЕЋZЏo‚µ‚ЅЋOЋІЏг‚Й“Љ‰e‚µ‚ЅѓxѓNѓgѓ‹‚рЋZЏo
+						// йљЈжЋҐгЃ—гЃ¦гЃ„г‚‹гЃ‹иЄїгЃ№гЃџгЃ„иѕєгЃ®й ‚з‚№гЃЁгЃЇе€ҐгЃ®г‚‚гЃ†дёЂгЃ¤гЃ®й ‚з‚№гЃёеђ‘гЃ‹гЃ†гѓ™г‚Їгѓ€гѓ«г‚’дёЉиЁгЃ§з®—е‡єгЃ—гЃџдё‰и»ёдёЉгЃ«жЉ•еЅ±гЃ—гЃџгѓ™г‚Їгѓ€гѓ«г‚’з®—е‡є
 						VectorSub( &tv, &Pos[ ( CurFaceIndex + 2 ) % 3 ], &Pos[ CurFaceIndex % 3 ] ) ;
 						V1.x = xv.x * tv.x + xv.y * tv.y + xv.z * tv.z ;
 						V1.y = yv.x * tv.x + yv.y * tv.y + yv.z * tv.z ;
@@ -8338,37 +8338,37 @@ static int _MV1ReMakeNormalFrameBase( MV1_FRAME_BASE *Frame, float SmoothingAngl
 						V1.z = 0.0f ;
 						VectorNormalize( &V1, &V1 ) ;
 
-						// “Ї€к‚М•У‚рЋќ‚Вѓ|ѓЉѓSѓ“‚МЊџЌх
+						// еђЊдёЂгЃ®иѕєг‚’жЊЃгЃ¤гѓќгѓЄг‚ґгѓігЃ®ж¤њзґў
 						for( VFBuf = VertexFaceList[ PosInd[ CurFaceIndex % 3 ] ] ; VFBuf ; VFBuf = VFBuf->Next )
 						{
 							FaceT = ( MV1_MESH_FACE * )VFBuf->Face ;
 							TMesh = ( MV1_MESH_BASE * )VFBuf->Mesh ;
 
-							// Љщ‚ЙЊџЏoЌП‚Э‚Мѓ|ѓЉѓSѓ“‚Н–іЋ‹
+							// ж—ўгЃ«ж¤ње‡єжё€гЃїгЃ®гѓќгѓЄг‚ґгѓігЃЇз„Ўи¦–
 							FNInd2 = FaceNormalIndex + ( FaceT - Frame->Mesh->Face ) * 3 ;
 							if( ( NormalSetFlag[ FNInd2[ 0 ] ] & 2 ) ||
 								( NormalSetFlag[ FNInd2[ 1 ] ] & 2 ) ||
 								( NormalSetFlag[ FNInd2[ 2 ] ] & 2 ) ) continue ;
 
-							// Ћ©•ЄЋ©ђg‚©ЃA€к‚В‘O‚ЙЋ©•Є‚ѕ‚Б‚Ѕѓ|ѓЉѓSѓ“‚Н–іЋ‹
+							// и‡Єе€†и‡Єиє«гЃ‹гЂЃдёЂгЃ¤е‰ЌгЃ«и‡Єе€†гЃ гЃЈгЃџгѓќгѓЄг‚ґгѓігЃЇз„Ўи¦–
 							if( FaceT == CurFace || FaceT == BackCurFace ) continue ;
 
-							// ЌА•WѓCѓ“ѓfѓbѓNѓX‚рѓZѓbѓg‚µ‚Д‚Ё‚­
+							// еє§жЁ™г‚¤гѓігѓ‡гѓѓг‚Їг‚№г‚’г‚»гѓѓгѓ€гЃ—гЃ¦гЃЉгЃЏ
 							TPosInd[ 0 ] = ( int )( ( MV1_MESH_VERTEX * )( ( BYTE * )TMesh->Vertex + TMesh->VertUnitSize * FaceT->VertexIndex[ 0 ] ) )->PositionIndex ;
 							TPosInd[ 1 ] = ( int )( ( MV1_MESH_VERTEX * )( ( BYTE * )TMesh->Vertex + TMesh->VertUnitSize * FaceT->VertexIndex[ 1 ] ) )->PositionIndex ;
 							TPosInd[ 2 ] = ( int )( ( MV1_MESH_VERTEX * )( ( BYTE * )TMesh->Vertex + TMesh->VertUnitSize * FaceT->VertexIndex[ 2 ] ) )->PositionIndex ;
 
-							// ЌА•W‚рѓZѓbѓg‚µ‚Д‚Ё‚­
+							// еє§жЁ™г‚’г‚»гѓѓгѓ€гЃ—гЃ¦гЃЉгЃЏ
 							TPos[ 0 ] = ( ( MV1_MESH_POSITION * )( ( BYTE * )Frame->Position + Frame->PosUnitSize * TPosInd[ 0 ] ) )->Position ;
 							TPos[ 1 ] = ( ( MV1_MESH_POSITION * )( ( BYTE * )Frame->Position + Frame->PosUnitSize * TPosInd[ 1 ] ) )->Position ;
 							TPos[ 2 ] = ( ( MV1_MESH_POSITION * )( ( BYTE * )Frame->Position + Frame->PosUnitSize * TPosInd[ 2 ] ) )->Position ;
 
-							// ’ё“_‚Мђ”‚ѕ‚ЇЊJ‚и•Ф‚µ
+							// й ‚з‚№гЃ®ж•°гЃ гЃ‘з№°г‚Љиї”гЃ—
 							for( m = 0 ; m < 3 ; m ++ )
 							{
 								CmpFlag = 0 ;
 
-								// “Ї‚¶•У‚рЋќ‚В‚©’І‚Ч‚йЃA’ё“_Ћw’и‚МЏ‡”Ф‚©‚з–К‚М•ыЊь‚р’І‚Ч‚й
+								// еђЊгЃиѕєг‚’жЊЃгЃ¤гЃ‹иЄїгЃ№г‚‹гЂЃй ‚з‚№жЊ‡е®љгЃ®й †з•ЄгЃ‹г‚‰йќўгЃ®ж–№еђ‘г‚’иЄїгЃ№г‚‹
 								if( PosInd[ CurFaceIndex         % 3 ] == TPosInd[ m         % 3 ] &&
 									PosInd[ ( CurFaceIndex + 1 ) % 3 ] == TPosInd[ ( m + 1 ) % 3 ] )
 								{
@@ -8383,36 +8383,36 @@ static int _MV1ReMakeNormalFrameBase( MV1_FRAME_BASE *Frame, float SmoothingAngl
 									FaceUra = 0 ;
 								}
 
-								// ѓJѓЊѓ“ѓg–К‚Ж“Ї€к‚М’ё“_‚рЋg—p‚·‚й‚P‚W‚O“x‰с“]‚µ‚Ѕ–К( ѓJѓЊѓ“ѓg–К‚М— –К )‚ѕ‚Б‚Ѕ‚зЊџЏo‚µ‚Ѕ‚±‚Ж‚р–і‚©‚Б‚Ѕ‚±‚Ж‚Й‚·‚й
+								// г‚«гѓ¬гѓігѓ€йќўгЃЁеђЊдёЂгЃ®й ‚з‚№г‚’дЅїз”ЁгЃ™г‚‹пј‘пјпјђеє¦е›ћи»ўгЃ—гЃџйќў( г‚«гѓ¬гѓігѓ€йќўгЃ®иЈЏйќў )гЃ гЃЈгЃџг‚‰ж¤ње‡єгЃ—гЃџгЃ“гЃЁг‚’з„ЎгЃ‹гЃЈгЃџгЃ“гЃЁгЃ«гЃ™г‚‹
 								if( CmpFlag == 1 && PosInd[ ( CurFaceIndex + 2 ) % 3 ] == TPosInd[ ( m + 2 ) % 3 ] )
 								{
 									CmpFlag = 0 ;
 								}
 
-								// “Ї€к‚М•У‚ЄЊ©‚В‚©‚Б‚Ѕ‚зѓ‹Ѓ[ѓv‚р”І‚Ї‚й
+								// еђЊдёЂгЃ®иѕєгЃЊи¦‹гЃ¤гЃ‹гЃЈгЃџг‚‰гѓ«гѓјгѓ—г‚’жЉњгЃ‘г‚‹
 								if( CmpFlag != 0 ) break ;
 							}
 
-							// “Ї€к‚М•У‚ЄЊ©‚В‚©‚Б‚Ѕ‚зЏ€—ќ
+							// еђЊдёЂгЃ®иѕєгЃЊи¦‹гЃ¤гЃ‹гЃЈгЃџг‚‰е‡¦зђ†
 							if( m != 3 )
 							{
-								// Њ©‚В‚Ї‚Ѕѓ|ѓЉѓSѓ“‚МЃA“Ї€к‚М•У‚рђ¬‚·’ё“_‚Ж‚Н•К‚М‚а‚¤€к‚В‚М’ё“_‚ЦЊь‚©‚¤ѓxѓNѓgѓ‹‚рђж‚ЙЋZЏo‚µ‚ЅЋOЋІ‚Ц“Љ‰e‚µ‚ЅѓxѓNѓgѓ‹‚рЋZЏo‚·‚й
+								// и¦‹гЃ¤гЃ‘гЃџгѓќгѓЄг‚ґгѓігЃ®гЂЃеђЊдёЂгЃ®иѕєг‚’ж€ђгЃ™й ‚з‚№гЃЁгЃЇе€ҐгЃ®г‚‚гЃ†дёЂгЃ¤гЃ®й ‚з‚№гЃёеђ‘гЃ‹гЃ†гѓ™г‚Їгѓ€гѓ«г‚’е…€гЃ«з®—е‡єгЃ—гЃџдё‰и»ёгЃёжЉ•еЅ±гЃ—гЃџгѓ™г‚Їгѓ€гѓ«г‚’з®—е‡єгЃ™г‚‹
 								VectorSub( &tv, &TPos[ ( m + 2 ) % 3 ], &Pos[ CurFaceIndex % 3 ] ) ;
 								V2.x = xv.x * tv.x + xv.y * tv.y + xv.z * tv.z ;
 								V2.y = yv.x * tv.x + yv.y * tv.y + yv.z * tv.z ;
 								V2.z = zv.x * tv.x + zv.y * tv.y + zv.z * tv.z ;
 								V2.z = 0.0f ;
 
-								// “с‚В‚М–К‚рђ^‰Ў‚©‚зЊ©‚Ѕ‚Ж‚«‚Й‚Е‚«‚йђь‚Єђ¬‚·Љp‚МѓRѓTѓCѓ“’l‚р’І‚Ч‚й
-								// ( ѓJѓЊѓ“ѓg–К‚М•\Њь‚«•ыЊь‚Й‰с“]‚µ‚Ѕ‚Ж‚«‚Й“с•У‚Єђ¬‚·Љp‚МЉp“x‚р’І‚Ч‚й )
+								// дєЊгЃ¤гЃ®йќўг‚’зњџжЁЄгЃ‹г‚‰и¦‹гЃџгЃЁгЃЌгЃ«гЃ§гЃЌг‚‹з·љгЃЊж€ђгЃ™и§’гЃ®г‚іг‚µг‚¤гѓіеЂ¤г‚’иЄїгЃ№г‚‹
+								// ( г‚«гѓ¬гѓігѓ€йќўгЃ®иЎЁеђ‘гЃЌж–№еђ‘гЃ«е›ћи»ўгЃ—гЃџгЃЁгЃЌгЃ«дєЊиѕєгЃЊж€ђгЃ™и§’гЃ®и§’еє¦г‚’иЄїгЃ№г‚‹ )
 								{
-									// ЉOђП‚рЋg‚Б‚Д‚P‚W‚O“x€ИЏг‚©‚З‚¤‚©‚р”»’и
+									// е¤–з©Ќг‚’дЅїгЃЈгЃ¦пј‘пјпјђеє¦д»ҐдёЉгЃ‹гЃ©гЃ†гЃ‹г‚’е€¤е®љ
 									VectorOuterProduct( &tv, &V1, &V2 ) ;
 									VectorNormalize( &V2, &V2 ) ;
 									if( tv.z < 0.0f )
 									{
-										// ‚P‚W‚O“x€ИЏг‚ѕ‚Б‚ЅЏкЌ‡‚Н‚P‚W‚O“x€ИЏг‚ѕ‚Б‚Ѕ‚±‚Ж‚р‹L^‚µ‚ЅЏг‚Е
-										// ѓJѓЊѓ“ѓg–К‘¤‚МѓxѓNѓgѓ‹‚р‹t“]‚µ‚Д“ађП‚р‹Ѓ‚Я‚й( ѓRѓTѓCѓ“’l‚р‹Ѓ‚Я‚й )
+										// пј‘пјпјђеє¦д»ҐдёЉгЃ гЃЈгЃџе ґеђ€гЃЇпј‘пјпјђеє¦д»ҐдёЉгЃ гЃЈгЃџгЃ“гЃЁг‚’иЁйЊІгЃ—гЃџдёЉгЃ§
+										// г‚«гѓ¬гѓігѓ€йќўеЃґгЃ®гѓ™г‚Їгѓ€гѓ«г‚’йЂ†и»ўгЃ—гЃ¦е†…з©Ќг‚’ж±‚г‚Ѓг‚‹( г‚іг‚µг‚¤гѓіеЂ¤г‚’ж±‚г‚Ѓг‚‹ )
 										FaceRadi = -1.0f ;
 										FaceRadi2Use = 1 ;
 										V3.x = -V1.x ;
@@ -8422,16 +8422,16 @@ static int _MV1ReMakeNormalFrameBase( MV1_FRAME_BASE *Frame, float SmoothingAngl
 									}
 									else
 									{
-										// ‚P‚W‚O“x€И‰є‚ѕ‚Б‚ЅЏкЌ‡‚Н‚»‚М‚Ь‚Ь“с‚В‚Мђь‚М“ађП‚р‹Ѓ‚Я‚й( ѓRѓTѓCѓ“’l‚р‹Ѓ‚Я‚й )
+										// пј‘пјпјђеє¦д»Ґдё‹гЃ гЃЈгЃџе ґеђ€гЃЇгЃќгЃ®гЃѕгЃѕдєЊгЃ¤гЃ®з·љгЃ®е†…з©Ќг‚’ж±‚г‚Ѓг‚‹( г‚іг‚µг‚¤гѓіеЂ¤г‚’ж±‚г‚Ѓг‚‹ )
 										FaceRadi = VectorInnerProduct( &V1, &V2 ) ;
 										FaceRadi2Use = 0 ;
 										FaceRadi2 = 1.0f ;
 									}
 								}
 
-								// ‚Ь‚ѕ—ЧђЪ‚·‚й–К‚рЊ©‚В‚Ї‚Д‚ў‚И‚ў‚©
-								// Љщ‚ЙЊ©‚В‚Ї‚Д‚ў‚й‚ЄЌЎ‰с‚М–К‚М— –К‚©
-								// Љщ‚ЙЊ©‚В‚Ї‚Д‚ў‚й—ЧђЪ–К‚ж‚и‚аЉp“x“I‚Й‹Я‚ў–К‚ѕ‚Б‚Ѕ‚з—ЧђЪ–К‚Ж‚µ‚Д‹L^‚·‚й
+								// гЃѕгЃ йљЈжЋҐгЃ™г‚‹йќўг‚’и¦‹гЃ¤гЃ‘гЃ¦гЃ„гЃЄгЃ„гЃ‹
+								// ж—ўгЃ«и¦‹гЃ¤гЃ‘гЃ¦гЃ„г‚‹гЃЊд»Ље›ћгЃ®йќўгЃ®иЈЏйќўгЃ‹
+								// ж—ўгЃ«и¦‹гЃ¤гЃ‘гЃ¦гЃ„г‚‹йљЈжЋҐйќўг‚€г‚Љг‚‚и§’еє¦зљ„гЃ«иї‘гЃ„йќўгЃ гЃЈгЃџг‚‰йљЈжЋҐйќўгЃЁгЃ—гЃ¦иЁйЊІгЃ™г‚‹
 								if( MinFace == NULL ||
 									( ( ( TPosInd[ 0 ] == MPosInd[ 0 ] &&
 										  TPosInd[ 1 ] == MPosInd[ 2 ] &&
@@ -8462,32 +8462,32 @@ static int _MV1ReMakeNormalFrameBase( MV1_FRAME_BASE *Frame, float SmoothingAngl
 							}
 						}
 
-						// —ЧђЪ–К‚р”­Њ©‚Е‚«‚И‚©‚Б‚Ѕ‚©ЃA—ЧђЪ–К‚Є— –К‚ѕ‚Б‚Ѕ‚©ЃA—ЧђЪ–К‚Ж‚М–@ђь‚МЉp“xЌ·‚ЄѓXѓЂЃ[ѓWѓ“ѓO‘ОЏЫ‚Ми‡’l‚р’ґ‚¦‚Д‚ў‚Ѕ‚зѓGѓbѓW‚Ж‚Э‚И‚·
+						// йљЈжЋҐйќўг‚’з™єи¦‹гЃ§гЃЌгЃЄгЃ‹гЃЈгЃџгЃ‹гЂЃйљЈжЋҐйќўгЃЊиЈЏйќўгЃ гЃЈгЃџгЃ‹гЂЃйљЈжЋҐйќўгЃЁгЃ®жі•з·љгЃ®и§’еє¦е·®гЃЊг‚№гѓ гѓјг‚ёгѓіг‚°еЇѕи±ЎгЃ®й–ѕеЂ¤г‚’и¶…гЃ€гЃ¦гЃ„гЃџг‚‰г‚Ёгѓѓг‚ёгЃЁгЃїгЃЄгЃ™
 						if( MinFace == NULL || MinFaceUra || VectorInnerProduct( FaceNormal + ( MinFace - Frame->Mesh->Face ), FaceNormal + ( CurFace - Frame->Mesh->Face ) ) < SmoothCos )
 							break ;
 
-						// ”­Њ©‚µ‚Ѕ—ЧђЪ–К‚ЄЊџЌхЉJЋn‚М–К‚ѕ‚Б‚ЅЏкЌ‡‚Н€кЋь‚µ‚Ѕ‚Ж‚ў‚¤‚±‚Ж
+						// з™єи¦‹гЃ—гЃџйљЈжЋҐйќўгЃЊж¤њзґўй–‹е§‹гЃ®йќўгЃ гЃЈгЃџе ґеђ€гЃЇдёЂе‘ЁгЃ—гЃџгЃЁгЃ„гЃ†гЃ“гЃЁ
 						if( MinFace == FaceList[ 0 ] )
 						{
 							Issyuu = 1 ;
 							break ;
 						}
 
-						// Љm’и‚µ‚Ѕ—ЧђЪ–К‚р‹L^
+						// зўєе®љгЃ—гЃџйљЈжЋҐйќўг‚’иЁйЊІ
 						FaceList[ FaceCount ] = MinFace ;
 						FaceIndex[ FaceCount ] = ( BYTE )MinFaceIndex ;
 						VectorAdd( &FaceNorm, &FaceNorm, FaceNormal + ( MinFace - Frame->Mesh->Face ) ) ;
 						NormalSetFlag[ MFNInd[ MinFaceIndex ] ] |= 2 ;
 						FaceCount ++ ;
 
-						// ѓJѓЊѓ“ѓg–К‚М•ПЌX
+						// г‚«гѓ¬гѓігѓ€йќўгЃ®е¤‰ж›ґ
 						BackCurFace = CurFace ;
 						CurMesh = MinMesh ;
 						CurFace = MinFace ;
 						CurFaceIndex = MinFaceIndex ;
 					}
 
-					// ‚а‚¤•Р•ы‚МAЊ‹–К‚рѓЉѓXѓgѓAѓbѓv
+					// г‚‚гЃ†з‰‡ж–№гЃ®йЂЈзµђйќўг‚’гѓЄг‚№гѓ€г‚ўгѓѓгѓ—
 					if( Issyuu == 0 )
 					{
 						BackCurFace = NULL ;
@@ -8502,17 +8502,17 @@ static int _MV1ReMakeNormalFrameBase( MV1_FRAME_BASE *Frame, float SmoothingAngl
 							MPosInd[ 1 ] = -1 ;
 							MPosInd[ 2 ] = -1 ;
 
-							// ЌА•WѓCѓ“ѓfѓbѓNѓX‚рѓZѓbѓg‚µ‚Д‚Ё‚­
+							// еє§жЁ™г‚¤гѓігѓ‡гѓѓг‚Їг‚№г‚’г‚»гѓѓгѓ€гЃ—гЃ¦гЃЉгЃЏ
 							PosInd[ 0 ] = ( int )( ( MV1_MESH_VERTEX * )( ( BYTE * )CurMesh->Vertex + CurMesh->VertUnitSize * CurFace->VertexIndex[ 0 ] ) )->PositionIndex ;
 							PosInd[ 1 ] = ( int )( ( MV1_MESH_VERTEX * )( ( BYTE * )CurMesh->Vertex + CurMesh->VertUnitSize * CurFace->VertexIndex[ 1 ] ) )->PositionIndex ;
 							PosInd[ 2 ] = ( int )( ( MV1_MESH_VERTEX * )( ( BYTE * )CurMesh->Vertex + CurMesh->VertUnitSize * CurFace->VertexIndex[ 2 ] ) )->PositionIndex ;
 
-							// ЌА•W‚рѓZѓbѓg‚µ‚Д‚Ё‚­
+							// еє§жЁ™г‚’г‚»гѓѓгѓ€гЃ—гЃ¦гЃЉгЃЏ
 							Pos[ 0 ] = ( ( MV1_MESH_POSITION * )( ( BYTE * )Frame->Position + Frame->PosUnitSize * PosInd[ 0 ] ) )->Position ;
 							Pos[ 1 ] = ( ( MV1_MESH_POSITION * )( ( BYTE * )Frame->Position + Frame->PosUnitSize * PosInd[ 1 ] ) )->Position ;
 							Pos[ 2 ] = ( ( MV1_MESH_POSITION * )( ( BYTE * )Frame->Position + Frame->PosUnitSize * PosInd[ 2 ] ) )->Position ;
 
-							// –@ђь‚рЉ„‚иЏo‚µ‚Ѕ‚ў’ё“_‚©‚з—ЧђЪ‚µ‚Д‚ў‚й‚©’І‚Ч‚Ѕ‚ў•У‚М’ё“_‚ЦЊь‚©‚¤ѓxѓNѓgѓ‹‚р‚yЃA‚а‚¤•Р•ы‚М’ё“_‚ЦЊь‚©‚¤ѓxѓNѓgѓ‹‚р‚w‚Ж‚µ‚Ѕ‚RЋІѓxѓNѓgѓ‹‚МЌмђ¬
+							// жі•з·љг‚’е‰Іг‚Ље‡єгЃ—гЃџгЃ„й ‚з‚№гЃ‹г‚‰йљЈжЋҐгЃ—гЃ¦гЃ„г‚‹гЃ‹иЄїгЃ№гЃџгЃ„иѕєгЃ®й ‚з‚№гЃёеђ‘гЃ‹гЃ†гѓ™г‚Їгѓ€гѓ«г‚’пјєгЂЃг‚‚гЃ†з‰‡ж–№гЃ®й ‚з‚№гЃёеђ‘гЃ‹гЃ†гѓ™г‚Їгѓ€гѓ«г‚’пјёгЃЁгЃ—гЃџпј“и»ёгѓ™г‚Їгѓ€гѓ«гЃ®дЅњж€ђ
 							VectorSub( &zv, &Pos[ ( CurFaceIndex + 3 - 1 ) % 3 ], &Pos[ CurFaceIndex % 3 ] ) ;
 							VectorSub( &xv, &Pos[ ( CurFaceIndex + 3 - 2 ) % 3 ], &Pos[ CurFaceIndex % 3 ] ) ;
 							VectorOuterProduct( &yv, &zv, &xv ) ;
@@ -8521,7 +8521,7 @@ static int _MV1ReMakeNormalFrameBase( MV1_FRAME_BASE *Frame, float SmoothingAngl
 							VectorNormalize( &yv, &yv ) ;
 							VectorNormalize( &zv, &zv ) ;
 
-							// —ЧђЪ‚µ‚Д‚ў‚й‚©’І‚Ч‚Ѕ‚ў•У‚М’ё“_‚Ж‚Н•К‚М‚а‚¤€к‚В‚М’ё“_‚ЦЊь‚©‚¤ѓxѓNѓgѓ‹‚рЏг‹L‚ЕЋZЏo‚µ‚ЅЋOЋІЏг‚Й“Љ‰e‚µ‚ЅѓxѓNѓgѓ‹‚рЋZЏo
+							// йљЈжЋҐгЃ—гЃ¦гЃ„г‚‹гЃ‹иЄїгЃ№гЃџгЃ„иѕєгЃ®й ‚з‚№гЃЁгЃЇе€ҐгЃ®г‚‚гЃ†дёЂгЃ¤гЃ®й ‚з‚№гЃёеђ‘гЃ‹гЃ†гѓ™г‚Їгѓ€гѓ«г‚’дёЉиЁгЃ§з®—е‡єгЃ—гЃџдё‰и»ёдёЉгЃ«жЉ•еЅ±гЃ—гЃџгѓ™г‚Їгѓ€гѓ«г‚’з®—е‡є
 							VectorSub( &tv, &Pos[ ( CurFaceIndex + 3 - 2 ) % 3 ], &Pos[ CurFaceIndex % 3 ] ) ;
 							V1.x = xv.x * tv.x + xv.y * tv.y + xv.z * tv.z ;
 							V1.y = yv.x * tv.x + yv.y * tv.y + yv.z * tv.z ;
@@ -8529,37 +8529,37 @@ static int _MV1ReMakeNormalFrameBase( MV1_FRAME_BASE *Frame, float SmoothingAngl
 							V1.z = 0.0f ;
 							VectorNormalize( &V1, &V1 ) ;
 
-							// “Ї€к‚М•У‚рЋќ‚Вѓ|ѓЉѓSѓ“‚МЊџЌх
+							// еђЊдёЂгЃ®иѕєг‚’жЊЃгЃ¤гѓќгѓЄг‚ґгѓігЃ®ж¤њзґў
 							for( VFBuf = VertexFaceList[ PosInd[ CurFaceIndex % 3 ] ] ; VFBuf ; VFBuf = VFBuf->Next )
 							{
 								FaceT = ( MV1_MESH_FACE * )VFBuf->Face ;
 								TMesh = ( MV1_MESH_BASE * )VFBuf->Mesh ;
 
-								// Љщ‚ЙЊџЏoЌП‚Э‚Мѓ|ѓЉѓSѓ“‚Н–іЋ‹
+								// ж—ўгЃ«ж¤ње‡єжё€гЃїгЃ®гѓќгѓЄг‚ґгѓігЃЇз„Ўи¦–
 								FNInd2 = FaceNormalIndex + ( FaceT - Frame->Mesh->Face ) * 3 ;
 								if( ( NormalSetFlag[ FNInd2[ 0 ] ] & 2 ) ||
 									( NormalSetFlag[ FNInd2[ 1 ] ] & 2 ) ||
 									( NormalSetFlag[ FNInd2[ 2 ] ] & 2 ) ) continue ;
 
-								// Ћ©•ЄЋ©ђg‚©ЃA€к‚В‘O‚ЙЋ©•Є‚ѕ‚Б‚Ѕѓ|ѓЉѓSѓ“‚Н–іЋ‹
+								// и‡Єе€†и‡Єиє«гЃ‹гЂЃдёЂгЃ¤е‰ЌгЃ«и‡Єе€†гЃ гЃЈгЃџгѓќгѓЄг‚ґгѓігЃЇз„Ўи¦–
 								if( FaceT == CurFace || FaceT == BackCurFace ) continue ;
 
-								// ЌА•WѓCѓ“ѓfѓbѓNѓX‚рѓZѓbѓg‚µ‚Д‚Ё‚­
+								// еє§жЁ™г‚¤гѓігѓ‡гѓѓг‚Їг‚№г‚’г‚»гѓѓгѓ€гЃ—гЃ¦гЃЉгЃЏ
 								TPosInd[ 0 ] = ( int )( ( MV1_MESH_VERTEX * )( ( BYTE * )TMesh->Vertex + TMesh->VertUnitSize * FaceT->VertexIndex[ 0 ] ) )->PositionIndex ;
 								TPosInd[ 1 ] = ( int )( ( MV1_MESH_VERTEX * )( ( BYTE * )TMesh->Vertex + TMesh->VertUnitSize * FaceT->VertexIndex[ 1 ] ) )->PositionIndex ;
 								TPosInd[ 2 ] = ( int )( ( MV1_MESH_VERTEX * )( ( BYTE * )TMesh->Vertex + TMesh->VertUnitSize * FaceT->VertexIndex[ 2 ] ) )->PositionIndex ;
 
-								// ЌА•W‚рѓZѓbѓg‚µ‚Д‚Ё‚­
+								// еє§жЁ™г‚’г‚»гѓѓгѓ€гЃ—гЃ¦гЃЉгЃЏ
 								TPos[ 0 ] = ( ( MV1_MESH_POSITION * )( ( BYTE * )Frame->Position + Frame->PosUnitSize * TPosInd[ 0 ] ) )->Position ;
 								TPos[ 1 ] = ( ( MV1_MESH_POSITION * )( ( BYTE * )Frame->Position + Frame->PosUnitSize * TPosInd[ 1 ] ) )->Position ;
 								TPos[ 2 ] = ( ( MV1_MESH_POSITION * )( ( BYTE * )Frame->Position + Frame->PosUnitSize * TPosInd[ 2 ] ) )->Position ;
 
-								// ’ё“_‚Мђ”‚ѕ‚ЇЊJ‚и•Ф‚µ
+								// й ‚з‚№гЃ®ж•°гЃ гЃ‘з№°г‚Љиї”гЃ—
 								for( m = 0 ; m < 3 ; m ++ )
 								{
 									CmpFlag = 0 ;
 
-									// “Ї‚¶•У‚рЋќ‚В‚©’І‚Ч‚йЃA’ё“_Ћw’и‚МЏ‡”Ф‚©‚з–К‚М•ыЊь‚р’І‚Ч‚й
+									// еђЊгЃиѕєг‚’жЊЃгЃ¤гЃ‹иЄїгЃ№г‚‹гЂЃй ‚з‚№жЊ‡е®љгЃ®й †з•ЄгЃ‹г‚‰йќўгЃ®ж–№еђ‘г‚’иЄїгЃ№г‚‹
 									if( PosInd[ CurFaceIndex             % 3 ] == TPosInd[ m             % 3 ] &&
 										PosInd[ ( CurFaceIndex + 3 - 1 ) % 3 ] == TPosInd[ ( m + 3 - 1 ) % 3 ] )
 									{
@@ -8574,36 +8574,36 @@ static int _MV1ReMakeNormalFrameBase( MV1_FRAME_BASE *Frame, float SmoothingAngl
 										FaceUra = 0 ;
 									}
 
-									// ѓJѓЊѓ“ѓg–К‚Ж“Ї€к‚М’ё“_‚рЋg—p‚·‚й‚P‚W‚O“x‰с“]‚µ‚Ѕ–К( ѓJѓЊѓ“ѓg–К‚М— –К )‚ѕ‚Б‚Ѕ‚зЊџЏo‚µ‚Ѕ‚±‚Ж‚р–і‚©‚Б‚Ѕ‚±‚Ж‚Й‚·‚й
+									// г‚«гѓ¬гѓігѓ€йќўгЃЁеђЊдёЂгЃ®й ‚з‚№г‚’дЅїз”ЁгЃ™г‚‹пј‘пјпјђеє¦е›ћи»ўгЃ—гЃџйќў( г‚«гѓ¬гѓігѓ€йќўгЃ®иЈЏйќў )гЃ гЃЈгЃџг‚‰ж¤ње‡єгЃ—гЃџгЃ“гЃЁг‚’з„ЎгЃ‹гЃЈгЃџгЃ“гЃЁгЃ«гЃ™г‚‹
 									if( CmpFlag == 1 && PosInd[ ( CurFaceIndex + 3 - 2 ) % 3 ] == TPosInd[ ( m + 3 - 2 ) % 3 ] )
 									{
 										CmpFlag = 0 ;
 									}
 
-									// “Ї€к‚М•У‚ЄЊ©‚В‚©‚Б‚Ѕ‚зѓ‹Ѓ[ѓv‚р”І‚Ї‚й
+									// еђЊдёЂгЃ®иѕєгЃЊи¦‹гЃ¤гЃ‹гЃЈгЃџг‚‰гѓ«гѓјгѓ—г‚’жЉњгЃ‘г‚‹
 									if( CmpFlag != 0 ) break ;
 								}
 
-								// “Ї€к‚М•У‚ЄЊ©‚В‚©‚Б‚Ѕ‚зЏ€—ќ
+								// еђЊдёЂгЃ®иѕєгЃЊи¦‹гЃ¤гЃ‹гЃЈгЃџг‚‰е‡¦зђ†
 								if( m != 3 )
 								{
-									// Њ©‚В‚Ї‚Ѕѓ|ѓЉѓSѓ“‚МЃA“Ї€к‚М•У‚рђ¬‚·’ё“_‚Ж‚Н•К‚М‚а‚¤€к‚В‚М’ё“_‚ЦЊь‚©‚¤ѓxѓNѓgѓ‹‚рђж‚ЙЋZЏo‚µ‚ЅЋOЋІ‚Ц“Љ‰e‚µ‚ЅѓxѓNѓgѓ‹‚рЋZЏo‚·‚й
+									// и¦‹гЃ¤гЃ‘гЃџгѓќгѓЄг‚ґгѓігЃ®гЂЃеђЊдёЂгЃ®иѕєг‚’ж€ђгЃ™й ‚з‚№гЃЁгЃЇе€ҐгЃ®г‚‚гЃ†дёЂгЃ¤гЃ®й ‚з‚№гЃёеђ‘гЃ‹гЃ†гѓ™г‚Їгѓ€гѓ«г‚’е…€гЃ«з®—е‡єгЃ—гЃџдё‰и»ёгЃёжЉ•еЅ±гЃ—гЃџгѓ™г‚Їгѓ€гѓ«г‚’з®—е‡єгЃ™г‚‹
 									VectorSub( &tv, &TPos[ ( m + 3 - 2 ) % 3 ], &Pos[ CurFaceIndex % 3 ] ) ;
 									V2.x = xv.x * tv.x + xv.y * tv.y + xv.z * tv.z ;
 									V2.y = yv.x * tv.x + yv.y * tv.y + yv.z * tv.z ;
 									V2.z = zv.x * tv.x + zv.y * tv.y + zv.z * tv.z ;
 									V2.z = 0.0f ;
 
-									// “с‚В‚М–К‚рђ^‰Ў‚©‚зЊ©‚Ѕ‚Ж‚«‚Й‚Е‚«‚йђь‚Єђ¬‚·Љp‚МѓRѓTѓCѓ“’l‚р’І‚Ч‚й
-									// ( ѓJѓЊѓ“ѓg–К‚М•\Њь‚«•ыЊь‚Й‰с“]‚µ‚Ѕ‚Ж‚«‚Й“с•У‚Єђ¬‚·Љp‚МЉp“x‚р’І‚Ч‚й )
+									// дєЊгЃ¤гЃ®йќўг‚’зњџжЁЄгЃ‹г‚‰и¦‹гЃџгЃЁгЃЌгЃ«гЃ§гЃЌг‚‹з·љгЃЊж€ђгЃ™и§’гЃ®г‚іг‚µг‚¤гѓіеЂ¤г‚’иЄїгЃ№г‚‹
+									// ( г‚«гѓ¬гѓігѓ€йќўгЃ®иЎЁеђ‘гЃЌж–№еђ‘гЃ«е›ћи»ўгЃ—гЃџгЃЁгЃЌгЃ«дєЊиѕєгЃЊж€ђгЃ™и§’гЃ®и§’еє¦г‚’иЄїгЃ№г‚‹ )
 									{
-										// ЉOђП‚рЋg‚Б‚Д‚P‚W‚O“x€ИЏг‚©‚З‚¤‚©‚р”»’и
+										// е¤–з©Ќг‚’дЅїгЃЈгЃ¦пј‘пјпјђеє¦д»ҐдёЉгЃ‹гЃ©гЃ†гЃ‹г‚’е€¤е®љ
 										VectorOuterProduct( &tv, &V1, &V2 ) ;
 										VectorNormalize( &V2, &V2 ) ;
 										if( tv.z > 0.0f )
 										{
-											// ‚P‚W‚O“x€ИЏг‚ѕ‚Б‚ЅЏкЌ‡‚Н‚P‚W‚O“x€ИЏг‚ѕ‚Б‚Ѕ‚±‚Ж‚р‹L^‚µ‚ЅЏг‚Е
-											// ѓJѓЊѓ“ѓg–К‘¤‚МѓxѓNѓgѓ‹‚р‹t“]‚µ‚Д“ађП‚р‹Ѓ‚Я‚й( ѓRѓTѓCѓ“’l‚р‹Ѓ‚Я‚й )
+											// пј‘пјпјђеє¦д»ҐдёЉгЃ гЃЈгЃџе ґеђ€гЃЇпј‘пјпјђеє¦д»ҐдёЉгЃ гЃЈгЃџгЃ“гЃЁг‚’иЁйЊІгЃ—гЃџдёЉгЃ§
+											// г‚«гѓ¬гѓігѓ€йќўеЃґгЃ®гѓ™г‚Їгѓ€гѓ«г‚’йЂ†и»ўгЃ—гЃ¦е†…з©Ќг‚’ж±‚г‚Ѓг‚‹( г‚іг‚µг‚¤гѓіеЂ¤г‚’ж±‚г‚Ѓг‚‹ )
 											FaceRadi = -1.0f ;
 											FaceRadi2Use = 1 ;
 											V3.x = -V1.x ;
@@ -8613,16 +8613,16 @@ static int _MV1ReMakeNormalFrameBase( MV1_FRAME_BASE *Frame, float SmoothingAngl
 										}
 										else
 										{
-											// ‚P‚W‚O“x€И‰є‚ѕ‚Б‚ЅЏкЌ‡‚Н‚»‚М‚Ь‚Ь“с‚В‚Мђь‚М“ађП‚р‹Ѓ‚Я‚й( ѓRѓTѓCѓ“’l‚р‹Ѓ‚Я‚й )
+											// пј‘пјпјђеє¦д»Ґдё‹гЃ гЃЈгЃџе ґеђ€гЃЇгЃќгЃ®гЃѕгЃѕдєЊгЃ¤гЃ®з·љгЃ®е†…з©Ќг‚’ж±‚г‚Ѓг‚‹( г‚іг‚µг‚¤гѓіеЂ¤г‚’ж±‚г‚Ѓг‚‹ )
 											FaceRadi = VectorInnerProduct( &V1, &V2 ) ;
 											FaceRadi2Use = 0 ;
 											FaceRadi2 = 1.0f ;
 										}
 									}
 
-									// ‚Ь‚ѕ—ЧђЪ‚·‚й–К‚рЊ©‚В‚Ї‚Д‚ў‚И‚ў‚©
-									// Љщ‚ЙЊ©‚В‚Ї‚Д‚ў‚й‚ЄЌЎ‰с‚М–К‚М— –К‚©
-									// Љщ‚ЙЊ©‚В‚Ї‚Д‚ў‚й—ЧђЪ–К‚ж‚и‚аЉp“x“I‚Й‹Я‚ў–К‚ѕ‚Б‚Ѕ‚з—ЧђЪ–К‚Ж‚µ‚Д‹L^‚·‚й
+									// гЃѕгЃ йљЈжЋҐгЃ™г‚‹йќўг‚’и¦‹гЃ¤гЃ‘гЃ¦гЃ„гЃЄгЃ„гЃ‹
+									// ж—ўгЃ«и¦‹гЃ¤гЃ‘гЃ¦гЃ„г‚‹гЃЊд»Ље›ћгЃ®йќўгЃ®иЈЏйќўгЃ‹
+									// ж—ўгЃ«и¦‹гЃ¤гЃ‘гЃ¦гЃ„г‚‹йљЈжЋҐйќўг‚€г‚Љг‚‚и§’еє¦зљ„гЃ«иї‘гЃ„йќўгЃ гЃЈгЃџг‚‰йљЈжЋҐйќўгЃЁгЃ—гЃ¦иЁйЊІгЃ™г‚‹
 									if( MinFace == NULL ||
 										( ( ( TPosInd[ 0 ] == MPosInd[ 0 ] &&
 											  TPosInd[ 1 ] == MPosInd[ 2 ] &&
@@ -8653,25 +8653,25 @@ static int _MV1ReMakeNormalFrameBase( MV1_FRAME_BASE *Frame, float SmoothingAngl
 								}
 							}
 
-							// —ЧђЪ–К‚р”­Њ©‚Е‚«‚И‚©‚Б‚Ѕ‚©ЃA—ЧђЪ–К‚Є— –К‚ѕ‚Б‚Ѕ‚©ЃA—ЧђЪ–К‚Ж‚М–@ђь‚МЉp“xЌ·‚ЄѓXѓЂЃ[ѓWѓ“ѓO‘ОЏЫ‚Ми‡’l‚р’ґ‚¦‚Д‚ў‚Ѕ‚зѓGѓbѓW‚Ж‚Э‚И‚·
+							// йљЈжЋҐйќўг‚’з™єи¦‹гЃ§гЃЌгЃЄгЃ‹гЃЈгЃџгЃ‹гЂЃйљЈжЋҐйќўгЃЊиЈЏйќўгЃ гЃЈгЃџгЃ‹гЂЃйљЈжЋҐйќўгЃЁгЃ®жі•з·љгЃ®и§’еє¦е·®гЃЊг‚№гѓ гѓјг‚ёгѓіг‚°еЇѕи±ЎгЃ®й–ѕеЂ¤г‚’и¶…гЃ€гЃ¦гЃ„гЃџг‚‰г‚Ёгѓѓг‚ёгЃЁгЃїгЃЄгЃ™
 							if( MinFace == NULL || MinFaceUra || VectorInnerProduct( FaceNormal + ( MinFace - Frame->Mesh->Face ), FaceNormal + ( CurFace - Frame->Mesh->Face ) ) < SmoothCos )
 								break ;
 
-							// ”­Њ©‚µ‚Ѕ—ЧђЪ–К‚ЄЊџЌхЉJЋn‚М–К‚ѕ‚Б‚ЅЏкЌ‡‚Н€кЋь‚µ‚Ѕ‚Ж‚ў‚¤‚±‚Ж
+							// з™єи¦‹гЃ—гЃџйљЈжЋҐйќўгЃЊж¤њзґўй–‹е§‹гЃ®йќўгЃ гЃЈгЃџе ґеђ€гЃЇдёЂе‘ЁгЃ—гЃџгЃЁгЃ„гЃ†гЃ“гЃЁ
 							if( MinFace == FaceList[ 0 ] )
 							{
 								Issyuu = 1 ;
 								break ;
 							}
 
-							// Љm’и‚µ‚Ѕ—ЧђЪ–К‚р‹L^
+							// зўєе®љгЃ—гЃџйљЈжЋҐйќўг‚’иЁйЊІ
 							FaceList[ FaceCount ] = MinFace ;
 							FaceIndex[ FaceCount ] = ( BYTE )MinFaceIndex ;
 							VectorAdd( &FaceNorm, &FaceNorm, FaceNormal + ( MinFace - Frame->Mesh->Face ) ) ;
 							NormalSetFlag[ MFNInd[ MinFaceIndex ] ] |= 2 ;
 							FaceCount ++ ;
 
-							// ѓJѓЊѓ“ѓg–К‚М•ПЌX
+							// г‚«гѓ¬гѓігѓ€йќўгЃ®е¤‰ж›ґ
 							BackCurFace = CurFace ;
 							CurMesh = MinMesh ;
 							CurFace = MinFace ;
@@ -8679,11 +8679,11 @@ static int _MV1ReMakeNormalFrameBase( MV1_FRAME_BASE *Frame, float SmoothingAngl
 						}
 					}
 
-					// ЊџЏo‚µ‚Ѕ–К‚М–@ђь‚р‘«‚µ‚Ѕ‚а‚М‚рђі‹K‰»
+					// ж¤ње‡єгЃ—гЃџйќўгЃ®жі•з·љг‚’и¶ігЃ—гЃџг‚‚гЃ®г‚’ж­Ји¦ЏеЊ–
 					VectorNormalize( &FaceNorm, &FaceNorm ) ;
 				}
 
-				// ѓЉѓXѓgѓAѓbѓv‚і‚к‚Ѕ–К‚Йђі‹K‰»‚µ‚Ѕ–@ђь‚рѓZѓbѓg‚·‚й
+				// гѓЄг‚№гѓ€г‚ўгѓѓгѓ—гЃ•г‚ЊгЃџйќўгЃ«ж­Ји¦ЏеЊ–гЃ—гЃџжі•з·љг‚’г‚»гѓѓгѓ€гЃ™г‚‹
 				if( FaceCount != 0 )
 				{
 					MFNInd = FaceNormalIndex + ( FaceList[ 0 ] - Frame->Mesh->Face ) * 3 ;
@@ -8700,9 +8700,9 @@ static int _MV1ReMakeNormalFrameBase( MV1_FRAME_BASE *Frame, float SmoothingAngl
 		}
 	}
 
-	// Ћg—p‚µ‚Д‚ў‚й–@ђь‚рѓCѓ“ѓfѓbѓNѓX‚МЋб‚ўЏ‡‚Й‹l‚Я‚й
+	// дЅїз”ЁгЃ—гЃ¦гЃ„г‚‹жі•з·љг‚’г‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃ®и‹ҐгЃ„й †гЃ«и©°г‚Ѓг‚‹
 	{
-		// Ћg—p‚і‚к‚Д‚ў‚й–@ђь‚Мѓ}ѓbѓv‚рЌмђ¬‚·‚й
+		// дЅїз”ЁгЃ•г‚ЊгЃ¦гЃ„г‚‹жі•з·љгЃ®гѓћгѓѓгѓ—г‚’дЅњж€ђгЃ™г‚‹
 		_MEMSET( NormalUseTable, 0, ( size_t )NormalNum ) ;
 		Mesh = Frame->Mesh ;
 		UseNormalNum = 0 ;
@@ -8738,17 +8738,17 @@ static int _MV1ReMakeNormalFrameBase( MV1_FRAME_BASE *Frame, float SmoothingAngl
 			}
 		}
 
-		// –@ђь‚Мђ”‚Є‘ќ‚¦‚Ѕ‚©‚З‚¤‚©‚ЕЉi”[ђж‚МѓЃѓ‚ѓЉ‚р•ПЌX
+		// жі•з·љгЃ®ж•°гЃЊеў—гЃ€гЃџгЃ‹гЃ©гЃ†гЃ‹гЃ§ж јзґЌе…€гЃ®гѓЎгѓўгѓЄг‚’е¤‰ж›ґ
 		if( UseNormalNum <= Frame->NormalNum )
 		{
-			// Њё‚Б‚ЅЏкЌ‡
+			// жё›гЃЈгЃџе ґеђ€
 
-			// ђV‚Ѕ‚ИѓЃѓ‚ѓЉ‚НЉm•Ы‚µ‚И‚ў
+			// ж–°гЃџгЃЄгѓЎгѓўгѓЄгЃЇзўєдїќгЃ—гЃЄгЃ„
 			RNormal = Frame->Normal ;
 		}
 		else
 		{
-			// ‘ќ‚¦‚ЅЏкЌ‡
+			// еў—гЃ€гЃџе ґеђ€
 			if( Frame->NormalAllocMem )
 			{
 				DXFREE( Frame->Normal ) ;
@@ -8756,20 +8756,20 @@ static int _MV1ReMakeNormalFrameBase( MV1_FRAME_BASE *Frame, float SmoothingAngl
 			RNormal = ( MV1_MESH_NORMAL * )DXALLOC( sizeof( MV1_MESH_NORMAL ) * UseNormalNum ) ;
 			if( RNormal == NULL )
 			{
-				DXST_LOGFILEFMT_ADDUTF16LE(( "\xd5\x6c\xda\x7d\x8d\x51\x08\x8a\x97\x7b\x67\x30\xd5\x6c\xda\x7d\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"–@ђьЌДЊvЋZ‚Е–@ђь‚рЉi”[‚·‚йѓЃѓ‚ѓЉ‚МЉm•Ы‚ЙЋё”s‚µ‚Ь‚µ‚Ѕ\n" @*/ )) ;
+				DXST_LOGFILEFMT_ADDUTF16LE(( "\xd5\x6c\xda\x7d\x8d\x51\x08\x8a\x97\x7b\x67\x30\xd5\x6c\xda\x7d\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"жі•з·ље†ЌиЁ€з®—гЃ§жі•з·љг‚’ж јзґЌгЃ™г‚‹гѓЎгѓўгѓЄгЃ®зўєдїќгЃ«е¤±ж•—гЃ—гЃѕгЃ—гЃџ\n" @*/ )) ;
 				goto ERR ;
 			}
 			Frame->Normal = RNormal ;
 			Frame->NormalAllocMem = TRUE ;
 		}
 
-		// ЌЕЏI”Е‚М–@ђьѓZѓbѓg‚рЌмђ¬‚·‚й
+		// жњЂзµ‚з‰€гЃ®жі•з·љг‚»гѓѓгѓ€г‚’дЅњж€ђгЃ™г‚‹
 		for( i = 0 ; i < UseNormalNum ; i ++ )
 		{
 			RNormal[ i ].Normal = NormalBuf[ UseNormalIndex[ i ] ] ;
 		}
 
-		// –КѓfЃ[ѓ^‚М–@ђьѓCѓ“ѓfѓbѓNѓX‚рЌXђV‚·‚й
+		// йќўгѓ‡гѓјг‚їгЃ®жі•з·љг‚¤гѓігѓ‡гѓѓг‚Їг‚№г‚’ж›ґж–°гЃ™г‚‹
 		FNInd = FaceNormalIndex ;
 		Mesh = Frame->Mesh ;
 		for( i = 0 ; i < Frame->MeshNum ; i ++, Mesh ++ )
@@ -8783,7 +8783,7 @@ static int _MV1ReMakeNormalFrameBase( MV1_FRAME_BASE *Frame, float SmoothingAngl
 			}
 		}
 
-		// ѓfЃ[ѓ^‚МѓTѓCѓY‚р•ПЌX
+		// гѓ‡гѓјг‚їгЃ®г‚µг‚¤г‚єг‚’е¤‰ж›ґ
 		{
 			int AddSize ;
 
@@ -8792,28 +8792,28 @@ static int _MV1ReMakeNormalFrameBase( MV1_FRAME_BASE *Frame, float SmoothingAngl
 			ModelBase->VertexDataSize += AddSize * sizeof( MV1_MESH_NORMAL ) ;
 		}
 
-		// ЌЕЏI“I‚И–@ђь‚Мђ”‚рѓZѓbѓg
+		// жњЂзµ‚зљ„гЃЄжі•з·љгЃ®ж•°г‚’г‚»гѓѓгѓ€
 		Frame->NormalNum = UseNormalNum ;
 	}
 
-	// ђV‚µ‚ў–@ђьЏо•с‚рЊі‚Й’ё“_ѓfЃ[ѓ^”z—с‚рЌДЌ\’z‚·‚й
+	// ж–°гЃ—гЃ„жі•з·љжѓ…е ±г‚’е…ѓгЃ«й ‚з‚№гѓ‡гѓјг‚їй…Ќе€—г‚’е†Ќж§‹зЇ‰гЃ™г‚‹
 	{
 		BYTE TVertBuf[ sizeof( MV1_MESH_VERTEX ) + sizeof( float ) * 2 * 32 ] ;
 		MV1_MESH_VERTEX *TVertex ;
 
 		TVertex = ( MV1_MESH_VERTEX * )TVertBuf ;
 
-		// ѓgѓ‰ѓCѓAѓ“ѓOѓ‹ѓЉѓXѓgЌ\’z—pЏо•с‚рЉi”[‚·‚йѓЃѓ‚ѓЉ‚МЉm•Ы
+		// гѓ€гѓ©г‚¤г‚ўгѓіг‚°гѓ«гѓЄг‚№гѓ€ж§‹зЇ‰з”Ёжѓ…е ±г‚’ж јзґЌгЃ™г‚‹гѓЎгѓўгѓЄгЃ®зўєдїќ
 		VertInfoTable = ( MV1_MAKEVERTINDEXINFO ** )DXALLOC( sizeof( MV1_MAKEVERTINDEXINFO * ) * Frame->PositionNum + sizeof( MV1_MAKEVERTINDEXINFO ) * Frame->TriangleNum * 3 ) ;
 		if( VertInfoTable == NULL )
 		{
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\xd5\x6c\xda\x7d\x8d\x51\x08\x8a\x97\x7b\x6b\x30\x7f\x4f\x28\x75\x59\x30\x8b\x30\x5c\x4f\x6d\x69\x28\x75\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x5f\x00\x33\x00\x0a\x00\x00"/*@ L"–@ђьЌДЊvЋZ‚ЙЋg—p‚·‚йЌм‹Ж—pѓЃѓ‚ѓЉ‚МЉm•Ы‚ЙЋё”s‚µ‚Ь‚µ‚Ѕ_3\n" @*/ )) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\xd5\x6c\xda\x7d\x8d\x51\x08\x8a\x97\x7b\x6b\x30\x7f\x4f\x28\x75\x59\x30\x8b\x30\x5c\x4f\x6d\x69\x28\x75\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x5f\x00\x33\x00\x0a\x00\x00"/*@ L"жі•з·ље†ЌиЁ€з®—гЃ«дЅїз”ЁгЃ™г‚‹дЅњжҐ­з”ЁгѓЎгѓўгѓЄгЃ®зўєдїќгЃ«е¤±ж•—гЃ—гЃѕгЃ—гЃџ_3\n" @*/ )) ;
 			goto ERR ;
 		}
 		VertInfoBuffer = ( MV1_MAKEVERTINDEXINFO * )( VertInfoTable + Frame->PositionNum ) ;
 		VertValidBuffer = ( int * )VertInfoBuffer ;
 
-		// ѓЃѓbѓVѓ…‚Мђ”‚ѕ‚ЇЊJ‚и•Ф‚µ
+		// гѓЎгѓѓг‚·гѓҐгЃ®ж•°гЃ гЃ‘з№°г‚Љиї”гЃ—
 		Mesh = Frame->Mesh ;
 		FNInd = FaceNormalIndex ;
 		for( i = 0 ; i < Frame->MeshNum ; i ++, Mesh ++ )
@@ -8821,24 +8821,24 @@ static int _MV1ReMakeNormalFrameBase( MV1_FRAME_BASE *Frame, float SmoothingAngl
 			if( Mesh->FaceNum == 0 )
 				continue ;
 
-			// ђV‚Ѕ‚И’ё“_ѓfЃ[ѓ^‚рЉi”[‚·‚йѓЃѓ‚ѓЉ—М€ж‚МЉm•Ы
+			// ж–°гЃџгЃЄй ‚з‚№гѓ‡гѓјг‚їг‚’ж јзґЌгЃ™г‚‹гѓЎгѓўгѓЄй еџџгЃ®зўєдїќ
 			NewVertex = ( MV1_MESH_VERTEX * )DXALLOC( ( size_t )( Mesh->VertUnitSize * Mesh->FaceNum * 3 ) ) ;
 			if( NewVertex == NULL )
 			{
-				DXST_LOGFILEFMT_ADDUTF16LE(( "\xd5\x6c\xda\x7d\x8d\x51\x08\x8a\x97\x7b\x6b\x30\x7f\x4f\x28\x75\x59\x30\x8b\x30\x5c\x4f\x6d\x69\x28\x75\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"–@ђьЌДЊvЋZ‚ЙЋg—p‚·‚йЌм‹Ж—pѓЃѓ‚ѓЉ‚МЉm•Ы‚ЙЋё”s‚µ‚Ь‚µ‚Ѕ\n" @*/ )) ;
+				DXST_LOGFILEFMT_ADDUTF16LE(( "\xd5\x6c\xda\x7d\x8d\x51\x08\x8a\x97\x7b\x6b\x30\x7f\x4f\x28\x75\x59\x30\x8b\x30\x5c\x4f\x6d\x69\x28\x75\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"жі•з·ље†ЌиЁ€з®—гЃ«дЅїз”ЁгЃ™г‚‹дЅњжҐ­з”ЁгѓЎгѓўгѓЄгЃ®зўєдїќгЃ«е¤±ж•—гЃ—гЃѕгЃ—гЃџ\n" @*/ )) ;
 				goto ERR ;
 			}
 
-			// ЌЎ‚Ь‚Е‚М–КЏо•с‚рЉi”[‚·‚йѓЃѓ‚ѓЉ—М€ж‚МЉm•Ы
+			// д»ЉгЃѕгЃ§гЃ®йќўжѓ…е ±г‚’ж јзґЌгЃ™г‚‹гѓЎгѓўгѓЄй еџџгЃ®зўєдїќ
 			OldFace = ( MV1_MESH_FACE * )DXALLOC( sizeof( MV1_MESH_FACE ) * Mesh->FaceNum ) ;
 			if( OldFace == NULL )
 			{
-				DXST_LOGFILEFMT_ADDUTF16LE(( "\xd5\x6c\xda\x7d\x8d\x51\x08\x8a\x97\x7b\x6b\x30\x7f\x4f\x28\x75\x59\x30\x8b\x30\x5c\x4f\x6d\x69\x28\x75\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x5f\x00\x32\x00\x0a\x00\x00"/*@ L"–@ђьЌДЊvЋZ‚ЙЋg—p‚·‚йЌм‹Ж—pѓЃѓ‚ѓЉ‚МЉm•Ы‚ЙЋё”s‚µ‚Ь‚µ‚Ѕ_2\n" @*/ )) ;
+				DXST_LOGFILEFMT_ADDUTF16LE(( "\xd5\x6c\xda\x7d\x8d\x51\x08\x8a\x97\x7b\x6b\x30\x7f\x4f\x28\x75\x59\x30\x8b\x30\x5c\x4f\x6d\x69\x28\x75\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x5f\x00\x32\x00\x0a\x00\x00"/*@ L"жі•з·ље†ЌиЁ€з®—гЃ«дЅїз”ЁгЃ™г‚‹дЅњжҐ­з”ЁгѓЎгѓўгѓЄгЃ®зўєдїќгЃ«е¤±ж•—гЃ—гЃѕгЃ—гЃџ_2\n" @*/ )) ;
 				goto ERR ;
 			}
 			_MEMCPY( OldFace, Mesh->Face, sizeof( MV1_MESH_FACE ) * Mesh->FaceNum ) ;
 
-			// ’ё“_ѓfЃ[ѓ^‚Ж–КѓfЃ[ѓ^‚рЌ\’z
+			// й ‚з‚№гѓ‡гѓјг‚їгЃЁйќўгѓ‡гѓјг‚їг‚’ж§‹зЇ‰
 			NewVertexNum = 0 ;
 			OFace = OldFace ;
 			Face = Mesh->Face ;
@@ -8846,15 +8846,15 @@ static int _MV1ReMakeNormalFrameBase( MV1_FRAME_BASE *Frame, float SmoothingAngl
 			VertInfoNum = 0 ;
 			for( j = 0 ; j < Mesh->FaceNum ; j ++, OFace ++, Face ++, FNInd += 3 )
 			{
-				// ѓ|ѓЉѓSѓ“‚М’ё“_‚Мђ”‚ѕ‚ЇЊJ‚и•Ф‚µ
+				// гѓќгѓЄг‚ґгѓігЃ®й ‚з‚№гЃ®ж•°гЃ гЃ‘з№°г‚Љиї”гЃ—
 				for( m = 0 ; m < 3 ; m ++ )
 				{
-					// ’З‰Б‚µ‚ж‚¤‚Ж‚µ‚Д‚ў‚й’ё“_ѓfЃ[ѓ^‚МЌмђ¬
+					// иїЅеЉ гЃ—г‚€гЃ†гЃЁгЃ—гЃ¦гЃ„г‚‹й ‚з‚№гѓ‡гѓјг‚їгЃ®дЅњж€ђ
 					Vert = ( MV1_MESH_VERTEX * )( ( BYTE * )Mesh->Vertex + Mesh->VertUnitSize * OFace->VertexIndex[ m ] ) ;
 					_MEMCPY( TVertex, Vert, ( size_t )Mesh->VertUnitSize ) ;
 					TVertex->NormalIndex = ( DWORD )FNInd[ m ] ;
 
-					// ЌЎ‚Ь‚Е‚Й“Ї‚¶’ё“_ѓfЃ[ѓ^‚Є–і‚©‚Б‚Ѕ‚©‚З‚¤‚©‚р’І‚Ч‚й
+					// д»ЉгЃѕгЃ§гЃ«еђЊгЃй ‚з‚№гѓ‡гѓјг‚їгЃЊз„ЎгЃ‹гЃЈгЃџгЃ‹гЃ©гЃ†гЃ‹г‚’иЄїгЃ№г‚‹
 					for( VInfo = VertInfoTable[ Vert->PositionIndex ] ; VInfo ; VInfo = VInfo->Next )
 					{
 						if( _MEMCMP( ( BYTE * )NewVertex + VInfo->VertexIndex * Mesh->VertUnitSize, TVertex, Mesh->VertUnitSize ) == 0 )
@@ -8862,7 +8862,7 @@ static int _MV1ReMakeNormalFrameBase( MV1_FRAME_BASE *Frame, float SmoothingAngl
 					}
 					if( VInfo == NULL )
 					{
-						// –і‚©‚Б‚Ѕ‚зѓfЃ[ѓ^‚р’З‰Б
+						// з„ЎгЃ‹гЃЈгЃџг‚‰гѓ‡гѓјг‚їг‚’иїЅеЉ 
 						VInfo = &VertInfoBuffer[ VertInfoNum ] ;
 						VertInfoNum ++ ;
 
@@ -8876,28 +8876,28 @@ static int _MV1ReMakeNormalFrameBase( MV1_FRAME_BASE *Frame, float SmoothingAngl
 					}
 					else
 					{
-						// ‚ ‚Б‚Ѕ‚зѓCѓ“ѓfѓbѓNѓX‚рѓZѓbѓg
+						// гЃ‚гЃЈгЃџг‚‰г‚¤гѓігѓ‡гѓѓг‚Їг‚№г‚’г‚»гѓѓгѓ€
 						Face->VertexIndex[ m ] = ( DWORD )VInfo->VertexIndex ;
 					}
 				}
 			}
 
-			// ЌЎ‚Ь‚Е‚М–КЏо•с‚рЉi”[‚µ‚Д‚ў‚ЅѓЃѓ‚ѓЉ‚М‰р•ъ
+			// д»ЉгЃѕгЃ§гЃ®йќўжѓ…е ±г‚’ж јзґЌгЃ—гЃ¦гЃ„гЃџгѓЎгѓўгѓЄгЃ®и§Јж”ѕ
 			DXFREE( OldFace ) ;
 			OldFace = NULL ;
 
-			// ’ё“_ѓfЃ[ѓ^‚Мђ”‚Є‘ќ‚¦‚ЅЏкЌ‡‚ЖЊё‚Б‚ЅЏкЌ‡‚ЕЏ€—ќ‚р•ЄЉт
+			// й ‚з‚№гѓ‡гѓјг‚їгЃ®ж•°гЃЊеў—гЃ€гЃџе ґеђ€гЃЁжё›гЃЈгЃџе ґеђ€гЃ§е‡¦зђ†г‚’е€†еІђ
 			if( NewVertexNum <= Mesh->VertexNum )
 			{
-				// Њё‚Б‚ЅЏкЌ‡
+				// жё›гЃЈгЃџе ґеђ€
 
-				// ђV‚Ѕ‚ЙЉm•Ы‚µ‚Ѕ’ё“_—p‚МѓЃѓ‚ѓЉ‚Н‰р•ъ‚·‚й
+				// ж–°гЃџгЃ«зўєдїќгЃ—гЃџй ‚з‚№з”ЁгЃ®гѓЎгѓўгѓЄгЃЇи§Јж”ѕгЃ™г‚‹
 				_MEMCPY( Mesh->Vertex, NewVertex, ( size_t )( NewVertexNum * Mesh->VertUnitSize ) ) ;
 				DXFREE( NewVertex ) ;
 			}
 			else
 			{
-				// ‘ќ‚¦‚ЅЏкЌ‡
+				// еў—гЃ€гЃџе ґеђ€
 				if( Mesh->VertexAllocMem )
 				{
 					DXFREE( Mesh->Vertex ) ;
@@ -8907,7 +8907,7 @@ static int _MV1ReMakeNormalFrameBase( MV1_FRAME_BASE *Frame, float SmoothingAngl
 			}
 			NewVertex = NULL ;
 
-			// ѓfЃ[ѓ^‚МѓTѓCѓY‚р•ПЌX
+			// гѓ‡гѓјг‚їгЃ®г‚µг‚¤г‚єг‚’е¤‰ж›ґ
 			{
 				int AddSize ;
 
@@ -8917,46 +8917,46 @@ static int _MV1ReMakeNormalFrameBase( MV1_FRAME_BASE *Frame, float SmoothingAngl
 				Frame->VertexNum += NewVertexNum - Mesh->VertexNum ;
 			}
 
-			// ’ё“_‚Мђ”‚р•Ы‘¶
+			// й ‚з‚№гЃ®ж•°г‚’дїќе­
 			Mesh->VertexNum = NewVertexNum ;
 
-			// Џ]–@ђь‚ЖђЪђь‚рЋZЏo‚·‚й
+			// еѕ“жі•з·љгЃЁжЋҐз·љг‚’з®—е‡єгЃ™г‚‹
 			MV1MakeMeshBinormalsAndTangents( Mesh ) ;
 
-			// ѓgѓ‰ѓCѓAѓ“ѓOѓ‹ѓЉѓXѓg‚МЌДЌ\’z
+			// гѓ€гѓ©г‚¤г‚ўгѓіг‚°гѓ«гѓЄг‚№гѓ€гЃ®е†Ќж§‹зЇ‰
 			TList = Mesh->TriangleList ;
 			for( j = 0 ; j < Mesh->TriangleListNum ; j ++, TList ++ )
 			{
-				// ЉВ‹«€Л‘¶‚Мѓeѓ“ѓ|ѓ‰ѓЉѓoѓbѓtѓ@‚рЉJ•ъ
+				// з’°еўѓдѕќе­гЃ®гѓ†гѓігѓќгѓ©гѓЄгѓђгѓѓгѓ•г‚Ўг‚’й–‹ж”ѕ
 				MV1_TerminateTriangleListBaseTempBuffer_PF( TList ) ;
 
-				// ’ё“_‚ЄЉщ‚Й‘¶ЌЭ‚µ‚Д‚ў‚й‚©‚З‚¤‚©‚Мѓtѓ‰ѓO‚рЏ‰Љъ‰»‚·‚й
+				// й ‚з‚№гЃЊж—ўгЃ«е­ењЁгЃ—гЃ¦гЃ„г‚‹гЃ‹гЃ©гЃ†гЃ‹гЃ®гѓ•гѓ©г‚°г‚’е€ќжњџеЊ–гЃ™г‚‹
 				_MEMSET( VertValidBuffer, 0xff, Mesh->VertexNum * sizeof( int ) ) ;
 
-				// ђV‚Ѕ‚И’ё“_ѓCѓ“ѓfѓbѓNѓX”z—с‚рЉi”[‚·‚й‚Ѕ‚Я‚МѓЃѓ‚ѓЉ—М€ж‚МЉm•Ы
+				// ж–°гЃџгЃЄй ‚з‚№г‚¤гѓігѓ‡гѓѓг‚Їг‚№й…Ќе€—г‚’ж јзґЌгЃ™г‚‹гЃџг‚ЃгЃ®гѓЎгѓўгѓЄй еџџгЃ®зўєдїќ
 				NewMeshVertexIndex = ( DWORD * )DXALLOC( sizeof( int ) * Mesh->VertexNum ) ;
 				if( NewMeshVertexIndex == NULL )
 				{
-					DXST_LOGFILEFMT_ADDUTF16LE(( "\xc8\x30\xe9\x30\xa4\x30\xa2\x30\xf3\x30\xb0\x30\xeb\x30\xea\x30\xb9\x30\xc8\x30\x6e\x30\xe1\x30\xc3\x30\xb7\x30\xe5\x30\x02\x98\xb9\x70\xa4\x30\xf3\x30\xc7\x30\xc3\x30\xaf\x30\xb9\x30\x3c\x68\x0d\x7d\x28\x75\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ѓgѓ‰ѓCѓAѓ“ѓOѓ‹ѓЉѓXѓg‚МѓЃѓbѓVѓ…’ё“_ѓCѓ“ѓfѓbѓNѓXЉi”[—pѓЃѓ‚ѓЉ‚МЉm•Ы‚ЙЋё”s‚µ‚Ь‚µ‚Ѕ\n" @*/ )) ;
+					DXST_LOGFILEFMT_ADDUTF16LE(( "\xc8\x30\xe9\x30\xa4\x30\xa2\x30\xf3\x30\xb0\x30\xeb\x30\xea\x30\xb9\x30\xc8\x30\x6e\x30\xe1\x30\xc3\x30\xb7\x30\xe5\x30\x02\x98\xb9\x70\xa4\x30\xf3\x30\xc7\x30\xc3\x30\xaf\x30\xb9\x30\x3c\x68\x0d\x7d\x28\x75\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"гѓ€гѓ©г‚¤г‚ўгѓіг‚°гѓ«гѓЄг‚№гѓ€гЃ®гѓЎгѓѓг‚·гѓҐй ‚з‚№г‚¤гѓігѓ‡гѓѓг‚Їг‚№ж јзґЌз”ЁгѓЎгѓўгѓЄгЃ®зўєдїќгЃ«е¤±ж•—гЃ—гЃѕгЃ—гЃџ\n" @*/ )) ;
 					goto ERR ;
 				}
 
-				// ѓЃѓbѓVѓ…‚М–К‚Мђ”‚ѕ‚ЇЊJ‚и•Ф‚µ
+				// гѓЎгѓѓг‚·гѓҐгЃ®йќўгЃ®ж•°гЃ гЃ‘з№°г‚Љиї”гЃ—
 				NewTVertexNum = 0 ;
 				Face = Mesh->Face ;
 				IndexNum = 0 ;
 				for( k = 0 ; k < Mesh->FaceNum ; k ++, Face ++ )
 				{
-					// ѓgѓ‰ѓCѓAѓ“ѓOѓ‹ѓЉѓXѓgѓiѓ“ѓoЃ[‚Є€б‚Б‚Ѕ‚з‰Ѕ‚а‚µ‚И‚ў
+					// гѓ€гѓ©г‚¤г‚ўгѓіг‚°гѓ«гѓЄг‚№гѓ€гѓЉгѓігѓђгѓјгЃЊйЃ•гЃЈгЃџг‚‰дЅ•г‚‚гЃ—гЃЄгЃ„
 					if( Face->TriangleListIndex != j ) continue ;
 
-					// ’ё“_‚Мђ”‚ѕ‚ЇЊJ‚и•Ф‚µ
+					// й ‚з‚№гЃ®ж•°гЃ гЃ‘з№°г‚Љиї”гЃ—
 					for( m = 0 ; m < 3 ; m ++, IndexNum ++ )
 					{
-						// ѓgѓ‰ѓCѓAѓ“ѓOѓ‹‚ЄЋg—p‚µ‚Д‚ў‚й’ё“_ѓfЃ[ѓ^‚ЄЉщ‚Й‚ ‚й‚©‚З‚¤‚©‚р’І‚Ч‚й
+						// гѓ€гѓ©г‚¤г‚ўгѓіг‚°гѓ«гЃЊдЅїз”ЁгЃ—гЃ¦гЃ„г‚‹й ‚з‚№гѓ‡гѓјг‚їгЃЊж—ўгЃ«гЃ‚г‚‹гЃ‹гЃ©гЃ†гЃ‹г‚’иЄїгЃ№г‚‹
 						if( VertValidBuffer[ Face->VertexIndex[ m ] ] == -1 )
 						{
-							// –і‚©‚Б‚Ѕ‚з’З‰Б‚·‚й
+							// з„ЎгЃ‹гЃЈгЃџг‚‰иїЅеЉ гЃ™г‚‹
 							VertValidBuffer[ Face->VertexIndex[ m ] ] = NewTVertexNum ;
 							TList->Index[ IndexNum ] = ( unsigned short )NewTVertexNum ;
 
@@ -8970,18 +8970,18 @@ static int _MV1ReMakeNormalFrameBase( MV1_FRAME_BASE *Frame, float SmoothingAngl
 					}
 				}
 
-				// ЌЎ‚Ь‚Е‚М’ё“_‚Мђ”‚ж‚и‘Ѕ‚ў‚©‚З‚¤‚©‚ЕЏ€—ќ‚р•ЄЉт
+				// д»ЉгЃѕгЃ§гЃ®й ‚з‚№гЃ®ж•°г‚€г‚Ље¤љгЃ„гЃ‹гЃ©гЃ†гЃ‹гЃ§е‡¦зђ†г‚’е€†еІђ
 				if( NewTVertexNum <= TList->VertexNum )
 				{
-					// Њё‚Б‚ЅЏкЌ‡
+					// жё›гЃЈгЃџе ґеђ€
 
-					// ђV‚Ѕ‚ЙЉm•Ы‚µ‚Ѕ’ё“_ѓCѓ“ѓfѓbѓNѓX”z—с—p‚МѓЃѓ‚ѓЉ‚Н‰р•ъ‚·‚й
+					// ж–°гЃџгЃ«зўєдїќгЃ—гЃџй ‚з‚№г‚¤гѓігѓ‡гѓѓг‚Їг‚№й…Ќе€—з”ЁгЃ®гѓЎгѓўгѓЄгЃЇи§Јж”ѕгЃ™г‚‹
 					_MEMCPY( TList->MeshVertexIndex, NewMeshVertexIndex, sizeof( DWORD ) * NewTVertexNum ) ;
 					DXFREE( NewMeshVertexIndex ) ;
 				}
 				else
 				{
-					// ‘ќ‚¦‚ЅЏкЌ‡
+					// еў—гЃ€гЃџе ґеђ€
 					if( TList->MeshVertexIndexAllocMem )
 					{
 						DXFREE( TList->MeshVertexIndex ) ;
@@ -8989,7 +8989,7 @@ static int _MV1ReMakeNormalFrameBase( MV1_FRAME_BASE *Frame, float SmoothingAngl
 					TList->MeshVertexIndex = NewMeshVertexIndex ;
 					TList->MeshVertexIndexAllocMem = TRUE ;
 
-					// Ќ‚‘¬’ё“_ѓfЃ[ѓ^ѓAѓNѓZѓX—pѓЃѓ‚ѓЉ‚ађV‚Ѕ‚И’ё“_ѓfЃ[ѓ^‚МѓTѓCѓY‚Й‰ћ‚¶‚ДЌДЉm•Ы‚·‚й
+					// й«йЂџй ‚з‚№гѓ‡гѓјг‚їг‚ўг‚Їг‚»г‚№з”ЁгѓЎгѓўгѓЄг‚‚ж–°гЃџгЃЄй ‚з‚№гѓ‡гѓјг‚їгЃ®г‚µг‚¤г‚єгЃ«еїњгЃгЃ¦е†ЌзўєдїќгЃ™г‚‹
 					if( TList->PositionAllocMem )
 					{
 						DXFREE( TList->NormalPosition ) ;
@@ -8997,14 +8997,14 @@ static int _MV1ReMakeNormalFrameBase( MV1_FRAME_BASE *Frame, float SmoothingAngl
 					TList->NormalPosition = ( MV1_TLIST_NORMAL_POS * )DXALLOC( ( size_t )( TList->PosUnitSize * NewTVertexNum + 16 ) ) ;
 					if( TList->NormalPosition == NULL )
 					{
-						DXST_LOGFILEFMT_ADDUTF16LE(( "\xc8\x30\xe9\x30\xa4\x30\xa2\x30\xf3\x30\xb0\x30\xeb\x30\xea\x30\xb9\x30\xc8\x30\x6e\x30\xa7\x5e\x19\x6a\xc7\x30\xfc\x30\xbf\x30\x3c\x68\x0d\x7d\x28\x75\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ѓgѓ‰ѓCѓAѓ“ѓOѓ‹ѓЉѓXѓg‚МЌА•WѓfЃ[ѓ^Љi”[—pѓЃѓ‚ѓЉ‚МЉm•Ы‚ЙЋё”s‚µ‚Ь‚µ‚Ѕ\n" @*/ )) ;
+						DXST_LOGFILEFMT_ADDUTF16LE(( "\xc8\x30\xe9\x30\xa4\x30\xa2\x30\xf3\x30\xb0\x30\xeb\x30\xea\x30\xb9\x30\xc8\x30\x6e\x30\xa7\x5e\x19\x6a\xc7\x30\xfc\x30\xbf\x30\x3c\x68\x0d\x7d\x28\x75\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"гѓ€гѓ©г‚¤г‚ўгѓіг‚°гѓ«гѓЄг‚№гѓ€гЃ®еє§жЁ™гѓ‡гѓјг‚їж јзґЌз”ЁгѓЎгѓўгѓЄгЃ®зўєдїќгЃ«е¤±ж•—гЃ—гЃѕгЃ—гЃџ\n" @*/ )) ;
 						goto ERR ;
 					}
 					TList->PositionAllocMem = TRUE ;
 				}
 				NewMeshVertexIndex = NULL ;
 
-				// ѓfЃ[ѓ^‚МѓTѓCѓY‚р•ПЌX
+				// гѓ‡гѓјг‚їгЃ®г‚µг‚¤г‚єг‚’е¤‰ж›ґ
 				{
 					int AddSize ;
 
@@ -9023,18 +9023,18 @@ static int _MV1ReMakeNormalFrameBase( MV1_FRAME_BASE *Frame, float SmoothingAngl
 					ModelBase->TriangleListVertexNum += NewTVertexNum - TList->VertexNum ;
 				}
 
-				// ’ё“_ѓfЃ[ѓ^‚Мђ”‚рѓZѓbѓg
+				// й ‚з‚№гѓ‡гѓјг‚їгЃ®ж•°г‚’г‚»гѓѓгѓ€
 				TList->VertexNum = NewTVertexNum ;
 
-				// Ќ‚‘¬Џ€—ќ—p’ё“_ѓfЃ[ѓ^‚МЌДЌ\’z
+				// й«йЂџе‡¦зђ†з”Ёй ‚з‚№гѓ‡гѓјг‚їгЃ®е†Ќж§‹зЇ‰
 				MV1SetupTriangleListPositionAndNormal( TList ) ;
 
-				// ѓgѓDЃ[ѓ“—ЦЉsђь—p’ё“_ѓCѓ“ѓfѓbѓNѓX‚МЌмђ¬
+				// гѓ€г‚ҐгѓјгѓіијЄйѓ­з·љз”Ёй ‚з‚№г‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃ®дЅњж€ђ
 				MV1SetupToonOutLineTriangleList( TList ) ;
 			}
 		}
 
-		// ѓVѓFѓCѓv’ё“_ѓfЃ[ѓ^‚МЌXђV
+		// г‚·г‚§г‚¤гѓ—й ‚з‚№гѓ‡гѓјг‚їгЃ®ж›ґж–°
 		Shape = Frame->Shape ;
 		for( i = 0 ; i < Frame->ShapeNum ; i ++, Shape ++ )
 		{
@@ -9046,7 +9046,7 @@ static int _MV1ReMakeNormalFrameBase( MV1_FRAME_BASE *Frame, float SmoothingAngl
 				NewShapeVertBuffer = ( MV1_SHAPE_VERTEX_BASE * )DXALLOC( sizeof( MV1_SHAPE_VERTEX_BASE ) * Mesh->VertexNum ) ;
 				if( NewShapeVertBuffer == NULL )
 				{
-					DXST_LOGFILEFMT_ADDUTF16LE(( "\xb7\x30\xa7\x30\xa4\x30\xd7\x30\x02\x98\xb9\x70\xc7\x30\xfc\x30\xbf\x30\x3c\x68\x0d\x7d\x28\x75\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ѓVѓFѓCѓv’ё“_ѓfЃ[ѓ^Љi”[—pѓЃѓ‚ѓЉ‚МЉm•Ы‚ЙЋё”s‚µ‚Ь‚µ‚Ѕ\n" @*/ )) ;
+					DXST_LOGFILEFMT_ADDUTF16LE(( "\xb7\x30\xa7\x30\xa4\x30\xd7\x30\x02\x98\xb9\x70\xc7\x30\xfc\x30\xbf\x30\x3c\x68\x0d\x7d\x28\x75\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"г‚·г‚§г‚¤гѓ—й ‚з‚№гѓ‡гѓјг‚їж јзґЌз”ЁгѓЎгѓўгѓЄгЃ®зўєдїќгЃ«е¤±ж•—гЃ—гЃѕгЃ—гЃџ\n" @*/ )) ;
 					goto ERR ;
 				}
 
@@ -9054,17 +9054,17 @@ static int _MV1ReMakeNormalFrameBase( MV1_FRAME_BASE *Frame, float SmoothingAngl
 				Vert = Mesh->Vertex ;
 				for( k = 0 ; k < Mesh->VertexNum ; k ++, Vert = ( MV1_MESH_VERTEX * )( ( BYTE * )Vert + Mesh->VertUnitSize ) )
 				{
-					// ’ё“_‚ЄЋg—p‚µ‚Д‚ў‚йЌА•W’l‚ЄѓVѓFѓCѓv‘ОЏЫ‚Е‚Н‚И‚ўЏкЌ‡‚Н‰Ѕ‚а‚µ‚И‚ў
+					// й ‚з‚№гЃЊдЅїз”ЁгЃ—гЃ¦гЃ„г‚‹еє§жЁ™еЂ¤гЃЊг‚·г‚§г‚¤гѓ—еЇѕи±ЎгЃ§гЃЇгЃЄгЃ„е ґеђ€гЃЇдЅ•г‚‚гЃ—гЃЄгЃ„
 					if( ShapeFrameVert[ Vert->PositionIndex ].TargetMeshVertex == -1 ) continue ;
 
-					// Џо•с‚М’З‰Б
+					// жѓ…е ±гЃ®иїЅеЉ 
 					NewShapeVertBuffer[ NewShapeVertexNum ].TargetMeshVertex = k ;
 					NewShapeVertBuffer[ NewShapeVertexNum ].Position         = ShapeFrameVert[ Vert->PositionIndex ].Position ;
 					NewShapeVertBuffer[ NewShapeVertexNum ].Normal           = VGet( 0.0f, 0.0f, 0.0f ) ;
 					NewShapeVertexNum ++ ;
 				}
 
-				// Џо•с‚Є‘ќ‚¦‚ЅЏкЌ‡‚НђV‚Ѕ‚ЙЉm•Ы‚µ‚ЅѓЃѓ‚ѓЉ‚рЋg—p‚·‚й
+				// жѓ…е ±гЃЊеў—гЃ€гЃџе ґеђ€гЃЇж–°гЃџгЃ«зўєдїќгЃ—гЃџгѓЎгѓўгѓЄг‚’дЅїз”ЁгЃ™г‚‹
 				if( ( DWORD )NewShapeVertexNum > ShapeMesh->VertexNum )
 				{
 					if( ShapeMesh->VertexAllocMem )
@@ -9076,24 +9076,24 @@ static int _MV1ReMakeNormalFrameBase( MV1_FRAME_BASE *Frame, float SmoothingAngl
 				}
 				else
 				{
-					// ‚»‚¤‚Е‚Н‚И‚ўЏкЌ‡‚НЌЎ‚Ь‚Е‚Мѓoѓbѓtѓ@‚ЙђV‚µ‚ўѓfЃ[ѓ^‚рѓRѓsЃ[‚·‚й
+					// гЃќгЃ†гЃ§гЃЇгЃЄгЃ„е ґеђ€гЃЇд»ЉгЃѕгЃ§гЃ®гѓђгѓѓгѓ•г‚ЎгЃ«ж–°гЃ—гЃ„гѓ‡гѓјг‚їг‚’г‚ігѓ”гѓјгЃ™г‚‹
 					_MEMCPY( ShapeMesh->Vertex, NewShapeVertBuffer, sizeof( MV1_SHAPE_VERTEX_BASE ) * NewShapeVertexNum ) ;
 
-					// Љm•Ы‚µ‚ЅѓЃѓ‚ѓЉ‚Н‰р•ъ‚·‚й
+					// зўєдїќгЃ—гЃџгѓЎгѓўгѓЄгЃЇи§Јж”ѕгЃ™г‚‹
 					DXFREE( NewShapeVertBuffer ) ;
 				}
 				NewShapeVertBuffer = NULL ;
 
-				// ѓVѓFѓCѓv‚М’ё“_‘Ќђ”‚р•ПЌX‚·‚й
+				// г‚·г‚§г‚¤гѓ—гЃ®й ‚з‚№з·Џж•°г‚’е¤‰ж›ґгЃ™г‚‹
 				ModelBase->ShapeVertexNum += NewShapeVertexNum - ShapeMesh->VertexNum ;
 
-				// ѓVѓFѓCѓv‚М’ё“_ђ”‚рЌXђV‚·‚й
+				// г‚·г‚§г‚¤гѓ—гЃ®й ‚з‚№ж•°г‚’ж›ґж–°гЃ™г‚‹
 				ShapeMesh->VertexNum = ( DWORD )NewShapeVertexNum ;
 			}
 		}
 	}
 
-	// ѓЃѓ‚ѓЉ‚М‰р•ъ
+	// гѓЎгѓўгѓЄгЃ®и§Јж”ѕ
 	if( VertexFaceList )
 	{
 		DXFREE( VertexFaceList ) ;
@@ -9125,11 +9125,11 @@ static int _MV1ReMakeNormalFrameBase( MV1_FRAME_BASE *Frame, float SmoothingAngl
 		NewShapeVertBuffer = NULL ;
 	}
 	
-	// ђіЏнЏI—№
+	// ж­Јеёёзµ‚дє†
 	return true ;
 
 ERR :
-	// ѓЃѓ‚ѓЉ‚М‰р•ъ
+	// гѓЎгѓўгѓЄгЃ®и§Јж”ѕ
 	if( VertexFaceList )
 	{
 		DXFREE( VertexFaceList ) ;
@@ -9171,28 +9171,28 @@ ERR :
 		NewShapeVertBuffer = NULL ;
 	}
 
-	// ѓGѓ‰Ѓ[
+	// г‚Ёгѓ©гѓј
 	return -1 ;
 }
 
-// ѓ‚ѓfѓ‹‘S‘М‚МЌА•WЏо•с‚рЌЕ“K‰»‚·‚й
+// гѓўгѓ‡гѓ«е…ЁдЅ“гЃ®еє§жЁ™жѓ…е ±г‚’жњЂйЃ©еЊ–гЃ™г‚‹
 extern int MV1PositionOptimizeBase( int MBHandle )
 {
 	MV1_MODEL_BASE *ModelBase ;
 	MV1_FRAME_BASE *Frame ;
 	int i ;
 
-	// Џ‰Љъ‰»‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// е€ќжњџеЊ–гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( MV1Man.Initialize == false ) return -1 ;
 
-	// ѓAѓhѓЊѓXЋж“ѕ
+	// г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ—
 	if( MV1BMDLCHK( MBHandle, ModelBase ) )
 		return -1 ;
 
-	// ’ё“_ѓoѓbѓtѓ@‚р‰р•ъ‚·‚й
+	// й ‚з‚№гѓђгѓѓгѓ•г‚Ўг‚’и§Јж”ѕгЃ™г‚‹
 	MV1_TerminateVertexBufferBase_PF( MBHandle ) ;
 
-	// ѓtѓЊЃ[ѓЂ‚Мђ”‚ѕ‚ЇЊJ‚и•Ф‚µ
+	// гѓ•гѓ¬гѓјгѓ гЃ®ж•°гЃ гЃ‘з№°г‚Љиї”гЃ—
 	Frame = ModelBase->Frame ;
 	for( i = 0 ; i < ModelBase->FrameNum ; i ++, Frame ++ )
 	{
@@ -9202,50 +9202,50 @@ extern int MV1PositionOptimizeBase( int MBHandle )
 			return -1 ;
 	}
 
-	// ’ё“_ѓoѓbѓtѓ@‚рЌ\’z‚·‚й
+	// й ‚з‚№гѓђгѓѓгѓ•г‚Ўг‚’ж§‹зЇ‰гЃ™г‚‹
 	MV1_SetupVertexBufferBase_PF( MBHandle ) ;
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// Ћw’иѓtѓЊЃ[ѓЂ‚ЄЋќ‚ВѓЃѓbѓVѓ…‚МЌА•WЏо•с‚рЌЕ“K‰»‚·‚й
+// жЊ‡е®љгѓ•гѓ¬гѓјгѓ гЃЊжЊЃгЃ¤гѓЎгѓѓг‚·гѓҐгЃ®еє§жЁ™жѓ…е ±г‚’жњЂйЃ©еЊ–гЃ™г‚‹
 extern int MV1PositionOptimizeFrameBase( int MBHandle, int FrameIndex )
 {
 	MV1_MODEL_BASE *ModelBase ;
 	MV1_FRAME_BASE *Frame ;
 
-	// Џ‰Љъ‰»‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// е€ќжњџеЊ–гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( MV1Man.Initialize == false ) return -1 ;
 
-	// ѓAѓhѓЊѓXЋж“ѕ
+	// г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ—
 	if( MV1BMDLCHK( MBHandle, ModelBase ) )
 		return -1 ;
 
-	// ѓtѓЊЃ[ѓЂѓCѓ“ѓfѓbѓNѓX‚Мѓ`ѓFѓbѓN
+	// гѓ•гѓ¬гѓјгѓ г‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃ®гѓЃг‚§гѓѓг‚Ї
 	if( FrameIndex < 0 || FrameIndex >= ModelBase->FrameNum )
 		return -1 ;
 	Frame = ModelBase->Frame + FrameIndex ;
 
-	// ѓЃѓbѓVѓ…‚Є–і‚Ї‚к‚О‰Ѕ‚а‚№‚ёЏI—№
+	// гѓЎгѓѓг‚·гѓҐгЃЊз„ЎгЃ‘г‚ЊгЃ°дЅ•г‚‚гЃ›гЃљзµ‚дє†
 	if( Frame->MeshNum == 0 )
 		return -1 ;
 
-	// ’ё“_ѓoѓbѓtѓ@‚р‰р•ъ‚·‚й
+	// й ‚з‚№гѓђгѓѓгѓ•г‚Ўг‚’и§Јж”ѕгЃ™г‚‹
 	MV1_TerminateVertexBufferBase_PF( MBHandle ) ;
 
-	// ѓtѓЊЃ[ѓЂ‚МЌДЊvЋZ
+	// гѓ•гѓ¬гѓјгѓ гЃ®е†ЌиЁ€з®—
 	if( _MV1PositionOptimizeFrameBase( Frame ) == -1 )
 		return -1 ;
 
-	// ’ё“_ѓoѓbѓtѓ@‚рЌ\’z‚·‚й
+	// й ‚з‚№гѓђгѓѓгѓ•г‚Ўг‚’ж§‹зЇ‰гЃ™г‚‹
 	MV1_SetupVertexBufferBase_PF( MBHandle ) ;
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// ѓtѓЊЃ[ѓЂ‚МЌА•WЏо•с‚рЌЕ“K‰»‚·‚й
+// гѓ•гѓ¬гѓјгѓ гЃ®еє§жЁ™жѓ…е ±г‚’жњЂйЃ©еЊ–гЃ™г‚‹
 static int _MV1PositionOptimizeFrameBase( MV1_FRAME_BASE *Frame )
 {
 	int i, j, k, l, m, SubNum, BoneNum1, BoneNum2, NewNum, *NewIndex, *NewMVertIndex, Size, MaxNum ;
@@ -9263,15 +9263,15 @@ static int _MV1PositionOptimizeFrameBase( MV1_FRAME_BASE *Frame )
 	WORD *Ind ;
 	BYTE *TPos1, *TPos2 ;
 
-	// ѓЃѓbѓVѓ…‚Є–і‚©‚Б‚Ѕ‚з‰Ѕ‚а‚µ‚И‚ў
+	// гѓЎгѓѓг‚·гѓҐгЃЊз„ЎгЃ‹гЃЈгЃџг‚‰дЅ•г‚‚гЃ—гЃЄгЃ„
 	if( Frame->MeshNum == 0 )
 		return 0 ;
 
-	// ѓ|ѓCѓ“ѓ^‚МЏ‰Љъ‰»
+	// гѓќг‚¤гѓіг‚їгЃ®е€ќжњџеЊ–
 	ModelBase = Frame->Container ;
 	DisableFlag = NULL ;
 
-	// ЌЕ‚а’ё“_ѓfЃ[ѓ^‚Мђ”‚Є‘Ѕ‚ўѓЃѓbѓVѓ…‚М’ё“_ђ”‚рЋж“ѕ‚·‚й
+	// жњЂг‚‚й ‚з‚№гѓ‡гѓјг‚їгЃ®ж•°гЃЊе¤љгЃ„гѓЎгѓѓг‚·гѓҐгЃ®й ‚з‚№ж•°г‚’еЏ–еѕ—гЃ™г‚‹
 	Mesh = Frame->Mesh ;
 	MaxNum = 0 ;
 	for( i = 0 ; i < Frame->MeshNum ; i ++, Mesh ++ )
@@ -9282,11 +9282,11 @@ static int _MV1PositionOptimizeFrameBase( MV1_FRAME_BASE *Frame )
 	if( MaxNum < Frame->PositionNum )
 		MaxNum = Frame->PositionNum ;
 
-	// Ќм‹Ж—pѓЃѓ‚ѓЉ‚МЉm•Ы
+	// дЅњжҐ­з”ЁгѓЎгѓўгѓЄгЃ®зўєдїќ
 	DisableFlag = ( BYTE * )DXALLOC( ( sizeof( int ) * 2 + sizeof( BYTE ) ) * MaxNum ) ;
 	if( DisableFlag == NULL )
 	{
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\x02\x98\xb9\x70\xc5\x60\x31\x58\x00\x67\x69\x90\x16\x53\xe6\x51\x06\x74\x28\x75\x6e\x30\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"’ё“_Џо•сЌЕ“K‰»Џ€—ќ—p‚МѓЃѓ‚ѓЉ‚МЉm•Ы‚ЙЋё”s‚µ‚Ь‚µ‚Ѕ\n" @*/ )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\x02\x98\xb9\x70\xc5\x60\x31\x58\x00\x67\x69\x90\x16\x53\xe6\x51\x06\x74\x28\x75\x6e\x30\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"й ‚з‚№жѓ…е ±жњЂйЃ©еЊ–е‡¦зђ†з”ЁгЃ®гѓЎгѓўгѓЄгЃ®зўєдїќгЃ«е¤±ж•—гЃ—гЃѕгЃ—гЃџ\n" @*/ )) ;
 		goto ERR ;
 	}
 	NewIndex = ( int * )( DisableFlag + MaxNum ) ;
@@ -9294,27 +9294,27 @@ static int _MV1PositionOptimizeFrameBase( MV1_FRAME_BASE *Frame )
 	_MEMSET( NewIndex, 0, sizeof( int ) * MaxNum ) ;
 	_MEMSET( NewMVertIndex, 0, sizeof( int ) * MaxNum ) ;
 
-	// ЌА•WЏо•с‚М€к’v‚·‚й’ё“_‚р—с‹“‚·‚й
+	// еє§жЁ™жѓ…е ±гЃ®дёЂи‡ґгЃ™г‚‹й ‚з‚№г‚’е€—жЊ™гЃ™г‚‹
 	SubNum = 0 ;
 	Pos1 = Frame->Position ;
 	_MEMSET( DisableFlag, 0, sizeof( BYTE ) * MaxNum ) ;
 	for( i = 0 ; i < Frame->PositionNum ; i ++, Pos1 = ( MV1_MESH_POSITION * )( ( BYTE * )Pos1 + Frame->PosUnitSize ) )
 	{
-		// Љщ‚Й–іЊш‚ѕ‚Б‚Ѕ‚з‰Ѕ‚а‚µ‚И‚ў
+		// ж—ўгЃ«з„ЎеЉ№гЃ гЃЈгЃџг‚‰дЅ•г‚‚гЃ—гЃЄгЃ„
 		if( DisableFlag[ i ] ) continue ;
 
 		Pos2 = ( MV1_MESH_POSITION * )( ( BYTE * )Frame->Position + Frame->PosUnitSize * ( i + 1 ) ) ;
 		for( j = i + 1 ; j < Frame->PositionNum ; j ++, Pos2 = ( MV1_MESH_POSITION * )( ( BYTE * )Pos2 + Frame->PosUnitSize ) )
 		{
-			// Љщ‚Й–іЊш‚ѕ‚Б‚Ѕ‚з‰Ѕ‚а‚µ‚И‚ў
+			// ж—ўгЃ«з„ЎеЉ№гЃ гЃЈгЃџг‚‰дЅ•г‚‚гЃ—гЃЄгЃ„
 			if( DisableFlag[ j ] ) continue ;
 
-			// ЌА•W‚Є“Ї‚¶‚©’І‚Ч‚й
+			// еє§жЁ™гЃЊеђЊгЃгЃ‹иЄїгЃ№г‚‹
 			if( *( ( DWORD * )&Pos1->Position.x ) != *( ( DWORD * )&Pos2->Position.x ) ||
 				*( ( DWORD * )&Pos1->Position.y ) != *( ( DWORD * )&Pos2->Position.y ) ||
 				*( ( DWORD * )&Pos1->Position.z ) != *( ( DWORD * )&Pos2->Position.z ) ) continue ;
 
-			// ѓXѓLѓjѓ“ѓOѓEѓGѓCѓg‚Є“Ї‚¶‚©’І‚Ч‚й
+			// г‚№г‚­гѓ‹гѓіг‚°г‚¦г‚Ёг‚¤гѓ€гЃЊеђЊгЃгЃ‹иЄїгЃ№г‚‹
 			for( BoneNum1 = 0 ; BoneNum1 < Frame->UseSkinBoneNum && Pos1->BoneWeight[ BoneNum1 ].Index != -1 ; BoneNum1 ++ ){}
 			for( BoneNum2 = 0 ; BoneNum2 < Frame->UseSkinBoneNum && Pos2->BoneWeight[ BoneNum2 ].Index != -1 ; BoneNum2 ++ ){}
 			if( BoneNum1 != BoneNum2 ) continue ;
@@ -9326,7 +9326,7 @@ static int _MV1PositionOptimizeFrameBase( MV1_FRAME_BASE *Frame )
 			}
 			if( k != BoneNum1 ) continue ;
 
-			// “Ї‚¶’ё“_‚р”­Њ©‚µ‚Ѕ‚з”ФЌ†‚МЋб‚ў’ё“_‚Й“ќЌ‡‚·‚й
+			// еђЊгЃй ‚з‚№г‚’з™єи¦‹гЃ—гЃџг‚‰з•ЄеЏ·гЃ®и‹ҐгЃ„й ‚з‚№гЃ«зµ±еђ€гЃ™г‚‹
 			Mesh = Frame->Mesh ;
 			for( k = 0 ; k < Frame->MeshNum ; k ++, Mesh ++ )
 			{
@@ -9368,23 +9368,23 @@ static int _MV1PositionOptimizeFrameBase( MV1_FRAME_BASE *Frame )
 				}
 			}
 
-			// –іЊшѓtѓ‰ѓO‚р—§‚Д‚й
+			// з„ЎеЉ№гѓ•гѓ©г‚°г‚’з«‹гЃ¦г‚‹
 			DisableFlag[ j ] = 1 ;
 
-			// Њё‚з‚µ‚Ѕђ”‚р‰БЋZ‚·‚й
+			// жё›г‚‰гЃ—гЃџж•°г‚’еЉ з®—гЃ™г‚‹
 			SubNum ++ ;
 		}
 	}
 
-	// €к‚В‚аЊё‚з‚И‚ўЏкЌ‡‚Н‰Ѕ‚а‚µ‚И‚ў
+	// дёЂгЃ¤г‚‚жё›г‚‰гЃЄгЃ„е ґеђ€гЃЇдЅ•г‚‚гЃ—гЃЄгЃ„
 	if( SubNum != 0 )
 	{
-		// Њё‚з‚µ‚Ѕ•Є‚ѕ‚ЇЌА•WѓfЃ[ѓ^ѓTѓCѓY‚рЊёЋZ‚·‚й
+		// жё›г‚‰гЃ—гЃџе€†гЃ гЃ‘еє§жЁ™гѓ‡гѓјг‚їг‚µг‚¤г‚єг‚’жё›з®—гЃ™г‚‹
 		Size = Frame->PosUnitSize * SubNum ;
 		ModelBase->MeshPositionSize -= Size ;
 		ModelBase->VertexDataSize -= Size ;
 
-		// Ћg—p‚і‚к‚Д‚ў‚йЌА•W‚р—с‹“‚·‚й
+		// дЅїз”ЁгЃ•г‚ЊгЃ¦гЃ„г‚‹еє§жЁ™г‚’е€—жЊ™гЃ™г‚‹
 		NewNum = 0 ;
 		Pos1 = Frame->Position ;
 		Pos2 = Frame->Position ;
@@ -9398,10 +9398,10 @@ static int _MV1PositionOptimizeFrameBase( MV1_FRAME_BASE *Frame )
 			NewNum ++ ;
 		}
 
-		// ђV‚µ‚ўЌА•Wђ”‚рѓZѓbѓg‚·‚й
+		// ж–°гЃ—гЃ„еє§жЁ™ж•°г‚’г‚»гѓѓгѓ€гЃ™г‚‹
 		Frame->PositionNum = NewNum ;
 
-		// ’ё“_ѓfЃ[ѓ^‚МЌА•W”ФЌ†‚р•ПЌX‚·‚й
+		// й ‚з‚№гѓ‡гѓјг‚їгЃ®еє§жЁ™з•ЄеЏ·г‚’е¤‰ж›ґгЃ™г‚‹
 		Mesh = Frame->Mesh ;
 		for( i = 0 ; i < Frame->MeshNum ; i ++, Mesh ++ )
 		{
@@ -9412,7 +9412,7 @@ static int _MV1PositionOptimizeFrameBase( MV1_FRAME_BASE *Frame )
 			}
 		}
 
-		// ’ё“_Џо•с‚М€к’v‚·‚й’ё“_‚р—с‹“‚·‚й
+		// й ‚з‚№жѓ…е ±гЃ®дёЂи‡ґгЃ™г‚‹й ‚з‚№г‚’е€—жЊ™гЃ™г‚‹
 		Mesh = Frame->Mesh ;	
 		_MEMSET( NewMVertIndex, 0xff, sizeof( int ) * MaxNum ) ;
 		for( i = 0 ; i < Frame->MeshNum ; i ++, Mesh ++ )
@@ -9422,20 +9422,20 @@ static int _MV1PositionOptimizeFrameBase( MV1_FRAME_BASE *Frame )
 			_MEMSET( DisableFlag, 0, sizeof( BYTE ) * MaxNum ) ;
 			for( j = 0 ; j < Mesh->VertexNum ; j ++, Vert1 = ( MV1_MESH_VERTEX * )( ( BYTE * )Vert1 + Mesh->VertUnitSize ) )
 			{
-				// Љщ‚Й–іЊш‚ѕ‚Б‚Ѕ‚з‰Ѕ‚а‚µ‚И‚ў
+				// ж—ўгЃ«з„ЎеЉ№гЃ гЃЈгЃџг‚‰дЅ•г‚‚гЃ—гЃЄгЃ„
 				if( DisableFlag[ j ] ) continue ;
 
 				Vert2 = ( MV1_MESH_VERTEX * )( ( BYTE * )Mesh->Vertex + Mesh->VertUnitSize * ( j + 1 ) ) ;
 				for( k = j + 1 ; k < Mesh->VertexNum ; k ++, Vert2 = ( MV1_MESH_VERTEX * )( ( BYTE * )Vert2 + Mesh->VertUnitSize ) )
 				{
-					// Љщ‚Й–іЊш‚ѕ‚Б‚Ѕ‚з‰Ѕ‚а‚µ‚И‚ў
+					// ж—ўгЃ«з„ЎеЉ№гЃ гЃЈгЃџг‚‰дЅ•г‚‚гЃ—гЃЄгЃ„
 					if( DisableFlag[ k ] ) continue ;
 
-					// Џо•с‚Є“Ї‚¶‚©’І‚Ч‚й
+					// жѓ…е ±гЃЊеђЊгЃгЃ‹иЄїгЃ№г‚‹
 					if( _MEMCMP( Vert1, Vert2, Mesh->VertUnitSize ) != 0 )
 						continue ;
 
-					// “Ї‚¶’ё“_‚р”­Њ©‚µ‚Ѕ‚з”ФЌ†‚МЋб‚ў’ё“_‚Й“ќЌ‡‚·‚й
+					// еђЊгЃй ‚з‚№г‚’з™єи¦‹гЃ—гЃџг‚‰з•ЄеЏ·гЃ®и‹ҐгЃ„й ‚з‚№гЃ«зµ±еђ€гЃ™г‚‹
 					NewMVertIndex[ k ] = j ;
 					Face = Mesh->Face ;
 					for( l = 0 ; l < Mesh->FaceNum ; l ++, Face ++ )
@@ -9458,18 +9458,18 @@ static int _MV1PositionOptimizeFrameBase( MV1_FRAME_BASE *Frame )
 						}
 					}
 
-					// –іЊшѓtѓ‰ѓO‚р—§‚Д‚й
+					// з„ЎеЉ№гѓ•гѓ©г‚°г‚’з«‹гЃ¦г‚‹
 					DisableFlag[ k ] = 1 ;
 
-					// Њё‚з‚µ‚Ѕђ”‚р‰БЋZ‚·‚й
+					// жё›г‚‰гЃ—гЃџж•°г‚’еЉ з®—гЃ™г‚‹
 					SubNum ++ ;
 				}
 			}
 
-			// €к‚В‚аЊё‚з‚И‚ўЏкЌ‡‚Н‰Ѕ‚а‚µ‚И‚ў
+			// дёЂгЃ¤г‚‚жё›г‚‰гЃЄгЃ„е ґеђ€гЃЇдЅ•г‚‚гЃ—гЃЄгЃ„
 			if( SubNum != 0 )
 			{
-				// ѓVѓFѓCѓvѓЃѓbѓVѓ…‚Є‚ ‚йЏкЌ‡‚НѓVѓFѓCѓvѓЃѓbѓVѓ…‚М‘ОЏЫ’ё“_‚а•ПЌX‚·‚й
+				// г‚·г‚§г‚¤гѓ—гѓЎгѓѓг‚·гѓҐгЃЊгЃ‚г‚‹е ґеђ€гЃЇг‚·г‚§г‚¤гѓ—гѓЎгѓѓг‚·гѓҐгЃ®еЇѕи±Ўй ‚з‚№г‚‚е¤‰ж›ґгЃ™г‚‹
 				Shape = Frame->Shape ;
 				for( j = 0 ; j < Frame->ShapeNum ; j ++, Shape ++ )
 				{
@@ -9487,13 +9487,13 @@ static int _MV1PositionOptimizeFrameBase( MV1_FRAME_BASE *Frame )
 					}
 				}
 
-				// Њё‚з‚µ‚Ѕ•Є‚ѕ‚Ї’ё“_ѓfЃ[ѓ^ѓTѓCѓY‚рЊёЋZ‚·‚й
+				// жё›г‚‰гЃ—гЃџе€†гЃ гЃ‘й ‚з‚№гѓ‡гѓјг‚їг‚µг‚¤г‚єг‚’жё›з®—гЃ™г‚‹
 				Size = Mesh->VertUnitSize * SubNum ;
 				ModelBase->MeshVertexSize -= Size ;
 				ModelBase->VertexDataSize -= Size ;
 				Frame->VertexNum -= SubNum ;
 
-				// Ћg—p‚і‚к‚Д‚ў‚й’ё“_‚р—с‹“‚·‚й
+				// дЅїз”ЁгЃ•г‚ЊгЃ¦гЃ„г‚‹й ‚з‚№г‚’е€—жЊ™гЃ™г‚‹
 				NewNum = 0 ;
 				Vert1 = Mesh->Vertex ;
 				Vert2 = Mesh->Vertex ;
@@ -9507,10 +9507,10 @@ static int _MV1PositionOptimizeFrameBase( MV1_FRAME_BASE *Frame )
 					NewNum ++ ;
 				}
 
-				// ђV‚µ‚ўЌА•Wђ”‚рѓZѓbѓg‚·‚й
+				// ж–°гЃ—гЃ„еє§жЁ™ж•°г‚’г‚»гѓѓгѓ€гЃ™г‚‹
 				Mesh->VertexNum = NewNum ;
 
-				// ’ё“_ѓfЃ[ѓ^‚М’ё“_”ФЌ†‚р•ПЌX‚·‚й
+				// й ‚з‚№гѓ‡гѓјг‚їгЃ®й ‚з‚№з•ЄеЏ·г‚’е¤‰ж›ґгЃ™г‚‹
 				Face = Mesh->Face ;
 				for( j = 0 ; j < Mesh->FaceNum ; j ++, Face ++ )
 				{
@@ -9525,14 +9525,14 @@ static int _MV1PositionOptimizeFrameBase( MV1_FRAME_BASE *Frame )
 						TList->MeshVertexIndex[ k ] = ( DWORD )NewIndex[ TList->MeshVertexIndex[ k ] ] ;
 				}
 
-				// ѓgѓ‰ѓCѓAѓ“ѓOѓ‹ѓЉѓXѓg‚МѓVѓFЃ[ѓ_Ѓ[–ўЋg—pЋћ‚М’ё“_ѓfЃ[ѓ^‚р‰р•ъ‚·‚й
+				// гѓ€гѓ©г‚¤г‚ўгѓіг‚°гѓ«гѓЄг‚№гѓ€гЃ®г‚·г‚§гѓјгѓЂгѓјжњЄдЅїз”Ёж™‚гЃ®й ‚з‚№гѓ‡гѓјг‚їг‚’и§Јж”ѕгЃ™г‚‹
 				TList = Mesh->TriangleList ;
 				for( j = 0 ; j < Mesh->TriangleListNum ; j ++, TList ++ )
 				{
 					MV1_TerminateTriangleListBaseTempBuffer_PF( TList ) ;
 				}
 
-				// ѓgѓ‰ѓCѓAѓ“ѓOѓ‹ѓЉѓXѓg“а‚МѓЃѓbѓVѓ…’ё“_ѓCѓ“ѓfѓbѓNѓX‚ЕЏd•Ў‚µ‚Д‚ў‚йЏо•с‚р—с‹“‚·‚й
+				// гѓ€гѓ©г‚¤г‚ўгѓіг‚°гѓ«гѓЄг‚№гѓ€е†…гЃ®гѓЎгѓѓг‚·гѓҐй ‚з‚№г‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃ§й‡Ќи¤‡гЃ—гЃ¦гЃ„г‚‹жѓ…е ±г‚’е€—жЊ™гЃ™г‚‹
 				TList = Mesh->TriangleList ;
 				for( j = 0 ; j < Mesh->TriangleListNum ; j ++, TList ++ )
 				{
@@ -9541,19 +9541,19 @@ static int _MV1PositionOptimizeFrameBase( MV1_FRAME_BASE *Frame )
 					MInd1 = TList->MeshVertexIndex ;
 					for( k = 0 ; k < TList->VertexNum ; k ++, MInd1 ++ )
 					{
-						// Љщ‚Й–іЊш‚ѕ‚Б‚Ѕ‚з‰Ѕ‚а‚µ‚И‚ў
+						// ж—ўгЃ«з„ЎеЉ№гЃ гЃЈгЃџг‚‰дЅ•г‚‚гЃ—гЃЄгЃ„
 						if( DisableFlag[ k ] ) continue ;
 
 						MInd2 = TList->MeshVertexIndex + k + 1 ;
 						for( l = k + 1 ; l < TList->VertexNum ; l ++, MInd2 ++ )
 						{
-							// Љщ‚Й–іЊш‚ѕ‚Б‚Ѕ‚з‰Ѕ‚а‚µ‚И‚ў
+							// ж—ўгЃ«з„ЎеЉ№гЃ гЃЈгЃџг‚‰дЅ•г‚‚гЃ—гЃЄгЃ„
 							if( DisableFlag[ l ] ) continue ;
 
-							// ’ё“_Џо•с‚Є“Ї‚¶‚©’І‚Ч‚й
+							// й ‚з‚№жѓ…е ±гЃЊеђЊгЃгЃ‹иЄїгЃ№г‚‹
 							if( *MInd1 != *MInd2 ) continue ;
 
-							// “Ї‚¶’ё“_‚р”­Њ©‚µ‚Ѕ‚з”ФЌ†‚МЋб‚ў’ё“_‚Й“ќЌ‡‚·‚й
+							// еђЊгЃй ‚з‚№г‚’з™єи¦‹гЃ—гЃџг‚‰з•ЄеЏ·гЃ®и‹ҐгЃ„й ‚з‚№гЃ«зµ±еђ€гЃ™г‚‹
 							Ind = TList->Index ;
 							for( m = 0 ; m < TList->IndexNum ; m ++, Ind ++ )
 							{
@@ -9561,18 +9561,18 @@ static int _MV1PositionOptimizeFrameBase( MV1_FRAME_BASE *Frame )
 									*Ind = ( WORD )k ;
 							}
 
-							// –іЊшѓtѓ‰ѓO‚р—§‚Д‚й
+							// з„ЎеЉ№гѓ•гѓ©г‚°г‚’з«‹гЃ¦г‚‹
 							DisableFlag[ l ] = 1 ;
 
-							// Њё‚з‚µ‚Ѕђ”‚р‰БЋZ‚·‚й
+							// жё›г‚‰гЃ—гЃџж•°г‚’еЉ з®—гЃ™г‚‹
 							SubNum ++ ;
 						}
 					}
 
-					// €к‚В‚аЊё‚з‚И‚ўЏкЌ‡‚Н‰Ѕ‚а‚µ‚И‚ў
+					// дёЂгЃ¤г‚‚жё›г‚‰гЃЄгЃ„е ґеђ€гЃЇдЅ•г‚‚гЃ—гЃЄгЃ„
 					if( SubNum != 0 )
 					{
-						// Њё‚з‚·•Є‚ѕ‚Ї’ё“_ѓfЃ[ѓ^ѓTѓCѓY‚рЊёЋZ‚·‚й
+						// жё›г‚‰гЃ™е€†гЃ гЃ‘й ‚з‚№гѓ‡гѓјг‚їг‚µг‚¤г‚єг‚’жё›з®—гЃ™г‚‹
 						ModelBase->MeshVertexIndexNum -= SubNum ;
 						ModelBase->TriangleListVertexNum -= SubNum ;
 						ModelBase->VertexDataSize -= SubNum * sizeof( DWORD ) ;
@@ -9599,7 +9599,7 @@ static int _MV1PositionOptimizeFrameBase( MV1_FRAME_BASE *Frame )
 							break ;
 						}
 
-						// Ћg—p‚і‚к‚Д‚ў‚йѓЃѓbѓVѓ…’ё“_ѓCѓ“ѓfѓbѓNѓX‚р—с‹“‚·‚й
+						// дЅїз”ЁгЃ•г‚ЊгЃ¦гЃ„г‚‹гѓЎгѓѓг‚·гѓҐй ‚з‚№г‚¤гѓігѓ‡гѓѓг‚Їг‚№г‚’е€—жЊ™гЃ™г‚‹
 						NewNum = 0 ;
 						MInd1 = TList->MeshVertexIndex ;
 						MInd2 = TList->MeshVertexIndex ;
@@ -9617,10 +9617,10 @@ static int _MV1PositionOptimizeFrameBase( MV1_FRAME_BASE *Frame )
 							NewNum ++ ;
 						}
 
-						// ђV‚µ‚ўѓЃѓbѓVѓ…’ё“_ѓCѓ“ѓfѓbѓNѓXђ”‚рѓZѓbѓg‚·‚й
+						// ж–°гЃ—гЃ„гѓЎгѓѓг‚·гѓҐй ‚з‚№г‚¤гѓігѓ‡гѓѓг‚Їг‚№ж•°г‚’г‚»гѓѓгѓ€гЃ™г‚‹
 						TList->VertexNum = NewNum ;
 
-						// ’ё“_ѓfЃ[ѓ^‚М’ё“_”ФЌ†‚р•ПЌX‚·‚й
+						// й ‚з‚№гѓ‡гѓјг‚їгЃ®й ‚з‚№з•ЄеЏ·г‚’е¤‰ж›ґгЃ™г‚‹
 						Ind = TList->Index ;
 						for( k = 0 ; k < TList->IndexNum ; k ++, Ind ++ )
 						{
@@ -9638,7 +9638,7 @@ static int _MV1PositionOptimizeFrameBase( MV1_FRAME_BASE *Frame )
 		DisableFlag = NULL ;
 	}
 
-	// ђіЏнЏI—№
+	// ж­Јеёёзµ‚дє†
 	return 0 ;
 
 ERR:
@@ -9648,12 +9648,12 @@ ERR:
 		DisableFlag = NULL ;
 	}
 
-	// ѓGѓ‰Ѓ[
+	// г‚Ёгѓ©гѓј
 	return -1 ;
 }
 
 #if 0
-// ѓRѓ“ѓoѓCѓ“ѓЃѓbѓVѓ…‚МѓZѓbѓgѓAѓbѓv‚рЌs‚¤
+// г‚ігѓігѓђг‚¤гѓігѓЎгѓѓг‚·гѓҐгЃ®г‚»гѓѓгѓ€г‚ўгѓѓгѓ—г‚’иЎЊгЃ†
 static int _MV1SetupCombineMesh( MV1_FRAME_BASE *Frame )
 {
 	MV1_MESH_BASE *BaseMesh = NULL, *MBMesh ;
@@ -9667,111 +9667,111 @@ static int _MV1SetupCombineMesh( MV1_FRAME_BASE *Frame )
 	MV1_TRIANGLE_LIST_BASE *CTList, *MBTList ;
 	int AllocMemSize ;
 
-	// Љщ‚ЙѓZѓbѓgѓAѓbѓvЌП‚Э‚МЏкЌ‡‚Н‰Ѕ‚а‚µ‚И‚ў
+	// ж—ўгЃ«г‚»гѓѓгѓ€г‚ўгѓѓгѓ—жё€гЃїгЃ®е ґеђ€гЃЇдЅ•г‚‚гЃ—гЃЄгЃ„
 	if( Frame->IsCombineMesh == true )
 		return 0 ;
 
-	// ѓRѓ“ѓoѓCѓ“ѓЃѓbѓVѓ…‚рѓZѓbѓgѓAѓbѓv‚·‚йЏрЊЏ‚ЄЌ‡‚¤‚©’І‚Ч‚й
+	// г‚ігѓігѓђг‚¤гѓігѓЎгѓѓг‚·гѓҐг‚’г‚»гѓѓгѓ€г‚ўгѓѓгѓ—гЃ™г‚‹жќЎд»¶гЃЊеђ€гЃ†гЃ‹иЄїгЃ№г‚‹
 
-	// Ћq‚Є‚ў‚И‚ўЏкЌ‡‚НѓRѓ“ѓoѓCѓ“‚а‰Ѕ‚а‚И‚µ
+	// е­ђгЃЊгЃ„гЃЄгЃ„е ґеђ€гЃЇг‚ігѓігѓђг‚¤гѓіг‚‚дЅ•г‚‚гЃЄгЃ—
 	if( Frame->TotalChildNum == 0 ) return 0 ;
 
-	// ѓЃѓbѓVѓ…‚Є‚ ‚иЃA”с•\Ћ¦‚Е‚Н‚И‚ўЏкЌ‡‚М‚ЭЌs‚¤ѓ`ѓFѓbѓN
+	// гѓЎгѓѓг‚·гѓҐгЃЊгЃ‚г‚ЉгЂЃйќћиЎЁз¤єгЃ§гЃЇгЃЄгЃ„е ґеђ€гЃ®гЃїиЎЊгЃ†гѓЃг‚§гѓѓг‚Ї
 	if( Frame->MeshNum != 0 && Frame->Mesh->Visible == 1 )
 	{
-		// ѓ}ѓeѓЉѓAѓ‹‚р“с‚В€ИЏгЋg‚¤ЏкЌ‡‚Н•s“KЌ‡
+		// гѓћгѓ†гѓЄг‚ўгѓ«г‚’дєЊгЃ¤д»ҐдёЉдЅїгЃ†е ґеђ€гЃЇдёЌйЃ©еђ€
 		if( Frame->MeshNum >= 2 ) return 0 ;
 
-		// ѓXѓLѓjѓ“ѓOѓЃѓbѓVѓ…‚аѓVѓFѓCѓvѓЃѓbѓVѓ…‚а•s“KЌ‡
+		// г‚№г‚­гѓ‹гѓіг‚°гѓЎгѓѓг‚·гѓҐг‚‚г‚·г‚§г‚¤гѓ—гѓЎгѓѓг‚·гѓҐг‚‚дёЌйЃ©еђ€
 		if( Frame->IsSkinMesh || Frame->ShapeNum != 0 )
 			return 0 ;
 
-		// ѓ|ѓЉѓSѓ“ђ”‚в’ё“_‚вѓCѓ“ѓfѓbѓNѓX‚Мђ”‚рѓZѓbѓg
+		// гѓќгѓЄг‚ґгѓіж•°г‚„й ‚з‚№г‚„г‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃ®ж•°г‚’г‚»гѓѓгѓ€
 		TotalPolygonNum = Frame->TriangleNum ;
 		TotalVertexNum = Frame->Mesh->TriangleList->VertexNum ;
 		TotalIndexNum = Frame->Mesh->TriangleList->IndexNum ;
 		TotalMeshVertexNum += Frame->Mesh->VertexNum ;
 
-		// ѓЃѓbѓVѓ…‚рЋќ‚Б‚Д‚ў‚йѓtѓЊЃ[ѓЂ‚Мђ”‚р‚P‚ЙѓZѓbѓg
+		// гѓЎгѓѓг‚·гѓҐг‚’жЊЃгЃЈгЃ¦гЃ„г‚‹гѓ•гѓ¬гѓјгѓ гЃ®ж•°г‚’пј‘гЃ«г‚»гѓѓгѓ€
 		MeshFrameNum = 1 ;
 
-		// ЊџЌё—pѓЃѓbѓVѓ…‚МѓZѓbѓg
+		// ж¤њжџ»з”ЁгѓЎгѓѓг‚·гѓҐгЃ®г‚»гѓѓгѓ€
 		BaseMesh = Frame->Mesh ;
 	}
 
-	// Ћq‚Й‚а“Ї—l‚Мѓ`ѓFѓbѓN‚р‚µ‚И‚Є‚з‘Ќѓ|ѓЉѓSѓ“ђ”‚рђ”‚¦‚й
+	// е­ђгЃ«г‚‚еђЊж§гЃ®гѓЃг‚§гѓѓг‚Їг‚’гЃ—гЃЄгЃЊг‚‰з·ЏгѓќгѓЄг‚ґгѓіж•°г‚’ж•°гЃ€г‚‹
 	MBFrame = Frame->FirstChild ;
 	for( i = 0 ; i < Frame->TotalChildNum ; i ++, MBFrame ++ )
 	{
-		// ѓЃѓbѓVѓ…‚Є–і‚ўЏкЌ‡‚Н‰Ѕ‚а‚µ‚И‚ў
+		// гѓЎгѓѓг‚·гѓҐгЃЊз„ЎгЃ„е ґеђ€гЃЇдЅ•г‚‚гЃ—гЃЄгЃ„
 		if( MBFrame->MeshNum == 0 ) continue ;
 		MBMesh = MBFrame->Mesh ;
 
-		// ѓ}ѓeѓЉѓAѓ‹‚р“с‚В€ИЏгЋg‚¤ЏкЌ‡‚Н•s“KЌ‡
+		// гѓћгѓ†гѓЄг‚ўгѓ«г‚’дєЊгЃ¤д»ҐдёЉдЅїгЃ†е ґеђ€гЃЇдёЌйЃ©еђ€
 		if( MBFrame->MeshNum >= 2  )
 			return 0 ;
 
-		// ѓXѓLѓjѓ“ѓOѓЃѓbѓVѓ…‚вѓVѓFѓCѓvѓЃѓbѓVѓ…‚МЏкЌ‡‚а•s“KЌ‡
+		// г‚№г‚­гѓ‹гѓіг‚°гѓЎгѓѓг‚·гѓҐг‚„г‚·г‚§г‚¤гѓ—гѓЎгѓѓг‚·гѓҐгЃ®е ґеђ€г‚‚дёЌйЃ©еђ€
 		if( MBFrame->IsSkinMesh || MBFrame->ShapeNum != 0 )
 			return 0 ;
 
-		// ѓgѓ‰ѓCѓAѓ“ѓOѓ‹ѓЉѓXѓg‚Мђ”‚Є‚QЊВ€ИЏг‚МЏкЌ‡‚а•s“KЌ‡
+		// гѓ€гѓ©г‚¤г‚ўгѓіг‚°гѓ«гѓЄг‚№гѓ€гЃ®ж•°гЃЊпј’еЂ‹д»ҐдёЉгЃ®е ґеђ€г‚‚дёЌйЃ©еђ€
 		if( MBMesh->TriangleListNum >= 2 )
 			return 0 ;
 
-		// ЊџЌё—pѓЃѓbѓVѓ…‚ЄЉщ‚ЙЊџЏo‚і‚к‚Д‚ў‚й‚©‚З‚¤‚©‚ЕЏ€—ќ‚р•ЄЉт
+		// ж¤њжџ»з”ЁгѓЎгѓѓг‚·гѓҐгЃЊж—ўгЃ«ж¤ње‡єгЃ•г‚ЊгЃ¦гЃ„г‚‹гЃ‹гЃ©гЃ†гЃ‹гЃ§е‡¦зђ†г‚’е€†еІђ
 		if( BaseMesh == NULL )
 		{
 			BaseMesh = MBMesh ;
 		}
 		else
 		{
-			// ђe‚Ж€б‚¤ѓ}ѓeѓЉѓAѓ‹‚МЏкЌ‡‚Н•s“KЌ‡
+			// и¦ЄгЃЁйЃ•гЃ†гѓћгѓ†гѓЄг‚ўгѓ«гЃ®е ґеђ€гЃЇдёЌйЃ©еђ€
 			if( MBMesh->Material != BaseMesh->Material )
 				return 0 ;
 
-			// ђeѓtѓЊЃ[ѓЂ‚МѓЃѓbѓVѓ…‚Ж’ё“_ѓJѓ‰Ѓ[‚М€µ‚ў‚Є€б‚Б‚Ѕ‚з•s“KЌ‡
+			// и¦Єгѓ•гѓ¬гѓјгѓ гЃ®гѓЎгѓѓг‚·гѓҐгЃЁй ‚з‚№г‚«гѓ©гѓјгЃ®ж‰±гЃ„гЃЊйЃ•гЃЈгЃџг‚‰дёЌйЃ©еђ€
 			if( MBMesh->UseVertexDiffuseColor  != BaseMesh->UseVertexDiffuseColor ||
 				MBMesh->UseVertexSpecularColor != BaseMesh->UseVertexSpecularColor )
 				return 0 ;
 
-			// ѓoѓbѓNѓJѓЉѓ“ѓOђЭ’и‚ЄђeѓtѓЊЃ[ѓЂ‚Ж€б‚Б‚Д‚ў‚Ѕ‚з•s“KЌ‡
+			// гѓђгѓѓг‚Їг‚«гѓЄгѓіг‚°иЁ­е®љгЃЊи¦Єгѓ•гѓ¬гѓјгѓ гЃЁйЃ•гЃЈгЃ¦гЃ„гЃџг‚‰дёЌйЃ©еђ€
 			if( MBMesh->BackCulling != BaseMesh->BackCulling )
 				return 0 ;
 
-			// ’ё“_€к‚В•У‚и‚МѓTѓCѓY‚ЄђeѓtѓЊЃ[ѓЂ‚Ж€б‚Б‚Д‚ў‚Ѕ‚з•s“KЌ‡
+			// й ‚з‚№дёЂгЃ¤иѕєг‚ЉгЃ®г‚µг‚¤г‚єгЃЊи¦Єгѓ•гѓ¬гѓјгѓ гЃЁйЃ•гЃЈгЃ¦гЃ„гЃџг‚‰дёЌйЃ©еђ€
 			if( MBMesh->VertUnitSize != BaseMesh->VertUnitSize )
 				return 0 ;
 
-			// ’ё“_ѓfЃ[ѓ^€к‚В‚ЙЉЬ‚Ь‚к‚йѓeѓNѓXѓ`ѓѓЌА•W‚Мђ”‚Є€б‚Б‚Ѕ‚з•s“KЌ‡
+			// й ‚з‚№гѓ‡гѓјг‚їдёЂгЃ¤гЃ«еђ«гЃѕг‚Њг‚‹гѓ†г‚Їг‚№гѓЃгѓЈеє§жЁ™гЃ®ж•°гЃЊйЃ•гЃЈгЃџг‚‰дёЌйЃ©еђ€
 			if( MBMesh->UVSetUnitNum != BaseMesh->UVSetUnitNum ||
 				MBMesh->UVUnitNum    != BaseMesh->UVUnitNum )
 				return 0 ;
 		}
 
-		// ”с•\Ћ¦‚МЏкЌ‡‚Н‰Ѕ‚а‚µ‚И‚ў
+		// йќћиЎЁз¤єгЃ®е ґеђ€гЃЇдЅ•г‚‚гЃ—гЃЄгЃ„
 		if( MBFrame->Mesh->Visible == 0 ) continue ;
 
-		// ѓ|ѓЉѓSѓ“‚Ж’ё“_‚ЖѓCѓ“ѓfѓbѓNѓX‚М‘Ќђ”‚р‰БЋZ
+		// гѓќгѓЄг‚ґгѓігЃЁй ‚з‚№гЃЁг‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃ®з·Џж•°г‚’еЉ з®—
 		TotalPolygonNum += MBFrame->TriangleNum ;
 		TotalVertexNum += MBMesh->TriangleList->VertexNum ;
 		TotalIndexNum += MBMesh->TriangleList->IndexNum ;
 		TotalMeshVertexNum += MBMesh->VertexNum ;
 
-		// ѓЃѓbѓVѓ…‚рЋќ‚Б‚Д‚ў‚йѓtѓЊЃ[ѓЂ‚Мђ”‚рѓCѓ“ѓNѓЉѓЃѓ“ѓg
+		// гѓЎгѓѓг‚·гѓҐг‚’жЊЃгЃЈгЃ¦гЃ„г‚‹гѓ•гѓ¬гѓјгѓ гЃ®ж•°г‚’г‚¤гѓіг‚ЇгѓЄгѓЎгѓігѓ€
 		MeshFrameNum ++ ;
 	}
 
-	// ѓ|ѓЉѓSѓ“‚М‘Ќђ”‚Є 5000 ‚р’ґ‚¦‚йЏкЌ‡‚Н•s“KЌ‡
+	// гѓќгѓЄг‚ґгѓігЃ®з·Џж•°гЃЊ 5000 г‚’и¶…гЃ€г‚‹е ґеђ€гЃЇдёЌйЃ©еђ€
 	if( TotalPolygonNum > 5000 ) return 0 ;
 
-	// ’ё“_‚вѓCѓ“ѓfѓbѓNѓX‚Мђ”‚Є 32767 ‚р’ґ‚¦‚йЏкЌ‡‚Н•s“KЌ‡
+	// й ‚з‚№г‚„г‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃ®ж•°гЃЊ 32767 г‚’и¶…гЃ€г‚‹е ґеђ€гЃЇдёЌйЃ©еђ€
 	if( TotalVertexNum > 32767 || TotalIndexNum > 32767 || TotalMeshVertexNum > 32767 ) return 0 ;
 
-	// ѓЃѓbѓVѓ…‚рЋќ‚Б‚Д‚ў‚йѓtѓЊЃ[ѓЂ‚Є‚Р‚Ж‚В€И‰є‚ѕ‚Б‚ЅЏкЌ‡‚НѓRѓ“ѓoѓCѓ“ѓЃѓbѓVѓ…‚рЋg‚¤•K—v‚Є–і‚ў‚М‚Е•s“KЌ‡
+	// гѓЎгѓѓг‚·гѓҐг‚’жЊЃгЃЈгЃ¦гЃ„г‚‹гѓ•гѓ¬гѓјгѓ гЃЊгЃІгЃЁгЃ¤д»Ґдё‹гЃ гЃЈгЃџе ґеђ€гЃЇг‚ігѓігѓђг‚¤гѓігѓЎгѓѓг‚·гѓҐг‚’дЅїгЃ†еї…и¦ЃгЃЊз„ЎгЃ„гЃ®гЃ§дёЌйЃ©еђ€
 	if( MeshFrameNum <= 1 ) return 0 ;
 
-	// Љm•ЫѓЃѓ‚ѓЉ‚МѓTѓCѓY‚рЊvЋZ‚·‚й
+	// зўєдїќгѓЎгѓўгѓЄгЃ®г‚µг‚¤г‚єг‚’иЁ€з®—гЃ™г‚‹
 	AllocMemSize =
 		TotalVertexNum     * ( BaseMesh->TriangleList->PosUnitSize + sizeof( DWORD ) ) +
 		TotalIndexNum      * sizeof( unsigned short ) +
@@ -9780,12 +9780,12 @@ static int _MV1SetupCombineMesh( MV1_FRAME_BASE *Frame )
 		sizeof( MV1_MESH_BASE ) +
 		sizeof( MV1_VERTEXBUFFER ) ;
 
-	// ѓЃѓ‚ѓЉ‚МЉm•Ы
+	// гѓЎгѓўгѓЄгЃ®зўєдїќ
 	Frame->CombineMesh = ( MV1_MESH_BASE * )DXALLOC( AllocMemSize ) ;
 	if( Frame->CombineMesh == NULL ) return 0 ;
 	_MEMSET( Frame->CombineMesh, 0, AllocMemSize ) ;
 
-	// ѓЃѓ‚ѓЉѓAѓhѓЊѓX‚МѓZѓbѓg
+	// гѓЎгѓўгѓЄг‚ўгѓ‰гѓ¬г‚№гЃ®г‚»гѓѓгѓ€
 	CMesh = Frame->CombineMesh ;
 	CTList = ( MV1_TRIANGLE_LIST_BASE * )( CMesh + 1 ) ;
 	CMesh->VertexNum = TotalMeshVertexNum ;
@@ -9793,7 +9793,7 @@ static int _MV1SetupCombineMesh( MV1_FRAME_BASE *Frame )
 	CTList->MeshVertexIndex = ( DWORD * )( ( BYTE * )CMesh->Vertex + TotalMeshVertexNum * MBMesh->VertUnitSize ) ;
 	CTList->NormalPosition = ( MV1_LIST_NORMAL_POS * )( ( BYTE * )
 
-	// ѓЃѓbѓVѓ…‚МЏо•с‚рѓZѓbѓg
+	// гѓЎгѓѓг‚·гѓҐгЃ®жѓ…е ±г‚’г‚»гѓѓгѓ€
 	*CMesh = *BaseMesh ;
 	CMesh->TriangleListNum = 1 ;
 	CMesh->TriangleList = CTList ;
@@ -9801,7 +9801,7 @@ static int _MV1SetupCombineMesh( MV1_FRAME_BASE *Frame )
 	CMesh->FaceNum = 0 ;
 	CMesh->Face = NULL ;
 
-	// ѓgѓ‰ѓCѓAѓ“ѓOѓ‹ѓЉѓXѓg‚МЏо•с‚рѓZѓbѓg
+	// гѓ€гѓ©г‚¤г‚ўгѓіг‚°гѓ«гѓЄг‚№гѓ€гЃ®жѓ…е ±г‚’г‚»гѓѓгѓ€
 	CTList->Container = CMesh ;
 	CTList->VertexType = MBMesh->TriangleList->VertexType ;
 	CTList->PosUnitSize = MBMesh->TriangleList->PosUnitSize ;
@@ -9810,7 +9810,7 @@ static int _MV1SetupCombineMesh( MV1_FRAME_BASE *Frame )
 	CTList->MaxBoneNum = 0 ;
 	CTList->UseBoneNum = 0 ;
 
-	// ѓЃѓbѓVѓ…ѓЊѓ“ѓ_ѓЉѓ“ѓO‚Й•K—v‚М–і‚ўѓfЃ[ѓ^‚НѓNѓЉѓA
+	// гѓЎгѓѓг‚·гѓҐгѓ¬гѓігѓЂгѓЄгѓіг‚°гЃ«еї…и¦ЃгЃ®з„ЎгЃ„гѓ‡гѓјг‚їгЃЇг‚ЇгѓЄг‚ў
 	TCMesh.VertexNum      = 0 ;
 	TCMesh.VertUnitSize   = 0 ;
 	TCMesh.Vertex         = NULL ;
@@ -9818,10 +9818,10 @@ static int _MV1SetupCombineMesh( MV1_FRAME_BASE *Frame )
 	TCMesh.FaceNum        = 0 ;
 	TCMesh.Face           = NULL ;
 
-	// ѓgѓ‰ѓCѓAѓ“ѓOѓ‹ѓЉѓXѓg‚Н€к‚В‚ѕ‚Ї
+	// гѓ€гѓ©г‚¤г‚ўгѓіг‚°гѓ«гѓЄг‚№гѓ€гЃЇдёЂгЃ¤гЃ гЃ‘
 	TCMesh.TriangleListNum = 1 ;
 
-	// ѓRѓ“ѓoѓCѓ“ѓgѓ‰ѓCѓAѓ“ѓOѓ‹ѓЉѓXѓg‚М‰јЏ‰Љъ‰»
+	// г‚ігѓігѓђг‚¤гѓігѓ€гѓ©г‚¤г‚ўгѓіг‚°гѓ«гѓЄг‚№гѓ€гЃ®д»®е€ќжњџеЊ–
 	_MEMSET( &TCTList, 0, sizeof( TCTList ) ) ;
 	MBTList = BaseMesh->TriangleList ;
 	TCTList.VertexType = MBTList->VertexType ;
@@ -9832,7 +9832,7 @@ static int _MV1SetupCombineMesh( MV1_FRAME_BASE *Frame )
 
 #endif
 
-// ЋQЏЖ—pѓЃѓbѓVѓ…‚МЌЕ‘е’l‚ЖЌЕЏ¬’l‚рЌXђV‚·‚й
+// еЏ‚з…§з”ЁгѓЎгѓѓг‚·гѓҐгЃ®жњЂе¤§еЂ¤гЃЁжњЂе°ЏеЂ¤г‚’ж›ґж–°гЃ™г‚‹
 static void _MV1SetupReferenceMeshMaxAndMinPosition( MV1_REF_POLYGONLIST *PolyList )
 {
 	MV1_REF_POLYGON *Poly ;
@@ -9888,7 +9888,7 @@ static void _MV1SetupReferenceMeshMaxAndMinPosition( MV1_REF_POLYGONLIST *PolyLi
 	}
 }
 
-// ѓ}ѓ‹ѓ`ѓoѓCѓg•¶Ћљ–ј‚©‚зѓЏѓCѓh•¶Ћљ–ј‚рЌмђ¬‚·‚й
+// гѓћгѓ«гѓЃгѓђг‚¤гѓ€ж–‡е­—еђЌгЃ‹г‚‰гѓЇг‚¤гѓ‰ж–‡е­—еђЌг‚’дЅњж€ђгЃ™г‚‹
 static bool _MV1CreateWideCharNameBase( MV1_MODEL_BASE *MBase, const char *NameA, wchar_t **NameWP )
 {
 	wchar_t TempName[ 512 ] ;
@@ -9897,7 +9897,7 @@ static bool _MV1CreateWideCharNameBase( MV1_MODEL_BASE *MBase, const char *NameA
 	*NameWP = ( wchar_t * )ADDMEMAREA( ( _WCSLEN( TempName ) + 1 ) * sizeof( wchar_t ), &MBase->AddFirstMem ) ;
 	if( *NameWP == NULL )
 	{
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\xef\x30\xa4\x30\xc9\x30\x87\x65\x57\x5b\xdd\x4f\x58\x5b\x28\x75\x6e\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x28\x00\x11\xff\x29\x00\x00"/*@ L"ѓЏѓCѓh•¶Ћљ•Ы‘¶—p‚МѓЃѓ‚ѓЉ—М€ж‚МЉm•Ы‚ЙЋё”s‚µ‚Ь‚µ‚Ѕ(‚P)" @*/ )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\xef\x30\xa4\x30\xc9\x30\x87\x65\x57\x5b\xdd\x4f\x58\x5b\x28\x75\x6e\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x28\x00\x11\xff\x29\x00\x00"/*@ L"гѓЇг‚¤гѓ‰ж–‡е­—дїќе­з”ЁгЃ®гѓЎгѓўгѓЄй еџџгЃ®зўєдїќгЃ«е¤±ж•—гЃ—гЃѕгЃ—гЃџ(пј‘)" @*/ )) ;
 		return false ;
 	}
 	_WCSCPY( *NameWP, TempName ) ;
@@ -9905,7 +9905,7 @@ static bool _MV1CreateWideCharNameBase( MV1_MODEL_BASE *MBase, const char *NameA
 	return true ;
 }
 
-// ѓЏѓCѓh•¶Ћљ–ј‚©‚зѓ}ѓ‹ѓ`ѓoѓCѓg•¶Ћљ–ј‚рЌмђ¬‚·‚й
+// гѓЇг‚¤гѓ‰ж–‡е­—еђЌгЃ‹г‚‰гѓћгѓ«гѓЃгѓђг‚¤гѓ€ж–‡е­—еђЌг‚’дЅњж€ђгЃ™г‚‹
 static bool _MV1CreateMultiByteNameBase( MV1_MODEL_BASE *MBase, const wchar_t *NameW, char **NameAP )
 {
 	char TempName[ 512 ] ;
@@ -9914,7 +9914,7 @@ static bool _MV1CreateMultiByteNameBase( MV1_MODEL_BASE *MBase, const wchar_t *N
 	*NameAP = ( char * )ADDMEMAREA( _STRLEN( TempName ) + 1, &MBase->AddFirstMem ) ;
 	if( *NameAP == NULL )
 	{
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\xde\x30\xeb\x30\xc1\x30\xd0\x30\xa4\x30\xc8\x30\x87\x65\x57\x5b\xdd\x4f\x58\x5b\x28\x75\x6e\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x28\x00\x11\xff\x29\x00\x00"/*@ L"ѓ}ѓ‹ѓ`ѓoѓCѓg•¶Ћљ•Ы‘¶—p‚МѓЃѓ‚ѓЉ—М€ж‚МЉm•Ы‚ЙЋё”s‚µ‚Ь‚µ‚Ѕ(‚P)" @*/ )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\xde\x30\xeb\x30\xc1\x30\xd0\x30\xa4\x30\xc8\x30\x87\x65\x57\x5b\xdd\x4f\x58\x5b\x28\x75\x6e\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x28\x00\x11\xff\x29\x00\x00"/*@ L"гѓћгѓ«гѓЃгѓђг‚¤гѓ€ж–‡е­—дїќе­з”ЁгЃ®гѓЎгѓўгѓЄй еџџгЃ®зўєдїќгЃ«е¤±ж•—гЃ—гЃѕгЃ—гЃџ(пј‘)" @*/ )) ;
 		return false ;
 	}
 	_STRCPY( *NameAP, TempName ) ;
@@ -9922,18 +9922,18 @@ static bool _MV1CreateMultiByteNameBase( MV1_MODEL_BASE *MBase, const wchar_t *N
 	return true ;
 }
 
-// ѓtѓ@ѓCѓ‹ѓpѓX‚©‚зѓtѓ@ѓCѓ‹–ј‚ЖѓfѓBѓЊѓNѓgѓЉѓpѓX‚рЌмђ¬‚·‚й
+// гѓ•г‚Ўг‚¤гѓ«гѓ‘г‚№гЃ‹г‚‰гѓ•г‚Ўг‚¤гѓ«еђЌгЃЁгѓ‡г‚Јгѓ¬г‚Їгѓ€гѓЄгѓ‘г‚№г‚’дЅњж€ђгЃ™г‚‹
 static void _MV1CreateFileNameAndCurrentDirectory( const wchar_t *FilePath, wchar_t *FileName, size_t FileNameBytes, wchar_t *CurrentDirectory, size_t CurrentDirectoryBytes )
 {
 	wchar_t FileName2[ FILEPATH_MAX ], *cpt ;
 	int i, Last = 0 ;
 
-	// ѓ‚ѓfѓ‹ѓtѓ@ѓCѓ‹‚М‚ ‚йѓfѓBѓЊѓNѓgѓЉѓpѓX‚рЌмђ¬‚·‚й
+	// гѓўгѓ‡гѓ«гѓ•г‚Ўг‚¤гѓ«гЃ®гЃ‚г‚‹гѓ‡г‚Јгѓ¬г‚Їгѓ€гѓЄгѓ‘г‚№г‚’дЅњж€ђгЃ™г‚‹
 	if( _WCSCHR( FilePath, L'\\' ) != NULL || _WCSCHR( FilePath, L'/' ) != NULL || _WCSCHR( FilePath, L':' ) != NULL )
 	{
 		wchar_t TempDirectory[ 1024 ] ;
 
-		// ЌЕЊг‚ЙЃw\Ѓx–”‚НЃw/Ѓx‚ЄЏo‚Д‚­‚й‚Ж‚±‚л‚р’T‚·
+		// жњЂеѕЊгЃ«гЂЋ\гЂЏеЏ€гЃЇгЂЋ/гЂЏгЃЊе‡єгЃ¦гЃЏг‚‹гЃЁгЃ“г‚Ќг‚’жЋўгЃ™
 		for( i = 0 ; FilePath[ i ] != L'\0' ; )
 		{
 			if( CHECK_WCHAR_T_DOUBLE( FilePath[ i ] ) )
@@ -9949,10 +9949,10 @@ static void _MV1CreateFileNameAndCurrentDirectory( const wchar_t *FilePath, wcha
 			}
 		}
 
-		// ѓfѓBѓЊѓNѓgѓЉЋw’и•”•Є‚М‚Э‚рѓRѓsЃ[
+		// гѓ‡г‚Јгѓ¬г‚Їгѓ€гѓЄжЊ‡е®љйѓЁе€†гЃ®гЃїг‚’г‚ігѓ”гѓј
 		_WCSNCPY_S( TempDirectory, sizeof( TempDirectory ), FilePath, Last + 1 + 1 ) ;
 
-		// ЏI’[•¶Ћљ‚рѓZѓbѓg
+		// зµ‚з«Їж–‡е­—г‚’г‚»гѓѓгѓ€
 		if( ( TempDirectory[ Last ] == L'/' || TempDirectory[ Last ] == L'\\' ) && ( Last == 0 || TempDirectory[ Last - 1 ] != L':' ) )
 		{
 			TempDirectory[ Last ] = L'\0' ;
@@ -9962,28 +9962,28 @@ static void _MV1CreateFileNameAndCurrentDirectory( const wchar_t *FilePath, wcha
 			TempDirectory[ Last + 1 ] = L'\0' ;
 		}
 
-		// ѓfѓBѓЊѓNѓgѓЉ‚рѓtѓ‹ѓpѓX‚Й‚·‚й
+		// гѓ‡г‚Јгѓ¬г‚Їгѓ€гѓЄг‚’гѓ•гѓ«гѓ‘г‚№гЃ«гЃ™г‚‹
 		ConvertFullPathW_( TempDirectory, CurrentDirectory, CurrentDirectoryBytes ) ;
 
-		// ѓtѓ@ѓCѓ‹–ј•”•Є‚М‚Э‚рѓRѓsЃ[
+		// гѓ•г‚Ўг‚¤гѓ«еђЌйѓЁе€†гЃ®гЃїг‚’г‚ігѓ”гѓј
 		_WCSCPY_S( FileName2, sizeof( FileName2 ), &FilePath[ Last + 1 ] ) ;
 	}
 	else
 	{
-		// ѓJѓЊѓ“ѓgѓfѓBѓЊѓNѓgѓЉ‚р“ѕ‚й
+		// г‚«гѓ¬гѓігѓ€гѓ‡г‚Јгѓ¬г‚Їгѓ€гѓЄг‚’еѕ—г‚‹
 		DX_FGETDIR( CurrentDirectory, CurrentDirectoryBytes ) ;
 
-		// ѓtѓ@ѓCѓ‹–ј‚рѓRѓsЃ[
+		// гѓ•г‚Ўг‚¤гѓ«еђЌг‚’г‚ігѓ”гѓј
 		_WCSCPY_S( FileName2, sizeof( FileName2 ), FilePath ) ;
 	}
 
-	// Љg’ЈЋq‚р”І‚ў‚Ѕѓtѓ@ѓCѓ‹–ј‚р“ѕ‚й
+	// ж‹Ўејµе­ђг‚’жЉњгЃ„гЃџгѓ•г‚Ўг‚¤гѓ«еђЌг‚’еѕ—г‚‹
 	_WCSCPY_S( FileName, FileNameBytes, FileName2 ) ;
 	cpt = ( wchar_t * )_WCSRCHR( FileName, L'.' ) ;
 	if( cpt ) *cpt = L'\0' ;
 }
 
-// ѓ}ѓ‹ѓ`ѓoѓCѓg•¶Ћљ–ј‚©‚зѓЏѓCѓh•¶Ћљ–ј‚рЌмђ¬‚·‚й
+// гѓћгѓ«гѓЃгѓђг‚¤гѓ€ж–‡е­—еђЌгЃ‹г‚‰гѓЇг‚¤гѓ‰ж–‡е­—еђЌг‚’дЅњж€ђгЃ™г‚‹
 static bool _MV1CreateWideCharName( const char *NameA, wchar_t **NameWP )
 {
 	wchar_t TempName[ 512 ] ;
@@ -9993,7 +9993,7 @@ static bool _MV1CreateWideCharName( const char *NameA, wchar_t **NameWP )
 	*NameWP = ( wchar_t * )DXALLOC( ( _WCSLEN( TempName ) + 1 ) * sizeof( wchar_t ) ) ;
 	if( *NameWP == NULL )
 	{
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\xef\x30\xa4\x30\xc9\x30\x87\x65\x57\x5b\xdd\x4f\x58\x5b\x28\x75\x6e\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x28\x00\x12\xff\x29\x00\x00"/*@ L"ѓЏѓCѓh•¶Ћљ•Ы‘¶—p‚МѓЃѓ‚ѓЉ—М€ж‚МЉm•Ы‚ЙЋё”s‚µ‚Ь‚µ‚Ѕ(‚Q)" @*/ )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\xef\x30\xa4\x30\xc9\x30\x87\x65\x57\x5b\xdd\x4f\x58\x5b\x28\x75\x6e\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x28\x00\x12\xff\x29\x00\x00"/*@ L"гѓЇг‚¤гѓ‰ж–‡е­—дїќе­з”ЁгЃ®гѓЎгѓўгѓЄй еџџгЃ®зўєдїќгЃ«е¤±ж•—гЃ—гЃѕгЃ—гЃџ(пј’)" @*/ )) ;
 		return false ;
 	}
 	_WCSCPY( *NameWP, TempName ) ;
@@ -10001,7 +10001,7 @@ static bool _MV1CreateWideCharName( const char *NameA, wchar_t **NameWP )
 	return true ;
 }
 
-// ѓЏѓCѓh•¶Ћљ–ј‚©‚зѓ}ѓ‹ѓ`ѓoѓCѓg•¶Ћљ–ј‚рЌмђ¬‚·‚й
+// гѓЇг‚¤гѓ‰ж–‡е­—еђЌгЃ‹г‚‰гѓћгѓ«гѓЃгѓђг‚¤гѓ€ж–‡е­—еђЌг‚’дЅњж€ђгЃ™г‚‹
 static bool _MV1CreateMultiByteName( const wchar_t *NameW, char **NameAP )
 {
 	char TempName[ 512 ] ;
@@ -10011,7 +10011,7 @@ static bool _MV1CreateMultiByteName( const wchar_t *NameW, char **NameAP )
 	*NameAP = ( char * )DXALLOC( _STRLEN( TempName ) + 1 ) ;
 	if( *NameAP == NULL )
 	{
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\xde\x30\xeb\x30\xc1\x30\xd0\x30\xa4\x30\xc8\x30\x87\x65\x57\x5b\xdd\x4f\x58\x5b\x28\x75\x6e\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x28\x00\x12\xff\x29\x00\x00"/*@ L"ѓ}ѓ‹ѓ`ѓoѓCѓg•¶Ћљ•Ы‘¶—p‚МѓЃѓ‚ѓЉ—М€ж‚МЉm•Ы‚ЙЋё”s‚µ‚Ь‚µ‚Ѕ(‚Q)" @*/ )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\xde\x30\xeb\x30\xc1\x30\xd0\x30\xa4\x30\xc8\x30\x87\x65\x57\x5b\xdd\x4f\x58\x5b\x28\x75\x6e\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x28\x00\x12\xff\x29\x00\x00"/*@ L"гѓћгѓ«гѓЃгѓђг‚¤гѓ€ж–‡е­—дїќе­з”ЁгЃ®гѓЎгѓўгѓЄй еџџгЃ®зўєдїќгЃ«е¤±ж•—гЃ—гЃѕгЃ—гЃџ(пј’)" @*/ )) ;
 		return false ;
 	}
 	_STRCPY( *NameAP, TempName ) ;
@@ -10019,13 +10019,13 @@ static bool _MV1CreateMultiByteName( const wchar_t *NameW, char **NameAP )
 	return true ;
 }
 
-// ѓ}ѓ‹ѓ`ѓoѓCѓg•¶Ћљ–ј‚рђV‚Ѕ‚ЙѓЃѓ‚ѓЉ‚рЉm•Ы‚µ‚ДѓRѓsЃ[‚·‚й
+// гѓћгѓ«гѓЃгѓђг‚¤гѓ€ж–‡е­—еђЌг‚’ж–°гЃџгЃ«гѓЎгѓўгѓЄг‚’зўєдїќгЃ—гЃ¦г‚ігѓ”гѓјгЃ™г‚‹
 static bool _MV1AllocAndMultiByteNameCopy( const char *NameA, char **NameAP )
 {
 	*NameAP = ( char * )DXALLOC( ( _STRLEN( NameA ) + 1 ) * sizeof( char ) ) ;
 	if( *NameAP == NULL )
 	{
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\xde\x30\xeb\x30\xc1\x30\xd0\x30\xa4\x30\xc8\x30\x87\x65\x57\x5b\xdd\x4f\x58\x5b\x28\x75\x6e\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x28\x00\x13\xff\x29\x00\x00"/*@ L"ѓ}ѓ‹ѓ`ѓoѓCѓg•¶Ћљ•Ы‘¶—p‚МѓЃѓ‚ѓЉ—М€ж‚МЉm•Ы‚ЙЋё”s‚µ‚Ь‚µ‚Ѕ(‚R)" @*/ )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\xde\x30\xeb\x30\xc1\x30\xd0\x30\xa4\x30\xc8\x30\x87\x65\x57\x5b\xdd\x4f\x58\x5b\x28\x75\x6e\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x28\x00\x13\xff\x29\x00\x00"/*@ L"гѓћгѓ«гѓЃгѓђг‚¤гѓ€ж–‡е­—дїќе­з”ЁгЃ®гѓЎгѓўгѓЄй еџџгЃ®зўєдїќгЃ«е¤±ж•—гЃ—гЃѕгЃ—гЃџ(пј“)" @*/ )) ;
 		return false ;
 	}
 	_STRCPY( *NameAP, NameA ) ;
@@ -10033,13 +10033,13 @@ static bool _MV1AllocAndMultiByteNameCopy( const char *NameA, char **NameAP )
 	return true ;
 }
 
-// ѓЏѓCѓh•¶Ћљ–ј‚рђV‚Ѕ‚ЙѓЃѓ‚ѓЉ‚рЉm•Ы‚µ‚ДѓRѓsЃ[‚·‚й
+// гѓЇг‚¤гѓ‰ж–‡е­—еђЌг‚’ж–°гЃџгЃ«гѓЎгѓўгѓЄг‚’зўєдїќгЃ—гЃ¦г‚ігѓ”гѓјгЃ™г‚‹
 static bool _MV1AllocAndWideCharNameCopy( const wchar_t *NameW, wchar_t **NameWP )
 {
 	*NameWP = ( wchar_t * )DXALLOC( ( _WCSLEN( NameW ) + 1 ) * sizeof( wchar_t ) ) ;
 	if( *NameWP == NULL )
 	{
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\xef\x30\xa4\x30\xc9\x30\x87\x65\x57\x5b\xdd\x4f\x58\x5b\x28\x75\x6e\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x28\x00\x13\xff\x29\x00\x00"/*@ L"ѓЏѓCѓh•¶Ћљ•Ы‘¶—p‚МѓЃѓ‚ѓЉ—М€ж‚МЉm•Ы‚ЙЋё”s‚µ‚Ь‚µ‚Ѕ(‚R)" @*/ )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\xef\x30\xa4\x30\xc9\x30\x87\x65\x57\x5b\xdd\x4f\x58\x5b\x28\x75\x6e\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x28\x00\x13\xff\x29\x00\x00"/*@ L"гѓЇг‚¤гѓ‰ж–‡е­—дїќе­з”ЁгЃ®гѓЎгѓўгѓЄй еџџгЃ®зўєдїќгЃ«е¤±ж•—гЃ—гЃѕгЃ—гЃџ(пј“)" @*/ )) ;
 		return false ;
 	}
 	_WCSCPY( *NameWP, NameW ) ;
@@ -10074,7 +10074,7 @@ extern int __MV1LoadTexture(
 	void *DataAddr ;
 	int UserGraphHandle = *GraphHandle != 0 ? TRUE : FALSE ;
 
-	// ѓ|ѓCѓ“ѓ^‚МЏ‰Љъ‰»
+	// гѓќг‚¤гѓіг‚їгЃ®е€ќжњџеЊ–
 	if( ValidImageAddr == false )
 	{
 #ifndef UNICODE
@@ -10103,7 +10103,7 @@ extern int __MV1LoadTexture(
 		wchar_t RelativePathW[ 1024 ] ;
 		int StrLengthW ;
 
-		// ѓtѓ@ѓCѓ‹ѓpѓX‚р•Ы‘¶‚·‚йѓЃѓ‚ѓЉ—М€ж‚МЉm•Ы
+		// гѓ•г‚Ўг‚¤гѓ«гѓ‘г‚№г‚’дїќе­гЃ™г‚‹гѓЎгѓўгѓЄй еџџгЃ®зўєдїќ
 		if( ColorFilePath && ColorFilePathWMem && StartFolderPath )
 		{
 			CreateRelativePathW_( ColorFilePath, StartFolderPath, RelativePathW, sizeof( RelativePathW ) ) ;
@@ -10116,7 +10116,7 @@ extern int __MV1LoadTexture(
 			*ColorFilePathAMem = ( char * )DXALLOC( ( size_t )( ( StrLengthA + 1 ) * sizeof( char ) ) ) ;
 			if( *ColorFilePathAMem == NULL )
 			{
-				DXST_LOGFILEFMT_ADDUTF16LE(( "\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x54\x00\x65\x00\x78\x00\x74\x00\x75\x00\x72\x00\x65\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\x28\x75\x6e\x30\xab\x30\xe9\x30\xfc\x30\x3b\x75\xcf\x50\xd5\x30\xa1\x30\xa4\x30\xeb\x30\xd1\x30\xb9\x30\x92\x30\xdd\x4f\x58\x5b\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Load Texture Error : ѓeѓNѓXѓ`ѓѓ—p‚МѓJѓ‰Ѓ[‰ж‘њѓtѓ@ѓCѓ‹ѓpѓX‚р•Ы‘¶‚·‚йѓЃѓ‚ѓЉ—М€ж‚МЉm•Ы‚ЙЋё”s‚µ‚Ь‚µ‚Ѕ\n" @*/ )) ;
+				DXST_LOGFILEFMT_ADDUTF16LE(( "\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x54\x00\x65\x00\x78\x00\x74\x00\x75\x00\x72\x00\x65\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\x28\x75\x6e\x30\xab\x30\xe9\x30\xfc\x30\x3b\x75\xcf\x50\xd5\x30\xa1\x30\xa4\x30\xeb\x30\xd1\x30\xb9\x30\x92\x30\xdd\x4f\x58\x5b\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Load Texture Error : гѓ†г‚Їг‚№гѓЃгѓЈз”ЁгЃ®г‚«гѓ©гѓјз”»еѓЏгѓ•г‚Ўг‚¤гѓ«гѓ‘г‚№г‚’дїќе­гЃ™г‚‹гѓЎгѓўгѓЄй еџџгЃ®зўєдїќгЃ«е¤±ж•—гЃ—гЃѕгЃ—гЃџ\n" @*/ )) ;
 				goto ERRORLABEL ;
 			}
 			_STRCPY( *ColorFilePathAMem, RelativePathA ) ;
@@ -10124,7 +10124,7 @@ extern int __MV1LoadTexture(
 			*ColorFilePathWMem = ( wchar_t * )DXALLOC( ( size_t )( ( StrLengthW + 1 ) * sizeof( wchar_t ) ) ) ;
 			if( *ColorFilePathWMem == NULL )
 			{
-				DXST_LOGFILEFMT_ADDUTF16LE(( "\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x54\x00\x65\x00\x78\x00\x74\x00\x75\x00\x72\x00\x65\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\x28\x75\x6e\x30\xab\x30\xe9\x30\xfc\x30\x3b\x75\xcf\x50\xd5\x30\xa1\x30\xa4\x30\xeb\x30\xd1\x30\xb9\x30\x92\x30\xdd\x4f\x58\x5b\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Load Texture Error : ѓeѓNѓXѓ`ѓѓ—p‚МѓJѓ‰Ѓ[‰ж‘њѓtѓ@ѓCѓ‹ѓpѓX‚р•Ы‘¶‚·‚йѓЃѓ‚ѓЉ—М€ж‚МЉm•Ы‚ЙЋё”s‚µ‚Ь‚µ‚Ѕ\n" @*/ )) ;
+				DXST_LOGFILEFMT_ADDUTF16LE(( "\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x54\x00\x65\x00\x78\x00\x74\x00\x75\x00\x72\x00\x65\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\x28\x75\x6e\x30\xab\x30\xe9\x30\xfc\x30\x3b\x75\xcf\x50\xd5\x30\xa1\x30\xa4\x30\xeb\x30\xd1\x30\xb9\x30\x92\x30\xdd\x4f\x58\x5b\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Load Texture Error : гѓ†г‚Їг‚№гѓЃгѓЈз”ЁгЃ®г‚«гѓ©гѓјз”»еѓЏгѓ•г‚Ўг‚¤гѓ«гѓ‘г‚№г‚’дїќе­гЃ™г‚‹гѓЎгѓўгѓЄй еџџгЃ®зўєдїќгЃ«е¤±ж•—гЃ—гЃѕгЃ—гЃџ\n" @*/ )) ;
 				goto ERRORLABEL ;
 			}
 			_WCSCPY( *ColorFilePathWMem, RelativePathW ) ;
@@ -10141,7 +10141,7 @@ extern int __MV1LoadTexture(
 			*AlphaFilePathAMem = ( char * )DXALLOC( ( size_t )( ( StrLengthA + 1 ) * sizeof( char ) ) ) ;
 			if( AlphaFilePathAMem == NULL )
 			{
-				DXST_LOGFILEFMT_ADDUTF16LE(( "\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x54\x00\x65\x00\x78\x00\x74\x00\x75\x00\x72\x00\x65\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\x28\x75\x6e\x30\xa2\x30\xeb\x30\xd5\x30\xa1\x30\x3b\x75\xcf\x50\xd5\x30\xa1\x30\xa4\x30\xeb\x30\xd1\x30\xb9\x30\x92\x30\xdd\x4f\x58\x5b\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Load Texture Error : ѓeѓNѓXѓ`ѓѓ—p‚МѓAѓ‹ѓtѓ@‰ж‘њѓtѓ@ѓCѓ‹ѓpѓX‚р•Ы‘¶‚·‚йѓЃѓ‚ѓЉ—М€ж‚МЉm•Ы‚ЙЋё”s‚µ‚Ь‚µ‚Ѕ\n" @*/ )) ;
+				DXST_LOGFILEFMT_ADDUTF16LE(( "\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x54\x00\x65\x00\x78\x00\x74\x00\x75\x00\x72\x00\x65\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\x28\x75\x6e\x30\xa2\x30\xeb\x30\xd5\x30\xa1\x30\x3b\x75\xcf\x50\xd5\x30\xa1\x30\xa4\x30\xeb\x30\xd1\x30\xb9\x30\x92\x30\xdd\x4f\x58\x5b\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Load Texture Error : гѓ†г‚Їг‚№гѓЃгѓЈз”ЁгЃ®г‚ўгѓ«гѓ•г‚Ўз”»еѓЏгѓ•г‚Ўг‚¤гѓ«гѓ‘г‚№г‚’дїќе­гЃ™г‚‹гѓЎгѓўгѓЄй еџџгЃ®зўєдїќгЃ«е¤±ж•—гЃ—гЃѕгЃ—гЃџ\n" @*/ )) ;
 				goto ERRORLABEL ;
 			}
 			_STRCPY( *AlphaFilePathAMem, RelativePathA ) ;
@@ -10150,13 +10150,13 @@ extern int __MV1LoadTexture(
 			*AlphaFilePathWMem = ( wchar_t * )DXALLOC( ( size_t )( ( StrLengthW + 1 ) * sizeof( wchar_t ) ) ) ;
 			if( AlphaFilePathWMem == NULL )
 			{
-				DXST_LOGFILEFMT_ADDUTF16LE(( "\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x54\x00\x65\x00\x78\x00\x74\x00\x75\x00\x72\x00\x65\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\x28\x75\x6e\x30\xa2\x30\xeb\x30\xd5\x30\xa1\x30\x3b\x75\xcf\x50\xd5\x30\xa1\x30\xa4\x30\xeb\x30\xd1\x30\xb9\x30\x92\x30\xdd\x4f\x58\x5b\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Load Texture Error : ѓeѓNѓXѓ`ѓѓ—p‚МѓAѓ‹ѓtѓ@‰ж‘њѓtѓ@ѓCѓ‹ѓpѓX‚р•Ы‘¶‚·‚йѓЃѓ‚ѓЉ—М€ж‚МЉm•Ы‚ЙЋё”s‚µ‚Ь‚µ‚Ѕ\n" @*/ )) ;
+				DXST_LOGFILEFMT_ADDUTF16LE(( "\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x54\x00\x65\x00\x78\x00\x74\x00\x75\x00\x72\x00\x65\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\x28\x75\x6e\x30\xa2\x30\xeb\x30\xd5\x30\xa1\x30\x3b\x75\xcf\x50\xd5\x30\xa1\x30\xa4\x30\xeb\x30\xd1\x30\xb9\x30\x92\x30\xdd\x4f\x58\x5b\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Load Texture Error : гѓ†г‚Їг‚№гѓЃгѓЈз”ЁгЃ®г‚ўгѓ«гѓ•г‚Ўз”»еѓЏгѓ•г‚Ўг‚¤гѓ«гѓ‘г‚№г‚’дїќе­гЃ™г‚‹гѓЎгѓўгѓЄй еџџгЃ®зўєдїќгЃ«е¤±ж•—гЃ—гЃѕгЃ—гЃџ\n" @*/ )) ;
 				goto ERRORLABEL ;
 			}
 			_WCSCPY( *AlphaFilePathWMem, RelativePathW ) ;
 		}
 
-		// ѓJѓ‰Ѓ[ѓeѓNѓXѓ`ѓѓѓtѓ@ѓCѓ‹‚р“З‚ЭЌћ‚Ю
+		// г‚«гѓ©гѓјгѓ†г‚Їг‚№гѓЃгѓЈгѓ•г‚Ўг‚¤гѓ«г‚’иЄ­гЃїиѕјг‚Ђ
 		*ColorImageSize = 0 ;
 		if( ColorFilePath )
 		{
@@ -10207,7 +10207,7 @@ extern int __MV1LoadTexture(
 // #ifndef DX_GCC_COMPILE
 // 				DXST_LOGFILEFMT_ADDW(( L"Load Texture Error : Color Channel Image File : Read Error : %s\n", ColorFilePath ) ) ;
 // #endif
-				// Љg’ЈЋq‚Є bmp ‚ѕ‚Б‚Ѕ‚з bin ‚аЋЋ‚·
+				// ж‹Ўејµе­ђгЃЊ bmp гЃ гЃЈгЃџг‚‰ bin г‚‚и©¦гЃ™
 				StrLength = ( int )_WCSLEN( ColorFilePath ) ;
 				if( NotTextureLoad == FALSE &&
 					StrLength >= 4 &&
@@ -10276,11 +10276,11 @@ extern int __MV1LoadTexture(
 					}
 					else
 					{
-						// “З‚ЭЌћ‚Э‚ЙЋё”s‚µ‚ЅЏкЌ‡‚НѓGѓ‰Ѓ[Ћћ—pѓeѓNѓXѓ`ѓѓ‚рЏ[‚Д‚й
+						// иЄ­гЃїиѕјгЃїгЃ«е¤±ж•—гЃ—гЃџе ґеђ€гЃЇг‚Ёгѓ©гѓјж™‚з”Ёгѓ†г‚Їг‚№гѓЃгѓЈг‚’е……гЃ¦г‚‹
 						*ColorImage = DXALLOC( sizeof( Tga8x8TextureFileImage ) ) ;
 						if( *ColorImage == NULL )
 						{
-							DXST_LOGFILEFMT_ADDUTF16LE(( "\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x54\x00\x65\x00\x78\x00\x74\x00\x75\x00\x72\x00\x65\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xa8\x30\xe9\x30\xfc\x30\xde\x56\x7f\x90\x28\x75\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"Load Texture Error : ѓGѓ‰Ѓ[‰с”р—pѓeѓNѓXѓ`ѓѓ‚рЉi”[‚·‚й—М€ж‚МЉm•Ы‚ЙЋё”s‚µ‚Ь‚µ‚Ѕ" @*/ )) ;
+							DXST_LOGFILEFMT_ADDUTF16LE(( "\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x54\x00\x65\x00\x78\x00\x74\x00\x75\x00\x72\x00\x65\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xa8\x30\xe9\x30\xfc\x30\xde\x56\x7f\x90\x28\x75\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"Load Texture Error : г‚Ёгѓ©гѓје›ћйЃїз”Ёгѓ†г‚Їг‚№гѓЃгѓЈг‚’ж јзґЌгЃ™г‚‹й еџџгЃ®зўєдїќгЃ«е¤±ж•—гЃ—гЃѕгЃ—гЃџ" @*/ )) ;
 							goto ERRORLABEL ;
 						}
 						_MEMCPY( *ColorImage, Tga8x8TextureFileImage, sizeof( Tga8x8TextureFileImage ) ) ;
@@ -10292,7 +10292,7 @@ extern int __MV1LoadTexture(
 			}
 		}
 
-		// ѓAѓ‹ѓtѓ@ѓ`ѓѓѓ“ѓlѓ‹—p‰ж‘њѓtѓ@ѓCѓ‹‚р“З‚ЭЌћ‚Ю
+		// г‚ўгѓ«гѓ•г‚ЎгѓЃгѓЈгѓігѓЌгѓ«з”Ёз”»еѓЏгѓ•г‚Ўг‚¤гѓ«г‚’иЄ­гЃїиѕјг‚Ђ
 		*AlphaImageSize = 0 ;
 		if( AlphaFilePath )
 		{
@@ -10343,11 +10343,11 @@ extern int __MV1LoadTexture(
 				DXST_LOGFILEFMT_ADDW(( L"Load Texture Error : Alpha Channel Image : Read Error : %s\n", AlphaFilePath ) ) ;
 #endif
 
-				// “З‚ЭЌћ‚Э‚ЙЋё”s‚µ‚ЅЏкЌ‡‚НѓGѓ‰Ѓ[Ћћ—pѓeѓNѓXѓ`ѓѓ‚рЏ[‚Д‚й
+				// иЄ­гЃїиѕјгЃїгЃ«е¤±ж•—гЃ—гЃџе ґеђ€гЃЇг‚Ёгѓ©гѓјж™‚з”Ёгѓ†г‚Їг‚№гѓЃгѓЈг‚’е……гЃ¦г‚‹
 				*AlphaImage = DXALLOC( sizeof( Tga8x8TextureFileImage ) ) ;
 				if( *AlphaImage == NULL )
 				{
-					DXST_LOGFILEFMT_ADDUTF16LE(( "\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x54\x00\x65\x00\x78\x00\x74\x00\x75\x00\x72\x00\x65\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xa8\x30\xe9\x30\xfc\x30\xde\x56\x7f\x90\x28\x75\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"Load Texture Error : ѓGѓ‰Ѓ[‰с”р—pѓeѓNѓXѓ`ѓѓ‚рЉi”[‚·‚й—М€ж‚МЉm•Ы‚ЙЋё”s‚µ‚Ь‚µ‚Ѕ" @*/ )) ;
+					DXST_LOGFILEFMT_ADDUTF16LE(( "\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x54\x00\x65\x00\x78\x00\x74\x00\x75\x00\x72\x00\x65\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xa8\x30\xe9\x30\xfc\x30\xde\x56\x7f\x90\x28\x75\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"Load Texture Error : г‚Ёгѓ©гѓје›ћйЃїз”Ёгѓ†г‚Їг‚№гѓЃгѓЈг‚’ж јзґЌгЃ™г‚‹й еџџгЃ®зўєдїќгЃ«е¤±ж•—гЃ—гЃѕгЃ—гЃџ" @*/ )) ;
 					goto ERRORLABEL ;
 				}
 				_MEMCPY( *AlphaImage, Tga8x8TextureFileImage, sizeof( Tga8x8TextureFileImage ) ) ;
@@ -10361,7 +10361,7 @@ extern int __MV1LoadTexture(
 		}
 		else
 		{
-			// ѓїѓ`ѓѓѓ“ѓlѓ‹—p‚Мѓtѓ@ѓCѓ‹ѓpѓX‚Є–і‚ўЏкЌ‡‚НѓJѓ‰Ѓ[ѓeѓNѓXѓ`ѓѓѓtѓ@ѓCѓ‹‚М–ј‘O‚Й _a ‚р‰Б‚¦‚Ѕѓtѓ@ѓCѓ‹‚Є–і‚ў‚©’І‚Ч‚й
+			// О±гѓЃгѓЈгѓігѓЌгѓ«з”ЁгЃ®гѓ•г‚Ўг‚¤гѓ«гѓ‘г‚№гЃЊз„ЎгЃ„е ґеђ€гЃЇг‚«гѓ©гѓјгѓ†г‚Їг‚№гѓЃгѓЈгѓ•г‚Ўг‚¤гѓ«гЃ®еђЌе‰ЌгЃ« _a г‚’еЉ гЃ€гЃџгѓ•г‚Ўг‚¤гѓ«гЃЊз„ЎгЃ„гЃ‹иЄїгЃ№г‚‹
 			wchar_t TempAlphaFilePath[ 1024 ] ;
 			int len ;
 
@@ -10426,7 +10426,7 @@ extern int __MV1LoadTexture(
 	}
 	else
 	{
-		// BASEIMAGE ‚рЌ\’z
+		// BASEIMAGE г‚’ж§‹зЇ‰
 		SetBmp32AllZeroAlphaToXRGB8( Bmp32AllZeroAlphaToXRGB8Flag ) ;
 		if( MV1CreateTextureColorBaseImage(
 					&ColorBaseImage,
@@ -10436,12 +10436,12 @@ extern int __MV1LoadTexture(
 					BumpImageFlag, BumpImageNextPixelLength, ReverseFlag ) == -1 )
 		{
 			SetBmp32AllZeroAlphaToXRGB8( FALSE ) ;
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x54\x00\x65\x00\x78\x00\x74\x00\x75\x00\x72\x00\x65\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\x28\x75\x6e\x30\x20\x00\x42\x00\x41\x00\x53\x00\x45\x00\x49\x00\x4d\x00\x41\x00\x47\x00\x45\x00\x20\x00\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Load Texture Error : ѓeѓNѓXѓ`ѓѓ—p‚М BASEIMAGE ‚МЌмђ¬‚ЙЋё”s‚µ‚Ь‚µ‚Ѕ\n" @*/ )) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x54\x00\x65\x00\x78\x00\x74\x00\x75\x00\x72\x00\x65\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\x28\x75\x6e\x30\x20\x00\x42\x00\x41\x00\x53\x00\x45\x00\x49\x00\x4d\x00\x41\x00\x47\x00\x45\x00\x20\x00\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Load Texture Error : гѓ†г‚Їг‚№гѓЃгѓЈз”ЁгЃ® BASEIMAGE гЃ®дЅњж€ђгЃ«е¤±ж•—гЃ—гЃѕгЃ—гЃџ\n" @*/ )) ;
 			goto ERRORLABEL ;
 		}
 		SetBmp32AllZeroAlphaToXRGB8( FALSE ) ;
 
-		// ѓnѓ“ѓhѓ‹‚р“ѕ‚й
+		// гѓЏгѓігѓ‰гѓ«г‚’еѕ—г‚‹
 		LOADGRAPH_GPARAM GParam ;
 		Graphics_Image_InitLoadGraphGParam( &GParam ) ;
 		GParam.LoadBaseImageGParam.ConvertPremultipliedAlpha = FALSE ;
@@ -10483,14 +10483,14 @@ extern int __MV1LoadTexture(
 			}
 		}
 
-		// ”ј“§–ѕ—v‘f‚Є‚ ‚й‚©‚З‚¤‚©‚р’І‚Ч‚й
+		// еЌЉйЂЏжЋи¦Ѓзґ гЃЊгЃ‚г‚‹гЃ‹гЃ©гЃ†гЃ‹г‚’иЄїгЃ№г‚‹
 		*SemiTransFlag = FALSE ;
 		if( *AlphaImage ) *SemiTransFlag = TRUE ;
 		if( *SemiTransFlag == FALSE && ColorBaseImage.ColorData.AlphaWidth != 0 )
 		{
 	//		int r, g, b, a ;
 
-			// ѓtѓHЃ[ѓ}ѓbѓg‚Є•WЏЂѓtѓHЃ[ѓ}ѓbѓg‚Е‚Н‚И‚©‚Б‚Ѕ‚зDXTѓtѓHЃ[ѓ}ѓbѓg‚Е”»’f‚·‚й
+			// гѓ•г‚©гѓјгѓћгѓѓгѓ€гЃЊжЁ™жє–гѓ•г‚©гѓјгѓћгѓѓгѓ€гЃ§гЃЇгЃЄгЃ‹гЃЈгЃџг‚‰DXTгѓ•г‚©гѓјгѓћгѓѓгѓ€гЃ§е€¤ж–­гЃ™г‚‹
 			if( ColorBaseImage.ColorData.Format != DX_BASEIMAGE_FORMAT_NORMAL )
 			{
 				//NS_ConvertNormalFormatBaseImage( &ColorBaseImage ) ;
@@ -10542,17 +10542,17 @@ extern int __MV1LoadTexture(
 	*/
 			else
 			{
-				// ‘SѓsѓNѓZѓ‹‚р’І‚Ч‚Д”ј“§–ѕ—v‘f‚Є‚ ‚й‚©‚З‚¤‚©‚р’І‚Ч‚й
+				// е…Ёгѓ”г‚Їг‚»гѓ«г‚’иЄїгЃ№гЃ¦еЌЉйЂЏжЋи¦Ѓзґ гЃЊгЃ‚г‚‹гЃ‹гЃ©гЃ†гЃ‹г‚’иЄїгЃ№г‚‹
 				*SemiTransFlag = NS_CheckPixelAlphaBaseImage( &ColorBaseImage ) <= 1 ? 0 : 1 ; 
 			}
 		}
 
-		// Љо–{ѓCѓЃЃ[ѓW‚Н‰р•ъ
+		// еџєжњ¬г‚¤гѓЎгѓјг‚ёгЃЇи§Јж”ѕ
 		NS_ReleaseBaseImage( &ColorBaseImage ) ;
 		if( *AlphaImage ) NS_ReleaseBaseImage( &AlphaBaseImage ) ;
 	}
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 
 ERRORLABEL :
@@ -10597,12 +10597,12 @@ ERRORLABEL :
 		*GraphHandle = -1 ;
 	}
 
-	// ѓGѓ‰Ѓ[ЏI—№
+	// г‚Ёгѓ©гѓјзµ‚дє†
 	return -1 ;
 }
 
 
-// Њ»ЌЭ‚МђЭ’и‚ЕѓeѓNѓXѓ`ѓѓ‚р“З‚ЭЌћ‚Ю
+// зЏѕењЁгЃ®иЁ­е®љгЃ§гѓ†г‚Їг‚№гѓЃгѓЈг‚’иЄ­гЃїиѕјг‚Ђ
 static int _MV1TextureLoadBase(
 	MV1_MODEL_BASE *ModelBase, MV1_TEXTURE_BASE *Texture,
 	const wchar_t *ColorFilePathW, const wchar_t *AlphaFilePathW,
@@ -10623,7 +10623,7 @@ static int _MV1TextureLoadBase(
 
 	DirW = ModelBase->DirectoryPath ;
 
-	// ѓeѓNѓXѓ`ѓѓ‚М“З‚ЭЌћ‚Э
+	// гѓ†г‚Їг‚№гѓЃгѓЈгЃ®иЄ­гЃїиѕјгЃї
 	GraphHandle = 0 ;
 	Result =  __MV1LoadTexture(
 					&ColorImage, &ColorImageSize,
@@ -10650,7 +10650,7 @@ static int _MV1TextureLoadBase(
 		return -1 ;
 	}
 
-	// Љщ‚ЙѓCѓЃЃ[ѓW‚р“З‚ЭЌћ‚с‚Е‚ў‚Ѕ‚зѓЃѓ‚ѓЉ‚р‰р•ъ‚·‚й
+	// ж—ўгЃ«г‚¤гѓЎгѓјг‚ёг‚’иЄ­гЃїиѕјг‚“гЃ§гЃ„гЃџг‚‰гѓЎгѓўгѓЄг‚’и§Јж”ѕгЃ™г‚‹
 	if( Texture->ColorImage )
 	{
 		DXFREE( Texture->ColorImage ) ;
@@ -10662,14 +10662,14 @@ static int _MV1TextureLoadBase(
 		Texture->AlphaImage = NULL ;
 	}
 
-	// ђV‚µ‚ўѓЃѓ‚ѓЉѓAѓhѓЊѓX‚р•Ы‘¶
+	// ж–°гЃ—гЃ„гѓЎгѓўгѓЄг‚ўгѓ‰гѓ¬г‚№г‚’дїќе­
 	Texture->ColorImage = ColorImage ;
 	Texture->ColorImageSize = ColorImageSize ;
 
 	Texture->AlphaImage = AlphaImage ;
 	Texture->AlphaImageSize = AlphaImageSize ;
 
-	// ѓtѓ@ѓCѓ‹ѓpѓX‚р•Ы‘¶
+	// гѓ•г‚Ўг‚¤гѓ«гѓ‘г‚№г‚’дїќе­
 	if( Texture->ColorImage )
 	{
 		if( Texture->ColorImageFilePathAllocMem )
@@ -10717,24 +10717,24 @@ static int _MV1TextureLoadBase(
 		Texture->AlphaImageFilePathAllocMem = TRUE ;
 	}
 
-	// ‰ж‘њѓnѓ“ѓhѓ‹‚М•Ы‘¶
+	// з”»еѓЏгѓЏгѓігѓ‰гѓ«гЃ®дїќе­
 	Texture->GraphHandle = GraphHandle ;
 
-	// ѓfѓtѓHѓ‹ѓg‰ж‘њ‚ЄЋg—p‚і‚к‚Ѕ‚©‚З‚¤‚©‚р•Ы‘¶
+	// гѓ‡гѓ•г‚©гѓ«гѓ€з”»еѓЏгЃЊдЅїз”ЁгЃ•г‚ЊгЃџгЃ‹гЃ©гЃ†гЃ‹г‚’дїќе­
 	Texture->IsDefaultTexture = DefaultTextureFlag ;
 
-	// ѓoѓ“ѓvѓ}ѓbѓvЏо•с‚р•Ы‘¶
+	// гѓђгѓігѓ—гѓћгѓѓгѓ—жѓ…е ±г‚’дїќе­
 	Texture->BumpImageFlag = BumpImageFlag ;
 	Texture->BumpImageNextPixelLength = BumpImageNextPixelLength ;
 
-	// ѓtѓ‰ѓO‚р•Ы‘¶
+	// гѓ•гѓ©г‚°г‚’дїќе­
 	Texture->ReverseFlag = ReverseFlag ? 1 : 0 ;
 	Texture->Bmp32AllZeroAlphaToXRGB8Flag = Bmp32AllZeroAlphaToXRGB8Flag ? 1 : 0 ;
 
-	// ‰ж‘њ‚МѓTѓCѓY‚рЋж“ѕ
+	// з”»еѓЏгЃ®г‚µг‚¤г‚єг‚’еЏ–еѕ—
 	NS_GetGraphSize( Texture->GraphHandle, &Texture->Width, &Texture->Height ) ;
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
@@ -10758,7 +10758,7 @@ static int _MV1TextureLoad(
 
 	DirW = ModelBase->DirectoryPath ;
 
-	// ѓeѓNѓXѓ`ѓѓ‚М“З‚ЭЌћ‚Э
+	// гѓ†г‚Їг‚№гѓЃгѓЈгЃ®иЄ­гЃїиѕјгЃї
 	GraphHandle = 0 ;
 	Result =  __MV1LoadTexture(
 					&ColorImage, &ColorImageSize,
@@ -10780,11 +10780,11 @@ static int _MV1TextureLoad(
 
 	if( Result == -1 )
 	{
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x54\x00\x65\x00\x78\x00\x74\x00\x75\x00\x72\x00\x65\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\x6e\x30\xad\x8a\x7f\x30\xbc\x8f\x7f\x30\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Load Texture Error : ѓeѓNѓXѓ`ѓѓ‚М“З‚ЭЌћ‚Э‚ЙЋё”s‚µ‚Ь‚µ‚Ѕ\n" @*/ )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x54\x00\x65\x00\x78\x00\x74\x00\x75\x00\x72\x00\x65\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\x6e\x30\xad\x8a\x7f\x30\xbc\x8f\x7f\x30\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Load Texture Error : гѓ†г‚Їг‚№гѓЃгѓЈгЃ®иЄ­гЃїиѕјгЃїгЃ«е¤±ж•—гЃ—гЃѕгЃ—гЃџ\n" @*/ )) ;
 		return -1 ;
 	}
 
-	// Љщ‚ЙѓCѓЃЃ[ѓW‚р“З‚ЭЌћ‚с‚Е‚ў‚Ѕ‚зѓЃѓ‚ѓЉ‚р‰р•ъ‚·‚й
+	// ж—ўгЃ«г‚¤гѓЎгѓјг‚ёг‚’иЄ­гЃїиѕјг‚“гЃ§гЃ„гЃџг‚‰гѓЎгѓўгѓЄг‚’и§Јж”ѕгЃ™г‚‹
 	if( Texture->UseGraphHandle )
 	{
 		if( Texture->ColorImage )
@@ -10821,14 +10821,14 @@ static int _MV1TextureLoad(
 		}
 	}
 
-	// ђV‚µ‚ўѓЃѓ‚ѓЉѓAѓhѓЊѓX‚р•Ы‘¶
+	// ж–°гЃ—гЃ„гѓЎгѓўгѓЄг‚ўгѓ‰гѓ¬г‚№г‚’дїќе­
 	Texture->ColorImage = ColorImage ;
 	Texture->ColorImageSize = ColorImageSize ;
 
 	Texture->AlphaImage = AlphaImage ;
 	Texture->AlphaImageSize = AlphaImageSize ;
 
-	// ѓtѓ@ѓCѓ‹ѓpѓX‚р•Ы‘¶
+	// гѓ•г‚Ўг‚¤гѓ«гѓ‘г‚№г‚’дїќе­
 	if( Texture->ColorImage )
 	{
 #ifndef UNICODE
@@ -10859,67 +10859,67 @@ static int _MV1TextureLoad(
 		Texture->AlphaFilePathW_ = NULL ;
 	}
 
-	// ‰ж‘њѓnѓ“ѓhѓ‹‚М•Ы‘¶
+	// з”»еѓЏгѓЏгѓігѓ‰гѓ«гЃ®дїќе­
 	Texture->GraphHandle = GraphHandle ;
 	Texture->UseGraphHandle = TRUE ;
 
-	// ѓfѓtѓHѓ‹ѓg‰ж‘њ‚ЄЋg—p‚і‚к‚Ѕ‚©‚З‚¤‚©‚р•Ы‘¶
+	// гѓ‡гѓ•г‚©гѓ«гѓ€з”»еѓЏгЃЊдЅїз”ЁгЃ•г‚ЊгЃџгЃ‹гЃ©гЃ†гЃ‹г‚’дїќе­
 	Texture->IsDefaultTexture = DefaultTextureFlag ;
 
-	// ѓoѓ“ѓvѓ}ѓbѓvЏо•с‚р•Ы‘¶
+	// гѓђгѓігѓ—гѓћгѓѓгѓ—жѓ…е ±г‚’дїќе­
 	Texture->BumpImageFlag = BumpImageFlag ;
 	Texture->BumpImageNextPixelLength = BumpImageNextPixelLength ;
 
-	// ѓtѓ‰ѓO‚р•Ы‘¶
+	// гѓ•гѓ©г‚°г‚’дїќе­
 	Texture->ReverseFlag = ReverseFlag ? 1 : 0 ;
 	Texture->Bmp32AllZeroAlphaToXRGB8Flag = Bmp32AllZeroAlphaToXRGB8Flag ? 1 : 0 ;
 
-	// ‰ж‘њ‚МѓTѓCѓY‚рЋж“ѕ
+	// з”»еѓЏгЃ®г‚µг‚¤г‚єг‚’еЏ–еѕ—
 	NS_GetGraphSize( Texture->GraphHandle, &Texture->Width, &Texture->Height ) ;
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// ѓ‚ѓfѓ‹‚ЕЋg—p‚µ‚Д‚ў‚йѓ}ѓeѓЉѓAѓ‹‚Мђ”‚рЋж“ѕ‚·‚й
+// гѓўгѓ‡гѓ«гЃ§дЅїз”ЁгЃ—гЃ¦гЃ„г‚‹гѓћгѓ†гѓЄг‚ўгѓ«гЃ®ж•°г‚’еЏ–еѕ—гЃ™г‚‹
 extern int MV1GetMaterialNumBase( int MBHandle )
 {
 	MV1_MODEL_BASE *ModelBase ;
 
-	// Џ‰Љъ‰»‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// е€ќжњџеЊ–гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( MV1Man.Initialize == false ) return -1 ;
 
-	// ѓAѓhѓЊѓXЋж“ѕ
+	// г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ—
 	if( MV1BMDLCHK( MBHandle, ModelBase ) )
 		return -1 ;
 
-	// ѓ}ѓeѓЉѓAѓ‹‚Мђ”‚р•Ф‚·
+	// гѓћгѓ†гѓЄг‚ўгѓ«гЃ®ж•°г‚’иї”гЃ™
 	return ModelBase->MaterialNum ;
 }
 
 #ifndef UNICODE
 
-// Ћw’и‚Мѓ}ѓeѓЉѓAѓ‹‚М–ј‘O‚рЋж“ѕ‚·‚й
+// жЊ‡е®љгЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ®еђЌе‰Ќг‚’еЏ–еѕ—гЃ™г‚‹
 extern	const char *MV1GetMaterialNameBase( int MBHandle, int MaterialIndex )
 {
 	MV1BASEMATERIALSTART( MBHandle, ModelBase, Material, MaterialIndex, NULL ) ;
 
-	// •Ф‚·
+	// иї”гЃ™
 	return Material->NameA ;
 }
 
 #endif
 
-// Ћw’и‚Мѓ}ѓeѓЉѓAѓ‹‚М–ј‘O‚рЋж“ѕ‚·‚й
+// жЊ‡е®љгЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ®еђЌе‰Ќг‚’еЏ–еѕ—гЃ™г‚‹
 extern	const wchar_t *MV1GetMaterialNameBaseW( int MBHandle, int MaterialIndex )
 {
 	MV1BASEMATERIALSTART( MBHandle, ModelBase, Material, MaterialIndex, NULL ) ;
 
-	// •Ф‚·
+	// иї”гЃ™
 	return Material->NameW ;
 }
 
-// Ћw’и‚Мѓ}ѓeѓЉѓAѓ‹‚Мѓ^ѓCѓv‚р•ПЌX‚·‚й( Type : DX_MATERIAL_TYPE_NORMAL ‚И‚З )
+// жЊ‡е®љгЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ®г‚їг‚¤гѓ—г‚’е¤‰ж›ґгЃ™г‚‹( Type : DX_MATERIAL_TYPE_NORMAL гЃЄгЃ© )
 extern int MV1SetMaterialTypeBase( int MBHandle, int MaterialIndex, int Type )
 {
 	MV1_MODEL *Model ;
@@ -10929,16 +10929,16 @@ extern int MV1SetMaterialTypeBase( int MBHandle, int MaterialIndex, int Type )
 
 	MV1BASEMATERIALSTART( MBHandle, ModelBase, Material, MaterialIndex, -1 ) ;
 
-	// ЌЎ‚Ь‚Е‚Жѓ^ѓCѓv‚Є“Ї‚¶‚ѕ‚Б‚ЅЏкЌ‡‚Н‰Ѕ‚а‚µ‚И‚ў
+	// д»ЉгЃѕгЃ§гЃЁг‚їг‚¤гѓ—гЃЊеђЊгЃгЃ гЃЈгЃџе ґеђ€гЃЇдЅ•г‚‚гЃ—гЃЄгЃ„
 	if( Material->Type == Type ) return 0 ;
 
-	// •`‰ж‘Т‹@‚µ‚Д‚ў‚й•`‰ж•Ё‚р•`‰ж
+	// жЏЏз”»еѕ…ж©џгЃ—гЃ¦гЃ„г‚‹жЏЏз”»з‰©г‚’жЏЏз”»
 	DRAWSTOCKINFO
 
-	// ѓ^ѓCѓv‚Жѓpѓ‰ѓЃЃ[ѓ^‚р•Ы‘¶
+	// г‚їг‚¤гѓ—гЃЁгѓ‘гѓ©гѓЎгѓјг‚їг‚’дїќе­
 	Material->Type = Type ;
 
-	// ‚±‚Мѓ}ѓeѓЉѓAѓ‹‚рЋg—p‚µ‚Д‚ў‚йѓЃѓbѓVѓ…‚МѓZѓbѓgѓAѓbѓvЉ®—№ѓtѓ‰ѓO‚р“|‚·
+	// гЃ“гЃ®гѓћгѓ†гѓЄг‚ўгѓ«г‚’дЅїз”ЁгЃ—гЃ¦гЃ„г‚‹гѓЎгѓѓг‚·гѓҐгЃ®г‚»гѓѓгѓ€г‚ўгѓѓгѓ—е®Њдє†гѓ•гѓ©г‚°г‚’еЂ’гЃ™
 	MBMesh = ModelBase->Mesh ;
 	for( i = 0 ; i < ModelBase->MeshNum ; i ++, MBMesh ++ )
 	{
@@ -10949,75 +10949,75 @@ extern int MV1SetMaterialTypeBase( int MBHandle, int MaterialIndex, int Type )
 			Mesh = &Model->Mesh[ i ] ;
 			MV1MESH_RESET_SEMITRANSSETUP( Mesh )
 
-			// ѓ}ѓeѓЉѓAѓ‹Џо•с‚аЌXђV
+			// гѓћгѓ†гѓЄг‚ўгѓ«жѓ…е ±г‚‚ж›ґж–°
 			if( MV1CCHK( Mesh->DrawMaterialChange ) == 0 )
 				MV1BitSetChange( &Mesh->DrawMaterialChange ) ;
 		}
 	}
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// Ћw’и‚Мѓ}ѓeѓЉѓAѓ‹‚Мѓ^ѓCѓv‚рЋж“ѕ‚·‚й( –Я‚и’l : DX_MATERIAL_TYPE_NORMAL ‚И‚З )
+// жЊ‡е®љгЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ®г‚їг‚¤гѓ—г‚’еЏ–еѕ—гЃ™г‚‹( ж€»г‚ЉеЂ¤ : DX_MATERIAL_TYPE_NORMAL гЃЄгЃ© )
 extern int MV1GetMaterialTypeBase( int MBHandle, int MaterialIndex )
 {
 	MV1BASEMATERIALSTART( MBHandle, ModelBase, Material, MaterialIndex, -1 ) ;
 
-	// •Ф‚·
+	// иї”гЃ™
 	return Material->Type ;
 }
 
-// Ћw’и‚Мѓ}ѓeѓЉѓAѓ‹‚МѓfѓBѓtѓ…Ѓ[ѓYѓJѓ‰Ѓ[‚рЋж“ѕ‚·‚й
+// жЊ‡е®љгЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ®гѓ‡г‚Јгѓ•гѓҐгѓјг‚єг‚«гѓ©гѓјг‚’еЏ–еѕ—гЃ™г‚‹
 extern	COLOR_F		MV1GetMaterialDifColorBase( int MBHandle, int MaterialIndex )
 {
 	COLOR_F RetColor = { 0.0f, 0.0f, 0.0f, 0.0f } ;
 	MV1BASEMATERIALSTART( MBHandle, ModelBase, Material, MaterialIndex, RetColor ) ;
 
-	// •Ф‚·
+	// иї”гЃ™
 	return Material->Diffuse ;
 }
 
-// Ћw’и‚Мѓ}ѓeѓЉѓAѓ‹‚МѓXѓyѓLѓ…ѓ‰ѓJѓ‰Ѓ[‚рЋж“ѕ‚·‚й
+// жЊ‡е®љгЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ®г‚№гѓљг‚­гѓҐгѓ©г‚«гѓ©гѓјг‚’еЏ–еѕ—гЃ™г‚‹
 extern	COLOR_F		MV1GetMaterialSpcColorBase( int MBHandle, int MaterialIndex )
 {
 	COLOR_F RetColor = { 0.0f, 0.0f, 0.0f, 0.0f } ;
 	MV1BASEMATERIALSTART( MBHandle, ModelBase, Material, MaterialIndex, RetColor ) ;
 
-	// •Ф‚·
+	// иї”гЃ™
 	return Material->Specular ;
 }
 
-// Ћw’и‚Мѓ}ѓeѓЉѓAѓ‹‚МѓGѓ~ѓbѓVѓuѓJѓ‰Ѓ[‚рЋж“ѕ‚·‚й
+// жЊ‡е®љгЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ®г‚Ёгѓџгѓѓг‚·гѓ–г‚«гѓ©гѓјг‚’еЏ–еѕ—гЃ™г‚‹
 extern	COLOR_F		MV1GetMaterialEmiColorBase( int MBHandle, int MaterialIndex )
 {
 	COLOR_F RetColor = { 0.0f, 0.0f, 0.0f, 0.0f } ;
 	MV1BASEMATERIALSTART( MBHandle, ModelBase, Material, MaterialIndex, RetColor ) ;
 
-	// •Ф‚·
+	// иї”гЃ™
 	return Material->Emissive ;
 }
 
-// Ћw’и‚Мѓ}ѓeѓЉѓAѓ‹‚МѓAѓ“ѓrѓGѓ“ѓgѓJѓ‰Ѓ[‚рЋж“ѕ‚·‚й
+// жЊ‡е®љгЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ®г‚ўгѓігѓ“г‚Ёгѓігѓ€г‚«гѓ©гѓјг‚’еЏ–еѕ—гЃ™г‚‹
 extern	COLOR_F		MV1GetMaterialAmbColorBase( int MBHandle, int MaterialIndex )
 {
 	COLOR_F RetColor = { 0.0f, 0.0f, 0.0f, 0.0f } ;
 	MV1BASEMATERIALSTART( MBHandle, ModelBase, Material, MaterialIndex, RetColor ) ;
 
-	// •Ф‚·
+	// иї”гЃ™
 	return Material->Ambient ;
 }
 
-// Ћw’и‚Мѓ}ѓeѓЉѓAѓ‹‚МѓXѓyѓLѓ…ѓ‰‚М‹­‚і‚рЋж“ѕ‚·‚й
+// жЊ‡е®љгЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ®г‚№гѓљг‚­гѓҐгѓ©гЃ®еј·гЃ•г‚’еЏ–еѕ—гЃ™г‚‹
 extern	float		MV1GetMaterialSpcPowerBase( int MBHandle, int MaterialIndex )
 {
 	MV1BASEMATERIALSTART( MBHandle, ModelBase, Material, MaterialIndex, -1.0f ) ;
 
-	// •Ф‚·
+	// иї”гЃ™
 	return Material->Power ;
 }
 
-// Ћw’и‚Мѓ}ѓeѓЉѓAѓ‹‚ЕѓfѓBѓtѓ…Ѓ[ѓYѓ}ѓbѓv‚Ж‚µ‚ДЋg—p‚·‚йѓeѓNѓXѓ`ѓѓ‚рЋw’и‚·‚й
+// жЊ‡е®љгЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ§гѓ‡г‚Јгѓ•гѓҐгѓјг‚єгѓћгѓѓгѓ—гЃЁгЃ—гЃ¦дЅїз”ЁгЃ™г‚‹гѓ†г‚Їг‚№гѓЃгѓЈг‚’жЊ‡е®љгЃ™г‚‹
 extern int MV1SetMaterialDifMapTextureBase( int MBHandle, int MaterialIndex, int TexIndex )
 {
 	MV1_MODEL *Model ;
@@ -11030,19 +11030,19 @@ extern int MV1SetMaterialDifMapTextureBase( int MBHandle, int MaterialIndex, int
 	if( TexIndex < 0 || TexIndex >= ModelBase->TextureNum )
 		return -1 ;
 
-	// •`‰ж‘Т‹@‚µ‚Д‚ў‚й•`‰ж•Ё‚р•`‰ж
+	// жЏЏз”»еѕ…ж©џгЃ—гЃ¦гЃ„г‚‹жЏЏз”»з‰©г‚’жЏЏз”»
 	DRAWSTOCKINFO
 
-	// ЌЎ‚Ь‚ЕѓfѓBѓtѓ…Ѓ[ѓYѓ}ѓbѓv‚Є–і‚©‚Б‚ЅЏкЌ‡‚Н‚P‚Й‚·‚й
+	// д»ЉгЃѕгЃ§гѓ‡г‚Јгѓ•гѓҐгѓјг‚єгѓћгѓѓгѓ—гЃЊз„ЎгЃ‹гЃЈгЃџе ґеђ€гЃЇпј‘гЃ«гЃ™г‚‹
 	if( Material->DiffuseLayerNum == 0 )
 	{
 		Material->DiffuseLayerNum = 1 ;
 	}
 
-	// ђЭ’и
+	// иЁ­е®љ
 	Material->DiffuseLayer[ 0 ].Texture = TexIndex ;
 
-	// ‚±‚Мѓ}ѓeѓЉѓAѓ‹‚рЋg—p‚µ‚Д‚ў‚йѓЃѓbѓVѓ…‚МѓZѓbѓgѓAѓbѓvЉ®—№ѓtѓ‰ѓO‚р“|‚·
+	// гЃ“гЃ®гѓћгѓ†гѓЄг‚ўгѓ«г‚’дЅїз”ЁгЃ—гЃ¦гЃ„г‚‹гѓЎгѓѓг‚·гѓҐгЃ®г‚»гѓѓгѓ€г‚ўгѓѓгѓ—е®Њдє†гѓ•гѓ©г‚°г‚’еЂ’гЃ™
 	MBMesh = ModelBase->Mesh ;
 	for( i = 0 ; i < ModelBase->MeshNum ; i ++, MBMesh ++ )
 	{
@@ -11053,17 +11053,17 @@ extern int MV1SetMaterialDifMapTextureBase( int MBHandle, int MaterialIndex, int
 			Mesh = &Model->Mesh[ i ] ;
 			MV1MESH_RESET_SEMITRANSSETUP( Mesh )
 
-			// ѓ}ѓeѓЉѓAѓ‹Џо•с‚аЌXђV
+			// гѓћгѓ†гѓЄг‚ўгѓ«жѓ…е ±г‚‚ж›ґж–°
 			if( MV1CCHK( Mesh->DrawMaterialChange ) == 0 )
 				MV1BitSetChange( &Mesh->DrawMaterialChange ) ;
 		}
 	}
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// Ћw’и‚Мѓ}ѓeѓЉѓAѓ‹‚ЕѓfѓBѓtѓ…Ѓ[ѓYѓ}ѓbѓv‚Ж‚µ‚ДЋg—p‚і‚к‚Д‚ў‚йѓeѓNѓXѓ`ѓѓ‚МѓCѓ“ѓfѓbѓNѓX‚рЋж“ѕ‚·‚й
+// жЊ‡е®љгЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ§гѓ‡г‚Јгѓ•гѓҐгѓјг‚єгѓћгѓѓгѓ—гЃЁгЃ—гЃ¦дЅїз”ЁгЃ•г‚ЊгЃ¦гЃ„г‚‹гѓ†г‚Їг‚№гѓЃгѓЈгЃ®г‚¤гѓігѓ‡гѓѓг‚Їг‚№г‚’еЏ–еѕ—гЃ™г‚‹
 extern int MV1GetMaterialDifMapTextureBase( int MBHandle, int MaterialIndex )
 {
 	MV1BASEMATERIALSTART( MBHandle, ModelBase, Material, MaterialIndex, -1 ) ;
@@ -11074,7 +11074,7 @@ extern int MV1GetMaterialDifMapTextureBase( int MBHandle, int MaterialIndex )
 	return Material->DiffuseLayer[ 0 ].Texture ;
 }
 
-// Ћw’и‚Мѓ}ѓeѓЉѓAѓ‹‚ЕѓTѓuѓfѓBѓtѓ…Ѓ[ѓYѓ}ѓbѓv‚Ж‚µ‚ДЋg—p‚·‚йѓeѓNѓXѓ`ѓѓ‚рЋw’и‚·‚й
+// жЊ‡е®љгЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ§г‚µгѓ–гѓ‡г‚Јгѓ•гѓҐгѓјг‚єгѓћгѓѓгѓ—гЃЁгЃ—гЃ¦дЅїз”ЁгЃ™г‚‹гѓ†г‚Їг‚№гѓЃгѓЈг‚’жЊ‡е®љгЃ™г‚‹
 extern int MV1SetMaterialSubDifMapTextureBase( int MBHandle, int MaterialIndex, int TexIndex )
 {
 	MV1_MODEL *Model ;
@@ -11087,19 +11087,19 @@ extern int MV1SetMaterialSubDifMapTextureBase( int MBHandle, int MaterialIndex, 
 	if( TexIndex < 0 || TexIndex >= ModelBase->TextureNum )
 		return -1 ;
 
-	// •`‰ж‘Т‹@‚µ‚Д‚ў‚й•`‰ж•Ё‚р•`‰ж
+	// жЏЏз”»еѕ…ж©џгЃ—гЃ¦гЃ„г‚‹жЏЏз”»з‰©г‚’жЏЏз”»
 	DRAWSTOCKINFO
 
-	// ЌЎ‚Ь‚ЕѓfѓBѓtѓ…Ѓ[ѓYѓ}ѓbѓv‚Є2€И‰є‚МЏкЌ‡‚Н2‚Й‚·‚й
+	// д»ЉгЃѕгЃ§гѓ‡г‚Јгѓ•гѓҐгѓјг‚єгѓћгѓѓгѓ—гЃЊ2д»Ґдё‹гЃ®е ґеђ€гЃЇ2гЃ«гЃ™г‚‹
 	if( Material->DiffuseLayerNum < 2 )
 	{
 		Material->DiffuseLayerNum = 2 ;
 	}
 
-	// ђЭ’и
+	// иЁ­е®љ
 	Material->DiffuseLayer[ 1 ].Texture = TexIndex ;
 
-	// ‚±‚Мѓ}ѓeѓЉѓAѓ‹‚рЋg—p‚µ‚Д‚ў‚йѓЃѓbѓVѓ…‚МѓZѓbѓgѓAѓbѓvЉ®—№ѓtѓ‰ѓO‚р“|‚·
+	// гЃ“гЃ®гѓћгѓ†гѓЄг‚ўгѓ«г‚’дЅїз”ЁгЃ—гЃ¦гЃ„г‚‹гѓЎгѓѓг‚·гѓҐгЃ®г‚»гѓѓгѓ€г‚ўгѓѓгѓ—е®Њдє†гѓ•гѓ©г‚°г‚’еЂ’гЃ™
 	MBMesh = ModelBase->Mesh ;
 	for( i = 0 ; i < ModelBase->MeshNum ; i ++, MBMesh ++ )
 	{
@@ -11110,17 +11110,17 @@ extern int MV1SetMaterialSubDifMapTextureBase( int MBHandle, int MaterialIndex, 
 			Mesh = &Model->Mesh[ i ] ;
 			MV1MESH_RESET_SEMITRANSSETUP( Mesh )
 
-			// ѓ}ѓeѓЉѓAѓ‹Џо•с‚аЌXђV
+			// гѓћгѓ†гѓЄг‚ўгѓ«жѓ…е ±г‚‚ж›ґж–°
 			if( MV1CCHK( Mesh->DrawMaterialChange ) == 0 )
 				MV1BitSetChange( &Mesh->DrawMaterialChange ) ;
 		}
 	}
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// Ћw’и‚Мѓ}ѓeѓЉѓAѓ‹‚ЕѓTѓuѓfѓBѓtѓ…Ѓ[ѓYѓ}ѓbѓv‚Ж‚µ‚ДЋg—p‚і‚к‚Д‚ў‚йѓeѓNѓXѓ`ѓѓ‚МѓCѓ“ѓfѓbѓNѓX‚рЋж“ѕ‚·‚й
+// жЊ‡е®љгЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ§г‚µгѓ–гѓ‡г‚Јгѓ•гѓҐгѓјг‚єгѓћгѓѓгѓ—гЃЁгЃ—гЃ¦дЅїз”ЁгЃ•г‚ЊгЃ¦гЃ„г‚‹гѓ†г‚Їг‚№гѓЃгѓЈгЃ®г‚¤гѓігѓ‡гѓѓг‚Їг‚№г‚’еЏ–еѕ—гЃ™г‚‹
 extern int MV1GetMaterialSubDifMapTextureBase( int MBHandle, int MaterialIndex )
 {
 	MV1BASEMATERIALSTART( MBHandle, ModelBase, Material, MaterialIndex, -1 ) ;
@@ -11131,7 +11131,7 @@ extern int MV1GetMaterialSubDifMapTextureBase( int MBHandle, int MaterialIndex )
 	return Material->DiffuseLayer[ 0 ].Texture ;
 }
 
-// Ћw’и‚Мѓ}ѓeѓЉѓAѓ‹‚ЕѓXѓyѓLѓ…ѓ‰ѓ}ѓbѓv‚Ж‚µ‚ДЋg—p‚·‚йѓeѓNѓXѓ`ѓѓ‚рЋw’и‚·‚й
+// жЊ‡е®љгЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ§г‚№гѓљг‚­гѓҐгѓ©гѓћгѓѓгѓ—гЃЁгЃ—гЃ¦дЅїз”ЁгЃ™г‚‹гѓ†г‚Їг‚№гѓЃгѓЈг‚’жЊ‡е®љгЃ™г‚‹
 extern int MV1SetMaterialSpcMapTextureBase( int MBHandle, int MaterialIndex, int TexIndex )
 {
 	MV1BASEMATERIALSTART( MBHandle, ModelBase, Material, MaterialIndex, -1 ) ;
@@ -11139,31 +11139,31 @@ extern int MV1SetMaterialSpcMapTextureBase( int MBHandle, int MaterialIndex, int
 	if( TexIndex >= ModelBase->TextureNum )
 		return -1 ;
 
-	// •`‰ж‘Т‹@‚µ‚Д‚ў‚й•`‰ж•Ё‚р•`‰ж
+	// жЏЏз”»еѕ…ж©џгЃ—гЃ¦гЃ„г‚‹жЏЏз”»з‰©г‚’жЏЏз”»
 	DRAWSTOCKINFO
 
-	// ѓeѓNѓXѓ`ѓѓѓCѓ“ѓfѓbѓNѓX‚Є 0 €И‰є‚ѕ‚Б‚ЅЏкЌ‡‚НѓXѓyѓLѓ…ѓ‰ѓ}ѓbѓv‚р‰рЏњ‚·‚й
+	// гѓ†г‚Їг‚№гѓЃгѓЈг‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃЊ 0 д»Ґдё‹гЃ гЃЈгЃџе ґеђ€гЃЇг‚№гѓљг‚­гѓҐгѓ©гѓћгѓѓгѓ—г‚’и§Јй™¤гЃ™г‚‹
 	if( TexIndex < 0 )
 	{
 		Material->SpecularLayerNum = 0 ;
 	}
 	else
 	{
-		// ѓXѓyѓLѓ…ѓ‰ѓ}ѓbѓv‚Мђ”‚Є‚O‚ѕ‚Б‚Ѕ‚з‚P‚Й‚·‚й
+		// г‚№гѓљг‚­гѓҐгѓ©гѓћгѓѓгѓ—гЃ®ж•°гЃЊпјђгЃ гЃЈгЃџг‚‰пј‘гЃ«гЃ™г‚‹
 		if( Material->SpecularLayerNum == 0 )
 		{
 			Material->SpecularLayerNum = 1 ;
 		}
 
-		// ђЭ’и
+		// иЁ­е®љ
 		Material->SpecularLayer[ 0 ].Texture = TexIndex ;
 	}
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// Ћw’и‚Мѓ}ѓeѓЉѓAѓ‹‚ЕѓXѓyѓLѓ…ѓ‰ѓ}ѓbѓv‚Ж‚µ‚ДЋg—p‚і‚к‚Д‚ў‚йѓeѓNѓXѓ`ѓѓ‚МѓCѓ“ѓfѓbѓNѓX‚рЋж“ѕ‚·‚й
+// жЊ‡е®љгЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ§г‚№гѓљг‚­гѓҐгѓ©гѓћгѓѓгѓ—гЃЁгЃ—гЃ¦дЅїз”ЁгЃ•г‚ЊгЃ¦гЃ„г‚‹гѓ†г‚Їг‚№гѓЃгѓЈгЃ®г‚¤гѓігѓ‡гѓѓг‚Їг‚№г‚’еЏ–еѕ—гЃ™г‚‹
 extern int MV1GetMaterialSpcMapTextureBase( int MBHandle, int MaterialIndex )
 {
 	MV1BASEMATERIALSTART( MBHandle, ModelBase, Material, MaterialIndex, -1 ) ;
@@ -11174,7 +11174,7 @@ extern int MV1GetMaterialSpcMapTextureBase( int MBHandle, int MaterialIndex )
 	return Material->SpecularLayer[ 0 ].Texture ;
 }
 
-// Ћw’и‚Мѓ}ѓeѓЉѓAѓ‹‚Е–@ђьѓ}ѓbѓv‚Ж‚µ‚ДЋg—p‚·‚йѓeѓNѓXѓ`ѓѓ‚рЋw’и‚·‚й
+// жЊ‡е®љгЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ§жі•з·љгѓћгѓѓгѓ—гЃЁгЃ—гЃ¦дЅїз”ЁгЃ™г‚‹гѓ†г‚Їг‚№гѓЃгѓЈг‚’жЊ‡е®љгЃ™г‚‹
 extern int MV1SetMaterialNormalMapTextureBase( int MBHandle, int MaterialIndex, int TexIndex )
 {
 	MV1BASEMATERIALSTART( MBHandle, ModelBase, Material, MaterialIndex, -1 ) ;
@@ -11182,35 +11182,35 @@ extern int MV1SetMaterialNormalMapTextureBase( int MBHandle, int MaterialIndex, 
 	if( TexIndex >= ModelBase->TextureNum )
 		return -1 ;
 
-	// •`‰ж‘Т‹@‚µ‚Д‚ў‚й•`‰ж•Ё‚р•`‰ж
+	// жЏЏз”»еѕ…ж©џгЃ—гЃ¦гЃ„г‚‹жЏЏз”»з‰©г‚’жЏЏз”»
 	DRAWSTOCKINFO
 
-	// ѓeѓNѓXѓ`ѓѓѓCѓ“ѓfѓbѓNѓX‚Є 0 €И‰є‚ѕ‚Б‚ЅЏкЌ‡‚Н–@ђьѓ}ѓbѓv‚р‰рЏњ‚·‚й
+	// гѓ†г‚Їг‚№гѓЃгѓЈг‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃЊ 0 д»Ґдё‹гЃ гЃЈгЃџе ґеђ€гЃЇжі•з·љгѓћгѓѓгѓ—г‚’и§Јй™¤гЃ™г‚‹
 	if( TexIndex < 0 )
 	{
 		Material->NormalLayerNum = 0 ;
 	}
 	else
 	{
-		// –@ђьѓ}ѓbѓv‚Мђ”‚Є‚O‚ѕ‚Б‚Ѕ‚з‚P‚Й‚·‚й
+		// жі•з·љгѓћгѓѓгѓ—гЃ®ж•°гЃЊпјђгЃ гЃЈгЃџг‚‰пј‘гЃ«гЃ™г‚‹
 		if( Material->NormalLayerNum == 0 )
 		{
 			Material->NormalLayerNum = 1 ;
 		}
 
-		// ђЭ’и
+		// иЁ­е®љ
 		Material->NormalLayer[ 0 ].Texture = TexIndex ;
 	}
 
-	// ’ё“_ѓoѓbѓtѓ@‚МЌм‚и’ј‚µ
+	// й ‚з‚№гѓђгѓѓгѓ•г‚ЎгЃ®дЅњг‚Љз›ґгЃ—
 	MV1_TerminateVertexBufferBase_PF( MBHandle ) ;
 	MV1_SetupVertexBufferBase_PF( MBHandle ) ;
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// Ћw’и‚Мѓ}ѓeѓЉѓAѓ‹‚Е–@ђьѓ}ѓbѓv‚Ж‚µ‚ДЋg—p‚і‚к‚Д‚ў‚йѓeѓNѓXѓ`ѓѓ‚МѓCѓ“ѓfѓbѓNѓX‚рЋж“ѕ‚·‚й
+// жЊ‡е®љгЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ§жі•з·љгѓћгѓѓгѓ—гЃЁгЃ—гЃ¦дЅїз”ЁгЃ•г‚ЊгЃ¦гЃ„г‚‹гѓ†г‚Їг‚№гѓЃгѓЈгЃ®г‚¤гѓігѓ‡гѓѓг‚Їг‚№г‚’еЏ–еѕ—гЃ™г‚‹
 extern int MV1GetMaterialNormalMapTextureBase( int MBHandle, int MaterialIndex )
 {
 	MV1BASEMATERIALSTART( MBHandle, ModelBase, Material, MaterialIndex, -1 ) ;
@@ -11221,7 +11221,7 @@ extern int MV1GetMaterialNormalMapTextureBase( int MBHandle, int MaterialIndex )
 	return Material->NormalLayer[ 0 ].Texture ;
 }
 
-// Ћw’и‚Мѓ}ѓeѓЉѓAѓ‹‚ЕЋ©ЊИ”­Њхѓ}ѓbѓv‚Ж‚µ‚ДЋg—p‚·‚йѓeѓNѓXѓ`ѓѓ‚рЋw’и‚·‚й
+// жЊ‡е®љгЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ§и‡Єе·±з™єе…‰гѓћгѓѓгѓ—гЃЁгЃ—гЃ¦дЅїз”ЁгЃ™г‚‹гѓ†г‚Їг‚№гѓЃгѓЈг‚’жЊ‡е®љгЃ™г‚‹
 extern int MV1SetMaterialEmissiveMapTextureBase( int MBHandle, int MaterialIndex, int TexIndex )
 {
 	MV1BASEMATERIALSTART( MBHandle, ModelBase, Material, MaterialIndex, -1 ) ;
@@ -11229,35 +11229,35 @@ extern int MV1SetMaterialEmissiveMapTextureBase( int MBHandle, int MaterialIndex
 	if( TexIndex >= ModelBase->TextureNum )
 		return -1 ;
 
-	// •`‰ж‘Т‹@‚µ‚Д‚ў‚й•`‰ж•Ё‚р•`‰ж
+	// жЏЏз”»еѕ…ж©џгЃ—гЃ¦гЃ„г‚‹жЏЏз”»з‰©г‚’жЏЏз”»
 	DRAWSTOCKINFO
 
-	// ѓeѓNѓXѓ`ѓѓѓCѓ“ѓfѓbѓNѓX‚Є 0 €И‰є‚ѕ‚Б‚ЅЏкЌ‡‚Н–@ђьѓ}ѓbѓv‚р‰рЏњ‚·‚й
+	// гѓ†г‚Їг‚№гѓЃгѓЈг‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃЊ 0 д»Ґдё‹гЃ гЃЈгЃџе ґеђ€гЃЇжі•з·љгѓћгѓѓгѓ—г‚’и§Јй™¤гЃ™г‚‹
 	if( TexIndex < 0 )
 	{
 		Material->EmissiveLayerNum = 0 ;
 	}
 	else
 	{
-		// Ћ©ЊИ”­Њхѓ}ѓbѓv‚Мђ”‚Є‚O‚ѕ‚Б‚Ѕ‚з‚P‚Й‚·‚й
+		// и‡Єе·±з™єе…‰гѓћгѓѓгѓ—гЃ®ж•°гЃЊпјђгЃ гЃЈгЃџг‚‰пј‘гЃ«гЃ™г‚‹
 		if( Material->EmissiveLayerNum == 0 )
 		{
 			Material->EmissiveLayerNum = 1 ;
 		}
 
-		// ђЭ’и
+		// иЁ­е®љ
 		Material->EmissiveLayer[ 0 ].Texture = TexIndex ;
 	}
 
-	// ’ё“_ѓoѓbѓtѓ@‚МЌм‚и’ј‚µ
+	// й ‚з‚№гѓђгѓѓгѓ•г‚ЎгЃ®дЅњг‚Љз›ґгЃ—
 	MV1_TerminateVertexBufferBase_PF( MBHandle ) ;
 	MV1_SetupVertexBufferBase_PF( MBHandle ) ;
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// Ћw’и‚Мѓ}ѓeѓЉѓAѓ‹‚ЕЋ©ЊИ”­Њхѓ}ѓbѓv‚Ж‚µ‚ДЋg—p‚і‚к‚Д‚ў‚йѓeѓNѓXѓ`ѓѓ‚МѓCѓ“ѓfѓbѓNѓX‚рЋж“ѕ‚·‚й
+// жЊ‡е®љгЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ§и‡Єе·±з™єе…‰гѓћгѓѓгѓ—гЃЁгЃ—гЃ¦дЅїз”ЁгЃ•г‚ЊгЃ¦гЃ„г‚‹гѓ†г‚Їг‚№гѓЃгѓЈгЃ®г‚¤гѓігѓ‡гѓѓг‚Їг‚№г‚’еЏ–еѕ—гЃ™г‚‹
 extern int MV1GetMaterialEmissiveMapTextureBase( int MBHandle, int MaterialIndex )
 {
 	MV1BASEMATERIALSTART( MBHandle, ModelBase, Material, MaterialIndex, -1 ) ;
@@ -11269,7 +11269,7 @@ extern int MV1GetMaterialEmissiveMapTextureBase( int MBHandle, int MaterialIndex
 }
 
 
-// Ћw’и‚Мѓ}ѓeѓЉѓAѓ‹‚Еѓ‰ѓtѓlѓXѓ}ѓbѓv‚Ж‚µ‚ДЋg—p‚·‚йѓeѓNѓXѓ`ѓѓ‚рЋw’и‚·‚й
+// жЊ‡е®љгЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ§гѓ©гѓ•гѓЌг‚№гѓћгѓѓгѓ—гЃЁгЃ—гЃ¦дЅїз”ЁгЃ™г‚‹гѓ†г‚Їг‚№гѓЃгѓЈг‚’жЊ‡е®љгЃ™г‚‹
 extern int MV1SetMaterialShininessMapTextureBase( int MBHandle, int MaterialIndex, int TexIndex )
 {
 	MV1BASEMATERIALSTART( MBHandle, ModelBase, Material, MaterialIndex, -1 ) ;
@@ -11277,35 +11277,35 @@ extern int MV1SetMaterialShininessMapTextureBase( int MBHandle, int MaterialInde
 	if( TexIndex >= ModelBase->TextureNum )
 		return -1 ;
 
-	// •`‰ж‘Т‹@‚µ‚Д‚ў‚й•`‰ж•Ё‚р•`‰ж
+	// жЏЏз”»еѕ…ж©џгЃ—гЃ¦гЃ„г‚‹жЏЏз”»з‰©г‚’жЏЏз”»
 	DRAWSTOCKINFO
 
-	// ѓeѓNѓXѓ`ѓѓѓCѓ“ѓfѓbѓNѓX‚Є 0 €И‰є‚ѕ‚Б‚ЅЏкЌ‡‚Н–@ђьѓ}ѓbѓv‚р‰рЏњ‚·‚й
+	// гѓ†г‚Їг‚№гѓЃгѓЈг‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃЊ 0 д»Ґдё‹гЃ гЃЈгЃџе ґеђ€гЃЇжі•з·љгѓћгѓѓгѓ—г‚’и§Јй™¤гЃ™г‚‹
 	if( TexIndex < 0 )
 	{
 		Material->ShininessLayerNum = 0 ;
 	}
 	else
 	{
-		// ѓ‰ѓtѓlѓXѓ}ѓbѓv‚Мђ”‚Є‚O‚ѕ‚Б‚Ѕ‚з‚P‚Й‚·‚й
+		// гѓ©гѓ•гѓЌг‚№гѓћгѓѓгѓ—гЃ®ж•°гЃЊпјђгЃ гЃЈгЃџг‚‰пј‘гЃ«гЃ™г‚‹
 		if( Material->ShininessLayerNum == 0 )
 		{
 			Material->ShininessLayerNum = 1 ;
 		}
 
-		// ђЭ’и
+		// иЁ­е®љ
 		Material->ShininessLayer[ 0 ].Texture = TexIndex ;
 	}
 
-	// ’ё“_ѓoѓbѓtѓ@‚МЌм‚и’ј‚µ
+	// й ‚з‚№гѓђгѓѓгѓ•г‚ЎгЃ®дЅњг‚Љз›ґгЃ—
 	MV1_TerminateVertexBufferBase_PF( MBHandle ) ;
 	MV1_SetupVertexBufferBase_PF( MBHandle ) ;
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// Ћw’и‚Мѓ}ѓeѓЉѓAѓ‹‚Еѓ‰ѓtѓlѓXѓ}ѓbѓv‚Ж‚µ‚ДЋg—p‚і‚к‚Д‚ў‚йѓeѓNѓXѓ`ѓѓ‚МѓCѓ“ѓfѓbѓNѓX‚рЋж“ѕ‚·‚й
+// жЊ‡е®љгЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ§гѓ©гѓ•гѓЌг‚№гѓћгѓѓгѓ—гЃЁгЃ—гЃ¦дЅїз”ЁгЃ•г‚ЊгЃ¦гЃ„г‚‹гѓ†г‚Їг‚№гѓЃгѓЈгЃ®г‚¤гѓігѓ‡гѓѓг‚Їг‚№г‚’еЏ–еѕ—гЃ™г‚‹
 extern int MV1GetMaterialShininessMapTextureBase( int MBHandle, int MaterialIndex )
 {
 	MV1BASEMATERIALSTART( MBHandle, ModelBase, Material, MaterialIndex, -1 ) ;
@@ -11317,7 +11317,7 @@ extern int MV1GetMaterialShininessMapTextureBase( int MBHandle, int MaterialInde
 }
 
 
-// Ћw’и‚Мѓ}ѓeѓЉѓAѓ‹‚ЕѓЃѓ^ѓЉѓbѓNѓ}ѓbѓv‚Ж‚µ‚ДЋg—p‚·‚йѓeѓNѓXѓ`ѓѓ‚рЋw’и‚·‚й
+// жЊ‡е®љгЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ§гѓЎг‚їгѓЄгѓѓг‚Їгѓћгѓѓгѓ—гЃЁгЃ—гЃ¦дЅїз”ЁгЃ™г‚‹гѓ†г‚Їг‚№гѓЃгѓЈг‚’жЊ‡е®љгЃ™г‚‹
 extern int MV1SetMaterialReflectionFactorMapTextureBase( int MBHandle, int MaterialIndex, int TexIndex )
 {
 	MV1BASEMATERIALSTART( MBHandle, ModelBase, Material, MaterialIndex, -1 ) ;
@@ -11325,35 +11325,35 @@ extern int MV1SetMaterialReflectionFactorMapTextureBase( int MBHandle, int Mater
 	if( TexIndex >= ModelBase->TextureNum )
 		return -1 ;
 
-	// •`‰ж‘Т‹@‚µ‚Д‚ў‚й•`‰ж•Ё‚р•`‰ж
+	// жЏЏз”»еѕ…ж©џгЃ—гЃ¦гЃ„г‚‹жЏЏз”»з‰©г‚’жЏЏз”»
 	DRAWSTOCKINFO
 
-	// ѓeѓNѓXѓ`ѓѓѓCѓ“ѓfѓbѓNѓX‚Є 0 €И‰є‚ѕ‚Б‚ЅЏкЌ‡‚Н–@ђьѓ}ѓbѓv‚р‰рЏњ‚·‚й
+	// гѓ†г‚Їг‚№гѓЃгѓЈг‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃЊ 0 д»Ґдё‹гЃ гЃЈгЃџе ґеђ€гЃЇжі•з·љгѓћгѓѓгѓ—г‚’и§Јй™¤гЃ™г‚‹
 	if( TexIndex < 0 )
 	{
 		Material->ReflectionFactorLayerNum = 0 ;
 	}
 	else
 	{
-		// ѓЃѓ^ѓЉѓbѓNѓ}ѓbѓv‚Мђ”‚Є‚O‚ѕ‚Б‚Ѕ‚з‚P‚Й‚·‚й
+		// гѓЎг‚їгѓЄгѓѓг‚Їгѓћгѓѓгѓ—гЃ®ж•°гЃЊпјђгЃ гЃЈгЃџг‚‰пј‘гЃ«гЃ™г‚‹
 		if( Material->ReflectionFactorLayerNum == 0 )
 		{
 			Material->ReflectionFactorLayerNum = 1 ;
 		}
 
-		// ђЭ’и
+		// иЁ­е®љ
 		Material->ReflectionFactorLayer[ 0 ].Texture = TexIndex ;
 	}
 
-	// ’ё“_ѓoѓbѓtѓ@‚МЌм‚и’ј‚µ
+	// й ‚з‚№гѓђгѓѓгѓ•г‚ЎгЃ®дЅњг‚Љз›ґгЃ—
 	MV1_TerminateVertexBufferBase_PF( MBHandle ) ;
 	MV1_SetupVertexBufferBase_PF( MBHandle ) ;
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// Ћw’и‚Мѓ}ѓeѓЉѓAѓ‹‚ЕѓЃѓ^ѓЉѓbѓNѓ}ѓbѓv‚Ж‚µ‚ДЋg—p‚і‚к‚Д‚ў‚йѓeѓNѓXѓ`ѓѓ‚МѓCѓ“ѓfѓbѓNѓX‚рЋж“ѕ‚·‚й
+// жЊ‡е®љгЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ§гѓЎг‚їгѓЄгѓѓг‚Їгѓћгѓѓгѓ—гЃЁгЃ—гЃ¦дЅїз”ЁгЃ•г‚ЊгЃ¦гЃ„г‚‹гѓ†г‚Їг‚№гѓЃгѓЈгЃ®г‚¤гѓігѓ‡гѓѓг‚Їг‚№г‚’еЏ–еѕ—гЃ™г‚‹
 extern int MV1GetMaterialReflectionFactorMapTextureBase( int MBHandle, int MaterialIndex )
 {
 	MV1BASEMATERIALSTART( MBHandle, ModelBase, Material, MaterialIndex, -1 ) ;
@@ -11365,7 +11365,7 @@ extern int MV1GetMaterialReflectionFactorMapTextureBase( int MBHandle, int Mater
 }
 
 
-// Ћw’и‚Мѓ}ѓeѓЉѓAѓ‹‚Мѓ^ѓCѓv•Кѓpѓ‰ѓЃЃ[ѓ^‚р•ПЌX‚·‚й( ѓ}ѓeѓЉѓAѓ‹ѓ^ѓCѓv DX_MATERIAL_TYPE_MAT_SPEC_LUMINANCE_TWO_COLOR ‚И‚З‚ЕЋg—p )
+// жЊ‡е®љгЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ®г‚їг‚¤гѓ—е€Ґгѓ‘гѓ©гѓЎгѓјг‚їг‚’е¤‰ж›ґгЃ™г‚‹( гѓћгѓ†гѓЄг‚ўгѓ«г‚їг‚¤гѓ— DX_MATERIAL_TYPE_MAT_SPEC_LUMINANCE_TWO_COLOR гЃЄгЃ©гЃ§дЅїз”Ё )
 extern int MV1SetMaterialTypeParamBase( int MBHandle, int MaterialIndex, va_list ParamList )
 {
 	MV1_MODEL *Model ;
@@ -11374,13 +11374,13 @@ extern int MV1SetMaterialTypeParamBase( int MBHandle, int MaterialIndex, va_list
 	int i ;
 	MV1BASEMATERIALSTART( MBHandle, ModelBase, Material, MaterialIndex, -1 ) ;
 
-	// •`‰ж‘Т‹@‚µ‚Д‚ў‚й•`‰ж•Ё‚р•`‰ж
+	// жЏЏз”»еѕ…ж©џгЃ—гЃ¦гЃ„г‚‹жЏЏз”»з‰©г‚’жЏЏз”»
 	DRAWSTOCKINFO
 
-	// ѓZѓbѓg
+	// г‚»гѓѓгѓ€
 	MATERIAL_SET_TYPE_PARAM( Material->Type, Material->TypeParam, ParamList )
 
-	// ‚±‚Мѓ}ѓeѓЉѓAѓ‹‚рЋg—p‚µ‚Д‚ў‚йѓЃѓbѓVѓ…‚М”ј“§–ѕ—v‘f—L–іЏо•с‚МѓZѓbѓgѓAѓbѓvЉ®—№ѓtѓ‰ѓO‚р“|‚·
+	// гЃ“гЃ®гѓћгѓ†гѓЄг‚ўгѓ«г‚’дЅїз”ЁгЃ—гЃ¦гЃ„г‚‹гѓЎгѓѓг‚·гѓҐгЃ®еЌЉйЂЏжЋи¦Ѓзґ жњ‰з„Ўжѓ…е ±гЃ®г‚»гѓѓгѓ€г‚ўгѓѓгѓ—е®Њдє†гѓ•гѓ©г‚°г‚’еЂ’гЃ™
 	MBMesh = ModelBase->Mesh ;
 	for( i = 0 ; i < ModelBase->MeshNum ; i ++, MBMesh ++ )
 	{
@@ -11396,11 +11396,11 @@ extern int MV1SetMaterialTypeParamBase( int MBHandle, int MaterialIndex, va_list
 		}
 	}
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// Ћw’и‚Мѓ}ѓeѓЉѓAѓ‹‚МѓfѓBѓtѓ…Ѓ[ѓYѓJѓ‰Ѓ[‚рђЭ’и‚·‚й
+// жЊ‡е®љгЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ®гѓ‡г‚Јгѓ•гѓҐгѓјг‚єг‚«гѓ©гѓјг‚’иЁ­е®љгЃ™г‚‹
 extern int MV1SetMaterialDifColorBase( int MBHandle, int MaterialIndex, COLOR_F Color )
 {
 	MV1_MODEL *Model ;
@@ -11409,20 +11409,20 @@ extern int MV1SetMaterialDifColorBase( int MBHandle, int MaterialIndex, COLOR_F 
 	int i ;
 	MV1BASEMATERIALSTART( MBHandle, ModelBase, Material, MaterialIndex, -1 ) ;
 
-	// ЌЎ‚Ь‚Е‚Ж“Ї‚¶‚ѕ‚Б‚Ѕ‚з‰Ѕ‚а‚µ‚И‚ў
+	// д»ЉгЃѕгЃ§гЃЁеђЊгЃгЃ гЃЈгЃџг‚‰дЅ•г‚‚гЃ—гЃЄгЃ„
 	if( *( ( DWORD * )&Material->Diffuse.r ) == *( ( DWORD * )&Color.r ) &&
 		*( ( DWORD * )&Material->Diffuse.g ) == *( ( DWORD * )&Color.g ) &&
 		*( ( DWORD * )&Material->Diffuse.b ) == *( ( DWORD * )&Color.b ) &&
 		*( ( DWORD * )&Material->Diffuse.a ) == *( ( DWORD * )&Color.a ) )
 		return 0 ;
 
-	// •`‰ж‘Т‹@‚µ‚Д‚ў‚й•`‰ж•Ё‚р•`‰ж
+	// жЏЏз”»еѕ…ж©џгЃ—гЃ¦гЃ„г‚‹жЏЏз”»з‰©г‚’жЏЏз”»
 	DRAWSTOCKINFO
 
-	// ѓZѓbѓg
+	// г‚»гѓѓгѓ€
 	Material->Diffuse = Color ;
 
-	// ‚±‚Мѓ}ѓeѓЉѓAѓ‹‚рЋg—p‚µ‚Д‚ў‚йѓЃѓbѓVѓ…‚М”ј“§–ѕ—v‘f—L–іЏо•с‚МѓZѓbѓgѓAѓbѓvЉ®—№ѓtѓ‰ѓO‚р“|‚·
+	// гЃ“гЃ®гѓћгѓ†гѓЄг‚ўгѓ«г‚’дЅїз”ЁгЃ—гЃ¦гЃ„г‚‹гѓЎгѓѓг‚·гѓҐгЃ®еЌЉйЂЏжЋи¦Ѓзґ жњ‰з„Ўжѓ…е ±гЃ®г‚»гѓѓгѓ€г‚ўгѓѓгѓ—е®Њдє†гѓ•гѓ©г‚°г‚’еЂ’гЃ™
 	MBMesh = ModelBase->Mesh ;
 	for( i = 0 ; i < ModelBase->MeshNum ; i ++, MBMesh ++ )
 	{
@@ -11438,11 +11438,11 @@ extern int MV1SetMaterialDifColorBase( int MBHandle, int MaterialIndex, COLOR_F 
 		}
 	}
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// Ћw’и‚Мѓ}ѓeѓЉѓAѓ‹‚МѓXѓyѓLѓ…ѓ‰ѓJѓ‰Ѓ[‚рђЭ’и‚·‚й
+// жЊ‡е®љгЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ®г‚№гѓљг‚­гѓҐгѓ©г‚«гѓ©гѓјг‚’иЁ­е®љгЃ™г‚‹
 extern int MV1SetMaterialSpcColorBase( int MBHandle, int MaterialIndex, COLOR_F Color )
 {
 	MV1_MODEL *Model ;
@@ -11451,20 +11451,20 @@ extern int MV1SetMaterialSpcColorBase( int MBHandle, int MaterialIndex, COLOR_F 
 	int i ;
 	MV1BASEMATERIALSTART( MBHandle, ModelBase, Material, MaterialIndex, -1 ) ;
 
-	// ЌЎ‚Ь‚Е‚Ж“Ї‚¶‚ѕ‚Б‚Ѕ‚з‰Ѕ‚а‚µ‚И‚ў
+	// д»ЉгЃѕгЃ§гЃЁеђЊгЃгЃ гЃЈгЃџг‚‰дЅ•г‚‚гЃ—гЃЄгЃ„
 	if( *( ( DWORD * )&Material->Specular.r ) == *( ( DWORD * )&Color.r ) &&
 		*( ( DWORD * )&Material->Specular.g ) == *( ( DWORD * )&Color.g ) &&
 		*( ( DWORD * )&Material->Specular.b ) == *( ( DWORD * )&Color.b ) &&
 		*( ( DWORD * )&Material->Specular.a ) == *( ( DWORD * )&Color.a ) )
 		return 0 ;
 
-	// •`‰ж‘Т‹@‚µ‚Д‚ў‚й•`‰ж•Ё‚р•`‰ж
+	// жЏЏз”»еѕ…ж©џгЃ—гЃ¦гЃ„г‚‹жЏЏз”»з‰©г‚’жЏЏз”»
 	DRAWSTOCKINFO
 
-	// ѓZѓbѓg
+	// г‚»гѓѓгѓ€
 	Material->Specular = Color ;
 
-	// ‚±‚Мѓ}ѓeѓЉѓAѓ‹‚рЋg—p‚µ‚Д‚ў‚йѓЃѓbѓVѓ…‚МѓZѓbѓgѓAѓbѓvЉ®—№ѓtѓ‰ѓO‚р“|‚·
+	// гЃ“гЃ®гѓћгѓ†гѓЄг‚ўгѓ«г‚’дЅїз”ЁгЃ—гЃ¦гЃ„г‚‹гѓЎгѓѓг‚·гѓҐгЃ®г‚»гѓѓгѓ€г‚ўгѓѓгѓ—е®Њдє†гѓ•гѓ©г‚°г‚’еЂ’гЃ™
 	MBMesh = ModelBase->Mesh ;
 	for( i = 0 ; i < ModelBase->MeshNum ; i ++, MBMesh ++ )
 	{
@@ -11479,11 +11479,11 @@ extern int MV1SetMaterialSpcColorBase( int MBHandle, int MaterialIndex, COLOR_F 
 		}
 	}
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// Ћw’и‚Мѓ}ѓeѓЉѓAѓ‹‚МѓGѓ~ѓbѓVѓuѓJѓ‰Ѓ[‚рђЭ’и‚·‚й
+// жЊ‡е®љгЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ®г‚Ёгѓџгѓѓг‚·гѓ–г‚«гѓ©гѓјг‚’иЁ­е®љгЃ™г‚‹
 extern int MV1SetMaterialEmiColorBase( int MBHandle, int MaterialIndex, COLOR_F Color )
 {
 	MV1_MODEL *Model ;
@@ -11492,20 +11492,20 @@ extern int MV1SetMaterialEmiColorBase( int MBHandle, int MaterialIndex, COLOR_F 
 	int i ;
 	MV1BASEMATERIALSTART( MBHandle, ModelBase, Material, MaterialIndex, -1 ) ;
 
-	// ЌЎ‚Ь‚Е‚Ж“Ї‚¶‚ѕ‚Б‚Ѕ‚з‰Ѕ‚а‚µ‚И‚ў
+	// д»ЉгЃѕгЃ§гЃЁеђЊгЃгЃ гЃЈгЃџг‚‰дЅ•г‚‚гЃ—гЃЄгЃ„
 	if( *( ( DWORD * )&Material->Emissive.r ) == *( ( DWORD * )&Color.r ) &&
 		*( ( DWORD * )&Material->Emissive.g ) == *( ( DWORD * )&Color.g ) &&
 		*( ( DWORD * )&Material->Emissive.b ) == *( ( DWORD * )&Color.b ) &&
 		*( ( DWORD * )&Material->Emissive.a ) == *( ( DWORD * )&Color.a ) )
 		return 0 ;
 
-	// •`‰ж‘Т‹@‚µ‚Д‚ў‚й•`‰ж•Ё‚р•`‰ж
+	// жЏЏз”»еѕ…ж©џгЃ—гЃ¦гЃ„г‚‹жЏЏз”»з‰©г‚’жЏЏз”»
 	DRAWSTOCKINFO
 
-	// ѓZѓbѓg
+	// г‚»гѓѓгѓ€
 	Material->Emissive = Color ;
 
-	// ‚±‚Мѓ}ѓeѓЉѓAѓ‹‚рЋg—p‚µ‚Д‚ў‚йѓЃѓbѓVѓ…‚МѓZѓbѓgѓAѓbѓvЉ®—№ѓtѓ‰ѓO‚р“|‚·
+	// гЃ“гЃ®гѓћгѓ†гѓЄг‚ўгѓ«г‚’дЅїз”ЁгЃ—гЃ¦гЃ„г‚‹гѓЎгѓѓг‚·гѓҐгЃ®г‚»гѓѓгѓ€г‚ўгѓѓгѓ—е®Њдє†гѓ•гѓ©г‚°г‚’еЂ’гЃ™
 	MBMesh = ModelBase->Mesh ;
 	for( i = 0 ; i < ModelBase->MeshNum ; i ++, MBMesh ++ )
 	{
@@ -11520,11 +11520,11 @@ extern int MV1SetMaterialEmiColorBase( int MBHandle, int MaterialIndex, COLOR_F 
 		}
 	}
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// Ћw’и‚Мѓ}ѓeѓЉѓAѓ‹‚МѓAѓ“ѓrѓGѓ“ѓgѓJѓ‰Ѓ[‚рђЭ’и‚·‚й
+// жЊ‡е®љгЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ®г‚ўгѓігѓ“г‚Ёгѓігѓ€г‚«гѓ©гѓјг‚’иЁ­е®љгЃ™г‚‹
 extern int MV1SetMaterialAmbColorBase( int MBHandle, int MaterialIndex, COLOR_F Color )
 {
 	MV1_MODEL *Model ;
@@ -11533,20 +11533,20 @@ extern int MV1SetMaterialAmbColorBase( int MBHandle, int MaterialIndex, COLOR_F 
 	int i ;
 	MV1BASEMATERIALSTART( MBHandle, ModelBase, Material, MaterialIndex, -1 ) ;
 
-	// ЌЎ‚Ь‚Е‚Ж“Ї‚¶‚ѕ‚Б‚Ѕ‚з‰Ѕ‚а‚µ‚И‚ў
+	// д»ЉгЃѕгЃ§гЃЁеђЊгЃгЃ гЃЈгЃџг‚‰дЅ•г‚‚гЃ—гЃЄгЃ„
 	if( *( ( DWORD * )&Material->Ambient.r ) == *( ( DWORD * )&Color.r ) &&
 		*( ( DWORD * )&Material->Ambient.g ) == *( ( DWORD * )&Color.g ) &&
 		*( ( DWORD * )&Material->Ambient.b ) == *( ( DWORD * )&Color.b ) &&
 		*( ( DWORD * )&Material->Ambient.a ) == *( ( DWORD * )&Color.a ) )
 		return 0 ;
 
-	// •`‰ж‘Т‹@‚µ‚Д‚ў‚й•`‰ж•Ё‚р•`‰ж
+	// жЏЏз”»еѕ…ж©џгЃ—гЃ¦гЃ„г‚‹жЏЏз”»з‰©г‚’жЏЏз”»
 	DRAWSTOCKINFO
 
-	// ѓZѓbѓg
+	// г‚»гѓѓгѓ€
 	Material->Ambient = Color ;
 
-	// ‚±‚Мѓ}ѓeѓЉѓAѓ‹‚рЋg—p‚µ‚Д‚ў‚йѓЃѓbѓVѓ…‚МѓZѓbѓgѓAѓbѓvЉ®—№ѓtѓ‰ѓO‚р“|‚·
+	// гЃ“гЃ®гѓћгѓ†гѓЄг‚ўгѓ«г‚’дЅїз”ЁгЃ—гЃ¦гЃ„г‚‹гѓЎгѓѓг‚·гѓҐгЃ®г‚»гѓѓгѓ€г‚ўгѓѓгѓ—е®Њдє†гѓ•гѓ©г‚°г‚’еЂ’гЃ™
 	MBMesh = ModelBase->Mesh ;
 	for( i = 0 ; i < ModelBase->MeshNum ; i ++, MBMesh ++ )
 	{
@@ -11561,11 +11561,11 @@ extern int MV1SetMaterialAmbColorBase( int MBHandle, int MaterialIndex, COLOR_F 
 		}
 	}
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// Ћw’и‚Мѓ}ѓeѓЉѓAѓ‹‚МѓXѓyѓLѓ…ѓ‰‚М‹­‚і‚рђЭ’и‚·‚й
+// жЊ‡е®љгЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ®г‚№гѓљг‚­гѓҐгѓ©гЃ®еј·гЃ•г‚’иЁ­е®љгЃ™г‚‹
 extern int MV1SetMaterialSpcPowerBase( int MBHandle, int MaterialIndex, float Power )
 {
 	MV1BASEMATERIALSTART( MBHandle, ModelBase, Material, MaterialIndex, -1 ) ;
@@ -11575,18 +11575,18 @@ extern int MV1SetMaterialSpcPowerBase( int MBHandle, int MaterialIndex, float Po
 		return 0 ;
 	}
 
-	// •`‰ж‘Т‹@‚µ‚Д‚ў‚й•`‰ж•Ё‚р•`‰ж
+	// жЏЏз”»еѕ…ж©џгЃ—гЃ¦гЃ„г‚‹жЏЏз”»з‰©г‚’жЏЏз”»
 	DRAWSTOCKINFO
 
-	// ѓZѓbѓg
+	// г‚»гѓѓгѓ€
 	Material->Power = Power ;
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
 
-// Ћw’и‚Мѓ}ѓeѓЉѓAѓ‹‚ЕѓgѓDЃ[ѓ“ѓЊѓ“ѓ_ѓЉѓ“ѓO‚МѓfѓBѓtѓ…Ѓ[ѓYѓOѓ‰ѓfЃ[ѓVѓ‡ѓ“ѓ}ѓbѓv‚Ж‚µ‚ДЋg—p‚·‚йѓeѓNѓXѓ`ѓѓ‚рђЭ’и‚·‚й
+// жЊ‡е®љгЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ§гѓ€г‚Ґгѓјгѓігѓ¬гѓігѓЂгѓЄгѓіг‚°гЃ®гѓ‡г‚Јгѓ•гѓҐгѓјг‚єг‚°гѓ©гѓ‡гѓјг‚·гѓ§гѓігѓћгѓѓгѓ—гЃЁгЃ—гЃ¦дЅїз”ЁгЃ™г‚‹гѓ†г‚Їг‚№гѓЃгѓЈг‚’иЁ­е®љгЃ™г‚‹
 extern int MV1SetMaterialDifGradTextureBase( int MBHandle, int MaterialIndex, int TexIndex )
 {
 	MV1_MODEL *Model ;
@@ -11604,13 +11604,13 @@ extern int MV1SetMaterialDifGradTextureBase( int MBHandle, int MaterialIndex, in
 		return 0 ;
 	}
 
-	// •`‰ж‘Т‹@‚µ‚Д‚ў‚й•`‰ж•Ё‚р•`‰ж
+	// жЏЏз”»еѕ…ж©џгЃ—гЃ¦гЃ„г‚‹жЏЏз”»з‰©г‚’жЏЏз”»
 	DRAWSTOCKINFO
 
-	// ђЭ’и
+	// иЁ­е®љ
 	Material->DiffuseGradTexture = TexIndex ;
 
-	// ‚±‚Мѓ}ѓeѓЉѓAѓ‹‚рЋg—p‚µ‚Д‚ў‚йѓЃѓbѓVѓ…‚МѓZѓbѓgѓAѓbѓvЉ®—№ѓtѓ‰ѓO‚р“|‚·
+	// гЃ“гЃ®гѓћгѓ†гѓЄг‚ўгѓ«г‚’дЅїз”ЁгЃ—гЃ¦гЃ„г‚‹гѓЎгѓѓг‚·гѓҐгЃ®г‚»гѓѓгѓ€г‚ўгѓѓгѓ—е®Њдє†гѓ•гѓ©г‚°г‚’еЂ’гЃ™
 	MBMesh = ModelBase->Mesh ;
 	for( i = 0 ; i < ModelBase->MeshNum ; i ++, MBMesh ++ )
 	{
@@ -11621,26 +11621,26 @@ extern int MV1SetMaterialDifGradTextureBase( int MBHandle, int MaterialIndex, in
 			Mesh = &Model->Mesh[ i ] ;
 			MV1MESH_RESET_SEMITRANSSETUP( Mesh )
 
-			// ѓ}ѓeѓЉѓAѓ‹Џо•с‚аЌXђV
+			// гѓћгѓ†гѓЄг‚ўгѓ«жѓ…е ±г‚‚ж›ґж–°
 			if( MV1CCHK( Mesh->DrawMaterialChange ) == 0 )
 				MV1BitSetChange( &Mesh->DrawMaterialChange ) ;
 		}
 	}
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// Ћw’и‚Мѓ}ѓeѓЉѓAѓ‹‚ЕѓgѓDЃ[ѓ“ѓЊѓ“ѓ_ѓЉѓ“ѓO‚МѓfѓBѓtѓ…Ѓ[ѓYѓOѓ‰ѓfЃ[ѓVѓ‡ѓ“ѓ}ѓbѓv‚Ж‚µ‚ДЋg—p‚·‚йѓeѓNѓXѓ`ѓѓ‚рЋж“ѕ‚·‚й
+// жЊ‡е®љгЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ§гѓ€г‚Ґгѓјгѓігѓ¬гѓігѓЂгѓЄгѓіг‚°гЃ®гѓ‡г‚Јгѓ•гѓҐгѓјг‚єг‚°гѓ©гѓ‡гѓјг‚·гѓ§гѓігѓћгѓѓгѓ—гЃЁгЃ—гЃ¦дЅїз”ЁгЃ™г‚‹гѓ†г‚Їг‚№гѓЃгѓЈг‚’еЏ–еѕ—гЃ™г‚‹
 extern int MV1GetMaterialDifGradTextureBase( int MBHandle, int MaterialIndex )
 {
 	MV1BASEMATERIALSTART( MBHandle, ModelBase, Material, MaterialIndex, -1 ) ;
 
-	// ѓpѓ‰ѓЃЃ[ѓ^‚р•Ф‚·
+	// гѓ‘гѓ©гѓЎгѓјг‚їг‚’иї”гЃ™
 	return Material->DiffuseGradTexture ;
 }
 
-// Ћw’и‚Мѓ}ѓeѓЉѓAѓ‹‚ЕѓgѓDЃ[ѓ“ѓЊѓ“ѓ_ѓЉѓ“ѓO‚МѓXѓyѓLѓ…ѓ‰ѓOѓ‰ѓfЃ[ѓVѓ‡ѓ“ѓ}ѓbѓv‚Ж‚µ‚ДЋg—p‚·‚йѓeѓNѓXѓ`ѓѓ‚рђЭ’и‚·‚й
+// жЊ‡е®љгЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ§гѓ€г‚Ґгѓјгѓігѓ¬гѓігѓЂгѓЄгѓіг‚°гЃ®г‚№гѓљг‚­гѓҐгѓ©г‚°гѓ©гѓ‡гѓјг‚·гѓ§гѓігѓћгѓѓгѓ—гЃЁгЃ—гЃ¦дЅїз”ЁгЃ™г‚‹гѓ†г‚Їг‚№гѓЃгѓЈг‚’иЁ­е®љгЃ™г‚‹
 extern int MV1SetMaterialSpcGradTextureBase( int MBHandle, int MaterialIndex, int TexIndex )
 {
 	MV1_MODEL *Model ;
@@ -11658,13 +11658,13 @@ extern int MV1SetMaterialSpcGradTextureBase( int MBHandle, int MaterialIndex, in
 		return 0 ;
 	}
 
-	// •`‰ж‘Т‹@‚µ‚Д‚ў‚й•`‰ж•Ё‚р•`‰ж
+	// жЏЏз”»еѕ…ж©џгЃ—гЃ¦гЃ„г‚‹жЏЏз”»з‰©г‚’жЏЏз”»
 	DRAWSTOCKINFO
 
-	// ђЭ’и
+	// иЁ­е®љ
 	Material->SpecularGradTexture = TexIndex ;
 
-	// ‚±‚Мѓ}ѓeѓЉѓAѓ‹‚рЋg—p‚µ‚Д‚ў‚йѓЃѓbѓVѓ…‚МѓZѓbѓgѓAѓbѓvЉ®—№ѓtѓ‰ѓO‚р“|‚·
+	// гЃ“гЃ®гѓћгѓ†гѓЄг‚ўгѓ«г‚’дЅїз”ЁгЃ—гЃ¦гЃ„г‚‹гѓЎгѓѓг‚·гѓҐгЃ®г‚»гѓѓгѓ€г‚ўгѓѓгѓ—е®Њдє†гѓ•гѓ©г‚°г‚’еЂ’гЃ™
 	MBMesh = ModelBase->Mesh ;
 	for( i = 0 ; i < ModelBase->MeshNum ; i ++, MBMesh ++ )
 	{
@@ -11675,26 +11675,26 @@ extern int MV1SetMaterialSpcGradTextureBase( int MBHandle, int MaterialIndex, in
 			Mesh = &Model->Mesh[ i ] ;
 			MV1MESH_RESET_SEMITRANSSETUP( Mesh )
 
-			// ѓ}ѓeѓЉѓAѓ‹Џо•с‚аЌXђV
+			// гѓћгѓ†гѓЄг‚ўгѓ«жѓ…е ±г‚‚ж›ґж–°
 			if( MV1CCHK( Mesh->DrawMaterialChange ) == 0 )
 				MV1BitSetChange( &Mesh->DrawMaterialChange ) ;
 		}
 	}
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// Ћw’и‚Мѓ}ѓeѓЉѓAѓ‹‚ЕѓgѓDЃ[ѓ“ѓЊѓ“ѓ_ѓЉѓ“ѓO‚МѓXѓyѓLѓ…ѓ‰ѓOѓ‰ѓfЃ[ѓVѓ‡ѓ“ѓ}ѓbѓv‚Ж‚µ‚ДЋg—p‚·‚йѓeѓNѓXѓ`ѓѓ‚рЋж“ѕ‚·‚й
+// жЊ‡е®љгЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ§гѓ€г‚Ґгѓјгѓігѓ¬гѓігѓЂгѓЄгѓіг‚°гЃ®г‚№гѓљг‚­гѓҐгѓ©г‚°гѓ©гѓ‡гѓјг‚·гѓ§гѓігѓћгѓѓгѓ—гЃЁгЃ—гЃ¦дЅїз”ЁгЃ™г‚‹гѓ†г‚Їг‚№гѓЃгѓЈг‚’еЏ–еѕ—гЃ™г‚‹
 extern int MV1GetMaterialSpcGradTextureBase( int MBHandle, int MaterialIndex )
 {
 	MV1BASEMATERIALSTART( MBHandle, ModelBase, Material, MaterialIndex, -1 ) ;
 
-	// ѓpѓ‰ѓЃЃ[ѓ^‚р•Ф‚·
+	// гѓ‘гѓ©гѓЎгѓјг‚їг‚’иї”гЃ™
 	return Material->SpecularGradTexture ;
 }
 
-// Ћw’и‚Мѓ}ѓeѓЉѓAѓ‹‚ЕѓgѓDЃ[ѓ“ѓЊѓ“ѓ_ѓЉѓ“ѓO‚МѓXѓtѓBѓAѓ}ѓbѓv‚Ж‚µ‚ДЋg—p‚·‚йѓeѓNѓXѓ`ѓѓ‚рђЭ’и‚·‚й
+// жЊ‡е®љгЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ§гѓ€г‚Ґгѓјгѓігѓ¬гѓігѓЂгѓЄгѓіг‚°гЃ®г‚№гѓ•г‚Јг‚ўгѓћгѓѓгѓ—гЃЁгЃ—гЃ¦дЅїз”ЁгЃ™г‚‹гѓ†г‚Їг‚№гѓЃгѓЈг‚’иЁ­е®љгЃ™г‚‹
 extern int MV1SetMaterialSphereMapTextureBase( int MBHandle, int MaterialIndex, int TexIndex )
 {
 	MV1_MODEL *Model ;
@@ -11712,13 +11712,13 @@ extern int MV1SetMaterialSphereMapTextureBase( int MBHandle, int MaterialIndex, 
 		return 0 ;
 	}
 
-	// •`‰ж‘Т‹@‚µ‚Д‚ў‚й•`‰ж•Ё‚р•`‰ж
+	// жЏЏз”»еѕ…ж©џгЃ—гЃ¦гЃ„г‚‹жЏЏз”»з‰©г‚’жЏЏз”»
 	DRAWSTOCKINFO
 
-	// ђЭ’и
+	// иЁ­е®љ
 	Material->SphereMapTexture = TexIndex ;
 
-	// ‚±‚Мѓ}ѓeѓЉѓAѓ‹‚рЋg—p‚µ‚Д‚ў‚йѓЃѓbѓVѓ…‚МѓZѓbѓgѓAѓbѓvЉ®—№ѓtѓ‰ѓO‚р“|‚·
+	// гЃ“гЃ®гѓћгѓ†гѓЄг‚ўгѓ«г‚’дЅїз”ЁгЃ—гЃ¦гЃ„г‚‹гѓЎгѓѓг‚·гѓҐгЃ®г‚»гѓѓгѓ€г‚ўгѓѓгѓ—е®Њдє†гѓ•гѓ©г‚°г‚’еЂ’гЃ™
 	MBMesh = ModelBase->Mesh ;
 	for( i = 0 ; i < ModelBase->MeshNum ; i ++, MBMesh ++ )
 	{
@@ -11729,26 +11729,26 @@ extern int MV1SetMaterialSphereMapTextureBase( int MBHandle, int MaterialIndex, 
 			Mesh = &Model->Mesh[ i ] ;
 			MV1MESH_RESET_SEMITRANSSETUP( Mesh )
 
-			// ѓ}ѓeѓЉѓAѓ‹Џо•с‚аЌXђV
+			// гѓћгѓ†гѓЄг‚ўгѓ«жѓ…е ±г‚‚ж›ґж–°
 			if( MV1CCHK( Mesh->DrawMaterialChange ) == 0 )
 				MV1BitSetChange( &Mesh->DrawMaterialChange ) ;
 		}
 	}
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// Ћw’и‚Мѓ}ѓeѓЉѓAѓ‹‚ЕѓgѓDЃ[ѓ“ѓЊѓ“ѓ_ѓЉѓ“ѓO‚МѓXѓtѓBѓAѓ}ѓbѓv‚Ж‚µ‚ДЋg—p‚·‚йѓeѓNѓXѓ`ѓѓ‚рЋж“ѕ‚·‚й
+// жЊ‡е®љгЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ§гѓ€г‚Ґгѓјгѓігѓ¬гѓігѓЂгѓЄгѓіг‚°гЃ®г‚№гѓ•г‚Јг‚ўгѓћгѓѓгѓ—гЃЁгЃ—гЃ¦дЅїз”ЁгЃ™г‚‹гѓ†г‚Їг‚№гѓЃгѓЈг‚’еЏ–еѕ—гЃ™г‚‹
 extern int MV1GetMaterialSphereMapTextureBase( int MBHandle, int MaterialIndex )
 {
 	MV1BASEMATERIALSTART( MBHandle, ModelBase, Material, MaterialIndex, -1 ) ;
 
-	// ѓpѓ‰ѓЃЃ[ѓ^‚р•Ф‚·
+	// гѓ‘гѓ©гѓЎгѓјг‚їг‚’иї”гЃ™
 	return Material->SphereMapTexture ;
 }
 
-// Ћw’и‚Мѓ}ѓeѓЉѓAѓ‹‚МѓgѓDЃ[ѓ“ѓЊѓ“ѓ_ѓЉѓ“ѓO‚ЕЋg—p‚·‚йѓfѓBѓtѓ…Ѓ[ѓYѓOѓ‰ѓfЃ[ѓVѓ‡ѓ“ѓ}ѓbѓv‚ЖѓfѓBѓtѓ…Ѓ[ѓYѓJѓ‰Ѓ[‚МЌ‡ђ¬•ы–@‚рђЭ’и‚·‚й( DX_MATERIAL_BLENDTYPE_ADDITIVE ‚И‚З )
+// жЊ‡е®љгЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ®гѓ€г‚Ґгѓјгѓігѓ¬гѓігѓЂгѓЄгѓіг‚°гЃ§дЅїз”ЁгЃ™г‚‹гѓ‡г‚Јгѓ•гѓҐгѓјг‚єг‚°гѓ©гѓ‡гѓјг‚·гѓ§гѓігѓћгѓѓгѓ—гЃЁгѓ‡г‚Јгѓ•гѓҐгѓјг‚єг‚«гѓ©гѓјгЃ®еђ€ж€ђж–№жі•г‚’иЁ­е®љгЃ™г‚‹( DX_MATERIAL_BLENDTYPE_ADDITIVE гЃЄгЃ© )
 extern int MV1SetMaterialDifGradBlendTypeBase( int MBHandle, int MaterialIndex, int BlendType )
 {
 	MV1_MODEL *Model ;
@@ -11763,13 +11763,13 @@ extern int MV1SetMaterialDifGradBlendTypeBase( int MBHandle, int MaterialIndex, 
 		return 0 ;
 	}
 
-	// •`‰ж‘Т‹@‚µ‚Д‚ў‚й•`‰ж•Ё‚р•`‰ж
+	// жЏЏз”»еѕ…ж©џгЃ—гЃ¦гЃ„г‚‹жЏЏз”»з‰©г‚’жЏЏз”»
 	DRAWSTOCKINFO
 
-	// ђЭ’и
+	// иЁ­е®љ
 	Material->DiffuseGradBlendType = BlendType ;
 
-	// ‚±‚Мѓ}ѓeѓЉѓAѓ‹‚рЋg—p‚µ‚Д‚ў‚йѓЃѓbѓVѓ…‚МѓZѓbѓgѓAѓbѓvЉ®—№ѓtѓ‰ѓO‚р“|‚·
+	// гЃ“гЃ®гѓћгѓ†гѓЄг‚ўгѓ«г‚’дЅїз”ЁгЃ—гЃ¦гЃ„г‚‹гѓЎгѓѓг‚·гѓҐгЃ®г‚»гѓѓгѓ€г‚ўгѓѓгѓ—е®Њдє†гѓ•гѓ©г‚°г‚’еЂ’гЃ™
 	MBMesh = ModelBase->Mesh ;
 	for( i = 0 ; i < ModelBase->MeshNum ; i ++, MBMesh ++ )
 	{
@@ -11780,26 +11780,26 @@ extern int MV1SetMaterialDifGradBlendTypeBase( int MBHandle, int MaterialIndex, 
 			Mesh = &Model->Mesh[ i ] ;
 			MV1MESH_RESET_SEMITRANSSETUP( Mesh )
 
-			// ѓ}ѓeѓЉѓAѓ‹Џо•с‚аЌXђV
+			// гѓћгѓ†гѓЄг‚ўгѓ«жѓ…е ±г‚‚ж›ґж–°
 			if( MV1CCHK( Mesh->DrawMaterialChange ) == 0 )
 				MV1BitSetChange( &Mesh->DrawMaterialChange ) ;
 		}
 	}
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// Ћw’и‚Мѓ}ѓeѓЉѓAѓ‹‚МѓgѓDЃ[ѓ“ѓЊѓ“ѓ_ѓЉѓ“ѓO‚ЕЋg—p‚·‚йѓfѓBѓtѓ…Ѓ[ѓYѓOѓ‰ѓfЃ[ѓVѓ‡ѓ“ѓ}ѓbѓv‚ЖѓfѓBѓtѓ…Ѓ[ѓYѓJѓ‰Ѓ[‚МЌ‡ђ¬•ы–@‚рЋж“ѕ‚·‚й( DX_MATERIAL_BLENDTYPE_ADDITIVE ‚И‚З )
+// жЊ‡е®љгЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ®гѓ€г‚Ґгѓјгѓігѓ¬гѓігѓЂгѓЄгѓіг‚°гЃ§дЅїз”ЁгЃ™г‚‹гѓ‡г‚Јгѓ•гѓҐгѓјг‚єг‚°гѓ©гѓ‡гѓјг‚·гѓ§гѓігѓћгѓѓгѓ—гЃЁгѓ‡г‚Јгѓ•гѓҐгѓјг‚єг‚«гѓ©гѓјгЃ®еђ€ж€ђж–№жі•г‚’еЏ–еѕ—гЃ™г‚‹( DX_MATERIAL_BLENDTYPE_ADDITIVE гЃЄгЃ© )
 extern int MV1GetMaterialDifGradBlendTypeBase( int MBHandle, int MaterialIndex )
 {
 	MV1BASEMATERIALSTART( MBHandle, ModelBase, Material, MaterialIndex, -1 ) ;
 
-	// ѓpѓ‰ѓЃЃ[ѓ^‚р•Ф‚·
+	// гѓ‘гѓ©гѓЎгѓјг‚їг‚’иї”гЃ™
 	return Material->DiffuseGradBlendType ;
 }
 
-// Ћw’и‚Мѓ}ѓeѓЉѓAѓ‹‚МѓgѓDЃ[ѓ“ѓЊѓ“ѓ_ѓЉѓ“ѓO‚ЕЋg—p‚·‚йѓXѓyѓLѓ…ѓ‰ѓOѓ‰ѓfЃ[ѓVѓ‡ѓ“ѓ}ѓbѓv‚ЖѓXѓyѓLѓ…ѓ‰ѓJѓ‰Ѓ[‚МЌ‡ђ¬•ы–@‚рђЭ’и‚·‚й( DX_MATERIAL_BLENDTYPE_ADDITIVE ‚И‚З )
+// жЊ‡е®љгЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ®гѓ€г‚Ґгѓјгѓігѓ¬гѓігѓЂгѓЄгѓіг‚°гЃ§дЅїз”ЁгЃ™г‚‹г‚№гѓљг‚­гѓҐгѓ©г‚°гѓ©гѓ‡гѓјг‚·гѓ§гѓігѓћгѓѓгѓ—гЃЁг‚№гѓљг‚­гѓҐгѓ©г‚«гѓ©гѓјгЃ®еђ€ж€ђж–№жі•г‚’иЁ­е®љгЃ™г‚‹( DX_MATERIAL_BLENDTYPE_ADDITIVE гЃЄгЃ© )
 extern int MV1SetMaterialSpcGradBlendTypeBase( int MBHandle, int MaterialIndex, int BlendType )
 {
 	MV1_MODEL *Model ;
@@ -11814,13 +11814,13 @@ extern int MV1SetMaterialSpcGradBlendTypeBase( int MBHandle, int MaterialIndex, 
 		return 0 ;
 	}
 
-	// •`‰ж‘Т‹@‚µ‚Д‚ў‚й•`‰ж•Ё‚р•`‰ж
+	// жЏЏз”»еѕ…ж©џгЃ—гЃ¦гЃ„г‚‹жЏЏз”»з‰©г‚’жЏЏз”»
 	DRAWSTOCKINFO
 
-	// ђЭ’и
+	// иЁ­е®љ
 	Material->SpecularGradBlendType = BlendType ;
 
-	// ‚±‚Мѓ}ѓeѓЉѓAѓ‹‚рЋg—p‚µ‚Д‚ў‚йѓЃѓbѓVѓ…‚МѓZѓbѓgѓAѓbѓvЉ®—№ѓtѓ‰ѓO‚р“|‚·
+	// гЃ“гЃ®гѓћгѓ†гѓЄг‚ўгѓ«г‚’дЅїз”ЁгЃ—гЃ¦гЃ„г‚‹гѓЎгѓѓг‚·гѓҐгЃ®г‚»гѓѓгѓ€г‚ўгѓѓгѓ—е®Њдє†гѓ•гѓ©г‚°г‚’еЂ’гЃ™
 	MBMesh = ModelBase->Mesh ;
 	for( i = 0 ; i < ModelBase->MeshNum ; i ++, MBMesh ++ )
 	{
@@ -11831,26 +11831,26 @@ extern int MV1SetMaterialSpcGradBlendTypeBase( int MBHandle, int MaterialIndex, 
 			Mesh = &Model->Mesh[ i ] ;
 			MV1MESH_RESET_SEMITRANSSETUP( Mesh )
 
-			// ѓ}ѓeѓЉѓAѓ‹Џо•с‚аЌXђV
+			// гѓћгѓ†гѓЄг‚ўгѓ«жѓ…е ±г‚‚ж›ґж–°
 			if( MV1CCHK( Mesh->DrawMaterialChange ) == 0 )
 				MV1BitSetChange( &Mesh->DrawMaterialChange ) ;
 		}
 	}
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// Ћw’и‚Мѓ}ѓeѓЉѓAѓ‹‚МѓgѓDЃ[ѓ“ѓЊѓ“ѓ_ѓЉѓ“ѓO‚ЕЋg—p‚·‚йѓXѓyѓLѓ…ѓ‰ѓOѓ‰ѓfЃ[ѓVѓ‡ѓ“ѓ}ѓbѓv‚ЖѓXѓyѓLѓ…ѓ‰ѓJѓ‰Ѓ[‚МЌ‡ђ¬•ы–@‚рЋж“ѕ‚·‚й( DX_MATERIAL_BLENDTYPE_ADDITIVE ‚И‚З )
+// жЊ‡е®љгЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ®гѓ€г‚Ґгѓјгѓігѓ¬гѓігѓЂгѓЄгѓіг‚°гЃ§дЅїз”ЁгЃ™г‚‹г‚№гѓљг‚­гѓҐгѓ©г‚°гѓ©гѓ‡гѓјг‚·гѓ§гѓігѓћгѓѓгѓ—гЃЁг‚№гѓљг‚­гѓҐгѓ©г‚«гѓ©гѓјгЃ®еђ€ж€ђж–№жі•г‚’еЏ–еѕ—гЃ™г‚‹( DX_MATERIAL_BLENDTYPE_ADDITIVE гЃЄгЃ© )
 extern int MV1GetMaterialSpcGradBlendTypeBase( int MBHandle, int MaterialIndex )
 {
 	MV1BASEMATERIALSTART( MBHandle, ModelBase, Material, MaterialIndex, -1 ) ;
 
-	// ѓpѓ‰ѓЃЃ[ѓ^‚р•Ф‚·
+	// гѓ‘гѓ©гѓЎгѓјг‚їг‚’иї”гЃ™
 	return Material->SpecularGradBlendType ;
 }
 
-// Ћw’и‚Мѓ}ѓeѓЉѓAѓ‹‚МѓgѓDЃ[ѓ“ѓЊѓ“ѓ_ѓЉѓ“ѓO‚ЕЋg—p‚·‚йѓXѓtѓBѓAѓ}ѓbѓv‚МЌ‡ђ¬•ы–@‚рђЭ’и‚·‚й( DX_MATERIAL_BLENDTYPE_ADDITIVE ‚И‚З )
+// жЊ‡е®љгЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ®гѓ€г‚Ґгѓјгѓігѓ¬гѓігѓЂгѓЄгѓіг‚°гЃ§дЅїз”ЁгЃ™г‚‹г‚№гѓ•г‚Јг‚ўгѓћгѓѓгѓ—гЃ®еђ€ж€ђж–№жі•г‚’иЁ­е®љгЃ™г‚‹( DX_MATERIAL_BLENDTYPE_ADDITIVE гЃЄгЃ© )
 extern int MV1SetMaterialSphereMapBlendTypeBase( int MBHandle, int MaterialIndex, int BlendType )
 {
 	MV1_MODEL *Model ;
@@ -11865,13 +11865,13 @@ extern int MV1SetMaterialSphereMapBlendTypeBase( int MBHandle, int MaterialIndex
 		return 0 ;
 	}
 
-	// •`‰ж‘Т‹@‚µ‚Д‚ў‚й•`‰ж•Ё‚р•`‰ж
+	// жЏЏз”»еѕ…ж©џгЃ—гЃ¦гЃ„г‚‹жЏЏз”»з‰©г‚’жЏЏз”»
 	DRAWSTOCKINFO
 
-	// ђЭ’и
+	// иЁ­е®љ
 	Material->SphereMapBlendType = BlendType ;
 
-	// ‚±‚Мѓ}ѓeѓЉѓAѓ‹‚рЋg—p‚µ‚Д‚ў‚йѓЃѓbѓVѓ…‚МѓZѓbѓgѓAѓbѓvЉ®—№ѓtѓ‰ѓO‚р“|‚·
+	// гЃ“гЃ®гѓћгѓ†гѓЄг‚ўгѓ«г‚’дЅїз”ЁгЃ—гЃ¦гЃ„г‚‹гѓЎгѓѓг‚·гѓҐгЃ®г‚»гѓѓгѓ€г‚ўгѓѓгѓ—е®Њдє†гѓ•гѓ©г‚°г‚’еЂ’гЃ™
 	MBMesh = ModelBase->Mesh ;
 	for( i = 0 ; i < ModelBase->MeshNum ; i ++, MBMesh ++ )
 	{
@@ -11882,26 +11882,26 @@ extern int MV1SetMaterialSphereMapBlendTypeBase( int MBHandle, int MaterialIndex
 			Mesh = &Model->Mesh[ i ] ;
 			MV1MESH_RESET_SEMITRANSSETUP( Mesh )
 
-			// ѓ}ѓeѓЉѓAѓ‹Џо•с‚аЌXђV
+			// гѓћгѓ†гѓЄг‚ўгѓ«жѓ…е ±г‚‚ж›ґж–°
 			if( MV1CCHK( Mesh->DrawMaterialChange ) == 0 )
 				MV1BitSetChange( &Mesh->DrawMaterialChange ) ;
 		}
 	}
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// Ћw’и‚Мѓ}ѓeѓЉѓAѓ‹‚МѓgѓDЃ[ѓ“ѓЊѓ“ѓ_ѓЉѓ“ѓO‚ЕЋg—p‚·‚йѓXѓtѓBѓAѓ}ѓbѓv‚МЌ‡ђ¬•ы–@‚рЋж“ѕ‚·‚й( DX_MATERIAL_BLENDTYPE_ADDITIVE ‚И‚З )
+// жЊ‡е®љгЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ®гѓ€г‚Ґгѓјгѓігѓ¬гѓігѓЂгѓЄгѓіг‚°гЃ§дЅїз”ЁгЃ™г‚‹г‚№гѓ•г‚Јг‚ўгѓћгѓѓгѓ—гЃ®еђ€ж€ђж–№жі•г‚’еЏ–еѕ—гЃ™г‚‹( DX_MATERIAL_BLENDTYPE_ADDITIVE гЃЄгЃ© )
 extern int MV1GetMaterialSphereMapBlendTypeBase( int MBHandle, int MaterialIndex )
 {
 	MV1BASEMATERIALSTART( MBHandle, ModelBase, Material, MaterialIndex, -1 ) ;
 
-	// ѓpѓ‰ѓЃЃ[ѓ^‚р•Ф‚·
+	// гѓ‘гѓ©гѓЎгѓјг‚їг‚’иї”гЃ™
 	return Material->SphereMapBlendType ;
 }
 
-// Ћw’и‚Мѓ}ѓeѓЉѓAѓ‹‚МѓgѓDЃ[ѓ“ѓЊѓ“ѓ_ѓЉѓ“ѓO‚ЕЋg—p‚·‚й—ЦЉsђь‚М‘ѕ‚і‚рђЭ’и‚·‚й( 0.0f Ѓ` 1.0f )
+// жЊ‡е®љгЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ®гѓ€г‚Ґгѓјгѓігѓ¬гѓігѓЂгѓЄгѓіг‚°гЃ§дЅїз”ЁгЃ™г‚‹ијЄйѓ­з·љгЃ®е¤ЄгЃ•г‚’иЁ­е®љгЃ™г‚‹( 0.0f пЅћ 1.0f )
 extern int MV1SetMaterialOutLineWidthBase( int MBHandle, int MaterialIndex, float Width )
 {
 	MV1_MODEL *Model ;
@@ -11916,13 +11916,13 @@ extern int MV1SetMaterialOutLineWidthBase( int MBHandle, int MaterialIndex, floa
 		return 0 ;
 	}
 
-	// •`‰ж‘Т‹@‚µ‚Д‚ў‚й•`‰ж•Ё‚р•`‰ж
+	// жЏЏз”»еѕ…ж©џгЃ—гЃ¦гЃ„г‚‹жЏЏз”»з‰©г‚’жЏЏз”»
 	DRAWSTOCKINFO
 
-	// ђЭ’и
+	// иЁ­е®љ
 	Material->OutLineWidth = Width ;
 
-	// ‚±‚Мѓ}ѓeѓЉѓAѓ‹‚рЋg—p‚µ‚Д‚ў‚йѓЃѓbѓVѓ…‚МѓZѓbѓgѓAѓbѓvЉ®—№ѓtѓ‰ѓO‚р“|‚·
+	// гЃ“гЃ®гѓћгѓ†гѓЄг‚ўгѓ«г‚’дЅїз”ЁгЃ—гЃ¦гЃ„г‚‹гѓЎгѓѓг‚·гѓҐгЃ®г‚»гѓѓгѓ€г‚ўгѓѓгѓ—е®Њдє†гѓ•гѓ©г‚°г‚’еЂ’гЃ™
 	MBMesh = ModelBase->Mesh ;
 	for( i = 0 ; i < ModelBase->MeshNum ; i ++, MBMesh ++ )
 	{
@@ -11933,26 +11933,26 @@ extern int MV1SetMaterialOutLineWidthBase( int MBHandle, int MaterialIndex, floa
 			Mesh = &Model->Mesh[ i ] ;
 			MV1MESH_RESET_SEMITRANSSETUP( Mesh )
 
-			// ѓ}ѓeѓЉѓAѓ‹Џо•с‚аЌXђV
+			// гѓћгѓ†гѓЄг‚ўгѓ«жѓ…е ±г‚‚ж›ґж–°
 			if( MV1CCHK( Mesh->DrawMaterialChange ) == 0 )
 				MV1BitSetChange( &Mesh->DrawMaterialChange ) ;
 		}
 	}
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// Ћw’и‚Мѓ}ѓeѓЉѓAѓ‹‚МѓgѓDЃ[ѓ“ѓЊѓ“ѓ_ѓЉѓ“ѓO‚ЕЋg—p‚·‚й—ЦЉsђь‚М‘ѕ‚і‚рЋж“ѕ‚·‚й( 0.0f Ѓ` 1.0f )
+// жЊ‡е®љгЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ®гѓ€г‚Ґгѓјгѓігѓ¬гѓігѓЂгѓЄгѓіг‚°гЃ§дЅїз”ЁгЃ™г‚‹ијЄйѓ­з·љгЃ®е¤ЄгЃ•г‚’еЏ–еѕ—гЃ™г‚‹( 0.0f пЅћ 1.0f )
 extern float MV1GetMaterialOutLineWidthBase( int MBHandle, int MaterialIndex )
 {
 	MV1BASEMATERIALSTART( MBHandle, ModelBase, Material, MaterialIndex, -1 ) ;
 
-	// ѓpѓ‰ѓЃЃ[ѓ^‚р•Ф‚·
+	// гѓ‘гѓ©гѓЎгѓјг‚їг‚’иї”гЃ™
 	return Material->OutLineWidth ;
 }
 
-// Ћw’и‚Мѓ}ѓeѓЉѓAѓ‹‚МѓgѓDЃ[ѓ“ѓЊѓ“ѓ_ѓЉѓ“ѓO‚ЕЋg—p‚·‚й—ЦЉsђь‚Мѓhѓbѓg’P€К‚М‘ѕ‚і‚рђЭ’и‚·‚й
+// жЊ‡е®љгЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ®гѓ€г‚Ґгѓјгѓігѓ¬гѓігѓЂгѓЄгѓіг‚°гЃ§дЅїз”ЁгЃ™г‚‹ијЄйѓ­з·љгЃ®гѓ‰гѓѓгѓ€еЌдЅЌгЃ®е¤ЄгЃ•г‚’иЁ­е®љгЃ™г‚‹
 extern int MV1SetMaterialOutLineDotWidthBase( int MBHandle, int MaterialIndex, float Width )
 {
 	MV1_MODEL *Model ;
@@ -11967,13 +11967,13 @@ extern int MV1SetMaterialOutLineDotWidthBase( int MBHandle, int MaterialIndex, f
 		return 0 ;
 	}
 
-	// •`‰ж‘Т‹@‚µ‚Д‚ў‚й•`‰ж•Ё‚р•`‰ж
+	// жЏЏз”»еѕ…ж©џгЃ—гЃ¦гЃ„г‚‹жЏЏз”»з‰©г‚’жЏЏз”»
 	DRAWSTOCKINFO
 
-	// ђЭ’и
+	// иЁ­е®љ
 	Material->OutLineDotWidth = Width ;
 
-	// ‚±‚Мѓ}ѓeѓЉѓAѓ‹‚рЋg—p‚µ‚Д‚ў‚йѓЃѓbѓVѓ…‚МѓZѓbѓgѓAѓbѓvЉ®—№ѓtѓ‰ѓO‚р“|‚·
+	// гЃ“гЃ®гѓћгѓ†гѓЄг‚ўгѓ«г‚’дЅїз”ЁгЃ—гЃ¦гЃ„г‚‹гѓЎгѓѓг‚·гѓҐгЃ®г‚»гѓѓгѓ€г‚ўгѓѓгѓ—е®Њдє†гѓ•гѓ©г‚°г‚’еЂ’гЃ™
 	MBMesh = ModelBase->Mesh ;
 	for( i = 0 ; i < ModelBase->MeshNum ; i ++, MBMesh ++ )
 	{
@@ -11984,26 +11984,26 @@ extern int MV1SetMaterialOutLineDotWidthBase( int MBHandle, int MaterialIndex, f
 			Mesh = &Model->Mesh[ i ] ;
 			MV1MESH_RESET_SEMITRANSSETUP( Mesh )
 
-			// ѓ}ѓeѓЉѓAѓ‹Џо•с‚аЌXђV
+			// гѓћгѓ†гѓЄг‚ўгѓ«жѓ…е ±г‚‚ж›ґж–°
 			if( MV1CCHK( Mesh->DrawMaterialChange ) == 0 )
 				MV1BitSetChange( &Mesh->DrawMaterialChange ) ;
 		}
 	}
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// Ћw’и‚Мѓ}ѓeѓЉѓAѓ‹‚МѓgѓDЃ[ѓ“ѓЊѓ“ѓ_ѓЉѓ“ѓO‚ЕЋg—p‚·‚й—ЦЉsђь‚Мѓhѓbѓg’P€К‚М‘ѕ‚і‚рЋж“ѕ‚·‚й
+// жЊ‡е®љгЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ®гѓ€г‚Ґгѓјгѓігѓ¬гѓігѓЂгѓЄгѓіг‚°гЃ§дЅїз”ЁгЃ™г‚‹ијЄйѓ­з·љгЃ®гѓ‰гѓѓгѓ€еЌдЅЌгЃ®е¤ЄгЃ•г‚’еЏ–еѕ—гЃ™г‚‹
 extern float MV1GetMaterialOutLineDotWidthBase( int MBHandle, int MaterialIndex )
 {
 	MV1BASEMATERIALSTART( MBHandle, ModelBase, Material, MaterialIndex, -1 ) ;
 
-	// ѓpѓ‰ѓЃЃ[ѓ^‚р•Ф‚·
+	// гѓ‘гѓ©гѓЎгѓјг‚їг‚’иї”гЃ™
 	return Material->OutLineDotWidth ;
 }
 
-// Ћw’и‚Мѓ}ѓeѓЉѓAѓ‹‚МѓgѓDЃ[ѓ“ѓЊѓ“ѓ_ѓЉѓ“ѓO‚ЕЋg—p‚·‚й—ЦЉsђь‚МђF‚рђЭ’и‚·‚й
+// жЊ‡е®љгЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ®гѓ€г‚Ґгѓјгѓігѓ¬гѓігѓЂгѓЄгѓіг‚°гЃ§дЅїз”ЁгЃ™г‚‹ијЄйѓ­з·љгЃ®и‰Іг‚’иЁ­е®љгЃ™г‚‹
 extern int MV1SetMaterialOutLineColorBase( int MBHandle, int MaterialIndex, COLOR_F Color )
 {
 	MV1_MODEL *Model ;
@@ -12021,13 +12021,13 @@ extern int MV1SetMaterialOutLineColorBase( int MBHandle, int MaterialIndex, COLO
 		return 0 ;
 	}
 
-	// •`‰ж‘Т‹@‚µ‚Д‚ў‚й•`‰ж•Ё‚р•`‰ж
+	// жЏЏз”»еѕ…ж©џгЃ—гЃ¦гЃ„г‚‹жЏЏз”»з‰©г‚’жЏЏз”»
 	DRAWSTOCKINFO
 
-	// ђЭ’и
+	// иЁ­е®љ
 	Material->OutLineColor = Color ;
 
-	// ‚±‚Мѓ}ѓeѓЉѓAѓ‹‚рЋg—p‚µ‚Д‚ў‚йѓЃѓbѓVѓ…‚МѓZѓbѓgѓAѓbѓvЉ®—№ѓtѓ‰ѓO‚р“|‚·
+	// гЃ“гЃ®гѓћгѓ†гѓЄг‚ўгѓ«г‚’дЅїз”ЁгЃ—гЃ¦гЃ„г‚‹гѓЎгѓѓг‚·гѓҐгЃ®г‚»гѓѓгѓ€г‚ўгѓѓгѓ—е®Њдє†гѓ•гѓ©г‚°г‚’еЂ’гЃ™
 	MBMesh = ModelBase->Mesh ;
 	for( i = 0 ; i < ModelBase->MeshNum ; i ++, MBMesh ++ )
 	{
@@ -12038,27 +12038,27 @@ extern int MV1SetMaterialOutLineColorBase( int MBHandle, int MaterialIndex, COLO
 			Mesh = &Model->Mesh[ i ] ;
 			MV1MESH_RESET_SEMITRANSSETUP( Mesh )
 
-			// ѓ}ѓeѓЉѓAѓ‹Џо•с‚аЌXђV
+			// гѓћгѓ†гѓЄг‚ўгѓ«жѓ…е ±г‚‚ж›ґж–°
 			if( MV1CCHK( Mesh->DrawMaterialChange ) == 0 )
 				MV1BitSetChange( &Mesh->DrawMaterialChange ) ;
 		}
 	}
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// Ћw’и‚Мѓ}ѓeѓЉѓAѓ‹‚МѓgѓDЃ[ѓ“ѓЊѓ“ѓ_ѓЉѓ“ѓO‚ЕЋg—p‚·‚й—ЦЉsђь‚МђF‚рЋж“ѕ‚·‚й
+// жЊ‡е®љгЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ®гѓ€г‚Ґгѓјгѓігѓ¬гѓігѓЂгѓЄгѓіг‚°гЃ§дЅїз”ЁгЃ™г‚‹ијЄйѓ­з·љгЃ®и‰Іг‚’еЏ–еѕ—гЃ™г‚‹
 extern COLOR_F MV1GetMaterialOutLineColorBase( int MBHandle, int MaterialIndex )
 {
 	COLOR_F RetColor = { 0.0f, 0.0f, 0.0f, 0.0f } ;
 	MV1BASEMATERIALSTART( MBHandle, ModelBase, Material, MaterialIndex, RetColor ) ;
 
-	// ѓpѓ‰ѓЃЃ[ѓ^‚р•Ф‚·
+	// гѓ‘гѓ©гѓЎгѓјг‚їг‚’иї”гЃ™
 	return Material->OutLineColor ;
 }
 
-// Ћw’и‚Мѓ}ѓeѓЉѓAѓ‹‚М•`‰жѓuѓЊѓ“ѓhѓ‚Ѓ[ѓh‚рђЭ’и‚·‚й( DX_BLENDMODE_ALPHA “™ )
+// жЊ‡е®љгЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ®жЏЏз”»гѓ–гѓ¬гѓігѓ‰гѓўгѓјгѓ‰г‚’иЁ­е®љгЃ™г‚‹( DX_BLENDMODE_ALPHA з­‰ )
 extern int MV1SetMaterialDrawBlendModeBase( int MBHandle, int MaterialIndex, int BlendMode )
 {
 	MV1_MODEL *Model ;
@@ -12072,13 +12072,13 @@ extern int MV1SetMaterialDrawBlendModeBase( int MBHandle, int MaterialIndex, int
 		return 0 ;
 	}
 
-	// •`‰ж‘Т‹@‚µ‚Д‚ў‚й•`‰ж•Ё‚р•`‰ж
+	// жЏЏз”»еѕ…ж©џгЃ—гЃ¦гЃ„г‚‹жЏЏз”»з‰©г‚’жЏЏз”»
 	DRAWSTOCKINFO
 
-	// ѓuѓЊѓ“ѓhѓ‚Ѓ[ѓh‚МѓZѓbѓg
+	// гѓ–гѓ¬гѓігѓ‰гѓўгѓјгѓ‰гЃ®г‚»гѓѓгѓ€
 	Material->DrawBlendMode = BlendMode ;
 
-	// ‚±‚Мѓ}ѓeѓЉѓAѓ‹‚рЋg—p‚µ‚Д‚ў‚йѓЃѓbѓVѓ…‚МѓZѓbѓgѓAѓbѓvЉ®—№ѓtѓ‰ѓO‚р“|‚·
+	// гЃ“гЃ®гѓћгѓ†гѓЄг‚ўгѓ«г‚’дЅїз”ЁгЃ—гЃ¦гЃ„г‚‹гѓЎгѓѓг‚·гѓҐгЃ®г‚»гѓѓгѓ€г‚ўгѓѓгѓ—е®Њдє†гѓ•гѓ©г‚°г‚’еЂ’гЃ™
 	MBMesh = ModelBase->Mesh ;
 	for( i = 0 ; i < ModelBase->MeshNum ; i ++, MBMesh ++ )
 	{
@@ -12094,11 +12094,11 @@ extern int MV1SetMaterialDrawBlendModeBase( int MBHandle, int MaterialIndex, int
 		}
 	}
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// Ћw’и‚Мѓ}ѓeѓЉѓAѓ‹‚М•`‰жѓuѓЊѓ“ѓhѓpѓ‰ѓЃЃ[ѓ^‚рђЭ’и‚·‚й
+// жЊ‡е®љгЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ®жЏЏз”»гѓ–гѓ¬гѓігѓ‰гѓ‘гѓ©гѓЎгѓјг‚їг‚’иЁ­е®љгЃ™г‚‹
 extern int MV1SetMaterialDrawBlendParamBase( int MBHandle, int MaterialIndex, int BlendParam )
 {
 	MV1_MODEL *Model ;
@@ -12112,13 +12112,13 @@ extern int MV1SetMaterialDrawBlendParamBase( int MBHandle, int MaterialIndex, in
 		return 0 ;
 	}
 
-	// •`‰ж‘Т‹@‚µ‚Д‚ў‚й•`‰ж•Ё‚р•`‰ж
+	// жЏЏз”»еѕ…ж©џгЃ—гЃ¦гЃ„г‚‹жЏЏз”»з‰©г‚’жЏЏз”»
 	DRAWSTOCKINFO
 
-	// ѓuѓЊѓ“ѓhѓpѓ‰ѓЃЃ[ѓ^‚МѓZѓbѓg
+	// гѓ–гѓ¬гѓігѓ‰гѓ‘гѓ©гѓЎгѓјг‚їгЃ®г‚»гѓѓгѓ€
 	Material->DrawBlendParam = BlendParam ;
 
-	// ‚±‚Мѓ}ѓeѓЉѓAѓ‹‚рЋg—p‚µ‚Д‚ў‚йѓЃѓbѓVѓ…‚МѓZѓbѓgѓAѓbѓvЉ®—№ѓtѓ‰ѓO‚р“|‚·
+	// гЃ“гЃ®гѓћгѓ†гѓЄг‚ўгѓ«г‚’дЅїз”ЁгЃ—гЃ¦гЃ„г‚‹гѓЎгѓѓг‚·гѓҐгЃ®г‚»гѓѓгѓ€г‚ўгѓѓгѓ—е®Њдє†гѓ•гѓ©г‚°г‚’еЂ’гЃ™
 	MBMesh = ModelBase->Mesh ;
 	for( i = 0 ; i < ModelBase->MeshNum ; i ++, MBMesh ++ )
 	{
@@ -12134,29 +12134,29 @@ extern int MV1SetMaterialDrawBlendParamBase( int MBHandle, int MaterialIndex, in
 		}
 	}
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// Ћw’и‚Мѓ}ѓeѓЉѓAѓ‹‚М•`‰жѓuѓЊѓ“ѓhѓ‚Ѓ[ѓh‚рЋж“ѕ‚·‚й( DX_BLENDMODE_ALPHA “™ )
+// жЊ‡е®љгЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ®жЏЏз”»гѓ–гѓ¬гѓігѓ‰гѓўгѓјгѓ‰г‚’еЏ–еѕ—гЃ™г‚‹( DX_BLENDMODE_ALPHA з­‰ )
 extern int MV1GetMaterialDrawBlendModeBase( int MBHandle, int MaterialIndex )
 {
 	MV1BASEMATERIALSTART( MBHandle, ModelBase, Material, MaterialIndex, -1 ) ;
 
-	// ѓuѓЊѓ“ѓhѓ‚Ѓ[ѓh‚р•Ф‚·
+	// гѓ–гѓ¬гѓігѓ‰гѓўгѓјгѓ‰г‚’иї”гЃ™
 	return Material->DrawBlendMode ;
 }
 
-// Ћw’и‚Мѓ}ѓeѓЉѓAѓ‹‚М•`‰жѓuѓЊѓ“ѓhѓpѓ‰ѓЃЃ[ѓ^‚рђЭ’и‚·‚й
+// жЊ‡е®љгЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ®жЏЏз”»гѓ–гѓ¬гѓігѓ‰гѓ‘гѓ©гѓЎгѓјг‚їг‚’иЁ­е®љгЃ™г‚‹
 extern int MV1GetMaterialDrawBlendParamBase( int MBHandle, int MaterialIndex )
 {
 	MV1BASEMATERIALSTART( MBHandle, ModelBase, Material, MaterialIndex, -1 ) ;
 
-	// ѓuѓЊѓ“ѓhѓpѓ‰ѓЃЃ[ѓ^‚р•Ф‚·
+	// гѓ–гѓ¬гѓігѓ‰гѓ‘гѓ©гѓЎгѓјг‚їг‚’иї”гЃ™
 	return Material->DrawBlendParam ;
 }
 
-// Ћw’и‚Мѓ}ѓeѓЉѓAѓ‹‚М•`‰жЋћ‚МѓAѓ‹ѓtѓ@ѓeѓXѓg‚МђЭ’и‚рЌs‚¤( Enable:ѓїѓeѓXѓg‚рЌs‚¤‚©‚З‚¤‚©( TRUE:Ќs‚¤  FALSE:Ќs‚н‚И‚ў( ѓfѓtѓHѓ‹ѓg )  Mode:ѓeѓXѓgѓ‚Ѓ[ѓh( DX_CMP_GREATER“™ )  Param:•`‰жѓAѓ‹ѓtѓ@’l‚Ж‚М”дЉr‚ЙЋg—p‚·‚й’l( 0Ѓ`255 ) )
+// жЊ‡е®љгЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ®жЏЏз”»ж™‚гЃ®г‚ўгѓ«гѓ•г‚Ўгѓ†г‚№гѓ€гЃ®иЁ­е®љг‚’иЎЊгЃ†( Enable:О±гѓ†г‚№гѓ€г‚’иЎЊгЃ†гЃ‹гЃ©гЃ†гЃ‹( TRUE:иЎЊгЃ†  FALSE:иЎЊг‚ЏгЃЄгЃ„( гѓ‡гѓ•г‚©гѓ«гѓ€ )  Mode:гѓ†г‚№гѓ€гѓўгѓјгѓ‰( DX_CMP_GREATERз­‰ )  Param:жЏЏз”»г‚ўгѓ«гѓ•г‚ЎеЂ¤гЃЁгЃ®жЇ”ијѓгЃ«дЅїз”ЁгЃ™г‚‹еЂ¤( 0пЅћ255 ) )
 extern int MV1SetMaterialDrawAlphaTestBase( int MBHandle, int MaterialIndex, int Enable, int Mode, int Param )
 {
 	MV1BASEMATERIALSTART( MBHandle, ModelBase, Material, MaterialIndex, -1 ) ;
@@ -12168,19 +12168,19 @@ extern int MV1SetMaterialDrawAlphaTestBase( int MBHandle, int MaterialIndex, int
 		return 0 ;
 	}
 
-	// •`‰ж‘Т‹@‚µ‚Д‚ў‚й•`‰ж•Ё‚р•`‰ж
+	// жЏЏз”»еѕ…ж©џгЃ—гЃ¦гЃ„г‚‹жЏЏз”»з‰©г‚’жЏЏз”»
 	DRAWSTOCKINFO
 
-	// ѓpѓ‰ѓЃЃ[ѓ^‚МѓZѓbѓg
+	// гѓ‘гѓ©гѓЎгѓјг‚їгЃ®г‚»гѓѓгѓ€
 	Material->UseAlphaTest = Enable ;
 	Material->AlphaFunc = Mode ;
 	Material->AlphaRef = Param ;
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// Ћw’и‚Мѓ}ѓeѓЉѓAѓ‹‚М•`‰жЋћ‚МѓAѓ‹ѓtѓ@ѓeѓXѓg‚рЌs‚¤‚©‚З‚¤‚©‚рЋж“ѕ‚·‚й( –Я‚и’l  TRUE:ѓAѓ‹ѓtѓ@ѓeѓXѓg‚рЌs‚¤  FALSE:ѓAѓ‹ѓtѓ@ѓeѓXѓg‚рЌs‚н‚И‚ў )
+// жЊ‡е®љгЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ®жЏЏз”»ж™‚гЃ®г‚ўгѓ«гѓ•г‚Ўгѓ†г‚№гѓ€г‚’иЎЊгЃ†гЃ‹гЃ©гЃ†гЃ‹г‚’еЏ–еѕ—гЃ™г‚‹( ж€»г‚ЉеЂ¤  TRUE:г‚ўгѓ«гѓ•г‚Ўгѓ†г‚№гѓ€г‚’иЎЊгЃ†  FALSE:г‚ўгѓ«гѓ•г‚Ўгѓ†г‚№гѓ€г‚’иЎЊг‚ЏгЃЄгЃ„ )
 extern int MV1GetMaterialDrawAlphaTestEnableBase( int MBHandle, int MaterialIndex )
 {
 	MV1BASEMATERIALSTART( MBHandle, ModelBase, Material, MaterialIndex, -1 ) ;
@@ -12188,7 +12188,7 @@ extern int MV1GetMaterialDrawAlphaTestEnableBase( int MBHandle, int MaterialInde
 	return Material->UseAlphaTest ;
 }
 
-// Ћw’и‚Мѓ}ѓeѓЉѓAѓ‹‚М•`‰жЋћ‚МѓAѓ‹ѓtѓ@ѓeѓXѓg‚МѓeѓXѓgѓ‚Ѓ[ѓh‚рЋж“ѕ‚·‚й( –Я‚и’l  ѓeѓXѓgѓ‚Ѓ[ѓh( DX_CMP_GREATER“™ ) )
+// жЊ‡е®љгЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ®жЏЏз”»ж™‚гЃ®г‚ўгѓ«гѓ•г‚Ўгѓ†г‚№гѓ€гЃ®гѓ†г‚№гѓ€гѓўгѓјгѓ‰г‚’еЏ–еѕ—гЃ™г‚‹( ж€»г‚ЉеЂ¤  гѓ†г‚№гѓ€гѓўгѓјгѓ‰( DX_CMP_GREATERз­‰ ) )
 extern int MV1GetMaterialDrawAlphaTestModeBase( int MBHandle, int MaterialIndex )
 {
 	MV1BASEMATERIALSTART( MBHandle, ModelBase, Material, MaterialIndex, -1 ) ;
@@ -12196,7 +12196,7 @@ extern int MV1GetMaterialDrawAlphaTestModeBase( int MBHandle, int MaterialIndex 
 	return Material->AlphaFunc ;
 }
 
-// Ћw’и‚Мѓ}ѓeѓЉѓAѓ‹‚М•`‰жЋћ‚МѓAѓ‹ѓtѓ@ѓeѓXѓg‚М•`‰жѓAѓ‹ѓtѓ@’n‚Ж‚М”дЉr‚ЙЋg—p‚·‚й’l( 0Ѓ`255 )‚рЋж“ѕ‚·‚й
+// жЊ‡е®љгЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ®жЏЏз”»ж™‚гЃ®г‚ўгѓ«гѓ•г‚Ўгѓ†г‚№гѓ€гЃ®жЏЏз”»г‚ўгѓ«гѓ•г‚Ўењ°гЃЁгЃ®жЇ”ијѓгЃ«дЅїз”ЁгЃ™г‚‹еЂ¤( 0пЅћ255 )г‚’еЏ–еѕ—гЃ™г‚‹
 extern int MV1GetMaterialDrawAlphaTestParamBase( int MBHandle, int MaterialIndex )
 {
 	MV1BASEMATERIALSTART( MBHandle, ModelBase, Material, MaterialIndex, -1 ) ;
@@ -12204,7 +12204,7 @@ extern int MV1GetMaterialDrawAlphaTestParamBase( int MBHandle, int MaterialIndex
 	return Material->AlphaRef ;
 }
 
-// Ћw’и‚Мѓ}ѓeѓЉѓAѓ‹‚М•`‰жЋћ‚М‰БЋZѓJѓ‰Ѓ[‚рђЭ’и‚·‚й
+// жЊ‡е®љгЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ®жЏЏз”»ж™‚гЃ®еЉ з®—г‚«гѓ©гѓјг‚’иЁ­е®љгЃ™г‚‹
 extern int MV1SetMaterialDrawAddColorBase( int MBHandle, int MaterialIndex, int Red, int Green, int Blue )
 {
 	MV1BASEMATERIALSTART( MBHandle, ModelBase, Material, MaterialIndex, -1 ) ;
@@ -12216,19 +12216,19 @@ extern int MV1SetMaterialDrawAddColorBase( int MBHandle, int MaterialIndex, int 
 		return 0 ;
 	}
 
-	// •`‰ж‘Т‹@‚µ‚Д‚ў‚й•`‰ж•Ё‚р•`‰ж
+	// жЏЏз”»еѕ…ж©џгЃ—гЃ¦гЃ„г‚‹жЏЏз”»з‰©г‚’жЏЏз”»
 	DRAWSTOCKINFO
 
-	// ѓpѓ‰ѓЃЃ[ѓ^‚МѓZѓbѓg
+	// гѓ‘гѓ©гѓЎгѓјг‚їгЃ®г‚»гѓѓгѓ€
 	Material->DrawAddColor.x = Red ;
 	Material->DrawAddColor.y = Green ;
 	Material->DrawAddColor.z = Blue ;
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// Ћw’и‚Мѓ}ѓeѓЉѓAѓ‹‚М•`‰жЋћ‚М‰БЋZѓJѓ‰Ѓ[‚рЋж“ѕ‚·‚й
+// жЊ‡е®љгЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ®жЏЏз”»ж™‚гЃ®еЉ з®—г‚«гѓ©гѓјг‚’еЏ–еѕ—гЃ™г‚‹
 extern int MV1GetMaterialDrawAddColorBase( int MBHandle, int MaterialIndex, int *Red, int *Green, int *Blue )
 {
 	MV1BASEMATERIALSTART( MBHandle, ModelBase, Material, MaterialIndex, -1 ) ;
@@ -12237,7 +12237,7 @@ extern int MV1GetMaterialDrawAddColorBase( int MBHandle, int MaterialIndex, int 
 	if( Green != NULL ) *Green = Material->DrawAddColor.y ;
 	if( Blue  != NULL ) *Blue  = Material->DrawAddColor.z ;
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
@@ -12247,9 +12247,9 @@ extern int MV1GetMaterialDrawAddColorBase( int MBHandle, int MaterialIndex, int 
 
 
 
-// Љо–{ѓfЃ[ѓ^“аѓeѓNѓXѓ`ѓѓЉЦЊW
+// еџєжњ¬гѓ‡гѓјг‚їе†…гѓ†г‚Їг‚№гѓЃгѓЈй–ўдї‚
 
-// ѓeѓNѓXѓ`ѓѓ‚Мђ”‚рЋж“ѕ
+// гѓ†г‚Їг‚№гѓЃгѓЈгЃ®ж•°г‚’еЏ–еѕ—
 extern int MV1GetTextureNumBase( int MBHandle )
 {
 	MV1_MODEL_BASE *ModelBase ;
@@ -12257,11 +12257,11 @@ extern int MV1GetTextureNumBase( int MBHandle )
 	if( MV1BMDLCHK( MBHandle, ModelBase ) )
 		return -1 ;
 
-	// ѓeѓNѓXѓ`ѓѓ‚Мђ”‚р•Ф‚·
+	// гѓ†г‚Їг‚№гѓЃгѓЈгЃ®ж•°г‚’иї”гЃ™
 	return ModelBase->TextureNum ;
 }
 
-// ѓeѓNѓXѓ`ѓѓ‚М’З‰Б
+// гѓ†г‚Їг‚№гѓЃгѓЈгЃ®иїЅеЉ 
 extern int MV1AddTextureBase( 
 	int MBHandle,
 	const wchar_t *Name,
@@ -12289,34 +12289,34 @@ extern int MV1AddTextureBase(
 	if( MV1BMDLCHK( MBHandle, ModelBase ) )
 		return -1 ;
 
-	// •`‰ж‘Т‹@‚µ‚Д‚ў‚й•`‰ж•Ё‚р•`‰ж
+	// жЏЏз”»еѕ…ж©џгЃ—гЃ¦гЃ„г‚‹жЏЏз”»з‰©г‚’жЏЏз”»
 	DRAWSTOCKINFO
 
-	// ђV‚µ‚ўѓeѓNѓXѓ`ѓѓ‚МЏо•с‚рЉi”[‚·‚йѓЃѓ‚ѓЉ—М€ж‚МЉm•Ы
+	// ж–°гЃ—гЃ„гѓ†г‚Їг‚№гѓЃгѓЈгЃ®жѓ…е ±г‚’ж јзґЌгЃ™г‚‹гѓЎгѓўгѓЄй еџџгЃ®зўєдїќ
 	NewMBTexDim = ( MV1_TEXTURE_BASE * )DXALLOC( sizeof( MV1_TEXTURE_BASE ) * ( ModelBase->TextureNum + 1 ) ) ;
 	if( NewMBTexDim == NULL )
 	{
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\xb0\x65\x57\x30\x44\x30\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\xfa\x57\x2c\x67\xc5\x60\x31\x58\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ђV‚µ‚ўѓeѓNѓXѓ`ѓѓЉо–{Џо•с‚рЉi”[‚·‚йѓЃѓ‚ѓЉ—М€ж‚МЉm•Ы‚ЙЋё”s‚µ‚Ь‚µ‚Ѕ\n" @*/ )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\xb0\x65\x57\x30\x44\x30\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\xfa\x57\x2c\x67\xc5\x60\x31\x58\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ж–°гЃ—гЃ„гѓ†г‚Їг‚№гѓЃгѓЈеџєжњ¬жѓ…е ±г‚’ж јзґЌгЃ™г‚‹гѓЎгѓўгѓЄй еџџгЃ®зўєдїќгЃ«е¤±ж•—гЃ—гЃѕгЃ—гЃџ\n" @*/ )) ;
 		goto ERRORLABEL ;
 	}
 
 	DirW = ModelBase->DirectoryPath ;
 
-	// Љщ‘¶‚МѓfЃ[ѓ^‚рЉЫЃXѓRѓsЃ[
+	// ж—ўе­гЃ®гѓ‡гѓјг‚їг‚’дёёгЂ…г‚ігѓ”гѓј
 	_MEMCPY( NewMBTexDim, ModelBase->Texture, sizeof( MV1_TEXTURE_BASE ) * ModelBase->TextureNum ) ;
 
-	// ђV‚µ‚ўѓeѓNѓXѓ`ѓѓ‚МЏо•с‚рЌ\’z
+	// ж–°гЃ—гЃ„гѓ†г‚Їг‚№гѓЃгѓЈгЃ®жѓ…е ±г‚’ж§‹зЇ‰
 	{
 		MBTexture = NewMBTexDim + ModelBase->TextureNum ;
 		_MEMSET( MBTexture, 0, sizeof( MV1_TEXTURE_BASE ) ) ;
 
-		// ѓ†Ѓ[ѓUЃ[ѓfЃ[ѓ^‚рЏ‰Љъ‰»
+		// гѓ¦гѓјг‚¶гѓјгѓ‡гѓјг‚їг‚’е€ќжњџеЊ–
 		MBTexture->UserData[ 0 ] = 0 ;
 		MBTexture->UserData[ 1 ] = 0 ;
 		MBTexture->UseUserGraphHandle = 0 ;
 		MBTexture->UserGraphHandle = 0 ;
 
-		// –ј‘O‚р•Ы‘¶
+		// еђЌе‰Ќг‚’дїќе­
 		if( Name == NULL )
 		{
 			Name = L"NoName" ;
@@ -12325,13 +12325,13 @@ extern int MV1AddTextureBase(
 		MBTexture->NameW = ( wchar_t * )DXALLOC( ( size_t )( ( _WCSLEN( Name ) + 1 ) * sizeof( wchar_t ) ) ) ;
 		_WCSCPY( MBTexture->NameW, Name ) ;
 
-		// ”Ѕ“]ѓtѓ‰ѓO‚рѓZѓbѓg
+		// еЏЌи»ўгѓ•гѓ©г‚°г‚’г‚»гѓѓгѓ€
 		MBTexture->ReverseFlag = ReverseFlag ? TRUE : FALSE ;
 
-		// ‚R‚Qѓrѓbѓg‚a‚l‚o‚МѓAѓ‹ѓtѓ@’l‚Є‘S•”‚O‚ѕ‚Б‚Ѕ‚з XRGB8 ‚Ж‚µ‚Д€µ‚¤‚©‚З‚¤‚©‚Мѓtѓ‰ѓO‚рѓZѓbѓg‚·‚й
+		// пј“пј’гѓ“гѓѓгѓ€пјўпј­пј°гЃ®г‚ўгѓ«гѓ•г‚ЎеЂ¤гЃЊе…ЁйѓЁпјђгЃ гЃЈгЃџг‚‰ XRGB8 гЃЁгЃ—гЃ¦ж‰±гЃ†гЃ‹гЃ©гЃ†гЃ‹гЃ®гѓ•гѓ©г‚°г‚’г‚»гѓѓгѓ€гЃ™г‚‹
 		MBTexture->Bmp32AllZeroAlphaToXRGB8Flag = Bmp32AllZeroAlphaToXRGB8Flag ? TRUE : FALSE ;
 
-		// ѓeѓNѓXѓ`ѓѓ‚М“З‚ЭЌћ‚Э
+		// гѓ†г‚Їг‚№гѓЃгѓЈгЃ®иЄ­гЃїиѕјгЃї
 		MBTexture->GraphHandle = 0 ;
 		Result = __MV1LoadTexture(
 				&MBTexture->ColorImage, &MBTexture->ColorImageSize,
@@ -12359,7 +12359,7 @@ extern int MV1AddTextureBase(
 			goto ERRORLABEL ;
 		}
 
-		// ѓtѓ@ѓCѓ‹ѓpѓX‚р•Ы‘¶
+		// гѓ•г‚Ўг‚¤гѓ«гѓ‘г‚№г‚’дїќе­
 		if( MBTexture->ColorImage )
 		{
 			MBTexture->ColorImageFilePathAllocMem = TRUE ;
@@ -12377,41 +12377,41 @@ extern int MV1AddTextureBase(
 #endif
 		}
 
-		// ѓAѓhѓЊѓbѓVѓ“ѓOѓ‚Ѓ[ѓh‚МѓZѓbѓg
+		// г‚ўгѓ‰гѓ¬гѓѓг‚·гѓіг‚°гѓўгѓјгѓ‰гЃ®г‚»гѓѓгѓ€
 		MBTexture->AddressModeU = AddressModeU ;
 		MBTexture->AddressModeV = AddressModeV ;
 
-		// ‚t‚u‚МѓXѓPЃ[ѓ‹’l‚рѓZѓbѓg
+		// пјµпј¶гЃ®г‚№г‚±гѓјгѓ«еЂ¤г‚’г‚»гѓѓгѓ€
 		MBTexture->ScaleU = 1.0f ;
 		MBTexture->ScaleV = 1.0f ;
 
-		// ѓtѓBѓ‹ѓ^ѓЉѓ“ѓOѓ‚Ѓ[ѓh‚МѓZѓbѓg
+		// гѓ•г‚Јгѓ«г‚їгѓЄгѓіг‚°гѓўгѓјгѓ‰гЃ®г‚»гѓѓгѓ€
 		MBTexture->FilterMode = FilterMode ;
 
-		// ѓoѓ“ѓvѓ}ѓbѓvЏо•с‚р•Ы‘¶
+		// гѓђгѓігѓ—гѓћгѓѓгѓ—жѓ…е ±г‚’дїќе­
 		MBTexture->BumpImageFlag = BumpImageFlag ;
 		MBTexture->BumpImageNextPixelLength = BumpImageNextPixelLength ;
 
-		// ‰ж‘њ‚МѓTѓCѓY‚рЋж“ѕ
+		// з”»еѓЏгЃ®г‚µг‚¤г‚єг‚’еЏ–еѕ—
 		NS_GetGraphSize( MBTexture->GraphHandle, &MBTexture->Width, &MBTexture->Height ) ;
 	}
 
-	// ‚±‚Мѓ‚ѓfѓ‹Љо–{ѓfЃ[ѓ^‚рЋg—p‚µ‚Д‚ў‚йѓ‚ѓfѓ‹‘S‚Д‚МѓeѓNѓXѓ`ѓѓѓfЃ[ѓ^‚р‘ќ‚в‚·
+	// гЃ“гЃ®гѓўгѓ‡гѓ«еџєжњ¬гѓ‡гѓјг‚їг‚’дЅїз”ЁгЃ—гЃ¦гЃ„г‚‹гѓўгѓ‡гѓ«е…ЁгЃ¦гЃ®гѓ†г‚Їг‚№гѓЃгѓЈгѓ‡гѓјг‚їг‚’еў—г‚„гЃ™
 	Model = ModelBase->UseFirst ;
 	for( i = 0 ; i < ModelBase->UseNum ; i ++, Model = Model->UseBaseDataNext )
 	{
-		// ђV‚µ‚ўѓeѓNѓXѓ`ѓѓ‚МЏо•с‚рЉi”[‚·‚йѓЃѓ‚ѓЉ—М€ж‚МЉm•Ы
+		// ж–°гЃ—гЃ„гѓ†г‚Їг‚№гѓЃгѓЈгЃ®жѓ…е ±г‚’ж јзґЌгЃ™г‚‹гѓЎгѓўгѓЄй еџџгЃ®зўєдїќ
 		NewTexDim = ( MV1_TEXTURE * )DXALLOC( sizeof( MV1_TEXTURE ) * ( ModelBase->TextureNum + 1 ) ) ;
 		if( NewTexDim == NULL )
 		{
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\xb0\x65\x57\x30\x44\x30\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\xc5\x60\x31\x58\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ђV‚µ‚ўѓeѓNѓXѓ`ѓѓЏо•с‚рЉi”[‚·‚йѓЃѓ‚ѓЉ—М€ж‚МЉm•Ы‚ЙЋё”s‚µ‚Ь‚µ‚Ѕ\n" @*/ )) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\xb0\x65\x57\x30\x44\x30\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\xc5\x60\x31\x58\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ж–°гЃ—гЃ„гѓ†г‚Їг‚№гѓЃгѓЈжѓ…е ±г‚’ж јзґЌгЃ™г‚‹гѓЎгѓўгѓЄй еџџгЃ®зўєдїќгЃ«е¤±ж•—гЃ—гЃѕгЃ—гЃџ\n" @*/ )) ;
 			goto ERRORLABEL ;
 		}
 
-		// Љщ‘¶‚МѓfЃ[ѓ^‚рЉЫЃXѓRѓsЃ[
+		// ж—ўе­гЃ®гѓ‡гѓјг‚їг‚’дёёгЂ…г‚ігѓ”гѓј
 		_MEMCPY( NewTexDim, Model->Texture, sizeof( MV1_TEXTURE ) * ModelBase->TextureNum ) ;
 
-		// ђV‚µ‚ўѓeѓNѓXѓ`ѓѓ‚МЏо•с‚рЌ\’z
+		// ж–°гЃ—гЃ„гѓ†г‚Їг‚№гѓЃгѓЈгЃ®жѓ…е ±г‚’ж§‹зЇ‰
 		{
 			Texture = NewTexDim + ModelBase->TextureNum ;
 
@@ -12456,33 +12456,33 @@ extern int MV1AddTextureBase(
 			Texture->Bmp32AllZeroAlphaToXRGB8Flag = MBTexture->Bmp32AllZeroAlphaToXRGB8Flag ;
 		}
 
-		// Љщ‚ЙѓeѓNѓXѓ`ѓѓ—p‚ЙѓЃѓ‚ѓЉ‚ЄЉm•Ы‚і‚к‚Д‚ў‚Ѕ‚з‰р•ъ
+		// ж—ўгЃ«гѓ†г‚Їг‚№гѓЃгѓЈз”ЁгЃ«гѓЎгѓўгѓЄгЃЊзўєдїќгЃ•г‚ЊгЃ¦гЃ„гЃџг‚‰и§Јж”ѕ
 		if( Model->TextureAllocMem )
 		{
 			DXFREE( Model->Texture ) ;
 			Model->Texture = NULL ;
 		}
 
-		// ђV‚µ‚ўЏо•с€К’u‚МѓZѓbѓg
+		// ж–°гЃ—гЃ„жѓ…е ±дЅЌзЅ®гЃ®г‚»гѓѓгѓ€
 		Model->TextureAllocMem = TRUE ;
 		Model->Texture = NewTexDim ;
 	}
 
-	// Љщ‚ЙѓeѓNѓXѓ`ѓѓ—p‚ЙѓЃѓ‚ѓЉ‚ЄЉm•Ы‚і‚к‚Д‚ў‚Ѕ‚з‰р•ъ
+	// ж—ўгЃ«гѓ†г‚Їг‚№гѓЃгѓЈз”ЁгЃ«гѓЎгѓўгѓЄгЃЊзўєдїќгЃ•г‚ЊгЃ¦гЃ„гЃџг‚‰и§Јж”ѕ
 	if( ModelBase->TextureAllocMem )
 	{
 		DXFREE( ModelBase->Texture ) ;
 		ModelBase->Texture = NULL ;
 	}
 
-	// ђV‚µ‚ўЏо•с€К’u‚МѓZѓbѓg
+	// ж–°гЃ—гЃ„жѓ…е ±дЅЌзЅ®гЃ®г‚»гѓѓгѓ€
 	ModelBase->TextureAllocMem = TRUE ;
 	ModelBase->Texture = NewMBTexDim ;
 
-	// ѓeѓNѓXѓ`ѓѓ‚Мђ”‚р‘ќ‚в‚·
+	// гѓ†г‚Їг‚№гѓЃгѓЈгЃ®ж•°г‚’еў—г‚„гЃ™
 	ModelBase->TextureNum ++ ;
 
-	// ѓeѓNѓXѓ`ѓѓЉо–{ѓfЃ[ѓ^‚Ц‚МѓAѓhѓЊѓX‚р•ПЌX
+	// гѓ†г‚Їг‚№гѓЃгѓЈеџєжњ¬гѓ‡гѓјг‚їгЃёгЃ®г‚ўгѓ‰гѓ¬г‚№г‚’е¤‰ж›ґ
 	Model = ModelBase->UseFirst ;
 	for( i = 0 ; i < ModelBase->UseNum ; i ++, Model = Model->UseBaseDataNext )
 	{
@@ -12494,7 +12494,7 @@ extern int MV1AddTextureBase(
 		}
 	}
 
-	// ђіЏнЏI—№
+	// ж­Јеёёзµ‚дє†
 	return 0 ;
 
 ERRORLABEL :
@@ -12568,7 +12568,7 @@ ERRORLABEL :
 	return -1 ;
 }
 
-// ѓeѓNѓXѓ`ѓѓ‚МЌнЏњ
+// гѓ†г‚Їг‚№гѓЃгѓЈгЃ®е‰Љй™¤
 extern int MV1DeleteTextureBase( int MBHandle, int TexIndex )
 {
 	MV1_MODEL_BASE *ModelBase ;
@@ -12580,10 +12580,10 @@ extern int MV1DeleteTextureBase( int MBHandle, int TexIndex )
 	if( MV1BMDLCHK( MBHandle, ModelBase ) )
 		return -1 ;
 
-	// •`‰ж‘Т‹@‚µ‚Д‚ў‚й•`‰ж•Ё‚р•`‰ж
+	// жЏЏз”»еѕ…ж©џгЃ—гЃ¦гЃ„г‚‹жЏЏз”»з‰©г‚’жЏЏз”»
 	DRAWSTOCKINFO
 
-	// Ћw’и‚МѓeѓNѓXѓ`ѓѓѓCѓ“ѓfѓbѓNѓX‚ЄЉо–{ѓfЃ[ѓ^‚ЖЉо–{ѓfЃ[ѓ^‚рЋg—p‚µ‚Д‚ў‚йѓ‚ѓfѓ‹ѓfЃ[ѓ^‚ЕЋg—p‚і‚к‚Д‚ў‚И‚ў‚©’І‚Ч‚й
+	// жЊ‡е®љгЃ®гѓ†г‚Їг‚№гѓЃгѓЈг‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃЊеџєжњ¬гѓ‡гѓјг‚їгЃЁеџєжњ¬гѓ‡гѓјг‚їг‚’дЅїз”ЁгЃ—гЃ¦гЃ„г‚‹гѓўгѓ‡гѓ«гѓ‡гѓјг‚їгЃ§дЅїз”ЁгЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ„гЃ‹иЄїгЃ№г‚‹
 	MBMaterial = ModelBase->Material ;
 	for( i = 0 ; i < ModelBase->MaterialNum ; i ++, MBMaterial ++ )
 	{
@@ -12601,14 +12601,14 @@ extern int MV1DeleteTextureBase( int MBHandle, int TexIndex )
 		if( MBMaterial->SphereMapTexture == TexIndex ) break ;
 	}
 
-	// Ћg—p‚і‚к‚Д‚ў‚Ѕ‚зѓGѓ‰Ѓ[
+	// дЅїз”ЁгЃ•г‚ЊгЃ¦гЃ„гЃџг‚‰г‚Ёгѓ©гѓј
 	if( i != ModelBase->MaterialNum )
 	{
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\x4a\x52\x64\x96\x57\x30\x88\x30\x46\x30\x68\x30\x57\x30\x5f\x30\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\x6f\x30\xfa\x57\x2c\x67\xc7\x30\xfc\x30\xbf\x30\x6e\x30\xde\x30\xc6\x30\xea\x30\xa2\x30\xeb\x30\x67\x30\x7f\x4f\x28\x75\x55\x30\x8c\x30\x66\x30\x44\x30\x7e\x30\x59\x30\x0a\x00\x00"/*@ L"ЌнЏњ‚µ‚ж‚¤‚Ж‚µ‚ЅѓeѓNѓXѓ`ѓѓ‚НЉо–{ѓfЃ[ѓ^‚Мѓ}ѓeѓЉѓAѓ‹‚ЕЋg—p‚і‚к‚Д‚ў‚Ь‚·\n" @*/ )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\x4a\x52\x64\x96\x57\x30\x88\x30\x46\x30\x68\x30\x57\x30\x5f\x30\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\x6f\x30\xfa\x57\x2c\x67\xc7\x30\xfc\x30\xbf\x30\x6e\x30\xde\x30\xc6\x30\xea\x30\xa2\x30\xeb\x30\x67\x30\x7f\x4f\x28\x75\x55\x30\x8c\x30\x66\x30\x44\x30\x7e\x30\x59\x30\x0a\x00\x00"/*@ L"е‰Љй™¤гЃ—г‚€гЃ†гЃЁгЃ—гЃџгѓ†г‚Їг‚№гѓЃгѓЈгЃЇеџєжњ¬гѓ‡гѓјг‚їгЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ§дЅїз”ЁгЃ•г‚ЊгЃ¦гЃ„гЃѕгЃ™\n" @*/ )) ;
 		return -1 ;
 	}
 
-	// Ћw’и‚МѓeѓNѓXѓ`ѓѓѓCѓ“ѓfѓbѓNѓX‚ЄЉо–{ѓfЃ[ѓ^‚рЋg—p‚µ‚Д‚ў‚йѓ‚ѓfѓ‹‚ЕЋg—p‚і‚к‚Д‚ў‚И‚ў‚©’І‚Ч‚й
+	// жЊ‡е®љгЃ®гѓ†г‚Їг‚№гѓЃгѓЈг‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃЊеџєжњ¬гѓ‡гѓјг‚їг‚’дЅїз”ЁгЃ—гЃ¦гЃ„г‚‹гѓўгѓ‡гѓ«гЃ§дЅїз”ЁгЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ„гЃ‹иЄїгЃ№г‚‹
 	Model = ModelBase->UseFirst ;
 	for( k = 0 ; k < ModelBase->UseNum ; k ++, Model = Model->UseBaseDataNext )
 	{
@@ -12629,17 +12629,17 @@ extern int MV1DeleteTextureBase( int MBHandle, int TexIndex )
 		if( Material->SphereMapTexture == TexIndex ) break ;
 	}
 
-	// Ћg—p‚і‚к‚Д‚ў‚Ѕ‚зѓGѓ‰Ѓ[
+	// дЅїз”ЁгЃ•г‚ЊгЃ¦гЃ„гЃџг‚‰г‚Ёгѓ©гѓј
 	if( k != ModelBase->UseNum )
 	{
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\x4a\x52\x64\x96\x57\x30\x88\x30\x46\x30\x68\x30\x57\x30\x5f\x30\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\x6f\x30\xe2\x30\xc7\x30\xeb\x30\xc7\x30\xfc\x30\xbf\x30\x6e\x30\xde\x30\xc6\x30\xea\x30\xa2\x30\xeb\x30\x67\x30\x7f\x4f\x28\x75\x55\x30\x8c\x30\x66\x30\x44\x30\x7e\x30\x59\x30\x0a\x00\x00"/*@ L"ЌнЏњ‚µ‚ж‚¤‚Ж‚µ‚ЅѓeѓNѓXѓ`ѓѓ‚Нѓ‚ѓfѓ‹ѓfЃ[ѓ^‚Мѓ}ѓeѓЉѓAѓ‹‚ЕЋg—p‚і‚к‚Д‚ў‚Ь‚·\n" @*/ )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\x4a\x52\x64\x96\x57\x30\x88\x30\x46\x30\x68\x30\x57\x30\x5f\x30\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\x6f\x30\xe2\x30\xc7\x30\xeb\x30\xc7\x30\xfc\x30\xbf\x30\x6e\x30\xde\x30\xc6\x30\xea\x30\xa2\x30\xeb\x30\x67\x30\x7f\x4f\x28\x75\x55\x30\x8c\x30\x66\x30\x44\x30\x7e\x30\x59\x30\x0a\x00\x00"/*@ L"е‰Љй™¤гЃ—г‚€гЃ†гЃЁгЃ—гЃџгѓ†г‚Їг‚№гѓЃгѓЈгЃЇгѓўгѓ‡гѓ«гѓ‡гѓјг‚їгЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ§дЅїз”ЁгЃ•г‚ЊгЃ¦гЃ„гЃѕгЃ™\n" @*/ )) ;
 		return -1 ;
 	}
 
-	// ѓeѓNѓXѓ`ѓѓ‚Мђ”‚рЊё‚з‚·
+	// гѓ†г‚Їг‚№гѓЃгѓЈгЃ®ж•°г‚’жё›г‚‰гЃ™
 	ModelBase->TextureNum -- ;
 
-	// Ћg—p‚і‚к‚Д‚ў‚И‚ў‚±‚Ж‚ЄЉm”F‚Е‚«‚Ѕ‚зѓfЃ[ѓ^”z—с‚рЏk‚Я‚й
+	// дЅїз”ЁгЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ„гЃ“гЃЁгЃЊзўєиЄЌгЃ§гЃЌгЃџг‚‰гѓ‡гѓјг‚їй…Ќе€—г‚’зё®г‚Ѓг‚‹
 	if( TexIndex != ModelBase->TextureNum )
 	{
 		_MEMMOVE( &ModelBase->Texture[ TexIndex ],
@@ -12655,7 +12655,7 @@ extern int MV1DeleteTextureBase( int MBHandle, int TexIndex )
 		}
 	}
 
-	// ѓeѓNѓXѓ`ѓѓѓCѓ“ѓfѓbѓNѓX‚рђU‚и‚И‚Ё‚·
+	// гѓ†г‚Їг‚№гѓЃгѓЈг‚¤гѓігѓ‡гѓѓг‚Їг‚№г‚’жЊЇг‚ЉгЃЄгЃЉгЃ™
 	MBMaterial = ModelBase->Material ;
 	for( i = 0 ; i < ModelBase->MaterialNum ; i ++, MBMaterial ++ )
 	{
@@ -12712,31 +12712,31 @@ extern int MV1DeleteTextureBase( int MBHandle, int TexIndex )
 		}
 	}
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
 #ifndef UNICODE
-// ѓeѓNѓXѓ`ѓѓ‚М–ј‘O‚рЋж“ѕ
+// гѓ†г‚Їг‚№гѓЃгѓЈгЃ®еђЌе‰Ќг‚’еЏ–еѕ—
 extern const char *MV1GetTextureNameBase( int MBHandle, int TexIndex )
 {
 	MV1BASETEXTURELSTART( MBHandle, ModelBase, Texture, TexIndex, NULL ) ;
 
-	// ’l‚р•Ф‚·
+	// еЂ¤г‚’иї”гЃ™
 	return Texture->NameA ;
 }
 #endif
 
-// ѓeѓNѓXѓ`ѓѓ‚М–ј‘O‚рЋж“ѕ
+// гѓ†г‚Їг‚№гѓЃгѓЈгЃ®еђЌе‰Ќг‚’еЏ–еѕ—
 extern const wchar_t *MV1GetTextureNameBaseW( int MBHandle, int TexIndex )
 {
 	MV1BASETEXTURELSTART( MBHandle, ModelBase, Texture, TexIndex, NULL ) ;
 
-	// ’l‚р•Ф‚·
+	// еЂ¤г‚’иї”гЃ™
 	return Texture->NameW ;
 }
 
-// ѓJѓ‰Ѓ[ѓeѓNѓXѓ`ѓѓ‚Мѓtѓ@ѓCѓ‹ѓpѓX‚р•ПЌX‚·‚й
+// г‚«гѓ©гѓјгѓ†г‚Їг‚№гѓЃгѓЈгЃ®гѓ•г‚Ўг‚¤гѓ«гѓ‘г‚№г‚’е¤‰ж›ґгЃ™г‚‹
 extern int MV1SetTextureColorFilePathBaseW( int MBHandle, int TexIndex, const wchar_t *FilePathW )
 {
 	MV1BASETEXTURELSTART( MBHandle, ModelBase, Texture, TexIndex, -1 ) ;
@@ -12750,16 +12750,16 @@ extern int MV1SetTextureColorFilePathBaseW( int MBHandle, int TexIndex, const wc
 				FALSE ) ;
 }
 
-// ѓJѓ‰Ѓ[ѓeѓNѓXѓ`ѓѓ‚Мѓtѓ@ѓCѓ‹ѓpѓX‚рЋж“ѕ
+// г‚«гѓ©гѓјгѓ†г‚Їг‚№гѓЃгѓЈгЃ®гѓ•г‚Ўг‚¤гѓ«гѓ‘г‚№г‚’еЏ–еѕ—
 extern const wchar_t *MV1GetTextureColorFilePathBaseW( int MBHandle, int TexIndex )
 {
 	MV1BASETEXTURELSTART( MBHandle, ModelBase, Texture, TexIndex, NULL ) ;
 
-	// ’l‚р•Ф‚·
+	// еЂ¤г‚’иї”гЃ™
 	return Texture->ColorFilePathW ;
 }
 
-// ѓAѓ‹ѓtѓ@ѓeѓNѓXѓ`ѓѓ‚Мѓtѓ@ѓCѓ‹ѓpѓX‚р•ПЌX‚·‚й
+// г‚ўгѓ«гѓ•г‚Ўгѓ†г‚Їг‚№гѓЃгѓЈгЃ®гѓ•г‚Ўг‚¤гѓ«гѓ‘г‚№г‚’е¤‰ж›ґгЃ™г‚‹
 extern int MV1SetTextureAlphaFilePathBaseW( int MBHandle, int TexIndex, const wchar_t *FilePathW )
 {
 	MV1BASETEXTURELSTART( MBHandle, ModelBase, Texture, TexIndex, -1 ) ;
@@ -12773,21 +12773,21 @@ extern int MV1SetTextureAlphaFilePathBaseW( int MBHandle, int TexIndex, const wc
 				FALSE ) ;
 }
 
-// ѓAѓ‹ѓtѓ@ѓeѓNѓXѓ`ѓѓ‚Мѓtѓ@ѓCѓ‹ѓpѓX‚рЋж“ѕ
+// г‚ўгѓ«гѓ•г‚Ўгѓ†г‚Їг‚№гѓЃгѓЈгЃ®гѓ•г‚Ўг‚¤гѓ«гѓ‘г‚№г‚’еЏ–еѕ—
 extern const wchar_t *MV1GetTextureAlphaFilePathBaseW( int MBHandle, int TexIndex )
 {
 	MV1BASETEXTURELSTART( MBHandle, ModelBase, Texture, TexIndex, NULL ) ;
 
-	// ’l‚р•Ф‚·
+	// еЂ¤г‚’иї”гЃ™
 	return Texture->AlphaFilePathW ;
 }
 
-// ѓeѓNѓXѓ`ѓѓ‚ЕЋg—p‚·‚йѓOѓ‰ѓtѓBѓbѓNѓnѓ“ѓhѓ‹‚р•ПЌX‚·‚й( GrHandle ‚р -1 ‚Й‚·‚й‚Ж‰рЏњ )
+// гѓ†г‚Їг‚№гѓЃгѓЈгЃ§дЅїз”ЁгЃ™г‚‹г‚°гѓ©гѓ•г‚Јгѓѓг‚ЇгѓЏгѓігѓ‰гѓ«г‚’е¤‰ж›ґгЃ™г‚‹( GrHandle г‚’ -1 гЃ«гЃ™г‚‹гЃЁи§Јй™¤ )
 extern int MV1SetTextureGraphHandleBase( int MBHandle, int TexIndex, int GrHandle, int SemiTransFlag )
 {
 	MV1BASETEXTURELSTART( MBHandle, ModelBase, Texture, TexIndex, -1 ) ;
 
-	// GrHandle ‚Є -1 ‚©‚З‚¤‚©‚ЕЏ€—ќ‚р•ЄЉт
+	// GrHandle гЃЊ -1 гЃ‹гЃ©гЃ†гЃ‹гЃ§е‡¦зђ†г‚’е€†еІђ
 	if( GrHandle == -1 )
 	{
 		Texture->UseUserGraphHandle = FALSE ;
@@ -12801,11 +12801,11 @@ extern int MV1SetTextureGraphHandleBase( int MBHandle, int TexIndex, int GrHandl
 		NS_GetGraphSize( Texture->UserGraphHandle, &Texture->UserGraphWidth, &Texture->UserGraphHeight ) ;
 	}
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// ѓeѓNѓXѓ`ѓѓ‚МѓOѓ‰ѓtѓBѓbѓNѓnѓ“ѓhѓ‹‚рЋж“ѕ‚·‚й
+// гѓ†г‚Їг‚№гѓЃгѓЈгЃ®г‚°гѓ©гѓ•г‚Јгѓѓг‚ЇгѓЏгѓігѓ‰гѓ«г‚’еЏ–еѕ—гЃ™г‚‹
 extern int MV1GetTextureGraphHandleBase( int MBHandle, int TexIndex )
 {
 	MV1BASETEXTURELSTART( MBHandle, ModelBase, Texture, TexIndex, -1 ) ;
@@ -12813,7 +12813,7 @@ extern int MV1GetTextureGraphHandleBase( int MBHandle, int TexIndex )
 	return Texture->UseUserGraphHandle == FALSE ? Texture->GraphHandle : Texture->UserGraphHandle ;
 }
 
-// ѓeѓNѓXѓ`ѓѓ‚МѓAѓhѓЊѓXѓ‚Ѓ[ѓh‚рђЭ’и‚·‚й
+// гѓ†г‚Їг‚№гѓЃгѓЈгЃ®г‚ўгѓ‰гѓ¬г‚№гѓўгѓјгѓ‰г‚’иЁ­е®љгЃ™г‚‹
 extern int MV1SetTextureAddressModeBase( int MBHandle, int TexIndex, int AddrUMode, int AddrVMode )
 {
 	MV1BASETEXTURELSTART( MBHandle, ModelBase, Texture, TexIndex, -1 ) ;
@@ -12824,17 +12824,17 @@ extern int MV1SetTextureAddressModeBase( int MBHandle, int TexIndex, int AddrUMo
 		return 0 ;
 	}
 
-	// •`‰ж‘Т‹@‚µ‚Д‚ў‚й•`‰ж•Ё‚р•`‰ж
+	// жЏЏз”»еѕ…ж©џгЃ—гЃ¦гЃ„г‚‹жЏЏз”»з‰©г‚’жЏЏз”»
 	DRAWSTOCKINFO
 
 	Texture->AddressModeU = AddrUMode ;
 	Texture->AddressModeV = AddrVMode ;
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// ѓeѓNѓXѓ`ѓѓ‚М‚t’l‚МѓAѓhѓЊѓXѓ‚Ѓ[ѓh‚рЋж“ѕ‚·‚й( –Я‚и’l:DX_TEXADDRESS_WRAP “™ )
+// гѓ†г‚Їг‚№гѓЃгѓЈгЃ®пјµеЂ¤гЃ®г‚ўгѓ‰гѓ¬г‚№гѓўгѓјгѓ‰г‚’еЏ–еѕ—гЃ™г‚‹( ж€»г‚ЉеЂ¤:DX_TEXADDRESS_WRAP з­‰ )
 extern int MV1GetTextureAddressModeUBase( int MBHandle, int TexIndex )
 {
 	MV1BASETEXTURELSTART( MBHandle, ModelBase, Texture, TexIndex, -1 ) ;
@@ -12842,7 +12842,7 @@ extern int MV1GetTextureAddressModeUBase( int MBHandle, int TexIndex )
 	return Texture->AddressModeU ;
 }
 
-// ѓeѓNѓXѓ`ѓѓ‚М‚u’l‚МѓAѓhѓЊѓXѓ‚Ѓ[ѓh‚рЋж“ѕ‚·‚й( –Я‚и’l:DX_TEXADDRESS_WRAP “™ )
+// гѓ†г‚Їг‚№гѓЃгѓЈгЃ®пј¶еЂ¤гЃ®г‚ўгѓ‰гѓ¬г‚№гѓўгѓјгѓ‰г‚’еЏ–еѕ—гЃ™г‚‹( ж€»г‚ЉеЂ¤:DX_TEXADDRESS_WRAP з­‰ )
 extern int MV1GetTextureAddressModeVBase( int MBHandle, int TexIndex )
 {
 	MV1BASETEXTURELSTART( MBHandle, ModelBase, Texture, TexIndex, -1 ) ;
@@ -12850,7 +12850,7 @@ extern int MV1GetTextureAddressModeVBase( int MBHandle, int TexIndex )
 	return Texture->AddressModeV ;
 }
 
-// ѓeѓNѓXѓ`ѓѓ‚М•ќ‚рЋж“ѕ‚·‚й
+// гѓ†г‚Їг‚№гѓЃгѓЈгЃ®е№…г‚’еЏ–еѕ—гЃ™г‚‹
 extern int MV1GetTextureWidthBase( int MBHandle, int TexIndex )
 {
 	MV1BASETEXTURELSTART( MBHandle, ModelBase, Texture, TexIndex, -1 ) ;
@@ -12858,7 +12858,7 @@ extern int MV1GetTextureWidthBase( int MBHandle, int TexIndex )
 	return Texture->UseUserGraphHandle ? Texture->UserGraphWidth : Texture->Width ;
 }
 
-// ѓeѓNѓXѓ`ѓѓ‚МЌ‚‚і‚рЋж“ѕ‚·‚й
+// гѓ†г‚Їг‚№гѓЃгѓЈгЃ®й«гЃ•г‚’еЏ–еѕ—гЃ™г‚‹
 extern int MV1GetTextureHeightBase( int MBHandle, int TexIndex )
 {
 	MV1BASETEXTURELSTART( MBHandle, ModelBase, Texture, TexIndex, -1 ) ;
@@ -12866,7 +12866,7 @@ extern int MV1GetTextureHeightBase( int MBHandle, int TexIndex )
 	return Texture->UseUserGraphHandle ? Texture->UserGraphHeight : Texture->Height ;
 }
 
-// ѓeѓNѓXѓ`ѓѓ‚Й”ј“§–ѕ—v‘f‚Є‚ ‚й‚©‚З‚¤‚©‚рЋж“ѕ‚·‚й( –Я‚и’l  TRUE:‚ ‚й  FALSE:‚И‚ў )
+// гѓ†г‚Їг‚№гѓЃгѓЈгЃ«еЌЉйЂЏжЋи¦Ѓзґ гЃЊгЃ‚г‚‹гЃ‹гЃ©гЃ†гЃ‹г‚’еЏ–еѕ—гЃ™г‚‹( ж€»г‚ЉеЂ¤  TRUE:гЃ‚г‚‹  FALSE:гЃЄгЃ„ )
 extern int MV1GetTextureSemiTransStateBase( int MBHandle, int TexIndex )
 {
 	MV1BASETEXTURELSTART( MBHandle, ModelBase, Texture, TexIndex, -1 ) ;
@@ -12874,7 +12874,7 @@ extern int MV1GetTextureSemiTransStateBase( int MBHandle, int TexIndex )
 	return Texture->UseUserGraphHandle ? Texture->UserGraphHandleSemiTransFlag : Texture->SemiTransFlag ;
 }
 
-// ѓeѓNѓXѓ`ѓѓ‚ЕЋg—p‚µ‚Д‚ў‚й‰ж‘њ‚Єѓoѓ“ѓvѓ}ѓbѓv‚©‚З‚¤‚©‚рђЭ’и‚·‚й
+// гѓ†г‚Їг‚№гѓЃгѓЈгЃ§дЅїз”ЁгЃ—гЃ¦гЃ„г‚‹з”»еѓЏгЃЊгѓђгѓігѓ—гѓћгѓѓгѓ—гЃ‹гЃ©гЃ†гЃ‹г‚’иЁ­е®љгЃ™г‚‹
 extern int MV1SetTextureBumpImageFlagBase( int MBHandle, int TexIndex, int Flag )
 {
 	MV1BASETEXTURELSTART( MBHandle, ModelBase, Texture, TexIndex, -1 ) ;
@@ -12888,7 +12888,7 @@ extern int MV1SetTextureBumpImageFlagBase( int MBHandle, int TexIndex, int Flag 
 				FALSE ) ;
 }
 
-// ѓeѓNѓXѓ`ѓѓ‚Єѓoѓ“ѓvѓ}ѓbѓv‚©‚З‚¤‚©‚рЋж“ѕ‚·‚й( –Я‚и’l  TRUE:ѓoѓ“ѓvѓ}ѓbѓv  FALSE:€б‚¤ )
+// гѓ†г‚Їг‚№гѓЃгѓЈгЃЊгѓђгѓігѓ—гѓћгѓѓгѓ—гЃ‹гЃ©гЃ†гЃ‹г‚’еЏ–еѕ—гЃ™г‚‹( ж€»г‚ЉеЂ¤  TRUE:гѓђгѓігѓ—гѓћгѓѓгѓ—  FALSE:йЃ•гЃ† )
 extern int MV1GetTextureBumpImageFlagBase( int MBHandle, int TexIndex )
 {
 	MV1BASETEXTURELSTART( MBHandle, ModelBase, Texture, TexIndex, -1 ) ;
@@ -12896,7 +12896,7 @@ extern int MV1GetTextureBumpImageFlagBase( int MBHandle, int TexIndex )
 	return Texture->BumpImageFlag ;
 }
 
-// ѓoѓ“ѓvѓ}ѓbѓv‰ж‘њ‚МЏкЌ‡‚М—Ч‚МѓsѓNѓZѓ‹‚Ж‚М‹——Ј‚рђЭ’и‚·‚й
+// гѓђгѓігѓ—гѓћгѓѓгѓ—з”»еѓЏгЃ®е ґеђ€гЃ®йљЈгЃ®гѓ”г‚Їг‚»гѓ«гЃЁгЃ®и·ќй›ўг‚’иЁ­е®љгЃ™г‚‹
 extern int MV1SetTextureBumpImageNextPixelLengthBase( int MBHandle, int TexIndex, float Length )
 {
 	MV1BASETEXTURELSTART( MBHandle, ModelBase, Texture, TexIndex, -1 ) ;
@@ -12906,7 +12906,7 @@ extern int MV1SetTextureBumpImageNextPixelLengthBase( int MBHandle, int TexIndex
 		return 0 ;
 	}
 
-	// •`‰ж‘Т‹@‚µ‚Д‚ў‚й•`‰ж•Ё‚р•`‰ж
+	// жЏЏз”»еѕ…ж©џгЃ—гЃ¦гЃ„г‚‹жЏЏз”»з‰©г‚’жЏЏз”»
 	DRAWSTOCKINFO
 
 	Texture->BumpImageNextPixelLength = Length ;
@@ -12920,7 +12920,7 @@ extern int MV1SetTextureBumpImageNextPixelLengthBase( int MBHandle, int TexIndex
 				FALSE ) ;
 }
 
-// ѓoѓ“ѓvѓ}ѓbѓv‰ж‘њ‚МЏкЌ‡‚М—Ч‚МѓsѓNѓZѓ‹‚Ж‚М‹——Ј‚рЋж“ѕ‚·‚й
+// гѓђгѓігѓ—гѓћгѓѓгѓ—з”»еѓЏгЃ®е ґеђ€гЃ®йљЈгЃ®гѓ”г‚Їг‚»гѓ«гЃЁгЃ®и·ќй›ўг‚’еЏ–еѕ—гЃ™г‚‹
 extern float MV1GetTextureBumpImageNextPixelLengthBase( int MBHandle, int TexIndex )
 {
 	MV1BASETEXTURELSTART( MBHandle, ModelBase, Texture, TexIndex, -1.0f ) ;
@@ -12928,7 +12928,7 @@ extern float MV1GetTextureBumpImageNextPixelLengthBase( int MBHandle, int TexInd
 	return Texture->BumpImageNextPixelLength ;
 }
 
-// ѓeѓNѓXѓ`ѓѓ‚МѓtѓBѓ‹ѓ^ѓЉѓ“ѓOѓ‚Ѓ[ѓh‚рђЭ’и‚·‚й
+// гѓ†г‚Їг‚№гѓЃгѓЈгЃ®гѓ•г‚Јгѓ«г‚їгѓЄгѓіг‚°гѓўгѓјгѓ‰г‚’иЁ­е®љгЃ™г‚‹
 extern int MV1SetTextureSampleFilterModeBase( int MBHandle, int TexIndex, int FilterMode )
 {
 	MV1BASETEXTURELSTART( MBHandle, ModelBase, Texture, TexIndex, -1 ) ;
@@ -12938,16 +12938,16 @@ extern int MV1SetTextureSampleFilterModeBase( int MBHandle, int TexIndex, int Fi
 		return 0 ;
 	}
 
-	// •`‰ж‘Т‹@‚µ‚Д‚ў‚й•`‰ж•Ё‚р•`‰ж
+	// жЏЏз”»еѕ…ж©џгЃ—гЃ¦гЃ„г‚‹жЏЏз”»з‰©г‚’жЏЏз”»
 	DRAWSTOCKINFO
 
 	Texture->FilterMode = FilterMode ;
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// ѓeѓNѓXѓ`ѓѓ‚МѓtѓBѓ‹ѓ^ѓЉѓ“ѓOѓ‚Ѓ[ѓh‚рЋж“ѕ‚·‚й( –Я‚и’l  MV1_TEXTURE_FILTER_MODE_POINT“™ )
+// гѓ†г‚Їг‚№гѓЃгѓЈгЃ®гѓ•г‚Јгѓ«г‚їгѓЄгѓіг‚°гѓўгѓјгѓ‰г‚’еЏ–еѕ—гЃ™г‚‹( ж€»г‚ЉеЂ¤  MV1_TEXTURE_FILTER_MODE_POINTз­‰ )
 extern int MV1GetTextureSampleFilterModeBase( int MBHandle, int TexIndex )
 {
 	MV1BASETEXTURELSTART( MBHandle, ModelBase, Texture, TexIndex, -1 ) ;
@@ -12962,24 +12962,24 @@ extern int MV1GetTextureSampleFilterModeBase( int MBHandle, int TexIndex )
 
 
 
-// Ћw’и‚МѓЃѓbѓVѓ…‚М’ё“_ѓfѓBѓtѓ…Ѓ[ѓYѓJѓ‰Ѓ[‚рѓ}ѓeѓЉѓAѓ‹‚МѓfѓBѓtѓ…Ѓ[ѓYѓJѓ‰Ѓ[‚М‘г‚н‚и‚ЙЋg—p‚·‚й‚©‚З‚¤‚©‚рђЭ’и‚·‚й( TRUE:ѓ}ѓeѓЉѓAѓ‹ѓJѓ‰Ѓ[‚М‘г‚н‚и‚ЙЋg—p‚·‚й  FALSE:ѓ}ѓeѓЉѓAѓ‹ѓJѓ‰Ѓ[‚рЋg—p‚·‚й )
+// жЊ‡е®љгЃ®гѓЎгѓѓг‚·гѓҐгЃ®й ‚з‚№гѓ‡г‚Јгѓ•гѓҐгѓјг‚єг‚«гѓ©гѓјг‚’гѓћгѓ†гѓЄг‚ўгѓ«гЃ®гѓ‡г‚Јгѓ•гѓҐгѓјг‚єг‚«гѓ©гѓјгЃ®д»Јг‚Џг‚ЉгЃ«дЅїз”ЁгЃ™г‚‹гЃ‹гЃ©гЃ†гЃ‹г‚’иЁ­е®љгЃ™г‚‹( TRUE:гѓћгѓ†гѓЄг‚ўгѓ«г‚«гѓ©гѓјгЃ®д»Јг‚Џг‚ЉгЃ«дЅїз”ЁгЃ™г‚‹  FALSE:гѓћгѓ†гѓЄг‚ўгѓ«г‚«гѓ©гѓјг‚’дЅїз”ЁгЃ™г‚‹ )
 extern int MV1SetMeshUseVertDifColorBase( int MBHandle, int MeshIndex, int UseFlag )
 {
 	MV1_MODEL *Model ;
 	MV1_MESH *Mesh ;
 	MV1BASEMESHSTART( MBHandle, ModelBase, MBMesh, MeshIndex, -1 ) ;
 
-	// ЌЎ‚Ь‚Е‚Жѓtѓ‰ѓO‚Є“Ї‚¶‚Е‚ ‚йЏкЌ‡‚Н‰Ѕ‚а‚µ‚И‚ў
+	// д»ЉгЃѕгЃ§гЃЁгѓ•гѓ©г‚°гЃЊеђЊгЃгЃ§гЃ‚г‚‹е ґеђ€гЃЇдЅ•г‚‚гЃ—гЃЄгЃ„
 	if( MBMesh->UseVertexDiffuseColor == UseFlag )
 		return 0 ;
 
-	// •`‰ж‘Т‹@‚µ‚Д‚ў‚й•`‰ж•Ё‚р•`‰ж
+	// жЏЏз”»еѕ…ж©џгЃ—гЃ¦гЃ„г‚‹жЏЏз”»з‰©г‚’жЏЏз”»
 	DRAWSTOCKINFO
 
-	// ђЭ’и‚р•Ы‘¶‚·‚й
+	// иЁ­е®љг‚’дїќе­гЃ™г‚‹
 	MBMesh->UseVertexDiffuseColor = UseFlag ;
 
-	// ‚±‚МѓЃѓbѓVѓ…‚рЋg—p‚µ‚Д‚ў‚йѓ‚ѓfѓ‹‚М”ј“§–ѕЏо•с—L–іЏо•с‚МѓZѓbѓgѓAѓbѓvЉ®—№ѓtѓ‰ѓO‚р“|‚·
+	// гЃ“гЃ®гѓЎгѓѓг‚·гѓҐг‚’дЅїз”ЁгЃ—гЃ¦гЃ„г‚‹гѓўгѓ‡гѓ«гЃ®еЌЉйЂЏжЋжѓ…е ±жњ‰з„Ўжѓ…е ±гЃ®г‚»гѓѓгѓ€г‚ўгѓѓгѓ—е®Њдє†гѓ•гѓ©г‚°г‚’еЂ’гЃ™
 	for( Model = ModelBase->UseFirst ; Model ; Model = Model->UseBaseDataNext )
 	{
 		Mesh = &Model->Mesh[ MeshIndex ] ;
@@ -12989,30 +12989,30 @@ extern int MV1SetMeshUseVertDifColorBase( int MBHandle, int MeshIndex, int UseFl
 			MV1BitSetChange( &Mesh->DrawMaterialChange ) ;
 	}
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// Ћw’и‚МѓЃѓbѓVѓ…‚М’ё“_ѓXѓyѓLѓ…ѓ‰ѓJѓ‰Ѓ[‚рѓ}ѓeѓЉѓAѓ‹‚МѓXѓyѓLѓ…ѓ‰ѓJѓ‰Ѓ[‚М‘г‚н‚и‚ЙЋg—p‚·‚й‚©‚З‚¤‚©‚рђЭ’и‚·‚й( TRUE:ѓ}ѓeѓЉѓAѓ‹ѓJѓ‰Ѓ[‚М‘г‚н‚и‚ЙЋg—p‚·‚й  FALSE:ѓ}ѓeѓЉѓAѓ‹ѓJѓ‰Ѓ[‚рЋg—p‚·‚й )
+// жЊ‡е®љгЃ®гѓЎгѓѓг‚·гѓҐгЃ®й ‚з‚№г‚№гѓљг‚­гѓҐгѓ©г‚«гѓ©гѓјг‚’гѓћгѓ†гѓЄг‚ўгѓ«гЃ®г‚№гѓљг‚­гѓҐгѓ©г‚«гѓ©гѓјгЃ®д»Јг‚Џг‚ЉгЃ«дЅїз”ЁгЃ™г‚‹гЃ‹гЃ©гЃ†гЃ‹г‚’иЁ­е®љгЃ™г‚‹( TRUE:гѓћгѓ†гѓЄг‚ўгѓ«г‚«гѓ©гѓјгЃ®д»Јг‚Џг‚ЉгЃ«дЅїз”ЁгЃ™г‚‹  FALSE:гѓћгѓ†гѓЄг‚ўгѓ«г‚«гѓ©гѓјг‚’дЅїз”ЁгЃ™г‚‹ )
 extern int MV1SetMeshUseVertSpcColorBase( int MBHandle, int MeshIndex, int UseFlag )
 {
 	MV1BASEMESHSTART( MBHandle, ModelBase, MBMesh, MeshIndex, -1 ) ;
 
-	// ЌЎ‚Ь‚Е‚Жѓtѓ‰ѓO‚Є“Ї‚¶‚Е‚ ‚йЏкЌ‡‚Н‰Ѕ‚а‚µ‚И‚ў
+	// д»ЉгЃѕгЃ§гЃЁгѓ•гѓ©г‚°гЃЊеђЊгЃгЃ§гЃ‚г‚‹е ґеђ€гЃЇдЅ•г‚‚гЃ—гЃЄгЃ„
 	if( MBMesh->UseVertexSpecularColor == UseFlag )
 		return 0 ;
 
-	// •`‰ж‘Т‹@‚µ‚Д‚ў‚й•`‰ж•Ё‚р•`‰ж
+	// жЏЏз”»еѕ…ж©џгЃ—гЃ¦гЃ„г‚‹жЏЏз”»з‰©г‚’жЏЏз”»
 	DRAWSTOCKINFO
 
-	// ђЭ’и‚р•Ы‘¶‚·‚й
+	// иЁ­е®љг‚’дїќе­гЃ™г‚‹
 	MBMesh->UseVertexSpecularColor = UseFlag ;
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// Ћw’и‚МѓЃѓbѓVѓ…‚М’ё“_ѓfѓBѓtѓ…Ѓ[ѓYѓJѓ‰Ѓ[‚рѓ}ѓeѓЉѓAѓ‹‚МѓfѓBѓtѓ…Ѓ[ѓYѓJѓ‰Ѓ[‚М‘г‚н‚и‚ЙЋg—p‚·‚й‚©‚З‚¤‚©‚МђЭ’и‚рЋж“ѕ‚·‚й( –Я‚и’l  TRUE:ѓ}ѓeѓЉѓAѓ‹ѓJѓ‰Ѓ[‚М‘г‚н‚и‚ЙЋg—p‚·‚й  FALSE:ѓ}ѓeѓЉѓAѓ‹ѓJѓ‰Ѓ[‚рЋg—p‚·‚й )
+// жЊ‡е®љгЃ®гѓЎгѓѓг‚·гѓҐгЃ®й ‚з‚№гѓ‡г‚Јгѓ•гѓҐгѓјг‚єг‚«гѓ©гѓјг‚’гѓћгѓ†гѓЄг‚ўгѓ«гЃ®гѓ‡г‚Јгѓ•гѓҐгѓјг‚єг‚«гѓ©гѓјгЃ®д»Јг‚Џг‚ЉгЃ«дЅїз”ЁгЃ™г‚‹гЃ‹гЃ©гЃ†гЃ‹гЃ®иЁ­е®љг‚’еЏ–еѕ—гЃ™г‚‹( ж€»г‚ЉеЂ¤  TRUE:гѓћгѓ†гѓЄг‚ўгѓ«г‚«гѓ©гѓјгЃ®д»Јг‚Џг‚ЉгЃ«дЅїз”ЁгЃ™г‚‹  FALSE:гѓћгѓ†гѓЄг‚ўгѓ«г‚«гѓ©гѓјг‚’дЅїз”ЁгЃ™г‚‹ )
 extern int MV1GetMeshUseVertDifColorBase( int MBHandle, int MeshIndex )
 {
 	MV1BASEMESHSTART( MBHandle, ModelBase, Mesh, MeshIndex, -1 ) ;
@@ -13020,7 +13020,7 @@ extern int MV1GetMeshUseVertDifColorBase( int MBHandle, int MeshIndex )
 	return Mesh->UseVertexDiffuseColor ;
 }
 
-// Ћw’и‚МѓЃѓbѓVѓ…‚М’ё“_ѓXѓyѓLѓ…ѓ‰ѓJѓ‰Ѓ[‚рѓ}ѓeѓЉѓAѓ‹‚МѓXѓyѓLѓ…ѓ‰ѓJѓ‰Ѓ[‚М‘г‚н‚и‚ЙЋg—p‚·‚й‚©‚З‚¤‚©‚МђЭ’и‚рЋж“ѕ‚·‚й( –Я‚и’l  TRUE:ѓ}ѓeѓЉѓAѓ‹ѓJѓ‰Ѓ[‚М‘г‚н‚и‚ЙЋg—p‚·‚й  FALSE:ѓ}ѓeѓЉѓAѓ‹ѓJѓ‰Ѓ[‚рЋg—p‚·‚й )
+// жЊ‡е®љгЃ®гѓЎгѓѓг‚·гѓҐгЃ®й ‚з‚№г‚№гѓљг‚­гѓҐгѓ©г‚«гѓ©гѓјг‚’гѓћгѓ†гѓЄг‚ўгѓ«гЃ®г‚№гѓљг‚­гѓҐгѓ©г‚«гѓ©гѓјгЃ®д»Јг‚Џг‚ЉгЃ«дЅїз”ЁгЃ™г‚‹гЃ‹гЃ©гЃ†гЃ‹гЃ®иЁ­е®љг‚’еЏ–еѕ—гЃ™г‚‹( ж€»г‚ЉеЂ¤  TRUE:гѓћгѓ†гѓЄг‚ўгѓ«г‚«гѓ©гѓјгЃ®д»Јг‚Џг‚ЉгЃ«дЅїз”ЁгЃ™г‚‹  FALSE:гѓћгѓ†гѓЄг‚ўгѓ«г‚«гѓ©гѓјг‚’дЅїз”ЁгЃ™г‚‹ )
 extern int MV1GetMeshUseVertSpcColorBase( int MBHandle, int MeshIndex )
 {
 	MV1BASEMESHSTART( MBHandle, ModelBase, Mesh, MeshIndex, -1 ) ;
@@ -13028,7 +13028,7 @@ extern int MV1GetMeshUseVertSpcColorBase( int MBHandle, int MeshIndex )
 	return Mesh->UseVertexSpecularColor ;
 }
 
-// Ћw’и‚МѓЃѓbѓVѓ…‚ЄѓVѓFѓCѓvѓЃѓbѓVѓ…‚©‚З‚¤‚©‚рЋж“ѕ‚·‚й( –Я‚и’l TRUE:ѓVѓFѓCѓvѓЃѓbѓVѓ…  FALSE:’КЏнѓЃѓbѓVѓ… )
+// жЊ‡е®љгЃ®гѓЎгѓѓг‚·гѓҐгЃЊг‚·г‚§г‚¤гѓ—гѓЎгѓѓг‚·гѓҐгЃ‹гЃ©гЃ†гЃ‹г‚’еЏ–еѕ—гЃ™г‚‹( ж€»г‚ЉеЂ¤ TRUE:г‚·г‚§г‚¤гѓ—гѓЎгѓѓг‚·гѓҐ  FALSE:йЂљеёёгѓЎгѓѓг‚·гѓҐ )
 extern int MV1GetMeshShapeFlagBase( int MBHandle, int MeshIndex )
 {
 	MV1BASEMESHSTART( MBHandle, ModelBase, Mesh, MeshIndex, -1 ) ;
@@ -13048,68 +13048,68 @@ extern int MV1GetMeshShapeFlagBase( int MBHandle, int MeshIndex )
 
 
 
-// ѓVѓFѓCѓvЉЦЊW
+// г‚·г‚§г‚¤гѓ—й–ўдї‚
 
-// ѓ‚ѓfѓ‹‚ЙЉЬ‚Ь‚к‚йѓVѓFѓCѓv‚Мђ”‚рЋж“ѕ‚·‚й
+// гѓўгѓ‡гѓ«гЃ«еђ«гЃѕг‚Њг‚‹г‚·г‚§г‚¤гѓ—гЃ®ж•°г‚’еЏ–еѕ—гЃ™г‚‹
 extern int MV1GetShapeNumBase( int MBHandle )
 {
 	MV1_MODEL_BASE *ModelBase ;
 
-	// Џ‰Љъ‰»‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// е€ќжњџеЊ–гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( MV1Man.Initialize == false ) return -1 ;
 
-	// ѓAѓhѓЊѓXЋж“ѕ
+	// г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ—
 	if( MV1BMDLCHK( MBHandle, ModelBase ) )
 		return -1 ;
 
-	// ѓVѓFѓCѓv‚Мђ”‚р•Ф‚·
+	// г‚·г‚§г‚¤гѓ—гЃ®ж•°г‚’иї”гЃ™
 	return ModelBase->ShapeNum ;
 }
 
-// ѓVѓFѓCѓv‚М–ј‘O‚©‚зѓ‚ѓfѓ‹’†‚МѓVѓFѓCѓv‚МѓVѓFѓCѓvѓCѓ“ѓfѓbѓNѓX‚рЋж“ѕ‚·‚й( –і‚©‚Б‚ЅЏкЌ‡‚Н–Я‚и’l‚Є-1 )
+// г‚·г‚§г‚¤гѓ—гЃ®еђЌе‰ЌгЃ‹г‚‰гѓўгѓ‡гѓ«дё­гЃ®г‚·г‚§г‚¤гѓ—гЃ®г‚·г‚§г‚¤гѓ—г‚¤гѓігѓ‡гѓѓг‚Їг‚№г‚’еЏ–еѕ—гЃ™г‚‹( з„ЎгЃ‹гЃЈгЃџе ґеђ€гЃЇж€»г‚ЉеЂ¤гЃЊ-1 )
 extern int MV1SearchShapeBase( int MBHandle, const wchar_t *ShapeName )
 {
 	MV1_MODEL_BASE *ModelBase ;
 	MV1_SHAPE_BASE *MBShape ;
 	int i ;
 
-	// Џ‰Љъ‰»‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// е€ќжњџеЊ–гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( MV1Man.Initialize == false ) return -1 ;
 
-	// ѓAѓhѓЊѓXЋж“ѕ
+	// г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ—
 	if( MV1BMDLCHK( MBHandle, ModelBase ) )
 		return -1 ;
 
-	// “Ї–ј‚МѓVѓFѓCѓv‚р’T‚·
+	// еђЊеђЌгЃ®г‚·г‚§г‚¤гѓ—г‚’жЋўгЃ™
 	MBShape = ModelBase->Shape ;
 	for( i = 0 ; i < ModelBase->ShapeNum && _WCSCMP( MBShape->NameW, ShapeName ) != 0 ; i ++, MBShape ++ ){}
 
-	// ѓVѓFѓCѓv‚МѓCѓ“ѓfѓbѓNѓX‚р•Ф‚·
+	// г‚·г‚§г‚¤гѓ—гЃ®г‚¤гѓігѓ‡гѓѓг‚Їг‚№г‚’иї”гЃ™
 	return i == ModelBase->ShapeNum ? -2 : i ;
 }
 
 
 #ifndef UNICODE
-// Ћw’иѓVѓFѓCѓv‚М–ј‘O‚рЋж“ѕ‚·‚й
+// жЊ‡е®љг‚·г‚§г‚¤гѓ—гЃ®еђЌе‰Ќг‚’еЏ–еѕ—гЃ™г‚‹
 extern const char *MV1GetShapeNameBaseA( int MBHandle, int ShapeIndex )
 {
 	MV1BASESHAPESTART( MBHandle, ModelBase, Shape, ShapeIndex, NULL ) ;
 
-	// ѓVѓFѓCѓv‚М–ј‘O‚р•Ф‚·
+	// г‚·г‚§г‚¤гѓ—гЃ®еђЌе‰Ќг‚’иї”гЃ™
 	return Shape->NameA ;
 }
 #endif
 
-// Ћw’иѓVѓFѓCѓv‚М–ј‘O‚рЋж“ѕ‚·‚й
+// жЊ‡е®љг‚·г‚§г‚¤гѓ—гЃ®еђЌе‰Ќг‚’еЏ–еѕ—гЃ™г‚‹
 extern const wchar_t *MV1GetShapeNameBaseW( int MBHandle, int ShapeIndex )
 {
 	MV1BASESHAPESTART( MBHandle, ModelBase, Shape, ShapeIndex, NULL ) ;
 
-	// ѓVѓFѓCѓv‚М–ј‘O‚р•Ф‚·
+	// г‚·г‚§г‚¤гѓ—гЃ®еђЌе‰Ќг‚’иї”гЃ™
 	return Shape->NameW ;
 }
 
-// Ћw’иѓVѓFѓCѓv‚Є‘ОЏЫ‚Ж‚µ‚Д‚ў‚йѓЃѓbѓVѓ…‚Мђ”‚рЋж“ѕ‚·‚й
+// жЊ‡е®љг‚·г‚§г‚¤гѓ—гЃЊеЇѕи±ЎгЃЁгЃ—гЃ¦гЃ„г‚‹гѓЎгѓѓг‚·гѓҐгЃ®ж•°г‚’еЏ–еѕ—гЃ™г‚‹
 extern int MV1GetShapeTargetMeshNumBase( int MBHandle, int ShapeIndex )
 {
 	MV1BASESHAPESTART( MBHandle, ModelBase, Shape, ShapeIndex, -1 ) ;
@@ -13117,7 +13117,7 @@ extern int MV1GetShapeTargetMeshNumBase( int MBHandle, int ShapeIndex )
 	return Shape->MeshNum ;
 }
 
-// Ћw’иѓVѓFѓCѓv‚Є‘ОЏЫ‚Ж‚µ‚Д‚ў‚йѓЃѓbѓVѓ…‚МѓЃѓbѓVѓ…ѓCѓ“ѓfѓbѓNѓX‚рЋж“ѕ‚·‚й
+// жЊ‡е®љг‚·г‚§г‚¤гѓ—гЃЊеЇѕи±ЎгЃЁгЃ—гЃ¦гЃ„г‚‹гѓЎгѓѓг‚·гѓҐгЃ®гѓЎгѓѓг‚·гѓҐг‚¤гѓігѓ‡гѓѓг‚Їг‚№г‚’еЏ–еѕ—гЃ™г‚‹
 extern int MV1GetShapeTargetMeshBase( int MBHandle, int ShapeIndex, int Index )
 {
 	MV1BASESHAPESTART( MBHandle, ModelBase, Shape, ShapeIndex, -1 ) ;
@@ -13153,38 +13153,38 @@ extern int MV1GetShapeTargetMeshBase( int MBHandle, int ShapeIndex, int Index )
 
 
 
-// ѓ‚ѓfѓ‹ѓfЃ[ѓ^ѓnѓ“ѓhѓ‹‚МЏ‰Љъ‰»
+// гѓўгѓ‡гѓ«гѓ‡гѓјг‚їгѓЏгѓігѓ‰гѓ«гЃ®е€ќжњџеЊ–
 extern int InitializeModelHandle( HANDLEINFO * )
 {
-	// “Б‚Й‰Ѕ‚а‚µ‚И‚ў
+	// з‰№гЃ«дЅ•г‚‚гЃ—гЃЄгЃ„
 	return 0 ;
 }
 
-// ѓ‚ѓfѓ‹ѓfЃ[ѓ^ѓnѓ“ѓhѓ‹‚МЊгЋn––
+// гѓўгѓ‡гѓ«гѓ‡гѓјг‚їгѓЏгѓігѓ‰гѓ«гЃ®еѕЊе§‹жњ«
 extern int TerminateModelHandle( HANDLEINFO *HandleInfo )
 {
 	MV1_MODEL *Model = ( MV1_MODEL * )HandleInfo ;
 	MV1_TEXTURE *Texture ;
 	int i ;
 
-	// Џ‰Љъ‰»’јЊг‚Е‚И‚Ї‚к‚О‰р•ъЏ€—ќ‚рЌs‚¤
+	// е€ќжњџеЊ–з›ґеѕЊгЃ§гЃЄгЃ‘г‚ЊгЃ°и§Јж”ѕе‡¦зђ†г‚’иЎЊгЃ†
 	if( Model->BaseData != NULL )
 	{
-		// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚Мѓfѓ^ѓbѓ`
+		// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігЃ®гѓ‡г‚їгѓѓгѓЃ
 		for( i = 0 ; i < Model->AnimSetMaxNum ; i ++ )
 			NS_MV1DetachAnim( Model->HandleInfo.Handle, i ) ;
 
-		// ’ё“_ѓfЃ[ѓ^‚М‰р•ъ
+		// й ‚з‚№гѓ‡гѓјг‚їгЃ®и§Јж”ѕ
 		MV1_TerminateVertexBuffer_PF( Model->HandleInfo.Handle ) ;
 
-		// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“ѓ|ѓCѓ“ѓ^Љi”[—pѓЃѓ‚ѓЉ‚М‰р•ъ
+		// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігѓќг‚¤гѓіг‚їж јзґЌз”ЁгѓЎгѓўгѓЄгЃ®и§Јж”ѕ
 		if( Model->AnimSet )
 		{
 			DXFREE( Model->AnimSet ) ;
 			Model->AnimSet = NULL ;
 		}
 
-		// ЋQЏЖ—pѓЃѓbѓVѓ…‚М‰р•ъ
+		// еЏ‚з…§з”ЁгѓЎгѓѓг‚·гѓҐгЃ®и§Јж”ѕ
 		NS_MV1TerminateReferenceMesh( Model->HandleInfo.Handle, -1, FALSE, FALSE, -1 ) ;
 		NS_MV1TerminateReferenceMesh( Model->HandleInfo.Handle, -1, TRUE,  FALSE, -1 ) ;
 		NS_MV1TerminateReferenceMesh( Model->HandleInfo.Handle, -1, FALSE, TRUE,  -1 ) ;
@@ -13204,7 +13204,7 @@ extern int TerminateModelHandle( HANDLEINFO *HandleInfo )
 			NS_MV1TerminateReferenceMesh( Model->HandleInfo.Handle, -1, TRUE,  TRUE,  i ) ;
 		}
 
-		// ѓRѓЉѓWѓ‡ѓ“Џо•с‚М‰р•ъ
+		// г‚ігѓЄг‚ёгѓ§гѓіжѓ…е ±гЃ®и§Јж”ѕ
 		NS_MV1TerminateCollInfo( Model->HandleInfo.Handle, -1, -1 ) ;
 		for( i = 0 ; i < Model->BaseData->FrameNum ; i ++ )
 		{
@@ -13216,12 +13216,12 @@ extern int TerminateModelHandle( HANDLEINFO *HandleInfo )
 		}
 
 #ifndef DX_NON_BULLET_PHYSICS
-		// •Ё—ќ‰‰ЋZЏ€—ќ‚МЊгЋn––
+		// з‰©зђ†жј”з®—е‡¦зђ†гЃ®еѕЊе§‹жњ«
 		if( Model->BaseData->PhysicsRigidBodyNum != 0 )
 			ReleasePhysicsObject_ModelPhysicsInfo( Model ) ;
 #endif
 
-		// ѓeѓNѓXѓ`ѓѓ‚МЌнЏњЏ€—ќ
+		// гѓ†г‚Їг‚№гѓЃгѓЈгЃ®е‰Љй™¤е‡¦зђ†
 		Texture = Model->Texture ;
 		for( i = 0 ; i < Model->BaseData->TextureNum ; i ++, Texture ++ )
 		{
@@ -13275,7 +13275,7 @@ extern int TerminateModelHandle( HANDLEINFO *HandleInfo )
 			Model->Texture = NULL ;
 		}
 
-		// ѓЉѓXѓg‚©‚з‚Н‚ё‚·
+		// гѓЄг‚№гѓ€гЃ‹г‚‰гЃЇгЃљгЃ™
 		if( Model->UseBaseDataNext )
 		{
 			Model->UseBaseDataNext->UseBaseDataPrev = Model->UseBaseDataPrev ;
@@ -13294,28 +13294,28 @@ extern int TerminateModelHandle( HANDLEINFO *HandleInfo )
 		}
 		Model->BaseData->UseNum -- ;
 
-		// ѓ‚ѓfѓ‹Љо–{ѓfЃ[ѓ^‚М‰р•ъ
+		// гѓўгѓ‡гѓ«еџєжњ¬гѓ‡гѓјг‚їгЃ®и§Јж”ѕ
 		MV1SubModelBase( Model->BaseDataHandle ) ;
 	}
 
-	// ѓfЃ[ѓ^ѓoѓbѓtѓ@‚М‰р•ъ
+	// гѓ‡гѓјг‚їгѓђгѓѓгѓ•г‚ЎгЃ®и§Јж”ѕ
 	if( Model->DataBuffer )
 	{
 		DXFREE( Model->DataBuffer ) ;
 		Model->DataBuffer = NULL ;
 	}
 
-	// ђіЏнЏI—№
+	// ж­Јеёёзµ‚дє†
 	return 0 ;
 }
 
-// ѓ‚ѓfѓ‹ѓfЃ[ѓ^‚р’З‰Б‚·‚й( -1:ѓGѓ‰Ѓ[  0€ИЏг:ѓ‚ѓfѓ‹ѓfЃ[ѓ^ѓnѓ“ѓhѓ‹ )
+// гѓўгѓ‡гѓ«гѓ‡гѓјг‚їг‚’иїЅеЉ гЃ™г‚‹( -1:г‚Ёгѓ©гѓј  0д»ҐдёЉ:гѓўгѓ‡гѓ«гѓ‡гѓјг‚їгѓЏгѓігѓ‰гѓ« )
 extern int MV1AddModel( int ASyncThread )
 {
 	return AddHandle( DX_HANDLETYPE_MODEL, ASyncThread, -1 ) ;
 }
 
-// ѓ‚ѓfѓ‹ЉоѓfЃ[ѓ^‚©‚зѓ‚ѓfѓ‹ѓfЃ[ѓ^‚рЌ\’z‚·‚й( -1:ѓGѓ‰Ѓ[ 0:ђ¬Њч )
+// гѓўгѓ‡гѓ«еџєгѓ‡гѓјг‚їгЃ‹г‚‰гѓўгѓ‡гѓ«гѓ‡гѓјг‚їг‚’ж§‹зЇ‰гЃ™г‚‹( -1:г‚Ёгѓ©гѓј 0:ж€ђеЉџ )
 extern int MV1MakeModel( int MV1ModelHandle, int MV1ModelBaseHandle, int ASyncThread )
 {
 	MV1_MODEL *Model ;
@@ -13351,7 +13351,7 @@ extern int MV1MakeModel( int MV1ModelHandle, int MV1ModelBaseHandle, int ASyncTh
 	ShapeSkinPosition8BNum = 0 ;
 	ShapeSkinPositionFREEBSize = 0 ;
 
-	// Џ‰Љъ’l‚МѓZѓbѓg
+	// е€ќжњџеЂ¤гЃ®г‚»гѓѓгѓ€
 	InitDrawMat.UseColorScale = false ;
 	InitDrawMat.DiffuseScale.r = 1.0f ;
 	InitDrawMat.DiffuseScale.g = 1.0f ;
@@ -13372,7 +13372,7 @@ extern int MV1MakeModel( int MV1ModelHandle, int MV1ModelBaseHandle, int ASyncTh
 	InitDrawMat.OpacityRate = 1.0f ;
 	InitDrawMat.Visible = 1 ;
 
-	// ѓ‚ѓfѓ‹Љо–{ѓfЃ[ѓ^ѓnѓ“ѓhѓ‹ѓ`ѓFѓbѓN
+	// гѓўгѓ‡гѓ«еџєжњ¬гѓ‡гѓјг‚їгѓЏгѓігѓ‰гѓ«гѓЃг‚§гѓѓг‚Ї
 	if( ASyncThread )
 	{
 		if( MV1BMDLCHK_ASYNC( MV1ModelBaseHandle, MBase ) )
@@ -13384,7 +13384,7 @@ extern int MV1MakeModel( int MV1ModelHandle, int MV1ModelBaseHandle, int ASyncTh
 			return -1 ;
 	}
 
-	// ѓ‚ѓfѓ‹ѓfЃ[ѓ^ѓnѓ“ѓhѓ‹ѓ`ѓFѓbѓN
+	// гѓўгѓ‡гѓ«гѓ‡гѓјг‚їгѓЏгѓігѓ‰гѓ«гѓЃг‚§гѓѓг‚Ї
 	if( ASyncThread )
 	{
 		if( MV1MDLCHK_ASYNC( MV1ModelHandle, Model ) )
@@ -13396,7 +13396,7 @@ extern int MV1MakeModel( int MV1ModelHandle, int MV1ModelBaseHandle, int ASyncTh
 			return -1 ;
 	}
 
-	// ѓ‚ѓfѓ‹ѓfЃ[ѓ^‚рЉi”[‚·‚йѓЃѓ‚ѓЉ—М€ж‚МЉm•Ы
+	// гѓўгѓ‡гѓ«гѓ‡гѓјг‚їг‚’ж јзґЌгЃ™г‚‹гѓЎгѓўгѓЄй еџџгЃ®зўєдїќ
 	ChangeDrawMaterialFlagSize = ( DWORD )( ( 1 + MBase->FrameNum + MBase->MeshNum + 31 ) / 32 ) ;
 	ChangeMatrixFlagSize       = ( DWORD )( ( 1 + MBase->FrameNum                  + 31 ) / 32 ) ;
 	Size = 
@@ -13443,7 +13443,7 @@ extern int MV1MakeModel( int MV1ModelHandle, int MV1ModelBaseHandle, int ASyncTh
 	Model->ShapeSkinPosition8B      = ( MV1_TLIST_SKIN_POS_8B    * )( Model->ShapeSkinPosition4B      + MBase->ShapeSkinPosition4BNum ) ;
 	Model->ShapeSkinPositionFREEB   = ( MV1_TLIST_SKIN_POS_FREEB * )( Model->ShapeSkinPosition8B      + MBase->ShapeSkinPosition8BNum ) ;
 
-	// ѓЉѓXѓg‚Й‚В‚И‚®
+	// гѓЄг‚№гѓ€гЃ«гЃ¤гЃЄгЃђ
 	if( MBase->UseFirst )
 	{
 		Model->UseBaseDataNext = MBase->UseFirst ;
@@ -13460,51 +13460,51 @@ extern int MV1MakeModel( int MV1ModelHandle, int MV1ModelBaseHandle, int ASyncTh
 	}
 	MBase->UseNum ++ ;
 
-	// ѓ‚ѓfѓ‹Џо•с‚рѓZѓbѓg
+	// гѓўгѓ‡гѓ«жѓ…е ±г‚’г‚»гѓѓгѓ€
 	Model->BaseDataHandle = MV1ModelBaseHandle ;
 	Model->BaseData = MBase ;
 
-	// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚НЌЕЏ‰ѓAѓ^ѓbѓ`‚і‚к‚Д‚ў‚И‚ў‚М‚ЕѓZѓbѓgѓAѓbѓv‚НЉ®—№‚µ‚Д‚ў‚й
+	// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігЃЇжњЂе€ќг‚ўг‚їгѓѓгѓЃгЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ„гЃ®гЃ§г‚»гѓѓгѓ€г‚ўгѓѓгѓ—гЃЇе®Њдє†гЃ—гЃ¦гЃ„г‚‹
 	Model->AnimSetupFlag = true ;
 
-	// ѓVѓFѓCѓvЏо•с‚НЌЕЏ‰‚Н•K‚ёЌXђV‚·‚й
+	// г‚·г‚§г‚¤гѓ—жѓ…е ±гЃЇжњЂе€ќгЃЇеї…гЃљж›ґж–°гЃ™г‚‹
 	Model->ShapeChangeFlag = true ;
 
-	// Џd—Нѓpѓ‰ѓЃЃ[ѓ^‚рѓZѓbѓg
+	// й‡ЌеЉ›гѓ‘гѓ©гѓЎгѓјг‚їг‚’г‚»гѓѓгѓ€
 	Model->PhysicsGravity = MBase->PhysicsGravity ;
 
-	// ѓXѓPЃ[ѓ‹‚Н“™”{
+	// г‚№г‚±гѓјгѓ«гЃЇз­‰еЂЌ
 	Model->Scale.x = 1.0f ;
 	Model->Scale.y = 1.0f ;
 	Model->Scale.z = 1.0f ;
 
-	// ѓЃѓbѓVѓ…ѓJѓeѓSѓЉ–€‚М”с•\Ћ¦ѓtѓ‰ѓO‚рѓZѓbѓg
+	// гѓЎгѓѓг‚·гѓҐг‚«гѓ†г‚ґгѓЄжЇЋгЃ®йќћиЎЁз¤єгѓ•гѓ©г‚°г‚’г‚»гѓѓгѓ€
 	Model->MeshCategoryHide[ DX_MV1_MESHCATEGORY_NORMAL ] = FALSE ;
 	Model->MeshCategoryHide[ DX_MV1_MESHCATEGORY_OUTLINE ] = FALSE ;
 	Model->MeshCategoryHide[ DX_MV1_MESHCATEGORY_OUTLINE_ORIG_SHADER ] = TRUE ;
 
-	// ‚yѓoѓbѓtѓ@ЉЦЊW‚рѓZѓbѓg
+	// пјєгѓђгѓѓгѓ•г‚Ўй–ўдї‚г‚’г‚»гѓѓгѓ€
 	Model->EnableZBufferFlag = TRUE ;
 	Model->WriteZBufferFlag = TRUE ;
 	Model->ZBufferCmpType = GSYS.DrawSetting.UseReversedZFlag ? DX_CMP_GREATEREQUAL : DX_CMP_LESSEQUAL ;
 	Model->ZBias = 0 ;
 
-	// €Щ•ыђ«ѓtѓBѓ‹ѓ^ѓЉѓ“ѓO‚МЌЕ‘еЋџђ”‚МЏ‰Љъ’l‚Н16
+	// з•°ж–№жЂ§гѓ•г‚Јгѓ«г‚їгѓЄгѓіг‚°гЃ®жњЂе¤§ж¬Ўж•°гЃ®е€ќжњџеЂ¤гЃЇ16
 	Model->MaxAnisotropy = 16 ;
 
-	// ѓfѓtѓHѓ‹ѓg‚Е‚НѓЏѓCѓ„Ѓ[ѓtѓЊЃ[ѓЂ•`‰ж‚Н‚µ‚И‚ў
+	// гѓ‡гѓ•г‚©гѓ«гѓ€гЃ§гЃЇгѓЇг‚¤гѓ¤гѓјгѓ•гѓ¬гѓјгѓ жЏЏз”»гЃЇгЃ—гЃЄгЃ„
 	Model->WireFrame = false ;
 
-	// ѓ‚ѓfѓ‹‚М‹¤’Кѓ}ѓeѓЉѓAѓ‹ЉЦЊW‚рЏ‰Љъ‰»
+	// гѓўгѓ‡гѓ«гЃ®е…±йЂљгѓћгѓ†гѓЄг‚ўгѓ«й–ўдї‚г‚’е€ќжњџеЊ–
 	Model->DrawMaterial = InitDrawMat ;
 
-	// Џу‘Ф•ПЌX‚і‚к‚ЅЏу‘Ф‚Й‚·‚й
+	// зЉ¶ж…‹е¤‰ж›ґгЃ•г‚ЊгЃџзЉ¶ж…‹гЃ«гЃ™г‚‹
 	Model->ChangeDrawMaterialFlagSize = ChangeDrawMaterialFlagSize * 4 ;
 	Model->ChangeMatrixFlagSize       = ChangeMatrixFlagSize       * 4 ;
 	_MEMSET( Model->ChangeDrawMaterialFlag, 0xff, Model->ChangeDrawMaterialFlagSize ) ;
 	_MEMSET( Model->ChangeMatrixFlag,       0xff, Model->ChangeMatrixFlagSize       ) ;
 
-	// ѓeѓNѓXѓ`ѓѓЏо•с‚МѓRѓsЃ[
+	// гѓ†г‚Їг‚№гѓЃгѓЈжѓ…е ±гЃ®г‚ігѓ”гѓј
 	Model->TextureAllocMem = FALSE ;
 	MBTexture = MBase->Texture ;
 	Texture = Model->Texture ;
@@ -13551,7 +13551,7 @@ extern int MV1MakeModel( int MV1ModelHandle, int MV1ModelBaseHandle, int ASyncTh
 		Texture->Bmp32AllZeroAlphaToXRGB8Flag = MBTexture->Bmp32AllZeroAlphaToXRGB8Flag ;
 	}
 
-	// ѓ}ѓeѓЉѓAѓ‹Џо•с‚МѓRѓsЃ[
+	// гѓћгѓ†гѓЄг‚ўгѓ«жѓ…е ±гЃ®г‚ігѓ”гѓј
 	MBMaterial = MBase->Material ;
 	Material = Model->Material ;
 	for( i = 0 ; i < MBase->MaterialNum ; i ++, MBMaterial ++, Material ++ )
@@ -13608,7 +13608,7 @@ extern int MV1MakeModel( int MV1ModelHandle, int MV1ModelBaseHandle, int ASyncTh
 		Material->DrawAddColor = MBMaterial->DrawAddColor ;
 	}
 
-	// •Ё—ќ‰‰ЋZ‚МЌ„‘МЏо•с‚рѓZѓbѓgѓAѓbѓv
+	// з‰©зђ†жј”з®—гЃ®е‰›дЅ“жѓ…е ±г‚’г‚»гѓѓгѓ€г‚ўгѓѓгѓ—
 	MBPhysicsRigidBody = MBase->PhysicsRigidBody ;
 	PhysicsRigidBody = Model->PhysicsRigidBody ;
 	for( i = 0 ; i < MBase->PhysicsRigidBodyNum ; i ++, MBPhysicsRigidBody ++, PhysicsRigidBody ++ )
@@ -13617,7 +13617,7 @@ extern int MV1MakeModel( int MV1ModelHandle, int MV1ModelBaseHandle, int ASyncTh
 		PhysicsRigidBody->TargetFrame = &Model->Frame[ MBPhysicsRigidBody->TargetFrame->Index ] ;
 	}
 
-	// •Ё—ќ‰‰ЋZ‚МѓWѓ‡ѓCѓ“ѓgЏо•с‚рѓZѓbѓgѓAѓbѓv
+	// з‰©зђ†жј”з®—гЃ®г‚ёгѓ§г‚¤гѓігѓ€жѓ…е ±г‚’г‚»гѓѓгѓ€г‚ўгѓѓгѓ—
 	MBPhysicsJoint = MBase->PhysicsJoint ;
 	PhysicsJoint = Model->PhysicsJoint ;
 	for( i = 0 ; i < MBase->PhysicsJointNum ; i ++, MBPhysicsJoint ++, PhysicsJoint ++ )
@@ -13625,7 +13625,7 @@ extern int MV1MakeModel( int MV1ModelHandle, int MV1ModelBaseHandle, int ASyncTh
 		PhysicsJoint->BaseData = MBPhysicsJoint ;
 	}
 
-	// ѓgѓ‰ѓCѓAѓ“ѓOѓ‹ѓЉѓXѓg‚МЏо•с‚рѓZѓbѓg
+	// гѓ€гѓ©г‚¤г‚ўгѓіг‚°гѓ«гѓЄг‚№гѓ€гЃ®жѓ…е ±г‚’г‚»гѓѓгѓ€
 	MBTList = MBase->TriangleList ;
 	TList = Model->TriangleList ;
 	for( i = 0 ; i < MBase->TriangleListNum ; i ++, MBTList ++, TList = ( MV1_TRIANGLE_LIST * )( ( BYTE * )TList + sizeof( MV1_TRIANGLE_LIST ) + sizeof( MV1_TRIANGLE_LIST_PF ) ) )
@@ -13636,7 +13636,7 @@ extern int MV1MakeModel( int MV1ModelHandle, int MV1ModelBaseHandle, int ASyncTh
 		TList->NormalPosition = NULL ;
 	}
 
-	// ѓVѓFѓCѓv‚МЏо•с‚рѓZѓbѓg
+	// г‚·г‚§г‚¤гѓ—гЃ®жѓ…е ±г‚’г‚»гѓѓгѓ€
 	MBShape = MBase->Shape ;
 	Shape = Model->Shape ;
 	for( i = 0 ; i < MBase->ShapeNum ; i ++, MBShape ++, Shape ++ )
@@ -13648,7 +13648,7 @@ extern int MV1MakeModel( int MV1ModelHandle, int MV1ModelBaseHandle, int ASyncTh
 		Shape->ShapeRate = 0.0f ;
 	}
 
-	// ѓЃѓbѓVѓ…‚МЏо•с‚рѓZѓbѓg
+	// гѓЎгѓѓг‚·гѓҐгЃ®жѓ…е ±г‚’г‚»гѓѓгѓ€
 	MBMesh = MBase->Mesh ;
 	Mesh = Model->Mesh ;
 	j = 0 ;
@@ -13707,7 +13707,7 @@ extern int MV1MakeModel( int MV1ModelHandle, int MV1ModelBaseHandle, int ASyncTh
 		}
 	}
 
-	// ѓtѓЊЃ[ѓЂ‚МЏо•с‚рѓZѓbѓg
+	// гѓ•гѓ¬гѓјгѓ гЃ®жѓ…е ±г‚’г‚»гѓѓгѓ€
 	Model->TopFrameNum = 0 ;
 	Frame = Model->Frame ;
 	MBFrame = MBase->Frame ;
@@ -13774,7 +13774,7 @@ extern int MV1MakeModel( int MV1ModelHandle, int MV1ModelBaseHandle, int ASyncTh
 		Frame->ShapeChangeFlag = true ;
 	}
 
-	// ЉeѓtѓЊЃ[ѓЂ‚МЋqѓЉѓXѓg‚рЌмђ¬‚·‚й
+	// еђ„гѓ•гѓ¬гѓјгѓ гЃ®е­ђгѓЄг‚№гѓ€г‚’дЅњж€ђгЃ™г‚‹
 	Model->TopFrameList = ( MV1_FRAME ** )( ( MV1_FRAME * )Model->DataBuffer + MBase->FrameNum ) ;
 	Num     = ( DWORD )Model->TopFrameNum ;
 	Frame   = Model->Frame ;
@@ -13796,29 +13796,29 @@ extern int MV1MakeModel( int MV1ModelHandle, int MV1ModelBaseHandle, int ASyncTh
 		}
 	}
 
-	// ѓ‚ѓfѓ‹Љо–{ѓfЃ[ѓ^‚МЋQЏЖѓJѓEѓ“ѓg‚рѓCѓ“ѓNѓЉѓЃѓ“ѓg‚·‚й
+	// гѓўгѓ‡гѓ«еџєжњ¬гѓ‡гѓјг‚їгЃ®еЏ‚з…§г‚«г‚¦гѓігѓ€г‚’г‚¤гѓіг‚ЇгѓЄгѓЎгѓігѓ€гЃ™г‚‹
 	MBase->RefCount ++ ;
 
-	// Џ‰ЉъЌs—с‚МѓZѓbѓgѓAѓbѓv
+	// е€ќжњџиЎЊе€—гЃ®г‚»гѓѓгѓ€г‚ўгѓѓгѓ—
 	MV1SetupMatrix( Model ) ;
 
-	// ѓfѓtѓHѓ‹ѓgѓ|Ѓ[ѓY‚МЌЕЏ¬ЌА•W’l‚ЖЌЕ‘еЌА•W’l‚рЋZЏo‚·‚й
+	// гѓ‡гѓ•г‚©гѓ«гѓ€гѓќгѓјг‚єгЃ®жњЂе°Џеє§жЁ™еЂ¤гЃЁжњЂе¤§еє§жЁ™еЂ¤г‚’з®—е‡єгЃ™г‚‹
 	MV1GetMaxMinPosition( MV1ModelHandle, NULL, NULL, ASyncThread ) ;
 
-	// ’ё“_ѓoѓbѓtѓ@‚МѓZѓbѓgѓAѓbѓv‚рЌs‚¤
+	// й ‚з‚№гѓђгѓѓгѓ•г‚ЎгЃ®г‚»гѓѓгѓ€г‚ўгѓѓгѓ—г‚’иЎЊгЃ†
 	MV1_SetupVertexBuffer_PF( MV1ModelHandle, ASyncThread ) ;
 
 #ifndef DX_NON_BULLET_PHYSICS
-	// •Ё—ќ‰‰ЋZ‚МѓZѓbѓgѓAѓbѓv
+	// з‰©зђ†жј”з®—гЃ®г‚»гѓѓгѓ€г‚ўгѓѓгѓ—
 	if( MBase->PhysicsRigidBodyNum != 0 )
 		SetupPhysicsObject_ModelPhysicsInfo( Model ) ;
 #endif
 
-	// ђіЏнЏI—№
+	// ж­Јеёёзµ‚дє†
 	return 0 ;
 }
 
-// ѓ‚ѓfѓ‹‚МЌЕ‘е’ё“_ЌА•W‚ЖЌЕЏ¬’ё“_ЌА•W‚рЋж“ѕ‚·‚й
+// гѓўгѓ‡гѓ«гЃ®жњЂе¤§й ‚з‚№еє§жЁ™гЃЁжњЂе°Џй ‚з‚№еє§жЁ™г‚’еЏ–еѕ—гЃ™г‚‹
 extern int MV1GetMaxMinPosition( int MHandle, VECTOR *MaxPosition, VECTOR *MinPosition, int ASyncThread )
 {
 	MV1_MODEL *Model ;
@@ -13837,7 +13837,7 @@ extern int MV1GetMaxMinPosition( int MHandle, VECTOR *MaxPosition, VECTOR *MinPo
 	MV1_TLIST_SKIN_POS_FREEB *SkinFB ;
 	MV1_SKINBONE_BLEND *VBlend ;
 
-	// ѓAѓhѓЊѓXЋж“ѕ
+	// г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ—
 	if( ASyncThread )
 	{
 		if( MV1MDLCHK_ASYNC( MHandle, Model ) )
@@ -13850,13 +13850,13 @@ extern int MV1GetMaxMinPosition( int MHandle, VECTOR *MaxPosition, VECTOR *MinPo
 	}
 	MBase = Model->BaseData ;
 
-	// ЌЕ‘еЌА•W‚ЖЌЕЏ¬ЌА•W‚ЄЋZЏo‚і‚к‚Д‚ў‚И‚ўЏкЌ‡‚Н‚±‚±‚ЕЋZЏo‚·‚й
+	// жњЂе¤§еє§жЁ™гЃЁжњЂе°Џеє§жЁ™гЃЊз®—е‡єгЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ„е ґеђ€гЃЇгЃ“гЃ“гЃ§з®—е‡єгЃ™г‚‹
 	if( MBase->ValidMaxMinPosition == 0 )
 	{
-		// Ќs—с‚МѓZѓbѓgѓAѓbѓv
+		// иЎЊе€—гЃ®г‚»гѓѓгѓ€г‚ўгѓѓгѓ—
 		MV1SetupMatrix( Model ) ;
 
-		// ‚·‚Ч‚Д‚МѓЃѓbѓVѓ…‚М’ё“_‚©‚зЌЕ‘еЌА•W‚ЖЌЕЏ¬ЌА•W‚рЋZЏo‚·‚й
+		// гЃ™гЃ№гЃ¦гЃ®гѓЎгѓѓг‚·гѓҐгЃ®й ‚з‚№гЃ‹г‚‰жњЂе¤§еє§жЁ™гЃЁжњЂе°Џеє§жЁ™г‚’з®—е‡єгЃ™г‚‹
 		MBase->MaxPosition.x =
 		MBase->MaxPosition.y =
 		MBase->MaxPosition.z = -100000000.0f ;
@@ -13864,13 +13864,13 @@ extern int MV1GetMaxMinPosition( int MHandle, VECTOR *MaxPosition, VECTOR *MinPo
 		MBase->MinPosition.y =
 		MBase->MinPosition.z =  100000000.0f ;
 
-		// ѓtѓЊЃ[ѓЂ‚Мђ”‚ѕ‚ЇЊJ‚и•Ф‚µ
+		// гѓ•гѓ¬гѓјгѓ гЃ®ж•°гЃ гЃ‘з№°г‚Љиї”гЃ—
 		Frame = Model->Frame ;
 		for( i = 0 ; i < Model->BaseData->FrameNum ; i ++ , Frame ++ )
 		{
 			MBFrame = Frame->BaseData ;
 
-			// ѓЃѓbѓVѓ…‚Є–і‚©‚Б‚Ѕ‚з”т‚О‚·
+			// гѓЎгѓѓг‚·гѓҐгЃЊз„ЎгЃ‹гЃЈгЃџг‚‰йЈ›гЃ°гЃ™
 			if( MBFrame->MeshNum == 0 )
 			{
 				MBFrame->MaxPosition.x =
@@ -13882,7 +13882,7 @@ extern int MV1GetMaxMinPosition( int MHandle, VECTOR *MaxPosition, VECTOR *MinPo
 				continue ;
 			}
 
-			// ЌЕ‘еЃEЌЕЏ¬’l‚МЏ‰Љъ‰»
+			// жњЂе¤§гѓ»жњЂе°ЏеЂ¤гЃ®е€ќжњџеЊ–
 			MBFrame->MaxPosition.x =
 			MBFrame->MaxPosition.y =
 			MBFrame->MaxPosition.z = -100000000.0f ;
@@ -13890,11 +13890,11 @@ extern int MV1GetMaxMinPosition( int MHandle, VECTOR *MaxPosition, VECTOR *MinPo
 			MBFrame->MinPosition.y =
 			MBFrame->MinPosition.z =  100000000.0f ;
 
-			// ѓЃѓbѓVѓ…‚Мђ”‚ѕ‚ЇЊJ‚и•Ф‚µ
+			// гѓЎгѓѓг‚·гѓҐгЃ®ж•°гЃ гЃ‘з№°г‚Љиї”гЃ—
 			Mesh = MBFrame->Mesh ;
 			for( k = 0 ; k < MBFrame->MeshNum ; k ++ , Mesh ++ )
 			{
-				// ЌЕ‘еЃEЌЕЏ¬’l‚МЏ‰Љъ‰»
+				// жњЂе¤§гѓ»жњЂе°ЏеЂ¤гЃ®е€ќжњџеЊ–
 				Mesh->MaxPosition.x =
 				Mesh->MaxPosition.y =
 				Mesh->MaxPosition.z = -100000000.0f ;
@@ -13902,14 +13902,14 @@ extern int MV1GetMaxMinPosition( int MHandle, VECTOR *MaxPosition, VECTOR *MinPo
 				Mesh->MinPosition.y =
 				Mesh->MinPosition.z =  100000000.0f ;
 
-				// ѓgѓ‰ѓCѓAѓ“ѓOѓ‹ѓЉѓXѓg‚Мђ”‚ѕ‚ЇЊJ‚и•Ф‚µ
+				// гѓ€гѓ©г‚¤г‚ўгѓіг‚°гѓ«гѓЄг‚№гѓ€гЃ®ж•°гЃ гЃ‘з№°г‚Љиї”гЃ—
 				TList = Mesh->TriangleList ;
 				for( l = 0 ; l < Mesh->TriangleListNum ; l ++ , TList ++ )
 				{
-					// ’ё“_‚Мѓ^ѓCѓv‚Й‚ж‚Б‚ДЏ€—ќ‚р•ЄЉт
+					// й ‚з‚№гЃ®г‚їг‚¤гѓ—гЃ«г‚€гЃЈгЃ¦е‡¦зђ†г‚’е€†еІђ
 					switch( TList->VertexType )
 					{
-						// Ќ„‘Мѓgѓ‰ѓCѓAѓ“ѓOѓ‹ѓЉѓXѓg
+						// е‰›дЅ“гѓ€гѓ©г‚¤г‚ўгѓіг‚°гѓ«гѓЄг‚№гѓ€
 					case MV1_VERTEX_TYPE_NORMAL :
 						Norm = ( MV1_TLIST_NORMAL_POS * )ADDR16( TList->NormalPosition ) ;
 						for( m = 0 ; m < TList->VertexNum ; m ++, Norm ++ )
@@ -13931,20 +13931,20 @@ extern int MV1GetMaxMinPosition( int MHandle, VECTOR *MaxPosition, VECTOR *MinPo
 						}
 						break ;
 
-						// ‚SЊВ€И“аѓ{Ѓ[ѓ“ѓgѓ‰ѓCѓAѓ“ѓOѓ‹ѓЉѓXѓg
+						// пј”еЂ‹д»Ґе†…гѓњгѓјгѓігѓ€гѓ©г‚¤г‚ўгѓіг‚°гѓ«гѓЄг‚№гѓ€
 					case MV1_VERTEX_TYPE_SKIN_4BONE :
 
-						// Ќs—с‚Мѓ|ѓCѓ“ѓ^‚рЏЂ”х
+						// иЎЊе€—гЃ®гѓќг‚¤гѓіг‚їг‚’жє–е‚™
 						for( m = 0 ; m < TList->UseBoneNum ; m ++ )
 						{
 							pBlendMat[ m ] = Frame->UseSkinBoneMatrix[ TList->UseBone[ m ] ] ;
 						}
 
-						// ѓfЃ[ѓ^‚МѓZѓbѓg
+						// гѓ‡гѓјг‚їгЃ®г‚»гѓѓгѓ€
 						Skin4B = ( MV1_TLIST_SKIN_POS_4B * )ADDR16( TList->SkinPosition4B ) ;
 						for( m = 0 ; m < TList->VertexNum ; m ++, Skin4B ++ )
 						{
-							// ѓuѓЊѓ“ѓhЌs—с‚МЌмђ¬
+							// гѓ–гѓ¬гѓігѓ‰иЎЊе€—гЃ®дЅњж€ђ
 							_MEMSET( &BlendMat, 0, sizeof( BlendMat ) ) ;
 							for( n = 0 ; n < 4 ; n ++ )
 							{
@@ -13971,18 +13971,18 @@ extern int MV1GetMaxMinPosition( int MHandle, VECTOR *MaxPosition, VECTOR *MinPo
 						}
 						break ;
 
-						// ‚WЊВ€И“аѓ{Ѓ[ѓ“ѓgѓ‰ѓCѓAѓ“ѓOѓ‹ѓЉѓXѓg
+						// пјеЂ‹д»Ґе†…гѓњгѓјгѓігѓ€гѓ©г‚¤г‚ўгѓіг‚°гѓ«гѓЄг‚№гѓ€
 					case MV1_VERTEX_TYPE_SKIN_8BONE :
 
-						// Ќs—с‚Мѓ|ѓCѓ“ѓ^‚рЏЂ”х
+						// иЎЊе€—гЃ®гѓќг‚¤гѓіг‚їг‚’жє–е‚™
 						for( m = 0 ; m < TList->UseBoneNum ; m ++ )
 							pBlendMat[ m ] = Frame->UseSkinBoneMatrix[ TList->UseBone[ m ] ] ;
 
-						// ѓfЃ[ѓ^‚МѓZѓbѓg
+						// гѓ‡гѓјг‚їгЃ®г‚»гѓѓгѓ€
 						Skin8B = ( MV1_TLIST_SKIN_POS_8B * )ADDR16( TList->SkinPosition8B ) ;
 						for( m = 0 ; m < TList->VertexNum ; m ++, Skin8B ++ )
 						{
-							// ѓuѓЊѓ“ѓhЌs—с‚МЌмђ¬
+							// гѓ–гѓ¬гѓігѓ‰иЎЊе€—гЃ®дЅњж€ђ
 							_MEMSET( &BlendMat, 0, sizeof( BlendMat ) ) ;
 							for( n = 0 ; n < 8 ; n ++ )
 							{
@@ -14009,20 +14009,20 @@ extern int MV1GetMaxMinPosition( int MHandle, VECTOR *MaxPosition, VECTOR *MinPo
 						}
 						break ;
 
-						// ѓ{Ѓ[ѓ“ђ”–іђ§ЊАѓgѓ‰ѓCѓAѓ“ѓOѓ‹ѓЉѓXѓg
+						// гѓњгѓјгѓіж•°з„Ўе€¶й™ђгѓ€гѓ©г‚¤г‚ўгѓіг‚°гѓ«гѓЄг‚№гѓ€
 					case MV1_VERTEX_TYPE_SKIN_FREEBONE :
-						// ѓfЃ[ѓ^‚МѓZѓbѓg
+						// гѓ‡гѓјг‚їгЃ®г‚»гѓѓгѓ€
 						SkinFB = ( MV1_TLIST_SKIN_POS_FREEB * )ADDR16( TList->SkinPositionFREEB ) ;
 						for( m = 0 ; m < TList->VertexNum ; m ++, SkinFB = ( MV1_TLIST_SKIN_POS_FREEB * )( ( BYTE * )SkinFB + TList->PosUnitSize ) )
 						{
-							// Ћg‚н‚к‚Д‚ў‚йѓ{Ѓ[ѓ“‚Є‚Р‚Ж‚В‚МЏкЌ‡‚НѓuѓЊѓ“ѓhЌs—с‚МЌмђ¬‚НѓXѓLѓbѓv‚·‚й
+							// дЅїг‚Џг‚ЊгЃ¦гЃ„г‚‹гѓњгѓјгѓігЃЊгЃІгЃЁгЃ¤гЃ®е ґеђ€гЃЇгѓ–гѓ¬гѓігѓ‰иЎЊе€—гЃ®дЅњж€ђгЃЇг‚№г‚­гѓѓгѓ—гЃ™г‚‹
 							if( SkinFB->MatrixWeight[ 0 ].W == 1.0f )
 							{
 								BlendMat = *Frame->UseSkinBoneMatrix[ SkinFB->MatrixWeight[ 0 ].Index ] ;
 							}
 							else
 							{
-								// ѓuѓЊѓ“ѓhЌs—с‚МЌмђ¬
+								// гѓ–гѓ¬гѓігѓ‰иЎЊе€—гЃ®дЅњж€ђ
 								VBlend = SkinFB->MatrixWeight ;
 								Weight = VBlend->W ;
 								_MEMSET( &BlendMat, 0, sizeof( BlendMat ) ) ;
@@ -14065,28 +14065,28 @@ extern int MV1GetMaxMinPosition( int MHandle, VECTOR *MaxPosition, VECTOR *MinPo
 			MBFrame->ValidMaxMinPosition = 1 ;
 		}
 
-		// ЋZЏo‚ЄЏI‚н‚Б‚Ѕ‚з—LЊшѓtѓ‰ѓO‚р—§‚Д‚й
+		// з®—е‡єгЃЊзµ‚г‚ЏгЃЈгЃџг‚‰жњ‰еЉ№гѓ•гѓ©г‚°г‚’з«‹гЃ¦г‚‹
 		MBase->ValidMaxMinPosition = 1 ;
 	}
 
-	// Џо•с‚МѓZѓbѓg
+	// жѓ…е ±гЃ®г‚»гѓѓгѓ€
 	if( MaxPosition ) *MaxPosition = MBase->MaxPosition ;
 	if( MinPosition ) *MinPosition = MBase->MinPosition ;
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// ѓ‚ѓfѓ‹ѓfЃ[ѓ^‚рЌнЏњ‚·‚й
+// гѓўгѓ‡гѓ«гѓ‡гѓјг‚їг‚’е‰Љй™¤гЃ™г‚‹
 extern int MV1SubModel( int MV1ModelHandle )
 {
-	// •`‰ж‘Т‹@‚µ‚Д‚ў‚й•`‰ж•Ё‚р•`‰ж
+	// жЏЏз”»еѕ…ж©џгЃ—гЃ¦гЃ„г‚‹жЏЏз”»з‰©г‚’жЏЏз”»
 	DRAWSTOCKINFO
 
 	return SubHandle( MV1ModelHandle, GetASyncLoadFlag(), FALSE ) ;
 }
 
-// MV1LoadModelFromMem ‚МЋАЏ€—ќЉЦђ”
+// MV1LoadModelFromMem гЃ®е®џе‡¦зђ†й–ўж•°
 static int MV1LoadModelFromMem_Static( 
 	MV1LOADMODEL_GPARAM *GParam,
 	int MHandle,
@@ -14104,30 +14104,30 @@ static int MV1LoadModelFromMem_Static(
 	MV1_FILE_READ_FUNC FileReadFuncParam ;
 	int i ;
 
-	// Џ‰Љъ‰»‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// е€ќжњџеЊ–гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( MV1Man.Initialize == false ) return -1 ;
 
-	// ‚R‚cѓ‚ѓfѓ‹—pѓVѓFЃ[ѓ_Ѓ[‚МЏ‰Љъ‰»ѓ`ѓFѓbѓN
+	// пј“пј¤гѓўгѓ‡гѓ«з”Ёг‚·г‚§гѓјгѓЂгѓјгЃ®е€ќжњџеЊ–гѓЃг‚§гѓѓг‚Ї
 	if( Graphics_Hardware_Shader_ModelCode_Init_PF() < 0 )
 	{
 		return -1 ;
 	}
 
-	// ѓtѓ@ѓCѓ‹‚рЉi”[‚·‚йѓЃѓ‚ѓЉ‚рЉm•Ы
+	// гѓ•г‚Ўг‚¤гѓ«г‚’ж јзґЌгЃ™г‚‹гѓЎгѓўгѓЄг‚’зўєдїќ
 	DataBuffer = DXALLOC( ( size_t )( FileSize + 1 ) ) ;
 	if( DataBuffer == NULL )
 	{
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\xe2\x30\xc7\x30\xeb\x30\xd5\x30\xa1\x30\xa4\x30\xeb\x30\xa4\x30\xe1\x30\xfc\x30\xb8\x30\x6e\x30\xc7\x30\xfc\x30\xbf\x30\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"ѓ‚ѓfѓ‹ѓtѓ@ѓCѓ‹ѓCѓЃЃ[ѓW‚МѓfЃ[ѓ^‚рЉi”[‚·‚йѓЃѓ‚ѓЉ—М€ж‚МЉm•Ы‚ЙЋё”s‚µ‚Ь‚µ‚Ѕ" @*/ )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\xe2\x30\xc7\x30\xeb\x30\xd5\x30\xa1\x30\xa4\x30\xeb\x30\xa4\x30\xe1\x30\xfc\x30\xb8\x30\x6e\x30\xc7\x30\xfc\x30\xbf\x30\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"гѓўгѓ‡гѓ«гѓ•г‚Ўг‚¤гѓ«г‚¤гѓЎгѓјг‚ёгЃ®гѓ‡гѓјг‚їг‚’ж јзґЌгЃ™г‚‹гѓЎгѓўгѓЄй еџџгЃ®зўєдїќгЃ«е¤±ж•—гЃ—гЃѕгЃ—гЃџ" @*/ )) ;
 		goto ERRORLABEL ;
 	}
 
-	// ѓfЃ[ѓ^‚рѓRѓsЃ[
+	// гѓ‡гѓјг‚їг‚’г‚ігѓ”гѓј
 	_MEMCPY( DataBuffer, FileImage,  ( size_t )FileSize ) ;
 
-	// ѓeѓLѓXѓgЊ`Ћ®‚МЏкЌ‡—p‚ЙЏI’[•¶Ћљ‚рѓZѓbѓg
+	// гѓ†г‚­г‚№гѓ€еЅўејЏгЃ®е ґеђ€з”ЁгЃ«зµ‚з«Їж–‡е­—г‚’г‚»гѓѓгѓ€
 	( ( BYTE * )DataBuffer )[  FileSize ] = '\0' ;
 
-	// ЉЦђ”‚М€шђ”‚рЏЂ”х
+	// й–ўж•°гЃ®еј•ж•°г‚’жє–е‚™
 	FileReadFuncParam.Read		= FileReadFunc ;
 	FileReadFuncParam.Release	= FileReleaseFunc ;
 	FileReadFuncParam.Data		= FileReadFuncData ;
@@ -14140,96 +14140,96 @@ static int MV1LoadModelFromMem_Static(
 	LoadParam.CurrentDir		= NULL ;
 	LoadParam.FileReadFunc		= &FileReadFuncParam ;
 
-	// ѓIѓЉѓWѓiѓ‹ѓ‚ѓfѓ‹ѓЌЃ[ѓhЉЦђ”‚рЋЋ‚·
+	// г‚ЄгѓЄг‚ёгѓЉгѓ«гѓўгѓ‡гѓ«гѓ­гѓјгѓ‰й–ўж•°г‚’и©¦гЃ™
 	for( i = 0 ; i < MV1Man.AddLoadFuncNum ; i ++ )
 	{
 		NewBaseHandle = MV1Man.AddLoadFunc[ i ]( &LoadParam ) ;
 		if( NewBaseHandle >= 0 ) goto LOADCOMPLABEL ;
 	}
 
-	// ‚l‚u‚Pѓtѓ@ѓCѓ‹‚Ж‚µ‚Д“З‚ЭЌћ‚с‚Е‚Э‚й
+	// пј­пј¶пј‘гѓ•г‚Ўг‚¤гѓ«гЃЁгЃ—гЃ¦иЄ­гЃїиѕјг‚“гЃ§гЃїг‚‹
 	NewBaseHandle = MV1LoadModelToMV1( &LoadParam, ASyncThread ) ;
 	if( NewBaseHandle >= 0 ) goto LOADCOMPLABEL ;
 
-	// ‚l‚p‚nѓtѓ@ѓCѓ‹‚Ж‚µ‚Д“З‚ЭЌћ‚с‚Е‚Э‚й
+	// пј­пј±пјЇгѓ•г‚Ўг‚¤гѓ«гЃЁгЃ—гЃ¦иЄ­гЃїиѕјг‚“гЃ§гЃїг‚‹
 	NewBaseHandle = MV1LoadModelToMQO( &LoadParam, ASyncThread ) ;
 	if( NewBaseHandle >= 0 ) goto LOADCOMPLABEL ;
 
-	// ‚wѓtѓ@ѓCѓ‹‚Ж‚µ‚Д“З‚ЭЌћ‚с‚Е‚Э‚й
+	// пјёгѓ•г‚Ўг‚¤гѓ«гЃЁгЃ—гЃ¦иЄ­гЃїиѕјг‚“гЃ§гЃїг‚‹
 	NewBaseHandle = MV1LoadModelToX( &LoadParam, ASyncThread ) ;
 	if( NewBaseHandle >= 0 ) goto LOADCOMPLABEL ;
 
-	// ‚o‚l‚wѓtѓ@ѓCѓ‹‚Ж‚µ‚Д“З‚ЭЌћ‚с‚Е‚Э‚й
+	// пј°пј­пјёгѓ•г‚Ўг‚¤гѓ«гЃЁгЃ—гЃ¦иЄ­гЃїиѕјг‚“гЃ§гЃїг‚‹
 	NewBaseHandle = MV1LoadModelToPMX( &LoadParam, ASyncThread ) ;
 	if( NewBaseHandle >= 0 ) goto LOADCOMPLABEL ;
 
-	// ‚o‚l‚cѓtѓ@ѓCѓ‹‚Ж‚µ‚Д“З‚ЭЌћ‚с‚Е‚Э‚й
+	// пј°пј­пј¤гѓ•г‚Ўг‚¤гѓ«гЃЁгЃ—гЃ¦иЄ­гЃїиѕјг‚“гЃ§гЃїг‚‹
 	NewBaseHandle = MV1LoadModelToPMD( &LoadParam, ASyncThread ) ;
 	if( NewBaseHandle >= 0 ) goto LOADCOMPLABEL ;
 
-	// ‚u‚l‚cѓtѓ@ѓCѓ‹‚Ж‚µ‚Д“З‚ЭЌћ‚с‚Е‚Э‚й
+	// пј¶пј­пј¤гѓ•г‚Ўг‚¤гѓ«гЃЁгЃ—гЃ¦иЄ­гЃїиѕјг‚“гЃ§гЃїг‚‹
 	NewBaseHandle = MV1LoadModelToVMD( &LoadParam, ASyncThread ) ;
 	if( NewBaseHandle >= 0 ) goto LOADCOMPLABEL ;
 
 #ifdef DX_LOAD_FBX_MODEL
 
-	// ‚e‚a‚wѓtѓ@ѓCѓ‹‚Ж‚µ‚Д“З‚ЭЌћ‚с‚Е‚Э‚й
+	// пј¦пјўпјёгѓ•г‚Ўг‚¤гѓ«гЃЁгЃ—гЃ¦иЄ­гЃїиѕјг‚“гЃ§гЃїг‚‹
 	NewBaseHandle = MV1LoadModelToFBX( &LoadParam, ASyncThread ) ;
 	if( NewBaseHandle >= 0 ) goto LOADCOMPLABEL ;
 
 #endif
 
-	// ‚±‚±‚Й‚«‚Ѕ‚з“З‚ЭЌћ‚Я‚И‚©‚Б‚Ѕ‚Ж‚ў‚¤‚±‚Ж
+	// гЃ“гЃ“гЃ«гЃЌгЃџг‚‰иЄ­гЃїиѕјг‚ЃгЃЄгЃ‹гЃЈгЃџгЃЁгЃ„гЃ†гЃ“гЃЁ
 	goto ERRORLABEL ;
 
 LOADCOMPLABEL :
-	// ’ё“_ѓoѓbѓtѓ@‚МѓZѓbѓgѓAѓbѓv‚рЌs‚¤
+	// й ‚з‚№гѓђгѓѓгѓ•г‚ЎгЃ®г‚»гѓѓгѓ€г‚ўгѓѓгѓ—г‚’иЎЊгЃ†
 	MV1_SetupVertexBufferBase_PF( NewBaseHandle, 1, ASyncThread ) ;
 
-	// ѓtѓ@ѓCѓ‹‚©‚з“З‚ЭЌћ‚с‚ѕѓfЃ[ѓ^‚р‰р•ъ‚·‚й
+	// гѓ•г‚Ўг‚¤гѓ«гЃ‹г‚‰иЄ­гЃїиѕјг‚“гЃ гѓ‡гѓјг‚їг‚’и§Јж”ѕгЃ™г‚‹
 	if( DataBuffer )
 	{
 		DXFREE( DataBuffer ) ;
 		DataBuffer = NULL ;
 	}
 
-	// Ќ\’z
+	// ж§‹зЇ‰
 	if( MV1MakeModel( MHandle, NewBaseHandle, ASyncThread ) < 0 )
 	{
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\xe2\x30\xc7\x30\xeb\x30\xd5\x30\xa1\x30\xa4\x30\xeb\x30\xa4\x30\xe1\x30\xfc\x30\xb8\x30\x4b\x30\x89\x30\x6e\x30\xe2\x30\xc7\x30\xeb\x30\xfa\x57\x2c\x67\xc7\x30\xfc\x30\xbf\x30\x4b\x30\x89\x30\xe2\x30\xc7\x30\xeb\x30\xc7\x30\xfc\x30\xbf\x30\x78\x30\x6e\x30\x09\x59\xdb\x63\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"ѓ‚ѓfѓ‹ѓtѓ@ѓCѓ‹ѓCѓЃЃ[ѓW‚©‚з‚Мѓ‚ѓfѓ‹Љо–{ѓfЃ[ѓ^‚©‚зѓ‚ѓfѓ‹ѓfЃ[ѓ^‚Ц‚М•ПЉ·‚ЙЋё”s‚µ‚Ь‚µ‚Ѕ" @*/ )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\xe2\x30\xc7\x30\xeb\x30\xd5\x30\xa1\x30\xa4\x30\xeb\x30\xa4\x30\xe1\x30\xfc\x30\xb8\x30\x4b\x30\x89\x30\x6e\x30\xe2\x30\xc7\x30\xeb\x30\xfa\x57\x2c\x67\xc7\x30\xfc\x30\xbf\x30\x4b\x30\x89\x30\xe2\x30\xc7\x30\xeb\x30\xc7\x30\xfc\x30\xbf\x30\x78\x30\x6e\x30\x09\x59\xdb\x63\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"гѓўгѓ‡гѓ«гѓ•г‚Ўг‚¤гѓ«г‚¤гѓЎгѓјг‚ёгЃ‹г‚‰гЃ®гѓўгѓ‡гѓ«еџєжњ¬гѓ‡гѓјг‚їгЃ‹г‚‰гѓўгѓ‡гѓ«гѓ‡гѓјг‚їгЃёгЃ®е¤‰жЏ›гЃ«е¤±ж•—гЃ—гЃѕгЃ—гЃџ" @*/ )) ;
 		goto ERRORLABEL ;
 	}
 
-	// ђіЏнЏI—№
+	// ж­Јеёёзµ‚дє†
 	return 0 ;
 
 
 ERRORLABEL :
-	// ѓ‚ѓfѓ‹Љо–{ѓfЃ[ѓ^‚М‰р•ъ
+	// гѓўгѓ‡гѓ«еџєжњ¬гѓ‡гѓјг‚їгЃ®и§Јж”ѕ
 	if( NewBaseHandle != -1 )
 	{
 		MV1SubModelBase( NewBaseHandle ) ;
 	}
 /*
-	// ѓ‚ѓfѓ‹ѓfЃ[ѓ^‚М‰р•ъ
+	// гѓўгѓ‡гѓ«гѓ‡гѓјг‚їгЃ®и§Јж”ѕ
 	if( NewHandle != -1 )
 	{
 		MV1SubModel( NewHandle ) ;
 	}
 */
-	// ѓtѓ@ѓCѓ‹‚©‚з“З‚ЭЌћ‚с‚ѕѓfЃ[ѓ^‚р‰р•ъ‚·‚й
+	// гѓ•г‚Ўг‚¤гѓ«гЃ‹г‚‰иЄ­гЃїиѕјг‚“гЃ гѓ‡гѓјг‚їг‚’и§Јж”ѕгЃ™г‚‹
 	if( DataBuffer )
 	{
 		DXFREE( DataBuffer ) ;
 		DataBuffer = NULL ;
 	}
 
-	// ’l‚р•Ф‚·
+	// еЂ¤г‚’иї”гЃ™
 	return -1 ;
 }
 
 #ifndef DX_NON_ASYNCLOAD
-// MV1LoadModelFromMem ‚М”с“ЇЉъ“З‚ЭЌћ‚ЭѓXѓЊѓbѓh‚©‚зЊД‚О‚к‚йЉЦђ”
+// MV1LoadModelFromMem гЃ®йќћеђЊжњџиЄ­гЃїиѕјгЃїг‚№гѓ¬гѓѓгѓ‰гЃ‹г‚‰е‘јгЃ°г‚Њг‚‹й–ўж•°
 static void MV1LoadModelFromMem_ASync( ASYNCLOADDATA_COMMON *AParam )
 {
 	MV1LOADMODEL_GPARAM *GParam ;
@@ -14266,7 +14266,7 @@ static void MV1LoadModelFromMem_ASync( ASYNCLOADDATA_COMMON *AParam )
 }
 #endif // DX_NON_ASYNCLOAD
 
-// MV1LoadModelFromMem ‚МѓOѓЌЃ[ѓoѓ‹•Пђ”‚ЙѓAѓNѓZѓX‚µ‚И‚ўѓoЃ[ѓWѓ‡ѓ“
+// MV1LoadModelFromMem гЃ®г‚°гѓ­гѓјгѓђгѓ«е¤‰ж•°гЃ«г‚ўг‚Їг‚»г‚№гЃ—гЃЄгЃ„гѓђгѓјг‚ёгѓ§гѓі
 extern int MV1LoadModelFromMem_UseGParam( 
 	MV1LOADMODEL_GPARAM *GParam,
 	const void *FileImage,
@@ -14293,7 +14293,7 @@ extern int MV1LoadModelFromMem_UseGParam(
 		ASYNCLOADDATA_COMMON *AParam = NULL ;
 		int Addr ;
 
-		// ѓpѓ‰ѓЃЃ[ѓ^‚Й•K—v‚ИѓЃѓ‚ѓЉ‚МѓTѓCѓY‚рЋZЏo
+		// гѓ‘гѓ©гѓЎгѓјг‚їгЃ«еї…и¦ЃгЃЄгѓЎгѓўгѓЄгЃ®г‚µг‚¤г‚єг‚’з®—е‡є
 		Addr = 0 ;
 		AddASyncLoadParamStruct( NULL, &Addr, GParam, sizeof( *GParam ) ) ;
 		AddASyncLoadParamInt( NULL, &Addr, MHandle ) ;
@@ -14303,12 +14303,12 @@ extern int MV1LoadModelFromMem_UseGParam(
 		AddASyncLoadParamConstVoidP( NULL, &Addr, ( void * )FileReleaseFunc ) ;
 		AddASyncLoadParamConstVoidP( NULL, &Addr, ( void * )FileReadFuncData ) ;
 
-		// ѓЃѓ‚ѓЉ‚МЉm•Ы
+		// гѓЎгѓўгѓЄгЃ®зўєдїќ
 		AParam = AllocASyncLoadDataMemory( Addr ) ;
 		if( AParam == NULL )
 			goto ERR ;
 
-		// Џ€—ќ‚Й•K—v‚ИЏо•с‚рѓZѓbѓg
+		// е‡¦зђ†гЃ«еї…и¦ЃгЃЄжѓ…е ±г‚’г‚»гѓѓгѓ€
 		AParam->ProcessFunction = MV1LoadModelFromMem_ASync ;
 		Addr = 0 ;
 		AddASyncLoadParamStruct( AParam->Data, &Addr, GParam, sizeof( *GParam ) ) ;
@@ -14319,7 +14319,7 @@ extern int MV1LoadModelFromMem_UseGParam(
 		AddASyncLoadParamConstVoidP( AParam->Data, &Addr, ( void * )FileReleaseFunc ) ;
 		AddASyncLoadParamConstVoidP( AParam->Data, &Addr, ( void * )FileReadFuncData ) ;
 
-		// ѓfЃ[ѓ^‚р’З‰Б
+		// гѓ‡гѓјг‚їг‚’иїЅеЉ 
 		if( AddASyncLoadData( AParam ) < 0 )
 		{
 			DXFREE( AParam ) ;
@@ -14327,7 +14327,7 @@ extern int MV1LoadModelFromMem_UseGParam(
 			goto ERR ;
 		}
 
-		// ”с“ЇЉъ“З‚ЭЌћ‚ЭѓJѓEѓ“ѓg‚рѓCѓ“ѓNѓЉѓЃѓ“ѓg
+		// йќћеђЊжњџиЄ­гЃїиѕјгЃїг‚«г‚¦гѓігѓ€г‚’г‚¤гѓіг‚ЇгѓЄгѓЎгѓігѓ€
 		IncASyncLoadCount( MHandle, AParam->Index ) ;
 	}
 	else
@@ -14337,7 +14337,7 @@ extern int MV1LoadModelFromMem_UseGParam(
 			goto ERR ;
 	}
 
-	// ѓnѓ“ѓhѓ‹‚р•Ф‚·
+	// гѓЏгѓігѓ‰гѓ«г‚’иї”гЃ™
 	return MHandle ;
 
 ERR :
@@ -14347,7 +14347,7 @@ ERR :
 	return -1 ;
 }
 
-// •Ё—ќ‰‰ЋZ‚Є–іЊш‚И–ј‘O‚©‚З‚¤‚©‚рѓ`ѓFѓbѓN‚·‚й( –Я‚и’lЃ@TRUE:–іЊш  FALSE:—LЊш )( ShiftJISѓRЃ[ѓh”Е )
+// з‰©зђ†жј”з®—гЃЊз„ЎеЉ№гЃЄеђЌе‰ЌгЃ‹гЃ©гЃ†гЃ‹г‚’гѓЃг‚§гѓѓг‚ЇгЃ™г‚‹( ж€»г‚ЉеЂ¤гЂЂTRUE:з„ЎеЉ№  FALSE:жњ‰еЉ№ )( ShiftJISг‚ігѓјгѓ‰з‰€ )
 extern int MV1LoadModelDisablePhysicsNameCheck_ShiftJIS( const char *Name, int DisablePhysicsFile )
 {
 	int i ;
@@ -14386,7 +14386,7 @@ extern int MV1LoadModelDisablePhysicsNameCheck_ShiftJIS( const char *Name, int D
 	return FALSE ;
 }
 
-// •Ё—ќ‰‰ЋZ‚Є–іЊш‚И–ј‘O‚©‚З‚¤‚©‚рѓ`ѓFѓbѓN‚·‚й( –Я‚и’lЃ@TRUE:–іЊш  FALSE:—LЊш )( wchar_t”Е )
+// з‰©зђ†жј”з®—гЃЊз„ЎеЉ№гЃЄеђЌе‰ЌгЃ‹гЃ©гЃ†гЃ‹г‚’гѓЃг‚§гѓѓг‚ЇгЃ™г‚‹( ж€»г‚ЉеЂ¤гЂЂTRUE:з„ЎеЉ№  FALSE:жњ‰еЉ№ )( wchar_tз‰€ )
 extern int MV1LoadModelDisablePhysicsNameCheck_WCHAR_T( const WORD *Name, int DisablePhysicsFile )
 {
 	int i ;
@@ -14425,7 +14425,7 @@ extern int MV1LoadModelDisablePhysicsNameCheck_WCHAR_T( const WORD *Name, int Di
 	return FALSE ;
 }
 
-// ѓЃѓ‚ѓЉЏг‚Мѓ‚ѓfѓ‹ѓtѓ@ѓCѓ‹ѓCѓЃЃ[ѓW‚Ж“ЖЋ©‚М“З‚ЭЌћ‚Эѓ‹Ѓ[ѓ`ѓ“‚рЋg—p‚µ‚Дѓ‚ѓfѓ‹‚р“З‚ЭЌћ‚Ю
+// гѓЎгѓўгѓЄдёЉгЃ®гѓўгѓ‡гѓ«гѓ•г‚Ўг‚¤гѓ«г‚¤гѓЎгѓјг‚ёгЃЁз‹¬и‡ЄгЃ®иЄ­гЃїиѕјгЃїгѓ«гѓјгѓЃгѓіг‚’дЅїз”ЁгЃ—гЃ¦гѓўгѓ‡гѓ«г‚’иЄ­гЃїиѕјг‚Ђ
 extern int NS_MV1LoadModelFromMem(
 	const void *FileImage,
 	int FileSize,
@@ -14441,7 +14441,7 @@ extern int NS_MV1LoadModelFromMem(
 	return MV1LoadModelFromMem_UseGParam( &GParam, FileImage, FileSize, FileReadFunc, FileReleaseFunc, FileReadFuncData, GetASyncLoadFlag() ) ;
 }
 
-// MV1LoadModel ‚МЋАЏ€—ќЉЦђ”
+// MV1LoadModel гЃ®е®џе‡¦зђ†й–ўж•°
 static int MV1LoadModel_Static(
 	MV1LOADMODEL_GPARAM *GParam,
 	int MHandle,
@@ -14460,16 +14460,16 @@ static int MV1LoadModel_Static(
 
 	ConvertFullPathW_( FileName, FullPath, sizeof( FullPath ), NULL ) ;
 
-	// Џ‰Љъ‰»‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// е€ќжњџеЊ–гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( MV1Man.Initialize == false ) return -1 ;
 
-	// ‚R‚cѓ‚ѓfѓ‹—pѓVѓFЃ[ѓ_Ѓ[‚МЏ‰Љъ‰»ѓ`ѓFѓbѓN
+	// пј“пј¤гѓўгѓ‡гѓ«з”Ёг‚·г‚§гѓјгѓЂгѓјгЃ®е€ќжњџеЊ–гѓЃг‚§гѓѓг‚Ї
 	if( Graphics_Hardware_Shader_ModelCode_Init_PF() < 0 )
 	{
 		return -1 ;
 	}
 
-	// ѓtѓ@ѓCѓ‹‚рЉЫ‚І‚Ж“З‚ЭЌћ‚Ю
+	// гѓ•г‚Ўг‚¤гѓ«г‚’дёёгЃ”гЃЁиЄ­гЃїиѕјг‚Ђ
 	FileHandle = DX_FOPEN( FileName ) ;
 	if( FileHandle == 0 )
 	{
@@ -14477,12 +14477,12 @@ static int MV1LoadModel_Static(
 		goto ERRORLABEL ;
 	}
 
-	// ѓtѓ@ѓCѓ‹‚МѓTѓCѓY‚рЋж“ѕ‚·‚й
+	// гѓ•г‚Ўг‚¤гѓ«гЃ®г‚µг‚¤г‚єг‚’еЏ–еѕ—гЃ™г‚‹
 	DX_FSEEK( FileHandle, 0, SEEK_END ) ;
 	DataSize = ( size_t )DX_FTELL( FileHandle ) ;
 	DX_FSEEK( FileHandle, 0, SEEK_SET ) ;
 
-	// ѓtѓ@ѓCѓ‹‚рЉi”[‚·‚йѓЃѓ‚ѓЉ‚рЉm•Ы
+	// гѓ•г‚Ўг‚¤гѓ«г‚’ж јзґЌгЃ™г‚‹гѓЎгѓўгѓЄг‚’зўєдїќ
 	DataBuffer = DXALLOC( DataSize + 1 ) ;
 	if( DataBuffer == NULL )
 	{
@@ -14490,17 +14490,17 @@ static int MV1LoadModel_Static(
 		goto ERRORLABEL ;
 	}
 
-	// ѓfЃ[ѓ^‚р“З‚ЭЌћ‚Ю
+	// гѓ‡гѓјг‚їг‚’иЄ­гЃїиѕјг‚Ђ
 	DX_FREAD( DataBuffer, DataSize, 1, FileHandle ) ;
 
-	// ѓeѓLѓXѓgЊ`Ћ®‚МЏкЌ‡—p‚ЙЏI’[•¶Ћљ‚рѓZѓbѓg
+	// гѓ†г‚­г‚№гѓ€еЅўејЏгЃ®е ґеђ€з”ЁгЃ«зµ‚з«Їж–‡е­—г‚’г‚»гѓѓгѓ€
 	( ( BYTE * )DataBuffer )[ DataSize ] = '\0' ;
 
-	// ѓtѓ@ѓCѓ‹‚р•В‚¶‚й
+	// гѓ•г‚Ўг‚¤гѓ«г‚’й–‰гЃг‚‹
 	DX_FCLOSE( FileHandle ) ;
 	FileHandle = 0 ;
 
-	// ЉЦђ”‚М€шђ”‚рЏЂ”х
+	// й–ўж•°гЃ®еј•ж•°г‚’жє–е‚™
 	LoadParam.GParam			= *GParam ;
 	LoadParam.DataBuffer		= DataBuffer ;
 	LoadParam.DataSize			= ( int )DataSize ;
@@ -14509,103 +14509,103 @@ static int MV1LoadModel_Static(
 	LoadParam.CurrentDir		= Directory ;
 	LoadParam.FileReadFunc		= NULL ;
 
-	// ‚l‚u‚Pѓtѓ@ѓCѓ‹‚Ж‚µ‚Д“З‚ЭЌћ‚с‚Е‚Э‚й
+	// пј­пј¶пј‘гѓ•г‚Ўг‚¤гѓ«гЃЁгЃ—гЃ¦иЄ­гЃїиѕјг‚“гЃ§гЃїг‚‹
 	NewBaseHandle = MV1LoadModelToMV1( &LoadParam, ASyncThread ) ;
 	if( NewBaseHandle >= 0 ) goto LOADCOMPLABEL ;
 
-	// ‚l‚p‚nѓtѓ@ѓCѓ‹‚Ж‚µ‚Д“З‚ЭЌћ‚с‚Е‚Э‚й
+	// пј­пј±пјЇгѓ•г‚Ўг‚¤гѓ«гЃЁгЃ—гЃ¦иЄ­гЃїиѕјг‚“гЃ§гЃїг‚‹
 	NewBaseHandle = MV1LoadModelToMQO( &LoadParam, ASyncThread ) ;
 	if( NewBaseHandle >= 0 ) goto LOADCOMPLABEL ;
 
-	// ‚wѓtѓ@ѓCѓ‹‚Ж‚µ‚Д“З‚ЭЌћ‚с‚Е‚Э‚й
+	// пјёгѓ•г‚Ўг‚¤гѓ«гЃЁгЃ—гЃ¦иЄ­гЃїиѕјг‚“гЃ§гЃїг‚‹
 	NewBaseHandle = MV1LoadModelToX( &LoadParam, ASyncThread ) ;
 	if( NewBaseHandle >= 0 ) goto LOADCOMPLABEL ;
 
-	// ‚o‚l‚wѓtѓ@ѓCѓ‹‚Ж‚µ‚Д“З‚ЭЌћ‚с‚Е‚Э‚й
+	// пј°пј­пјёгѓ•г‚Ўг‚¤гѓ«гЃЁгЃ—гЃ¦иЄ­гЃїиѕјг‚“гЃ§гЃїг‚‹
 	NewBaseHandle = MV1LoadModelToPMX( &LoadParam, ASyncThread ) ;
 	if( NewBaseHandle >= 0 ) goto LOADCOMPLABEL ;
 
-	// ‚o‚l‚cѓtѓ@ѓCѓ‹‚Ж‚µ‚Д“З‚ЭЌћ‚с‚Е‚Э‚й
+	// пј°пј­пј¤гѓ•г‚Ўг‚¤гѓ«гЃЁгЃ—гЃ¦иЄ­гЃїиѕјг‚“гЃ§гЃїг‚‹
 	NewBaseHandle = MV1LoadModelToPMD( &LoadParam, ASyncThread ) ;
 	if( NewBaseHandle >= 0 ) goto LOADCOMPLABEL ;
 
-	// ‚u‚l‚cѓtѓ@ѓCѓ‹‚Ж‚µ‚Д“З‚ЭЌћ‚с‚Е‚Э‚й
+	// пј¶пј­пј¤гѓ•г‚Ўг‚¤гѓ«гЃЁгЃ—гЃ¦иЄ­гЃїиѕјг‚“гЃ§гЃїг‚‹
 	NewBaseHandle = MV1LoadModelToVMD( &LoadParam, ASyncThread ) ;
 	if( NewBaseHandle >= 0 ) goto LOADCOMPLABEL ;
 
 #ifdef DX_LOAD_FBX_MODEL
 
-	// ‚e‚a‚wѓtѓ@ѓCѓ‹‚Ж‚µ‚Д“З‚ЭЌћ‚с‚Е‚Э‚й
+	// пј¦пјўпјёгѓ•г‚Ўг‚¤гѓ«гЃЁгЃ—гЃ¦иЄ­гЃїиѕјг‚“гЃ§гЃїг‚‹
 	NewBaseHandle = MV1LoadModelToFBX( &LoadParam, ASyncThread ) ;
 	if( NewBaseHandle >= 0 ) goto LOADCOMPLABEL ;
 
 #endif
 
-	// ‚±‚±‚Й‚«‚Ѕ‚з“З‚ЭЌћ‚Я‚И‚©‚Б‚Ѕ‚Ж‚ў‚¤‚±‚Ж
+	// гЃ“гЃ“гЃ«гЃЌгЃџг‚‰иЄ­гЃїиѕјг‚ЃгЃЄгЃ‹гЃЈгЃџгЃЁгЃ„гЃ†гЃ“гЃЁ
 	goto ERRORLABEL ;
 
 LOADCOMPLABEL :
-	// ’ё“_ѓoѓbѓtѓ@‚МѓZѓbѓgѓAѓbѓv‚рЌs‚¤
+	// й ‚з‚№гѓђгѓѓгѓ•г‚ЎгЃ®г‚»гѓѓгѓ€г‚ўгѓѓгѓ—г‚’иЎЊгЃ†
 	MV1_SetupVertexBufferBase_PF( NewBaseHandle, 1, ASyncThread ) ;
 
-	// ѓtѓ@ѓCѓ‹‚©‚з“З‚ЭЌћ‚с‚ѕѓfЃ[ѓ^‚р‰р•ъ‚·‚й
+	// гѓ•г‚Ўг‚¤гѓ«гЃ‹г‚‰иЄ­гЃїиѕјг‚“гЃ гѓ‡гѓјг‚їг‚’и§Јж”ѕгЃ™г‚‹
 	if( DataBuffer )
 	{
 		DXFREE( DataBuffer ) ;
 		DataBuffer = NULL ;
 	}
 
-	// ѓtѓ@ѓCѓ‹‚р•В‚¶‚й
+	// гѓ•г‚Ўг‚¤гѓ«г‚’й–‰гЃг‚‹
 	if( FileHandle )
 	{
 		DX_FCLOSE( FileHandle ) ;
 		FileHandle = 0 ;
 	}
 
-	// Ќ\’z
+	// ж§‹зЇ‰
 	if( MV1MakeModel( MHandle, NewBaseHandle, ASyncThread ) < 0 )
 	{
 		DXST_LOGFILEFMT_ADDW(( L"MV1MakeModel Error : %s", FullPath )) ;
 		goto ERRORLABEL ;
 	}
 
-	// ђіЏнЏI—№
+	// ж­Јеёёзµ‚дє†
 	return 0 ;
 
 
 ERRORLABEL :
-	// ѓ‚ѓfѓ‹Љо–{ѓfЃ[ѓ^‚М‰р•ъ
+	// гѓўгѓ‡гѓ«еџєжњ¬гѓ‡гѓјг‚їгЃ®и§Јж”ѕ
 	if( NewBaseHandle != -1 )
 	{
 		MV1SubModelBase( NewBaseHandle ) ;
 	}
 /*
-	// ѓ‚ѓfѓ‹ѓfЃ[ѓ^‚М‰р•ъ
+	// гѓўгѓ‡гѓ«гѓ‡гѓјг‚їгЃ®и§Јж”ѕ
 	if( NewHandle != -1 )
 	{
 		MV1SubModel( NewHandle ) ;
 	}
 */
-	// ѓtѓ@ѓCѓ‹‚©‚з“З‚ЭЌћ‚с‚ѕѓfЃ[ѓ^‚р‰р•ъ‚·‚й
+	// гѓ•г‚Ўг‚¤гѓ«гЃ‹г‚‰иЄ­гЃїиѕјг‚“гЃ гѓ‡гѓјг‚їг‚’и§Јж”ѕгЃ™г‚‹
 	if( DataBuffer )
 	{
 		DXFREE( DataBuffer ) ;
 		DataBuffer = NULL ;
 	}
 
-	// ѓtѓ@ѓCѓ‹‚р•В‚¶‚й
+	// гѓ•г‚Ўг‚¤гѓ«г‚’й–‰гЃг‚‹
 	if( FileHandle )
 	{
 		DX_FCLOSE( FileHandle ) ;
 		FileHandle = 0 ;
 	}
 
-	// ’l‚р•Ф‚·
+	// еЂ¤г‚’иї”гЃ™
 	return -1 ;
 }
 
 #ifndef DX_NON_ASYNCLOAD
-// MV1LoadModel ‚М”с“ЇЉъ“З‚ЭЌћ‚ЭѓXѓЊѓbѓh‚©‚зЊД‚О‚к‚йЉЦђ”
+// MV1LoadModel гЃ®йќћеђЊжњџиЄ­гЃїиѕјгЃїг‚№гѓ¬гѓѓгѓ‰гЃ‹г‚‰е‘јгЃ°г‚Њг‚‹й–ўж•°
 static void MV1LoadModel_ASync( ASYNCLOADDATA_COMMON *AParam )
 {
 	MV1LOADMODEL_GPARAM *GParam ;
@@ -14637,13 +14637,13 @@ static void MV1LoadModel_ASync( ASYNCLOADDATA_COMMON *AParam )
 }
 #endif // DX_NON_ASYNCLOAD
 
-// MV1LoadModel ‚МѓOѓЌЃ[ѓoѓ‹•Пђ”‚ЙѓAѓNѓZѓX‚µ‚И‚ўѓoЃ[ѓWѓ‡ѓ“
+// MV1LoadModel гЃ®г‚°гѓ­гѓјгѓђгѓ«е¤‰ж•°гЃ«г‚ўг‚Їг‚»г‚№гЃ—гЃЄгЃ„гѓђгѓјг‚ёгѓ§гѓі
 extern int MV1LoadModel_UseGParam( MV1LOADMODEL_GPARAM *GParam, const wchar_t *FileName, int ASyncLoadFlag )
 {
 	wchar_t Directory[ 1024 ], Name[ FILEPATH_MAX ] ;
 	int MHandle ;
 
-	// ѓ‚ѓfѓ‹ѓtѓ@ѓCѓ‹‚М‚ ‚йѓfѓBѓЊѓNѓgѓЉѓpѓX‚Жѓtѓ@ѓCѓ‹–ј‚рЋж“ѕ‚·‚й
+	// гѓўгѓ‡гѓ«гѓ•г‚Ўг‚¤гѓ«гЃ®гЃ‚г‚‹гѓ‡г‚Јгѓ¬г‚Їгѓ€гѓЄгѓ‘г‚№гЃЁгѓ•г‚Ўг‚¤гѓ«еђЌг‚’еЏ–еѕ—гЃ™г‚‹
 	_MV1CreateFileNameAndCurrentDirectory( FileName, Name, sizeof( Name ), Directory, sizeof( Directory ) ) ;
 
 	CheckActiveState() ;
@@ -14660,7 +14660,7 @@ extern int MV1LoadModel_UseGParam( MV1LOADMODEL_GPARAM *GParam, const wchar_t *F
 		ASYNCLOADDATA_COMMON *AParam = NULL ;
 		int Addr ;
 
-		// ѓpѓ‰ѓЃЃ[ѓ^‚Й•K—v‚ИѓЃѓ‚ѓЉ‚МѓTѓCѓY‚рЋZЏo
+		// гѓ‘гѓ©гѓЎгѓјг‚їгЃ«еї…и¦ЃгЃЄгѓЎгѓўгѓЄгЃ®г‚µг‚¤г‚єг‚’з®—е‡є
 		Addr = 0 ;
 		AddASyncLoadParamStruct( NULL, &Addr, GParam, sizeof( *GParam ) ) ;
 		AddASyncLoadParamInt( NULL, &Addr, MHandle ) ;
@@ -14668,12 +14668,12 @@ extern int MV1LoadModel_UseGParam( MV1LOADMODEL_GPARAM *GParam, const wchar_t *F
 		AddASyncLoadParamString( NULL, &Addr, Directory ) ;
 		AddASyncLoadParamString( NULL, &Addr, Name ) ;
 
-		// ѓЃѓ‚ѓЉ‚МЉm•Ы
+		// гѓЎгѓўгѓЄгЃ®зўєдїќ
 		AParam = AllocASyncLoadDataMemory( Addr ) ;
 		if( AParam == NULL )
 			goto ERR ;
 
-		// Џ€—ќ‚Й•K—v‚ИЏо•с‚рѓZѓbѓg
+		// е‡¦зђ†гЃ«еї…и¦ЃгЃЄжѓ…е ±г‚’г‚»гѓѓгѓ€
 		AParam->ProcessFunction = MV1LoadModel_ASync ;
 		Addr = 0 ;
 		AddASyncLoadParamStruct( AParam->Data, &Addr, GParam, sizeof( *GParam ) ) ;
@@ -14682,7 +14682,7 @@ extern int MV1LoadModel_UseGParam( MV1LOADMODEL_GPARAM *GParam, const wchar_t *F
 		AddASyncLoadParamString( AParam->Data, &Addr, Directory ) ;
 		AddASyncLoadParamString( AParam->Data, &Addr, Name ) ;
 
-		// ѓfЃ[ѓ^‚р’З‰Б
+		// гѓ‡гѓјг‚їг‚’иїЅеЉ 
 		if( AddASyncLoadData( AParam ) < 0 )
 		{
 			DXFREE( AParam ) ;
@@ -14690,7 +14690,7 @@ extern int MV1LoadModel_UseGParam( MV1LOADMODEL_GPARAM *GParam, const wchar_t *F
 			goto ERR ;
 		}
 
-		// ”с“ЇЉъ“З‚ЭЌћ‚ЭѓJѓEѓ“ѓg‚рѓCѓ“ѓNѓЉѓЃѓ“ѓg
+		// йќћеђЊжњџиЄ­гЃїиѕјгЃїг‚«г‚¦гѓігѓ€г‚’г‚¤гѓіг‚ЇгѓЄгѓЎгѓігѓ€
 		IncASyncLoadCount( MHandle, AParam->Index ) ;
 	}
 	else
@@ -14700,7 +14700,7 @@ extern int MV1LoadModel_UseGParam( MV1LOADMODEL_GPARAM *GParam, const wchar_t *F
 			goto ERR ;
 	}
 
-	// ѓnѓ“ѓhѓ‹‚р•Ф‚·
+	// гѓЏгѓігѓ‰гѓ«г‚’иї”гЃ™
 	return MHandle ;
 
 ERR :
@@ -14710,7 +14710,7 @@ ERR :
 	return -1 ;
 }
 
-// MV1LOADMODEL_GPARAM ‚МѓfЃ[ѓ^‚рѓZѓbѓg‚·‚й
+// MV1LOADMODEL_GPARAM гЃ®гѓ‡гѓјг‚їг‚’г‚»гѓѓгѓ€гЃ™г‚‹
 extern void InitMV1LoadModelGParam( MV1LOADMODEL_GPARAM *GParam )
 {
 	Graphics_Image_InitLoadGraphGParam( &GParam->LoadGraphGParam ) ;
@@ -14739,7 +14739,7 @@ extern void InitMV1LoadModelGParam( MV1LOADMODEL_GPARAM *GParam )
 	}
 }
 
-// ѓ‚ѓfѓ‹‚ЕЋg—p‚·‚йѓeѓNѓXѓ`ѓѓ‚р’З‰Б‚·‚й
+// гѓўгѓ‡гѓ«гЃ§дЅїз”ЁгЃ™г‚‹гѓ†г‚Їг‚№гѓЃгѓЈг‚’иїЅеЉ гЃ™г‚‹
 extern int NS_MV1AddTexture(
 	int MHandle,
 	const TCHAR *Name,
@@ -14789,7 +14789,7 @@ extern int NS_MV1AddTexture(
 #endif
 }
 
-// ѓ‚ѓfѓ‹‚ЕЋg—p‚·‚йѓeѓNѓXѓ`ѓѓ‚р’З‰Б‚·‚й
+// гѓўгѓ‡гѓ«гЃ§дЅїз”ЁгЃ™г‚‹гѓ†г‚Їг‚№гѓЃгѓЈг‚’иїЅеЉ гЃ™г‚‹
 extern int NS_MV1AddTextureWithStrLen(
 	int MHandle,
 	const TCHAR *Name, size_t NameLength,
@@ -14850,7 +14850,7 @@ ERR :
 	return Result ;
 }
 
-// ѓ‚ѓfѓ‹‚ЕЋg—p‚·‚йѓeѓNѓXѓ`ѓѓ‚р’З‰Б‚·‚й( ѓOѓ‰ѓtѓBѓbѓNѓnѓ“ѓhѓ‹‚рѓeѓNѓXѓ`ѓѓ‚Ж‚µ‚Д’З‰Б )
+// гѓўгѓ‡гѓ«гЃ§дЅїз”ЁгЃ™г‚‹гѓ†г‚Їг‚№гѓЃгѓЈг‚’иїЅеЉ гЃ™г‚‹( г‚°гѓ©гѓ•г‚Јгѓѓг‚ЇгѓЏгѓігѓ‰гѓ«г‚’гѓ†г‚Їг‚№гѓЃгѓЈгЃЁгЃ—гЃ¦иїЅеЉ  )
 extern int NS_MV1AddTextureGraphHandle(
 	int MHandle,
 	const TCHAR *Name,
@@ -14887,7 +14887,7 @@ extern int NS_MV1AddTextureGraphHandle(
 	return Result ;
 }
 
-// ѓ‚ѓfѓ‹‚М“З‚ЭЌћ‚Э( -1:ѓGѓ‰Ѓ[  0€ИЏг:ѓ‚ѓfѓ‹ѓnѓ“ѓhѓ‹ )
+// гѓўгѓ‡гѓ«гЃ®иЄ­гЃїиѕјгЃї( -1:г‚Ёгѓ©гѓј  0д»ҐдёЉ:гѓўгѓ‡гѓ«гѓЏгѓігѓ‰гѓ« )
 extern int NS_MV1LoadModel( const TCHAR *FileName )
 {
 #ifdef UNICODE
@@ -14909,7 +14909,7 @@ extern int NS_MV1LoadModel( const TCHAR *FileName )
 #endif
 }
 
-// ѓ‚ѓfѓ‹‚М“З‚ЭЌћ‚Э( -1:ѓGѓ‰Ѓ[  0€ИЏг:ѓ‚ѓfѓ‹ѓnѓ“ѓhѓ‹ )
+// гѓўгѓ‡гѓ«гЃ®иЄ­гЃїиѕјгЃї( -1:г‚Ёгѓ©гѓј  0д»ҐдёЉ:гѓўгѓ‡гѓ«гѓЏгѓігѓ‰гѓ« )
 extern int NS_MV1LoadModelWithStrLen( const TCHAR *FileName, size_t FileNameLength )
 {
 	int Result ;
@@ -14925,7 +14925,7 @@ extern int NS_MV1LoadModelWithStrLen( const TCHAR *FileName, size_t FileNameLeng
 	return Result ;
 }
 
-// ѓ‚ѓfѓ‹‚М“З‚ЭЌћ‚Э( -1:ѓGѓ‰Ѓ[  0€ИЏг:ѓ‚ѓfѓ‹ѓnѓ“ѓhѓ‹ )
+// гѓўгѓ‡гѓ«гЃ®иЄ­гЃїиѕјгЃї( -1:г‚Ёгѓ©гѓј  0д»ҐдёЉ:гѓўгѓ‡гѓ«гѓЏгѓігѓ‰гѓ« )
 extern int MV1LoadModel_WCHAR_T( const wchar_t *FileName )
 {
 	MV1LOADMODEL_GPARAM GParam ;
@@ -14936,19 +14936,19 @@ extern int MV1LoadModel_WCHAR_T( const wchar_t *FileName )
 }
 
 
-// ѓ‚ѓfѓ‹‚рЌнЏњ‚·‚й
+// гѓўгѓ‡гѓ«г‚’е‰Љй™¤гЃ™г‚‹
 extern int NS_MV1DeleteModel( int MHandle )
 {
 	return MV1SubModel( MHandle ) ;
 }
 
-// ‚·‚Ч‚Д‚Мѓ‚ѓfѓ‹‚рЌнЏњ‚·‚й
+// гЃ™гЃ№гЃ¦гЃ®гѓўгѓ‡гѓ«г‚’е‰Љй™¤гЃ™г‚‹
 extern int NS_MV1InitModel( void )
 {
 	return AllHandleSub( DX_HANDLETYPE_MODEL ) ;
 }
 
-// MV1LoadModelToMV1 ‚Е‚М•¶Ћљ—сЋж“ѕЏ€—ќ
+// MV1LoadModelToMV1 гЃ§гЃ®ж–‡е­—е€—еЏ–еѕ—е‡¦зђ†
 __inline void MV1LoadModelToMV1_GetString(
 	MV1MODEL_FILEHEADER_F1 *	FHeader,
 	MV1_MODEL_BASE *			MBase,
@@ -14981,7 +14981,7 @@ __inline void MV1LoadModelToMV1_GetString(
 	}
 }
 
-// ‚l‚u‚Pѓtѓ@ѓCѓ‹‚р“З‚ЭЌћ‚Ю( -1:ѓGѓ‰Ѓ[  0€ИЏг:ѓ‚ѓfѓ‹ѓnѓ“ѓhѓ‹ )
+// пј­пј¶пј‘гѓ•г‚Ўг‚¤гѓ«г‚’иЄ­гЃїиѕјг‚Ђ( -1:г‚Ёгѓ©гѓј  0д»ҐдёЉ:гѓўгѓ‡гѓ«гѓЏгѓігѓ‰гѓ« )
 extern int MV1LoadModelToMV1( const MV1_MODEL_LOAD_PARAM *LoadParam, int ASyncThread )
 {
 	MV1MODEL_FILEHEADER_F1 *FHeader ;
@@ -15039,7 +15039,7 @@ extern int MV1LoadModelToMV1( const MV1_MODEL_LOAD_PARAM *LoadParam, int ASyncTh
 	F1FileHeadPhysics = NULL ;
 	FHeader = ( MV1MODEL_FILEHEADER_F1 * )LoadParam->DataBuffer ;
 
-	// ѓfѓBѓЊѓNѓgѓЉѓpѓX‚рЋж“ѕ
+	// гѓ‡г‚Јгѓ¬г‚Їгѓ€гѓЄгѓ‘г‚№г‚’еЏ–еѕ—
 	dirlen = 0 ;
 	if( LoadParam->CurrentDir != NULL )
 	{
@@ -15052,21 +15052,21 @@ extern int MV1LoadModelToMV1( const MV1_MODEL_LOAD_PARAM *LoadParam, int ASyncTh
 		}
 	}
 
-	// ‚h‚cѓ`ѓFѓbѓN
+	// пј©пј¤гѓЃг‚§гѓѓг‚Ї
 	if( ( ( BYTE * )LoadParam->DataBuffer )[ 0 ] != 'M' || ( ( BYTE * )LoadParam->DataBuffer )[ 1 ] != 'V' ||
 		( ( BYTE * )LoadParam->DataBuffer )[ 2 ] != '1' || ( ( BYTE * )LoadParam->DataBuffer )[ 3 ] != '1' )
 		return -1 ;
 
-	// €іЏkѓfЃ[ѓ^‚р‰р“Ђ‚·‚йѓЃѓ‚ѓЉ—М€ж‚МЉm•Ы
+	// ењ§зё®гѓ‡гѓјг‚їг‚’и§Је‡ЌгЃ™г‚‹гѓЎгѓўгѓЄй еџџгЃ®зўєдїќ
 	FHeader = ( MV1MODEL_FILEHEADER_F1 * )DXALLOC( ( size_t )( DXA_Decode( ( BYTE * )LoadParam->DataBuffer + 4, NULL ) + 4 ) ) ;
 	if( FHeader == NULL )
 	{
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\x4d\x00\x56\x00\x31\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x4d\x00\x6f\x00\x64\x00\x65\x00\x6c\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\x27\x57\x2e\x7e\xc7\x30\xfc\x30\xbf\x30\x92\x30\xe3\x89\xcd\x51\x59\x30\x8b\x30\x5f\x30\x81\x30\x6e\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"MV1 LoadModel Error : €іЏkѓfЃ[ѓ^‚р‰р“Ђ‚·‚й‚Ѕ‚Я‚МѓЃѓ‚ѓЉ—М€ж‚МЉm•Ы‚ЙЋё”s‚µ‚Ь‚µ‚Ѕ" @*/ )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\x4d\x00\x56\x00\x31\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x4d\x00\x6f\x00\x64\x00\x65\x00\x6c\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\x27\x57\x2e\x7e\xc7\x30\xfc\x30\xbf\x30\x92\x30\xe3\x89\xcd\x51\x59\x30\x8b\x30\x5f\x30\x81\x30\x6e\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"MV1 LoadModel Error : ењ§зё®гѓ‡гѓјг‚їг‚’и§Је‡ЌгЃ™г‚‹гЃџг‚ЃгЃ®гѓЎгѓўгѓЄй еџџгЃ®зўєдїќгЃ«е¤±ж•—гЃ—гЃѕгЃ—гЃџ" @*/ )) ;
 		return -1 ;
 	}
 	DXA_Decode( ( BYTE * )LoadParam->DataBuffer + 4, ( BYTE * )FHeader + 4 ) ;
 
-	// •K—v‚ИѓЃѓ‚ѓЉѓTѓCѓY‚МЋZЏo
+	// еї…и¦ЃгЃЄгѓЎгѓўгѓЄг‚µг‚¤г‚єгЃ®з®—е‡є
 	{
 		_MEMSET( &MTBase, 0, sizeof( MTBase ) ) ;
 		AllocSize = 0 ;
@@ -15161,14 +15161,14 @@ extern int MV1LoadModelToMV1( const MV1_MODEL_LOAD_PARAM *LoadParam, int ASyncTh
 		}
 	}
 
-	// ѓ‚ѓfѓ‹ЉоѓfЃ[ѓ^ѓnѓ“ѓhѓ‹‚МЌмђ¬
+	// гѓўгѓ‡гѓ«еџєгѓ‡гѓјг‚їгѓЏгѓігѓ‰гѓ«гЃ®дЅњж€ђ
 	NewHandle = MV1AddModelBase( ASyncThread ) ;
 	if( NewHandle < 0 )
 	{
 		goto ERRORLABEL ;
 	}
 
-	// ѓЃѓ‚ѓЉ‚МЉm•Ы
+	// гѓЎгѓўгѓЄгЃ®зўєдїќ
 	MV1BMDLCHK_ASYNC( NewHandle, MBase ) ;
 	MBase->DataBuffer = MDALLOCMEM( AllocSize ) ;
 	if( MBase->DataBuffer == NULL )
@@ -15178,7 +15178,7 @@ extern int MV1LoadModelToMV1( const MV1_MODEL_LOAD_PARAM *LoadParam, int ASyncTh
 	_MEMSET( MBase->DataBuffer, 0, AllocSize ) ;
 	MBase->AllocMemorySize = AllocSize ;
 
-	// ѓЃѓ‚ѓЉѓAѓhѓЊѓX‚МѓZѓbѓg
+	// гѓЎгѓўгѓЄг‚ўгѓ‰гѓ¬г‚№гЃ®г‚»гѓѓгѓ€
 	MBase->Name                   = ( wchar_t * )                   ( ( BYTE * )MBase->DataBuffer + ( DWORD_PTR )MTBase.Name                 ) ;
 	MBase->FilePath               = ( wchar_t * )                   ( ( BYTE * )MBase->DataBuffer + ( DWORD_PTR )MTBase.FilePath             ) ;
 	MBase->DirectoryPath          = ( wchar_t * )                   ( ( BYTE * )MBase->DataBuffer + ( DWORD_PTR )MTBase.DirectoryPath        ) ;
@@ -15214,43 +15214,43 @@ extern int MV1LoadModelToMV1( const MV1_MODEL_LOAD_PARAM *LoadParam, int ASyncTh
 		MBase->PhysicsJoint       = ( MV1_PHYSICS_JOINT_BASE *     )( ( BYTE * )MBase->DataBuffer + ( DWORD_PTR )MTBase.PhysicsJoint         ) ;
 	}
 
-	// ѓ‚ѓfѓ‹–ј‚Жѓtѓ@ѓCѓ‹ѓpѓX‚ЖѓtѓHѓ‹ѓ_ѓpѓX‚р•Ы‘¶
+	// гѓўгѓ‡гѓ«еђЌгЃЁгѓ•г‚Ўг‚¤гѓ«гѓ‘г‚№гЃЁгѓ•г‚©гѓ«гѓЂгѓ‘г‚№г‚’дїќе­
 	_WCSCPY( MBase->Name,          LoadParam->Name ) ;
 	_WCSCPY( MBase->FilePath,      LoadParam->FilePath ) ;
 	_WCSCPY( MBase->DirectoryPath, LoadParam->CurrentDir == NULL ? L"" : DirectoryPath ) ;
 
-	// “ЇЋћ•Ўђ”•`‰ж‚Й‘О‰ћ‚·‚й‚©‚З‚¤‚©‚р•Ы‘¶
+	// еђЊж™‚и¤‡ж•°жЏЏз”»гЃ«еЇѕеїњгЃ™г‚‹гЃ‹гЃ©гЃ†гЃ‹г‚’дїќе­
 	MBase->UsePackDraw = LoadParam->GParam.LoadModelToUsePackDraw ;
 
-	// ЌА•WЊnЏо•с‚р•Ы‘¶
+	// еє§жЁ™зі»жѓ…е ±г‚’дїќе­
 	MBase->RightHandType = FHeader->RightHandType ;
 
-	// Љ„‚и“–‚Д‚з‚к‚Д‚ў‚йѓ}ѓeѓЉѓAѓ‹‚М”ФЌ†‚Є’б‚ўѓЃѓbѓVѓ…‚©‚з•`‰ж‚·‚й‚©‚З‚¤‚©‚МЏо•с‚р•Ы‘¶
+	// е‰Іг‚ЉеЅ“гЃ¦г‚‰г‚ЊгЃ¦гЃ„г‚‹гѓћгѓ†гѓЄг‚ўгѓ«гЃ®з•ЄеЏ·гЃЊдЅЋгЃ„гѓЎгѓѓг‚·гѓҐгЃ‹г‚‰жЏЏз”»гЃ™г‚‹гЃ‹гЃ©гЃ†гЃ‹гЃ®жѓ…е ±г‚’дїќе­
 	MBase->MaterialNumberOrderDraw = FHeader->MaterialNumberOrderDraw ;
 
-	// •ПЌXѓ`ѓFѓbѓN—pѓeЃ[ѓuѓ‹‚Й•K—v‚ИѓfЃ[ѓ^‚МѓTѓCѓY‚М•Ы‘¶‚ЖѓRѓsЃ[
+	// е¤‰ж›ґгѓЃг‚§гѓѓг‚Їз”Ёгѓ†гѓјгѓ–гѓ«гЃ«еї…и¦ЃгЃЄгѓ‡гѓјг‚їгЃ®г‚µг‚¤г‚єгЃ®дїќе­гЃЁг‚ігѓ”гѓј
 	MBase->ChangeDrawMaterialTableSize  = FHeader->ChangeDrawMaterialTableSize ;
 	MBase->ChangeMatrixTableSize        = FHeader->ChangeMatrixTableSize ;
 	_MEMCPY( MBase->ChangeDrawMaterialTable, ( BYTE * )FHeader + ( DWORD_PTR )FHeader->ChangeDrawMaterialTable, ( size_t )FHeader->ChangeDrawMaterialTableSize ) ;
 	_MEMCPY( MBase->ChangeMatrixTable,       ( BYTE * )FHeader + ( DWORD_PTR )FHeader->ChangeMatrixTable,       ( size_t )FHeader->ChangeMatrixTableSize ) ;
 
-	// ѓ|ѓЉѓSѓ“ђ”‚р•Ы‘¶
+	// гѓќгѓЄг‚ґгѓіж•°г‚’дїќе­
 	MBase->TriangleNum = FHeader->TriangleNum ;
 
-	// ’ё“_ѓfЃ[ѓ^‚Мђ”‚р•Ы‘¶
+	// й ‚з‚№гѓ‡гѓјг‚їгЃ®ж•°г‚’дїќе­
 	MBase->TriangleListVertexNum = FHeader->TriangleListVertexNum ;
 
-	// ѓtѓЊЃ[ѓЂ‚ЄЋg—p‚µ‚Д‚ў‚йѓ{Ѓ[ѓ“‚Ц‚Мѓ|ѓCѓ“ѓ^‚МЏо•с‚рѓRѓsЃ[
+	// гѓ•гѓ¬гѓјгѓ гЃЊдЅїз”ЁгЃ—гЃ¦гЃ„г‚‹гѓњгѓјгѓігЃёгЃ®гѓќг‚¤гѓіг‚їгЃ®жѓ…е ±г‚’г‚ігѓ”гѓј
 	MBase->FrameUseSkinBoneNum = FHeader->FrameUseSkinBoneNum ;
 	for( i = 0 ; i < MBase->FrameUseSkinBoneNum ; i ++ )
 	{
 		MBase->FrameUseSkinBone[ i ] = MBase->SkinBone + ( ( ( DWORD * )( ( DWORD_PTR )FHeader + ( DWORD_PTR )FHeader->FrameUseSkinBone ) )[ i ] - FHeader->SkinBone ) / sizeof( MV1_SKIN_BONE_F1 ) ;
 	}
 
-	// ѓXѓLѓjѓ“ѓO—pѓ{Ѓ[ѓ“‚рЋg—p‚·‚йѓtѓЊЃ[ѓЂ‚МЏо•с‚рѓRѓsЃ[
+	// г‚№г‚­гѓ‹гѓіг‚°з”Ёгѓњгѓјгѓіг‚’дЅїз”ЁгЃ™г‚‹гѓ•гѓ¬гѓјгѓ гЃ®жѓ…е ±г‚’г‚ігѓ”гѓј
 	_MEMCPY( MBase->SkinBoneUseFrame, ( BYTE * )FHeader + ( DWORD_PTR )FHeader->SkinBoneUseFrame, FHeader->SkinBoneUseFrameNum * sizeof( MV1_SKIN_BONE_USE_FRAME_F1 ) ) ;
 
-	// •¶Ћљ—сѓfЃ[ѓ^‚рѓRѓsЃ[
+	// ж–‡е­—е€—гѓ‡гѓјг‚їг‚’г‚ігѓ”гѓј
 	FileStringBuffer = ( BYTE * )FHeader + FHeader->StringBuffer ;
 	if( FHeader->IsStringUTF8 )
 	{
@@ -15268,7 +15268,7 @@ extern int MV1LoadModelToMV1( const MV1_MODEL_LOAD_PARAM *LoadParam, int ASyncTh
 		MBase->StringSizeW = 0 ;
 	}
 
-	// ЉeѓIѓuѓWѓFѓNѓg‚Мђ”‚МЏо•с‚р•Ы‘¶
+	// еђ„г‚Єгѓ–г‚ёг‚§г‚Їгѓ€гЃ®ж•°гЃ®жѓ…е ±г‚’дїќе­
 	MBase->FrameNum              = FHeader->FrameNum ;
 	MBase->MaterialNum           = FHeader->MaterialNum ;
 	MBase->LightNum              = FHeader->LightNum ;
@@ -15301,7 +15301,7 @@ extern int MV1LoadModelToMV1( const MV1_MODEL_LOAD_PARAM *LoadParam, int ASyncTh
 		MBase->PhysicsJointNum   = F1FileHeadPhysics->JointNum ;
 	}
 
-	// ѓЃѓbѓVѓ…’ё“_ѓfЃ[ѓ^ѓTѓCѓY‚МЊvЋZ( FHeader->MeshVertexSize ‚ЄЊГ‚ўѓoЃ[ѓWѓ‡ѓ“‚ЖђV‚µ‚ўѓoЃ[ѓWѓ‡ѓ“‚Е€Щ‚И‚Б‚Д‚µ‚Ь‚Б‚Ѕ‚М‚Е )
+	// гѓЎгѓѓг‚·гѓҐй ‚з‚№гѓ‡гѓјг‚їг‚µг‚¤г‚єгЃ®иЁ€з®—( FHeader->MeshVertexSize гЃЊеЏ¤гЃ„гѓђгѓјг‚ёгѓ§гѓігЃЁж–°гЃ—гЃ„гѓђгѓјг‚ёгѓ§гѓігЃ§з•°гЃЄгЃЈгЃ¦гЃ—гЃѕгЃЈгЃџгЃ®гЃ§ )
 	{
 		DWORD MeshVertexSize ;
 
@@ -15324,7 +15324,7 @@ extern int MV1LoadModelToMV1( const MV1_MODEL_LOAD_PARAM *LoadParam, int ASyncTh
 	}
 
 
-	// ’ё“_ѓfЃ[ѓ^‚рЉi”[‚·‚й‚Ѕ‚Я‚МѓЃѓ‚ѓЉ—М€ж‚МЉm•Ы
+	// й ‚з‚№гѓ‡гѓјг‚їг‚’ж јзґЌгЃ™г‚‹гЃџг‚ЃгЃ®гѓЎгѓўгѓЄй еџџгЃ®зўєдїќ
 	{
 		MBase->VertexDataSize = 
 			FHeader->MeshVertexIndexNum                * sizeof( DWORD )                 +
@@ -15380,7 +15380,7 @@ extern int MV1LoadModelToMV1( const MV1_MODEL_LOAD_PARAM *LoadParam, int ASyncTh
 		if( FHeader->Shape == 0 || F1FileHeadShape->VertexNum == 0 ) MBase->ShapeVertex = NULL ;
 	}
 
-	// ѓtѓЊЃ[ѓЂ‚МЏо•с‚рѓZѓbѓg
+	// гѓ•гѓ¬гѓјгѓ гЃ®жѓ…е ±г‚’г‚»гѓѓгѓ€
 	MBase->TopFrameNum  = FHeader->TopFrameNum ;
 	MBase->FirstTopFrame = FHeader->FirstTopFrame ? MBase->Frame + ( ( MV1_FRAME_F1 * )( ( BYTE * )FHeader + ( DWORD_PTR )FHeader->FirstTopFrame ) )->Index : NULL ;
 	MBase->LastTopFrame  = FHeader->LastTopFrame  ? MBase->Frame + ( ( MV1_FRAME_F1 * )( ( BYTE * )FHeader + ( DWORD_PTR )FHeader->LastTopFrame ) )->Index  : NULL ;
@@ -15484,7 +15484,7 @@ extern int MV1LoadModelToMV1( const MV1_MODEL_LOAD_PARAM *LoadParam, int ASyncTh
 		Frame->PositionNum     = F1Frame->PositionNum ;
 		Frame->NormalNum       = F1Frame->NormalNum ;
 
-		// ЌА•WѓfЃ[ѓ^‚Ж–@ђьѓfЃ[ѓ^‚МѓRѓsЃ[
+		// еє§жЁ™гѓ‡гѓјг‚їгЃЁжі•з·љгѓ‡гѓјг‚їгЃ®г‚ігѓ”гѓј
 		if( F1Frame->PositionNum == 0 )
 		{
 			Frame->Position = NULL ;
@@ -15505,7 +15505,7 @@ extern int MV1LoadModelToMV1( const MV1_MODEL_LOAD_PARAM *LoadParam, int ASyncTh
 
 			Src = ( BYTE * )( DWORD_PTR )F1Frame->PositionAndNormalData + ( DWORD_PTR )FHeader ;
 
-			// ЌА•WѓfЃ[ѓ^‚МЋж“ѕ
+			// еє§жЁ™гѓ‡гѓјг‚їгЃ®еЏ–еѕ—
 			if( F1Frame->VertFlag & MV1_FRAME_VERT_FLAG_POSITION_B16 )
 			{
 				xs = ( ( MV1_POSITION_16BIT_SUBINFO_F1 * )Src )[ 0 ] ;
@@ -15532,7 +15532,7 @@ extern int MV1LoadModelToMV1( const MV1_MODEL_LOAD_PARAM *LoadParam, int ASyncTh
 				}
 			}
 
-			// ’ё“_ѓEѓGѓCѓgѓfЃ[ѓ^‚МЋж“ѕ
+			// й ‚з‚№г‚¦г‚Ёг‚¤гѓ€гѓ‡гѓјг‚їгЃ®еЏ–еѕ—
 			if( ( F1Frame->VertFlag & MV1_FRAME_VERT_FLAG_MATRIX_WEIGHT_NONE ) == 0 )
 			{
 				DWORD IndexType, WeightType ;
@@ -15584,7 +15584,7 @@ extern int MV1LoadModelToMV1( const MV1_MODEL_LOAD_PARAM *LoadParam, int ASyncTh
 				}
 			}
 
-			// –@ђьѓfЃ[ѓ^‚МЋж“ѕ
+			// жі•з·љгѓ‡гѓјг‚їгЃ®еЏ–еѕ—
 			if( F1Frame->VertFlag & MV1_FRAME_VERT_FLAG_NOMRAL_TANGENT_BINORMAL )
 			{
 				Frame->Flag |= MV1_FRAMEFLAG_TANGENT_BINORMAL ;
@@ -15692,19 +15692,19 @@ extern int MV1LoadModelToMV1( const MV1_MODEL_LOAD_PARAM *LoadParam, int ASyncTh
 		}
 	}
 
-	// ѓeѓNѓXѓ`ѓѓ‚МЏо•с‚рѓZѓbѓg
+	// гѓ†г‚Їг‚№гѓЃгѓЈгЃ®жѓ…е ±г‚’г‚»гѓѓгѓ€
 	MBase->TextureAllocMem = FALSE ;
 	Texture = MBase->Texture ;
 	F1Texture = ( MV1_TEXTURE_F1 * )( ( BYTE * )FHeader + ( DWORD_PTR )FHeader->Texture ) ;
 	for( i = 0 ; i < MBase->TextureNum ; i ++, Texture ++, F1Texture = ( MV1_TEXTURE_F1 * )( ( DWORD_PTR )FHeader + ( DWORD_PTR )F1Texture->DimNext ) )
 	{
-		// ѓ†Ѓ[ѓUЃ[ѓfЃ[ѓ^‚рЏ‰Љъ‰»
+		// гѓ¦гѓјг‚¶гѓјгѓ‡гѓјг‚їг‚’е€ќжњџеЊ–
 		Texture->UserData[ 0 ] = 0 ;
 		Texture->UserData[ 1 ] = 0 ;
 		Texture->UseUserGraphHandle = 0 ;
 		Texture->UserGraphHandle = 0 ;
 
-		// –ј‘O‚р•Ы‘¶
+		// еђЌе‰Ќг‚’дїќе­
 		Texture->NameAllocMem = FALSE ;
 		MV1LoadModelToMV1_GetString( FHeader, MBase, FileStringBuffer, F1Texture->Name,
 #ifndef UNICODE
@@ -15713,13 +15713,13 @@ extern int MV1LoadModelToMV1( const MV1_MODEL_LOAD_PARAM *LoadParam, int ASyncTh
 			&Texture->NameW
 		) ;
 
-		// ”Ѕ“]ѓtѓ‰ѓO‚рѓZѓbѓg‚·‚й
+		// еЏЌи»ўгѓ•гѓ©г‚°г‚’г‚»гѓѓгѓ€гЃ™г‚‹
 		Texture->ReverseFlag = ( F1Texture->Flag & MV1_TEXTURE_FLAG_REVERSE ) != 0 ? 1 : 0 ;
 
-		// ‚R‚Qѓrѓbѓg‚a‚l‚o‚МѓAѓ‹ѓtѓ@’l‚Є‘S•”‚O‚ѕ‚Б‚Ѕ‚з XRGB8 ‚Ж‚µ‚Д€µ‚¤‚©‚З‚¤‚©‚Мѓtѓ‰ѓO‚рѓZѓbѓg‚·‚й
+		// пј“пј’гѓ“гѓѓгѓ€пјўпј­пј°гЃ®г‚ўгѓ«гѓ•г‚ЎеЂ¤гЃЊе…ЁйѓЁпјђгЃ гЃЈгЃџг‚‰ XRGB8 гЃЁгЃ—гЃ¦ж‰±гЃ†гЃ‹гЃ©гЃ†гЃ‹гЃ®гѓ•гѓ©г‚°г‚’г‚»гѓѓгѓ€гЃ™г‚‹
 		Texture->Bmp32AllZeroAlphaToXRGB8Flag = ( F1Texture->Flag & MV1_TEXTURE_FLAG_BMP32_ALL_ZERO_ALPHA_TO_XRGB8 ) != 0 ? 1 : 0 ;
 
-		// ѓeѓNѓXѓ`ѓѓ‚М“З‚ЭЌћ‚Э
+		// гѓ†г‚Їг‚№гѓЃгѓЈгЃ®иЄ­гЃїиѕјгЃї
 		{
 			wchar_t ColorPathW[ FILEPATH_MAX ] ;
 			wchar_t AlphaPathW[ FILEPATH_MAX ] ;
@@ -15789,11 +15789,11 @@ extern int MV1LoadModelToMV1( const MV1_MODEL_LOAD_PARAM *LoadParam, int ASyncTh
 				goto ERRORLABEL ;
 			}
 
-			// ѓtѓ@ѓCѓ‹ѓpѓX—p‚ЙѓЃѓ‚ѓЉ‚рЉm•Ы‚µ‚Ѕѓtѓ‰ѓO‚р“|‚·
+			// гѓ•г‚Ўг‚¤гѓ«гѓ‘г‚№з”ЁгЃ«гѓЎгѓўгѓЄг‚’зўєдїќгЃ—гЃџгѓ•гѓ©г‚°г‚’еЂ’гЃ™
 			Texture->ColorImageFilePathAllocMem = FALSE ;
 			Texture->AlphaImageFilePathAllocMem = FALSE ;
 
-			// ѓtѓ@ѓCѓ‹ѓpѓX‚р•Ы‘¶
+			// гѓ•г‚Ўг‚¤гѓ«гѓ‘г‚№г‚’дїќе­
 			if( ( Texture->ColorImage == NULL && LoadParam->GParam.LoadModelToNotTextureLoad == FALSE ) || F1Texture->ColorFilePath == 0 )
 			{
 #ifndef UNICODE
@@ -15810,11 +15810,11 @@ extern int MV1LoadModelToMV1( const MV1_MODEL_LOAD_PARAM *LoadParam, int ASyncTh
 			}
 		}
 
-		// ѓAѓhѓЊѓbѓVѓ“ѓOѓ‚Ѓ[ѓh‚МѓZѓbѓg
+		// г‚ўгѓ‰гѓ¬гѓѓг‚·гѓіг‚°гѓўгѓјгѓ‰гЃ®г‚»гѓѓгѓ€
 		Texture->AddressModeU = F1Texture->AddressModeU ;
 		Texture->AddressModeV = F1Texture->AddressModeV ;
 
-		// ѓXѓPЃ[ѓЉѓ“ѓO‚МѓZѓbѓg
+		// г‚№г‚±гѓјгѓЄгѓіг‚°гЃ®г‚»гѓѓгѓ€
 		if( ( F1Texture->Flag & MV1_TEXTURE_FLAG_VALID_SCALE_UV ) != 0 )
 		{
 			Texture->ScaleU = F1Texture->ScaleU ;
@@ -15826,18 +15826,18 @@ extern int MV1LoadModelToMV1( const MV1_MODEL_LOAD_PARAM *LoadParam, int ASyncTh
 			Texture->ScaleV = 1.0f ;
 		}
 
-		// ѓtѓBѓ‹ѓ^ѓЉѓ“ѓOѓ‚Ѓ[ѓh‚МѓZѓbѓg
+		// гѓ•г‚Јгѓ«г‚їгѓЄгѓіг‚°гѓўгѓјгѓ‰гЃ®г‚»гѓѓгѓ€
 		Texture->FilterMode = F1Texture->FilterMode ;
 
-		// ѓoѓ“ѓvѓ}ѓbѓvЏо•с‚р•Ы‘¶
+		// гѓђгѓігѓ—гѓћгѓѓгѓ—жѓ…е ±г‚’дїќе­
 		Texture->BumpImageFlag = F1Texture->BumpImageFlag ;
 		Texture->BumpImageNextPixelLength = F1Texture->BumpImageNextPixelLength ;
 
-		// ‰ж‘њ‚МѓTѓCѓY‚рЋж“ѕ
+		// з”»еѓЏгЃ®г‚µг‚¤г‚єг‚’еЏ–еѕ—
 		NS_GetGraphSize( Texture->GraphHandle, &Texture->Width, &Texture->Height ) ;
 	}
 
-	// ѓ}ѓeѓЉѓAѓ‹‚МЏо•с‚рѓZѓbѓg
+	// гѓћгѓ†гѓЄг‚ўгѓ«гЃ®жѓ…е ±г‚’г‚»гѓѓгѓ€
 	Material = MBase->Material ;
 	F1Material = ( MV1_MATERIAL_F1 * )( ( BYTE * )FHeader + ( DWORD_PTR )FHeader->Material ) ;
 	for( i = 0 ; i < MBase->MaterialNum ; i ++, Material ++, F1Material = ( MV1_MATERIAL_F1 * )( ( DWORD_PTR )FHeader + ( DWORD_PTR )F1Material->DimNext ) )
@@ -15964,7 +15964,7 @@ extern int MV1LoadModelToMV1( const MV1_MODEL_LOAD_PARAM *LoadParam, int ASyncTh
 		}
 	}
 
-	// ѓ‰ѓCѓg‚МЏо•с‚рѓZѓbѓg
+	// гѓ©г‚¤гѓ€гЃ®жѓ…е ±г‚’г‚»гѓѓгѓ€
 	Light = MBase->Light ;
 	F1Light = ( MV1_LIGHT_F1 * )( ( BYTE * )FHeader + ( DWORD_PTR )FHeader->Light ) ;
 	for( i = 0 ; i < MBase->LightNum ; i ++, Light ++, F1Light = ( MV1_LIGHT_F1 * )( ( DWORD_PTR )FHeader + ( DWORD_PTR )F1Light->DimNext ) )
@@ -15991,7 +15991,7 @@ extern int MV1LoadModelToMV1( const MV1_MODEL_LOAD_PARAM *LoadParam, int ASyncTh
 		Light->Phi = F1Light->Phi ;
 	}
 
-	// ѓЃѓbѓVѓ…‚МЏо•с‚рѓZѓbѓg
+	// гѓЎгѓѓг‚·гѓҐгЃ®жѓ…е ±г‚’г‚»гѓѓгѓ€
 	Mesh = MBase->Mesh ;
 	F1Mesh = ( MV1_MESH_F1 * )( ( BYTE * )FHeader + ( DWORD_PTR )FHeader->Mesh ) ;
 	for( i = 0 ; i < MBase->MeshNum ; i ++, Mesh ++, F1Mesh = ( MV1_MESH_F1 * )( ( DWORD_PTR )FHeader + ( DWORD_PTR )F1Mesh->DimNext ) )
@@ -16026,7 +16026,7 @@ extern int MV1LoadModelToMV1( const MV1_MODEL_LOAD_PARAM *LoadParam, int ASyncTh
 
 		Mesh->FaceNum = 0 ;
 
-		// ’ё“_ѓfЃ[ѓ^‚рЋж“ѕ‚·‚й
+		// й ‚з‚№гѓ‡гѓјг‚їг‚’еЏ–еѕ—гЃ™г‚‹
 		{
 			MV1_MESH_VERTEX *Vert ;
 
@@ -16037,17 +16037,17 @@ extern int MV1LoadModelToMV1( const MV1_MODEL_LOAD_PARAM *LoadParam, int ASyncTh
 
 			Src = ( BYTE * )( DWORD_PTR )F1Mesh->VertexData + ( DWORD_PTR )FHeader ;
 
-			// ‹¤—L’ё“_ѓJѓ‰Ѓ[‚©‚З‚¤‚©‚ЕЏ€—ќ‚р•ЄЉт
+			// е…±жњ‰й ‚з‚№г‚«гѓ©гѓјгЃ‹гЃ©гЃ†гЃ‹гЃ§е‡¦зђ†г‚’е€†еІђ
 			if( F1Mesh->VertFlag & MV1_MESH_VERT_FLAG_COMMON_COLOR )
 			{
 				COLOR_U8 DiffuseColor, SpecularColor ;
 
-				// ‹¤—L’ё“_ѓJѓ‰Ѓ[‚рЋж“ѕ‚·‚й
+				// е…±жњ‰й ‚з‚№г‚«гѓ©гѓјг‚’еЏ–еѕ—гЃ™г‚‹
 				DiffuseColor  = ( ( COLOR_U8 * )Src )[ 0 ] ;
 				SpecularColor = ( ( COLOR_U8 * )Src )[ 1 ] ;
 				Src += 8 ;
 
-				// ‘S‚Д‚М’ё“_‚МѓJѓ‰Ѓ[‚ЙѓZѓbѓg‚·‚й
+				// е…ЁгЃ¦гЃ®й ‚з‚№гЃ®г‚«гѓ©гѓјгЃ«г‚»гѓѓгѓ€гЃ™г‚‹
 				Vert = Mesh->Vertex ;
 				for( j = 0 ; j < Mesh->VertexNum ; j ++, Vert = ( MV1_MESH_VERTEX * )( ( BYTE * )Vert + Mesh->VertUnitSize ) )
 				{
@@ -16056,7 +16056,7 @@ extern int MV1LoadModelToMV1( const MV1_MODEL_LOAD_PARAM *LoadParam, int ASyncTh
 				}
 			}
 
-			// ЌА•WѓCѓ“ѓfѓbѓNѓX‚рЋж“ѕ‚·‚й
+			// еє§жЁ™г‚¤гѓігѓ‡гѓѓг‚Їг‚№г‚’еЏ–еѕ—гЃ™г‚‹
 			switch( F1Mesh->VertFlag & MV1_MESH_VERT_FLAG_POS_IND_TYPE_MASK )
 			{
 			case MV1_MESH_VERT_INDEX_TYPE_U8 :
@@ -16087,7 +16087,7 @@ extern int MV1LoadModelToMV1( const MV1_MODEL_LOAD_PARAM *LoadParam, int ASyncTh
 				break ;
 			}
 
-			// –@ђьѓCѓ“ѓfѓbѓNѓX‚рЋж“ѕ‚·‚й
+			// жі•з·љг‚¤гѓігѓ‡гѓѓг‚Їг‚№г‚’еЏ–еѕ—гЃ™г‚‹
 			switch( ( F1Mesh->VertFlag & MV1_MESH_VERT_FLAG_NRM_IND_TYPE_MASK ) >> 2 )
 			{
 			case MV1_MESH_VERT_INDEX_TYPE_NONE :
@@ -16121,7 +16121,7 @@ extern int MV1LoadModelToMV1( const MV1_MODEL_LOAD_PARAM *LoadParam, int ASyncTh
 				break ;
 			}
 
-			// ’ё“_ѓJѓ‰Ѓ[‚рЋж“ѕ‚·‚й
+			// й ‚з‚№г‚«гѓ©гѓјг‚’еЏ–еѕ—гЃ™г‚‹
 			if( ( F1Mesh->VertFlag & MV1_MESH_VERT_FLAG_COMMON_COLOR ) == 0 )
 			{
 				Vert = Mesh->Vertex ;
@@ -16133,7 +16133,7 @@ extern int MV1LoadModelToMV1( const MV1_MODEL_LOAD_PARAM *LoadParam, int ASyncTh
 				}
 			}
 
-			// ‚t‚u’l‚рЋж“ѕ‚·‚й
+			// пјµпј¶еЂ¤г‚’еЏ–еѕ—гЃ™г‚‹
 			if( F1Mesh->VertFlag & MV1_MESH_VERT_FLAG_UV_U16 )
 			{
 				Vert = Mesh->Vertex ;
@@ -16161,7 +16161,7 @@ extern int MV1LoadModelToMV1( const MV1_MODEL_LOAD_PARAM *LoadParam, int ASyncTh
 				}
 			}
 
-			// ѓgѓDЃ[ѓ“—p‚М—ЦЉsђь‚р•\Ћ¦‚·‚й‚©‚З‚¤‚©‚МЏо•с‚рЋж“ѕ‚·‚й
+			// гѓ€г‚Ґгѓјгѓіз”ЁгЃ®ијЄйѓ­з·љг‚’иЎЁз¤єгЃ™г‚‹гЃ‹гЃ©гЃ†гЃ‹гЃ®жѓ…е ±г‚’еЏ–еѕ—гЃ™г‚‹
 			if( F1Mesh->VertFlag & MV1_MESH_VERT_FLAG_NON_TOON_OUTLINE )
 			{
 				DWORD BitNum ;
@@ -16194,7 +16194,7 @@ extern int MV1LoadModelToMV1( const MV1_MODEL_LOAD_PARAM *LoadParam, int ASyncTh
 
 	if( F1FileHeadShape )
 	{
-		// ѓVѓFѓCѓv‚МЏо•с‚рѓZѓbѓg
+		// г‚·г‚§г‚¤гѓ—гЃ®жѓ…е ±г‚’г‚»гѓѓгѓ€
 		Shape = MBase->Shape ;
 		F1Shape = ( MV1_SHAPE_F1 * )( ( BYTE * )FHeader + ( DWORD_PTR )F1FileHeadShape->Data ) ;
 		for( i = 0 ; i < MBase->ShapeNum ; i ++, Shape ++, F1Shape = ( MV1_SHAPE_F1 * )( ( DWORD_PTR )FHeader + ( DWORD_PTR )F1Shape->DimNext ) )
@@ -16219,7 +16219,7 @@ extern int MV1LoadModelToMV1( const MV1_MODEL_LOAD_PARAM *LoadParam, int ASyncTh
 			}
 		}
 
-		// ѓVѓFѓCѓvѓЃѓbѓVѓ…‚МЏо•с‚рѓZѓbѓg
+		// г‚·г‚§г‚¤гѓ—гѓЎгѓѓг‚·гѓҐгЃ®жѓ…е ±г‚’г‚»гѓѓгѓ€
 		ShapeMesh = MBase->ShapeMesh ;
 		F1ShapeMesh = ( MV1_SHAPE_MESH_F1 * )( ( BYTE * )FHeader + ( DWORD_PTR )F1FileHeadShape->Mesh ) ;
 		for( i = 0 ; i < MBase->ShapeMeshNum ; i ++, ShapeMesh ++, F1ShapeMesh = ( MV1_SHAPE_MESH_F1 * )( ( DWORD_PTR )FHeader + ( DWORD_PTR )F1ShapeMesh->DimNext ) )
@@ -16249,7 +16249,7 @@ extern int MV1LoadModelToMV1( const MV1_MODEL_LOAD_PARAM *LoadParam, int ASyncTh
 
 	if( F1FileHeadPhysics )
 	{
-		// Ќ„‘М‚МЏо•с‚рѓZѓbѓg
+		// е‰›дЅ“гЃ®жѓ…е ±г‚’г‚»гѓѓгѓ€
 		PhysicsRigidBody = MBase->PhysicsRigidBody ;
 		F1PhysicsRigidBody = ( MV1_PHYSICS_RIGIDBODY_F1 * )( ( BYTE * )FHeader + ( DWORD_PTR )F1FileHeadPhysics->RigidBody ) ;
 		for( i = 0 ; i < MBase->PhysicsRigidBodyNum ; i ++, PhysicsRigidBody ++, F1PhysicsRigidBody = ( MV1_PHYSICS_RIGIDBODY_F1 * )( ( DWORD_PTR )FHeader + ( DWORD_PTR )F1PhysicsRigidBody->DimNext ) )
@@ -16286,7 +16286,7 @@ extern int MV1LoadModelToMV1( const MV1_MODEL_LOAD_PARAM *LoadParam, int ASyncTh
 			PhysicsRigidBody->NoCopyToBone = F1PhysicsRigidBody->NoCopyToBone ;
 		}
 
-		// Ќ„‘М‚МѓWѓ‡ѓCѓ“ѓgЏо•с‚рѓZѓbѓg
+		// е‰›дЅ“гЃ®г‚ёгѓ§г‚¤гѓігѓ€жѓ…е ±г‚’г‚»гѓѓгѓ€
 		PhysicsJoint = MBase->PhysicsJoint ;
 		F1PhysicsJoint = ( MV1_PHYSICS_JOINT_F1 * )( ( BYTE * )FHeader + ( DWORD_PTR )F1FileHeadPhysics->Joint ) ;
 		for( i = 0 ; i < MBase->PhysicsJointNum ; i ++, PhysicsJoint ++, F1PhysicsJoint = ( MV1_PHYSICS_JOINT_F1 * )( ( DWORD_PTR )FHeader + ( DWORD_PTR )F1PhysicsJoint->DimNext ) )
@@ -16321,7 +16321,7 @@ extern int MV1LoadModelToMV1( const MV1_MODEL_LOAD_PARAM *LoadParam, int ASyncTh
 		}
 	}
 
-	// ѓXѓLѓjѓ“ѓOѓЃѓbѓVѓ…—p‚Мѓ{Ѓ[ѓ“Џо•с‚рѓZѓbѓg
+	// г‚№г‚­гѓ‹гѓіг‚°гѓЎгѓѓг‚·гѓҐз”ЁгЃ®гѓњгѓјгѓіжѓ…е ±г‚’г‚»гѓѓгѓ€
 	{
 		int UseFrameInfoNoneFlag = TRUE ;
 
@@ -16340,10 +16340,10 @@ extern int MV1LoadModelToMV1( const MV1_MODEL_LOAD_PARAM *LoadParam, int ASyncTh
 			}
 		}
 		
-		// ѓEѓGѓCѓg‚ЄЋg—p‚µ‚Д‚ў‚йѓ{Ѓ[ѓ“Џо•с‚Є–і‚©‚Б‚ЅЏкЌ‡‚Н‚±‚±‚ЕЌ\’z‚·‚й
+		// г‚¦г‚Ёг‚¤гѓ€гЃЊдЅїз”ЁгЃ—гЃ¦гЃ„г‚‹гѓњгѓјгѓіжѓ…е ±гЃЊз„ЎгЃ‹гЃЈгЃџе ґеђ€гЃЇгЃ“гЃ“гЃ§ж§‹зЇ‰гЃ™г‚‹
 		if( UseFrameInfoNoneFlag )
 		{
-			// ѓAѓhѓЊѓX‚рѓZѓbѓg
+			// г‚ўгѓ‰гѓ¬г‚№г‚’г‚»гѓѓгѓ€
 			MBase->FrameUseSkinBoneNum = 0 ;
 			SkinBone = MBase->SkinBone ;
 			for( i = 0; i < MBase->SkinBoneNum; i ++, SkinBone ++ )
@@ -16357,14 +16357,14 @@ extern int MV1LoadModelToMV1( const MV1_MODEL_LOAD_PARAM *LoadParam, int ASyncTh
 				MBase->FrameUseSkinBoneNum += SkinBone->UseFrameNum ;
 			}
 
-			// ѓ{Ѓ[ѓ“‚Мђ”‚рѓЉѓZѓbѓg
+			// гѓњгѓјгѓігЃ®ж•°г‚’гѓЄг‚»гѓѓгѓ€
 			SkinBone = MBase->SkinBone ;
 			for( i = 0; i < MBase->SkinBoneNum; i ++, SkinBone ++ )
 			{
 				SkinBone->UseFrameNum = 0 ;
 			}
 
-			// ѓtѓЊЃ[ѓЂ‚ЄЋg—p‚µ‚Д‚ў‚йѓ{Ѓ[ѓ“‚МЏо•с‚рѓZѓbѓg
+			// гѓ•гѓ¬гѓјгѓ гЃЊдЅїз”ЁгЃ—гЃ¦гЃ„г‚‹гѓњгѓјгѓігЃ®жѓ…е ±г‚’г‚»гѓѓгѓ€
 			Frame = MBase->Frame ;
 			for( i = 0 ; i < MBase->FrameNum ; i ++, Frame ++ )
 			{
@@ -16378,7 +16378,7 @@ extern int MV1LoadModelToMV1( const MV1_MODEL_LOAD_PARAM *LoadParam, int ASyncTh
 		}
 	}
 
-	// ѓgѓ‰ѓCѓAѓ“ѓOѓ‹ѓЉѓXѓg‚МЏо•с‚рѓZѓbѓg
+	// гѓ€гѓ©г‚¤г‚ўгѓіг‚°гѓ«гѓЄг‚№гѓ€гЃ®жѓ…е ±г‚’г‚»гѓѓгѓ€
 	TriangleList = MBase->TriangleList ;
 	F1TriangleList = ( MV1_TRIANGLE_LIST_F1 * )( ( BYTE * )FHeader + ( DWORD_PTR )FHeader->TriangleList ) ;
 	for( i = 0 ; i < MBase->TriangleListNum ; i ++, TriangleList ++, F1TriangleList = ( MV1_TRIANGLE_LIST_F1 * )( ( DWORD_PTR )FHeader + ( DWORD_PTR )F1TriangleList->DimNext ) )
@@ -16391,13 +16391,13 @@ extern int MV1LoadModelToMV1( const MV1_MODEL_LOAD_PARAM *LoadParam, int ASyncTh
 		TriangleList->VertexNum = F1TriangleList->VertexNum ;
 		TriangleList->IndexNum = F1TriangleList->IndexNum ;
 
-		// ѓЃѓbѓVѓ…‚Мѓ|ѓЉѓSѓ“ђ”‚р‰БЋZ
+		// гѓЎгѓѓг‚·гѓҐгЃ®гѓќгѓЄг‚ґгѓіж•°г‚’еЉ з®—
 		if( TriangleList->Container != NULL )
 		{
 			TriangleList->Container->TriangleNum += TriangleList->IndexNum / 3 ;
 		}
 
-		// ’ё“_ѓfЃ[ѓ^‚М“З‚ЭЌћ‚Э
+		// й ‚з‚№гѓ‡гѓјг‚їгЃ®иЄ­гЃїиѕјгЃї
 		{
 			DWORD *MInd ;
 			WORD *Ind ;
@@ -16411,7 +16411,7 @@ extern int MV1LoadModelToMV1( const MV1_MODEL_LOAD_PARAM *LoadParam, int ASyncTh
 
 			Src = ( BYTE * )( DWORD_PTR )F1TriangleList->MeshVertexIndexAndIndexData + ( DWORD_PTR )FHeader ;
 
-			// ѓ{Ѓ[ѓ“‚МЏо•с‚рЋж“ѕ
+			// гѓњгѓјгѓігЃ®жѓ…е ±г‚’еЏ–еѕ—
 			switch( TriangleList->VertexType )
 			{
 			case MV1_VERTEX_TYPE_SKIN_4BONE :
@@ -16431,7 +16431,7 @@ extern int MV1LoadModelToMV1( const MV1_MODEL_LOAD_PARAM *LoadParam, int ASyncTh
 				break ;
 			}
 
-			// ѓЃѓbѓVѓ…’ё“_ѓCѓ“ѓfѓbѓNѓX‚рЋж“ѕ‚·‚й
+			// гѓЎгѓѓг‚·гѓҐй ‚з‚№г‚¤гѓігѓ‡гѓѓг‚Їг‚№г‚’еЏ–еѕ—гЃ™г‚‹
 			MInd = TriangleList->MeshVertexIndex ;
 			switch( F1TriangleList->Flag & MV1_TRIANGLE_LIST_FLAG_MVERT_INDEX_MASK )
 			{
@@ -16460,7 +16460,7 @@ extern int MV1LoadModelToMV1( const MV1_MODEL_LOAD_PARAM *LoadParam, int ASyncTh
 				break ;
 			}
 
-			// Ќ‚‘¬ѓAѓNѓZѓX—p‚М’ё“_ЌА•WѓfЃ[ѓ^‚рѓZѓbѓg
+			// й«йЂџг‚ўг‚Їг‚»г‚№з”ЁгЃ®й ‚з‚№еє§жЁ™гѓ‡гѓјг‚їг‚’г‚»гѓѓгѓ€
 			switch( TriangleList->VertexType )
 			{
 			case MV1_VERTEX_TYPE_NORMAL :
@@ -16494,7 +16494,7 @@ extern int MV1LoadModelToMV1( const MV1_MODEL_LOAD_PARAM *LoadParam, int ASyncTh
 			}
 //			MV1SetupTriangleListPositionAndNormal( TriangleList ) ;
 
-			// ’ё“_ѓCѓ“ѓfѓbѓNѓX‚рЋж“ѕ‚·‚й
+			// й ‚з‚№г‚¤гѓігѓ‡гѓѓг‚Їг‚№г‚’еЏ–еѕ—гЃ™г‚‹
 			Ind = TriangleList->Index ;
 			switch( ( F1TriangleList->Flag & MV1_TRIANGLE_LIST_FLAG_INDEX_MASK ) >> 2 )
 			{
@@ -16517,7 +16517,7 @@ extern int MV1LoadModelToMV1( const MV1_MODEL_LOAD_PARAM *LoadParam, int ASyncTh
 		}
 	}
 
-	// ѓЃѓbѓVѓ…‚МѓtѓFѓCѓXЏо•с‚рЌ\’z‚·‚й
+	// гѓЎгѓѓг‚·гѓҐгЃ®гѓ•г‚§г‚¤г‚№жѓ…е ±г‚’ж§‹зЇ‰гЃ™г‚‹
 	{
 		WORD *Ind ;
 		DWORD *MInd, TListInd ;
@@ -16542,17 +16542,17 @@ extern int MV1LoadModelToMV1( const MV1_MODEL_LOAD_PARAM *LoadParam, int ASyncTh
 		}
 	}
 
-	// –@ђь‚МЌДђ¶ђ¬‚МЋw’и‚Є‚ ‚йЏкЌ‡‚Нђ¶ђ¬‚рЌs‚¤
+	// жі•з·љгЃ®е†Ќз”џж€ђгЃ®жЊ‡е®љгЃЊгЃ‚г‚‹е ґеђ€гЃЇз”џж€ђг‚’иЎЊгЃ†
 	if( MV1Man.LoadModelToReMakeNormal || AutoNormalCreateFlag )
 	{
-		// –@ђь‚МЋ©“®ђ¶ђ¬
+		// жі•з·љгЃ®и‡Єе‹•з”џж€ђ
 		{
 			VECTOR Nrm ;
 			MV1_MESH_NORMAL *MNrm ;
 			MV1_MESH_VERTEX *Vertex[ 3 ] ;
 			DWORD VertUnitSize, PosUnitSize ;
 
-			// ‘S‚Д‚МѓtѓЊЃ[ѓЂ‚рЏ€—ќ
+			// е…ЁгЃ¦гЃ®гѓ•гѓ¬гѓјгѓ г‚’е‡¦зђ†
 			Frame = MBase->Frame ;
 			for( i = 0 ; i < MBase->FrameNum ; i ++, Frame ++ )
 			{
@@ -16560,7 +16560,7 @@ extern int MV1LoadModelToMV1( const MV1_MODEL_LOAD_PARAM *LoadParam, int ASyncTh
 
 				PosUnitSize = ( DWORD )Frame->PosUnitSize ;
 
-				// –К‚М–@ђь‚рЋZЏo‚µ‚И‚Є‚з‘«‚µ‚Д‚ў‚­
+				// йќўгЃ®жі•з·љг‚’з®—е‡єгЃ—гЃЄгЃЊг‚‰и¶ігЃ—гЃ¦гЃ„гЃЏ
 				Mesh = Frame->Mesh ;
 				for( j = 0 ; j < Frame->MeshNum ; j ++, Mesh ++ )
 				{
@@ -16590,19 +16590,19 @@ extern int MV1LoadModelToMV1( const MV1_MODEL_LOAD_PARAM *LoadParam, int ASyncTh
 					}
 				}
 
-				// –@ђь‚рђі‹K‰»‚·‚й
+				// жі•з·љг‚’ж­Ји¦ЏеЊ–гЃ™г‚‹
 				MNrm = Frame->Normal ;
 				for( j = 0 ; j < Frame->NormalNum ; j ++, MNrm ++ )
 				{
 					MNrm->Normal = VNorm( MNrm->Normal ) ;
 				}
 
-				// ђЪђьЃAЏ]–@ђь‚аЊvЋZ‚·‚й‚М‚ЕЃAђЪђьЃAЏ]–@ђь‚ ‚и‚Мѓtѓ‰ѓO‚р—§‚Д‚й
+				// жЋҐз·љгЂЃеѕ“жі•з·љг‚‚иЁ€з®—гЃ™г‚‹гЃ®гЃ§гЂЃжЋҐз·љгЂЃеѕ“жі•з·љгЃ‚г‚ЉгЃ®гѓ•гѓ©г‚°г‚’з«‹гЃ¦г‚‹
 				Frame->Flag |= MV1_FRAMEFLAG_TANGENT_BINORMAL ;
 			}
 		}
 
-		// ђЪђь‚ЖЏ]–@ђь‚МЌ\’z
+		// жЋҐз·љгЃЁеѕ“жі•з·љгЃ®ж§‹зЇ‰
 		Mesh = MBase->Mesh ;
 		for( i = 0 ; i < MBase->MeshNum ; i ++, Mesh ++ )
 		{
@@ -16610,7 +16610,7 @@ extern int MV1LoadModelToMV1( const MV1_MODEL_LOAD_PARAM *LoadParam, int ASyncTh
 		}
 	}
 
-	// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“ѓLЃ[ѓZѓbѓg‚МЏо•с‚рѓZѓbѓg
+	// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓіг‚­гѓјг‚»гѓѓгѓ€гЃ®жѓ…е ±г‚’г‚»гѓѓгѓ€
 	AnimKeySet = MBase->AnimKeySet ;
 	F1AnimKeySet = ( MV1_ANIM_KEYSET_F1 * )( ( BYTE * )FHeader + ( DWORD_PTR )FHeader->AnimKeySet ) ;
 	for( i = 0 ; i < MBase->AnimKeySetNum ; i ++, AnimKeySet ++, F1AnimKeySet = ( MV1_ANIM_KEYSET_F1 * )( ( DWORD_PTR )F1AnimKeySet + FHeader->AnimKeySetUnitSize ) )
@@ -16859,7 +16859,7 @@ extern int MV1LoadModelToMV1( const MV1_MODEL_LOAD_PARAM *LoadParam, int ASyncTh
 		}
 	}
 
-	// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“ѓZѓbѓg‚МЏо•с‚рѓZѓbѓg
+	// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓіг‚»гѓѓгѓ€гЃ®жѓ…е ±г‚’г‚»гѓѓгѓ€
 	AnimSet = MBase->AnimSet ;
 	F1AnimSet = ( MV1_ANIMSET_F1 * )( ( BYTE * )FHeader + ( DWORD_PTR )FHeader->AnimSet ) ;
 	for( i = 0 ; i < MBase->AnimSetNum ; i ++, AnimSet ++, F1AnimSet = ( MV1_ANIMSET_F1 * )( ( DWORD_PTR )FHeader + ( DWORD_PTR )F1AnimSet->DimNext ) )
@@ -16883,7 +16883,7 @@ extern int MV1LoadModelToMV1( const MV1_MODEL_LOAD_PARAM *LoadParam, int ASyncTh
 		if( F1AnimSet->Flag & 4 ) AnimSet->IsLoopAnim = 1 ;
 	}
 
-	// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚МЏо•с‚рѓZѓbѓg
+	// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігЃ®жѓ…е ±г‚’г‚»гѓѓгѓ€
 	Anim = MBase->Anim ;
 	F1Anim = ( MV1_ANIM_F1 * )( ( BYTE * )FHeader + ( DWORD_PTR )FHeader->Anim ) ;
 	for( i = 0 ; i < MBase->AnimNum ; i ++, Anim ++, F1Anim = ( MV1_ANIM_F1 * )( ( BYTE * )F1Anim + FHeader->AnimUnitSize ) )
@@ -16903,34 +16903,34 @@ extern int MV1LoadModelToMV1( const MV1_MODEL_LOAD_PARAM *LoadParam, int ASyncTh
 		MBase->AnimTargetFrameTable[ Anim->Container->Index * MBase->FrameNum + Anim->TargetFrameIndex ] = Anim ;
 	}
 
-	// Ќs—с‚МѓZѓbѓgѓAѓbѓv
+	// иЎЊе€—гЃ®г‚»гѓѓгѓ€г‚ўгѓѓгѓ—
 	MV1SetupInitializeMatrixBase( MBase ) ;
 
-	// ѓЃѓbѓVѓ…‚М”ј“§–ѕ‚©‚З‚¤‚©‚МЏо•с‚рѓZѓbѓgѓAѓbѓv‚·‚й
+	// гѓЎгѓѓг‚·гѓҐгЃ®еЌЉйЂЏжЋгЃ‹гЃ©гЃ†гЃ‹гЃ®жѓ…е ±г‚’г‚»гѓѓгѓ€г‚ўгѓѓгѓ—гЃ™г‚‹
 	MV1SetupMeshSemiTransStateBase( MBase ) ;
 
-	// “ЇЋћ•Ўђ”•`‰жЉЦЊW‚МЏо•с‚рѓZѓbѓgѓAѓbѓv‚·‚й
+	// еђЊж™‚и¤‡ж•°жЏЏз”»й–ўдї‚гЃ®жѓ…е ±г‚’г‚»гѓѓгѓ€г‚ўгѓѓгѓ—гЃ™г‚‹
 	if( MBase->UsePackDraw )
 	{
 		MV1SetupPackDrawInfo( MBase ) ;
 	}
 
-	// ѓЃѓ‚ѓЉ‚М‰р•ъ
+	// гѓЎгѓўгѓЄгЃ®и§Јж”ѕ
 	DXFREE( FHeader ) ;
 
-	// Ћw’и‚Є‚ ‚йЏкЌ‡‚НЌА•W‚МЌЕ“K‰»‚рЌs‚¤
+	// жЊ‡е®љгЃЊгЃ‚г‚‹е ґеђ€гЃЇеє§жЁ™гЃ®жњЂйЃ©еЊ–г‚’иЎЊгЃ†
 	if( LoadParam->GParam.LoadModelToPositionOptimize )
 	{
 		MV1PositionOptimizeBase( NewHandle ) ;
 	}
 
-	// Ћw’и‚Є‚ ‚йЏкЌ‡‚Н–@ђь‚МЌДЊvЋZ‚рЌs‚¤
+	// жЊ‡е®љгЃЊгЃ‚г‚‹е ґеђ€гЃЇжі•з·љгЃ®е†ЌиЁ€з®—г‚’иЎЊгЃ†
 	if( LoadParam->GParam.LoadModelToReMakeNormal )
 	{
 		MV1ReMakeNormalBase( NewHandle, LoadParam->GParam.LoadModelToReMakeNormalSmoothingAngle, ASyncThread ) ;
 	}
 
-	// Ќ‚‘¬Џ€—ќ—p’ё“_ѓfЃ[ѓ^‚МЌ\’z
+	// й«йЂџе‡¦зђ†з”Ёй ‚з‚№гѓ‡гѓјг‚їгЃ®ж§‹зЇ‰
 	TriangleList = MBase->TriangleList ;
 	for( i = 0 ; i < MBase->TriangleListNum ; i ++, TriangleList ++ )
 	{
@@ -16945,10 +16945,10 @@ extern int MV1LoadModelToMV1( const MV1_MODEL_LOAD_PARAM *LoadParam, int ASyncTh
 	}
 #endif // DX_NON_ASYNCLOAD
 
-	// ђіЏнЏI—№
+	// ж­Јеёёзµ‚дє†
 	return NewHandle ;
 
-	// ѓGѓ‰Ѓ[Џ€—ќ
+	// г‚Ёгѓ©гѓје‡¦зђ†
 ERRORLABEL :
 	if( NewHandle )
 	{
@@ -16963,14 +16963,14 @@ ERRORLABEL :
 		NewHandle = 0 ;
 	}
 
-	// ѓЃѓ‚ѓЉ‚М‰р•ъ
+	// гѓЎгѓўгѓЄгЃ®и§Јж”ѕ
 	DXFREE( FHeader ) ;
 
-	// ѓGѓ‰Ѓ[ЏI—№
+	// г‚Ёгѓ©гѓјзµ‚дє†
 	return -1 ;
 }
 
-// ’ё“_ѓoѓbѓtѓ@‚МѓZѓbѓgѓAѓbѓv‚р‚·‚й( -1:ѓGѓ‰Ѓ[ )
+// й ‚з‚№гѓђгѓѓгѓ•г‚ЎгЃ®г‚»гѓѓгѓ€г‚ўгѓѓгѓ—г‚’гЃ™г‚‹( -1:г‚Ёгѓ©гѓј )
 extern int MV1SetupVertexBufferAll( int ASyncThread )
 {
 	int i ;
@@ -16979,10 +16979,10 @@ extern int MV1SetupVertexBufferAll( int ASyncThread )
 	if( HandleManageArray[ DX_HANDLETYPE_MODEL_BASE ].InitializeFlag == FALSE )
 		return -1 ;
 
-	// •`‰ж‘Т‹@‚µ‚Д‚ў‚й•`‰ж•Ё‚р•`‰ж
+	// жЏЏз”»еѕ…ж©џгЃ—гЃ¦гЃ„г‚‹жЏЏз”»з‰©г‚’жЏЏз”»
 	DRAWSTOCKINFO
 
-	// —LЊш‚И‚·‚Ч‚Д‚Мѓ‚ѓfѓ‹ЉоѓfЃ[ѓ^‚М’ё“_ѓoѓbѓtѓ@‚рѓZѓbѓgѓAѓbѓv‚·‚й
+	// жњ‰еЉ№гЃЄгЃ™гЃ№гЃ¦гЃ®гѓўгѓ‡гѓ«еџєгѓ‡гѓјг‚їгЃ®й ‚з‚№гѓђгѓѓгѓ•г‚Ўг‚’г‚»гѓѓгѓ€г‚ўгѓѓгѓ—гЃ™г‚‹
 	for( i = HandleManageArray[ DX_HANDLETYPE_MODEL_BASE ].AreaMin ; i <= HandleManageArray[ DX_HANDLETYPE_MODEL_BASE ].AreaMax ; i ++ )
 	{
 		MBase = ( MV1_MODEL_BASE * )HandleManageArray[ DX_HANDLETYPE_MODEL_BASE ].Handle[ i ] ;
@@ -16991,23 +16991,23 @@ extern int MV1SetupVertexBufferAll( int ASyncThread )
 		MV1_SetupVertexBufferBase_PF( MBase->HandleInfo.Handle, 1, ASyncThread ) ;
 	}
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// ‘S‚Д‚М’ё“_ѓoѓbѓtѓ@‚МЊгЋn––‚р‚·‚й( -1:ѓGѓ‰Ѓ[ )
+// е…ЁгЃ¦гЃ®й ‚з‚№гѓђгѓѓгѓ•г‚ЎгЃ®еѕЊе§‹жњ«г‚’гЃ™г‚‹( -1:г‚Ёгѓ©гѓј )
 extern int MV1TerminateVertexBufferAll( void )
 {
 	int i ;
 	MV1_MODEL_BASE *MBase ;
 	MV1_MODEL *Model ;
 
-	// •`‰ж‘Т‹@‚µ‚Д‚ў‚й•`‰ж•Ё‚р•`‰ж
+	// жЏЏз”»еѕ…ж©џгЃ—гЃ¦гЃ„г‚‹жЏЏз”»з‰©г‚’жЏЏз”»
 	DRAWSTOCKINFO
 
 	if( HandleManageArray[ DX_HANDLETYPE_MODEL_BASE ].InitializeFlag )
 	{
-		// —LЊш‚И‚·‚Ч‚Д‚Мѓ‚ѓfѓ‹ЉоѓfЃ[ѓ^‚М’ё“_ѓoѓbѓtѓ@‚р‰р•ъ‚·‚й
+		// жњ‰еЉ№гЃЄгЃ™гЃ№гЃ¦гЃ®гѓўгѓ‡гѓ«еџєгѓ‡гѓјг‚їгЃ®й ‚з‚№гѓђгѓѓгѓ•г‚Ўг‚’и§Јж”ѕгЃ™г‚‹
 		for( i = HandleManageArray[ DX_HANDLETYPE_MODEL_BASE ].AreaMin ; i <= HandleManageArray[ DX_HANDLETYPE_MODEL_BASE ].AreaMax ; i ++ )
 		{
 			MBase = ( MV1_MODEL_BASE * )HandleManageArray[ DX_HANDLETYPE_MODEL_BASE ].Handle[ i ] ;
@@ -17023,7 +17023,7 @@ extern int MV1TerminateVertexBufferAll( void )
 
 	if( HandleManageArray[ DX_HANDLETYPE_MODEL ].InitializeFlag )
 	{
-		// —LЊш‚И‘S‚Д‚Мѓ‚ѓfѓ‹ѓfЃ[ѓ^‚МѓVѓFѓCѓv’ё“_ѓoѓbѓtѓ@‚рЉJ•ъ‚·‚й
+		// жњ‰еЉ№гЃЄе…ЁгЃ¦гЃ®гѓўгѓ‡гѓ«гѓ‡гѓјг‚їгЃ®г‚·г‚§г‚¤гѓ—й ‚з‚№гѓђгѓѓгѓ•г‚Ўг‚’й–‹ж”ѕгЃ™г‚‹
 		for( i = HandleManageArray[ DX_HANDLETYPE_MODEL ].AreaMin ; i <= HandleManageArray[ DX_HANDLETYPE_MODEL ].AreaMax ; i ++ )
 		{
 			Model = ( MV1_MODEL * )HandleManageArray[ DX_HANDLETYPE_MODEL ].Handle[ i ] ;
@@ -17037,63 +17037,63 @@ extern int MV1TerminateVertexBufferAll( void )
 		}
 	}
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// ѓЌЃ[ѓh‚µ‚Ѕѓ‚ѓfѓ‹‚Мѓtѓ@ѓCѓ‹–ј‚рЋж“ѕ‚·‚й
+// гѓ­гѓјгѓ‰гЃ—гЃџгѓўгѓ‡гѓ«гЃ®гѓ•г‚Ўг‚¤гѓ«еђЌг‚’еЏ–еѕ—гЃ™г‚‹
 extern	const wchar_t *MV1GetModelFileName( int MHandle )
 {
 	MV1_MODEL *Model ;
 
-	// Џ‰Љъ‰»‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// е€ќжњџеЊ–гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( MV1Man.Initialize == false ) return NULL ;
 
-	// ѓAѓhѓЊѓXЋж“ѕ
+	// г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ—
 	if( MV1MDLCHK( MHandle, Model ) )
 		return NULL ;
 
-	// ѓAѓhѓЊѓX‚р•Ф‚·
+	// г‚ўгѓ‰гѓ¬г‚№г‚’иї”гЃ™
 	return Model->BaseData->FilePath ;
 }
 
-// ѓЌЃ[ѓh‚µ‚Ѕѓ‚ѓfѓ‹‚Є‘¶ЌЭ‚·‚йѓfѓBѓЊѓNѓgѓЉѓpѓX‚рЋж“ѕ‚·‚й( ––’[‚Й / ‚© \ ‚Є•t‚ў‚Д‚ў‚Ь‚· )
+// гѓ­гѓјгѓ‰гЃ—гЃџгѓўгѓ‡гѓ«гЃЊе­ењЁгЃ™г‚‹гѓ‡г‚Јгѓ¬г‚Їгѓ€гѓЄгѓ‘г‚№г‚’еЏ–еѕ—гЃ™г‚‹( жњ«з«ЇгЃ« / гЃ‹ \ гЃЊд»гЃ„гЃ¦гЃ„гЃѕгЃ™ )
 extern	const wchar_t *MV1GetModelDirectoryPath( int MHandle )
 {
 	MV1_MODEL *Model ;
 
-	// Џ‰Љъ‰»‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// е€ќжњџеЊ–гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( MV1Man.Initialize == false ) return NULL ;
 
-	// ѓAѓhѓЊѓXЋж“ѕ
+	// г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ—
 	if( MV1MDLCHK( MHandle, Model ) )
 		return NULL ;
 
-	// ѓAѓhѓЊѓX‚р•Ф‚·
+	// г‚ўгѓ‰гѓ¬г‚№г‚’иї”гЃ™
 	return Model->BaseData->DirectoryPath ;
 }
 
-// MV1LoadModelFromMem ‚МЋАЏ€—ќЉЦђ”
+// MV1LoadModelFromMem гЃ®е®џе‡¦зђ†й–ўж•°
 static int MV1DuplicateModel_Static( int MHandle, int SrcMHandle, int ASyncThread )
 {
 	MV1_MODEL *Model ;
 
-	// ѓAѓhѓЊѓXЋж“ѕ
+	// г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ—
 	if( MV1MDLCHK( SrcMHandle, Model ) )
 		return -1 ;
 
-	// Ќ\’z
+	// ж§‹зЇ‰
 	if( MV1MakeModel( MHandle, Model->BaseDataHandle, ASyncThread ) < 0 )
 	{
 		return -1 ;
 	}
 
-	// ђіЏнЏI—№
+	// ж­Јеёёзµ‚дє†
 	return 0 ;
 }
 
 #ifndef DX_NON_ASYNCLOAD
-// MV1DuplicateModel ‚М”с“ЇЉъ“З‚ЭЌћ‚ЭѓXѓЊѓbѓh‚©‚зЊД‚О‚к‚йЉЦђ”
+// MV1DuplicateModel гЃ®йќћеђЊжњџиЄ­гЃїиѕјгЃїг‚№гѓ¬гѓѓгѓ‰гЃ‹г‚‰е‘јгЃ°г‚Њг‚‹й–ўж•°
 static void MV1DuplicateModel_ASync( ASYNCLOADDATA_COMMON *AParam )
 {
 	MV1_MODEL *Model ;
@@ -17119,18 +17119,18 @@ static void MV1DuplicateModel_ASync( ASYNCLOADDATA_COMMON *AParam )
 }
 #endif // DX_NON_ASYNCLOAD
 
-// Ћw’и‚Мѓ‚ѓfѓ‹‚Ж“Ї‚¶ѓ‚ѓfѓ‹Љо–{ѓfЃ[ѓ^‚рЋg—p‚µ‚Дѓ‚ѓfѓ‹‚рЌмђ¬‚·‚й( -1:ѓGѓ‰Ѓ[  0€ИЏг:ѓ‚ѓfѓ‹ѓnѓ“ѓhѓ‹ )
+// жЊ‡е®љгЃ®гѓўгѓ‡гѓ«гЃЁеђЊгЃгѓўгѓ‡гѓ«еџєжњ¬гѓ‡гѓјг‚їг‚’дЅїз”ЁгЃ—гЃ¦гѓўгѓ‡гѓ«г‚’дЅњж€ђгЃ™г‚‹( -1:г‚Ёгѓ©гѓј  0д»ҐдёЉ:гѓўгѓ‡гѓ«гѓЏгѓігѓ‰гѓ« )
 extern int NS_MV1DuplicateModel( int SrcMHandle )
 {
 	MV1_MODEL *Model ;
 	int MHandle ;
 
-	// Џ‰Љъ‰»‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// е€ќжњџеЊ–гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( MV1Man.Initialize == false ) return -1 ;
 
 	CheckActiveState() ;
 
-	// ѓAѓhѓЊѓXЋж“ѕ
+	// г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ—
 	if( MV1MDLCHK( SrcMHandle, Model ) )
 		return -1 ;
 
@@ -17146,23 +17146,23 @@ extern int NS_MV1DuplicateModel( int SrcMHandle )
 		ASYNCLOADDATA_COMMON *AParam = NULL ;
 		int Addr ;
 
-		// ѓpѓ‰ѓЃЃ[ѓ^‚Й•K—v‚ИѓЃѓ‚ѓЉ‚МѓTѓCѓY‚рЋZЏo
+		// гѓ‘гѓ©гѓЎгѓјг‚їгЃ«еї…и¦ЃгЃЄгѓЎгѓўгѓЄгЃ®г‚µг‚¤г‚єг‚’з®—е‡є
 		Addr = 0 ;
 		AddASyncLoadParamInt( NULL, &Addr, MHandle ) ;
 		AddASyncLoadParamInt( NULL, &Addr, SrcMHandle ) ;
 
-		// ѓЃѓ‚ѓЉ‚МЉm•Ы
+		// гѓЎгѓўгѓЄгЃ®зўєдїќ
 		AParam = AllocASyncLoadDataMemory( Addr ) ;
 		if( AParam == NULL )
 			goto ERR ;
 
-		// Џ€—ќ‚Й•K—v‚ИЏо•с‚рѓZѓbѓg
+		// е‡¦зђ†гЃ«еї…и¦ЃгЃЄжѓ…е ±г‚’г‚»гѓѓгѓ€
 		AParam->ProcessFunction = MV1DuplicateModel_ASync ;
 		Addr = 0 ;
 		AddASyncLoadParamInt( AParam->Data, &Addr, MHandle ) ;
 		AddASyncLoadParamInt( AParam->Data, &Addr, SrcMHandle ) ;
 
-		// ѓfЃ[ѓ^‚р’З‰Б
+		// гѓ‡гѓјг‚їг‚’иїЅеЉ 
 		if( AddASyncLoadData( AParam ) < 0 )
 		{
 			DXFREE( AParam ) ;
@@ -17170,7 +17170,7 @@ extern int NS_MV1DuplicateModel( int SrcMHandle )
 			goto ERR ;
 		}
 
-		// ”с“ЇЉъ“З‚ЭЌћ‚ЭѓJѓEѓ“ѓg‚рѓCѓ“ѓNѓЉѓЃѓ“ѓg
+		// йќћеђЊжњџиЄ­гЃїиѕјгЃїг‚«г‚¦гѓігѓ€г‚’г‚¤гѓіг‚ЇгѓЄгѓЎгѓігѓ€
 		IncASyncLoadCount( MHandle, AParam->Index ) ;
 	}
 	else
@@ -17180,7 +17180,7 @@ extern int NS_MV1DuplicateModel( int SrcMHandle )
 			goto ERR ;
 	}
 
-	// ѓnѓ“ѓhѓ‹‚р•Ф‚·
+	// гѓЏгѓігѓ‰гѓ«г‚’иї”гЃ™
 	return MHandle ;
 
 ERR :
@@ -17190,36 +17190,36 @@ ERR :
 	return -1 ;
 }
 
-// MV1CreateCloneModel ‚МЋАЏ€—ќЉЦђ”
+// MV1CreateCloneModel гЃ®е®џе‡¦зђ†й–ўж•°
 extern int MV1CreateCloneModel_Static( int NewHandle, int SrcMHandle, int ASyncThread )
 {
 	MV1_MODEL *Model ;
 	int NewBaseHandle = -1 ;
 
-	// ѓAѓhѓЊѓXЋж“ѕ
+	// г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ—
 	if( MV1MDLCHK( SrcMHandle, Model ) )
 		return -1 ;
 
-	// Љо–{ѓfЃ[ѓ^‚р•Ўђ»‚·‚й
+	// еџєжњ¬гѓ‡гѓјг‚їг‚’и¤‡иЈЅгЃ™г‚‹
 	NewBaseHandle = MV1CreateCloneModelBase( Model->BaseDataHandle, ASyncThread ) ;
 	if( NewBaseHandle == -1 )
 	{
 		goto ERR ;
 	}
 
-	// ’ё“_ѓoѓbѓtѓ@‚МѓZѓbѓgѓAѓbѓv‚рЌs‚¤
+	// й ‚з‚№гѓђгѓѓгѓ•г‚ЎгЃ®г‚»гѓѓгѓ€г‚ўгѓѓгѓ—г‚’иЎЊгЃ†
 	MV1_SetupVertexBufferBase_PF( NewBaseHandle, 1, ASyncThread ) ;
 
-	// Ќ\’z
+	// ж§‹зЇ‰
 	if( MV1MakeModel( NewHandle, NewBaseHandle, ASyncThread ) < 0 )
 	{
 		goto ERR ;
 	}
 
-	// ђіЏнЏI—№
+	// ж­Јеёёзµ‚дє†
 	return 0 ;
 
-	// ѓGѓ‰Ѓ[
+	// г‚Ёгѓ©гѓј
 ERR:
 	if( NewBaseHandle != -1 )
 	{
@@ -17227,12 +17227,12 @@ ERR:
 		NewBaseHandle = -1 ;
 	}
 
-	// ѓGѓ‰Ѓ[ЏI—№
+	// г‚Ёгѓ©гѓјзµ‚дє†
 	return -1 ;
 }
 
 #ifndef DX_NON_ASYNCLOAD
-// MV1CreateCloneModel ‚М”с“ЇЉъ“З‚ЭЌћ‚ЭѓXѓЊѓbѓh‚©‚зЊД‚О‚к‚йЉЦђ”
+// MV1CreateCloneModel гЃ®йќћеђЊжњџиЄ­гЃїиѕјгЃїг‚№гѓ¬гѓѓгѓ‰гЃ‹г‚‰е‘јгЃ°г‚Њг‚‹й–ўж•°
 static void MV1CreateCloneModel_ASync( ASYNCLOADDATA_COMMON *AParam )
 {
 	MV1_MODEL *Model ;
@@ -17258,21 +17258,21 @@ static void MV1CreateCloneModel_ASync( ASYNCLOADDATA_COMMON *AParam )
 }
 #endif // DX_NON_ASYNCLOAD
 
-// Ћw’и‚Мѓ‚ѓfѓ‹‚Ж‘S‚­“Ї‚¶Џо•с‚рЋќ‚В•К‚Мѓ‚ѓfѓ‹ѓfЃ[ѓ^ѓnѓ“ѓhѓ‹‚рЌмђ¬‚·‚й( -1:ѓGѓ‰Ѓ[  0€ИЏг:ѓ‚ѓfѓ‹ѓnѓ“ѓhѓ‹ )
+// жЊ‡е®љгЃ®гѓўгѓ‡гѓ«гЃЁе…ЁгЃЏеђЊгЃжѓ…е ±г‚’жЊЃгЃ¤е€ҐгЃ®гѓўгѓ‡гѓ«гѓ‡гѓјг‚їгѓЏгѓігѓ‰гѓ«г‚’дЅњж€ђгЃ™г‚‹( -1:г‚Ёгѓ©гѓј  0д»ҐдёЉ:гѓўгѓ‡гѓ«гѓЏгѓігѓ‰гѓ« )
 extern int NS_MV1CreateCloneModel( int SrcMHandle )
 {
 	MV1_MODEL *Model ;
 	int NewHandle = -1 ;
 	int NewBaseHandle = -1 ;
 
-	// Џ‰Љъ‰»‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// е€ќжњџеЊ–гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( MV1Man.Initialize == false ) return -1 ;
 
-	// ѓAѓhѓЊѓXЋж“ѕ
+	// г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ—
 	if( MV1MDLCHK( SrcMHandle, Model ) )
 		return -1 ;
 
-	// ѓ‚ѓfѓ‹ѓfЃ[ѓ^‚рЌмђ¬‚·‚й
+	// гѓўгѓ‡гѓ«гѓ‡гѓјг‚їг‚’дЅњж€ђгЃ™г‚‹
 	NewHandle = MV1AddModel( FALSE ) ;
 	if( NewHandle == -1 )
 	{
@@ -17285,23 +17285,23 @@ extern int NS_MV1CreateCloneModel( int SrcMHandle )
 		ASYNCLOADDATA_COMMON *AParam = NULL ;
 		int Addr ;
 
-		// ѓpѓ‰ѓЃЃ[ѓ^‚Й•K—v‚ИѓЃѓ‚ѓЉ‚МѓTѓCѓY‚рЋZЏo
+		// гѓ‘гѓ©гѓЎгѓјг‚їгЃ«еї…и¦ЃгЃЄгѓЎгѓўгѓЄгЃ®г‚µг‚¤г‚єг‚’з®—е‡є
 		Addr = 0 ;
 		AddASyncLoadParamInt( NULL, &Addr, NewHandle ) ;
 		AddASyncLoadParamInt( NULL, &Addr, SrcMHandle ) ;
 
-		// ѓЃѓ‚ѓЉ‚МЉm•Ы
+		// гѓЎгѓўгѓЄгЃ®зўєдїќ
 		AParam = AllocASyncLoadDataMemory( Addr ) ;
 		if( AParam == NULL )
 			goto ERR ;
 
-		// Џ€—ќ‚Й•K—v‚ИЏо•с‚рѓZѓbѓg
+		// е‡¦зђ†гЃ«еї…и¦ЃгЃЄжѓ…е ±г‚’г‚»гѓѓгѓ€
 		AParam->ProcessFunction = MV1CreateCloneModel_ASync ;
 		Addr = 0 ;
 		AddASyncLoadParamInt( AParam->Data, &Addr, NewHandle ) ;
 		AddASyncLoadParamInt( AParam->Data, &Addr, SrcMHandle ) ;
 
-		// ѓfЃ[ѓ^‚р’З‰Б
+		// гѓ‡гѓјг‚їг‚’иїЅеЉ 
 		if( AddASyncLoadData( AParam ) < 0 )
 		{
 			DXFREE( AParam ) ;
@@ -17309,7 +17309,7 @@ extern int NS_MV1CreateCloneModel( int SrcMHandle )
 			goto ERR ;
 		}
 
-		// ”с“ЇЉъ“З‚ЭЌћ‚ЭѓJѓEѓ“ѓg‚рѓCѓ“ѓNѓЉѓЃѓ“ѓg
+		// йќћеђЊжњџиЄ­гЃїиѕјгЃїг‚«г‚¦гѓігѓ€г‚’г‚¤гѓіг‚ЇгѓЄгѓЎгѓігѓ€
 		IncASyncLoadCount( NewHandle, AParam->Index ) ;
 	}
 	else
@@ -17319,10 +17319,10 @@ extern int NS_MV1CreateCloneModel( int SrcMHandle )
 			goto ERR ;
 	}
 
-	// ѓnѓ“ѓhѓ‹‚р•Ф‚·
+	// гѓЏгѓігѓ‰гѓ«г‚’иї”гЃ™
 	return NewHandle ;
 
-	// ѓGѓ‰Ѓ[
+	// г‚Ёгѓ©гѓј
 ERR:
 	if( NewHandle != -1 )
 	{
@@ -17330,12 +17330,12 @@ ERR:
 		NewHandle = -1 ;
 	}
 
-	// ѓGѓ‰Ѓ[ЏI—№
+	// г‚Ёгѓ©гѓјзµ‚дє†
 	return -1 ;
 }
 
 
-// Ћw’и‚М’ё“_ѓfЃ[ѓ^‚Жѓ}ѓeѓЉѓAѓ‹Џо•сЃAѓeѓNѓXѓ`ѓѓ‚рЋg—p‚µ‚ЅѓVѓ“ѓvѓ‹‚И‚R‚cѓ‚ѓfѓ‹‚Мѓnѓ“ѓhѓ‹‚рЌмђ¬‚·‚й
+// жЊ‡е®љгЃ®й ‚з‚№гѓ‡гѓјг‚їгЃЁгѓћгѓ†гѓЄг‚ўгѓ«жѓ…е ±гЂЃгѓ†г‚Їг‚№гѓЃгѓЈг‚’дЅїз”ЁгЃ—гЃџг‚·гѓігѓ—гѓ«гЃЄпј“пј¤гѓўгѓ‡гѓ«гЃ®гѓЏгѓігѓ‰гѓ«г‚’дЅњж€ђгЃ™г‚‹
 extern int NS_MV1CreateSimpleModel( VERTEX3D *Vertex, int VertexNum, unsigned int *Index, int IndexNum, MATERIALPARAM *Material, int GrHandle )
 {
 	int MHandle = -1 ;
@@ -17349,39 +17349,39 @@ extern int NS_MV1CreateSimpleModel( VERTEX3D *Vertex, int VertexNum, unsigned in
 	MV1LOADMODEL_GPARAM GParam ;
 	int i, j ;
 
-	// ѓCѓ“ѓfѓbѓNѓX‚Мђ”‚Є 3 ‚М”{ђ”‚Е‚Н‚И‚ўЏкЌ‡‚НѓGѓ‰Ѓ[
+	// г‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃ®ж•°гЃЊ 3 гЃ®еЂЌж•°гЃ§гЃЇгЃЄгЃ„е ґеђ€гЃЇг‚Ёгѓ©гѓј
 	if( IndexNum % 3 != 0 )
 	{
 		return -1 ;
 	}
 
-	// Џ‰Љъ‰»‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// е€ќжњџеЊ–гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( MV1Man.Initialize == false ) return -1 ;
 
 	CheckActiveState() ;
 
-	// ‚R‚cѓ‚ѓfѓ‹—pѓVѓFЃ[ѓ_Ѓ[‚МЏ‰Љъ‰»ѓ`ѓFѓbѓN
+	// пј“пј¤гѓўгѓ‡гѓ«з”Ёг‚·г‚§гѓјгѓЂгѓјгЃ®е€ќжњџеЊ–гѓЃг‚§гѓѓг‚Ї
 	if( Graphics_Hardware_Shader_ModelCode_Init_PF() < 0 )
 	{
 		return -1 ;
 	}
 
-	// ѓ‚ѓfѓ‹ѓfЃ[ѓ^‚рЌмђ¬‚·‚й
+	// гѓўгѓ‡гѓ«гѓ‡гѓјг‚їг‚’дЅњж€ђгЃ™г‚‹
 	MHandle = MV1AddModel( FALSE ) ;
 	if( MHandle < 0 )
 	{
 		goto ERR ;
 	}
 
-	// “З‚ЭЌћ‚Э—pѓfЃ[ѓ^‚МЏ‰Љъ‰»
+	// иЄ­гЃїиѕјгЃїз”Ёгѓ‡гѓјг‚їгЃ®е€ќжњџеЊ–
 	MV1InitReadModel( &RModel ) ;
 	RModel.MeshFaceRightHand = FALSE ;
 
-	// ѓ}ѓeѓЉѓAѓ‹‚М’З‰Б
+	// гѓћгѓ†гѓЄг‚ўгѓ«гЃ®иїЅеЉ 
 	RMaterial = MV1RAddMaterialW( &RModel, L"Material" ) ;
 	if( RMaterial == NULL )
 	{
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\x4d\x00\x61\x00\x74\x00\x65\x00\x72\x00\x69\x00\x61\x00\x6c\x00\x20\x00\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x6e\x30\xfd\x8f\xa0\x52\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Material ѓIѓuѓWѓFѓNѓg‚М’З‰Б‚ЙЋё”s‚µ‚Ь‚µ‚Ѕ\n" @*/ )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\x4d\x00\x61\x00\x74\x00\x65\x00\x72\x00\x69\x00\x61\x00\x6c\x00\x20\x00\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x6e\x30\xfd\x8f\xa0\x52\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Material г‚Єгѓ–г‚ёг‚§г‚Їгѓ€гЃ®иїЅеЉ гЃ«е¤±ж•—гЃ—гЃѕгЃ—гЃџ\n" @*/ )) ;
 		goto ERR ;
 	}
 	RMaterial->DiffuseTexNum = 0 ;
@@ -17394,11 +17394,11 @@ extern int NS_MV1CreateSimpleModel( VERTEX3D *Vertex, int VertexNum, unsigned in
 	RMaterial->Emissive = Material->Emissive ;
 	RMaterial->Power = Material->Power ;
 
-	// ѓtѓЊЃ[ѓЂ‚М’З‰Б
+	// гѓ•гѓ¬гѓјгѓ гЃ®иїЅеЉ 
 	RFrame = MV1RAddFrameW( &RModel, L"Frame", NULL ) ;
 	if( RFrame == NULL )
 	{
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\xd5\x30\xec\x30\xfc\x30\xe0\x30\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x6e\x30\xfd\x8f\xa0\x52\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ѓtѓЊЃ[ѓЂѓIѓuѓWѓFѓNѓg‚М’З‰Б‚ЙЋё”s‚µ‚Ь‚µ‚Ѕ\n" @*/ )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\xd5\x30\xec\x30\xfc\x30\xe0\x30\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x6e\x30\xfd\x8f\xa0\x52\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"гѓ•гѓ¬гѓјгѓ г‚Єгѓ–г‚ёг‚§г‚Їгѓ€гЃ®иїЅеЉ гЃ«е¤±ж•—гЃ—гЃѕгЃ—гЃџ\n" @*/ )) ;
 		goto ERR ;
 	}
 
@@ -17409,22 +17409,22 @@ extern int NS_MV1CreateSimpleModel( VERTEX3D *Vertex, int VertexNum, unsigned in
 	RFrame->Matrix = MGetScale( RFrame->Scale ) ;
 	RFrame->LocalWorldMatrix = RFrame->Matrix ;
 
-	// ѓЃѓbѓVѓ…‚М’З‰Б
+	// гѓЎгѓѓг‚·гѓҐгЃ®иїЅеЉ 
 	RMesh = MV1RAddMesh( &RModel, RFrame ) ;
 	if( RMesh == NULL )
 	{
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\xe1\x30\xc3\x30\xb7\x30\xe5\x30\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x6e\x30\xfd\x8f\xa0\x52\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ѓЃѓbѓVѓ…ѓIѓuѓWѓFѓNѓg‚М’З‰Б‚ЙЋё”s‚µ‚Ь‚µ‚Ѕ\n" @*/ )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\xe1\x30\xc3\x30\xb7\x30\xe5\x30\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x6e\x30\xfd\x8f\xa0\x52\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"гѓЎгѓѓг‚·гѓҐг‚Єгѓ–г‚ёг‚§г‚Їгѓ€гЃ®иїЅеЉ гЃ«е¤±ж•—гЃ—гЃѕгЃ—гЃџ\n" @*/ )) ;
 		goto ERR ;
 	}
 	RMesh->MaterialNum = 1 ;
 	RMesh->Materials[ 0 ] = RMaterial ;
 
-	// ’ё“_ѓfЃ[ѓ^‚МѓRѓsЃ[
+	// й ‚з‚№гѓ‡гѓјг‚їгЃ®г‚ігѓ”гѓј
 	RMesh->PositionNum = VertexNum ;
 	RMesh->Positions = ( VECTOR * )ADDMEMAREA( sizeof( VECTOR ) * RMesh->PositionNum, &RModel.Mem ) ;
 	if( RMesh->Positions == NULL )
 	{
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\x02\x98\xb9\x70\xa7\x5e\x19\x6a\x92\x30\xdd\x4f\x58\x5b\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"’ё“_ЌА•W‚р•Ы‘¶‚·‚йѓЃѓ‚ѓЉ—М€ж‚МЉm•Ы‚ЙЋё”s‚µ‚Ь‚µ‚Ѕ\n" @*/ )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\x02\x98\xb9\x70\xa7\x5e\x19\x6a\x92\x30\xdd\x4f\x58\x5b\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"й ‚з‚№еє§жЁ™г‚’дїќе­гЃ™г‚‹гѓЎгѓўгѓЄй еџџгЃ®зўєдїќгЃ«е¤±ж•—гЃ—гЃѕгЃ—гЃџ\n" @*/ )) ;
 		goto ERR ;
 	}
 	for( i = 0 ; i < ( int )RMesh->PositionNum ; i ++ )
@@ -17432,12 +17432,12 @@ extern int NS_MV1CreateSimpleModel( VERTEX3D *Vertex, int VertexNum, unsigned in
 		RMesh->Positions[ i ] = Vertex[ i ].pos ;
 	}
 
-	// –@ђьѓfЃ[ѓ^‚МѓRѓsЃ[
+	// жі•з·љгѓ‡гѓјг‚їгЃ®г‚ігѓ”гѓј
 	RMesh->NormalNum = VertexNum ;
 	RMesh->Normals = ( VECTOR * )ADDMEMAREA( sizeof( VECTOR ) * RMesh->NormalNum, &RModel.Mem ) ;
 	if( RMesh->Normals == NULL )
 	{
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\xd5\x6c\xda\x7d\xa7\x5e\x19\x6a\x92\x30\xdd\x4f\x58\x5b\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"–@ђьЌА•W‚р•Ы‘¶‚·‚йѓЃѓ‚ѓЉ—М€ж‚МЉm•Ы‚ЙЋё”s‚µ‚Ь‚µ‚Ѕ\n" @*/ )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\xd5\x6c\xda\x7d\xa7\x5e\x19\x6a\x92\x30\xdd\x4f\x58\x5b\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"жі•з·љеє§жЁ™г‚’дїќе­гЃ™г‚‹гѓЎгѓўгѓЄй еџџгЃ®зўєдїќгЃ«е¤±ж•—гЃ—гЃѕгЃ—гЃџ\n" @*/ )) ;
 		goto ERR ;
 	}
 	for( i = 0 ; i < ( int )RMesh->NormalNum ; i ++ )
@@ -17445,12 +17445,12 @@ extern int NS_MV1CreateSimpleModel( VERTEX3D *Vertex, int VertexNum, unsigned in
 		RMesh->Normals[ i ] = Vertex[ i ].norm ;
 	}
 
-	// ’ё“_ѓJѓ‰Ѓ[‚МѓRѓsЃ[
+	// й ‚з‚№г‚«гѓ©гѓјгЃ®г‚ігѓ”гѓј
 	RMesh->VertexColorNum = VertexNum ;
 	RMesh->VertexColors = ( COLOR_F * )ADDMEMAREA( sizeof( COLOR_F ) * RMesh->VertexColorNum, &RModel.Mem ) ;
 	if( RMesh->VertexColors == NULL )
 	{
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\x02\x98\xb9\x70\xab\x30\xe9\x30\xfc\x30\x92\x30\xdd\x4f\x58\x5b\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"’ё“_ѓJѓ‰Ѓ[‚р•Ы‘¶‚·‚йѓЃѓ‚ѓЉ—М€ж‚МЉm•Ы‚ЙЋё”s‚µ‚Ь‚µ‚Ѕ\n" @*/ )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\x02\x98\xb9\x70\xab\x30\xe9\x30\xfc\x30\x92\x30\xdd\x4f\x58\x5b\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"й ‚з‚№г‚«гѓ©гѓјг‚’дїќе­гЃ™г‚‹гѓЎгѓўгѓЄй еџџгЃ®зўєдїќгЃ«е¤±ж•—гЃ—гЃѕгЃ—гЃџ\n" @*/ )) ;
 		goto ERR ;
 	}
 	for( i = 0 ; i < ( int )RMesh->VertexColorNum ; i ++ )
@@ -17461,12 +17461,12 @@ extern int NS_MV1CreateSimpleModel( VERTEX3D *Vertex, int VertexNum, unsigned in
 		RMesh->VertexColors[ i ].a = Vertex[ i ].dif.a / 255.0f ;
 	}
 
-	// UVЌА•WѓfЃ[ѓ^‚МѓRѓsЃ[
+	// UVеє§жЁ™гѓ‡гѓјг‚їгЃ®г‚ігѓ”гѓј
 	RMesh->UVNum[ 0 ] = VertexNum ;
 	RMesh->UVs[ 0 ] = ( FLOAT4 * )ADDMEMAREA( sizeof( FLOAT4 ) * RMesh->UVNum[ 0 ], &RModel.Mem ) ;
 	if( RMesh->UVs[ 0 ] == NULL )
 	{
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\x55\x00\x56\x00\xa7\x5e\x19\x6a\x92\x30\xdd\x4f\x58\x5b\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"UVЌА•W‚р•Ы‘¶‚·‚йѓЃѓ‚ѓЉ—М€ж‚МЉm•Ы‚ЙЋё”s‚µ‚Ь‚µ‚Ѕ\n" @*/ )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\x55\x00\x56\x00\xa7\x5e\x19\x6a\x92\x30\xdd\x4f\x58\x5b\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"UVеє§жЁ™г‚’дїќе­гЃ™г‚‹гѓЎгѓўгѓЄй еџџгЃ®зўєдїќгЃ«е¤±ж•—гЃ—гЃѕгЃ—гЃџ\n" @*/ )) ;
 		goto ERR ;
 	}
 	for( i = 0 ; i < ( int )RMesh->UVNum[ 0 ] ; i ++ )
@@ -17478,7 +17478,7 @@ extern int NS_MV1CreateSimpleModel( VERTEX3D *Vertex, int VertexNum, unsigned in
 	RMesh->UVs[ 1 ] = ( FLOAT4 * )ADDMEMAREA( sizeof( FLOAT4 ) * RMesh->UVNum[ 1 ], &RModel.Mem ) ;
 	if( RMesh->UVs[ 1 ] == NULL )
 	{
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\x53\x00\x75\x00\x62\x00\x55\x00\x56\x00\xa7\x5e\x19\x6a\x92\x30\xdd\x4f\x58\x5b\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"SubUVЌА•W‚р•Ы‘¶‚·‚йѓЃѓ‚ѓЉ—М€ж‚МЉm•Ы‚ЙЋё”s‚µ‚Ь‚µ‚Ѕ\n" @*/ )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\x53\x00\x75\x00\x62\x00\x55\x00\x56\x00\xa7\x5e\x19\x6a\x92\x30\xdd\x4f\x58\x5b\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"SubUVеє§жЁ™г‚’дїќе­гЃ™г‚‹гѓЎгѓўгѓЄй еџџгЃ®зўєдїќгЃ«е¤±ж•—гЃ—гЃѕгЃ—гЃџ\n" @*/ )) ;
 		goto ERR ;
 	}
 	for( i = 0 ; i < ( int )RMesh->UVNum[ 1 ] ; i ++ )
@@ -17487,10 +17487,10 @@ extern int NS_MV1CreateSimpleModel( VERTEX3D *Vertex, int VertexNum, unsigned in
 		RMesh->UVs[ 1 ][ i ].y = Vertex[ i ].sv ;
 	}
 
-	// –КѓfЃ[ѓ^‚рѓRѓsЃ[
+	// йќўгѓ‡гѓјг‚їг‚’г‚ігѓ”гѓј
 	if( MV1RSetupMeshFaceBuffer( &RModel, RMesh, PolygonNum, 3 ) < 0 )
 	{
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\x62\x97\xc5\x60\x31\x58\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"–КЏо•с‚рЉi”[‚·‚йѓЃѓ‚ѓЉ—М€ж‚МЉm•Ы‚ЙЋё”s‚µ‚Ь‚µ‚Ѕ\n" @*/ )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\x62\x97\xc5\x60\x31\x58\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"йќўжѓ…е ±г‚’ж јзґЌгЃ™г‚‹гѓЎгѓўгѓЄй еџџгЃ®зўєдїќгЃ«е¤±ж•—гЃ—гЃѕгЃ—гЃџ\n" @*/ )) ;
 		goto ERR ;
 	}
 	RMeshFace = RMesh->Faces ;
@@ -17517,7 +17517,7 @@ extern int NS_MV1CreateSimpleModel( VERTEX3D *Vertex, int VertexNum, unsigned in
 		RMeshFace[ i ].UVIndex[ 1 ][ 2 ] = Index[ j + 2 ] ;
 	}
 
-	// ѓ‚ѓfѓ‹ЉоѓfЃ[ѓ^ѓnѓ“ѓhѓ‹‚МЌмђ¬
+	// гѓўгѓ‡гѓ«еџєгѓ‡гѓјг‚їгѓЏгѓігѓ‰гѓ«гЃ®дЅњж€ђ
 	InitMV1LoadModelGParam( &GParam ) ;
 	NewBaseHandle = MV1LoadModelToReadModel( &GParam, &RModel, NULL, NULL, FALSE ) ;
 	if( NewBaseHandle < 0 )
@@ -17525,30 +17525,30 @@ extern int NS_MV1CreateSimpleModel( VERTEX3D *Vertex, int VertexNum, unsigned in
 		goto ERR ;
 	}
 
-	// “З‚ЭЌћ‚Э—pѓ‚ѓfѓ‹‚р‰р•ъ
+	// иЄ­гЃїиѕјгЃїз”Ёгѓўгѓ‡гѓ«г‚’и§Јж”ѕ
 	MV1TermReadModel( &RModel ) ; 
 
-	// ’ё“_ѓoѓbѓtѓ@‚МѓZѓbѓgѓAѓbѓv‚рЌs‚¤
+	// й ‚з‚№гѓђгѓѓгѓ•г‚ЎгЃ®г‚»гѓѓгѓ€г‚ўгѓѓгѓ—г‚’иЎЊгЃ†
 	MV1_SetupVertexBufferBase_PF( NewBaseHandle, 1, FALSE ) ;
 
-	// Ќ\’z
+	// ж§‹зЇ‰
 	if( MV1MakeModel( MHandle, NewBaseHandle, FALSE ) < 0 )
 	{
 		DXST_LOGFILEFMT_ADDW(( L"MV1CreateSimpleModel Error" )) ;
 		goto ERR ;
 	}
 
-	// ѓeѓNѓXѓ`ѓѓ‚рђЭ’и
+	// гѓ†г‚Їг‚№гѓЃгѓЈг‚’иЁ­е®љ
 	if( GrHandle != DX_NONE_GRAPH )
 	{
 		NS_MV1AddTextureGraphHandle( MHandle, _T( "Texture" ), GrHandle, FALSE, DX_TEXADDRESS_WRAP, DX_TEXADDRESS_WRAP, DX_DRAWMODE_ANISOTROPIC ) ;
 		NS_MV1SetMaterialDifMapTexture( MHandle, 0, 0 ) ;
 	}
 
-	// ѓnѓ“ѓhѓ‹‚р•Ф‚·
+	// гѓЏгѓігѓ‰гѓ«г‚’иї”гЃ™
 	return MHandle ;
 
-	// ѓGѓ‰Ѓ[
+	// г‚Ёгѓ©гѓј
 ERR:
 
 	if( NewBaseHandle != -1 )
@@ -17563,78 +17563,78 @@ ERR:
 		MHandle = -1 ;
 	}
 
-	// “З‚ЭЌћ‚Э—pѓ‚ѓfѓ‹‚р‰р•ъ
+	// иЄ­гЃїиѕјгЃїз”Ёгѓўгѓ‡гѓ«г‚’и§Јж”ѕ
 	MV1TermReadModel( &RModel ) ; 
 
-	// ѓGѓ‰Ѓ[ЏI—№
+	// г‚Ёгѓ©гѓјзµ‚дє†
 	return -1 ;
 }
 
-// ѓ‚ѓfѓ‹‚р“З‚ЭЌћ‚ЮЌЫ‚Й–@ђь‚МЌДЊvЋZ‚рЌs‚¤‚©‚З‚¤‚©‚рђЭ’и‚·‚й( TRUE:Ќs‚¤  FALSE:Ќs‚н‚И‚ў )
+// гѓўгѓ‡гѓ«г‚’иЄ­гЃїиѕјг‚Ђйљ›гЃ«жі•з·љгЃ®е†ЌиЁ€з®—г‚’иЎЊгЃ†гЃ‹гЃ©гЃ†гЃ‹г‚’иЁ­е®љгЃ™г‚‹( TRUE:иЎЊгЃ†  FALSE:иЎЊг‚ЏгЃЄгЃ„ )
 extern int NS_MV1SetLoadModelReMakeNormal( int Flag )
 {
 	MV1Man.LoadModelToReMakeNormal = Flag ;
 
-	// ђіЏнЏI—№
+	// ж­Јеёёзµ‚дє†
 	return 0 ;
 }
 
-// ѓ‚ѓfѓ‹‚р“З‚ЭЌћ‚ЮЌЫ‚ЙЌs‚¤–@ђт‚МЌДЊvЋZ‚ЕЋg—p‚·‚йѓXѓЂЃ[ѓWѓ“ѓOЉp“x‚рђЭ’и‚·‚й
+// гѓўгѓ‡гѓ«г‚’иЄ­гЃїиѕјг‚Ђйљ›гЃ«иЎЊгЃ†жі•жі‰гЃ®е†ЌиЁ€з®—гЃ§дЅїз”ЁгЃ™г‚‹г‚№гѓ гѓјг‚ёгѓіг‚°и§’еє¦г‚’иЁ­е®љгЃ™г‚‹
 extern int NS_MV1SetLoadModelReMakeNormalSmoothingAngle( float SmoothingAngle )
 {
 	MV1Man.LoadModelToReMakeNormalSmoothingAngle = SmoothingAngle ;
 
-	// ђіЏнЏI—№
+	// ж­Јеёёзµ‚дє†
 	return 0 ;
 }
 
-// ѓ‚ѓfѓ‹‚р“З‚ЭЌћ‚ЮЌЫ‚ЙѓXѓPЃ[ѓЉѓ“ѓOѓfЃ[ѓ^‚р–іЋ‹‚·‚й‚©‚З‚¤‚©‚рђЭ’и‚·‚й( TRUE:–іЋ‹‚·‚й  FALSE:–іЋ‹‚µ‚И‚ў( ѓfѓtѓHѓ‹ѓg ) )
+// гѓўгѓ‡гѓ«г‚’иЄ­гЃїиѕјг‚Ђйљ›гЃ«г‚№г‚±гѓјгѓЄгѓіг‚°гѓ‡гѓјг‚їг‚’з„Ўи¦–гЃ™г‚‹гЃ‹гЃ©гЃ†гЃ‹г‚’иЁ­е®љгЃ™г‚‹( TRUE:з„Ўи¦–гЃ™г‚‹  FALSE:з„Ўи¦–гЃ—гЃЄгЃ„( гѓ‡гѓ•г‚©гѓ«гѓ€ ) )
 extern int NS_MV1SetLoadModelIgnoreScaling( int Flag )
 {
 	MV1Man.LoadModelToIgnoreScaling = Flag ;
 
-	// ђіЏнЏI—№
+	// ж­Јеёёзµ‚дє†
 	return 0 ;
 }
 
-// ѓ‚ѓfѓ‹‚р“З‚ЭЌћ‚ЮЌЫ‚ЙЌА•WѓfЃ[ѓ^‚МЌЕ“K‰»‚рЌs‚¤‚©‚З‚¤‚©‚рђЭ’и‚·‚й( TRUE:Ќs‚¤  FALSE:Ќs‚н‚И‚ў )ЃA( MV1ѓtѓ@ѓCѓ‹‚М“З‚ЭЌћ‚Э‚Е‚Н‚±‚МЉЦђ”‚МђЭ’и‚Н–іЋ‹‚і‚кЃAѓ|ѓЉѓSѓ“‚М–„‚ЯЌћ‚Э‚НЋАЌs‚і‚к‚Ь‚№‚с )
+// гѓўгѓ‡гѓ«г‚’иЄ­гЃїиѕјг‚Ђйљ›гЃ«еє§жЁ™гѓ‡гѓјг‚їгЃ®жњЂйЃ©еЊ–г‚’иЎЊгЃ†гЃ‹гЃ©гЃ†гЃ‹г‚’иЁ­е®љгЃ™г‚‹( TRUE:иЎЊгЃ†  FALSE:иЎЊг‚ЏгЃЄгЃ„ )гЂЃ( MV1гѓ•г‚Ўг‚¤гѓ«гЃ®иЄ­гЃїиѕјгЃїгЃ§гЃЇгЃ“гЃ®й–ўж•°гЃ®иЁ­е®љгЃЇз„Ўи¦–гЃ•г‚ЊгЂЃгѓќгѓЄг‚ґгѓігЃ®еџ‹г‚ЃиѕјгЃїгЃЇе®џиЎЊгЃ•г‚ЊгЃѕгЃ›г‚“ )
 extern int NS_MV1SetLoadModelPositionOptimize( int Flag )
 {
 	MV1Man.LoadModelToPositionOptimize = Flag ;
 
-	// ђіЏнЏI—№
+	// ж­Јеёёзµ‚дє†
 	return 0 ;
 }
 
-// ѓ‚ѓfѓ‹‚р“З‚ЭЌћ‚ЮЌЫ‚Йѓ|ѓЉѓSѓ“‚М•У‚ЄђЪ‚µ‚Д‚ў‚ДЃAЉЋ‚В–@ђь‚М•ыЊь‚Є€Щ‚И‚й•У‚Й–КђП‚O‚Мѓ|ѓЉѓSѓ“‚р–„‚ЯЌћ‚Ю‚©‚З‚¤‚©‚рђЭ’и‚·‚й( TRUE:–„‚ЯЌћ‚ЮЃ@FALSE:–„‚ЯЌћ‚Ь‚И‚ў( ѓfѓtѓHѓ‹ѓg ) )
+// гѓўгѓ‡гѓ«г‚’иЄ­гЃїиѕјг‚Ђйљ›гЃ«гѓќгѓЄг‚ґгѓігЃ®иѕєгЃЊжЋҐгЃ—гЃ¦гЃ„гЃ¦гЂЃдё”гЃ¤жі•з·љгЃ®ж–№еђ‘гЃЊз•°гЃЄг‚‹иѕєгЃ«йќўз©ЌпјђгЃ®гѓќгѓЄг‚ґгѓіг‚’еџ‹г‚Ѓиѕјг‚ЂгЃ‹гЃ©гЃ†гЃ‹г‚’иЁ­е®љгЃ™г‚‹( TRUE:еџ‹г‚Ѓиѕјг‚ЂгЂЂFALSE:еџ‹г‚ЃиѕјгЃѕгЃЄгЃ„( гѓ‡гѓ•г‚©гѓ«гѓ€ ) )
 extern int NS_MV1SetLoadModelNotEqNormalSide_AddZeroAreaPolygon( int Flag )
 {
 	MV1Man.LoadModelToNotEqNormalSideAddZeroAreaPolygon = Flag ;
 
-	// ђіЏнЏI—№
+	// ж­Јеёёзµ‚дє†
 	return 0 ;
 }
 
-// “З‚ЭЌћ‚Юѓ‚ѓfѓ‹‚М•Ё—ќ‰‰ЋZѓ‚Ѓ[ѓh‚рђЭ’и‚·‚й
-extern int NS_MV1SetLoadModelUsePhysicsMode( int PhysicsMode /* DX_LOADMODEL_PHYSICS_LOADCALC “™ */ )
+// иЄ­гЃїиѕјг‚Ђгѓўгѓ‡гѓ«гЃ®з‰©зђ†жј”з®—гѓўгѓјгѓ‰г‚’иЁ­е®љгЃ™г‚‹
+extern int NS_MV1SetLoadModelUsePhysicsMode( int PhysicsMode /* DX_LOADMODEL_PHYSICS_LOADCALC з­‰ */ )
 {
 	MV1Man.LoadModelToUsePhysicsMode = PhysicsMode ;
 
-	// ђіЏнЏI—№
+	// ж­Јеёёзµ‚дє†
 	return 0 ;
 }
 
-// “З‚ЭЌћ‚Юѓ‚ѓfѓ‹‚М•Ё—ќ‰‰ЋZ‚Й“K—p‚·‚йЏd—Нѓpѓ‰ѓЃЃ[ѓ^
+// иЄ­гЃїиѕјг‚Ђгѓўгѓ‡гѓ«гЃ®з‰©зђ†жј”з®—гЃ«йЃ©з”ЁгЃ™г‚‹й‡ЌеЉ›гѓ‘гѓ©гѓЎгѓјг‚ї
 extern int NS_MV1SetLoadModelPhysicsWorldGravity( float Gravity )
 {
 	MV1Man.LoadModelToWorldGravity = Gravity ;
 	MV1Man.LoadModelToWorldGravityInitialize = TRUE ;
 
-	// ђіЏнЏI—№
+	// ж­Јеёёзµ‚дє†
 	return 0 ;
 }
 
-// “З‚ЭЌћ‚Юѓ‚ѓfѓ‹‚М•Ё—ќ‰‰ЋZ‚Й“K—p‚·‚йЏd—Нѓpѓ‰ѓЃЃ[ѓ^‚рЋж“ѕ‚·‚й
+// иЄ­гЃїиѕјг‚Ђгѓўгѓ‡гѓ«гЃ®з‰©зђ†жј”з®—гЃ«йЃ©з”ЁгЃ™г‚‹й‡ЌеЉ›гѓ‘гѓ©гѓЎгѓјг‚їг‚’еЏ–еѕ—гЃ™г‚‹
 extern float NS_MV1GetLoadModelPhysicsWorldGravity( void )
 {
 	if( MV1Man.LoadModelToWorldGravityInitialize )
@@ -17645,7 +17645,7 @@ extern float NS_MV1GetLoadModelPhysicsWorldGravity( void )
 	return MV1_PHYSICS_DEFAULT_GRAVITY ;
 }
 
-// “З‚ЭЌћ‚Юѓ‚ѓfѓ‹‚М•Ё—ќ‰‰ЋZѓ‚Ѓ[ѓh‚ЄЋ–‘OЊvЋZ( DX_LOADMODEL_PHYSICS_LOADCALC )‚ѕ‚Б‚ЅЏкЌ‡‚Й“K—p‚і‚к‚й•Ё—ќ‰‰ЋZ‚МЋћЉФђiЌs‚Мђё“x‚рђЭ’и‚·‚й( 0:60FPS  1:120FPS  2:240FPS  3:480FPS  4:960FPS  5:1920FPS )
+// иЄ­гЃїиѕјг‚Ђгѓўгѓ‡гѓ«гЃ®з‰©зђ†жј”з®—гѓўгѓјгѓ‰гЃЊдє‹е‰ЌиЁ€з®—( DX_LOADMODEL_PHYSICS_LOADCALC )гЃ гЃЈгЃџе ґеђ€гЃ«йЃ©з”ЁгЃ•г‚Њг‚‹з‰©зђ†жј”з®—гЃ®ж™‚й–“йЂІиЎЊгЃ®зІѕеє¦г‚’иЁ­е®љгЃ™г‚‹( 0:60FPS  1:120FPS  2:240FPS  3:480FPS  4:960FPS  5:1920FPS )
 extern int NS_MV1SetLoadModelPhysicsCalcPrecision( int Precision )
 {
 	if( Precision < 0 )
@@ -17653,7 +17653,7 @@ extern int NS_MV1SetLoadModelPhysicsCalcPrecision( int Precision )
 		return -1 ;
 	}
 
-	// €к‰ћ 1920FPS€ИЏг‚НЋw’и‚Е‚«‚И‚ў‚ж‚¤‚Й‚·‚й( 4:960FPS  5:1920FPS )
+	// дёЂеїњ 1920FPSд»ҐдёЉгЃЇжЊ‡е®љгЃ§гЃЌгЃЄгЃ„г‚€гЃ†гЃ«гЃ™г‚‹( 4:960FPS  5:1920FPS )
 	if( Precision > 5 )
 	{
 		Precision = 5 ;
@@ -17661,12 +17661,12 @@ extern int NS_MV1SetLoadModelPhysicsCalcPrecision( int Precision )
 
 	MV1Man.LoadModelToPhysicsCalcPrecision = Precision ;
 
-	// ђіЏнЏI—№
+	// ж­Јеёёзµ‚дє†
 	return 0 ;
 }
 
-// PMD, PMX ѓtѓ@ѓCѓ‹‚р“З‚ЭЌћ‚с‚ѕЌЫ‚МѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚М FPS ѓ‚Ѓ[ѓh‚рђЭ’и‚·‚й
-extern int NS_MV1SetLoadModel_PMD_PMX_AnimationFPSMode( int FPSMode /* DX_LOADMODEL_PMD_PMX_ANIMATION_FPSMODE_30 “™ */ )
+// PMD, PMX гѓ•г‚Ўг‚¤гѓ«г‚’иЄ­гЃїиѕјг‚“гЃ йљ›гЃ®г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігЃ® FPS гѓўгѓјгѓ‰г‚’иЁ­е®љгЃ™г‚‹
+extern int NS_MV1SetLoadModel_PMD_PMX_AnimationFPSMode( int FPSMode /* DX_LOADMODEL_PMD_PMX_ANIMATION_FPSMODE_30 з­‰ */ )
 {
 	if( FPSMode != DX_LOADMODEL_PMD_PMX_ANIMATION_FPSMODE_30 &&
 		FPSMode != DX_LOADMODEL_PMD_PMX_ANIMATION_FPSMODE_60 )
@@ -17676,11 +17676,11 @@ extern int NS_MV1SetLoadModel_PMD_PMX_AnimationFPSMode( int FPSMode /* DX_LOADMO
 
 	MV1Man.LoadModelToPMD_PMX_AnimationFPSMode = FPSMode ;
 
-	// ђіЏнЏI—№
+	// ж­Јеёёзµ‚дє†
 	return 0 ;
 }
 
-// “З‚ЭЌћ‚Юѓ‚ѓfѓ‹‚М•Ё—ќ‰‰ЋZѓ‚Ѓ[ѓh‚ЄЋ–‘OЊvЋZ( DX_LOADMODEL_PHYSICS_LOADCALC )‚ѕ‚Б‚ЅЏкЌ‡‚Й“K—p‚і‚к‚йЏd—Н‚МђЭ’и‚р‚·‚й
+// иЄ­гЃїиѕјг‚Ђгѓўгѓ‡гѓ«гЃ®з‰©зђ†жј”з®—гѓўгѓјгѓ‰гЃЊдє‹е‰ЌиЁ€з®—( DX_LOADMODEL_PHYSICS_LOADCALC )гЃ гЃЈгЃџе ґеђ€гЃ«йЃ©з”ЁгЃ•г‚Њг‚‹й‡ЌеЉ›гЃ®иЁ­е®љг‚’гЃ™г‚‹
 extern int NS_MV1SetLoadCalcPhysicsWorldGravity( int GravityNo, VECTOR Gravity )
 {
 	if( GravityNo < 0 || GravityNo >= MV1_LOADCALC_PHYSICS_GRAVITY_NUM )
@@ -17688,11 +17688,11 @@ extern int NS_MV1SetLoadCalcPhysicsWorldGravity( int GravityNo, VECTOR Gravity )
 
 	MV1Man.LoadCalcPhysicsWorldGravity[ GravityNo ] = Gravity ;
 
-	// ђіЏнЏI—№
+	// ж­Јеёёзµ‚дє†
 	return 0 ;
 }
 
-// “З‚ЭЌћ‚Юѓ‚ѓfѓ‹‚М•Ё—ќ‰‰ЋZѓ‚Ѓ[ѓh‚ЄЋ–‘OЊvЋZ( DX_LOADMODEL_PHYSICS_LOADCALC )‚ѕ‚Б‚ЅЏкЌ‡‚Й“K—p‚і‚к‚йЏd—Н‚рЋж“ѕ‚·‚й
+// иЄ­гЃїиѕјг‚Ђгѓўгѓ‡гѓ«гЃ®з‰©зђ†жј”з®—гѓўгѓјгѓ‰гЃЊдє‹е‰ЌиЁ€з®—( DX_LOADMODEL_PHYSICS_LOADCALC )гЃ гЃЈгЃџе ґеђ€гЃ«йЃ©з”ЁгЃ•г‚Њг‚‹й‡ЌеЉ›г‚’еЏ–еѕ—гЃ™г‚‹
 extern VECTOR NS_MV1GetLoadCalcPhysicsWorldGravity( int GravityNo )
 {
 	VECTOR Result = { -1.0f, -1.0f, -1.0f } ;
@@ -17702,11 +17702,11 @@ extern VECTOR NS_MV1GetLoadCalcPhysicsWorldGravity( int GravityNo )
 		return Result ;
 	}
 
-	// ђіЏнЏI—№
+	// ж­Јеёёзµ‚дє†
 	return MV1Man.LoadCalcPhysicsWorldGravity[ GravityNo ] ;
 }
 
-// “З‚ЭЌћ‚Юѓ‚ѓfѓ‹‚М•Ё—ќ‰‰ЋZ‚р“Б’и‚МЌ„‘М‚М‚Э–іЊш‚Й‚·‚й‚Ѕ‚Я‚М–ј‘O‚МѓЏЃ[ѓh‚р’З‰Б‚·‚йЃA’З‰Б‚Е‚«‚йѓЏЃ[ѓh‚Мђ”‚НЌЕ‘е 256 ЊВ( DisablePhysicsFileOnly = TRUE ‚МЏкЌ‡‚НЃA•Ё—ќ‰‰ЋZ‚Є–іЊш‚И vmd ѓtѓ@ѓCѓ‹‚Й‘О‚µ‚Д‚М‚Э–іЊшѓЏЃ[ѓh‚р”Ѕ‰f‚·‚й )
+// иЄ­гЃїиѕјг‚Ђгѓўгѓ‡гѓ«гЃ®з‰©зђ†жј”з®—г‚’з‰№е®љгЃ®е‰›дЅ“гЃ®гЃїз„ЎеЉ№гЃ«гЃ™г‚‹гЃџг‚ЃгЃ®еђЌе‰ЌгЃ®гѓЇгѓјгѓ‰г‚’иїЅеЉ гЃ™г‚‹гЂЃиїЅеЉ гЃ§гЃЌг‚‹гѓЇгѓјгѓ‰гЃ®ж•°гЃЇжњЂе¤§ 256 еЂ‹( DisablePhysicsFileOnly = TRUE гЃ®е ґеђ€гЃЇгЂЃз‰©зђ†жј”з®—гЃЊз„ЎеЉ№гЃЄ vmd гѓ•г‚Ўг‚¤гѓ«гЃ«еЇѕгЃ—гЃ¦гЃ®гЃїз„ЎеЉ№гѓЇгѓјгѓ‰г‚’еЏЌж гЃ™г‚‹ )
 extern int NS_MV1AddLoadModelDisablePhysicsNameWord( const TCHAR *Word )
 {
 #ifdef UNICODE
@@ -17724,7 +17724,7 @@ extern int NS_MV1AddLoadModelDisablePhysicsNameWord( const TCHAR *Word )
 #endif
 }
 
-// “З‚ЭЌћ‚Юѓ‚ѓfѓ‹‚М•Ё—ќ‰‰ЋZ‚р“Б’и‚МЌ„‘М‚М‚Э–іЊш‚Й‚·‚й‚Ѕ‚Я‚М–ј‘O‚МѓЏЃ[ѓh‚р’З‰Б‚·‚йЃA’З‰Б‚Е‚«‚йѓЏЃ[ѓh•¶Ћљ—с‚МЌЕ‘е’·‚Н 63 •¶ЋљЃA’З‰Б‚Е‚«‚йѓЏЃ[ѓh‚Мђ”‚НЌЕ‘е 256 ЊВ
+// иЄ­гЃїиѕјг‚Ђгѓўгѓ‡гѓ«гЃ®з‰©зђ†жј”з®—г‚’з‰№е®љгЃ®е‰›дЅ“гЃ®гЃїз„ЎеЉ№гЃ«гЃ™г‚‹гЃџг‚ЃгЃ®еђЌе‰ЌгЃ®гѓЇгѓјгѓ‰г‚’иїЅеЉ гЃ™г‚‹гЂЃиїЅеЉ гЃ§гЃЌг‚‹гѓЇгѓјгѓ‰ж–‡е­—е€—гЃ®жњЂе¤§й•·гЃЇ 63 ж–‡е­—гЂЃиїЅеЉ гЃ§гЃЌг‚‹гѓЇгѓјгѓ‰гЃ®ж•°гЃЇжњЂе¤§ 256 еЂ‹
 extern int NS_MV1AddLoadModelDisablePhysicsNameWordWithStrLen(	const TCHAR *NameWord, size_t NameWordLength )
 {
 	int Result ;
@@ -17740,26 +17740,26 @@ extern int NS_MV1AddLoadModelDisablePhysicsNameWordWithStrLen(	const TCHAR *Name
 	return Result ;
 }
 
-// “З‚ЭЌћ‚Юѓ‚ѓfѓ‹‚М•Ё—ќ‰‰ЋZ‚р“Б’и‚МЌ„‘М‚М‚Э–іЊш‚Й‚·‚й‚Ѕ‚Я‚М–ј‘O‚МѓЏЃ[ѓh‚р’З‰Б‚·‚йЃA’З‰Б‚Е‚«‚йѓЏЃ[ѓh‚Мђ”‚НЌЕ‘е 256 ЊВ( DisablePhysicsFileOnly = TRUE ‚МЏкЌ‡‚НЃA•Ё—ќ‰‰ЋZ‚Є–іЊш‚И vmd ѓtѓ@ѓCѓ‹‚Й‘О‚µ‚Д‚М‚Э–іЊшѓЏЃ[ѓh‚р”Ѕ‰f‚·‚й )
+// иЄ­гЃїиѕјг‚Ђгѓўгѓ‡гѓ«гЃ®з‰©зђ†жј”з®—г‚’з‰№е®љгЃ®е‰›дЅ“гЃ®гЃїз„ЎеЉ№гЃ«гЃ™г‚‹гЃџг‚ЃгЃ®еђЌе‰ЌгЃ®гѓЇгѓјгѓ‰г‚’иїЅеЉ гЃ™г‚‹гЂЃиїЅеЉ гЃ§гЃЌг‚‹гѓЇгѓјгѓ‰гЃ®ж•°гЃЇжњЂе¤§ 256 еЂ‹( DisablePhysicsFileOnly = TRUE гЃ®е ґеђ€гЃЇгЂЃз‰©зђ†жј”з®—гЃЊз„ЎеЉ№гЃЄ vmd гѓ•г‚Ўг‚¤гѓ«гЃ«еЇѕгЃ—гЃ¦гЃ®гЃїз„ЎеЉ№гѓЇгѓјгѓ‰г‚’еЏЌж гЃ™г‚‹ )
 extern int MV1AddLoadModelDisablePhysicsNameWord_WCHAR_T( const wchar_t *NameWord )
 {
 	int Length ;
 	char NameWord_ShiftJIS[ MV1_DISABLEPHYSICS_WORD_MAXLENGTH * 4 ] ;
 	int Length_ShiftJIS ;
 
-	// –іЊш‚И•¶Ћљ—с‚МЏкЌ‡‚НѓGѓ‰Ѓ[
+	// з„ЎеЉ№гЃЄж–‡е­—е€—гЃ®е ґеђ€гЃЇг‚Ёгѓ©гѓј
 	if( NameWord == NULL || *NameWord == L'\0' )
 	{
 		return -1 ;
 	}
 
-	// ‚·‚Е‚ЙѓЏЃ[ѓh‚Мђ”‚Є€к”t‚МЏкЌ‡‚аѓGѓ‰Ѓ[
+	// гЃ™гЃ§гЃ«гѓЇгѓјгѓ‰гЃ®ж•°гЃЊдёЂжќЇгЃ®е ґеђ€г‚‚г‚Ёгѓ©гѓј
 	if( MV1Man.LoadModelToDisablePhysicsNameWordNum >= MV1_DISABLEPHYSICS_WORD_MAXNUM )
 	{
 		return -1 ;
 	}
 
-	// ѓЏЃ[ѓh‚М’·‚і‚ЄЌЕ‘е’·‚р’ґ‚¦‚Д‚ў‚йЏкЌ‡‚аѓGѓ‰Ѓ[
+	// гѓЇгѓјгѓ‰гЃ®й•·гЃ•гЃЊжњЂе¤§й•·г‚’и¶…гЃ€гЃ¦гЃ„г‚‹е ґеђ€г‚‚г‚Ёгѓ©гѓј
 	Length = ( int )_WCSLEN( NameWord ) ;
 	if( Length >= MV1_DISABLEPHYSICS_WORD_MAXLENGTH )
 	{
@@ -17772,47 +17772,47 @@ extern int MV1AddLoadModelDisablePhysicsNameWord_WCHAR_T( const wchar_t *NameWor
 		return -1 ;
 	}
 
-	// ѓЏЃ[ѓh‚р•Ы‘¶
+	// гѓЇгѓјгѓ‰г‚’дїќе­
 	_MEMSET( MV1Man.LoadModelToDisablePhysicsNameWord[ MV1Man.LoadModelToDisablePhysicsNameWordNum ], 0, sizeof( MV1Man.LoadModelToDisablePhysicsNameWord[ MV1Man.LoadModelToDisablePhysicsNameWordNum ] ) ) ;
 	_MEMCPY( MV1Man.LoadModelToDisablePhysicsNameWord[ MV1Man.LoadModelToDisablePhysicsNameWordNum ], NameWord, sizeof( wchar_t ) * Length ) ;
 
 	_MEMSET( MV1Man.LoadModelToDisablePhysicsNameWord_ShiftJIS[ MV1Man.LoadModelToDisablePhysicsNameWordNum ], 0, sizeof( MV1Man.LoadModelToDisablePhysicsNameWord_ShiftJIS[ MV1Man.LoadModelToDisablePhysicsNameWordNum ] ) ) ;
 	_MEMCPY( MV1Man.LoadModelToDisablePhysicsNameWord_ShiftJIS[ MV1Man.LoadModelToDisablePhysicsNameWordNum ], NameWord_ShiftJIS, Length_ShiftJIS ) ;
 
-	// ѓЏЃ[ѓh‚Мђ”‚р‘ќ‚в‚·
+	// гѓЇгѓјгѓ‰гЃ®ж•°г‚’еў—г‚„гЃ™
 	MV1Man.LoadModelToDisablePhysicsNameWordNum ++ ;
 
-	// ђіЏнЏI—№
+	// ж­Јеёёзµ‚дє†
 	return 0 ;
 }
 
-// MV1AddLoadModelDisablePhysicsNameWord ‚Е’З‰Б‚µ‚ЅЌ„‘М‚М–іЊшѓЏЃ[ѓh‚рѓЉѓZѓbѓg‚µ‚Д–іЊшѓЏЃ[ѓh–і‚µ‚МЏ‰ЉъЏу‘Ф‚Й–Я‚·
+// MV1AddLoadModelDisablePhysicsNameWord гЃ§иїЅеЉ гЃ—гЃџе‰›дЅ“гЃ®з„ЎеЉ№гѓЇгѓјгѓ‰г‚’гѓЄг‚»гѓѓгѓ€гЃ—гЃ¦з„ЎеЉ№гѓЇгѓјгѓ‰з„ЎгЃ—гЃ®е€ќжњџзЉ¶ж…‹гЃ«ж€»гЃ™
 extern int NS_MV1ResetLoadModelDisablePhysicsNameWord( void )
 {
-	// –іЊшѓЏЃ[ѓh‚Мђ”‚р 0 ‚Й‚·‚й
+	// з„ЎеЉ№гѓЇгѓјгѓ‰гЃ®ж•°г‚’ 0 гЃ«гЃ™г‚‹
 	MV1Man.LoadModelToDisablePhysicsNameWordNum = 0 ;
 
-	// ђіЏнЏI—№
+	// ж­Јеёёзµ‚дє†
 	return 0 ;
 }
 
-// MV1AddLoadModelDisablePhysicsNameWord ‚Е’З‰Б‚µ‚ЅЌ„‘М‚М–іЊшѓЏЃ[ѓh‚М“K—pѓ‹Ѓ[ѓ‹‚р•ПЌX‚·‚й
-extern int NS_MV1SetLoadModelDisablePhysicsNameWordMode( int DisableNameWordMode /* DX_LOADMODEL_PHYSICS_DISABLENAMEWORD_ALWAYS “™ */ )
+// MV1AddLoadModelDisablePhysicsNameWord гЃ§иїЅеЉ гЃ—гЃџе‰›дЅ“гЃ®з„ЎеЉ№гѓЇгѓјгѓ‰гЃ®йЃ©з”Ёгѓ«гѓјгѓ«г‚’е¤‰ж›ґгЃ™г‚‹
+extern int NS_MV1SetLoadModelDisablePhysicsNameWordMode( int DisableNameWordMode /* DX_LOADMODEL_PHYSICS_DISABLENAMEWORD_ALWAYS з­‰ */ )
 {
-	// ’l‚М—LЊшђ«ѓ`ѓFѓbѓN
+	// еЂ¤гЃ®жњ‰еЉ№жЂ§гѓЃг‚§гѓѓг‚Ї
 	if( DisableNameWordMode < 0 || DisableNameWordMode >= DX_LOADMODEL_PHYSICS_DISABLENAMEWORD_NUM )
 	{
 		return -1 ;
 	}
 
-	// ѓ‹Ѓ[ѓ‹‚р•Ы‘¶
+	// гѓ«гѓјгѓ«г‚’дїќе­
 	MV1Man.LoadModelToDisablePhysicsNameWordMode = DisableNameWordMode ;
 
-	// ђіЏнЏI—№
+	// ж­Јеёёзµ‚дє†
 	return 0 ;
 }
 
-// “З‚ЭЌћ‚Юѓ‚ѓfѓ‹‚Й“K—p‚·‚йѓAѓjѓЃЃ[ѓVѓ‡ѓ“ѓtѓ@ѓCѓ‹‚МѓpѓX‚рђЭ’и‚·‚йЃANULL‚р“n‚·‚ЖђЭ’иѓЉѓZѓbѓg( Њ»ЌЭ‚Н PMD,PMX ‚М‚Э‚ЙЊш‰К‚ ‚и )
+// иЄ­гЃїиѕјг‚Ђгѓўгѓ‡гѓ«гЃ«йЃ©з”ЁгЃ™г‚‹г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігѓ•г‚Ўг‚¤гѓ«гЃ®гѓ‘г‚№г‚’иЁ­е®љгЃ™г‚‹гЂЃNULLг‚’жёЎгЃ™гЃЁиЁ­е®љгѓЄг‚»гѓѓгѓ€( зЏѕењЁгЃЇ PMD,PMX гЃ®гЃїгЃ«еЉ№жћњгЃ‚г‚Љ )
 extern int NS_MV1SetLoadModelAnimFilePath( const TCHAR *FileName )
 {
 #ifdef UNICODE
@@ -17834,7 +17834,7 @@ extern int NS_MV1SetLoadModelAnimFilePath( const TCHAR *FileName )
 #endif
 }
 
-// “З‚ЭЌћ‚Юѓ‚ѓfѓ‹‚Й“K—p‚·‚йѓAѓjѓЃЃ[ѓVѓ‡ѓ“ѓtѓ@ѓCѓ‹‚МѓpѓX‚рђЭ’и‚·‚йЃANULL‚р“n‚·‚ЖђЭ’иѓЉѓZѓbѓg( Њ»ЌЭ‚Н PMD,PMX ‚М‚Э‚ЙЊш‰К‚ ‚и )
+// иЄ­гЃїиѕјг‚Ђгѓўгѓ‡гѓ«гЃ«йЃ©з”ЁгЃ™г‚‹г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігѓ•г‚Ўг‚¤гѓ«гЃ®гѓ‘г‚№г‚’иЁ­е®љгЃ™г‚‹гЂЃNULLг‚’жёЎгЃ™гЃЁиЁ­е®љгѓЄг‚»гѓѓгѓ€( зЏѕењЁгЃЇ PMD,PMX гЃ®гЃїгЃ«еЉ№жћњгЃ‚г‚Љ )
 extern int NS_MV1SetLoadModelAnimFilePathWithStrLen( const TCHAR *FileName, size_t FileNameLength )
 {
 	int Result ;
@@ -17850,7 +17850,7 @@ extern int NS_MV1SetLoadModelAnimFilePathWithStrLen( const TCHAR *FileName, size
 	return Result ;
 }
 
-// “З‚ЭЌћ‚Юѓ‚ѓfѓ‹‚Й“K—p‚·‚йѓAѓjѓЃЃ[ѓVѓ‡ѓ“ѓtѓ@ѓCѓ‹‚МѓpѓX‚рђЭ’и‚·‚йЃANULL‚р“n‚·‚ЖђЭ’иѓЉѓZѓbѓg( Њ»ЌЭ‚Н PMD,PMX ‚М‚Э‚ЙЊш‰К‚ ‚и )
+// иЄ­гЃїиѕјг‚Ђгѓўгѓ‡гѓ«гЃ«йЃ©з”ЁгЃ™г‚‹г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігѓ•г‚Ўг‚¤гѓ«гЃ®гѓ‘г‚№г‚’иЁ­е®љгЃ™г‚‹гЂЃNULLг‚’жёЎгЃ™гЃЁиЁ­е®љгѓЄг‚»гѓѓгѓ€( зЏѕењЁгЃЇ PMD,PMX гЃ®гЃїгЃ«еЉ№жћњгЃ‚г‚Љ )
 extern int MV1SetLoadModelAnimFilePath_WCHAR_T( const wchar_t *FileName )
 {
 	if( FileName == NULL )
@@ -17861,27 +17861,27 @@ extern int MV1SetLoadModelAnimFilePath_WCHAR_T( const wchar_t *FileName )
 	{
 		MV1Man.AnimFilePathValid = TRUE ;
 
-		// ѓtѓ@ѓCѓ‹‚МѓfѓBѓЊѓNѓgѓЉѓpѓX‚Жѓtѓ@ѓCѓ‹–ј‚рЋж“ѕ‚·‚й
+		// гѓ•г‚Ўг‚¤гѓ«гЃ®гѓ‡г‚Јгѓ¬г‚Їгѓ€гѓЄгѓ‘г‚№гЃЁгѓ•г‚Ўг‚¤гѓ«еђЌг‚’еЏ–еѕ—гЃ™г‚‹
 		_MV1CreateFileNameAndCurrentDirectory( FileName, MV1Man.AnimFileName, sizeof( MV1Man.AnimFileName ), MV1Man.AnimFileDirPath, sizeof( MV1Man.AnimFileDirPath ) ) ;
 	}
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// “З‚ЭЌћ‚Юѓ‚ѓfѓ‹‚р“ЇЋћ•Ўђ”•`‰ж‚Й‘О‰ћ‚і‚№‚й‚©‚З‚¤‚©‚рђЭ’и‚·‚й( TRUE:‘О‰ћ‚і‚№‚й  FALSE:‘О‰ћ‚і‚№‚И‚ў( ѓfѓtѓHѓ‹ѓg ) )ЃA( Ѓu‘О‰ћ‚і‚№‚йЃv‚Й‚·‚й‚Ж•`‰ж‚ЄЌ‚‘¬‚Й‚И‚й‰В”\ђ«‚Є‚ ‚й‘г‚н‚и‚ЙЏБ”пVRAM‚Є‘ќ‚¦‚Ь‚· )
+// иЄ­гЃїиѕјг‚Ђгѓўгѓ‡гѓ«г‚’еђЊж™‚и¤‡ж•°жЏЏз”»гЃ«еЇѕеїњгЃ•гЃ›г‚‹гЃ‹гЃ©гЃ†гЃ‹г‚’иЁ­е®љгЃ™г‚‹( TRUE:еЇѕеїњгЃ•гЃ›г‚‹  FALSE:еЇѕеїњгЃ•гЃ›гЃЄгЃ„( гѓ‡гѓ•г‚©гѓ«гѓ€ ) )гЂЃ( гЂЊеЇѕеїњгЃ•гЃ›г‚‹гЂЌгЃ«гЃ™г‚‹гЃЁжЏЏз”»гЃЊй«йЂџгЃ«гЃЄг‚‹еЏЇиѓЅжЂ§гЃЊгЃ‚г‚‹д»Јг‚Џг‚ЉгЃ«ж¶€иІ»VRAMгЃЊеў—гЃ€гЃѕгЃ™ )
 extern int NS_MV1SetLoadModelUsePackDraw( int Flag )
 {
 	MV1Man.LoadModelToUsePackDraw = Flag ;
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// “З‚ЭЌћ‚Юѓ‚ѓfѓ‹‚М‚Р‚Ж‚В‚Мѓgѓ‰ѓCѓAѓ“ѓOѓ‹ѓЉѓXѓg‚ЕЋg—p‚Е‚«‚йЌЕ‘еѓ{Ѓ[ѓ“ђ”‚рђЭ’и‚·‚й( UseMaxBoneNum ‚ЕЋw’и‚Е‚«‚й’l‚М”Н€Н‚Н 8 Ѓ` 54ЃA 0 ‚рЋw’и‚·‚й‚ЖѓfѓtѓHѓ‹ѓg“®Ќм‚Й–Я‚й )
+// иЄ­гЃїиѕјг‚Ђгѓўгѓ‡гѓ«гЃ®гЃІгЃЁгЃ¤гЃ®гѓ€гѓ©г‚¤г‚ўгѓіг‚°гѓ«гѓЄг‚№гѓ€гЃ§дЅїз”ЁгЃ§гЃЌг‚‹жњЂе¤§гѓњгѓјгѓіж•°г‚’иЁ­е®љгЃ™г‚‹( UseMaxBoneNum гЃ§жЊ‡е®љгЃ§гЃЌг‚‹еЂ¤гЃ®зЇ„е›ІгЃЇ 8 пЅћ 54гЂЃ 0 г‚’жЊ‡е®љгЃ™г‚‹гЃЁгѓ‡гѓ•г‚©гѓ«гѓ€е‹•дЅњгЃ«ж€»г‚‹ )
 extern int NS_MV1SetLoadModelTriangleListUseMaxBoneNum( int UseMaxBoneNum )
 {
-	// •sђі‚И’l‚МЏкЌ‡‚НѓGѓ‰Ѓ[
+	// дёЌж­ЈгЃЄеЂ¤гЃ®е ґеђ€гЃЇг‚Ёгѓ©гѓј
 	if( UseMaxBoneNum != 0 && ( UseMaxBoneNum < 8 || UseMaxBoneNum > MV1_TRIANGLE_LIST_USE_BONE_MAX_NUM ) )
 	{
 		return -1 ;
@@ -17889,25 +17889,25 @@ extern int NS_MV1SetLoadModelTriangleListUseMaxBoneNum( int UseMaxBoneNum )
 
 	MV1Man.LoadModelToTriangleListUseMaxBoneNum = UseMaxBoneNum ;
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// “З‚ЭЌћ‚Юѓ‚ѓfѓ‹‚ЕЋg—p‚·‚йѓeѓNѓXѓ`ѓѓѓtѓ@ѓCѓ‹‚р“З‚ЭЌћ‚Ю‚©‚З‚¤‚©‚рђЭ’и‚·‚й( TRUE:“З‚ЭЌћ‚Ю(ѓfѓtѓHѓ‹ѓg) FALSE:“З‚ЭЌћ‚Ь‚И‚ў )
+// иЄ­гЃїиѕјг‚Ђгѓўгѓ‡гѓ«гЃ§дЅїз”ЁгЃ™г‚‹гѓ†г‚Їг‚№гѓЃгѓЈгѓ•г‚Ўг‚¤гѓ«г‚’иЄ­гЃїиѕјг‚ЂгЃ‹гЃ©гЃ†гЃ‹г‚’иЁ­е®љгЃ™г‚‹( TRUE:иЄ­гЃїиѕјг‚Ђ(гѓ‡гѓ•г‚©гѓ«гѓ€) FALSE:иЄ­гЃїиѕјгЃѕгЃЄгЃ„ )
 extern int NS_MV1SetLoadModelTextureLoad( int Flag )
 {
 	MV1Man.LoadModelToNotTextureLoad = Flag ? FALSE : TRUE ;
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// “З‚ЭЌћ‚Юѓ‚ѓfѓ‹‚МIKЏо•с‚р–іЋ‹‚·‚й‚©‚З‚¤‚©‚рђЭ’и‚·‚й( TRUE:–іЋ‹‚·‚й  FALSE:–іЋ‹‚µ‚И‚ў(ѓfѓtѓHѓ‹ѓg) )
+// иЄ­гЃїиѕјг‚Ђгѓўгѓ‡гѓ«гЃ®IKжѓ…е ±г‚’з„Ўи¦–гЃ™г‚‹гЃ‹гЃ©гЃ†гЃ‹г‚’иЁ­е®љгЃ™г‚‹( TRUE:з„Ўи¦–гЃ™г‚‹  FALSE:з„Ўи¦–гЃ—гЃЄгЃ„(гѓ‡гѓ•г‚©гѓ«гѓ€) )
 extern int NS_MV1SetLoadModelIgnoreIK( int IgnoreFlag )
 {
 	MV1Man.LoadModelToIgnoreIK = IgnoreFlag ;
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
@@ -17915,7 +17915,7 @@ extern int NS_MV1SetLoadModelIgnoreIK( int IgnoreFlag )
 
 
 
-// Ћw’и‚МѓpѓX‚Йѓ‚ѓfѓ‹‚р•Ы‘¶‚·‚й
+// жЊ‡е®љгЃ®гѓ‘г‚№гЃ«гѓўгѓ‡гѓ«г‚’дїќе­гЃ™г‚‹
 extern int NS_MV1SaveModelToMV1File(
 	int MHandle,
 	const TCHAR *FileName,
@@ -17963,7 +17963,7 @@ extern int NS_MV1SaveModelToMV1File(
 #endif
 }
 
-// Ћw’и‚МѓpѓX‚Йѓ‚ѓfѓ‹‚р•Ы‘¶‚·‚й( –Я‚и’l  0:ђ¬Њч  -1:ѓЃѓ‚ѓЉ•s‘«  -2:Ћg‚н‚к‚Д‚ў‚И‚ўѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚Є‚ ‚Б‚Ѕ )
+// жЊ‡е®љгЃ®гѓ‘г‚№гЃ«гѓўгѓ‡гѓ«г‚’дїќе­гЃ™г‚‹( ж€»г‚ЉеЂ¤  0:ж€ђеЉџ  -1:гѓЎгѓўгѓЄдёЌи¶і  -2:дЅїг‚Џг‚ЊгЃ¦гЃ„гЃЄгЃ„г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігЃЊгЃ‚гЃЈгЃџ )
 extern int NS_MV1SaveModelToMV1FileWithStrLen( int MHandle, const TCHAR *FileName, size_t FileNameLength, int SaveType, int AnimMHandle, int AnimNameCheck, int Normal8BitFlag, int Position16BitFlag, int Weight8BitFlag, int Anim16BitFlag )
 {
 	int Result ;
@@ -17999,7 +17999,7 @@ extern int NS_MV1SaveModelToMV1FileWithStrLen( int MHandle, const TCHAR *FileNam
 	return Result ;
 }
 
-// Ћw’и‚МѓpѓX‚Йѓ‚ѓfѓ‹‚р•Ы‘¶‚·‚й
+// жЊ‡е®љгЃ®гѓ‘г‚№гЃ«гѓўгѓ‡гѓ«г‚’дїќе­гЃ™г‚‹
 extern int MV1SaveModelToMV1File_WCHAR_T(
 	int MHandle,
 	const wchar_t *FileName,
@@ -18075,12 +18075,12 @@ extern int MV1SaveModelToMV1File_WCHAR_T(
 	F1FileHeadShape = NULL ;
 	F1FileHeadPhysics = NULL ;
 
-	// ѓAѓhѓЊѓXЋж“ѕ
+	// г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ—
 	if( MV1MDLCHK( MHandle, Model ) )
 		return -1 ;
 	ModelBase = Model->BaseData ;
 
-	// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“—p‚Мѓ‚ѓfѓ‹ѓnѓ“ѓhѓ‹‚Мѓ`ѓFѓbѓN
+	// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓіз”ЁгЃ®гѓўгѓ‡гѓ«гѓЏгѓігѓ‰гѓ«гЃ®гѓЃг‚§гѓѓг‚Ї
 	if( AnimMHandle < 0 || MV1MDLCHK( AnimMHandle, AnimModel ) )
 	{
 		AnimModelBase = ModelBase ;
@@ -18092,12 +18092,12 @@ extern int MV1SaveModelToMV1File_WCHAR_T(
 		AnimModelBase = AnimModel->BaseData ;
 	}
 
-	// ЌЕ‘е’ё“_ЌА•W‚ЖЌЕЏ¬’ё“_ЌА•W‚рЋZЏo‚·‚й
+	// жњЂе¤§й ‚з‚№еє§жЁ™гЃЁжњЂе°Џй ‚з‚№еє§жЁ™г‚’з®—е‡єгЃ™г‚‹
 	MV1GetMaxMinPosition( MHandle, NULL, NULL ) ;
 
-	// Ћw’и–ј‚МѓgѓbѓvѓtѓЊЃ[ѓЂ‚р•Ы‘¶‚µ‚И‚ўЋw’и‚Є‚ ‚иЃAЉЋ‚ВѓgѓbѓvѓtѓЊЃ[ѓЂ‚Є€к‚В‚ЕЃA
-	// ѓgѓbѓvѓtѓЊЃ[ѓЂ‚МЏ¬ѓtѓЊЃ[ѓЂ‚а€к‚В‚ЕЃAѓgѓbѓvѓtѓЊЃ[ѓЂ‚Й‚НѓЃѓbѓVѓ…“™‚Є‘¶ЌЭ‚µ‚И‚ўЏкЌ‡‚М‚Э
-	// ѓgѓbѓvѓtѓЊЃ[ѓЂ‚р€к’UЉO‚·Џ€—ќ‚рЌs‚¤
+	// жЊ‡е®љеђЌгЃ®гѓ€гѓѓгѓ—гѓ•гѓ¬гѓјгѓ г‚’дїќе­гЃ—гЃЄгЃ„жЊ‡е®љгЃЊгЃ‚г‚ЉгЂЃдё”гЃ¤гѓ€гѓѓгѓ—гѓ•гѓ¬гѓјгѓ гЃЊдёЂгЃ¤гЃ§гЂЃ
+	// гѓ€гѓѓгѓ—гѓ•гѓ¬гѓјгѓ гЃ®е°Џгѓ•гѓ¬гѓјгѓ г‚‚дёЂгЃ¤гЃ§гЂЃгѓ€гѓѓгѓ—гѓ•гѓ¬гѓјгѓ гЃ«гЃЇгѓЎгѓѓг‚·гѓҐз­‰гЃЊе­ењЁгЃ—гЃЄгЃ„е ґеђ€гЃ®гЃї
+	// гѓ€гѓѓгѓ—гѓ•гѓ¬гѓјгѓ г‚’дёЂж—¦е¤–гЃ™е‡¦зђ†г‚’иЎЊгЃ†
 	if( ModelBase->FrameNum > 0 && _WCSCMP( MV1Man.NotSaveTopFrameName, ModelBase->FirstTopFrame->NameW ) == 0 &&
 		ModelBase->TopFrameNum == 1 &&
 		ModelBase->Frame == ModelBase->FirstTopFrame &&
@@ -18131,7 +18131,7 @@ extern int MV1SaveModelToMV1File_WCHAR_T(
 		Model->TopFrameList[ 0 ]->Parent = NULL ;
 	}
 
-	// ѓwѓbѓ_ѓTѓCѓY‚МЉИ€ХЊvЋZ
+	// гѓгѓѓгѓЂг‚µг‚¤г‚єгЃ®з°Ўж“иЁ€з®—
 	{
 		int FrameNum ;
 
@@ -18179,7 +18179,7 @@ extern int MV1SaveModelToMV1File_WCHAR_T(
 		}
 	}
 
-	// Љeѓoѓbѓtѓ@‚МЏ‰ЉъЌЕ‘еѓTѓCѓY‚рѓZѓbѓg
+	// еђ„гѓђгѓѓгѓ•г‚ЎгЃ®е€ќжњџжњЂе¤§г‚µг‚¤г‚єг‚’г‚»гѓѓгѓ€
 	AnimBufferSize                    = AnimSave ? AnimModelBase->AnimKeyDataSize + sizeof( MV1_ANIM_KEYSET ) * AnimModelBase->AnimKeySetNum : 0 ;
 	VertexBufferSize                  = MeshSave ? ModelBase->VertexDataSize * 2 : 0 ;
 	ChangeDrawMaterialTableBufferSize = ( DWORD )( MeshSave ? 0 : 4 * 1024 * 1024 ) ;
@@ -18209,7 +18209,7 @@ SAVELOOP :
 		ChangeDrawMaterialTableBuffer = NULL ;
 	}
 
-	// ѓoѓbѓtѓ@‚рЉm•Ы‚·‚й
+	// гѓђгѓѓгѓ•г‚Ўг‚’зўєдїќгЃ™г‚‹
 	if( TempBufferSize )
 	{
 		TempBuffer = DXALLOC( TempBufferSize ) ;
@@ -18238,7 +18238,7 @@ SAVELOOP :
 		_MEMSET( ChangeDrawMaterialTableBuffer, 0, ChangeDrawMaterialTableBufferSize ) ;
 	}
 
-	// ѓwѓbѓ_‚МѓZѓbѓg
+	// гѓгѓѓгѓЂгЃ®г‚»гѓѓгѓ€
 	FHeader = ( MV1MODEL_FILEHEADER_F1 * )TempBuffer ;
 	TempBufferUseSize = sizeof( MV1MODEL_FILEHEADER_F1 ) + 128 ;
 	FHeader->CheckID[ 0 ] = 'M' ;
@@ -18333,7 +18333,7 @@ SAVELOOP :
 
 		F1FileHeadShape                = ( MV1_FILEHEAD_SHAPE_F1 * )( ( DWORD_PTR )FHeader->Shape + ( DWORD_PTR )FHeader ) ;
 
-		// ѓVѓFѓCѓvѓfЃ[ѓ^‚М‘¶ЌЭ‚·‚йѓtѓЊЃ[ѓЂ‚рђ”‚¦‚й
+		// г‚·г‚§г‚¤гѓ—гѓ‡гѓјг‚їгЃ®е­ењЁгЃ™г‚‹гѓ•гѓ¬гѓјгѓ г‚’ж•°гЃ€г‚‹
 		Frame = ModelBase->Frame ;
 		for( i = 0 ; i < ( DWORD )ModelBase->FrameNum ; i ++, Frame ++ )
 		{
@@ -18422,31 +18422,31 @@ SAVELOOP :
 	FHeader->StringSize                = 0 ;
 	FHeader->StringBuffer              = TempBufferUseSize ;
 
-	// ЉO•”ѓfЃ[ѓ^‚М•Ы‘¶
+	// е¤–йѓЁгѓ‡гѓјг‚їгЃ®дїќе­
 	FHeader->UserData[ 0 ] = ModelBase->UserData[ 0 ] ;
 	FHeader->UserData[ 1 ] = ModelBase->UserData[ 1 ] ;
 	FHeader->UserData[ 2 ] = ModelBase->UserData[ 2 ] ;
 	FHeader->UserData[ 3 ] = ModelBase->UserData[ 3 ] ;
 
-	// Ќs—с•ПЌXЏо•сѓeЃ[ѓuѓ‹‚М•Ы‘¶
+	// иЎЊе€—е¤‰ж›ґжѓ…е ±гѓ†гѓјгѓ–гѓ«гЃ®дїќе­
 	_MEMCPY( ( BYTE * )FHeader + ( DWORD_PTR )FHeader->ChangeMatrixTable,       ModelBase->ChangeMatrixTable,       ( size_t )ModelBase->ChangeMatrixTableSize ) ;
 
 	if( MeshSave )
 	{
-		// ѓ}ѓeѓЉѓAѓ‹•ПЌXЏо•сѓeЃ[ѓuѓ‹‚М•Ы‘¶
+		// гѓћгѓ†гѓЄг‚ўгѓ«е¤‰ж›ґжѓ…е ±гѓ†гѓјгѓ–гѓ«гЃ®дїќе­
 		_MEMCPY( ( BYTE * )FHeader + ( DWORD_PTR )FHeader->ChangeDrawMaterialTable, ModelBase->ChangeDrawMaterialTable, ( size_t )ModelBase->ChangeDrawMaterialTableSize ) ;
 
-		// ѓXѓLѓjѓ“ѓOѓЃѓbѓVѓ…‚Мѓ{Ѓ[ѓ“‚рЋg—p‚·‚йѓtѓЊЃ[ѓЂ‚МЏо•с‚р•Ы‘¶
+		// г‚№г‚­гѓ‹гѓіг‚°гѓЎгѓѓг‚·гѓҐгЃ®гѓњгѓјгѓіг‚’дЅїз”ЁгЃ™г‚‹гѓ•гѓ¬гѓјгѓ гЃ®жѓ…е ±г‚’дїќе­
 		_MEMCPY( ( BYTE * )FHeader + ( DWORD_PTR )FHeader->SkinBoneUseFrame, ModelBase->SkinBoneUseFrame, sizeof( MV1_SKIN_BONE_USE_FRAME_F1 ) * ModelBase->SkinBoneUseFrameNum ) ;
 
-		// ѓtѓЊЃ[ѓЂ‚ЄЋg—p‚µ‚Д‚ў‚йѓ{Ѓ[ѓ“‚Ц‚Мѓ|ѓCѓ“ѓ^‚МЏо•с‚р•Ы‘¶
+		// гѓ•гѓ¬гѓјгѓ гЃЊдЅїз”ЁгЃ—гЃ¦гЃ„г‚‹гѓњгѓјгѓігЃёгЃ®гѓќг‚¤гѓіг‚їгЃ®жѓ…е ±г‚’дїќе­
 		for( i = 0 ; i < ( DWORD )ModelBase->FrameUseSkinBoneNum ; i ++ )
 		{
 			*( ( DWORD * )( ( BYTE * )FHeader + ( DWORD_PTR )FHeader->FrameUseSkinBone + sizeof( DWORD ) * i ) ) = ( DWORD )( DWORD_PTR )( ( MV1_SKIN_BONE_F1 * )( DWORD_PTR )FHeader->SkinBone + ( ModelBase->FrameUseSkinBone[ i ] - ModelBase->SkinBone ) ) ;
 		}
 	}
 
-	// ѓtѓЊЃ[ѓЂ‚МЏо•с‚р–„‚Я‚й
+	// гѓ•гѓ¬гѓјгѓ гЃ®жѓ…е ±г‚’еџ‹г‚Ѓг‚‹
 	FHeader->TopFrameNum   = ModelBase->TopFrameNum ;
 	FHeader->FirstTopFrame = ModelBase->FirstTopFrame ? FHeader->Frame + sizeof( MV1_FRAME_F1 ) * ModelBase->FirstTopFrame->Index : 0 ;
 	FHeader->LastTopFrame  = ModelBase->LastTopFrame  ? FHeader->Frame + sizeof( MV1_FRAME_F1 ) * ModelBase->LastTopFrame->Index  : 0 ;
@@ -18547,18 +18547,18 @@ SAVELOOP :
 			F1Frame->PositionNum = Frame->PositionNum ;
 			F1Frame->NormalNum = Frame->NormalNum ;
 
-			// ЌА•WѓfЃ[ѓ^‚Ж–@ђьѓfЃ[ѓ^‚МЌмђ¬
+			// еє§жЁ™гѓ‡гѓјг‚їгЃЁжі•з·љгѓ‡гѓјг‚їгЃ®дЅњж€ђ
 			if( F1Frame->PositionNum != 0 )
 			{
 				MV1_MESH_POSITION *Pos ;
 				MV1_MESH_NORMAL *Nrm ;
 
-				// ѓAѓhѓЊѓX‚МѓZѓbѓg
+				// г‚ўгѓ‰гѓ¬г‚№гЃ®г‚»гѓѓгѓ€
 				F1Frame->PositionAndNormalData = FHeader->VertexDataSize ;
 				Dest = ( BYTE * )VertexBuffer + FHeader->VertexDataSize ;
 				Start = Dest ;
 
-				// ’ё“_ѓfЃ[ѓ^ѓ^ѓCѓv‚МЊ€’и
+				// й ‚з‚№гѓ‡гѓјг‚їг‚їг‚¤гѓ—гЃ®ж±єе®љ
 				F1Frame->VertFlag = 0 ;
 //				if( F1Frame->AutoCreateNormal )
 //				{
@@ -18580,32 +18580,32 @@ SAVELOOP :
 					F1Frame->VertFlag |= MV1_FRAME_VERT_FLAG_POSITION_B16 ;
 				}
 
-				// –@ђь‚М‘ј‚ЙђЪђь‚ЖЏ]–@ђь‚Є‚ ‚й‚©‚рѓZѓbѓg‚·‚й
+				// жі•з·љгЃ®д»–гЃ«жЋҐз·љгЃЁеѕ“жі•з·љгЃЊгЃ‚г‚‹гЃ‹г‚’г‚»гѓѓгѓ€гЃ™г‚‹
 				if( Frame->Flag & MV1_FRAMEFLAG_TANGENT_BINORMAL )
 				{
 					F1Frame->VertFlag |= MV1_FRAME_VERT_FLAG_NOMRAL_TANGENT_BINORMAL ;
 				}
 
-				// ’ё“_‚МѓEѓGѓCѓg’l‚Є‚ ‚й‚©‚З‚¤‚©‚рѓZѓbѓg‚·‚й
+				// й ‚з‚№гЃ®г‚¦г‚Ёг‚¤гѓ€еЂ¤гЃЊгЃ‚г‚‹гЃ‹гЃ©гЃ†гЃ‹г‚’г‚»гѓѓгѓ€гЃ™г‚‹
 				if( F1Frame->UseSkinBoneNum == 0 )
 				{
 					F1Frame->VertFlag |= MV1_FRAME_VERT_FLAG_MATRIX_WEIGHT_NONE ;
 				}
 				else
 				{
-					// ’ё“_‚МЌs—сѓCѓ“ѓfѓbѓNѓX’l‚Є‚OЃ`‚Q‚T‚S€И“а‚ЙЋы‚Ь‚Б‚Д‚ў‚й‚©‚рѓZѓbѓg‚·‚й
+					// й ‚з‚№гЃ®иЎЊе€—г‚¤гѓігѓ‡гѓѓг‚Їг‚№еЂ¤гЃЊпјђпЅћпј’пј•пј”д»Ґе†…гЃ«еЏЋгЃѕгЃЈгЃ¦гЃ„г‚‹гЃ‹г‚’г‚»гѓѓгѓ€гЃ™г‚‹
 					if( F1Frame->UseSkinBoneNum > 255 )
 						F1Frame->VertFlag |= MV1_FRAME_MATRIX_INDEX_TYPE_U16 << 4 ;
 
-					// Ќs—сѓEѓGѓCѓg’l‚Є‚Wѓrѓbѓg‚©‚З‚¤‚©‚МЋw’и‚рѓZѓbѓg‚·‚й
+					// иЎЊе€—г‚¦г‚Ёг‚¤гѓ€еЂ¤гЃЊпјгѓ“гѓѓгѓ€гЃ‹гЃ©гЃ†гЃ‹гЃ®жЊ‡е®љг‚’г‚»гѓѓгѓ€гЃ™г‚‹
 					if( Weight8BitFlag == 0 )
 						F1Frame->VertFlag |= MV1_FRAME_MATRIX_WEIGHT_TYPE_U16 << 5 ;
 				}
 
-				// 16bit‚©‚З‚¤‚©‚ЕЏ€—ќ‚р•ЄЉт
+				// 16bitгЃ‹гЃ©гЃ†гЃ‹гЃ§е‡¦зђ†г‚’е€†еІђ
 				if( F1Frame->VertFlag & MV1_FRAME_VERT_FLAG_POSITION_B16 )
 				{
-					// ЌА•W’l‚w‚x‚y‚МЌЕ‘е’l‚ЖЌЕЏ¬’l‚р‹Ѓ‚Я‚й
+					// еє§жЁ™еЂ¤пјёпј№пјєгЃ®жњЂе¤§еЂ¤гЃЁжњЂе°ЏеЂ¤г‚’ж±‚г‚Ѓг‚‹
 					PosMax.x = -1000000000000.0f ;
 					PosMax.y = -1000000000000.0f ;
 					PosMax.z = -1000000000000.0f ;
@@ -18627,7 +18627,7 @@ SAVELOOP :
 					PosWidth.y = PosMax.y - PosMin.y ;
 					PosWidth.z = PosMax.z - PosMin.z ;
 
-					// •вЏ•Џо•с‚рЉi”[‚·‚й
+					// иЈњеЉ©жѓ…е ±г‚’ж јзґЌгЃ™г‚‹
 					( ( MV1_POSITION_16BIT_SUBINFO_F1 * )Dest )[ 0 ].Min   = PosMin.x ;
 					( ( MV1_POSITION_16BIT_SUBINFO_F1 * )Dest )[ 0 ].Width = PosWidth.x ;
 					( ( MV1_POSITION_16BIT_SUBINFO_F1 * )Dest )[ 1 ].Min   = PosMin.y ;
@@ -18655,7 +18655,7 @@ SAVELOOP :
 					}
 				}
 
-				// ѓXѓLѓjѓ“ѓOЏо•с‚Є‚ ‚йЏкЌ‡‚Н•Ы‘¶
+				// г‚№г‚­гѓ‹гѓіг‚°жѓ…е ±гЃЊгЃ‚г‚‹е ґеђ€гЃЇдїќе­
 				if( ( F1Frame->VertFlag & MV1_FRAME_VERT_FLAG_MATRIX_WEIGHT_NONE ) == 0 )
 				{
 					Pos = Frame->Position ;
@@ -18718,7 +18718,7 @@ SAVELOOP :
 					}
 				}
 
-				// –@ђьЏо•с‚М•Ы‘¶
+				// жі•з·љжѓ…е ±гЃ®дїќе­
 				Nrm = Frame->Normal ;
 				switch( F1Frame->VertFlag & MV1_FRAME_VERT_FLAG_NORMAL_TYPE_MASK )
 				{
@@ -18812,7 +18812,7 @@ SAVELOOP :
 			}
 		}
 
-		// ѓVѓFѓCѓvѓfЃ[ѓ^‚Є‚ ‚йЏкЌ‡‚Н‚»‚к‚М•Ы‘¶
+		// г‚·г‚§г‚¤гѓ—гѓ‡гѓјг‚їгЃЊгЃ‚г‚‹е ґеђ€гЃЇгЃќг‚ЊгЃ®дїќе­
 		if( Frame->ShapeNum )
 		{
 			F1Frame->FrameShape = ( DWORD )( ( DWORD_PTR )( F1FileHeadShape->Frame + sizeof( MV1_FRAME_SHAPE_F1 ) * F1FileHeadShape->FrameNum ) ) ;
@@ -18827,7 +18827,7 @@ SAVELOOP :
 		F1Frame->DimNext = i == ( DWORD )ModelBase->FrameNum - 1 ? 0 : FHeader->Frame + sizeof( MV1_FRAME_F1 ) * ( i + 1 ) ;
 	}
 
-	// ѓVѓFѓCѓv‚МЏо•с‚р–„‚Я‚й
+	// г‚·г‚§г‚¤гѓ—гЃ®жѓ…е ±г‚’еџ‹г‚Ѓг‚‹
 	if( F1FileHeadShape )
 	{
 		F1Shape = ( MV1_SHAPE_F1 * )( ( DWORD_PTR )F1FileHeadShape->Data + ( DWORD_PTR )FHeader ) ;
@@ -18864,7 +18864,7 @@ SAVELOOP :
 
 		if( MeshSave )
 		{
-			// ѓVѓFѓCѓvѓЃѓbѓVѓ…‚МЏо•с‚р–„‚Я‚й
+			// г‚·г‚§г‚¤гѓ—гѓЎгѓѓг‚·гѓҐгЃ®жѓ…е ±г‚’еџ‹г‚Ѓг‚‹
 			F1ShapeMesh = ( MV1_SHAPE_MESH_F1 * )( ( DWORD_PTR )F1FileHeadShape->Mesh + ( DWORD_PTR )FHeader ) ;
 			ShapeMesh = ModelBase->ShapeMesh ;
 			for( i = 0 ; i < ( DWORD )ModelBase->ShapeMeshNum ; i ++, ShapeMesh ++, F1ShapeMesh ++ )
@@ -18893,7 +18893,7 @@ SAVELOOP :
 				F1ShapeMesh->DimNext = i == ( DWORD )ModelBase->ShapeMeshNum - 1 ? 0 : F1FileHeadShape->Mesh + sizeof( MV1_SHAPE_MESH_F1 ) * ( i + 1 ) ;
 			}
 
-			// ѓVѓFѓCѓv’ё“_‚МЏо•с‚р–„‚Я‚й
+			// г‚·г‚§г‚¤гѓ—й ‚з‚№гЃ®жѓ…е ±г‚’еџ‹г‚Ѓг‚‹
 	/*
 			F1ShapeVertex = ( MV1_SHAPE_VERTEX_F1 * )( ( DWORD_PTR )F1FileHeadShape->Vertex + ( DWORD_PTR )FHeader ) ;
 			ShapeVertex = ModelBase->ShapeVertex ;
@@ -18909,7 +18909,7 @@ SAVELOOP :
 
 	if( MeshSave )
 	{
-		// •Ё—ќ‰‰ЋZ—p‚МЏо•с‚р–„‚Я‚й
+		// з‰©зђ†жј”з®—з”ЁгЃ®жѓ…е ±г‚’еџ‹г‚Ѓг‚‹
 		if( F1FileHeadPhysics )
 		{
 			F1PhysicsRigidBody = ( MV1_PHYSICS_RIGIDBODY_F1 * )( ( DWORD_PTR )F1FileHeadPhysics->RigidBody + ( DWORD_PTR )FHeader ) ;
@@ -18981,7 +18981,7 @@ SAVELOOP :
 			}
 		}
 
-		// ѓ}ѓeѓЉѓAѓ‹‚МЏо•с‚р–„‚Я‚й
+		// гѓћгѓ†гѓЄг‚ўгѓ«гЃ®жѓ…е ±г‚’еџ‹г‚Ѓг‚‹
 		F1Material = ( MV1_MATERIAL_F1 * )( ( DWORD_PTR )FHeader->Material + ( DWORD_PTR )FHeader ) ;
 		MaterialBase = ModelBase->Material ;
 		Material = Model->Material ;
@@ -19096,7 +19096,7 @@ SAVELOOP :
 			}
 		}
 
-		// ѓ‰ѓCѓg‚МЏо•с‚р–„‚Я‚й
+		// гѓ©г‚¤гѓ€гЃ®жѓ…е ±г‚’еџ‹г‚Ѓг‚‹
 		F1Light = ( MV1_LIGHT_F1 * )( ( DWORD_PTR )FHeader->Light + ( DWORD_PTR )FHeader ) ;
 		Light = ModelBase->Light ;
 		for( i = 0 ; i < ( DWORD )ModelBase->LightNum ; i ++, F1Light ++, Light ++ )
@@ -19127,7 +19127,7 @@ SAVELOOP :
 			F1Light->DimNext = i == ( DWORD )ModelBase->LightNum - 1 ? 0 : FHeader->Light + sizeof( MV1_LIGHT_F1 ) * ( i + 1 ) ;
 		}
 
-		// ѓeѓNѓXѓ`ѓѓ‚МЏо•с‚р–„‚Я‚й
+		// гѓ†г‚Їг‚№гѓЃгѓЈгЃ®жѓ…е ±г‚’еџ‹г‚Ѓг‚‹
 		F1Texture = ( MV1_TEXTURE_F1 * )( ( DWORD_PTR )FHeader->Texture + ( DWORD_PTR )FHeader ) ;
 		TextureBase = ModelBase->Texture ;
 		Texture = Model->Texture ;
@@ -19187,7 +19187,7 @@ SAVELOOP :
 			F1Texture->DimNext = i == ( DWORD )ModelBase->TextureNum - 1 ? 0 : FHeader->Texture + sizeof( MV1_TEXTURE_F1 ) * ( i + 1 ) ;
 		}
 
-		// ѓЃѓbѓVѓ…‚МЏо•с‚р–„‚Я‚й
+		// гѓЎгѓѓг‚·гѓҐгЃ®жѓ…е ±г‚’еџ‹г‚Ѓг‚‹
 		F1Mesh = ( MV1_MESH_F1 * )( ( DWORD_PTR )FHeader->Mesh + ( DWORD_PTR )FHeader ) ;
 		Mesh = ModelBase->Mesh ;
 		for( i = 0 ; i < ( DWORD )ModelBase->MeshNum ; i ++, F1Mesh ++, Mesh ++ )
@@ -19230,22 +19230,22 @@ SAVELOOP :
 			F1Mesh->VertexNum = Mesh->VertexNum ;
 			F1Mesh->FaceNum = Mesh->FaceNum ;
 
-			// ’ё“_ѓfЃ[ѓ^‚МЌмђ¬
+			// й ‚з‚№гѓ‡гѓјг‚їгЃ®дЅњж€ђ
 			{
 				MV1_MESH_VERTEX *Vert ;
 
-				// ѓAѓhѓЊѓX‚МѓZѓbѓg
+				// г‚ўгѓ‰гѓ¬г‚№гЃ®г‚»гѓѓгѓ€
 				F1Mesh->VertexData = FHeader->VertexDataSize ;
 				Dest = ( BYTE * )VertexBuffer + FHeader->VertexDataSize ;
 				Start = Dest ;
 
-				// ѓtѓ‰ѓO‚рЏ‰Љъ‰»
+				// гѓ•гѓ©г‚°г‚’е€ќжњџеЊ–
 				F1Mesh->VertFlag = 0 ;
 
-				// ѓgѓDЃ[ѓ“—p‚МѓGѓbѓW‚Є‚ ‚й‚©‚И‚ў‚©Џо•с‚рЏo—Н‚·‚йѓtѓ‰ѓO‚рѓZѓbѓg
+				// гѓ€г‚Ґгѓјгѓіз”ЁгЃ®г‚Ёгѓѓг‚ёгЃЊгЃ‚г‚‹гЃ‹гЃЄгЃ„гЃ‹жѓ…е ±г‚’е‡єеЉ›гЃ™г‚‹гѓ•гѓ©г‚°г‚’г‚»гѓѓгѓ€
 				F1Mesh->VertFlag |= MV1_MESH_VERT_FLAG_NON_TOON_OUTLINE ;
 
-				// ЌА•WѓCѓ“ѓfѓbѓNѓX‚Й‰Ѕѓrѓbѓg•K—v‚©’І‚Ч‚й
+				// еє§жЁ™г‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃ«дЅ•гѓ“гѓѓгѓ€еї…и¦ЃгЃ‹иЄїгЃ№г‚‹
 				if( Mesh->Container->PositionNum < 256 )
 				{
 					F1Mesh->VertFlag |= MV1_MESH_VERT_INDEX_TYPE_U8 ;
@@ -19260,7 +19260,7 @@ SAVELOOP :
 					F1Mesh->VertFlag |= MV1_MESH_VERT_INDEX_TYPE_U32 ;
 				}
 
-				// –@ђьѓCѓ“ѓfѓbѓNѓX‚Й‰Ѕѓrѓbѓg•K—v‚©’І‚Ч‚й
+				// жі•з·љг‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃ«дЅ•гѓ“гѓѓгѓ€еї…и¦ЃгЃ‹иЄїгЃ№г‚‹
 				if( Mesh->Container->NormalNum < 256 )
 				{
 					F1Mesh->VertFlag |= MV1_MESH_VERT_INDEX_TYPE_U8 << 2 ;
@@ -19275,7 +19275,7 @@ SAVELOOP :
 					F1Mesh->VertFlag |= MV1_MESH_VERT_INDEX_TYPE_U32 << 2 ;
 				}
 
-				// UV’l‚Є 0.0Ѓ`1.0 ‚М”Н€Н“а‚©’І‚Ч‚й
+				// UVеЂ¤гЃЊ 0.0пЅћ1.0 гЃ®зЇ„е›Іе†…гЃ‹иЄїгЃ№г‚‹
 				Vert = Mesh->Vertex ;
 				for( j = 0 ; j < ( DWORD )Mesh->VertexNum ; j ++, Vert = ( MV1_MESH_VERTEX * )( ( BYTE * )Vert + Mesh->VertUnitSize ) )
 				{
@@ -19293,7 +19293,7 @@ SAVELOOP :
 					F1Mesh->VertFlag |= MV1_MESH_VERT_FLAG_UV_U16 ;
 				}
 
-				// ’ё“_ђF‚Є€кђF‚©‚З‚¤‚©‚р’І‚Ч‚й
+				// й ‚з‚№и‰ІгЃЊдёЂи‰ІгЃ‹гЃ©гЃ†гЃ‹г‚’иЄїгЃ№г‚‹
 				Vert = Mesh->Vertex ;
 				for( j = 0 ; j < ( DWORD )Mesh->VertexNum - 1 ; j ++, Vert = ( MV1_MESH_VERTEX * )( ( BYTE * )Vert + Mesh->VertUnitSize ) )
 				{
@@ -19310,7 +19310,7 @@ SAVELOOP :
 					Dest += 8 ;
 				}
 
-				// ’ё“_ѓCѓ“ѓfѓbѓNѓX‚МЉi”[
+				// й ‚з‚№г‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃ®ж јзґЌ
 				Vert = Mesh->Vertex ;
 				switch( F1Mesh->VertFlag & MV1_MESH_VERT_FLAG_POS_IND_TYPE_MASK )
 				{
@@ -19339,7 +19339,7 @@ SAVELOOP :
 					break ;
 				}
 
-				// –@ђьѓCѓ“ѓfѓbѓNѓX‚МЉi”[
+				// жі•з·љг‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃ®ж јзґЌ
 				Vert = Mesh->Vertex ;
 				switch( ( F1Mesh->VertFlag & MV1_MESH_VERT_FLAG_NRM_IND_TYPE_MASK ) >> 2 )
 				{
@@ -19371,7 +19371,7 @@ SAVELOOP :
 					break ;
 				}
 
-				// ’ё“_ѓJѓ‰Ѓ[‚МЉi”[
+				// й ‚з‚№г‚«гѓ©гѓјгЃ®ж јзґЌ
 				if( ( F1Mesh->VertFlag & MV1_MESH_VERT_FLAG_COMMON_COLOR ) == 0 )
 				{
 					Vert = Mesh->Vertex ;
@@ -19383,7 +19383,7 @@ SAVELOOP :
 					}
 				}
 
-				// ‚t‚u’l‚МЉi”[
+				// пјµпј¶еЂ¤гЃ®ж јзґЌ
 				Vert = Mesh->Vertex ;
 				if( F1Mesh->VertFlag & MV1_MESH_VERT_FLAG_UV_U16 )
 				{
@@ -19410,7 +19410,7 @@ SAVELOOP :
 					}
 				}
 
-				// ѓgѓDЃ[ѓ“—p‚М—ЦЉsђь‚р•\Ћ¦‚·‚й‚©‚З‚¤‚©‚Мѓtѓ‰ѓO‚рЏo—Н‚·‚й
+				// гѓ€г‚Ґгѓјгѓіз”ЁгЃ®ијЄйѓ­з·љг‚’иЎЁз¤єгЃ™г‚‹гЃ‹гЃ©гЃ†гЃ‹гЃ®гѓ•гѓ©г‚°г‚’е‡єеЉ›гЃ™г‚‹
 				if( F1Mesh->VertFlag & MV1_MESH_VERT_FLAG_NON_TOON_OUTLINE )
 				{
 					DWORD BitCount ;
@@ -19449,7 +19449,7 @@ SAVELOOP :
 			F1Mesh->DimNext = i == ( DWORD )ModelBase->MeshNum - 1 ? 0 : FHeader->Mesh + sizeof( MV1_MESH_F1 ) * ( i + 1 ) ;
 		}
 
-		// ѓXѓLѓjѓ“ѓOѓЃѓbѓVѓ…—p‚Мѓ{Ѓ[ѓ“Џо•с‚р–„‚Я‚й
+		// г‚№г‚­гѓ‹гѓіг‚°гѓЎгѓѓг‚·гѓҐз”ЁгЃ®гѓњгѓјгѓіжѓ…е ±г‚’еџ‹г‚Ѓг‚‹
 		F1SkinBone = ( MV1_SKIN_BONE_F1 * )( ( DWORD_PTR )FHeader->SkinBone + ( DWORD_PTR )FHeader ) ;
 		SkinBone = ModelBase->SkinBone ;
 		for( i = 0 ; i < ( DWORD )ModelBase->SkinBoneNum ; i ++, F1SkinBone ++, SkinBone ++ )
@@ -19468,7 +19468,7 @@ SAVELOOP :
 			F1SkinBone->DimNext = i == ( DWORD )ModelBase->SkinBoneNum - 1 ? 0 : FHeader->SkinBone + sizeof( MV1_SKIN_BONE_F1 ) * ( i + 1 ) ;
 		}
 
-		// ѓgѓ‰ѓCѓAѓ“ѓOѓ‹ѓЉѓXѓg‚МЏо•с‚р–„‚Я‚й
+		// гѓ€гѓ©г‚¤г‚ўгѓіг‚°гѓ«гѓЄг‚№гѓ€гЃ®жѓ…е ±г‚’еџ‹г‚Ѓг‚‹
 		F1TriangleList = ( MV1_TRIANGLE_LIST_F1 * )( ( DWORD_PTR )FHeader->TriangleList + ( DWORD_PTR )FHeader ) ;
 		TriangleList = ModelBase->TriangleList ;
 		for( i = 0 ; i < ( DWORD )ModelBase->TriangleListNum ; i ++, F1TriangleList ++, TriangleList ++ )
@@ -19483,20 +19483,20 @@ SAVELOOP :
 			F1TriangleList->VertexNum = ( unsigned short )TriangleList->VertexNum ;
 			F1TriangleList->IndexNum = TriangleList->IndexNum ;
 
-			// ’ё“_ѓfЃ[ѓ^‚МЌмђ¬
+			// й ‚з‚№гѓ‡гѓјг‚їгЃ®дЅњж€ђ
 			{
 				DWORD *MVInd ;
 				WORD *Ind ;
 
-				// ѓAѓhѓЊѓX‚МѓZѓbѓg
+				// г‚ўгѓ‰гѓ¬г‚№гЃ®г‚»гѓѓгѓ€
 				F1TriangleList->MeshVertexIndexAndIndexData = FHeader->VertexDataSize ;
 				Dest = ( BYTE * )VertexBuffer + FHeader->VertexDataSize ;
 				Start = Dest ;
 
-				// ѓtѓ‰ѓO‚МЏ‰Љъ‰»
+				// гѓ•гѓ©г‚°гЃ®е€ќжњџеЊ–
 				F1TriangleList->Flag = 0 ;
 
-				// ѓЃѓbѓVѓ…’ё“_ѓCѓ“ѓfѓbѓNѓX€к‚В•У‚и‚Мѓrѓbѓgђ”‚р’І‚Ч‚й
+				// гѓЎгѓѓг‚·гѓҐй ‚з‚№г‚¤гѓігѓ‡гѓѓг‚Їг‚№дёЂгЃ¤иѕєг‚ЉгЃ®гѓ“гѓѓгѓ€ж•°г‚’иЄїгЃ№г‚‹
 				MVInd = TriangleList->MeshVertexIndex ;
 				for( j = 0 ; j < ( DWORD )TriangleList->VertexNum ; j ++, MVInd ++ )
 				{
@@ -19518,12 +19518,12 @@ SAVELOOP :
 					}
 				}
 
-				// ’ё“_ѓCѓ“ѓfѓbѓNѓX€к‚В•У‚и‚Мѓrѓbѓgђ”‚р’І‚Ч‚й
+				// й ‚з‚№г‚¤гѓігѓ‡гѓѓг‚Їг‚№дёЂгЃ¤иѕєг‚ЉгЃ®гѓ“гѓѓгѓ€ж•°г‚’иЄїгЃ№г‚‹
 				Ind = TriangleList->Index ;
 				for( j = 0 ; j < TriangleList->IndexNum && *Ind < 256 ; j ++, Ind ++ ){}
 				F1TriangleList->Flag |= j == TriangleList->IndexNum ? ( MV1_TRIANGLE_LIST_INDEX_TYPE_U8 << 2 ) : ( MV1_TRIANGLE_LIST_INDEX_TYPE_U16 << 2 ) ;
 
-				// ѓ{Ѓ[ѓ“Џо•с‚М•Ы‘¶
+				// гѓњгѓјгѓіжѓ…е ±гЃ®дїќе­
 				switch( TriangleList->VertexType )
 				{
 				case MV1_VERTEX_TYPE_SKIN_4BONE :
@@ -19540,7 +19540,7 @@ SAVELOOP :
 					break ;
 				}
 
-				// ѓЃѓbѓVѓ…’ё“_ѓCѓ“ѓfѓbѓNѓX‚МЉi”[
+				// гѓЎгѓѓг‚·гѓҐй ‚з‚№г‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃ®ж јзґЌ
 				MVInd = TriangleList->MeshVertexIndex ;
 				switch( F1TriangleList->Flag & MV1_TRIANGLE_LIST_FLAG_MVERT_INDEX_MASK )
 				{
@@ -19569,7 +19569,7 @@ SAVELOOP :
 					break ;
 				}
 
-				// ’ё“_ѓCѓ“ѓfѓbѓNѓX‚МЉi”[
+				// й ‚з‚№г‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃ®ж јзґЌ
 				Ind = TriangleList->Index ;
 				switch( ( F1TriangleList->Flag & MV1_TRIANGLE_LIST_FLAG_INDEX_MASK ) >> 2 )
 				{
@@ -19602,7 +19602,7 @@ SAVELOOP :
 
 	if( AnimSave )
 	{
-		// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“ѓLЃ[ѓZѓbѓg‚МЏо•с‚р–„‚Я‚й
+		// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓіг‚­гѓјг‚»гѓѓгѓ€гЃ®жѓ…е ±г‚’еџ‹г‚Ѓг‚‹
 		F1AnimKeySet = ( MV1_ANIM_KEYSET_F1 * )( ( DWORD_PTR )FHeader->AnimKeySet + ( DWORD_PTR )FHeader ) ;
 		AnimKeySet = AnimModelBase->AnimKeySet ;
 		for( i = 0 ; i < ( DWORD )AnimModelBase->AnimKeySetNum ; i ++, F1AnimKeySet ++, AnimKeySet ++ )
@@ -19632,10 +19632,10 @@ SAVELOOP :
 			MPPP = 0 ;
 			ZTP = 0 ;
 
-			// ‰с“]ѓLЃ[‚МЏкЌ‡‚НЏ€—ќ‚р•ЄЉт
+			// е›ћи»ўг‚­гѓјгЃ®е ґеђ€гЃЇе‡¦зђ†г‚’е€†еІђ
 			if( AnimKeySet->DataType >= MV1_ANIMKEY_DATATYPE_ROTATE && AnimKeySet->DataType <= MV1_ANIMKEY_DATATYPE_ROTATE_Z )
 			{
-				// ѓLЃ[ѓfЃ[ѓ^‚Є‰с“]‚Е -DX_PIЃ`DX_PI ‚МЉФ‚Й’l‚ЄЋы‚Ь‚Б‚Д‚ў‚й‚©‚ЖЃA0Ѓ`2*DX_PI ‚МЉФ‚ЙЋы‚Ь‚Б‚Д‚ў‚й‚©‚З‚¤‚©‚р’І‚Ч‚й
+				// г‚­гѓјгѓ‡гѓјг‚їгЃЊе›ћи»ўгЃ§ -DX_PIпЅћDX_PI гЃ®й–“гЃ«еЂ¤гЃЊеЏЋгЃѕгЃЈгЃ¦гЃ„г‚‹гЃ‹гЃЁгЂЃ0пЅћ2*DX_PI гЃ®й–“гЃ«еЏЋгЃѕгЃЈгЃ¦гЃ„г‚‹гЃ‹гЃ©гЃ†гЃ‹г‚’иЄїгЃ№г‚‹
 				switch( AnimKeySet->Type )
 				{
 				case MV1_ANIMKEY_TYPE_VECTOR :
@@ -19672,22 +19672,22 @@ SAVELOOP :
 				MPPP = 0 ;
 			}
 
-			// 16ѓrѓbѓg‰»ѓLЃ[‚Є—§‚Б‚Д‚ў‚йЏкЌ‡‚Н‚P‚Uѓrѓbѓg‰»‚Е‚«‚й‚©’І‚Ч‚й
+			// 16гѓ“гѓѓгѓ€еЊ–г‚­гѓјгЃЊз«‹гЃЈгЃ¦гЃ„г‚‹е ґеђ€гЃЇпј‘пј–гѓ“гѓѓгѓ€еЊ–гЃ§гЃЌг‚‹гЃ‹иЄїгЃ№г‚‹
 			if( Anim16BitFlag )
 			{
-				// ѓfЃ[ѓ^‚Є€к‚В‚ѕ‚Ї‚ѕ‚Б‚ЅЏкЌ‡‚НЏ€—ќ‚р•ЄЉт
+				// гѓ‡гѓјг‚їгЃЊдёЂгЃ¤гЃ гЃ‘гЃ гЃЈгЃџе ґеђ€гЃЇе‡¦зђ†г‚’е€†еІђ
 				if( AnimKeySet->Num == 1 )
 				{
-					// •вЏ•ѓLЃ[‚Є—v‚з‚И‚ўѓfЃ[ѓ^Њ`Ћ®‚Є‰В”\‚ИЏкЌ‡‚М‚Э‚P‚Uѓrѓbѓg‰»
+					// иЈњеЉ©г‚­гѓјгЃЊи¦Ѓг‚‰гЃЄгЃ„гѓ‡гѓјг‚їеЅўејЏгЃЊеЏЇиѓЅгЃЄе ґеђ€гЃ®гЃїпј‘пј–гѓ“гѓѓгѓ€еЊ–
 					if( MPPP || ZTP )
 						KeyBit16 = 1 ;
 				}
 				else
 				{
-					// ѓ^ѓCѓЂ’l‚р‚P‚Uѓrѓbѓg‰»‚Е‚«‚й‚©’І‚Ч‚й
+					// г‚їг‚¤гѓ еЂ¤г‚’пј‘пј–гѓ“гѓѓгѓ€еЊ–гЃ§гЃЌг‚‹гЃ‹иЄїгЃ№г‚‹
 					if( AnimKeySet->TimeType == MV1_ANIMKEY_TIME_TYPE_KEY )
 					{
-						// ЋћЉФѓfЃ[ѓ^•”•Є‚рЊЕ’иЏ¬ђ”“_‰»
+						// ж™‚й–“гѓ‡гѓјг‚їйѓЁе€†г‚’е›єе®ље°Џж•°з‚№еЊ–
 						Time16BSubF.Unit = 1.0f ;
 						Time16BSubF.Min = 0.0f ;
 
@@ -19701,7 +19701,7 @@ SAVELOOP :
 							if( Time16BSubF.Unit < *Float ) Time16BSubF.Unit = *Float ;
 						}
 
-						// 16bit•вЏ•Џо•с‚МЌмђ¬
+						// 16bitиЈњеЉ©жѓ…е ±гЃ®дЅњж€ђ
 						Time16BSub.Min    = MV1AnimKey16BitMinFtoB( Time16BSubF.Min  ) ;
 						Time16BSubF.Min   = MV1AnimKey16BitMinBtoF( Time16BSub.Min ) ;
 						Time16BSubF.Unit -= Time16BSubF.Min ;
@@ -19714,7 +19714,7 @@ SAVELOOP :
 						TimeBit16 = 1 ;
 					}
 
-					// ѓLЃ[‚р‚P‚Uѓrѓbѓg‰»‚Е‚«‚й‚©’І‚Ч‚й
+					// г‚­гѓјг‚’пј‘пј–гѓ“гѓѓгѓ€еЊ–гЃ§гЃЌг‚‹гЃ‹иЄїгЃ№г‚‹
 					if( MPPP || ZTP )
 					{
 						KeyBit16 = 1 ;
@@ -19727,7 +19727,7 @@ SAVELOOP :
 							{
 								float *Key ;
 
-								// ЌЕЏ¬’l‚ЖЌЕ‘е’l‚рЋж“ѕ
+								// жњЂе°ЏеЂ¤гЃЁжњЂе¤§еЂ¤г‚’еЏ–еѕ—
 								Key16BSubF.Min  =  1000000000000.0f ;
 								Key16BSubF.Unit = -1000000000000.0f ;
 								Key = AnimKeySet->KeyLinear ;
@@ -19744,7 +19744,7 @@ SAVELOOP :
 							{
 								VECTOR *Key ;
 
-								// ЌЕЏ¬’l‚ЖЌЕ‘е’l‚рЋж“ѕ
+								// жњЂе°ЏеЂ¤гЃЁжњЂе¤§еЂ¤г‚’еЏ–еѕ—
 								Key16BSubF.Min  =  1000000000000.0f ;
 								Key16BSubF.Unit = -1000000000000.0f ;
 								Key = AnimKeySet->KeyVector ;
@@ -19766,7 +19766,7 @@ SAVELOOP :
 							{
 								FLOAT4 *Key ;
 
-								// ЌЕЏ¬’l‚ЖЌЕ‘е’l‚рЋж“ѕ
+								// жњЂе°ЏеЂ¤гЃЁжњЂе¤§еЂ¤г‚’еЏ–еѕ—
 								Key16BSubF.Min  =  1000000000000.0f ;
 								Key16BSubF.Unit = -1000000000000.0f ;
 								Key = AnimKeySet->KeyFloat4 ;
@@ -19787,7 +19787,7 @@ SAVELOOP :
 						}
 						if( KeyBit16 )
 						{
-							// 16bit•вЏ•Џо•с‚МЌмђ¬
+							// 16bitиЈњеЉ©жѓ…е ±гЃ®дЅњж€ђ
 							Key16BSub.Min    = MV1AnimKey16BitMinFtoB( Key16BSubF.Min  ) ;
 							Key16BSubF.Min   = MV1AnimKey16BitMinBtoF( Key16BSub.Min ) ;
 							Key16BSubF.Unit -= Key16BSubF.Min ;
@@ -19801,21 +19801,21 @@ SAVELOOP :
 				}
 			}
 
-			// ѓLЃ[ѓ^ѓCѓv‚ЄѓVѓFѓCѓv‚МЏкЌ‡‚Н‘ОЏЫ‚МѓVѓFѓCѓvѓCѓ“ѓfѓbѓNѓX‚р•Ы‘¶‚·‚й
+			// г‚­гѓјг‚їг‚¤гѓ—гЃЊг‚·г‚§г‚¤гѓ—гЃ®е ґеђ€гЃЇеЇѕи±ЎгЃ®г‚·г‚§г‚¤гѓ—г‚¤гѓігѓ‡гѓѓг‚Їг‚№г‚’дїќе­гЃ™г‚‹
 			if( AnimKeySet->DataType == MV1_ANIMKEY_DATATYPE_SHAPE )
 			{
 				*( ( WORD * )Dest ) = ( WORD )AnimKeySet->TargetShapeIndex ;
 				Dest += 2 ;
 			}
 
-			// ѓLЃ[‚Є€к‚В‚©‚З‚¤‚©‚ЕЏ€—ќ‚р•ЄЉт
+			// г‚­гѓјгЃЊдёЂгЃ¤гЃ‹гЃ©гЃ†гЃ‹гЃ§е‡¦зђ†г‚’е€†еІђ
 			if( AnimKeySet->Num == 1 )
 			{
 				F1AnimKeySet->Flag |= MV1_ANIM_KEYSET_FLAG_KEY_ONE ;
 			}
 			else
 			{
-				// ѓLЃ[‚Мђ”‚р•Ы‘¶
+				// г‚­гѓјгЃ®ж•°г‚’дїќе­
 				if( AnimKeySet->Num < 256 )
 				{
 					F1AnimKeySet->Flag |= MV1_ANIM_KEYSET_FLAG_KEYNUM_B ;
@@ -19835,54 +19835,54 @@ SAVELOOP :
 					Dest += 4 ;
 				}
 
-				// ѓ^ѓCѓЂ’l‚Є€к’иЉФЉu‚©‚З‚¤‚©‚ЕЏ€—ќ‚р•ЄЉт
+				// г‚їг‚¤гѓ еЂ¤гЃЊдёЂе®љй–“йљ”гЃ‹гЃ©гЃ†гЃ‹гЃ§е‡¦зђ†г‚’е€†еІђ
 				if( AnimKeySet->TimeType == MV1_ANIMKEY_TIME_TYPE_ONE )
 				{
 					F1AnimKeySet->Flag |= MV1_ANIM_KEYSET_FLAG_TIME_UNIT ;
 
-					// ЉJЋn’l‚Є‚O‚©‚З‚¤‚©’І‚Ч‚й
+					// й–‹е§‹еЂ¤гЃЊпјђгЃ‹гЃ©гЃ†гЃ‹иЄїгЃ№г‚‹
 					if( AnimKeySet->StartTime > -0.000001f && AnimKeySet->StartTime < 0.000001f )
 					{
-						// ѓ[ѓЌ‚МЏкЌ‡‚Н’l‚рЏo—Н‚µ‚И‚ў
+						// г‚јгѓ­гЃ®е ґеђ€гЃЇеЂ¤г‚’е‡єеЉ›гЃ—гЃЄгЃ„
 						F1AnimKeySet->Flag |= MV1_ANIM_KEYSET_FLAG_TIME_UNIT_ST_Z ;
 					}
 					else
 					{
-						// ’l‚Єђ®ђ”’l‚Е 65535 €И‰є‚©‚З‚¤‚©‚р’І‚Ч‚й
+						// еЂ¤гЃЊж•ґж•°еЂ¤гЃ§ 65535 д»Ґдё‹гЃ‹гЃ©гЃ†гЃ‹г‚’иЄїгЃ№г‚‹
 						f = AnimKeySet->StartTime - _FTOL( AnimKeySet->StartTime ) ;
 						if( f > -0.000001f && f < 0.000001f && AnimKeySet->StartTime >= 0.0f && AnimKeySet->StartTime <= 65535.0f )
 						{
-							// ЉJЋn’l‚рWORD’l‚Е•Ы‘¶
+							// й–‹е§‹еЂ¤г‚’WORDеЂ¤гЃ§дїќе­
 							F1AnimKeySet->Flag |= MV1_ANIM_KEYSET_FLAG_TIME_UNIT_ST_W ;
 							*( ( WORD * )Dest ) = ( WORD )_FTOL( AnimKeySet->StartTime ) ;
 							Dest += 2 ;
 						}
 						else
 						{
-							// ЉJЋn’l‚рfloat’l‚Е•Ы‘¶
+							// й–‹е§‹еЂ¤г‚’floatеЂ¤гЃ§дїќе­
 							*( ( float * )Dest ) = AnimKeySet->StartTime ;
 							Dest += 4 ;
 						}
 					}
 
-					// ЉФЉu’l‚Єђ®ђ”’l‚Е 65535 €И‰є‚©‚З‚¤‚©‚р’І‚Ч‚й
+					// й–“йљ”еЂ¤гЃЊж•ґж•°еЂ¤гЃ§ 65535 д»Ґдё‹гЃ‹гЃ©гЃ†гЃ‹г‚’иЄїгЃ№г‚‹
 					f = AnimKeySet->UnitTime - _FTOL( AnimKeySet->UnitTime ) ;
 					if( f > -0.000001f && f < 0.000001f && AnimKeySet->UnitTime >= 0.0f && AnimKeySet->UnitTime <= 65535.0f )
 					{
-						// ЉФЉu’l‚рWORD’l‚Е•Ы‘¶
+						// й–“йљ”еЂ¤г‚’WORDеЂ¤гЃ§дїќе­
 						F1AnimKeySet->Flag |= MV1_ANIM_KEYSET_FLAG_TIME_UNIT_UN_W ;
 						*( ( WORD * )Dest ) = ( WORD )_FTOL( AnimKeySet->UnitTime ) ;
 						Dest += 2 ;
 					}
 					else
 					{
-						// ЉФЉu’l‚рfloat’l‚Е•Ы‘¶
+						// й–“йљ”еЂ¤г‚’floatеЂ¤гЃ§дїќе­
 						*( ( float * )Dest ) = AnimKeySet->UnitTime ;
 						Dest += 4 ;
 					}
 				}
 				else
-				// 16bit‰»‚·‚йЏкЌ‡‚Н•вЏ•Џо•с‚р•Ы‘¶
+				// 16bitеЊ–гЃ™г‚‹е ґеђ€гЃЇиЈњеЉ©жѓ…е ±г‚’дїќе­
 				if( TimeBit16 )
 				{
 					F1AnimKeySet->Flag |= MV1_ANIM_KEYSET_FLAG_TIME_BIT16 ;
@@ -19890,7 +19890,7 @@ SAVELOOP :
 					*( ( MV1_ANIM_KEY_16BIT_F1 * )Dest ) = Time16BSub ;
 					Dest += 2 ;
 
-					// ’l‚р•ПЉ·
+					// еЂ¤г‚’е¤‰жЏ›
 					Float = AnimKeySet->KeyTime ;
 					for( k = 0 ; k < ( DWORD )AnimKeySet->Num ; k ++, Float ++ )
 					{
@@ -19904,7 +19904,7 @@ SAVELOOP :
 					Dest += AnimKeySet->Num * sizeof( float ) ;
 				}
 
-				// 16bit‰»•вЏ•Џо•с‚Є•K—v‚ИЏкЌ‡‚Н•Ы‘¶
+				// 16bitеЊ–иЈњеЉ©жѓ…е ±гЃЊеї…и¦ЃгЃЄе ґеђ€гЃЇдїќе­
 				if( MPPP == 0 && ZTP == 0 && KeyBit16 )
 				{
 					*( ( MV1_ANIM_KEY_16BIT_F1 * )Dest ) = Key16BSub ;
@@ -19912,7 +19912,7 @@ SAVELOOP :
 				}
 			}
 
-			// ѓLЃ[‚М’l‚р•Ы‘¶
+			// г‚­гѓјгЃ®еЂ¤г‚’дїќе­
 			if( KeyBit16 == 0 )
 			{
 				switch( AnimKeySet->Type )
@@ -20125,7 +20125,7 @@ SAVELOOP :
 			FHeader->AnimKeyDataSize = ( FHeader->AnimKeyDataSize + 3 ) / 4 * 4 ;
 		}
 
-		// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“ѓZѓbѓg‚ЖѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚МЏо•с‚р–„‚Я‚й
+		// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓіг‚»гѓѓгѓ€гЃЁг‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігЃ®жѓ…е ±г‚’еџ‹г‚Ѓг‚‹
 		F1AnimSet = ( MV1_ANIMSET_F1 * )( ( DWORD_PTR )FHeader->AnimSet + ( DWORD_PTR )FHeader ) ;
 		AnimSet = AnimModelBase->AnimSet ;
 		for( i = 0 ; i < ( DWORD )AnimModelBase->AnimSetNum ; i ++, F1AnimSet ++, AnimSet ++ )
@@ -20212,11 +20212,11 @@ SAVELOOP :
 		}
 	}
 
-	// •¶Ћљ—сѓfЃ[ѓ^‚МѓTѓCѓY‚р‚P‚U‚М”{ђ”‚ЙЌ‡‚н‚№‚й
+	// ж–‡е­—е€—гѓ‡гѓјг‚їгЃ®г‚µг‚¤г‚єг‚’пј‘пј–гЃ®еЂЌж•°гЃ«еђ€г‚ЏгЃ›г‚‹
 	FHeader->StringSize = ( FHeader->StringSize + 15 ) / 16 * 16 ;
 	TempBufferUseSize += FHeader->StringSize ;
 
-	// ’ё“_ѓfЃ[ѓ^‚рѓtѓ@ѓCѓ‹‚М––’[‚Й”z’u‚·‚й
+	// й ‚з‚№гѓ‡гѓјг‚їг‚’гѓ•г‚Ўг‚¤гѓ«гЃ®жњ«з«ЇгЃ«й…ЌзЅ®гЃ™г‚‹
 	if( MeshSave )
 	{
 		if( TempBufferUseSize + FHeader->VertexDataSize > TempBufferSize )
@@ -20229,7 +20229,7 @@ SAVELOOP :
 		_MEMCPY( ( BYTE * )FHeader + ( DWORD_PTR )FHeader->VertexData, VertexBuffer, FHeader->VertexDataSize ) ;
 		TempBufferUseSize += FHeader->VertexDataSize ;
 
-		// ’ё“_ѓfЃ[ѓ^ѓAѓhѓЊѓX‚р•вђі
+		// й ‚з‚№гѓ‡гѓјг‚їг‚ўгѓ‰гѓ¬г‚№г‚’иЈњж­Ј
 		F1Frame = ( MV1_FRAME_F1 * )( ( DWORD_PTR )FHeader->Frame + ( DWORD_PTR )FHeader ) ;
 		for( i = 0 ; i < ( DWORD )ModelBase->FrameNum ; i ++, F1Frame ++ )
 		{
@@ -20247,7 +20247,7 @@ SAVELOOP :
 		}
 	}
 
-	// ѓ}ѓeѓЉѓAѓ‹Џо•сЌXђVЊџЏo—pѓeЃ[ѓuѓ‹‚рѓtѓ@ѓCѓ‹‚М––’[‚Й”z’u‚·‚й
+	// гѓћгѓ†гѓЄг‚ўгѓ«жѓ…е ±ж›ґж–°ж¤ње‡єз”Ёгѓ†гѓјгѓ–гѓ«г‚’гѓ•г‚Ўг‚¤гѓ«гЃ®жњ«з«ЇгЃ«й…ЌзЅ®гЃ™г‚‹
 	if( MeshSave == false )
 	{
 		DWORD *Table ;
@@ -20263,7 +20263,7 @@ SAVELOOP :
 		_MEMCPY( ( BYTE * )FHeader + ( DWORD_PTR )FHeader->ChangeDrawMaterialTable, Table, ( size_t )FHeader->ChangeDrawMaterialTableSize ) ;
 		TempBufferUseSize += FHeader->ChangeDrawMaterialTableSize ;
 
-		// ЊџЏo—pѓeЃ[ѓuѓ‹‚МѓAѓhѓЊѓX‚р•вђі
+		// ж¤ње‡єз”Ёгѓ†гѓјгѓ–гѓ«гЃ®г‚ўгѓ‰гѓ¬г‚№г‚’иЈњж­Ј
 		F1Frame = ( MV1_FRAME_F1 * )( ( DWORD_PTR )FHeader->Frame + ( DWORD_PTR )FHeader ) ;
 		for( i = 0 ; i < ( DWORD )ModelBase->FrameNum ; i ++, F1Frame ++ )
 		{
@@ -20271,7 +20271,7 @@ SAVELOOP :
 		}
 	}
 
-	// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“ѓLЃ[ѓfЃ[ѓ^‚рѓtѓ@ѓCѓ‹‚М––’[‚Й”z’u‚·‚й
+	// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓіг‚­гѓјгѓ‡гѓјг‚їг‚’гѓ•г‚Ўг‚¤гѓ«гЃ®жњ«з«ЇгЃ«й…ЌзЅ®гЃ™г‚‹
 	if( AnimSave )
 	{
 		if( TempBufferUseSize + FHeader->AnimKeyDataSize > TempBufferSize )
@@ -20284,7 +20284,7 @@ SAVELOOP :
 		_MEMCPY( ( BYTE * )FHeader + ( DWORD_PTR )FHeader->AnimKeyData, AnimBuffer, ( size_t )FHeader->AnimKeyDataSize ) ;
 		TempBufferUseSize += FHeader->AnimKeyDataSize ;
 
-		// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“ѓLЃ[ѓZѓbѓg‚МѓLЃ[ѓfЃ[ѓ^ѓAѓhѓЊѓX‚р•вђі
+		// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓіг‚­гѓјг‚»гѓѓгѓ€гЃ®г‚­гѓјгѓ‡гѓјг‚їг‚ўгѓ‰гѓ¬г‚№г‚’иЈњж­Ј
 		F1AnimKeySet = ( MV1_ANIM_KEYSET_F1 * )( ( DWORD_PTR )FHeader->AnimKeySet + ( DWORD_PTR )FHeader ) ;
 		for( i = 0 ; i < ( DWORD )AnimModelBase->AnimKeySetNum ; i ++, F1AnimKeySet ++ )
 		{
@@ -20292,7 +20292,7 @@ SAVELOOP :
 		}
 	}
 
-	// ѓfЃ[ѓ^‚р€іЏk
+	// гѓ‡гѓјг‚їг‚’ењ§зё®
 	{
 		if( TempBufferUseSize * 2 + TempBufferUseSize / 2 > TempBufferSize )
 		{
@@ -20308,7 +20308,7 @@ SAVELOOP :
 		PressDataSize = ( DWORD )DXA_Encode( ( BYTE * )FHeader + 4, ( DWORD )( TempBufferUseSize - 4 ), ( BYTE * )PressData + 4 ) ;
 	}
 
-	// ѓtѓ@ѓCѓ‹‚ЙЏ‘‚«Џo‚·
+	// гѓ•г‚Ўг‚¤гѓ«гЃ«ж›ёгЃЌе‡єгЃ™
 	FileHandle = WriteOnlyFileAccessOpen( FileName ) ;
 	if( FileHandle )
 	{
@@ -20316,7 +20316,7 @@ SAVELOOP :
 		WriteOnlyFileAccessClose( FileHandle ) ;
 	}
 
-	// ѓЃѓ‚ѓЉ‚М‰р•ъ
+	// гѓЎгѓўгѓЄгЃ®и§Јж”ѕ
 	if( TempBuffer )
 	{
 		DXFREE( TempBuffer ) ;
@@ -20341,7 +20341,7 @@ SAVELOOP :
 		ChangeDrawMaterialTableBuffer = NULL ;
 	}
 
-	// ѓgѓbѓvѓtѓЊЃ[ѓЂЏњЉO‚рЌs‚Б‚Д‚ў‚ЅЏкЌ‡‚НЊі‚Й–Я‚·
+	// гѓ€гѓѓгѓ—гѓ•гѓ¬гѓјгѓ й™¤е¤–г‚’иЎЊгЃЈгЃ¦гЃ„гЃџе ґеђ€гЃЇе…ѓгЃ«ж€»гЃ™
 	if( IgnoreTopFrame )
 	{
 		ModelBase->Frame-- ;
@@ -20354,7 +20354,7 @@ SAVELOOP :
 		Model->TopFrameList[ 0 ]->ChildList[ 0 ]->Parent = Model_Frame_Backup ;
 	}
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 
 ERRORLABEL :
@@ -20382,7 +20382,7 @@ ERRORLABEL :
 		ChangeDrawMaterialTableBuffer = NULL ;
 	}
 
-	// ѓgѓbѓvѓtѓЊЃ[ѓЂЏњЉO‚рЌs‚Б‚Д‚ў‚ЅЏкЌ‡‚НЊі‚Й–Я‚·
+	// гѓ€гѓѓгѓ—гѓ•гѓ¬гѓјгѓ й™¤е¤–г‚’иЎЊгЃЈгЃ¦гЃ„гЃџе ґеђ€гЃЇе…ѓгЃ«ж€»гЃ™
 	if( IgnoreTopFrame )
 	{
 		ModelBase->Frame-- ;
@@ -20402,7 +20402,7 @@ ERRORLABEL :
 
 
 
-// MV1SaveModelToMV1File ‚Е•Ы‘¶‚рЏњЉO‚·‚йѓgѓbѓvѓtѓЊЃ[ѓЂ–ј‚рђЭ’и‚·‚й
+// MV1SaveModelToMV1File гЃ§дїќе­г‚’й™¤е¤–гЃ™г‚‹гѓ€гѓѓгѓ—гѓ•гѓ¬гѓјгѓ еђЌг‚’иЁ­е®љгЃ™г‚‹
 extern int NS_MV1SetNotSaveTopFrameName( const TCHAR *FrameName )
 {
 #ifdef UNICODE
@@ -20420,7 +20420,7 @@ extern int NS_MV1SetNotSaveTopFrameName( const TCHAR *FrameName )
 #endif
 }
 
-// MV1SaveModelToMV1File ‚Е•Ы‘¶‚рЏњЉO‚·‚йѓgѓbѓvѓtѓЊЃ[ѓЂ–ј‚рђЭ’и‚·‚й
+// MV1SaveModelToMV1File гЃ§дїќе­г‚’й™¤е¤–гЃ™г‚‹гѓ€гѓѓгѓ—гѓ•гѓ¬гѓјгѓ еђЌг‚’иЁ­е®љгЃ™г‚‹
 extern int NS_MV1SetNotSaveTopFrameNameWithStrLen( const TCHAR *FrameName, size_t FrameNameLength )
 {
 	int Result ;
@@ -20438,7 +20438,7 @@ extern int NS_MV1SetNotSaveTopFrameNameWithStrLen( const TCHAR *FrameName, size_
 
 extern int MV1SetNotSaveTopFrameName_WCHAR_T( const wchar_t *FrameName )
 {
-	// ѓtѓЊЃ[ѓЂ–ј‚р•Ы‘¶
+	// гѓ•гѓ¬гѓјгѓ еђЌг‚’дїќе­
 	if( FrameName == NULL )
 	{
 		MV1Man.NotSaveTopFrameName[ 0 ] = 0 ;
@@ -20448,14 +20448,14 @@ extern int MV1SetNotSaveTopFrameName_WCHAR_T( const wchar_t *FrameName )
 		_WCSCPY( MV1Man.NotSaveTopFrameName, FrameName ) ;
 	}
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
 
 
 
-// ѓXѓyЃ[ѓX‚р _ ‚Й•ПЌX‚µ‚Д•Ф‚·
+// г‚№гѓљгѓјг‚№г‚’ _ гЃ«е¤‰ж›ґгЃ—гЃ¦иї”гЃ™
 static const char *MV1SaveModelToXFileConvSpace( const char *String )
 {
 	static char TempChar[ 512 ] ;
@@ -20477,7 +20477,7 @@ static const char *MV1SaveModelToXFileConvSpace( const char *String )
 	return TempChar ;
 }
 
-// Ћw’иђ”‚Мѓ^ѓu‚рЏo—Н‚·‚й
+// жЊ‡е®љж•°гЃ®г‚їгѓ–г‚’е‡єеЉ›гЃ™г‚‹
 static	void MV1SaveModelToXFileOutputTab( DWORD_PTR fp, int TabNum )
 {
 	int i ;
@@ -20493,7 +20493,7 @@ static	void MV1SaveModelToXFileOutputTab( DWORD_PTR fp, int TabNum )
 
 #ifndef DX_NON_SAVEFUNCTION
 
-// Ћw’и‚МѓpѓX‚Йѓ‚ѓfѓ‹‚р‚wѓtѓ@ѓCѓ‹Њ`Ћ®‚Е•Ы‘¶‚·‚й
+// жЊ‡е®љгЃ®гѓ‘г‚№гЃ«гѓўгѓ‡гѓ«г‚’пјёгѓ•г‚Ўг‚¤гѓ«еЅўејЏгЃ§дїќе­гЃ™г‚‹
 extern int NS_MV1SaveModelToXFile( int MHandle, const TCHAR *FileName, int SaveType, int AnimMHandle, int AnimNameCheck )
 {
 #ifdef UNICODE
@@ -20515,7 +20515,7 @@ extern int NS_MV1SaveModelToXFile( int MHandle, const TCHAR *FileName, int SaveT
 #endif
 }
 
-// Ћw’и‚МѓpѓX‚Йѓ‚ѓfѓ‹‚р‚wѓtѓ@ѓCѓ‹Њ`Ћ®‚Е•Ы‘¶‚·‚й( –Я‚и’l  0:ђ¬Њч  -1:ѓЃѓ‚ѓЉ•s‘«  -2:Ћg‚н‚к‚Д‚ў‚И‚ўѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚Є‚ ‚Б‚Ѕ )
+// жЊ‡е®љгЃ®гѓ‘г‚№гЃ«гѓўгѓ‡гѓ«г‚’пјёгѓ•г‚Ўг‚¤гѓ«еЅўејЏгЃ§дїќе­гЃ™г‚‹( ж€»г‚ЉеЂ¤  0:ж€ђеЉџ  -1:гѓЎгѓўгѓЄдёЌи¶і  -2:дЅїг‚Џг‚ЊгЃ¦гЃ„гЃЄгЃ„г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігЃЊгЃ‚гЃЈгЃџ )
 extern int NS_MV1SaveModelToXFileWithStrLen( int MHandle, const TCHAR *FileName, size_t FileNameLength, int SaveType, int AnimMHandle, int AnimNameCheck )
 {
 	int Result ;
@@ -20531,7 +20531,7 @@ extern int NS_MV1SaveModelToXFileWithStrLen( int MHandle, const TCHAR *FileName,
 	return Result ;
 }
 
-// Ћw’и‚МѓpѓX‚Йѓ‚ѓfѓ‹‚р‚wѓtѓ@ѓCѓ‹Њ`Ћ®‚Е•Ы‘¶‚·‚й
+// жЊ‡е®љгЃ®гѓ‘г‚№гЃ«гѓўгѓ‡гѓ«г‚’пјёгѓ•г‚Ўг‚¤гѓ«еЅўејЏгЃ§дїќе­гЃ™г‚‹
 extern int MV1SaveModelToXFile_WCHAR_T( int MHandle, const wchar_t *FileName, int SaveType, int AnimMHandle, int AnimNameCheck )
 {
 	MV1_MODEL *Model, *AnimModel ;
@@ -20563,15 +20563,15 @@ extern int MV1SaveModelToXFile_WCHAR_T( int MHandle, const wchar_t *FileName, in
 	MeshSave = ( SaveType & MV1_SAVETYPE_MESH ) ? true : false ;
 	AnimSave = ( SaveType & MV1_SAVETYPE_ANIM ) ? true : false ;
 
-	// Џ‰Љъ‰»‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// е€ќжњџеЊ–гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( MV1Man.Initialize == false ) return -1 ;
 
-	// ѓAѓhѓЊѓXЋж“ѕ
+	// г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ—
 	if( MV1MDLCHK( MHandle, Model ) )
 		return -1 ;
 	ModelBase = Model->BaseData ;
 
-	// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“—p‚Мѓ‚ѓfѓ‹ѓnѓ“ѓhѓ‹‚Мѓ`ѓFѓbѓN
+	// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓіз”ЁгЃ®гѓўгѓ‡гѓ«гѓЏгѓігѓ‰гѓ«гЃ®гѓЃг‚§гѓѓг‚Ї
 	if( MV1MDLCHK( AnimMHandle, AnimModel ) )
 	{
 		AnimModelBase = ModelBase ;
@@ -20583,19 +20583,19 @@ extern int MV1SaveModelToXFile_WCHAR_T( int MHandle, const wchar_t *FileName, in
 		AnimModelBase = AnimModel->BaseData ;
 	}
 
-	// ѓtѓ@ѓCѓ‹‚рЉJ‚­
+	// гѓ•г‚Ўг‚¤гѓ«г‚’й–‹гЃЏ
 	fp = WriteOnlyFileAccessOpen( FileName ) ;
 	if( fp == 0 )
 	{
 		return -1 ;
 	}
 
-	// ѓwѓbѓ_‚МЏo—Н
+	// гѓгѓѓгѓЂгЃ®е‡єеЉ›
 	WriteOnlyFileAccessPrintf( fp, "xof 0303txt 0032\n" ) ;
 
 	if( MeshSave )
 	{
-		// ѓ}ѓeѓЉѓAѓ‹‚МЏo—Н
+		// гѓћгѓ†гѓЄг‚ўгѓ«гЃ®е‡єеЉ›
 		MaterialBase = ModelBase->Material ;
 		Material = Model->Material ;
 		for( i = 0 ; i < ModelBase->MaterialNum ; i ++, MaterialBase ++, Material ++ )
@@ -20625,12 +20625,12 @@ extern int MV1SaveModelToXFile_WCHAR_T( int MHandle, const wchar_t *FileName, in
 			WriteOnlyFileAccessPrintf( fp, "}\n" ) ;
 		}
 
-		// ѓXѓLѓjѓ“ѓOѓЃѓbѓVѓ…—p‚МѓЃѓ‚ѓЉ—М€ж‚ЖЌА•WѓCѓ“ѓfѓbѓNѓXЌмђ¬—p‚МѓЃѓ‚ѓЉ—М€ж‚рЉm•Ы
+		// г‚№г‚­гѓ‹гѓіг‚°гѓЎгѓѓг‚·гѓҐз”ЁгЃ®гѓЎгѓўгѓЄй еџџгЃЁеє§жЁ™г‚¤гѓігѓ‡гѓѓг‚Їг‚№дЅњж€ђз”ЁгЃ®гѓЎгѓўгѓЄй еџџг‚’зўєдїќ
 		UseBoneMap = ( MV1_SKINBONE_BLEND * )DXALLOC( ( ModelBase->TriangleNum * 3 ) * sizeof( MV1_SKINBONE_BLEND ) ) ;
 		if( UseBoneMap == NULL ) goto ERRORLABEL ;
 	}
 
-	// ѓgѓbѓvѓtѓЊЃ[ѓЂ‚©‚зЉJЋn
+	// гѓ€гѓѓгѓ—гѓ•гѓ¬гѓјгѓ гЃ‹г‚‰й–‹е§‹
 	{
 		Frame = Model->TopFrameList[ 0 ]->BaseData ;
 		FrameStack[ 0 ] = Frame ;
@@ -20649,7 +20649,7 @@ extern int MV1SaveModelToXFile_WCHAR_T( int MHandle, const wchar_t *FileName, in
 				ConvString( ( const char * )Frame->NameW, -1, WCHAR_T_CHARCODEFORMAT, String, sizeof( String ), DX_CHARCODEFORMAT_SHIFTJIS ) ;
 				WriteOnlyFileAccessPrintf( fp, "Frame %s {\n", MV1SaveModelToXFileConvSpace( String ) ) ;
 
-				// Ќs—с‚МЏo—Н
+				// иЎЊе€—гЃ®е‡єеЉ›
 				{
 					MV1SaveModelToXFileOutputTab( fp, FrameStackNum ) ;
 					WriteOnlyFileAccessPrintf( fp, "FrameTransformMatrix {\n" ) ;
@@ -20683,7 +20683,7 @@ extern int MV1SaveModelToXFile_WCHAR_T( int MHandle, const wchar_t *FileName, in
 
 				if( MeshSave )
 				{
-					// Mesh‚МЏo—Н
+					// MeshгЃ®е‡єеЉ›
 					if( Frame->MeshNum != 0 )
 					{
 						MV1SaveModelToXFileOutputTab( fp, FrameStackNum ) ;
@@ -20730,7 +20730,7 @@ extern int MV1SaveModelToXFile_WCHAR_T( int MHandle, const wchar_t *FileName, in
 							VertexStartIndex += Mesh->VertexNum ;
 						}
 
-						// –@ђь‚МЏo—Н
+						// жі•з·љгЃ®е‡єеЉ›
 						{
 							MV1SaveModelToXFileOutputTab( fp, FrameStackNum + 1 ) ;
 							WriteOnlyFileAccessPrintf( fp, "MeshNormals {\n" ) ;
@@ -20773,7 +20773,7 @@ extern int MV1SaveModelToXFile_WCHAR_T( int MHandle, const wchar_t *FileName, in
 							WriteOnlyFileAccessPrintf( fp, "}\n" ) ;
 						}
 
-						// ѓeѓNѓXѓ`ѓѓѓAѓhѓЊѓX‚МЏo—Н
+						// гѓ†г‚Їг‚№гѓЃгѓЈг‚ўгѓ‰гѓ¬г‚№гЃ®е‡єеЉ›
 						{
 							MV1SaveModelToXFileOutputTab( fp, FrameStackNum + 1 ) ;
 							WriteOnlyFileAccessPrintf( fp, "MeshTextureCoords {\n" ) ;
@@ -20797,7 +20797,7 @@ extern int MV1SaveModelToXFile_WCHAR_T( int MHandle, const wchar_t *FileName, in
 							WriteOnlyFileAccessPrintf( fp, "}\n" ) ;
 						}
 
-						// MeshMaterialList ‚МЏo—Н
+						// MeshMaterialList гЃ®е‡єеЉ›
 						{
 							MV1SaveModelToXFileOutputTab( fp, FrameStackNum + 1 ) ;
 							WriteOnlyFileAccessPrintf( fp, "MeshMaterialList {\n" ) ;
@@ -20837,10 +20837,10 @@ extern int MV1SaveModelToXFile_WCHAR_T( int MHandle, const wchar_t *FileName, in
 							WriteOnlyFileAccessPrintf( fp, "}\n" ) ;
 						}
 
-						// ѓXѓLѓjѓ“ѓOѓЃѓbѓVѓ…Џо•с‚МЏo—Н
+						// г‚№г‚­гѓ‹гѓіг‚°гѓЎгѓѓг‚·гѓҐжѓ…е ±гЃ®е‡єеЉ›
 						if( Frame->UseSkinBoneNum != 0 )
 						{
-							// XSkinMeshHeader ‚МЏo—Н
+							// XSkinMeshHeader гЃ®е‡єеЉ›
 							{
 								MV1SaveModelToXFileOutputTab( fp, FrameStackNum + 1 ) ;
 								WriteOnlyFileAccessPrintf( fp, "XSkinMeshHeader {\n" ) ;
@@ -20856,7 +20856,7 @@ extern int MV1SaveModelToXFile_WCHAR_T( int MHandle, const wchar_t *FileName, in
 								WriteOnlyFileAccessPrintf( fp, "}\n" ) ;
 							}
 
-							// ѓXѓLѓjѓ“ѓOѓEѓGѓCѓgЏо•с‚МЏo—Н
+							// г‚№г‚­гѓ‹гѓіг‚°г‚¦г‚Ёг‚¤гѓ€жѓ…е ±гЃ®е‡єеЉ›
 							for( j = 0 ; j < Frame->UseSkinBoneNum ; j ++ )
 							{
 								SkinB = Frame->UseSkinBone[ j ] ;
@@ -20981,7 +20981,7 @@ extern int MV1SaveModelToXFile_WCHAR_T( int MHandle, const wchar_t *FileName, in
 		}
 	}
 
-	// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚МЏo—Н
+	// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігЃ®е‡єеЉ›
 	if( AnimSave )
 	{
 		KeyTiming = NULL ;
@@ -21005,7 +21005,7 @@ extern int MV1SaveModelToXFile_WCHAR_T( int MHandle, const wchar_t *FileName, in
 				ConvString( ( const char * )AnimSet->NameW, -1, WCHAR_T_CHARCODEFORMAT, String, sizeof( String ), DX_CHARCODEFORMAT_SHIFTJIS ) ;
 				WriteOnlyFileAccessPrintf( fp, "AnimationSet %s {\n", MV1SaveModelToXFileConvSpace( String ) ) ;
 
-				// ‘S‚Д‚МѓLЃ[ѓ^ѓCѓ~ѓ“ѓO‚р—с‹“
+				// е…ЁгЃ¦гЃ®г‚­гѓјг‚їг‚¤гѓџгѓіг‚°г‚’е€—жЊ™
 				KeyTimingNum = 0 ;
 				Anim = AnimSet->Anim ;
 				for( j = 0 ; j < AnimSet->AnimNum ; j ++, Anim ++ )
@@ -21039,7 +21039,7 @@ extern int MV1SaveModelToXFile_WCHAR_T( int MHandle, const wchar_t *FileName, in
 					}
 				}
 
-				// ‘S‚Д‚МѓLЃ[ѓ^ѓCѓ~ѓ“ѓO‚Е‚МЌs—с‚МЉ„‚иЏo‚µ
+				// е…ЁгЃ¦гЃ®г‚­гѓјг‚їг‚¤гѓџгѓіг‚°гЃ§гЃ®иЎЊе€—гЃ®е‰Іг‚Ље‡єгЃ—
 				AnimIndex = NS_MV1AttachAnim( MHandle, i, AnimMHandle >= 0 ? AnimMHandle : MHandle, AnimNameCheck ) ;
 				if( AnimIndex == -1 ) goto ERRORLABEL ;
 
@@ -21074,7 +21074,7 @@ extern int MV1SaveModelToXFile_WCHAR_T( int MHandle, const wchar_t *FileName, in
 					}
 				}
 
-				// ѓLЃ[Џо•с‚МЏo—Н
+				// г‚­гѓјжѓ…е ±гЃ®е‡єеЉ›
 				Anim = AnimSet->Anim ;
 				for( j = 0 ; j < AnimSet->AnimNum ; j ++, Anim ++ )
 				{
@@ -21127,7 +21127,7 @@ extern int MV1SaveModelToXFile_WCHAR_T( int MHandle, const wchar_t *FileName, in
 		}
 	}
 
-	// ѓЃѓ‚ѓЉ‚М‰р•ъ
+	// гѓЎгѓўгѓЄгЃ®и§Јж”ѕ
 	if( UseBoneMap != 0 )
 	{
 		DXFREE( UseBoneMap ) ;
@@ -21140,10 +21140,10 @@ extern int MV1SaveModelToXFile_WCHAR_T( int MHandle, const wchar_t *FileName, in
 		KeyTiming = NULL ;
 	}
 
-	// ѓtѓ@ѓCѓ‹‚р•В‚¶‚й
+	// гѓ•г‚Ўг‚¤гѓ«г‚’й–‰гЃг‚‹
 	WriteOnlyFileAccessClose( fp ) ;
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 
 ERRORLABEL :
@@ -21201,37 +21201,37 @@ ERRORLABEL :
 
 
 
-// ѓ‚ѓfѓ‹ѓnѓ“ѓhѓ‹‚ЕЋg—p‚і‚к‚Д‚ў‚йѓ‚ѓfѓ‹Љо–{ѓfЃ[ѓ^ѓnѓ“ѓhѓ‹‚рЋж“ѕ‚·‚й
+// гѓўгѓ‡гѓ«гѓЏгѓігѓ‰гѓ«гЃ§дЅїз”ЁгЃ•г‚ЊгЃ¦гЃ„г‚‹гѓўгѓ‡гѓ«еџєжњ¬гѓ‡гѓјг‚їгѓЏгѓігѓ‰гѓ«г‚’еЏ–еѕ—гЃ™г‚‹
 extern int MV1GetModelBaseHandle( int MHandle )
 {
 	MV1_MODEL *Model ;
 
-	// Џ‰Љъ‰»‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// е€ќжњџеЊ–гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( MV1Man.Initialize == false ) return -1 ;
 
-	// ѓAѓhѓЊѓXЋж“ѕ
+	// г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ—
 	if( MV1MDLCHK( MHandle, Model ) )
 		return -1 ;
 
-	// ѓ‚ѓfѓ‹Љо–{ѓfЃ[ѓ^ѓnѓ“ѓhѓ‹‚р•Ф‚·
+	// гѓўгѓ‡гѓ«еџєжњ¬гѓ‡гѓјг‚їгѓЏгѓігѓ‰гѓ«г‚’иї”гЃ™
 	return Model->BaseDataHandle ;
 }
 
-// ѓ‚ѓfѓ‹‚МѓfЃ[ѓ^ѓTѓCѓY‚рЋж“ѕ‚·‚й
+// гѓўгѓ‡гѓ«гЃ®гѓ‡гѓјг‚їг‚µг‚¤г‚єг‚’еЏ–еѕ—гЃ™г‚‹
 extern int MV1GetModelDataSize( int MHandle, int DataType )
 {
 	MV1_MODEL *Model ;
 	MV1_MODEL_BASE *ModelBase ;
 
-	// Џ‰Љъ‰»‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// е€ќжњџеЊ–гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( MV1Man.Initialize == false ) return -1 ;
 
-	// ѓAѓhѓЊѓXЋж“ѕ
+	// г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ—
 	if( MV1MDLCHK( MHandle, Model ) )
 		return -1 ;
 	ModelBase = Model->BaseData ;
 
-	// ѓfЃ[ѓ^ѓ^ѓCѓv‚Й‚ж‚Б‚ДЏ€—ќ‚р•ЄЉт
+	// гѓ‡гѓјг‚їг‚їг‚¤гѓ—гЃ«г‚€гЃЈгЃ¦е‡¦зђ†г‚’е€†еІђ
 	switch( DataType )
 	{
 //	case MV1_DATASIZE_TOTAL :
@@ -21261,11 +21261,11 @@ extern int MV1GetModelDataSize( int MHandle, int DataType )
 //			  MV1GetModelDataSize( MHandle, MV1_DATASIZE_ANIM ) ) ;
 	}
 
-	// ѓGѓ‰Ѓ[
+	// г‚Ёгѓ©гѓј
 	return -1 ;
 }
 
-// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚МѓfЃ[ѓ^ѓTѓCѓY‚рЋж“ѕ‚·‚й
+// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігЃ®гѓ‡гѓјг‚їг‚µг‚¤г‚єг‚’еЏ–еѕ—гЃ™г‚‹
 extern int MV1GetAnimDataSize( int MHandle, const wchar_t *AnimName, int AnimIndex )
 {
 	MV1_MODEL *Model ;
@@ -21274,79 +21274,79 @@ extern int MV1GetAnimDataSize( int MHandle, const wchar_t *AnimName, int AnimInd
 	MV1_ANIM_BASE *AnimBase ;
 	DWORD DataSize, i ;
 
-	// Џ‰Љъ‰»‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// е€ќжњџеЊ–гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( MV1Man.Initialize == false ) return -1 ;
 
-	// ѓAѓhѓЊѓXЋж“ѕ
+	// г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ—
 	if( MV1MDLCHK( MHandle, Model ) )
 		return -1 ;
 //	ModelBase = Model->BaseData ;
 
-	// ѓCѓ“ѓfѓbѓNѓX‚Є•sђі‚ѕ‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// г‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃЊдёЌж­ЈгЃ гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( AnimName == NULL && ( AnimIndex < 0 || AnimIndex >= Model->BaseData->AnimSetNum ) )
 		return -1 ;
 
-	// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚рЋж“ѕ
+	// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓіг‚’еЏ–еѕ—
 	AnimSetBase = MV1GetAnimSetBase( Model->BaseDataHandle, AnimName, AnimIndex ) ;
 	if( AnimSetBase == NULL ) return -1 ;
 
-	// ѓfЃ[ѓ^ѓTѓCѓY‚МЉ„‚иЏo‚µЉJЋn
+	// гѓ‡гѓјг‚їг‚µг‚¤г‚єгЃ®е‰Іг‚Ље‡єгЃ—й–‹е§‹
 	DataSize = AnimSetBase->KeyDataSize + sizeof( MV1_ANIMSET_BASE ) + sizeof( MV1_ANIM_BASE ) * AnimSetBase->AnimNum ;
 	
-	// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚Мђ”‚ѕ‚ЇЊJ‚и•Ф‚µ
+	// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігЃ®ж•°гЃ гЃ‘з№°г‚Љиї”гЃ—
 	AnimBase = AnimSetBase->Anim ;
 	for( i = 0 ; i < ( DWORD )AnimSetBase->AnimNum ; i ++, AnimBase ++ )
 	{
 		DataSize += AnimBase->KeySetNum * sizeof( MV1_ANIM_KEYSET_BASE  ) ;
 	}
 
-	// ѓfЃ[ѓ^ѓTѓCѓY‚р•Ф‚·
+	// гѓ‡гѓјг‚їг‚µг‚¤г‚єг‚’иї”гЃ™
 	return ( int )DataSize ;
 }
 
-// ѓtѓЊЃ[ѓЂ‚М‰с“]‚рЋg—p‚µ‚И‚ў‚©‚З‚¤‚©‚рђЭ’и‚·‚й
+// гѓ•гѓ¬гѓјгѓ гЃ®е›ћи»ўг‚’дЅїз”ЁгЃ—гЃЄгЃ„гЃ‹гЃ©гЃ†гЃ‹г‚’иЁ­е®љгЃ™г‚‹
 extern int MV1SetNotUseFrameRotation( int MHandle, int NotUseFrameRotation )
 {
 	MV1_MODEL *Model ;
 
-	// Џ‰Љъ‰»‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// е€ќжњџеЊ–гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( MV1Man.Initialize == false ) return -1 ;
 
-	// ѓAѓhѓЊѓXЋж“ѕ
+	// г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ—
 	if( MV1MDLCHK( MHandle, Model ) )
 		return -1 ;
 
-	// ѓtѓ‰ѓO‚Й•П‰»‚Є‚И‚ўЏкЌ‡‚Н‰Ѕ‚а‚µ‚И‚ў
+	// гѓ•гѓ©г‚°гЃ«е¤‰еЊ–гЃЊгЃЄгЃ„е ґеђ€гЃЇдЅ•г‚‚гЃ—гЃЄгЃ„
 	if( Model->NotUseFrameRotation == ( NotUseFrameRotation != 0 ? TRUE : FALSE ) )
 	{
 		return 0 ;
 	}
 
-	// ѓtѓ‰ѓO‚рѓZѓbѓg
+	// гѓ•гѓ©г‚°г‚’г‚»гѓѓгѓ€
 	Model->NotUseFrameRotation = NotUseFrameRotation != 0 ;
 
-	// ЌXђVѓtѓ‰ѓO‚р—§‚Д‚й
+	// ж›ґж–°гѓ•гѓ©г‚°г‚’з«‹гЃ¦г‚‹
 	Model->LocalWorldMatrixSetupFlag = false ;
 	if( ( Model->ChangeMatrixFlag[ 0 ] & 1 ) == 0 )
 		_MEMSET( Model->ChangeMatrixFlag, 0xff, Model->ChangeMatrixFlagSize ) ;
 
-	// ђіЏнЏI—№
+	// ж­Јеёёзµ‚дє†
 	return 0 ;
 }
 
-// ѓtѓЊЃ[ѓЂ‚М‰с“]‚рЋg—p‚µ‚И‚ў‚©‚З‚¤‚©‚рЋж“ѕ‚·‚й
+// гѓ•гѓ¬гѓјгѓ гЃ®е›ћи»ўг‚’дЅїз”ЁгЃ—гЃЄгЃ„гЃ‹гЃ©гЃ†гЃ‹г‚’еЏ–еѕ—гЃ™г‚‹
 extern int MV1GetNotUseFrameRotation( int MHandle )
 {
 	MV1_MODEL *Model ;
 
-	// Џ‰Љъ‰»‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// е€ќжњџеЊ–гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( MV1Man.Initialize == false ) return -1 ;
 
-	// ѓAѓhѓЊѓXЋж“ѕ
+	// г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ—
 	if( MV1MDLCHK( MHandle, Model ) )
 		return -1 ;
 
-	// ѓtѓ‰ѓO‚р•Ф‚·
+	// гѓ•гѓ©г‚°г‚’иї”гЃ™
 	return Model->NotUseFrameRotation ? TRUE : FALSE ;
 }
 
@@ -21367,57 +21367,57 @@ extern int MV1GetNotUseFrameRotation( int MHandle )
 
 
 
-// ѓ‚ѓfѓ‹‚МѓЌЃ[ѓJѓ‹ЌА•W‚©‚зѓЏЃ[ѓ‹ѓhЌА•W‚Й•ПЉ·‚·‚йЌs—с‚р“ѕ‚й
+// гѓўгѓ‡гѓ«гЃ®гѓ­гѓјг‚«гѓ«еє§жЁ™гЃ‹г‚‰гѓЇгѓјгѓ«гѓ‰еє§жЁ™гЃ«е¤‰жЏ›гЃ™г‚‹иЎЊе€—г‚’еѕ—г‚‹
 extern MATRIX NS_MV1GetLocalWorldMatrix( int MHandle )
 {
 	MV1_MODEL *Model ;
 	MATRIX ResultMatrix ;
 
-	// Џ‰Љъ‰»‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// е€ќжњџеЊ–гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( MV1Man.Initialize == false ) return MGetIdent() ;
 
-	// ѓAѓhѓЊѓXЋж“ѕ
+	// г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ—
 	if( MV1MDLCHK( MHandle, Model ) )
 		return MGetIdent() ;
 
-	// Ќs—с‚р•Ф‚·
+	// иЎЊе€—г‚’иї”гЃ™
 	MV1SETUPMATRIX( Model ) ;
 	ConvertMatrix4x4cToMatrixF( &ResultMatrix, &Model->LocalWorldMatrix ) ;
 	return ResultMatrix ;
 }
 
-// ѓ‚ѓfѓ‹‚МѓЌЃ[ѓJѓ‹ЌА•W‚©‚зѓЏЃ[ѓ‹ѓhЌА•W‚Й•ПЉ·‚·‚йЌs—с‚р“ѕ‚й
+// гѓўгѓ‡гѓ«гЃ®гѓ­гѓјг‚«гѓ«еє§жЁ™гЃ‹г‚‰гѓЇгѓјгѓ«гѓ‰еє§жЁ™гЃ«е¤‰жЏ›гЃ™г‚‹иЎЊе€—г‚’еѕ—г‚‹
 extern MATRIX_D NS_MV1GetLocalWorldMatrixD( int MHandle )
 {
 	MV1_MODEL *Model ;
 	MATRIX_D ResultMatrix ;
 
-	// Џ‰Љъ‰»‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// е€ќжњџеЊ–гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( MV1Man.Initialize == false ) return MGetIdentD() ;
 
-	// ѓAѓhѓЊѓXЋж“ѕ
+	// г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ—
 	if( MV1MDLCHK( MHandle, Model ) )
 		return MGetIdentD() ;
 
-	// Ќs—с‚р•Ф‚·
+	// иЎЊе€—г‚’иї”гЃ™
 	MV1SETUPMATRIX( Model ) ;
 	ConvertMatrix4x4cToMatrixD( &ResultMatrix, &Model->LocalWorldMatrix ) ;
 	return ResultMatrix ;
 }
 
-// ѓ‚ѓfѓ‹‚МЌА•W‚рѓZѓbѓg
+// гѓўгѓ‡гѓ«гЃ®еє§жЁ™г‚’г‚»гѓѓгѓ€
 extern int NS_MV1SetPosition( int MHandle, VECTOR Position )
 {
 	MV1_MODEL *Model ;
 
-	// Џ‰Љъ‰»‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// е€ќжњџеЊ–гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( MV1Man.Initialize == false ) return -1 ;
 
-	// ѓAѓhѓЊѓXЋж“ѕ
+	// г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ—
 	if( MV1MDLCHK( MHandle, Model ) )
 		return -1 ;
 
-	// ЌЎ‚Ь‚Е‚Ж“Ї‚¶ЌА•W‚ѕ‚Б‚Ѕ‚з‰Ѕ‚а‚№‚ё‚ЙЏI—№
+	// д»ЉгЃѕгЃ§гЃЁеђЊгЃеє§жЁ™гЃ гЃЈгЃџг‚‰дЅ•г‚‚гЃ›гЃљгЃ«зµ‚дє†
 	if( Model->Translation.x == ( double )Position.x &&
 		Model->Translation.y == ( double )Position.y &&
 		Model->Translation.z == ( double )Position.z )
@@ -21425,31 +21425,31 @@ extern int NS_MV1SetPosition( int MHandle, VECTOR Position )
 		return 0 ;
 	}
 
-	// •ЅЌs€Ъ“®’l‚МѓZѓbѓg
+	// е№іиЎЊз§»е‹•еЂ¤гЃ®г‚»гѓѓгѓ€
 	Model->Translation = VConvFtoD( Position ) ;
 
-	// ЌXђVѓtѓ‰ѓO‚р—§‚Д‚й
+	// ж›ґж–°гѓ•гѓ©г‚°г‚’з«‹гЃ¦г‚‹
 	Model->LocalWorldMatrixSetupFlag = false ;
 	if( ( Model->ChangeMatrixFlag[ 0 ] & 1 ) == 0 )
 		_MEMSET( Model->ChangeMatrixFlag, 0xff, Model->ChangeMatrixFlagSize ) ;
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// ѓ‚ѓfѓ‹‚МЌА•W‚рѓZѓbѓg
+// гѓўгѓ‡гѓ«гЃ®еє§жЁ™г‚’г‚»гѓѓгѓ€
 extern int NS_MV1SetPositionD( int MHandle, VECTOR_D Position )
 {
 	MV1_MODEL *Model ;
 
-	// Џ‰Љъ‰»‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// е€ќжњџеЊ–гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( MV1Man.Initialize == false ) return -1 ;
 
-	// ѓAѓhѓЊѓXЋж“ѕ
+	// г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ—
 	if( MV1MDLCHK( MHandle, Model ) )
 		return -1 ;
 
-	// ЌЎ‚Ь‚Е‚Ж“Ї‚¶ЌА•W‚ѕ‚Б‚Ѕ‚з‰Ѕ‚а‚№‚ё‚ЙЏI—№
+	// д»ЉгЃѕгЃ§гЃЁеђЊгЃеє§жЁ™гЃ гЃЈгЃџг‚‰дЅ•г‚‚гЃ›гЃљгЃ«зµ‚дє†
 	if( Model->Translation.x == Position.x &&
 		Model->Translation.y == Position.y &&
 		Model->Translation.z == Position.z )
@@ -21457,250 +21457,250 @@ extern int NS_MV1SetPositionD( int MHandle, VECTOR_D Position )
 		return 0 ;
 	}
 
-	// •ЅЌs€Ъ“®’l‚МѓZѓbѓg
+	// е№іиЎЊз§»е‹•еЂ¤гЃ®г‚»гѓѓгѓ€
 	Model->Translation = Position ;
 
-	// ЌXђVѓtѓ‰ѓO‚р—§‚Д‚й
+	// ж›ґж–°гѓ•гѓ©г‚°г‚’з«‹гЃ¦г‚‹
 	Model->LocalWorldMatrixSetupFlag = false ;
 	if( ( Model->ChangeMatrixFlag[ 0 ] & 1 ) == 0 )
 		_MEMSET( Model->ChangeMatrixFlag, 0xff, Model->ChangeMatrixFlagSize ) ;
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// ѓ‚ѓfѓ‹‚МЌА•W‚рЋж“ѕ
+// гѓўгѓ‡гѓ«гЃ®еє§жЁ™г‚’еЏ–еѕ—
 extern VECTOR NS_MV1GetPosition( int MHandle )
 {
 	MV1_MODEL *Model ;
 	VECTOR NullPos = { 0.0f, 0.0f, 0.0f } ;
 
-	// Џ‰Љъ‰»‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// е€ќжњџеЊ–гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( MV1Man.Initialize == false ) return NullPos ;
 
-	// ѓAѓhѓЊѓXЋж“ѕ
+	// г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ—
 	if( MV1MDLCHK( MHandle, Model ) )
 		return NullPos ;
 
-	// •ЅЌs€Ъ“®’l‚р•Ф‚·
+	// е№іиЎЊз§»е‹•еЂ¤г‚’иї”гЃ™
 	return VConvDtoF( Model->Translation ) ;
 }
 
-// ѓ‚ѓfѓ‹‚МЌА•W‚рЋж“ѕ
+// гѓўгѓ‡гѓ«гЃ®еє§жЁ™г‚’еЏ–еѕ—
 extern VECTOR_D NS_MV1GetPositionD( int MHandle )
 {
 	MV1_MODEL *Model ;
 	VECTOR_D NullPos = { 0.0, 0.0, 0.0 } ;
 
-	// Џ‰Љъ‰»‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// е€ќжњџеЊ–гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( MV1Man.Initialize == false ) return NullPos ;
 
-	// ѓAѓhѓЊѓXЋж“ѕ
+	// г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ—
 	if( MV1MDLCHK( MHandle, Model ) )
 		return NullPos ;
 
-	// •ЅЌs€Ъ“®’l‚р•Ф‚·
+	// е№іиЎЊз§»е‹•еЂ¤г‚’иї”гЃ™
 	return Model->Translation ;
 }
 
-// ѓ‚ѓfѓ‹‚МЉg‘е’l‚рѓZѓbѓg
+// гѓўгѓ‡гѓ«гЃ®ж‹Ўе¤§еЂ¤г‚’г‚»гѓѓгѓ€
 extern int NS_MV1SetScale( int MHandle, VECTOR Scale )
 {
 	MV1_MODEL *Model ;
 
-	// Џ‰Љъ‰»‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// е€ќжњџеЊ–гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( MV1Man.Initialize == false ) return -1 ;
 
-	// ѓAѓhѓЊѓXЋж“ѕ
+	// г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ—
 	if( MV1MDLCHK( MHandle, Model ) )
 		return -1 ;
 
-	// ЌЎ‚Ь‚Е‚Ж“Ї‚¶ЌА•W‚ѕ‚Б‚Ѕ‚з‰Ѕ‚а‚№‚ё‚ЙЏI—№
+	// д»ЉгЃѕгЃ§гЃЁеђЊгЃеє§жЁ™гЃ гЃЈгЃџг‚‰дЅ•г‚‚гЃ›гЃљгЃ«зµ‚дє†
 	if( *( ( DWORD * )&Model->Scale.x ) == *( ( DWORD * )&Scale.x ) &&
 		*( ( DWORD * )&Model->Scale.y ) == *( ( DWORD * )&Scale.y ) &&
 		*( ( DWORD * )&Model->Scale.z ) == *( ( DWORD * )&Scale.z ) )
 		return 0 ;
 
-	// ѓXѓPЃ[ѓ‹’l‚МѓZѓbѓg
+	// г‚№г‚±гѓјгѓ«еЂ¤гЃ®г‚»гѓѓгѓ€
 	Model->Scale = Scale ;
 
-	// ЌXђVѓtѓ‰ѓO‚р—§‚Д‚й
+	// ж›ґж–°гѓ•гѓ©г‚°г‚’з«‹гЃ¦г‚‹
 	Model->LocalWorldMatrixSetupFlag = false ;
 	if( ( Model->ChangeMatrixFlag[ 0 ] & 1 ) == 0 )
 		_MEMSET( Model->ChangeMatrixFlag, 0xff, Model->ChangeMatrixFlagSize ) ;
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// ѓ‚ѓfѓ‹‚МЉg‘е’l‚рЋж“ѕ
+// гѓўгѓ‡гѓ«гЃ®ж‹Ўе¤§еЂ¤г‚’еЏ–еѕ—
 extern VECTOR NS_MV1GetScale( int MHandle )
 {
 	MV1_MODEL *Model ;
 	VECTOR NullPos = { 0.0f, 0.0f, 0.0f } ;
 
-	// Џ‰Љъ‰»‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// е€ќжњџеЊ–гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( MV1Man.Initialize == false ) return NullPos ;
 
-	// ѓAѓhѓЊѓXЋж“ѕ
+	// г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ—
 	if( MV1MDLCHK( MHandle, Model ) )
 		return NullPos ;
 
-	// ѓXѓPЃ[ѓ‹’l‚р•Ф‚·
+	// г‚№г‚±гѓјгѓ«еЂ¤г‚’иї”гЃ™
 	return Model->Scale ;
 }
 
-// ѓ‚ѓfѓ‹‚М‰с“]’l‚рѓZѓbѓg( XЋІ‰с“]ЃЁYЋІ‰с“]ЃЁZЋІ‰с“]•ыЋ® )
+// гѓўгѓ‡гѓ«гЃ®е›ћи»ўеЂ¤г‚’г‚»гѓѓгѓ€( Xи»ёе›ћи»ўв†’Yи»ёе›ћи»ўв†’Zи»ёе›ћи»ўж–№ејЏ )
 extern int NS_MV1SetRotationXYZ( int MHandle, VECTOR Rotate )
 {
 	MV1_MODEL *Model ;
 
-	// Џ‰Љъ‰»‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// е€ќжњџеЊ–гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( MV1Man.Initialize == false ) return -1 ;
 
-	// ѓAѓhѓЊѓXЋж“ѕ
+	// г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ—
 	if( MV1MDLCHK( MHandle, Model ) )
 		return -1 ;
 
-	// ЌЎ‚Ь‚Е‚Ж“Ї‚¶ЌА•W‚ѕ‚Б‚Ѕ‚з‰Ѕ‚а‚№‚ё‚ЙЏI—№
+	// д»ЉгЃѕгЃ§гЃЁеђЊгЃеє§жЁ™гЃ гЃЈгЃџг‚‰дЅ•г‚‚гЃ›гЃљгЃ«зµ‚дє†
 	if( Model->Rotation.Type == MV1_ROTATE_TYPE_XYZROT &&
 		*( ( DWORD * )&Model->Rotation.XYZRot.x ) == *( ( DWORD * )&Rotate.x ) &&
 		*( ( DWORD * )&Model->Rotation.XYZRot.y ) == *( ( DWORD * )&Rotate.y ) &&
 		*( ( DWORD * )&Model->Rotation.XYZRot.z ) == *( ( DWORD * )&Rotate.z ) )
 		return 0 ;
 
-	// ‰с“]’l‚МѓZѓbѓg
+	// е›ћи»ўеЂ¤гЃ®г‚»гѓѓгѓ€
 	Model->Rotation.Type = MV1_ROTATE_TYPE_XYZROT ;
 	Model->Rotation.XYZRot = Rotate ;
 
-	// ЌXђVѓtѓ‰ѓO‚р—§‚Д‚й
+	// ж›ґж–°гѓ•гѓ©г‚°г‚’з«‹гЃ¦г‚‹
 	Model->LocalWorldMatrixSetupFlag = false ;
 	if( ( Model->ChangeMatrixFlag[ 0 ] & 1 ) == 0 )
 		_MEMSET( Model->ChangeMatrixFlag, 0xff, Model->ChangeMatrixFlagSize ) ;
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// ѓ‚ѓfѓ‹‚М‰с“]’l‚рЋж“ѕ( XЋІ‰с“]ЃЁYЋІ‰с“]ЃЁZЋІ‰с“]•ыЋ® )
+// гѓўгѓ‡гѓ«гЃ®е›ћи»ўеЂ¤г‚’еЏ–еѕ—( Xи»ёе›ћи»ўв†’Yи»ёе›ћи»ўв†’Zи»ёе›ћи»ўж–№ејЏ )
 extern VECTOR NS_MV1GetRotationXYZ( int MHandle )
 {
 	MV1_MODEL *Model ;
 	VECTOR NullPos = { 0.0f, 0.0f, 0.0f } ;
 
-	// Џ‰Љъ‰»‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// е€ќжњџеЊ–гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( MV1Man.Initialize == false ) return NullPos ;
 
-	// ѓAѓhѓЊѓXЋж“ѕ
+	// г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ—
 	if( MV1MDLCHK( MHandle, Model ) )
 		return NullPos ;
 
-	// ‰с“]’l‚р•Ф‚·
+	// е›ћи»ўеЂ¤г‚’иї”гЃ™
 	return Model->Rotation.XYZRot ;
 }
 
-// ѓ‚ѓfѓ‹‚М‰с“]’l‚рѓZѓbѓg( ‚yЋІ‚МЊь‚Ї‚й•ыЊь‚рЋw’и‚·‚й•ыЋ® )
+// гѓўгѓ‡гѓ«гЃ®е›ћи»ўеЂ¤г‚’г‚»гѓѓгѓ€( пјєи»ёгЃ®еђ‘гЃ‘г‚‹ж–№еђ‘г‚’жЊ‡е®љгЃ™г‚‹ж–№ејЏ )
 extern	int	NS_MV1SetRotationZYAxis( int MHandle, VECTOR ZAxisDirection, VECTOR YAxisDirection, float ZAxisTwistRotate )
 {
 	MV1_MODEL *Model ;
 
-	// Џ‰Љъ‰»‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// е€ќжњџеЊ–гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( MV1Man.Initialize == false ) return -1 ;
 
-	// ѓAѓhѓЊѓXЋж“ѕ
+	// г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ—
 	if( MV1MDLCHK( MHandle, Model ) )
 		return -1 ;
 
-	// ‰с“]’l‚МѓZѓbѓg
+	// е›ћи»ўеЂ¤гЃ®г‚»гѓѓгѓ€
 	Model->Rotation.Type = MV1_ROTATE_TYPE_ZAXIS ;
 	Model->Rotation.ZAxis.Z = VNorm( ZAxisDirection ) ;
 	Model->Rotation.ZAxis.Up = VNorm( VCross( VCross( Model->Rotation.ZAxis.Z, YAxisDirection ), Model->Rotation.ZAxis.Z ) ) ; 
 	Model->Rotation.ZAxis.Twist = ZAxisTwistRotate ;
 
-	// ЌXђVѓtѓ‰ѓO‚р—§‚Д‚й
+	// ж›ґж–°гѓ•гѓ©г‚°г‚’з«‹гЃ¦г‚‹
 	Model->LocalWorldMatrixSetupFlag = false ;
 	if( ( Model->ChangeMatrixFlag[ 0 ] & 1 ) == 0 )
 		_MEMSET( Model->ChangeMatrixFlag, 0xff, Model->ChangeMatrixFlagSize ) ;
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// ѓ‚ѓfѓ‹‚М‚xЋІ‚М‰с“]’l‚рЋw’и‚МѓxѓNѓgѓ‹‚МЊь‚«‚рЊі‚ЙђЭ’и‚·‚йЃAѓ‚ѓfѓ‹‚НZЋІ‚Мѓ}ѓCѓiѓX•ыЊь‚рЊь‚ў‚Д‚ў‚й‚±‚Ж‚р‘z’и‚·‚й‚М‚ЕЃA‚»‚¤‚Е‚Н‚И‚ўЏкЌ‡‚Н OffsetYAngle ‚Е•вђі‚·‚йЃA‚wЋІ‰с“]ЃA‚yЋІ‰с“]‚Н‚O‚ЕЊЕ’и
+// гѓўгѓ‡гѓ«гЃ®пј№и»ёгЃ®е›ћи»ўеЂ¤г‚’жЊ‡е®љгЃ®гѓ™г‚Їгѓ€гѓ«гЃ®еђ‘гЃЌг‚’е…ѓгЃ«иЁ­е®љгЃ™г‚‹гЂЃгѓўгѓ‡гѓ«гЃЇZи»ёгЃ®гѓћг‚¤гѓЉг‚№ж–№еђ‘г‚’еђ‘гЃ„гЃ¦гЃ„г‚‹гЃ“гЃЁг‚’жѓіе®љгЃ™г‚‹гЃ®гЃ§гЂЃгЃќгЃ†гЃ§гЃЇгЃЄгЃ„е ґеђ€гЃЇ OffsetYAngle гЃ§иЈњж­ЈгЃ™г‚‹гЂЃпјёи»ёе›ћи»ўгЂЃпјєи»ёе›ћи»ўгЃЇпјђгЃ§е›єе®љ
 extern int NS_MV1SetRotationYUseDir( int MHandle, VECTOR Direction, float OffsetYAngle )
 {
 	float YAngle ;
 
-	// ‰с“]’l‚рЊvЋZ
+	// е›ћи»ўеЂ¤г‚’иЁ€з®—
 	YAngle = -_ATAN2( Direction.z, Direction.x ) + OffsetYAngle - DX_PI_F / 2.0f ;
 
-	// ’l‚рѓZѓbѓg
+	// еЂ¤г‚’г‚»гѓѓгѓ€
 	return NS_MV1SetRotationXYZ( MHandle, VGet( 0.0f, YAngle, 0.0f ) ) ;
 }
 
-// ѓ‚ѓfѓ‹‚М‚yЋІ‚М•ыЊь‚р“ѕ‚й
+// гѓўгѓ‡гѓ«гЃ®пјєи»ёгЃ®ж–№еђ‘г‚’еѕ—г‚‹
 extern	VECTOR MV1GetRotationZAxisZ( int MHandle )
 {
 	MV1_MODEL *Model ;
 	VECTOR NullPos = { 0.0f, 0.0f, 0.0f } ;
 
-	// Џ‰Љъ‰»‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// е€ќжњџеЊ–гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( MV1Man.Initialize == false ) return NullPos ;
 
-	// ѓAѓhѓЊѓXЋж“ѕ
+	// г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ—
 	if( MV1MDLCHK( MHandle, Model ) )
 		return NullPos ;
 
-	// ЋІ•ыЊь‚р•Ф‚·
+	// и»ёж–№еђ‘г‚’иї”гЃ™
 	return Model->Rotation.ZAxis.Z ;
 }
 
-// ѓ‚ѓfѓ‹‚М‚yЋІ‚М•ыЊь‚рЋw’и‚µ‚ЅЌЫ‚МЏг•ыЊьѓxѓNѓgѓ‹‚р“ѕ‚й
+// гѓўгѓ‡гѓ«гЃ®пјєи»ёгЃ®ж–№еђ‘г‚’жЊ‡е®љгЃ—гЃџйљ›гЃ®дёЉж–№еђ‘гѓ™г‚Їгѓ€гѓ«г‚’еѕ—г‚‹
 extern VECTOR MV1GetRotationZAxisUp( int MHandle )
 {
 	MV1_MODEL *Model ;
 	VECTOR NullPos = { 0.0f, 0.0f, 0.0f } ;
 
-	// Џ‰Љъ‰»‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// е€ќжњџеЊ–гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( MV1Man.Initialize == false ) return NullPos ;
 
-	// ѓAѓhѓЊѓXЋж“ѕ
+	// г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ—
 	if( MV1MDLCHK( MHandle, Model ) )
 		return NullPos ;
 
-	// ЋІ•ыЊь‚р•Ф‚·
+	// и»ёж–№еђ‘г‚’иї”гЃ™
 	return Model->Rotation.ZAxis.Up ;
 }
 
-// ѓ‚ѓfѓ‹‚М‚yЋІ‚М•ыЊь‚рЋw’и‚µ‚ЅЌЫ‚М”P‚иЉp“x‚р“ѕ‚й
+// гѓўгѓ‡гѓ«гЃ®пјєи»ёгЃ®ж–№еђ‘г‚’жЊ‡е®љгЃ—гЃџйљ›гЃ®жЌ»г‚Љи§’еє¦г‚’еѕ—г‚‹
 extern	float MV1GetRotationZAxisTwist( int MHandle )
 {
 	MV1_MODEL *Model ;
 
-	// Џ‰Љъ‰»‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// е€ќжњџеЊ–гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( MV1Man.Initialize == false ) return -1 ;
 
-	// ѓAѓhѓЊѓXЋж“ѕ
+	// г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ—
 	if( MV1MDLCHK( MHandle, Model ) )
 		return -1 ;
 
-	// ЋІ•ыЊь‚р•Ф‚·
+	// и»ёж–№еђ‘г‚’иї”гЃ™
 	return Model->Rotation.ZAxis.Twist ;
 }
 
-// ѓ‚ѓfѓ‹‚М‰с“]—pЌs—с‚рѓZѓbѓg‚·‚й
+// гѓўгѓ‡гѓ«гЃ®е›ћи»ўз”ЁиЎЊе€—г‚’г‚»гѓѓгѓ€гЃ™г‚‹
 extern	int NS_MV1SetRotationMatrix( int MHandle, MATRIX Matrix )
 {
 	MV1_MODEL *Model ;
 
-	// Џ‰Љъ‰»‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// е€ќжњџеЊ–гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( MV1Man.Initialize == false ) return -1 ;
 
-	// ѓAѓhѓЊѓXЋж“ѕ
+	// г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ—
 	if( MV1MDLCHK( MHandle, Model ) )
 		return -1 ;
 
-	// ЌЎ‚Ь‚Е‚Ж“Ї‚¶‚ѕ‚Б‚ЅЏкЌ‡‚Н‰Ѕ‚а‚№‚ё‚ЙЏI—№
+	// д»ЉгЃѕгЃ§гЃЁеђЊгЃгЃ гЃЈгЃџе ґеђ€гЃЇдЅ•г‚‚гЃ›гЃљгЃ«зµ‚дє†
 	if( Model->Rotation.Type == MV1_ROTATE_TYPE_MATRIX &&
 		*( ( DWORD * )&Model->Rotation.Mat.m[ 0 ][ 0 ] ) == *( ( DWORD * )&Matrix.m[ 0 ][ 0 ] ) &&
 		*( ( DWORD * )&Model->Rotation.Mat.m[ 0 ][ 1 ] ) == *( ( DWORD * )&Matrix.m[ 1 ][ 0 ] ) &&
@@ -21713,23 +21713,23 @@ extern	int NS_MV1SetRotationMatrix( int MHandle, MATRIX Matrix )
 		*( ( DWORD * )&Model->Rotation.Mat.m[ 2 ][ 2 ] ) == *( ( DWORD * )&Matrix.m[ 2 ][ 2 ] ) )
 		return 0 ;
 
-	// ‰с“]’l‚МѓZѓbѓg
+	// е›ћи»ўеЂ¤гЃ®г‚»гѓѓгѓ€
 	Model->Rotation.Type = MV1_ROTATE_TYPE_MATRIX ;
 	ConvertMatrixFToMatrix4x4cF( &Model->Rotation.Mat, &Matrix ) ;
 	Model->Rotation.Mat.m[ 0 ][ 3 ] = 0.0f ;
 	Model->Rotation.Mat.m[ 1 ][ 3 ] = 0.0f ;
 	Model->Rotation.Mat.m[ 2 ][ 3 ] = 0.0f ;
 
-	// ЌXђVѓtѓ‰ѓO‚р—§‚Д‚й
+	// ж›ґж–°гѓ•гѓ©г‚°г‚’з«‹гЃ¦г‚‹
 	Model->LocalWorldMatrixSetupFlag = false ;
 	if( ( Model->ChangeMatrixFlag[ 0 ] & 1 ) == 0 )
 		_MEMSET( Model->ChangeMatrixFlag, 0xff, Model->ChangeMatrixFlagSize ) ;
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// ѓ‚ѓfѓ‹‚М‰с“]—pЌs—с‚рЋж“ѕ‚·‚й
+// гѓўгѓ‡гѓ«гЃ®е›ћи»ўз”ЁиЎЊе€—г‚’еЏ–еѕ—гЃ™г‚‹
 extern	MATRIX NS_MV1GetRotationMatrix( int MHandle )
 {
 	MV1_MODEL *Model ;
@@ -21744,19 +21744,19 @@ extern	MATRIX NS_MV1GetRotationMatrix( int MHandle )
 	} ;
 	MATRIX ResultMatrix ;
 
-	// Џ‰Љъ‰»‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// е€ќжњџеЊ–гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( MV1Man.Initialize == false ) return NullMat ;
 
-	// ѓAѓhѓЊѓXЋж“ѕ
+	// г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ—
 	if( MV1MDLCHK( MHandle, Model ) )
 		return NullMat ;
 
-	// ‰с“]Ќs—с‚р•Ф‚·
+	// е›ћи»ўиЎЊе€—г‚’иї”гЃ™
 	ConvertMatrix4x4cFToMatrixF( &ResultMatrix, &Model->Rotation.Mat ) ;
 	return ResultMatrix ;
 }
 
-// ѓ‚ѓfѓ‹‚М•ПЊ`—pЌs—с‚рѓZѓbѓg‚·‚й
+// гѓўгѓ‡гѓ«гЃ®е¤‰еЅўз”ЁиЎЊе€—г‚’г‚»гѓѓгѓ€гЃ™г‚‹
 extern int NS_MV1SetMatrix( int MHandle, MATRIX Matrix )
 {
 	static const MATRIX IdentityMatrix =
@@ -21772,14 +21772,14 @@ extern int NS_MV1SetMatrix( int MHandle, MATRIX Matrix )
 	bool ValidMatrix ;
 	MV1_MODEL *Model ;
 
-	// Џ‰Љъ‰»‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// е€ќжњџеЊ–гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( MV1Man.Initialize == false ) return -1 ;
 
-	// ѓAѓhѓЊѓXЋж“ѕ
+	// г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ—
 	if( MV1MDLCHK( MHandle, Model ) )
 		return -1 ;
 
-	// ЌЎ‚Ь‚Е‚Ж“Ї‚¶ЏкЌ‡‚Н‰Ѕ‚а‚№‚ё‚ЙЏI—№
+	// д»ЉгЃѕгЃ§гЃЁеђЊгЃе ґеђ€гЃЇдЅ•г‚‚гЃ›гЃљгЃ«зµ‚дє†
 	ValidMatrix = _MEMCMP( &IdentityMatrix, &Matrix, sizeof( MATRIX ) ) != 0 ;
 	ConvertMatrixFToMatrix4x4c( &Matrix4X4CT, &Matrix ) ;
 	if( ( Model->ValidMatrix == false && ValidMatrix == false ) ||
@@ -21789,25 +21789,25 @@ extern int NS_MV1SetMatrix( int MHandle, MATRIX Matrix )
 		return 0 ;
 	}
 
-	// Ќs—с‚МѓZѓbѓg
+	// иЎЊе€—гЃ®г‚»гѓѓгѓ€
 	Model->ValidMatrix = ValidMatrix ;
 	if( Model->ValidMatrix )
 	{
 		Model->Matrix = Matrix4X4CT ;
 	}
 
-	// ЌXђVѓtѓ‰ѓO‚р—§‚Д‚й
+	// ж›ґж–°гѓ•гѓ©г‚°г‚’з«‹гЃ¦г‚‹
 	Model->LocalWorldMatrixSetupFlag = false ;
 	if( ( Model->ChangeMatrixFlag[ 0 ] & 1 ) == 0 )
 	{
 		_MEMSET( Model->ChangeMatrixFlag, 0xff, Model->ChangeMatrixFlagSize ) ;
 	}
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// ѓ‚ѓfѓ‹‚М•ПЊ`—pЌs—с‚рѓZѓbѓg‚·‚й
+// гѓўгѓ‡гѓ«гЃ®е¤‰еЅўз”ЁиЎЊе€—г‚’г‚»гѓѓгѓ€гЃ™г‚‹
 extern int NS_MV1SetMatrixD( int MHandle, MATRIX_D Matrix )
 {
 	static const MATRIX_D IdentityMatrix =
@@ -21823,14 +21823,14 @@ extern int NS_MV1SetMatrixD( int MHandle, MATRIX_D Matrix )
 	bool ValidMatrix ;
 	MV1_MODEL *Model ;
 
-	// Џ‰Љъ‰»‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// е€ќжњџеЊ–гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( MV1Man.Initialize == false ) return -1 ;
 
-	// ѓAѓhѓЊѓXЋж“ѕ
+	// г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ—
 	if( MV1MDLCHK( MHandle, Model ) )
 		return -1 ;
 
-	// ЌЎ‚Ь‚Е‚Ж“Ї‚¶ЏкЌ‡‚Н‰Ѕ‚а‚№‚ё‚ЙЏI—№
+	// д»ЉгЃѕгЃ§гЃЁеђЊгЃе ґеђ€гЃЇдЅ•г‚‚гЃ›гЃљгЃ«зµ‚дє†
 	ValidMatrix = _MEMCMP( &IdentityMatrix, &Matrix, sizeof( MATRIX_D ) ) != 0 ;
 	ConvertMatrixDToMatrix4x4c( &Matrix4X4CT, &Matrix ) ;
 	if( ( Model->ValidMatrix == false && ValidMatrix == false ) ||
@@ -21840,38 +21840,38 @@ extern int NS_MV1SetMatrixD( int MHandle, MATRIX_D Matrix )
 		return 0 ;
 	}
 
-	// Ќs—с‚МѓZѓbѓg
+	// иЎЊе€—гЃ®г‚»гѓѓгѓ€
 	Model->ValidMatrix = ValidMatrix ;
 	if( Model->ValidMatrix )
 	{
 		Model->Matrix = Matrix4X4CT ;
 	}
 
-	// ЌXђVѓtѓ‰ѓO‚р—§‚Д‚й
+	// ж›ґж–°гѓ•гѓ©г‚°г‚’з«‹гЃ¦г‚‹
 	Model->LocalWorldMatrixSetupFlag = false ;
 	if( ( Model->ChangeMatrixFlag[ 0 ] & 1 ) == 0 )
 	{
 		_MEMSET( Model->ChangeMatrixFlag, 0xff, Model->ChangeMatrixFlagSize ) ;
 	}
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// ѓ‚ѓfѓ‹‚М•ПЊ`—pЌs—с‚рЋж“ѕ‚·‚й
+// гѓўгѓ‡гѓ«гЃ®е¤‰еЅўз”ЁиЎЊе€—г‚’еЏ–еѕ—гЃ™г‚‹
 extern MATRIX NS_MV1GetMatrix( int MHandle )
 {
 	MV1_MODEL *Model ;
 	MATRIX ResultMatrix ;
 
-	// Џ‰Љъ‰»‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// е€ќжњџеЊ–гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( MV1Man.Initialize == false ) return MGetIdent() ;
 
-	// ѓAѓhѓЊѓXЋж“ѕ
+	// г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ—
 	if( MV1MDLCHK( MHandle, Model ) )
 		return MGetIdent() ;
 
-	// Ќs—с‚р•Ф‚·
+	// иЎЊе€—г‚’иї”гЃ™
 	if( Model->ValidMatrix )
 	{
 		ConvertMatrix4x4cToMatrixF( &ResultMatrix, &Model->Matrix ) ;
@@ -21885,20 +21885,20 @@ extern MATRIX NS_MV1GetMatrix( int MHandle )
 	return ResultMatrix ;
 }
 
-// ѓ‚ѓfѓ‹‚М•ПЊ`—pЌs—с‚рЋж“ѕ‚·‚й
+// гѓўгѓ‡гѓ«гЃ®е¤‰еЅўз”ЁиЎЊе€—г‚’еЏ–еѕ—гЃ™г‚‹
 extern MATRIX_D NS_MV1GetMatrixD( int MHandle )
 {
 	MV1_MODEL *Model ;
 	MATRIX_D ResultMatrix ;
 
-	// Џ‰Љъ‰»‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// е€ќжњџеЊ–гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( MV1Man.Initialize == false ) return MGetIdentD() ;
 
-	// ѓAѓhѓЊѓXЋж“ѕ
+	// г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ—
 	if( MV1MDLCHK( MHandle, Model ) )
 		return MGetIdentD() ;
 
-	// Ќs—с‚р•Ф‚·
+	// иЎЊе€—г‚’иї”гЃ™
 	if( Model->ValidMatrix )
 	{
 		ConvertMatrix4x4cToMatrixD( &ResultMatrix, &Model->Matrix ) ;
@@ -21912,43 +21912,43 @@ extern MATRIX_D NS_MV1GetMatrixD( int MHandle )
 	return ResultMatrix ;
 }
 
-// ѓ‚ѓfѓ‹‚М•\Ћ¦ЃA”с•\Ћ¦Џу‘Ф‚р•ПЌX‚·‚й( TRUE:•\Ћ¦  FALSE:”с•\Ћ¦ )
+// гѓўгѓ‡гѓ«гЃ®иЎЁз¤єгЂЃйќћиЎЁз¤єзЉ¶ж…‹г‚’е¤‰ж›ґгЃ™г‚‹( TRUE:иЎЁз¤є  FALSE:йќћиЎЁз¤є )
 extern int NS_MV1SetVisible( int MHandle, int VisibleFlag )
 {
 	MV1START( MHandle, Model, ModelBase, -1 ) ;
 
-	// ’l‚рѓZѓbѓg
+	// еЂ¤г‚’г‚»гѓѓгѓ€
 	if( MV1SetDrawMaterialVisible( &Model->DrawMaterial, NULL, ( BYTE )VisibleFlag ) )
 	{
-		// •`‰ж‘Т‹@‚µ‚Д‚ў‚й•`‰ж•Ё‚р•`‰ж
+		// жЏЏз”»еѕ…ж©џгЃ—гЃ¦гЃ„г‚‹жЏЏз”»з‰©г‚’жЏЏз”»
 		DRAWSTOCKINFO
 
-		// ЌXђVѓrѓbѓg‚Є—§‚Б‚Д‚ў‚И‚©‚Б‚Ѕ‚з—§‚Д‚й
+		// ж›ґж–°гѓ“гѓѓгѓ€гЃЊз«‹гЃЈгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰з«‹гЃ¦г‚‹
 		if( ( Model->ChangeDrawMaterialFlag[ 0 ] & 1 ) == 0 )
 			_MEMSET( Model->ChangeDrawMaterialFlag, 0xff, Model->ChangeDrawMaterialFlagSize ) ;
 	}
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// ѓ‚ѓfѓ‹‚М•\Ћ¦ЃA”с•\Ћ¦Џу‘Ф‚рЋж“ѕ‚·‚й( TRUE:•\Ћ¦  FALSE:”с•\Ћ¦ )
+// гѓўгѓ‡гѓ«гЃ®иЎЁз¤єгЂЃйќћиЎЁз¤єзЉ¶ж…‹г‚’еЏ–еѕ—гЃ™г‚‹( TRUE:иЎЁз¤є  FALSE:йќћиЎЁз¤є )
 extern int NS_MV1GetVisible( int MHandle )
 {
 	MV1START( MHandle, Model, ModelBase, -1 ) ;
 
-	// ѓtѓ‰ѓO‚р•Ф‚·
+	// гѓ•гѓ©г‚°г‚’иї”гЃ™
 	return Model->DrawMaterial.Visible ;
 }
 
-// ѓ‚ѓfѓ‹‚МѓЃѓbѓVѓ…‚МЋн—Ю( DX_MV1_MESHCATEGORY_NORMAL ‚И‚З )–€‚М•\Ћ¦ЃA”с•\Ћ¦‚рђЭ’и‚·‚й( TRUE:•\Ћ¦  FALSE:”с•\Ћ¦ )
+// гѓўгѓ‡гѓ«гЃ®гѓЎгѓѓг‚·гѓҐгЃ®зЁ®йЎћ( DX_MV1_MESHCATEGORY_NORMAL гЃЄгЃ© )жЇЋгЃ®иЎЁз¤єгЂЃйќћиЎЁз¤єг‚’иЁ­е®љгЃ™г‚‹( TRUE:иЎЁз¤є  FALSE:йќћиЎЁз¤є )
 extern int NS_MV1SetMeshCategoryVisible( int MHandle, int MeshCategory, int VisibleFlag )
 {
 	int HideFlag ;
 
 	MV1START( MHandle, Model, ModelBase, -1 ) ;
 
-	// ’l‚М—LЊшѓ`ѓFѓbѓN
+	// еЂ¤гЃ®жњ‰еЉ№гѓЃг‚§гѓѓг‚Ї
 	if( MeshCategory < 0 || MeshCategory >= DX_MV1_MESHCATEGORY_NUM )
 		return -1 ;
 
@@ -21959,162 +21959,162 @@ extern int NS_MV1SetMeshCategoryVisible( int MHandle, int MeshCategory, int Visi
 		return 0 ;
 	}
 
-	// •`‰ж‘Т‹@‚µ‚Д‚ў‚й•`‰ж•Ё‚р•`‰ж
+	// жЏЏз”»еѕ…ж©џгЃ—гЃ¦гЃ„г‚‹жЏЏз”»з‰©г‚’жЏЏз”»
 	DRAWSTOCKINFO
 
-	// ѓtѓ‰ѓO‚р•Ы‘¶
+	// гѓ•гѓ©г‚°г‚’дїќе­
 	Model->MeshCategoryHide[ MeshCategory ] = HideFlag ;
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// ѓ‚ѓfѓ‹‚МѓЃѓbѓVѓ…‚МЋн—Ю( DX_MV1_MESHCATEGORY_NORMAL ‚И‚З )–€‚М•\Ћ¦ЃA”с•\Ћ¦‚рЋж“ѕ‚·‚й( TRUE:•\Ћ¦  FALSE:”с•\Ћ¦ )
+// гѓўгѓ‡гѓ«гЃ®гѓЎгѓѓг‚·гѓҐгЃ®зЁ®йЎћ( DX_MV1_MESHCATEGORY_NORMAL гЃЄгЃ© )жЇЋгЃ®иЎЁз¤єгЂЃйќћиЎЁз¤єг‚’еЏ–еѕ—гЃ™г‚‹( TRUE:иЎЁз¤є  FALSE:йќћиЎЁз¤є )
 extern int NS_MV1GetMeshCategoryVisible( int MHandle, int MeshCategory )
 {
 	MV1START( MHandle, Model, ModelBase, -1 ) ;
 
-	// ’l‚М—LЊшѓ`ѓFѓbѓN
+	// еЂ¤гЃ®жњ‰еЉ№гѓЃг‚§гѓѓг‚Ї
 	if( MeshCategory < 0 || MeshCategory >= DX_MV1_MESHCATEGORY_NUM )
 		return -1 ;
 
-	// ѓtѓ‰ѓO‚р•Ф‚·
+	// гѓ•гѓ©г‚°г‚’иї”гЃ™
 	return Model->MeshCategoryHide[ MeshCategory ] == FALSE ? TRUE : FALSE ;
 }
 
-// ѓ‚ѓfѓ‹‚МѓfѓBѓtѓ…Ѓ[ѓYѓJѓ‰Ѓ[‚МѓXѓPЃ[ѓ‹’l‚рђЭ’и‚·‚й( ѓfѓtѓHѓ‹ѓg’l‚Н 1.0f )
+// гѓўгѓ‡гѓ«гЃ®гѓ‡г‚Јгѓ•гѓҐгѓјг‚єг‚«гѓ©гѓјгЃ®г‚№г‚±гѓјгѓ«еЂ¤г‚’иЁ­е®љгЃ™г‚‹( гѓ‡гѓ•г‚©гѓ«гѓ€еЂ¤гЃЇ 1.0f )
 extern	int			NS_MV1SetDifColorScale( int MHandle, COLOR_F Scale )
 {
 	MV1START( MHandle, Model, ModelBase, -1 ) ;
 
-	// ’l‚рѓZѓbѓg
+	// еЂ¤г‚’г‚»гѓѓгѓ€
 	if( MV1SetDrawMaterialDif( &Model->DrawMaterial, NULL, Scale ) )
 	{
-		// •`‰ж‘Т‹@‚µ‚Д‚ў‚й•`‰ж•Ё‚р•`‰ж
+		// жЏЏз”»еѕ…ж©џгЃ—гЃ¦гЃ„г‚‹жЏЏз”»з‰©г‚’жЏЏз”»
 		DRAWSTOCKINFO
 
-		// ”ј“§–ѕ—v‘f—L–іЏо•с‚МѓZѓbѓgѓAѓbѓvЉ®—№ѓtѓ‰ѓO‚р“|‚·
+		// еЌЉйЂЏжЋи¦Ѓзґ жњ‰з„Ўжѓ…е ±гЃ®г‚»гѓѓгѓ€г‚ўгѓѓгѓ—е®Њдє†гѓ•гѓ©г‚°г‚’еЂ’гЃ™
 		Model->SemiTransStateSetupFlag = false ;
 
-		// ЌXђVѓrѓbѓg‚Є—§‚Б‚Д‚ў‚И‚©‚Б‚Ѕ‚з—§‚Д‚й
+		// ж›ґж–°гѓ“гѓѓгѓ€гЃЊз«‹гЃЈгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰з«‹гЃ¦г‚‹
 		if( ( Model->ChangeDrawMaterialFlag[ 0 ] & 1 ) == 0 )
 			_MEMSET( Model->ChangeDrawMaterialFlag, 0xff, Model->ChangeDrawMaterialFlagSize ) ;
 	}
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// ѓ‚ѓfѓ‹‚МѓXѓyѓLѓ…ѓ‰ѓJѓ‰Ѓ[‚МѓXѓPЃ[ѓ‹’l‚рђЭ’и‚·‚й( ѓfѓtѓHѓ‹ѓg’l‚Н 1.0f )
+// гѓўгѓ‡гѓ«гЃ®г‚№гѓљг‚­гѓҐгѓ©г‚«гѓ©гѓјгЃ®г‚№г‚±гѓјгѓ«еЂ¤г‚’иЁ­е®љгЃ™г‚‹( гѓ‡гѓ•г‚©гѓ«гѓ€еЂ¤гЃЇ 1.0f )
 extern	int			NS_MV1SetSpcColorScale( int MHandle, COLOR_F Scale )
 {
 	MV1START( MHandle, Model, ModelBase, -1 ) ;
 
-	// ’l‚рѓZѓbѓg
+	// еЂ¤г‚’г‚»гѓѓгѓ€
 	if( MV1SetDrawMaterialSpc( &Model->DrawMaterial, NULL, Scale ) )
 	{
-		// •`‰ж‘Т‹@‚µ‚Д‚ў‚й•`‰ж•Ё‚р•`‰ж
+		// жЏЏз”»еѕ…ж©џгЃ—гЃ¦гЃ„г‚‹жЏЏз”»з‰©г‚’жЏЏз”»
 		DRAWSTOCKINFO
 
-		// ЌXђVѓrѓbѓg‚Є—§‚Б‚Д‚ў‚И‚©‚Б‚Ѕ‚з—§‚Д‚й
+		// ж›ґж–°гѓ“гѓѓгѓ€гЃЊз«‹гЃЈгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰з«‹гЃ¦г‚‹
 		if( ( Model->ChangeDrawMaterialFlag[ 0 ] & 1 ) == 0 )
 			_MEMSET( Model->ChangeDrawMaterialFlag, 0xff, Model->ChangeDrawMaterialFlagSize ) ;
 	}
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// ѓ‚ѓfѓ‹‚МѓGѓ~ѓbѓVѓuѓJѓ‰Ѓ[‚МѓXѓPЃ[ѓ‹’l‚рђЭ’и‚·‚й( ѓfѓtѓHѓ‹ѓg’l‚Н 1.0f )
+// гѓўгѓ‡гѓ«гЃ®г‚Ёгѓџгѓѓг‚·гѓ–г‚«гѓ©гѓјгЃ®г‚№г‚±гѓјгѓ«еЂ¤г‚’иЁ­е®љгЃ™г‚‹( гѓ‡гѓ•г‚©гѓ«гѓ€еЂ¤гЃЇ 1.0f )
 extern	int			NS_MV1SetEmiColorScale( int MHandle, COLOR_F Scale )
 {
 	MV1START( MHandle, Model, ModelBase, -1 ) ;
 
-	// ’l‚рѓZѓbѓg
+	// еЂ¤г‚’г‚»гѓѓгѓ€
 	if( MV1SetDrawMaterialEmi( &Model->DrawMaterial, NULL, Scale ) )
 	{
-		// •`‰ж‘Т‹@‚µ‚Д‚ў‚й•`‰ж•Ё‚р•`‰ж
+		// жЏЏз”»еѕ…ж©џгЃ—гЃ¦гЃ„г‚‹жЏЏз”»з‰©г‚’жЏЏз”»
 		DRAWSTOCKINFO
 
-		// ЌXђVѓrѓbѓg‚Є—§‚Б‚Д‚ў‚И‚©‚Б‚Ѕ‚з—§‚Д‚й
+		// ж›ґж–°гѓ“гѓѓгѓ€гЃЊз«‹гЃЈгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰з«‹гЃ¦г‚‹
 		if( ( Model->ChangeDrawMaterialFlag[ 0 ] & 1 ) == 0 )
 			_MEMSET( Model->ChangeDrawMaterialFlag, 0xff, Model->ChangeDrawMaterialFlagSize ) ;
 	}
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// ѓ‚ѓfѓ‹‚МѓAѓ“ѓrѓGѓ“ѓgѓJѓ‰Ѓ[‚МѓXѓPЃ[ѓ‹’l‚рђЭ’и‚·‚й( ѓfѓtѓHѓ‹ѓg’l‚Н 1.0f )
+// гѓўгѓ‡гѓ«гЃ®г‚ўгѓігѓ“г‚Ёгѓігѓ€г‚«гѓ©гѓјгЃ®г‚№г‚±гѓјгѓ«еЂ¤г‚’иЁ­е®љгЃ™г‚‹( гѓ‡гѓ•г‚©гѓ«гѓ€еЂ¤гЃЇ 1.0f )
 extern	int			NS_MV1SetAmbColorScale( int MHandle, COLOR_F Scale )
 {
 	MV1START( MHandle, Model, ModelBase, -1 ) ;
 
-	// ’l‚рѓZѓbѓg
+	// еЂ¤г‚’г‚»гѓѓгѓ€
 	if( MV1SetDrawMaterialAmb( &Model->DrawMaterial, NULL, Scale ) )
 	{
-		// •`‰ж‘Т‹@‚µ‚Д‚ў‚й•`‰ж•Ё‚р•`‰ж
+		// жЏЏз”»еѕ…ж©џгЃ—гЃ¦гЃ„г‚‹жЏЏз”»з‰©г‚’жЏЏз”»
 		DRAWSTOCKINFO
 
-		// ЌXђVѓrѓbѓg‚Є—§‚Б‚Д‚ў‚И‚©‚Б‚Ѕ‚з—§‚Д‚й
+		// ж›ґж–°гѓ“гѓѓгѓ€гЃЊз«‹гЃЈгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰з«‹гЃ¦г‚‹
 		if( ( Model->ChangeDrawMaterialFlag[ 0 ] & 1 ) == 0 )
 			_MEMSET( Model->ChangeDrawMaterialFlag, 0xff, Model->ChangeDrawMaterialFlagSize ) ;
 	}
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// ѓ‚ѓfѓ‹‚МѓfѓBѓtѓ…Ѓ[ѓYѓJѓ‰Ѓ[‚МѓXѓPЃ[ѓ‹’l‚рЋж“ѕ‚·‚й( ѓfѓtѓHѓ‹ѓg’l‚Н 1.0f )
+// гѓўгѓ‡гѓ«гЃ®гѓ‡г‚Јгѓ•гѓҐгѓјг‚єг‚«гѓ©гѓјгЃ®г‚№г‚±гѓјгѓ«еЂ¤г‚’еЏ–еѕ—гЃ™г‚‹( гѓ‡гѓ•г‚©гѓ«гѓ€еЂ¤гЃЇ 1.0f )
 extern	COLOR_F		NS_MV1GetDifColorScale( int MHandle )
 {
 	COLOR_F ErrorResult = { -1.0f, -1.0f, -1.0f, -1.0f } ;
 	MV1START( MHandle, Model, ModelBase, ErrorResult ) ;
 
-	// ’l‚р•Ф‚·
+	// еЂ¤г‚’иї”гЃ™
 	return Model->DrawMaterial.DiffuseScale ;
 }
 
-// ѓ‚ѓfѓ‹‚МѓXѓyѓLѓ…ѓ‰ѓJѓ‰Ѓ[‚МѓXѓPЃ[ѓ‹’l‚рЋж“ѕ‚·‚й( ѓfѓtѓHѓ‹ѓg’l‚Н 1.0f )
+// гѓўгѓ‡гѓ«гЃ®г‚№гѓљг‚­гѓҐгѓ©г‚«гѓ©гѓјгЃ®г‚№г‚±гѓјгѓ«еЂ¤г‚’еЏ–еѕ—гЃ™г‚‹( гѓ‡гѓ•г‚©гѓ«гѓ€еЂ¤гЃЇ 1.0f )
 extern	COLOR_F		NS_MV1GetSpcColorScale( int MHandle )
 {
 	COLOR_F ErrorResult = { -1.0f, -1.0f, -1.0f, -1.0f } ;
 	MV1START( MHandle, Model, ModelBase, ErrorResult ) ;
 
-	// ’l‚р•Ф‚·
+	// еЂ¤г‚’иї”гЃ™
 	return Model->DrawMaterial.SpecularScale ;
 }
 
-// ѓ‚ѓfѓ‹‚МѓGѓ~ѓbѓVѓuѓJѓ‰Ѓ[‚МѓXѓPЃ[ѓ‹’l‚рЋж“ѕ‚·‚й( ѓfѓtѓHѓ‹ѓg’l‚Н 1.0f )
+// гѓўгѓ‡гѓ«гЃ®г‚Ёгѓџгѓѓг‚·гѓ–г‚«гѓ©гѓјгЃ®г‚№г‚±гѓјгѓ«еЂ¤г‚’еЏ–еѕ—гЃ™г‚‹( гѓ‡гѓ•г‚©гѓ«гѓ€еЂ¤гЃЇ 1.0f )
 extern	COLOR_F		NS_MV1GetEmiColorScale( int MHandle )
 {
 	COLOR_F ErrorResult = { -1.0f, -1.0f, -1.0f, -1.0f } ;
 	MV1START( MHandle, Model, ModelBase, ErrorResult ) ;
 
-	// ’l‚р•Ф‚·
+	// еЂ¤г‚’иї”гЃ™
 	return Model->DrawMaterial.EmissiveScale ;
 }
 
-// ѓ‚ѓfѓ‹‚МѓAѓ“ѓrѓGѓ“ѓgѓJѓ‰Ѓ[‚МѓXѓPЃ[ѓ‹’l‚рЋж“ѕ‚·‚й( ѓfѓtѓHѓ‹ѓg’l‚Н 1.0f )
+// гѓўгѓ‡гѓ«гЃ®г‚ўгѓігѓ“г‚Ёгѓігѓ€г‚«гѓ©гѓјгЃ®г‚№г‚±гѓјгѓ«еЂ¤г‚’еЏ–еѕ—гЃ™г‚‹( гѓ‡гѓ•г‚©гѓ«гѓ€еЂ¤гЃЇ 1.0f )
 extern	COLOR_F		NS_MV1GetAmbColorScale( int MHandle )
 {
 	COLOR_F ErrorResult = { -1.0f, -1.0f, -1.0f, -1.0f } ;
 	MV1START( MHandle, Model, ModelBase, ErrorResult ) ;
 
-	// ’l‚р•Ф‚·
+	// еЂ¤г‚’иї”гЃ™
 	return Model->DrawMaterial.AmbientScale ;
 }
 
-// ѓ‚ѓfѓ‹‚Й”ј“§–ѕ—v‘f‚Є‚ ‚й‚©‚З‚¤‚©‚рЋж“ѕ‚·‚й( –Я‚и’l TRUE:‚ ‚й  FALSE:‚И‚ў )
+// гѓўгѓ‡гѓ«гЃ«еЌЉйЂЏжЋи¦Ѓзґ гЃЊгЃ‚г‚‹гЃ‹гЃ©гЃ†гЃ‹г‚’еЏ–еѕ—гЃ™г‚‹( ж€»г‚ЉеЂ¤ TRUE:гЃ‚г‚‹  FALSE:гЃЄгЃ„ )
 extern int NS_MV1GetSemiTransState( int MHandle )
 {
 	int i ;
 	MV1START( MHandle, Model, ModelBase, -1 ) ;
 
-	// ”ј“§–ѕ—v‘f—L–іЏо•с‚МѓZѓbѓgѓAѓbѓv‚ЄЉ®—№‚µ‚Д‚ў‚И‚Ї‚к‚ОѓZѓbѓgѓAѓbѓv‚р‚·‚й
+	// еЌЉйЂЏжЋи¦Ѓзґ жњ‰з„Ўжѓ…е ±гЃ®г‚»гѓѓгѓ€г‚ўгѓѓгѓ—гЃЊе®Њдє†гЃ—гЃ¦гЃ„гЃЄгЃ‘г‚ЊгЃ°г‚»гѓѓгѓ€г‚ўгѓѓгѓ—г‚’гЃ™г‚‹
 	if( Model->SemiTransStateSetupFlag == false )
 	{
-		// ѓgѓbѓvѓtѓЊЃ[ѓЂ‚М’†‚Й”ј“§–ѕ—v‘f‚рЋќ‚Б‚ЅѓtѓЊЃ[ѓЂ‚Є€к‚В‚Е‚а‚ ‚к‚О”ј“§–ѕ—v‘f‚рЋќ‚Б‚Ѕѓ‚ѓfѓ‹‚Ж‚ў‚¤‚±‚Ж
+		// гѓ€гѓѓгѓ—гѓ•гѓ¬гѓјгѓ гЃ®дё­гЃ«еЌЉйЂЏжЋи¦Ѓзґ г‚’жЊЃгЃЈгЃџгѓ•гѓ¬гѓјгѓ гЃЊдёЂгЃ¤гЃ§г‚‚гЃ‚г‚ЊгЃ°еЌЉйЂЏжЋи¦Ѓзґ г‚’жЊЃгЃЈгЃџгѓўгѓ‡гѓ«гЃЁгЃ„гЃ†гЃ“гЃЁ
 		Model->SemiTransState = false ;
 
 		for( i = 0 ; i < Model->TopFrameNum ; i ++ )
@@ -22123,52 +22123,52 @@ extern int NS_MV1GetSemiTransState( int MHandle )
 				Model->SemiTransState = true ;
 		}
 
-		// ѓZѓbѓgѓAѓbѓvЉ®—№
+		// г‚»гѓѓгѓ€г‚ўгѓѓгѓ—е®Њдє†
 		Model->SemiTransStateSetupFlag = true ;
 	}
 
-	// •Ф‚·
+	// иї”гЃ™
 	return Model->SemiTransState ;
 }
 
-// ѓ‚ѓfѓ‹‚М•s“§–ѕ“x‚рђЭ’и‚·‚й( •s“§–ѕ 1.0f Ѓ` “§–ѕ 0.0f )
+// гѓўгѓ‡гѓ«гЃ®дёЌйЂЏжЋеє¦г‚’иЁ­е®љгЃ™г‚‹( дёЌйЂЏжЋ 1.0f пЅћ йЂЏжЋ 0.0f )
 extern int NS_MV1SetOpacityRate( int MHandle, float Rate )
 {
 	MV1START( MHandle, Model, ModelBase, -1 ) ;
 
-	// ”Н€Н‚р’ґ‚¦‚Д‚ў‚Ѕ‚з•вђі‚·‚й
+	// зЇ„е›Іг‚’и¶…гЃ€гЃ¦гЃ„гЃџг‚‰иЈњж­ЈгЃ™г‚‹
 	     if( Rate < 0.0f ) Rate = 0.0f ;
 	else if( Rate > 1.0f ) Rate = 1.0f ;
 
-	// ’l‚рѓZѓbѓg
+	// еЂ¤г‚’г‚»гѓѓгѓ€
 	if( MV1SetDrawMaterialOpacityRate( &Model->DrawMaterial, NULL, Rate ) )
 	{
-		// •`‰ж‘Т‹@‚µ‚Д‚ў‚й•`‰ж•Ё‚р•`‰ж
+		// жЏЏз”»еѕ…ж©џгЃ—гЃ¦гЃ„г‚‹жЏЏз”»з‰©г‚’жЏЏз”»
 		DRAWSTOCKINFO
 
-		// ”ј“§–ѕ—v‘f—L–іЏо•с‚МѓZѓbѓgѓAѓbѓvЉ®—№ѓtѓ‰ѓO‚р“|‚·
+		// еЌЉйЂЏжЋи¦Ѓзґ жњ‰з„Ўжѓ…е ±гЃ®г‚»гѓѓгѓ€г‚ўгѓѓгѓ—е®Њдє†гѓ•гѓ©г‚°г‚’еЂ’гЃ™
 		Model->SemiTransStateSetupFlag = false ;
 
-		// ЌXђVѓrѓbѓg‚Є—§‚Б‚Д‚ў‚И‚©‚Б‚Ѕ‚з—§‚Д‚й
+		// ж›ґж–°гѓ“гѓѓгѓ€гЃЊз«‹гЃЈгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰з«‹гЃ¦г‚‹
 		if( ( Model->ChangeDrawMaterialFlag[ 0 ] & 1 ) == 0 )
 			_MEMSET( Model->ChangeDrawMaterialFlag, 0xff, Model->ChangeDrawMaterialFlagSize ) ;
 	}
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// ѓ‚ѓfѓ‹‚М•s“§–ѕ“x‚рЋж“ѕ‚·‚й( •s“§–ѕ 1.0f Ѓ` “§–ѕ 0.0f )
+// гѓўгѓ‡гѓ«гЃ®дёЌйЂЏжЋеє¦г‚’еЏ–еѕ—гЃ™г‚‹( дёЌйЂЏжЋ 1.0f пЅћ йЂЏжЋ 0.0f )
 extern	float		NS_MV1GetOpacityRate( int MHandle )
 {
 	MV1START( MHandle, Model, ModelBase, -1.0f ) ;
 
-	// •s“§–ѕ“x‚р•Ф‚·
+	// дёЌйЂЏжЋеє¦г‚’иї”гЃ™
 	return Model->DrawMaterial.OpacityRate ;
 }
 
-// ѓ‚ѓfѓ‹‚р•`‰ж‚·‚йЌЫ‚ЙRGB’l‚Й‘О‚µ‚ДA’l‚рЏжЋZ‚·‚й‚©‚З‚¤‚©‚рђЭ’и‚·‚й
-// ( •`‰жЊ‹‰К‚ЄЏжЋZЌП‚ЭѓAѓ‹ѓtѓ@‰ж‘њ‚Й‚И‚и‚Ь‚· )( Flag   TRUE:RGB’l‚Й‘О‚µ‚ДA’l‚рЏжЋZ‚·‚й  FALSE:ЏжЋZ‚µ‚И‚ў(ѓfѓtѓHѓ‹ѓg) )
+// гѓўгѓ‡гѓ«г‚’жЏЏз”»гЃ™г‚‹йљ›гЃ«RGBеЂ¤гЃ«еЇѕгЃ—гЃ¦AеЂ¤г‚’д№—з®—гЃ™г‚‹гЃ‹гЃ©гЃ†гЃ‹г‚’иЁ­е®љгЃ™г‚‹
+// ( жЏЏз”»зµђжћњгЃЊд№—з®—жё€гЃїг‚ўгѓ«гѓ•г‚Ўз”»еѓЏгЃ«гЃЄг‚ЉгЃѕгЃ™ )( Flag   TRUE:RGBеЂ¤гЃ«еЇѕгЃ—гЃ¦AеЂ¤г‚’д№—з®—гЃ™г‚‹  FALSE:д№—з®—гЃ—гЃЄгЃ„(гѓ‡гѓ•г‚©гѓ«гѓ€) )
 extern int NS_MV1SetUseDrawMulAlphaColor( int MHandle, int Flag )
 {
 	bool BoolFlag ;
@@ -22182,18 +22182,18 @@ extern int NS_MV1SetUseDrawMulAlphaColor( int MHandle, int Flag )
 		return 0 ;
 	}
 
-	// •`‰ж‘Т‹@‚µ‚Д‚ў‚й•`‰ж•Ё‚р•`‰ж
+	// жЏЏз”»еѕ…ж©џгЃ—гЃ¦гЃ„г‚‹жЏЏз”»з‰©г‚’жЏЏз”»
 	DRAWSTOCKINFO
 
-	// ’l‚р•Ы‘¶
+	// еЂ¤г‚’дїќе­
 	Model->UseDrawMulAlphaColor = BoolFlag ;
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// ѓ‚ѓfѓ‹‚р•`‰ж‚·‚йЌЫ‚ЙRGB’l‚Й‘О‚µ‚ДA’l‚рЏжЋZ‚·‚й‚©‚З‚¤‚©‚рЋж“ѕ‚·‚й
-// ( •`‰жЊ‹‰К‚ЄЏжЋZЌП‚ЭѓAѓ‹ѓtѓ@‰ж‘њ‚Й‚И‚и‚Ь‚· )( –Я‚и’l TRUE:RGB’l‚Й‘О‚µ‚ДA’l‚рЏжЋZ‚·‚й  FALSE:ЏжЋZ‚µ‚И‚ў(ѓfѓtѓHѓ‹ѓg) )
+// гѓўгѓ‡гѓ«г‚’жЏЏз”»гЃ™г‚‹йљ›гЃ«RGBеЂ¤гЃ«еЇѕгЃ—гЃ¦AеЂ¤г‚’д№—з®—гЃ™г‚‹гЃ‹гЃ©гЃ†гЃ‹г‚’еЏ–еѕ—гЃ™г‚‹
+// ( жЏЏз”»зµђжћњгЃЊд№—з®—жё€гЃїг‚ўгѓ«гѓ•г‚Ўз”»еѓЏгЃ«гЃЄг‚ЉгЃѕгЃ™ )( ж€»г‚ЉеЂ¤ TRUE:RGBеЂ¤гЃ«еЇѕгЃ—гЃ¦AеЂ¤г‚’д№—з®—гЃ™г‚‹  FALSE:д№—з®—гЃ—гЃЄгЃ„(гѓ‡гѓ•г‚©гѓ«гѓ€) )
 extern int NS_MV1GetUseDrawMulAlphaColor( int MHandle )
 {
 	MV1START( MHandle, Model, ModelBase, -1 ) ;
@@ -22201,7 +22201,7 @@ extern int NS_MV1GetUseDrawMulAlphaColor( int MHandle )
 	return Model->UseDrawMulAlphaColor ? TRUE : FALSE ;
 }
 
-// ѓ‚ѓfѓ‹‚р•`‰ж‚·‚йЌЫ‚Й‚yѓoѓbѓtѓ@‚рЋg—p‚·‚й‚©‚З‚¤‚©‚рђЭ’и‚·‚й
+// гѓўгѓ‡гѓ«г‚’жЏЏз”»гЃ™г‚‹йљ›гЃ«пјєгѓђгѓѓгѓ•г‚Ўг‚’дЅїз”ЁгЃ™г‚‹гЃ‹гЃ©гЃ†гЃ‹г‚’иЁ­е®љгЃ™г‚‹
 extern int NS_MV1SetUseZBuffer( int MHandle, int Flag )
 {
 	MV1START( MHandle, Model, ModelBase, -1 ) ;
@@ -22211,16 +22211,16 @@ extern int NS_MV1SetUseZBuffer( int MHandle, int Flag )
 		return 0 ;
 	}
 
-	// •`‰ж‘Т‹@‚µ‚Д‚ў‚й•`‰ж•Ё‚р•`‰ж
+	// жЏЏз”»еѕ…ж©џгЃ—гЃ¦гЃ„г‚‹жЏЏз”»з‰©г‚’жЏЏз”»
 	DRAWSTOCKINFO
 
 	Model->EnableZBufferFlag = Flag ;
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// ѓ‚ѓfѓ‹‚р•`‰ж‚·‚йЌЫ‚Й‚yѓoѓbѓtѓ@‚ЙЏ‘‚«Ќћ‚Э‚рЌs‚¤‚©‚З‚¤‚©‚рђЭ’и‚·‚й
+// гѓўгѓ‡гѓ«г‚’жЏЏз”»гЃ™г‚‹йљ›гЃ«пјєгѓђгѓѓгѓ•г‚ЎгЃ«ж›ёгЃЌиѕјгЃїг‚’иЎЊгЃ†гЃ‹гЃ©гЃ†гЃ‹г‚’иЁ­е®љгЃ™г‚‹
 extern int NS_MV1SetWriteZBuffer( int MHandle, int Flag )
 {
 	MV1START( MHandle, Model, ModelBase, -1 ) ;
@@ -22230,17 +22230,17 @@ extern int NS_MV1SetWriteZBuffer( int MHandle, int Flag )
 		return 0 ;
 	}
 
-	// •`‰ж‘Т‹@‚µ‚Д‚ў‚й•`‰ж•Ё‚р•`‰ж
+	// жЏЏз”»еѕ…ж©џгЃ—гЃ¦гЃ„г‚‹жЏЏз”»з‰©г‚’жЏЏз”»
 	DRAWSTOCKINFO
 
 	Model->WriteZBufferFlag = Flag ;
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// ѓ‚ѓfѓ‹‚М•`‰жЋћ‚М‚y’l‚М”дЉrѓ‚Ѓ[ѓh‚рђЭ’и‚·‚й
-extern int NS_MV1SetZBufferCmpType( int MHandle, int CmpType /* DX_CMP_NEVER “™ */ )
+// гѓўгѓ‡гѓ«гЃ®жЏЏз”»ж™‚гЃ®пјєеЂ¤гЃ®жЇ”ијѓгѓўгѓјгѓ‰г‚’иЁ­е®љгЃ™г‚‹
+extern int NS_MV1SetZBufferCmpType( int MHandle, int CmpType /* DX_CMP_NEVER з­‰ */ )
 {
 	MV1START( MHandle, Model, ModelBase, -1 ) ;
 
@@ -22249,16 +22249,16 @@ extern int NS_MV1SetZBufferCmpType( int MHandle, int CmpType /* DX_CMP_NEVER “™ 
 		return 0 ;
 	}
 
-	// •`‰ж‘Т‹@‚µ‚Д‚ў‚й•`‰ж•Ё‚р•`‰ж
+	// жЏЏз”»еѕ…ж©џгЃ—гЃ¦гЃ„г‚‹жЏЏз”»з‰©г‚’жЏЏз”»
 	DRAWSTOCKINFO
 
 	Model->ZBufferCmpType = CmpType ;
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// ѓ‚ѓfѓ‹‚М•`‰жЋћ‚МЏ‘‚«Ќћ‚Ю‚y’l‚МѓoѓCѓAѓX‚рђЭ’и‚·‚й
+// гѓўгѓ‡гѓ«гЃ®жЏЏз”»ж™‚гЃ®ж›ёгЃЌиѕјг‚ЂпјєеЂ¤гЃ®гѓђг‚¤г‚ўг‚№г‚’иЁ­е®љгЃ™г‚‹
 extern int NS_MV1SetZBias( int MHandle, int Bias )
 {
 	MV1START( MHandle, Model, ModelBase, -1 ) ;
@@ -22268,63 +22268,63 @@ extern int NS_MV1SetZBias( int MHandle, int Bias )
 		return 0 ;
 	}
 
-	// •`‰ж‘Т‹@‚µ‚Д‚ў‚й•`‰ж•Ё‚р•`‰ж
+	// жЏЏз”»еѕ…ж©џгЃ—гЃ¦гЃ„г‚‹жЏЏз”»з‰©г‚’жЏЏз”»
 	DRAWSTOCKINFO
 
 	Model->ZBias = Bias ;
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// ѓ‚ѓfѓ‹‚МЉЬ‚Ь‚к‚йѓЃѓbѓVѓ…‚М’ё“_ѓfѓBѓtѓ…Ѓ[ѓYѓJѓ‰Ѓ[‚рѓ}ѓeѓЉѓAѓ‹‚МѓfѓBѓtѓ…Ѓ[ѓYѓJѓ‰Ѓ[‚М‘г‚н‚и‚ЙЋg—p‚·‚й‚©‚З‚¤‚©‚рђЭ’и‚·‚й( TRUE:ѓ}ѓeѓЉѓAѓ‹ѓJѓ‰Ѓ[‚М‘г‚н‚и‚ЙЋg—p‚·‚й  FALSE:ѓ}ѓeѓЉѓAѓ‹ѓJѓ‰Ѓ[‚рЋg—p‚·‚й )
+// гѓўгѓ‡гѓ«гЃ®еђ«гЃѕг‚Њг‚‹гѓЎгѓѓг‚·гѓҐгЃ®й ‚з‚№гѓ‡г‚Јгѓ•гѓҐгѓјг‚єг‚«гѓ©гѓјг‚’гѓћгѓ†гѓЄг‚ўгѓ«гЃ®гѓ‡г‚Јгѓ•гѓҐгѓјг‚єг‚«гѓ©гѓјгЃ®д»Јг‚Џг‚ЉгЃ«дЅїз”ЁгЃ™г‚‹гЃ‹гЃ©гЃ†гЃ‹г‚’иЁ­е®љгЃ™г‚‹( TRUE:гѓћгѓ†гѓЄг‚ўгѓ«г‚«гѓ©гѓјгЃ®д»Јг‚Џг‚ЉгЃ«дЅїз”ЁгЃ™г‚‹  FALSE:гѓћгѓ†гѓЄг‚ўгѓ«г‚«гѓ©гѓјг‚’дЅїз”ЁгЃ™г‚‹ )
 extern int NS_MV1SetUseVertDifColor( int MHandle, int UseFlag )
 {
 	int i ;
 
 	MV1START( MHandle, Model, ModelBase, -1 ) ;
 
-	// ‚·‚Ч‚Д‚МѓЃѓbѓVѓ…‚ЙђЭ’и‚·‚й
+	// гЃ™гЃ№гЃ¦гЃ®гѓЎгѓѓг‚·гѓҐгЃ«иЁ­е®љгЃ™г‚‹
 	for( i = 0 ; i < ModelBase->MeshNum ; i ++ )
 		NS_MV1SetMeshUseVertDifColor( MHandle, i, UseFlag ) ;
 	
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// ѓ‚ѓfѓ‹‚ЙЉЬ‚Ь‚к‚йѓЃѓbѓVѓ…‚М’ё“_ѓXѓyѓLѓ…ѓ‰ѓJѓ‰Ѓ[‚рѓ}ѓeѓЉѓAѓ‹‚МѓXѓyѓLѓ…ѓ‰ѓJѓ‰Ѓ[‚М‘г‚н‚и‚ЙЋg—p‚·‚й‚©‚З‚¤‚©‚рђЭ’и‚·‚й( TRUE:ѓ}ѓeѓЉѓAѓ‹ѓJѓ‰Ѓ[‚М‘г‚н‚и‚ЙЋg—p‚·‚й  FALSE:ѓ}ѓeѓЉѓAѓ‹ѓJѓ‰Ѓ[‚рЋg—p‚·‚й )
+// гѓўгѓ‡гѓ«гЃ«еђ«гЃѕг‚Њг‚‹гѓЎгѓѓг‚·гѓҐгЃ®й ‚з‚№г‚№гѓљг‚­гѓҐгѓ©г‚«гѓ©гѓјг‚’гѓћгѓ†гѓЄг‚ўгѓ«гЃ®г‚№гѓљг‚­гѓҐгѓ©г‚«гѓ©гѓјгЃ®д»Јг‚Џг‚ЉгЃ«дЅїз”ЁгЃ™г‚‹гЃ‹гЃ©гЃ†гЃ‹г‚’иЁ­е®љгЃ™г‚‹( TRUE:гѓћгѓ†гѓЄг‚ўгѓ«г‚«гѓ©гѓјгЃ®д»Јг‚Џг‚ЉгЃ«дЅїз”ЁгЃ™г‚‹  FALSE:гѓћгѓ†гѓЄг‚ўгѓ«г‚«гѓ©гѓјг‚’дЅїз”ЁгЃ™г‚‹ )
 extern int NS_MV1SetUseVertSpcColor( int MHandle, int UseFlag )
 {
 	int i ;
 
 	MV1START( MHandle, Model, ModelBase, -1 ) ;
 
-	// ‚·‚Ч‚Д‚МѓЃѓbѓVѓ…‚ЙђЭ’и‚·‚й
+	// гЃ™гЃ№гЃ¦гЃ®гѓЎгѓѓг‚·гѓҐгЃ«иЁ­е®љгЃ™г‚‹
 	for( i = 0 ; i < ModelBase->MeshNum ; i ++ )
 		NS_MV1SetMeshUseVertSpcColor( MHandle, i, UseFlag ) ;
 	
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// ѓ‚ѓfѓ‹‚МѓTѓ“ѓvѓ‹ѓtѓBѓ‹ѓ^Ѓ[ѓ‚Ѓ[ѓh‚р•ПЌX‚·‚й
+// гѓўгѓ‡гѓ«гЃ®г‚µгѓігѓ—гѓ«гѓ•г‚Јгѓ«г‚їгѓјгѓўгѓјгѓ‰г‚’е¤‰ж›ґгЃ™г‚‹
 extern int NS_MV1SetSampleFilterMode( int MHandle, int FilterMode )
 {
 	int i ;
 
 	MV1START( MHandle, Model, ModelBase, -1 ) ;
 
-	// ‘S‚Д‚МѓeѓNѓXѓ`ѓѓ‚МѓtѓBѓ‹ѓ^Ѓ[ѓ‚Ѓ[ѓh‚р•ПЌX‚·‚й
+	// е…ЁгЃ¦гЃ®гѓ†г‚Їг‚№гѓЃгѓЈгЃ®гѓ•г‚Јгѓ«г‚їгѓјгѓўгѓјгѓ‰г‚’е¤‰ж›ґгЃ™г‚‹
 	for( i = 0 ; i < ModelBase->TextureNum ; i ++ )
 	{
 		NS_MV1SetTextureSampleFilterMode( MHandle, i, FilterMode ) ;
 	}
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// ѓ‚ѓfѓ‹‚М€Щ•ыђ«ѓtѓBѓ‹ѓ^ѓЉѓ“ѓO‚МЌЕ‘еЋџђ”‚рђЭ’и‚·‚й
+// гѓўгѓ‡гѓ«гЃ®з•°ж–№жЂ§гѓ•г‚Јгѓ«г‚їгѓЄгѓіг‚°гЃ®жњЂе¤§ж¬Ўж•°г‚’иЁ­е®љгЃ™г‚‹
 extern int NS_MV1SetMaxAnisotropy( int MHandle, int MaxAnisotropy )
 {
 	MV1START( MHandle, Model, ModelBase, -1 ) ;
@@ -22334,16 +22334,16 @@ extern int NS_MV1SetMaxAnisotropy( int MHandle, int MaxAnisotropy )
 		return 0 ;
 	}
 
-	// •`‰ж‘Т‹@‚µ‚Д‚ў‚й•`‰ж•Ё‚р•`‰ж
+	// жЏЏз”»еѕ…ж©џгЃ—гЃ¦гЃ„г‚‹жЏЏз”»з‰©г‚’жЏЏз”»
 	DRAWSTOCKINFO
 
 	Model->MaxAnisotropy = MaxAnisotropy ;
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// ѓ‚ѓfѓ‹‚рѓЏѓCѓ„Ѓ[ѓtѓЊЃ[ѓЂ‚Е•`‰ж‚·‚й‚©‚З‚¤‚©‚рђЭ’и‚·‚й
+// гѓўгѓ‡гѓ«г‚’гѓЇг‚¤гѓ¤гѓјгѓ•гѓ¬гѓјгѓ гЃ§жЏЏз”»гЃ™г‚‹гЃ‹гЃ©гЃ†гЃ‹г‚’иЁ­е®љгЃ™г‚‹
 extern int NS_MV1SetWireFrameDrawFlag( int MHandle, int Flag )
 {
 	bool WireFrameFlag ;
@@ -22357,16 +22357,16 @@ extern int NS_MV1SetWireFrameDrawFlag( int MHandle, int Flag )
 		return 0 ;
 	}
 
-	// •`‰ж‘Т‹@‚µ‚Д‚ў‚й•`‰ж•Ё‚р•`‰ж
+	// жЏЏз”»еѕ…ж©џгЃ—гЃ¦гЃ„г‚‹жЏЏз”»з‰©г‚’жЏЏз”»
 	DRAWSTOCKINFO
 
 	Model->WireFrame = WireFrameFlag ;
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// ѓ‚ѓfѓ‹‚М’ё“_ѓJѓ‰Ѓ[‚рЊ»ЌЭђЭ’и‚і‚к‚Д‚ў‚йѓ}ѓeѓЉѓAѓ‹‚МѓJѓ‰Ѓ[‚Й‚·‚й
+// гѓўгѓ‡гѓ«гЃ®й ‚з‚№г‚«гѓ©гѓјг‚’зЏѕењЁиЁ­е®љгЃ•г‚ЊгЃ¦гЃ„г‚‹гѓћгѓ†гѓЄг‚ўгѓ«гЃ®г‚«гѓ©гѓјгЃ«гЃ™г‚‹
 extern int NS_MV1RefreshVertColorFromMaterial( int MHandle )
 {
 	MV1_MESH_BASE *MBMesh ;
@@ -22380,7 +22380,7 @@ extern int NS_MV1RefreshVertColorFromMaterial( int MHandle )
 
 	MV1START( MHandle, Model, ModelBase, -1 ) ;
 
-	// •`‰ж‘Т‹@‚µ‚Д‚ў‚й•`‰ж•Ё‚р•`‰ж
+	// жЏЏз”»еѕ…ж©џгЃ—гЃ¦гЃ„г‚‹жЏЏз”»з‰©г‚’жЏЏз”»
 	DRAWSTOCKINFO
 
 	MBMesh = ModelBase->Mesh ;
@@ -22406,46 +22406,46 @@ extern int NS_MV1RefreshVertColorFromMaterial( int MHandle )
 		}
 	}
 
-	// ѓeѓ“ѓ|ѓ‰ѓЉѓoѓbѓtѓ@‚Є‚ ‚йЏкЌ‡‚Н€к“x‘S‚Д‰р•ъ‚·‚й
+	// гѓ†гѓігѓќгѓ©гѓЄгѓђгѓѓгѓ•г‚ЎгЃЊгЃ‚г‚‹е ґеђ€гЃЇдёЂеє¦е…ЁгЃ¦и§Јж”ѕгЃ™г‚‹
 	MBTList = ModelBase->TriangleList ;
 	for( i = 0 ; i < ModelBase->TriangleListNum ; i ++, MBTList ++ )
 	{
-		// ЉВ‹«€Л‘¶‚Мѓeѓ“ѓ|ѓ‰ѓЉѓoѓbѓtѓ@‚рЉJ•ъ
+		// з’°еўѓдѕќе­гЃ®гѓ†гѓігѓќгѓ©гѓЄгѓђгѓѓгѓ•г‚Ўг‚’й–‹ж”ѕ
 		MV1_TerminateTriangleListBaseTempBuffer_PF( MBTList ) ;
 	}
 
-	// ’ё“_ѓoѓbѓtѓ@‚МЌм‚и’ј‚µ
+	// й ‚з‚№гѓђгѓѓгѓ•г‚ЎгЃ®дЅњг‚Љз›ґгЃ—
 	MV1_TerminateVertexBufferBase_PF( ModelBase->HandleInfo.Handle ) ;
 	MV1_SetupVertexBufferBase_PF( ModelBase->HandleInfo.Handle ) ;
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// ѓ‚ѓfѓ‹‚М•Ё—ќ‰‰ЋZ‚МЏd—Н‚рђЭ’и‚·‚й
+// гѓўгѓ‡гѓ«гЃ®з‰©зђ†жј”з®—гЃ®й‡ЌеЉ›г‚’иЁ­е®љгЃ™г‚‹
 extern int NS_MV1SetPhysicsWorldGravity( int MHandle, VECTOR Gravity )
 {
 #ifndef DX_NON_BULLET_PHYSICS
 	MV1START( MHandle, Model, ModelBase, -1 ) ;
 
-	// •Ё—ќѓfЃ[ѓ^‚Є–і‚ўЏкЌ‡‚Н‰Ѕ‚а‚µ‚И‚ў
+	// з‰©зђ†гѓ‡гѓјг‚їгЃЊз„ЎгЃ„е ґеђ€гЃЇдЅ•г‚‚гЃ—гЃЄгЃ„
 	if( Model->BaseData->PhysicsRigidBodyNum == 0 )
 		return 0 ;
 
 	SetWorldGravity_ModelPhysiceInfo( Model, Gravity ) ;
 #endif
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// ѓ‚ѓfѓ‹‚М•Ё—ќ‰‰ЋZ‚рЋw’иЋћЉФ•ЄЊo‰Я‚µ‚Ѕ‚Ж‰ј’и‚µ‚ДЊvЋZ‚·‚й( MillisecondTime ‚ЕЋw’и‚·‚йЋћЉФ‚М’P€К‚Нѓ~ѓЉ•b )
+// гѓўгѓ‡гѓ«гЃ®з‰©зђ†жј”з®—г‚’жЊ‡е®љж™‚й–“е€†зµЊйЃЋгЃ—гЃџгЃЁд»®е®љгЃ—гЃ¦иЁ€з®—гЃ™г‚‹( MillisecondTime гЃ§жЊ‡е®љгЃ™г‚‹ж™‚й–“гЃ®еЌдЅЌгЃЇгѓџгѓЄз§’ )
 int NS_MV1PhysicsCalculation( int MHandle, float MillisecondTime )
 {
 	return MV1PhysicsCalculationBase( MHandle, MillisecondTime, GetASyncLoadFlag() ) ;
 }
 
-// ѓ‚ѓfѓ‹‚М•Ё—ќ‰‰ЋZ‚рЋw’иЋћЉФ•ЄЊo‰Я‚µ‚Ѕ‚Ж‰ј’и‚µ‚ДЊvЋZ‚·‚й( MillisecondTime ‚ЕЋw’и‚·‚йЋћЉФ‚М’P€К‚Нѓ~ѓЉ•b )
+// гѓўгѓ‡гѓ«гЃ®з‰©зђ†жј”з®—г‚’жЊ‡е®љж™‚й–“е€†зµЊйЃЋгЃ—гЃџгЃЁд»®е®љгЃ—гЃ¦иЁ€з®—гЃ™г‚‹( MillisecondTime гЃ§жЊ‡е®љгЃ™г‚‹ж™‚й–“гЃ®еЌдЅЌгЃЇгѓџгѓЄз§’ )
 static int MV1PhysicsCalculationBase_Static( int MHandle, float MillisecondTime, int ASyncThread )
 {
 #ifndef DX_NON_BULLET_PHYSICS
@@ -22453,13 +22453,13 @@ static int MV1PhysicsCalculationBase_Static( int MHandle, float MillisecondTime,
 	int i ;
 	MV1_MODEL *Model ;
 
-	// Џ‰Љъ‰»‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// е€ќжњџеЊ–гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( MV1Man.Initialize == false )
 	{
 		return -1 ;
 	}
 
-	// ѓAѓhѓЊѓXЋж“ѕ
+	// г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ—
 	if( ASyncThread )
 	{
 		if( MV1MDLCHK_ASYNC( MHandle, Model ) )
@@ -22475,7 +22475,7 @@ static int MV1PhysicsCalculationBase_Static( int MHandle, float MillisecondTime,
 		}
 	}
 
-	// •Ё—ќѓfЃ[ѓ^‚Є–і‚ўЏкЌ‡‚Н‰Ѕ‚а‚µ‚И‚ў
+	// з‰©зђ†гѓ‡гѓјг‚їгЃЊз„ЎгЃ„е ґеђ€гЃЇдЅ•г‚‚гЃ—гЃЄгЃ„
 	if( Model->BaseData->PhysicsRigidBodyNum == 0 )
 	{
 		return 0 ;
@@ -22485,7 +22485,7 @@ static int MV1PhysicsCalculationBase_Static( int MHandle, float MillisecondTime,
 
 	StepSimulation_ModelPhysicsInfo( Model, MillisecondTime / 1000.0f ) ;
 
-	// ЌXђV‚µ‚ЅЌs—с‚ЙЉЦ‚н‚йѓXѓLѓjѓ“ѓOѓEѓFѓCѓgѓ{Ѓ[ѓ“‚МЌs—с‚аЌXђV
+	// ж›ґж–°гЃ—гЃџиЎЊе€—гЃ«й–ўг‚Џг‚‹г‚№г‚­гѓ‹гѓіг‚°г‚¦г‚§г‚¤гѓ€гѓњгѓјгѓігЃ®иЎЊе€—г‚‚ж›ґж–°
 	PhysicsRigidBody = Model->PhysicsRigidBody ;
 	for( i = 0 ; i < Model->BaseData->PhysicsRigidBodyNum ; i ++, PhysicsRigidBody ++ )
 	{
@@ -22495,13 +22495,13 @@ static int MV1PhysicsCalculationBase_Static( int MHandle, float MillisecondTime,
 	}
 #endif
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
 #ifndef DX_NON_ASYNCLOAD
 
-// CreateGraph ‚М”с“ЇЉъ“З‚ЭЌћ‚ЭѓXѓЊѓbѓh‚©‚зЊД‚О‚к‚йЉЦђ”
+// CreateGraph гЃ®йќћеђЊжњџиЄ­гЃїиѕјгЃїг‚№гѓ¬гѓѓгѓ‰гЃ‹г‚‰е‘јгЃ°г‚Њг‚‹й–ўж•°
 static void MV1PhysicsCalculationBase_ASync( ASYNCLOADDATA_COMMON *AParam )
 {
 	int MHandle ;
@@ -22524,7 +22524,7 @@ static void MV1PhysicsCalculationBase_ASync( ASYNCLOADDATA_COMMON *AParam )
 
 #endif // DX_NON_ASYNCLOAD
 
-// ѓ‚ѓfѓ‹‚М•Ё—ќ‰‰ЋZ‚рЋw’иЋћЉФ•ЄЊo‰Я‚µ‚Ѕ‚Ж‰ј’и‚µ‚ДЊvЋZ‚·‚й( MillisecondTime ‚ЕЋw’и‚·‚йЋћЉФ‚М’P€К‚Нѓ~ѓЉ•b )
+// гѓўгѓ‡гѓ«гЃ®з‰©зђ†жј”з®—г‚’жЊ‡е®љж™‚й–“е€†зµЊйЃЋгЃ—гЃџгЃЁд»®е®љгЃ—гЃ¦иЁ€з®—гЃ™г‚‹( MillisecondTime гЃ§жЊ‡е®љгЃ™г‚‹ж™‚й–“гЃ®еЌдЅЌгЃЇгѓџгѓЄз§’ )
 extern int MV1PhysicsCalculationBase( int MHandle, float MillisecondTime, int ASyncLoadFlag )
 {
 #ifndef DX_NON_ASYNCLOAD
@@ -22533,23 +22533,23 @@ extern int MV1PhysicsCalculationBase( int MHandle, float MillisecondTime, int AS
 		ASYNCLOADDATA_COMMON *AParam = NULL ;
 		int Addr ;
 
-		// ѓpѓ‰ѓЃЃ[ѓ^‚Й•K—v‚ИѓЃѓ‚ѓЉ‚МѓTѓCѓY‚рЋZЏo
+		// гѓ‘гѓ©гѓЎгѓјг‚їгЃ«еї…и¦ЃгЃЄгѓЎгѓўгѓЄгЃ®г‚µг‚¤г‚єг‚’з®—е‡є
 		Addr = 0 ;
 		AddASyncLoadParamInt(   NULL, &Addr, MHandle ) ;
 		AddASyncLoadParamFloat( NULL, &Addr, MillisecondTime ) ;
 
-		// ѓЃѓ‚ѓЉ‚МЉm•Ы
+		// гѓЎгѓўгѓЄгЃ®зўєдїќ
 		AParam = AllocASyncLoadDataMemory( Addr ) ;
 		if( AParam == NULL )
 			goto ERR ;
 
-		// Џ€—ќ‚Й•K—v‚ИЏо•с‚рѓZѓbѓg
+		// е‡¦зђ†гЃ«еї…и¦ЃгЃЄжѓ…е ±г‚’г‚»гѓѓгѓ€
 		AParam->ProcessFunction = MV1PhysicsCalculationBase_ASync ;
 		Addr = 0 ;
 		AddASyncLoadParamInt(   AParam->Data, &Addr, MHandle ) ;
 		AddASyncLoadParamFloat( AParam->Data, &Addr, MillisecondTime ) ;
 
-		// ѓfЃ[ѓ^‚р’З‰Б
+		// гѓ‡гѓјг‚їг‚’иїЅеЉ 
 		if( AddASyncLoadData( AParam ) < 0 )
 		{
 			DXFREE( AParam ) ;
@@ -22557,7 +22557,7 @@ extern int MV1PhysicsCalculationBase( int MHandle, float MillisecondTime, int AS
 			goto ERR ;
 		}
 
-		// ”с“ЇЉъ“З‚ЭЌћ‚ЭѓJѓEѓ“ѓg‚рѓCѓ“ѓNѓЉѓЃѓ“ѓg
+		// йќћеђЊжњџиЄ­гЃїиѕјгЃїг‚«г‚¦гѓігѓ€г‚’г‚¤гѓіг‚ЇгѓЄгѓЎгѓігѓ€
 		IncASyncLoadCount( MHandle, AParam->Index ) ;
 	}
 	else
@@ -22569,20 +22569,20 @@ extern int MV1PhysicsCalculationBase( int MHandle, float MillisecondTime, int AS
 		}
 	}
 
-	// ђіЏнЏI—№
+	// ж­Јеёёзµ‚дє†
 	return 0 ;
 
 ERR :
 	return -1 ;
 }
 
-// ѓ‚ѓfѓ‹‚М•Ё—ќ‰‰ЋZ‚МЏу‘Ф‚рѓЉѓZѓbѓg‚·‚й( €К’u‚ЄѓЏЃ[ѓv‚µ‚Ѕ‚Ж‚«—p )
+// гѓўгѓ‡гѓ«гЃ®з‰©зђ†жј”з®—гЃ®зЉ¶ж…‹г‚’гѓЄг‚»гѓѓгѓ€гЃ™г‚‹( дЅЌзЅ®гЃЊгѓЇгѓјгѓ—гЃ—гЃџгЃЁгЃЌз”Ё )
 extern int NS_MV1PhysicsResetState( int MHandle )
 {
 #ifndef DX_NON_BULLET_PHYSICS
 	MV1START( MHandle, Model, ModelBase, -1 ) ;
 
-	// •Ё—ќѓfЃ[ѓ^‚Є–і‚ўЏкЌ‡‚Н‰Ѕ‚а‚µ‚И‚ў
+	// з‰©зђ†гѓ‡гѓјг‚їгЃЊз„ЎгЃ„е ґеђ€гЃЇдЅ•г‚‚гЃ—гЃЄгЃ„
 	if( Model->BaseData->PhysicsRigidBodyNum == 0 )
 		return 0 ;
 
@@ -22590,23 +22590,23 @@ extern int NS_MV1PhysicsResetState( int MHandle )
 	ResetState_ModelPhysicsInfo( Model ) ;
 #endif
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// ѓ‚ѓfѓ‹‚М•Ё—ќ‰‰ЋZ‚рѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚ж‚и—Dђж‚·‚й‚©‚З‚¤‚©‚рђЭ’и‚·‚й( TRUE:•Ё—ќ‰‰ЋZ‚р—Dђж‚·‚й  FALSE:ѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚р—Dђж‚·‚й( ѓfѓtѓHѓ‹ѓg ) )
+// гѓўгѓ‡гѓ«гЃ®з‰©зђ†жј”з®—г‚’г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓіг‚€г‚Ље„Єе…€гЃ™г‚‹гЃ‹гЃ©гЃ†гЃ‹г‚’иЁ­е®љгЃ™г‚‹( TRUE:з‰©зђ†жј”з®—г‚’е„Єе…€гЃ™г‚‹  FALSE:г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓіг‚’е„Єе…€гЃ™г‚‹( гѓ‡гѓ•г‚©гѓ«гѓ€ ) )
 extern int NS_MV1SetPrioritizePhysicsOverAnimFlag( int MHandle, int Flag )
 {
 	MV1START( MHandle, Model, ModelBase, -1 ) ;
 
-	// ѓtѓ‰ѓO‚р•Ы‘¶‚·‚й
+	// гѓ•гѓ©г‚°г‚’дїќе­гЃ™г‚‹
 	Model->PrioritizePhysicsOverAnimFlag = Flag != 0 ? TRUE : FALSE ;
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// ѓ‚ѓfѓ‹‚МѓVѓFѓCѓv‹@”\‚рЋg—p‚·‚й‚©‚З‚¤‚©‚рђЭ’и‚·‚й
+// гѓўгѓ‡гѓ«гЃ®г‚·г‚§г‚¤гѓ—ж©џиѓЅг‚’дЅїз”ЁгЃ™г‚‹гЃ‹гЃ©гЃ†гЃ‹г‚’иЁ­е®љгЃ™г‚‹
 extern int NS_MV1SetUseShapeFlag( int MHandle, int Flag )
 {
 	int i ;
@@ -22614,17 +22614,17 @@ extern int NS_MV1SetUseShapeFlag( int MHandle, int Flag )
 
 	MV1START( MHandle, Model, ModelBase, -1 ) ;
 
-	// ѓtѓ‰ѓO‚Є“Ї‚¶ЏкЌ‡‚Н‰Ѕ‚а‚µ‚И‚ў
+	// гѓ•гѓ©г‚°гЃЊеђЊгЃе ґеђ€гЃЇдЅ•г‚‚гЃ—гЃЄгЃ„
 	if( Model->ShapeDisableFlag == ( Flag == 0 ) )
 		return 0 ;
 
-	// •`‰ж‘Т‹@‚µ‚Д‚ў‚й•`‰ж•Ё‚р•`‰ж
+	// жЏЏз”»еѕ…ж©џгЃ—гЃ¦гЃ„г‚‹жЏЏз”»з‰©г‚’жЏЏз”»
 	DRAWSTOCKINFO
 
-	// ѓtѓ‰ѓO‚р•Ы‘¶‚·‚й
+	// гѓ•гѓ©г‚°г‚’дїќе­гЃ™г‚‹
 	Model->ShapeDisableFlag = ( Flag == 0 ) ;
 
-	// ѓVѓFѓCѓv‚МЏу‘Ф‚Й•П‰»‚Є‚ ‚Б‚Ѕѓtѓ‰ѓO‚р—§‚Д‚й
+	// г‚·г‚§г‚¤гѓ—гЃ®зЉ¶ж…‹гЃ«е¤‰еЊ–гЃЊгЃ‚гЃЈгЃџгѓ•гѓ©г‚°г‚’з«‹гЃ¦г‚‹
 	Model->ShapeChangeFlag = true ;
 	Frame = Model->Frame ;
 	for( i = 0 ; i < ModelBase->FrameNum ; i ++, Frame ++ )
@@ -22635,16 +22635,16 @@ extern int NS_MV1SetUseShapeFlag( int MHandle, int Flag )
 		Frame->ShapeChangeFlag = true ;
 	}
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// ѓ‚ѓfѓ‹‚Мѓ}ѓeѓЉѓAѓ‹”ФЌ†Џ‡‚ЙѓЃѓbѓVѓ…‚р•`‰ж‚·‚й‚©‚З‚¤‚©‚Мѓtѓ‰ѓO‚рЋж“ѕ‚·‚й( TRUE:ѓ}ѓeѓЉѓAѓ‹”ФЌ†Џ‡‚Й•`‰ж  FALSE:•s“§–ѕѓЃѓbѓVѓ…‚МЊг”ј“§–ѕѓЃѓbѓVѓ… )
+// гѓўгѓ‡гѓ«гЃ®гѓћгѓ†гѓЄг‚ўгѓ«з•ЄеЏ·й †гЃ«гѓЎгѓѓг‚·гѓҐг‚’жЏЏз”»гЃ™г‚‹гЃ‹гЃ©гЃ†гЃ‹гЃ®гѓ•гѓ©г‚°г‚’еЏ–еѕ—гЃ™г‚‹( TRUE:гѓћгѓ†гѓЄг‚ўгѓ«з•ЄеЏ·й †гЃ«жЏЏз”»  FALSE:дёЌйЂЏжЋгѓЎгѓѓг‚·гѓҐгЃ®еѕЊеЌЉйЂЏжЋгѓЎгѓѓг‚·гѓҐ )
 extern int NS_MV1GetMaterialNumberOrderFlag( int MHandle )
 {
 	MV1START( MHandle, Model, ModelBase, -1 ) ;
 
-	// ѓtѓ‰ѓO‚р•Ф‚·
+	// гѓ•гѓ©г‚°г‚’иї”гЃ™
 	return ModelBase->MaterialNumberOrderDraw ;
 }
 
@@ -22669,25 +22669,25 @@ extern int NS_MV1GetMaterialNumberOrderFlag( int MHandle )
 
 
 
-// ѓ‰ѓCѓg‚Мђ”‚рЋж“ѕ‚·‚й
+// гѓ©г‚¤гѓ€гЃ®ж•°г‚’еЏ–еѕ—гЃ™г‚‹
 extern int MV1GetLightNum( int MHandle )
 {
 	MV1_MODEL *Model ;
 	MV1_MODEL_BASE *ModelBase ;
 
-	// Џ‰Љъ‰»‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// е€ќжњџеЊ–гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( MV1Man.Initialize == false ) return -1 ;
 
-	// ѓAѓhѓЊѓXЋж“ѕ
+	// г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ—
 	if( MV1MDLCHK( MHandle, Model ) )
 		return -1 ;
 	ModelBase = Model->BaseData ;
 
-	// ѓ‰ѓCѓg‚Мђ”‚р•Ф‚·
+	// гѓ©г‚¤гѓ€гЃ®ж•°г‚’иї”гЃ™
 	return ModelBase->LightNum ;
 }
 
-// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚рѓAѓ^ѓbѓ`‚·‚й
+// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓіг‚’г‚ўг‚їгѓѓгѓЃгЃ™г‚‹
 extern int NS_MV1AttachAnim( int MHandle, int AnimIndex, int AnimSrcMHandle, int NameCheck )
 {
 	MV1_MODEL *Model, *AModel ;
@@ -22706,10 +22706,10 @@ extern int NS_MV1AttachAnim( int MHandle, int AnimIndex, int AnimSrcMHandle, int
 	MV1_FRAME_BASE *AFrameBase, *FrameBase ;
 	const wchar_t *AShapeName ;
 
-	// Џ‰Љъ‰»‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// е€ќжњџеЊ–гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( MV1Man.Initialize == false ) return -1 ;
 
-	// ѓAѓhѓЊѓXЋж“ѕ
+	// г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ—
 	if( MV1MDLCHK( MHandle, Model ) )
 		return -1 ;
 	MBase = Model->BaseData ;
@@ -22726,27 +22726,27 @@ extern int NS_MV1AttachAnim( int MHandle, int AnimIndex, int AnimSrcMHandle, int
 		AMBase = AModel->BaseData ;
 	}
 
-	// ѓCѓ“ѓfѓbѓNѓX‚Є•sђі‚ѕ‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// г‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃЊдёЌж­ЈгЃ гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( AnimIndex < 0 || AnimIndex >= AMBase->AnimSetNum )
 		return -1 ;
 
-	// Ћw’и‚МѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚рЋж“ѕ‚·‚й
+	// жЊ‡е®љгЃ®г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓіг‚’еЏ–еѕ—гЃ™г‚‹
 	AnimSetBase = MV1GetAnimSetBase( AModel->BaseDataHandle, NULL, AnimIndex ) ;
 	if( AnimSetBase == NULL ) return -1 ;
 	ABaseTable = AMBase->AnimTargetFrameTable + AMBase->FrameNum * AnimIndex ;
 
-	// ѓfЃ[ѓ^ѓ|ѓCѓ“ѓ^”z—сЉg’Ј
+	// гѓ‡гѓјг‚їгѓќг‚¤гѓіг‚їй…Ќе€—ж‹Ўејµ
 	if( Model->AnimSetNum >= Model->AnimSetMaxNum )
 	{
 		UnitSize       = ( int )( sizeof( MV1_MODEL_ANIMSET ) + sizeof( MV1_MODEL_ANIM ) * MBase->FrameNum ) ;
 		Model->AnimSet = ( MV1_MODEL_ANIMSET * )DXREALLOC( Model->AnimSet, ( size_t )( UnitSize * ( Model->AnimSetMaxNum + MV1_ANIMSET_NUM_UNIT ) ) ) ;
 		if( Model->AnimSet == NULL ) return -1 ;
 		
-		// ђV‚Ѕ‚ЙЉm•Ы‚і‚к‚Ѕ—М€ж‚ЙЌЎ‚Ь‚Е‚МЏо•с‚рѓRѓsЃ[
+		// ж–°гЃџгЃ«зўєдїќгЃ•г‚ЊгЃџй еџџгЃ«д»ЉгЃѕгЃ§гЃ®жѓ…е ±г‚’г‚ігѓ”гѓј
 		MaxNum = Model->AnimSetMaxNum ;
 		NewMaxNum = MaxNum + MV1_ANIMSET_NUM_UNIT ;
 
-		// ‰њ‚©‚з€Ъ“®
+		// еҐҐгЃ‹г‚‰з§»е‹•
 		Src  = ( MV1_MODEL_ANIM * )( Model->AnimSet + MaxNum    ) + MaxNum    * ( MBase->FrameNum - 1 ) ;
 		Dest = ( MV1_MODEL_ANIM * )( Model->AnimSet + NewMaxNum ) + NewMaxNum * ( MBase->FrameNum - 1 ) ;
 		for( i = 0 ; i < MBase->FrameNum ; i ++ )
@@ -22763,31 +22763,31 @@ extern int NS_MV1AttachAnim( int MHandle, int AnimIndex, int AnimSrcMHandle, int
 		for( i = NewMaxNum - 1 ; i >= MaxNum ; i -- )
 			_MEMSET( &Model->AnimSet[ i ], 0, sizeof( MV1_MODEL_ANIMSET ) ) ;
 
-		// ђV‚Ѕ‚ЙЉm•Ы‚µ‚ЅѓAѓhѓЊѓX‚рѓZѓbѓg
+		// ж–°гЃџгЃ«зўєдїќгЃ—гЃџг‚ўгѓ‰гѓ¬г‚№г‚’г‚»гѓѓгѓ€
 		Model->Anim = ( MV1_MODEL_ANIM * )( Model->AnimSet + NewMaxNum ) ;
 
-		// ЌЕ‘еђ”‚р‰БЋZ
+		// жњЂе¤§ж•°г‚’еЉ з®—
 		Model->AnimSetMaxNum += MV1_ANIMSET_NUM_UNIT ;
 	}
 
-	// Ћg—p‚і‚к‚Д‚ў‚И‚ўѓAѓ^ѓbѓ`ѓzѓ‹ѓ_‚р’T‚·
+	// дЅїз”ЁгЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ„г‚ўг‚їгѓѓгѓЃгѓ›гѓ«гѓЂг‚’жЋўгЃ™
 	for( AttachIndex = 0 ; Model->AnimSet[ AttachIndex ].Use ; AttachIndex ++ ){}
 
-	// ѓAѓhѓЊѓX‚рѓZѓbѓg
+	// г‚ўгѓ‰гѓ¬г‚№г‚’г‚»гѓѓгѓ€
 	MAnimSet = &Model->AnimSet[ AttachIndex ] ;
 
-	// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“ѓZѓbѓg‚МЌмђ¬
+	// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓіг‚»гѓѓгѓ€гЃ®дЅњж€ђ
 	MAnimSet->AnimSet = MV1CreateAnimSet( AnimSetBase ) ; 
 	if( MAnimSet->AnimSet == NULL ) return -1 ;
 
-	// Ћc‚и‚МЏо•с‚рЏ‰Љъ‰»
+	// ж®‹г‚ЉгЃ®жѓ…е ±г‚’е€ќжњџеЊ–
 	MAnimSet->Use = true ;
 	MAnimSet->DisableShapeFlag = false ;
 	MAnimSet->BaseDataHandle = AModel->BaseDataHandle ;
 	MAnimSet->BaseDataAnimIndex = AnimSetBase->Index ;
 	MAnimSet->UseAnimNum = 0 ;
 
-	// ЉeѓtѓЊЃ[ѓЂ‚МѓAѓjѓЃЃ[ѓVѓ‡ѓ“Џо•с‚МЏ‰Љъ‰»
+	// еђ„гѓ•гѓ¬гѓјгѓ гЃ®г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓіжѓ…е ±гЃ®е€ќжњџеЊ–
 	MAnim = &Model->Anim[ AttachIndex ] ;
 	for( i = 0 ; i < MBase->FrameNum ; i ++, MAnim += Model->AnimSetMaxNum )
 	{
@@ -22798,10 +22798,10 @@ extern int NS_MV1AttachAnim( int MHandle, int AnimIndex, int AnimSrcMHandle, int
 		MAnim->Use = false ;
 	}
 
-	// –ј‘O‚М‚Э‚ЕЊџЌх‚·‚й‚©‚З‚¤‚©‚ЕЏ€—ќ‚р•ЄЉт
+	// еђЌе‰ЌгЃ®гЃїгЃ§ж¤њзґўгЃ™г‚‹гЃ‹гЃ©гЃ†гЃ‹гЃ§е‡¦зђ†г‚’е€†еІђ
 /*	if( MBase->AnimAttachNameSearch )
 	{
-		// ЉeѓtѓЊЃ[ѓЂ‚МѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚МѓAѓhѓЊѓX‚рѓZѓbѓg
+		// еђ„гѓ•гѓ¬гѓјгѓ гЃ®г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігЃ®г‚ўгѓ‰гѓ¬г‚№г‚’г‚»гѓѓгѓ€
 		Frame = Model->Frame ;
 		MAnim = &Model->Anim[ AttachIndex ] ;
 		for( i = 0 ; i < MBase->FrameNum ; i ++, Frame ++, MAnim += Model->AnimSetMaxNum )
@@ -22816,10 +22816,10 @@ extern int NS_MV1AttachAnim( int MHandle, int AnimIndex, int AnimSrcMHandle, int
 		}
 	}
 	else*/
-	// –ј‘O‚рѓ`ѓFѓbѓN‚·‚й‚©‚З‚¤‚©‚ЕЏ€—ќ‚р•ЄЉт
+	// еђЌе‰Ќг‚’гѓЃг‚§гѓѓг‚ЇгЃ™г‚‹гЃ‹гЃ©гЃ†гЃ‹гЃ§е‡¦зђ†г‚’е€†еІђ
 	if( NameCheck == FALSE )
 	{
-		// ѓ`ѓFѓbѓN‚µ‚И‚ў
+		// гѓЃг‚§гѓѓг‚ЇгЃ—гЃЄгЃ„
 
 		for( i = 0 ; i < Model->TopFrameNum && i < AModel->TopFrameNum ; i ++ )
 		{
@@ -22891,7 +22891,7 @@ extern int NS_MV1AttachAnim( int MHandle, int AnimIndex, int AnimSrcMHandle, int
 	}
 	else
 	{
-		// –ј‘O‚рѓ`ѓFѓbѓN‚·‚й
+		// еђЌе‰Ќг‚’гѓЃг‚§гѓѓг‚ЇгЃ™г‚‹
 
 		for( i = 0 ; i < Model->TopFrameNum ; i ++ )
 		{
@@ -22993,7 +22993,7 @@ extern int NS_MV1AttachAnim( int MHandle, int AnimIndex, int AnimSrcMHandle, int
 		}
 	}
 /*
-	// ЉeѓtѓЊЃ[ѓЂ‚МѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚МѓAѓhѓЊѓX‚рѓZѓbѓg
+	// еђ„гѓ•гѓ¬гѓјгѓ гЃ®г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігЃ®г‚ўгѓ‰гѓ¬г‚№г‚’г‚»гѓѓгѓ€
 	Frame = Model->Frame ;
 	MAnim = &Model->Anim[ AttachIndex ] ;
 	for( i = 0 ; i < MBase->FrameNum ; i ++, Frame ++, MAnim += Model->AnimSetMaxNum )
@@ -23008,7 +23008,7 @@ extern int NS_MV1AttachAnim( int MHandle, int AnimIndex, int AnimSrcMHandle, int
 	}
 */
 
-	// ѓVѓFѓCѓv‚МЏу‘Ф‚Й•П‰»‚Є‚ ‚Б‚Ѕѓtѓ‰ѓO‚р—§‚Д‚й
+	// г‚·г‚§г‚¤гѓ—гЃ®зЉ¶ж…‹гЃ«е¤‰еЊ–гЃЊгЃ‚гЃЈгЃџгѓ•гѓ©г‚°г‚’з«‹гЃ¦г‚‹
 	Model->ShapeChangeFlag = true ;
 	Frame = Model->Frame ;
 	for( i = 0 ; i < MBase->FrameNum ; i ++, Frame ++ )
@@ -23019,21 +23019,21 @@ extern int NS_MV1AttachAnim( int MHandle, int AnimIndex, int AnimSrcMHandle, int
 		Frame->ShapeChangeFlag = true ;
 	}
 
-	// ѓAѓ^ѓbѓ`‚і‚к‚Д‚ў‚йѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚Мђ”‚рѓCѓ“ѓNѓЉѓЃѓ“ѓg
+	// г‚ўг‚їгѓѓгѓЃгЃ•г‚ЊгЃ¦гЃ„г‚‹г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігЃ®ж•°г‚’г‚¤гѓіг‚ЇгѓЄгѓЎгѓігѓ€
 	Model->AnimSetNum ++ ;
 
-	// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“ѓpѓ‰ѓЃЃ[ѓ^‚рЊі‚Й‚µ‚ЅЌs—с‚ЄѓZѓbѓgѓAѓbѓv‚і‚к‚Д‚ў‚И‚ўЏу‘Ф‚Й‚·‚й
+	// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігѓ‘гѓ©гѓЎгѓјг‚їг‚’е…ѓгЃ«гЃ—гЃџиЎЊе€—гЃЊг‚»гѓѓгѓ€г‚ўгѓѓгѓ—гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ„зЉ¶ж…‹гЃ«гЃ™г‚‹
 	Model->AnimSetupFlag = false ;
 	Model->LocalWorldMatrixSetupFlag = false ;
 
-	// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚МЋћЉФ‚рЏ‰Љъ‰»‚·‚й
+	// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігЃ®ж™‚й–“г‚’е€ќжњџеЊ–гЃ™г‚‹
 	MV1SetAnimSetTime( Model, AttachIndex, MAnimSet->AnimSet, 0.0f ) ;
 
-	// ѓAѓ^ѓbѓ`‚µ‚ЅѓCѓ“ѓfѓbѓNѓX‚р•Ф‚·
+	// г‚ўг‚їгѓѓгѓЃгЃ—гЃџг‚¤гѓігѓ‡гѓѓг‚Їг‚№г‚’иї”гЃ™
 	return AttachIndex ;
 }
 
-// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚рѓfѓ^ѓbѓ`‚·‚й
+// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓіг‚’гѓ‡г‚їгѓѓгѓЃгЃ™г‚‹
 extern int NS_MV1DetachAnim( int MHandle, int AttachIndex )
 {
 	MV1_MODEL *Model ;
@@ -23043,20 +23043,20 @@ extern int NS_MV1DetachAnim( int MHandle, int AttachIndex )
 	MV1_FRAME *Frame ;
 	int i, FrameNum ;
 
-	// Џ‰Љъ‰»‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// е€ќжњџеЊ–гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( MV1Man.Initialize == false ) return -1 ;
 
-	// ѓAѓhѓЊѓXЋж“ѕ
+	// г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ—
 	if( MV1MDLCHK( MHandle, Model ) )
 		return -1 ;
 
-	// Љm•Ы‚µ‚Д‚ў‚йѓAѓ^ѓbѓ`ѓCѓ“ѓfѓbѓNѓXЉO‚ѕ‚Б‚ЅЏкЌ‡‚Н‰Ѕ‚а‚№‚ё‚ЙЏI—№
+	// зўєдїќгЃ—гЃ¦гЃ„г‚‹г‚ўг‚їгѓѓгѓЃг‚¤гѓігѓ‡гѓѓг‚Їг‚№е¤–гЃ гЃЈгЃџе ґеђ€гЃЇдЅ•г‚‚гЃ›гЃљгЃ«зµ‚дє†
 	if( AttachIndex < 0 || AttachIndex >= Model->AnimSetMaxNum ) return -1 ;
 
-	// ѓAѓ^ѓbѓ`‚і‚к‚Д‚ў‚Ѕ‚зѓЃѓ‚ѓЉ‚р‰р•ъ
+	// г‚ўг‚їгѓѓгѓЃгЃ•г‚ЊгЃ¦гЃ„гЃџг‚‰гѓЎгѓўгѓЄг‚’и§Јж”ѕ
 	if( Model->AnimSet[ AttachIndex ].Use )
 	{
-		// –Ъ•WѓmЃ[ѓh‚МЌs—с‚рЌXђV‚·‚й‚ж‚¤‚ЙѓZѓbѓg
+		// з›®жЁ™гѓЋгѓјгѓ‰гЃ®иЎЊе€—г‚’ж›ґж–°гЃ™г‚‹г‚€гЃ†гЃ«г‚»гѓѓгѓ€
 		Anim = Model->AnimSet[ AttachIndex ].AnimSet->Anim ;
 		AnimSetBase = Model->AnimSet[ AttachIndex ].AnimSet->BaseData ;
 		for( i = 0 ; i < AnimSetBase->AnimNum ; i ++, Anim ++ )
@@ -23068,12 +23068,12 @@ extern int NS_MV1DetachAnim( int MHandle, int AttachIndex )
 			}
 		}
 
-		// ѓЃѓ‚ѓЉ‚р‰р•ъ
+		// гѓЎгѓўгѓЄг‚’и§Јж”ѕ
 		MDFREEMEM( Model->AnimSet[ AttachIndex ].AnimSet ) ;
 		Model->AnimSet[ AttachIndex ].AnimSet = NULL ;
 		Model->AnimSet[ AttachIndex ].Use = false ;
 
-		// ЉeѓtѓЊЃ[ѓЂ‚МѓAѓjѓЃЃ[ѓVѓ‡ѓ“Џо•с‚МЏ‰Љъ‰»
+		// еђ„гѓ•гѓ¬гѓјгѓ гЃ®г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓіжѓ…е ±гЃ®е€ќжњџеЊ–
 		MAnim = &Model->Anim[ AttachIndex ] ;
 		FrameNum = Model->BaseData->FrameNum ;
 		for( i = 0 ; i < FrameNum ; i ++, MAnim += Model->AnimSetMaxNum )
@@ -23082,7 +23082,7 @@ extern int NS_MV1DetachAnim( int MHandle, int AttachIndex )
 			MAnim->Use = false ;
 		}
 
-		// ѓVѓFѓCѓv‚МЏу‘Ф‚Й•П‰»‚Є‚ ‚Б‚Ѕѓtѓ‰ѓO‚р—§‚Д‚й
+		// г‚·г‚§г‚¤гѓ—гЃ®зЉ¶ж…‹гЃ«е¤‰еЊ–гЃЊгЃ‚гЃЈгЃџгѓ•гѓ©г‚°г‚’з«‹гЃ¦г‚‹
 		Model->ShapeChangeFlag = true ;
 		Frame = Model->Frame ;
 		for( i = 0 ; i < FrameNum ; i ++, Frame ++ )
@@ -23093,15 +23093,15 @@ extern int NS_MV1DetachAnim( int MHandle, int AttachIndex )
 			Frame->ShapeChangeFlag = true ;
 		}
 
-		// ѓAѓ^ѓbѓ`‚і‚к‚Д‚ў‚йѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚Мђ”‚рѓfѓNѓЉѓЃѓ“ѓg
+		// г‚ўг‚їгѓѓгѓЃгЃ•г‚ЊгЃ¦гЃ„г‚‹г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігЃ®ж•°г‚’гѓ‡г‚ЇгѓЄгѓЎгѓігѓ€
 		Model->AnimSetNum -- ;
 	}
 
-	// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“ѓpѓ‰ѓЃЃ[ѓ^‚рЊі‚Й‚µ‚ЅЌs—с‚ЄѓZѓbѓgѓAѓbѓv‚і‚к‚Д‚ў‚И‚ўЏу‘Ф‚Й‚·‚й
+	// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігѓ‘гѓ©гѓЎгѓјг‚їг‚’е…ѓгЃ«гЃ—гЃџиЎЊе€—гЃЊг‚»гѓѓгѓ€г‚ўгѓѓгѓ—гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ„зЉ¶ж…‹гЃ«гЃ™г‚‹
 	Model->AnimSetupFlag = false ;
 	Model->LocalWorldMatrixSetupFlag = false ;
 
-	// ђіЏнЏI—№
+	// ж­Јеёёзµ‚дє†
 	return 0 ;
 }
 
@@ -23125,7 +23125,7 @@ extern int NS_MV1DetachAnim( int MHandle, int AttachIndex )
 
 
 
-// “ЇЋћ•Ўђ”•`‰ж‚М€Ч‚Й•`‰ж‘Т‹@‚µ‚Д‚ў‚йѓ‚ѓfѓ‹‚р•`‰ж‚·‚й
+// еђЊж™‚и¤‡ж•°жЏЏз”»гЃ®з‚єгЃ«жЏЏз”»еѕ…ж©џгЃ—гЃ¦гЃ„г‚‹гѓўгѓ‡гѓ«г‚’жЏЏз”»гЃ™г‚‹
 extern int MV1DrawPackDrawModel( void )
 {
 	MV1_MODEL *Model ;
@@ -23141,14 +23141,14 @@ extern int MV1DrawPackDrawModel( void )
 	return MV1DrawModelBase( Model ) ;
 }
 
-// ‚R‚cѓ‚ѓfѓ‹‚МѓЊѓ“ѓ_ѓЉѓ“ѓO‚МЏЂ”х‚рЌs‚¤
+// пј“пј¤гѓўгѓ‡гѓ«гЃ®гѓ¬гѓігѓЂгѓЄгѓіг‚°гЃ®жє–е‚™г‚’иЎЊгЃ†
 extern int MV1_BeginRender( MV1_MODEL *Model )
 {
 	NS_GetDrawAddColor( &MV1Man.BackupDrawAddColor.x, &MV1Man.BackupDrawAddColor.y, &MV1Man.BackupDrawAddColor.z ) ;
 	return MV1_BeginRender_PF( Model ) ;
 }
 
-// ‚R‚cѓ‚ѓfѓ‹‚МѓЊѓ“ѓ_ѓЉѓ“ѓO‚МЊгЋn––‚рЌs‚¤
+// пј“пј¤гѓўгѓ‡гѓ«гЃ®гѓ¬гѓігѓЂгѓЄгѓіг‚°гЃ®еѕЊе§‹жњ«г‚’иЎЊгЃ†
 extern int MV1_EndRender( void )
 {
 	int Result ;
@@ -23157,7 +23157,7 @@ extern int MV1_EndRender( void )
 	return Result ;
 }
 
-// ѓ‚ѓfѓ‹‚М•`‰жЏ€—ќ‚рЌs‚¤
+// гѓўгѓ‡гѓ«гЃ®жЏЏз”»е‡¦зђ†г‚’иЎЊгЃ†
 static int MV1DrawModelBase( MV1_MODEL *Model )
 {
 	MV1_MODEL_BASE *ModelBase ;
@@ -23172,13 +23172,13 @@ static int MV1DrawModelBase( MV1_MODEL *Model )
 	int SemiTransBaseOpacityMeshNum ;
 	int SemiTransMeshNum ;
 
-	// Џ‰Љъ‰»‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// е€ќжњџеЊ–гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( MV1Man.Initialize == false ) return -1 ;
 
-	// ѓAѓhѓЊѓXЋж“ѕ
+	// г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ—
 	ModelBase = Model->BaseData ;
 
-	// Ћg—p‚µ‚Д‚ў‚йѓeѓNѓXѓ`ѓѓ‚М’†‚ЙѓЂЃ[ѓrЃ[‚ЄЉЬ‚Ь‚к‚Д‚ў‚Ѕ‚з‚»‚МЌXђVѓ`ѓFѓbѓN‚р‚·‚й
+	// дЅїз”ЁгЃ—гЃ¦гЃ„г‚‹гѓ†г‚Їг‚№гѓЃгѓЈгЃ®дё­гЃ«гѓ гѓјгѓ“гѓјгЃЊеђ«гЃѕг‚ЊгЃ¦гЃ„гЃџг‚‰гЃќгЃ®ж›ґж–°гѓЃг‚§гѓѓг‚Їг‚’гЃ™г‚‹
 #ifndef DX_NON_MOVIE
 	{
 		int ind ;
@@ -23196,12 +23196,12 @@ static int MV1DrawModelBase( MV1_MODEL *Model )
 			}
 		}
 
-		// ѓVѓFЃ[ѓ_Ѓ[‚ЙѓZѓbѓg‚і‚к‚Д‚ў‚йѓOѓ‰ѓtѓBѓbѓNѓnѓ“ѓhѓ‹‚М“®‰ж‚рЌXђV‚·‚й
+		// г‚·г‚§гѓјгѓЂгѓјгЃ«г‚»гѓѓгѓ€гЃ•г‚ЊгЃ¦гЃ„г‚‹г‚°гѓ©гѓ•г‚Јгѓѓг‚ЇгѓЏгѓігѓ‰гѓ«гЃ®е‹•з”»г‚’ж›ґж–°гЃ™г‚‹
 		Graphics_DrawSetting_UpdateUserTextureMovie() ;
 	}
 #endif
 
-	// •`‰ж‚·‚йѓЃѓbѓVѓ…‚МѓAѓhѓЊѓX”z—с‚рЉi”[‚·‚йѓЃѓ‚ѓЉ—М€ж‚МЉm•Ы
+	// жЏЏз”»гЃ™г‚‹гѓЎгѓѓг‚·гѓҐгЃ®г‚ўгѓ‰гѓ¬г‚№й…Ќе€—г‚’ж јзґЌгЃ™г‚‹гѓЎгѓўгѓЄй еџџгЃ®зўєдїќ
 	if( DrawMeshListResize( Model->BaseData->MeshNum ) < 0 )
 	{
 		return -1 ;
@@ -23213,30 +23213,30 @@ static int MV1DrawModelBase( MV1_MODEL *Model )
 	SemiTransBaseOpacityMeshNum  = 0 ;
 	SemiTransMeshNum             = 0 ;
 
-	// ѓVѓFѓCѓvѓfЃ[ѓ^‚МѓZѓbѓgѓAѓbѓv
+	// г‚·г‚§г‚¤гѓ—гѓ‡гѓјг‚їгЃ®г‚»гѓѓгѓ€г‚ўгѓѓгѓ—
 	if( Model->BaseData->ShapeMeshNum != 0 )
 		MV1_SetupShapeVertex_PF( Model->HandleInfo.Handle ) ;
 
-	// ѓЊѓ“ѓ_ѓЉѓ“ѓO‚МЏЂ”х
+	// гѓ¬гѓігѓЂгѓЄгѓіг‚°гЃ®жє–е‚™
 	MV1_BeginRender( Model ) ;
 
-	// •`‰ж‚·‚йѓЃѓbѓVѓ…‚МѓЉѓXѓg‚рЌмђ¬‚·‚й
+	// жЏЏз”»гЃ™г‚‹гѓЎгѓѓг‚·гѓҐгЃ®гѓЄг‚№гѓ€г‚’дЅњж€ђгЃ™г‚‹
 	Frame = Model->Frame ;
 	for( i = 0 ; i < Model->BaseData->FrameNum ; i ++ , Frame ++ )
 	{
-		// ѓЃѓbѓVѓ…‚Є–і‚©‚Б‚Ѕ‚з”т‚О‚·
+		// гѓЎгѓѓг‚·гѓҐгЃЊз„ЎгЃ‹гЃЈгЃџг‚‰йЈ›гЃ°гЃ™
 		if( Frame->BaseData->MeshNum == 0 ) continue ;
 
-		// ѓ}ѓeѓЉѓAѓ‹ЌXђVѓ`ѓFѓbѓN
+		// гѓћгѓ†гѓЄг‚ўгѓ«ж›ґж–°гѓЃг‚§гѓѓг‚Ї
 		MV1SETUPDRAWMATERIALFRAME( Frame ) ;
 
-		// ”с•\Ћ¦Ћw’и‚ѕ‚Б‚Ѕ‚з‰Ѕ‚а‚µ‚И‚ў
+		// йќћиЎЁз¤єжЊ‡е®љгЃ гЃЈгЃџг‚‰дЅ•г‚‚гЃ—гЃЄгЃ„
 		if( Frame->SetupDrawMaterial.Visible == FALSE ) continue ;
 
-		// “ЇЋћ•Ўђ”•`‰ж‘О‰ћѓnѓ“ѓhѓ‹‚Е‚Н‚И‚­ЃAѓVѓѓѓhѓEѓ}ѓbѓv‚Ц‚М•`‰ж’†‚Е‚а‚И‚­ѓXѓLѓ“ѓЃѓbѓVѓ…‚Е‚а‚И‚ўЏкЌ‡‚Н‰ВЋ‹”»’и
+		// еђЊж™‚и¤‡ж•°жЏЏз”»еЇѕеїњгѓЏгѓігѓ‰гѓ«гЃ§гЃЇгЃЄгЃЏгЂЃг‚·гѓЈгѓ‰г‚¦гѓћгѓѓгѓ—гЃёгЃ®жЏЏз”»дё­гЃ§г‚‚гЃЄгЃЏг‚№г‚­гѓігѓЎгѓѓг‚·гѓҐгЃ§г‚‚гЃЄгЃ„е ґеђ€гЃЇеЏЇи¦–е€¤е®љ
 		if( ModelBase->UsePackDraw == FALSE && GSYS.DrawSetting.ShadowMapDraw == FALSE && Frame->BaseData->IsSkinMesh == FALSE )
 		{
-			// ‰ВЋ‹ѓ`ѓFѓbѓN—p’ё“_ЌА•W‚рЋZЏo‚·‚й
+			// еЏЇи¦–гѓЃг‚§гѓѓг‚Їз”Ёй ‚з‚№еє§жЁ™г‚’з®—е‡єгЃ™г‚‹
 			Tmp   = Frame->BaseData->MaxPosition   ; VectorTransform4X4CT( &CheckPos[ 0 ], &Tmp, &Frame->LocalWorldMatrix ) ;
 			Tmp.x = Frame->BaseData->MinPosition.x ; VectorTransform4X4CT( &CheckPos[ 1 ], &Tmp, &Frame->LocalWorldMatrix ) ;
 			Tmp.y = Frame->BaseData->MinPosition.y ; VectorTransform4X4CT( &CheckPos[ 2 ], &Tmp, &Frame->LocalWorldMatrix ) ;
@@ -23246,29 +23246,29 @@ static int MV1DrawModelBase( MV1_MODEL *Model )
 			Tmp.x = Frame->BaseData->MinPosition.x ; VectorTransform4X4CT( &CheckPos[ 6 ], &Tmp, &Frame->LocalWorldMatrix ) ;
 			Tmp.y = Frame->BaseData->MinPosition.y ; VectorTransform4X4CT( &CheckPos[ 7 ], &Tmp, &Frame->LocalWorldMatrix ) ;
 
-			// ‰ВЋ‹ѓ`ѓFѓbѓN
+			// еЏЇи¦–гѓЃг‚§гѓѓг‚Ї
 			if( Graphics_Camera_CheckCameraViewClip_Box_PosDim( CheckPos ) == TRUE )
 				continue ;
 		}
 
-		// MaterialNumberOrderDraw ‚Є—§‚Б‚Д‚ў‚й‚©‚З‚¤‚©‚ЕЏ€—ќ‚р•ЄЉт
+		// MaterialNumberOrderDraw гЃЊз«‹гЃЈгЃ¦гЃ„г‚‹гЃ‹гЃ©гЃ†гЃ‹гЃ§е‡¦зђ†г‚’е€†еІђ
 		if( Model->BaseData->MaterialNumberOrderDraw != 0 )
 		{
 			int MaterialIndex ;
 
-			// MaterialNumberOrderDraw ‚Є—§‚Б‚Д‚ў‚йЏкЌ‡‚НѓЃѓbѓVѓ…‚ЙЉ„‚и“–‚Д‚з‚к‚Д‚ў‚йѓ}ѓeѓЉѓAѓ‹‚М”ФЌ†‚Є’б‚ўЏ‡€К•`‰ж‚·‚й
+			// MaterialNumberOrderDraw гЃЊз«‹гЃЈгЃ¦гЃ„г‚‹е ґеђ€гЃЇгѓЎгѓѓг‚·гѓҐгЃ«е‰Іг‚ЉеЅ“гЃ¦г‚‰г‚ЊгЃ¦гЃ„г‚‹гѓћгѓ†гѓЄг‚ўгѓ«гЃ®з•ЄеЏ·гЃЊдЅЋгЃ„й †дЅЌжЏЏз”»гЃ™г‚‹
 
-			// ѓЃѓbѓVѓ…‚Мђ”‚ѕ‚ЇЊJ‚и•Ф‚µ
+			// гѓЎгѓѓг‚·гѓҐгЃ®ж•°гЃ гЃ‘з№°г‚Љиї”гЃ—
 			Mesh = Frame->Mesh ;
 			for( k = 0 ; k < Frame->BaseData->MeshNum ; k ++ , Mesh ++ )
 			{
-				// ѓ}ѓeѓЉѓAѓ‹ЌXђVѓ`ѓFѓbѓN
+				// гѓћгѓ†гѓЄг‚ўгѓ«ж›ґж–°гѓЃг‚§гѓѓг‚Ї
 				MV1SETUPDRAWMATERIALMESH( Mesh ) ;
 
-				// ”с•\Ћ¦‚МЏкЌ‡‚Н‰Ѕ‚а‚µ‚И‚ў
+				// йќћиЎЁз¤єгЃ®е ґеђ€гЃЇдЅ•г‚‚гЃ—гЃЄгЃ„
 				if( Mesh->SetupDrawMaterial.Visible == 0 ) continue ;
 
-				// ѓ}ѓeѓЉѓAѓ‹”ФЌ†‚Еѓ\Ѓ[ѓg‘}“ь
+				// гѓћгѓ†гѓЄг‚ўгѓ«з•ЄеЏ·гЃ§г‚Ѕгѓјгѓ€жЊїе…Ґ
 				MaterialIndex = ( int )( Mesh->Material->BaseData - Model->BaseData->Material ) ;
 				for( j = 0 ; j < OpacityMeshNum ; j ++ )
 				{
@@ -23287,19 +23287,19 @@ static int MV1DrawModelBase( MV1_MODEL *Model )
 		}
 		else
 		{
-			// MaterialNumberOrderDraw ‚Є—§‚Б‚Д‚ў‚И‚ўЏкЌ‡‚Н•s“§–ѕ‚МѓЃѓbѓVѓ…‚р•`‰ж‚µ‚ЅЊг‚Й”ј“§–ѕ—v‘f‚М‚ ‚йѓЃѓbѓVѓ…‚р•`‰ж‚·‚й
+			// MaterialNumberOrderDraw гЃЊз«‹гЃЈгЃ¦гЃ„гЃЄгЃ„е ґеђ€гЃЇдёЌйЂЏжЋгЃ®гѓЎгѓѓг‚·гѓҐг‚’жЏЏз”»гЃ—гЃџеѕЊгЃ«еЌЉйЂЏжЋи¦Ѓзґ гЃ®гЃ‚г‚‹гѓЎгѓѓг‚·гѓҐг‚’жЏЏз”»гЃ™г‚‹
 
-			// ѓЃѓbѓVѓ…‚Мђ”‚ѕ‚ЇЊJ‚и•Ф‚µ
+			// гѓЎгѓѓг‚·гѓҐгЃ®ж•°гЃ гЃ‘з№°г‚Љиї”гЃ—
 			Mesh = Frame->Mesh ;
 			for( k = 0 ; k < Frame->BaseData->MeshNum ; k ++ , Mesh ++ )
 			{
-				// ѓ}ѓeѓЉѓAѓ‹ЌXђVѓ`ѓFѓbѓN
+				// гѓћгѓ†гѓЄг‚ўгѓ«ж›ґж–°гѓЃг‚§гѓѓг‚Ї
 				MV1SETUPDRAWMATERIALMESH( Mesh ) ;
 
-				// ”с•\Ћ¦‚МЏкЌ‡‚Н‰Ѕ‚а‚µ‚И‚ў
+				// йќћиЎЁз¤єгЃ®е ґеђ€гЃЇдЅ•г‚‚гЃ—гЃЄгЃ„
 				if( Mesh->SetupDrawMaterial.Visible == 0 ) continue ;
 
-				// ”ј“§–ѕ—v‘f‚Є‚ ‚й‚©‚З‚¤‚©‚р’І‚Ч‚й
+				// еЌЉйЂЏжЋи¦Ѓзґ гЃЊгЃ‚г‚‹гЃ‹гЃ©гЃ†гЃ‹г‚’иЄїгЃ№г‚‹
 				if( Mesh->SemiTransStateSetupFlag == false )
 				{
 					NS_MV1GetMeshSemiTransState( Model->HandleInfo.Handle, ( int )( Mesh - Model->Mesh ) ) ;
@@ -23325,7 +23325,7 @@ static int MV1DrawModelBase( MV1_MODEL *Model )
 		}
 	}
 
-	// •s“§–ѕѓIѓuѓWѓFѓNѓg‚М•`‰ж
+	// дёЌйЂЏжЋг‚Єгѓ–г‚ёг‚§г‚Їгѓ€гЃ®жЏЏз”»
 	if( MV1Man.SemiTransDrawMode == DX_SEMITRANSDRAWMODE_ALWAYS ||
 		MV1Man.SemiTransDrawMode == DX_SEMITRANSDRAWMODE_NOT_SEMITRANS_ONLY )
 	{
@@ -23335,11 +23335,11 @@ static int MV1DrawModelBase( MV1_MODEL *Model )
 		}
 	}
 
-	// ”ј“§–ѕѓIѓuѓWѓFѓNѓg‚М•`‰ж
+	// еЌЉйЂЏжЋг‚Єгѓ–г‚ёг‚§г‚Їгѓ€гЃ®жЏЏз”»
 	if( MV1Man.SemiTransDrawMode == DX_SEMITRANSDRAWMODE_ALWAYS ||
 		MV1Man.SemiTransDrawMode == DX_SEMITRANSDRAWMODE_SEMITRANS_ONLY )
 	{
-		// ”ј“§–ѕѓIѓuѓWѓFѓNѓg‚И‚Є‚зЏ‰ЉъЏу‘Ф‚Е‚Н•s“§–ѕ‚МѓIѓuѓWѓFѓNѓg‚рђж‚Й•`‰ж
+		// еЌЉйЂЏжЋг‚Єгѓ–г‚ёг‚§г‚Їгѓ€гЃЄгЃЊг‚‰е€ќжњџзЉ¶ж…‹гЃ§гЃЇдёЌйЂЏжЋгЃ®г‚Єгѓ–г‚ёг‚§г‚Їгѓ€г‚’е…€гЃ«жЏЏз”»
 		for( i = 0 ; i < SemiTransBaseOpacityMeshNum ; i ++ )
 		{
 			MV1_DrawMesh_PF( SemiTransBaseOpacityMeshList[ i ] ) ;
@@ -23351,17 +23351,17 @@ static int MV1DrawModelBase( MV1_MODEL *Model )
 		}
 	}
 
-	// ѓЊѓ“ѓ_ѓЉѓ“ѓO‚МЊгЋn––
+	// гѓ¬гѓігѓЂгѓЄгѓіг‚°гЃ®еѕЊе§‹жњ«
 	MV1_EndRender() ;
 
-	// •`‰жѓXѓgѓbѓN‚МЏ‰Љъ‰»
+	// жЏЏз”»г‚№гѓ€гѓѓг‚ЇгЃ®е€ќжњџеЊ–
 	Model->PackDrawStockNum = 0 ;
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// ѓ‚ѓfѓ‹‚р•`‰ж‚·‚й
+// гѓўгѓ‡гѓ«г‚’жЏЏз”»гЃ™г‚‹
 extern int NS_MV1DrawModel( int MHandle )
 {
 	MV1_MODEL *Model ;
@@ -23369,45 +23369,45 @@ extern int NS_MV1DrawModel( int MHandle )
 	MV1_FRAME *Frame ;
 	int i ;
 
-	// Џ‰Љъ‰»‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// е€ќжњџеЊ–гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( MV1Man.Initialize == false ) return -1 ;
 
-	// ѓAѓhѓЊѓXЋж“ѕ
+	// г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ—
 	if( MV1MDLCHK( MHandle, Model ) )
 		return -1 ;
 	ModelBase = Model->BaseData ;
 
-	// ”с•\Ћ¦ђЭ’и‚ѕ‚Б‚Ѕ‚з•`‰ж‚µ‚И‚ў
+	// йќћиЎЁз¤єиЁ­е®љгЃ гЃЈгЃџг‚‰жЏЏз”»гЃ—гЃЄгЃ„
 	if( Model->DrawMaterial.Visible == 0 )
 		return 0 ;
 
-	// ’ё“_ѓfЃ[ѓ^‚М•`‰ж‚рЏI‚н‚з‚№‚Д‚Ё‚­
+	// й ‚з‚№гѓ‡гѓјг‚їгЃ®жЏЏз”»г‚’зµ‚г‚Џг‚‰гЃ›гЃ¦гЃЉгЃЏ
 	Graphics_Hardware_RenderVertex() ;
 
-	// Ќs—с‚МѓZѓbѓgѓAѓbѓv
+	// иЎЊе€—гЃ®г‚»гѓѓгѓ€г‚ўгѓѓгѓ—
 	MV1SETUPMATRIX( Model ) ;
 
-	// “ЇЋћ•Ўђ”•`‰ж‚Й‘О‰ћ‚µ‚Д‚ў‚йЏкЌ‡‚НѓXѓgѓbѓN‚ЙЏо•с‚р’З‰Б‚·‚й
+	// еђЊж™‚и¤‡ж•°жЏЏз”»гЃ«еЇѕеїњгЃ—гЃ¦гЃ„г‚‹е ґеђ€гЃЇг‚№гѓ€гѓѓг‚ЇгЃ«жѓ…е ±г‚’иїЅеЉ гЃ™г‚‹
 	if( ModelBase->UsePackDraw )
 	{
 		MATRIX_4X4CT_F *DestMatrix ;
 
-		// Љщ‚Й•`‰ж‘Т‚ї‚і‚к‚Д‚ў‚йѓ‚ѓfѓ‹‚Є‚ ‚Б‚Ѕ‚з•`‰ж‚·‚й
+		// ж—ўгЃ«жЏЏз”»еѕ…гЃЎгЃ•г‚ЊгЃ¦гЃ„г‚‹гѓўгѓ‡гѓ«гЃЊгЃ‚гЃЈгЃџг‚‰жЏЏз”»гЃ™г‚‹
 		if( MV1Man.PackDrawModel != NULL && MV1Man.PackDrawModel != Model )
 		{
 			MV1DrawPackDrawModel() ;
 		}
 
-		// ѓXѓgѓbѓN‚Мђ”‚ЄЊАЉE‚Й’B‚µ‚Д‚ў‚Ѕ‚з•`‰жЏ€—ќ‚рЌs‚¤
+		// г‚№гѓ€гѓѓг‚ЇгЃ®ж•°гЃЊй™ђз•ЊгЃ«йЃ”гЃ—гЃ¦гЃ„гЃџг‚‰жЏЏз”»е‡¦зђ†г‚’иЎЊгЃ†
 		if( Model->PackDrawStockNum >= ModelBase->PackDrawMaxNum )
 		{
 			MV1DrawPackDrawModel() ;
 		}
 
-		// ѓXѓgѓbѓNЉi”[ђж‚МѓAѓhѓЊѓX‚рЋZЏo
+		// г‚№гѓ€гѓѓг‚Їж јзґЌе…€гЃ®г‚ўгѓ‰гѓ¬г‚№г‚’з®—е‡є
 		DestMatrix = Model->PackDrawMatrix + Model->PackDrawStockNum * ModelBase->PackDrawMatrixUnitNum ;
 
-		// ѓXѓLѓjѓ“ѓOѓЃѓbѓVѓ…‚МЌs—с‚рѓRѓsЃ[‚·‚й
+		// г‚№г‚­гѓ‹гѓіг‚°гѓЎгѓѓг‚·гѓҐгЃ®иЎЊе€—г‚’г‚ігѓ”гѓјгЃ™г‚‹
 		if( ModelBase->SkinBoneNum > 0 )
 		{
 			for( i = 0 ; i < ModelBase->SkinBoneNum ; i ++ )
@@ -23417,22 +23417,22 @@ extern int NS_MV1DrawModel( int MHandle )
 		}
 		DestMatrix += ModelBase->SkinBoneNum ;
 
-		// ѓtѓЊЃ[ѓЂ‚МЌs—с‚рѓRѓsЃ[‚·‚й
+		// гѓ•гѓ¬гѓјгѓ гЃ®иЎЊе€—г‚’г‚ігѓ”гѓјгЃ™г‚‹
 		Frame = Model->Frame ;
 		for( i = 0 ; i < ModelBase->FrameNum ; i ++ )
 		{
 			ConvertMatrix4x4cToMatrix4x4cF( &DestMatrix[ i ], &Frame[ i ].LocalWorldMatrix ) ;
 		}
 
-		// ѓXѓgѓbѓN‚Мђ”‚р‘ќ‚в‚·
+		// г‚№гѓ€гѓѓг‚ЇгЃ®ж•°г‚’еў—г‚„гЃ™
 		Model->PackDrawStockNum ++ ;
 
-		// “ЇЋћ•Ўђ”•`‰ж‚М€Ч‚Й•`‰ж‘Т‹@‚р‚µ‚Д‚ў‚йѓ‚ѓfѓ‹‚МѓAѓhѓЊѓX‚Ж‚µ‚Д•Ы‘¶
+		// еђЊж™‚и¤‡ж•°жЏЏз”»гЃ®з‚єгЃ«жЏЏз”»еѕ…ж©џг‚’гЃ—гЃ¦гЃ„г‚‹гѓўгѓ‡гѓ«гЃ®г‚ўгѓ‰гѓ¬г‚№гЃЁгЃ—гЃ¦дїќе­
 		MV1Man.PackDrawModel = Model ;
 	}
 	else
 	{
-		// “ЇЋћ•Ўђ”•`‰ж‚Й‘О‰ћ‚µ‚Д‚ў‚И‚ўЏкЌ‡‚Н•Ѓ’К‚Й•`‰ж‚·‚й
+		// еђЊж™‚и¤‡ж•°жЏЏз”»гЃ«еЇѕеїњгЃ—гЃ¦гЃ„гЃЄгЃ„е ґеђ€гЃЇж™®йЂљгЃ«жЏЏз”»гЃ™г‚‹
 
 #ifndef DX_NON_MASK
 		if( MASKD.MaskValidFlag )
@@ -23448,11 +23448,11 @@ extern int NS_MV1DrawModel( int MHandle )
 		}
 	}
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// ѓ‚ѓfѓ‹‚МЋw’и‚МѓtѓЊЃ[ѓЂ‚р•`‰ж‚·‚й
+// гѓўгѓ‡гѓ«гЃ®жЊ‡е®љгЃ®гѓ•гѓ¬гѓјгѓ г‚’жЏЏз”»гЃ™г‚‹
 extern int NS_MV1DrawFrame( int MHandle, int FrameIndex )
 {
 	MV1_MODEL *Model ;
@@ -23468,19 +23468,19 @@ extern int NS_MV1DrawFrame( int MHandle, int FrameIndex )
 	int SemiTransBaseOpacityMeshNum ;
 	int SemiTransMeshNum ;
 
-	// Џ‰Љъ‰»‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// е€ќжњџеЊ–гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( MV1Man.Initialize == false ) return -1 ;
 
-	// ѓAѓhѓЊѓXЋж“ѕ
+	// г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ—
 	if( MV1MDLCHK( MHandle, Model ) )
 		return -1 ;
 	ModelBase = Model->BaseData ;
 
-	// ”с•\Ћ¦ђЭ’и‚ѕ‚Б‚Ѕ‚з•`‰ж‚µ‚И‚ў
+	// йќћиЎЁз¤єиЁ­е®љгЃ гЃЈгЃџг‚‰жЏЏз”»гЃ—гЃЄгЃ„
 	if( Model->DrawMaterial.Visible == 0 )
 		return 0 ;
 
-	// Ћg—p‚µ‚Д‚ў‚йѓeѓNѓXѓ`ѓѓ‚М’†‚ЙѓЂЃ[ѓrЃ[‚ЄЉЬ‚Ь‚к‚Д‚ў‚Ѕ‚з‚»‚МЌXђVѓ`ѓFѓbѓN‚р‚·‚й
+	// дЅїз”ЁгЃ—гЃ¦гЃ„г‚‹гѓ†г‚Їг‚№гѓЃгѓЈгЃ®дё­гЃ«гѓ гѓјгѓ“гѓјгЃЊеђ«гЃѕг‚ЊгЃ¦гЃ„гЃџг‚‰гЃќгЃ®ж›ґж–°гѓЃг‚§гѓѓг‚Їг‚’гЃ™г‚‹
 #ifndef DX_NON_MOVIE
 	{
 		int ind ;
@@ -23498,21 +23498,21 @@ extern int NS_MV1DrawFrame( int MHandle, int FrameIndex )
 			}
 		}
 
-		// ѓVѓFЃ[ѓ_Ѓ[‚ЙѓZѓbѓg‚і‚к‚Д‚ў‚йѓOѓ‰ѓtѓBѓbѓNѓnѓ“ѓhѓ‹‚М“®‰ж‚рЌXђV‚·‚й
+		// г‚·г‚§гѓјгѓЂгѓјгЃ«г‚»гѓѓгѓ€гЃ•г‚ЊгЃ¦гЃ„г‚‹г‚°гѓ©гѓ•г‚Јгѓѓг‚ЇгѓЏгѓігѓ‰гѓ«гЃ®е‹•з”»г‚’ж›ґж–°гЃ™г‚‹
 		Graphics_DrawSetting_UpdateUserTextureMovie() ;
 	}
 #endif
 
-	// ѓtѓЊЃ[ѓЂѓCѓ“ѓfѓbѓNѓX‚Мѓ`ѓFѓbѓN
+	// гѓ•гѓ¬гѓјгѓ г‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃ®гѓЃг‚§гѓѓг‚Ї
 	if( FrameIndex < 0 || FrameIndex >= Model->BaseData->FrameNum )
 		return -1 ;
 	Frame = Model->Frame + FrameIndex ;
 
-	// ѓЃѓbѓVѓ…‚Є–і‚©‚Б‚Ѕ‚з‰Ѕ‚а‚µ‚И‚ў
+	// гѓЎгѓѓг‚·гѓҐгЃЊз„ЎгЃ‹гЃЈгЃџг‚‰дЅ•г‚‚гЃ—гЃЄгЃ„
 	if( Frame->BaseData->MeshNum == 0 )
 		return -1 ;
 
-	// •`‰ж‚·‚йѓЃѓbѓVѓ…‚МѓAѓhѓЊѓX”z—с‚рЉi”[‚·‚йѓЃѓ‚ѓЉ—М€ж‚МЉm•Ы
+	// жЏЏз”»гЃ™г‚‹гѓЎгѓѓг‚·гѓҐгЃ®г‚ўгѓ‰гѓ¬г‚№й…Ќе€—г‚’ж јзґЌгЃ™г‚‹гѓЎгѓўгѓЄй еџџгЃ®зўєдїќ
 	if( DrawMeshListResize( Model->BaseData->MeshNum ) < 0 )
 	{
 		return -1 ;
@@ -23524,24 +23524,24 @@ extern int NS_MV1DrawFrame( int MHandle, int FrameIndex )
 	SemiTransBaseOpacityMeshNum  = 0 ;
 	SemiTransMeshNum             = 0 ;
 
-	// ѓ}ѓeѓЉѓAѓ‹ЌXђVѓ`ѓFѓbѓN
+	// гѓћгѓ†гѓЄг‚ўгѓ«ж›ґж–°гѓЃг‚§гѓѓг‚Ї
 	MV1SETUPDRAWMATERIALFRAME( Frame ) ;
 
-	// ”с•\Ћ¦ђЭ’и‚ѕ‚Б‚Ѕ‚з•`‰ж‚µ‚И‚ў
+	// йќћиЎЁз¤єиЁ­е®љгЃ гЃЈгЃџг‚‰жЏЏз”»гЃ—гЃЄгЃ„
 	if( Frame->SetupDrawMaterial.Visible == 0 )
 		return 0 ;
 
-	// ‚R‚cЌs—с‚рѓnЃ[ѓhѓEѓGѓA‚Й”Ѕ‰f‚·‚й
+	// пј“пј¤иЎЊе€—г‚’гѓЏгѓјгѓ‰г‚¦г‚Ёг‚ўгЃ«еЏЌж гЃ™г‚‹
 	if( GSYS.DrawSetting.MatchHardware3DMatrix == FALSE )
 		Graphics_DrawSetting_ApplyLib3DMatrixToHardware( TRUE ) ;
 
-	// Ќs—с‚МѓZѓbѓgѓAѓbѓv
+	// иЎЊе€—гЃ®г‚»гѓѓгѓ€г‚ўгѓѓгѓ—
 	MV1SETUPMATRIX( Model ) ;
 
-	// ѓVѓѓѓhѓEѓ}ѓbѓv‚Ц‚М•`‰ж’†‚Е‚Н‚И‚­ѓXѓLѓ“ѓЃѓbѓVѓ…‚Е‚а‚И‚ўЏкЌ‡‚Н‰ВЋ‹”»’и
+	// г‚·гѓЈгѓ‰г‚¦гѓћгѓѓгѓ—гЃёгЃ®жЏЏз”»дё­гЃ§гЃЇгЃЄгЃЏг‚№г‚­гѓігѓЎгѓѓг‚·гѓҐгЃ§г‚‚гЃЄгЃ„е ґеђ€гЃЇеЏЇи¦–е€¤е®љ
 	if( GSYS.DrawSetting.ShadowMapDraw == FALSE && Frame->BaseData->IsSkinMesh == FALSE )
 	{
-		// ‰ВЋ‹ѓ`ѓFѓbѓN—p’ё“_ЌА•W‚рЋZЏo‚·‚й
+		// еЏЇи¦–гѓЃг‚§гѓѓг‚Їз”Ёй ‚з‚№еє§жЁ™г‚’з®—е‡єгЃ™г‚‹
 		Tmp   = Frame->BaseData->MaxPosition   ; VectorTransform4X4CT( &CheckPos[ 0 ], &Tmp, &Frame->LocalWorldMatrix ) ;
 		Tmp.x = Frame->BaseData->MinPosition.x ; VectorTransform4X4CT( &CheckPos[ 1 ], &Tmp, &Frame->LocalWorldMatrix ) ;
 		Tmp.y = Frame->BaseData->MinPosition.y ; VectorTransform4X4CT( &CheckPos[ 2 ], &Tmp, &Frame->LocalWorldMatrix ) ;
@@ -23551,29 +23551,29 @@ extern int NS_MV1DrawFrame( int MHandle, int FrameIndex )
 		Tmp.x = Frame->BaseData->MinPosition.x ; VectorTransform4X4CT( &CheckPos[ 6 ], &Tmp, &Frame->LocalWorldMatrix ) ;
 		Tmp.y = Frame->BaseData->MinPosition.y ; VectorTransform4X4CT( &CheckPos[ 7 ], &Tmp, &Frame->LocalWorldMatrix ) ;
 
-		// ‰ВЋ‹ѓ`ѓFѓbѓN
+		// еЏЇи¦–гѓЃг‚§гѓѓг‚Ї
 		if( Graphics_Camera_CheckCameraViewClip_Box_PosDim( CheckPos ) == TRUE )
 			return -1 ;
 	}
 
-	// ѓVѓFѓCѓvѓfЃ[ѓ^‚МѓZѓbѓgѓAѓbѓv
+	// г‚·г‚§г‚¤гѓ—гѓ‡гѓјг‚їгЃ®г‚»гѓѓгѓ€г‚ўгѓѓгѓ—
 	if( Model->BaseData->ShapeMeshNum != 0 )
 		MV1_SetupShapeVertex_PF( MHandle ) ;
 
-	// ѓЊѓ“ѓ_ѓЉѓ“ѓO‚МЏЂ”х
+	// гѓ¬гѓігѓЂгѓЄгѓіг‚°гЃ®жє–е‚™
 	MV1_BeginRender( Model ) ;
 
-	// •`‰ж‚·‚йѓЃѓbѓVѓ…‚МђU‚и•Є‚Ї
+	// жЏЏз”»гЃ™г‚‹гѓЎгѓѓг‚·гѓҐгЃ®жЊЇг‚Ље€†гЃ‘
 	Mesh = Frame->Mesh ;
 	for( k = 0 ; k < Frame->BaseData->MeshNum ; k ++ , Mesh ++ )
 	{
-		// ѓ}ѓeѓЉѓAѓ‹ЌXђVѓ`ѓFѓbѓN
+		// гѓћгѓ†гѓЄг‚ўгѓ«ж›ґж–°гѓЃг‚§гѓѓг‚Ї
 		MV1SETUPDRAWMATERIALMESH( Mesh ) ;
 
-		// ”с•\Ћ¦‚МЏкЌ‡‚Н‰Ѕ‚а‚µ‚И‚ў
+		// йќћиЎЁз¤єгЃ®е ґеђ€гЃЇдЅ•г‚‚гЃ—гЃЄгЃ„
 		if( Mesh->SetupDrawMaterial.Visible == 0 ) continue ;
 
-		// ”ј“§–ѕ—v‘f‚Є‚ ‚й‚©‚З‚¤‚©‚р’І‚Ч‚й
+		// еЌЉйЂЏжЋи¦Ѓзґ гЃЊгЃ‚г‚‹гЃ‹гЃ©гЃ†гЃ‹г‚’иЄїгЃ№г‚‹
 		if( Mesh->SemiTransStateSetupFlag == false )
 		{
 			NS_MV1GetMeshSemiTransState( MHandle, ( int )( Mesh - Model->Mesh ) ) ;
@@ -23597,7 +23597,7 @@ extern int NS_MV1DrawFrame( int MHandle, int FrameIndex )
 		}
 	}
 
-	// •s“§–ѕѓЃѓbѓVѓ…‚М•`‰ж
+	// дёЌйЂЏжЋгѓЎгѓѓг‚·гѓҐгЃ®жЏЏз”»
 	if( MV1Man.SemiTransDrawMode == DX_SEMITRANSDRAWMODE_ALWAYS ||
 		MV1Man.SemiTransDrawMode == DX_SEMITRANSDRAWMODE_NOT_SEMITRANS_ONLY )
 	{
@@ -23607,11 +23607,11 @@ extern int NS_MV1DrawFrame( int MHandle, int FrameIndex )
 		}
 	}
 
-	// ”ј“§–ѕѓЃѓbѓVѓ…‚М•`‰ж
+	// еЌЉйЂЏжЋгѓЎгѓѓг‚·гѓҐгЃ®жЏЏз”»
 	if( MV1Man.SemiTransDrawMode == DX_SEMITRANSDRAWMODE_ALWAYS ||
 		MV1Man.SemiTransDrawMode == DX_SEMITRANSDRAWMODE_SEMITRANS_ONLY )
 	{
-		// ”ј“§–ѕѓIѓuѓWѓFѓNѓg‚И‚Є‚зЏ‰ЉъЏу‘Ф‚Е‚Н•s“§–ѕ‚МѓIѓuѓWѓFѓNѓg‚рђж‚Й•`‰ж
+		// еЌЉйЂЏжЋг‚Єгѓ–г‚ёг‚§г‚Їгѓ€гЃЄгЃЊг‚‰е€ќжњџзЉ¶ж…‹гЃ§гЃЇдёЌйЂЏжЋгЃ®г‚Єгѓ–г‚ёг‚§г‚Їгѓ€г‚’е…€гЃ«жЏЏз”»
 		for( k = 0 ; k < SemiTransBaseOpacityMeshNum ; k ++ )
 		{
 			MV1_DrawMesh_PF( SemiTransBaseOpacityMeshList[ k ] ) ;
@@ -23623,14 +23623,14 @@ extern int NS_MV1DrawFrame( int MHandle, int FrameIndex )
 		}
 	}
 
-	// ѓЊѓ“ѓ_ѓЉѓ“ѓO‚МЊгЋn––
+	// гѓ¬гѓігѓЂгѓЄгѓіг‚°гЃ®еѕЊе§‹жњ«
 	MV1_EndRender() ;
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// ѓ‚ѓfѓ‹‚МЋw’и‚МѓЃѓbѓVѓ…‚р•`‰ж‚·‚й
+// гѓўгѓ‡гѓ«гЃ®жЊ‡е®љгЃ®гѓЎгѓѓг‚·гѓҐг‚’жЏЏз”»гЃ™г‚‹
 extern int NS_MV1DrawMesh( int MHandle, int MeshIndex )
 {
 	MV1_MODEL *Model ;
@@ -23638,19 +23638,19 @@ extern int NS_MV1DrawMesh( int MHandle, int MeshIndex )
 //	MV1_FRAME *Frame ;
 	MV1_MESH *Mesh ;
 
-	// Џ‰Љъ‰»‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// е€ќжњџеЊ–гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( MV1Man.Initialize == false ) return -1 ;
 
-	// ѓAѓhѓЊѓXЋж“ѕ
+	// г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ—
 	if( MV1MDLCHK( MHandle, Model ) )
 		return -1 ;
 	ModelBase = Model->BaseData ;
 
-	// ”с•\Ћ¦ђЭ’и‚ѕ‚Б‚Ѕ‚з•`‰ж‚µ‚И‚ў
+	// йќћиЎЁз¤єиЁ­е®љгЃ гЃЈгЃџг‚‰жЏЏз”»гЃ—гЃЄгЃ„
 	if( Model->DrawMaterial.Visible == 0 )
 		return 0 ;
 
-	// Ћg—p‚µ‚Д‚ў‚йѓeѓNѓXѓ`ѓѓ‚М’†‚ЙѓЂЃ[ѓrЃ[‚ЄЉЬ‚Ь‚к‚Д‚ў‚Ѕ‚з‚»‚МЌXђVѓ`ѓFѓbѓN‚р‚·‚й
+	// дЅїз”ЁгЃ—гЃ¦гЃ„г‚‹гѓ†г‚Їг‚№гѓЃгѓЈгЃ®дё­гЃ«гѓ гѓјгѓ“гѓјгЃЊеђ«гЃѕг‚ЊгЃ¦гЃ„гЃџг‚‰гЃќгЃ®ж›ґж–°гѓЃг‚§гѓѓг‚Їг‚’гЃ™г‚‹
 #ifndef DX_NON_MOVIE
 	{
 		int ind ;
@@ -23668,49 +23668,49 @@ extern int NS_MV1DrawMesh( int MHandle, int MeshIndex )
 			}
 		}
 
-		// ѓVѓFЃ[ѓ_Ѓ[‚ЙѓZѓbѓg‚і‚к‚Д‚ў‚йѓOѓ‰ѓtѓBѓbѓNѓnѓ“ѓhѓ‹‚М“®‰ж‚рЌXђV‚·‚й
+		// г‚·г‚§гѓјгѓЂгѓјгЃ«г‚»гѓѓгѓ€гЃ•г‚ЊгЃ¦гЃ„г‚‹г‚°гѓ©гѓ•г‚Јгѓѓг‚ЇгѓЏгѓігѓ‰гѓ«гЃ®е‹•з”»г‚’ж›ґж–°гЃ™г‚‹
 		Graphics_DrawSetting_UpdateUserTextureMovie() ;
 	}
 #endif
 
-	// ѓЃѓbѓVѓ…ѓCѓ“ѓfѓbѓNѓX‚Мѓ`ѓFѓbѓN
+	// гѓЎгѓѓг‚·гѓҐг‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃ®гѓЃг‚§гѓѓг‚Ї
 	if( MeshIndex < 0 || MeshIndex >= ModelBase->MeshNum )
 		return -1 ;
 	Mesh = Model->Mesh + MeshIndex ;
 //	Frame = Mesh->Container ;
 
-	// ѓ}ѓeѓЉѓAѓ‹ЌXђVѓ`ѓFѓbѓN
+	// гѓћгѓ†гѓЄг‚ўгѓ«ж›ґж–°гѓЃг‚§гѓѓг‚Ї
 	MV1SETUPDRAWMATERIALMESH( Mesh ) ;
 
-	// ”с•\Ћ¦‚МЏкЌ‡‚Н‰Ѕ‚а‚µ‚И‚ў
+	// йќћиЎЁз¤єгЃ®е ґеђ€гЃЇдЅ•г‚‚гЃ—гЃЄгЃ„
 	if( Mesh->SetupDrawMaterial.Visible == 0 )
 		return 0 ;
 
-	// ‚R‚cЌs—с‚рѓnЃ[ѓhѓEѓGѓA‚Й”Ѕ‰f‚·‚й
+	// пј“пј¤иЎЊе€—г‚’гѓЏгѓјгѓ‰г‚¦г‚Ёг‚ўгЃ«еЏЌж гЃ™г‚‹
 	if( GSYS.DrawSetting.MatchHardware3DMatrix == FALSE )
 		Graphics_DrawSetting_ApplyLib3DMatrixToHardware( TRUE ) ;
 
-	// Ќs—с‚МѓZѓbѓgѓAѓbѓv
+	// иЎЊе€—гЃ®г‚»гѓѓгѓ€г‚ўгѓѓгѓ—
 	MV1SETUPMATRIX( Model ) ;
 
-	// ѓVѓFѓCѓvѓfЃ[ѓ^‚МѓZѓbѓgѓAѓbѓv
+	// г‚·г‚§г‚¤гѓ—гѓ‡гѓјг‚їгЃ®г‚»гѓѓгѓ€г‚ўгѓѓгѓ—
 	if( Model->BaseData->ShapeMeshNum != 0 )
 		MV1_SetupShapeVertex_PF( MHandle ) ;
 
-	// ѓЊѓ“ѓ_ѓЉѓ“ѓO‚МЏЂ”х
+	// гѓ¬гѓігѓЂгѓЄгѓіг‚°гЃ®жє–е‚™
 	MV1_BeginRender( Model ) ;
 
-	// ѓЃѓbѓVѓ…‚М•`‰ж
+	// гѓЎгѓѓг‚·гѓҐгЃ®жЏЏз”»
 	MV1_DrawMesh_PF( Mesh ) ;
 
-	// ѓЊѓ“ѓ_ѓЉѓ“ѓO‚МЊгЋn––
+	// гѓ¬гѓігѓЂгѓЄгѓіг‚°гЃ®еѕЊе§‹жњ«
 	MV1_EndRender() ;
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// ѓ‚ѓfѓ‹‚МЋw’и‚Мѓgѓ‰ѓCѓAѓ“ѓOѓ‹ѓЉѓXѓg‚р•`‰ж‚·‚й
+// гѓўгѓ‡гѓ«гЃ®жЊ‡е®љгЃ®гѓ€гѓ©г‚¤г‚ўгѓіг‚°гѓ«гѓЄг‚№гѓ€г‚’жЏЏз”»гЃ™г‚‹
 extern int NS_MV1DrawTriangleList( int MHandle, int TriangleListIndex )
 {
 	MV1_MODEL *Model ;
@@ -23719,19 +23719,19 @@ extern int NS_MV1DrawTriangleList( int MHandle, int TriangleListIndex )
 	MV1_MESH *Mesh ;
 	MV1_TRIANGLE_LIST *TList ;
 
-	// Џ‰Љъ‰»‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// е€ќжњџеЊ–гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( MV1Man.Initialize == false ) return -1 ;
 
-	// ѓAѓhѓЊѓXЋж“ѕ
+	// г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ—
 	if( MV1MDLCHK( MHandle, Model ) )
 		return -1 ;
 	ModelBase = Model->BaseData ;
 
-	// ”с•\Ћ¦ђЭ’и‚ѕ‚Б‚Ѕ‚з•`‰ж‚µ‚И‚ў
+	// йќћиЎЁз¤єиЁ­е®љгЃ гЃЈгЃџг‚‰жЏЏз”»гЃ—гЃЄгЃ„
 	if( Model->DrawMaterial.Visible == 0 )
 		return 0 ;
 
-	// Ћg—p‚µ‚Д‚ў‚йѓeѓNѓXѓ`ѓѓ‚М’†‚ЙѓЂЃ[ѓrЃ[‚ЄЉЬ‚Ь‚к‚Д‚ў‚Ѕ‚з‚»‚МЌXђVѓ`ѓFѓbѓN‚р‚·‚й
+	// дЅїз”ЁгЃ—гЃ¦гЃ„г‚‹гѓ†г‚Їг‚№гѓЃгѓЈгЃ®дё­гЃ«гѓ гѓјгѓ“гѓјгЃЊеђ«гЃѕг‚ЊгЃ¦гЃ„гЃџг‚‰гЃќгЃ®ж›ґж–°гѓЃг‚§гѓѓг‚Їг‚’гЃ™г‚‹
 #ifndef DX_NON_MOVIE
 	{
 		int ind ;
@@ -23749,50 +23749,50 @@ extern int NS_MV1DrawTriangleList( int MHandle, int TriangleListIndex )
 			}
 		}
 
-		// ѓVѓFЃ[ѓ_Ѓ[‚ЙѓZѓbѓg‚і‚к‚Д‚ў‚йѓOѓ‰ѓtѓBѓbѓNѓnѓ“ѓhѓ‹‚М“®‰ж‚рЌXђV‚·‚й
+		// г‚·г‚§гѓјгѓЂгѓјгЃ«г‚»гѓѓгѓ€гЃ•г‚ЊгЃ¦гЃ„г‚‹г‚°гѓ©гѓ•г‚Јгѓѓг‚ЇгѓЏгѓігѓ‰гѓ«гЃ®е‹•з”»г‚’ж›ґж–°гЃ™г‚‹
 		Graphics_DrawSetting_UpdateUserTextureMovie() ;
 	}
 #endif
 
-	// ѓgѓ‰ѓCѓAѓ“ѓOѓ‹ѓЉѓXѓgѓCѓ“ѓfѓbѓNѓX‚Мѓ`ѓFѓbѓN
+	// гѓ€гѓ©г‚¤г‚ўгѓіг‚°гѓ«гѓЄг‚№гѓ€г‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃ®гѓЃг‚§гѓѓг‚Ї
 	if( TriangleListIndex < 0 || TriangleListIndex >= ModelBase->TriangleListNum )
 		return -1 ;
 	TList = ( MV1_TRIANGLE_LIST * )( ( BYTE * )Model->TriangleList + TriangleListIndex * ( sizeof( MV1_TRIANGLE_LIST ) + sizeof( MV1_TRIANGLE_LIST_PF ) ) );
 	Mesh = TList->Container ;
 //	Frame = Mesh->Container ;
 
-	// ѓ}ѓeѓЉѓAѓ‹ЌXђVѓ`ѓFѓbѓN
+	// гѓћгѓ†гѓЄг‚ўгѓ«ж›ґж–°гѓЃг‚§гѓѓг‚Ї
 	MV1SETUPDRAWMATERIALMESH( Mesh ) ;
 
-	// ”с•\Ћ¦‚МЏкЌ‡‚Н‰Ѕ‚а‚µ‚И‚ў
+	// йќћиЎЁз¤єгЃ®е ґеђ€гЃЇдЅ•г‚‚гЃ—гЃЄгЃ„
 	if( Mesh->SetupDrawMaterial.Visible == 0 )
 		return 0 ;
 
-	// ‚R‚cЌs—с‚рѓnЃ[ѓhѓEѓGѓA‚Й”Ѕ‰f‚·‚й
+	// пј“пј¤иЎЊе€—г‚’гѓЏгѓјгѓ‰г‚¦г‚Ёг‚ўгЃ«еЏЌж гЃ™г‚‹
 	if( GSYS.DrawSetting.MatchHardware3DMatrix == FALSE )
 		Graphics_DrawSetting_ApplyLib3DMatrixToHardware( TRUE ) ;
 
-	// Ќs—с‚МѓZѓbѓgѓAѓbѓv
+	// иЎЊе€—гЃ®г‚»гѓѓгѓ€г‚ўгѓѓгѓ—
 	MV1SETUPMATRIX( Model ) ;
 
-	// ѓVѓFѓCѓvѓfЃ[ѓ^‚МѓZѓbѓgѓAѓbѓv
+	// г‚·г‚§г‚¤гѓ—гѓ‡гѓјг‚їгЃ®г‚»гѓѓгѓ€г‚ўгѓѓгѓ—
 	if( Model->BaseData->ShapeMeshNum != 0 )
 		MV1_SetupShapeVertex_PF( MHandle ) ;
 
-	// ѓЊѓ“ѓ_ѓЉѓ“ѓO‚МЏЂ”х
+	// гѓ¬гѓігѓЂгѓЄгѓіг‚°гЃ®жє–е‚™
 	MV1_BeginRender( Model ) ;
 
-	// ѓgѓ‰ѓCѓAѓ“ѓOѓ‹ѓЉѓXѓg‚М•`‰ж
+	// гѓ€гѓ©г‚¤г‚ўгѓіг‚°гѓ«гѓЄг‚№гѓ€гЃ®жЏЏз”»
 	MV1_DrawMesh_PF( Mesh, ( int )( ( int )( ( ( BYTE * )TList - ( BYTE * )Mesh->TriangleList ) ) / ( sizeof( MV1_TRIANGLE_LIST ) + sizeof( MV1_TRIANGLE_LIST_PF ) ) ) ) ;
 
-	// ѓЊѓ“ѓ_ѓЉѓ“ѓO‚МЊгЋn––
+	// гѓ¬гѓігѓЂгѓЄгѓіг‚°гЃ®еѕЊе§‹жњ«
 	MV1_EndRender() ;
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// ѓ‚ѓfѓ‹‚МѓfѓoѓbѓO•`‰ж
+// гѓўгѓ‡гѓ«гЃ®гѓ‡гѓђгѓѓг‚°жЏЏз”»
 extern int NS_MV1DrawModelDebug(
 	  int MHandle, unsigned int Color,
 	  int IsNormalLine, float NormalLineLength,
@@ -23809,23 +23809,23 @@ extern int NS_MV1DrawModelDebug(
 	int r, g, b ;
 	MATRIX Mat, OrigTransMat ;
 
-	// ѓAѓhѓЊѓXЋж“ѕ
+	// г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ—
 	if( MV1MDLCHK( MHandle, Model ) )
 		return -1 ;
 //	ModelBase = Model->BaseData ;
 
-	// •`‰ж‘Т‹@‚µ‚Д‚ў‚й•`‰ж•Ё‚р•`‰ж
+	// жЏЏз”»еѕ…ж©џгЃ—гЃ¦гЃ„г‚‹жЏЏз”»з‰©г‚’жЏЏз”»
 	DRAWSTOCKINFO
 
-	// ЊіЃXђЭ’и‚і‚к‚Д‚ў‚ЅѓЌЃ[ѓJѓ‹ЃЁѓЏЃ[ѓ‹ѓhЌs—с‚р•Ы‘¶‚µ‚Д’P€КЌs—с‚рѓZѓbѓg‚·‚й
+	// е…ѓгЂ…иЁ­е®љгЃ•г‚ЊгЃ¦гЃ„гЃџгѓ­гѓјг‚«гѓ«в†’гѓЇгѓјгѓ«гѓ‰иЎЊе€—г‚’дїќе­гЃ—гЃ¦еЌдЅЌиЎЊе€—г‚’г‚»гѓѓгѓ€гЃ™г‚‹
 	NS_GetTransformToWorldMatrix( &OrigTransMat ) ;
 	CreateIdentityMatrix( &Mat ) ;
 	NS_SetTransformToWorld( &Mat ) ;
 
-	// ђF‚М•Є‰р
+	// и‰ІгЃ®е€†и§Ј
 	NS_GetColor2( Color, &r, &g, &b ) ;
 
-	// ЋQЏЖ—pѓ|ѓЉѓSѓ“‚МЋж“ѕ
+	// еЏ‚з…§з”ЁгѓќгѓЄг‚ґгѓігЃ®еЏ–еѕ—
 	if( IsPolyLine && IsNormalLine == FALSE )
 	{
 		NS_MV1RefreshReferenceMesh( MHandle, -1, TRUE, TRUE, -1 ) ;
@@ -23837,7 +23837,7 @@ extern int NS_MV1DrawModelDebug(
 		PolyList = NS_MV1GetReferenceMesh( MHandle, -1, TRUE, FALSE, -1 ) ;
 	}
 
-	// –@ђьѓ‰ѓCѓ“‚М•`‰ж
+	// жі•з·љгѓ©г‚¤гѓігЃ®жЏЏз”»
 	if( IsNormalLine )
 	{
 		Poly = PolyList.Polygons ;
@@ -23879,7 +23879,7 @@ extern int NS_MV1DrawModelDebug(
 		}
 	}
 
-	// ѓ|ѓЉѓSѓ“ѓ‰ѓCѓ“‚М•`‰ж
+	// гѓќгѓЄг‚ґгѓігѓ©г‚¤гѓігЃ®жЏЏз”»
 	if( IsPolyLine )
 	{
 		Poly = PolyList.Polygons ;
@@ -23933,7 +23933,7 @@ extern int NS_MV1DrawModelDebug(
 		}
 	}
 
-	// ѓRѓЉѓWѓ‡ѓ“ѓ{ѓbѓNѓX‚М•`‰ж
+	// г‚ігѓЄг‚ёгѓ§гѓігѓњгѓѓг‚Їг‚№гЃ®жЏЏз”»
 	if( IsCollisionBox )
 	{
 		if( Model->Collision )
@@ -24046,10 +24046,10 @@ extern int NS_MV1DrawModelDebug(
 		}
 	}
 
-	// ЊіЃXђЭ’и‚і‚к‚Д‚ў‚ЅѓЏЃ[ѓ‹ѓhЃЁѓrѓ…Ѓ[ѓgѓ‰ѓ“ѓXѓtѓHЃ[ѓЂЌs—с‚рЊі‚Й–Я‚·
+	// е…ѓгЂ…иЁ­е®љгЃ•г‚ЊгЃ¦гЃ„гЃџгѓЇгѓјгѓ«гѓ‰в†’гѓ“гѓҐгѓјгѓ€гѓ©гѓіг‚№гѓ•г‚©гѓјгѓ иЎЊе€—г‚’е…ѓгЃ«ж€»гЃ™
 	NS_SetTransformToWorld( &OrigTransMat ) ;
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
@@ -24072,9 +24072,9 @@ extern int NS_MV1DrawModelDebug(
 
 
 
-// •`‰жђЭ’иЉЦЊW
+// жЏЏз”»иЁ­е®љй–ўдї‚
 
-// ѓ‚ѓfѓ‹‚М•`‰ж‚Й SetUseVertexShader, SetUsePixelShader ‚ЕЋw’и‚µ‚ЅѓVѓFЃ[ѓ_Ѓ[‚рЋg—p‚·‚й‚©‚З‚¤‚©‚рђЭ’и‚·‚й( TRUE:Ћg—p‚·‚й  FALSE:Ћg—p‚µ‚И‚ў( ѓfѓtѓHѓ‹ѓg ) )
+// гѓўгѓ‡гѓ«гЃ®жЏЏз”»гЃ« SetUseVertexShader, SetUsePixelShader гЃ§жЊ‡е®љгЃ—гЃџг‚·г‚§гѓјгѓЂгѓјг‚’дЅїз”ЁгЃ™г‚‹гЃ‹гЃ©гЃ†гЃ‹г‚’иЁ­е®љгЃ™г‚‹( TRUE:дЅїз”ЁгЃ™г‚‹  FALSE:дЅїз”ЁгЃ—гЃЄгЃ„( гѓ‡гѓ•г‚©гѓ«гѓ€ ) )
 extern int NS_MV1SetUseOrigShader( int UseFlag )
 {
 	if( MV1Man.UseOrigShaderFlag == UseFlag )
@@ -24082,49 +24082,49 @@ extern int NS_MV1SetUseOrigShader( int UseFlag )
 		return 0 ;
 	}
 
-	// •`‰ж‘Т‹@‚µ‚Д‚ў‚й•`‰ж•Ё‚р•`‰ж
+	// жЏЏз”»еѕ…ж©џгЃ—гЃ¦гЃ„г‚‹жЏЏз”»з‰©г‚’жЏЏз”»
 	DRAWSTOCKINFO
 
-	// ѓtѓ‰ѓO‚р•Ы‘¶‚·‚й
+	// гѓ•гѓ©г‚°г‚’дїќе­гЃ™г‚‹
 	MV1Man.UseOrigShaderFlag = UseFlag ;
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// ѓ‚ѓfѓ‹‚М•`‰жѓ‚Ѓ[ѓh‚МђЭ’и
-extern int NS_MV1SetDrawMode( int DrawMode /* DX_MV1_DRAWMODE_NORMAL “™ */ )
+// гѓўгѓ‡гѓ«гЃ®жЏЏз”»гѓўгѓјгѓ‰гЃ®иЁ­е®љ
+extern int NS_MV1SetDrawMode( int DrawMode /* DX_MV1_DRAWMODE_NORMAL з­‰ */ )
 {
 	if( MV1Man.DrawMode == DrawMode )
 	{
 		return 0 ;
 	}
 
-	// •`‰ж‘Т‹@‚µ‚Д‚ў‚й•`‰ж•Ё‚р•`‰ж
+	// жЏЏз”»еѕ…ж©џгЃ—гЃ¦гЃ„г‚‹жЏЏз”»з‰©г‚’жЏЏз”»
 	DRAWSTOCKINFO
 
-	// •`‰жѓ‚Ѓ[ѓh‚р•Ы‘¶‚·‚й
+	// жЏЏз”»гѓўгѓјгѓ‰г‚’дїќе­гЃ™г‚‹
 	MV1Man.DrawMode = DrawMode ;
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// ѓ‚ѓfѓ‹‚М”ј“§–ѕ—v‘f‚Є‚ ‚й•”•Є‚Й‚В‚ў‚Д‚М•`‰жѓ‚Ѓ[ѓh‚рђЭ’и‚·‚й
-extern int NS_MV1SetSemiTransDrawMode( int DrawMode /* DX_SEMITRANSDRAWMODE_ALWAYS “™ */ )
+// гѓўгѓ‡гѓ«гЃ®еЌЉйЂЏжЋи¦Ѓзґ гЃЊгЃ‚г‚‹йѓЁе€†гЃ«гЃ¤гЃ„гЃ¦гЃ®жЏЏз”»гѓўгѓјгѓ‰г‚’иЁ­е®љгЃ™г‚‹
+extern int NS_MV1SetSemiTransDrawMode( int DrawMode /* DX_SEMITRANSDRAWMODE_ALWAYS з­‰ */ )
 {
 	if( MV1Man.SemiTransDrawMode == DrawMode )
 	{
 		return 0 ;
 	}
 
-	// •`‰ж‘Т‹@‚µ‚Д‚ў‚й•`‰ж•Ё‚р•`‰ж
+	// жЏЏз”»еѕ…ж©џгЃ—гЃ¦гЃ„г‚‹жЏЏз”»з‰©г‚’жЏЏз”»
 	DRAWSTOCKINFO
 
-	// •`‰жѓ‚Ѓ[ѓh‚р•Ы‘¶‚·‚й
+	// жЏЏз”»гѓўгѓјгѓ‰г‚’дїќе­гЃ™г‚‹
 	MV1Man.SemiTransDrawMode = DrawMode ;
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
@@ -24149,86 +24149,86 @@ extern int NS_MV1SetSemiTransDrawMode( int DrawMode /* DX_SEMITRANSDRAWMODE_ALWA
 
 
 
-// ѓAѓ^ѓbѓ`‚µ‚Д‚ў‚йѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚МЌДђ¶ЋћЉФ‚рђЭ’и‚·‚й
+// г‚ўг‚їгѓѓгѓЃгЃ—гЃ¦гЃ„г‚‹г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігЃ®е†Ќз”џж™‚й–“г‚’иЁ­е®љгЃ™г‚‹
 extern int NS_MV1SetAttachAnimTime( int MHandle, int AttachIndex, float Time )
 {
 	MV1_MODEL *Model ;
 	MV1_ANIMSET *AnimSet ;
 
-	// Џ‰Љъ‰»‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// е€ќжњџеЊ–гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( MV1Man.Initialize == false ) return -1 ;
 
-	// ѓAѓhѓЊѓXЋж“ѕ
+	// г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ—
 	if( MV1MDLCHK( MHandle, Model ) )
 		return -1 ;
 
-	// Љm•Ы‚µ‚Д‚ў‚йѓAѓ^ѓbѓ`ѓCѓ“ѓfѓbѓNѓXЉO‚ѕ‚Б‚ЅЏкЌ‡‚Н‰Ѕ‚а‚№‚ё‚ЙЏI—№
+	// зўєдїќгЃ—гЃ¦гЃ„г‚‹г‚ўг‚їгѓѓгѓЃг‚¤гѓігѓ‡гѓѓг‚Їг‚№е¤–гЃ гЃЈгЃџе ґеђ€гЃЇдЅ•г‚‚гЃ›гЃљгЃ«зµ‚дє†
 	if( AttachIndex < 0 || AttachIndex >= Model->AnimSetMaxNum ) return -1 ;
 
-	// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚ЄѓAѓ^ѓbѓ`‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚з‰Ѕ‚а‚№‚ё‚ЙЏI—№
+	// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігЃЊг‚ўг‚їгѓѓгѓЃгЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰дЅ•г‚‚гЃ›гЃљгЃ«зµ‚дє†
 	if( Model->AnimSet[ AttachIndex ].Use == false ) return -1 ;
 	AnimSet = Model->AnimSet[ AttachIndex ].AnimSet ;
 
-	// ѓpѓ‰ѓЃЃ[ѓ^‚МѓZѓbѓgѓAѓbѓvѓtѓ‰ѓO‚р“|‚·
+	// гѓ‘гѓ©гѓЎгѓјг‚їгЃ®г‚»гѓѓгѓ€г‚ўгѓѓгѓ—гѓ•гѓ©г‚°г‚’еЂ’гЃ™
 	AnimSet->ParamSetup = false ;
 
-	// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“ѓpѓ‰ѓЃЃ[ѓ^‚рЊі‚Й‚µ‚ЅЌs—с‚ЄѓZѓbѓgѓAѓbѓv‚і‚к‚Д‚ў‚И‚ўЏу‘Ф‚Й‚·‚й
+	// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігѓ‘гѓ©гѓЎгѓјг‚їг‚’е…ѓгЃ«гЃ—гЃџиЎЊе€—гЃЊг‚»гѓѓгѓ€г‚ўгѓѓгѓ—гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ„зЉ¶ж…‹гЃ«гЃ™г‚‹
 	Model->AnimSetupFlag = false ;
 	Model->LocalWorldMatrixSetupFlag = false ;
 
-	// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚МЋћЉФ‚рѓZѓbѓg‚·‚й
+	// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігЃ®ж™‚й–“г‚’г‚»гѓѓгѓ€гЃ™г‚‹
 	MV1SetAnimSetTime( Model, AttachIndex, AnimSet, Time ) ;
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// ѓAѓ^ѓbѓ`‚µ‚Д‚ў‚йѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚МЌДђ¶ЋћЉФ‚рЋж“ѕ‚·‚й
+// г‚ўг‚їгѓѓгѓЃгЃ—гЃ¦гЃ„г‚‹г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігЃ®е†Ќз”џж™‚й–“г‚’еЏ–еѕ—гЃ™г‚‹
 extern float NS_MV1GetAttachAnimTime( int MHandle, int AttachIndex )
 {
 	MV1_MODEL *Model ;
 
-	// Џ‰Љъ‰»‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// е€ќжњџеЊ–гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( MV1Man.Initialize == false ) return -1.0f ;
 
-	// ѓAѓhѓЊѓXЋж“ѕ
+	// г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ—
 	if( MV1MDLCHK( MHandle, Model ) )
 		return -1.0f ;
 
-	// Љm•Ы‚µ‚Д‚ў‚йѓAѓ^ѓbѓ`ѓCѓ“ѓfѓbѓNѓXЉO‚ѕ‚Б‚ЅЏкЌ‡‚Н‰Ѕ‚а‚№‚ё‚ЙЏI—№
+	// зўєдїќгЃ—гЃ¦гЃ„г‚‹г‚ўг‚їгѓѓгѓЃг‚¤гѓігѓ‡гѓѓг‚Їг‚№е¤–гЃ гЃЈгЃџе ґеђ€гЃЇдЅ•г‚‚гЃ›гЃљгЃ«зµ‚дє†
 	if( AttachIndex < 0 || AttachIndex >= Model->AnimSetMaxNum ) return -1.0f ;
 
-	// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚ЄѓAѓ^ѓbѓ`‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚з‰Ѕ‚а‚№‚ё‚ЙЏI—№
+	// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігЃЊг‚ўг‚їгѓѓгѓЃгЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰дЅ•г‚‚гЃ›гЃљгЃ«зµ‚дє†
 	if( Model->AnimSet[ AttachIndex ].Use == false ) return -1.0f ;
 
-	// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚МЋћЉФ‚р•Ф‚·
+	// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігЃ®ж™‚й–“г‚’иї”гЃ™
 	return Model->AnimSet[ AttachIndex ].AnimSet->NowTime ;
 }
 
-// ѓAѓ^ѓbѓ`‚µ‚Д‚ў‚йѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚М‘ЌЋћЉФ‚р“ѕ‚й
+// г‚ўг‚їгѓѓгѓЃгЃ—гЃ¦гЃ„г‚‹г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігЃ®з·Џж™‚й–“г‚’еѕ—г‚‹
 extern float NS_MV1GetAttachAnimTotalTime( int MHandle, int AttachIndex )
 {
 	MV1_MODEL *Model ;
 
-	// Џ‰Љъ‰»‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// е€ќжњџеЊ–гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( MV1Man.Initialize == false ) return -1.0f ;
 
-	// ѓAѓhѓЊѓXЋж“ѕ
+	// г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ—
 	if( MV1MDLCHK( MHandle, Model ) )
 		return -1.0f ;
 
-	// Љm•Ы‚µ‚Д‚ў‚йѓAѓ^ѓbѓ`ѓCѓ“ѓfѓbѓNѓXЉO‚ѕ‚Б‚ЅЏкЌ‡‚Н‰Ѕ‚а‚№‚ё‚ЙЏI—№
+	// зўєдїќгЃ—гЃ¦гЃ„г‚‹г‚ўг‚їгѓѓгѓЃг‚¤гѓігѓ‡гѓѓг‚Їг‚№е¤–гЃ гЃЈгЃџе ґеђ€гЃЇдЅ•г‚‚гЃ›гЃљгЃ«зµ‚дє†
 	if( AttachIndex < 0 || AttachIndex >= Model->AnimSetMaxNum ) return -1.0f ;
 
-	// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚ЄѓAѓ^ѓbѓ`‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚з‰Ѕ‚а‚№‚ё‚ЙЏI—№
+	// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігЃЊг‚ўг‚їгѓѓгѓЃгЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰дЅ•г‚‚гЃ›гЃљгЃ«зµ‚дє†
 	if( Model->AnimSet[ AttachIndex ].Use == false ) return -1.0f ;
 
-	// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚М‘ЌЋћЉФ‚р•Ф‚·
+	// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігЃ®з·Џж™‚й–“г‚’иї”гЃ™
 	return Model->AnimSet[ AttachIndex ].AnimSet->BaseData->MaxTime ;
 }
 
 
-// ѓAѓ^ѓbѓ`‚µ‚Д‚ў‚йѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚МѓuѓЊѓ“ѓh—¦‚рђЭ’и‚·‚й
+// г‚ўг‚їгѓѓгѓЃгЃ—гЃ¦гЃ„г‚‹г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігЃ®гѓ–гѓ¬гѓігѓ‰зЋ‡г‚’иЁ­е®љгЃ™г‚‹
 extern int NS_MV1SetAttachAnimBlendRate( int MHandle, int AttachIndex, float Rate )
 {
 	MV1_MODEL *Model ;
@@ -24237,24 +24237,24 @@ extern int NS_MV1SetAttachAnimBlendRate( int MHandle, int AttachIndex, float Rat
 	MV1_FRAME *Frame ;
 	int i, FrameNum ;
 
-	// Џ‰Љъ‰»‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// е€ќжњџеЊ–гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( MV1Man.Initialize == false ) return -1 ;
 
-	// ѓAѓhѓЊѓXЋж“ѕ
+	// г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ—
 	if( MV1MDLCHK( MHandle, Model ) )
 		return -1 ;
 
-	// Љm•Ы‚µ‚Д‚ў‚йѓAѓ^ѓbѓ`ѓCѓ“ѓfѓbѓNѓXЉO‚ѕ‚Б‚ЅЏкЌ‡‚Н‰Ѕ‚а‚№‚ё‚ЙЏI—№
+	// зўєдїќгЃ—гЃ¦гЃ„г‚‹г‚ўг‚їгѓѓгѓЃг‚¤гѓігѓ‡гѓѓг‚Їг‚№е¤–гЃ гЃЈгЃџе ґеђ€гЃЇдЅ•г‚‚гЃ›гЃљгЃ«зµ‚дє†
 	if( AttachIndex < 0 || AttachIndex >= Model->AnimSetMaxNum ) return -1 ;
 
-	// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚ЄѓAѓ^ѓbѓ`‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚з‰Ѕ‚а‚№‚ё‚ЙЏI—№
+	// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігЃЊг‚ўг‚їгѓѓгѓЃгЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰дЅ•г‚‚гЃ›гЃљгЃ«зµ‚дє†
 	if( Model->AnimSet[ AttachIndex ].Use == false ) return -1 ;
 //	MAnimSet = &Model->AnimSet[ AttachIndex ] ;
 
-	// ѓuѓЊѓ“ѓhѓЊЃ[ѓg‚ЄЌЎ‚Ь‚Е‚Ж“Ї‚¶ЏкЌ‡‚Н‰Ѕ‚а‚№‚ё‚ЙЏI—№
+	// гѓ–гѓ¬гѓігѓ‰гѓ¬гѓјгѓ€гЃЊд»ЉгЃѕгЃ§гЃЁеђЊгЃе ґеђ€гЃЇдЅ•г‚‚гЃ›гЃљгЃ«зµ‚дє†
 //	if( *( ( DWORD * )&Model->AnimSet[ AttachIndex ].BlendRate ) == *( ( DWORD * )&Rate ) ) return 0 ;
 
-	// ѓuѓЊѓ“ѓhѓЊЃ[ѓg‚р•ПЌX‚·‚й
+	// гѓ–гѓ¬гѓігѓ‰гѓ¬гѓјгѓ€г‚’е¤‰ж›ґгЃ™г‚‹
 	FrameNum = Model->BaseData->FrameNum ;
 	MAnim = &Model->Anim[ AttachIndex ] ;
 	for( i = 0 ; i < FrameNum ; i ++, MAnim += Model->AnimSetMaxNum )
@@ -24262,13 +24262,13 @@ extern int NS_MV1SetAttachAnimBlendRate( int MHandle, int AttachIndex, float Rat
 		MAnim->BlendRate = Rate ;
 	}
 
-	// Ќs—с‚М‘SЌXђV
+	// иЎЊе€—гЃ®е…Ёж›ґж–°
 	_MEMSET( Model->ChangeMatrixFlag, 0xff, Model->ChangeMatrixFlagSize ) ;
 
-	// Ќs—с‚МЌXђV‚ЄЌП‚с‚Е‚ў‚йѓtѓ‰ѓO‚р“|‚·
+	// иЎЊе€—гЃ®ж›ґж–°гЃЊжё€г‚“гЃ§гЃ„г‚‹гѓ•гѓ©г‚°г‚’еЂ’гЃ™
 	Model->LocalWorldMatrixSetupFlag = false ;
 
-	// ѓVѓFѓCѓv‚МЏу‘Ф‚Й•П‰»‚Є‚ ‚Б‚Ѕѓtѓ‰ѓO‚р—§‚Д‚й
+	// г‚·г‚§г‚¤гѓ—гЃ®зЉ¶ж…‹гЃ«е¤‰еЊ–гЃЊгЃ‚гЃЈгЃџгѓ•гѓ©г‚°г‚’з«‹гЃ¦г‚‹
 	Model->ShapeChangeFlag = true ;
 	Frame = Model->Frame ;
 	for( i = 0 ; i < FrameNum ; i ++, Frame ++ )
@@ -24279,33 +24279,33 @@ extern int NS_MV1SetAttachAnimBlendRate( int MHandle, int AttachIndex, float Rat
 		Frame->ShapeChangeFlag = true ;
 	}
 
-	// ђіЏнЏI—№
+	// ж­Јеёёзµ‚дє†
 	return 0 ;
 }
 
-// ѓAѓ^ѓbѓ`‚µ‚Д‚ў‚йѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚МѓuѓЊѓ“ѓh—¦‚рЋж“ѕ‚·‚й
+// г‚ўг‚їгѓѓгѓЃгЃ—гЃ¦гЃ„г‚‹г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігЃ®гѓ–гѓ¬гѓігѓ‰зЋ‡г‚’еЏ–еѕ—гЃ™г‚‹
 extern float NS_MV1GetAttachAnimBlendRate( int MHandle, int AttachIndex )
 {
 	MV1_MODEL *Model ;
 
-	// Џ‰Љъ‰»‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// е€ќжњџеЊ–гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( MV1Man.Initialize == false ) return -1.0f ;
 
-	// ѓAѓhѓЊѓXЋж“ѕ
+	// г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ—
 	if( MV1MDLCHK( MHandle, Model ) )
 		return -1.0f ;
 
-	// Љm•Ы‚µ‚Д‚ў‚йѓAѓ^ѓbѓ`ѓCѓ“ѓfѓbѓNѓXЉO‚ѕ‚Б‚ЅЏкЌ‡‚Н‰Ѕ‚а‚№‚ё‚ЙЏI—№
+	// зўєдїќгЃ—гЃ¦гЃ„г‚‹г‚ўг‚їгѓѓгѓЃг‚¤гѓігѓ‡гѓѓг‚Їг‚№е¤–гЃ гЃЈгЃџе ґеђ€гЃЇдЅ•г‚‚гЃ›гЃљгЃ«зµ‚дє†
 	if( AttachIndex < 0 || AttachIndex >= Model->AnimSetMaxNum ) return -1.0f ;
 
-	// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚ЄѓAѓ^ѓbѓ`‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚з‰Ѕ‚а‚№‚ё‚ЙЏI—№
+	// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігЃЊг‚ўг‚їгѓѓгѓЃгЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰дЅ•г‚‚гЃ›гЃљгЃ«зµ‚дє†
 	if( Model->AnimSet[ AttachIndex ].Use == false ) return -1.0f ;
 
-	// ѓuѓЊѓ“ѓhѓЊЃ[ѓg‚р•Ф‚·
+	// гѓ–гѓ¬гѓігѓ‰гѓ¬гѓјгѓ€г‚’иї”гЃ™
 	return Model->Anim[ AttachIndex ].BlendRate ;
 }
 
-// ѓAѓ^ѓbѓ`‚µ‚Д‚ў‚йѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚МѓuѓЊѓ“ѓh—¦‚рђЭ’и‚·‚й( ѓtѓЊЃ[ѓЂ’P€К )
+// г‚ўг‚їгѓѓгѓЃгЃ—гЃ¦гЃ„г‚‹г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігЃ®гѓ–гѓ¬гѓігѓ‰зЋ‡г‚’иЁ­е®љгЃ™г‚‹( гѓ•гѓ¬гѓјгѓ еЌдЅЌ )
 extern int NS_MV1SetAttachAnimBlendRateToFrame( int MHandle, int AttachIndex, int FrameIndex, float Rate, int SetChild )
 {
 	MV1_MODEL *Model ;
@@ -24313,31 +24313,31 @@ extern int NS_MV1SetAttachAnimBlendRateToFrame( int MHandle, int AttachIndex, in
 	MV1_FRAME *Frame ;
 	int i ;
 
-	// Џ‰Љъ‰»‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// е€ќжњџеЊ–гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( MV1Man.Initialize == false ) return -1 ;
 
-	// ѓAѓhѓЊѓXЋж“ѕ
+	// г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ—
 	if( MV1MDLCHK( MHandle, Model ) )
 		return -1 ;
 
-	// Љm•Ы‚µ‚Д‚ў‚йѓAѓ^ѓbѓ`ѓCѓ“ѓfѓbѓNѓXЉO‚ѕ‚Б‚ЅЏкЌ‡‚Н‰Ѕ‚а‚№‚ё‚ЙЏI—№
+	// зўєдїќгЃ—гЃ¦гЃ„г‚‹г‚ўг‚їгѓѓгѓЃг‚¤гѓігѓ‡гѓѓг‚Їг‚№е¤–гЃ гЃЈгЃџе ґеђ€гЃЇдЅ•г‚‚гЃ›гЃљгЃ«зµ‚дє†
 	if( AttachIndex < 0 || AttachIndex >= Model->AnimSetMaxNum ) return -1 ;
 
-	// ѓtѓЊЃ[ѓЂѓCѓ“ѓfѓbѓNѓX‚Є•sђі‚ѕ‚Б‚Ѕ‚з‰Ѕ‚а‚№‚ё‚ЙЏI—№
+	// гѓ•гѓ¬гѓјгѓ г‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃЊдёЌж­ЈгЃ гЃЈгЃџг‚‰дЅ•г‚‚гЃ›гЃљгЃ«зµ‚дє†
 	if( FrameIndex < 0 || FrameIndex >= Model->BaseData->FrameNum ) return -1 ;
 	Frame = &Model->Frame[ FrameIndex ] ;
 	MAnim = &Model->Anim[ AttachIndex ] + Model->AnimSetMaxNum * FrameIndex ;
 
-	// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚ЄѓAѓ^ѓbѓ`‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚з‰Ѕ‚а‚№‚ё‚ЙЏI—№
+	// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігЃЊг‚ўг‚їгѓѓгѓЃгЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰дЅ•г‚‚гЃ›гЃљгЃ«зµ‚дє†
 	if( Model->AnimSet[ AttachIndex ].Use == false ) return -1 ;
 
-	// ѓuѓЊѓ“ѓhѓЊЃ[ѓg‚ЄЌЎ‚Ь‚Е‚Ж“Ї‚¶ЏкЌ‡‚Н‰Ѕ‚а‚№‚ё‚ЙЏI—№
+	// гѓ–гѓ¬гѓігѓ‰гѓ¬гѓјгѓ€гЃЊд»ЉгЃѕгЃ§гЃЁеђЊгЃе ґеђ€гЃЇдЅ•г‚‚гЃ›гЃљгЃ«зµ‚дє†
 	if( *( ( DWORD * )&MAnim->BlendRate ) == *( ( DWORD * )&Rate ) ) return 0 ;
 
-	// ѓuѓЊѓ“ѓhѓЊЃ[ѓg‚р•ПЌX‚·‚й
+	// гѓ–гѓ¬гѓігѓ‰гѓ¬гѓјгѓ€г‚’е¤‰ж›ґгЃ™г‚‹
 	MAnim->BlendRate = Rate ;
 
-	// ЋqѓtѓЊЃ[ѓЂ‚аѓZѓbѓg‚·‚йЋw’и‚Є‚ ‚Б‚ЅЏкЌ‡‚НЋqѓtѓЊЃ[ѓЂ‚аѓZѓbѓg‚·‚й
+	// е­ђгѓ•гѓ¬гѓјгѓ г‚‚г‚»гѓѓгѓ€гЃ™г‚‹жЊ‡е®љгЃЊгЃ‚гЃЈгЃџе ґеђ€гЃЇе­ђгѓ•гѓ¬гѓјгѓ г‚‚г‚»гѓѓгѓ€гЃ™г‚‹
 	if( SetChild )
 	{
 		MV1_MODEL_ANIM *MAnim2 ;
@@ -24347,42 +24347,42 @@ extern int NS_MV1SetAttachAnimBlendRateToFrame( int MHandle, int AttachIndex, in
 			MAnim2->BlendRate = Rate ;
 	}
 
-	// Ќs—с‚ЄѓZѓbѓgѓAѓbѓv‚і‚к‚Д‚ў‚И‚ўЏу‘Ф‚Й‚·‚й
+	// иЎЊе€—гЃЊг‚»гѓѓгѓ€г‚ўгѓѓгѓ—гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ„зЉ¶ж…‹гЃ«гЃ™г‚‹
 	Model->LocalWorldMatrixSetupFlag = false ;
 	MV1BitSetChange( &Model->Frame[ FrameIndex ].LocalWorldMatrixChange ) ;
 
-	// ђіЏнЏI—№
+	// ж­Јеёёзµ‚дє†
 	return 0 ;
 }
 
-// ѓAѓ^ѓbѓ`‚µ‚Д‚ў‚йѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚МѓuѓЊѓ“ѓh—¦‚рЋж“ѕ‚·‚й( ѓtѓЊЃ[ѓЂ’P€К )
+// г‚ўг‚їгѓѓгѓЃгЃ—гЃ¦гЃ„г‚‹г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігЃ®гѓ–гѓ¬гѓігѓ‰зЋ‡г‚’еЏ–еѕ—гЃ™г‚‹( гѓ•гѓ¬гѓјгѓ еЌдЅЌ )
 extern float NS_MV1GetAttachAnimBlendRateToFrame( int MHandle, int AttachIndex, int FrameIndex )
 {
 	MV1_MODEL *Model ;
 	MV1_MODEL_ANIM *MAnim ;
 
-	// Џ‰Љъ‰»‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// е€ќжњџеЊ–гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( MV1Man.Initialize == false ) return -1.0f ;
 
-	// ѓAѓhѓЊѓXЋж“ѕ
+	// г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ—
 	if( MV1MDLCHK( MHandle, Model ) )
 		return -1.0f ;
 
-	// Љm•Ы‚µ‚Д‚ў‚йѓAѓ^ѓbѓ`ѓCѓ“ѓfѓbѓNѓXЉO‚ѕ‚Б‚ЅЏкЌ‡‚Н‰Ѕ‚а‚№‚ё‚ЙЏI—№
+	// зўєдїќгЃ—гЃ¦гЃ„г‚‹г‚ўг‚їгѓѓгѓЃг‚¤гѓігѓ‡гѓѓг‚Їг‚№е¤–гЃ гЃЈгЃџе ґеђ€гЃЇдЅ•г‚‚гЃ›гЃљгЃ«зµ‚дє†
 	if( AttachIndex < 0 || AttachIndex >= Model->AnimSetMaxNum ) return -1.0f ;
 
-	// ѓtѓЊЃ[ѓЂѓCѓ“ѓfѓbѓNѓX‚Є•sђі‚ѕ‚Б‚Ѕ‚з‰Ѕ‚а‚№‚ё‚ЙЏI—№
+	// гѓ•гѓ¬гѓјгѓ г‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃЊдёЌж­ЈгЃ гЃЈгЃџг‚‰дЅ•г‚‚гЃ›гЃљгЃ«зµ‚дє†
 	if( FrameIndex < 0 || FrameIndex >= Model->BaseData->FrameNum ) return -1.0f ;
 	MAnim = &Model->Anim[ AttachIndex ] + Model->AnimSetMaxNum * FrameIndex ;
 
-	// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚ЄѓAѓ^ѓbѓ`‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚з‰Ѕ‚а‚№‚ё‚ЙЏI—№
+	// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігЃЊг‚ўг‚їгѓѓгѓЃгЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰дЅ•г‚‚гЃ›гЃљгЃ«зµ‚дє†
 	if( Model->AnimSet[ AttachIndex ].Use == false ) return -1.0f ;
 
-	// ѓuѓЊѓ“ѓhѓЊЃ[ѓg‚р•Ф‚·
+	// гѓ–гѓ¬гѓігѓ‰гѓ¬гѓјгѓ€г‚’иї”гЃ™
 	return MAnim->BlendRate ;
 }
 
-// ѓAѓ^ѓbѓ`‚µ‚Д‚ў‚йѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚МЌДђ¶ЋћЉФ‚рђЭ’и‚·‚й( ѓtѓЊЃ[ѓЂ’P€К )
+// г‚ўг‚їгѓѓгѓЃгЃ—гЃ¦гЃ„г‚‹г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігЃ®е†Ќз”џж™‚й–“г‚’иЁ­е®љгЃ™г‚‹( гѓ•гѓ¬гѓјгѓ еЌдЅЌ )
 extern int NS_MV1SetAttachAnimTimeToFrame( int MHandle, int AttachIndex, int FrameIndex, float Time, int SetChild )
 {
 	MV1_MODEL *Model ;
@@ -24391,28 +24391,28 @@ extern int NS_MV1SetAttachAnimTimeToFrame( int MHandle, int AttachIndex, int Fra
 	bool Change = false ;
 	int i ;
 
-	// Џ‰Љъ‰»‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// е€ќжњџеЊ–гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( MV1Man.Initialize == false ) return -1 ;
 
-	// ѓAѓhѓЊѓXЋж“ѕ
+	// г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ—
 	if( MV1MDLCHK( MHandle, Model ) )
 		return -1 ;
 
-	// Љm•Ы‚µ‚Д‚ў‚йѓAѓ^ѓbѓ`ѓCѓ“ѓfѓbѓNѓXЉO‚ѕ‚Б‚ЅЏкЌ‡‚Н‰Ѕ‚а‚№‚ё‚ЙЏI—№
+	// зўєдїќгЃ—гЃ¦гЃ„г‚‹г‚ўг‚їгѓѓгѓЃг‚¤гѓігѓ‡гѓѓг‚Їг‚№е¤–гЃ гЃЈгЃџе ґеђ€гЃЇдЅ•г‚‚гЃ›гЃљгЃ«зµ‚дє†
 	if( AttachIndex < 0 || AttachIndex >= Model->AnimSetMaxNum ) return -1 ;
 
-	// ѓtѓЊЃ[ѓЂѓCѓ“ѓfѓbѓNѓX‚Є•sђі‚ѕ‚Б‚Ѕ‚з‰Ѕ‚а‚№‚ё‚ЙЏI—№
+	// гѓ•гѓ¬гѓјгѓ г‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃЊдёЌж­ЈгЃ гЃЈгЃџг‚‰дЅ•г‚‚гЃ›гЃљгЃ«зµ‚дє†
 	if( FrameIndex < 0 || FrameIndex >= Model->BaseData->FrameNum ) return -1 ;
 	Frame = &Model->Frame[ FrameIndex ] ;
 	MAnim = &Model->Anim[ AttachIndex ] + Model->AnimSetMaxNum * FrameIndex ;
 
-	// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚ЄѓAѓ^ѓbѓ`‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚з‰Ѕ‚а‚№‚ё‚ЙЏI—№
+	// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігЃЊг‚ўг‚їгѓѓгѓЃгЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰дЅ•г‚‚гЃ›гЃљгЃ«зµ‚дє†
 	if( Model->AnimSet[ AttachIndex ].Use == false ) return -1 ;
 
-	// ЋћЉФ‚Єѓ}ѓCѓiѓX‚©‚З‚¤‚©‚ЕЏ€—ќ‚р•ЄЉт
+	// ж™‚й–“гЃЊгѓћг‚¤гѓЉг‚№гЃ‹гЃ©гЃ†гЃ‹гЃ§е‡¦зђ†г‚’е€†еІђ
 	if( Time < 0.0f )
 	{
-		// ‰рЏњЏ€—ќ
+		// и§Јй™¤е‡¦зђ†
 		if( MAnim->EnableNowTime )
 		{
 			Change = true ;
@@ -24436,7 +24436,7 @@ extern int NS_MV1SetAttachAnimTimeToFrame( int MHandle, int AttachIndex, int Fra
 	}
 	else
 	{
-		// ’lѓZѓbѓgЏ€—ќ
+		// еЂ¤г‚»гѓѓгѓ€е‡¦зђ†
 		if( MAnim->EnableNowTime )
 		{
 			if( MAnim->NowTime != Time )
@@ -24479,66 +24479,66 @@ extern int NS_MV1SetAttachAnimTimeToFrame( int MHandle, int AttachIndex, int Fra
 
 	if( Change )
 	{
-		// ‘е‘М‚М€К’u‚рѓZѓbѓg‚·‚й
+		// е¤§дЅ“гЃ®дЅЌзЅ®г‚’г‚»гѓѓгѓ€гЃ™г‚‹
 		_MV1AnimSetSyncNowKey( Model, AttachIndex, Model->AnimSet[ AttachIndex ].AnimSet, true ) ;
 	}
 
-	// ђіЏнЏI—№
+	// ж­Јеёёзµ‚дє†
 	return 0 ;
 }
 
-// ѓAѓ^ѓbѓ`‚µ‚Д‚ў‚йѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚МЌДђ¶ЋћЉФ‚рЋж“ѕ‚·‚й( ѓtѓЊЃ[ѓЂ’P€К )
+// г‚ўг‚їгѓѓгѓЃгЃ—гЃ¦гЃ„г‚‹г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігЃ®е†Ќз”џж™‚й–“г‚’еЏ–еѕ—гЃ™г‚‹( гѓ•гѓ¬гѓјгѓ еЌдЅЌ )
 extern float NS_MV1GetAttachAnimTimeToFrame( int MHandle, int AttachIndex, int FrameIndex )
 {
 	MV1_MODEL *Model ;
 	MV1_MODEL_ANIM *MAnim ;
 
-	// Џ‰Љъ‰»‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// е€ќжњџеЊ–гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( MV1Man.Initialize == false ) return -1.0f ;
 
-	// ѓAѓhѓЊѓXЋж“ѕ
+	// г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ—
 	if( MV1MDLCHK( MHandle, Model ) )
 		return -1.0f ;
 
-	// Љm•Ы‚µ‚Д‚ў‚йѓAѓ^ѓbѓ`ѓCѓ“ѓfѓbѓNѓXЉO‚ѕ‚Б‚ЅЏкЌ‡‚Н‰Ѕ‚а‚№‚ё‚ЙЏI—№
+	// зўєдїќгЃ—гЃ¦гЃ„г‚‹г‚ўг‚їгѓѓгѓЃг‚¤гѓігѓ‡гѓѓг‚Їг‚№е¤–гЃ гЃЈгЃџе ґеђ€гЃЇдЅ•г‚‚гЃ›гЃљгЃ«зµ‚дє†
 	if( AttachIndex < 0 || AttachIndex >= Model->AnimSetMaxNum ) return -1.0f ;
 
-	// ѓtѓЊЃ[ѓЂѓCѓ“ѓfѓbѓNѓX‚Є•sђі‚ѕ‚Б‚Ѕ‚з‰Ѕ‚а‚№‚ё‚ЙЏI—№
+	// гѓ•гѓ¬гѓјгѓ г‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃЊдёЌж­ЈгЃ гЃЈгЃџг‚‰дЅ•г‚‚гЃ›гЃљгЃ«зµ‚дє†
 	if( FrameIndex < 0 || FrameIndex >= Model->BaseData->FrameNum ) return -1.0f ;
 	MAnim = &Model->Anim[ AttachIndex ] + Model->AnimSetMaxNum * FrameIndex ;
 
-	// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚ЄѓAѓ^ѓbѓ`‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚з‰Ѕ‚а‚№‚ё‚ЙЏI—№
+	// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігЃЊг‚ўг‚їгѓѓгѓЃгЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰дЅ•г‚‚гЃ›гЃљгЃ«зµ‚дє†
 	if( Model->AnimSet[ AttachIndex ].Use == false ) return -1.0f ;
 
-	// ЌДђ¶ЋћЉФ‚р•Ф‚·
+	// е†Ќз”џж™‚й–“г‚’иї”гЃ™
 	return MAnim->EnableNowTime ? MAnim->NowTime : Model->AnimSet[ AttachIndex ].AnimSet->NowTime ;
 }
 
-// ѓAѓ^ѓbѓ`‚µ‚Д‚ў‚йѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚Єѓ^Ѓ[ѓQѓbѓg‚Ж‚·‚йѓtѓЊЃ[ѓЂ‚Мђ”‚рЋж“ѕ‚·‚й
+// г‚ўг‚їгѓѓгѓЃгЃ—гЃ¦гЃ„г‚‹г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігЃЊг‚їгѓјг‚Ігѓѓгѓ€гЃЁгЃ™г‚‹гѓ•гѓ¬гѓјгѓ гЃ®ж•°г‚’еЏ–еѕ—гЃ™г‚‹
 extern int MV1GetAttachAnimTargetFrameNum( int MHandle, int AttachIndex )
 {
 	MV1_MODEL *Model ;
 	MV1_MODEL_ANIMSET *MAnimSet ;
 
-	// Џ‰Љъ‰»‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// е€ќжњџеЊ–гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( MV1Man.Initialize == false ) return -1 ;
 
-	// ѓAѓhѓЊѓXЋж“ѕ
+	// г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ—
 	if( MV1MDLCHK( MHandle, Model ) )
 		return -1 ;
 
-	// Љm•Ы‚µ‚Д‚ў‚йѓAѓ^ѓbѓ`ѓCѓ“ѓfѓbѓNѓXЉO‚ѕ‚Б‚ЅЏкЌ‡‚Н‰Ѕ‚а‚№‚ё‚ЙЏI—№
+	// зўєдїќгЃ—гЃ¦гЃ„г‚‹г‚ўг‚їгѓѓгѓЃг‚¤гѓігѓ‡гѓѓг‚Їг‚№е¤–гЃ гЃЈгЃџе ґеђ€гЃЇдЅ•г‚‚гЃ›гЃљгЃ«зµ‚дє†
 	if( AttachIndex < 0 || AttachIndex >= Model->AnimSetMaxNum ) return -1 ;
 	MAnimSet = &Model->AnimSet[ AttachIndex ] ;
 
-	// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚ЄѓAѓ^ѓbѓ`‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚з‰Ѕ‚а‚№‚ё‚ЙЏI—№
+	// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігЃЊг‚ўг‚їгѓѓгѓЃгЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰дЅ•г‚‚гЃ›гЃљгЃ«зµ‚дє†
 	if( MAnimSet->Use == false ) return -1 ;
 
-	// “KЌ‡‚µ‚Д‚ў‚йѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚Мђ”‚р•Ф‚·
+	// йЃ©еђ€гЃ—гЃ¦гЃ„г‚‹г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігЃ®ж•°г‚’иї”гЃ™
 	return MAnimSet->UseAnimNum ;
 }
 
-// ѓAѓ^ѓbѓ`‚µ‚Д‚ў‚йѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚Єѓ^Ѓ[ѓQѓbѓg‚Ж‚·‚йѓtѓЊЃ[ѓЂ‚МѓCѓ“ѓfѓbѓNѓX‚рЏЉ“ѕ‚·‚й
+// г‚ўг‚їгѓѓгѓЃгЃ—гЃ¦гЃ„г‚‹г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігЃЊг‚їгѓјг‚Ігѓѓгѓ€гЃЁгЃ™г‚‹гѓ•гѓ¬гѓјгѓ гЃ®г‚¤гѓігѓ‡гѓѓг‚Їг‚№г‚’ж‰Ђеѕ—гЃ™г‚‹
 extern int MV1GetAttachAnimTargetFrame( int MHandle, int AttachIndex, int Index )
 {
 	MV1_MODEL *Model ;
@@ -24546,25 +24546,25 @@ extern int MV1GetAttachAnimTargetFrame( int MHandle, int AttachIndex, int Index 
 	MV1_MODEL_ANIMSET *MAnimSet ;
 	int con ;
 
-	// Џ‰Љъ‰»‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// е€ќжњџеЊ–гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( MV1Man.Initialize == false ) return -1 ;
 
-	// ѓAѓhѓЊѓXЋж“ѕ
+	// г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ—
 	if( MV1MDLCHK( MHandle, Model ) )
 		return -1 ;
 
-	// Љm•Ы‚µ‚Д‚ў‚йѓAѓ^ѓbѓ`ѓCѓ“ѓfѓbѓNѓXЉO‚ѕ‚Б‚ЅЏкЌ‡‚Н‰Ѕ‚а‚№‚ё‚ЙЏI—№
+	// зўєдїќгЃ—гЃ¦гЃ„г‚‹г‚ўг‚їгѓѓгѓЃг‚¤гѓігѓ‡гѓѓг‚Їг‚№е¤–гЃ гЃЈгЃџе ґеђ€гЃЇдЅ•г‚‚гЃ›гЃљгЃ«зµ‚дє†
 	if( AttachIndex < 0 || AttachIndex >= Model->AnimSetMaxNum ) return -1 ;
 	MAnimSet = &Model->AnimSet[ AttachIndex ] ;
 
-	// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚ЄѓAѓ^ѓbѓ`‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚з‰Ѕ‚а‚№‚ё‚ЙЏI—№
+	// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігЃЊг‚ўг‚їгѓѓгѓЃгЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰дЅ•г‚‚гЃ›гЃљгЃ«зµ‚дє†
 	if( MAnimSet->Use == false ) return -1 ;
 
-	// •sђі‚ИѓCѓ“ѓfѓbѓNѓX‚МЏкЌ‡‚Н‰Ѕ‚а‚№‚ё‚ЙЏI—№
+	// дёЌж­ЈгЃЄг‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃ®е ґеђ€гЃЇдЅ•г‚‚гЃ›гЃљгЃ«зµ‚дє†
 	if( Index < 0 || Index >= MAnimSet->UseAnimNum )
 		return -1 ;
 
-	// Ћw’и‚М—LЊшѓCѓ“ѓfѓbѓNѓX‚МѓtѓЊЃ[ѓЂ‚р’T‚·
+	// жЊ‡е®љгЃ®жњ‰еЉ№г‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃ®гѓ•гѓ¬гѓјгѓ г‚’жЋўгЃ™
 	con = 0 ;
 	for( MAnim = &Model->Anim[ AttachIndex ] ; ; MAnim += Model->AnimSetMaxNum )
 	{
@@ -24573,35 +24573,35 @@ extern int MV1GetAttachAnimTargetFrame( int MHandle, int AttachIndex, int Index 
 		con ++ ;
 	}
 
-	// ѓtѓЊЃ[ѓЂ‚МѓCѓ“ѓfѓbѓNѓX‚р•Ф‚·
+	// гѓ•гѓ¬гѓјгѓ гЃ®г‚¤гѓігѓ‡гѓѓг‚Їг‚№г‚’иї”гЃ™
 	return ( int )( MAnim->Anim->Frame - Model->Frame ) ;
 }
 
-// ѓAѓ^ѓbѓ`‚µ‚Д‚ў‚йѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚МѓAѓjѓЃЃ[ѓVѓ‡ѓ“ѓCѓ“ѓfѓbѓNѓX‚рЋж“ѕ‚·‚й
+// г‚ўг‚їгѓѓгѓЃгЃ—гЃ¦гЃ„г‚‹г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігЃ®г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓіг‚¤гѓігѓ‡гѓѓг‚Їг‚№г‚’еЏ–еѕ—гЃ™г‚‹
 extern int NS_MV1GetAttachAnim( int MHandle, int AttachIndex )
 {
 	MV1_MODEL *Model ;
 	MV1_MODEL_ANIMSET *MAnimSet ;
 
-	// Џ‰Љъ‰»‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// е€ќжњџеЊ–гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( MV1Man.Initialize == false ) return -1 ;
 
-	// ѓAѓhѓЊѓXЋж“ѕ
+	// г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ—
 	if( MV1MDLCHK( MHandle, Model ) )
 		return -1 ;
 
-	// Љm•Ы‚µ‚Д‚ў‚йѓAѓ^ѓbѓ`ѓCѓ“ѓfѓbѓNѓXЉO‚ѕ‚Б‚ЅЏкЌ‡‚Н‰Ѕ‚а‚№‚ё‚ЙЏI—№
+	// зўєдїќгЃ—гЃ¦гЃ„г‚‹г‚ўг‚їгѓѓгѓЃг‚¤гѓігѓ‡гѓѓг‚Їг‚№е¤–гЃ гЃЈгЃџе ґеђ€гЃЇдЅ•г‚‚гЃ›гЃљгЃ«зµ‚дє†
 	if( AttachIndex < 0 || AttachIndex >= Model->AnimSetMaxNum ) return -1 ;
 	MAnimSet = &Model->AnimSet[ AttachIndex ] ;
 
-	// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚ЄѓAѓ^ѓbѓ`‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚з‰Ѕ‚а‚№‚ё‚ЙЏI—№
+	// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігЃЊг‚ўг‚їгѓѓгѓЃгЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰дЅ•г‚‚гЃ›гЃљгЃ«зµ‚дє†
 	if( MAnimSet->Use == false ) return -1 ;
 
-	// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“ѓCѓ“ѓfѓbѓNѓX‚р•Ф‚·
+	// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓіг‚¤гѓігѓ‡гѓѓг‚Їг‚№г‚’иї”гЃ™
 	return MAnimSet->BaseDataAnimIndex ;
 }
 
-// ѓAѓ^ѓbѓ`‚µ‚Д‚ў‚йѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚МѓVѓFѓCѓv‚рЋg—p‚·‚й‚©‚З‚¤‚©‚рђЭ’и‚·‚й( UseFlag  TRUE:Ћg—p‚·‚й( ѓfѓtѓHѓ‹ѓg )  FALSE:Ћg—p‚µ‚И‚ў )
+// г‚ўг‚їгѓѓгѓЃгЃ—гЃ¦гЃ„г‚‹г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігЃ®г‚·г‚§г‚¤гѓ—г‚’дЅїз”ЁгЃ™г‚‹гЃ‹гЃ©гЃ†гЃ‹г‚’иЁ­е®љгЃ™г‚‹( UseFlag  TRUE:дЅїз”ЁгЃ™г‚‹( гѓ‡гѓ•г‚©гѓ«гѓ€ )  FALSE:дЅїз”ЁгЃ—гЃЄгЃ„ )
 extern int NS_MV1SetAttachAnimUseShapeFlag( int MHandle, int AttachIndex, int UseFlag )
 {
 	MV1_MODEL *Model ;
@@ -24613,27 +24613,27 @@ extern int NS_MV1SetAttachAnimUseShapeFlag( int MHandle, int AttachIndex, int Us
 
 	bDisableFlag = UseFlag == FALSE;
 
-	// Џ‰Љъ‰»‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// е€ќжњџеЊ–гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( MV1Man.Initialize == false ) return -1 ;
 
-	// ѓAѓhѓЊѓXЋж“ѕ
+	// г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ—
 	if( MV1MDLCHK( MHandle, Model ) )
 		return -1 ;
 
-	// Љm•Ы‚µ‚Д‚ў‚йѓAѓ^ѓbѓ`ѓCѓ“ѓfѓbѓNѓXЉO‚ѕ‚Б‚ЅЏкЌ‡‚Н‰Ѕ‚а‚№‚ё‚ЙЏI—№
+	// зўєдїќгЃ—гЃ¦гЃ„г‚‹г‚ўг‚їгѓѓгѓЃг‚¤гѓігѓ‡гѓѓг‚Їг‚№е¤–гЃ гЃЈгЃџе ґеђ€гЃЇдЅ•г‚‚гЃ›гЃљгЃ«зµ‚дє†
 	if( AttachIndex < 0 || AttachIndex >= Model->AnimSetMaxNum ) return -1 ;
 
-	// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚ЄѓAѓ^ѓbѓ`‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚з‰Ѕ‚а‚№‚ё‚ЙЏI—№
+	// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігЃЊг‚ўг‚їгѓѓгѓЃгЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰дЅ•г‚‚гЃ›гЃљгЃ«зµ‚дє†
 	if( Model->AnimSet[ AttachIndex ].Use == false ) return -1 ;
 	MAnimSet = &Model->AnimSet[ AttachIndex ] ;
 
-	// ѓtѓ‰ѓO‚ЄЌЎ‚Ь‚Е‚Ж“Ї‚¶ЏкЌ‡‚Н‰Ѕ‚а‚№‚ё‚ЙЏI—№
+	// гѓ•гѓ©г‚°гЃЊд»ЉгЃѕгЃ§гЃЁеђЊгЃе ґеђ€гЃЇдЅ•г‚‚гЃ›гЃљгЃ«зµ‚дє†
 	if( MAnimSet->DisableShapeFlag == bDisableFlag ) return 0 ;
 
-	// ѓtѓ‰ѓO‚р•Ы‘¶
+	// гѓ•гѓ©г‚°г‚’дїќе­
 	MAnimSet->DisableShapeFlag = bDisableFlag ;
 
-	// ѓVѓFѓCѓv‚МЏу‘Ф‚Й•П‰»‚Є‚ ‚Б‚Ѕѓtѓ‰ѓO‚р—§‚Д‚й
+	// г‚·г‚§г‚¤гѓ—гЃ®зЉ¶ж…‹гЃ«е¤‰еЊ–гЃЊгЃ‚гЃЈгЃџгѓ•гѓ©г‚°г‚’з«‹гЃ¦г‚‹
 	Model->ShapeChangeFlag = true ;
 	Frame = Model->Frame ;
 	FrameNum = Model->BaseData->FrameNum ;
@@ -24645,35 +24645,35 @@ extern int NS_MV1SetAttachAnimUseShapeFlag( int MHandle, int AttachIndex, int Us
 		Frame->ShapeChangeFlag = true ;
 	}
 
-	// ђіЏнЏI—№
+	// ж­Јеёёзµ‚дє†
 	return 0 ;
 }
 
-// ѓAѓ^ѓbѓ`‚µ‚Д‚ў‚йѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚МѓVѓFѓCѓv‚рЋg—p‚·‚й‚©‚З‚¤‚©‚рЋж“ѕ‚·‚й
+// г‚ўг‚їгѓѓгѓЃгЃ—гЃ¦гЃ„г‚‹г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігЃ®г‚·г‚§г‚¤гѓ—г‚’дЅїз”ЁгЃ™г‚‹гЃ‹гЃ©гЃ†гЃ‹г‚’еЏ–еѕ—гЃ™г‚‹
 extern int NS_MV1GetAttachAnimUseShapeFlag( int MHandle, int AttachIndex )
 {
 	MV1_MODEL *Model ;
 	MV1_MODEL_ANIMSET *MAnimSet ;
 
-	// Џ‰Љъ‰»‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// е€ќжњџеЊ–гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( MV1Man.Initialize == false ) return -1 ;
 
-	// ѓAѓhѓЊѓXЋж“ѕ
+	// г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ—
 	if( MV1MDLCHK( MHandle, Model ) )
 		return -1 ;
 
-	// Љm•Ы‚µ‚Д‚ў‚йѓAѓ^ѓbѓ`ѓCѓ“ѓfѓbѓNѓXЉO‚ѕ‚Б‚ЅЏкЌ‡‚Н‰Ѕ‚а‚№‚ё‚ЙЏI—№
+	// зўєдїќгЃ—гЃ¦гЃ„г‚‹г‚ўг‚їгѓѓгѓЃг‚¤гѓігѓ‡гѓѓг‚Їг‚№е¤–гЃ гЃЈгЃџе ґеђ€гЃЇдЅ•г‚‚гЃ›гЃљгЃ«зµ‚дє†
 	if( AttachIndex < 0 || AttachIndex >= Model->AnimSetMaxNum ) return -1 ;
 
-	// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚ЄѓAѓ^ѓbѓ`‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚з‰Ѕ‚а‚№‚ё‚ЙЏI—№
+	// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігЃЊг‚ўг‚їгѓѓгѓЃгЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰дЅ•г‚‚гЃ›гЃљгЃ«зµ‚дє†
 	if( Model->AnimSet[ AttachIndex ].Use == false ) return -1 ;
 	MAnimSet = &Model->AnimSet[ AttachIndex ] ;
 
-	// ѓtѓ‰ѓO‚р•Ф‚·
+	// гѓ•гѓ©г‚°г‚’иї”гЃ™
 	return MAnimSet->DisableShapeFlag ? FALSE : TRUE ;
 }
 
-// ѓAѓ^ѓbѓ`‚µ‚Д‚ў‚йѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚МЋw’и‚МѓtѓЊЃ[ѓЂ‚МЊ»ЌЭ‚МѓЌЃ[ѓJѓ‹•ПЉ·Ќs—с‚рЋж“ѕ‚·‚й
+// г‚ўг‚їгѓѓгѓЃгЃ—гЃ¦гЃ„г‚‹г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігЃ®жЊ‡е®љгЃ®гѓ•гѓ¬гѓјгѓ гЃ®зЏѕењЁгЃ®гѓ­гѓјг‚«гѓ«е¤‰жЏ›иЎЊе€—г‚’еЏ–еѕ—гЃ™г‚‹
 extern MATRIX NS_MV1GetAttachAnimFrameLocalMatrix(	int MHandle, int AttachIndex, int FrameIndex )
 {
 	static MATRIX ErrorValue =
@@ -24691,34 +24691,34 @@ extern MATRIX NS_MV1GetAttachAnimFrameLocalMatrix(	int MHandle, int AttachIndex,
 	MV1_FRAME *Frame ;
 	MV1_FRAME_BASE *FrameBase ;
 
-	// Џ‰Љъ‰»‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// е€ќжњџеЊ–гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( MV1Man.Initialize == false )
 		return ErrorValue ;
 
-	// ѓAѓhѓЊѓXЋж“ѕ
+	// г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ—
 	if( MV1MDLCHK( MHandle, Model ) )
 		return ErrorValue ;
 
-	// ‘¶ЌЭ‚µ‚И‚ўѓtѓЊЃ[ѓЂ”ФЌ†‚ѕ‚Б‚ЅЏкЌ‡‚Н‰Ѕ‚а‚№‚ё‚ЙЏI—№
+	// е­ењЁгЃ—гЃЄгЃ„гѓ•гѓ¬гѓјгѓ з•ЄеЏ·гЃ гЃЈгЃџе ґеђ€гЃЇдЅ•г‚‚гЃ›гЃљгЃ«зµ‚дє†
 	if( FrameIndex < 0 || FrameIndex >= Model->BaseData->FrameNum )
 		return ErrorValue ;
 
-	// Љm•Ы‚µ‚Д‚ў‚йѓAѓ^ѓbѓ`ѓCѓ“ѓfѓbѓNѓXЉO‚ѕ‚Б‚ЅЏкЌ‡‚Н‰Ѕ‚а‚№‚ё‚ЙЏI—№
+	// зўєдїќгЃ—гЃ¦гЃ„г‚‹г‚ўг‚їгѓѓгѓЃг‚¤гѓігѓ‡гѓѓг‚Їг‚№е¤–гЃ гЃЈгЃџе ґеђ€гЃЇдЅ•г‚‚гЃ›гЃљгЃ«зµ‚дє†
 	if( AttachIndex < 0 || AttachIndex >= Model->AnimSetMaxNum )
 		return ErrorValue ;
 
-	// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚ЄѓAѓ^ѓbѓ`‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚з‰Ѕ‚а‚№‚ё‚ЙЏI—№
+	// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігЃЊг‚ўг‚їгѓѓгѓЃгЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰дЅ•г‚‚гЃ›гЃљгЃ«зµ‚дє†
 	if( Model->AnimSet[ AttachIndex ].Use == false )
 		return ErrorValue ;
 
-	// Ќs—с‚МѓZѓbѓgѓAѓbѓv‚рЌs‚¤
+	// иЎЊе€—гЃ®г‚»гѓѓгѓ€г‚ўгѓѓгѓ—г‚’иЎЊгЃ†
 	MV1SETUPMATRIX( Model ) ;
 
 	Frame = &Model->Frame[ FrameIndex ] ;
 	FrameBase = Frame->BaseData ;
 	MAnim = Model->Anim + Model->AnimSetMaxNum * FrameBase->Index + AttachIndex ;
 
-	// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚Є‘¶ЌЭ‚µ‚И‚©‚Б‚Ѕ‚з’P€КЌs—с‚р•Ф‚·
+	// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігЃЊе­ењЁгЃ—гЃЄгЃ‹гЃЈгЃџг‚‰еЌдЅЌиЎЊе€—г‚’иї”гЃ™
 	if( MAnim->Use == false )
 	{
 		return MGetIdent() ;
@@ -24730,7 +24730,7 @@ extern MATRIX NS_MV1GetAttachAnimFrameLocalMatrix(	int MHandle, int AttachIndex,
 	}
 	else
 	{
-		// Ќs—с‚МѓZѓbѓgѓAѓbѓv
+		// иЎЊе€—гЃ®г‚»гѓѓгѓ€г‚ўгѓѓгѓ—
 		if( MAnim->Anim->ValidBlendMatrix == false )
 		{
 			MV1SetupTransformMatrix(
@@ -24749,11 +24749,11 @@ extern MATRIX NS_MV1GetAttachAnimFrameLocalMatrix(	int MHandle, int AttachIndex,
 		ConvertMatrix4x4cFToMatrixF( &ResultMatrix, &MAnim->Anim->BlendMatrix ) ;
 	}
 
-	// ѓЌЃ[ѓJѓ‹Ќs—с‚р•Ф‚·
+	// гѓ­гѓјг‚«гѓ«иЎЊе€—г‚’иї”гЃ™
 	return ResultMatrix ;
 }
 
-// ѓAѓ^ѓbѓ`‚µ‚Д‚ў‚йѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚МЋw’и‚МѓtѓЊЃ[ѓЂ‚МЊ»ЌЭ‚МѓЌЃ[ѓJѓ‹ЌА•W‚рЋж“ѕ‚·‚й
+// г‚ўг‚їгѓѓгѓЃгЃ—гЃ¦гЃ„г‚‹г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігЃ®жЊ‡е®љгЃ®гѓ•гѓ¬гѓјгѓ гЃ®зЏѕењЁгЃ®гѓ­гѓјг‚«гѓ«еє§жЁ™г‚’еЏ–еѕ—гЃ™г‚‹
 extern VECTOR NS_MV1GetAttachAnimFrameLocalPosition( int MHandle, int AttachIndex, int FrameIndex )
 {
 	static VECTOR ErrorValue = { -1.0f, -1.0f, -1.0f } ;
@@ -24763,34 +24763,34 @@ extern VECTOR NS_MV1GetAttachAnimFrameLocalPosition( int MHandle, int AttachInde
 	MV1_FRAME *Frame ;
 	MV1_FRAME_BASE *FrameBase ;
 
-	// Џ‰Љъ‰»‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// е€ќжњџеЊ–гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( MV1Man.Initialize == false )
 		return ErrorValue ;
 
-	// ѓAѓhѓЊѓXЋж“ѕ
+	// г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ—
 	if( MV1MDLCHK( MHandle, Model ) )
 		return ErrorValue ;
 
-	// ‘¶ЌЭ‚µ‚И‚ўѓtѓЊЃ[ѓЂ”ФЌ†‚ѕ‚Б‚ЅЏкЌ‡‚Н‰Ѕ‚а‚№‚ё‚ЙЏI—№
+	// е­ењЁгЃ—гЃЄгЃ„гѓ•гѓ¬гѓјгѓ з•ЄеЏ·гЃ гЃЈгЃџе ґеђ€гЃЇдЅ•г‚‚гЃ›гЃљгЃ«зµ‚дє†
 	if( FrameIndex < 0 || FrameIndex >= Model->BaseData->FrameNum )
 		return ErrorValue ;
 
-	// Љm•Ы‚µ‚Д‚ў‚йѓAѓ^ѓbѓ`ѓCѓ“ѓfѓbѓNѓXЉO‚ѕ‚Б‚ЅЏкЌ‡‚Н‰Ѕ‚а‚№‚ё‚ЙЏI—№
+	// зўєдїќгЃ—гЃ¦гЃ„г‚‹г‚ўг‚їгѓѓгѓЃг‚¤гѓігѓ‡гѓѓг‚Їг‚№е¤–гЃ гЃЈгЃџе ґеђ€гЃЇдЅ•г‚‚гЃ›гЃљгЃ«зµ‚дє†
 	if( AttachIndex < 0 || AttachIndex >= Model->AnimSetMaxNum )
 		return ErrorValue ;
 
-	// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚ЄѓAѓ^ѓbѓ`‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚з‰Ѕ‚а‚№‚ё‚ЙЏI—№
+	// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігЃЊг‚ўг‚їгѓѓгѓЃгЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰дЅ•г‚‚гЃ›гЃљгЃ«зµ‚дє†
 	if( Model->AnimSet[ AttachIndex ].Use == false )
 		return ErrorValue ;
 
-	// Ќs—с‚МѓZѓbѓgѓAѓbѓv‚рЌs‚¤
+	// иЎЊе€—гЃ®г‚»гѓѓгѓ€г‚ўгѓѓгѓ—г‚’иЎЊгЃ†
 	MV1SETUPMATRIX( Model ) ;
 
 	Frame = &Model->Frame[ FrameIndex ] ;
 	FrameBase = Frame->BaseData ;
 	MAnim = Model->Anim + Model->AnimSetMaxNum * FrameBase->Index + AttachIndex ;
 
-	// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚Є‘¶ЌЭ‚µ‚И‚©‚Б‚Ѕ‚з‚OѓxѓNѓgѓ‹‚р•Ф‚·
+	// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігЃЊе­ењЁгЃ—гЃЄгЃ‹гЃЈгЃџг‚‰пјђгѓ™г‚Їгѓ€гѓ«г‚’иї”гЃ™
 	if( MAnim->Use == false )
 	{
 		return VGet( 0.0f, 0.0f, 0.0f ) ;
@@ -24804,7 +24804,7 @@ extern VECTOR NS_MV1GetAttachAnimFrameLocalPosition( int MHandle, int AttachInde
 	}
 	else
 	{
-		// Ќs—с‚МѓZѓbѓgѓAѓbѓv
+		// иЎЊе€—гЃ®г‚»гѓѓгѓ€г‚ўгѓѓгѓ—
 		if( MAnim->Anim->ValidBlendMatrix == false )
 		{
 			MV1SetupTransformMatrix(
@@ -24825,12 +24825,12 @@ extern VECTOR NS_MV1GetAttachAnimFrameLocalPosition( int MHandle, int AttachInde
 		ResultPosition.z = MAnim->Anim->BlendMatrix.m[ 2 ][ 3 ] ;
 	}
 
-	// ѓЌЃ[ѓJѓ‹ЌА•W‚р•Ф‚·
+	// гѓ­гѓјг‚«гѓ«еє§жЁ™г‚’иї”гЃ™
 	return ResultPosition ;
 }
 
 
-// Ћw’и‚МѓtѓЊЃ[ѓЂ‚ЄѓAѓ^ѓbѓ`‚µ‚Д‚ў‚йѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚М‰Ѕ”Ф–Ъ‚Мѓ^Ѓ[ѓQѓbѓgѓtѓЊЃ[ѓЂ‚©‚рЋж“ѕ‚·‚й( AnimFrameIndex ‚Ж‚µ‚ДЋg—p‚·‚й )
+// жЊ‡е®љгЃ®гѓ•гѓ¬гѓјгѓ гЃЊг‚ўг‚їгѓѓгѓЃгЃ—гЃ¦гЃ„г‚‹г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігЃ®дЅ•з•Єз›®гЃ®г‚їгѓјг‚Ігѓѓгѓ€гѓ•гѓ¬гѓјгѓ гЃ‹г‚’еЏ–еѕ—гЃ™г‚‹( AnimFrameIndex гЃЁгЃ—гЃ¦дЅїз”ЁгЃ™г‚‹ )
 extern int MV1GetAttachAnimTargetFrameToAnimFrameIndex( int MHandle, int AttachIndex, int FrameIndex )
 {
 	MV1_MODEL *Model ;
@@ -24838,65 +24838,65 @@ extern int MV1GetAttachAnimTargetFrameToAnimFrameIndex( int MHandle, int AttachI
 	MV1_MODEL_ANIMSET *MAnimSet ;
 	MV1_MODEL_ANIM *MAnim ;
 
-	// Џ‰Љъ‰»‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// е€ќжњџеЊ–гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( MV1Man.Initialize == false ) return -1 ;
 
-	// ѓAѓhѓЊѓXЋж“ѕ
+	// г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ—
 	if( MV1MDLCHK( MHandle, Model ) )
 		return -1 ;
 	ModelBase = Model->BaseData ;
 
-	// Љm•Ы‚µ‚Д‚ў‚йѓAѓ^ѓbѓ`ѓCѓ“ѓfѓbѓNѓXЉO‚ѕ‚Б‚ЅЏкЌ‡‚Н‰Ѕ‚а‚№‚ё‚ЙЏI—№
+	// зўєдїќгЃ—гЃ¦гЃ„г‚‹г‚ўг‚їгѓѓгѓЃг‚¤гѓігѓ‡гѓѓг‚Їг‚№е¤–гЃ гЃЈгЃџе ґеђ€гЃЇдЅ•г‚‚гЃ›гЃљгЃ«зµ‚дє†
 	if( AttachIndex < 0 || AttachIndex >= Model->AnimSetMaxNum ) return -1 ;
 	MAnimSet = &Model->AnimSet[ AttachIndex ] ;
 
-	// ѓtѓЊЃ[ѓЂѓCѓ“ѓfѓbѓNѓX‚Є•sђі‚ѕ‚Б‚Ѕ‚з‰Ѕ‚а‚№‚ёЏI—№
+	// гѓ•гѓ¬гѓјгѓ г‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃЊдёЌж­ЈгЃ гЃЈгЃџг‚‰дЅ•г‚‚гЃ›гЃљзµ‚дє†
 	if( FrameIndex < 0 || FrameIndex >= ModelBase->FrameNum )
 		return -1 ;
 
-	// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚ЄѓAѓ^ѓbѓ`‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚з‰Ѕ‚а‚№‚ё‚ЙЏI—№
+	// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігЃЊг‚ўг‚їгѓѓгѓЃгЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰дЅ•г‚‚гЃ›гЃљгЃ«зµ‚дє†
 	if( MAnimSet->Use == false ) return -1 ;
 
-	// Ћw’и‚МѓtѓЊЃ[ѓЂ‚ЙѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚ЄѓAѓ^ѓbѓ`‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚з‰Ѕ‚а‚№‚ё‚ЙЏI—№
+	// жЊ‡е®љгЃ®гѓ•гѓ¬гѓјгѓ гЃ«г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігЃЊг‚ўг‚їгѓѓгѓЃгЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰дЅ•г‚‚гЃ›гЃљгЃ«зµ‚дє†
 	MAnim = &Model->Anim[ AttachIndex + Model->AnimSetMaxNum * FrameIndex ] ;
 	if( MAnim->Use == false ) return -1 ;
 
-	// Ћw’и‚МѓtѓЊЃ[ѓЂ‚ЕЋg—p‚і‚к‚Д‚ў‚йѓAѓjѓЃЃ[ѓVѓ‡ѓ““аѓtѓЊЃ[ѓЂѓCѓ“ѓfѓbѓNѓX‚р•Ф‚·
+	// жЊ‡е®љгЃ®гѓ•гѓ¬гѓјгѓ гЃ§дЅїз”ЁгЃ•г‚ЊгЃ¦гЃ„г‚‹г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓіе†…гѓ•гѓ¬гѓјгѓ г‚¤гѓігѓ‡гѓѓг‚Їг‚№г‚’иї”гЃ™
 	return ( int )( MAnim->Anim->BaseData - MAnimSet->AnimSet->BaseData->Anim ) ;
 }
 
-// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚Мђ”‚рЋж“ѕ‚·‚й
+// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігЃ®ж•°г‚’еЏ–еѕ—гЃ™г‚‹
 extern int NS_MV1GetAnimNum( int MHandle )
 {
 	MV1_MODEL *Model ;
 
-	// Џ‰Љъ‰»‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// е€ќжњџеЊ–гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( MV1Man.Initialize == false ) return -1 ;
 
-	// ѓAѓhѓЊѓXЋж“ѕ
+	// г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ—
 	if( MV1MDLCHK( MHandle, Model ) )
 		return -1 ;
 
-	// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚Мђ”‚р•Ф‚·
+	// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігЃ®ж•°г‚’иї”гЃ™
 	return Model->BaseData->AnimSetNum ;
 }
 
-// Ћw’и”ФЌ†‚МѓAѓjѓЃЃ[ѓVѓ‡ѓ“–ј‚рЋж“ѕ‚·‚й
+// жЊ‡е®љз•ЄеЏ·гЃ®г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓіеђЌг‚’еЏ–еѕ—гЃ™г‚‹
 extern const TCHAR *NS_MV1GetAnimName( int MHandle, int AnimIndex )
 {
 	MV1_MODEL *Model ;
 
-	// Џ‰Љъ‰»‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// е€ќжњџеЊ–гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( MV1Man.Initialize == false ) return NULL ;
 
-	// ѓAѓhѓЊѓXЋж“ѕ
+	// г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ—
 	if( MV1MDLCHK( MHandle, Model ) )
 		return NULL ;
 
-	// ѓCѓ“ѓfѓbѓNѓX‚ЄѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚Мђ”‚р’ґ‚¦‚Д‚ў‚Ѕ‚зѓGѓ‰Ѓ[
+	// г‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃЊг‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігЃ®ж•°г‚’и¶…гЃ€гЃ¦гЃ„гЃџг‚‰г‚Ёгѓ©гѓј
 	if( Model->BaseData->AnimSetNum <= AnimIndex ) return NULL ;
 
-	// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“–ј‚р•Ф‚·
+	// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓіеђЌг‚’иї”гЃ™
 #ifdef UNICODE
 	return Model->BaseData->AnimSet[ AnimIndex ].NameW ;
 #else
@@ -24904,26 +24904,26 @@ extern const TCHAR *NS_MV1GetAnimName( int MHandle, int AnimIndex )
 #endif
 }
 
-// Ћw’и”ФЌ†‚МѓAѓjѓЃЃ[ѓVѓ‡ѓ“–ј‚рЋж“ѕ‚·‚й
+// жЊ‡е®љз•ЄеЏ·гЃ®г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓіеђЌг‚’еЏ–еѕ—гЃ™г‚‹
 extern const wchar_t *MV1GetAnimName_WCHAR_T( int MHandle, int AnimIndex )
 {
 	MV1_MODEL *Model ;
 
-	// Џ‰Љъ‰»‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// е€ќжњџеЊ–гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( MV1Man.Initialize == false ) return NULL ;
 
-	// ѓAѓhѓЊѓXЋж“ѕ
+	// г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ—
 	if( MV1MDLCHK( MHandle, Model ) )
 		return NULL ;
 
-	// ѓCѓ“ѓfѓbѓNѓX‚ЄѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚Мђ”‚р’ґ‚¦‚Д‚ў‚Ѕ‚зѓGѓ‰Ѓ[
+	// г‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃЊг‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігЃ®ж•°г‚’и¶…гЃ€гЃ¦гЃ„гЃџг‚‰г‚Ёгѓ©гѓј
 	if( Model->BaseData->AnimSetNum <= AnimIndex ) return NULL ;
 
-	// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“–ј‚р•Ф‚·
+	// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓіеђЌг‚’иї”гЃ™
 	return Model->BaseData->AnimSet[ AnimIndex ].NameW ;
 }
 
-// Ћw’и”ФЌ†‚МѓAѓjѓЃЃ[ѓVѓ‡ѓ“–ј‚р•ПЌX‚·‚й
+// жЊ‡е®љз•ЄеЏ·гЃ®г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓіеђЌг‚’е¤‰ж›ґгЃ™г‚‹
 extern int NS_MV1SetAnimName( int MHandle, int AnimIndex, const TCHAR *AnimName )
 {
 #ifdef UNICODE
@@ -24945,7 +24945,7 @@ extern int NS_MV1SetAnimName( int MHandle, int AnimIndex, const TCHAR *AnimName 
 #endif
 }
 
-// Ћw’и”ФЌ†‚МѓAѓjѓЃЃ[ѓVѓ‡ѓ“–ј‚р•ПЌX‚·‚й
+// жЊ‡е®љз•ЄеЏ·гЃ®г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓіеђЌг‚’е¤‰ж›ґгЃ™г‚‹
 extern int NS_MV1SetAnimNameWithStrLen( int MHandle, int AnimIndex, const TCHAR *AnimName, size_t AnimNameLength )
 {
 	int Result ;
@@ -24961,22 +24961,22 @@ extern int NS_MV1SetAnimNameWithStrLen( int MHandle, int AnimIndex, const TCHAR 
 	return Result ;
 }
 
-// Ћw’и”ФЌ†‚МѓAѓjѓЃЃ[ѓVѓ‡ѓ“–ј‚р•ПЌX‚·‚й
+// жЊ‡е®љз•ЄеЏ·гЃ®г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓіеђЌг‚’е¤‰ж›ґгЃ™г‚‹
 extern int MV1SetAnimName_WCHAR_T( int MHandle, int AnimIndex, const wchar_t *AnimName )
 {
 	MV1_MODEL *Model ;
 	MV1_MODEL_BASE *MBase ;
 	MV1_ANIMSET_BASE *AnimSetBase ;
 
-	// Џ‰Љъ‰»‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// е€ќжњџеЊ–гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( MV1Man.Initialize == false ) return -1 ;
 
-	// ѓAѓhѓЊѓXЋж“ѕ
+	// г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ—
 	if( MV1MDLCHK( MHandle, Model ) )
 		return -1 ;
 	MBase = Model->BaseData ;
 
-	// ѓCѓ“ѓfѓbѓNѓX‚ЄѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚Мђ”‚р’ґ‚¦‚Д‚ў‚Ѕ‚зѓGѓ‰Ѓ[
+	// г‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃЊг‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігЃ®ж•°г‚’и¶…гЃ€гЃ¦гЃ„гЃџг‚‰г‚Ёгѓ©гѓј
 	if( Model->BaseData->AnimSetNum <= AnimIndex ) return -1 ;
 	AnimSetBase = &MBase->AnimSet[ AnimIndex ] ;
 
@@ -25010,11 +25010,11 @@ extern int MV1SetAnimName_WCHAR_T( int MHandle, int AnimIndex, const wchar_t *An
 	}
 #endif
 
-	// ђіЏнЏI—№
+	// ж­Јеёёзµ‚дє†
 	return 0 ;
 }
 
-// Ћw’и–ј‚МѓAѓjѓЃЃ[ѓVѓ‡ѓ“”ФЌ†‚рЋж“ѕ‚·‚й( -1:ѓGѓ‰Ѓ[ )
+// жЊ‡е®љеђЌгЃ®г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓіз•ЄеЏ·г‚’еЏ–еѕ—гЃ™г‚‹( -1:г‚Ёгѓ©гѓј )
 extern int NS_MV1GetAnimIndex( int MHandle, const TCHAR *AnimName )
 {
 #ifdef UNICODE
@@ -25036,7 +25036,7 @@ extern int NS_MV1GetAnimIndex( int MHandle, const TCHAR *AnimName )
 #endif
 }
 
-// Ћw’и–ј‚МѓAѓjѓЃЃ[ѓVѓ‡ѓ“”ФЌ†‚рЋж“ѕ‚·‚й( -1:ѓGѓ‰Ѓ[ )
+// жЊ‡е®љеђЌгЃ®г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓіз•ЄеЏ·г‚’еЏ–еѕ—гЃ™г‚‹( -1:г‚Ёгѓ©гѓј )
 extern int NS_MV1GetAnimIndexWithStrLen( int MHandle, const TCHAR *AnimName, size_t AnimNameLength )
 {
 	int Result ;
@@ -25052,101 +25052,101 @@ extern int NS_MV1GetAnimIndexWithStrLen( int MHandle, const TCHAR *AnimName, siz
 	return Result ;
 }
 
-// Ћw’и–ј‚МѓAѓjѓЃЃ[ѓVѓ‡ѓ“”ФЌ†‚рЋж“ѕ‚·‚й( -1:ѓGѓ‰Ѓ[ )
+// жЊ‡е®љеђЌгЃ®г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓіз•ЄеЏ·г‚’еЏ–еѕ—гЃ™г‚‹( -1:г‚Ёгѓ©гѓј )
 extern int MV1GetAnimIndex_WCHAR_T( int MHandle, const wchar_t *AnimName )
 {
 	MV1_MODEL *Model ;
 	MV1_MODEL_BASE *MBase ;
 	int i ;
 
-	// Џ‰Љъ‰»‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// е€ќжњџеЊ–гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( MV1Man.Initialize == false ) return -1 ;
 
-	// ѓAѓhѓЊѓXЋж“ѕ
+	// г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ—
 	if( MV1MDLCHK( MHandle, Model ) )
 		return -1 ;
 	MBase = Model->BaseData ;
 
-	// “Ї–ј‚МѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚р’T‚·
+	// еђЊеђЌгЃ®г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓіг‚’жЋўгЃ™
 	for( i = 0 ; i < MBase->AnimSetNum && _WCSCMP( MBase->AnimSet[ i ].NameW, AnimName ) != 0 ; i ++ ){}
 
 	return i == MBase->AnimSetNum ? -1 : i ;
 }
 
-// Ћw’и”ФЌ†‚МѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚М‘ЌЋћЉФ‚р“ѕ‚й
+// жЊ‡е®љз•ЄеЏ·гЃ®г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігЃ®з·Џж™‚й–“г‚’еѕ—г‚‹
 extern float NS_MV1GetAnimTotalTime( int MHandle, int AnimIndex )
 {
 	MV1_MODEL *Model ;
 	MV1_ANIMSET_BASE *AnimSetBase ;
 
-	// Џ‰Љъ‰»‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// е€ќжњџеЊ–гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( MV1Man.Initialize == false ) return -1.0f ;
 
-	// ѓAѓhѓЊѓXЋж“ѕ
+	// г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ—
 	if( MV1MDLCHK( MHandle, Model ) )
 		return -1.0f ;
 
-	// ѓCѓ“ѓfѓbѓNѓX‚Є•sђі‚ѕ‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// г‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃЊдёЌж­ЈгЃ гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( AnimIndex < 0 || AnimIndex >= Model->BaseData->AnimSetNum )
 		return -1 ;
 
-	// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚ЄѓAѓ^ѓbѓ`‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚з‰Ѕ‚а‚№‚ё‚ЙЏI—№
+	// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігЃЊг‚ўг‚їгѓѓгѓЃгЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰дЅ•г‚‚гЃ›гЃљгЃ«зµ‚дє†
 	AnimSetBase = MV1GetAnimSetBase( Model->BaseDataHandle, NULL, AnimIndex ) ;
 	if( AnimSetBase == NULL ) return -1.0f ;
 
-	// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚М‘ЌЋћЉФ‚р•Ф‚·
+	// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігЃ®з·Џж™‚й–“г‚’иї”гЃ™
 	return AnimSetBase->MaxTime ;
 }
 
-// Ћw’и‚МѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚Єѓ‹Ѓ[ѓvѓ^ѓCѓv‚©‚З‚¤‚©‚рЋж“ѕ‚·‚й( –Я‚и’l  TRUE:ѓ‹Ѓ[ѓvѓ^ѓCѓv  FALSE:’КЏнѓ^ѓCѓv )
+// жЊ‡е®љгЃ®г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігЃЊгѓ«гѓјгѓ—г‚їг‚¤гѓ—гЃ‹гЃ©гЃ†гЃ‹г‚’еЏ–еѕ—гЃ™г‚‹( ж€»г‚ЉеЂ¤  TRUE:гѓ«гѓјгѓ—г‚їг‚¤гѓ—  FALSE:йЂљеёёг‚їг‚¤гѓ— )
 extern int NS_MV1GetAnimLoopFlag( int MHandle, int AnimIndex )
 {
 	MV1_MODEL *Model ;
 	MV1_MODEL_BASE *ModelBase ;
 	MV1_ANIMSET_BASE *AnimSetBase ;
 
-	// Џ‰Љъ‰»‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// е€ќжњџеЊ–гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( MV1Man.Initialize == false ) return -1 ;
 
-	// ѓAѓhѓЊѓXЋж“ѕ
+	// г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ—
 	if( MV1MDLCHK( MHandle, Model ) )
 		return -1 ;
 	ModelBase = Model->BaseData ;
 
-	// ѓCѓ“ѓfѓbѓNѓX‚Є•sђі‚ѕ‚Б‚ЅЏкЌ‡‚Н‰Ѕ‚а‚№‚ё‚ЙЏI—№
+	// г‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃЊдёЌж­ЈгЃ гЃЈгЃџе ґеђ€гЃЇдЅ•г‚‚гЃ›гЃљгЃ«зµ‚дє†
 	if( AnimIndex < 0 || AnimIndex >= ModelBase->AnimSetNum )
 		return -1 ;
 	AnimSetBase = &ModelBase->AnimSet[ AnimIndex ] ;
 
-	// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚Мѓ‹Ѓ[ѓvѓtѓ‰ѓO‚р•Ф‚·
+	// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігЃ®гѓ«гѓјгѓ—гѓ•гѓ©г‚°г‚’иї”гЃ™
 	return AnimSetBase->IsLoopAnim != FALSE ? TRUE : FALSE ;
 }
 
-// Ћw’и‚МѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚Єѓ^Ѓ[ѓQѓbѓg‚Ж‚·‚йѓtѓЊЃ[ѓЂ‚Мђ”‚рЋж“ѕ‚·‚й
+// жЊ‡е®љгЃ®г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігЃЊг‚їгѓјг‚Ігѓѓгѓ€гЃЁгЃ™г‚‹гѓ•гѓ¬гѓјгѓ гЃ®ж•°г‚’еЏ–еѕ—гЃ™г‚‹
 extern int NS_MV1GetAnimTargetFrameNum( int MHandle, int AnimIndex )
 {
 	MV1_MODEL *Model ;
 	MV1_MODEL_BASE *ModelBase ;
 	MV1_ANIMSET_BASE *AnimSetBase ;
 
-	// Џ‰Љъ‰»‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// е€ќжњџеЊ–гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( MV1Man.Initialize == false ) return -1 ;
 
-	// ѓAѓhѓЊѓXЋж“ѕ
+	// г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ—
 	if( MV1MDLCHK( MHandle, Model ) )
 		return -1 ;
 	ModelBase = Model->BaseData ;
 
-	// ѓCѓ“ѓfѓbѓNѓX‚Є•sђі‚ѕ‚Б‚ЅЏкЌ‡‚Н‰Ѕ‚а‚№‚ё‚ЙЏI—№
+	// г‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃЊдёЌж­ЈгЃ гЃЈгЃџе ґеђ€гЃЇдЅ•г‚‚гЃ›гЃљгЃ«зµ‚дє†
 	if( AnimIndex < 0 || AnimIndex >= ModelBase->AnimSetNum )
 		return -1 ;
 	AnimSetBase = &ModelBase->AnimSet[ AnimIndex ] ;
 
-	// ѓ^Ѓ[ѓQѓbѓg‚Ж‚·‚йѓtѓЊЃ[ѓЂ‚Мђ”‚р•Ф‚·
+	// г‚їгѓјг‚Ігѓѓгѓ€гЃЁгЃ™г‚‹гѓ•гѓ¬гѓјгѓ гЃ®ж•°г‚’иї”гЃ™
 	return AnimSetBase->AnimNum ;
 }
 
-// Ћw’и‚МѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚Єѓ^Ѓ[ѓQѓbѓg‚Ж‚·‚йѓtѓЊЃ[ѓЂ‚М–ј‘O‚рЋж“ѕ‚·‚й
+// жЊ‡е®љгЃ®г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігЃЊг‚їгѓјг‚Ігѓѓгѓ€гЃЁгЃ™г‚‹гѓ•гѓ¬гѓјгѓ гЃ®еђЌе‰Ќг‚’еЏ–еѕ—гЃ™г‚‹
 extern const TCHAR *NS_MV1GetAnimTargetFrameName( int MHandle, int AnimIndex, int AnimFrameIndex )
 {
 	MV1_MODEL *Model ;
@@ -25154,25 +25154,25 @@ extern const TCHAR *NS_MV1GetAnimTargetFrameName( int MHandle, int AnimIndex, in
 	MV1_ANIMSET_BASE *AnimSetBase ;
 	MV1_ANIM_BASE *AnimBase ;
 
-	// Џ‰Љъ‰»‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// е€ќжњџеЊ–гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( MV1Man.Initialize == false ) return NULL ;
 
-	// ѓAѓhѓЊѓXЋж“ѕ
+	// г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ—
 	if( MV1MDLCHK( MHandle, Model ) )
 		return NULL ;
 	ModelBase = Model->BaseData ;
 
-	// ѓCѓ“ѓfѓbѓNѓX‚Є•sђі‚ѕ‚Б‚ЅЏкЌ‡‚Н‰Ѕ‚а‚№‚ё‚ЙЏI—№
+	// г‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃЊдёЌж­ЈгЃ гЃЈгЃџе ґеђ€гЃЇдЅ•г‚‚гЃ›гЃљгЃ«зµ‚дє†
 	if( AnimIndex < 0 || AnimIndex >= ModelBase->AnimSetNum )
 		return NULL ;
 	AnimSetBase = &ModelBase->AnimSet[ AnimIndex ] ;
 
-	// ѓCѓ“ѓfѓbѓNѓX‚Є•sђі‚ѕ‚Б‚ЅЏкЌ‡‚Н‰Ѕ‚а‚№‚ё‚ЙЏI—№
+	// г‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃЊдёЌж­ЈгЃ гЃЈгЃџе ґеђ€гЃЇдЅ•г‚‚гЃ›гЃљгЃ«зµ‚дє†
 	if( AnimFrameIndex < 0 || AnimFrameIndex >= AnimSetBase->AnimNum )
 		return NULL ;
 	AnimBase = &AnimSetBase->Anim[ AnimFrameIndex ] ;
 
-	// ѓ^Ѓ[ѓQѓbѓg‚Ж‚·‚йѓtѓЊЃ[ѓЂ‚М–ј‘O‚р•Ф‚·
+	// г‚їгѓјг‚Ігѓѓгѓ€гЃЁгЃ™г‚‹гѓ•гѓ¬гѓјгѓ гЃ®еђЌе‰Ќг‚’иї”гЃ™
 #ifdef UNICODE
 	return AnimBase->TargetFrame->NameW ;
 #else
@@ -25180,7 +25180,7 @@ extern const TCHAR *NS_MV1GetAnimTargetFrameName( int MHandle, int AnimIndex, in
 #endif
 }
 
-// Ћw’и‚МѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚Єѓ^Ѓ[ѓQѓbѓg‚Ж‚·‚йѓtѓЊЃ[ѓЂ‚М–ј‘O‚рЋж“ѕ‚·‚й
+// жЊ‡е®љгЃ®г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігЃЊг‚їгѓјг‚Ігѓѓгѓ€гЃЁгЃ™г‚‹гѓ•гѓ¬гѓјгѓ гЃ®еђЌе‰Ќг‚’еЏ–еѕ—гЃ™г‚‹
 extern const wchar_t *MV1GetAnimTargetFrameName_WCHAR_T( int MHandle, int AnimIndex, int AnimFrameIndex )
 {
 	MV1_MODEL *Model ;
@@ -25188,29 +25188,29 @@ extern const wchar_t *MV1GetAnimTargetFrameName_WCHAR_T( int MHandle, int AnimIn
 	MV1_ANIMSET_BASE *AnimSetBase ;
 	MV1_ANIM_BASE *AnimBase ;
 
-	// Џ‰Љъ‰»‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// е€ќжњџеЊ–гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( MV1Man.Initialize == false ) return NULL ;
 
-	// ѓAѓhѓЊѓXЋж“ѕ
+	// г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ—
 	if( MV1MDLCHK( MHandle, Model ) )
 		return NULL ;
 	ModelBase = Model->BaseData ;
 
-	// ѓCѓ“ѓfѓbѓNѓX‚Є•sђі‚ѕ‚Б‚ЅЏкЌ‡‚Н‰Ѕ‚а‚№‚ё‚ЙЏI—№
+	// г‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃЊдёЌж­ЈгЃ гЃЈгЃџе ґеђ€гЃЇдЅ•г‚‚гЃ›гЃљгЃ«зµ‚дє†
 	if( AnimIndex < 0 || AnimIndex >= ModelBase->AnimSetNum )
 		return NULL ;
 	AnimSetBase = &ModelBase->AnimSet[ AnimIndex ] ;
 
-	// ѓCѓ“ѓfѓbѓNѓX‚Є•sђі‚ѕ‚Б‚ЅЏкЌ‡‚Н‰Ѕ‚а‚№‚ё‚ЙЏI—№
+	// г‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃЊдёЌж­ЈгЃ гЃЈгЃџе ґеђ€гЃЇдЅ•г‚‚гЃ›гЃљгЃ«зµ‚дє†
 	if( AnimFrameIndex < 0 || AnimFrameIndex >= AnimSetBase->AnimNum )
 		return NULL ;
 	AnimBase = &AnimSetBase->Anim[ AnimFrameIndex ] ;
 
-	// ѓ^Ѓ[ѓQѓbѓg‚Ж‚·‚йѓtѓЊЃ[ѓЂ‚М–ј‘O‚р•Ф‚·
+	// г‚їгѓјг‚Ігѓѓгѓ€гЃЁгЃ™г‚‹гѓ•гѓ¬гѓјгѓ гЃ®еђЌе‰Ќг‚’иї”гЃ™
 	return AnimBase->TargetFrame->NameW ;
 }
 
-// Ћw’и‚МѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚Єѓ^Ѓ[ѓQѓbѓg‚Ж‚·‚йѓtѓЊЃ[ѓЂ‚М”ФЌ†‚рЋж“ѕ‚·‚й
+// жЊ‡е®љгЃ®г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігЃЊг‚їгѓјг‚Ігѓѓгѓ€гЃЁгЃ™г‚‹гѓ•гѓ¬гѓјгѓ гЃ®з•ЄеЏ·г‚’еЏ–еѕ—гЃ™г‚‹
 extern int NS_MV1GetAnimTargetFrame( int MHandle, int AnimIndex, int AnimFrameIndex )
 {
 	MV1_MODEL *Model ;
@@ -25218,29 +25218,29 @@ extern int NS_MV1GetAnimTargetFrame( int MHandle, int AnimIndex, int AnimFrameIn
 	MV1_ANIMSET_BASE *AnimSetBase ;
 	MV1_ANIM_BASE *AnimBase ;
 
-	// Џ‰Љъ‰»‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// е€ќжњџеЊ–гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( MV1Man.Initialize == false ) return -1 ;
 
-	// ѓAѓhѓЊѓXЋж“ѕ
+	// г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ—
 	if( MV1MDLCHK( MHandle, Model ) )
 		return -1 ;
 	ModelBase = Model->BaseData ;
 
-	// ѓCѓ“ѓfѓbѓNѓX‚Є•sђі‚ѕ‚Б‚ЅЏкЌ‡‚Н‰Ѕ‚а‚№‚ё‚ЙЏI—№
+	// г‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃЊдёЌж­ЈгЃ гЃЈгЃџе ґеђ€гЃЇдЅ•г‚‚гЃ›гЃљгЃ«зµ‚дє†
 	if( AnimIndex < 0 || AnimIndex >= ModelBase->AnimSetNum )
 		return -1 ;
 	AnimSetBase = &ModelBase->AnimSet[ AnimIndex ] ;
 
-	// ѓCѓ“ѓfѓbѓNѓX‚Є•sђі‚ѕ‚Б‚ЅЏкЌ‡‚Н‰Ѕ‚а‚№‚ё‚ЙЏI—№
+	// г‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃЊдёЌж­ЈгЃ гЃЈгЃџе ґеђ€гЃЇдЅ•г‚‚гЃ›гЃљгЃ«зµ‚дє†
 	if( AnimFrameIndex < 0 || AnimFrameIndex >= AnimSetBase->AnimNum )
 		return -1 ;
 	AnimBase = &AnimSetBase->Anim[ AnimFrameIndex ] ;
 
-	// ѓ^Ѓ[ѓQѓbѓg‚Ж‚·‚йѓtѓЊЃ[ѓЂ‚М–ј‘O‚р•Ф‚·
+	// г‚їгѓјг‚Ігѓѓгѓ€гЃЁгЃ™г‚‹гѓ•гѓ¬гѓјгѓ гЃ®еђЌе‰Ќг‚’иї”гЃ™
 	return AnimBase->TargetFrameIndex ;
 }
 
-// Ћw’и‚МѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚Єѓ^Ѓ[ѓQѓbѓg‚Ж‚·‚йѓtѓЊЃ[ѓЂ—p‚МѓAѓjѓЃЃ[ѓVѓ‡ѓ“ѓLЃ[ѓZѓbѓg‚Мђ”‚рЋж“ѕ‚·‚й
+// жЊ‡е®љгЃ®г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігЃЊг‚їгѓјг‚Ігѓѓгѓ€гЃЁгЃ™г‚‹гѓ•гѓ¬гѓјгѓ з”ЁгЃ®г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓіг‚­гѓјг‚»гѓѓгѓ€гЃ®ж•°г‚’еЏ–еѕ—гЃ™г‚‹
 extern int NS_MV1GetAnimTargetFrameKeySetNum( int MHandle, int AnimIndex, int AnimFrameIndex )
 {
 	MV1_MODEL *Model ;
@@ -25248,29 +25248,29 @@ extern int NS_MV1GetAnimTargetFrameKeySetNum( int MHandle, int AnimIndex, int An
 	MV1_ANIMSET_BASE *AnimSetBase ;
 	MV1_ANIM_BASE *AnimBase ;
 
-	// Џ‰Љъ‰»‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// е€ќжњџеЊ–гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( MV1Man.Initialize == false ) return -1 ;
 
-	// ѓAѓhѓЊѓXЋж“ѕ
+	// г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ—
 	if( MV1MDLCHK( MHandle, Model ) )
 		return -1 ;
 	ModelBase = Model->BaseData ;
 
-	// ѓCѓ“ѓfѓbѓNѓX‚Є•sђі‚ѕ‚Б‚ЅЏкЌ‡‚Н‰Ѕ‚а‚№‚ё‚ЙЏI—№
+	// г‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃЊдёЌж­ЈгЃ гЃЈгЃџе ґеђ€гЃЇдЅ•г‚‚гЃ›гЃљгЃ«зµ‚дє†
 	if( AnimIndex < 0 || AnimIndex >= ModelBase->AnimSetNum )
 		return -1 ;
 	AnimSetBase = &ModelBase->AnimSet[ AnimIndex ] ;
 
-	// ѓCѓ“ѓfѓbѓNѓX‚Є•sђі‚ѕ‚Б‚ЅЏкЌ‡‚Н‰Ѕ‚а‚№‚ё‚ЙЏI—№
+	// г‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃЊдёЌж­ЈгЃ гЃЈгЃџе ґеђ€гЃЇдЅ•г‚‚гЃ›гЃљгЃ«зµ‚дє†
 	if( AnimFrameIndex < 0 || AnimFrameIndex >= AnimSetBase->AnimNum )
 		return -1 ;
 	AnimBase = &AnimSetBase->Anim[ AnimFrameIndex ] ;
 
-	// ѓLЃ[ѓZѓbѓg‚Мђ”‚р•Ф‚·
+	// г‚­гѓјг‚»гѓѓгѓ€гЃ®ж•°г‚’иї”гЃ™
 	return AnimBase->KeySetNum ;
 }
 
-// Ћw’и‚МѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚Єѓ^Ѓ[ѓQѓbѓg‚Ж‚·‚йѓtѓЊЃ[ѓЂ—p‚МѓAѓjѓЃЃ[ѓVѓ‡ѓ“ѓLЃ[ѓZѓbѓgѓLЃ[ѓZѓbѓgѓCѓ“ѓfѓbѓNѓX‚рЋж“ѕ‚·‚й
+// жЊ‡е®љгЃ®г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігЃЊг‚їгѓјг‚Ігѓѓгѓ€гЃЁгЃ™г‚‹гѓ•гѓ¬гѓјгѓ з”ЁгЃ®г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓіг‚­гѓјг‚»гѓѓгѓ€г‚­гѓјг‚»гѓѓгѓ€г‚¤гѓігѓ‡гѓѓг‚Їг‚№г‚’еЏ–еѕ—гЃ™г‚‹
 extern int NS_MV1GetAnimTargetFrameKeySet( int MHandle, int AnimIndex, int AnimFrameIndex, int Index )
 {
 	MV1_MODEL *Model ;
@@ -25278,171 +25278,171 @@ extern int NS_MV1GetAnimTargetFrameKeySet( int MHandle, int AnimIndex, int AnimF
 	MV1_ANIMSET_BASE *AnimSetBase ;
 	MV1_ANIM_BASE *AnimBase ;
 
-	// Џ‰Љъ‰»‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// е€ќжњџеЊ–гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( MV1Man.Initialize == false ) return -1 ;
 
-	// ѓAѓhѓЊѓXЋж“ѕ
+	// г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ—
 	if( MV1MDLCHK( MHandle, Model ) )
 		return -1 ;
 	ModelBase = Model->BaseData ;
 
-	// ѓCѓ“ѓfѓbѓNѓX‚Є•sђі‚ѕ‚Б‚ЅЏкЌ‡‚Н‰Ѕ‚а‚№‚ё‚ЙЏI—№
+	// г‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃЊдёЌж­ЈгЃ гЃЈгЃџе ґеђ€гЃЇдЅ•г‚‚гЃ›гЃљгЃ«зµ‚дє†
 	if( AnimIndex < 0 || AnimIndex >= ModelBase->AnimSetNum )
 		return -1 ;
 	AnimSetBase = &ModelBase->AnimSet[ AnimIndex ] ;
 
-	// ѓCѓ“ѓfѓbѓNѓX‚Є•sђі‚ѕ‚Б‚ЅЏкЌ‡‚Н‰Ѕ‚а‚№‚ё‚ЙЏI—№
+	// г‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃЊдёЌж­ЈгЃ гЃЈгЃџе ґеђ€гЃЇдЅ•г‚‚гЃ›гЃљгЃ«зµ‚дє†
 	if( AnimFrameIndex < 0 || AnimFrameIndex >= AnimSetBase->AnimNum )
 		return -1 ;
 	AnimBase = &AnimSetBase->Anim[ AnimFrameIndex ] ;
 
-	// ѓCѓ“ѓfѓbѓNѓX‚Є•sђі‚ѕ‚Б‚ЅЏкЌ‡‚Н‰Ѕ‚а‚№‚ё‚ЙЏI—№
+	// г‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃЊдёЌж­ЈгЃ гЃЈгЃџе ґеђ€гЃЇдЅ•г‚‚гЃ›гЃљгЃ«зµ‚дє†
 	if( Index < 0 || Index >= AnimBase->KeySetNum )
 		return -1 ;
 
-	// ѓLЃ[ѓZѓbѓgѓCѓ“ѓfѓbѓNѓX‚р•Ф‚·
+	// г‚­гѓјг‚»гѓѓгѓ€г‚¤гѓігѓ‡гѓѓг‚Їг‚№г‚’иї”гЃ™
 	return ( int )( &AnimBase->KeySet[ Index ] - ModelBase->AnimKeySet ) ;
 }
 
-// ѓ‚ѓfѓ‹‚ЙЉЬ‚Ь‚к‚йѓAѓjѓЃЃ[ѓVѓ‡ѓ“ѓLЃ[ѓZѓbѓg‚М‘Ќђ”‚р“ѕ‚й
+// гѓўгѓ‡гѓ«гЃ«еђ«гЃѕг‚Њг‚‹г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓіг‚­гѓјг‚»гѓѓгѓ€гЃ®з·Џж•°г‚’еѕ—г‚‹
 extern int NS_MV1GetAnimKeySetNum( int MHandle )
 {
 	MV1_MODEL *Model ;
 	MV1_MODEL_BASE *ModelBase ;
 
-	// Џ‰Љъ‰»‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// е€ќжњџеЊ–гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( MV1Man.Initialize == false ) return -1 ;
 
-	// ѓAѓhѓЊѓXЋж“ѕ
+	// г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ—
 	if( MV1MDLCHK( MHandle, Model ) )
 		return -1 ;
 	ModelBase = Model->BaseData ;
 
-	// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“ѓLЃ[ѓZѓbѓg‚Мђ”‚р•Ф‚·
+	// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓіг‚­гѓјг‚»гѓѓгѓ€гЃ®ж•°г‚’иї”гЃ™
 	return ModelBase->AnimKeySetNum ;
 }
 
-// Ћw’и‚МѓAѓjѓЃЃ[ѓVѓ‡ѓ“ѓLЃ[ѓZѓbѓg‚Мѓ^ѓCѓv‚рЋж“ѕ‚·‚й
+// жЊ‡е®љгЃ®г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓіг‚­гѓјг‚»гѓѓгѓ€гЃ®г‚їг‚¤гѓ—г‚’еЏ–еѕ—гЃ™г‚‹
 extern int NS_MV1GetAnimKeySetType( int MHandle, int AnimKeySetIndex )
 {
 	MV1_MODEL *Model ;
 	MV1_MODEL_BASE *ModelBase ;
 	MV1_ANIM_KEYSET_BASE *AnimKeySetBase ;
 
-	// Џ‰Љъ‰»‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// е€ќжњџеЊ–гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( MV1Man.Initialize == false ) return -1 ;
 
-	// ѓAѓhѓЊѓXЋж“ѕ
+	// г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ—
 	if( MV1MDLCHK( MHandle, Model ) )
 		return -1 ;
 	ModelBase = Model->BaseData ;
 
-	// ѓCѓ“ѓfѓbѓNѓX‚Є•sђі‚ѕ‚Б‚Ѕ‚з‰Ѕ‚а‚№‚ё‚ЙЏI—№
+	// г‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃЊдёЌж­ЈгЃ гЃЈгЃџг‚‰дЅ•г‚‚гЃ›гЃљгЃ«зµ‚дє†
 	if( AnimKeySetIndex < 0 || AnimKeySetIndex >= ModelBase->AnimKeySetNum )
 		return -1 ;
 	AnimKeySetBase = &ModelBase->AnimKeySet[ AnimKeySetIndex ] ;
 
-	// ѓLЃ[ѓZѓbѓg‚Мѓ^ѓCѓv‚р•Ф‚·
+	// г‚­гѓјг‚»гѓѓгѓ€гЃ®г‚їг‚¤гѓ—г‚’иї”гЃ™
 	return AnimKeySetBase->Type ;
 }
 
-// Ћw’и‚МѓAѓjѓЃЃ[ѓVѓ‡ѓ“ѓLЃ[ѓZѓbѓg‚МѓfЃ[ѓ^ѓ^ѓCѓv‚рЋж“ѕ‚·‚й
+// жЊ‡е®љгЃ®г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓіг‚­гѓјг‚»гѓѓгѓ€гЃ®гѓ‡гѓјг‚їг‚їг‚¤гѓ—г‚’еЏ–еѕ—гЃ™г‚‹
 extern int NS_MV1GetAnimKeySetDataType( int MHandle, int AnimKeySetIndex )
 {
 	MV1_MODEL *Model ;
 	MV1_MODEL_BASE *ModelBase ;
 	MV1_ANIM_KEYSET_BASE *AnimKeySetBase ;
 
-	// Џ‰Љъ‰»‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// е€ќжњџеЊ–гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( MV1Man.Initialize == false ) return -1 ;
 
-	// ѓAѓhѓЊѓXЋж“ѕ
+	// г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ—
 	if( MV1MDLCHK( MHandle, Model ) )
 		return -1 ;
 	ModelBase = Model->BaseData ;
 
-	// ѓCѓ“ѓfѓbѓNѓX‚Є•sђі‚ѕ‚Б‚Ѕ‚з‰Ѕ‚а‚№‚ё‚ЙЏI—№
+	// г‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃЊдёЌж­ЈгЃ гЃЈгЃџг‚‰дЅ•г‚‚гЃ›гЃљгЃ«зµ‚дє†
 	if( AnimKeySetIndex < 0 || AnimKeySetIndex >= ModelBase->AnimKeySetNum )
 		return -1 ;
 	AnimKeySetBase = &ModelBase->AnimKeySet[ AnimKeySetIndex ] ;
 
-	// ѓLЃ[ѓZѓbѓg‚МѓfЃ[ѓ^ѓ^ѓCѓv‚р•Ф‚·
+	// г‚­гѓјг‚»гѓѓгѓ€гЃ®гѓ‡гѓјг‚їг‚їг‚¤гѓ—г‚’иї”гЃ™
 	return AnimKeySetBase->DataType ;
 }
 
-// Ћw’и‚МѓAѓjѓЃЃ[ѓVѓ‡ѓ“ѓLЃ[ѓZѓbѓg‚МѓLЃ[‚МЋћЉФѓfЃ[ѓ^ѓ^ѓCѓv‚рЋж“ѕ‚·‚й( MV1_ANIMKEY_TIME_TYPE_ONE “™ )
+// жЊ‡е®љгЃ®г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓіг‚­гѓјг‚»гѓѓгѓ€гЃ®г‚­гѓјгЃ®ж™‚й–“гѓ‡гѓјг‚їг‚їг‚¤гѓ—г‚’еЏ–еѕ—гЃ™г‚‹( MV1_ANIMKEY_TIME_TYPE_ONE з­‰ )
 extern int NS_MV1GetAnimKeySetTimeType( int MHandle, int AnimKeySetIndex )
 {
 	MV1_MODEL *Model ;
 	MV1_MODEL_BASE *ModelBase ;
 	MV1_ANIM_KEYSET_BASE *AnimKeySetBase ;
 
-	// Џ‰Љъ‰»‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// е€ќжњџеЊ–гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( MV1Man.Initialize == false ) return -1 ;
 
-	// ѓAѓhѓЊѓXЋж“ѕ
+	// г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ—
 	if( MV1MDLCHK( MHandle, Model ) )
 		return -1 ;
 	ModelBase = Model->BaseData ;
 
-	// ѓCѓ“ѓfѓbѓNѓX‚Є•sђі‚ѕ‚Б‚Ѕ‚з‰Ѕ‚а‚№‚ё‚ЙЏI—№
+	// г‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃЊдёЌж­ЈгЃ гЃЈгЃџг‚‰дЅ•г‚‚гЃ›гЃљгЃ«зµ‚дє†
 	if( AnimKeySetIndex < 0 || AnimKeySetIndex >= ModelBase->AnimKeySetNum )
 		return -1 ;
 	AnimKeySetBase = &ModelBase->AnimKeySet[ AnimKeySetIndex ] ;
 
-	// ѓLЃ[ѓZѓbѓg‚МЋћЉФѓfЃ[ѓ^ѓ^ѓCѓv‚р•Ф‚·
+	// г‚­гѓјг‚»гѓѓгѓ€гЃ®ж™‚й–“гѓ‡гѓјг‚їг‚їг‚¤гѓ—г‚’иї”гЃ™
 	return AnimKeySetBase->TimeType ;
 }
 
-// Ћw’и‚МѓAѓjѓЃЃ[ѓVѓ‡ѓ“ѓLЃ[ѓZѓbѓg‚МѓLЃ[‚Мђ”‚рЋж“ѕ‚·‚й
+// жЊ‡е®љгЃ®г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓіг‚­гѓјг‚»гѓѓгѓ€гЃ®г‚­гѓјгЃ®ж•°г‚’еЏ–еѕ—гЃ™г‚‹
 extern int NS_MV1GetAnimKeySetDataNum( int MHandle, int AnimKeySetIndex )
 {
 	MV1_MODEL *Model ;
 	MV1_MODEL_BASE *ModelBase ;
 	MV1_ANIM_KEYSET_BASE *AnimKeySetBase ;
 
-	// Џ‰Љъ‰»‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// е€ќжњџеЊ–гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( MV1Man.Initialize == false ) return -1 ;
 
-	// ѓAѓhѓЊѓXЋж“ѕ
+	// г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ—
 	if( MV1MDLCHK( MHandle, Model ) )
 		return -1 ;
 	ModelBase = Model->BaseData ;
 
-	// ѓCѓ“ѓfѓbѓNѓX‚Є•sђі‚ѕ‚Б‚Ѕ‚з‰Ѕ‚а‚№‚ё‚ЙЏI—№
+	// г‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃЊдёЌж­ЈгЃ гЃЈгЃџг‚‰дЅ•г‚‚гЃ›гЃљгЃ«зµ‚дє†
 	if( AnimKeySetIndex < 0 || AnimKeySetIndex >= ModelBase->AnimKeySetNum )
 		return -1 ;
 	AnimKeySetBase = &ModelBase->AnimKeySet[ AnimKeySetIndex ] ;
 
-	// ѓLЃ[‚Мђ”‚р•Ф‚·
+	// г‚­гѓјгЃ®ж•°г‚’иї”гЃ™
 	return AnimKeySetBase->Num ;
 }
 
-// Ћw’и‚МѓAѓjѓЃЃ[ѓVѓ‡ѓ“ѓLЃ[ѓZѓbѓg‚МѓLЃ[‚МЋћЉФ‚рЋж“ѕ‚·‚й
+// жЊ‡е®љгЃ®г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓіг‚­гѓјг‚»гѓѓгѓ€гЃ®г‚­гѓјгЃ®ж™‚й–“г‚’еЏ–еѕ—гЃ™г‚‹
 extern	float NS_MV1GetAnimKeyDataTime( int MHandle, int AnimKeySetIndex, int Index )
 {
 	MV1_MODEL *Model ;
 	MV1_MODEL_BASE *ModelBase ;
 	MV1_ANIM_KEYSET_BASE *AnimKeySetBase ;
 
-	// Џ‰Љъ‰»‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// е€ќжњџеЊ–гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( MV1Man.Initialize == false ) return -1 ;
 
-	// ѓAѓhѓЊѓXЋж“ѕ
+	// г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ—
 	if( MV1MDLCHK( MHandle, Model ) )
 		return -1 ;
 	ModelBase = Model->BaseData ;
 
-	// ѓCѓ“ѓfѓbѓNѓX‚Є•sђі‚ѕ‚Б‚Ѕ‚з‰Ѕ‚а‚№‚ё‚ЙЏI—№
+	// г‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃЊдёЌж­ЈгЃ гЃЈгЃџг‚‰дЅ•г‚‚гЃ›гЃљгЃ«зµ‚дє†
 	if( AnimKeySetIndex < 0 || AnimKeySetIndex >= ModelBase->AnimKeySetNum )
 		return -1 ;
 	AnimKeySetBase = &ModelBase->AnimKeySet[ AnimKeySetIndex ] ;
 
-	// ѓLЃ[‚МѓCѓ“ѓfѓbѓNѓX‚Є•sђі‚ѕ‚Б‚Ѕ‚з‰Ѕ‚а‚№‚ё‚ЙЏI—№
+	// г‚­гѓјгЃ®г‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃЊдёЌж­ЈгЃ гЃЈгЃџг‚‰дЅ•г‚‚гЃ›гЃљгЃ«зµ‚дє†
 	if( Index < 0 || Index >= AnimKeySetBase->Num )
 		return -1 ;
 
-	// ѓLЃ[‚МЋћЉФ‚р•Ф‚·
+	// г‚­гѓјгЃ®ж™‚й–“г‚’иї”гЃ™
 	if( AnimKeySetBase->TimeType == MV1_ANIMKEY_TIME_TYPE_KEY )
 	{
 		return AnimKeySetBase->KeyTime[ Index ] ;
@@ -25453,7 +25453,7 @@ extern	float NS_MV1GetAnimKeyDataTime( int MHandle, int AnimKeySetIndex, int Ind
 	}
 }
 
-// Ћw’и‚МѓAѓjѓЃЃ[ѓVѓ‡ѓ“ѓLЃ[ѓZѓbѓg‚МЋw’и‚МЋћЉФ‚Е‚МѓLЃ[‚М”ФЌ†‚рЋж“ѕ‚·‚й
+// жЊ‡е®љгЃ®г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓіг‚­гѓјг‚»гѓѓгѓ€гЃ®жЊ‡е®љгЃ®ж™‚й–“гЃ§гЃ®г‚­гѓјгЃ®з•ЄеЏ·г‚’еЏ–еѕ—гЃ™г‚‹
 extern int NS_MV1GetAnimKeyDataIndexFromTime( int MHandle, int AnimKeySetIndex, float Time )
 {
 	MV1_MODEL *Model ;
@@ -25462,27 +25462,27 @@ extern int NS_MV1GetAnimKeyDataIndexFromTime( int MHandle, int AnimKeySetIndex, 
 	int KeyIndex ;
 	float Rate ;
 
-	// Џ‰Љъ‰»‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// е€ќжњџеЊ–гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( MV1Man.Initialize == false ) return -1 ;
 
-	// ѓAѓhѓЊѓXЋж“ѕ
+	// г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ—
 	if( MV1MDLCHK( MHandle, Model ) )
 		return -1 ;
 	ModelBase = Model->BaseData ;
 
-	// ѓCѓ“ѓfѓbѓNѓX‚Є•sђі‚ѕ‚Б‚Ѕ‚з‰Ѕ‚а‚№‚ё‚ЙЏI—№
+	// г‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃЊдёЌж­ЈгЃ гЃЈгЃџг‚‰дЅ•г‚‚гЃ›гЃљгЃ«зµ‚дє†
 	if( AnimKeySetIndex < 0 || AnimKeySetIndex >= ModelBase->AnimKeySetNum )
 		return -1 ;
 	AnimKeySetBase = &ModelBase->AnimKeySet[ AnimKeySetIndex ] ;
 
-	// ѓLЃ[‚МѓCѓ“ѓfѓbѓNѓX‚рЋж“ѕ
+	// г‚­гѓјгЃ®г‚¤гѓігѓ‡гѓѓг‚Їг‚№г‚’еЏ–еѕ—
 	KeyIndex = _MV1GetAnimKeyDataIndexFromTime( AnimKeySetBase, Time, Rate ) ;
 
-	// •вЉФ‚µ‚ЅѓLЃ[‚М”ФЌ†‚р•Ф‚·
+	// иЈњй–“гЃ—гЃџг‚­гѓјгЃ®з•ЄеЏ·г‚’иї”гЃ™
 	return KeyIndex ;
 }
 
-// Ћw’и‚МѓAѓjѓЃЃ[ѓVѓ‡ѓ“ѓLЃ[ѓZѓbѓg‚МѓLЃ[‚рЋж“ѕ‚·‚йЃAѓLЃ[ѓ^ѓCѓv‚Є MV1_ANIMKEY_TYPE_QUATERNION_X ‚© MV1_ANIMKEY_TYPE_QUATERNION_VMD ‚Е‚Н–і‚©‚Б‚ЅЏкЌ‡‚НЋё”s‚·‚й
+// жЊ‡е®љгЃ®г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓіг‚­гѓјг‚»гѓѓгѓ€гЃ®г‚­гѓјг‚’еЏ–еѕ—гЃ™г‚‹гЂЃг‚­гѓјг‚їг‚¤гѓ—гЃЊ MV1_ANIMKEY_TYPE_QUATERNION_X гЃ‹ MV1_ANIMKEY_TYPE_QUATERNION_VMD гЃ§гЃЇз„ЎгЃ‹гЃЈгЃџе ґеђ€гЃЇе¤±ж•—гЃ™г‚‹
 extern	FLOAT4			NS_MV1GetAnimKeyDataToQuaternion( int MHandle, int AnimKeySetIndex, int Index )
 {
 	MV1_MODEL *Model ;
@@ -25490,33 +25490,33 @@ extern	FLOAT4			NS_MV1GetAnimKeyDataToQuaternion( int MHandle, int AnimKeySetInd
 	MV1_ANIM_KEYSET_BASE *AnimKeySetBase ;
 	FLOAT4 ErrorValue = { -1.0f, -1.0f, -1.0f, -1.0f } ;
 
-	// Џ‰Љъ‰»‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// е€ќжњџеЊ–гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( MV1Man.Initialize == false ) return ErrorValue ;
 
-	// ѓAѓhѓЊѓXЋж“ѕ
+	// г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ—
 	if( MV1MDLCHK( MHandle, Model ) )
 		return ErrorValue ;
 	ModelBase = Model->BaseData ;
 
-	// ѓCѓ“ѓfѓbѓNѓX‚Є•sђі‚ѕ‚Б‚Ѕ‚з‰Ѕ‚а‚№‚ё‚ЙЏI—№
+	// г‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃЊдёЌж­ЈгЃ гЃЈгЃџг‚‰дЅ•г‚‚гЃ›гЃљгЃ«зµ‚дє†
 	if( AnimKeySetIndex < 0 || AnimKeySetIndex >= ModelBase->AnimKeySetNum )
 		return ErrorValue ;
 	AnimKeySetBase = &ModelBase->AnimKeySet[ AnimKeySetIndex ] ;
 
-	// ѓLЃ[‚МѓCѓ“ѓfѓbѓNѓX‚Є•sђі‚ѕ‚Б‚Ѕ‚з‰Ѕ‚а‚№‚ё‚ЙЏI—№
+	// г‚­гѓјгЃ®г‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃЊдёЌж­ЈгЃ гЃЈгЃџг‚‰дЅ•г‚‚гЃ›гЃљгЃ«зµ‚дє†
 	if( Index < 0 || Index >= AnimKeySetBase->Num )
 		return ErrorValue ;
 
-	// ѓLЃ[‚Мѓ^ѓCѓv‚Є MV1_ANIMKEY_TYPE_QUATERNION_X ‚© MV1_ANIMKEY_TYPE_QUATERNION_VMD ‚Е‚Н‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// г‚­гѓјгЃ®г‚їг‚¤гѓ—гЃЊ MV1_ANIMKEY_TYPE_QUATERNION_X гЃ‹ MV1_ANIMKEY_TYPE_QUATERNION_VMD гЃ§гЃЇгЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( AnimKeySetBase->Type != MV1_ANIMKEY_TYPE_QUATERNION_X &&
 		AnimKeySetBase->Type != MV1_ANIMKEY_TYPE_QUATERNION_VMD )
 		return ErrorValue ;
 
-	// ѓLЃ[‚М’l‚р•Ф‚·
+	// г‚­гѓјгЃ®еЂ¤г‚’иї”гЃ™
 	return AnimKeySetBase->KeyFloat4[ Index ] ;
 }
 
-// Ћw’и‚МѓAѓjѓЃЃ[ѓVѓ‡ѓ“ѓLЃ[ѓZѓbѓg‚МѓLЃ[‚рЋж“ѕ‚·‚йЃAѓLЃ[ѓ^ѓCѓv‚Є MV1_ANIMKEY_TYPE_QUATERNION ‚Е‚Н–і‚©‚Б‚ЅЏкЌ‡‚НЋё”s‚·‚й( ЋћЉФЋw’и”Е )
+// жЊ‡е®љгЃ®г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓіг‚­гѓјг‚»гѓѓгѓ€гЃ®г‚­гѓјг‚’еЏ–еѕ—гЃ™г‚‹гЂЃг‚­гѓјг‚їг‚¤гѓ—гЃЊ MV1_ANIMKEY_TYPE_QUATERNION гЃ§гЃЇз„ЎгЃ‹гЃЈгЃџе ґеђ€гЃЇе¤±ж•—гЃ™г‚‹( ж™‚й–“жЊ‡е®љз‰€ )
 extern	FLOAT4		NS_MV1GetAnimKeyDataToQuaternionFromTime( int MHandle, int AnimKeySetIndex, float Time )
 {
 	MV1_MODEL *Model ;
@@ -25527,41 +25527,41 @@ extern	FLOAT4		NS_MV1GetAnimKeyDataToQuaternionFromTime( int MHandle, int AnimKe
 	int KeyIndex ;
 	float Rate ;
 
-	// Џ‰Љъ‰»‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// е€ќжњџеЊ–гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( MV1Man.Initialize == false ) return ErrorValue ;
 
-	// ѓAѓhѓЊѓXЋж“ѕ
+	// г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ—
 	if( MV1MDLCHK( MHandle, Model ) )
 		return ErrorValue ;
 	ModelBase = Model->BaseData ;
 
-	// ѓCѓ“ѓfѓbѓNѓX‚Є•sђі‚ѕ‚Б‚Ѕ‚з‰Ѕ‚а‚№‚ё‚ЙЏI—№
+	// г‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃЊдёЌж­ЈгЃ гЃЈгЃџг‚‰дЅ•г‚‚гЃ›гЃљгЃ«зµ‚дє†
 	if( AnimKeySetIndex < 0 || AnimKeySetIndex >= ModelBase->AnimKeySetNum )
 		return ErrorValue ;
 	AnimKeySetBase = &ModelBase->AnimKeySet[ AnimKeySetIndex ] ;
 
-	// ѓLЃ[‚МѓCѓ“ѓfѓbѓNѓX‚рЋж“ѕ
+	// г‚­гѓјгЃ®г‚¤гѓігѓ‡гѓѓг‚Їг‚№г‚’еЏ–еѕ—
 	KeyIndex = _MV1GetAnimKeyDataIndexFromTime( AnimKeySetBase, Time, Rate ) ;
 
-	// ѓLЃ[‚Мѓ^ѓCѓv‚Є MV1_ANIMKEY_TYPE_QUATERNION_X ‚© MV1_ANIMKEY_TYPE_QUATERNION_VMD ‚Е‚Н‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// г‚­гѓјгЃ®г‚їг‚¤гѓ—гЃЊ MV1_ANIMKEY_TYPE_QUATERNION_X гЃ‹ MV1_ANIMKEY_TYPE_QUATERNION_VMD гЃ§гЃЇгЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( AnimKeySetBase->Type != MV1_ANIMKEY_TYPE_QUATERNION_X &&
 		AnimKeySetBase->Type != MV1_ANIMKEY_TYPE_QUATERNION_VMD )
 		return ErrorValue ;
 
-	// ЏI’[‚ѕ‚Б‚Ѕ‚з•вЉФ‚µ‚И‚ў
+	// зµ‚з«ЇгЃ гЃЈгЃџг‚‰иЈњй–“гЃ—гЃЄгЃ„
 	if( KeyIndex == AnimKeySetBase->Num - 1 )
 	{
 		return AnimKeySetBase->KeyFloat4[ KeyIndex ] ;
 	}
 
-	// •вЉФЏ€—ќ
+	// иЈњй–“е‡¦зђ†
 	_MV1SphereLinear( &AnimKeySetBase->KeyFloat4[ KeyIndex ], &AnimKeySetBase->KeyFloat4[ KeyIndex + 1 ], Rate, &Ret ) ; 
 
-	// •вЉФ‚µ‚ЅѓLЃ[‚М’l‚р•Ф‚·
+	// иЈњй–“гЃ—гЃџг‚­гѓјгЃ®еЂ¤г‚’иї”гЃ™
 	return Ret ;
 }
 
-// Ћw’и‚МѓAѓjѓЃЃ[ѓVѓ‡ѓ“ѓLЃ[ѓZѓbѓg‚МѓLЃ[‚рЋж“ѕ‚·‚йЃAѓLЃ[ѓ^ѓCѓv‚Є MV1_ANIMKEY_TYPE_VECTOR ‚Е‚Н–і‚©‚Б‚ЅЏкЌ‡‚НЋё”s‚·‚й
+// жЊ‡е®љгЃ®г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓіг‚­гѓјг‚»гѓѓгѓ€гЃ®г‚­гѓјг‚’еЏ–еѕ—гЃ™г‚‹гЂЃг‚­гѓјг‚їг‚¤гѓ—гЃЊ MV1_ANIMKEY_TYPE_VECTOR гЃ§гЃЇз„ЎгЃ‹гЃЈгЃџе ґеђ€гЃЇе¤±ж•—гЃ™г‚‹
 extern	VECTOR		NS_MV1GetAnimKeyDataToVector( int MHandle, int AnimKeySetIndex, int Index )
 {
 	MV1_MODEL *Model ;
@@ -25569,32 +25569,32 @@ extern	VECTOR		NS_MV1GetAnimKeyDataToVector( int MHandle, int AnimKeySetIndex, i
 	MV1_ANIM_KEYSET_BASE *AnimKeySetBase ;
 	VECTOR ErrorValue = { -1.0f, -1.0f, -1.0f } ;
 
-	// Џ‰Љъ‰»‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// е€ќжњџеЊ–гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( MV1Man.Initialize == false ) return ErrorValue ;
 
-	// ѓAѓhѓЊѓXЋж“ѕ
+	// г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ—
 	if( MV1MDLCHK( MHandle, Model ) )
 		return ErrorValue ;
 	ModelBase = Model->BaseData ;
 
-	// ѓCѓ“ѓfѓbѓNѓX‚Є•sђі‚ѕ‚Б‚Ѕ‚з‰Ѕ‚а‚№‚ё‚ЙЏI—№
+	// г‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃЊдёЌж­ЈгЃ гЃЈгЃџг‚‰дЅ•г‚‚гЃ›гЃљгЃ«зµ‚дє†
 	if( AnimKeySetIndex < 0 || AnimKeySetIndex >= ModelBase->AnimKeySetNum )
 		return ErrorValue ;
 	AnimKeySetBase = &ModelBase->AnimKeySet[ AnimKeySetIndex ] ;
 
-	// ѓLЃ[‚МѓCѓ“ѓfѓbѓNѓX‚Є•sђі‚ѕ‚Б‚Ѕ‚з‰Ѕ‚а‚№‚ё‚ЙЏI—№
+	// г‚­гѓјгЃ®г‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃЊдёЌж­ЈгЃ гЃЈгЃџг‚‰дЅ•г‚‚гЃ›гЃљгЃ«зµ‚дє†
 	if( Index < 0 || Index >= AnimKeySetBase->Num )
 		return ErrorValue ;
 
-	// ѓLЃ[‚Мѓ^ѓCѓv‚Є MV1_ANIMKEY_TYPE_VECTOR ‚Е‚Н‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// г‚­гѓјгЃ®г‚їг‚¤гѓ—гЃЊ MV1_ANIMKEY_TYPE_VECTOR гЃ§гЃЇгЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( AnimKeySetBase->Type != MV1_ANIMKEY_TYPE_VECTOR )
 		return ErrorValue ;
 
-	// ѓLЃ[‚р•Ф‚·
+	// г‚­гѓјг‚’иї”гЃ™
 	return AnimKeySetBase->KeyVector[ Index ] ;
 }
 
-// Ћw’и‚МѓAѓjѓЃЃ[ѓVѓ‡ѓ“ѓLЃ[ѓZѓbѓg‚МѓLЃ[‚рЋж“ѕ‚·‚йЃAѓLЃ[ѓ^ѓCѓv‚Є MV1_ANIMKEY_TYPE_VECTOR ‚Е‚Н–і‚©‚Б‚ЅЏкЌ‡‚НЋё”s‚·‚й( ЋћЉФЋw’и”Е )
+// жЊ‡е®љгЃ®г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓіг‚­гѓјг‚»гѓѓгѓ€гЃ®г‚­гѓјг‚’еЏ–еѕ—гЃ™г‚‹гЂЃг‚­гѓјг‚їг‚¤гѓ—гЃЊ MV1_ANIMKEY_TYPE_VECTOR гЃ§гЃЇз„ЎгЃ‹гЃЈгЃџе ґеђ€гЃЇе¤±ж•—гЃ™г‚‹( ж™‚й–“жЊ‡е®љз‰€ )
 extern	VECTOR		NS_MV1GetAnimKeyDataToVectorFromTime( int MHandle, int AnimKeySetIndex, float Time )
 {
 	MV1_MODEL *Model ;
@@ -25605,42 +25605,42 @@ extern	VECTOR		NS_MV1GetAnimKeyDataToVectorFromTime( int MHandle, int AnimKeySet
 	int KeyIndex ;
 	float Rate ;
 
-	// Џ‰Љъ‰»‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// е€ќжњџеЊ–гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( MV1Man.Initialize == false ) return ErrorValue ;
 
-	// ѓAѓhѓЊѓXЋж“ѕ
+	// г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ—
 	if( MV1MDLCHK( MHandle, Model ) )
 		return ErrorValue ;
 	ModelBase = Model->BaseData ;
 
-	// ѓCѓ“ѓfѓbѓNѓX‚Є•sђі‚ѕ‚Б‚Ѕ‚з‰Ѕ‚а‚№‚ё‚ЙЏI—№
+	// г‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃЊдёЌж­ЈгЃ гЃЈгЃџг‚‰дЅ•г‚‚гЃ›гЃљгЃ«зµ‚дє†
 	if( AnimKeySetIndex < 0 || AnimKeySetIndex >= ModelBase->AnimKeySetNum )
 		return ErrorValue ;
 	AnimKeySetBase = &ModelBase->AnimKeySet[ AnimKeySetIndex ] ;
 
-	// ѓLЃ[‚МѓCѓ“ѓfѓbѓNѓX‚рЋж“ѕ
+	// г‚­гѓјгЃ®г‚¤гѓігѓ‡гѓѓг‚Їг‚№г‚’еЏ–еѕ—
 	KeyIndex = _MV1GetAnimKeyDataIndexFromTime( AnimKeySetBase, Time, Rate ) ;
 
-	// ѓLЃ[‚Мѓ^ѓCѓv‚Є MV1_ANIMKEY_TYPE_VECTOR ‚Е‚Н‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// г‚­гѓјгЃ®г‚їг‚¤гѓ—гЃЊ MV1_ANIMKEY_TYPE_VECTOR гЃ§гЃЇгЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( AnimKeySetBase->Type != MV1_ANIMKEY_TYPE_VECTOR )
 		return ErrorValue ;
 
-	// ЏI’[‚ѕ‚Б‚Ѕ‚з•вЉФ‚µ‚И‚ў
+	// зµ‚з«ЇгЃ гЃЈгЃџг‚‰иЈњй–“гЃ—гЃЄгЃ„
 	if( KeyIndex == AnimKeySetBase->Num - 1 )
 	{
 		return AnimKeySetBase->KeyVector[ KeyIndex ] ;
 	}
 
-	// •вЉФЏ€—ќ
+	// иЈњй–“е‡¦зђ†
 	Ret.x = ( 1.0f - Rate ) * AnimKeySetBase->KeyVector[ KeyIndex ].x + Rate * AnimKeySetBase->KeyVector[ KeyIndex + 1 ].x ;
 	Ret.y = ( 1.0f - Rate ) * AnimKeySetBase->KeyVector[ KeyIndex ].y + Rate * AnimKeySetBase->KeyVector[ KeyIndex + 1 ].y ;
 	Ret.z = ( 1.0f - Rate ) * AnimKeySetBase->KeyVector[ KeyIndex ].z + Rate * AnimKeySetBase->KeyVector[ KeyIndex + 1 ].z ;
 
-	// •вЉФ‚µ‚ЅѓLЃ[‚М’l‚р•Ф‚·
+	// иЈњй–“гЃ—гЃџг‚­гѓјгЃ®еЂ¤г‚’иї”гЃ™
 	return Ret ;
 }
 
-// Ћw’и‚МѓAѓjѓЃЃ[ѓVѓ‡ѓ“ѓLЃ[ѓZѓbѓg‚МѓLЃ[‚рЋж“ѕ‚·‚йЃAѓLЃ[ѓ^ѓCѓv‚Є MV1_ANIMKEY_TYPE_MATRIX3X3 ‚© MV1_ANIMKEY_TYPE_MATRIX4X4C ‚Е‚Н–і‚©‚Б‚ЅЏкЌ‡‚НЋё”s‚·‚й
+// жЊ‡е®љгЃ®г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓіг‚­гѓјг‚»гѓѓгѓ€гЃ®г‚­гѓјг‚’еЏ–еѕ—гЃ™г‚‹гЂЃг‚­гѓјг‚їг‚¤гѓ—гЃЊ MV1_ANIMKEY_TYPE_MATRIX3X3 гЃ‹ MV1_ANIMKEY_TYPE_MATRIX4X4C гЃ§гЃЇз„ЎгЃ‹гЃЈгЃџе ґеђ€гЃЇе¤±ж•—гЃ™г‚‹
 extern	MATRIX		NS_MV1GetAnimKeyDataToMatrix( int MHandle, int AnimKeySetIndex, int Index )
 {
 	MV1_MODEL *Model ;
@@ -25657,29 +25657,29 @@ extern	MATRIX		NS_MV1GetAnimKeyDataToMatrix( int MHandle, int AnimKeySetIndex, i
 	} ;
 	MATRIX Matrix ;
 
-	// Џ‰Љъ‰»‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// е€ќжњџеЊ–гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( MV1Man.Initialize == false ) return ErrorValue ;
 
-	// ѓAѓhѓЊѓXЋж“ѕ
+	// г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ—
 	if( MV1MDLCHK( MHandle, Model ) )
 		return ErrorValue ;
 	ModelBase = Model->BaseData ;
 
-	// ѓCѓ“ѓfѓbѓNѓX‚Є•sђі‚ѕ‚Б‚Ѕ‚з‰Ѕ‚а‚№‚ё‚ЙЏI—№
+	// г‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃЊдёЌж­ЈгЃ гЃЈгЃџг‚‰дЅ•г‚‚гЃ›гЃљгЃ«зµ‚дє†
 	if( AnimKeySetIndex < 0 || AnimKeySetIndex >= ModelBase->AnimKeySetNum )
 		return ErrorValue ;
 	AnimKeySetBase = &ModelBase->AnimKeySet[ AnimKeySetIndex ] ;
 
-	// ѓLЃ[‚МѓCѓ“ѓfѓbѓNѓX‚Є•sђі‚ѕ‚Б‚Ѕ‚з‰Ѕ‚а‚№‚ё‚ЙЏI—№
+	// г‚­гѓјгЃ®г‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃЊдёЌж­ЈгЃ гЃЈгЃџг‚‰дЅ•г‚‚гЃ›гЃљгЃ«зµ‚дє†
 	if( Index < 0 || Index >= AnimKeySetBase->Num )
 		return ErrorValue ;
 
-	// ѓLЃ[‚МѓfЃ[ѓ^ѓ^ѓCѓv‚Є MV1_ANIMKEY_DATATYPE_MATRIX4X4C ‚© MV1_ANIMKEY_DATATYPE_MATRIX3X3 ‚Е‚Н‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// г‚­гѓјгЃ®гѓ‡гѓјг‚їг‚їг‚¤гѓ—гЃЊ MV1_ANIMKEY_DATATYPE_MATRIX4X4C гЃ‹ MV1_ANIMKEY_DATATYPE_MATRIX3X3 гЃ§гЃЇгЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( AnimKeySetBase->Type != MV1_ANIMKEY_TYPE_MATRIX4X4C &&
 		AnimKeySetBase->Type != MV1_ANIMKEY_TYPE_MATRIX3X3 )
 		return ErrorValue ;
 
-	// ѓLЃ[‚М’l‚р•Ф‚·
+	// г‚­гѓјгЃ®еЂ¤г‚’иї”гЃ™
 	switch( AnimKeySetBase->Type )
 	{
 	case MV1_ANIMKEY_TYPE_MATRIX4X4C :
@@ -25734,7 +25734,7 @@ extern	MATRIX		NS_MV1GetAnimKeyDataToMatrix( int MHandle, int AnimKeySetIndex, i
 }
 
 
-// Ћw’и‚МѓAѓjѓЃЃ[ѓVѓ‡ѓ“ѓLЃ[ѓZѓbѓg‚МѓLЃ[‚рЋж“ѕ‚·‚йЃAѓLЃ[ѓ^ѓCѓv‚Є MV1_ANIMKEY_TYPE_MATRIX4X4C ‚© MV1_ANIMKEY_TYPE_MATRIX3X3 ‚Е‚Н–і‚©‚Б‚ЅЏкЌ‡‚НЋё”s‚·‚й( ЋћЉФЋw’и”Е )
+// жЊ‡е®љгЃ®г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓіг‚­гѓјг‚»гѓѓгѓ€гЃ®г‚­гѓјг‚’еЏ–еѕ—гЃ™г‚‹гЂЃг‚­гѓјг‚їг‚¤гѓ—гЃЊ MV1_ANIMKEY_TYPE_MATRIX4X4C гЃ‹ MV1_ANIMKEY_TYPE_MATRIX3X3 гЃ§гЃЇз„ЎгЃ‹гЃЈгЃџе ґеђ€гЃЇе¤±ж•—гЃ™г‚‹( ж™‚й–“жЊ‡е®љз‰€ )
 extern	MATRIX		NS_MV1GetAnimKeyDataToMatrixFromTime( int MHandle, int AnimKeySetIndex, float Time )
 {
 	MV1_MODEL *Model ;
@@ -25754,31 +25754,31 @@ extern	MATRIX		NS_MV1GetAnimKeyDataToMatrixFromTime( int MHandle, int AnimKeySet
 	int KeyIndex ;
 	float Rate ;
 
-	// Џ‰Љъ‰»‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// е€ќжњџеЊ–гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( MV1Man.Initialize == false ) return ErrorValue ;
 
-	// ѓAѓhѓЊѓXЋж“ѕ
+	// г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ—
 	if( MV1MDLCHK( MHandle, Model ) )
 		return ErrorValue ;
 	ModelBase = Model->BaseData ;
 
-	// ѓCѓ“ѓfѓbѓNѓX‚Є•sђі‚ѕ‚Б‚Ѕ‚з‰Ѕ‚а‚№‚ё‚ЙЏI—№
+	// г‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃЊдёЌж­ЈгЃ гЃЈгЃџг‚‰дЅ•г‚‚гЃ›гЃљгЃ«зµ‚дє†
 	if( AnimKeySetIndex < 0 || AnimKeySetIndex >= ModelBase->AnimKeySetNum )
 		return ErrorValue ;
 	AnimKeySetBase = &ModelBase->AnimKeySet[ AnimKeySetIndex ] ;
 
-	// ѓLЃ[‚МѓCѓ“ѓfѓbѓNѓX‚рЋж“ѕ
+	// г‚­гѓјгЃ®г‚¤гѓігѓ‡гѓѓг‚Їг‚№г‚’еЏ–еѕ—
 	KeyIndex = _MV1GetAnimKeyDataIndexFromTime( AnimKeySetBase, Time, Rate ) ;
 
-	// ѓLЃ[‚МѓfЃ[ѓ^ѓ^ѓCѓv‚Є MV1_ANIMKEY_DATATYPE_MATRIX4X4C ‚© MV1_ANIMKEY_DATATYPE_MATRIX3X3 ‚Е‚Н‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// г‚­гѓјгЃ®гѓ‡гѓјг‚їг‚їг‚¤гѓ—гЃЊ MV1_ANIMKEY_DATATYPE_MATRIX4X4C гЃ‹ MV1_ANIMKEY_DATATYPE_MATRIX3X3 гЃ§гЃЇгЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( AnimKeySetBase->Type != MV1_ANIMKEY_TYPE_MATRIX4X4C &&
 		AnimKeySetBase->Type != MV1_ANIMKEY_TYPE_MATRIX3X3 )
 		return ErrorValue ;
 
-	// ЏI’[‚ѕ‚Б‚Ѕ‚з•вЉФ‚µ‚И‚ў
+	// зµ‚з«ЇгЃ гЃЈгЃџг‚‰иЈњй–“гЃ—гЃЄгЃ„
 	if( KeyIndex == AnimKeySetBase->Num - 1 )
 	{
-		// ѓLЃ[‚М’l‚р•Ф‚·
+		// г‚­гѓјгЃ®еЂ¤г‚’иї”гЃ™
 		switch( AnimKeySetBase->Type )
 		{
 		case MV1_ANIMKEY_TYPE_MATRIX4X4C :
@@ -25831,7 +25831,7 @@ extern	MATRIX		NS_MV1GetAnimKeyDataToMatrixFromTime( int MHandle, int AnimKeySet
 		return Ret ;
 	}
 
-	// •вЉФЏ€—ќ
+	// иЈњй–“е‡¦зђ†
 	switch( AnimKeySetBase->Type )
 	{
 	case MV1_ANIMKEY_TYPE_MATRIX4X4C :
@@ -25882,43 +25882,43 @@ extern	MATRIX		NS_MV1GetAnimKeyDataToMatrixFromTime( int MHandle, int AnimKeySet
 		return ErrorValue ;
 	}
 
-	// •вЉФЏ€—ќ‚р‚µ‚ЅЌs—с‚р•Ф‚·
+	// иЈњй–“е‡¦зђ†г‚’гЃ—гЃџиЎЊе€—г‚’иї”гЃ™
 	return Ret ;
 }
 
-// Ћw’и‚МѓAѓjѓЃЃ[ѓVѓ‡ѓ“ѓLЃ[ѓZѓbѓg‚МѓLЃ[‚рЋж“ѕ‚·‚йЃAѓLЃ[ѓ^ѓCѓv‚Є MV1_ANIMKEY_TYPE_FLAT ‚Е‚Н–і‚©‚Б‚ЅЏкЌ‡‚НЋё”s‚·‚й
+// жЊ‡е®љгЃ®г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓіг‚­гѓјг‚»гѓѓгѓ€гЃ®г‚­гѓјг‚’еЏ–еѕ—гЃ™г‚‹гЂЃг‚­гѓјг‚їг‚¤гѓ—гЃЊ MV1_ANIMKEY_TYPE_FLAT гЃ§гЃЇз„ЎгЃ‹гЃЈгЃџе ґеђ€гЃЇе¤±ж•—гЃ™г‚‹
 extern	float		NS_MV1GetAnimKeyDataToFlat( int MHandle, int AnimKeySetIndex, int Index )
 {
 	MV1_MODEL *Model ;
 	MV1_MODEL_BASE *ModelBase ;
 	MV1_ANIM_KEYSET_BASE *AnimKeySetBase ;
 
-	// Џ‰Љъ‰»‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// е€ќжњџеЊ–гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( MV1Man.Initialize == false ) return -1.0f ;
 
-	// ѓAѓhѓЊѓXЋж“ѕ
+	// г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ—
 	if( MV1MDLCHK( MHandle, Model ) )
 		return -1.0f ;
 	ModelBase = Model->BaseData ;
 
-	// ѓCѓ“ѓfѓbѓNѓX‚Є•sђі‚ѕ‚Б‚Ѕ‚з‰Ѕ‚а‚№‚ё‚ЙЏI—№
+	// г‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃЊдёЌж­ЈгЃ гЃЈгЃџг‚‰дЅ•г‚‚гЃ›гЃљгЃ«зµ‚дє†
 	if( AnimKeySetIndex < 0 || AnimKeySetIndex >= ModelBase->AnimKeySetNum )
 		return -1.0f ;
 	AnimKeySetBase = &ModelBase->AnimKeySet[ AnimKeySetIndex ] ;
 
-	// ѓLЃ[‚МѓCѓ“ѓfѓbѓNѓX‚Є•sђі‚ѕ‚Б‚Ѕ‚з‰Ѕ‚а‚№‚ё‚ЙЏI—№
+	// г‚­гѓјгЃ®г‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃЊдёЌж­ЈгЃ гЃЈгЃџг‚‰дЅ•г‚‚гЃ›гЃљгЃ«зµ‚дє†
 	if( Index < 0 || Index >= AnimKeySetBase->Num )
 		return -1.0f ;
 
-	// ѓLЃ[‚Мѓ^ѓCѓv‚Є MV1_ANIMKEY_TYPE_FLAT ‚Е‚Н‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// г‚­гѓјгЃ®г‚їг‚¤гѓ—гЃЊ MV1_ANIMKEY_TYPE_FLAT гЃ§гЃЇгЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( AnimKeySetBase->Type != MV1_ANIMKEY_TYPE_FLAT )
 		return -1.0f ;
 
-	// ѓLЃ[‚М’l‚р•Ф‚·
+	// г‚­гѓјгЃ®еЂ¤г‚’иї”гЃ™
 	return AnimKeySetBase->KeyFlat[ Index ] ;
 }
 
-// Ћw’и‚МѓAѓjѓЃЃ[ѓVѓ‡ѓ“ѓLЃ[ѓZѓbѓg‚МѓLЃ[‚рЋж“ѕ‚·‚йЃAѓLЃ[ѓ^ѓCѓv‚Є MV1_ANIMKEY_TYPE_FLAT ‚Е‚Н–і‚©‚Б‚ЅЏкЌ‡‚НЋё”s‚·‚й( ЋћЉФЋw’и”Е )
+// жЊ‡е®љгЃ®г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓіг‚­гѓјг‚»гѓѓгѓ€гЃ®г‚­гѓјг‚’еЏ–еѕ—гЃ™г‚‹гЂЃг‚­гѓјг‚їг‚¤гѓ—гЃЊ MV1_ANIMKEY_TYPE_FLAT гЃ§гЃЇз„ЎгЃ‹гЃЈгЃџе ґеђ€гЃЇе¤±ж•—гЃ™г‚‹( ж™‚й–“жЊ‡е®љз‰€ )
 extern	float		NS_MV1GetAnimKeyDataToFlatFromTime( int MHandle, int AnimKeySetIndex, float Time )
 {
 	MV1_MODEL *Model ;
@@ -25927,63 +25927,63 @@ extern	float		NS_MV1GetAnimKeyDataToFlatFromTime( int MHandle, int AnimKeySetInd
 	int KeyIndex ;
 	float Rate ;
 
-	// Џ‰Љъ‰»‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// е€ќжњџеЊ–гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( MV1Man.Initialize == false ) return -1.0f ;
 
-	// ѓAѓhѓЊѓXЋж“ѕ
+	// г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ—
 	if( MV1MDLCHK( MHandle, Model ) )
 		return -1.0f ;
 	ModelBase = Model->BaseData ;
 
-	// ѓCѓ“ѓfѓbѓNѓX‚Є•sђі‚ѕ‚Б‚Ѕ‚з‰Ѕ‚а‚№‚ё‚ЙЏI—№
+	// г‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃЊдёЌж­ЈгЃ гЃЈгЃџг‚‰дЅ•г‚‚гЃ›гЃљгЃ«зµ‚дє†
 	if( AnimKeySetIndex < 0 || AnimKeySetIndex >= ModelBase->AnimKeySetNum )
 		return -1.0f ;
 	AnimKeySetBase = &ModelBase->AnimKeySet[ AnimKeySetIndex ] ;
 
-	// ѓLЃ[‚МѓCѓ“ѓfѓbѓNѓX‚рЋж“ѕ
+	// г‚­гѓјгЃ®г‚¤гѓігѓ‡гѓѓг‚Їг‚№г‚’еЏ–еѕ—
 	KeyIndex = _MV1GetAnimKeyDataIndexFromTime( AnimKeySetBase, Time, Rate ) ;
 
-	// ѓLЃ[‚Мѓ^ѓCѓv‚Є MV1_ANIMKEY_TYPE_FLAT ‚Е‚Н‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// г‚­гѓјгЃ®г‚їг‚¤гѓ—гЃЊ MV1_ANIMKEY_TYPE_FLAT гЃ§гЃЇгЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( AnimKeySetBase->Type != MV1_ANIMKEY_TYPE_FLAT )
 		return -1.0f ;
 
-	// ѓLЃ[‚М’l‚р•Ф‚·
+	// г‚­гѓјгЃ®еЂ¤г‚’иї”гЃ™
 	return AnimKeySetBase->KeyFlat[ KeyIndex ] ;
 }
 
-// Ћw’и‚МѓAѓjѓЃЃ[ѓVѓ‡ѓ“ѓLЃ[ѓZѓbѓg‚МѓLЃ[‚рЋж“ѕ‚·‚йЃAѓLЃ[ѓ^ѓCѓv‚Є MV1_ANIMKEY_TYPE_LINEAR ‚Е‚Н–і‚©‚Б‚ЅЏкЌ‡‚НЋё”s‚·‚й
+// жЊ‡е®љгЃ®г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓіг‚­гѓјг‚»гѓѓгѓ€гЃ®г‚­гѓјг‚’еЏ–еѕ—гЃ™г‚‹гЂЃг‚­гѓјг‚їг‚¤гѓ—гЃЊ MV1_ANIMKEY_TYPE_LINEAR гЃ§гЃЇз„ЎгЃ‹гЃЈгЃџе ґеђ€гЃЇе¤±ж•—гЃ™г‚‹
 extern	float		NS_MV1GetAnimKeyDataToLinear( int MHandle, int AnimKeySetIndex, int Index )
 {
 	MV1_MODEL *Model ;
 	MV1_MODEL_BASE *ModelBase ;
 	MV1_ANIM_KEYSET_BASE *AnimKeySetBase ;
 
-	// Џ‰Љъ‰»‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// е€ќжњџеЊ–гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( MV1Man.Initialize == false ) return -1.0f ;
 
-	// ѓAѓhѓЊѓXЋж“ѕ
+	// г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ—
 	if( MV1MDLCHK( MHandle, Model ) )
 		return -1.0f ;
 	ModelBase = Model->BaseData ;
 
-	// ѓCѓ“ѓfѓbѓNѓX‚Є•sђі‚ѕ‚Б‚Ѕ‚з‰Ѕ‚а‚№‚ё‚ЙЏI—№
+	// г‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃЊдёЌж­ЈгЃ гЃЈгЃџг‚‰дЅ•г‚‚гЃ›гЃљгЃ«зµ‚дє†
 	if( AnimKeySetIndex < 0 || AnimKeySetIndex >= ModelBase->AnimKeySetNum )
 		return -1.0f ;
 	AnimKeySetBase = &ModelBase->AnimKeySet[ AnimKeySetIndex ] ;
 
-	// ѓLЃ[‚МѓCѓ“ѓfѓbѓNѓX‚Є•sђі‚ѕ‚Б‚Ѕ‚з‰Ѕ‚а‚№‚ё‚ЙЏI—№
+	// г‚­гѓјгЃ®г‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃЊдёЌж­ЈгЃ гЃЈгЃџг‚‰дЅ•г‚‚гЃ›гЃљгЃ«зµ‚дє†
 	if( Index < 0 || Index >= AnimKeySetBase->Num )
 		return -1.0f ;
 
-	// ѓLЃ[‚Мѓ^ѓCѓv‚Є MV1_ANIMKEY_TYPE_LINEAR ‚Е‚Н‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// г‚­гѓјгЃ®г‚їг‚¤гѓ—гЃЊ MV1_ANIMKEY_TYPE_LINEAR гЃ§гЃЇгЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( AnimKeySetBase->Type != MV1_ANIMKEY_TYPE_LINEAR )
 		return -1.0f ;
 
-	// ѓLЃ[‚М’l‚р•Ф‚·
+	// г‚­гѓјгЃ®еЂ¤г‚’иї”гЃ™
 	return AnimKeySetBase->KeyLinear[ Index ] ;
 }
 
-// Ћw’и‚МѓAѓjѓЃЃ[ѓVѓ‡ѓ“ѓLЃ[ѓZѓbѓg‚МѓLЃ[‚рЋж“ѕ‚·‚йЃAѓLЃ[ѓ^ѓCѓv‚Є MV1_ANIMKEY_TYPE_LINEAR ‚Е‚Н–і‚©‚Б‚ЅЏкЌ‡‚НЋё”s‚·‚й( ЋћЉФЋw’и”Е )
+// жЊ‡е®љгЃ®г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓіг‚­гѓјг‚»гѓѓгѓ€гЃ®г‚­гѓјг‚’еЏ–еѕ—гЃ™г‚‹гЂЃг‚­гѓјг‚їг‚¤гѓ—гЃЊ MV1_ANIMKEY_TYPE_LINEAR гЃ§гЃЇз„ЎгЃ‹гЃЈгЃџе ґеђ€гЃЇе¤±ж•—гЃ™г‚‹( ж™‚й–“жЊ‡е®љз‰€ )
 extern	float		NS_MV1GetAnimKeyDataToLinearFromTime( int MHandle, int AnimKeySetIndex, float Time )
 {
 	MV1_MODEL *Model ;
@@ -25993,47 +25993,47 @@ extern	float		NS_MV1GetAnimKeyDataToLinearFromTime( int MHandle, int AnimKeySetI
 	float Rate ;
 	float Ret ;
 
-	// Џ‰Љъ‰»‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// е€ќжњџеЊ–гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( MV1Man.Initialize == false ) return -1.0f ;
 
-	// ѓAѓhѓЊѓXЋж“ѕ
+	// г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ—
 	if( MV1MDLCHK( MHandle, Model ) )
 		return -1.0f ;
 	ModelBase = Model->BaseData ;
 
-	// ѓCѓ“ѓfѓbѓNѓX‚Є•sђі‚ѕ‚Б‚Ѕ‚з‰Ѕ‚а‚№‚ё‚ЙЏI—№
+	// г‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃЊдёЌж­ЈгЃ гЃЈгЃџг‚‰дЅ•г‚‚гЃ›гЃљгЃ«зµ‚дє†
 	if( AnimKeySetIndex < 0 || AnimKeySetIndex >= ModelBase->AnimKeySetNum )
 		return -1.0f ;
 	AnimKeySetBase = &ModelBase->AnimKeySet[ AnimKeySetIndex ] ;
 
-	// ѓLЃ[‚МѓCѓ“ѓfѓbѓNѓX‚рЋж“ѕ
+	// г‚­гѓјгЃ®г‚¤гѓігѓ‡гѓѓг‚Їг‚№г‚’еЏ–еѕ—
 	KeyIndex = _MV1GetAnimKeyDataIndexFromTime( AnimKeySetBase, Time, Rate ) ;
 
-	// ѓLЃ[‚Мѓ^ѓCѓv‚Є MV1_ANIMKEY_TYPE_LINEAR ‚Е‚Н‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// г‚­гѓјгЃ®г‚їг‚¤гѓ—гЃЊ MV1_ANIMKEY_TYPE_LINEAR гЃ§гЃЇгЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( AnimKeySetBase->Type != MV1_ANIMKEY_TYPE_LINEAR )
 		return -1.0f ;
 
-	// ЏI’[‚ѕ‚Б‚Ѕ‚з•вЉФ‚µ‚И‚ў
+	// зµ‚з«ЇгЃ гЃЈгЃџг‚‰иЈњй–“гЃ—гЃЄгЃ„
 	if( KeyIndex == AnimKeySetBase->Num - 1 )
 	{
 		return AnimKeySetBase->KeyLinear[ KeyIndex ] ;
 	}
 
-	// •вЉФЏ€—ќ
+	// иЈњй–“е‡¦зђ†
 	Ret = ( 1.0f - Rate ) * AnimKeySetBase->KeyLinear[ KeyIndex ] + Rate * AnimKeySetBase->KeyLinear[ KeyIndex + 1 ] ;
 
-	// •вЉФ‚µ‚ЅѓLЃ[‚М’l‚р•Ф‚·
+	// иЈњй–“гЃ—гЃџг‚­гѓјгЃ®еЂ¤г‚’иї”гЃ™
 	return Ret ;
 }
 
 
-// ѓ‚ѓfѓ‹‚ЕЋg—p‚µ‚Д‚ў‚йѓ}ѓeѓЉѓAѓ‹‚Мђ”‚рЋж“ѕ‚·‚й
+// гѓўгѓ‡гѓ«гЃ§дЅїз”ЁгЃ—гЃ¦гЃ„г‚‹гѓћгѓ†гѓЄг‚ўгѓ«гЃ®ж•°г‚’еЏ–еѕ—гЃ™г‚‹
 extern int NS_MV1GetMaterialNum( int MHandle )
 {
 	return MV1GetMaterialNumBase( MV1GetModelBaseHandle( MHandle ) ) ;
 }
 
-// Ћw’и‚Мѓ}ѓeѓЉѓAѓ‹‚М–ј‘O‚рЋж“ѕ‚·‚й
+// жЊ‡е®љгЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ®еђЌе‰Ќг‚’еЏ–еѕ—гЃ™г‚‹
 extern	const TCHAR *NS_MV1GetMaterialName( int MHandle, int MaterialIndex )
 {
 #ifdef UNICODE
@@ -26043,25 +26043,25 @@ extern	const TCHAR *NS_MV1GetMaterialName( int MHandle, int MaterialIndex )
 #endif
 }
 
-// Ћw’и‚Мѓ}ѓeѓЉѓAѓ‹‚М–ј‘O‚рЋж“ѕ‚·‚й
+// жЊ‡е®љгЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ®еђЌе‰Ќг‚’еЏ–еѕ—гЃ™г‚‹
 extern	const wchar_t *MV1GetMaterialName_WCHAR_T( int MHandle, int MaterialIndex )
 {
 	return MV1GetMaterialNameBaseW( MV1GetModelBaseHandle( MHandle ), MaterialIndex ) ;
 }
 
-// Ћw’и‚Мѓ}ѓeѓЉѓAѓ‹‚Мѓ^ѓCѓv‚р•ПЌX‚·‚й( Type : DX_MATERIAL_TYPE_NORMAL ‚И‚З )
+// жЊ‡е®љгЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ®г‚їг‚¤гѓ—г‚’е¤‰ж›ґгЃ™г‚‹( Type : DX_MATERIAL_TYPE_NORMAL гЃЄгЃ© )
 extern int NS_MV1SetMaterialType( int MHandle, int MaterialIndex, int Type )
 {
 	return MV1SetMaterialTypeBase( MV1GetModelBaseHandle( MHandle ), MaterialIndex, Type ) ;
 }
 
-// Ћw’и‚Мѓ}ѓeѓЉѓAѓ‹‚Мѓ^ѓCѓv‚рЋж“ѕ‚·‚й( –Я‚и’l : DX_MATERIAL_TYPE_NORMAL ‚И‚З )
+// жЊ‡е®љгЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ®г‚їг‚¤гѓ—г‚’еЏ–еѕ—гЃ™г‚‹( ж€»г‚ЉеЂ¤ : DX_MATERIAL_TYPE_NORMAL гЃЄгЃ© )
 extern int NS_MV1GetMaterialType( int MHandle, int MaterialIndex )
 {
 	return MV1GetMaterialTypeBase( MV1GetModelBaseHandle( MHandle ), MaterialIndex ) ;
 }
 
-// Ћw’и‚Мѓ}ѓeѓЉѓAѓ‹‚МѓfѓBѓtѓ…Ѓ[ѓYѓJѓ‰Ѓ[‚рЋж“ѕ‚·‚й
+// жЊ‡е®љгЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ®гѓ‡г‚Јгѓ•гѓҐгѓјг‚єг‚«гѓ©гѓјг‚’еЏ–еѕ—гЃ™г‚‹
 extern	COLOR_F		NS_MV1GetMaterialDifColor( int MHandle, int MaterialIndex )
 {
 	COLOR_F ErrorRet = { -1.0f, -1.0f, -1.0f, -1.0f } ;
@@ -26070,7 +26070,7 @@ extern	COLOR_F		NS_MV1GetMaterialDifColor( int MHandle, int MaterialIndex )
 	return Material->Diffuse ;
 }
 
-// Ћw’и‚Мѓ}ѓeѓЉѓAѓ‹‚МѓXѓyѓLѓ…ѓ‰ѓJѓ‰Ѓ[‚рЋж“ѕ‚·‚й
+// жЊ‡е®љгЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ®г‚№гѓљг‚­гѓҐгѓ©г‚«гѓ©гѓјг‚’еЏ–еѕ—гЃ™г‚‹
 extern	COLOR_F		NS_MV1GetMaterialSpcColor( int MHandle, int MaterialIndex )
 {
 	COLOR_F ErrorRet = { -1.0f, -1.0f, -1.0f, -1.0f } ;
@@ -26079,7 +26079,7 @@ extern	COLOR_F		NS_MV1GetMaterialSpcColor( int MHandle, int MaterialIndex )
 	return Material->Specular ;
 }
 
-// Ћw’и‚Мѓ}ѓeѓЉѓAѓ‹‚МѓGѓ~ѓbѓVѓuѓJѓ‰Ѓ[‚рЋж“ѕ‚·‚й
+// жЊ‡е®љгЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ®г‚Ёгѓџгѓѓг‚·гѓ–г‚«гѓ©гѓјг‚’еЏ–еѕ—гЃ™г‚‹
 extern	COLOR_F		NS_MV1GetMaterialEmiColor( int MHandle, int MaterialIndex )
 {
 	COLOR_F ErrorRet = { -1.0f, -1.0f, -1.0f, -1.0f } ;
@@ -26088,7 +26088,7 @@ extern	COLOR_F		NS_MV1GetMaterialEmiColor( int MHandle, int MaterialIndex )
 	return Material->Emissive ;
 }
 
-// Ћw’и‚Мѓ}ѓeѓЉѓAѓ‹‚МѓAѓ“ѓrѓGѓ“ѓgѓJѓ‰Ѓ[‚рЋж“ѕ‚·‚й
+// жЊ‡е®љгЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ®г‚ўгѓігѓ“г‚Ёгѓігѓ€г‚«гѓ©гѓјг‚’еЏ–еѕ—гЃ™г‚‹
 extern	COLOR_F		NS_MV1GetMaterialAmbColor( int MHandle, int MaterialIndex )
 {
 	COLOR_F ErrorRet = { -1.0f, -1.0f, -1.0f, -1.0f } ;
@@ -26097,7 +26097,7 @@ extern	COLOR_F		NS_MV1GetMaterialAmbColor( int MHandle, int MaterialIndex )
 	return Material->Ambient ;
 }
 
-// Ћw’и‚Мѓ}ѓeѓЉѓAѓ‹‚МѓXѓyѓLѓ…ѓ‰‚М‹­‚і‚рЋж“ѕ‚·‚й
+// жЊ‡е®љгЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ®г‚№гѓљг‚­гѓҐгѓ©гЃ®еј·гЃ•г‚’еЏ–еѕ—гЃ™г‚‹
 extern	float		NS_MV1GetMaterialSpcPower( int MHandle, int MaterialIndex )
 {
 	MV1MATERIALSTART( MHandle, Model, ModelBase, Material, MaterialIndex, -1.0f ) ;
@@ -26108,7 +26108,7 @@ extern	float		NS_MV1GetMaterialSpcPower( int MHandle, int MaterialIndex )
 
 
 
-// Ћw’и‚Мѓ}ѓeѓЉѓAѓ‹‚ЕѓfѓBѓtѓ…Ѓ[ѓYѓ}ѓbѓv‚Ж‚µ‚ДЋg—p‚·‚йѓeѓNѓXѓ`ѓѓ‚рЋw’и‚·‚й
+// жЊ‡е®љгЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ§гѓ‡г‚Јгѓ•гѓҐгѓјг‚єгѓћгѓѓгѓ—гЃЁгЃ—гЃ¦дЅїз”ЁгЃ™г‚‹гѓ†г‚Їг‚№гѓЃгѓЈг‚’жЊ‡е®љгЃ™г‚‹
 extern int NS_MV1SetMaterialDifMapTexture( int MHandle, int MaterialIndex, int TexIndex )
 {
 	MV1_MESH *Mesh ;
@@ -26124,19 +26124,19 @@ extern int NS_MV1SetMaterialDifMapTexture( int MHandle, int MaterialIndex, int T
 		return 0 ;
 	}
 
-	// •`‰ж‘Т‹@‚µ‚Д‚ў‚й•`‰ж•Ё‚р•`‰ж
+	// жЏЏз”»еѕ…ж©џгЃ—гЃ¦гЃ„г‚‹жЏЏз”»з‰©г‚’жЏЏз”»
 	DRAWSTOCKINFO
 
-	// ѓfѓBѓtѓ…Ѓ[ѓYѓЊѓCѓ„Ѓ[‚Є–і‚©‚Б‚ЅЏкЌ‡‚Н‚P‚Й‚·‚й
+	// гѓ‡г‚Јгѓ•гѓҐгѓјг‚єгѓ¬г‚¤гѓ¤гѓјгЃЊз„ЎгЃ‹гЃЈгЃџе ґеђ€гЃЇпј‘гЃ«гЃ™г‚‹
 	if( Material->DiffuseLayerNum == 0 )
 	{
 		Material->DiffuseLayerNum = 1 ;
 	}
 
-	// ђЭ’и
+	// иЁ­е®љ
 	Material->DiffuseLayer[ 0 ].Texture = TexIndex ;
 
-	// ‚±‚Мѓ}ѓeѓЉѓAѓ‹‚рЋg—p‚µ‚Д‚ў‚йѓЃѓbѓVѓ…‚М”ј“§–ѕ—v‘f—L–іЏо•с‚МѓZѓbѓgѓAѓbѓvЉ®—№ѓtѓ‰ѓO‚р“|‚·
+	// гЃ“гЃ®гѓћгѓ†гѓЄг‚ўгѓ«г‚’дЅїз”ЁгЃ—гЃ¦гЃ„г‚‹гѓЎгѓѓг‚·гѓҐгЃ®еЌЉйЂЏжЋи¦Ѓзґ жњ‰з„Ўжѓ…е ±гЃ®г‚»гѓѓгѓ€г‚ўгѓѓгѓ—е®Њдє†гѓ•гѓ©г‚°г‚’еЂ’гЃ™
 	Mesh = Model->Mesh ;
 	for( i = 0 ; i < ModelBase->MeshNum ; i ++, Mesh ++ )
 	{
@@ -26147,11 +26147,11 @@ extern int NS_MV1SetMaterialDifMapTexture( int MHandle, int MaterialIndex, int T
 			MV1BitSetChange( &Mesh->DrawMaterialChange ) ;
 	}
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// Ћw’и‚Мѓ}ѓeѓЉѓAѓ‹‚ЕѓfѓBѓtѓ…Ѓ[ѓYѓ}ѓbѓv‚Ж‚µ‚ДЋg—p‚і‚к‚Д‚ў‚йѓeѓNѓXѓ`ѓѓ‚МѓCѓ“ѓfѓbѓNѓX‚рЋж“ѕ‚·‚й
+// жЊ‡е®љгЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ§гѓ‡г‚Јгѓ•гѓҐгѓјг‚єгѓћгѓѓгѓ—гЃЁгЃ—гЃ¦дЅїз”ЁгЃ•г‚ЊгЃ¦гЃ„г‚‹гѓ†г‚Їг‚№гѓЃгѓЈгЃ®г‚¤гѓігѓ‡гѓѓг‚Їг‚№г‚’еЏ–еѕ—гЃ™г‚‹
 extern int NS_MV1GetMaterialDifMapTexture( int MHandle, int MaterialIndex )
 {
 	MV1MATERIALSTART( MHandle, Model, ModelBase, Material, MaterialIndex, -1 ) ;
@@ -26162,7 +26162,7 @@ extern int NS_MV1GetMaterialDifMapTexture( int MHandle, int MaterialIndex )
 	return Material->DiffuseLayer[ 0 ].Texture ;
 }
 
-// Ћw’и‚Мѓ}ѓeѓЉѓAѓ‹‚ЕѓTѓuѓfѓBѓtѓ…Ѓ[ѓYѓ}ѓbѓv‚Ж‚µ‚ДЋg—p‚·‚йѓeѓNѓXѓ`ѓѓ‚рЋw’и‚·‚й
+// жЊ‡е®љгЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ§г‚µгѓ–гѓ‡г‚Јгѓ•гѓҐгѓјг‚єгѓћгѓѓгѓ—гЃЁгЃ—гЃ¦дЅїз”ЁгЃ™г‚‹гѓ†г‚Їг‚№гѓЃгѓЈг‚’жЊ‡е®љгЃ™г‚‹
 extern int NS_MV1SetMaterialSubDifMapTexture( int MHandle, int MaterialIndex, int TexIndex )
 {
 	MV1_MESH *Mesh ;
@@ -26178,19 +26178,19 @@ extern int NS_MV1SetMaterialSubDifMapTexture( int MHandle, int MaterialIndex, in
 		return 0 ;
 	}
 
-	// •`‰ж‘Т‹@‚µ‚Д‚ў‚й•`‰ж•Ё‚р•`‰ж
+	// жЏЏз”»еѕ…ж©џгЃ—гЃ¦гЃ„г‚‹жЏЏз”»з‰©г‚’жЏЏз”»
 	DRAWSTOCKINFO
 
-	// ѓfѓBѓtѓ…Ѓ[ѓYѓЊѓCѓ„Ѓ[‚Є2€И‰є‚МЏкЌ‡‚Н‚Q‚Й‚·‚й
+	// гѓ‡г‚Јгѓ•гѓҐгѓјг‚єгѓ¬г‚¤гѓ¤гѓјгЃЊ2д»Ґдё‹гЃ®е ґеђ€гЃЇпј’гЃ«гЃ™г‚‹
 	if( Material->DiffuseLayerNum < 2 )
 	{
 		Material->DiffuseLayerNum = 2 ;
 	}
 
-	// ђЭ’и
+	// иЁ­е®љ
 	Material->DiffuseLayer[ 1 ].Texture = TexIndex ;
 
-	// ‚±‚Мѓ}ѓeѓЉѓAѓ‹‚рЋg—p‚µ‚Д‚ў‚йѓЃѓbѓVѓ…‚М”ј“§–ѕ—v‘f—L–іЏо•с‚МѓZѓbѓgѓAѓbѓvЉ®—№ѓtѓ‰ѓO‚р“|‚·
+	// гЃ“гЃ®гѓћгѓ†гѓЄг‚ўгѓ«г‚’дЅїз”ЁгЃ—гЃ¦гЃ„г‚‹гѓЎгѓѓг‚·гѓҐгЃ®еЌЉйЂЏжЋи¦Ѓзґ жњ‰з„Ўжѓ…е ±гЃ®г‚»гѓѓгѓ€г‚ўгѓѓгѓ—е®Њдє†гѓ•гѓ©г‚°г‚’еЂ’гЃ™
 	Mesh = Model->Mesh ;
 	for( i = 0 ; i < ModelBase->MeshNum ; i ++, Mesh ++ )
 	{
@@ -26201,11 +26201,11 @@ extern int NS_MV1SetMaterialSubDifMapTexture( int MHandle, int MaterialIndex, in
 			MV1BitSetChange( &Mesh->DrawMaterialChange ) ;
 	}
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// Ћw’и‚Мѓ}ѓeѓЉѓAѓ‹‚ЕѓTѓuѓfѓBѓtѓ…Ѓ[ѓYѓ}ѓbѓv‚Ж‚µ‚ДЋg—p‚і‚к‚Д‚ў‚йѓeѓNѓXѓ`ѓѓ‚МѓCѓ“ѓfѓbѓNѓX‚рЋж“ѕ‚·‚й
+// жЊ‡е®љгЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ§г‚µгѓ–гѓ‡г‚Јгѓ•гѓҐгѓјг‚єгѓћгѓѓгѓ—гЃЁгЃ—гЃ¦дЅїз”ЁгЃ•г‚ЊгЃ¦гЃ„г‚‹гѓ†г‚Їг‚№гѓЃгѓЈгЃ®г‚¤гѓігѓ‡гѓѓг‚Їг‚№г‚’еЏ–еѕ—гЃ™г‚‹
 extern int NS_MV1GetMaterialSubDifMapTexture( int MHandle, int MaterialIndex )
 {
 	MV1MATERIALSTART( MHandle, Model, ModelBase, Material, MaterialIndex, -1 ) ;
@@ -26216,7 +26216,7 @@ extern int NS_MV1GetMaterialSubDifMapTexture( int MHandle, int MaterialIndex )
 	return Material->DiffuseLayer[ 1 ].Texture ;
 }
 
-// Ћw’и‚Мѓ}ѓeѓЉѓAѓ‹‚ЕѓXѓyѓLѓ…ѓ‰ѓ}ѓbѓv‚Ж‚µ‚ДЋg—p‚·‚йѓeѓNѓXѓ`ѓѓ‚рЋw’и‚·‚й
+// жЊ‡е®љгЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ§г‚№гѓљг‚­гѓҐгѓ©гѓћгѓѓгѓ—гЃЁгЃ—гЃ¦дЅїз”ЁгЃ™г‚‹гѓ†г‚Їг‚№гѓЃгѓЈг‚’жЊ‡е®љгЃ™г‚‹
 extern int NS_MV1SetMaterialSpcMapTexture( int MHandle, int MaterialIndex, int TexIndex )
 {
 	MV1MATERIALSTART( MHandle, Model, ModelBase, Material, MaterialIndex, -1 ) ;
@@ -26224,7 +26224,7 @@ extern int NS_MV1SetMaterialSpcMapTexture( int MHandle, int MaterialIndex, int T
 	if( TexIndex >= ModelBase->TextureNum )
 		return -1 ;
 
-	// ѓeѓNѓXѓ`ѓѓѓCѓ“ѓfѓbѓNѓX‚Є 0 €И‰є‚ѕ‚Б‚ЅЏкЌ‡‚НѓXѓyѓLѓ…ѓ‰ѓ}ѓbѓv‚р‰рЏњ‚·‚й
+	// гѓ†г‚Їг‚№гѓЃгѓЈг‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃЊ 0 д»Ґдё‹гЃ гЃЈгЃџе ґеђ€гЃЇг‚№гѓљг‚­гѓҐгѓ©гѓћгѓѓгѓ—г‚’и§Јй™¤гЃ™г‚‹
 	if( TexIndex < 0 )
 	{
 		if( Material->SpecularLayerNum == 0 )
@@ -26232,7 +26232,7 @@ extern int NS_MV1SetMaterialSpcMapTexture( int MHandle, int MaterialIndex, int T
 			return 0 ;
 		}
 
-		// •`‰ж‘Т‹@‚µ‚Д‚ў‚й•`‰ж•Ё‚р•`‰ж
+		// жЏЏз”»еѕ…ж©џгЃ—гЃ¦гЃ„г‚‹жЏЏз”»з‰©г‚’жЏЏз”»
 		DRAWSTOCKINFO
 
 		Material->SpecularLayerNum = 0 ;
@@ -26244,24 +26244,24 @@ extern int NS_MV1SetMaterialSpcMapTexture( int MHandle, int MaterialIndex, int T
 			return 0 ;
 		}
 
-		// •`‰ж‘Т‹@‚µ‚Д‚ў‚й•`‰ж•Ё‚р•`‰ж
+		// жЏЏз”»еѕ…ж©џгЃ—гЃ¦гЃ„г‚‹жЏЏз”»з‰©г‚’жЏЏз”»
 		DRAWSTOCKINFO
 
-		// ѓXѓyѓLѓ…ѓ‰ѓ}ѓbѓv‚Мђ”‚Є‚O‚ѕ‚Б‚Ѕ‚з‚P‚Й‚·‚й
+		// г‚№гѓљг‚­гѓҐгѓ©гѓћгѓѓгѓ—гЃ®ж•°гЃЊпјђгЃ гЃЈгЃџг‚‰пј‘гЃ«гЃ™г‚‹
 		if( Material->SpecularLayerNum == 0 )
 		{
 			Material->SpecularLayerNum = 1 ;
 		}
 
-		// ђЭ’и
+		// иЁ­е®љ
 		Material->SpecularLayer[ 0 ].Texture = TexIndex ;
 	}
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// Ћw’и‚Мѓ}ѓeѓЉѓAѓ‹‚ЕѓXѓyѓLѓ…ѓ‰ѓ}ѓbѓv‚Ж‚µ‚ДЋg—p‚і‚к‚Д‚ў‚йѓeѓNѓXѓ`ѓѓ‚МѓCѓ“ѓfѓbѓNѓX‚рЋж“ѕ‚·‚й
+// жЊ‡е®љгЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ§г‚№гѓљг‚­гѓҐгѓ©гѓћгѓѓгѓ—гЃЁгЃ—гЃ¦дЅїз”ЁгЃ•г‚ЊгЃ¦гЃ„г‚‹гѓ†г‚Їг‚№гѓЃгѓЈгЃ®г‚¤гѓігѓ‡гѓѓг‚Їг‚№г‚’еЏ–еѕ—гЃ™г‚‹
 extern int NS_MV1GetMaterialSpcMapTexture( int MHandle, int MaterialIndex )
 {
 	MV1MATERIALSTART( MHandle, Model, ModelBase, Material, MaterialIndex, -1 ) ;
@@ -26272,75 +26272,75 @@ extern int NS_MV1GetMaterialSpcMapTexture( int MHandle, int MaterialIndex )
 	return Material->SpecularLayer[ 0 ].Texture ;
 }
 
-// Ћw’и‚Мѓ}ѓeѓЉѓAѓ‹‚Е–@ђьѓ}ѓbѓv‚Ж‚µ‚ДЋg—p‚·‚йѓeѓNѓXѓ`ѓѓ‚рЋw’и‚·‚й
+// жЊ‡е®љгЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ§жі•з·љгѓћгѓѓгѓ—гЃЁгЃ—гЃ¦дЅїз”ЁгЃ™г‚‹гѓ†г‚Їг‚№гѓЃгѓЈг‚’жЊ‡е®љгЃ™г‚‹
 extern int NS_MV1SetMaterialNormalMapTexture( int MHandle, int MaterialIndex, int TexIndex )
 {
 	return MV1SetMaterialNormalMapTextureBase( MV1GetModelBaseHandle( MHandle ), MaterialIndex, TexIndex ) ;
 }
 
-// Ћw’и‚Мѓ}ѓeѓЉѓAѓ‹‚Е–@ђьѓ}ѓbѓv‚Ж‚µ‚ДЋg—p‚і‚к‚Д‚ў‚йѓeѓNѓXѓ`ѓѓ‚МѓCѓ“ѓfѓbѓNѓX‚рЋж“ѕ‚·‚й
+// жЊ‡е®љгЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ§жі•з·љгѓћгѓѓгѓ—гЃЁгЃ—гЃ¦дЅїз”ЁгЃ•г‚ЊгЃ¦гЃ„г‚‹гѓ†г‚Їг‚№гѓЃгѓЈгЃ®г‚¤гѓігѓ‡гѓѓг‚Їг‚№г‚’еЏ–еѕ—гЃ™г‚‹
 extern int NS_MV1GetMaterialNormalMapTexture( int MHandle, int MaterialIndex )
 {
 	return MV1GetMaterialNormalMapTextureBase( MV1GetModelBaseHandle( MHandle ), MaterialIndex ) ;
 }
 
-// Ћw’и‚Мѓ}ѓeѓЉѓAѓ‹‚ЕѓGѓ~ѓbѓVѓuѓ}ѓbѓv‚Ж‚µ‚ДЋg—p‚·‚йѓeѓNѓXѓ`ѓѓ‚рЋw’и‚·‚й
+// жЊ‡е®љгЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ§г‚Ёгѓџгѓѓг‚·гѓ–гѓћгѓѓгѓ—гЃЁгЃ—гЃ¦дЅїз”ЁгЃ™г‚‹гѓ†г‚Їг‚№гѓЃгѓЈг‚’жЊ‡е®љгЃ™г‚‹
 extern int NS_MV1SetMaterialEmissiveMapTexture( int MHandle, int MaterialIndex, int TexIndex )
 {
 	return MV1SetMaterialEmissiveMapTextureBase( MV1GetModelBaseHandle( MHandle ), MaterialIndex, TexIndex ) ;
 }
 
-// Ћw’и‚Мѓ}ѓeѓЉѓAѓ‹‚ЕѓGѓ~ѓbѓVѓuѓ}ѓbѓv‚Ж‚µ‚ДЋg—p‚і‚к‚Д‚ў‚йѓeѓNѓXѓ`ѓѓ‚МѓCѓ“ѓfѓbѓNѓX‚рЋж“ѕ‚·‚й
+// жЊ‡е®љгЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ§г‚Ёгѓџгѓѓг‚·гѓ–гѓћгѓѓгѓ—гЃЁгЃ—гЃ¦дЅїз”ЁгЃ•г‚ЊгЃ¦гЃ„г‚‹гѓ†г‚Їг‚№гѓЃгѓЈгЃ®г‚¤гѓігѓ‡гѓѓг‚Їг‚№г‚’еЏ–еѕ—гЃ™г‚‹
 extern int NS_MV1GetMaterialEmissiveMapTexture( int MHandle, int MaterialIndex )
 {
 	return MV1GetMaterialEmissiveMapTextureBase( MV1GetModelBaseHandle( MHandle ), MaterialIndex ) ;
 }
 
-// Ћw’и‚Мѓ}ѓeѓЉѓAѓ‹‚Еѓ‰ѓtѓlѓXѓ}ѓbѓv‚Ж‚µ‚ДЋg—p‚·‚йѓeѓNѓXѓ`ѓѓ‚рЋw’и‚·‚й
+// жЊ‡е®љгЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ§гѓ©гѓ•гѓЌг‚№гѓћгѓѓгѓ—гЃЁгЃ—гЃ¦дЅїз”ЁгЃ™г‚‹гѓ†г‚Їг‚№гѓЃгѓЈг‚’жЊ‡е®љгЃ™г‚‹
 extern int NS_MV1SetMaterialShininessMapTexture( int MHandle, int MaterialIndex, int TexIndex )
 {
 	return MV1SetMaterialShininessMapTextureBase( MV1GetModelBaseHandle( MHandle ), MaterialIndex, TexIndex ) ;
 }
 
-// Ћw’и‚Мѓ}ѓeѓЉѓAѓ‹‚Еѓ‰ѓtѓlѓXѓ}ѓbѓv‚Ж‚µ‚ДЋg—p‚і‚к‚Д‚ў‚йѓeѓNѓXѓ`ѓѓ‚МѓCѓ“ѓfѓbѓNѓX‚рЋж“ѕ‚·‚й
+// жЊ‡е®љгЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ§гѓ©гѓ•гѓЌг‚№гѓћгѓѓгѓ—гЃЁгЃ—гЃ¦дЅїз”ЁгЃ•г‚ЊгЃ¦гЃ„г‚‹гѓ†г‚Їг‚№гѓЃгѓЈгЃ®г‚¤гѓігѓ‡гѓѓг‚Їг‚№г‚’еЏ–еѕ—гЃ™г‚‹
 extern int NS_MV1GetMaterialShininessMapTexture( int MHandle, int MaterialIndex )
 {
 	return MV1GetMaterialShininessMapTextureBase( MV1GetModelBaseHandle( MHandle ), MaterialIndex ) ;
 }
 
-// Ћw’и‚Мѓ}ѓeѓЉѓAѓ‹‚ЕѓЃѓ^ѓЉѓbѓNѓ}ѓbѓv‚Ж‚µ‚ДЋg—p‚·‚йѓeѓNѓXѓ`ѓѓ‚рЋw’и‚·‚й
+// жЊ‡е®љгЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ§гѓЎг‚їгѓЄгѓѓг‚Їгѓћгѓѓгѓ—гЃЁгЃ—гЃ¦дЅїз”ЁгЃ™г‚‹гѓ†г‚Їг‚№гѓЃгѓЈг‚’жЊ‡е®љгЃ™г‚‹
 extern int NS_MV1SetMaterialReflectionFactorMapTexture( int MHandle, int MaterialIndex, int TexIndex )
 {
 	return MV1SetMaterialReflectionFactorMapTextureBase( MV1GetModelBaseHandle( MHandle ), MaterialIndex, TexIndex ) ;
 }
 
-// Ћw’и‚Мѓ}ѓeѓЉѓAѓ‹‚ЕѓЃѓ^ѓЉѓbѓNѓ}ѓbѓv‚Ж‚µ‚ДЋg—p‚і‚к‚Д‚ў‚йѓeѓNѓXѓ`ѓѓ‚МѓCѓ“ѓfѓbѓNѓX‚рЋж“ѕ‚·‚й
+// жЊ‡е®љгЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ§гѓЎг‚їгѓЄгѓѓг‚Їгѓћгѓѓгѓ—гЃЁгЃ—гЃ¦дЅїз”ЁгЃ•г‚ЊгЃ¦гЃ„г‚‹гѓ†г‚Їг‚№гѓЃгѓЈгЃ®г‚¤гѓігѓ‡гѓѓг‚Їг‚№г‚’еЏ–еѕ—гЃ™г‚‹
 extern int NS_MV1GetMaterialReflectionFactorMapTexture( int MHandle, int MaterialIndex )
 {
 	return MV1GetMaterialReflectionFactorMapTextureBase( MV1GetModelBaseHandle( MHandle ), MaterialIndex ) ;
 }
 
-// Ћw’и‚Мѓ}ѓeѓЉѓAѓ‹‚МѓfѓBѓtѓ…Ѓ[ѓYѓJѓ‰Ѓ[‚рђЭ’и‚·‚й
+// жЊ‡е®љгЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ®гѓ‡г‚Јгѓ•гѓҐгѓјг‚єг‚«гѓ©гѓјг‚’иЁ­е®љгЃ™г‚‹
 extern int NS_MV1SetMaterialDifColor( int MHandle, int MaterialIndex, COLOR_F Color )
 {
 	MV1_MESH *Mesh ;
 	int i ;
 	MV1MATERIALSTART( MHandle, Model, ModelBase, Material, MaterialIndex, -1 ) ;
 
-	// ЌЎ‚Ь‚Е‚Ж“Ї‚¶‚ѕ‚Б‚Ѕ‚з‰Ѕ‚а‚µ‚И‚ў
+	// д»ЉгЃѕгЃ§гЃЁеђЊгЃгЃ гЃЈгЃџг‚‰дЅ•г‚‚гЃ—гЃЄгЃ„
 	if( *( ( DWORD * )&Material->Diffuse.r ) == *( ( DWORD * )&Color.r ) &&
 		*( ( DWORD * )&Material->Diffuse.g ) == *( ( DWORD * )&Color.g ) &&
 		*( ( DWORD * )&Material->Diffuse.b ) == *( ( DWORD * )&Color.b ) &&
 		*( ( DWORD * )&Material->Diffuse.a ) == *( ( DWORD * )&Color.a ) )
 		return 0 ;
 
-	// •`‰ж‘Т‹@‚µ‚Д‚ў‚й•`‰ж•Ё‚р•`‰ж
+	// жЏЏз”»еѕ…ж©џгЃ—гЃ¦гЃ„г‚‹жЏЏз”»з‰©г‚’жЏЏз”»
 	DRAWSTOCKINFO
 
-	// ѓZѓbѓg
+	// г‚»гѓѓгѓ€
 	Material->Diffuse = Color ;
 
-	// ‚±‚Мѓ}ѓeѓЉѓAѓ‹‚рЋg—p‚µ‚Д‚ў‚йѓЃѓbѓVѓ…‚М”ј“§–ѕ—v‘f—L–іЏо•с‚МѓZѓbѓgѓAѓbѓvЉ®—№ѓtѓ‰ѓO‚р“|‚·
+	// гЃ“гЃ®гѓћгѓ†гѓЄг‚ўгѓ«г‚’дЅїз”ЁгЃ—гЃ¦гЃ„г‚‹гѓЎгѓѓг‚·гѓҐгЃ®еЌЉйЂЏжЋи¦Ѓзґ жњ‰з„Ўжѓ…е ±гЃ®г‚»гѓѓгѓ€г‚ўгѓѓгѓ—е®Њдє†гѓ•гѓ©г‚°г‚’еЂ’гЃ™
 	Mesh = Model->Mesh ;
 	for( i = 0 ; i < ModelBase->MeshNum ; i ++, Mesh ++ )
 	{
@@ -26351,11 +26351,11 @@ extern int NS_MV1SetMaterialDifColor( int MHandle, int MaterialIndex, COLOR_F Co
 			MV1BitSetChange( &Mesh->DrawMaterialChange ) ;
 	}
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// Ћw’и‚Мѓ}ѓeѓЉѓAѓ‹‚Мѓ^ѓCѓv•Кѓpѓ‰ѓЃЃ[ѓ^‚р•ПЌX‚·‚й( ѓ}ѓeѓЉѓAѓ‹ѓ^ѓCѓv DX_MATERIAL_TYPE_MAT_SPEC_LUMINANCE_TWO_COLOR ‚И‚З‚ЕЋg—p )
+// жЊ‡е®љгЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ®г‚їг‚¤гѓ—е€Ґгѓ‘гѓ©гѓЎгѓјг‚їг‚’е¤‰ж›ґгЃ™г‚‹( гѓћгѓ†гѓЄг‚ўгѓ«г‚їг‚¤гѓ— DX_MATERIAL_TYPE_MAT_SPEC_LUMINANCE_TWO_COLOR гЃЄгЃ©гЃ§дЅїз”Ё )
 extern int NS_MV1SetMaterialTypeParam( int MHandle, int MaterialIndex, ... )
 {
 	int Result ;
@@ -26376,13 +26376,13 @@ extern int MV1SetMaterialTypeParam_Base( int MHandle, int MaterialIndex, va_list
 	int i ;
 	MV1MATERIALSTART( MHandle, Model, ModelBase, Material, MaterialIndex, -1 ) ;
 
-	// •`‰ж‘Т‹@‚µ‚Д‚ў‚й•`‰ж•Ё‚р•`‰ж
+	// жЏЏз”»еѕ…ж©џгЃ—гЃ¦гЃ„г‚‹жЏЏз”»з‰©г‚’жЏЏз”»
 	DRAWSTOCKINFO
 
-	// ѓZѓbѓg
+	// г‚»гѓѓгѓ€
 	MATERIAL_SET_TYPE_PARAM( Material->BaseData->Type, Material->TypeParam, ParamList )
 
-	// ‚±‚Мѓ}ѓeѓЉѓAѓ‹‚рЋg—p‚µ‚Д‚ў‚йѓЃѓbѓVѓ…‚М”ј“§–ѕ—v‘f—L–іЏо•с‚МѓZѓbѓgѓAѓbѓvЉ®—№ѓtѓ‰ѓO‚р“|‚·
+	// гЃ“гЃ®гѓћгѓ†гѓЄг‚ўгѓ«г‚’дЅїз”ЁгЃ—гЃ¦гЃ„г‚‹гѓЎгѓѓг‚·гѓҐгЃ®еЌЉйЂЏжЋи¦Ѓзґ жњ‰з„Ўжѓ…е ±гЃ®г‚»гѓѓгѓ€г‚ўгѓѓгѓ—е®Њдє†гѓ•гѓ©г‚°г‚’еЂ’гЃ™
 	Mesh = Model->Mesh ;
 	for( i = 0 ; i < ModelBase->MeshNum ; i ++, Mesh ++ )
 	{
@@ -26393,31 +26393,31 @@ extern int MV1SetMaterialTypeParam_Base( int MHandle, int MaterialIndex, va_list
 			MV1BitSetChange( &Mesh->DrawMaterialChange ) ;
 	}
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// Ћw’и‚Мѓ}ѓeѓЉѓAѓ‹‚МѓXѓyѓLѓ…ѓ‰ѓJѓ‰Ѓ[‚рђЭ’и‚·‚й
+// жЊ‡е®љгЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ®г‚№гѓљг‚­гѓҐгѓ©г‚«гѓ©гѓјг‚’иЁ­е®љгЃ™г‚‹
 extern int NS_MV1SetMaterialSpcColor( int MHandle, int MaterialIndex, COLOR_F Color )
 {
 	MV1_MESH *Mesh ;
 	int i ;
 	MV1MATERIALSTART( MHandle, Model, ModelBase, Material, MaterialIndex, -1 ) ;
 
-	// ЌЎ‚Ь‚Е‚Ж“Ї‚¶‚ѕ‚Б‚Ѕ‚з‰Ѕ‚а‚µ‚И‚ў
+	// д»ЉгЃѕгЃ§гЃЁеђЊгЃгЃ гЃЈгЃџг‚‰дЅ•г‚‚гЃ—гЃЄгЃ„
 	if( *( ( DWORD * )&Material->Specular.r ) == *( ( DWORD * )&Color.r ) &&
 		*( ( DWORD * )&Material->Specular.g ) == *( ( DWORD * )&Color.g ) &&
 		*( ( DWORD * )&Material->Specular.b ) == *( ( DWORD * )&Color.b ) &&
 		*( ( DWORD * )&Material->Specular.a ) == *( ( DWORD * )&Color.a ) )
 		return 0 ;
 
-	// •`‰ж‘Т‹@‚µ‚Д‚ў‚й•`‰ж•Ё‚р•`‰ж
+	// жЏЏз”»еѕ…ж©џгЃ—гЃ¦гЃ„г‚‹жЏЏз”»з‰©г‚’жЏЏз”»
 	DRAWSTOCKINFO
 
-	// ѓZѓbѓg
+	// г‚»гѓѓгѓ€
 	Material->Specular = Color ;
 
-	// ‚±‚Мѓ}ѓeѓЉѓAѓ‹‚рЋg—p‚µ‚Д‚ў‚йѓЃѓbѓVѓ…‚М”ј“§–ѕ—v‘f—L–іЏо•с‚МѓZѓbѓgѓAѓbѓvЉ®—№ѓtѓ‰ѓO‚р“|‚·
+	// гЃ“гЃ®гѓћгѓ†гѓЄг‚ўгѓ«г‚’дЅїз”ЁгЃ—гЃ¦гЃ„г‚‹гѓЎгѓѓг‚·гѓҐгЃ®еЌЉйЂЏжЋи¦Ѓзґ жњ‰з„Ўжѓ…е ±гЃ®г‚»гѓѓгѓ€г‚ўгѓѓгѓ—е®Њдє†гѓ•гѓ©г‚°г‚’еЂ’гЃ™
 	Mesh = Model->Mesh ;
 	for( i = 0 ; i < ModelBase->MeshNum ; i ++, Mesh ++ )
 	{
@@ -26428,31 +26428,31 @@ extern int NS_MV1SetMaterialSpcColor( int MHandle, int MaterialIndex, COLOR_F Co
 			MV1BitSetChange( &Mesh->DrawMaterialChange ) ;
 	}
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// Ћw’и‚Мѓ}ѓeѓЉѓAѓ‹‚МѓGѓ~ѓbѓVѓuѓJѓ‰Ѓ[‚рђЭ’и‚·‚й
+// жЊ‡е®љгЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ®г‚Ёгѓџгѓѓг‚·гѓ–г‚«гѓ©гѓјг‚’иЁ­е®љгЃ™г‚‹
 extern int NS_MV1SetMaterialEmiColor( int MHandle, int MaterialIndex, COLOR_F Color )
 {
 	MV1_MESH *Mesh ;
 	int i ;
 	MV1MATERIALSTART( MHandle, Model, ModelBase, Material, MaterialIndex, -1 ) ;
 
-	// ЌЎ‚Ь‚Е‚Ж“Ї‚¶‚ѕ‚Б‚Ѕ‚з‰Ѕ‚а‚µ‚И‚ў
+	// д»ЉгЃѕгЃ§гЃЁеђЊгЃгЃ гЃЈгЃџг‚‰дЅ•г‚‚гЃ—гЃЄгЃ„
 	if( *( ( DWORD * )&Material->Emissive.r ) == *( ( DWORD * )&Color.r ) &&
 		*( ( DWORD * )&Material->Emissive.g ) == *( ( DWORD * )&Color.g ) &&
 		*( ( DWORD * )&Material->Emissive.b ) == *( ( DWORD * )&Color.b ) &&
 		*( ( DWORD * )&Material->Emissive.a ) == *( ( DWORD * )&Color.a ) )
 		return 0 ;
 
-	// •`‰ж‘Т‹@‚µ‚Д‚ў‚й•`‰ж•Ё‚р•`‰ж
+	// жЏЏз”»еѕ…ж©џгЃ—гЃ¦гЃ„г‚‹жЏЏз”»з‰©г‚’жЏЏз”»
 	DRAWSTOCKINFO
 
-	// ѓZѓbѓg
+	// г‚»гѓѓгѓ€
 	Material->Emissive = Color ;
 
-	// ‚±‚Мѓ}ѓeѓЉѓAѓ‹‚рЋg—p‚µ‚Д‚ў‚йѓЃѓbѓVѓ…‚М”ј“§–ѕ—v‘f—L–іЏо•с‚МѓZѓbѓgѓAѓbѓvЉ®—№ѓtѓ‰ѓO‚р“|‚·
+	// гЃ“гЃ®гѓћгѓ†гѓЄг‚ўгѓ«г‚’дЅїз”ЁгЃ—гЃ¦гЃ„г‚‹гѓЎгѓѓг‚·гѓҐгЃ®еЌЉйЂЏжЋи¦Ѓзґ жњ‰з„Ўжѓ…е ±гЃ®г‚»гѓѓгѓ€г‚ўгѓѓгѓ—е®Њдє†гѓ•гѓ©г‚°г‚’еЂ’гЃ™
 	Mesh = Model->Mesh ;
 	for( i = 0 ; i < ModelBase->MeshNum ; i ++, Mesh ++ )
 	{
@@ -26463,31 +26463,31 @@ extern int NS_MV1SetMaterialEmiColor( int MHandle, int MaterialIndex, COLOR_F Co
 			MV1BitSetChange( &Mesh->DrawMaterialChange ) ;
 	}
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// Ћw’и‚Мѓ}ѓeѓЉѓAѓ‹‚МѓAѓ“ѓrѓGѓ“ѓgѓJѓ‰Ѓ[‚рђЭ’и‚·‚й
+// жЊ‡е®љгЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ®г‚ўгѓігѓ“г‚Ёгѓігѓ€г‚«гѓ©гѓјг‚’иЁ­е®љгЃ™г‚‹
 extern int NS_MV1SetMaterialAmbColor( int MHandle, int MaterialIndex, COLOR_F Color )
 {
 	MV1_MESH *Mesh ;
 	int i ;
 	MV1MATERIALSTART( MHandle, Model, ModelBase, Material, MaterialIndex, -1 ) ;
 
-	// ЌЎ‚Ь‚Е‚Ж“Ї‚¶‚ѕ‚Б‚Ѕ‚з‰Ѕ‚а‚µ‚И‚ў
+	// д»ЉгЃѕгЃ§гЃЁеђЊгЃгЃ гЃЈгЃџг‚‰дЅ•г‚‚гЃ—гЃЄгЃ„
 	if( *( ( DWORD * )&Material->Ambient.r ) == *( ( DWORD * )&Color.r ) &&
 		*( ( DWORD * )&Material->Ambient.g ) == *( ( DWORD * )&Color.g ) &&
 		*( ( DWORD * )&Material->Ambient.b ) == *( ( DWORD * )&Color.b ) &&
 		*( ( DWORD * )&Material->Ambient.a ) == *( ( DWORD * )&Color.a ) )
 		return 0 ;
 
-	// •`‰ж‘Т‹@‚µ‚Д‚ў‚й•`‰ж•Ё‚р•`‰ж
+	// жЏЏз”»еѕ…ж©џгЃ—гЃ¦гЃ„г‚‹жЏЏз”»з‰©г‚’жЏЏз”»
 	DRAWSTOCKINFO
 
-	// ѓZѓbѓg
+	// г‚»гѓѓгѓ€
 	Material->Ambient = Color ;
 
-	// ‚±‚Мѓ}ѓeѓЉѓAѓ‹‚рЋg—p‚µ‚Д‚ў‚йѓЃѓbѓVѓ…‚М”ј“§–ѕ—v‘f—L–іЏо•с‚МѓZѓbѓgѓAѓbѓvЉ®—№ѓtѓ‰ѓO‚р“|‚·
+	// гЃ“гЃ®гѓћгѓ†гѓЄг‚ўгѓ«г‚’дЅїз”ЁгЃ—гЃ¦гЃ„г‚‹гѓЎгѓѓг‚·гѓҐгЃ®еЌЉйЂЏжЋи¦Ѓзґ жњ‰з„Ўжѓ…е ±гЃ®г‚»гѓѓгѓ€г‚ўгѓѓгѓ—е®Њдє†гѓ•гѓ©г‚°г‚’еЂ’гЃ™
 	Mesh = Model->Mesh ;
 	for( i = 0 ; i < ModelBase->MeshNum ; i ++, Mesh ++ )
 	{
@@ -26498,11 +26498,11 @@ extern int NS_MV1SetMaterialAmbColor( int MHandle, int MaterialIndex, COLOR_F Co
 			MV1BitSetChange( &Mesh->DrawMaterialChange ) ;
 	}
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// Ћw’и‚Мѓ}ѓeѓЉѓAѓ‹‚МѓXѓyѓLѓ…ѓ‰‚М‹­‚і‚рђЭ’и‚·‚й
+// жЊ‡е®љгЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ®г‚№гѓљг‚­гѓҐгѓ©гЃ®еј·гЃ•г‚’иЁ­е®љгЃ™г‚‹
 extern int NS_MV1SetMaterialSpcPower( int MHandle, int MaterialIndex, float Power )
 {
 	MV1MATERIALSTART( MHandle, Model, ModelBase, Material, MaterialIndex, -1 ) ;
@@ -26512,17 +26512,17 @@ extern int NS_MV1SetMaterialSpcPower( int MHandle, int MaterialIndex, float Powe
 		return 0 ;
 	}
 
-	// •`‰ж‘Т‹@‚µ‚Д‚ў‚й•`‰ж•Ё‚р•`‰ж
+	// жЏЏз”»еѕ…ж©џгЃ—гЃ¦гЃ„г‚‹жЏЏз”»з‰©г‚’жЏЏз”»
 	DRAWSTOCKINFO
 
-	// ѓZѓbѓg
+	// г‚»гѓѓгѓ€
 	Material->Power = Power ;
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// Ћw’и‚Мѓ}ѓeѓЉѓAѓ‹‚ЕѓgѓDЃ[ѓ“ѓЊѓ“ѓ_ѓЉѓ“ѓO‚МѓfѓBѓtѓ…Ѓ[ѓYѓOѓ‰ѓfЃ[ѓVѓ‡ѓ“ѓ}ѓbѓv‚Ж‚µ‚ДЋg—p‚·‚йѓeѓNѓXѓ`ѓѓ‚рђЭ’и‚·‚й
+// жЊ‡е®љгЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ§гѓ€г‚Ґгѓјгѓігѓ¬гѓігѓЂгѓЄгѓіг‚°гЃ®гѓ‡г‚Јгѓ•гѓҐгѓјг‚єг‚°гѓ©гѓ‡гѓјг‚·гѓ§гѓігѓћгѓѓгѓ—гЃЁгЃ—гЃ¦дЅїз”ЁгЃ™г‚‹гѓ†г‚Їг‚№гѓЃгѓЈг‚’иЁ­е®љгЃ™г‚‹
 extern int NS_MV1SetMaterialDifGradTexture( int MHandle, int MaterialIndex, int TexIndex )
 {
 	MV1_MESH *Mesh ;
@@ -26536,13 +26536,13 @@ extern int NS_MV1SetMaterialDifGradTexture( int MHandle, int MaterialIndex, int 
 	if( Material->DiffuseGradTexture == TexIndex )
 		return 0 ;
 
-	// •`‰ж‘Т‹@‚µ‚Д‚ў‚й•`‰ж•Ё‚р•`‰ж
+	// жЏЏз”»еѕ…ж©џгЃ—гЃ¦гЃ„г‚‹жЏЏз”»з‰©г‚’жЏЏз”»
 	DRAWSTOCKINFO
 
-	// ђЭ’и
+	// иЁ­е®љ
 	Material->DiffuseGradTexture = TexIndex ;
 
-	// ‚±‚Мѓ}ѓeѓЉѓAѓ‹‚рЋg—p‚µ‚Д‚ў‚йѓЃѓbѓVѓ…‚М”ј“§–ѕ—v‘f—L–іЏо•с‚МѓZѓbѓgѓAѓbѓvЉ®—№ѓtѓ‰ѓO‚р“|‚·
+	// гЃ“гЃ®гѓћгѓ†гѓЄг‚ўгѓ«г‚’дЅїз”ЁгЃ—гЃ¦гЃ„г‚‹гѓЎгѓѓг‚·гѓҐгЃ®еЌЉйЂЏжЋи¦Ѓзґ жњ‰з„Ўжѓ…е ±гЃ®г‚»гѓѓгѓ€г‚ўгѓѓгѓ—е®Њдє†гѓ•гѓ©г‚°г‚’еЂ’гЃ™
 	Mesh = Model->Mesh ;
 	for( i = 0 ; i < ModelBase->MeshNum ; i ++, Mesh ++ )
 	{
@@ -26553,11 +26553,11 @@ extern int NS_MV1SetMaterialDifGradTexture( int MHandle, int MaterialIndex, int 
 			MV1BitSetChange( &Mesh->DrawMaterialChange ) ;
 	}
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// Ћw’и‚Мѓ}ѓeѓЉѓAѓ‹‚ЕѓgѓDЃ[ѓ“ѓЊѓ“ѓ_ѓЉѓ“ѓO‚МѓfѓBѓtѓ…Ѓ[ѓYѓOѓ‰ѓfЃ[ѓVѓ‡ѓ“ѓ}ѓbѓv‚Ж‚µ‚ДЋg—p‚·‚йѓeѓNѓXѓ`ѓѓ‚рЋж“ѕ‚·‚й
+// жЊ‡е®љгЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ§гѓ€г‚Ґгѓјгѓігѓ¬гѓігѓЂгѓЄгѓіг‚°гЃ®гѓ‡г‚Јгѓ•гѓҐгѓјг‚єг‚°гѓ©гѓ‡гѓјг‚·гѓ§гѓігѓћгѓѓгѓ—гЃЁгЃ—гЃ¦дЅїз”ЁгЃ™г‚‹гѓ†г‚Їг‚№гѓЃгѓЈг‚’еЏ–еѕ—гЃ™г‚‹
 extern int NS_MV1GetMaterialDifGradTexture( int MHandle, int MaterialIndex )
 {
 	MV1MATERIALSTART( MHandle, Model, ModelBase, Material, MaterialIndex, -1 ) ;
@@ -26565,7 +26565,7 @@ extern int NS_MV1GetMaterialDifGradTexture( int MHandle, int MaterialIndex )
 	return Material->DiffuseGradTexture ;
 }
 
-// Ћw’и‚Мѓ}ѓeѓЉѓAѓ‹‚ЕѓgѓDЃ[ѓ“ѓЊѓ“ѓ_ѓЉѓ“ѓO‚МѓXѓyѓLѓ…ѓ‰ѓOѓ‰ѓfЃ[ѓVѓ‡ѓ“ѓ}ѓbѓv‚Ж‚µ‚ДЋg—p‚·‚йѓeѓNѓXѓ`ѓѓ‚рђЭ’и‚·‚й
+// жЊ‡е®љгЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ§гѓ€г‚Ґгѓјгѓігѓ¬гѓігѓЂгѓЄгѓіг‚°гЃ®г‚№гѓљг‚­гѓҐгѓ©г‚°гѓ©гѓ‡гѓјг‚·гѓ§гѓігѓћгѓѓгѓ—гЃЁгЃ—гЃ¦дЅїз”ЁгЃ™г‚‹гѓ†г‚Їг‚№гѓЃгѓЈг‚’иЁ­е®љгЃ™г‚‹
 extern int NS_MV1SetMaterialSpcGradTexture( int MHandle, int MaterialIndex, int TexIndex )
 {
 	MV1_MESH *Mesh ;
@@ -26579,13 +26579,13 @@ extern int NS_MV1SetMaterialSpcGradTexture( int MHandle, int MaterialIndex, int 
 	if( Material->SpecularGradTexture == TexIndex )
 		return 0 ;
 
-	// •`‰ж‘Т‹@‚µ‚Д‚ў‚й•`‰ж•Ё‚р•`‰ж
+	// жЏЏз”»еѕ…ж©џгЃ—гЃ¦гЃ„г‚‹жЏЏз”»з‰©г‚’жЏЏз”»
 	DRAWSTOCKINFO
 
-	// ђЭ’и
+	// иЁ­е®љ
 	Material->SpecularGradTexture = TexIndex ;
 
-	// ‚±‚Мѓ}ѓeѓЉѓAѓ‹‚рЋg—p‚µ‚Д‚ў‚йѓЃѓbѓVѓ…‚М”ј“§–ѕ—v‘f—L–іЏо•с‚МѓZѓbѓgѓAѓbѓvЉ®—№ѓtѓ‰ѓO‚р“|‚·
+	// гЃ“гЃ®гѓћгѓ†гѓЄг‚ўгѓ«г‚’дЅїз”ЁгЃ—гЃ¦гЃ„г‚‹гѓЎгѓѓг‚·гѓҐгЃ®еЌЉйЂЏжЋи¦Ѓзґ жњ‰з„Ўжѓ…е ±гЃ®г‚»гѓѓгѓ€г‚ўгѓѓгѓ—е®Њдє†гѓ•гѓ©г‚°г‚’еЂ’гЃ™
 	Mesh = Model->Mesh ;
 	for( i = 0 ; i < ModelBase->MeshNum ; i ++, Mesh ++ )
 	{
@@ -26596,11 +26596,11 @@ extern int NS_MV1SetMaterialSpcGradTexture( int MHandle, int MaterialIndex, int 
 			MV1BitSetChange( &Mesh->DrawMaterialChange ) ;
 	}
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// Ћw’и‚Мѓ}ѓeѓЉѓAѓ‹‚ЕѓgѓDЃ[ѓ“ѓЊѓ“ѓ_ѓЉѓ“ѓO‚МѓXѓyѓLѓ…ѓ‰ѓOѓ‰ѓfЃ[ѓVѓ‡ѓ“ѓ}ѓbѓv‚Ж‚µ‚ДЋg—p‚·‚йѓeѓNѓXѓ`ѓѓ‚рЋж“ѕ‚·‚й
+// жЊ‡е®љгЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ§гѓ€г‚Ґгѓјгѓігѓ¬гѓігѓЂгѓЄгѓіг‚°гЃ®г‚№гѓљг‚­гѓҐгѓ©г‚°гѓ©гѓ‡гѓјг‚·гѓ§гѓігѓћгѓѓгѓ—гЃЁгЃ—гЃ¦дЅїз”ЁгЃ™г‚‹гѓ†г‚Їг‚№гѓЃгѓЈг‚’еЏ–еѕ—гЃ™г‚‹
 extern int NS_MV1GetMaterialSpcGradTexture( int MHandle, int MaterialIndex )
 {
 	MV1MATERIALSTART( MHandle, Model, ModelBase, Material, MaterialIndex, -1 ) ;
@@ -26608,7 +26608,7 @@ extern int NS_MV1GetMaterialSpcGradTexture( int MHandle, int MaterialIndex )
 	return Material->SpecularGradTexture ;
 }
 
-// Ћw’и‚Мѓ}ѓeѓЉѓAѓ‹‚ЕѓgѓDЃ[ѓ“ѓЊѓ“ѓ_ѓЉѓ“ѓO‚МѓXѓtѓBѓAѓ}ѓbѓv‚Ж‚µ‚ДЋg—p‚·‚йѓeѓNѓXѓ`ѓѓ‚рђЭ’и‚·‚й
+// жЊ‡е®љгЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ§гѓ€г‚Ґгѓјгѓігѓ¬гѓігѓЂгѓЄгѓіг‚°гЃ®г‚№гѓ•г‚Јг‚ўгѓћгѓѓгѓ—гЃЁгЃ—гЃ¦дЅїз”ЁгЃ™г‚‹гѓ†г‚Їг‚№гѓЃгѓЈг‚’иЁ­е®љгЃ™г‚‹
 extern int NS_MV1SetMaterialSphereMapTexture( int MHandle, int MaterialIndex, int TexIndex )
 {
 	MV1_MESH *Mesh ;
@@ -26622,13 +26622,13 @@ extern int NS_MV1SetMaterialSphereMapTexture( int MHandle, int MaterialIndex, in
 	if( Material->SphereMapTexture == TexIndex )
 		return 0 ;
 
-	// •`‰ж‘Т‹@‚µ‚Д‚ў‚й•`‰ж•Ё‚р•`‰ж
+	// жЏЏз”»еѕ…ж©џгЃ—гЃ¦гЃ„г‚‹жЏЏз”»з‰©г‚’жЏЏз”»
 	DRAWSTOCKINFO
 
-	// ђЭ’и
+	// иЁ­е®љ
 	Material->SphereMapTexture = TexIndex ;
 
-	// ‚±‚Мѓ}ѓeѓЉѓAѓ‹‚рЋg—p‚µ‚Д‚ў‚йѓЃѓbѓVѓ…‚М”ј“§–ѕ—v‘f—L–іЏо•с‚МѓZѓbѓgѓAѓbѓvЉ®—№ѓtѓ‰ѓO‚р“|‚·
+	// гЃ“гЃ®гѓћгѓ†гѓЄг‚ўгѓ«г‚’дЅїз”ЁгЃ—гЃ¦гЃ„г‚‹гѓЎгѓѓг‚·гѓҐгЃ®еЌЉйЂЏжЋи¦Ѓзґ жњ‰з„Ўжѓ…е ±гЃ®г‚»гѓѓгѓ€г‚ўгѓѓгѓ—е®Њдє†гѓ•гѓ©г‚°г‚’еЂ’гЃ™
 	Mesh = Model->Mesh ;
 	for( i = 0 ; i < ModelBase->MeshNum ; i ++, Mesh ++ )
 	{
@@ -26639,11 +26639,11 @@ extern int NS_MV1SetMaterialSphereMapTexture( int MHandle, int MaterialIndex, in
 			MV1BitSetChange( &Mesh->DrawMaterialChange ) ;
 	}
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// Ћw’и‚Мѓ}ѓeѓЉѓAѓ‹‚ЕѓgѓDЃ[ѓ“ѓЊѓ“ѓ_ѓЉѓ“ѓO‚МѓXѓtѓBѓAѓ}ѓbѓv‚Ж‚µ‚ДЋg—p‚·‚йѓeѓNѓXѓ`ѓѓ‚рЋж“ѕ‚·‚й
+// жЊ‡е®љгЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ§гѓ€г‚Ґгѓјгѓігѓ¬гѓігѓЂгѓЄгѓіг‚°гЃ®г‚№гѓ•г‚Јг‚ўгѓћгѓѓгѓ—гЃЁгЃ—гЃ¦дЅїз”ЁгЃ™г‚‹гѓ†г‚Їг‚№гѓЃгѓЈг‚’еЏ–еѕ—гЃ™г‚‹
 extern int NS_MV1GetMaterialSphereMapTexture( int MHandle, int MaterialIndex )
 {
 	MV1MATERIALSTART( MHandle, Model, ModelBase, Material, MaterialIndex, -1 ) ;
@@ -26651,7 +26651,7 @@ extern int NS_MV1GetMaterialSphereMapTexture( int MHandle, int MaterialIndex )
 	return Material->SphereMapTexture ;
 }
 
-// Ћw’и‚Мѓ}ѓeѓЉѓAѓ‹‚МѓgѓDЃ[ѓ“ѓЊѓ“ѓ_ѓЉѓ“ѓO‚ЕЋg—p‚·‚йѓfѓBѓtѓ…Ѓ[ѓYѓOѓ‰ѓfЃ[ѓVѓ‡ѓ“ѓ}ѓbѓv‚ЖѓfѓBѓtѓ…Ѓ[ѓYѓJѓ‰Ѓ[‚МЌ‡ђ¬•ы–@‚рђЭ’и‚·‚й( DX_MATERIAL_BLENDTYPE_ADDITIVE ‚И‚З )
+// жЊ‡е®љгЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ®гѓ€г‚Ґгѓјгѓігѓ¬гѓігѓЂгѓЄгѓіг‚°гЃ§дЅїз”ЁгЃ™г‚‹гѓ‡г‚Јгѓ•гѓҐгѓјг‚єг‚°гѓ©гѓ‡гѓјг‚·гѓ§гѓігѓћгѓѓгѓ—гЃЁгѓ‡г‚Јгѓ•гѓҐгѓјг‚єг‚«гѓ©гѓјгЃ®еђ€ж€ђж–№жі•г‚’иЁ­е®љгЃ™г‚‹( DX_MATERIAL_BLENDTYPE_ADDITIVE гЃЄгЃ© )
 extern int NS_MV1SetMaterialDifGradBlendType( int MHandle, int MaterialIndex, int BlendType )
 {
 	MV1_MESH *Mesh ;
@@ -26662,13 +26662,13 @@ extern int NS_MV1SetMaterialDifGradBlendType( int MHandle, int MaterialIndex, in
 	if( Material->DiffuseGradBlendType == BlendType )
 		return 0 ;
 
-	// •`‰ж‘Т‹@‚µ‚Д‚ў‚й•`‰ж•Ё‚р•`‰ж
+	// жЏЏз”»еѕ…ж©џгЃ—гЃ¦гЃ„г‚‹жЏЏз”»з‰©г‚’жЏЏз”»
 	DRAWSTOCKINFO
 
-	// ђЭ’и
+	// иЁ­е®љ
 	Material->DiffuseGradBlendType = BlendType ;
 
-	// ‚±‚Мѓ}ѓeѓЉѓAѓ‹‚рЋg—p‚µ‚Д‚ў‚йѓЃѓbѓVѓ…‚М”ј“§–ѕ—v‘f—L–іЏо•с‚МѓZѓbѓgѓAѓbѓvЉ®—№ѓtѓ‰ѓO‚р“|‚·
+	// гЃ“гЃ®гѓћгѓ†гѓЄг‚ўгѓ«г‚’дЅїз”ЁгЃ—гЃ¦гЃ„г‚‹гѓЎгѓѓг‚·гѓҐгЃ®еЌЉйЂЏжЋи¦Ѓзґ жњ‰з„Ўжѓ…е ±гЃ®г‚»гѓѓгѓ€г‚ўгѓѓгѓ—е®Њдє†гѓ•гѓ©г‚°г‚’еЂ’гЃ™
 	Mesh = Model->Mesh ;
 	for( i = 0 ; i < ModelBase->MeshNum ; i ++, Mesh ++ )
 	{
@@ -26679,11 +26679,11 @@ extern int NS_MV1SetMaterialDifGradBlendType( int MHandle, int MaterialIndex, in
 			MV1BitSetChange( &Mesh->DrawMaterialChange ) ;
 	}
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// Ћw’и‚Мѓ}ѓeѓЉѓAѓ‹‚МѓgѓDЃ[ѓ“ѓЊѓ“ѓ_ѓЉѓ“ѓO‚ЕЋg—p‚·‚йѓfѓBѓtѓ…Ѓ[ѓYѓOѓ‰ѓfЃ[ѓVѓ‡ѓ“ѓ}ѓbѓv‚ЖѓfѓBѓtѓ…Ѓ[ѓYѓJѓ‰Ѓ[‚МЌ‡ђ¬•ы–@‚рЋж“ѕ‚·‚й( DX_MATERIAL_BLENDTYPE_ADDITIVE ‚И‚З )
+// жЊ‡е®љгЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ®гѓ€г‚Ґгѓјгѓігѓ¬гѓігѓЂгѓЄгѓіг‚°гЃ§дЅїз”ЁгЃ™г‚‹гѓ‡г‚Јгѓ•гѓҐгѓјг‚єг‚°гѓ©гѓ‡гѓјг‚·гѓ§гѓігѓћгѓѓгѓ—гЃЁгѓ‡г‚Јгѓ•гѓҐгѓјг‚єг‚«гѓ©гѓјгЃ®еђ€ж€ђж–№жі•г‚’еЏ–еѕ—гЃ™г‚‹( DX_MATERIAL_BLENDTYPE_ADDITIVE гЃЄгЃ© )
 extern int NS_MV1GetMaterialDifGradBlendType( int MHandle, int MaterialIndex )
 {
 	MV1MATERIALSTART( MHandle, Model, ModelBase, Material, MaterialIndex, -1 ) ;
@@ -26691,7 +26691,7 @@ extern int NS_MV1GetMaterialDifGradBlendType( int MHandle, int MaterialIndex )
 	return Material->DiffuseGradBlendType ;
 }
 
-// Ћw’и‚Мѓ}ѓeѓЉѓAѓ‹‚МѓgѓDЃ[ѓ“ѓЊѓ“ѓ_ѓЉѓ“ѓO‚ЕЋg—p‚·‚йѓXѓyѓLѓ…ѓ‰ѓOѓ‰ѓfЃ[ѓVѓ‡ѓ“ѓ}ѓbѓv‚ЖѓXѓyѓLѓ…ѓ‰ѓJѓ‰Ѓ[‚МЌ‡ђ¬•ы–@‚рђЭ’и‚·‚й( DX_MATERIAL_BLENDTYPE_ADDITIVE ‚И‚З )
+// жЊ‡е®љгЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ®гѓ€г‚Ґгѓјгѓігѓ¬гѓігѓЂгѓЄгѓіг‚°гЃ§дЅїз”ЁгЃ™г‚‹г‚№гѓљг‚­гѓҐгѓ©г‚°гѓ©гѓ‡гѓјг‚·гѓ§гѓігѓћгѓѓгѓ—гЃЁг‚№гѓљг‚­гѓҐгѓ©г‚«гѓ©гѓјгЃ®еђ€ж€ђж–№жі•г‚’иЁ­е®љгЃ™г‚‹( DX_MATERIAL_BLENDTYPE_ADDITIVE гЃЄгЃ© )
 extern int NS_MV1SetMaterialSpcGradBlendType( int MHandle, int MaterialIndex, int BlendType )
 {
 	MV1_MESH *Mesh ;
@@ -26702,13 +26702,13 @@ extern int NS_MV1SetMaterialSpcGradBlendType( int MHandle, int MaterialIndex, in
 	if( Material->SpecularGradBlendType == BlendType )
 		return 0 ;
 
-	// •`‰ж‘Т‹@‚µ‚Д‚ў‚й•`‰ж•Ё‚р•`‰ж
+	// жЏЏз”»еѕ…ж©џгЃ—гЃ¦гЃ„г‚‹жЏЏз”»з‰©г‚’жЏЏз”»
 	DRAWSTOCKINFO
 
-	// ђЭ’и
+	// иЁ­е®љ
 	Material->SpecularGradBlendType = BlendType ;
 
-	// ‚±‚Мѓ}ѓeѓЉѓAѓ‹‚рЋg—p‚µ‚Д‚ў‚йѓЃѓbѓVѓ…‚М”ј“§–ѕ—v‘f—L–іЏо•с‚МѓZѓbѓgѓAѓbѓvЉ®—№ѓtѓ‰ѓO‚р“|‚·
+	// гЃ“гЃ®гѓћгѓ†гѓЄг‚ўгѓ«г‚’дЅїз”ЁгЃ—гЃ¦гЃ„г‚‹гѓЎгѓѓг‚·гѓҐгЃ®еЌЉйЂЏжЋи¦Ѓзґ жњ‰з„Ўжѓ…е ±гЃ®г‚»гѓѓгѓ€г‚ўгѓѓгѓ—е®Њдє†гѓ•гѓ©г‚°г‚’еЂ’гЃ™
 	Mesh = Model->Mesh ;
 	for( i = 0 ; i < ModelBase->MeshNum ; i ++, Mesh ++ )
 	{
@@ -26719,11 +26719,11 @@ extern int NS_MV1SetMaterialSpcGradBlendType( int MHandle, int MaterialIndex, in
 			MV1BitSetChange( &Mesh->DrawMaterialChange ) ;
 	}
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// Ћw’и‚Мѓ}ѓeѓЉѓAѓ‹‚МѓgѓDЃ[ѓ“ѓЊѓ“ѓ_ѓЉѓ“ѓO‚ЕЋg—p‚·‚йѓXѓyѓLѓ…ѓ‰ѓOѓ‰ѓfЃ[ѓVѓ‡ѓ“ѓ}ѓbѓv‚ЖѓXѓyѓLѓ…ѓ‰ѓJѓ‰Ѓ[‚МЌ‡ђ¬•ы–@‚рЋж“ѕ‚·‚й( DX_MATERIAL_BLENDTYPE_ADDITIVE ‚И‚З )
+// жЊ‡е®љгЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ®гѓ€г‚Ґгѓјгѓігѓ¬гѓігѓЂгѓЄгѓіг‚°гЃ§дЅїз”ЁгЃ™г‚‹г‚№гѓљг‚­гѓҐгѓ©г‚°гѓ©гѓ‡гѓјг‚·гѓ§гѓігѓћгѓѓгѓ—гЃЁг‚№гѓљг‚­гѓҐгѓ©г‚«гѓ©гѓјгЃ®еђ€ж€ђж–№жі•г‚’еЏ–еѕ—гЃ™г‚‹( DX_MATERIAL_BLENDTYPE_ADDITIVE гЃЄгЃ© )
 extern int NS_MV1GetMaterialSpcGradBlendType( int MHandle, int MaterialIndex )
 {
 	MV1MATERIALSTART( MHandle, Model, ModelBase, Material, MaterialIndex, -1 ) ;
@@ -26731,7 +26731,7 @@ extern int NS_MV1GetMaterialSpcGradBlendType( int MHandle, int MaterialIndex )
 	return Material->SpecularGradBlendType ;
 }
 
-// Ћw’и‚Мѓ}ѓeѓЉѓAѓ‹‚МѓgѓDЃ[ѓ“ѓЊѓ“ѓ_ѓЉѓ“ѓO‚ЕЋg—p‚·‚йѓXѓtѓBѓAѓ}ѓbѓv‚МЌ‡ђ¬•ы–@‚рђЭ’и‚·‚й( DX_MATERIAL_BLENDTYPE_ADDITIVE ‚И‚З )
+// жЊ‡е®љгЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ®гѓ€г‚Ґгѓјгѓігѓ¬гѓігѓЂгѓЄгѓіг‚°гЃ§дЅїз”ЁгЃ™г‚‹г‚№гѓ•г‚Јг‚ўгѓћгѓѓгѓ—гЃ®еђ€ж€ђж–№жі•г‚’иЁ­е®љгЃ™г‚‹( DX_MATERIAL_BLENDTYPE_ADDITIVE гЃЄгЃ© )
 extern int NS_MV1SetMaterialSphereMapBlendType(	int MHandle, int MaterialIndex, int BlendType )
 {
 	MV1_MESH *Mesh ;
@@ -26742,13 +26742,13 @@ extern int NS_MV1SetMaterialSphereMapBlendType(	int MHandle, int MaterialIndex, 
 	if( Material->SphereMapBlendType == BlendType )
 		return 0 ;
 
-	// •`‰ж‘Т‹@‚µ‚Д‚ў‚й•`‰ж•Ё‚р•`‰ж
+	// жЏЏз”»еѕ…ж©џгЃ—гЃ¦гЃ„г‚‹жЏЏз”»з‰©г‚’жЏЏз”»
 	DRAWSTOCKINFO
 
-	// ђЭ’и
+	// иЁ­е®љ
 	Material->SphereMapBlendType = BlendType ;
 
-	// ‚±‚Мѓ}ѓeѓЉѓAѓ‹‚рЋg—p‚µ‚Д‚ў‚йѓЃѓbѓVѓ…‚М”ј“§–ѕ—v‘f—L–іЏо•с‚МѓZѓbѓgѓAѓbѓvЉ®—№ѓtѓ‰ѓO‚р“|‚·
+	// гЃ“гЃ®гѓћгѓ†гѓЄг‚ўгѓ«г‚’дЅїз”ЁгЃ—гЃ¦гЃ„г‚‹гѓЎгѓѓг‚·гѓҐгЃ®еЌЉйЂЏжЋи¦Ѓзґ жњ‰з„Ўжѓ…е ±гЃ®г‚»гѓѓгѓ€г‚ўгѓѓгѓ—е®Њдє†гѓ•гѓ©г‚°г‚’еЂ’гЃ™
 	Mesh = Model->Mesh ;
 	for( i = 0 ; i < ModelBase->MeshNum ; i ++, Mesh ++ )
 	{
@@ -26759,11 +26759,11 @@ extern int NS_MV1SetMaterialSphereMapBlendType(	int MHandle, int MaterialIndex, 
 			MV1BitSetChange( &Mesh->DrawMaterialChange ) ;
 	}
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// Ћw’и‚Мѓ}ѓeѓЉѓAѓ‹‚МѓgѓDЃ[ѓ“ѓЊѓ“ѓ_ѓЉѓ“ѓO‚ЕЋg—p‚·‚йѓXѓtѓBѓAѓ}ѓbѓv‚МЌ‡ђ¬•ы–@‚рЋж“ѕ‚·‚й( DX_MATERIAL_BLENDTYPE_ADDITIVE ‚И‚З )
+// жЊ‡е®љгЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ®гѓ€г‚Ґгѓјгѓігѓ¬гѓігѓЂгѓЄгѓіг‚°гЃ§дЅїз”ЁгЃ™г‚‹г‚№гѓ•г‚Јг‚ўгѓћгѓѓгѓ—гЃ®еђ€ж€ђж–№жі•г‚’еЏ–еѕ—гЃ™г‚‹( DX_MATERIAL_BLENDTYPE_ADDITIVE гЃЄгЃ© )
 extern int NS_MV1GetMaterialSphereMapBlendType(	int MHandle, int MaterialIndex )
 {
 	MV1MATERIALSTART( MHandle, Model, ModelBase, Material, MaterialIndex, -1 ) ;
@@ -26771,7 +26771,7 @@ extern int NS_MV1GetMaterialSphereMapBlendType(	int MHandle, int MaterialIndex )
 	return Material->SphereMapBlendType ;
 }
 
-// Ћw’и‚Мѓ}ѓeѓЉѓAѓ‹‚МѓgѓDЃ[ѓ“ѓЊѓ“ѓ_ѓЉѓ“ѓO‚ЕЋg—p‚·‚й—ЦЉsђь‚М‘ѕ‚і‚рђЭ’и‚·‚й( 0.0f Ѓ` 1.0f )
+// жЊ‡е®љгЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ®гѓ€г‚Ґгѓјгѓігѓ¬гѓігѓЂгѓЄгѓіг‚°гЃ§дЅїз”ЁгЃ™г‚‹ијЄйѓ­з·љгЃ®е¤ЄгЃ•г‚’иЁ­е®љгЃ™г‚‹( 0.0f пЅћ 1.0f )
 extern int NS_MV1SetMaterialOutLineWidth( int MHandle, int MaterialIndex, float Width )
 {
 	MV1_MESH *Mesh ;
@@ -26779,17 +26779,17 @@ extern int NS_MV1SetMaterialOutLineWidth( int MHandle, int MaterialIndex, float 
 
 	MV1MATERIALSTART( MHandle, Model, ModelBase, Material, MaterialIndex, -1 ) ;
 
-	// “Ї‚¶‚ѕ‚Б‚Ѕ‚з‰Ѕ‚а‚µ‚И‚ў
+	// еђЊгЃгЃ гЃЈгЃџг‚‰дЅ•г‚‚гЃ—гЃЄгЃ„
 	if( Material->OutLineWidth == Width )
 		return 0 ;
 
-	// •`‰ж‘Т‹@‚µ‚Д‚ў‚й•`‰ж•Ё‚р•`‰ж
+	// жЏЏз”»еѕ…ж©џгЃ—гЃ¦гЃ„г‚‹жЏЏз”»з‰©г‚’жЏЏз”»
 	DRAWSTOCKINFO
 
-	// ђЭ’и
+	// иЁ­е®љ
 	Material->OutLineWidth = Width ;
 
-	// ‚±‚Мѓ}ѓeѓЉѓAѓ‹‚рЋg—p‚µ‚Д‚ў‚йѓЃѓbѓVѓ…‚М”ј“§–ѕ—v‘f—L–іЏо•с‚МѓZѓbѓgѓAѓbѓvЉ®—№ѓtѓ‰ѓO‚р“|‚·
+	// гЃ“гЃ®гѓћгѓ†гѓЄг‚ўгѓ«г‚’дЅїз”ЁгЃ—гЃ¦гЃ„г‚‹гѓЎгѓѓг‚·гѓҐгЃ®еЌЉйЂЏжЋи¦Ѓзґ жњ‰з„Ўжѓ…е ±гЃ®г‚»гѓѓгѓ€г‚ўгѓѓгѓ—е®Њдє†гѓ•гѓ©г‚°г‚’еЂ’гЃ™
 	Mesh = Model->Mesh ;
 	for( i = 0 ; i < ModelBase->MeshNum ; i ++, Mesh ++ )
 	{
@@ -26800,11 +26800,11 @@ extern int NS_MV1SetMaterialOutLineWidth( int MHandle, int MaterialIndex, float 
 			MV1BitSetChange( &Mesh->DrawMaterialChange ) ;
 	}
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// Ћw’и‚Мѓ}ѓeѓЉѓAѓ‹‚МѓgѓDЃ[ѓ“ѓЊѓ“ѓ_ѓЉѓ“ѓO‚ЕЋg—p‚·‚й—ЦЉsђь‚М‘ѕ‚і‚рЋж“ѕ‚·‚й( 0.0f Ѓ` 1.0f )
+// жЊ‡е®љгЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ®гѓ€г‚Ґгѓјгѓігѓ¬гѓігѓЂгѓЄгѓіг‚°гЃ§дЅїз”ЁгЃ™г‚‹ијЄйѓ­з·љгЃ®е¤ЄгЃ•г‚’еЏ–еѕ—гЃ™г‚‹( 0.0f пЅћ 1.0f )
 extern float NS_MV1GetMaterialOutLineWidth( int MHandle, int MaterialIndex )
 {
 	MV1MATERIALSTART( MHandle, Model, ModelBase, Material, MaterialIndex, -1 ) ;
@@ -26812,7 +26812,7 @@ extern float NS_MV1GetMaterialOutLineWidth( int MHandle, int MaterialIndex )
 	return Material->OutLineWidth ;
 }
 
-// Ћw’и‚Мѓ}ѓeѓЉѓAѓ‹‚МѓgѓDЃ[ѓ“ѓЊѓ“ѓ_ѓЉѓ“ѓO‚ЕЋg—p‚·‚й—ЦЉsђь‚Мѓhѓbѓg’P€К‚М‘ѕ‚і‚рђЭ’и‚·‚й
+// жЊ‡е®љгЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ®гѓ€г‚Ґгѓјгѓігѓ¬гѓігѓЂгѓЄгѓіг‚°гЃ§дЅїз”ЁгЃ™г‚‹ијЄйѓ­з·љгЃ®гѓ‰гѓѓгѓ€еЌдЅЌгЃ®е¤ЄгЃ•г‚’иЁ­е®љгЃ™г‚‹
 extern int NS_MV1SetMaterialOutLineDotWidth( int MHandle, int MaterialIndex, float Width )
 {
 	MV1_MESH *Mesh ;
@@ -26820,17 +26820,17 @@ extern int NS_MV1SetMaterialOutLineDotWidth( int MHandle, int MaterialIndex, flo
 
 	MV1MATERIALSTART( MHandle, Model, ModelBase, Material, MaterialIndex, -1 ) ;
 
-	// “Ї‚¶‚ѕ‚Б‚Ѕ‚з‰Ѕ‚а‚µ‚И‚ў
+	// еђЊгЃгЃ гЃЈгЃџг‚‰дЅ•г‚‚гЃ—гЃЄгЃ„
 	if( Material->OutLineDotWidth == Width )
 		return 0 ;
 
-	// •`‰ж‘Т‹@‚µ‚Д‚ў‚й•`‰ж•Ё‚р•`‰ж
+	// жЏЏз”»еѕ…ж©џгЃ—гЃ¦гЃ„г‚‹жЏЏз”»з‰©г‚’жЏЏз”»
 	DRAWSTOCKINFO
 
-	// ђЭ’и
+	// иЁ­е®љ
 	Material->OutLineDotWidth = Width ;
 
-	// ‚±‚Мѓ}ѓeѓЉѓAѓ‹‚рЋg—p‚µ‚Д‚ў‚йѓЃѓbѓVѓ…‚М”ј“§–ѕ—v‘f—L–іЏо•с‚МѓZѓbѓgѓAѓbѓvЉ®—№ѓtѓ‰ѓO‚р“|‚·
+	// гЃ“гЃ®гѓћгѓ†гѓЄг‚ўгѓ«г‚’дЅїз”ЁгЃ—гЃ¦гЃ„г‚‹гѓЎгѓѓг‚·гѓҐгЃ®еЌЉйЂЏжЋи¦Ѓзґ жњ‰з„Ўжѓ…е ±гЃ®г‚»гѓѓгѓ€г‚ўгѓѓгѓ—е®Њдє†гѓ•гѓ©г‚°г‚’еЂ’гЃ™
 	Mesh = Model->Mesh ;
 	for( i = 0 ; i < ModelBase->MeshNum ; i ++, Mesh ++ )
 	{
@@ -26841,11 +26841,11 @@ extern int NS_MV1SetMaterialOutLineDotWidth( int MHandle, int MaterialIndex, flo
 			MV1BitSetChange( &Mesh->DrawMaterialChange ) ;
 	}
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// Ћw’и‚Мѓ}ѓeѓЉѓAѓ‹‚МѓgѓDЃ[ѓ“ѓЊѓ“ѓ_ѓЉѓ“ѓO‚ЕЋg—p‚·‚й—ЦЉsђь‚Мѓhѓbѓg’P€К‚М‘ѕ‚і‚рЋж“ѕ‚·‚й
+// жЊ‡е®љгЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ®гѓ€г‚Ґгѓјгѓігѓ¬гѓігѓЂгѓЄгѓіг‚°гЃ§дЅїз”ЁгЃ™г‚‹ијЄйѓ­з·љгЃ®гѓ‰гѓѓгѓ€еЌдЅЌгЃ®е¤ЄгЃ•г‚’еЏ–еѕ—гЃ™г‚‹
 extern float NS_MV1GetMaterialOutLineDotWidth( int MHandle, int MaterialIndex )
 {
 	MV1MATERIALSTART( MHandle, Model, ModelBase, Material, MaterialIndex, -1 ) ;
@@ -26853,7 +26853,7 @@ extern float NS_MV1GetMaterialOutLineDotWidth( int MHandle, int MaterialIndex )
 	return Material->OutLineDotWidth ;
 }
 
-// Ћw’и‚Мѓ}ѓeѓЉѓAѓ‹‚МѓgѓDЃ[ѓ“ѓЊѓ“ѓ_ѓЉѓ“ѓO‚ЕЋg—p‚·‚й—ЦЉsђь‚МђF‚рђЭ’и‚·‚й
+// жЊ‡е®љгЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ®гѓ€г‚Ґгѓјгѓігѓ¬гѓігѓЂгѓЄгѓіг‚°гЃ§дЅїз”ЁгЃ™г‚‹ијЄйѓ­з·љгЃ®и‰Іг‚’иЁ­е®љгЃ™г‚‹
 extern int NS_MV1SetMaterialOutLineColor( int MHandle, int MaterialIndex, COLOR_F Color )
 {
 	MV1_MESH *Mesh ;
@@ -26861,19 +26861,19 @@ extern int NS_MV1SetMaterialOutLineColor( int MHandle, int MaterialIndex, COLOR_
 
 	MV1MATERIALSTART( MHandle, Model, ModelBase, Material, MaterialIndex, -1 ) ;
 
-	// “Ї‚¶‚ѕ‚Б‚Ѕ‚з‰Ѕ‚а‚µ‚И‚ў
+	// еђЊгЃгЃ гЃЈгЃџг‚‰дЅ•г‚‚гЃ—гЃЄгЃ„
 	if( ( ( DWORD * )&Material->OutLineColor )[ 0 ] == ( ( DWORD * )&Color )[ 0 ] &&
 		( ( DWORD * )&Material->OutLineColor )[ 1 ] == ( ( DWORD * )&Color )[ 1 ] &&
 		( ( DWORD * )&Material->OutLineColor )[ 2 ] == ( ( DWORD * )&Color )[ 2 ] &&
 		( ( DWORD * )&Material->OutLineColor )[ 3 ] == ( ( DWORD * )&Color )[ 3 ] ) return 0 ;
 
-	// •`‰ж‘Т‹@‚µ‚Д‚ў‚й•`‰ж•Ё‚р•`‰ж
+	// жЏЏз”»еѕ…ж©џгЃ—гЃ¦гЃ„г‚‹жЏЏз”»з‰©г‚’жЏЏз”»
 	DRAWSTOCKINFO
 
-	// ђЭ’и
+	// иЁ­е®љ
 	Material->OutLineColor = Color ;
 
-	// ‚±‚Мѓ}ѓeѓЉѓAѓ‹‚рЋg—p‚µ‚Д‚ў‚йѓЃѓbѓVѓ…‚М”ј“§–ѕ—v‘f—L–іЏо•с‚МѓZѓbѓgѓAѓbѓvЉ®—№ѓtѓ‰ѓO‚р“|‚·
+	// гЃ“гЃ®гѓћгѓ†гѓЄг‚ўгѓ«г‚’дЅїз”ЁгЃ—гЃ¦гЃ„г‚‹гѓЎгѓѓг‚·гѓҐгЃ®еЌЉйЂЏжЋи¦Ѓзґ жњ‰з„Ўжѓ…е ±гЃ®г‚»гѓѓгѓ€г‚ўгѓѓгѓ—е®Њдє†гѓ•гѓ©г‚°г‚’еЂ’гЃ™
 	Mesh = Model->Mesh ;
 	for( i = 0 ; i < ModelBase->MeshNum ; i ++, Mesh ++ )
 	{
@@ -26884,11 +26884,11 @@ extern int NS_MV1SetMaterialOutLineColor( int MHandle, int MaterialIndex, COLOR_
 			MV1BitSetChange( &Mesh->DrawMaterialChange ) ;
 	}
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// Ћw’и‚Мѓ}ѓeѓЉѓAѓ‹‚МѓgѓDЃ[ѓ“ѓЊѓ“ѓ_ѓЉѓ“ѓO‚ЕЋg—p‚·‚й—ЦЉsђь‚МђF‚рЋж“ѕ‚·‚й
+// жЊ‡е®љгЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ®гѓ€г‚Ґгѓјгѓігѓ¬гѓігѓЂгѓЄгѓіг‚°гЃ§дЅїз”ЁгЃ™г‚‹ијЄйѓ­з·љгЃ®и‰Іг‚’еЏ–еѕ—гЃ™г‚‹
 extern COLOR_F NS_MV1GetMaterialOutLineColor( int MHandle, int MaterialIndex )
 {
 	COLOR_F RetColor = { 0.0f, 0.0f, 0.0f, 0.0f } ;
@@ -26897,7 +26897,7 @@ extern COLOR_F NS_MV1GetMaterialOutLineColor( int MHandle, int MaterialIndex )
 	return Material->OutLineColor ;
 }
 
-// Ћw’и‚Мѓ}ѓeѓЉѓAѓ‹‚М•`‰жѓuѓЊѓ“ѓhѓ‚Ѓ[ѓh‚рђЭ’и‚·‚й( DX_BLENDMODE_ALPHA “™ )
+// жЊ‡е®љгЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ®жЏЏз”»гѓ–гѓ¬гѓігѓ‰гѓўгѓјгѓ‰г‚’иЁ­е®љгЃ™г‚‹( DX_BLENDMODE_ALPHA з­‰ )
 extern int NS_MV1SetMaterialDrawBlendMode( int MHandle, int MaterialIndex, int BlendMode )
 {
 	MV1_MESH *Mesh ;
@@ -26909,13 +26909,13 @@ extern int NS_MV1SetMaterialDrawBlendMode( int MHandle, int MaterialIndex, int B
 		return 0 ;
 	}
 
-	// •`‰ж‘Т‹@‚µ‚Д‚ў‚й•`‰ж•Ё‚р•`‰ж
+	// жЏЏз”»еѕ…ж©џгЃ—гЃ¦гЃ„г‚‹жЏЏз”»з‰©г‚’жЏЏз”»
 	DRAWSTOCKINFO
 
-	// ѓuѓЊѓ“ѓhѓ‚Ѓ[ѓh‚МѓZѓbѓg
+	// гѓ–гѓ¬гѓігѓ‰гѓўгѓјгѓ‰гЃ®г‚»гѓѓгѓ€
 	Material->DrawBlendMode = BlendMode ;
 
-	// ‚±‚Мѓ}ѓeѓЉѓAѓ‹‚рЋg—p‚µ‚Д‚ў‚йѓЃѓbѓVѓ…‚М”ј“§–ѕ—v‘f—L–іЏо•с‚МѓZѓbѓgѓAѓbѓvЉ®—№ѓtѓ‰ѓO‚р“|‚·
+	// гЃ“гЃ®гѓћгѓ†гѓЄг‚ўгѓ«г‚’дЅїз”ЁгЃ—гЃ¦гЃ„г‚‹гѓЎгѓѓг‚·гѓҐгЃ®еЌЉйЂЏжЋи¦Ѓзґ жњ‰з„Ўжѓ…е ±гЃ®г‚»гѓѓгѓ€г‚ўгѓѓгѓ—е®Њдє†гѓ•гѓ©г‚°г‚’еЂ’гЃ™
 	Mesh = Model->Mesh ;
 	for( i = 0 ; i < ModelBase->MeshNum ; i ++, Mesh ++ )
 	{
@@ -26926,11 +26926,11 @@ extern int NS_MV1SetMaterialDrawBlendMode( int MHandle, int MaterialIndex, int B
 			MV1BitSetChange( &Mesh->DrawMaterialChange ) ;
 	}
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// Ћw’и‚Мѓ}ѓeѓЉѓAѓ‹‚М•`‰жѓuѓЊѓ“ѓhѓpѓ‰ѓЃЃ[ѓ^‚рђЭ’и‚·‚й
+// жЊ‡е®љгЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ®жЏЏз”»гѓ–гѓ¬гѓігѓ‰гѓ‘гѓ©гѓЎгѓјг‚їг‚’иЁ­е®љгЃ™г‚‹
 extern int NS_MV1SetMaterialDrawBlendParam( int MHandle, int MaterialIndex, int BlendParam )
 {
 	MV1_MESH *Mesh ;
@@ -26942,13 +26942,13 @@ extern int NS_MV1SetMaterialDrawBlendParam( int MHandle, int MaterialIndex, int 
 		return 0 ;
 	}
 
-	// •`‰ж‘Т‹@‚µ‚Д‚ў‚й•`‰ж•Ё‚р•`‰ж
+	// жЏЏз”»еѕ…ж©џгЃ—гЃ¦гЃ„г‚‹жЏЏз”»з‰©г‚’жЏЏз”»
 	DRAWSTOCKINFO
 
-	// ѓuѓЊѓ“ѓhѓ‚Ѓ[ѓh‚МѓZѓbѓg
+	// гѓ–гѓ¬гѓігѓ‰гѓўгѓјгѓ‰гЃ®г‚»гѓѓгѓ€
 	Material->DrawBlendParam = BlendParam ;
 
-	// ‚±‚Мѓ}ѓeѓЉѓAѓ‹‚рЋg—p‚µ‚Д‚ў‚йѓЃѓbѓVѓ…‚М”ј“§–ѕ—v‘f—L–іЏо•с‚МѓZѓbѓgѓAѓbѓvЉ®—№ѓtѓ‰ѓO‚р“|‚·
+	// гЃ“гЃ®гѓћгѓ†гѓЄг‚ўгѓ«г‚’дЅїз”ЁгЃ—гЃ¦гЃ„г‚‹гѓЎгѓѓг‚·гѓҐгЃ®еЌЉйЂЏжЋи¦Ѓзґ жњ‰з„Ўжѓ…е ±гЃ®г‚»гѓѓгѓ€г‚ўгѓѓгѓ—е®Њдє†гѓ•гѓ©г‚°г‚’еЂ’гЃ™
 	Mesh = Model->Mesh ;
 	for( i = 0 ; i < ModelBase->MeshNum ; i ++, Mesh ++ )
 	{
@@ -26959,29 +26959,29 @@ extern int NS_MV1SetMaterialDrawBlendParam( int MHandle, int MaterialIndex, int 
 			MV1BitSetChange( &Mesh->DrawMaterialChange ) ;
 	}
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// Ћw’и‚Мѓ}ѓeѓЉѓAѓ‹‚М•`‰жѓuѓЊѓ“ѓhѓ‚Ѓ[ѓh‚рЋж“ѕ‚·‚й( DX_BLENDMODE_ALPHA “™ )
+// жЊ‡е®љгЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ®жЏЏз”»гѓ–гѓ¬гѓігѓ‰гѓўгѓјгѓ‰г‚’еЏ–еѕ—гЃ™г‚‹( DX_BLENDMODE_ALPHA з­‰ )
 extern int NS_MV1GetMaterialDrawBlendMode( int MHandle, int MaterialIndex )
 {
 	MV1MATERIALSTART( MHandle, Model, ModelBase, Material, MaterialIndex, -1 ) ;
 
-	// ѓuѓЊѓ“ѓhѓ‚Ѓ[ѓh‚р•Ф‚·
+	// гѓ–гѓ¬гѓігѓ‰гѓўгѓјгѓ‰г‚’иї”гЃ™
 	return Material->DrawBlendMode ;
 }
 
-// Ћw’и‚Мѓ}ѓeѓЉѓAѓ‹‚М•`‰жѓuѓЊѓ“ѓhѓpѓ‰ѓЃЃ[ѓ^‚рђЭ’и‚·‚й
+// жЊ‡е®љгЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ®жЏЏз”»гѓ–гѓ¬гѓігѓ‰гѓ‘гѓ©гѓЎгѓјг‚їг‚’иЁ­е®љгЃ™г‚‹
 extern int NS_MV1GetMaterialDrawBlendParam( int MHandle, int MaterialIndex )
 {
 	MV1MATERIALSTART( MHandle, Model, ModelBase, Material, MaterialIndex, -1 ) ;
 
-	// ѓuѓЊѓ“ѓhѓ‚Ѓ[ѓh‚р•Ф‚·
+	// гѓ–гѓ¬гѓігѓ‰гѓўгѓјгѓ‰г‚’иї”гЃ™
 	return Material->DrawBlendParam ;
 }
 
-// Ћw’и‚Мѓ}ѓeѓЉѓAѓ‹‚М•`‰жЋћ‚МѓAѓ‹ѓtѓ@ѓeѓXѓg‚МђЭ’и‚рЌs‚¤( Enable:ѓїѓeѓXѓg‚рЌs‚¤‚©‚З‚¤‚©( TRUE:Ќs‚¤  FALSE:Ќs‚н‚И‚ў( ѓfѓtѓHѓ‹ѓg )  Mode:ѓeѓXѓgѓ‚Ѓ[ѓh( DX_CMP_GREATER“™ )  Param:•`‰жѓAѓ‹ѓtѓ@’l‚Ж‚М”дЉr‚ЙЋg—p‚·‚й’l( 0Ѓ`255 ) )
+// жЊ‡е®љгЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ®жЏЏз”»ж™‚гЃ®г‚ўгѓ«гѓ•г‚Ўгѓ†г‚№гѓ€гЃ®иЁ­е®љг‚’иЎЊгЃ†( Enable:О±гѓ†г‚№гѓ€г‚’иЎЊгЃ†гЃ‹гЃ©гЃ†гЃ‹( TRUE:иЎЊгЃ†  FALSE:иЎЊг‚ЏгЃЄгЃ„( гѓ‡гѓ•г‚©гѓ«гѓ€ )  Mode:гѓ†г‚№гѓ€гѓўгѓјгѓ‰( DX_CMP_GREATERз­‰ )  Param:жЏЏз”»г‚ўгѓ«гѓ•г‚ЎеЂ¤гЃЁгЃ®жЇ”ијѓгЃ«дЅїз”ЁгЃ™г‚‹еЂ¤( 0пЅћ255 ) )
 extern int NS_MV1SetMaterialDrawAlphaTest( int MHandle, int MaterialIndex,	int Enable, int Mode, int Param )
 {
 	MV1MATERIALSTART( MHandle, Model, ModelBase, Material, MaterialIndex, -1 ) ;
@@ -26993,19 +26993,19 @@ extern int NS_MV1SetMaterialDrawAlphaTest( int MHandle, int MaterialIndex,	int E
 		return 0 ;
 	}
 
-	// •`‰ж‘Т‹@‚µ‚Д‚ў‚й•`‰ж•Ё‚р•`‰ж
+	// жЏЏз”»еѕ…ж©џгЃ—гЃ¦гЃ„г‚‹жЏЏз”»з‰©г‚’жЏЏз”»
 	DRAWSTOCKINFO
 
-	// ѓpѓ‰ѓЃЃ[ѓ^‚рѓZѓbѓg
+	// гѓ‘гѓ©гѓЎгѓјг‚їг‚’г‚»гѓѓгѓ€
 	Material->UseAlphaTest = Enable ;
 	Material->AlphaFunc = Mode ;
 	Material->AlphaRef = Param ;
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// Ћw’и‚Мѓ}ѓeѓЉѓAѓ‹‚М•`‰жЋћ‚МѓAѓ‹ѓtѓ@ѓeѓXѓg‚рЌs‚¤‚©‚З‚¤‚©‚рЋж“ѕ‚·‚й( –Я‚и’l  TRUE:ѓAѓ‹ѓtѓ@ѓeѓXѓg‚рЌs‚¤  FALSE:ѓAѓ‹ѓtѓ@ѓeѓXѓg‚рЌs‚н‚И‚ў )
+// жЊ‡е®љгЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ®жЏЏз”»ж™‚гЃ®г‚ўгѓ«гѓ•г‚Ўгѓ†г‚№гѓ€г‚’иЎЊгЃ†гЃ‹гЃ©гЃ†гЃ‹г‚’еЏ–еѕ—гЃ™г‚‹( ж€»г‚ЉеЂ¤  TRUE:г‚ўгѓ«гѓ•г‚Ўгѓ†г‚№гѓ€г‚’иЎЊгЃ†  FALSE:г‚ўгѓ«гѓ•г‚Ўгѓ†г‚№гѓ€г‚’иЎЊг‚ЏгЃЄгЃ„ )
 extern int NS_MV1GetMaterialDrawAlphaTestEnable( int MHandle, int MaterialIndex )
 {
 	MV1MATERIALSTART( MHandle, Model, ModelBase, Material, MaterialIndex, -1 ) ;
@@ -27013,7 +27013,7 @@ extern int NS_MV1GetMaterialDrawAlphaTestEnable( int MHandle, int MaterialIndex 
 	return Material->UseAlphaTest ;
 }
 
-// Ћw’и‚Мѓ}ѓeѓЉѓAѓ‹‚М•`‰жЋћ‚МѓAѓ‹ѓtѓ@ѓeѓXѓg‚МѓeѓXѓgѓ‚Ѓ[ѓh‚рЋж“ѕ‚·‚й( –Я‚и’l  ѓeѓXѓgѓ‚Ѓ[ѓh( DX_CMP_GREATER“™ ) )
+// жЊ‡е®љгЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ®жЏЏз”»ж™‚гЃ®г‚ўгѓ«гѓ•г‚Ўгѓ†г‚№гѓ€гЃ®гѓ†г‚№гѓ€гѓўгѓјгѓ‰г‚’еЏ–еѕ—гЃ™г‚‹( ж€»г‚ЉеЂ¤  гѓ†г‚№гѓ€гѓўгѓјгѓ‰( DX_CMP_GREATERз­‰ ) )
 extern int NS_MV1GetMaterialDrawAlphaTestMode( int MHandle, int MaterialIndex )
 {
 	MV1MATERIALSTART( MHandle, Model, ModelBase, Material, MaterialIndex, -1 ) ;
@@ -27021,7 +27021,7 @@ extern int NS_MV1GetMaterialDrawAlphaTestMode( int MHandle, int MaterialIndex )
 	return Material->AlphaFunc ;
 }
 
-// Ћw’и‚Мѓ}ѓeѓЉѓAѓ‹‚М•`‰жЋћ‚МѓAѓ‹ѓtѓ@ѓeѓXѓg‚М•`‰жѓAѓ‹ѓtѓ@’n‚Ж‚М”дЉr‚ЙЋg—p‚·‚й’l( 0Ѓ`255 )‚рЋж“ѕ‚·‚й
+// жЊ‡е®љгЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ®жЏЏз”»ж™‚гЃ®г‚ўгѓ«гѓ•г‚Ўгѓ†г‚№гѓ€гЃ®жЏЏз”»г‚ўгѓ«гѓ•г‚Ўењ°гЃЁгЃ®жЇ”ијѓгЃ«дЅїз”ЁгЃ™г‚‹еЂ¤( 0пЅћ255 )г‚’еЏ–еѕ—гЃ™г‚‹
 extern int NS_MV1GetMaterialDrawAlphaTestParam( int MHandle, int MaterialIndex )
 {
 	MV1MATERIALSTART( MHandle, Model, ModelBase, Material, MaterialIndex, -1 ) ;
@@ -27029,7 +27029,7 @@ extern int NS_MV1GetMaterialDrawAlphaTestParam( int MHandle, int MaterialIndex )
 	return Material->AlphaRef ;
 }
 
-// ‘S‚Д‚Мѓ}ѓeѓЉѓAѓ‹‚М•`‰жЋћ‚М‰БЋZѓJѓ‰Ѓ[‚рђЭ’и‚·‚й{
+// е…ЁгЃ¦гЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ®жЏЏз”»ж™‚гЃ®еЉ з®—г‚«гѓ©гѓјг‚’иЁ­е®љгЃ™г‚‹{
 extern int NS_MV1SetMaterialDrawAddColorAll( int MHandle, int Red, int Green, int Blue )
 {
 	int i ;
@@ -27046,7 +27046,7 @@ extern int NS_MV1SetMaterialDrawAddColorAll( int MHandle, int Red, int Green, in
 	return 0 ;
 }
 
-// Ћw’и‚Мѓ}ѓeѓЉѓAѓ‹‚М•`‰жЋћ‚М‰БЋZѓJѓ‰Ѓ[‚рђЭ’и‚·‚й
+// жЊ‡е®љгЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ®жЏЏз”»ж™‚гЃ®еЉ з®—г‚«гѓ©гѓјг‚’иЁ­е®љгЃ™г‚‹
 extern int NS_MV1SetMaterialDrawAddColor( int MHandle, int MaterialIndex, int Red, int Green, int Blue )
 {
 	MV1MATERIALSTART( MHandle, Model, ModelBase, Material, MaterialIndex, -1 ) ;
@@ -27058,19 +27058,19 @@ extern int NS_MV1SetMaterialDrawAddColor( int MHandle, int MaterialIndex, int Re
 		return 0 ;
 	}
 
-	// •`‰ж‘Т‹@‚µ‚Д‚ў‚й•`‰ж•Ё‚р•`‰ж
+	// жЏЏз”»еѕ…ж©џгЃ—гЃ¦гЃ„г‚‹жЏЏз”»з‰©г‚’жЏЏз”»
 	DRAWSTOCKINFO
 
-	// ѓuѓЊѓ“ѓhѓ‚Ѓ[ѓh‚МѓZѓbѓg
+	// гѓ–гѓ¬гѓігѓ‰гѓўгѓјгѓ‰гЃ®г‚»гѓѓгѓ€
 	Material->DrawAddColor.x = Red ;
 	Material->DrawAddColor.y = Green ;
 	Material->DrawAddColor.z = Blue ;
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// Ћw’и‚Мѓ}ѓeѓЉѓAѓ‹‚М•`‰жЋћ‚М‰БЋZѓJѓ‰Ѓ[‚рЋж“ѕ‚·‚й
+// жЊ‡е®љгЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ®жЏЏз”»ж™‚гЃ®еЉ з®—г‚«гѓ©гѓјг‚’еЏ–еѕ—гЃ™г‚‹
 extern int NS_MV1GetMaterialDrawAddColor( int MHandle, int MaterialIndex, int *Red, int *Green, int *Blue )
 {
 	MV1MATERIALSTART( MHandle, Model, ModelBase, Material, MaterialIndex, -1 ) ;
@@ -27079,11 +27079,11 @@ extern int NS_MV1GetMaterialDrawAddColor( int MHandle, int MaterialIndex, int *R
 	if( Green != NULL ) *Green = Material->DrawAddColor.y ;
 	if( Blue  != NULL ) *Blue  = Material->DrawAddColor.z ;
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// ‘S‚Д‚Мѓ}ѓeѓЉѓAѓ‹‚Мѓ^ѓCѓv‚р•ПЌX‚·‚й( Type : DX_MATERIAL_TYPE_NORMAL ‚И‚З )
+// е…ЁгЃ¦гЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ®г‚їг‚¤гѓ—г‚’е¤‰ж›ґгЃ™г‚‹( Type : DX_MATERIAL_TYPE_NORMAL гЃЄгЃ© )
 extern int NS_MV1SetMaterialTypeAll( int MHandle, int Type )
 {
 	int i ;
@@ -27100,7 +27100,7 @@ extern int NS_MV1SetMaterialTypeAll( int MHandle, int Type )
 	return 0 ;
 }
 
-// ‘S‚Д‚Мѓ}ѓeѓЉѓAѓ‹‚Мѓ^ѓCѓv•Кѓpѓ‰ѓЃЃ[ѓ^‚р•ПЌX‚·‚й( ѓ}ѓeѓЉѓAѓ‹ѓ^ѓCѓv DX_MATERIAL_TYPE_MAT_SPEC_LUMINANCE_TWO_COLOR ‚И‚З‚ЕЋg—p )
+// е…ЁгЃ¦гЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ®г‚їг‚¤гѓ—е€Ґгѓ‘гѓ©гѓЎгѓјг‚їг‚’е¤‰ж›ґгЃ™г‚‹( гѓћгѓ†гѓЄг‚ўгѓ«г‚їг‚¤гѓ— DX_MATERIAL_TYPE_MAT_SPEC_LUMINANCE_TWO_COLOR гЃЄгЃ©гЃ§дЅїз”Ё )
 extern int NS_MV1SetMaterialTypeParamAll( int MHandle, ... )
 {
 	int Result ;
@@ -27115,7 +27115,7 @@ extern int NS_MV1SetMaterialTypeParamAll( int MHandle, ... )
 	return Result ;
 }
 
-// MV1SetMaterialTypeParamAll ‚МЋАЏ€—ќ‚рЌs‚¤ЉЦђ”
+// MV1SetMaterialTypeParamAll гЃ®е®џе‡¦зђ†г‚’иЎЊгЃ†й–ўж•°
 extern int MV1SetMaterialTypeParamAll_Base( int MHandle, va_list ParamList )
 {
 	int i, j ;
@@ -27128,10 +27128,10 @@ extern int MV1SetMaterialTypeParamAll_Base( int MHandle, va_list ParamList )
 		return -1 ;
 	}
 
-	// •`‰ж‘Т‹@‚µ‚Д‚ў‚й•`‰ж•Ё‚р•`‰ж
+	// жЏЏз”»еѕ…ж©џгЃ—гЃ¦гЃ„г‚‹жЏЏз”»з‰©г‚’жЏЏз”»
 	DRAWSTOCKINFO
 
-	// ѓZѓbѓg
+	// г‚»гѓѓгѓ€
 	MATERIAL_SET_TYPE_PARAM( Model->Material->BaseData->Type, TypeParam, ParamList )
 
 	Material = Model->Material ;
@@ -27139,10 +27139,10 @@ extern int MV1SetMaterialTypeParamAll_Base( int MHandle, va_list ParamList )
 	{
 		MV1_MESH *Mesh ;
 
-		// ѓZѓbѓg
+		// г‚»гѓѓгѓ€
 		_MEMCPY( Material->TypeParam, TypeParam, sizeof( TypeParam ) ) ;
 
-		// ‚±‚Мѓ}ѓeѓЉѓAѓ‹‚рЋg—p‚µ‚Д‚ў‚йѓЃѓbѓVѓ…‚М”ј“§–ѕ—v‘f—L–іЏо•с‚МѓZѓbѓgѓAѓbѓvЉ®—№ѓtѓ‰ѓO‚р“|‚·
+		// гЃ“гЃ®гѓћгѓ†гѓЄг‚ўгѓ«г‚’дЅїз”ЁгЃ—гЃ¦гЃ„г‚‹гѓЎгѓѓг‚·гѓҐгЃ®еЌЉйЂЏжЋи¦Ѓзґ жњ‰з„Ўжѓ…е ±гЃ®г‚»гѓѓгѓ€г‚ўгѓѓгѓ—е®Њдє†гѓ•гѓ©г‚°г‚’еЂ’гЃ™
 		Mesh = Model->Mesh ;
 		for( i = 0 ; i < ModelBase->MeshNum ; i ++, Mesh ++ )
 		{
@@ -27157,7 +27157,7 @@ extern int MV1SetMaterialTypeParamAll_Base( int MHandle, va_list ParamList )
 	return 0 ;
 }
 
-// ‘S‚Д‚Мѓ}ѓeѓЉѓAѓ‹‚МѓgѓDЃ[ѓ“ѓЊѓ“ѓ_ѓЉѓ“ѓO‚ЕЋg—p‚·‚йѓfѓBѓtѓ…Ѓ[ѓYѓOѓ‰ѓfЃ[ѓVѓ‡ѓ“ѓ}ѓbѓv‚ЖѓfѓBѓtѓ…Ѓ[ѓYѓJѓ‰Ѓ[‚МЌ‡ђ¬•ы–@‚рђЭ’и‚·‚й( DX_MATERIAL_BLENDTYPE_ADDITIVE ‚И‚З )
+// е…ЁгЃ¦гЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ®гѓ€г‚Ґгѓјгѓігѓ¬гѓігѓЂгѓЄгѓіг‚°гЃ§дЅїз”ЁгЃ™г‚‹гѓ‡г‚Јгѓ•гѓҐгѓјг‚єг‚°гѓ©гѓ‡гѓјг‚·гѓ§гѓігѓћгѓѓгѓ—гЃЁгѓ‡г‚Јгѓ•гѓҐгѓјг‚єг‚«гѓ©гѓјгЃ®еђ€ж€ђж–№жі•г‚’иЁ­е®љгЃ™г‚‹( DX_MATERIAL_BLENDTYPE_ADDITIVE гЃЄгЃ© )
 extern int NS_MV1SetMaterialDifGradBlendTypeAll(	int MHandle, int BlendType )
 {
 	int i ;
@@ -27174,7 +27174,7 @@ extern int NS_MV1SetMaterialDifGradBlendTypeAll(	int MHandle, int BlendType )
 	return 0 ;
 }
 
-// ‘S‚Д‚Мѓ}ѓeѓЉѓAѓ‹‚МѓgѓDЃ[ѓ“ѓЊѓ“ѓ_ѓЉѓ“ѓO‚ЕЋg—p‚·‚йѓXѓyѓLѓ…ѓ‰ѓOѓ‰ѓfЃ[ѓVѓ‡ѓ“ѓ}ѓbѓv‚ЖѓXѓyѓLѓ…ѓ‰ѓJѓ‰Ѓ[‚МЌ‡ђ¬•ы–@‚рђЭ’и‚·‚й( DX_MATERIAL_BLENDTYPE_ADDITIVE ‚И‚З )
+// е…ЁгЃ¦гЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ®гѓ€г‚Ґгѓјгѓігѓ¬гѓігѓЂгѓЄгѓіг‚°гЃ§дЅїз”ЁгЃ™г‚‹г‚№гѓљг‚­гѓҐгѓ©г‚°гѓ©гѓ‡гѓјг‚·гѓ§гѓігѓћгѓѓгѓ—гЃЁг‚№гѓљг‚­гѓҐгѓ©г‚«гѓ©гѓјгЃ®еђ€ж€ђж–№жі•г‚’иЁ­е®љгЃ™г‚‹( DX_MATERIAL_BLENDTYPE_ADDITIVE гЃЄгЃ© )
 extern int NS_MV1SetMaterialSpcGradBlendTypeAll(	int MHandle, int BlendType )
 {
 	int i ;
@@ -27191,7 +27191,7 @@ extern int NS_MV1SetMaterialSpcGradBlendTypeAll(	int MHandle, int BlendType )
 	return 0 ;
 }
 
-// ‘S‚Д‚Мѓ}ѓeѓЉѓAѓ‹‚МѓgѓDЃ[ѓ“ѓЊѓ“ѓ_ѓЉѓ“ѓO‚ЕЋg—p‚·‚йѓXѓtѓBѓAѓ}ѓbѓv‚МЌ‡ђ¬•ы–@‚рђЭ’и‚·‚й( DX_MATERIAL_BLENDTYPE_ADDITIVE ‚И‚З )
+// е…ЁгЃ¦гЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ®гѓ€г‚Ґгѓјгѓігѓ¬гѓігѓЂгѓЄгѓіг‚°гЃ§дЅїз”ЁгЃ™г‚‹г‚№гѓ•г‚Јг‚ўгѓћгѓѓгѓ—гЃ®еђ€ж€ђж–№жі•г‚’иЁ­е®љгЃ™г‚‹( DX_MATERIAL_BLENDTYPE_ADDITIVE гЃЄгЃ© )
 extern int NS_MV1SetMaterialSphereMapBlendTypeAll( int MHandle,  int BlendType )
 {
 	int i ;
@@ -27208,7 +27208,7 @@ extern int NS_MV1SetMaterialSphereMapBlendTypeAll( int MHandle,  int BlendType )
 	return 0 ;
 }
 
-// ‘S‚Д‚Мѓ}ѓeѓЉѓAѓ‹‚МѓgѓDЃ[ѓ“ѓЊѓ“ѓ_ѓЉѓ“ѓO‚ЕЋg—p‚·‚й—ЦЉsђь‚М‘ѕ‚і‚рђЭ’и‚·‚й
+// е…ЁгЃ¦гЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ®гѓ€г‚Ґгѓјгѓігѓ¬гѓігѓЂгѓЄгѓіг‚°гЃ§дЅїз”ЁгЃ™г‚‹ијЄйѓ­з·љгЃ®е¤ЄгЃ•г‚’иЁ­е®љгЃ™г‚‹
 extern int NS_MV1SetMaterialOutLineWidthAll(		int MHandle, float Width )
 {
 	int i ;
@@ -27225,7 +27225,7 @@ extern int NS_MV1SetMaterialOutLineWidthAll(		int MHandle, float Width )
 	return 0 ;
 }
 
-// ‘S‚Д‚Мѓ}ѓeѓЉѓAѓ‹‚МѓgѓDЃ[ѓ“ѓЊѓ“ѓ_ѓЉѓ“ѓO‚ЕЋg—p‚·‚й—ЦЉsђь‚Мѓhѓbѓg’P€К‚М‘ѕ‚і‚рђЭ’и‚·‚й
+// е…ЁгЃ¦гЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ®гѓ€г‚Ґгѓјгѓігѓ¬гѓігѓЂгѓЄгѓіг‚°гЃ§дЅїз”ЁгЃ™г‚‹ијЄйѓ­з·љгЃ®гѓ‰гѓѓгѓ€еЌдЅЌгЃ®е¤ЄгЃ•г‚’иЁ­е®љгЃ™г‚‹
 extern int NS_MV1SetMaterialOutLineDotWidthAll(	int MHandle,     float Width )
 {
 	int i ;
@@ -27242,7 +27242,7 @@ extern int NS_MV1SetMaterialOutLineDotWidthAll(	int MHandle,     float Width )
 	return 0 ;
 }
 
-// ‘S‚Д‚Мѓ}ѓeѓЉѓAѓ‹‚МѓgѓDЃ[ѓ“ѓЊѓ“ѓ_ѓЉѓ“ѓO‚ЕЋg—p‚·‚й—ЦЉsђь‚МђF‚рђЭ’и‚·‚й
+// е…ЁгЃ¦гЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ®гѓ€г‚Ґгѓјгѓігѓ¬гѓігѓЂгѓЄгѓіг‚°гЃ§дЅїз”ЁгЃ™г‚‹ијЄйѓ­з·љгЃ®и‰Іг‚’иЁ­е®љгЃ™г‚‹
 extern int NS_MV1SetMaterialOutLineColorAll(		int MHandle, COLOR_F Color )
 {
 	int i ;
@@ -27259,7 +27259,7 @@ extern int NS_MV1SetMaterialOutLineColorAll(		int MHandle, COLOR_F Color )
 	return 0 ;
 }
 
-// ‘S‚Д‚Мѓ}ѓeѓЉѓAѓ‹‚М•`‰жѓuѓЊѓ“ѓhѓ‚Ѓ[ѓh‚рђЭ’и‚·‚й( DX_BLENDMODE_ALPHA “™ )
+// е…ЁгЃ¦гЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ®жЏЏз”»гѓ–гѓ¬гѓігѓ‰гѓўгѓјгѓ‰г‚’иЁ­е®љгЃ™г‚‹( DX_BLENDMODE_ALPHA з­‰ )
 extern int NS_MV1SetMaterialDrawBlendModeAll(		int MHandle, int BlendMode )
 {
 	int i ;
@@ -27276,7 +27276,7 @@ extern int NS_MV1SetMaterialDrawBlendModeAll(		int MHandle, int BlendMode )
 	return 0 ;
 }
 
-// ‘S‚Д‚Мѓ}ѓeѓЉѓAѓ‹‚М•`‰жѓuѓЊѓ“ѓhѓpѓ‰ѓЃЃ[ѓ^‚рђЭ’и‚·‚й
+// е…ЁгЃ¦гЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ®жЏЏз”»гѓ–гѓ¬гѓігѓ‰гѓ‘гѓ©гѓЎгѓјг‚їг‚’иЁ­е®љгЃ™г‚‹
 extern int NS_MV1SetMaterialDrawBlendParamAll(	int MHandle,     int BlendParam )
 {
 	int i ;
@@ -27293,7 +27293,7 @@ extern int NS_MV1SetMaterialDrawBlendParamAll(	int MHandle,     int BlendParam )
 	return 0 ;
 }
 
-// ‘S‚Д‚Мѓ}ѓeѓЉѓAѓ‹‚М•`‰жЋћ‚МѓAѓ‹ѓtѓ@ѓeѓXѓg‚МђЭ’и‚рЌs‚¤( Enable:ѓїѓeѓXѓg‚рЌs‚¤‚©‚З‚¤‚©( TRUE:Ќs‚¤  FALSE:Ќs‚н‚И‚ў( ѓfѓtѓHѓ‹ѓg ) ) Mode:ѓeѓXѓgѓ‚Ѓ[ѓh( DX_CMP_GREATER“™ )  Param:•`‰жѓAѓ‹ѓtѓ@’l‚Ж‚М”дЉr‚ЙЋg—p‚·‚й’l( 0Ѓ`255 ) )
+// е…ЁгЃ¦гЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ®жЏЏз”»ж™‚гЃ®г‚ўгѓ«гѓ•г‚Ўгѓ†г‚№гѓ€гЃ®иЁ­е®љг‚’иЎЊгЃ†( Enable:О±гѓ†г‚№гѓ€г‚’иЎЊгЃ†гЃ‹гЃ©гЃ†гЃ‹( TRUE:иЎЊгЃ†  FALSE:иЎЊг‚ЏгЃЄгЃ„( гѓ‡гѓ•г‚©гѓ«гѓ€ ) ) Mode:гѓ†г‚№гѓ€гѓўгѓјгѓ‰( DX_CMP_GREATERз­‰ )  Param:жЏЏз”»г‚ўгѓ«гѓ•г‚ЎеЂ¤гЃЁгЃ®жЇ”ијѓгЃ«дЅїз”ЁгЃ™г‚‹еЂ¤( 0пЅћ255 ) )
 extern int NS_MV1SetMaterialDrawAlphaTestAll(		int MHandle, int Enable, int Mode, int Param )
 {
 	int i ;
@@ -27320,17 +27320,17 @@ extern int NS_MV1SetMaterialDrawAlphaTestAll(		int MHandle, int Enable, int Mode
 
 
 
-// ѓeѓNѓXѓ`ѓѓЉЦЊW
+// гѓ†г‚Їг‚№гѓЃгѓЈй–ўдї‚
 
-// ѓeѓNѓXѓ`ѓѓЉЦЊW
+// гѓ†г‚Їг‚№гѓЃгѓЈй–ўдї‚
 
-// ѓeѓNѓXѓ`ѓѓ‚Мђ”‚рЋж“ѕ
+// гѓ†г‚Їг‚№гѓЃгѓЈгЃ®ж•°г‚’еЏ–еѕ—
 extern int NS_MV1GetTextureNum( int MHandle )
 {
 	return MV1GetTextureNumBase( MV1GetModelBaseHandle( MHandle ) ) ;
 }
 
-// ѓeѓNѓXѓ`ѓѓ‚М–ј‘O‚рЋж“ѕ
+// гѓ†г‚Їг‚№гѓЃгѓЈгЃ®еђЌе‰Ќг‚’еЏ–еѕ—
 extern	const TCHAR *NS_MV1GetTextureName( int MHandle, int TexIndex )
 {
 #ifdef UNICODE
@@ -27340,13 +27340,13 @@ extern	const TCHAR *NS_MV1GetTextureName( int MHandle, int TexIndex )
 #endif
 }
 
-// ѓeѓNѓXѓ`ѓѓ‚М–ј‘O‚рЋж“ѕ
+// гѓ†г‚Їг‚№гѓЃгѓЈгЃ®еђЌе‰Ќг‚’еЏ–еѕ—
 extern	const wchar_t *MV1GetTextureName_WCHAR_T( int MHandle, int TexIndex )
 {
 	return MV1GetTextureNameBaseW( MV1GetModelBaseHandle( MHandle ), TexIndex ) ;
 }
 
-// ѓJѓ‰Ѓ[ѓeѓNѓXѓ`ѓѓ‚Мѓtѓ@ѓCѓ‹ѓpѓX‚р•ПЌX‚·‚й
+// г‚«гѓ©гѓјгѓ†г‚Їг‚№гѓЃгѓЈгЃ®гѓ•г‚Ўг‚¤гѓ«гѓ‘г‚№г‚’е¤‰ж›ґгЃ™г‚‹
 extern int NS_MV1SetTextureColorFilePath( int MHandle, int TexIndex, const TCHAR *FilePath )
 {
 #ifdef UNICODE
@@ -27368,7 +27368,7 @@ extern int NS_MV1SetTextureColorFilePath( int MHandle, int TexIndex, const TCHAR
 #endif
 }
 
-// ѓJѓ‰Ѓ[ѓeѓNѓXѓ`ѓѓ‚Мѓtѓ@ѓCѓ‹ѓpѓX‚р•ПЌX‚·‚й
+// г‚«гѓ©гѓјгѓ†г‚Їг‚№гѓЃгѓЈгЃ®гѓ•г‚Ўг‚¤гѓ«гѓ‘г‚№г‚’е¤‰ж›ґгЃ™г‚‹
 extern int NS_MV1SetTextureColorFilePathWithStrLen(	int MHandle, int TexIndex, const TCHAR *FilePath, size_t FilePathLength )
 {
 	int Result ;
@@ -27384,7 +27384,7 @@ extern int NS_MV1SetTextureColorFilePathWithStrLen(	int MHandle, int TexIndex, c
 	return Result ;
 }
 
-// ѓJѓ‰Ѓ[ѓeѓNѓXѓ`ѓѓ‚Мѓtѓ@ѓCѓ‹ѓpѓX‚р•ПЌX‚·‚й
+// г‚«гѓ©гѓјгѓ†г‚Їг‚№гѓЃгѓЈгЃ®гѓ•г‚Ўг‚¤гѓ«гѓ‘г‚№г‚’е¤‰ж›ґгЃ™г‚‹
 extern int MV1SetTextureColorFilePath_WCHAR_T( int MHandle, int TexIndex, const wchar_t *FilePath )
 {
 	MV1TEXTURESTART( MHandle, Model, ModelBase, Texture, TexIndex, -1 ) ;
@@ -27398,7 +27398,7 @@ extern int MV1SetTextureColorFilePath_WCHAR_T( int MHandle, int TexIndex, const 
 				FALSE ) ;
 }
 
-// ѓJѓ‰Ѓ[ѓeѓNѓXѓ`ѓѓ‚Мѓtѓ@ѓCѓ‹ѓpѓX‚рЋж“ѕ
+// г‚«гѓ©гѓјгѓ†г‚Їг‚№гѓЃгѓЈгЃ®гѓ•г‚Ўг‚¤гѓ«гѓ‘г‚№г‚’еЏ–еѕ—
 extern	const TCHAR *NS_MV1GetTextureColorFilePath( int MHandle, int TexIndex )
 {
 	MV1TEXTURESTART( MHandle, Model, ModelBase, Texture, TexIndex, NULL ) ;
@@ -27410,7 +27410,7 @@ extern	const TCHAR *NS_MV1GetTextureColorFilePath( int MHandle, int TexIndex )
 #endif
 }
 
-// ѓJѓ‰Ѓ[ѓeѓNѓXѓ`ѓѓ‚Мѓtѓ@ѓCѓ‹ѓpѓX‚рЋж“ѕ
+// г‚«гѓ©гѓјгѓ†г‚Їг‚№гѓЃгѓЈгЃ®гѓ•г‚Ўг‚¤гѓ«гѓ‘г‚№г‚’еЏ–еѕ—
 extern	const wchar_t *MV1GetTextureColorFilePath_WCHAR_T( int MHandle, int TexIndex )
 {
 	MV1TEXTURESTART( MHandle, Model, ModelBase, Texture, TexIndex, NULL ) ;
@@ -27418,7 +27418,7 @@ extern	const wchar_t *MV1GetTextureColorFilePath_WCHAR_T( int MHandle, int TexIn
 	return Texture->ColorFilePathW_ ;
 }
 
-// ѓAѓ‹ѓtѓ@ѓeѓNѓXѓ`ѓѓ‚Мѓtѓ@ѓCѓ‹ѓpѓX‚р•ПЌX‚·‚й
+// г‚ўгѓ«гѓ•г‚Ўгѓ†г‚Їг‚№гѓЃгѓЈгЃ®гѓ•г‚Ўг‚¤гѓ«гѓ‘г‚№г‚’е¤‰ж›ґгЃ™г‚‹
 extern int NS_MV1SetTextureAlphaFilePath( int MHandle, int TexIndex, const TCHAR *FilePath )
 {
 #ifdef UNICODE
@@ -27440,7 +27440,7 @@ extern int NS_MV1SetTextureAlphaFilePath( int MHandle, int TexIndex, const TCHAR
 #endif
 }
 
-// ѓAѓ‹ѓtѓ@ѓeѓNѓXѓ`ѓѓ‚Мѓtѓ@ѓCѓ‹ѓpѓX‚р•ПЌX‚·‚й
+// г‚ўгѓ«гѓ•г‚Ўгѓ†г‚Їг‚№гѓЃгѓЈгЃ®гѓ•г‚Ўг‚¤гѓ«гѓ‘г‚№г‚’е¤‰ж›ґгЃ™г‚‹
 extern int NS_MV1SetTextureAlphaFilePathWithStrLen(	int MHandle, int TexIndex, const TCHAR *FilePath, size_t FilePathLength )
 {
 	int Result ;
@@ -27456,7 +27456,7 @@ extern int NS_MV1SetTextureAlphaFilePathWithStrLen(	int MHandle, int TexIndex, c
 	return Result ;
 }
 
-// ѓAѓ‹ѓtѓ@ѓeѓNѓXѓ`ѓѓ‚Мѓtѓ@ѓCѓ‹ѓpѓX‚р•ПЌX‚·‚й
+// г‚ўгѓ«гѓ•г‚Ўгѓ†г‚Їг‚№гѓЃгѓЈгЃ®гѓ•г‚Ўг‚¤гѓ«гѓ‘г‚№г‚’е¤‰ж›ґгЃ™г‚‹
 extern int MV1SetTextureAlphaFilePath_WCHAR_T( int MHandle, int TexIndex, const wchar_t *FilePath )
 {
 	MV1TEXTURESTART( MHandle, Model, ModelBase, Texture, TexIndex, -1 ) ;
@@ -27470,7 +27470,7 @@ extern int MV1SetTextureAlphaFilePath_WCHAR_T( int MHandle, int TexIndex, const 
 				FALSE ) ;
 }
 
-// ѓAѓ‹ѓtѓ@ѓeѓNѓXѓ`ѓѓ‚Мѓtѓ@ѓCѓ‹ѓpѓX‚рЋж“ѕ
+// г‚ўгѓ«гѓ•г‚Ўгѓ†г‚Їг‚№гѓЃгѓЈгЃ®гѓ•г‚Ўг‚¤гѓ«гѓ‘г‚№г‚’еЏ–еѕ—
 extern	const TCHAR *NS_MV1GetTextureAlphaFilePath( int MHandle, int TexIndex )
 {
 	MV1TEXTURESTART( MHandle, Model, ModelBase, Texture, TexIndex, NULL ) ;
@@ -27482,7 +27482,7 @@ extern	const TCHAR *NS_MV1GetTextureAlphaFilePath( int MHandle, int TexIndex )
 #endif
 }
 
-// ѓAѓ‹ѓtѓ@ѓeѓNѓXѓ`ѓѓ‚Мѓtѓ@ѓCѓ‹ѓpѓX‚рЋж“ѕ
+// г‚ўгѓ«гѓ•г‚Ўгѓ†г‚Їг‚№гѓЃгѓЈгЃ®гѓ•г‚Ўг‚¤гѓ«гѓ‘г‚№г‚’еЏ–еѕ—
 extern	const wchar_t *MV1GetTextureAlphaFilePath_WCHAR_T( int MHandle, int TexIndex )
 {
 	MV1TEXTURESTART( MHandle, Model, ModelBase, Texture, TexIndex, NULL ) ;
@@ -27490,12 +27490,12 @@ extern	const wchar_t *MV1GetTextureAlphaFilePath_WCHAR_T( int MHandle, int TexIn
 	return Texture->AlphaFilePathW_ ;
 }
 
-// ѓeѓNѓXѓ`ѓѓ‚ЕЋg—p‚·‚йѓOѓ‰ѓtѓBѓbѓNѓnѓ“ѓhѓ‹‚р•ПЌX‚·‚й( GrHandle ‚р -1 ‚Й‚·‚й‚Ж‰рЏњ )
+// гѓ†г‚Їг‚№гѓЃгѓЈгЃ§дЅїз”ЁгЃ™г‚‹г‚°гѓ©гѓ•г‚Јгѓѓг‚ЇгѓЏгѓігѓ‰гѓ«г‚’е¤‰ж›ґгЃ™г‚‹( GrHandle г‚’ -1 гЃ«гЃ™г‚‹гЃЁи§Јй™¤ )
 extern int NS_MV1SetTextureGraphHandle( int MHandle, int TexIndex, int GrHandle, int SemiTransFlag )
 {
 	MV1TEXTURESTART( MHandle, Model, ModelBase, Texture, TexIndex, -1 ) ;
 
-	// GrHandle ‚Є -1 ‚©‚З‚¤‚©‚ЕЏ€—ќ‚р•ЄЉт
+	// GrHandle гЃЊ -1 гЃ‹гЃ©гЃ†гЃ‹гЃ§е‡¦зђ†г‚’е€†еІђ
 	if( GrHandle == -1 )
 	{
 		if( Texture->UseUserGraphHandle == FALSE && Texture->UseGraphHandle == 0 )
@@ -27503,7 +27503,7 @@ extern int NS_MV1SetTextureGraphHandle( int MHandle, int TexIndex, int GrHandle,
 			return 0 ;
 		}
 
-		// •`‰ж‘Т‹@‚µ‚Д‚ў‚й•`‰ж•Ё‚р•`‰ж
+		// жЏЏз”»еѕ…ж©џгЃ—гЃ¦гЃ„г‚‹жЏЏз”»з‰©г‚’жЏЏз”»
 		DRAWSTOCKINFO
 
 		Texture->UseUserGraphHandle = FALSE ;
@@ -27523,7 +27523,7 @@ extern int NS_MV1SetTextureGraphHandle( int MHandle, int TexIndex, int GrHandle,
 			return 0 ;
 		}
 
-		// •`‰ж‘Т‹@‚µ‚Д‚ў‚й•`‰ж•Ё‚р•`‰ж
+		// жЏЏз”»еѕ…ж©џгЃ—гЃ¦гЃ„г‚‹жЏЏз”»з‰©г‚’жЏЏз”»
 		DRAWSTOCKINFO
 
 		Texture->UseUserGraphHandle = TRUE ;
@@ -27533,11 +27533,11 @@ extern int NS_MV1SetTextureGraphHandle( int MHandle, int TexIndex, int GrHandle,
 		Texture->UserGraphHeight = TexHeight ;
 	}
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// ѓeѓNѓXѓ`ѓѓ‚МѓOѓ‰ѓtѓBѓbѓNѓnѓ“ѓhѓ‹‚рЋж“ѕ‚·‚й
+// гѓ†г‚Їг‚№гѓЃгѓЈгЃ®г‚°гѓ©гѓ•г‚Јгѓѓг‚ЇгѓЏгѓігѓ‰гѓ«г‚’еЏ–еѕ—гЃ™г‚‹
 extern int NS_MV1GetTextureGraphHandle( int MHandle, int TexIndex )
 {
 	MV1TEXTURESTART( MHandle, Model, ModelBase, Texture, TexIndex, -1 ) ;
@@ -27557,7 +27557,7 @@ extern int NS_MV1GetTextureGraphHandle( int MHandle, int TexIndex )
 	}
 }
 
-// ѓeѓNѓXѓ`ѓѓ‚МѓAѓhѓЊѓXѓ‚Ѓ[ѓh‚рђЭ’и‚·‚й
+// гѓ†г‚Їг‚№гѓЃгѓЈгЃ®г‚ўгѓ‰гѓ¬г‚№гѓўгѓјгѓ‰г‚’иЁ­е®љгЃ™г‚‹
 extern int NS_MV1SetTextureAddressMode( int MHandle, int TexIndex, int AddrUMode, int AddrVMode )
 {
 	MV1TEXTURESTART( MHandle, Model, ModelBase, Texture, TexIndex, -1 ) ;
@@ -27568,17 +27568,17 @@ extern int NS_MV1SetTextureAddressMode( int MHandle, int TexIndex, int AddrUMode
 		return 0 ;
 	}
 
-	// •`‰ж‘Т‹@‚µ‚Д‚ў‚й•`‰ж•Ё‚р•`‰ж
+	// жЏЏз”»еѕ…ж©џгЃ—гЃ¦гЃ„г‚‹жЏЏз”»з‰©г‚’жЏЏз”»
 	DRAWSTOCKINFO
 
 	Texture->AddressModeU = AddrUMode ;
 	Texture->AddressModeV = AddrVMode ;
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// ѓeѓNѓXѓ`ѓѓ‚М‚t’l‚МѓAѓhѓЊѓXѓ‚Ѓ[ѓh‚рЋж“ѕ‚·‚й( –Я‚и’l:DX_TEXADDRESS_WRAP “™ )
+// гѓ†г‚Їг‚№гѓЃгѓЈгЃ®пјµеЂ¤гЃ®г‚ўгѓ‰гѓ¬г‚№гѓўгѓјгѓ‰г‚’еЏ–еѕ—гЃ™г‚‹( ж€»г‚ЉеЂ¤:DX_TEXADDRESS_WRAP з­‰ )
 extern int NS_MV1GetTextureAddressModeU( int MHandle, int TexIndex )
 {
 	MV1TEXTURESTART( MHandle, Model, ModelBase, Texture, TexIndex, -1 ) ;
@@ -27586,7 +27586,7 @@ extern int NS_MV1GetTextureAddressModeU( int MHandle, int TexIndex )
 	return Texture->AddressModeU ;
 }
 
-// ѓeѓNѓXѓ`ѓѓ‚М‚u’l‚МѓAѓhѓЊѓXѓ‚Ѓ[ѓh‚рЋж“ѕ‚·‚й( –Я‚и’l:DX_TEXADDRESS_WRAP “™ )
+// гѓ†г‚Їг‚№гѓЃгѓЈгЃ®пј¶еЂ¤гЃ®г‚ўгѓ‰гѓ¬г‚№гѓўгѓјгѓ‰г‚’еЏ–еѕ—гЃ™г‚‹( ж€»г‚ЉеЂ¤:DX_TEXADDRESS_WRAP з­‰ )
 extern int NS_MV1GetTextureAddressModeV( int MHandle, int TexIndex )
 {
 	MV1TEXTURESTART( MHandle, Model, ModelBase, Texture, TexIndex, -1 ) ;
@@ -27594,7 +27594,7 @@ extern int NS_MV1GetTextureAddressModeV( int MHandle, int TexIndex )
 	return Texture->AddressModeV ;
 }
 
-// ѓeѓNѓXѓ`ѓѓ‚М•ќ‚рЋж“ѕ‚·‚й
+// гѓ†г‚Їг‚№гѓЃгѓЈгЃ®е№…г‚’еЏ–еѕ—гЃ™г‚‹
 extern int NS_MV1GetTextureWidth( int MHandle, int TexIndex )
 {
 	MV1TEXTURESTART( MHandle, Model, ModelBase, Texture, TexIndex, -1 ) ;
@@ -27614,7 +27614,7 @@ extern int NS_MV1GetTextureWidth( int MHandle, int TexIndex )
 	}
 }
 
-// ѓeѓNѓXѓ`ѓѓ‚МЌ‚‚і‚рЋж“ѕ‚·‚й
+// гѓ†г‚Їг‚№гѓЃгѓЈгЃ®й«гЃ•г‚’еЏ–еѕ—гЃ™г‚‹
 extern int NS_MV1GetTextureHeight( int MHandle, int TexIndex )
 {
 	MV1TEXTURESTART( MHandle, Model, ModelBase, Texture, TexIndex, -1 ) ;
@@ -27634,7 +27634,7 @@ extern int NS_MV1GetTextureHeight( int MHandle, int TexIndex )
 	}
 }
 
-// ѓeѓNѓXѓ`ѓѓ‚Й”ј“§–ѕ—v‘f‚Є‚ ‚й‚©‚З‚¤‚©‚рЋж“ѕ‚·‚й( –Я‚и’l  TRUE:‚ ‚й  FALSE:‚И‚ў )
+// гѓ†г‚Їг‚№гѓЃгѓЈгЃ«еЌЉйЂЏжЋи¦Ѓзґ гЃЊгЃ‚г‚‹гЃ‹гЃ©гЃ†гЃ‹г‚’еЏ–еѕ—гЃ™г‚‹( ж€»г‚ЉеЂ¤  TRUE:гЃ‚г‚‹  FALSE:гЃЄгЃ„ )
 extern int NS_MV1GetTextureSemiTransState( int MHandle, int TexIndex )
 {
 	MV1TEXTURESTART( MHandle, Model, ModelBase, Texture, TexIndex, -1 ) ;
@@ -27654,7 +27654,7 @@ extern int NS_MV1GetTextureSemiTransState( int MHandle, int TexIndex )
 	}
 }
 
-// ѓeѓNѓXѓ`ѓѓ‚ЕЋg—p‚µ‚Д‚ў‚й‰ж‘њ‚Єѓoѓ“ѓvѓ}ѓbѓv‚©‚З‚¤‚©‚рђЭ’и‚·‚й
+// гѓ†г‚Їг‚№гѓЃгѓЈгЃ§дЅїз”ЁгЃ—гЃ¦гЃ„г‚‹з”»еѓЏгЃЊгѓђгѓігѓ—гѓћгѓѓгѓ—гЃ‹гЃ©гЃ†гЃ‹г‚’иЁ­е®љгЃ™г‚‹
 extern int NS_MV1SetTextureBumpImageFlag( int MHandle, int TexIndex, int Flag )
 {
 	MV1TEXTURESTART( MHandle, Model, ModelBase, Texture, TexIndex, -1 ) ;
@@ -27667,7 +27667,7 @@ extern int NS_MV1SetTextureBumpImageFlag( int MHandle, int TexIndex, int Flag )
 				Texture->Bmp32AllZeroAlphaToXRGB8Flag != 0, FALSE ) ;
 }
 
-// ѓeѓNѓXѓ`ѓѓ‚Єѓoѓ“ѓvѓ}ѓbѓv‚©‚З‚¤‚©‚рЋж“ѕ‚·‚й( –Я‚и’l  TRUE:ѓoѓ“ѓvѓ}ѓbѓv  FALSE:€б‚¤ )
+// гѓ†г‚Їг‚№гѓЃгѓЈгЃЊгѓђгѓігѓ—гѓћгѓѓгѓ—гЃ‹гЃ©гЃ†гЃ‹г‚’еЏ–еѕ—гЃ™г‚‹( ж€»г‚ЉеЂ¤  TRUE:гѓђгѓігѓ—гѓћгѓѓгѓ—  FALSE:йЃ•гЃ† )
 extern int NS_MV1GetTextureBumpImageFlag( int MHandle, int TexIndex )
 {
 	MV1TEXTURESTART( MHandle, Model, ModelBase, Texture, TexIndex, -1 ) ;
@@ -27675,7 +27675,7 @@ extern int NS_MV1GetTextureBumpImageFlag( int MHandle, int TexIndex )
 	return Texture->BumpImageFlag ;
 }
 
-// ѓoѓ“ѓvѓ}ѓbѓv‰ж‘њ‚МЏкЌ‡‚М—Ч‚МѓsѓNѓZѓ‹‚Ж‚М‹——Ј‚рђЭ’и‚·‚й
+// гѓђгѓігѓ—гѓћгѓѓгѓ—з”»еѓЏгЃ®е ґеђ€гЃ®йљЈгЃ®гѓ”г‚Їг‚»гѓ«гЃЁгЃ®и·ќй›ўг‚’иЁ­е®љгЃ™г‚‹
 extern int NS_MV1SetTextureBumpImageNextPixelLength( int MHandle, int TexIndex, float Length )
 {
 	MV1TEXTURESTART( MHandle, Model, ModelBase, Texture, TexIndex, -1 ) ;
@@ -27685,7 +27685,7 @@ extern int NS_MV1SetTextureBumpImageNextPixelLength( int MHandle, int TexIndex, 
 		return 0 ;
 	}
 
-	// •`‰ж‘Т‹@‚µ‚Д‚ў‚й•`‰ж•Ё‚р•`‰ж
+	// жЏЏз”»еѕ…ж©џгЃ—гЃ¦гЃ„г‚‹жЏЏз”»з‰©г‚’жЏЏз”»
 	DRAWSTOCKINFO
 
 	Texture->BumpImageNextPixelLength = Length ;
@@ -27698,7 +27698,7 @@ extern int NS_MV1SetTextureBumpImageNextPixelLength( int MHandle, int TexIndex, 
 				Texture->Bmp32AllZeroAlphaToXRGB8Flag != 0, FALSE ) ;
 }
 
-// ѓoѓ“ѓvѓ}ѓbѓv‰ж‘њ‚МЏкЌ‡‚М—Ч‚МѓsѓNѓZѓ‹‚Ж‚М‹——Ј‚рЋж“ѕ‚·‚й
+// гѓђгѓігѓ—гѓћгѓѓгѓ—з”»еѓЏгЃ®е ґеђ€гЃ®йљЈгЃ®гѓ”г‚Їг‚»гѓ«гЃЁгЃ®и·ќй›ўг‚’еЏ–еѕ—гЃ™г‚‹
 extern float NS_MV1GetTextureBumpImageNextPixelLength( int MHandle, int TexIndex )
 {
 	MV1TEXTURESTART( MHandle, Model, ModelBase, Texture, TexIndex, -1.0f ) ;
@@ -27706,7 +27706,7 @@ extern float NS_MV1GetTextureBumpImageNextPixelLength( int MHandle, int TexIndex
 	return Texture->BumpImageNextPixelLength ;
 }
 
-// ѓeѓNѓXѓ`ѓѓ‚МѓtѓBѓ‹ѓ^ѓЉѓ“ѓOѓ‚Ѓ[ѓh‚рђЭ’и‚·‚й
+// гѓ†г‚Їг‚№гѓЃгѓЈгЃ®гѓ•г‚Јгѓ«г‚їгѓЄгѓіг‚°гѓўгѓјгѓ‰г‚’иЁ­е®љгЃ™г‚‹
 extern int NS_MV1SetTextureSampleFilterMode( int MHandle, int TexIndex, int FilterMode )
 {
 	MV1TEXTURESTART( MHandle, Model, ModelBase, Texture, TexIndex, -1 ) ;
@@ -27716,16 +27716,16 @@ extern int NS_MV1SetTextureSampleFilterMode( int MHandle, int TexIndex, int Filt
 		return 0 ;
 	}
 
-	// •`‰ж‘Т‹@‚µ‚Д‚ў‚й•`‰ж•Ё‚р•`‰ж
+	// жЏЏз”»еѕ…ж©џгЃ—гЃ¦гЃ„г‚‹жЏЏз”»з‰©г‚’жЏЏз”»
 	DRAWSTOCKINFO
 
 	Texture->FilterMode = FilterMode ;
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// ѓeѓNѓXѓ`ѓѓ‚МѓtѓBѓ‹ѓ^ѓЉѓ“ѓOѓ‚Ѓ[ѓh‚рЋж“ѕ‚·‚й( –Я‚и’l  MV1_TEXTURE_FILTER_MODE_POINT“™ )
+// гѓ†г‚Їг‚№гѓЃгѓЈгЃ®гѓ•г‚Јгѓ«г‚їгѓЄгѓіг‚°гѓўгѓјгѓ‰г‚’еЏ–еѕ—гЃ™г‚‹( ж€»г‚ЉеЂ¤  MV1_TEXTURE_FILTER_MODE_POINTз­‰ )
 extern int NS_MV1GetTextureSampleFilterMode( int MHandle, int TexIndex )
 {
 	MV1TEXTURESTART( MHandle, Model, ModelBase, Texture, TexIndex, -1 ) ;
@@ -27733,7 +27733,7 @@ extern int NS_MV1GetTextureSampleFilterMode( int MHandle, int TexIndex )
 	return Texture->FilterMode ;
 }
 
-// ‚R‚cѓ‚ѓfѓ‹‚Й“\‚и•t‚Ї‚й‚М‚ЙЊь‚ў‚Ѕ‰ж‘њ‚М“З‚ЭЌћ‚Э•ыЋ®‚Е‰ж‘њ‚р“З‚ЭЌћ‚Ю( –Я‚и’l  -1:ѓGѓ‰Ѓ[  0€ИЏг:ѓOѓ‰ѓtѓBѓbѓNѓnѓ“ѓhѓ‹ )
+// пј“пј¤гѓўгѓ‡гѓ«гЃ«иІјг‚Љд»гЃ‘г‚‹гЃ®гЃ«еђ‘гЃ„гЃџз”»еѓЏгЃ®иЄ­гЃїиѕјгЃїж–№ејЏгЃ§з”»еѓЏг‚’иЄ­гЃїиѕјг‚Ђ( ж€»г‚ЉеЂ¤  -1:г‚Ёгѓ©гѓј  0д»ҐдёЉ:г‚°гѓ©гѓ•г‚Јгѓѓг‚ЇгѓЏгѓігѓ‰гѓ« )
 extern int NS_MV1LoadTexture( const TCHAR *FilePath )
 {
 #ifdef UNICODE
@@ -27755,7 +27755,7 @@ extern int NS_MV1LoadTexture( const TCHAR *FilePath )
 #endif
 }
 
-// ‚R‚cѓ‚ѓfѓ‹‚Й“\‚и•t‚Ї‚й‚М‚ЙЊь‚ў‚Ѕ‰ж‘њ‚М“З‚ЭЌћ‚Э•ыЋ®‚Е‰ж‘њ‚р“З‚ЭЌћ‚Ю( –Я‚и’l  -1:ѓGѓ‰Ѓ[  0€ИЏг:ѓOѓ‰ѓtѓBѓbѓNѓnѓ“ѓhѓ‹ )
+// пј“пј¤гѓўгѓ‡гѓ«гЃ«иІјг‚Љд»гЃ‘г‚‹гЃ®гЃ«еђ‘гЃ„гЃџз”»еѓЏгЃ®иЄ­гЃїиѕјгЃїж–№ејЏгЃ§з”»еѓЏг‚’иЄ­гЃїиѕјг‚Ђ( ж€»г‚ЉеЂ¤  -1:г‚Ёгѓ©гѓј  0д»ҐдёЉ:г‚°гѓ©гѓ•г‚Јгѓѓг‚ЇгѓЏгѓігѓ‰гѓ« )
 extern int NS_MV1LoadTextureWithStrLen( const TCHAR *FilePath, size_t FilePathLength )
 {
 	int Result ;
@@ -27771,7 +27771,7 @@ extern int NS_MV1LoadTextureWithStrLen( const TCHAR *FilePath, size_t FilePathLe
 	return Result ;
 }
 
-// MV1LoadTexture_WCHAR_T ‚МЋАЏ€—ќЉЦђ”
+// MV1LoadTexture_WCHAR_T гЃ®е®џе‡¦зђ†й–ўж•°
 extern int MV1LoadTexture_WCHAR_T_Static( int NewGraphHandle, const wchar_t *FilePath, int ASyncThread )
 {
 	void *ColorImage, *AlphaImage ;
@@ -27813,13 +27813,13 @@ extern int MV1LoadTexture_WCHAR_T_Static( int NewGraphHandle, const wchar_t *Fil
 		AlphaImage = NULL ;
 	}
 
-	// ‚±‚±‚Й—€‚ЅЏкЌ‡‚Нђ¬Њч
+	// гЃ“гЃ“гЃ«жќҐгЃџе ґеђ€гЃЇж€ђеЉџ
 	return 0 ;
 }
 
 #ifndef DX_NON_ASYNCLOAD
 
-// MV1LoadTexture_WCHAR_T ‚М”с“ЇЉъ“З‚ЭЌћ‚ЭѓXѓЊѓbѓh‚©‚зЊД‚О‚к‚йЉЦђ”
+// MV1LoadTexture_WCHAR_T гЃ®йќћеђЊжњџиЄ­гЃїиѕјгЃїг‚№гѓ¬гѓѓгѓ‰гЃ‹г‚‰е‘јгЃ°г‚Њг‚‹й–ўж•°
 static void MV1LoadTexture_WCHAR_T_ASync( ASYNCLOADDATA_COMMON *AParam )
 {
 	int NewGraphHandle ;
@@ -27846,7 +27846,7 @@ static void MV1LoadTexture_WCHAR_T_ASync( ASYNCLOADDATA_COMMON *AParam )
 }
 #endif // DX_NON_ASYNCLOAD
 
-// ‚R‚cѓ‚ѓfѓ‹‚Й“\‚и•t‚Ї‚й‚М‚ЙЊь‚ў‚Ѕ‰ж‘њ‚М“З‚ЭЌћ‚Э•ыЋ®‚Е‰ж‘њ‚р“З‚ЭЌћ‚Ю( –Я‚и’l  -1:ѓGѓ‰Ѓ[  0€ИЏг:ѓOѓ‰ѓtѓBѓbѓNѓnѓ“ѓhѓ‹ )
+// пј“пј¤гѓўгѓ‡гѓ«гЃ«иІјг‚Љд»гЃ‘г‚‹гЃ®гЃ«еђ‘гЃ„гЃџз”»еѓЏгЃ®иЄ­гЃїиѕјгЃїж–№ејЏгЃ§з”»еѓЏг‚’иЄ­гЃїиѕјг‚Ђ( ж€»г‚ЉеЂ¤  -1:г‚Ёгѓ©гѓј  0д»ҐдёЉ:г‚°гѓ©гѓ•г‚Јгѓѓг‚ЇгѓЏгѓігѓ‰гѓ« )
 extern int MV1LoadTexture_WCHAR_T( const wchar_t *FilePath, int ASyncLoadFlag, int ASyncThread )
 {
 	int NewGraphHandle ;
@@ -27876,23 +27876,23 @@ extern int MV1LoadTexture_WCHAR_T( const wchar_t *FilePath, int ASyncLoadFlag, i
 
 		ConvertFullPathW_( FilePath, FullPath, sizeof( FullPath ) ) ;
 
-		// ѓpѓ‰ѓЃЃ[ѓ^‚Й•K—v‚ИѓЃѓ‚ѓЉ‚МѓTѓCѓY‚рЋZЏo
+		// гѓ‘гѓ©гѓЎгѓјг‚їгЃ«еї…и¦ЃгЃЄгѓЎгѓўгѓЄгЃ®г‚µг‚¤г‚єг‚’з®—е‡є
 		Addr = 0 ;
 		AddASyncLoadParamInt(    NULL, &Addr, NewGraphHandle ) ;
 		AddASyncLoadParamString( NULL, &Addr, FullPath ) ; 
 
-		// ѓЃѓ‚ѓЉ‚МЉm•Ы
+		// гѓЎгѓўгѓЄгЃ®зўєдїќ
 		AParam = AllocASyncLoadDataMemory( Addr ) ;
 		if( AParam == NULL )
 			goto ERR ;
 
-		// Џ€—ќ‚Й•K—v‚ИЏо•с‚рѓZѓbѓg
+		// е‡¦зђ†гЃ«еї…и¦ЃгЃЄжѓ…е ±г‚’г‚»гѓѓгѓ€
 		AParam->ProcessFunction = MV1LoadTexture_WCHAR_T_ASync ;
 		Addr = 0 ;
 		AddASyncLoadParamInt(    AParam->Data, &Addr, NewGraphHandle ) ;
 		AddASyncLoadParamString( AParam->Data, &Addr, FullPath ) ;
 
-		// ѓfЃ[ѓ^‚р’З‰Б
+		// гѓ‡гѓјг‚їг‚’иїЅеЉ 
 		if( AddASyncLoadData( AParam ) < 0 )
 		{
 			DXFREE( AParam ) ;
@@ -27900,7 +27900,7 @@ extern int MV1LoadTexture_WCHAR_T( const wchar_t *FilePath, int ASyncLoadFlag, i
 			goto ERR ;
 		}
 
-		// ”с“ЇЉъ“З‚ЭЌћ‚ЭѓJѓEѓ“ѓg‚рѓCѓ“ѓNѓЉѓЃѓ“ѓg
+		// йќћеђЊжњџиЄ­гЃїиѕјгЃїг‚«г‚¦гѓігѓ€г‚’г‚¤гѓіг‚ЇгѓЄгѓЎгѓігѓ€
 		IncASyncLoadCount( NewGraphHandle, AParam->Index ) ;
 	}
 	else
@@ -27919,7 +27919,7 @@ extern int MV1LoadTexture_WCHAR_T( const wchar_t *FilePath, int ASyncLoadFlag, i
 	}
 #endif // DX_NON_ASYNCLOAD
 
-	// ђіЏнЏI—№
+	// ж­Јеёёзµ‚дє†
 	return NewGraphHandle ;
 
 ERR :
@@ -27948,25 +27948,25 @@ ERR :
 
 
 
-// ѓtѓЊЃ[ѓЂ‚Мђ”‚рЋж“ѕ‚·‚й
+// гѓ•гѓ¬гѓјгѓ гЃ®ж•°г‚’еЏ–еѕ—гЃ™г‚‹
 extern int NS_MV1GetFrameNum( int MHandle )
 {
 	MV1_MODEL *Model ;
 	MV1_MODEL_BASE *ModelBase ;
 
-	// Џ‰Љъ‰»‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// е€ќжњџеЊ–гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( MV1Man.Initialize == false ) return -1 ;
 
-	// ѓAѓhѓЊѓXЋж“ѕ
+	// г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ—
 	if( MV1MDLCHK( MHandle, Model ) )
 		return -1 ;
 	ModelBase = Model->BaseData ;
 
-	// ѓtѓЊЃ[ѓЂ‚Мђ”‚р•Ф‚·
+	// гѓ•гѓ¬гѓјгѓ гЃ®ж•°г‚’иї”гЃ™
 	return ModelBase->FrameNum ;
 }
 
-// ѓtѓЊЃ[ѓЂ‚М–ј‘O‚©‚зѓ‚ѓfѓ‹’†‚МѓtѓЊЃ[ѓЂ‚МѓCѓ“ѓfѓbѓNѓX‚рЋж“ѕ‚·‚й( –і‚©‚Б‚ЅЏкЌ‡‚Н–Я‚и’l‚Є-1 )
+// гѓ•гѓ¬гѓјгѓ гЃ®еђЌе‰ЌгЃ‹г‚‰гѓўгѓ‡гѓ«дё­гЃ®гѓ•гѓ¬гѓјгѓ гЃ®г‚¤гѓігѓ‡гѓѓг‚Їг‚№г‚’еЏ–еѕ—гЃ™г‚‹( з„ЎгЃ‹гЃЈгЃџе ґеђ€гЃЇж€»г‚ЉеЂ¤гЃЊ-1 )
 extern int NS_MV1SearchFrame( int MHandle, const TCHAR *FrameName )
 {
 #ifdef UNICODE
@@ -27988,7 +27988,7 @@ extern int NS_MV1SearchFrame( int MHandle, const TCHAR *FrameName )
 #endif
 }
 
-// ѓtѓЊЃ[ѓЂ‚М–ј‘O‚©‚зѓ‚ѓfѓ‹’†‚МѓtѓЊЃ[ѓЂ‚МѓtѓЊЃ[ѓЂѓCѓ“ѓfѓbѓNѓX‚рЋж“ѕ‚·‚й( –і‚©‚Б‚ЅЏкЌ‡‚Н–Я‚и’l‚Є-1 )
+// гѓ•гѓ¬гѓјгѓ гЃ®еђЌе‰ЌгЃ‹г‚‰гѓўгѓ‡гѓ«дё­гЃ®гѓ•гѓ¬гѓјгѓ гЃ®гѓ•гѓ¬гѓјгѓ г‚¤гѓігѓ‡гѓѓг‚Їг‚№г‚’еЏ–еѕ—гЃ™г‚‹( з„ЎгЃ‹гЃЈгЃџе ґеђ€гЃЇж€»г‚ЉеЂ¤гЃЊ-1 )
 extern int NS_MV1SearchFrameWithStrLen( int MHandle, const TCHAR *FrameName, size_t FrameNameLength )
 {
 	int Result ;
@@ -28004,7 +28004,7 @@ extern int NS_MV1SearchFrameWithStrLen( int MHandle, const TCHAR *FrameName, siz
 	return Result ;
 }
 
-// ѓtѓЊЃ[ѓЂ‚М–ј‘O‚©‚зѓ‚ѓfѓ‹’†‚МѓtѓЊЃ[ѓЂ‚МѓCѓ“ѓfѓbѓNѓX‚рЋж“ѕ‚·‚й( –і‚©‚Б‚ЅЏкЌ‡‚Н–Я‚и’l‚Є-1 )
+// гѓ•гѓ¬гѓјгѓ гЃ®еђЌе‰ЌгЃ‹г‚‰гѓўгѓ‡гѓ«дё­гЃ®гѓ•гѓ¬гѓјгѓ гЃ®г‚¤гѓігѓ‡гѓѓг‚Їг‚№г‚’еЏ–еѕ—гЃ™г‚‹( з„ЎгЃ‹гЃЈгЃџе ґеђ€гЃЇж€»г‚ЉеЂ¤гЃЊ-1 )
 extern int MV1SearchFrame_WCHAR_T( int MHandle, const wchar_t *FrameName )
 {
 	MV1_MODEL *Model ;
@@ -28012,23 +28012,23 @@ extern int MV1SearchFrame_WCHAR_T( int MHandle, const wchar_t *FrameName )
 	MV1_FRAME_BASE *MBFrame ;
 	int i ;
 
-	// Џ‰Љъ‰»‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// е€ќжњџеЊ–гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( MV1Man.Initialize == false ) return -1 ;
 
-	// ѓAѓhѓЊѓXЋж“ѕ
+	// г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ—
 	if( MV1MDLCHK( MHandle, Model ) )
 		return -1 ;
 	ModelBase = Model->BaseData ;
 
-	// “Ї–ј‚МѓtѓЊЃ[ѓЂ‚р’T‚·
+	// еђЊеђЌгЃ®гѓ•гѓ¬гѓјгѓ г‚’жЋўгЃ™
 	MBFrame = ModelBase->Frame ;
 	for( i = 0 ; i < ModelBase->FrameNum && _WCSCMP( MBFrame->NameW, FrameName ) != 0 ; i ++, MBFrame ++ ){}
 
-	// ѓtѓЊЃ[ѓЂ‚МѓCѓ“ѓfѓbѓNѓX‚р•Ф‚·
+	// гѓ•гѓ¬гѓјгѓ гЃ®г‚¤гѓігѓ‡гѓѓг‚Їг‚№г‚’иї”гЃ™
 	return i == ModelBase->FrameNum ? -2 : i ;
 }
 
-// ѓtѓЊЃ[ѓЂ‚М–ј‘O‚©‚зЋw’и‚МѓtѓЊЃ[ѓЂ‚МЋqѓtѓЊЃ[ѓЂ‚МѓtѓЊЃ[ѓЂѓCѓ“ѓfѓbѓNѓX‚рЋж“ѕ‚·‚й( –ј‘OЋw’и”Е )( FrameIndex ‚р -1 ‚Й‚·‚й‚Жђe‚рЋќ‚Ѕ‚И‚ўѓtѓЊЃ[ѓЂ‚р ChildIndex ‚ЕЋw’и‚·‚й )( –і‚©‚Б‚ЅЏкЌ‡‚Н–Я‚и’l‚Є-1 )
+// гѓ•гѓ¬гѓјгѓ гЃ®еђЌе‰ЌгЃ‹г‚‰жЊ‡е®љгЃ®гѓ•гѓ¬гѓјгѓ гЃ®е­ђгѓ•гѓ¬гѓјгѓ гЃ®гѓ•гѓ¬гѓјгѓ г‚¤гѓігѓ‡гѓѓг‚Їг‚№г‚’еЏ–еѕ—гЃ™г‚‹( еђЌе‰ЌжЊ‡е®љз‰€ )( FrameIndex г‚’ -1 гЃ«гЃ™г‚‹гЃЁи¦Єг‚’жЊЃгЃџгЃЄгЃ„гѓ•гѓ¬гѓјгѓ г‚’ ChildIndex гЃ§жЊ‡е®љгЃ™г‚‹ )( з„ЎгЃ‹гЃЈгЃџе ґеђ€гЃЇж€»г‚ЉеЂ¤гЃЊ-1 )
 extern int NS_MV1SearchFrameChild( int MHandle, int FrameIndex, const TCHAR *ChildName )
 {
 #ifdef UNICODE
@@ -28050,7 +28050,7 @@ extern int NS_MV1SearchFrameChild( int MHandle, int FrameIndex, const TCHAR *Chi
 #endif
 }
 
-// ѓtѓЊЃ[ѓЂ‚М–ј‘O‚©‚зЋw’и‚МѓtѓЊЃ[ѓЂ‚МЋqѓtѓЊЃ[ѓЂ‚МѓtѓЊЃ[ѓЂѓCѓ“ѓfѓbѓNѓX‚рЋж“ѕ‚·‚й( –ј‘OЋw’и”Е )( FrameIndex ‚р -1 ‚Й‚·‚й‚Жђe‚рЋќ‚Ѕ‚И‚ўѓtѓЊЃ[ѓЂ‚р ChildIndex ‚ЕЋw’и‚·‚й )( –і‚©‚Б‚ЅЏкЌ‡‚Н–Я‚и’l‚Є-1 )
+// гѓ•гѓ¬гѓјгѓ гЃ®еђЌе‰ЌгЃ‹г‚‰жЊ‡е®љгЃ®гѓ•гѓ¬гѓјгѓ гЃ®е­ђгѓ•гѓ¬гѓјгѓ гЃ®гѓ•гѓ¬гѓјгѓ г‚¤гѓігѓ‡гѓѓг‚Їг‚№г‚’еЏ–еѕ—гЃ™г‚‹( еђЌе‰ЌжЊ‡е®љз‰€ )( FrameIndex г‚’ -1 гЃ«гЃ™г‚‹гЃЁи¦Єг‚’жЊЃгЃџгЃЄгЃ„гѓ•гѓ¬гѓјгѓ г‚’ ChildIndex гЃ§жЊ‡е®љгЃ™г‚‹ )( з„ЎгЃ‹гЃЈгЃџе ґеђ€гЃЇж€»г‚ЉеЂ¤гЃЊ-1 )
 extern int NS_MV1SearchFrameChildWithStrLen( int MHandle, int FrameIndex, const TCHAR *ChildName, size_t ChildNameLength )
 {
 	int Result ;
@@ -28066,7 +28066,7 @@ extern int NS_MV1SearchFrameChildWithStrLen( int MHandle, int FrameIndex, const 
 	return Result ;
 }
 
-// ѓtѓЊЃ[ѓЂ‚М–ј‘O‚©‚зЋw’и‚МѓtѓЊЃ[ѓЂ‚МЋqѓtѓЊЃ[ѓЂ‚МѓtѓЊЃ[ѓЂѓCѓ“ѓfѓbѓNѓX‚рЋж“ѕ‚·‚й( –ј‘OЋw’и”Е )( FrameIndex ‚р -1 ‚Й‚·‚й‚Жђe‚рЋќ‚Ѕ‚И‚ўѓtѓЊЃ[ѓЂ‚р ChildIndex ‚ЕЋw’и‚·‚й )( –і‚©‚Б‚ЅЏкЌ‡‚Н–Я‚и’l‚Є-1 )
+// гѓ•гѓ¬гѓјгѓ гЃ®еђЌе‰ЌгЃ‹г‚‰жЊ‡е®љгЃ®гѓ•гѓ¬гѓјгѓ гЃ®е­ђгѓ•гѓ¬гѓјгѓ гЃ®гѓ•гѓ¬гѓјгѓ г‚¤гѓігѓ‡гѓѓг‚Їг‚№г‚’еЏ–еѕ—гЃ™г‚‹( еђЌе‰ЌжЊ‡е®љз‰€ )( FrameIndex г‚’ -1 гЃ«гЃ™г‚‹гЃЁи¦Єг‚’жЊЃгЃџгЃЄгЃ„гѓ•гѓ¬гѓјгѓ г‚’ ChildIndex гЃ§жЊ‡е®љгЃ™г‚‹ )( з„ЎгЃ‹гЃЈгЃџе ґеђ€гЃЇж€»г‚ЉеЂ¤гЃЊ-1 )
 extern int MV1SearchFrameChild_WCHAR_T( int MHandle, int FrameIndex, const wchar_t *ChildName )
 {
 	MV1_MODEL *Model ;
@@ -28074,45 +28074,45 @@ extern int MV1SearchFrameChild_WCHAR_T( int MHandle, int FrameIndex, const wchar
 	MV1_FRAME *Frame ;
 	int i ;
 
-	// Џ‰Љъ‰»‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// е€ќжњџеЊ–гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( MV1Man.Initialize == false ) return -1 ;
 
-	// –ј‘O‚МѓAѓhѓЊѓX‚Є•sђі‚ѕ‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// еђЌе‰ЌгЃ®г‚ўгѓ‰гѓ¬г‚№гЃЊдёЌж­ЈгЃ гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( ChildName == NULL ) return -1 ;
 
-	// ѓAѓhѓЊѓXЋж“ѕ
+	// г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ—
 	if( MV1MDLCHK( MHandle, Model ) )
 		return -1 ;
 	ModelBase = Model->BaseData ;
 
-	// ѓCѓ“ѓfѓbѓNѓX‚Є•sђі‚ѕ‚Б‚Ѕ‚з -1 ‚р•Ф‚·
+	// г‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃЊдёЌж­ЈгЃ гЃЈгЃџг‚‰ -1 г‚’иї”гЃ™
 	if( FrameIndex < -1 || FrameIndex >= ModelBase->FrameNum )
 		return -1 ;
 
-	// ѓtѓЊЃ[ѓЂѓCѓ“ѓfѓbѓNѓX‚Є -1 ‚©‚З‚¤‚©‚ЕЏ€—ќ‚р•ЄЉт
+	// гѓ•гѓ¬гѓјгѓ г‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃЊ -1 гЃ‹гЃ©гЃ†гЃ‹гЃ§е‡¦зђ†г‚’е€†еІђ
 	if( FrameIndex == -1 )
 	{
-		// ѓgѓbѓvѓtѓЊЃ[ѓЂ‚М’†‚©‚зЋw’и‚М–ј‘O‚МѓtѓЊЃ[ѓЂ‚р’T‚·
+		// гѓ€гѓѓгѓ—гѓ•гѓ¬гѓјгѓ гЃ®дё­гЃ‹г‚‰жЊ‡е®љгЃ®еђЌе‰ЌгЃ®гѓ•гѓ¬гѓјгѓ г‚’жЋўгЃ™
 		for( i = 0 ; i < Model->TopFrameNum && _WCSCMP( Model->TopFrameList[ i ]->BaseData->NameW, ChildName ) != 0 ; i ++ ){}
 		return i == Model->TopFrameNum ? -2 : ( int )( Model->TopFrameList[ i ] - Model->Frame ) ;
 	}
 	else
 	{
-		// ЋqѓCѓ“ѓfѓbѓNѓX‚Є•sђі‚ѕ‚Б‚Ѕ‚з -1 ‚р•Ф‚·
+		// е­ђг‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃЊдёЌж­ЈгЃ гЃЈгЃџг‚‰ -1 г‚’иї”гЃ™
 		Frame = &Model->Frame[ FrameIndex ] ;
 
-		// ЋqѓtѓЊЃ[ѓЂ‚М’†‚©‚зЋw’и‚М–ј‘O‚МѓtѓЊЃ[ѓЂ‚р’T‚·
+		// е­ђгѓ•гѓ¬гѓјгѓ гЃ®дё­гЃ‹г‚‰жЊ‡е®љгЃ®еђЌе‰ЌгЃ®гѓ•гѓ¬гѓјгѓ г‚’жЋўгЃ™
 		for( i = 0 ; i < Frame->BaseData->TotalChildNum && _WCSCMP( Frame->Child[ i ].BaseData->NameW, ChildName ) != 0 ; i ++ ){}
 		return i == Frame->BaseData->TotalChildNum ? -2 : ( int )( &Frame->Child[ i ] - Model->Frame ) ;
 	}
 }
 
-// Ћw’и‚МѓtѓЊЃ[ѓЂ‚М–ј‘O‚рЋж“ѕ‚·‚й( ѓGѓ‰Ѓ[‚МЏкЌ‡‚Н–Я‚и’l‚Є NULL )
+// жЊ‡е®љгЃ®гѓ•гѓ¬гѓјгѓ гЃ®еђЌе‰Ќг‚’еЏ–еѕ—гЃ™г‚‹( г‚Ёгѓ©гѓјгЃ®е ґеђ€гЃЇж€»г‚ЉеЂ¤гЃЊ NULL )
 extern const TCHAR *NS_MV1GetFrameName( int MHandle, int FrameIndex )
 {
 	MV1FRAMESTART( MHandle, Model, ModelBase, Frame, FrameIndex, NULL ) ;
 
-	// ѓtѓЊЃ[ѓЂ‚М–ј‘O‚р•Ф‚·
+	// гѓ•гѓ¬гѓјгѓ гЃ®еђЌе‰Ќг‚’иї”гЃ™
 #ifdef UNICODE
 	return Frame->BaseData->NameW ;
 #else
@@ -28120,16 +28120,16 @@ extern const TCHAR *NS_MV1GetFrameName( int MHandle, int FrameIndex )
 #endif
 }
 
-// Ћw’и‚МѓtѓЊЃ[ѓЂ‚М–ј‘O‚рЋж“ѕ‚·‚й( ѓGѓ‰Ѓ[‚МЏкЌ‡‚Н–Я‚и’l‚Є NULL )
+// жЊ‡е®љгЃ®гѓ•гѓ¬гѓјгѓ гЃ®еђЌе‰Ќг‚’еЏ–еѕ—гЃ™г‚‹( г‚Ёгѓ©гѓјгЃ®е ґеђ€гЃЇж€»г‚ЉеЂ¤гЃЊ NULL )
 extern const wchar_t *MV1GetFrameName_WCHAR_T( int MHandle, int FrameIndex )
 {
 	MV1FRAMESTART( MHandle, Model, ModelBase, Frame, FrameIndex, NULL ) ;
 
-	// ѓtѓЊЃ[ѓЂ‚М–ј‘O‚р•Ф‚·
+	// гѓ•гѓ¬гѓјгѓ гЃ®еђЌе‰Ќг‚’иї”гЃ™
 	return Frame->BaseData->NameW ;
 }
 
-// Ћw’и‚МѓtѓЊЃ[ѓЂ‚М–ј‘O‚рЋж“ѕ‚·‚й( –Я‚и’l   -1:ѓGѓ‰Ѓ[  -1€ИЉO:•¶Ћљ—с‚МѓTѓCѓY )
+// жЊ‡е®љгЃ®гѓ•гѓ¬гѓјгѓ гЃ®еђЌе‰Ќг‚’еЏ–еѕ—гЃ™г‚‹( ж€»г‚ЉеЂ¤   -1:г‚Ёгѓ©гѓј  -1д»Ґе¤–:ж–‡е­—е€—гЃ®г‚µг‚¤г‚є )
 extern int NS_MV1GetFrameName2( int MHandle, int FrameIndex, TCHAR *StrBuffer )
 {
 #ifdef UNICODE
@@ -28149,7 +28149,7 @@ extern int NS_MV1GetFrameName2( int MHandle, int FrameIndex, TCHAR *StrBuffer )
 #endif
 }
 
-// Ћw’и‚МѓtѓЊЃ[ѓЂ‚М–ј‘O‚рЋж“ѕ‚·‚й( –Я‚и’l   -1:ѓGѓ‰Ѓ[  -1€ИЉO:•¶Ћљ—с‚МѓTѓCѓY )
+// жЊ‡е®љгЃ®гѓ•гѓ¬гѓјгѓ гЃ®еђЌе‰Ќг‚’еЏ–еѕ—гЃ™г‚‹( ж€»г‚ЉеЂ¤   -1:г‚Ёгѓ©гѓј  -1д»Ґе¤–:ж–‡е­—е€—гЃ®г‚µг‚¤г‚є )
 extern int MV1GetFrameName2_WCHAR_T( int MHandle, int FrameIndex, wchar_t *StrBuffer )
 {
 	int Length = 0 ;
@@ -28165,89 +28165,89 @@ extern int MV1GetFrameName2_WCHAR_T( int MHandle, int FrameIndex, wchar_t *StrBu
 	return Length ;
 }
 
-// Ћw’и‚МѓtѓЊЃ[ѓЂ‚МЋqѓtѓЊЃ[ѓЂ‚Мђ”‚рЋж“ѕ‚·‚й
+// жЊ‡е®љгЃ®гѓ•гѓ¬гѓјгѓ гЃ®е­ђгѓ•гѓ¬гѓјгѓ гЃ®ж•°г‚’еЏ–еѕ—гЃ™г‚‹
 extern int NS_MV1GetFrameChildNum( int MHandle, int FrameIndex )
 {
 	MV1_MODEL *Model ;
 	MV1_MODEL_BASE *ModelBase ;
 
-	// Џ‰Љъ‰»‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// е€ќжњџеЊ–гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( MV1Man.Initialize == false ) return -1 ;
 
-	// ѓAѓhѓЊѓXЋж“ѕ
+	// г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ—
 	if( MV1MDLCHK( MHandle, Model ) )
 		return -1 ;
 	ModelBase = Model->BaseData ;
 
-	// ѓCѓ“ѓfѓbѓNѓX‚Є•sђі‚ѕ‚Б‚Ѕ‚з -1 ‚р•Ф‚·
+	// г‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃЊдёЌж­ЈгЃ гЃЈгЃџг‚‰ -1 г‚’иї”гЃ™
 	if( FrameIndex < -1 || FrameIndex >= ModelBase->FrameNum )
 		return -1 ;
 
-	// ЋqѓtѓЊЃ[ѓЂ‚Мђ”‚р•Ф‚·
+	// е­ђгѓ•гѓ¬гѓјгѓ гЃ®ж•°г‚’иї”гЃ™
 	return FrameIndex == -1 ? Model->TopFrameNum : Model->Frame[ FrameIndex ].ChildNum ;
 }
 
-// Ћw’и‚МѓtѓЊЃ[ѓЂ‚МђeѓtѓЊЃ[ѓЂ‚МѓCѓ“ѓfѓbѓNѓX‚р“ѕ‚й( ђe‚Є‚ў‚И‚ўЏкЌ‡‚Н -2 ‚Є•Ф‚й )
+// жЊ‡е®љгЃ®гѓ•гѓ¬гѓјгѓ гЃ®и¦Єгѓ•гѓ¬гѓјгѓ гЃ®г‚¤гѓігѓ‡гѓѓг‚Їг‚№г‚’еѕ—г‚‹( и¦ЄгЃЊгЃ„гЃЄгЃ„е ґеђ€гЃЇ -2 гЃЊиї”г‚‹ )
 extern int NS_MV1GetFrameParent( int MHandle, int FrameIndex )
 {
 	MV1FRAMESTART( MHandle, Model, ModelBase, Frame, FrameIndex, -1 ) ;
 
-	// ђeѓtѓЊЃ[ѓЂ‚МѓtѓЊЃ[ѓЂѓCѓ“ѓfѓbѓNѓX‚р•Ф‚·
+	// и¦Єгѓ•гѓ¬гѓјгѓ гЃ®гѓ•гѓ¬гѓјгѓ г‚¤гѓігѓ‡гѓѓг‚Їг‚№г‚’иї”гЃ™
 	return Frame->Parent == NULL ? -2 : ( int )( Frame->Parent - Model->Frame ) ;
 }
 
-// Ћw’и‚МѓtѓЊЃ[ѓЂ‚МЋqѓtѓЊЃ[ѓЂ‚МѓtѓЊЃ[ѓЂѓCѓ“ѓfѓbѓNѓX‚рЋж“ѕ‚·‚й( ”ФЌ†Ћw’и”Е )( FrameIndex ‚р -1 ‚Й‚·‚й‚Жђe‚рЋќ‚Ѕ‚И‚ўѓtѓЊЃ[ѓЂ‚р ChildIndex ‚ЕЋw’и‚·‚й )( ѓGѓ‰Ѓ[‚МЏкЌ‡‚Н–Я‚и’l‚Є-1 )
+// жЊ‡е®љгЃ®гѓ•гѓ¬гѓјгѓ гЃ®е­ђгѓ•гѓ¬гѓјгѓ гЃ®гѓ•гѓ¬гѓјгѓ г‚¤гѓігѓ‡гѓѓг‚Їг‚№г‚’еЏ–еѕ—гЃ™г‚‹( з•ЄеЏ·жЊ‡е®љз‰€ )( FrameIndex г‚’ -1 гЃ«гЃ™г‚‹гЃЁи¦Єг‚’жЊЃгЃџгЃЄгЃ„гѓ•гѓ¬гѓјгѓ г‚’ ChildIndex гЃ§жЊ‡е®љгЃ™г‚‹ )( г‚Ёгѓ©гѓјгЃ®е ґеђ€гЃЇж€»г‚ЉеЂ¤гЃЊ-1 )
 extern int NS_MV1GetFrameChild( int MHandle, int FrameIndex, int ChildIndex )
 {
 	MV1_MODEL *Model ;
 	MV1_MODEL_BASE *ModelBase ;
 	MV1_FRAME *Frame ;
 
-	// Џ‰Љъ‰»‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// е€ќжњџеЊ–гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( MV1Man.Initialize == false ) return -1 ;
 
-	// ѓAѓhѓЊѓXЋж“ѕ
+	// г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ—
 	if( MV1MDLCHK( MHandle, Model ) )
 		return -1 ;
 	ModelBase = Model->BaseData ;
 
-	// ѓCѓ“ѓfѓbѓNѓX‚Є•sђі‚ѕ‚Б‚Ѕ‚з -1 ‚р•Ф‚·
+	// г‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃЊдёЌж­ЈгЃ гЃЈгЃџг‚‰ -1 г‚’иї”гЃ™
 	if( FrameIndex < -1 || FrameIndex >= ModelBase->FrameNum )
 		return -1 ;
 
-	// ѓtѓЊЃ[ѓЂѓCѓ“ѓfѓbѓNѓX‚Є -1 ‚©‚З‚¤‚©‚ЕЏ€—ќ‚р•ЄЉт
+	// гѓ•гѓ¬гѓјгѓ г‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃЊ -1 гЃ‹гЃ©гЃ†гЃ‹гЃ§е‡¦зђ†г‚’е€†еІђ
 	if( FrameIndex == -1 )
 	{
-		// ЋqѓCѓ“ѓfѓbѓNѓX‚Є•sђі‚ѕ‚Б‚Ѕ‚з -1 ‚р•Ф‚·
+		// е­ђг‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃЊдёЌж­ЈгЃ гЃЈгЃџг‚‰ -1 г‚’иї”гЃ™
 		if( ChildIndex < 0 || ChildIndex >= Model->TopFrameNum )
 			return -1 ;
 
-		// ѓgѓbѓvѓtѓЊЃ[ѓЂ‚МѓtѓЊЃ[ѓЂѓCѓ“ѓfѓbѓNѓX‚р•Ф‚·
+		// гѓ€гѓѓгѓ—гѓ•гѓ¬гѓјгѓ гЃ®гѓ•гѓ¬гѓјгѓ г‚¤гѓігѓ‡гѓѓг‚Їг‚№г‚’иї”гЃ™
 		return ( int )( Model->TopFrameList[ ChildIndex ] - Model->Frame ) ;
 	}
 	else
 	{
-		// ЋqѓCѓ“ѓfѓbѓNѓX‚Є•sђі‚ѕ‚Б‚Ѕ‚з -1 ‚р•Ф‚·
+		// е­ђг‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃЊдёЌж­ЈгЃ гЃЈгЃџг‚‰ -1 г‚’иї”гЃ™
 		Frame = &Model->Frame[ FrameIndex ] ;
 		if( ChildIndex < 0 || ChildIndex >= Frame->ChildNum )
 			return -1 ;
 
-		// ЋqѓtѓЊЃ[ѓЂ‚МѓtѓЊЃ[ѓЂѓCѓ“ѓfѓbѓNѓX‚р•Ф‚·
+		// е­ђгѓ•гѓ¬гѓјгѓ гЃ®гѓ•гѓ¬гѓјгѓ г‚¤гѓігѓ‡гѓѓг‚Їг‚№г‚’иї”гЃ™
 		return ( int )( Frame->ChildList[ ChildIndex ] - Model->Frame ) ;
 	}
 }
 
-// Ћw’и‚МѓtѓЊЃ[ѓЂ‚МЌА•W‚рЋж“ѕ‚·‚й
+// жЊ‡е®љгЃ®гѓ•гѓ¬гѓјгѓ гЃ®еє§жЁ™г‚’еЏ–еѕ—гЃ™г‚‹
 extern VECTOR NS_MV1GetFramePosition( int MHandle, int FrameIndex )
 {
 	VECTOR Pos ;
 	VECTOR ErrorRet = { 0.0f, 0.0f, 0.0f } ;
 	MV1FRAMESTART( MHandle, Model, ModelBase, Frame, FrameIndex, ErrorRet ) ;
 
-	// Ќs—с‚МѓZѓbѓgѓAѓbѓv
+	// иЎЊе€—гЃ®г‚»гѓѓгѓ€г‚ўгѓѓгѓ—
 	MV1SETUPMATRIX( Model ) ;
 
-	// ѓtѓЊЃ[ѓЂ‚МЌА•W‚р•Ф‚·
+	// гѓ•гѓ¬гѓјгѓ гЃ®еє§жЁ™г‚’иї”гЃ™
 	if( GSYS.DrawSetting.Large3DPositionSupport )
 	{
 		Pos.x = ( float )Frame->LocalWorldMatrix.md.m[ 0 ][ 3 ] ;
@@ -28264,17 +28264,17 @@ extern VECTOR NS_MV1GetFramePosition( int MHandle, int FrameIndex )
 	return Pos ;
 }
 
-// Ћw’и‚МѓtѓЊЃ[ѓЂ‚МЌА•W‚рЋж“ѕ‚·‚й
+// жЊ‡е®љгЃ®гѓ•гѓ¬гѓјгѓ гЃ®еє§жЁ™г‚’еЏ–еѕ—гЃ™г‚‹
 extern VECTOR_D NS_MV1GetFramePositionD( int MHandle, int FrameIndex )
 {
 	VECTOR_D Pos ;
 	VECTOR_D ErrorRet = { 0.0f, 0.0f, 0.0f } ;
 	MV1FRAMESTART( MHandle, Model, ModelBase, Frame, FrameIndex, ErrorRet ) ;
 
-	// Ќs—с‚МѓZѓbѓgѓAѓbѓv
+	// иЎЊе€—гЃ®г‚»гѓѓгѓ€г‚ўгѓѓгѓ—
 	MV1SETUPMATRIX( Model ) ;
 
-	// ѓtѓЊЃ[ѓЂ‚МЌА•W‚р•Ф‚·
+	// гѓ•гѓ¬гѓјгѓ гЃ®еє§жЁ™г‚’иї”гЃ™
 	if( GSYS.DrawSetting.Large3DPositionSupport )
 	{
 		Pos.x = Frame->LocalWorldMatrix.md.m[ 0 ][ 3 ] ;
@@ -28291,37 +28291,37 @@ extern VECTOR_D NS_MV1GetFramePositionD( int MHandle, int FrameIndex )
 	return Pos ;
 }
 
-// Ћw’и‚МѓtѓЊЃ[ѓЂ‚МЏ‰ЉъЏу‘Ф‚Е‚МЌА•W•ПЉ·Ќs—с‚рЋж“ѕ‚·‚й
+// жЊ‡е®љгЃ®гѓ•гѓ¬гѓјгѓ гЃ®е€ќжњџзЉ¶ж…‹гЃ§гЃ®еє§жЁ™е¤‰жЏ›иЎЊе€—г‚’еЏ–еѕ—гЃ™г‚‹
 extern MATRIX NS_MV1GetFrameBaseLocalMatrix( int MHandle, int FrameIndex )
 {
 	MATRIX ResultMatrix ;
 
 	MV1FRAMESTART( MHandle, Model, ModelBase, Frame, FrameIndex, MGetIdent() ) ;
 
-	// Ќs—с‚МѓZѓbѓgѓAѓbѓv
+	// иЎЊе€—гЃ®г‚»гѓѓгѓ€г‚ўгѓѓгѓ—
 	MV1SETUPMATRIX( Model ) ;
 
-	// Ќs—с‚р•Ф‚·
+	// иЎЊе€—г‚’иї”гЃ™
 	ConvertMatrix4x4cFToMatrixF( &ResultMatrix, &Frame->BaseData->LocalTransformMatrix ) ;
 	return ResultMatrix ;
 }
 
-// Ћw’и‚МѓtѓЊЃ[ѓЂ‚МЏ‰ЉъЏу‘Ф‚Е‚МЌА•W•ПЉ·Ќs—с‚рЋж“ѕ‚·‚й
+// жЊ‡е®љгЃ®гѓ•гѓ¬гѓјгѓ гЃ®е€ќжњџзЉ¶ж…‹гЃ§гЃ®еє§жЁ™е¤‰жЏ›иЎЊе€—г‚’еЏ–еѕ—гЃ™г‚‹
 extern MATRIX_D NS_MV1GetFrameBaseLocalMatrixD( int MHandle, int FrameIndex )
 {
 	MATRIX_D ResultMatrix ;
 
 	MV1FRAMESTART( MHandle, Model, ModelBase, Frame, FrameIndex, MGetIdentD() ) ;
 
-	// Ќs—с‚МѓZѓbѓgѓAѓbѓv
+	// иЎЊе€—гЃ®г‚»гѓѓгѓ€г‚ўгѓѓгѓ—
 	MV1SETUPMATRIX( Model ) ;
 
-	// Ќs—с‚р•Ф‚·
+	// иЎЊе€—г‚’иї”гЃ™
 	ConvertMatrix4x4cFToMatrixD( &ResultMatrix, &Frame->BaseData->LocalTransformMatrix ) ;
 	return ResultMatrix ;
 }
 
-// Ћw’и‚МѓtѓЊЃ[ѓЂ‚МѓЌЃ[ѓJѓ‹ЌА•W•ПЉ·Ќs—с‚рЋж“ѕ‚·‚й
+// жЊ‡е®љгЃ®гѓ•гѓ¬гѓјгѓ гЃ®гѓ­гѓјг‚«гѓ«еє§жЁ™е¤‰жЏ›иЎЊе€—г‚’еЏ–еѕ—гЃ™г‚‹
 #ifdef BC_COMPILER
 static DummyFunc_MV1GetFrameLocalMatrixF(){}
 #endif
@@ -28330,7 +28330,7 @@ extern MATRIX NS_MV1GetFrameLocalMatrix( int MHandle, int FrameIndex )
 	MATRIX ResultMatrix ;
 	MV1_FRAME_BASE *FrameBase ;
 
-// BorlandC++ ‚МЌЕ“K‰»ѓoѓO—}ђ§—p
+// BorlandC++ гЃ®жњЂйЃ©еЊ–гѓђг‚°жЉ‘е€¶з”Ё
 #ifdef BC_COMPILER
 	DummyFunc_MV1GetFrameLocalMatrixF();
 #endif
@@ -28338,24 +28338,24 @@ extern MATRIX NS_MV1GetFrameLocalMatrix( int MHandle, int FrameIndex )
 	MV1FRAMESTART( MHandle, Model, ModelBase, Frame, FrameIndex, MGetIdent() ) ;
 	FrameBase = Frame->BaseData ;
 
-	// Ќs—с‚МѓZѓbѓgѓAѓbѓv‚рЌs‚¤
+	// иЎЊе€—гЃ®г‚»гѓѓгѓ€г‚ўгѓѓгѓ—г‚’иЎЊгЃ†
 	MV1SETUPMATRIX( Model ) ;
 
-	// ѓ†Ѓ[ѓUЃ[Ћw’и‚МЌs—с‚Є‚ ‚йЏкЌ‡‚Н‚»‚к‚р•Ф‚·
+	// гѓ¦гѓјг‚¶гѓјжЊ‡е®љгЃ®иЎЊе€—гЃЊгЃ‚г‚‹е ґеђ€гЃЇгЃќг‚Њг‚’иї”гЃ™
 	if( Frame->ValidUserLocalTransformMatrix )
 	{
 		ConvertMatrix4x4cToMatrixF( &ResultMatrix, &Frame->UserLocalTransformMatrix ) ;
 	}
 	else
-	// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚Є‚ ‚йЏкЌ‡‚Ж–і‚ўЏкЌ‡‚ЕЏ€—ќ‚р•ЄЉт
+	// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігЃЊгЃ‚г‚‹е ґеђ€гЃЁз„ЎгЃ„е ґеђ€гЃ§е‡¦зђ†г‚’е€†еІђ
 	if( Model->AnimSetNum == 0 )
 	{
-		// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚Є‚И‚ўЏкЌ‡‚НѓfѓtѓHѓ‹ѓgЌs—с‚р•Ф‚·
+		// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігЃЊгЃЄгЃ„е ґеђ€гЃЇгѓ‡гѓ•г‚©гѓ«гѓ€иЎЊе€—г‚’иї”гЃ™
 		ConvertMatrix4x4cFToMatrixF( &ResultMatrix, &FrameBase->LocalTransformMatrix ) ;
 	}
 	else
 	{
-		// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚Є‚ ‚йЏкЌ‡
+		// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігЃЊгЃ‚г‚‹е ґеђ€
 		MATRIX_4X4CT_F BlendMat ;
 		float BlendRate ;
 		VECTOR Translate, Scale, Rotate ;
@@ -28363,7 +28363,7 @@ extern MATRIX NS_MV1GetFrameLocalMatrix( int MHandle, int FrameIndex )
 		int BlendFlag, mcon, i ;
 		MV1_MODEL_ANIM *MAnim, *MAnim2, *MAnim3 = NULL ;
 
-		// ѓpѓ‰ѓЃЃ[ѓ^ѓЊѓxѓ‹‚МѓuѓЊѓ“ѓh‚ЄЌs‚¦‚й‚©‚р’І‚Ч‚й
+		// гѓ‘гѓ©гѓЎгѓјг‚їгѓ¬гѓ™гѓ«гЃ®гѓ–гѓ¬гѓігѓ‰гЃЊиЎЊгЃ€г‚‹гЃ‹г‚’иЄїгЃ№г‚‹
 		MAnim = Model->Anim + Model->AnimSetMaxNum * Frame->BaseData->Index ;
 		MAnim2 = MAnim ;
 		BlendFlag = 0 ;
@@ -28378,7 +28378,7 @@ extern MATRIX NS_MV1GetFrameLocalMatrix( int MHandle, int FrameIndex )
 			BlendFlag |= MAnim2->Anim->ValidFlag ;
 		}
 
-		// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚ЄЌДђ¶‚і‚к‚Д‚ў‚И‚ўЏкЌ‡‚НѓfѓtѓHѓ‹ѓg‚МЌs—с‚р“K‰ћ‚·‚й
+		// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігЃЊе†Ќз”џгЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ„е ґеђ€гЃЇгѓ‡гѓ•г‚©гѓ«гѓ€гЃ®иЎЊе€—г‚’йЃ©еїњгЃ™г‚‹
 		if( mcon == 0 )
 		{
 			if( FrameBase->LocalTransformMatrixType == 0 )
@@ -28396,7 +28396,7 @@ extern MATRIX NS_MV1GetFrameLocalMatrix( int MHandle, int FrameIndex )
 			}
 		}
 		else
-		// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚Є€к‚В‚ѕ‚ЇЌДђ¶‚і‚к‚Д‚ў‚йЏкЌ‡‚Н•КЏ€—ќ
+		// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігЃЊдёЂгЃ¤гЃ гЃ‘е†Ќз”џгЃ•г‚ЊгЃ¦гЃ„г‚‹е ґеђ€гЃЇе€Ґе‡¦зђ†
 		if( mcon == 1 )
 		{
 			if( MAnim3->Anim->ValidFlag & MV1_ANIMVALUE_MATRIX )
@@ -28405,7 +28405,7 @@ extern MATRIX NS_MV1GetFrameLocalMatrix( int MHandle, int FrameIndex )
 			}
 			else
 			{
-				// Ќs—с‚МѓZѓbѓgѓAѓbѓv
+				// иЎЊе€—гЃ®г‚»гѓѓгѓ€г‚ўгѓѓгѓ—
 				if( MAnim3->Anim->ValidBlendMatrix == false )
 				{
 					MV1SetupTransformMatrix(
@@ -28428,8 +28428,8 @@ extern MATRIX NS_MV1GetFrameLocalMatrix( int MHandle, int FrameIndex )
 		{
 			MV1_ANIM * RST Anim ;
 
-			// Ќs—с‚Є‚ ‚й‚©ЃAѓNѓHЃ[ѓ^ѓjѓIѓ“‚Ж‚w‚x‚yЋІ‰с“]‚ЄЌ¬“Ї‚µ‚Д‚ў‚й‚©
-			// ѓfѓtѓHѓ‹ѓgѓpѓ‰ѓЃЃ[ѓ^‚Є–іЊш‚ИЏг‚Й“–‚Д‚Д‚ ‚йѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚МЋн—Ю‚Є€б‚¤ЏкЌ‡‚НЌs—сѓuѓЊѓ“ѓh
+			// иЎЊе€—гЃЊгЃ‚г‚‹гЃ‹гЂЃг‚Їг‚©гѓјг‚їгѓ‹г‚ЄгѓігЃЁпјёпј№пјєи»ёе›ћи»ўгЃЊж··еђЊгЃ—гЃ¦гЃ„г‚‹гЃ‹
+			// гѓ‡гѓ•г‚©гѓ«гѓ€гѓ‘гѓ©гѓЎгѓјг‚їгЃЊз„ЎеЉ№гЃЄдёЉгЃ«еЅ“гЃ¦гЃ¦гЃ‚г‚‹г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігЃ®зЁ®йЎћгЃЊйЃ•гЃ†е ґеђ€гЃЇиЎЊе€—гѓ–гѓ¬гѓігѓ‰
 //			if( ( BlendFlag & MV1_ANIMVALUE_MATRIX ) ||
 //				( BlendFlag & ( MV1_ANIMVALUE_ROTATE | MV1_ANIMVALUE_QUATERNION_X   ) ) == ( MV1_ANIMVALUE_ROTATE | MV1_ANIMVALUE_QUATERNION_X ) ||
 //				( BlendFlag & ( MV1_ANIMVALUE_ROTATE | MV1_ANIMVALUE_QUATERNION_VMD ) ) == ( MV1_ANIMVALUE_ROTATE | MV1_ANIMVALUE_QUATERNION_VMD ) )
@@ -28492,7 +28492,7 @@ extern MATRIX NS_MV1GetFrameLocalMatrix( int MHandle, int FrameIndex )
 					}
 					else
 					{
-						// Ќs—с‚МѓZѓbѓgѓAѓbѓv
+						// иЎЊе€—гЃ®г‚»гѓѓгѓ€г‚ўгѓѓгѓ—
 						if( Anim->ValidBlendMatrix == false )
 						{
 							MV1SetupTransformMatrix(
@@ -28572,7 +28572,7 @@ extern MATRIX NS_MV1GetFrameLocalMatrix( int MHandle, int FrameIndex )
 				BlendMat.m[ 2 ][ 2 ] += FrameBase->LocalTransformMatrix.m[ 2 ][ 2 ] ;
 				BlendMat.m[ 2 ][ 3 ] += FrameBase->LocalTransformMatrix.m[ 2 ][ 3 ] ;
 
-				// Ќs—с‚М‰с“]•”•Є‚МXЃEYЃEZЋІ‚Є’јЌs‚·‚й‚ж‚¤‚Й•вђі
+				// иЎЊе€—гЃ®е›ћи»ўйѓЁе€†гЃ®Xгѓ»Yгѓ»Zи»ёгЃЊз›ґиЎЊгЃ™г‚‹г‚€гЃ†гЃ«иЈњж­Ј
 				{
 					float DivNum ;
 
@@ -28595,7 +28595,7 @@ extern MATRIX NS_MV1GetFrameLocalMatrix( int MHandle, int FrameIndex )
 					BlendMat.m[ 1 ][ 2 ] = BlendMat.m[ 2 ][ 0 ] * BlendMat.m[ 0 ][ 1 ] - BlendMat.m[ 2 ][ 1 ] * BlendMat.m[ 0 ][ 0 ] ;
 				}
 
-				// ѓXѓPЃ[ѓЉѓ“ѓOђ¬•Є‚Є‚ ‚йЏкЌ‡‚НѓXѓPЃ[ѓЉѓ“ѓO
+				// г‚№г‚±гѓјгѓЄгѓіг‚°ж€ђе€†гЃЊгЃ‚г‚‹е ґеђ€гЃЇг‚№г‚±гѓјгѓЄгѓіг‚°
 				if( BlendScale.x != 1.0f || BlendScale.y != 1.0f || BlendScale.z != 1.0f )
 				{
 					BlendMat.m[ 0 ][ 0 ] *= BlendScale.x ;
@@ -28613,7 +28613,7 @@ extern MATRIX NS_MV1GetFrameLocalMatrix( int MHandle, int FrameIndex )
 			}
 			else
 			{
-				// ‚»‚к€ИЉO‚МЏкЌ‡‚Нѓpѓ‰ѓЃЃ[ѓ^ѓЊѓxѓ‹‚МѓuѓЊѓ“ѓhЏ€—ќ
+				// гЃќг‚Њд»Ґе¤–гЃ®е ґеђ€гЃЇгѓ‘гѓ©гѓЎгѓјг‚їгѓ¬гѓ™гѓ«гЃ®гѓ–гѓ¬гѓігѓ‰е‡¦зђ†
 				Translate.x = 0.0f ;
 				Translate.y = 0.0f ;
 				Translate.z = 0.0f ;
@@ -28717,7 +28717,7 @@ extern MATRIX NS_MV1GetFrameLocalMatrix( int MHandle, int FrameIndex )
 				Quaternion.z += FrameBase->Quaternion.z ;
 				Quaternion.w += FrameBase->Quaternion.w ;
 
-				// Ќs—с‚МѓZѓbѓgѓAѓbѓv
+				// иЎЊе€—гЃ®г‚»гѓѓгѓ€г‚ўгѓѓгѓ—
 				MV1SetupTransformMatrix(
 					&BlendMat,
 					BlendFlag,
@@ -28731,16 +28731,16 @@ extern MATRIX NS_MV1GetFrameLocalMatrix( int MHandle, int FrameIndex )
 				) ;
 			}
 
-			// –Я‚и’l—p‚МЌs—с‚Й’u‚«Љ·‚¦‚й
+			// ж€»г‚ЉеЂ¤з”ЁгЃ®иЎЊе€—гЃ«зЅ®гЃЌжЏ›гЃ€г‚‹
 			ConvertMatrix4x4cFToMatrixF( &ResultMatrix, &BlendMat ) ;
 		}
 	}
 
-	// –Я‚и’l‚Ж‚µ‚Д•Ф‚·
+	// ж€»г‚ЉеЂ¤гЃЁгЃ—гЃ¦иї”гЃ™
 	return ResultMatrix ;
 }
 
-// Ћw’и‚МѓtѓЊЃ[ѓЂ‚МѓЌЃ[ѓJѓ‹ЌА•W•ПЉ·Ќs—с‚рЋж“ѕ‚·‚й
+// жЊ‡е®љгЃ®гѓ•гѓ¬гѓјгѓ гЃ®гѓ­гѓјг‚«гѓ«еє§жЁ™е¤‰жЏ›иЎЊе€—г‚’еЏ–еѕ—гЃ™г‚‹
 #ifdef BC_COMPILER
 static DummyFunc_MV1GetFrameLocalMatrixD(){}
 #endif
@@ -28749,7 +28749,7 @@ extern MATRIX_D NS_MV1GetFrameLocalMatrixD( int MHandle, int FrameIndex )
 	MATRIX_D ResultMatrix ;
 	MV1_FRAME_BASE *FrameBase ;
 
-// BorlandC++ ‚МЌЕ“K‰»ѓoѓO—}ђ§—p
+// BorlandC++ гЃ®жњЂйЃ©еЊ–гѓђг‚°жЉ‘е€¶з”Ё
 #ifdef BC_COMPILER
 	DummyFunc_MV1GetFrameLocalMatrixD();
 #endif
@@ -28757,24 +28757,24 @@ extern MATRIX_D NS_MV1GetFrameLocalMatrixD( int MHandle, int FrameIndex )
 	MV1FRAMESTART( MHandle, Model, ModelBase, Frame, FrameIndex, MGetIdentD() ) ;
 	FrameBase = Frame->BaseData ;
 
-	// Ќs—с‚МѓZѓbѓgѓAѓbѓv‚рЌs‚¤
+	// иЎЊе€—гЃ®г‚»гѓѓгѓ€г‚ўгѓѓгѓ—г‚’иЎЊгЃ†
 	MV1SETUPMATRIX( Model ) ;
 
-	// ѓ†Ѓ[ѓUЃ[Ћw’и‚МЌs—с‚Є‚ ‚йЏкЌ‡‚Н‚»‚к‚р•Ф‚·
+	// гѓ¦гѓјг‚¶гѓјжЊ‡е®љгЃ®иЎЊе€—гЃЊгЃ‚г‚‹е ґеђ€гЃЇгЃќг‚Њг‚’иї”гЃ™
 	if( Frame->ValidUserLocalTransformMatrix )
 	{
 		ConvertMatrix4x4cToMatrixD( &ResultMatrix, &Frame->UserLocalTransformMatrix ) ;
 	}
 	else
-	// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚Є‚ ‚йЏкЌ‡‚Ж–і‚ўЏкЌ‡‚ЕЏ€—ќ‚р•ЄЉт
+	// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігЃЊгЃ‚г‚‹е ґеђ€гЃЁз„ЎгЃ„е ґеђ€гЃ§е‡¦зђ†г‚’е€†еІђ
 	if( Model->AnimSetNum == 0 )
 	{
-		// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚Є‚И‚ўЏкЌ‡‚НѓfѓtѓHѓ‹ѓgЌs—с‚р•Ф‚·
+		// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігЃЊгЃЄгЃ„е ґеђ€гЃЇгѓ‡гѓ•г‚©гѓ«гѓ€иЎЊе€—г‚’иї”гЃ™
 		ConvertMatrix4x4cFToMatrixD( &ResultMatrix, &FrameBase->LocalTransformMatrix ) ;
 	}
 	else
 	{
-		// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚Є‚ ‚йЏкЌ‡
+		// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігЃЊгЃ‚г‚‹е ґеђ€
 		MATRIX_4X4CT_F BlendMat ;
 		float BlendRate ;
 		VECTOR Translate, Scale, Rotate ;
@@ -28782,7 +28782,7 @@ extern MATRIX_D NS_MV1GetFrameLocalMatrixD( int MHandle, int FrameIndex )
 		int BlendFlag, mcon, i ;
 		MV1_MODEL_ANIM *MAnim, *MAnim2, *MAnim3 = NULL ;
 
-		// ѓpѓ‰ѓЃЃ[ѓ^ѓЊѓxѓ‹‚МѓuѓЊѓ“ѓh‚ЄЌs‚¦‚й‚©‚р’І‚Ч‚й
+		// гѓ‘гѓ©гѓЎгѓјг‚їгѓ¬гѓ™гѓ«гЃ®гѓ–гѓ¬гѓігѓ‰гЃЊиЎЊгЃ€г‚‹гЃ‹г‚’иЄїгЃ№г‚‹
 		MAnim = Model->Anim + Model->AnimSetMaxNum * Frame->BaseData->Index ;
 		MAnim2 = MAnim ;
 		BlendFlag = 0 ;
@@ -28797,7 +28797,7 @@ extern MATRIX_D NS_MV1GetFrameLocalMatrixD( int MHandle, int FrameIndex )
 			BlendFlag |= MAnim2->Anim->ValidFlag ;
 		}
 
-		// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚ЄЌДђ¶‚і‚к‚Д‚ў‚И‚ўЏкЌ‡‚НѓfѓtѓHѓ‹ѓg‚МЌs—с‚р“K‰ћ‚·‚й
+		// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігЃЊе†Ќз”џгЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ„е ґеђ€гЃЇгѓ‡гѓ•г‚©гѓ«гѓ€гЃ®иЎЊе€—г‚’йЃ©еїњгЃ™г‚‹
 		if( mcon == 0 )
 		{
 			if( FrameBase->LocalTransformMatrixType == 0 )
@@ -28815,7 +28815,7 @@ extern MATRIX_D NS_MV1GetFrameLocalMatrixD( int MHandle, int FrameIndex )
 			}
 		}
 		else
-		// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚Є€к‚В‚ѕ‚ЇЌДђ¶‚і‚к‚Д‚ў‚йЏкЌ‡‚Н•КЏ€—ќ
+		// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігЃЊдёЂгЃ¤гЃ гЃ‘е†Ќз”џгЃ•г‚ЊгЃ¦гЃ„г‚‹е ґеђ€гЃЇе€Ґе‡¦зђ†
 		if( mcon == 1 )
 		{
 			if( MAnim3->Anim->ValidFlag & MV1_ANIMVALUE_MATRIX )
@@ -28824,7 +28824,7 @@ extern MATRIX_D NS_MV1GetFrameLocalMatrixD( int MHandle, int FrameIndex )
 			}
 			else
 			{
-				// Ќs—с‚МѓZѓbѓgѓAѓbѓv
+				// иЎЊе€—гЃ®г‚»гѓѓгѓ€г‚ўгѓѓгѓ—
 				if( MAnim3->Anim->ValidBlendMatrix == false )
 				{
 					MV1SetupTransformMatrix(
@@ -28847,8 +28847,8 @@ extern MATRIX_D NS_MV1GetFrameLocalMatrixD( int MHandle, int FrameIndex )
 		{
 			MV1_ANIM * RST Anim ;
 
-			// Ќs—с‚Є‚ ‚й‚©ЃAѓNѓHЃ[ѓ^ѓjѓIѓ“‚Ж‚w‚x‚yЋІ‰с“]‚ЄЌ¬“Ї‚µ‚Д‚ў‚й‚©
-			// ѓfѓtѓHѓ‹ѓgѓpѓ‰ѓЃЃ[ѓ^‚Є–іЊш‚ИЏг‚Й“–‚Д‚Д‚ ‚йѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚МЋн—Ю‚Є€б‚¤ЏкЌ‡‚НЌs—сѓuѓЊѓ“ѓh
+			// иЎЊе€—гЃЊгЃ‚г‚‹гЃ‹гЂЃг‚Їг‚©гѓјг‚їгѓ‹г‚ЄгѓігЃЁпјёпј№пјєи»ёе›ћи»ўгЃЊж··еђЊгЃ—гЃ¦гЃ„г‚‹гЃ‹
+			// гѓ‡гѓ•г‚©гѓ«гѓ€гѓ‘гѓ©гѓЎгѓјг‚їгЃЊз„ЎеЉ№гЃЄдёЉгЃ«еЅ“гЃ¦гЃ¦гЃ‚г‚‹г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігЃ®зЁ®йЎћгЃЊйЃ•гЃ†е ґеђ€гЃЇиЎЊе€—гѓ–гѓ¬гѓігѓ‰
 //			if( ( BlendFlag & MV1_ANIMVALUE_MATRIX ) ||
 //				( BlendFlag & ( MV1_ANIMVALUE_ROTATE | MV1_ANIMVALUE_QUATERNION_X   ) ) == ( MV1_ANIMVALUE_ROTATE | MV1_ANIMVALUE_QUATERNION_X ) ||
 //				( BlendFlag & ( MV1_ANIMVALUE_ROTATE | MV1_ANIMVALUE_QUATERNION_VMD ) ) == ( MV1_ANIMVALUE_ROTATE | MV1_ANIMVALUE_QUATERNION_VMD ) )
@@ -28911,7 +28911,7 @@ extern MATRIX_D NS_MV1GetFrameLocalMatrixD( int MHandle, int FrameIndex )
 					}
 					else
 					{
-						// Ќs—с‚МѓZѓbѓgѓAѓbѓv
+						// иЎЊе€—гЃ®г‚»гѓѓгѓ€г‚ўгѓѓгѓ—
 						if( Anim->ValidBlendMatrix == false )
 						{
 							MV1SetupTransformMatrix(
@@ -28991,7 +28991,7 @@ extern MATRIX_D NS_MV1GetFrameLocalMatrixD( int MHandle, int FrameIndex )
 				BlendMat.m[ 2 ][ 2 ] += FrameBase->LocalTransformMatrix.m[ 2 ][ 2 ] ;
 				BlendMat.m[ 2 ][ 3 ] += FrameBase->LocalTransformMatrix.m[ 2 ][ 3 ] ;
 
-				// Ќs—с‚М‰с“]•”•Є‚МXЃEYЃEZЋІ‚Є’јЌs‚·‚й‚ж‚¤‚Й•вђі
+				// иЎЊе€—гЃ®е›ћи»ўйѓЁе€†гЃ®Xгѓ»Yгѓ»Zи»ёгЃЊз›ґиЎЊгЃ™г‚‹г‚€гЃ†гЃ«иЈњж­Ј
 				{
 					float DivNum ;
 
@@ -29014,7 +29014,7 @@ extern MATRIX_D NS_MV1GetFrameLocalMatrixD( int MHandle, int FrameIndex )
 					BlendMat.m[ 1 ][ 2 ] = BlendMat.m[ 2 ][ 0 ] * BlendMat.m[ 0 ][ 1 ] - BlendMat.m[ 2 ][ 1 ] * BlendMat.m[ 0 ][ 0 ] ;
 				}
 
-				// ѓXѓPЃ[ѓЉѓ“ѓOђ¬•Є‚Є‚ ‚йЏкЌ‡‚НѓXѓPЃ[ѓЉѓ“ѓO
+				// г‚№г‚±гѓјгѓЄгѓіг‚°ж€ђе€†гЃЊгЃ‚г‚‹е ґеђ€гЃЇг‚№г‚±гѓјгѓЄгѓіг‚°
 				if( BlendScale.x != 1.0f || BlendScale.y != 1.0f || BlendScale.z != 1.0f )
 				{
 					BlendMat.m[ 0 ][ 0 ] *= BlendScale.x ;
@@ -29032,7 +29032,7 @@ extern MATRIX_D NS_MV1GetFrameLocalMatrixD( int MHandle, int FrameIndex )
 			}
 			else
 			{
-				// ‚»‚к€ИЉO‚МЏкЌ‡‚Нѓpѓ‰ѓЃЃ[ѓ^ѓЊѓxѓ‹‚МѓuѓЊѓ“ѓhЏ€—ќ
+				// гЃќг‚Њд»Ґе¤–гЃ®е ґеђ€гЃЇгѓ‘гѓ©гѓЎгѓјг‚їгѓ¬гѓ™гѓ«гЃ®гѓ–гѓ¬гѓігѓ‰е‡¦зђ†
 				Translate.x = 0.0f ;
 				Translate.y = 0.0f ;
 				Translate.z = 0.0f ;
@@ -29136,7 +29136,7 @@ extern MATRIX_D NS_MV1GetFrameLocalMatrixD( int MHandle, int FrameIndex )
 				Quaternion.z += FrameBase->Quaternion.z ;
 				Quaternion.w += FrameBase->Quaternion.w ;
 
-				// Ќs—с‚МѓZѓbѓgѓAѓbѓv
+				// иЎЊе€—гЃ®г‚»гѓѓгѓ€г‚ўгѓѓгѓ—
 				MV1SetupTransformMatrix(
 					&BlendMat,
 					BlendFlag,
@@ -29150,411 +29150,411 @@ extern MATRIX_D NS_MV1GetFrameLocalMatrixD( int MHandle, int FrameIndex )
 				) ;
 			}
 
-			// –Я‚и’l—p‚МЌs—с‚Й’u‚«Љ·‚¦‚й
+			// ж€»г‚ЉеЂ¤з”ЁгЃ®иЎЊе€—гЃ«зЅ®гЃЌжЏ›гЃ€г‚‹
 			ConvertMatrix4x4cFToMatrixD( &ResultMatrix, &BlendMat ) ;
 		}
 	}
 
-	// –Я‚и’l‚Ж‚µ‚Д•Ф‚·
+	// ж€»г‚ЉеЂ¤гЃЁгЃ—гЃ¦иї”гЃ™
 	return ResultMatrix ;
 }
 
-// Ћw’и‚МѓtѓЊЃ[ѓЂ‚МѓЌЃ[ѓJѓ‹ЌА•W‚©‚зѓЏЃ[ѓ‹ѓhЌА•W‚Й•ПЉ·‚·‚йЌs—с‚р“ѕ‚й
+// жЊ‡е®љгЃ®гѓ•гѓ¬гѓјгѓ гЃ®гѓ­гѓјг‚«гѓ«еє§жЁ™гЃ‹г‚‰гѓЇгѓјгѓ«гѓ‰еє§жЁ™гЃ«е¤‰жЏ›гЃ™г‚‹иЎЊе€—г‚’еѕ—г‚‹
 extern MATRIX NS_MV1GetFrameLocalWorldMatrix( int MHandle, int FrameIndex )
 {
 	MATRIX ResultMatrix ;
 
 	MV1FRAMESTART( MHandle, Model, ModelBase, Frame, FrameIndex, MGetIdent() ) ;
 
-	// Ќs—с‚МѓZѓbѓgѓAѓbѓv
+	// иЎЊе€—гЃ®г‚»гѓѓгѓ€г‚ўгѓѓгѓ—
 	MV1SETUPMATRIX( Model ) ;
 
-	// Ќs—с‚р•Ф‚·
+	// иЎЊе€—г‚’иї”гЃ™
 	ConvertMatrix4x4cToMatrixF( &ResultMatrix, &Frame->LocalWorldMatrix ) ;
 	return ResultMatrix ;
 }
 
-// Ћw’и‚МѓtѓЊЃ[ѓЂ‚МѓЌЃ[ѓJѓ‹ЌА•W‚©‚зѓЏЃ[ѓ‹ѓhЌА•W‚Й•ПЉ·‚·‚йЌs—с‚р“ѕ‚й
+// жЊ‡е®љгЃ®гѓ•гѓ¬гѓјгѓ гЃ®гѓ­гѓјг‚«гѓ«еє§жЁ™гЃ‹г‚‰гѓЇгѓјгѓ«гѓ‰еє§жЁ™гЃ«е¤‰жЏ›гЃ™г‚‹иЎЊе€—г‚’еѕ—г‚‹
 extern MATRIX_D NS_MV1GetFrameLocalWorldMatrixD( int MHandle, int FrameIndex )
 {
 	MATRIX_D ResultMatrix ;
 
 	MV1FRAMESTART( MHandle, Model, ModelBase, Frame, FrameIndex, MGetIdentD() ) ;
 
-	// Ќs—с‚МѓZѓbѓgѓAѓbѓv
+	// иЎЊе€—гЃ®г‚»гѓѓгѓ€г‚ўгѓѓгѓ—
 	MV1SETUPMATRIX( Model ) ;
 
-	// Ќs—с‚р•Ф‚·
+	// иЎЊе€—г‚’иї”гЃ™
 	ConvertMatrix4x4cToMatrixD( &ResultMatrix, &Frame->LocalWorldMatrix ) ;
 	return ResultMatrix ;
 }
 
-// Ћw’и‚МѓtѓЊЃ[ѓЂ‚МѓЌЃ[ѓJѓ‹ЌА•W•ПЉ·Ќs—с‚рђЭ’и‚·‚й
+// жЊ‡е®љгЃ®гѓ•гѓ¬гѓјгѓ гЃ®гѓ­гѓјг‚«гѓ«еє§жЁ™е¤‰жЏ›иЎЊе€—г‚’иЁ­е®љгЃ™г‚‹
 extern int NS_MV1SetFrameUserLocalMatrix( int MHandle, int FrameIndex, MATRIX Matrix )
 {
 	MV1FRAMESTART( MHandle, Model, ModelBase, Frame, FrameIndex, -1 ) ;
 
-	// ѓЌЃ[ѓJѓ‹Ќs—с‚рѓZѓbѓg
+	// гѓ­гѓјг‚«гѓ«иЎЊе€—г‚’г‚»гѓѓгѓ€
 	ConvertMatrixFToMatrix4x4c( &Frame->UserLocalTransformMatrix, &Matrix ) ;
 
-	// “ЖЋ©ѓЌЃ[ѓJѓ‹Ќs—с‚рЋg—p‚·‚йѓtѓ‰ѓO‚р—§‚Д‚й
+	// з‹¬и‡Єгѓ­гѓјг‚«гѓ«иЎЊе€—г‚’дЅїз”ЁгЃ™г‚‹гѓ•гѓ©г‚°г‚’з«‹гЃ¦г‚‹
 	Frame->ValidUserLocalTransformMatrix = true ;
 
-	// Ќs—с‚ЄѓZѓbѓgѓAѓbѓv‚і‚к‚Д‚ў‚И‚ўЏу‘Ф‚Й‚·‚й
+	// иЎЊе€—гЃЊг‚»гѓѓгѓ€г‚ўгѓѓгѓ—гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ„зЉ¶ж…‹гЃ«гЃ™г‚‹
 	Model->LocalWorldMatrixSetupFlag = false ;
 	MV1BitSetChange( &Frame->LocalWorldMatrixChange ) ;
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// Ћw’и‚МѓtѓЊЃ[ѓЂ‚МѓЌЃ[ѓJѓ‹ЌА•W•ПЉ·Ќs—с‚рђЭ’и‚·‚й
+// жЊ‡е®љгЃ®гѓ•гѓ¬гѓјгѓ гЃ®гѓ­гѓјг‚«гѓ«еє§жЁ™е¤‰жЏ›иЎЊе€—г‚’иЁ­е®љгЃ™г‚‹
 extern int NS_MV1SetFrameUserLocalMatrixD( int MHandle, int FrameIndex, MATRIX_D Matrix )
 {
 	MV1FRAMESTART( MHandle, Model, ModelBase, Frame, FrameIndex, -1 ) ;
 
-	// ѓЌЃ[ѓJѓ‹Ќs—с‚рѓZѓbѓg
+	// гѓ­гѓјг‚«гѓ«иЎЊе€—г‚’г‚»гѓѓгѓ€
 	ConvertMatrixDToMatrix4x4c( &Frame->UserLocalTransformMatrix, &Matrix ) ;
 
-	// “ЖЋ©ѓЌЃ[ѓJѓ‹Ќs—с‚рЋg—p‚·‚йѓtѓ‰ѓO‚р—§‚Д‚й
+	// з‹¬и‡Єгѓ­гѓјг‚«гѓ«иЎЊе€—г‚’дЅїз”ЁгЃ™г‚‹гѓ•гѓ©г‚°г‚’з«‹гЃ¦г‚‹
 	Frame->ValidUserLocalTransformMatrix = true ;
 
-	// Ќs—с‚ЄѓZѓbѓgѓAѓbѓv‚і‚к‚Д‚ў‚И‚ўЏу‘Ф‚Й‚·‚й
+	// иЎЊе€—гЃЊг‚»гѓѓгѓ€г‚ўгѓѓгѓ—гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ„зЉ¶ж…‹гЃ«гЃ™г‚‹
 	Model->LocalWorldMatrixSetupFlag = false ;
 	MV1BitSetChange( &Frame->LocalWorldMatrixChange ) ;
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// Ћw’и‚МѓtѓЊЃ[ѓЂ‚МѓЌЃ[ѓJѓ‹ЌА•W•ПЉ·Ќs—с‚рѓfѓtѓHѓ‹ѓg‚Й–Я‚·
+// жЊ‡е®љгЃ®гѓ•гѓ¬гѓјгѓ гЃ®гѓ­гѓјг‚«гѓ«еє§жЁ™е¤‰жЏ›иЎЊе€—г‚’гѓ‡гѓ•г‚©гѓ«гѓ€гЃ«ж€»гЃ™
 extern int NS_MV1ResetFrameUserLocalMatrix( int MHandle, int FrameIndex )
 {
 	MV1FRAMESTART( MHandle, Model, ModelBase, Frame, FrameIndex, -1 ) ;
 
-	// Љщ‚Йѓtѓ‰ѓO‚Є“|‚к‚Д‚ў‚Ѕ‚з‰Ѕ‚а‚µ‚И‚ў
+	// ж—ўгЃ«гѓ•гѓ©г‚°гЃЊеЂ’г‚ЊгЃ¦гЃ„гЃџг‚‰дЅ•г‚‚гЃ—гЃЄгЃ„
 	if( Frame->ValidUserLocalTransformMatrix == false ) return 0 ;
 
-	// “ЖЋ©ѓЌЃ[ѓJѓ‹Ќs—с‚рЋg—p‚·‚йѓtѓ‰ѓO‚р“|‚·
+	// з‹¬и‡Єгѓ­гѓјг‚«гѓ«иЎЊе€—г‚’дЅїз”ЁгЃ™г‚‹гѓ•гѓ©г‚°г‚’еЂ’гЃ™
 	Frame->ValidUserLocalTransformMatrix = false ;
 
-	// Ќs—с‚ЄѓZѓbѓgѓAѓbѓv‚і‚к‚Д‚ў‚И‚ўЏу‘Ф‚Й‚·‚й
+	// иЎЊе€—гЃЊг‚»гѓѓгѓ€г‚ўгѓѓгѓ—гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ„зЉ¶ж…‹гЃ«гЃ™г‚‹
 	Model->LocalWorldMatrixSetupFlag = false ;
 	MV1BitSetChange( &Frame->LocalWorldMatrixChange ) ;
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// Ћw’и‚МѓtѓЊЃ[ѓЂ‚МЌА•W•ПЉ·Ќs—с( ѓЌЃ[ѓJѓ‹ЌА•W‚©‚зѓЏЃ[ѓ‹ѓhЌА•W‚Й•ПЉ·‚·‚йЌs—с )‚рђЭ’и‚·‚й
+// жЊ‡е®љгЃ®гѓ•гѓ¬гѓјгѓ гЃ®еє§жЁ™е¤‰жЏ›иЎЊе€—( гѓ­гѓјг‚«гѓ«еє§жЁ™гЃ‹г‚‰гѓЇгѓјгѓ«гѓ‰еє§жЁ™гЃ«е¤‰жЏ›гЃ™г‚‹иЎЊе€— )г‚’иЁ­е®љгЃ™г‚‹
 extern int NS_MV1SetFrameUserLocalWorldMatrix( int MHandle, int FrameIndex, MATRIX Matrix )
 {
 	MV1FRAMESTART( MHandle, Model, ModelBase, Frame, FrameIndex, -1 ) ;
 
-	// ѓЌЃ[ѓJѓ‹ЃЁѓЏЃ[ѓ‹ѓhЌs—с‚рѓZѓbѓg
+	// гѓ­гѓјг‚«гѓ«в†’гѓЇгѓјгѓ«гѓ‰иЎЊе€—г‚’г‚»гѓѓгѓ€
 	ConvertMatrixFToMatrix4x4c( &Frame->UserLocalWorldTransformMatrix, &Matrix ) ;
 
-	// “ЖЋ©ѓЌЃ[ѓJѓ‹ЃЁѓЏЃ[ѓ‹ѓhЌs—с‚рЋg—p‚·‚йѓtѓ‰ѓO‚р—§‚Д‚й
+	// з‹¬и‡Єгѓ­гѓјг‚«гѓ«в†’гѓЇгѓјгѓ«гѓ‰иЎЊе€—г‚’дЅїз”ЁгЃ™г‚‹гѓ•гѓ©г‚°г‚’з«‹гЃ¦г‚‹
 	Frame->ValidUserLocalWorldTransformMatrix = true ;
 
-	// Ќs—с‚ЄѓZѓbѓgѓAѓbѓv‚і‚к‚Д‚ў‚И‚ўЏу‘Ф‚Й‚·‚й
+	// иЎЊе€—гЃЊг‚»гѓѓгѓ€г‚ўгѓѓгѓ—гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ„зЉ¶ж…‹гЃ«гЃ™г‚‹
 	Model->LocalWorldMatrixSetupFlag = false ;
 	MV1BitSetChange( &Frame->LocalWorldMatrixChange ) ;
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// Ћw’и‚МѓtѓЊЃ[ѓЂ‚МЌА•W•ПЉ·Ќs—с( ѓЌЃ[ѓJѓ‹ЌА•W‚©‚зѓЏЃ[ѓ‹ѓhЌА•W‚Й•ПЉ·‚·‚йЌs—с )‚рђЭ’и‚·‚й
+// жЊ‡е®љгЃ®гѓ•гѓ¬гѓјгѓ гЃ®еє§жЁ™е¤‰жЏ›иЎЊе€—( гѓ­гѓјг‚«гѓ«еє§жЁ™гЃ‹г‚‰гѓЇгѓјгѓ«гѓ‰еє§жЁ™гЃ«е¤‰жЏ›гЃ™г‚‹иЎЊе€— )г‚’иЁ­е®љгЃ™г‚‹
 extern int NS_MV1SetFrameUserLocalWorldMatrixD( int MHandle, int FrameIndex, MATRIX_D Matrix )
 {
 	MV1FRAMESTART( MHandle, Model, ModelBase, Frame, FrameIndex, -1 ) ;
 
-	// ѓЌЃ[ѓJѓ‹ЃЁѓЏЃ[ѓ‹ѓhЌs—с‚рѓZѓbѓg
+	// гѓ­гѓјг‚«гѓ«в†’гѓЇгѓјгѓ«гѓ‰иЎЊе€—г‚’г‚»гѓѓгѓ€
 	ConvertMatrixDToMatrix4x4c( &Frame->UserLocalWorldTransformMatrix, &Matrix ) ;
 
-	// “ЖЋ©ѓЌЃ[ѓJѓ‹ЃЁѓЏЃ[ѓ‹ѓhЌs—с‚рЋg—p‚·‚йѓtѓ‰ѓO‚р—§‚Д‚й
+	// з‹¬и‡Єгѓ­гѓјг‚«гѓ«в†’гѓЇгѓјгѓ«гѓ‰иЎЊе€—г‚’дЅїз”ЁгЃ™г‚‹гѓ•гѓ©г‚°г‚’з«‹гЃ¦г‚‹
 	Frame->ValidUserLocalWorldTransformMatrix = true ;
 
-	// Ќs—с‚ЄѓZѓbѓgѓAѓbѓv‚і‚к‚Д‚ў‚И‚ўЏу‘Ф‚Й‚·‚й
+	// иЎЊе€—гЃЊг‚»гѓѓгѓ€г‚ўгѓѓгѓ—гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ„зЉ¶ж…‹гЃ«гЃ™г‚‹
 	Model->LocalWorldMatrixSetupFlag = false ;
 	MV1BitSetChange( &Frame->LocalWorldMatrixChange ) ;
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// Ћw’и‚МѓtѓЊЃ[ѓЂ‚МЌА•W•ПЉ·Ќs—с( ѓЌЃ[ѓJѓ‹ЌА•W‚©‚зѓЏЃ[ѓ‹ѓhЌА•W‚Й•ПЉ·‚·‚йЌs—с )‚рѓfѓtѓHѓ‹ѓg‚Й–Я‚·
+// жЊ‡е®љгЃ®гѓ•гѓ¬гѓјгѓ гЃ®еє§жЁ™е¤‰жЏ›иЎЊе€—( гѓ­гѓјг‚«гѓ«еє§жЁ™гЃ‹г‚‰гѓЇгѓјгѓ«гѓ‰еє§жЁ™гЃ«е¤‰жЏ›гЃ™г‚‹иЎЊе€— )г‚’гѓ‡гѓ•г‚©гѓ«гѓ€гЃ«ж€»гЃ™
 extern int NS_MV1ResetFrameUserLocalWorldMatrix( int MHandle, int FrameIndex )
 {
 	MV1FRAMESTART( MHandle, Model, ModelBase, Frame, FrameIndex, -1 ) ;
 
-	// Љщ‚Йѓtѓ‰ѓO‚Є“|‚к‚Д‚ў‚Ѕ‚з‰Ѕ‚а‚µ‚И‚ў
+	// ж—ўгЃ«гѓ•гѓ©г‚°гЃЊеЂ’г‚ЊгЃ¦гЃ„гЃџг‚‰дЅ•г‚‚гЃ—гЃЄгЃ„
 	if( Frame->ValidUserLocalWorldTransformMatrix == false ) return 0 ;
 
-	// “ЖЋ©ѓЌЃ[ѓJѓ‹ЃЁѓЏЃ[ѓ‹ѓhЌs—с‚рЋg—p‚·‚йѓtѓ‰ѓO‚р“|‚·
+	// з‹¬и‡Єгѓ­гѓјг‚«гѓ«в†’гѓЇгѓјгѓ«гѓ‰иЎЊе€—г‚’дЅїз”ЁгЃ™г‚‹гѓ•гѓ©г‚°г‚’еЂ’гЃ™
 	Frame->ValidUserLocalWorldTransformMatrix = false ;
 
-	// Ќs—с‚ЄѓZѓbѓgѓAѓbѓv‚і‚к‚Д‚ў‚И‚ўЏу‘Ф‚Й‚·‚й
+	// иЎЊе€—гЃЊг‚»гѓѓгѓ€г‚ўгѓѓгѓ—гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ„зЉ¶ж…‹гЃ«гЃ™г‚‹
 	Model->LocalWorldMatrixSetupFlag = false ;
 	MV1BitSetChange( &Frame->LocalWorldMatrixChange ) ;
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// Ћw’и‚МѓtѓЊЃ[ѓЂ‚ЄЋќ‚ВѓЃѓbѓVѓ…’ё“_‚МѓЌЃ[ѓJѓ‹ЌА•W‚Е‚МЌЕ‘е’l‚р“ѕ‚й
+// жЊ‡е®љгЃ®гѓ•гѓ¬гѓјгѓ гЃЊжЊЃгЃ¤гѓЎгѓѓг‚·гѓҐй ‚з‚№гЃ®гѓ­гѓјг‚«гѓ«еє§жЁ™гЃ§гЃ®жњЂе¤§еЂ¤г‚’еѕ—г‚‹
 extern VECTOR NS_MV1GetFrameMaxVertexLocalPosition( int MHandle, int FrameIndex )
 {
 	VECTOR ErrorRet = { 0.0f, 0.0f, 0.0f } ;
 	MV1FRAMESTART( MHandle, Model, ModelBase, Frame, FrameIndex, ErrorRet ) ;
 
-	// ЌЕ‘еЌА•W’l‚р•Ф‚·
+	// жњЂе¤§еє§жЁ™еЂ¤г‚’иї”гЃ™
 	return Frame->BaseData->MaxPosition ;
 }
 
-// Ћw’и‚МѓtѓЊЃ[ѓЂ‚ЄЋќ‚ВѓЃѓbѓVѓ…’ё“_‚МѓЌЃ[ѓJѓ‹ЌА•W‚Е‚МЌЕ‘е’l‚р“ѕ‚й
+// жЊ‡е®љгЃ®гѓ•гѓ¬гѓјгѓ гЃЊжЊЃгЃ¤гѓЎгѓѓг‚·гѓҐй ‚з‚№гЃ®гѓ­гѓјг‚«гѓ«еє§жЁ™гЃ§гЃ®жњЂе¤§еЂ¤г‚’еѕ—г‚‹
 extern VECTOR_D NS_MV1GetFrameMaxVertexLocalPositionD( int MHandle, int FrameIndex )
 {
 	VECTOR_D ErrorRet = { 0.0, 0.0, 0.0 } ;
 	MV1FRAMESTART( MHandle, Model, ModelBase, Frame, FrameIndex, ErrorRet ) ;
 
-	// ЌЕ‘еЌА•W’l‚р•Ф‚·
+	// жњЂе¤§еє§жЁ™еЂ¤г‚’иї”гЃ™
 	return VConvFtoD( Frame->BaseData->MaxPosition ) ;
 }
 
-// Ћw’и‚МѓtѓЊЃ[ѓЂ‚ЄЋќ‚ВѓЃѓbѓVѓ…’ё“_‚МѓЌЃ[ѓJѓ‹ЌА•W‚Е‚МЌЕЏ¬’l‚р“ѕ‚й
+// жЊ‡е®љгЃ®гѓ•гѓ¬гѓјгѓ гЃЊжЊЃгЃ¤гѓЎгѓѓг‚·гѓҐй ‚з‚№гЃ®гѓ­гѓјг‚«гѓ«еє§жЁ™гЃ§гЃ®жњЂе°ЏеЂ¤г‚’еѕ—г‚‹
 extern VECTOR NS_MV1GetFrameMinVertexLocalPosition( int MHandle, int FrameIndex )
 {
 	VECTOR ErrorRet = { 0.0f, 0.0f, 0.0f } ;
 	MV1FRAMESTART( MHandle, Model, ModelBase, Frame, FrameIndex, ErrorRet ) ;
 
-	// ЌЕЏ¬ЌА•W’l‚р•Ф‚·
+	// жњЂе°Џеє§жЁ™еЂ¤г‚’иї”гЃ™
 	return Frame->BaseData->MinPosition ;
 }
 
-// Ћw’и‚МѓtѓЊЃ[ѓЂ‚ЄЋќ‚ВѓЃѓbѓVѓ…’ё“_‚МѓЌЃ[ѓJѓ‹ЌА•W‚Е‚МЌЕЏ¬’l‚р“ѕ‚й
+// жЊ‡е®љгЃ®гѓ•гѓ¬гѓјгѓ гЃЊжЊЃгЃ¤гѓЎгѓѓг‚·гѓҐй ‚з‚№гЃ®гѓ­гѓјг‚«гѓ«еє§жЁ™гЃ§гЃ®жњЂе°ЏеЂ¤г‚’еѕ—г‚‹
 extern VECTOR_D NS_MV1GetFrameMinVertexLocalPositionD( int MHandle, int FrameIndex )
 {
 	VECTOR_D ErrorRet = { 0.0, 0.0, 0.0 } ;
 	MV1FRAMESTART( MHandle, Model, ModelBase, Frame, FrameIndex, ErrorRet ) ;
 
-	// ЌЕЏ¬ЌА•W’l‚р•Ф‚·
+	// жњЂе°Џеє§жЁ™еЂ¤г‚’иї”гЃ™
 	return VConvFtoD( Frame->BaseData->MinPosition ) ;
 }
 
-// Ћw’и‚МѓtѓЊЃ[ѓЂ‚ЄЋќ‚ВѓЃѓbѓVѓ…’ё“_‚МѓЌЃ[ѓJѓ‹ЌА•W‚Е‚М•Ѕ‹П’l‚р“ѕ‚й
+// жЊ‡е®љгЃ®гѓ•гѓ¬гѓјгѓ гЃЊжЊЃгЃ¤гѓЎгѓѓг‚·гѓҐй ‚з‚№гЃ®гѓ­гѓјг‚«гѓ«еє§жЁ™гЃ§гЃ®е№іеќ‡еЂ¤г‚’еѕ—г‚‹
 extern VECTOR NS_MV1GetFrameAvgVertexLocalPosition( int MHandle, int FrameIndex )
 {
 	VECTOR ErrorRet = { 0.0f, 0.0f, 0.0f } ;
 	MV1FRAMESTART( MHandle, Model, ModelBase, Frame, FrameIndex, ErrorRet ) ;
 
-	// •Ѕ‹ПЌА•W’l‚р•Ф‚·
+	// е№іеќ‡еє§жЁ™еЂ¤г‚’иї”гЃ™
 	return VScale( VAdd( Frame->BaseData->MaxPosition, Frame->BaseData->MinPosition ), 0.5f ) ;
 }
 
-// Ћw’и‚МѓtѓЊЃ[ѓЂ‚ЄЋќ‚ВѓЃѓbѓVѓ…’ё“_‚МѓЌЃ[ѓJѓ‹ЌА•W‚Е‚М•Ѕ‹П’l‚р“ѕ‚й
+// жЊ‡е®љгЃ®гѓ•гѓ¬гѓјгѓ гЃЊжЊЃгЃ¤гѓЎгѓѓг‚·гѓҐй ‚з‚№гЃ®гѓ­гѓјг‚«гѓ«еє§жЁ™гЃ§гЃ®е№іеќ‡еЂ¤г‚’еѕ—г‚‹
 extern VECTOR_D NS_MV1GetFrameAvgVertexLocalPositionD( int MHandle, int FrameIndex )
 {
 	VECTOR_D ErrorRet = { 0.0, 0.0, 0.0 } ;
 	MV1FRAMESTART( MHandle, Model, ModelBase, Frame, FrameIndex, ErrorRet ) ;
 
-	// •Ѕ‹ПЌА•W’l‚р•Ф‚·
+	// е№іеќ‡еє§жЁ™еЂ¤г‚’иї”гЃ™
 	return VConvFtoD( VScale( VAdd( Frame->BaseData->MaxPosition, Frame->BaseData->MinPosition ), 0.5f ) ) ;
 }
 
-// Ћw’и‚МѓtѓЊЃ[ѓЂ‚ЙЉЬ‚Ь‚к‚й’ё“_‚Мђ”‚рЋж“ѕ‚·‚й
+// жЊ‡е®љгЃ®гѓ•гѓ¬гѓјгѓ гЃ«еђ«гЃѕг‚Њг‚‹й ‚з‚№гЃ®ж•°г‚’еЏ–еѕ—гЃ™г‚‹
 extern int NS_MV1GetFrameVertexNum( int MHandle, int FrameIndex )
 {
 	MV1FRAMESTART( MHandle, Model, ModelBase, Frame, FrameIndex, -1 ) ;
 
-	// ’ё“_‚Мђ”‚р•Ф‚·
+	// й ‚з‚№гЃ®ж•°г‚’иї”гЃ™
 	return Frame->BaseData->VertexNum ;
 }
 
-// Ћw’и‚МѓtѓЊЃ[ѓЂ‚ЙЉЬ‚Ь‚к‚йѓ|ѓЉѓSѓ“‚Мђ”‚рЋж“ѕ‚·‚й
+// жЊ‡е®љгЃ®гѓ•гѓ¬гѓјгѓ гЃ«еђ«гЃѕг‚Њг‚‹гѓќгѓЄг‚ґгѓігЃ®ж•°г‚’еЏ–еѕ—гЃ™г‚‹
 extern int NS_MV1GetFrameTriangleNum( int MHandle, int FrameIndex )
 {
 	MV1FRAMESTART( MHandle, Model, ModelBase, Frame, FrameIndex, -1 ) ;
 
-	// ѓ|ѓЉѓSѓ“‚Мђ”‚р•Ф‚·
+	// гѓќгѓЄг‚ґгѓігЃ®ж•°г‚’иї”гЃ™
 	return Frame->BaseData->TriangleNum ;
 }
 
-// Ћw’и‚МѓtѓЊЃ[ѓЂ‚ЄЋќ‚ВѓЃѓbѓVѓ…‚Мђ”‚рЋж“ѕ‚·‚й
+// жЊ‡е®љгЃ®гѓ•гѓ¬гѓјгѓ гЃЊжЊЃгЃ¤гѓЎгѓѓг‚·гѓҐгЃ®ж•°г‚’еЏ–еѕ—гЃ™г‚‹
 extern int NS_MV1GetFrameMeshNum( int MHandle, int FrameIndex )
 {
 	MV1FRAMESTART( MHandle, Model, ModelBase, Frame, FrameIndex, -1 ) ;
 
-	// ѓЃѓbѓVѓ…‚Мђ”‚р•Ф‚·
+	// гѓЎгѓѓг‚·гѓҐгЃ®ж•°г‚’иї”гЃ™
 	return Frame->BaseData->MeshNum ;
 }
 
-// Ћw’и‚МѓtѓЊЃ[ѓЂ‚ЄЋќ‚ВѓЃѓbѓVѓ…‚МѓЃѓbѓVѓ…ѓCѓ“ѓfѓbѓNѓX‚рЋж“ѕ‚·‚й
+// жЊ‡е®љгЃ®гѓ•гѓ¬гѓјгѓ гЃЊжЊЃгЃ¤гѓЎгѓѓг‚·гѓҐгЃ®гѓЎгѓѓг‚·гѓҐг‚¤гѓігѓ‡гѓѓг‚Їг‚№г‚’еЏ–еѕ—гЃ™г‚‹
 extern int NS_MV1GetFrameMesh( int MHandle, int FrameIndex, int Index )
 {
 	MV1_MESH_BASE *Mesh ;
 	MV1FRAMESTART( MHandle, Model, ModelBase, Frame, FrameIndex, -1 ) ;
 
-	// ѓЃѓbѓVѓ…ѓCѓ“ѓfѓbѓNѓX‚Є•sђі‚ѕ‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// гѓЎгѓѓг‚·гѓҐг‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃЊдёЌж­ЈгЃ гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( Index < 0 || Index >= Frame->BaseData->MeshNum )
 		return -1 ;
 	Mesh = &Frame->BaseData->Mesh[ Index ] ;
 
-	// ѓЃѓbѓVѓ…‚МѓCѓ“ѓfѓbѓNѓX‚р•Ф‚·
+	// гѓЎгѓѓг‚·гѓҐгЃ®г‚¤гѓігѓ‡гѓѓг‚Їг‚№г‚’иї”гЃ™
 	return ( int )( Mesh - ModelBase->Mesh ) ;
 }
 
-// Ћw’и‚МѓtѓЊЃ[ѓЂ‚М•\Ћ¦ЃA”с•\Ћ¦‚р•ПЌX‚·‚й( TRUE:•\Ћ¦  FALSE:”с•\Ћ¦ )
+// жЊ‡е®љгЃ®гѓ•гѓ¬гѓјгѓ гЃ®иЎЁз¤єгЂЃйќћиЎЁз¤єг‚’е¤‰ж›ґгЃ™г‚‹( TRUE:иЎЁз¤є  FALSE:йќћиЎЁз¤є )
 extern int NS_MV1SetFrameVisible( int MHandle, int FrameIndex, int VisibleFlag )
 {
 	MV1FRAMESTART( MHandle, Model, ModelBase, Frame, FrameIndex, -1 ) ;
 
-	// ’l‚рѓZѓbѓg
+	// еЂ¤г‚’г‚»гѓѓгѓ€
 	if( MV1SetDrawMaterialVisible( &Frame->DrawMaterial, &Frame->DrawMaterialChange, ( BYTE )VisibleFlag ) )
 	{
-		// •`‰ж‘Т‹@‚µ‚Д‚ў‚й•`‰ж•Ё‚р•`‰ж
+		// жЏЏз”»еѕ…ж©џгЃ—гЃ¦гЃ„г‚‹жЏЏз”»з‰©г‚’жЏЏз”»
 		DRAWSTOCKINFO
 	}
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// Ћw’и‚МѓtѓЊЃ[ѓЂ‚М•\Ћ¦ЃA”с•\Ћ¦Џу‘Ф‚рЋж“ѕ‚·‚й( TRUE:•\Ћ¦  FALSE:”с•\Ћ¦ )
+// жЊ‡е®љгЃ®гѓ•гѓ¬гѓјгѓ гЃ®иЎЁз¤єгЂЃйќћиЎЁз¤єзЉ¶ж…‹г‚’еЏ–еѕ—гЃ™г‚‹( TRUE:иЎЁз¤є  FALSE:йќћиЎЁз¤є )
 extern int NS_MV1GetFrameVisible( int MHandle, int FrameIndex )
 {
 	MV1FRAMESTART( MHandle, Model, ModelBase, Frame, FrameIndex, -1 ) ;
 
-	// ѓtѓ‰ѓO‚р•Ф‚·
+	// гѓ•гѓ©г‚°г‚’иї”гЃ™
 	return Frame->DrawMaterial.Visible ;
 }
 
 
-// Ћw’и‚МѓtѓЊЃ[ѓЂ‚МѓfѓBѓtѓ…Ѓ[ѓYѓJѓ‰Ѓ[‚МѓXѓPЃ[ѓ‹’l‚рђЭ’и‚·‚й( ѓfѓtѓHѓ‹ѓg’l‚Н 1.0f )
+// жЊ‡е®љгЃ®гѓ•гѓ¬гѓјгѓ гЃ®гѓ‡г‚Јгѓ•гѓҐгѓјг‚єг‚«гѓ©гѓјгЃ®г‚№г‚±гѓјгѓ«еЂ¤г‚’иЁ­е®љгЃ™г‚‹( гѓ‡гѓ•г‚©гѓ«гѓ€еЂ¤гЃЇ 1.0f )
 extern	int			NS_MV1SetFrameDifColorScale( int MHandle, int FrameIndex, COLOR_F Scale )
 {
 	MV1FRAMESTART( MHandle, Model, ModelBase, Frame, FrameIndex, -1 ) ;
 
-	// ’l‚рѓZѓbѓg
+	// еЂ¤г‚’г‚»гѓѓгѓ€
 	if( MV1SetDrawMaterialDif( &Frame->DrawMaterial, &Frame->DrawMaterialChange, Scale ) )
 	{
-		// •`‰ж‘Т‹@‚µ‚Д‚ў‚й•`‰ж•Ё‚р•`‰ж
+		// жЏЏз”»еѕ…ж©џгЃ—гЃ¦гЃ„г‚‹жЏЏз”»з‰©г‚’жЏЏз”»
 		DRAWSTOCKINFO
 
-		// ”ј“§–ѕ—v‘f—L–іЏо•с‚МѓZѓbѓgѓAѓbѓvЉ®—№ѓtѓ‰ѓO‚р“|‚·
+		// еЌЉйЂЏжЋи¦Ѓзґ жњ‰з„Ўжѓ…е ±гЃ®г‚»гѓѓгѓ€г‚ўгѓѓгѓ—е®Њдє†гѓ•гѓ©г‚°г‚’еЂ’гЃ™
 		MV1FRAME_RESET_SEMITRANSSETUP( Frame ) ;
 	}
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// Ћw’и‚МѓtѓЊЃ[ѓЂ‚МѓXѓyѓLѓ…ѓ‰ѓJѓ‰Ѓ[‚МѓXѓPЃ[ѓ‹’l‚рђЭ’и‚·‚й( ѓfѓtѓHѓ‹ѓg’l‚Н 1.0f )
+// жЊ‡е®љгЃ®гѓ•гѓ¬гѓјгѓ гЃ®г‚№гѓљг‚­гѓҐгѓ©г‚«гѓ©гѓјгЃ®г‚№г‚±гѓјгѓ«еЂ¤г‚’иЁ­е®љгЃ™г‚‹( гѓ‡гѓ•г‚©гѓ«гѓ€еЂ¤гЃЇ 1.0f )
 extern	int			NS_MV1SetFrameSpcColorScale( int MHandle, int FrameIndex, COLOR_F Scale )
 {
 	MV1FRAMESTART( MHandle, Model, ModelBase, Frame, FrameIndex, -1 ) ;
 
-	// ’l‚рѓZѓbѓg
+	// еЂ¤г‚’г‚»гѓѓгѓ€
 	if( MV1SetDrawMaterialSpc( &Frame->DrawMaterial, &Frame->DrawMaterialChange, Scale ) )
 	{
-		// •`‰ж‘Т‹@‚µ‚Д‚ў‚й•`‰ж•Ё‚р•`‰ж
+		// жЏЏз”»еѕ…ж©џгЃ—гЃ¦гЃ„г‚‹жЏЏз”»з‰©г‚’жЏЏз”»
 		DRAWSTOCKINFO
 	}
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// Ћw’и‚МѓtѓЊЃ[ѓЂ‚МѓGѓ~ѓbѓVѓuѓJѓ‰Ѓ[‚МѓXѓPЃ[ѓ‹’l‚рђЭ’и‚·‚й( ѓfѓtѓHѓ‹ѓg’l‚Н 1.0f )
+// жЊ‡е®љгЃ®гѓ•гѓ¬гѓјгѓ гЃ®г‚Ёгѓџгѓѓг‚·гѓ–г‚«гѓ©гѓјгЃ®г‚№г‚±гѓјгѓ«еЂ¤г‚’иЁ­е®љгЃ™г‚‹( гѓ‡гѓ•г‚©гѓ«гѓ€еЂ¤гЃЇ 1.0f )
 extern	int			NS_MV1SetFrameEmiColorScale( int MHandle, int FrameIndex, COLOR_F Scale )
 {
 	MV1FRAMESTART( MHandle, Model, ModelBase, Frame, FrameIndex, -1 ) ;
 
-	// ’l‚рѓZѓbѓg
+	// еЂ¤г‚’г‚»гѓѓгѓ€
 	if( MV1SetDrawMaterialEmi( &Frame->DrawMaterial, &Frame->DrawMaterialChange, Scale ) )
 	{
-		// •`‰ж‘Т‹@‚µ‚Д‚ў‚й•`‰ж•Ё‚р•`‰ж
+		// жЏЏз”»еѕ…ж©џгЃ—гЃ¦гЃ„г‚‹жЏЏз”»з‰©г‚’жЏЏз”»
 		DRAWSTOCKINFO
 	}
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// Ћw’и‚МѓtѓЊЃ[ѓЂ‚МѓAѓ“ѓrѓGѓ“ѓgѓJѓ‰Ѓ[‚МѓXѓPЃ[ѓ‹’l‚рђЭ’и‚·‚й( ѓfѓtѓHѓ‹ѓg’l‚Н 1.0f )
+// жЊ‡е®љгЃ®гѓ•гѓ¬гѓјгѓ гЃ®г‚ўгѓігѓ“г‚Ёгѓігѓ€г‚«гѓ©гѓјгЃ®г‚№г‚±гѓјгѓ«еЂ¤г‚’иЁ­е®љгЃ™г‚‹( гѓ‡гѓ•г‚©гѓ«гѓ€еЂ¤гЃЇ 1.0f )
 extern	int			NS_MV1SetFrameAmbColorScale( int MHandle, int FrameIndex, COLOR_F Scale )
 {
 	MV1FRAMESTART( MHandle, Model, ModelBase, Frame, FrameIndex, -1 ) ;
 
-	// ’l‚рѓZѓbѓg
+	// еЂ¤г‚’г‚»гѓѓгѓ€
 	if( MV1SetDrawMaterialAmb( &Frame->DrawMaterial, &Frame->DrawMaterialChange, Scale ) )
 	{
-		// •`‰ж‘Т‹@‚µ‚Д‚ў‚й•`‰ж•Ё‚р•`‰ж
+		// жЏЏз”»еѕ…ж©џгЃ—гЃ¦гЃ„г‚‹жЏЏз”»з‰©г‚’жЏЏз”»
 		DRAWSTOCKINFO
 	}
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// Ћw’и‚МѓtѓЊЃ[ѓЂ‚МѓfѓBѓtѓ…Ѓ[ѓYѓJѓ‰Ѓ[‚МѓXѓPЃ[ѓ‹’l‚рЋж“ѕ‚·‚й( ѓfѓtѓHѓ‹ѓg’l‚Н 1.0f )
+// жЊ‡е®љгЃ®гѓ•гѓ¬гѓјгѓ гЃ®гѓ‡г‚Јгѓ•гѓҐгѓјг‚єг‚«гѓ©гѓјгЃ®г‚№г‚±гѓјгѓ«еЂ¤г‚’еЏ–еѕ—гЃ™г‚‹( гѓ‡гѓ•г‚©гѓ«гѓ€еЂ¤гЃЇ 1.0f )
 extern	COLOR_F		NS_MV1GetFrameDifColorScale( int MHandle, int FrameIndex )
 {
 	COLOR_F ErrorResult = { -1.0f, -1.0f, -1.0f, -1.0f } ;
 	MV1FRAMESTART( MHandle, Model, ModelBase, Frame, FrameIndex, ErrorResult ) ;
 
-	// ’l‚р•Ф‚·
+	// еЂ¤г‚’иї”гЃ™
 	return Frame->DrawMaterial.DiffuseScale ;
 }
 
-// Ћw’и‚МѓtѓЊЃ[ѓЂ‚МѓXѓyѓLѓ…ѓ‰ѓJѓ‰Ѓ[‚МѓXѓPЃ[ѓ‹’l‚рЋж“ѕ‚·‚й( ѓfѓtѓHѓ‹ѓg’l‚Н 1.0f )
+// жЊ‡е®љгЃ®гѓ•гѓ¬гѓјгѓ гЃ®г‚№гѓљг‚­гѓҐгѓ©г‚«гѓ©гѓјгЃ®г‚№г‚±гѓјгѓ«еЂ¤г‚’еЏ–еѕ—гЃ™г‚‹( гѓ‡гѓ•г‚©гѓ«гѓ€еЂ¤гЃЇ 1.0f )
 extern	COLOR_F		NS_MV1GetFrameSpcColorScale( int MHandle, int FrameIndex )
 {
 	COLOR_F ErrorResult = { -1.0f, -1.0f, -1.0f, -1.0f } ;
 	MV1FRAMESTART( MHandle, Model, ModelBase, Frame, FrameIndex, ErrorResult ) ;
 
-	// ’l‚р•Ф‚·
+	// еЂ¤г‚’иї”гЃ™
 	return Frame->DrawMaterial.SpecularScale ;
 }
 
-// Ћw’и‚МѓtѓЊЃ[ѓЂ‚МѓGѓ~ѓbѓVѓuѓJѓ‰Ѓ[‚МѓXѓPЃ[ѓ‹’l‚рЋж“ѕ‚·‚й( ѓfѓtѓHѓ‹ѓg’l‚Н 1.0f )
+// жЊ‡е®љгЃ®гѓ•гѓ¬гѓјгѓ гЃ®г‚Ёгѓџгѓѓг‚·гѓ–г‚«гѓ©гѓјгЃ®г‚№г‚±гѓјгѓ«еЂ¤г‚’еЏ–еѕ—гЃ™г‚‹( гѓ‡гѓ•г‚©гѓ«гѓ€еЂ¤гЃЇ 1.0f )
 extern	COLOR_F		NS_MV1GetFrameEmiColorScale( int MHandle, int FrameIndex )
 {
 	COLOR_F ErrorResult = { -1.0f, -1.0f, -1.0f, -1.0f } ;
 	MV1FRAMESTART( MHandle, Model, ModelBase, Frame, FrameIndex, ErrorResult ) ;
 
-	// ’l‚р•Ф‚·
+	// еЂ¤г‚’иї”гЃ™
 	return Frame->DrawMaterial.EmissiveScale ;
 }
 
-// Ћw’и‚МѓtѓЊЃ[ѓЂ‚МѓAѓ“ѓrѓGѓ“ѓgѓJѓ‰Ѓ[‚МѓXѓPЃ[ѓ‹’l‚рЋж“ѕ‚·‚й( ѓfѓtѓHѓ‹ѓg’l‚Н 1.0f )
+// жЊ‡е®љгЃ®гѓ•гѓ¬гѓјгѓ гЃ®г‚ўгѓігѓ“г‚Ёгѓігѓ€г‚«гѓ©гѓјгЃ®г‚№г‚±гѓјгѓ«еЂ¤г‚’еЏ–еѕ—гЃ™г‚‹( гѓ‡гѓ•г‚©гѓ«гѓ€еЂ¤гЃЇ 1.0f )
 extern	COLOR_F		NS_MV1GetFrameAmbColorScale( int MHandle, int FrameIndex )
 {
 	COLOR_F ErrorResult = { -1.0f, -1.0f, -1.0f, -1.0f } ;
 	MV1FRAMESTART( MHandle, Model, ModelBase, Frame, FrameIndex, ErrorResult ) ;
 
-	// ’l‚р•Ф‚·
+	// еЂ¤г‚’иї”гЃ™
 	return Frame->DrawMaterial.AmbientScale ;
 }
 
-// Ћw’и‚МѓtѓЊЃ[ѓЂ‚Й”ј“§–ѕ—v‘f‚Є‚ ‚й‚©‚З‚¤‚©‚рЋж“ѕ‚·‚й( –Я‚и’l TRUE:‚ ‚й  FALSE:‚И‚ў )
+// жЊ‡е®љгЃ®гѓ•гѓ¬гѓјгѓ гЃ«еЌЉйЂЏжЋи¦Ѓзґ гЃЊгЃ‚г‚‹гЃ‹гЃ©гЃ†гЃ‹г‚’еЏ–еѕ—гЃ™г‚‹( ж€»г‚ЉеЂ¤ TRUE:гЃ‚г‚‹  FALSE:гЃЄгЃ„ )
 extern int NS_MV1GetFrameSemiTransState( int MHandle, int FrameIndex )
 {
 	int i, MeshIndex ;
 	MV1FRAMESTART( MHandle, Model, ModelBase, Frame, FrameIndex, -1 ) ;
 
-	// •`‰жѓ}ѓeѓЉѓAѓ‹‚МЌXђV
+	// жЏЏз”»гѓћгѓ†гѓЄг‚ўгѓ«гЃ®ж›ґж–°
 	MV1SETUPDRAWMATERIALFRAME( Frame ) ;
 
-	// ѓZѓbѓgѓAѓbѓv‚ЄЉ®—№‚µ‚Д‚ў‚И‚ўЏкЌ‡‚НѓZѓbѓgѓAѓbѓv‚рЌs‚¤
+	// г‚»гѓѓгѓ€г‚ўгѓѓгѓ—гЃЊе®Њдє†гЃ—гЃ¦гЃ„гЃЄгЃ„е ґеђ€гЃЇг‚»гѓѓгѓ€г‚ўгѓѓгѓ—г‚’иЎЊгЃ†
 	if( Frame->SemiTransStateSetupFlag == false )
 	{
-		// ‰є€КѓtѓЊЃ[ѓЂЃAѓЃѓbѓVѓ…‚М”ј“§–ѕ—v‘f‚Є‚ ‚й‚©‚З‚¤‚©‚р’І‚ЧЃA
-		// ‚З‚к‚©€к‚В‚Е‚а”ј“§–ѕ—v‘f‚Є‚ ‚к‚О‚±‚МѓtѓЊЃ[ѓЂ‚а”ј“§–ѕ—v‘f‚Є‚ ‚й‚Ж‚ў‚¤‚±‚Ж‚Й‚И‚й
+		// дё‹дЅЌгѓ•гѓ¬гѓјгѓ гЂЃгѓЎгѓѓг‚·гѓҐгЃ®еЌЉйЂЏжЋи¦Ѓзґ гЃЊгЃ‚г‚‹гЃ‹гЃ©гЃ†гЃ‹г‚’иЄїгЃ№гЂЃ
+		// гЃ©г‚ЊгЃ‹дёЂгЃ¤гЃ§г‚‚еЌЉйЂЏжЋи¦Ѓзґ гЃЊгЃ‚г‚ЊгЃ°гЃ“гЃ®гѓ•гѓ¬гѓјгѓ г‚‚еЌЉйЂЏжЋи¦Ѓзґ гЃЊгЃ‚г‚‹гЃЁгЃ„гЃ†гЃ“гЃЁгЃ«гЃЄг‚‹
 		Frame->SemiTransState = false ;
 
-		// ЌЕЏ‰‚ЙѓЃѓbѓVѓ…‚©‚з
+		// жњЂе€ќгЃ«гѓЎгѓѓг‚·гѓҐгЃ‹г‚‰
 		MeshIndex = ( int )( Frame->Mesh - Model->Mesh ) ;
 		for( i = 0 ; i < Frame->BaseData->MeshNum ; i ++, MeshIndex ++ )
 		{
@@ -29564,56 +29564,56 @@ extern int NS_MV1GetFrameSemiTransState( int MHandle, int FrameIndex )
 			}
 		}
 
-		// Ћџ‚ЙЋqѓtѓЊЃ[ѓЂ
+		// ж¬ЎгЃ«е­ђгѓ•гѓ¬гѓјгѓ 
 		for( i = 0 ; i < Frame->ChildNum ; i ++ )
 		{
 			if( NS_MV1GetFrameSemiTransState( MHandle, ( int )( Frame->ChildList[ i ] - Model->Frame ) ) )
 				Frame->SemiTransState = true ;
 		}
 
-		// ѓZѓbѓgѓAѓbѓvЉ®—№ѓtѓ‰ѓO‚р—§‚Д‚й
+		// г‚»гѓѓгѓ€г‚ўгѓѓгѓ—е®Њдє†гѓ•гѓ©г‚°г‚’з«‹гЃ¦г‚‹
 		Frame->SemiTransStateSetupFlag = true ;
 	}
 
-	// ”ј“§–ѕ—v‘fѓ`ѓFѓbѓNѓtѓ‰ѓO‚р•Ф‚·
+	// еЌЉйЂЏжЋи¦Ѓзґ гѓЃг‚§гѓѓг‚Їгѓ•гѓ©г‚°г‚’иї”гЃ™
 	return Frame->SemiTransState ;
 }
 
 
-// Ћw’и‚МѓtѓЊЃ[ѓЂ‚М•s“§–ѕ“x‚рђЭ’и‚·‚й( •s“§–ѕ 1.0f Ѓ` “§–ѕ 0.0f )
+// жЊ‡е®љгЃ®гѓ•гѓ¬гѓјгѓ гЃ®дёЌйЂЏжЋеє¦г‚’иЁ­е®љгЃ™г‚‹( дёЌйЂЏжЋ 1.0f пЅћ йЂЏжЋ 0.0f )
 extern	int			NS_MV1SetFrameOpacityRate( int MHandle, int FrameIndex, float Rate )
 {
 	MV1FRAMESTART( MHandle, Model, ModelBase, Frame, FrameIndex, -1 ) ;
 
-	// ’l‚рѓZѓbѓg
+	// еЂ¤г‚’г‚»гѓѓгѓ€
 	if( MV1SetDrawMaterialOpacityRate( &Frame->DrawMaterial, &Frame->DrawMaterialChange, Rate ) )
 	{
-		// •`‰ж‘Т‹@‚µ‚Д‚ў‚й•`‰ж•Ё‚р•`‰ж
+		// жЏЏз”»еѕ…ж©џгЃ—гЃ¦гЃ„г‚‹жЏЏз”»з‰©г‚’жЏЏз”»
 		DRAWSTOCKINFO
 
-		// ”ј“§–ѕ—v‘f—L–іЏо•с‚МѓZѓbѓgѓAѓbѓvЉ®—№ѓtѓ‰ѓO‚р“|‚·
+		// еЌЉйЂЏжЋи¦Ѓзґ жњ‰з„Ўжѓ…е ±гЃ®г‚»гѓѓгѓ€г‚ўгѓѓгѓ—е®Њдє†гѓ•гѓ©г‚°г‚’еЂ’гЃ™
 		MV1FRAME_RESET_SEMITRANSSETUP( Frame ) ;
 	}
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// Ћw’и‚МѓtѓЊЃ[ѓЂ‚М•s“§–ѕ“x‚рЋж“ѕ‚·‚й( •s“§–ѕ 1.0f Ѓ` “§–ѕ 0.0f )
+// жЊ‡е®љгЃ®гѓ•гѓ¬гѓјгѓ гЃ®дёЌйЂЏжЋеє¦г‚’еЏ–еѕ—гЃ™г‚‹( дёЌйЂЏжЋ 1.0f пЅћ йЂЏжЋ 0.0f )
 extern	float		NS_MV1GetFrameOpacityRate( int MHandle, int FrameIndex )
 {
 	MV1FRAMESTART( MHandle, Model, ModelBase, Frame, FrameIndex, -1.0f ) ;
 
-	// •s“§–ѕ“x‚р•Ф‚·
+	// дёЌйЂЏжЋеє¦г‚’иї”гЃ™
 	return Frame->DrawMaterial.OpacityRate ;
 }
 
-// Ћw’и‚МѓtѓЊЃ[ѓЂ‚МЏ‰Љъ•\Ћ¦Џу‘Ф‚рђЭ’и‚·‚й
+// жЊ‡е®љгЃ®гѓ•гѓ¬гѓјгѓ гЃ®е€ќжњџиЎЁз¤єзЉ¶ж…‹г‚’иЁ­е®љгЃ™г‚‹
 extern int NS_MV1SetFrameBaseVisible( int MHandle, int FrameIndex, int VisibleFlag )
 {
 	MV1FRAMESTART( MHandle, Model, ModelBase, Frame, FrameIndex, -1 ) ;
 
-	// Џ‰Љъ•\Ћ¦Џу‘Ф‚рђЭ’и‚·‚й
+	// е€ќжњџиЎЁз¤єзЉ¶ж…‹г‚’иЁ­е®љгЃ™г‚‹
 	if( VisibleFlag )
 	{
 		if( Frame->BaseData->Flag & MV1_FRAMEFLAG_VISIBLE )
@@ -29621,7 +29621,7 @@ extern int NS_MV1SetFrameBaseVisible( int MHandle, int FrameIndex, int VisibleFl
 			return 0 ;
 		}
 
-		// •`‰ж‘Т‹@‚µ‚Д‚ў‚й•`‰ж•Ё‚р•`‰ж
+		// жЏЏз”»еѕ…ж©џгЃ—гЃ¦гЃ„г‚‹жЏЏз”»з‰©г‚’жЏЏз”»
 		DRAWSTOCKINFO
 
 		Frame->BaseData->Flag |= MV1_FRAMEFLAG_VISIBLE ;
@@ -29633,26 +29633,26 @@ extern int NS_MV1SetFrameBaseVisible( int MHandle, int FrameIndex, int VisibleFl
 			return 0 ;
 		}
 
-		// •`‰ж‘Т‹@‚µ‚Д‚ў‚й•`‰ж•Ё‚р•`‰ж
+		// жЏЏз”»еѕ…ж©џгЃ—гЃ¦гЃ„г‚‹жЏЏз”»з‰©г‚’жЏЏз”»
 		DRAWSTOCKINFO
 
 		Frame->BaseData->Flag &= ~MV1_FRAMEFLAG_VISIBLE ;
 	}
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// Ћw’и‚МѓtѓЊЃ[ѓЂ‚МЏ‰Љъ•\Ћ¦Џу‘Ф‚рЋж“ѕ‚·‚й( –Я‚и’l  TRUE:•\Ћ¦   FALSE:”с•\Ћ¦ )
+// жЊ‡е®љгЃ®гѓ•гѓ¬гѓјгѓ гЃ®е€ќжњџиЎЁз¤єзЉ¶ж…‹г‚’еЏ–еѕ—гЃ™г‚‹( ж€»г‚ЉеЂ¤  TRUE:иЎЁз¤є   FALSE:йќћиЎЁз¤є )
 extern int NS_MV1GetFrameBaseVisible( int MHandle, int FrameIndex )
 {
 	MV1FRAMESTART( MHandle, Model, ModelBase, Frame, FrameIndex, -1 ) ;
 
-	// Џ‰Љъ•\Ћ¦Џу‘Ф‚р•Ф‚·
+	// е€ќжњџиЎЁз¤єзЉ¶ж…‹г‚’иї”гЃ™
 	return ( Frame->BaseData->Flag & MV1_FRAMEFLAG_VISIBLE ) != 0 ? TRUE : FALSE ;
 }
 
-// Ћw’и‚МѓtѓЊЃ[ѓЂ‚МѓeѓNѓXѓ`ѓѓЌА•W•ПЉ·ѓpѓ‰ѓЃЃ[ѓ^‚рђЭ’и‚·‚й
+// жЊ‡е®љгЃ®гѓ•гѓ¬гѓјгѓ гЃ®гѓ†г‚Їг‚№гѓЃгѓЈеє§жЁ™е¤‰жЏ›гѓ‘гѓ©гѓЎгѓјг‚їг‚’иЁ­е®љгЃ™г‚‹
 extern int NS_MV1SetFrameTextureAddressTransform( int MHandle, int FrameIndex, float TransU, float TransV, float ScaleU, float ScaleV, float RotCenterU, float RotCenterV, float Rotate )
 {
 	MATRIX Transform, Temp1, Temp2, Temp3 ;
@@ -29701,89 +29701,89 @@ extern int NS_MV1SetFrameTextureAddressTransform( int MHandle, int FrameIndex, f
 
 	if( UseFlag || Frame->TextureAddressTransformUse )
 	{
-		// •`‰ж‘Т‹@‚µ‚Д‚ў‚й•`‰ж•Ё‚р•`‰ж
+		// жЏЏз”»еѕ…ж©џгЃ—гЃ¦гЃ„г‚‹жЏЏз”»з‰©г‚’жЏЏз”»
 		DRAWSTOCKINFO
 	}
 
 	Frame->TextureAddressTransformUse = UseFlag ;
 	Frame->TextureAddressTransformMatrix = Transform ;
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// Ћw’и‚МѓtѓЊЃ[ѓЂ‚МѓeѓNѓXѓ`ѓѓЌА•W•ПЉ·Ќs—с‚рѓZѓbѓg‚·‚й
+// жЊ‡е®љгЃ®гѓ•гѓ¬гѓјгѓ гЃ®гѓ†г‚Їг‚№гѓЃгѓЈеє§жЁ™е¤‰жЏ›иЎЊе€—г‚’г‚»гѓѓгѓ€гЃ™г‚‹
 extern int NS_MV1SetFrameTextureAddressTransformMatrix( int MHandle, int FrameIndex, MATRIX Matrix )
 {
 	MV1FRAMESTART( MHandle, Model, ModelBase, Frame, FrameIndex, -1 ) ;
 
-	// •`‰ж‘Т‹@‚µ‚Д‚ў‚й•`‰ж•Ё‚р•`‰ж
+	// жЏЏз”»еѕ…ж©џгЃ—гЃ¦гЃ„г‚‹жЏЏз”»з‰©г‚’жЏЏз”»
 	DRAWSTOCKINFO
 
 	Frame->TextureAddressTransformUse = TRUE ;
 	Frame->TextureAddressTransformMatrix = Matrix ;
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// Ћw’и‚МѓtѓЊЃ[ѓЂ‚МѓeѓNѓXѓ`ѓѓЌА•W•ПЉ·ѓpѓ‰ѓЃЃ[ѓ^‚рѓЉѓZѓbѓg‚·‚й
+// жЊ‡е®љгЃ®гѓ•гѓ¬гѓјгѓ гЃ®гѓ†г‚Їг‚№гѓЃгѓЈеє§жЁ™е¤‰жЏ›гѓ‘гѓ©гѓЎгѓјг‚їг‚’гѓЄг‚»гѓѓгѓ€гЃ™г‚‹
 extern int NS_MV1ResetFrameTextureAddressTransform( int MHandle, int FrameIndex )
 {
 	MV1FRAMESTART( MHandle, Model, ModelBase, Frame, FrameIndex, -1 ) ;
 
 	if( Frame->TextureAddressTransformUse )
 	{
-		// •`‰ж‘Т‹@‚µ‚Д‚ў‚й•`‰ж•Ё‚р•`‰ж
+		// жЏЏз”»еѕ…ж©џгЃ—гЃ¦гЃ„г‚‹жЏЏз”»з‰©г‚’жЏЏз”»
 		DRAWSTOCKINFO
 	}
 
 	Frame->TextureAddressTransformUse = FALSE ;
 	CreateIdentityMatrix( &Frame->TextureAddressTransformMatrix ) ;
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// ѓ‚ѓfѓ‹‚ЙЉЬ‚Ь‚к‚йѓЃѓbѓVѓ…‚Мђ”‚рЋж“ѕ‚·‚й
+// гѓўгѓ‡гѓ«гЃ«еђ«гЃѕг‚Њг‚‹гѓЎгѓѓг‚·гѓҐгЃ®ж•°г‚’еЏ–еѕ—гЃ™г‚‹
 extern int NS_MV1GetMeshNum( int MHandle )
 {
 	MV1_MODEL *Model ;
 	MV1_MODEL_BASE *ModelBase ;
 
-	// Џ‰Љъ‰»‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// е€ќжњџеЊ–гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( MV1Man.Initialize == false )
 		return -1 ;
 
-	// ѓAѓhѓЊѓXЋж“ѕ
+	// г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ—
 	if( MV1MDLCHK( MHandle, Model ) )
 		return -1 ;
 	ModelBase = Model->BaseData ;
 
-	// ѓЃѓbѓVѓ…‚Мђ”‚р•Ф‚·
+	// гѓЎгѓѓг‚·гѓҐгЃ®ж•°г‚’иї”гЃ™
 	return ModelBase->MeshNum ;
 }
 
 
 
 
-// Ћw’иѓЃѓbѓVѓ…‚ЄЋg—p‚µ‚Д‚ў‚йѓ}ѓeѓЉѓAѓ‹‚МѓCѓ“ѓfѓbѓNѓX‚рЋж“ѕ‚·‚й
+// жЊ‡е®љгѓЎгѓѓг‚·гѓҐгЃЊдЅїз”ЁгЃ—гЃ¦гЃ„г‚‹гѓћгѓ†гѓЄг‚ўгѓ«гЃ®г‚¤гѓігѓ‡гѓѓг‚Їг‚№г‚’еЏ–еѕ—гЃ™г‚‹
 extern int NS_MV1GetMeshMaterial( int MHandle, int MeshIndex )
 {
 	MV1MESHSTART( MHandle, Model, ModelBase, Mesh, MeshIndex, -1 ) ;
 
-	// Ћg—p‚µ‚Д‚ў‚йѓ}ѓeѓЉѓAѓ‹‚МѓCѓ“ѓfѓbѓNѓX‚р•Ф‚·
+	// дЅїз”ЁгЃ—гЃ¦гЃ„г‚‹гѓћгѓ†гѓЄг‚ўгѓ«гЃ®г‚¤гѓігѓ‡гѓѓг‚Їг‚№г‚’иї”гЃ™
 	return ( int )( Mesh->BaseData->Material - ModelBase->Material ) ;
 }
 
-// Ћw’иѓЃѓbѓVѓ…‚ЙЉЬ‚Ь‚к‚й’ё“_‚Мђ”‚рЋж“ѕ‚·‚й
+// жЊ‡е®љгѓЎгѓѓг‚·гѓҐгЃ«еђ«гЃѕг‚Њг‚‹й ‚з‚№гЃ®ж•°г‚’еЏ–еѕ—гЃ™г‚‹
 extern int NS_MV1GetMeshVertexNum( int MHandle, int MeshIndex )
 {
 	MV1MESHSTART( MHandle, Model, ModelBase, Mesh, MeshIndex, -1 ) ;
 	MV1_MESH_BASE *MeshBase ;
 	int i, Num ;
 
-	// ЉЬ‚Ь‚к‚й’ё“_‚Мђ”‚р•Ф‚·
+	// еђ«гЃѕг‚Њг‚‹й ‚з‚№гЃ®ж•°г‚’иї”гЃ™
 	MeshBase = Mesh->BaseData ;
 	Num = 0 ;
 	for( i = 0 ; i < MeshBase->TriangleListNum ; i ++ )
@@ -29791,14 +29791,14 @@ extern int NS_MV1GetMeshVertexNum( int MHandle, int MeshIndex )
 	return Num ;
 }
 
-// Ћw’иѓЃѓbѓVѓ…‚ЙЉЬ‚Ь‚к‚йЋOЉpЊ`ѓ|ѓЉѓSѓ“‚Мђ”‚рЋж“ѕ‚·‚й
+// жЊ‡е®љгѓЎгѓѓг‚·гѓҐгЃ«еђ«гЃѕг‚Њг‚‹дё‰и§’еЅўгѓќгѓЄг‚ґгѓігЃ®ж•°г‚’еЏ–еѕ—гЃ™г‚‹
 extern int NS_MV1GetMeshTriangleNum( int MHandle, int MeshIndex )
 {
 	MV1MESHSTART( MHandle, Model, ModelBase, Mesh, MeshIndex, -1 ) ;
 	MV1_MESH_BASE *MeshBase ;
 	int i, Num ;
 
-	// ЉЬ‚Ь‚к‚йЋOЉpЊ`ѓ|ѓЉѓSѓ“‚Мђ”‚р•Ф‚·
+	// еђ«гЃѕг‚Њг‚‹дё‰и§’еЅўгѓќгѓЄг‚ґгѓігЃ®ж•°г‚’иї”гЃ™
 	MeshBase = Mesh->BaseData ;
 	Num = 0 ;
 	for( i = 0 ; i < MeshBase->TriangleListNum ; i ++ )
@@ -29806,238 +29806,238 @@ extern int NS_MV1GetMeshTriangleNum( int MHandle, int MeshIndex )
 	return Num ;
 }
 
-// Ћw’иѓЃѓbѓVѓ…‚М•\Ћ¦ЃA”с•\Ћ¦Џу‘Ф‚р•ПЌX‚·‚й( TRUE:•\Ћ¦  FALSE:”с•\Ћ¦ )
+// жЊ‡е®љгѓЎгѓѓг‚·гѓҐгЃ®иЎЁз¤єгЂЃйќћиЎЁз¤єзЉ¶ж…‹г‚’е¤‰ж›ґгЃ™г‚‹( TRUE:иЎЁз¤є  FALSE:йќћиЎЁз¤є )
 extern int NS_MV1SetMeshVisible( int MHandle, int MeshIndex, int VisibleFlag )
 {
 	MV1MESHSTART( MHandle, Model, ModelBase, Mesh, MeshIndex, -1 ) ;
 
-	// ’l‚рѓZѓbѓg
+	// еЂ¤г‚’г‚»гѓѓгѓ€
 	if( MV1SetDrawMaterialVisible( &Mesh->DrawMaterial, &Mesh->DrawMaterialChange, ( BYTE )VisibleFlag ) )
 	{
-		// •`‰ж‘Т‹@‚µ‚Д‚ў‚й•`‰ж•Ё‚р•`‰ж
+		// жЏЏз”»еѕ…ж©џгЃ—гЃ¦гЃ„г‚‹жЏЏз”»з‰©г‚’жЏЏз”»
 		DRAWSTOCKINFO
 	}
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// Ћw’иѓЃѓbѓVѓ…‚М•\Ћ¦ЃA”с•\Ћ¦Џу‘Ф‚рЋж“ѕ‚·‚й( TRUE:•\Ћ¦  FALSE:”с•\Ћ¦ )
+// жЊ‡е®љгѓЎгѓѓг‚·гѓҐгЃ®иЎЁз¤єгЂЃйќћиЎЁз¤єзЉ¶ж…‹г‚’еЏ–еѕ—гЃ™г‚‹( TRUE:иЎЁз¤є  FALSE:йќћиЎЁз¤є )
 extern int NS_MV1GetMeshVisible( int MHandle, int MeshIndex )
 {
 	MV1MESHSTART( MHandle, Model, ModelBase, Mesh, MeshIndex, -1 ) ;
 
-	// ѓtѓ‰ѓO‚р•Ф‚·
+	// гѓ•гѓ©г‚°г‚’иї”гЃ™
 	return Mesh->DrawMaterial.Visible ;
 }
 
-// Ћw’и‚МѓЃѓbѓVѓ…‚МѓfѓBѓtѓ…Ѓ[ѓYѓJѓ‰Ѓ[‚МѓXѓPЃ[ѓ‹’l‚рђЭ’и‚·‚й( ѓfѓtѓHѓ‹ѓg’l‚Н 1.0f )
+// жЊ‡е®љгЃ®гѓЎгѓѓг‚·гѓҐгЃ®гѓ‡г‚Јгѓ•гѓҐгѓјг‚єг‚«гѓ©гѓјгЃ®г‚№г‚±гѓјгѓ«еЂ¤г‚’иЁ­е®љгЃ™г‚‹( гѓ‡гѓ•г‚©гѓ«гѓ€еЂ¤гЃЇ 1.0f )
 extern	int			NS_MV1SetMeshDifColorScale( int MHandle, int MeshIndex, COLOR_F Scale )
 {
 	MV1MESHSTART( MHandle, Model, ModelBase, Mesh, MeshIndex, -1 ) ;
 
-	// ’l‚рѓZѓbѓg
+	// еЂ¤г‚’г‚»гѓѓгѓ€
 	if( MV1SetDrawMaterialDif( &Mesh->DrawMaterial, &Mesh->DrawMaterialChange, Scale ) )
 	{
-		// •`‰ж‘Т‹@‚µ‚Д‚ў‚й•`‰ж•Ё‚р•`‰ж
+		// жЏЏз”»еѕ…ж©џгЃ—гЃ¦гЃ„г‚‹жЏЏз”»з‰©г‚’жЏЏз”»
 		DRAWSTOCKINFO
 
-		// ”ј“§–ѕѓXѓeЃ[ѓ^ѓXѓZѓbѓgѓAѓbѓvЉ®—№ѓtѓ‰ѓO‚Є‘«‚Б‚Д‚ў‚Ѕ‚з“|‚·
+		// еЌЉйЂЏжЋг‚№гѓ†гѓјг‚їг‚№г‚»гѓѓгѓ€г‚ўгѓѓгѓ—е®Њдє†гѓ•гѓ©г‚°гЃЊи¶ігЃЈгЃ¦гЃ„гЃџг‚‰еЂ’гЃ™
 		MV1MESH_RESET_SEMITRANSSETUP( Mesh )
 	}
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// Ћw’и‚МѓЃѓbѓVѓ…‚МѓXѓyѓLѓ…ѓ‰ѓJѓ‰Ѓ[‚МѓXѓPЃ[ѓ‹’l‚рђЭ’и‚·‚й( ѓfѓtѓHѓ‹ѓg’l‚Н 1.0f )
+// жЊ‡е®љгЃ®гѓЎгѓѓг‚·гѓҐгЃ®г‚№гѓљг‚­гѓҐгѓ©г‚«гѓ©гѓјгЃ®г‚№г‚±гѓјгѓ«еЂ¤г‚’иЁ­е®љгЃ™г‚‹( гѓ‡гѓ•г‚©гѓ«гѓ€еЂ¤гЃЇ 1.0f )
 extern	int			NS_MV1SetMeshSpcColorScale( int MHandle, int MeshIndex, COLOR_F Scale )
 {
 	MV1MESHSTART( MHandle, Model, ModelBase, Mesh, MeshIndex, -1 ) ;
 
-	// ’l‚рѓZѓbѓg
+	// еЂ¤г‚’г‚»гѓѓгѓ€
 	if( MV1SetDrawMaterialSpc( &Mesh->DrawMaterial, &Mesh->DrawMaterialChange, Scale ) )
 	{
-		// •`‰ж‘Т‹@‚µ‚Д‚ў‚й•`‰ж•Ё‚р•`‰ж
+		// жЏЏз”»еѕ…ж©џгЃ—гЃ¦гЃ„г‚‹жЏЏз”»з‰©г‚’жЏЏз”»
 		DRAWSTOCKINFO
 	}
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// Ћw’и‚МѓЃѓbѓVѓ…‚МѓGѓ~ѓbѓVѓuѓJѓ‰Ѓ[‚МѓXѓPЃ[ѓ‹’l‚рђЭ’и‚·‚й( ѓfѓtѓHѓ‹ѓg’l‚Н 1.0f )
+// жЊ‡е®љгЃ®гѓЎгѓѓг‚·гѓҐгЃ®г‚Ёгѓџгѓѓг‚·гѓ–г‚«гѓ©гѓјгЃ®г‚№г‚±гѓјгѓ«еЂ¤г‚’иЁ­е®љгЃ™г‚‹( гѓ‡гѓ•г‚©гѓ«гѓ€еЂ¤гЃЇ 1.0f )
 extern	int			NS_MV1SetMeshEmiColorScale( int MHandle, int MeshIndex, COLOR_F Scale )
 {
 	MV1MESHSTART( MHandle, Model, ModelBase, Mesh, MeshIndex, -1 ) ;
 
-	// ’l‚рѓZѓbѓg
+	// еЂ¤г‚’г‚»гѓѓгѓ€
 	if( MV1SetDrawMaterialEmi( &Mesh->DrawMaterial, &Mesh->DrawMaterialChange, Scale ) )
 	{
-		// •`‰ж‘Т‹@‚µ‚Д‚ў‚й•`‰ж•Ё‚р•`‰ж
+		// жЏЏз”»еѕ…ж©џгЃ—гЃ¦гЃ„г‚‹жЏЏз”»з‰©г‚’жЏЏз”»
 		DRAWSTOCKINFO
 	}
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// Ћw’и‚МѓЃѓbѓVѓ…‚МѓAѓ“ѓrѓGѓ“ѓgѓJѓ‰Ѓ[‚МѓXѓPЃ[ѓ‹’l‚рђЭ’и‚·‚й( ѓfѓtѓHѓ‹ѓg’l‚Н 1.0f )
+// жЊ‡е®љгЃ®гѓЎгѓѓг‚·гѓҐгЃ®г‚ўгѓігѓ“г‚Ёгѓігѓ€г‚«гѓ©гѓјгЃ®г‚№г‚±гѓјгѓ«еЂ¤г‚’иЁ­е®љгЃ™г‚‹( гѓ‡гѓ•г‚©гѓ«гѓ€еЂ¤гЃЇ 1.0f )
 extern	int			NS_MV1SetMeshAmbColorScale( int MHandle, int MeshIndex, COLOR_F Scale )
 {
 	MV1MESHSTART( MHandle, Model, ModelBase, Mesh, MeshIndex, -1 ) ;
 
-	// ’l‚рѓZѓbѓg
+	// еЂ¤г‚’г‚»гѓѓгѓ€
 	if( MV1SetDrawMaterialAmb( &Mesh->DrawMaterial, &Mesh->DrawMaterialChange, Scale ) )
 	{
-		// •`‰ж‘Т‹@‚µ‚Д‚ў‚й•`‰ж•Ё‚р•`‰ж
+		// жЏЏз”»еѕ…ж©џгЃ—гЃ¦гЃ„г‚‹жЏЏз”»з‰©г‚’жЏЏз”»
 		DRAWSTOCKINFO
 	}
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// Ћw’и‚МѓЃѓbѓVѓ…‚МѓfѓBѓtѓ…Ѓ[ѓYѓJѓ‰Ѓ[‚МѓXѓPЃ[ѓ‹’l‚рЋж“ѕ‚·‚й( ѓfѓtѓHѓ‹ѓg’l‚Н 1.0f )
+// жЊ‡е®љгЃ®гѓЎгѓѓг‚·гѓҐгЃ®гѓ‡г‚Јгѓ•гѓҐгѓјг‚єг‚«гѓ©гѓјгЃ®г‚№г‚±гѓјгѓ«еЂ¤г‚’еЏ–еѕ—гЃ™г‚‹( гѓ‡гѓ•г‚©гѓ«гѓ€еЂ¤гЃЇ 1.0f )
 extern	COLOR_F		NS_MV1GetMeshDifColorScale( int MHandle, int MeshIndex )
 {
 	COLOR_F ErrorResult = { -1.0f, -1.0f, -1.0f, -1.0f } ;
 	MV1MESHSTART( MHandle, Model, ModelBase, Mesh, MeshIndex, ErrorResult ) ;
 
-	// ’l‚р•Ф‚·
+	// еЂ¤г‚’иї”гЃ™
 	return Mesh->DrawMaterial.DiffuseScale ;
 }
 
-// Ћw’и‚МѓЃѓbѓVѓ…‚МѓXѓyѓLѓ…ѓ‰ѓJѓ‰Ѓ[‚МѓXѓPЃ[ѓ‹’l‚рЋж“ѕ‚·‚й( ѓfѓtѓHѓ‹ѓg’l‚Н 1.0f )
+// жЊ‡е®љгЃ®гѓЎгѓѓг‚·гѓҐгЃ®г‚№гѓљг‚­гѓҐгѓ©г‚«гѓ©гѓјгЃ®г‚№г‚±гѓјгѓ«еЂ¤г‚’еЏ–еѕ—гЃ™г‚‹( гѓ‡гѓ•г‚©гѓ«гѓ€еЂ¤гЃЇ 1.0f )
 extern	COLOR_F		NS_MV1GetMeshSpcColorScale( int MHandle, int MeshIndex )
 {
 	COLOR_F ErrorResult = { -1.0f, -1.0f, -1.0f, -1.0f } ;
 	MV1MESHSTART( MHandle, Model, ModelBase, Mesh, MeshIndex, ErrorResult ) ;
 
-	// ’l‚р•Ф‚·
+	// еЂ¤г‚’иї”гЃ™
 	return Mesh->DrawMaterial.SpecularScale ;
 }
 
-// Ћw’и‚МѓЃѓbѓVѓ…‚МѓGѓ~ѓbѓVѓuѓJѓ‰Ѓ[‚МѓXѓPЃ[ѓ‹’l‚рЋж“ѕ‚·‚й( ѓfѓtѓHѓ‹ѓg’l‚Н 1.0f )
+// жЊ‡е®љгЃ®гѓЎгѓѓг‚·гѓҐгЃ®г‚Ёгѓџгѓѓг‚·гѓ–г‚«гѓ©гѓјгЃ®г‚№г‚±гѓјгѓ«еЂ¤г‚’еЏ–еѕ—гЃ™г‚‹( гѓ‡гѓ•г‚©гѓ«гѓ€еЂ¤гЃЇ 1.0f )
 extern	COLOR_F		NS_MV1GetMeshEmiColorScale( int MHandle, int MeshIndex )
 {
 	COLOR_F ErrorResult = { -1.0f, -1.0f, -1.0f, -1.0f } ;
 	MV1MESHSTART( MHandle, Model, ModelBase, Mesh, MeshIndex, ErrorResult ) ;
 
-	// ’l‚р•Ф‚·
+	// еЂ¤г‚’иї”гЃ™
 	return Mesh->DrawMaterial.EmissiveScale ;
 }
 
-// Ћw’и‚МѓЃѓbѓVѓ…‚МѓAѓ“ѓrѓGѓ“ѓgѓJѓ‰Ѓ[‚МѓXѓPЃ[ѓ‹’l‚рЋж“ѕ‚·‚й( ѓfѓtѓHѓ‹ѓg’l‚Н 1.0f )
+// жЊ‡е®љгЃ®гѓЎгѓѓг‚·гѓҐгЃ®г‚ўгѓігѓ“г‚Ёгѓігѓ€г‚«гѓ©гѓјгЃ®г‚№г‚±гѓјгѓ«еЂ¤г‚’еЏ–еѕ—гЃ™г‚‹( гѓ‡гѓ•г‚©гѓ«гѓ€еЂ¤гЃЇ 1.0f )
 extern	COLOR_F		NS_MV1GetMeshAmbColorScale( int MHandle, int MeshIndex )
 {
 	COLOR_F ErrorResult = { -1.0f, -1.0f, -1.0f, -1.0f } ;
 	MV1MESHSTART( MHandle, Model, ModelBase, Mesh, MeshIndex, ErrorResult ) ;
 
-	// ’l‚р•Ф‚·
+	// еЂ¤г‚’иї”гЃ™
 	return Mesh->DrawMaterial.AmbientScale ;
 }
 
-// Ћw’и‚МѓЃѓbѓVѓ…‚М•s“§–ѕ“x‚рђЭ’и‚·‚й( •s“§–ѕ 1.0f Ѓ` “§–ѕ 0.0f )
+// жЊ‡е®љгЃ®гѓЎгѓѓг‚·гѓҐгЃ®дёЌйЂЏжЋеє¦г‚’иЁ­е®љгЃ™г‚‹( дёЌйЂЏжЋ 1.0f пЅћ йЂЏжЋ 0.0f )
 extern	int			NS_MV1SetMeshOpacityRate( int MHandle, int MeshIndex, float Rate )
 {
 	MV1MESHSTART( MHandle, Model, ModelBase, Mesh, MeshIndex, -1 ) ;
 
-	// ’l‚рѓZѓbѓg
+	// еЂ¤г‚’г‚»гѓѓгѓ€
 	if( MV1SetDrawMaterialOpacityRate( &Mesh->DrawMaterial, &Mesh->DrawMaterialChange, Rate ) )
 	{
-		// •`‰ж‘Т‹@‚µ‚Д‚ў‚й•`‰ж•Ё‚р•`‰ж
+		// жЏЏз”»еѕ…ж©џгЃ—гЃ¦гЃ„г‚‹жЏЏз”»з‰©г‚’жЏЏз”»
 		DRAWSTOCKINFO
 
-		// ”ј“§–ѕѓXѓeЃ[ѓ^ѓXѓZѓbѓgѓAѓbѓvЉ®—№ѓtѓ‰ѓO‚Є‘«‚Б‚Д‚ў‚Ѕ‚з“|‚·
+		// еЌЉйЂЏжЋг‚№гѓ†гѓјг‚їг‚№г‚»гѓѓгѓ€г‚ўгѓѓгѓ—е®Њдє†гѓ•гѓ©г‚°гЃЊи¶ігЃЈгЃ¦гЃ„гЃџг‚‰еЂ’гЃ™
 		MV1MESH_RESET_SEMITRANSSETUP( Mesh )
 	}
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
 
-// Ћw’и‚МѓЃѓbѓVѓ…‚М•s“§–ѕ“x‚рЋж“ѕ‚·‚й( •s“§–ѕ 1.0f Ѓ` “§–ѕ 0.0f )
+// жЊ‡е®љгЃ®гѓЎгѓѓг‚·гѓҐгЃ®дёЌйЂЏжЋеє¦г‚’еЏ–еѕ—гЃ™г‚‹( дёЌйЂЏжЋ 1.0f пЅћ йЂЏжЋ 0.0f )
 extern	float		NS_MV1GetMeshOpacityRate( int MHandle, int MeshIndex )
 {
 	MV1MESHSTART( MHandle, Model, ModelBase, Mesh, MeshIndex, -1.0f ) ;
 
-	// •s“§–ѕ“x‚р•Ф‚·
+	// дёЌйЂЏжЋеє¦г‚’иї”гЃ™
 	return Mesh->DrawMaterial.OpacityRate ;
 }
 
-// Ћw’и‚МѓЃѓbѓVѓ…‚М•`‰жѓuѓЊѓ“ѓhѓ‚Ѓ[ѓh‚рђЭ’и‚·‚й( DX_BLENDMODE_ALPHA “™ )
+// жЊ‡е®љгЃ®гѓЎгѓѓг‚·гѓҐгЃ®жЏЏз”»гѓ–гѓ¬гѓігѓ‰гѓўгѓјгѓ‰г‚’иЁ­е®љгЃ™г‚‹( DX_BLENDMODE_ALPHA з­‰ )
 extern	int			NS_MV1SetMeshDrawBlendMode( int MHandle, int MeshIndex, int BlendMode )
 {
 	MV1MESHSTART( MHandle, Model, ModelBase, Mesh, MeshIndex, -1 ) ;
 
-	// ЌЎ‚Ь‚Е‚Жѓtѓ‰ѓO‚Є“Ї‚¶‚ѕ‚Б‚Ѕ‚з‰Ѕ‚а‚№‚ё‚ЙЏI—№
+	// д»ЉгЃѕгЃ§гЃЁгѓ•гѓ©г‚°гЃЊеђЊгЃгЃ гЃЈгЃџг‚‰дЅ•г‚‚гЃ›гЃљгЃ«зµ‚дє†
 	if( Mesh->DrawBlendMode == BlendMode )
 		return 0 ;
 
-	// •`‰ж‘Т‹@‚µ‚Д‚ў‚й•`‰ж•Ё‚р•`‰ж
+	// жЏЏз”»еѕ…ж©џгЃ—гЃ¦гЃ„г‚‹жЏЏз”»з‰©г‚’жЏЏз”»
 	DRAWSTOCKINFO
 
-	// ѓuѓЊѓ“ѓhѓ‚Ѓ[ѓh‚рђЭ’и‚·‚й
+	// гѓ–гѓ¬гѓігѓ‰гѓўгѓјгѓ‰г‚’иЁ­е®љгЃ™г‚‹
 	Mesh->DrawBlendMode = BlendMode ;
 
-	// ”ј“§–ѕѓXѓeЃ[ѓ^ѓXѓZѓbѓgѓAѓbѓvЉ®—№ѓtѓ‰ѓO‚Є‘«‚Б‚Д‚ў‚Ѕ‚з“|‚·
+	// еЌЉйЂЏжЋг‚№гѓ†гѓјг‚їг‚№г‚»гѓѓгѓ€г‚ўгѓѓгѓ—е®Њдє†гѓ•гѓ©г‚°гЃЊи¶ігЃЈгЃ¦гЃ„гЃџг‚‰еЂ’гЃ™
 	MV1MESH_RESET_SEMITRANSSETUP( Mesh )
 
-	// ѓ}ѓeѓЉѓAѓ‹Џо•с‚аЌXђV
+	// гѓћгѓ†гѓЄг‚ўгѓ«жѓ…е ±г‚‚ж›ґж–°
 	if( MV1CCHK( Mesh->DrawMaterialChange ) == 0 )
 		MV1BitSetChange( &Mesh->DrawMaterialChange ) ;
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// Ћw’и‚МѓЃѓbѓVѓ…‚М•`‰жѓuѓЊѓ“ѓhѓpѓ‰ѓЃЃ[ѓ^‚рђЭ’и‚·‚й
+// жЊ‡е®љгЃ®гѓЎгѓѓг‚·гѓҐгЃ®жЏЏз”»гѓ–гѓ¬гѓігѓ‰гѓ‘гѓ©гѓЎгѓјг‚їг‚’иЁ­е®љгЃ™г‚‹
 extern int NS_MV1SetMeshDrawBlendParam( int MHandle, int MeshIndex, int BlendParam )
 {
 	MV1MESHSTART( MHandle, Model, ModelBase, Mesh, MeshIndex, -1 ) ;
 
-	// ЌЎ‚Ь‚Е‚Жѓpѓ‰ѓЃЃ[ѓ^‚Є“Ї‚¶ЏкЌ‡‚Н‰Ѕ‚а‚№‚ё‚ЙЏI—№
+	// д»ЉгЃѕгЃ§гЃЁгѓ‘гѓ©гѓЎгѓјг‚їгЃЊеђЊгЃе ґеђ€гЃЇдЅ•г‚‚гЃ›гЃљгЃ«зµ‚дє†
 	if( Mesh->DrawBlendParam == BlendParam )
 		return 0 ;
 
-	// •`‰ж‘Т‹@‚µ‚Д‚ў‚й•`‰ж•Ё‚р•`‰ж
+	// жЏЏз”»еѕ…ж©џгЃ—гЃ¦гЃ„г‚‹жЏЏз”»з‰©г‚’жЏЏз”»
 	DRAWSTOCKINFO
 
-	// ѓuѓЊѓ“ѓhѓpѓ‰ѓЃЃ[ѓ^‚рђЭ’и‚·‚й
+	// гѓ–гѓ¬гѓігѓ‰гѓ‘гѓ©гѓЎгѓјг‚їг‚’иЁ­е®љгЃ™г‚‹
 	Mesh->DrawBlendParam = BlendParam ;
 
-	// ”ј“§–ѕѓXѓeЃ[ѓ^ѓXѓZѓbѓgѓAѓbѓvЉ®—№ѓtѓ‰ѓO‚Є‘«‚Б‚Д‚ў‚Ѕ‚з“|‚·
+	// еЌЉйЂЏжЋг‚№гѓ†гѓјг‚їг‚№г‚»гѓѓгѓ€г‚ўгѓѓгѓ—е®Њдє†гѓ•гѓ©г‚°гЃЊи¶ігЃЈгЃ¦гЃ„гЃџг‚‰еЂ’гЃ™
 	MV1MESH_RESET_SEMITRANSSETUP( Mesh )
 
-	// ѓ}ѓeѓЉѓAѓ‹Џо•с‚аЌXђV
+	// гѓћгѓ†гѓЄг‚ўгѓ«жѓ…е ±г‚‚ж›ґж–°
 	if( MV1CCHK( Mesh->DrawMaterialChange ) == 0 )
 		MV1BitSetChange( &Mesh->DrawMaterialChange ) ;
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// Ћw’и‚МѓЃѓbѓVѓ…‚М•`‰жѓuѓЊѓ“ѓhѓ‚Ѓ[ѓh‚рЋж“ѕ‚·‚й( DX_BLENDMODE_ALPHA “™ )
+// жЊ‡е®љгЃ®гѓЎгѓѓг‚·гѓҐгЃ®жЏЏз”»гѓ–гѓ¬гѓігѓ‰гѓўгѓјгѓ‰г‚’еЏ–еѕ—гЃ™г‚‹( DX_BLENDMODE_ALPHA з­‰ )
 extern int NS_MV1GetMeshDrawBlendMode( int MHandle, int MeshIndex )
 {
 	MV1MESHSTART( MHandle, Model, ModelBase, Mesh, MeshIndex, -1 ) ;
 
-	// ѓuѓЊѓ“ѓhѓ‚Ѓ[ѓh‚р•Ф‚·
+	// гѓ–гѓ¬гѓігѓ‰гѓўгѓјгѓ‰г‚’иї”гЃ™
 	return Mesh->DrawBlendMode ;
 }
 
-// Ћw’и‚МѓЃѓbѓVѓ…‚М•`‰жѓuѓЊѓ“ѓhѓpѓ‰ѓЃЃ[ѓ^‚рђЭ’и‚·‚й
+// жЊ‡е®љгЃ®гѓЎгѓѓг‚·гѓҐгЃ®жЏЏз”»гѓ–гѓ¬гѓігѓ‰гѓ‘гѓ©гѓЎгѓјг‚їг‚’иЁ­е®љгЃ™г‚‹
 extern int NS_MV1GetMeshDrawBlendParam( int MHandle, int MeshIndex )
 {
 	MV1MESHSTART( MHandle, Model, ModelBase, Mesh, MeshIndex, -1 ) ;
 
-	// ѓuѓЊѓ“ѓhѓpѓ‰ѓЃЃ[ѓ^‚р•Ф‚·
+	// гѓ–гѓ¬гѓігѓ‰гѓ‘гѓ©гѓЎгѓјг‚їг‚’иї”гЃ™
 	return Mesh->DrawBlendParam ;
 }
 
-// Ћw’и‚МѓЃѓbѓVѓ…‚МЏ‰Љъ•\Ћ¦Џу‘Ф‚рђЭ’и‚·‚й( TRUE:•\Ћ¦  FALSE:”с•\Ћ¦ )
+// жЊ‡е®љгЃ®гѓЎгѓѓг‚·гѓҐгЃ®е€ќжњџиЎЁз¤єзЉ¶ж…‹г‚’иЁ­е®љгЃ™г‚‹( TRUE:иЎЁз¤є  FALSE:йќћиЎЁз¤є )
 extern int NS_MV1SetMeshBaseVisible( int MHandle, int MeshIndex, int VisibleFlag )
 {
 	MV1MESHSTART( MHandle, Model, ModelBase, Mesh, MeshIndex, -1 ) ;
@@ -30049,26 +30049,26 @@ extern int NS_MV1SetMeshBaseVisible( int MHandle, int MeshIndex, int VisibleFlag
 		return 0 ;
 	}
 
-	// •`‰ж‘Т‹@‚µ‚Д‚ў‚й•`‰ж•Ё‚р•`‰ж
+	// жЏЏз”»еѕ…ж©џгЃ—гЃ¦гЃ„г‚‹жЏЏз”»з‰©г‚’жЏЏз”»
 	DRAWSTOCKINFO
 
-	// ѓpѓ‰ѓЃЃ[ѓ^‚рђЭ’и‚·‚й
+	// гѓ‘гѓ©гѓЎгѓјг‚їг‚’иЁ­е®љгЃ™г‚‹
 	Mesh->BaseData->Visible = ( BYTE )VisibleFlag ;
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// Ћw’и‚МѓЃѓbѓVѓ…‚МЏ‰Љъ•\Ћ¦Џу‘Ф‚рЋж“ѕ‚·‚й( TRUE:•\Ћ¦  FALSE:”с•\Ћ¦ )
+// жЊ‡е®љгЃ®гѓЎгѓѓг‚·гѓҐгЃ®е€ќжњџиЎЁз¤єзЉ¶ж…‹г‚’еЏ–еѕ—гЃ™г‚‹( TRUE:иЎЁз¤є  FALSE:йќћиЎЁз¤є )
 extern int NS_MV1GetMeshBaseVisible( int MHandle, int MeshIndex )
 {
 	MV1MESHSTART( MHandle, Model, ModelBase, Mesh, MeshIndex, -1 ) ;
 
-	// ѓpѓ‰ѓЃЃ[ѓ^‚р•Ф‚·
+	// гѓ‘гѓ©гѓЎгѓјг‚їг‚’иї”гЃ™
 	return Mesh->BaseData->Visible ;
 }
 
-// Ћw’и‚МѓЃѓbѓVѓ…‚МѓoѓbѓNѓJѓЉѓ“ѓO‚рЌs‚¤‚©‚З‚¤‚©‚рђЭ’и‚·‚й( DX_CULLING_LEFT “™ )
+// жЊ‡е®љгЃ®гѓЎгѓѓг‚·гѓҐгЃ®гѓђгѓѓг‚Їг‚«гѓЄгѓіг‚°г‚’иЎЊгЃ†гЃ‹гЃ©гЃ†гЃ‹г‚’иЁ­е®љгЃ™г‚‹( DX_CULLING_LEFT з­‰ )
 extern int NS_MV1SetMeshBackCulling( int MHandle, int MeshIndex, int CullingFlag )
 {
 	MV1MESHSTART( MHandle, Model, ModelBase, Mesh, MeshIndex, -1 ) ;
@@ -30078,55 +30078,55 @@ extern int NS_MV1SetMeshBackCulling( int MHandle, int MeshIndex, int CullingFlag
 		return 0 ;
 	}
 
-	// •`‰ж‘Т‹@‚µ‚Д‚ў‚й•`‰ж•Ё‚р•`‰ж
+	// жЏЏз”»еѕ…ж©џгЃ—гЃ¦гЃ„г‚‹жЏЏз”»з‰©г‚’жЏЏз”»
 	DRAWSTOCKINFO
 
-	// ѓpѓ‰ѓЃЃ[ѓ^‚рђЭ’и‚·‚й
+	// гѓ‘гѓ©гѓЎгѓјг‚їг‚’иЁ­е®љгЃ™г‚‹
 	Mesh->BaseData->BackCulling = ( BYTE )CullingFlag ;
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// Ћw’и‚МѓЃѓbѓVѓ…‚МѓoѓbѓNѓJѓЉѓ“ѓO‚рЌs‚¤‚©‚З‚¤‚©‚рЋж“ѕ‚·‚й( DX_CULLING_LEFT “™ )
+// жЊ‡е®љгЃ®гѓЎгѓѓг‚·гѓҐгЃ®гѓђгѓѓг‚Їг‚«гѓЄгѓіг‚°г‚’иЎЊгЃ†гЃ‹гЃ©гЃ†гЃ‹г‚’еЏ–еѕ—гЃ™г‚‹( DX_CULLING_LEFT з­‰ )
 extern int NS_MV1GetMeshBackCulling( int MHandle, int MeshIndex )
 {
 	MV1MESHSTART( MHandle, Model, ModelBase, Mesh, MeshIndex, -1 ) ;
 
-	// ѓpѓ‰ѓЃЃ[ѓ^‚р•Ф‚·
+	// гѓ‘гѓ©гѓЎгѓјг‚їг‚’иї”гЃ™
 	return Mesh->BaseData->BackCulling ;
 }
 
-// Ћw’и‚МѓЃѓbѓVѓ…‚ЙЉЬ‚Ь‚к‚йѓ|ѓЉѓSѓ“‚МЌЕ‘еѓЌЃ[ѓJѓ‹ЌА•W‚рЋж“ѕ‚·‚й
+// жЊ‡е®љгЃ®гѓЎгѓѓг‚·гѓҐгЃ«еђ«гЃѕг‚Њг‚‹гѓќгѓЄг‚ґгѓігЃ®жњЂе¤§гѓ­гѓјг‚«гѓ«еє§жЁ™г‚’еЏ–еѕ—гЃ™г‚‹
 extern VECTOR NS_MV1GetMeshMaxPosition( int MHandle, int MeshIndex )
 {
 	VECTOR ErrorValue = { -1.0f, -1.0f, -1.0f } ;
 	MV1MESHSTART( MHandle, Model, ModelBase, Mesh, MeshIndex, ErrorValue ) ;
 
-	// ѓpѓ‰ѓЃЃ[ѓ^‚р•Ф‚·
+	// гѓ‘гѓ©гѓЎгѓјг‚їг‚’иї”гЃ™
 	return Mesh->BaseData->MaxPosition ;
 }
 
-// Ћw’и‚МѓЃѓbѓVѓ…‚ЙЉЬ‚Ь‚к‚йѓ|ѓЉѓSѓ“‚МЌЕЏ¬ѓЌЃ[ѓJѓ‹ЌА•W‚рЋж“ѕ‚·‚й
+// жЊ‡е®љгЃ®гѓЎгѓѓг‚·гѓҐгЃ«еђ«гЃѕг‚Њг‚‹гѓќгѓЄг‚ґгѓігЃ®жњЂе°Џгѓ­гѓјг‚«гѓ«еє§жЁ™г‚’еЏ–еѕ—гЃ™г‚‹
 extern VECTOR NS_MV1GetMeshMinPosition( int MHandle, int MeshIndex )
 {
 	VECTOR ErrorValue = { -1.0f, -1.0f, -1.0f } ;
 	MV1MESHSTART( MHandle, Model, ModelBase, Mesh, MeshIndex, ErrorValue ) ;
 
-	// ѓpѓ‰ѓЃЃ[ѓ^‚р•Ф‚·
+	// гѓ‘гѓ©гѓЎгѓјг‚їг‚’иї”гЃ™
 	return Mesh->BaseData->MinPosition ;
 }
 
-// Ћw’и‚МѓЃѓbѓVѓ…‚ЙЉЬ‚Ь‚к‚йѓgѓ‰ѓCѓAѓ“ѓOѓ‹ѓЉѓXѓg‚Мђ”‚рЋж“ѕ‚·‚й
+// жЊ‡е®љгЃ®гѓЎгѓѓг‚·гѓҐгЃ«еђ«гЃѕг‚Њг‚‹гѓ€гѓ©г‚¤г‚ўгѓіг‚°гѓ«гѓЄг‚№гѓ€гЃ®ж•°г‚’еЏ–еѕ—гЃ™г‚‹
 extern int NS_MV1GetMeshTListNum( int MHandle, int MeshIndex )
 {
 	MV1MESHSTART( MHandle, Model, ModelBase, Mesh, MeshIndex, -1 ) ;
 
-	// ѓgѓ‰ѓCѓAѓ“ѓOѓ‹ѓЉѓXѓg‚Мђ”‚р•Ф‚·
+	// гѓ€гѓ©г‚¤г‚ўгѓіг‚°гѓ«гѓЄг‚№гѓ€гЃ®ж•°г‚’иї”гЃ™
 	return Mesh->BaseData->TriangleListNum ;
 }
 
-// Ћw’и‚МѓЃѓbѓVѓ…‚Є”ј“§–ѕ—v‘f‚Є‚ ‚й‚©‚З‚¤‚©‚рЋж“ѕ‚·‚й( –Я‚и’l TRUE:‚ ‚й  FALSE:‚И‚ў )
+// жЊ‡е®љгЃ®гѓЎгѓѓг‚·гѓҐгЃЊеЌЉйЂЏжЋи¦Ѓзґ гЃЊгЃ‚г‚‹гЃ‹гЃ©гЃ†гЃ‹г‚’еЏ–еѕ—гЃ™г‚‹( ж€»г‚ЉеЂ¤ TRUE:гЃ‚г‚‹  FALSE:гЃЄгЃ„ )
 extern int NS_MV1GetMeshSemiTransState( int MHandle, int MeshIndex )
 {
 	MV1MESHSTART( MHandle, Model, ModelBase, Mesh, MeshIndex, -1 ) ;
@@ -30136,17 +30136,17 @@ extern int NS_MV1GetMeshSemiTransState( int MHandle, int MeshIndex )
 
 	Material = Mesh->Material ;
 
-	// •`‰жѓ}ѓeѓЉѓAѓ‹‚МЌXђVѓ`ѓFѓbѓN
+	// жЏЏз”»гѓћгѓ†гѓЄг‚ўгѓ«гЃ®ж›ґж–°гѓЃг‚§гѓѓг‚Ї
 	MV1SETUPDRAWMATERIALMESH( Mesh ) ;
 
-	// SemiTransStateSetupFlag ‚Є—§‚Б‚Д‚ў–і‚ўЏкЌ‡‚Н”ј“§–ѕ—v‘f‚Є‚ ‚й‚©‚З‚¤‚©‚р’І‚Ч‚й
+	// SemiTransStateSetupFlag гЃЊз«‹гЃЈгЃ¦гЃ„з„ЎгЃ„е ґеђ€гЃЇеЌЉйЂЏжЋи¦Ѓзґ гЃЊгЃ‚г‚‹гЃ‹гЃ©гЃ†гЃ‹г‚’иЄїгЃ№г‚‹
 	if( Mesh->SemiTransStateSetupFlag == false )
 	{
 		do
 		{
 			Mesh->SemiTransState = true ;
 
-			// •`‰жѓ‚Ѓ[ѓh‚ЄѓAѓ‹ѓtѓ@ѓuѓЊѓ“ѓh€ИЉO‚И‚з”ј“§–ѕ
+			// жЏЏз”»гѓўгѓјгѓ‰гЃЊг‚ўгѓ«гѓ•г‚Ўгѓ–гѓ¬гѓігѓ‰д»Ґе¤–гЃЄг‚‰еЌЉйЂЏжЋ
 			if( Mesh->DrawBlendMode != -1 )
 			{
 				if( Mesh->DrawBlendMode != DX_BLENDMODE_ALPHA )
@@ -30158,7 +30158,7 @@ extern int NS_MV1GetMeshSemiTransState( int MHandle, int MeshIndex )
 					break ;
 			}
 
-			// ѓuѓЊѓ“ѓhѓpѓ‰ѓЃЃ[ѓ^‚Є 255 €ИЉO‚И‚з”ј“§–ѕ
+			// гѓ–гѓ¬гѓігѓ‰гѓ‘гѓ©гѓЎгѓјг‚їгЃЊ 255 д»Ґе¤–гЃЄг‚‰еЌЉйЂЏжЋ
 			if( Mesh->DrawBlendParam != -1 )
 			{
 				if( Mesh->DrawBlendParam != 255 )
@@ -30170,25 +30170,25 @@ extern int NS_MV1GetMeshSemiTransState( int MHandle, int MeshIndex )
 					break ;
 			}
 
-			// ’ё“_ѓJѓ‰Ѓ[‚рЋg—p‚·‚й‚©‚З‚¤‚©‚Е•ЄЉт
+			// й ‚з‚№г‚«гѓ©гѓјг‚’дЅїз”ЁгЃ™г‚‹гЃ‹гЃ©гЃ†гЃ‹гЃ§е€†еІђ
 			if( Mesh->BaseData->UseVertexDiffuseColor )
 			{
-				// ’ё“_ѓfѓBѓtѓ…Ѓ[ѓYѓJѓ‰Ѓ[‚Й 1.0 €ИЉO‚МѓAѓ‹ѓtѓ@’l‚Є‚ ‚Б‚Ѕ‚з”ј“§–ѕ
+				// й ‚з‚№гѓ‡г‚Јгѓ•гѓҐгѓјг‚єг‚«гѓ©гѓјгЃ« 1.0 д»Ґе¤–гЃ®г‚ўгѓ«гѓ•г‚ЎеЂ¤гЃЊгЃ‚гЃЈгЃџг‚‰еЌЉйЂЏжЋ
 				if( Mesh->BaseData->NotOneDiffuseAlpha )
 					break ;
 			}
 			else
 			{
-				// ѓ}ѓeѓЉѓAѓ‹‚МѓfѓBѓtѓ…Ѓ[ѓYѓJѓ‰Ѓ[‚МѓAѓ‹ѓtѓ@’l‚Є‚PЃD‚O€ИЉO‚И‚з”ј“§–ѕ
+				// гѓћгѓ†гѓЄг‚ўгѓ«гЃ®гѓ‡г‚Јгѓ•гѓҐгѓјг‚єг‚«гѓ©гѓјгЃ®г‚ўгѓ«гѓ•г‚ЎеЂ¤гЃЊпј‘пјЋпјђд»Ґе¤–гЃЄг‚‰еЌЉйЂЏжЋ
 				if( Material->Diffuse.a != 1.0f || ( Mesh->SetupDrawMaterial.UseColorScale && Mesh->SetupDrawMaterial.DiffuseScale.a != 1.0f ) )
 					break ;
 			}
 
-			// ѓЃѓbѓVѓ…‚М•s“§–ѕ“xђЭ’и‚Є 1.0f €ИЉO‚И‚з”ј“§–ѕ
+			// гѓЎгѓѓг‚·гѓҐгЃ®дёЌйЂЏжЋеє¦иЁ­е®љгЃЊ 1.0f д»Ґе¤–гЃЄг‚‰еЌЉйЂЏжЋ
 			if( Mesh->SetupDrawMaterial.OpacityRate != 1.0f )
 				break ;
 
-			// ”ј“§–ѕѓeѓNѓXѓ`ѓѓ‚рЋg—p‚µ‚Д‚ў‚Ѕ‚з”ј“§–ѕ
+			// еЌЉйЂЏжЋгѓ†г‚Їг‚№гѓЃгѓЈг‚’дЅїз”ЁгЃ—гЃ¦гЃ„гЃџг‚‰еЌЉйЂЏжЋ
 			if( Material->DiffuseLayerNum )
 			{
 				Texture = &Model->Texture[ Material->DiffuseLayer[ 0 ].Texture ] ;
@@ -30218,56 +30218,56 @@ extern int NS_MV1GetMeshSemiTransState( int MHandle, int MeshIndex )
 				}
 			}
 
-			// ‚±‚±‚Й‚«‚Ѕ‚з”ј“§–ѕ—v‘f‚Н‚И‚ў‚Ж‚ў‚¤‚±‚Ж
+			// гЃ“гЃ“гЃ«гЃЌгЃџг‚‰еЌЉйЂЏжЋи¦Ѓзґ гЃЇгЃЄгЃ„гЃЁгЃ„гЃ†гЃ“гЃЁ
 			Mesh->SemiTransState = false ;
 		}while( 0 ) ;
 
-		// ѓZѓbѓgѓAѓbѓvЉ®—№ѓtѓ‰ѓO‚р—§‚Д‚й
+		// г‚»гѓѓгѓ€г‚ўгѓѓгѓ—е®Њдє†гѓ•гѓ©г‚°г‚’з«‹гЃ¦г‚‹
 		Mesh->SemiTransStateSetupFlag = true ;
 	}
 
-	// ѓXѓeЃ[ѓ^ѓX‚р•Ф‚·
+	// г‚№гѓ†гѓјг‚їг‚№г‚’иї”гЃ™
 	return Mesh->SemiTransState ;
 }
 
-// Ћw’и‚МѓЃѓbѓVѓ…‚ЙЉЬ‚Ь‚к‚йѓgѓ‰ѓCѓAѓ“ѓOѓ‹ѓЉѓXѓg‚МѓCѓ“ѓfѓbѓNѓX‚рЋж“ѕ‚·‚й
+// жЊ‡е®љгЃ®гѓЎгѓѓг‚·гѓҐгЃ«еђ«гЃѕг‚Њг‚‹гѓ€гѓ©г‚¤г‚ўгѓіг‚°гѓ«гѓЄг‚№гѓ€гЃ®г‚¤гѓігѓ‡гѓѓг‚Їг‚№г‚’еЏ–еѕ—гЃ™г‚‹
 extern int NS_MV1GetMeshTList( int MHandle, int MeshIndex, int Index )
 {
 	MV1MESHSTART( MHandle, Model, ModelBase, Mesh, MeshIndex, -1 ) ;
 
-	// ѓCѓ“ѓfѓbѓNѓX‚Є•sђі‚ѕ‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// г‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃЊдёЌж­ЈгЃ гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( Index < 0 || Index >= Mesh->BaseData->TriangleListNum )
 		return -1 ;
 
-	// ѓgѓ‰ѓCѓAѓ“ѓOѓ‹ѓЉѓXѓg‚МѓCѓ“ѓfѓbѓNѓX‚р•Ф‚·
+	// гѓ€гѓ©г‚¤г‚ўгѓіг‚°гѓ«гѓЄг‚№гѓ€гЃ®г‚¤гѓігѓ‡гѓѓг‚Їг‚№г‚’иї”гЃ™
 	return ( int )( &Mesh->BaseData->TriangleList[ Index ] - ModelBase->TriangleList ) ;
 }
 
-// Ћw’и‚МѓЃѓbѓVѓ…‚М’ё“_ѓfѓBѓtѓ…Ѓ[ѓYѓJѓ‰Ѓ[‚рѓ}ѓeѓЉѓAѓ‹‚МѓfѓBѓtѓ…Ѓ[ѓYѓJѓ‰Ѓ[‚М‘г‚н‚и‚ЙЋg—p‚·‚й‚©‚З‚¤‚©‚рђЭ’и‚·‚й( TRUE:ѓ}ѓeѓЉѓAѓ‹ѓJѓ‰Ѓ[‚М‘г‚н‚и‚ЙЋg—p‚·‚й  FALSE:ѓ}ѓeѓЉѓAѓ‹ѓJѓ‰Ѓ[‚рЋg—p‚·‚й )
+// жЊ‡е®љгЃ®гѓЎгѓѓг‚·гѓҐгЃ®й ‚з‚№гѓ‡г‚Јгѓ•гѓҐгѓјг‚єг‚«гѓ©гѓјг‚’гѓћгѓ†гѓЄг‚ўгѓ«гЃ®гѓ‡г‚Јгѓ•гѓҐгѓјг‚єг‚«гѓ©гѓјгЃ®д»Јг‚Џг‚ЉгЃ«дЅїз”ЁгЃ™г‚‹гЃ‹гЃ©гЃ†гЃ‹г‚’иЁ­е®љгЃ™г‚‹( TRUE:гѓћгѓ†гѓЄг‚ўгѓ«г‚«гѓ©гѓјгЃ®д»Јг‚Џг‚ЉгЃ«дЅїз”ЁгЃ™г‚‹  FALSE:гѓћгѓ†гѓЄг‚ўгѓ«г‚«гѓ©гѓјг‚’дЅїз”ЁгЃ™г‚‹ )
 extern int NS_MV1SetMeshUseVertDifColor( int MHandle, int MeshIndex, int UseFlag )
 {
 	return MV1SetMeshUseVertDifColorBase( MV1GetModelBaseHandle( MHandle ), MeshIndex, UseFlag ) ;
 }
 
-// Ћw’и‚МѓЃѓbѓVѓ…‚М’ё“_ѓXѓyѓLѓ…ѓ‰ѓJѓ‰Ѓ[‚рѓ}ѓeѓЉѓAѓ‹‚МѓXѓyѓLѓ…ѓ‰ѓJѓ‰Ѓ[‚М‘г‚н‚и‚ЙЋg—p‚·‚й‚©‚З‚¤‚©‚рђЭ’и‚·‚й( TRUE:ѓ}ѓeѓЉѓAѓ‹ѓJѓ‰Ѓ[‚М‘г‚н‚и‚ЙЋg—p‚·‚й  FALSE:ѓ}ѓeѓЉѓAѓ‹ѓJѓ‰Ѓ[‚рЋg—p‚·‚й )
+// жЊ‡е®љгЃ®гѓЎгѓѓг‚·гѓҐгЃ®й ‚з‚№г‚№гѓљг‚­гѓҐгѓ©г‚«гѓ©гѓјг‚’гѓћгѓ†гѓЄг‚ўгѓ«гЃ®г‚№гѓљг‚­гѓҐгѓ©г‚«гѓ©гѓјгЃ®д»Јг‚Џг‚ЉгЃ«дЅїз”ЁгЃ™г‚‹гЃ‹гЃ©гЃ†гЃ‹г‚’иЁ­е®љгЃ™г‚‹( TRUE:гѓћгѓ†гѓЄг‚ўгѓ«г‚«гѓ©гѓјгЃ®д»Јг‚Џг‚ЉгЃ«дЅїз”ЁгЃ™г‚‹  FALSE:гѓћгѓ†гѓЄг‚ўгѓ«г‚«гѓ©гѓјг‚’дЅїз”ЁгЃ™г‚‹ )
 extern int NS_MV1SetMeshUseVertSpcColor( int MHandle, int MeshIndex, int UseFlag )
 {
 	return MV1SetMeshUseVertSpcColorBase( MV1GetModelBaseHandle( MHandle ), MeshIndex, UseFlag ) ;
 }
 
-// Ћw’и‚МѓЃѓbѓVѓ…‚М’ё“_ѓfѓBѓtѓ…Ѓ[ѓYѓJѓ‰Ѓ[‚рѓ}ѓeѓЉѓAѓ‹‚МѓfѓBѓtѓ…Ѓ[ѓYѓJѓ‰Ѓ[‚М‘г‚н‚и‚ЙЋg—p‚·‚й‚©‚З‚¤‚©‚МђЭ’и‚рЋж“ѕ‚·‚й( –Я‚и’l  TRUE:ѓ}ѓeѓЉѓAѓ‹ѓJѓ‰Ѓ[‚М‘г‚н‚и‚ЙЋg—p‚·‚й  FALSE:ѓ}ѓeѓЉѓAѓ‹ѓJѓ‰Ѓ[‚рЋg—p‚·‚й )
+// жЊ‡е®љгЃ®гѓЎгѓѓг‚·гѓҐгЃ®й ‚з‚№гѓ‡г‚Јгѓ•гѓҐгѓјг‚єг‚«гѓ©гѓјг‚’гѓћгѓ†гѓЄг‚ўгѓ«гЃ®гѓ‡г‚Јгѓ•гѓҐгѓјг‚єг‚«гѓ©гѓјгЃ®д»Јг‚Џг‚ЉгЃ«дЅїз”ЁгЃ™г‚‹гЃ‹гЃ©гЃ†гЃ‹гЃ®иЁ­е®љг‚’еЏ–еѕ—гЃ™г‚‹( ж€»г‚ЉеЂ¤  TRUE:гѓћгѓ†гѓЄг‚ўгѓ«г‚«гѓ©гѓјгЃ®д»Јг‚Џг‚ЉгЃ«дЅїз”ЁгЃ™г‚‹  FALSE:гѓћгѓ†гѓЄг‚ўгѓ«г‚«гѓ©гѓјг‚’дЅїз”ЁгЃ™г‚‹ )
 extern int NS_MV1GetMeshUseVertDifColor( int MHandle, int MeshIndex )
 {
 	return MV1GetMeshUseVertDifColorBase( MV1GetModelBaseHandle( MHandle ), MeshIndex ) ;
 }
 
-// Ћw’и‚МѓЃѓbѓVѓ…‚М’ё“_ѓXѓyѓLѓ…ѓ‰ѓJѓ‰Ѓ[‚рѓ}ѓeѓЉѓAѓ‹‚МѓXѓyѓLѓ…ѓ‰ѓJѓ‰Ѓ[‚М‘г‚н‚и‚ЙЋg—p‚·‚й‚©‚З‚¤‚©‚МђЭ’и‚рЋж“ѕ‚·‚й( –Я‚и’l  TRUE:ѓ}ѓeѓЉѓAѓ‹ѓJѓ‰Ѓ[‚М‘г‚н‚и‚ЙЋg—p‚·‚й  FALSE:ѓ}ѓeѓЉѓAѓ‹ѓJѓ‰Ѓ[‚рЋg—p‚·‚й )
+// жЊ‡е®љгЃ®гѓЎгѓѓг‚·гѓҐгЃ®й ‚з‚№г‚№гѓљг‚­гѓҐгѓ©г‚«гѓ©гѓјг‚’гѓћгѓ†гѓЄг‚ўгѓ«гЃ®г‚№гѓљг‚­гѓҐгѓ©г‚«гѓ©гѓјгЃ®д»Јг‚Џг‚ЉгЃ«дЅїз”ЁгЃ™г‚‹гЃ‹гЃ©гЃ†гЃ‹гЃ®иЁ­е®љг‚’еЏ–еѕ—гЃ™г‚‹( ж€»г‚ЉеЂ¤  TRUE:гѓћгѓ†гѓЄг‚ўгѓ«г‚«гѓ©гѓјгЃ®д»Јг‚Џг‚ЉгЃ«дЅїз”ЁгЃ™г‚‹  FALSE:гѓћгѓ†гѓЄг‚ўгѓ«г‚«гѓ©гѓјг‚’дЅїз”ЁгЃ™г‚‹ )
 extern int NS_MV1GetMeshUseVertSpcColor( int MHandle, int MeshIndex )
 {
 	return MV1GetMeshUseVertSpcColorBase( MV1GetModelBaseHandle( MHandle ), MeshIndex ) ;
 }
 
-// Ћw’и‚МѓЃѓbѓVѓ…‚ЄѓVѓFѓCѓvѓЃѓbѓVѓ…‚©‚З‚¤‚©‚рЋж“ѕ‚·‚й( –Я‚и’l TRUE:ѓVѓFѓCѓvѓЃѓbѓVѓ…  FALSE:’КЏнѓЃѓbѓVѓ… )
+// жЊ‡е®љгЃ®гѓЎгѓѓг‚·гѓҐгЃЊг‚·г‚§г‚¤гѓ—гѓЎгѓѓг‚·гѓҐгЃ‹гЃ©гЃ†гЃ‹г‚’еЏ–еѕ—гЃ™г‚‹( ж€»г‚ЉеЂ¤ TRUE:г‚·г‚§г‚¤гѓ—гѓЎгѓѓг‚·гѓҐ  FALSE:йЂљеёёгѓЎгѓѓг‚·гѓҐ )
 extern int NS_MV1GetMeshShapeFlag( int MHandle, int MeshIndex )
 {
 	return MV1GetMeshShapeFlagBase( MV1GetModelBaseHandle( MHandle ), MeshIndex ) ;
@@ -30295,15 +30295,15 @@ extern int NS_MV1GetMeshShapeFlag( int MHandle, int MeshIndex )
 
 
 
-// ѓVѓFѓCѓvЉЦЊW
+// г‚·г‚§г‚¤гѓ—й–ўдї‚
 
-// ѓ‚ѓfѓ‹‚ЙЉЬ‚Ь‚к‚йѓVѓFѓCѓv‚Мђ”‚рЋж“ѕ‚·‚й
+// гѓўгѓ‡гѓ«гЃ«еђ«гЃѕг‚Њг‚‹г‚·г‚§г‚¤гѓ—гЃ®ж•°г‚’еЏ–еѕ—гЃ™г‚‹
 extern int NS_MV1GetShapeNum( int MHandle )
 {
 	return MV1GetShapeNumBase( MV1GetModelBaseHandle( MHandle ) ) ;
 }
 
-// ѓVѓFѓCѓv‚М–ј‘O‚©‚зѓ‚ѓfѓ‹’†‚МѓVѓFѓCѓv‚МѓVѓFѓCѓvѓCѓ“ѓfѓbѓNѓX‚рЋж“ѕ‚·‚й( –і‚©‚Б‚ЅЏкЌ‡‚Н–Я‚и’l‚Є-1 )
+// г‚·г‚§г‚¤гѓ—гЃ®еђЌе‰ЌгЃ‹г‚‰гѓўгѓ‡гѓ«дё­гЃ®г‚·г‚§г‚¤гѓ—гЃ®г‚·г‚§г‚¤гѓ—г‚¤гѓігѓ‡гѓѓг‚Їг‚№г‚’еЏ–еѕ—гЃ™г‚‹( з„ЎгЃ‹гЃЈгЃџе ґеђ€гЃЇж€»г‚ЉеЂ¤гЃЊ-1 )
 extern int NS_MV1SearchShape( int MHandle, const TCHAR *ShapeName )
 {
 #ifdef UNICODE
@@ -30325,7 +30325,7 @@ extern int NS_MV1SearchShape( int MHandle, const TCHAR *ShapeName )
 #endif
 }
 
-// ѓVѓFѓCѓv‚М–ј‘O‚©‚зѓ‚ѓfѓ‹’†‚МѓVѓFѓCѓv‚МѓVѓFѓCѓvѓCѓ“ѓfѓbѓNѓX‚рЋж“ѕ‚·‚й( –і‚©‚Б‚ЅЏкЌ‡‚Н–Я‚и’l‚Є-1 )
+// г‚·г‚§г‚¤гѓ—гЃ®еђЌе‰ЌгЃ‹г‚‰гѓўгѓ‡гѓ«дё­гЃ®г‚·г‚§г‚¤гѓ—гЃ®г‚·г‚§г‚¤гѓ—г‚¤гѓігѓ‡гѓѓг‚Їг‚№г‚’еЏ–еѕ—гЃ™г‚‹( з„ЎгЃ‹гЃЈгЃџе ґеђ€гЃЇж€»г‚ЉеЂ¤гЃЊ-1 )
 extern int NS_MV1SearchShapeWithStrLen( int MHandle, const TCHAR *ShapeName, size_t ShapeNameLength )
 {
 	int Result ;
@@ -30341,13 +30341,13 @@ extern int NS_MV1SearchShapeWithStrLen( int MHandle, const TCHAR *ShapeName, siz
 	return Result ;
 }
 
-// ѓVѓFѓCѓv‚М–ј‘O‚©‚зѓ‚ѓfѓ‹’†‚МѓVѓFѓCѓv‚МѓVѓFѓCѓvѓCѓ“ѓfѓbѓNѓX‚рЋж“ѕ‚·‚й( –і‚©‚Б‚ЅЏкЌ‡‚Н–Я‚и’l‚Є-1 )
+// г‚·г‚§г‚¤гѓ—гЃ®еђЌе‰ЌгЃ‹г‚‰гѓўгѓ‡гѓ«дё­гЃ®г‚·г‚§г‚¤гѓ—гЃ®г‚·г‚§г‚¤гѓ—г‚¤гѓігѓ‡гѓѓг‚Їг‚№г‚’еЏ–еѕ—гЃ™г‚‹( з„ЎгЃ‹гЃЈгЃџе ґеђ€гЃЇж€»г‚ЉеЂ¤гЃЊ-1 )
 extern int MV1SearchShape_WCHAR_T( int MHandle, const wchar_t *ShapeName )
 {
 	return MV1SearchShapeBase( MV1GetModelBaseHandle( MHandle ), ShapeName ) ;
 }
 
-// Ћw’иѓVѓFѓCѓv‚М–ј‘O‚рЋж“ѕ‚·‚й
+// жЊ‡е®љг‚·г‚§г‚¤гѓ—гЃ®еђЌе‰Ќг‚’еЏ–еѕ—гЃ™г‚‹
 extern const TCHAR *NS_MV1GetShapeName( int MHandle, int ShapeIndex )
 {
 #ifdef UNICODE
@@ -30357,57 +30357,57 @@ extern const TCHAR *NS_MV1GetShapeName( int MHandle, int ShapeIndex )
 #endif
 }
 
-// Ћw’иѓVѓFѓCѓv‚М–ј‘O‚рЋж“ѕ‚·‚й
+// жЊ‡е®љг‚·г‚§г‚¤гѓ—гЃ®еђЌе‰Ќг‚’еЏ–еѕ—гЃ™г‚‹
 extern const wchar_t *MV1GetShapeName_WCHAR_T( int MHandle, int ShapeIndex )
 {
 	return MV1GetShapeNameBaseW( MV1GetModelBaseHandle( MHandle ), ShapeIndex ) ;
 }
 
-// Ћw’иѓVѓFѓCѓv‚Є‘ОЏЫ‚Ж‚µ‚Д‚ў‚йѓЃѓbѓVѓ…‚Мђ”‚рЋж“ѕ‚·‚й
+// жЊ‡е®љг‚·г‚§г‚¤гѓ—гЃЊеЇѕи±ЎгЃЁгЃ—гЃ¦гЃ„г‚‹гѓЎгѓѓг‚·гѓҐгЃ®ж•°г‚’еЏ–еѕ—гЃ™г‚‹
 extern int NS_MV1GetShapeTargetMeshNum( int MHandle, int ShapeIndex )
 {
 	return MV1GetShapeTargetMeshNumBase( MV1GetModelBaseHandle( MHandle ), ShapeIndex ) ;
 }
 
-// Ћw’иѓVѓFѓCѓv‚Є‘ОЏЫ‚Ж‚µ‚Д‚ў‚йѓЃѓbѓVѓ…‚МѓЃѓbѓVѓ…ѓCѓ“ѓfѓbѓNѓX‚рЋж“ѕ‚·‚й
+// жЊ‡е®љг‚·г‚§г‚¤гѓ—гЃЊеЇѕи±ЎгЃЁгЃ—гЃ¦гЃ„г‚‹гѓЎгѓѓг‚·гѓҐгЃ®гѓЎгѓѓг‚·гѓҐг‚¤гѓігѓ‡гѓѓг‚Їг‚№г‚’еЏ–еѕ—гЃ™г‚‹
 extern int NS_MV1GetShapeTargetMesh( int MHandle, int ShapeIndex, int Index )
 {
 	return MV1GetShapeTargetMeshBase( MV1GetModelBaseHandle( MHandle ), ShapeIndex, Index ) ;
 }
 
-// Ћw’иѓVѓFѓCѓv‚М—LЊш—¦‚рђЭ’и‚·‚й( Rate  0.0f:0% Ѓ` 1.0f:100% )
+// жЊ‡е®љг‚·г‚§г‚¤гѓ—гЃ®жњ‰еЉ№зЋ‡г‚’иЁ­е®љгЃ™г‚‹( Rate  0.0f:0% пЅћ 1.0f:100% )
 extern int NS_MV1SetShapeRate( int MHandle, int ShapeIndex, float Rate, int Type )
 {
 	MV1SHAPESTART( MHandle, Model, ModelBase, Shape, ShapeIndex, -1 ) ;
 
-	// ѓ^ѓCѓv‚а’l‚а•П‰»‚µ‚И‚ўЏкЌ‡‚Н‰Ѕ‚а‚µ‚И‚ў
+	// г‚їг‚¤гѓ—г‚‚еЂ¤г‚‚е¤‰еЊ–гЃ—гЃЄгЃ„е ґеђ€гЃЇдЅ•г‚‚гЃ—гЃЄгЃ„
 	if( Shape->ShapeRateApplyType == Type && _FABS( Shape->ShapeRate - Rate ) < 0.0000001f )
 	{
 		return 0 ;
 	}
 
-	// ’l‚р•Ы‘¶
+	// еЂ¤г‚’дїќе­
 	Shape->ShapeRateApplyType = Type ;
 	Shape->ShapeRate = Rate ;
 
-	// ѓVѓFѓCѓv‚МЏу‘Ф‚Є•П‰»‚µ‚Ѕѓtѓ‰ѓO‚р—§‚Д‚й
+	// г‚·г‚§г‚¤гѓ—гЃ®зЉ¶ж…‹гЃЊе¤‰еЊ–гЃ—гЃџгѓ•гѓ©г‚°г‚’з«‹гЃ¦г‚‹
 	Shape->Container->ShapeChangeFlag = true ;
 	Shape->Container->Container->ShapeChangeFlag = true ;
 
-	// ђіЏнЏI—№
+	// ж­Јеёёзµ‚дє†
 	return 0 ;
 }
 
-// Ћw’иѓVѓFѓCѓv‚М—LЊш—¦‚рЋж“ѕ‚·‚й( –Я‚и’l  0.0f:0% Ѓ` 1.0f:100% )
+// жЊ‡е®љг‚·г‚§г‚¤гѓ—гЃ®жњ‰еЉ№зЋ‡г‚’еЏ–еѕ—гЃ™г‚‹( ж€»г‚ЉеЂ¤  0.0f:0% пЅћ 1.0f:100% )
 extern float NS_MV1GetShapeRate( int MHandle, int ShapeIndex )
 {
 	MV1SHAPESTART( MHandle, Model, ModelBase, Shape, ShapeIndex, -1.0f ) ;
 
-	// —LЊш—¦‚р•Ф‚·
+	// жњ‰еЉ№зЋ‡г‚’иї”гЃ™
 	return Shape->ShapeRate ;
 }
 
-// Ћw’иѓVѓFѓCѓv‚М—LЊш—¦‚рЋж“ѕ‚·‚й( –Я‚и’l  0.0f:0% Ѓ` 1.0f:100% )( MV1SetShapeRate ‚ЕЋw’и‚µ‚Ѕ’l‚Є‚»‚М‚Ь‚Ь–Я‚и’l‚Ж‚И‚й MV1GetShapeRate ‚Ж€Щ‚И‚иѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚МѓVѓFѓCѓvЏо•с‚И‚З‚а‰Б–Ў‚µ‚Ѕ’l‚Є–Я‚и’l‚Ж‚И‚и‚Ь‚· )
+// жЊ‡е®љг‚·г‚§г‚¤гѓ—гЃ®жњ‰еЉ№зЋ‡г‚’еЏ–еѕ—гЃ™г‚‹( ж€»г‚ЉеЂ¤  0.0f:0% пЅћ 1.0f:100% )( MV1SetShapeRate гЃ§жЊ‡е®љгЃ—гЃџеЂ¤гЃЊгЃќгЃ®гЃѕгЃѕж€»г‚ЉеЂ¤гЃЁгЃЄг‚‹ MV1GetShapeRate гЃЁз•°гЃЄг‚Љг‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігЃ®г‚·г‚§г‚¤гѓ—жѓ…е ±гЃЄгЃ©г‚‚еЉ е‘ігЃ—гЃџеЂ¤гЃЊж€»г‚ЉеЂ¤гЃЁгЃЄг‚ЉгЃѕгЃ™ )
 extern float NS_MV1GetShapeApplyRate( int MHandle, int ShapeIndex )
 {
 	int i ;
@@ -30419,7 +30419,7 @@ extern float NS_MV1GetShapeApplyRate( int MHandle, int ShapeIndex )
 	MV1_MODEL_ANIMSET *MAnimSet ;
 	MV1SHAPESTART( MHandle, Model, ModelBase, Shape, ShapeIndex, -1.0f ) ;
 
-	// ѓuѓЊѓ“ѓh—¦‚рЋж“ѕ‚·‚й
+	// гѓ–гѓ¬гѓігѓ‰зЋ‡г‚’еЏ–еѕ—гЃ™г‚‹
 	Rate = 0.0f ;
 	switch( Shape->ShapeRateApplyType )
 	{
@@ -30452,7 +30452,7 @@ extern float NS_MV1GetShapeApplyRate( int MHandle, int ShapeIndex )
 		break ;
 	}
 
-	// ‰e‹ї—¦‚р•Ф‚·
+	// еЅ±йџїзЋ‡г‚’иї”гЃ™
 	return Rate ;
 }
 
@@ -30478,32 +30478,32 @@ extern float NS_MV1GetShapeApplyRate( int MHandle, int ShapeIndex )
 
 
 
-// ѓgѓ‰ѓCѓAѓ“ѓOѓ‹ѓЉѓXѓg‚Мђ”‚рЋж“ѕ‚·‚й
+// гѓ€гѓ©г‚¤г‚ўгѓіг‚°гѓ«гѓЄг‚№гѓ€гЃ®ж•°г‚’еЏ–еѕ—гЃ™г‚‹
 extern int NS_MV1GetTriangleListNum( int MHandle )
 {
 	MV1_MODEL *Model ;
 	MV1_MODEL_BASE *ModelBase ;
 
-	// Џ‰Љъ‰»‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// е€ќжњџеЊ–гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( MV1Man.Initialize == false ) return -1 ;
 
-	// ѓAѓhѓЊѓXЋж“ѕ
+	// г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ—
 	if( MV1MDLCHK( MHandle, Model ) )
 		return -1 ;
 	ModelBase = Model->BaseData ;
 
-	// ѓ}ѓeѓЉѓAѓ‹‚Мђ”‚р•Ф‚·
+	// гѓћгѓ†гѓЄг‚ўгѓ«гЃ®ж•°г‚’иї”гЃ™
 	return ModelBase->TriangleListNum ;
 }
 
-// Ћw’и‚Мѓgѓ‰ѓCѓAѓ“ѓOѓ‹ѓЉѓXѓg‚М’ё“_ѓfЃ[ѓ^ѓ^ѓCѓv‚рЋж“ѕ‚·‚й( MV1_VERTEX_TYPE_NORMAL “™ )
+// жЊ‡е®љгЃ®гѓ€гѓ©г‚¤г‚ўгѓіг‚°гѓ«гѓЄг‚№гѓ€гЃ®й ‚з‚№гѓ‡гѓјг‚їг‚їг‚¤гѓ—г‚’еЏ–еѕ—гЃ™г‚‹( MV1_VERTEX_TYPE_NORMAL з­‰ )
 extern int NS_MV1GetTriangleListVertexType( int MHandle, int TListIndex )
 {
 	int VertexType ;
 
 	MV1TLISTSTART( MHandle, Model, ModelBase, TList, TListIndex, -1 ) ;
 
-	// ’ё“_ѓfЃ[ѓ^ѓ^ѓCѓv‚р•Ф‚·
+	// й ‚з‚№гѓ‡гѓјг‚їг‚їг‚¤гѓ—г‚’иї”гЃ™
 	VertexType = TList->VertexType ;
 	if( TList->Container->Material->NormalLayerNum != 0 )
 	{
@@ -30513,46 +30513,46 @@ extern int NS_MV1GetTriangleListVertexType( int MHandle, int TListIndex )
 	return VertexType ;
 }
 
-// Ћw’и‚Мѓgѓ‰ѓCѓAѓ“ѓOѓ‹ѓЉѓXѓg‚ЙЉЬ‚Ь‚к‚йѓ|ѓЉѓSѓ“‚Мђ”‚рЋж“ѕ‚·‚й
+// жЊ‡е®љгЃ®гѓ€гѓ©г‚¤г‚ўгѓіг‚°гѓ«гѓЄг‚№гѓ€гЃ«еђ«гЃѕг‚Њг‚‹гѓќгѓЄг‚ґгѓігЃ®ж•°г‚’еЏ–еѕ—гЃ™г‚‹
 extern int NS_MV1GetTriangleListPolygonNum( int MHandle, int TListIndex )
 {
 	MV1TLISTSTART( MHandle, Model, ModelBase, TList, TListIndex, -1 ) ;
 
-	// ѓ|ѓЉѓSѓ“‚Мђ”‚р•Ф‚·
+	// гѓќгѓЄг‚ґгѓігЃ®ж•°г‚’иї”гЃ™
 	return TList->IndexNum / 3 ;
 }
 
-// Ћw’и‚Мѓgѓ‰ѓCѓAѓ“ѓOѓ‹ѓЉѓXѓg‚ЙЉЬ‚Ь‚к‚й’ё“_ѓfЃ[ѓ^‚Мђ”‚рЋж“ѕ‚·‚й
+// жЊ‡е®љгЃ®гѓ€гѓ©г‚¤г‚ўгѓіг‚°гѓ«гѓЄг‚№гѓ€гЃ«еђ«гЃѕг‚Њг‚‹й ‚з‚№гѓ‡гѓјг‚їгЃ®ж•°г‚’еЏ–еѕ—гЃ™г‚‹
 extern int NS_MV1GetTriangleListVertexNum( int MHandle, int TListIndex )
 {
 	MV1TLISTSTART( MHandle, Model, ModelBase, TList, TListIndex, -1 ) ;
 
-	// ’ё“_ѓfЃ[ѓ^‚Мђ”‚р•Ф‚·
+	// й ‚з‚№гѓ‡гѓјг‚їгЃ®ж•°г‚’иї”гЃ™
 	return TList->VertexNum ;
 }
 
-// Ћw’и‚Мѓgѓ‰ѓCѓAѓ“ѓOѓ‹ѓЉѓXѓg‚ЄЋg—p‚·‚йЌА•W•ПЉ·Ќs—с‚Мђ”‚рЋж“ѕ‚·‚й
+// жЊ‡е®љгЃ®гѓ€гѓ©г‚¤г‚ўгѓіг‚°гѓ«гѓЄг‚№гѓ€гЃЊдЅїз”ЁгЃ™г‚‹еє§жЁ™е¤‰жЏ›иЎЊе€—гЃ®ж•°г‚’еЏ–еѕ—гЃ™г‚‹
 extern int NS_MV1GetTriangleListLocalWorldMatrixNum( int MHandle, int TListIndex )
 {
 	MV1TLISTSTART( MHandle, Model, ModelBase, TList, TListIndex, -1 ) ;
 
-	// ЌА•W•ПЉ·Ќs—с‚Мђ”‚р•Ф‚·
+	// еє§жЁ™е¤‰жЏ›иЎЊе€—гЃ®ж•°г‚’иї”гЃ™
 	return TList->UseBoneNum ;
 }
 
-// Ћw’и‚Мѓgѓ‰ѓCѓAѓ“ѓOѓ‹ѓЉѓXѓg‚МЋw’и‚Мѓ|ѓЉѓSѓ“‚ЄЋg—p‚µ‚Д‚ў‚й’ё“_‚МЌА•W‚рЋж“ѕ‚·‚й( –Я‚и’l  ѓGѓ‰Ѓ[ЃF-1  0€ИЏгЃFѓ|ѓЉѓSѓ“‚ЄЋg—p‚µ‚Д‚ў‚й’ё“_‚Мђ” )
+// жЊ‡е®љгЃ®гѓ€гѓ©г‚¤г‚ўгѓіг‚°гѓ«гѓЄг‚№гѓ€гЃ®жЊ‡е®љгЃ®гѓќгѓЄг‚ґгѓігЃЊдЅїз”ЁгЃ—гЃ¦гЃ„г‚‹й ‚з‚№гЃ®еє§жЁ™г‚’еЏ–еѕ—гЃ™г‚‹( ж€»г‚ЉеЂ¤  г‚Ёгѓ©гѓјпјљ-1  0д»ҐдёЉпјљгѓќгѓЄг‚ґгѓігЃЊдЅїз”ЁгЃ—гЃ¦гЃ„г‚‹й ‚з‚№гЃ®ж•° )
 extern int NS_MV1GetTriangleListPolygonVertexPosition( int MHandle, int TListIndex, int PolygonIndex, VECTOR *VertexPositions , float *MatrixWeights )
 {
 	MV1TLISTSTART( MHandle, Model, ModelBase, TList, TListIndex, -1 ) ;
 	WORD *Index ;
 
-	// ѓ|ѓЉѓSѓ“‚Мђ”‚Є”Н€Н‚р’ґ‚¦‚Д‚ў‚Ѕ‚зѓGѓ‰Ѓ[
+	// гѓќгѓЄг‚ґгѓігЃ®ж•°гЃЊзЇ„е›Іг‚’и¶…гЃ€гЃ¦гЃ„гЃџг‚‰г‚Ёгѓ©гѓј
 	if( PolygonIndex < 0 || PolygonIndex >= TList->IndexNum / 3 )
 	{
 		return -1 ;
 	}
 
-	// VertexPositions ‚Є NULL ‚Е‚Н–і‚ўЏкЌ‡‚НЌА•W‚рѓZѓbѓg‚·‚й
+	// VertexPositions гЃЊ NULL гЃ§гЃЇз„ЎгЃ„е ґеђ€гЃЇеє§жЁ™г‚’г‚»гѓѓгѓ€гЃ™г‚‹
 	if( VertexPositions != NULL )
 	{
 		Index = &TList->Index[ PolygonIndex * 3 ] ;
@@ -30603,7 +30603,7 @@ extern int NS_MV1GetTriangleListPolygonVertexPosition( int MHandle, int TListInd
 		}
 	}
 
-	// MatrixWeights ‚Є NULL ‚Е‚Н–і‚ўЏкЌ‡‚НЌs—сѓEѓGѓCѓg‚рѓZѓbѓg‚·‚й
+	// MatrixWeights гЃЊ NULL гЃ§гЃЇз„ЎгЃ„е ґеђ€гЃЇиЎЊе€—г‚¦г‚Ёг‚¤гѓ€г‚’г‚»гѓѓгѓ€гЃ™г‚‹
 	if( MatrixWeights != NULL )
 	{
 		Index = &TList->Index[ PolygonIndex * 3 ] ;
@@ -30660,20 +30660,20 @@ extern int NS_MV1GetTriangleListPolygonVertexPosition( int MHandle, int TListInd
 		}
 	}
 
-	// ЌА•W‚Мђ”‚р•Ф‚·
+	// еє§жЁ™гЃ®ж•°г‚’иї”гЃ™
 	return 3 ;
 }
 
-// Ћw’и‚Мѓgѓ‰ѓCѓAѓ“ѓOѓ‹ѓЉѓXѓg‚ЄЋg—p‚µ‚Д‚ў‚йѓ}ѓeѓЉѓAѓ‹‚МѓCѓ“ѓfѓbѓNѓX‚рЋж“ѕ‚·‚й
+// жЊ‡е®љгЃ®гѓ€гѓ©г‚¤г‚ўгѓіг‚°гѓ«гѓЄг‚№гѓ€гЃЊдЅїз”ЁгЃ—гЃ¦гЃ„г‚‹гѓћгѓ†гѓЄг‚ўгѓ«гЃ®г‚¤гѓігѓ‡гѓѓг‚Їг‚№г‚’еЏ–еѕ—гЃ™г‚‹
 extern int NS_MV1GetTriangleListUseMaterial( int MHandle, int TListIndex )
 {
 	MV1TLISTSTART( MHandle, Model, ModelBase, TList, TListIndex, -1 ) ;
 
-	// ѓ}ѓeѓЉѓAѓ‹ѓCѓ“ѓfѓbѓNѓX‚р•Ф‚·
+	// гѓћгѓ†гѓЄг‚ўгѓ«г‚¤гѓігѓ‡гѓѓг‚Їг‚№г‚’иї”гЃ™
 	return ( int )( TList->Container->Material - ModelBase->Material ) ;
 }
 
-// Ћw’и‚Мѓgѓ‰ѓCѓAѓ“ѓOѓ‹ѓЉѓXѓg‚ЄЋg—p‚·‚йЌА•W•ПЉ·Ќs—с( ѓЌЃ[ѓJѓ‹ЃЁѓЏЃ[ѓ‹ѓh )‚рЋж“ѕ‚·‚й
+// жЊ‡е®љгЃ®гѓ€гѓ©г‚¤г‚ўгѓіг‚°гѓ«гѓЄг‚№гѓ€гЃЊдЅїз”ЁгЃ™г‚‹еє§жЁ™е¤‰жЏ›иЎЊе€—( гѓ­гѓјг‚«гѓ«в†’гѓЇгѓјгѓ«гѓ‰ )г‚’еЏ–еѕ—гЃ™г‚‹
 extern MATRIX NS_MV1GetTriangleListLocalWorldMatrix( int MHandle, int TListIndex, int LWMatrixIndex )
 {
 	MATRIX Result =
@@ -30690,24 +30690,24 @@ extern MATRIX NS_MV1GetTriangleListLocalWorldMatrix( int MHandle, int TListIndex
 
 	Frame = &Model->Frame[ TList->Container->Container->Index ] ;
 
-	// Ќs—с‚МѓZѓbѓgѓAѓbѓv
+	// иЎЊе€—гЃ®г‚»гѓѓгѓ€г‚ўгѓѓгѓ—
 	MV1SETUPMATRIX( Model ) ;
 
-	// Ќs—с‚р•Ф‚·
+	// иЎЊе€—г‚’иї”гЃ™
 	ConvertMatrix4x4cToMatrixF( &Result, Frame->UseSkinBoneMatrix[ TList->UseBone[ LWMatrixIndex ] ] ) ;
 	return Result ;
 }
 
-// Ћw’и‚Мѓgѓ‰ѓCѓAѓ“ѓOѓ‹ѓЉѓXѓg‚ЄЋg—p‚µ‚Д‚ў‚йѓ{Ѓ[ѓ“ѓtѓЊЃ[ѓЂ‚Мђ”‚рЋж“ѕ‚·‚й
+// жЊ‡е®љгЃ®гѓ€гѓ©г‚¤г‚ўгѓіг‚°гѓ«гѓЄг‚№гѓ€гЃЊдЅїз”ЁгЃ—гЃ¦гЃ„г‚‹гѓњгѓјгѓігѓ•гѓ¬гѓјгѓ гЃ®ж•°г‚’еЏ–еѕ—гЃ™г‚‹
 extern int MV1GetTriangleListUseBoneFrameNum( int MHandle, int TListIndex )
 {
 	MV1TLISTSTART( MHandle, Model, ModelBase, TList, TListIndex, -1 ) ;
 
-	// Ћg—p‚µ‚Д‚ў‚йѓ{Ѓ[ѓ“‚Мђ”‚р•Ф‚·
+	// дЅїз”ЁгЃ—гЃ¦гЃ„г‚‹гѓњгѓјгѓігЃ®ж•°г‚’иї”гЃ™
 	return TList->UseBoneNum ;
 }
 
-// Ћw’и‚Мѓgѓ‰ѓCѓAѓ“ѓOѓ‹ѓЉѓXѓg‚ЄЋg—p‚µ‚Д‚ў‚йѓ{Ѓ[ѓ“ѓtѓЊЃ[ѓЂ‚МѓtѓЊЃ[ѓЂѓCѓ“ѓfѓbѓNѓX‚рЋж“ѕ‚·‚й
+// жЊ‡е®љгЃ®гѓ€гѓ©г‚¤г‚ўгѓіг‚°гѓ«гѓЄг‚№гѓ€гЃЊдЅїз”ЁгЃ—гЃ¦гЃ„г‚‹гѓњгѓјгѓігѓ•гѓ¬гѓјгѓ гЃ®гѓ•гѓ¬гѓјгѓ г‚¤гѓігѓ‡гѓѓг‚Їг‚№г‚’еЏ–еѕ—гЃ™г‚‹
 extern int MV1GetTriangleListUseBoneFrame( int MHandle, int TListIndex, int Index )
 {
 	int i, con ;
@@ -30717,7 +30717,7 @@ extern int MV1GetTriangleListUseBoneFrame( int MHandle, int TListIndex, int Inde
 
 	FrameBase = TList->Container->Container ;
 
-	// Ћw’и‚Мѓ{Ѓ[ѓ“‚Ж‚µ‚ДЋg—p‚µ‚Д‚ў‚йѓtѓЊЃ[ѓЂ‚р•Ф‚·
+	// жЊ‡е®љгЃ®гѓњгѓјгѓігЃЁгЃ—гЃ¦дЅїз”ЁгЃ—гЃ¦гЃ„г‚‹гѓ•гѓ¬гѓјгѓ г‚’иї”гЃ™
 	con = 0 ;
 	for( i = 0 ; i < MV1_TRIANGLE_LIST_USE_BONE_MAX_NUM ; i ++ )
 	{
@@ -30728,7 +30728,7 @@ extern int MV1GetTriangleListUseBoneFrame( int MHandle, int TListIndex, int Inde
 		con ++ ;
 	}
 
-	// ‚±‚±‚Й‚«‚Ѕ‚зѓGѓ‰Ѓ[
+	// гЃ“гЃ“гЃ«гЃЌгЃџг‚‰г‚Ёгѓ©гѓј
 	return -1 ;
 }
 
@@ -30737,7 +30737,7 @@ extern int MV1GetTriangleListUseBoneFrame( int MHandle, int TListIndex, int Inde
 
 
 
-// ѓRѓЉѓWѓ‡ѓ“Џо•с‚рЌ\’z‚·‚й
+// г‚ігѓЄг‚ёгѓ§гѓіжѓ…е ±г‚’ж§‹зЇ‰гЃ™г‚‹
 extern int NS_MV1SetupCollInfo( int MHandle, int FrameIndex, int XDivNum, int YDivNum, int ZDivNum, int MeshIndex )
 {
 	MV1_MODEL *Model ;
@@ -30745,28 +30745,28 @@ extern int NS_MV1SetupCollInfo( int MHandle, int FrameIndex, int XDivNum, int YD
 	MV1_FRAME *Frame ;
 	MV1_MESH *Mesh ;
 
-	// ѓAѓhѓЊѓXЋж“ѕ
+	// г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ—
 	if( MV1MDLCHK( MHandle, Model ) )
 		return -1 ;
 	ModelBase = Model->BaseData ;
 
-	// ѓtѓЊЃ[ѓЂ’P‘М‚©ѓЃѓbѓVѓ…’P‘М‚©ѓ‚ѓfѓ‹‘S‘М‚©‚ЕЏ€—ќ‚р•ЄЉт
+	// гѓ•гѓ¬гѓјгѓ еЌдЅ“гЃ‹гѓЎгѓѓг‚·гѓҐеЌдЅ“гЃ‹гѓўгѓ‡гѓ«е…ЁдЅ“гЃ‹гЃ§е‡¦зђ†г‚’е€†еІђ
 	if( FrameIndex < 0 && MeshIndex < 0 )
 	{
-		// ѓ‚ѓfѓ‹‘S‘М‚МЏкЌ‡
+		// гѓўгѓ‡гѓ«е…ЁдЅ“гЃ®е ґеђ€
 
-		// ЋQЏЖ—pѓ|ѓЉѓSѓ“Џо•с‚Є‚И‚ўЏкЌ‡‚НЌ\’z‚·‚й
+		// еЏ‚з…§з”ЁгѓќгѓЄг‚ґгѓіжѓ…е ±гЃЊгЃЄгЃ„е ґеђ€гЃЇж§‹зЇ‰гЃ™г‚‹
 		if( Model->RefPolygon[ 1 ][ 1 ] == NULL )
 			if( NS_MV1RefreshReferenceMesh( MHandle, FrameIndex, TRUE, TRUE, -1 ) < 0 )
 				return -1 ;
 
-		// Љm•Ы‚і‚к‚Д‚ў‚И‚ўЏкЌ‡‚М‚ЭЉm•Ы
+		// зўєдїќгЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ„е ґеђ€гЃ®гЃїзўєдїќ
 		if( Model->Collision == NULL )
 		{
 			Model->Collision = ( MV1_COLLISION * )DXALLOC( sizeof( MV1_COLLISION ) + sizeof( MV1_COLL_POLYGON * ) * XDivNum * YDivNum * ZDivNum + sizeof( MV1_COLL_POLY_BUFFER ) + sizeof( MV1_COLL_POLYGON ) * ( Model->RefPolygon[ 1 ][ 1 ]->PolygonNum * 2 ) ) ;
 			if( Model->Collision == NULL )
 			{
-				DXST_LOGFILEFMT_ADDUTF16LE(( "\xb3\x30\xea\x30\xb8\x30\xe7\x30\xf3\x30\xc5\x60\x31\x58\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ѓRѓЉѓWѓ‡ѓ“Џо•с‚рЉi”[‚·‚йѓЃѓ‚ѓЉ—М€ж‚МЉm•Ы‚ЙЋё”s‚µ‚Ь‚µ‚Ѕ\n" @*/ )) ;
+				DXST_LOGFILEFMT_ADDUTF16LE(( "\xb3\x30\xea\x30\xb8\x30\xe7\x30\xf3\x30\xc5\x60\x31\x58\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"г‚ігѓЄг‚ёгѓ§гѓіжѓ…е ±г‚’ж јзґЌгЃ™г‚‹гѓЎгѓўгѓЄй еџџгЃ®зўєдїќгЃ«е¤±ж•—гЃ—гЃѕгЃ—гЃџ\n" @*/ )) ;
 				return -1 ;
 			}
 			Model->Collision->Polygon = ( MV1_COLL_POLYGON ** )( Model->Collision + 1 ) ;
@@ -30782,26 +30782,26 @@ extern int NS_MV1SetupCollInfo( int MHandle, int FrameIndex, int XDivNum, int YD
 		Model->Collision->ZDivNum = ZDivNum ;
 	}
 	else
-	// ѓtѓЊЃ[ѓЂ’P‘М‚МЏкЌ‡
+	// гѓ•гѓ¬гѓјгѓ еЌдЅ“гЃ®е ґеђ€
 	if( FrameIndex >= 0 && MeshIndex < 0 )
 	{
-		// ѓtѓЊЃ[ѓЂѓCѓ“ѓfѓbѓNѓX‚Мѓ`ѓFѓbѓN
+		// гѓ•гѓ¬гѓјгѓ г‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃ®гѓЃг‚§гѓѓг‚Ї
 		if( FrameIndex < 0 || FrameIndex >= ModelBase->FrameNum )
 			return -1 ;
 		Frame = Model->Frame + FrameIndex ;
 
-		// ЋQЏЖ—pѓ|ѓЉѓSѓ“Џо•с‚Є‚И‚ўЏкЌ‡‚НЌ\’z‚·‚й
+		// еЏ‚з…§з”ЁгѓќгѓЄг‚ґгѓіжѓ…е ±гЃЊгЃЄгЃ„е ґеђ€гЃЇж§‹зЇ‰гЃ™г‚‹
 		if( Frame->RefPolygon[ 1 ][ 1 ] == NULL )
 			if( NS_MV1RefreshReferenceMesh( MHandle, FrameIndex, TRUE, TRUE, -1 ) < 0 )
 				return -1 ;
 
-		// Љm•Ы‚і‚к‚Д‚ў‚И‚ўЏкЌ‡‚М‚ЭЉm•Ы
+		// зўєдїќгЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ„е ґеђ€гЃ®гЃїзўєдїќ
 		if( Frame->Collision == NULL )
 		{
 			Frame->Collision = ( MV1_COLLISION * )DXALLOC( sizeof( MV1_COLLISION ) + sizeof( MV1_COLL_POLYGON * ) * XDivNum * YDivNum * ZDivNum + sizeof( MV1_COLL_POLY_BUFFER ) + sizeof( MV1_COLL_POLYGON ) * ( Frame->RefPolygon[ 1 ][ 1 ]->PolygonNum * 2 ) ) ;
 			if( Frame->Collision == NULL )
 			{
-				DXST_LOGFILEFMT_ADDUTF16LE(( "\xb3\x30\xea\x30\xb8\x30\xe7\x30\xf3\x30\xc5\x60\x31\x58\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ѓRѓЉѓWѓ‡ѓ“Џо•с‚рЉi”[‚·‚йѓЃѓ‚ѓЉ—М€ж‚МЉm•Ы‚ЙЋё”s‚µ‚Ь‚µ‚Ѕ\n" @*/ )) ;
+				DXST_LOGFILEFMT_ADDUTF16LE(( "\xb3\x30\xea\x30\xb8\x30\xe7\x30\xf3\x30\xc5\x60\x31\x58\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"г‚ігѓЄг‚ёгѓ§гѓіжѓ…е ±г‚’ж јзґЌгЃ™г‚‹гѓЎгѓўгѓЄй еџџгЃ®зўєдїќгЃ«е¤±ж•—гЃ—гЃѕгЃ—гЃџ\n" @*/ )) ;
 				return -1 ;
 			}
 			Frame->Collision->Polygon = ( MV1_COLL_POLYGON ** )( Frame->Collision + 1 ) ;
@@ -30817,9 +30817,9 @@ extern int NS_MV1SetupCollInfo( int MHandle, int FrameIndex, int XDivNum, int YD
 		Frame->Collision->ZDivNum = ZDivNum ;
 	}
 	else
-	// ѓЃѓbѓVѓ…’P‘М‚МЏкЌ‡
+	// гѓЎгѓѓг‚·гѓҐеЌдЅ“гЃ®е ґеђ€
 	{
-		// ѓЃѓbѓVѓ…ѓCѓ“ѓfѓbѓNѓXѓ`ѓFѓbѓN
+		// гѓЎгѓѓг‚·гѓҐг‚¤гѓігѓ‡гѓѓг‚Їг‚№гѓЃг‚§гѓѓг‚Ї
 		if( FrameIndex >= 0 && FrameIndex < ModelBase->FrameNum )
 		{
 			Frame = Model->Frame + FrameIndex ;
@@ -30836,18 +30836,18 @@ extern int NS_MV1SetupCollInfo( int MHandle, int FrameIndex, int XDivNum, int YD
 			Mesh = &Model->Mesh[ MeshIndex ] ;
 		}
 
-		// ЋQЏЖ—pѓ|ѓЉѓSѓ“Џо•с‚Є‚И‚ўЏкЌ‡‚НЌ\’z‚·‚й
+		// еЏ‚з…§з”ЁгѓќгѓЄг‚ґгѓіжѓ…е ±гЃЊгЃЄгЃ„е ґеђ€гЃЇж§‹зЇ‰гЃ™г‚‹
 		if( Mesh->RefPolygon[ 1 ] == NULL )
 			if( NS_MV1RefreshReferenceMesh( MHandle, FrameIndex, TRUE, TRUE, MeshIndex ) < 0 )
 				return -1 ;
 
-		// Љm•Ы‚і‚к‚Д‚ў‚И‚ўЏкЌ‡‚М‚ЭЉm•Ы
+		// зўєдїќгЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ„е ґеђ€гЃ®гЃїзўєдїќ
 		if( Mesh->Collision == NULL )
 		{
 			Mesh->Collision = ( MV1_COLLISION * )DXALLOC( sizeof( MV1_COLLISION ) + sizeof( MV1_COLL_POLYGON * ) * XDivNum * YDivNum * ZDivNum + sizeof( MV1_COLL_POLY_BUFFER ) + sizeof( MV1_COLL_POLYGON ) * ( Mesh->RefPolygon[ 1 ]->PolygonNum * 2 ) ) ;
 			if( Mesh->Collision == NULL )
 			{
-				DXST_LOGFILEFMT_ADDUTF16LE(( "\xb3\x30\xea\x30\xb8\x30\xe7\x30\xf3\x30\xc5\x60\x31\x58\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ѓRѓЉѓWѓ‡ѓ“Џо•с‚рЉi”[‚·‚йѓЃѓ‚ѓЉ—М€ж‚МЉm•Ы‚ЙЋё”s‚µ‚Ь‚µ‚Ѕ\n" @*/ )) ;
+				DXST_LOGFILEFMT_ADDUTF16LE(( "\xb3\x30\xea\x30\xb8\x30\xe7\x30\xf3\x30\xc5\x60\x31\x58\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"г‚ігѓЄг‚ёгѓ§гѓіжѓ…е ±г‚’ж јзґЌгЃ™г‚‹гѓЎгѓўгѓЄй еџџгЃ®зўєдїќгЃ«е¤±ж•—гЃ—гЃѕгЃ—гЃџ\n" @*/ )) ;
 				return -1 ;
 			}
 			Mesh->Collision->Polygon = ( MV1_COLL_POLYGON ** )( Mesh->Collision + 1 ) ;
@@ -30863,14 +30863,14 @@ extern int NS_MV1SetupCollInfo( int MHandle, int FrameIndex, int XDivNum, int YD
 		Mesh->Collision->ZDivNum = ZDivNum ;
 	}
 
-	// ѓRѓЉѓWѓ‡ѓ“Џо•с‚рЌ\’z‚µ‚Д‚Ё‚­
+	// г‚ігѓЄг‚ёгѓ§гѓіжѓ…е ±г‚’ж§‹зЇ‰гЃ—гЃ¦гЃЉгЃЏ
 	NS_MV1RefreshCollInfo( MHandle, FrameIndex, MeshIndex ) ;
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// ѓRѓЉѓWѓ‡ѓ“Џо•с‚МЊгЋn––
+// г‚ігѓЄг‚ёгѓ§гѓіжѓ…е ±гЃ®еѕЊе§‹жњ«
 extern int NS_MV1TerminateCollInfo( int MHandle, int FrameIndex, int MeshIndex )
 {
 	MV1_MODEL *Model ;
@@ -30880,24 +30880,24 @@ extern int NS_MV1TerminateCollInfo( int MHandle, int FrameIndex, int MeshIndex )
 	MV1_COLL_POLY_BUFFER *Buffer, *NextBuffer ;
 	MV1_COLLISION *Collision ;
 
-	// ѓAѓhѓЊѓXЋж“ѕ
+	// г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ—
 	if( MV1MDLCHK( MHandle, Model ) )
 		return -1 ;
 	ModelBase = Model->BaseData ;
 	Collision = NULL ;
 
-	// ѓtѓЊЃ[ѓЂ’P‘М‚©ѓЃѓbѓVѓ…’P‘М‚©ѓ‚ѓfѓ‹‘S‘М‚©‚ЕЏ€—ќ‚р•ЄЉт
+	// гѓ•гѓ¬гѓјгѓ еЌдЅ“гЃ‹гѓЎгѓѓг‚·гѓҐеЌдЅ“гЃ‹гѓўгѓ‡гѓ«е…ЁдЅ“гЃ‹гЃ§е‡¦зђ†г‚’е€†еІђ
 	if( FrameIndex < 0 && MeshIndex < 0 )
 	{
-		// ѓ‚ѓfѓ‹‘S‘М‚МЏкЌ‡
+		// гѓўгѓ‡гѓ«е…ЁдЅ“гЃ®е ґеђ€
 		Collision = Model->Collision ;
 		Model->Collision = NULL ;
 	}
 	else
-	// ѓtѓЊЃ[ѓЂ’P‘М‚МЏкЌ‡
+	// гѓ•гѓ¬гѓјгѓ еЌдЅ“гЃ®е ґеђ€
 	if( MeshIndex < 0 )
 	{
-		// ѓtѓЊЃ[ѓЂѓCѓ“ѓfѓbѓNѓX‚Мѓ`ѓFѓbѓN
+		// гѓ•гѓ¬гѓјгѓ г‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃ®гѓЃг‚§гѓѓг‚Ї
 		if( FrameIndex < 0 || FrameIndex >= ModelBase->FrameNum )
 			return -1 ;
 		Frame = Model->Frame + FrameIndex ;
@@ -30906,9 +30906,9 @@ extern int NS_MV1TerminateCollInfo( int MHandle, int FrameIndex, int MeshIndex )
 		Frame->Collision = NULL ;
 	}
 	else
-	// ѓЃѓbѓVѓ…’P‘М‚МЏкЌ‡
+	// гѓЎгѓѓг‚·гѓҐеЌдЅ“гЃ®е ґеђ€
 	{
-		// ѓЃѓbѓVѓ…ѓCѓ“ѓfѓbѓNѓXѓ`ѓFѓbѓN
+		// гѓЎгѓѓг‚·гѓҐг‚¤гѓігѓ‡гѓѓг‚Їг‚№гѓЃг‚§гѓѓг‚Ї
 		if( FrameIndex >= 0 && FrameIndex < ModelBase->FrameNum )
 		{
 			Frame = Model->Frame + FrameIndex ;
@@ -30929,25 +30929,25 @@ extern int NS_MV1TerminateCollInfo( int MHandle, int FrameIndex, int MeshIndex )
 		Mesh->Collision = NULL ;
 	}
 
-	// ѓRѓЉѓWѓ‡ѓ“Џо•с‚Є‚ ‚Б‚Ѕ‚з‰р•ъ
+	// г‚ігѓЄг‚ёгѓ§гѓіжѓ…е ±гЃЊгЃ‚гЃЈгЃџг‚‰и§Јж”ѕ
 	if( Collision )
 	{
-		// ѓoѓbѓtѓ@‚рЉJ•ъ
+		// гѓђгѓѓгѓ•г‚Ўг‚’й–‹ж”ѕ
 		for( Buffer = Collision->FirstBuffer->Next ; Buffer ; Buffer = NextBuffer )
 		{
 			NextBuffer = Buffer->Next ;
 			DXFREE( Buffer ) ;
 		}
 
-		// –{‘М‚р‰р•ъ
+		// жњ¬дЅ“г‚’и§Јж”ѕ
 		DXFREE( Collision ) ;
 	}
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// ѓRѓЉѓWѓ‡ѓ“Џо•с‚рЌXђV‚·‚й
+// г‚ігѓЄг‚ёгѓ§гѓіжѓ…е ±г‚’ж›ґж–°гЃ™г‚‹
 extern int NS_MV1RefreshCollInfo( int MHandle, int FrameIndex, int MeshIndex )
 {
 	MV1_MODEL *Model ;
@@ -30963,67 +30963,67 @@ extern int NS_MV1RefreshCollInfo( int MHandle, int FrameIndex, int MeshIndex )
 	int MinX, MinY, MinZ, MaxX, MaxY, MaxZ, PostIndexZ, PostIndexY, PostIndexX ;
 	VECTOR UnitDiv, MinAreaPos ;
 
-	// ѓAѓhѓЊѓXЋж“ѕ
+	// г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ—
 	if( MV1MDLCHK( MHandle, Model ) )
 		return -1 ;
 	ModelBase = Model->BaseData ;
 
-	// ѓtѓЊЃ[ѓЂ’P‘М‚©ѓЃѓbѓVѓ…’P‘М‚©ѓ‚ѓfѓ‹‘S‘М‚©‚ЕЏ€—ќ‚р•ЄЉт
+	// гѓ•гѓ¬гѓјгѓ еЌдЅ“гЃ‹гѓЎгѓѓг‚·гѓҐеЌдЅ“гЃ‹гѓўгѓ‡гѓ«е…ЁдЅ“гЃ‹гЃ§е‡¦зђ†г‚’е€†еІђ
 	if( FrameIndex < 0 && MeshIndex < 0 )
 	{
-		// ѓ‚ѓfѓ‹‘S‘М‚МЏкЌ‡
+		// гѓўгѓ‡гѓ«е…ЁдЅ“гЃ®е ґеђ€
 
-		// ѓRѓЉѓWѓ‡ѓ“Џо•с‚Є–і‚©‚Б‚Ѕ‚зѓZѓbѓgѓAѓbѓv‚·‚й
+		// г‚ігѓЄг‚ёгѓ§гѓіжѓ…е ±гЃЊз„ЎгЃ‹гЃЈгЃџг‚‰г‚»гѓѓгѓ€г‚ўгѓѓгѓ—гЃ™г‚‹
 		if( Model->Collision == NULL )
 			if( NS_MV1SetupCollInfo( MHandle, FrameIndex, 32, 8, 32, -1 ) < 0 )
 				return -1 ;
 
-		// ЋQЏЖ—pѓЃѓbѓVѓ…‚МЌXђV
+		// еЏ‚з…§з”ЁгѓЎгѓѓг‚·гѓҐгЃ®ж›ґж–°
 		NS_MV1RefreshReferenceMesh( MHandle, FrameIndex, TRUE, TRUE, -1 ) ;
 
-		// ѓRѓЉѓWѓ‡ѓ“Џо•с‚МЌXђV‚ЄЉ®—№‚µ‚Д‚ў‚Ѕ‚з‰Ѕ‚а‚µ‚И‚ў
+		// г‚ігѓЄг‚ёгѓ§гѓіжѓ…е ±гЃ®ж›ґж–°гЃЊе®Њдє†гЃ—гЃ¦гЃ„гЃџг‚‰дЅ•г‚‚гЃ—гЃЄгЃ„
 		if( Model->SetupCollision == true )
 			return 0 ;
 
-		// ѓ|ѓЉѓSѓ“Џо•с‚МѓZѓbѓg
+		// гѓќгѓЄг‚ґгѓіжѓ…е ±гЃ®г‚»гѓѓгѓ€
 		PolyList = Model->RefPolygon[ 1 ][ 1 ] ;
 		Collision = Model->Collision ;
 
-		// ѓRѓЉѓWѓ‡ѓ“Џо•с‚МЌXђVЉ®—№ѓtѓ‰ѓO‚р—§‚Д‚й
+		// г‚ігѓЄг‚ёгѓ§гѓіжѓ…е ±гЃ®ж›ґж–°е®Њдє†гѓ•гѓ©г‚°г‚’з«‹гЃ¦г‚‹
 		Model->SetupCollision = true ;
 	}
 	else
-	// ѓtѓЊЃ[ѓЂ’P‘М‚МЏкЌ‡
+	// гѓ•гѓ¬гѓјгѓ еЌдЅ“гЃ®е ґеђ€
 	if( MeshIndex < 0 )
 	{
-		// ѓtѓЊЃ[ѓЂѓCѓ“ѓfѓbѓNѓX‚Мѓ`ѓFѓbѓN
+		// гѓ•гѓ¬гѓјгѓ г‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃ®гѓЃг‚§гѓѓг‚Ї
 		if( FrameIndex < 0 || FrameIndex >= ModelBase->FrameNum )
 			return -1 ;
 		Frame = Model->Frame + FrameIndex ;
 
-		// ѓRѓЉѓWѓ‡ѓ“Џо•с‚Є–і‚©‚Б‚Ѕ‚зѓZѓbѓgѓAѓbѓv‚·‚й
+		// г‚ігѓЄг‚ёгѓ§гѓіжѓ…е ±гЃЊз„ЎгЃ‹гЃЈгЃџг‚‰г‚»гѓѓгѓ€г‚ўгѓѓгѓ—гЃ™г‚‹
 		if( Frame->Collision == NULL )
 			if( NS_MV1SetupCollInfo( MHandle, FrameIndex, 32, 8, 32, -1 ) < 0 )
 				return -1 ;
 
-		// ЋQЏЖ—pѓЃѓbѓVѓ…‚МЌXђV
+		// еЏ‚з…§з”ЁгѓЎгѓѓг‚·гѓҐгЃ®ж›ґж–°
 		NS_MV1RefreshReferenceMesh( MHandle, FrameIndex, TRUE, TRUE, -1 ) ;
 
-		// ѓRѓЉѓWѓ‡ѓ“Џо•с‚МЌXђV‚ЄЉ®—№‚µ‚Д‚ў‚Ѕ‚з‰Ѕ‚а‚µ‚И‚ў
+		// г‚ігѓЄг‚ёгѓ§гѓіжѓ…е ±гЃ®ж›ґж–°гЃЊе®Њдє†гЃ—гЃ¦гЃ„гЃџг‚‰дЅ•г‚‚гЃ—гЃЄгЃ„
 		if( Frame->SetupCollision == true )
 			return 0 ;
 
-		// ѓ|ѓЉѓSѓ“Џо•с‚МѓZѓbѓg
+		// гѓќгѓЄг‚ґгѓіжѓ…е ±гЃ®г‚»гѓѓгѓ€
 		PolyList = Frame->RefPolygon[ 1 ][ 1 ] ;
 		Collision = Frame->Collision ;
 
-		// ѓRѓЉѓWѓ‡ѓ“Џо•с‚МЌXђVЉ®—№ѓtѓ‰ѓO‚р—§‚Д‚й
+		// г‚ігѓЄг‚ёгѓ§гѓіжѓ…е ±гЃ®ж›ґж–°е®Њдє†гѓ•гѓ©г‚°г‚’з«‹гЃ¦г‚‹
 		Frame->SetupCollision = true ;
 	}
 	else
-	// ѓЃѓbѓVѓ…’P‘М‚МЏкЌ‡
+	// гѓЎгѓѓг‚·гѓҐеЌдЅ“гЃ®е ґеђ€
 	{
-		// ѓЃѓbѓVѓ…ѓCѓ“ѓfѓbѓNѓXѓ`ѓFѓbѓN
+		// гѓЎгѓѓг‚·гѓҐг‚¤гѓігѓ‡гѓѓг‚Їг‚№гѓЃг‚§гѓѓг‚Ї
 		if( FrameIndex >= 0 && FrameIndex < ModelBase->FrameNum )
 		{
 			Frame = Model->Frame + FrameIndex ;
@@ -31040,27 +31040,27 @@ extern int NS_MV1RefreshCollInfo( int MHandle, int FrameIndex, int MeshIndex )
 			Mesh = &Model->Mesh[ MeshIndex ] ;
 		}
 
-		// ѓRѓЉѓWѓ‡ѓ“Џо•с‚Є–і‚©‚Б‚Ѕ‚зѓZѓbѓgѓAѓbѓv‚·‚й
+		// г‚ігѓЄг‚ёгѓ§гѓіжѓ…е ±гЃЊз„ЎгЃ‹гЃЈгЃџг‚‰г‚»гѓѓгѓ€г‚ўгѓѓгѓ—гЃ™г‚‹
 		if( Mesh->Collision == NULL )
 			if( NS_MV1SetupCollInfo( MHandle, FrameIndex, 32, 8, 32, MeshIndex ) < 0 )
 				return -1 ;
 
-		// ЋQЏЖ—pѓЃѓbѓVѓ…‚МЌXђV
+		// еЏ‚з…§з”ЁгѓЎгѓѓг‚·гѓҐгЃ®ж›ґж–°
 		NS_MV1RefreshReferenceMesh( MHandle, FrameIndex, TRUE, TRUE, MeshIndex ) ;
 
-		// ѓRѓЉѓWѓ‡ѓ“Џо•с‚МЌXђV‚ЄЉ®—№‚µ‚Д‚ў‚Ѕ‚з‰Ѕ‚а‚µ‚И‚ў
+		// г‚ігѓЄг‚ёгѓ§гѓіжѓ…е ±гЃ®ж›ґж–°гЃЊе®Њдє†гЃ—гЃ¦гЃ„гЃџг‚‰дЅ•г‚‚гЃ—гЃЄгЃ„
 		if( Mesh->SetupCollision == true )
 			return 0 ;
 
-		// ѓ|ѓЉѓSѓ“Џо•с‚МѓZѓbѓg
+		// гѓќгѓЄг‚ґгѓіжѓ…е ±гЃ®г‚»гѓѓгѓ€
 		PolyList = Mesh->RefPolygon[ 1 ] ;
 		Collision = Mesh->Collision ;
 
-		// ѓRѓЉѓWѓ‡ѓ“Џо•с‚МЌXђVЉ®—№ѓtѓ‰ѓO‚р—§‚Д‚й
+		// г‚ігѓЄг‚ёгѓ§гѓіжѓ…е ±гЃ®ж›ґж–°е®Њдє†гѓ•гѓ©г‚°г‚’з«‹гЃ¦г‚‹
 		Mesh->SetupCollision = true ;
 	}
 
-	// ЌЕ‘е’l‚ЖЌЕЏ¬’lЋь‚и‚рѓZѓbѓg
+	// жњЂе¤§еЂ¤гЃЁжњЂе°ЏеЂ¤е‘Ёг‚Љг‚’г‚»гѓѓгѓ€
 	Collision->MaxPosition = PolyList->MaxPosition ;
 	Collision->MinPosition = PolyList->MinPosition ;
 	VectorSub( &Collision->Size, &Collision->MaxPosition, &Collision->MinPosition ) ;
@@ -31074,13 +31074,13 @@ extern int NS_MV1RefreshCollInfo( int MHandle, int FrameIndex, int MeshIndex )
 	Collision->UnitSizeRev.y = 1.0f / Collision->UnitSize.y ;
 	Collision->UnitSizeRev.z = 1.0f / Collision->UnitSize.z ;
 
-	// ѓeЃ[ѓuѓ‹‚рЏ‰Љъ‰»
+	// гѓ†гѓјгѓ–гѓ«г‚’е€ќжњџеЊ–
 	_MEMSET( Collision->Polygon, 0, sizeof( MV1_COLL_POLYGON * ) * Collision->XDivNum * Collision->YDivNum * Collision->ZDivNum ) ;
 
-	// ѓoѓbѓtѓ@‚рЏ‰Љъ‰»
+	// гѓђгѓѓгѓ•г‚Ўг‚’е€ќжњџеЊ–
 	Collision->FirstBuffer->UseSize = 0 ;
 
-	// ѓRѓЉѓWѓ‡ѓ“Џо•сЌ\’z
+	// г‚ігѓЄг‚ёгѓ§гѓіжѓ…е ±ж§‹зЇ‰
 	Poly = PolyList->Polygons ;
 	ColBuffer = Collision->FirstBuffer ;
 	UnitDiv = Collision->UnitSizeRev ;
@@ -31089,7 +31089,7 @@ extern int NS_MV1RefreshCollInfo( int MHandle, int FrameIndex, int MeshIndex )
 	YStep = Collision->XDivNum ;
 	for( i = 0 ; i < PolyList->PolygonNum ; i ++, Poly ++ )
 	{
-		// ”Н€Н‚рђ®ђ”’l‚Й•ПЉ·
+		// зЇ„е›Іг‚’ж•ґж•°еЂ¤гЃ«е¤‰жЏ›
 		MinX = __FTOL( ( Poly->MinPosition.x - MinAreaPos.x ) * UnitDiv.x ) ;
 		MinY = __FTOL( ( Poly->MinPosition.y - MinAreaPos.y ) * UnitDiv.y ) ;
 		MinZ = __FTOL( ( Poly->MinPosition.z - MinAreaPos.z ) * UnitDiv.z ) ;
@@ -31103,7 +31103,7 @@ extern int NS_MV1RefreshCollInfo( int MHandle, int FrameIndex, int MeshIndex )
 		if( MinY == Collision->YDivNum ) MinY = Collision->YDivNum - 1 ;
 		if( MinZ == Collision->ZDivNum ) MinZ = Collision->ZDivNum - 1 ;
 
-		// ѓ|ѓЉѓSѓ“‚рѓЉѓXѓg‚Й’З‰Б
+		// гѓќгѓЄг‚ґгѓіг‚’гѓЄг‚№гѓ€гЃ«иїЅеЉ 
 		PostIndexZ = MinX + MinY * YStep + MinZ * ZStep ;
 		for( zc = MinZ ; zc <= MaxZ ; zc ++, PostIndexZ += ZStep )
 		{
@@ -31113,16 +31113,16 @@ extern int NS_MV1RefreshCollInfo( int MHandle, int FrameIndex, int MeshIndex )
 				PostIndexX = PostIndexY ;
 				for( xc = MinX ; xc <= MaxX ; xc ++, PostIndexX ++ )
 				{
-					// ’З‰БЏ€—ќ‚ЙЋg‚¤ѓ|ѓЉѓSѓ“Џо•с‚МЉm•Ы
+					// иїЅеЉ е‡¦зђ†гЃ«дЅїгЃ†гѓќгѓЄг‚ґгѓіжѓ…е ±гЃ®зўєдїќ
 					if( ColBuffer->UseSize == ColBuffer->BufferSize )
 					{
-						// Ћџ‚Мѓoѓbѓtѓ@‚Є–і‚©‚Б‚Ѕ‚зђV‚µ‚ўѓЃѓ‚ѓЉ—М€ж‚рЉm•Ы
+						// ж¬ЎгЃ®гѓђгѓѓгѓ•г‚ЎгЃЊз„ЎгЃ‹гЃЈгЃџг‚‰ж–°гЃ—гЃ„гѓЎгѓўгѓЄй еџџг‚’зўєдїќ
 						if( ColBuffer->Next == NULL )
 						{
 							ColBuffer->Next = ( MV1_COLL_POLY_BUFFER * )DXALLOC( sizeof( MV1_COLL_POLY_BUFFER ) + sizeof( MV1_COLL_POLYGON ) * PolyList->PolygonNum ) ;
 							if( ColBuffer->Next == NULL )
 							{
-								DXST_LOGFILEFMT_ADDUTF16LE(( "\xb3\x30\xea\x30\xb8\x30\xe7\x30\xf3\x30\xfd\x8f\xa0\x52\xc5\x60\x31\x58\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ѓRѓЉѓWѓ‡ѓ“’З‰БЏо•с‚рЉi”[‚·‚йѓЃѓ‚ѓЉ—М€ж‚МЉm•Ы‚ЙЋё”s‚µ‚Ь‚µ‚Ѕ\n" @*/ )) ;
+								DXST_LOGFILEFMT_ADDUTF16LE(( "\xb3\x30\xea\x30\xb8\x30\xe7\x30\xf3\x30\xfd\x8f\xa0\x52\xc5\x60\x31\x58\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"г‚ігѓЄг‚ёгѓ§гѓіиїЅеЉ жѓ…е ±г‚’ж јзґЌгЃ™г‚‹гѓЎгѓўгѓЄй еџџгЃ®зўєдїќгЃ«е¤±ж•—гЃ—гЃѕгЃ—гЃџ\n" @*/ )) ;
 								return -1 ;
 							}
 							ColBuffer->Next->BufferSize = PolyList->PolygonNum ;
@@ -31137,7 +31137,7 @@ extern int NS_MV1RefreshCollInfo( int MHandle, int FrameIndex, int MeshIndex )
 					ColPoly = &ColBuffer->Buffer[ ColBuffer->UseSize ] ;
 					ColBuffer->UseSize ++ ;
 
-					// ѓRѓЉѓWѓ‡ѓ“ѓ|ѓЉѓSѓ“Џо•с‚рѓZѓbѓg
+					// г‚ігѓЄг‚ёгѓ§гѓігѓќгѓЄг‚ґгѓіжѓ…е ±г‚’г‚»гѓѓгѓ€
 					ColPoly->Polygon = Poly ;
 					ColPoly->Next = Collision->Polygon[ PostIndexX ] ;
 					Collision->Polygon[ PostIndexX ] = ColPoly ;
@@ -31146,11 +31146,11 @@ extern int NS_MV1RefreshCollInfo( int MHandle, int FrameIndex, int MeshIndex )
 		}
 	}
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// ђь‚Жѓ‚ѓfѓ‹‚М“–‚Ѕ‚и”»’и
+// з·љгЃЁгѓўгѓ‡гѓ«гЃ®еЅ“гЃџг‚Ље€¤е®љ
 extern MV1_COLL_RESULT_POLY NS_MV1CollCheck_Line( int MHandle, int FrameIndex, VECTOR PosStart, VECTOR PosEnd, int MeshIndex )
 {
 	MV1_MODEL *Model ;
@@ -31188,50 +31188,50 @@ extern MV1_COLL_RESULT_POLY NS_MV1CollCheck_Line( int MHandle, int FrameIndex, V
 	VECTOR LineVector ;
 	VECTOR LineDirection ;
 
-	// –Я‚и’l‚рЏ‰Љъ‰»
+	// ж€»г‚ЉеЂ¤г‚’е€ќжњџеЊ–
 	_MEMSET( &Result, 0, sizeof( Result ) ) ;
 
-	// ѓAѓhѓЊѓXЋж“ѕ
+	// г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ—
 	if( MV1MDLCHK( MHandle, Model ) )
 		return Result ;
 	ModelBase = Model->BaseData ;
 
-	// ѓtѓЊЃ[ѓЂ’P‘М‚©ѓЃѓbѓVѓ…’P‘М‚©ѓ‚ѓfѓ‹‘S‘М‚©‚ЕЏ€—ќ‚р•ЄЉт
+	// гѓ•гѓ¬гѓјгѓ еЌдЅ“гЃ‹гѓЎгѓѓг‚·гѓҐеЌдЅ“гЃ‹гѓўгѓ‡гѓ«е…ЁдЅ“гЃ‹гЃ§е‡¦зђ†г‚’е€†еІђ
 	if( FrameIndex < 0 && MeshIndex < 0 )
 	{
-		// ѓ‚ѓfѓ‹‘S‘М‚МЏкЌ‡
+		// гѓўгѓ‡гѓ«е…ЁдЅ“гЃ®е ґеђ€
 
-		// ѓRѓЉѓWѓ‡ѓ“Џо•с‚Є–і‚©‚Б‚Ѕ‚зѓZѓbѓgѓAѓbѓv‚·‚й
+		// г‚ігѓЄг‚ёгѓ§гѓіжѓ…е ±гЃЊз„ЎгЃ‹гЃЈгЃџг‚‰г‚»гѓѓгѓ€г‚ўгѓѓгѓ—гЃ™г‚‹
 		if( Model->Collision == NULL )
 			if( NS_MV1RefreshCollInfo( MHandle, FrameIndex, -1 ) < 0 )
 				return Result ;
 
-		// ѓ|ѓЉѓSѓ“Џо•с‚МѓZѓbѓg
+		// гѓќгѓЄг‚ґгѓіжѓ…е ±гЃ®г‚»гѓѓгѓ€
 		PolyList = Model->RefPolygon[ 1 ][ 1 ] ;
 		Collision = Model->Collision ;
 	}
 	else
-	// ѓtѓЊЃ[ѓЂ’P‘М‚МЏкЌ‡
+	// гѓ•гѓ¬гѓјгѓ еЌдЅ“гЃ®е ґеђ€
 	if( MeshIndex < 0 )
 	{
-		// ѓtѓЊЃ[ѓЂѓCѓ“ѓfѓbѓNѓX‚Мѓ`ѓFѓbѓN
+		// гѓ•гѓ¬гѓјгѓ г‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃ®гѓЃг‚§гѓѓг‚Ї
 		if( FrameIndex < 0 || FrameIndex >= ModelBase->FrameNum )
 			return Result ;
 		Frame = Model->Frame + FrameIndex ;
 
-		// ѓRѓЉѓWѓ‡ѓ“Џо•с‚Є–і‚©‚Б‚Ѕ‚зѓZѓbѓgѓAѓbѓv‚·‚й
+		// г‚ігѓЄг‚ёгѓ§гѓіжѓ…е ±гЃЊз„ЎгЃ‹гЃЈгЃџг‚‰г‚»гѓѓгѓ€г‚ўгѓѓгѓ—гЃ™г‚‹
 		if( Frame->Collision == NULL )
 			if( NS_MV1RefreshCollInfo( MHandle, FrameIndex, -1 ) < 0 )
 				return Result ;
 
-		// ѓ|ѓЉѓSѓ“Џо•с‚МѓZѓbѓg
+		// гѓќгѓЄг‚ґгѓіжѓ…е ±гЃ®г‚»гѓѓгѓ€
 		PolyList = Frame->RefPolygon[ 1 ][ 1 ] ;
 		Collision = Frame->Collision ;
 	}
 	else
-	// ѓЃѓbѓVѓ…’P‘М‚МЏкЌ‡
+	// гѓЎгѓѓг‚·гѓҐеЌдЅ“гЃ®е ґеђ€
 	{
-		// ѓЃѓbѓVѓ…ѓCѓ“ѓfѓbѓNѓXѓ`ѓFѓbѓN
+		// гѓЎгѓѓг‚·гѓҐг‚¤гѓігѓ‡гѓѓг‚Їг‚№гѓЃг‚§гѓѓг‚Ї
 		if( FrameIndex >= 0 && FrameIndex < ModelBase->FrameNum )
 		{
 			Frame = Model->Frame + FrameIndex ;
@@ -31248,17 +31248,17 @@ extern MV1_COLL_RESULT_POLY NS_MV1CollCheck_Line( int MHandle, int FrameIndex, V
 			Mesh = &Model->Mesh[ MeshIndex ] ;
 		}
 
-		// ѓRѓЉѓWѓ‡ѓ“Џо•с‚Є–і‚©‚Б‚Ѕ‚зѓZѓbѓgѓAѓbѓv‚·‚й
+		// г‚ігѓЄг‚ёгѓ§гѓіжѓ…е ±гЃЊз„ЎгЃ‹гЃЈгЃџг‚‰г‚»гѓѓгѓ€г‚ўгѓѓгѓ—гЃ™г‚‹
 		if( Mesh->Collision == NULL )
 			if( NS_MV1RefreshCollInfo( MHandle, FrameIndex, MeshIndex ) < 0 )
 				return Result ;
 
-		// ѓ|ѓЉѓSѓ“Џо•с‚МѓZѓbѓg
+		// гѓќгѓЄг‚ґгѓіжѓ…е ±гЃ®г‚»гѓѓгѓ€
 		PolyList = Mesh->RefPolygon[ 1 ] ;
 		Collision = Mesh->Collision ;
 	}
 
-	// Ћw’иЌА•W‚МЌЕЏ¬’l‚ЖЌЕ‘е’l‚рѓZѓbѓg
+	// жЊ‡е®љеє§жЁ™гЃ®жњЂе°ЏеЂ¤гЃЁжњЂе¤§еЂ¤г‚’г‚»гѓѓгѓ€
 	if( PosStart.x > PosEnd.x )
 	{
 		MaxPos.x = PosStart.x ;
@@ -31292,7 +31292,7 @@ extern MV1_COLL_RESULT_POLY NS_MV1CollCheck_Line( int MHandle, int FrameIndex, V
 		MinPos.z = PosStart.z ;
 	}
 
-	// ”Н€Н‚ЄѓRѓЉѓWѓ‡ѓ“‹уЉФ‚©‚зЉO‚к‚Д‚ў‚Ѕ‚з‚З‚Мѓ|ѓЉѓSѓ“‚Й‚а“–‚Ѕ‚з‚И‚ў‚Ж‚ў‚¤‚±‚Ж
+	// зЇ„е›ІгЃЊг‚ігѓЄг‚ёгѓ§гѓіз©єй–“гЃ‹г‚‰е¤–г‚ЊгЃ¦гЃ„гЃџг‚‰гЃ©гЃ®гѓќгѓЄг‚ґгѓігЃ«г‚‚еЅ“гЃџг‚‰гЃЄгЃ„гЃЁгЃ„гЃ†гЃ“гЃЁ
 	if( Collision->MaxPosition.x < MinPos.x ||
 		Collision->MaxPosition.y < MinPos.y ||
 		Collision->MaxPosition.z < MinPos.z ||
@@ -31301,16 +31301,16 @@ extern MV1_COLL_RESULT_POLY NS_MV1CollCheck_Line( int MHandle, int FrameIndex, V
 		Collision->MinPosition.z > MaxPos.z )
 		goto END ;
 
-	// “–‚Ѕ‚и”»’и‚рЌs‚Б‚Ѕ‚©‚З‚¤‚©‚р•Ы‘¶‚·‚йѓЃѓ‚ѓЉ—М€ж‚МЉm•Ы
+	// еЅ“гЃџг‚Ље€¤е®љг‚’иЎЊгЃЈгЃџгЃ‹гЃ©гЃ†гЃ‹г‚’дїќе­гЃ™г‚‹гѓЎгѓўгѓЄй еџџгЃ®зўєдїќ
 	BitBuffer = ( BYTE * )MV1SetupWorkBuffer( sizeof( BYTE ) * ( ( PolyList->PolygonNum + 7 ) / 8 ) ) ;
 	if( BitBuffer == NULL )
 	{
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\x53\x5f\x5f\x30\x8a\x30\x24\x52\x9a\x5b\xe6\x51\x06\x74\x28\x75\xc6\x30\xf3\x30\xdd\x30\xe9\x30\xea\x30\xd0\x30\xc3\x30\xd5\x30\xa1\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"“–‚Ѕ‚и”»’иЏ€—ќ—pѓeѓ“ѓ|ѓ‰ѓЉѓoѓbѓtѓ@‚МЉm•Ы‚ЙЋё”s‚µ‚Ь‚µ‚Ѕ\n" @*/ )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\x53\x5f\x5f\x30\x8a\x30\x24\x52\x9a\x5b\xe6\x51\x06\x74\x28\x75\xc6\x30\xf3\x30\xdd\x30\xe9\x30\xea\x30\xd0\x30\xc3\x30\xd5\x30\xa1\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"еЅ“гЃџг‚Ље€¤е®ље‡¦зђ†з”Ёгѓ†гѓігѓќгѓ©гѓЄгѓђгѓѓгѓ•г‚ЎгЃ®зўєдїќгЃ«е¤±ж•—гЃ—гЃѕгЃ—гЃџ\n" @*/ )) ;
 		return Result ;
 	}
 	_MEMSET( BitBuffer, 0, sizeof( BYTE ) * ( ( PolyList->PolygonNum + 7 ) / 8 ) ) ;
 
-	// ѓ‰ѓCѓ“‚МЏо•с‚рЋZЏo
+	// гѓ©г‚¤гѓігЃ®жѓ…е ±г‚’з®—е‡є
 	LineVector = VSub( PosEnd, PosStart ) ;
 	LineDistance = VSquareSize( LineVector ) ;
 	if( LineDistance <= 0.00000000001f )
@@ -31320,7 +31320,7 @@ extern MV1_COLL_RESULT_POLY NS_MV1CollCheck_Line( int MHandle, int FrameIndex, V
 	LineDistance = _SQRT( LineDistance ) ;
 	LineDirection = VScale( LineVector, 1.0f / LineDistance ) ;
 
-	// “–‚Ѕ‚и”»’иѓ`ѓFѓbѓN‚рЌs‚¤ЌЕЏ‰‚М•ЄЉ„€К’u‚рЊ€’и‚·‚й
+	// еЅ“гЃџг‚Ље€¤е®љгѓЃг‚§гѓѓг‚Їг‚’иЎЊгЃ†жњЂе€ќгЃ®е€†е‰ІдЅЌзЅ®г‚’ж±єе®љгЃ™г‚‹
 	NowPos = VGet( 0.0f, 0.0f, 0.0f ) ;
 	NowDistance = 0.0f ;
 	NowUnitX = 0 ;
@@ -31541,10 +31541,10 @@ extern MV1_COLL_RESULT_POLY NS_MV1CollCheck_Line( int MHandle, int FrameIndex, V
 			Poly = ColPoly->Polygon ;
 			PolyIndex = ( int )( Poly - PolyList->Polygons ) ;
 
-			// Љщ‚Йѓ`ѓFѓbѓNЌП‚Э‚Мѓ|ѓЉѓSѓ“‚ѕ‚Б‚ЅЏкЌ‡‚Н‰Ѕ‚а‚µ‚И‚ў
+			// ж—ўгЃ«гѓЃг‚§гѓѓг‚Їжё€гЃїгЃ®гѓќгѓЄг‚ґгѓігЃ гЃЈгЃџе ґеђ€гЃЇдЅ•г‚‚гЃ—гЃЄгЃ„
 			if( ( BitBuffer[ PolyIndex >> 3 ] & ( 1 << ( PolyIndex & 7 ) ) ) == 0 )
 			{
-				// ЌЕЏ‰‚Й—§•ы‘М’P€К‚М“–‚Ѕ‚и”»’и‚рЌs‚¤
+				// жњЂе€ќгЃ«з«‹ж–№дЅ“еЌдЅЌгЃ®еЅ“гЃџг‚Ље€¤е®љг‚’иЎЊгЃ†
 				if( ( MinPos.x > Poly->MaxPosition.x ||
 					MinPos.y > Poly->MaxPosition.y ||
 					MinPos.z > Poly->MaxPosition.z ||
@@ -31552,7 +31552,7 @@ extern MV1_COLL_RESULT_POLY NS_MV1CollCheck_Line( int MHandle, int FrameIndex, V
 					MaxPos.y < Poly->MinPosition.y ||
 					MaxPos.z < Poly->MinPosition.z ) == false )
 				{
-					// ЋOЉpЊ`‚Жђь‚М“–‚Ѕ‚и”»’и
+					// дё‰и§’еЅўгЃЁз·љгЃ®еЅ“гЃџг‚Ље€¤е®љ
 					HitCheck_Line_Triangle_Base(
 									&LineRes,
 									*( ( VECTOR * )&PosStart ),
@@ -31586,12 +31586,12 @@ extern MV1_COLL_RESULT_POLY NS_MV1CollCheck_Line( int MHandle, int FrameIndex, V
 					}
 				}
 
-				// ѓ`ѓFѓbѓNЌП‚Эѓtѓ‰ѓO‚р—§‚Д‚й
+				// гѓЃг‚§гѓѓг‚Їжё€гЃїгѓ•гѓ©г‚°г‚’з«‹гЃ¦г‚‹
 				BitBuffer[ PolyIndex >> 3 ] |= 1 << ( PolyIndex & 7 ) ;
 			}
 		}
 
-		// “–‚Ѕ‚и”»’иѓ`ѓFѓbѓN‚рЌs‚¤Ћџ‚М•ЄЉ„€К’u‚рЊ€’и‚·‚й
+		// еЅ“гЃџг‚Ље€¤е®љгѓЃг‚§гѓѓг‚Їг‚’иЎЊгЃ†ж¬ЎгЃ®е€†е‰ІдЅЌзЅ®г‚’ж±єе®љгЃ™г‚‹
 		MinNextDir = -1 ;
 		MinNextDirDistance = 0.0f ;
 		if( LineDirection.x > 0.0f  )
@@ -31731,7 +31731,7 @@ extern MV1_COLL_RESULT_POLY NS_MV1CollCheck_Line( int MHandle, int FrameIndex, V
 		NowPos = VAdd( NowPos, VScale( LineDirection, MinNextDirDistance ) ) ;
 	}
 
-//	// ЊџЌх”Н€Н‚рЊ€’и
+//	// ж¤њзґўзЇ„е›Іг‚’ж±єе®љ
 //	UnitDiv = Collision->UnitSizeRev ;
 //	MinX = __FTOL( ( MinPos.x - Collision->MinPosition.x ) * UnitDiv.x ) ;
 //	MinY = __FTOL( ( MinPos.y - Collision->MinPosition.y ) * UnitDiv.y ) ;
@@ -31746,7 +31746,7 @@ extern MV1_COLL_RESULT_POLY NS_MV1CollCheck_Line( int MHandle, int FrameIndex, V
 //	if( MaxY >= Collision->YDivNum ) MaxY = Collision->YDivNum - 1 ;
 //	if( MaxZ >= Collision->ZDivNum ) MaxZ = Collision->ZDivNum - 1 ;
 //
-//	// ”Н€Н“а‚М‘S‚Д‚Мѓ|ѓЉѓSѓ“‚Ж“–‚Ѕ‚и”»’и
+//	// зЇ„е›Іе†…гЃ®е…ЁгЃ¦гЃ®гѓќгѓЄг‚ґгѓігЃЁеЅ“гЃџг‚Ље€¤е®љ
 //	ZStep = Collision->YDivNum * Collision->XDivNum ;
 //	YStep = Collision->XDivNum ;
 //	PostIndexZ = MinX + MinY * YStep + MinZ * ZStep ;
@@ -31764,10 +31764,10 @@ extern MV1_COLL_RESULT_POLY NS_MV1CollCheck_Line( int MHandle, int FrameIndex, V
 //					Poly = ColPoly->Polygon ;
 //					PolyIndex = ( int )( Poly - PolyList->Polygons ) ;
 //
-//					// Љщ‚Йѓ`ѓFѓbѓNЌП‚Э‚Мѓ|ѓЉѓSѓ“‚ѕ‚Б‚ЅЏкЌ‡‚Н‰Ѕ‚а‚µ‚И‚ў
+//					// ж—ўгЃ«гѓЃг‚§гѓѓг‚Їжё€гЃїгЃ®гѓќгѓЄг‚ґгѓігЃ гЃЈгЃџе ґеђ€гЃЇдЅ•г‚‚гЃ—гЃЄгЃ„
 //					if( ( BitBuffer[ PolyIndex >> 3 ] & ( 1 << ( PolyIndex & 7 ) ) ) == 0 )
 //					{
-//						// ЌЕЏ‰‚Й—§•ы‘М’P€К‚М“–‚Ѕ‚и”»’и‚рЌs‚¤
+//						// жњЂе€ќгЃ«з«‹ж–№дЅ“еЌдЅЌгЃ®еЅ“гЃџг‚Ље€¤е®љг‚’иЎЊгЃ†
 //						if( ( MinPos.x > Poly->MaxPosition.x ||
 //							MinPos.y > Poly->MaxPosition.y ||
 //							MinPos.z > Poly->MaxPosition.z ||
@@ -31775,7 +31775,7 @@ extern MV1_COLL_RESULT_POLY NS_MV1CollCheck_Line( int MHandle, int FrameIndex, V
 //							MaxPos.y < Poly->MinPosition.y ||
 //							MaxPos.z < Poly->MinPosition.z ) == false )
 //						{
-//							// ЋOЉpЊ`‚Жђь‚М“–‚Ѕ‚и”»’и
+//							// дё‰и§’еЅўгЃЁз·љгЃ®еЅ“гЃџг‚Ље€¤е®љ
 //							HitCheck_Line_Triangle_Base(
 //											&LineRes,
 //											*( ( VECTOR * )&PosStart ),
@@ -31809,7 +31809,7 @@ extern MV1_COLL_RESULT_POLY NS_MV1CollCheck_Line( int MHandle, int FrameIndex, V
 //							}
 //						}
 //
-//						// ѓ`ѓFѓbѓNЌП‚Эѓtѓ‰ѓO‚р—§‚Д‚й
+//						// гѓЃг‚§гѓѓг‚Їжё€гЃїгѓ•гѓ©г‚°г‚’з«‹гЃ¦г‚‹
 //						BitBuffer[ PolyIndex >> 3 ] |= 1 << ( PolyIndex & 7 ) ;
 //					}
 //				}
@@ -31817,7 +31817,7 @@ extern MV1_COLL_RESULT_POLY NS_MV1CollCheck_Line( int MHandle, int FrameIndex, V
 //		}
 //	}
 
-	// Њ‹‰К‚р‘г“ь
+	// зµђжћњг‚’д»Је…Ґ
 	if( MinPoly )
 	{
 		Result.HitFlag = 1 ;
@@ -31844,7 +31844,7 @@ END :
 	return Result ;
 }
 
-// ђь‚Жѓ‚ѓfѓ‹‚М“–‚Ѕ‚и”»’и( –Я‚и’l‚Є MV1_COLL_RESULT_POLY_DIM )
+// з·љгЃЁгѓўгѓ‡гѓ«гЃ®еЅ“гЃџг‚Ље€¤е®љ( ж€»г‚ЉеЂ¤гЃЊ MV1_COLL_RESULT_POLY_DIM )
 extern	MV1_COLL_RESULT_POLY_DIM NS_MV1CollCheck_LineDim( int MHandle, int FrameIndex, VECTOR PosStart, VECTOR PosEnd, int MeshIndex )
 {
 	int MaxNum ;
@@ -31879,51 +31879,51 @@ extern	MV1_COLL_RESULT_POLY_DIM NS_MV1CollCheck_LineDim( int MHandle, int FrameI
 	VECTOR LineVector ;
 	VECTOR LineDirection ;
 
-	// Њ‹‰КЏ‰Љъ‰»
+	// зµђжћње€ќжњџеЊ–
 	Result.HitNum = 0 ;
 	Result.Dim = NULL ;
 
-	// ѓAѓhѓЊѓXЋж“ѕ
+	// г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ—
 	if( MV1MDLCHK( MHandle, Model ) )
 		return Result ;
 	ModelBase = Model->BaseData ;
 
-	// ѓtѓЊЃ[ѓЂ’P‘М‚©ѓЃѓbѓVѓ…’P‘М‚©ѓ‚ѓfѓ‹‘S‘М‚©‚ЕЏ€—ќ‚р•ЄЉт
+	// гѓ•гѓ¬гѓјгѓ еЌдЅ“гЃ‹гѓЎгѓѓг‚·гѓҐеЌдЅ“гЃ‹гѓўгѓ‡гѓ«е…ЁдЅ“гЃ‹гЃ§е‡¦зђ†г‚’е€†еІђ
 	if( FrameIndex < 0 && MeshIndex < 0 )
 	{
-		// ѓ‚ѓfѓ‹‘S‘М‚МЏкЌ‡
+		// гѓўгѓ‡гѓ«е…ЁдЅ“гЃ®е ґеђ€
 
-		// ѓRѓЉѓWѓ‡ѓ“Џо•с‚Є–і‚©‚Б‚Ѕ‚зѓZѓbѓgѓAѓbѓv‚·‚й
+		// г‚ігѓЄг‚ёгѓ§гѓіжѓ…е ±гЃЊз„ЎгЃ‹гЃЈгЃџг‚‰г‚»гѓѓгѓ€г‚ўгѓѓгѓ—гЃ™г‚‹
 		if( Model->Collision == NULL )
 			if( NS_MV1RefreshCollInfo( MHandle, FrameIndex, -1 ) < 0 )
 				return Result ;
 
-		// ѓ|ѓЉѓSѓ“Џо•с‚МѓZѓbѓg
+		// гѓќгѓЄг‚ґгѓіжѓ…е ±гЃ®г‚»гѓѓгѓ€
 		PolyList = Model->RefPolygon[ 1 ][ 1 ] ;
 		Collision = Model->Collision ;
 	}
 	else
-	// ѓtѓЊЃ[ѓЂ’P‘М‚МЏкЌ‡
+	// гѓ•гѓ¬гѓјгѓ еЌдЅ“гЃ®е ґеђ€
 	if( MeshIndex < 0 )
 	{
-		// ѓtѓЊЃ[ѓЂѓCѓ“ѓfѓbѓNѓX‚Мѓ`ѓFѓbѓN
+		// гѓ•гѓ¬гѓјгѓ г‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃ®гѓЃг‚§гѓѓг‚Ї
 		if( FrameIndex < 0 || FrameIndex >= ModelBase->FrameNum )
 			return Result ;
 		Frame = Model->Frame + FrameIndex ;
 
-		// ѓRѓЉѓWѓ‡ѓ“Џо•с‚Є–і‚©‚Б‚Ѕ‚зѓZѓbѓgѓAѓbѓv‚·‚й
+		// г‚ігѓЄг‚ёгѓ§гѓіжѓ…е ±гЃЊз„ЎгЃ‹гЃЈгЃџг‚‰г‚»гѓѓгѓ€г‚ўгѓѓгѓ—гЃ™г‚‹
 		if( Frame->Collision == NULL )
 			if( NS_MV1RefreshCollInfo( MHandle, FrameIndex, -1 ) < 0 )
 				return Result ;
 
-		// ѓ|ѓЉѓSѓ“Џо•с‚МѓZѓbѓg
+		// гѓќгѓЄг‚ґгѓіжѓ…е ±гЃ®г‚»гѓѓгѓ€
 		PolyList = Frame->RefPolygon[ 1 ][ 1 ] ;
 		Collision = Frame->Collision ;
 	}
 	else
-	// ѓЃѓbѓVѓ…’P‘М‚МЏкЌ‡
+	// гѓЎгѓѓг‚·гѓҐеЌдЅ“гЃ®е ґеђ€
 	{
-		// ѓЃѓbѓVѓ…ѓCѓ“ѓfѓbѓNѓXѓ`ѓFѓbѓN
+		// гѓЎгѓѓг‚·гѓҐг‚¤гѓігѓ‡гѓѓг‚Їг‚№гѓЃг‚§гѓѓг‚Ї
 		if( FrameIndex >= 0 && FrameIndex < ModelBase->FrameNum )
 		{
 			Frame = Model->Frame + FrameIndex ;
@@ -31940,17 +31940,17 @@ extern	MV1_COLL_RESULT_POLY_DIM NS_MV1CollCheck_LineDim( int MHandle, int FrameI
 			Mesh = &Model->Mesh[ MeshIndex ] ;
 		}
 
-		// ѓRѓЉѓWѓ‡ѓ“Џо•с‚Є–і‚©‚Б‚Ѕ‚зѓZѓbѓgѓAѓbѓv‚·‚й
+		// г‚ігѓЄг‚ёгѓ§гѓіжѓ…е ±гЃЊз„ЎгЃ‹гЃЈгЃџг‚‰г‚»гѓѓгѓ€г‚ўгѓѓгѓ—гЃ™г‚‹
 		if( Mesh->Collision == NULL )
 			if( NS_MV1RefreshCollInfo( MHandle, FrameIndex, MeshIndex ) < 0 )
 				return Result ;
 
-		// ѓ|ѓЉѓSѓ“Џо•с‚МѓZѓbѓg
+		// гѓќгѓЄг‚ґгѓіжѓ…е ±гЃ®г‚»гѓѓгѓ€
 		PolyList = Mesh->RefPolygon[ 1 ] ;
 		Collision = Mesh->Collision ;
 	}
 
-	// Ћw’иЌА•W‚МЌЕЏ¬’l‚ЖЌЕ‘е’l‚рѓZѓbѓg
+	// жЊ‡е®љеє§жЁ™гЃ®жњЂе°ЏеЂ¤гЃЁжњЂе¤§еЂ¤г‚’г‚»гѓѓгѓ€
 	if( PosStart.x > PosEnd.x )
 	{
 		MaxPos.x = PosStart.x ;
@@ -31984,7 +31984,7 @@ extern	MV1_COLL_RESULT_POLY_DIM NS_MV1CollCheck_LineDim( int MHandle, int FrameI
 		MinPos.z = PosStart.z ;
 	}
 
-	// ”Н€Н‚ЄѓRѓЉѓWѓ‡ѓ“‹уЉФ‚©‚зЉO‚к‚Д‚ў‚Ѕ‚з‚З‚Мѓ|ѓЉѓSѓ“‚Й‚а“–‚Ѕ‚з‚И‚ў‚Ж‚ў‚¤‚±‚Ж
+	// зЇ„е›ІгЃЊг‚ігѓЄг‚ёгѓ§гѓіз©єй–“гЃ‹г‚‰е¤–г‚ЊгЃ¦гЃ„гЃџг‚‰гЃ©гЃ®гѓќгѓЄг‚ґгѓігЃ«г‚‚еЅ“гЃџг‚‰гЃЄгЃ„гЃЁгЃ„гЃ†гЃ“гЃЁ
 	if( Collision->MaxPosition.x < MinPos.x ||
 		Collision->MaxPosition.y < MinPos.y ||
 		Collision->MaxPosition.z < MinPos.z ||
@@ -31993,21 +31993,21 @@ extern	MV1_COLL_RESULT_POLY_DIM NS_MV1CollCheck_LineDim( int MHandle, int FrameI
 		Collision->MinPosition.z > MaxPos.z )
 		goto END ;
 
-	// Џ‰Љъѓoѓbѓtѓ@‚рЉm•Ы
+	// е€ќжњџгѓђгѓѓгѓ•г‚Ўг‚’зўєдїќ
 	MaxNum = 1000 ;
 	Result.Dim = ( MV1_COLL_RESULT_POLY * )DXALLOC( sizeof( MV1_COLL_RESULT_POLY ) * MaxNum ) ;
 	if( Result.Dim == NULL ) return Result ;
 
-	// “–‚Ѕ‚и”»’и‚рЌs‚Б‚Ѕ‚©‚З‚¤‚©‚р•Ы‘¶‚·‚йѓЃѓ‚ѓЉ—М€ж‚МЉm•Ы
+	// еЅ“гЃџг‚Ље€¤е®љг‚’иЎЊгЃЈгЃџгЃ‹гЃ©гЃ†гЃ‹г‚’дїќе­гЃ™г‚‹гѓЎгѓўгѓЄй еџџгЃ®зўєдїќ
 	BitBuffer = ( BYTE * )MV1SetupWorkBuffer( sizeof( BYTE ) * ( ( PolyList->PolygonNum + 7 ) / 8 ) ) ;
 	if( BitBuffer == NULL )
 	{
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\x53\x5f\x5f\x30\x8a\x30\x24\x52\x9a\x5b\xe6\x51\x06\x74\x28\x75\xc6\x30\xf3\x30\xdd\x30\xe9\x30\xea\x30\xd0\x30\xc3\x30\xd5\x30\xa1\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"“–‚Ѕ‚и”»’иЏ€—ќ—pѓeѓ“ѓ|ѓ‰ѓЉѓoѓbѓtѓ@‚МЉm•Ы‚ЙЋё”s‚µ‚Ь‚µ‚Ѕ\n" @*/ )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\x53\x5f\x5f\x30\x8a\x30\x24\x52\x9a\x5b\xe6\x51\x06\x74\x28\x75\xc6\x30\xf3\x30\xdd\x30\xe9\x30\xea\x30\xd0\x30\xc3\x30\xd5\x30\xa1\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"еЅ“гЃџг‚Ље€¤е®ље‡¦зђ†з”Ёгѓ†гѓігѓќгѓ©гѓЄгѓђгѓѓгѓ•г‚ЎгЃ®зўєдїќгЃ«е¤±ж•—гЃ—гЃѕгЃ—гЃџ\n" @*/ )) ;
 		return Result ;
 	}
 	_MEMSET( BitBuffer, 0, sizeof( BYTE ) * ( ( PolyList->PolygonNum + 7 ) / 8 ) ) ;
 
-	// ѓ‰ѓCѓ“‚МЏо•с‚рЋZЏo
+	// гѓ©г‚¤гѓігЃ®жѓ…е ±г‚’з®—е‡є
 	LineVector = VSub( PosEnd, PosStart ) ;
 	LineDistance = VSquareSize( LineVector ) ;
 	if( LineDistance <= 0.00000000001f )
@@ -32017,7 +32017,7 @@ extern	MV1_COLL_RESULT_POLY_DIM NS_MV1CollCheck_LineDim( int MHandle, int FrameI
 	LineDistance = _SQRT( LineDistance ) ;
 	LineDirection = VScale( LineVector, 1.0f / LineDistance ) ;
 
-	// “–‚Ѕ‚и”»’иѓ`ѓFѓbѓN‚рЌs‚¤ЌЕЏ‰‚М•ЄЉ„€К’u‚рЊ€’и‚·‚й
+	// еЅ“гЃџг‚Ље€¤е®љгѓЃг‚§гѓѓг‚Їг‚’иЎЊгЃ†жњЂе€ќгЃ®е€†е‰ІдЅЌзЅ®г‚’ж±єе®љгЃ™г‚‹
 	NowPos = VGet( 0.0f, 0.0f, 0.0f ) ;
 	NowDistance = 0.0f ;
 	NowUnitX = 0 ;
@@ -32238,10 +32238,10 @@ extern	MV1_COLL_RESULT_POLY_DIM NS_MV1CollCheck_LineDim( int MHandle, int FrameI
 			Poly = ColPoly->Polygon ;
 			PolyIndex = ( int )( Poly - PolyList->Polygons ) ;
 
-			// Љщ‚Йѓ`ѓFѓbѓNЌП‚Э‚Мѓ|ѓЉѓSѓ“‚ѕ‚Б‚ЅЏкЌ‡‚Н‰Ѕ‚а‚µ‚И‚ў
+			// ж—ўгЃ«гѓЃг‚§гѓѓг‚Їжё€гЃїгЃ®гѓќгѓЄг‚ґгѓігЃ гЃЈгЃџе ґеђ€гЃЇдЅ•г‚‚гЃ—гЃЄгЃ„
 			if( BitBuffer[ PolyIndex >> 3 ] & ( 1 << ( PolyIndex & 7 ) ) ) continue ;
 
-			// ЌЕЏ‰‚Й—§•ы‘М’P€К‚М“–‚Ѕ‚и”»’и‚рЌs‚¤
+			// жњЂе€ќгЃ«з«‹ж–№дЅ“еЌдЅЌгЃ®еЅ“гЃџг‚Ље€¤е®љг‚’иЎЊгЃ†
 			if( ( MinPos.x > Poly->MaxPosition.x ||
 				  MinPos.y > Poly->MaxPosition.y ||
 				  MinPos.z > Poly->MaxPosition.z ||
@@ -32249,7 +32249,7 @@ extern	MV1_COLL_RESULT_POLY_DIM NS_MV1CollCheck_LineDim( int MHandle, int FrameI
 				  MaxPos.y < Poly->MinPosition.y ||
 				  MaxPos.z < Poly->MinPosition.z ) == false )
 			{
-				// ЋOЉpЊ`‚Жђь‚М“–‚Ѕ‚и”»’и
+				// дё‰и§’еЅўгЃЁз·љгЃ®еЅ“гЃџг‚Ље€¤е®љ
 				LineRes = HitCheck_Line_Triangle(
 								*( ( VECTOR * )&PosStart ),
 								*( ( VECTOR * )&PosEnd ),
@@ -32258,7 +32258,7 @@ extern	MV1_COLL_RESULT_POLY_DIM NS_MV1CollCheck_LineDim( int MHandle, int FrameI
 								PolyList->Vertexs[ Poly->VIndex[ 2 ] ].Position ) ;
 				if( LineRes.HitFlag )
 				{
-					// ђ”‚ЄЌЕ‘еђ”‚Й’B‚µ‚Д‚ў‚Ѕ‚зЌДЉm•Ы
+					// ж•°гЃЊжњЂе¤§ж•°гЃ«йЃ”гЃ—гЃ¦гЃ„гЃџг‚‰е†Ќзўєдїќ
 					if( Result.HitNum == MaxNum )
 					{
 						MV1_COLL_RESULT_POLY *NewBuffer ;
@@ -32268,16 +32268,16 @@ extern	MV1_COLL_RESULT_POLY_DIM NS_MV1CollCheck_LineDim( int MHandle, int FrameI
 						NewBuffer = ( MV1_COLL_RESULT_POLY * )DXREALLOC( Result.Dim, sizeof( MV1_COLL_RESULT_POLY ) * NewMaxNum ) ;
 						if( NewBuffer == NULL )
 						{
-							DXST_LOGFILEFMT_ADDUTF16LE(( "\xe1\x30\xe2\x30\xea\x30\x0d\x4e\xb3\x8d\x6e\x30\xba\x70\x53\x5f\x5f\x30\x63\x30\x5f\x30\xdd\x30\xea\x30\xb4\x30\xf3\x30\x59\x30\x79\x30\x66\x30\x92\x30\xdd\x4f\x58\x5b\x59\x30\x8b\x30\x53\x30\x68\x30\x4c\x30\x67\x30\x4d\x30\x7e\x30\x5b\x30\x93\x30\x67\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ѓЃѓ‚ѓЉ•s‘«‚М€Ч“–‚Ѕ‚Б‚Ѕѓ|ѓЉѓSѓ“‚·‚Ч‚Д‚р•Ы‘¶‚·‚й‚±‚Ж‚Є‚Е‚«‚Ь‚№‚с‚Е‚µ‚Ѕ\n" @*/ )) ;
+							DXST_LOGFILEFMT_ADDUTF16LE(( "\xe1\x30\xe2\x30\xea\x30\x0d\x4e\xb3\x8d\x6e\x30\xba\x70\x53\x5f\x5f\x30\x63\x30\x5f\x30\xdd\x30\xea\x30\xb4\x30\xf3\x30\x59\x30\x79\x30\x66\x30\x92\x30\xdd\x4f\x58\x5b\x59\x30\x8b\x30\x53\x30\x68\x30\x4c\x30\x67\x30\x4d\x30\x7e\x30\x5b\x30\x93\x30\x67\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"гѓЎгѓўгѓЄдёЌи¶ігЃ®з‚єеЅ“гЃџгЃЈгЃџгѓќгѓЄг‚ґгѓігЃ™гЃ№гЃ¦г‚’дїќе­гЃ™г‚‹гЃ“гЃЁгЃЊгЃ§гЃЌгЃѕгЃ›г‚“гЃ§гЃ—гЃџ\n" @*/ )) ;
 							goto END ;
 						}
 
-						// ђV‚µ‚ўѓoѓbѓtѓ@‚М•Ы‘¶
+						// ж–°гЃ—гЃ„гѓђгѓѓгѓ•г‚ЎгЃ®дїќе­
 						Result.Dim = NewBuffer ;
 						MaxNum = NewMaxNum ;
 					}
 
-					// “–‚Ѕ‚Б‚Д‚ў‚йѓ|ѓЉѓSѓ“ѓЉѓXѓg‚Й’З‰Б‚·‚й
+					// еЅ“гЃџгЃЈгЃ¦гЃ„г‚‹гѓќгѓЄг‚ґгѓігѓЄг‚№гѓ€гЃ«иїЅеЉ гЃ™г‚‹
 					RPoly = &Result.Dim[ Result.HitNum ] ;
 					Result.HitNum ++ ;
 
@@ -32298,12 +32298,12 @@ extern	MV1_COLL_RESULT_POLY_DIM NS_MV1CollCheck_LineDim( int MHandle, int FrameI
 				}
 			}
 
-			// ѓ`ѓFѓbѓNЌП‚Эѓtѓ‰ѓO‚р—§‚Д‚й
+			// гѓЃг‚§гѓѓг‚Їжё€гЃїгѓ•гѓ©г‚°г‚’з«‹гЃ¦г‚‹
 			BitBuffer[ PolyIndex >> 3 ] |= 1 << ( PolyIndex & 7 ) ;
 		}
 
 
-		// “–‚Ѕ‚и”»’иѓ`ѓFѓbѓN‚рЌs‚¤Ћџ‚М•ЄЉ„€К’u‚рЊ€’и‚·‚й
+		// еЅ“гЃџг‚Ље€¤е®љгѓЃг‚§гѓѓг‚Їг‚’иЎЊгЃ†ж¬ЎгЃ®е€†е‰ІдЅЌзЅ®г‚’ж±єе®љгЃ™г‚‹
 		MinNextDir = -1 ;
 		MinNextDirDistance = 0.0f ;
 		if( LineDirection.x > 0.0f  )
@@ -32443,7 +32443,7 @@ extern	MV1_COLL_RESULT_POLY_DIM NS_MV1CollCheck_LineDim( int MHandle, int FrameI
 		NowPos = VAdd( NowPos, VScale( LineDirection, MinNextDirDistance ) ) ;
 	}
 
-//	// ЊџЌх”Н€Н‚рЊ€’и
+//	// ж¤њзґўзЇ„е›Іг‚’ж±єе®љ
 //	UnitDiv = Collision->UnitSizeRev ;
 //	MinX = __FTOL( ( MinPos.x - Collision->MinPosition.x ) * UnitDiv.x ) ;
 //	MinY = __FTOL( ( MinPos.y - Collision->MinPosition.y ) * UnitDiv.y ) ;
@@ -32458,7 +32458,7 @@ extern	MV1_COLL_RESULT_POLY_DIM NS_MV1CollCheck_LineDim( int MHandle, int FrameI
 //	if( MaxY >= Collision->YDivNum ) MaxY = Collision->YDivNum - 1 ;
 //	if( MaxZ >= Collision->ZDivNum ) MaxZ = Collision->ZDivNum - 1 ;
 //
-//	// ”Н€Н“а‚М‘S‚Д‚Мѓ|ѓЉѓSѓ“‚Ж“–‚Ѕ‚и”»’и
+//	// зЇ„е›Іе†…гЃ®е…ЁгЃ¦гЃ®гѓќгѓЄг‚ґгѓігЃЁеЅ“гЃџг‚Ље€¤е®љ
 //	ZStep = Collision->YDivNum * Collision->XDivNum ;
 //	YStep = Collision->XDivNum ;
 //	PostIndexZ = MinX + MinY * YStep + MinZ * ZStep ;
@@ -32475,10 +32475,10 @@ extern	MV1_COLL_RESULT_POLY_DIM NS_MV1CollCheck_LineDim( int MHandle, int FrameI
 //					Poly = ColPoly->Polygon ;
 //					PolyIndex = ( int )( Poly - PolyList->Polygons ) ;
 //
-//					// Љщ‚Йѓ`ѓFѓbѓNЌП‚Э‚Мѓ|ѓЉѓSѓ“‚ѕ‚Б‚ЅЏкЌ‡‚Н‰Ѕ‚а‚µ‚И‚ў
+//					// ж—ўгЃ«гѓЃг‚§гѓѓг‚Їжё€гЃїгЃ®гѓќгѓЄг‚ґгѓігЃ гЃЈгЃџе ґеђ€гЃЇдЅ•г‚‚гЃ—гЃЄгЃ„
 //					if( BitBuffer[ PolyIndex >> 3 ] & ( 1 << ( PolyIndex & 7 ) ) ) continue ;
 //
-//					// ЌЕЏ‰‚Й—§•ы‘М’P€К‚М“–‚Ѕ‚и”»’и‚рЌs‚¤
+//					// жњЂе€ќгЃ«з«‹ж–№дЅ“еЌдЅЌгЃ®еЅ“гЃџг‚Ље€¤е®љг‚’иЎЊгЃ†
 //					if( ( MinPos.x > Poly->MaxPosition.x ||
 //						  MinPos.y > Poly->MaxPosition.y ||
 //						  MinPos.z > Poly->MaxPosition.z ||
@@ -32486,7 +32486,7 @@ extern	MV1_COLL_RESULT_POLY_DIM NS_MV1CollCheck_LineDim( int MHandle, int FrameI
 //						  MaxPos.y < Poly->MinPosition.y ||
 //						  MaxPos.z < Poly->MinPosition.z ) == false )
 //					{
-//						// ЋOЉpЊ`‚Жђь‚М“–‚Ѕ‚и”»’и
+//						// дё‰и§’еЅўгЃЁз·љгЃ®еЅ“гЃџг‚Ље€¤е®љ
 //						LineRes = HitCheck_Line_Triangle(
 //										*( ( VECTOR * )&PosStart ),
 //										*( ( VECTOR * )&PosEnd ),
@@ -32495,7 +32495,7 @@ extern	MV1_COLL_RESULT_POLY_DIM NS_MV1CollCheck_LineDim( int MHandle, int FrameI
 //										PolyList->Vertexs[ Poly->VIndex[ 2 ] ].Position ) ;
 //						if( LineRes.HitFlag )
 //						{
-//							// ђ”‚ЄЌЕ‘еђ”‚Й’B‚µ‚Д‚ў‚Ѕ‚зЌДЉm•Ы
+//							// ж•°гЃЊжњЂе¤§ж•°гЃ«йЃ”гЃ—гЃ¦гЃ„гЃџг‚‰е†Ќзўєдїќ
 //							if( Result.HitNum == MaxNum )
 //							{
 //								MV1_COLL_RESULT_POLY *NewBuffer ;
@@ -32505,16 +32505,16 @@ extern	MV1_COLL_RESULT_POLY_DIM NS_MV1CollCheck_LineDim( int MHandle, int FrameI
 //								NewBuffer = ( MV1_COLL_RESULT_POLY * )DXREALLOC( Result.Dim, sizeof( MV1_COLL_RESULT_POLY ) * NewMaxNum ) ;
 //								if( NewBuffer == NULL )
 //								{
-//									DXST_LOGFILEFMT_ADDUTF16LE(( "\xe1\x30\xe2\x30\xea\x30\x0d\x4e\xb3\x8d\x6e\x30\xba\x70\x53\x5f\x5f\x30\x63\x30\x5f\x30\xdd\x30\xea\x30\xb4\x30\xf3\x30\x59\x30\x79\x30\x66\x30\x92\x30\xdd\x4f\x58\x5b\x59\x30\x8b\x30\x53\x30\x68\x30\x4c\x30\x67\x30\x4d\x30\x7e\x30\x5b\x30\x93\x30\x67\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ѓЃѓ‚ѓЉ•s‘«‚М€Ч“–‚Ѕ‚Б‚Ѕѓ|ѓЉѓSѓ“‚·‚Ч‚Д‚р•Ы‘¶‚·‚й‚±‚Ж‚Є‚Е‚«‚Ь‚№‚с‚Е‚µ‚Ѕ\n" @*/ )) ;
+//									DXST_LOGFILEFMT_ADDUTF16LE(( "\xe1\x30\xe2\x30\xea\x30\x0d\x4e\xb3\x8d\x6e\x30\xba\x70\x53\x5f\x5f\x30\x63\x30\x5f\x30\xdd\x30\xea\x30\xb4\x30\xf3\x30\x59\x30\x79\x30\x66\x30\x92\x30\xdd\x4f\x58\x5b\x59\x30\x8b\x30\x53\x30\x68\x30\x4c\x30\x67\x30\x4d\x30\x7e\x30\x5b\x30\x93\x30\x67\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"гѓЎгѓўгѓЄдёЌи¶ігЃ®з‚єеЅ“гЃџгЃЈгЃџгѓќгѓЄг‚ґгѓігЃ™гЃ№гЃ¦г‚’дїќе­гЃ™г‚‹гЃ“гЃЁгЃЊгЃ§гЃЌгЃѕгЃ›г‚“гЃ§гЃ—гЃџ\n" @*/ )) ;
 //									goto END ;
 //								}
 //
-//								// ђV‚µ‚ўѓoѓbѓtѓ@‚М•Ы‘¶
+//								// ж–°гЃ—гЃ„гѓђгѓѓгѓ•г‚ЎгЃ®дїќе­
 //								Result.Dim = NewBuffer ;
 //								MaxNum = NewMaxNum ;
 //							}
 //
-//							// “–‚Ѕ‚Б‚Д‚ў‚йѓ|ѓЉѓSѓ“ѓЉѓXѓg‚Й’З‰Б‚·‚й
+//							// еЅ“гЃџгЃЈгЃ¦гЃ„г‚‹гѓќгѓЄг‚ґгѓігѓЄг‚№гѓ€гЃ«иїЅеЉ гЃ™г‚‹
 //							RPoly = &Result.Dim[ Result.HitNum ] ;
 //							Result.HitNum ++ ;
 //
@@ -32535,14 +32535,14 @@ extern	MV1_COLL_RESULT_POLY_DIM NS_MV1CollCheck_LineDim( int MHandle, int FrameI
 //						}
 //					}
 //
-//					// ѓ`ѓFѓbѓNЌП‚Эѓtѓ‰ѓO‚р—§‚Д‚й
+//					// гѓЃг‚§гѓѓг‚Їжё€гЃїгѓ•гѓ©г‚°г‚’з«‹гЃ¦г‚‹
 //					BitBuffer[ PolyIndex >> 3 ] |= 1 << ( PolyIndex & 7 ) ;
 //				}
 //			}
 //		}
 //	}
 
-	// €к‚В‚а“–‚Ѕ‚Б‚Д‚ў‚И‚©‚Б‚Ѕ‚з“–‚Ѕ‚Б‚Д‚ў‚йѓ|ѓЉѓSѓ“ѓЉѓXѓg—p‚ЙЉm•Ы‚µ‚ЅѓЃѓ‚ѓЉ‚р‰р•ъ
+	// дёЂгЃ¤г‚‚еЅ“гЃџгЃЈгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰еЅ“гЃџгЃЈгЃ¦гЃ„г‚‹гѓќгѓЄг‚ґгѓігѓЄг‚№гѓ€з”ЁгЃ«зўєдїќгЃ—гЃџгѓЎгѓўгѓЄг‚’и§Јж”ѕ
 	if( Result.HitNum == 0 )
 	{
 		if( Result.Dim != NULL )
@@ -32557,7 +32557,7 @@ END :
 	return Result ;
 }
 
-// ‹…‚Жѓ‚ѓfѓ‹‚М“–‚Ѕ‚и”»’и
+// зђѓгЃЁгѓўгѓ‡гѓ«гЃ®еЅ“гЃџг‚Ље€¤е®љ
 extern	MV1_COLL_RESULT_POLY_DIM NS_MV1CollCheck_Sphere( int MHandle, int FrameIndex, VECTOR CenterPos, float r, int MeshIndex )
 {
 	int MaxNum ;
@@ -32576,51 +32576,51 @@ extern	MV1_COLL_RESULT_POLY_DIM NS_MV1CollCheck_Sphere( int MHandle, int FrameIn
 	int xc, yc, zc, ZStep, YStep, PolyIndex ;
 	int MinX, MinY, MinZ, MaxX, MaxY, MaxZ, PostIndexZ, PostIndexY, PostIndexX ;
 
-	// Њ‹‰КЏ‰Љъ‰»
+	// зµђжћње€ќжњџеЊ–
 	Result.HitNum = 0 ;
 	Result.Dim = NULL ;
 
-	// ѓAѓhѓЊѓXЋж“ѕ
+	// г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ—
 	if( MV1MDLCHK( MHandle, Model ) )
 		return Result ;
 	ModelBase = Model->BaseData ;
 
-	// ѓtѓЊЃ[ѓЂ’P‘М‚©ѓЃѓbѓVѓ…’P‘М‚©ѓ‚ѓfѓ‹‘S‘М‚©‚ЕЏ€—ќ‚р•ЄЉт
+	// гѓ•гѓ¬гѓјгѓ еЌдЅ“гЃ‹гѓЎгѓѓг‚·гѓҐеЌдЅ“гЃ‹гѓўгѓ‡гѓ«е…ЁдЅ“гЃ‹гЃ§е‡¦зђ†г‚’е€†еІђ
 	if( FrameIndex < 0 && MeshIndex < 0 )
 	{
-		// ѓ‚ѓfѓ‹‘S‘М‚МЏкЌ‡
+		// гѓўгѓ‡гѓ«е…ЁдЅ“гЃ®е ґеђ€
 
-		// ѓRѓЉѓWѓ‡ѓ“Џо•с‚Є–і‚©‚Б‚Ѕ‚зѓZѓbѓgѓAѓbѓv‚·‚й
+		// г‚ігѓЄг‚ёгѓ§гѓіжѓ…е ±гЃЊз„ЎгЃ‹гЃЈгЃџг‚‰г‚»гѓѓгѓ€г‚ўгѓѓгѓ—гЃ™г‚‹
 		if( Model->Collision == NULL )
 			if( NS_MV1RefreshCollInfo( MHandle, FrameIndex, -1 ) < 0 )
 				return Result ;
 
-		// ѓ|ѓЉѓSѓ“Џо•с‚МѓZѓbѓg
+		// гѓќгѓЄг‚ґгѓіжѓ…е ±гЃ®г‚»гѓѓгѓ€
 		PolyList = Model->RefPolygon[ 1 ][ 1 ] ;
 		Collision = Model->Collision ;
 	}
 	else
-	// ѓtѓЊЃ[ѓЂ’P‘М‚МЏкЌ‡
+	// гѓ•гѓ¬гѓјгѓ еЌдЅ“гЃ®е ґеђ€
 	if( MeshIndex < 0 )
 	{
-		// ѓtѓЊЃ[ѓЂѓCѓ“ѓfѓbѓNѓX‚Мѓ`ѓFѓbѓN
+		// гѓ•гѓ¬гѓјгѓ г‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃ®гѓЃг‚§гѓѓг‚Ї
 		if( FrameIndex < 0 || FrameIndex >= ModelBase->FrameNum )
 			return Result ;
 		Frame = Model->Frame + FrameIndex ;
 
-		// ѓRѓЉѓWѓ‡ѓ“Џо•с‚Є–і‚©‚Б‚Ѕ‚зѓZѓbѓgѓAѓbѓv‚·‚й
+		// г‚ігѓЄг‚ёгѓ§гѓіжѓ…е ±гЃЊз„ЎгЃ‹гЃЈгЃџг‚‰г‚»гѓѓгѓ€г‚ўгѓѓгѓ—гЃ™г‚‹
 		if( Frame->Collision == NULL )
 			if( NS_MV1RefreshCollInfo( MHandle, FrameIndex, -1 ) < 0 )
 				return Result ;
 
-		// ѓ|ѓЉѓSѓ“Џо•с‚МѓZѓbѓg
+		// гѓќгѓЄг‚ґгѓіжѓ…е ±гЃ®г‚»гѓѓгѓ€
 		PolyList = Frame->RefPolygon[ 1 ][ 1 ] ;
 		Collision = Frame->Collision ;
 	}
 	else
-	// ѓЃѓbѓVѓ…’P‘М‚МЏкЌ‡
+	// гѓЎгѓѓг‚·гѓҐеЌдЅ“гЃ®е ґеђ€
 	{
-		// ѓЃѓbѓVѓ…ѓCѓ“ѓfѓbѓNѓXѓ`ѓFѓbѓN
+		// гѓЎгѓѓг‚·гѓҐг‚¤гѓігѓ‡гѓѓг‚Їг‚№гѓЃг‚§гѓѓг‚Ї
 		if( FrameIndex >= 0 && FrameIndex < ModelBase->FrameNum )
 		{
 			Frame = Model->Frame + FrameIndex ;
@@ -32637,17 +32637,17 @@ extern	MV1_COLL_RESULT_POLY_DIM NS_MV1CollCheck_Sphere( int MHandle, int FrameIn
 			Mesh = &Model->Mesh[ MeshIndex ] ;
 		}
 
-		// ѓRѓЉѓWѓ‡ѓ“Џо•с‚Є–і‚©‚Б‚Ѕ‚зѓZѓbѓgѓAѓbѓv‚·‚й
+		// г‚ігѓЄг‚ёгѓ§гѓіжѓ…е ±гЃЊз„ЎгЃ‹гЃЈгЃџг‚‰г‚»гѓѓгѓ€г‚ўгѓѓгѓ—гЃ™г‚‹
 		if( Mesh->Collision == NULL )
 			if( NS_MV1RefreshCollInfo( MHandle, FrameIndex, MeshIndex ) < 0 )
 				return Result ;
 
-		// ѓ|ѓЉѓSѓ“Џо•с‚МѓZѓbѓg
+		// гѓќгѓЄг‚ґгѓіжѓ…е ±гЃ®г‚»гѓѓгѓ€
 		PolyList = Mesh->RefPolygon[ 1 ] ;
 		Collision = Mesh->Collision ;
 	}
 
-	// ЌА•W’l‚МЌЕЏ¬’l‚ЖЌЕ‘е’l‚рѓZѓbѓg
+	// еє§жЁ™еЂ¤гЃ®жњЂе°ЏеЂ¤гЃЁжњЂе¤§еЂ¤г‚’г‚»гѓѓгѓ€
 	MaxPos.x = CenterPos.x + r ;
 	MaxPos.y = CenterPos.y + r ;
 	MaxPos.z = CenterPos.z + r ;
@@ -32655,7 +32655,7 @@ extern	MV1_COLL_RESULT_POLY_DIM NS_MV1CollCheck_Sphere( int MHandle, int FrameIn
 	MinPos.y = CenterPos.y - r ;
 	MinPos.z = CenterPos.z - r ;
 
-	// ”Н€Н‚ЄѓRѓЉѓWѓ‡ѓ“‹уЉФ‚©‚зЉO‚к‚Д‚ў‚Ѕ‚з‚З‚Мѓ|ѓЉѓSѓ“‚Й‚а“–‚Ѕ‚з‚И‚ў‚Ж‚ў‚¤‚±‚Ж
+	// зЇ„е›ІгЃЊг‚ігѓЄг‚ёгѓ§гѓіз©єй–“гЃ‹г‚‰е¤–г‚ЊгЃ¦гЃ„гЃџг‚‰гЃ©гЃ®гѓќгѓЄг‚ґгѓігЃ«г‚‚еЅ“гЃџг‚‰гЃЄгЃ„гЃЁгЃ„гЃ†гЃ“гЃЁ
 	if( Collision->MaxPosition.x < MinPos.x ||
 		Collision->MaxPosition.y < MinPos.y ||
 		Collision->MaxPosition.z < MinPos.z ||
@@ -32664,22 +32664,22 @@ extern	MV1_COLL_RESULT_POLY_DIM NS_MV1CollCheck_Sphere( int MHandle, int FrameIn
 		Collision->MinPosition.z > MaxPos.z )
 		goto END ;
 
-	// Џ‰Љъѓoѓbѓtѓ@‚рЉm•Ы
+	// е€ќжњџгѓђгѓѓгѓ•г‚Ўг‚’зўєдїќ
 	MaxNum = 1000 ;
 	Result.Dim = ( MV1_COLL_RESULT_POLY * )DXALLOC( sizeof( MV1_COLL_RESULT_POLY ) * MaxNum ) ;
 	if( Result.Dim == NULL ) return Result ;
 
-	// “–‚Ѕ‚и”»’и‚рЌs‚Б‚Ѕ‚©‚З‚¤‚©‚р•Ы‘¶‚·‚йѓЃѓ‚ѓЉ—М€ж‚МЉm•Ы
+	// еЅ“гЃџг‚Ље€¤е®љг‚’иЎЊгЃЈгЃџгЃ‹гЃ©гЃ†гЃ‹г‚’дїќе­гЃ™г‚‹гѓЎгѓўгѓЄй еџџгЃ®зўєдїќ
 	BitBuffer = ( BYTE * )MV1SetupWorkBuffer( sizeof( BYTE ) * ( ( PolyList->PolygonNum + 7 ) / 8 ) ) ;
 	if( BitBuffer == NULL )
 	{
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\x53\x5f\x5f\x30\x8a\x30\x24\x52\x9a\x5b\xe6\x51\x06\x74\x28\x75\xc6\x30\xf3\x30\xdd\x30\xe9\x30\xea\x30\xd0\x30\xc3\x30\xd5\x30\xa1\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x32\x00\x0a\x00\x00"/*@ L"“–‚Ѕ‚и”»’иЏ€—ќ—pѓeѓ“ѓ|ѓ‰ѓЉѓoѓbѓtѓ@‚МЉm•Ы‚ЙЋё”s‚µ‚Ь‚µ‚Ѕ2\n" @*/ )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\x53\x5f\x5f\x30\x8a\x30\x24\x52\x9a\x5b\xe6\x51\x06\x74\x28\x75\xc6\x30\xf3\x30\xdd\x30\xe9\x30\xea\x30\xd0\x30\xc3\x30\xd5\x30\xa1\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x32\x00\x0a\x00\x00"/*@ L"еЅ“гЃџг‚Ље€¤е®ље‡¦зђ†з”Ёгѓ†гѓігѓќгѓ©гѓЄгѓђгѓѓгѓ•г‚ЎгЃ®зўєдїќгЃ«е¤±ж•—гЃ—гЃѕгЃ—гЃџ2\n" @*/ )) ;
 		DXFREE( Result.Dim ) ;
 		return Result ;
 	}
 	_MEMSET( BitBuffer, 0, sizeof( BYTE ) * ( ( PolyList->PolygonNum + 7 ) / 8 ) ) ;
 
-	// ЊџЌх”Н€Н‚рЊ€’и
+	// ж¤њзґўзЇ„е›Іг‚’ж±єе®љ
 	UnitDiv = Collision->UnitSizeRev ;
 	MinX = __FTOL( ( MinPos.x - Collision->MinPosition.x ) * UnitDiv.x ) ;
 	MinY = __FTOL( ( MinPos.y - Collision->MinPosition.y ) * UnitDiv.y ) ;
@@ -32694,7 +32694,7 @@ extern	MV1_COLL_RESULT_POLY_DIM NS_MV1CollCheck_Sphere( int MHandle, int FrameIn
 	if( MaxY >= Collision->YDivNum ) MaxY = Collision->YDivNum - 1 ;
 	if( MaxZ >= Collision->ZDivNum ) MaxZ = Collision->ZDivNum - 1 ;
 
-	// ”Н€Н“а‚М‘S‚Д‚Мѓ|ѓЉѓSѓ“‚Ж“–‚Ѕ‚и”»’и
+	// зЇ„е›Іе†…гЃ®е…ЁгЃ¦гЃ®гѓќгѓЄг‚ґгѓігЃЁеЅ“гЃџг‚Ље€¤е®љ
 	ZStep = Collision->YDivNum * Collision->XDivNum ;
 	YStep = Collision->XDivNum ;
 	PostIndexZ = MinX + MinY * YStep + MinZ * ZStep ;
@@ -32711,10 +32711,10 @@ extern	MV1_COLL_RESULT_POLY_DIM NS_MV1CollCheck_Sphere( int MHandle, int FrameIn
 					Poly = ColPoly->Polygon ;
 					PolyIndex = ( int )( Poly - PolyList->Polygons ) ;
 
-					// Љщ‚Йѓ`ѓFѓbѓNЌП‚Э‚Мѓ|ѓЉѓSѓ“‚ѕ‚Б‚ЅЏкЌ‡‚Н‰Ѕ‚а‚µ‚И‚ў
+					// ж—ўгЃ«гѓЃг‚§гѓѓг‚Їжё€гЃїгЃ®гѓќгѓЄг‚ґгѓігЃ гЃЈгЃџе ґеђ€гЃЇдЅ•г‚‚гЃ—гЃЄгЃ„
 					if( BitBuffer[ PolyIndex >> 3 ] & ( 1 << ( PolyIndex & 7 ) ) ) continue ;
 
-					// ЌЕЏ‰‚Й—§•ы‘М’P€К‚М“–‚Ѕ‚и”»’и‚рЌs‚¤
+					// жњЂе€ќгЃ«з«‹ж–№дЅ“еЌдЅЌгЃ®еЅ“гЃџг‚Ље€¤е®љг‚’иЎЊгЃ†
 					if( ( MinPos.x > Poly->MaxPosition.x ||
 						  MinPos.y > Poly->MaxPosition.y ||
 						  MinPos.z > Poly->MaxPosition.z ||
@@ -32722,9 +32722,9 @@ extern	MV1_COLL_RESULT_POLY_DIM NS_MV1CollCheck_Sphere( int MHandle, int FrameIn
 						  MaxPos.y < Poly->MinPosition.y ||
 						  MaxPos.z < Poly->MinPosition.z ) == false )
 					{
-						// ЋOЉpЊ`‚Ж‹…‚М“–‚Ѕ‚и”»’и
+						// дё‰и§’еЅўгЃЁзђѓгЃ®еЅ“гЃџг‚Ље€¤е®љ
 
-						// ‹…‚Й€к”Ф‹Я‚ўЋOЉpЊ`Џг‚МЌА•W‚Ж‚М‹——Ј‚ЄЃA‹…‚М”јЊa€И‰є‚ѕ‚Б‚Ѕ‚з“–‚Ѕ‚Б‚Д‚ў‚й‚Ж‚ў‚¤‚±‚Ж
+						// зђѓгЃ«дёЂз•Єиї‘гЃ„дё‰и§’еЅўдёЉгЃ®еє§жЁ™гЃЁгЃ®и·ќй›ўгЃЊгЂЃзђѓгЃ®еЌЉеѕ„д»Ґдё‹гЃ гЃЈгЃџг‚‰еЅ“гЃџгЃЈгЃ¦гЃ„г‚‹гЃЁгЃ„гЃ†гЃ“гЃЁ
 						ResultPos = Get_Triangle_Point_MinPosition( CenterPos, 
 										PolyList->Vertexs[ Poly->VIndex[ 0 ] ].Position,
 										PolyList->Vertexs[ Poly->VIndex[ 1 ] ].Position,
@@ -32734,7 +32734,7 @@ extern	MV1_COLL_RESULT_POLY_DIM NS_MV1CollCheck_Sphere( int MHandle, int FrameIn
 						Sa.z = CenterPos.z - ResultPos.z ;
 						if( Sa.x * Sa.x + Sa.y * Sa.y + Sa.z * Sa.z <= r * r )
 						{
-							// ђ”‚ЄЌЕ‘еђ”‚Й’B‚µ‚Д‚ў‚Ѕ‚зЌДЉm•Ы
+							// ж•°гЃЊжњЂе¤§ж•°гЃ«йЃ”гЃ—гЃ¦гЃ„гЃџг‚‰е†Ќзўєдїќ
 							if( Result.HitNum == MaxNum )
 							{
 								MV1_COLL_RESULT_POLY *NewBuffer ;
@@ -32744,16 +32744,16 @@ extern	MV1_COLL_RESULT_POLY_DIM NS_MV1CollCheck_Sphere( int MHandle, int FrameIn
 								NewBuffer = ( MV1_COLL_RESULT_POLY * )DXREALLOC( Result.Dim, sizeof( MV1_COLL_RESULT_POLY ) * NewMaxNum ) ;
 								if( NewBuffer == NULL )
 								{
-									DXST_LOGFILEFMT_ADDUTF16LE(( "\xe1\x30\xe2\x30\xea\x30\x0d\x4e\xb3\x8d\x6e\x30\xba\x70\x53\x5f\x5f\x30\x63\x30\x5f\x30\xdd\x30\xea\x30\xb4\x30\xf3\x30\x59\x30\x79\x30\x66\x30\x92\x30\xdd\x4f\x58\x5b\x59\x30\x8b\x30\x53\x30\x68\x30\x4c\x30\x67\x30\x4d\x30\x7e\x30\x5b\x30\x93\x30\x67\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ѓЃѓ‚ѓЉ•s‘«‚М€Ч“–‚Ѕ‚Б‚Ѕѓ|ѓЉѓSѓ“‚·‚Ч‚Д‚р•Ы‘¶‚·‚й‚±‚Ж‚Є‚Е‚«‚Ь‚№‚с‚Е‚µ‚Ѕ\n" @*/ )) ;
+									DXST_LOGFILEFMT_ADDUTF16LE(( "\xe1\x30\xe2\x30\xea\x30\x0d\x4e\xb3\x8d\x6e\x30\xba\x70\x53\x5f\x5f\x30\x63\x30\x5f\x30\xdd\x30\xea\x30\xb4\x30\xf3\x30\x59\x30\x79\x30\x66\x30\x92\x30\xdd\x4f\x58\x5b\x59\x30\x8b\x30\x53\x30\x68\x30\x4c\x30\x67\x30\x4d\x30\x7e\x30\x5b\x30\x93\x30\x67\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"гѓЎгѓўгѓЄдёЌи¶ігЃ®з‚єеЅ“гЃџгЃЈгЃџгѓќгѓЄг‚ґгѓігЃ™гЃ№гЃ¦г‚’дїќе­гЃ™г‚‹гЃ“гЃЁгЃЊгЃ§гЃЌгЃѕгЃ›г‚“гЃ§гЃ—гЃџ\n" @*/ )) ;
 									goto END ;
 								}
 
-								// ђV‚µ‚ўѓoѓbѓtѓ@‚М•Ы‘¶
+								// ж–°гЃ—гЃ„гѓђгѓѓгѓ•г‚ЎгЃ®дїќе­
 								Result.Dim = NewBuffer ;
 								MaxNum = NewMaxNum ;
 							}
 
-							// “–‚Ѕ‚Б‚Д‚ў‚йѓ|ѓЉѓSѓ“ѓЉѓXѓg‚Й’З‰Б‚·‚й
+							// еЅ“гЃџгЃЈгЃ¦гЃ„г‚‹гѓќгѓЄг‚ґгѓігѓЄг‚№гѓ€гЃ«иїЅеЉ гЃ™г‚‹
 							RPoly = &Result.Dim[ Result.HitNum ] ;
 							Result.HitNum ++ ;
 
@@ -32774,14 +32774,14 @@ extern	MV1_COLL_RESULT_POLY_DIM NS_MV1CollCheck_Sphere( int MHandle, int FrameIn
 						}
 					}
 
-					// ѓ`ѓFѓbѓNЌП‚Эѓtѓ‰ѓO‚р—§‚Д‚й
+					// гѓЃг‚§гѓѓг‚Їжё€гЃїгѓ•гѓ©г‚°г‚’з«‹гЃ¦г‚‹
 					BitBuffer[ PolyIndex >> 3 ] |= 1 << ( PolyIndex & 7 ) ;
 				}
 			}
 		}
 	}
 
-	// €к‚В‚а“–‚Ѕ‚Б‚Д‚ў‚И‚©‚Б‚Ѕ‚з“–‚Ѕ‚Б‚Д‚ў‚йѓ|ѓЉѓSѓ“ѓЉѓXѓg—p‚ЙЉm•Ы‚µ‚ЅѓЃѓ‚ѓЉ‚р‰р•ъ
+	// дёЂгЃ¤г‚‚еЅ“гЃџгЃЈгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰еЅ“гЃџгЃЈгЃ¦гЃ„г‚‹гѓќгѓЄг‚ґгѓігѓЄг‚№гѓ€з”ЁгЃ«зўєдїќгЃ—гЃџгѓЎгѓўгѓЄг‚’и§Јж”ѕ
 	if( Result.HitNum == 0 )
 	{
 		if( Result.Dim != NULL )
@@ -32796,7 +32796,7 @@ END :
 	return Result ;
 }
 
-// ѓJѓvѓZѓ‹‚Жѓ‚ѓfѓ‹‚М“–‚Ѕ‚и”»’и
+// г‚«гѓ—г‚»гѓ«гЃЁгѓўгѓ‡гѓ«гЃ®еЅ“гЃџг‚Ље€¤е®љ
 extern MV1_COLL_RESULT_POLY_DIM NS_MV1CollCheck_Capsule( int MHandle, int FrameIndex, VECTOR Pos1, VECTOR Pos2, float r, int MeshIndex )
 {
 	int MaxNum ;
@@ -32815,51 +32815,51 @@ extern MV1_COLL_RESULT_POLY_DIM NS_MV1CollCheck_Capsule( int MHandle, int FrameI
 	int xc, yc, zc, ZStep, YStep, PolyIndex ;
 	int MinX, MinY, MinZ, MaxX, MaxY, MaxZ, PostIndexZ, PostIndexY, PostIndexX ;
 
-	// Њ‹‰КЏ‰Љъ‰»
+	// зµђжћње€ќжњџеЊ–
 	Result.HitNum = 0 ;
 	Result.Dim = NULL ;
 
-	// ѓAѓhѓЊѓXЋж“ѕ
+	// г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ—
 	if( MV1MDLCHK( MHandle, Model ) )
 		return Result ;
 	ModelBase = Model->BaseData ;
 
-	// ѓtѓЊЃ[ѓЂ’P‘М‚©ѓЃѓbѓVѓ…’P‘М‚©ѓ‚ѓfѓ‹‘S‘М‚©‚ЕЏ€—ќ‚р•ЄЉт
+	// гѓ•гѓ¬гѓјгѓ еЌдЅ“гЃ‹гѓЎгѓѓг‚·гѓҐеЌдЅ“гЃ‹гѓўгѓ‡гѓ«е…ЁдЅ“гЃ‹гЃ§е‡¦зђ†г‚’е€†еІђ
 	if( FrameIndex < 0 && MeshIndex < 0 )
 	{
-		// ѓ‚ѓfѓ‹‘S‘М‚МЏкЌ‡
+		// гѓўгѓ‡гѓ«е…ЁдЅ“гЃ®е ґеђ€
 
-		// ѓRѓЉѓWѓ‡ѓ“Џо•с‚Є–і‚©‚Б‚Ѕ‚зѓZѓbѓgѓAѓbѓv‚·‚й
+		// г‚ігѓЄг‚ёгѓ§гѓіжѓ…е ±гЃЊз„ЎгЃ‹гЃЈгЃџг‚‰г‚»гѓѓгѓ€г‚ўгѓѓгѓ—гЃ™г‚‹
 		if( Model->Collision == NULL )
 			if( NS_MV1RefreshCollInfo( MHandle, FrameIndex, -1 ) < 0 )
 				return Result ;
 
-		// ѓ|ѓЉѓSѓ“Џо•с‚МѓZѓbѓg
+		// гѓќгѓЄг‚ґгѓіжѓ…е ±гЃ®г‚»гѓѓгѓ€
 		PolyList = Model->RefPolygon[ 1 ][ 1 ] ;
 		Collision = Model->Collision ;
 	}
 	else
-	// ѓtѓЊЃ[ѓЂ’P‘М‚МЏкЌ‡
+	// гѓ•гѓ¬гѓјгѓ еЌдЅ“гЃ®е ґеђ€
 	if( MeshIndex < 0 )
 	{
-		// ѓtѓЊЃ[ѓЂѓCѓ“ѓfѓbѓNѓX‚Мѓ`ѓFѓbѓN
+		// гѓ•гѓ¬гѓјгѓ г‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃ®гѓЃг‚§гѓѓг‚Ї
 		if( FrameIndex < 0 || FrameIndex >= ModelBase->FrameNum )
 			return Result ;
 		Frame = Model->Frame + FrameIndex ;
 
-		// ѓRѓЉѓWѓ‡ѓ“Џо•с‚Є–і‚©‚Б‚Ѕ‚зѓZѓbѓgѓAѓbѓv‚·‚й
+		// г‚ігѓЄг‚ёгѓ§гѓіжѓ…е ±гЃЊз„ЎгЃ‹гЃЈгЃџг‚‰г‚»гѓѓгѓ€г‚ўгѓѓгѓ—гЃ™г‚‹
 		if( Frame->Collision == NULL )
 			if( NS_MV1RefreshCollInfo( MHandle, FrameIndex, -1 ) < 0 )
 				return Result ;
 
-		// ѓ|ѓЉѓSѓ“Џо•с‚МѓZѓbѓg
+		// гѓќгѓЄг‚ґгѓіжѓ…е ±гЃ®г‚»гѓѓгѓ€
 		PolyList = Frame->RefPolygon[ 1 ][ 1 ] ;
 		Collision = Frame->Collision ;
 	}
 	else
-	// ѓЃѓbѓVѓ…’P‘М‚МЏкЌ‡
+	// гѓЎгѓѓг‚·гѓҐеЌдЅ“гЃ®е ґеђ€
 	{
-		// ѓЃѓbѓVѓ…ѓCѓ“ѓfѓbѓNѓXѓ`ѓFѓbѓN
+		// гѓЎгѓѓг‚·гѓҐг‚¤гѓігѓ‡гѓѓг‚Їг‚№гѓЃг‚§гѓѓг‚Ї
 		if( FrameIndex >= 0 && FrameIndex < ModelBase->FrameNum )
 		{
 			Frame = Model->Frame + FrameIndex ;
@@ -32876,17 +32876,17 @@ extern MV1_COLL_RESULT_POLY_DIM NS_MV1CollCheck_Capsule( int MHandle, int FrameI
 			Mesh = &Model->Mesh[ MeshIndex ] ;
 		}
 
-		// ѓRѓЉѓWѓ‡ѓ“Џо•с‚Є–і‚©‚Б‚Ѕ‚зѓZѓbѓgѓAѓbѓv‚·‚й
+		// г‚ігѓЄг‚ёгѓ§гѓіжѓ…е ±гЃЊз„ЎгЃ‹гЃЈгЃџг‚‰г‚»гѓѓгѓ€г‚ўгѓѓгѓ—гЃ™г‚‹
 		if( Mesh->Collision == NULL )
 			if( NS_MV1RefreshCollInfo( MHandle, FrameIndex, MeshIndex ) < 0 )
 				return Result ;
 
-		// ѓ|ѓЉѓSѓ“Џо•с‚МѓZѓbѓg
+		// гѓќгѓЄг‚ґгѓіжѓ…е ±гЃ®г‚»гѓѓгѓ€
 		PolyList = Mesh->RefPolygon[ 1 ] ;
 		Collision = Mesh->Collision ;
 	}
 
-	// ЌА•W’l‚МЌЕЏ¬’l‚ЖЌЕ‘е’l‚рѓZѓbѓg
+	// еє§жЁ™еЂ¤гЃ®жњЂе°ЏеЂ¤гЃЁжњЂе¤§еЂ¤г‚’г‚»гѓѓгѓ€
 	if( Pos1.x < Pos2.x )
 	{
 		MaxPos.x = Pos2.x + r ;
@@ -32918,7 +32918,7 @@ extern MV1_COLL_RESULT_POLY_DIM NS_MV1CollCheck_Capsule( int MHandle, int FrameI
 		MinPos.z = Pos2.z - r ;
 	}
 
-	// ”Н€Н‚ЄѓRѓЉѓWѓ‡ѓ“‹уЉФ‚©‚зЉO‚к‚Д‚ў‚Ѕ‚з‚З‚Мѓ|ѓЉѓSѓ“‚Й‚а“–‚Ѕ‚з‚И‚ў‚Ж‚ў‚¤‚±‚Ж
+	// зЇ„е›ІгЃЊг‚ігѓЄг‚ёгѓ§гѓіз©єй–“гЃ‹г‚‰е¤–г‚ЊгЃ¦гЃ„гЃџг‚‰гЃ©гЃ®гѓќгѓЄг‚ґгѓігЃ«г‚‚еЅ“гЃџг‚‰гЃЄгЃ„гЃЁгЃ„гЃ†гЃ“гЃЁ
 	if( Collision->MaxPosition.x < MinPos.x ||
 		Collision->MaxPosition.y < MinPos.y ||
 		Collision->MaxPosition.z < MinPos.z ||
@@ -32927,22 +32927,22 @@ extern MV1_COLL_RESULT_POLY_DIM NS_MV1CollCheck_Capsule( int MHandle, int FrameI
 		Collision->MinPosition.z > MaxPos.z )
 		goto END ;
 
-	// Џ‰Љъѓoѓbѓtѓ@‚рЉm•Ы
+	// е€ќжњџгѓђгѓѓгѓ•г‚Ўг‚’зўєдїќ
 	MaxNum = 1000 ;
 	Result.Dim = ( MV1_COLL_RESULT_POLY * )DXALLOC( sizeof( MV1_COLL_RESULT_POLY ) * MaxNum ) ;
 	if( Result.Dim == NULL ) return Result ;
 
-	// “–‚Ѕ‚и”»’и‚рЌs‚Б‚Ѕ‚©‚З‚¤‚©‚р•Ы‘¶‚·‚йѓЃѓ‚ѓЉ—М€ж‚МЉm•Ы
+	// еЅ“гЃџг‚Ље€¤е®љг‚’иЎЊгЃЈгЃџгЃ‹гЃ©гЃ†гЃ‹г‚’дїќе­гЃ™г‚‹гѓЎгѓўгѓЄй еџџгЃ®зўєдїќ
 	BitBuffer = ( BYTE * )MV1SetupWorkBuffer( sizeof( BYTE ) * ( ( PolyList->PolygonNum + 7 ) / 8 ) ) ;
 	if( BitBuffer == NULL )
 	{
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\x53\x5f\x5f\x30\x8a\x30\x24\x52\x9a\x5b\xe6\x51\x06\x74\x28\x75\xc6\x30\xf3\x30\xdd\x30\xe9\x30\xea\x30\xd0\x30\xc3\x30\xd5\x30\xa1\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x32\x00\x0a\x00\x00"/*@ L"“–‚Ѕ‚и”»’иЏ€—ќ—pѓeѓ“ѓ|ѓ‰ѓЉѓoѓbѓtѓ@‚МЉm•Ы‚ЙЋё”s‚µ‚Ь‚µ‚Ѕ2\n" @*/ )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\x53\x5f\x5f\x30\x8a\x30\x24\x52\x9a\x5b\xe6\x51\x06\x74\x28\x75\xc6\x30\xf3\x30\xdd\x30\xe9\x30\xea\x30\xd0\x30\xc3\x30\xd5\x30\xa1\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x32\x00\x0a\x00\x00"/*@ L"еЅ“гЃџг‚Ље€¤е®ље‡¦зђ†з”Ёгѓ†гѓігѓќгѓ©гѓЄгѓђгѓѓгѓ•г‚ЎгЃ®зўєдїќгЃ«е¤±ж•—гЃ—гЃѕгЃ—гЃџ2\n" @*/ )) ;
 		DXFREE( Result.Dim ) ;
 		return Result ;
 	}
 	_MEMSET( BitBuffer, 0, sizeof( BYTE ) * ( ( PolyList->PolygonNum + 7 ) / 8 ) ) ;
 
-	// ЊџЌх”Н€Н‚рЊ€’и
+	// ж¤њзґўзЇ„е›Іг‚’ж±єе®љ
 	UnitDiv = Collision->UnitSizeRev ;
 	MinX = __FTOL( ( MinPos.x - Collision->MinPosition.x ) * UnitDiv.x ) ;
 	MinY = __FTOL( ( MinPos.y - Collision->MinPosition.y ) * UnitDiv.y ) ;
@@ -32957,7 +32957,7 @@ extern MV1_COLL_RESULT_POLY_DIM NS_MV1CollCheck_Capsule( int MHandle, int FrameI
 	if( MaxY >= Collision->YDivNum ) MaxY = Collision->YDivNum - 1 ;
 	if( MaxZ >= Collision->ZDivNum ) MaxZ = Collision->ZDivNum - 1 ;
 
-	// ”Н€Н“а‚М‘S‚Д‚Мѓ|ѓЉѓSѓ“‚Ж“–‚Ѕ‚и”»’и
+	// зЇ„е›Іе†…гЃ®е…ЁгЃ¦гЃ®гѓќгѓЄг‚ґгѓігЃЁеЅ“гЃџг‚Ље€¤е®љ
 	ZStep = Collision->YDivNum * Collision->XDivNum ;
 	YStep = Collision->XDivNum ;
 	PostIndexZ = MinX + MinY * YStep + MinZ * ZStep ;
@@ -32974,10 +32974,10 @@ extern MV1_COLL_RESULT_POLY_DIM NS_MV1CollCheck_Capsule( int MHandle, int FrameI
 					Poly = ColPoly->Polygon ;
 					PolyIndex = ( int )( Poly - PolyList->Polygons ) ;
 
-					// Љщ‚Йѓ`ѓFѓbѓNЌП‚Э‚Мѓ|ѓЉѓSѓ“‚ѕ‚Б‚ЅЏкЌ‡‚Н‰Ѕ‚а‚µ‚И‚ў
+					// ж—ўгЃ«гѓЃг‚§гѓѓг‚Їжё€гЃїгЃ®гѓќгѓЄг‚ґгѓігЃ гЃЈгЃџе ґеђ€гЃЇдЅ•г‚‚гЃ—гЃЄгЃ„
 					if( BitBuffer[ PolyIndex >> 3 ] & ( 1 << ( PolyIndex & 7 ) ) ) continue ;
 
-					// ЌЕЏ‰‚Й—§•ы‘М’P€К‚М“–‚Ѕ‚и”»’и‚рЌs‚¤
+					// жњЂе€ќгЃ«з«‹ж–№дЅ“еЌдЅЌгЃ®еЅ“гЃџг‚Ље€¤е®љг‚’иЎЊгЃ†
 					if( ( MinPos.x > Poly->MaxPosition.x ||
 						  MinPos.y > Poly->MaxPosition.y ||
 						  MinPos.z > Poly->MaxPosition.z ||
@@ -32985,9 +32985,9 @@ extern MV1_COLL_RESULT_POLY_DIM NS_MV1CollCheck_Capsule( int MHandle, int FrameI
 						  MaxPos.y < Poly->MinPosition.y ||
 						  MaxPos.z < Poly->MinPosition.z ) == false )
 					{
-						// ЋOЉpЊ`‚Ж‹…‚М“–‚Ѕ‚и”»’и
+						// дё‰и§’еЅўгЃЁзђѓгЃ®еЅ“гЃџг‚Ље€¤е®љ
 
-						// ‹…‚Й€к”Ф‹Я‚ўЋOЉpЊ`Џг‚МЌА•W‚Ж‚М‹——Ј‚ЄЃA‹…‚М”јЊa€И‰є‚ѕ‚Б‚Ѕ‚з“–‚Ѕ‚Б‚Д‚ў‚й‚Ж‚ў‚¤‚±‚Ж
+						// зђѓгЃ«дёЂз•Єиї‘гЃ„дё‰и§’еЅўдёЉгЃ®еє§жЁ™гЃЁгЃ®и·ќй›ўгЃЊгЂЃзђѓгЃ®еЌЉеѕ„д»Ґдё‹гЃ гЃЈгЃџг‚‰еЅ“гЃџгЃЈгЃ¦гЃ„г‚‹гЃЁгЃ„гЃ†гЃ“гЃЁ
 /*						ResultPos = Get_Triangle_Point_MinPosition( CenterPos, 
 										PolyList->Vertexs[ Poly->VIndex[ 0 ] ].Position,
 										PolyList->Vertexs[ Poly->VIndex[ 1 ] ].Position,
@@ -33002,7 +33002,7 @@ extern MV1_COLL_RESULT_POLY_DIM NS_MV1CollCheck_Capsule( int MHandle, int FrameI
 							PolyList->Vertexs[ Poly->VIndex[ 1 ] ].Position,
 							PolyList->Vertexs[ Poly->VIndex[ 2 ] ].Position ) <= r * r )
 						{
-							// ђ”‚ЄЌЕ‘еђ”‚Й’B‚µ‚Д‚ў‚Ѕ‚зЌДЉm•Ы
+							// ж•°гЃЊжњЂе¤§ж•°гЃ«йЃ”гЃ—гЃ¦гЃ„гЃџг‚‰е†Ќзўєдїќ
 							if( Result.HitNum == MaxNum )
 							{
 								MV1_COLL_RESULT_POLY *NewBuffer ;
@@ -33012,16 +33012,16 @@ extern MV1_COLL_RESULT_POLY_DIM NS_MV1CollCheck_Capsule( int MHandle, int FrameI
 								NewBuffer = ( MV1_COLL_RESULT_POLY * )DXREALLOC( Result.Dim, sizeof( MV1_COLL_RESULT_POLY ) * NewMaxNum ) ;
 								if( NewBuffer == NULL )
 								{
-									DXST_LOGFILEFMT_ADDUTF16LE(( "\xe1\x30\xe2\x30\xea\x30\x0d\x4e\xb3\x8d\x6e\x30\xba\x70\x53\x5f\x5f\x30\x63\x30\x5f\x30\xdd\x30\xea\x30\xb4\x30\xf3\x30\x59\x30\x79\x30\x66\x30\x92\x30\xdd\x4f\x58\x5b\x59\x30\x8b\x30\x53\x30\x68\x30\x4c\x30\x67\x30\x4d\x30\x7e\x30\x5b\x30\x93\x30\x67\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ѓЃѓ‚ѓЉ•s‘«‚М€Ч“–‚Ѕ‚Б‚Ѕѓ|ѓЉѓSѓ“‚·‚Ч‚Д‚р•Ы‘¶‚·‚й‚±‚Ж‚Є‚Е‚«‚Ь‚№‚с‚Е‚µ‚Ѕ\n" @*/ )) ;
+									DXST_LOGFILEFMT_ADDUTF16LE(( "\xe1\x30\xe2\x30\xea\x30\x0d\x4e\xb3\x8d\x6e\x30\xba\x70\x53\x5f\x5f\x30\x63\x30\x5f\x30\xdd\x30\xea\x30\xb4\x30\xf3\x30\x59\x30\x79\x30\x66\x30\x92\x30\xdd\x4f\x58\x5b\x59\x30\x8b\x30\x53\x30\x68\x30\x4c\x30\x67\x30\x4d\x30\x7e\x30\x5b\x30\x93\x30\x67\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"гѓЎгѓўгѓЄдёЌи¶ігЃ®з‚єеЅ“гЃџгЃЈгЃџгѓќгѓЄг‚ґгѓігЃ™гЃ№гЃ¦г‚’дїќе­гЃ™г‚‹гЃ“гЃЁгЃЊгЃ§гЃЌгЃѕгЃ›г‚“гЃ§гЃ—гЃџ\n" @*/ )) ;
 									goto END ;
 								}
 
-								// ђV‚µ‚ўѓoѓbѓtѓ@‚М•Ы‘¶
+								// ж–°гЃ—гЃ„гѓђгѓѓгѓ•г‚ЎгЃ®дїќе­
 								Result.Dim = NewBuffer ;
 								MaxNum = NewMaxNum ;
 							}
 
-							// “–‚Ѕ‚Б‚Д‚ў‚йѓ|ѓЉѓSѓ“ѓЉѓXѓg‚Й’З‰Б‚·‚й
+							// еЅ“гЃџгЃЈгЃ¦гЃ„г‚‹гѓќгѓЄг‚ґгѓігѓЄг‚№гѓ€гЃ«иїЅеЉ гЃ™г‚‹
 							RPoly = &Result.Dim[ Result.HitNum ] ;
 							Result.HitNum ++ ;
 
@@ -33045,14 +33045,14 @@ extern MV1_COLL_RESULT_POLY_DIM NS_MV1CollCheck_Capsule( int MHandle, int FrameI
 						}
 					}
 
-					// ѓ`ѓFѓbѓNЌП‚Эѓtѓ‰ѓO‚р—§‚Д‚й
+					// гѓЃг‚§гѓѓг‚Їжё€гЃїгѓ•гѓ©г‚°г‚’з«‹гЃ¦г‚‹
 					BitBuffer[ PolyIndex >> 3 ] |= 1 << ( PolyIndex & 7 ) ;
 				}
 			}
 		}
 	}
 
-	// €к‚В‚а“–‚Ѕ‚Б‚Д‚ў‚И‚©‚Б‚Ѕ‚з“–‚Ѕ‚Б‚Д‚ў‚йѓ|ѓЉѓSѓ“ѓЉѓXѓg—p‚ЙЉm•Ы‚µ‚ЅѓЃѓ‚ѓЉ‚р‰р•ъ
+	// дёЂгЃ¤г‚‚еЅ“гЃџгЃЈгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰еЅ“гЃџгЃЈгЃ¦гЃ„г‚‹гѓќгѓЄг‚ґгѓігѓЄг‚№гѓ€з”ЁгЃ«зўєдїќгЃ—гЃџгѓЎгѓўгѓЄг‚’и§Јж”ѕ
 	if( Result.HitNum == 0 )
 	{
 		if( Result.Dim != NULL )
@@ -33067,7 +33067,7 @@ END :
 	return Result ;
 }
 
-// ЋOЉpЊ`‚Жѓ‚ѓfѓ‹‚М“–‚Ѕ‚и”»’и
+// дё‰и§’еЅўгЃЁгѓўгѓ‡гѓ«гЃ®еЅ“гЃџг‚Ље€¤е®љ
 extern MV1_COLL_RESULT_POLY_DIM NS_MV1CollCheck_Triangle( int MHandle, int FrameIndex, VECTOR Pos1, VECTOR Pos2, VECTOR Pos3, int MeshIndex )
 {
 	int MaxNum ;
@@ -33086,51 +33086,51 @@ extern MV1_COLL_RESULT_POLY_DIM NS_MV1CollCheck_Triangle( int MHandle, int Frame
 	int xc, yc, zc, ZStep, YStep, PolyIndex ;
 	int MinX, MinY, MinZ, MaxX, MaxY, MaxZ, PostIndexZ, PostIndexY, PostIndexX ;
 
-	// Њ‹‰КЏ‰Љъ‰»
+	// зµђжћње€ќжњџеЊ–
 	Result.HitNum = 0 ;
 	Result.Dim = NULL ;
 
-	// ѓAѓhѓЊѓXЋж“ѕ
+	// г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ—
 	if( MV1MDLCHK( MHandle, Model ) )
 		return Result ;
 	ModelBase = Model->BaseData ;
 
-	// ѓtѓЊЃ[ѓЂ’P‘М‚©ѓЃѓbѓVѓ…’P‘М‚©ѓ‚ѓfѓ‹‘S‘М‚©‚ЕЏ€—ќ‚р•ЄЉт
+	// гѓ•гѓ¬гѓјгѓ еЌдЅ“гЃ‹гѓЎгѓѓг‚·гѓҐеЌдЅ“гЃ‹гѓўгѓ‡гѓ«е…ЁдЅ“гЃ‹гЃ§е‡¦зђ†г‚’е€†еІђ
 	if( FrameIndex < 0 && MeshIndex < 0 )
 	{
-		// ѓ‚ѓfѓ‹‘S‘М‚МЏкЌ‡
+		// гѓўгѓ‡гѓ«е…ЁдЅ“гЃ®е ґеђ€
 
-		// ѓRѓЉѓWѓ‡ѓ“Џо•с‚Є–і‚©‚Б‚Ѕ‚зѓZѓbѓgѓAѓbѓv‚·‚й
+		// г‚ігѓЄг‚ёгѓ§гѓіжѓ…е ±гЃЊз„ЎгЃ‹гЃЈгЃџг‚‰г‚»гѓѓгѓ€г‚ўгѓѓгѓ—гЃ™г‚‹
 		if( Model->Collision == NULL )
 			if( NS_MV1RefreshCollInfo( MHandle, FrameIndex, -1 ) < 0 )
 				return Result ;
 
-		// ѓ|ѓЉѓSѓ“Џо•с‚МѓZѓbѓg
+		// гѓќгѓЄг‚ґгѓіжѓ…е ±гЃ®г‚»гѓѓгѓ€
 		PolyList = Model->RefPolygon[ 1 ][ 1 ] ;
 		Collision = Model->Collision ;
 	}
 	else
-	// ѓtѓЊЃ[ѓЂ’P‘М‚МЏкЌ‡
+	// гѓ•гѓ¬гѓјгѓ еЌдЅ“гЃ®е ґеђ€
 	if( MeshIndex < 0 )
 	{
-		// ѓtѓЊЃ[ѓЂѓCѓ“ѓfѓbѓNѓX‚Мѓ`ѓFѓbѓN
+		// гѓ•гѓ¬гѓјгѓ г‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃ®гѓЃг‚§гѓѓг‚Ї
 		if( FrameIndex < 0 || FrameIndex >= ModelBase->FrameNum )
 			return Result ;
 		Frame = Model->Frame + FrameIndex ;
 
-		// ѓRѓЉѓWѓ‡ѓ“Џо•с‚Є–і‚©‚Б‚Ѕ‚зѓZѓbѓgѓAѓbѓv‚·‚й
+		// г‚ігѓЄг‚ёгѓ§гѓіжѓ…е ±гЃЊз„ЎгЃ‹гЃЈгЃџг‚‰г‚»гѓѓгѓ€г‚ўгѓѓгѓ—гЃ™г‚‹
 		if( Frame->Collision == NULL )
 			if( NS_MV1RefreshCollInfo( MHandle, FrameIndex, -1 ) < 0 )
 				return Result ;
 
-		// ѓ|ѓЉѓSѓ“Џо•с‚МѓZѓbѓg
+		// гѓќгѓЄг‚ґгѓіжѓ…е ±гЃ®г‚»гѓѓгѓ€
 		PolyList = Frame->RefPolygon[ 1 ][ 1 ] ;
 		Collision = Frame->Collision ;
 	}
 	else
-	// ѓЃѓbѓVѓ…’P‘М‚МЏкЌ‡
+	// гѓЎгѓѓг‚·гѓҐеЌдЅ“гЃ®е ґеђ€
 	{
-		// ѓЃѓbѓVѓ…ѓCѓ“ѓfѓbѓNѓXѓ`ѓFѓbѓN
+		// гѓЎгѓѓг‚·гѓҐг‚¤гѓігѓ‡гѓѓг‚Їг‚№гѓЃг‚§гѓѓг‚Ї
 		if( FrameIndex >= 0 && FrameIndex < ModelBase->FrameNum )
 		{
 			Frame = Model->Frame + FrameIndex ;
@@ -33147,17 +33147,17 @@ extern MV1_COLL_RESULT_POLY_DIM NS_MV1CollCheck_Triangle( int MHandle, int Frame
 			Mesh = &Model->Mesh[ MeshIndex ] ;
 		}
 
-		// ѓRѓЉѓWѓ‡ѓ“Џо•с‚Є–і‚©‚Б‚Ѕ‚зѓZѓbѓgѓAѓbѓv‚·‚й
+		// г‚ігѓЄг‚ёгѓ§гѓіжѓ…е ±гЃЊз„ЎгЃ‹гЃЈгЃџг‚‰г‚»гѓѓгѓ€г‚ўгѓѓгѓ—гЃ™г‚‹
 		if( Mesh->Collision == NULL )
 			if( NS_MV1RefreshCollInfo( MHandle, FrameIndex, MeshIndex ) < 0 )
 				return Result ;
 
-		// ѓ|ѓЉѓSѓ“Џо•с‚МѓZѓbѓg
+		// гѓќгѓЄг‚ґгѓіжѓ…е ±гЃ®г‚»гѓѓгѓ€
 		PolyList = Mesh->RefPolygon[ 1 ] ;
 		Collision = Mesh->Collision ;
 	}
 
-	// ЌА•W’l‚МЌЕЏ¬’l‚ЖЌЕ‘е’l‚рѓZѓbѓg
+	// еє§жЁ™еЂ¤гЃ®жњЂе°ЏеЂ¤гЃЁжњЂе¤§еЂ¤г‚’г‚»гѓѓгѓ€
 	if( Pos1.x < Pos2.x )
 	{
 		if( Pos1.x < Pos3.x )
@@ -33281,7 +33281,7 @@ extern MV1_COLL_RESULT_POLY_DIM NS_MV1CollCheck_Triangle( int MHandle, int Frame
 		}
 	}
 
-	// ”Н€Н‚ЄѓRѓЉѓWѓ‡ѓ“‹уЉФ‚©‚зЉO‚к‚Д‚ў‚Ѕ‚з‚З‚Мѓ|ѓЉѓSѓ“‚Й‚а“–‚Ѕ‚з‚И‚ў‚Ж‚ў‚¤‚±‚Ж
+	// зЇ„е›ІгЃЊг‚ігѓЄг‚ёгѓ§гѓіз©єй–“гЃ‹г‚‰е¤–г‚ЊгЃ¦гЃ„гЃџг‚‰гЃ©гЃ®гѓќгѓЄг‚ґгѓігЃ«г‚‚еЅ“гЃџг‚‰гЃЄгЃ„гЃЁгЃ„гЃ†гЃ“гЃЁ
 	if( Collision->MaxPosition.x < MinPos.x ||
 		Collision->MaxPosition.y < MinPos.y ||
 		Collision->MaxPosition.z < MinPos.z ||
@@ -33290,22 +33290,22 @@ extern MV1_COLL_RESULT_POLY_DIM NS_MV1CollCheck_Triangle( int MHandle, int Frame
 		Collision->MinPosition.z > MaxPos.z )
 		goto END ;
 
-	// Џ‰Љъѓoѓbѓtѓ@‚рЉm•Ы
+	// е€ќжњџгѓђгѓѓгѓ•г‚Ўг‚’зўєдїќ
 	MaxNum = 1000 ;
 	Result.Dim = ( MV1_COLL_RESULT_POLY * )DXALLOC( sizeof( MV1_COLL_RESULT_POLY ) * MaxNum ) ;
 	if( Result.Dim == NULL ) return Result ;
 
-	// “–‚Ѕ‚и”»’и‚рЌs‚Б‚Ѕ‚©‚З‚¤‚©‚р•Ы‘¶‚·‚йѓЃѓ‚ѓЉ—М€ж‚МЉm•Ы
+	// еЅ“гЃџг‚Ље€¤е®љг‚’иЎЊгЃЈгЃџгЃ‹гЃ©гЃ†гЃ‹г‚’дїќе­гЃ™г‚‹гѓЎгѓўгѓЄй еџџгЃ®зўєдїќ
 	BitBuffer = ( BYTE * )MV1SetupWorkBuffer( sizeof( BYTE ) * ( ( PolyList->PolygonNum + 7 ) / 8 ) ) ;
 	if( BitBuffer == NULL )
 	{
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\x53\x5f\x5f\x30\x8a\x30\x24\x52\x9a\x5b\xe6\x51\x06\x74\x28\x75\xc6\x30\xf3\x30\xdd\x30\xe9\x30\xea\x30\xd0\x30\xc3\x30\xd5\x30\xa1\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x32\x00\x0a\x00\x00"/*@ L"“–‚Ѕ‚и”»’иЏ€—ќ—pѓeѓ“ѓ|ѓ‰ѓЉѓoѓbѓtѓ@‚МЉm•Ы‚ЙЋё”s‚µ‚Ь‚µ‚Ѕ2\n" @*/ )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\x53\x5f\x5f\x30\x8a\x30\x24\x52\x9a\x5b\xe6\x51\x06\x74\x28\x75\xc6\x30\xf3\x30\xdd\x30\xe9\x30\xea\x30\xd0\x30\xc3\x30\xd5\x30\xa1\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x32\x00\x0a\x00\x00"/*@ L"еЅ“гЃџг‚Ље€¤е®ље‡¦зђ†з”Ёгѓ†гѓігѓќгѓ©гѓЄгѓђгѓѓгѓ•г‚ЎгЃ®зўєдїќгЃ«е¤±ж•—гЃ—гЃѕгЃ—гЃџ2\n" @*/ )) ;
 		DXFREE( Result.Dim ) ;
 		return Result ;
 	}
 	_MEMSET( BitBuffer, 0, sizeof( BYTE ) * ( ( PolyList->PolygonNum + 7 ) / 8 ) ) ;
 
-	// ЊџЌх”Н€Н‚рЊ€’и
+	// ж¤њзґўзЇ„е›Іг‚’ж±єе®љ
 	UnitDiv = Collision->UnitSizeRev ;
 	MinX = __FTOL( ( MinPos.x - Collision->MinPosition.x ) * UnitDiv.x ) ;
 	MinY = __FTOL( ( MinPos.y - Collision->MinPosition.y ) * UnitDiv.y ) ;
@@ -33320,7 +33320,7 @@ extern MV1_COLL_RESULT_POLY_DIM NS_MV1CollCheck_Triangle( int MHandle, int Frame
 	if( MaxY >= Collision->YDivNum ) MaxY = Collision->YDivNum - 1 ;
 	if( MaxZ >= Collision->ZDivNum ) MaxZ = Collision->ZDivNum - 1 ;
 
-	// ”Н€Н“а‚М‘S‚Д‚Мѓ|ѓЉѓSѓ“‚Ж“–‚Ѕ‚и”»’и
+	// зЇ„е›Іе†…гЃ®е…ЁгЃ¦гЃ®гѓќгѓЄг‚ґгѓігЃЁеЅ“гЃџг‚Ље€¤е®љ
 	ZStep = Collision->YDivNum * Collision->XDivNum ;
 	YStep = Collision->XDivNum ;
 	PostIndexZ = MinX + MinY * YStep + MinZ * ZStep ;
@@ -33337,10 +33337,10 @@ extern MV1_COLL_RESULT_POLY_DIM NS_MV1CollCheck_Triangle( int MHandle, int Frame
 					Poly = ColPoly->Polygon ;
 					PolyIndex = ( int )( Poly - PolyList->Polygons ) ;
 
-					// Љщ‚Йѓ`ѓFѓbѓNЌП‚Э‚Мѓ|ѓЉѓSѓ“‚ѕ‚Б‚ЅЏкЌ‡‚Н‰Ѕ‚а‚µ‚И‚ў
+					// ж—ўгЃ«гѓЃг‚§гѓѓг‚Їжё€гЃїгЃ®гѓќгѓЄг‚ґгѓігЃ гЃЈгЃџе ґеђ€гЃЇдЅ•г‚‚гЃ—гЃЄгЃ„
 					if( BitBuffer[ PolyIndex >> 3 ] & ( 1 << ( PolyIndex & 7 ) ) ) continue ;
 
-					// ЌЕЏ‰‚Й—§•ы‘М’P€К‚М“–‚Ѕ‚и”»’и‚рЌs‚¤
+					// жњЂе€ќгЃ«з«‹ж–№дЅ“еЌдЅЌгЃ®еЅ“гЃџг‚Ље€¤е®љг‚’иЎЊгЃ†
 					if( ( MinPos.x > Poly->MaxPosition.x ||
 						  MinPos.y > Poly->MaxPosition.y ||
 						  MinPos.z > Poly->MaxPosition.z ||
@@ -33348,14 +33348,14 @@ extern MV1_COLL_RESULT_POLY_DIM NS_MV1CollCheck_Triangle( int MHandle, int Frame
 						  MaxPos.y < Poly->MinPosition.y ||
 						  MaxPos.z < Poly->MinPosition.z ) == false )
 					{
-						// ЋOЉpЊ`‚ЖЋOЉpЊ`‚М“–‚Ѕ‚и”»’и
+						// дё‰и§’еЅўгЃЁдё‰и§’еЅўгЃ®еЅ“гЃџг‚Ље€¤е®љ
 						if( HitCheck_Triangle_Triangle(
 							Pos1, Pos2, Pos3, 
 							PolyList->Vertexs[ Poly->VIndex[ 0 ] ].Position,
 							PolyList->Vertexs[ Poly->VIndex[ 1 ] ].Position,
 							PolyList->Vertexs[ Poly->VIndex[ 2 ] ].Position ) )
 						{
-							// ђ”‚ЄЌЕ‘еђ”‚Й’B‚µ‚Д‚ў‚Ѕ‚зЌДЉm•Ы
+							// ж•°гЃЊжњЂе¤§ж•°гЃ«йЃ”гЃ—гЃ¦гЃ„гЃџг‚‰е†Ќзўєдїќ
 							if( Result.HitNum == MaxNum )
 							{
 								MV1_COLL_RESULT_POLY *NewBuffer ;
@@ -33365,16 +33365,16 @@ extern MV1_COLL_RESULT_POLY_DIM NS_MV1CollCheck_Triangle( int MHandle, int Frame
 								NewBuffer = ( MV1_COLL_RESULT_POLY * )DXREALLOC( Result.Dim, sizeof( MV1_COLL_RESULT_POLY ) * NewMaxNum ) ;
 								if( NewBuffer == NULL )
 								{
-									DXST_LOGFILEFMT_ADDUTF16LE(( "\xe1\x30\xe2\x30\xea\x30\x0d\x4e\xb3\x8d\x6e\x30\xba\x70\x53\x5f\x5f\x30\x63\x30\x5f\x30\xdd\x30\xea\x30\xb4\x30\xf3\x30\x59\x30\x79\x30\x66\x30\x92\x30\xdd\x4f\x58\x5b\x59\x30\x8b\x30\x53\x30\x68\x30\x4c\x30\x67\x30\x4d\x30\x7e\x30\x5b\x30\x93\x30\x67\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ѓЃѓ‚ѓЉ•s‘«‚М€Ч“–‚Ѕ‚Б‚Ѕѓ|ѓЉѓSѓ“‚·‚Ч‚Д‚р•Ы‘¶‚·‚й‚±‚Ж‚Є‚Е‚«‚Ь‚№‚с‚Е‚µ‚Ѕ\n" @*/ )) ;
+									DXST_LOGFILEFMT_ADDUTF16LE(( "\xe1\x30\xe2\x30\xea\x30\x0d\x4e\xb3\x8d\x6e\x30\xba\x70\x53\x5f\x5f\x30\x63\x30\x5f\x30\xdd\x30\xea\x30\xb4\x30\xf3\x30\x59\x30\x79\x30\x66\x30\x92\x30\xdd\x4f\x58\x5b\x59\x30\x8b\x30\x53\x30\x68\x30\x4c\x30\x67\x30\x4d\x30\x7e\x30\x5b\x30\x93\x30\x67\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"гѓЎгѓўгѓЄдёЌи¶ігЃ®з‚єеЅ“гЃџгЃЈгЃџгѓќгѓЄг‚ґгѓігЃ™гЃ№гЃ¦г‚’дїќе­гЃ™г‚‹гЃ“гЃЁгЃЊгЃ§гЃЌгЃѕгЃ›г‚“гЃ§гЃ—гЃџ\n" @*/ )) ;
 									goto END ;
 								}
 
-								// ђV‚µ‚ўѓoѓbѓtѓ@‚М•Ы‘¶
+								// ж–°гЃ—гЃ„гѓђгѓѓгѓ•г‚ЎгЃ®дїќе­
 								Result.Dim = NewBuffer ;
 								MaxNum = NewMaxNum ;
 							}
 
-							// “–‚Ѕ‚Б‚Д‚ў‚йѓ|ѓЉѓSѓ“ѓЉѓXѓg‚Й’З‰Б‚·‚й
+							// еЅ“гЃџгЃЈгЃ¦гЃ„г‚‹гѓќгѓЄг‚ґгѓігѓЄг‚№гѓ€гЃ«иїЅеЉ гЃ™г‚‹
 							RPoly = &Result.Dim[ Result.HitNum ] ;
 							Result.HitNum ++ ;
 
@@ -33397,7 +33397,7 @@ extern MV1_COLL_RESULT_POLY_DIM NS_MV1CollCheck_Triangle( int MHandle, int Frame
 						}
 					}
 
-					// ѓ`ѓFѓbѓNЌП‚Эѓtѓ‰ѓO‚р—§‚Д‚й
+					// гѓЃг‚§гѓѓг‚Їжё€гЃїгѓ•гѓ©г‚°г‚’з«‹гЃ¦г‚‹
 					BitBuffer[ PolyIndex >> 3 ] |= 1 << ( PolyIndex & 7 ) ;
 				}
 			}
@@ -33406,7 +33406,7 @@ extern MV1_COLL_RESULT_POLY_DIM NS_MV1CollCheck_Triangle( int MHandle, int Frame
 
 END :
 
-	// €к‚В‚а“–‚Ѕ‚Б‚Д‚ў‚И‚©‚Б‚Ѕ‚з“–‚Ѕ‚Б‚Д‚ў‚йѓ|ѓЉѓSѓ“ѓЉѓXѓg—p‚ЙЉm•Ы‚µ‚ЅѓЃѓ‚ѓЉ‚р‰р•ъ
+	// дёЂгЃ¤г‚‚еЅ“гЃџгЃЈгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰еЅ“гЃџгЃЈгЃ¦гЃ„г‚‹гѓќгѓЄг‚ґгѓігѓЄг‚№гѓ€з”ЁгЃ«зўєдїќгЃ—гЃџгѓЎгѓўгѓЄг‚’и§Јж”ѕ
 	if( Result.HitNum == 0 )
 	{
 		if( Result.Dim != NULL )
@@ -33419,7 +33419,7 @@ END :
 	return Result ;
 }
 
-// ѓRѓЉѓWѓ‡ѓ“Њ‹‰Кѓ|ѓЉѓSѓ“”z—с‚©‚зЋw’и”ФЌ†‚Мѓ|ѓЉѓSѓ“Џо•с‚рЋж“ѕ‚·‚й
+// г‚ігѓЄг‚ёгѓ§гѓізµђжћњгѓќгѓЄг‚ґгѓій…Ќе€—гЃ‹г‚‰жЊ‡е®љз•ЄеЏ·гЃ®гѓќгѓЄг‚ґгѓіжѓ…е ±г‚’еЏ–еѕ—гЃ™г‚‹
 extern MV1_COLL_RESULT_POLY NS_MV1CollCheck_GetResultPoly( MV1_COLL_RESULT_POLY_DIM ResultPolyDim, int PolyNo )
 {
 	MV1_COLL_RESULT_POLY ErrorResult ;
@@ -33433,7 +33433,7 @@ extern MV1_COLL_RESULT_POLY NS_MV1CollCheck_GetResultPoly( MV1_COLL_RESULT_POLY_
 	return ResultPolyDim.Dim[ PolyNo ] ;
 }
 
-// ѓRѓЉѓWѓ‡ѓ“Њ‹‰Кѓ|ѓЉѓSѓ“”z—с‚МЊгЋn––‚р‚·‚й
+// г‚ігѓЄг‚ёгѓ§гѓізµђжћњгѓќгѓЄг‚ґгѓій…Ќе€—гЃ®еѕЊе§‹жњ«г‚’гЃ™г‚‹
 extern	int NS_MV1CollResultPolyDimTerminate( MV1_COLL_RESULT_POLY_DIM ResultPolyDim )
 {
 	if( ResultPolyDim.Dim != NULL )
@@ -33443,11 +33443,11 @@ extern	int NS_MV1CollResultPolyDimTerminate( MV1_COLL_RESULT_POLY_DIM ResultPoly
 	}
 	ResultPolyDim.HitNum = 0 ;
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// ЋQЏЖ—pѓЃѓbѓVѓ…‚МѓZѓbѓgѓAѓbѓv
+// еЏ‚з…§з”ЁгѓЎгѓѓг‚·гѓҐгЃ®г‚»гѓѓгѓ€г‚ўгѓѓгѓ—
 extern int NS_MV1SetupReferenceMesh( int MHandle, int FrameIndex, int IsTransform, int IsPositionOnly, int MeshIndex )
 {
 	int i ;
@@ -33460,18 +33460,18 @@ extern int NS_MV1SetupReferenceMesh( int MHandle, int FrameIndex, int IsTransfor
 	IsTransform = IsTransform != 0 ? 1 : 0 ;
 	IsPositionOnly = IsPositionOnly != 0 ? 1 : 0 ;
 
-	// ѓAѓhѓЊѓXЋж“ѕ
+	// г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ—
 	if( MV1MDLCHK( MHandle, Model ) )
 		return -1 ;
 	ModelBase = Model->BaseData ;
 
-	// ѓtѓЊЃ[ѓЂ’P‘М‚©ѓЃѓbѓVѓ…’P‘М‚©ѓ‚ѓfѓ‹‘S‘М‚©‚ЕЏ€—ќ‚р•ЄЉт
+	// гѓ•гѓ¬гѓјгѓ еЌдЅ“гЃ‹гѓЎгѓѓг‚·гѓҐеЌдЅ“гЃ‹гѓўгѓ‡гѓ«е…ЁдЅ“гЃ‹гЃ§е‡¦зђ†г‚’е€†еІђ
 	if( FrameIndex < 0 && MeshIndex < 0 )
 	{
-		// ѓ‚ѓfѓ‹‘S‘М‚МЏкЌ‡
+		// гѓўгѓ‡гѓ«е…ЁдЅ“гЃ®е ґеђ€
 
-		// ЋQЏЖѓ|ѓЉѓSѓ“‚рЉi”[‚·‚йѓЃѓ‚ѓЉ—М€ж‚МЉm•Ы
-		// Љm•Ы‚і‚к‚Д‚ў‚И‚ўЏкЌ‡‚М‚ЭЉm•Ы
+		// еЏ‚з…§гѓќгѓЄг‚ґгѓіг‚’ж јзґЌгЃ™г‚‹гѓЎгѓўгѓЄй еџџгЃ®зўєдїќ
+		// зўєдїќгЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ„е ґеђ€гЃ®гЃїзўєдїќ
 		if( Model->RefPolygon[ IsTransform ][ IsPositionOnly ] == NULL )
 		{
 			if( IsPositionOnly )
@@ -33492,13 +33492,13 @@ extern int NS_MV1SetupReferenceMesh( int MHandle, int FrameIndex, int IsTransfor
 			Model->RefPolygon[ IsTransform ][ IsPositionOnly ] = ( MV1_REF_POLYGONLIST * )DXALLOC( sizeof( MV1_REF_POLYGONLIST ) + sizeof( MV1_REF_POLYGON ) * ModelBase->TriangleNum + sizeof( MV1_REF_VERTEX ) * VertexNum ) ;
 			if( Model->RefPolygon[ IsTransform ][ IsPositionOnly ] == NULL )
 			{
-				DXST_LOGFILEFMT_ADDUTF16LE(( "\xc2\x53\x67\x71\x28\x75\xdd\x30\xea\x30\xb4\x30\xf3\x30\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ЋQЏЖ—pѓ|ѓЉѓSѓ“‚рЉi”[‚·‚йѓЃѓ‚ѓЉ—М€ж‚МЉm•Ы‚ЙЋё”s‚µ‚Ь‚µ‚Ѕ\n" @*/ )) ;
+				DXST_LOGFILEFMT_ADDUTF16LE(( "\xc2\x53\x67\x71\x28\x75\xdd\x30\xea\x30\xb4\x30\xf3\x30\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"еЏ‚з…§з”ЁгѓќгѓЄг‚ґгѓіг‚’ж јзґЌгЃ™г‚‹гѓЎгѓўгѓЄй еџџгЃ®зўєдїќгЃ«е¤±ж•—гЃ—гЃѕгЃ—гЃџ\n" @*/ )) ;
 				return -1 ;
 			}
 			Model->RefPolygon[ IsTransform ][ IsPositionOnly ]->Polygons = ( MV1_REF_POLYGON * )( Model->RefPolygon[ IsTransform ][ IsPositionOnly ] + 1 ) ;
 			Model->RefPolygon[ IsTransform ][ IsPositionOnly ]->Vertexs  = ( MV1_REF_VERTEX  * )( Model->RefPolygon[ IsTransform ][ IsPositionOnly ]->Polygons + ModelBase->TriangleNum ) ;
 
-			// ѓ|ѓЉѓSѓ“Џо•с‚НЌЕЏ‰‚ЙѓZѓbѓgѓAѓbѓv‚µ‚Д‚Ё‚­
+			// гѓќгѓЄг‚ґгѓіжѓ…е ±гЃЇжњЂе€ќгЃ«г‚»гѓѓгѓ€г‚ўгѓѓгѓ—гЃ—гЃ¦гЃЉгЃЏ
 			Model->RefPolygon[ IsTransform ][ IsPositionOnly ]->PolygonNum = 0 ;
 			Model->RefPolygon[ IsTransform ][ IsPositionOnly ]->VertexNum = 0 ;
 			for( i = 0 ; i < ModelBase->FrameNum ; i ++ )
@@ -33506,7 +33506,7 @@ extern int NS_MV1SetupReferenceMesh( int MHandle, int FrameIndex, int IsTransfor
 				MV1SetupReferenceMeshFrame( Model, ModelBase, Model->Frame + i, NULL, Model->RefPolygon[ IsTransform ][ IsPositionOnly ], 0, IsTransform ? true : false, IsPositionOnly ? true : false ) ;
 			}
 
-			// ЌЕЏ¬’l‚ЖЌЕ‘е’l‚рЊvЋZ‚µ‚Д‚Ё‚­
+			// жњЂе°ЏеЂ¤гЃЁжњЂе¤§еЂ¤г‚’иЁ€з®—гЃ—гЃ¦гЃЉгЃЏ
 			if( IsTransform == false )
 			{
 				_MV1SetupReferenceMeshMaxAndMinPosition( Model->RefPolygon[ IsTransform ][ IsPositionOnly ] ) ;
@@ -33514,16 +33514,16 @@ extern int NS_MV1SetupReferenceMesh( int MHandle, int FrameIndex, int IsTransfor
 		}
 	}
 	else
-	// ѓtѓЊЃ[ѓЂ’P‘М‚МЏкЌ‡
+	// гѓ•гѓ¬гѓјгѓ еЌдЅ“гЃ®е ґеђ€
 	if( MeshIndex < 0 )
 	{
-		// ѓtѓЊЃ[ѓЂѓCѓ“ѓfѓbѓNѓX‚Мѓ`ѓFѓbѓN
+		// гѓ•гѓ¬гѓјгѓ г‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃ®гѓЃг‚§гѓѓг‚Ї
 		if( FrameIndex < 0 || FrameIndex >= ModelBase->FrameNum )
 			return -1 ;
 		Frame = Model->Frame + FrameIndex ;
 
-		// ЋQЏЖѓ|ѓЉѓSѓ“‚рЉi”[‚·‚йѓЃѓ‚ѓЉ—М€ж‚МЉm•Ы
-		// Љm•Ы‚і‚к‚Д‚ў‚И‚ўЏкЌ‡‚М‚ЭЉm•Ы
+		// еЏ‚з…§гѓќгѓЄг‚ґгѓіг‚’ж јзґЌгЃ™г‚‹гѓЎгѓўгѓЄй еџџгЃ®зўєдїќ
+		// зўєдїќгЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ„е ґеђ€гЃ®гЃїзўєдїќ
 		if( Frame->RefPolygon[ IsTransform ][ IsPositionOnly ] == NULL )
 		{
 			if( IsPositionOnly )
@@ -33537,18 +33537,18 @@ extern int NS_MV1SetupReferenceMesh( int MHandle, int FrameIndex, int IsTransfor
 			Frame->RefPolygon[ IsTransform ][ IsPositionOnly ] = ( MV1_REF_POLYGONLIST * )DXALLOC( sizeof( MV1_REF_POLYGONLIST ) + sizeof( MV1_REF_POLYGON ) * Frame->BaseData->TriangleNum + sizeof( MV1_REF_VERTEX ) * VertexNum ) ;
 			if( Frame->RefPolygon[ IsTransform ][ IsPositionOnly ] == NULL )
 			{
-				DXST_LOGFILEFMT_ADDUTF16LE(( "\xc2\x53\x67\x71\x28\x75\xdd\x30\xea\x30\xb4\x30\xf3\x30\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ЋQЏЖ—pѓ|ѓЉѓSѓ“‚рЉi”[‚·‚йѓЃѓ‚ѓЉ—М€ж‚МЉm•Ы‚ЙЋё”s‚µ‚Ь‚µ‚Ѕ\n" @*/ )) ;
+				DXST_LOGFILEFMT_ADDUTF16LE(( "\xc2\x53\x67\x71\x28\x75\xdd\x30\xea\x30\xb4\x30\xf3\x30\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"еЏ‚з…§з”ЁгѓќгѓЄг‚ґгѓіг‚’ж јзґЌгЃ™г‚‹гѓЎгѓўгѓЄй еџџгЃ®зўєдїќгЃ«е¤±ж•—гЃ—гЃѕгЃ—гЃџ\n" @*/ )) ;
 				return -1 ;
 			}
 			Frame->RefPolygon[ IsTransform ][ IsPositionOnly ]->Polygons = ( MV1_REF_POLYGON * )( Frame->RefPolygon[ IsTransform ][ IsPositionOnly ] + 1 ) ;
 			Frame->RefPolygon[ IsTransform ][ IsPositionOnly ]->Vertexs = ( MV1_REF_VERTEX * )( Frame->RefPolygon[ IsTransform ][ IsPositionOnly ]->Polygons + Frame->BaseData->TriangleNum ) ;
 
-			// ѓ|ѓЉѓSѓ“Џо•с‚НЌЕЏ‰‚ЙѓZѓbѓgѓAѓbѓv‚µ‚Д‚Ё‚­
+			// гѓќгѓЄг‚ґгѓіжѓ…е ±гЃЇжњЂе€ќгЃ«г‚»гѓѓгѓ€г‚ўгѓѓгѓ—гЃ—гЃ¦гЃЉгЃЏ
 			Frame->RefPolygon[ IsTransform ][ IsPositionOnly ]->PolygonNum = 0 ;
 			Frame->RefPolygon[ IsTransform ][ IsPositionOnly ]->VertexNum = 0 ;
 			MV1SetupReferenceMeshFrame( Model, ModelBase, Frame, NULL, Frame->RefPolygon[ IsTransform ][ IsPositionOnly ], 1, IsTransform ? true : false, IsPositionOnly ? true : false ) ;
 
-			// ЌЕЏ¬’l‚ЖЌЕ‘е’l‚рЊvЋZ‚µ‚Д‚Ё‚­
+			// жњЂе°ЏеЂ¤гЃЁжњЂе¤§еЂ¤г‚’иЁ€з®—гЃ—гЃ¦гЃЉгЃЏ
 			if( IsTransform == false )
 			{
 				_MV1SetupReferenceMeshMaxAndMinPosition( Frame->RefPolygon[ IsTransform ][ IsPositionOnly ] ) ;
@@ -33556,9 +33556,9 @@ extern int NS_MV1SetupReferenceMesh( int MHandle, int FrameIndex, int IsTransfor
 		}
 	}
 	else
-	// ѓЃѓbѓVѓ…’P‘М‚МЏкЌ‡
+	// гѓЎгѓѓг‚·гѓҐеЌдЅ“гЃ®е ґеђ€
 	{
-		// ѓЃѓbѓVѓ…ѓCѓ“ѓfѓbѓNѓXѓ`ѓFѓbѓN
+		// гѓЎгѓѓг‚·гѓҐг‚¤гѓігѓ‡гѓѓг‚Їг‚№гѓЃг‚§гѓѓг‚Ї
 		if( FrameIndex >= 0 && FrameIndex < ModelBase->FrameNum )
 		{
 			Frame = Model->Frame + FrameIndex ;
@@ -33575,11 +33575,11 @@ extern int NS_MV1SetupReferenceMesh( int MHandle, int FrameIndex, int IsTransfor
 			Mesh = &Model->Mesh[ MeshIndex ] ;
 		}
 
-		// ѓЃѓbѓVѓ…‚МЏкЌ‡‚НЌА•W‚М‚Э‚Н‚Е‚«‚И‚ў
+		// гѓЎгѓѓг‚·гѓҐгЃ®е ґеђ€гЃЇеє§жЁ™гЃ®гЃїгЃЇгЃ§гЃЌгЃЄгЃ„
 		IsPositionOnly = 0 ;
 
-		// ЋQЏЖѓ|ѓЉѓSѓ“‚рЉi”[‚·‚йѓЃѓ‚ѓЉ—М€ж‚МЉm•Ы
-		// Љm•Ы‚і‚к‚Д‚ў‚И‚ўЏкЌ‡‚М‚ЭЉm•Ы
+		// еЏ‚з…§гѓќгѓЄг‚ґгѓіг‚’ж јзґЌгЃ™г‚‹гѓЎгѓўгѓЄй еџџгЃ®зўєдїќ
+		// зўєдїќгЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ„е ґеђ€гЃ®гЃїзўєдїќ
 		if( Mesh->RefPolygon[ IsTransform ] == NULL )
 		{
 			VertexNum = Mesh->BaseData->VertexNum ;
@@ -33587,18 +33587,18 @@ extern int NS_MV1SetupReferenceMesh( int MHandle, int FrameIndex, int IsTransfor
 			Mesh->RefPolygon[ IsTransform ] = ( MV1_REF_POLYGONLIST * )DXALLOC( sizeof( MV1_REF_POLYGONLIST ) + sizeof( MV1_REF_POLYGON ) * Mesh->BaseData->TriangleNum + sizeof( MV1_REF_VERTEX ) * VertexNum ) ;
 			if( Mesh->RefPolygon[ IsTransform ] == NULL )
 			{
-				DXST_LOGFILEFMT_ADDUTF16LE(( "\xc2\x53\x67\x71\x28\x75\xdd\x30\xea\x30\xb4\x30\xf3\x30\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ЋQЏЖ—pѓ|ѓЉѓSѓ“‚рЉi”[‚·‚йѓЃѓ‚ѓЉ—М€ж‚МЉm•Ы‚ЙЋё”s‚µ‚Ь‚µ‚Ѕ\n" @*/ )) ;
+				DXST_LOGFILEFMT_ADDUTF16LE(( "\xc2\x53\x67\x71\x28\x75\xdd\x30\xea\x30\xb4\x30\xf3\x30\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"еЏ‚з…§з”ЁгѓќгѓЄг‚ґгѓіг‚’ж јзґЌгЃ™г‚‹гѓЎгѓўгѓЄй еџџгЃ®зўєдїќгЃ«е¤±ж•—гЃ—гЃѕгЃ—гЃџ\n" @*/ )) ;
 				return -1 ;
 			}
 			Mesh->RefPolygon[ IsTransform ]->Polygons = ( MV1_REF_POLYGON * )( Mesh->RefPolygon[ IsTransform ] + 1 ) ;
 			Mesh->RefPolygon[ IsTransform ]->Vertexs = ( MV1_REF_VERTEX * )( Mesh->RefPolygon[ IsTransform ]->Polygons + Mesh->BaseData->TriangleNum ) ;
 
-			// ѓ|ѓЉѓSѓ“Џо•с‚НЌЕЏ‰‚ЙѓZѓbѓgѓAѓbѓv‚µ‚Д‚Ё‚­
+			// гѓќгѓЄг‚ґгѓіжѓ…е ±гЃЇжњЂе€ќгЃ«г‚»гѓѓгѓ€г‚ўгѓѓгѓ—гЃ—гЃ¦гЃЉгЃЏ
 			Mesh->RefPolygon[ IsTransform ]->PolygonNum = 0 ;
 			Mesh->RefPolygon[ IsTransform ]->VertexNum = 0 ;
 			MV1SetupReferenceMeshFrame( Model, ModelBase, NULL, Mesh, Mesh->RefPolygon[ IsTransform ], 1, IsTransform ? true : false, IsPositionOnly ? true : false ) ;
 
-			// ЌЕЏ¬’l‚ЖЌЕ‘е’l‚рЊvЋZ‚µ‚Д‚Ё‚­
+			// жњЂе°ЏеЂ¤гЃЁжњЂе¤§еЂ¤г‚’иЁ€з®—гЃ—гЃ¦гЃЉгЃЏ
 			if( IsTransform == false )
 			{
 				_MV1SetupReferenceMeshMaxAndMinPosition( Mesh->RefPolygon[ IsTransform ] ) ;
@@ -33606,14 +33606,14 @@ extern int NS_MV1SetupReferenceMesh( int MHandle, int FrameIndex, int IsTransfor
 		}
 	}
 
-	// ЋQЏЖ—pѓЃѓbѓVѓ…‚рЌ\’z‚µ‚Д‚Ё‚­
+	// еЏ‚з…§з”ЁгѓЎгѓѓг‚·гѓҐг‚’ж§‹зЇ‰гЃ—гЃ¦гЃЉгЃЏ
 	NS_MV1RefreshReferenceMesh( MHandle, FrameIndex, IsTransform, IsPositionOnly, MeshIndex ) ;
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// ЋQЏЖ—pѓЃѓbѓVѓ…‚МЊгЋn––
+// еЏ‚з…§з”ЁгѓЎгѓѓг‚·гѓҐгЃ®еѕЊе§‹жњ«
 extern int NS_MV1TerminateReferenceMesh( int MHandle, int FrameIndex, int IsTransform, int IsPositionOnly, int MeshIndex )
 {
 	MV1_MODEL *Model ;
@@ -33624,17 +33624,17 @@ extern int NS_MV1TerminateReferenceMesh( int MHandle, int FrameIndex, int IsTran
 	IsTransform = IsTransform != 0 ? 1 : 0 ;
 	IsPositionOnly = IsPositionOnly != 0 ? 1 : 0 ;
 
-	// ѓAѓhѓЊѓXЋж“ѕ
+	// г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ—
 	if( MV1MDLCHK( MHandle, Model ) )
 		return -1 ;
 	ModelBase = Model->BaseData ;
 
-	// ѓtѓЊЃ[ѓЂ’P‘М‚©ѓЃѓbѓVѓ…’P‘М‚©ѓ‚ѓfѓ‹‘S‘М‚©‚ЕЏ€—ќ‚р•ЄЉт
+	// гѓ•гѓ¬гѓјгѓ еЌдЅ“гЃ‹гѓЎгѓѓг‚·гѓҐеЌдЅ“гЃ‹гѓўгѓ‡гѓ«е…ЁдЅ“гЃ‹гЃ§е‡¦зђ†г‚’е€†еІђ
 	if( FrameIndex < 0 && MeshIndex < 0 )
 	{
-		// ѓ‚ѓfѓ‹‘S‘М‚МЏкЌ‡
+		// гѓўгѓ‡гѓ«е…ЁдЅ“гЃ®е ґеђ€
 
-		// ѓЃѓ‚ѓЉ‚ЄЉm•Ы‚і‚к‚Д‚ў‚Ѕ‚з‰р•ъ
+		// гѓЎгѓўгѓЄгЃЊзўєдїќгЃ•г‚ЊгЃ¦гЃ„гЃџг‚‰и§Јж”ѕ
 		if( Model->RefPolygon[ IsTransform ][ IsPositionOnly ] )
 		{
 			DXFREE( Model->RefPolygon[ IsTransform ][ IsPositionOnly ] ) ;
@@ -33643,15 +33643,15 @@ extern int NS_MV1TerminateReferenceMesh( int MHandle, int FrameIndex, int IsTran
 		}
 	}
 	else
-	// ѓtѓЊЃ[ѓЂ’P‘М‚МЏкЌ‡
+	// гѓ•гѓ¬гѓјгѓ еЌдЅ“гЃ®е ґеђ€
 	if( MeshIndex < 0 )
 	{
-		// ѓtѓЊЃ[ѓЂѓCѓ“ѓfѓbѓNѓX‚Мѓ`ѓFѓbѓN
+		// гѓ•гѓ¬гѓјгѓ г‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃ®гѓЃг‚§гѓѓг‚Ї
 		if( FrameIndex < 0 || FrameIndex >= ModelBase->FrameNum )
 			return -1 ;
 		Frame = Model->Frame + FrameIndex ;
 
-		// ѓЃѓ‚ѓЉ‚ЄЉm•Ы‚і‚к‚Д‚ў‚Ѕ‚з‰р•ъ
+		// гѓЎгѓўгѓЄгЃЊзўєдїќгЃ•г‚ЊгЃ¦гЃ„гЃџг‚‰и§Јж”ѕ
 		if( Frame->RefPolygon[ IsTransform ][ IsPositionOnly ] )
 		{
 			DXFREE( Frame->RefPolygon[ IsTransform ][ IsPositionOnly ] ) ;
@@ -33660,9 +33660,9 @@ extern int NS_MV1TerminateReferenceMesh( int MHandle, int FrameIndex, int IsTran
 		}
 	}
 	else
-	// ѓЃѓbѓVѓ…’P‘М‚МЏкЌ‡
+	// гѓЎгѓѓг‚·гѓҐеЌдЅ“гЃ®е ґеђ€
 	{
-		// ѓЃѓbѓVѓ…ѓCѓ“ѓfѓbѓNѓXѓ`ѓFѓbѓN
+		// гѓЎгѓѓг‚·гѓҐг‚¤гѓігѓ‡гѓѓг‚Їг‚№гѓЃг‚§гѓѓг‚Ї
 		if( FrameIndex >= 0 && FrameIndex < ModelBase->FrameNum )
 		{
 			Frame = Model->Frame + FrameIndex ;
@@ -33679,10 +33679,10 @@ extern int NS_MV1TerminateReferenceMesh( int MHandle, int FrameIndex, int IsTran
 			Mesh = &Model->Mesh[ MeshIndex ] ;
 		}
 
-		// ѓЃѓbѓVѓ…‚МЏкЌ‡‚НЌА•W‚М‚Э‚Н‚Е‚«‚И‚ў
+		// гѓЎгѓѓг‚·гѓҐгЃ®е ґеђ€гЃЇеє§жЁ™гЃ®гЃїгЃЇгЃ§гЃЌгЃЄгЃ„
 		IsPositionOnly = 0 ;
 
-		// ѓЃѓ‚ѓЉ‚ЄЉm•Ы‚і‚к‚Д‚ў‚Ѕ‚з‰р•ъ
+		// гѓЎгѓўгѓЄгЃЊзўєдїќгЃ•г‚ЊгЃ¦гЃ„гЃџг‚‰и§Јж”ѕ
 		if( Mesh->RefPolygon[ IsTransform ] )
 		{
 			DXFREE( Mesh->RefPolygon[ IsTransform ] ) ;
@@ -33691,11 +33691,11 @@ extern int NS_MV1TerminateReferenceMesh( int MHandle, int FrameIndex, int IsTran
 		}
 	}
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// ЋQЏЖ—pѓЃѓbѓVѓ…‚МѓZѓbѓgѓAѓbѓv‚рЌs‚¤
+// еЏ‚з…§з”ЁгѓЎгѓѓг‚·гѓҐгЃ®г‚»гѓѓгѓ€г‚ўгѓѓгѓ—г‚’иЎЊгЃ†
 static int MV1SetupReferenceMeshFrame(
 	  MV1_MODEL           * /*Model*/,
 	  MV1_MODEL_BASE      *ModelBase,
@@ -33720,11 +33720,11 @@ static int MV1SetupReferenceMeshFrame(
 	DWORD *MVertIndex ;
 	int i, j, k, l, StartIndex, MVertUnitSize, PosUnitSize, UVNum ;
 
-	// Џo—НѓAѓhѓЊѓX‚рѓZѓbѓg
+	// е‡єеЉ›г‚ўгѓ‰гѓ¬г‚№г‚’г‚»гѓѓгѓ€
 	Poly = DestBuffer->Polygons + DestBuffer->PolygonNum ;
 	Vert = DestBuffer->Vertexs  + DestBuffer->VertexNum ;
 
-	// ѓ|ѓЉѓSѓ“‚МЏо•с‚Ж•П‰»‚µ‚И‚ў’ё“_‚МЏо•с‚рѓZѓbѓg‚·‚й
+	// гѓќгѓЄг‚ґгѓігЃ®жѓ…е ±гЃЁе¤‰еЊ–гЃ—гЃЄгЃ„й ‚з‚№гЃ®жѓ…е ±г‚’г‚»гѓѓгѓ€гЃ™г‚‹
 	MBMesh = Mesh != NULL ? Mesh->BaseData : Frame->BaseData->Mesh ;
 	i = 0 ;
 LOOP_START :
@@ -33733,10 +33733,10 @@ LOOP_START :
 		MVertUnitSize = MBMesh->VertUnitSize ;
 		MeshVert = MBMesh->Vertex ;
 
-		// ЌА•W‚М‚Э‚©‚З‚¤‚©‚ЕЏ€—ќ‚р•ЄЉт
+		// еє§жЁ™гЃ®гЃїгЃ‹гЃ©гЃ†гЃ‹гЃ§е‡¦зђ†г‚’е€†еІђ
 		if( IsPositionOnly )
 		{
-			// ѓ|ѓЉѓSѓ“‚МѓfЃ[ѓ^‚рѓZѓbѓg
+			// гѓќгѓЄг‚ґгѓігЃ®гѓ‡гѓјг‚їг‚’г‚»гѓѓгѓ€
 			Face = MBMesh->Face ;
 			StartIndex = DestBuffer->VertexNum ;
 			for( k = 0 ; k < MBMesh->FaceNum ; k ++, Poly ++, Face ++ )
@@ -33750,7 +33750,7 @@ LOOP_START :
 				Poly->VIndex[ 2 ] = ( int )( ( ( MV1_MESH_VERTEX * )( ( BYTE * )MeshVert + MVertUnitSize * Face->VertexIndex[ 2 ] ) )->PositionIndex + StartIndex ) ;
 			}
 
-			// ѓ|ѓЉѓSѓ“‚Мђ”‚р‘ќ‚в‚·
+			// гѓќгѓЄг‚ґгѓігЃ®ж•°г‚’еў—г‚„гЃ™
 			DestBuffer->PolygonNum += MBMesh->FaceNum ;
 		}
 		else
@@ -33760,7 +33760,7 @@ LOOP_START :
 			TList = MBMesh->TriangleList ;
 			for( j = 0 ; j < MBMesh->TriangleListNum ; j ++, TList ++ )
 			{
-				// ѓ|ѓЉѓSѓ“ѓfЃ[ѓ^‚МѓZѓbѓg
+				// гѓќгѓЄг‚ґгѓігѓ‡гѓјг‚їгЃ®г‚»гѓѓгѓ€
 				StartIndex = DestBuffer->VertexNum ;
 				for( k = 0 ; k < TList->IndexNum ; k += 3, Poly ++ )
 				{
@@ -33774,7 +33774,7 @@ LOOP_START :
 				}
 				DestBuffer->PolygonNum += TList->IndexNum / 3 ;
 
-				// ’ё“_ѓfЃ[ѓ^‚МѓZѓbѓg
+				// й ‚з‚№гѓ‡гѓјг‚їгЃ®г‚»гѓѓгѓ€
 				if( IsTransform == false )
 				{
 					TVert = Vert ;
@@ -33832,7 +33832,7 @@ LOOP_START :
 					}
 				}
 
-				// ’ё“_ѓfЃ[ѓ^‚Мђ”‚р‘ќ‚в‚·
+				// й ‚з‚№гѓ‡гѓјг‚їгЃ®ж•°г‚’еў—г‚„гЃ™
 				DestBuffer->VertexNum += TList->VertexNum ;
 			}
 		}
@@ -33847,7 +33847,7 @@ LOOP_START :
 
 	if( IsPositionOnly )
 	{
-		// ’ё“_ѓfЃ[ѓ^‚МѓZѓbѓg
+		// й ‚з‚№гѓ‡гѓјг‚їгЃ®г‚»гѓѓгѓ€
 		if( IsTransform == false )
 		{
 			PosUnitSize = Frame->BaseData->PosUnitSize ;
@@ -33858,15 +33858,15 @@ LOOP_START :
 			}
 		}
 
-		// ’ё“_ѓfЃ[ѓ^‚Мђ”‚р‘ќ‚в‚·
+		// й ‚з‚№гѓ‡гѓјг‚їгЃ®ж•°г‚’еў—г‚„гЃ™
 		DestBuffer->VertexNum += Frame->BaseData->PositionNum ;
 	}
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// ЋQЏЖ—pѓЃѓbѓVѓ…‚МѓЉѓtѓЊѓbѓVѓ…‚рЌs‚¤
+// еЏ‚з…§з”ЁгѓЎгѓѓг‚·гѓҐгЃ®гѓЄгѓ•гѓ¬гѓѓг‚·гѓҐг‚’иЎЊгЃ†
 static int MV1RefreshReferenceMeshFrame(
 	MV1_FRAME			*Frame,
 	MV1_MESH			*Mesh,
@@ -33890,13 +33890,13 @@ static int MV1RefreshReferenceMeshFrame(
 	int MaxWeightBone ;
 	float MaxWeight ;
 
-	// ѓAѓhѓЊѓX‚рѓZѓbѓg
+	// г‚ўгѓ‰гѓ¬г‚№г‚’г‚»гѓѓгѓ€
 	MBFrame = Mesh != NULL ? Mesh->BaseData->Container : Frame->BaseData ;
 
-	// Џo—НѓAѓhѓЊѓX‚рѓZѓbѓg
+	// е‡єеЉ›г‚ўгѓ‰гѓ¬г‚№г‚’г‚»гѓѓгѓ€
 	Vert = DestBuffer->Vertexs + DestBuffer->VertexNum ;
 
-	// ‚±‚МѓtѓЊЃ[ѓЂ‚ЄЏЉ—L‚µ‚Д‚ў‚йѓ|ѓЉѓSѓ“‚МЏо•с‚рѓZѓbѓg‚·‚й
+	// гЃ“гЃ®гѓ•гѓ¬гѓјгѓ гЃЊж‰Ђжњ‰гЃ—гЃ¦гЃ„г‚‹гѓќгѓЄг‚ґгѓігЃ®жѓ…е ±г‚’г‚»гѓѓгѓ€гЃ™г‚‹
 	if( IsPositionOnly )
 	{
 		MV1_MESH_POSITION *Position ;
@@ -33914,7 +33914,7 @@ static int MV1RefreshReferenceMeshFrame(
 			}
 			else
 			{
-				// ѓuѓЊѓ“ѓhЌs—с‚МЌмђ¬
+				// гѓ–гѓ¬гѓігѓ‰иЎЊе€—гЃ®дЅњж€ђ
 				if( Position->BoneWeight[ 0 ].W == 1.0f )
 				{
 					BMat = Frame->UseSkinBoneMatrix[ Position->BoneWeight[ 0 ].Index ] ;
@@ -33948,7 +33948,7 @@ static int MV1RefreshReferenceMeshFrame(
 						UnSafeMatrix4X4CT_C_EqPlus_C_Mul_S( &BlendMat, BMat, Weight ) ;
 					}
 
-					// •ПЉ·ЌА•W‚МЌмђ¬
+					// е¤‰жЏ›еє§жЁ™гЃ®дЅњж€ђ
 					VectorTransform4X4CT( &Vert->Position, &Position->Position, &BlendMat ) ;
 
 					Vert->MaxWeightFrameIndex = MBFrame->UseSkinBone[ Position->BoneWeight[ MaxWeightBone ].Index ]->BoneFrame ;
@@ -33956,7 +33956,7 @@ static int MV1RefreshReferenceMeshFrame(
 			}
 		}
 
-		// ’ё“_ѓfЃ[ѓ^‚Мђ”‚р‘ќ‚в‚·
+		// й ‚з‚№гѓ‡гѓјг‚їгЃ®ж•°г‚’еў—г‚„гЃ™
 		DestBuffer->VertexNum += Frame->BaseData->PositionNum ;
 	}
 	else
@@ -33977,7 +33977,7 @@ static int MV1RefreshReferenceMeshFrame(
 			TList = MBMesh->TriangleList ;
 			for( k = 0 ; k < MBMesh->TriangleListNum ; k ++, TList ++ )
 			{
-				// ’ё“_Џо•с‚М•ПЉ·Џ€—ќ
+				// й ‚з‚№жѓ…е ±гЃ®е¤‰жЏ›е‡¦зђ†
 				VertNum = TList->VertexNum ;
 				switch( TList->VertexType )
 				{
@@ -33998,10 +33998,10 @@ static int MV1RefreshReferenceMeshFrame(
 						MaxWeightBone = 0 ;
 						MaxWeight = SkinB4->MatrixWeight[ 0 ] ;
 
-						// ѓuѓЊѓ“ѓhЌs—с‚МЌмђ¬
+						// гѓ–гѓ¬гѓігѓ‰иЎЊе€—гЃ®дЅњж€ђ
 						if( SkinB4->MatrixWeight[ 0 ] == 1.0f )
 						{
-							// •ПЉ·ЌА•W‚МЌмђ¬
+							// е¤‰жЏ›еє§жЁ™гЃ®дЅњж€ђ
 							VectorTransform4X4CT(   &Vert->Position, ( VECTOR * )&SkinB4->Position, Frame->UseSkinBoneMatrix[ TList->UseBone[ SkinB4->MatrixIndex[ 0 ] ] ] ) ;
 							VectorTransformSR4X4CT( &Vert->Normal,   ( VECTOR * )&SkinB4->Normal,   Frame->UseSkinBoneMatrix[ TList->UseBone[ SkinB4->MatrixIndex[ 0 ] ] ] ) ;
 						}
@@ -34027,7 +34027,7 @@ static int MV1RefreshReferenceMeshFrame(
 								UnSafeMatrix4X4CT_C_EqPlus_C_Mul_S( &BlendMat, BMat, Weight ) ;
 							}
 
-							// •ПЉ·ЌА•W‚МЌмђ¬
+							// е¤‰жЏ›еє§жЁ™гЃ®дЅњж€ђ
 							VectorTransform4X4CT(   &Vert->Position, ( VECTOR * )&SkinB4->Position, &BlendMat ) ;
 							VectorTransformSR4X4CT( &Vert->Normal,   ( VECTOR * )&SkinB4->Normal,   &BlendMat ) ;
 						}
@@ -34043,10 +34043,10 @@ static int MV1RefreshReferenceMeshFrame(
 						MaxWeightBone = 0 ;
 						MaxWeight = SkinB8->MatrixWeight[ 0 ] ;
 
-						// ѓuѓЊѓ“ѓhЌs—с‚МЌмђ¬
+						// гѓ–гѓ¬гѓігѓ‰иЎЊе€—гЃ®дЅњж€ђ
 						if( SkinB8->MatrixWeight[ 0 ] == 1.0f )
 						{
-							// •ПЉ·ЌА•W‚МЌмђ¬
+							// е¤‰жЏ›еє§жЁ™гЃ®дЅњж€ђ
 							VectorTransform4X4CT(   &Vert->Position, &SkinB8->Position, Frame->UseSkinBoneMatrix[ TList->UseBone[ SkinB8->MatrixIndex1[ 0 ] ] ] ) ;
 							VectorTransformSR4X4CT( &Vert->Normal,   &SkinB8->Normal,   Frame->UseSkinBoneMatrix[ TList->UseBone[ SkinB8->MatrixIndex1[ 0 ] ] ] ) ;
 						}
@@ -34072,7 +34072,7 @@ static int MV1RefreshReferenceMeshFrame(
 								UnSafeMatrix4X4CT_C_EqPlus_C_Mul_S( &BlendMat, BMat, Weight ) ;
 							}
 
-							// •ПЉ·ЌА•W‚МЌмђ¬
+							// е¤‰жЏ›еє§жЁ™гЃ®дЅњж€ђ
 							VectorTransform4X4CT(   &Vert->Position, &SkinB8->Position, &BlendMat ) ;
 							VectorTransformSR4X4CT( &Vert->Normal,   &SkinB8->Normal,   &BlendMat ) ;
 						}
@@ -34089,7 +34089,7 @@ static int MV1RefreshReferenceMeshFrame(
 						MaxWeightBone = 0 ;
 						MaxWeight = SkinBF->MatrixWeight[ 0 ].W ;
 
-						// ѓuѓЊѓ“ѓhЌs—с‚МЌмђ¬
+						// гѓ–гѓ¬гѓігѓ‰иЎЊе€—гЃ®дЅњж€ђ
 						if( SkinBF->MatrixWeight[ 0 ].W == 1.0f )
 						{
 							BMat = Frame->UseSkinBoneMatrix[ SkinBF->MatrixWeight[ 0 ].Index ] ;
@@ -34120,7 +34120,7 @@ static int MV1RefreshReferenceMeshFrame(
 								UnSafeMatrix4X4CT_C_EqPlus_C_Mul_S( &BlendMat, BMat, Weight ) ;
 							}
 
-							// •ПЉ·ЌА•W‚МЌмђ¬
+							// е¤‰жЏ›еє§жЁ™гЃ®дЅњж€ђ
 							VectorTransform4X4CT(   &Vert->Position, ( VECTOR * )&SkinBF->Position, &BlendMat ) ;
 							VectorTransformSR4X4CT( &Vert->Normal,   ( VECTOR * )&SkinBF->Normal,   &BlendMat ) ;
 						}
@@ -34130,7 +34130,7 @@ static int MV1RefreshReferenceMeshFrame(
 					break ;
 				}
 
-				// ’ё“_ѓfЃ[ѓ^‚Мђ”‚р‘ќ‚в‚·
+				// й ‚з‚№гѓ‡гѓјг‚їгЃ®ж•°г‚’еў—г‚„гЃ™
 				DestBuffer->VertexNum += TList->VertexNum ;
 			}
 
@@ -34143,11 +34143,11 @@ static int MV1RefreshReferenceMeshFrame(
 		}
 	}
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// ЋQЏЖ—pѓЃѓbѓVѓ…‚МЌXђV
+// еЏ‚з…§з”ЁгѓЎгѓѓг‚·гѓҐгЃ®ж›ґж–°
 extern int NS_MV1RefreshReferenceMesh( int MHandle, int FrameIndex, int IsTransform, int IsPositionOnly, int MeshIndex )
 {
 	MV1_MODEL *Model ;
@@ -34161,25 +34161,25 @@ extern int NS_MV1RefreshReferenceMesh( int MHandle, int FrameIndex, int IsTransf
 	IsTransform = IsTransform != 0 ? 1 : 0 ;
 	IsPositionOnly = IsPositionOnly != 0 ? 1 : 0 ;
 
-	// ѓAѓhѓЊѓXЋж“ѕ
+	// г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ—
 	if( MV1MDLCHK( MHandle, Model ) )
 		return -1 ;
 	ModelBase = Model->BaseData ;
 
-	// ‚R‚cЌs—с‚рѓnЃ[ѓhѓEѓGѓA‚Й”Ѕ‰f‚·‚й
+	// пј“пј¤иЎЊе€—г‚’гѓЏгѓјгѓ‰г‚¦г‚Ёг‚ўгЃ«еЏЌж гЃ™г‚‹
 	if( GSYS.DrawSetting.MatchHardware3DMatrix == FALSE )
 		Graphics_DrawSetting_ApplyLib3DMatrixToHardware( TRUE ) ;
 
-	// Ќs—с‚МѓZѓbѓgѓAѓbѓv
+	// иЎЊе€—гЃ®г‚»гѓѓгѓ€г‚ўгѓѓгѓ—
 	MV1SETUPMATRIX( Model ) ;
 
-	// ѓtѓЊЃ[ѓЂ’P‘М‚©ѓ‚ѓfѓ‹‘S‘М‚©‚ЕЏ€—ќ‚р•ЄЉт
+	// гѓ•гѓ¬гѓјгѓ еЌдЅ“гЃ‹гѓўгѓ‡гѓ«е…ЁдЅ“гЃ‹гЃ§е‡¦зђ†г‚’е€†еІђ
 	Change = false ;
 	if( FrameIndex < 0 && MeshIndex < 0 )
 	{
-		// ѓ‚ѓfѓ‹‘S‘М‚МЏкЌ‡
+		// гѓўгѓ‡гѓ«е…ЁдЅ“гЃ®е ґеђ€
 
-		// ѓZѓbѓgѓAѓbѓv‚Є‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚зѓZѓbѓgѓAѓbѓv
+		// г‚»гѓѓгѓ€г‚ўгѓѓгѓ—гЃЊгЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰г‚»гѓѓгѓ€г‚ўгѓѓгѓ—
 		if( Model->RefPolygon[ IsTransform ][ IsPositionOnly ] == NULL )
 		{
 			Change = true ;
@@ -34187,23 +34187,23 @@ extern int NS_MV1RefreshReferenceMesh( int MHandle, int FrameIndex, int IsTransf
 				return -1 ;
 		}
 
-		// ѓfЃ[ѓ^‚рЌXђV‚·‚й•K—v‚Є–і‚ўЏкЌ‡‚НЌXђV‚µ‚И‚ў
+		// гѓ‡гѓјг‚їг‚’ж›ґж–°гЃ™г‚‹еї…и¦ЃгЃЊз„ЎгЃ„е ґеђ€гЃЇж›ґж–°гЃ—гЃЄгЃ„
 		if( Model->SetupRefPolygon[ IsTransform ][ IsPositionOnly ] )
 			return 0 ;
 
-		// ЌXђV‚·‚йѓ|ѓЉѓSѓ“”z—с‚Мђж“ЄѓAѓhѓЊѓX‚рѓZѓbѓg
+		// ж›ґж–°гЃ™г‚‹гѓќгѓЄг‚ґгѓій…Ќе€—гЃ®е…€й ­г‚ўгѓ‰гѓ¬г‚№г‚’г‚»гѓѓгѓ€
 		PolyList = Model->RefPolygon[ IsTransform ][ IsPositionOnly ] ;
 
-		// ЌXђVЉ®—№ѓtѓ‰ѓO‚р—§‚Д‚й
+		// ж›ґж–°е®Њдє†гѓ•гѓ©г‚°г‚’з«‹гЃ¦г‚‹
 		Model->SetupRefPolygon[ IsTransform ][ IsPositionOnly ] = true ;
 
-		// ’ё“_•ПЉ·‚Є•K—v‚©‚З‚¤‚©‚ЕЏ€—ќ‚р•ЄЉт
+		// й ‚з‚№е¤‰жЏ›гЃЊеї…и¦ЃгЃ‹гЃ©гЃ†гЃ‹гЃ§е‡¦зђ†г‚’е€†еІђ
 		if( IsTransform )
 		{
-			// ѓRѓЉѓWѓ‡ѓ“‚МЌXђVЉ®—№ѓtѓ‰ѓO‚р“|‚·
+			// г‚ігѓЄг‚ёгѓ§гѓігЃ®ж›ґж–°е®Њдє†гѓ•гѓ©г‚°г‚’еЂ’гЃ™
 			Model->SetupCollision = false ;
 
-			// ‘S‚Д‚МѓtѓЊЃ[ѓЂ‚Мѓ|ѓЉѓSѓ“‚рЌ\’z
+			// е…ЁгЃ¦гЃ®гѓ•гѓ¬гѓјгѓ гЃ®гѓќгѓЄг‚ґгѓіг‚’ж§‹зЇ‰
 			PolyList->VertexNum = 0 ;
 			for( i = 0 ; i < ModelBase->FrameNum ; i ++ )
 				MV1RefreshReferenceMeshFrame( Model->Frame + i, NULL, IsPositionOnly, PolyList ) ;
@@ -34212,15 +34212,15 @@ extern int NS_MV1RefreshReferenceMesh( int MHandle, int FrameIndex, int IsTransf
 		}
 	}
 	else
-	// ѓtѓЊЃ[ѓЂ’P‘М‚МЏкЌ‡
+	// гѓ•гѓ¬гѓјгѓ еЌдЅ“гЃ®е ґеђ€
 	if( MeshIndex < 0 )
 	{
-		// ѓtѓЊЃ[ѓЂѓCѓ“ѓfѓbѓNѓX‚Мѓ`ѓFѓbѓN
+		// гѓ•гѓ¬гѓјгѓ г‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃ®гѓЃг‚§гѓѓг‚Ї
 		if( FrameIndex < 0 || FrameIndex >= ModelBase->FrameNum )
 			return -1 ;
 		Frame = Model->Frame + FrameIndex ;
 
-		// ѓZѓbѓgѓAѓbѓv‚Є‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚зѓZѓbѓgѓAѓbѓv
+		// г‚»гѓѓгѓ€г‚ўгѓѓгѓ—гЃЊгЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰г‚»гѓѓгѓ€г‚ўгѓѓгѓ—
 		if( Frame->RefPolygon[ IsTransform ][ IsPositionOnly ] == NULL )
 		{
 			Change = true ;
@@ -34228,23 +34228,23 @@ extern int NS_MV1RefreshReferenceMesh( int MHandle, int FrameIndex, int IsTransf
 				return -1 ;
 		}
 
-		// ѓfЃ[ѓ^‚рЌXђV‚·‚й•K—v‚Є–і‚ўЏкЌ‡‚НЌXђV‚µ‚И‚ў
+		// гѓ‡гѓјг‚їг‚’ж›ґж–°гЃ™г‚‹еї…и¦ЃгЃЊз„ЎгЃ„е ґеђ€гЃЇж›ґж–°гЃ—гЃЄгЃ„
 		if( Frame->SetupRefPolygon[ IsTransform ][ IsPositionOnly ] )
 			return 0 ;
 
-		// ЌXђV‚·‚йѓ|ѓЉѓSѓ“”z—с‚Мђж“ЄѓAѓhѓЊѓX‚рѓZѓbѓg
+		// ж›ґж–°гЃ™г‚‹гѓќгѓЄг‚ґгѓій…Ќе€—гЃ®е…€й ­г‚ўгѓ‰гѓ¬г‚№г‚’г‚»гѓѓгѓ€
 		PolyList = Frame->RefPolygon[ IsTransform ][ IsPositionOnly ] ;
 
-		// ЌXђVЉ®—№ѓtѓ‰ѓO‚р—§‚Д‚й
+		// ж›ґж–°е®Њдє†гѓ•гѓ©г‚°г‚’з«‹гЃ¦г‚‹
 		Frame->SetupRefPolygon[ IsTransform ][ IsPositionOnly ] = true ;
 
-		// ’ё“_•ПЉ·‚Є•K—v‚©‚З‚¤‚©‚ЕЏ€—ќ‚р•ЄЉт
+		// й ‚з‚№е¤‰жЏ›гЃЊеї…и¦ЃгЃ‹гЃ©гЃ†гЃ‹гЃ§е‡¦зђ†г‚’е€†еІђ
 		if( IsTransform )
 		{
-			// ѓRѓЉѓWѓ‡ѓ“‚МЌXђVЉ®—№ѓtѓ‰ѓO‚р“|‚·
+			// г‚ігѓЄг‚ёгѓ§гѓігЃ®ж›ґж–°е®Њдє†гѓ•гѓ©г‚°г‚’еЂ’гЃ™
 			Frame->SetupCollision = false ;
 
-			// ѓtѓЊЃ[ѓЂ‚Мѓ|ѓЉѓSѓ“‚рЌ\’z
+			// гѓ•гѓ¬гѓјгѓ гЃ®гѓќгѓЄг‚ґгѓіг‚’ж§‹зЇ‰
 			PolyList->VertexNum = 0 ;
 			MV1RefreshReferenceMeshFrame( Frame, NULL, IsPositionOnly, PolyList ) ;
 
@@ -34252,9 +34252,9 @@ extern int NS_MV1RefreshReferenceMesh( int MHandle, int FrameIndex, int IsTransf
 		}
 	}
 	else
-	// ѓЃѓbѓVѓ…’P‘М‚МЏкЌ‡
+	// гѓЎгѓѓг‚·гѓҐеЌдЅ“гЃ®е ґеђ€
 	{
-		// ѓЃѓbѓVѓ…ѓCѓ“ѓfѓbѓNѓXѓ`ѓFѓbѓN
+		// гѓЎгѓѓг‚·гѓҐг‚¤гѓігѓ‡гѓѓг‚Їг‚№гѓЃг‚§гѓѓг‚Ї
 		if( FrameIndex >= 0 && FrameIndex < ModelBase->FrameNum )
 		{
 			Frame = Model->Frame + FrameIndex ;
@@ -34271,10 +34271,10 @@ extern int NS_MV1RefreshReferenceMesh( int MHandle, int FrameIndex, int IsTransf
 			Mesh = &Model->Mesh[ MeshIndex ] ;
 		}
 
-		// ѓЃѓbѓVѓ…‚МЏкЌ‡‚НЌА•W‚М‚Э‚Н‚Е‚«‚И‚ў
+		// гѓЎгѓѓг‚·гѓҐгЃ®е ґеђ€гЃЇеє§жЁ™гЃ®гЃїгЃЇгЃ§гЃЌгЃЄгЃ„
 		IsPositionOnly = 0 ;
 
-		// ѓZѓbѓgѓAѓbѓv‚Є‚і‚к‚Д‚ў‚И‚©‚Б‚Ѕ‚зѓZѓbѓgѓAѓbѓv
+		// г‚»гѓѓгѓ€г‚ўгѓѓгѓ—гЃЊгЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџг‚‰г‚»гѓѓгѓ€г‚ўгѓѓгѓ—
 		if( Mesh->RefPolygon[ IsTransform ] == NULL )
 		{
 			Change = true ;
@@ -34282,23 +34282,23 @@ extern int NS_MV1RefreshReferenceMesh( int MHandle, int FrameIndex, int IsTransf
 				return -1 ;
 		}
 
-		// ѓfЃ[ѓ^‚рЌXђV‚·‚й•K—v‚Є–і‚ўЏкЌ‡‚НЌXђV‚µ‚И‚ў
+		// гѓ‡гѓјг‚їг‚’ж›ґж–°гЃ™г‚‹еї…и¦ЃгЃЊз„ЎгЃ„е ґеђ€гЃЇж›ґж–°гЃ—гЃЄгЃ„
 		if( Mesh->SetupRefPolygon[ IsTransform ] )
 			return 0 ;
 
-		// ЌXђV‚·‚йѓ|ѓЉѓSѓ“”z—с‚Мђж“ЄѓAѓhѓЊѓX‚рѓZѓbѓg
+		// ж›ґж–°гЃ™г‚‹гѓќгѓЄг‚ґгѓій…Ќе€—гЃ®е…€й ­г‚ўгѓ‰гѓ¬г‚№г‚’г‚»гѓѓгѓ€
 		PolyList = Mesh->RefPolygon[ IsTransform ] ;
 
-		// ЌXђVЉ®—№ѓtѓ‰ѓO‚р—§‚Д‚й
+		// ж›ґж–°е®Њдє†гѓ•гѓ©г‚°г‚’з«‹гЃ¦г‚‹
 		Mesh->SetupRefPolygon[ IsTransform ] = true ;
 
-		// ’ё“_•ПЉ·‚Є•K—v‚©‚З‚¤‚©‚ЕЏ€—ќ‚р•ЄЉт
+		// й ‚з‚№е¤‰жЏ›гЃЊеї…и¦ЃгЃ‹гЃ©гЃ†гЃ‹гЃ§е‡¦зђ†г‚’е€†еІђ
 		if( IsTransform )
 		{
-			// ѓRѓЉѓWѓ‡ѓ“‚МЌXђVЉ®—№ѓtѓ‰ѓO‚р“|‚·
+			// г‚ігѓЄг‚ёгѓ§гѓігЃ®ж›ґж–°е®Њдє†гѓ•гѓ©г‚°г‚’еЂ’гЃ™
 			Mesh->SetupCollision = false ;
 
-			// ѓtѓЊЃ[ѓЂ‚Мѓ|ѓЉѓSѓ“‚рЌ\’z
+			// гѓ•гѓ¬гѓјгѓ гЃ®гѓќгѓЄг‚ґгѓіг‚’ж§‹зЇ‰
 			PolyList->VertexNum = 0 ;
 			MV1RefreshReferenceMeshFrame( NULL, Mesh, IsPositionOnly, PolyList ) ;
 
@@ -34306,7 +34306,7 @@ extern int NS_MV1RefreshReferenceMesh( int MHandle, int FrameIndex, int IsTransf
 		}
 	}
 
-	// ѓ|ѓЉѓSѓ“‚МЌЕ‘еЌА•W’lЃAЌЕЏ¬ЌА•W’l‚МЌXђV
+	// гѓќгѓЄг‚ґгѓігЃ®жњЂе¤§еє§жЁ™еЂ¤гЂЃжњЂе°Џеє§жЁ™еЂ¤гЃ®ж›ґж–°
 	if( PolyList->PolygonNum )
 	{
 		if( Change )
@@ -34324,11 +34324,11 @@ extern int NS_MV1RefreshReferenceMesh( int MHandle, int FrameIndex, int IsTransf
 		PolyList->MinPosition.z = -10000000000000.0f ;
 	}
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// ЋQЏЖ—pѓЃѓbѓVѓ…‚рЋж“ѕ‚·‚й
+// еЏ‚з…§з”ЁгѓЎгѓѓг‚·гѓҐг‚’еЏ–еѕ—гЃ™г‚‹
 extern MV1_REF_POLYGONLIST NS_MV1GetReferenceMesh( int MHandle, int FrameIndex, int IsTransform, int IsPositionOnly, int MeshIndex )
 {
 	MV1_MODEL *Model ;
@@ -34340,15 +34340,15 @@ extern MV1_REF_POLYGONLIST NS_MV1GetReferenceMesh( int MHandle, int FrameIndex, 
 	IsTransform = IsTransform != 0 ? 1 : 0 ;
 	IsPositionOnly = IsPositionOnly != 0 ? 1 : 0 ;
 
-	// ѓAѓhѓЊѓXЋж“ѕ
+	// г‚ўгѓ‰гѓ¬г‚№еЏ–еѕ—
 	if( MV1MDLCHK( MHandle, Model ) )
 		goto ERR ;
 	ModelBase = Model->BaseData ;
 
-	// ѓtѓЊЃ[ѓЂ’P‘М‚©ѓЃѓbѓVѓ…’P‘М‚©ѓ‚ѓfѓ‹‘S‘М‚©‚ЕЏ€—ќ‚р•ЄЉт
+	// гѓ•гѓ¬гѓјгѓ еЌдЅ“гЃ‹гѓЎгѓѓг‚·гѓҐеЌдЅ“гЃ‹гѓўгѓ‡гѓ«е…ЁдЅ“гЃ‹гЃ§е‡¦зђ†г‚’е€†еІђ
 	if( FrameIndex < 0 && MeshIndex < 0 )
 	{
-		// ѓZѓbѓgѓAѓbѓv‚Є‚і‚к‚Д‚ў‚И‚©‚Б‚ЅЏкЌ‡‚НѓZѓbѓgѓAѓbѓv‚рЌs‚¤
+		// г‚»гѓѓгѓ€г‚ўгѓѓгѓ—гЃЊгЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџе ґеђ€гЃЇг‚»гѓѓгѓ€г‚ўгѓѓгѓ—г‚’иЎЊгЃ†
 		if( Model->RefPolygon[ IsTransform ][ IsPositionOnly ] == NULL )
 			if( NS_MV1RefreshReferenceMesh( MHandle, FrameIndex, IsTransform, IsPositionOnly, -1 ) < 0 )
 				goto ERR ;
@@ -34356,15 +34356,15 @@ extern MV1_REF_POLYGONLIST NS_MV1GetReferenceMesh( int MHandle, int FrameIndex, 
 		return *Model->RefPolygon[ IsTransform ][ IsPositionOnly ] ;
 	}
 	else
-	// ѓtѓЊЃ[ѓЂ’P‘М‚МЏкЌ‡
+	// гѓ•гѓ¬гѓјгѓ еЌдЅ“гЃ®е ґеђ€
 	if( MeshIndex < 0 )
 	{
-		// ѓtѓЊЃ[ѓЂѓCѓ“ѓfѓbѓNѓX‚Мѓ`ѓFѓbѓN
+		// гѓ•гѓ¬гѓјгѓ г‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃ®гѓЃг‚§гѓѓг‚Ї
 		if( FrameIndex < 0 || FrameIndex >= ModelBase->FrameNum )
 			goto ERR ;
 		Frame = Model->Frame + FrameIndex ;
 
-		// ѓZѓbѓgѓAѓbѓv‚Є‚і‚к‚Д‚ў‚И‚©‚Б‚ЅЏкЌ‡‚НѓZѓbѓgѓAѓbѓv‚рЌs‚¤
+		// г‚»гѓѓгѓ€г‚ўгѓѓгѓ—гЃЊгЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџе ґеђ€гЃЇг‚»гѓѓгѓ€г‚ўгѓѓгѓ—г‚’иЎЊгЃ†
 		if( Frame->RefPolygon[ IsTransform ][ IsPositionOnly ] == NULL )
 			if( NS_MV1RefreshReferenceMesh( MHandle, FrameIndex, IsTransform, IsPositionOnly, -1 ) < 0 )
 				goto ERR ;
@@ -34372,9 +34372,9 @@ extern MV1_REF_POLYGONLIST NS_MV1GetReferenceMesh( int MHandle, int FrameIndex, 
 		return *Frame->RefPolygon[ IsTransform ][ IsPositionOnly ] ;
 	}
 	else
-	// ѓЃѓbѓVѓ…’P‘М‚МЏкЌ‡
+	// гѓЎгѓѓг‚·гѓҐеЌдЅ“гЃ®е ґеђ€
 	{
-		// ѓЃѓbѓVѓ…ѓCѓ“ѓfѓbѓNѓXѓ`ѓFѓbѓN
+		// гѓЎгѓѓг‚·гѓҐг‚¤гѓігѓ‡гѓѓг‚Їг‚№гѓЃг‚§гѓѓг‚Ї
 		if( FrameIndex >= 0 && FrameIndex < ModelBase->FrameNum )
 		{
 			Frame = Model->Frame + FrameIndex ;
@@ -34391,10 +34391,10 @@ extern MV1_REF_POLYGONLIST NS_MV1GetReferenceMesh( int MHandle, int FrameIndex, 
 			Mesh = &Model->Mesh[ MeshIndex ] ;
 		}
 
-		// ѓЃѓbѓVѓ…‚МЏкЌ‡‚НЌА•W‚М‚Э‚Н‚Е‚«‚И‚ў
+		// гѓЎгѓѓг‚·гѓҐгЃ®е ґеђ€гЃЇеє§жЁ™гЃ®гЃїгЃЇгЃ§гЃЌгЃЄгЃ„
 		IsPositionOnly = 0 ;
 
-		// ѓZѓbѓgѓAѓbѓv‚Є‚і‚к‚Д‚ў‚И‚©‚Б‚ЅЏкЌ‡‚НѓZѓbѓgѓAѓbѓv‚рЌs‚¤
+		// г‚»гѓѓгѓ€г‚ўгѓѓгѓ—гЃЊгЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ‹гЃЈгЃџе ґеђ€гЃЇг‚»гѓѓгѓ€г‚ўгѓѓгѓ—г‚’иЎЊгЃ†
 		if( Mesh->RefPolygon[ IsTransform ] == NULL )
 			if( NS_MV1RefreshReferenceMesh( MHandle, FrameIndex, IsTransform, IsPositionOnly, MeshIndex ) < 0 )
 				goto ERR ;
@@ -34435,9 +34435,9 @@ ERR :
 
 
 
-// va_list ЉЦђ”
+// va_list й–ўж•°
 
-// ‘S‚Д‚Мѓ}ѓeѓЉѓAѓ‹‚Мѓ^ѓCѓv•Кѓpѓ‰ѓЃЃ[ѓ^‚р•ПЌX‚·‚й( ѓ}ѓeѓЉѓAѓ‹ѓ^ѓCѓv DX_MATERIAL_TYPE_MAT_SPEC_LUMINANCE_TWO_COLOR ‚И‚З‚ЕЋg—p )
+// е…ЁгЃ¦гЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ®г‚їг‚¤гѓ—е€Ґгѓ‘гѓ©гѓЎгѓјг‚їг‚’е¤‰ж›ґгЃ™г‚‹( гѓћгѓ†гѓЄг‚ўгѓ«г‚їг‚¤гѓ— DX_MATERIAL_TYPE_MAT_SPEC_LUMINANCE_TWO_COLOR гЃЄгЃ©гЃ§дЅїз”Ё )
 extern int MV1SetMaterialTypeParamAll_VaList( int MHandle, va_list VaList )
 {
 	int Result ;
@@ -34447,7 +34447,7 @@ extern int MV1SetMaterialTypeParamAll_VaList( int MHandle, va_list VaList )
 	return Result ;
 }
 
-// Ћw’и‚Мѓ}ѓeѓЉѓAѓ‹‚Мѓ^ѓCѓv•Кѓpѓ‰ѓЃЃ[ѓ^‚р•ПЌX‚·‚й( ѓ}ѓeѓЉѓAѓ‹ѓ^ѓCѓv DX_MATERIAL_TYPE_MAT_SPEC_LUMINANCE_TWO_COLOR ‚И‚З‚ЕЋg—p )
+// жЊ‡е®љгЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ®г‚їг‚¤гѓ—е€Ґгѓ‘гѓ©гѓЎгѓјг‚їг‚’е¤‰ж›ґгЃ™г‚‹( гѓћгѓ†гѓЄг‚ўгѓ«г‚їг‚¤гѓ— DX_MATERIAL_TYPE_MAT_SPEC_LUMINANCE_TWO_COLOR гЃЄгЃ©гЃ§дЅїз”Ё )
 extern int MV1SetMaterialTypeParam_VaList( int MHandle, int MaterialIndex, va_list VaList )
 {
 	int Result ;

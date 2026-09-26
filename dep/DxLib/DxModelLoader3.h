@@ -1,6 +1,6 @@
 // -------------------------------------------------------------------------------
 // 
-// 		‚c‚wƒ‰ƒCƒuƒ‰ƒŠ		ƒ‚ƒfƒ‹ƒf[ƒ^“Ç‚Ýž‚Ýˆ—‚R—pƒwƒbƒ_
+// 		ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒª		ãƒ¢ãƒ‡ãƒ«ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿å‡¦ç†ï¼“ç”¨ãƒ˜ãƒƒãƒ€
 // 
 // 				Ver 3.25a
 // 
@@ -13,7 +13,7 @@
 
 #ifndef DX_NON_MODEL
 
-// ƒCƒ“ƒNƒ‹[ƒh ---------------------------------
+// ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ ---------------------------------
 #include "DxLib.h"
 #include "DxStatic.h"
 #include "DxModel.h"
@@ -26,286 +26,286 @@ namespace DxLib
 
 #endif // DX_NON_NAMESPACE
 
-// ƒ}ƒNƒ’è‹` -----------------------------------
+// ãƒžã‚¯ãƒ­å®šç¾© -----------------------------------
 
-// ƒf[ƒ^Œ^’è‹` ---------------------------------
+// ãƒ‡ãƒ¼ã‚¿åž‹å®šç¾© ---------------------------------
 
-// PMDƒf[ƒ^ƒwƒbƒ_( 283byte )
+// PMDãƒ‡ãƒ¼ã‚¿ãƒ˜ãƒƒãƒ€( 283byte )
 struct PMD_HEADER
 {
-	BYTE	Data[ 283 ] ;						// ƒf[ƒ^
+	BYTE	Data[ 283 ] ;						// ãƒ‡ãƒ¼ã‚¿
 /*
 	char	Magic[ 3 ] ;						// "Pmd"
 	float	Version ;							// 1.0f ( 0x3f800000 )
-	char	Name[ 20 ] ;						// –¼‘O
-	char	Comment[ 256 ] ;					// ƒRƒƒ“ƒg
+	char	Name[ 20 ] ;						// åå‰
+	char	Comment[ 256 ] ;					// ã‚³ãƒ¡ãƒ³ãƒˆ
 */
 } ;
 
-// ’¸“_ƒf[ƒ^ˆê‚Â•Ó‚è‚Ìî•ñ( 38byte )
+// é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ä¸€ã¤è¾ºã‚Šã®æƒ…å ±( 38byte )
 struct PMD_VERTEX
 {
-	float	Position[ 3 ] ;						// À•W
-	float	Normal[ 3 ] ;						// –@ü
-	float	Uv[ 2 ] ;							// ƒeƒNƒXƒ`ƒƒÀ•W
-	WORD	BoneNo[ 2 ] ;						// ƒ{[ƒ“”Ô†
-	BYTE	BoneWeight ;						// BoneNo[ 0 ] ‚Ìƒ{[ƒ“‚Ì‰e‹¿“x( 0`100 ) BoneNo[ 1 ] ‚Ì‰e‹¿“x‚Í( 100 - BoneWeight )
-	BYTE	Edge ;								// ƒGƒbƒWƒtƒ‰ƒO  0:ƒGƒbƒW—LŒø  1:ƒGƒbƒW–³Œø
+	float	Position[ 3 ] ;						// åº§æ¨™
+	float	Normal[ 3 ] ;						// æ³•ç·š
+	float	Uv[ 2 ] ;							// ãƒ†ã‚¯ã‚¹ãƒãƒ£åº§æ¨™
+	WORD	BoneNo[ 2 ] ;						// ãƒœãƒ¼ãƒ³ç•ªå·
+	BYTE	BoneWeight ;						// BoneNo[ 0 ] ã®ãƒœãƒ¼ãƒ³ã®å½±éŸ¿åº¦( 0ï½ž100 ) BoneNo[ 1 ] ã®å½±éŸ¿åº¦ã¯( 100 - BoneWeight )
+	BYTE	Edge ;								// ã‚¨ãƒƒã‚¸ãƒ•ãƒ©ã‚°  0:ã‚¨ãƒƒã‚¸æœ‰åŠ¹  1:ã‚¨ãƒƒã‚¸ç„¡åŠ¹
 } ;
 
-// ’¸“_ƒf[ƒ^
+// é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿
 struct PMD_VERTEX_DATA
 {
-	DWORD	Count ;				// ’¸“_ƒf[ƒ^‚Ì”
-	/* ‚±‚±‚É PMD_VERTEX ‚ª Count ‚Ì”‚¾‚¯‘¶Ý‚·‚é */
+	DWORD	Count ;				// é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ã®æ•°
+	/* ã“ã“ã« PMD_VERTEX ãŒ Count ã®æ•°ã ã‘å­˜åœ¨ã™ã‚‹ */
 } ;
 
-// –ÊƒŠƒXƒg
+// é¢ãƒªã‚¹ãƒˆ
 struct PMD_FACE_DATA
 {
-	DWORD	VertexCount ;		// ’¸“_‚Ì”( –Ê‚Ì”‚Í VertexCount / 3 )
-	/* ‚±‚±‚É WORD ‚Ì’¸“_ƒCƒ“ƒfƒbƒNƒX‚ª VertexCount ‚Ì”‚¾‚¯‘¶Ý‚·‚é */
+	DWORD	VertexCount ;		// é ‚ç‚¹ã®æ•°( é¢ã®æ•°ã¯ VertexCount / 3 )
+	/* ã“ã“ã« WORD ã®é ‚ç‚¹ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãŒ VertexCount ã®æ•°ã ã‘å­˜åœ¨ã™ã‚‹ */
 } ;
 
-// ƒ}ƒeƒŠƒAƒ‹ˆê‚Â•Ó‚è‚Ìî•ñ( 70byte )
+// ãƒžãƒ†ãƒªã‚¢ãƒ«ä¸€ã¤è¾ºã‚Šã®æƒ…å ±( 70byte )
 struct PMD_MATERIAL
 {
-	BYTE	Data[ 70 ] ;						// ƒf[ƒ^
+	BYTE	Data[ 70 ] ;						// ãƒ‡ãƒ¼ã‚¿
 /*
-	float	DiffuseR, DiffuseG, DiffuseB ;		// ƒfƒBƒtƒ…[ƒYƒJƒ‰[
-	float	Alpha ;								// ƒ¿’l
-	float	Specularity ;						// ƒXƒyƒLƒ…ƒ‰ŒW”
-	float	SpecularR, SpecularG, SpecularB ;	// ƒXƒyƒLƒ…ƒ‰ƒJƒ‰[
-	float	AmbientR, AmbientG, AmbientB ;		// ƒAƒ“ƒrƒGƒ“ƒgƒJƒ‰[
-	BYTE	ToolImage ;							// ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO—p‚ÌƒeƒNƒXƒ`ƒƒ‚ÌƒCƒ“ƒfƒbƒNƒX
-	BYTE	Edge ;								// —ÖŠsE‰e
-	DWORD	FaceVertexCount ;					// ‚±‚Ìƒ}ƒeƒŠƒAƒ‹‚ðŽg—p‚·‚é–Ê’¸“_‚Ì”
-	char	TextureFileName[ 20 ] ;				// ƒeƒNƒXƒ`ƒƒƒtƒ@ƒCƒ‹–¼
+	float	DiffuseR, DiffuseG, DiffuseB ;		// ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚«ãƒ©ãƒ¼
+	float	Alpha ;								// Î±å€¤
+	float	Specularity ;						// ã‚¹ãƒšã‚­ãƒ¥ãƒ©ä¿‚æ•°
+	float	SpecularR, SpecularG, SpecularB ;	// ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã‚«ãƒ©ãƒ¼
+	float	AmbientR, AmbientG, AmbientB ;		// ã‚¢ãƒ³ãƒ“ã‚¨ãƒ³ãƒˆã‚«ãƒ©ãƒ¼
+	BYTE	ToolImage ;							// ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ç”¨ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+	BYTE	Edge ;								// è¼ªéƒ­ãƒ»å½±
+	DWORD	FaceVertexCount ;					// ã“ã®ãƒžãƒ†ãƒªã‚¢ãƒ«ã‚’ä½¿ç”¨ã™ã‚‹é¢é ‚ç‚¹ã®æ•°
+	char	TextureFileName[ 20 ] ;				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ•ã‚¡ã‚¤ãƒ«å
 */
 } ;
 
-// ƒ}ƒeƒŠƒAƒ‹‚Ìî•ñ
+// ãƒžãƒ†ãƒªã‚¢ãƒ«ã®æƒ…å ±
 struct PMD_MATERIAL_DATA
 {
-	DWORD	Count ;								// ƒ}ƒeƒŠƒAƒ‹‚Ì”
-	/* ‚±‚±‚É PMD_MATERIAL ‚ª Count ‚Ì”‚¾‚¯‘¶Ý‚·‚é */
+	DWORD	Count ;								// ãƒžãƒ†ãƒªã‚¢ãƒ«ã®æ•°
+	/* ã“ã“ã« PMD_MATERIAL ãŒ Count ã®æ•°ã ã‘å­˜åœ¨ã™ã‚‹ */
 } ;
 
-// ƒ{[ƒ“ˆê‚Â•Ó‚è‚Ìî•ñ( 39byte )
+// ãƒœãƒ¼ãƒ³ä¸€ã¤è¾ºã‚Šã®æƒ…å ±( 39byte )
 struct PMD_BONE
 {
-	BYTE	Data[ 39 ] ;						// ƒf[ƒ^
+	BYTE	Data[ 39 ] ;						// ãƒ‡ãƒ¼ã‚¿
 /*
-	char	Name[ 20 ] ;						//  0:ƒ{[ƒ“–¼
-	WORD	Parent ;							// 20:eƒ{[ƒ“( –³‚¢ê‡‚Í 0xffff )
-	WORD	TailPosBone ;						// 22:Tail ˆÊ’u‚Ìƒ{[ƒ“( ƒ`ƒF[ƒ“––’[‚Ìê‡‚Í 0xffff )
-	BYTE	Type ;								// 24:ƒ{[ƒ“‚Ìƒ^ƒCƒv( 0:‰ñ“]  1:‰ñ“]‚ÆˆÚ“®  2:IK  3:•s–¾  4:IK‰e‹¿‰º  5:‰ñ“]‰e‹¿‰º  6:IKÚ‘±æ  7:”ñ•\Ž¦  8:”P‚è  9:‰ñ“]‰^“® )
-	WORD	IkParent ;							// 25:IKƒ{[ƒ“”Ô†( ‰e‹¿IKƒ{[ƒ“  –³‚¢ê‡‚Í 0xffff )
-	float	HeadPos[ 3 ] ;						// 27:ƒwƒbƒh‚ÌˆÊ’u
+	char	Name[ 20 ] ;						//  0:ãƒœãƒ¼ãƒ³å
+	WORD	Parent ;							// 20:è¦ªãƒœãƒ¼ãƒ³( ç„¡ã„å ´åˆã¯ 0xffff )
+	WORD	TailPosBone ;						// 22:Tail ä½ç½®ã®ãƒœãƒ¼ãƒ³( ãƒã‚§ãƒ¼ãƒ³æœ«ç«¯ã®å ´åˆã¯ 0xffff )
+	BYTE	Type ;								// 24:ãƒœãƒ¼ãƒ³ã®ã‚¿ã‚¤ãƒ—( 0:å›žè»¢  1:å›žè»¢ã¨ç§»å‹•  2:IK  3:ä¸æ˜Ž  4:IKå½±éŸ¿ä¸‹  5:å›žè»¢å½±éŸ¿ä¸‹  6:IKæŽ¥ç¶šå…ˆ  7:éžè¡¨ç¤º  8:æ»ã‚Š  9:å›žè»¢é‹å‹• )
+	WORD	IkParent ;							// 25:IKãƒœãƒ¼ãƒ³ç•ªå·( å½±éŸ¿IKãƒœãƒ¼ãƒ³  ç„¡ã„å ´åˆã¯ 0xffff )
+	float	HeadPos[ 3 ] ;						// 27:ãƒ˜ãƒƒãƒ‰ã®ä½ç½®
 */
 } ;
 
-// ƒ{[ƒ“‚Ìî•ñ
+// ãƒœãƒ¼ãƒ³ã®æƒ…å ±
 struct PMD_BONE_DATA
 {
-	WORD	Count ;								// ƒ{[ƒ“‚Ì”
-	/* ‚±‚±‚É PMD_BONE ‚ª Count ‚Ì”‚¾‚¯‘¶Ý‚·‚é */
+	WORD	Count ;								// ãƒœãƒ¼ãƒ³ã®æ•°
+	/* ã“ã“ã« PMD_BONE ãŒ Count ã®æ•°ã ã‘å­˜åœ¨ã™ã‚‹ */
 } ;
 
-// IKƒf[ƒ^ˆê‚Â•Ó‚è‚Ìî•ñ( ChainBoneIndex ‚ð”²‚¢‚½ƒTƒCƒY 11byte )
+// IKãƒ‡ãƒ¼ã‚¿ä¸€ã¤è¾ºã‚Šã®æƒ…å ±( ChainBoneIndex ã‚’æŠœã„ãŸã‚µã‚¤ã‚º 11byte )
 struct PMD_IK
 {
-	BYTE	Data[ 11 ] ;						// ƒf[ƒ^
+	BYTE	Data[ 11 ] ;						// ãƒ‡ãƒ¼ã‚¿
 /*
-	WORD	Bone ;								// IKƒ{[ƒ“
-	WORD	TargetBone ;						// IKƒ^[ƒQƒbƒgƒ{[ƒ“
-	BYTE	ChainLength ;						// IKƒ`ƒF[ƒ“‚Ì’·‚³(Žq‚Ì”)
-	WORD	Iterations ;						// Ä‹N‰‰ŽZ‰ñ”
-	float	ControlWeight ;						// IK‚Ì‰e‹¿“x
-	WORD	ChainBoneIndexs[ ChainLength ] ;	// IK‰e‹¿‰º‚Ìƒ{[ƒ“”Ô†
+	WORD	Bone ;								// IKãƒœãƒ¼ãƒ³
+	WORD	TargetBone ;						// IKã‚¿ãƒ¼ã‚²ãƒƒãƒˆãƒœãƒ¼ãƒ³
+	BYTE	ChainLength ;						// IKãƒã‚§ãƒ¼ãƒ³ã®é•·ã•(å­ã®æ•°)
+	WORD	Iterations ;						// å†èµ·æ¼”ç®—å›žæ•°
+	float	ControlWeight ;						// IKã®å½±éŸ¿åº¦
+	WORD	ChainBoneIndexs[ ChainLength ] ;	// IKå½±éŸ¿ä¸‹ã®ãƒœãƒ¼ãƒ³ç•ªå·
 */
 } ;
 
-// IK‚Ìî•ñ
+// IKã®æƒ…å ±
 struct PMD_IK_DATA
 {
-	WORD	Count ;								// IKƒf[ƒ^‚Ì”
-	/* ‚±‚±‚É PMD_IK ‚ª Count ‚Ì”‚¾‚¯‘¶Ý‚·‚é */
+	WORD	Count ;								// IKãƒ‡ãƒ¼ã‚¿ã®æ•°
+	/* ã“ã“ã« PMD_IK ãŒ Count ã®æ•°ã ã‘å­˜åœ¨ã™ã‚‹ */
 } ;
 
-// •\î‚Ì’¸“_î•ñ
+// è¡¨æƒ…ã®é ‚ç‚¹æƒ…å ±
 struct PMD_SKIN_VERT
 {
-	DWORD	TargetVertexIndex ;					// ‘ÎÛ‚Ì’¸“_‚ÌƒCƒ“ƒfƒbƒNƒX
-	float	Position[ 3 ] ;						// À•W( PMD_SKIN ‚Ì SkinType ‚ª 0 ‚È‚çâ‘ÎÀ•WA‚»‚êˆÈŠO‚È‚ç base ‚É‘Î‚·‚é‘Š‘ÎÀ•W )
+	DWORD	TargetVertexIndex ;					// å¯¾è±¡ã®é ‚ç‚¹ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+	float	Position[ 3 ] ;						// åº§æ¨™( PMD_SKIN ã® SkinType ãŒ 0 ãªã‚‰çµ¶å¯¾åº§æ¨™ã€ãã‚Œä»¥å¤–ãªã‚‰ base ã«å¯¾ã™ã‚‹ç›¸å¯¾åº§æ¨™ )
 } ;
 
-// •\îˆê‚Â•Ó‚è‚Ìî•ñ( Vertex ‚ð”²‚¢‚½ƒTƒCƒY 25byte )
+// è¡¨æƒ…ä¸€ã¤è¾ºã‚Šã®æƒ…å ±( Vertex ã‚’æŠœã„ãŸã‚µã‚¤ã‚º 25byte )
 struct PMD_SKIN
 {
-	BYTE	Data[ 25 ] ;						// ƒf[ƒ^
+	BYTE	Data[ 25 ] ;						// ãƒ‡ãƒ¼ã‚¿
 /*
-	char	Name[ 20 ] ;						// •\î–¼
-	DWORD	VertexCount ;						// ’¸“_‚Ì”
-	BYTE	SkinType ;							// •\î‚ÌŽí—Þ( 0:base 1F‚Ü‚äA2F–ÚA3FƒŠƒbƒvA4F‚»‚Ì‘¼ )
-	PMD_SKIN_VERT Vertex[ VertexCount ] ;		// •\î—p‚Ì’¸“_ƒf[ƒ^
+	char	Name[ 20 ] ;						// è¡¨æƒ…å
+	DWORD	VertexCount ;						// é ‚ç‚¹ã®æ•°
+	BYTE	SkinType ;							// è¡¨æƒ…ã®ç¨®é¡ž( 0:base 1ï¼šã¾ã‚†ã€2ï¼šç›®ã€3ï¼šãƒªãƒƒãƒ—ã€4ï¼šãã®ä»– )
+	PMD_SKIN_VERT Vertex[ VertexCount ] ;		// è¡¨æƒ…ç”¨ã®é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿
 */
 } ;
 
-// •\î‚Ìî•ñ
+// è¡¨æƒ…ã®æƒ…å ±
 struct PMD_SKIN_DATA
 {
-	WORD	Count ;								// •\îƒf[ƒ^‚Ì”
-	/* ‚±‚±‚É PMD_SKIN ‚ª Count ‚Ì”‚¾‚¯‘¶Ý‚·‚é */
+	WORD	Count ;								// è¡¨æƒ…ãƒ‡ãƒ¼ã‚¿ã®æ•°
+	/* ã“ã“ã« PMD_SKIN ãŒ Count ã®æ•°ã ã‘å­˜åœ¨ã™ã‚‹ */
 } ;
 
-// •¨—‰‰ŽZƒf[ƒ^ˆê‚Â•Ó‚è‚Ìî•ñ( 83byte )
+// ç‰©ç†æ¼”ç®—ãƒ‡ãƒ¼ã‚¿ä¸€ã¤è¾ºã‚Šã®æƒ…å ±( 83byte )
 struct PMD_PHYSICS
 {
 	BYTE	Data[ 83 ] ;	
 /*
-	char	RigidBodyName[ 20 ] ;				//  0 : „‘Ì–¼
-	WORD	RigidBodyRelBoneIndex ;				// 20 : „‘ÌŠÖ˜Aƒ{[ƒ“”Ô†
-	BYTE	RigidBodyGroupIndex ;				// 22 : „‘ÌƒOƒ‹[ƒv”Ô†
-	WORD	RigidBodyGroupTarget ;				// 23 : „‘ÌƒOƒ‹[ƒv‘ÎÛ
-	BYTE	ShapeType ;							// 25 : Œ`ó( 0:‹…  1:”   2:ƒJƒvƒZƒ‹ )
-	float	ShapeW ;							// 26 : •
-	float	ShapeH ;							// 30 : ‚‚³
-	float	ShapeD ;							// 34 : ‰œs
-	float	Position[ 3 ] ;						// 38 : ˆÊ’u
-	float	Rotation[ 3 ] ;						// 50 : ‰ñ“]( ƒ‰ƒWƒAƒ“ )
-	float	RigidBodyWeight ;					// 62 : Ž¿—Ê
-	float	RigidBodyPosDim ;					// 66 : ˆÚ“®Œ¸
-	float	RigidBodyRotDim ;					// 70 : ‰ñ“]Œ¸
-	float	RigidBodyRecoil ;					// 74 : ”½”­—Í
-	float	RigidBodyFriction ;					// 78 : –€ŽC—Í
-	BYTE	RigidBodyType ;						// 82 : „‘Ìƒ^ƒCƒv( 0:Bone’Ç]  1:•¨—‰‰ŽZ  2:•¨—‰‰ŽZ(BoneˆÊ’u‡‚í‚¹) )
+	char	RigidBodyName[ 20 ] ;				//  0 : å‰›ä½“å
+	WORD	RigidBodyRelBoneIndex ;				// 20 : å‰›ä½“é–¢é€£ãƒœãƒ¼ãƒ³ç•ªå·
+	BYTE	RigidBodyGroupIndex ;				// 22 : å‰›ä½“ã‚°ãƒ«ãƒ¼ãƒ—ç•ªå·
+	WORD	RigidBodyGroupTarget ;				// 23 : å‰›ä½“ã‚°ãƒ«ãƒ¼ãƒ—å¯¾è±¡
+	BYTE	ShapeType ;							// 25 : å½¢çŠ¶( 0:çƒ  1:ç®±  2:ã‚«ãƒ—ã‚»ãƒ« )
+	float	ShapeW ;							// 26 : å¹…
+	float	ShapeH ;							// 30 : é«˜ã•
+	float	ShapeD ;							// 34 : å¥¥è¡Œ
+	float	Position[ 3 ] ;						// 38 : ä½ç½®
+	float	Rotation[ 3 ] ;						// 50 : å›žè»¢( ãƒ©ã‚¸ã‚¢ãƒ³ )
+	float	RigidBodyWeight ;					// 62 : è³ªé‡
+	float	RigidBodyPosDim ;					// 66 : ç§»å‹•æ¸›
+	float	RigidBodyRotDim ;					// 70 : å›žè»¢æ¸›
+	float	RigidBodyRecoil ;					// 74 : åç™ºåŠ›
+	float	RigidBodyFriction ;					// 78 : æ‘©æ“¦åŠ›
+	BYTE	RigidBodyType ;						// 82 : å‰›ä½“ã‚¿ã‚¤ãƒ—( 0:Boneè¿½å¾“  1:ç‰©ç†æ¼”ç®—  2:ç‰©ç†æ¼”ç®—(Boneä½ç½®åˆã‚ã›) )
 */
 } ;
 
-// •¨—‰‰ŽZƒf[ƒ^‚Ìî•ñ
+// ç‰©ç†æ¼”ç®—ãƒ‡ãƒ¼ã‚¿ã®æƒ…å ±
 struct PMD_PHYSICS_DATA
 {
-	DWORD	Count ;								// „‘Ìƒf[ƒ^‚Ì”
-	/* ‚±‚±‚É PMD_PHYSICS ‚ª Count ‚Ì”‚¾‚¯‘¶Ý‚·‚é */
+	DWORD	Count ;								// å‰›ä½“ãƒ‡ãƒ¼ã‚¿ã®æ•°
+	/* ã“ã“ã« PMD_PHYSICS ãŒ Count ã®æ•°ã ã‘å­˜åœ¨ã™ã‚‹ */
 } ;
 
-// •¨—‰‰ŽZ—pƒWƒ‡ƒCƒ“ƒgƒf[ƒ^ˆê‚Â•Ó‚è‚Ìî•ñ( 124byte )
+// ç‰©ç†æ¼”ç®—ç”¨ã‚¸ãƒ§ã‚¤ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ä¸€ã¤è¾ºã‚Šã®æƒ…å ±( 124byte )
 struct PMD_PHYSICS_JOINT
 {
-	char	Name[ 20 ] ;						// –¼‘O
-	DWORD	RigidBodyA ;						// Ú‘±æ„‘Ì‚`
-	DWORD	RigidBodyB ;						// Ú‘±æ„‘Ì‚a
-	float	Position[ 3 ] ;						// ˆÊ’u
-	float	Rotation[ 3 ] ;						// ‰ñ“]( ƒ‰ƒWƒAƒ“ )
-	float	ConstrainPosition1[ 3 ] ;			// ˆÚ“®§ŒÀ’l‚P
-	float	ConstrainPosition2[ 3 ] ;			// ˆÚ“®§ŒÀ’l‚Q
-	float	ConstrainRotation1[ 3 ] ;			// ‰ñ“]§ŒÀ’l‚P
-	float	ConstrainRotation2[ 3 ] ;			// ‰ñ“]§ŒÀ’l‚Q
-	float	SpringPosition[ 3 ] ;				// ‚Î‚ËˆÚ“®’l
-	float	SpringRotation[ 3 ] ;				// ‚Î‚Ë‰ñ“]’l
+	char	Name[ 20 ] ;						// åå‰
+	DWORD	RigidBodyA ;						// æŽ¥ç¶šå…ˆå‰›ä½“ï¼¡
+	DWORD	RigidBodyB ;						// æŽ¥ç¶šå…ˆå‰›ä½“ï¼¢
+	float	Position[ 3 ] ;						// ä½ç½®
+	float	Rotation[ 3 ] ;						// å›žè»¢( ãƒ©ã‚¸ã‚¢ãƒ³ )
+	float	ConstrainPosition1[ 3 ] ;			// ç§»å‹•åˆ¶é™å€¤ï¼‘
+	float	ConstrainPosition2[ 3 ] ;			// ç§»å‹•åˆ¶é™å€¤ï¼’
+	float	ConstrainRotation1[ 3 ] ;			// å›žè»¢åˆ¶é™å€¤ï¼‘
+	float	ConstrainRotation2[ 3 ] ;			// å›žè»¢åˆ¶é™å€¤ï¼’
+	float	SpringPosition[ 3 ] ;				// ã°ã­ç§»å‹•å€¤
+	float	SpringRotation[ 3 ] ;				// ã°ã­å›žè»¢å€¤
 } ;
 
-// •¨—‰‰ŽZ—pƒWƒ‡ƒCƒ“ƒgî•ñ
+// ç‰©ç†æ¼”ç®—ç”¨ã‚¸ãƒ§ã‚¤ãƒ³ãƒˆæƒ…å ±
 struct PMD_PHYSICS_JOINT_DATA
 {
-	DWORD	Count ;								// ƒWƒ‡ƒCƒ“ƒgƒf[ƒ^‚Ì”
-	/* ‚±‚±‚É PMD_PHYSICS_JOINT ‚ª Count ‚Ì”‚¾‚¯‘¶Ý‚·‚é */
+	DWORD	Count ;								// ã‚¸ãƒ§ã‚¤ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ã®æ•°
+	/* ã“ã“ã« PMD_PHYSICS_JOINT ãŒ Count ã®æ•°ã ã‘å­˜åœ¨ã™ã‚‹ */
 } ;
 
-// VMD“Ç‚Ýž‚Ýˆ——pPMDƒ{[ƒ“ƒf[ƒ^
+// VMDèª­ã¿è¾¼ã¿å‡¦ç†ç”¨PMDãƒœãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿
 struct PMD_READ_BONE_INFO
 {
-	PMD_BONE			*Base ;					// ƒ{[ƒ“Šîƒf[ƒ^
-	MV1_ANIM_R			*Anim ;					// ‚±‚Ìƒ{[ƒ“—p‚ÌƒAƒjƒ[ƒVƒ‡ƒ“î•ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	MV1_FRAME_R			*Frame ;				// ‚±‚Ìƒ{[ƒ“—p‚ÌƒtƒŒ[ƒ€î•ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	PMD_BONE			*Base ;					// ãƒœãƒ¼ãƒ³åŸºãƒ‡ãƒ¼ã‚¿
+	MV1_ANIM_R			*Anim ;					// ã“ã®ãƒœãƒ¼ãƒ³ç”¨ã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³æƒ…å ±ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	MV1_FRAME_R			*Frame ;				// ã“ã®ãƒœãƒ¼ãƒ³ç”¨ã®ãƒ•ãƒ¬ãƒ¼ãƒ æƒ…å ±ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 
-	VECTOR				*KeyPos ;				// À•WƒAƒjƒ[ƒVƒ‡ƒ“ƒL[”z—ñ‚Ìæ“ª
-	FLOAT4				*KeyRot ;				// ‰ñ“]ƒAƒjƒ[ƒVƒ‡ƒ“ƒL[”z—ñ‚Ìæ“ª
-	float				*KeyDisablePhysics ;	// •¨—‰‰ŽZ–³Œø‰»ƒL[”z—ñ‚Ìæ“ª
-	float				*KeyPosTime ;			// À•WƒAƒjƒ[ƒVƒ‡ƒ“ƒ^ƒCƒ€ƒL[”z—ñ‚Ìæ“ª
-	float				*KeyRotTime ;			// ‰ñ“]ƒAƒjƒ[ƒVƒ‡ƒ“ƒ^ƒCƒ€ƒL[”z—ñ‚Ìæ“ª
-	MATRIX				*KeyMatrix ;			// s—ñƒAƒjƒ[ƒVƒ‡ƒ“ƒL[”z—ñ‚Ìæ“ª
-	MATRIX				*KeyMatrix2 ;			// s—ñƒAƒjƒ[ƒVƒ‡ƒ“ƒL[”z—ñ‚Ìæ“ª( IsIKChild ‚ª TRUE ‚Ìƒ{[ƒ“—p )
+	VECTOR				*KeyPos ;				// åº§æ¨™ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚­ãƒ¼é…åˆ—ã®å…ˆé ­
+	FLOAT4				*KeyRot ;				// å›žè»¢ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚­ãƒ¼é…åˆ—ã®å…ˆé ­
+	float				*KeyDisablePhysics ;	// ç‰©ç†æ¼”ç®—ç„¡åŠ¹åŒ–ã‚­ãƒ¼é…åˆ—ã®å…ˆé ­
+	float				*KeyPosTime ;			// åº§æ¨™ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚¿ã‚¤ãƒ ã‚­ãƒ¼é…åˆ—ã®å…ˆé ­
+	float				*KeyRotTime ;			// å›žè»¢ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚¿ã‚¤ãƒ ã‚­ãƒ¼é…åˆ—ã®å…ˆé ­
+	MATRIX				*KeyMatrix ;			// è¡Œåˆ—ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚­ãƒ¼é…åˆ—ã®å…ˆé ­
+	MATRIX				*KeyMatrix2 ;			// è¡Œåˆ—ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚­ãƒ¼é…åˆ—ã®å…ˆé ­( IsIKChild ãŒ TRUE ã®ãƒœãƒ¼ãƒ³ç”¨ )
 
-	int					Type ;					// ƒ^ƒCƒv
-	int					IsPhysics ;				// •¨—‚ðŽg—p‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©
-	int					IsIK ;					// ‚h‚jƒ{[ƒ“‚©‚Ç‚¤‚©
-	int					IsIKAnim ;				// ‚h‚jƒAƒjƒ[ƒVƒ‡ƒ“‚ð‚Â‚¯‚é‚©‚Ç‚¤‚©
-	int					IsIKChild ;				// ‚h‚jƒAƒjƒ[ƒVƒ‡ƒ“‚·‚éƒ{[ƒ“‚ÌŽqƒ{[ƒ“( ŠŽ‚Â‚h‚j‚Ì‰e‹¿‚ðŽó‚¯‚È‚¢ƒ{[ƒ“ )‚©‚Ç‚¤‚©
-	int					IKLimitAngle ;			// ‚h‚jŽž‚ÉŠp“x§ŒÀ‚ð‚·‚é‚©‚Ç‚¤‚©
-	MATRIX				LocalMatrix ;			// \’z‚µ‚½ƒ[ƒJƒ‹s—ñ
-	int					SetupLocalWorldMatrix ;	// ƒ[ƒJƒ‹¨ƒ[ƒ‹ƒhs—ñ‚ª\’z‚³‚ê‚Ä‚¢‚é‚©‚Ç‚¤‚©
-	MATRIX				LocalWorldMatrix ;		// \’z‚µ‚½ƒ[ƒJƒ‹¨ƒ[ƒ‹ƒhs—ñ
-	int					BackupLocalWorldMatrix_Valid ;	// BackupLocalWorldMatrix ‚ª—LŒø‚©‚Ç‚¤‚©
-	MATRIX				BackupLocalWorldMatrix ;		// \’z‚µ‚½ƒ[ƒJƒ‹¨ƒ[ƒ‹ƒhs—ñ( •¨—‰‰ŽZˆ—Žž‚ÌƒoƒbƒNƒAƒbƒv—p )
-	VECTOR				Translate ;				// •½sˆÚ“®’l
-	FLOAT4				Rotate ;				// ‰ñ“]’l
-	float				DisablePhysics ;		// •¨—‰‰ŽZ–³Œø‰»—¦
-	VECTOR				TimeDivLoopCount0_Translate ;			// TimeDivLoopCount == 0 ‚Ì•½sˆÚ“®’l
-	FLOAT4				TimeDivLoopCount0_Rotate ;				// TimeDivLoopCount == 0 ‚Ì‰ñ“]’l
-	MATRIX				TimeDivLoopCount0_LocalWorldMatrix ;	// TimeDivLoopCount == 0 ‚Ì\’z‚µ‚½ƒ[ƒJƒ‹¨ƒ[ƒ‹ƒhs—ñ
-	VECTOR				OrgTranslate ;			// Œ´“_‚©‚ç‚Ì‰ŠúˆÊ’u
+	int					Type ;					// ã‚¿ã‚¤ãƒ—
+	int					IsPhysics ;				// ç‰©ç†ã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹ã‹ã©ã†ã‹
+	int					IsIK ;					// ï¼©ï¼«ãƒœãƒ¼ãƒ³ã‹ã©ã†ã‹
+	int					IsIKAnim ;				// ï¼©ï¼«ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚’ã¤ã‘ã‚‹ã‹ã©ã†ã‹
+	int					IsIKChild ;				// ï¼©ï¼«ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã™ã‚‹ãƒœãƒ¼ãƒ³ã®å­ãƒœãƒ¼ãƒ³( ä¸”ã¤ï¼©ï¼«ã®å½±éŸ¿ã‚’å—ã‘ãªã„ãƒœãƒ¼ãƒ³ )ã‹ã©ã†ã‹
+	int					IKLimitAngle ;			// ï¼©ï¼«æ™‚ã«è§’åº¦åˆ¶é™ã‚’ã™ã‚‹ã‹ã©ã†ã‹
+	MATRIX				LocalMatrix ;			// æ§‹ç¯‰ã—ãŸãƒ­ãƒ¼ã‚«ãƒ«è¡Œåˆ—
+	int					SetupLocalWorldMatrix ;	// ãƒ­ãƒ¼ã‚«ãƒ«â†’ãƒ¯ãƒ¼ãƒ«ãƒ‰è¡Œåˆ—ãŒæ§‹ç¯‰ã•ã‚Œã¦ã„ã‚‹ã‹ã©ã†ã‹
+	MATRIX				LocalWorldMatrix ;		// æ§‹ç¯‰ã—ãŸãƒ­ãƒ¼ã‚«ãƒ«â†’ãƒ¯ãƒ¼ãƒ«ãƒ‰è¡Œåˆ—
+	int					BackupLocalWorldMatrix_Valid ;	// BackupLocalWorldMatrix ãŒæœ‰åŠ¹ã‹ã©ã†ã‹
+	MATRIX				BackupLocalWorldMatrix ;		// æ§‹ç¯‰ã—ãŸãƒ­ãƒ¼ã‚«ãƒ«â†’ãƒ¯ãƒ¼ãƒ«ãƒ‰è¡Œåˆ—( ç‰©ç†æ¼”ç®—å‡¦ç†æ™‚ã®ãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—ç”¨ )
+	VECTOR				Translate ;				// å¹³è¡Œç§»å‹•å€¤
+	FLOAT4				Rotate ;				// å›žè»¢å€¤
+	float				DisablePhysics ;		// ç‰©ç†æ¼”ç®—ç„¡åŠ¹åŒ–çŽ‡
+	VECTOR				TimeDivLoopCount0_Translate ;			// TimeDivLoopCount == 0 ã®å¹³è¡Œç§»å‹•å€¤
+	FLOAT4				TimeDivLoopCount0_Rotate ;				// TimeDivLoopCount == 0 ã®å›žè»¢å€¤
+	MATRIX				TimeDivLoopCount0_LocalWorldMatrix ;	// TimeDivLoopCount == 0 ã®æ§‹ç¯‰ã—ãŸãƒ­ãƒ¼ã‚«ãƒ«â†’ãƒ¯ãƒ¼ãƒ«ãƒ‰è¡Œåˆ—
+	VECTOR				OrgTranslate ;			// åŽŸç‚¹ã‹ã‚‰ã®åˆæœŸä½ç½®
 
-	MATRIX				IKmat ;					// IKˆ—‚ÅŽg—p‚·‚és—ñ\‘¢‘Ì
-	FLOAT4				IKQuat ;				// IKˆ—‚ÅŽg—p‚·‚éƒNƒH[ƒ^ƒjƒIƒ“
+	MATRIX				IKmat ;					// IKå‡¦ç†ã§ä½¿ç”¨ã™ã‚‹è¡Œåˆ—æ§‹é€ ä½“
+	FLOAT4				IKQuat ;				// IKå‡¦ç†ã§ä½¿ç”¨ã™ã‚‹ã‚¯ã‚©ãƒ¼ã‚¿ãƒ‹ã‚ªãƒ³
 
-	VECTOR				InitTranslate ;			// •½sˆÚ“®’l‚Ì‰Šú’l
-	FLOAT4				InitRotate ;			// ‰ñ“]’l‚Ì‰Šú’l
+	VECTOR				InitTranslate ;			// å¹³è¡Œç§»å‹•å€¤ã®åˆæœŸå€¤
+	FLOAT4				InitRotate ;			// å›žè»¢å€¤ã®åˆæœŸå€¤
 #ifndef DX_NON_BULLET_PHYSICS
-	int					PhysicsIndex ;			// •¨—‰‰ŽZ—pî•ñ‚Ì”Ô†
-	int					SetupPhysicsAnim ;		// ƒ{[ƒ“ƒAƒjƒ[ƒVƒ‡ƒ“‚ð•t‚¯‚½‚©‚Ç‚¤‚©
+	int					PhysicsIndex ;			// ç‰©ç†æ¼”ç®—ç”¨æƒ…å ±ã®ç•ªå·
+	int					SetupPhysicsAnim ;		// ãƒœãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚’ä»˜ã‘ãŸã‹ã©ã†ã‹
 #endif
 
-	struct VMD_READ_NODE_INFO	*Node ;			// ƒ{[ƒ“‚ÆŠÖ˜A•t‚¯‚ç‚ê‚Ä‚¢‚éƒm[ƒh
-	struct VMD_READ_KEY_INFO	*NowKey ;		// Œ»ÝÄ¶‚µ‚Ä‚¢‚éƒL[
+	struct VMD_READ_NODE_INFO	*Node ;			// ãƒœãƒ¼ãƒ³ã¨é–¢é€£ä»˜ã‘ã‚‰ã‚Œã¦ã„ã‚‹ãƒŽãƒ¼ãƒ‰
+	struct VMD_READ_KEY_INFO	*NowKey ;		// ç¾åœ¨å†ç”Ÿã—ã¦ã„ã‚‹ã‚­ãƒ¼
 } ;
 
-// VMD“Ç‚Ýž‚Ýˆ——pPMDIKƒ{[ƒ“ƒf[ƒ^
+// VMDèª­ã¿è¾¼ã¿å‡¦ç†ç”¨PMDIKãƒœãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿
 struct PMD_READ_IK_INFO
 {
-	PMD_IK				*Base ;					// IKƒ{[ƒ“Šîƒf[ƒ^
-	PMD_READ_BONE_INFO	*Bone ;					// IKƒ^[ƒQƒbƒgƒ{[ƒ“
-	PMD_READ_BONE_INFO	*TargetBone ;			// IKæ’[ƒ{[ƒ“
+	PMD_IK				*Base ;					// IKãƒœãƒ¼ãƒ³åŸºãƒ‡ãƒ¼ã‚¿
+	PMD_READ_BONE_INFO	*Bone ;					// IKã‚¿ãƒ¼ã‚²ãƒƒãƒˆãƒœãƒ¼ãƒ³
+	PMD_READ_BONE_INFO	*TargetBone ;			// IKå…ˆç«¯ãƒœãƒ¼ãƒ³
 
-	WORD				LimitAngleIK ;			// Šp“x§ŒÀƒ{[ƒ“‚ªŠÜ‚Ü‚ê‚½‚h‚j‚©‚Ç‚¤‚©( 0:ˆá‚¤ 1:‚»‚¤ ) 
-	WORD				Iterations ;			// Ä‹N‰‰ŽZ‰ñ”
-	float				ControlWeight ;			// IK‚Ì‰e‹¿“x
-	float				IKTotalLength ;			// IKˆ—‚ÌªŒ³‚©‚çƒ`ƒFƒCƒ“‚ÌÅŒã‚Ü‚Å‚Ì‹——£
+	WORD				LimitAngleIK ;			// è§’åº¦åˆ¶é™ãƒœãƒ¼ãƒ³ãŒå«ã¾ã‚ŒãŸï¼©ï¼«ã‹ã©ã†ã‹( 0:é•ã† 1:ãã† ) 
+	WORD				Iterations ;			// å†èµ·æ¼”ç®—å›žæ•°
+	float				ControlWeight ;			// IKã®å½±éŸ¿åº¦
+	float				IKTotalLength ;			// IKå‡¦ç†ã®æ ¹å…ƒã‹ã‚‰ãƒã‚§ã‚¤ãƒ³ã®æœ€å¾Œã¾ã§ã®è·é›¢
 
-	int					ChainBoneNum ;			// IKƒ`ƒF[ƒ“‚Ì’·‚³(Žq‚Ì”)
-	WORD				*ChainBone ;			// IK‰e‹¿‰º‚Ìƒ{[ƒ“‚Ö‚ÌƒCƒ“ƒfƒbƒNƒX”z—ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	int					ChainBoneNum ;			// IKãƒã‚§ãƒ¼ãƒ³ã®é•·ã•(å­ã®æ•°)
+	WORD				*ChainBone ;			// IKå½±éŸ¿ä¸‹ã®ãƒœãƒ¼ãƒ³ã¸ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹é…åˆ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 
-	PMD_READ_IK_INFO	*Prev ;					// ƒŠƒXƒg‚Ì‘O‚Ìƒf[ƒ^‚Ö‚ÌƒAƒhƒŒƒX
-	PMD_READ_IK_INFO	*Next ;					// ƒŠƒXƒg‚ÌŽŸ‚Ìƒf[ƒ^‚Ö‚ÌƒAƒhƒŒƒX
+	PMD_READ_IK_INFO	*Prev ;					// ãƒªã‚¹ãƒˆã®å‰ã®ãƒ‡ãƒ¼ã‚¿ã¸ã®ã‚¢ãƒ‰ãƒ¬ã‚¹
+	PMD_READ_IK_INFO	*Next ;					// ãƒªã‚¹ãƒˆã®æ¬¡ã®ãƒ‡ãƒ¼ã‚¿ã¸ã®ã‚¢ãƒ‰ãƒ¬ã‚¹
 } ;
 
-// PMD“Ç‚Ýž‚Ýˆ——p•¨—‰‰ŽZˆ——pƒf[ƒ^
+// PMDèª­ã¿è¾¼ã¿å‡¦ç†ç”¨ç‰©ç†æ¼”ç®—å‡¦ç†ç”¨ãƒ‡ãƒ¼ã‚¿
 struct PMD_READ_PHYSICS_INFO
 {
-	PMD_PHYSICS			*Base ;					// Šîƒf[ƒ^
+	PMD_PHYSICS			*Base ;					// åŸºãƒ‡ãƒ¼ã‚¿
 
-	char				Name[ 24 ] ;			// –¼‘O
-	WORD				BoneIndex ;				// ‘ÎÛ‚Ìƒ{[ƒ“
+	char				Name[ 24 ] ;			// åå‰
+	WORD				BoneIndex ;				// å¯¾è±¡ã®ãƒœãƒ¼ãƒ³
 
-	PMD_READ_BONE_INFO	*Bone ;					// ƒ{[ƒ“‚Ìî•ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	int					ShapeType ;				// Œ`óƒ^ƒCƒv( 0:‹…  1:”   2:ƒJƒvƒZƒ‹ )
-	int					RigidBodyType ;			// „‘Ìƒ^ƒCƒv( 0:Bone’Ç]  1:•¨—‰‰ŽZ  2:•¨—‰‰ŽZ(BoneˆÊ’u‡‚í‚¹) )
-	bool				NoCopyToBone ;			// ƒ{[ƒ“‚Ö„‘Ì‚Ìó‘Ô‚ð‚ ‚ç‚í‚·s—ñ‚ðƒRƒs[‚µ‚È‚¢‚©‚Ç‚¤‚©
+	PMD_READ_BONE_INFO	*Bone ;					// ãƒœãƒ¼ãƒ³ã®æƒ…å ±ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	int					ShapeType ;				// å½¢çŠ¶ã‚¿ã‚¤ãƒ—( 0:çƒ  1:ç®±  2:ã‚«ãƒ—ã‚»ãƒ« )
+	int					RigidBodyType ;			// å‰›ä½“ã‚¿ã‚¤ãƒ—( 0:Boneè¿½å¾“  1:ç‰©ç†æ¼”ç®—  2:ç‰©ç†æ¼”ç®—(Boneä½ç½®åˆã‚ã›) )
+	bool				NoCopyToBone ;			// ãƒœãƒ¼ãƒ³ã¸å‰›ä½“ã®çŠ¶æ…‹ã‚’ã‚ã‚‰ã‚ã™è¡Œåˆ—ã‚’ã‚³ãƒ”ãƒ¼ã—ãªã„ã‹ã©ã†ã‹
 
-	DWORD				BulletInfo[ 160 ] ;		// BULLET_RIGIDBODY_INFO ‚ðŠi”[‚·‚éƒoƒbƒtƒ@
+	DWORD				BulletInfo[ 160 ] ;		// BULLET_RIGIDBODY_INFO ã‚’æ ¼ç´ã™ã‚‹ãƒãƒƒãƒ•ã‚¡
 } ;
 
-// PMD“Ç‚Ýž‚Ýˆ——pPMD•¨—‰‰ŽZˆ——pƒWƒ‡ƒCƒ“ƒgƒf[ƒ^
+// PMDèª­ã¿è¾¼ã¿å‡¦ç†ç”¨PMDç‰©ç†æ¼”ç®—å‡¦ç†ç”¨ã‚¸ãƒ§ã‚¤ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿
 struct PMD_READ_PHYSICS_JOINT_INFO
 {
-	PMD_PHYSICS_JOINT	Base ;					// ƒWƒ‡ƒCƒ“ƒgŠîƒf[ƒ^
+	PMD_PHYSICS_JOINT	Base ;					// ã‚¸ãƒ§ã‚¤ãƒ³ãƒˆåŸºãƒ‡ãƒ¼ã‚¿
 
-	DWORD				BulletInfo[ 16 ] ;		// BULLET_JOINT_INFO ‚ðŠi”[‚·‚éƒoƒbƒtƒ@
+	DWORD				BulletInfo[ 16 ] ;		// BULLET_JOINT_INFO ã‚’æ ¼ç´ã™ã‚‹ãƒãƒƒãƒ•ã‚¡
 } ;
 
 
-// ‚o‚l‚c“Ç‚Ýž‚Ýˆ—’†‚Ì•¨—ŠÖŒW‚Ìî•ñ‚ð“Z‚ß‚½\‘¢‘Ì
+// ï¼°ï¼­ï¼¤èª­ã¿è¾¼ã¿å‡¦ç†ä¸­ã®ç‰©ç†é–¢ä¿‚ã®æƒ…å ±ã‚’çºã‚ãŸæ§‹é€ ä½“
 struct DX_MODELLOADER3_PMD_PHYSICS_INFO
 {
 	VECTOR Gravity ;
@@ -324,11 +324,11 @@ struct DX_MODELLOADER3_PMD_PHYSICS_INFO
 
 	MV1_ANIMKEYSET_R *KeyMatrixSet ;
 
-	DWORD BulletPhysicsDataBuffer[ 32 ] ;			// BULLET_PHYSICS ‚ðŠi”[‚·‚éƒoƒbƒtƒ@
+	DWORD BulletPhysicsDataBuffer[ 32 ] ;			// BULLET_PHYSICS ã‚’æ ¼ç´ã™ã‚‹ãƒãƒƒãƒ•ã‚¡
 } ;
 
 
-// ŠÖ”éŒ¾ -------------------------------------
+// é–¢æ•°å®£è¨€ -------------------------------------
 
 #ifndef DX_NON_NAMESPACE
 

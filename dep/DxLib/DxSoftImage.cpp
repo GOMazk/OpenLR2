@@ -1,15 +1,15 @@
 // -------------------------------------------------------------------------------
 // 
-// 		‚c‚wƒ‰ƒCƒuƒ‰ƒŠ		ƒ\ƒtƒgƒEƒFƒA‚Åˆµ‚¤‰æ‘œƒvƒƒOƒ‰ƒ€
+// 		ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒª		ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã§æ‰±ã†ç”»åƒãƒ—ãƒ­ã‚°ãƒ©ãƒ 
 // 
 // 				Ver 3.25a
 // 
 // -------------------------------------------------------------------------------
 
-// ‚c‚wƒ‰ƒCƒuƒ‰ƒŠì¬—p’è‹`
+// ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªä½œæˆæ™‚ç”¨å®šç¾©
 #define DX_MAKE
 
-// ƒCƒ“ƒNƒ‹[ƒh ------------------------------------------------------------------
+// ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ ------------------------------------------------------------------
 #include "DxSoftImage.h"
 
 #ifndef DX_NON_SOFTIMAGE
@@ -31,51 +31,51 @@ namespace DxLib
 
 #endif // DX_NON_NAMESPACE
 
-// ƒ}ƒNƒ’è‹` --------------------------------------------------------------------
+// ãƒã‚¯ãƒ­å®šç¾© --------------------------------------------------------------------
 
-// \‘¢‘Ì’è‹` --------------------------------------------------------------------
+// æ§‹é€ ä½“å®šç¾© --------------------------------------------------------------------
 
-// “à•”‘åˆæ•Ï”éŒ¾ --------------------------------------------------------------
+// å†…éƒ¨å¤§åŸŸå¤‰æ•°å®£è¨€ --------------------------------------------------------------
 
 SOFTIMAGEMANAGE SoftImageManage ;
 
-// ŠÖ”ƒvƒƒgƒ^ƒCƒvéŒ¾-----------------------------------------------------------
+// é–¢æ•°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€-----------------------------------------------------------
 
-// ƒvƒƒOƒ‰ƒ€ --------------------------------------------------------------------
+// ãƒ—ãƒ­ã‚°ãƒ©ãƒ  --------------------------------------------------------------------
 
-// ‰Šú‰»AŒãn––
+// åˆæœŸåŒ–ã€å¾Œå§‹æœ«
 
-// Šî–{ƒCƒ[ƒWŠÇ—î•ñ‚Ì‰Šú‰»
+// åŸºæœ¬ã‚¤ãƒ¡ãƒ¼ã‚¸ç®¡ç†æƒ…å ±ã®åˆæœŸåŒ–
 extern int InitializeSoftImageManage( void )
 {
-	// Šù‚É‰Šú‰»‚³‚ê‚Ä‚¢‚½‚ç‰½‚à‚µ‚È‚¢
+	// æ—¢ã«åˆæœŸåŒ–ã•ã‚Œã¦ã„ãŸã‚‰ä½•ã‚‚ã—ãªã„
 	if( SoftImageManage.InitializeFlag == TRUE )
 		return -1 ;
 
-	// ƒ\ƒtƒgƒCƒ[ƒWƒnƒ“ƒhƒ‹ŠÇ—î•ñ‚Ì‰Šú‰»
+	// ã‚½ãƒ•ãƒˆã‚¤ãƒ¡ãƒ¼ã‚¸ãƒãƒ³ãƒ‰ãƒ«ç®¡ç†æƒ…å ±ã®åˆæœŸåŒ–
 	InitializeHandleManage( DX_HANDLETYPE_SOFTIMAGE, sizeof( SOFTIMAGE ), MAX_SOFTIMAGE_NUM, InitializeSoftImageHandle, TerminateSoftImageHandle, NULL, L"SoftImage" ) ;
 
-	// ‰Šú‰»ƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// åˆæœŸåŒ–ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	SoftImageManage.InitializeFlag = TRUE ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// Šî–{ƒCƒ[ƒWŠÇ—î•ñ‚ÌŒãn––
+// åŸºæœ¬ã‚¤ãƒ¡ãƒ¼ã‚¸ç®¡ç†æƒ…å ±ã®å¾Œå§‹æœ«
 extern int TerminateSoftImageManage( void )
 {
-	// Šù‚ÉŒãn––‚³‚ê‚Ä‚¢‚½‚ç‰½‚à‚µ‚È‚¢
+	// æ—¢ã«å¾Œå§‹æœ«ã•ã‚Œã¦ã„ãŸã‚‰ä½•ã‚‚ã—ãªã„
 	if( SoftImageManage.InitializeFlag == FALSE )
 		return -1 ;
 
-	// ‰Šú‰»ƒtƒ‰ƒO‚ğ“|‚·
+	// åˆæœŸåŒ–ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 	SoftImageManage.InitializeFlag = FALSE ;
 
-	// ƒ\ƒtƒgƒCƒ[ƒWƒnƒ“ƒhƒ‹ŠÇ—î•ñ‚ÌŒãn––
+	// ã‚½ãƒ•ãƒˆã‚¤ãƒ¡ãƒ¼ã‚¸ãƒãƒ³ãƒ‰ãƒ«ç®¡ç†æƒ…å ±ã®å¾Œå§‹æœ«
 	TerminateHandleManage( DX_HANDLETYPE_SOFTIMAGE ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
@@ -88,32 +88,32 @@ extern int TerminateSoftImageManage( void )
 
 
 
-// ƒ\ƒtƒgƒEƒGƒAƒCƒ[ƒWƒnƒ“ƒhƒ‹‚Ì‰Šú‰»
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒãƒ³ãƒ‰ãƒ«ã®åˆæœŸåŒ–
 extern int InitializeSoftImageHandle( HANDLEINFO * )
 {
-	// “Á‚É‰½‚à‚µ‚È‚¢
+	// ç‰¹ã«ä½•ã‚‚ã—ãªã„
 	return 0 ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒAƒCƒ[ƒWƒnƒ“ƒhƒ‹‚ÌŒãn––
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒãƒ³ãƒ‰ãƒ«ã®å¾Œå§‹æœ«
 extern int TerminateSoftImageHandle( HANDLEINFO *HandleInfo )
 {
 	SOFTIMAGE *SoftImg = ( SOFTIMAGE * )HandleInfo ;
 
-	// ‰æ‘œƒf[ƒ^‚Ì‰ğ•ú
+	// ç”»åƒãƒ‡ãƒ¼ã‚¿ã®è§£æ”¾
 	NS_ReleaseBaseImage( &SoftImg->BaseImage ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤ƒCƒ[ƒW‚ğ‘S‚Ä‰ğ•ú‚·‚é
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’å…¨ã¦è§£æ”¾ã™ã‚‹
 extern int NS_InitSoftImage( void )
 {
 	return AllHandleSub( DX_HANDLETYPE_SOFTIMAGE ) ;
 }
 
-// LoadSoftImage ‚ÌÀˆ—ŠÖ”
+// LoadSoftImage ã®å®Ÿå‡¦ç†é–¢æ•°
 static int LoadSoftImage_Static(
 	int SIHandle,
 	LOADBASEIMAGE_GPARAM *GParam,
@@ -123,7 +123,7 @@ static int LoadSoftImage_Static(
 {
 	SOFTIMAGE *SoftImg ;
 
-	// V‚µ‚¢ƒ\ƒtƒgƒCƒ[ƒWƒnƒ“ƒhƒ‹‚Ìæ“¾
+	// æ–°ã—ã„ã‚½ãƒ•ãƒˆã‚¤ãƒ¡ãƒ¼ã‚¸ãƒãƒ³ãƒ‰ãƒ«ã®å–å¾—
 	if( ASyncThread )
 	{
 		if( SFTIMGCHK_ASYNC( SIHandle, SoftImg ) )
@@ -135,7 +135,7 @@ static int LoadSoftImage_Static(
 			return -1 ;
 	}
 
-	// CreateBaseImageToFile ‚Åƒtƒ@ƒCƒ‹‚©‚ç“Ç‚İ‚İ
+	// CreateBaseImageToFile ã§ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰èª­ã¿è¾¼ã¿
 	if( /* CreateBaseImageToFile_WCHAR_T( FileName, &SoftImg->BaseImage, FALSE ) == -1 */
 		CreateGraphImageOrDIBGraph_UseGParam(
 			GParam,
@@ -146,13 +146,13 @@ static int LoadSoftImage_Static(
 		) == -1 )
 		return -1 ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
 #ifndef DX_NON_ASYNCLOAD
 
-// LoadSoftImage ‚Ì”ñ“¯Šú“Ç‚İ‚İƒXƒŒƒbƒh‚©‚çŒÄ‚Î‚ê‚éŠÖ”
+// LoadSoftImage ã®éåŒæœŸèª­ã¿è¾¼ã¿ã‚¹ãƒ¬ãƒƒãƒ‰ã‹ã‚‰å‘¼ã°ã‚Œã‚‹é–¢æ•°
 static void LoadSoftImage_ASync( ASYNCLOADDATA_COMMON *AParam )
 {
 	int SIHandle ;
@@ -182,7 +182,7 @@ static void LoadSoftImage_ASync( ASYNCLOADDATA_COMMON *AParam )
 
 #endif // DX_NON_ASYNCLOAD
 
-// LoadSoftImage ‚ÌƒOƒ[ƒoƒ‹•Ï”‚ÉƒAƒNƒZƒX‚µ‚È‚¢ƒo[ƒWƒ‡ƒ“
+// LoadSoftImage ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°ã«ã‚¢ã‚¯ã‚»ã‚¹ã—ãªã„ãƒãƒ¼ã‚¸ãƒ§ãƒ³
 extern int LoadSoftImage_UseGParam(
 	const wchar_t *FileName,
 	int ASyncLoadFlag
@@ -193,7 +193,7 @@ extern int LoadSoftImage_UseGParam(
 
 	CheckActiveState() ;
 
-	// ƒnƒ“ƒhƒ‹‚Ìì¬
+	// ãƒãƒ³ãƒ‰ãƒ«ã®ä½œæˆ
 	SIHandle = AddHandle( DX_HANDLETYPE_SOFTIMAGE, FALSE, -1 ) ;
 	if( SIHandle == -1 )
 	{
@@ -211,25 +211,25 @@ extern int LoadSoftImage_UseGParam(
 
 		ConvertFullPathW_( FileName, FullPath, sizeof( FullPath ) ) ;
 
-		// ƒpƒ‰ƒ[ƒ^‚É•K—v‚Èƒƒ‚ƒŠ‚ÌƒTƒCƒY‚ğZo
+		// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã«å¿…è¦ãªãƒ¡ãƒ¢ãƒªã®ã‚µã‚¤ã‚ºã‚’ç®—å‡º
 		Addr = 0 ;
 		AddASyncLoadParamStruct( NULL, &Addr, &GParam, sizeof( GParam ) ) ;
 		AddASyncLoadParamInt( NULL, &Addr, SIHandle ) ;
 		AddASyncLoadParamString( NULL, &Addr, FullPath ) ;
 
-		// ƒƒ‚ƒŠ‚ÌŠm•Û
+		// ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿
 		AParam = AllocASyncLoadDataMemory( Addr ) ;
 		if( AParam == NULL )
 			goto ERR ;
 
-		// ˆ—‚É•K—v‚Èî•ñ‚ğƒZƒbƒg
+		// å‡¦ç†ã«å¿…è¦ãªæƒ…å ±ã‚’ã‚»ãƒƒãƒˆ
 		AParam->ProcessFunction = LoadSoftImage_ASync ;
 		Addr = 0 ;
 		AddASyncLoadParamStruct( AParam->Data, &Addr, &GParam, sizeof( GParam ) ) ;
 		AddASyncLoadParamInt( AParam->Data, &Addr, SIHandle ) ;
 		AddASyncLoadParamString( AParam->Data, &Addr, FullPath ) ;
 
-		// ƒf[ƒ^‚ğ’Ç‰Á
+		// ãƒ‡ãƒ¼ã‚¿ã‚’è¿½åŠ 
 		if( AddASyncLoadData( AParam ) < 0 )
 		{
 			DXFREE( AParam ) ;
@@ -237,7 +237,7 @@ extern int LoadSoftImage_UseGParam(
 			goto ERR ;
 		}
 
-		// ”ñ“¯Šú“Ç‚İ‚İƒJƒEƒ“ƒg‚ğƒCƒ“ƒNƒŠƒƒ“ƒg
+		// éåŒæœŸèª­ã¿è¾¼ã¿ã‚«ã‚¦ãƒ³ãƒˆã‚’ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆ
 		IncASyncLoadCount( SIHandle, AParam->Index ) ;
 	}
 	else
@@ -247,7 +247,7 @@ extern int LoadSoftImage_UseGParam(
 			goto ERR ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return SIHandle ;
 
 ERR :
@@ -256,7 +256,7 @@ ERR :
 	return -1 ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤ƒCƒ[ƒW‚Ì“Ç‚İ‚İ( -1:ƒGƒ‰[  -1ˆÈŠO:ƒCƒ[ƒWƒnƒ“ƒhƒ‹ )
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†ã‚¤ãƒ¡ãƒ¼ã‚¸ã®èª­ã¿è¾¼ã¿( -1:ã‚¨ãƒ©ãƒ¼  -1ä»¥å¤–:ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒãƒ³ãƒ‰ãƒ« )
 extern	int		NS_LoadSoftImage( const TCHAR *FileName )
 {
 #ifdef UNICODE
@@ -278,7 +278,7 @@ extern	int		NS_LoadSoftImage( const TCHAR *FileName )
 #endif
 }
 
-// ‰æ‘œƒtƒ@ƒCƒ‹‚ğ“Ç‚İ‚İƒ\ƒtƒgƒEƒGƒAƒCƒ[ƒWƒnƒ“ƒhƒ‹‚ğì¬‚·‚é( -1:ƒGƒ‰[  -1ˆÈŠO:ƒCƒ[ƒWƒnƒ“ƒhƒ‹ )
+// ç”»åƒãƒ•ã‚¡ã‚¤ãƒ«ã‚’èª­ã¿è¾¼ã¿ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒãƒ³ãƒ‰ãƒ«ã‚’ä½œæˆã™ã‚‹( -1:ã‚¨ãƒ©ãƒ¼  -1ä»¥å¤–:ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒãƒ³ãƒ‰ãƒ« )
 extern int NS_LoadSoftImageWithStrLen( const TCHAR *FileName, size_t FileNameLength )
 {
 	int Result ;
@@ -294,7 +294,7 @@ extern int NS_LoadSoftImageWithStrLen( const TCHAR *FileName, size_t FileNameLen
 	return Result ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤ƒCƒ[ƒW‚Ì“Ç‚İ‚İ( -1:ƒGƒ‰[  -1ˆÈŠO:ƒCƒ[ƒWƒnƒ“ƒhƒ‹ )
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†ã‚¤ãƒ¡ãƒ¼ã‚¸ã®èª­ã¿è¾¼ã¿( -1:ã‚¨ãƒ©ãƒ¼  -1ä»¥å¤–:ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒãƒ³ãƒ‰ãƒ« )
 extern	int		LoadSoftImage_WCHAR_T( const wchar_t *FileName )
 {
 	return LoadSoftImage_UseGParam( FileName, GetASyncLoadFlag() ) ;
@@ -305,7 +305,7 @@ extern	int		LoadSoftImage_WCHAR_T( const wchar_t *FileName )
 
 
 
-// LoadARGB8ColorSoftImage ‚ÌÀˆ—ŠÖ”
+// LoadARGB8ColorSoftImage ã®å®Ÿå‡¦ç†é–¢æ•°
 static int LoadARGB8ColorSoftImage_Static(
 	int SIHandle,
 	LOADBASEIMAGE_GPARAM *GParam,
@@ -315,7 +315,7 @@ static int LoadARGB8ColorSoftImage_Static(
 {
 	SOFTIMAGE *SoftImg ;
 
-	// V‚µ‚¢ƒ\ƒtƒgƒCƒ[ƒWƒnƒ“ƒhƒ‹‚Ìæ“¾
+	// æ–°ã—ã„ã‚½ãƒ•ãƒˆã‚¤ãƒ¡ãƒ¼ã‚¸ãƒãƒ³ãƒ‰ãƒ«ã®å–å¾—
 	if( ASyncThread )
 	{
 		if( SFTIMGCHK_ASYNC( SIHandle, SoftImg ) )
@@ -327,7 +327,7 @@ static int LoadARGB8ColorSoftImage_Static(
 			return -1 ;
 	}
 
-	// CreateBaseImageToFile ‚Åƒtƒ@ƒCƒ‹‚©‚ç“Ç‚İ‚İ
+	// CreateBaseImageToFile ã§ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰èª­ã¿è¾¼ã¿
 	if( /* CreateBaseImageToFile_WCHAR_T( FileName, &SoftImg->BaseImage, FALSE ) == -1 */
 		CreateGraphImageOrDIBGraph_UseGParam(
 			GParam,
@@ -338,7 +338,7 @@ static int LoadARGB8ColorSoftImage_Static(
 		) == -1 )
 		return -1 ;
 
-	// “Ç‚İ‚ñ‚¾‰æ‘œ‚ÌŒ`®‚ª ARGB8 ‚Å‚Í‚È‚©‚Á‚½‚ç ARGB8 Œ`®‚É•ÏŠ·
+	// èª­ã¿è¾¼ã‚“ã ç”»åƒã®å½¢å¼ãŒ ARGB8 ã§ã¯ãªã‹ã£ãŸã‚‰ ARGB8 å½¢å¼ã«å¤‰æ›
 	if( SoftImg->BaseImage.ColorData.Format				!= DX_BASEIMAGE_FORMAT_NORMAL ||
 		SoftImg->BaseImage.ColorData.ChannelNum			!= 0 ||
 		SoftImg->BaseImage.ColorData.ChannelBitDepth	!= 0 ||
@@ -354,7 +354,7 @@ static int LoadARGB8ColorSoftImage_Static(
 	{
 		BASEIMAGE TempBaseImage ;
 
-		// “¯‚¶ƒTƒCƒY‚Ì ARGB8Œ`®‚ÌŠî–{ƒCƒ[ƒW‚ğì¬
+		// åŒã˜ã‚µã‚¤ã‚ºã® ARGB8å½¢å¼ã®åŸºæœ¬ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’ä½œæˆ
 		TempBaseImage = SoftImg->BaseImage ;
 		if( NS_CreateARGB8ColorBaseImage( SoftImg->BaseImage.Width, SoftImg->BaseImage.Height, &SoftImg->BaseImage ) == -1 )
 		{
@@ -362,20 +362,20 @@ static int LoadARGB8ColorSoftImage_Static(
 			return -1 ;
 		}
 
-		// ARGB8 Œ`®‚É•ÏŠ·
+		// ARGB8 å½¢å¼ã«å¤‰æ›
 		NS_BltBaseImage2( 0, 0, &TempBaseImage, &SoftImg->BaseImage ) ;
 
-		// “Ç‚İ‚ñ‚¾Šî–{ƒCƒ[ƒW‚Í‰ğ•ú
+		// èª­ã¿è¾¼ã‚“ã åŸºæœ¬ã‚¤ãƒ¡ãƒ¼ã‚¸ã¯è§£æ”¾
 		NS_ReleaseBaseImage( &TempBaseImage ) ;
 	}
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
 #ifndef DX_NON_ASYNCLOAD
 
-// LoadARGB8ColorSoftImage ‚Ì”ñ“¯Šú“Ç‚İ‚İƒXƒŒƒbƒh‚©‚çŒÄ‚Î‚ê‚éŠÖ”
+// LoadARGB8ColorSoftImage ã®éåŒæœŸèª­ã¿è¾¼ã¿ã‚¹ãƒ¬ãƒƒãƒ‰ã‹ã‚‰å‘¼ã°ã‚Œã‚‹é–¢æ•°
 static void LoadARGB8ColorSoftImage_ASync( ASYNCLOADDATA_COMMON *AParam )
 {
 	int SIHandle ;
@@ -405,7 +405,7 @@ static void LoadARGB8ColorSoftImage_ASync( ASYNCLOADDATA_COMMON *AParam )
 
 #endif // DX_NON_ASYNCLOAD
 
-// LoadARGB8ColorSoftImage ‚ÌƒOƒ[ƒoƒ‹•Ï”‚ÉƒAƒNƒZƒX‚µ‚È‚¢ƒo[ƒWƒ‡ƒ“
+// LoadARGB8ColorSoftImage ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°ã«ã‚¢ã‚¯ã‚»ã‚¹ã—ãªã„ãƒãƒ¼ã‚¸ãƒ§ãƒ³
 extern int LoadARGB8ColorSoftImage_UseGParam(
 	const wchar_t *FileName,
 	int ASyncLoadFlag
@@ -416,7 +416,7 @@ extern int LoadARGB8ColorSoftImage_UseGParam(
 
 	CheckActiveState() ;
 
-	// ƒnƒ“ƒhƒ‹‚Ìì¬
+	// ãƒãƒ³ãƒ‰ãƒ«ã®ä½œæˆ
 	SIHandle = AddHandle( DX_HANDLETYPE_SOFTIMAGE, FALSE, -1 ) ;
 	if( SIHandle == -1 )
 	{
@@ -434,25 +434,25 @@ extern int LoadARGB8ColorSoftImage_UseGParam(
 
 		ConvertFullPathW_( FileName, FullPath, sizeof( FullPath ) ) ;
 
-		// ƒpƒ‰ƒ[ƒ^‚É•K—v‚Èƒƒ‚ƒŠ‚ÌƒTƒCƒY‚ğZo
+		// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã«å¿…è¦ãªãƒ¡ãƒ¢ãƒªã®ã‚µã‚¤ã‚ºã‚’ç®—å‡º
 		Addr = 0 ;
 		AddASyncLoadParamStruct( NULL, &Addr, &GParam, sizeof( GParam ) ) ;
 		AddASyncLoadParamInt( NULL, &Addr, SIHandle ) ;
 		AddASyncLoadParamString( NULL, &Addr, FullPath ) ;
 
-		// ƒƒ‚ƒŠ‚ÌŠm•Û
+		// ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿
 		AParam = AllocASyncLoadDataMemory( Addr ) ;
 		if( AParam == NULL )
 			goto ERR ;
 
-		// ˆ—‚É•K—v‚Èî•ñ‚ğƒZƒbƒg
+		// å‡¦ç†ã«å¿…è¦ãªæƒ…å ±ã‚’ã‚»ãƒƒãƒˆ
 		AParam->ProcessFunction = LoadARGB8ColorSoftImage_ASync ;
 		Addr = 0 ;
 		AddASyncLoadParamStruct( AParam->Data, &Addr, &GParam, sizeof( GParam ) ) ;
 		AddASyncLoadParamInt( AParam->Data, &Addr, SIHandle ) ;
 		AddASyncLoadParamString( AParam->Data, &Addr, FullPath ) ;
 
-		// ƒf[ƒ^‚ğ’Ç‰Á
+		// ãƒ‡ãƒ¼ã‚¿ã‚’è¿½åŠ 
 		if( AddASyncLoadData( AParam ) < 0 )
 		{
 			DXFREE( AParam ) ;
@@ -460,7 +460,7 @@ extern int LoadARGB8ColorSoftImage_UseGParam(
 			goto ERR ;
 		}
 
-		// ”ñ“¯Šú“Ç‚İ‚İƒJƒEƒ“ƒg‚ğƒCƒ“ƒNƒŠƒƒ“ƒg
+		// éåŒæœŸèª­ã¿è¾¼ã¿ã‚«ã‚¦ãƒ³ãƒˆã‚’ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆ
 		IncASyncLoadCount( SIHandle, AParam->Index ) ;
 	}
 	else
@@ -470,7 +470,7 @@ extern int LoadARGB8ColorSoftImage_UseGParam(
 			goto ERR ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return SIHandle ;
 
 ERR :
@@ -479,7 +479,7 @@ ERR :
 	return -1 ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤ƒCƒ[ƒW‚Ì“Ç‚İ‚İ( -1:ƒGƒ‰[  -1ˆÈŠO:ƒCƒ[ƒWƒnƒ“ƒhƒ‹ )( “Ç‚İ‚ñ‚¾‰æ‘œ‚ª RGBA8 ˆÈŠO‚ÌƒtƒH[ƒ}ƒbƒg‚¾‚Á‚½ê‡‚Í RGBA8 ƒJƒ‰[‚É•ÏŠ· )
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†ã‚¤ãƒ¡ãƒ¼ã‚¸ã®èª­ã¿è¾¼ã¿( -1:ã‚¨ãƒ©ãƒ¼  -1ä»¥å¤–:ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒãƒ³ãƒ‰ãƒ« )( èª­ã¿è¾¼ã‚“ã ç”»åƒãŒ RGBA8 ä»¥å¤–ã®ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã ã£ãŸå ´åˆã¯ RGBA8 ã‚«ãƒ©ãƒ¼ã«å¤‰æ› )
 extern	int		NS_LoadARGB8ColorSoftImage( const TCHAR *FileName )
 {
 #ifdef UNICODE
@@ -501,7 +501,7 @@ extern	int		NS_LoadARGB8ColorSoftImage( const TCHAR *FileName )
 #endif
 }
 
-// ‰æ‘œƒtƒ@ƒCƒ‹‚ğ“Ç‚İ‚İƒ\ƒtƒgƒEƒGƒAƒCƒ[ƒWƒnƒ“ƒhƒ‹‚ğì¬‚·‚é( -1:ƒGƒ‰[  -1ˆÈŠO:ƒCƒ[ƒWƒnƒ“ƒhƒ‹ )( “Ç‚İ‚ñ‚¾‰æ‘œ‚ª RGBA8 ˆÈŠO‚ÌƒtƒH[ƒ}ƒbƒg‚¾‚Á‚½ê‡‚Í RGBA8 ƒJƒ‰[‚É•ÏŠ· )
+// ç”»åƒãƒ•ã‚¡ã‚¤ãƒ«ã‚’èª­ã¿è¾¼ã¿ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒãƒ³ãƒ‰ãƒ«ã‚’ä½œæˆã™ã‚‹( -1:ã‚¨ãƒ©ãƒ¼  -1ä»¥å¤–:ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒãƒ³ãƒ‰ãƒ« )( èª­ã¿è¾¼ã‚“ã ç”»åƒãŒ RGBA8 ä»¥å¤–ã®ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã ã£ãŸå ´åˆã¯ RGBA8 ã‚«ãƒ©ãƒ¼ã«å¤‰æ› )
 extern int NS_LoadARGB8ColorSoftImageWithStrLen( const TCHAR *FileName, size_t FileNameLength )
 {
 	int Result ;
@@ -517,7 +517,7 @@ extern int NS_LoadARGB8ColorSoftImageWithStrLen( const TCHAR *FileName, size_t F
 	return Result ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤ƒCƒ[ƒW‚Ì“Ç‚İ‚İ( -1:ƒGƒ‰[  -1ˆÈŠO:ƒCƒ[ƒWƒnƒ“ƒhƒ‹ )( “Ç‚İ‚ñ‚¾‰æ‘œ‚ª RGBA8 ˆÈŠO‚ÌƒtƒH[ƒ}ƒbƒg‚¾‚Á‚½ê‡‚Í RGBA8 ƒJƒ‰[‚É•ÏŠ· )
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†ã‚¤ãƒ¡ãƒ¼ã‚¸ã®èª­ã¿è¾¼ã¿( -1:ã‚¨ãƒ©ãƒ¼  -1ä»¥å¤–:ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒãƒ³ãƒ‰ãƒ« )( èª­ã¿è¾¼ã‚“ã ç”»åƒãŒ RGBA8 ä»¥å¤–ã®ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã ã£ãŸå ´åˆã¯ RGBA8 ã‚«ãƒ©ãƒ¼ã«å¤‰æ› )
 extern	int		LoadARGB8ColorSoftImage_WCHAR_T( const wchar_t *FileName )
 {
 	return LoadARGB8ColorSoftImage_UseGParam( FileName, GetASyncLoadFlag() ) ;
@@ -541,7 +541,7 @@ extern	int		LoadARGB8ColorSoftImage_WCHAR_T( const wchar_t *FileName )
 
 
 
-// LoadXRGB8ColorSoftImage ‚ÌÀˆ—ŠÖ”
+// LoadXRGB8ColorSoftImage ã®å®Ÿå‡¦ç†é–¢æ•°
 static int LoadXRGB8ColorSoftImage_Static(
 	int SIHandle,
 	LOADBASEIMAGE_GPARAM *GParam,
@@ -551,7 +551,7 @@ static int LoadXRGB8ColorSoftImage_Static(
 {
 	SOFTIMAGE *SoftImg ;
 
-	// V‚µ‚¢ƒ\ƒtƒgƒCƒ[ƒWƒnƒ“ƒhƒ‹‚Ìæ“¾
+	// æ–°ã—ã„ã‚½ãƒ•ãƒˆã‚¤ãƒ¡ãƒ¼ã‚¸ãƒãƒ³ãƒ‰ãƒ«ã®å–å¾—
 	if( ASyncThread )
 	{
 		if( SFTIMGCHK_ASYNC( SIHandle, SoftImg ) )
@@ -563,7 +563,7 @@ static int LoadXRGB8ColorSoftImage_Static(
 			return -1 ;
 	}
 
-	// CreateBaseImageToFile ‚Åƒtƒ@ƒCƒ‹‚©‚ç“Ç‚İ‚İ
+	// CreateBaseImageToFile ã§ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰èª­ã¿è¾¼ã¿
 	if( /* CreateBaseImageToFile_WCHAR_T( FileName, &SoftImg->BaseImage, FALSE ) == -1 */
 		CreateGraphImageOrDIBGraph_UseGParam(
 			GParam,
@@ -574,7 +574,7 @@ static int LoadXRGB8ColorSoftImage_Static(
 		) == -1 )
 		return -1 ;
 
-	// “Ç‚İ‚ñ‚¾‰æ‘œ‚ÌŒ`®‚ª XRGB8 ‚Å‚Í‚È‚©‚Á‚½‚ç XRGB8 Œ`®‚É•ÏŠ·
+	// èª­ã¿è¾¼ã‚“ã ç”»åƒã®å½¢å¼ãŒ XRGB8 ã§ã¯ãªã‹ã£ãŸã‚‰ XRGB8 å½¢å¼ã«å¤‰æ›
 	if( SoftImg->BaseImage.ColorData.Format				!= DX_BASEIMAGE_FORMAT_NORMAL ||
 		SoftImg->BaseImage.ColorData.ChannelNum			!= 0 ||
 		SoftImg->BaseImage.ColorData.ChannelBitDepth	!= 0 ||
@@ -590,7 +590,7 @@ static int LoadXRGB8ColorSoftImage_Static(
 	{
 		BASEIMAGE TempBaseImage ;
 
-		// “¯‚¶ƒTƒCƒY‚Ì XRGB8Œ`®‚ÌŠî–{ƒCƒ[ƒW‚ğì¬
+		// åŒã˜ã‚µã‚¤ã‚ºã® XRGB8å½¢å¼ã®åŸºæœ¬ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’ä½œæˆ
 		TempBaseImage = SoftImg->BaseImage ;
 		if( NS_CreateXRGB8ColorBaseImage( SoftImg->BaseImage.Width, SoftImg->BaseImage.Height, &SoftImg->BaseImage ) == -1 )
 		{
@@ -598,20 +598,20 @@ static int LoadXRGB8ColorSoftImage_Static(
 			return -1 ;
 		}
 
-		// XRGB8 Œ`®‚É•ÏŠ·
+		// XRGB8 å½¢å¼ã«å¤‰æ›
 		NS_BltBaseImage2( 0, 0, &TempBaseImage, &SoftImg->BaseImage ) ;
 
-		// “Ç‚İ‚ñ‚¾Šî–{ƒCƒ[ƒW‚Í‰ğ•ú
+		// èª­ã¿è¾¼ã‚“ã åŸºæœ¬ã‚¤ãƒ¡ãƒ¼ã‚¸ã¯è§£æ”¾
 		NS_ReleaseBaseImage( &TempBaseImage ) ;
 	}
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
 #ifndef DX_NON_ASYNCLOAD
 
-// LoadXRGB8ColorSoftImage ‚Ì”ñ“¯Šú“Ç‚İ‚İƒXƒŒƒbƒh‚©‚çŒÄ‚Î‚ê‚éŠÖ”
+// LoadXRGB8ColorSoftImage ã®éåŒæœŸèª­ã¿è¾¼ã¿ã‚¹ãƒ¬ãƒƒãƒ‰ã‹ã‚‰å‘¼ã°ã‚Œã‚‹é–¢æ•°
 static void LoadXRGB8ColorSoftImage_ASync( ASYNCLOADDATA_COMMON *AParam )
 {
 	int SIHandle ;
@@ -641,7 +641,7 @@ static void LoadXRGB8ColorSoftImage_ASync( ASYNCLOADDATA_COMMON *AParam )
 
 #endif // DX_NON_ASYNCLOAD
 
-// LoadXRGB8ColorSoftImage ‚ÌƒOƒ[ƒoƒ‹•Ï”‚ÉƒAƒNƒZƒX‚µ‚È‚¢ƒo[ƒWƒ‡ƒ“
+// LoadXRGB8ColorSoftImage ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°ã«ã‚¢ã‚¯ã‚»ã‚¹ã—ãªã„ãƒãƒ¼ã‚¸ãƒ§ãƒ³
 extern int LoadXRGB8ColorSoftImage_UseGParam(
 	const wchar_t *FileName,
 	int ASyncLoadFlag
@@ -652,7 +652,7 @@ extern int LoadXRGB8ColorSoftImage_UseGParam(
 
 	CheckActiveState() ;
 
-	// ƒnƒ“ƒhƒ‹‚Ìì¬
+	// ãƒãƒ³ãƒ‰ãƒ«ã®ä½œæˆ
 	SIHandle = AddHandle( DX_HANDLETYPE_SOFTIMAGE, FALSE, -1 ) ;
 	if( SIHandle == -1 )
 	{
@@ -670,25 +670,25 @@ extern int LoadXRGB8ColorSoftImage_UseGParam(
 
 		ConvertFullPathW_( FileName, FullPath, sizeof( FullPath ) ) ;
 
-		// ƒpƒ‰ƒ[ƒ^‚É•K—v‚Èƒƒ‚ƒŠ‚ÌƒTƒCƒY‚ğZo
+		// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã«å¿…è¦ãªãƒ¡ãƒ¢ãƒªã®ã‚µã‚¤ã‚ºã‚’ç®—å‡º
 		Addr = 0 ;
 		AddASyncLoadParamStruct( NULL, &Addr, &GParam, sizeof( GParam ) ) ;
 		AddASyncLoadParamInt( NULL, &Addr, SIHandle ) ;
 		AddASyncLoadParamString( NULL, &Addr, FullPath ) ;
 
-		// ƒƒ‚ƒŠ‚ÌŠm•Û
+		// ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿
 		AParam = AllocASyncLoadDataMemory( Addr ) ;
 		if( AParam == NULL )
 			goto ERR ;
 
-		// ˆ—‚É•K—v‚Èî•ñ‚ğƒZƒbƒg
+		// å‡¦ç†ã«å¿…è¦ãªæƒ…å ±ã‚’ã‚»ãƒƒãƒˆ
 		AParam->ProcessFunction = LoadXRGB8ColorSoftImage_ASync ;
 		Addr = 0 ;
 		AddASyncLoadParamStruct( AParam->Data, &Addr, &GParam, sizeof( GParam ) ) ;
 		AddASyncLoadParamInt( AParam->Data, &Addr, SIHandle ) ;
 		AddASyncLoadParamString( AParam->Data, &Addr, FullPath ) ;
 
-		// ƒf[ƒ^‚ğ’Ç‰Á
+		// ãƒ‡ãƒ¼ã‚¿ã‚’è¿½åŠ 
 		if( AddASyncLoadData( AParam ) < 0 )
 		{
 			DXFREE( AParam ) ;
@@ -696,7 +696,7 @@ extern int LoadXRGB8ColorSoftImage_UseGParam(
 			goto ERR ;
 		}
 
-		// ”ñ“¯Šú“Ç‚İ‚İƒJƒEƒ“ƒg‚ğƒCƒ“ƒNƒŠƒƒ“ƒg
+		// éåŒæœŸèª­ã¿è¾¼ã¿ã‚«ã‚¦ãƒ³ãƒˆã‚’ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆ
 		IncASyncLoadCount( SIHandle, AParam->Index ) ;
 	}
 	else
@@ -706,7 +706,7 @@ extern int LoadXRGB8ColorSoftImage_UseGParam(
 			goto ERR ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return SIHandle ;
 
 ERR :
@@ -715,7 +715,7 @@ ERR :
 	return -1 ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤ƒCƒ[ƒW‚Ì“Ç‚İ‚İ( -1:ƒGƒ‰[  -1ˆÈŠO:ƒCƒ[ƒWƒnƒ“ƒhƒ‹ )( “Ç‚İ‚ñ‚¾‰æ‘œ‚ª RGBA8 ˆÈŠO‚ÌƒtƒH[ƒ}ƒbƒg‚¾‚Á‚½ê‡‚Í RGBA8 ƒJƒ‰[‚É•ÏŠ· )
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†ã‚¤ãƒ¡ãƒ¼ã‚¸ã®èª­ã¿è¾¼ã¿( -1:ã‚¨ãƒ©ãƒ¼  -1ä»¥å¤–:ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒãƒ³ãƒ‰ãƒ« )( èª­ã¿è¾¼ã‚“ã ç”»åƒãŒ RGBA8 ä»¥å¤–ã®ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã ã£ãŸå ´åˆã¯ RGBA8 ã‚«ãƒ©ãƒ¼ã«å¤‰æ› )
 extern	int		NS_LoadXRGB8ColorSoftImage( const TCHAR *FileName )
 {
 #ifdef UNICODE
@@ -737,7 +737,7 @@ extern	int		NS_LoadXRGB8ColorSoftImage( const TCHAR *FileName )
 #endif
 }
 
-// ‰æ‘œƒtƒ@ƒCƒ‹‚ğ“Ç‚İ‚İƒ\ƒtƒgƒEƒGƒAƒCƒ[ƒWƒnƒ“ƒhƒ‹‚ğì¬‚·‚é( -1:ƒGƒ‰[  -1ˆÈŠO:ƒCƒ[ƒWƒnƒ“ƒhƒ‹ )( “Ç‚İ‚ñ‚¾‰æ‘œ‚ª XGBA8 ˆÈŠO‚ÌƒtƒH[ƒ}ƒbƒg‚¾‚Á‚½ê‡‚Í XGBA8 ƒJƒ‰[‚É•ÏŠ· )
+// ç”»åƒãƒ•ã‚¡ã‚¤ãƒ«ã‚’èª­ã¿è¾¼ã¿ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒãƒ³ãƒ‰ãƒ«ã‚’ä½œæˆã™ã‚‹( -1:ã‚¨ãƒ©ãƒ¼  -1ä»¥å¤–:ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒãƒ³ãƒ‰ãƒ« )( èª­ã¿è¾¼ã‚“ã ç”»åƒãŒ XGBA8 ä»¥å¤–ã®ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã ã£ãŸå ´åˆã¯ XGBA8 ã‚«ãƒ©ãƒ¼ã«å¤‰æ› )
 extern int NS_LoadXRGB8ColorSoftImageWithStrLen( const TCHAR *FileName, size_t FileNameLength )
 {
 	int Result ;
@@ -753,7 +753,7 @@ extern int NS_LoadXRGB8ColorSoftImageWithStrLen( const TCHAR *FileName, size_t F
 	return Result ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤ƒCƒ[ƒW‚Ì“Ç‚İ‚İ( -1:ƒGƒ‰[  -1ˆÈŠO:ƒCƒ[ƒWƒnƒ“ƒhƒ‹ )( “Ç‚İ‚ñ‚¾‰æ‘œ‚ª RGBA8 ˆÈŠO‚ÌƒtƒH[ƒ}ƒbƒg‚¾‚Á‚½ê‡‚Í RGBA8 ƒJƒ‰[‚É•ÏŠ· )
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†ã‚¤ãƒ¡ãƒ¼ã‚¸ã®èª­ã¿è¾¼ã¿( -1:ã‚¨ãƒ©ãƒ¼  -1ä»¥å¤–:ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒãƒ³ãƒ‰ãƒ« )( èª­ã¿è¾¼ã‚“ã ç”»åƒãŒ RGBA8 ä»¥å¤–ã®ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã ã£ãŸå ´åˆã¯ RGBA8 ã‚«ãƒ©ãƒ¼ã«å¤‰æ› )
 extern	int		LoadXRGB8ColorSoftImage_WCHAR_T( const wchar_t *FileName )
 {
 	return LoadXRGB8ColorSoftImage_UseGParam( FileName, GetASyncLoadFlag() ) ;
@@ -767,7 +767,7 @@ extern	int		LoadXRGB8ColorSoftImage_WCHAR_T( const wchar_t *FileName )
 
 
 
-// LoadSoftImageToMem ‚ÌÀˆ—ŠÖ”
+// LoadSoftImageToMem ã®å®Ÿå‡¦ç†é–¢æ•°
 static int LoadSoftImageToMem_Static(
 	int SIHandle,
 	LOADBASEIMAGE_GPARAM *GParam,
@@ -778,7 +778,7 @@ static int LoadSoftImageToMem_Static(
 {
 	SOFTIMAGE *SoftImg ;
 
-	// V‚µ‚¢ƒ\ƒtƒgƒCƒ[ƒWƒnƒ“ƒhƒ‹‚Ìæ“¾
+	// æ–°ã—ã„ã‚½ãƒ•ãƒˆã‚¤ãƒ¡ãƒ¼ã‚¸ãƒãƒ³ãƒ‰ãƒ«ã®å–å¾—
 	if( ASyncThread )
 	{
 		if( SFTIMGCHK_ASYNC( SIHandle, SoftImg ) )
@@ -790,7 +790,7 @@ static int LoadSoftImageToMem_Static(
 			return -1 ;
 	}
 
-	// CreateBaseImageToMem ‚Åƒƒ‚ƒŠ‚©‚ç“Ç‚İ‚İ
+	// CreateBaseImageToMem ã§ãƒ¡ãƒ¢ãƒªã‹ã‚‰èª­ã¿è¾¼ã¿
 	if( /* NS_CreateBaseImageToMem( FileImage, FileImageSize, &SoftImg->BaseImage, FALSE ) == -1 */
 		CreateGraphImageOrDIBGraph_UseGParam(
 			GParam,
@@ -801,13 +801,13 @@ static int LoadSoftImageToMem_Static(
 		) == -1 )
 		return -1 ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
 #ifndef DX_NON_ASYNCLOAD
 
-// LoadSoftImageToMem ‚Ì”ñ“¯Šú“Ç‚İ‚İƒXƒŒƒbƒh‚©‚çŒÄ‚Î‚ê‚éŠÖ”
+// LoadSoftImageToMem ã®éåŒæœŸèª­ã¿è¾¼ã¿ã‚¹ãƒ¬ãƒƒãƒ‰ã‹ã‚‰å‘¼ã°ã‚Œã‚‹é–¢æ•°
 static void LoadSoftImageToMem_ASync( ASYNCLOADDATA_COMMON *AParam )
 {
 	int SIHandle ;
@@ -840,7 +840,7 @@ static void LoadSoftImageToMem_ASync( ASYNCLOADDATA_COMMON *AParam )
 #endif // DX_NON_ASYNCLOAD
 
 
-// LoadSoftImageToMem ‚ÌƒOƒ[ƒoƒ‹•Ï”‚ÉƒAƒNƒZƒX‚µ‚È‚¢ƒo[ƒWƒ‡ƒ“
+// LoadSoftImageToMem ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°ã«ã‚¢ã‚¯ã‚»ã‚¹ã—ãªã„ãƒãƒ¼ã‚¸ãƒ§ãƒ³
 extern int LoadSoftImageToMem_UseGParam(
 	const void *FileImage,
 	int FileImageSize,
@@ -852,7 +852,7 @@ extern int LoadSoftImageToMem_UseGParam(
 
 	CheckActiveState() ;
 
-	// ƒnƒ“ƒhƒ‹‚Ìì¬
+	// ãƒãƒ³ãƒ‰ãƒ«ã®ä½œæˆ
 	SIHandle = AddHandle( DX_HANDLETYPE_SOFTIMAGE, FALSE, -1 ) ;
 	if( SIHandle == -1 )
 	{
@@ -867,19 +867,19 @@ extern int LoadSoftImageToMem_UseGParam(
 		ASYNCLOADDATA_COMMON *AParam = NULL ;
 		int Addr ;
 
-		// ƒpƒ‰ƒ[ƒ^‚É•K—v‚Èƒƒ‚ƒŠ‚ÌƒTƒCƒY‚ğZo
+		// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã«å¿…è¦ãªãƒ¡ãƒ¢ãƒªã®ã‚µã‚¤ã‚ºã‚’ç®—å‡º
 		Addr = 0 ;
 		AddASyncLoadParamStruct( NULL, &Addr, &GParam, sizeof( GParam ) ) ;
 		AddASyncLoadParamInt( NULL, &Addr, SIHandle ) ;
 		AddASyncLoadParamConstVoidP( NULL, &Addr, FileImage ) ;
 		AddASyncLoadParamInt( NULL, &Addr, FileImageSize ) ;
 
-		// ƒƒ‚ƒŠ‚ÌŠm•Û
+		// ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿
 		AParam = AllocASyncLoadDataMemory( Addr ) ;
 		if( AParam == NULL )
 			goto ERR ;
 
-		// ˆ—‚É•K—v‚Èî•ñ‚ğƒZƒbƒg
+		// å‡¦ç†ã«å¿…è¦ãªæƒ…å ±ã‚’ã‚»ãƒƒãƒˆ
 		AParam->ProcessFunction = LoadSoftImageToMem_ASync ;
 		Addr = 0 ;
 		AddASyncLoadParamStruct( AParam->Data, &Addr, &GParam, sizeof( GParam ) ) ;
@@ -887,7 +887,7 @@ extern int LoadSoftImageToMem_UseGParam(
 		AddASyncLoadParamConstVoidP( AParam->Data, &Addr, FileImage ) ;
 		AddASyncLoadParamInt( AParam->Data, &Addr, FileImageSize ) ;
 
-		// ƒf[ƒ^‚ğ’Ç‰Á
+		// ãƒ‡ãƒ¼ã‚¿ã‚’è¿½åŠ 
 		if( AddASyncLoadData( AParam ) < 0 )
 		{
 			DXFREE( AParam ) ;
@@ -895,7 +895,7 @@ extern int LoadSoftImageToMem_UseGParam(
 			goto ERR ;
 		}
 
-		// ”ñ“¯Šú“Ç‚İ‚İƒJƒEƒ“ƒg‚ğƒCƒ“ƒNƒŠƒƒ“ƒg
+		// éåŒæœŸèª­ã¿è¾¼ã¿ã‚«ã‚¦ãƒ³ãƒˆã‚’ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆ
 		IncASyncLoadCount( SIHandle, AParam->Index ) ;
 	}
 	else
@@ -905,7 +905,7 @@ extern int LoadSoftImageToMem_UseGParam(
 			goto ERR ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return SIHandle ;
 
 ERR :
@@ -914,7 +914,7 @@ ERR :
 	return -1 ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤ƒCƒ[ƒW‚Ìƒƒ‚ƒŠ‚©‚ç‚Ì“Ç‚İ‚İ( -1:ƒGƒ‰[  -1ˆÈŠO:ƒCƒ[ƒWƒnƒ“ƒhƒ‹ )
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†ã‚¤ãƒ¡ãƒ¼ã‚¸ã®ãƒ¡ãƒ¢ãƒªã‹ã‚‰ã®èª­ã¿è¾¼ã¿( -1:ã‚¨ãƒ©ãƒ¼  -1ä»¥å¤–:ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒãƒ³ãƒ‰ãƒ« )
 extern	int		NS_LoadSoftImageToMem( const void *FileImage, int FileImageSize )
 {
 	return LoadSoftImageToMem_UseGParam( FileImage, FileImageSize, GetASyncLoadFlag() ) ;
@@ -928,7 +928,7 @@ extern	int		NS_LoadSoftImageToMem( const void *FileImage, int FileImageSize )
 
 
 
-// LoadARGB8ColorSoftImageToMem ‚ÌÀˆ—ŠÖ”
+// LoadARGB8ColorSoftImageToMem ã®å®Ÿå‡¦ç†é–¢æ•°
 static int LoadARGB8ColorSoftImageToMem_Static(
 	int SIHandle,
 	LOADBASEIMAGE_GPARAM *GParam,
@@ -939,7 +939,7 @@ static int LoadARGB8ColorSoftImageToMem_Static(
 {
 	SOFTIMAGE *SoftImg ;
 
-	// V‚µ‚¢ƒ\ƒtƒgƒCƒ[ƒWƒnƒ“ƒhƒ‹‚Ìæ“¾
+	// æ–°ã—ã„ã‚½ãƒ•ãƒˆã‚¤ãƒ¡ãƒ¼ã‚¸ãƒãƒ³ãƒ‰ãƒ«ã®å–å¾—
 	if( ASyncThread )
 	{
 		if( SFTIMGCHK_ASYNC( SIHandle, SoftImg ) )
@@ -951,7 +951,7 @@ static int LoadARGB8ColorSoftImageToMem_Static(
 			return -1 ;
 	}
 
-	// CreateBaseImageToMem ‚Åƒƒ‚ƒŠ‚©‚ç“Ç‚İ‚İ
+	// CreateBaseImageToMem ã§ãƒ¡ãƒ¢ãƒªã‹ã‚‰èª­ã¿è¾¼ã¿
 	if( /* NS_CreateBaseImageToMem( FileImage, FileImageSize, &SoftImg->BaseImage, FALSE ) == -1 */
 		CreateGraphImageOrDIBGraph_UseGParam(
 			GParam,
@@ -962,7 +962,7 @@ static int LoadARGB8ColorSoftImageToMem_Static(
 		) == -1 )
 		return -1 ;
 
-	// “Ç‚İ‚ñ‚¾‰æ‘œ‚ÌŒ`®‚ª ARGB8 ‚Å‚Í‚È‚©‚Á‚½‚ç ARGB8 Œ`®‚É•ÏŠ·
+	// èª­ã¿è¾¼ã‚“ã ç”»åƒã®å½¢å¼ãŒ ARGB8 ã§ã¯ãªã‹ã£ãŸã‚‰ ARGB8 å½¢å¼ã«å¤‰æ›
 	if( SoftImg->BaseImage.ColorData.Format				!= DX_BASEIMAGE_FORMAT_NORMAL ||
 		SoftImg->BaseImage.ColorData.ChannelNum			!= 0 ||
 		SoftImg->BaseImage.ColorData.ChannelBitDepth	!= 0 ||
@@ -978,7 +978,7 @@ static int LoadARGB8ColorSoftImageToMem_Static(
 	{
 		BASEIMAGE TempBaseImage ;
 
-		// “¯‚¶ƒTƒCƒY‚Ì ARGB8Œ`®‚ÌŠî–{ƒCƒ[ƒW‚ğì¬
+		// åŒã˜ã‚µã‚¤ã‚ºã® ARGB8å½¢å¼ã®åŸºæœ¬ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’ä½œæˆ
 		TempBaseImage = SoftImg->BaseImage ;
 		if( NS_CreateARGB8ColorBaseImage( SoftImg->BaseImage.Width, SoftImg->BaseImage.Height, &SoftImg->BaseImage ) == -1 )
 		{
@@ -986,20 +986,20 @@ static int LoadARGB8ColorSoftImageToMem_Static(
 			return -1 ;
 		}
 
-		// ARGB8 Œ`®‚É•ÏŠ·
+		// ARGB8 å½¢å¼ã«å¤‰æ›
 		NS_BltBaseImage2( 0, 0, &TempBaseImage, &SoftImg->BaseImage ) ;
 
-		// “Ç‚İ‚ñ‚¾Šî–{ƒCƒ[ƒW‚Í‰ğ•ú
+		// èª­ã¿è¾¼ã‚“ã åŸºæœ¬ã‚¤ãƒ¡ãƒ¼ã‚¸ã¯è§£æ”¾
 		NS_ReleaseBaseImage( &TempBaseImage ) ;
 	}
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
 #ifndef DX_NON_ASYNCLOAD
 
-// LoadARGB8ColorSoftImageToMem ‚Ì”ñ“¯Šú“Ç‚İ‚İƒXƒŒƒbƒh‚©‚çŒÄ‚Î‚ê‚éŠÖ”
+// LoadARGB8ColorSoftImageToMem ã®éåŒæœŸèª­ã¿è¾¼ã¿ã‚¹ãƒ¬ãƒƒãƒ‰ã‹ã‚‰å‘¼ã°ã‚Œã‚‹é–¢æ•°
 static void LoadARGB8ColorSoftImageToMem_ASync( ASYNCLOADDATA_COMMON *AParam )
 {
 	int SIHandle ;
@@ -1032,7 +1032,7 @@ static void LoadARGB8ColorSoftImageToMem_ASync( ASYNCLOADDATA_COMMON *AParam )
 #endif // DX_NON_ASYNCLOAD
 
 
-// LoadARGB8ColorSoftImageToMem ‚ÌƒOƒ[ƒoƒ‹•Ï”‚ÉƒAƒNƒZƒX‚µ‚È‚¢ƒo[ƒWƒ‡ƒ“
+// LoadARGB8ColorSoftImageToMem ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°ã«ã‚¢ã‚¯ã‚»ã‚¹ã—ãªã„ãƒãƒ¼ã‚¸ãƒ§ãƒ³
 extern int LoadARGB8ColorSoftImageToMem_UseGParam(
 	const void *FileImage,
 	int FileImageSize,
@@ -1044,7 +1044,7 @@ extern int LoadARGB8ColorSoftImageToMem_UseGParam(
 
 	CheckActiveState() ;
 
-	// ƒnƒ“ƒhƒ‹‚Ìì¬
+	// ãƒãƒ³ãƒ‰ãƒ«ã®ä½œæˆ
 	SIHandle = AddHandle( DX_HANDLETYPE_SOFTIMAGE, FALSE, -1 ) ;
 	if( SIHandle == -1 )
 	{
@@ -1059,19 +1059,19 @@ extern int LoadARGB8ColorSoftImageToMem_UseGParam(
 		ASYNCLOADDATA_COMMON *AParam = NULL ;
 		int Addr ;
 
-		// ƒpƒ‰ƒ[ƒ^‚É•K—v‚Èƒƒ‚ƒŠ‚ÌƒTƒCƒY‚ğZo
+		// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã«å¿…è¦ãªãƒ¡ãƒ¢ãƒªã®ã‚µã‚¤ã‚ºã‚’ç®—å‡º
 		Addr = 0 ;
 		AddASyncLoadParamStruct( NULL, &Addr, &GParam, sizeof( GParam ) ) ;
 		AddASyncLoadParamInt( NULL, &Addr, SIHandle ) ;
 		AddASyncLoadParamConstVoidP( NULL, &Addr, FileImage ) ;
 		AddASyncLoadParamInt( NULL, &Addr, FileImageSize ) ;
 
-		// ƒƒ‚ƒŠ‚ÌŠm•Û
+		// ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿
 		AParam = AllocASyncLoadDataMemory( Addr ) ;
 		if( AParam == NULL )
 			goto ERR ;
 
-		// ˆ—‚É•K—v‚Èî•ñ‚ğƒZƒbƒg
+		// å‡¦ç†ã«å¿…è¦ãªæƒ…å ±ã‚’ã‚»ãƒƒãƒˆ
 		AParam->ProcessFunction = LoadARGB8ColorSoftImageToMem_ASync ;
 		Addr = 0 ;
 		AddASyncLoadParamStruct( AParam->Data, &Addr, &GParam, sizeof( GParam ) ) ;
@@ -1079,7 +1079,7 @@ extern int LoadARGB8ColorSoftImageToMem_UseGParam(
 		AddASyncLoadParamConstVoidP( AParam->Data, &Addr, FileImage ) ;
 		AddASyncLoadParamInt( AParam->Data, &Addr, FileImageSize ) ;
 
-		// ƒf[ƒ^‚ğ’Ç‰Á
+		// ãƒ‡ãƒ¼ã‚¿ã‚’è¿½åŠ 
 		if( AddASyncLoadData( AParam ) < 0 )
 		{
 			DXFREE( AParam ) ;
@@ -1087,7 +1087,7 @@ extern int LoadARGB8ColorSoftImageToMem_UseGParam(
 			goto ERR ;
 		}
 
-		// ”ñ“¯Šú“Ç‚İ‚İƒJƒEƒ“ƒg‚ğƒCƒ“ƒNƒŠƒƒ“ƒg
+		// éåŒæœŸèª­ã¿è¾¼ã¿ã‚«ã‚¦ãƒ³ãƒˆã‚’ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆ
 		IncASyncLoadCount( SIHandle, AParam->Index ) ;
 	}
 	else
@@ -1097,7 +1097,7 @@ extern int LoadARGB8ColorSoftImageToMem_UseGParam(
 			goto ERR ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return SIHandle ;
 
 ERR :
@@ -1106,7 +1106,7 @@ ERR :
 	return -1 ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤ƒCƒ[ƒW‚Ìƒƒ‚ƒŠ‚©‚ç‚Ì“Ç‚İ‚İ( -1:ƒGƒ‰[  -1ˆÈŠO:ƒCƒ[ƒWƒnƒ“ƒhƒ‹ )( “Ç‚İ‚ñ‚¾‰æ‘œ‚ª RGBA8 ˆÈŠO‚ÌƒtƒH[ƒ}ƒbƒg‚¾‚Á‚½ê‡‚Í RGBA8 ƒJƒ‰[‚É•ÏŠ· )
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†ã‚¤ãƒ¡ãƒ¼ã‚¸ã®ãƒ¡ãƒ¢ãƒªã‹ã‚‰ã®èª­ã¿è¾¼ã¿( -1:ã‚¨ãƒ©ãƒ¼  -1ä»¥å¤–:ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒãƒ³ãƒ‰ãƒ« )( èª­ã¿è¾¼ã‚“ã ç”»åƒãŒ RGBA8 ä»¥å¤–ã®ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã ã£ãŸå ´åˆã¯ RGBA8 ã‚«ãƒ©ãƒ¼ã«å¤‰æ› )
 extern	int		NS_LoadARGB8ColorSoftImageToMem( const void *FileImage, int FileImageSize )
 {
 	return LoadARGB8ColorSoftImageToMem_UseGParam( FileImage, FileImageSize, GetASyncLoadFlag() ) ;
@@ -1120,7 +1120,7 @@ extern	int		NS_LoadARGB8ColorSoftImageToMem( const void *FileImage, int FileImag
 
 
 
-// LoadXRGB8ColorSoftImageToMem ‚ÌÀˆ—ŠÖ”
+// LoadXRGB8ColorSoftImageToMem ã®å®Ÿå‡¦ç†é–¢æ•°
 static int LoadXRGB8ColorSoftImageToMem_Static(
 	int SIHandle,
 	LOADBASEIMAGE_GPARAM *GParam,
@@ -1131,7 +1131,7 @@ static int LoadXRGB8ColorSoftImageToMem_Static(
 {
 	SOFTIMAGE *SoftImg ;
 
-	// V‚µ‚¢ƒ\ƒtƒgƒCƒ[ƒWƒnƒ“ƒhƒ‹‚Ìæ“¾
+	// æ–°ã—ã„ã‚½ãƒ•ãƒˆã‚¤ãƒ¡ãƒ¼ã‚¸ãƒãƒ³ãƒ‰ãƒ«ã®å–å¾—
 	if( ASyncThread )
 	{
 		if( SFTIMGCHK_ASYNC( SIHandle, SoftImg ) )
@@ -1143,7 +1143,7 @@ static int LoadXRGB8ColorSoftImageToMem_Static(
 			return -1 ;
 	}
 
-	// CreateBaseImageToMem ‚Åƒƒ‚ƒŠ‚©‚ç“Ç‚İ‚İ
+	// CreateBaseImageToMem ã§ãƒ¡ãƒ¢ãƒªã‹ã‚‰èª­ã¿è¾¼ã¿
 	if( /* NS_CreateBaseImageToMem( FileImage, FileImageSize, &SoftImg->BaseImage, FALSE ) == -1 */
 		CreateGraphImageOrDIBGraph_UseGParam(
 			GParam,
@@ -1154,7 +1154,7 @@ static int LoadXRGB8ColorSoftImageToMem_Static(
 		) == -1 )
 		return -1 ;
 
-	// “Ç‚İ‚ñ‚¾‰æ‘œ‚ÌŒ`®‚ª XRGB8 ‚Å‚Í‚È‚©‚Á‚½‚ç XRGB8 Œ`®‚É•ÏŠ·
+	// èª­ã¿è¾¼ã‚“ã ç”»åƒã®å½¢å¼ãŒ XRGB8 ã§ã¯ãªã‹ã£ãŸã‚‰ XRGB8 å½¢å¼ã«å¤‰æ›
 	if( SoftImg->BaseImage.ColorData.Format				!= DX_BASEIMAGE_FORMAT_NORMAL ||
 		SoftImg->BaseImage.ColorData.ChannelNum			!= 0 ||
 		SoftImg->BaseImage.ColorData.ChannelBitDepth	!= 0 ||
@@ -1170,7 +1170,7 @@ static int LoadXRGB8ColorSoftImageToMem_Static(
 	{
 		BASEIMAGE TempBaseImage ;
 
-		// “¯‚¶ƒTƒCƒY‚Ì XRGB8Œ`®‚ÌŠî–{ƒCƒ[ƒW‚ğì¬
+		// åŒã˜ã‚µã‚¤ã‚ºã® XRGB8å½¢å¼ã®åŸºæœ¬ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’ä½œæˆ
 		TempBaseImage = SoftImg->BaseImage ;
 		if( NS_CreateXRGB8ColorBaseImage( SoftImg->BaseImage.Width, SoftImg->BaseImage.Height, &SoftImg->BaseImage ) == -1 )
 		{
@@ -1178,20 +1178,20 @@ static int LoadXRGB8ColorSoftImageToMem_Static(
 			return -1 ;
 		}
 
-		// XRGB8 Œ`®‚É•ÏŠ·
+		// XRGB8 å½¢å¼ã«å¤‰æ›
 		NS_BltBaseImage2( 0, 0, &TempBaseImage, &SoftImg->BaseImage ) ;
 
-		// “Ç‚İ‚ñ‚¾Šî–{ƒCƒ[ƒW‚Í‰ğ•ú
+		// èª­ã¿è¾¼ã‚“ã åŸºæœ¬ã‚¤ãƒ¡ãƒ¼ã‚¸ã¯è§£æ”¾
 		NS_ReleaseBaseImage( &TempBaseImage ) ;
 	}
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
 #ifndef DX_NON_ASYNCLOAD
 
-// LoadXRGB8ColorSoftImageToMem ‚Ì”ñ“¯Šú“Ç‚İ‚İƒXƒŒƒbƒh‚©‚çŒÄ‚Î‚ê‚éŠÖ”
+// LoadXRGB8ColorSoftImageToMem ã®éåŒæœŸèª­ã¿è¾¼ã¿ã‚¹ãƒ¬ãƒƒãƒ‰ã‹ã‚‰å‘¼ã°ã‚Œã‚‹é–¢æ•°
 static void LoadXRGB8ColorSoftImageToMem_ASync( ASYNCLOADDATA_COMMON *AParam )
 {
 	int SIHandle ;
@@ -1224,7 +1224,7 @@ static void LoadXRGB8ColorSoftImageToMem_ASync( ASYNCLOADDATA_COMMON *AParam )
 #endif // DX_NON_ASYNCLOAD
 
 
-// LoadXRGB8ColorSoftImageToMem ‚ÌƒOƒ[ƒoƒ‹•Ï”‚ÉƒAƒNƒZƒX‚µ‚È‚¢ƒo[ƒWƒ‡ƒ“
+// LoadXRGB8ColorSoftImageToMem ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°ã«ã‚¢ã‚¯ã‚»ã‚¹ã—ãªã„ãƒãƒ¼ã‚¸ãƒ§ãƒ³
 extern int LoadXRGB8ColorSoftImageToMem_UseGParam(
 	const void *FileImage,
 	int FileImageSize,
@@ -1236,7 +1236,7 @@ extern int LoadXRGB8ColorSoftImageToMem_UseGParam(
 
 	CheckActiveState() ;
 
-	// ƒnƒ“ƒhƒ‹‚Ìì¬
+	// ãƒãƒ³ãƒ‰ãƒ«ã®ä½œæˆ
 	SIHandle = AddHandle( DX_HANDLETYPE_SOFTIMAGE, FALSE, -1 ) ;
 	if( SIHandle == -1 )
 	{
@@ -1251,19 +1251,19 @@ extern int LoadXRGB8ColorSoftImageToMem_UseGParam(
 		ASYNCLOADDATA_COMMON *AParam = NULL ;
 		int Addr ;
 
-		// ƒpƒ‰ƒ[ƒ^‚É•K—v‚Èƒƒ‚ƒŠ‚ÌƒTƒCƒY‚ğZo
+		// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã«å¿…è¦ãªãƒ¡ãƒ¢ãƒªã®ã‚µã‚¤ã‚ºã‚’ç®—å‡º
 		Addr = 0 ;
 		AddASyncLoadParamStruct( NULL, &Addr, &GParam, sizeof( GParam ) ) ;
 		AddASyncLoadParamInt( NULL, &Addr, SIHandle ) ;
 		AddASyncLoadParamConstVoidP( NULL, &Addr, FileImage ) ;
 		AddASyncLoadParamInt( NULL, &Addr, FileImageSize ) ;
 
-		// ƒƒ‚ƒŠ‚ÌŠm•Û
+		// ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿
 		AParam = AllocASyncLoadDataMemory( Addr ) ;
 		if( AParam == NULL )
 			goto ERR ;
 
-		// ˆ—‚É•K—v‚Èî•ñ‚ğƒZƒbƒg
+		// å‡¦ç†ã«å¿…è¦ãªæƒ…å ±ã‚’ã‚»ãƒƒãƒˆ
 		AParam->ProcessFunction = LoadXRGB8ColorSoftImageToMem_ASync ;
 		Addr = 0 ;
 		AddASyncLoadParamStruct( AParam->Data, &Addr, &GParam, sizeof( GParam ) ) ;
@@ -1271,7 +1271,7 @@ extern int LoadXRGB8ColorSoftImageToMem_UseGParam(
 		AddASyncLoadParamConstVoidP( AParam->Data, &Addr, FileImage ) ;
 		AddASyncLoadParamInt( AParam->Data, &Addr, FileImageSize ) ;
 
-		// ƒf[ƒ^‚ğ’Ç‰Á
+		// ãƒ‡ãƒ¼ã‚¿ã‚’è¿½åŠ 
 		if( AddASyncLoadData( AParam ) < 0 )
 		{
 			DXFREE( AParam ) ;
@@ -1279,7 +1279,7 @@ extern int LoadXRGB8ColorSoftImageToMem_UseGParam(
 			goto ERR ;
 		}
 
-		// ”ñ“¯Šú“Ç‚İ‚İƒJƒEƒ“ƒg‚ğƒCƒ“ƒNƒŠƒƒ“ƒg
+		// éåŒæœŸèª­ã¿è¾¼ã¿ã‚«ã‚¦ãƒ³ãƒˆã‚’ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆ
 		IncASyncLoadCount( SIHandle, AParam->Index ) ;
 	}
 	else
@@ -1289,7 +1289,7 @@ extern int LoadXRGB8ColorSoftImageToMem_UseGParam(
 			goto ERR ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return SIHandle ;
 
 ERR :
@@ -1298,7 +1298,7 @@ ERR :
 	return -1 ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤ƒCƒ[ƒW‚Ìƒƒ‚ƒŠ‚©‚ç‚Ì“Ç‚İ‚İ( -1:ƒGƒ‰[  -1ˆÈŠO:ƒCƒ[ƒWƒnƒ“ƒhƒ‹ )( “Ç‚İ‚ñ‚¾‰æ‘œ‚ª RGBA8 ˆÈŠO‚ÌƒtƒH[ƒ}ƒbƒg‚¾‚Á‚½ê‡‚Í RGBA8 ƒJƒ‰[‚É•ÏŠ· )
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†ã‚¤ãƒ¡ãƒ¼ã‚¸ã®ãƒ¡ãƒ¢ãƒªã‹ã‚‰ã®èª­ã¿è¾¼ã¿( -1:ã‚¨ãƒ©ãƒ¼  -1ä»¥å¤–:ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒãƒ³ãƒ‰ãƒ« )( èª­ã¿è¾¼ã‚“ã ç”»åƒãŒ RGBA8 ä»¥å¤–ã®ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã ã£ãŸå ´åˆã¯ RGBA8 ã‚«ãƒ©ãƒ¼ã«å¤‰æ› )
 extern	int		NS_LoadXRGB8ColorSoftImageToMem( const void *FileImage, int FileImageSize )
 {
 	return LoadXRGB8ColorSoftImageToMem_UseGParam( FileImage, FileImageSize, GetASyncLoadFlag() ) ;
@@ -1315,14 +1315,14 @@ extern	int		NS_LoadXRGB8ColorSoftImageToMem( const void *FileImage, int FileImag
 
 
 
-// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤ƒCƒ[ƒW‚Ìì¬( -1:ƒGƒ‰[  -1ˆÈŠO:ƒCƒ[ƒWƒnƒ“ƒhƒ‹ )
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†ã‚¤ãƒ¡ãƒ¼ã‚¸ã®ä½œæˆ( -1:ã‚¨ãƒ©ãƒ¼  -1ä»¥å¤–:ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒãƒ³ãƒ‰ãƒ« )
 extern	int		NS_MakeSoftImage( int SizeX, int SizeY )
 {
 	SOFTIMAGE *SoftImg ;
 	int NewHandle ;
 	int Result ;
 
-	// V‚µ‚¢ƒ\ƒtƒgƒCƒ[ƒWƒnƒ“ƒhƒ‹‚Ìæ“¾
+	// æ–°ã—ã„ã‚½ãƒ•ãƒˆã‚¤ãƒ¡ãƒ¼ã‚¸ãƒãƒ³ãƒ‰ãƒ«ã®å–å¾—
 	NewHandle = AddHandle( DX_HANDLETYPE_SOFTIMAGE, FALSE, -1 ) ;
 	if( NewHandle == -1 )
 	{
@@ -1333,7 +1333,7 @@ extern	int		NS_MakeSoftImage( int SizeX, int SizeY )
 		return -1 ;
 	}
 
-	// CreateARGB8ColorBaseImage ‚ğg—p
+	// CreateARGB8ColorBaseImage ã‚’ä½¿ç”¨
 	Result = NS_CreateARGB8ColorBaseImage( SizeX, SizeY, &SoftImg->BaseImage ) ;
 	if( Result == -1 )
 	{
@@ -1341,18 +1341,18 @@ extern	int		NS_MakeSoftImage( int SizeX, int SizeY )
 		return -1 ;
 	}
 
-	// ¬Œ÷‚µ‚½‚çƒnƒ“ƒhƒ‹‚ğ•Ô‚·
+	// æˆåŠŸã—ãŸã‚‰ãƒãƒ³ãƒ‰ãƒ«ã‚’è¿”ã™
 	return NewHandle ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒAƒCƒ[ƒWƒnƒ“ƒhƒ‹‚Ìì¬( RGBA Šeƒ`ƒƒƒ“ƒlƒ‹ 32bit •‚“®¬”“_Œ^ ƒJƒ‰[ )
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒãƒ³ãƒ‰ãƒ«ã®ä½œæˆ( RGBA å„ãƒãƒ£ãƒ³ãƒãƒ« 32bit æµ®å‹•å°æ•°ç‚¹å‹ ã‚«ãƒ©ãƒ¼ )
 extern	int		NS_MakeARGBF32ColorSoftImage( int SizeX, int SizeY )
 {
 	SOFTIMAGE *SoftImg ;
 	int NewHandle ;
 	int Result ;
 
-	// V‚µ‚¢ƒ\ƒtƒgƒCƒ[ƒWƒnƒ“ƒhƒ‹‚Ìæ“¾
+	// æ–°ã—ã„ã‚½ãƒ•ãƒˆã‚¤ãƒ¡ãƒ¼ã‚¸ãƒãƒ³ãƒ‰ãƒ«ã®å–å¾—
 	NewHandle = AddHandle( DX_HANDLETYPE_SOFTIMAGE, FALSE, -1 ) ;
 	if( NewHandle == -1 )
 	{
@@ -1363,7 +1363,7 @@ extern	int		NS_MakeARGBF32ColorSoftImage( int SizeX, int SizeY )
 		return -1 ;
 	}
 
-	// CreateARGBF32ColorBaseImage ‚ğg—p
+	// CreateARGBF32ColorBaseImage ã‚’ä½¿ç”¨
 	Result = NS_CreateARGBF32ColorBaseImage( SizeX, SizeY, &SoftImg->BaseImage ) ;
 	if( Result == -1 )
 	{
@@ -1371,18 +1371,18 @@ extern	int		NS_MakeARGBF32ColorSoftImage( int SizeX, int SizeY )
 		return -1 ;
 	}
 
-	// ¬Œ÷‚µ‚½‚çƒnƒ“ƒhƒ‹‚ğ•Ô‚·
+	// æˆåŠŸã—ãŸã‚‰ãƒãƒ³ãƒ‰ãƒ«ã‚’è¿”ã™
 	return NewHandle ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒAƒCƒ[ƒWƒnƒ“ƒhƒ‹‚Ìì¬( RGBA Šeƒ`ƒƒƒ“ƒlƒ‹ 16bit •‚“®¬”“_Œ^ ƒJƒ‰[ )
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒãƒ³ãƒ‰ãƒ«ã®ä½œæˆ( RGBA å„ãƒãƒ£ãƒ³ãƒãƒ« 16bit æµ®å‹•å°æ•°ç‚¹å‹ ã‚«ãƒ©ãƒ¼ )
 extern	int		NS_MakeARGBF16ColorSoftImage( int SizeX, int SizeY )
 {
 	SOFTIMAGE *SoftImg ;
 	int NewHandle ;
 	int Result ;
 
-	// V‚µ‚¢ƒ\ƒtƒgƒCƒ[ƒWƒnƒ“ƒhƒ‹‚Ìæ“¾
+	// æ–°ã—ã„ã‚½ãƒ•ãƒˆã‚¤ãƒ¡ãƒ¼ã‚¸ãƒãƒ³ãƒ‰ãƒ«ã®å–å¾—
 	NewHandle = AddHandle( DX_HANDLETYPE_SOFTIMAGE, FALSE, -1 ) ;
 	if( NewHandle == -1 )
 	{
@@ -1393,7 +1393,7 @@ extern	int		NS_MakeARGBF16ColorSoftImage( int SizeX, int SizeY )
 		return -1 ;
 	}
 
-	// CreateARGBF16ColorBaseImage ‚ğg—p
+	// CreateARGBF16ColorBaseImage ã‚’ä½¿ç”¨
 	Result = NS_CreateARGBF16ColorBaseImage( SizeX, SizeY, &SoftImg->BaseImage ) ;
 	if( Result == -1 )
 	{
@@ -1401,25 +1401,25 @@ extern	int		NS_MakeARGBF16ColorSoftImage( int SizeX, int SizeY )
 		return -1 ;
 	}
 
-	// ¬Œ÷‚µ‚½‚çƒnƒ“ƒhƒ‹‚ğ•Ô‚·
+	// æˆåŠŸã—ãŸã‚‰ãƒãƒ³ãƒ‰ãƒ«ã‚’è¿”ã™
 	return NewHandle ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤ƒCƒ[ƒW‚Ìì¬( RGBA8 ƒJƒ‰[ )
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†ã‚¤ãƒ¡ãƒ¼ã‚¸ã®ä½œæˆ( RGBA8 ã‚«ãƒ©ãƒ¼ )
 extern	int		NS_MakeARGB8ColorSoftImage( int SizeX, int SizeY )
 {
-	// NS_MakeSoftImage ‚Æ“¯‚¶
+	// NS_MakeSoftImage ã¨åŒã˜
 	return NS_MakeSoftImage( SizeX, SizeY ) ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤ƒCƒ[ƒW‚Ìì¬( XRGB8 ƒJƒ‰[ )
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†ã‚¤ãƒ¡ãƒ¼ã‚¸ã®ä½œæˆ( XRGB8 ã‚«ãƒ©ãƒ¼ )
 extern	int		NS_MakeXRGB8ColorSoftImage( int SizeX, int SizeY )
 {
 	SOFTIMAGE *SoftImg ;
 	int NewHandle ;
 	int Result ;
 
-	// V‚µ‚¢ƒ\ƒtƒgƒCƒ[ƒWƒnƒ“ƒhƒ‹‚Ìæ“¾
+	// æ–°ã—ã„ã‚½ãƒ•ãƒˆã‚¤ãƒ¡ãƒ¼ã‚¸ãƒãƒ³ãƒ‰ãƒ«ã®å–å¾—
 	NewHandle = AddHandle( DX_HANDLETYPE_SOFTIMAGE, FALSE, -1 ) ;
 	if( NewHandle == -1 )
 	{
@@ -1430,7 +1430,7 @@ extern	int		NS_MakeXRGB8ColorSoftImage( int SizeX, int SizeY )
 		return -1 ;
 	}
 
-	// CreateXRGB8ColorBaseImage ‚ğg—p
+	// CreateXRGB8ColorBaseImage ã‚’ä½¿ç”¨
 	Result = NS_CreateXRGB8ColorBaseImage( SizeX, SizeY, &SoftImg->BaseImage ) ;
 	if( Result == -1 )
 	{
@@ -1438,18 +1438,18 @@ extern	int		NS_MakeXRGB8ColorSoftImage( int SizeX, int SizeY )
 		return -1 ;
 	}
 
-	// ¬Œ÷‚µ‚½‚çƒnƒ“ƒhƒ‹‚ğ•Ô‚·
+	// æˆåŠŸã—ãŸã‚‰ãƒãƒ³ãƒ‰ãƒ«ã‚’è¿”ã™
 	return NewHandle ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒAƒCƒ[ƒWƒnƒ“ƒhƒ‹‚Ìì¬( RGBA8 ƒJƒ‰[ )
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒãƒ³ãƒ‰ãƒ«ã®ä½œæˆ( RGBA8 ã‚«ãƒ©ãƒ¼ )
 extern int NS_MakeRGBA8ColorSoftImage( int SizeX, int SizeY )
 {
 	SOFTIMAGE *SoftImg ;
 	int NewHandle ;
 	int Result ;
 
-	// V‚µ‚¢ƒ\ƒtƒgƒCƒ[ƒWƒnƒ“ƒhƒ‹‚Ìæ“¾
+	// æ–°ã—ã„ã‚½ãƒ•ãƒˆã‚¤ãƒ¡ãƒ¼ã‚¸ãƒãƒ³ãƒ‰ãƒ«ã®å–å¾—
 	NewHandle = AddHandle( DX_HANDLETYPE_SOFTIMAGE, FALSE, -1 ) ;
 	if( NewHandle == -1 )
 	{
@@ -1460,7 +1460,7 @@ extern int NS_MakeRGBA8ColorSoftImage( int SizeX, int SizeY )
 		return -1 ;
 	}
 
-	// CreateRGBA8ColorBaseImage ‚ğg—p
+	// CreateRGBA8ColorBaseImage ã‚’ä½¿ç”¨
 	Result = NS_CreateRGBA8ColorBaseImage( SizeX, SizeY, &SoftImg->BaseImage ) ;
 	if( Result == -1 )
 	{
@@ -1468,18 +1468,18 @@ extern int NS_MakeRGBA8ColorSoftImage( int SizeX, int SizeY )
 		return -1 ;
 	}
 
-	// ¬Œ÷‚µ‚½‚çƒnƒ“ƒhƒ‹‚ğ•Ô‚·
+	// æˆåŠŸã—ãŸã‚‰ãƒãƒ³ãƒ‰ãƒ«ã‚’è¿”ã™
 	return NewHandle ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒAƒCƒ[ƒWƒnƒ“ƒhƒ‹‚Ìì¬( ABGR8 ƒJƒ‰[ )
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒãƒ³ãƒ‰ãƒ«ã®ä½œæˆ( ABGR8 ã‚«ãƒ©ãƒ¼ )
 extern int NS_MakeABGR8ColorSoftImage( int SizeX, int SizeY )
 {
 	SOFTIMAGE *SoftImg ;
 	int NewHandle ;
 	int Result ;
 
-	// V‚µ‚¢ƒ\ƒtƒgƒCƒ[ƒWƒnƒ“ƒhƒ‹‚Ìæ“¾
+	// æ–°ã—ã„ã‚½ãƒ•ãƒˆã‚¤ãƒ¡ãƒ¼ã‚¸ãƒãƒ³ãƒ‰ãƒ«ã®å–å¾—
 	NewHandle = AddHandle( DX_HANDLETYPE_SOFTIMAGE, FALSE, -1 ) ;
 	if( NewHandle == -1 )
 	{
@@ -1490,7 +1490,7 @@ extern int NS_MakeABGR8ColorSoftImage( int SizeX, int SizeY )
 		return -1 ;
 	}
 
-	// CreateABGR8ColorBaseImage ‚ğg—p
+	// CreateABGR8ColorBaseImage ã‚’ä½¿ç”¨
 	Result = NS_CreateABGR8ColorBaseImage( SizeX, SizeY, &SoftImg->BaseImage ) ;
 	if( Result == -1 )
 	{
@@ -1498,18 +1498,18 @@ extern int NS_MakeABGR8ColorSoftImage( int SizeX, int SizeY )
 		return -1 ;
 	}
 
-	// ¬Œ÷‚µ‚½‚çƒnƒ“ƒhƒ‹‚ğ•Ô‚·
+	// æˆåŠŸã—ãŸã‚‰ãƒãƒ³ãƒ‰ãƒ«ã‚’è¿”ã™
 	return NewHandle ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒAƒCƒ[ƒWƒnƒ“ƒhƒ‹‚Ìì¬( BGRA8 ƒJƒ‰[ )
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒãƒ³ãƒ‰ãƒ«ã®ä½œæˆ( BGRA8 ã‚«ãƒ©ãƒ¼ )
 extern int NS_MakeBGRA8ColorSoftImage( int SizeX, int SizeY )
 {
 	SOFTIMAGE *SoftImg ;
 	int NewHandle ;
 	int Result ;
 
-	// V‚µ‚¢ƒ\ƒtƒgƒCƒ[ƒWƒnƒ“ƒhƒ‹‚Ìæ“¾
+	// æ–°ã—ã„ã‚½ãƒ•ãƒˆã‚¤ãƒ¡ãƒ¼ã‚¸ãƒãƒ³ãƒ‰ãƒ«ã®å–å¾—
 	NewHandle = AddHandle( DX_HANDLETYPE_SOFTIMAGE, FALSE, -1 ) ;
 	if( NewHandle == -1 )
 	{
@@ -1520,7 +1520,7 @@ extern int NS_MakeBGRA8ColorSoftImage( int SizeX, int SizeY )
 		return -1 ;
 	}
 
-	// CreateBGRA8ColorBaseImage ‚ğg—p
+	// CreateBGRA8ColorBaseImage ã‚’ä½¿ç”¨
 	Result = NS_CreateBGRA8ColorBaseImage( SizeX, SizeY, &SoftImg->BaseImage ) ;
 	if( Result == -1 )
 	{
@@ -1528,18 +1528,18 @@ extern int NS_MakeBGRA8ColorSoftImage( int SizeX, int SizeY )
 		return -1 ;
 	}
 
-	// ¬Œ÷‚µ‚½‚çƒnƒ“ƒhƒ‹‚ğ•Ô‚·
+	// æˆåŠŸã—ãŸã‚‰ãƒãƒ³ãƒ‰ãƒ«ã‚’è¿”ã™
 	return NewHandle ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤ƒCƒ[ƒW‚Ìì¬( ARGB4 ƒJƒ‰[ )
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†ã‚¤ãƒ¡ãƒ¼ã‚¸ã®ä½œæˆ( ARGB4 ã‚«ãƒ©ãƒ¼ )
 extern	int		NS_MakeARGB4ColorSoftImage( int SizeX, int SizeY )
 {
 	SOFTIMAGE *SoftImg ;
 	int NewHandle ;
 	int Result ;
 
-	// V‚µ‚¢ƒ\ƒtƒgƒCƒ[ƒWƒnƒ“ƒhƒ‹‚Ìæ“¾
+	// æ–°ã—ã„ã‚½ãƒ•ãƒˆã‚¤ãƒ¡ãƒ¼ã‚¸ãƒãƒ³ãƒ‰ãƒ«ã®å–å¾—
 	NewHandle = AddHandle( DX_HANDLETYPE_SOFTIMAGE, FALSE, -1 ) ;
 	if( NewHandle == -1 )
 	{
@@ -1550,7 +1550,7 @@ extern	int		NS_MakeARGB4ColorSoftImage( int SizeX, int SizeY )
 		return -1 ;
 	}
 
-	// CreateARGB4ColorBaseImage ‚ğg—p
+	// CreateARGB4ColorBaseImage ã‚’ä½¿ç”¨
 	Result = NS_CreateARGB4ColorBaseImage( SizeX, SizeY, &SoftImg->BaseImage ) ;
 	if( Result == -1 )
 	{
@@ -1558,18 +1558,18 @@ extern	int		NS_MakeARGB4ColorSoftImage( int SizeX, int SizeY )
 		return -1 ;
 	}
 
-	// ¬Œ÷‚µ‚½‚çƒnƒ“ƒhƒ‹‚ğ•Ô‚·
+	// æˆåŠŸã—ãŸã‚‰ãƒãƒ³ãƒ‰ãƒ«ã‚’è¿”ã™
 	return NewHandle ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒAƒCƒ[ƒWƒnƒ“ƒhƒ‹‚Ìì¬( A1R5G5B5 ƒJƒ‰[ )
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒãƒ³ãƒ‰ãƒ«ã®ä½œæˆ( A1R5G5B5 ã‚«ãƒ©ãƒ¼ )
 extern	int	NS_MakeA1R5G5B5ColorSoftImage( int SizeX, int SizeY )
 {
 	SOFTIMAGE *SoftImg ;
 	int NewHandle ;
 	int Result ;
 
-	// V‚µ‚¢ƒ\ƒtƒgƒCƒ[ƒWƒnƒ“ƒhƒ‹‚Ìæ“¾
+	// æ–°ã—ã„ã‚½ãƒ•ãƒˆã‚¤ãƒ¡ãƒ¼ã‚¸ãƒãƒ³ãƒ‰ãƒ«ã®å–å¾—
 	NewHandle = AddHandle( DX_HANDLETYPE_SOFTIMAGE, FALSE, -1 ) ;
 	if( NewHandle == -1 )
 	{
@@ -1580,7 +1580,7 @@ extern	int	NS_MakeA1R5G5B5ColorSoftImage( int SizeX, int SizeY )
 		return -1 ;
 	}
 
-	// CreateA1R5G5B5ColorBaseImage ‚ğg—p
+	// CreateA1R5G5B5ColorBaseImage ã‚’ä½¿ç”¨
 	Result = NS_CreateA1R5G5B5ColorBaseImage( SizeX, SizeY, &SoftImg->BaseImage ) ;
 	if( Result == -1 )
 	{
@@ -1588,18 +1588,18 @@ extern	int	NS_MakeA1R5G5B5ColorSoftImage( int SizeX, int SizeY )
 		return -1 ;
 	}
 
-	// ¬Œ÷‚µ‚½‚çƒnƒ“ƒhƒ‹‚ğ•Ô‚·
+	// æˆåŠŸã—ãŸã‚‰ãƒãƒ³ãƒ‰ãƒ«ã‚’è¿”ã™
 	return NewHandle ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒAƒCƒ[ƒWƒnƒ“ƒhƒ‹‚Ìì¬( X1R5G5B5 ƒJƒ‰[ )
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒãƒ³ãƒ‰ãƒ«ã®ä½œæˆ( X1R5G5B5 ã‚«ãƒ©ãƒ¼ )
 extern	int	NS_MakeX1R5G5B5ColorSoftImage( int SizeX, int SizeY )
 {
 	SOFTIMAGE *SoftImg ;
 	int NewHandle ;
 	int Result ;
 
-	// V‚µ‚¢ƒ\ƒtƒgƒCƒ[ƒWƒnƒ“ƒhƒ‹‚Ìæ“¾
+	// æ–°ã—ã„ã‚½ãƒ•ãƒˆã‚¤ãƒ¡ãƒ¼ã‚¸ãƒãƒ³ãƒ‰ãƒ«ã®å–å¾—
 	NewHandle = AddHandle( DX_HANDLETYPE_SOFTIMAGE, FALSE, -1 ) ;
 	if( NewHandle == -1 )
 	{
@@ -1610,7 +1610,7 @@ extern	int	NS_MakeX1R5G5B5ColorSoftImage( int SizeX, int SizeY )
 		return -1 ;
 	}
 
-	// CreateX1R5G5B5ColorBaseImage ‚ğg—p
+	// CreateX1R5G5B5ColorBaseImage ã‚’ä½¿ç”¨
 	Result = NS_CreateX1R5G5B5ColorBaseImage( SizeX, SizeY, &SoftImg->BaseImage ) ;
 	if( Result == -1 )
 	{
@@ -1618,18 +1618,18 @@ extern	int	NS_MakeX1R5G5B5ColorSoftImage( int SizeX, int SizeY )
 		return -1 ;
 	}
 
-	// ¬Œ÷‚µ‚½‚çƒnƒ“ƒhƒ‹‚ğ•Ô‚·
+	// æˆåŠŸã—ãŸã‚‰ãƒãƒ³ãƒ‰ãƒ«ã‚’è¿”ã™
 	return NewHandle ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒAƒCƒ[ƒWƒnƒ“ƒhƒ‹‚Ìì¬( R5G5B5A1 ƒJƒ‰[ )
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒãƒ³ãƒ‰ãƒ«ã®ä½œæˆ( R5G5B5A1 ã‚«ãƒ©ãƒ¼ )
 extern	int	NS_MakeR5G5B5A1ColorSoftImage( int SizeX, int SizeY )
 {
 	SOFTIMAGE *SoftImg ;
 	int NewHandle ;
 	int Result ;
 
-	// V‚µ‚¢ƒ\ƒtƒgƒCƒ[ƒWƒnƒ“ƒhƒ‹‚Ìæ“¾
+	// æ–°ã—ã„ã‚½ãƒ•ãƒˆã‚¤ãƒ¡ãƒ¼ã‚¸ãƒãƒ³ãƒ‰ãƒ«ã®å–å¾—
 	NewHandle = AddHandle( DX_HANDLETYPE_SOFTIMAGE, FALSE, -1 ) ;
 	if( NewHandle == -1 )
 	{
@@ -1640,7 +1640,7 @@ extern	int	NS_MakeR5G5B5A1ColorSoftImage( int SizeX, int SizeY )
 		return -1 ;
 	}
 
-	// CreateR5G5B5A1ColorBaseImage ‚ğg—p
+	// CreateR5G5B5A1ColorBaseImage ã‚’ä½¿ç”¨
 	Result = NS_CreateR5G5B5A1ColorBaseImage( SizeX, SizeY, &SoftImg->BaseImage ) ;
 	if( Result == -1 )
 	{
@@ -1648,18 +1648,18 @@ extern	int	NS_MakeR5G5B5A1ColorSoftImage( int SizeX, int SizeY )
 		return -1 ;
 	}
 
-	// ¬Œ÷‚µ‚½‚çƒnƒ“ƒhƒ‹‚ğ•Ô‚·
+	// æˆåŠŸã—ãŸã‚‰ãƒãƒ³ãƒ‰ãƒ«ã‚’è¿”ã™
 	return NewHandle ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒAƒCƒ[ƒWƒnƒ“ƒhƒ‹‚Ìì¬( R5G6B5 ƒJƒ‰[ )
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒãƒ³ãƒ‰ãƒ«ã®ä½œæˆ( R5G6B5 ã‚«ãƒ©ãƒ¼ )
 extern	int	NS_MakeR5G6B5ColorSoftImage( int SizeX, int SizeY )
 {
 	SOFTIMAGE *SoftImg ;
 	int NewHandle ;
 	int Result ;
 
-	// V‚µ‚¢ƒ\ƒtƒgƒCƒ[ƒWƒnƒ“ƒhƒ‹‚Ìæ“¾
+	// æ–°ã—ã„ã‚½ãƒ•ãƒˆã‚¤ãƒ¡ãƒ¼ã‚¸ãƒãƒ³ãƒ‰ãƒ«ã®å–å¾—
 	NewHandle = AddHandle( DX_HANDLETYPE_SOFTIMAGE, FALSE, -1 ) ;
 	if( NewHandle == -1 )
 	{
@@ -1670,7 +1670,7 @@ extern	int	NS_MakeR5G6B5ColorSoftImage( int SizeX, int SizeY )
 		return -1 ;
 	}
 
-	// CreateR5G6B5ColorBaseImage ‚ğg—p
+	// CreateR5G6B5ColorBaseImage ã‚’ä½¿ç”¨
 	Result = NS_CreateR5G6B5ColorBaseImage( SizeX, SizeY, &SoftImg->BaseImage ) ;
 	if( Result == -1 )
 	{
@@ -1678,18 +1678,18 @@ extern	int	NS_MakeR5G6B5ColorSoftImage( int SizeX, int SizeY )
 		return -1 ;
 	}
 
-	// ¬Œ÷‚µ‚½‚çƒnƒ“ƒhƒ‹‚ğ•Ô‚·
+	// æˆåŠŸã—ãŸã‚‰ãƒãƒ³ãƒ‰ãƒ«ã‚’è¿”ã™
 	return NewHandle ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤ƒCƒ[ƒW‚Ìì¬( RGB8 ƒJƒ‰[ )
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†ã‚¤ãƒ¡ãƒ¼ã‚¸ã®ä½œæˆ( RGB8 ã‚«ãƒ©ãƒ¼ )
 extern	int		NS_MakeRGB8ColorSoftImage( int SizeX, int SizeY )
 {
 	SOFTIMAGE *SoftImg ;
 	int NewHandle ;
 	int Result ;
 
-	// V‚µ‚¢ƒ\ƒtƒgƒCƒ[ƒWƒnƒ“ƒhƒ‹‚Ìæ“¾
+	// æ–°ã—ã„ã‚½ãƒ•ãƒˆã‚¤ãƒ¡ãƒ¼ã‚¸ãƒãƒ³ãƒ‰ãƒ«ã®å–å¾—
 	NewHandle = AddHandle( DX_HANDLETYPE_SOFTIMAGE, FALSE, -1 ) ;
 	if( NewHandle == -1 )
 	{
@@ -1700,7 +1700,7 @@ extern	int		NS_MakeRGB8ColorSoftImage( int SizeX, int SizeY )
 		return -1 ;
 	}
 
-	// CreateRGB8ColorBaseImage ‚ğg—p
+	// CreateRGB8ColorBaseImage ã‚’ä½¿ç”¨
 	Result = NS_CreateRGB8ColorBaseImage( SizeX, SizeY, &SoftImg->BaseImage ) ;
 	if( Result == -1 )
 	{
@@ -1708,18 +1708,18 @@ extern	int		NS_MakeRGB8ColorSoftImage( int SizeX, int SizeY )
 		return -1 ;
 	}
 
-	// ¬Œ÷‚µ‚½‚çƒnƒ“ƒhƒ‹‚ğ•Ô‚·
+	// æˆåŠŸã—ãŸã‚‰ãƒãƒ³ãƒ‰ãƒ«ã‚’è¿”ã™
 	return NewHandle ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤ƒCƒ[ƒW‚Ìì¬( ƒpƒŒƒbƒg‚Q‚T‚UF ƒJƒ‰[ )
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†ã‚¤ãƒ¡ãƒ¼ã‚¸ã®ä½œæˆ( ãƒ‘ãƒ¬ãƒƒãƒˆï¼’ï¼•ï¼–è‰² ã‚«ãƒ©ãƒ¼ )
 extern	int		NS_MakePAL8ColorSoftImage( int SizeX, int SizeY, int UseAlpha )
 {
 	SOFTIMAGE *SoftImg ;
 	int NewHandle ;
 	int Result ;
 
-	// V‚µ‚¢ƒ\ƒtƒgƒCƒ[ƒWƒnƒ“ƒhƒ‹‚Ìæ“¾
+	// æ–°ã—ã„ã‚½ãƒ•ãƒˆã‚¤ãƒ¡ãƒ¼ã‚¸ãƒãƒ³ãƒ‰ãƒ«ã®å–å¾—
 	NewHandle = AddHandle( DX_HANDLETYPE_SOFTIMAGE, FALSE, -1 ) ;
 	if( NewHandle == -1 )
 	{
@@ -1730,7 +1730,7 @@ extern	int		NS_MakePAL8ColorSoftImage( int SizeX, int SizeY, int UseAlpha )
 		return -1 ;
 	}
 
-	// CreatePAL8ColorBaseImage ‚ğg—p
+	// CreatePAL8ColorBaseImage ã‚’ä½¿ç”¨
 	Result = NS_CreatePAL8ColorBaseImage( SizeX, SizeY, &SoftImg->BaseImage, UseAlpha ) ;
 	if( Result == -1 )
 	{
@@ -1738,18 +1738,18 @@ extern	int		NS_MakePAL8ColorSoftImage( int SizeX, int SizeY, int UseAlpha )
 		return -1 ;
 	}
 
-	// ¬Œ÷‚µ‚½‚çƒnƒ“ƒhƒ‹‚ğ•Ô‚·
+	// æˆåŠŸã—ãŸã‚‰ãƒãƒ³ãƒ‰ãƒ«ã‚’è¿”ã™
 	return NewHandle ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒAƒCƒ[ƒWƒnƒ“ƒhƒ‹‚Ìì¬( COLORDATA ‚ÅƒtƒH[ƒ}ƒbƒgw’è )
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒãƒ³ãƒ‰ãƒ«ã®ä½œæˆ( COLORDATA ã§ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆæŒ‡å®š )
 extern int NS_MakeColorDataSoftImage( int SizeX, int SizeY, const COLORDATA *ColorData )
 {
 	SOFTIMAGE *SoftImg ;
 	int NewHandle ;
 	int Result ;
 
-	// V‚µ‚¢ƒ\ƒtƒgƒCƒ[ƒWƒnƒ“ƒhƒ‹‚Ìæ“¾
+	// æ–°ã—ã„ã‚½ãƒ•ãƒˆã‚¤ãƒ¡ãƒ¼ã‚¸ãƒãƒ³ãƒ‰ãƒ«ã®å–å¾—
 	NewHandle = AddHandle( DX_HANDLETYPE_SOFTIMAGE, FALSE, -1 ) ;
 	if( NewHandle == -1 )
 	{
@@ -1760,7 +1760,7 @@ extern int NS_MakeColorDataSoftImage( int SizeX, int SizeY, const COLORDATA *Col
 		return -1 ;
 	}
 
-	// CreateColorDataBaseImage ‚ğg—p
+	// CreateColorDataBaseImage ã‚’ä½¿ç”¨
 	Result = NS_CreateColorDataBaseImage( SizeX, SizeY, ColorData, &SoftImg->BaseImage ) ;
 	if( Result == -1 )
 	{
@@ -1768,73 +1768,73 @@ extern int NS_MakeColorDataSoftImage( int SizeX, int SizeY, const COLORDATA *Col
 		return -1 ;
 	}
 
-	// ¬Œ÷‚µ‚½‚çƒnƒ“ƒhƒ‹‚ğ•Ô‚·
+	// æˆåŠŸã—ãŸã‚‰ãƒãƒ³ãƒ‰ãƒ«ã‚’è¿”ã™
 	return NewHandle ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤ƒCƒ[ƒW‚Ì‰ğ•ú
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†ã‚¤ãƒ¡ãƒ¼ã‚¸ã®è§£æ”¾
 extern	int		NS_DeleteSoftImage( int SIHandle )
 {
 	SOFTIMAGE *SoftImg ;
 
-	// ƒAƒhƒŒƒX‚Ìæ“¾
+	// ã‚¢ãƒ‰ãƒ¬ã‚¹ã®å–å¾—
 	if( SFTIMGCHK( SIHandle, SoftImg ) )
 		return -1 ;
 	
-	// ƒnƒ“ƒhƒ‹‚Ì‰ğ•ú
+	// ãƒãƒ³ãƒ‰ãƒ«ã®è§£æ”¾
 	SubHandle( SIHandle, GetASyncLoadFlag(), FALSE ) ; 
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤ƒCƒ[ƒW‚ÌƒTƒCƒY‚ğæ“¾‚·‚é
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†ã‚¤ãƒ¡ãƒ¼ã‚¸ã®ã‚µã‚¤ã‚ºã‚’å–å¾—ã™ã‚‹
 extern	int		NS_GetSoftImageSize( int SIHandle, int *Width, int *Height )
 {
 	SOFTIMAGE *SoftImg ;
 
-	// ƒAƒhƒŒƒX‚Ìæ“¾
+	// ã‚¢ãƒ‰ãƒ¬ã‚¹ã®å–å¾—
 	if( SFTIMGCHK( SIHandle, SoftImg ) )
 		return -1 ;
 
 	if( Width  ) *Width  = SoftImg->BaseImage.Width ;
 	if( Height ) *Height = SoftImg->BaseImage.Height ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤ƒCƒ[ƒW‚ªƒpƒŒƒbƒg‰æ‘œ‚©‚Ç‚¤‚©‚ğæ“¾‚·‚é( TRUE:ƒpƒŒƒbƒg‰æ‘œ  FALSE:ƒpƒŒƒbƒg‰æ‘œ‚¶‚á‚È‚¢ )
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†ã‚¤ãƒ¡ãƒ¼ã‚¸ãŒãƒ‘ãƒ¬ãƒƒãƒˆç”»åƒã‹ã©ã†ã‹ã‚’å–å¾—ã™ã‚‹( TRUE:ãƒ‘ãƒ¬ãƒƒãƒˆç”»åƒ  FALSE:ãƒ‘ãƒ¬ãƒƒãƒˆç”»åƒã˜ã‚ƒãªã„ )
 extern	int		NS_CheckPaletteSoftImage( int SIHandle )
 {
 	SOFTIMAGE *SoftImg ;
 
-	// ƒAƒhƒŒƒX‚Ìæ“¾
+	// ã‚¢ãƒ‰ãƒ¬ã‚¹ã®å–å¾—
 	if( SFTIMGCHK( SIHandle, SoftImg ) )
 		return -1 ;
 
 	return SoftImg->BaseImage.ColorData.PixelByte == 1 ? TRUE : FALSE ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤ƒCƒ[ƒW‚ÌƒtƒH[ƒ}ƒbƒg‚Éƒ¿—v‘f‚ª‚ ‚é‚©‚Ç‚¤‚©‚ğæ“¾‚·‚é( TRUE:‚ ‚é  FALSE:‚È‚¢ )
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†ã‚¤ãƒ¡ãƒ¼ã‚¸ã®ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã«Î±è¦ç´ ãŒã‚ã‚‹ã‹ã©ã†ã‹ã‚’å–å¾—ã™ã‚‹( TRUE:ã‚ã‚‹  FALSE:ãªã„ )
 extern	int		NS_CheckAlphaSoftImage( int SIHandle )
 {
 	SOFTIMAGE *SoftImg ;
 
-	// ƒAƒhƒŒƒX‚Ìæ“¾
+	// ã‚¢ãƒ‰ãƒ¬ã‚¹ã®å–å¾—
 	if( SFTIMGCHK( SIHandle, SoftImg ) )
 		return -1 ;
 
 	return SoftImg->BaseImage.ColorData.AlphaMask != 0 && SoftImg->BaseImage.ColorData.PixelByte >= 2 ? TRUE : FALSE ;
 }
 
-// •`‰æ‘ÎÛ‚Ì‰æ–Ê‚©‚çw’è—Ìˆæ‚ÌƒOƒ‰ƒtƒBƒbƒN‚ğƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤ƒCƒ[ƒW‚É“]‘—‚·‚é
+// æç”»å¯¾è±¡ã®ç”»é¢ã‹ã‚‰æŒ‡å®šé ˜åŸŸã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚’ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†ã‚¤ãƒ¡ãƒ¼ã‚¸ã«è»¢é€ã™ã‚‹
 extern	int		NS_GetDrawScreenSoftImage( int x1, int y1, int x2, int y2, int SIHandle )
 {
 #ifndef DX_NON_GRAPHICS
 	SOFTIMAGE *SoftImg ;
 
-	// ƒAƒhƒŒƒX‚Ìæ“¾
+	// ã‚¢ãƒ‰ãƒ¬ã‚¹ã®å–å¾—
 	if( SFTIMGCHK( SIHandle, SoftImg ) )
 		return -1 ;
 
@@ -1844,13 +1844,13 @@ extern	int		NS_GetDrawScreenSoftImage( int x1, int y1, int x2, int y2, int SIHan
 #endif // DX_NON_GRAPHICS
 }
 
-// •`‰æ‘ÎÛ‚Ì‰æ–Ê‚©‚çw’è—Ìˆæ‚ğƒ\ƒtƒgƒEƒGƒAƒCƒ[ƒWƒnƒ“ƒhƒ‹‚É“]‘—‚·‚é( “]‘—æÀ•Ww’è”Å )
+// æç”»å¯¾è±¡ã®ç”»é¢ã‹ã‚‰æŒ‡å®šé ˜åŸŸã‚’ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒãƒ³ãƒ‰ãƒ«ã«è»¢é€ã™ã‚‹( è»¢é€å…ˆåº§æ¨™æŒ‡å®šç‰ˆ )
 extern	int		NS_GetDrawScreenSoftImageDestPos( int x1, int y1, int x2, int y2, int SIHandle, int DestX, int DestY )
 {
 #ifndef DX_NON_GRAPHICS
 	SOFTIMAGE *SoftImg ;
 
-	// ƒAƒhƒŒƒX‚Ìæ“¾
+	// ã‚¢ãƒ‰ãƒ¬ã‚¹ã®å–å¾—
 	if( SFTIMGCHK( SIHandle, SoftImg ) )
 		return -1 ;
 
@@ -1862,48 +1862,48 @@ extern	int		NS_GetDrawScreenSoftImageDestPos( int x1, int y1, int x2, int y2, in
 
 #ifdef WINDOWS_DESKTOP_OS
 
-// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤ƒCƒ[ƒW‚ğg—p‚µ‚Ä UpdateLayerdWindow ‚ğs‚¤
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’ä½¿ç”¨ã—ã¦ UpdateLayerdWindow ã‚’è¡Œã†
 extern	int		NS_UpdateLayerdWindowForSoftImage( int SIHandle )
 {
 	SOFTIMAGE *SoftImg ;
 
-	// ƒAƒhƒŒƒX‚Ìæ“¾
+	// ã‚¢ãƒ‰ãƒ¬ã‚¹ã®å–å¾—
 	if( SFTIMGCHK( SIHandle, SoftImg ) )
 		return -1 ;
 
 	return NS_UpdateLayerdWindowForBaseImage( &SoftImg->BaseImage ) ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒAƒCƒ[ƒWƒnƒ“ƒhƒ‹‚Ìw’è‚Ì”ÍˆÍ‚ğg—p‚µ‚Ä UpdateLayerdWindow ‚ğs‚¤
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒãƒ³ãƒ‰ãƒ«ã®æŒ‡å®šã®ç¯„å›²ã‚’ä½¿ç”¨ã—ã¦ UpdateLayerdWindow ã‚’è¡Œã†
 extern	int		NS_UpdateLayerdWindowForSoftImageRect( int SIHandle, int x1, int y1, int x2, int y2 )
 {
 	SOFTIMAGE *SoftImg ;
 
-	// ƒAƒhƒŒƒX‚Ìæ“¾
+	// ã‚¢ãƒ‰ãƒ¬ã‚¹ã®å–å¾—
 	if( SFTIMGCHK( SIHandle, SoftImg ) )
 		return -1 ;
 
 	return NS_UpdateLayerdWindowForBaseImageRect( &SoftImg->BaseImage, x1, y1, x2, y2 ) ;
 }
 
-// æZÏ‚İƒAƒ‹ƒtƒ@‚Ìƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤ƒCƒ[ƒW‚ğg—p‚µ‚Ä UpdateLayerdWindow ‚ğs‚¤
+// ä¹—ç®—æ¸ˆã¿ã‚¢ãƒ«ãƒ•ã‚¡ã®ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’ä½¿ç”¨ã—ã¦ UpdateLayerdWindow ã‚’è¡Œã†
 extern	int		NS_UpdateLayerdWindowForPremultipliedAlphaSoftImage( int SIHandle )
 {
 	SOFTIMAGE *SoftImg ;
 
-	// ƒAƒhƒŒƒX‚Ìæ“¾
+	// ã‚¢ãƒ‰ãƒ¬ã‚¹ã®å–å¾—
 	if( SFTIMGCHK( SIHandle, SoftImg ) )
 		return -1 ;
 
 	return NS_UpdateLayerdWindowForPremultipliedAlphaBaseImage( &SoftImg->BaseImage ) ;
 }
 
-// æZÏ‚İƒAƒ‹ƒtƒ@‚Ìƒ\ƒtƒgƒEƒGƒAƒCƒ[ƒWƒnƒ“ƒhƒ‹‚Ìw’è‚Ì”ÍˆÍ‚ğg—p‚µ‚Ä UpdateLayerdWindow ‚ğs‚¤
+// ä¹—ç®—æ¸ˆã¿ã‚¢ãƒ«ãƒ•ã‚¡ã®ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒãƒ³ãƒ‰ãƒ«ã®æŒ‡å®šã®ç¯„å›²ã‚’ä½¿ç”¨ã—ã¦ UpdateLayerdWindow ã‚’è¡Œã†
 extern	int		NS_UpdateLayerdWindowForPremultipliedAlphaSoftImageRect( int SIHandle, int x1, int y1, int x2, int y2 )
 {
 	SOFTIMAGE *SoftImg ;
 
-	// ƒAƒhƒŒƒX‚Ìæ“¾
+	// ã‚¢ãƒ‰ãƒ¬ã‚¹ã®å–å¾—
 	if( SFTIMGCHK( SIHandle, SoftImg ) )
 		return -1 ;
 
@@ -1911,14 +1911,14 @@ extern	int		NS_UpdateLayerdWindowForPremultipliedAlphaSoftImageRect( int SIHandl
 }
 
 
-// ƒfƒXƒNƒgƒbƒvƒLƒƒƒvƒ`ƒƒ
+// ãƒ‡ã‚¹ã‚¯ãƒˆãƒƒãƒ—ã‚­ãƒ£ãƒ—ãƒãƒ£
 
-// ƒfƒXƒNƒgƒbƒv‚Ìw’è‚Ì—Ìˆæ‚ğƒ\ƒtƒgƒEƒGƒAƒCƒ[ƒWƒnƒ“ƒhƒ‹‚É“]‘—‚·‚é
+// ãƒ‡ã‚¹ã‚¯ãƒˆãƒƒãƒ—ã®æŒ‡å®šã®é ˜åŸŸã‚’ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒãƒ³ãƒ‰ãƒ«ã«è»¢é€ã™ã‚‹
 extern	int		NS_GetDesktopScreenSoftImage( int x1, int y1, int x2, int y2, int SIHandle, int DestX, int DestY )
 {
 	SOFTIMAGE *SoftImg ;
 
-	// ƒAƒhƒŒƒX‚Ìæ“¾
+	// ã‚¢ãƒ‰ãƒ¬ã‚¹ã®å–å¾—
 	if( SFTIMGCHK( SIHandle, SoftImg ) )
 		return -1 ;
 
@@ -1927,79 +1927,79 @@ extern	int		NS_GetDesktopScreenSoftImage( int x1, int y1, int x2, int y2, int SI
 
 #endif // WINDOWS_DESKTOP_OS
 
-// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤ƒCƒ[ƒW‚ğw’èF‚Å“h‚è‚Â‚Ô‚·
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’æŒ‡å®šè‰²ã§å¡—ã‚Šã¤ã¶ã™
 extern	int		NS_FillSoftImage( int SIHandle, int r, int g, int b, int a )
 {
 	SOFTIMAGE *SoftImg ;
 
-	// ƒAƒhƒŒƒX‚Ìæ“¾
+	// ã‚¢ãƒ‰ãƒ¬ã‚¹ã®å–å¾—
 	if( SFTIMGCHK( SIHandle, SoftImg ) )
 		return -1 ;
 
 	return NS_FillBaseImage( &SoftImg->BaseImage, r, g, b, a ) ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤ƒCƒ[ƒW‚Ìw’è‚Ì—Ìˆæ‚ğ‚OƒNƒŠƒA‚·‚é
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†ã‚¤ãƒ¡ãƒ¼ã‚¸ã®æŒ‡å®šã®é ˜åŸŸã‚’ï¼ã‚¯ãƒªã‚¢ã™ã‚‹
 extern	int		NS_ClearRectSoftImage( int SIHandle, int x, int y, int w, int h )
 {
 	SOFTIMAGE *SoftImg ;
 
-	// ƒAƒhƒŒƒX‚Ìæ“¾
+	// ã‚¢ãƒ‰ãƒ¬ã‚¹ã®å–å¾—
 	if( SFTIMGCHK( SIHandle, SoftImg ) )
 		return -1 ;
 
 	return NS_ClearRectBaseImage( &SoftImg->BaseImage, x, y, w, h ) ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤ƒCƒ[ƒW‚ÌƒpƒŒƒbƒg‚ğæ“¾‚·‚é
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†ã‚¤ãƒ¡ãƒ¼ã‚¸ã®ãƒ‘ãƒ¬ãƒƒãƒˆã‚’å–å¾—ã™ã‚‹
 extern	int		NS_GetPaletteSoftImage( int SIHandle, int PaletteNo, int *r, int *g, int *b, int *a )
 {
 	SOFTIMAGE *SoftImg ;
 
-	// ƒAƒhƒŒƒX‚Ìæ“¾
+	// ã‚¢ãƒ‰ãƒ¬ã‚¹ã®å–å¾—
 	if( SFTIMGCHK( SIHandle, SoftImg ) )
 		return -1 ;
 
 	return NS_GetPaletteBaseImage( &SoftImg->BaseImage, PaletteNo, r, g, b, a ) ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤ƒCƒ[ƒW‚ÌƒpƒŒƒbƒg‚ğƒZƒbƒg‚·‚é
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†ã‚¤ãƒ¡ãƒ¼ã‚¸ã®ãƒ‘ãƒ¬ãƒƒãƒˆã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern	int		NS_SetPaletteSoftImage( int SIHandle, int PaletteNo, int  r, int  g, int  b, int  a )
 {
 	SOFTIMAGE *SoftImg ;
 
-	// ƒAƒhƒŒƒX‚Ìæ“¾
+	// ã‚¢ãƒ‰ãƒ¬ã‚¹ã®å–å¾—
 	if( SFTIMGCHK( SIHandle, SoftImg ) )
 		return -1 ;
 
 	return NS_SetPaletteBaseImage( &SoftImg->BaseImage, PaletteNo, r, g, b, a ) ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤ƒCƒ[ƒW‚Ìw’èÀ•W‚Éƒhƒbƒg‚ğ•`‰æ‚·‚é
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†ã‚¤ãƒ¡ãƒ¼ã‚¸ã®æŒ‡å®šåº§æ¨™ã«ãƒ‰ãƒƒãƒˆã‚’æç”»ã™ã‚‹
 extern	int		NS_DrawPixelSoftImage( int SIHandle, int x, int y, int  r, int  g, int  b, int  a )
 {
 	SOFTIMAGE *SoftImg ;
 
-	// ƒAƒhƒŒƒX‚Ìæ“¾
+	// ã‚¢ãƒ‰ãƒ¬ã‚¹ã®å–å¾—
 	if( SFTIMGCHK( SIHandle, SoftImg ) )
 		return -1 ;
 
 	return NS_SetPixelBaseImage( &SoftImg->BaseImage, x, y, r, g, b, a ) ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒAƒCƒ[ƒWƒnƒ“ƒhƒ‹‚Ìw’èÀ•W‚Éƒhƒbƒg‚ğ•`‰æ‚·‚é(ŠeF—v‘f‚Í•‚“®¬”“_”)
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒãƒ³ãƒ‰ãƒ«ã®æŒ‡å®šåº§æ¨™ã«ãƒ‰ãƒƒãƒˆã‚’æç”»ã™ã‚‹(å„è‰²è¦ç´ ã¯æµ®å‹•å°æ•°ç‚¹æ•°)
 extern	int		NS_DrawPixelSoftImageF( int SIHandle, int x, int y, float  r, float  g, float  b, float  a )
 {
 	SOFTIMAGE *SoftImg ;
 
-	// ƒAƒhƒŒƒX‚Ìæ“¾
+	// ã‚¢ãƒ‰ãƒ¬ã‚¹ã®å–å¾—
 	if( SFTIMGCHK( SIHandle, SoftImg ) )
 		return -1 ;
 
 	return NS_SetPixelBaseImageF( &SoftImg->BaseImage, x, y, r, g, b, a ) ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤ƒCƒ[ƒW‚Ìw’èÀ•W‚Éƒhƒbƒg‚ğ•`‰æ‚·‚é
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†ã‚¤ãƒ¡ãƒ¼ã‚¸ã®æŒ‡å®šåº§æ¨™ã«ãƒ‰ãƒƒãƒˆã‚’æç”»ã™ã‚‹
 extern	void	NS_DrawPixelSoftImage_Unsafe_XRGB8( int SIHandle, int x, int y, int  r, int  g, int  b )
 {
 	BASEIMAGE *BaseImage = &( ( SOFTIMAGE * )HandleManageArray[ DX_HANDLETYPE_SOFTIMAGE ].Handle[ SIHandle & DX_HANDLEINDEX_MASK ] )->BaseImage ;
@@ -2007,7 +2007,7 @@ extern	void	NS_DrawPixelSoftImage_Unsafe_XRGB8( int SIHandle, int x, int y, int 
 	*((DWORD *)((BYTE *)BaseImage->GraphData + BaseImage->Pitch * y + x * 4)) = ( DWORD )( ( r << 16 ) | ( g << 8 ) | b ) ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤ƒCƒ[ƒW‚Ìw’èÀ•W‚Éƒhƒbƒg‚ğ•`‰æ‚·‚é
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†ã‚¤ãƒ¡ãƒ¼ã‚¸ã®æŒ‡å®šåº§æ¨™ã«ãƒ‰ãƒƒãƒˆã‚’æç”»ã™ã‚‹
 extern	void	NS_DrawPixelSoftImage_Unsafe_ARGB8( int SIHandle, int x, int y, int  r, int  g, int  b, int a )
 {
 	BASEIMAGE *BaseImage = &( ( SOFTIMAGE * )HandleManageArray[ DX_HANDLETYPE_SOFTIMAGE ].Handle[ SIHandle & DX_HANDLEINDEX_MASK ] )->BaseImage ;
@@ -2015,79 +2015,79 @@ extern	void	NS_DrawPixelSoftImage_Unsafe_ARGB8( int SIHandle, int x, int y, int 
 	*((DWORD *)((BYTE *)BaseImage->GraphData + BaseImage->Pitch * y + x * 4)) = ( DWORD )( ( a << 24 ) | ( r << 16 ) | ( g << 8 ) | b ) ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤ƒCƒ[ƒW‚Ìw’èÀ•W‚Éƒhƒbƒg‚ğ•`‰æ‚·‚é(ƒpƒŒƒbƒg‰æ‘œ—pA—LŒø’l‚Í‚O`‚Q‚T‚T)
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†ã‚¤ãƒ¡ãƒ¼ã‚¸ã®æŒ‡å®šåº§æ¨™ã«ãƒ‰ãƒƒãƒˆã‚’æç”»ã™ã‚‹(ãƒ‘ãƒ¬ãƒƒãƒˆç”»åƒç”¨ã€æœ‰åŠ¹å€¤ã¯ï¼ï½ï¼’ï¼•ï¼•)
 extern	int		NS_DrawPixelPalCodeSoftImage( int SIHandle, int x, int y, int palNo )
 {
 	SOFTIMAGE *SoftImg ;
 
-	// ƒAƒhƒŒƒX‚Ìæ“¾
+	// ã‚¢ãƒ‰ãƒ¬ã‚¹ã®å–å¾—
 	if( SFTIMGCHK( SIHandle, SoftImg ) )
 		return -1 ;
 
 	return NS_SetPixelPalCodeBaseImage( &SoftImg->BaseImage,  x,  y,  palNo ) ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤ƒCƒ[ƒW‚Ìw’èÀ•W‚ÌFƒR[ƒh‚ğæ“¾‚·‚é(ƒpƒŒƒbƒg‰æ‘œ—pA–ß‚è’l‚Í‚O`‚Q‚T‚T)
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†ã‚¤ãƒ¡ãƒ¼ã‚¸ã®æŒ‡å®šåº§æ¨™ã®è‰²ã‚³ãƒ¼ãƒ‰ã‚’å–å¾—ã™ã‚‹(ãƒ‘ãƒ¬ãƒƒãƒˆç”»åƒç”¨ã€æˆ»ã‚Šå€¤ã¯ï¼ï½ï¼’ï¼•ï¼•)
 extern	int		NS_GetPixelPalCodeSoftImage( int SIHandle, int x, int y )
 {
 	SOFTIMAGE *SoftImg ;
 
-	// ƒAƒhƒŒƒX‚Ìæ“¾
+	// ã‚¢ãƒ‰ãƒ¬ã‚¹ã®å–å¾—
 	if( SFTIMGCHK( SIHandle, SoftImg ) )
 		return -1 ;
 
 	return NS_GetPixelPalCodeBaseImage( &SoftImg->BaseImage,  x,  y ) ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤ƒCƒ[ƒW‚ÌÀƒCƒ[ƒW‚ªŠi”[‚³‚ê‚Ä‚¢‚éƒƒ‚ƒŠ—Ìˆæ‚Ìæ“ªƒAƒhƒŒƒX‚ğæ“¾‚·‚é
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†ã‚¤ãƒ¡ãƒ¼ã‚¸ã®å®Ÿã‚¤ãƒ¡ãƒ¼ã‚¸ãŒæ ¼ç´ã•ã‚Œã¦ã„ã‚‹ãƒ¡ãƒ¢ãƒªé ˜åŸŸã®å…ˆé ­ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å–å¾—ã™ã‚‹
 extern void *NS_GetImageAddressSoftImage( int SIHandle )
 {
 	SOFTIMAGE *SoftImg ;
 
-	// ƒAƒhƒŒƒX‚Ìæ“¾
+	// ã‚¢ãƒ‰ãƒ¬ã‚¹ã®å–å¾—
 	if( SFTIMGCHK( SIHandle, SoftImg ) )
 		return NULL ;
 
 	return SoftImg->BaseImage.GraphData ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒAƒCƒ[ƒWƒnƒ“ƒhƒ‹‚Ìƒƒ‚ƒŠ‚ÉŠi”[‚³‚ê‚Ä‚¢‚é‰æ‘œƒf[ƒ^‚Ì1ƒ‰ƒCƒ“•Ó‚è‚ÌƒoƒCƒg”‚ğæ“¾‚·‚é
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒãƒ³ãƒ‰ãƒ«ã®ãƒ¡ãƒ¢ãƒªã«æ ¼ç´ã•ã‚Œã¦ã„ã‚‹ç”»åƒãƒ‡ãƒ¼ã‚¿ã®1ãƒ©ã‚¤ãƒ³è¾ºã‚Šã®ãƒã‚¤ãƒˆæ•°ã‚’å–å¾—ã™ã‚‹
 extern int NS_GetPitchSoftImage( int SIHandle )
 {
 	SOFTIMAGE *SoftImg ;
 
-	// ƒAƒhƒŒƒX‚Ìæ“¾
+	// ã‚¢ãƒ‰ãƒ¬ã‚¹ã®å–å¾—
 	if( SFTIMGCHK( SIHandle, SoftImg ) )
 		return -1 ;
 
 	return SoftImg->BaseImage.Pitch ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤ƒCƒ[ƒW‚Ìw’èÀ•W‚ÌF‚ğæ“¾‚·‚é
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†ã‚¤ãƒ¡ãƒ¼ã‚¸ã®æŒ‡å®šåº§æ¨™ã®è‰²ã‚’å–å¾—ã™ã‚‹
 extern	int		NS_GetPixelSoftImage(  int SIHandle, int x, int y, int *r, int *g, int *b, int *a )
 {
 	SOFTIMAGE *SoftImg ;
 
-	// ƒAƒhƒŒƒX‚Ìæ“¾
+	// ã‚¢ãƒ‰ãƒ¬ã‚¹ã®å–å¾—
 	if( SFTIMGCHK( SIHandle, SoftImg ) )
 		return -1 ;
 
 	return NS_GetPixelBaseImage( &SoftImg->BaseImage, x, y, r, g, b, a ) ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒAƒCƒ[ƒWƒnƒ“ƒhƒ‹‚Ìw’èÀ•W‚ÌF‚ğæ“¾‚·‚é(ŠeF—v‘f‚Í•‚“®¬”“_”)
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒãƒ³ãƒ‰ãƒ«ã®æŒ‡å®šåº§æ¨™ã®è‰²ã‚’å–å¾—ã™ã‚‹(å„è‰²è¦ç´ ã¯æµ®å‹•å°æ•°ç‚¹æ•°)
 extern	int		NS_GetPixelSoftImageF( int SIHandle, int x, int y, float *r, float *g, float *b, float *a )
 {
 	SOFTIMAGE *SoftImg ;
 
-	// ƒAƒhƒŒƒX‚Ìæ“¾
+	// ã‚¢ãƒ‰ãƒ¬ã‚¹ã®å–å¾—
 	if( SFTIMGCHK( SIHandle, SoftImg ) )
 		return -1 ;
 
 	return NS_GetPixelBaseImageF( &SoftImg->BaseImage, x, y, r, g, b, a ) ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤ƒCƒ[ƒW‚Ìw’èÀ•W‚ÌF‚ğæ“¾‚·‚é
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†ã‚¤ãƒ¡ãƒ¼ã‚¸ã®æŒ‡å®šåº§æ¨™ã®è‰²ã‚’å–å¾—ã™ã‚‹
 extern	void		NS_GetPixelSoftImage_Unsafe_XRGB8(  int SIHandle, int x, int y, int *r, int *g, int *b )
 {
 	BASEIMAGE *BaseImage = &( ( SOFTIMAGE * )HandleManageArray[ DX_HANDLETYPE_SOFTIMAGE ].Handle[ SIHandle & DX_HANDLEINDEX_MASK ] )->BaseImage ;
@@ -2099,7 +2099,7 @@ extern	void		NS_GetPixelSoftImage_Unsafe_XRGB8(  int SIHandle, int x, int y, int
 	*b = ( int )(   Color         & 0xff ) ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤ƒCƒ[ƒW‚Ìw’èÀ•W‚ÌF‚ğæ“¾‚·‚é
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†ã‚¤ãƒ¡ãƒ¼ã‚¸ã®æŒ‡å®šåº§æ¨™ã®è‰²ã‚’å–å¾—ã™ã‚‹
 extern	void		NS_GetPixelSoftImage_Unsafe_ARGB8(  int SIHandle, int x, int y, int *r, int *g, int *b, int *a )
 {
 	BASEIMAGE *BaseImage = &( ( SOFTIMAGE * )HandleManageArray[ DX_HANDLETYPE_SOFTIMAGE ].Handle[ SIHandle & DX_HANDLEINDEX_MASK ] )->BaseImage ;
@@ -2112,36 +2112,36 @@ extern	void		NS_GetPixelSoftImage_Unsafe_ARGB8(  int SIHandle, int x, int y, int
 	*b = ( int )(   Color         & 0xff ) ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤ƒCƒ[ƒW‚Ìw’èÀ•W‚Éü‚ğ•`‰æ‚·‚é(ŠeF—v‘f‚Í‚O`‚Q‚T‚T)
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†ã‚¤ãƒ¡ãƒ¼ã‚¸ã®æŒ‡å®šåº§æ¨™ã«ç·šã‚’æç”»ã™ã‚‹(å„è‰²è¦ç´ ã¯ï¼ï½ï¼’ï¼•ï¼•)
 extern int NS_DrawLineSoftImage(  int SIHandle, int x1, int y1, int x2, int y2, int r, int g, int b, int a )
 {
 	SOFTIMAGE *SoftImg ;
 
-	// ƒAƒhƒŒƒX‚Ìæ“¾
+	// ã‚¢ãƒ‰ãƒ¬ã‚¹ã®å–å¾—
 	if( SFTIMGCHK( SIHandle, SoftImg ) )
 		return -1 ;
 
 	return NS_DrawLineBaseImage( &SoftImg->BaseImage, x1, y1, x2, y2, r, g, b, a ) ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒAƒCƒ[ƒWƒnƒ“ƒhƒ‹‚Ìw’èÀ•W‚É‰~‚ğ•`‰æ‚·‚é(ŠeF—v‘f‚Í‚O`‚Q‚T‚T)
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒãƒ³ãƒ‰ãƒ«ã®æŒ‡å®šåº§æ¨™ã«å††ã‚’æç”»ã™ã‚‹(å„è‰²è¦ç´ ã¯ï¼ï½ï¼’ï¼•ï¼•)
 extern int NS_DrawCircleSoftImage( int SIHandle, int x, int y, int radius, int r, int g, int b, int a, int FillFlag )
 {
 	SOFTIMAGE *SoftImg ;
 
-	// ƒAƒhƒŒƒX‚Ìæ“¾
+	// ã‚¢ãƒ‰ãƒ¬ã‚¹ã®å–å¾—
 	if( SFTIMGCHK( SIHandle, SoftImg ) )
 		return -1 ;
 
 	return NS_DrawCircleBaseImage( &SoftImg->BaseImage, x, y, radius, r, g, b, a, FillFlag ) ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤ƒCƒ[ƒW‚ğ•Ê‚ÌƒCƒ[ƒWã‚É“]‘—‚·‚é
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’åˆ¥ã®ã‚¤ãƒ¡ãƒ¼ã‚¸ä¸Šã«è»¢é€ã™ã‚‹
 extern	int		NS_BltSoftImage( int SrcX, int SrcY, int SrcSizeX, int SrcSizeY, int SrcSIHandle, int DestX, int DestY, int DestSIHandle )
 {
 	SOFTIMAGE *SrcSoftImg, *DestSoftImg ;
 
-	// ƒAƒhƒŒƒX‚Ìæ“¾
+	// ã‚¢ãƒ‰ãƒ¬ã‚¹ã®å–å¾—
 	if( SFTIMGCHK( SrcSIHandle,  SrcSoftImg ) ) 
 		return -1 ;
 	if( SFTIMGCHK( DestSIHandle, DestSoftImg ) )
@@ -2150,12 +2150,12 @@ extern	int		NS_BltSoftImage( int SrcX, int SrcY, int SrcSizeX, int SrcSizeY, int
 	return NS_BltBaseImage( SrcX, SrcY, SrcSizeX, SrcSizeY, DestX, DestY, &SrcSoftImg->BaseImage, &DestSoftImg->BaseImage ) ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤ƒCƒ[ƒW‚ğ“§‰ßFˆ—•t‚«‚Å“]‘—‚·‚é
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’é€éè‰²å‡¦ç†ä»˜ãã§è»¢é€ã™ã‚‹
 extern	int		NS_BltSoftImageWithTransColor( int SrcX, int SrcY, int SrcSizeX, int SrcSizeY, int SrcSIHandle, int DestX, int DestY, int DestSIHandle, int Tr, int Tg, int Tb, int Ta )
 {
 	SOFTIMAGE *SrcSoftImg, *DestSoftImg ;
 
-	// ƒAƒhƒŒƒX‚Ìæ“¾
+	// ã‚¢ãƒ‰ãƒ¬ã‚¹ã®å–å¾—
 	if( SFTIMGCHK( SrcSIHandle,  SrcSoftImg ) ) 
 		return -1 ;
 	if( SFTIMGCHK( DestSIHandle, DestSoftImg ) )
@@ -2164,12 +2164,12 @@ extern	int		NS_BltSoftImageWithTransColor( int SrcX, int SrcY, int SrcSizeX, int
 	return NS_BltBaseImageWithTransColor( SrcX, SrcY, SrcSizeX, SrcSizeY, DestX, DestY, &SrcSoftImg->BaseImage, &DestSoftImg->BaseImage, Tr, Tg, Tb, Ta ) ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤ƒCƒ[ƒW‚ğƒAƒ‹ƒtƒ@’l‚ÌƒuƒŒƒ“ƒh‚ğl—¶‚µ‚½ã‚Å“]‘—‚·‚é( Opacity ‚Í“§–¾“x : 0( Š®‘S“§–¾ ) ` 255( Š®‘S•s“§–¾ ) )( o—Íæ‚ª ARGB8 Œ`®ˆÈŠO‚Ìê‡‚ÍƒGƒ‰[‚É‚È‚è‚Ü‚· )
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’ã‚¢ãƒ«ãƒ•ã‚¡å€¤ã®ãƒ–ãƒ¬ãƒ³ãƒ‰ã‚’è€ƒæ…®ã—ãŸä¸Šã§è»¢é€ã™ã‚‹( Opacity ã¯é€æ˜åº¦ : 0( å®Œå…¨é€æ˜ ) ï½ 255( å®Œå…¨ä¸é€æ˜ ) )( å‡ºåŠ›å…ˆãŒ ARGB8 å½¢å¼ä»¥å¤–ã®å ´åˆã¯ã‚¨ãƒ©ãƒ¼ã«ãªã‚Šã¾ã™ )
 extern	int		NS_BltSoftImageWithAlphaBlend( int SrcX, int SrcY, int SrcSizeX, int SrcSizeY, int SrcSIHandle, int DestX, int DestY, int DestSIHandle, int Opacity )
 {
 	SOFTIMAGE *SrcSoftImg, *DestSoftImg ;
 
-	// ƒAƒhƒŒƒX‚Ìæ“¾
+	// ã‚¢ãƒ‰ãƒ¬ã‚¹ã®å–å¾—
 	if( SFTIMGCHK( SrcSIHandle,  SrcSoftImg ) ) 
 		return -1 ;
 	if( SFTIMGCHK( DestSIHandle, DestSoftImg ) )
@@ -2178,72 +2178,72 @@ extern	int		NS_BltSoftImageWithAlphaBlend( int SrcX, int SrcY, int SrcSizeX, int
 	return NS_BltBaseImageWithAlphaBlend( SrcX, SrcY, SrcSizeX, SrcSizeY, DestX, DestY, &SrcSoftImg->BaseImage, &DestSoftImg->BaseImage, Opacity ) ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤ƒCƒ[ƒW‚Ì¶‰E‚ğ”½“]‚·‚é
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†ã‚¤ãƒ¡ãƒ¼ã‚¸ã®å·¦å³ã‚’åè»¢ã™ã‚‹
 extern	int		NS_ReverseSoftImageH( int SIHandle )
 {
 	SOFTIMAGE *SoftImg ;
 
-	// ƒAƒhƒŒƒX‚Ìæ“¾
+	// ã‚¢ãƒ‰ãƒ¬ã‚¹ã®å–å¾—
 	if( SFTIMGCHK( SIHandle, SoftImg ) )
 		return -1 ;
 
 	return NS_ReverseBaseImageH( &SoftImg->BaseImage ) ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤ƒCƒ[ƒW‚Ìã‰º‚ğ”½“]‚·‚é
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†ã‚¤ãƒ¡ãƒ¼ã‚¸ã®ä¸Šä¸‹ã‚’åè»¢ã™ã‚‹
 extern	int		NS_ReverseSoftImageV( int SIHandle )
 {
 	SOFTIMAGE *SoftImg ;
 
-	// ƒAƒhƒŒƒX‚Ìæ“¾
+	// ã‚¢ãƒ‰ãƒ¬ã‚¹ã®å–å¾—
 	if( SFTIMGCHK( SIHandle, SoftImg ) )
 		return -1 ;
 
 	return NS_ReverseBaseImageV( &SoftImg->BaseImage ) ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤ƒCƒ[ƒW‚Ìã‰º¶‰E‚ğ”½“]‚·‚é
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†ã‚¤ãƒ¡ãƒ¼ã‚¸ã®ä¸Šä¸‹å·¦å³ã‚’åè»¢ã™ã‚‹
 extern	int		NS_ReverseSoftImage( int SIHandle )
 {
 	SOFTIMAGE *SoftImg ;
 
-	// ƒAƒhƒŒƒX‚Ìæ“¾
+	// ã‚¢ãƒ‰ãƒ¬ã‚¹ã®å–å¾—
 	if( SFTIMGCHK( SIHandle, SoftImg ) )
 		return -1 ;
 
 	return NS_ReverseBaseImage( &SoftImg->BaseImage ) ;
 }
 
-// ’Êí‚Ìƒ¿ƒ`ƒƒƒ“ƒlƒ‹•t‚«‰æ‘œ‚ğæZÏ‚İƒ¿ƒ`ƒƒƒ“ƒlƒ‹•t‚«‰æ‘œ‚É•ÏŠ·‚·‚é( ƒsƒNƒZƒ‹ƒtƒH[ƒ}ƒbƒg‚ª ARGB8 ˆÈŠO‚Ìê‡‚Í ARGB8 ‚É•ÏŠ·‚³‚ê‚Ü‚· )
+// é€šå¸¸ã®Î±ãƒãƒ£ãƒ³ãƒãƒ«ä»˜ãç”»åƒã‚’ä¹—ç®—æ¸ˆã¿Î±ãƒãƒ£ãƒ³ãƒãƒ«ä»˜ãç”»åƒã«å¤‰æ›ã™ã‚‹( ãƒ”ã‚¯ã‚»ãƒ«ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆãŒ ARGB8 ä»¥å¤–ã®å ´åˆã¯ ARGB8 ã«å¤‰æ›ã•ã‚Œã¾ã™ )
 extern	int		NS_ConvertPremulAlphaSoftImage( int SIHandle )
 {
 	SOFTIMAGE *SoftImg ;
 
-	// ƒAƒhƒŒƒX‚Ìæ“¾
+	// ã‚¢ãƒ‰ãƒ¬ã‚¹ã®å–å¾—
 	if( SFTIMGCHK( SIHandle, SoftImg ) )
 		return -1 ;
 
 	return NS_ConvertPremulAlphaBaseImage( &SoftImg->BaseImage ) ;
 }
 
-// æZÏ‚İƒ¿ƒ`ƒƒƒ“ƒlƒ‹•t‚«‰æ‘œ‚ğ’Êí‚Ìƒ¿ƒ`ƒƒƒ“ƒlƒ‹•t‚«‰æ‘œ‚É•ÏŠ·‚·‚é( ƒsƒNƒZƒ‹ƒtƒH[ƒ}ƒbƒg‚ª ARGB8 ˆÈŠO‚Ìê‡‚Í ARGB8 ‚É•ÏŠ·‚³‚ê‚Ü‚· )
+// ä¹—ç®—æ¸ˆã¿Î±ãƒãƒ£ãƒ³ãƒãƒ«ä»˜ãç”»åƒã‚’é€šå¸¸ã®Î±ãƒãƒ£ãƒ³ãƒãƒ«ä»˜ãç”»åƒã«å¤‰æ›ã™ã‚‹( ãƒ”ã‚¯ã‚»ãƒ«ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆãŒ ARGB8 ä»¥å¤–ã®å ´åˆã¯ ARGB8 ã«å¤‰æ›ã•ã‚Œã¾ã™ )
 extern	int		NS_ConvertInterpAlphaSoftImage( int SIHandle )
 {
 	SOFTIMAGE *SoftImg ;
 
-	// ƒAƒhƒŒƒX‚Ìæ“¾
+	// ã‚¢ãƒ‰ãƒ¬ã‚¹ã®å–å¾—
 	if( SFTIMGCHK( SIHandle, SoftImg ) )
 		return -1 ;
 
 	return NS_ConvertInterpAlphaBaseImage( &SoftImg->BaseImage ) ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤ƒCƒ[ƒW‚ÉŠÜ‚Ü‚ê‚éƒsƒNƒZƒ‹‚ÌƒAƒ‹ƒtƒ@’l‚ğƒ`ƒFƒbƒN‚·‚é( –ß‚è’l   0:‰æ‘œ‚ÉƒAƒ‹ƒtƒ@¬•ª‚ª–³‚¢  1:‰æ‘œ‚ÉƒAƒ‹ƒtƒ@¬•ª‚ª‚ ‚èA‚·‚×‚ÄÅ‘å(255)’l  2:‰æ‘œ‚ÉƒAƒ‹ƒtƒ@¬•ª‚ª‚ ‚èA‘¶İ‚·‚éƒAƒ‹ƒtƒ@’l‚ÍÅ¬(0)‚ÆÅ‘å(255)‚Ì‚İ@3:‰æ‘œ‚ÉƒAƒ‹ƒtƒ@¬•ª‚ª‚ ‚èAÅ¬‚ÆÅ‘åˆÈŠO‚Ì’†ŠÔ‚Ì’l‚ª‚ ‚é )  
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†ã‚¤ãƒ¡ãƒ¼ã‚¸ã«å«ã¾ã‚Œã‚‹ãƒ”ã‚¯ã‚»ãƒ«ã®ã‚¢ãƒ«ãƒ•ã‚¡å€¤ã‚’ãƒã‚§ãƒƒã‚¯ã™ã‚‹( æˆ»ã‚Šå€¤   0:ç”»åƒã«ã‚¢ãƒ«ãƒ•ã‚¡æˆåˆ†ãŒç„¡ã„  1:ç”»åƒã«ã‚¢ãƒ«ãƒ•ã‚¡æˆåˆ†ãŒã‚ã‚Šã€ã™ã¹ã¦æœ€å¤§(255)å€¤  2:ç”»åƒã«ã‚¢ãƒ«ãƒ•ã‚¡æˆåˆ†ãŒã‚ã‚Šã€å­˜åœ¨ã™ã‚‹ã‚¢ãƒ«ãƒ•ã‚¡å€¤ã¯æœ€å°(0)ã¨æœ€å¤§(255)ã®ã¿ã€€3:ç”»åƒã«ã‚¢ãƒ«ãƒ•ã‚¡æˆåˆ†ãŒã‚ã‚Šã€æœ€å°ã¨æœ€å¤§ä»¥å¤–ã®ä¸­é–“ã®å€¤ãŒã‚ã‚‹ )  
 extern	int		NS_CheckPixelAlphaSoftImage( int SIHandle )
 {
 	SOFTIMAGE *SoftImg ;
 
-	// ƒAƒhƒŒƒX‚Ìæ“¾
+	// ã‚¢ãƒ‰ãƒ¬ã‚¹ã®å–å¾—
 	if( SFTIMGCHK( SIHandle, SoftImg ) )
 		return -1 ;
 
@@ -2252,7 +2252,7 @@ extern	int		NS_CheckPixelAlphaSoftImage( int SIHandle )
 
 #ifndef DX_NON_FONT
 
-// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤ƒCƒ[ƒW‚É•¶š—ñƒCƒ[ƒW‚ğ“]‘—‚·‚é
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†ã‚¤ãƒ¡ãƒ¼ã‚¸ã«æ–‡å­—åˆ—ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’è»¢é€ã™ã‚‹
 extern	int		NS_BltStringSoftImage( 
 	int x, int y, const TCHAR *StrData,
 	int DestSIHandle, int DestEdgeSIHandle,
@@ -2282,7 +2282,7 @@ extern	int		NS_BltStringSoftImage(
 #endif
 }
 
-// ƒ\ƒtƒgƒEƒGƒAƒCƒ[ƒWƒnƒ“ƒhƒ‹‚É•¶š—ñ‚ğ•`‰æ‚·‚é( ƒfƒtƒHƒ‹ƒgƒtƒHƒ“ƒgƒnƒ“ƒhƒ‹‚ğg—p‚·‚é )
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒãƒ³ãƒ‰ãƒ«ã«æ–‡å­—åˆ—ã‚’æç”»ã™ã‚‹( ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãƒ•ã‚©ãƒ³ãƒˆãƒãƒ³ãƒ‰ãƒ«ã‚’ä½¿ç”¨ã™ã‚‹ )
 extern int NS_BltStringSoftImageWithStrLen( int x, int y, const TCHAR *StrData, size_t StrDataLength, int DestSIHandle, int DestEdgeSIHandle, int VerticalFlag )
 {
 	int Result ;
@@ -2306,7 +2306,7 @@ extern int NS_BltStringSoftImageWithStrLen( int x, int y, const TCHAR *StrData, 
 	return Result ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤ƒCƒ[ƒW‚É•¶š—ñƒCƒ[ƒW‚ğ“]‘—‚·‚é
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†ã‚¤ãƒ¡ãƒ¼ã‚¸ã«æ–‡å­—åˆ—ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’è»¢é€ã™ã‚‹
 extern	int		BltStringSoftImage_WCHAR_T( 
 	int x, int y, const wchar_t *StrData,
 	int DestSIHandle, int DestEdgeSIHandle,
@@ -2315,7 +2315,7 @@ extern	int		BltStringSoftImage_WCHAR_T(
 {
 	SOFTIMAGE *SoftImg, *EdgeSoftImg = NULL ;
 
-	// ƒAƒhƒŒƒX‚Ìæ“¾
+	// ã‚¢ãƒ‰ãƒ¬ã‚¹ã®å–å¾—
 	if( SFTIMGCHK( DestSIHandle, SoftImg ) )
 	{
 		return -1 ;
@@ -2332,7 +2332,7 @@ extern	int		BltStringSoftImage_WCHAR_T(
 	return FontBaseImageBlt_WCHAR_T( x, y, StrData, -1, &SoftImg->BaseImage, DestEdgeSIHandle != -1 ? &EdgeSoftImg->BaseImage : NULL, VerticalFlag ) ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤ƒCƒ[ƒW‚É•¶š—ñƒCƒ[ƒW‚ğ“]‘—‚·‚é( ƒtƒHƒ“ƒgƒnƒ“ƒhƒ‹g—p”Å )
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†ã‚¤ãƒ¡ãƒ¼ã‚¸ã«æ–‡å­—åˆ—ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’è»¢é€ã™ã‚‹( ãƒ•ã‚©ãƒ³ãƒˆãƒãƒ³ãƒ‰ãƒ«ä½¿ç”¨ç‰ˆ )
 extern int NS_BltStringSoftImageToHandle( 
 	int x, int y, const TCHAR *StrData,
 	int DestSIHandle, int DestEdgeSIHandle,
@@ -2362,7 +2362,7 @@ extern int NS_BltStringSoftImageToHandle(
 #endif
 }
 
-// ƒ\ƒtƒgƒEƒGƒAƒCƒ[ƒWƒnƒ“ƒhƒ‹‚É•¶š—ñ‚ğ•`‰æ‚·‚é( ƒtƒHƒ“ƒgƒnƒ“ƒhƒ‹g—p”Å )
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒãƒ³ãƒ‰ãƒ«ã«æ–‡å­—åˆ—ã‚’æç”»ã™ã‚‹( ãƒ•ã‚©ãƒ³ãƒˆãƒãƒ³ãƒ‰ãƒ«ä½¿ç”¨ç‰ˆ )
 extern int NS_BltStringSoftImageToHandleWithStrLen( int x, int y, const TCHAR *StrData, size_t StrDataLength, int DestSIHandle, int DestEdgeSIHandle, int FontHandle, int VerticalFlag )
 {
 	int Result ;
@@ -2386,7 +2386,7 @@ extern int NS_BltStringSoftImageToHandleWithStrLen( int x, int y, const TCHAR *S
 	return Result ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤ƒCƒ[ƒW‚É•¶š—ñƒCƒ[ƒW‚ğ“]‘—‚·‚é( ƒtƒHƒ“ƒgƒnƒ“ƒhƒ‹g—p”Å )
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†ã‚¤ãƒ¡ãƒ¼ã‚¸ã«æ–‡å­—åˆ—ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’è»¢é€ã™ã‚‹( ãƒ•ã‚©ãƒ³ãƒˆãƒãƒ³ãƒ‰ãƒ«ä½¿ç”¨ç‰ˆ )
 extern int BltStringSoftImageToHandle_WCHAR_T(
 	int x, int y, const wchar_t *StrData,
 	int DestSIHandle, int DestEdgeSIHandle,
@@ -2395,7 +2395,7 @@ extern int BltStringSoftImageToHandle_WCHAR_T(
 {
 	SOFTIMAGE *SoftImg, *EdgeSoftImg = NULL ;
 
-	// ƒAƒhƒŒƒX‚Ìæ“¾
+	// ã‚¢ãƒ‰ãƒ¬ã‚¹ã®å–å¾—
 	if( SFTIMGCHK( DestSIHandle, SoftImg ) )
 	{
 		return -1 ;
@@ -2415,13 +2415,13 @@ extern int BltStringSoftImageToHandle_WCHAR_T(
 #endif // DX_NON_FONT
 
 
-// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤ƒCƒ[ƒW‚ğ‰æ–Ê‚É•`‰æ‚·‚é
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’ç”»é¢ã«æç”»ã™ã‚‹
 extern	int		NS_DrawSoftImage( int x, int y, int SIHandle )
 {
 #ifndef DX_NON_GRAPHICS
 	SOFTIMAGE *SoftImg ;
 
-	// ƒAƒhƒŒƒX‚Ìæ“¾
+	// ã‚¢ãƒ‰ãƒ¬ã‚¹ã®å–å¾—
 	if( SFTIMGCHK( SIHandle, SoftImg ) )
 		return -1 ;
 
@@ -2433,25 +2433,25 @@ extern	int		NS_DrawSoftImage( int x, int y, int SIHandle )
 
 #ifndef DX_NON_SAVEFUNCTION
 
-// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤ƒCƒ[ƒW‚ğ‚a‚l‚o‰æ‘œƒtƒ@ƒCƒ‹‚Æ‚µ‚Ä•Û‘¶‚·‚é
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’ï¼¢ï¼­ï¼°ç”»åƒãƒ•ã‚¡ã‚¤ãƒ«ã¨ã—ã¦ä¿å­˜ã™ã‚‹
 extern	int		NS_SaveSoftImageToBmp( const TCHAR *FilePath, int SIHandle )
 {
 	SOFTIMAGE *SoftImg ;
 
-	// ƒAƒhƒŒƒX‚Ìæ“¾
+	// ã‚¢ãƒ‰ãƒ¬ã‚¹ã®å–å¾—
 	if( SFTIMGCHK( SIHandle, SoftImg ) )
 		return -1 ;
 
 	return NS_SaveBaseImageToBmp( FilePath, &SoftImg->BaseImage ) ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒAƒCƒ[ƒWƒnƒ“ƒhƒ‹‚ğ‚a‚l‚o‰æ‘œƒtƒ@ƒCƒ‹‚Æ‚µ‚Ä•Û‘¶‚·‚é
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒãƒ³ãƒ‰ãƒ«ã‚’ï¼¢ï¼­ï¼°ç”»åƒãƒ•ã‚¡ã‚¤ãƒ«ã¨ã—ã¦ä¿å­˜ã™ã‚‹
 extern int NS_SaveSoftImageToBmpWithStrLen( const TCHAR *FilePath, size_t FilePathLength, int SIHandle )
 {
 	int Result ;
 	SOFTIMAGE *SoftImg ;
 
-	// ƒAƒhƒŒƒX‚Ìæ“¾
+	// ã‚¢ãƒ‰ãƒ¬ã‚¹ã®å–å¾—
 	if( SFTIMGCHK( SIHandle, SoftImg ) )
 		return -1 ;
 
@@ -2461,37 +2461,37 @@ extern int NS_SaveSoftImageToBmpWithStrLen( const TCHAR *FilePath, size_t FilePa
 	return Result ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤ƒCƒ[ƒW‚ğ‚a‚l‚o‰æ‘œƒtƒ@ƒCƒ‹‚Æ‚µ‚Ä•Û‘¶‚·‚é
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’ï¼¢ï¼­ï¼°ç”»åƒãƒ•ã‚¡ã‚¤ãƒ«ã¨ã—ã¦ä¿å­˜ã™ã‚‹
 extern	int		SaveSoftImageToBmp_WCHAR_T( const wchar_t *FilePath, int SIHandle )
 {
 	SOFTIMAGE *SoftImg ;
 
-	// ƒAƒhƒŒƒX‚Ìæ“¾
+	// ã‚¢ãƒ‰ãƒ¬ã‚¹ã®å–å¾—
 	if( SFTIMGCHK( SIHandle, SoftImg ) )
 		return -1 ;
 
 	return SaveBaseImageToBmp_WCHAR_T( FilePath, &SoftImg->BaseImage ) ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤ƒCƒ[ƒW‚ğ‚c‚c‚r‰æ‘œƒtƒ@ƒCƒ‹‚Æ‚µ‚Ä•Û‘¶‚·‚é
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’ï¼¤ï¼¤ï¼³ç”»åƒãƒ•ã‚¡ã‚¤ãƒ«ã¨ã—ã¦ä¿å­˜ã™ã‚‹
 extern	int		NS_SaveSoftImageToDds( const TCHAR *FilePath, int SIHandle )
 {
 	SOFTIMAGE *SoftImg ;
 
-	// ƒAƒhƒŒƒX‚Ìæ“¾
+	// ã‚¢ãƒ‰ãƒ¬ã‚¹ã®å–å¾—
 	if( SFTIMGCHK( SIHandle, SoftImg ) )
 		return -1 ;
 
 	return NS_SaveBaseImageToDds( FilePath, &SoftImg->BaseImage ) ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒAƒCƒ[ƒWƒnƒ“ƒhƒ‹‚ğ‚c‚c‚r‰æ‘œƒtƒ@ƒCƒ‹‚Æ‚µ‚Ä•Û‘¶‚·‚é
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒãƒ³ãƒ‰ãƒ«ã‚’ï¼¤ï¼¤ï¼³ç”»åƒãƒ•ã‚¡ã‚¤ãƒ«ã¨ã—ã¦ä¿å­˜ã™ã‚‹
 extern int NS_SaveSoftImageToDdsWithStrLen( const TCHAR *FilePath, size_t FilePathLength, int SIHandle )
 {
 	int Result ;
 	SOFTIMAGE *SoftImg ;
 
-	// ƒAƒhƒŒƒX‚Ìæ“¾
+	// ã‚¢ãƒ‰ãƒ¬ã‚¹ã®å–å¾—
 	if( SFTIMGCHK( SIHandle, SoftImg ) )
 		return -1 ;
 
@@ -2501,12 +2501,12 @@ extern int NS_SaveSoftImageToDdsWithStrLen( const TCHAR *FilePath, size_t FilePa
 	return Result ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤ƒCƒ[ƒW‚ğ‚c‚c‚r‰æ‘œƒtƒ@ƒCƒ‹‚Æ‚µ‚Ä•Û‘¶‚·‚é
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’ï¼¤ï¼¤ï¼³ç”»åƒãƒ•ã‚¡ã‚¤ãƒ«ã¨ã—ã¦ä¿å­˜ã™ã‚‹
 extern	int		SaveSoftImageToDds_WCHAR_T( const wchar_t *FilePath, int SIHandle )
 {
 	SOFTIMAGE *SoftImg ;
 
-	// ƒAƒhƒŒƒX‚Ìæ“¾
+	// ã‚¢ãƒ‰ãƒ¬ã‚¹ã®å–å¾—
 	if( SFTIMGCHK( SIHandle, SoftImg ) )
 		return -1 ;
 
@@ -2514,25 +2514,25 @@ extern	int		SaveSoftImageToDds_WCHAR_T( const wchar_t *FilePath, int SIHandle )
 }
 
 #ifndef DX_NON_PNGREAD
-// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤ƒCƒ[ƒW‚ğ‚o‚m‚f‰æ‘œƒtƒ@ƒCƒ‹‚Æ‚µ‚Ä•Û‘¶‚·‚é
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’ï¼°ï¼®ï¼§ç”»åƒãƒ•ã‚¡ã‚¤ãƒ«ã¨ã—ã¦ä¿å­˜ã™ã‚‹
 extern	int		NS_SaveSoftImageToPng( const TCHAR *FilePath, int SIHandle, int CompressionLevel )
 {
 	SOFTIMAGE *SoftImg ;
 
-	// ƒAƒhƒŒƒX‚Ìæ“¾
+	// ã‚¢ãƒ‰ãƒ¬ã‚¹ã®å–å¾—
 	if( SFTIMGCHK( SIHandle, SoftImg ) )
 		return -1 ;
 
 	return NS_SaveBaseImageToPng( FilePath, &SoftImg->BaseImage, CompressionLevel ) ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒAƒCƒ[ƒWƒnƒ“ƒhƒ‹‚ğ‚o‚m‚f‰æ‘œƒtƒ@ƒCƒ‹‚Æ‚µ‚Ä•Û‘¶‚·‚é CompressionLevel = ˆ³k—¦A’l‚ª‘å‚«‚¢‚Ù‚Ç‚ˆ³k—¦‚•‰‰×A‚O‚Í–³ˆ³k,0`9
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒãƒ³ãƒ‰ãƒ«ã‚’ï¼°ï¼®ï¼§ç”»åƒãƒ•ã‚¡ã‚¤ãƒ«ã¨ã—ã¦ä¿å­˜ã™ã‚‹ CompressionLevel = åœ§ç¸®ç‡ã€å€¤ãŒå¤§ãã„ã»ã©é«˜åœ§ç¸®ç‡é«˜è² è·ã€ï¼ã¯ç„¡åœ§ç¸®,0ï½9
 extern int NS_SaveSoftImageToPngWithStrLen( const TCHAR *FilePath, size_t FilePathLength, int SIHandle, int CompressionLevel )
 {
 	int Result ;
 	SOFTIMAGE *SoftImg ;
 
-	// ƒAƒhƒŒƒX‚Ìæ“¾
+	// ã‚¢ãƒ‰ãƒ¬ã‚¹ã®å–å¾—
 	if( SFTIMGCHK( SIHandle, SoftImg ) )
 		return -1 ;
 
@@ -2542,12 +2542,12 @@ extern int NS_SaveSoftImageToPngWithStrLen( const TCHAR *FilePath, size_t FilePa
 	return Result ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤ƒCƒ[ƒW‚ğ‚o‚m‚f‰æ‘œƒtƒ@ƒCƒ‹‚Æ‚µ‚Ä•Û‘¶‚·‚é
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’ï¼°ï¼®ï¼§ç”»åƒãƒ•ã‚¡ã‚¤ãƒ«ã¨ã—ã¦ä¿å­˜ã™ã‚‹
 extern	int		SaveSoftImageToPng_WCHAR_T( const wchar_t *FilePath, int SIHandle, int CompressionLevel )
 {
 	SOFTIMAGE *SoftImg ;
 
-	// ƒAƒhƒŒƒX‚Ìæ“¾
+	// ã‚¢ãƒ‰ãƒ¬ã‚¹ã®å–å¾—
 	if( SFTIMGCHK( SIHandle, SoftImg ) )
 		return -1 ;
 
@@ -2556,25 +2556,25 @@ extern	int		SaveSoftImageToPng_WCHAR_T( const wchar_t *FilePath, int SIHandle, i
 #endif
 
 #ifndef DX_NON_JPEGREAD
-// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤ƒCƒ[ƒW‚ğ‚i‚o‚d‚f‰æ‘œƒtƒ@ƒCƒ‹‚Æ‚µ‚Ä•Û‘¶‚·‚é
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’ï¼ªï¼°ï¼¥ï¼§ç”»åƒãƒ•ã‚¡ã‚¤ãƒ«ã¨ã—ã¦ä¿å­˜ã™ã‚‹
 extern	int		NS_SaveSoftImageToJpeg( const TCHAR *FilePath, int SIHandle, int Quality, int Sample2x1 )
 {
 	SOFTIMAGE *SoftImg ;
 
-	// ƒAƒhƒŒƒX‚Ìæ“¾
+	// ã‚¢ãƒ‰ãƒ¬ã‚¹ã®å–å¾—
 	if( SFTIMGCHK( SIHandle, SoftImg ) )
 		return -1 ;
 
 	return NS_SaveBaseImageToJpeg( FilePath, &SoftImg->BaseImage, Quality, Sample2x1 ) ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒAƒCƒ[ƒWƒnƒ“ƒhƒ‹‚ğ‚i‚o‚d‚f‰æ‘œƒtƒ@ƒCƒ‹‚Æ‚µ‚Ä•Û‘¶‚·‚é Quality = ‰æ¿A’l‚ª‘å‚«‚¢‚Ù‚Ç’áˆ³k‚‰æ¿,0`100 
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒãƒ³ãƒ‰ãƒ«ã‚’ï¼ªï¼°ï¼¥ï¼§ç”»åƒãƒ•ã‚¡ã‚¤ãƒ«ã¨ã—ã¦ä¿å­˜ã™ã‚‹ Quality = ç”»è³ªã€å€¤ãŒå¤§ãã„ã»ã©ä½åœ§ç¸®é«˜ç”»è³ª,0ï½100 
 extern int NS_SaveSoftImageToJpegWithStrLen( const TCHAR *FilePath, size_t FilePathLength, int SIHandle, int Quality, int Sample2x1 )
 {
 	int Result ;
 	SOFTIMAGE *SoftImg ;
 
-	// ƒAƒhƒŒƒX‚Ìæ“¾
+	// ã‚¢ãƒ‰ãƒ¬ã‚¹ã®å–å¾—
 	if( SFTIMGCHK( SIHandle, SoftImg ) )
 		return -1 ;
 
@@ -2584,12 +2584,12 @@ extern int NS_SaveSoftImageToJpegWithStrLen( const TCHAR *FilePath, size_t FileP
 	return Result ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤ƒCƒ[ƒW‚ğ‚i‚o‚d‚f‰æ‘œƒtƒ@ƒCƒ‹‚Æ‚µ‚Ä•Û‘¶‚·‚é
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’ï¼ªï¼°ï¼¥ï¼§ç”»åƒãƒ•ã‚¡ã‚¤ãƒ«ã¨ã—ã¦ä¿å­˜ã™ã‚‹
 extern	int		SaveSoftImageToJpeg_WCHAR_T( const wchar_t *FilePath, int SIHandle, int Quality, int Sample2x1 )
 {
 	SOFTIMAGE *SoftImg ;
 
-	// ƒAƒhƒŒƒX‚Ìæ“¾
+	// ã‚¢ãƒ‰ãƒ¬ã‚¹ã®å–å¾—
 	if( SFTIMGCHK( SIHandle, SoftImg ) )
 		return -1 ;
 

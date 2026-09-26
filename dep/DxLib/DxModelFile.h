@@ -1,6 +1,6 @@
 // -------------------------------------------------------------------------------
 // 
-// 		‚c‚wѓ‰ѓCѓuѓ‰ѓЉ		ѓ‚ѓfѓ‹ѓfЃ[ѓ^ѓtѓ@ѓCѓ‹
+// 		пј¤пјёгѓ©г‚¤гѓ–гѓ©гѓЄ		гѓўгѓ‡гѓ«гѓ‡гѓјг‚їгѓ•г‚Ўг‚¤гѓ«
 // 
 // 				Ver 3.25a
 // 
@@ -9,7 +9,7 @@
 #ifndef DX_MODELFILE_H
 #define DX_MODELFILE_H
 
-// ѓCѓ“ѓNѓ‹Ѓ[ѓh ------------------------------
+// г‚¤гѓіг‚Їгѓ«гѓјгѓ‰ ------------------------------
 
 #include "DxCompileConfig.h"
 #include "DxLib.h"
@@ -24,820 +24,820 @@ namespace DxLib
 
 #endif // DX_NON_NAMESPACE
 
-// ѓ}ѓNѓЌ’и‹` --------------------------------
+// гѓћг‚Їгѓ­е®љзѕ© --------------------------------
 
-#define MV1_TRIANGLE_LIST_INDEX_TYPE_U8						(0x0000)				// ѓCѓ“ѓfѓbѓNѓX’l‚Н unsigned char Њ^
-#define MV1_TRIANGLE_LIST_INDEX_TYPE_U16					(0x0001)				// ѓCѓ“ѓfѓbѓNѓX’l‚Н unsigned short Њ^
-#define MV1_TRIANGLE_LIST_INDEX_TYPE_U32					(0x0002)				// ѓCѓ“ѓfѓbѓNѓX’l‚Н unsigned dword Њ^
+#define MV1_TRIANGLE_LIST_INDEX_TYPE_U8						(0x0000)				// г‚¤гѓігѓ‡гѓѓг‚Їг‚№еЂ¤гЃЇ unsigned char ећ‹
+#define MV1_TRIANGLE_LIST_INDEX_TYPE_U16					(0x0001)				// г‚¤гѓігѓ‡гѓѓг‚Їг‚№еЂ¤гЃЇ unsigned short ећ‹
+#define MV1_TRIANGLE_LIST_INDEX_TYPE_U32					(0x0002)				// г‚¤гѓігѓ‡гѓѓг‚Їг‚№еЂ¤гЃЇ unsigned dword ећ‹
 
-#define MV1_TRIANGLE_LIST_FLAG_MVERT_INDEX_MASK				(0x0003)				// ѓЃѓbѓVѓ…’ё“_ѓCѓ“ѓfѓbѓNѓXѓ^ѓCѓv‚Мѓ}ѓXѓN( MV1_TRIANGLE_LIST_INDEX_TYPE_U32 “™ )
-#define MV1_TRIANGLE_LIST_FLAG_INDEX_MASK					(0x000c)				// ’ё“_ѓCѓ“ѓfѓbѓNѓXѓ^ѓCѓv‚Мѓ}ѓXѓN( MV1_TRIANGLE_LIST_INDEX_TYPE_U32 “™ )
+#define MV1_TRIANGLE_LIST_FLAG_MVERT_INDEX_MASK				(0x0003)				// гѓЎгѓѓг‚·гѓҐй ‚з‚№г‚¤гѓігѓ‡гѓѓг‚Їг‚№г‚їг‚¤гѓ—гЃ®гѓћг‚№г‚Ї( MV1_TRIANGLE_LIST_INDEX_TYPE_U32 з­‰ )
+#define MV1_TRIANGLE_LIST_FLAG_INDEX_MASK					(0x000c)				// й ‚з‚№г‚¤гѓігѓ‡гѓѓг‚Їг‚№г‚їг‚¤гѓ—гЃ®гѓћг‚№г‚Ї( MV1_TRIANGLE_LIST_INDEX_TYPE_U32 з­‰ )
 
-#define MV1_FRAME_NORMAL_TYPE_NONE							(0x0000)				// –@ђь‚Н–і‚ў( Ћ©“®ЊvЋZ‚·‚й )
-#define MV1_FRAME_NORMAL_TYPE_S8							(0x0001)				// –@ђь‚Н signed char Њ^
-#define MV1_FRAME_NORMAL_TYPE_S16							(0x0002)				// –@ђь‚Н signed short Њ^
-#define MV1_FRAME_NORMAL_TYPE_F32							(0x0003)				// –@ђь‚Н float Њ^
+#define MV1_FRAME_NORMAL_TYPE_NONE							(0x0000)				// жі•з·љгЃЇз„ЎгЃ„( и‡Єе‹•иЁ€з®—гЃ™г‚‹ )
+#define MV1_FRAME_NORMAL_TYPE_S8							(0x0001)				// жі•з·љгЃЇ signed char ећ‹
+#define MV1_FRAME_NORMAL_TYPE_S16							(0x0002)				// жі•з·љгЃЇ signed short ећ‹
+#define MV1_FRAME_NORMAL_TYPE_F32							(0x0003)				// жі•з·љгЃЇ float ећ‹
 
-#define MV1_FRAME_MATRIX_INDEX_TYPE_U8						(0x0000)				// Ќs—сѓCѓ“ѓfѓbѓNѓX‚Н unsigned char Њ^
-#define MV1_FRAME_MATRIX_INDEX_TYPE_U16						(0x0001)				// Ќs—сѓCѓ“ѓfѓbѓNѓX‚Н unsigned short Њ^
+#define MV1_FRAME_MATRIX_INDEX_TYPE_U8						(0x0000)				// иЎЊе€—г‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃЇ unsigned char ећ‹
+#define MV1_FRAME_MATRIX_INDEX_TYPE_U16						(0x0001)				// иЎЊе€—г‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃЇ unsigned short ећ‹
 
-#define MV1_FRAME_MATRIX_WEIGHT_TYPE_U8						(0x0000)				// Ќs—сѓEѓGѓCѓg’l‚Н unsigned char Њ^
-#define MV1_FRAME_MATRIX_WEIGHT_TYPE_U16					(0x0001)				// Ќs—сѓEѓGѓCѓg’l‚Н unsigned short Њ^
+#define MV1_FRAME_MATRIX_WEIGHT_TYPE_U8						(0x0000)				// иЎЊе€—г‚¦г‚Ёг‚¤гѓ€еЂ¤гЃЇ unsigned char ећ‹
+#define MV1_FRAME_MATRIX_WEIGHT_TYPE_U16					(0x0001)				// иЎЊе€—г‚¦г‚Ёг‚¤гѓ€еЂ¤гЃЇ unsigned short ећ‹
 
-#define MV1_FRAME_VERT_FLAG_NORMAL_TYPE_MASK				(0x0003)				// –@ђьѓ^ѓCѓvѓ}ѓXѓN( MV1_FRAME_NORMAL_TYPE_NONE “™ )
-#define MV1_FRAME_VERT_FLAG_POSITION_B16					(0x0004)				// ‚±‚Мѓtѓ‰ѓO‚Є—§‚Б‚Д‚ў‚Ѕ‚зЌА•W’l‚Н16ѓrѓbѓg
-#define MV1_FRAME_VERT_FLAG_MATRIX_WEIGHT_NONE				(0x0008)				// ‚±‚Мѓtѓ‰ѓO‚Є—§‚Б‚Д‚ў‚Ѕ‚зѓEѓGѓCѓg’l‚Н–і‚ў
-#define MV1_FRAME_VERT_FLAG_MATRIX_INDEX_MASK				(0x0010)				// Ќs—сѓCѓ“ѓfѓbѓNѓXѓ^ѓCѓvѓ}ѓXѓN( MV1_FRAME_MATRIX_INDEX_TYPE_U8 “™ )
-#define MV1_FRAME_VERT_FLAG_MATRIX_WEIGHT_MASK				(0x0020)				// Ќs—сѓEѓGѓCѓgѓ^ѓCѓvѓ}ѓXѓN( MV1_FRAME_MATRIX_WEIGHT_TYPE_U8 “™ )
-#define MV1_FRAME_VERT_FLAG_NOMRAL_TANGENT_BINORMAL			(0x0040)				// ‚±‚Мѓtѓ‰ѓO‚Є—§‚Б‚Д‚ў‚Ѕ‚з–@ђьЏо•с‚НЃA–@ђьЃAђЪђьЃAЏ]–@ђь‚Є‚ ‚й
-
-
-#define MV1_MESH_VERT_INDEX_TYPE_NONE						(0x0000)				// ѓCѓ“ѓfѓbѓNѓX’l‚Н–і‚ў
-#define MV1_MESH_VERT_INDEX_TYPE_U8							(0x0001)				// ѓCѓ“ѓfѓbѓNѓX’l‚Н unsigned char Њ^
-#define MV1_MESH_VERT_INDEX_TYPE_U16						(0x0002)				// ѓCѓ“ѓfѓbѓNѓX’l‚Н unsigned short Њ^
-#define MV1_MESH_VERT_INDEX_TYPE_U32						(0x0003)				// ѓCѓ“ѓfѓbѓNѓX’l‚Н unsigned int Њ^
-
-#define MV1_MESH_VERT_FLAG_POS_IND_TYPE_MASK				(0x0003)				// ЌА•WѓCѓ“ѓfѓbѓNѓXѓ^ѓCѓvѓ}ѓXѓN( MV1_MESH_VERT_INDEX_TYPE_U8 “™ )
-#define MV1_MESH_VERT_FLAG_NRM_IND_TYPE_MASK				(0x000c)				// –@ђьѓCѓ“ѓfѓbѓNѓXѓ^ѓCѓvѓ}ѓXѓN( MV1_MESH_VERT_INDEX_TYPE_U8 “™ )
-#define MV1_MESH_VERT_FLAG_UV_U16							(0x0010)				// ‚±‚Мѓtѓ‰ѓO‚Є—§‚Б‚Д‚ў‚Ѕ‚з‚t‚u’l‚Н16ѓrѓbѓg
-#define MV1_MESH_VERT_FLAG_COMMON_COLOR						(0x0020)				// ‚±‚Мѓtѓ‰ѓO‚Є—§‚Б‚Д‚ў‚Ѕ‚з’ё“_ѓJѓ‰Ѓ[‚Н‹¤’К‚Е€к‚В
-#define MV1_MESH_VERT_FLAG_NON_TOON_OUTLINE					(0x0040)				// ‚±‚Мѓtѓ‰ѓO‚Є—§‚Б‚Д‚ў‚Ѕ‚зЉe’ё“_‚ЙѓgѓDЃ[ѓ“‚М—ЦЉsђь‚р•`‰ж‚·‚й‚©‚З‚¤‚©‚МЏо•с‚ЄЉi”[‚і‚к‚Д‚ў‚й
+#define MV1_FRAME_VERT_FLAG_NORMAL_TYPE_MASK				(0x0003)				// жі•з·љг‚їг‚¤гѓ—гѓћг‚№г‚Ї( MV1_FRAME_NORMAL_TYPE_NONE з­‰ )
+#define MV1_FRAME_VERT_FLAG_POSITION_B16					(0x0004)				// гЃ“гЃ®гѓ•гѓ©г‚°гЃЊз«‹гЃЈгЃ¦гЃ„гЃџг‚‰еє§жЁ™еЂ¤гЃЇ16гѓ“гѓѓгѓ€
+#define MV1_FRAME_VERT_FLAG_MATRIX_WEIGHT_NONE				(0x0008)				// гЃ“гЃ®гѓ•гѓ©г‚°гЃЊз«‹гЃЈгЃ¦гЃ„гЃџг‚‰г‚¦г‚Ёг‚¤гѓ€еЂ¤гЃЇз„ЎгЃ„
+#define MV1_FRAME_VERT_FLAG_MATRIX_INDEX_MASK				(0x0010)				// иЎЊе€—г‚¤гѓігѓ‡гѓѓг‚Їг‚№г‚їг‚¤гѓ—гѓћг‚№г‚Ї( MV1_FRAME_MATRIX_INDEX_TYPE_U8 з­‰ )
+#define MV1_FRAME_VERT_FLAG_MATRIX_WEIGHT_MASK				(0x0020)				// иЎЊе€—г‚¦г‚Ёг‚¤гѓ€г‚їг‚¤гѓ—гѓћг‚№г‚Ї( MV1_FRAME_MATRIX_WEIGHT_TYPE_U8 з­‰ )
+#define MV1_FRAME_VERT_FLAG_NOMRAL_TANGENT_BINORMAL			(0x0040)				// гЃ“гЃ®гѓ•гѓ©г‚°гЃЊз«‹гЃЈгЃ¦гЃ„гЃџг‚‰жі•з·љжѓ…е ±гЃЇгЂЃжі•з·љгЂЃжЋҐз·љгЂЃеѕ“жі•з·љгЃЊгЃ‚г‚‹
 
 
-#define MV1_TEXTURE_FLAG_REVERSE							(0x0001)				// ‚±‚Мѓtѓ‰ѓO‚Є—§‚Б‚Д‚ў‚Ѕ‚з‰ж‘њ‚р”Ѕ“]‚·‚й
-#define MV1_TEXTURE_FLAG_BMP32_ALL_ZERO_ALPHA_TO_XRGB8		(0x0002)				// ‚±‚Мѓtѓ‰ѓO‚Є—§‚Б‚Д‚ў‚Ѕ‚з‚R‚Qѓrѓbѓg‚a‚l‚o‚МѓAѓ‹ѓtѓ@’l‚Є‚·‚Ч‚Д‚O‚М‚Ж‚«‚Н XRGB8 ‚Ж‚µ‚Д€µ‚¤
-#define MV1_TEXTURE_FLAG_VALID_SCALE_UV						(0x0004)				// ‚±‚Мѓtѓ‰ѓO‚Є—§‚Б‚Д‚ў‚Ѕ‚з‚t‚uЌА•W‚МѓXѓPЃ[ѓ‹‚Є—LЊш
+#define MV1_MESH_VERT_INDEX_TYPE_NONE						(0x0000)				// г‚¤гѓігѓ‡гѓѓг‚Їг‚№еЂ¤гЃЇз„ЎгЃ„
+#define MV1_MESH_VERT_INDEX_TYPE_U8							(0x0001)				// г‚¤гѓігѓ‡гѓѓг‚Їг‚№еЂ¤гЃЇ unsigned char ећ‹
+#define MV1_MESH_VERT_INDEX_TYPE_U16						(0x0002)				// г‚¤гѓігѓ‡гѓѓг‚Їг‚№еЂ¤гЃЇ unsigned short ећ‹
+#define MV1_MESH_VERT_INDEX_TYPE_U32						(0x0003)				// г‚¤гѓігѓ‡гѓѓг‚Їг‚№еЂ¤гЃЇ unsigned int ећ‹
+
+#define MV1_MESH_VERT_FLAG_POS_IND_TYPE_MASK				(0x0003)				// еє§жЁ™г‚¤гѓігѓ‡гѓѓг‚Їг‚№г‚їг‚¤гѓ—гѓћг‚№г‚Ї( MV1_MESH_VERT_INDEX_TYPE_U8 з­‰ )
+#define MV1_MESH_VERT_FLAG_NRM_IND_TYPE_MASK				(0x000c)				// жі•з·љг‚¤гѓігѓ‡гѓѓг‚Їг‚№г‚їг‚¤гѓ—гѓћг‚№г‚Ї( MV1_MESH_VERT_INDEX_TYPE_U8 з­‰ )
+#define MV1_MESH_VERT_FLAG_UV_U16							(0x0010)				// гЃ“гЃ®гѓ•гѓ©г‚°гЃЊз«‹гЃЈгЃ¦гЃ„гЃџг‚‰пјµпј¶еЂ¤гЃЇ16гѓ“гѓѓгѓ€
+#define MV1_MESH_VERT_FLAG_COMMON_COLOR						(0x0020)				// гЃ“гЃ®гѓ•гѓ©г‚°гЃЊз«‹гЃЈгЃ¦гЃ„гЃџг‚‰й ‚з‚№г‚«гѓ©гѓјгЃЇе…±йЂљгЃ§дёЂгЃ¤
+#define MV1_MESH_VERT_FLAG_NON_TOON_OUTLINE					(0x0040)				// гЃ“гЃ®гѓ•гѓ©г‚°гЃЊз«‹гЃЈгЃ¦гЃ„гЃџг‚‰еђ„й ‚з‚№гЃ«гѓ€г‚ҐгѓјгѓігЃ®ијЄйѓ­з·љг‚’жЏЏз”»гЃ™г‚‹гЃ‹гЃ©гЃ†гЃ‹гЃ®жѓ…е ±гЃЊж јзґЌгЃ•г‚ЊгЃ¦гЃ„г‚‹
 
 
-#define MV1_ANIM_KEYSET_FLAG_KEY_ONE						(0x0001)				// ‚±‚Мѓtѓ‰ѓO‚Є—§‚Б‚Д‚ў‚Ѕ‚зѓLЃ[‚Мђ”‚Н€к‚В
-#define MV1_ANIM_KEYSET_FLAG_KEYNUM_B						(0x0002)				// ‚±‚Мѓtѓ‰ѓO‚Є—§‚Б‚Д‚ў‚Ѕ‚зѓLЃ[‚Мђ”‚Н‚PѓoѓCѓg
-#define MV1_ANIM_KEYSET_FLAG_KEYNUM_W						(0x0004)				// ‚±‚Мѓtѓ‰ѓO‚Є—§‚Б‚Д‚ў‚Ѕ‚зѓLЃ[‚Мђ”‚Н‚QѓoѓCѓg
-#define MV1_ANIM_KEYSET_FLAG_TIME_UNIT						(0x0008)				// ‚±‚Мѓtѓ‰ѓO‚Є—§‚Б‚Д‚ў‚Ѕ‚зѓ^ѓCѓЂ”z—с‚М‘г‚н‚и‚Й“™ЉФЉuѓ^ѓCѓЂЏо•с‚Є“ь‚Б‚Д‚ў‚й
-#define MV1_ANIM_KEYSET_FLAG_TIME_UNIT_ST_W					(0x0010)				// ‚±‚Мѓtѓ‰ѓO‚Є—§‚Б‚Д‚ў‚Ѕ‚зѓ^ѓCѓЂЉJЋn’l‚НWORD’l
-#define MV1_ANIM_KEYSET_FLAG_TIME_UNIT_ST_Z					(0x0020)				// ‚±‚Мѓtѓ‰ѓO‚Є—§‚Б‚Д‚ў‚Ѕ‚зѓ^ѓCѓЂЉJЋn’l‚Н‚O
-#define MV1_ANIM_KEYSET_FLAG_TIME_UNIT_UN_W					(0x0040)				// ‚±‚Мѓtѓ‰ѓO‚Є—§‚Б‚Д‚ў‚Ѕ‚зѓ^ѓCѓЂЉФЉu’l‚НWORD’l
-#define MV1_ANIM_KEYSET_FLAG_TIME_BIT16						(0x0080)				// ‚±‚Мѓtѓ‰ѓO‚Є—§‚Б‚Д‚ў‚Ѕ‚зѓ^ѓCѓЂ”z—с‚М’l‚Є‚P‚Uѓrѓbѓg’l
-#define MV1_ANIM_KEYSET_FLAG_KEY_BIT16						(0x0100)				// ‚±‚Мѓtѓ‰ѓO‚Є—§‚Б‚Д‚ў‚Ѕ‚зѓLЃ[‚Н‚P‚Uѓrѓbѓg’l
-#define MV1_ANIM_KEYSET_FLAG_KEY_MP_PP						(0x0200)				// ‚±‚Мѓtѓ‰ѓO‚Є—§‚Б‚Д‚ў‚Ѕ‚зѓLЃ[‚Н -PI Ѓ` PI ‚р 0Ѓ`65535 ‚Е•\‚µ‚Ѕ‚а‚М
-#define MV1_ANIM_KEYSET_FLAG_KEY_Z_TP						(0x0400)				// ‚±‚Мѓtѓ‰ѓO‚Є—§‚Б‚Д‚ў‚Ѕ‚зѓLЃ[‚Н 0.0f Ѓ` 2 * PI ‚р 0Ѓ`65535 ‚Е•\‚µ‚Ѕ‚а‚М
+#define MV1_TEXTURE_FLAG_REVERSE							(0x0001)				// гЃ“гЃ®гѓ•гѓ©г‚°гЃЊз«‹гЃЈгЃ¦гЃ„гЃџг‚‰з”»еѓЏг‚’еЏЌи»ўгЃ™г‚‹
+#define MV1_TEXTURE_FLAG_BMP32_ALL_ZERO_ALPHA_TO_XRGB8		(0x0002)				// гЃ“гЃ®гѓ•гѓ©г‚°гЃЊз«‹гЃЈгЃ¦гЃ„гЃџг‚‰пј“пј’гѓ“гѓѓгѓ€пјўпј­пј°гЃ®г‚ўгѓ«гѓ•г‚ЎеЂ¤гЃЊгЃ™гЃ№гЃ¦пјђгЃ®гЃЁгЃЌгЃЇ XRGB8 гЃЁгЃ—гЃ¦ж‰±гЃ†
+#define MV1_TEXTURE_FLAG_VALID_SCALE_UV						(0x0004)				// гЃ“гЃ®гѓ•гѓ©г‚°гЃЊз«‹гЃЈгЃ¦гЃ„гЃџг‚‰пјµпј¶еє§жЁ™гЃ®г‚№г‚±гѓјгѓ«гЃЊжњ‰еЉ№
 
-// Ќ\‘ў‘М’и‹` --------------------------------
 
-// ѓvѓЌѓgѓ^ѓCѓvђйЊѕ
+#define MV1_ANIM_KEYSET_FLAG_KEY_ONE						(0x0001)				// гЃ“гЃ®гѓ•гѓ©г‚°гЃЊз«‹гЃЈгЃ¦гЃ„гЃџг‚‰г‚­гѓјгЃ®ж•°гЃЇдёЂгЃ¤
+#define MV1_ANIM_KEYSET_FLAG_KEYNUM_B						(0x0002)				// гЃ“гЃ®гѓ•гѓ©г‚°гЃЊз«‹гЃЈгЃ¦гЃ„гЃџг‚‰г‚­гѓјгЃ®ж•°гЃЇпј‘гѓђг‚¤гѓ€
+#define MV1_ANIM_KEYSET_FLAG_KEYNUM_W						(0x0004)				// гЃ“гЃ®гѓ•гѓ©г‚°гЃЊз«‹гЃЈгЃ¦гЃ„гЃџг‚‰г‚­гѓјгЃ®ж•°гЃЇпј’гѓђг‚¤гѓ€
+#define MV1_ANIM_KEYSET_FLAG_TIME_UNIT						(0x0008)				// гЃ“гЃ®гѓ•гѓ©г‚°гЃЊз«‹гЃЈгЃ¦гЃ„гЃџг‚‰г‚їг‚¤гѓ й…Ќе€—гЃ®д»Јг‚Џг‚ЉгЃ«з­‰й–“йљ”г‚їг‚¤гѓ жѓ…е ±гЃЊе…ҐгЃЈгЃ¦гЃ„г‚‹
+#define MV1_ANIM_KEYSET_FLAG_TIME_UNIT_ST_W					(0x0010)				// гЃ“гЃ®гѓ•гѓ©г‚°гЃЊз«‹гЃЈгЃ¦гЃ„гЃџг‚‰г‚їг‚¤гѓ й–‹е§‹еЂ¤гЃЇWORDеЂ¤
+#define MV1_ANIM_KEYSET_FLAG_TIME_UNIT_ST_Z					(0x0020)				// гЃ“гЃ®гѓ•гѓ©г‚°гЃЊз«‹гЃЈгЃ¦гЃ„гЃџг‚‰г‚їг‚¤гѓ й–‹е§‹еЂ¤гЃЇпјђ
+#define MV1_ANIM_KEYSET_FLAG_TIME_UNIT_UN_W					(0x0040)				// гЃ“гЃ®гѓ•гѓ©г‚°гЃЊз«‹гЃЈгЃ¦гЃ„гЃџг‚‰г‚їг‚¤гѓ й–“йљ”еЂ¤гЃЇWORDеЂ¤
+#define MV1_ANIM_KEYSET_FLAG_TIME_BIT16						(0x0080)				// гЃ“гЃ®гѓ•гѓ©г‚°гЃЊз«‹гЃЈгЃ¦гЃ„гЃџг‚‰г‚їг‚¤гѓ й…Ќе€—гЃ®еЂ¤гЃЊпј‘пј–гѓ“гѓѓгѓ€еЂ¤
+#define MV1_ANIM_KEYSET_FLAG_KEY_BIT16						(0x0100)				// гЃ“гЃ®гѓ•гѓ©г‚°гЃЊз«‹гЃЈгЃ¦гЃ„гЃџг‚‰г‚­гѓјгЃЇпј‘пј–гѓ“гѓѓгѓ€еЂ¤
+#define MV1_ANIM_KEYSET_FLAG_KEY_MP_PP						(0x0200)				// гЃ“гЃ®гѓ•гѓ©г‚°гЃЊз«‹гЃЈгЃ¦гЃ„гЃџг‚‰г‚­гѓјгЃЇ -PI пЅћ PI г‚’ 0пЅћ65535 гЃ§иЎЁгЃ—гЃџг‚‚гЃ®
+#define MV1_ANIM_KEYSET_FLAG_KEY_Z_TP						(0x0400)				// гЃ“гЃ®гѓ•гѓ©г‚°гЃЊз«‹гЃЈгЃ¦гЃ„гЃџг‚‰г‚­гѓјгЃЇ 0.0f пЅћ 2 * PI г‚’ 0пЅћ65535 гЃ§иЎЁгЃ—гЃџг‚‚гЃ®
+
+// ж§‹йЂ дЅ“е®љзѕ© --------------------------------
+
+// гѓ—гѓ­гѓ€г‚їг‚¤гѓ—е®ЈиЁЂ
 struct MV1_MESH_SET_F1 ;
 struct MV1_FRAME_F1 ;
 struct MV1_MESH_F1 ;
 struct MV1_ANIMSET_F1 ;
 
-// ‰с“]Џо•сЌ\‘ў‘М
+// е›ћи»ўжѓ…е ±ж§‹йЂ дЅ“
 struct MV1_ROTATE_F1
 {
-	int										Type ;								// ‰с“]ѓ^ѓCѓv( MV1_ROTATE_TYPE_XYZROT “™ )
+	int										Type ;								// е›ћи»ўг‚їг‚¤гѓ—( MV1_ROTATE_TYPE_XYZROT з­‰ )
 	union
 	{
-		VECTOR								XYZRot ;							// XYZ‰с“]—p
-		FLOAT4								Qt ;								// ѓNѓHЃ[ѓ^ѓjѓIѓ“‰с“]—p
-		MATRIX_4X4CT_F						Mat ;								// Ќs—с‰с“]—p
+		VECTOR								XYZRot ;							// XYZе›ћи»ўз”Ё
+		FLOAT4								Qt ;								// г‚Їг‚©гѓјг‚їгѓ‹г‚Єгѓіе›ћи»ўз”Ё
+		MATRIX_4X4CT_F						Mat ;								// иЎЊе€—е›ћи»ўз”Ё
 	} ;
 } ;
 
-// 16bitѓfЃ[ѓ^ѓ^ѓCѓv—p•вЏ•Џо•сЌ\‘ў‘М
+// 16bitгѓ‡гѓјг‚їг‚їг‚¤гѓ—з”ЁиЈњеЉ©жѓ…е ±ж§‹йЂ дЅ“
 struct MV1_ANIM_KEY_16BIT_F1
 {
-	BYTE									Min ;								// ЌЕЏ¬’l( bit7:‚O‚©‚З‚¤‚©( 0:0€ИЉO 1:0 )  bit6:•„Ќ†(0:+ 1:-)  bit5:Џжђ”•ыЊь(0:+ 1:-) bit4Ѓ`0:Џжђ”(ЌЕ‘е10‚М15Џж) ) 
-	BYTE									Unit ;								// 16bit’l‚P•У‚и‚М’l( bit7:Џжђ”•ыЊь(0:+ 1:-) bit6Ѓ`4:Џжђ”(ЌЕ‘е10‚М7Џж) bit3Ѓ`0:ЏжЋZ‚і‚к‚й’l( 0Ѓ`15 ) )
+	BYTE									Min ;								// жњЂе°ЏеЂ¤( bit7:пјђгЃ‹гЃ©гЃ†гЃ‹( 0:0д»Ґе¤– 1:0 )  bit6:з¬¦еЏ·(0:+ 1:-)  bit5:д№—ж•°ж–№еђ‘(0:+ 1:-) bit4пЅћ0:д№—ж•°(жњЂе¤§10гЃ®15д№—) ) 
+	BYTE									Unit ;								// 16bitеЂ¤пј‘иѕєг‚ЉгЃ®еЂ¤( bit7:д№—ж•°ж–№еђ‘(0:+ 1:-) bit6пЅћ4:д№—ж•°(жњЂе¤§10гЃ®7д№—) bit3пЅћ0:д№—з®—гЃ•г‚Њг‚‹еЂ¤( 0пЅћ15 ) )
 } ;
 
-// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“ѓLЃ[(‚SЃ~‚SЌs—с‚М‚S—с–Ъ‚Є(0,0,0,1)ЊЕ’и‚МЌs—сѓ^ѓCѓv)ѓfЃ[ѓ^Ќ\‘ў‘М
+// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓіг‚­гѓј(пј”Г—пј”иЎЊе€—гЃ®пј”е€—з›®гЃЊ(0,0,0,1)е›єе®љгЃ®иЎЊе€—г‚їг‚¤гѓ—)гѓ‡гѓјг‚їж§‹йЂ дЅ“
 struct MV1_ANIM_KEY_MATRIX4X4C_F1
 {
-	float									Matrix[ 4 ][ 3 ] ;					// Ќs—с
+	float									Matrix[ 4 ][ 3 ] ;					// иЎЊе€—
 } ;
 
-// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“ѓLЃ[(‚RЃ~‚RЌs—сѓ^ѓCѓv)ѓfЃ[ѓ^Ќ\‘ў‘М
+// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓіг‚­гѓј(пј“Г—пј“иЎЊе€—г‚їг‚¤гѓ—)гѓ‡гѓјг‚їж§‹йЂ дЅ“
 struct MV1_ANIM_KEY_MATRIX3X3_F1
 {
-	float									Matrix[ 3 ][ 3 ] ;					// Ќs—с
+	float									Matrix[ 3 ][ 3 ] ;					// иЎЊе€—
 } ;
 
-// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“ѓLЃ[(‚RЃ~‚RЌs—с‚P‚Uѓrѓbѓgѓ^ѓCѓv)ѓfЃ[ѓ^Ќ\‘ў‘М
+// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓіг‚­гѓј(пј“Г—пј“иЎЊе€—пј‘пј–гѓ“гѓѓгѓ€г‚їг‚¤гѓ—)гѓ‡гѓјг‚їж§‹йЂ дЅ“
 struct MV1_ANIM_KEY_MATRIX3X3_B16_F1
 {
-	WORD									Matrix[ 3 ][ 3 ] ;					// Ќs—с
+	WORD									Matrix[ 3 ][ 3 ] ;					// иЎЊе€—
 } ;
 
-// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“ѓLЃ[ѓЉѓXѓgЉоѓfЃ[ѓ^Ќ\‘ў‘М
+// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓіг‚­гѓјгѓЄг‚№гѓ€еџєгѓ‡гѓјг‚їж§‹йЂ дЅ“
 /*
-	KeyData ‚МЏо•сЉi”[Џ‡Џ
+	KeyData гЃ®жѓ…е ±ж јзґЌй †еєЏ
 
-	Љо–{Џо•с
+	еџєжњ¬жѓ…е ±
 
-		Type ‚Є MV1_ANIMKEY_DATATYPE_SHAPE ‚МЏкЌ‡
-			WORD								TargetShapeIndex ;		// ‘ОЏЫ‚МѓVѓFѓCѓvѓCѓ“ѓfѓbѓNѓX
+		Type гЃЊ MV1_ANIMKEY_DATATYPE_SHAPE гЃ®е ґеђ€
+			WORD								TargetShapeIndex ;		// еЇѕи±ЎгЃ®г‚·г‚§г‚¤гѓ—г‚¤гѓігѓ‡гѓѓг‚Їг‚№
 	
-		Flag ‚Й MV1_ANIM_KEYSET_FLAG_KEY_ONE ‚Є•t‚ў‚Д‚ў‚И‚ўЏкЌ‡
-			Flag ‚Й MV1_ANIM_KEYSET_FLAG_KEYNUM_B ‚Є•t‚ў‚Д‚ў‚йЏкЌ‡
-				BYTE							Num ;					// ѓLЃ[‚Мђ”
+		Flag гЃ« MV1_ANIM_KEYSET_FLAG_KEY_ONE гЃЊд»гЃ„гЃ¦гЃ„гЃЄгЃ„е ґеђ€
+			Flag гЃ« MV1_ANIM_KEYSET_FLAG_KEYNUM_B гЃЊд»гЃ„гЃ¦гЃ„г‚‹е ґеђ€
+				BYTE							Num ;					// г‚­гѓјгЃ®ж•°
 
-			Flag ‚Й MV1_ANIM_KEYSET_FLAG_KEYNUM_W ‚Є•t‚ў‚Д‚ў‚йЏкЌ‡
-				WORD							Num ;					// ѓLЃ[‚Мђ”
+			Flag гЃ« MV1_ANIM_KEYSET_FLAG_KEYNUM_W гЃЊд»гЃ„гЃ¦гЃ„г‚‹е ґеђ€
+				WORD							Num ;					// г‚­гѓјгЃ®ж•°
 
-			Flag ‚Й MV1_ANIM_KEYSET_FLAG_KEYNUM_W ‚а MV1_ANIM_KEYSET_FLAG_KEYNUM_B ‚а•t‚ў‚Д‚ў‚И‚ўЏкЌ‡
-				DWORD							Num ;					// ѓLЃ[‚Мђ”
-
-
-			Flag ‚Й MV1_ANIM_KEYSET_FLAG_TIME_BIT16 ‚Є•t‚ў‚Д‚ў‚йЏкЌ‡
-				MV1_ANIM_KEY_16BIT_F1			Time16BSub ;			// 16bitѓ^ѓCѓЂ’l—p•вЏ•Џо•с
-				WORD ѓ^ѓCѓЂ’l—с
-
-			Flag ‚Й MV1_ANIM_KEYSET_FLAG_TIME_BIT16 ‚а MV1_ANIM_KEYSET_FLAG_TIME_UNIT ‚а‚В‚ў‚Д‚ў‚И‚ўЏкЌ‡
-				float ѓ^ѓCѓЂ’l—с
-
-			Flag ‚Й MV1_ANIM_KEYSET_FLAG_TIME_UNIT ‚Є•t‚ў‚Д‚ў‚йЏкЌ‡
-				Flag ‚Й MV1_ANIM_KEYSET_FLAG_TIME_UNIT_ST_W ‚Є•t‚ў‚Д‚ў‚йЏкЌ‡
-					WORD						StartTime ;				// ЉJЋnЋћЉФ
-
-				Flag ‚Й MV1_ANIM_KEYSET_FLAG_TIME_UNIT_ST_Z ‚а MV1_ANIM_KEYSET_FLAG_TIME_UNIT_ST_W ‚а‚В‚ў‚Д‚ў‚И‚ўЏкЌ‡
-					float						StartTime ;				// ЉJЋnЋћЉФ
-
-				Flag ‚Й MV1_ANIM_KEYSET_FLAG_TIME_UNIT_UN_W ‚Є•t‚ў‚Д‚ў‚йЏкЌ‡
-					WORD						UnitTime ;				// ’P€КЋћЉФ
-
-				Flag ‚Й MV1_ANIM_KEYSET_FLAG_TIME_UNIT_UN_W ‚Є•t‚ў‚Д‚ў‚И‚ўЏкЌ‡
-					float						UnitTime ;				// ’P€КЋћЉФ
-
-		Flag ‚Й MV1_ANIM_KEYSET_FLAG_VAL_MP_PP ‚а MV1_ANIM_KEYSET_FLAG_VAL_Z_TP ‚а•t‚ў‚Д‚И‚­‚ДЃAЉЋ‚В MV1_ANIM_KEYSET_FLAG_KEY_BIT16 ‚Є•t‚ў‚Д‚ў‚йЏкЌ‡
-			MV1_ANIM_KEY_16BIT_F1				Key16BSub ;				// 16bitѓLЃ[’l—p•вЏ•Џо•с
+			Flag гЃ« MV1_ANIM_KEYSET_FLAG_KEYNUM_W г‚‚ MV1_ANIM_KEYSET_FLAG_KEYNUM_B г‚‚д»гЃ„гЃ¦гЃ„гЃЄгЃ„е ґеђ€
+				DWORD							Num ;					// г‚­гѓјгЃ®ж•°
 
 
-	ѓLЃ[Џо•с
-		ЉeѓtѓHЃ[ѓ}ѓbѓg‚Й‰€‚Б‚ЅѓfЃ[ѓ^
+			Flag гЃ« MV1_ANIM_KEYSET_FLAG_TIME_BIT16 гЃЊд»гЃ„гЃ¦гЃ„г‚‹е ґеђ€
+				MV1_ANIM_KEY_16BIT_F1			Time16BSub ;			// 16bitг‚їг‚¤гѓ еЂ¤з”ЁиЈњеЉ©жѓ…е ±
+				WORD г‚їг‚¤гѓ еЂ¤е€—
+
+			Flag гЃ« MV1_ANIM_KEYSET_FLAG_TIME_BIT16 г‚‚ MV1_ANIM_KEYSET_FLAG_TIME_UNIT г‚‚гЃ¤гЃ„гЃ¦гЃ„гЃЄгЃ„е ґеђ€
+				float г‚їг‚¤гѓ еЂ¤е€—
+
+			Flag гЃ« MV1_ANIM_KEYSET_FLAG_TIME_UNIT гЃЊд»гЃ„гЃ¦гЃ„г‚‹е ґеђ€
+				Flag гЃ« MV1_ANIM_KEYSET_FLAG_TIME_UNIT_ST_W гЃЊд»гЃ„гЃ¦гЃ„г‚‹е ґеђ€
+					WORD						StartTime ;				// й–‹е§‹ж™‚й–“
+
+				Flag гЃ« MV1_ANIM_KEYSET_FLAG_TIME_UNIT_ST_Z г‚‚ MV1_ANIM_KEYSET_FLAG_TIME_UNIT_ST_W г‚‚гЃ¤гЃ„гЃ¦гЃ„гЃЄгЃ„е ґеђ€
+					float						StartTime ;				// й–‹е§‹ж™‚й–“
+
+				Flag гЃ« MV1_ANIM_KEYSET_FLAG_TIME_UNIT_UN_W гЃЊд»гЃ„гЃ¦гЃ„г‚‹е ґеђ€
+					WORD						UnitTime ;				// еЌдЅЌж™‚й–“
+
+				Flag гЃ« MV1_ANIM_KEYSET_FLAG_TIME_UNIT_UN_W гЃЊд»гЃ„гЃ¦гЃ„гЃЄгЃ„е ґеђ€
+					float						UnitTime ;				// еЌдЅЌж™‚й–“
+
+		Flag гЃ« MV1_ANIM_KEYSET_FLAG_VAL_MP_PP г‚‚ MV1_ANIM_KEYSET_FLAG_VAL_Z_TP г‚‚д»гЃ„гЃ¦гЃЄгЃЏгЃ¦гЂЃдё”гЃ¤ MV1_ANIM_KEYSET_FLAG_KEY_BIT16 гЃЊд»гЃ„гЃ¦гЃ„г‚‹е ґеђ€
+			MV1_ANIM_KEY_16BIT_F1				Key16BSub ;				// 16bitг‚­гѓјеЂ¤з”ЁиЈњеЉ©жѓ…е ±
+
+
+	г‚­гѓјжѓ…е ±
+		еђ„гѓ•г‚©гѓјгѓћгѓѓгѓ€гЃ«жІїгЃЈгЃџгѓ‡гѓјг‚ї
 
 */
 struct MV1_ANIM_KEYSET_F1
 {
-	char									Type ;								// ѓLЃ[ѓ^ѓCѓv( MV1_ANIMKEY_TYPE_QUATERNION “™ )
-	char									DataType ;							// ѓfЃ[ѓ^ѓ^ѓCѓv( MV1_ANIMKEY_DATATYPE_ROTATE “™ )
-	WORD									Flag ;								// ѓtѓ‰ѓO
-	DWORD/*void* */							KeyData ;							// ѓLЃ[ѓfЃ[ѓ^
+	char									Type ;								// г‚­гѓјг‚їг‚¤гѓ—( MV1_ANIMKEY_TYPE_QUATERNION з­‰ )
+	char									DataType ;							// гѓ‡гѓјг‚їг‚їг‚¤гѓ—( MV1_ANIMKEY_DATATYPE_ROTATE з­‰ )
+	WORD									Flag ;								// гѓ•гѓ©г‚°
+	DWORD/*void* */							KeyData ;							// г‚­гѓјгѓ‡гѓјг‚ї
 
-	DWORD									UserData[ 1 ] ;						// ЉO•”’и‹`‚МЏо•с
+	DWORD									UserData[ 1 ] ;						// е¤–йѓЁе®љзѕ©гЃ®жѓ…е ±
 
 	DWORD									Padding[ 2 ] ;
 } ;
 
-// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“ѓfЃ[ѓ^Ќ\‘ў‘М
+// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігѓ‡гѓјг‚їж§‹йЂ дЅ“
 struct MV1_ANIM_F1
 {
-	int										Index ;								// ѓCѓ“ѓfѓbѓNѓX
+	int										Index ;								// г‚¤гѓігѓ‡гѓѓг‚Їг‚№
 
-	DWORD/*MV1_ANIMSET_F1* */				Container ;							// ‚±‚МѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚рЋќ‚Б‚Д‚ў‚йѓAѓjѓЃЃ[ѓVѓ‡ѓ“ѓZѓbѓg‚Ц‚Мѓ|ѓCѓ“ѓ^
+	DWORD/*MV1_ANIMSET_F1* */				Container ;							// гЃ“гЃ®г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓіг‚’жЊЃгЃЈгЃ¦гЃ„г‚‹г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓіг‚»гѓѓгѓ€гЃёгЃ®гѓќг‚¤гѓіг‚ї
 
-	int										TargetFrameIndex ;					// ‘ОЏЫ‚Ж‚И‚йѓtѓЊЃ[ѓЂ‚МѓCѓ“ѓfѓbѓNѓX
-	float									MaxTime ;							// ЉeѓLЃ[ѓZѓbѓg‚М’†‚Е€к”Ф’·‚ўѓLЃ[ѓZѓbѓg‚МЋћЉФ’l
-	int										RotateOrder ;						// ‰с“]ѓIЃ[ѓ_Ѓ[( MV1_ROTATE_ORDER_XYZ “™ )
+	int										TargetFrameIndex ;					// еЇѕи±ЎгЃЁгЃЄг‚‹гѓ•гѓ¬гѓјгѓ гЃ®г‚¤гѓігѓ‡гѓѓг‚Їг‚№
+	float									MaxTime ;							// еђ„г‚­гѓјг‚»гѓѓгѓ€гЃ®дё­гЃ§дёЂз•Єй•·гЃ„г‚­гѓјг‚»гѓѓгѓ€гЃ®ж™‚й–“еЂ¤
+	int										RotateOrder ;						// е›ћи»ўг‚ЄгѓјгѓЂгѓј( MV1_ROTATE_ORDER_XYZ з­‰ )
 
-	int										KeySetNum ;							// ѓLЃ[ѓZѓbѓg‚Мђ”
-	DWORD/*MV1_ANIM_KEYSET_F1* */			KeySet ;							// ѓLЃ[ѓZѓbѓg”z—с‚Ц‚Мѓ|ѓCѓ“ѓ^
+	int										KeySetNum ;							// г‚­гѓјг‚»гѓѓгѓ€гЃ®ж•°
+	DWORD/*MV1_ANIM_KEYSET_F1* */			KeySet ;							// г‚­гѓјг‚»гѓѓгѓ€й…Ќе€—гЃёгЃ®гѓќг‚¤гѓіг‚ї
 
-	DWORD									UserData[ 2 ] ;						// ЉO•”’и‹`‚МЏо•с
+	DWORD									UserData[ 2 ] ;						// е¤–йѓЁе®љзѕ©гЃ®жѓ…е ±
 
 	DWORD									Padding[ 2 ] ;
 } ;
 
-// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“ѓZѓbѓgЌ\‘ў‘М
+// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓіг‚»гѓѓгѓ€ж§‹йЂ дЅ“
 struct MV1_ANIMSET_F1
 {
-	DWORD/*MV1_ANIMSET_F1* */				DimPrev ;							// ‘O‚МѓfЃ[ѓ^‚Ц‚Мѓ|ѓCѓ“ѓ^
-	DWORD/*MV1_ANIMSET_F1* */				DimNext ;							// Ћџ‚МѓfЃ[ѓ^‚Ц‚Мѓ|ѓCѓ“ѓ^
-	DWORD/*char* */							Name ;								// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“ѓZѓbѓg–ј
+	DWORD/*MV1_ANIMSET_F1* */				DimPrev ;							// е‰ЌгЃ®гѓ‡гѓјг‚їгЃёгЃ®гѓќг‚¤гѓіг‚ї
+	DWORD/*MV1_ANIMSET_F1* */				DimNext ;							// ж¬ЎгЃ®гѓ‡гѓјг‚їгЃёгЃ®гѓќг‚¤гѓіг‚ї
+	DWORD/*char* */							Name ;								// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓіг‚»гѓѓгѓ€еђЌ
 
-	int										Index ;								// ѓCѓ“ѓfѓbѓNѓX
-	float									MaxTime ;							// ЉeѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚М’†‚Е€к”Ф’·‚ўѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚МЋћЉФ’l
-	int										AnimNum ;							// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚Мђ”
-	DWORD/*MV1_ANIM_F1* */					Anim ;								// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“ѓЉѓXѓg
+	int										Index ;								// г‚¤гѓігѓ‡гѓѓг‚Їг‚№
+	float									MaxTime ;							// еђ„г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігЃ®дё­гЃ§дёЂз•Єй•·гЃ„г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігЃ®ж™‚й–“еЂ¤
+	int										AnimNum ;							// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігЃ®ж•°
+	DWORD/*MV1_ANIM_F1* */					Anim ;								// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігѓЄг‚№гѓ€
 
-	DWORD									UserData[ 4 ] ;						// ЉO•”’и‹`‚МЏо•с
+	DWORD									UserData[ 4 ] ;						// е¤–йѓЁе®љзѕ©гЃ®жѓ…е ±
 
-	DWORD									Flag ;								// ѓtѓ‰ѓO( 0bit:‰БЋZѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚©  1bit:ѓLЃ[‚М•вЉФ‚НЌs—сђьЊ`•вЉФ‚©  2bit:ѓ‹Ѓ[ѓvѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚© )
+	DWORD									Flag ;								// гѓ•гѓ©г‚°( 0bit:еЉ з®—г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігЃ‹  1bit:г‚­гѓјгЃ®иЈњй–“гЃЇиЎЊе€—з·љеЅўиЈњй–“гЃ‹  2bit:гѓ«гѓјгѓ—г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігЃ‹ )
 	DWORD									Padding[ 3 ] ;
 } ;
 
-// ѓeѓNѓXѓ`ѓѓЌ\‘ў‘М
+// гѓ†г‚Їг‚№гѓЃгѓЈж§‹йЂ дЅ“
 struct MV1_TEXTURE_F1
 {
-	DWORD/*MV1_TEXTURE_F1* */				DimPrev ;							// ‘O‚МѓfЃ[ѓ^‚Ц‚Мѓ|ѓCѓ“ѓ^
-	DWORD/*MV1_TEXTURE_F1* */				DimNext ;							// Ћџ‚МѓfЃ[ѓ^‚Ц‚Мѓ|ѓCѓ“ѓ^
-	DWORD/*char* */							Name ;								// ѓeѓNѓXѓ`ѓѓѓIѓuѓWѓFѓNѓg‚Й‚В‚Ї‚з‚к‚Ѕ–ј‘O
-	int										Index ;								// ѓCѓ“ѓfѓbѓNѓX
+	DWORD/*MV1_TEXTURE_F1* */				DimPrev ;							// е‰ЌгЃ®гѓ‡гѓјг‚їгЃёгЃ®гѓќг‚¤гѓіг‚ї
+	DWORD/*MV1_TEXTURE_F1* */				DimNext ;							// ж¬ЎгЃ®гѓ‡гѓјг‚їгЃёгЃ®гѓќг‚¤гѓіг‚ї
+	DWORD/*char* */							Name ;								// гѓ†г‚Їг‚№гѓЃгѓЈг‚Єгѓ–г‚ёг‚§г‚Їгѓ€гЃ«гЃ¤гЃ‘г‚‰г‚ЊгЃџеђЌе‰Ќ
+	int										Index ;								// г‚¤гѓігѓ‡гѓѓг‚Їг‚№
 
-	DWORD/*char* */							ColorFilePath ;						// ѓJѓ‰Ѓ[ѓ`ѓѓѓ“ѓlѓ‹—p‰ж‘њѓtѓ@ѓCѓ‹‚М‘Љ‘ОѓpѓX
-	DWORD/*char* */							AlphaFilePath ;						// ѓAѓ‹ѓtѓ@ѓ`ѓѓѓ“ѓlѓ‹—p‰ж‘њѓtѓ@ѓCѓ‹‚М‘Љ‘ОѓpѓX
-	int										BumpImageFlag ;						// ѓJѓ‰Ѓ[ѓ`ѓѓѓ“ѓlѓ‹‚Єѓoѓ“ѓvѓ}ѓbѓv‚©‚З‚¤‚©( TRUE:ѓoѓ“ѓvѓ}ѓbѓv  FALSE:€б‚¤ )
-	float									BumpImageNextPixelLength ;			// ѓoѓ“ѓvѓ}ѓbѓv‰ж‘њ‚МЏкЌ‡‚М—Ч‚МѓsѓNѓZѓ‹‚Ж‚М‹——Ј
+	DWORD/*char* */							ColorFilePath ;						// г‚«гѓ©гѓјгѓЃгѓЈгѓігѓЌгѓ«з”Ёз”»еѓЏгѓ•г‚Ўг‚¤гѓ«гЃ®з›ёеЇѕгѓ‘г‚№
+	DWORD/*char* */							AlphaFilePath ;						// г‚ўгѓ«гѓ•г‚ЎгѓЃгѓЈгѓігѓЌгѓ«з”Ёз”»еѓЏгѓ•г‚Ўг‚¤гѓ«гЃ®з›ёеЇѕгѓ‘г‚№
+	int										BumpImageFlag ;						// г‚«гѓ©гѓјгѓЃгѓЈгѓігѓЌгѓ«гЃЊгѓђгѓігѓ—гѓћгѓѓгѓ—гЃ‹гЃ©гЃ†гЃ‹( TRUE:гѓђгѓігѓ—гѓћгѓѓгѓ—  FALSE:йЃ•гЃ† )
+	float									BumpImageNextPixelLength ;			// гѓђгѓігѓ—гѓћгѓѓгѓ—з”»еѓЏгЃ®е ґеђ€гЃ®йљЈгЃ®гѓ”г‚Їг‚»гѓ«гЃЁгЃ®и·ќй›ў
 
-	int										AddressModeU ;						// ѓAѓhѓЊѓXѓ‚Ѓ[ѓh( MV1_TEXTURE_ADDRESS_MODE_WRAP “™ )
-	int										AddressModeV ;						// ѓAѓhѓЊѓXѓ‚Ѓ[ѓh( MV1_TEXTURE_ADDRESS_MODE_WRAP “™ )
-	int										FilterMode ;						// ѓtѓBѓ‹ѓ^ѓЉѓ“ѓOѓ‚Ѓ[ѓh( MV1_TEXTURE_FILTER_MODE_POINT “™ )
+	int										AddressModeU ;						// г‚ўгѓ‰гѓ¬г‚№гѓўгѓјгѓ‰( MV1_TEXTURE_ADDRESS_MODE_WRAP з­‰ )
+	int										AddressModeV ;						// г‚ўгѓ‰гѓ¬г‚№гѓўгѓјгѓ‰( MV1_TEXTURE_ADDRESS_MODE_WRAP з­‰ )
+	int										FilterMode ;						// гѓ•г‚Јгѓ«г‚їгѓЄгѓіг‚°гѓўгѓјгѓ‰( MV1_TEXTURE_FILTER_MODE_POINT з­‰ )
 
-	DWORD									UserData[ 2 ] ;						// ЉO•”’и‹`‚МЏо•с
+	DWORD									UserData[ 2 ] ;						// е¤–йѓЁе®љзѕ©гЃ®жѓ…е ±
 
-	BYTE									Flag ;								// ѓtѓ‰ѓO( MV1_TEXTURE_FLAG_REVERSE “™ )
+	BYTE									Flag ;								// гѓ•гѓ©г‚°( MV1_TEXTURE_FLAG_REVERSE з­‰ )
 	BYTE									Padding1[ 3 ] ;
 
-	float									ScaleU ;							// ‚tЌА•W‚МѓXѓPЃ[ѓЉѓ“ѓO’l( ѓtѓ‰ѓO MV1_TEXTURE_FLAG_VALID_SCALE_UV ‚Є—§‚Б‚Д‚ў‚йЏкЌ‡‚М‚Э—LЊш )
-	float									ScaleV ;							// ‚uЌА•W‚МѓXѓPЃ[ѓЉѓ“ѓO’l( ѓtѓ‰ѓO MV1_TEXTURE_FLAG_VALID_SCALE_UV ‚Є—§‚Б‚Д‚ў‚йЏкЌ‡‚М‚Э—LЊш )
+	float									ScaleU ;							// пјµеє§жЁ™гЃ®г‚№г‚±гѓјгѓЄгѓіг‚°еЂ¤( гѓ•гѓ©г‚° MV1_TEXTURE_FLAG_VALID_SCALE_UV гЃЊз«‹гЃЈгЃ¦гЃ„г‚‹е ґеђ€гЃ®гЃїжњ‰еЉ№ )
+	float									ScaleV ;							// пј¶еє§жЁ™гЃ®г‚№г‚±гѓјгѓЄгѓіг‚°еЂ¤( гѓ•гѓ©г‚° MV1_TEXTURE_FLAG_VALID_SCALE_UV гЃЊз«‹гЃЈгЃ¦гЃ„г‚‹е ґеђ€гЃ®гЃїжњ‰еЉ№ )
 	DWORD									Padding[ 1 ] ;
 } ;
 
-// ѓ}ѓeѓЉѓAѓ‹ѓЊѓCѓ„Ѓ[Ќ\‘ў‘М
+// гѓћгѓ†гѓЄг‚ўгѓ«гѓ¬г‚¤гѓ¤гѓјж§‹йЂ дЅ“
 struct MV1_MATERIAL_LAYER_F1
 {
-	int										Texture ;							// ѓ‚ѓfѓ‹ѓeѓNѓXѓ`ѓѓѓCѓ“ѓfѓbѓNѓX( MV1_MODEL_F1.Textue ”z—с‚МѓCѓ“ѓfѓbѓNѓX )
-	int										BlendType ;							// ѓuѓЊѓ“ѓhѓ^ѓCѓv( MV1_LAYERBLEND_TYPE_ADDITIVE “™ )
+	int										Texture ;							// гѓўгѓ‡гѓ«гѓ†г‚Їг‚№гѓЃгѓЈг‚¤гѓігѓ‡гѓѓг‚Їг‚№( MV1_MODEL_F1.Textue й…Ќе€—гЃ®г‚¤гѓігѓ‡гѓѓг‚Їг‚№ )
+	int										BlendType ;							// гѓ–гѓ¬гѓігѓ‰г‚їг‚¤гѓ—( MV1_LAYERBLEND_TYPE_ADDITIVE з­‰ )
 
 	DWORD									Padding[ 4 ] ;
 } ;
 
-// ѓ}ѓeѓЉѓAѓ‹ѓgѓDЃ[ѓ“ѓЊѓ“ѓ_ѓЉѓ“ѓO—pЏо•сЌ\‘ў‘М
+// гѓћгѓ†гѓЄг‚ўгѓ«гѓ€г‚Ґгѓјгѓігѓ¬гѓігѓЂгѓЄгѓіг‚°з”Ёжѓ…е ±ж§‹йЂ дЅ“
 struct MV1_MATERIAL_TOON_F1
 {
-	int										Type ;								// ѓ}ѓeѓЉѓAѓ‹ѓ^ѓCѓv( DX_MATERIAL_TYPE_NORMAL ‚И‚З )
+	int										Type ;								// гѓћгѓ†гѓЄг‚ўгѓ«г‚їг‚¤гѓ—( DX_MATERIAL_TYPE_NORMAL гЃЄгЃ© )
 
-	int										DiffuseGradTexture ;				// ( ѓgѓDЃ[ѓ“ѓЊѓ“ѓ_ѓЉѓ“ѓO‚Е‚М‚ЭЋg—p )ѓfѓBѓtѓ…Ѓ[ѓYѓJѓ‰Ѓ[ѓOѓ‰ѓfЃ[ѓVѓ‡ѓ“ѓeѓNѓXѓ`ѓѓѓCѓ“ѓfѓbѓNѓXЃA“–‚Ѕ‚Б‚Д‚ў‚йѓ‰ѓCѓg‚МѓfѓBѓtѓ…Ѓ[ѓYѓJѓ‰Ѓ[‚Е‚t’l‚ЄЊ€‚Ь‚й‚а‚МЃA–іЊш‚МЏкЌ‡‚НЃ|‚P( MV1_MODEL_BASE.Textue ”z—с‚МѓCѓ“ѓfѓbѓNѓX )
-	int										SpecularGradTexture ;				// ( ѓgѓDЃ[ѓ“ѓЊѓ“ѓ_ѓЉѓ“ѓO‚Е‚М‚ЭЋg—p )ѓXѓyѓLѓ…ѓ‰ѓJѓ‰Ѓ[ѓOѓ‰ѓfЃ[ѓVѓ‡ѓ“ѓeѓNѓXѓ`ѓѓѓCѓ“ѓfѓbѓNѓXЃA“–‚Ѕ‚Б‚Д‚ў‚йѓ‰ѓCѓg‚МѓXѓyѓLѓ…ѓ‰ѓJѓ‰Ѓ[‚Е‚t’l‚ЄЊ€‚Ь‚й‚а‚МЃA–іЊш‚МЏкЌ‡‚НЃ|‚P( MV1_MODEL_BASE.Textue ”z—с‚МѓCѓ“ѓfѓbѓNѓX )
-	int										DiffuseGradBlendType ;				// ( ѓgѓDЃ[ѓ“ѓЊѓ“ѓ_ѓЉѓ“ѓO‚Е‚М‚ЭЋg—p )ѓfѓBѓtѓ…Ѓ[ѓYѓOѓ‰ѓfЃ[ѓVѓ‡ѓ“ѓeѓNѓXѓ`ѓѓ‚МѓuѓЊѓ“ѓhѓ^ѓCѓv( DX_MATERIAL_BLENDTYPE_TRANSLUCENT ‚И‚З )
-	int										SpecularGradBlendType ;				// ( ѓgѓDЃ[ѓ“ѓЊѓ“ѓ_ѓЉѓ“ѓO‚Е‚М‚ЭЋg—p )ѓXѓyѓLѓ…ѓ‰ѓOѓ‰ѓfЃ[ѓVѓ‡ѓ“ѓeѓNѓXѓ`ѓѓ‚МѓuѓЊѓ“ѓhѓ^ѓCѓv( DX_MATERIAL_BLENDTYPE_ADDITIVE ‚И‚З )
-	float									OutLineWidth ;						// ( ѓgѓDЃ[ѓ“ѓЊѓ“ѓ_ѓЉѓ“ѓO‚Е‚М‚ЭЋg—p )—ЦЉsђь‚М•ќ( 0.0f Ѓ` 1.0f )
-	COLOR_F									OutLineColor ;						// ( ѓgѓDЃ[ѓ“ѓЊѓ“ѓ_ѓЉѓ“ѓO‚Е‚М‚ЭЋg—p )—ЦЉsђь‚МђF
-	float									OutLineDotWidth ;					// ( ѓgѓDЃ[ѓ“ѓЊѓ“ѓ_ѓЉѓ“ѓO‚Е‚М‚ЭЋg—p )—ЦЉsђь‚Мѓhѓbѓg’P€К‚Е‚М•ќ
-	BYTE									EnableSphereMap ;					// ( ѓgѓDЃ[ѓ“ѓЊѓ“ѓ_ѓЉѓ“ѓO‚Е‚М‚ЭЋg—p )ѓXѓtѓBѓAѓ}ѓbѓv‚МЏо•с‚Є—LЊш‚©‚З‚¤‚©( 1:—LЊш  0:–іЊш )
-	BYTE									SphereMapBlendType ;				// ( ѓgѓDЃ[ѓ“ѓЊѓ“ѓ_ѓЉѓ“ѓO‚Е‚М‚ЭЋg—p )ѓXѓtѓBѓAѓ}ѓbѓvѓeѓNѓXѓ`ѓѓ‚МѓuѓЊѓ“ѓhѓ^ѓCѓv( DX_MATERIAL_BLENDTYPE_ADDITIVE ‚И‚З )
-	short									SphereMapTexture ;					// ( ѓgѓDЃ[ѓ“ѓЊѓ“ѓ_ѓЉѓ“ѓO‚Е‚М‚ЭЋg—p )ѓXѓtѓBѓAѓ}ѓbѓvѓeѓNѓXѓ`ѓѓѓCѓ“ѓfѓbѓNѓX
+	int										DiffuseGradTexture ;				// ( гѓ€г‚Ґгѓјгѓігѓ¬гѓігѓЂгѓЄгѓіг‚°гЃ§гЃ®гЃїдЅїз”Ё )гѓ‡г‚Јгѓ•гѓҐгѓјг‚єг‚«гѓ©гѓјг‚°гѓ©гѓ‡гѓјг‚·гѓ§гѓігѓ†г‚Їг‚№гѓЃгѓЈг‚¤гѓігѓ‡гѓѓг‚Їг‚№гЂЃеЅ“гЃџгЃЈгЃ¦гЃ„г‚‹гѓ©г‚¤гѓ€гЃ®гѓ‡г‚Јгѓ•гѓҐгѓјг‚єг‚«гѓ©гѓјгЃ§пјµеЂ¤гЃЊж±єгЃѕг‚‹г‚‚гЃ®гЂЃз„ЎеЉ№гЃ®е ґеђ€гЃЇпјЌпј‘( MV1_MODEL_BASE.Textue й…Ќе€—гЃ®г‚¤гѓігѓ‡гѓѓг‚Їг‚№ )
+	int										SpecularGradTexture ;				// ( гѓ€г‚Ґгѓјгѓігѓ¬гѓігѓЂгѓЄгѓіг‚°гЃ§гЃ®гЃїдЅїз”Ё )г‚№гѓљг‚­гѓҐгѓ©г‚«гѓ©гѓјг‚°гѓ©гѓ‡гѓјг‚·гѓ§гѓігѓ†г‚Їг‚№гѓЃгѓЈг‚¤гѓігѓ‡гѓѓг‚Їг‚№гЂЃеЅ“гЃџгЃЈгЃ¦гЃ„г‚‹гѓ©г‚¤гѓ€гЃ®г‚№гѓљг‚­гѓҐгѓ©г‚«гѓ©гѓјгЃ§пјµеЂ¤гЃЊж±єгЃѕг‚‹г‚‚гЃ®гЂЃз„ЎеЉ№гЃ®е ґеђ€гЃЇпјЌпј‘( MV1_MODEL_BASE.Textue й…Ќе€—гЃ®г‚¤гѓігѓ‡гѓѓг‚Їг‚№ )
+	int										DiffuseGradBlendType ;				// ( гѓ€г‚Ґгѓјгѓігѓ¬гѓігѓЂгѓЄгѓіг‚°гЃ§гЃ®гЃїдЅїз”Ё )гѓ‡г‚Јгѓ•гѓҐгѓјг‚єг‚°гѓ©гѓ‡гѓјг‚·гѓ§гѓігѓ†г‚Їг‚№гѓЃгѓЈгЃ®гѓ–гѓ¬гѓігѓ‰г‚їг‚¤гѓ—( DX_MATERIAL_BLENDTYPE_TRANSLUCENT гЃЄгЃ© )
+	int										SpecularGradBlendType ;				// ( гѓ€г‚Ґгѓјгѓігѓ¬гѓігѓЂгѓЄгѓіг‚°гЃ§гЃ®гЃїдЅїз”Ё )г‚№гѓљг‚­гѓҐгѓ©г‚°гѓ©гѓ‡гѓјг‚·гѓ§гѓігѓ†г‚Їг‚№гѓЃгѓЈгЃ®гѓ–гѓ¬гѓігѓ‰г‚їг‚¤гѓ—( DX_MATERIAL_BLENDTYPE_ADDITIVE гЃЄгЃ© )
+	float									OutLineWidth ;						// ( гѓ€г‚Ґгѓјгѓігѓ¬гѓігѓЂгѓЄгѓіг‚°гЃ§гЃ®гЃїдЅїз”Ё )ијЄйѓ­з·љгЃ®е№…( 0.0f пЅћ 1.0f )
+	COLOR_F									OutLineColor ;						// ( гѓ€г‚Ґгѓјгѓігѓ¬гѓігѓЂгѓЄгѓіг‚°гЃ§гЃ®гЃїдЅїз”Ё )ијЄйѓ­з·љгЃ®и‰І
+	float									OutLineDotWidth ;					// ( гѓ€г‚Ґгѓјгѓігѓ¬гѓігѓЂгѓЄгѓіг‚°гЃ§гЃ®гЃїдЅїз”Ё )ијЄйѓ­з·љгЃ®гѓ‰гѓѓгѓ€еЌдЅЌгЃ§гЃ®е№…
+	BYTE									EnableSphereMap ;					// ( гѓ€г‚Ґгѓјгѓігѓ¬гѓігѓЂгѓЄгѓіг‚°гЃ§гЃ®гЃїдЅїз”Ё )г‚№гѓ•г‚Јг‚ўгѓћгѓѓгѓ—гЃ®жѓ…е ±гЃЊжњ‰еЉ№гЃ‹гЃ©гЃ†гЃ‹( 1:жњ‰еЉ№  0:з„ЎеЉ№ )
+	BYTE									SphereMapBlendType ;				// ( гѓ€г‚Ґгѓјгѓігѓ¬гѓігѓЂгѓЄгѓіг‚°гЃ§гЃ®гЃїдЅїз”Ё )г‚№гѓ•г‚Јг‚ўгѓћгѓѓгѓ—гѓ†г‚Їг‚№гѓЃгѓЈгЃ®гѓ–гѓ¬гѓігѓ‰г‚їг‚¤гѓ—( DX_MATERIAL_BLENDTYPE_ADDITIVE гЃЄгЃ© )
+	short									SphereMapTexture ;					// ( гѓ€г‚Ґгѓјгѓігѓ¬гѓігѓЂгѓЄгѓіг‚°гЃ§гЃ®гЃїдЅїз”Ё )г‚№гѓ•г‚Јг‚ўгѓћгѓѓгѓ—гѓ†г‚Їг‚№гѓЃгѓЈг‚¤гѓігѓ‡гѓѓг‚Їг‚№
 
 	DWORD									Padding[ 2 ] ;
 } ;
 
-// ѓ}ѓeѓЉѓAѓ‹’З‰БЏо•сЌ\‘ў‘М
+// гѓћгѓ†гѓЄг‚ўгѓ«иїЅеЉ жѓ…е ±ж§‹йЂ дЅ“
 struct MV1_MATERIAL_ADD_INFO_F1
 {
-	int										EmissiveLayerNum ;					// Ћ©ЊИ”­Њхѓ}ѓbѓv‚МѓЊѓCѓ„Ѓ[ђ”
-	MV1_MATERIAL_LAYER_F1					EmissiveLayer[ 8 ] ;				// Ћ©ЊИ”­Њхѓ}ѓbѓv‚МѓЊѓCѓ„Ѓ[Џо•с( ‚OѓЊѓCѓ„Ѓ[‚М BlendType ‚Н–іЋ‹‚і‚к‚й )
-	int										ShininessLayerNum ;					// ѓ‰ѓtѓlѓXѓ}ѓbѓv‚МѓЊѓCѓ„Ѓ[ђ”
-	MV1_MATERIAL_LAYER_F1					ShininessLayer[ 8 ] ;				// ѓ‰ѓtѓlѓXѓ}ѓbѓv‚МѓЊѓCѓ„Ѓ[Џо•с( ‚OѓЊѓCѓ„Ѓ[‚М BlendType ‚Н–іЋ‹‚і‚к‚й )
-	int										ReflectionFactorLayerNum ;			// ѓЃѓ^ѓЉѓbѓNѓ}ѓbѓv‚МѓЊѓCѓ„Ѓ[ђ”
-	MV1_MATERIAL_LAYER_F1					ReflectionFactorLayer[ 8 ] ;		// ѓЃѓ^ѓЉѓbѓNѓ}ѓbѓv‚МѓЊѓCѓ„Ѓ[Џо•с( ‚OѓЊѓCѓ„Ѓ[‚М BlendType ‚Н–іЋ‹‚і‚к‚й )
+	int										EmissiveLayerNum ;					// и‡Єе·±з™єе…‰гѓћгѓѓгѓ—гЃ®гѓ¬г‚¤гѓ¤гѓјж•°
+	MV1_MATERIAL_LAYER_F1					EmissiveLayer[ 8 ] ;				// и‡Єе·±з™єе…‰гѓћгѓѓгѓ—гЃ®гѓ¬г‚¤гѓ¤гѓјжѓ…е ±( пјђгѓ¬г‚¤гѓ¤гѓјгЃ® BlendType гЃЇз„Ўи¦–гЃ•г‚Њг‚‹ )
+	int										ShininessLayerNum ;					// гѓ©гѓ•гѓЌг‚№гѓћгѓѓгѓ—гЃ®гѓ¬г‚¤гѓ¤гѓјж•°
+	MV1_MATERIAL_LAYER_F1					ShininessLayer[ 8 ] ;				// гѓ©гѓ•гѓЌг‚№гѓћгѓѓгѓ—гЃ®гѓ¬г‚¤гѓ¤гѓјжѓ…е ±( пјђгѓ¬г‚¤гѓ¤гѓјгЃ® BlendType гЃЇз„Ўи¦–гЃ•г‚Њг‚‹ )
+	int										ReflectionFactorLayerNum ;			// гѓЎг‚їгѓЄгѓѓг‚Їгѓћгѓѓгѓ—гЃ®гѓ¬г‚¤гѓ¤гѓјж•°
+	MV1_MATERIAL_LAYER_F1					ReflectionFactorLayer[ 8 ] ;		// гѓЎг‚їгѓЄгѓѓг‚Їгѓћгѓѓгѓ—гЃ®гѓ¬г‚¤гѓ¤гѓјжѓ…е ±( пјђгѓ¬г‚¤гѓ¤гѓјгЃ® BlendType гЃЇз„Ўи¦–гЃ•г‚Њг‚‹ )
 
 	DWORD									Padding[ 4 ] ;
 } ;
 
-// ѓ}ѓeѓЉѓAѓ‹Ќ\‘ў‘М
+// гѓћгѓ†гѓЄг‚ўгѓ«ж§‹йЂ дЅ“
 struct MV1_MATERIAL_F1
 {
-	DWORD/*MV1_MATERIAL_F1* */				DimPrev ;							// ‘O‚МѓfЃ[ѓ^‚Ц‚Мѓ|ѓCѓ“ѓ^
-	DWORD/*MV1_MATERIAL_F1* */				DimNext ;							// Ћџ‚МѓfЃ[ѓ^‚Ц‚Мѓ|ѓCѓ“ѓ^
-	DWORD/*char* */							Name ;								// –ј‘O
-	int										Index ;								// ѓCѓ“ѓfѓbѓNѓX
+	DWORD/*MV1_MATERIAL_F1* */				DimPrev ;							// е‰ЌгЃ®гѓ‡гѓјг‚їгЃёгЃ®гѓќг‚¤гѓіг‚ї
+	DWORD/*MV1_MATERIAL_F1* */				DimNext ;							// ж¬ЎгЃ®гѓ‡гѓјг‚їгЃёгЃ®гѓќг‚¤гѓіг‚ї
+	DWORD/*char* */							Name ;								// еђЌе‰Ќ
+	int										Index ;								// г‚¤гѓігѓ‡гѓѓг‚Їг‚№
 
-	COLOR_F									Diffuse ;							// ѓfѓBѓtѓ…Ѓ[ѓYђF
-	COLOR_F									Ambient ;							// ѓAѓ“ѓrѓGѓ“ѓgђF
-	COLOR_F									Specular ;							// ѓXѓyѓLѓ…ѓ‰Ѓ[ђF
-	COLOR_F									Emissive ;							// ѓGѓ~ѓbѓVѓuђF
-	float									Power ;								// ѓXѓyѓLѓ…ѓ‰ѓnѓCѓ‰ѓCѓg‚МѓpѓЏЃ[
-	float									Alpha ;								// ѓAѓ‹ѓtѓ@’l
+	COLOR_F									Diffuse ;							// гѓ‡г‚Јгѓ•гѓҐгѓјг‚єи‰І
+	COLOR_F									Ambient ;							// г‚ўгѓігѓ“г‚Ёгѓігѓ€и‰І
+	COLOR_F									Specular ;							// г‚№гѓљг‚­гѓҐгѓ©гѓји‰І
+	COLOR_F									Emissive ;							// г‚Ёгѓџгѓѓг‚·гѓ–и‰І
+	float									Power ;								// г‚№гѓљг‚­гѓҐгѓ©гѓЏг‚¤гѓ©г‚¤гѓ€гЃ®гѓ‘гѓЇгѓј
+	float									Alpha ;								// г‚ўгѓ«гѓ•г‚ЎеЂ¤
 
-	int										DiffuseLayerNum ;					// ѓfѓBѓtѓ…Ѓ[ѓYѓJѓ‰Ѓ[‚МѓЊѓCѓ„Ѓ[ђ”
-	MV1_MATERIAL_LAYER_F1					DiffuseLayer[ 8 ] ;					// ѓfѓBѓtѓ…Ѓ[ѓYѓJѓ‰Ѓ[‚МѓЊѓCѓ„Ѓ[Џо•с( ‚OѓЊѓCѓ„Ѓ[‚М BlendType ‚Н–іЋ‹‚і‚к‚й )
-	int										SpecularLayerNum ;					// ѓXѓyѓLѓ…ѓ‰ѓ}ѓbѓv‚МѓЊѓCѓ„Ѓ[ђ”
-	MV1_MATERIAL_LAYER_F1					SpecularLayer[ 8 ] ;				// ѓXѓyѓLѓ…ѓ‰ѓ}ѓbѓv‚МѓЊѓCѓ„Ѓ[Џо•с( ‚OѓЊѓCѓ„Ѓ[‚М BlendType ‚Н–іЋ‹‚і‚к‚й )
-	int										NormalLayerNum ;					// –@ђьѓ}ѓbѓv‚МѓЊѓCѓ„Ѓ[ђ”
-	MV1_MATERIAL_LAYER_F1					NormalLayer[ 8 ] ;					// –@ђьѓ}ѓbѓv‚МѓЊѓCѓ„Ѓ[Џо•с( ‚OѓЊѓCѓ„Ѓ[‚М BlendType ‚Н–іЋ‹‚і‚к‚й )
+	int										DiffuseLayerNum ;					// гѓ‡г‚Јгѓ•гѓҐгѓјг‚єг‚«гѓ©гѓјгЃ®гѓ¬г‚¤гѓ¤гѓјж•°
+	MV1_MATERIAL_LAYER_F1					DiffuseLayer[ 8 ] ;					// гѓ‡г‚Јгѓ•гѓҐгѓјг‚єг‚«гѓ©гѓјгЃ®гѓ¬г‚¤гѓ¤гѓјжѓ…е ±( пјђгѓ¬г‚¤гѓ¤гѓјгЃ® BlendType гЃЇз„Ўи¦–гЃ•г‚Њг‚‹ )
+	int										SpecularLayerNum ;					// г‚№гѓљг‚­гѓҐгѓ©гѓћгѓѓгѓ—гЃ®гѓ¬г‚¤гѓ¤гѓјж•°
+	MV1_MATERIAL_LAYER_F1					SpecularLayer[ 8 ] ;				// г‚№гѓљг‚­гѓҐгѓ©гѓћгѓѓгѓ—гЃ®гѓ¬г‚¤гѓ¤гѓјжѓ…е ±( пјђгѓ¬г‚¤гѓ¤гѓјгЃ® BlendType гЃЇз„Ўи¦–гЃ•г‚Њг‚‹ )
+	int										NormalLayerNum ;					// жі•з·љгѓћгѓѓгѓ—гЃ®гѓ¬г‚¤гѓ¤гѓјж•°
+	MV1_MATERIAL_LAYER_F1					NormalLayer[ 8 ] ;					// жі•з·љгѓћгѓѓгѓ—гЃ®гѓ¬г‚¤гѓ¤гѓјжѓ…е ±( пјђгѓ¬г‚¤гѓ¤гѓјгЃ® BlendType гЃЇз„Ўи¦–гЃ•г‚Њг‚‹ )
 
-	int										UseAlphaTest ;						// ѓAѓ‹ѓtѓ@ѓeѓXѓg‚рЋg—p‚·‚й‚©‚З‚¤‚©
-	int										AlphaFunc ;							// ѓAѓ‹ѓtѓ@ѓeѓXѓgѓ‚Ѓ[ѓh( ЌЎ‚М‚Ж‚±‚л–ўЋg—p )
-	int										AlphaRef ;							// ѓAѓ‹ѓtѓ@ѓeѓXѓg‚Ми‡’l
+	int										UseAlphaTest ;						// г‚ўгѓ«гѓ•г‚Ўгѓ†г‚№гѓ€г‚’дЅїз”ЁгЃ™г‚‹гЃ‹гЃ©гЃ†гЃ‹
+	int										AlphaFunc ;							// г‚ўгѓ«гѓ•г‚Ўгѓ†г‚№гѓ€гѓўгѓјгѓ‰( д»ЉгЃ®гЃЁгЃ“г‚ЌжњЄдЅїз”Ё )
+	int										AlphaRef ;							// г‚ўгѓ«гѓ•г‚Ўгѓ†г‚№гѓ€гЃ®й–ѕеЂ¤
 
-	int										DrawBlendMode ;						// Џo—НЋћ‚МѓuѓЊѓ“ѓhѓ‚Ѓ[ѓh( DX_BLENDMODE_NOBLEND “™ )
-	int										DrawBlendParam ;					// Џo—НЋћ‚МѓuѓЊѓ“ѓhѓpѓ‰ѓЃЃ[ѓ^
+	int										DrawBlendMode ;						// е‡єеЉ›ж™‚гЃ®гѓ–гѓ¬гѓігѓ‰гѓўгѓјгѓ‰( DX_BLENDMODE_NOBLEND з­‰ )
+	int										DrawBlendParam ;					// е‡єеЉ›ж™‚гЃ®гѓ–гѓ¬гѓігѓ‰гѓ‘гѓ©гѓЎгѓјг‚ї
 
-	DWORD									UserData[ 4 ] ;						// ЉO•”’и‹`‚МЏо•с
+	DWORD									UserData[ 4 ] ;						// е¤–йѓЁе®љзѕ©гЃ®жѓ…е ±
 
-	DWORD/*MV1_MATERIAL_TOON_F1* */			ToonInfo ;							// ѓgѓDЃ[ѓ“ѓЊѓ“ѓ_ѓЉѓ“ѓO—p‚МЏо•сЃA–і‚ўЏкЌ‡‚Н NULL
-	DWORD/*MV1_MATERIAL_ADD_INFO_F1*/		AddInfo ;							// ѓ}ѓeѓЉѓAѓ‹‚М’З‰БЏо•сЃA–і‚ўЏкЌ‡‚Н NULL
+	DWORD/*MV1_MATERIAL_TOON_F1* */			ToonInfo ;							// гѓ€г‚Ґгѓјгѓігѓ¬гѓігѓЂгѓЄгѓіг‚°з”ЁгЃ®жѓ…е ±гЂЃз„ЎгЃ„е ґеђ€гЃЇ NULL
+	DWORD/*MV1_MATERIAL_ADD_INFO_F1*/		AddInfo ;							// гѓћгѓ†гѓЄг‚ўгѓ«гЃ®иїЅеЉ жѓ…е ±гЂЃз„ЎгЃ„е ґеђ€гЃЇ NULL
 	DWORD									Padding[ 2 ] ;
 } ;
 
-// ѓ‰ѓCѓgЌ\‘ў‘М
+// гѓ©г‚¤гѓ€ж§‹йЂ дЅ“
 struct MV1_LIGHT_F1
 {
-	DWORD/*MV1_LIGHT_F1* */					DimPrev ;							// ‘O‚МѓfЃ[ѓ^‚Ц‚Мѓ|ѓCѓ“ѓ^
-	DWORD/*MV1_LIGHT_F1* */					DimNext ;							// Ћџ‚МѓfЃ[ѓ^‚Ц‚Мѓ|ѓCѓ“ѓ^
-	DWORD/*char* */							Name ;								// –ј‘O
-	int										Index ;								// ѓCѓ“ѓfѓbѓNѓX
+	DWORD/*MV1_LIGHT_F1* */					DimPrev ;							// е‰ЌгЃ®гѓ‡гѓјг‚їгЃёгЃ®гѓќг‚¤гѓіг‚ї
+	DWORD/*MV1_LIGHT_F1* */					DimNext ;							// ж¬ЎгЃ®гѓ‡гѓјг‚їгЃёгЃ®гѓќг‚¤гѓіг‚ї
+	DWORD/*char* */							Name ;								// еђЌе‰Ќ
+	int										Index ;								// г‚¤гѓігѓ‡гѓѓг‚Їг‚№
 
-	int										FrameIndex ;						// ѓ‰ѓCѓg‚рЋќ‚Б‚Д‚ў‚йѓtѓЊЃ[ѓЂ‚МѓCѓ“ѓfѓbѓNѓX
-	int										Type ;								// ѓ‰ѓCѓgѓ^ѓCѓv( MV1_LIGHT_TYPE_POINT “™ )
-	COLOR_F									Diffuse ;							// ѓfѓBѓtѓ…Ѓ[ѓYѓJѓ‰Ѓ[
-	COLOR_F									Specular ;							// ѓXѓyѓLѓ…ѓ‰ѓJѓ‰Ѓ[
-	COLOR_F									Ambient ;							// ѓAѓ“ѓrѓGѓ“ѓgѓJѓ‰Ѓ[
-	float									Range ;								// ѓXѓ|ѓbѓgѓ‰ѓCѓg‚М—LЊш‹——Ј
-	float									Falloff ;							// ѓtѓHЃ[ѓ‹ѓIѓt
-	float									Attenuation0 ;						// ѓ‰ѓCѓgѓpѓ‰ѓЃЃ[ѓ^‚O
-	float									Attenuation1 ;						// ѓ‰ѓCѓgѓpѓ‰ѓЃЃ[ѓ^‚P
-	float									Attenuation2 ;						// ѓ‰ѓCѓgѓpѓ‰ѓЃЃ[ѓ^‚Q
-	float									Theta ;								// ѓXѓ|ѓbѓgѓ‰ѓCѓg‚М“а•”ѓRЃ[ѓ“‚МЉp“x”Н€Н
-	float									Phi ;								// ѓXѓ|ѓbѓgѓ‰ѓCѓg‚МЉO•”ѓRЃ[ѓ“‚МЉp“x”Н€Н
+	int										FrameIndex ;						// гѓ©г‚¤гѓ€г‚’жЊЃгЃЈгЃ¦гЃ„г‚‹гѓ•гѓ¬гѓјгѓ гЃ®г‚¤гѓігѓ‡гѓѓг‚Їг‚№
+	int										Type ;								// гѓ©г‚¤гѓ€г‚їг‚¤гѓ—( MV1_LIGHT_TYPE_POINT з­‰ )
+	COLOR_F									Diffuse ;							// гѓ‡г‚Јгѓ•гѓҐгѓјг‚єг‚«гѓ©гѓј
+	COLOR_F									Specular ;							// г‚№гѓљг‚­гѓҐгѓ©г‚«гѓ©гѓј
+	COLOR_F									Ambient ;							// г‚ўгѓігѓ“г‚Ёгѓігѓ€г‚«гѓ©гѓј
+	float									Range ;								// г‚№гѓќгѓѓгѓ€гѓ©г‚¤гѓ€гЃ®жњ‰еЉ№и·ќй›ў
+	float									Falloff ;							// гѓ•г‚©гѓјгѓ«г‚Єгѓ•
+	float									Attenuation0 ;						// гѓ©г‚¤гѓ€гѓ‘гѓ©гѓЎгѓјг‚їпјђ
+	float									Attenuation1 ;						// гѓ©г‚¤гѓ€гѓ‘гѓ©гѓЎгѓјг‚їпј‘
+	float									Attenuation2 ;						// гѓ©г‚¤гѓ€гѓ‘гѓ©гѓЎгѓјг‚їпј’
+	float									Theta ;								// г‚№гѓќгѓѓгѓ€гѓ©г‚¤гѓ€гЃ®е†…йѓЁг‚ігѓјгѓігЃ®и§’еє¦зЇ„е›І
+	float									Phi ;								// г‚№гѓќгѓѓгѓ€гѓ©г‚¤гѓ€гЃ®е¤–йѓЁг‚ігѓјгѓігЃ®и§’еє¦зЇ„е›І
 
-	DWORD									UserData[ 2 ] ;						// ЉO•”’и‹`‚МЏо•с
+	DWORD									UserData[ 2 ] ;						// е¤–йѓЁе®љзѕ©гЃ®жѓ…е ±
 } ;
 
-// ‚P‚UѓrѓbѓgЌА•W’l—p•вЏ•Џо•с
+// пј‘пј–гѓ“гѓѓгѓ€еє§жЁ™еЂ¤з”ЁиЈњеЉ©жѓ…е ±
 struct MV1_POSITION_16BIT_SUBINFO_F1
 {
-	float									Min ;								// ЌЕЏ¬’l
-	float									Width ;								// •ќ
+	float									Min ;								// жњЂе°ЏеЂ¤
+	float									Width ;								// е№…
 } ;
 
-// ѓgѓ‰ѓCѓAѓ“ѓOѓ‹ѓЉѓXѓgЌ\‘ў‘М
+// гѓ€гѓ©г‚¤г‚ўгѓіг‚°гѓ«гѓЄг‚№гѓ€ж§‹йЂ дЅ“
 /*
-	MeshVertexIndexAndIndexData ‚МЏо•с
+	MeshVertexIndexAndIndexData гЃ®жѓ…е ±
 
-		Ћg—pѓ{Ѓ[ѓ“Џо•с
-			VertexType ‚Є
-				MV1_VERTEX_TYPE_NORMAL        ‚МЏкЌ‡Ѓ@Ѓ@‚И‚µ
-				MV1_VERTEX_TYPE_SKIN_4BONE    ‚МЏкЌ‡Ѓ@Ѓ@ЌЕЏ‰‚М‚QѓoѓCѓg‚ЙЋg—pѓ{Ѓ[ѓ“‚Мђ”ЃA‚»‚МЊг‚Й‚Pѓ{Ѓ[ѓ“•У‚и‚QѓoѓCѓg‚ЕЋg—pѓ{Ѓ[ѓ“ѓCѓ“ѓfѓbѓNѓX’l‚ЄЋg—pѓ{Ѓ[ѓ“ђ”•Є‚ѕ‚Ї
-				MV1_VERTEX_TYPE_SKIN_8BONE    ‚МЏкЌ‡Ѓ@Ѓ@ЌЕЏ‰‚М‚QѓoѓCѓg‚ЙЋg—pѓ{Ѓ[ѓ“‚Мђ”ЃA‚»‚МЊг‚Й‚Pѓ{Ѓ[ѓ“•У‚и‚QѓoѓCѓg‚ЕЋg—pѓ{Ѓ[ѓ“ѓCѓ“ѓfѓbѓNѓX’l‚ЄЋg—pѓ{Ѓ[ѓ“ђ”•Є‚ѕ‚Ї
-				MV1_VERTEX_TYPE_SKIN_FREEBONE ‚МЏкЌ‡    ЌЕ‘еЋg—pѓ{Ѓ[ѓ“ђ”‚р‚QѓoѓCѓg‚ЕЉi”[
+		дЅїз”Ёгѓњгѓјгѓіжѓ…е ±
+			VertexType гЃЊ
+				MV1_VERTEX_TYPE_NORMAL        гЃ®е ґеђ€гЂЂгЂЂгЃЄгЃ—
+				MV1_VERTEX_TYPE_SKIN_4BONE    гЃ®е ґеђ€гЂЂгЂЂжњЂе€ќгЃ®пј’гѓђг‚¤гѓ€гЃ«дЅїз”ЁгѓњгѓјгѓігЃ®ж•°гЂЃгЃќгЃ®еѕЊгЃ«пј‘гѓњгѓјгѓіиѕєг‚Љпј’гѓђг‚¤гѓ€гЃ§дЅїз”Ёгѓњгѓјгѓіг‚¤гѓігѓ‡гѓѓг‚Їг‚№еЂ¤гЃЊдЅїз”Ёгѓњгѓјгѓіж•°е€†гЃ гЃ‘
+				MV1_VERTEX_TYPE_SKIN_8BONE    гЃ®е ґеђ€гЂЂгЂЂжњЂе€ќгЃ®пј’гѓђг‚¤гѓ€гЃ«дЅїз”ЁгѓњгѓјгѓігЃ®ж•°гЂЃгЃќгЃ®еѕЊгЃ«пј‘гѓњгѓјгѓіиѕєг‚Љпј’гѓђг‚¤гѓ€гЃ§дЅїз”Ёгѓњгѓјгѓіг‚¤гѓігѓ‡гѓѓг‚Їг‚№еЂ¤гЃЊдЅїз”Ёгѓњгѓјгѓіж•°е€†гЃ гЃ‘
+				MV1_VERTEX_TYPE_SKIN_FREEBONE гЃ®е ґеђ€    жњЂе¤§дЅїз”Ёгѓњгѓјгѓіж•°г‚’пј’гѓђг‚¤гѓ€гЃ§ж јзґЌ
 
-		VertexNum ‚Мђ”‚ѕ‚Ї
+		VertexNum гЃ®ж•°гЃ гЃ‘
 
-			ѓЃѓbѓVѓ…’ё“_ѓCѓ“ѓfѓbѓNѓX
-				Flag ‚М MV1_TRIANGLE_LIST_FLAG_MVERT_INDEX_MASK ‚Й‰ћ‚¶‚Ѕ’l
+			гѓЎгѓѓг‚·гѓҐй ‚з‚№г‚¤гѓігѓ‡гѓѓг‚Їг‚№
+				Flag гЃ® MV1_TRIANGLE_LIST_FLAG_MVERT_INDEX_MASK гЃ«еїњгЃгЃџеЂ¤
 
 
-		IndexNum ‚Мђ”‚ѕ‚Ї
+		IndexNum гЃ®ж•°гЃ гЃ‘
 		
-			’ё“_ѓCѓ“ѓfѓbѓNѓX
-				Flag ‚М MV1_TRIANGLE_LIST_FLAG_INDEX_MASK ‚Й‰ћ‚¶‚Ѕ’l
+			й ‚з‚№г‚¤гѓігѓ‡гѓѓг‚Їг‚№
+				Flag гЃ® MV1_TRIANGLE_LIST_FLAG_INDEX_MASK гЃ«еїњгЃгЃџеЂ¤
 */
 struct MV1_TRIANGLE_LIST_F1
 {
-	DWORD/*MV1_TRIANGLE_LIST_F1* */			DimPrev ;						// ‘O‚МѓfЃ[ѓ^‚Ц‚Мѓ|ѓCѓ“ѓ^
-	DWORD/*MV1_TRIANGLE_LIST_F1* */			DimNext ;						// Ћџ‚МѓfЃ[ѓ^‚Ц‚Мѓ|ѓCѓ“ѓ^
-	int										Index ;								// ѓCѓ“ѓfѓbѓNѓX
+	DWORD/*MV1_TRIANGLE_LIST_F1* */			DimPrev ;						// е‰ЌгЃ®гѓ‡гѓјг‚їгЃёгЃ®гѓќг‚¤гѓіг‚ї
+	DWORD/*MV1_TRIANGLE_LIST_F1* */			DimNext ;						// ж¬ЎгЃ®гѓ‡гѓјг‚їгЃёгЃ®гѓќг‚¤гѓіг‚ї
+	int										Index ;								// г‚¤гѓігѓ‡гѓѓг‚Їг‚№
 
-	DWORD/*MV1_MESH_F1* */					Container ;							// ‚±‚Мѓgѓ‰ѓCѓAѓ“ѓOѓ‹ѓЉѓXѓg‚рЋќ‚Б‚Д‚ў‚йѓЃѓbѓVѓ…‚Ц‚Мѓ|ѓCѓ“ѓ^
-	unsigned short							VertexType ;						// ’ё“_ѓ^ѓCѓv( MV1_VERTEX_TYPE_NORMAL ‚И‚З )
-	unsigned short							Flag ;								// ѓtѓ‰ѓO( MV1_TRIANGLE_LIST_FLAG_NORMAL_S8 “™ )
-	unsigned short							VertexNum ;							// ’ё“_ѓfЃ[ѓ^‚Мђ”
-	unsigned short							IndexNum ;							// ’ё“_ѓCѓ“ѓfѓbѓNѓX‚Мђ”
-	DWORD/*void* */							MeshVertexIndexAndIndexData ;		// ѓЃѓbѓVѓ…’ё“_ѓCѓ“ѓfѓbѓNѓXѓfЃ[ѓ^‚Ж’ё“_ѓCѓ“ѓfѓbѓNѓXѓfЃ[ѓ^
+	DWORD/*MV1_MESH_F1* */					Container ;							// гЃ“гЃ®гѓ€гѓ©г‚¤г‚ўгѓіг‚°гѓ«гѓЄг‚№гѓ€г‚’жЊЃгЃЈгЃ¦гЃ„г‚‹гѓЎгѓѓг‚·гѓҐгЃёгЃ®гѓќг‚¤гѓіг‚ї
+	unsigned short							VertexType ;						// й ‚з‚№г‚їг‚¤гѓ—( MV1_VERTEX_TYPE_NORMAL гЃЄгЃ© )
+	unsigned short							Flag ;								// гѓ•гѓ©г‚°( MV1_TRIANGLE_LIST_FLAG_NORMAL_S8 з­‰ )
+	unsigned short							VertexNum ;							// й ‚з‚№гѓ‡гѓјг‚їгЃ®ж•°
+	unsigned short							IndexNum ;							// й ‚з‚№г‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃ®ж•°
+	DWORD/*void* */							MeshVertexIndexAndIndexData ;		// гѓЎгѓѓг‚·гѓҐй ‚з‚№г‚¤гѓігѓ‡гѓѓг‚Їг‚№гѓ‡гѓјг‚їгЃЁй ‚з‚№г‚¤гѓігѓ‡гѓѓг‚Їг‚№гѓ‡гѓјг‚ї
 
 	DWORD									Padding[ 2 ] ;
 } ;
 
-// ѓXѓLѓ“ѓЃѓbѓVѓ…—pѓ{Ѓ[ѓ“‚рЋg—p‚·‚йѓtѓЊЃ[ѓЂ‚МЏо•с
+// г‚№г‚­гѓігѓЎгѓѓг‚·гѓҐз”Ёгѓњгѓјгѓіг‚’дЅїз”ЁгЃ™г‚‹гѓ•гѓ¬гѓјгѓ гЃ®жѓ…е ±
 struct MV1_SKIN_BONE_USE_FRAME_F1
 {
-	int										Index ;								// ѓ{Ѓ[ѓ“‚рЋg—p‚µ‚Д‚ў‚йѓtѓЊЃ[ѓЂ‚МѓCѓ“ѓfѓbѓNѓX
-	int										MatrixIndex ;						// ‚±‚Мѓ{Ѓ[ѓ“‚ЄѓZѓbѓg‚і‚к‚Д‚ў‚йѓtѓЊЃ[ѓЂ“аѓCѓ“ѓfѓbѓNѓX( MV1_FRAME_BASE.UseSkinBone ‚МѓCѓ“ѓfѓbѓNѓX )
+	int										Index ;								// гѓњгѓјгѓіг‚’дЅїз”ЁгЃ—гЃ¦гЃ„г‚‹гѓ•гѓ¬гѓјгѓ гЃ®г‚¤гѓігѓ‡гѓѓг‚Їг‚№
+	int										MatrixIndex ;						// гЃ“гЃ®гѓњгѓјгѓігЃЊг‚»гѓѓгѓ€гЃ•г‚ЊгЃ¦гЃ„г‚‹гѓ•гѓ¬гѓјгѓ е†…г‚¤гѓігѓ‡гѓѓг‚Їг‚№( MV1_FRAME_BASE.UseSkinBone гЃ®г‚¤гѓігѓ‡гѓѓг‚Їг‚№ )
 } ;
 
-// ѓXѓLѓ“ѓЃѓbѓVѓ…—pѓ{Ѓ[ѓ“Џо•с
+// г‚№г‚­гѓігѓЎгѓѓг‚·гѓҐз”Ёгѓњгѓјгѓіжѓ…е ±
 struct MV1_SKIN_BONE_F1
 {
-	DWORD/*MV1_SKIN_BONE_F1* */				DimPrev ;							// ‘O‚МѓfЃ[ѓ^‚Ц‚Мѓ|ѓCѓ“ѓ^
-	DWORD/*MV1_SKIN_BONE_F1* */				DimNext ;							// Ћџ‚МѓfЃ[ѓ^‚Ц‚Мѓ|ѓCѓ“ѓ^
-	int										Index ;								// ѓCѓ“ѓfѓbѓNѓX
+	DWORD/*MV1_SKIN_BONE_F1* */				DimPrev ;							// е‰ЌгЃ®гѓ‡гѓјг‚їгЃёгЃ®гѓќг‚¤гѓіг‚ї
+	DWORD/*MV1_SKIN_BONE_F1* */				DimNext ;							// ж¬ЎгЃ®гѓ‡гѓјг‚їгЃёгЃ®гѓќг‚¤гѓіг‚ї
+	int										Index ;								// г‚¤гѓігѓ‡гѓѓг‚Їг‚№
 
-	int										BoneFrame ;							// ѓ{Ѓ[ѓ“‚Ж‚µ‚ДЋg—p‚·‚йѓtѓЊЃ[ѓЂ
-	MATRIX_4X4CT_F							ModelLocalMatrix ;					// ѓ‚ѓfѓ‹ЌА•W‚©‚зѓ{Ѓ[ѓ“‚МѓЌЃ[ѓJѓ‹ЌА•W‚Й•ПЉ·‚·‚й‚Ѕ‚Я‚МЌs—с
-	int										ModelLocalMatrixIsTranslateOnly ;	// ѓ‚ѓfѓ‹ЌА•W‚©‚зѓ{Ѓ[ѓ“‚МѓЌЃ[ѓJѓ‹ЌА•W‚Й•ПЉ·‚·‚й‚Ѕ‚Я‚МЌs—с‚Є•ЅЌs€Ъ“®‚М‚Э‚©‚З‚¤‚©( 1:•ЅЌs€Ъ“®‚М‚Э  0:‰с“]‚аЉЬ‚Ю )
-	int										UseFrameNum ;						// ‚±‚Мѓ{Ѓ[ѓ“‚рЋg—p‚·‚йѓtѓЊЃ[ѓЂ‚Мђ”
-	DWORD/*MV1_SKIN_BONE_USE_FRAME_F1* */	UseFrame ;							// ‚±‚Мѓ{Ѓ[ѓ“‚рЋg—p‚·‚йѓtѓЊЃ[ѓЂ‚МЏо•с
+	int										BoneFrame ;							// гѓњгѓјгѓігЃЁгЃ—гЃ¦дЅїз”ЁгЃ™г‚‹гѓ•гѓ¬гѓјгѓ 
+	MATRIX_4X4CT_F							ModelLocalMatrix ;					// гѓўгѓ‡гѓ«еє§жЁ™гЃ‹г‚‰гѓњгѓјгѓігЃ®гѓ­гѓјг‚«гѓ«еє§жЁ™гЃ«е¤‰жЏ›гЃ™г‚‹гЃџг‚ЃгЃ®иЎЊе€—
+	int										ModelLocalMatrixIsTranslateOnly ;	// гѓўгѓ‡гѓ«еє§жЁ™гЃ‹г‚‰гѓњгѓјгѓігЃ®гѓ­гѓјг‚«гѓ«еє§жЁ™гЃ«е¤‰жЏ›гЃ™г‚‹гЃџг‚ЃгЃ®иЎЊе€—гЃЊе№іиЎЊз§»е‹•гЃ®гЃїгЃ‹гЃ©гЃ†гЃ‹( 1:е№іиЎЊз§»е‹•гЃ®гЃї  0:е›ћи»ўг‚‚еђ«г‚Ђ )
+	int										UseFrameNum ;						// гЃ“гЃ®гѓњгѓјгѓіг‚’дЅїз”ЁгЃ™г‚‹гѓ•гѓ¬гѓјгѓ гЃ®ж•°
+	DWORD/*MV1_SKIN_BONE_USE_FRAME_F1* */	UseFrame ;							// гЃ“гЃ®гѓњгѓјгѓіг‚’дЅїз”ЁгЃ™г‚‹гѓ•гѓ¬гѓјгѓ гЃ®жѓ…е ±
 
 	DWORD									Padding[ 2 ] ;
 } ;
 
-// Џу‘Ф•ПЌXЉЗ—ќ—pЉо–{Џо•сЌ\‘ў‘М
+// зЉ¶ж…‹е¤‰ж›ґз®Ўзђ†з”Ёеџєжњ¬жѓ…е ±ж§‹йЂ дЅ“
 struct MV1_CHANGE_F1
 {
-	DWORD									Target ;							// Џу‘Ф•П‰»‚Є”­ђ¶‚µ‚ЅЌЫ‚Й_—ќa‚·‚й‚Ч‚«‘ОЏЫ‚МЉJЋnѓЃѓ‚ѓЉѓAѓhѓЊѓX‚Ц‚МѓIѓtѓZѓbѓg( ‚SѓoѓCѓg’P€К )
-	DWORD/*DWORD* */						Fill ;								// Џу‘Ф•П‰»‚Є”­ђ¶‚µ‚ЅЌЫ‚Й_—ќa‚·‚йѓtѓ‰ѓOѓfЃ[ѓ^
-	DWORD									CheckBit ;							// Ћ©•Є‚Мѓtѓ‰ѓOѓrѓbѓg‚Є—§‚Б‚ЅѓrѓbѓgЏо•с
-	DWORD									Size ;								// Џу‘Ф•П‰»‚Є”­ђ¶‚µ‚ЅЌЫ‚Й_—ќa‚·‚йѓtѓ‰ѓOѓfЃ[ѓ^‚МѓTѓCѓY( DWORD ’P€К )
+	DWORD									Target ;							// зЉ¶ж…‹е¤‰еЊ–гЃЊз™єз”џгЃ—гЃџйљ›гЃ«и«–зђ†е’ЊгЃ™г‚‹гЃ№гЃЌеЇѕи±ЎгЃ®й–‹е§‹гѓЎгѓўгѓЄг‚ўгѓ‰гѓ¬г‚№гЃёгЃ®г‚Єгѓ•г‚»гѓѓгѓ€( пј”гѓђг‚¤гѓ€еЌдЅЌ )
+	DWORD/*DWORD* */						Fill ;								// зЉ¶ж…‹е¤‰еЊ–гЃЊз™єз”џгЃ—гЃџйљ›гЃ«и«–зђ†е’ЊгЃ™г‚‹гѓ•гѓ©г‚°гѓ‡гѓјг‚ї
+	DWORD									CheckBit ;							// и‡Єе€†гЃ®гѓ•гѓ©г‚°гѓ“гѓѓгѓ€гЃЊз«‹гЃЈгЃџгѓ“гѓѓгѓ€жѓ…е ±
+	DWORD									Size ;								// зЉ¶ж…‹е¤‰еЊ–гЃЊз™єз”џгЃ—гЃџйљ›гЃ«и«–зђ†е’ЊгЃ™г‚‹гѓ•гѓ©г‚°гѓ‡гѓјг‚їгЃ®г‚µг‚¤г‚є( DWORD еЌдЅЌ )
 } ;
 
-// ѓЃѓbѓVѓ…Ќ\‘ў‘М
+// гѓЎгѓѓг‚·гѓҐж§‹йЂ дЅ“
 /*
-	VertexData ‚МЏо•сЉi”[Џ‡Џ
+	VertexData гЃ®жѓ…е ±ж јзґЌй †еєЏ
 
-		ЌЕЏ‰‚Й€к‚В‚ѕ‚Ї
+		жњЂе€ќгЃ«дёЂгЃ¤гЃ гЃ‘
 
-			VertFlag ‚Й MV1_MESH_VERT_FLAG_COMMON_COLOR ‚Є•t‚ў‚Д‚ў‚йЏкЌ‡
-				COLOR_U8			DiffuseColor ;				// ‹¤’КѓfѓBѓtѓ…Ѓ[ѓYђF
-				COLOR_U8			SpecularColor ;				// ‹¤’КѓXѓyѓLѓ…ѓ‰ђF
+			VertFlag гЃ« MV1_MESH_VERT_FLAG_COMMON_COLOR гЃЊд»гЃ„гЃ¦гЃ„г‚‹е ґеђ€
+				COLOR_U8			DiffuseColor ;				// е…±йЂљгѓ‡г‚Јгѓ•гѓҐгѓјг‚єи‰І
+				COLOR_U8			SpecularColor ;				// е…±йЂљг‚№гѓљг‚­гѓҐгѓ©и‰І
 
-		VertexNum ‚Мђ”‚ѕ‚Ї
+		VertexNum гЃ®ж•°гЃ гЃ‘
 
-			ЌА•WѓCѓ“ѓfѓbѓNѓX
-				VertFlag ‚М MV1_MESH_VERT_FLAG_POS_IND_TYPE_MASK ‚Й‰ћ‚¶‚Ѕ’l
+			еє§жЁ™г‚¤гѓігѓ‡гѓѓг‚Їг‚№
+				VertFlag гЃ® MV1_MESH_VERT_FLAG_POS_IND_TYPE_MASK гЃ«еїњгЃгЃџеЂ¤
 
-		VertexNum ‚Мђ”‚ѕ‚Ї
+		VertexNum гЃ®ж•°гЃ гЃ‘
 
-			–@ђьѓCѓ“ѓfѓbѓNѓX
-				VertFlag ‚М MV1_MESH_VERT_FLAG_NRM_IND_TYPE_MASK ‚Й‰ћ‚¶‚Ѕ’l
+			жі•з·љг‚¤гѓігѓ‡гѓѓг‚Їг‚№
+				VertFlag гЃ® MV1_MESH_VERT_FLAG_NRM_IND_TYPE_MASK гЃ«еїњгЃгЃџеЂ¤
 
-		VertexNum ‚Мђ”‚ѕ‚Ї
+		VertexNum гЃ®ж•°гЃ гЃ‘
 
-			’ё“_ѓJѓ‰Ѓ[
-				VertFlag ‚Й MV1_MESH_VERT_FLAG_COMMON_COLOR ‚Є•t‚ў‚Д‚ў‚йЏкЌ‡‚Н–і‚ўЃA‚ ‚йЏкЌ‡‚Н COLOR_U8 Њ^‚ЕЃAѓfѓBѓtѓ…Ѓ[ѓYђFЃAѓXѓyѓLѓ…ѓ‰ђF‚МЏ‡
+			й ‚з‚№г‚«гѓ©гѓј
+				VertFlag гЃ« MV1_MESH_VERT_FLAG_COMMON_COLOR гЃЊд»гЃ„гЃ¦гЃ„г‚‹е ґеђ€гЃЇз„ЎгЃ„гЂЃгЃ‚г‚‹е ґеђ€гЃЇ COLOR_U8 ећ‹гЃ§гЂЃгѓ‡г‚Јгѓ•гѓҐгѓјг‚єи‰ІгЂЃг‚№гѓљг‚­гѓҐгѓ©и‰ІгЃ®й †
 
-		VertexNum ‚Мђ”‚ѕ‚Ї
+		VertexNum гЃ®ж•°гЃ гЃ‘
 
-			‚t‚u’l
-				U,V ‚МЏ‡‚Й UVUnitNum * UVSetUnitNum ‚Мђ”‚ѕ‚Ї
-				VertFlag ‚Й MV1_MESH_VERT_FLAG_UV_U16 ‚Є•t‚ў‚Д‚ў‚Ѕ‚з WORDЊ^( 65535 ‚р 1.0 ‚Ж‚·‚йЊЕ’иЏ¬ђ”“_’l )ЃA‚»‚к€ИЉO‚МЏкЌ‡‚Н floatЊ^
+			пјµпј¶еЂ¤
+				U,V гЃ®й †гЃ« UVUnitNum * UVSetUnitNum гЃ®ж•°гЃ гЃ‘
+				VertFlag гЃ« MV1_MESH_VERT_FLAG_UV_U16 гЃЊд»гЃ„гЃ¦гЃ„гЃџг‚‰ WORDећ‹( 65535 г‚’ 1.0 гЃЁгЃ™г‚‹е›єе®ље°Џж•°з‚№еЂ¤ )гЂЃгЃќг‚Њд»Ґе¤–гЃ®е ґеђ€гЃЇ floatећ‹
 
-		VertFlag ‚Й MV1_MESH_VERT_FLAG_NON_TOON_OUTLINE ‚Є•t‚ў‚Д‚ў‚ЅЏкЌ‡ VertexNum ‚Мђ”‚ѕ‚Ї
+		VertFlag гЃ« MV1_MESH_VERT_FLAG_NON_TOON_OUTLINE гЃЊд»гЃ„гЃ¦гЃ„гЃџе ґеђ€ VertexNum гЃ®ж•°гЃ гЃ‘
 
-			ѓgѓDЃ[ѓ“ѓЊѓ“ѓ_ѓЉѓ“ѓOЋћ‚Й—ЦЉsђь‚р•`‰ж‚µ‚И‚ў‚©‚З‚¤‚©‚МЏо•с‚Є‚P’ё“_‚Pѓrѓbѓg‚ЕЉi”[ЃA—]‚и‚Є‚Wѓrѓbѓg–ў–ћ‚МЏкЌ‡‚Н‚»‚МѓoѓCѓg‚аѓpѓfѓBѓ“ѓO‚ЕЋg‚¤
+			гѓ€г‚Ґгѓјгѓігѓ¬гѓігѓЂгѓЄгѓіг‚°ж™‚гЃ«ијЄйѓ­з·љг‚’жЏЏз”»гЃ—гЃЄгЃ„гЃ‹гЃ©гЃ†гЃ‹гЃ®жѓ…е ±гЃЊпј‘й ‚з‚№пј‘гѓ“гѓѓгѓ€гЃ§ж јзґЌгЂЃдЅ™г‚ЉгЃЊпјгѓ“гѓѓгѓ€жњЄжєЂгЃ®е ґеђ€гЃЇгЃќгЃ®гѓђг‚¤гѓ€г‚‚гѓ‘гѓ‡г‚Јгѓіг‚°гЃ§дЅїгЃ†
 */
 struct MV1_MESH_F1
 {
-	DWORD/*MV1_MESH_F1* */					DimPrev ;							// ‘O‚МѓfЃ[ѓ^‚Ц‚Мѓ|ѓCѓ“ѓ^
-	DWORD/*MV1_MESH_F1* */					DimNext ;							// Ћџ‚МѓfЃ[ѓ^‚Ц‚Мѓ|ѓCѓ“ѓ^
+	DWORD/*MV1_MESH_F1* */					DimPrev ;							// е‰ЌгЃ®гѓ‡гѓјг‚їгЃёгЃ®гѓќг‚¤гѓіг‚ї
+	DWORD/*MV1_MESH_F1* */					DimNext ;							// ж¬ЎгЃ®гѓ‡гѓјг‚їгЃёгЃ®гѓќг‚¤гѓіг‚ї
 
-	int										Index ;								// ѓCѓ“ѓfѓbѓNѓX
+	int										Index ;								// г‚¤гѓігѓ‡гѓѓг‚Їг‚№
 
-	DWORD/*MV1_FRAME_F1* */					Container ;							// ‚±‚МѓЃѓbѓVѓ…‚рЋќ‚Б‚Д‚ў‚йѓtѓЊЃ[ѓЂ‚Ц‚Мѓ|ѓCѓ“ѓ^
-	DWORD/*MV1_MATERIAL_F1* */				Material ;							// Ћg—p‚·‚йѓ}ѓeѓЉѓAѓ‹‚Ц‚Мѓ|ѓCѓ“ѓ^
+	DWORD/*MV1_FRAME_F1* */					Container ;							// гЃ“гЃ®гѓЎгѓѓг‚·гѓҐг‚’жЊЃгЃЈгЃ¦гЃ„г‚‹гѓ•гѓ¬гѓјгѓ гЃёгЃ®гѓќг‚¤гѓіг‚ї
+	DWORD/*MV1_MATERIAL_F1* */				Material ;							// дЅїз”ЁгЃ™г‚‹гѓћгѓ†гѓЄг‚ўгѓ«гЃёгЃ®гѓќг‚¤гѓіг‚ї
 
-	MV1_CHANGE_F1							ChangeInfo ;						// Џу‘Ф•П‰»ЉЗ—ќ—pЉо–{Џо•с
+	MV1_CHANGE_F1							ChangeInfo ;						// зЉ¶ж…‹е¤‰еЊ–з®Ўзђ†з”Ёеџєжњ¬жѓ…е ±
 
-	int										UseVertexDiffuseColor ;				// ’ё“_‚МѓfѓBѓtѓ…Ѓ[ѓYѓJѓ‰Ѓ[‚рѓ}ѓeѓЉѓAѓ‹‚МѓfѓBѓtѓ…Ѓ[ѓYѓJѓ‰Ѓ[‚М‘г‚н‚и‚ЙЋg—p‚·‚й‚©‚З‚¤‚©( TRUE:Ћg—p‚·‚й  FALSE:Ћg—p‚µ‚И‚ў )
-	int										UseVertexSpecularColor ;			// ’ё“_‚МѓXѓyѓLѓ…ѓ‰ѓJѓ‰Ѓ[‚рѓ}ѓeѓЉѓAѓ‹‚МѓXѓyѓLѓ…ѓ‰ѓJѓ‰Ѓ[‚М‘г‚н‚и‚ЙЋg—p‚·‚й‚©‚З‚¤‚©( TRUE:Ћg—p‚·‚й  FALSE:Ћg—p‚µ‚И‚ў )
-	BYTE									NotOneDiffuseAlpha ;				// ѓfѓBѓtѓ…Ѓ[ѓYѓJѓ‰Ѓ[‚МѓAѓ‹ѓtѓ@’l‚Е 100% €ИЉO‚М‚а‚М‚Є‚ ‚й‚©‚З‚¤‚©( 1:‚ ‚й  0:‚И‚ў )
-	BYTE									Shape ;								// ѓVѓFѓCѓvѓЃѓbѓVѓ…‚©‚З‚¤‚©( 1:ѓVѓFѓCѓvѓЃѓbѓVѓ…  0:ѓVѓFѓCѓvѓЃѓbѓVѓ…‚Е‚Н‚И‚ў )
+	int										UseVertexDiffuseColor ;				// й ‚з‚№гЃ®гѓ‡г‚Јгѓ•гѓҐгѓјг‚єг‚«гѓ©гѓјг‚’гѓћгѓ†гѓЄг‚ўгѓ«гЃ®гѓ‡г‚Јгѓ•гѓҐгѓјг‚єг‚«гѓ©гѓјгЃ®д»Јг‚Џг‚ЉгЃ«дЅїз”ЁгЃ™г‚‹гЃ‹гЃ©гЃ†гЃ‹( TRUE:дЅїз”ЁгЃ™г‚‹  FALSE:дЅїз”ЁгЃ—гЃЄгЃ„ )
+	int										UseVertexSpecularColor ;			// й ‚з‚№гЃ®г‚№гѓљг‚­гѓҐгѓ©г‚«гѓ©гѓјг‚’гѓћгѓ†гѓЄг‚ўгѓ«гЃ®г‚№гѓљг‚­гѓҐгѓ©г‚«гѓ©гѓјгЃ®д»Јг‚Џг‚ЉгЃ«дЅїз”ЁгЃ™г‚‹гЃ‹гЃ©гЃ†гЃ‹( TRUE:дЅїз”ЁгЃ™г‚‹  FALSE:дЅїз”ЁгЃ—гЃЄгЃ„ )
+	BYTE									NotOneDiffuseAlpha ;				// гѓ‡г‚Јгѓ•гѓҐгѓјг‚єг‚«гѓ©гѓјгЃ®г‚ўгѓ«гѓ•г‚ЎеЂ¤гЃ§ 100% д»Ґе¤–гЃ®г‚‚гЃ®гЃЊгЃ‚г‚‹гЃ‹гЃ©гЃ†гЃ‹( 1:гЃ‚г‚‹  0:гЃЄгЃ„ )
+	BYTE									Shape ;								// г‚·г‚§г‚¤гѓ—гѓЎгѓѓг‚·гѓҐгЃ‹гЃ©гЃ†гЃ‹( 1:г‚·г‚§г‚¤гѓ—гѓЎгѓѓг‚·гѓҐ  0:г‚·г‚§г‚¤гѓ—гѓЎгѓѓг‚·гѓҐгЃ§гЃЇгЃЄгЃ„ )
 	BYTE									Padding2[ 2 ] ;
 
-	int										TriangleListNum ;					// ѓgѓ‰ѓCѓAѓ“ѓOѓ‹ѓЉѓXѓg‚Мђ”
-	DWORD/*MV1_TRIANGLE_LIST_F1* */			TriangleList ;						// ѓgѓ‰ѓCѓAѓ“ѓOѓ‹ѓЉѓXѓg‚МѓЉѓXѓg‚Ц‚Мѓ|ѓCѓ“ѓ^
+	int										TriangleListNum ;					// гѓ€гѓ©г‚¤г‚ўгѓіг‚°гѓ«гѓЄг‚№гѓ€гЃ®ж•°
+	DWORD/*MV1_TRIANGLE_LIST_F1* */			TriangleList ;						// гѓ€гѓ©г‚¤г‚ўгѓіг‚°гѓ«гѓЄг‚№гѓ€гЃ®гѓЄг‚№гѓ€гЃёгЃ®гѓќг‚¤гѓіг‚ї
 
-	BYTE									Visible ;							// •\Ћ¦ѓtѓ‰ѓO( 1:•\Ћ¦‚·‚й  0:•\Ћ¦‚µ‚И‚ў )
-	BYTE									BackCulling ;						// ѓoѓbѓNѓJѓЉѓ“ѓO‚р‚·‚й‚©‚З‚¤‚©( 2:‰E‰с‚иѓJѓЉѓ“ѓO  1:Ќ¶‰с‚иѓJѓЉѓ“ѓO  0:‚µ‚И‚ў )
+	BYTE									Visible ;							// иЎЁз¤єгѓ•гѓ©г‚°( 1:иЎЁз¤єгЃ™г‚‹  0:иЎЁз¤єгЃ—гЃЄгЃ„ )
+	BYTE									BackCulling ;						// гѓђгѓѓг‚Їг‚«гѓЄгѓіг‚°г‚’гЃ™г‚‹гЃ‹гЃ©гЃ†гЃ‹( 2:еЏіе›ћг‚Љг‚«гѓЄгѓіг‚°  1:е·¦е›ћг‚Љг‚«гѓЄгѓіг‚°  0:гЃ—гЃЄгЃ„ )
 
-	BYTE									UVSetUnitNum ;						// €к‚В‚МЌА•WѓfЃ[ѓ^‚ЙЉЬ‚Ь‚к‚йѓeѓNѓXѓ`ѓѓЌА•WѓZѓbѓg‚Мђ”
-	BYTE									UVUnitNum ;							// €к‚В‚МЌА•WѓfЃ[ѓ^‚ЙЉЬ‚Ь‚к‚йѓeѓNѓXѓ`ѓѓЌА•W‚Мђ”
+	BYTE									UVSetUnitNum ;						// дёЂгЃ¤гЃ®еє§жЁ™гѓ‡гѓјг‚їгЃ«еђ«гЃѕг‚Њг‚‹гѓ†г‚Їг‚№гѓЃгѓЈеє§жЁ™г‚»гѓѓгѓ€гЃ®ж•°
+	BYTE									UVUnitNum ;							// дёЂгЃ¤гЃ®еє§жЁ™гѓ‡гѓјг‚їгЃ«еђ«гЃѕг‚Њг‚‹гѓ†г‚Їг‚№гѓЃгѓЈеє§жЁ™гЃ®ж•°
 
-	int										VertFlag ;							// ’ё“_ѓfЃ[ѓ^‚ЙЉЦ‚·‚йѓtѓ‰ѓO( MV1_MESH_VERT_FLAG_POS_IND_TYPE_MASK “™ )
+	int										VertFlag ;							// й ‚з‚№гѓ‡гѓјг‚їгЃ«й–ўгЃ™г‚‹гѓ•гѓ©г‚°( MV1_MESH_VERT_FLAG_POS_IND_TYPE_MASK з­‰ )
 
-	int										VertexNum ;							// ’ё“_‚Мђ”
-	int										FaceNum ;							// –К‚Мђ”
-	DWORD/*void* */							VertexData ;						// ’ё“_ѓfЃ[ѓ^
+	int										VertexNum ;							// й ‚з‚№гЃ®ж•°
+	int										FaceNum ;							// йќўгЃ®ж•°
+	DWORD/*void* */							VertexData ;						// й ‚з‚№гѓ‡гѓјг‚ї
 
-	DWORD									UserData[ 4 ] ;						// ЉO•”’и‹`‚МЏо•с
+	DWORD									UserData[ 4 ] ;						// е¤–йѓЁе®љзѕ©гЃ®жѓ…е ±
 
 	DWORD									Padding[ 4 ] ;
 } ;
 
-// ѓVѓFѓCѓv’ё“_ѓfЃ[ѓ^Ќ\‘ў‘М
+// г‚·г‚§г‚¤гѓ—й ‚з‚№гѓ‡гѓјг‚їж§‹йЂ дЅ“
 struct MV1_SHAPE_VERTEX_F1
 {
-	int										TargetMeshVertex ;					// ‘ОЏЫ‚Ж‚И‚й’ё“_”ФЌ†( MV1_MESH_F1.Vertex ‚Й‘О‚·‚йѓCѓ“ѓfѓbѓNѓX )
-	VECTOR									Position ;							// ЌА•W( Њі‚МЌА•W‚Й‘О‚·‚йЌ·•Є )
-	VECTOR									Normal ;							// –@ђь
+	int										TargetMeshVertex ;					// еЇѕи±ЎгЃЁгЃЄг‚‹й ‚з‚№з•ЄеЏ·( MV1_MESH_F1.Vertex гЃ«еЇѕгЃ™г‚‹г‚¤гѓігѓ‡гѓѓг‚Їг‚№ )
+	VECTOR									Position ;							// еє§жЁ™( е…ѓгЃ®еє§жЁ™гЃ«еЇѕгЃ™г‚‹е·®е€† )
+	VECTOR									Normal ;							// жі•з·љ
 } ;
 
-// ѓVѓFѓCѓvѓЃѓbѓVѓ…Ќ\‘ў‘М
+// г‚·г‚§г‚¤гѓ—гѓЎгѓѓг‚·гѓҐж§‹йЂ дЅ“
 struct MV1_SHAPE_MESH_F1
 {
-	DWORD/*MV1_SHAPE_MESH_F1* */			DimPrev ;							// ‘O‚МѓfЃ[ѓ^‚Ц‚Мѓ|ѓCѓ“ѓ^
-	DWORD/*MV1_SHAPE_MESH_F1* */			DimNext ;							// Ћџ‚МѓfЃ[ѓ^‚Ц‚Мѓ|ѓCѓ“ѓ^
+	DWORD/*MV1_SHAPE_MESH_F1* */			DimPrev ;							// е‰ЌгЃ®гѓ‡гѓјг‚їгЃёгЃ®гѓќг‚¤гѓіг‚ї
+	DWORD/*MV1_SHAPE_MESH_F1* */			DimNext ;							// ж¬ЎгЃ®гѓ‡гѓјг‚їгЃёгЃ®гѓќг‚¤гѓіг‚ї
 
-	int										Index ;								// ѓCѓ“ѓfѓbѓNѓX
+	int										Index ;								// г‚¤гѓігѓ‡гѓѓг‚Їг‚№
 
-	DWORD/*MV1_MESH_F1* */					TargetMesh ;						// ‘ОЏЫ‚Ж‚И‚йѓЃѓbѓVѓ…
+	DWORD/*MV1_MESH_F1* */					TargetMesh ;						// еЇѕи±ЎгЃЁгЃЄг‚‹гѓЎгѓѓг‚·гѓҐ
 
-	WORD									IsVertexPress ;						// ’ё“_ѓfЃ[ѓ^‚Є€іЏk‚і‚к‚Д‚ў‚й‚©‚З‚¤‚©( 1:€іЏk‚і‚к‚Д‚ў‚й  0:‚і‚к‚Д‚ў‚И‚ў )
-	WORD									VertexPressParam ;					// ’ё“_ѓfЃ[ѓ^‚М€іЏkѓpѓ‰ѓЃЃ[ѓ^
-	DWORD									VertexNum ;							// ’ё“_ѓfЃ[ѓ^‚Мђ”
-	DWORD/*MV1_SHAPE_VERTEX_F1* */			Vertex ;							// ’ё“_ѓfЃ[ѓ^”z—с‚Ц‚Мѓ|ѓCѓ“ѓ^
+	WORD									IsVertexPress ;						// й ‚з‚№гѓ‡гѓјг‚їгЃЊењ§зё®гЃ•г‚ЊгЃ¦гЃ„г‚‹гЃ‹гЃ©гЃ†гЃ‹( 1:ењ§зё®гЃ•г‚ЊгЃ¦гЃ„г‚‹  0:гЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ„ )
+	WORD									VertexPressParam ;					// й ‚з‚№гѓ‡гѓјг‚їгЃ®ењ§зё®гѓ‘гѓ©гѓЎгѓјг‚ї
+	DWORD									VertexNum ;							// й ‚з‚№гѓ‡гѓјг‚їгЃ®ж•°
+	DWORD/*MV1_SHAPE_VERTEX_F1* */			Vertex ;							// й ‚з‚№гѓ‡гѓјг‚їй…Ќе€—гЃёгЃ®гѓќг‚¤гѓіг‚ї
 
-	DWORD									UserData[ 4 ] ;						// ЉO•”’и‹`‚МЏо•с
+	DWORD									UserData[ 4 ] ;						// е¤–йѓЁе®љзѕ©гЃ®жѓ…е ±
 
 	DWORD									Padding[ 4 ] ;
 } ;
 
-// ѓVѓFѓCѓvЌ\‘ў‘М
+// г‚·г‚§г‚¤гѓ—ж§‹йЂ дЅ“
 struct MV1_SHAPE_F1
 {
-	DWORD/*MV1_SHAPE_F1* */					DimPrev ;							// ‘O‚МѓfЃ[ѓ^‚Ц‚Мѓ|ѓCѓ“ѓ^
-	DWORD/*MV1_SHAPE_F1* */					DimNext ;							// Ћџ‚МѓfЃ[ѓ^‚Ц‚Мѓ|ѓCѓ“ѓ^
+	DWORD/*MV1_SHAPE_F1* */					DimPrev ;							// е‰ЌгЃ®гѓ‡гѓјг‚їгЃёгЃ®гѓќг‚¤гѓіг‚ї
+	DWORD/*MV1_SHAPE_F1* */					DimNext ;							// ж¬ЎгЃ®гѓ‡гѓјг‚їгЃёгЃ®гѓќг‚¤гѓіг‚ї
 
-	DWORD/*char* */							Name ;								// –ј‘O
-	int										Index ;								// ѓCѓ“ѓfѓbѓNѓX
+	DWORD/*char* */							Name ;								// еђЌе‰Ќ
+	int										Index ;								// г‚¤гѓігѓ‡гѓѓг‚Їг‚№
 
-	DWORD/*MV1_FRAME_F1* */					Container ;							// ‚±‚МѓVѓFѓCѓv‚рЋќ‚Б‚Д‚ў‚йѓtѓЊЃ[ѓЂ‚Мѓ|ѓCѓ“ѓ^
+	DWORD/*MV1_FRAME_F1* */					Container ;							// гЃ“гЃ®г‚·г‚§г‚¤гѓ—г‚’жЊЃгЃЈгЃ¦гЃ„г‚‹гѓ•гѓ¬гѓјгѓ гЃ®гѓќг‚¤гѓіг‚ї
 
-	int										MeshNum ;							// ѓVѓFѓCѓvѓЃѓbѓVѓ…‚Мђ”
-	DWORD/*MV1_SHAPE_MESH_F1* */			Mesh ;								// ѓVѓFѓCѓvѓЃѓbѓVѓ…”z—с‚Ц‚Мѓ|ѓCѓ“ѓ^
+	int										MeshNum ;							// г‚·г‚§г‚¤гѓ—гѓЎгѓѓг‚·гѓҐгЃ®ж•°
+	DWORD/*MV1_SHAPE_MESH_F1* */			Mesh ;								// г‚·г‚§г‚¤гѓ—гѓЎгѓѓг‚·гѓҐй…Ќе€—гЃёгЃ®гѓќг‚¤гѓіг‚ї
 
-	DWORD									UserData[ 4 ] ;						// ЉO•”’и‹`‚МЏо•с
+	DWORD									UserData[ 4 ] ;						// е¤–йѓЁе®љзѕ©гЃ®жѓ…е ±
 
 	DWORD									Padding[ 4 ] ;
 } ;
 
-// ѓtѓЊЃ[ѓЂ‚Й•t‘®‚·‚йѓVѓFѓCѓvЏо•с
+// гѓ•гѓ¬гѓјгѓ гЃ«д»е±ћгЃ™г‚‹г‚·г‚§г‚¤гѓ—жѓ…е ±
 struct MV1_FRAME_SHAPE_F1
 {
-	int										ShapeNum ;							// ѓtѓЊЃ[ѓЂ‚Й•t‘®‚·‚йѓVѓFѓCѓvЏо•с‚Мђ”
-	DWORD/*MV1_SHAPE_F1* */					Shape ;								// ѓVѓFѓCѓvЏо•с”z—с‚Ц‚Мѓ|ѓCѓ“ѓ^
+	int										ShapeNum ;							// гѓ•гѓ¬гѓјгѓ гЃ«д»е±ћгЃ™г‚‹г‚·г‚§г‚¤гѓ—жѓ…е ±гЃ®ж•°
+	DWORD/*MV1_SHAPE_F1* */					Shape ;								// г‚·г‚§г‚¤гѓ—жѓ…е ±й…Ќе€—гЃёгЃ®гѓќг‚¤гѓіг‚ї
 } ;
 
-// ЉK‘wѓfЃ[ѓ^Ќ\‘ў‘М
+// йљЋе±¤гѓ‡гѓјг‚їж§‹йЂ дЅ“
 /*
-	PositionAndNormalData ‚МЏо•сЉi”[Џ‡Џ
+	PositionAndNormalData гЃ®жѓ…е ±ж јзґЌй †еєЏ
 
-		ЌЕЏ‰‚Й€к‚В‚ѕ‚Ї
+		жњЂе€ќгЃ«дёЂгЃ¤гЃ гЃ‘
 
-			VertFlag ‚Й MV1_FRAME_VERT_FLAG_POSITION_B16 ‚Є•t‚ў‚Д‚ў‚йЏкЌ‡
-				MV1_POSITION_16BIT_SUBINFO_F1	x, y, z ;				// ЌА•W’l x, y, z ‚М16ѓrѓbѓg‰»—p•вЏ•Џо•с
+			VertFlag гЃ« MV1_FRAME_VERT_FLAG_POSITION_B16 гЃЊд»гЃ„гЃ¦гЃ„г‚‹е ґеђ€
+				MV1_POSITION_16BIT_SUBINFO_F1	x, y, z ;				// еє§жЁ™еЂ¤ x, y, z гЃ®16гѓ“гѓѓгѓ€еЊ–з”ЁиЈњеЉ©жѓ…е ±
 
-		PositionNum ‚Мђ”‚ѕ‚Ї
+		PositionNum гЃ®ж•°гЃ гЃ‘
 
-			ЌА•WѓfЃ[ѓ^
-				VertFlag ‚Й MV1_FRAME_VERT_FLAG_POSITION_B16 ‚Є•t‚ў‚Д‚ў‚йЏкЌ‡ WORDЊ^ЃA•t‚ў‚Д‚ў‚И‚Ї‚к‚О floatЊ^
+			еє§жЁ™гѓ‡гѓјг‚ї
+				VertFlag гЃ« MV1_FRAME_VERT_FLAG_POSITION_B16 гЃЊд»гЃ„гЃ¦гЃ„г‚‹е ґеђ€ WORDећ‹гЂЃд»гЃ„гЃ¦гЃ„гЃЄгЃ‘г‚ЊгЃ° floatећ‹
 
-		PositionNum ‚Мђ”‚ѕ‚Ї
+		PositionNum гЃ®ж•°гЃ гЃ‘
 
-			ѓXѓLѓjѓ“ѓOЏо•сЃAVertFlag ‚Й MV1_FRAME_VERT_FLAG_MATRIX_WEIGHT_NONE ‚Є•t‚ў‚Д‚ў‚йЏкЌ‡‚Н–і‚ў
-				ѓCѓ“ѓfѓbѓNѓX’lЃAѓEѓGѓCѓg’l‚МЏ‡‚ЙѓCѓ“ѓfѓbѓNѓX’l‚Є -1 ‚Й‚И‚й‚©ЃAMaxBoneBlendNum ‚Мђ”‚Й’B‚·‚й‚Ь‚ЕЃAѓCѓ“ѓfѓbѓNѓX’l‚Є -1 ‚МЊг‚л‚ЙѓEѓGѓCѓg’l‚Н–і‚ў
-				ѓCѓ“ѓfѓbѓNѓX’l‚Н VertFlag ‚М MV1_FRAME_VERT_FLAG_MATRIX_INDEX_MASK  ‚Й‰ћ‚¶‚Ѕ’l
-				ѓEѓGѓCѓg’l‚Н     VertFlag ‚М MV1_FRAME_VERT_FLAG_MATRIX_WEIGHT_MASK ‚Й‰ћ‚¶‚Ѕ’l
+			г‚№г‚­гѓ‹гѓіг‚°жѓ…е ±гЂЃVertFlag гЃ« MV1_FRAME_VERT_FLAG_MATRIX_WEIGHT_NONE гЃЊд»гЃ„гЃ¦гЃ„г‚‹е ґеђ€гЃЇз„ЎгЃ„
+				г‚¤гѓігѓ‡гѓѓг‚Їг‚№еЂ¤гЂЃг‚¦г‚Ёг‚¤гѓ€еЂ¤гЃ®й †гЃ«г‚¤гѓігѓ‡гѓѓг‚Їг‚№еЂ¤гЃЊ -1 гЃ«гЃЄг‚‹гЃ‹гЂЃMaxBoneBlendNum гЃ®ж•°гЃ«йЃ”гЃ™г‚‹гЃѕгЃ§гЂЃг‚¤гѓігѓ‡гѓѓг‚Їг‚№еЂ¤гЃЊ -1 гЃ®еѕЊг‚ЌгЃ«г‚¦г‚Ёг‚¤гѓ€еЂ¤гЃЇз„ЎгЃ„
+				г‚¤гѓігѓ‡гѓѓг‚Їг‚№еЂ¤гЃЇ VertFlag гЃ® MV1_FRAME_VERT_FLAG_MATRIX_INDEX_MASK  гЃ«еїњгЃгЃџеЂ¤
+				г‚¦г‚Ёг‚¤гѓ€еЂ¤гЃЇ     VertFlag гЃ® MV1_FRAME_VERT_FLAG_MATRIX_WEIGHT_MASK гЃ«еїњгЃгЃџеЂ¤
 
 
-		–@ђьЏо•сЃAVertFlag ‚М MV1_FRAME_VERT_FLAG_NORMAL_TYPE_MASK ‚М’l‚Є MV1_FRAME_NORMAL_TYPE_NONE ‚МЏкЌ‡‚Н–і‚ў
-		NormalNum ‚Мђ”‚ѕ‚Ї
+		жі•з·љжѓ…е ±гЂЃVertFlag гЃ® MV1_FRAME_VERT_FLAG_NORMAL_TYPE_MASK гЃ®еЂ¤гЃЊ MV1_FRAME_NORMAL_TYPE_NONE гЃ®е ґеђ€гЃЇз„ЎгЃ„
+		NormalNum гЃ®ж•°гЃ гЃ‘
 
-			–@ђьѓfЃ[ѓ^
-				VertFlag ‚М MV1_FRAME_VERT_FLAG_NORMAL_TYPE_MASK ‚Й‰ћ‚¶‚Ѕ’l
+			жі•з·љгѓ‡гѓјг‚ї
+				VertFlag гЃ® MV1_FRAME_VERT_FLAG_NORMAL_TYPE_MASK гЃ«еїњгЃгЃџеЂ¤
 
 */
 struct MV1_FRAME_F1
 {
-	DWORD/*MV1_FRAME_F1* */					DimPrev ;							// ѓfЃ[ѓ^”z—сЏг‚М‘O‚МЉK‘wѓfЃ[ѓ^‚Ц‚Мѓ|ѓCѓ“ѓ^
-	DWORD/*MV1_FRAME_F1* */					DimNext ;							// ѓfЃ[ѓ^”z—сЏг‚МЋџ‚МЉK‘wѓfЃ[ѓ^‚Ц‚Мѓ|ѓCѓ“ѓ^
+	DWORD/*MV1_FRAME_F1* */					DimPrev ;							// гѓ‡гѓјг‚їй…Ќе€—дёЉгЃ®е‰ЌгЃ®йљЋе±¤гѓ‡гѓјг‚їгЃёгЃ®гѓќг‚¤гѓіг‚ї
+	DWORD/*MV1_FRAME_F1* */					DimNext ;							// гѓ‡гѓјг‚їй…Ќе€—дёЉгЃ®ж¬ЎгЃ®йљЋе±¤гѓ‡гѓјг‚їгЃёгЃ®гѓќг‚¤гѓіг‚ї
 
-	DWORD/*char* */							Name ;								// –ј‘O
-	int										Index ;								// ѓCѓ“ѓfѓbѓNѓX
+	DWORD/*char* */							Name ;								// еђЌе‰Ќ
+	int										Index ;								// г‚¤гѓігѓ‡гѓѓг‚Їг‚№
 
-	MV1_CHANGE_F1							ChangeDrawMaterialInfo ;			// •`‰ж—pѓ}ѓeѓЉѓAѓ‹Џу‘Ф•П‰»ЉЗ—ќ—pЉо–{Џо•с
-	MV1_CHANGE_F1							ChangeMatrixInfo ;					// Ќs—сЏу‘Ф•П‰»ЉЗ—ќ—pЉо–{Џо•с
+	MV1_CHANGE_F1							ChangeDrawMaterialInfo ;			// жЏЏз”»з”Ёгѓћгѓ†гѓЄг‚ўгѓ«зЉ¶ж…‹е¤‰еЊ–з®Ўзђ†з”Ёеџєжњ¬жѓ…е ±
+	MV1_CHANGE_F1							ChangeMatrixInfo ;					// иЎЊе€—зЉ¶ж…‹е¤‰еЊ–з®Ўзђ†з”Ёеџєжњ¬жѓ…е ±
 
-	int										TotalMeshNum ;						// Ћ©•Є‚М‰є‘w‚Й‚ ‚йѓЃѓbѓVѓ…‚М‘Ќђ”
-	int										TotalChildNum ;						// Ћ©•Є‚М‰є‘w‚Й‚ ‚йѓtѓЊЃ[ѓЂ‚Мђ”
-	DWORD/*MV1_FRAME_F1* */					Parent ;							// ђeЉK‘w‚Ц‚Мѓ|ѓCѓ“ѓ^
-	DWORD/*MV1_FRAME_F1* */					FirstChild ;						// ЋqЉK‘w‚Ц‚Мѓ|ѓCѓ“ѓ^(ђж’[)
-	DWORD/*MV1_FRAME_F1* */					LastChild ;							// ЋqЉK‘w‚Ц‚Мѓ|ѓCѓ“ѓ^(––’[)
-	DWORD/*MV1_FRAME_F1* */					Prev ;								// ЊZЉK‘w‚Ц‚Мѓ|ѓCѓ“ѓ^
-	DWORD/*MV1_FRAME_F1* */					Next ;								// ’нЉK‘w‚Ц‚Мѓ|ѓCѓ“ѓ^
+	int										TotalMeshNum ;						// и‡Єе€†гЃ®дё‹е±¤гЃ«гЃ‚г‚‹гѓЎгѓѓг‚·гѓҐгЃ®з·Џж•°
+	int										TotalChildNum ;						// и‡Єе€†гЃ®дё‹е±¤гЃ«гЃ‚г‚‹гѓ•гѓ¬гѓјгѓ гЃ®ж•°
+	DWORD/*MV1_FRAME_F1* */					Parent ;							// и¦ЄйљЋе±¤гЃёгЃ®гѓќг‚¤гѓіг‚ї
+	DWORD/*MV1_FRAME_F1* */					FirstChild ;						// е­ђйљЋе±¤гЃёгЃ®гѓќг‚¤гѓіг‚ї(е…€з«Ї)
+	DWORD/*MV1_FRAME_F1* */					LastChild ;							// е­ђйљЋе±¤гЃёгЃ®гѓќг‚¤гѓіг‚ї(жњ«з«Ї)
+	DWORD/*MV1_FRAME_F1* */					Prev ;								// е…„йљЋе±¤гЃёгЃ®гѓќг‚¤гѓіг‚ї
+	DWORD/*MV1_FRAME_F1* */					Next ;								// ејџйљЋе±¤гЃёгЃ®гѓќг‚¤гѓіг‚ї
 
-	VECTOR									Translate ;							// •ЅЌs€Ъ“®
-	VECTOR									Scale ;								// ѓXѓPЃ[ѓ‹
-	VECTOR									Rotate ;							// ‰с“]
-	int										RotateOrder ;						// ‰с“]ѓIЃ[ѓ_Ѓ[
-	FLOAT4									Quaternion ;						// ‰с“]( ѓNѓHЃ[ѓ^ѓjѓIѓ“ )
+	VECTOR									Translate ;							// е№іиЎЊз§»е‹•
+	VECTOR									Scale ;								// г‚№г‚±гѓјгѓ«
+	VECTOR									Rotate ;							// е›ћи»ў
+	int										RotateOrder ;						// е›ћи»ўг‚ЄгѓјгѓЂгѓј
+	FLOAT4									Quaternion ;						// е›ћи»ў( г‚Їг‚©гѓјг‚їгѓ‹г‚Єгѓі )
 
-	DWORD									Flag ;								// ЉeЋнѓtѓ‰ѓO( MV1_FRAMEFLAG_VISIBLE ‚И‚З )
+	DWORD									Flag ;								// еђ„зЁ®гѓ•гѓ©г‚°( MV1_FRAMEFLAG_VISIBLE гЃЄгЃ© )
 
-	int										IsSkinMesh ;						// ‚±‚МѓtѓЊЃ[ѓЂ‚ЙЉЬ‚Ь‚к‚йѓЃѓbѓVѓ…‚М’†‚ЙѓXѓLѓ“ѓЃѓbѓVѓ…‚ЄЉЬ‚Ь‚к‚й‚©‚З‚¤‚©( TRUE:ЉЬ‚Ь‚к‚й  FALSE:ЉЬ‚Ь‚к‚И‚ў )
-	int										TriangleNum ;						// ‚±‚МѓtѓЊЃ[ѓЂ‚ЙЉЬ‚Ь‚к‚йѓ|ѓЉѓSѓ“‚Мђ”
-	int										VertexNum ;							// ‚±‚МѓtѓЊЃ[ѓЂ‚ЙЉЬ‚Ь‚к‚й’ё“_ѓfЃ[ѓ^‚Мђ”
-	int										MeshNum ;							// ѓЃѓbѓVѓ…‚Мђ”
-	DWORD/*MV1_MESH_F1* */					Mesh ;								// ѓЃѓbѓVѓ…ѓЉѓXѓg‚Ц‚Мѓ|ѓCѓ“ѓ^
+	int										IsSkinMesh ;						// гЃ“гЃ®гѓ•гѓ¬гѓјгѓ гЃ«еђ«гЃѕг‚Њг‚‹гѓЎгѓѓг‚·гѓҐгЃ®дё­гЃ«г‚№г‚­гѓігѓЎгѓѓг‚·гѓҐгЃЊеђ«гЃѕг‚Њг‚‹гЃ‹гЃ©гЃ†гЃ‹( TRUE:еђ«гЃѕг‚Њг‚‹  FALSE:еђ«гЃѕг‚ЊгЃЄгЃ„ )
+	int										TriangleNum ;						// гЃ“гЃ®гѓ•гѓ¬гѓјгѓ гЃ«еђ«гЃѕг‚Њг‚‹гѓќгѓЄг‚ґгѓігЃ®ж•°
+	int										VertexNum ;							// гЃ“гЃ®гѓ•гѓ¬гѓјгѓ гЃ«еђ«гЃѕг‚Њг‚‹й ‚з‚№гѓ‡гѓјг‚їгЃ®ж•°
+	int										MeshNum ;							// гѓЎгѓѓг‚·гѓҐгЃ®ж•°
+	DWORD/*MV1_MESH_F1* */					Mesh ;								// гѓЎгѓѓг‚·гѓҐгѓЄг‚№гѓ€гЃёгЃ®гѓќг‚¤гѓіг‚ї
 
-	int										SkinBoneNum ;						// ‚±‚МѓtѓЊЃ[ѓЂ‚рѓ^Ѓ[ѓQѓbѓg‚Ж‚·‚йѓ{Ѓ[ѓ“‚Мђ”
-	DWORD/*MV1_SKIN_BONE_F1* */				SkinBone ;							// ‚±‚МѓtѓЊЃ[ѓЂ‚рѓ^Ѓ[ѓQѓbѓg‚Ж‚·‚йЌЕЏ‰‚Мѓ{Ѓ[ѓ“‚Ц‚Мѓ|ѓCѓ“ѓ^
+	int										SkinBoneNum ;						// гЃ“гЃ®гѓ•гѓ¬гѓјгѓ г‚’г‚їгѓјг‚Ігѓѓгѓ€гЃЁгЃ™г‚‹гѓњгѓјгѓігЃ®ж•°
+	DWORD/*MV1_SKIN_BONE_F1* */				SkinBone ;							// гЃ“гЃ®гѓ•гѓ¬гѓјгѓ г‚’г‚їгѓјг‚Ігѓѓгѓ€гЃЁгЃ™г‚‹жњЂе€ќгЃ®гѓњгѓјгѓігЃёгЃ®гѓќг‚¤гѓіг‚ї
 
-	int										UseSkinBoneNum ;					// ‚±‚МѓtѓЊЃ[ѓЂ‚ЄЋg—p‚µ‚Д‚ў‚йѓ{Ѓ[ѓ“‚Мђ”
-	DWORD/*MV1_SKIN_BONE_F1** */			UseSkinBone ;						// ‚±‚МѓtѓЊЃ[ѓЂ‚ЄЋg—p‚µ‚Д‚ў‚йѓ{Ѓ[ѓ“‚Ц‚Мѓ|ѓCѓ“ѓ^‚М”z—с
+	int										UseSkinBoneNum ;					// гЃ“гЃ®гѓ•гѓ¬гѓјгѓ гЃЊдЅїз”ЁгЃ—гЃ¦гЃ„г‚‹гѓњгѓјгѓігЃ®ж•°
+	DWORD/*MV1_SKIN_BONE_F1** */			UseSkinBone ;						// гЃ“гЃ®гѓ•гѓ¬гѓјгѓ гЃЊдЅїз”ЁгЃ—гЃ¦гЃ„г‚‹гѓњгѓјгѓігЃёгЃ®гѓќг‚¤гѓіг‚їгЃ®й…Ќе€—
 
-	DWORD/*MV1_LIGHT_F1* */					Light ;								// ѓ‰ѓCѓgЏо•с‚Ц‚Мѓ|ѓCѓ“ѓ^
+	DWORD/*MV1_LIGHT_F1* */					Light ;								// гѓ©г‚¤гѓ€жѓ…е ±гЃёгЃ®гѓќг‚¤гѓіг‚ї
 
-	unsigned short							VertFlag ;							// ’ё“_ѓfЃ[ѓ^‚ЙЉЦ‚·‚йѓtѓ‰ѓO
-	unsigned short							MaxBoneBlendNum ;					// €к‚В‚МЌА•WѓfЃ[ѓ^‚ЕЋg—p‚·‚йѓ{Ѓ[ѓ“ѓEѓGѓCѓgЏо•с‚МЌЕ‘еђ”
+	unsigned short							VertFlag ;							// й ‚з‚№гѓ‡гѓјг‚їгЃ«й–ўгЃ™г‚‹гѓ•гѓ©г‚°
+	unsigned short							MaxBoneBlendNum ;					// дёЂгЃ¤гЃ®еє§жЁ™гѓ‡гѓјг‚їгЃ§дЅїз”ЁгЃ™г‚‹гѓњгѓјгѓіг‚¦г‚Ёг‚¤гѓ€жѓ…е ±гЃ®жњЂе¤§ж•°
 
-	float									SmoothingAngle ;					// Ћ©“®–@ђьЊvЋZ‚МЏкЌ‡‚МѓXѓЂЃ[ѓWѓ“ѓO‚рЌs‚¤‚©‚З‚¤‚©‚Ми‡’l( ’P€К‚Нѓ‰ѓWѓAѓ“ )
-	int										AutoCreateNormal ;					// –@ђь‚МЋ©“®ђ¶ђ¬‚рЋg—p‚·‚й‚©‚З‚¤‚©( TRUE:Ћg—p‚·‚й  FALSE:Ћg—p‚µ‚И‚ў )
+	float									SmoothingAngle ;					// и‡Єе‹•жі•з·љиЁ€з®—гЃ®е ґеђ€гЃ®г‚№гѓ гѓјг‚ёгѓіг‚°г‚’иЎЊгЃ†гЃ‹гЃ©гЃ†гЃ‹гЃ®й–ѕеЂ¤( еЌдЅЌгЃЇгѓ©г‚ёг‚ўгѓі )
+	int										AutoCreateNormal ;					// жі•з·љгЃ®и‡Єе‹•з”џж€ђг‚’дЅїз”ЁгЃ™г‚‹гЃ‹гЃ©гЃ†гЃ‹( TRUE:дЅїз”ЁгЃ™г‚‹  FALSE:дЅїз”ЁгЃ—гЃЄгЃ„ )
 
-	int										PositionNum ;						// ЌА•W‚Мђ”
-	int										NormalNum ;							// –@ђь‚Мђ”
-	DWORD/*void* */							PositionAndNormalData ;				// ЌА•W‚Ж–@ђьѓfЃ[ѓ^
+	int										PositionNum ;						// еє§жЁ™гЃ®ж•°
+	int										NormalNum ;							// жі•з·љгЃ®ж•°
+	DWORD/*void* */							PositionAndNormalData ;				// еє§жЁ™гЃЁжі•з·љгѓ‡гѓјг‚ї
 
-	DWORD									UserData[ 4 ] ;						// ЉO•”’и‹`‚МЏо•с
+	DWORD									UserData[ 4 ] ;						// е¤–йѓЁе®љзѕ©гЃ®жѓ…е ±
 
-	DWORD/*MV1_FRAME_SHAPE_F1* */			FrameShape ;						// ѓVѓFѓCѓvЏо•с( –і‚ўЏкЌ‡‚Н NULL )
+	DWORD/*MV1_FRAME_SHAPE_F1* */			FrameShape ;						// г‚·г‚§г‚¤гѓ—жѓ…е ±( з„ЎгЃ„е ґеђ€гЃЇ NULL )
 
-	VECTOR									PreRotate ;							// ‘O‰с“]
-	VECTOR									PostRotate ;						// Њг‰с“]
+	VECTOR									PreRotate ;							// е‰Ќе›ћи»ў
+	VECTOR									PostRotate ;						// еѕЊе›ћи»ў
 
 	DWORD									Padding[ 8 ] ;
 } ;
 
-// •Ё—ќ‰‰ЋZ—pЌ„‘МѓfЃ[ѓ^Ќ\‘ў‘М
+// з‰©зђ†жј”з®—з”Ёе‰›дЅ“гѓ‡гѓјг‚їж§‹йЂ дЅ“
 struct MV1_PHYSICS_RIGIDBODY_F1
 {
-	DWORD/*MV1_PHYSICS_RIGIDBODY_F1* */		DimPrev ;							// ‘O‚МѓfЃ[ѓ^‚Ц‚Мѓ|ѓCѓ“ѓ^
-	DWORD/*MV1_PHYSICS_RIGIDBODY_F1* */		DimNext ;							// Ћџ‚МѓfЃ[ѓ^‚Ц‚Мѓ|ѓCѓ“ѓ^
+	DWORD/*MV1_PHYSICS_RIGIDBODY_F1* */		DimPrev ;							// е‰ЌгЃ®гѓ‡гѓјг‚їгЃёгЃ®гѓќг‚¤гѓіг‚ї
+	DWORD/*MV1_PHYSICS_RIGIDBODY_F1* */		DimNext ;							// ж¬ЎгЃ®гѓ‡гѓјг‚їгЃёгЃ®гѓќг‚¤гѓіг‚ї
 
-	DWORD/*char* */							Name ;								// –ј‘O
-	int										Index ;								// ѓCѓ“ѓfѓbѓNѓX
+	DWORD/*char* */							Name ;								// еђЌе‰Ќ
+	int										Index ;								// г‚¤гѓігѓ‡гѓѓг‚Їг‚№
 
-	DWORD/*MV1_FRAME_F1* */					TargetFrame ;						// ‘ОЏЫ‚Ж‚И‚йѓtѓЊЃ[ѓЂ
+	DWORD/*MV1_FRAME_F1* */					TargetFrame ;						// еЇѕи±ЎгЃЁгЃЄг‚‹гѓ•гѓ¬гѓјгѓ 
 
-	int										RigidBodyGroupIndex ;				// Ќ„‘МѓOѓ‹Ѓ[ѓv”ФЌ†
-	DWORD									RigidBodyGroupTarget ;				// Ќ„‘МѓOѓ‹Ѓ[ѓv‘ОЏЫ
-	int										ShapeType ;							// Њ`Џу( 0:‹…  1:”   2:ѓJѓvѓZѓ‹ )
-	float									ShapeW ;							// •ќ
-	float									ShapeH ;							// Ќ‚‚і
-	float									ShapeD ;							// ‰њЌs
-	VECTOR									Position ;							// €К’u
-	VECTOR									Rotation ;							// ‰с“]( ѓ‰ѓWѓAѓ“ )
-	float									RigidBodyWeight ;					// Ћї—К
-	float									RigidBodyPosDim ;					// €Ъ“®Њё
-	float									RigidBodyRotDim ;					// ‰с“]Њё
-	float									RigidBodyRecoil ;					// ”Ѕ”­—Н
-	float									RigidBodyFriction ;					// –ЂЋC—Н
-	int										RigidBodyType ;						// Ќ„‘Мѓ^ѓCѓv( 0:Bone’ЗЏ]  1:•Ё—ќ‰‰ЋZ  2:•Ё—ќ‰‰ЋZ(Bone€К’uЌ‡‚н‚№) )
-	int										NoCopyToBone ;						// ѓ{Ѓ[ѓ“‚МЌs—с‚р•Ё—ќ‚Й“K—p‚µ‚И‚ў‚©‚З‚¤‚©
+	int										RigidBodyGroupIndex ;				// е‰›дЅ“г‚°гѓ«гѓјгѓ—з•ЄеЏ·
+	DWORD									RigidBodyGroupTarget ;				// е‰›дЅ“г‚°гѓ«гѓјгѓ—еЇѕи±Ў
+	int										ShapeType ;							// еЅўзЉ¶( 0:зђѓ  1:з®±  2:г‚«гѓ—г‚»гѓ« )
+	float									ShapeW ;							// е№…
+	float									ShapeH ;							// й«гЃ•
+	float									ShapeD ;							// еҐҐиЎЊ
+	VECTOR									Position ;							// дЅЌзЅ®
+	VECTOR									Rotation ;							// е›ћи»ў( гѓ©г‚ёг‚ўгѓі )
+	float									RigidBodyWeight ;					// иіЄй‡Џ
+	float									RigidBodyPosDim ;					// з§»е‹•жё›
+	float									RigidBodyRotDim ;					// е›ћи»ўжё›
+	float									RigidBodyRecoil ;					// еЏЌз™єеЉ›
+	float									RigidBodyFriction ;					// ж‘©ж“¦еЉ›
+	int										RigidBodyType ;						// е‰›дЅ“г‚їг‚¤гѓ—( 0:BoneиїЅеѕ“  1:з‰©зђ†жј”з®—  2:з‰©зђ†жј”з®—(BoneдЅЌзЅ®еђ€г‚ЏгЃ›) )
+	int										NoCopyToBone ;						// гѓњгѓјгѓігЃ®иЎЊе€—г‚’з‰©зђ†гЃ«йЃ©з”ЁгЃ—гЃЄгЃ„гЃ‹гЃ©гЃ†гЃ‹
 
-	DWORD									UserData[ 4 ] ;						// ЉO•”’и‹`‚МЏо•с
+	DWORD									UserData[ 4 ] ;						// е¤–йѓЁе®љзѕ©гЃ®жѓ…е ±
 
 	DWORD									Padding[ 4 ] ;
 } ;
 
-// •Ё—ќ‰‰ЋZ—pЌ„‘МѓWѓ‡ѓCѓ“ѓgѓfЃ[ѓ^Ќ\‘ў‘М
+// з‰©зђ†жј”з®—з”Ёе‰›дЅ“г‚ёгѓ§г‚¤гѓігѓ€гѓ‡гѓјг‚їж§‹йЂ дЅ“
 struct MV1_PHYSICS_JOINT_F1
 {
-	DWORD/*MV1_PHYSICS_JOINT_F1* */			DimPrev ;							// ‘O‚МѓfЃ[ѓ^‚Ц‚Мѓ|ѓCѓ“ѓ^
-	DWORD/*MV1_PHYSICS_JOINT_F1* */			DimNext ;							// Ћџ‚МѓfЃ[ѓ^‚Ц‚Мѓ|ѓCѓ“ѓ^
+	DWORD/*MV1_PHYSICS_JOINT_F1* */			DimPrev ;							// е‰ЌгЃ®гѓ‡гѓјг‚їгЃёгЃ®гѓќг‚¤гѓіг‚ї
+	DWORD/*MV1_PHYSICS_JOINT_F1* */			DimNext ;							// ж¬ЎгЃ®гѓ‡гѓјг‚їгЃёгЃ®гѓќг‚¤гѓіг‚ї
 
-	DWORD/*char* */							Name ;								// –ј‘O
-	int										Index ;								// ѓCѓ“ѓfѓbѓNѓX
+	DWORD/*char* */							Name ;								// еђЌе‰Ќ
+	int										Index ;								// г‚¤гѓігѓ‡гѓѓг‚Їг‚№
 
-	DWORD/*MV1_PHYSICS_RIGIDBODY_F1* */		RigidBodyA ;						// ђЪ‘±ђжЌ„‘М‚`
-	DWORD/*MV1_PHYSICS_RIGIDBODY_F1* */		RigidBodyB ;						// ђЪ‘±ђжЌ„‘М‚a
-	VECTOR									Position ;							// €К’u
-	VECTOR									Rotation ;							// ‰с“]( ѓ‰ѓWѓAѓ“ )
-	VECTOR									ConstrainPosition1 ;				// €Ъ“®ђ§ЊА’l‚P
-	VECTOR									ConstrainPosition2 ;				// €Ъ“®ђ§ЊА’l‚Q
-	VECTOR									ConstrainRotation1 ;				// ‰с“]ђ§ЊА’l‚P
-	VECTOR									ConstrainRotation2 ;				// ‰с“]ђ§ЊА’l‚Q
-	VECTOR									SpringPosition ;					// ‚О‚Л€Ъ“®’l
-	VECTOR									SpringRotation ;					// ‚О‚Л‰с“]’l
+	DWORD/*MV1_PHYSICS_RIGIDBODY_F1* */		RigidBodyA ;						// жЋҐз¶ље…€е‰›дЅ“пјЎ
+	DWORD/*MV1_PHYSICS_RIGIDBODY_F1* */		RigidBodyB ;						// жЋҐз¶ље…€е‰›дЅ“пјў
+	VECTOR									Position ;							// дЅЌзЅ®
+	VECTOR									Rotation ;							// е›ћи»ў( гѓ©г‚ёг‚ўгѓі )
+	VECTOR									ConstrainPosition1 ;				// з§»е‹•е€¶й™ђеЂ¤пј‘
+	VECTOR									ConstrainPosition2 ;				// з§»е‹•е€¶й™ђеЂ¤пј’
+	VECTOR									ConstrainRotation1 ;				// е›ћи»ўе€¶й™ђеЂ¤пј‘
+	VECTOR									ConstrainRotation2 ;				// е›ћи»ўе€¶й™ђеЂ¤пј’
+	VECTOR									SpringPosition ;					// гЃ°гЃ­з§»е‹•еЂ¤
+	VECTOR									SpringRotation ;					// гЃ°гЃ­е›ћи»ўеЂ¤
 
-	DWORD									UserData[ 4 ] ;						// ЉO•”’и‹`‚МЏо•с
+	DWORD									UserData[ 4 ] ;						// е¤–йѓЁе®љзѕ©гЃ®жѓ…е ±
 
 	DWORD									Padding[ 4 ] ;
 } ;
 
-// ѓtѓ@ѓCѓ‹‚Й•t‘®‚·‚й•Ё—ќ‰‰ЋZЉЦA‚МЏо•с
+// гѓ•г‚Ўг‚¤гѓ«гЃ«д»е±ћгЃ™г‚‹з‰©зђ†жј”з®—й–ўйЂЈгЃ®жѓ…е ±
 struct MV1_FILEHEAD_PHYSICS_F1
 {
-	float									WorldGravity ;						// Џd—Нѓpѓ‰ѓЃЃ[ѓ^
+	float									WorldGravity ;						// й‡ЌеЉ›гѓ‘гѓ©гѓЎгѓјг‚ї
 
-	int										RigidBodyNum ;						// Ќ„‘МѓfЃ[ѓ^‚Мђ”
-	DWORD/*MV1_PHYSICS_RIGIDBODY_F1* */		RigidBody ;							// Ќ„‘МѓfЃ[ѓ^”z—с‚Ц‚Мѓ|ѓCѓ“ѓ^
+	int										RigidBodyNum ;						// е‰›дЅ“гѓ‡гѓјг‚їгЃ®ж•°
+	DWORD/*MV1_PHYSICS_RIGIDBODY_F1* */		RigidBody ;							// е‰›дЅ“гѓ‡гѓјг‚їй…Ќе€—гЃёгЃ®гѓќг‚¤гѓіг‚ї
 
-	int										JointNum ;							// ѓWѓ‡ѓCѓ“ѓgѓfЃ[ѓ^Ќ\‘ў‘М
-	DWORD/*MV1_PHYSICS_JOINT_F1* */			Joint ;								// ѓWѓ‡ѓCѓ“ѓgѓfЃ[ѓ^”z—с‚Ц‚Мѓ|ѓCѓ“ѓ^
+	int										JointNum ;							// г‚ёгѓ§г‚¤гѓігѓ€гѓ‡гѓјг‚їж§‹йЂ дЅ“
+	DWORD/*MV1_PHYSICS_JOINT_F1* */			Joint ;								// г‚ёгѓ§г‚¤гѓігѓ€гѓ‡гѓјг‚їй…Ќе€—гЃёгЃ®гѓќг‚¤гѓіг‚ї
 
-	DWORD									UserData[ 4 ] ;						// ЉO•”’и‹`‚МЏо•с
+	DWORD									UserData[ 4 ] ;						// е¤–йѓЁе®љзѕ©гЃ®жѓ…е ±
 
 	DWORD									Padding[ 4 ] ;
 } ;
 
-// ѓtѓ@ѓCѓ‹‚Й•t‘®‚·‚йѓVѓFѓCѓvЉЦA‚МЏо•с
+// гѓ•г‚Ўг‚¤гѓ«гЃ«д»е±ћгЃ™г‚‹г‚·г‚§г‚¤гѓ—й–ўйЂЈгЃ®жѓ…е ±
 struct MV1_FILEHEAD_SHAPE_F1
 {
-	int										FrameNum ;							// ѓtѓЊЃ[ѓЂ‚Й•t‘®‚·‚йѓVѓFѓCѓvѓfЃ[ѓ^‚Мђ”
-	DWORD/*MV1_FRAME_SHAPE_F1* */			Frame ;								// ѓtѓЊЃ[ѓЂ‚Й•t‘®‚·‚йѓVѓFѓCѓvѓfЃ[ѓ^”z—с‚Ц‚Мѓ|ѓCѓ“ѓ^
+	int										FrameNum ;							// гѓ•гѓ¬гѓјгѓ гЃ«д»е±ћгЃ™г‚‹г‚·г‚§г‚¤гѓ—гѓ‡гѓјг‚їгЃ®ж•°
+	DWORD/*MV1_FRAME_SHAPE_F1* */			Frame ;								// гѓ•гѓ¬гѓјгѓ гЃ«д»е±ћгЃ™г‚‹г‚·г‚§г‚¤гѓ—гѓ‡гѓјг‚їй…Ќе€—гЃёгЃ®гѓќг‚¤гѓіг‚ї
 
-	int										DataNum ;							// ѓVѓFѓCѓvѓfЃ[ѓ^‚Мђ”
-	DWORD/*MV1_SHAPE_F1* */					Data ;								// ѓVѓFѓCѓvѓfЃ[ѓ^”z—с‚Ц‚Мѓ|ѓCѓ“ѓ^
-	int										MeshNum ;							// ѓVѓFѓCѓvѓЃѓbѓVѓ…ѓfЃ[ѓ^‚Мђ”
-	DWORD/*MV1_SHAPE_MESH_F1* */			Mesh ;								// ѓVѓFѓCѓvѓЃѓbѓVѓ…ѓfЃ[ѓ^”z—с‚Ц‚Мѓ|ѓCѓ“ѓ^
-	int										VertexNum ;							// ѓVѓFѓCѓv’ё“_ѓfЃ[ѓ^‚Мђ”
-	DWORD/*MV1_SHAPE_VERTEX_F1* */			Vertex ;							// ѓVѓFѓCѓv’ё“_ѓfЃ[ѓ^”z—с‚Ц‚Мѓ|ѓCѓ“ѓ^
-	int										PressVertexDataSize ;				// €іЏk‚і‚к‚ЅѓVѓFѓCѓv’ё“_ѓfЃ[ѓ^‚МѓTѓCѓY
-	DWORD/*void* */							PressVertexData ;					// €іЏk‚і‚к‚ЅѓVѓFѓCѓv’ё“_ѓfЃ[ѓ^‚Ц‚Мѓ|ѓCѓ“ѓ^
-	int										TargetMeshVertexNum ;				// ѓVѓFѓCѓv‘ОЏЫ‚МѓЃѓbѓVѓ…‚М’ё“_‚М‘Ќђ”
-	int										ShapeVertexUnitSize ;				// ѓVѓFѓCѓv—p’ё“_€к‚В•У‚и‚МѓoѓCѓgђ”
+	int										DataNum ;							// г‚·г‚§г‚¤гѓ—гѓ‡гѓјг‚їгЃ®ж•°
+	DWORD/*MV1_SHAPE_F1* */					Data ;								// г‚·г‚§г‚¤гѓ—гѓ‡гѓјг‚їй…Ќе€—гЃёгЃ®гѓќг‚¤гѓіг‚ї
+	int										MeshNum ;							// г‚·г‚§г‚¤гѓ—гѓЎгѓѓг‚·гѓҐгѓ‡гѓјг‚їгЃ®ж•°
+	DWORD/*MV1_SHAPE_MESH_F1* */			Mesh ;								// г‚·г‚§г‚¤гѓ—гѓЎгѓѓг‚·гѓҐгѓ‡гѓјг‚їй…Ќе€—гЃёгЃ®гѓќг‚¤гѓіг‚ї
+	int										VertexNum ;							// г‚·г‚§г‚¤гѓ—й ‚з‚№гѓ‡гѓјг‚їгЃ®ж•°
+	DWORD/*MV1_SHAPE_VERTEX_F1* */			Vertex ;							// г‚·г‚§г‚¤гѓ—й ‚з‚№гѓ‡гѓјг‚їй…Ќе€—гЃёгЃ®гѓќг‚¤гѓіг‚ї
+	int										PressVertexDataSize ;				// ењ§зё®гЃ•г‚ЊгЃџг‚·г‚§г‚¤гѓ—й ‚з‚№гѓ‡гѓјг‚їгЃ®г‚µг‚¤г‚є
+	DWORD/*void* */							PressVertexData ;					// ењ§зё®гЃ•г‚ЊгЃџг‚·г‚§г‚¤гѓ—й ‚з‚№гѓ‡гѓјг‚їгЃёгЃ®гѓќг‚¤гѓіг‚ї
+	int										TargetMeshVertexNum ;				// г‚·г‚§г‚¤гѓ—еЇѕи±ЎгЃ®гѓЎгѓѓг‚·гѓҐгЃ®й ‚з‚№гЃ®з·Џж•°
+	int										ShapeVertexUnitSize ;				// г‚·г‚§г‚¤гѓ—з”Ёй ‚з‚№дёЂгЃ¤иѕєг‚ЉгЃ®гѓђг‚¤гѓ€ж•°
 
-	int										NormalPositionNum ;					// ѓVѓFѓCѓv—pѓgѓ‰ѓCѓAѓ“ѓOѓ‹ѓЉѓXѓg‚Мѓ{Ѓ[ѓ“Џо•с–і‚µЌА•WѓfЃ[ѓ^‚Мђ”
-	int										SkinPosition4BNum ;					// ѓVѓFѓCѓv—pѓgѓ‰ѓCѓAѓ“ѓOѓ‹ѓЉѓXѓg‚М‚Sѓ{Ѓ[ѓ“ѓXѓLѓjѓ“ѓOѓЃѓbѓVѓ…ЌА•WѓfЃ[ѓ^‚Мђ”
-	int										SkinPosition8BNum ;					// ѓVѓFѓCѓv—pѓgѓ‰ѓCѓAѓ“ѓOѓ‹ѓЉѓXѓg‚М‚Wѓ{Ѓ[ѓ“ѓXѓLѓjѓ“ѓOѓЃѓbѓVѓ…ЌА•WѓfЃ[ѓ^‚Мђ”
-	int										SkinPositionFREEBSize ;				// ѓVѓFѓCѓv—pѓgѓ‰ѓCѓAѓ“ѓOѓ‹ѓЉѓXѓg‚М‚Xѓ{Ѓ[ѓ“€ИЏгѓXѓLѓjѓ“ѓOѓЃѓbѓVѓ…ЌА•WѓfЃ[ѓ^‚МѓTѓCѓY
+	int										NormalPositionNum ;					// г‚·г‚§г‚¤гѓ—з”Ёгѓ€гѓ©г‚¤г‚ўгѓіг‚°гѓ«гѓЄг‚№гѓ€гЃ®гѓњгѓјгѓіжѓ…е ±з„ЎгЃ—еє§жЁ™гѓ‡гѓјг‚їгЃ®ж•°
+	int										SkinPosition4BNum ;					// г‚·г‚§г‚¤гѓ—з”Ёгѓ€гѓ©г‚¤г‚ўгѓіг‚°гѓ«гѓЄг‚№гѓ€гЃ®пј”гѓњгѓјгѓіг‚№г‚­гѓ‹гѓіг‚°гѓЎгѓѓг‚·гѓҐеє§жЁ™гѓ‡гѓјг‚їгЃ®ж•°
+	int										SkinPosition8BNum ;					// г‚·г‚§г‚¤гѓ—з”Ёгѓ€гѓ©г‚¤г‚ўгѓіг‚°гѓ«гѓЄг‚№гѓ€гЃ®пјгѓњгѓјгѓіг‚№г‚­гѓ‹гѓіг‚°гѓЎгѓѓг‚·гѓҐеє§жЁ™гѓ‡гѓјг‚їгЃ®ж•°
+	int										SkinPositionFREEBSize ;				// г‚·г‚§г‚¤гѓ—з”Ёгѓ€гѓ©г‚¤г‚ўгѓіг‚°гѓ«гѓЄг‚№гѓ€гЃ®пј™гѓњгѓјгѓід»ҐдёЉг‚№г‚­гѓ‹гѓіг‚°гѓЎгѓѓг‚·гѓҐеє§жЁ™гѓ‡гѓјг‚їгЃ®г‚µг‚¤г‚є
 
-	DWORD									UserData[ 4 ] ;						// ЉO•”’и‹`‚МЏо•с
+	DWORD									UserData[ 4 ] ;						// е¤–йѓЁе®љзѕ©гЃ®жѓ…е ±
 
 	DWORD									Padding[ 4 ] ;
 } ;
 
-// ѓtѓ@ѓCѓ‹ѓwѓbѓ_
+// гѓ•г‚Ўг‚¤гѓ«гѓгѓѓгѓЂ
 struct MV1MODEL_FILEHEADER_F1
 {
-	BYTE									CheckID[ 4 ] ;						// ѓtѓ@ѓCѓ‹Њ`Ћ®ѓ`ѓFѓbѓN—p‚h‚c( "MV11" )
-	DWORD									Version ;							// ѓoЃ[ѓWѓ‡ѓ“
+	BYTE									CheckID[ 4 ] ;						// гѓ•г‚Ўг‚¤гѓ«еЅўејЏгѓЃг‚§гѓѓг‚Їз”Ёпј©пј¤( "MV11" )
+	DWORD									Version ;							// гѓђгѓјг‚ёгѓ§гѓі
 
-	int										RightHandType ;						// ‰EЋиЌА•WЊn‚©‚З‚¤‚©( TRUE:‰EЋиЌА•WЊn  FALSE:Ќ¶ЋиЌА•WЊn )
-	int										AutoCreateNormal ;					// –@ђь‚МЋ©“®ђ¶ђ¬‚рЋg—p‚·‚й‚©‚З‚¤‚©( TRUE:Ћg—p‚·‚й  FALSE:Ћg—p‚µ‚И‚ў )
+	int										RightHandType ;						// еЏіж‰‹еє§жЁ™зі»гЃ‹гЃ©гЃ†гЃ‹( TRUE:еЏіж‰‹еє§жЁ™зі»  FALSE:е·¦ж‰‹еє§жЁ™зі» )
+	int										AutoCreateNormal ;					// жі•з·љгЃ®и‡Єе‹•з”џж€ђг‚’дЅїз”ЁгЃ™г‚‹гЃ‹гЃ©гЃ†гЃ‹( TRUE:дЅїз”ЁгЃ™г‚‹  FALSE:дЅїз”ЁгЃ—гЃЄгЃ„ )
 
-	int										ChangeDrawMaterialTableSize ;		// •`‰жѓ}ѓeѓЉѓAѓ‹‚М•ПЌXЏо•сЉЗ—ќ—p‚Й•K—v‚ИѓfЃ[ѓ^‚М‘Ќ—e—К
-	int										ChangeMatrixTableSize ;				// Ќs—с‚М•ПЌXЏо•сЉЗ—ќ—p‚Й•K—v‚ИѓfЃ[ѓ^‚М‘Ќ—e—К
-	DWORD/*DWORD* */						ChangeDrawMaterialTable ;			// •`‰ж—pѓ}ѓeѓЉѓAѓ‹•ПЌXЉm”F—pѓrѓbѓgѓfЃ[ѓ^
-	DWORD/*DWORD* */						ChangeMatrixTable ;					// Ќs—с•ПЌXЉm”F—pѓrѓbѓgѓfЃ[ѓ^
+	int										ChangeDrawMaterialTableSize ;		// жЏЏз”»гѓћгѓ†гѓЄг‚ўгѓ«гЃ®е¤‰ж›ґжѓ…е ±з®Ўзђ†з”ЁгЃ«еї…и¦ЃгЃЄгѓ‡гѓјг‚їгЃ®з·Џе®№й‡Џ
+	int										ChangeMatrixTableSize ;				// иЎЊе€—гЃ®е¤‰ж›ґжѓ…е ±з®Ўзђ†з”ЁгЃ«еї…и¦ЃгЃЄгѓ‡гѓјг‚їгЃ®з·Џе®№й‡Џ
+	DWORD/*DWORD* */						ChangeDrawMaterialTable ;			// жЏЏз”»з”Ёгѓћгѓ†гѓЄг‚ўгѓ«е¤‰ж›ґзўєиЄЌз”Ёгѓ“гѓѓгѓ€гѓ‡гѓјг‚ї
+	DWORD/*DWORD* */						ChangeMatrixTable ;					// иЎЊе€—е¤‰ж›ґзўєиЄЌз”Ёгѓ“гѓѓгѓ€гѓ‡гѓјг‚ї
 
-	int										FrameNum ;							// ЉK‘wѓfЃ[ѓ^‚Мђ”
-	DWORD/*MV1_FRAME_F1* */					Frame ;								// ЉK‘wѓfЃ[ѓ^ѓЉѓXѓg‚Ц‚Мѓ|ѓCѓ“ѓ^
-	int										TopFrameNum ;						// ЌЕЏг€КЉK‘w‚МѓtѓЊЃ[ѓЂ‚Мђ”
-	DWORD/*MV1_FRAME_F1* */					FirstTopFrame ;						// ЌЕЏг€КЉK‘w‚МЌЕЏ‰‚МѓtѓЊЃ[ѓЂ‚Ц‚Мѓ|ѓCѓ“ѓ^
-	DWORD/*MV1_FRAME_F1* */					LastTopFrame ;						// ЌЕЏг€КЉK‘w‚МЌЕЊг‚МѓtѓЊЃ[ѓЂ‚Ц‚Мѓ|ѓCѓ“ѓ^
-	int										FrameUseSkinBoneNum ;				// ѓtѓЊЃ[ѓЂ‚ЄЋg—p‚µ‚Д‚ў‚йѓ{Ѓ[ѓ“‚М‘Ќђ”
-	DWORD/*MV1_SKIN_BONE_F1** */			FrameUseSkinBone ;					// ѓtѓЊЃ[ѓЂ‚ЄЋg—p‚µ‚Д‚ў‚йѓ{Ѓ[ѓ“‚Ц‚Мѓ|ѓCѓ“ѓ^
+	int										FrameNum ;							// йљЋе±¤гѓ‡гѓјг‚їгЃ®ж•°
+	DWORD/*MV1_FRAME_F1* */					Frame ;								// йљЋе±¤гѓ‡гѓјг‚їгѓЄг‚№гѓ€гЃёгЃ®гѓќг‚¤гѓіг‚ї
+	int										TopFrameNum ;						// жњЂдёЉдЅЌйљЋе±¤гЃ®гѓ•гѓ¬гѓјгѓ гЃ®ж•°
+	DWORD/*MV1_FRAME_F1* */					FirstTopFrame ;						// жњЂдёЉдЅЌйљЋе±¤гЃ®жњЂе€ќгЃ®гѓ•гѓ¬гѓјгѓ гЃёгЃ®гѓќг‚¤гѓіг‚ї
+	DWORD/*MV1_FRAME_F1* */					LastTopFrame ;						// жњЂдёЉдЅЌйљЋе±¤гЃ®жњЂеѕЊгЃ®гѓ•гѓ¬гѓјгѓ гЃёгЃ®гѓќг‚¤гѓіг‚ї
+	int										FrameUseSkinBoneNum ;				// гѓ•гѓ¬гѓјгѓ гЃЊдЅїз”ЁгЃ—гЃ¦гЃ„г‚‹гѓњгѓјгѓігЃ®з·Џж•°
+	DWORD/*MV1_SKIN_BONE_F1** */			FrameUseSkinBone ;					// гѓ•гѓ¬гѓјгѓ гЃЊдЅїз”ЁгЃ—гЃ¦гЃ„г‚‹гѓњгѓјгѓігЃёгЃ®гѓќг‚¤гѓіг‚ї
 
-	int										MaterialNum ;						// ѓ}ѓeѓЉѓAѓ‹‚Мђ”
-	DWORD/*MV1_MATERIAL_F1* */				Material ;							// ѓ}ѓeѓЉѓAѓ‹ѓfЃ[ѓ^ѓЉѓXѓg‚Ц‚Мѓ|ѓCѓ“ѓ^
+	int										MaterialNum ;						// гѓћгѓ†гѓЄг‚ўгѓ«гЃ®ж•°
+	DWORD/*MV1_MATERIAL_F1* */				Material ;							// гѓћгѓ†гѓЄг‚ўгѓ«гѓ‡гѓјг‚їгѓЄг‚№гѓ€гЃёгЃ®гѓќг‚¤гѓіг‚ї
 
-	int										TextureNum ;						// ѓeѓNѓXѓ`ѓѓ‚Мђ”
-	DWORD/*MV1_TEXTURE_F1* */				Texture ;							// ѓeѓNѓXѓ`ѓѓѓfЃ[ѓ^ѓЉѓXѓg‚Ц‚Мѓ|ѓCѓ“ѓ^
+	int										TextureNum ;						// гѓ†г‚Їг‚№гѓЃгѓЈгЃ®ж•°
+	DWORD/*MV1_TEXTURE_F1* */				Texture ;							// гѓ†г‚Їг‚№гѓЃгѓЈгѓ‡гѓјг‚їгѓЄг‚№гѓ€гЃёгЃ®гѓќг‚¤гѓіг‚ї
 
-	int										MeshNum ;							// ѓЃѓbѓVѓ…‚Мђ”
-	DWORD/*MV1_MESH_F1* */					Mesh ;								// ѓЃѓbѓVѓ…ѓfЃ[ѓ^ѓЉѓXѓg‚Ц‚Мѓ|ѓCѓ“ѓ^
+	int										MeshNum ;							// гѓЎгѓѓг‚·гѓҐгЃ®ж•°
+	DWORD/*MV1_MESH_F1* */					Mesh ;								// гѓЎгѓѓг‚·гѓҐгѓ‡гѓјг‚їгѓЄг‚№гѓ€гЃёгЃ®гѓќг‚¤гѓіг‚ї
 
-	int										LightNum ;							// ѓ‰ѓCѓg‚Мђ”
-	DWORD/*MV1_LIGHT_F1* */					Light ;								// ѓ‰ѓCѓgѓfЃ[ѓ^”z—с‚Ц‚Мѓ|ѓCѓ“ѓ^
+	int										LightNum ;							// гѓ©г‚¤гѓ€гЃ®ж•°
+	DWORD/*MV1_LIGHT_F1* */					Light ;								// гѓ©г‚¤гѓ€гѓ‡гѓјг‚їй…Ќе€—гЃёгЃ®гѓќг‚¤гѓіг‚ї
 
-	int										SkinBoneNum ;						// ѓXѓLѓjѓ“ѓOѓЃѓbѓVѓ…‚Мѓ{Ѓ[ѓ“‚Ж‚µ‚ДЋg—p‚·‚йѓtѓЊЃ[ѓЂ‚МЏо•с‚Мђ”
-	DWORD/*MV1_SKIN_BONE_F1* */				SkinBone ;							// ѓXѓLѓjѓ“ѓOѓЃѓbѓVѓ…‚Мѓ{Ѓ[ѓ“‚Ж‚µ‚ДЋg—p‚·‚йѓtѓЊЃ[ѓЂ‚МЏо•с
-	int										SkinBoneUseFrameNum ;				// ѓXѓLѓjѓ“ѓOѓЃѓbѓVѓ…‚Мѓ{Ѓ[ѓ“‚рЋg—p‚·‚йѓtѓЊЃ[ѓЂ‚Мђ”
-	DWORD/*MV1_SKIN_BONE_USE_FRAME_F1** */	SkinBoneUseFrame ;					// ѓXѓLѓjѓ“ѓOѓЃѓbѓVѓ…‚Мѓ{Ѓ[ѓ“‚рЋg—p‚·‚йѓtѓЊЃ[ѓЂ
+	int										SkinBoneNum ;						// г‚№г‚­гѓ‹гѓіг‚°гѓЎгѓѓг‚·гѓҐгЃ®гѓњгѓјгѓігЃЁгЃ—гЃ¦дЅїз”ЁгЃ™г‚‹гѓ•гѓ¬гѓјгѓ гЃ®жѓ…е ±гЃ®ж•°
+	DWORD/*MV1_SKIN_BONE_F1* */				SkinBone ;							// г‚№г‚­гѓ‹гѓіг‚°гѓЎгѓѓг‚·гѓҐгЃ®гѓњгѓјгѓігЃЁгЃ—гЃ¦дЅїз”ЁгЃ™г‚‹гѓ•гѓ¬гѓјгѓ гЃ®жѓ…е ±
+	int										SkinBoneUseFrameNum ;				// г‚№г‚­гѓ‹гѓіг‚°гѓЎгѓѓг‚·гѓҐгЃ®гѓњгѓјгѓіг‚’дЅїз”ЁгЃ™г‚‹гѓ•гѓ¬гѓјгѓ гЃ®ж•°
+	DWORD/*MV1_SKIN_BONE_USE_FRAME_F1** */	SkinBoneUseFrame ;					// г‚№г‚­гѓ‹гѓіг‚°гѓЎгѓѓг‚·гѓҐгЃ®гѓњгѓјгѓіг‚’дЅїз”ЁгЃ™г‚‹гѓ•гѓ¬гѓјгѓ 
 
-	int										TriangleListNum ;					// ѓgѓ‰ѓCѓAѓ“ѓOѓ‹ѓЉѓXѓg‚Мђ”
-	DWORD/*MV1_TRIANGLE_LIST_F1* */			TriangleList ;						// ѓgѓ‰ѓCѓAѓ“ѓOѓ‹ѓЉѓXѓg‚МѓЉѓXѓg‚Ц‚Мѓ|ѓCѓ“ѓ^
+	int										TriangleListNum ;					// гѓ€гѓ©г‚¤г‚ўгѓіг‚°гѓ«гѓЄг‚№гѓ€гЃ®ж•°
+	DWORD/*MV1_TRIANGLE_LIST_F1* */			TriangleList ;						// гѓ€гѓ©г‚¤г‚ўгѓіг‚°гѓ«гѓЄг‚№гѓ€гЃ®гѓЄг‚№гѓ€гЃёгЃ®гѓќг‚¤гѓіг‚ї
 
-	DWORD/*void* */							VertexData ;						// ’ё“_ѓfЃ[ѓ^
-	DWORD									VertexDataSize ;					// ’ё“_ѓfЃ[ѓ^‚МѓTѓCѓY
+	DWORD/*void* */							VertexData ;						// й ‚з‚№гѓ‡гѓјг‚ї
+	DWORD									VertexDataSize ;					// й ‚з‚№гѓ‡гѓјг‚їгЃ®г‚µг‚¤г‚є
 
-	int										TriangleListNormalPositionNum ;		// ѓZЃ[ѓu‘O‚Мѓ{Ѓ[ѓ“Џо•с–і‚µЌА•WѓfЃ[ѓ^‚Мђ”
-	int										TriangleListSkinPosition4BNum ;		// ѓZЃ[ѓu‘O‚М‚Sѓ{Ѓ[ѓ“ѓXѓLѓjѓ“ѓOѓЃѓbѓVѓ…ЌА•WѓfЃ[ѓ^‚Мђ”
-	int										TriangleListSkinPosition8BNum ;		// ѓZЃ[ѓu‘O‚М‚Wѓ{Ѓ[ѓ“ѓXѓLѓjѓ“ѓOѓЃѓbѓVѓ…ЌА•WѓfЃ[ѓ^‚Мђ”
-	int										TriangleListSkinPositionFREEBSize ;	// ѓZЃ[ѓu‘O‚М‚Xѓ{Ѓ[ѓ“€ИЏгѓXѓLѓjѓ“ѓOѓЃѓbѓVѓ…ЌА•WѓfЃ[ѓ^‚МѓTѓCѓY
-	int										MeshPositionSize ;					// ѓЃѓbѓVѓ…ЌА•W‚МѓfЃ[ѓ^ѓTѓCѓY
-	int										MeshNormalNum ;						// ѓЃѓbѓVѓ…–@ђь‚Мђ”
-	int										MeshVertexSize ;					// ѓЃѓbѓVѓ…’ё“_Џо•с‚МѓfЃ[ѓ^ѓTѓCѓY
-	int										MeshFaceNum ;						// ѓЃѓbѓVѓ…–КЏо•с‚Мђ”
-	int										MeshVertexIndexNum ;				// ’ё“_ѓCѓ“ѓfѓbѓNѓXѓfЃ[ѓ^‚М‘Ќђ”
-	int										TriangleListIndexNum ;				// ѓgѓ‰ѓCѓAѓ“ѓOѓ‹ѓЉѓXѓg‚МѓCѓ“ѓfѓbѓNѓXѓfЃ[ѓ^‚М‘Ќђ”
+	int										TriangleListNormalPositionNum ;		// г‚»гѓјгѓ–е‰ЌгЃ®гѓњгѓјгѓіжѓ…е ±з„ЎгЃ—еє§жЁ™гѓ‡гѓјг‚їгЃ®ж•°
+	int										TriangleListSkinPosition4BNum ;		// г‚»гѓјгѓ–е‰ЌгЃ®пј”гѓњгѓјгѓіг‚№г‚­гѓ‹гѓіг‚°гѓЎгѓѓг‚·гѓҐеє§жЁ™гѓ‡гѓјг‚їгЃ®ж•°
+	int										TriangleListSkinPosition8BNum ;		// г‚»гѓјгѓ–е‰ЌгЃ®пјгѓњгѓјгѓіг‚№г‚­гѓ‹гѓіг‚°гѓЎгѓѓг‚·гѓҐеє§жЁ™гѓ‡гѓјг‚їгЃ®ж•°
+	int										TriangleListSkinPositionFREEBSize ;	// г‚»гѓјгѓ–е‰ЌгЃ®пј™гѓњгѓјгѓід»ҐдёЉг‚№г‚­гѓ‹гѓіг‚°гѓЎгѓѓг‚·гѓҐеє§жЁ™гѓ‡гѓјг‚їгЃ®г‚µг‚¤г‚є
+	int										MeshPositionSize ;					// гѓЎгѓѓг‚·гѓҐеє§жЁ™гЃ®гѓ‡гѓјг‚їг‚µг‚¤г‚є
+	int										MeshNormalNum ;						// гѓЎгѓѓг‚·гѓҐжі•з·љгЃ®ж•°
+	int										MeshVertexSize ;					// гѓЎгѓѓг‚·гѓҐй ‚з‚№жѓ…е ±гЃ®гѓ‡гѓјг‚їг‚µг‚¤г‚є
+	int										MeshFaceNum ;						// гѓЎгѓѓг‚·гѓҐйќўжѓ…е ±гЃ®ж•°
+	int										MeshVertexIndexNum ;				// й ‚з‚№г‚¤гѓігѓ‡гѓѓг‚Їг‚№гѓ‡гѓјг‚їгЃ®з·Џж•°
+	int										TriangleListIndexNum ;				// гѓ€гѓ©г‚¤г‚ўгѓіг‚°гѓ«гѓЄг‚№гѓ€гЃ®г‚¤гѓігѓ‡гѓѓг‚Їг‚№гѓ‡гѓјг‚їгЃ®з·Џж•°
 
-	int										TriangleNum ;						// ЋOЉpЊ`‚Мђ”
-	int										TriangleListVertexNum ;				// ѓgѓ‰ѓCѓAѓ“ѓOѓ‹ѓЉѓXѓg‚М’ё“_ѓfЃ[ѓ^‚Мђ”
+	int										TriangleNum ;						// дё‰и§’еЅўгЃ®ж•°
+	int										TriangleListVertexNum ;				// гѓ€гѓ©г‚¤г‚ўгѓіг‚°гѓ«гѓЄг‚№гѓ€гЃ®й ‚з‚№гѓ‡гѓјг‚їгЃ®ж•°
 
-	int										StringSize ;						// •¶Ћљ—сѓfЃ[ѓ^‚МѓTѓCѓY
-	DWORD/*char* */							StringBuffer ;						// •¶Ћљ—сѓfЃ[ѓ^‚Ц‚Мѓ|ѓCѓ“ѓ^
+	int										StringSize ;						// ж–‡е­—е€—гѓ‡гѓјг‚їгЃ®г‚µг‚¤г‚є
+	DWORD/*char* */							StringBuffer ;						// ж–‡е­—е€—гѓ‡гѓјг‚їгЃёгЃ®гѓќг‚¤гѓіг‚ї
 
-	int										OriginalAnimKeyDataSize ;			// •Ы‘¶‘O‚МѓAѓjѓЃЃ[ѓVѓ‡ѓ“ѓLЃ[ѓfЃ[ѓ^‚МѓTѓCѓY
-	int										AnimKeyDataSize ;					// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“ѓLЃ[ѓfЃ[ѓ^ѓTѓCѓY
-	DWORD/*void* */							AnimKeyData ;						// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“ѓLЃ[ѓfЃ[ѓ^‚Ц‚Мѓ|ѓCѓ“ѓ^
+	int										OriginalAnimKeyDataSize ;			// дїќе­е‰ЌгЃ®г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓіг‚­гѓјгѓ‡гѓјг‚їгЃ®г‚µг‚¤г‚є
+	int										AnimKeyDataSize ;					// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓіг‚­гѓјгѓ‡гѓјг‚їг‚µг‚¤г‚є
+	DWORD/*void* */							AnimKeyData ;						// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓіг‚­гѓјгѓ‡гѓјг‚їгЃёгЃ®гѓќг‚¤гѓіг‚ї
 
-	int										AnimKeySetNum ;						// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“ѓLЃ[ѓZѓbѓg‚Мђ”
-	int										AnimKeySetUnitSize ;				// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“ѓLЃ[ѓZѓbѓgЌ\‘ў‘М€к‚В•У‚и‚МѓTѓCѓY
-	DWORD/*MV1_ANIM_KEYSET_F1* */			AnimKeySet ;						// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“ѓLЃ[ѓZѓbѓgѓЉѓXѓg‚Ц‚Мѓ|ѓCѓ“ѓ^
+	int										AnimKeySetNum ;						// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓіг‚­гѓјг‚»гѓѓгѓ€гЃ®ж•°
+	int										AnimKeySetUnitSize ;				// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓіг‚­гѓјг‚»гѓѓгѓ€ж§‹йЂ дЅ“дёЂгЃ¤иѕєг‚ЉгЃ®г‚µг‚¤г‚є
+	DWORD/*MV1_ANIM_KEYSET_F1* */			AnimKeySet ;						// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓіг‚­гѓјг‚»гѓѓгѓ€гѓЄг‚№гѓ€гЃёгЃ®гѓќг‚¤гѓіг‚ї
 
-	int										AnimNum ;							// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚Мђ”
-	int										AnimUnitSize ;						// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“Ќ\‘ў‘М€к‚В•У‚и‚МѓTѓCѓY
-	DWORD/*MV1_ANIM_F1* */					Anim ;								// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“ѓfЃ[ѓ^ѓЉѓXѓg‚Ц‚Мѓ|ѓCѓ“ѓ^
+	int										AnimNum ;							// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігЃ®ж•°
+	int										AnimUnitSize ;						// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓіж§‹йЂ дЅ“дёЂгЃ¤иѕєг‚ЉгЃ®г‚µг‚¤г‚є
+	DWORD/*MV1_ANIM_F1* */					Anim ;								// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігѓ‡гѓјг‚їгѓЄг‚№гѓ€гЃёгЃ®гѓќг‚¤гѓіг‚ї
 
-	int										AnimSetNum ;						// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“ѓZѓbѓg‚Мђ”
-	DWORD/*MV1_ANIMSET_F1* */				AnimSet ;							// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“ѓZѓbѓgѓЉѓXѓg‚Ц‚Мѓ|ѓCѓ“ѓ^
+	int										AnimSetNum ;						// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓіг‚»гѓѓгѓ€гЃ®ж•°
+	DWORD/*MV1_ANIMSET_F1* */				AnimSet ;							// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓіг‚»гѓѓгѓ€гѓЄг‚№гѓ€гЃёгЃ®гѓќг‚¤гѓіг‚ї
 
-	DWORD									UserData[ 4 ] ;						// ЉO•”’и‹`‚МЏо•с
+	DWORD									UserData[ 4 ] ;						// е¤–йѓЁе®љзѕ©гЃ®жѓ…е ±
 
-	DWORD/*MV1_FILEHEAD_SHAPE_F1* */		Shape ;								// ѓVѓFѓCѓv‚ЙЉЦ‚·‚йЏо•сЃA‘¶ЌЭ‚µ‚И‚ўЏкЌ‡‚Н NULL
-	DWORD/*MV1_FILEHEAD_PHYSICS_F1* */		Physics ;							// •Ё—ќ‰‰ЋZ—p‚МЏо•сЃA‘¶ЌЭ‚µ‚И‚ўЏкЌ‡‚Н NULL
+	DWORD/*MV1_FILEHEAD_SHAPE_F1* */		Shape ;								// г‚·г‚§г‚¤гѓ—гЃ«й–ўгЃ™г‚‹жѓ…е ±гЂЃе­ењЁгЃ—гЃЄгЃ„е ґеђ€гЃЇ NULL
+	DWORD/*MV1_FILEHEAD_PHYSICS_F1* */		Physics ;							// з‰©зђ†жј”з®—з”ЁгЃ®жѓ…е ±гЂЃе­ењЁгЃ—гЃЄгЃ„е ґеђ€гЃЇ NULL
 
-	BYTE									MaterialNumberOrderDraw ;			// Љ„‚и“–‚Д‚з‚к‚Д‚ў‚йѓ}ѓeѓЉѓAѓ‹‚М”ФЌ†‚Є’б‚ўѓЃѓbѓVѓ…‚©‚з•`‰ж‚·‚й‚©‚З‚¤‚©( 1:‚·‚й  0:‚µ‚И‚ў )
-	BYTE									IsStringUTF8 ;						// StringBuffer ‚ЙЉi”[‚і‚к‚Д‚ў‚й•¶Ћљ—с‚Є UTF-8 ‚©‚З‚¤‚©( 1:UTF-8  0:Shift-JIS )
+	BYTE									MaterialNumberOrderDraw ;			// е‰Іг‚ЉеЅ“гЃ¦г‚‰г‚ЊгЃ¦гЃ„г‚‹гѓћгѓ†гѓЄг‚ўгѓ«гЃ®з•ЄеЏ·гЃЊдЅЋгЃ„гѓЎгѓѓг‚·гѓҐгЃ‹г‚‰жЏЏз”»гЃ™г‚‹гЃ‹гЃ©гЃ†гЃ‹( 1:гЃ™г‚‹  0:гЃ—гЃЄгЃ„ )
+	BYTE									IsStringUTF8 ;						// StringBuffer гЃ«ж јзґЌгЃ•г‚ЊгЃ¦гЃ„г‚‹ж–‡е­—е€—гЃЊ UTF-8 гЃ‹гЃ©гЃ†гЃ‹( 1:UTF-8  0:Shift-JIS )
 
 	BYTE									Padding1[ 2 ] ;
 	DWORD									Padding2[ 13 ] ;
 } ;
 
 
-// ѓfЃ[ѓ^ђйЊѕ --------------------------------
+// гѓ‡гѓјг‚їе®ЈиЁЂ --------------------------------
 
-// ЉЦђ”ѓvѓЌѓgѓ^ѓCѓvђйЊѕ ----------------------
+// й–ўж•°гѓ—гѓ­гѓ€г‚їг‚¤гѓ—е®ЈиЁЂ ----------------------
 
 #ifndef DX_NON_NAMESPACE
 

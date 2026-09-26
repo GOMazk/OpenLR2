@@ -1,12 +1,12 @@
 //-----------------------------------------------------------------------------
 // 
-// 		‚c‚wƒ‰ƒCƒuƒ‰ƒŠ		ƒ‚ƒfƒ‹ƒf[ƒ^§ŒäƒvƒƒOƒ‰ƒ€( Direct3D11 )
+// 		ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒª		ãƒ¢ãƒ‡ãƒ«ãƒ‡ãƒ¼ã‚¿åˆ¶å¾¡ãƒ—ãƒ­ã‚°ãƒ©ãƒ ( Direct3D11 )
 // 
 //  	Ver 3.25a
 // 
 //-----------------------------------------------------------------------------
 
-// ‚c‚wƒ‰ƒCƒuƒ‰ƒŠì¬—p’è‹`
+// ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªä½œæˆæ™‚ç”¨å®šç¾©
 #define DX_MAKE
 
 #include "../DxCompileConfig.h"
@@ -17,7 +17,7 @@
 
 #ifndef DX_NON_MODEL
 
-// ƒCƒ“ƒNƒ‹[ƒh----------------------------------------------------------------
+// ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰----------------------------------------------------------------
 #include "DxGraphicsWin.h"
 #include "DxGraphicsD3D11.h"
 #include "DxModelD3D11.h"
@@ -37,17 +37,17 @@ namespace DxLib
 
 #endif // DX_NON_NAMESPACE
 
-// ƒ}ƒNƒ’è‹`------------------------------------------------------------------
+// ãƒã‚¯ãƒ­å®šç¾©------------------------------------------------------------------
 
 #define MV1_D3D11_COMMONBUFFER_ADDSIZE			(16 * 1024)
 
 #define WORD_MAX								0x10000
 
-// Œ^’è‹`----------------------------------------------------------------------
+// å‹å®šç¾©----------------------------------------------------------------------
 
-// ƒf[ƒ^éŒ¾------------------------------------------------------------------
+// ãƒ‡ãƒ¼ã‚¿å®£è¨€------------------------------------------------------------------
 
-// ’PˆÊs—ñ
+// å˜ä½è¡Œåˆ—
 static MATRIX IdentityMat =
 {
 	1.0f, 0.0f, 0.0f, 0.0f,
@@ -65,13 +65,13 @@ static D_D3D11_FILTER DrawModeToFilterTable[] =
 
 MV1_MODEL_MANAGE_DIRECT3D11 MV1Man_D3D11 ;
 
-// ŠÖ”ƒvƒƒgƒ^ƒCƒvéŒ¾ -------------------------------------------------------
+// é–¢æ•°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€ -------------------------------------------------------
 
-// ƒvƒƒOƒ‰ƒ€------------------------------------------------------------------
+// ãƒ—ãƒ­ã‚°ãƒ©ãƒ ------------------------------------------------------------------
 
-// ”Ä—pƒoƒbƒtƒ@ŠÖ”
+// æ±ç”¨ãƒãƒƒãƒ•ã‚¡é–¢æ•°
 
-// w’èƒTƒCƒY‚Ì”Ä—pƒoƒbƒtƒ@‚Ì€”õ‚ğs‚¤
+// æŒ‡å®šã‚µã‚¤ã‚ºã®æ±ç”¨ãƒãƒƒãƒ•ã‚¡ã®æº–å‚™ã‚’è¡Œã†
 extern int MV1_D3D11_CommonBuffer_Setup( int Size )
 {
 	if( Size <= MV1Man_D3D11.CommonBufferSize )
@@ -87,17 +87,17 @@ extern int MV1_D3D11_CommonBuffer_Setup( int Size )
 	MV1Man_D3D11.CommonBuffer = DXALLOC( ( size_t )Size ) ;
 	if( MV1Man_D3D11.CommonBuffer == NULL )
 	{
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\xe2\x30\xc7\x30\xeb\x30\xe6\x51\x06\x74\x28\x75\x6e\x30\x4e\x6c\x28\x75\xd0\x30\xc3\x30\xd5\x30\xa1\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x28\x00\x20\x00\xb5\x30\xa4\x30\xba\x30\x20\x00\x25\x00\x64\x00\x20\x00\x62\x00\x79\x00\x74\x00\x65\x00\x20\x00\x29\x00\x0a\x00\x00"/*@ L"ƒ‚ƒfƒ‹ˆ——p‚Ì”Ä—pƒoƒbƒtƒ@‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½( ƒTƒCƒY %d byte )\n" @*/, Size ) ) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\xe2\x30\xc7\x30\xeb\x30\xe6\x51\x06\x74\x28\x75\x6e\x30\x4e\x6c\x28\x75\xd0\x30\xc3\x30\xd5\x30\xa1\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x28\x00\x20\x00\xb5\x30\xa4\x30\xba\x30\x20\x00\x25\x00\x64\x00\x20\x00\x62\x00\x79\x00\x74\x00\x65\x00\x20\x00\x29\x00\x0a\x00\x00"/*@ L"ãƒ¢ãƒ‡ãƒ«å‡¦ç†ç”¨ã®æ±ç”¨ãƒãƒƒãƒ•ã‚¡ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ( ã‚µã‚¤ã‚º %d byte )\n" @*/, Size ) ) ;
 		return -1 ;
 	}
 
 	MV1Man_D3D11.CommonBufferSize = Size ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// ”Ä—pƒoƒbƒtƒ@‚ÌŒãn––‚ğs‚¤
+// æ±ç”¨ãƒãƒƒãƒ•ã‚¡ã®å¾Œå§‹æœ«ã‚’è¡Œã†
 extern int MV1_D3D11_CommonBuffer_Terminate( void )
 {
 	if( MV1Man_D3D11.CommonBuffer == NULL )
@@ -120,25 +120,25 @@ extern int MV1_D3D11_CommonBuffer_Terminate( void )
 
 
 
-// ŠÂ‹«ˆË‘¶ŠÖ”
+// ç’°å¢ƒä¾å­˜é–¢æ•°
 
-// ƒ‚ƒfƒ‹‹@”\‚ÌŒãn––
+// ãƒ¢ãƒ‡ãƒ«æ©Ÿèƒ½ã®å¾Œå§‹æœ«
 extern int MV1_D3D11_Terminate_PF( void )
 {
-	// ”Ä—pƒoƒbƒtƒ@‚Ì‰ğ•ú
+	// æ±ç”¨ãƒãƒƒãƒ•ã‚¡ã®è§£æ”¾
 	MV1_D3D11_CommonBuffer_Terminate() ;
 
 	return 0 ;
 }
 
-// ƒ‚ƒfƒ‹ƒf[ƒ^ƒnƒ“ƒhƒ‹‚ÌŒãn––
+// ãƒ¢ãƒ‡ãƒ«ãƒ‡ãƒ¼ã‚¿ãƒãƒ³ãƒ‰ãƒ«ã®å¾Œå§‹æœ«
 extern int MV1_D3D11_TerminateModelBaseHandle_PF( MV1_MODEL_BASE * /*ModelBase*/ )
 {
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒgƒ‰ƒCƒAƒ“ƒOƒ‹ƒŠƒXƒg‚Ìˆêˆ——p‚Ìƒoƒbƒtƒ@‚ğŠJ•ú‚·‚é
+// ãƒˆãƒ©ã‚¤ã‚¢ãƒ³ã‚°ãƒ«ãƒªã‚¹ãƒˆã®ä¸€æ™‚å‡¦ç†ç”¨ã®ãƒãƒƒãƒ•ã‚¡ã‚’é–‹æ”¾ã™ã‚‹
 extern int MV1_D3D11_TerminateTriangleListBaseTempBuffer_PF( MV1_TRIANGLE_LIST_BASE *MBTList )
 {
 	MV1_TRIANGLE_LIST_BASE_PF *MBTListPF ;
@@ -151,11 +151,11 @@ extern int MV1_D3D11_TerminateTriangleListBaseTempBuffer_PF( MV1_TRIANGLE_LIST_B
 		MBTListPF->D3D11.SkinFreeBoneVertexBuffer = NULL ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// “¯•¡”•`‰æŠÖŒW‚Ìî•ñ‚ğƒZƒbƒgƒAƒbƒv‚·‚é
+// åŒæ™‚è¤‡æ•°æç”»é–¢ä¿‚ã®æƒ…å ±ã‚’ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã™ã‚‹
 extern void MV1_D3D11_SetupPackDrawInfo_PF( MV1_MODEL_BASE *ModelBase )
 {
 	MV1_TRIANGLE_LIST_BASE *MBTList ;
@@ -163,7 +163,7 @@ extern void MV1_D3D11_SetupPackDrawInfo_PF( MV1_MODEL_BASE *ModelBase )
 	int UseBoneNum ;
 	int i ;
 
-	// Å‘å“¯•`‰æ”‚ğŠ„‚èo‚·
+	// æœ€å¤§åŒæ™‚æç”»æ•°ã‚’å‰²ã‚Šå‡ºã™
 	ModelBase->PackDrawMaxNum = WORD_MAX / ModelBase->TriangleListMinVertexNum ;
 
 	MaxPackDrawNum = WORD_MAX / ModelBase->TriangleListMinIndexNum ;
@@ -211,7 +211,7 @@ extern void MV1_D3D11_SetupPackDrawInfo_PF( MV1_MODEL_BASE *ModelBase )
 	}
 }
 
-// MV1_D3D11_SetupVertexBufferBase_PF ‚Ì’¸“_ƒf[ƒ^ì¬—p‚Ì•â•ŠÖ”
+// MV1_D3D11_SetupVertexBufferBase_PF ã®é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ä½œæˆç”¨ã®è£œåŠ©é–¢æ•°
 __inline void MV1_D3D11_SetVertexData(
 	      BYTE **		DestP,
 	const VECTOR *		Position,
@@ -329,8 +329,8 @@ __inline void MV1_D3D11_SetVertexData(
 	*DestP = Dest ;
 }
 
-// ’¸“_ƒf[ƒ^‚ÌƒTƒCƒY‚ğæ“¾‚·‚é
-static DWORD MV1_D3D11_GetVertexSize( int Bump, int Type /* 0:„‘Ì  1:4ƒ{[ƒ“  2:8ƒ{[ƒ“ */  )
+// é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ã®ã‚µã‚¤ã‚ºã‚’å–å¾—ã™ã‚‹
+static DWORD MV1_D3D11_GetVertexSize( int Bump, int Type /* 0:å‰›ä½“  1:4ãƒœãƒ¼ãƒ³  2:8ãƒœãƒ¼ãƒ³ */  )
 {
 	DWORD Result ;
 
@@ -351,16 +351,16 @@ static DWORD MV1_D3D11_GetVertexSize( int Bump, int Type /* 0:„‘Ì  1:4ƒ{[ƒ“  2
 
 	switch( Type )
 	{
-	case 0 :	// „‘ÌƒƒbƒVƒ…
+	case 0 :	// å‰›ä½“ãƒ¡ãƒƒã‚·ãƒ¥
 		break ;
 
-	case 1 :	// ‚Sƒ{[ƒ“ˆÈ“àƒXƒLƒjƒ“ƒOƒƒbƒVƒ…
-	case 2 :	// ‚Wƒ{[ƒ“ˆÈ“àƒXƒLƒjƒ“ƒOƒƒbƒVƒ…
+	case 1 :	// ï¼”ãƒœãƒ¼ãƒ³ä»¥å†…ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥
+	case 2 :	// ï¼˜ãƒœãƒ¼ãƒ³ä»¥å†…ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥
 		Result +=
 			sizeof( BYTE ) * 4 +		//	MakeD3D11InputElement( "BLENDINDICES", 0, D_DXGI_FORMAT_R8G8B8A8_UINT,      0, offset ) ;
 			sizeof( FLOAT4 ) ;			//	MakeD3D11InputElement( "BLENDWEIGHT",  0, D_DXGI_FORMAT_R32G32B32A32_FLOAT, 0, offset ) ;
 
-		// ‚Wƒ{[ƒ“ˆÈ“àƒXƒLƒjƒ“ƒOƒƒbƒVƒ…
+		// ï¼˜ãƒœãƒ¼ãƒ³ä»¥å†…ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥
 		if( Type == 2 )
 		{
 			Result +=
@@ -373,7 +373,7 @@ static DWORD MV1_D3D11_GetVertexSize( int Bump, int Type /* 0:„‘Ì  1:4ƒ{[ƒ“  2
 	return Result ;
 }
 
-// ƒ‚ƒfƒ‹Šîƒf[ƒ^‚Ì’¸“_ƒoƒbƒtƒ@‚ÌƒZƒbƒgƒAƒbƒv‚ğ‚·‚é( -1:ƒGƒ‰[ )
+// ãƒ¢ãƒ‡ãƒ«åŸºãƒ‡ãƒ¼ã‚¿ã®é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã‚’ã™ã‚‹( -1:ã‚¨ãƒ©ãƒ¼ )
 extern	int				MV1_D3D11_SetupVertexBufferBase_PF( int MV1ModelBaseHandle, int DuplicateNum, int ASyncThread )
 {
 	int i, j, k, l, Type, UVType, Bump, VertexNum, UVNum, MeshVertSize, BaseMatrixIndex ;
@@ -392,22 +392,22 @@ extern	int				MV1_D3D11_SetupVertexBufferBase_PF( int MV1ModelBaseHandle, int Du
 	BYTE BlendIndicesTemp2[ 4 ] ;
 	FLOAT4 BlendWeightTemp ;
 
-	// ƒnƒ“ƒhƒ‹ƒ`ƒFƒbƒN
+	// ãƒãƒ³ãƒ‰ãƒ«ãƒã‚§ãƒƒã‚¯
 	if( MV1BMDLCHK( MV1ModelBaseHandle, MBase ) )
 	{
 		return -1 ;
 	}
 
-	// Šù‚ÉƒZƒbƒgƒAƒbƒv‚³‚ê‚Ä‚¢‚éê‡‚Í‰½‚à‚¹‚¸I—¹
+	// æ—¢ã«ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã•ã‚Œã¦ã„ã‚‹å ´åˆã¯ä½•ã‚‚ã›ãšçµ‚äº†
 	if( MBase->SetupVertexBuffer )
 	{
 		return 0 ;
 	}
 
-	// Šó–]‚·‚éƒIƒuƒWƒFƒNƒgƒRƒs[‚Ì”‚ğ•Û‘¶‚·‚é
+	// å¸Œæœ›ã™ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚³ãƒ”ãƒ¼ã®æ•°ã‚’ä¿å­˜ã™ã‚‹
 	MBase->ObjectDuplicateNum = DuplicateNum ;
 
-	// ’¸“_ƒoƒbƒtƒ@‚Ì”‚ğ’²‚×‚é
+	// é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã®æ•°ã‚’èª¿ã¹ã‚‹
 	_MEMSET( MBase->VertexBufferFirst, 0, sizeof( MBase->VertexBufferFirst ) ) ;
 	_MEMSET( MBase->VertexBufferLast,  0, sizeof( MBase->VertexBufferLast  ) ) ;
 	_MEMSET( MBase->VertexBufferNum,   0, sizeof( MBase->VertexBufferNum   ) ) ;
@@ -416,10 +416,10 @@ extern	int				MV1_D3D11_SetupVertexBufferBase_PF( int MV1ModelBaseHandle, int Du
 	MBTList = MBase->TriangleList ;
 	for( i = 0 ; i < MBase->TriangleListNum ; i ++, MBTList ++ )
 	{
-		// UV‚Í‚QŒÂŒÅ’è
+		// UVã¯ï¼’å€‹å›ºå®š
 		UVType = 2 ;
 
-		// ’¸“_ƒ^ƒCƒv‚ğƒZƒbƒg
+		// é ‚ç‚¹ã‚¿ã‚¤ãƒ—ã‚’ã‚»ãƒƒãƒˆ
 		switch( MBTList->VertexType )
 		{
 		case MV1_VERTEX_TYPE_NORMAL :
@@ -442,7 +442,7 @@ extern	int				MV1_D3D11_SetupVertexBufferBase_PF( int MV1ModelBaseHandle, int Du
 			continue ;
 		}
 
-		// •¡”“¯•`‰æ‚É‘Î‰‚·‚éê‡‚Í’¸“_”‚ÍÅ‘å“¯•`‰æ‰Â”\””{‚É‚È‚é
+		// è¤‡æ•°åŒæ™‚æç”»ã«å¯¾å¿œã™ã‚‹å ´åˆã¯é ‚ç‚¹æ•°ã¯æœ€å¤§åŒæ™‚æç”»å¯èƒ½æ•°å€ã«ãªã‚‹
 		VertexNum = MBTList->VertexNum ;
 		IndexNum  = MBTList->IndexNum + MBTList->ToonOutLineIndexNum ;
 		if( MBase->UsePackDraw )
@@ -451,13 +451,13 @@ extern	int				MV1_D3D11_SetupVertexBufferBase_PF( int MV1ModelBaseHandle, int Du
 			IndexNum  *= MBTList->PackDrawMaxNum ;
 		}
 
-		// ƒoƒ“ƒvƒ}ƒbƒv‚Ì—L–³‚ğƒZƒbƒg
+		// ãƒãƒ³ãƒ—ãƒãƒƒãƒ—ã®æœ‰ç„¡ã‚’ã‚»ãƒƒãƒˆ
 		Bump = MBTList->Container->Material->NormalLayerNum ? 1 : 0 ;
 
-		// •¡»‚Ì”‚ğ•Û‘¶‚·‚é
+		// è¤‡è£½ã®æ•°ã‚’ä¿å­˜ã™ã‚‹
 //		MBTList->VertexDuplicateNum = ObjectDuplicateNum ;
 
-		// ƒ^ƒCƒv‚Ìƒoƒbƒtƒ@‚ªŠm•Û‚³‚ê‚Ä‚¢‚È‚©‚Á‚½‚çŠm•Û
+		// ã‚¿ã‚¤ãƒ—ã®ãƒãƒƒãƒ•ã‚¡ãŒç¢ºä¿ã•ã‚Œã¦ã„ãªã‹ã£ãŸã‚‰ç¢ºä¿
 		if( VBuf[ Type ][ Bump ][ UVType ] == NULL )
 		{
 			MBase->TotalVertexBufferNum ++ ;
@@ -472,7 +472,7 @@ extern	int				MV1_D3D11_SetupVertexBufferBase_PF( int MV1ModelBaseHandle, int Du
 		}
 		TVBuf = VBuf[ Type ][ Bump ][ UVType ] ;
 
-		// ‹K’è”‚ğ’´‚¦‚Ä‚µ‚Ü‚¤ê‡‚ÍŸ‚Ìƒoƒbƒtƒ@‚ğì¬
+		// è¦å®šæ•°ã‚’è¶…ãˆã¦ã—ã¾ã†å ´åˆã¯æ¬¡ã®ãƒãƒƒãƒ•ã‚¡ã‚’ä½œæˆ
 		if( TVBuf->IndexCount  + IndexNum  >= MV1_INDEXBUFFER_MAX_INDEXNUM ||
 			TVBuf->VertexCount + VertexNum >= MV1_VERTEXBUFFER_MAX_VERTNUM )
 		{
@@ -491,10 +491,10 @@ extern	int				MV1_D3D11_SetupVertexBufferBase_PF( int MV1ModelBaseHandle, int Du
 			TVBuf = VBuf[ Type ][ Bump ][ UVType ] ;
 		}
 
-		// g—p‚·‚éƒoƒbƒtƒ@‚ğ•Û‘¶
+		// ä½¿ç”¨ã™ã‚‹ãƒãƒƒãƒ•ã‚¡ã‚’ä¿å­˜
 		MBTList->VertexBuffer = TVBuf ;
 
-		// ŠJnƒAƒhƒŒƒX‚ğ•Û‘¶
+		// é–‹å§‹ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ä¿å­˜
 		MBTList->VBStartVertex               = TVBuf->VertexCount ;
 		MBTList->VBStartIndex                = TVBuf->IndexCount ;
 		if( MBase->UsePackDraw )
@@ -506,13 +506,13 @@ extern	int				MV1_D3D11_SetupVertexBufferBase_PF( int MV1ModelBaseHandle, int Du
 			MBTList->ToonOutLineVBStartIndex = MBTList->VBStartIndex + MBTList->IndexNum ;
 		}
 
-		// ”‚ğ‘«‚·
+		// æ•°ã‚’è¶³ã™
 		TVBuf->VertexCount += VertexNum ;
 		TVBuf->IndexCount  += IndexNum ;
 
 	}
 
-	// ‰½‚à’¸“_‚ª‚È‚¢ƒoƒbƒtƒ@‚Ííœ‚·‚é
+	// ä½•ã‚‚é ‚ç‚¹ãŒãªã„ãƒãƒƒãƒ•ã‚¡ã¯å‰Šé™¤ã™ã‚‹
 	for( i = 0 ; i < 3 ; i ++ )
 	{
 		for( j = 0 ; j < 2 ; j ++ )
@@ -544,7 +544,7 @@ extern	int				MV1_D3D11_SetupVertexBufferBase_PF( int MV1ModelBaseHandle, int Du
 	IndexBufferDesc.BindFlags      = D_D3D11_BIND_INDEX_BUFFER ;
 	IndexBufferDesc.CPUAccessFlags = 0 ;
 
-	// ’¸“_ƒoƒbƒtƒ@‚ğì¬‚·‚é
+	// é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã‚’ä½œæˆã™ã‚‹
 	for( i = 0 ; i < 3 ; i ++ )
 	{
 		for( j = 0 ; j < 2 ; j ++ )
@@ -554,10 +554,10 @@ extern	int				MV1_D3D11_SetupVertexBufferBase_PF( int MV1ModelBaseHandle, int Du
 				VBuf[ i ][ j ][ k ] = MBase->VertexBufferFirst[ i ][ j ][ k ] ;
 				for( TVBuf = VBuf[ i ][ j ][ k ] ; TVBuf ; TVBuf = TVBuf->DataNext )
 				{
-					// ‚P’¸“_‚ ‚½‚è‚ÌƒTƒCƒY‚ğæ“¾
+					// ï¼‘é ‚ç‚¹ã‚ãŸã‚Šã®ã‚µã‚¤ã‚ºã‚’å–å¾—
 					TVBuf->UnitSize = MV1_D3D11_GetVertexSize( j, i ) ;
 
-					// ’¸“_ƒoƒbƒtƒ@‚ğì¬
+					// é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã‚’ä½œæˆ
 					VertexBufferDesc.ByteWidth = TVBuf->UnitSize * TVBuf->VertexCount ;
 					hr = D3D11Device_CreateBuffer_ASync( &VertexBufferDesc, NULL, &TVBuf->PF->D3D11.VertexBuffer, ASyncThread ) ;
 					if( FAILED( hr ) )
@@ -565,14 +565,14 @@ extern	int				MV1_D3D11_SetupVertexBufferBase_PF( int MV1ModelBaseHandle, int Du
 						goto ERR ;
 					}
 
-					// “]‘——pƒf[ƒ^‚ğŠi”[‚·‚éƒƒ‚ƒŠ—Ìˆæ‚ÌŠm•Û
+					// è»¢é€ç”¨ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹ãƒ¡ãƒ¢ãƒªé ˜åŸŸã®ç¢ºä¿
 					TVBuf->VertexBufferL = DXALLOC( VertexBufferDesc.ByteWidth ) ;
 					if( TVBuf->VertexBufferL == NULL )
 					{
 						goto ERR ;
 					}
 
-					// ƒCƒ“ƒfƒbƒNƒXƒoƒbƒtƒ@‚ğì¬
+					// ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒãƒƒãƒ•ã‚¡ã‚’ä½œæˆ
 					IndexBufferDesc.ByteWidth = sizeof( WORD ) * TVBuf->IndexCount ;
 					hr = D3D11Device_CreateBuffer_ASync( &IndexBufferDesc, NULL, &TVBuf->PF->D3D11.IndexBuffer, ASyncThread ) ;
 					if( FAILED( hr ) )
@@ -580,7 +580,7 @@ extern	int				MV1_D3D11_SetupVertexBufferBase_PF( int MV1ModelBaseHandle, int Du
 						goto ERR ;
 					}
 
-					// “]‘——pƒf[ƒ^‚ğŠi”[‚·‚éƒƒ‚ƒŠ—Ìˆæ‚ÌŠm•Û
+					// è»¢é€ç”¨ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹ãƒ¡ãƒ¢ãƒªé ˜åŸŸã®ç¢ºä¿
 					TVBuf->IndexBufferL = DXALLOC( IndexBufferDesc.ByteWidth ) ;
 					if( TVBuf->IndexBufferL == NULL )
 					{
@@ -591,7 +591,7 @@ extern	int				MV1_D3D11_SetupVertexBufferBase_PF( int MV1ModelBaseHandle, int Du
 		}
 	}
 
-	// ƒeƒ“ƒ|ƒ‰ƒŠƒoƒbƒtƒ@‚Éƒf[ƒ^‚ğŠi”[‚·‚é
+	// ãƒ†ãƒ³ãƒãƒ©ãƒªãƒãƒƒãƒ•ã‚¡ã«ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹
 	MBTList = MBase->TriangleList ;
 	for( i = 0 ; i < MBase->TriangleListNum ; i ++, MBTList ++ )
 	{
@@ -602,13 +602,13 @@ extern	int				MV1_D3D11_SetupVertexBufferBase_PF( int MV1ModelBaseHandle, int Du
 			continue ;
 		}
 
-		// ƒoƒ“ƒvƒ}ƒbƒv‚Ì—L–³‚ğƒZƒbƒg
+		// ãƒãƒ³ãƒ—ãƒãƒƒãƒ—ã®æœ‰ç„¡ã‚’ã‚»ãƒƒãƒˆ
 		Bump = MBTList->Container->Material->NormalLayerNum ? 1 : 0 ;
 
-		// g—p‚·‚é’¸“_ƒoƒbƒtƒ@‚ğƒZƒbƒg
+		// ä½¿ç”¨ã™ã‚‹é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã‚’ã‚»ãƒƒãƒˆ
 		TVBuf = MBTList->VertexBuffer ;
 
-		// ’¸“_ƒ^ƒCƒv‚É‚æ‚Á‚Äˆ—‚ğ•ªŠò
+		// é ‚ç‚¹ã‚¿ã‚¤ãƒ—ã«ã‚ˆã£ã¦å‡¦ç†ã‚’åˆ†å²
 		VertexNum    = MBTList->VertexNum ;
 		UVNum        = MBTList->Container->UVSetUnitNum ;
 		MeshNorm     = MBTList->Container->Container->Normal ;
@@ -857,7 +857,7 @@ extern	int				MV1_D3D11_SetupVertexBufferBase_PF( int MV1ModelBaseHandle, int Du
 
 				if( MBase->UsePackDraw )
 				{
-					// ”ñ‘Î‰
+					// éå¯¾å¿œ
 				}
 				else
 				{
@@ -886,7 +886,7 @@ extern	int				MV1_D3D11_SetupVertexBufferBase_PF( int MV1ModelBaseHandle, int Du
 			break ;
 		}
 
-		// ƒCƒ“ƒfƒbƒNƒXƒf[ƒ^‚Ì‘‚«‚İ
+		// ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿ã®æ›¸ãè¾¼ã¿
 		{
 			WORD *DestW, *ToonDest ;
 			int DestBaseIndex ;
@@ -930,7 +930,7 @@ extern	int				MV1_D3D11_SetupVertexBufferBase_PF( int MV1ModelBaseHandle, int Du
 		}
 	}
 
-	// ’¸“_ƒoƒbƒtƒ@EƒCƒ“ƒfƒbƒNƒXƒoƒbƒtƒ@‚Öƒeƒ“ƒ|ƒ‰ƒŠƒoƒbƒtƒ@‚Ì“à—e‚ğ“]‘—
+	// é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ãƒ»ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒãƒƒãƒ•ã‚¡ã¸ãƒ†ãƒ³ãƒãƒ©ãƒªãƒãƒƒãƒ•ã‚¡ã®å†…å®¹ã‚’è»¢é€
 	for( i = 0 ; i < 3 ; i ++ )
 	{
 		for( j = 0 ; j < 2 ; j ++ )
@@ -941,7 +941,7 @@ extern	int				MV1_D3D11_SetupVertexBufferBase_PF( int MV1ModelBaseHandle, int Du
 				{
 					TVBuf2 = TVBuf->DataNext ;
 
-					// ƒoƒbƒtƒ@‚ªŠm•Û‚Å‚«‚Ä‚¢‚È‚©‚Á‚½‚ç‰ğ•ú‚·‚é
+					// ãƒãƒƒãƒ•ã‚¡ãŒç¢ºä¿ã§ãã¦ã„ãªã‹ã£ãŸã‚‰è§£æ”¾ã™ã‚‹
 					if( TVBuf->PF->D3D11.VertexBuffer == NULL ||
 						TVBuf->PF->D3D11.IndexBuffer  == NULL )
 					{
@@ -987,7 +987,7 @@ extern	int				MV1_D3D11_SetupVertexBufferBase_PF( int MV1ModelBaseHandle, int Du
 							TVBuf->PF->D3D11.IndexBuffer = NULL ;
 						}
 
-						// ‚±‚Ìƒoƒbƒtƒ@‚ğg—p‚µ‚Ä‚¢‚½ƒgƒ‰ƒCƒAƒ“ƒOƒ‹ƒŠƒXƒg‚Ìƒ|ƒCƒ“ƒ^‚ğƒNƒŠƒA‚·‚é
+						// ã“ã®ãƒãƒƒãƒ•ã‚¡ã‚’ä½¿ç”¨ã—ã¦ã„ãŸãƒˆãƒ©ã‚¤ã‚¢ãƒ³ã‚°ãƒ«ãƒªã‚¹ãƒˆã®ãƒã‚¤ãƒ³ã‚¿ã‚’ã‚¯ãƒªã‚¢ã™ã‚‹
 						MBTList = MBase->TriangleList ;
 						for( l = 0 ; l < MBase->TriangleListNum ; l ++, MBTList ++ )
 						{
@@ -1009,7 +1009,7 @@ extern	int				MV1_D3D11_SetupVertexBufferBase_PF( int MV1ModelBaseHandle, int Du
 						DestBox.bottom = 1 ;
 						DestBox.back   = 1 ;
 
-						// Šm•Û‚Å‚«‚Ä‚¢‚½‚çƒf[ƒ^‚ğ“]‘—‚·‚é
+						// ç¢ºä¿ã§ãã¦ã„ãŸã‚‰ãƒ‡ãƒ¼ã‚¿ã‚’è»¢é€ã™ã‚‹
 						if( TVBuf->PF->D3D11.VertexBuffer )
 						{
 							DestBox.right = TVBuf->UnitSize * TVBuf->VertexCount ;
@@ -1043,7 +1043,7 @@ extern	int				MV1_D3D11_SetupVertexBufferBase_PF( int MV1ModelBaseHandle, int Du
 		}
 	}
 
-	// ƒeƒ“ƒ|ƒ‰ƒŠƒoƒbƒtƒ@‚Ì‰ğ•ú
+	// ãƒ†ãƒ³ãƒãƒ©ãƒªãƒãƒƒãƒ•ã‚¡ã®è§£æ”¾
 	for( i = 0 ; i < 3 ; i ++ )
 	{
 		for( j = 0 ; j < 2 ; j ++ )
@@ -1068,10 +1068,10 @@ extern	int				MV1_D3D11_SetupVertexBufferBase_PF( int MV1ModelBaseHandle, int Du
 		}
 	}
 
-	// ƒZƒbƒgƒAƒbƒvŠ®—¹ƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—å®Œäº†ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	MBase->SetupVertexBuffer = TRUE ;
 
-	// ‚±‚Ìƒnƒ“ƒhƒ‹‚ğg—p‚µ‚Ä‚¢‚éƒ‚ƒfƒ‹‚Ì’¸“_ƒoƒbƒtƒ@‚ğƒZƒbƒgƒAƒbƒv‚·‚é
+	// ã“ã®ãƒãƒ³ãƒ‰ãƒ«ã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹ãƒ¢ãƒ‡ãƒ«ã®é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã‚’ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã™ã‚‹
 	{
 		MV1_MODEL *Model ;
 
@@ -1091,11 +1091,11 @@ extern	int				MV1_D3D11_SetupVertexBufferBase_PF( int MV1ModelBaseHandle, int Du
 		}
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 
 ERR:
-	// Šm•Û‚µ‚½’¸“_ƒoƒbƒtƒ@‚È‚Ç‚ğ‰ğ•ú
+	// ç¢ºä¿ã—ãŸé ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ãªã©ã‚’è§£æ”¾
 	for( i = 0 ; i < 3 ; i ++ )
 	{
 		for( j = 0 ; j < 2 ; j ++ )
@@ -1137,11 +1137,11 @@ ERR:
 	}
 	MBase->TotalVertexBufferNum = 0 ;
 
-	// I—¹
+	// çµ‚äº†
 	return -1 ;
 }
 
-// ƒ‚ƒfƒ‹ƒf[ƒ^‚Ì’¸“_ƒoƒbƒtƒ@‚ÌƒZƒbƒgƒAƒbƒv‚ğ‚·‚é( -1:ƒGƒ‰[ )
+// ãƒ¢ãƒ‡ãƒ«ãƒ‡ãƒ¼ã‚¿ã®é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã‚’ã™ã‚‹( -1:ã‚¨ãƒ©ãƒ¼ )
 extern int MV1_D3D11_SetupVertexBuffer_PF( int MHandle, int ASyncThread )
 {
 	MV1_MODEL              *Model ;
@@ -1156,13 +1156,13 @@ extern int MV1_D3D11_SetupVertexBuffer_PF( int MHandle, int ASyncThread )
 	int                    l ;
 	int                    m ;
 
-	// ‰Šú‰»‚³‚ê‚Ä‚¢‚È‚©‚Á‚½‚çƒGƒ‰[
+	// åˆæœŸåŒ–ã•ã‚Œã¦ã„ãªã‹ã£ãŸã‚‰ã‚¨ãƒ©ãƒ¼
 	if( MV1Man.Initialize == false )
 	{
 		return -1 ;
 	}
 
-	// ƒAƒhƒŒƒXæ“¾
+	// ã‚¢ãƒ‰ãƒ¬ã‚¹å–å¾—
 	if( ASyncThread )
 	{
 		if( MV1MDLCHK_ASYNC( MHandle, Model ) )
@@ -1175,7 +1175,7 @@ extern int MV1_D3D11_SetupVertexBuffer_PF( int MHandle, int ASyncThread )
 	}
 	MBase = Model->BaseData ;
 
-	// ƒVƒFƒCƒv‚ªg—p‚³‚ê‚Ä‚¢‚éƒtƒŒ[ƒ€‚Ì‚İˆ—‚·‚é
+	// ã‚·ã‚§ã‚¤ãƒ—ãŒä½¿ç”¨ã•ã‚Œã¦ã„ã‚‹ãƒ•ãƒ¬ãƒ¼ãƒ ã®ã¿å‡¦ç†ã™ã‚‹
 	MBFrame = MBase->Frame ;
 	Frame = Model->Frame ;
 	for( i = 0 ; i < MBase->FrameNum ; i ++, Frame ++, MBFrame ++ )
@@ -1192,10 +1192,10 @@ extern int MV1_D3D11_SetupVertexBuffer_PF( int MHandle, int ASyncThread )
 			TList = Mesh->TriangleList ;
 			for( m = 0 ; m < MBMesh->TriangleListNum ; m ++, MBTList ++, TList = ( MV1_TRIANGLE_LIST * )( ( BYTE * )TList + sizeof( MV1_TRIANGLE_LIST ) + sizeof( MV1_TRIANGLE_LIST_PF ) ) )
 			{
-				// ‚Xƒ{[ƒ“ˆÈã‚ÌƒXƒLƒjƒ“ƒOƒƒbƒVƒ…‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+				// ï¼™ãƒœãƒ¼ãƒ³ä»¥ä¸Šã®ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 				if( MBTList->VertexType == MV1_VERTEX_TYPE_SKIN_FREEBONE )
 				{
-					// ƒVƒXƒeƒ€ƒƒ‚ƒŠƒoƒbƒtƒ@‚ÌŠm•Û‚ğs‚¤
+					// ã‚·ã‚¹ãƒ†ãƒ ãƒ¡ãƒ¢ãƒªãƒãƒƒãƒ•ã‚¡ã®ç¢ºä¿ã‚’è¡Œã†
 					if( TList->PF->D3D11.SkinFreeBoneVertexPositionBuffer == NULL )
 					{
 						TList->PF->D3D11.SkinFreeBoneVertexPositionBuffer = DXALLOC( sizeof( VECTOR ) * MBTList->VertexNum ) ;
@@ -1204,14 +1204,14 @@ extern int MV1_D3D11_SetupVertexBuffer_PF( int MHandle, int ASyncThread )
 							return -1 ;
 						}
 
-						// ƒVƒFƒCƒv‚ÌƒZƒbƒgƒAƒbƒv‚ªs‚í‚ê‚Ä‚¢‚È‚¢ó‘Ô‚É‚·‚é
+						// ã‚·ã‚§ã‚¤ãƒ—ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ãŒè¡Œã‚ã‚Œã¦ã„ãªã„çŠ¶æ…‹ã«ã™ã‚‹
 						Model->ShapeChangeFlag = true ;
 						TList->Container->Container->ShapeChangeFlag = true ;
 					}
 				}
 				else
 				{
-					// ’¸“_ƒoƒbƒtƒ@‚ªƒZƒbƒgƒAƒbƒv‚³‚ê‚Ä‚¢‚È‚©‚Á‚½‚ç‚·‚é
+					// é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ãŒã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã•ã‚Œã¦ã„ãªã‹ã£ãŸã‚‰ã™ã‚‹
 					if( TList->PF->D3D11.VertexBuffer == NULL && MBTList->VertexBuffer != NULL )
 					{
 						D_D3D11_BUFFER_DESC VertexBufferDesc ;
@@ -1229,7 +1229,7 @@ extern int MV1_D3D11_SetupVertexBuffer_PF( int MHandle, int ASyncThread )
 							return -1 ;
 						}
 
-						// ƒVƒFƒCƒv‚ÌƒZƒbƒgƒAƒbƒv‚ªs‚í‚ê‚Ä‚¢‚È‚¢ó‘Ô‚É‚·‚é
+						// ã‚·ã‚§ã‚¤ãƒ—ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ãŒè¡Œã‚ã‚Œã¦ã„ãªã„çŠ¶æ…‹ã«ã™ã‚‹
 						Model->ShapeChangeFlag = true ;
 						TList->Container->Container->ShapeChangeFlag = true ;
 					}
@@ -1238,11 +1238,11 @@ extern int MV1_D3D11_SetupVertexBuffer_PF( int MHandle, int ASyncThread )
 		}
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ’¸“_ƒoƒbƒtƒ@‚ÌŒãn––‚ğ‚·‚é( -1:ƒGƒ‰[ )
+// é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã®å¾Œå§‹æœ«ã‚’ã™ã‚‹( -1:ã‚¨ãƒ©ãƒ¼ )
 extern int MV1_D3D11_TerminateVertexBufferBase_PF( int MV1ModelBaseHandle )
 {
 	int i, j, k ;
@@ -1251,7 +1251,7 @@ extern int MV1_D3D11_TerminateVertexBufferBase_PF( int MV1ModelBaseHandle )
 	MV1_TRIANGLE_LIST_BASE *MBTList ;
 	MV1_VERTEXBUFFER *TVBuf, *TVBuf2 ;
 
-	// ƒnƒ“ƒhƒ‹ƒ`ƒFƒbƒN
+	// ãƒãƒ³ãƒ‰ãƒ«ãƒã‚§ãƒƒã‚¯
 	if( MV1BMDLCHK( MV1ModelBaseHandle, MBase ) )
 	{
 		return -1 ;
@@ -1262,13 +1262,13 @@ extern int MV1_D3D11_TerminateVertexBufferBase_PF( int MV1ModelBaseHandle )
 		return -1 ;
 	}
 
-	// ’¸“_ƒoƒbƒtƒ@‚ªƒZƒbƒgƒAƒbƒv‚³‚ê‚Ä‚¢‚È‚¢ê‡‚Í‰½‚à‚¹‚¸I—¹
+	// é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ãŒã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã•ã‚Œã¦ã„ãªã„å ´åˆã¯ä½•ã‚‚ã›ãšçµ‚äº†
 	if( MBase->SetupVertexBuffer == FALSE )
 	{
 		return 0 ;
 	}
 
-	// Šm•Û‚µ‚½’¸“_ƒoƒbƒtƒ@‚È‚Ç‚ğ‰ğ•ú
+	// ç¢ºä¿ã—ãŸé ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ãªã©ã‚’è§£æ”¾
 	for( i = 0 ; i < 3 ; i ++ )
 	{
 		for( j = 0 ; j < 2 ; j ++ )
@@ -1299,20 +1299,20 @@ extern int MV1_D3D11_TerminateVertexBufferBase_PF( int MV1ModelBaseHandle )
 	}
 	MBase->TotalVertexBufferNum = 0 ;
 
-	// ƒgƒ‰ƒCƒAƒ“ƒOƒ‹ƒŠƒXƒg‚Ì”‚¾‚¯ŒJ‚è•Ô‚µ
+	// ãƒˆãƒ©ã‚¤ã‚¢ãƒ³ã‚°ãƒ«ãƒªã‚¹ãƒˆã®æ•°ã ã‘ç¹°ã‚Šè¿”ã—
 	MBTList = MBase->TriangleList ;
 	for( i = 0 ; i < MBase->TriangleListNum ; i ++, MBTList ++ )
 	{
-		// ’¸“_ƒoƒbƒtƒ@‚Ìî•ñ‚ğƒNƒŠƒA
+		// é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã®æƒ…å ±ã‚’ã‚¯ãƒªã‚¢
 		MBTList->VertexBuffer = NULL ;
 		MBTList->VBStartVertex = 0 ;
 		MBTList->VBStartIndex = 0 ;
 	}
 
-	// ’¸“_ƒoƒbƒtƒ@ƒZƒbƒgƒAƒbƒvƒtƒ‰ƒO‚ğ“|‚·
+	// é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 	MBase->SetupVertexBuffer = FALSE ;
 
-	// ‚±‚Ìƒnƒ“ƒhƒ‹‚ğg—p‚µ‚Ä‚¢‚éƒ‚ƒfƒ‹‚Ì’¸“_ƒoƒbƒtƒ@‚ğ‰ğ•ú‚·‚é
+	// ã“ã®ãƒãƒ³ãƒ‰ãƒ«ã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹ãƒ¢ãƒ‡ãƒ«ã®é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã‚’è§£æ”¾ã™ã‚‹
 	if( HandleManageArray[ DX_HANDLETYPE_MODEL ].InitializeFlag )
 	{
 		for( i = HandleManageArray[ DX_HANDLETYPE_MODEL ].AreaMin ; i <= HandleManageArray[ DX_HANDLETYPE_MODEL ].AreaMax ; i ++ )
@@ -1328,35 +1328,35 @@ extern int MV1_D3D11_TerminateVertexBufferBase_PF( int MV1ModelBaseHandle )
 		}
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ’¸“_ƒoƒbƒtƒ@‚ÌŒãn––‚ğ‚·‚é( -1:ƒGƒ‰[ )
+// é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã®å¾Œå§‹æœ«ã‚’ã™ã‚‹( -1:ã‚¨ãƒ©ãƒ¼ )
 extern int MV1_D3D11_TerminateVertexBuffer_PF( int MV1ModelHandle )
 {
 	int i ;
 	MV1_MODEL *Model ;
 	MV1_TRIANGLE_LIST *TList ;
 
-	// ƒnƒ“ƒhƒ‹ƒ`ƒFƒbƒN
+	// ãƒãƒ³ãƒ‰ãƒ«ãƒã‚§ãƒƒã‚¯
 	if( MV1MDLCHK_ASYNC( MV1ModelHandle, Model ) )
 	{
 		return -1 ;
 	}
 
-	// ƒgƒ‰ƒCƒAƒ“ƒOƒ‹ƒŠƒXƒg‚Ì”‚¾‚¯ŒJ‚è•Ô‚µ
+	// ãƒˆãƒ©ã‚¤ã‚¢ãƒ³ã‚°ãƒ«ãƒªã‚¹ãƒˆã®æ•°ã ã‘ç¹°ã‚Šè¿”ã—
 	TList = Model->TriangleList ;
 	for( i = 0 ; i < Model->BaseData->TriangleListNum ; i ++, TList = ( MV1_TRIANGLE_LIST * )( ( BYTE * )TList + sizeof( MV1_TRIANGLE_LIST ) + sizeof( MV1_TRIANGLE_LIST_PF ) ) )
 	{
-		// ‚Xƒ{[ƒ“ˆÈã‚ÌƒXƒLƒjƒ“ƒOƒƒbƒVƒ…—p‚Ìƒoƒbƒtƒ@‚ğŠm•Û‚µ‚Ä‚¢‚½‚ç‰ğ•ú
+		// ï¼™ãƒœãƒ¼ãƒ³ä»¥ä¸Šã®ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥ç”¨ã®ãƒãƒƒãƒ•ã‚¡ã‚’ç¢ºä¿ã—ã¦ã„ãŸã‚‰è§£æ”¾
 		if( TList->PF->D3D11.SkinFreeBoneVertexPositionBuffer != NULL )
 		{
 			DXFREE( TList->PF->D3D11.SkinFreeBoneVertexPositionBuffer ) ;
 			TList->PF->D3D11.SkinFreeBoneVertexPositionBuffer = NULL ;
 		}
 
-		// ’¸“_ƒoƒbƒtƒ@‚Ìî•ñ‚ğƒNƒŠƒA
+		// é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã®æƒ…å ±ã‚’ã‚¯ãƒªã‚¢
 		if( TList->PF->D3D11.VertexBuffer )
 		{
 			Direct3D11_Release_Buffer( TList->PF->D3D11.VertexBuffer ) ;
@@ -1364,11 +1364,11 @@ extern int MV1_D3D11_TerminateVertexBuffer_PF( int MV1ModelHandle )
 		}
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒVƒFƒCƒvƒf[ƒ^‚ÌƒZƒbƒgƒAƒbƒv‚ğ‚·‚é
+// ã‚·ã‚§ã‚¤ãƒ—ãƒ‡ãƒ¼ã‚¿ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã‚’ã™ã‚‹
 extern int MV1_D3D11_SetupShapeVertex_PF( int MHandle )
 {
 	MV1_MODEL              *Model ;
@@ -1407,27 +1407,27 @@ extern int MV1_D3D11_SetupShapeVertex_PF( int MHandle )
 	int                    Bump ;
 	BYTE                   *Dest ;
 
-	// ‰Šú‰»‚³‚ê‚Ä‚¢‚È‚©‚Á‚½‚çƒGƒ‰[
+	// åˆæœŸåŒ–ã•ã‚Œã¦ã„ãªã‹ã£ãŸã‚‰ã‚¨ãƒ©ãƒ¼
 	if( MV1Man.Initialize == false )
 	{
 		return -1 ;
 	}
 
-	// ƒAƒhƒŒƒXæ“¾
+	// ã‚¢ãƒ‰ãƒ¬ã‚¹å–å¾—
 	if( MV1MDLCHK( MHandle, Model ) )
 	{
 		return -1 ;
 	}
 	MBase = Model->BaseData ;
 
-	// ƒVƒFƒCƒv‚Ìó‘Ô‚ª•Ï‰»‚µ‚Ä‚¢‚È‚¢ê‡‚Í‰½‚à‚µ‚È‚¢
+	// ã‚·ã‚§ã‚¤ãƒ—ã®çŠ¶æ…‹ãŒå¤‰åŒ–ã—ã¦ã„ãªã„å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( Model->ShapeChangeFlag == false )
 	{
 		return 0 ;
 	}
 	Model->ShapeChangeFlag = false ;
 
-	// ƒVƒFƒCƒv‚ªg—p‚³‚ê‚Ä‚¢‚éƒƒbƒVƒ…‚Ì‚İˆ—‚·‚é
+	// ã‚·ã‚§ã‚¤ãƒ—ãŒä½¿ç”¨ã•ã‚Œã¦ã„ã‚‹ãƒ¡ãƒƒã‚·ãƒ¥ã®ã¿å‡¦ç†ã™ã‚‹
 	MBMesh = MBase->Mesh ;
 	Mesh = Model->Mesh ;
 	for( i = 0 ; i < MBase->MeshNum ; i ++, Mesh ++, MBMesh ++ )
@@ -1437,16 +1437,16 @@ extern int MV1_D3D11_SetupShapeVertex_PF( int MHandle )
 			continue ;
 		}
 
-		// ƒVƒFƒCƒv‚ª•Ï‰»‚µ‚Ä‚¢‚È‚¢ê‡‚Í‰½‚à‚µ‚È‚¢
+		// ã‚·ã‚§ã‚¤ãƒ—ãŒå¤‰åŒ–ã—ã¦ã„ãªã„å ´åˆã¯ä½•ã‚‚ã—ãªã„
 		if( Mesh->Container->ShapeChangeFlag == false )
 		{
 			continue ;
 		}
 
-		// ‡¬’¸“_ƒf[ƒ^‚Ìì¬
+		// åˆæˆé ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ã®ä½œæˆ
 		MBFrame = MBMesh->Container ;
 
-		// Å‰‚ÍŠî‚Ì’¸“_ƒf[ƒ^‚ğƒZƒbƒg
+		// æœ€åˆã¯åŸºã®é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆ
 		ShapeVertex = Mesh->ShapeVertex ;
 		MeshVertex  = MBMesh->Vertex ;
 		for( j = 0 ; j < MBMesh->VertexNum ; j ++, ShapeVertex ++, MeshVertex = ( MV1_MESH_VERTEX * )( ( BYTE * )MeshVertex + MBMesh->VertUnitSize ) )
@@ -1456,7 +1456,7 @@ extern int MV1_D3D11_SetupShapeVertex_PF( int MHandle )
 		}
 	}
 
-	// ƒVƒFƒCƒv‚ªg—p‚³‚ê‚Ä‚¢‚éƒtƒŒ[ƒ€‚Ì‚İˆ—‚·‚é
+	// ã‚·ã‚§ã‚¤ãƒ—ãŒä½¿ç”¨ã•ã‚Œã¦ã„ã‚‹ãƒ•ãƒ¬ãƒ¼ãƒ ã®ã¿å‡¦ç†ã™ã‚‹
 	MBFrame = MBase->Frame ;
 	Frame   = Model->Frame ;
 	MAnim   = Model->Anim ;
@@ -1467,14 +1467,14 @@ extern int MV1_D3D11_SetupShapeVertex_PF( int MHandle )
 			continue ;
 		}
 
-		// ƒVƒFƒCƒv‚ª•Ï‰»‚µ‚Ä‚¢‚È‚¢ê‡‚Í‰½‚à‚µ‚È‚¢
+		// ã‚·ã‚§ã‚¤ãƒ—ãŒå¤‰åŒ–ã—ã¦ã„ãªã„å ´åˆã¯ä½•ã‚‚ã—ãªã„
 		if( Frame->ShapeChangeFlag == false )
 		{
 			continue ;
 		}
 		Frame->ShapeChangeFlag = false ;
 
-		// ƒVƒFƒCƒv‚ğg—p‚µ‚È‚¢ƒtƒ‰ƒO‚ª—§‚Á‚Ä‚¢‚½‚çŠî–{î•ñ‚»‚Ì‚Ü‚Ü‚ğg—p‚·‚é
+		// ã‚·ã‚§ã‚¤ãƒ—ã‚’ä½¿ç”¨ã—ãªã„ãƒ•ãƒ©ã‚°ãŒç«‹ã£ã¦ã„ãŸã‚‰åŸºæœ¬æƒ…å ±ãã®ã¾ã¾ã‚’ä½¿ç”¨ã™ã‚‹
 		if( Model->ShapeDisableFlag == false )
 		{
 			Shape = Frame->Shape ;
@@ -1482,7 +1482,7 @@ extern int MV1_D3D11_SetupShapeVertex_PF( int MHandle )
 			{
 				MBShape = Shape->BaseData ;
 
-				// ƒuƒŒƒ“ƒh—¦‚ğæ“¾‚·‚é
+				// ãƒ–ãƒ¬ãƒ³ãƒ‰ç‡ã‚’å–å¾—ã™ã‚‹
 				Rate = 0.0f ;
 				switch( Shape->ShapeRateApplyType )
 				{
@@ -1553,7 +1553,7 @@ extern int MV1_D3D11_SetupShapeVertex_PF( int MHandle )
 				MVInd = MBTList->MeshVertexIndex ;
 				VertexNum = MBTList->VertexNum ;
 
-				// ‚Xƒ{[ƒ“ˆÈã‚ÌƒXƒLƒjƒ“ƒOƒƒbƒVƒ…‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+				// ï¼™ãƒœãƒ¼ãƒ³ä»¥ä¸Šã®ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 				if( MBTList->VertexType == MV1_VERTEX_TYPE_SKIN_FREEBONE )
 				{
 					if( TList->PF->D3D11.SkinFreeBoneVertexPositionBuffer == NULL )
@@ -1570,7 +1570,7 @@ extern int MV1_D3D11_SetupShapeVertex_PF( int MHandle )
 						continue ;
 					}
 
-					// ƒeƒ“ƒ|ƒ‰ƒŠƒoƒbƒtƒ@‚Ì€”õ
+					// ãƒ†ãƒ³ãƒãƒ©ãƒªãƒãƒƒãƒ•ã‚¡ã®æº–å‚™
 					if( MV1_D3D11_CommonBuffer_Setup( ( int )( MBTList->VertexBuffer->UnitSize * MBTList->VertexNum ) ) < 0 )
 					{
 						continue ;
@@ -1680,7 +1680,7 @@ extern int MV1_D3D11_SetupShapeVertex_PF( int MHandle )
 
 				if( MBTList->VertexType != MV1_VERTEX_TYPE_SKIN_FREEBONE )
 				{
-					// ’¸“_ƒf[ƒ^‚ğXV
+					// é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ã‚’æ›´æ–°
 					{
 						D_D3D11_BOX DestBox ;
 
@@ -1705,42 +1705,42 @@ extern int MV1_D3D11_SetupShapeVertex_PF( int MHandle )
 		}
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ‚R‚cƒ‚ƒfƒ‹‚ÌƒŒƒ“ƒ_ƒŠƒ“ƒO‚Ì€”õ‚ğs‚¤
+// ï¼“ï¼¤ãƒ¢ãƒ‡ãƒ«ã®ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã®æº–å‚™ã‚’è¡Œã†
 extern int MV1_D3D11_BeginRender_PF( MV1_MODEL *Model )
 {
 	int i ;
 
-	// ƒoƒbƒtƒ@‚É‚½‚Ü‚Á‚Ä‚¢‚é’¸“_‚ğo—Í
+	// ãƒãƒƒãƒ•ã‚¡ã«ãŸã¾ã£ã¦ã„ã‚‹é ‚ç‚¹ã‚’å‡ºåŠ›
 	NS_RenderVertex() ;
 
-	// ƒ‰ƒCƒg‚Ìİ’è‚ª•ÏX‚³‚ê‚Ä‚¢‚½‚ç”½‰f‚·‚é
+	// ãƒ©ã‚¤ãƒˆã®è¨­å®šãŒå¤‰æ›´ã•ã‚Œã¦ã„ãŸã‚‰åæ˜ ã™ã‚‹
 	Graphics_Light_RefreshState() ;
 
 	MV1Man.WorldMatrixIsIdentity = FALSE ;
 
-	// [“xƒoƒbƒtƒ@İ’è‚ğ”½‰f‚·‚é
+	// æ·±åº¦ãƒãƒƒãƒ•ã‚¡è¨­å®šã‚’åæ˜ ã™ã‚‹
 	Graphics_D3D11_DeviceState_SetDepthEnable(      Model->EnableZBufferFlag ) ;
 	Graphics_D3D11_DeviceState_SetDepthWriteEnable( Model->WriteZBufferFlag ) ;
 	Graphics_D3D11_DeviceState_SetDepthFunc(        GSYS.DrawSetting.ShadowMapDraw ? D_D3D11_COMPARISON_LESS_EQUAL : ( D_D3D11_COMPARISON_FUNC )Model->ZBufferCmpType ) ;
 	Graphics_D3D11_DeviceState_SetDepthBias(        Model->ZBias ) ;
 
-	// ƒtƒHƒO‚Ìİ’è‚ğ”½‰f‚·‚é
+	// ãƒ•ã‚©ã‚°ã®è¨­å®šã‚’åæ˜ ã™ã‚‹
 	Graphics_DrawSetting_ApplyLibFogToHardware() ;
 
-	// ˆÙ•û«ƒtƒBƒ‹ƒ^ƒŠƒ“ƒO‚ÌÅ‘åŸ”‚ğİ’è‚·‚é
+	// ç•°æ–¹æ€§ãƒ•ã‚£ãƒ«ã‚¿ãƒªãƒ³ã‚°ã®æœ€å¤§æ¬¡æ•°ã‚’è¨­å®šã™ã‚‹
 	for( i = 0 ; i < 3 ; i ++ )
 	{
 		Graphics_D3D11_DeviceState_SetMaxAnisotropy( Model->MaxAnisotropy, i ) ;
 	}
 
-	// ƒƒCƒ„[ƒtƒŒ[ƒ€•`‰æ‚·‚é‚©‚Ç‚¤‚©‚ğİ’è‚·‚é
+	// ãƒ¯ã‚¤ãƒ¤ãƒ¼ãƒ•ãƒ¬ãƒ¼ãƒ æç”»ã™ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹
 	Graphics_D3D11_DeviceState_SetFillMode( Model->WireFrame ? D_D3D11_FILL_WIREFRAME : D_D3D11_FILL_SOLID ) ;
 
-	// ‚R‚cs—ñ‚ğƒn[ƒhƒEƒGƒA‚É”½‰f‚·‚é
+	// ï¼“ï¼¤è¡Œåˆ—ã‚’ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã«åæ˜ ã™ã‚‹
 	if( GSYS.DrawSetting.MatchHardware3DMatrix == FALSE && GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )
 		Graphics_DrawSetting_ApplyLib3DMatrixToHardware() ;
 
@@ -1753,23 +1753,23 @@ extern int MV1_D3D11_BeginRender_PF( MV1_MODEL *Model )
 	GD3D11.Device.DrawSetting.DrawPrepAlwaysFlag = TRUE ;
 	GD3D11.Device.DrawSetting.ChangeTextureFlag  = TRUE ;
 
-	// ƒJƒ‰[‚ÉƒAƒ‹ƒtƒ@’l‚ğæZ‚·‚é‚©‚Ç‚¤‚©‚Ìî•ñ‚ğƒZƒbƒg‚·‚é
+	// ã‚«ãƒ©ãƒ¼ã«ã‚¢ãƒ«ãƒ•ã‚¡å€¤ã‚’ä¹—ç®—ã™ã‚‹ã‹ã©ã†ã‹ã®æƒ…å ±ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 	Graphics_D3D11_DeviceState_SetMulAlphaColor( Model->UseDrawMulAlphaColor ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ‚R‚cƒ‚ƒfƒ‹‚ÌƒŒƒ“ƒ_ƒŠƒ“ƒO‚ÌŒãn––‚ğs‚¤
+// ï¼“ï¼¤ãƒ¢ãƒ‡ãƒ«ã®ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã®å¾Œå§‹æœ«ã‚’è¡Œã†
 extern int MV1_D3D11_EndRender_PF( void )
 {
 	Graphics_D3D11_DeviceState_SetWorldMatrix( &GSYS.DrawSetting.WorldMatrixF ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// w’è‚ÌƒƒbƒVƒ…‚ÌŠî–{•”•ª‚Ìƒ}ƒeƒŠƒAƒ‹‚ğƒZƒbƒgƒAƒbƒv‚·‚é
+// æŒ‡å®šã®ãƒ¡ãƒƒã‚·ãƒ¥ã®åŸºæœ¬éƒ¨åˆ†ã®ãƒãƒ†ãƒªã‚¢ãƒ«ã‚’ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã™ã‚‹
 static bool MV1_D3D11_SetupMeshDrawMaterialCommon( MV1_MESH *Mesh )
 {
 	MV1_MESH_BASE     *MBMesh ;
@@ -1784,10 +1784,10 @@ static bool MV1_D3D11_SetupMeshDrawMaterialCommon( MV1_MESH *Mesh )
 	MMaterial  = Mesh->Material ;
 //	MBMaterial = MMaterial->BaseData ;
 
-	// ƒ}ƒeƒŠƒAƒ‹‚ÌƒZƒbƒg
+	// ãƒãƒ†ãƒªã‚¢ãƒ«ã®ã‚»ãƒƒãƒˆ
 	if( Mesh->SetupDrawMaterial.UseColorScale )
 	{
-		// ƒAƒ‹ƒtƒ@‚ª‚O‚Ìê‡‚Í•`‰æ‚µ‚È‚¢
+		// ã‚¢ãƒ«ãƒ•ã‚¡ãŒï¼ã®å ´åˆã¯æç”»ã—ãªã„
 		if( Mesh->SetupDrawMaterial.DiffuseScale.a * MMaterial->Diffuse.a <= 0.0000001f )
 		{
 			return false ;
@@ -1812,7 +1812,7 @@ static bool MV1_D3D11_SetupMeshDrawMaterialCommon( MV1_MESH *Mesh )
 	}
 	else
 	{
-		// ƒAƒ‹ƒtƒ@‚ª‚O‚Ìê‡‚Í•`‰æ‚µ‚È‚¢
+		// ã‚¢ãƒ«ãƒ•ã‚¡ãŒï¼ã®å ´åˆã¯æç”»ã—ãªã„
 		if( MMaterial->Diffuse.a <= 0.0000001f )
 		{
 			return false ;
@@ -1829,17 +1829,17 @@ static bool MV1_D3D11_SetupMeshDrawMaterialCommon( MV1_MESH *Mesh )
 	GD3D11.Device.DrawSetting.DrawPrepAlwaysFlag = TRUE ;
 	Graphics_D3D11_DeviceState_SetMaterial( &Material ) ;
 
-	// ƒJƒŠƒ“ƒOİ’è
+	// ã‚«ãƒªãƒ³ã‚°è¨­å®š
 	Graphics_D3D11_DeviceState_SetCullMode( GSYS.DrawSetting.ShadowMapDraw ? FALSE : MBMesh->BackCulling ) ; 
 
-	// ƒAƒ‹ƒtƒ@ƒeƒXƒgİ’è
+	// ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆè¨­å®š
 	if( MMaterial->UseAlphaTest )
 	{
 		Graphics_D3D11_DeviceState_SetAlphaTestCmpMode( MMaterial->AlphaFunc ) ;
 		Graphics_D3D11_DeviceState_SetAlphaTestRef(     MMaterial->AlphaRef ) ;
 	}
 
-	// FactorColor ‚Ìİ’è
+	// FactorColor ã®è¨­å®š
 	{
 		float FloatFactorColor[ 4 ] ;
 
@@ -1850,10 +1850,10 @@ static bool MV1_D3D11_SetupMeshDrawMaterialCommon( MV1_MESH *Mesh )
 		Graphics_D3D11_DeviceState_SetFactorColor( &FloatFactorColor ) ;
 	}
 
-	// ‰ÁZƒJƒ‰[‚Ìİ’è
+	// åŠ ç®—ã‚«ãƒ©ãƒ¼ã®è¨­å®š
 	NS_SetDrawAddColor( MMaterial->DrawAddColor.x, MMaterial->DrawAddColor.y, MMaterial->DrawAddColor.z ) ; 
 
-	// ƒuƒŒƒ“ƒhƒ‚[ƒh‚Ìİ’è
+	// ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã®è¨­å®š
 	BlendMode = GSYS.DrawSetting.ShadowMapDraw || MV1Man.DrawMode == DX_MV1_DRAWMODE_NORMAL_DEPTH ? DX_BLENDMODE_NOBLEND : ( Mesh->DrawBlendMode != -1 ? Mesh->DrawBlendMode : MMaterial->DrawBlendMode ) ;
 	switch( BlendMode )
 	{
@@ -1892,20 +1892,20 @@ static bool MV1_D3D11_SetupMeshDrawMaterialCommon( MV1_MESH *Mesh )
 		break ;
 	}
 
-	// ƒXƒyƒLƒ…ƒ‰‚ª—LŒø‚©‚Ç‚¤‚©‚ğƒZƒbƒg‚·‚é
+	// ã‚¹ãƒšã‚­ãƒ¥ãƒ©ãŒæœ‰åŠ¹ã‹ã©ã†ã‹ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 	Graphics_D3D11_DeviceState_SetSpecularEnable(
 		MBMesh->UseVertexSpecularColor ||
 		Material.Specular.r > 0.00001f ||
 		Material.Specular.g > 0.00001f ||
 		Material.Specular.b > 0.00001f ? TRUE : FALSE ) ;
 
-	// ƒfƒBƒtƒ…[ƒYƒ}ƒeƒŠƒAƒ‹‚Æ‚µ‚Ä’¸“_ƒJƒ‰[‚ğg—p‚·‚é‚©‚Ç‚¤‚©‚ğƒZƒbƒg
+	// ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºãƒãƒ†ãƒªã‚¢ãƒ«ã¨ã—ã¦é ‚ç‚¹ã‚«ãƒ©ãƒ¼ã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã‚’ã‚»ãƒƒãƒˆ
 	Graphics_D3D11_DeviceState_SetUseVertexDiffuseColor( MBMesh->UseVertexDiffuseColor ) ;
 
-	// ƒXƒyƒLƒ…ƒ‰ƒ}ƒeƒŠƒAƒ‹‚Æ‚µ‚Ä’¸“_ƒJƒ‰[‚ğg—p‚·‚é‚©‚Ç‚¤‚©‚ğƒZƒbƒg
+	// ã‚¹ãƒšã‚­ãƒ¥ãƒ©ãƒãƒ†ãƒªã‚¢ãƒ«ã¨ã—ã¦é ‚ç‚¹ã‚«ãƒ©ãƒ¼ã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã‚’ã‚»ãƒƒãƒˆ
 	Graphics_D3D11_DeviceState_SetUseVertexSpecularColor( MBMesh->UseVertexSpecularColor ) ;
 /*
-	// ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚ÌƒZƒbƒg
+	// ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã®ã‚»ãƒƒãƒˆ
 	if( MMaterial->BaseData->Type == DX_MATERIAL_TYPE_TOON || MMaterial->BaseData->Type == DX_MATERIAL_TYPE_TOON_2 )
 	{
 		switch( MMaterial->BaseData->Type )
@@ -1950,14 +1950,14 @@ static bool MV1_D3D11_SetupMeshDrawMaterialCommon( MV1_MESH *Mesh )
 		}
 	}
 
-	// ƒTƒuƒeƒNƒXƒ`ƒƒ‚ğg—p‚·‚é‚©‚Ç‚¤‚©‚ğƒZƒbƒg
+	// ã‚µãƒ–ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã‚’ã‚»ãƒƒãƒˆ
 	if( MBMaterial->DiffuseLayerNum > 1 )
 	{
 		*PixelShaderIndex    += D3D9_PIXELSHADER_MULTITEX( MBMaterial->DiffuseLayer[ 1 ].BlendType + 1 ) ;
 		*PixelShaderIndex_PL += D3D9_PIXELLIGHTING_PIXELSHADER_MULTITEX( MBMaterial->DiffuseLayer[ 1 ].BlendType + 1 ) ;
 	}
 
-	// ƒ}ƒeƒŠƒAƒ‹‚Éƒoƒ“ƒvƒ}ƒbƒv‚ªŠÜ‚Ü‚ê‚éê‡‚ÍƒVƒF[ƒ_[ƒCƒ“ƒfƒbƒNƒX‚ğ•â³
+	// ãƒãƒ†ãƒªã‚¢ãƒ«ã«ãƒãƒ³ãƒ—ãƒãƒƒãƒ—ãŒå«ã¾ã‚Œã‚‹å ´åˆã¯ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’è£œæ­£
 	if( MBMaterial->NormalLayerNum )
 	{
 		*VertexShaderIndex    += D3D9_VERTEXSHADER_BUMPMAP( 1 ) ;
@@ -1967,7 +1967,7 @@ static bool MV1_D3D11_SetupMeshDrawMaterialCommon( MV1_MESH *Mesh )
 		*PixelShaderIndex_PL  += D3D9_PIXELLIGHTING_PIXELSHADER_BUMPMAP( 1 ) ;
 	}
 
-	// ƒ}ƒeƒŠƒAƒ‹‚ÉƒXƒyƒLƒ…ƒ‰‚ªŠÜ‚Ü‚ê‚éê‡‚ÍƒXƒyƒLƒ…ƒ‰ƒCƒ“ƒfƒbƒNƒX‚ğ’Ç‰Á
+	// ãƒãƒ†ãƒªã‚¢ãƒ«ã«ã‚¹ãƒšã‚­ãƒ¥ãƒ©ãŒå«ã¾ã‚Œã‚‹å ´åˆã¯ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’è¿½åŠ 
 	if( *SpecularEnable )
 	{
 		*VertexShaderIndex    += D3D9_VERTEXSHADER_SPECULAR( 1 ) ;
@@ -1976,7 +1976,7 @@ static bool MV1_D3D11_SetupMeshDrawMaterialCommon( MV1_MESH *Mesh )
 		*PixelShaderIndex_PL  += D3D9_PIXELLIGHTING_PIXELSHADER_SPECULAR( 1 ) ;
 	}
 
-	// ƒ}ƒeƒŠƒAƒ‹‚ÉƒXƒyƒLƒ…ƒ‰ƒ}ƒbƒv‚ªŠÜ‚Ü‚ê‚éê‡‚ÍƒXƒyƒLƒ…ƒ‰ƒ}ƒbƒvƒCƒ“ƒfƒbƒNƒX‚ğ’Ç‰Á
+	// ãƒãƒ†ãƒªã‚¢ãƒ«ã«ã‚¹ãƒšã‚­ãƒ¥ãƒ©ãƒãƒƒãƒ—ãŒå«ã¾ã‚Œã‚‹å ´åˆã¯ã‚¹ãƒšã‚­ãƒ¥ãƒ©ãƒãƒƒãƒ—ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’è¿½åŠ 
 	if( MMaterial->SpecularLayerNum )
 	{
 		*PixelShaderIndex    += D3D9_PIXELSHADER_SPECULARMAP( 1 ) ;
@@ -1986,7 +1986,7 @@ static bool MV1_D3D11_SetupMeshDrawMaterialCommon( MV1_MESH *Mesh )
 	return true ;
 }
 
-// ƒgƒD[ƒ“‚Ìˆ×‚Ìƒ}ƒeƒŠƒAƒ‹‚ğƒZƒbƒgƒAƒbƒv‚·‚é
+// ãƒˆã‚¥ãƒ¼ãƒ³ã®ç‚ºã®ãƒãƒ†ãƒªã‚¢ãƒ«ã‚’ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã™ã‚‹
 static void MV1_D3D11_SetupToonOutLineMeshDrawMaterialCommon( MV1_MESH *Mesh, float OutLineWidth )
 {
 	MV1_MESH_BASE     *MBMesh ;
@@ -2001,7 +2001,7 @@ static void MV1_D3D11_SetupToonOutLineMeshDrawMaterialCommon( MV1_MESH *Mesh, fl
 	MMaterial  = Mesh->Material ;
 	MBMaterial = MMaterial->BaseData ;
 
-	// ƒ}ƒeƒŠƒAƒ‹‚ÌƒZƒbƒg
+	// ãƒãƒ†ãƒªã‚¢ãƒ«ã®ã‚»ãƒƒãƒˆ
 	Material.Diffuse    = MMaterial->OutLineColor ;
 	Material.Diffuse.a  = 1.0f ;
 	Material.Specular.r = 0.0f ;
@@ -2015,13 +2015,13 @@ static void MV1_D3D11_SetupToonOutLineMeshDrawMaterialCommon( MV1_MESH *Mesh, fl
 	GD3D11.Device.DrawSetting.DrawPrepAlwaysFlag = TRUE ;
 	Graphics_D3D11_DeviceState_SetMaterial( &Material ) ;
 
-	// —ÖŠsü‚Ì‘¾‚³‚ğƒZƒbƒg‚·‚é
+	// è¼ªéƒ­ç·šã®å¤ªã•ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 	Graphics_D3D11_DeviceState_SetToonOutLineSize( OutLineWidth ) ;
 
-	// ƒJƒŠƒ“ƒOİ’è
+	// ã‚«ãƒªãƒ³ã‚°è¨­å®š
 	Graphics_D3D11_DeviceState_SetCullMode( 2 ) ; 
 
-	// FactorColor ‚Ìİ’è
+	// FactorColor ã®è¨­å®š
 	{
 		float FloatFactorColor[ 4 ] ;
 
@@ -2032,10 +2032,10 @@ static void MV1_D3D11_SetupToonOutLineMeshDrawMaterialCommon( MV1_MESH *Mesh, fl
 		Graphics_D3D11_DeviceState_SetFactorColor( &FloatFactorColor ) ;
 	}
 
-	// ‰ÁZƒJƒ‰[‚Ìİ’è
+	// åŠ ç®—ã‚«ãƒ©ãƒ¼ã®è¨­å®š
 	NS_SetDrawAddColor( MMaterial->DrawAddColor.x, MMaterial->DrawAddColor.y, MMaterial->DrawAddColor.z ) ; 
 
-	// ƒuƒŒƒ“ƒhƒ‚[ƒh‚Ìİ’è
+	// ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã®è¨­å®š
 	BlendMode = GSYS.DrawSetting.ShadowMapDraw || MV1Man.DrawMode == DX_MV1_DRAWMODE_NORMAL_DEPTH ? DX_BLENDMODE_NOBLEND : ( Mesh->DrawBlendMode != -1 ? Mesh->DrawBlendMode : MMaterial->DrawBlendMode ) ;
 	switch( BlendMode )
 	{
@@ -2074,11 +2074,11 @@ static void MV1_D3D11_SetupToonOutLineMeshDrawMaterialCommon( MV1_MESH *Mesh, fl
 		break ;
 	}
 
-	// ƒXƒyƒLƒ…ƒ‰‚ğ–³Œø‚É‚·‚é
+	// ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã‚’ç„¡åŠ¹ã«ã™ã‚‹
 	Graphics_D3D11_DeviceState_SetSpecularEnable( FALSE ) ;
 }
 
-// ƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚©‚çƒVƒF[ƒ_[ƒŠƒ\[ƒXƒrƒ…[‚ğæ“¾‚·‚é
+// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã‹ã‚‰ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒªã‚½ãƒ¼ã‚¹ãƒ“ãƒ¥ãƒ¼ã‚’å–å¾—ã™ã‚‹
 static D_ID3D11ShaderResourceView *MV1_D3D11_GetGraphHandleSRV( int GraphHandle )
 {
 	IMAGEDATA *Image ;
@@ -2092,7 +2092,7 @@ static D_ID3D11ShaderResourceView *MV1_D3D11_GetGraphHandleSRV( int GraphHandle 
 	return Image->Hard.Draw[ 0 ].Tex->PF->D3D11.TextureSRV ;
 }
 
-// ƒVƒƒƒhƒEƒ}ƒbƒvƒnƒ“ƒhƒ‹‚©‚çƒVƒF[ƒ_[ƒŠƒ\[ƒXƒrƒ…[‚ğæ“¾‚·‚é
+// ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ãƒãƒ³ãƒ‰ãƒ«ã‹ã‚‰ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒªã‚½ãƒ¼ã‚¹ãƒ“ãƒ¥ãƒ¼ã‚’å–å¾—ã™ã‚‹
 static D_ID3D11ShaderResourceView *MV1_D3D11_GetShadowMapHandleSRV( int ShadowMapHandle )
 {
 	SHADOWMAPDATA *ShadowMap ;
@@ -2106,7 +2106,7 @@ static D_ID3D11ShaderResourceView *MV1_D3D11_GetShadowMapHandleSRV( int ShadowMa
 	return ShadowMap->PF->D3D11.DepthTextureSRV ;
 }
 
-// MV1_TEXTURE ‚©‚çƒVƒF[ƒ_[ƒŠƒ\[ƒXƒrƒ…[‚ğæ“¾‚·‚é
+// MV1_TEXTURE ã‹ã‚‰ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒªã‚½ãƒ¼ã‚¹ãƒ“ãƒ¥ãƒ¼ã‚’å–å¾—ã™ã‚‹
 static D_ID3D11ShaderResourceView *MV1_D3D11_GetTextureSRV( MV1_TEXTURE *Tex )
 {
 	MV1_TEXTURE_BASE *TexBase ;
@@ -2135,10 +2135,10 @@ static D_ID3D11ShaderResourceView *MV1_D3D11_GetTextureSRV( MV1_TEXTURE *Tex )
 	return MV1_D3D11_GetGraphHandleSRV( GraphHandle ) ;
 }
 
-// ƒeƒNƒXƒ`ƒƒ‚ª–³‚©‚Á‚½ê‡‚ÉƒZƒbƒg‚·‚éƒeƒNƒXƒ`ƒƒ‚ÌƒVƒF[ƒ_[ƒŠƒ\[ƒXƒrƒ…[‚ğæ“¾‚·‚é
+// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãŒç„¡ã‹ã£ãŸå ´åˆã«ã‚»ãƒƒãƒˆã™ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒªã‚½ãƒ¼ã‚¹ãƒ“ãƒ¥ãƒ¼ã‚’å–å¾—ã™ã‚‹
 static D_ID3D11ShaderResourceView *MV1_D3D11_GetNoneGraphHandleSRV( void )
 {
-	// ƒfƒtƒHƒ‹ƒgƒeƒNƒXƒ`ƒƒƒnƒ“ƒhƒ‹‚Ì‰Šú‰»ƒ`ƒFƒbƒN
+	// ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒãƒ³ãƒ‰ãƒ«ã®åˆæœŸåŒ–ãƒã‚§ãƒƒã‚¯
 	if( MV1Man.TexNoneHandle < 0 )
 	{
 		MV1SetupTexNoneHandle() ;
@@ -2146,7 +2146,7 @@ static D_ID3D11ShaderResourceView *MV1_D3D11_GetNoneGraphHandleSRV( void )
 	return MV1_D3D11_GetGraphHandleSRV( MV1Man.TexNoneHandle ) ;
 }
 
-// w’è‚ÌƒƒbƒVƒ…‚Ìƒ}ƒeƒŠƒAƒ‹‚ğƒZƒbƒgƒAƒbƒv‚·‚é
+// æŒ‡å®šã®ãƒ¡ãƒƒã‚·ãƒ¥ã®ãƒãƒ†ãƒªã‚¢ãƒ«ã‚’ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã™ã‚‹
 static void MV1_D3D11_SetupMeshDrawMaterial( MV1_MESH *Mesh )
 {
 	MV1_TEXTURE_BASE           *TexBase ;
@@ -2162,14 +2162,14 @@ static void MV1_D3D11_SetupMeshDrawMaterial( MV1_MESH *Mesh )
 	int                        SetShaderResourceViewNum = 0 ;
 	int                        IsToon ;
 
-	// ‹¤’Ê•”•ª‚ÌƒZƒbƒg
+	// å…±é€šéƒ¨åˆ†ã®ã‚»ãƒƒãƒˆ
 	Frame     = Mesh->Container ;
 	Model     = Frame->Container ;
 	MMaterial = Mesh->Material ;
 	BlendMode = Mesh->DrawBlendMode != -1 ? Mesh->DrawBlendMode : MMaterial->DrawBlendMode ;
 	IsToon    = Mesh->Material->BaseData->Type == DX_MATERIAL_TYPE_TOON || Mesh->Material->BaseData->Type == DX_MATERIAL_TYPE_TOON_2 ;
 
-	// ƒfƒBƒtƒ…[ƒYƒeƒNƒXƒ`ƒƒ‚ÌƒXƒP[ƒ‹‚ª 1.0f ˆÈŠO‚©‚ğ’²‚×‚é
+	// ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ã‚¹ã‚±ãƒ¼ãƒ«ãŒ 1.0f ä»¥å¤–ã‹ã‚’èª¿ã¹ã‚‹
 	TextureUVScaling = FALSE ;
 	if( Mesh->Material->DiffuseLayerNum > 0 )
 	{
@@ -2184,7 +2184,7 @@ static void MV1_D3D11_SetupMeshDrawMaterial( MV1_MESH *Mesh )
 		}
 	}
 
-	// ƒeƒNƒXƒ`ƒƒÀ•W•ÏŠ·ƒpƒ‰ƒ[ƒ^‚ÌƒZƒbƒg
+	// ãƒ†ã‚¯ã‚¹ãƒãƒ£åº§æ¨™å¤‰æ›ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®ã‚»ãƒƒãƒˆ
 	if( Frame->TextureAddressTransformUse == FALSE && TextureUVScaling == FALSE )
 	{
 		if( GSYS.DrawSetting.TextureAddressTransformUse )
@@ -2214,7 +2214,7 @@ static void MV1_D3D11_SetupMeshDrawMaterial( MV1_MESH *Mesh )
 		}
 	}
 
-	// ƒeƒNƒXƒ`ƒƒ‚ÌƒZƒbƒgƒAƒbƒv
+	// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 	{
 		if( Mesh->Material->DiffuseLayerNum )
 		{
@@ -2350,7 +2350,7 @@ static void MV1_D3D11_SetupMeshDrawMaterial( MV1_MESH *Mesh )
 			Graphics_D3D11_DeviceState_SetSampleFilterMode( DrawModeToFilterTable[ Tex->FilterMode ], 7 ) ;
 		}
 
-		// ƒVƒƒƒhƒEƒ}ƒbƒv‚Ìİ’è
+		// ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ã®è¨­å®š
 		{
 			int i ;
 
@@ -2370,7 +2370,7 @@ static void MV1_D3D11_SetupMeshDrawMaterial( MV1_MESH *Mesh )
 			SetShaderResourceViewNum = 9 + MAX_USE_SHADOWMAP_NUM - 1 ;
 		}
 
-		// ƒ†[ƒU[İ’è‚ğg—p‚·‚éê‡‚Í‚±‚±‚ÅƒeƒNƒXƒ`ƒƒ‚àƒZƒbƒg
+		// ãƒ¦ãƒ¼ã‚¶ãƒ¼è¨­å®šã‚’ä½¿ç”¨ã™ã‚‹å ´åˆã¯ã“ã“ã§ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚‚ã‚»ãƒƒãƒˆ
 		if( MV1Man.UseOrigShaderFlag )
 		{
 			int i ;
@@ -2407,12 +2407,12 @@ static void MV1_D3D11_SetupMeshDrawMaterial( MV1_MESH *Mesh )
 			}
 		}
 
-		// ƒeƒNƒXƒ`ƒƒ‚ğƒZƒbƒg
+		// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ã‚»ãƒƒãƒˆ
 		Graphics_D3D11_DeviceState_SetPSShaderResouceView( 0, SetShaderResourceViewNum, SetShaderResourceView ) ;
 	}
 }
 
-// w’è‚ÌƒƒbƒVƒ…‚ÌƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚Ì—ÖŠsü—p‚Ìƒ}ƒeƒŠƒAƒ‹‚ğƒZƒbƒgƒAƒbƒv‚·‚é
+// æŒ‡å®šã®ãƒ¡ãƒƒã‚·ãƒ¥ã®ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã®è¼ªéƒ­ç·šç”¨ã®ãƒãƒ†ãƒªã‚¢ãƒ«ã‚’ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã™ã‚‹
 static void MV1_D3D11_SetupToonOutLineMeshDrawMaterial(	MV1_MESH *Mesh )
 {
 	MV1_FRAME                  *Frame ;
@@ -2421,27 +2421,27 @@ static void MV1_D3D11_SetupToonOutLineMeshDrawMaterial(	MV1_MESH *Mesh )
 	int                        BlendMode ;
 	D_ID3D11ShaderResourceView *SetShaderResourceView[ 1 ] = { NULL } ;
 
-	// ‹¤’Ê•”•ª‚ÌƒZƒbƒg
+	// å…±é€šéƒ¨åˆ†ã®ã‚»ãƒƒãƒˆ
 
 	Frame     = Mesh->Container ;
 	Model     = Frame->Container ;
 	MMaterial = Mesh->Material ;
 	BlendMode = Mesh->DrawBlendMode != -1 ? Mesh->DrawBlendMode : MMaterial->DrawBlendMode ;
 
-	// ƒfƒtƒHƒ‹ƒgƒeƒNƒXƒ`ƒƒƒnƒ“ƒhƒ‹‚Ì‰Šú‰»ƒ`ƒFƒbƒN
+	// ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒãƒ³ãƒ‰ãƒ«ã®åˆæœŸåŒ–ãƒã‚§ãƒƒã‚¯
 	if( MV1Man.TexNoneHandle < 0 )
 	{
 		MV1SetupTexNoneHandle() ;
 	}
 
-	// ƒeƒNƒXƒ`ƒƒ‚ÌƒZƒbƒgƒAƒbƒv
+	// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 	SetShaderResourceView[ 0 ] = MV1_D3D11_GetNoneGraphHandleSRV() ;
 
-	// ƒeƒNƒXƒ`ƒƒ‚ğƒZƒbƒg
+	// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ã‚»ãƒƒãƒˆ
 	Graphics_D3D11_DeviceState_SetPSShaderResouceView( 0, 1, SetShaderResourceView ) ;
 }
 
-// w’è‚Ìƒ‚ƒfƒ‹•`‰æ—pƒVƒF[ƒ_[‚ğƒZƒbƒgƒAƒbƒv‚·‚é( TRUE:¬Œ÷  FALSE:¸”s )
+// æŒ‡å®šã®ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã™ã‚‹( TRUE:æˆåŠŸ  FALSE:å¤±æ•— )
 static int  MV1_D3D11_ShaderSetup( MV1_MESH *Mesh, int VertexType, int IsToonOutLine )
 {
 	GRAPHICS_HARDWARE_DIRECT3D11_SHADER_MODEL		*SM           = &GD3D11.Device.Shader.Model ;
@@ -2485,7 +2485,7 @@ static int  MV1_D3D11_ShaderSetup( MV1_MESH *Mesh, int VertexType, int IsToonOut
 	}
 #endif // DX_NON_SHADERCODE_BINARY
 
-	// ‚Xƒ{[ƒ“ˆÈã‚Ìê‡‚Í„‘ÌƒƒbƒVƒ…‚Æ‚µ‚Äˆ—
+	// ï¼™ãƒœãƒ¼ãƒ³ä»¥ä¸Šã®å ´åˆã¯å‰›ä½“ãƒ¡ãƒƒã‚·ãƒ¥ã¨ã—ã¦å‡¦ç†
 	if( VertexType == MV1_VERTEX_TYPE_SKIN_FREEBONE )
 	{
 		VertexType = MV1_VERTEX_TYPE_NORMAL ;
@@ -2510,7 +2510,7 @@ static int  MV1_D3D11_ShaderSetup( MV1_MESH *Mesh, int VertexType, int IsToonOut
 
 	if( IsToonOutLine )
 	{
-		// ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚Ì—ÖŠsü•`‰æ
+		// ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã®è¼ªéƒ­ç·šæç”»
 
 		if( GSYS.DrawSetting.ShadowMapDraw )
 		{
@@ -2552,7 +2552,7 @@ static int  MV1_D3D11_ShaderSetup( MV1_MESH *Mesh, int VertexType, int IsToonOut
 	else
 	if( MV1Man.DrawMode == DX_MV1_DRAWMODE_NORMAL_DEPTH )
 	{
-		// –@ü‚Æ[“x‚Ì•`‰æ
+		// æ³•ç·šã¨æ·±åº¦ã®æç”»
 
 		ForcePL = TRUE ;
 
@@ -2583,7 +2583,7 @@ static int  MV1_D3D11_ShaderSetup( MV1_MESH *Mesh, int VertexType, int IsToonOut
 	else
 	if( GSYS.DrawSetting.ShadowMapDraw )
 	{
-		// ƒVƒƒƒhƒEƒ}ƒbƒv‚Ö‚Ì•`‰æ
+		// ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ã¸ã®æç”»
 
 	#ifndef DX_NON_SHADERCODE_BINARY
 		VSAddress = &SCM->MV1_ShadowMap_VS_Code[ VertexType ][ BumpMap ] ;
@@ -2665,7 +2665,7 @@ static int  MV1_D3D11_ShaderSetup( MV1_MESH *Mesh, int VertexType, int IsToonOut
 	if( MMaterial->BaseData->Type >= DX_MATERIAL_TYPE_MAT_SPEC_LUMINANCE_UNORM &&
 		MMaterial->BaseData->Type <= DX_MATERIAL_TYPE_MAT_SPEC_POWER_CMP_GREATEREQUAL )
 	{
-		// “Áêƒ}ƒeƒŠƒAƒ‹ƒ^ƒCƒv
+		// ç‰¹æ®Šãƒãƒ†ãƒªã‚¢ãƒ«ã‚¿ã‚¤ãƒ—
 	#ifndef DX_NON_SHADERCODE_BINARY
 		VSAddress = &SCM->MV1_NoLighting_VS_Code[ VertexType ][ BumpMap ][ 0 ] ;
 		PSAddress = &SCM->MV1_MaterialType_PS_Code[ MMaterial->BaseData->Type ][ AlphaTestMode ] ;
@@ -2685,7 +2685,7 @@ static int  MV1_D3D11_ShaderSetup( MV1_MESH *Mesh, int VertexType, int IsToonOut
 	else
 	if( GD3D11.Device.State.Lighting )
 	{
-		// ƒ‰ƒCƒeƒBƒ“ƒO‚ ‚è•`‰æ
+		// ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ã‚ã‚Šæç”»
 
 		int LightMode[ DX_PIXELLIGHTING_LIGHT_NUM ] ;
 		int EnableLightNum ;
@@ -2837,7 +2837,7 @@ static int  MV1_D3D11_ShaderSetup( MV1_MESH *Mesh, int VertexType, int IsToonOut
 	}
 	else
 	{
-		// ƒ‰ƒCƒeƒBƒ“ƒO‚È‚µ•`‰æ
+		// ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ãªã—æç”»
 
 	#ifndef DX_NON_SHADERCODE_BINARY
 		VSAddress = &SCM->MV1_NoLighting_VS_Code[ VertexType ][ BumpMap ][ FogType ] ;
@@ -2908,11 +2908,11 @@ static int  MV1_D3D11_ShaderSetup( MV1_MESH *Mesh, int VertexType, int IsToonOut
 		PS_PL != NULL && *PS_PL != NULL ;
 #endif // DX_NON_SHADERCODE_BINARY
 
-	// ƒIƒŠƒWƒiƒ‹ƒVƒF[ƒ_[‚ğg—p‚·‚éê‡‚ÍƒIƒŠƒWƒiƒ‹ƒVƒF[ƒ_[‚ğƒZƒbƒgƒAƒbƒv
+	// ã‚ªãƒªã‚¸ãƒŠãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ä½¿ç”¨ã™ã‚‹å ´åˆã¯ã‚ªãƒªã‚¸ãƒŠãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 	UseOrigShader = FALSE ;
 	if( MV1Man.UseOrigShaderFlag )
 	{
-		// ’¸“_ƒVƒF[ƒ_[‚ÌƒZƒbƒgƒAƒbƒv
+		// é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 		if( GSYS.DrawSetting.UserShaderRenderInfo.SetVertexShaderHandle > 0 )
 		{
 			if( Graphics_D3D11_DeviceState_SetVertexShaderToHandle( GSYS.DrawSetting.UserShaderRenderInfo.SetVertexShaderHandle ) < 0 )
@@ -2925,7 +2925,7 @@ static int  MV1_D3D11_ShaderSetup( MV1_MESH *Mesh, int VertexType, int IsToonOut
 			}
 		}
 
-		// ƒWƒIƒƒgƒŠƒVƒF[ƒ_[‚ÌƒZƒbƒgƒAƒbƒv
+		// ã‚¸ã‚ªãƒ¡ãƒˆãƒªã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 		if( GSYS.DrawSetting.UserShaderRenderInfo.SetGeometryShaderHandle > 0 )
 		{
 			if( Graphics_D3D11_DeviceState_SetGeometryShaderToHandle( GSYS.DrawSetting.UserShaderRenderInfo.SetGeometryShaderHandle ) < 0 )
@@ -2938,7 +2938,7 @@ static int  MV1_D3D11_ShaderSetup( MV1_MESH *Mesh, int VertexType, int IsToonOut
 			}
 		}
 
-		// ƒsƒNƒZƒ‹ƒVƒF[ƒ_[‚ÌƒZƒbƒgƒAƒbƒv
+		// ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 		if( GSYS.DrawSetting.UserShaderRenderInfo.SetPixelShaderHandle > 0 )
 		{
 			if( Graphics_D3D11_DeviceState_SetPixelShaderToHandle( GSYS.DrawSetting.UserShaderRenderInfo.SetPixelShaderHandle ) < 0 )
@@ -2952,108 +2952,108 @@ static int  MV1_D3D11_ShaderSetup( MV1_MESH *Mesh, int VertexType, int IsToonOut
 		}
 	}
 
-	// ƒIƒŠƒWƒiƒ‹ƒVƒF[ƒ_[‚ğg—p‚µ‚È‚¢‚©AƒIƒŠƒWƒiƒ‹ƒVƒF[ƒ_[‚ÌƒZƒbƒgƒAƒbƒv‚É¸”s‚µ‚½‚çƒfƒtƒHƒ‹ƒgƒVƒF[ƒ_[‚ğƒZƒbƒgƒAƒbƒv‚·‚é
+	// ã‚ªãƒªã‚¸ãƒŠãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ä½¿ç”¨ã—ãªã„ã‹ã€ã‚ªãƒªã‚¸ãƒŠãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã«å¤±æ•—ã—ãŸã‚‰ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã™ã‚‹
 	if( UseOrigShader == FALSE )
 	{
 		if( ForcePL || ( ( GSYS.Light.EnableNum > DX_VERTEXLIGHTING_LIGHT_NUM || GD3D11.UsePixelLightingShader ) && ValidPL ) )
 		{
-			// ƒVƒF[ƒ_[‚ª‚ ‚é‚©‚Ç‚¤‚©‚ğ’²‚×‚é
+			// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãŒã‚ã‚‹ã‹ã©ã†ã‹ã‚’èª¿ã¹ã‚‹
 			if( *VS_PL == NULL )
 			{
 			#ifndef DX_NON_SHADERCODE_BINARY
-				// ƒVƒF[ƒ_[‚Ìì¬‚ğ‚İ‚é
+				// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ä½œæˆã‚’è©¦ã¿ã‚‹
 				if( Graphics_D3D11_VertexShader_Create( VSAddress_PL, VS_PL, 1 ) != 0 )
 			#endif // DX_NON_SHADERCODE_BINARY
 				{
-					DXST_LOGFILEFMT_ADDUTF16LE(( "\x4d\x00\x56\x00\x31\x00\x5f\x00\x44\x00\x33\x00\x44\x00\x31\x00\x31\x00\x5f\x00\x53\x00\x68\x00\x61\x00\x64\x00\x65\x00\x72\x00\x53\x00\x65\x00\x74\x00\x75\x00\x70\x00\x20\x00\x67\x30\x02\x98\xb9\x70\xb7\x30\xa7\x30\xfc\x30\xc0\x30\xfc\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x20\x00\x5d\x30\x6e\x30\x11\xff\x0a\x00\x00"/*@ L"MV1_D3D11_ShaderSetup ‚Å’¸“_ƒVƒF[ƒ_[‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½ ‚»‚Ì‚P\n" @*/ )) ;
+					DXST_LOGFILEFMT_ADDUTF16LE(( "\x4d\x00\x56\x00\x31\x00\x5f\x00\x44\x00\x33\x00\x44\x00\x31\x00\x31\x00\x5f\x00\x53\x00\x68\x00\x61\x00\x64\x00\x65\x00\x72\x00\x53\x00\x65\x00\x74\x00\x75\x00\x70\x00\x20\x00\x67\x30\x02\x98\xb9\x70\xb7\x30\xa7\x30\xfc\x30\xc0\x30\xfc\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x20\x00\x5d\x30\x6e\x30\x11\xff\x0a\x00\x00"/*@ L"MV1_D3D11_ShaderSetup ã§é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ ãã®ï¼‘\n" @*/ )) ;
 					return FALSE ;
 				}
 			}
 
-			// ƒo[ƒeƒbƒNƒXƒVƒF[ƒ_[‚ÌƒZƒbƒgƒAƒbƒv
+			// ãƒãƒ¼ãƒ†ãƒƒã‚¯ã‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 			Graphics_D3D11_DeviceState_SetVertexShader( *VS_PL, FALSE ) ;
 
-			// ƒWƒIƒƒgƒŠƒVƒF[ƒ_[‚ÌƒŠƒZƒbƒg
+			// ã‚¸ã‚ªãƒ¡ãƒˆãƒªã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ãƒªã‚»ãƒƒãƒˆ
 			if( GD3D11.Device.State.SetGeometryShader != NULL )
 			{
 				Graphics_D3D11_DeviceState_ResetGeometryShader() ;
 			}
 
-			// ƒVƒF[ƒ_[‚ª‚ ‚é‚©‚Ç‚¤‚©‚ğ’²‚×‚é
+			// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãŒã‚ã‚‹ã‹ã©ã†ã‹ã‚’èª¿ã¹ã‚‹
 			if( *PS_PL == NULL )
 			{
 			#ifndef DX_NON_SHADERCODE_BINARY
-				// ƒVƒF[ƒ_[‚Ìì¬‚ğ‚İ‚é
+				// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ä½œæˆã‚’è©¦ã¿ã‚‹
 				if( Graphics_D3D11_PixelShader_Create( PSAddress_PL, PS_PL, 1 ) != 0 )
 			#endif // DX_NON_SHADERCODE_BINARY
 				{
-					DXST_LOGFILEFMT_ADDUTF16LE(( "\x4d\x00\x56\x00\x31\x00\x5f\x00\x44\x00\x33\x00\x44\x00\x31\x00\x31\x00\x5f\x00\x53\x00\x68\x00\x61\x00\x64\x00\x65\x00\x72\x00\x53\x00\x65\x00\x74\x00\x75\x00\x70\x00\x20\x00\x67\x30\xd4\x30\xaf\x30\xbb\x30\xeb\x30\xb7\x30\xa7\x30\xfc\x30\xc0\x30\xfc\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x20\x00\x5d\x30\x6e\x30\x11\xff\x0a\x00\x00"/*@ L"MV1_D3D11_ShaderSetup ‚ÅƒsƒNƒZƒ‹ƒVƒF[ƒ_[‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½ ‚»‚Ì‚P\n" @*/ )) ;
+					DXST_LOGFILEFMT_ADDUTF16LE(( "\x4d\x00\x56\x00\x31\x00\x5f\x00\x44\x00\x33\x00\x44\x00\x31\x00\x31\x00\x5f\x00\x53\x00\x68\x00\x61\x00\x64\x00\x65\x00\x72\x00\x53\x00\x65\x00\x74\x00\x75\x00\x70\x00\x20\x00\x67\x30\xd4\x30\xaf\x30\xbb\x30\xeb\x30\xb7\x30\xa7\x30\xfc\x30\xc0\x30\xfc\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x20\x00\x5d\x30\x6e\x30\x11\xff\x0a\x00\x00"/*@ L"MV1_D3D11_ShaderSetup ã§ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ ãã®ï¼‘\n" @*/ )) ;
 					return FALSE ;
 				}
 			}
 
-			// ƒsƒNƒZƒ‹ƒVƒF[ƒ_[‚ÌƒZƒbƒgƒAƒbƒv
+			// ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 			Graphics_D3D11_DeviceState_SetPixelShader( *PS_PL, FALSE ) ;
 		}
 		else
 		{
-			// ƒVƒF[ƒ_[‚ª‚ ‚é‚©‚Ç‚¤‚©‚ğ’²‚×‚é
+			// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãŒã‚ã‚‹ã‹ã©ã†ã‹ã‚’èª¿ã¹ã‚‹
 			if( *VS == NULL )
 			{
 			#ifndef DX_NON_SHADERCODE_BINARY
-				// ƒVƒF[ƒ_[‚Ìì¬‚ğ‚İ‚é
+				// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ä½œæˆã‚’è©¦ã¿ã‚‹
 				if( Graphics_D3D11_VertexShader_Create( VSAddress, VS, 1 ) != 0 )
 			#endif // DX_NON_SHADERCODE_BINARY
 				{
-					DXST_LOGFILEFMT_ADDUTF16LE(( "\x4d\x00\x56\x00\x31\x00\x5f\x00\x44\x00\x33\x00\x44\x00\x31\x00\x31\x00\x5f\x00\x53\x00\x68\x00\x61\x00\x64\x00\x65\x00\x72\x00\x53\x00\x65\x00\x74\x00\x75\x00\x70\x00\x20\x00\x67\x30\x02\x98\xb9\x70\xb7\x30\xa7\x30\xfc\x30\xc0\x30\xfc\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x20\x00\x5d\x30\x6e\x30\x12\xff\x0a\x00\x00"/*@ L"MV1_D3D11_ShaderSetup ‚Å’¸“_ƒVƒF[ƒ_[‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½ ‚»‚Ì‚Q\n" @*/ )) ;
+					DXST_LOGFILEFMT_ADDUTF16LE(( "\x4d\x00\x56\x00\x31\x00\x5f\x00\x44\x00\x33\x00\x44\x00\x31\x00\x31\x00\x5f\x00\x53\x00\x68\x00\x61\x00\x64\x00\x65\x00\x72\x00\x53\x00\x65\x00\x74\x00\x75\x00\x70\x00\x20\x00\x67\x30\x02\x98\xb9\x70\xb7\x30\xa7\x30\xfc\x30\xc0\x30\xfc\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x20\x00\x5d\x30\x6e\x30\x12\xff\x0a\x00\x00"/*@ L"MV1_D3D11_ShaderSetup ã§é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ ãã®ï¼’\n" @*/ )) ;
 					return FALSE ;
 				}
 			}
 
-			// ƒo[ƒeƒbƒNƒXƒVƒF[ƒ_[‚ÌƒZƒbƒgƒAƒbƒv
+			// ãƒãƒ¼ãƒ†ãƒƒã‚¯ã‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 			Graphics_D3D11_DeviceState_SetVertexShader( *VS, FALSE ) ;
 
-			// ƒWƒIƒƒgƒŠƒVƒF[ƒ_[‚ÌƒŠƒZƒbƒg
+			// ã‚¸ã‚ªãƒ¡ãƒˆãƒªã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ãƒªã‚»ãƒƒãƒˆ
 			if( GD3D11.Device.State.SetGeometryShader != NULL )
 			{
 				Graphics_D3D11_DeviceState_ResetGeometryShader() ;
 			}
 
-			// ƒVƒF[ƒ_[‚ª‚ ‚é‚©‚Ç‚¤‚©‚ğ’²‚×‚é
+			// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãŒã‚ã‚‹ã‹ã©ã†ã‹ã‚’èª¿ã¹ã‚‹
 			if( *PS == NULL )
 			{
 			#ifndef DX_NON_SHADERCODE_BINARY
-				// ƒVƒF[ƒ_[‚Ìì¬‚ğ‚İ‚é
+				// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ä½œæˆã‚’è©¦ã¿ã‚‹
 				if( Graphics_D3D11_PixelShader_Create( PSAddress, PS, 1 ) != 0 )
 			#endif // DX_NON_SHADERCODE_BINARY
 				{
-					DXST_LOGFILEFMT_ADDUTF16LE(( "\x4d\x00\x56\x00\x31\x00\x5f\x00\x44\x00\x33\x00\x44\x00\x31\x00\x31\x00\x5f\x00\x53\x00\x68\x00\x61\x00\x64\x00\x65\x00\x72\x00\x53\x00\x65\x00\x74\x00\x75\x00\x70\x00\x20\x00\x67\x30\xd4\x30\xaf\x30\xbb\x30\xeb\x30\xb7\x30\xa7\x30\xfc\x30\xc0\x30\xfc\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x20\x00\x5d\x30\x6e\x30\x12\xff\x0a\x00\x00"/*@ L"MV1_D3D11_ShaderSetup ‚ÅƒsƒNƒZƒ‹ƒVƒF[ƒ_[‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½ ‚»‚Ì‚Q\n" @*/ )) ;
+					DXST_LOGFILEFMT_ADDUTF16LE(( "\x4d\x00\x56\x00\x31\x00\x5f\x00\x44\x00\x33\x00\x44\x00\x31\x00\x31\x00\x5f\x00\x53\x00\x68\x00\x61\x00\x64\x00\x65\x00\x72\x00\x53\x00\x65\x00\x74\x00\x75\x00\x70\x00\x20\x00\x67\x30\xd4\x30\xaf\x30\xbb\x30\xeb\x30\xb7\x30\xa7\x30\xfc\x30\xc0\x30\xfc\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x20\x00\x5d\x30\x6e\x30\x12\xff\x0a\x00\x00"/*@ L"MV1_D3D11_ShaderSetup ã§ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ ãã®ï¼’\n" @*/ )) ;
 					return FALSE ;
 				}
 			}
 
-			// ƒsƒNƒZƒ‹ƒVƒF[ƒ_[‚ÌƒZƒbƒgƒAƒbƒv
+			// ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 			Graphics_D3D11_DeviceState_SetPixelShader( *PS ) ;
 		}
 	}
 
-	// “ü—ÍƒŒƒCƒAƒEƒg‚ğƒZƒbƒg
+	// å…¥åŠ›ãƒ¬ã‚¤ã‚¢ã‚¦ãƒˆã‚’ã‚»ãƒƒãƒˆ
 	if( GD3D11.Device.InputLayout.MV1_VertexInputLayout[ BumpMap ][ VertexType ] == NULL )
 	{
 		Graphics_D3D11_InputLayout_Model_Create( BumpMap, VertexType ) ;
 	}
 	Graphics_D3D11_DeviceState_SetInputLayout( GD3D11.Device.InputLayout.MV1_VertexInputLayout[ BumpMap ][ VertexType ] ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return TRUE ;
 }
 
-// ƒ[ƒJƒ‹@¨@ƒ[ƒ‹ƒhs—ñ‚É MATRIX_4X4CT ‚ğİ’è‚·‚é
+// ãƒ­ãƒ¼ã‚«ãƒ«ã€€â†’ã€€ãƒ¯ãƒ¼ãƒ«ãƒ‰è¡Œåˆ—ã« MATRIX_4X4CT ã‚’è¨­å®šã™ã‚‹
 static void MV1_D3D11_SetWorldMatrix_MATRIX_4X4CT( const MATRIX_4X4CT *Matrix, int UseWorldViewMatrix )
 {
 	DX_D3D11_VS_CONST_BUFFER_BASE *ConstantVSBase = ( DX_D3D11_VS_CONST_BUFFER_BASE * )GD3D11.Device.Shader.Constant.ConstBuffer_VS_Base->SysmemBuffer ;
 
-	// ’è”ƒf[ƒ^‚É”½‰f
+	// å®šæ•°ãƒ‡ãƒ¼ã‚¿ã«åæ˜ 
 	if( GSYS.DrawSetting.Large3DPositionSupport )
 	{
 		if( UseWorldViewMatrix )
@@ -3113,11 +3113,11 @@ static void MV1_D3D11_SetWorldMatrix_MATRIX_4X4CT( const MATRIX_4X4CT *Matrix, i
 
 	GD3D11.Device.Shader.Constant.ConstBuffer_VS_Base->ChangeFlag = TRUE ;
 
-	// ’è”ƒoƒbƒtƒ@‚ğXV
+	// å®šæ•°ãƒãƒƒãƒ•ã‚¡ã‚’æ›´æ–°
 //	Graphics_D3D11_ConstantBuffer_Update( GD3D11.Device.Shader.Constant.ConstBuffer_VS_Base ) ;
 }
 
-// ƒ‚ƒfƒ‹•`‰æê—p‚Ì ƒ[ƒJƒ‹@¨@ƒ[ƒ‹ƒhs—ñ‚ğƒZƒbƒgƒAƒbƒv‚·‚é
+// ãƒ¢ãƒ‡ãƒ«æç”»å°‚ç”¨ã® ãƒ­ãƒ¼ã‚«ãƒ«ã€€â†’ã€€ãƒ¯ãƒ¼ãƒ«ãƒ‰è¡Œåˆ—ã‚’ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã™ã‚‹
 static void MV1_D3D11_SetupModelDrawWorldMatrix( MV1_FRAME *Frame, MV1_TRIANGLE_LIST_BASE *MBTList, int UseWorldViewMatrix )
 {
 	DX_D3D11_VS_CONST_BUFFER_LOCALWORLDMATRIX *ConstantVSLocalWorldMatrix = ( DX_D3D11_VS_CONST_BUFFER_LOCALWORLDMATRIX * )GD3D11.Device.Shader.Constant.ConstBuffer_VS_LocalWorldMatrix->SysmemBuffer ;
@@ -3125,7 +3125,7 @@ static void MV1_D3D11_SetupModelDrawWorldMatrix( MV1_FRAME *Frame, MV1_TRIANGLE_
 	DX_D3D11_SHADER_FLOAT4 *Dest ;
 	int i ;
 
-	// ’è”ƒf[ƒ^‚É”½‰f
+	// å®šæ•°ãƒ‡ãƒ¼ã‚¿ã«åæ˜ 
 	Dest = ConstantVSLocalWorldMatrix->Matrix ;
 	if( GSYS.DrawSetting.Large3DPositionSupport )
 	{
@@ -3202,11 +3202,11 @@ static void MV1_D3D11_SetupModelDrawWorldMatrix( MV1_FRAME *Frame, MV1_TRIANGLE_
 
 	GD3D11.Device.Shader.Constant.ConstBuffer_VS_LocalWorldMatrix->ChangeFlag = TRUE ;
 
-	// ’è”ƒoƒbƒtƒ@‚ğXV
+	// å®šæ•°ãƒãƒƒãƒ•ã‚¡ã‚’æ›´æ–°
 //	Graphics_D3D11_ConstantBuffer_Update( GD3D11.Device.Shader.Constant.ConstBuffer_VS_LocalWorldMatrix ) ;
 }
 
-// ‚Xƒ{[ƒ“ˆÈãƒƒbƒVƒ…‚Ì’¸“_î•ñ‚ğXV‚·‚é
+// ï¼™ãƒœãƒ¼ãƒ³ä»¥ä¸Šãƒ¡ãƒƒã‚·ãƒ¥ã®é ‚ç‚¹æƒ…å ±ã‚’æ›´æ–°ã™ã‚‹
 static int MV1_D3D11_UpdateSkinFreeBoneMeshVertexData(
 	MV1_FRAME_BASE         *MBFrame,
 	MV1_TRIANGLE_LIST_BASE *MBTList,
@@ -3237,13 +3237,13 @@ static int MV1_D3D11_UpdateSkinFreeBoneMeshVertexData(
 	MaxBoneNum   = ( DWORD )MBTList->MaxBoneNum;
 	ShapePos     = ( VECTOR * )TList->PF->D3D11.SkinFreeBoneVertexPositionBuffer ;
 
-	// Šù‚ÉXVÏ‚İ‚Ìê‡‚Í‰½‚à‚¹‚¸I—¹
+	// æ—¢ã«æ›´æ–°æ¸ˆã¿ã®å ´åˆã¯ä½•ã‚‚ã›ãšçµ‚äº†
 	if( MBTListPF->D3D11.SkinFreeBoneVertexBufferUpdate )
 	{
 		return 0 ;
 	}
 	
-	// ‚Ü‚¾ƒf[ƒ^“]‘——p‚Ìƒƒ‚ƒŠ—Ìˆæ‚ªŠm•Û‚³‚ê‚Ä‚¢‚È‚¢ê‡‚ÍŠm•Û‚·‚é
+	// ã¾ã ãƒ‡ãƒ¼ã‚¿è»¢é€ç”¨ã®ãƒ¡ãƒ¢ãƒªé ˜åŸŸãŒç¢ºä¿ã•ã‚Œã¦ã„ãªã„å ´åˆã¯ç¢ºä¿ã™ã‚‹
 	if( MBTListPF->D3D11.SkinFreeBoneVertexBuffer == NULL )
 	{
 		DWORD           *MVInd ;
@@ -3261,7 +3261,7 @@ static int MV1_D3D11_UpdateSkinFreeBoneMeshVertexData(
 			return -1 ;
 		}
 
-		// •Ï‰»‚µ‚È‚¢ƒf[ƒ^‚Í‚±‚±‚ÅƒZƒbƒg‚·‚é
+		// å¤‰åŒ–ã—ãªã„ãƒ‡ãƒ¼ã‚¿ã¯ã“ã“ã§ã‚»ãƒƒãƒˆã™ã‚‹
 		Bump		 = MBTList->Container->Material->NormalLayerNum ? 1 : 0 ;
 		UVNum		 = ( DWORD )( MBTList->Container->UVSetUnitNum > 2 ? 2 : MBTList->Container->UVSetUnitNum ) ;
 		Dest		 = ( BYTE * )MBTListPF->D3D11.SkinFreeBoneVertexBuffer ;
@@ -3292,10 +3292,10 @@ static int MV1_D3D11_UpdateSkinFreeBoneMeshVertexData(
 	PosSKFB = ( MV1_TLIST_SKIN_POS_FREEB * )ADDR16( MBTList->SkinPositionFREEB ) ;
 	Dest	= ( BYTE * )MBTListPF->D3D11.SkinFreeBoneVertexBuffer ;
 
-	// g—p‚µ‚Ä‚¢‚éƒ{[ƒ“‚ÌÅ‘å”‚ª MV1_TRIANGLE_LIST_USE_BONE_MAX_NUM ˆÈ‰º‚¾‚Á‚½‚çƒe[ƒuƒ‹‚ğg—p‚·‚é
+	// ä½¿ç”¨ã—ã¦ã„ã‚‹ãƒœãƒ¼ãƒ³ã®æœ€å¤§æ•°ãŒ MV1_TRIANGLE_LIST_USE_BONE_MAX_NUM ä»¥ä¸‹ã ã£ãŸã‚‰ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’ä½¿ç”¨ã™ã‚‹
 	if( MBFrame->UseSkinBoneNum < MV1_TRIANGLE_LIST_USE_BONE_MAX_NUM )
 	{
-		// g—p‚·‚és—ñ‚Ì€”õ‚ğs‚¤
+		// ä½¿ç”¨ã™ã‚‹è¡Œåˆ—ã®æº–å‚™ã‚’è¡Œã†
 		for( i = 0 ; i < ( DWORD )MBFrame->UseSkinBoneNum ; i ++ )
 		{
 			pSkinBoneMatrix[ i ] = Frame->UseSkinBoneMatrix[ i ] ;
@@ -3305,7 +3305,7 @@ static int MV1_D3D11_UpdateSkinFreeBoneMeshVertexData(
 		{
 			for( i = 0 ; i < VertexNum ; i ++, PosSKFB = ( MV1_TLIST_SKIN_POS_FREEB * )( ( BYTE * )PosSKFB + SrcUnitSize ), Dest += DestUnitSize )
 			{
-				// g‚í‚ê‚Ä‚¢‚éƒ{[ƒ“‚ª‚Ğ‚Æ‚Â‚Ìê‡‚ÍƒuƒŒƒ“ƒhs—ñ‚Ìì¬‚ÍƒXƒLƒbƒv‚·‚é
+				// ä½¿ã‚ã‚Œã¦ã„ã‚‹ãƒœãƒ¼ãƒ³ãŒã²ã¨ã¤ã®å ´åˆã¯ãƒ–ãƒ¬ãƒ³ãƒ‰è¡Œåˆ—ã®ä½œæˆã¯ã‚¹ã‚­ãƒƒãƒ—ã™ã‚‹
 				if( PosSKFB->MatrixWeight[ 0 ].W == 1.0f )
 				{
 					Mat = pSkinBoneMatrix[ PosSKFB->MatrixWeight[ 0 ].Index ] ;
@@ -3322,16 +3322,16 @@ static int MV1_D3D11_UpdateSkinFreeBoneMeshVertexData(
 				}
 				else
 				{
-					// ƒuƒŒƒ“ƒhs—ñ‚Ìì¬
+					// ãƒ–ãƒ¬ãƒ³ãƒ‰è¡Œåˆ—ã®ä½œæˆ
 					VBlend = PosSKFB->MatrixWeight ;
 					Weight = VBlend->W ;
 
-					// ‚O”Ô–Ú‚Í‰ÁZ‚Å‚Í‚È‚¢‚Ì‚Å•Êˆ—
+					// ï¼ç•ªç›®ã¯åŠ ç®—ã§ã¯ãªã„ã®ã§åˆ¥å‡¦ç†
 					Mat = pSkinBoneMatrix[ PosSKFB->MatrixWeight[ 0 ].Index ] ;
 					UnSafeMatrix4X4CT_D_Eq_D_Mul_S( &BlendMat.md, &Mat->md, Weight ) ;
 					VBlend ++ ;
 
-					// ‚P”Ô–Ú‚©‚ç‚Í‰ÁZ
+					// ï¼‘ç•ªç›®ã‹ã‚‰ã¯åŠ ç®—
 					for( j = 1 ; j < MaxBoneNum && VBlend->Index != -1 ; j ++, VBlend ++ )
 					{
 						Weight = VBlend->W ;
@@ -3342,7 +3342,7 @@ static int MV1_D3D11_UpdateSkinFreeBoneMeshVertexData(
 						UnSafeMatrix4X4CT_D_EqPlus_D_Mul_S( &BlendMat.md, &Mat->md, Weight ) ;
 					}
 
-					// ’¸“_À•W‚ÆƒuƒŒƒ“ƒhs—ñ‚ğæZ
+					// é ‚ç‚¹åº§æ¨™ã¨ãƒ–ãƒ¬ãƒ³ãƒ‰è¡Œåˆ—ã‚’ä¹—ç®—
 					if( ShapePos != NULL )
 					{
 						VectorTransform4X4CTD(   ( VECTOR * )&Dest[  0 ], ShapePos,                       &BlendMat.md ) ;
@@ -3364,7 +3364,7 @@ static int MV1_D3D11_UpdateSkinFreeBoneMeshVertexData(
 		{
 			for( i = 0 ; i < VertexNum ; i ++, PosSKFB = ( MV1_TLIST_SKIN_POS_FREEB * )( ( BYTE * )PosSKFB + SrcUnitSize ), Dest += DestUnitSize )
 			{
-				// g‚í‚ê‚Ä‚¢‚éƒ{[ƒ“‚ª‚Ğ‚Æ‚Â‚Ìê‡‚ÍƒuƒŒƒ“ƒhs—ñ‚Ìì¬‚ÍƒXƒLƒbƒv‚·‚é
+				// ä½¿ã‚ã‚Œã¦ã„ã‚‹ãƒœãƒ¼ãƒ³ãŒã²ã¨ã¤ã®å ´åˆã¯ãƒ–ãƒ¬ãƒ³ãƒ‰è¡Œåˆ—ã®ä½œæˆã¯ã‚¹ã‚­ãƒƒãƒ—ã™ã‚‹
 				if( PosSKFB->MatrixWeight[ 0 ].W == 1.0f )
 				{
 					Mat = pSkinBoneMatrix[ PosSKFB->MatrixWeight[ 0 ].Index ] ;
@@ -3381,16 +3381,16 @@ static int MV1_D3D11_UpdateSkinFreeBoneMeshVertexData(
 				}
 				else
 				{
-					// ƒuƒŒƒ“ƒhs—ñ‚Ìì¬
+					// ãƒ–ãƒ¬ãƒ³ãƒ‰è¡Œåˆ—ã®ä½œæˆ
 					VBlend = PosSKFB->MatrixWeight ;
 					Weight = VBlend->W ;
 
-					// ‚O”Ô–Ú‚Í‰ÁZ‚Å‚Í‚È‚¢‚Ì‚Å•Êˆ—
+					// ï¼ç•ªç›®ã¯åŠ ç®—ã§ã¯ãªã„ã®ã§åˆ¥å‡¦ç†
 					Mat = pSkinBoneMatrix[ PosSKFB->MatrixWeight[ 0 ].Index ] ;
 					UnSafeMatrix4X4CT_F_Eq_F_Mul_S( &BlendMat.mf, &Mat->mf, Weight ) ;
 					VBlend ++ ;
 
-					// ‚P”Ô–Ú‚©‚ç‚Í‰ÁZ
+					// ï¼‘ç•ªç›®ã‹ã‚‰ã¯åŠ ç®—
 					for( j = 1 ; j < MaxBoneNum && VBlend->Index != -1 ; j ++, VBlend ++ )
 					{
 						Weight = VBlend->W ;
@@ -3401,7 +3401,7 @@ static int MV1_D3D11_UpdateSkinFreeBoneMeshVertexData(
 						UnSafeMatrix4X4CT_F_EqPlus_F_Mul_S( &BlendMat.mf, &Mat->mf, Weight ) ;
 					}
 
-					// ’¸“_À•W‚ÆƒuƒŒƒ“ƒhs—ñ‚ğæZ
+					// é ‚ç‚¹åº§æ¨™ã¨ãƒ–ãƒ¬ãƒ³ãƒ‰è¡Œåˆ—ã‚’ä¹—ç®—
 					if( ShapePos != NULL )
 					{
 						VectorTransform4X4CTF(   ( VECTOR * )&Dest[  0 ], ShapePos,                       &BlendMat.mf ) ;
@@ -3426,12 +3426,12 @@ static int MV1_D3D11_UpdateSkinFreeBoneMeshVertexData(
 		{
 			for( i = 0 ; i < VertexNum ; i ++, PosSKFB = ( MV1_TLIST_SKIN_POS_FREEB * )( ( BYTE * )PosSKFB + SrcUnitSize ), Dest += DestUnitSize )
 			{
-				// g‚í‚ê‚Ä‚¢‚éƒ{[ƒ“‚ª‚Ğ‚Æ‚Â‚Ìê‡‚ÍƒuƒŒƒ“ƒhs—ñ‚Ìì¬‚ÍƒXƒLƒbƒv‚·‚é
+				// ä½¿ã‚ã‚Œã¦ã„ã‚‹ãƒœãƒ¼ãƒ³ãŒã²ã¨ã¤ã®å ´åˆã¯ãƒ–ãƒ¬ãƒ³ãƒ‰è¡Œåˆ—ã®ä½œæˆã¯ã‚¹ã‚­ãƒƒãƒ—ã™ã‚‹
 				if( PosSKFB->MatrixWeight[ 0 ].W == 1.0f )
 				{
 					Mat = Frame->UseSkinBoneMatrix[ PosSKFB->MatrixWeight[ 0 ].Index ] ;
 
-					// ’¸“_À•W‚ÆƒuƒŒƒ“ƒhs—ñ‚ğæZ
+					// é ‚ç‚¹åº§æ¨™ã¨ãƒ–ãƒ¬ãƒ³ãƒ‰è¡Œåˆ—ã‚’ä¹—ç®—
 					if( ShapePos != NULL )
 					{
 						VectorTransform4X4CTD(   ( VECTOR * )&Dest[  0 ], ShapePos,                       &Mat->md ) ;
@@ -3444,16 +3444,16 @@ static int MV1_D3D11_UpdateSkinFreeBoneMeshVertexData(
 				}
 				else
 				{
-					// ƒuƒŒƒ“ƒhs—ñ‚Ìì¬
+					// ãƒ–ãƒ¬ãƒ³ãƒ‰è¡Œåˆ—ã®ä½œæˆ
 					VBlend = PosSKFB->MatrixWeight ;
 					Weight = VBlend->W ;
 
-					// ‚O”Ô–Ú‚Í‰ÁZ‚Å‚Í‚È‚¢‚Ì‚Å•Êˆ—
+					// ï¼ç•ªç›®ã¯åŠ ç®—ã§ã¯ãªã„ã®ã§åˆ¥å‡¦ç†
 					Mat = Frame->UseSkinBoneMatrix[ VBlend->Index ] ;
 					UnSafeMatrix4X4CT_D_Eq_D_Mul_S( &BlendMat.md, &Mat->md, Weight ) ;
 					VBlend ++ ;
 
-					// ‚P”Ô–Ú‚©‚ç‚Í‰ÁZ
+					// ï¼‘ç•ªç›®ã‹ã‚‰ã¯åŠ ç®—
 					for( j = 1 ; j < MaxBoneNum && VBlend->Index != -1 ; j ++, VBlend ++ )
 					{
 						Weight = VBlend->W ;
@@ -3464,7 +3464,7 @@ static int MV1_D3D11_UpdateSkinFreeBoneMeshVertexData(
 						UnSafeMatrix4X4CT_D_EqPlus_D_Mul_S( &BlendMat.md, &Mat->md, Weight ) ;
 					}
 
-					// ’¸“_À•W‚ÆƒuƒŒƒ“ƒhs—ñ‚ğæZ
+					// é ‚ç‚¹åº§æ¨™ã¨ãƒ–ãƒ¬ãƒ³ãƒ‰è¡Œåˆ—ã‚’ä¹—ç®—
 					if( ShapePos != NULL )
 					{
 						VectorTransform4X4CTD(   ( VECTOR * )&Dest[  0 ], ShapePos,                       &BlendMat.md ) ;
@@ -3486,12 +3486,12 @@ static int MV1_D3D11_UpdateSkinFreeBoneMeshVertexData(
 		{
 			for( i = 0 ; i < VertexNum ; i ++, PosSKFB = ( MV1_TLIST_SKIN_POS_FREEB * )( ( BYTE * )PosSKFB + SrcUnitSize ), Dest += DestUnitSize )
 			{
-				// g‚í‚ê‚Ä‚¢‚éƒ{[ƒ“‚ª‚Ğ‚Æ‚Â‚Ìê‡‚ÍƒuƒŒƒ“ƒhs—ñ‚Ìì¬‚ÍƒXƒLƒbƒv‚·‚é
+				// ä½¿ã‚ã‚Œã¦ã„ã‚‹ãƒœãƒ¼ãƒ³ãŒã²ã¨ã¤ã®å ´åˆã¯ãƒ–ãƒ¬ãƒ³ãƒ‰è¡Œåˆ—ã®ä½œæˆã¯ã‚¹ã‚­ãƒƒãƒ—ã™ã‚‹
 				if( PosSKFB->MatrixWeight[ 0 ].W == 1.0f )
 				{
 					Mat = Frame->UseSkinBoneMatrix[ PosSKFB->MatrixWeight[ 0 ].Index ] ;
 
-					// ’¸“_À•W‚ÆƒuƒŒƒ“ƒhs—ñ‚ğæZ
+					// é ‚ç‚¹åº§æ¨™ã¨ãƒ–ãƒ¬ãƒ³ãƒ‰è¡Œåˆ—ã‚’ä¹—ç®—
 					if( ShapePos != NULL )
 					{
 						VectorTransform4X4CTF(   ( VECTOR * )&Dest[  0 ], ShapePos,                       &Mat->mf ) ;
@@ -3504,16 +3504,16 @@ static int MV1_D3D11_UpdateSkinFreeBoneMeshVertexData(
 				}
 				else
 				{
-					// ƒuƒŒƒ“ƒhs—ñ‚Ìì¬
+					// ãƒ–ãƒ¬ãƒ³ãƒ‰è¡Œåˆ—ã®ä½œæˆ
 					VBlend = PosSKFB->MatrixWeight ;
 					Weight = VBlend->W ;
 
-					// ‚O”Ô–Ú‚Í‰ÁZ‚Å‚Í‚È‚¢‚Ì‚Å•Êˆ—
+					// ï¼ç•ªç›®ã¯åŠ ç®—ã§ã¯ãªã„ã®ã§åˆ¥å‡¦ç†
 					Mat = Frame->UseSkinBoneMatrix[ VBlend->Index ] ;
 					UnSafeMatrix4X4CT_F_Eq_F_Mul_S( &BlendMat.mf, &Mat->mf, Weight ) ;
 					VBlend ++ ;
 
-					// ‚P”Ô–Ú‚©‚ç‚Í‰ÁZ
+					// ï¼‘ç•ªç›®ã‹ã‚‰ã¯åŠ ç®—
 					for( j = 1 ; j < MaxBoneNum && VBlend->Index != -1 ; j ++, VBlend ++ )
 					{
 						Weight = VBlend->W ;
@@ -3524,7 +3524,7 @@ static int MV1_D3D11_UpdateSkinFreeBoneMeshVertexData(
 						UnSafeMatrix4X4CT_F_EqPlus_F_Mul_S( &BlendMat.mf, &Mat->mf, Weight ) ;
 					}
 
-					// ’¸“_À•W‚ÆƒuƒŒƒ“ƒhs—ñ‚ğæZ
+					// é ‚ç‚¹åº§æ¨™ã¨ãƒ–ãƒ¬ãƒ³ãƒ‰è¡Œåˆ—ã‚’ä¹—ç®—
 					if( ShapePos != NULL )
 					{
 						VectorTransform4X4CTF(   ( VECTOR * )&Dest[  0 ], ShapePos,                       &BlendMat.mf ) ;
@@ -3544,10 +3544,10 @@ static int MV1_D3D11_UpdateSkinFreeBoneMeshVertexData(
 		}
 	}
 
-	// XVÏ‚İƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// æ›´æ–°æ¸ˆã¿ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	MBTListPF->D3D11.SkinFreeBoneVertexBufferUpdate = TRUE ;
 
-	// ’¸“_ƒoƒbƒtƒ@‚ğXV
+	// é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã‚’æ›´æ–°
 	{
 		D_D3D11_BOX DestBox ;
 
@@ -3572,7 +3572,7 @@ static int MV1_D3D11_UpdateSkinFreeBoneMeshVertexData(
 }
 
 
-// ƒƒbƒVƒ…•`‰æ•”•ª‚ğ”²‚«o‚µ‚½‚à‚Ì
+// ãƒ¡ãƒƒã‚·ãƒ¥æç”»éƒ¨åˆ†ã‚’æŠœãå‡ºã—ãŸã‚‚ã®
 extern	void			MV1_D3D11_DrawMesh_PF( MV1_MESH *Mesh, int TriangleListIndex )
 {
 	MV1_TRIANGLE_LIST          * RST TList ;
@@ -3593,7 +3593,7 @@ extern	void			MV1_D3D11_DrawMesh_PF( MV1_MESH *Mesh, int TriangleListIndex )
 	MBase   = Model->BaseData ;
 	MBMesh  = Mesh->BaseData ;
 
-	// •`‰æƒfƒoƒCƒX‚ª–³Œø‚¾‚Á‚½‚ç‰½‚à‚µ‚È‚¢
+	// æç”»ãƒ‡ãƒã‚¤ã‚¹ãŒç„¡åŠ¹ã ã£ãŸã‚‰ä½•ã‚‚ã—ãªã„
 	if( Graphics_Hardware_CheckValid_PF() == 0 )
 	{
 		return ;
@@ -3615,29 +3615,29 @@ extern	void			MV1_D3D11_DrawMesh_PF( MV1_MESH *Mesh, int TriangleListIndex )
 		}
 	}
 
-	// ƒvƒŠƒ~ƒeƒBƒuƒ^ƒCƒv‚ğƒZƒbƒg
+	// ãƒ—ãƒªãƒŸãƒ†ã‚£ãƒ–ã‚¿ã‚¤ãƒ—ã‚’ã‚»ãƒƒãƒˆ
 	Graphics_D3D11_DeviceState_SetPrimitiveTopology( D_D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST ) ;
 
-	// ƒ}ƒeƒŠƒAƒ‹‚Ì‹¤’Ê•”•ª‚ÌƒZƒbƒgƒAƒbƒv
+	// ãƒãƒ†ãƒªã‚¢ãƒ«ã®å…±é€šéƒ¨åˆ†ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 	if( MV1_D3D11_SetupMeshDrawMaterialCommon( Mesh ) == false )
 	{
 		return ;
 	}
 
-	// ƒ}ƒeƒŠƒAƒ‹‚ÌƒZƒbƒgƒAƒbƒv
+	// ãƒãƒ†ãƒªã‚¢ãƒ«ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 	MV1_D3D11_SetupMeshDrawMaterial( Mesh ) ;
 
-	// ‚Xƒ{[ƒ“ˆÈã‚ÌƒXƒLƒjƒ“ƒOƒƒbƒVƒ…‚ÌXV‚ğ‚µ‚½‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğ“|‚·
+	// ï¼™ãƒœãƒ¼ãƒ³ä»¥ä¸Šã®ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥ã®æ›´æ–°ã‚’ã—ãŸã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 	MBTList = MBMesh->TriangleList ;
 	for( i = 0 ; i < MBMesh->TriangleListNum ; i ++ , MBTList ++ )
 	{
 		( ( MV1_TRIANGLE_LIST_BASE_PF * )MBTList->PFBuffer )->D3D11.SkinFreeBoneVertexBufferUpdate = FALSE ;
 	}
 
-	// ’ÊíƒƒbƒVƒ…‚Ì”ñ•\¦ƒtƒ‰ƒO‚ª—§‚Á‚Ä‚¢‚½‚ç•`‰æ‚µ‚È‚¢
+	// é€šå¸¸ãƒ¡ãƒƒã‚·ãƒ¥ã®éè¡¨ç¤ºãƒ•ãƒ©ã‚°ãŒç«‹ã£ã¦ã„ãŸã‚‰æç”»ã—ãªã„
 	if( Model->MeshCategoryHide[ DX_MV1_MESHCATEGORY_NORMAL ] == FALSE )
 	{
-		// ƒgƒ‰ƒCƒAƒ“ƒOƒ‹ƒŠƒXƒg‚Ì”‚¾‚¯ŒJ‚è•Ô‚µ
+		// ãƒˆãƒ©ã‚¤ã‚¢ãƒ³ã‚°ãƒ«ãƒªã‚¹ãƒˆã®æ•°ã ã‘ç¹°ã‚Šè¿”ã—
 		TList   = Mesh->TriangleList ;
 		MBTList = MBMesh->TriangleList ;
 		SetupShaderMaterial = -1 ;
@@ -3645,13 +3645,13 @@ extern	void			MV1_D3D11_DrawMesh_PF( MV1_MESH *Mesh, int TriangleListIndex )
 		{
 			MBTListPF = ( MV1_TRIANGLE_LIST_BASE_PF * )MBTList->PFBuffer ;
 
-			// ƒgƒ‰ƒCƒAƒ“ƒOƒ‹ƒŠƒXƒg‚Ìw’è‚ª‚ ‚éê‡‚Í‚»‚êˆÈŠO‚Ìƒgƒ‰ƒCƒAƒ“ƒOƒ‹ƒŠƒXƒg‚Í•`‰æ‚µ‚È‚¢
+			// ãƒˆãƒ©ã‚¤ã‚¢ãƒ³ã‚°ãƒ«ãƒªã‚¹ãƒˆã®æŒ‡å®šãŒã‚ã‚‹å ´åˆã¯ãã‚Œä»¥å¤–ã®ãƒˆãƒ©ã‚¤ã‚¢ãƒ³ã‚°ãƒ«ãƒªã‚¹ãƒˆã¯æç”»ã—ãªã„
 			if( TriangleListIndex >= 0 && i != TriangleListIndex )
 			{
 				continue ;
 			}
 
-			// ƒVƒF[ƒ_[‚ÌƒZƒbƒgƒAƒbƒv
+			// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 			if( MBTList->VertexType == MV1_VERTEX_TYPE_NORMAL && MBase->UsePackDraw )
 			{
 				if( MV1_D3D11_ShaderSetup( Mesh, MV1_VERTEX_TYPE_SKIN_4BONE, FALSE ) == FALSE )
@@ -3667,10 +3667,10 @@ extern	void			MV1_D3D11_DrawMesh_PF( MV1_MESH *Mesh, int TriangleListIndex )
 				}
 			}
 
-			// ƒCƒ“ƒfƒbƒNƒXƒoƒbƒtƒ@‚ÌƒZƒbƒgƒAƒbƒv
+			// ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒãƒƒãƒ•ã‚¡ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 			Graphics_D3D11_DeviceState_SetIndexBuffer( MBTList->VertexBuffer->PF->D3D11.IndexBuffer, D_DXGI_FORMAT_R16_UINT ) ;
 
-			// ’¸“_ƒoƒbƒtƒ@‚ÌƒZƒbƒgƒAƒbƒv
+			// é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 			if( TList->PF->D3D11.VertexBuffer )
 			{
 				Graphics_D3D11_DeviceState_SetVertexBuffer( TList->PF->D3D11.VertexBuffer,                 ( int )MBTList->VertexBuffer->UnitSize ) ;
@@ -3680,24 +3680,24 @@ extern	void			MV1_D3D11_DrawMesh_PF( MV1_MESH *Mesh, int TriangleListIndex )
 				Graphics_D3D11_DeviceState_SetVertexBuffer( MBTList->VertexBuffer->PF->D3D11.VertexBuffer, ( int )MBTList->VertexBuffer->UnitSize ) ;
 			}
 
-			// ’¸“_‚Ìƒ^ƒCƒv‚É‚æ‚Á‚Äˆ—‚ğ•ªŠò
+			// é ‚ç‚¹ã®ã‚¿ã‚¤ãƒ—ã«ã‚ˆã£ã¦å‡¦ç†ã‚’åˆ†å²
 			switch( MBTList->VertexType )
 			{
-			case MV1_VERTEX_TYPE_NORMAL :		// „‘Ìƒgƒ‰ƒCƒAƒ“ƒOƒ‹ƒŠƒXƒg
-				// •¡”“¯•`‰æ‚Ìê‡‚Í‚Sƒ{[ƒ“ƒXƒLƒjƒ“ƒOƒƒbƒVƒ…‚Æ‚µ‚Ä•`‰æ‚·‚é
+			case MV1_VERTEX_TYPE_NORMAL :		// å‰›ä½“ãƒˆãƒ©ã‚¤ã‚¢ãƒ³ã‚°ãƒ«ãƒªã‚¹ãƒˆ
+				// è¤‡æ•°åŒæ™‚æç”»ã®å ´åˆã¯ï¼”ãƒœãƒ¼ãƒ³ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥ã¨ã—ã¦æç”»ã™ã‚‹
 				if( MBase->UsePackDraw )
 				{
 					goto SD4BONESKIN ;
 				}
 
-				// g—p‚·‚éƒ[ƒJƒ‹¨ƒ[ƒ‹ƒhs—ñ‚Ì—pˆÓ
+				// ä½¿ç”¨ã™ã‚‹ãƒ­ãƒ¼ã‚«ãƒ«â†’ãƒ¯ãƒ¼ãƒ«ãƒ‰è¡Œåˆ—ã®ç”¨æ„
 				MV1_D3D11_SetWorldMatrix_MATRIX_4X4CT( &Frame->LocalWorldMatrix, UseWorldViewMatrix ) ;
 
 #ifndef NOT_RENDER
-				// ƒXƒe[ƒg‚Æ’è”ƒoƒbƒtƒ@‚ÌXV
+				// ã‚¹ãƒ†ãƒ¼ãƒˆã¨å®šæ•°ãƒãƒƒãƒ•ã‚¡ã®æ›´æ–°
 				Graphics_D3D11_DeviceState_SetupStateAndConstantBuffer() ;
 
-				// •`‰æ
+				// æç”»
 				D3D11DeviceContext_DrawIndexed(
 					( UINT )MBTList->IndexNum,
 					( UINT )MBTList->VBStartIndex,
@@ -3712,14 +3712,14 @@ extern	void			MV1_D3D11_DrawMesh_PF( MV1_MESH *Mesh, int TriangleListIndex )
 				}
 				break ;
 
-				// ‚Sƒ{[ƒ“ˆÈ“àƒgƒ‰ƒCƒAƒ“ƒOƒ‹ƒŠƒXƒg‚Æ‚Wƒ{[ƒ“ˆÈ“àƒgƒ‰ƒCƒAƒ“ƒOƒ‹ƒŠƒXƒg
+				// ï¼”ãƒœãƒ¼ãƒ³ä»¥å†…ãƒˆãƒ©ã‚¤ã‚¢ãƒ³ã‚°ãƒ«ãƒªã‚¹ãƒˆã¨ï¼˜ãƒœãƒ¼ãƒ³ä»¥å†…ãƒˆãƒ©ã‚¤ã‚¢ãƒ³ã‚°ãƒ«ãƒªã‚¹ãƒˆ
 			case MV1_VERTEX_TYPE_SKIN_4BONE :
 			case MV1_VERTEX_TYPE_SKIN_8BONE :
 SD4BONESKIN:
 				{
 					int n ;
 
-					// “¯•¡”•`‰æ‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+					// åŒæ™‚è¤‡æ•°æç”»ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 					if( MBase->UsePackDraw )
 					{
 						DX_D3D11_VS_CONST_BUFFER_LOCALWORLDMATRIX *ConstantVSLocalWorldMatrix = ( DX_D3D11_VS_CONST_BUFFER_LOCALWORLDMATRIX * )GD3D11.Device.Shader.Constant.ConstBuffer_VS_LocalWorldMatrix->SysmemBuffer ;
@@ -3800,10 +3800,10 @@ SD4BONESKIN:
 							GD3D11.Device.Shader.Constant.ConstBuffer_VS_LocalWorldMatrix->ChangeFlag = TRUE ;
 
 #ifndef NOT_RENDER
-							// ƒXƒe[ƒg‚Æ’è”ƒoƒbƒtƒ@‚ÌXV
+							// ã‚¹ãƒ†ãƒ¼ãƒˆã¨å®šæ•°ãƒãƒƒãƒ•ã‚¡ã®æ›´æ–°
 							Graphics_D3D11_DeviceState_SetupStateAndConstantBuffer() ;
 
-							// •`‰æ
+							// æç”»
 							D3D11DeviceContext_DrawIndexed(
 								( UINT )MBTList->IndexNum * DrawStockNum,
 								( UINT )MBTList->VBStartIndex,
@@ -3820,10 +3820,10 @@ SD4BONESKIN:
 					{
 						MV1_D3D11_SetupModelDrawWorldMatrix( Frame, MBTList, UseWorldViewMatrix ) ;
 #ifndef NOT_RENDER
-						// ƒXƒe[ƒg‚Æ’è”ƒoƒbƒtƒ@‚ÌXV
+						// ã‚¹ãƒ†ãƒ¼ãƒˆã¨å®šæ•°ãƒãƒƒãƒ•ã‚¡ã®æ›´æ–°
 						Graphics_D3D11_DeviceState_SetupStateAndConstantBuffer() ;
 
-						// •`‰æ
+						// æç”»
 						D3D11DeviceContext_DrawIndexed(
 							( UINT )MBTList->IndexNum,
 							( UINT )MBTList->VBStartIndex,
@@ -3839,19 +3839,19 @@ SD4BONESKIN:
 				}
 				break ;
 
-				// ƒ{[ƒ“”–³§ŒÀƒgƒ‰ƒCƒAƒ“ƒOƒ‹ƒŠƒXƒg
+				// ãƒœãƒ¼ãƒ³æ•°ç„¡åˆ¶é™ãƒˆãƒ©ã‚¤ã‚¢ãƒ³ã‚°ãƒ«ãƒªã‚¹ãƒˆ
 			case MV1_VERTEX_TYPE_SKIN_FREEBONE :
-				// ƒ[ƒJƒ‹¨ƒ[ƒ‹ƒhs—ñ‚Í’PˆÊs—ñ‚É‚·‚é
+				// ãƒ­ãƒ¼ã‚«ãƒ«â†’ãƒ¯ãƒ¼ãƒ«ãƒ‰è¡Œåˆ—ã¯å˜ä½è¡Œåˆ—ã«ã™ã‚‹
 				Graphics_D3D11_DeviceState_SetWorldMatrix( &IdentityMat ) ;
 
 #ifndef NOT_RENDER
-				// ’¸“_ƒf[ƒ^‚ğXV‚·‚é
+				// é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ã‚’æ›´æ–°ã™ã‚‹
 				MV1_D3D11_UpdateSkinFreeBoneMeshVertexData( MBFrame, MBTList, Frame, TList ) ;
 
-				// ƒXƒe[ƒg‚Æ’è”ƒoƒbƒtƒ@‚ÌXV
+				// ã‚¹ãƒ†ãƒ¼ãƒˆã¨å®šæ•°ãƒãƒƒãƒ•ã‚¡ã®æ›´æ–°
 				Graphics_D3D11_DeviceState_SetupStateAndConstantBuffer() ;
 
-				// •`‰æ
+				// æç”»
 				D3D11DeviceContext_DrawIndexed(
 					( UINT )MBTList->IndexNum,
 					( UINT )MBTList->VBStartIndex,
@@ -3864,22 +3864,22 @@ SD4BONESKIN:
 		}
 	}
 
-	// ƒgƒD[ƒ“‚ª‚ ‚éê‡‚Í—ÖŠsü‚ğ•`‰æ
+	// ãƒˆã‚¥ãƒ¼ãƒ³ãŒã‚ã‚‹å ´åˆã¯è¼ªéƒ­ç·šã‚’æç”»
 	if( ( ( Model->MeshCategoryHide[ DX_MV1_MESHCATEGORY_OUTLINE ]             == FALSE && MV1Man.UseOrigShaderFlag == FALSE ) ||
 		  ( Model->MeshCategoryHide[ DX_MV1_MESHCATEGORY_OUTLINE_ORIG_SHADER ] == FALSE && MV1Man.UseOrigShaderFlag == TRUE  ) ) && 
 		( Mesh->Material->BaseData->Type == DX_MATERIAL_TYPE_TOON || Mesh->Material->BaseData->Type == DX_MATERIAL_TYPE_TOON_2 ) &&
 		GSYS.DrawSetting.ShadowMapDraw == FALSE )
 	{
-		// —ÖŠsü‚Ì•`‰æ
+		// è¼ªéƒ­ç·šã®æç”»
 		if( Mesh->Material->OutLineWidth    > 0.000001f ||
 			Mesh->Material->OutLineDotWidth > 0.000001f )
 		{
 			float OutLineWidth ;
 
-			// —ÖŠsü‚Ì‘¾‚³‚ğƒZƒbƒg
+			// è¼ªéƒ­ç·šã®å¤ªã•ã‚’ã‚»ãƒƒãƒˆ
 			OutLineWidth = Mesh->Material->OutLineWidth /*/ Mesh->Container->Container->Scale*/ ;
 
-			// ‚à‚µƒXƒNƒŠ[ƒ“À•Wã‚Å‚Pƒhƒbƒg‚É–‚½‚È‚¢ê‡‚Í‘¾‚­‚·‚é
+			// ã‚‚ã—ã‚¹ã‚¯ãƒªãƒ¼ãƒ³åº§æ¨™ä¸Šã§ï¼‘ãƒ‰ãƒƒãƒˆã«æº€ãŸãªã„å ´åˆã¯å¤ªãã™ã‚‹
 			{
 				VECTOR_D WorldPos1, WorldPos2 ;
 				VECTOR_D ScreenPos1, ScreenPos2 ;
@@ -3929,13 +3929,13 @@ SD4BONESKIN:
 				}
 			}
 
-			// ƒ}ƒeƒŠƒAƒ‹‚Ì‹¤’Ê•”•ª‚ÌƒZƒbƒgƒAƒbƒv
+			// ãƒãƒ†ãƒªã‚¢ãƒ«ã®å…±é€šéƒ¨åˆ†ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 			MV1_D3D11_SetupToonOutLineMeshDrawMaterialCommon( Mesh, OutLineWidth ) ;
 
-			// •`‰æƒ}ƒeƒŠƒAƒ‹‚ÌƒZƒbƒgƒAƒbƒv
+			// æç”»ãƒãƒ†ãƒªã‚¢ãƒ«ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 			MV1_D3D11_SetupToonOutLineMeshDrawMaterial( Mesh ) ;
 
-			// ƒgƒ‰ƒCƒAƒ“ƒOƒ‹ƒŠƒXƒg‚Ì”‚¾‚¯ŒJ‚è•Ô‚µ
+			// ãƒˆãƒ©ã‚¤ã‚¢ãƒ³ã‚°ãƒ«ãƒªã‚¹ãƒˆã®æ•°ã ã‘ç¹°ã‚Šè¿”ã—
 			TList   = Mesh->TriangleList ;
 			MBTList = MBMesh->TriangleList ;
 			SetupShaderMaterial = -1 ;
@@ -3943,19 +3943,19 @@ SD4BONESKIN:
 			{
 				MBTListPF = ( MV1_TRIANGLE_LIST_BASE_PF * )MBTList->PFBuffer ;
 
-				// ƒgƒ‰ƒCƒAƒ“ƒOƒ‹ƒŠƒXƒg‚Ìw’è‚ª‚ ‚éê‡‚Í‚»‚êˆÈŠO‚Ìƒgƒ‰ƒCƒAƒ“ƒOƒ‹ƒŠƒXƒg‚Í•`‰æ‚µ‚È‚¢
+				// ãƒˆãƒ©ã‚¤ã‚¢ãƒ³ã‚°ãƒ«ãƒªã‚¹ãƒˆã®æŒ‡å®šãŒã‚ã‚‹å ´åˆã¯ãã‚Œä»¥å¤–ã®ãƒˆãƒ©ã‚¤ã‚¢ãƒ³ã‚°ãƒ«ãƒªã‚¹ãƒˆã¯æç”»ã—ãªã„
 				if( TriangleListIndex >= 0 && i != TriangleListIndex )
 				{
 					continue ;
 				}
 
-				// ƒgƒD[ƒ“‚Ì—ÖŠsü—p‚Ìƒ|ƒŠƒSƒ“‚ª–³‚¢ê‡‚Í‰½‚à‚µ‚È‚¢
+				// ãƒˆã‚¥ãƒ¼ãƒ³ã®è¼ªéƒ­ç·šç”¨ã®ãƒãƒªã‚´ãƒ³ãŒç„¡ã„å ´åˆã¯ä½•ã‚‚ã—ãªã„
 				if( MBTList->ToonOutLineIndexNum == 0 )
 				{
 					continue ;
 				}
 
-				// ƒVƒF[ƒ_[‚ÌƒZƒbƒgƒAƒbƒv
+				// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 				if( MBTList->VertexType == MV1_VERTEX_TYPE_NORMAL && MBase->UsePackDraw )
 				{
 					if( MV1_D3D11_ShaderSetup( Mesh, MV1_VERTEX_TYPE_SKIN_4BONE, TRUE ) == FALSE )
@@ -3971,10 +3971,10 @@ SD4BONESKIN:
 					}
 				}
 
-				// ƒCƒ“ƒfƒbƒNƒXƒoƒbƒtƒ@‚ÌƒZƒbƒgƒAƒbƒv
+				// ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒãƒƒãƒ•ã‚¡ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 				Graphics_D3D11_DeviceState_SetIndexBuffer( MBTList->VertexBuffer->PF->D3D11.IndexBuffer, D_DXGI_FORMAT_R16_UINT ) ;
 
-				// ’¸“_ƒoƒbƒtƒ@‚ÌƒZƒbƒgƒAƒbƒv
+				// é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 				if( TList->PF->D3D11.VertexBuffer )
 				{
 					Graphics_D3D11_DeviceState_SetVertexBuffer( TList->PF->D3D11.VertexBuffer,                 ( int )MBTList->VertexBuffer->UnitSize ) ;
@@ -3986,22 +3986,22 @@ SD4BONESKIN:
 
 				switch( MBTList->VertexType )
 				{
-					// „‘Ìƒgƒ‰ƒCƒAƒ“ƒOƒ‹ƒŠƒXƒg
+					// å‰›ä½“ãƒˆãƒ©ã‚¤ã‚¢ãƒ³ã‚°ãƒ«ãƒªã‚¹ãƒˆ
 				case MV1_VERTEX_TYPE_NORMAL :
 					{
-						// •¡”“¯•`‰æ‚Ìê‡‚Í‚Sƒ{[ƒ“ƒXƒLƒjƒ“ƒOƒƒbƒVƒ…‚Æ‚µ‚Ä•`‰æ‚·‚é
+						// è¤‡æ•°åŒæ™‚æç”»ã®å ´åˆã¯ï¼”ãƒœãƒ¼ãƒ³ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥ã¨ã—ã¦æç”»ã™ã‚‹
 						if( MBase->UsePackDraw )
 						{
 							goto T_SD4BONESKIN ;
 						}
 
-						// g—p‚·‚éƒ[ƒJƒ‹¨ƒ[ƒ‹ƒhs—ñ‚Ì—pˆÓ
+						// ä½¿ç”¨ã™ã‚‹ãƒ­ãƒ¼ã‚«ãƒ«â†’ãƒ¯ãƒ¼ãƒ«ãƒ‰è¡Œåˆ—ã®ç”¨æ„
 						MV1_D3D11_SetWorldMatrix_MATRIX_4X4CT( &Frame->LocalWorldMatrix, UseWorldViewMatrix ) ;
 #ifndef NOT_RENDER
-						// ƒXƒe[ƒg‚Æ’è”ƒoƒbƒtƒ@‚ÌXV
+						// ã‚¹ãƒ†ãƒ¼ãƒˆã¨å®šæ•°ãƒãƒƒãƒ•ã‚¡ã®æ›´æ–°
 						Graphics_D3D11_DeviceState_SetupStateAndConstantBuffer() ;
 
-						// •`‰æ
+						// æç”»
 						D3D11DeviceContext_DrawIndexed(
 							( UINT )MBTList->ToonOutLineIndexNum,
 							( UINT )MBTList->ToonOutLineVBStartIndex,
@@ -4016,14 +4016,14 @@ SD4BONESKIN:
 					}
 					break ;
 
-					// ‚Sƒ{[ƒ“ˆÈ“àƒgƒ‰ƒCƒAƒ“ƒOƒ‹ƒŠƒXƒg‚Æ‚Wƒ{[ƒ“ˆÈ“àƒgƒ‰ƒCƒAƒ“ƒOƒ‹ƒŠƒXƒg
+					// ï¼”ãƒœãƒ¼ãƒ³ä»¥å†…ãƒˆãƒ©ã‚¤ã‚¢ãƒ³ã‚°ãƒ«ãƒªã‚¹ãƒˆã¨ï¼˜ãƒœãƒ¼ãƒ³ä»¥å†…ãƒˆãƒ©ã‚¤ã‚¢ãƒ³ã‚°ãƒ«ãƒªã‚¹ãƒˆ
 				case MV1_VERTEX_TYPE_SKIN_4BONE :
 				case MV1_VERTEX_TYPE_SKIN_8BONE :
 T_SD4BONESKIN:
 					{
 						int n ;
 
-						// “¯•¡”•`‰æ‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+						// åŒæ™‚è¤‡æ•°æç”»ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 						if( MBase->UsePackDraw )
 						{
 							DX_D3D11_VS_CONST_BUFFER_LOCALWORLDMATRIX *ConstantVSLocalWorldMatrix = ( DX_D3D11_VS_CONST_BUFFER_LOCALWORLDMATRIX * )GD3D11.Device.Shader.Constant.ConstBuffer_VS_LocalWorldMatrix->SysmemBuffer ;
@@ -4104,10 +4104,10 @@ T_SD4BONESKIN:
 								GD3D11.Device.Shader.Constant.ConstBuffer_VS_LocalWorldMatrix->ChangeFlag = TRUE ;
 
 #ifndef NOT_RENDER
-								// ƒXƒe[ƒg‚Æ’è”ƒoƒbƒtƒ@‚ÌXV
+								// ã‚¹ãƒ†ãƒ¼ãƒˆã¨å®šæ•°ãƒãƒƒãƒ•ã‚¡ã®æ›´æ–°
 								Graphics_D3D11_DeviceState_SetupStateAndConstantBuffer() ;
 
-								// •`‰æ
+								// æç”»
 								D3D11DeviceContext_DrawIndexed(
 									( UINT )MBTList->ToonOutLineIndexNum * DrawStockNum,
 									( UINT )MBTList->ToonOutLineVBStartIndex,
@@ -4124,10 +4124,10 @@ T_SD4BONESKIN:
 						{
 							MV1_D3D11_SetupModelDrawWorldMatrix( Frame, MBTList, UseWorldViewMatrix ) ;
 #ifndef NOT_RENDER
-							// ƒXƒe[ƒg‚Æ’è”ƒoƒbƒtƒ@‚ÌXV
+							// ã‚¹ãƒ†ãƒ¼ãƒˆã¨å®šæ•°ãƒãƒƒãƒ•ã‚¡ã®æ›´æ–°
 							Graphics_D3D11_DeviceState_SetupStateAndConstantBuffer() ;
 
-							// •`‰æ
+							// æç”»
 							D3D11DeviceContext_DrawIndexed(
 								( UINT )MBTList->ToonOutLineIndexNum,
 								( UINT )MBTList->ToonOutLineVBStartIndex,
@@ -4143,19 +4143,19 @@ T_SD4BONESKIN:
 					}
 					break ;
 
-					// ƒ{[ƒ“”–³§ŒÀƒgƒ‰ƒCƒAƒ“ƒOƒ‹ƒŠƒXƒg
+					// ãƒœãƒ¼ãƒ³æ•°ç„¡åˆ¶é™ãƒˆãƒ©ã‚¤ã‚¢ãƒ³ã‚°ãƒ«ãƒªã‚¹ãƒˆ
 				case MV1_VERTEX_TYPE_SKIN_FREEBONE :
-					// ƒ[ƒJƒ‹¨ƒ[ƒ‹ƒhs—ñ‚Í’PˆÊs—ñ‚É‚·‚é
+					// ãƒ­ãƒ¼ã‚«ãƒ«â†’ãƒ¯ãƒ¼ãƒ«ãƒ‰è¡Œåˆ—ã¯å˜ä½è¡Œåˆ—ã«ã™ã‚‹
 					Graphics_D3D11_DeviceState_SetWorldMatrix( &IdentityMat ) ;
 
 #ifndef NOT_RENDER
-					// ’¸“_ƒf[ƒ^‚ğXV‚·‚é
+					// é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ã‚’æ›´æ–°ã™ã‚‹
 					MV1_D3D11_UpdateSkinFreeBoneMeshVertexData( MBFrame, MBTList, Frame, TList ) ;
 
-					// ƒXƒe[ƒg‚Æ’è”ƒoƒbƒtƒ@‚ÌXV
+					// ã‚¹ãƒ†ãƒ¼ãƒˆã¨å®šæ•°ãƒãƒƒãƒ•ã‚¡ã®æ›´æ–°
 					Graphics_D3D11_DeviceState_SetupStateAndConstantBuffer() ;
 
-					// •`‰æ
+					// æç”»
 					D3D11DeviceContext_DrawIndexed(
 						( UINT )MBTList->ToonOutLineIndexNum,
 						( UINT )MBTList->ToonOutLineVBStartIndex,

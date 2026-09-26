@@ -1,15 +1,15 @@
 // ----------------------------------------------------------------------------
 // 
-// 		‚c‚wƒ‰ƒCƒuƒ‰ƒŠ		‰‰ZƒvƒƒOƒ‰ƒ€
+// 		ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒª		æ¼”ç®—ãƒ—ãƒ­ã‚°ãƒ©ãƒ 
 // 
 // 				Ver 3.25a
 // 
 // ----------------------------------------------------------------------------
 
-// ‚c‚wƒ‰ƒCƒuƒ‰ƒŠì¬—p’è‹`
+// ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªä½œæˆæ™‚ç”¨å®šç¾©
 #define DX_MAKE
 
-// ƒCƒ“ƒNƒ‹[ƒh----------------------------------------------------------------
+// ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰----------------------------------------------------------------
 #include "DxMath.h"
 #include "DxLib.h"
 #include "DxStatic.h"
@@ -26,25 +26,25 @@ namespace DxLib
 
 #endif // DX_NON_NAMESPACE
 
-// ƒ}ƒNƒ’è‹`------------------------------------------------------------------
+// ãƒã‚¯ãƒ­å®šç¾©------------------------------------------------------------------
 
-// \‘¢‘ÌéŒ¾------------------------------------------------------------------
+// æ§‹é€ ä½“å®£è¨€------------------------------------------------------------------
 
-// ƒf[ƒ^éŒ¾------------------------------------------------------------------
+// ãƒ‡ãƒ¼ã‚¿å®£è¨€------------------------------------------------------------------
 
 int MathScreenSizeX ;
 int MathScreenSizeY ;
 
-// ƒvƒƒOƒ‰ƒ€ƒR[ƒh------------------------------------------------------------
+// ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã‚³ãƒ¼ãƒ‰------------------------------------------------------------
 
-// DxMath.cpp ‚Åg—p‚·‚é‰æ–Ê‚ÌƒTƒCƒY‚ğİ’è‚·‚é
+// DxMath.cpp ã§ä½¿ç”¨ã™ã‚‹ç”»é¢ã®ã‚µã‚¤ã‚ºã‚’è¨­å®šã™ã‚‹
 extern void SetMathScreenSize( int SizeX, int SizeY )
 {
 	MathScreenSizeX = SizeX ;
 	MathScreenSizeY = SizeY ;
 }
 
-// “_‚Éˆê”Ô‹ß‚¢OŠpŒ`ã‚ÌÀ•W‚ğ“¾‚é
+// ç‚¹ã«ä¸€ç•ªè¿‘ã„ä¸‰è§’å½¢ä¸Šã®åº§æ¨™ã‚’å¾—ã‚‹
 extern VECTOR	Get_Triangle_Point_MinPosition( VECTOR Point, VECTOR TrianglePos1, VECTOR TrianglePos2, VECTOR TrianglePos3 )
 {
 	VECTOR Line12, Line23, Line31, Line1P, Line2P, Line3P, Result ;
@@ -64,7 +64,7 @@ extern VECTOR	Get_Triangle_Point_MinPosition( VECTOR Point, VECTOR TrianglePos1,
 	if( Dot2P1 >= 0.0f && Dot2P3 <= 0.0f ) return TrianglePos2 ;
 
 	Dot2PH = VectorInnerProduct( &Line31, &Line2P ) ;
-	OPC = Dot1P2 * -Dot2PH - Dot2P1 * -Dot1P3 ;	// ©ƒ‰ƒOƒ‰ƒ“ƒWƒ…P“™®
+	OPC = Dot1P2 * -Dot2PH - Dot2P1 * -Dot1P3 ;	// â†ãƒ©ã‚°ãƒ©ãƒ³ã‚¸ãƒ¥æ’ç­‰å¼
 	if( OPC <= 0.0f && Dot1P2 >= 0.0f && Dot2P1 <= 0.0f )
 	{
 		t = Dot1P2 / ( Dot1P2 - Dot2P1 ) ;
@@ -80,7 +80,7 @@ extern VECTOR	Get_Triangle_Point_MinPosition( VECTOR Point, VECTOR TrianglePos1,
 	if( Dot3P1 <= 0.0f && Dot3P2 >= 0.0f ) return TrianglePos3 ;
 
 	Dot3PH = VectorInnerProduct( &Line12, &Line3P ) ;
-	OPB = Dot3PH * -Dot1P3 - Dot1P2 * -Dot3P1 ;	// ©ƒ‰ƒOƒ‰ƒ“ƒWƒ…P“™®
+	OPB = Dot3PH * -Dot1P3 - Dot1P2 * -Dot3P1 ;	// â†ãƒ©ã‚°ãƒ©ãƒ³ã‚¸ãƒ¥æ’ç­‰å¼
 	if( OPB <= 0.0f && Dot1P3 <= 0.0f && Dot3P1 >= 0.0f )
 	{
 		t = Dot3P1 / ( Dot3P1 - Dot1P3 ) ;
@@ -90,7 +90,7 @@ extern VECTOR	Get_Triangle_Point_MinPosition( VECTOR Point, VECTOR TrianglePos1,
 		return Result ;
 	}
 
-	OPA = Dot2P1 * -Dot3P1 - Dot3PH * -Dot2PH ;	// ©ƒ‰ƒOƒ‰ƒ“ƒWƒ…P“™®
+	OPA = Dot2P1 * -Dot3P1 - Dot3PH * -Dot2PH ;	// â†ãƒ©ã‚°ãƒ©ãƒ³ã‚¸ãƒ¥æ’ç­‰å¼
 	if( OPA <= 0.0f && ( -Dot2PH - Dot2P1 ) >= 0.0f && ( Dot3PH + Dot3P1 ) >= 0.0f )
 	{
 		t = ( -Dot2PH - Dot2P1 ) / ( ( -Dot2PH - Dot2P1 ) + ( Dot3PH + Dot3P1 ) ) ;
@@ -109,7 +109,7 @@ extern VECTOR	Get_Triangle_Point_MinPosition( VECTOR Point, VECTOR TrianglePos1,
 	return Result ;
 }
 
-// “_‚Éˆê”Ô‹ß‚¢OŠpŒ`ã‚ÌÀ•W‚ğ“¾‚é
+// ç‚¹ã«ä¸€ç•ªè¿‘ã„ä¸‰è§’å½¢ä¸Šã®åº§æ¨™ã‚’å¾—ã‚‹
 extern VECTOR_D	Get_Triangle_Point_MinPositionD( VECTOR_D Point, VECTOR_D TrianglePos1, VECTOR_D TrianglePos2, VECTOR_D TrianglePos3 )
 {
 	VECTOR_D Line12, Line23, Line31, Line1P, Line2P, Line3P, Result ;
@@ -129,7 +129,7 @@ extern VECTOR_D	Get_Triangle_Point_MinPositionD( VECTOR_D Point, VECTOR_D Triang
 	if( Dot2P1 >= 0.0 && Dot2P3 <= 0.0 ) return TrianglePos2 ;
 
 	Dot2PH = VectorInnerProductD( &Line31, &Line2P ) ;
-	OPC = Dot1P2 * -Dot2PH - Dot2P1 * -Dot1P3 ;	// ©ƒ‰ƒOƒ‰ƒ“ƒWƒ…P“™®
+	OPC = Dot1P2 * -Dot2PH - Dot2P1 * -Dot1P3 ;	// â†ãƒ©ã‚°ãƒ©ãƒ³ã‚¸ãƒ¥æ’ç­‰å¼
 	if( OPC <= 0.0 && Dot1P2 >= 0.0 && Dot2P1 <= 0.0 )
 	{
 		t = Dot1P2 / ( Dot1P2 - Dot2P1 ) ;
@@ -145,7 +145,7 @@ extern VECTOR_D	Get_Triangle_Point_MinPositionD( VECTOR_D Point, VECTOR_D Triang
 	if( Dot3P1 <= 0.0 && Dot3P2 >= 0.0 ) return TrianglePos3 ;
 
 	Dot3PH = VectorInnerProductD( &Line12, &Line3P ) ;
-	OPB = Dot3PH * -Dot1P3 - Dot1P2 * -Dot3P1 ;	// ©ƒ‰ƒOƒ‰ƒ“ƒWƒ…P“™®
+	OPB = Dot3PH * -Dot1P3 - Dot1P2 * -Dot3P1 ;	// â†ãƒ©ã‚°ãƒ©ãƒ³ã‚¸ãƒ¥æ’ç­‰å¼
 	if( OPB <= 0.0 && Dot1P3 <= 0.0 && Dot3P1 >= 0.0 )
 	{
 		t = Dot3P1 / ( Dot3P1 - Dot1P3 ) ;
@@ -155,7 +155,7 @@ extern VECTOR_D	Get_Triangle_Point_MinPositionD( VECTOR_D Point, VECTOR_D Triang
 		return Result ;
 	}
 
-	OPA = Dot2P1 * -Dot3P1 - Dot3PH * -Dot2PH ;	// ©ƒ‰ƒOƒ‰ƒ“ƒWƒ…P“™®
+	OPA = Dot2P1 * -Dot3P1 - Dot3PH * -Dot2PH ;	// â†ãƒ©ã‚°ãƒ©ãƒ³ã‚¸ãƒ¥æ’ç­‰å¼
 	if( OPA <= 0.0 && ( -Dot2PH - Dot2P1 ) >= 0.0 && ( Dot3PH + Dot3P1 ) >= 0.0 )
 	{
 		t = ( -Dot2PH - Dot2P1 ) / ( ( -Dot2PH - Dot2P1 ) + ( Dot3PH + Dot3P1 ) ) ;
@@ -174,7 +174,7 @@ extern VECTOR_D	Get_Triangle_Point_MinPositionD( VECTOR_D Point, VECTOR_D Triang
 	return Result ;
 }
 
-// “_‚Éˆê”Ô‹ß‚¢üã‚ÌÀ•W‚ğ“¾‚é
+// ç‚¹ã«ä¸€ç•ªè¿‘ã„ç·šä¸Šã®åº§æ¨™ã‚’å¾—ã‚‹
 extern VECTOR	Get_Line_Point_MinPosition( VECTOR Point, VECTOR LinePos1, VECTOR LinePos2, float *pT )
 {
 	float Length12, t ;
@@ -230,7 +230,7 @@ extern VECTOR	Get_Line_Point_MinPosition( VECTOR Point, VECTOR LinePos1, VECTOR 
 	return Result ;
 }
 
-// “_‚Éˆê”Ô‹ß‚¢üã‚ÌÀ•W‚ğ“¾‚é
+// ç‚¹ã«ä¸€ç•ªè¿‘ã„ç·šä¸Šã®åº§æ¨™ã‚’å¾—ã‚‹
 extern VECTOR_D	Get_Line_Point_MinPositionD( VECTOR_D Point, VECTOR_D LinePos1, VECTOR_D LinePos2, double *pT )
 {
 	double Length12, t ;
@@ -286,7 +286,7 @@ extern VECTOR_D	Get_Line_Point_MinPositionD( VECTOR_D Point, VECTOR_D LinePos1, 
 	return Result ;
 }
 
-// “ñ‚Â‚Ì•½–Ê‚ªŒğ·‚·‚éü‚ğ“¾‚é
+// äºŒã¤ã®å¹³é¢ãŒäº¤å·®ã™ã‚‹ç·šã‚’å¾—ã‚‹
 extern int Get_TwoPlane_Line( VECTOR Normal1, float Dist1, VECTOR Normal2, float Dist2, VECTOR *OutDir, VECTOR *OutPos )
 {
 	float d11, d12, d22, div, k1, k2 ;
@@ -305,7 +305,7 @@ extern int Get_TwoPlane_Line( VECTOR Normal1, float Dist1, VECTOR Normal2, float
 	return 0 ;
 }
 
-// “ñ‚Â‚Ì•½–Ê‚ªŒğ·‚·‚éü‚ğ“¾‚é
+// äºŒã¤ã®å¹³é¢ãŒäº¤å·®ã™ã‚‹ç·šã‚’å¾—ã‚‹
 extern int Get_TwoPlane_LineD( VECTOR_D Normal1, double Dist1, VECTOR_D Normal2, double Dist2, VECTOR_D *OutDir, VECTOR_D *OutPos )
 {
 	double d11, d12, d22, div, k1, k2 ;
@@ -324,7 +324,7 @@ extern int Get_TwoPlane_LineD( VECTOR_D Normal1, double Dist1, VECTOR_D Normal2,
 	return 0 ;
 }
 
-// “ñ‚Â‚Ìü‚ÌÅ‹ß“_‚Ì‚»‚ê‚¼‚ê‚Ì•ûŒüƒxƒNƒgƒ‹‚ÌŠg‘å’l‚ğ“¾‚é
+// äºŒã¤ã®ç·šã®æœ€è¿‘ç‚¹ã®ãã‚Œãã‚Œã®æ–¹å‘ãƒ™ã‚¯ãƒˆãƒ«ã®æ‹¡å¤§å€¤ã‚’å¾—ã‚‹
 extern int	Get_TwoLine_MinLength_Rate( VECTOR Direction1, VECTOR Position1, float *OutRate1, VECTOR Direction2, VECTOR Position2, float *OutRate2 )
 {
 	VECTOR r ;
@@ -347,7 +347,7 @@ extern int	Get_TwoLine_MinLength_Rate( VECTOR Direction1, VECTOR Position1, floa
 	return 0 ;
 }
 
-// “ñ‚Â‚Ìü‚ÌÅ‹ß“_‚Ì‚»‚ê‚¼‚ê‚Ì•ûŒüƒxƒNƒgƒ‹‚ÌŠg‘å’l‚ğ“¾‚é
+// äºŒã¤ã®ç·šã®æœ€è¿‘ç‚¹ã®ãã‚Œãã‚Œã®æ–¹å‘ãƒ™ã‚¯ãƒˆãƒ«ã®æ‹¡å¤§å€¤ã‚’å¾—ã‚‹
 extern int	Get_TwoLine_MinLength_RateD( VECTOR_D Direction1, VECTOR_D Position1, double *OutRate1, VECTOR_D Direction2, VECTOR_D Position2, double *OutRate2 )
 {
 	VECTOR_D r ;
@@ -371,9 +371,9 @@ extern int	Get_TwoLine_MinLength_RateD( VECTOR_D Direction1, VECTOR_D Position1,
 }
 
 
-// ‰‰Zƒ‰ƒCƒuƒ‰ƒŠ
+// æ¼”ç®—ãƒ©ã‚¤ãƒ–ãƒ©ãƒª
 
-// •½–Êã‚Ì“_‚Æ•½–Ê‚Ì–@ü‚©‚ç³‹K‰»‚³‚ê‚½•½–Êƒpƒ‰ƒ[ƒ^‚ğZo‚·‚é
+// å¹³é¢ä¸Šã®ç‚¹ã¨å¹³é¢ã®æ³•ç·šã‹ã‚‰æ­£è¦åŒ–ã•ã‚ŒãŸå¹³é¢ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ç®—å‡ºã™ã‚‹
 extern void CreateNormalizePlane( FLOAT4 *Plane, VECTOR *Position, VECTOR *Normal )
 {
 	float fDiv ;
@@ -398,7 +398,7 @@ extern void CreateNormalizePlane( FLOAT4 *Plane, VECTOR *Position, VECTOR *Norma
 	}
 }
 
-// •½–Êã‚Ì“_‚Æ•½–Ê‚Ì–@ü‚©‚ç³‹K‰»‚³‚ê‚½•½–Êƒpƒ‰ƒ[ƒ^‚ğZo‚·‚é
+// å¹³é¢ä¸Šã®ç‚¹ã¨å¹³é¢ã®æ³•ç·šã‹ã‚‰æ­£è¦åŒ–ã•ã‚ŒãŸå¹³é¢ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ç®—å‡ºã™ã‚‹
 extern void CreateNormalizePlaneD( DOUBLE4 *Plane, VECTOR_D *Position, VECTOR_D *Normal )
 {
 	double fDiv ;
@@ -422,7 +422,7 @@ extern void CreateNormalizePlaneD( DOUBLE4 *Plane, VECTOR_D *Position, VECTOR_D 
 	}
 }
 
-// ƒxƒNƒgƒ‹‚ÌŠOÏ‚ğ‹‚ß‚é
+// ãƒ™ã‚¯ãƒˆãƒ«ã®å¤–ç©ã‚’æ±‚ã‚ã‚‹
 __inline static VECTOR VectorGaiseki( const VECTOR &a, const VECTOR &b )
 {
 	VECTOR out ;
@@ -434,7 +434,7 @@ __inline static VECTOR VectorGaiseki( const VECTOR &a, const VECTOR &b )
 	return out ;
 }
 
-// ƒxƒNƒgƒ‹‚ÌŠOÏ‚ğ‹‚ß‚é
+// ãƒ™ã‚¯ãƒˆãƒ«ã®å¤–ç©ã‚’æ±‚ã‚ã‚‹
 __inline static VECTOR_D VectorGaisekiD( const VECTOR_D &a, const VECTOR_D &b )
 {
 	VECTOR_D out ;
@@ -446,7 +446,7 @@ __inline static VECTOR_D VectorGaisekiD( const VECTOR_D &a, const VECTOR_D &b )
 	return out ;
 }
 
-// ƒxƒNƒgƒ‹‚Ì·‚ğ‹‚ß‚é
+// ãƒ™ã‚¯ãƒˆãƒ«ã®å·®ã‚’æ±‚ã‚ã‚‹
 __inline static VECTOR VectorSa( const VECTOR &a, const VECTOR &b )
 {
 	VECTOR out ;
@@ -458,7 +458,7 @@ __inline static VECTOR VectorSa( const VECTOR &a, const VECTOR &b )
 	return out ;
 }
 
-// ƒxƒNƒgƒ‹‚Ì·‚ğ‹‚ß‚é
+// ãƒ™ã‚¯ãƒˆãƒ«ã®å·®ã‚’æ±‚ã‚ã‚‹
 __inline static VECTOR_D VectorSaD( const VECTOR_D &a, const VECTOR_D &b )
 {
 	VECTOR_D out ;
@@ -470,7 +470,7 @@ __inline static VECTOR_D VectorSaD( const VECTOR_D &a, const VECTOR_D &b )
 	return out ;
 }
 
-// floatŒ^—v‘f‚Ìs—ñ‚ğdoubleŒ^—v‘f‚Ìs—ñ‚É•ÏŠ·‚·‚é
+// floatå‹è¦ç´ ã®è¡Œåˆ—ã‚’doubleå‹è¦ç´ ã®è¡Œåˆ—ã«å¤‰æ›ã™ã‚‹
 extern int ConvertMatrixFtoD( MATRIX_D *Out, const MATRIX *In )
 {
 	Out->m[ 0 ][ 0 ] = In->m[ 0 ][ 0 ] ;
@@ -496,7 +496,7 @@ extern int ConvertMatrixFtoD( MATRIX_D *Out, const MATRIX *In )
 	return 0 ;
 }
 
-// doubleŒ^—v‘f‚Ìs—ñ‚ğfloatŒ^—v‘f‚Ìs—ñ‚É•ÏŠ·‚·‚é
+// doubleå‹è¦ç´ ã®è¡Œåˆ—ã‚’floatå‹è¦ç´ ã®è¡Œåˆ—ã«å¤‰æ›ã™ã‚‹
 extern int ConvertMatrixDtoF( MATRIX *Out, const MATRIX_D *In )
 {
 	Out->m[ 0 ][ 0 ] = ( float )In->m[ 0 ][ 0 ] ;
@@ -522,7 +522,7 @@ extern int ConvertMatrixDtoF( MATRIX *Out, const MATRIX_D *In )
 	return 0 ;
 }
 
-// ’PˆÊs—ñ‚ğì¬‚·‚é
+// å˜ä½è¡Œåˆ—ã‚’ä½œæˆã™ã‚‹
 extern int CreateIdentityMatrix( MATRIX *Out )
 {
 	static const MATRIX m =
@@ -537,11 +537,11 @@ extern int CreateIdentityMatrix( MATRIX *Out )
 
 	_MEMCPY( Out, &m, sizeof( MATRIX ) ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ’PˆÊs—ñ‚ğì¬‚·‚é
+// å˜ä½è¡Œåˆ—ã‚’ä½œæˆã™ã‚‹
 extern int CreateIdentityMatrixD( MATRIX_D *Out )
 {
 	static const MATRIX_D m =
@@ -556,36 +556,36 @@ extern int CreateIdentityMatrixD( MATRIX_D *Out )
 
 	_MEMCPY( Out, &m, sizeof( MATRIX_D ) ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒrƒ…[s—ñ‚ğì¬‚·‚é
+// ãƒ“ãƒ¥ãƒ¼è¡Œåˆ—ã‚’ä½œæˆã™ã‚‹
 extern int CreateLookAtMatrix( MATRIX *Out, const VECTOR *Eye, const VECTOR *At, const VECTOR *Up )
 {
 	VECTOR va, vu, vx, vy, vz ;
 
-	// ‹“_¨’‹“_‚ÌƒxƒNƒgƒ‹‚ğ“¾‚é
+	// è¦–ç‚¹â†’æ³¨è¦–ç‚¹ã®ãƒ™ã‚¯ãƒˆãƒ«ã‚’å¾—ã‚‹
 	va = VectorSa( *At, *Eye ) ;
 
-	// ‹“_‚É‚’¼‚ÈƒxƒNƒgƒ‹‚ğ“¾‚é
+	// è¦–ç‚¹ã«å‚ç›´ãªãƒ™ã‚¯ãƒˆãƒ«ã‚’å¾—ã‚‹
 	vu = *Up ;
 
-	// V‚w²‚ÌƒxƒNƒgƒ‹‚ğZo
+	// æ–°ï¼¸è»¸ã®ãƒ™ã‚¯ãƒˆãƒ«ã‚’ç®—å‡º
 	vx = VectorGaiseki( vu, va ) ;
 
-	// V‚x²‚ÌƒxƒNƒgƒ‹‚ğZo
+	// æ–°ï¼¹è»¸ã®ãƒ™ã‚¯ãƒˆãƒ«ã‚’ç®—å‡º
 	vy = VectorGaiseki( va, vx ) ;
 
-	// V‚y²‚ÌƒxƒNƒgƒ‹‚ğƒZƒbƒg
+	// æ–°ï¼ºè»¸ã®ãƒ™ã‚¯ãƒˆãƒ«ã‚’ã‚»ãƒƒãƒˆ
 	vz = va ;
 
-	// ŠeƒxƒNƒgƒ‹‚Ì³‹K‰»
+	// å„ãƒ™ã‚¯ãƒˆãƒ«ã®æ­£è¦åŒ–
 	VectorNormalize( &vx, &vx ) ;
 	VectorNormalize( &vy, &vy ) ;
 	VectorNormalize( &vz, &vz ) ;
 
-	// ƒrƒ…[s—ñ‚Ìì¬
+	// ãƒ“ãƒ¥ãƒ¼è¡Œåˆ—ã®ä½œæˆ
 	Out->m[0][0] = vx.x ; Out->m[0][1] = vy.x ; Out->m[0][2] = vz.x ; Out->m[0][3] = 0.0f ;
 	Out->m[1][0] = vx.y ; Out->m[1][1] = vy.y ; Out->m[1][2] = vz.y ; Out->m[1][3] = 0.0f ;
 	Out->m[2][0] = vx.z ; Out->m[2][1] = vy.z ; Out->m[2][2] = vz.z ; Out->m[2][3] = 0.0f ;
@@ -598,20 +598,20 @@ extern int CreateLookAtMatrix( MATRIX *Out, const VECTOR *Eye, const VECTOR *At,
 /*
 	VECTOR v, v2 ;
 
-	// ‰œs‚«‚ğ¦‚· Z ²‚ÌŠî’êƒxƒNƒgƒ‹‚ğæ“¾‚·‚éB‚±‚ê‚ÍA
-	// ’‹“_‚É‘Î‚·‚é‹“_‚Æ‚ÍˆÙ‚È‚éB
+	// å¥¥è¡Œãã‚’ç¤ºã™ Z è»¸ã®åŸºåº•ãƒ™ã‚¯ãƒˆãƒ«ã‚’å–å¾—ã™ã‚‹ã€‚ã“ã‚Œã¯ã€
+	// æ³¨è¦–ç‚¹ã«å¯¾ã™ã‚‹è¦–ç‚¹ã¨ã¯ç•°ãªã‚‹ã€‚
 	VECTOR vView = VectorSa( *At, *Eye ) ;
  
 	float fLength = ( float )_SQRT( vView.x * vView.x + vView.y * vView.y + vView.z * vView.z ) ;
 	if( fLength < 1e-6f ) return -1;
  
-	// z ²‚ÌŠî’êƒxƒNƒgƒ‹‚ğ³‹K‰»‚·‚éB
+	// z è»¸ã®åŸºåº•ãƒ™ã‚¯ãƒˆãƒ«ã‚’æ­£è¦åŒ–ã™ã‚‹ã€‚
 	vView.x /= fLength;
 	vView.y /= fLength;
 	vView.z /= fLength;
  
-	// “àÏ‚ğæ“¾‚µ‚ÄAã•ûŒüƒxƒNƒgƒ‹‚É‘Î‚·‚éAZ ²‚ÌŠî’êƒxƒNƒgƒ‹‚Ì
-	// Ë‰e‚ğŒvZ‚·‚éB‚±‚ÌË‰e‚Í y ²‚ÌŠî’êƒxƒNƒgƒ‹‚Å‚ ‚éB
+	// å†…ç©ã‚’å–å¾—ã—ã¦ã€ä¸Šæ–¹å‘ãƒ™ã‚¯ãƒˆãƒ«ã«å¯¾ã™ã‚‹ã€Z è»¸ã®åŸºåº•ãƒ™ã‚¯ãƒˆãƒ«ã®
+	// å°„å½±ã‚’è¨ˆç®—ã™ã‚‹ã€‚ã“ã®å°„å½±ã¯ y è»¸ã®åŸºåº•ãƒ™ã‚¯ãƒˆãƒ«ã§ã‚ã‚‹ã€‚
 	float fDotProduct = Up->x * vView.x + Up->y * vView.y + Up->z * vView.z ;
 
 	v.x = vView.x * fDotProduct ;
@@ -619,8 +619,8 @@ extern int CreateLookAtMatrix( MATRIX *Out, const VECTOR *Eye, const VECTOR *At,
 	v.z = vView.z * fDotProduct ;
 	VECTOR vUp = VectorSa( *Up, v ) ;
  
-	// •s³‚Èã•ûŒüƒxƒNƒgƒ‹‚ğ“ü—Í‚µ‚½‚½‚ß‚É
-	// ƒxƒNƒgƒ‹‚ªƒ[ƒ‚É‹ß‚­‚È‚Á‚½ê‡‚ÍAƒxƒNƒgƒ‹‚ğƒfƒtƒHƒ‹ƒg’l‚É‚·‚éB
+	// ä¸æ­£ãªä¸Šæ–¹å‘ãƒ™ã‚¯ãƒˆãƒ«ã‚’å…¥åŠ›ã—ãŸãŸã‚ã«
+	// ãƒ™ã‚¯ãƒˆãƒ«ãŒã‚¼ãƒ­ã«è¿‘ããªã£ãŸå ´åˆã¯ã€ãƒ™ã‚¯ãƒˆãƒ«ã‚’ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå€¤ã«ã™ã‚‹ã€‚
 	if( 1e-6f > ( fLength = ( float )_SQRT( vUp.x * vUp.x + vUp.y * vUp.y + vUp.z * vUp.z ) ) )
 	{
 		v.x = vView.x * vView.y ;
@@ -630,7 +630,7 @@ extern int CreateLookAtMatrix( MATRIX *Out, const VECTOR *Eye, const VECTOR *At,
 		v2.x = 0.0f ; v2.y = 1.0f ; v2.z = 0.0f ;
 		vUp = VectorSa( v2, v ) ;
  
-		// ƒxƒNƒgƒ‹‚ª‚È‚¨ƒ[ƒ‚É‹ß‚¯‚ê‚ÎA•Ê‚Ì²‚ğ—˜—p‚·‚éB
+		// ãƒ™ã‚¯ãƒˆãƒ«ãŒãªãŠã‚¼ãƒ­ã«è¿‘ã‘ã‚Œã°ã€åˆ¥ã®è»¸ã‚’åˆ©ç”¨ã™ã‚‹ã€‚
 		if( 1e-6f > ( fLength = ( float )_SQRT( vUp.x * vUp.x + vUp.y * vUp.y + vUp.z * vUp.z ) ) )
 		{
 			v.x = vView.x * vView.z ;
@@ -645,24 +645,24 @@ extern int CreateLookAtMatrix( MATRIX *Out, const VECTOR *Eye, const VECTOR *At,
 		}
 	}
  
-	// y ²‚ÌŠî’êƒxƒNƒgƒ‹‚ğ³‹K‰»‚·‚éB
+	// y è»¸ã®åŸºåº•ãƒ™ã‚¯ãƒˆãƒ«ã‚’æ­£è¦åŒ–ã™ã‚‹ã€‚
 	vUp.x /= fLength;
 	vUp.y /= fLength;
 	vUp.z /= fLength;
  
-	// x ²‚ÌŠî’êƒxƒNƒgƒ‹‚ÍAy ²‚¨‚æ‚Ñ z ²‚ÌŠî’êƒxƒNƒgƒ‹‚Ì
-	// ŠOÏ‚Æ‚µ‚ÄŠÈ’P‚É‹‚ß‚ç‚ê‚éB
+	// x è»¸ã®åŸºåº•ãƒ™ã‚¯ãƒˆãƒ«ã¯ã€y è»¸ãŠã‚ˆã³ z è»¸ã®åŸºåº•ãƒ™ã‚¯ãƒˆãƒ«ã®
+	// å¤–ç©ã¨ã—ã¦ç°¡å˜ã«æ±‚ã‚ã‚‰ã‚Œã‚‹ã€‚
 	VECTOR vRight = VectorGaiseki( vUp, vView );
 	
-	// s—ñ‚Ìì¬‚ğŠJn‚·‚éBæ“ª‚Ì 3 s‚É‚ÍA
-	// ƒrƒ…[‚ğ’‹“_‚Å‰ñ“]‚·‚é‚½‚ß‚ÌŠî’êƒxƒNƒgƒ‹‚ğŠi”[‚·‚éB
+	// è¡Œåˆ—ã®ä½œæˆã‚’é–‹å§‹ã™ã‚‹ã€‚å…ˆé ­ã® 3 è¡Œã«ã¯ã€
+	// ãƒ“ãƒ¥ãƒ¼ã‚’æ³¨è¦–ç‚¹ã§å›è»¢ã™ã‚‹ãŸã‚ã®åŸºåº•ãƒ™ã‚¯ãƒˆãƒ«ã‚’æ ¼ç´ã™ã‚‹ã€‚
 	Out->m[0][0] = vRight.x;	Out->m[0][1] = vUp.x;	Out->m[0][2] = vView.x;	Out->m[0][3] = 0.0f;
 	Out->m[1][0] = vRight.y;	Out->m[1][1] = vUp.y;	Out->m[1][2] = vView.y;	Out->m[1][3] = 0.0f;
 	Out->m[2][0] = vRight.z;	Out->m[2][1] = vUp.z;	Out->m[2][2] = vView.z;	Out->m[2][3] = 0.0f;
 	Out->m[3][3] = 1.0f;
 
   
-	// ˆÚ“®’l‚ğÀs‚·‚é (‰ñ“]‚Í‚Ü‚¾‹“_‚É‚ ‚é)B
+	// ç§»å‹•å€¤ã‚’å®Ÿè¡Œã™ã‚‹ (å›è»¢ã¯ã¾ã è¦–ç‚¹ã«ã‚ã‚‹)ã€‚
 	Out->m[3][0] = - ( Eye->x * vRight.x + Eye->y * vRight.y + Eye->z * vRight.z ) ;
 	Out->m[3][1] = - ( Eye->x * vUp.x + Eye->y * vUp.y + Eye->z * vUp.z ) ;
 	Out->m[3][2] = - ( Eye->x * vView.x + Eye->y * vView.y + Eye->z * vView.z );
@@ -670,32 +670,32 @@ extern int CreateLookAtMatrix( MATRIX *Out, const VECTOR *Eye, const VECTOR *At,
 	return 0;
 }
 
-// ƒrƒ…[s—ñ‚ğì¬‚·‚é
+// ãƒ“ãƒ¥ãƒ¼è¡Œåˆ—ã‚’ä½œæˆã™ã‚‹
 extern int CreateLookAtMatrixD( MATRIX_D *Out, const VECTOR_D *Eye, const VECTOR_D *At, const VECTOR_D *Up )
 {
 	VECTOR_D va, vu, vx, vy, vz ;
 
-	// ‹“_¨’‹“_‚ÌƒxƒNƒgƒ‹‚ğ“¾‚é
+	// è¦–ç‚¹â†’æ³¨è¦–ç‚¹ã®ãƒ™ã‚¯ãƒˆãƒ«ã‚’å¾—ã‚‹
 	va = VectorSaD( *At, *Eye ) ;
 
-	// ‹“_‚É‚’¼‚ÈƒxƒNƒgƒ‹‚ğ“¾‚é
+	// è¦–ç‚¹ã«å‚ç›´ãªãƒ™ã‚¯ãƒˆãƒ«ã‚’å¾—ã‚‹
 	vu = *Up ;
 
-	// V‚w²‚ÌƒxƒNƒgƒ‹‚ğZo
+	// æ–°ï¼¸è»¸ã®ãƒ™ã‚¯ãƒˆãƒ«ã‚’ç®—å‡º
 	vx = VectorGaisekiD( vu, va ) ;
 
-	// V‚x²‚ÌƒxƒNƒgƒ‹‚ğZo
+	// æ–°ï¼¹è»¸ã®ãƒ™ã‚¯ãƒˆãƒ«ã‚’ç®—å‡º
 	vy = VectorGaisekiD( va, vx ) ;
 
-	// V‚y²‚ÌƒxƒNƒgƒ‹‚ğƒZƒbƒg
+	// æ–°ï¼ºè»¸ã®ãƒ™ã‚¯ãƒˆãƒ«ã‚’ã‚»ãƒƒãƒˆ
 	vz = va ;
 
-	// ŠeƒxƒNƒgƒ‹‚Ì³‹K‰»
+	// å„ãƒ™ã‚¯ãƒˆãƒ«ã®æ­£è¦åŒ–
 	VectorNormalizeD( &vx, &vx ) ;
 	VectorNormalizeD( &vy, &vy ) ;
 	VectorNormalizeD( &vz, &vz ) ;
 
-	// ƒrƒ…[s—ñ‚Ìì¬
+	// ãƒ“ãƒ¥ãƒ¼è¡Œåˆ—ã®ä½œæˆ
 	Out->m[0][0] = vx.x ; Out->m[0][1] = vy.x ; Out->m[0][2] = vz.x ; Out->m[0][3] = 0.0 ;
 	Out->m[1][0] = vx.y ; Out->m[1][1] = vy.y ; Out->m[1][2] = vz.y ; Out->m[1][3] = 0.0 ;
 	Out->m[2][0] = vx.z ; Out->m[2][1] = vy.z ; Out->m[2][2] = vz.z ; Out->m[2][3] = 0.0 ;
@@ -708,7 +708,7 @@ extern int CreateLookAtMatrixD( MATRIX_D *Out, const VECTOR_D *Eye, const VECTOR
 	return 0;
 }
 
-// ƒrƒ…[s—ñ‚ğì¬‚·‚é
+// ãƒ“ãƒ¥ãƒ¼è¡Œåˆ—ã‚’ä½œæˆã™ã‚‹
 extern int CreateLookAtMatrix2( MATRIX *Out, const VECTOR *Eye, double XZAngle, double Oira )
 {
 	VECTOR At, Up ;
@@ -722,7 +722,7 @@ extern int CreateLookAtMatrix2( MATRIX *Out, const VECTOR *Eye, double XZAngle, 
 	Up.y = 1.0f ;
 	Up.z = 0.0f ;
 
-	// ƒIƒCƒ‰[‰ñ“]
+	// ã‚ªã‚¤ãƒ©ãƒ¼å›è»¢
 	_SINCOS_PLATFORM( (float)Oira, &Sin, &Cos ) ;
 //	Sin = ( float )( sin( Oira ) ) ;
 //	Cos = ( float )( cos( Oira ) ) ;
@@ -736,7 +736,7 @@ extern int CreateLookAtMatrix2( MATRIX *Out, const VECTOR *Eye, double XZAngle, 
 	Up.x = x ;
 
 
-	// ‚w‚y‰ñ“]
+	// ï¼¸ï¼ºå›è»¢
 	_SINCOS_PLATFORM( (float)XZAngle, &Sin, &Cos ) ;
 //	Sin = ( float )( sin( XZAngle ) ) ;
 //	Cos = ( float )( cos( XZAngle ) ) ;
@@ -750,7 +750,7 @@ extern int CreateLookAtMatrix2( MATRIX *Out, const VECTOR *Eye, double XZAngle, 
 	Up.x = x ;
 
 
-	// •½sˆÚ“®
+	// å¹³è¡Œç§»å‹•
 	At.x += Eye->x ;
 	At.y += Eye->y ;
 	At.z += Eye->z ;
@@ -760,11 +760,11 @@ extern int CreateLookAtMatrix2( MATRIX *Out, const VECTOR *Eye, double XZAngle, 
 	Up.z += Eye->z ;
 */
 
-	// s—ñì¬
+	// è¡Œåˆ—ä½œæˆ
 	return CreateLookAtMatrix( Out, Eye, &At, &Up ) ; 
 }
 
-// ƒrƒ…[s—ñ‚ğì¬‚·‚é
+// ãƒ“ãƒ¥ãƒ¼è¡Œåˆ—ã‚’ä½œæˆã™ã‚‹
 extern int CreateLookAtMatrix2D( MATRIX_D *Out, const VECTOR_D *Eye, double XZAngle, double Oira )
 {
 	VECTOR_D At, Up ;
@@ -778,7 +778,7 @@ extern int CreateLookAtMatrix2D( MATRIX_D *Out, const VECTOR_D *Eye, double XZAn
 	Up.y = 1.0 ;
 	Up.z = 0.0 ;
 
-	// ƒIƒCƒ‰[‰ñ“]
+	// ã‚ªã‚¤ãƒ©ãƒ¼å›è»¢
 	_SINCOSD( Oira, &Sin, &Cos ) ;
 
 	x = At.x * Cos - At.y * Sin ;
@@ -790,7 +790,7 @@ extern int CreateLookAtMatrix2D( MATRIX_D *Out, const VECTOR_D *Eye, double XZAn
 	Up.x = x ;
 
 
-	// ‚w‚y‰ñ“]
+	// ï¼¸ï¼ºå›è»¢
 	_SINCOSD( XZAngle, &Sin, &Cos ) ;
 
 	x = At.x * Cos - At.z * Sin ;
@@ -802,42 +802,42 @@ extern int CreateLookAtMatrix2D( MATRIX_D *Out, const VECTOR_D *Eye, double XZAn
 	Up.x = x ;
 
 
-	// •½sˆÚ“®
+	// å¹³è¡Œç§»å‹•
 	At.x += Eye->x ;
 	At.y += Eye->y ;
 	At.z += Eye->z ;
 
-	// s—ñì¬
+	// è¡Œåˆ—ä½œæˆ
 	return CreateLookAtMatrixD( Out, Eye, &At, &Up ) ; 
 }
 
 
-// ƒrƒ…[s—ñ‚ğì¬‚·‚é(‰EèÀ•WŒn—p)
+// ãƒ“ãƒ¥ãƒ¼è¡Œåˆ—ã‚’ä½œæˆã™ã‚‹(å³æ‰‹åº§æ¨™ç³»ç”¨)
 extern int CreateLookAtMatrixRH( MATRIX *Out, const VECTOR *Eye, const VECTOR *At, const VECTOR *Up )
 {
 	VECTOR va, vu, vx, vy, vz ;
 
-	// ‹“_¨’‹“_‚ÌƒxƒNƒgƒ‹‚ğ“¾‚é
+	// è¦–ç‚¹â†’æ³¨è¦–ç‚¹ã®ãƒ™ã‚¯ãƒˆãƒ«ã‚’å¾—ã‚‹
 	va = VectorSa( *Eye, *At ) ;
 
-	// ‹“_‚É‚’¼‚ÈƒxƒNƒgƒ‹‚ğ“¾‚é
+	// è¦–ç‚¹ã«å‚ç›´ãªãƒ™ã‚¯ãƒˆãƒ«ã‚’å¾—ã‚‹
 	vu = *Up ;
 
-	// V‚w²‚ÌƒxƒNƒgƒ‹‚ğZo
+	// æ–°ï¼¸è»¸ã®ãƒ™ã‚¯ãƒˆãƒ«ã‚’ç®—å‡º
 	vx = VectorGaiseki( vu, va ) ;
 
-	// V‚x²‚ÌƒxƒNƒgƒ‹‚ğZo
+	// æ–°ï¼¹è»¸ã®ãƒ™ã‚¯ãƒˆãƒ«ã‚’ç®—å‡º
 	vy = VectorGaiseki( va, vx ) ;
 
-	// V‚y²‚ÌƒxƒNƒgƒ‹‚ğƒZƒbƒg
+	// æ–°ï¼ºè»¸ã®ãƒ™ã‚¯ãƒˆãƒ«ã‚’ã‚»ãƒƒãƒˆ
 	vz = va ;
 
-	// ŠeƒxƒNƒgƒ‹‚Ì³‹K‰»
+	// å„ãƒ™ã‚¯ãƒˆãƒ«ã®æ­£è¦åŒ–
 	VectorNormalize( &vx, &vx ) ;
 	VectorNormalize( &vy, &vy ) ;
 	VectorNormalize( &vz, &vz ) ;
 
-	// ƒrƒ…[s—ñ‚Ìì¬
+	// ãƒ“ãƒ¥ãƒ¼è¡Œåˆ—ã®ä½œæˆ
 	Out->m[0][0] = vx.x ; Out->m[0][1] = vy.x ; Out->m[0][2] = vz.x ; Out->m[0][3] = 0.0f ;
 	Out->m[1][0] = vx.y ; Out->m[1][1] = vy.y ; Out->m[1][2] = vz.y ; Out->m[1][3] = 0.0f ;
 	Out->m[2][0] = vx.z ; Out->m[2][1] = vy.z ; Out->m[2][2] = vz.z ; Out->m[2][3] = 0.0f ;
@@ -850,32 +850,32 @@ extern int CreateLookAtMatrixRH( MATRIX *Out, const VECTOR *Eye, const VECTOR *A
 	return 0;
 }
 
-// ƒrƒ…[s—ñ‚ğì¬‚·‚é(‰EèÀ•WŒn—p)
+// ãƒ“ãƒ¥ãƒ¼è¡Œåˆ—ã‚’ä½œæˆã™ã‚‹(å³æ‰‹åº§æ¨™ç³»ç”¨)
 extern int CreateLookAtMatrixRHD( MATRIX_D *Out, const VECTOR_D *Eye, const VECTOR_D *At, const VECTOR_D *Up )
 {
 	VECTOR_D va, vu, vx, vy, vz ;
 
-	// ‹“_¨’‹“_‚ÌƒxƒNƒgƒ‹‚ğ“¾‚é
+	// è¦–ç‚¹â†’æ³¨è¦–ç‚¹ã®ãƒ™ã‚¯ãƒˆãƒ«ã‚’å¾—ã‚‹
 	va = VectorSaD( *Eye, *At ) ;
 
-	// ‹“_‚É‚’¼‚ÈƒxƒNƒgƒ‹‚ğ“¾‚é
+	// è¦–ç‚¹ã«å‚ç›´ãªãƒ™ã‚¯ãƒˆãƒ«ã‚’å¾—ã‚‹
 	vu = *Up ;
 
-	// V‚w²‚ÌƒxƒNƒgƒ‹‚ğZo
+	// æ–°ï¼¸è»¸ã®ãƒ™ã‚¯ãƒˆãƒ«ã‚’ç®—å‡º
 	vx = VectorGaisekiD( vu, va ) ;
 
-	// V‚x²‚ÌƒxƒNƒgƒ‹‚ğZo
+	// æ–°ï¼¹è»¸ã®ãƒ™ã‚¯ãƒˆãƒ«ã‚’ç®—å‡º
 	vy = VectorGaisekiD( va, vx ) ;
 
-	// V‚y²‚ÌƒxƒNƒgƒ‹‚ğƒZƒbƒg
+	// æ–°ï¼ºè»¸ã®ãƒ™ã‚¯ãƒˆãƒ«ã‚’ã‚»ãƒƒãƒˆ
 	vz = va ;
 
-	// ŠeƒxƒNƒgƒ‹‚Ì³‹K‰»
+	// å„ãƒ™ã‚¯ãƒˆãƒ«ã®æ­£è¦åŒ–
 	VectorNormalizeD( &vx, &vx ) ;
 	VectorNormalizeD( &vy, &vy ) ;
 	VectorNormalizeD( &vz, &vz ) ;
 
-	// ƒrƒ…[s—ñ‚Ìì¬
+	// ãƒ“ãƒ¥ãƒ¼è¡Œåˆ—ã®ä½œæˆ
 	Out->m[0][0] = vx.x ; Out->m[0][1] = vy.x ; Out->m[0][2] = vz.x ; Out->m[0][3] = 0.0 ;
 	Out->m[1][0] = vx.y ; Out->m[1][1] = vy.y ; Out->m[1][2] = vz.y ; Out->m[1][3] = 0.0 ;
 	Out->m[2][0] = vx.z ; Out->m[2][1] = vy.z ; Out->m[2][2] = vz.z ; Out->m[2][3] = 0.0 ;
@@ -889,7 +889,7 @@ extern int CreateLookAtMatrixRHD( MATRIX_D *Out, const VECTOR_D *Eye, const VECT
 }
 
 
-// s—ñ‚ÌÏ‚ğ‹‚ß‚é
+// è¡Œåˆ—ã®ç©ã‚’æ±‚ã‚ã‚‹
 extern int CreateMultiplyMatrix( MATRIX *Out, const MATRIX *In1, const MATRIX *In2 )
 {
 	MATRIX OM ;
@@ -916,12 +916,12 @@ extern int CreateMultiplyMatrix( MATRIX *Out, const MATRIX *In1, const MATRIX *I
 
 	if( Out ) *Out = OM ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
 
-// s—ñ‚ÌÏ‚ğ‹‚ß‚é
+// è¡Œåˆ—ã®ç©ã‚’æ±‚ã‚ã‚‹
 extern int CreateMultiplyMatrixD( MATRIX_D *Out, const MATRIX_D *In1, const MATRIX_D *In2 )
 {
 	MATRIX_D OM ;
@@ -948,11 +948,11 @@ extern int CreateMultiplyMatrixD( MATRIX_D *Out, const MATRIX_D *In1, const MATR
 
 	if( Out ) *Out = OM ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// Ë‰es—ñ‚ğì¬‚·‚é
+// å°„å½±è¡Œåˆ—ã‚’ä½œæˆã™ã‚‹
 extern int CreatePerspectiveFovMatrix( MATRIX *Out, float fov, float zn, float zf, float aspect  )
 {
 	float Sin, Cos ;
@@ -991,7 +991,7 @@ extern int CreatePerspectiveFovMatrix( MATRIX *Out, float fov, float zn, float z
     return 0;
 }
 
-// Ë‰es—ñ‚ğì¬‚·‚é
+// å°„å½±è¡Œåˆ—ã‚’ä½œæˆã™ã‚‹
 extern int CreatePerspectiveFovMatrixD( MATRIX_D *Out, double fov, double zn, double zf, double aspect  )
 {
 	double Sin, Cos ;
@@ -1028,7 +1028,7 @@ extern int CreatePerspectiveFovMatrixD( MATRIX_D *Out, double fov, double zn, do
     return 0;
 }
 
-// Ë‰es—ñ‚ğì¬‚·‚é(‰EèÀ•WŒn—p)
+// å°„å½±è¡Œåˆ—ã‚’ä½œæˆã™ã‚‹(å³æ‰‹åº§æ¨™ç³»ç”¨)
 extern int CreatePerspectiveFovMatrixRH( MATRIX *Out, float fov, float zn, float zf, float aspect )
 {
 	float Sin, Cos ;
@@ -1067,7 +1067,7 @@ extern int CreatePerspectiveFovMatrixRH( MATRIX *Out, float fov, float zn, float
     return 0;
 }
 
-// Ë‰es—ñ‚ğì¬‚·‚é(‰EèÀ•WŒn—p)
+// å°„å½±è¡Œåˆ—ã‚’ä½œæˆã™ã‚‹(å³æ‰‹åº§æ¨™ç³»ç”¨)
 extern int CreatePerspectiveFovMatrixRHD( MATRIX_D *Out, double fov, double zn, double zf, double aspect )
 {
 	double Sin, Cos ;
@@ -1104,7 +1104,7 @@ extern int CreatePerspectiveFovMatrixRHD( MATRIX_D *Out, double fov, double zn, 
     return 0;
 }
 
-// ³Ë‰es—ñ‚ğì¬‚·‚é
+// æ­£å°„å½±è¡Œåˆ—ã‚’ä½œæˆã™ã‚‹
 extern int CreateOrthoMatrix( MATRIX *Out, float size, float zn, float zf, float aspect )
 {
 	float w, h ;
@@ -1136,7 +1136,7 @@ extern int CreateOrthoMatrix( MATRIX *Out, float size, float zn, float zf, float
     return 0;
 }
 
-// ³Ë‰es—ñ‚ğì¬‚·‚é
+// æ­£å°„å½±è¡Œåˆ—ã‚’ä½œæˆã™ã‚‹
 extern int CreateOrthoMatrixD( MATRIX_D *Out, double size, double zn, double zf, double aspect )
 {
 	double w, h ;
@@ -1168,7 +1168,7 @@ extern int CreateOrthoMatrixD( MATRIX_D *Out, double size, double zn, double zf,
     return 0;
 }
 
-// ³Ë‰es—ñ‚ğì¬‚·‚é(‰EèÀ•WŒn—p)
+// æ­£å°„å½±è¡Œåˆ—ã‚’ä½œæˆã™ã‚‹(å³æ‰‹åº§æ¨™ç³»ç”¨)
 extern int CreateOrthoMatrixRH( MATRIX *Out, float size, float zn, float zf, float aspect )
 {
 	float w, h ;
@@ -1200,7 +1200,7 @@ extern int CreateOrthoMatrixRH( MATRIX *Out, float size, float zn, float zf, flo
     return 0;
 }
 
-// ³Ë‰es—ñ‚ğì¬‚·‚é(‰EèÀ•WŒn—p)
+// æ­£å°„å½±è¡Œåˆ—ã‚’ä½œæˆã™ã‚‹(å³æ‰‹åº§æ¨™ç³»ç”¨)
 extern int CreateOrthoMatrixRHD( MATRIX_D *Out, double size, double zn, double zf, double aspect )
 {
 	double w, h ;
@@ -1232,7 +1232,7 @@ extern int CreateOrthoMatrixRHD( MATRIX_D *Out, double size, double zn, double z
     return 0;
 }
 
-// ƒXƒP[ƒŠƒ“ƒOs—ñ‚ğì¬‚·‚é
+// ã‚¹ã‚±ãƒ¼ãƒªãƒ³ã‚°è¡Œåˆ—ã‚’ä½œæˆã™ã‚‹
 extern int CreateScalingMatrix( MATRIX *Out, float sx, float sy, float sz )
 {
 	_MEMSET( Out, 0, sizeof( MATRIX ) ) ;
@@ -1242,11 +1242,11 @@ extern int CreateScalingMatrix( MATRIX *Out, float sx, float sy, float sz )
 	Out->m[2][2] = sz ;
 	Out->m[3][3] = 1.0f ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒXƒP[ƒŠƒ“ƒOs—ñ‚ğì¬‚·‚é
+// ã‚¹ã‚±ãƒ¼ãƒªãƒ³ã‚°è¡Œåˆ—ã‚’ä½œæˆã™ã‚‹
 extern int CreateScalingMatrixD( MATRIX_D *Out, double sx, double sy, double sz )
 {
 	_MEMSET( Out, 0, sizeof( MATRIX_D ) ) ;
@@ -1256,11 +1256,11 @@ extern int CreateScalingMatrixD( MATRIX_D *Out, double sx, double sy, double sz 
 	Out->m[2][2] = sz ;
 	Out->m[3][3] = 1.0 ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ‚w²‚ğ’†S‚Æ‚µ‚½‰ñ“]s—ñ‚ğì¬‚·‚é
+// ï¼¸è»¸ã‚’ä¸­å¿ƒã¨ã—ãŸå›è»¢è¡Œåˆ—ã‚’ä½œæˆã™ã‚‹
 extern int CreateRotationXMatrix( MATRIX *Out, float Angle )
 {
 	float Sin, Cos ;
@@ -1280,7 +1280,7 @@ extern int CreateRotationXMatrix( MATRIX *Out, float Angle )
 	return 0 ;
 }
 
-// ‚w²‚ğ’†S‚Æ‚µ‚½‰ñ“]s—ñ‚ğì¬‚·‚é
+// ï¼¸è»¸ã‚’ä¸­å¿ƒã¨ã—ãŸå›è»¢è¡Œåˆ—ã‚’ä½œæˆã™ã‚‹
 extern int CreateRotationXMatrixD( MATRIX_D *Out, double Angle )
 {
 	double Sin, Cos ;
@@ -1298,7 +1298,7 @@ extern int CreateRotationXMatrixD( MATRIX_D *Out, double Angle )
 	return 0 ;
 }
 
-// ‚x²‚ğ’†S‚Æ‚µ‚½‰ñ“]s—ñ‚ğì¬‚·‚é
+// ï¼¹è»¸ã‚’ä¸­å¿ƒã¨ã—ãŸå›è»¢è¡Œåˆ—ã‚’ä½œæˆã™ã‚‹
 extern int CreateRotationYMatrix( MATRIX *Out, float Angle )
 {
 	float Sin, Cos ;
@@ -1318,7 +1318,7 @@ extern int CreateRotationYMatrix( MATRIX *Out, float Angle )
 	return 0 ;
 }
 
-// ‚x²‚ğ’†S‚Æ‚µ‚½‰ñ“]s—ñ‚ğì¬‚·‚é
+// ï¼¹è»¸ã‚’ä¸­å¿ƒã¨ã—ãŸå›è»¢è¡Œåˆ—ã‚’ä½œæˆã™ã‚‹
 extern int CreateRotationYMatrixD( MATRIX_D *Out, double Angle )
 {
 	double Sin, Cos ;
@@ -1336,7 +1336,7 @@ extern int CreateRotationYMatrixD( MATRIX_D *Out, double Angle )
 	return 0 ;
 }
 
-// ‚y²‚ğ’†S‚Æ‚µ‚½‰ñ“]s—ñ‚ğì¬‚·‚é
+// ï¼ºè»¸ã‚’ä¸­å¿ƒã¨ã—ãŸå›è»¢è¡Œåˆ—ã‚’ä½œæˆã™ã‚‹
 extern int CreateRotationZMatrix( MATRIX *Out, float Angle )
 {
 	float Sin, Cos ;
@@ -1356,7 +1356,7 @@ extern int CreateRotationZMatrix( MATRIX *Out, float Angle )
 	return 0 ;
 }
 
-// ‚y²‚ğ’†S‚Æ‚µ‚½‰ñ“]s—ñ‚ğì¬‚·‚é
+// ï¼ºè»¸ã‚’ä¸­å¿ƒã¨ã—ãŸå›è»¢è¡Œåˆ—ã‚’ä½œæˆã™ã‚‹
 extern int CreateRotationZMatrixD( MATRIX_D *Out, double Angle )
 {
 	double Sin, Cos ;
@@ -1374,7 +1374,7 @@ extern int CreateRotationZMatrixD( MATRIX_D *Out, double Angle )
 	return 0 ;
 }
 
-// •½sˆÚ“®s—ñ‚ğì¬‚·‚é
+// å¹³è¡Œç§»å‹•è¡Œåˆ—ã‚’ä½œæˆã™ã‚‹
 extern int CreateTranslationMatrix( MATRIX *Out, float x, float y, float z )
 {
 	_MEMSET( Out, 0, sizeof( MATRIX ) ) ;
@@ -1389,7 +1389,7 @@ extern int CreateTranslationMatrix( MATRIX *Out, float x, float y, float z )
 	return 0 ;
 }
 
-// •½sˆÚ“®s—ñ‚ğì¬‚·‚é
+// å¹³è¡Œç§»å‹•è¡Œåˆ—ã‚’ä½œæˆã™ã‚‹
 extern int CreateTranslationMatrixD( MATRIX_D *Out, double x, double y, double z )
 {
 	_MEMSET( Out, 0, sizeof( MATRIX_D ) ) ;
@@ -1404,7 +1404,7 @@ extern int CreateTranslationMatrixD( MATRIX_D *Out, double x, double y, double z
 	return 0 ;
 }
 
-// “]’us—ñ‚ğì¬‚·‚é
+// è»¢ç½®è¡Œåˆ—ã‚’ä½œæˆã™ã‚‹
 extern int CreateTransposeMatrix( MATRIX *Out, const MATRIX *In )
 {
 	MATRIX I1 = *In ;
@@ -1431,7 +1431,7 @@ extern int CreateTransposeMatrix( MATRIX *Out, const MATRIX *In )
 	return 0 ;
 }
 
-// “]’us—ñ‚ğì¬‚·‚é
+// è»¢ç½®è¡Œåˆ—ã‚’ä½œæˆã™ã‚‹
 extern int CreateTransposeMatrixD( MATRIX_D *Out, const MATRIX_D *In )
 {
 	MATRIX_D I1 = *In ;
@@ -1458,7 +1458,7 @@ extern int CreateTransposeMatrixD( MATRIX_D *Out, const MATRIX_D *In )
 	return 0 ;
 }
 
-// ‹ts—ñ‚ğì¬‚·‚é
+// é€†è¡Œåˆ—ã‚’ä½œæˆã™ã‚‹
 extern int CreateInverseMatrix( MATRIX *Out, const MATRIX *In )
 {
 #if 1
@@ -1469,7 +1469,7 @@ extern int CreateInverseMatrix( MATRIX *Out, const MATRIX *In )
 
 	CreateIdentityMatrix( Out );
 
-	//‘|‚«o‚µ–@
+	//æƒãå‡ºã—æ³•
 	for( int i = 0 ; i < 4 ; i++ )
 	{
 		float buf = 1 / matTemp.m[i][i];
@@ -1864,7 +1864,7 @@ extern int CreateInverseMatrix( MATRIX *Out, const MATRIX *In )
 #endif
 }
 
-// ‹ts—ñ‚ğì¬‚·‚é
+// é€†è¡Œåˆ—ã‚’ä½œæˆã™ã‚‹
 extern int CreateInverseMatrixD( MATRIX_D *Out, const MATRIX_D *In )
 {
 	MATRIX_D InT ;
@@ -2066,7 +2066,7 @@ extern int CreateInverseMatrixD( MATRIX_D *Out, const MATRIX_D *In )
 	return 0 ;
 }
 
-// ƒrƒ…[ƒ|[ƒgs—ñ‚ğì¬‚·‚é
+// ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆè¡Œåˆ—ã‚’ä½œæˆã™ã‚‹
 extern int CreateViewportMatrix( MATRIX *Out, float CenterX, float CenterY, float Width, float Height )
 {
 	_MEMSET( Out, 0, sizeof( MATRIX ) ) ;
@@ -2103,7 +2103,7 @@ extern int CreateViewportMatrix( MATRIX *Out, float CenterX, float CenterY, floa
 	return 0 ;
 }
 
-// ƒrƒ…[ƒ|[ƒgs—ñ‚ğì¬‚·‚é
+// ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆè¡Œåˆ—ã‚’ä½œæˆã™ã‚‹
 extern int CreateViewportMatrixD( MATRIX_D *Out, double CenterX, double CenterY, double Width, double Height )
 {
 	_MEMSET( Out, 0, sizeof( MATRIX_D ) ) ;
@@ -2118,7 +2118,7 @@ extern int CreateViewportMatrixD( MATRIX_D *Out, double CenterX, double CenterY,
 	return 0 ;
 }
 
-// ‚w²‰ñ“]¨‚x²‰ñ“]¨‚y²‰ñ“]‚ğ‡¬‚µ‚½s—ñ‚ğì¬‚·‚é
+// ï¼¸è»¸å›è»¢â†’ï¼¹è»¸å›è»¢â†’ï¼ºè»¸å›è»¢ã‚’åˆæˆã—ãŸè¡Œåˆ—ã‚’ä½œæˆã™ã‚‹
 extern int CreateRotationXYZMatrix( MATRIX *Out, float XRot, float YRot, float ZRot )
 {
 	float SinX, CosX, SinY, CosY, SinZ, CosZ ;
@@ -2151,7 +2151,7 @@ extern int CreateRotationXYZMatrix( MATRIX *Out, float XRot, float YRot, float Z
 	return 0 ;
 }
 
-// ‚w²‰ñ“]¨‚x²‰ñ“]¨‚y²‰ñ“]‚ğ‡¬‚µ‚½s—ñ‚ğì¬‚·‚é
+// ï¼¸è»¸å›è»¢â†’ï¼¹è»¸å›è»¢â†’ï¼ºè»¸å›è»¢ã‚’åˆæˆã—ãŸè¡Œåˆ—ã‚’ä½œæˆã™ã‚‹
 extern int CreateRotationXYZMatrixD( MATRIX_D *Out, double XRot, double YRot, double ZRot )
 {
 	double SinX, CosX, SinY, CosY, SinZ, CosZ ;
@@ -2184,7 +2184,7 @@ extern int CreateRotationXYZMatrixD( MATRIX_D *Out, double XRot, double YRot, do
 	return 0 ;
 }
 
-// ‚w²‰ñ“]¨‚y²‰ñ“]¨‚x²‰ñ“]‚ğ‡¬‚µ‚½s—ñ‚ğì¬‚·‚é
+// ï¼¸è»¸å›è»¢â†’ï¼ºè»¸å›è»¢â†’ï¼¹è»¸å›è»¢ã‚’åˆæˆã—ãŸè¡Œåˆ—ã‚’ä½œæˆã™ã‚‹
 extern int CreateRotationXZYMatrix( MATRIX *Out, float XRot, float YRot, float ZRot )
 {
 	float SinX, CosX, SinY, CosY, SinZ, CosZ ;
@@ -2217,7 +2217,7 @@ extern int CreateRotationXZYMatrix( MATRIX *Out, float XRot, float YRot, float Z
 	return 0 ;
 }
 
-// ‚w²‰ñ“]¨‚y²‰ñ“]¨‚x²‰ñ“]‚ğ‡¬‚µ‚½s—ñ‚ğì¬‚·‚é
+// ï¼¸è»¸å›è»¢â†’ï¼ºè»¸å›è»¢â†’ï¼¹è»¸å›è»¢ã‚’åˆæˆã—ãŸè¡Œåˆ—ã‚’ä½œæˆã™ã‚‹
 extern int CreateRotationXZYMatrixD( MATRIX_D *Out, double XRot, double YRot, double ZRot )
 {
 	double SinX, CosX, SinY, CosY, SinZ, CosZ ;
@@ -2250,7 +2250,7 @@ extern int CreateRotationXZYMatrixD( MATRIX_D *Out, double XRot, double YRot, do
 	return 0 ;
 }
 
-// ‚x²‰ñ“]¨‚w²‰ñ“]¨‚y²‰ñ“]‚ğ‡¬‚µ‚½s—ñ‚ğì¬‚·‚é
+// ï¼¹è»¸å›è»¢â†’ï¼¸è»¸å›è»¢â†’ï¼ºè»¸å›è»¢ã‚’åˆæˆã—ãŸè¡Œåˆ—ã‚’ä½œæˆã™ã‚‹
 extern int CreateRotationYXZMatrix( MATRIX *Out, float XRot, float YRot, float ZRot )
 {
 	float SinX, CosX, SinY, CosY, SinZ, CosZ ;
@@ -2283,7 +2283,7 @@ extern int CreateRotationYXZMatrix( MATRIX *Out, float XRot, float YRot, float Z
 	return 0 ;
 }
 
-// ‚x²‰ñ“]¨‚w²‰ñ“]¨‚y²‰ñ“]‚ğ‡¬‚µ‚½s—ñ‚ğì¬‚·‚é
+// ï¼¹è»¸å›è»¢â†’ï¼¸è»¸å›è»¢â†’ï¼ºè»¸å›è»¢ã‚’åˆæˆã—ãŸè¡Œåˆ—ã‚’ä½œæˆã™ã‚‹
 extern int CreateRotationYXZMatrixD( MATRIX_D *Out, double XRot, double YRot, double ZRot )
 {
 	double SinX, CosX, SinY, CosY, SinZ, CosZ ;
@@ -2316,7 +2316,7 @@ extern int CreateRotationYXZMatrixD( MATRIX_D *Out, double XRot, double YRot, do
 	return 0 ;
 }
 
-// ‚x²‰ñ“]¨‚y²‰ñ“]¨‚w²‰ñ“]‚ğ‡¬‚µ‚½s—ñ‚ğì¬‚·‚é
+// ï¼¹è»¸å›è»¢â†’ï¼ºè»¸å›è»¢â†’ï¼¸è»¸å›è»¢ã‚’åˆæˆã—ãŸè¡Œåˆ—ã‚’ä½œæˆã™ã‚‹
 extern int CreateRotationYZXMatrix( MATRIX *Out, float XRot, float YRot, float ZRot )
 {
 	float SinX, CosX, SinY, CosY, SinZ, CosZ ;
@@ -2349,7 +2349,7 @@ extern int CreateRotationYZXMatrix( MATRIX *Out, float XRot, float YRot, float Z
 	return 0 ;
 }
 
-// ‚x²‰ñ“]¨‚y²‰ñ“]¨‚w²‰ñ“]‚ğ‡¬‚µ‚½s—ñ‚ğì¬‚·‚é
+// ï¼¹è»¸å›è»¢â†’ï¼ºè»¸å›è»¢â†’ï¼¸è»¸å›è»¢ã‚’åˆæˆã—ãŸè¡Œåˆ—ã‚’ä½œæˆã™ã‚‹
 extern int CreateRotationYZXMatrixD( MATRIX_D *Out, double XRot, double YRot, double ZRot )
 {
 	double SinX, CosX, SinY, CosY, SinZ, CosZ ;
@@ -2382,7 +2382,7 @@ extern int CreateRotationYZXMatrixD( MATRIX_D *Out, double XRot, double YRot, do
 	return 0 ;
 }
 
-// ‚y²‰ñ“]¨‚w²‰ñ“]¨‚x²‰ñ“]‚ğ‡¬‚µ‚½s—ñ‚ğì¬‚·‚é
+// ï¼ºè»¸å›è»¢â†’ï¼¸è»¸å›è»¢â†’ï¼¹è»¸å›è»¢ã‚’åˆæˆã—ãŸè¡Œåˆ—ã‚’ä½œæˆã™ã‚‹
 extern int CreateRotationZXYMatrix( MATRIX *Out, float XRot, float YRot, float ZRot )
 {
 	float SinX, CosX, SinY, CosY, SinZ, CosZ ;
@@ -2415,7 +2415,7 @@ extern int CreateRotationZXYMatrix( MATRIX *Out, float XRot, float YRot, float Z
 	return 0 ;
 }
 
-// ‚y²‰ñ“]¨‚w²‰ñ“]¨‚x²‰ñ“]‚ğ‡¬‚µ‚½s—ñ‚ğì¬‚·‚é
+// ï¼ºè»¸å›è»¢â†’ï¼¸è»¸å›è»¢â†’ï¼¹è»¸å›è»¢ã‚’åˆæˆã—ãŸè¡Œåˆ—ã‚’ä½œæˆã™ã‚‹
 extern int CreateRotationZXYMatrixD( MATRIX_D *Out, double XRot, double YRot, double ZRot )
 {
 	double SinX, CosX, SinY, CosY, SinZ, CosZ ;
@@ -2448,7 +2448,7 @@ extern int CreateRotationZXYMatrixD( MATRIX_D *Out, double XRot, double YRot, do
 	return 0 ;
 }
 
-// ‚y²‰ñ“]¨‚x²‰ñ“]¨‚w²‰ñ“]‚ğ‡¬‚µ‚½s—ñ‚ğì¬‚·‚é
+// ï¼ºè»¸å›è»¢â†’ï¼¹è»¸å›è»¢â†’ï¼¸è»¸å›è»¢ã‚’åˆæˆã—ãŸè¡Œåˆ—ã‚’ä½œæˆã™ã‚‹
 extern int CreateRotationZYXMatrix( MATRIX *Out, float XRot, float YRot, float ZRot )
 {
 	float SinX, CosX, SinY, CosY, SinZ, CosZ ;
@@ -2481,7 +2481,7 @@ extern int CreateRotationZYXMatrix( MATRIX *Out, float XRot, float YRot, float Z
 	return 0 ;
 }
 
-// ‚y²‰ñ“]¨‚x²‰ñ“]¨‚w²‰ñ“]‚ğ‡¬‚µ‚½s—ñ‚ğì¬‚·‚é
+// ï¼ºè»¸å›è»¢â†’ï¼¹è»¸å›è»¢â†’ï¼¸è»¸å›è»¢ã‚’åˆæˆã—ãŸè¡Œåˆ—ã‚’ä½œæˆã™ã‚‹
 extern int CreateRotationZYXMatrixD( MATRIX_D *Out, double XRot, double YRot, double ZRot )
 {
 	double SinX, CosX, SinY, CosY, SinZ, CosZ ;
@@ -2514,7 +2514,7 @@ extern int CreateRotationZYXMatrixD( MATRIX_D *Out, double XRot, double YRot, do
 	return 0 ;
 }
 
-// s—ñ‚©‚ç‚w‚x‚y²‰ñ“]‚Ì’l‚ğæ“¾‚·‚é( –ß‚è’l@-1:ƒWƒ“ƒoƒ‹ƒƒbƒN”­¶  0:¬Œ÷ )
+// è¡Œåˆ—ã‹ã‚‰ï¼¸ï¼¹ï¼ºè»¸å›è»¢ã®å€¤ã‚’å–å¾—ã™ã‚‹( æˆ»ã‚Šå€¤ã€€-1:ã‚¸ãƒ³ãƒãƒ«ãƒ­ãƒƒã‚¯ç™ºç”Ÿ  0:æˆåŠŸ )
 extern int GetMatrixXYZRotation( const MATRIX *In, float *OutXRot, float *OutYRot, float *OutZRot )
 {
 	float XRot, YRot, ZRot, Sin, Cos ;
@@ -2552,7 +2552,7 @@ extern int GetMatrixXYZRotation( const MATRIX *In, float *OutXRot, float *OutYRo
 	}
 }
 
-// s—ñ‚©‚ç‚w‚x‚y²‰ñ“]‚Ì’l‚ğæ“¾‚·‚é( –ß‚è’l@-1:ƒWƒ“ƒoƒ‹ƒƒbƒN”­¶  0:¬Œ÷ )
+// è¡Œåˆ—ã‹ã‚‰ï¼¸ï¼¹ï¼ºè»¸å›è»¢ã®å€¤ã‚’å–å¾—ã™ã‚‹( æˆ»ã‚Šå€¤ã€€-1:ã‚¸ãƒ³ãƒãƒ«ãƒ­ãƒƒã‚¯ç™ºç”Ÿ  0:æˆåŠŸ )
 extern int GetMatrixXYZRotationD( const MATRIX_D *In, double *OutXRot, double *OutYRot, double *OutZRot )
 {
 	double XRot, YRot, ZRot, Sin, Cos ;
@@ -2590,7 +2590,7 @@ extern int GetMatrixXYZRotationD( const MATRIX_D *In, double *OutXRot, double *O
 	}
 }
 
-// s—ñ‚©‚ç‚w‚y‚x²‰ñ“]‚Ì’l‚ğæ“¾‚·‚é( –ß‚è’l@-1:ƒWƒ“ƒoƒ‹ƒƒbƒN”­¶  0:¬Œ÷ )
+// è¡Œåˆ—ã‹ã‚‰ï¼¸ï¼ºï¼¹è»¸å›è»¢ã®å€¤ã‚’å–å¾—ã™ã‚‹( æˆ»ã‚Šå€¤ã€€-1:ã‚¸ãƒ³ãƒãƒ«ãƒ­ãƒƒã‚¯ç™ºç”Ÿ  0:æˆåŠŸ )
 extern int GetMatrixXZYRotation( const MATRIX *In, float *OutXRot, float *OutYRot, float *OutZRot )
 {
 	float XRot, YRot, ZRot, Sin, Cos ;
@@ -2628,7 +2628,7 @@ extern int GetMatrixXZYRotation( const MATRIX *In, float *OutXRot, float *OutYRo
 	}
 }
 
-// s—ñ‚©‚ç‚w‚y‚x²‰ñ“]‚Ì’l‚ğæ“¾‚·‚é( –ß‚è’l@-1:ƒWƒ“ƒoƒ‹ƒƒbƒN”­¶  0:¬Œ÷ )
+// è¡Œåˆ—ã‹ã‚‰ï¼¸ï¼ºï¼¹è»¸å›è»¢ã®å€¤ã‚’å–å¾—ã™ã‚‹( æˆ»ã‚Šå€¤ã€€-1:ã‚¸ãƒ³ãƒãƒ«ãƒ­ãƒƒã‚¯ç™ºç”Ÿ  0:æˆåŠŸ )
 extern int GetMatrixXZYRotationD( const MATRIX_D *In, double *OutXRot, double *OutYRot, double *OutZRot )
 {
 	double XRot, YRot, ZRot, Sin, Cos ;
@@ -2666,7 +2666,7 @@ extern int GetMatrixXZYRotationD( const MATRIX_D *In, double *OutXRot, double *O
 	}
 }
 
-// s—ñ‚©‚ç‚x‚w‚y²‰ñ“]‚Ì’l‚ğæ“¾‚·‚é( –ß‚è’l@-1:ƒWƒ“ƒoƒ‹ƒƒbƒN”­¶  0:¬Œ÷ )
+// è¡Œåˆ—ã‹ã‚‰ï¼¹ï¼¸ï¼ºè»¸å›è»¢ã®å€¤ã‚’å–å¾—ã™ã‚‹( æˆ»ã‚Šå€¤ã€€-1:ã‚¸ãƒ³ãƒãƒ«ãƒ­ãƒƒã‚¯ç™ºç”Ÿ  0:æˆåŠŸ )
 extern int GetMatrixYXZRotation( const MATRIX *In, float *OutXRot, float *OutYRot, float *OutZRot )
 {
 	float XRot, YRot, ZRot, Sin, Cos ;
@@ -2704,7 +2704,7 @@ extern int GetMatrixYXZRotation( const MATRIX *In, float *OutXRot, float *OutYRo
 	}
 }
 
-// s—ñ‚©‚ç‚x‚w‚y²‰ñ“]‚Ì’l‚ğæ“¾‚·‚é( –ß‚è’l@-1:ƒWƒ“ƒoƒ‹ƒƒbƒN”­¶  0:¬Œ÷ )
+// è¡Œåˆ—ã‹ã‚‰ï¼¹ï¼¸ï¼ºè»¸å›è»¢ã®å€¤ã‚’å–å¾—ã™ã‚‹( æˆ»ã‚Šå€¤ã€€-1:ã‚¸ãƒ³ãƒãƒ«ãƒ­ãƒƒã‚¯ç™ºç”Ÿ  0:æˆåŠŸ )
 extern int GetMatrixYXZRotationD( const MATRIX_D *In, double *OutXRot, double *OutYRot, double *OutZRot )
 {
 	double XRot, YRot, ZRot, Sin, Cos ;
@@ -2742,7 +2742,7 @@ extern int GetMatrixYXZRotationD( const MATRIX_D *In, double *OutXRot, double *O
 	}
 }
 
-// s—ñ‚©‚ç‚x‚y‚w²‰ñ“]‚Ì’l‚ğæ“¾‚·‚é( –ß‚è’l@-1:ƒWƒ“ƒoƒ‹ƒƒbƒN”­¶  0:¬Œ÷ )
+// è¡Œåˆ—ã‹ã‚‰ï¼¹ï¼ºï¼¸è»¸å›è»¢ã®å€¤ã‚’å–å¾—ã™ã‚‹( æˆ»ã‚Šå€¤ã€€-1:ã‚¸ãƒ³ãƒãƒ«ãƒ­ãƒƒã‚¯ç™ºç”Ÿ  0:æˆåŠŸ )
 extern int GetMatrixYZXRotation( const MATRIX *In, float *OutXRot, float *OutYRot, float *OutZRot )
 {
 	float XRot, YRot, ZRot, Sin, Cos ;
@@ -2780,7 +2780,7 @@ extern int GetMatrixYZXRotation( const MATRIX *In, float *OutXRot, float *OutYRo
 	}
 }
 
-// s—ñ‚©‚ç‚x‚y‚w²‰ñ“]‚Ì’l‚ğæ“¾‚·‚é( –ß‚è’l@-1:ƒWƒ“ƒoƒ‹ƒƒbƒN”­¶  0:¬Œ÷ )
+// è¡Œåˆ—ã‹ã‚‰ï¼¹ï¼ºï¼¸è»¸å›è»¢ã®å€¤ã‚’å–å¾—ã™ã‚‹( æˆ»ã‚Šå€¤ã€€-1:ã‚¸ãƒ³ãƒãƒ«ãƒ­ãƒƒã‚¯ç™ºç”Ÿ  0:æˆåŠŸ )
 extern int GetMatrixYZXRotationD( const MATRIX_D *In, double *OutXRot, double *OutYRot, double *OutZRot )
 {
 	double XRot, YRot, ZRot, Sin, Cos ;
@@ -2818,7 +2818,7 @@ extern int GetMatrixYZXRotationD( const MATRIX_D *In, double *OutXRot, double *O
 	}
 }
 
-// s—ñ‚©‚ç‚y‚w‚x²‰ñ“]‚Ì’l‚ğæ“¾‚·‚é( –ß‚è’l@-1:ƒWƒ“ƒoƒ‹ƒƒbƒN”­¶  0:¬Œ÷ )
+// è¡Œåˆ—ã‹ã‚‰ï¼ºï¼¸ï¼¹è»¸å›è»¢ã®å€¤ã‚’å–å¾—ã™ã‚‹( æˆ»ã‚Šå€¤ã€€-1:ã‚¸ãƒ³ãƒãƒ«ãƒ­ãƒƒã‚¯ç™ºç”Ÿ  0:æˆåŠŸ )
 extern int GetMatrixZXYRotation( const MATRIX *In, float *OutXRot, float *OutYRot, float *OutZRot )
 {
 	float XRot, YRot, ZRot, Sin, Cos ;
@@ -2856,7 +2856,7 @@ extern int GetMatrixZXYRotation( const MATRIX *In, float *OutXRot, float *OutYRo
 	}
 }
 
-// s—ñ‚©‚ç‚y‚w‚x²‰ñ“]‚Ì’l‚ğæ“¾‚·‚é( –ß‚è’l@-1:ƒWƒ“ƒoƒ‹ƒƒbƒN”­¶  0:¬Œ÷ )
+// è¡Œåˆ—ã‹ã‚‰ï¼ºï¼¸ï¼¹è»¸å›è»¢ã®å€¤ã‚’å–å¾—ã™ã‚‹( æˆ»ã‚Šå€¤ã€€-1:ã‚¸ãƒ³ãƒãƒ«ãƒ­ãƒƒã‚¯ç™ºç”Ÿ  0:æˆåŠŸ )
 extern int GetMatrixZXYRotationD( const MATRIX_D *In, double *OutXRot, double *OutYRot, double *OutZRot )
 {
 	double XRot, YRot, ZRot, Sin, Cos ;
@@ -2894,7 +2894,7 @@ extern int GetMatrixZXYRotationD( const MATRIX_D *In, double *OutXRot, double *O
 	}
 }
 
-// s—ñ‚©‚ç‚y‚x‚w²‰ñ“]‚Ì’l‚ğæ“¾‚·‚é( –ß‚è’l@-1:ƒWƒ“ƒoƒ‹ƒƒbƒN”­¶  0:¬Œ÷ )
+// è¡Œåˆ—ã‹ã‚‰ï¼ºï¼¹ï¼¸è»¸å›è»¢ã®å€¤ã‚’å–å¾—ã™ã‚‹( æˆ»ã‚Šå€¤ã€€-1:ã‚¸ãƒ³ãƒãƒ«ãƒ­ãƒƒã‚¯ç™ºç”Ÿ  0:æˆåŠŸ )
 extern int GetMatrixZYXRotation( const MATRIX *In, float *OutXRot, float *OutYRot, float *OutZRot )
 {
 	float XRot, YRot, ZRot, Sin, Cos ;
@@ -2932,7 +2932,7 @@ extern int GetMatrixZYXRotation( const MATRIX *In, float *OutXRot, float *OutYRo
 	}
 }
 
-// s—ñ‚©‚ç‚y‚x‚w²‰ñ“]‚Ì’l‚ğæ“¾‚·‚é( –ß‚è’l@-1:ƒWƒ“ƒoƒ‹ƒƒbƒN”­¶  0:¬Œ÷ )
+// è¡Œåˆ—ã‹ã‚‰ï¼ºï¼¹ï¼¸è»¸å›è»¢ã®å€¤ã‚’å–å¾—ã™ã‚‹( æˆ»ã‚Šå€¤ã€€-1:ã‚¸ãƒ³ãƒãƒ«ãƒ­ãƒƒã‚¯ç™ºç”Ÿ  0:æˆåŠŸ )
 extern int GetMatrixZYXRotationD( const MATRIX_D *In, double *OutXRot, double *OutYRot, double *OutZRot )
 {
 	double XRot, YRot, ZRot, Sin, Cos ;
@@ -2970,7 +2970,7 @@ extern int GetMatrixZYXRotationD( const MATRIX_D *In, double *OutXRot, double *O
 	}
 }
 
-// floatŒ^‚ÌƒxƒNƒgƒ‹‚ğdoubleŒ^‚ÌƒxƒNƒgƒ‹‚É•ÏŠ·‚·‚é
+// floatå‹ã®ãƒ™ã‚¯ãƒˆãƒ«ã‚’doubleå‹ã®ãƒ™ã‚¯ãƒˆãƒ«ã«å¤‰æ›ã™ã‚‹
 extern int VectorConvertFtoD( VECTOR_D *Out, const VECTOR   *In )
 {
 	Out->x = In->x ;
@@ -2980,7 +2980,7 @@ extern int VectorConvertFtoD( VECTOR_D *Out, const VECTOR   *In )
 	return 0 ;
 }
 
-// doubleŒ^‚ÌƒxƒNƒgƒ‹‚ğfloatŒ^‚ÌƒxƒNƒgƒ‹‚É•ÏŠ·‚·‚é
+// doubleå‹ã®ãƒ™ã‚¯ãƒˆãƒ«ã‚’floatå‹ã®ãƒ™ã‚¯ãƒˆãƒ«ã«å¤‰æ›ã™ã‚‹
 extern int VectorConvertDtoF( VECTOR   *Out, const VECTOR_D *In )
 {
 	Out->x = ( float )In->x ;
@@ -2990,7 +2990,7 @@ extern int VectorConvertDtoF( VECTOR   *Out, const VECTOR_D *In )
 	return 0 ;
 }
 
-// ƒxƒNƒgƒ‹‚ğ³‹K‰»‚·‚é
+// ãƒ™ã‚¯ãƒˆãƒ«ã‚’æ­£è¦åŒ–ã™ã‚‹
 extern int VectorNormalize( VECTOR *Out, const VECTOR *In )
 {
 	float r ;
@@ -3000,11 +3000,11 @@ extern int VectorNormalize( VECTOR *Out, const VECTOR *In )
 	Out->y = In->y / r ;
 	Out->z = In->z / r ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒxƒNƒgƒ‹‚ğ³‹K‰»‚·‚é
+// ãƒ™ã‚¯ãƒˆãƒ«ã‚’æ­£è¦åŒ–ã™ã‚‹
 extern int VectorNormalizeD( VECTOR_D *Out, const VECTOR_D *In )
 {
 	double r ;
@@ -3014,99 +3014,99 @@ extern int VectorNormalizeD( VECTOR_D *Out, const VECTOR_D *In )
 	Out->y = In->y / r ;
 	Out->z = In->z / r ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒxƒNƒgƒ‹‚ğƒXƒJƒ‰[”{‚·‚é
+// ãƒ™ã‚¯ãƒˆãƒ«ã‚’ã‚¹ã‚«ãƒ©ãƒ¼å€ã™ã‚‹
 extern int VectorScale( VECTOR *Out, const VECTOR *In, float Scale )
 {
 	Out->x = In->x * Scale ;
 	Out->y = In->y * Scale ;
 	Out->z = In->z * Scale ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒxƒNƒgƒ‹‚ğƒXƒJƒ‰[”{‚·‚é
+// ãƒ™ã‚¯ãƒˆãƒ«ã‚’ã‚¹ã‚«ãƒ©ãƒ¼å€ã™ã‚‹
 extern int VectorScaleD( VECTOR_D *Out, const VECTOR_D *In, double Scale )
 {
 	Out->x = In->x * Scale ;
 	Out->y = In->y * Scale ;
 	Out->z = In->z * Scale ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒxƒNƒgƒ‹‚ÌŠ|‚¯Z‚ğ‚·‚é
+// ãƒ™ã‚¯ãƒˆãƒ«ã®æ›ã‘ç®—ã‚’ã™ã‚‹
 extern int VectorMultiply( VECTOR *Out, const VECTOR *In1, const VECTOR *In2 )
 {
 	Out->x = In1->x * In2->x ;
 	Out->y = In1->y * In2->y ;
 	Out->z = In1->z * In2->z ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒxƒNƒgƒ‹‚ÌŠ|‚¯Z‚ğ‚·‚é
+// ãƒ™ã‚¯ãƒˆãƒ«ã®æ›ã‘ç®—ã‚’ã™ã‚‹
 extern int VectorMultiplyD( VECTOR_D *Out, const VECTOR_D *In1, const VECTOR_D *In2 )
 {
 	Out->x = In1->x * In2->x ;
 	Out->y = In1->y * In2->y ;
 	Out->z = In1->z * In2->z ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// Out = In1 - In2 ‚ÌƒxƒNƒgƒ‹ŒvZ‚ğ‚·‚é
+// Out = In1 - In2 ã®ãƒ™ã‚¯ãƒˆãƒ«è¨ˆç®—ã‚’ã™ã‚‹
 extern int VectorSub( VECTOR *Out, const VECTOR *In1, const VECTOR *In2 ) 
 {
 	Out->x = In1->x - In2->x ;
 	Out->y = In1->y - In2->y ;
 	Out->z = In1->z - In2->z ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// Out = In1 - In2 ‚ÌƒxƒNƒgƒ‹ŒvZ‚ğ‚·‚é
+// Out = In1 - In2 ã®ãƒ™ã‚¯ãƒˆãƒ«è¨ˆç®—ã‚’ã™ã‚‹
 extern int VectorSubD( VECTOR_D *Out, const VECTOR_D *In1, const VECTOR_D *In2 ) 
 {
 	Out->x = In1->x - In2->x ;
 	Out->y = In1->y - In2->y ;
 	Out->z = In1->z - In2->z ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// Out = In1 + In2 ‚ÌƒxƒNƒgƒ‹ŒvZ‚ğ‚·‚é 
+// Out = In1 + In2 ã®ãƒ™ã‚¯ãƒˆãƒ«è¨ˆç®—ã‚’ã™ã‚‹ 
 extern int VectorAdd( VECTOR *Out, const VECTOR *In1, const VECTOR *In2 )
 {
 	Out->x = In1->x + In2->x ;
 	Out->y = In1->y + In2->y ;
 	Out->z = In1->z + In2->z ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// Out = In1 + In2 ‚ÌƒxƒNƒgƒ‹ŒvZ‚ğ‚·‚é 
+// Out = In1 + In2 ã®ãƒ™ã‚¯ãƒˆãƒ«è¨ˆç®—ã‚’ã™ã‚‹ 
 extern int VectorAddD( VECTOR_D *Out, const VECTOR_D *In1, const VECTOR_D *In2 )
 {
 	Out->x = In1->x + In2->x ;
 	Out->y = In1->y + In2->y ;
 	Out->z = In1->z + In2->z ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// In1‚ÆIn2‚ÌŠOÏ‚ğŒvZ‚·‚é
+// In1ã¨In2ã®å¤–ç©ã‚’è¨ˆç®—ã™ã‚‹
 extern int VectorOuterProduct( VECTOR *Out, const VECTOR *In1, const VECTOR *In2 )
 {
 	VECTOR in1 = *In1 ;
@@ -3116,11 +3116,11 @@ extern int VectorOuterProduct( VECTOR *Out, const VECTOR *In1, const VECTOR *In2
 	Out->y = in1.z * in2.x - in1.x * in2.z ;
 	Out->z = in1.x * in2.y - in1.y * in2.x ;
 	
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// In1‚ÆIn2‚ÌŠOÏ‚ğŒvZ‚·‚é
+// In1ã¨In2ã®å¤–ç©ã‚’è¨ˆç®—ã™ã‚‹
 extern int VectorOuterProductD( VECTOR_D *Out, const VECTOR_D *In1, const VECTOR_D *In2 )
 {
 	VECTOR_D in1 = *In1 ;
@@ -3130,23 +3130,23 @@ extern int VectorOuterProductD( VECTOR_D *Out, const VECTOR_D *In1, const VECTOR
 	Out->y = in1.z * in2.x - in1.x * in2.z ;
 	Out->z = in1.x * in2.y - in1.y * in2.x ;
 	
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// In1‚ÆIn2‚Ì“àÏ‚ğŒvZ‚·‚é
+// In1ã¨In2ã®å†…ç©ã‚’è¨ˆç®—ã™ã‚‹
 extern float VectorInnerProduct( const VECTOR *In1, const VECTOR *In2 )
 {
 	return In1->x * In2->x + In1->y * In2->y + In1->z * In2->z ;
 }
 
-// In1‚ÆIn2‚Ì“àÏ‚ğŒvZ‚·‚é
+// In1ã¨In2ã®å†…ç©ã‚’è¨ˆç®—ã™ã‚‹
 extern double VectorInnerProductD( const VECTOR_D *In1, const VECTOR_D *In2 )
 {
 	return In1->x * In2->x + In1->y * In2->y + In1->z * In2->z ;
 }
 
-// ƒxƒNƒgƒ‹‚Ì‚w²‚ğ²‚É‚µ‚½‰ñ“]‚ğs‚¤
+// ãƒ™ã‚¯ãƒˆãƒ«ã®ï¼¸è»¸ã‚’è»¸ã«ã—ãŸå›è»¢ã‚’è¡Œã†
 extern int VectorRotationX( VECTOR *Out, const VECTOR *In, double Angle )
 {
 	float f ;
@@ -3158,11 +3158,11 @@ extern int VectorRotationX( VECTOR *Out, const VECTOR *In, double Angle )
 	Out->y = In->z * Sin + In->y * Cos ;
 	Out->z = f ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒxƒNƒgƒ‹‚Ì‚w²‚ğ²‚É‚µ‚½‰ñ“]‚ğs‚¤
+// ãƒ™ã‚¯ãƒˆãƒ«ã®ï¼¸è»¸ã‚’è»¸ã«ã—ãŸå›è»¢ã‚’è¡Œã†
 extern int VectorRotationXD( VECTOR_D *Out, const VECTOR_D *In, double Angle )
 {
 	double f ;
@@ -3174,11 +3174,11 @@ extern int VectorRotationXD( VECTOR_D *Out, const VECTOR_D *In, double Angle )
 	Out->y = In->z * Sin + In->y * Cos ;
 	Out->z = f ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒxƒNƒgƒ‹‚Ì‚x²‚ğ²‚É‚µ‚½‰ñ“]‚ğs‚¤
+// ãƒ™ã‚¯ãƒˆãƒ«ã®ï¼¹è»¸ã‚’è»¸ã«ã—ãŸå›è»¢ã‚’è¡Œã†
 extern int VectorRotationY( VECTOR *Out, const VECTOR *In, double Angle )
 {
 	float f ;
@@ -3190,11 +3190,11 @@ extern int VectorRotationY( VECTOR *Out, const VECTOR *In, double Angle )
 	Out->z = In->x * Sin + In->z * Cos ;
 	Out->x = f ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒxƒNƒgƒ‹‚Ì‚x²‚ğ²‚É‚µ‚½‰ñ“]‚ğs‚¤
+// ãƒ™ã‚¯ãƒˆãƒ«ã®ï¼¹è»¸ã‚’è»¸ã«ã—ãŸå›è»¢ã‚’è¡Œã†
 extern int VectorRotationYD( VECTOR_D *Out, const VECTOR_D *In, double Angle )
 {
 	double f ;
@@ -3206,11 +3206,11 @@ extern int VectorRotationYD( VECTOR_D *Out, const VECTOR_D *In, double Angle )
 	Out->z = In->x * Sin + In->z * Cos ;
 	Out->x = f ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒxƒNƒgƒ‹‚Ì‚y²‚ğ²‚É‚µ‚½‰ñ“]‚ğs‚¤
+// ãƒ™ã‚¯ãƒˆãƒ«ã®ï¼ºè»¸ã‚’è»¸ã«ã—ãŸå›è»¢ã‚’è¡Œã†
 extern int VectorRotationZ( VECTOR *Out, const VECTOR *In, double Angle )
 {
 	float f ;
@@ -3222,11 +3222,11 @@ extern int VectorRotationZ( VECTOR *Out, const VECTOR *In, double Angle )
 	Out->y = In->x * Sin + In->y * Cos ;
 	Out->x = f ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒxƒNƒgƒ‹‚Ì‚y²‚ğ²‚É‚µ‚½‰ñ“]‚ğs‚¤
+// ãƒ™ã‚¯ãƒˆãƒ«ã®ï¼ºè»¸ã‚’è»¸ã«ã—ãŸå›è»¢ã‚’è¡Œã†
 extern int VectorRotationZD( VECTOR_D *Out, const VECTOR_D *In, double Angle )
 {
 	double f ;
@@ -3238,13 +3238,13 @@ extern int VectorRotationZD( VECTOR_D *Out, const VECTOR_D *In, double Angle )
 	Out->y = In->x * Sin + In->y * Cos ;
 	Out->x = f ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
 
 
-// ƒxƒNƒgƒ‹s—ñ‚Æ4x4³•ûs—ñ‚ğæZ‚·‚é( w ‚Í 1 ‚Æ‰¼’è )
+// ãƒ™ã‚¯ãƒˆãƒ«è¡Œåˆ—ã¨4x4æ­£æ–¹è¡Œåˆ—ã‚’ä¹—ç®—ã™ã‚‹( w ã¯ 1 ã¨ä»®å®š )
 extern int VectorTransform( VECTOR *Out, const VECTOR *InVec, const MATRIX *InMatrix )
 {
 	VECTOR InV = *InVec ;
@@ -3256,7 +3256,7 @@ extern int VectorTransform( VECTOR *Out, const VECTOR *InVec, const MATRIX *InMa
 	return 0 ;
 }
 
-// ƒxƒNƒgƒ‹s—ñ‚Æ4x4³•ûs—ñ‚ğæZ‚·‚é( w ‚Í 1 ‚Æ‰¼’è )
+// ãƒ™ã‚¯ãƒˆãƒ«è¡Œåˆ—ã¨4x4æ­£æ–¹è¡Œåˆ—ã‚’ä¹—ç®—ã™ã‚‹( w ã¯ 1 ã¨ä»®å®š )
 extern int VectorTransformD( VECTOR_D *Out, const VECTOR_D *InVec, const MATRIX_D *InMatrix )
 {
 	VECTOR_D InV = *InVec ;
@@ -3268,7 +3268,7 @@ extern int VectorTransformD( VECTOR_D *Out, const VECTOR_D *InVec, const MATRIX_
 	return 0 ;
 }
 
-// ƒxƒNƒgƒ‹s—ñ‚Æ4x4³•ûs—ñ‚Ì‰ñ“]•”•ª‚Ì‚İ‚ğæZ‚·‚é
+// ãƒ™ã‚¯ãƒˆãƒ«è¡Œåˆ—ã¨4x4æ­£æ–¹è¡Œåˆ—ã®å›è»¢éƒ¨åˆ†ã®ã¿ã‚’ä¹—ç®—ã™ã‚‹
 extern int VectorTransformSR( VECTOR *Out, const VECTOR *InVec, const MATRIX *InMatrix )
 {
 	VECTOR InV = *InVec ;
@@ -3280,7 +3280,7 @@ extern int VectorTransformSR( VECTOR *Out, const VECTOR *InVec, const MATRIX *In
 	return 0 ;
 }
 
-// ƒxƒNƒgƒ‹s—ñ‚Æ4x4³•ûs—ñ‚Ì‰ñ“]•”•ª‚Ì‚İ‚ğæZ‚·‚é
+// ãƒ™ã‚¯ãƒˆãƒ«è¡Œåˆ—ã¨4x4æ­£æ–¹è¡Œåˆ—ã®å›è»¢éƒ¨åˆ†ã®ã¿ã‚’ä¹—ç®—ã™ã‚‹
 extern int VectorTransformSRD( VECTOR_D *Out, const VECTOR_D *InVec, const MATRIX_D *InMatrix )
 {
 	VECTOR_D InV = *InVec ;
@@ -3292,7 +3292,7 @@ extern int VectorTransformSRD( VECTOR_D *Out, const VECTOR_D *InVec, const MATRI
 	return 0 ;
 }
 
-// ƒxƒNƒgƒ‹s—ñ‚Æ4x4³•ûs—ñ‚ğæZ‚·‚é( w ‚Ì—v‘f‚ğ“n‚· )
+// ãƒ™ã‚¯ãƒˆãƒ«è¡Œåˆ—ã¨4x4æ­£æ–¹è¡Œåˆ—ã‚’ä¹—ç®—ã™ã‚‹( w ã®è¦ç´ ã‚’æ¸¡ã™ )
 extern int VectorTransform4( VECTOR *Out, float *V4Out, const VECTOR *InVec, const float *V4In, const MATRIX *InMatrix )
 {
 	VECTOR invec ;
@@ -3308,7 +3308,7 @@ extern int VectorTransform4( VECTOR *Out, float *V4Out, const VECTOR *InVec, con
 	return 0 ;
 }
 
-// ƒxƒNƒgƒ‹s—ñ‚Æ4x4³•ûs—ñ‚ğæZ‚·‚é( w ‚Ì—v‘f‚ğ“n‚· )
+// ãƒ™ã‚¯ãƒˆãƒ«è¡Œåˆ—ã¨4x4æ­£æ–¹è¡Œåˆ—ã‚’ä¹—ç®—ã™ã‚‹( w ã®è¦ç´ ã‚’æ¸¡ã™ )
 extern int VectorTransform4D( VECTOR_D *Out, double *V4Out, const VECTOR_D *InVec, const double *V4In, const MATRIX_D *InMatrix )
 {
 	VECTOR_D invec ;
@@ -3324,7 +3324,7 @@ extern int VectorTransform4D( VECTOR_D *Out, double *V4Out, const VECTOR_D *InVe
 	return 0 ;
 }
 
-// “ñ‚Â‚Ìü•ª‚ÌÅÚ‹ß“_î•ñ‚ğ‰ğÍ‚·‚é
+// äºŒã¤ã®ç·šåˆ†ã®æœ€æ¥è¿‘ç‚¹æƒ…å ±ã‚’è§£æã™ã‚‹
 extern int Segment_Segment_Analyse( const VECTOR *SegmentAPos1, const VECTOR *SegmentAPos2, const VECTOR *SegmentBPos1, const VECTOR *SegmentBPos2, SEGMENT_SEGMENT_RESULT *Result )
 {
 	VECTOR segA1_2 ;
@@ -3345,7 +3345,7 @@ extern int Segment_Segment_Analyse( const VECTOR *SegmentAPos1, const VECTOR *Se
 	e = -VectorInnerProduct( &segA1_2, &segB1_A1 ) ;
 	f = -VectorInnerProduct( &segB1_2, &segB1_A1 ) ;
 
-	// SegmentAPos1 - SegmentAPos2 ‚Ü‚½‚Í SegmentBPos1 - SegmentBPos2 ‚Ì‹——£‚ªŒÀ‚è‚È‚­ƒ[ƒ‚É‹ß‚¢‚©‚Ç‚¤‚©‚Ìƒ`ƒFƒbƒN
+	// SegmentAPos1 - SegmentAPos2 ã¾ãŸã¯ SegmentBPos1 - SegmentBPos2 ã®è·é›¢ãŒé™ã‚Šãªãã‚¼ãƒ­ã«è¿‘ã„ã‹ã©ã†ã‹ã®ãƒã‚§ãƒƒã‚¯
 	tmpA = a < 0.0f ? -a : a ;
 	tmpB = d < 0.0f ? -d : d ;
 	if( tmpA < 0.00000001f )
@@ -3387,12 +3387,12 @@ extern int Segment_Segment_Analyse( const VECTOR *SegmentAPos1, const VECTOR *Se
 	w = a * d - b * c ;
 	if( w <= -0.00000001f )
 	{
-		// ƒNƒ‰[ƒƒ‹‚ÌŒö®
+		// ã‚¯ãƒ©ãƒ¼ãƒ¡ãƒ«ã®å…¬å¼
 		s = ( e * d - b * f ) / w ;
 		t = ( a * f - e * c ) / w ;
 	}
 
-	// “ñ‚Â‚Ìü•ª‚ªk‘Ş‚µ‚Ä‚¢‚½‚ç“_‚ÆŒ©‚È‚µ‚Ä“_“¯m‚Ì‹——£‚ğ•Ô‚·
+	// äºŒã¤ã®ç·šåˆ†ãŒç¸®é€€ã—ã¦ã„ãŸã‚‰ç‚¹ã¨è¦‹ãªã—ã¦ç‚¹åŒå£«ã®è·é›¢ã‚’è¿”ã™
 	if( a <= 0.0f && -d <= 0.0f )
 	{
 		Result->SegA_MinDist_Pos1_Pos2_t = 0.0f ;
@@ -3423,11 +3423,11 @@ extern int Segment_Segment_Analyse( const VECTOR *SegmentAPos1, const VECTOR *Se
 		{
 			s = s > 1.0f ? 1.0f : 0.0f ;
 
-			t = ( -b * s + -f ) / -d ;		// ƒKƒEƒXÁ‹–@
+			t = ( -b * s + -f ) / -d ;		// ã‚¬ã‚¦ã‚¹æ¶ˆå»æ³•
 			if( t > 1.0f || t < 0.0f )
 			{
 				t = t > 1.0f ? 1.0f : 0.0f ;
-				s = ( -b * t - -e ) / a ;	// ƒKƒEƒXÁ‹–@
+				s = ( -b * t - -e ) / a ;	// ã‚¬ã‚¦ã‚¹æ¶ˆå»æ³•
 					 if( s > 1.0f ) s = 1.0f ;
 				else if( s < 0.0f ) s = 0.0f ;
 			}
@@ -3436,12 +3436,12 @@ extern int Segment_Segment_Analyse( const VECTOR *SegmentAPos1, const VECTOR *Se
 		if( t > 1.0f || t < 0.0f )
 		{
 			t = t > 1.0f ? 1.0f : 0.0f ;
-			s = ( -b * t - -e ) / a ;		// ƒKƒEƒXÁ‹–@
+			s = ( -b * t - -e ) / a ;		// ã‚¬ã‚¦ã‚¹æ¶ˆå»æ³•
 
 			if( s > 1.0f || s < 0.0f )
 			{
 				s = s > 1.0f ? 1.0f : 0.0f ;
-				t = ( -b * s + -f ) / -d ;	// ƒKƒEƒXÁ‹–@
+				t = ( -b * s + -f ) / -d ;	// ã‚¬ã‚¦ã‚¹æ¶ˆå»æ³•
 					 if( t > 1.0f ) t = 1.0f ;
 				else if( t < 0.0f ) t = 0.0f ;
 			}
@@ -3474,7 +3474,7 @@ extern int Segment_Segment_Analyse( const VECTOR *SegmentAPos1, const VECTOR *Se
 	return 0 ;
 }
 
-// “ñ‚Â‚Ìü•ª‚ÌÅÚ‹ß“_î•ñ‚ğ‰ğÍ‚·‚é
+// äºŒã¤ã®ç·šåˆ†ã®æœ€æ¥è¿‘ç‚¹æƒ…å ±ã‚’è§£æã™ã‚‹
 extern int Segment_Segment_AnalyseD( const VECTOR_D *SegmentAPos1, const VECTOR_D *SegmentAPos2, const VECTOR_D *SegmentBPos1, const VECTOR_D *SegmentBPos2, SEGMENT_SEGMENT_RESULT_D *Result )
 {
 	VECTOR_D segA1_2 ;
@@ -3495,7 +3495,7 @@ extern int Segment_Segment_AnalyseD( const VECTOR_D *SegmentAPos1, const VECTOR_
 	e = -VectorInnerProductD( &segA1_2, &segB1_A1 ) ;
 	f = -VectorInnerProductD( &segB1_2, &segB1_A1 ) ;
 
-	// SegmentAPos1 - SegmentAPos2 ‚Ü‚½‚Í SegmentBPos1 - SegmentBPos2 ‚Ì‹——£‚ªŒÀ‚è‚È‚­ƒ[ƒ‚É‹ß‚¢‚©‚Ç‚¤‚©‚Ìƒ`ƒFƒbƒN
+	// SegmentAPos1 - SegmentAPos2 ã¾ãŸã¯ SegmentBPos1 - SegmentBPos2 ã®è·é›¢ãŒé™ã‚Šãªãã‚¼ãƒ­ã«è¿‘ã„ã‹ã©ã†ã‹ã®ãƒã‚§ãƒƒã‚¯
 	tmpA = a < 0.0 ? -a : a ;
 	tmpB = d < 0.0 ? -d : d ;
 	if( tmpA < 0.00000001 )
@@ -3537,12 +3537,12 @@ extern int Segment_Segment_AnalyseD( const VECTOR_D *SegmentAPos1, const VECTOR_
 	w = a * d - b * c ;
 	if( w <= -0.00000001 )
 	{
-		// ƒNƒ‰[ƒƒ‹‚ÌŒö®
+		// ã‚¯ãƒ©ãƒ¼ãƒ¡ãƒ«ã®å…¬å¼
 		s = ( e * d - b * f ) / w ;
 		t = ( a * f - e * c ) / w ;
 	}
 
-	// “ñ‚Â‚Ìü•ª‚ªk‘Ş‚µ‚Ä‚¢‚½‚ç“_‚ÆŒ©‚È‚µ‚Ä“_“¯m‚Ì‹——£‚ğ•Ô‚·
+	// äºŒã¤ã®ç·šåˆ†ãŒç¸®é€€ã—ã¦ã„ãŸã‚‰ç‚¹ã¨è¦‹ãªã—ã¦ç‚¹åŒå£«ã®è·é›¢ã‚’è¿”ã™
 	if( a <= 0.0 && -d <= 0.0 )
 	{
 		Result->SegA_MinDist_Pos1_Pos2_t = 0.0 ;
@@ -3573,11 +3573,11 @@ extern int Segment_Segment_AnalyseD( const VECTOR_D *SegmentAPos1, const VECTOR_
 		{
 			s = s > 1.0 ? 1.0 : 0.0 ;
 
-			t = ( -b * s + -f ) / -d ;		// ƒKƒEƒXÁ‹–@
+			t = ( -b * s + -f ) / -d ;		// ã‚¬ã‚¦ã‚¹æ¶ˆå»æ³•
 			if( t > 1.0 || t < 0.0 )
 			{
 				t = t > 1.0 ? 1.0 : 0.0 ;
-				s = ( -b * t - -e ) / a ;	// ƒKƒEƒXÁ‹–@
+				s = ( -b * t - -e ) / a ;	// ã‚¬ã‚¦ã‚¹æ¶ˆå»æ³•
 					 if( s > 1.0 ) s = 1.0 ;
 				else if( s < 0.0 ) s = 0.0 ;
 			}
@@ -3586,12 +3586,12 @@ extern int Segment_Segment_AnalyseD( const VECTOR_D *SegmentAPos1, const VECTOR_
 		if( t > 1.0 || t < 0.0 )
 		{
 			t = t > 1.0 ? 1.0 : 0.0 ;
-			s = ( -b * t - -e ) / a ;		// ƒKƒEƒXÁ‹–@
+			s = ( -b * t - -e ) / a ;		// ã‚¬ã‚¦ã‚¹æ¶ˆå»æ³•
 
 			if( s > 1.0 || s < 0.0 )
 			{
 				s = s > 1.0 ? 1.0 : 0.0 ;
-				t = ( -b * s + -f ) / -d ;	// ƒKƒEƒXÁ‹–@
+				t = ( -b * s + -f ) / -d ;	// ã‚¬ã‚¦ã‚¹æ¶ˆå»æ³•
 					 if( t > 1.0 ) t = 1.0 ;
 				else if( t < 0.0 ) t = 0.0 ;
 			}
@@ -3613,7 +3613,7 @@ extern int Segment_Segment_AnalyseD( const VECTOR_D *SegmentAPos1, const VECTOR_
 	return 0 ;
 }
 
-// ü•ª‚Æ“_‚ÌÅÚ‹ß“_î•ñ‚ğ‰ğÍ‚·‚é
+// ç·šåˆ†ã¨ç‚¹ã®æœ€æ¥è¿‘ç‚¹æƒ…å ±ã‚’è§£æã™ã‚‹
 extern int Segment_Point_Analyse( const VECTOR *SegmentPos1, const VECTOR *SegmentPos2, const VECTOR *PointPos, SEGMENT_POINT_RESULT *Result )
 {
 	float SizeSquSeg1_2 ;
@@ -3658,7 +3658,7 @@ extern int Segment_Point_Analyse( const VECTOR *SegmentPos1, const VECTOR *Segme
 	return 0 ;
 }
 
-// ü•ª‚Æ“_‚ÌÅÚ‹ß“_î•ñ‚ğ‰ğÍ‚·‚é
+// ç·šåˆ†ã¨ç‚¹ã®æœ€æ¥è¿‘ç‚¹æƒ…å ±ã‚’è§£æã™ã‚‹
 extern int Segment_Point_AnalyseD( const VECTOR_D *SegmentPos1, const VECTOR_D *SegmentPos2, const VECTOR_D *PointPos, SEGMENT_POINT_RESULT_D *Result )
 {
 	double SizeSquSeg1_2 ;
@@ -3703,7 +3703,7 @@ extern int Segment_Point_AnalyseD( const VECTOR_D *SegmentPos1, const VECTOR_D *
 	return 0 ;
 }
 
-// ü•ª‚ÆOŠpŒ`‚ÌÅÚ‹ß“_î•ñ‚ğ‰ğÍ‚·‚é
+// ç·šåˆ†ã¨ä¸‰è§’å½¢ã®æœ€æ¥è¿‘ç‚¹æƒ…å ±ã‚’è§£æã™ã‚‹
 extern int Segment_Triangle_Analyse( const VECTOR *SegmentPos1, const VECTOR *SegmentPos2, const VECTOR *TrianglePos1, const VECTOR *TrianglePos2, const VECTOR *TrianglePos3, SEGMENT_TRIANGLE_RESULT *Result )
 {
 	bool Project1, Project2 ;
@@ -3738,7 +3738,7 @@ extern int Segment_Triangle_Analyse( const VECTOR *SegmentPos1, const VECTOR *Se
 	VectorOuterProduct( &TriNorm, &Tri1_2, &Tri1_3 ) ;
 	VectorNormalize( &TriNorm, &TriNorm ) ;
 
-	// OŠpŒ`‚ª¦‚·•½–Êó‚É’¸“_‚ğ“Š‰e‚·‚é
+	// ä¸‰è§’å½¢ãŒç¤ºã™å¹³é¢çŠ¶ã«é ‚ç‚¹ã‚’æŠ•å½±ã™ã‚‹
 	VectorSub( &Tri1_Seg1, SegmentPos1, TrianglePos1 ) ;
 	Seg1_TriProSeg1_DistBase = VectorInnerProduct( &Tri1_Seg1, &TriNorm ) ;
 	VectorScale( &tv, &TriNorm, Seg1_TriProSeg1_DistBase ) ;
@@ -3749,23 +3749,23 @@ extern int Segment_Triangle_Analyse( const VECTOR *SegmentPos1, const VECTOR *Se
 //	NS_DrawCube3D( Seg1_TriPro.x - 10.0f, Seg1_TriPro.y - 10.0f, Seg1_TriPro.z - 10.0f, 
 //					Seg1_TriPro.x + 10.0f, Seg1_TriPro.y + 10.0f, Seg1_TriPro.z + 10.0f, GetColor( 0,255,255 ), TRUE ) ;
 
-	// OŠpŒ`“à‚É’¸“_‚ª‘¶İ‚·‚é‚©‚Ç‚¤‚©‚ğ’²‚×‚é
+	// ä¸‰è§’å½¢å†…ã«é ‚ç‚¹ãŒå­˜åœ¨ã™ã‚‹ã‹ã©ã†ã‹ã‚’èª¿ã¹ã‚‹
 	TriangleBarycenter_Base( TrianglePos1, TrianglePos2, TrianglePos3, &Seg1_TriPro, &Seg1_TriPro_w1, &Seg1_TriPro_w2, &Seg1_TriPro_w3 ) ;
 	Project1 = Seg1_TriPro_w1 >= 0.0f && Seg1_TriPro_w1 <= 1.0f && Seg1_TriPro_w2 >= 0.0f && Seg1_TriPro_w2 <= 1.0f && Seg1_TriPro_w3 >= 0.0f && Seg1_TriPro_w3 <= 1.0f ;
 
-	// OŠpŒ`‚ª¦‚·•½–Êó‚É’¸“_‚ğ“Š‰e‚·‚é
+	// ä¸‰è§’å½¢ãŒç¤ºã™å¹³é¢çŠ¶ã«é ‚ç‚¹ã‚’æŠ•å½±ã™ã‚‹
 	VectorSub( &Tri1_Seg2, SegmentPos2, TrianglePos1 ) ;
 	Seg2_TriProSeg2_DistBase = VectorInnerProduct( &Tri1_Seg2, &TriNorm ) ;
 	VectorScale( &tv, &TriNorm, Seg2_TriProSeg2_DistBase ) ;
 	VectorSub( &Seg2_TriPro, SegmentPos2, &tv ) ;
 	Seg2_TriProSeg2_Dist = Seg2_TriProSeg2_DistBase < 0.0f ? -Seg2_TriProSeg2_DistBase : Seg2_TriProSeg2_DistBase ;
 
-	// OŠpŒ`“à‚É’¸“_‚ª‘¶İ‚·‚é‚©‚Ç‚¤‚©‚ğ’²‚×‚é
+	// ä¸‰è§’å½¢å†…ã«é ‚ç‚¹ãŒå­˜åœ¨ã™ã‚‹ã‹ã©ã†ã‹ã‚’èª¿ã¹ã‚‹
 	TriangleBarycenter_Base( TrianglePos1, TrianglePos2, TrianglePos3, &Seg2_TriPro, &Seg2_TriPro_w1, &Seg2_TriPro_w2, &Seg2_TriPro_w3 ) ;
 	Project2 = Seg2_TriPro_w1 >= 0.0f && Seg2_TriPro_w1 <= 1.0f && Seg2_TriPro_w2 >= 0.0f && Seg2_TriPro_w2 <= 1.0f && Seg2_TriPro_w3 >= 0.0f && Seg2_TriPro_w3 <= 1.0f ;
 
 
-	// OŠpŒ`‚Æü•ª‚ªŒğ·–”‚ÍÚ‚µ‚Ä‚¢‚é‰Â”\«‚ª‚ ‚éê‡‚Í•ªŠò
+	// ä¸‰è§’å½¢ã¨ç·šåˆ†ãŒäº¤å·®åˆã¯æ¥ã—ã¦ã„ã‚‹å¯èƒ½æ€§ãŒã‚ã‚‹å ´åˆã¯åˆ†å²
 	if( ( Seg1_TriProSeg1_Dist >= 0.00000001f || Seg2_TriProSeg2_Dist >= 0.00000001f ) &&
 		( Seg1_TriProSeg1_Dist < 0.00000001f || Seg2_TriProSeg2_Dist < 0.00000001f ||
 		  ( Seg1_TriProSeg1_DistBase > 0.0f && Seg2_TriProSeg2_DistBase < 0.0f ) ||
@@ -3777,7 +3777,7 @@ extern int Segment_Triangle_Analyse( const VECTOR *SegmentPos1, const VECTOR *Se
 		VECTOR Seg_TriPos ;
 		float TriPos_SegPos1_2_t ;
 
-		// OŠpŒ`‚ª•\‚·•½–Ê‚Æü•ª‚Æ‚ÌÚ“_‚ÆdS‚ğZo‚·‚é
+		// ä¸‰è§’å½¢ãŒè¡¨ã™å¹³é¢ã¨ç·šåˆ†ã¨ã®æ¥ç‚¹ã¨é‡å¿ƒã‚’ç®—å‡ºã™ã‚‹
 		TriPos_SegPos1_2_t = Seg1_TriProSeg1_Dist / ( Seg1_TriProSeg1_Dist + Seg2_TriProSeg2_Dist ) ;
 		VectorScale( &Seg_TriPos, &Seg1_2, TriPos_SegPos1_2_t ) ;
 		VectorAdd( &Seg_TriPos, &Seg_TriPos, SegmentPos1 ) ;
@@ -3786,7 +3786,7 @@ extern int Segment_Triangle_Analyse( const VECTOR *SegmentPos1, const VECTOR *Se
 			&Seg_TriPos_TriPos1_w, &Seg_TriPos_TriPos2_w, &Seg_TriPos_TriPos3_w ) ;
 
 
-		// ü•ª‚ÆOŠpŒ`‚ªÚ‚µ‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+		// ç·šåˆ†ã¨ä¸‰è§’å½¢ãŒæ¥ã—ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 		if( Seg_TriPos_TriPos1_w >= 0.0f && Seg_TriPos_TriPos1_w <= 1.0f &&
 			Seg_TriPos_TriPos2_w >= 0.0f && Seg_TriPos_TriPos2_w <= 1.0f &&
 			Seg_TriPos_TriPos3_w >= 0.0f && Seg_TriPos_TriPos3_w <= 1.0f )
@@ -3805,10 +3805,10 @@ extern int Segment_Triangle_Analyse( const VECTOR *SegmentPos1, const VECTOR *Se
 		}
 	}
 
-	// ‚Ç‚¿‚ç‚àOŠpŒ`‚Ì”ÍˆÍ‚É‚ ‚Á‚½ê‡
+	// ã©ã¡ã‚‰ã‚‚ä¸‰è§’å½¢ã®ç¯„å›²ã«ã‚ã£ãŸå ´åˆ
 	if( Project1 && Project2 )
 	{
-		// •Ğ•û‚Ì‘¤‚É‚Ç‚¿‚ç‚Ì’¸“_‚à‚ ‚éê‡‚ÍA‚æ‚è‹ß‚¢‚Ù‚¤‚Ì’¸“_‚Æ•½–Ê‚Æ‚Ì‹——£‚ğŒ‹‰Ê‚É‚·‚é
+		// ç‰‡æ–¹ã®å´ã«ã©ã¡ã‚‰ã®é ‚ç‚¹ã‚‚ã‚ã‚‹å ´åˆã¯ã€ã‚ˆã‚Šè¿‘ã„ã»ã†ã®é ‚ç‚¹ã¨å¹³é¢ã¨ã®è·é›¢ã‚’çµæœã«ã™ã‚‹
 		if( Seg1_TriProSeg1_Dist < Seg2_TriProSeg2_Dist ||
 			Seg1_TriProSeg1_Dist == Seg2_TriProSeg2_Dist )
 		{
@@ -3833,7 +3833,7 @@ extern int Segment_Triangle_Analyse( const VECTOR *SegmentPos1, const VECTOR *Se
 		return 0 ;
 	}
 
-	// ü•ª‚ªOŠpŒ`‚Æ“¯ˆê•½–Êã‚É‚ ‚Á‚½ê‡‚ÅAŠ‚Âü•ª‚Ìn“_‚ªOŠpŒ`‚Ì”ÍˆÍ‚É‚ ‚éê‡‚Ín“_‚ğÚG“_‚Æ‚·‚é
+	// ç·šåˆ†ãŒä¸‰è§’å½¢ã¨åŒä¸€å¹³é¢ä¸Šã«ã‚ã£ãŸå ´åˆã§ã€ä¸”ã¤ç·šåˆ†ã®å§‹ç‚¹ãŒä¸‰è§’å½¢ã®ç¯„å›²ã«ã‚ã‚‹å ´åˆã¯å§‹ç‚¹ã‚’æ¥è§¦ç‚¹ã¨ã™ã‚‹
 	if( Seg1_TriProSeg1_Dist < 0.00000001f && Seg2_TriProSeg2_Dist < 0.00000001f && Project1 )
 	{
 		Result->Seg_Tri_MinDist_Square = 0.0f ;
@@ -3846,7 +3846,7 @@ extern int Segment_Triangle_Analyse( const VECTOR *SegmentPos1, const VECTOR *Se
 		return 0 ;
 	}
 
-	// ‚»‚¤‚Å‚Í‚È‚¢ê‡‚ÍOŠpŒ`‚Ì‚R•Ó‚Æü•ª‚Ì‹——£‚ğ‘ª‚èAˆê”Ô‹——£‚ª’Z‚¢•Ó‚ğ’T‚·
+	// ãã†ã§ã¯ãªã„å ´åˆã¯ä¸‰è§’å½¢ã®ï¼“è¾ºã¨ç·šåˆ†ã®è·é›¢ã‚’æ¸¬ã‚Šã€ä¸€ç•ªè·é›¢ãŒçŸ­ã„è¾ºã‚’æ¢ã™
 	Segment_Segment_Analyse( SegmentPos1, SegmentPos2, TrianglePos1, TrianglePos2, &Seg_Tri1_2_Res ) ;
 	Segment_Segment_Analyse( SegmentPos1, SegmentPos2, TrianglePos2, TrianglePos3, &Seg_Tri2_3_Res ) ;
 	Segment_Segment_Analyse( SegmentPos1, SegmentPos2, TrianglePos3, TrianglePos1, &Seg_Tri3_1_Res ) ;
@@ -3966,7 +3966,7 @@ extern int Segment_Triangle_Analyse( const VECTOR *SegmentPos1, const VECTOR *Se
 	return 0 ;
 }
 
-// ü•ª‚ÆOŠpŒ`‚ÌÅÚ‹ß“_î•ñ‚ğ‰ğÍ‚·‚é
+// ç·šåˆ†ã¨ä¸‰è§’å½¢ã®æœ€æ¥è¿‘ç‚¹æƒ…å ±ã‚’è§£æã™ã‚‹
 extern int Segment_Triangle_AnalyseD( const VECTOR_D *SegmentPos1, const VECTOR_D *SegmentPos2, const VECTOR_D *TrianglePos1, const VECTOR_D *TrianglePos2, const VECTOR_D *TrianglePos3, SEGMENT_TRIANGLE_RESULT_D *Result )
 {
 	bool Project1, Project2 ;
@@ -4001,7 +4001,7 @@ extern int Segment_Triangle_AnalyseD( const VECTOR_D *SegmentPos1, const VECTOR_
 	VectorOuterProductD( &TriNorm, &Tri1_2, &Tri1_3 ) ;
 	VectorNormalizeD( &TriNorm, &TriNorm ) ;
 
-	// OŠpŒ`‚ª¦‚·•½–Êó‚É’¸“_‚ğ“Š‰e‚·‚é
+	// ä¸‰è§’å½¢ãŒç¤ºã™å¹³é¢çŠ¶ã«é ‚ç‚¹ã‚’æŠ•å½±ã™ã‚‹
 	VectorSubD( &Tri1_Seg1, SegmentPos1, TrianglePos1 ) ;
 	Seg1_TriProSeg1_DistBase = VectorInnerProductD( &Tri1_Seg1, &TriNorm ) ;
 	VectorScaleD( &tv, &TriNorm, Seg1_TriProSeg1_DistBase ) ;
@@ -4009,23 +4009,23 @@ extern int Segment_Triangle_AnalyseD( const VECTOR_D *SegmentPos1, const VECTOR_
 	Seg1_TriProSeg1_Dist = Seg1_TriProSeg1_DistBase < 0.0 ? -Seg1_TriProSeg1_DistBase : Seg1_TriProSeg1_DistBase ;
 	
 
-	// OŠpŒ`“à‚É’¸“_‚ª‘¶İ‚·‚é‚©‚Ç‚¤‚©‚ğ’²‚×‚é
+	// ä¸‰è§’å½¢å†…ã«é ‚ç‚¹ãŒå­˜åœ¨ã™ã‚‹ã‹ã©ã†ã‹ã‚’èª¿ã¹ã‚‹
 	TriangleBarycenter_BaseD( TrianglePos1, TrianglePos2, TrianglePos3, &Seg1_TriPro, &Seg1_TriPro_w1, &Seg1_TriPro_w2, &Seg1_TriPro_w3 ) ;
 	Project1 = Seg1_TriPro_w1 >= 0.0 && Seg1_TriPro_w1 <= 1.0 && Seg1_TriPro_w2 >= 0.0 && Seg1_TriPro_w2 <= 1.0 && Seg1_TriPro_w3 >= 0.0 && Seg1_TriPro_w3 <= 1.0 ;
 
-	// OŠpŒ`‚ª¦‚·•½–Êó‚É’¸“_‚ğ“Š‰e‚·‚é
+	// ä¸‰è§’å½¢ãŒç¤ºã™å¹³é¢çŠ¶ã«é ‚ç‚¹ã‚’æŠ•å½±ã™ã‚‹
 	VectorSubD( &Tri1_Seg2, SegmentPos2, TrianglePos1 ) ;
 	Seg2_TriProSeg2_DistBase = VectorInnerProductD( &Tri1_Seg2, &TriNorm ) ;
 	VectorScaleD( &tv, &TriNorm, Seg2_TriProSeg2_DistBase ) ;
 	VectorSubD( &Seg2_TriPro, SegmentPos2, &tv ) ;
 	Seg2_TriProSeg2_Dist = Seg2_TriProSeg2_DistBase < 0.0 ? -Seg2_TriProSeg2_DistBase : Seg2_TriProSeg2_DistBase ;
 
-	// OŠpŒ`“à‚É’¸“_‚ª‘¶İ‚·‚é‚©‚Ç‚¤‚©‚ğ’²‚×‚é
+	// ä¸‰è§’å½¢å†…ã«é ‚ç‚¹ãŒå­˜åœ¨ã™ã‚‹ã‹ã©ã†ã‹ã‚’èª¿ã¹ã‚‹
 	TriangleBarycenter_BaseD( TrianglePos1, TrianglePos2, TrianglePos3, &Seg2_TriPro, &Seg2_TriPro_w1, &Seg2_TriPro_w2, &Seg2_TriPro_w3 ) ;
 	Project2 = Seg2_TriPro_w1 >= 0.0 && Seg2_TriPro_w1 <= 1.0 && Seg2_TriPro_w2 >= 0.0 && Seg2_TriPro_w2 <= 1.0 && Seg2_TriPro_w3 >= 0.0 && Seg2_TriPro_w3 <= 1.0 ;
 
 
-	// OŠpŒ`‚Æü•ª‚ªŒğ·–”‚ÍÚ‚µ‚Ä‚¢‚é‰Â”\«‚ª‚ ‚éê‡‚Í•ªŠò
+	// ä¸‰è§’å½¢ã¨ç·šåˆ†ãŒäº¤å·®åˆã¯æ¥ã—ã¦ã„ã‚‹å¯èƒ½æ€§ãŒã‚ã‚‹å ´åˆã¯åˆ†å²
 	if( ( Seg1_TriProSeg1_Dist >= 0.00000001 || Seg2_TriProSeg2_Dist >= 0.00000001 ) &&
 		( Seg1_TriProSeg1_Dist < 0.00000001 || Seg2_TriProSeg2_Dist < 0.00000001 ||
 		  ( Seg1_TriProSeg1_DistBase > 0.0 && Seg2_TriProSeg2_DistBase < 0.0 ) ||
@@ -4037,7 +4037,7 @@ extern int Segment_Triangle_AnalyseD( const VECTOR_D *SegmentPos1, const VECTOR_
 		VECTOR_D Seg_TriPos ;
 		double TriPos_SegPos1_2_t ;
 
-		// OŠpŒ`‚ª•\‚·•½–Ê‚Æü•ª‚Æ‚ÌÚ“_‚ÆdS‚ğZo‚·‚é
+		// ä¸‰è§’å½¢ãŒè¡¨ã™å¹³é¢ã¨ç·šåˆ†ã¨ã®æ¥ç‚¹ã¨é‡å¿ƒã‚’ç®—å‡ºã™ã‚‹
 		TriPos_SegPos1_2_t = Seg1_TriProSeg1_Dist / ( Seg1_TriProSeg1_Dist + Seg2_TriProSeg2_Dist ) ;
 		VectorScaleD( &Seg_TriPos, &Seg1_2, TriPos_SegPos1_2_t ) ;
 		VectorAddD( &Seg_TriPos, &Seg_TriPos, SegmentPos1 ) ;
@@ -4046,7 +4046,7 @@ extern int Segment_Triangle_AnalyseD( const VECTOR_D *SegmentPos1, const VECTOR_
 			&Seg_TriPos_TriPos1_w, &Seg_TriPos_TriPos2_w, &Seg_TriPos_TriPos3_w ) ;
 
 
-		// ü•ª‚ÆOŠpŒ`‚ªÚ‚µ‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+		// ç·šåˆ†ã¨ä¸‰è§’å½¢ãŒæ¥ã—ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 		if( Seg_TriPos_TriPos1_w >= 0.0 && Seg_TriPos_TriPos1_w <= 1.0 &&
 			Seg_TriPos_TriPos2_w >= 0.0 && Seg_TriPos_TriPos2_w <= 1.0 &&
 			Seg_TriPos_TriPos3_w >= 0.0 && Seg_TriPos_TriPos3_w <= 1.0 )
@@ -4065,10 +4065,10 @@ extern int Segment_Triangle_AnalyseD( const VECTOR_D *SegmentPos1, const VECTOR_
 		}
 	}
 
-	// ‚Ç‚¿‚ç‚àOŠpŒ`‚Ì”ÍˆÍ‚É‚ ‚Á‚½ê‡
+	// ã©ã¡ã‚‰ã‚‚ä¸‰è§’å½¢ã®ç¯„å›²ã«ã‚ã£ãŸå ´åˆ
 	if( Project1 && Project2 )
 	{
-		// •Ğ•û‚Ì‘¤‚É‚Ç‚¿‚ç‚Ì’¸“_‚à‚ ‚éê‡‚ÍA‚æ‚è‹ß‚¢‚Ù‚¤‚Ì’¸“_‚Æ•½–Ê‚Æ‚Ì‹——£‚ğŒ‹‰Ê‚É‚·‚é
+		// ç‰‡æ–¹ã®å´ã«ã©ã¡ã‚‰ã®é ‚ç‚¹ã‚‚ã‚ã‚‹å ´åˆã¯ã€ã‚ˆã‚Šè¿‘ã„ã»ã†ã®é ‚ç‚¹ã¨å¹³é¢ã¨ã®è·é›¢ã‚’çµæœã«ã™ã‚‹
 		if( Seg1_TriProSeg1_Dist < Seg2_TriProSeg2_Dist )
 		{
 			Result->Seg_Tri_MinDist_Square = Seg1_TriProSeg1_Dist * Seg1_TriProSeg1_Dist ;
@@ -4092,7 +4092,7 @@ extern int Segment_Triangle_AnalyseD( const VECTOR_D *SegmentPos1, const VECTOR_
 		return 0 ;
 	}
 
-	// ü•ª‚ªOŠpŒ`‚Æ“¯ˆê•½–Êã‚É‚ ‚Á‚½ê‡‚ÅAŠ‚Âü•ª‚Ìn“_‚ªOŠpŒ`‚Ì”ÍˆÍ‚É‚ ‚éê‡‚Ín“_‚ğÚG“_‚Æ‚·‚é
+	// ç·šåˆ†ãŒä¸‰è§’å½¢ã¨åŒä¸€å¹³é¢ä¸Šã«ã‚ã£ãŸå ´åˆã§ã€ä¸”ã¤ç·šåˆ†ã®å§‹ç‚¹ãŒä¸‰è§’å½¢ã®ç¯„å›²ã«ã‚ã‚‹å ´åˆã¯å§‹ç‚¹ã‚’æ¥è§¦ç‚¹ã¨ã™ã‚‹
 	if( Seg1_TriProSeg1_Dist < 0.00000001 && Seg2_TriProSeg2_Dist < 0.00000001 && Project1 )
 	{
 		Result->Seg_Tri_MinDist_Square = 0.0f ;
@@ -4105,7 +4105,7 @@ extern int Segment_Triangle_AnalyseD( const VECTOR_D *SegmentPos1, const VECTOR_
 		return 0 ;
 	}
 
-	// ‚»‚¤‚Å‚Í‚È‚¢ê‡‚ÍOŠpŒ`‚Ì‚R•Ó‚Æü•ª‚Ì‹——£‚ğ‘ª‚èAˆê”Ô‹——£‚ª’Z‚¢•Ó‚ğ’T‚·
+	// ãã†ã§ã¯ãªã„å ´åˆã¯ä¸‰è§’å½¢ã®ï¼“è¾ºã¨ç·šåˆ†ã®è·é›¢ã‚’æ¸¬ã‚Šã€ä¸€ç•ªè·é›¢ãŒçŸ­ã„è¾ºã‚’æ¢ã™
 	Segment_Segment_AnalyseD( SegmentPos1, SegmentPos2, TrianglePos1, TrianglePos2, &Seg_Tri1_2_Res ) ;
 	Segment_Segment_AnalyseD( SegmentPos1, SegmentPos2, TrianglePos2, TrianglePos3, &Seg_Tri2_3_Res ) ;
 	Segment_Segment_AnalyseD( SegmentPos1, SegmentPos2, TrianglePos3, TrianglePos1, &Seg_Tri3_1_Res ) ;
@@ -4225,7 +4225,7 @@ extern int Segment_Triangle_AnalyseD( const VECTOR_D *SegmentPos1, const VECTOR_
 	return 0 ;
 }
 
-// OŠpŒ`‚Æ“_‚ÌÅÚ‹ß“_î•ñ‚ğ‰ğÍ‚·‚é
+// ä¸‰è§’å½¢ã¨ç‚¹ã®æœ€æ¥è¿‘ç‚¹æƒ…å ±ã‚’è§£æã™ã‚‹
 extern int Triangle_Point_Analyse( const VECTOR *TrianglePos1, const VECTOR *TrianglePos2, const VECTOR *TrianglePos3, const VECTOR *PointPos, TRIANGLE_POINT_RESULT *Result )
 {
 	VECTOR Tri1_2 ;
@@ -4280,7 +4280,7 @@ extern int Triangle_Point_Analyse( const VECTOR *TrianglePos1, const VECTOR *Tri
 	}
 
 	Dot2PH = VectorInnerProduct( &Tri3_1, &Tri2_Pnt ) ;
-	OPC = Dot1P2 * -Dot2PH - Dot2P1 * -Dot1P3 ;	// ©ƒ‰ƒOƒ‰ƒ“ƒWƒ…P“™®
+	OPC = Dot1P2 * -Dot2PH - Dot2P1 * -Dot1P3 ;	// â†ãƒ©ã‚°ãƒ©ãƒ³ã‚¸ãƒ¥æ’ç­‰å¼
 	if( OPC <= 0.0f && Dot1P2 >= 0.0f && Dot2P1 <= 0.0f )
 	{
 		t = Dot1P2 / ( Dot1P2 - Dot2P1 ) ;
@@ -4308,7 +4308,7 @@ extern int Triangle_Point_Analyse( const VECTOR *TrianglePos1, const VECTOR *Tri
 	}
 
 	Dot3PH = VectorInnerProduct( &Tri1_2, &Tri3_Pnt ) ;
-	OPB = Dot3PH * -Dot1P3 - Dot1P2 * -Dot3P1 ;	// ©ƒ‰ƒOƒ‰ƒ“ƒWƒ…P“™®
+	OPB = Dot3PH * -Dot1P3 - Dot1P2 * -Dot3P1 ;	// â†ãƒ©ã‚°ãƒ©ãƒ³ã‚¸ãƒ¥æ’ç­‰å¼
 	if( OPB <= 0.0f && Dot1P3 <= 0.0f && Dot3P1 >= 0.0f )
 	{
 		t = Dot3P1 / ( Dot3P1 - Dot1P3 ) ;
@@ -4322,7 +4322,7 @@ extern int Triangle_Point_Analyse( const VECTOR *TrianglePos1, const VECTOR *Tri
 		return 0 ;
 	}
 
-	OPA = Dot2P1 * -Dot3P1 - Dot3PH * -Dot2PH ;	// ©ƒ‰ƒOƒ‰ƒ“ƒWƒ…P“™®
+	OPA = Dot2P1 * -Dot3P1 - Dot3PH * -Dot2PH ;	// â†ãƒ©ã‚°ãƒ©ãƒ³ã‚¸ãƒ¥æ’ç­‰å¼
 	if( OPA <= 0.0f && ( -Dot2PH - Dot2P1 ) >= 0.0f && ( Dot3PH + Dot3P1 ) >= 0.0f )
 	{
 		t = ( -Dot2PH - Dot2P1 ) / ( ( -Dot2PH - Dot2P1 ) + ( Dot3PH + Dot3P1 ) ) ;
@@ -4349,7 +4349,7 @@ extern int Triangle_Point_Analyse( const VECTOR *TrianglePos1, const VECTOR *Tri
 	return 0 ;
 }
 
-// OŠpŒ`‚Æ“_‚ÌÅÚ‹ß“_î•ñ‚ğ‰ğÍ‚·‚é
+// ä¸‰è§’å½¢ã¨ç‚¹ã®æœ€æ¥è¿‘ç‚¹æƒ…å ±ã‚’è§£æã™ã‚‹
 extern int Triangle_Point_AnalyseD( const VECTOR_D *TrianglePos1, const VECTOR_D *TrianglePos2, const VECTOR_D *TrianglePos3, const VECTOR_D *PointPos, TRIANGLE_POINT_RESULT_D *Result )
 {
 	VECTOR_D Tri1_2 ;
@@ -4404,7 +4404,7 @@ extern int Triangle_Point_AnalyseD( const VECTOR_D *TrianglePos1, const VECTOR_D
 	}
 
 	Dot2PH = VectorInnerProductD( &Tri3_1, &Tri2_Pnt ) ;
-	OPC = Dot1P2 * -Dot2PH - Dot2P1 * -Dot1P3 ;	// ©ƒ‰ƒOƒ‰ƒ“ƒWƒ…P“™®
+	OPC = Dot1P2 * -Dot2PH - Dot2P1 * -Dot1P3 ;	// â†ãƒ©ã‚°ãƒ©ãƒ³ã‚¸ãƒ¥æ’ç­‰å¼
 	if( OPC <= 0.0 && Dot1P2 >= 0.0 && Dot2P1 <= 0.0 )
 	{
 		t = Dot1P2 / ( Dot1P2 - Dot2P1 ) ;
@@ -4432,7 +4432,7 @@ extern int Triangle_Point_AnalyseD( const VECTOR_D *TrianglePos1, const VECTOR_D
 	}
 
 	Dot3PH = VectorInnerProductD( &Tri1_2, &Tri3_Pnt ) ;
-	OPB = Dot3PH * -Dot1P3 - Dot1P2 * -Dot3P1 ;	// ©ƒ‰ƒOƒ‰ƒ“ƒWƒ…P“™®
+	OPB = Dot3PH * -Dot1P3 - Dot1P2 * -Dot3P1 ;	// â†ãƒ©ã‚°ãƒ©ãƒ³ã‚¸ãƒ¥æ’ç­‰å¼
 	if( OPB <= 0.0 && Dot1P3 <= 0.0 && Dot3P1 >= 0.0 )
 	{
 		t = Dot3P1 / ( Dot3P1 - Dot1P3 ) ;
@@ -4446,7 +4446,7 @@ extern int Triangle_Point_AnalyseD( const VECTOR_D *TrianglePos1, const VECTOR_D
 		return 0 ;
 	}
 
-	OPA = Dot2P1 * -Dot3P1 - Dot3PH * -Dot2PH ;	// ©ƒ‰ƒOƒ‰ƒ“ƒWƒ…P“™®
+	OPA = Dot2P1 * -Dot3P1 - Dot3PH * -Dot2PH ;	// â†ãƒ©ã‚°ãƒ©ãƒ³ã‚¸ãƒ¥æ’ç­‰å¼
 	if( OPA <= 0.0 && ( -Dot2PH - Dot2P1 ) >= 0.0 && ( Dot3PH + Dot3P1 ) >= 0.0 )
 	{
 		t = ( -Dot2PH - Dot2P1 ) / ( ( -Dot2PH - Dot2P1 ) + ( Dot3PH + Dot3P1 ) ) ;
@@ -4473,7 +4473,7 @@ extern int Triangle_Point_AnalyseD( const VECTOR_D *TrianglePos1, const VECTOR_D
 	return 0 ;
 }
 
-// •½–Ê‚Æ“_‚ÌÅ‹ß“_î•ñ‚ğ‰ğÍ‚·‚é
+// å¹³é¢ã¨ç‚¹ã®æœ€è¿‘ç‚¹æƒ…å ±ã‚’è§£æã™ã‚‹
 extern int Plane_Point_Analyse( const VECTOR *PlanePos, const VECTOR *PlaneNormal, const VECTOR *PointPos, PLANE_POINT_RESULT *Result )
 {
 	float t ;
@@ -4492,7 +4492,7 @@ extern int Plane_Point_Analyse( const VECTOR *PlanePos, const VECTOR *PlaneNorma
 	return 0 ;
 }
 
-// •½–Ê‚Æ“_‚ÌÅ‹ß“_î•ñ‚ğ‰ğÍ‚·‚é
+// å¹³é¢ã¨ç‚¹ã®æœ€è¿‘ç‚¹æƒ…å ±ã‚’è§£æã™ã‚‹
 extern int Plane_Point_AnalyseD( const VECTOR_D *PlanePos, const VECTOR_D *PlaneNormal, const VECTOR_D *PointPos, PLANE_POINT_RESULT_D *Result )
 {
 	double t ;
@@ -4511,19 +4511,19 @@ extern int Plane_Point_AnalyseD( const VECTOR_D *PlanePos, const VECTOR_D *Plane
 	return 0 ;
 }
 
-// w’è‚ÌÀ•W‚©‚çOŠpŒ`‚ÌdS‚ğ‹‚ß‚é
+// æŒ‡å®šã®åº§æ¨™ã‹ã‚‰ä¸‰è§’å½¢ã®é‡å¿ƒã‚’æ±‚ã‚ã‚‹
 extern void TriangleBarycenter( VECTOR TrianglePos1, VECTOR TrianglePos2, VECTOR TrianglePos3, VECTOR Position, float *TrianglePos1Weight, float *TrianglePos2Weight, float *TrianglePos3Weight )
 {
 	TriangleBarycenter_Base( &TrianglePos1, &TrianglePos2, &TrianglePos3, &Position, TrianglePos1Weight, TrianglePos2Weight, TrianglePos3Weight ) ;
 }
 
-// w’è‚ÌÀ•W‚©‚çOŠpŒ`‚ÌdS‚ğ‹‚ß‚é
+// æŒ‡å®šã®åº§æ¨™ã‹ã‚‰ä¸‰è§’å½¢ã®é‡å¿ƒã‚’æ±‚ã‚ã‚‹
 extern void TriangleBarycenterD( VECTOR_D TrianglePos1, VECTOR_D TrianglePos2, VECTOR_D TrianglePos3, VECTOR_D Position, double *TrianglePos1Weight, double *TrianglePos2Weight, double *TrianglePos3Weight )
 {
 	TriangleBarycenter_BaseD( &TrianglePos1, &TrianglePos2, &TrianglePos3, &Position, TrianglePos1Weight, TrianglePos2Weight, TrianglePos3Weight ) ;
 }
 
-// w’è‚ÌÀ•W‚©‚çOŠpŒ`‚ÌdS‚ğ‹‚ß‚é
+// æŒ‡å®šã®åº§æ¨™ã‹ã‚‰ä¸‰è§’å½¢ã®é‡å¿ƒã‚’æ±‚ã‚ã‚‹
 extern void TriangleBarycenter_Base( const VECTOR *TrianglePos1, const VECTOR *TrianglePos2, const VECTOR *TrianglePos3, const VECTOR *Position, float *TrianglePos1Weight, float *TrianglePos2Weight, float *TrianglePos3Weight )
 {
 	VECTOR v1, v2, v3 ;
@@ -4544,7 +4544,7 @@ extern void TriangleBarycenter_Base( const VECTOR *TrianglePos1, const VECTOR *T
 	*TrianglePos1Weight = 1.0f - *TrianglePos2Weight - *TrianglePos3Weight ;
 }
 
-// w’è‚ÌÀ•W‚©‚çOŠpŒ`‚ÌdS‚ğ‹‚ß‚é
+// æŒ‡å®šã®åº§æ¨™ã‹ã‚‰ä¸‰è§’å½¢ã®é‡å¿ƒã‚’æ±‚ã‚ã‚‹
 extern void TriangleBarycenter_BaseD( const VECTOR_D *TrianglePos1, const VECTOR_D *TrianglePos2, const VECTOR_D *TrianglePos3, const VECTOR_D *Position, double *TrianglePos1Weight, double *TrianglePos2Weight, double *TrianglePos3Weight )
 {
 	VECTOR_D v1, v2, v3 ;
@@ -4565,19 +4565,19 @@ extern void TriangleBarycenter_BaseD( const VECTOR_D *TrianglePos1, const VECTOR
 	*TrianglePos1Weight = 1.0f - *TrianglePos2Weight - *TrianglePos3Weight ;
 }
 
-// “ñ‚Â‚Ìü•ª‚ÌÅ‹ß“_ŠÔ‚Ì‹——£‚ğ“¾‚é
+// äºŒã¤ã®ç·šåˆ†ã®æœ€è¿‘ç‚¹é–“ã®è·é›¢ã‚’å¾—ã‚‹
 extern float Segment_Segment_MinLength( VECTOR SA1, VECTOR SA2, VECTOR SB1, VECTOR SB2 )
 {
 	return _SQRT( Segment_Segment_MinLength_Square( SA1, SA2, SB1, SB2 ) ) ;
 }
 
-// “ñ‚Â‚Ìü•ª‚ÌÅ‹ß“_ŠÔ‚Ì‹——£‚ğ“¾‚é
+// äºŒã¤ã®ç·šåˆ†ã®æœ€è¿‘ç‚¹é–“ã®è·é›¢ã‚’å¾—ã‚‹
 extern double Segment_Segment_MinLengthD( VECTOR_D SA1, VECTOR_D SA2, VECTOR_D SB1, VECTOR_D SB2 )
 {
 	return _SQRTD( Segment_Segment_MinLength_SquareD( SA1, SA2, SB1, SB2 ) ) ;
 }
 
-// “ñ‚Â‚Ìü•ª‚ª‚à‚Á‚Æ‚à‹ß‚Ã‚­“_‚Ì‹——£‚Ì“ñæ‚ğ“¾‚é
+// äºŒã¤ã®ç·šåˆ†ãŒã‚‚ã£ã¨ã‚‚è¿‘ã¥ãç‚¹ã®è·é›¢ã®äºŒä¹—ã‚’å¾—ã‚‹
 extern float Segment_Segment_MinLength_Square( VECTOR SA1, VECTOR SA2, VECTOR SB1, VECTOR SB2 )
 {
 	VECTOR da, db, p, tp ;
@@ -4595,7 +4595,7 @@ extern float Segment_Segment_MinLength_Square( VECTOR SA1, VECTOR SA2, VECTOR SB
 	e = -VectorInnerProduct( &da, &p ) ;
 	f = -VectorInnerProduct( &db, &p ) ;
 
-	// SA1 - SA2 ‚Ü‚½‚Í SB1 - SB2 ‚Ì‹——£‚ªŒÀ‚è‚È‚­ƒ[ƒ‚É‹ß‚¢‚©‚Ç‚¤‚©‚Ìƒ`ƒFƒbƒN
+	// SA1 - SA2 ã¾ãŸã¯ SB1 - SB2 ã®è·é›¢ãŒé™ã‚Šãªãã‚¼ãƒ­ã«è¿‘ã„ã‹ã©ã†ã‹ã®ãƒã‚§ãƒƒã‚¯
 	tmpA = a < 0.0f ? -a : a ;
 	tmpB = d < 0.0f ? -d : d ;
 	if( tmpA < 0.00000001f )
@@ -4619,12 +4619,12 @@ extern float Segment_Segment_MinLength_Square( VECTOR SA1, VECTOR SA2, VECTOR SB
 	w = a * d - b * c ;
 	if( w <= -0.00000001f )
 	{
-		// ƒNƒ‰[ƒƒ‹‚ÌŒö®
+		// ã‚¯ãƒ©ãƒ¼ãƒ¡ãƒ«ã®å…¬å¼
 		s = ( e * d - b * f ) / w ;
 		t = ( a * f - e * c ) / w ;
 	}
 
-	// “ñ‚Â‚Ìü•ª‚ªk‘Ş‚µ‚Ä‚¢‚½‚ç“_‚ÆŒ©‚È‚µ‚Ä“_“¯m‚Ì‹——£‚ğ•Ô‚·
+	// äºŒã¤ã®ç·šåˆ†ãŒç¸®é€€ã—ã¦ã„ãŸã‚‰ç‚¹ã¨è¦‹ãªã—ã¦ç‚¹åŒå£«ã®è·é›¢ã‚’è¿”ã™
 	if( a <= 0.0f && -d <= 0.0f )
 	{
 		VectorSub( &tp, &SA1, &SB1 ) ;
@@ -4650,11 +4650,11 @@ extern float Segment_Segment_MinLength_Square( VECTOR SA1, VECTOR SA2, VECTOR SB
 		{
 			s = s > 1.0f ? 1.0f : 0.0f ;
 
-			t = ( -b * s + -f ) / -d ;		// ƒKƒEƒXÁ‹–@
+			t = ( -b * s + -f ) / -d ;		// ã‚¬ã‚¦ã‚¹æ¶ˆå»æ³•
 			if( t > 1.0f || t < 0.0f )
 			{
 				t = t > 1.0f ? 1.0f : 0.0f ;
-				s = ( -b * t - -e ) / a ;	// ƒKƒEƒXÁ‹–@
+				s = ( -b * t - -e ) / a ;	// ã‚¬ã‚¦ã‚¹æ¶ˆå»æ³•
 					 if( s > 1.0f ) s = 1.0f ;
 				else if( s < 0.0f ) s = 0.0f ;
 			}
@@ -4663,12 +4663,12 @@ extern float Segment_Segment_MinLength_Square( VECTOR SA1, VECTOR SA2, VECTOR SB
 		if( t > 1.0f || t < 0.0f )
 		{
 			t = t > 1.0f ? 1.0f : 0.0f ;
-			s = ( -b * t - -e ) / a ;		// ƒKƒEƒXÁ‹–@
+			s = ( -b * t - -e ) / a ;		// ã‚¬ã‚¦ã‚¹æ¶ˆå»æ³•
 
 			if( s > 1.0f || s < 0.0f )
 			{
 				s = s > 1.0f ? 1.0f : 0.0f ;
-				t = ( -b * s + -f ) / -d ;	// ƒKƒEƒXÁ‹–@
+				t = ( -b * s + -f ) / -d ;	// ã‚¬ã‚¦ã‚¹æ¶ˆå»æ³•
 					 if( t > 1.0f ) t = 1.0f ;
 				else if( t < 0.0f ) t = 0.0f ;
 			}
@@ -4696,7 +4696,7 @@ extern float Segment_Segment_MinLength_Square( VECTOR SA1, VECTOR SA2, VECTOR SB
 	return VectorInnerProduct( &tp, &tp ) ;
 }
 
-// “ñ‚Â‚Ìü•ª‚ª‚à‚Á‚Æ‚à‹ß‚Ã‚­“_‚Ì‹——£‚Ì“ñæ‚ğ“¾‚é
+// äºŒã¤ã®ç·šåˆ†ãŒã‚‚ã£ã¨ã‚‚è¿‘ã¥ãç‚¹ã®è·é›¢ã®äºŒä¹—ã‚’å¾—ã‚‹
 extern double Segment_Segment_MinLength_SquareD( VECTOR_D SA1, VECTOR_D SA2, VECTOR_D SB1, VECTOR_D SB2 )
 {
 	VECTOR_D da, db, p, tp ;
@@ -4714,7 +4714,7 @@ extern double Segment_Segment_MinLength_SquareD( VECTOR_D SA1, VECTOR_D SA2, VEC
 	e = -VectorInnerProductD( &da, &p ) ;
 	f = -VectorInnerProductD( &db, &p ) ;
 
-	// SA1 - SA2 ‚Ü‚½‚Í SB1 - SB2 ‚Ì‹——£‚ªŒÀ‚è‚È‚­ƒ[ƒ‚É‹ß‚¢‚©‚Ç‚¤‚©‚Ìƒ`ƒFƒbƒN
+	// SA1 - SA2 ã¾ãŸã¯ SB1 - SB2 ã®è·é›¢ãŒé™ã‚Šãªãã‚¼ãƒ­ã«è¿‘ã„ã‹ã©ã†ã‹ã®ãƒã‚§ãƒƒã‚¯
 	tmpA = a < 0.0 ? -a : a ;
 	tmpB = d < 0.0 ? -d : d ;
 	if( tmpA < 0.00000001 )
@@ -4738,12 +4738,12 @@ extern double Segment_Segment_MinLength_SquareD( VECTOR_D SA1, VECTOR_D SA2, VEC
 	w = a * d - b * c ;
 	if( w <= -0.00000001 )
 	{
-		// ƒNƒ‰[ƒƒ‹‚ÌŒö®
+		// ã‚¯ãƒ©ãƒ¼ãƒ¡ãƒ«ã®å…¬å¼
 		s = ( e * d - b * f ) / w ;
 		t = ( a * f - e * c ) / w ;
 	}
 
-	// “ñ‚Â‚Ìü•ª‚ªk‘Ş‚µ‚Ä‚¢‚½‚ç“_‚ÆŒ©‚È‚µ‚Ä“_“¯m‚Ì‹——£‚ğ•Ô‚·
+	// äºŒã¤ã®ç·šåˆ†ãŒç¸®é€€ã—ã¦ã„ãŸã‚‰ç‚¹ã¨è¦‹ãªã—ã¦ç‚¹åŒå£«ã®è·é›¢ã‚’è¿”ã™
 	if( a <= 0.0 && -d <= 0.0 )
 	{
 		VectorSubD( &tp, &SA1, &SB1 ) ;
@@ -4769,11 +4769,11 @@ extern double Segment_Segment_MinLength_SquareD( VECTOR_D SA1, VECTOR_D SA2, VEC
 		{
 			s = s > 1.0 ? 1.0 : 0.0 ;
 
-			t = ( -b * s + -f ) / -d ;		// ƒKƒEƒXÁ‹–@
+			t = ( -b * s + -f ) / -d ;		// ã‚¬ã‚¦ã‚¹æ¶ˆå»æ³•
 			if( t > 1.0 || t < 0.0 )
 			{
 				t = t > 1.0 ? 1.0 : 0.0 ;
-				s = ( -b * t - -e ) / a ;	// ƒKƒEƒXÁ‹–@
+				s = ( -b * t - -e ) / a ;	// ã‚¬ã‚¦ã‚¹æ¶ˆå»æ³•
 					 if( s > 1.0 ) s = 1.0 ;
 				else if( s < 0.0 ) s = 0.0 ;
 			}
@@ -4782,12 +4782,12 @@ extern double Segment_Segment_MinLength_SquareD( VECTOR_D SA1, VECTOR_D SA2, VEC
 		if( t > 1.0 || t < 0.0 )
 		{
 			t = t > 1.0 ? 1.0 : 0.0 ;
-			s = ( -b * t - -e ) / a ;		// ƒKƒEƒXÁ‹–@
+			s = ( -b * t - -e ) / a ;		// ã‚¬ã‚¦ã‚¹æ¶ˆå»æ³•
 
 			if( s > 1.0 || s < 0.0 )
 			{
 				s = s > 1.0 ? 1.0 : 0.0 ;
-				t = ( -b * s + -f ) / -d ;	// ƒKƒEƒXÁ‹–@
+				t = ( -b * s + -f ) / -d ;	// ã‚¬ã‚¦ã‚¹æ¶ˆå»æ³•
 					 if( t > 1.0 ) t = 1.0 ;
 				else if( t < 0.0 ) t = 0.0 ;
 			}
@@ -4804,19 +4804,19 @@ extern double Segment_Segment_MinLength_SquareD( VECTOR_D SA1, VECTOR_D SA2, VEC
 	return VectorInnerProductD( &tp, &tp ) ;
 }
 
-// ü•ª‚ÆOŠpŒ`‚ÌÅ‹ß“_ŠÔ‚Ì‹——£‚ğ“¾‚é 
+// ç·šåˆ†ã¨ä¸‰è§’å½¢ã®æœ€è¿‘ç‚¹é–“ã®è·é›¢ã‚’å¾—ã‚‹ 
 extern float Segment_Triangle_MinLength( VECTOR SegmentPos1, VECTOR SegmentPos2, VECTOR TrianglePos1, VECTOR TrianglePos2, VECTOR TrianglePos3 )
 {
 	return _SQRT( Segment_Triangle_MinLength_Square(  SegmentPos1,  SegmentPos2,  TrianglePos1,  TrianglePos2,  TrianglePos3 ) ) ;
 }
 
-// ü•ª‚ÆOŠpŒ`‚ÌÅ‹ß“_ŠÔ‚Ì‹——£‚ğ“¾‚é 
+// ç·šåˆ†ã¨ä¸‰è§’å½¢ã®æœ€è¿‘ç‚¹é–“ã®è·é›¢ã‚’å¾—ã‚‹ 
 extern double Segment_Triangle_MinLengthD( VECTOR_D SegmentPos1, VECTOR_D SegmentPos2, VECTOR_D TrianglePos1, VECTOR_D TrianglePos2, VECTOR_D TrianglePos3 )
 {
 	return _SQRTD( Segment_Triangle_MinLength_SquareD(  SegmentPos1,  SegmentPos2,  TrianglePos1,  TrianglePos2,  TrianglePos3 ) ) ;
 }
 
-// ü•ª‚ÆOŠpŒ`‚ÌÅ‹ß“_ŠÔ‚Ì‹——£‚Ì“ñæ‚ğ“¾‚é 
+// ç·šåˆ†ã¨ä¸‰è§’å½¢ã®æœ€è¿‘ç‚¹é–“ã®è·é›¢ã®äºŒä¹—ã‚’å¾—ã‚‹ 
 extern float Segment_Triangle_MinLength_Square_Base( VECTOR SegmentPos1, VECTOR SegmentPos2, VECTOR TrianglePos1, VECTOR TrianglePos2, VECTOR TrianglePos3, int *IsZeroLength )
 {
 	bool Touei1, Touei2 ;
@@ -4836,7 +4836,7 @@ extern float Segment_Triangle_MinLength_Square_Base( VECTOR SegmentPos1, VECTOR 
 		*IsZeroLength = FALSE ;
 	}
 
-	// ü•ª‚ªOŠpŒ`‚ğŠÑ‚¢‚Ä‚¢‚½‚ç‹——£‚Í‚O
+	// ç·šåˆ†ãŒä¸‰è§’å½¢ã‚’è²«ã„ã¦ã„ãŸã‚‰è·é›¢ã¯ï¼
 	HitCheck_Line_Triangle_Base( &HitResult, SegmentPos1, SegmentPos2, TrianglePos1, TrianglePos2, TrianglePos3, NULL, NULL, NULL, TRUE ) ;
 	if( HitResult.HitFlag )
 	{
@@ -4852,7 +4852,7 @@ extern float Segment_Triangle_MinLength_Square_Base( VECTOR SegmentPos1, VECTOR 
 	VectorOuterProduct( &tnorm, &v12, &v13 ) ;
 	VectorNormalize( &tnorm, &tnorm ) ;
 
-	// OŠpŒ`‚ª¦‚·•½–Êó‚É’¸“_‚ğ“Š‰e‚·‚é
+	// ä¸‰è§’å½¢ãŒç¤ºã™å¹³é¢çŠ¶ã«é ‚ç‚¹ã‚’æŠ•å½±ã™ã‚‹
 	VectorSub( &tv, &SegmentPos1, &TrianglePos1 ) ;
 	stw1 = tv ;
 	VectorScale( &tv, &tnorm, VectorInnerProduct( &tv, &tnorm ) ) ;
@@ -4861,7 +4861,7 @@ extern float Segment_Triangle_MinLength_Square_Base( VECTOR SegmentPos1, VECTOR 
 //	NS_DrawCube3D( st1.x - 10.0f, st1.y - 10.0f, st1.z - 10.0f, 
 //					st1.x + 10.0f, st1.y + 10.0f, st1.z + 10.0f, GetColor( 0,255,255 ), TRUE ) ;
 
-	// OŠpŒ`“à‚É’¸“_‚ª‘¶İ‚·‚é‚©‚Ç‚¤‚©‚ğ’²‚×‚é
+	// ä¸‰è§’å½¢å†…ã«é ‚ç‚¹ãŒå­˜åœ¨ã™ã‚‹ã‹ã©ã†ã‹ã‚’èª¿ã¹ã‚‹
 	TriangleBarycenter_Base( &TrianglePos1, &TrianglePos2, &TrianglePos3, &st1, &st1u, &st1v, &st1w ) ;
 	Touei1 = !( st1u <= 0.0f || st1u >= 1.0f || st1v <= 0.0f || st1v >= 1.0f || st1w <= 0.0f || st1w >= 1.0f ) ;
 	if( Touei1 )
@@ -4870,13 +4870,13 @@ extern float Segment_Triangle_MinLength_Square_Base( VECTOR SegmentPos1, VECTOR 
 		l1 = VectorInnerProduct( &tv, &tv ) ;
 	}
 
-	// OŠpŒ`‚ª¦‚·•½–Êó‚É’¸“_‚ğ“Š‰e‚·‚é
+	// ä¸‰è§’å½¢ãŒç¤ºã™å¹³é¢çŠ¶ã«é ‚ç‚¹ã‚’æŠ•å½±ã™ã‚‹
 	VectorSub( &tv, &SegmentPos2, &TrianglePos1 ) ;
 	stw2 = tv ;
 	VectorScale( &tv, &tnorm, VectorInnerProduct( &tv, &tnorm ) ) ;
 	VectorSub( &st2, &SegmentPos2, &tv ) ;
 
-	// OŠpŒ`“à‚É’¸“_‚ª‘¶İ‚·‚é‚©‚Ç‚¤‚©‚ğ’²‚×‚é
+	// ä¸‰è§’å½¢å†…ã«é ‚ç‚¹ãŒå­˜åœ¨ã™ã‚‹ã‹ã©ã†ã‹ã‚’èª¿ã¹ã‚‹
 	TriangleBarycenter_Base( &TrianglePos1, &TrianglePos2, &TrianglePos3, &st2, &st2u, &st2v, &st2w ) ;
 	Touei2 = !( st2u <= 0.0f || st2u >= 1.0f || st2v <= 0.0f || st2v >= 1.0f || st2w <= 0.0f || st2w >= 1.0f ) ;
 	if( Touei2 )
@@ -4885,17 +4885,17 @@ extern float Segment_Triangle_MinLength_Square_Base( VECTOR SegmentPos1, VECTOR 
 		l2 = VectorInnerProduct( &tv, &tv ) ;
 	}
 
-	// ‚Ç‚¿‚ç‚àOŠpŒ`‚Ì”ÍˆÍ‚É‚ ‚Á‚½ê‡
+	// ã©ã¡ã‚‰ã‚‚ä¸‰è§’å½¢ã®ç¯„å›²ã«ã‚ã£ãŸå ´åˆ
 	if( Touei1 && Touei2 )
 	{
 		float i1, i2 ;
 
-		// ü•ª‚ÌŠe’¸“_‚ªOŠpŒ`‚Ì‘OŒã‚É‚ ‚é‚©”»’è
+		// ç·šåˆ†ã®å„é ‚ç‚¹ãŒä¸‰è§’å½¢ã®å‰å¾Œã«ã‚ã‚‹ã‹åˆ¤å®š
 		i1 = VectorInnerProduct( &tnorm, &stw1 ) ;
 		i2 = VectorInnerProduct( &tnorm, &stw2 ) ;
 		if( ( i1 < 0.0f && i2 < 0.0f ) || ( i1 >= 0.0f && i2 >= 0.0f ) )
 		{
-			// •Ğ•û‚Ì‘¤‚É‚Ç‚¿‚ç‚Ì’¸“_‚à‚ ‚éê‡‚ÍA‚æ‚è‹ß‚¢‚Ù‚¤‚Ì’¸“_‚Æ•½–Ê‚Æ‚Ì‹——£‚ğŒ‹‰Ê‚É‚·‚é
+			// ç‰‡æ–¹ã®å´ã«ã©ã¡ã‚‰ã®é ‚ç‚¹ã‚‚ã‚ã‚‹å ´åˆã¯ã€ã‚ˆã‚Šè¿‘ã„ã»ã†ã®é ‚ç‚¹ã¨å¹³é¢ã¨ã®è·é›¢ã‚’çµæœã«ã™ã‚‹
 			if( l1 < l2 )
 			{
 				return l1 ;
@@ -4907,7 +4907,7 @@ extern float Segment_Triangle_MinLength_Square_Base( VECTOR SegmentPos1, VECTOR 
 		}
 		else
 		{
-			// Še’¸“_‚ª‘OŒã‚É‚ ‚éê‡‚ÍÚ‚µ‚Ä‚¢‚é‚Æ‚¢‚¤‚±‚Æ
+			// å„é ‚ç‚¹ãŒå‰å¾Œã«ã‚ã‚‹å ´åˆã¯æ¥ã—ã¦ã„ã‚‹ã¨ã„ã†ã“ã¨
 			if( IsZeroLength != NULL )
 			{
 				*IsZeroLength = TRUE ;
@@ -4916,7 +4916,7 @@ extern float Segment_Triangle_MinLength_Square_Base( VECTOR SegmentPos1, VECTOR 
 		}
 	}
 
-	// ‚»‚¤‚Å‚Í‚È‚¢ê‡‚ÍOŠpŒ`‚Ì‚R•Ó‚Æü•ª‚Ì‹——£‚ğ‘ª‚èAˆê”Ô‹——£‚ª’Z‚¢•Ó‚ğ’T‚·
+	// ãã†ã§ã¯ãªã„å ´åˆã¯ä¸‰è§’å½¢ã®ï¼“è¾ºã¨ç·šåˆ†ã®è·é›¢ã‚’æ¸¬ã‚Šã€ä¸€ç•ªè·é›¢ãŒçŸ­ã„è¾ºã‚’æ¢ã™
 	l12 = Segment_Segment_MinLength_Square( SegmentPos1, SegmentPos2, TrianglePos1, TrianglePos2 ) ;
 	l23 = Segment_Segment_MinLength_Square( SegmentPos1, SegmentPos2, TrianglePos2, TrianglePos3 ) ;
 	l31 = Segment_Segment_MinLength_Square( SegmentPos1, SegmentPos2, TrianglePos3, TrianglePos1 ) ;
@@ -4942,13 +4942,13 @@ extern float Segment_Triangle_MinLength_Square_Base( VECTOR SegmentPos1, VECTOR 
 	return MinLen ;
 }
 
-// ü•ª‚ÆOŠpŒ`‚ÌÅ‹ß“_ŠÔ‚Ì‹——£‚Ì“ñæ‚ğ“¾‚é 
+// ç·šåˆ†ã¨ä¸‰è§’å½¢ã®æœ€è¿‘ç‚¹é–“ã®è·é›¢ã®äºŒä¹—ã‚’å¾—ã‚‹ 
 extern float Segment_Triangle_MinLength_Square( VECTOR SegmentPos1, VECTOR SegmentPos2, VECTOR TrianglePos1, VECTOR TrianglePos2, VECTOR TrianglePos3 )
 {
 	return Segment_Triangle_MinLength_Square_Base( SegmentPos1, SegmentPos2, TrianglePos1, TrianglePos2, TrianglePos3, NULL ) ;
 }
 
-// ü•ª‚ÆOŠpŒ`‚ÌÅ‹ß“_ŠÔ‚Ì‹——£‚Ì“ñæ‚ğ“¾‚é 
+// ç·šåˆ†ã¨ä¸‰è§’å½¢ã®æœ€è¿‘ç‚¹é–“ã®è·é›¢ã®äºŒä¹—ã‚’å¾—ã‚‹ 
 extern double Segment_Triangle_MinLength_SquareD_Base( VECTOR_D SegmentPos1, VECTOR_D SegmentPos2, VECTOR_D TrianglePos1, VECTOR_D TrianglePos2, VECTOR_D TrianglePos3, int *IsZeroLength )
 {
 	bool Touei1, Touei2 ;
@@ -4968,7 +4968,7 @@ extern double Segment_Triangle_MinLength_SquareD_Base( VECTOR_D SegmentPos1, VEC
 		*IsZeroLength = FALSE ;
 	}
 
-	// ü•ª‚ªOŠpŒ`‚ğŠÑ‚¢‚Ä‚¢‚½‚ç‹——£‚Í‚O
+	// ç·šåˆ†ãŒä¸‰è§’å½¢ã‚’è²«ã„ã¦ã„ãŸã‚‰è·é›¢ã¯ï¼
 	HitCheck_Line_TriangleD_Base( &HitResult, SegmentPos1, SegmentPos2, TrianglePos1, TrianglePos2, TrianglePos3, NULL, NULL, NULL, TRUE ) ;
 	if( HitResult.HitFlag )
 	{
@@ -4984,13 +4984,13 @@ extern double Segment_Triangle_MinLength_SquareD_Base( VECTOR_D SegmentPos1, VEC
 	VectorOuterProductD( &tnorm, &v12, &v13 ) ;
 	VectorNormalizeD( &tnorm, &tnorm ) ;
 
-	// OŠpŒ`‚ª¦‚·•½–Êó‚É’¸“_‚ğ“Š‰e‚·‚é
+	// ä¸‰è§’å½¢ãŒç¤ºã™å¹³é¢çŠ¶ã«é ‚ç‚¹ã‚’æŠ•å½±ã™ã‚‹
 	VectorSubD( &tv, &SegmentPos1, &TrianglePos1 ) ;
 	stw1 = tv ;
 	VectorScaleD( &tv, &tnorm, VectorInnerProductD( &tv, &tnorm ) ) ;
 	VectorSubD( &st1, &SegmentPos1, &tv ) ;
 
-	// OŠpŒ`“à‚É’¸“_‚ª‘¶İ‚·‚é‚©‚Ç‚¤‚©‚ğ’²‚×‚é
+	// ä¸‰è§’å½¢å†…ã«é ‚ç‚¹ãŒå­˜åœ¨ã™ã‚‹ã‹ã©ã†ã‹ã‚’èª¿ã¹ã‚‹
 	TriangleBarycenter_BaseD( &TrianglePos1, &TrianglePos2, &TrianglePos3, &st1, &st1u, &st1v, &st1w ) ;
 	Touei1 = !( st1u <= 0.0 || st1u >= 1.0 || st1v <= 0.0 || st1v >= 1.0 || st1w <= 0.0 || st1w >= 1.0 ) ;
 	if( Touei1 )
@@ -4999,13 +4999,13 @@ extern double Segment_Triangle_MinLength_SquareD_Base( VECTOR_D SegmentPos1, VEC
 		l1 = VectorInnerProductD( &tv, &tv ) ;
 	}
 
-	// OŠpŒ`‚ª¦‚·•½–Êó‚É’¸“_‚ğ“Š‰e‚·‚é
+	// ä¸‰è§’å½¢ãŒç¤ºã™å¹³é¢çŠ¶ã«é ‚ç‚¹ã‚’æŠ•å½±ã™ã‚‹
 	VectorSubD( &tv, &SegmentPos2, &TrianglePos1 ) ;
 	stw2 = tv ;
 	VectorScaleD( &tv, &tnorm, VectorInnerProductD( &tv, &tnorm ) ) ;
 	VectorSubD( &st2, &SegmentPos2, &tv ) ;
 
-	// OŠpŒ`“à‚É’¸“_‚ª‘¶İ‚·‚é‚©‚Ç‚¤‚©‚ğ’²‚×‚é
+	// ä¸‰è§’å½¢å†…ã«é ‚ç‚¹ãŒå­˜åœ¨ã™ã‚‹ã‹ã©ã†ã‹ã‚’èª¿ã¹ã‚‹
 	TriangleBarycenter_BaseD( &TrianglePos1, &TrianglePos2, &TrianglePos3, &st2, &st2u, &st2v, &st2w ) ;
 	Touei2 = !( st2u <= 0.0 || st2u >= 1.0 || st2v <= 0.0 || st2v >= 1.0 || st2w <= 0.0 || st2w >= 1.0 ) ;
 	if( Touei2 )
@@ -5014,17 +5014,17 @@ extern double Segment_Triangle_MinLength_SquareD_Base( VECTOR_D SegmentPos1, VEC
 		l2 = VectorInnerProductD( &tv, &tv ) ;
 	}
 
-	// ‚Ç‚¿‚ç‚àOŠpŒ`‚Ì”ÍˆÍ‚É‚ ‚Á‚½ê‡
+	// ã©ã¡ã‚‰ã‚‚ä¸‰è§’å½¢ã®ç¯„å›²ã«ã‚ã£ãŸå ´åˆ
 	if( Touei1 && Touei2 )
 	{
 		double i1, i2 ;
 
-		// ü•ª‚ÌŠe’¸“_‚ªOŠpŒ`‚Ì‘OŒã‚É‚ ‚é‚©”»’è
+		// ç·šåˆ†ã®å„é ‚ç‚¹ãŒä¸‰è§’å½¢ã®å‰å¾Œã«ã‚ã‚‹ã‹åˆ¤å®š
 		i1 = VectorInnerProductD( &tnorm, &stw1 ) ;
 		i2 = VectorInnerProductD( &tnorm, &stw2 ) ;
 		if( ( i1 < 0.0 && i2 < 0.0 ) || ( i1 >= 0.0 && i2 >= 0.0 ) )
 		{
-			// •Ğ•û‚Ì‘¤‚É‚Ç‚¿‚ç‚Ì’¸“_‚à‚ ‚éê‡‚ÍA‚æ‚è‹ß‚¢‚Ù‚¤‚Ì’¸“_‚Æ•½–Ê‚Æ‚Ì‹——£‚ğŒ‹‰Ê‚É‚·‚é
+			// ç‰‡æ–¹ã®å´ã«ã©ã¡ã‚‰ã®é ‚ç‚¹ã‚‚ã‚ã‚‹å ´åˆã¯ã€ã‚ˆã‚Šè¿‘ã„ã»ã†ã®é ‚ç‚¹ã¨å¹³é¢ã¨ã®è·é›¢ã‚’çµæœã«ã™ã‚‹
 			if( l1 < l2 )
 			{
 				return l1 ;
@@ -5036,7 +5036,7 @@ extern double Segment_Triangle_MinLength_SquareD_Base( VECTOR_D SegmentPos1, VEC
 		}
 		else
 		{
-			// Še’¸“_‚ª‘OŒã‚É‚ ‚éê‡‚ÍÚ‚µ‚Ä‚¢‚é‚Æ‚¢‚¤‚±‚Æ
+			// å„é ‚ç‚¹ãŒå‰å¾Œã«ã‚ã‚‹å ´åˆã¯æ¥ã—ã¦ã„ã‚‹ã¨ã„ã†ã“ã¨
 			if( IsZeroLength != NULL )
 			{
 				*IsZeroLength = TRUE ;
@@ -5045,7 +5045,7 @@ extern double Segment_Triangle_MinLength_SquareD_Base( VECTOR_D SegmentPos1, VEC
 		}
 	}
 
-	// ‚»‚¤‚Å‚Í‚È‚¢ê‡‚ÍOŠpŒ`‚Ì‚R•Ó‚Æü•ª‚Ì‹——£‚ğ‘ª‚èAˆê”Ô‹——£‚ª’Z‚¢•Ó‚ğ’T‚·
+	// ãã†ã§ã¯ãªã„å ´åˆã¯ä¸‰è§’å½¢ã®ï¼“è¾ºã¨ç·šåˆ†ã®è·é›¢ã‚’æ¸¬ã‚Šã€ä¸€ç•ªè·é›¢ãŒçŸ­ã„è¾ºã‚’æ¢ã™
 	l12 = Segment_Segment_MinLength_SquareD( SegmentPos1, SegmentPos2, TrianglePos1, TrianglePos2 ) ;
 	l23 = Segment_Segment_MinLength_SquareD( SegmentPos1, SegmentPos2, TrianglePos2, TrianglePos3 ) ;
 	l31 = Segment_Segment_MinLength_SquareD( SegmentPos1, SegmentPos2, TrianglePos3, TrianglePos1 ) ;
@@ -5071,67 +5071,67 @@ extern double Segment_Triangle_MinLength_SquareD_Base( VECTOR_D SegmentPos1, VEC
 	return MinLen ;
 }
 
-// ü•ª‚ÆOŠpŒ`‚ÌÅ‹ß“_ŠÔ‚Ì‹——£‚Ì“ñæ‚ğ“¾‚é 
+// ç·šåˆ†ã¨ä¸‰è§’å½¢ã®æœ€è¿‘ç‚¹é–“ã®è·é›¢ã®äºŒä¹—ã‚’å¾—ã‚‹ 
 extern double Segment_Triangle_MinLength_SquareD( VECTOR_D SegmentPos1, VECTOR_D SegmentPos2, VECTOR_D TrianglePos1, VECTOR_D TrianglePos2, VECTOR_D TrianglePos3 )
 {
 	return Segment_Triangle_MinLength_SquareD_Base( SegmentPos1, SegmentPos2, TrianglePos1, TrianglePos2, TrianglePos3, NULL ) ;
 }
 
-// ü•ª‚Æ“_‚Ìˆê”Ô‹ß‚¢‹——£‚ğ“¾‚é
+// ç·šåˆ†ã¨ç‚¹ã®ä¸€ç•ªè¿‘ã„è·é›¢ã‚’å¾—ã‚‹
 extern float Segment_Point_MinLength( VECTOR SegmentPos1, VECTOR SegmentPos2, VECTOR PointPos )
 {
 	return _SQRT( Segment_Point_MinLength_Square(  SegmentPos1,  SegmentPos2,  PointPos ) ) ;
 }
 
-// ü•ª‚Æ“_‚Ìˆê”Ô‹ß‚¢‹——£‚ğ“¾‚é
+// ç·šåˆ†ã¨ç‚¹ã®ä¸€ç•ªè¿‘ã„è·é›¢ã‚’å¾—ã‚‹
 extern double Segment_Point_MinLengthD( VECTOR_D SegmentPos1, VECTOR_D SegmentPos2, VECTOR_D PointPos )
 {
 	return _SQRTD( Segment_Point_MinLength_SquareD(  SegmentPos1,  SegmentPos2,  PointPos ) ) ;
 }
 
-// ü•ª‚Æ“_‚Ìˆê”Ô‹ß‚¢‹——£‚Ì“ñæ‚ğ“¾‚é
+// ç·šåˆ†ã¨ç‚¹ã®ä¸€ç•ªè¿‘ã„è·é›¢ã®äºŒä¹—ã‚’å¾—ã‚‹
 extern float Segment_Point_MinLength_Square( VECTOR SegmentPos1, VECTOR SegmentPos2, VECTOR PointPos )
 {
 	VECTOR MinPosition, Sa ;
 
-	// ü‚Æ“_‚ÌÅ‹ß“_‚ğæ“¾‚·‚é
+	// ç·šã¨ç‚¹ã®æœ€è¿‘ç‚¹ã‚’å–å¾—ã™ã‚‹
 	MinPosition = Get_Line_Point_MinPosition( PointPos, SegmentPos1, SegmentPos2 ) ;
 
-	// Å‹ß“_‚Æ“_‚Ì‹——£‚ğ•Ô‚·
+	// æœ€è¿‘ç‚¹ã¨ç‚¹ã®è·é›¢ã‚’è¿”ã™
 	Sa.x = MinPosition.x - PointPos.x ;
 	Sa.y = MinPosition.y - PointPos.y ;
 	Sa.z = MinPosition.z - PointPos.z ;
 	return Sa.x * Sa.x + Sa.y * Sa.y + Sa.z * Sa.z ;
 }
 
-// ü•ª‚Æ“_‚Ìˆê”Ô‹ß‚¢‹——£‚Ì“ñæ‚ğ“¾‚é
+// ç·šåˆ†ã¨ç‚¹ã®ä¸€ç•ªè¿‘ã„è·é›¢ã®äºŒä¹—ã‚’å¾—ã‚‹
 extern double Segment_Point_MinLength_SquareD( VECTOR_D SegmentPos1, VECTOR_D SegmentPos2, VECTOR_D PointPos )
 {
 	VECTOR_D MinPosition, Sa ;
 
-	// ü‚Æ“_‚ÌÅ‹ß“_‚ğæ“¾‚·‚é
+	// ç·šã¨ç‚¹ã®æœ€è¿‘ç‚¹ã‚’å–å¾—ã™ã‚‹
 	MinPosition = Get_Line_Point_MinPositionD( PointPos, SegmentPos1, SegmentPos2 ) ;
 
-	// Å‹ß“_‚Æ“_‚Ì‹——£‚ğ•Ô‚·
+	// æœ€è¿‘ç‚¹ã¨ç‚¹ã®è·é›¢ã‚’è¿”ã™
 	Sa.x = MinPosition.x - PointPos.x ;
 	Sa.y = MinPosition.y - PointPos.y ;
 	Sa.z = MinPosition.z - PointPos.z ;
 	return Sa.x * Sa.x + Sa.y * Sa.y + Sa.z * Sa.z ;
 }
 
-// OŠpŒ`‚Æ“_‚Ìˆê”Ô‹ß‚¢‹——£‚ğ“¾‚é
+// ä¸‰è§’å½¢ã¨ç‚¹ã®ä¸€ç•ªè¿‘ã„è·é›¢ã‚’å¾—ã‚‹
 extern float Triangle_Point_MinLength( VECTOR TrianglePos1, VECTOR TrianglePos2, VECTOR TrianglePos3, VECTOR PointPos )
 {
 	return _SQRT( Triangle_Point_MinLength_Square(  TrianglePos1,  TrianglePos2,  TrianglePos3,  PointPos ) ) ;
 }
 
-// OŠpŒ`‚Æ“_‚Ìˆê”Ô‹ß‚¢‹——£‚ğ“¾‚é
+// ä¸‰è§’å½¢ã¨ç‚¹ã®ä¸€ç•ªè¿‘ã„è·é›¢ã‚’å¾—ã‚‹
 extern double Triangle_Point_MinLengthD( VECTOR_D TrianglePos1, VECTOR_D TrianglePos2, VECTOR_D TrianglePos3, VECTOR_D PointPos )
 {
 	return _SQRTD( Triangle_Point_MinLength_SquareD(  TrianglePos1,  TrianglePos2,  TrianglePos3,  PointPos ) ) ;
 }
 
-// “_‚Éˆê”Ô‹ß‚¢•½–Êã‚ÌÀ•W‚ğ“¾‚é
+// ç‚¹ã«ä¸€ç•ªè¿‘ã„å¹³é¢ä¸Šã®åº§æ¨™ã‚’å¾—ã‚‹
 extern VECTOR Plane_Point_MinLength_Position( VECTOR PlanePos, VECTOR PlaneNormal, VECTOR PointPos )
 {
 	float t ;
@@ -5140,7 +5140,7 @@ extern VECTOR Plane_Point_MinLength_Position( VECTOR PlanePos, VECTOR PlaneNorma
 	return VSub( PointPos, VScale( PlaneNormal, t ) ) ;
 }
 
-// “_‚Éˆê”Ô‹ß‚¢•½–Êã‚ÌÀ•W‚ğ“¾‚é
+// ç‚¹ã«ä¸€ç•ªè¿‘ã„å¹³é¢ä¸Šã®åº§æ¨™ã‚’å¾—ã‚‹
 extern VECTOR_D Plane_Point_MinLength_PositionD( VECTOR_D PlanePos, VECTOR_D PlaneNormal, VECTOR_D PointPos )
 {
 	double t ;
@@ -5149,7 +5149,7 @@ extern VECTOR_D Plane_Point_MinLength_PositionD( VECTOR_D PlanePos, VECTOR_D Pla
 	return VSubD( PointPos, VScaleD( PlaneNormal, t ) ) ;
 }
 
-// •½–Ê‚Æ“_‚Ìˆê”Ô‹ß‚¢‹——£‚ğ“¾‚é
+// å¹³é¢ã¨ç‚¹ã®ä¸€ç•ªè¿‘ã„è·é›¢ã‚’å¾—ã‚‹
 extern float Plane_Point_MinLength( VECTOR PlanePos, VECTOR PlaneNormal, VECTOR PointPos )
 {
 	float t ;
@@ -5158,7 +5158,7 @@ extern float Plane_Point_MinLength( VECTOR PlanePos, VECTOR PlaneNormal, VECTOR 
 	return VSize( VScale( PlaneNormal, t ) ) ;
 }
 
-// •½–Ê‚Æ“_‚Ìˆê”Ô‹ß‚¢‹——£‚ğ“¾‚é
+// å¹³é¢ã¨ç‚¹ã®ä¸€ç•ªè¿‘ã„è·é›¢ã‚’å¾—ã‚‹
 extern double Plane_Point_MinLengthD( VECTOR_D PlanePos, VECTOR_D PlaneNormal, VECTOR_D PointPos )
 {
 	double t ;
@@ -5167,49 +5167,49 @@ extern double Plane_Point_MinLengthD( VECTOR_D PlanePos, VECTOR_D PlaneNormal, V
 	return VSizeD( VScaleD( PlaneNormal, t ) ) ;
 }
 
-// OŠpŒ`‚Æ“_‚Ìˆê”Ô‹ß‚¢‹——£‚Ì“ñæ‚ğ“¾‚é
+// ä¸‰è§’å½¢ã¨ç‚¹ã®ä¸€ç•ªè¿‘ã„è·é›¢ã®äºŒä¹—ã‚’å¾—ã‚‹
 extern float Triangle_Point_MinLength_Square( VECTOR TrianglePos1, VECTOR TrianglePos2, VECTOR TrianglePos3, VECTOR PointPos )
 {
 	VECTOR MinPosition, Sa ;
 
-	// “_‚ÆOŠpŒ`‚ÌÅ‹ß“_‚ğæ“¾‚·‚é
+	// ç‚¹ã¨ä¸‰è§’å½¢ã®æœ€è¿‘ç‚¹ã‚’å–å¾—ã™ã‚‹
 	MinPosition = Get_Triangle_Point_MinPosition( PointPos, TrianglePos1, TrianglePos2, TrianglePos3 ) ;
 
-	// Å‹ß“_‚Æ‚Ì‹——£‚ğ•Ô‚·
+	// æœ€è¿‘ç‚¹ã¨ã®è·é›¢ã‚’è¿”ã™
 	Sa.x = MinPosition.x - PointPos.x ;
 	Sa.y = MinPosition.y - PointPos.y ;
 	Sa.z = MinPosition.z - PointPos.z ;
 	return Sa.x * Sa.x + Sa.y * Sa.y + Sa.z * Sa.z ;
 }
 
-// OŠpŒ`‚Æ“_‚Ìˆê”Ô‹ß‚¢‹——£‚Ì“ñæ‚ğ“¾‚é
+// ä¸‰è§’å½¢ã¨ç‚¹ã®ä¸€ç•ªè¿‘ã„è·é›¢ã®äºŒä¹—ã‚’å¾—ã‚‹
 extern double Triangle_Point_MinLength_SquareD( VECTOR_D TrianglePos1, VECTOR_D TrianglePos2, VECTOR_D TrianglePos3, VECTOR_D PointPos )
 {
 	VECTOR_D MinPosition, Sa ;
 
-	// “_‚ÆOŠpŒ`‚ÌÅ‹ß“_‚ğæ“¾‚·‚é
+	// ç‚¹ã¨ä¸‰è§’å½¢ã®æœ€è¿‘ç‚¹ã‚’å–å¾—ã™ã‚‹
 	MinPosition = Get_Triangle_Point_MinPositionD( PointPos, TrianglePos1, TrianglePos2, TrianglePos3 ) ;
 
-	// Å‹ß“_‚Æ‚Ì‹——£‚ğ•Ô‚·
+	// æœ€è¿‘ç‚¹ã¨ã®è·é›¢ã‚’è¿”ã™
 	Sa.x = MinPosition.x - PointPos.x ;
 	Sa.y = MinPosition.y - PointPos.y ;
 	Sa.z = MinPosition.z - PointPos.z ;
 	return Sa.x * Sa.x + Sa.y * Sa.y + Sa.z * Sa.z ;
 }
 
-// “ñ‚Â‚ÌOŠpŒ`‚ÌÅ‹ß“_ŠÔ‚Ì‹——£‚ğ“¾‚é
+// äºŒã¤ã®ä¸‰è§’å½¢ã®æœ€è¿‘ç‚¹é–“ã®è·é›¢ã‚’å¾—ã‚‹
 extern float Triangle_Triangle_MinLength( VECTOR Triangle1Pos1, VECTOR Triangle1Pos2, VECTOR Triangle1Pos3, VECTOR Triangle2Pos1, VECTOR Triangle2Pos2, VECTOR Triangle2Pos3 )
 {
 	return _SQRT( Triangle_Triangle_MinLength_Square( Triangle1Pos1, Triangle1Pos2, Triangle1Pos3, Triangle2Pos1, Triangle2Pos2, Triangle2Pos3 ) ) ;
 }
 
-// “ñ‚Â‚ÌOŠpŒ`‚ÌÅ‹ß“_ŠÔ‚Ì‹——£‚ğ“¾‚é
+// äºŒã¤ã®ä¸‰è§’å½¢ã®æœ€è¿‘ç‚¹é–“ã®è·é›¢ã‚’å¾—ã‚‹
 extern double Triangle_Triangle_MinLengthD( VECTOR_D Triangle1Pos1, VECTOR_D Triangle1Pos2, VECTOR_D Triangle1Pos3, VECTOR_D Triangle2Pos1, VECTOR_D Triangle2Pos2, VECTOR_D Triangle2Pos3 )
 {
 	return _SQRTD( Triangle_Triangle_MinLength_SquareD( Triangle1Pos1, Triangle1Pos2, Triangle1Pos3, Triangle2Pos1, Triangle2Pos2, Triangle2Pos3 ) ) ;
 }
 
-// “ñ‚Â‚ÌOŠpŒ`‚ÌÅ‹ß“_ŠÔ‚Ì‹——£‚Ì“ñæ‚ğ“¾‚é
+// äºŒã¤ã®ä¸‰è§’å½¢ã®æœ€è¿‘ç‚¹é–“ã®è·é›¢ã®äºŒä¹—ã‚’å¾—ã‚‹
 extern float Triangle_Triangle_MinLength_Square( VECTOR Triangle1Pos1, VECTOR Triangle1Pos2, VECTOR Triangle1Pos3, VECTOR Triangle2Pos1, VECTOR Triangle2Pos2, VECTOR Triangle2Pos3 )
 {
 	float MinDist ;
@@ -5275,7 +5275,7 @@ extern float Triangle_Triangle_MinLength_Square( VECTOR Triangle1Pos1, VECTOR Tr
 	return MinDist ;
 }
 
-// “ñ‚Â‚ÌOŠpŒ`‚ÌÅ‹ß“_ŠÔ‚Ì‹——£‚Ì“ñæ‚ğ“¾‚é
+// äºŒã¤ã®ä¸‰è§’å½¢ã®æœ€è¿‘ç‚¹é–“ã®è·é›¢ã®äºŒä¹—ã‚’å¾—ã‚‹
 extern double Triangle_Triangle_MinLength_SquareD( VECTOR_D Triangle1Pos1, VECTOR_D Triangle1Pos2, VECTOR_D Triangle1Pos3, VECTOR_D Triangle2Pos1, VECTOR_D Triangle2Pos2, VECTOR_D Triangle2Pos3 )
 {
 	double MinDist ;
@@ -5343,7 +5343,7 @@ extern double Triangle_Triangle_MinLength_SquareD( VECTOR_D Triangle1Pos1, VECTO
 
 
 
-// OŠpŒ`‚Æü‚Ì“–‚½‚è”»’è
+// ä¸‰è§’å½¢ã¨ç·šã®å½“ãŸã‚Šåˆ¤å®š
 extern void HitCheck_Line_Triangle_Base(
 	HITRESULT_LINE *Result, VECTOR LinePos1, VECTOR LinePos2, VECTOR TrianglePos1, VECTOR TrianglePos2, VECTOR TrianglePos3,
 	float *TrianglePos1Weight, float *TrianglePos2Weight, float *TrianglePos3Weight, int IsSimpleCheck )
@@ -5428,7 +5428,7 @@ extern void HitCheck_Line_Triangle_Base(
 		VectorOuterProduct( &TriNorm, &Tri1_2, &Tri1_3 ) ;
 		VectorNormalize( &TriNorm, &TriNorm ) ;
 
-		// OŠpŒ`‚ª¦‚·•½–Êó‚É’¸“_‚ğ“Š‰e‚·‚é
+		// ä¸‰è§’å½¢ãŒç¤ºã™å¹³é¢çŠ¶ã«é ‚ç‚¹ã‚’æŠ•å½±ã™ã‚‹
 		VectorSub( &Tri1_Seg1, &LinePos1, &TrianglePos1 ) ;
 		Seg1_TriProSeg1_DistBase = VectorInnerProduct( &Tri1_Seg1, &TriNorm ) ;
 		VectorScale( &tv, &TriNorm, Seg1_TriProSeg1_DistBase ) ;
@@ -5436,23 +5436,23 @@ extern void HitCheck_Line_Triangle_Base(
 		Seg1_TriProSeg1_Dist = Seg1_TriProSeg1_DistBase < 0.0f ? -Seg1_TriProSeg1_DistBase : Seg1_TriProSeg1_DistBase ;
 	
 
-		// OŠpŒ`“à‚É’¸“_‚ª‘¶İ‚·‚é‚©‚Ç‚¤‚©‚ğ’²‚×‚é
+		// ä¸‰è§’å½¢å†…ã«é ‚ç‚¹ãŒå­˜åœ¨ã™ã‚‹ã‹ã©ã†ã‹ã‚’èª¿ã¹ã‚‹
 		TriangleBarycenter_Base( &TrianglePos1, &TrianglePos2, &TrianglePos3, &Seg1_TriPro, &Seg1_TriPro_w1, &Seg1_TriPro_w2, &Seg1_TriPro_w3 ) ;
 		Project1 = Seg1_TriPro_w1 >= 0.0f && Seg1_TriPro_w1 <= 1.0f && Seg1_TriPro_w2 >= 0.0f && Seg1_TriPro_w2 <= 1.0f && Seg1_TriPro_w3 >= 0.0f && Seg1_TriPro_w3 <= 1.0f ;
 
-		// OŠpŒ`‚ª¦‚·•½–Êó‚É’¸“_‚ğ“Š‰e‚·‚é
+		// ä¸‰è§’å½¢ãŒç¤ºã™å¹³é¢çŠ¶ã«é ‚ç‚¹ã‚’æŠ•å½±ã™ã‚‹
 		VectorSub( &Tri1_Seg2, &LinePos2, &TrianglePos1 ) ;
 		Seg2_TriProSeg2_DistBase = VectorInnerProduct( &Tri1_Seg2, &TriNorm ) ;
 		VectorScale( &tv, &TriNorm, Seg2_TriProSeg2_DistBase ) ;
 		VectorSub( &Seg2_TriPro, &LinePos2, &tv ) ;
 		Seg2_TriProSeg2_Dist = Seg2_TriProSeg2_DistBase < 0.0f ? -Seg2_TriProSeg2_DistBase : Seg2_TriProSeg2_DistBase ;
 
-		// OŠpŒ`“à‚É’¸“_‚ª‘¶İ‚·‚é‚©‚Ç‚¤‚©‚ğ’²‚×‚é
+		// ä¸‰è§’å½¢å†…ã«é ‚ç‚¹ãŒå­˜åœ¨ã™ã‚‹ã‹ã©ã†ã‹ã‚’èª¿ã¹ã‚‹
 		TriangleBarycenter_Base( &TrianglePos1, &TrianglePos2, &TrianglePos3, &Seg2_TriPro, &Seg2_TriPro_w1, &Seg2_TriPro_w2, &Seg2_TriPro_w3 ) ;
 		Project2 = Seg2_TriPro_w1 >= 0.0f && Seg2_TriPro_w1 <= 1.0f && Seg2_TriPro_w2 >= 0.0f && Seg2_TriPro_w2 <= 1.0f && Seg2_TriPro_w3 >= 0.0f && Seg2_TriPro_w3 <= 1.0f ;
 
 
-		// OŠpŒ`‚Æü•ª‚ªŒğ·–”‚ÍÚ‚µ‚Ä‚¢‚é‰Â”\«‚ª‚ ‚éê‡‚Í•ªŠò
+		// ä¸‰è§’å½¢ã¨ç·šåˆ†ãŒäº¤å·®åˆã¯æ¥ã—ã¦ã„ã‚‹å¯èƒ½æ€§ãŒã‚ã‚‹å ´åˆã¯åˆ†å²
 		if( ( Seg1_TriProSeg1_Dist >= 0.00000001f || Seg2_TriProSeg2_Dist >= 0.00000001f ) &&
 			( Seg1_TriProSeg1_Dist <  0.00000001f || Seg2_TriProSeg2_Dist <  0.00000001f ||
 			  ( Seg1_TriProSeg1_DistBase > 0.0f && Seg2_TriProSeg2_DistBase < 0.0f ) ||
@@ -5464,7 +5464,7 @@ extern void HitCheck_Line_Triangle_Base(
 			VECTOR Seg_TriPos ;
 			float TriPos_SegPos1_2_t ;
 
-			// OŠpŒ`‚ª•\‚·•½–Ê‚Æü•ª‚Æ‚ÌÚ“_‚ÆdS‚ğZo‚·‚é
+			// ä¸‰è§’å½¢ãŒè¡¨ã™å¹³é¢ã¨ç·šåˆ†ã¨ã®æ¥ç‚¹ã¨é‡å¿ƒã‚’ç®—å‡ºã™ã‚‹
 			TriPos_SegPos1_2_t = Seg1_TriProSeg1_Dist / ( Seg1_TriProSeg1_Dist + Seg2_TriProSeg2_Dist ) ;
 			VectorScale( &Seg_TriPos, &Seg1_2, TriPos_SegPos1_2_t ) ;
 			VectorAdd( &Seg_TriPos, &Seg_TriPos, &LinePos1 ) ;
@@ -5473,7 +5473,7 @@ extern void HitCheck_Line_Triangle_Base(
 				&Seg_TriPos_TriPos1_w, &Seg_TriPos_TriPos2_w, &Seg_TriPos_TriPos3_w ) ;
 
 
-			// ü•ª‚ÆOŠpŒ`‚ªÚ‚µ‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+			// ç·šåˆ†ã¨ä¸‰è§’å½¢ãŒæ¥ã—ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 			if( Seg_TriPos_TriPos1_w >= 0.0f && Seg_TriPos_TriPos1_w <= 1.0f &&
 				Seg_TriPos_TriPos2_w >= 0.0f && Seg_TriPos_TriPos2_w <= 1.0f &&
 				Seg_TriPos_TriPos3_w >= 0.0f && Seg_TriPos_TriPos3_w <= 1.0f )
@@ -5488,10 +5488,10 @@ extern void HitCheck_Line_Triangle_Base(
 			}
 		}
 
-		// ‚Ç‚¿‚ç‚àOŠpŒ`‚Ì”ÍˆÍ‚É‚ ‚Á‚½ê‡
+		// ã©ã¡ã‚‰ã‚‚ä¸‰è§’å½¢ã®ç¯„å›²ã«ã‚ã£ãŸå ´åˆ
 		if( Project1 && Project2 )
 		{
-			// •Ğ•û‚Ì‘¤‚É‚Ç‚¿‚ç‚Ì’¸“_‚à‚ ‚éê‡‚ÍA‚æ‚è‹ß‚¢‚Ù‚¤‚Ì’¸“_‚Æ•½–Ê‚Æ‚Ì‹——£‚ğŒ‹‰Ê‚É‚·‚é
+			// ç‰‡æ–¹ã®å´ã«ã©ã¡ã‚‰ã®é ‚ç‚¹ã‚‚ã‚ã‚‹å ´åˆã¯ã€ã‚ˆã‚Šè¿‘ã„ã»ã†ã®é ‚ç‚¹ã¨å¹³é¢ã¨ã®è·é›¢ã‚’çµæœã«ã™ã‚‹
 			if( Seg1_TriProSeg1_Dist < Seg2_TriProSeg2_Dist ||
 				Seg1_TriProSeg1_Dist == Seg2_TriProSeg2_Dist )
 			{
@@ -5514,10 +5514,10 @@ extern void HitCheck_Line_Triangle_Base(
 			return ;
 		}
 
-		// ü•ª‚ªOŠpŒ`‚Æ“¯ˆê•½–Êã‚É‚ ‚éê‡‚Ì‚İOŠpŒ`‚É‰¡‚©‚ç“–‚½‚Á‚Ä‚¢‚é‚©‚Ç‚¤‚©‚Ì”»’è‚ğs‚¤
+		// ç·šåˆ†ãŒä¸‰è§’å½¢ã¨åŒä¸€å¹³é¢ä¸Šã«ã‚ã‚‹å ´åˆã®ã¿ä¸‰è§’å½¢ã«æ¨ªã‹ã‚‰å½“ãŸã£ã¦ã„ã‚‹ã‹ã©ã†ã‹ã®åˆ¤å®šã‚’è¡Œã†
 		if( Seg1_TriProSeg1_Dist < 0.00000001f && Seg2_TriProSeg2_Dist < 0.00000001f )
 		{
-			// ü•ª‚Ìn“_‚ªOŠpŒ`‚Ì”ÍˆÍ‚É‚ ‚éê‡‚Ín“_‚ğÚG“_‚Æ‚·‚é
+			// ç·šåˆ†ã®å§‹ç‚¹ãŒä¸‰è§’å½¢ã®ç¯„å›²ã«ã‚ã‚‹å ´åˆã¯å§‹ç‚¹ã‚’æ¥è§¦ç‚¹ã¨ã™ã‚‹
 			if( Project1 )
 			{
 				Result->HitFlag = 1 ;
@@ -5529,7 +5529,7 @@ extern void HitCheck_Line_Triangle_Base(
 				return ;
 			}
 
-			// ‚»‚¤‚Å‚Í‚È‚¢ê‡‚ÍOŠpŒ`‚Ì‚R•Ó‚Æü•ª‚Ì‹——£‚ğ‘ª‚èAˆê”Ô‹——£‚ª’Z‚¢•Ó‚ğ’T‚·
+			// ãã†ã§ã¯ãªã„å ´åˆã¯ä¸‰è§’å½¢ã®ï¼“è¾ºã¨ç·šåˆ†ã®è·é›¢ã‚’æ¸¬ã‚Šã€ä¸€ç•ªè·é›¢ãŒçŸ­ã„è¾ºã‚’æ¢ã™
 			Segment_Segment_Analyse( &LinePos1, &LinePos2, &TrianglePos1, &TrianglePos2, &Seg_Tri1_2_Res ) ;
 			Segment_Segment_Analyse( &LinePos1, &LinePos2, &TrianglePos2, &TrianglePos3, &Seg_Tri2_3_Res ) ;
 			Segment_Segment_Analyse( &LinePos1, &LinePos2, &TrianglePos3, &TrianglePos1, &Seg_Tri3_1_Res ) ;
@@ -5617,7 +5617,7 @@ extern void HitCheck_Line_Triangle_Base(
 	}
 }
 
-// OŠpŒ`‚Æü‚Ì“–‚½‚è”»’è
+// ä¸‰è§’å½¢ã¨ç·šã®å½“ãŸã‚Šåˆ¤å®š
 extern HITRESULT_LINE HitCheck_Line_Triangle( VECTOR LinePos1, VECTOR LinePos2, VECTOR TrianglePos1, VECTOR TrianglePos2, VECTOR TrianglePos3 )
 {
 	HITRESULT_LINE HitResult ;
@@ -5627,7 +5627,7 @@ extern HITRESULT_LINE HitCheck_Line_Triangle( VECTOR LinePos1, VECTOR LinePos2, 
 	return HitResult ;
 }
 
-// OŠpŒ`‚Æü‚Ì“–‚½‚è”»’è
+// ä¸‰è§’å½¢ã¨ç·šã®å½“ãŸã‚Šåˆ¤å®š
 extern void HitCheck_Line_TriangleD_Base(
 	HITRESULT_LINE_D *Result, VECTOR_D LinePos1, VECTOR_D LinePos2, VECTOR_D TrianglePos1, VECTOR_D TrianglePos2, VECTOR_D TrianglePos3,
 	double *TrianglePos1Weight, double *TrianglePos2Weight, double *TrianglePos3Weight, int IsSimpleCheck )
@@ -5712,7 +5712,7 @@ extern void HitCheck_Line_TriangleD_Base(
 		VectorOuterProductD( &TriNorm, &Tri1_2, &Tri1_3 ) ;
 		VectorNormalizeD( &TriNorm, &TriNorm ) ;
 
-		// OŠpŒ`‚ª¦‚·•½–Êó‚É’¸“_‚ğ“Š‰e‚·‚é
+		// ä¸‰è§’å½¢ãŒç¤ºã™å¹³é¢çŠ¶ã«é ‚ç‚¹ã‚’æŠ•å½±ã™ã‚‹
 		VectorSubD( &Tri1_Seg1, &LinePos1, &TrianglePos1 ) ;
 		Seg1_TriProSeg1_DistBase = VectorInnerProductD( &Tri1_Seg1, &TriNorm ) ;
 		VectorScaleD( &tv, &TriNorm, Seg1_TriProSeg1_DistBase ) ;
@@ -5720,23 +5720,23 @@ extern void HitCheck_Line_TriangleD_Base(
 		Seg1_TriProSeg1_Dist = Seg1_TriProSeg1_DistBase < 0.0 ? -Seg1_TriProSeg1_DistBase : Seg1_TriProSeg1_DistBase ;
 	
 
-		// OŠpŒ`“à‚É’¸“_‚ª‘¶İ‚·‚é‚©‚Ç‚¤‚©‚ğ’²‚×‚é
+		// ä¸‰è§’å½¢å†…ã«é ‚ç‚¹ãŒå­˜åœ¨ã™ã‚‹ã‹ã©ã†ã‹ã‚’èª¿ã¹ã‚‹
 		TriangleBarycenter_BaseD( &TrianglePos1, &TrianglePos2, &TrianglePos3, &Seg1_TriPro, &Seg1_TriPro_w1, &Seg1_TriPro_w2, &Seg1_TriPro_w3 ) ;
 		Project1 = Seg1_TriPro_w1 >= 0.0 && Seg1_TriPro_w1 <= 1.0 && Seg1_TriPro_w2 >= 0.0 && Seg1_TriPro_w2 <= 1.0 && Seg1_TriPro_w3 >= 0.0 && Seg1_TriPro_w3 <= 1.0 ;
 
-		// OŠpŒ`‚ª¦‚·•½–Êó‚É’¸“_‚ğ“Š‰e‚·‚é
+		// ä¸‰è§’å½¢ãŒç¤ºã™å¹³é¢çŠ¶ã«é ‚ç‚¹ã‚’æŠ•å½±ã™ã‚‹
 		VectorSubD( &Tri1_Seg2, &LinePos2, &TrianglePos1 ) ;
 		Seg2_TriProSeg2_DistBase = VectorInnerProductD( &Tri1_Seg2, &TriNorm ) ;
 		VectorScaleD( &tv, &TriNorm, Seg2_TriProSeg2_DistBase ) ;
 		VectorSubD( &Seg2_TriPro, &LinePos2, &tv ) ;
 		Seg2_TriProSeg2_Dist = Seg2_TriProSeg2_DistBase < 0.0 ? -Seg2_TriProSeg2_DistBase : Seg2_TriProSeg2_DistBase ;
 
-		// OŠpŒ`“à‚É’¸“_‚ª‘¶İ‚·‚é‚©‚Ç‚¤‚©‚ğ’²‚×‚é
+		// ä¸‰è§’å½¢å†…ã«é ‚ç‚¹ãŒå­˜åœ¨ã™ã‚‹ã‹ã©ã†ã‹ã‚’èª¿ã¹ã‚‹
 		TriangleBarycenter_BaseD( &TrianglePos1, &TrianglePos2, &TrianglePos3, &Seg2_TriPro, &Seg2_TriPro_w1, &Seg2_TriPro_w2, &Seg2_TriPro_w3 ) ;
 		Project2 = Seg2_TriPro_w1 >= 0.0 && Seg2_TriPro_w1 <= 1.0 && Seg2_TriPro_w2 >= 0.0 && Seg2_TriPro_w2 <= 1.0 && Seg2_TriPro_w3 >= 0.0 && Seg2_TriPro_w3 <= 1.0 ;
 
 
-		// OŠpŒ`‚Æü•ª‚ªŒğ·–”‚ÍÚ‚µ‚Ä‚¢‚é‰Â”\«‚ª‚ ‚éê‡‚Í•ªŠò
+		// ä¸‰è§’å½¢ã¨ç·šåˆ†ãŒäº¤å·®åˆã¯æ¥ã—ã¦ã„ã‚‹å¯èƒ½æ€§ãŒã‚ã‚‹å ´åˆã¯åˆ†å²
 		if( ( Seg1_TriProSeg1_Dist >= 0.00000001 || Seg2_TriProSeg2_Dist >= 0.00000001 ) &&
 			( Seg1_TriProSeg1_Dist <  0.00000001 || Seg2_TriProSeg2_Dist <  0.00000001 ||
 			  ( Seg1_TriProSeg1_DistBase > 0.0 && Seg2_TriProSeg2_DistBase < 0.0 ) ||
@@ -5748,7 +5748,7 @@ extern void HitCheck_Line_TriangleD_Base(
 			VECTOR_D Seg_TriPos ;
 			double TriPos_SegPos1_2_t ;
 
-			// OŠpŒ`‚ª•\‚·•½–Ê‚Æü•ª‚Æ‚ÌÚ“_‚ÆdS‚ğZo‚·‚é
+			// ä¸‰è§’å½¢ãŒè¡¨ã™å¹³é¢ã¨ç·šåˆ†ã¨ã®æ¥ç‚¹ã¨é‡å¿ƒã‚’ç®—å‡ºã™ã‚‹
 			TriPos_SegPos1_2_t = Seg1_TriProSeg1_Dist / ( Seg1_TriProSeg1_Dist + Seg2_TriProSeg2_Dist ) ;
 			VectorScaleD( &Seg_TriPos, &Seg1_2, TriPos_SegPos1_2_t ) ;
 			VectorAddD( &Seg_TriPos, &Seg_TriPos, &LinePos1 ) ;
@@ -5757,7 +5757,7 @@ extern void HitCheck_Line_TriangleD_Base(
 				&Seg_TriPos_TriPos1_w, &Seg_TriPos_TriPos2_w, &Seg_TriPos_TriPos3_w ) ;
 
 
-			// ü•ª‚ÆOŠpŒ`‚ªÚ‚µ‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+			// ç·šåˆ†ã¨ä¸‰è§’å½¢ãŒæ¥ã—ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 			if( Seg_TriPos_TriPos1_w >= 0.0 && Seg_TriPos_TriPos1_w <= 1.0 &&
 				Seg_TriPos_TriPos2_w >= 0.0 && Seg_TriPos_TriPos2_w <= 1.0 &&
 				Seg_TriPos_TriPos3_w >= 0.0 && Seg_TriPos_TriPos3_w <= 1.0 )
@@ -5772,10 +5772,10 @@ extern void HitCheck_Line_TriangleD_Base(
 			}
 		}
 
-		// ‚Ç‚¿‚ç‚àOŠpŒ`‚Ì”ÍˆÍ‚É‚ ‚Á‚½ê‡
+		// ã©ã¡ã‚‰ã‚‚ä¸‰è§’å½¢ã®ç¯„å›²ã«ã‚ã£ãŸå ´åˆ
 		if( Project1 && Project2 )
 		{
-			// •Ğ•û‚Ì‘¤‚É‚Ç‚¿‚ç‚Ì’¸“_‚à‚ ‚éê‡‚ÍA‚æ‚è‹ß‚¢‚Ù‚¤‚Ì’¸“_‚Æ•½–Ê‚Æ‚Ì‹——£‚ğŒ‹‰Ê‚É‚·‚é
+			// ç‰‡æ–¹ã®å´ã«ã©ã¡ã‚‰ã®é ‚ç‚¹ã‚‚ã‚ã‚‹å ´åˆã¯ã€ã‚ˆã‚Šè¿‘ã„ã»ã†ã®é ‚ç‚¹ã¨å¹³é¢ã¨ã®è·é›¢ã‚’çµæœã«ã™ã‚‹
 			if( Seg1_TriProSeg1_Dist < Seg2_TriProSeg2_Dist ||
 				Seg1_TriProSeg1_Dist == Seg2_TriProSeg2_Dist )
 			{
@@ -5798,10 +5798,10 @@ extern void HitCheck_Line_TriangleD_Base(
 			return ;
 		}
 
-		// ü•ª‚ªOŠpŒ`‚Æ“¯ˆê•½–Êã‚É‚ ‚éê‡‚Ì‚İOŠpŒ`‚É‰¡‚©‚ç“–‚½‚Á‚Ä‚¢‚é‚©‚Ç‚¤‚©‚Ì”»’è‚ğs‚¤
+		// ç·šåˆ†ãŒä¸‰è§’å½¢ã¨åŒä¸€å¹³é¢ä¸Šã«ã‚ã‚‹å ´åˆã®ã¿ä¸‰è§’å½¢ã«æ¨ªã‹ã‚‰å½“ãŸã£ã¦ã„ã‚‹ã‹ã©ã†ã‹ã®åˆ¤å®šã‚’è¡Œã†
 		if( Seg1_TriProSeg1_Dist < 0.00000001 && Seg2_TriProSeg2_Dist < 0.00000001 )
 		{
-			// ü•ª‚Ìn“_‚ªOŠpŒ`‚Ì”ÍˆÍ‚É‚ ‚éê‡‚Ín“_‚ğÚG“_‚Æ‚·‚é
+			// ç·šåˆ†ã®å§‹ç‚¹ãŒä¸‰è§’å½¢ã®ç¯„å›²ã«ã‚ã‚‹å ´åˆã¯å§‹ç‚¹ã‚’æ¥è§¦ç‚¹ã¨ã™ã‚‹
 			if( Project1 )
 			{
 				Result->HitFlag = 1 ;
@@ -5813,7 +5813,7 @@ extern void HitCheck_Line_TriangleD_Base(
 				return ;
 			}
 
-			// ‚»‚¤‚Å‚Í‚È‚¢ê‡‚ÍOŠpŒ`‚Ì‚R•Ó‚Æü•ª‚Ì‹——£‚ğ‘ª‚èAˆê”Ô‹——£‚ª’Z‚¢•Ó‚ğ’T‚·
+			// ãã†ã§ã¯ãªã„å ´åˆã¯ä¸‰è§’å½¢ã®ï¼“è¾ºã¨ç·šåˆ†ã®è·é›¢ã‚’æ¸¬ã‚Šã€ä¸€ç•ªè·é›¢ãŒçŸ­ã„è¾ºã‚’æ¢ã™
 			Segment_Segment_AnalyseD( &LinePos1, &LinePos2, &TrianglePos1, &TrianglePos2, &Seg_Tri1_2_Res ) ;
 			Segment_Segment_AnalyseD( &LinePos1, &LinePos2, &TrianglePos2, &TrianglePos3, &Seg_Tri2_3_Res ) ;
 			Segment_Segment_AnalyseD( &LinePos1, &LinePos2, &TrianglePos3, &TrianglePos1, &Seg_Tri3_1_Res ) ;
@@ -5901,18 +5901,18 @@ extern void HitCheck_Line_TriangleD_Base(
 	}
 }
 
-// OŠpŒ`‚Æü‚Ì“–‚½‚è”»’è
+// ä¸‰è§’å½¢ã¨ç·šã®å½“ãŸã‚Šåˆ¤å®š
 extern HITRESULT_LINE_D HitCheck_Line_TriangleD( VECTOR_D LinePos1, VECTOR_D LinePos2, VECTOR_D TrianglePos1, VECTOR_D TrianglePos2, VECTOR_D TrianglePos3 )
 {
 	HITRESULT_LINE_D HitResult ;
 
 	HitCheck_Line_TriangleD_Base( &HitResult, LinePos1, LinePos2, TrianglePos1, TrianglePos2, TrianglePos3, NULL, NULL, NULL, FALSE ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return HitResult ;
 }
 
-// OŠpŒ`‚ÆOŠpŒ`‚Ì“–‚½‚è”»’è( TRUE:“–‚½‚Á‚Ä‚¢‚é  FALSE:“–‚½‚Á‚Ä‚¢‚È‚¢ )
+// ä¸‰è§’å½¢ã¨ä¸‰è§’å½¢ã®å½“ãŸã‚Šåˆ¤å®š( TRUE:å½“ãŸã£ã¦ã„ã‚‹  FALSE:å½“ãŸã£ã¦ã„ãªã„ )
 extern int HitCheck_Triangle_Triangle( VECTOR Triangle1Pos1, VECTOR Triangle1Pos2, VECTOR Triangle1Pos3, 
 											    VECTOR Triangle2Pos1, VECTOR Triangle2Pos2, VECTOR Triangle2Pos3 )
 {
@@ -5920,7 +5920,7 @@ extern int HitCheck_Triangle_Triangle( VECTOR Triangle1Pos1, VECTOR Triangle1Pos
 	float D1, D2, L1[ 3 ], L2[ 3 ], R1[ 2 ], R2[ 2 ], f ;
 	VECTOR LD1[ 2 ], LP1[ 2 ], LD2[ 2 ], LP2[ 2 ] ;
 
-	// ŒvZŒë·‚ª”­¶‚µ‚É‚­‚¢‚æ‚¤‚É’l‚ğ¬‚³‚­‚·‚é
+	// è¨ˆç®—èª¤å·®ãŒç™ºç”Ÿã—ã«ãã„ã‚ˆã†ã«å€¤ã‚’å°ã•ãã™ã‚‹
 	if( Triangle1Pos1.x > 1000.0f || Triangle1Pos1.x < -1000.0f ||
 		Triangle1Pos2.x > 1000.0f || Triangle1Pos2.x < -1000.0f ||
 		Triangle1Pos3.x > 1000.0f || Triangle1Pos3.x < -1000.0f || 
@@ -5952,7 +5952,7 @@ extern int HitCheck_Triangle_Triangle( VECTOR Triangle1Pos1, VECTOR Triangle1Pos
 		Triangle2Pos1.z *= 0.0001f ; Triangle2Pos2.z *= 0.0001f ; Triangle2Pos3.z *= 0.0001f ;
 	}
 
-	// OŠpŒ`‚Q‚Ì’¸“_‚ªOŠpŒ`‚P‚ª¬‚·•½–Ê‚Ì•Ğ‘¤‚É‘¶İ‚·‚éê‡‚Í“–‚½‚Á‚Ä‚¢‚È‚¢
+	// ä¸‰è§’å½¢ï¼’ã®é ‚ç‚¹ãŒä¸‰è§’å½¢ï¼‘ãŒæˆã™å¹³é¢ã®ç‰‡å´ã«å­˜åœ¨ã™ã‚‹å ´åˆã¯å½“ãŸã£ã¦ã„ãªã„
 	sv21 = VSub( Triangle1Pos2, Triangle1Pos1 ) ;
 	sv31 = VSub( Triangle1Pos3, Triangle1Pos1 ) ;
 	N1 = VNorm( VCross( sv21, sv31 ) ) ;
@@ -6020,7 +6020,7 @@ extern int HitCheck_Triangle_Triangle( VECTOR Triangle1Pos1, VECTOR Triangle1Pos
 			}
 			else
 			{
-				// ‚à‚µ“ñ‚Â‚ÌOŠpŒ`‚ª“¯ˆê•½–Êã‚É‚ ‚éê‡‚Íê—p‚Ìˆ—‚ğs‚¤
+				// ã‚‚ã—äºŒã¤ã®ä¸‰è§’å½¢ãŒåŒä¸€å¹³é¢ä¸Šã«ã‚ã‚‹å ´åˆã¯å°‚ç”¨ã®å‡¦ç†ã‚’è¡Œã†
 				if( L1[ 0 ] < 0.00000001f && L1[ 1 ] < 0.00000001f && L1[ 2 ] < 0.00000001f )
 				{
 					if( Triangle_Triangle_MinLength_Square( Triangle1Pos1, Triangle1Pos2, Triangle1Pos3, Triangle2Pos1, Triangle2Pos2, Triangle2Pos3 ) < 0.0000000001f )
@@ -6038,7 +6038,7 @@ extern int HitCheck_Triangle_Triangle( VECTOR Triangle1Pos1, VECTOR Triangle1Pos
 		}
 	}
 
-	// OŠpŒ`‚P‚Ì’¸“_‚ªOŠpŒ`‚Q‚ª¬‚·•½–Ê‚Ì•Ğ‘¤‚É‘¶İ‚·‚éê‡‚Í“–‚½‚Á‚Ä‚¢‚È‚¢
+	// ä¸‰è§’å½¢ï¼‘ã®é ‚ç‚¹ãŒä¸‰è§’å½¢ï¼’ãŒæˆã™å¹³é¢ã®ç‰‡å´ã«å­˜åœ¨ã™ã‚‹å ´åˆã¯å½“ãŸã£ã¦ã„ãªã„
 	N2 = VNorm( VCross( VSub( Triangle2Pos2, Triangle2Pos1 ), VSub( Triangle2Pos3, Triangle2Pos1 ) ) ) ;
 	D2 = VDot( N2, Triangle2Pos1 ) ;
 	L2[ 0 ] = VDot( N2, Triangle1Pos1 ) - D2 ;
@@ -6106,10 +6106,10 @@ extern int HitCheck_Triangle_Triangle( VECTOR Triangle1Pos1, VECTOR Triangle1Pos
 		}
 	}
 
-	// “ñ‚Â‚Ì•½–Ê‚ªŒğ·‚·‚éü‚ğ“¾‚é
+	// äºŒã¤ã®å¹³é¢ãŒäº¤å·®ã™ã‚‹ç·šã‚’å¾—ã‚‹
 	Get_TwoPlane_Line( N1, D1, N2, D2, &CLDir, &CLPos ) ;
 
-	// Œğ·‚·‚éü‚ÆŠe–Ê‚Ì•Ó‚Æ‚ÌŒğ“_‚ÌˆÊ’u‚ğ“¾‚é
+	// äº¤å·®ã™ã‚‹ç·šã¨å„é¢ã®è¾ºã¨ã®äº¤ç‚¹ã®ä½ç½®ã‚’å¾—ã‚‹
 	Get_TwoLine_MinLength_Rate( LD1[ 0 ], LP1[ 0 ], NULL, CLDir, CLPos, &R1[ 0 ] ) ;
 	Get_TwoLine_MinLength_Rate( LD1[ 1 ], LP1[ 1 ], NULL, CLDir, CLPos, &R1[ 1 ] ) ;
 	Get_TwoLine_MinLength_Rate( LD2[ 0 ], LP2[ 0 ], NULL, CLDir, CLPos, &R2[ 0 ] ) ;
@@ -6117,12 +6117,12 @@ extern int HitCheck_Triangle_Triangle( VECTOR Triangle1Pos1, VECTOR Triangle1Pos
 	if( R1[ 0 ] > R1[ 1 ] ){ f = R1[ 0 ] ; R1[ 0 ] = R1[ 1 ] ; R1[ 1 ] = f ; }
 	if( R2[ 0 ] > R2[ 1 ] ){ f = R2[ 0 ] ; R2[ 0 ] = R2[ 1 ] ; R2[ 1 ] = f ; }
 
-	// d‚È‚Á‚Ä‚¢‚½‚ç“–‚½‚Á‚Ä‚¢‚é
+	// é‡ãªã£ã¦ã„ãŸã‚‰å½“ãŸã£ã¦ã„ã‚‹
 	return  ( R1[ 0 ] <= R2[ 0 ] && R1[ 1 ] >= R2[ 0 ] ) ||
 			( R2[ 0 ] <= R1[ 0 ] && R2[ 1 ] >= R1[ 0 ] ) ? TRUE : FALSE ;
 }
 
-// OŠpŒ`‚ÆOŠpŒ`‚Ì“–‚½‚è”»’è( TRUE:“–‚½‚Á‚Ä‚¢‚é  FALSE:“–‚½‚Á‚Ä‚¢‚È‚¢ )
+// ä¸‰è§’å½¢ã¨ä¸‰è§’å½¢ã®å½“ãŸã‚Šåˆ¤å®š( TRUE:å½“ãŸã£ã¦ã„ã‚‹  FALSE:å½“ãŸã£ã¦ã„ãªã„ )
 extern int HitCheck_Triangle_TriangleD( VECTOR_D Triangle1Pos1, VECTOR_D Triangle1Pos2, VECTOR_D Triangle1Pos3, 
 											    VECTOR_D Triangle2Pos1, VECTOR_D Triangle2Pos2, VECTOR_D Triangle2Pos3 )
 {
@@ -6130,7 +6130,7 @@ extern int HitCheck_Triangle_TriangleD( VECTOR_D Triangle1Pos1, VECTOR_D Triangl
 	double D1, D2, L1[ 3 ], L2[ 3 ], R1[ 2 ], R2[ 2 ], f ;
 	VECTOR_D LD1[ 2 ], LP1[ 2 ], LD2[ 2 ], LP2[ 2 ] ;
 
-	// OŠpŒ`‚Q‚Ì’¸“_‚ªOŠpŒ`‚P‚ª¬‚·•½–Ê‚Ì•Ğ‘¤‚É‘¶İ‚·‚éê‡‚Í“–‚½‚Á‚Ä‚¢‚È‚¢
+	// ä¸‰è§’å½¢ï¼’ã®é ‚ç‚¹ãŒä¸‰è§’å½¢ï¼‘ãŒæˆã™å¹³é¢ã®ç‰‡å´ã«å­˜åœ¨ã™ã‚‹å ´åˆã¯å½“ãŸã£ã¦ã„ãªã„
 	sv21 = VSubD( Triangle1Pos2, Triangle1Pos1 ) ;
 	sv31 = VSubD( Triangle1Pos3, Triangle1Pos1 ) ;
 	N1 = VNormD( VCrossD( sv21, sv31 ) ) ;
@@ -6198,7 +6198,7 @@ extern int HitCheck_Triangle_TriangleD( VECTOR_D Triangle1Pos1, VECTOR_D Triangl
 			}
 			else
 			{
-				// ‚à‚µ“ñ‚Â‚ÌOŠpŒ`‚ª“¯ˆê•½–Êã‚É‚ ‚éê‡‚Íê—p‚Ìˆ—‚ğs‚¤
+				// ã‚‚ã—äºŒã¤ã®ä¸‰è§’å½¢ãŒåŒä¸€å¹³é¢ä¸Šã«ã‚ã‚‹å ´åˆã¯å°‚ç”¨ã®å‡¦ç†ã‚’è¡Œã†
 				if( L1[ 0 ] < 0.00000001 && L1[ 1 ] < 0.00000001 && L1[ 2 ] < 0.00000001 )
 				{
 					if( Triangle_Triangle_MinLength_SquareD( Triangle1Pos1, Triangle1Pos2, Triangle1Pos3, Triangle2Pos1, Triangle2Pos2, Triangle2Pos3 ) < 0.0000000001 )
@@ -6216,7 +6216,7 @@ extern int HitCheck_Triangle_TriangleD( VECTOR_D Triangle1Pos1, VECTOR_D Triangl
 		}
 	}
 
-	// OŠpŒ`‚P‚Ì’¸“_‚ªOŠpŒ`‚Q‚ª¬‚·•½–Ê‚Ì•Ğ‘¤‚É‘¶İ‚·‚éê‡‚Í“–‚½‚Á‚Ä‚¢‚È‚¢
+	// ä¸‰è§’å½¢ï¼‘ã®é ‚ç‚¹ãŒä¸‰è§’å½¢ï¼’ãŒæˆã™å¹³é¢ã®ç‰‡å´ã«å­˜åœ¨ã™ã‚‹å ´åˆã¯å½“ãŸã£ã¦ã„ãªã„
 	N2 = VNormD( VCrossD( VSubD( Triangle2Pos2, Triangle2Pos1 ), VSubD( Triangle2Pos3, Triangle2Pos1 ) ) ) ;
 	D2 = VDotD( N2, Triangle2Pos1 ) ;
 	L2[ 0 ] = VDotD( N2, Triangle1Pos1 ) - D2 ;
@@ -6284,10 +6284,10 @@ extern int HitCheck_Triangle_TriangleD( VECTOR_D Triangle1Pos1, VECTOR_D Triangl
 		}
 	}
 
-	// “ñ‚Â‚Ì•½–Ê‚ªŒğ·‚·‚éü‚ğ“¾‚é
+	// äºŒã¤ã®å¹³é¢ãŒäº¤å·®ã™ã‚‹ç·šã‚’å¾—ã‚‹
 	Get_TwoPlane_LineD( N1, D1, N2, D2, &CLDir, &CLPos ) ;
 
-	// Œğ·‚·‚éü‚ÆŠe–Ê‚Ì•Ó‚Æ‚ÌŒğ“_‚ÌˆÊ’u‚ğ“¾‚é
+	// äº¤å·®ã™ã‚‹ç·šã¨å„é¢ã®è¾ºã¨ã®äº¤ç‚¹ã®ä½ç½®ã‚’å¾—ã‚‹
 	Get_TwoLine_MinLength_RateD( LD1[ 0 ], LP1[ 0 ], NULL, CLDir, CLPos, &R1[ 0 ] ) ;
 	Get_TwoLine_MinLength_RateD( LD1[ 1 ], LP1[ 1 ], NULL, CLDir, CLPos, &R1[ 1 ] ) ;
 	Get_TwoLine_MinLength_RateD( LD2[ 0 ], LP2[ 0 ], NULL, CLDir, CLPos, &R2[ 0 ] ) ;
@@ -6295,12 +6295,12 @@ extern int HitCheck_Triangle_TriangleD( VECTOR_D Triangle1Pos1, VECTOR_D Triangl
 	if( R1[ 0 ] > R1[ 1 ] ){ f = R1[ 0 ] ; R1[ 0 ] = R1[ 1 ] ; R1[ 1 ] = f ; }
 	if( R2[ 0 ] > R2[ 1 ] ){ f = R2[ 0 ] ; R2[ 0 ] = R2[ 1 ] ; R2[ 1 ] = f ; }
 
-	// d‚È‚Á‚Ä‚¢‚½‚ç“–‚½‚Á‚Ä‚¢‚é
+	// é‡ãªã£ã¦ã„ãŸã‚‰å½“ãŸã£ã¦ã„ã‚‹
 	return  ( R1[ 0 ] <= R2[ 0 ] && R1[ 1 ] >= R2[ 0 ] ) ||
 			( R2[ 0 ] <= R1[ 0 ] && R2[ 1 ] >= R1[ 0 ] ) ? TRUE : FALSE ;
 }
 
-// OŠpŒ`‚ÆOŠpŒ`‚Ì“–‚½‚è”»’è( ‚Q‚c”Å )( TRUE:“–‚½‚Á‚Ä‚¢‚é  FALSE:“–‚½‚Á‚Ä‚¢‚È‚¢ )
+// ä¸‰è§’å½¢ã¨ä¸‰è§’å½¢ã®å½“ãŸã‚Šåˆ¤å®š( ï¼’ï¼¤ç‰ˆ )( TRUE:å½“ãŸã£ã¦ã„ã‚‹  FALSE:å½“ãŸã£ã¦ã„ãªã„ )
 extern int HitCheck_Triangle_Triangle_2D( VECTOR Triangle1Pos1, VECTOR Triangle1Pos2, VECTOR Triangle1Pos3,
 											VECTOR Triangle2Pos1, VECTOR Triangle2Pos2, VECTOR Triangle2Pos3 )
 {
@@ -6315,7 +6315,7 @@ extern int HitCheck_Triangle_Triangle_2D( VECTOR Triangle1Pos1, VECTOR Triangle1
 	VECTOR *T1Pos1 = NULL, *T1Pos2 = NULL, *T1Pos3 = NULL ;
 	VECTOR *T2Pos1 = NULL, *T2Pos2 = NULL, *T2Pos3 = NULL ;
 
-	// Z ‚Ì’l‚ğ 0.0f ‚É‚·‚é
+	// Z ã®å€¤ã‚’ 0.0f ã«ã™ã‚‹
 	Triangle1Pos1.z = 0.0f ;
 	Triangle1Pos2.z = 0.0f ;
 	Triangle1Pos3.z = 0.0f ;
@@ -6323,11 +6323,11 @@ extern int HitCheck_Triangle_Triangle_2D( VECTOR Triangle1Pos1, VECTOR Triangle1
 	Triangle2Pos2.z = 0.0f ;
 	Triangle2Pos3.z = 0.0f ;
 
-	// “ñ‚Â‚ÌOŠpŒ`‚Ì•Ó‚Ì”‚¾‚¯ŒJ‚è•Ô‚µ
+	// äºŒã¤ã®ä¸‰è§’å½¢ã®è¾ºã®æ•°ã ã‘ç¹°ã‚Šè¿”ã—
 	for( i = 0; i < 6; i++ ) 
 	{
-		// i ‚ª 0 ` 2 ‚Ìê‡‚Í•ª—£²‚ÌŒó•â‚ğ Triangle1 ‚©‚çA
-		//      3 ` 5 ‚Ìê‡‚Í•ª—£²‚ÌŒó•â‚ğ Triangle2 ‚©‚çæ“¾‚·‚é
+		// i ãŒ 0 ï½ 2 ã®å ´åˆã¯åˆ†é›¢è»¸ã®å€™è£œã‚’ Triangle1 ã‹ã‚‰ã€
+		//      3 ï½ 5 ã®å ´åˆã¯åˆ†é›¢è»¸ã®å€™è£œã‚’ Triangle2 ã‹ã‚‰å–å¾—ã™ã‚‹
 		if( i < 3 )
 		{
 			T2Pos1 = &Triangle2Pos1 ;
@@ -6381,15 +6381,15 @@ extern int HitCheck_Triangle_Triangle_2D( VECTOR Triangle1Pos1, VECTOR Triangle1
 			}
 		}
 
-		// •ª—£²‚ÌŒó•â‚Æ‚È‚é•Ó‚ÌƒxƒNƒgƒ‹‚ğZo
+		// åˆ†é›¢è»¸ã®å€™è£œã¨ãªã‚‹è¾ºã®ãƒ™ã‚¯ãƒˆãƒ«ã‚’ç®—å‡º
 		SubVec = VNorm( VSub( *T1Pos1, *T1Pos2 ) ) ;
 
-		// •ª—£²‚ÌŒó•â‚É‚’¼‚ÈƒxƒNƒgƒ‹‚ğZo
+		// åˆ†é›¢è»¸ã®å€™è£œã«å‚ç›´ãªãƒ™ã‚¯ãƒˆãƒ«ã‚’ç®—å‡º
 		SepVec.x =  SubVec.y ;
 		SepVec.y = -SubVec.x ;
 
-		// •ª—£²‚É‚’¼‚ÈƒxƒNƒgƒ‹‚É•ª—£²‚ÌŒó•â‚ğ”º‚¤‘¤‚ÌOŠpŒ`‚Ì’¸“_‚ğ“Š‰e‚µ‚Ä
-		// Å‘åˆÊ’u‚ÆÅ¬ˆÊ’u‚ğZo‚·‚é( •Ó‚Ì‚Ğ‚Æ‚Â‚Í•ª—£²‚ÌŒó•â‚Æ‚È‚Á‚Ä‚¢‚é‚½‚ßA‚Q“_‚Ì‚İ“Š‰e )
+		// åˆ†é›¢è»¸ã«å‚ç›´ãªãƒ™ã‚¯ãƒˆãƒ«ã«åˆ†é›¢è»¸ã®å€™è£œã‚’ä¼´ã†å´ã®ä¸‰è§’å½¢ã®é ‚ç‚¹ã‚’æŠ•å½±ã—ã¦
+		// æœ€å¤§ä½ç½®ã¨æœ€å°ä½ç½®ã‚’ç®—å‡ºã™ã‚‹( è¾ºã®ã²ã¨ã¤ã¯åˆ†é›¢è»¸ã®å€™è£œã¨ãªã£ã¦ã„ã‚‹ãŸã‚ã€ï¼’ç‚¹ã®ã¿æŠ•å½± )
 		T1Min = VDot( SepVec, *T1Pos1 ) ;
 		T1Max = VDot( SepVec, *T1Pos3 ) ;
 		if( T1Min > T1Max ) 
@@ -6399,8 +6399,8 @@ extern int HitCheck_Triangle_Triangle_2D( VECTOR Triangle1Pos1, VECTOR Triangle1
 			T1Max = Pos ;
 		}
 
-		// •ª—£²‚É‚’¼‚ÈƒxƒNƒgƒ‹‚É•ª—£²‚ÌŒó•â‚ğ”º‚í‚È‚¢‘¤‚ÌOŠpŒ`‚Ì’¸“_‚ğ“Š‰e‚µ‚Ä
-		// Å‘åˆÊ’u‚ÆÅ¬ˆÊ’u‚ğZo‚·‚é
+		// åˆ†é›¢è»¸ã«å‚ç›´ãªãƒ™ã‚¯ãƒˆãƒ«ã«åˆ†é›¢è»¸ã®å€™è£œã‚’ä¼´ã‚ãªã„å´ã®ä¸‰è§’å½¢ã®é ‚ç‚¹ã‚’æŠ•å½±ã—ã¦
+		// æœ€å¤§ä½ç½®ã¨æœ€å°ä½ç½®ã‚’ç®—å‡ºã™ã‚‹
 		T2Min = VDot( SepVec, *T2Pos1 ) ;
 		T2Max = VDot( SepVec, *T2Pos2 ) ;
 		if( T2Min > T2Max ) 
@@ -6420,28 +6420,28 @@ extern int HitCheck_Triangle_Triangle_2D( VECTOR Triangle1Pos1, VECTOR Triangle1
 			T2Max = Pos ;
 		}
 
-		// “Š‰e‚µ‚½“ñ‚Â‚ÌOŠpŒ`‚Ì”ÍˆÍ‚ªd‚È‚Á‚Ä‚¢‚È‚¢‚©”»’è
+		// æŠ•å½±ã—ãŸäºŒã¤ã®ä¸‰è§’å½¢ã®ç¯„å›²ãŒé‡ãªã£ã¦ã„ãªã„ã‹åˆ¤å®š
 		if( ( T2Min <= T1Min && T1Min <= T2Max ) ||
 			( T2Min <= T1Max && T1Max <= T2Max ) ||
 			( T1Min <= T2Min && T2Min <= T1Max ) ||
 			( T1Min <= T2Max && T2Max <= T1Max ) )
 		{
-			// d‚È‚Á‚½ê‡‚ÍŸ‚Ì•ª—£²‚ğ‹‚ß‚Äƒ‹[ƒvŒp‘±
+			// é‡ãªã£ãŸå ´åˆã¯æ¬¡ã®åˆ†é›¢è»¸ã‚’æ±‚ã‚ã¦ãƒ«ãƒ¼ãƒ—ç¶™ç¶š
 			continue ;
 		}
 
-		// ‚±‚±‚É‚«‚½ê‡‚Í“Š‰e‚µ‚½“ñ‚Â‚ÌOŠpŒ`‚Ì”ÍˆÍ‚ªd‚È‚Á‚Ä‚¢‚È‚©‚Á‚½
-		// ‚Æ‚¢‚¤‚±‚Æ‚È‚Ì‚ÅA•ª—£²‚ª‘¶İ‚µ‚½‚Æ‚¢‚¤‚±‚Æ‚Å“ñ‚Â‚ÌOŠpŒ`‚Í“–‚½‚Á‚Ä‚¢‚È‚©‚Á‚½‚±‚Æ‚ªŠm’è
+		// ã“ã“ã«ããŸå ´åˆã¯æŠ•å½±ã—ãŸäºŒã¤ã®ä¸‰è§’å½¢ã®ç¯„å›²ãŒé‡ãªã£ã¦ã„ãªã‹ã£ãŸ
+		// ã¨ã„ã†ã“ã¨ãªã®ã§ã€åˆ†é›¢è»¸ãŒå­˜åœ¨ã—ãŸã¨ã„ã†ã“ã¨ã§äºŒã¤ã®ä¸‰è§’å½¢ã¯å½“ãŸã£ã¦ã„ãªã‹ã£ãŸã“ã¨ãŒç¢ºå®š
 		return FALSE ;
 	}
 
-	// ‚±‚±‚É‚«‚½ê‡‚Í•ª—£²‚ªŒ©‚Â‚©‚ç‚È‚©‚Á‚½‚Æ‚¢‚¤‚±‚Æ‚ÅA
-	// “ñ‚Â‚ÌOŠpŒ`‚ª“–‚½‚Á‚Ä‚¢‚é‚±‚Æ‚ªŠm’è
+	// ã“ã“ã«ããŸå ´åˆã¯åˆ†é›¢è»¸ãŒè¦‹ã¤ã‹ã‚‰ãªã‹ã£ãŸã¨ã„ã†ã“ã¨ã§ã€
+	// äºŒã¤ã®ä¸‰è§’å½¢ãŒå½“ãŸã£ã¦ã„ã‚‹ã“ã¨ãŒç¢ºå®š
 	return TRUE ;
 }
 
 
-// OŠpŒ`‚ÆOŠpŒ`‚Ì“–‚½‚è”»’è( ‚Q‚c”Å )( TRUE:“–‚½‚Á‚Ä‚¢‚é  FALSE:“–‚½‚Á‚Ä‚¢‚È‚¢ )
+// ä¸‰è§’å½¢ã¨ä¸‰è§’å½¢ã®å½“ãŸã‚Šåˆ¤å®š( ï¼’ï¼¤ç‰ˆ )( TRUE:å½“ãŸã£ã¦ã„ã‚‹  FALSE:å½“ãŸã£ã¦ã„ãªã„ )
 extern int HitCheck_Triangle_TriangleD_2D( VECTOR_D Triangle1Pos1, VECTOR_D Triangle1Pos2, VECTOR_D Triangle1Pos3,
 											VECTOR_D Triangle2Pos1, VECTOR_D Triangle2Pos2, VECTOR_D Triangle2Pos3 )
 {
@@ -6456,7 +6456,7 @@ extern int HitCheck_Triangle_TriangleD_2D( VECTOR_D Triangle1Pos1, VECTOR_D Tria
 	VECTOR_D *T1Pos1 = NULL, *T1Pos2 = NULL, *T1Pos3 = NULL ;
 	VECTOR_D *T2Pos1 = NULL, *T2Pos2 = NULL, *T2Pos3 = NULL ;
 
-	// Z ‚Ì’l‚ğ 0.0 ‚É‚·‚é
+	// Z ã®å€¤ã‚’ 0.0 ã«ã™ã‚‹
 	Triangle1Pos1.z = 0.0 ;
 	Triangle1Pos2.z = 0.0 ;
 	Triangle1Pos3.z = 0.0 ;
@@ -6464,11 +6464,11 @@ extern int HitCheck_Triangle_TriangleD_2D( VECTOR_D Triangle1Pos1, VECTOR_D Tria
 	Triangle2Pos2.z = 0.0 ;
 	Triangle2Pos3.z = 0.0 ;
 
-	// “ñ‚Â‚ÌOŠpŒ`‚Ì•Ó‚Ì”‚¾‚¯ŒJ‚è•Ô‚µ
+	// äºŒã¤ã®ä¸‰è§’å½¢ã®è¾ºã®æ•°ã ã‘ç¹°ã‚Šè¿”ã—
 	for( i = 0; i < 6; i++ ) 
 	{
-		// i ‚ª 0 ` 2 ‚Ìê‡‚Í•ª—£²‚ÌŒó•â‚ğ Triangle1 ‚©‚çA
-		//      3 ` 5 ‚Ìê‡‚Í•ª—£²‚ÌŒó•â‚ğ Triangle2 ‚©‚çæ“¾‚·‚é
+		// i ãŒ 0 ï½ 2 ã®å ´åˆã¯åˆ†é›¢è»¸ã®å€™è£œã‚’ Triangle1 ã‹ã‚‰ã€
+		//      3 ï½ 5 ã®å ´åˆã¯åˆ†é›¢è»¸ã®å€™è£œã‚’ Triangle2 ã‹ã‚‰å–å¾—ã™ã‚‹
 		if( i < 3 )
 		{
 			T2Pos1 = &Triangle2Pos1 ;
@@ -6522,15 +6522,15 @@ extern int HitCheck_Triangle_TriangleD_2D( VECTOR_D Triangle1Pos1, VECTOR_D Tria
 			}
 		}
 
-		// •ª—£²‚ÌŒó•â‚Æ‚È‚é•Ó‚ÌƒxƒNƒgƒ‹‚ğZo
+		// åˆ†é›¢è»¸ã®å€™è£œã¨ãªã‚‹è¾ºã®ãƒ™ã‚¯ãƒˆãƒ«ã‚’ç®—å‡º
 		SubVec = VNormD( VSubD( *T1Pos1, *T1Pos2 ) ) ;
 
-		// •ª—£²‚ÌŒó•â‚É‚’¼‚ÈƒxƒNƒgƒ‹‚ğZo
+		// åˆ†é›¢è»¸ã®å€™è£œã«å‚ç›´ãªãƒ™ã‚¯ãƒˆãƒ«ã‚’ç®—å‡º
 		SepVec.x =  SubVec.y ;
 		SepVec.y = -SubVec.x ;
 
-		// •ª—£²‚É‚’¼‚ÈƒxƒNƒgƒ‹‚É•ª—£²‚ÌŒó•â‚ğ”º‚¤‘¤‚ÌOŠpŒ`‚Ì’¸“_‚ğ“Š‰e‚µ‚Ä
-		// Å‘åˆÊ’u‚ÆÅ¬ˆÊ’u‚ğZo‚·‚é( •Ó‚Ì‚Ğ‚Æ‚Â‚Í•ª—£²‚ÌŒó•â‚Æ‚È‚Á‚Ä‚¢‚é‚½‚ßA‚Q“_‚Ì‚İ“Š‰e )
+		// åˆ†é›¢è»¸ã«å‚ç›´ãªãƒ™ã‚¯ãƒˆãƒ«ã«åˆ†é›¢è»¸ã®å€™è£œã‚’ä¼´ã†å´ã®ä¸‰è§’å½¢ã®é ‚ç‚¹ã‚’æŠ•å½±ã—ã¦
+		// æœ€å¤§ä½ç½®ã¨æœ€å°ä½ç½®ã‚’ç®—å‡ºã™ã‚‹( è¾ºã®ã²ã¨ã¤ã¯åˆ†é›¢è»¸ã®å€™è£œã¨ãªã£ã¦ã„ã‚‹ãŸã‚ã€ï¼’ç‚¹ã®ã¿æŠ•å½± )
 		T1Min = VDotD( SepVec, *T1Pos1 ) ;
 		T1Max = VDotD( SepVec, *T1Pos3 ) ;
 		if( T1Min > T1Max ) 
@@ -6540,8 +6540,8 @@ extern int HitCheck_Triangle_TriangleD_2D( VECTOR_D Triangle1Pos1, VECTOR_D Tria
 			T1Max = Pos ;
 		}
 
-		// •ª—£²‚É‚’¼‚ÈƒxƒNƒgƒ‹‚É•ª—£²‚ÌŒó•â‚ğ”º‚í‚È‚¢‘¤‚ÌOŠpŒ`‚Ì’¸“_‚ğ“Š‰e‚µ‚Ä
-		// Å‘åˆÊ’u‚ÆÅ¬ˆÊ’u‚ğZo‚·‚é
+		// åˆ†é›¢è»¸ã«å‚ç›´ãªãƒ™ã‚¯ãƒˆãƒ«ã«åˆ†é›¢è»¸ã®å€™è£œã‚’ä¼´ã‚ãªã„å´ã®ä¸‰è§’å½¢ã®é ‚ç‚¹ã‚’æŠ•å½±ã—ã¦
+		// æœ€å¤§ä½ç½®ã¨æœ€å°ä½ç½®ã‚’ç®—å‡ºã™ã‚‹
 		T2Min = VDotD( SepVec, *T2Pos1 ) ;
 		T2Max = VDotD( SepVec, *T2Pos2 ) ;
 		if( T2Min > T2Max ) 
@@ -6561,102 +6561,102 @@ extern int HitCheck_Triangle_TriangleD_2D( VECTOR_D Triangle1Pos1, VECTOR_D Tria
 			T2Max = Pos ;
 		}
 
-		// “Š‰e‚µ‚½“ñ‚Â‚ÌOŠpŒ`‚Ì”ÍˆÍ‚ªd‚È‚Á‚Ä‚¢‚È‚¢‚©”»’è
+		// æŠ•å½±ã—ãŸäºŒã¤ã®ä¸‰è§’å½¢ã®ç¯„å›²ãŒé‡ãªã£ã¦ã„ãªã„ã‹åˆ¤å®š
 		if( ( T2Min <= T1Min && T1Min <= T2Max ) ||
 			( T2Min <= T1Max && T1Max <= T2Max ) ||
 			( T1Min <= T2Min && T2Min <= T1Max ) ||
 			( T1Min <= T2Max && T2Max <= T1Max ) )
 		{
-			// d‚È‚Á‚½ê‡‚ÍŸ‚Ì•ª—£²‚ğ‹‚ß‚Äƒ‹[ƒvŒp‘±
+			// é‡ãªã£ãŸå ´åˆã¯æ¬¡ã®åˆ†é›¢è»¸ã‚’æ±‚ã‚ã¦ãƒ«ãƒ¼ãƒ—ç¶™ç¶š
 			continue ;
 		}
 
-		// ‚±‚±‚É‚«‚½ê‡‚Í“Š‰e‚µ‚½“ñ‚Â‚ÌOŠpŒ`‚Ì”ÍˆÍ‚ªd‚È‚Á‚Ä‚¢‚È‚©‚Á‚½
-		// ‚Æ‚¢‚¤‚±‚Æ‚È‚Ì‚ÅA•ª—£²‚ª‘¶İ‚µ‚½‚Æ‚¢‚¤‚±‚Æ‚Å“ñ‚Â‚ÌOŠpŒ`‚Í“–‚½‚Á‚Ä‚¢‚È‚©‚Á‚½‚±‚Æ‚ªŠm’è
+		// ã“ã“ã«ããŸå ´åˆã¯æŠ•å½±ã—ãŸäºŒã¤ã®ä¸‰è§’å½¢ã®ç¯„å›²ãŒé‡ãªã£ã¦ã„ãªã‹ã£ãŸ
+		// ã¨ã„ã†ã“ã¨ãªã®ã§ã€åˆ†é›¢è»¸ãŒå­˜åœ¨ã—ãŸã¨ã„ã†ã“ã¨ã§äºŒã¤ã®ä¸‰è§’å½¢ã¯å½“ãŸã£ã¦ã„ãªã‹ã£ãŸã“ã¨ãŒç¢ºå®š
 		return FALSE ;
 	}
 
-	// ‚±‚±‚É‚«‚½ê‡‚Í•ª—£²‚ªŒ©‚Â‚©‚ç‚È‚©‚Á‚½‚Æ‚¢‚¤‚±‚Æ‚ÅA
-	// “ñ‚Â‚ÌOŠpŒ`‚ª“–‚½‚Á‚Ä‚¢‚é‚±‚Æ‚ªŠm’è
+	// ã“ã“ã«ããŸå ´åˆã¯åˆ†é›¢è»¸ãŒè¦‹ã¤ã‹ã‚‰ãªã‹ã£ãŸã¨ã„ã†ã“ã¨ã§ã€
+	// äºŒã¤ã®ä¸‰è§’å½¢ãŒå½“ãŸã£ã¦ã„ã‚‹ã“ã¨ãŒç¢ºå®š
 	return TRUE ;
 }
 
-// “_‚Æ‰~‚Ì“–‚½‚è”»’è( TRUE:“–‚½‚Á‚Ä‚¢‚é  FALSE:“–‚½‚Á‚Ä‚¢‚È‚¢ )
+// ç‚¹ã¨å††éŒã®å½“ãŸã‚Šåˆ¤å®š( TRUE:å½“ãŸã£ã¦ã„ã‚‹  FALSE:å½“ãŸã£ã¦ã„ãªã„ )
 extern int HitCheck_Point_Cone( VECTOR PointPos, VECTOR ConeTopPos, VECTOR ConeBottomPos, float ConeR )
 {
 	VECTOR MinPosition, Sa ;
 	float t ;
 	float MinPositionR ;
 
-	// ü‚Æ“_‚ÌÅ‹ß“_‚ğæ“¾‚·‚é
+	// ç·šã¨ç‚¹ã®æœ€è¿‘ç‚¹ã‚’å–å¾—ã™ã‚‹
 	MinPosition = Get_Line_Point_MinPosition( PointPos, ConeBottomPos, ConeTopPos, &t ) ;
 
-	// t ‚ª 1.5fˆÈã ‚â -1.5f ˆÈ‰º‚Ìê‡‚Í“–‚½‚Á‚Ä‚¢‚È‚¢
+	// t ãŒ 1.5fä»¥ä¸Š ã‚„ -1.5f ä»¥ä¸‹ã®å ´åˆã¯å½“ãŸã£ã¦ã„ãªã„
 	if( t >= 1.5f || t <= -1.5f )
 	{
 		return FALSE ;
 	}
 
-	// Å‹ß“_‚Å‚Ì‰~‚Ì”¼Œa‚ğZo
+	// æœ€è¿‘ç‚¹ã§ã®å††éŒã®åŠå¾„ã‚’ç®—å‡º
 	MinPositionR = ConeR * ( 1.0f - t ) ;
 
-	// Å‹ß“_‚Æ“_‚Ì‹——£‚Ì“ñæ‚ğæ“¾‚æ‚èÅ‹ß“_‚Å‚Ì‰~‚Ì”¼Œa‚Ì“ñæ‚Ì•û‚ª‘å‚«‚¯‚ê‚Î“–‚½‚Á‚Ä‚¢‚é‚±‚Æ‚É‚È‚é
+	// æœ€è¿‘ç‚¹ã¨ç‚¹ã®è·é›¢ã®äºŒä¹—ã‚’å–å¾—ã‚ˆã‚Šæœ€è¿‘ç‚¹ã§ã®å††éŒã®åŠå¾„ã®äºŒä¹—ã®æ–¹ãŒå¤§ãã‘ã‚Œã°å½“ãŸã£ã¦ã„ã‚‹ã“ã¨ã«ãªã‚‹
 	Sa.x = MinPosition.x - PointPos.x ;
 	Sa.y = MinPosition.y - PointPos.y ;
 	Sa.z = MinPosition.z - PointPos.z ;
 	return Sa.x * Sa.x + Sa.y * Sa.y + Sa.z * Sa.z <= MinPositionR * MinPositionR ? TRUE : FALSE ;
 }
 
-// “_‚Æ‰~‚Ì“–‚½‚è”»’è( TRUE:“–‚½‚Á‚Ä‚¢‚é  FALSE:“–‚½‚Á‚Ä‚¢‚È‚¢ )
+// ç‚¹ã¨å††éŒã®å½“ãŸã‚Šåˆ¤å®š( TRUE:å½“ãŸã£ã¦ã„ã‚‹  FALSE:å½“ãŸã£ã¦ã„ãªã„ )
 extern int HitCheck_Point_ConeD( VECTOR_D PointPos, VECTOR_D ConeTopPos, VECTOR_D ConeBottomPos, double ConeR )
 {
 	VECTOR_D MinPosition, Sa ;
 	double t ;
 	double MinPositionR ;
 
-	// ü‚Æ“_‚ÌÅ‹ß“_‚ğæ“¾‚·‚é
+	// ç·šã¨ç‚¹ã®æœ€è¿‘ç‚¹ã‚’å–å¾—ã™ã‚‹
 	MinPosition = Get_Line_Point_MinPositionD( PointPos, ConeBottomPos, ConeTopPos, &t ) ;
 
-	// t ‚ª 1.5fˆÈã ‚â -1.5f ˆÈ‰º‚Ìê‡‚Í“–‚½‚Á‚Ä‚¢‚È‚¢
+	// t ãŒ 1.5fä»¥ä¸Š ã‚„ -1.5f ä»¥ä¸‹ã®å ´åˆã¯å½“ãŸã£ã¦ã„ãªã„
 	if( t >= 1.5 || t <= -1.5 )
 	{
 		return FALSE ;
 	}
 
-	// Å‹ß“_‚Å‚Ì‰~‚Ì”¼Œa‚ğZo
+	// æœ€è¿‘ç‚¹ã§ã®å††éŒã®åŠå¾„ã‚’ç®—å‡º
 	MinPositionR = ConeR * ( 1.0 - t ) ;
 
-	// Å‹ß“_‚Æ“_‚Ì‹——£‚Ì“ñæ‚ğæ“¾‚æ‚èÅ‹ß“_‚Å‚Ì‰~‚Ì”¼Œa‚Ì“ñæ‚Ì•û‚ª‘å‚«‚¯‚ê‚Î“–‚½‚Á‚Ä‚¢‚é‚±‚Æ‚É‚È‚é
+	// æœ€è¿‘ç‚¹ã¨ç‚¹ã®è·é›¢ã®äºŒä¹—ã‚’å–å¾—ã‚ˆã‚Šæœ€è¿‘ç‚¹ã§ã®å††éŒã®åŠå¾„ã®äºŒä¹—ã®æ–¹ãŒå¤§ãã‘ã‚Œã°å½“ãŸã£ã¦ã„ã‚‹ã“ã¨ã«ãªã‚‹
 	Sa.x = MinPosition.x - PointPos.x ;
 	Sa.y = MinPosition.y - PointPos.y ;
 	Sa.z = MinPosition.z - PointPos.z ;
 	return Sa.x * Sa.x + Sa.y * Sa.y + Sa.z * Sa.z <= MinPositionR * MinPositionR ? TRUE : FALSE ;
 }
 
-// ü‚Æ‹…‚Ì“–‚½‚è”»’è( TRUE:“–‚½‚Á‚Ä‚¢‚é  FALSE:“–‚½‚Á‚Ä‚¢‚È‚¢ )
+// ç·šã¨çƒã®å½“ãŸã‚Šåˆ¤å®š( TRUE:å½“ãŸã£ã¦ã„ã‚‹  FALSE:å½“ãŸã£ã¦ã„ãªã„ )
 extern int HitCheck_Line_Sphere( VECTOR LinePos1, VECTOR LinePos2, VECTOR SphereCenterPos, float SphereR )
 {
 	VECTOR MinPosition, Sa ;
 
-	// ü‚ÆOŠpŒ`‚ÌÅ‹ß“_‚ğæ“¾‚·‚é
+	// ç·šã¨ä¸‰è§’å½¢ã®æœ€è¿‘ç‚¹ã‚’å–å¾—ã™ã‚‹
 	MinPosition = Get_Line_Point_MinPosition( SphereCenterPos, LinePos1, LinePos2 ) ;
 
-	// Å‹ß“_‚Æ‚Ì‹——£‚ª‹…‚Ì”¼Œa‚æ‚è‹ß‚¢‚©‚Ç‚¤‚©‚Å“–‚½‚Á‚Ä‚¢‚é‚©‚Ç‚¤‚©‚ğ”»’è
+	// æœ€è¿‘ç‚¹ã¨ã®è·é›¢ãŒçƒã®åŠå¾„ã‚ˆã‚Šè¿‘ã„ã‹ã©ã†ã‹ã§å½“ãŸã£ã¦ã„ã‚‹ã‹ã©ã†ã‹ã‚’åˆ¤å®š
 	Sa.x = MinPosition.x - SphereCenterPos.x ;
 	Sa.y = MinPosition.y - SphereCenterPos.y ;
 	Sa.z = MinPosition.z - SphereCenterPos.z ;
 	return Sa.x * Sa.x + Sa.y * Sa.y + Sa.z * Sa.z <= SphereR * SphereR ? TRUE : FALSE ;
 }
 
-// ü‚Æ‹…‚Ì“–‚½‚è”»’è( TRUE:“–‚½‚Á‚Ä‚¢‚é  FALSE:“–‚½‚Á‚Ä‚¢‚È‚¢ )
+// ç·šã¨çƒã®å½“ãŸã‚Šåˆ¤å®š( TRUE:å½“ãŸã£ã¦ã„ã‚‹  FALSE:å½“ãŸã£ã¦ã„ãªã„ )
 extern int HitCheck_Line_SphereD( VECTOR_D LinePos1, VECTOR_D LinePos2, VECTOR_D SphereCenterPos, double SphereR )
 {
 	VECTOR_D MinPosition, Sa ;
 
-	// ü‚ÆOŠpŒ`‚ÌÅ‹ß“_‚ğæ“¾‚·‚é
+	// ç·šã¨ä¸‰è§’å½¢ã®æœ€è¿‘ç‚¹ã‚’å–å¾—ã™ã‚‹
 	MinPosition = Get_Line_Point_MinPositionD( SphereCenterPos, LinePos1, LinePos2 ) ;
 
-	// Å‹ß“_‚Æ‚Ì‹——£‚ª‹…‚Ì”¼Œa‚æ‚è‹ß‚¢‚©‚Ç‚¤‚©‚Å“–‚½‚Á‚Ä‚¢‚é‚©‚Ç‚¤‚©‚ğ”»’è
+	// æœ€è¿‘ç‚¹ã¨ã®è·é›¢ãŒçƒã®åŠå¾„ã‚ˆã‚Šè¿‘ã„ã‹ã©ã†ã‹ã§å½“ãŸã£ã¦ã„ã‚‹ã‹ã©ã†ã‹ã‚’åˆ¤å®š
 	Sa.x = MinPosition.x - SphereCenterPos.x ;
 	Sa.y = MinPosition.y - SphereCenterPos.y ;
 	Sa.z = MinPosition.z - SphereCenterPos.z ;
@@ -6664,7 +6664,7 @@ extern int HitCheck_Line_SphereD( VECTOR_D LinePos1, VECTOR_D LinePos2, VECTOR_D
 }
 
 
-// ü‚Æ” ‚Ì“–‚½‚è”»’è
+// ç·šã¨ç®±ã®å½“ãŸã‚Šåˆ¤å®š
 extern HITRESULT_LINE HitCheck_Line_Cube( VECTOR LinePos1, VECTOR LinePos2, VECTOR CubePos1, VECTOR CubePos2 )
 {
 	float Tmp ;
@@ -6695,16 +6695,16 @@ extern HITRESULT_LINE HitCheck_Line_Cube( VECTOR LinePos1, VECTOR LinePos2, VECT
 		{ { 1, 3 }, { 1, 2 }, { 0, 3 } },
 	} ;
 
-	// –ß‚è’l‚ğ‰Šú‰»
+	// æˆ»ã‚Šå€¤ã‚’åˆæœŸåŒ–
 	Result.HitFlag = FALSE ;
 	Result.Position = VGet( -1.0f, -1.0f, -1.0f ) ;
 
-	// CubePos1 ‚Ì’l‚æ‚è CubePos2 ‚Ì’l‚Ì‚Ù‚¤‚ª¬‚³‚­‚È‚Á‚Ä‚¢‚½‚ç“ü‚ê‘Ö‚¦‚é
+	// CubePos1 ã®å€¤ã‚ˆã‚Š CubePos2 ã®å€¤ã®ã»ã†ãŒå°ã•ããªã£ã¦ã„ãŸã‚‰å…¥ã‚Œæ›¿ãˆã‚‹
 	if( CubePos1.x > CubePos2.x ){ Tmp = CubePos1.x ; CubePos1.x = CubePos2.x ; CubePos2.x = Tmp ; }
 	if( CubePos1.y > CubePos2.y ){ Tmp = CubePos1.y ; CubePos1.y = CubePos2.y ; CubePos2.y = Tmp ; }
 	if( CubePos1.z > CubePos2.z ){ Tmp = CubePos1.z ; CubePos1.z = CubePos2.z ; CubePos2.z = Tmp ; }
 
-	// ü•ª‚ª” ‚Ì”ÍˆÍŠO‚É‚ ‚é‚©ŠÈˆÕƒ`ƒFƒbƒN
+	// ç·šåˆ†ãŒç®±ã®ç¯„å›²å¤–ã«ã‚ã‚‹ã‹ç°¡æ˜“ãƒã‚§ãƒƒã‚¯
 	if( ( LinePos1.x < CubePos1.x && LinePos2.x < CubePos1.x ) ||
 		( LinePos1.y < CubePos1.y && LinePos2.y < CubePos1.y ) ||
 		( LinePos1.z < CubePos1.z && LinePos2.z < CubePos1.z ) ||
@@ -6715,7 +6715,7 @@ extern HITRESULT_LINE HitCheck_Line_Cube( VECTOR LinePos1, VECTOR LinePos2, VECT
 		return Result ;
 	}
 
-	// ü•ª‚ª” ‚Ì”ÍˆÍ“à‚É‚ ‚é‚©ŠÈˆÕƒ`ƒFƒbƒN
+	// ç·šåˆ†ãŒç®±ã®ç¯„å›²å†…ã«ã‚ã‚‹ã‹ç°¡æ˜“ãƒã‚§ãƒƒã‚¯
 	if( ( LinePos1.x >= CubePos1.x && LinePos1.x <= CubePos2.x && LinePos2.x >= CubePos1.x && LinePos2.x <= CubePos2.x ) &&
 		( LinePos1.y >= CubePos1.y && LinePos1.y <= CubePos2.y && LinePos2.y >= CubePos1.y && LinePos2.y <= CubePos2.y ) &&
 		( LinePos1.z >= CubePos1.z && LinePos1.z <= CubePos2.z && LinePos2.z >= CubePos1.z && LinePos2.z <= CubePos2.z ) )
@@ -6724,7 +6724,7 @@ extern HITRESULT_LINE HitCheck_Line_Cube( VECTOR LinePos1, VECTOR LinePos2, VECT
 		return Result ;
 	}
 
-	// ” ‚Ì–Ê‚ğƒ|ƒŠƒSƒ“‚Æ‚µ‚ÄŒğ·ƒ`ƒFƒbƒN
+	// ç®±ã®é¢ã‚’ãƒãƒªã‚´ãƒ³ã¨ã—ã¦äº¤å·®ãƒã‚§ãƒƒã‚¯
 	CubePos[ 0 ][ 0 ].x = CubePos1.x ;
 	CubePos[ 0 ][ 0 ].y = CubePos1.y ;
 	CubePos[ 0 ][ 0 ].z = CubePos1.z ;
@@ -6783,7 +6783,7 @@ extern HITRESULT_LINE HitCheck_Line_Cube( VECTOR LinePos1, VECTOR LinePos2, VECT
 	return Result ;
 }
 
-// ü‚Æ” ‚Ì“–‚½‚è”»’è
+// ç·šã¨ç®±ã®å½“ãŸã‚Šåˆ¤å®š
 extern HITRESULT_LINE_D HitCheck_Line_CubeD( VECTOR_D LinePos1, VECTOR_D LinePos2, VECTOR_D CubePos1, VECTOR_D CubePos2 )
 {
 	double Tmp ;
@@ -6814,16 +6814,16 @@ extern HITRESULT_LINE_D HitCheck_Line_CubeD( VECTOR_D LinePos1, VECTOR_D LinePos
 		{ { 1, 3 }, { 1, 2 }, { 0, 3 } },
 	} ;
 
-	// –ß‚è’l‚ğ‰Šú‰»
+	// æˆ»ã‚Šå€¤ã‚’åˆæœŸåŒ–
 	Result.HitFlag = FALSE ;
 	Result.Position = VGetD( -1.0, -1.0, -1.0 ) ;
 
-	// CubePos1 ‚Ì’l‚æ‚è CubePos2 ‚Ì’l‚Ì‚Ù‚¤‚ª¬‚³‚­‚È‚Á‚Ä‚¢‚½‚ç“ü‚ê‘Ö‚¦‚é
+	// CubePos1 ã®å€¤ã‚ˆã‚Š CubePos2 ã®å€¤ã®ã»ã†ãŒå°ã•ããªã£ã¦ã„ãŸã‚‰å…¥ã‚Œæ›¿ãˆã‚‹
 	if( CubePos1.x > CubePos2.x ){ Tmp = CubePos1.x ; CubePos1.x = CubePos2.x ; CubePos2.x = Tmp ; }
 	if( CubePos1.y > CubePos2.y ){ Tmp = CubePos1.y ; CubePos1.y = CubePos2.y ; CubePos2.y = Tmp ; }
 	if( CubePos1.z > CubePos2.z ){ Tmp = CubePos1.z ; CubePos1.z = CubePos2.z ; CubePos2.z = Tmp ; }
 
-	// ü•ª‚ª” ‚Ì”ÍˆÍŠO‚É‚ ‚é‚©ŠÈˆÕƒ`ƒFƒbƒN
+	// ç·šåˆ†ãŒç®±ã®ç¯„å›²å¤–ã«ã‚ã‚‹ã‹ç°¡æ˜“ãƒã‚§ãƒƒã‚¯
 	if( ( LinePos1.x < CubePos1.x && LinePos2.x < CubePos1.x ) ||
 		( LinePos1.y < CubePos1.y && LinePos2.y < CubePos1.y ) ||
 		( LinePos1.z < CubePos1.z && LinePos2.z < CubePos1.z ) ||
@@ -6834,7 +6834,7 @@ extern HITRESULT_LINE_D HitCheck_Line_CubeD( VECTOR_D LinePos1, VECTOR_D LinePos
 		return Result ;
 	}
 
-	// ü•ª‚ª” ‚Ì”ÍˆÍ“à‚É‚ ‚é‚©ŠÈˆÕƒ`ƒFƒbƒN
+	// ç·šåˆ†ãŒç®±ã®ç¯„å›²å†…ã«ã‚ã‚‹ã‹ç°¡æ˜“ãƒã‚§ãƒƒã‚¯
 	if( ( LinePos1.x >= CubePos1.x && LinePos1.x <= CubePos2.x && LinePos2.x >= CubePos1.x && LinePos2.x <= CubePos2.x ) &&
 		( LinePos1.y >= CubePos1.y && LinePos1.y <= CubePos2.y && LinePos2.y >= CubePos1.y && LinePos2.y <= CubePos2.y ) &&
 		( LinePos1.z >= CubePos1.z && LinePos1.z <= CubePos2.z && LinePos2.z >= CubePos1.z && LinePos2.z <= CubePos2.z ) )
@@ -6843,7 +6843,7 @@ extern HITRESULT_LINE_D HitCheck_Line_CubeD( VECTOR_D LinePos1, VECTOR_D LinePos
 		return Result ;
 	}
 
-	// ” ‚Ì–Ê‚ğƒ|ƒŠƒSƒ“‚Æ‚µ‚ÄŒğ·ƒ`ƒFƒbƒN
+	// ç®±ã®é¢ã‚’ãƒãƒªã‚´ãƒ³ã¨ã—ã¦äº¤å·®ãƒã‚§ãƒƒã‚¯
 	CubePos[ 0 ][ 0 ].x = CubePos1.x ;
 	CubePos[ 0 ][ 0 ].y = CubePos1.y ;
 	CubePos[ 0 ][ 0 ].z = CubePos1.z ;
@@ -6903,73 +6903,73 @@ extern HITRESULT_LINE_D HitCheck_Line_CubeD( VECTOR_D LinePos1, VECTOR_D LinePos
 }
 
 
-// ‹…‚Æ‹…‚Ì“–‚½‚è”»’è( TRUE:“–‚½‚Á‚Ä‚¢‚é  FALSE:“–‚½‚Á‚Ä‚¢‚È‚¢ )
+// çƒã¨çƒã®å½“ãŸã‚Šåˆ¤å®š( TRUE:å½“ãŸã£ã¦ã„ã‚‹  FALSE:å½“ãŸã£ã¦ã„ãªã„ )
 extern int HitCheck_Sphere_Sphere( VECTOR Sphere1CenterPos, float Sphere1R, VECTOR Sphere2CenterPos, float Sphere2R )
 {
 	VECTOR Sa ;
 
-	// “ñ‚Â‚Ì‹…‚Ì’†SÀ•W‚Ì‹——£‚ª“ñ‚Â‚Ì‹…‚Ì”¼Œa‚ğ‘«‚µ‚½’l‚æ‚è¬‚³‚¢ê‡‚Í“–‚½‚Á‚Ä‚¢‚é
+	// äºŒã¤ã®çƒã®ä¸­å¿ƒåº§æ¨™ã®è·é›¢ãŒäºŒã¤ã®çƒã®åŠå¾„ã‚’è¶³ã—ãŸå€¤ã‚ˆã‚Šå°ã•ã„å ´åˆã¯å½“ãŸã£ã¦ã„ã‚‹
 	Sa.x = Sphere1CenterPos.x - Sphere2CenterPos.x ;
 	Sa.y = Sphere1CenterPos.y - Sphere2CenterPos.y ;
 	Sa.z = Sphere1CenterPos.z - Sphere2CenterPos.z ;
 	return Sa.x * Sa.x + Sa.y * Sa.y + Sa.z * Sa.z <= ( Sphere1R + Sphere2R ) * ( Sphere1R + Sphere2R ) ? TRUE : FALSE ;
 }
 
-// ‹…‚Æ‹…‚Ì“–‚½‚è”»’è( TRUE:“–‚½‚Á‚Ä‚¢‚é  FALSE:“–‚½‚Á‚Ä‚¢‚È‚¢ )
+// çƒã¨çƒã®å½“ãŸã‚Šåˆ¤å®š( TRUE:å½“ãŸã£ã¦ã„ã‚‹  FALSE:å½“ãŸã£ã¦ã„ãªã„ )
 extern int HitCheck_Sphere_SphereD( VECTOR_D Sphere1CenterPos, double Sphere1R, VECTOR_D Sphere2CenterPos, double Sphere2R )
 {
 	VECTOR_D Sa ;
 
-	// “ñ‚Â‚Ì‹…‚Ì’†SÀ•W‚Ì‹——£‚ª“ñ‚Â‚Ì‹…‚Ì”¼Œa‚ğ‘«‚µ‚½’l‚æ‚è¬‚³‚¢ê‡‚Í“–‚½‚Á‚Ä‚¢‚é
+	// äºŒã¤ã®çƒã®ä¸­å¿ƒåº§æ¨™ã®è·é›¢ãŒäºŒã¤ã®çƒã®åŠå¾„ã‚’è¶³ã—ãŸå€¤ã‚ˆã‚Šå°ã•ã„å ´åˆã¯å½“ãŸã£ã¦ã„ã‚‹
 	Sa.x = Sphere1CenterPos.x - Sphere2CenterPos.x ;
 	Sa.y = Sphere1CenterPos.y - Sphere2CenterPos.y ;
 	Sa.z = Sphere1CenterPos.z - Sphere2CenterPos.z ;
 	return Sa.x * Sa.x + Sa.y * Sa.y + Sa.z * Sa.z <= ( Sphere1R + Sphere2R ) * ( Sphere1R + Sphere2R ) ? TRUE : FALSE ;
 }
 
-// ‹…‚ÆƒJƒvƒZƒ‹‚Ì“–‚½‚è”»’è( TRUE:“–‚½‚Á‚Ä‚¢‚é  FALSE:“–‚½‚Á‚Ä‚¢‚È‚¢ )
+// çƒã¨ã‚«ãƒ—ã‚»ãƒ«ã®å½“ãŸã‚Šåˆ¤å®š( TRUE:å½“ãŸã£ã¦ã„ã‚‹  FALSE:å½“ãŸã£ã¦ã„ãªã„ )
 extern int HitCheck_Sphere_Capsule( VECTOR SphereCenterPos, float SphereR, VECTOR CapPos1, VECTOR CapPos2, float CapR )
 {
 	return Segment_Point_MinLength_Square( CapPos1, CapPos2, SphereCenterPos ) <= ( CapR + SphereR ) * ( CapR + SphereR ) ? TRUE : FALSE ;
 }
 
-// ‹…‚ÆƒJƒvƒZƒ‹‚Ì“–‚½‚è”»’è( TRUE:“–‚½‚Á‚Ä‚¢‚é  FALSE:“–‚½‚Á‚Ä‚¢‚È‚¢ )
+// çƒã¨ã‚«ãƒ—ã‚»ãƒ«ã®å½“ãŸã‚Šåˆ¤å®š( TRUE:å½“ãŸã£ã¦ã„ã‚‹  FALSE:å½“ãŸã£ã¦ã„ãªã„ )
 extern int HitCheck_Sphere_CapsuleD( VECTOR_D SphereCenterPos, double SphereR, VECTOR_D CapPos1, VECTOR_D CapPos2, double CapR )
 {
 	return Segment_Point_MinLength_SquareD( CapPos1, CapPos2, SphereCenterPos ) <= ( CapR + SphereR ) * ( CapR + SphereR ) ? TRUE : FALSE ;
 }
 
-// ‹…‚ÆOŠpŒ`‚Ì“–‚½‚è”»’è( TRUE:“–‚½‚Á‚Ä‚¢‚é  FALSE:“–‚½‚Á‚Ä‚¢‚È‚¢ )
+// çƒã¨ä¸‰è§’å½¢ã®å½“ãŸã‚Šåˆ¤å®š( TRUE:å½“ãŸã£ã¦ã„ã‚‹  FALSE:å½“ãŸã£ã¦ã„ãªã„ )
 extern int HitCheck_Sphere_Triangle( VECTOR SphereCenterPos, float SphereR, VECTOR TrianglePos1, VECTOR TrianglePos2, VECTOR TrianglePos3 )
 {
 	VECTOR MinPosition, Sa ;
 
-	// ‹…‚ÆOŠpŒ`‚ÌÅ‹ß“_‚ğæ“¾‚·‚é
+	// çƒã¨ä¸‰è§’å½¢ã®æœ€è¿‘ç‚¹ã‚’å–å¾—ã™ã‚‹
 	MinPosition = Get_Triangle_Point_MinPosition( SphereCenterPos, TrianglePos1, TrianglePos2, TrianglePos3 ) ;
 
-	// Å‹ß“_‚Æ‚Ì‹——£‚ª‹…‚Ì”¼Œa‚æ‚è‹ß‚¢‚©‚Ç‚¤‚©‚Å“–‚½‚Á‚Ä‚¢‚é‚©‚Ç‚¤‚©‚ğ”»’è
+	// æœ€è¿‘ç‚¹ã¨ã®è·é›¢ãŒçƒã®åŠå¾„ã‚ˆã‚Šè¿‘ã„ã‹ã©ã†ã‹ã§å½“ãŸã£ã¦ã„ã‚‹ã‹ã©ã†ã‹ã‚’åˆ¤å®š
 	Sa.x = MinPosition.x - SphereCenterPos.x ;
 	Sa.y = MinPosition.y - SphereCenterPos.y ;
 	Sa.z = MinPosition.z - SphereCenterPos.z ;
 	return Sa.x * Sa.x + Sa.y * Sa.y + Sa.z * Sa.z <= SphereR * SphereR ? TRUE : FALSE ;
 }
 
-// ‹…‚ÆOŠpŒ`‚Ì“–‚½‚è”»’è( TRUE:“–‚½‚Á‚Ä‚¢‚é  FALSE:“–‚½‚Á‚Ä‚¢‚È‚¢ )
+// çƒã¨ä¸‰è§’å½¢ã®å½“ãŸã‚Šåˆ¤å®š( TRUE:å½“ãŸã£ã¦ã„ã‚‹  FALSE:å½“ãŸã£ã¦ã„ãªã„ )
 extern int HitCheck_Sphere_TriangleD( VECTOR_D SphereCenterPos, double SphereR, VECTOR_D TrianglePos1, VECTOR_D TrianglePos2, VECTOR_D TrianglePos3 )
 {
 	VECTOR_D MinPosition, Sa ;
 
-	// ‹…‚ÆOŠpŒ`‚ÌÅ‹ß“_‚ğæ“¾‚·‚é
+	// çƒã¨ä¸‰è§’å½¢ã®æœ€è¿‘ç‚¹ã‚’å–å¾—ã™ã‚‹
 	MinPosition = Get_Triangle_Point_MinPositionD( SphereCenterPos, TrianglePos1, TrianglePos2, TrianglePos3 ) ;
 
-	// Å‹ß“_‚Æ‚Ì‹——£‚ª‹…‚Ì”¼Œa‚æ‚è‹ß‚¢‚©‚Ç‚¤‚©‚Å“–‚½‚Á‚Ä‚¢‚é‚©‚Ç‚¤‚©‚ğ”»’è
+	// æœ€è¿‘ç‚¹ã¨ã®è·é›¢ãŒçƒã®åŠå¾„ã‚ˆã‚Šè¿‘ã„ã‹ã©ã†ã‹ã§å½“ãŸã£ã¦ã„ã‚‹ã‹ã©ã†ã‹ã‚’åˆ¤å®š
 	Sa.x = MinPosition.x - SphereCenterPos.x ;
 	Sa.y = MinPosition.y - SphereCenterPos.y ;
 	Sa.z = MinPosition.z - SphereCenterPos.z ;
 	return Sa.x * Sa.x + Sa.y * Sa.y + Sa.z * Sa.z <= SphereR * SphereR ? TRUE : FALSE ;
 }
 
-// ƒJƒvƒZƒ‹“¯m‚Ì“–‚½‚è”»’è( TRUE:“–‚½‚Á‚Ä‚¢‚é  FALSE:“–‚½‚Á‚Ä‚¢‚È‚¢ )
+// ã‚«ãƒ—ã‚»ãƒ«åŒå£«ã®å½“ãŸã‚Šåˆ¤å®š( TRUE:å½“ãŸã£ã¦ã„ã‚‹  FALSE:å½“ãŸã£ã¦ã„ãªã„ )
 extern int HitCheck_Capsule_Capsule( VECTOR Cap1Pos1, VECTOR Cap1Pos2, float Cap1R, VECTOR Cap2Pos1, VECTOR Cap2Pos2, float Cap2R )
 {
 	float MinLength ;
@@ -6978,7 +6978,7 @@ extern int HitCheck_Capsule_Capsule( VECTOR Cap1Pos1, VECTOR Cap1Pos2, float Cap
 	return MinLength < ( Cap1R + Cap2R ) * ( Cap1R + Cap2R ) ? TRUE : FALSE ;
 }
 
-// ƒJƒvƒZƒ‹“¯m‚Ì“–‚½‚è”»’è( TRUE:“–‚½‚Á‚Ä‚¢‚é  FALSE:“–‚½‚Á‚Ä‚¢‚È‚¢ )
+// ã‚«ãƒ—ã‚»ãƒ«åŒå£«ã®å½“ãŸã‚Šåˆ¤å®š( TRUE:å½“ãŸã£ã¦ã„ã‚‹  FALSE:å½“ãŸã£ã¦ã„ãªã„ )
 extern int HitCheck_Capsule_CapsuleD( VECTOR_D Cap1Pos1, VECTOR_D Cap1Pos2, double Cap1R, VECTOR_D Cap2Pos1, VECTOR_D Cap2Pos2, double Cap2R )
 {
 	double MinLength ;
@@ -6987,7 +6987,7 @@ extern int HitCheck_Capsule_CapsuleD( VECTOR_D Cap1Pos1, VECTOR_D Cap1Pos2, doub
 	return MinLength < ( Cap1R + Cap2R ) * ( Cap1R + Cap2R ) ? TRUE : FALSE ;
 }
 
-// ƒJƒvƒZƒ‹‚ÆOŠpŒ`‚Ì“–‚½‚è”»’è( TRUE:“–‚½‚Á‚Ä‚¢‚é  FALSE:“–‚½‚Á‚Ä‚¢‚È‚¢ )
+// ã‚«ãƒ—ã‚»ãƒ«ã¨ä¸‰è§’å½¢ã®å½“ãŸã‚Šåˆ¤å®š( TRUE:å½“ãŸã£ã¦ã„ã‚‹  FALSE:å½“ãŸã£ã¦ã„ãªã„ )
 extern int HitCheck_Capsule_Triangle( VECTOR CapPos1, VECTOR CapPos2, float CapR, VECTOR TrianglePos1, VECTOR TrianglePos2, VECTOR TrianglePos3 )
 {
 	float MinLength ;
@@ -6996,7 +6996,7 @@ extern int HitCheck_Capsule_Triangle( VECTOR CapPos1, VECTOR CapPos2, float CapR
 	return MinLength < CapR * CapR ? TRUE : FALSE ;
 }
 
-// ƒJƒvƒZƒ‹‚ÆOŠpŒ`‚Ì“–‚½‚è”»’è( TRUE:“–‚½‚Á‚Ä‚¢‚é  FALSE:“–‚½‚Á‚Ä‚¢‚È‚¢ )
+// ã‚«ãƒ—ã‚»ãƒ«ã¨ä¸‰è§’å½¢ã®å½“ãŸã‚Šåˆ¤å®š( TRUE:å½“ãŸã£ã¦ã„ã‚‹  FALSE:å½“ãŸã£ã¦ã„ãªã„ )
 extern int HitCheck_Capsule_TriangleD( VECTOR_D CapPos1, VECTOR_D CapPos2, double CapR, VECTOR_D TrianglePos1, VECTOR_D TrianglePos2, VECTOR_D TrianglePos3 )
 {
 	double MinLength ;
@@ -7005,7 +7005,7 @@ extern int HitCheck_Capsule_TriangleD( VECTOR_D CapPos1, VECTOR_D CapPos2, doubl
 	return MinLength < CapR * CapR ? TRUE : FALSE ;
 }
 
-// ‹éŒ`‚ÌƒNƒŠƒbƒsƒ“ƒO
+// çŸ©å½¢ã®ã‚¯ãƒªãƒƒãƒ”ãƒ³ã‚°
 extern int RectClipping( RECT *Rect, const RECT *ClippuRect )
 {
 	     if( Rect->left   > Rect->right        ) Rect->right  = Rect->left ;
@@ -7030,7 +7030,7 @@ extern int RectClipping( RECT *Rect, const RECT *ClippuRect )
 	return 0 ;
 }
 
-// ‹éŒ`‚Ì left ‚ª right ‚æ‚è’l‚ª‘å‚«‚¢ê‡‚È‚Ç‚ÌŒë‚è‚ğ•â³‚·‚é
+// çŸ©å½¢ã® left ãŒ right ã‚ˆã‚Šå€¤ãŒå¤§ãã„å ´åˆãªã©ã®èª¤ã‚Šã‚’è£œæ­£ã™ã‚‹
 extern int RectAdjust( RECT *Rect )
 {
 	int Temp;
@@ -7041,7 +7041,7 @@ extern int RectAdjust( RECT *Rect )
 	return 0;
 }
 
-// ‹éŒ`‚Ì•‚Æ‚‚³‚ğ‹‚ß‚é
+// çŸ©å½¢ã®å¹…ã¨é«˜ã•ã‚’æ±‚ã‚ã‚‹
 extern int GetRectSize( const RECT *Rect, int *Width, int *Height )
 {
 	if( Width  ) *Width  = Rect->right  - Rect->left;
@@ -7050,7 +7050,7 @@ extern int GetRectSize( const RECT *Rect, int *Width, int *Height )
 	return 0;
 }
 
-// ’PˆÊs—ñ‚ğ“¾‚é
+// å˜ä½è¡Œåˆ—ã‚’å¾—ã‚‹
 extern MATRIX MGetIdent( void )
 {
 	static MATRIX Result = 
@@ -7065,7 +7065,7 @@ extern MATRIX MGetIdent( void )
 	return Result ;
 }
 
-// ’PˆÊs—ñ‚ğ“¾‚é
+// å˜ä½è¡Œåˆ—ã‚’å¾—ã‚‹
 extern MATRIX_D MGetIdentD( void )
 {
 	static MATRIX_D Result = 
@@ -7080,7 +7080,7 @@ extern MATRIX_D MGetIdentD( void )
 	return Result ;
 }
 
-// s—ñ‚ÌæZ‚ğs‚¤
+// è¡Œåˆ—ã®ä¹—ç®—ã‚’è¡Œã†
 extern MATRIX MMult( MATRIX In1, MATRIX In2 )
 {
 	MATRIX Result =
@@ -7115,7 +7115,7 @@ extern MATRIX MMult( MATRIX In1, MATRIX In2 )
 	return Result ;
 }
 
-// s—ñ‚ÌæZ‚ğs‚¤
+// è¡Œåˆ—ã®ä¹—ç®—ã‚’è¡Œã†
 extern MATRIX_D MMultD( MATRIX_D In1, MATRIX_D In2 )
 {
 	MATRIX_D Result =
@@ -7150,7 +7150,7 @@ extern MATRIX_D MMultD( MATRIX_D In1, MATRIX_D In2 )
 	return Result ;
 }
 
-// s—ñ‚ÌƒXƒP[ƒŠƒ“ƒO‚ğs‚¤
+// è¡Œåˆ—ã®ã‚¹ã‚±ãƒ¼ãƒªãƒ³ã‚°ã‚’è¡Œã†
 extern MATRIX MScale( MATRIX InM, float Scale )
 {
 	MATRIX Result =
@@ -7165,7 +7165,7 @@ extern MATRIX MScale( MATRIX InM, float Scale )
 	return Result ;
 }
 
-// s—ñ‚ÌƒXƒP[ƒŠƒ“ƒO‚ğs‚¤
+// è¡Œåˆ—ã®ã‚¹ã‚±ãƒ¼ãƒªãƒ³ã‚°ã‚’è¡Œã†
 extern MATRIX_D MScaleD( MATRIX_D InM, double Scale )
 {
 	MATRIX_D Result =
@@ -7180,7 +7180,7 @@ extern MATRIX_D MScaleD( MATRIX_D InM, double Scale )
 	return Result ;
 }
 
-// s—ñ‚Ì‘«‚µZ‚ğs‚¤
+// è¡Œåˆ—ã®è¶³ã—ç®—ã‚’è¡Œã†
 extern MATRIX MAdd( MATRIX In1, MATRIX In2 )
 {
 	MATRIX Result =
@@ -7195,7 +7195,7 @@ extern MATRIX MAdd( MATRIX In1, MATRIX In2 )
 	return Result ;
 }
 
-// s—ñ‚Ì‘«‚µZ‚ğs‚¤
+// è¡Œåˆ—ã®è¶³ã—ç®—ã‚’è¡Œã†
 extern MATRIX_D MAddD( MATRIX_D In1, MATRIX_D In2 )
 {
 	MATRIX_D Result =
@@ -7210,7 +7210,7 @@ extern MATRIX_D MAddD( MATRIX_D In1, MATRIX_D In2 )
 	return Result ;
 }
 
-// Šg‘ås—ñ‚ğ“¾‚é
+// æ‹¡å¤§è¡Œåˆ—ã‚’å¾—ã‚‹
 extern MATRIX MGetScale( VECTOR Scale )
 {
 	MATRIX Result =
@@ -7225,7 +7225,7 @@ extern MATRIX MGetScale( VECTOR Scale )
 	return Result ;
 }
 
-// Šg‘ås—ñ‚ğ“¾‚é
+// æ‹¡å¤§è¡Œåˆ—ã‚’å¾—ã‚‹
 extern MATRIX_D MGetScaleD( VECTOR_D Scale )
 {
 	MATRIX_D Result =
@@ -7240,7 +7240,7 @@ extern MATRIX_D MGetScaleD( VECTOR_D Scale )
 	return Result ;
 }
 
-// ‚w²‰ñ“]s—ñ‚ğ“¾‚é
+// ï¼¸è»¸å›è»¢è¡Œåˆ—ã‚’å¾—ã‚‹
 extern MATRIX MGetRotX( float XAxisRotate )
 {
 	float Sin, Cos ;
@@ -7258,7 +7258,7 @@ extern MATRIX MGetRotX( float XAxisRotate )
 	return Result ;
 }
 
-// ‚w²‰ñ“]s—ñ‚ğ“¾‚é
+// ï¼¸è»¸å›è»¢è¡Œåˆ—ã‚’å¾—ã‚‹
 extern MATRIX_D MGetRotXD( double XAxisRotate )
 {
 	double Sin, Cos ;
@@ -7276,7 +7276,7 @@ extern MATRIX_D MGetRotXD( double XAxisRotate )
 	return Result ;
 }
 
-// ‚x²‰ñ“]s—ñ‚ğ“¾‚é
+// ï¼¹è»¸å›è»¢è¡Œåˆ—ã‚’å¾—ã‚‹
 extern MATRIX MGetRotY( float YAxisRotate )
 {
 	float Sin, Cos ;
@@ -7294,7 +7294,7 @@ extern MATRIX MGetRotY( float YAxisRotate )
 	return Result ;
 }
 
-// ‚x²‰ñ“]s—ñ‚ğ“¾‚é
+// ï¼¹è»¸å›è»¢è¡Œåˆ—ã‚’å¾—ã‚‹
 extern MATRIX_D MGetRotYD( double YAxisRotate )
 {
 	double Sin, Cos ;
@@ -7312,7 +7312,7 @@ extern MATRIX_D MGetRotYD( double YAxisRotate )
 	return Result ;
 }
 
-// ‚y²‰ñ“]s—ñ‚ğ“¾‚é
+// ï¼ºè»¸å›è»¢è¡Œåˆ—ã‚’å¾—ã‚‹
 extern MATRIX MGetRotZ( float ZAxisRotate )
 {
 	float Sin, Cos ;
@@ -7330,7 +7330,7 @@ extern MATRIX MGetRotZ( float ZAxisRotate )
 	return Result ;
 }
 
-// ‚y²‰ñ“]s—ñ‚ğ“¾‚é
+// ï¼ºè»¸å›è»¢è¡Œåˆ—ã‚’å¾—ã‚‹
 extern MATRIX_D MGetRotZD( double ZAxisRotate )
 {
 	double Sin, Cos ;
@@ -7348,7 +7348,7 @@ extern MATRIX_D MGetRotZD( double ZAxisRotate )
 	return Result ;
 }
 
-// w’è²‚Åw’èŠp“x‰ñ“]‚·‚és—ñ‚ğ“¾‚é
+// æŒ‡å®šè»¸ã§æŒ‡å®šè§’åº¦å›è»¢ã™ã‚‹è¡Œåˆ—ã‚’å¾—ã‚‹
 extern MATRIX MGetRotAxis( VECTOR RotateAxis, float Rotate )
 {
 	MATRIX Result ;
@@ -7424,7 +7424,7 @@ extern MATRIX MGetRotAxis( VECTOR RotateAxis, float Rotate )
 	return Result ;
 }
 
-// w’è²‚Åw’èŠp“x‰ñ“]‚·‚és—ñ‚ğ“¾‚é
+// æŒ‡å®šè»¸ã§æŒ‡å®šè§’åº¦å›è»¢ã™ã‚‹è¡Œåˆ—ã‚’å¾—ã‚‹
 extern MATRIX_D MGetRotAxisD( VECTOR_D RotateAxis, double Rotate )
 {
 	MATRIX_D Result ;
@@ -7500,7 +7500,7 @@ extern MATRIX_D MGetRotAxisD( VECTOR_D RotateAxis, double Rotate )
 	return Result ;
 }
 
-// In1 ‚ÌŒü‚«‚©‚ç In2 ‚ÌŒü‚«‚Ö•ÏŠ·‚·‚é‰ñ“]s—ñ‚ğ“¾‚é
+// In1 ã®å‘ãã‹ã‚‰ In2 ã®å‘ãã¸å¤‰æ›ã™ã‚‹å›è»¢è¡Œåˆ—ã‚’å¾—ã‚‹
 extern MATRIX MGetRotVec2( VECTOR In1, VECTOR In2 )
 {
 	VECTOR av ;
@@ -7513,7 +7513,7 @@ extern MATRIX MGetRotVec2( VECTOR In1, VECTOR In2 )
 	return MGetRotAxis( av, rad ) ;
 }
 
-// In1 ‚ÌŒü‚«‚©‚ç In2 ‚ÌŒü‚«‚Ö•ÏŠ·‚·‚é‰ñ“]s—ñ‚ğ“¾‚é
+// In1 ã®å‘ãã‹ã‚‰ In2 ã®å‘ãã¸å¤‰æ›ã™ã‚‹å›è»¢è¡Œåˆ—ã‚’å¾—ã‚‹
 extern MATRIX_D MGetRotVec2D( VECTOR_D In1, VECTOR_D In2 )
 {
 	VECTOR_D av ;
@@ -7526,7 +7526,7 @@ extern MATRIX_D MGetRotVec2D( VECTOR_D In1, VECTOR_D In2 )
 	return MGetRotAxisD( av, rad ) ;
 }
 
-// •½sˆÚ“®s—ñ‚ğ“¾‚é
+// å¹³è¡Œç§»å‹•è¡Œåˆ—ã‚’å¾—ã‚‹
 extern MATRIX MGetTranslate( VECTOR Trans )
 {
 	MATRIX Result =
@@ -7542,7 +7542,7 @@ extern MATRIX MGetTranslate( VECTOR Trans )
 	return Result ;
 }
 
-// •½sˆÚ“®s—ñ‚ğ“¾‚é
+// å¹³è¡Œç§»å‹•è¡Œåˆ—ã‚’å¾—ã‚‹
 extern MATRIX_D MGetTranslateD( VECTOR_D Trans )
 {
 	MATRIX_D Result =
@@ -7558,7 +7558,7 @@ extern MATRIX_D MGetTranslateD( VECTOR_D Trans )
 	return Result ;
 }
 
-// w’è‚Ì‚R²ƒ[ƒJƒ‹‚ÌƒxƒNƒgƒ‹‚ğŠî–{²ã‚ÌƒxƒNƒgƒ‹‚É•ÏŠ·‚·‚és—ñ‚ğ“¾‚é
+// æŒ‡å®šã®ï¼“è»¸ãƒ­ãƒ¼ã‚«ãƒ«ã®ãƒ™ã‚¯ãƒˆãƒ«ã‚’åŸºæœ¬è»¸ä¸Šã®ãƒ™ã‚¯ãƒˆãƒ«ã«å¤‰æ›ã™ã‚‹è¡Œåˆ—ã‚’å¾—ã‚‹
 // x' = XAxis.x * x + YAixs.x * y + ZAxis.z * z + Pos.x
 // y' = XAxis.y * x + YAixs.y * y + ZAxis.y * z + Pos.y
 // z' = XAxis.z * x + YAixs.z * y + ZAxis.z * z + Pos.z
@@ -7576,7 +7576,7 @@ extern MATRIX MGetAxis1( VECTOR XAxis, VECTOR YAxis, VECTOR ZAxis, VECTOR Pos )
 	return Result ;
 }
 
-// w’è‚Ì‚R²ƒ[ƒJƒ‹‚ÌƒxƒNƒgƒ‹‚ğŠî–{²ã‚ÌƒxƒNƒgƒ‹‚É•ÏŠ·‚·‚és—ñ‚ğ“¾‚é
+// æŒ‡å®šã®ï¼“è»¸ãƒ­ãƒ¼ã‚«ãƒ«ã®ãƒ™ã‚¯ãƒˆãƒ«ã‚’åŸºæœ¬è»¸ä¸Šã®ãƒ™ã‚¯ãƒˆãƒ«ã«å¤‰æ›ã™ã‚‹è¡Œåˆ—ã‚’å¾—ã‚‹
 // x' = XAxis.x * x + YAixs.x * y + ZAxis.z * z + Pos.x
 // y' = XAxis.y * x + YAixs.y * y + ZAxis.y * z + Pos.y
 // z' = XAxis.z * x + YAixs.z * y + ZAxis.z * z + Pos.z
@@ -7594,7 +7594,7 @@ extern MATRIX_D MGetAxis1D( VECTOR_D XAxis, VECTOR_D YAxis, VECTOR_D ZAxis, VECT
 	return Result ;
 }
 
-// Šî–{²ã‚ÌƒxƒNƒgƒ‹‚ğw’è‚Ì‚R²ã‚É“Š‰e‚µ‚½ƒxƒNƒgƒ‹‚É•ÏŠ·‚·‚és—ñ‚ğ“¾‚é
+// åŸºæœ¬è»¸ä¸Šã®ãƒ™ã‚¯ãƒˆãƒ«ã‚’æŒ‡å®šã®ï¼“è»¸ä¸Šã«æŠ•å½±ã—ãŸãƒ™ã‚¯ãƒˆãƒ«ã«å¤‰æ›ã™ã‚‹è¡Œåˆ—ã‚’å¾—ã‚‹
 // x' = XAxis.x * ( x - Pos.x ) + XAxis.y * ( x - Pos.x ) + XAxis.z * ( x - Pos.x )
 // y' = YAxis.x * ( x - Pos.x ) + YAxis.y * ( x - Pos.x ) + YAxis.z * ( x - Pos.x )
 // z' = ZAxis.x * ( x - Pos.x ) + ZAxis.y * ( x - Pos.x ) + ZAxis.z * ( x - Pos.x )
@@ -7616,7 +7616,7 @@ extern MATRIX MGetAxis2( VECTOR XAxis, VECTOR YAxis, VECTOR ZAxis, VECTOR Pos )
 	return Result ;
 }
 
-// Šî–{²ã‚ÌƒxƒNƒgƒ‹‚ğw’è‚Ì‚R²ã‚É“Š‰e‚µ‚½ƒxƒNƒgƒ‹‚É•ÏŠ·‚·‚és—ñ‚ğ“¾‚é
+// åŸºæœ¬è»¸ä¸Šã®ãƒ™ã‚¯ãƒˆãƒ«ã‚’æŒ‡å®šã®ï¼“è»¸ä¸Šã«æŠ•å½±ã—ãŸãƒ™ã‚¯ãƒˆãƒ«ã«å¤‰æ›ã™ã‚‹è¡Œåˆ—ã‚’å¾—ã‚‹
 // x' = XAxis.x * ( x - Pos.x ) + XAxis.y * ( x - Pos.x ) + XAxis.z * ( x - Pos.x )
 // y' = YAxis.x * ( x - Pos.x ) + YAxis.y * ( x - Pos.x ) + YAxis.z * ( x - Pos.x )
 // z' = ZAxis.x * ( x - Pos.x ) + ZAxis.y * ( x - Pos.x ) + ZAxis.z * ( x - Pos.x )
@@ -7638,7 +7638,7 @@ extern MATRIX_D MGetAxis2D( VECTOR_D XAxis, VECTOR_D YAxis, VECTOR_D ZAxis, VECT
 	return Result ;
 }
 
-// “]’us—ñ‚ğ“¾‚é
+// è»¢ç½®è¡Œåˆ—ã‚’å¾—ã‚‹
 extern MATRIX MTranspose( MATRIX InM )
 {
 	MATRIX Result =
@@ -7653,7 +7653,7 @@ extern MATRIX MTranspose( MATRIX InM )
 	return Result ;
 }
 
-// “]’us—ñ‚ğ“¾‚é
+// è»¢ç½®è¡Œåˆ—ã‚’å¾—ã‚‹
 extern MATRIX_D MTransposeD( MATRIX_D InM )
 {
 	MATRIX_D Result =
@@ -7668,7 +7668,7 @@ extern MATRIX_D MTransposeD( MATRIX_D InM )
 	return Result ;
 }
 
-// ‹ts—ñ‚ğ“¾‚é
+// é€†è¡Œåˆ—ã‚’å¾—ã‚‹
 extern MATRIX MInverse( MATRIX InM )
 {
 	MATRIX Result ;
@@ -7681,7 +7681,7 @@ extern MATRIX MInverse( MATRIX InM )
 	return Result ;
 }
 
-// ‹ts—ñ‚ğ“¾‚é
+// é€†è¡Œåˆ—ã‚’å¾—ã‚‹
 extern MATRIX_D MInverseD( MATRIX_D InM )
 {
 	MATRIX_D Result ;
@@ -7694,7 +7694,7 @@ extern MATRIX_D MInverseD( MATRIX_D InM )
 	return Result ;
 }
 
-// Šg‘ås—ñ‚Ì‚w²A‚x²A‚y²‚ÌŠg‘å—¦‚ğ“¾‚é
+// æ‹¡å¤§è¡Œåˆ—ã®ï¼¸è»¸ã€ï¼¹è»¸ã€ï¼ºè»¸ã®æ‹¡å¤§ç‡ã‚’å¾—ã‚‹
 extern VECTOR MGetSize( MATRIX InM )
 {
 	VECTOR Result ;
@@ -7706,7 +7706,7 @@ extern VECTOR MGetSize( MATRIX InM )
 	return Result ;
 }
 
-// Šg‘ås—ñ‚Ì‚w²A‚x²A‚y²‚ÌŠg‘å—¦‚ğ“¾‚é
+// æ‹¡å¤§è¡Œåˆ—ã®ï¼¸è»¸ã€ï¼¹è»¸ã€ï¼ºè»¸ã®æ‹¡å¤§ç‡ã‚’å¾—ã‚‹
 extern VECTOR_D MGetSizeD( MATRIX_D InM )
 {
 	VECTOR_D Result ;
@@ -7718,7 +7718,7 @@ extern VECTOR_D MGetSizeD( MATRIX_D InM )
 	return Result ;
 }
 
-// s—ñ‚Ì‰ñ“]¬•ª‚ğæ“¾‚·‚é
+// è¡Œåˆ—ã®å›è»¢æˆåˆ†ã‚’å–å¾—ã™ã‚‹
 extern MATRIX MGetRotElem( MATRIX InM )
 {
 	MATRIX Result ;
@@ -7746,7 +7746,7 @@ extern MATRIX MGetRotElem( MATRIX InM )
 	return Result ;
 }
 
-// s—ñ‚Ì‰ñ“]¬•ª‚ğæ“¾‚·‚é
+// è¡Œåˆ—ã®å›è»¢æˆåˆ†ã‚’å–å¾—ã™ã‚‹
 extern MATRIX_D MGetRotElemD( MATRIX_D InM )
 {
 	MATRIX_D Result ;
@@ -7776,7 +7776,7 @@ extern MATRIX_D MGetRotElemD( MATRIX_D InM )
 
 #if 0
 
-// s—ñ‚Ì•½sˆÚ“®¬•ª‚ğæ“¾‚·‚é
+// è¡Œåˆ—ã®å¹³è¡Œç§»å‹•æˆåˆ†ã‚’å–å¾—ã™ã‚‹
 extern VECTOR MGetTranslateElem( MATRIX InM )
 {
 	VECTOR Result ;
@@ -7788,7 +7788,7 @@ extern VECTOR MGetTranslateElem( MATRIX InM )
 	return Result ;
 }
 
-// s—ñ‚Ì•½sˆÚ“®¬•ª‚ğæ“¾‚·‚é
+// è¡Œåˆ—ã®å¹³è¡Œç§»å‹•æˆåˆ†ã‚’å–å¾—ã™ã‚‹
 extern VECTOR_D MGetTranslateElemD( MATRIX_D InM )
 {
 	VECTOR_D Result ;
@@ -7800,34 +7800,34 @@ extern VECTOR_D MGetTranslateElemD( MATRIX_D InM )
 	return Result ;
 }
 
-// ƒxƒNƒgƒ‹’l‚Ì¶¬
+// ãƒ™ã‚¯ãƒˆãƒ«å€¤ã®ç”Ÿæˆ
 extern VECTOR VGet( float x, float y, float z )
 {
 	VECTOR Result = { x, y, z } ;
 	return Result ;
 }
 
-// ƒxƒNƒgƒ‹‚Ì‰ÁZ
+// ãƒ™ã‚¯ãƒˆãƒ«ã®åŠ ç®—
 extern VECTOR VAdd( VECTOR In1, VECTOR In2 )
 {
 	VECTOR Result = { In1.x + In2.x, In1.y + In2.y, In1.z + In2.z } ;
 	return Result ;
 }
 
-// ƒxƒNƒgƒ‹‚ÌŒ¸Z
+// ãƒ™ã‚¯ãƒˆãƒ«ã®æ¸›ç®—
 extern VECTOR VSub( VECTOR In1, VECTOR In2 )
 {
 	VECTOR Result = { In1.x - In2.x, In1.y - In2.y, In1.z - In2.z } ;
 	return Result ;
 }
 
-// ƒxƒNƒgƒ‹‚Ì“àÏ
+// ãƒ™ã‚¯ãƒˆãƒ«ã®å†…ç©
 extern float VDot( VECTOR In1, VECTOR In2 )
 {
 	return In1.x * In2.x + In1.y * In2.y + In1.z * In2.z ;
 }
 
-// ƒxƒNƒgƒ‹‚ÌŠOÏ
+// ãƒ™ã‚¯ãƒˆãƒ«ã®å¤–ç©
 extern VECTOR VCross( VECTOR In1, VECTOR In2 )
 {
 	VECTOR Result =
@@ -7839,7 +7839,7 @@ extern VECTOR VCross( VECTOR In1, VECTOR In2 )
 	return Result ;
 }
 
-// ƒxƒNƒgƒ‹‚ÌƒXƒP[ƒŠƒ“ƒO
+// ãƒ™ã‚¯ãƒˆãƒ«ã®ã‚¹ã‚±ãƒ¼ãƒªãƒ³ã‚°
 extern VECTOR VScale( VECTOR In, float Scale )
 {
 	VECTOR Result = { In.x * Scale, In.y * Scale, In.z * Scale } ;
@@ -7848,7 +7848,7 @@ extern VECTOR VScale( VECTOR In, float Scale )
 
 #endif
 
-// ƒxƒNƒgƒ‹‚Ì³‹K‰»
+// ãƒ™ã‚¯ãƒˆãƒ«ã®æ­£è¦åŒ–
 extern VECTOR VNorm( VECTOR In )
 {
 	float Square ;
@@ -7865,7 +7865,7 @@ extern VECTOR VNorm( VECTOR In )
 	return Result ;
 }
 
-// ƒxƒNƒgƒ‹‚Ì³‹K‰»
+// ãƒ™ã‚¯ãƒˆãƒ«ã®æ­£è¦åŒ–
 extern VECTOR_D VNormD( VECTOR_D In )
 {
 	double Square ;
@@ -7882,7 +7882,7 @@ extern VECTOR_D VNormD( VECTOR_D In )
 	return Result ;
 }
 
-// ƒxƒNƒgƒ‹‚ÌƒTƒCƒY
+// ãƒ™ã‚¯ãƒˆãƒ«ã®ã‚µã‚¤ã‚º
 extern float  VSize( VECTOR In )
 {
 	float Square ;
@@ -7890,7 +7890,7 @@ extern float  VSize( VECTOR In )
 	return Square < 0.0000001f ? 0.0f : _SQRT( Square ) ;
 }
 
-// ƒxƒNƒgƒ‹‚ÌƒTƒCƒY
+// ãƒ™ã‚¯ãƒˆãƒ«ã®ã‚µã‚¤ã‚º
 extern double  VSizeD( VECTOR_D In )
 {
 	double Square ;
@@ -7900,13 +7900,13 @@ extern double  VSizeD( VECTOR_D In )
 
 #if 0
 
-// ƒxƒNƒgƒ‹‚ÌƒTƒCƒY‚Ì‚Qæ
+// ãƒ™ã‚¯ãƒˆãƒ«ã®ã‚µã‚¤ã‚ºã®ï¼’ä¹—
 extern float VSquareSize( VECTOR In )
 {
 	return In.x * In.x + In.y * In.y + In.z * In.z ;
 }
 
-// s—ñ‚ğg‚Á‚½À•W•ÏŠ·
+// è¡Œåˆ—ã‚’ä½¿ã£ãŸåº§æ¨™å¤‰æ›
 extern VECTOR VTransform( VECTOR InV, MATRIX InM )
 {
 	VECTOR Result =
@@ -7918,7 +7918,7 @@ extern VECTOR VTransform( VECTOR InV, MATRIX InM )
 	return Result ;
 }
 
-// s—ñ‚ğg‚Á‚½À•W•ÏŠ·( ƒXƒP[ƒŠƒ“ƒO{‰ñ“]¬•ª‚Ì‚İ )
+// è¡Œåˆ—ã‚’ä½¿ã£ãŸåº§æ¨™å¤‰æ›( ã‚¹ã‚±ãƒ¼ãƒªãƒ³ã‚°ï¼‹å›è»¢æˆåˆ†ã®ã¿ )
 extern VECTOR VTransformSR( VECTOR InV, MATRIX InM )
 {
 	VECTOR Result =
@@ -7932,7 +7932,7 @@ extern VECTOR VTransformSR( VECTOR InV, MATRIX InM )
 
 #endif
 
-// “ñ‚Â‚ÌƒxƒNƒgƒ‹‚ª¬‚·Šp‚ÌƒRƒTƒCƒ“’l‚ğ“¾‚é
+// äºŒã¤ã®ãƒ™ã‚¯ãƒˆãƒ«ãŒæˆã™è§’ã®ã‚³ã‚µã‚¤ãƒ³å€¤ã‚’å¾—ã‚‹
 extern float VCos( VECTOR In1, VECTOR In2 )
 {
 	float Result ;
@@ -7950,7 +7950,7 @@ extern float VCos( VECTOR In1, VECTOR In2 )
 	return Result ;
 }
 
-// “ñ‚Â‚ÌƒxƒNƒgƒ‹‚ª¬‚·Šp‚ÌƒRƒTƒCƒ“’l‚ğ“¾‚é
+// äºŒã¤ã®ãƒ™ã‚¯ãƒˆãƒ«ãŒæˆã™è§’ã®ã‚³ã‚µã‚¤ãƒ³å€¤ã‚’å¾—ã‚‹
 extern double VCosD( VECTOR_D In1, VECTOR_D In2 )
 {
 	double Result ;
@@ -7968,20 +7968,20 @@ extern double VCosD( VECTOR_D In1, VECTOR_D In2 )
 	return Result ;
 }
 
-// “ñ‚Â‚ÌƒxƒNƒgƒ‹‚ª¬‚·Šp‚ÌŠp“x‚ğ“¾‚é( ’PˆÊFƒ‰ƒWƒAƒ“ )
+// äºŒã¤ã®ãƒ™ã‚¯ãƒˆãƒ«ãŒæˆã™è§’ã®è§’åº¦ã‚’å¾—ã‚‹( å˜ä½ï¼šãƒ©ã‚¸ã‚¢ãƒ³ )
 extern float VRad( VECTOR In1, VECTOR In2 )
 {
 	return _ACOS( VCos( In1, In2 ) ) ;
 }
 
-// “ñ‚Â‚ÌƒxƒNƒgƒ‹‚ª¬‚·Šp‚ÌŠp“x‚ğ“¾‚é( ’PˆÊFƒ‰ƒWƒAƒ“ )
+// äºŒã¤ã®ãƒ™ã‚¯ãƒˆãƒ«ãŒæˆã™è§’ã®è§’åº¦ã‚’å¾—ã‚‹( å˜ä½ï¼šãƒ©ã‚¸ã‚¢ãƒ³ )
 extern double VRadD( VECTOR_D In1, VECTOR_D In2 )
 {
 	return _ACOSD( VCosD( In1, In2 ) ) ;
 }
 
 
-// ‰ñ“]‚ğ•\‚·ƒNƒH[ƒ^ƒjƒIƒ“‚ğ•Ô‚·
+// å›è»¢ã‚’è¡¨ã™ã‚¯ã‚©ãƒ¼ã‚¿ãƒ‹ã‚ªãƒ³ã‚’è¿”ã™
 extern FLOAT4 QTRot( VECTOR Axis, float Angle )
 {
 	FLOAT4 Result ;
@@ -8023,7 +8023,7 @@ extern DOUBLE4 QTRotD( VECTOR_D Axis, double Angle )
 	return Result ;
 }
 
-// 3ŸŒ³‹óŠÔã‚Ì“_‚ğ”CˆÓ‚Ì²‚Ìü‚è‚É”CˆÓ‚ÌŠp“x‚¾‚¯‰ñ“]‚³‚¹‚éŠÖ”
+// 3æ¬¡å…ƒç©ºé–“ä¸Šã®ç‚¹ã‚’ä»»æ„ã®è»¸ã®å‘¨ã‚Šã«ä»»æ„ã®è§’åº¦ã ã‘å›è»¢ã•ã›ã‚‹é–¢æ•°
 extern VECTOR VRotQ( VECTOR P, VECTOR Axis, float Angle )
 {
 	VECTOR Result ;

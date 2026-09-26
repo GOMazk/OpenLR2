@@ -1,6 +1,6 @@
 // -------------------------------------------------------------------------------
 // 
-// 		�c�w���C�u����		Ogg�֌W�w�b�_�t�@�C��( Direct3D11 )
+// 		ＤＸライブラリ		Ogg関係ヘッダファイル( Direct3D11 )
 // 
 // 				Ver 3.25a
 // 
@@ -13,7 +13,7 @@
 
 #ifndef DX_NON_DIRECT3D11
 
-// �C���N���[�h ------------------------------------------------------------------
+// インクルード ------------------------------------------------------------------
 #include "../DxLib.h"
 #include "../DxUseCLibOgg.h"
 
@@ -22,13 +22,13 @@
 //namespace DxLib
 //{
 
-// �}�N����` --------------------------------------------------------------------
+// マクロ定義 --------------------------------------------------------------------
 
-// �\���̒�` --------------------------------------------------------------------
+// 構造体定義 --------------------------------------------------------------------
 
 #ifndef DX_NON_OGGTHEORA
 
-// Direct3D11�p Ogg Theora �f�R�[�h�����p���ˑ��f�[�^�\����
+// Direct3D11用 Ogg Theora デコード処理用環境依存データ構造体
 struct DECODE_THEORA_DIRECT3D11
 {
 	int Dummy ;
@@ -36,17 +36,17 @@ struct DECODE_THEORA_DIRECT3D11
 
 #endif // DX_NON_OGGTHEORA
 
-// �������ϐ��錾 --------------------------------------------------------------
+// 内部大域変数宣言 --------------------------------------------------------------
 
-// �֐��v���g�^�C�v�錾-----------------------------------------------------------
+// 関数プロトタイプ宣言-----------------------------------------------------------
 
 #ifndef DX_NON_OGGTHEORA
 
-// ���ˑ��֐�
-extern	int		TheoraDecode_D3D11_CreateSurface_PF(	 DECODE_THEORA *DT ) ;																// �n�[�h�E�G�A�@�\���L���ȏꍇ�� YUV �t�H�[�}�b�g�̈ꎞ�ۑ��p�e�N�X�`�����쐬����
+// 環境依存関数
+extern	int		TheoraDecode_D3D11_CreateSurface_PF(	 DECODE_THEORA *DT ) ;																// ハードウエア機能が有効な場合は YUV フォーマットの一時保存用テクスチャを作成する
 extern	void	TheoraDecode_D3D11_ReleaseSurface_PF( DECODE_THEORA *DT ) ;
-extern	int		TheoraDecode_D3D11_SetupImage_PF( DECODE_THEORA *DT, volatile THEORA_STOCKFRAME *Stock, int ASyncThread ) ;				// �J�����g�t���[����RGB�摜���쐬����( �߂�l  1:�쐬���ꂽ  0:����Ȃ����� )
-extern	const void *TheoraDecode_D3D11_GetYUVImage_PF( DECODE_THEORA *DT ) ;												// �ꎞ�o�b�t�@�� YUV �t�H�[�}�b�g�̃e�N�X�`���𓾂�
+extern	int		TheoraDecode_D3D11_SetupImage_PF( DECODE_THEORA *DT, volatile THEORA_STOCKFRAME *Stock, int ASyncThread ) ;				// カレントフレームのRGB画像を作成する( 戻り値  1:作成された  0:されなかった )
+extern	const void *TheoraDecode_D3D11_GetYUVImage_PF( DECODE_THEORA *DT ) ;												// 一時バッファの YUV フォーマットのテクスチャを得る
 
 #endif // DX_NON_OGGTHEORA
 

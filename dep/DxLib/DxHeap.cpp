@@ -1,15 +1,15 @@
 // -------------------------------------------------------------------------------
 // 
-// 		‚c‚wƒ‰ƒCƒuƒ‰ƒŠ		ƒq[ƒvŠÖ˜AƒvƒƒOƒ‰ƒ€
+// 		ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒª		ãƒ’ãƒ¼ãƒ—é–¢é€£ãƒ—ãƒ­ã‚°ãƒ©ãƒ 
 // 
 // 				Ver 3.25a
 // 
 // -------------------------------------------------------------------------------
 
-// ‚c‚wƒ‰ƒCƒuƒ‰ƒŠì¬—p’è‹`
+// ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªä½œæˆæ™‚ç”¨å®šç¾©
 #define DX_MAKE
 
-// ƒCƒ“ƒNƒ‹[ƒh ------------------------------------------------------------------
+// ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ ------------------------------------------------------------------
 #include "DxHeap.h"
 #include "DxLib.h"
 #include "DxStatic.h"
@@ -24,7 +24,7 @@ namespace DxLib
 
 #endif // DX_NON_NAMESPACE
 
-// ƒ}ƒNƒ’è‹` --------------------------------------------------------------------
+// ãƒã‚¯ãƒ­å®šç¾© --------------------------------------------------------------------
 
 
 #if defined( DX_THREAD_SAFE ) || defined( DX_THREAD_SAFE_NETWORK_ONLY )
@@ -42,48 +42,48 @@ namespace DxLib
 
 #endif
 
-// \‘¢‘Ì’è‹` --------------------------------------------------------------------
+// æ§‹é€ ä½“å®šç¾© --------------------------------------------------------------------
 
-// ƒe[ƒuƒ‹-----------------------------------------------------------------------
+// ãƒ†ãƒ¼ãƒ–ãƒ«-----------------------------------------------------------------------
 
-// “à•”‘åˆæ•Ï”éŒ¾ --------------------------------------------------------------
+// å†…éƒ¨å¤§åŸŸå¤‰æ•°å®£è¨€ --------------------------------------------------------------
 
-// ŠÖ”ƒvƒƒgƒ^ƒCƒvéŒ¾-----------------------------------------------------------
+// é–¢æ•°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€-----------------------------------------------------------
 
-// V‚µ‚¢ƒƒ‚ƒŠƒ^ƒO‚ÉŠî–{î•ñ‚ğƒZƒbƒg‚·‚éŠÖ”
+// æ–°ã—ã„ãƒ¡ãƒ¢ãƒªã‚¿ã‚°ã«åŸºæœ¬æƒ…å ±ã‚’ã‚»ãƒƒãƒˆã™ã‚‹é–¢æ•°
 static	void		AllocMemTag_SetBaseInfo( HEAPINFO *Heap, ALLOCMEMTAG *MemTag, int Use, int NameLineWrite, const char *Name = NULL, int Line = 0, int NoMemoryDump = FALSE ) ;
 
-static	void		AllocMemTag_SetDebugData( ALLOCMEMTAG *MemTag ) ;							// ƒfƒoƒbƒO—Ìˆæ‚Éî•ñ‚ğƒZƒbƒg‚·‚é
-static	int			AllocMemTag_CheckDebugData( ALLOCMEMTAG *MemTag ) ;							// ƒfƒoƒbƒO—Ìˆæ‚Ìî•ñ‚ğƒ`ƒFƒbƒN‚·‚é( 0:³í  -1:ƒGƒ‰[ )
+static	void		AllocMemTag_SetDebugData( ALLOCMEMTAG *MemTag ) ;							// ãƒ‡ãƒãƒƒã‚°é ˜åŸŸã«æƒ…å ±ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
+static	int			AllocMemTag_CheckDebugData( ALLOCMEMTAG *MemTag ) ;							// ãƒ‡ãƒãƒƒã‚°é ˜åŸŸã®æƒ…å ±ã‚’ãƒã‚§ãƒƒã‚¯ã™ã‚‹( 0:æ­£å¸¸  -1:ã‚¨ãƒ©ãƒ¼ )
 
-// ƒƒ‚ƒŠ‚ª‘«‚è‚È‚©‚Á‚½ê‡‚É©“®“I‚ÉV‚µ‚¢ƒq[ƒv‚ğŠm•Û‚µ‚Ä‚»‚±‚©‚çƒƒ‚ƒŠ‚ğŠm•Û‚·‚éˆ—‚ğs‚¤
+// ãƒ¡ãƒ¢ãƒªãŒè¶³ã‚Šãªã‹ã£ãŸå ´åˆã«è‡ªå‹•çš„ã«æ–°ã—ã„ãƒ’ãƒ¼ãƒ—ã‚’ç¢ºä¿ã—ã¦ãã“ã‹ã‚‰ãƒ¡ãƒ¢ãƒªã‚’ç¢ºä¿ã™ã‚‹å‡¦ç†ã‚’è¡Œã†
 static	void *		AllocMemory_AutoAllocHeap( HEAPINFO *Heap, ALLOCMEM_SIZE_TYPE Size, ALLOCMEM_SIZE_TYPE Aligned, int Reverse, const char *Name, int Line, int NoMemoryDump ) ;
 
-static	void		Heap_AddNotUseSepMemTag( HEAPINFO *Heap, ALLOCMEMTAG *AddNotUseSepMemTag ) ;								// ƒq[ƒv‚Ì–¢g—pƒƒ‚ƒŠƒ^ƒOƒŠƒXƒg‚ÉV‚µ‚¢ƒƒ‚ƒŠƒ^ƒO‚ğ’Ç‰Á‚·‚é
-static	void		Heap_SubNotUseSepMemTag( HEAPINFO *Heap, ALLOCMEMTAG *SubNotUseSepMemTag ) ;								// ƒq[ƒv‚Ì–¢g—pƒƒ‚ƒŠƒ^ƒOƒŠƒXƒg‚©‚çw’è‚Ìƒƒ‚ƒŠƒ^ƒO‚ğŠO‚·
+static	void		Heap_AddNotUseSepMemTag( HEAPINFO *Heap, ALLOCMEMTAG *AddNotUseSepMemTag ) ;								// ãƒ’ãƒ¼ãƒ—ã®æœªä½¿ç”¨ãƒ¡ãƒ¢ãƒªã‚¿ã‚°ãƒªã‚¹ãƒˆã«æ–°ã—ã„ãƒ¡ãƒ¢ãƒªã‚¿ã‚°ã‚’è¿½åŠ ã™ã‚‹
+static	void		Heap_SubNotUseSepMemTag( HEAPINFO *Heap, ALLOCMEMTAG *SubNotUseSepMemTag ) ;								// ãƒ’ãƒ¼ãƒ—ã®æœªä½¿ç”¨ãƒ¡ãƒ¢ãƒªã‚¿ã‚°ãƒªã‚¹ãƒˆã‹ã‚‰æŒ‡å®šã®ãƒ¡ãƒ¢ãƒªã‚¿ã‚°ã‚’å¤–ã™
 
-static	void		Heap_AddNotUseSepHeapMem( HEAPINFO *Heap, HEAPMEMINFO *AddNotUseSepHeapMem ) ;								// ƒq[ƒv‚Ì–¢g—pƒq[ƒvƒƒ‚ƒŠî•ñƒŠƒXƒg‚ÉV‚µ‚¢ƒq[ƒvƒƒ‚ƒŠî•ñ‚ğ’Ç‰Á‚·‚é
-static	void		Heap_SubNotUseSepHeapMem( HEAPINFO *Heap, HEAPMEMINFO *SubNotUseSepHeapMem ) ;								// ƒq[ƒv‚Ì–¢g—pƒq[ƒvƒƒ‚ƒŠî•ñƒŠƒXƒg‚©‚çw’è‚Ìƒq[ƒvƒƒ‚ƒŠî•ñ‚ğŠO‚·
+static	void		Heap_AddNotUseSepHeapMem( HEAPINFO *Heap, HEAPMEMINFO *AddNotUseSepHeapMem ) ;								// ãƒ’ãƒ¼ãƒ—ã®æœªä½¿ç”¨ãƒ’ãƒ¼ãƒ—ãƒ¡ãƒ¢ãƒªæƒ…å ±ãƒªã‚¹ãƒˆã«æ–°ã—ã„ãƒ’ãƒ¼ãƒ—ãƒ¡ãƒ¢ãƒªæƒ…å ±ã‚’è¿½åŠ ã™ã‚‹
+static	void		Heap_SubNotUseSepHeapMem( HEAPINFO *Heap, HEAPMEMINFO *SubNotUseSepHeapMem ) ;								// ãƒ’ãƒ¼ãƒ—ã®æœªä½¿ç”¨ãƒ’ãƒ¼ãƒ—ãƒ¡ãƒ¢ãƒªæƒ…å ±ãƒªã‚¹ãƒˆã‹ã‚‰æŒ‡å®šã®ãƒ’ãƒ¼ãƒ—ãƒ¡ãƒ¢ãƒªæƒ…å ±ã‚’å¤–ã™
 
-static	void		Heap_AddUseMemTag(  HEAPINFO *Heap, ALLOCMEMTAG *AddUseMemTag, ALLOCMEMTAG *PrevUseMemTag ) ;				// ƒq[ƒv‚Ìg—pƒƒ‚ƒŠƒŠƒXƒg‚ÉV‚µ‚¢ƒƒ‚ƒŠƒ^ƒO‚ğ’Ç‰Á‚·‚é
-static	void		Heap_SubUseMemTag(  HEAPINFO *Heap, ALLOCMEMTAG *SubUseMemTag ) ;											// ƒq[ƒv‚Ìg—pƒƒ‚ƒŠƒŠƒXƒg‚©‚çw’è‚Ìƒƒ‚ƒŠƒ^ƒO‚ğŠO‚·
+static	void		Heap_AddUseMemTag(  HEAPINFO *Heap, ALLOCMEMTAG *AddUseMemTag, ALLOCMEMTAG *PrevUseMemTag ) ;				// ãƒ’ãƒ¼ãƒ—ã®ä½¿ç”¨ãƒ¡ãƒ¢ãƒªãƒªã‚¹ãƒˆã«æ–°ã—ã„ãƒ¡ãƒ¢ãƒªã‚¿ã‚°ã‚’è¿½åŠ ã™ã‚‹
+static	void		Heap_SubUseMemTag(  HEAPINFO *Heap, ALLOCMEMTAG *SubUseMemTag ) ;											// ãƒ’ãƒ¼ãƒ—ã®ä½¿ç”¨ãƒ¡ãƒ¢ãƒªãƒªã‚¹ãƒˆã‹ã‚‰æŒ‡å®šã®ãƒ¡ãƒ¢ãƒªã‚¿ã‚°ã‚’å¤–ã™
 
-// ALLOCMEMTYPE_SIMPLE—pŠÖ”
-static	void		Heap_AddFreeMemTag_Simple( HEAPINFO *Heap, ALLOCMEMTAG *AddFreeMemTag, ALLOCMEMTAG *PrevFreeMemTag ) ;		// ƒq[ƒv‚Ì‹ó‚«ƒƒ‚ƒŠƒŠƒXƒg‚ÉV‚µ‚¢ƒƒ‚ƒŠƒ^ƒO‚ğ’Ç‰Á‚·‚é( ALLOCMEMTYPE_SIMPLE—p )
-static	void		Heap_SubFreeMemTag_Simple( HEAPINFO *Heap, ALLOCMEMTAG *SubFreeMemTag ) ;									// ƒq[ƒv‚Ì‹ó‚«ƒƒ‚ƒŠƒŠƒXƒg‚©‚çw’è‚Ìƒƒ‚ƒŠƒ^ƒO‚ğŠO‚·( ALLOCMEMTYPE_SIMPLE—p )
+// ALLOCMEMTYPE_SIMPLEç”¨é–¢æ•°
+static	void		Heap_AddFreeMemTag_Simple( HEAPINFO *Heap, ALLOCMEMTAG *AddFreeMemTag, ALLOCMEMTAG *PrevFreeMemTag ) ;		// ãƒ’ãƒ¼ãƒ—ã®ç©ºããƒ¡ãƒ¢ãƒªãƒªã‚¹ãƒˆã«æ–°ã—ã„ãƒ¡ãƒ¢ãƒªã‚¿ã‚°ã‚’è¿½åŠ ã™ã‚‹( ALLOCMEMTYPE_SIMPLEç”¨ )
+static	void		Heap_SubFreeMemTag_Simple( HEAPINFO *Heap, ALLOCMEMTAG *SubFreeMemTag ) ;									// ãƒ’ãƒ¼ãƒ—ã®ç©ºããƒ¡ãƒ¢ãƒªãƒªã‚¹ãƒˆã‹ã‚‰æŒ‡å®šã®ãƒ¡ãƒ¢ãƒªã‚¿ã‚°ã‚’å¤–ã™( ALLOCMEMTYPE_SIMPLEç”¨ )
 
-// ALLOCMEMTYPE_TLSF—pŠÖ”
-static	void		Heap_AddFreeMemTag_TLSF( HEAPINFO *Heap, ALLOCMEMTAG *AddFreeMemTag ) ;										// ƒq[ƒv‚Ì‹ó‚«ƒƒ‚ƒŠƒŠƒXƒg‚ÉV‚µ‚¢ƒƒ‚ƒŠƒ^ƒO‚ğ’Ç‰Á‚·‚é( ALLOCMEMTYPE_TLSF—p )
-static	void		Heap_SubFreeMemTag_TLSF( HEAPINFO *Heap, ALLOCMEMTAG *SubFreeMemTag ) ;										// ƒq[ƒv‚Ì‹ó‚«ƒƒ‚ƒŠƒŠƒXƒg‚©‚çw’è‚Ìƒƒ‚ƒŠƒ^ƒO‚ğŠO‚·( ALLOCMEMTYPE_TLSF—p )
+// ALLOCMEMTYPE_TLSFç”¨é–¢æ•°
+static	void		Heap_AddFreeMemTag_TLSF( HEAPINFO *Heap, ALLOCMEMTAG *AddFreeMemTag ) ;										// ãƒ’ãƒ¼ãƒ—ã®ç©ºããƒ¡ãƒ¢ãƒªãƒªã‚¹ãƒˆã«æ–°ã—ã„ãƒ¡ãƒ¢ãƒªã‚¿ã‚°ã‚’è¿½åŠ ã™ã‚‹( ALLOCMEMTYPE_TLSFç”¨ )
+static	void		Heap_SubFreeMemTag_TLSF( HEAPINFO *Heap, ALLOCMEMTAG *SubFreeMemTag ) ;										// ãƒ’ãƒ¼ãƒ—ã®ç©ºããƒ¡ãƒ¢ãƒªãƒªã‚¹ãƒˆã‹ã‚‰æŒ‡å®šã®ãƒ¡ãƒ¢ãƒªã‚¿ã‚°ã‚’å¤–ã™( ALLOCMEMTYPE_TLSFç”¨ )
 
-// ƒwƒ‹ƒp[ŠÖ”
-static	void *		Heap_AllocMemory( HEAPINFO *Heap, ALLOCMEMTAG *MemTag, DWORD_PTR UseAddress, ALLOCMEM_SIZE_TYPE UserSize, ALLOCMEM_SIZE_TYPE Size, ALLOCMEM_SIZE_TYPE Aligned, int Reverse, const char *Name, int Line, int NoMemoryDump ) ;		// w’è‚Ì‹ó‚«ƒƒ‚ƒŠƒ^ƒO‚É‘Î‚µ‚Äw’èƒTƒCƒY‚Ìƒƒ‚ƒŠ‚ğŠm•Û‚µ‚½Û‚Ìˆ—‚ğs‚¤
-static	void		Heap_FreeMemory(  HEAPINFO *Heap, ALLOCMEMTAG *MemTag, int ReallocProcess = FALSE ) ;						// w’è‚Ìg—pƒƒ‚ƒŠƒ^ƒO‚ğ‰ğ•ú‚·‚éˆ—‚ğs‚¤
+// ãƒ˜ãƒ«ãƒ‘ãƒ¼é–¢æ•°
+static	void *		Heap_AllocMemory( HEAPINFO *Heap, ALLOCMEMTAG *MemTag, DWORD_PTR UseAddress, ALLOCMEM_SIZE_TYPE UserSize, ALLOCMEM_SIZE_TYPE Size, ALLOCMEM_SIZE_TYPE Aligned, int Reverse, const char *Name, int Line, int NoMemoryDump ) ;		// æŒ‡å®šã®ç©ºããƒ¡ãƒ¢ãƒªã‚¿ã‚°ã«å¯¾ã—ã¦æŒ‡å®šã‚µã‚¤ã‚ºã®ãƒ¡ãƒ¢ãƒªã‚’ç¢ºä¿ã—ãŸéš›ã®å‡¦ç†ã‚’è¡Œã†
+static	void		Heap_FreeMemory(  HEAPINFO *Heap, ALLOCMEMTAG *MemTag, int ReallocProcess = FALSE ) ;						// æŒ‡å®šã®ä½¿ç”¨ãƒ¡ãƒ¢ãƒªã‚¿ã‚°ã‚’è§£æ”¾ã™ã‚‹å‡¦ç†ã‚’è¡Œã†
 
 
-// ƒrƒbƒgŠÖŒW
+// ãƒ“ãƒƒãƒˆé–¢ä¿‚
 
-// ƒrƒbƒg‚Ì”‚ğ”‚¦‚é
+// ãƒ“ãƒƒãƒˆã®æ•°ã‚’æ•°ãˆã‚‹
 static __inline DWORD GetBitCount( ALLOCMEM_SIZE_TYPE Num )
 {
 #ifdef PLATFORM_64BIT
@@ -106,7 +106,7 @@ static __inline DWORD GetBitCount( ALLOCMEM_SIZE_TYPE Num )
 	return ( DWORD )Num ;
 }
 
-// ÅãˆÊƒrƒbƒg‚Ìƒrƒbƒg”Ô†‚ğæ“¾‚·‚é
+// æœ€ä¸Šä½ãƒ“ãƒƒãƒˆã®ãƒ“ãƒƒãƒˆç•ªå·ã‚’å–å¾—ã™ã‚‹
 static __inline int GetMSB( ALLOCMEM_SIZE_TYPE Num )
 {
 	if( Num == 0 )
@@ -131,7 +131,7 @@ static __inline int GetMSB( ALLOCMEM_SIZE_TYPE Num )
 	return ( int )GetBitCount( Num ) - 1 ;
 }
 
-// Å‰ºˆÊƒrƒbƒg‚Ìƒrƒbƒg”Ô†‚ğæ“¾‚·‚é
+// æœ€ä¸‹ä½ãƒ“ãƒƒãƒˆã®ãƒ“ãƒƒãƒˆç•ªå·ã‚’å–å¾—ã™ã‚‹
 static __inline int GetLSB( ALLOCMEM_SIZE_TYPE Num )
 {
 	if( Num == 0 )
@@ -157,7 +157,7 @@ static __inline int GetLSB( ALLOCMEM_SIZE_TYPE Num )
 #endif // PLATFORM_64BIT
 }
 
-// ƒƒ‚ƒŠŠm•Û‚ÌƒJƒeƒSƒŠ‚Q‚Ì’l‚ğæ“¾‚·‚é
+// ãƒ¡ãƒ¢ãƒªç¢ºä¿ã®ã‚«ãƒ†ã‚´ãƒªï¼’ã®å€¤ã‚’å–å¾—ã™ã‚‹
 static __inline DWORD GetSLI( ALLOCMEM_SIZE_TYPE Num, DWORD MSB, DWORD N )
 {
 #ifdef PLATFORM_64BIT
@@ -171,40 +171,40 @@ static __inline DWORD GetSLI( ALLOCMEM_SIZE_TYPE Num, DWORD MSB, DWORD N )
 #endif // PLATFORM_64BIT
 }
 
-// ƒvƒƒOƒ‰ƒ€ --------------------------------------------------------------------
+// ãƒ—ãƒ­ã‚°ãƒ©ãƒ  --------------------------------------------------------------------
 
-// V‚µ‚¢ƒƒ‚ƒŠƒ^ƒO‚ÉŠî–{î•ñ‚ğƒZƒbƒg‚·‚éŠÖ”
+// æ–°ã—ã„ãƒ¡ãƒ¢ãƒªã‚¿ã‚°ã«åŸºæœ¬æƒ…å ±ã‚’ã‚»ãƒƒãƒˆã™ã‚‹é–¢æ•°
 static	void		AllocMemTag_SetBaseInfo( HEAPINFO *Heap, ALLOCMEMTAG *MemTag, int Use, int NameLineWrite, const char *Name, int Line, int NoMemoryDump )
 {
-	// ƒ}ƒWƒbƒN‚h‚c‚ğƒZƒbƒg
+	// ãƒã‚¸ãƒƒã‚¯ï¼©ï¼¤ã‚’ã‚»ãƒƒãƒˆ
 	MemTag->MagicID = ALLOCMEMTAG_MAGIC_ID ;
 
 	if( Use )
 	{
-		// g—p’†ƒtƒ‰ƒO‚ğ—§‚Ä‚é
+		// ä½¿ç”¨ä¸­ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 		MemTag->Flag |= ALLOCMEMTAG_FLAG_USE ;
 	}
 	else
 	{
-		// g—p’†ƒtƒ‰ƒO‚ğ“|‚·
+		// ä½¿ç”¨ä¸­ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 		MemTag->Flag &= ~ALLOCMEMTAG_FLAG_USE ;
 	}
 
 	if( NoMemoryDump )
 	{
-		// ƒƒ‚ƒŠƒ_ƒ“ƒv‚ğs‚í‚È‚¢ƒtƒ‰ƒO‚ğ—§‚Ä‚é
+		// ãƒ¡ãƒ¢ãƒªãƒ€ãƒ³ãƒ—ã‚’è¡Œã‚ãªã„ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 		MemTag->Flag |= ALLOCMEMTAG_FLAG_NO_DUMP ;
 	}
 	else
 	{
-		// ƒƒ‚ƒŠƒ_ƒ“ƒv‚ğs‚í‚È‚¢ƒtƒ‰ƒO‚ğ“|‚·
+		// ãƒ¡ãƒ¢ãƒªãƒ€ãƒ³ãƒ—ã‚’è¡Œã‚ãªã„ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 		MemTag->Flag &= ~ALLOCMEMTAG_FLAG_NO_DUMP ;
 	}
 
-	// w’è‚ª‚ ‚éê‡‚Ì‚İ–¼‘O‚Æs”Ô†‚ğXV‚·‚é
+	// æŒ‡å®šãŒã‚ã‚‹å ´åˆã®ã¿åå‰ã¨è¡Œç•ªå·ã‚’æ›´æ–°ã™ã‚‹
 	if( NameLineWrite )
 	{
-		// –¼‘O‚ğ•Û‘¶
+		// åå‰ã‚’ä¿å­˜
 		if( Name == NULL )
 		{
 			CL_strcpy( DX_CHARCODEFORMAT_ASCII, MemTag->Name, Use ? "NoName" : "Free" ) ;
@@ -216,7 +216,7 @@ static	void		AllocMemTag_SetBaseInfo( HEAPINFO *Heap, ALLOCMEMTAG *MemTag, int U
 			CL_strcpy( DX_CHARCODEFORMAT_ASCII, MemTag->Name, &Name[ Length < ( ALLOCMEMTAG_NAMELENGTH - 1 ) ? 0 : Length - ( ALLOCMEMTAG_NAMELENGTH - 1 ) ] ) ;
 		}
 
-		// s”Ô†•Û‘¶
+		// è¡Œç•ªå·ä¿å­˜
 		if( Line < 0 )
 		{
 			Line = 0 ;
@@ -226,10 +226,10 @@ static	void		AllocMemTag_SetBaseInfo( HEAPINFO *Heap, ALLOCMEMTAG *MemTag, int U
 		MemTag->Flag |= ( WORD )( ( DWORD )Line >> 16 ) ;
 	}
 
-	// Š‘®‚µ‚Ä‚¢‚éƒq[ƒv‚ğƒZƒbƒg
+	// æ‰€å±ã—ã¦ã„ã‚‹ãƒ’ãƒ¼ãƒ—ã‚’ã‚»ãƒƒãƒˆ
 	MemTag->Owner	= Heap ;
 
-	// ID‚ğƒZƒbƒg
+	// IDã‚’ã‚»ãƒƒãƒˆ
 	MemTag->IDHigh	= ( BYTE )( Heap->AllocMemoryID >> 16 ) ;
 	MemTag->IDLow	= ( WORD )Heap->AllocMemoryID ;
 	Heap->AllocMemoryID ++ ;
@@ -238,11 +238,11 @@ static	void		AllocMemTag_SetBaseInfo( HEAPINFO *Heap, ALLOCMEMTAG *MemTag, int U
 		Heap->AllocMemoryID = 0 ;
 	}
 
-	// ŠÔ‚ğƒZƒbƒg
+	// æ™‚é–“ã‚’ã‚»ãƒƒãƒˆ
 	MemTag->Time	= ( WORD )Heap->AllocMemoryTime ;
 }
 
-// ƒfƒoƒbƒO—Ìˆæ‚Éî•ñ‚ğƒZƒbƒg‚·‚éŠÖ”
+// ãƒ‡ãƒãƒƒã‚°é ˜åŸŸã«æƒ…å ±ã‚’ã‚»ãƒƒãƒˆã™ã‚‹é–¢æ•°
 static	void		AllocMemTag_SetDebugData( ALLOCMEMTAG *MemTag )
 {
 	DWORD *CheckAddress ;
@@ -260,7 +260,7 @@ static	void		AllocMemTag_SetDebugData( ALLOCMEMTAG *MemTag )
 	CheckAddress[ 3 ] = 0xaaaaaaaa ;
 }
 
-// ƒfƒoƒbƒO—Ìˆæ‚Ìî•ñ‚ğƒ`ƒFƒbƒN‚·‚é( 0:³í  -1:ƒGƒ‰[ )
+// ãƒ‡ãƒãƒƒã‚°é ˜åŸŸã®æƒ…å ±ã‚’ãƒã‚§ãƒƒã‚¯ã™ã‚‹( 0:æ­£å¸¸  -1:ã‚¨ãƒ©ãƒ¼ )
 static	int			AllocMemTag_CheckDebugData( ALLOCMEMTAG *MemTag )
 {
 	DWORD *CheckAddress ;
@@ -280,23 +280,23 @@ static	int			AllocMemTag_CheckDebugData( ALLOCMEMTAG *MemTag )
 	return 0 ;
 }
 
-// ƒƒ‚ƒŠ‚ª‘«‚è‚È‚©‚Á‚½ê‡‚É©“®“I‚ÉV‚µ‚¢ƒq[ƒv‚ğŠm•Û‚µ‚Ä‚»‚±‚©‚çƒƒ‚ƒŠ‚ğŠm•Û‚·‚éˆ—‚ğs‚¤
+// ãƒ¡ãƒ¢ãƒªãŒè¶³ã‚Šãªã‹ã£ãŸå ´åˆã«è‡ªå‹•çš„ã«æ–°ã—ã„ãƒ’ãƒ¼ãƒ—ã‚’ç¢ºä¿ã—ã¦ãã“ã‹ã‚‰ãƒ¡ãƒ¢ãƒªã‚’ç¢ºä¿ã™ã‚‹å‡¦ç†ã‚’è¡Œã†
 static	void *		AllocMemory_AutoAllocHeap( HEAPINFO *Heap, ALLOCMEM_SIZE_TYPE Size, ALLOCMEM_SIZE_TYPE Aligned, int Reverse, const char *Name, int Line, int NoMemoryDump )
 {
 	ALLOCMEM_SIZE_TYPE RequestHeapSize ;
 	ALLOCMEM_SIZE_TYPE AutoAllocUnitSize ;
 
-	// ©“®ƒƒ‚ƒŠŠm•Û‚ğ‚µ‚È‚¢ê‡‚Í NULL ‚ğ•Ô‚·
+	// è‡ªå‹•ãƒ¡ãƒ¢ãƒªç¢ºä¿ã‚’ã—ãªã„å ´åˆã¯ NULL ã‚’è¿”ã™
 	if( Heap->AutoAlloc == FALSE )
 	{
 		return NULL ;
 	}
 
-	// V‚µ‚¢ƒq[ƒv—pƒƒ‚ƒŠ—Ìˆæ‚ÌƒTƒCƒY‚ğŒˆ’è
+	// æ–°ã—ã„ãƒ’ãƒ¼ãƒ—ç”¨ãƒ¡ãƒ¢ãƒªé ˜åŸŸã®ã‚µã‚¤ã‚ºã‚’æ±ºå®š
 	RequestHeapSize = Size ;
 
-	// TLSF ‚Ìê‡‚Í—v‹ƒƒ‚ƒŠƒTƒCƒY‚æ‚è‚à‘å•‚É‘å‚«‚ÈƒTƒCƒY‚Ìƒƒ‚ƒŠ‚ğ
-	// •K—v‚Æ‚·‚éê‡‚ª‚ ‚é‚Ì‚ÅŒˆ’èˆ—‚ğ‚à‚¤­‚µÚ‚µ‚­s‚¤
+	// TLSF ã®å ´åˆã¯è¦æ±‚ãƒ¡ãƒ¢ãƒªã‚µã‚¤ã‚ºã‚ˆã‚Šã‚‚å¤§å¹…ã«å¤§ããªã‚µã‚¤ã‚ºã®ãƒ¡ãƒ¢ãƒªã‚’
+	// å¿…è¦ã¨ã™ã‚‹å ´åˆãŒã‚ã‚‹ã®ã§æ±ºå®šå‡¦ç†ã‚’ã‚‚ã†å°‘ã—è©³ã—ãè¡Œã†
 	if( Heap->AllocType == ALLOCMEMTYPE_TLSF )
 	{
 		ALLOCMEM_SIZE_TYPE AddSize ;
@@ -305,7 +305,7 @@ static	void *		AllocMemory_AutoAllocHeap( HEAPINFO *Heap, ALLOCMEM_SIZE_TYPE Siz
 		DWORD TempFLI ;
 		DWORD TempSLI ;
 
-		// •K—vƒTƒCƒY‚ª•K‚¸û‚Ü‚é•K—v‚ª‚ ‚é‚Ì‚ÅAƒJƒeƒSƒŠ‚Q‚ÌƒCƒ“ƒfƒbƒNƒX‚Í‚Ğ‚Æ‚Â‘å‚«‚­‚È‚é
+		// å¿…è¦ã‚µã‚¤ã‚ºãŒå¿…ãšåã¾ã‚‹å¿…è¦ãŒã‚ã‚‹ã®ã§ã€ã‚«ãƒ†ã‚´ãƒªï¼’ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã¯ã²ã¨ã¤å¤§ãããªã‚‹
 		FLI = GetMSB( Size ) ;
 		SLI = GetSLI( Size, FLI, ALLOCMEM_CATEGORY_2_SHIFT_NUM ) ;
 		SLI += 1 ;
@@ -315,7 +315,7 @@ static	void *		AllocMemory_AutoAllocHeap( HEAPINFO *Heap, ALLOCMEM_SIZE_TYPE Siz
 			FLI ++ ;
 		}
 
-		// ’Ç‰Á‚·‚éƒq[ƒvƒƒ‚ƒŠ‚ÉŠó–]‚·‚éƒƒ‚ƒŠ—e—Ê‚ğŒˆ’è‚·‚é
+		// è¿½åŠ ã™ã‚‹ãƒ’ãƒ¼ãƒ—ãƒ¡ãƒ¢ãƒªã«å¸Œæœ›ã™ã‚‹ãƒ¡ãƒ¢ãƒªå®¹é‡ã‚’æ±ºå®šã™ã‚‹
 		do
 		{
 			AddSize = RequestHeapSize / 100 ;
@@ -330,7 +330,7 @@ static	void *		AllocMemory_AutoAllocHeap( HEAPINFO *Heap, ALLOCMEM_SIZE_TYPE Siz
 		}while( TempFLI <= FLI && TempSLI < SLI ) ;
 	}
 
-	// V‚µ‚¢ƒq[ƒv—pƒƒ‚ƒŠ—Ìˆæ‚ğ’Ç‰Á
+	// æ–°ã—ã„ãƒ’ãƒ¼ãƒ—ç”¨ãƒ¡ãƒ¢ãƒªé ˜åŸŸã‚’è¿½åŠ 
 	AutoAllocUnitSize = Heap->AutoAllocUnitSize ;
 	for(;;)
 	{
@@ -339,21 +339,21 @@ static	void *		AllocMemory_AutoAllocHeap( HEAPINFO *Heap, ALLOCMEM_SIZE_TYPE Siz
 			break ;
 		}
 
-		// Šm•Û‚É¸”s‚µ‚½‚ç©“®Šm•ÛƒTƒCƒY‚ğ”¼•ª‚É‚µ‚ÄÄ“x‚·
+		// ç¢ºä¿ã«å¤±æ•—ã—ãŸã‚‰è‡ªå‹•ç¢ºä¿ã‚µã‚¤ã‚ºã‚’åŠåˆ†ã«ã—ã¦å†åº¦è©¦ã™
 		AutoAllocUnitSize /= 2 ;
 
-		// ©“®Šm•ÛŠm•ÛƒTƒCƒY‚ª 1MB ˆÈ‰º‚¾‚Á‚½‚çƒGƒ‰[I—¹
+		// è‡ªå‹•ç¢ºä¿ç¢ºä¿ã‚µã‚¤ã‚ºãŒ 1MB ä»¥ä¸‹ã ã£ãŸã‚‰ã‚¨ãƒ©ãƒ¼çµ‚äº†
 		if( AutoAllocUnitSize < 1 * 1024 * 1024 )
 		{
 			return NULL ;
 		}
 	}
 
-	// ƒƒ‚ƒŠ‚ğŠm•Û
+	// ãƒ¡ãƒ¢ãƒªã‚’ç¢ºä¿
 	return AllocMemory( Heap, Size, Aligned, Reverse, Name, Line, NoMemoryDump ) ;
 }
 
-// ƒq[ƒv‚Ì–¢g—pƒƒ‚ƒŠƒ^ƒOƒŠƒXƒg‚ÉV‚µ‚¢ƒƒ‚ƒŠƒ^ƒO‚ğ’Ç‰Á‚·‚é
+// ãƒ’ãƒ¼ãƒ—ã®æœªä½¿ç”¨ãƒ¡ãƒ¢ãƒªã‚¿ã‚°ãƒªã‚¹ãƒˆã«æ–°ã—ã„ãƒ¡ãƒ¢ãƒªã‚¿ã‚°ã‚’è¿½åŠ ã™ã‚‹
 static	void		Heap_AddNotUseSepMemTag( HEAPINFO *Heap, ALLOCMEMTAG *AddNotUseSepMemTag )
 {
 	Heap->SepTagArrayUseNum -- ;
@@ -367,7 +367,7 @@ static	void		Heap_AddNotUseSepMemTag( HEAPINFO *Heap, ALLOCMEMTAG *AddNotUseSepM
 	}
 }
 
-// ƒq[ƒv‚Ì–¢g—pƒƒ‚ƒŠƒ^ƒOƒŠƒXƒg‚©‚çw’è‚Ìƒƒ‚ƒŠƒ^ƒO‚ğŠO‚·
+// ãƒ’ãƒ¼ãƒ—ã®æœªä½¿ç”¨ãƒ¡ãƒ¢ãƒªã‚¿ã‚°ãƒªã‚¹ãƒˆã‹ã‚‰æŒ‡å®šã®ãƒ¡ãƒ¢ãƒªã‚¿ã‚°ã‚’å¤–ã™
 static	void		Heap_SubNotUseSepMemTag( HEAPINFO *Heap, ALLOCMEMTAG *SubNotUseSepMemTag )
 {
 	Heap->SepTagArrayUseNum ++ ;
@@ -390,7 +390,7 @@ static	void		Heap_SubNotUseSepMemTag( HEAPINFO *Heap, ALLOCMEMTAG *SubNotUseSepM
 	SubNotUseSepMemTag->ListNext = NULL ;
 }
 
-// ƒq[ƒv‚Ì–¢g—pƒq[ƒvƒƒ‚ƒŠî•ñƒŠƒXƒg‚ÉV‚µ‚¢ƒq[ƒvƒƒ‚ƒŠî•ñ‚ğ’Ç‰Á‚·‚é
+// ãƒ’ãƒ¼ãƒ—ã®æœªä½¿ç”¨ãƒ’ãƒ¼ãƒ—ãƒ¡ãƒ¢ãƒªæƒ…å ±ãƒªã‚¹ãƒˆã«æ–°ã—ã„ãƒ’ãƒ¼ãƒ—ãƒ¡ãƒ¢ãƒªæƒ…å ±ã‚’è¿½åŠ ã™ã‚‹
 static	void		Heap_AddNotUseSepHeapMem( HEAPINFO *Heap, HEAPMEMINFO *AddNotUseSepHeapMem )
 {
 	Heap->SepHeapMemArrayUseNum -- ;
@@ -404,7 +404,7 @@ static	void		Heap_AddNotUseSepHeapMem( HEAPINFO *Heap, HEAPMEMINFO *AddNotUseSep
 	}
 }
 
-// ƒq[ƒv‚Ì–¢g—pƒq[ƒvƒƒ‚ƒŠî•ñƒŠƒXƒg‚©‚çw’è‚Ìƒq[ƒvƒƒ‚ƒŠî•ñ‚ğŠO‚·
+// ãƒ’ãƒ¼ãƒ—ã®æœªä½¿ç”¨ãƒ’ãƒ¼ãƒ—ãƒ¡ãƒ¢ãƒªæƒ…å ±ãƒªã‚¹ãƒˆã‹ã‚‰æŒ‡å®šã®ãƒ’ãƒ¼ãƒ—ãƒ¡ãƒ¢ãƒªæƒ…å ±ã‚’å¤–ã™
 static	void		Heap_SubNotUseSepHeapMem( HEAPINFO *Heap, HEAPMEMINFO *SubNotUseSepHeapMem )
 {
 	Heap->SepHeapMemArrayUseNum ++ ;
@@ -427,10 +427,10 @@ static	void		Heap_SubNotUseSepHeapMem( HEAPINFO *Heap, HEAPMEMINFO *SubNotUseSep
 	SubNotUseSepHeapMem->Next = NULL ;
 }
 
-// ƒq[ƒv‚Ìg—pƒƒ‚ƒŠƒŠƒXƒg‚ÉV‚µ‚¢ƒƒ‚ƒŠƒ^ƒO‚ğ’Ç‰Á‚·‚é
+// ãƒ’ãƒ¼ãƒ—ã®ä½¿ç”¨ãƒ¡ãƒ¢ãƒªãƒªã‚¹ãƒˆã«æ–°ã—ã„ãƒ¡ãƒ¢ãƒªã‚¿ã‚°ã‚’è¿½åŠ ã™ã‚‹
 static	void		Heap_AddUseMemTag( HEAPINFO *Heap, ALLOCMEMTAG *AddUseMemTag, ALLOCMEMTAG *PrevUseMemTag )
 {
-	// ˆê”Ô‹ß‚¢g—pƒƒ‚ƒŠƒ^ƒO‚ğ’T‚·
+	// ä¸€ç•ªè¿‘ã„ä½¿ç”¨ãƒ¡ãƒ¢ãƒªã‚¿ã‚°ã‚’æ¢ã™
 	while( PrevUseMemTag != NULL && ( PrevUseMemTag->Flag & ALLOCMEMTAG_FLAG_USE ) == 0 )
 	{
 		PrevUseMemTag = PrevUseMemTag->Prev ;
@@ -458,7 +458,7 @@ static	void		Heap_AddUseMemTag( HEAPINFO *Heap, ALLOCMEMTAG *AddUseMemTag, ALLOC
 	}
 }
 
-// ƒq[ƒv‚Ìg—pƒƒ‚ƒŠƒŠƒXƒg‚©‚çw’è‚Ìƒƒ‚ƒŠƒ^ƒO‚ğŠO‚·
+// ãƒ’ãƒ¼ãƒ—ã®ä½¿ç”¨ãƒ¡ãƒ¢ãƒªãƒªã‚¹ãƒˆã‹ã‚‰æŒ‡å®šã®ãƒ¡ãƒ¢ãƒªã‚¿ã‚°ã‚’å¤–ã™
 static	void		Heap_SubUseMemTag( HEAPINFO *Heap, ALLOCMEMTAG *SubUseMemTag )
 {
 	if( SubUseMemTag->ListPrev == NULL )
@@ -483,7 +483,7 @@ static	void		Heap_SubUseMemTag( HEAPINFO *Heap, ALLOCMEMTAG *SubUseMemTag )
 	SubUseMemTag->ListNext = NULL ;
 }
 
-// ƒq[ƒv‚Ì‹ó‚«ƒƒ‚ƒŠƒŠƒXƒg‚ÉV‚µ‚¢ƒƒ‚ƒŠƒ^ƒO‚ğ’Ç‰Á‚·‚é( ALLOCMEMTYPE_SIMPLE—p )
+// ãƒ’ãƒ¼ãƒ—ã®ç©ºããƒ¡ãƒ¢ãƒªãƒªã‚¹ãƒˆã«æ–°ã—ã„ãƒ¡ãƒ¢ãƒªã‚¿ã‚°ã‚’è¿½åŠ ã™ã‚‹( ALLOCMEMTYPE_SIMPLEç”¨ )
 static	void		Heap_AddFreeMemTag_Simple( HEAPINFO *Heap, ALLOCMEMTAG *AddFreeMemTag, ALLOCMEMTAG *PrevFreeMemTag )
 {
 	AddFreeMemTag->ListPrev = PrevFreeMemTag ;
@@ -508,7 +508,7 @@ static	void		Heap_AddFreeMemTag_Simple( HEAPINFO *Heap, ALLOCMEMTAG *AddFreeMemT
 	}
 }
 
-// ƒq[ƒv‚Ì‹ó‚«ƒƒ‚ƒŠƒŠƒXƒg‚©‚çw’è‚Ìƒƒ‚ƒŠƒ^ƒO‚ğŠO‚·( ALLOCMEMTYPE_SIMPLE—p )
+// ãƒ’ãƒ¼ãƒ—ã®ç©ºããƒ¡ãƒ¢ãƒªãƒªã‚¹ãƒˆã‹ã‚‰æŒ‡å®šã®ãƒ¡ãƒ¢ãƒªã‚¿ã‚°ã‚’å¤–ã™( ALLOCMEMTYPE_SIMPLEç”¨ )
 static	void		Heap_SubFreeMemTag_Simple( HEAPINFO *Heap, ALLOCMEMTAG *SubFreeMemTag )
 {
 	if( SubFreeMemTag->ListPrev == NULL )
@@ -533,26 +533,26 @@ static	void		Heap_SubFreeMemTag_Simple( HEAPINFO *Heap, ALLOCMEMTAG *SubFreeMemT
 	SubFreeMemTag->ListNext = NULL ;
 }
 
-// ƒq[ƒv‚Ì‹ó‚«ƒƒ‚ƒŠƒŠƒXƒg‚ÉV‚µ‚¢ƒƒ‚ƒŠƒ^ƒO‚ğ’Ç‰Á‚·‚é( ALLOCMEMTYPE_TLSF—p )
+// ãƒ’ãƒ¼ãƒ—ã®ç©ºããƒ¡ãƒ¢ãƒªãƒªã‚¹ãƒˆã«æ–°ã—ã„ãƒ¡ãƒ¢ãƒªã‚¿ã‚°ã‚’è¿½åŠ ã™ã‚‹( ALLOCMEMTYPE_TLSFç”¨ )
 static	void		Heap_AddFreeMemTag_TLSF( HEAPINFO *Heap, ALLOCMEMTAG *AddFreeMemTag )
 {
-	// ƒJƒeƒSƒŠ‚P‚ğæ“¾‚·‚é
+	// ã‚«ãƒ†ã‚´ãƒªï¼‘ã‚’å–å¾—ã™ã‚‹
 	AddFreeMemTag->FLI = ( BYTE )GetMSB( AddFreeMemTag->Size ) ;
 
-	// ƒJƒeƒSƒŠ‚Q‚ğæ“¾‚·‚é
+	// ã‚«ãƒ†ã‚´ãƒªï¼’ã‚’å–å¾—ã™ã‚‹
 	AddFreeMemTag->SLI = ( BYTE )GetSLI( AddFreeMemTag->Size, AddFreeMemTag->FLI, ALLOCMEM_CATEGORY_2_SHIFT_NUM ) ;
 
-	// ƒJƒeƒSƒŠ‚P‚ÌƒtƒŠ[ƒrƒbƒg‚ğ—§‚Ä‚é
+	// ã‚«ãƒ†ã‚´ãƒªï¼‘ã®ãƒ•ãƒªãƒ¼ãƒ“ãƒƒãƒˆã‚’ç«‹ã¦ã‚‹
 #ifdef PLATFORM_64BIT
 	Heap->FreeTagBitList1 |= ULL_NUM( 1 ) << AddFreeMemTag->FLI ;
 #else // PLATFORM_64BIT
 	Heap->FreeTagBitList1 |= 1            << AddFreeMemTag->FLI ;
 #endif // PLATFORM_64BIT
 
-	// ƒJƒeƒSƒŠ‚Q‚ÌƒtƒŠ[ƒrƒbƒg‚ğ—§‚Ä‚é
+	// ã‚«ãƒ†ã‚´ãƒªï¼’ã®ãƒ•ãƒªãƒ¼ãƒ“ãƒƒãƒˆã‚’ç«‹ã¦ã‚‹
 	Heap->FreeTagBitList2[ AddFreeMemTag->FLI ] |= 1 << AddFreeMemTag->SLI ;
 
-	// ‹ó‚«ƒƒ‚ƒŠƒŠƒXƒg‚Ìæ“ª‚É’Ç‰Á‚·‚é
+	// ç©ºããƒ¡ãƒ¢ãƒªãƒªã‚¹ãƒˆã®å…ˆé ­ã«è¿½åŠ ã™ã‚‹
 	AddFreeMemTag->ListPrev = NULL ;
 	AddFreeMemTag->ListNext = Heap->FreeFirstTagArray[ AddFreeMemTag->FLI ][ AddFreeMemTag->SLI ] ;
 	Heap->FreeFirstTagArray[ AddFreeMemTag->FLI ][ AddFreeMemTag->SLI ] = AddFreeMemTag ;
@@ -567,10 +567,10 @@ static	void		Heap_AddFreeMemTag_TLSF( HEAPINFO *Heap, ALLOCMEMTAG *AddFreeMemTag
 	}
 }
 
-// ƒq[ƒv‚Ì‹ó‚«ƒƒ‚ƒŠƒŠƒXƒg‚©‚çw’è‚Ìƒƒ‚ƒŠƒ^ƒO‚ğŠO‚·( ALLOCMEMTYPE_TLSF—p )
+// ãƒ’ãƒ¼ãƒ—ã®ç©ºããƒ¡ãƒ¢ãƒªãƒªã‚¹ãƒˆã‹ã‚‰æŒ‡å®šã®ãƒ¡ãƒ¢ãƒªã‚¿ã‚°ã‚’å¤–ã™( ALLOCMEMTYPE_TLSFç”¨ )
 static	void		Heap_SubFreeMemTag_TLSF( HEAPINFO *Heap, ALLOCMEMTAG *SubFreeMemTag )
 {
-	// ‹ó‚«ƒƒ‚ƒŠƒŠƒXƒg‚©‚çŠO‚·
+	// ç©ºããƒ¡ãƒ¢ãƒªãƒªã‚¹ãƒˆã‹ã‚‰å¤–ã™
 	if( SubFreeMemTag->ListPrev == NULL )
 	{
 		Heap->FreeFirstTagArray[ SubFreeMemTag->FLI ][ SubFreeMemTag->SLI ] = SubFreeMemTag->ListNext ;
@@ -591,12 +591,12 @@ static	void		Heap_SubFreeMemTag_TLSF( HEAPINFO *Heap, ALLOCMEMTAG *SubFreeMemTag
 	SubFreeMemTag->ListPrev = NULL ;
 	SubFreeMemTag->ListNext = NULL ;
 
-	// ‚à‚µg—p‚µ‚Ä‚¢‚½ƒJƒeƒSƒŠ‚Q‚©‚ç‚Ğ‚Æ‚Â‚à‹ó‚«ƒƒ‚ƒŠƒ^ƒO‚ª–³‚­‚È‚Á‚½‚çƒtƒŠ[ƒrƒbƒg‚ğ“|‚·
+	// ã‚‚ã—ä½¿ç”¨ã—ã¦ã„ãŸã‚«ãƒ†ã‚´ãƒªï¼’ã‹ã‚‰ã²ã¨ã¤ã‚‚ç©ºããƒ¡ãƒ¢ãƒªã‚¿ã‚°ãŒç„¡ããªã£ãŸã‚‰ãƒ•ãƒªãƒ¼ãƒ“ãƒƒãƒˆã‚’å€’ã™
 	if( Heap->FreeFirstTagArray[ SubFreeMemTag->FLI ][ SubFreeMemTag->SLI ] == NULL )
 	{
 		Heap->FreeTagBitList2[ SubFreeMemTag->FLI ] &= ~( 1 << SubFreeMemTag->SLI ) ;
 
-		// ‚à‚µg—p‚µ‚Ä‚¢‚½ƒJƒeƒSƒŠ‚PŠÇŠ‚ÌƒJƒeƒSƒŠ‚Q‚©‚ç‚Ğ‚Æ‚Â‚à‹ó‚«ƒƒ‚ƒŠƒ^ƒO‚ª–³‚­‚È‚Á‚½‚çƒtƒŠ[ƒrƒbƒg‚ğ“|‚·
+		// ã‚‚ã—ä½¿ç”¨ã—ã¦ã„ãŸã‚«ãƒ†ã‚´ãƒªï¼‘ç®¡è½„ã®ã‚«ãƒ†ã‚´ãƒªï¼’ã‹ã‚‰ã²ã¨ã¤ã‚‚ç©ºããƒ¡ãƒ¢ãƒªã‚¿ã‚°ãŒç„¡ããªã£ãŸã‚‰ãƒ•ãƒªãƒ¼ãƒ“ãƒƒãƒˆã‚’å€’ã™
 		if( Heap->FreeTagBitList2[ SubFreeMemTag->FLI ] == 0 )
 		{
 			#ifdef PLATFORM_64BIT
@@ -608,14 +608,14 @@ static	void		Heap_SubFreeMemTag_TLSF( HEAPINFO *Heap, ALLOCMEMTAG *SubFreeMemTag
 	}
 }
 
-// ƒwƒ‹ƒp[ŠÖ”
+// ãƒ˜ãƒ«ãƒ‘ãƒ¼é–¢æ•°
 
-// w’è‚Ì‹ó‚«ƒƒ‚ƒŠƒ^ƒO‚É‘Î‚µ‚Äw’è‚Ìƒƒ‚ƒŠ‚ğŠm•Û‚µ‚½Û‚Ìˆ—‚ğs‚¤
+// æŒ‡å®šã®ç©ºããƒ¡ãƒ¢ãƒªã‚¿ã‚°ã«å¯¾ã—ã¦æŒ‡å®šã®ãƒ¡ãƒ¢ãƒªã‚’ç¢ºä¿ã—ãŸéš›ã®å‡¦ç†ã‚’è¡Œã†
 static void * Heap_AllocMemory( HEAPINFO *Heap, ALLOCMEMTAG *MemTag, DWORD_PTR UseAddress, ALLOCMEM_SIZE_TYPE UserSize, ALLOCMEM_SIZE_TYPE Size, ALLOCMEM_SIZE_TYPE Aligned, int Reverse, const char *Name, int Line, int NoMemoryDump )
 {
 	void *ReturnAddress = NULL ;
 
-	// ƒ^ƒO”z—ñ‚ğ•ª—£‚µ‚Ä‚¢‚éê‡‚Í‹ó‚«‚ªˆê‚Â‚Í–³‚¢‚ÆƒGƒ‰[
+	// ã‚¿ã‚°é…åˆ—ã‚’åˆ†é›¢ã—ã¦ã„ã‚‹å ´åˆã¯ç©ºããŒä¸€ã¤ã¯ç„¡ã„ã¨ã‚¨ãƒ©ãƒ¼
 	if( Heap->UseSeparateInfo )
 	{
 		if( Heap->SepTagArrayNotUseFirst == NULL )
@@ -624,53 +624,53 @@ static void * Heap_AllocMemory( HEAPINFO *Heap, ALLOCMEMTAG *MemTag, DWORD_PTR U
 		}
 	}
 
-	// g—p‚µ‚Ä‚¢‚éƒƒ‚ƒŠ—Ìˆæ‚Ì”‚ğ‘‚â‚·
+	// ä½¿ç”¨ã—ã¦ã„ã‚‹ãƒ¡ãƒ¢ãƒªé ˜åŸŸã®æ•°ã‚’å¢—ã‚„ã™
 	Heap->UseTagNum ++ ;
 
-	// ƒƒ‚ƒŠ—Ìˆæ‚ğg—p‚µ‚Ä‚¢‚é”‚ğ‘‚â‚·
+	// ãƒ¡ãƒ¢ãƒªé ˜åŸŸã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹æ•°ã‚’å¢—ã‚„ã™
 	MemTag->UseHeapMem->UseMemTagCount ++ ;
 
-	// ƒŠƒo[ƒXŠ‚Âƒƒ‚ƒŠŠm•Ûƒ^ƒCƒv‚ª ALLOCMEMTYPE_SIMPLE ‚Ìê‡‚ÆA‚»‚êˆÈŠO‚Åˆ—‚ğ•ªŠò
+	// ãƒªãƒãƒ¼ã‚¹ä¸”ã¤ãƒ¡ãƒ¢ãƒªç¢ºä¿ã‚¿ã‚¤ãƒ—ãŒ ALLOCMEMTYPE_SIMPLE ã®å ´åˆã¨ã€ãã‚Œä»¥å¤–ã§å‡¦ç†ã‚’åˆ†å²
 	if( Heap->AllocType == ALLOCMEMTYPE_SIMPLE && Reverse )
 	{
-		// ‹ó‚«ƒƒ‚ƒŠ‚©‚ç•K—v‚Èƒƒ‚ƒŠƒTƒCƒY‚ğˆø‚¢‚Ä‚àAc‚Á‚½‹ó‚«ƒƒ‚ƒŠ‚Éƒƒ‚ƒŠƒ^ƒO‚ª“ü‚ê‚ç‚ê‚éê‡‚Í
-		// Šù‘¶‚Ì‹ó‚«ƒƒ‚ƒŠƒ^ƒO‚Í‚»‚Ì‚Ü‚Ü‚ÉAg—pƒƒ‚ƒŠƒ^ƒO‚ğV‹K‚Éì¬‚·‚é
+		// ç©ºããƒ¡ãƒ¢ãƒªã‹ã‚‰å¿…è¦ãªãƒ¡ãƒ¢ãƒªã‚µã‚¤ã‚ºã‚’å¼•ã„ã¦ã‚‚ã€æ®‹ã£ãŸç©ºããƒ¡ãƒ¢ãƒªã«ãƒ¡ãƒ¢ãƒªã‚¿ã‚°ãŒå…¥ã‚Œã‚‰ã‚Œã‚‹å ´åˆã¯
+		// æ—¢å­˜ã®ç©ºããƒ¡ãƒ¢ãƒªã‚¿ã‚°ã¯ãã®ã¾ã¾ã«ã€ä½¿ç”¨ãƒ¡ãƒ¢ãƒªã‚¿ã‚°ã‚’æ–°è¦ã«ä½œæˆã™ã‚‹
 		{
 			ALLOCMEM_SIZE_TYPE	NewMemTagAddress = 0 ;
 			ALLOCMEM_SIZE_TYPE	AfterFreeSize ;
 
-			// c‚éƒtƒŠ[ƒƒ‚ƒŠ‚ÌƒTƒCƒY‚ğZo
+			// æ®‹ã‚‹ãƒ•ãƒªãƒ¼ãƒ¡ãƒ¢ãƒªã®ã‚µã‚¤ã‚ºã‚’ç®—å‡º
 			if( Heap->UseSeparateInfo )
 			{
 				AfterFreeSize = UseAddress - ( DWORD_PTR )MemTag->AllocAddress ;
 			}
 			else
 			{
-				// V‚½‚Èƒƒ‚ƒŠƒ^ƒO‚ÌƒAƒhƒŒƒX‚ğZo
+				// æ–°ãŸãªãƒ¡ãƒ¢ãƒªã‚¿ã‚°ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ç®—å‡º
 				{
 					NewMemTagAddress = UseAddress - ( ALLOCMEMTAG_TOTAL_SIZE - ALLOCMEMTAG_DEBUGAREA_SIZE ) ;
 
-					// ƒAƒ‰ƒCƒ“‚ğ“K—p
+					// ã‚¢ãƒ©ã‚¤ãƒ³ã‚’é©ç”¨
 					NewMemTagAddress = NewMemTagAddress / Aligned * Aligned ;
 				}
 
-				// c‚éƒtƒŠ[ƒƒ‚ƒŠ‚ÌƒTƒCƒY‚ğZo
+				// æ®‹ã‚‹ãƒ•ãƒªãƒ¼ãƒ¡ãƒ¢ãƒªã®ã‚µã‚¤ã‚ºã‚’ç®—å‡º
 				AfterFreeSize = NewMemTagAddress - ( DWORD_PTR )MemTag ;
 			}
 
-			// ˆê‚Âƒ^ƒO‚ğì‚é‚±‚Æ‚ªo—ˆ‚é‚©ƒ`ƒFƒbƒN
+			// ä¸€ã¤ã‚¿ã‚°ã‚’ä½œã‚‹ã“ã¨ãŒå‡ºæ¥ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 			if( ( Heap->UseSeparateInfo          && AfterFreeSize >= ALLOCMEM_MIN_ALIGNED ) ||
 				( Heap->UseSeparateInfo == FALSE && AfterFreeSize >= ALLOCMEMTAG_MIN_SIZE ) )
 			{
 				ALLOCMEMTAG * NewUseMemTag ;
 
-				// ì‚ê‚éê‡‚ÍV‚µ‚¢g—pƒƒ‚ƒŠƒ^ƒO‚ğì¬
+				// ä½œã‚Œã‚‹å ´åˆã¯æ–°ã—ã„ä½¿ç”¨ãƒ¡ãƒ¢ãƒªã‚¿ã‚°ã‚’ä½œæˆ
 				if( Heap->UseSeparateInfo )
 				{
 					NewUseMemTag = Heap->SepTagArrayNotUseFirst ;
 					Heap_SubNotUseSepMemTag( Heap, NewUseMemTag ) ;
 
-					// g—p‚·‚éƒƒ‚ƒŠ—Ìˆæ‚ÌƒAƒhƒŒƒX‚ğƒZƒbƒg
+					// ä½¿ç”¨ã™ã‚‹ãƒ¡ãƒ¢ãƒªé ˜åŸŸã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ã‚»ãƒƒãƒˆ
 					NewUseMemTag->AllocAddress = ( void * )UseAddress ;
 				}
 				else
@@ -678,14 +678,14 @@ static void * Heap_AllocMemory( HEAPINFO *Heap, ALLOCMEMTAG *MemTag, DWORD_PTR U
 					NewUseMemTag = ( ALLOCMEMTAG * )NewMemTagAddress ;
 				}
 
-				// Šî–{î•ñ‚ğƒZƒbƒg
+				// åŸºæœ¬æƒ…å ±ã‚’ã‚»ãƒƒãƒˆ
 				NewUseMemTag->Flag = 0 ;
 				AllocMemTag_SetBaseInfo( Heap, NewUseMemTag, TRUE, TRUE, Name, Line, NoMemoryDump ) ;
 
-				// g—p‚µ‚Ä‚¢‚éƒƒ‚ƒŠ—Ìˆæ‚ğƒZƒbƒg
+				// ä½¿ç”¨ã—ã¦ã„ã‚‹ãƒ¡ãƒ¢ãƒªé ˜åŸŸã‚’ã‚»ãƒƒãƒˆ
 				NewUseMemTag->UseHeapMem = MemTag->UseHeapMem ;
 
-				// ‘OŒã‚Ìƒƒ‚ƒŠ—Ìˆæ‚Æ˜A‘±‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©‚ğƒZƒbƒg
+				// å‰å¾Œã®ãƒ¡ãƒ¢ãƒªé ˜åŸŸã¨é€£ç¶šã—ã¦ã„ã‚‹ã‹ã©ã†ã‹ã‚’ã‚»ãƒƒãƒˆ
 				NewUseMemTag->Flag |= ALLOCMEMTAG_FLAG_PREV_CONNECT ;
 				if( MemTag->Flag & ALLOCMEMTAG_FLAG_NEXT_CONNECT )
 				{
@@ -696,10 +696,10 @@ static void * Heap_AllocMemory( HEAPINFO *Heap, ALLOCMEMTAG *MemTag, DWORD_PTR U
 					NewUseMemTag->Flag &= ~ALLOCMEMTAG_FLAG_NEXT_CONNECT ;
 				}
 
-				// Šù‘¶‚Ìƒƒ‚ƒŠŠm•Ûƒ^ƒO‚ÌŸ‚Í•K‚¸ƒƒ‚ƒŠ—Ìˆæ‚ª˜A‘±‚µ‚Ä‚¢‚é
+				// æ—¢å­˜ã®ãƒ¡ãƒ¢ãƒªç¢ºä¿ã‚¿ã‚°ã®æ¬¡ã¯å¿…ãšãƒ¡ãƒ¢ãƒªé ˜åŸŸãŒé€£ç¶šã—ã¦ã„ã‚‹
 				MemTag->Flag |= ALLOCMEMTAG_FLAG_NEXT_CONNECT ;
 
-				// ƒTƒCƒY‚ğƒZƒbƒg
+				// ã‚µã‚¤ã‚ºã‚’ã‚»ãƒƒãƒˆ
 				if( Heap->UseSeparateInfo )
 				{
 					NewUseMemTag->Size = ( ( DWORD_PTR )MemTag->AllocAddress + MemTag->Size ) - ( DWORD_PTR )UseAddress ;
@@ -708,11 +708,11 @@ static void * Heap_AllocMemory( HEAPINFO *Heap, ALLOCMEMTAG *MemTag, DWORD_PTR U
 				{
 					NewUseMemTag->Size = ( ( DWORD_PTR )MemTag + MemTag->Size ) - ( DWORD_PTR )NewUseMemTag ;
 
-					// ƒfƒoƒbƒO—Ìˆæ‚Éî•ñ‚ğƒZƒbƒg
+					// ãƒ‡ãƒãƒƒã‚°é ˜åŸŸã«æƒ…å ±ã‚’ã‚»ãƒƒãƒˆ
 					AllocMemTag_SetDebugData( NewUseMemTag ) ;
 				}
 
-				// ‘OŒã‚Ìƒƒ‚ƒŠ‚ÆƒŠƒXƒg‚ğ˜AŒ‹
+				// å‰å¾Œã®ãƒ¡ãƒ¢ãƒªã¨ãƒªã‚¹ãƒˆã‚’é€£çµ
 				{
 					NewUseMemTag->Prev = MemTag ;
 					NewUseMemTag->Next = MemTag->Next ;
@@ -727,10 +727,10 @@ static void * Heap_AllocMemory( HEAPINFO *Heap, ALLOCMEMTAG *MemTag, DWORD_PTR U
 					}
 				}
 
-				// g—pƒƒ‚ƒŠƒŠƒXƒg‚É’Ç‰Á‚·‚é
+				// ä½¿ç”¨ãƒ¡ãƒ¢ãƒªãƒªã‚¹ãƒˆã«è¿½åŠ ã™ã‚‹
 				Heap_AddUseMemTag( Heap, NewUseMemTag, MemTag->Prev ) ;
 
-				// ¡‚Ü‚Å‚Ìƒƒ‚ƒŠƒ^ƒO‚ÌƒTƒCƒY‚ğ•ÏX
+				// ä»Šã¾ã§ã®ãƒ¡ãƒ¢ãƒªã‚¿ã‚°ã®ã‚µã‚¤ã‚ºã‚’å¤‰æ›´
 				if( Heap->UseSeparateInfo )
 				{
 					MemTag->Size = AfterFreeSize ;
@@ -739,20 +739,20 @@ static void * Heap_AllocMemory( HEAPINFO *Heap, ALLOCMEMTAG *MemTag, DWORD_PTR U
 				{
 					MemTag->Size = NewMemTagAddress - ( DWORD_PTR )MemTag ;
 
-					// ¡‚Ü‚Å‚Ìƒƒ‚ƒŠƒ^ƒO‚ÌƒTƒCƒY‚ª•ÏX‚³‚ê‚½‚Ì‚ÅAƒfƒoƒbƒO—Ìˆæ‚ğÄ“xƒZƒbƒg
+					// ä»Šã¾ã§ã®ãƒ¡ãƒ¢ãƒªã‚¿ã‚°ã®ã‚µã‚¤ã‚ºãŒå¤‰æ›´ã•ã‚ŒãŸã®ã§ã€ãƒ‡ãƒãƒƒã‚°é ˜åŸŸã‚’å†åº¦ã‚»ãƒƒãƒˆ
 					AllocMemTag_SetDebugData( MemTag ) ;
 				}
 
-				// ‹ó‚«ƒƒ‚ƒŠ‚ÌƒTƒCƒY‚ğŒ¸‚ç‚·
+				// ç©ºããƒ¡ãƒ¢ãƒªã®ã‚µã‚¤ã‚ºã‚’æ¸›ã‚‰ã™
 				Heap->TotalFreeSize -= NewUseMemTag->Size ;
 
-				// g—pƒƒ‚ƒŠ‚ÌƒTƒCƒY‚ğ‘‚â‚·
+				// ä½¿ç”¨ãƒ¡ãƒ¢ãƒªã®ã‚µã‚¤ã‚ºã‚’å¢—ã‚„ã™
 				Heap->TotalUseSize += NewUseMemTag->Size ;
 
-				// w’è‚³‚ê‚½ƒTƒCƒY‚ğƒZƒbƒg
+				// æŒ‡å®šã•ã‚ŒãŸã‚µã‚¤ã‚ºã‚’ã‚»ãƒƒãƒˆ
 				NewUseMemTag->UserSize = UserSize ;
 
-				// •Ô‚·ƒAƒhƒŒƒX‚ğƒZƒbƒg
+				// è¿”ã™ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ã‚»ãƒƒãƒˆ
 				NewUseMemTag->UserAddress = ( void * )UseAddress ;
 				if( Heap->UseSeparateInfo )
 				{
@@ -762,18 +762,18 @@ static void * Heap_AllocMemory( HEAPINFO *Heap, ALLOCMEMTAG *MemTag, DWORD_PTR U
 				{
 					ReturnAddress = NewUseMemTag->UserAddress ;
 
-					// •Ô‚·ƒAƒhƒŒƒX‚Ì‚SƒoƒCƒgŒã‚ë‚Éƒ^ƒO‚Ü‚Å‚ÌƒoƒCƒg”‚ğƒZƒbƒg
+					// è¿”ã™ã‚¢ãƒ‰ãƒ¬ã‚¹ã®ï¼”ãƒã‚¤ãƒˆå¾Œã‚ã«ã‚¿ã‚°ã¾ã§ã®ãƒã‚¤ãƒˆæ•°ã‚’ã‚»ãƒƒãƒˆ
 					*( ( DWORD * )( ( BYTE * )NewUseMemTag->UserAddress - sizeof( DWORD ) ) ) = ( DWORD )( UseAddress - ( DWORD_PTR )NewUseMemTag ) ;
 				}
 			}
 			else
 			{
-				// “ü‚ç‚È‚¢ê‡‚ÍAŠù‘¶‚Ìƒƒ‚ƒŠƒ^ƒO‘S•”‚ğg—pƒƒ‚ƒŠƒ^ƒO‚É‚µ‚Ä‚µ‚Ü‚¤
+				// å…¥ã‚‰ãªã„å ´åˆã¯ã€æ—¢å­˜ã®ãƒ¡ãƒ¢ãƒªã‚¿ã‚°å…¨éƒ¨ã‚’ä½¿ç”¨ãƒ¡ãƒ¢ãƒªã‚¿ã‚°ã«ã—ã¦ã—ã¾ã†
 
-				// w’è‚³‚ê‚½ƒTƒCƒY‚ğƒZƒbƒg
+				// æŒ‡å®šã•ã‚ŒãŸã‚µã‚¤ã‚ºã‚’ã‚»ãƒƒãƒˆ
 				MemTag->UserSize = UserSize ;
 
-				// •Ô‚·ƒAƒhƒŒƒX‚ğƒZƒbƒg
+				// è¿”ã™ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ã‚»ãƒƒãƒˆ
 				MemTag->UserAddress = ( void * )UseAddress ;
 				if( Heap->UseSeparateInfo )
 				{
@@ -783,26 +783,26 @@ static void * Heap_AllocMemory( HEAPINFO *Heap, ALLOCMEMTAG *MemTag, DWORD_PTR U
 				{
 					ReturnAddress = MemTag->UserAddress ;
 
-					// •Ô‚·ƒAƒhƒŒƒX‚Ì‚SƒoƒCƒgŒã‚ë‚Éƒ^ƒO‚Ü‚Å‚ÌƒoƒCƒg”‚ğƒZƒbƒg
+					// è¿”ã™ã‚¢ãƒ‰ãƒ¬ã‚¹ã®ï¼”ãƒã‚¤ãƒˆå¾Œã‚ã«ã‚¿ã‚°ã¾ã§ã®ãƒã‚¤ãƒˆæ•°ã‚’ã‚»ãƒƒãƒˆ
 					*( ( DWORD * )( ( BYTE * )MemTag->UserAddress - sizeof( DWORD ) ) ) = ( DWORD )( UseAddress - ( DWORD_PTR )MemTag ) ;
 				}
 
-				// ƒƒ‚ƒŠƒ^ƒO‚ğ‹ó‚«ƒƒ‚ƒŠƒŠƒXƒg‚©‚çŠO‚·
+				// ãƒ¡ãƒ¢ãƒªã‚¿ã‚°ã‚’ç©ºããƒ¡ãƒ¢ãƒªãƒªã‚¹ãƒˆã‹ã‚‰å¤–ã™
 				Heap_SubFreeMemTag_Simple( Heap, MemTag ) ;
 
-				// Šî–{î•ñ‚ğƒZƒbƒg
+				// åŸºæœ¬æƒ…å ±ã‚’ã‚»ãƒƒãƒˆ
 				AllocMemTag_SetBaseInfo( Heap, MemTag, TRUE, TRUE, Name, Line, NoMemoryDump ) ;
 
-				// g—pƒƒ‚ƒŠƒŠƒXƒg‚É’Ç‰Á‚·‚é
+				// ä½¿ç”¨ãƒ¡ãƒ¢ãƒªãƒªã‚¹ãƒˆã«è¿½åŠ ã™ã‚‹
 				Heap_AddUseMemTag( Heap, MemTag, MemTag->Prev ) ;
 
-				// ‹ó‚«ƒƒ‚ƒŠ‚Ì”‚ğŒ¸‚ç‚·
+				// ç©ºããƒ¡ãƒ¢ãƒªã®æ•°ã‚’æ¸›ã‚‰ã™
 				Heap->FreeTagNum -- ;
 
-				// ‹ó‚«ƒƒ‚ƒŠ‚ÌƒTƒCƒY‚ğŒ¸‚ç‚·
+				// ç©ºããƒ¡ãƒ¢ãƒªã®ã‚µã‚¤ã‚ºã‚’æ¸›ã‚‰ã™
 				Heap->TotalFreeSize -= MemTag->Size ;
 
-				// g—pƒƒ‚ƒŠ‚ÌƒTƒCƒY‚ğ‘‚â‚·
+				// ä½¿ç”¨ãƒ¡ãƒ¢ãƒªã®ã‚µã‚¤ã‚ºã‚’å¢—ã‚„ã™
 				Heap->TotalUseSize += MemTag->Size ;
 			}
 		}
@@ -811,10 +811,10 @@ static void * Heap_AllocMemory( HEAPINFO *Heap, ALLOCMEMTAG *MemTag, DWORD_PTR U
 	{
 		ALLOCMEMTAG *	FreePrevMemTag ;
 
-		// w’è‚³‚ê‚½ƒTƒCƒY‚ğƒZƒbƒg
+		// æŒ‡å®šã•ã‚ŒãŸã‚µã‚¤ã‚ºã‚’ã‚»ãƒƒãƒˆ
 		MemTag->UserSize = UserSize ;
 
-		// •Ô‚·ƒAƒhƒŒƒX‚ğƒZƒbƒg
+		// è¿”ã™ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ã‚»ãƒƒãƒˆ
 		MemTag->UserAddress = ( void * )UseAddress ;
 		if( Heap->UseSeparateInfo )
 		{
@@ -824,14 +824,14 @@ static void * Heap_AllocMemory( HEAPINFO *Heap, ALLOCMEMTAG *MemTag, DWORD_PTR U
 		{
 			ReturnAddress = MemTag->UserAddress ;
 
-			// •Ô‚·ƒAƒhƒŒƒX‚Ì‚SƒoƒCƒgŒã‚ë‚Éƒ^ƒO‚Ü‚Å‚ÌƒoƒCƒg”‚ğƒZƒbƒg
+			// è¿”ã™ã‚¢ãƒ‰ãƒ¬ã‚¹ã®ï¼”ãƒã‚¤ãƒˆå¾Œã‚ã«ã‚¿ã‚°ã¾ã§ã®ãƒã‚¤ãƒˆæ•°ã‚’ã‚»ãƒƒãƒˆ
 			*( ( DWORD * )( ( BYTE * )MemTag->UserAddress - sizeof( DWORD ) ) ) = ( DWORD )( UseAddress - ( DWORD_PTR )MemTag ) ;
 		}
 
-		// ‹ó‚«ƒƒ‚ƒŠƒ^ƒO‚Ìˆê‚Â‘O‚Ìƒ^ƒO‚ğ‹L‰¯‚µ‚Ä‚¨‚­
+		// ç©ºããƒ¡ãƒ¢ãƒªã‚¿ã‚°ã®ä¸€ã¤å‰ã®ã‚¿ã‚°ã‚’è¨˜æ†¶ã—ã¦ãŠã
 		FreePrevMemTag = MemTag->ListPrev ;
 
-		// ƒƒ‚ƒŠƒ^ƒO‚ğ‹ó‚«ƒƒ‚ƒŠƒŠƒXƒg‚©‚çŠO‚·
+		// ãƒ¡ãƒ¢ãƒªã‚¿ã‚°ã‚’ç©ºããƒ¡ãƒ¢ãƒªãƒªã‚¹ãƒˆã‹ã‚‰å¤–ã™
 		if( Heap->AllocType == ALLOCMEMTYPE_SIMPLE )
 		{
 			Heap_SubFreeMemTag_Simple( Heap, MemTag ) ;
@@ -842,48 +842,48 @@ static void * Heap_AllocMemory( HEAPINFO *Heap, ALLOCMEMTAG *MemTag, DWORD_PTR U
 			Heap_SubFreeMemTag_TLSF( Heap, MemTag ) ;
 		}
 
-		// Šî–{î•ñ‚ğƒZƒbƒg‚·‚é
+		// åŸºæœ¬æƒ…å ±ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 		AllocMemTag_SetBaseInfo( Heap, MemTag, TRUE, TRUE, Name, Line, NoMemoryDump ) ;
 
-		// g—pƒƒ‚ƒŠƒŠƒXƒg‚É’Ç‰Á‚·‚é
+		// ä½¿ç”¨ãƒ¡ãƒ¢ãƒªãƒªã‚¹ãƒˆã«è¿½åŠ ã™ã‚‹
 		Heap_AddUseMemTag( Heap, MemTag, MemTag->Prev ) ;
 
-		// ‹ó‚«ƒƒ‚ƒŠ‚©‚ç•K—v‚Èƒƒ‚ƒŠƒTƒCƒY‚ğˆø‚¢‚Ä‚àAc‚Á‚½‹ó‚«ƒƒ‚ƒŠ‚Éƒƒ‚ƒŠƒ^ƒO‚ª“ü‚ê‚ç‚ê‚éê‡‚Í‹ó‚«ƒƒ‚ƒŠƒ^ƒO‚ğ‘‚â‚·
+		// ç©ºããƒ¡ãƒ¢ãƒªã‹ã‚‰å¿…è¦ãªãƒ¡ãƒ¢ãƒªã‚µã‚¤ã‚ºã‚’å¼•ã„ã¦ã‚‚ã€æ®‹ã£ãŸç©ºããƒ¡ãƒ¢ãƒªã«ãƒ¡ãƒ¢ãƒªã‚¿ã‚°ãŒå…¥ã‚Œã‚‰ã‚Œã‚‹å ´åˆã¯ç©ºããƒ¡ãƒ¢ãƒªã‚¿ã‚°ã‚’å¢—ã‚„ã™
 		{
 			ALLOCMEM_SIZE_TYPE	NextAddress = 0 ;
 			ALLOCMEM_SIZE_TYPE	NextFreeSize ;
 
-			// c‚é‹ó‚«ƒƒ‚ƒŠ‚ÌƒTƒCƒY‚ğZo
+			// æ®‹ã‚‹ç©ºããƒ¡ãƒ¢ãƒªã®ã‚µã‚¤ã‚ºã‚’ç®—å‡º
 			if( Heap->UseSeparateInfo )
 			{
-				// c‚é‹ó‚«ƒƒ‚ƒŠ‚ÌƒTƒCƒY‚ğZo
+				// æ®‹ã‚‹ç©ºããƒ¡ãƒ¢ãƒªã®ã‚µã‚¤ã‚ºã‚’ç®—å‡º
 				NextFreeSize = ( ( DWORD_PTR )MemTag->AllocAddress + MemTag->Size ) - ( UseAddress + Size ) ;
 			}
 			else
 			{
-				// ‹ó‚«ƒƒ‚ƒŠ‚ğŠm•Û‚µ‚½ê‡‚ÉŸ‚Ìƒ^ƒO‚ğ”z’u‚Å‚«‚éƒAƒhƒŒƒX‚ğZo
+				// ç©ºããƒ¡ãƒ¢ãƒªã‚’ç¢ºä¿ã—ãŸå ´åˆã«æ¬¡ã®ã‚¿ã‚°ã‚’é…ç½®ã§ãã‚‹ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ç®—å‡º
 				NextAddress = UseAddress + Size + ALLOCMEMTAG_DEBUGAREA_SIZE ;
 
-				// ƒAƒ‰ƒCƒ“‚ğ“K—p
+				// ã‚¢ãƒ©ã‚¤ãƒ³ã‚’é©ç”¨
 				NextAddress = ( NextAddress + ALLOCMEM_MIN_ALIGNED - 1 ) / ALLOCMEM_MIN_ALIGNED * ALLOCMEM_MIN_ALIGNED ;
 
-				// c‚é‹ó‚«ƒƒ‚ƒŠ‚ÌƒTƒCƒY‚ğZo
+				// æ®‹ã‚‹ç©ºããƒ¡ãƒ¢ãƒªã®ã‚µã‚¤ã‚ºã‚’ç®—å‡º
 				NextFreeSize = ( ( DWORD_PTR )MemTag + MemTag->Size ) - NextAddress ;
 			}
 
-			// ˆê‚Âƒ^ƒO‚ğì‚é‚±‚Æ‚ªo—ˆ‚é‚©ƒ`ƒFƒbƒN
+			// ä¸€ã¤ã‚¿ã‚°ã‚’ä½œã‚‹ã“ã¨ãŒå‡ºæ¥ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 			if( ( Heap->UseSeparateInfo          && NextFreeSize >= ALLOCMEM_MIN_ALIGNED ) ||
 				( Heap->UseSeparateInfo == FALSE && NextFreeSize >= ALLOCMEMTAG_MIN_SIZE ) )
 			{
 				ALLOCMEMTAG * NewFreeMemTag ;
 
-				// ì‚ê‚éê‡‚ÍV‚µ‚¢‹ó‚«ƒƒ‚ƒŠƒ^ƒO‚ğì¬
+				// ä½œã‚Œã‚‹å ´åˆã¯æ–°ã—ã„ç©ºããƒ¡ãƒ¢ãƒªã‚¿ã‚°ã‚’ä½œæˆ
 				if( Heap->UseSeparateInfo )
 				{
 					NewFreeMemTag = Heap->SepTagArrayNotUseFirst ;
 					Heap_SubNotUseSepMemTag( Heap, NewFreeMemTag ) ;
 
-					// g—p‚·‚éƒƒ‚ƒŠ—Ìˆæ‚ÌƒAƒhƒŒƒX‚ğƒZƒbƒg
+					// ä½¿ç”¨ã™ã‚‹ãƒ¡ãƒ¢ãƒªé ˜åŸŸã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ã‚»ãƒƒãƒˆ
 					NewFreeMemTag->AllocAddress = ( void * )( UseAddress + Size ) ;
 				}
 				else
@@ -891,14 +891,14 @@ static void * Heap_AllocMemory( HEAPINFO *Heap, ALLOCMEMTAG *MemTag, DWORD_PTR U
 					NewFreeMemTag = ( ALLOCMEMTAG * )NextAddress ;
 				}
 
-				// Šî–{î•ñ‚ğƒZƒbƒg
+				// åŸºæœ¬æƒ…å ±ã‚’ã‚»ãƒƒãƒˆ
 				NewFreeMemTag->Flag = 0 ;
 				AllocMemTag_SetBaseInfo( Heap, NewFreeMemTag, FALSE, TRUE, "Free", 0 ) ;
 
-				// g—p‚µ‚Ä‚¢‚éƒƒ‚ƒŠ—Ìˆæ‚ğƒZƒbƒg
+				// ä½¿ç”¨ã—ã¦ã„ã‚‹ãƒ¡ãƒ¢ãƒªé ˜åŸŸã‚’ã‚»ãƒƒãƒˆ
 				NewFreeMemTag->UseHeapMem = MemTag->UseHeapMem ;
 
-				// ‘OŒã‚Ìƒƒ‚ƒŠ—Ìˆæ‚Æ˜A‘±‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©‚ğƒZƒbƒg
+				// å‰å¾Œã®ãƒ¡ãƒ¢ãƒªé ˜åŸŸã¨é€£ç¶šã—ã¦ã„ã‚‹ã‹ã©ã†ã‹ã‚’ã‚»ãƒƒãƒˆ
 				NewFreeMemTag->Flag = ALLOCMEMTAG_FLAG_PREV_CONNECT ;
 				if( MemTag->Flag & ALLOCMEMTAG_FLAG_NEXT_CONNECT )
 				{
@@ -909,7 +909,7 @@ static void * Heap_AllocMemory( HEAPINFO *Heap, ALLOCMEMTAG *MemTag, DWORD_PTR U
 					NewFreeMemTag->Flag &= ~ALLOCMEMTAG_FLAG_NEXT_CONNECT ;
 				}
 
-				// V‚µ‚¢‹ó‚«ƒƒ‚ƒŠƒ^ƒO‚ÌƒTƒCƒY‚ğƒZƒbƒg
+				// æ–°ã—ã„ç©ºããƒ¡ãƒ¢ãƒªã‚¿ã‚°ã®ã‚µã‚¤ã‚ºã‚’ã‚»ãƒƒãƒˆ
 				if( Heap->UseSeparateInfo )
 				{
 					NewFreeMemTag->Size		= NextFreeSize ;
@@ -918,11 +918,11 @@ static void * Heap_AllocMemory( HEAPINFO *Heap, ALLOCMEMTAG *MemTag, DWORD_PTR U
 				{
 					NewFreeMemTag->Size		= ( ( DWORD_PTR )MemTag + MemTag->Size ) - ( DWORD_PTR )NewFreeMemTag ;
 
-					// ƒfƒoƒbƒO—Ìˆæ‚Éî•ñ‚ğƒZƒbƒg
+					// ãƒ‡ãƒãƒƒã‚°é ˜åŸŸã«æƒ…å ±ã‚’ã‚»ãƒƒãƒˆ
 					AllocMemTag_SetDebugData( NewFreeMemTag ) ;
 				}
 
-				// ‘OŒã‚Ìƒƒ‚ƒŠ‚ÆƒŠƒXƒg‚ğ˜AŒ‹
+				// å‰å¾Œã®ãƒ¡ãƒ¢ãƒªã¨ãƒªã‚¹ãƒˆã‚’é€£çµ
 				{
 					NewFreeMemTag->Prev = MemTag ;
 					NewFreeMemTag->Next = MemTag->Next ;
@@ -937,10 +937,10 @@ static void * Heap_AllocMemory( HEAPINFO *Heap, ALLOCMEMTAG *MemTag, DWORD_PTR U
 					}
 				}
 
-				// Šù‘¶‚Ìƒƒ‚ƒŠŠm•Ûƒ^ƒO‚ÌŸ‚Í•K‚¸ƒƒ‚ƒŠ—Ìˆæ‚ª˜A‘±‚µ‚Ä‚¢‚é
+				// æ—¢å­˜ã®ãƒ¡ãƒ¢ãƒªç¢ºä¿ã‚¿ã‚°ã®æ¬¡ã¯å¿…ãšãƒ¡ãƒ¢ãƒªé ˜åŸŸãŒé€£ç¶šã—ã¦ã„ã‚‹
 				MemTag->Flag |= ALLOCMEMTAG_FLAG_NEXT_CONNECT ;
 
-				// ‹ó‚«ƒƒ‚ƒŠƒŠƒXƒg‚É’Ç‰Á
+				// ç©ºããƒ¡ãƒ¢ãƒªãƒªã‚¹ãƒˆã«è¿½åŠ 
 				if( Heap->AllocType == ALLOCMEMTYPE_SIMPLE )
 				{
 					Heap_AddFreeMemTag_Simple( Heap, NewFreeMemTag, FreePrevMemTag ) ;
@@ -951,7 +951,7 @@ static void * Heap_AllocMemory( HEAPINFO *Heap, ALLOCMEMTAG *MemTag, DWORD_PTR U
 					Heap_AddFreeMemTag_TLSF( Heap, NewFreeMemTag ) ;
 				}
 
-				// ¡‚Ü‚Å‚Ìƒƒ‚ƒŠƒ^ƒO‚ÌƒTƒCƒY‚ğ•ÏX
+				// ä»Šã¾ã§ã®ãƒ¡ãƒ¢ãƒªã‚¿ã‚°ã®ã‚µã‚¤ã‚ºã‚’å¤‰æ›´
 				if( Heap->UseSeparateInfo )
 				{
 					MemTag->Size = ( DWORD_PTR )NewFreeMemTag->AllocAddress - ( DWORD_PTR )MemTag->AllocAddress ;
@@ -960,22 +960,22 @@ static void * Heap_AllocMemory( HEAPINFO *Heap, ALLOCMEMTAG *MemTag, DWORD_PTR U
 				{
 					MemTag->Size = NextAddress - ( DWORD_PTR )MemTag ;
 
-					// ¡‚Ü‚Å‚Ìƒƒ‚ƒŠƒ^ƒO‚ÌƒTƒCƒY‚ª•ÏX‚³‚ê‚½‚Ì‚ÅAƒfƒoƒbƒO—Ìˆæ‚ğÄ“xƒZƒbƒg
+					// ä»Šã¾ã§ã®ãƒ¡ãƒ¢ãƒªã‚¿ã‚°ã®ã‚µã‚¤ã‚ºãŒå¤‰æ›´ã•ã‚ŒãŸã®ã§ã€ãƒ‡ãƒãƒƒã‚°é ˜åŸŸã‚’å†åº¦ã‚»ãƒƒãƒˆ
 					AllocMemTag_SetDebugData( MemTag ) ;
 				}
 			}
 			else
 			{
-				// ì‚é‚±‚Æ‚ªo—ˆ‚È‚¢ê‡‚Í‹ó‚«ƒƒ‚ƒŠƒ^ƒO‚ğ‘‚â‚³‚È‚¢
+				// ä½œã‚‹ã“ã¨ãŒå‡ºæ¥ãªã„å ´åˆã¯ç©ºããƒ¡ãƒ¢ãƒªã‚¿ã‚°ã‚’å¢—ã‚„ã•ãªã„
 
-				// ‹ó‚«ƒƒ‚ƒŠ‚Ì”‚ğŒ¸‚ç‚·
+				// ç©ºããƒ¡ãƒ¢ãƒªã®æ•°ã‚’æ¸›ã‚‰ã™
 				Heap->FreeTagNum -- ;
 			}
 
-			// ‹ó‚«ƒƒ‚ƒŠ‚ÌƒTƒCƒY‚ğŒ¸‚ç‚·
+			// ç©ºããƒ¡ãƒ¢ãƒªã®ã‚µã‚¤ã‚ºã‚’æ¸›ã‚‰ã™
 			Heap->TotalFreeSize -= MemTag->Size ;
 
-			// g—pƒƒ‚ƒŠ‚ÌƒTƒCƒY‚ğ‘‚â‚·
+			// ä½¿ç”¨ãƒ¡ãƒ¢ãƒªã®ã‚µã‚¤ã‚ºã‚’å¢—ã‚„ã™
 			Heap->TotalUseSize += MemTag->Size ;
 		}
 	}
@@ -983,37 +983,37 @@ static void * Heap_AllocMemory( HEAPINFO *Heap, ALLOCMEMTAG *MemTag, DWORD_PTR U
 	return ReturnAddress ;
 }
 
-// w’è‚Ìg—pƒƒ‚ƒŠƒ^ƒO‚ğ‰ğ•ú‚·‚éˆ—‚ğs‚¤
+// æŒ‡å®šã®ä½¿ç”¨ãƒ¡ãƒ¢ãƒªã‚¿ã‚°ã‚’è§£æ”¾ã™ã‚‹å‡¦ç†ã‚’è¡Œã†
 static void Heap_FreeMemory( HEAPINFO *Heap, ALLOCMEMTAG *MemTag, int ReallocProcess )
 {
-	// g—p‚µ‚Ä‚¢‚éƒƒ‚ƒŠ‚Ì”‚ğŒ¸‚ç‚·
+	// ä½¿ç”¨ã—ã¦ã„ã‚‹ãƒ¡ãƒ¢ãƒªã®æ•°ã‚’æ¸›ã‚‰ã™
 	Heap->UseTagNum -- ;
 
-	// ƒƒ‚ƒŠ—Ìˆæ‚ğg—p‚µ‚Ä‚¢‚é”‚ğŒ¸‚ç‚·
+	// ãƒ¡ãƒ¢ãƒªé ˜åŸŸã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹æ•°ã‚’æ¸›ã‚‰ã™
 	MemTag->UseHeapMem->UseMemTagCount -- ;
 
-	// ‹ó‚«ƒƒ‚ƒŠ‚Ì”‚ğ‘‚â‚·
+	// ç©ºããƒ¡ãƒ¢ãƒªã®æ•°ã‚’å¢—ã‚„ã™
 	Heap->FreeTagNum ++ ;
 
-	// g—pƒƒ‚ƒŠ‚ÌƒTƒCƒY‚ğŒ¸‚ç‚·
+	// ä½¿ç”¨ãƒ¡ãƒ¢ãƒªã®ã‚µã‚¤ã‚ºã‚’æ¸›ã‚‰ã™
 	Heap->TotalUseSize -= MemTag->Size ;
 
-	// ‹ó‚«ƒƒ‚ƒŠ‚ÌƒTƒCƒY‚ğ‘‚â‚·
+	// ç©ºããƒ¡ãƒ¢ãƒªã®ã‚µã‚¤ã‚ºã‚’å¢—ã‚„ã™
 	Heap->TotalFreeSize += MemTag->Size ;
 
-	// g—pƒƒ‚ƒŠ‚Ìƒtƒ‰ƒO‚ğ“|‚·
+	// ä½¿ç”¨ãƒ¡ãƒ¢ãƒªã®ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 	MemTag->Flag &= ~ALLOCMEMTAG_FLAG_USE ;
 
-	// g—pƒƒ‚ƒŠ‚ÌƒŠƒXƒg‚©‚çŠO‚·
+	// ä½¿ç”¨ãƒ¡ãƒ¢ãƒªã®ãƒªã‚¹ãƒˆã‹ã‚‰å¤–ã™
 	Heap_SubUseMemTag( Heap, MemTag ) ;
 	
-	// ‹ó‚«ƒƒ‚ƒŠƒŠƒXƒg‚É’Ç‰Á‚·‚é
+	// ç©ºããƒ¡ãƒ¢ãƒªãƒªã‚¹ãƒˆã«è¿½åŠ ã™ã‚‹
 	{
 		ALLOCMEMTAG *	SubMemTag ;
 		int				AddFreeListFlag = FALSE ;
 
-		// ˆê‚Â’á‚¢ƒAƒhƒŒƒX‚Ì—×‚Ìƒƒ‚ƒŠ‚ª‹ó‚«ƒƒ‚ƒŠ‚¾‚Á‚½‚ç˜AŒ‹‚·‚é
-		// ( ReallocMemory ‚Ìˆ—‚ÌˆêŠÂ‚Ìê‡‚Í’á‚¢ƒAƒhƒŒƒX‚Ì‹ó‚«ƒƒ‚ƒŠ‚Æ‚Ì˜AŒ‹‚Ís‚í‚È‚¢ )
+		// ä¸€ã¤ä½ã„ã‚¢ãƒ‰ãƒ¬ã‚¹ã®éš£ã®ãƒ¡ãƒ¢ãƒªãŒç©ºããƒ¡ãƒ¢ãƒªã ã£ãŸã‚‰é€£çµã™ã‚‹
+		// ( ReallocMemory ã®å‡¦ç†ã®ä¸€ç’°ã®å ´åˆã¯ä½ã„ã‚¢ãƒ‰ãƒ¬ã‚¹ã®ç©ºããƒ¡ãƒ¢ãƒªã¨ã®é€£çµã¯è¡Œã‚ãªã„ )
 		if( ReallocProcess == FALSE &&
 			( MemTag->Flag & ALLOCMEMTAG_FLAG_PREV_CONNECT ) != 0 &&
 			MemTag->Prev != NULL &&
@@ -1021,16 +1021,16 @@ static void Heap_FreeMemory( HEAPINFO *Heap, ALLOCMEMTAG *MemTag, int ReallocPro
 		{
 			SubMemTag = MemTag->Prev ;
 
-			// Šm•Ûƒ^ƒCƒv‚ª ALLOCMEMTYPE_TLSF ‚Ìê‡‚ÍAˆê’U‹ó‚«ƒƒ‚ƒŠƒŠƒXƒg‚©‚çŠO‚·
+			// ç¢ºä¿ã‚¿ã‚¤ãƒ—ãŒ ALLOCMEMTYPE_TLSF ã®å ´åˆã¯ã€ä¸€æ—¦ç©ºããƒ¡ãƒ¢ãƒªãƒªã‚¹ãƒˆã‹ã‚‰å¤–ã™
 			if( Heap->AllocType == ALLOCMEMTYPE_TLSF )
 			{
 				Heap_SubFreeMemTag_TLSF( Heap, SubMemTag ) ;
 			}
 
-			// ƒTƒCƒY‚ğ‘«‚·
+			// ã‚µã‚¤ã‚ºã‚’è¶³ã™
 			SubMemTag->Size += MemTag->Size ;
 
-			// ƒŠƒXƒg‚Ì˜AŒ‹‚ğ•ÏX‚·‚é
+			// ãƒªã‚¹ãƒˆã®é€£çµã‚’å¤‰æ›´ã™ã‚‹
 			SubMemTag->Next = MemTag->Next ;
 			if( SubMemTag->Next == NULL )
 			{
@@ -1041,7 +1041,7 @@ static void Heap_FreeMemory( HEAPINFO *Heap, ALLOCMEMTAG *MemTag, int ReallocPro
 				SubMemTag->Next->Prev = SubMemTag ;
 			}
 
-			// Ÿ‚Ìƒ^ƒO‚Æƒƒ‚ƒŠ—Ìˆæ‚ª˜A‘±‚µ‚Ä‚¢‚é‚©‚ğƒZƒbƒg
+			// æ¬¡ã®ã‚¿ã‚°ã¨ãƒ¡ãƒ¢ãƒªé ˜åŸŸãŒé€£ç¶šã—ã¦ã„ã‚‹ã‹ã‚’ã‚»ãƒƒãƒˆ
 			if( MemTag->Flag & ALLOCMEMTAG_FLAG_NEXT_CONNECT )
 			{
 				SubMemTag->Flag |= ALLOCMEMTAG_FLAG_NEXT_CONNECT ;
@@ -1051,39 +1051,39 @@ static void Heap_FreeMemory( HEAPINFO *Heap, ALLOCMEMTAG *MemTag, int ReallocPro
 				SubMemTag->Flag &= ~ALLOCMEMTAG_FLAG_NEXT_CONNECT ;
 			}
 
-			// •s—v‚É‚È‚Á‚½ƒƒ‚ƒŠƒ^ƒO‚ğ–¢g—pƒŠƒXƒg‚É’Ç‰Á‚·‚é
+			// ä¸è¦ã«ãªã£ãŸãƒ¡ãƒ¢ãƒªã‚¿ã‚°ã‚’æœªä½¿ç”¨ãƒªã‚¹ãƒˆã«è¿½åŠ ã™ã‚‹
 			if( Heap->UseSeparateInfo )
 			{
 				Heap_AddNotUseSepMemTag( Heap, MemTag ) ;
 			}
 
-			// ‹ó‚«ƒƒ‚ƒŠ‚Ì”‚ğŒ¸‚ç‚·
+			// ç©ºããƒ¡ãƒ¢ãƒªã®æ•°ã‚’æ¸›ã‚‰ã™
 			Heap->FreeTagNum -- ;
 
-			// ˆ—‘ÎÛ‚Ìƒ^ƒO‚ğ•ÏX
+			// å‡¦ç†å¯¾è±¡ã®ã‚¿ã‚°ã‚’å¤‰æ›´
 			MemTag = SubMemTag ;
 
-			// MemTag ‚ªƒtƒŠ[ƒŠƒXƒg‚É’Ç‰Á‚³‚ê‚Ä‚¢‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğ—§‚Ä‚é
+			// MemTag ãŒãƒ•ãƒªãƒ¼ãƒªã‚¹ãƒˆã«è¿½åŠ ã•ã‚Œã¦ã„ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 			AddFreeListFlag = TRUE ;
 		}
 
-		// ˆê‚Â‚‚¢ƒAƒhƒŒƒX‚Ì—×‚Ìƒƒ‚ƒŠ‚ª‹ó‚«ƒƒ‚ƒŠ‚¾‚Á‚½‚ç˜AŒ‹‚·‚é
+		// ä¸€ã¤é«˜ã„ã‚¢ãƒ‰ãƒ¬ã‚¹ã®éš£ã®ãƒ¡ãƒ¢ãƒªãŒç©ºããƒ¡ãƒ¢ãƒªã ã£ãŸã‚‰é€£çµã™ã‚‹
 		if( ( MemTag->Flag & ALLOCMEMTAG_FLAG_NEXT_CONNECT ) != 0 &&
 			MemTag->Next != NULL &&
 			( MemTag->Next->Flag & ALLOCMEMTAG_FLAG_USE ) == 0 )
 		{
 			SubMemTag = MemTag->Next ;
 
-			// Šm•Ûƒ^ƒCƒv‚ª ALLOCMEMTYPE_TLSF ‚Ìê‡‚ÍAˆê’U‹ó‚«ƒƒ‚ƒŠƒŠƒXƒg‚©‚çŠO‚·
+			// ç¢ºä¿ã‚¿ã‚¤ãƒ—ãŒ ALLOCMEMTYPE_TLSF ã®å ´åˆã¯ã€ä¸€æ—¦ç©ºããƒ¡ãƒ¢ãƒªãƒªã‚¹ãƒˆã‹ã‚‰å¤–ã™
 			if( Heap->AllocType == ALLOCMEMTYPE_TLSF )
 			{
 				Heap_SubFreeMemTag_TLSF( Heap, SubMemTag ) ;
 			}
 
-			// ƒTƒCƒY‚ğ‘«‚·
+			// ã‚µã‚¤ã‚ºã‚’è¶³ã™
 			MemTag->Size += SubMemTag->Size ;
 
-			// ƒŠƒXƒg‚Ì˜AŒ‹‚ğ•ÏX‚·‚é
+			// ãƒªã‚¹ãƒˆã®é€£çµã‚’å¤‰æ›´ã™ã‚‹
 			MemTag->Next = SubMemTag->Next ;
 			if( MemTag->Next == NULL )
 			{
@@ -1094,7 +1094,7 @@ static void Heap_FreeMemory( HEAPINFO *Heap, ALLOCMEMTAG *MemTag, int ReallocPro
 				MemTag->Next->Prev = MemTag ;
 			}
 
-			// Šm•Ûƒ^ƒCƒv‚ª ALLOCMEMTYPE_SIMPLE ‚Ìê‡‚ÍA‚±‚±‚Å‹ó‚«ƒƒ‚ƒŠƒŠƒXƒg‚Ì˜AŒ‹‚ğ•ÏX‚·‚é
+			// ç¢ºä¿ã‚¿ã‚¤ãƒ—ãŒ ALLOCMEMTYPE_SIMPLE ã®å ´åˆã¯ã€ã“ã“ã§ç©ºããƒ¡ãƒ¢ãƒªãƒªã‚¹ãƒˆã®é€£çµã‚’å¤‰æ›´ã™ã‚‹
 			if( Heap->AllocType == ALLOCMEMTYPE_SIMPLE )
 			{
 				MemTag->ListNext = SubMemTag->ListNext ;
@@ -1121,7 +1121,7 @@ static void Heap_FreeMemory( HEAPINFO *Heap, ALLOCMEMTAG *MemTag, int ReallocPro
 				}
 			}
 
-			// Ÿ‚Ìƒ^ƒO‚Æƒƒ‚ƒŠ—Ìˆæ‚ª˜A‘±‚µ‚Ä‚¢‚é‚©‚ğƒZƒbƒg
+			// æ¬¡ã®ã‚¿ã‚°ã¨ãƒ¡ãƒ¢ãƒªé ˜åŸŸãŒé€£ç¶šã—ã¦ã„ã‚‹ã‹ã‚’ã‚»ãƒƒãƒˆ
 			if( SubMemTag->Flag & ALLOCMEMTAG_FLAG_NEXT_CONNECT )
 			{
 				MemTag->Flag |= ALLOCMEMTAG_FLAG_NEXT_CONNECT ;
@@ -1131,42 +1131,42 @@ static void Heap_FreeMemory( HEAPINFO *Heap, ALLOCMEMTAG *MemTag, int ReallocPro
 				MemTag->Flag &= ~ALLOCMEMTAG_FLAG_NEXT_CONNECT ;
 			}
 
-			// •s—v‚É‚È‚Á‚½ƒƒ‚ƒŠƒ^ƒO‚ğ–¢g—pƒŠƒXƒg‚É’Ç‰Á‚·‚é
+			// ä¸è¦ã«ãªã£ãŸãƒ¡ãƒ¢ãƒªã‚¿ã‚°ã‚’æœªä½¿ç”¨ãƒªã‚¹ãƒˆã«è¿½åŠ ã™ã‚‹
 			if( Heap->UseSeparateInfo )
 			{
 				Heap_AddNotUseSepMemTag( Heap, SubMemTag ) ;
 			}
 
-			// ‹ó‚«ƒƒ‚ƒŠ‚Ì”‚ğŒ¸‚ç‚·
+			// ç©ºããƒ¡ãƒ¢ãƒªã®æ•°ã‚’æ¸›ã‚‰ã™
 			Heap->FreeTagNum -- ;
 
-			// MemTag ‚ªƒtƒŠ[ƒŠƒXƒg‚É’Ç‰Á‚³‚ê‚Ä‚¢‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğ—§‚Ä‚é
+			// MemTag ãŒãƒ•ãƒªãƒ¼ãƒªã‚¹ãƒˆã«è¿½åŠ ã•ã‚Œã¦ã„ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 			AddFreeListFlag = TRUE ;
 		}
 
-		// Šm•Ûƒ^ƒCƒv‚É‚æ‚Á‚Äˆ—‚ğ•ªŠò
+		// ç¢ºä¿ã‚¿ã‚¤ãƒ—ã«ã‚ˆã£ã¦å‡¦ç†ã‚’åˆ†å²
 		if( Heap->AllocType == ALLOCMEMTYPE_SIMPLE )
 		{
-			// ‘OŒã‚É‹ó‚«ƒƒ‚ƒŠ‚ª–³‚©‚Á‚½‚ç‚»‚Ì‚Ü‚Ü‹ó‚«ƒƒ‚ƒŠƒŠƒXƒg‚É’Ç‰Á‚·‚é
+			// å‰å¾Œã«ç©ºããƒ¡ãƒ¢ãƒªãŒç„¡ã‹ã£ãŸã‚‰ãã®ã¾ã¾ç©ºããƒ¡ãƒ¢ãƒªãƒªã‚¹ãƒˆã«è¿½åŠ ã™ã‚‹
 			if( AddFreeListFlag == FALSE )
 			{
-				// ƒƒ‚ƒŠƒAƒhƒŒƒX‚ª’á‚­Aˆê”Ô‹ß‚¢‹ó‚«ƒƒ‚ƒŠ‚ğ’T‚·
+				// ãƒ¡ãƒ¢ãƒªã‚¢ãƒ‰ãƒ¬ã‚¹ãŒä½ãã€ä¸€ç•ªè¿‘ã„ç©ºããƒ¡ãƒ¢ãƒªã‚’æ¢ã™
 				for( SubMemTag = MemTag->Prev ; SubMemTag != NULL && ( SubMemTag->Flag & ALLOCMEMTAG_FLAG_USE ) != 0 ; SubMemTag = SubMemTag->Prev ){}
 				
-				// ‹ó‚«ƒƒ‚ƒŠƒŠƒXƒg‚É’Ç‰Á
+				// ç©ºããƒ¡ãƒ¢ãƒªãƒªã‚¹ãƒˆã«è¿½åŠ 
 				Heap_AddFreeMemTag_Simple( Heap, MemTag, SubMemTag ) ;
 			}
 		}
 		else
 		if( Heap->AllocType == ALLOCMEMTYPE_TLSF )
 		{
-			// ‹ó‚«ƒƒ‚ƒŠƒŠƒXƒg‚É’Ç‰Á‚·‚é
+			// ç©ºããƒ¡ãƒ¢ãƒªãƒªã‚¹ãƒˆã«è¿½åŠ ã™ã‚‹
 			Heap_AddFreeMemTag_TLSF( Heap, MemTag ) ;
 		}
 	}
 
-	// ‚à‚µg—p‚µ‚Ä‚¢‚éƒƒ‚ƒŠƒq[ƒv‚©‚çˆê‚Â‚àg—pƒƒ‚ƒŠ‚ª–³‚­‚È‚èA
-	// Š‚Â ReallocMemory ‚Ìˆ—‚ÌˆêŠÂ‚Å‚à‚È‚­‰Á‚¦‚Ä©“®Šm•Ûƒƒ‚ƒŠ‚¾‚Á‚½ê‡‚Í‰ğ•ú‚·‚é
+	// ã‚‚ã—ä½¿ç”¨ã—ã¦ã„ã‚‹ãƒ¡ãƒ¢ãƒªãƒ’ãƒ¼ãƒ—ã‹ã‚‰ä¸€ã¤ã‚‚ä½¿ç”¨ãƒ¡ãƒ¢ãƒªãŒç„¡ããªã‚Šã€
+	// ä¸”ã¤ ReallocMemory ã®å‡¦ç†ã®ä¸€ç’°ã§ã‚‚ãªãåŠ ãˆã¦è‡ªå‹•ç¢ºä¿ãƒ¡ãƒ¢ãƒªã ã£ãŸå ´åˆã¯è§£æ”¾ã™ã‚‹
 	if( MemTag->UseHeapMem->UseMemTagCount == 0 &&
 		ReallocProcess == 0 && ( MemTag->UseHeapMem->Flag & HEAPMEM_FLAG_AUTOALLOC ) != 0 )
 	{
@@ -1188,9 +1188,9 @@ static void Heap_FreeMemory( HEAPINFO *Heap, ALLOCMEMTAG *MemTag, int ReallocPro
 
 
 
-// ƒq[ƒvŠÖ”
+// ãƒ’ãƒ¼ãƒ—é–¢æ•°
 
-// ƒq[ƒv‚ğ‰Šú‰»‚·‚é
+// ãƒ’ãƒ¼ãƒ—ã‚’åˆæœŸåŒ–ã™ã‚‹
 extern int InitializeHeap(
 	HEAPINFO *				Heap,
 	int						AllocType,
@@ -1211,26 +1211,26 @@ extern int InitializeHeap(
 	HEAPMEMINFO *			SepHeapMemArray
 )
 {
-	// \‘¢‘ÌƒTƒCƒYƒGƒ‰[ƒ`ƒFƒbƒN
+	// æ§‹é€ ä½“ã‚µã‚¤ã‚ºã‚¨ãƒ©ãƒ¼ãƒã‚§ãƒƒã‚¯
 	if( sizeof( ALLOCMEMTAG ) != ALLOCMEMTAG_SIZE )
 	{
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\xcb\x69\x20\x90\x53\x4f\x20\x00\x41\x00\x4c\x00\x4c\x00\x4f\x00\x43\x00\x4d\x00\x45\x00\x4d\x00\x54\x00\x41\x00\x47\x00\x20\x00\x6e\x30\xb5\x30\xa4\x30\xba\x30\x4c\x30\x20\x00\x25\x00\x64\x00\x20\x00\x62\x00\x79\x00\x74\x00\x65\x00\x20\x00\x67\x30\x6f\x30\x42\x30\x8a\x30\x7e\x30\x5b\x30\x93\x30\x00"/*@ L"\‘¢‘Ì ALLOCMEMTAG ‚ÌƒTƒCƒY‚ª %d byte ‚Å‚Í‚ ‚è‚Ü‚¹‚ñ" @*/, ALLOCMEMTAG_SIZE )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\xcb\x69\x20\x90\x53\x4f\x20\x00\x41\x00\x4c\x00\x4c\x00\x4f\x00\x43\x00\x4d\x00\x45\x00\x4d\x00\x54\x00\x41\x00\x47\x00\x20\x00\x6e\x30\xb5\x30\xa4\x30\xba\x30\x4c\x30\x20\x00\x25\x00\x64\x00\x20\x00\x62\x00\x79\x00\x74\x00\x65\x00\x20\x00\x67\x30\x6f\x30\x42\x30\x8a\x30\x7e\x30\x5b\x30\x93\x30\x00"/*@ L"æ§‹é€ ä½“ ALLOCMEMTAG ã®ã‚µã‚¤ã‚ºãŒ %d byte ã§ã¯ã‚ã‚Šã¾ã›ã‚“" @*/, ALLOCMEMTAG_SIZE )) ;
 		*( ( DWORD * )0x00000000 ) = 0xffffffff ;
 	}
 
-	// ƒ[ƒ‰Šú‰»
+	// ã‚¼ãƒ­åˆæœŸåŒ–
 	_MEMSET( Heap, 0, sizeof( *Heap ) ) ;
 
 #if defined( DX_THREAD_SAFE ) || defined( DX_THREAD_SAFE_NETWORK_ONLY )
 
-	// ƒq[ƒv—p‚ÌƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰Šú‰»
+	// ãƒ’ãƒ¼ãƒ—ç”¨ã®ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®åˆæœŸåŒ–
 	CriticalSection_Initialize( &Heap->MemoryAllocCriticalSection ) ;
 
 #endif // defined( DX_THREAD_SAFE ) || defined( DX_THREAD_SAFE_NETWORK_ONLY )
 
 	DX_HEAP_ENTER_CRITICAL_SECTION( Heap )
 
-	// ƒAƒ‰ƒCƒ“‚Í ALLOCMEM_MIN_ALIGNED ƒoƒCƒg‚Ì”{”‚É‚·‚é
+	// ã‚¢ãƒ©ã‚¤ãƒ³ã¯ ALLOCMEM_MIN_ALIGNED ãƒã‚¤ãƒˆã®å€æ•°ã«ã™ã‚‹
 	if( Aligned == 0 )
 	{
 		Aligned = ALLOCMEM_MIN_ALIGNED ;
@@ -1240,7 +1240,7 @@ extern int InitializeHeap(
 		Aligned = ( Aligned + ALLOCMEM_MIN_ALIGNED - 1 ) / ALLOCMEM_MIN_ALIGNED * ALLOCMEM_MIN_ALIGNED ;
 	}
 
-	// ƒpƒ‰ƒ[ƒ^‚ğ•Û‘¶
+	// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ä¿å­˜
 	Heap->AllocType							= AllocType ;
 	Heap->Aligned							= Aligned ;
 	Heap->AutoAlloc							= AutoAlloc ;
@@ -1252,10 +1252,10 @@ extern int InitializeHeap(
 	Heap->AutoAlloc_DeleteHeapCallback		= AutoAlloc_DeleteHeapCallback ;
 	Heap->UseSeparateInfo					= UseSeparateInfo ;
 
-	// ƒƒ‚ƒŠƒ^ƒO‚âƒq[ƒv‚Ìî•ñ‚ğ•Êƒƒ‚ƒŠ—Ìˆæ‚ÅŠm•Û‚·‚é‚©‚Ç‚¤‚©‚Ìî•ñ‚ğƒZƒbƒg
+	// ãƒ¡ãƒ¢ãƒªã‚¿ã‚°ã‚„ãƒ’ãƒ¼ãƒ—ã®æƒ…å ±ã‚’åˆ¥ãƒ¡ãƒ¢ãƒªé ˜åŸŸã§ç¢ºä¿ã™ã‚‹ã‹ã©ã†ã‹ã®æƒ…å ±ã‚’ã‚»ãƒƒãƒˆ
 	if( Heap->UseSeparateInfo )
 	{
-		// ”z—ñ‚ª—LŒø‚È’l‚Å‚Í‚È‚¢ê‡‚ÍƒGƒ‰[
+		// é…åˆ—ãŒæœ‰åŠ¹ãªå€¤ã§ã¯ãªã„å ´åˆã¯ã‚¨ãƒ©ãƒ¼
 		if( SepTagArrayLength     <= 0 || SepTagArray     == NULL ||
 			SepHeapMemArrayLength <= 0 || SepHeapMemArray == NULL )
 		{
@@ -1263,17 +1263,17 @@ extern int InitializeHeap(
 			return -1 ;
 		}
 
-		// ”z—ñ‚ÌƒAƒhƒŒƒX‚â”z—ñ‚Ì’·‚³‚È‚Ç‚ğƒZƒbƒg
+		// é…åˆ—ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚„é…åˆ—ã®é•·ã•ãªã©ã‚’ã‚»ãƒƒãƒˆ
 		Heap->SepTagArrayLength		= SepTagArrayLength ;
 		Heap->SepTagArray			= SepTagArray ;
 		Heap->SepHeapMemArrayLength	= SepHeapMemArrayLength ;
 		Heap->SepHeapMemArray		= SepHeapMemArray ;
 
-		// ƒ[ƒ‰Šú‰»
+		// ã‚¼ãƒ­åˆæœŸåŒ–
 		_MEMSET( SepTagArray,     0, sizeof( *SepTagArray     ) * SepTagArrayLength     ) ;
 		_MEMSET( SepHeapMemArray, 0, sizeof( *SepHeapMemArray ) * SepHeapMemArrayLength ) ;
 
-		// –¢g—pƒƒ‚ƒŠƒ^ƒOƒŠƒXƒg‚Ìì¬
+		// æœªä½¿ç”¨ãƒ¡ãƒ¢ãƒªã‚¿ã‚°ãƒªã‚¹ãƒˆã®ä½œæˆ
 		{
 			Heap->SepTagArrayNotUseFirst     = SepTagArray ;
 
@@ -1294,7 +1294,7 @@ extern int InitializeHeap(
 			}
 		}
 
-		// –¢g—pƒq[ƒvƒƒ‚ƒŠî•ñƒŠƒXƒg‚Ìì¬
+		// æœªä½¿ç”¨ãƒ’ãƒ¼ãƒ—ãƒ¡ãƒ¢ãƒªæƒ…å ±ãƒªã‚¹ãƒˆã®ä½œæˆ
 		{
 			Heap->SepHeapMemArrayNotUseFirst = SepHeapMemArray ;
 
@@ -1316,7 +1316,7 @@ extern int InitializeHeap(
 		}
 	}
 
-	// ƒq[ƒvƒƒ‚ƒŠ‚ÌƒAƒhƒŒƒX‚ª—LŒø‚Èê‡‚Íƒq[ƒv—pƒƒ‚ƒŠ‚ğ’Ç‰Á
+	// ãƒ’ãƒ¼ãƒ—ãƒ¡ãƒ¢ãƒªã®ã‚¢ãƒ‰ãƒ¬ã‚¹ãŒæœ‰åŠ¹ãªå ´åˆã¯ãƒ’ãƒ¼ãƒ—ç”¨ãƒ¡ãƒ¢ãƒªã‚’è¿½åŠ 
 	if( HeapAddress != NULL && HeapSize != 0 )
 	{
 		if( AddHeapMemory( Heap, HeapAddress, HeapSize ) < 0 )
@@ -1328,11 +1328,11 @@ extern int InitializeHeap(
 
 	DX_HEAP_LEAVE_CRITICAL_SECTION( Heap )
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// ƒq[ƒv‚ÌŒãn––‚ğs‚¤
+// ãƒ’ãƒ¼ãƒ—ã®å¾Œå§‹æœ«ã‚’è¡Œã†
 extern int TerminateHeap( HEAPINFO *Heap )
 {
 	HEAPMEMINFO *HeapMemInfo ;
@@ -1340,7 +1340,7 @@ extern int TerminateHeap( HEAPINFO *Heap )
 
 	DX_HEAP_ENTER_CRITICAL_SECTION( Heap )
 
-	// ©“®Šm•Û‚³‚ê‚½ƒq[ƒvƒƒ‚ƒŠ‚ğ‰ğ•ú‚·‚é
+	// è‡ªå‹•ç¢ºä¿ã•ã‚ŒãŸãƒ’ãƒ¼ãƒ—ãƒ¡ãƒ¢ãƒªã‚’è§£æ”¾ã™ã‚‹
 	for( HeapMemInfo = Heap->FirstHeapMem ; HeapMemInfo != NULL ; HeapMemInfo = NextHeapMemInfo )
 	{
 		NextHeapMemInfo = HeapMemInfo->Next ;
@@ -1356,14 +1356,14 @@ extern int TerminateHeap( HEAPINFO *Heap )
 
 	DX_HEAP_LEAVE_CRITICAL_SECTION( Heap )
 
-	// ƒ[ƒ‰Šú‰»
+	// ã‚¼ãƒ­åˆæœŸåŒ–
 	_MEMSET( Heap, 0, sizeof( *Heap ) ) ;
 
 	return 0 ;
 }
 
 
-// ƒq[ƒv‚Æ‚µ‚Äˆµ‚¤ƒƒ‚ƒŠ‚ğ’Ç‰Á‚·‚é
+// ãƒ’ãƒ¼ãƒ—ã¨ã—ã¦æ‰±ã†ãƒ¡ãƒ¢ãƒªã‚’è¿½åŠ ã™ã‚‹
 extern int AddHeapMemory( HEAPINFO *Heap, void *HeapAddress, ALLOCMEM_SIZE_TYPE HeapSize )
 {
 	BYTE				CallbackBuffer[ ALLOCHEAP_CALLBACK_INFO_SIZE ] ;
@@ -1380,48 +1380,48 @@ extern int AddHeapMemory( HEAPINFO *Heap, void *HeapAddress, ALLOCMEM_SIZE_TYPE 
 //		{
 //			HeapSize = Heap->AutoAllocUnitSize ;
 //		}
-		// 1MB ˆÈ‰º‚Ìƒq[ƒv‚Ìì¬‚Í‚Å‚«‚È‚¢
+		// 1MB ä»¥ä¸‹ã®ãƒ’ãƒ¼ãƒ—ã®ä½œæˆã¯ã§ããªã„
 		if( HeapSize < 1 * 1024 * 1024 )
 		{
 			HeapSize = 1 * 1024 * 1024 ;
 		}
 
-		// ƒAƒ‰ƒCƒ“•ª‘«‚·
+		// ã‚¢ãƒ©ã‚¤ãƒ³åˆ†è¶³ã™
 		HeapSize += ALLOCMEM_MIN_ALIGNED ;
 
-		// X‚ÉƒAƒ‰ƒCƒ“‚ğ“K—p‚·‚é
+		// æ›´ã«ã‚¢ãƒ©ã‚¤ãƒ³ã‚’é©ç”¨ã™ã‚‹
 		HeapSize = ( HeapSize + ALLOCMEM_MIN_ALIGNED - 1 ) / ALLOCMEM_MIN_ALIGNED * ALLOCMEM_MIN_ALIGNED ;
 
-		// ©“®Šm•Ûƒƒ‚ƒŠ‚ÌƒTƒCƒY‚ğƒ`ƒFƒbƒN
+		// è‡ªå‹•ç¢ºä¿ãƒ¡ãƒ¢ãƒªã®ã‚µã‚¤ã‚ºã‚’ãƒã‚§ãƒƒã‚¯
 		if( Heap->UseSeparateInfo == FALSE && HeapSize < ( sizeof( HEAPMEMINFO ) + ALLOCMEM_MIN_ALIGNED - 1 ) / ALLOCMEM_MIN_ALIGNED * ALLOCMEM_MIN_ALIGNED + ALLOCMEMTAG_MIN_SIZE )
 		{
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\xd2\x30\xfc\x30\xd7\x30\x6e\x30\xea\x81\xd5\x52\xba\x78\xdd\x4f\xb5\x30\xa4\x30\xba\x30\x28\x00\x20\x00\x25\x00\x64\x00\x62\x00\x79\x00\x74\x00\x65\x00\x20\x00\x29\x00\x4c\x30\x0f\x5c\x55\x30\x59\x30\x4e\x30\x7e\x30\x59\x30\x01\x30\x00\x67\x4e\x4f\x67\x30\x82\x30\x20\x00\x25\x00\x64\x00\x62\x00\x79\x00\x74\x00\x65\x00\x20\x00\xc5\x5f\x81\x89\x67\x30\x59\x30\x00"/*@ L"ƒq[ƒv‚Ì©“®Šm•ÛƒTƒCƒY( %dbyte )‚ª¬‚³‚·‚¬‚Ü‚·AÅ’á‚Å‚à %dbyte •K—v‚Å‚·" @*/, HeapSize, ( sizeof( HEAPMEMINFO ) + ALLOCMEM_MIN_ALIGNED - 1 ) / ALLOCMEM_MIN_ALIGNED * ALLOCMEM_MIN_ALIGNED + ALLOCMEMTAG_MIN_SIZE )) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\xd2\x30\xfc\x30\xd7\x30\x6e\x30\xea\x81\xd5\x52\xba\x78\xdd\x4f\xb5\x30\xa4\x30\xba\x30\x28\x00\x20\x00\x25\x00\x64\x00\x62\x00\x79\x00\x74\x00\x65\x00\x20\x00\x29\x00\x4c\x30\x0f\x5c\x55\x30\x59\x30\x4e\x30\x7e\x30\x59\x30\x01\x30\x00\x67\x4e\x4f\x67\x30\x82\x30\x20\x00\x25\x00\x64\x00\x62\x00\x79\x00\x74\x00\x65\x00\x20\x00\xc5\x5f\x81\x89\x67\x30\x59\x30\x00"/*@ L"ãƒ’ãƒ¼ãƒ—ã®è‡ªå‹•ç¢ºä¿ã‚µã‚¤ã‚º( %dbyte )ãŒå°ã•ã™ãã¾ã™ã€æœ€ä½ã§ã‚‚ %dbyte å¿…è¦ã§ã™" @*/, HeapSize, ( sizeof( HEAPMEMINFO ) + ALLOCMEM_MIN_ALIGNED - 1 ) / ALLOCMEM_MIN_ALIGNED * ALLOCMEM_MIN_ALIGNED + ALLOCMEMTAG_MIN_SIZE )) ;
 			DX_HEAP_LEAVE_CRITICAL_SECTION( Heap )
 			return -1 ;
 		}
 
-		// ŠÂ‹«ˆË‘¶ƒq[ƒv‚Ìì¬
+		// ç’°å¢ƒä¾å­˜ãƒ’ãƒ¼ãƒ—ã®ä½œæˆ
 		_MEMSET( CallbackBuffer, 0, ALLOCHEAP_CALLBACK_INFO_SIZE ) ;
 		if( Heap->AutoAlloc_CreateHeapCallback( Heap->AutoAlloc_CallbackParam, CallbackBuffer, HeapSize ) < 0 )
 		{
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\xd2\x30\xfc\x30\xd7\x30\x28\x75\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"ƒq[ƒv—pƒƒ‚ƒŠ‚ÌŠm•Û‚É¸”s‚µ‚Ü‚µ‚½" @*/ )) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\xd2\x30\xfc\x30\xd7\x30\x28\x75\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"ãƒ’ãƒ¼ãƒ—ç”¨ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿ã«å¤±æ•—ã—ã¾ã—ãŸ" @*/ )) ;
 			DX_HEAP_LEAVE_CRITICAL_SECTION( Heap )
 			return -1 ;
 		}
 
-		// ÀÛ‚ÉŠm•Û‚µ‚½ƒƒ‚ƒŠ‚ÌƒTƒCƒY‚ğæ“¾
+		// å®Ÿéš›ã«ç¢ºä¿ã—ãŸãƒ¡ãƒ¢ãƒªã®ã‚µã‚¤ã‚ºã‚’å–å¾—
 		HeapSize = Heap->AutoAlloc_GetHeapSizeCallback( Heap->AutoAlloc_CallbackParam, CallbackBuffer ) ;
 
-		// ŠÂ‹«ˆË‘¶ƒq[ƒv‚Ìƒƒ‚ƒŠƒAƒhƒŒƒX‚ğæ“¾
+		// ç’°å¢ƒä¾å­˜ãƒ’ãƒ¼ãƒ—ã®ãƒ¡ãƒ¢ãƒªã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å–å¾—
 		HeapAddress = Heap->AutoAlloc_GetHeapAddressCallback( Heap->AutoAlloc_CallbackParam, CallbackBuffer ) ;
 
-		// ƒAƒ‰ƒCƒ“‚ğl—¶‚µ‚Äg—p‚Å‚«‚éƒAƒhƒŒƒX‚ğZo
+		// ã‚¢ãƒ©ã‚¤ãƒ³ã‚’è€ƒæ…®ã—ã¦ä½¿ç”¨ã§ãã‚‹ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ç®—å‡º
 		UseAddress = ( ( DWORD_PTR )HeapAddress + ALLOCMEM_MIN_ALIGNED - 1 ) / ALLOCMEM_MIN_ALIGNED * ALLOCMEM_MIN_ALIGNED ;
 
-		// ƒAƒ‰ƒCƒ“‚ğl—¶‚µ‚Äg—p‚Å‚«‚éƒTƒCƒY‚ğZo
+		// ã‚¢ãƒ©ã‚¤ãƒ³ã‚’è€ƒæ…®ã—ã¦ä½¿ç”¨ã§ãã‚‹ã‚µã‚¤ã‚ºã‚’ç®—å‡º
 		UseSize    = ( ( ( DWORD_PTR )HeapAddress + HeapSize ) / ALLOCMEM_MIN_ALIGNED * ALLOCMEM_MIN_ALIGNED ) - UseAddress ;
 
-		// ©“®Šm•Û‚³‚ê‚½ƒƒ‚ƒŠ‚Ìƒtƒ‰ƒO‚ğ—§‚Ä‚é
+		// è‡ªå‹•ç¢ºä¿ã•ã‚ŒãŸãƒ¡ãƒ¢ãƒªã®ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 		IsAutoAlloc = TRUE ;
 	}
 	else
@@ -1432,16 +1432,16 @@ extern int AddHeapMemory( HEAPINFO *Heap, void *HeapAddress, ALLOCMEM_SIZE_TYPE 
 			return -1 ;
 		}
 
-		// ƒAƒ‰ƒCƒ“‚ğl—¶‚µ‚Äg—p‚Å‚«‚éƒAƒhƒŒƒX‚ğZo
+		// ã‚¢ãƒ©ã‚¤ãƒ³ã‚’è€ƒæ…®ã—ã¦ä½¿ç”¨ã§ãã‚‹ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ç®—å‡º
 		UseAddress = ( ( DWORD_PTR )HeapAddress + ALLOCMEM_MIN_ALIGNED - 1 ) / ALLOCMEM_MIN_ALIGNED * ALLOCMEM_MIN_ALIGNED ;
 
-		// ƒAƒ‰ƒCƒ“‚ğl—¶‚µ‚Äg—p‚Å‚«‚éƒTƒCƒY‚ğZo
+		// ã‚¢ãƒ©ã‚¤ãƒ³ã‚’è€ƒæ…®ã—ã¦ä½¿ç”¨ã§ãã‚‹ã‚µã‚¤ã‚ºã‚’ç®—å‡º
 		UseSize    = ( ( ( DWORD_PTR )HeapAddress + HeapSize ) / ALLOCMEM_MIN_ALIGNED * ALLOCMEM_MIN_ALIGNED ) - UseAddress ;
 
-		// ƒq[ƒv—pƒƒ‚ƒŠ‚ÌƒTƒCƒY‚ğƒ`ƒFƒbƒN
+		// ãƒ’ãƒ¼ãƒ—ç”¨ãƒ¡ãƒ¢ãƒªã®ã‚µã‚¤ã‚ºã‚’ãƒã‚§ãƒƒã‚¯
 		if( Heap->UseSeparateInfo == FALSE && UseSize < ( sizeof( HEAPMEMINFO ) + ALLOCMEM_MIN_ALIGNED - 1 ) / ALLOCMEM_MIN_ALIGNED * ALLOCMEM_MIN_ALIGNED + ALLOCMEMTAG_MIN_SIZE )
 		{
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\xd2\x30\xfc\x30\xd7\x30\x6e\x30\xb5\x30\xa4\x30\xba\x30\x28\x00\x20\x00\x25\x00\x64\x00\x62\x00\x79\x00\x74\x00\x65\x00\x20\x00\x29\x00\x4c\x30\x0f\x5c\x55\x30\x59\x30\x4e\x30\x7e\x30\x59\x30\x01\x30\x00\x67\x4e\x4f\x67\x30\x82\x30\x20\x00\x25\x00\x64\x00\x62\x00\x79\x00\x74\x00\x65\x00\x20\x00\xc5\x5f\x81\x89\x67\x30\x59\x30\x00"/*@ L"ƒq[ƒv‚ÌƒTƒCƒY( %dbyte )‚ª¬‚³‚·‚¬‚Ü‚·AÅ’á‚Å‚à %dbyte •K—v‚Å‚·" @*/, UseSize, ( sizeof( HEAPMEMINFO ) + ALLOCMEM_MIN_ALIGNED - 1 ) / ALLOCMEM_MIN_ALIGNED * ALLOCMEM_MIN_ALIGNED + ALLOCMEMTAG_MIN_SIZE )) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\xd2\x30\xfc\x30\xd7\x30\x6e\x30\xb5\x30\xa4\x30\xba\x30\x28\x00\x20\x00\x25\x00\x64\x00\x62\x00\x79\x00\x74\x00\x65\x00\x20\x00\x29\x00\x4c\x30\x0f\x5c\x55\x30\x59\x30\x4e\x30\x7e\x30\x59\x30\x01\x30\x00\x67\x4e\x4f\x67\x30\x82\x30\x20\x00\x25\x00\x64\x00\x62\x00\x79\x00\x74\x00\x65\x00\x20\x00\xc5\x5f\x81\x89\x67\x30\x59\x30\x00"/*@ L"ãƒ’ãƒ¼ãƒ—ã®ã‚µã‚¤ã‚º( %dbyte )ãŒå°ã•ã™ãã¾ã™ã€æœ€ä½ã§ã‚‚ %dbyte å¿…è¦ã§ã™" @*/, UseSize, ( sizeof( HEAPMEMINFO ) + ALLOCMEM_MIN_ALIGNED - 1 ) / ALLOCMEM_MIN_ALIGNED * ALLOCMEM_MIN_ALIGNED + ALLOCMEMTAG_MIN_SIZE )) ;
 			DX_HEAP_LEAVE_CRITICAL_SECTION( Heap )
 			return -1 ;
 		}
@@ -1463,27 +1463,27 @@ extern int AddHeapMemory( HEAPINFO *Heap, void *HeapAddress, ALLOCMEM_SIZE_TYPE 
 		HeapMemInfo = ( HEAPMEMINFO * )UseAddress ;
 	}
 
-	// ƒ[ƒ‰Šú‰»
+	// ã‚¼ãƒ­åˆæœŸåŒ–
 	_MEMSET( HeapMemInfo, 0, sizeof( *HeapMemInfo ) ) ;
 
 	if( IsAutoAlloc )
 	{
-		// ©“®Šm•Û‚³‚ê‚½ƒƒ‚ƒŠ‚©‚Ç‚¤‚©‚ğ•Û‘¶
+		// è‡ªå‹•ç¢ºä¿ã•ã‚ŒãŸãƒ¡ãƒ¢ãƒªã‹ã©ã†ã‹ã‚’ä¿å­˜
 		HeapMemInfo->Flag		|= HEAPMEM_FLAG_AUTOALLOC ;
 
-		// ©“®Šm•Û‚Ìê‡‚ÍƒR[ƒ‹ƒoƒbƒNŠÖ”‚É“n‚µ‚½î•ñ‚ğ•Û‘¶
+		// è‡ªå‹•ç¢ºä¿ã®å ´åˆã¯ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã«æ¸¡ã—ãŸæƒ…å ±ã‚’ä¿å­˜
 		_MEMCPY( HeapMemInfo->CallbackBuffer, CallbackBuffer, ALLOCHEAP_CALLBACK_INFO_SIZE ) ;
 	}
 
-	// “n‚³‚ê‚½ or Šm•Û‚µ‚½ƒƒ‚ƒŠ—Ìˆæ‚ÌƒAƒhƒŒƒX‚ÆƒTƒCƒY‚ğ•Û‘¶
+	// æ¸¡ã•ã‚ŒãŸ or ç¢ºä¿ã—ãŸãƒ¡ãƒ¢ãƒªé ˜åŸŸã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã¨ã‚µã‚¤ã‚ºã‚’ä¿å­˜
 	HeapMemInfo->Address		= HeapAddress ;
 	HeapMemInfo->Size			= HeapSize ;
 
-	// ƒAƒ‰ƒCƒ“‚ğl—¶‚µ‚ÄÀÛ‚Ég—p‚Å‚«‚éƒƒ‚ƒŠ—Ìˆæ‚ÌƒAƒhƒŒƒX‚ÆƒTƒCƒY‚ğ•Û‘¶
+	// ã‚¢ãƒ©ã‚¤ãƒ³ã‚’è€ƒæ…®ã—ã¦å®Ÿéš›ã«ä½¿ç”¨ã§ãã‚‹ãƒ¡ãƒ¢ãƒªé ˜åŸŸã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã¨ã‚µã‚¤ã‚ºã‚’ä¿å­˜
 	HeapMemInfo->UseAddress		= ( void * )UseAddress ;
 	HeapMemInfo->UseSize		= UseSize ;
 
-	// ƒq[ƒv‚Æ‚µ‚ÄÀÛ‚Ég—p‚Å‚«‚éƒAƒhƒŒƒX‚ÆƒTƒCƒY‚ğZo
+	// ãƒ’ãƒ¼ãƒ—ã¨ã—ã¦å®Ÿéš›ã«ä½¿ç”¨ã§ãã‚‹ã‚¢ãƒ‰ãƒ¬ã‚¹ã¨ã‚µã‚¤ã‚ºã‚’ç®—å‡º
 	{
 		DWORD_PTR HeapUseAddress ;
 		DWORD_PTR HeapUseSize ;
@@ -1497,19 +1497,19 @@ extern int AddHeapMemory( HEAPINFO *Heap, void *HeapAddress, ALLOCMEM_SIZE_TYPE 
 			HeapUseAddress = ( DWORD_PTR )( HeapMemInfo + 1 ) ;
 		}
 
-		// ƒAƒ‰ƒCƒ“‚ğ“K—p‚·‚é
+		// ã‚¢ãƒ©ã‚¤ãƒ³ã‚’é©ç”¨ã™ã‚‹
 		HeapUseAddress = ( HeapUseAddress + ALLOCMEM_MIN_ALIGNED - 1 ) / ALLOCMEM_MIN_ALIGNED * ALLOCMEM_MIN_ALIGNED ;
 
 		HeapUseSize = ( ( DWORD_PTR )HeapMemInfo->Address + HeapMemInfo->Size ) - HeapUseAddress ;
 
-		// ƒAƒ‰ƒCƒ“‚ğ“K—p‚·‚é
+		// ã‚¢ãƒ©ã‚¤ãƒ³ã‚’é©ç”¨ã™ã‚‹
 		HeapUseSize = HeapUseSize / ALLOCMEM_MIN_ALIGNED * ALLOCMEM_MIN_ALIGNED ;
 
 		HeapMemInfo->HeapAddress	= ( void * )HeapUseAddress ;
 		HeapMemInfo->HeapSize		= HeapUseSize ;
 	}
 
-	// ƒq[ƒv‚Åˆµ‚¤ƒƒ‚ƒŠ‚ÌƒŠƒXƒg‚É’Ç‰Á
+	// ãƒ’ãƒ¼ãƒ—ã§æ‰±ã†ãƒ¡ãƒ¢ãƒªã®ãƒªã‚¹ãƒˆã«è¿½åŠ 
 	HeapMemInfo->Next  = Heap->FirstHeapMem ;
 	Heap->FirstHeapMem = HeapMemInfo ;
 	if( HeapMemInfo->Next != NULL )
@@ -1517,7 +1517,7 @@ extern int AddHeapMemory( HEAPINFO *Heap, void *HeapAddress, ALLOCMEM_SIZE_TYPE 
 		HeapMemInfo->Next->Prev = HeapMemInfo ;
 	}
 
-	// ‹ó‚«ƒƒ‚ƒŠƒ^ƒO‚ğ’Ç‰Á
+	// ç©ºããƒ¡ãƒ¢ãƒªã‚¿ã‚°ã‚’è¿½åŠ 
 	{
 		ALLOCMEMTAG *FreeMemTag ;
 
@@ -1537,32 +1537,32 @@ extern int AddHeapMemory( HEAPINFO *Heap, void *HeapAddress, ALLOCMEM_SIZE_TYPE 
 			FreeMemTag = ( ALLOCMEMTAG * )HeapMemInfo->HeapAddress ;
 		}
 
-		// Šî–{î•ñ‚ğƒZƒbƒg
+		// åŸºæœ¬æƒ…å ±ã‚’ã‚»ãƒƒãƒˆ
 		FreeMemTag->Flag		= 0 ;
 		AllocMemTag_SetBaseInfo( Heap, FreeMemTag, FALSE, TRUE, "Free", 0 ) ;
 
-		// UseSeparateInfo = TRUE ‚Ìê‡‚ÍŠm•Ûƒƒ‚ƒŠ‚ÌƒAƒhƒŒƒX‚ğƒZƒbƒg
+		// UseSeparateInfo = TRUE ã®å ´åˆã¯ç¢ºä¿ãƒ¡ãƒ¢ãƒªã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ã‚»ãƒƒãƒˆ
 		if( Heap->UseSeparateInfo )
 		{
 			FreeMemTag->AllocAddress = HeapMemInfo->HeapAddress ;
 		}
 
-		// ƒTƒCƒY‚ğƒZƒbƒg
+		// ã‚µã‚¤ã‚ºã‚’ã‚»ãƒƒãƒˆ
 		FreeMemTag->Size		= HeapMemInfo->HeapSize ;
 
-		// g—p‚µ‚Ä‚¢‚éƒq[ƒv‚ğƒZƒbƒg
+		// ä½¿ç”¨ã—ã¦ã„ã‚‹ãƒ’ãƒ¼ãƒ—ã‚’ã‚»ãƒƒãƒˆ
 		FreeMemTag->UseHeapMem	= HeapMemInfo ;
 
-		// ƒq[ƒvƒƒ‚ƒŠî•ñ‚Ìæ“ªƒƒ‚ƒŠƒ^ƒO‚É“o˜^
+		// ãƒ’ãƒ¼ãƒ—ãƒ¡ãƒ¢ãƒªæƒ…å ±ã®å…ˆé ­ãƒ¡ãƒ¢ãƒªã‚¿ã‚°ã«ç™»éŒ²
 		HeapMemInfo->FirstMemTag = FreeMemTag ;
 
-		// ƒfƒoƒbƒO—Ìˆæ‚Éî•ñ‚ğƒZƒbƒg
+		// ãƒ‡ãƒãƒƒã‚°é ˜åŸŸã«æƒ…å ±ã‚’ã‚»ãƒƒãƒˆ
 		if( Heap->UseSeparateInfo == FALSE )
 		{
 			AllocMemTag_SetDebugData( FreeMemTag ) ;
 		}
 
-		// ƒƒ‚ƒŠƒ^ƒO‚ÌƒŠƒXƒg‚É’Ç‰Á
+		// ãƒ¡ãƒ¢ãƒªã‚¿ã‚°ã®ãƒªã‚¹ãƒˆã«è¿½åŠ 
 		FreeMemTag->Next = Heap->FirstTag ;
 		FreeMemTag->Prev = NULL ;
 		Heap->FirstTag = FreeMemTag ;
@@ -1575,13 +1575,13 @@ extern int AddHeapMemory( HEAPINFO *Heap, void *HeapAddress, ALLOCMEM_SIZE_TYPE 
 			Heap->LastTag          = FreeMemTag ;
 		}
 
-		// ‹ó‚«ƒƒ‚ƒŠƒ^ƒO‚Ì”‚ğ’Ç‰Á
+		// ç©ºããƒ¡ãƒ¢ãƒªã‚¿ã‚°ã®æ•°ã‚’è¿½åŠ 
 		Heap->FreeTagNum		+= 1 ;
 
-		// ‹ó‚«ƒƒ‚ƒŠ‚Ì‘ƒTƒCƒY‚ğ’Ç‰Á
+		// ç©ºããƒ¡ãƒ¢ãƒªã®ç·ã‚µã‚¤ã‚ºã‚’è¿½åŠ 
 		Heap->TotalFreeSize		+= FreeMemTag->Size ;
 
-		// ‹ó‚«ƒƒ‚ƒŠƒ^ƒOƒŠƒXƒg‚É’Ç‰Á
+		// ç©ºããƒ¡ãƒ¢ãƒªã‚¿ã‚°ãƒªã‚¹ãƒˆã«è¿½åŠ 
 		if( Heap->AllocType == ALLOCMEMTYPE_SIMPLE )
 		{
 			Heap_AddFreeMemTag_Simple( Heap, FreeMemTag, NULL ) ;
@@ -1598,7 +1598,7 @@ extern int AddHeapMemory( HEAPINFO *Heap, void *HeapAddress, ALLOCMEM_SIZE_TYPE 
 	return 0 ;
 }
 
-// ƒq[ƒv‚Æ‚µ‚Äˆµ‚¤ƒƒ‚ƒŠ‚ğŒ¸‚ç‚·
+// ãƒ’ãƒ¼ãƒ—ã¨ã—ã¦æ‰±ã†ãƒ¡ãƒ¢ãƒªã‚’æ¸›ã‚‰ã™
 extern int SubHeapMemory( HEAPINFO *Heap, void *HeapAddress )
 {
 	HEAPMEMINFO *	HeapMemInfo ;
@@ -1611,7 +1611,7 @@ extern int SubHeapMemory( HEAPINFO *Heap, void *HeapAddress )
 		for( HeapMemInfo = Heap->FirstHeapMem ; HeapMemInfo != NULL && HeapMemInfo->Address != HeapAddress ; HeapMemInfo = HeapMemInfo->Next ){}
 		if( HeapMemInfo == NULL )
 		{
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\x53\x00\x75\x00\x62\x00\x48\x00\x65\x00\x61\x00\x70\x00\x4d\x00\x65\x00\x6d\x00\x6f\x00\x72\x00\x79\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\x07\x63\x9a\x5b\x55\x30\x8c\x30\x5f\x30\xe1\x30\xe2\x30\xea\x30\xa2\x30\xc9\x30\xec\x30\xb9\x30\x92\x30\x01\x63\x64\x30\xd2\x30\xfc\x30\xd7\x30\xe1\x30\xe2\x30\xea\x30\x4c\x30\x8b\x89\x64\x30\x4b\x30\x8a\x30\x7e\x30\x5b\x30\x93\x30\x20\x00\x20\x00\x48\x00\x65\x00\x61\x00\x70\x00\x41\x00\x64\x00\x64\x00\x72\x00\x65\x00\x73\x00\x73\x00\x3a\x00\x30\x00\x78\x00\x25\x00\x6c\x00\x6c\x00\x30\x00\x31\x00\x36\x00\x78\x00\x00"/*@ L"SubHeapMemory Error : w’è‚³‚ê‚½ƒƒ‚ƒŠƒAƒhƒŒƒX‚ğ‚Âƒq[ƒvƒƒ‚ƒŠ‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñ  HeapAddress:0x%ll016x" @*/, ( ULONGLONG )HeapAddress )) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\x53\x00\x75\x00\x62\x00\x48\x00\x65\x00\x61\x00\x70\x00\x4d\x00\x65\x00\x6d\x00\x6f\x00\x72\x00\x79\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\x07\x63\x9a\x5b\x55\x30\x8c\x30\x5f\x30\xe1\x30\xe2\x30\xea\x30\xa2\x30\xc9\x30\xec\x30\xb9\x30\x92\x30\x01\x63\x64\x30\xd2\x30\xfc\x30\xd7\x30\xe1\x30\xe2\x30\xea\x30\x4c\x30\x8b\x89\x64\x30\x4b\x30\x8a\x30\x7e\x30\x5b\x30\x93\x30\x20\x00\x20\x00\x48\x00\x65\x00\x61\x00\x70\x00\x41\x00\x64\x00\x64\x00\x72\x00\x65\x00\x73\x00\x73\x00\x3a\x00\x30\x00\x78\x00\x25\x00\x6c\x00\x6c\x00\x30\x00\x31\x00\x36\x00\x78\x00\x00"/*@ L"SubHeapMemory Error : æŒ‡å®šã•ã‚ŒãŸãƒ¡ãƒ¢ãƒªã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’æŒã¤ãƒ’ãƒ¼ãƒ—ãƒ¡ãƒ¢ãƒªãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“  HeapAddress:0x%ll016x" @*/, ( ULONGLONG )HeapAddress )) ;
 			*( ( DWORD * )0x00000000 ) = 0xffffffff ;
 		}
 	}
@@ -1620,41 +1620,41 @@ extern int SubHeapMemory( HEAPINFO *Heap, void *HeapAddress )
 		HeapMemInfo = ( HEAPMEMINFO * )( ( ( DWORD_PTR )HeapAddress + ALLOCMEM_MIN_ALIGNED - 1 ) / ALLOCMEM_MIN_ALIGNED * ALLOCMEM_MIN_ALIGNED ) ;
 	}
 
-	// w’è‚³‚ê‚½ƒq[ƒv‚ğg—p‚µ‚Ä‚¢‚éƒƒ‚ƒŠƒ^ƒO‚ª‚ ‚éê‡‚Í‰ğ•ú‚Å‚«‚È‚¢
+	// æŒ‡å®šã•ã‚ŒãŸãƒ’ãƒ¼ãƒ—ã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹ãƒ¡ãƒ¢ãƒªã‚¿ã‚°ãŒã‚ã‚‹å ´åˆã¯è§£æ”¾ã§ããªã„
 	if( HeapMemInfo->UseMemTagCount != 0 )
 	{
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\x53\x00\x75\x00\x62\x00\x48\x00\x65\x00\x61\x00\x70\x00\x4d\x00\x65\x00\x6d\x00\x6f\x00\x72\x00\x79\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\x7f\x4f\x28\x75\x57\x30\x66\x30\x44\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\xbf\x30\xb0\x30\x4c\x30\x42\x30\x8b\x30\xb6\x72\x4b\x61\x67\x30\xd2\x30\xfc\x30\xd7\x30\xe1\x30\xe2\x30\xea\x30\x92\x30\x16\x59\x5d\x30\x46\x30\x68\x30\x57\x30\x7e\x30\x57\x30\x5f\x30\x20\x00\x20\x00\x48\x00\x65\x00\x61\x00\x70\x00\x4d\x00\x65\x00\x6d\x00\x49\x00\x6e\x00\x66\x00\x6f\x00\x2d\x00\x3e\x00\x55\x00\x73\x00\x65\x00\x4d\x00\x65\x00\x6d\x00\x54\x00\x61\x00\x67\x00\x43\x00\x6f\x00\x75\x00\x6e\x00\x74\x00\x3a\x00\x25\x00\x64\x00\x00"/*@ L"SubHeapMemory Error : g—p‚µ‚Ä‚¢‚éƒƒ‚ƒŠƒ^ƒO‚ª‚ ‚éó‘Ô‚Åƒq[ƒvƒƒ‚ƒŠ‚ğŠO‚»‚¤‚Æ‚µ‚Ü‚µ‚½  HeapMemInfo->UseMemTagCount:%d" @*/, HeapMemInfo->UseMemTagCount )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\x53\x00\x75\x00\x62\x00\x48\x00\x65\x00\x61\x00\x70\x00\x4d\x00\x65\x00\x6d\x00\x6f\x00\x72\x00\x79\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\x7f\x4f\x28\x75\x57\x30\x66\x30\x44\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\xbf\x30\xb0\x30\x4c\x30\x42\x30\x8b\x30\xb6\x72\x4b\x61\x67\x30\xd2\x30\xfc\x30\xd7\x30\xe1\x30\xe2\x30\xea\x30\x92\x30\x16\x59\x5d\x30\x46\x30\x68\x30\x57\x30\x7e\x30\x57\x30\x5f\x30\x20\x00\x20\x00\x48\x00\x65\x00\x61\x00\x70\x00\x4d\x00\x65\x00\x6d\x00\x49\x00\x6e\x00\x66\x00\x6f\x00\x2d\x00\x3e\x00\x55\x00\x73\x00\x65\x00\x4d\x00\x65\x00\x6d\x00\x54\x00\x61\x00\x67\x00\x43\x00\x6f\x00\x75\x00\x6e\x00\x74\x00\x3a\x00\x25\x00\x64\x00\x00"/*@ L"SubHeapMemory Error : ä½¿ç”¨ã—ã¦ã„ã‚‹ãƒ¡ãƒ¢ãƒªã‚¿ã‚°ãŒã‚ã‚‹çŠ¶æ…‹ã§ãƒ’ãƒ¼ãƒ—ãƒ¡ãƒ¢ãƒªã‚’å¤–ãã†ã¨ã—ã¾ã—ãŸ  HeapMemInfo->UseMemTagCount:%d" @*/, HeapMemInfo->UseMemTagCount )) ;
 		*( ( DWORD * )0x00000000 ) = 0xffffffff ;
 	}
 
-	// ƒq[ƒvƒƒ‚ƒŠ‚ğg—p‚µ‚Ä‚¢‚éƒ^ƒO‚ª‹ó‚«ƒƒ‚ƒŠƒ^ƒOˆê‚Â‚Å‚Í‚È‚©‚Á‚½‚çƒGƒ‰[
+	// ãƒ’ãƒ¼ãƒ—ãƒ¡ãƒ¢ãƒªã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹ã‚¿ã‚°ãŒç©ºããƒ¡ãƒ¢ãƒªã‚¿ã‚°ä¸€ã¤ã§ã¯ãªã‹ã£ãŸã‚‰ã‚¨ãƒ©ãƒ¼
 	MemTag = ( ALLOCMEMTAG * )HeapMemInfo->FirstMemTag ;
 	if( MemTag->Flag & ALLOCMEMTAG_FLAG_USE )
 	{
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\x53\x00\x75\x00\x62\x00\x48\x00\x65\x00\x61\x00\x70\x00\x4d\x00\x65\x00\x6d\x00\x6f\x00\x72\x00\x79\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xd2\x30\xfc\x30\xd7\x30\xe1\x30\xe2\x30\xea\x30\x92\x30\x7f\x4f\x28\x75\x57\x30\x66\x30\x44\x30\x8b\x30\x48\x51\x2d\x98\xbf\x30\xb0\x30\x4c\x30\x7f\x4f\x28\x75\xe1\x30\xe2\x30\xea\x30\xbf\x30\xb0\x30\x67\x30\x57\x30\x5f\x30\x00"/*@ L"SubHeapMemory Error : ƒq[ƒvƒƒ‚ƒŠ‚ğg—p‚µ‚Ä‚¢‚éæ“ªƒ^ƒO‚ªg—pƒƒ‚ƒŠƒ^ƒO‚Å‚µ‚½" @*/ )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\x53\x00\x75\x00\x62\x00\x48\x00\x65\x00\x61\x00\x70\x00\x4d\x00\x65\x00\x6d\x00\x6f\x00\x72\x00\x79\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xd2\x30\xfc\x30\xd7\x30\xe1\x30\xe2\x30\xea\x30\x92\x30\x7f\x4f\x28\x75\x57\x30\x66\x30\x44\x30\x8b\x30\x48\x51\x2d\x98\xbf\x30\xb0\x30\x4c\x30\x7f\x4f\x28\x75\xe1\x30\xe2\x30\xea\x30\xbf\x30\xb0\x30\x67\x30\x57\x30\x5f\x30\x00"/*@ L"SubHeapMemory Error : ãƒ’ãƒ¼ãƒ—ãƒ¡ãƒ¢ãƒªã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹å…ˆé ­ã‚¿ã‚°ãŒä½¿ç”¨ãƒ¡ãƒ¢ãƒªã‚¿ã‚°ã§ã—ãŸ" @*/ )) ;
 		PrintInfoMemory( Heap->UseSeparateInfo ? MemTag : MemTag->UserAddress, Heap->UseSeparateInfo ) ;
 		*( ( DWORD * )0x00000000 ) = 0xffffffff ;
 	}
 	if( MemTag->UseHeapMem != HeapMemInfo )
 	{
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\x53\x00\x75\x00\x62\x00\x48\x00\x65\x00\x61\x00\x70\x00\x4d\x00\x65\x00\x6d\x00\x6f\x00\x72\x00\x79\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xd2\x30\xfc\x30\xd7\x30\xe1\x30\xe2\x30\xea\x30\x92\x30\x7f\x4f\x28\x75\x57\x30\x66\x30\x44\x30\x8b\x30\x48\x51\x2d\x98\xbf\x30\xb0\x30\x4c\x30\x7f\x4f\x28\x75\x57\x30\x66\x30\x44\x30\x8b\x30\xd2\x30\xfc\x30\xd7\x30\xe1\x30\xe2\x30\xea\x30\xc5\x60\x31\x58\x68\x30\x00\x4e\xf4\x81\x57\x30\x7e\x30\x5b\x30\x93\x30\x20\x00\x4d\x00\x65\x00\x6d\x00\x54\x00\x61\x00\x67\x00\x2d\x00\x3e\x00\x55\x00\x73\x00\x65\x00\x48\x00\x65\x00\x61\x00\x70\x00\x4d\x00\x65\x00\x6d\x00\x3a\x00\x30\x00\x78\x00\x25\x00\x6c\x00\x6c\x00\x30\x00\x31\x00\x36\x00\x78\x00\x20\x00\x20\x00\x48\x00\x65\x00\x61\x00\x70\x00\x4d\x00\x65\x00\x6d\x00\x49\x00\x6e\x00\x66\x00\x6f\x00\x3a\x00\x30\x00\x78\x00\x25\x00\x6c\x00\x6c\x00\x30\x00\x31\x00\x36\x00\x78\x00\x00"/*@ L"SubHeapMemory Error : ƒq[ƒvƒƒ‚ƒŠ‚ğg—p‚µ‚Ä‚¢‚éæ“ªƒ^ƒO‚ªg—p‚µ‚Ä‚¢‚éƒq[ƒvƒƒ‚ƒŠî•ñ‚Æˆê’v‚µ‚Ü‚¹‚ñ MemTag->UseHeapMem:0x%ll016x  HeapMemInfo:0x%ll016x" @*/, ( ULONGLONG )MemTag->UseHeapMem, ( ULONGLONG )HeapMemInfo )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\x53\x00\x75\x00\x62\x00\x48\x00\x65\x00\x61\x00\x70\x00\x4d\x00\x65\x00\x6d\x00\x6f\x00\x72\x00\x79\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xd2\x30\xfc\x30\xd7\x30\xe1\x30\xe2\x30\xea\x30\x92\x30\x7f\x4f\x28\x75\x57\x30\x66\x30\x44\x30\x8b\x30\x48\x51\x2d\x98\xbf\x30\xb0\x30\x4c\x30\x7f\x4f\x28\x75\x57\x30\x66\x30\x44\x30\x8b\x30\xd2\x30\xfc\x30\xd7\x30\xe1\x30\xe2\x30\xea\x30\xc5\x60\x31\x58\x68\x30\x00\x4e\xf4\x81\x57\x30\x7e\x30\x5b\x30\x93\x30\x20\x00\x4d\x00\x65\x00\x6d\x00\x54\x00\x61\x00\x67\x00\x2d\x00\x3e\x00\x55\x00\x73\x00\x65\x00\x48\x00\x65\x00\x61\x00\x70\x00\x4d\x00\x65\x00\x6d\x00\x3a\x00\x30\x00\x78\x00\x25\x00\x6c\x00\x6c\x00\x30\x00\x31\x00\x36\x00\x78\x00\x20\x00\x20\x00\x48\x00\x65\x00\x61\x00\x70\x00\x4d\x00\x65\x00\x6d\x00\x49\x00\x6e\x00\x66\x00\x6f\x00\x3a\x00\x30\x00\x78\x00\x25\x00\x6c\x00\x6c\x00\x30\x00\x31\x00\x36\x00\x78\x00\x00"/*@ L"SubHeapMemory Error : ãƒ’ãƒ¼ãƒ—ãƒ¡ãƒ¢ãƒªã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹å…ˆé ­ã‚¿ã‚°ãŒä½¿ç”¨ã—ã¦ã„ã‚‹ãƒ’ãƒ¼ãƒ—ãƒ¡ãƒ¢ãƒªæƒ…å ±ã¨ä¸€è‡´ã—ã¾ã›ã‚“ MemTag->UseHeapMem:0x%ll016x  HeapMemInfo:0x%ll016x" @*/, ( ULONGLONG )MemTag->UseHeapMem, ( ULONGLONG )HeapMemInfo )) ;
 		PrintInfoMemory( Heap->UseSeparateInfo ? MemTag : MemTag->UserAddress, Heap->UseSeparateInfo ) ;
 		*( ( DWORD * )0x00000000 ) = 0xffffffff ;
 	}
 	if( MemTag->Next != NULL && MemTag->Next->UseHeapMem == HeapMemInfo )
 	{
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\x53\x00\x75\x00\x62\x00\x48\x00\x65\x00\x61\x00\x70\x00\x4d\x00\x65\x00\x6d\x00\x6f\x00\x72\x00\x79\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xd2\x30\xfc\x30\xd7\x30\xe1\x30\xe2\x30\xea\x30\x92\x30\x7f\x4f\x28\x75\x57\x30\x66\x30\x44\x30\x8b\x30\x7f\x4f\x28\x75\xe1\x30\xe2\x30\xea\x30\xbf\x30\xb0\x30\x4c\x30\x8c\x4e\x64\x30\xe5\x4e\x0a\x4e\x42\x30\x8a\x30\x7e\x30\x59\x30\x00"/*@ L"SubHeapMemory Error : ƒq[ƒvƒƒ‚ƒŠ‚ğg—p‚µ‚Ä‚¢‚ég—pƒƒ‚ƒŠƒ^ƒO‚ª“ñ‚ÂˆÈã‚ ‚è‚Ü‚·" @*/ )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\x53\x00\x75\x00\x62\x00\x48\x00\x65\x00\x61\x00\x70\x00\x4d\x00\x65\x00\x6d\x00\x6f\x00\x72\x00\x79\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xd2\x30\xfc\x30\xd7\x30\xe1\x30\xe2\x30\xea\x30\x92\x30\x7f\x4f\x28\x75\x57\x30\x66\x30\x44\x30\x8b\x30\x7f\x4f\x28\x75\xe1\x30\xe2\x30\xea\x30\xbf\x30\xb0\x30\x4c\x30\x8c\x4e\x64\x30\xe5\x4e\x0a\x4e\x42\x30\x8a\x30\x7e\x30\x59\x30\x00"/*@ L"SubHeapMemory Error : ãƒ’ãƒ¼ãƒ—ãƒ¡ãƒ¢ãƒªã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹ä½¿ç”¨ãƒ¡ãƒ¢ãƒªã‚¿ã‚°ãŒäºŒã¤ä»¥ä¸Šã‚ã‚Šã¾ã™" @*/ )) ;
 		PrintInfoMemory( Heap->UseSeparateInfo ? MemTag : MemTag->UserAddress, Heap->UseSeparateInfo ) ;
 		*( ( DWORD * )0x00000000 ) = 0xffffffff ;
 	}
 
-	// ‹ó‚«ƒƒ‚ƒŠ‚Ì”‚ğŒ¸‚ç‚·
+	// ç©ºããƒ¡ãƒ¢ãƒªã®æ•°ã‚’æ¸›ã‚‰ã™
 	Heap->TotalFreeSize -= MemTag->Size ;
 
-	// ‹ó‚«ƒƒ‚ƒŠƒ^ƒO‚Ì”‚ğŒ¸‚ç‚·
+	// ç©ºããƒ¡ãƒ¢ãƒªã‚¿ã‚°ã®æ•°ã‚’æ¸›ã‚‰ã™
 	Heap->FreeTagNum -- ;
 
-	// ƒƒ‚ƒŠƒ^ƒO‚Ì˜AŒ‹‚ğ•ÏX‚·‚é
+	// ãƒ¡ãƒ¢ãƒªã‚¿ã‚°ã®é€£çµã‚’å¤‰æ›´ã™ã‚‹
 	{
 		if( MemTag->Prev != NULL )
 		{
@@ -1675,7 +1675,7 @@ extern int SubHeapMemory( HEAPINFO *Heap, void *HeapAddress )
 		}
 	}
 
-	// ‹ó‚«ƒƒ‚ƒŠƒŠƒXƒg‚©‚çŠO‚·
+	// ç©ºããƒ¡ãƒ¢ãƒªãƒªã‚¹ãƒˆã‹ã‚‰å¤–ã™
 	if( Heap->AllocType == ALLOCMEMTYPE_SIMPLE )
 	{
 		Heap_SubFreeMemTag_Simple( Heap, MemTag ) ;
@@ -1686,7 +1686,7 @@ extern int SubHeapMemory( HEAPINFO *Heap, void *HeapAddress )
 		Heap_SubFreeMemTag_TLSF( Heap, MemTag ) ;
 	}
 
-	// ƒŠƒXƒg‚Ì˜AŒ‹‚©‚çŠO‚·
+	// ãƒªã‚¹ãƒˆã®é€£çµã‹ã‚‰å¤–ã™
 	{
 		if( HeapMemInfo->Prev == NULL )
 		{
@@ -1703,13 +1703,13 @@ extern int SubHeapMemory( HEAPINFO *Heap, void *HeapAddress )
 		}
 	}
 
-	// –¢g—pƒŠƒXƒg‚É’Ç‰Á‚·‚é
+	// æœªä½¿ç”¨ãƒªã‚¹ãƒˆã«è¿½åŠ ã™ã‚‹
 	if( Heap->UseSeparateInfo )
 	{
 		Heap_AddNotUseSepHeapMem( Heap, HeapMemInfo ) ;
 	}
 
-	// ©“®Šm•Û‚³‚ê‚½ƒƒ‚ƒŠ‚¾‚Á‚½ê‡‚Í‰ğ•ú‚·‚é
+	// è‡ªå‹•ç¢ºä¿ã•ã‚ŒãŸãƒ¡ãƒ¢ãƒªã ã£ãŸå ´åˆã¯è§£æ”¾ã™ã‚‹
 	if( HeapMemInfo->Flag & HEAPMEM_FLAG_AUTOALLOC )
 	{
 		BYTE CallbackBuffer[ ALLOCHEAP_CALLBACK_INFO_SIZE ] ;
@@ -1720,17 +1720,17 @@ extern int SubHeapMemory( HEAPINFO *Heap, void *HeapAddress )
 
 	DX_HEAP_LEAVE_CRITICAL_SECTION( Heap )
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// ƒq[ƒv‚ªg—p‚µ‚Ä‚¢‚éƒƒ‚ƒŠ‚Ì‘ƒTƒCƒY‚ğæ“¾‚·‚é
+// ãƒ’ãƒ¼ãƒ—ãŒä½¿ç”¨ã—ã¦ã„ã‚‹ãƒ¡ãƒ¢ãƒªã®ç·ã‚µã‚¤ã‚ºã‚’å–å¾—ã™ã‚‹
 extern	ALLOCMEM_SIZE_TYPE	GetHeapTotalMemorySize( HEAPINFO *Heap )
 {
 	return Heap->TotalUseSize + Heap->TotalFreeSize ;
 }
 
-// ƒq[ƒv‚©‚çƒƒ‚ƒŠ‚ğŠm•Û‚·‚é( UseSeparateInfo=TRUE ‚Ìê‡‚ÍA–ß‚Á‚Ä‚­‚é‚Ì‚Í ALLOCMEMTAG \‘¢‘Ì‚ÌƒAƒhƒŒƒX )
+// ãƒ’ãƒ¼ãƒ—ã‹ã‚‰ãƒ¡ãƒ¢ãƒªã‚’ç¢ºä¿ã™ã‚‹( UseSeparateInfo=TRUE ã®å ´åˆã¯ã€æˆ»ã£ã¦ãã‚‹ã®ã¯ ALLOCMEMTAG æ§‹é€ ä½“ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ )
 extern void * AllocMemory(
 	HEAPINFO *			Heap,
 	ALLOCMEM_SIZE_TYPE	Size,
@@ -1746,14 +1746,14 @@ extern void * AllocMemory(
 
 	DX_HEAP_ENTER_CRITICAL_SECTION( Heap )
 
-	// ƒTƒCƒY‚ª‚O‚Ìê‡‚Í NULL ‚ğ•Ô‚·
+	// ã‚µã‚¤ã‚ºãŒï¼ã®å ´åˆã¯ NULL ã‚’è¿”ã™
 	if( Size == 0 )
 	{
 		DX_HEAP_LEAVE_CRITICAL_SECTION( Heap )
 		return NULL ;
 	}
 
-	// Šm•ÛƒTƒCƒY‚ğƒAƒ‰ƒCƒ“‚Ì”{”‚É‚·‚é
+	// ç¢ºä¿ã‚µã‚¤ã‚ºã‚’ã‚¢ãƒ©ã‚¤ãƒ³ã®å€æ•°ã«ã™ã‚‹
 	if( Aligned == 0 )
 	{
 		Aligned = Heap->Aligned ;
@@ -1767,7 +1767,7 @@ extern void * AllocMemory(
 	}
 	Size = ( Size + Aligned - 1 ) / Aligned * Aligned ;
 
-	// ƒƒ‚ƒŠŠm•Ûƒ^ƒCƒv‚É‚æ‚Á‚Äˆ—‚ğ•ªŠò
+	// ãƒ¡ãƒ¢ãƒªç¢ºä¿ã‚¿ã‚¤ãƒ—ã«ã‚ˆã£ã¦å‡¦ç†ã‚’åˆ†å²
 	if( Heap->AllocType == ALLOCMEMTYPE_SIMPLE )
 	{
 		ALLOCMEMTAG *		MemTag ;
@@ -1777,24 +1777,24 @@ extern void * AllocMemory(
 		{
 			for( MemTag = Heap->FreeLastTag ; MemTag != NULL ; MemTag = MemTag->ListPrev )
 			{
-				// ƒAƒ‰ƒCƒ“‚ğl—¶‚µ‚Ä‚àw’è‚Ìƒƒ‚ƒŠƒTƒCƒY‚ªŠm•Û‚Å‚«‚é‚©ƒ`ƒFƒbƒN
+				// ã‚¢ãƒ©ã‚¤ãƒ³ã‚’è€ƒæ…®ã—ã¦ã‚‚æŒ‡å®šã®ãƒ¡ãƒ¢ãƒªã‚µã‚¤ã‚ºãŒç¢ºä¿ã§ãã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 				if( Heap->UseSeparateInfo )
 				{
-					// ƒTƒCƒY‚ªŠÔˆá‚¢‚È‚­‘«‚è‚È‚¯‚ê‚ÎŸ‚Ö
+					// ã‚µã‚¤ã‚ºãŒé–“é•ã„ãªãè¶³ã‚Šãªã‘ã‚Œã°æ¬¡ã¸
 					if( MemTag->Size < Size )
 					{
 						continue ;
 					}
 
-					// •Ô‚·ƒAƒhƒŒƒX‚ÌZo
+					// è¿”ã™ã‚¢ãƒ‰ãƒ¬ã‚¹ã®ç®—å‡º
 					{
 						UseAddress = ( ( DWORD_PTR )MemTag->AllocAddress + MemTag->Size ) - Size ;
 
-						// ƒAƒ‰ƒCƒ“‚ğ“K—p
+						// ã‚¢ãƒ©ã‚¤ãƒ³ã‚’é©ç”¨
 						UseAddress = UseAddress / Aligned * Aligned ;
 					}
 
-					// —LŒø‚ÈƒAƒhƒŒƒX‚É‚È‚Á‚Ä‚¢‚½‚çƒ‹[ƒv‚ğ”²‚¯‚é
+					// æœ‰åŠ¹ãªã‚¢ãƒ‰ãƒ¬ã‚¹ã«ãªã£ã¦ã„ãŸã‚‰ãƒ«ãƒ¼ãƒ—ã‚’æŠœã‘ã‚‹
 					if( UseAddress >= ( DWORD_PTR )MemTag->AllocAddress )
 					{
 						break ;
@@ -1802,21 +1802,21 @@ extern void * AllocMemory(
 				}
 				else
 				{
-					// ƒTƒCƒY‚ªŠÔˆá‚¢‚È‚­‘«‚è‚È‚¯‚ê‚ÎŸ‚Ö
+					// ã‚µã‚¤ã‚ºãŒé–“é•ã„ãªãè¶³ã‚Šãªã‘ã‚Œã°æ¬¡ã¸
 					if( MemTag->Size - ALLOCMEMTAG_TOTAL_SIZE < Size )
 					{
 						continue ;
 					}
 
-					// •Ô‚·ƒAƒhƒŒƒX‚ÌZo
+					// è¿”ã™ã‚¢ãƒ‰ãƒ¬ã‚¹ã®ç®—å‡º
 					{
 						UseAddress = ( ( DWORD_PTR )MemTag + MemTag->Size - ALLOCMEMTAG_DEBUGAREA_SIZE ) - Size ;
 
-						// ƒAƒ‰ƒCƒ“‚ğ“K—p
+						// ã‚¢ãƒ©ã‚¤ãƒ³ã‚’é©ç”¨
 						UseAddress = UseAddress / Aligned * Aligned ;
 					}
 
-					// —LŒø‚ÈƒAƒhƒŒƒX‚É‚È‚Á‚Ä‚¢‚½‚çƒ‹[ƒv‚ğ”²‚¯‚é
+					// æœ‰åŠ¹ãªã‚¢ãƒ‰ãƒ¬ã‚¹ã«ãªã£ã¦ã„ãŸã‚‰ãƒ«ãƒ¼ãƒ—ã‚’æŠœã‘ã‚‹
 					if( UseAddress >= ( DWORD_PTR )MemTag + ALLOCMEMTAG_TOTAL_SIZE - ALLOCMEMTAG_DEBUGAREA_SIZE )
 					{
 						break ;
@@ -1824,15 +1824,15 @@ extern void * AllocMemory(
 				}
 			}
 
-			// ‹ó‚«ƒƒ‚ƒŠ‚ª–³‚©‚Á‚½ê‡‚Íˆ—‚ğ•ªŠò
+			// ç©ºããƒ¡ãƒ¢ãƒªãŒç„¡ã‹ã£ãŸå ´åˆã¯å‡¦ç†ã‚’åˆ†å²
 			if( MemTag == NULL )
 			{
-				// ƒq[ƒvƒƒ‚ƒŠ‚ğ’Ç‰Á‚µ‚Äƒƒ‚ƒŠ‚ÌŠm•Û‚ğ‚İ‚é
+				// ãƒ’ãƒ¼ãƒ—ãƒ¡ãƒ¢ãƒªã‚’è¿½åŠ ã—ã¦ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿ã‚’è©¦ã¿ã‚‹
 				ReturnAddress = AllocMemory_AutoAllocHeap( Heap, Size, Aligned, Reverse, Name, Line, NoMemoryDump ) ;
 			}
 			else
 			{
-				// ‹ó‚«ƒƒ‚ƒŠƒ^ƒO‚É‘Î‚µ‚Äƒƒ‚ƒŠ‚ÌŠm•Ûˆ—‚ğs‚¤
+				// ç©ºããƒ¡ãƒ¢ãƒªã‚¿ã‚°ã«å¯¾ã—ã¦ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿å‡¦ç†ã‚’è¡Œã†
 				ReturnAddress = Heap_AllocMemory( Heap, MemTag, UseAddress, OrigSize, Size, Aligned, Reverse, Name, Line, NoMemoryDump ) ;
 			}
 		}
@@ -1842,60 +1842,60 @@ extern void * AllocMemory(
 			{
 				ALLOCMEM_SIZE_TYPE	FreeSize ;
 
-				// w’è‚Ìƒƒ‚ƒŠƒTƒCƒY‚ªŠm•Û‚Å‚«‚é‚©ƒ`ƒFƒbƒN
+				// æŒ‡å®šã®ãƒ¡ãƒ¢ãƒªã‚µã‚¤ã‚ºãŒç¢ºä¿ã§ãã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 				if( Heap->UseSeparateInfo )
 				{
-					// •Ô‚·ƒAƒhƒŒƒX‚ÌZo
+					// è¿”ã™ã‚¢ãƒ‰ãƒ¬ã‚¹ã®ç®—å‡º
 					{
 						UseAddress = ( DWORD_PTR )MemTag->AllocAddress ;
 
-						// ƒAƒ‰ƒCƒ“‚ğ“K—p
+						// ã‚¢ãƒ©ã‚¤ãƒ³ã‚’é©ç”¨
 						UseAddress = ( UseAddress + Aligned - 1 ) / Aligned * Aligned ;
 					}
 
-					// —LŒø‚È‹ó‚«ƒƒ‚ƒŠƒTƒCƒY‚ğZo
+					// æœ‰åŠ¹ãªç©ºããƒ¡ãƒ¢ãƒªã‚µã‚¤ã‚ºã‚’ç®—å‡º
 					{
 						FreeSize = ( ( DWORD_PTR )MemTag->AllocAddress + MemTag->Size ) - UseAddress ;
 
-						// ƒAƒ‰ƒCƒ“‚ğ“K—p
+						// ã‚¢ãƒ©ã‚¤ãƒ³ã‚’é©ç”¨
 						FreeSize = FreeSize / Aligned * Aligned ;
 					}
 				}
 				else
 				{
-					// •Ô‚·ƒAƒhƒŒƒX‚ÌZo
+					// è¿”ã™ã‚¢ãƒ‰ãƒ¬ã‚¹ã®ç®—å‡º
 					{
 						UseAddress = ( DWORD_PTR )MemTag + ALLOCMEMTAG_TOTAL_SIZE - ALLOCMEMTAG_DEBUGAREA_SIZE ;
 
-						// ƒAƒ‰ƒCƒ“‚ğ“K—p
+						// ã‚¢ãƒ©ã‚¤ãƒ³ã‚’é©ç”¨
 						UseAddress = ( UseAddress + Aligned - 1 ) / Aligned * Aligned ;
 					}
 
-					// —LŒø‚È‹ó‚«ƒƒ‚ƒŠƒTƒCƒY‚ğZo
+					// æœ‰åŠ¹ãªç©ºããƒ¡ãƒ¢ãƒªã‚µã‚¤ã‚ºã‚’ç®—å‡º
 					{
 						FreeSize = ( ( DWORD_PTR )MemTag + MemTag->Size ) - UseAddress - ALLOCMEMTAG_DEBUGAREA_SIZE ;
 
-						// ƒAƒ‰ƒCƒ“‚ğ“K—p
+						// ã‚¢ãƒ©ã‚¤ãƒ³ã‚’é©ç”¨
 						FreeSize = FreeSize / Aligned * Aligned ;
 					}
 				}
 
-				// ‹ó‚«ƒƒ‚ƒŠ‚ª‘«‚è‚éê‡‚Íƒ‹[ƒv‚ğ”²‚¯‚é
+				// ç©ºããƒ¡ãƒ¢ãƒªãŒè¶³ã‚Šã‚‹å ´åˆã¯ãƒ«ãƒ¼ãƒ—ã‚’æŠœã‘ã‚‹
 				if( FreeSize >= Size )
 				{
 					break ;
 				}
 			}
 
-			// ‹ó‚«ƒƒ‚ƒŠ‚ª–³‚©‚Á‚½ê‡‚Íˆ—‚ğ•ªŠò
+			// ç©ºããƒ¡ãƒ¢ãƒªãŒç„¡ã‹ã£ãŸå ´åˆã¯å‡¦ç†ã‚’åˆ†å²
 			if( MemTag == NULL )
 			{
-				// ƒq[ƒvƒƒ‚ƒŠ‚ğ’Ç‰Á‚µ‚Äƒƒ‚ƒŠ‚ÌŠm•Û‚ğ‚İ‚é
+				// ãƒ’ãƒ¼ãƒ—ãƒ¡ãƒ¢ãƒªã‚’è¿½åŠ ã—ã¦ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿ã‚’è©¦ã¿ã‚‹
 				ReturnAddress = AllocMemory_AutoAllocHeap( Heap, Size, Aligned, Reverse, Name, Line, NoMemoryDump ) ;
 			}
 			else
 			{
-				// ‹ó‚«ƒƒ‚ƒŠƒ^ƒO‚É‘Î‚µ‚Äƒƒ‚ƒŠ‚ÌŠm•Ûˆ—‚ğs‚¤
+				// ç©ºããƒ¡ãƒ¢ãƒªã‚¿ã‚°ã«å¯¾ã—ã¦ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿å‡¦ç†ã‚’è¡Œã†
 				ReturnAddress = Heap_AllocMemory( Heap, MemTag, UseAddress, OrigSize, Size, Aligned, Reverse, Name, Line, NoMemoryDump ) ;
 			}
 		}
@@ -1912,25 +1912,25 @@ extern void * AllocMemory(
 		DWORD				EnableBitList2 ;
 		ALLOCMEM_SIZE_TYPE	EnableBitList1 ;
 
-		// •K—v‚Èƒƒ‚ƒŠ—Ìˆæ‚ğZo
+		// å¿…è¦ãªãƒ¡ãƒ¢ãƒªé ˜åŸŸã‚’ç®—å‡º
 		if( Heap->UseSeparateInfo )
 		{
 			UseSize = Size ;
 		}
 		else
 		{
-			// ƒ^ƒO‚ğŠÜ‚ß‚Ä•K—v‚Èƒƒ‚ƒŠ—Ìˆæ‚ğZo
+			// ã‚¿ã‚°ã‚’å«ã‚ã¦å¿…è¦ãªãƒ¡ãƒ¢ãƒªé ˜åŸŸã‚’ç®—å‡º
 			UseSize = Size + ALLOCMEMTAG_MIN_SIZE ;
 		}
 
-		// ƒAƒ‰ƒCƒ““K—p
+		// ã‚¢ãƒ©ã‚¤ãƒ³é©ç”¨
 		UseSize = ( UseSize + Aligned * 2 - 1 ) / Aligned * Aligned ;
 
-		// •K—vƒTƒCƒY‚ÌƒJƒeƒSƒŠ‚P‚ÆƒJƒeƒSƒŠ‚Q‚ğæ“¾
+		// å¿…è¦ã‚µã‚¤ã‚ºã®ã‚«ãƒ†ã‚´ãƒªï¼‘ã¨ã‚«ãƒ†ã‚´ãƒªï¼’ã‚’å–å¾—
 		FLI = GetMSB( UseSize ) ;
 		SLI = GetSLI( UseSize, FLI, ALLOCMEM_CATEGORY_2_SHIFT_NUM ) ;
 
-		// •K—vƒTƒCƒY‚ª•K‚¸û‚Ü‚é•K—v‚ª‚ ‚é‚Ì‚ÅAƒJƒeƒSƒŠ‚Q‚ÌƒCƒ“ƒfƒbƒNƒX‚Í‚Ğ‚Æ‚Â‘å‚«‚­‚È‚é
+		// å¿…è¦ã‚µã‚¤ã‚ºãŒå¿…ãšåã¾ã‚‹å¿…è¦ãŒã‚ã‚‹ã®ã§ã€ã‚«ãƒ†ã‚´ãƒªï¼’ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã¯ã²ã¨ã¤å¤§ãããªã‚‹
 		SLI += 1 ;
 		if( SLI >= ( 1 << ALLOCMEM_CATEGORY_2_SHIFT_NUM ) )
 		{
@@ -1938,22 +1938,22 @@ extern void * AllocMemory(
 			FLI ++ ;
 		}
 
-		// ˆê’v‚·‚éƒJƒeƒSƒŠ‚É‹ó‚«ƒƒ‚ƒŠƒ^ƒO‚ª‚ ‚é‚©ƒ`ƒFƒbƒN
+		// ä¸€è‡´ã™ã‚‹ã‚«ãƒ†ã‚´ãƒªã«ç©ºããƒ¡ãƒ¢ãƒªã‚¿ã‚°ãŒã‚ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 		if( Heap->FreeFirstTagArray[ FLI ][ SLI ] != NULL )
 		{
-			// ‚ ‚Á‚½‚ç‚»‚Ìƒƒ‚ƒŠƒ^ƒO‚ğg—p‚·‚é
+			// ã‚ã£ãŸã‚‰ãã®ãƒ¡ãƒ¢ãƒªã‚¿ã‚°ã‚’ä½¿ç”¨ã™ã‚‹
 			MemTag = Heap->FreeFirstTagArray[ FLI ][ SLI ] ;
 
 //			Root = 1 ;
 		}
 		else
 		{
-			// –³‚©‚Á‚½ê‡‚Í•K—v‚ÈƒTƒCƒY‚ªû‚Ü‚éÅ¬‚Ìƒƒ‚ƒŠƒ^ƒO‚ğ’T‚·
+			// ç„¡ã‹ã£ãŸå ´åˆã¯å¿…è¦ãªã‚µã‚¤ã‚ºãŒåã¾ã‚‹æœ€å°ã®ãƒ¡ãƒ¢ãƒªã‚¿ã‚°ã‚’æ¢ã™
 
-			// ‚Ü‚¸“¯‚¶ƒJƒeƒSƒŠ‚P“à‚É‚æ‚è‘å‚«‚¢ƒTƒCƒY‚ÌƒJƒeƒSƒŠ‚Q‚Ì‹ó‚«ƒƒ‚ƒŠƒ^ƒO‚ª‚ ‚é‚©’²‚×‚é
+			// ã¾ãšåŒã˜ã‚«ãƒ†ã‚´ãƒªï¼‘å†…ã«ã‚ˆã‚Šå¤§ãã„ã‚µã‚¤ã‚ºã®ã‚«ãƒ†ã‚´ãƒªï¼’ã®ç©ºããƒ¡ãƒ¢ãƒªã‚¿ã‚°ãŒã‚ã‚‹ã‹èª¿ã¹ã‚‹
 			EnableBitList2 = Heap->FreeTagBitList2[ FLI ] & ( 0xffffffff << SLI ) ;
 
-			// ‚ ‚Á‚½‚ç‚ ‚Á‚½’†‚ÅÅ¬‚ÌƒJƒeƒSƒŠ‚Q‚Ìƒƒ‚ƒŠƒ^ƒO‚ğg—p‚·‚é
+			// ã‚ã£ãŸã‚‰ã‚ã£ãŸä¸­ã§æœ€å°ã®ã‚«ãƒ†ã‚´ãƒªï¼’ã®ãƒ¡ãƒ¢ãƒªã‚¿ã‚°ã‚’ä½¿ç”¨ã™ã‚‹
 			if( EnableBitList2 != 0 )
 			{
 				SLI = GetLSB( EnableBitList2 ) ;
@@ -1963,11 +1963,11 @@ extern void * AllocMemory(
 			}
 			else
 			{
-				// –³‚©‚Á‚½‚ç‚æ‚è‘å‚«‚¢ƒTƒCƒY‚ÌƒJƒeƒSƒŠ‚P‚É‹ó‚«ƒƒ‚ƒŠƒ^ƒO‚ª‚ ‚é‚©’²‚×‚é
+				// ç„¡ã‹ã£ãŸã‚‰ã‚ˆã‚Šå¤§ãã„ã‚µã‚¤ã‚ºã®ã‚«ãƒ†ã‚´ãƒªï¼‘ã«ç©ºããƒ¡ãƒ¢ãƒªã‚¿ã‚°ãŒã‚ã‚‹ã‹èª¿ã¹ã‚‹
 
 				FLI ++ ;
 
-				// ƒJƒeƒSƒŠ‚P‚Éû‚Ü‚ç‚È‚­‚È‚Á‚Ä‚µ‚Ü‚Á‚½ê‡‚ÍƒGƒ‰[
+				// ã‚«ãƒ†ã‚´ãƒªï¼‘ã«åã¾ã‚‰ãªããªã£ã¦ã—ã¾ã£ãŸå ´åˆã¯ã‚¨ãƒ©ãƒ¼
 				if( FLI >= ALLOCMEM_CATEGORY_1_NUM )
 				{
 					return NULL ;
@@ -1979,20 +1979,20 @@ extern void * AllocMemory(
 				EnableBitList1 = Heap->FreeTagBitList1 & (                  0xffffffff   << FLI ) ;
 			#endif // PLATFORM_64BIT
 
-				// –³‚©‚Á‚½‚çw’è‚ÌƒTƒCƒY‚ªû‚Ü‚é‹ó‚«ƒƒ‚ƒŠ‚ª–³‚¢‚Æ‚¢‚¤‚±‚Æ
+				// ç„¡ã‹ã£ãŸã‚‰æŒ‡å®šã®ã‚µã‚¤ã‚ºãŒåã¾ã‚‹ç©ºããƒ¡ãƒ¢ãƒªãŒç„¡ã„ã¨ã„ã†ã“ã¨
 				if( EnableBitList1 == 0 )
 				{
-					// ƒq[ƒvƒƒ‚ƒŠ‚ğ’Ç‰Á‚µ‚Äƒƒ‚ƒŠ‚ÌŠm•Û‚ğ‚İ‚é
+					// ãƒ’ãƒ¼ãƒ—ãƒ¡ãƒ¢ãƒªã‚’è¿½åŠ ã—ã¦ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿ã‚’è©¦ã¿ã‚‹
 					ReturnAddress = AllocMemory_AutoAllocHeap( Heap, Size, Aligned, Reverse, Name, Line, NoMemoryDump ) ;
 
 					DX_HEAP_LEAVE_CRITICAL_SECTION( Heap )
 					return ReturnAddress ;
 				}
 
-				// ‚ ‚Á‚½‚ç‚ ‚Á‚½’†‚ÅÅ¬‚ÌƒJƒeƒSƒŠ‚P‚ğæ“¾
+				// ã‚ã£ãŸã‚‰ã‚ã£ãŸä¸­ã§æœ€å°ã®ã‚«ãƒ†ã‚´ãƒªï¼‘ã‚’å–å¾—
 				FLI = GetLSB( EnableBitList1 ) ;
 
-				// X‚ÉÅ¬‚ÌƒJƒeƒSƒŠ‚P‚Ì’†‚ÌÅ¬‚ÌƒJƒeƒSƒŠ‚Q‚Ìƒƒ‚ƒŠƒ^ƒO‚ğg—p
+				// æ›´ã«æœ€å°ã®ã‚«ãƒ†ã‚´ãƒªï¼‘ã®ä¸­ã®æœ€å°ã®ã‚«ãƒ†ã‚´ãƒªï¼’ã®ãƒ¡ãƒ¢ãƒªã‚¿ã‚°ã‚’ä½¿ç”¨
 				SLI = GetLSB( Heap->FreeTagBitList2[ FLI ] ) ;
 				MemTag = Heap->FreeFirstTagArray[ FLI ][ SLI ] ;
 
@@ -2000,20 +2000,20 @@ extern void * AllocMemory(
 			}
 		}
 
-		// •Ô‚·ƒAƒhƒŒƒX‚ÌZo
+		// è¿”ã™ã‚¢ãƒ‰ãƒ¬ã‚¹ã®ç®—å‡º
 		if( Heap->UseSeparateInfo )
 		{
 			UseAddress = ( DWORD_PTR )MemTag->AllocAddress ;
 
-			// ƒAƒ‰ƒCƒ“‚ğ“K—p
+			// ã‚¢ãƒ©ã‚¤ãƒ³ã‚’é©ç”¨
 			UseAddress = ( UseAddress + Aligned - 1 ) / Aligned * Aligned ;
 
-			// ƒTƒCƒY‚Ìƒ`ƒFƒbƒN
+			// ã‚µã‚¤ã‚ºã®ãƒã‚§ãƒƒã‚¯
 			{
 				ALLOCMEM_SIZE_TYPE FreeSize = ( ( DWORD_PTR )MemTag->AllocAddress + MemTag->Size ) - UseAddress ;
 				if( FreeSize < Size )
 				{
-					DXST_LOGFILEFMT_ADDUTF16LE(( "\x54\x00\x4c\x00\x53\x00\x46\x00\x20\x00\xab\x30\xc6\x30\xb4\x30\xea\x30\xcb\x69\x20\x90\xa8\x30\xe9\x30\xfc\x30\x20\x00\x31\x00\x20\x00\x20\x00\x4d\x00\x65\x00\x6d\x00\x54\x00\x61\x00\x67\x00\x2d\x00\x3e\x00\x53\x00\x69\x00\x7a\x00\x65\x00\x20\x00\x25\x00\x64\x00\x00"/*@ L"TLSF ƒJƒeƒSƒŠ\‘¢ƒGƒ‰[ 1  MemTag->Size %d" @*/, MemTag->Size )) ;
+					DXST_LOGFILEFMT_ADDUTF16LE(( "\x54\x00\x4c\x00\x53\x00\x46\x00\x20\x00\xab\x30\xc6\x30\xb4\x30\xea\x30\xcb\x69\x20\x90\xa8\x30\xe9\x30\xfc\x30\x20\x00\x31\x00\x20\x00\x20\x00\x4d\x00\x65\x00\x6d\x00\x54\x00\x61\x00\x67\x00\x2d\x00\x3e\x00\x53\x00\x69\x00\x7a\x00\x65\x00\x20\x00\x25\x00\x64\x00\x00"/*@ L"TLSF ã‚«ãƒ†ã‚´ãƒªæ§‹é€ ã‚¨ãƒ©ãƒ¼ 1  MemTag->Size %d" @*/, MemTag->Size )) ;
 					*( ( DWORD * )0x00000000 ) = 0xffffffff ;
 				}
 			}
@@ -2022,21 +2022,21 @@ extern void * AllocMemory(
 		{
 			UseAddress = ( DWORD_PTR )MemTag + ALLOCMEMTAG_TOTAL_SIZE - ALLOCMEMTAG_DEBUGAREA_SIZE ;
 
-			// ƒAƒ‰ƒCƒ“‚ğ“K—p
+			// ã‚¢ãƒ©ã‚¤ãƒ³ã‚’é©ç”¨
 			UseAddress = ( UseAddress + Aligned - 1 ) / Aligned * Aligned ;
 
-			// ƒTƒCƒY‚Ìƒ`ƒFƒbƒN
+			// ã‚µã‚¤ã‚ºã®ãƒã‚§ãƒƒã‚¯
 			{
 				ALLOCMEM_SIZE_TYPE FreeSize = ( ( DWORD_PTR )MemTag + MemTag->Size ) - UseAddress ;
 				if( FreeSize < Size + ALLOCMEMTAG_DEBUGAREA_SIZE )
 				{
-					DXST_LOGFILEFMT_ADDUTF16LE(( "\x54\x00\x4c\x00\x53\x00\x46\x00\x20\x00\xab\x30\xc6\x30\xb4\x30\xea\x30\xcb\x69\x20\x90\xa8\x30\xe9\x30\xfc\x30\x20\x00\x32\x00\x20\x00\x20\x00\x4d\x00\x65\x00\x6d\x00\x54\x00\x61\x00\x67\x00\x2d\x00\x3e\x00\x53\x00\x69\x00\x7a\x00\x65\x00\x20\x00\x25\x00\x64\x00\x00"/*@ L"TLSF ƒJƒeƒSƒŠ\‘¢ƒGƒ‰[ 2  MemTag->Size %d" @*/, MemTag->Size )) ;
+					DXST_LOGFILEFMT_ADDUTF16LE(( "\x54\x00\x4c\x00\x53\x00\x46\x00\x20\x00\xab\x30\xc6\x30\xb4\x30\xea\x30\xcb\x69\x20\x90\xa8\x30\xe9\x30\xfc\x30\x20\x00\x32\x00\x20\x00\x20\x00\x4d\x00\x65\x00\x6d\x00\x54\x00\x61\x00\x67\x00\x2d\x00\x3e\x00\x53\x00\x69\x00\x7a\x00\x65\x00\x20\x00\x25\x00\x64\x00\x00"/*@ L"TLSF ã‚«ãƒ†ã‚´ãƒªæ§‹é€ ã‚¨ãƒ©ãƒ¼ 2  MemTag->Size %d" @*/, MemTag->Size )) ;
 					*( ( DWORD * )0x00000000 ) = 0xffffffff ;
 				}
 			}
 		}
 
-		// ‹ó‚«ƒƒ‚ƒŠƒ^ƒO‚É‘Î‚µ‚Äƒƒ‚ƒŠ‚ÌŠm•Ûˆ—‚ğs‚¤
+		// ç©ºããƒ¡ãƒ¢ãƒªã‚¿ã‚°ã«å¯¾ã—ã¦ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿å‡¦ç†ã‚’è¡Œã†
 		ReturnAddress = Heap_AllocMemory( Heap, MemTag, UseAddress, OrigSize, Size, Aligned, Reverse, Name, Line, NoMemoryDump ) ;
 	}
 
@@ -2045,7 +2045,7 @@ extern void * AllocMemory(
 	return ReturnAddress ;
 }
 
-// Šm•Û‚µ‚½ƒƒ‚ƒŠ‚ÌƒTƒCƒY‚ğ•ÏX‚·‚é( UseSeparateInfo=TRUE ‚Ìê‡‚ÍAAllocAddress ‚É ALLOCMEMTAG \‘¢‘Ì‚ÌƒAƒhƒŒƒX‚ğ“n‚· )
+// ç¢ºä¿ã—ãŸãƒ¡ãƒ¢ãƒªã®ã‚µã‚¤ã‚ºã‚’å¤‰æ›´ã™ã‚‹( UseSeparateInfo=TRUE ã®å ´åˆã¯ã€AllocAddress ã« ALLOCMEMTAG æ§‹é€ ä½“ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’æ¸¡ã™ )
 extern void * ReallocMemory( void *AllocAddress, int UseSeparateInfo, ALLOCMEM_SIZE_TYPE Size, ALLOCMEM_SIZE_TYPE Aligned, const char *Name, int Line )
 {
 	ALLOCMEMTAG *		MemTag ;
@@ -2058,7 +2058,7 @@ extern void * ReallocMemory( void *AllocAddress, int UseSeparateInfo, ALLOCMEM_S
 		return 0 ;
 	}
 
-	// ƒƒ‚ƒŠƒ^ƒO‚ÌƒAƒhƒŒƒX‚ğZo
+	// ãƒ¡ãƒ¢ãƒªã‚¿ã‚°ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ç®—å‡º
 	if( UseSeparateInfo )
 	{
 		MemTag = ( ALLOCMEMTAG * )AllocAddress ;
@@ -2068,26 +2068,26 @@ extern void * ReallocMemory( void *AllocAddress, int UseSeparateInfo, ALLOCMEM_S
 		MemTag = ( ALLOCMEMTAG * )( ( BYTE * )AllocAddress - *( ( DWORD * )( ( BYTE * )AllocAddress - sizeof( DWORD ) ) ) ) ;
 	}
 
-	// ƒ}ƒWƒbƒN‚h‚c‚ÌŠm”F
+	// ãƒã‚¸ãƒƒã‚¯ï¼©ï¼¤ã®ç¢ºèª
 	if( MemTag->MagicID != ALLOCMEMTAG_MAGIC_ID )
 	{
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\x52\x00\x65\x00\x61\x00\x6c\x00\x6c\x00\x6f\x00\x63\x00\x4d\x00\x65\x00\x6d\x00\x6f\x00\x72\x00\x79\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xe1\x30\xe2\x30\xea\x30\xbf\x30\xb0\x30\x6e\x30\x20\x00\x4d\x00\x61\x00\x67\x00\x69\x00\x63\x00\x49\x00\x44\x00\x20\x00\x4c\x30\x0d\x4e\x63\x6b\x67\x30\x59\x30\x01\x30\xa4\x8a\x63\x30\x5f\x30\xe1\x30\xe2\x30\xea\x30\xa2\x30\xc9\x30\xec\x30\xb9\x30\x4c\x30\x21\x6e\x55\x30\x8c\x30\x5f\x30\x4b\x30\x01\x30\xe1\x30\xe2\x30\xea\x30\x4c\x30\x34\x78\xca\x58\x55\x30\x8c\x30\x66\x30\x44\x30\x7e\x30\x59\x30\x00"/*@ L"ReallocMemory Error : ƒƒ‚ƒŠƒ^ƒO‚Ì MagicID ‚ª•s³‚Å‚·AŒë‚Á‚½ƒƒ‚ƒŠƒAƒhƒŒƒX‚ª“n‚³‚ê‚½‚©Aƒƒ‚ƒŠ‚ª”j‰ó‚³‚ê‚Ä‚¢‚Ü‚·" @*/ )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\x52\x00\x65\x00\x61\x00\x6c\x00\x6c\x00\x6f\x00\x63\x00\x4d\x00\x65\x00\x6d\x00\x6f\x00\x72\x00\x79\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xe1\x30\xe2\x30\xea\x30\xbf\x30\xb0\x30\x6e\x30\x20\x00\x4d\x00\x61\x00\x67\x00\x69\x00\x63\x00\x49\x00\x44\x00\x20\x00\x4c\x30\x0d\x4e\x63\x6b\x67\x30\x59\x30\x01\x30\xa4\x8a\x63\x30\x5f\x30\xe1\x30\xe2\x30\xea\x30\xa2\x30\xc9\x30\xec\x30\xb9\x30\x4c\x30\x21\x6e\x55\x30\x8c\x30\x5f\x30\x4b\x30\x01\x30\xe1\x30\xe2\x30\xea\x30\x4c\x30\x34\x78\xca\x58\x55\x30\x8c\x30\x66\x30\x44\x30\x7e\x30\x59\x30\x00"/*@ L"ReallocMemory Error : ãƒ¡ãƒ¢ãƒªã‚¿ã‚°ã® MagicID ãŒä¸æ­£ã§ã™ã€èª¤ã£ãŸãƒ¡ãƒ¢ãƒªã‚¢ãƒ‰ãƒ¬ã‚¹ãŒæ¸¡ã•ã‚ŒãŸã‹ã€ãƒ¡ãƒ¢ãƒªãŒç ´å£Šã•ã‚Œã¦ã„ã¾ã™" @*/ )) ;
 		*( ( DWORD * )0x00000000 ) = 0xffffffff ;
 	}
 
-	// ƒq[ƒv‚ÌƒAƒhƒŒƒX‚ğƒZƒbƒg
+	// ãƒ’ãƒ¼ãƒ—ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ã‚»ãƒƒãƒˆ
 	Heap = MemTag->Owner ;
 
 	DX_HEAP_ENTER_CRITICAL_SECTION( Heap )
 
-	// ƒTƒCƒY‚ª‚O‚Ìê‡‚Í NULL ‚ğ•Ô‚·
+	// ã‚µã‚¤ã‚ºãŒï¼ã®å ´åˆã¯ NULL ã‚’è¿”ã™
 	if( Size == 0 )
 	{
 		DX_HEAP_LEAVE_CRITICAL_SECTION( Heap )
 		return NULL ;
 	}
 
-	// Šm•ÛƒTƒCƒY‚ğƒAƒ‰ƒCƒ“‚Ì”{”‚É‚·‚é
+	// ç¢ºä¿ã‚µã‚¤ã‚ºã‚’ã‚¢ãƒ©ã‚¤ãƒ³ã®å€æ•°ã«ã™ã‚‹
 	if( Aligned == 0 )
 	{
 		Aligned = Heap->Aligned ;
@@ -2101,7 +2101,7 @@ extern void * ReallocMemory( void *AllocAddress, int UseSeparateInfo, ALLOCMEM_S
 	}
 	Size = ( Size + Aligned - 1 ) / Aligned * Aligned ;
 
-	// Šm•Û‚Æw’è‚³‚ê‚½ƒTƒCƒY‚ª“¯‚¶ê‡‚Íƒtƒ@ƒCƒ‹–¼‚Æs”Ô†‚¾‚¯XV‚·‚é
+	// ç¢ºä¿æ™‚ã¨æŒ‡å®šã•ã‚ŒãŸã‚µã‚¤ã‚ºãŒåŒã˜å ´åˆã¯ãƒ•ã‚¡ã‚¤ãƒ«åã¨è¡Œç•ªå·ã ã‘æ›´æ–°ã™ã‚‹
 	if( MemTag->UserSize == OrigSize )
 	{
 		AllocMemTag_SetBaseInfo( Heap, MemTag, TRUE, TRUE, Name, Line ) ;
@@ -2110,35 +2110,35 @@ extern void * ReallocMemory( void *AllocAddress, int UseSeparateInfo, ALLOCMEM_S
 		return AllocAddress ;
 	}
 
-	// ƒfƒoƒbƒO—Ìˆæ‚Ìƒ`ƒFƒbƒN
+	// ãƒ‡ãƒãƒƒã‚°é ˜åŸŸã®ãƒã‚§ãƒƒã‚¯
 	if( Heap->UseSeparateInfo == FALSE )
 	{
 		if( AllocMemTag_CheckDebugData( MemTag ) < 0 )
 		{
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\x52\x00\x65\x00\x61\x00\x6c\x00\x6c\x00\x6f\x00\x63\x00\x4d\x00\x65\x00\x6d\x00\x6f\x00\x72\x00\x79\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xc7\x30\xd0\x30\xc3\x30\xb0\x30\x18\x98\xdf\x57\x6e\x30\x34\x78\xca\x58\x92\x30\xba\x78\x8d\x8a\x57\x30\x7e\x30\x57\x30\x5f\x30\x01\x30\xe1\x30\xe2\x30\xea\x30\x6e\x30\x0d\x4e\x63\x6b\x6a\x30\xa2\x30\xaf\x30\xbb\x30\xb9\x30\x4c\x30\x7a\x76\x1f\x75\x57\x30\x5f\x30\x53\x30\x68\x30\x4c\x30\x03\x80\x48\x30\x89\x30\x8c\x30\x7e\x30\x59\x30\x00"/*@ L"ReallocMemory Error : ƒfƒoƒbƒO—Ìˆæ‚Ì”j‰ó‚ğŠm”F‚µ‚Ü‚µ‚½Aƒƒ‚ƒŠ‚Ì•s³‚ÈƒAƒNƒZƒX‚ª”­¶‚µ‚½‚±‚Æ‚ªl‚¦‚ç‚ê‚Ü‚·" @*/ )) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\x52\x00\x65\x00\x61\x00\x6c\x00\x6c\x00\x6f\x00\x63\x00\x4d\x00\x65\x00\x6d\x00\x6f\x00\x72\x00\x79\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xc7\x30\xd0\x30\xc3\x30\xb0\x30\x18\x98\xdf\x57\x6e\x30\x34\x78\xca\x58\x92\x30\xba\x78\x8d\x8a\x57\x30\x7e\x30\x57\x30\x5f\x30\x01\x30\xe1\x30\xe2\x30\xea\x30\x6e\x30\x0d\x4e\x63\x6b\x6a\x30\xa2\x30\xaf\x30\xbb\x30\xb9\x30\x4c\x30\x7a\x76\x1f\x75\x57\x30\x5f\x30\x53\x30\x68\x30\x4c\x30\x03\x80\x48\x30\x89\x30\x8c\x30\x7e\x30\x59\x30\x00"/*@ L"ReallocMemory Error : ãƒ‡ãƒãƒƒã‚°é ˜åŸŸã®ç ´å£Šã‚’ç¢ºèªã—ã¾ã—ãŸã€ãƒ¡ãƒ¢ãƒªã®ä¸æ­£ãªã‚¢ã‚¯ã‚»ã‚¹ãŒç™ºç”Ÿã—ãŸã“ã¨ãŒè€ƒãˆã‚‰ã‚Œã¾ã™" @*/ )) ;
 			PrintInfoMemory( AllocAddress, UseSeparateInfo ) ;
 			*( ( DWORD * )0x00000000 ) = 0xffffffff ;
 		}
 	}
 
-	// g—p’†ƒ`ƒFƒbƒN
+	// ä½¿ç”¨ä¸­ãƒã‚§ãƒƒã‚¯
 	if( ( MemTag->Flag & ALLOCMEMTAG_FLAG_USE ) == 0 )
 	{
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\x52\x00\x65\x00\x61\x00\x6c\x00\x6c\x00\x6f\x00\x63\x00\x4d\x00\x65\x00\x6d\x00\x6f\x00\x72\x00\x79\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xe3\x89\x3e\x65\x08\x6e\x7f\x30\x6e\x30\xe1\x30\xe2\x30\xea\x30\x6b\x30\xfe\x5b\x57\x30\x66\x30\x8d\x51\xba\x78\xdd\x4f\x92\x30\x57\x30\x88\x30\x46\x30\x68\x30\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"ReallocMemory Error : ‰ğ•úÏ‚İ‚Ìƒƒ‚ƒŠ‚É‘Î‚µ‚ÄÄŠm•Û‚ğ‚µ‚æ‚¤‚Æ‚µ‚Ü‚µ‚½" @*/ )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\x52\x00\x65\x00\x61\x00\x6c\x00\x6c\x00\x6f\x00\x63\x00\x4d\x00\x65\x00\x6d\x00\x6f\x00\x72\x00\x79\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xe3\x89\x3e\x65\x08\x6e\x7f\x30\x6e\x30\xe1\x30\xe2\x30\xea\x30\x6b\x30\xfe\x5b\x57\x30\x66\x30\x8d\x51\xba\x78\xdd\x4f\x92\x30\x57\x30\x88\x30\x46\x30\x68\x30\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"ReallocMemory Error : è§£æ”¾æ¸ˆã¿ã®ãƒ¡ãƒ¢ãƒªã«å¯¾ã—ã¦å†ç¢ºä¿ã‚’ã—ã‚ˆã†ã¨ã—ã¾ã—ãŸ" @*/ )) ;
 		PrintInfoMemory( AllocAddress, UseSeparateInfo ) ;
 		*( ( DWORD * )0x00000000 ) = 0xffffffff ;
 	}
 
-	// Šm•Ûƒƒ‚ƒŠ‚ª‘‚¦‚é‚Ì‚©Œ¸‚é‚Ì‚©‚Åˆ—‚ğ•ªŠò
+	// ç¢ºä¿ãƒ¡ãƒ¢ãƒªãŒå¢—ãˆã‚‹ã®ã‹æ¸›ã‚‹ã®ã‹ã§å‡¦ç†ã‚’åˆ†å²
 	{
 		ALLOCMEM_SIZE_TYPE	FreeSize ;
 		DWORD_PTR			UseAddress ;
 		int					IsRealloc = FALSE ;
 
-		// g—p‚µ‚Ä‚¢‚éƒƒ‚ƒŠƒAƒhƒŒƒX‚ğƒZƒbƒg
+		// ä½¿ç”¨ã—ã¦ã„ã‚‹ãƒ¡ãƒ¢ãƒªã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ã‚»ãƒƒãƒˆ
 		UseAddress = ( DWORD_PTR )MemTag->UserAddress ;
 
-		// —LŒø‚È‹ó‚«ƒƒ‚ƒŠƒTƒCƒY‚ğZo
+		// æœ‰åŠ¹ãªç©ºããƒ¡ãƒ¢ãƒªã‚µã‚¤ã‚ºã‚’ç®—å‡º
 		if( Heap->UseSeparateInfo )
 		{
 			FreeSize = ( ( DWORD_PTR )MemTag->AllocAddress + MemTag->Size ) - UseAddress ;
@@ -2148,27 +2148,27 @@ extern void * ReallocMemory( void *AllocAddress, int UseSeparateInfo, ALLOCMEM_S
 			FreeSize = ( ( DWORD_PTR )MemTag + MemTag->Size ) - UseAddress - ALLOCMEMTAG_DEBUGAREA_SIZE ;
 		}
 
-		// ƒAƒ‰ƒCƒ“‚ğ“K—p
+		// ã‚¢ãƒ©ã‚¤ãƒ³ã‚’é©ç”¨
 		FreeSize = FreeSize / Aligned * Aligned ;
 
-		// Œ»İ‚ÌŠm•Ûƒƒ‚ƒŠ‚Éû‚Ü‚ç‚È‚¢ê‡‚Í‚³‚ç‚ÉÄŠm•Û‚ª•K—v‚©ƒ`ƒFƒbƒN
+		// ç¾åœ¨ã®ç¢ºä¿ãƒ¡ãƒ¢ãƒªã«åã¾ã‚‰ãªã„å ´åˆã¯ã•ã‚‰ã«å†ç¢ºä¿ãŒå¿…è¦ã‹ãƒã‚§ãƒƒã‚¯
 		if( Size > FreeSize )
 		{
-			// û‚Ü‚ç‚È‚¢ê‡ƒƒ‚ƒŠƒAƒhƒŒƒX‚Ì‚‚¢•û‚Ì—×‚Ìƒƒ‚ƒŠƒ^ƒO‚ª‹ó‚«ƒƒ‚ƒŠ‚ÅAŠ‚Â‘‚â‚µ‚½•ª‚Ìƒƒ‚ƒŠ‚ğŠi”[‚Å‚«‚é‚©‚ğƒ`ƒFƒbƒN
+			// åã¾ã‚‰ãªã„å ´åˆãƒ¡ãƒ¢ãƒªã‚¢ãƒ‰ãƒ¬ã‚¹ã®é«˜ã„æ–¹ã®éš£ã®ãƒ¡ãƒ¢ãƒªã‚¿ã‚°ãŒç©ºããƒ¡ãƒ¢ãƒªã§ã€ä¸”ã¤å¢—ã‚„ã—ãŸåˆ†ã®ãƒ¡ãƒ¢ãƒªã‚’æ ¼ç´ã§ãã‚‹ã‹ã‚’ãƒã‚§ãƒƒã‚¯
 
-			// Ÿ‚Ìƒƒ‚ƒŠƒ^ƒO‚Æƒƒ‚ƒŠƒAƒhƒŒƒX‚ª˜A‘±‚µ‚Ä‚¢‚È‚¢‚©AŸ‚Ìƒƒ‚ƒŠƒ^ƒO‚ª–³‚¢‚©AŸ‚Ìƒƒ‚ƒŠƒ^ƒO‚ª‹ó‚«ƒƒ‚ƒŠ‚Å‚Í‚È‚¢ê‡‚ÍŠg’£•s‰Â”\@
+			// æ¬¡ã®ãƒ¡ãƒ¢ãƒªã‚¿ã‚°ã¨ãƒ¡ãƒ¢ãƒªã‚¢ãƒ‰ãƒ¬ã‚¹ãŒé€£ç¶šã—ã¦ã„ãªã„ã‹ã€æ¬¡ã®ãƒ¡ãƒ¢ãƒªã‚¿ã‚°ãŒç„¡ã„ã‹ã€æ¬¡ã®ãƒ¡ãƒ¢ãƒªã‚¿ã‚°ãŒç©ºããƒ¡ãƒ¢ãƒªã§ã¯ãªã„å ´åˆã¯æ‹¡å¼µä¸å¯èƒ½ã€€
 			if( MemTag->Next == NULL || 
 				( MemTag->Flag & ALLOCMEMTAG_FLAG_NEXT_CONNECT ) == 0 ||
 				( MemTag->Next->Flag & ALLOCMEMTAG_FLAG_USE ) != 0 )
 			{
-				// ÄŠm•Û‚Ìƒtƒ‰ƒO‚ğ—§‚Ä‚é
+				// å†ç¢ºä¿ã®ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 				IsRealloc = TRUE ;
 			}
 			else
 			{
-				// ‹ó‚«ƒƒ‚ƒŠ‚ÌƒTƒCƒY‚ğ‘«‚µ‚½ê‡AŠg’£‚µ‚½ƒTƒCƒY‚Éû‚Ü‚é‚©‚ğƒ`ƒFƒbƒN
+				// ç©ºããƒ¡ãƒ¢ãƒªã®ã‚µã‚¤ã‚ºã‚’è¶³ã—ãŸå ´åˆã€æ‹¡å¼µã—ãŸã‚µã‚¤ã‚ºã«åã¾ã‚‹ã‹ã‚’ãƒã‚§ãƒƒã‚¯
 
-				// —LŒø‚È‹ó‚«ƒƒ‚ƒŠƒTƒCƒY‚ğZo
+				// æœ‰åŠ¹ãªç©ºããƒ¡ãƒ¢ãƒªã‚µã‚¤ã‚ºã‚’ç®—å‡º
 				if( Heap->UseSeparateInfo )
 				{
 					FreeSize = ( ( DWORD_PTR )MemTag->AllocAddress + MemTag->Size + MemTag->Next->Size ) - UseAddress ;
@@ -2178,10 +2178,10 @@ extern void * ReallocMemory( void *AllocAddress, int UseSeparateInfo, ALLOCMEM_S
 					FreeSize = ( ( DWORD_PTR )MemTag + MemTag->Size + MemTag->Next->Size ) - UseAddress - ALLOCMEMTAG_DEBUGAREA_SIZE ;
 				}
 
-				// ƒAƒ‰ƒCƒ“‚ğ“K—p
+				// ã‚¢ãƒ©ã‚¤ãƒ³ã‚’é©ç”¨
 				FreeSize = FreeSize / Aligned * Aligned ;
 
-				// ‹ó‚«ƒƒ‚ƒŠ‚ª‘«‚è‚È‚¢ê‡‚ÍÄŠm•Û‚Ìƒtƒ‰ƒO‚ğ—§‚Ä‚é
+				// ç©ºããƒ¡ãƒ¢ãƒªãŒè¶³ã‚Šãªã„å ´åˆã¯å†ç¢ºä¿ã®ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 				if( Size > FreeSize )
 				{
 					IsRealloc = TRUE ;
@@ -2189,12 +2189,12 @@ extern void * ReallocMemory( void *AllocAddress, int UseSeparateInfo, ALLOCMEM_S
 			}
 		}
 
-		// ÄŠm•Û‚ğ‚·‚éê‡‚ÆŠg’£‚·‚éê‡‚Åˆ—‚ğ•ªŠò
+		// å†ç¢ºä¿ã‚’ã™ã‚‹å ´åˆã¨æ‹¡å¼µã™ã‚‹å ´åˆã§å‡¦ç†ã‚’åˆ†å²
 		if( IsRealloc )
 		{
-			// ÄŠm•Û‚·‚éê‡
+			// å†ç¢ºä¿ã™ã‚‹å ´åˆ
 
-			// V‚µ‚¢ƒƒ‚ƒŠ—Ìˆæ‚ğŠm•Û
+			// æ–°ã—ã„ãƒ¡ãƒ¢ãƒªé ˜åŸŸã‚’ç¢ºä¿
 			ReturnAddress = AllocMemory(
 				Heap,
 				OrigSize,
@@ -2204,14 +2204,14 @@ extern void * ReallocMemory( void *AllocAddress, int UseSeparateInfo, ALLOCMEM_S
 				Line
 			) ;
 
-			// ƒƒ‚ƒŠŠm•Û‚É¸”s‚µ‚½ê‡‚Í NULL ‚ğ•Ô‚·
+			// ãƒ¡ãƒ¢ãƒªç¢ºä¿ã«å¤±æ•—ã—ãŸå ´åˆã¯ NULL ã‚’è¿”ã™
 			if( ReturnAddress == NULL )
 			{
 				DX_HEAP_LEAVE_CRITICAL_SECTION( Heap )
 				return NULL ;
 			}
 
-			// ¬Œ÷‚µ‚½ê‡‚Í¡‚Ü‚Å‚ÌŠm•Ûƒƒ‚ƒŠ‚Ì“à—e‚ğƒRƒs[‚·‚é
+			// æˆåŠŸã—ãŸå ´åˆã¯ä»Šã¾ã§ã®ç¢ºä¿ãƒ¡ãƒ¢ãƒªã®å†…å®¹ã‚’ã‚³ãƒ”ãƒ¼ã™ã‚‹
 			if( Heap->UseSeparateInfo )
 			{
 				_MEMCPY( ( ( ALLOCMEMTAG * )ReturnAddress )->AllocAddress, MemTag->UserAddress, ( ( DWORD_PTR )MemTag->AllocAddress + MemTag->Size ) - UseAddress ) ;
@@ -2221,15 +2221,15 @@ extern void * ReallocMemory( void *AllocAddress, int UseSeparateInfo, ALLOCMEM_S
 				_MEMCPY( ReturnAddress, MemTag->UserAddress, ( ( DWORD_PTR )MemTag + MemTag->Size ) - UseAddress - ALLOCMEMTAG_DEBUGAREA_SIZE ) ;
 			}
 
-			// ¡‚Ü‚Å‚Ìƒƒ‚ƒŠ‚Í‰ğ•ú‚·‚é
+			// ä»Šã¾ã§ã®ãƒ¡ãƒ¢ãƒªã¯è§£æ”¾ã™ã‚‹
 			FreeMemory( AllocAddress, Heap->UseSeparateInfo ) ;
 		}
 		else
 		{
-			// Šg’£‚·‚éê‡‚ÍAˆê’UŠg’£‚·‚éƒƒ‚ƒŠƒ^ƒO‚ğ‰ğ•ú‚·‚é( ‹ó‚«ƒƒ‚ƒŠ‚Æ˜AŒ‹‚·‚éê‡‚Íƒƒ‚ƒŠƒAƒhƒŒƒX‚ª‚‚¢ê‡‚Ì‚İ‚É‚·‚éƒtƒ‰ƒO‚ğ TRUE ‚É‚µ‚Ä )
+			// æ‹¡å¼µã™ã‚‹å ´åˆã¯ã€ä¸€æ—¦æ‹¡å¼µã™ã‚‹ãƒ¡ãƒ¢ãƒªã‚¿ã‚°ã‚’è§£æ”¾ã™ã‚‹( ç©ºããƒ¡ãƒ¢ãƒªã¨é€£çµã™ã‚‹å ´åˆã¯ãƒ¡ãƒ¢ãƒªã‚¢ãƒ‰ãƒ¬ã‚¹ãŒé«˜ã„å ´åˆã®ã¿ã«ã™ã‚‹ãƒ•ãƒ©ã‚°ã‚’ TRUE ã«ã—ã¦ )
 			Heap_FreeMemory( Heap, MemTag, TRUE ) ;
 
-			// ƒƒ‚ƒŠ‚ÌÄŠm•Û
+			// ãƒ¡ãƒ¢ãƒªã®å†ç¢ºä¿
 			Heap_AllocMemory(
 				Heap,
 				MemTag,
@@ -2243,7 +2243,7 @@ extern void * ReallocMemory( void *AllocAddress, int UseSeparateInfo, ALLOCMEM_S
 				FALSE
 			) ;
 
-			// ƒƒ‚ƒŠƒAƒhƒŒƒX‚Í‚»‚Ì‚Ü‚Ü
+			// ãƒ¡ãƒ¢ãƒªã‚¢ãƒ‰ãƒ¬ã‚¹ã¯ãã®ã¾ã¾
 			ReturnAddress = AllocAddress ;
 		}
 	}
@@ -2253,7 +2253,7 @@ extern void * ReallocMemory( void *AllocAddress, int UseSeparateInfo, ALLOCMEM_S
 	return ReturnAddress ;
 }
 
-// ƒq[ƒv‚©‚çŠm•Û‚µ‚½ƒƒ‚ƒŠ‚ğŠJ•ú‚·‚é( UseSeparateInfo = TRUE ‚Ìê‡‚ÍAAllocAddress ‚É ALLOCMEMTAG \‘¢‘Ì‚ÌƒAƒhƒŒƒX‚ğ“n‚· )
+// ãƒ’ãƒ¼ãƒ—ã‹ã‚‰ç¢ºä¿ã—ãŸãƒ¡ãƒ¢ãƒªã‚’é–‹æ”¾ã™ã‚‹( UseSeparateInfo = TRUE ã®å ´åˆã¯ã€AllocAddress ã« ALLOCMEMTAG æ§‹é€ ä½“ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’æ¸¡ã™ )
 extern int FreeMemory( void *AllocAddress, int UseSeparateInfo )
 {
 	ALLOCMEMTAG *	MemTag ;
@@ -2264,7 +2264,7 @@ extern int FreeMemory( void *AllocAddress, int UseSeparateInfo )
 		return 0 ;
 	}
 
-	// ƒƒ‚ƒŠƒ^ƒO‚ÌƒAƒhƒŒƒX‚ğZo
+	// ãƒ¡ãƒ¢ãƒªã‚¿ã‚°ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ç®—å‡º
 	if( UseSeparateInfo )
 	{
 		MemTag = ( ALLOCMEMTAG * )AllocAddress ;
@@ -2274,42 +2274,42 @@ extern int FreeMemory( void *AllocAddress, int UseSeparateInfo )
 		MemTag = ( ALLOCMEMTAG * )( ( BYTE * )AllocAddress - *( ( DWORD * )( ( BYTE * )AllocAddress - sizeof( DWORD ) ) ) ) ;
 	}
 
-	// ƒ}ƒWƒbƒN‚h‚c‚ÌŠm”F
+	// ãƒã‚¸ãƒƒã‚¯ï¼©ï¼¤ã®ç¢ºèª
 	if( MemTag->MagicID != ALLOCMEMTAG_MAGIC_ID )
 	{
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x72\x00\x65\x00\x65\x00\x4d\x00\x65\x00\x6d\x00\x6f\x00\x72\x00\x79\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xe1\x30\xe2\x30\xea\x30\xbf\x30\xb0\x30\x6e\x30\x20\x00\x4d\x00\x61\x00\x67\x00\x69\x00\x63\x00\x49\x00\x44\x00\x20\x00\x4c\x30\x0d\x4e\x63\x6b\x67\x30\x59\x30\x01\x30\xa4\x8a\x63\x30\x5f\x30\xe1\x30\xe2\x30\xea\x30\xa2\x30\xc9\x30\xec\x30\xb9\x30\x4c\x30\x21\x6e\x55\x30\x8c\x30\x5f\x30\x4b\x30\x01\x30\xe1\x30\xe2\x30\xea\x30\x4c\x30\x34\x78\xca\x58\x55\x30\x8c\x30\x66\x30\x44\x30\x7e\x30\x59\x30\x00"/*@ L"FreeMemory Error : ƒƒ‚ƒŠƒ^ƒO‚Ì MagicID ‚ª•s³‚Å‚·AŒë‚Á‚½ƒƒ‚ƒŠƒAƒhƒŒƒX‚ª“n‚³‚ê‚½‚©Aƒƒ‚ƒŠ‚ª”j‰ó‚³‚ê‚Ä‚¢‚Ü‚·" @*/ )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x72\x00\x65\x00\x65\x00\x4d\x00\x65\x00\x6d\x00\x6f\x00\x72\x00\x79\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xe1\x30\xe2\x30\xea\x30\xbf\x30\xb0\x30\x6e\x30\x20\x00\x4d\x00\x61\x00\x67\x00\x69\x00\x63\x00\x49\x00\x44\x00\x20\x00\x4c\x30\x0d\x4e\x63\x6b\x67\x30\x59\x30\x01\x30\xa4\x8a\x63\x30\x5f\x30\xe1\x30\xe2\x30\xea\x30\xa2\x30\xc9\x30\xec\x30\xb9\x30\x4c\x30\x21\x6e\x55\x30\x8c\x30\x5f\x30\x4b\x30\x01\x30\xe1\x30\xe2\x30\xea\x30\x4c\x30\x34\x78\xca\x58\x55\x30\x8c\x30\x66\x30\x44\x30\x7e\x30\x59\x30\x00"/*@ L"FreeMemory Error : ãƒ¡ãƒ¢ãƒªã‚¿ã‚°ã® MagicID ãŒä¸æ­£ã§ã™ã€èª¤ã£ãŸãƒ¡ãƒ¢ãƒªã‚¢ãƒ‰ãƒ¬ã‚¹ãŒæ¸¡ã•ã‚ŒãŸã‹ã€ãƒ¡ãƒ¢ãƒªãŒç ´å£Šã•ã‚Œã¦ã„ã¾ã™" @*/ )) ;
 		*( ( DWORD * )0x00000000 ) = 0xffffffff ;
 	}
 
-	// ƒq[ƒv‚ÌƒAƒhƒŒƒX‚ğƒZƒbƒg
+	// ãƒ’ãƒ¼ãƒ—ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ã‚»ãƒƒãƒˆ
 	Heap = MemTag->Owner ;
 
 	DX_HEAP_ENTER_CRITICAL_SECTION( Heap )
 
-	// ƒfƒoƒbƒO—Ìˆæ‚Ìƒ`ƒFƒbƒN
+	// ãƒ‡ãƒãƒƒã‚°é ˜åŸŸã®ãƒã‚§ãƒƒã‚¯
 	if( Heap->UseSeparateInfo == FALSE )
 	{
 		if( AllocMemTag_CheckDebugData( MemTag ) < 0 )
 		{
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x72\x00\x65\x00\x65\x00\x4d\x00\x65\x00\x6d\x00\x6f\x00\x72\x00\x79\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xc7\x30\xd0\x30\xc3\x30\xb0\x30\x18\x98\xdf\x57\x6e\x30\x34\x78\xca\x58\x92\x30\xba\x78\x8d\x8a\x57\x30\x7e\x30\x57\x30\x5f\x30\x01\x30\xe1\x30\xe2\x30\xea\x30\x6e\x30\x0d\x4e\x63\x6b\x6a\x30\xa2\x30\xaf\x30\xbb\x30\xb9\x30\x4c\x30\x7a\x76\x1f\x75\x57\x30\x5f\x30\x53\x30\x68\x30\x4c\x30\x03\x80\x48\x30\x89\x30\x8c\x30\x7e\x30\x59\x30\x00"/*@ L"FreeMemory Error : ƒfƒoƒbƒO—Ìˆæ‚Ì”j‰ó‚ğŠm”F‚µ‚Ü‚µ‚½Aƒƒ‚ƒŠ‚Ì•s³‚ÈƒAƒNƒZƒX‚ª”­¶‚µ‚½‚±‚Æ‚ªl‚¦‚ç‚ê‚Ü‚·" @*/ )) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x72\x00\x65\x00\x65\x00\x4d\x00\x65\x00\x6d\x00\x6f\x00\x72\x00\x79\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xc7\x30\xd0\x30\xc3\x30\xb0\x30\x18\x98\xdf\x57\x6e\x30\x34\x78\xca\x58\x92\x30\xba\x78\x8d\x8a\x57\x30\x7e\x30\x57\x30\x5f\x30\x01\x30\xe1\x30\xe2\x30\xea\x30\x6e\x30\x0d\x4e\x63\x6b\x6a\x30\xa2\x30\xaf\x30\xbb\x30\xb9\x30\x4c\x30\x7a\x76\x1f\x75\x57\x30\x5f\x30\x53\x30\x68\x30\x4c\x30\x03\x80\x48\x30\x89\x30\x8c\x30\x7e\x30\x59\x30\x00"/*@ L"FreeMemory Error : ãƒ‡ãƒãƒƒã‚°é ˜åŸŸã®ç ´å£Šã‚’ç¢ºèªã—ã¾ã—ãŸã€ãƒ¡ãƒ¢ãƒªã®ä¸æ­£ãªã‚¢ã‚¯ã‚»ã‚¹ãŒç™ºç”Ÿã—ãŸã“ã¨ãŒè€ƒãˆã‚‰ã‚Œã¾ã™" @*/ )) ;
 			PrintInfoMemory( AllocAddress, UseSeparateInfo ) ;
 			*( ( DWORD * )0x00000000 ) = 0xffffffff ;
 		}
 	}
 
-	// g—p’†ƒ`ƒFƒbƒN
+	// ä½¿ç”¨ä¸­ãƒã‚§ãƒƒã‚¯
 	if( ( MemTag->Flag & ALLOCMEMTAG_FLAG_USE ) == 0 )
 	{
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x72\x00\x65\x00\x65\x00\x4d\x00\x65\x00\x6d\x00\x6f\x00\x72\x00\x79\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xe3\x89\x3e\x65\x08\x6e\x7f\x30\x6e\x30\xe1\x30\xe2\x30\xea\x30\x6b\x30\xfe\x5b\x57\x30\x66\x30\x8d\x51\xa6\x5e\xe3\x89\x3e\x65\x57\x30\x88\x30\x46\x30\x68\x30\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"FreeMemory Error : ‰ğ•úÏ‚İ‚Ìƒƒ‚ƒŠ‚É‘Î‚µ‚ÄÄ“x‰ğ•ú‚µ‚æ‚¤‚Æ‚µ‚Ü‚µ‚½" @*/ )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x72\x00\x65\x00\x65\x00\x4d\x00\x65\x00\x6d\x00\x6f\x00\x72\x00\x79\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xe3\x89\x3e\x65\x08\x6e\x7f\x30\x6e\x30\xe1\x30\xe2\x30\xea\x30\x6b\x30\xfe\x5b\x57\x30\x66\x30\x8d\x51\xa6\x5e\xe3\x89\x3e\x65\x57\x30\x88\x30\x46\x30\x68\x30\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"FreeMemory Error : è§£æ”¾æ¸ˆã¿ã®ãƒ¡ãƒ¢ãƒªã«å¯¾ã—ã¦å†åº¦è§£æ”¾ã—ã‚ˆã†ã¨ã—ã¾ã—ãŸ" @*/ )) ;
 		PrintInfoMemory( AllocAddress, UseSeparateInfo ) ;
 		*( ( DWORD * )0x00000000 ) = 0xffffffff ;
 	}
 
-	// Šm•Ûƒƒ‚ƒŠ‚Ì‰Šú‰»
+	// ç¢ºä¿ãƒ¡ãƒ¢ãƒªã®åˆæœŸåŒ–
 //	_MEMSET( ( BYTE * )MemTag + ALLOCMEMTAG_SIZE + ALLOCMEMTAG_DEBUGAREA_SIZE, 0xff,
 //		     ( MemTag->Size - ALLOCMEMTAG_DEBUGAREA_SIZE ) - ( ALLOCMEMTAG_SIZE + ALLOCMEMTAG_DEBUGAREA_SIZE ) ) ;
 
-	// ƒƒ‚ƒŠƒ^ƒO‚ğ‰ğ•ú‚·‚éˆ—‚ğs‚¤
+	// ãƒ¡ãƒ¢ãƒªã‚¿ã‚°ã‚’è§£æ”¾ã™ã‚‹å‡¦ç†ã‚’è¡Œã†
 	Heap_FreeMemory( Heap, MemTag, FALSE ) ;
 
 	DX_HEAP_LEAVE_CRITICAL_SECTION( Heap )
@@ -2317,12 +2317,12 @@ extern int FreeMemory( void *AllocAddress, int UseSeparateInfo )
 	return 0 ;
 }
 
-// ƒq[ƒv‚©‚çŠm•Û‚µ‚½ƒƒ‚ƒŠ—Ìˆæ‚ÌƒAƒhƒŒƒX‚ğæ“¾‚·‚é( UseSeparateInfo = TRUE ‚Ìê‡‚ÍAAllocAddress ‚É ALLOCMEMTAG \‘¢‘Ì‚ÌƒAƒhƒŒƒX‚ğ“n‚· )
+// ãƒ’ãƒ¼ãƒ—ã‹ã‚‰ç¢ºä¿ã—ãŸãƒ¡ãƒ¢ãƒªé ˜åŸŸã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å–å¾—ã™ã‚‹( UseSeparateInfo = TRUE ã®å ´åˆã¯ã€AllocAddress ã« ALLOCMEMTAG æ§‹é€ ä½“ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’æ¸¡ã™ )
 extern void * GetAllocMemoryAddress( void *AllocAddress, int UseSeparateInfo )
 {
 	ALLOCMEMTAG *	MemTag ;
 
-	// ƒƒ‚ƒŠƒ^ƒO‚ÌƒAƒhƒŒƒX‚ğZo
+	// ãƒ¡ãƒ¢ãƒªã‚¿ã‚°ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ç®—å‡º
 	if( UseSeparateInfo )
 	{
 		MemTag = ( ALLOCMEMTAG * )AllocAddress ;
@@ -2332,31 +2332,31 @@ extern void * GetAllocMemoryAddress( void *AllocAddress, int UseSeparateInfo )
 		MemTag = ( ALLOCMEMTAG * )( ( BYTE * )AllocAddress - *( ( DWORD * )( ( BYTE * )AllocAddress - sizeof( DWORD ) ) ) ) ;
 	}
 
-	// ƒ}ƒWƒbƒN‚h‚c‚ÌŠm”F
+	// ãƒã‚¸ãƒƒã‚¯ï¼©ï¼¤ã®ç¢ºèª
 	if( MemTag->MagicID != ALLOCMEMTAG_MAGIC_ID )
 	{
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\x47\x00\x65\x00\x74\x00\x41\x00\x6c\x00\x6c\x00\x6f\x00\x63\x00\x4d\x00\x65\x00\x6d\x00\x6f\x00\x72\x00\x79\x00\x41\x00\x64\x00\x64\x00\x72\x00\x65\x00\x73\x00\x73\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xe1\x30\xe2\x30\xea\x30\xbf\x30\xb0\x30\x6e\x30\x20\x00\x4d\x00\x61\x00\x67\x00\x69\x00\x63\x00\x49\x00\x44\x00\x20\x00\x4c\x30\x0d\x4e\x63\x6b\x67\x30\x59\x30\x01\x30\xa4\x8a\x63\x30\x5f\x30\xe1\x30\xe2\x30\xea\x30\xa2\x30\xc9\x30\xec\x30\xb9\x30\x4c\x30\x21\x6e\x55\x30\x8c\x30\x5f\x30\x4b\x30\x01\x30\xe1\x30\xe2\x30\xea\x30\x4c\x30\x34\x78\xca\x58\x55\x30\x8c\x30\x66\x30\x44\x30\x7e\x30\x59\x30\x00"/*@ L"GetAllocMemoryAddress Error : ƒƒ‚ƒŠƒ^ƒO‚Ì MagicID ‚ª•s³‚Å‚·AŒë‚Á‚½ƒƒ‚ƒŠƒAƒhƒŒƒX‚ª“n‚³‚ê‚½‚©Aƒƒ‚ƒŠ‚ª”j‰ó‚³‚ê‚Ä‚¢‚Ü‚·" @*/ )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\x47\x00\x65\x00\x74\x00\x41\x00\x6c\x00\x6c\x00\x6f\x00\x63\x00\x4d\x00\x65\x00\x6d\x00\x6f\x00\x72\x00\x79\x00\x41\x00\x64\x00\x64\x00\x72\x00\x65\x00\x73\x00\x73\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xe1\x30\xe2\x30\xea\x30\xbf\x30\xb0\x30\x6e\x30\x20\x00\x4d\x00\x61\x00\x67\x00\x69\x00\x63\x00\x49\x00\x44\x00\x20\x00\x4c\x30\x0d\x4e\x63\x6b\x67\x30\x59\x30\x01\x30\xa4\x8a\x63\x30\x5f\x30\xe1\x30\xe2\x30\xea\x30\xa2\x30\xc9\x30\xec\x30\xb9\x30\x4c\x30\x21\x6e\x55\x30\x8c\x30\x5f\x30\x4b\x30\x01\x30\xe1\x30\xe2\x30\xea\x30\x4c\x30\x34\x78\xca\x58\x55\x30\x8c\x30\x66\x30\x44\x30\x7e\x30\x59\x30\x00"/*@ L"GetAllocMemoryAddress Error : ãƒ¡ãƒ¢ãƒªã‚¿ã‚°ã® MagicID ãŒä¸æ­£ã§ã™ã€èª¤ã£ãŸãƒ¡ãƒ¢ãƒªã‚¢ãƒ‰ãƒ¬ã‚¹ãŒæ¸¡ã•ã‚ŒãŸã‹ã€ãƒ¡ãƒ¢ãƒªãŒç ´å£Šã•ã‚Œã¦ã„ã¾ã™" @*/ )) ;
 		*( ( DWORD * )0x00000000 ) = 0xffffffff ;
 	}
 
-	// g—p’†ƒ`ƒFƒbƒN
+	// ä½¿ç”¨ä¸­ãƒã‚§ãƒƒã‚¯
 	if( ( MemTag->Flag & ALLOCMEMTAG_FLAG_USE ) == 0 )
 	{
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\x47\x00\x65\x00\x74\x00\x41\x00\x6c\x00\x6c\x00\x6f\x00\x63\x00\x4d\x00\x65\x00\x6d\x00\x6f\x00\x72\x00\x79\x00\x41\x00\x64\x00\x64\x00\x72\x00\x65\x00\x73\x00\x73\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xe3\x89\x3e\x65\x08\x6e\x7f\x30\x6e\x30\xe1\x30\xe2\x30\xea\x30\x6b\x30\xfe\x5b\x57\x30\x66\x30\xe1\x30\xe2\x30\xea\x30\xa2\x30\xc9\x30\xec\x30\xb9\x30\x6e\x30\xd6\x53\x97\x5f\x92\x30\x4c\x88\x4a\x30\x46\x30\x68\x30\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"GetAllocMemoryAddress Error : ‰ğ•úÏ‚İ‚Ìƒƒ‚ƒŠ‚É‘Î‚µ‚Äƒƒ‚ƒŠƒAƒhƒŒƒX‚Ìæ“¾‚ğs‚¨‚¤‚Æ‚µ‚Ü‚µ‚½" @*/ )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\x47\x00\x65\x00\x74\x00\x41\x00\x6c\x00\x6c\x00\x6f\x00\x63\x00\x4d\x00\x65\x00\x6d\x00\x6f\x00\x72\x00\x79\x00\x41\x00\x64\x00\x64\x00\x72\x00\x65\x00\x73\x00\x73\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xe3\x89\x3e\x65\x08\x6e\x7f\x30\x6e\x30\xe1\x30\xe2\x30\xea\x30\x6b\x30\xfe\x5b\x57\x30\x66\x30\xe1\x30\xe2\x30\xea\x30\xa2\x30\xc9\x30\xec\x30\xb9\x30\x6e\x30\xd6\x53\x97\x5f\x92\x30\x4c\x88\x4a\x30\x46\x30\x68\x30\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"GetAllocMemoryAddress Error : è§£æ”¾æ¸ˆã¿ã®ãƒ¡ãƒ¢ãƒªã«å¯¾ã—ã¦ãƒ¡ãƒ¢ãƒªã‚¢ãƒ‰ãƒ¬ã‚¹ã®å–å¾—ã‚’è¡ŒãŠã†ã¨ã—ã¾ã—ãŸ" @*/ )) ;
 		PrintInfoMemory( AllocAddress, UseSeparateInfo ) ;
 		*( ( DWORD * )0x00000000 ) = 0xffffffff ;
 	}
 
-	// ƒAƒhƒŒƒX‚ğ•Ô‚·
+	// ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’è¿”ã™
 	return MemTag->UserAddress ;
 }
 
-// ƒq[ƒv‚©‚çŠm•Û‚µ‚½ƒƒ‚ƒŠ‚ÌƒTƒCƒY‚ğæ“¾‚·‚é( UseSeparateInfo = TRUE ‚Ìê‡‚ÍAAllocAddress ‚É ALLOCMEMTAG \‘¢‘Ì‚ÌƒAƒhƒŒƒX‚ğ“n‚· )
+// ãƒ’ãƒ¼ãƒ—ã‹ã‚‰ç¢ºä¿ã—ãŸãƒ¡ãƒ¢ãƒªã®ã‚µã‚¤ã‚ºã‚’å–å¾—ã™ã‚‹( UseSeparateInfo = TRUE ã®å ´åˆã¯ã€AllocAddress ã« ALLOCMEMTAG æ§‹é€ ä½“ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’æ¸¡ã™ )
 extern ALLOCMEM_SIZE_TYPE GetAllocSize( void *AllocAddress, int UseSeparateInfo )
 {
 	ALLOCMEMTAG *	MemTag ;
 
-	// ƒƒ‚ƒŠƒ^ƒO‚ÌƒAƒhƒŒƒX‚ğZo
+	// ãƒ¡ãƒ¢ãƒªã‚¿ã‚°ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ç®—å‡º
 	if( UseSeparateInfo )
 	{
 		MemTag = ( ALLOCMEMTAG * )AllocAddress ;
@@ -2366,31 +2366,31 @@ extern ALLOCMEM_SIZE_TYPE GetAllocSize( void *AllocAddress, int UseSeparateInfo 
 		MemTag = ( ALLOCMEMTAG * )( ( BYTE * )AllocAddress - *( ( DWORD * )( ( BYTE * )AllocAddress - sizeof( DWORD ) ) ) ) ;
 	}
 
-	// ƒ}ƒWƒbƒN‚h‚c‚ÌŠm”F
+	// ãƒã‚¸ãƒƒã‚¯ï¼©ï¼¤ã®ç¢ºèª
 	if( MemTag->MagicID != ALLOCMEMTAG_MAGIC_ID )
 	{
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\x47\x00\x65\x00\x74\x00\x41\x00\x6c\x00\x6c\x00\x6f\x00\x63\x00\x53\x00\x69\x00\x7a\x00\x65\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xe1\x30\xe2\x30\xea\x30\xbf\x30\xb0\x30\x6e\x30\x20\x00\x4d\x00\x61\x00\x67\x00\x69\x00\x63\x00\x49\x00\x44\x00\x20\x00\x4c\x30\x0d\x4e\x63\x6b\x67\x30\x59\x30\x01\x30\xa4\x8a\x63\x30\x5f\x30\xe1\x30\xe2\x30\xea\x30\xa2\x30\xc9\x30\xec\x30\xb9\x30\x4c\x30\x21\x6e\x55\x30\x8c\x30\x5f\x30\x4b\x30\x01\x30\xe1\x30\xe2\x30\xea\x30\x4c\x30\x34\x78\xca\x58\x55\x30\x8c\x30\x66\x30\x44\x30\x7e\x30\x59\x30\x00"/*@ L"GetAllocSize Error : ƒƒ‚ƒŠƒ^ƒO‚Ì MagicID ‚ª•s³‚Å‚·AŒë‚Á‚½ƒƒ‚ƒŠƒAƒhƒŒƒX‚ª“n‚³‚ê‚½‚©Aƒƒ‚ƒŠ‚ª”j‰ó‚³‚ê‚Ä‚¢‚Ü‚·" @*/ )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\x47\x00\x65\x00\x74\x00\x41\x00\x6c\x00\x6c\x00\x6f\x00\x63\x00\x53\x00\x69\x00\x7a\x00\x65\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xe1\x30\xe2\x30\xea\x30\xbf\x30\xb0\x30\x6e\x30\x20\x00\x4d\x00\x61\x00\x67\x00\x69\x00\x63\x00\x49\x00\x44\x00\x20\x00\x4c\x30\x0d\x4e\x63\x6b\x67\x30\x59\x30\x01\x30\xa4\x8a\x63\x30\x5f\x30\xe1\x30\xe2\x30\xea\x30\xa2\x30\xc9\x30\xec\x30\xb9\x30\x4c\x30\x21\x6e\x55\x30\x8c\x30\x5f\x30\x4b\x30\x01\x30\xe1\x30\xe2\x30\xea\x30\x4c\x30\x34\x78\xca\x58\x55\x30\x8c\x30\x66\x30\x44\x30\x7e\x30\x59\x30\x00"/*@ L"GetAllocSize Error : ãƒ¡ãƒ¢ãƒªã‚¿ã‚°ã® MagicID ãŒä¸æ­£ã§ã™ã€èª¤ã£ãŸãƒ¡ãƒ¢ãƒªã‚¢ãƒ‰ãƒ¬ã‚¹ãŒæ¸¡ã•ã‚ŒãŸã‹ã€ãƒ¡ãƒ¢ãƒªãŒç ´å£Šã•ã‚Œã¦ã„ã¾ã™" @*/ )) ;
 		*( ( DWORD * )0x00000000 ) = 0xffffffff ;
 	}
 
-	// g—p’†ƒ`ƒFƒbƒN
+	// ä½¿ç”¨ä¸­ãƒã‚§ãƒƒã‚¯
 	if( ( MemTag->Flag & ALLOCMEMTAG_FLAG_USE ) == 0 )
 	{
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\x47\x00\x65\x00\x74\x00\x41\x00\x6c\x00\x6c\x00\x6f\x00\x63\x00\x53\x00\x69\x00\x7a\x00\x65\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xe3\x89\x3e\x65\x08\x6e\x7f\x30\x6e\x30\xe1\x30\xe2\x30\xea\x30\x6b\x30\xfe\x5b\x57\x30\x66\x30\xba\x78\xdd\x4f\xe1\x30\xe2\x30\xea\x30\xb5\x30\xa4\x30\xba\x30\x6e\x30\xd6\x53\x97\x5f\x92\x30\x4c\x88\x4a\x30\x46\x30\x68\x30\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"GetAllocSize Error : ‰ğ•úÏ‚İ‚Ìƒƒ‚ƒŠ‚É‘Î‚µ‚ÄŠm•Ûƒƒ‚ƒŠƒTƒCƒY‚Ìæ“¾‚ğs‚¨‚¤‚Æ‚µ‚Ü‚µ‚½" @*/ )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\x47\x00\x65\x00\x74\x00\x41\x00\x6c\x00\x6c\x00\x6f\x00\x63\x00\x53\x00\x69\x00\x7a\x00\x65\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xe3\x89\x3e\x65\x08\x6e\x7f\x30\x6e\x30\xe1\x30\xe2\x30\xea\x30\x6b\x30\xfe\x5b\x57\x30\x66\x30\xba\x78\xdd\x4f\xe1\x30\xe2\x30\xea\x30\xb5\x30\xa4\x30\xba\x30\x6e\x30\xd6\x53\x97\x5f\x92\x30\x4c\x88\x4a\x30\x46\x30\x68\x30\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"GetAllocSize Error : è§£æ”¾æ¸ˆã¿ã®ãƒ¡ãƒ¢ãƒªã«å¯¾ã—ã¦ç¢ºä¿ãƒ¡ãƒ¢ãƒªã‚µã‚¤ã‚ºã®å–å¾—ã‚’è¡ŒãŠã†ã¨ã—ã¾ã—ãŸ" @*/ )) ;
 		PrintInfoMemory( AllocAddress, UseSeparateInfo ) ;
 		*( ( DWORD * )0x00000000 ) = 0xffffffff ;
 	}
 
-	// ƒTƒCƒY‚ğ•Ô‚·
+	// ã‚µã‚¤ã‚ºã‚’è¿”ã™
 	return MemTag->UserSize ;
 }
 
-// ƒq[ƒv‚©‚çŠm•Û‚µ‚½ƒƒ‚ƒŠ‚Ì ALLOCMEMTAG\‘¢‘Ì‚ğæ“¾‚·‚é( UseSeparateInfo = TRUE ‚Ìê‡‚ÍAAllocAddress ‚É ALLOCMEMTAG \‘¢‘Ì‚ÌƒAƒhƒŒƒX‚ğ“n‚· )
+// ãƒ’ãƒ¼ãƒ—ã‹ã‚‰ç¢ºä¿ã—ãŸãƒ¡ãƒ¢ãƒªã® ALLOCMEMTAGæ§‹é€ ä½“ã‚’å–å¾—ã™ã‚‹( UseSeparateInfo = TRUE ã®å ´åˆã¯ã€AllocAddress ã« ALLOCMEMTAG æ§‹é€ ä½“ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’æ¸¡ã™ )
 extern ALLOCMEMTAG * GetAllocMemTag( void *AllocAddress, int UseSeparateInfo )
 {
 	ALLOCMEMTAG *	MemTag ;
 
-	// ƒƒ‚ƒŠƒ^ƒO‚ÌƒAƒhƒŒƒX‚ğZo
+	// ãƒ¡ãƒ¢ãƒªã‚¿ã‚°ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ç®—å‡º
 	if( UseSeparateInfo )
 	{
 		MemTag = ( ALLOCMEMTAG * )AllocAddress ;
@@ -2400,33 +2400,33 @@ extern ALLOCMEMTAG * GetAllocMemTag( void *AllocAddress, int UseSeparateInfo )
 		MemTag = ( ALLOCMEMTAG * )( ( BYTE * )AllocAddress - *( ( DWORD * )( ( BYTE * )AllocAddress - sizeof( DWORD ) ) ) ) ;
 	}
 
-	// ƒ}ƒWƒbƒN‚h‚c‚ÌŠm”F
+	// ãƒã‚¸ãƒƒã‚¯ï¼©ï¼¤ã®ç¢ºèª
 	if( MemTag->MagicID != ALLOCMEMTAG_MAGIC_ID )
 	{
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\x47\x00\x65\x00\x74\x00\x41\x00\x6c\x00\x6c\x00\x6f\x00\x63\x00\x4d\x00\x65\x00\x6d\x00\x54\x00\x61\x00\x67\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xe1\x30\xe2\x30\xea\x30\xbf\x30\xb0\x30\x6e\x30\x20\x00\x4d\x00\x61\x00\x67\x00\x69\x00\x63\x00\x49\x00\x44\x00\x20\x00\x4c\x30\x0d\x4e\x63\x6b\x67\x30\x59\x30\x01\x30\xa4\x8a\x63\x30\x5f\x30\xe1\x30\xe2\x30\xea\x30\xa2\x30\xc9\x30\xec\x30\xb9\x30\x4c\x30\x21\x6e\x55\x30\x8c\x30\x5f\x30\x4b\x30\x01\x30\xe1\x30\xe2\x30\xea\x30\x4c\x30\x34\x78\xca\x58\x55\x30\x8c\x30\x66\x30\x44\x30\x7e\x30\x59\x30\x00"/*@ L"GetAllocMemTag Error : ƒƒ‚ƒŠƒ^ƒO‚Ì MagicID ‚ª•s³‚Å‚·AŒë‚Á‚½ƒƒ‚ƒŠƒAƒhƒŒƒX‚ª“n‚³‚ê‚½‚©Aƒƒ‚ƒŠ‚ª”j‰ó‚³‚ê‚Ä‚¢‚Ü‚·" @*/ )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\x47\x00\x65\x00\x74\x00\x41\x00\x6c\x00\x6c\x00\x6f\x00\x63\x00\x4d\x00\x65\x00\x6d\x00\x54\x00\x61\x00\x67\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xe1\x30\xe2\x30\xea\x30\xbf\x30\xb0\x30\x6e\x30\x20\x00\x4d\x00\x61\x00\x67\x00\x69\x00\x63\x00\x49\x00\x44\x00\x20\x00\x4c\x30\x0d\x4e\x63\x6b\x67\x30\x59\x30\x01\x30\xa4\x8a\x63\x30\x5f\x30\xe1\x30\xe2\x30\xea\x30\xa2\x30\xc9\x30\xec\x30\xb9\x30\x4c\x30\x21\x6e\x55\x30\x8c\x30\x5f\x30\x4b\x30\x01\x30\xe1\x30\xe2\x30\xea\x30\x4c\x30\x34\x78\xca\x58\x55\x30\x8c\x30\x66\x30\x44\x30\x7e\x30\x59\x30\x00"/*@ L"GetAllocMemTag Error : ãƒ¡ãƒ¢ãƒªã‚¿ã‚°ã® MagicID ãŒä¸æ­£ã§ã™ã€èª¤ã£ãŸãƒ¡ãƒ¢ãƒªã‚¢ãƒ‰ãƒ¬ã‚¹ãŒæ¸¡ã•ã‚ŒãŸã‹ã€ãƒ¡ãƒ¢ãƒªãŒç ´å£Šã•ã‚Œã¦ã„ã¾ã™" @*/ )) ;
 		*( ( DWORD * )0x00000000 ) = 0xffffffff ;
 	}
 
-	// g—p’†ƒ`ƒFƒbƒN
+	// ä½¿ç”¨ä¸­ãƒã‚§ãƒƒã‚¯
 	if( ( MemTag->Flag & ALLOCMEMTAG_FLAG_USE ) == 0 )
 	{
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\x47\x00\x65\x00\x74\x00\x41\x00\x6c\x00\x6c\x00\x6f\x00\x63\x00\x4d\x00\x65\x00\x6d\x00\x54\x00\x61\x00\x67\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xe3\x89\x3e\x65\x08\x6e\x7f\x30\x6e\x30\xe1\x30\xe2\x30\xea\x30\x6b\x30\xfe\x5b\x57\x30\x66\x30\xba\x78\xdd\x4f\xe1\x30\xe2\x30\xea\x30\xb5\x30\xa4\x30\xba\x30\x6e\x30\xd6\x53\x97\x5f\x92\x30\x4c\x88\x4a\x30\x46\x30\x68\x30\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"GetAllocMemTag Error : ‰ğ•úÏ‚İ‚Ìƒƒ‚ƒŠ‚É‘Î‚µ‚ÄŠm•Ûƒƒ‚ƒŠƒTƒCƒY‚Ìæ“¾‚ğs‚¨‚¤‚Æ‚µ‚Ü‚µ‚½" @*/ )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\x47\x00\x65\x00\x74\x00\x41\x00\x6c\x00\x6c\x00\x6f\x00\x63\x00\x4d\x00\x65\x00\x6d\x00\x54\x00\x61\x00\x67\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xe3\x89\x3e\x65\x08\x6e\x7f\x30\x6e\x30\xe1\x30\xe2\x30\xea\x30\x6b\x30\xfe\x5b\x57\x30\x66\x30\xba\x78\xdd\x4f\xe1\x30\xe2\x30\xea\x30\xb5\x30\xa4\x30\xba\x30\x6e\x30\xd6\x53\x97\x5f\x92\x30\x4c\x88\x4a\x30\x46\x30\x68\x30\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"GetAllocMemTag Error : è§£æ”¾æ¸ˆã¿ã®ãƒ¡ãƒ¢ãƒªã«å¯¾ã—ã¦ç¢ºä¿ãƒ¡ãƒ¢ãƒªã‚µã‚¤ã‚ºã®å–å¾—ã‚’è¡ŒãŠã†ã¨ã—ã¾ã—ãŸ" @*/ )) ;
 		PrintInfoMemory( AllocAddress, UseSeparateInfo ) ;
 		*( ( DWORD * )0x00000000 ) = 0xffffffff ;
 	}
 
-	// ƒ^ƒO‚ÌƒAƒhƒŒƒX‚ğ•Ô‚·
+	// ã‚¿ã‚°ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’è¿”ã™
 	return MemTag ;
 }
 
-// ƒq[ƒv‚©‚çŠm•Û‚µ‚½ƒƒ‚ƒŠ‚Ìî•ñ‚ğƒƒO‚Éo—Í‚·‚é( UseSeparateInfo = TRUE ‚Ìê‡‚ÍAAllocAddress ‚É ALLOCMEMTAG \‘¢‘Ì‚ÌƒAƒhƒŒƒX‚ğ“n‚· )
+// ãƒ’ãƒ¼ãƒ—ã‹ã‚‰ç¢ºä¿ã—ãŸãƒ¡ãƒ¢ãƒªã®æƒ…å ±ã‚’ãƒ­ã‚°ã«å‡ºåŠ›ã™ã‚‹( UseSeparateInfo = TRUE ã®å ´åˆã¯ã€AllocAddress ã« ALLOCMEMTAG æ§‹é€ ä½“ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’æ¸¡ã™ )
 extern void PrintInfoMemory( void *AllocAddress, int UseSeparateInfo )
 {
 #ifndef DX_NON_LITERAL_STRING
 	ALLOCMEMTAG *	MemTag ;
 	char			str[ 512 ] ;
 
-	// ƒƒ‚ƒŠƒ^ƒO‚ÌƒAƒhƒŒƒX‚ğZo
+	// ãƒ¡ãƒ¢ãƒªã‚¿ã‚°ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ç®—å‡º
 	if( UseSeparateInfo )
 	{
 		MemTag = ( ALLOCMEMTAG * )AllocAddress ;
@@ -2436,7 +2436,7 @@ extern void PrintInfoMemory( void *AllocAddress, int UseSeparateInfo )
 		MemTag = ( ALLOCMEMTAG * )( ( BYTE * )AllocAddress - *( ( DWORD * )( ( BYTE * )AllocAddress - sizeof( DWORD ) ) ) ) ;
 	}
 
-	// ƒ_ƒ“ƒv‚Éo—Í‚µ‚È‚¢ƒtƒ‰ƒO‚ª‘«‚Á‚Ä‚¢‚½‚ç‰½‚à‚¹‚¸I—¹
+	// ãƒ€ãƒ³ãƒ—ã«å‡ºåŠ›ã—ãªã„ãƒ•ãƒ©ã‚°ãŒè¶³ã£ã¦ã„ãŸã‚‰ä½•ã‚‚ã›ãšçµ‚äº†
 	if( MemTag->Flag & ALLOCMEMTAG_FLAG_NO_DUMP )
 	{
 		return ;
@@ -2490,14 +2490,14 @@ extern void PrintInfoMemory( void *AllocAddress, int UseSeparateInfo )
 #endif // DX_NON_LITERAL_STRING
 }
 
-// ƒq[ƒv‚Ìî•ñ‚ğƒƒO‚Éo—Í‚·‚é
+// ãƒ’ãƒ¼ãƒ—ã®æƒ…å ±ã‚’ãƒ­ã‚°ã«å‡ºåŠ›ã™ã‚‹
 extern int HeapInfoDump( HEAPINFO *Heap )
 {
 	ALLOCMEMTAG *MemTag ;
 
 	DX_HEAP_ENTER_CRITICAL_SECTION( Heap )
 
-	// ‘S‚Ä‚ÌŠm•Ûƒƒ‚ƒŠƒ^ƒO‚Ìî•ñ‚ğo—Í
+	// å…¨ã¦ã®ç¢ºä¿ãƒ¡ãƒ¢ãƒªã‚¿ã‚°ã®æƒ…å ±ã‚’å‡ºåŠ›
 	for( MemTag = Heap->UseFirstTag ; MemTag != NULL ; MemTag = MemTag->ListNext )
 	{
 		PrintInfoMemory( Heap->UseSeparateInfo ? MemTag : MemTag->UserAddress, Heap->UseSeparateInfo ) ;
@@ -2508,7 +2508,7 @@ extern int HeapInfoDump( HEAPINFO *Heap )
 	return 0 ;
 }
 
-// ƒq[ƒv‚©‚çŠm•Û‚µ‚½ƒƒ‚ƒŠ‚Éİ’è‚·‚éŠÔ‚ğ•ÏX‚·‚é
+// ãƒ’ãƒ¼ãƒ—ã‹ã‚‰ç¢ºä¿ã—ãŸãƒ¡ãƒ¢ãƒªã«è¨­å®šã™ã‚‹æ™‚é–“ã‚’å¤‰æ›´ã™ã‚‹
 extern int SetHeapTime( HEAPINFO *Heap, WORD Time )
 {
 	Heap->AllocMemoryTime = Time ;
@@ -2516,19 +2516,19 @@ extern int SetHeapTime( HEAPINFO *Heap, WORD Time )
 	return 0 ;
 }
 
-// ƒq[ƒv‚Ì“à—e‚ÉƒGƒ‰[‚ª‚È‚¢‚©ƒ`ƒFƒbƒN‚·‚é
+// ãƒ’ãƒ¼ãƒ—ã®å†…å®¹ã«ã‚¨ãƒ©ãƒ¼ãŒãªã„ã‹ãƒã‚§ãƒƒã‚¯ã™ã‚‹
 extern int HeapErrorCheck( HEAPINFO *Heap )
 {
 	ALLOCMEMTAG *MemTag ;
 
 	DX_HEAP_ENTER_CRITICAL_SECTION( Heap )
 
-	// ƒƒ‚ƒŠg—p—Ìˆæ‚Æƒ}ƒWƒbƒNID‚ÆƒfƒoƒbƒO—Ìˆæ‚Ìƒ`ƒFƒbƒN
+	// ãƒ¡ãƒ¢ãƒªä½¿ç”¨é ˜åŸŸã¨ãƒã‚¸ãƒƒã‚¯IDã¨ãƒ‡ãƒãƒƒã‚°é ˜åŸŸã®ãƒã‚§ãƒƒã‚¯
 	for( MemTag = Heap->FirstTag ; MemTag != NULL ; MemTag = MemTag->Next )
 	{
 		if( MemTag->MagicID != ALLOCMEMTAG_MAGIC_ID )
 		{
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\x48\x00\x65\x00\x61\x00\x70\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x43\x00\x68\x00\x65\x00\x63\x00\x6b\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xe1\x30\xe2\x30\xea\x30\xbf\x30\xb0\x30\x6e\x30\x20\x00\x4d\x00\x61\x00\x67\x00\x69\x00\x63\x00\x49\x00\x44\x00\x20\x00\x4c\x30\x0d\x4e\x63\x6b\x67\x30\x59\x30\x01\x30\xa4\x8a\x63\x30\x5f\x30\xe1\x30\xe2\x30\xea\x30\xa2\x30\xc9\x30\xec\x30\xb9\x30\x4c\x30\x21\x6e\x55\x30\x8c\x30\x5f\x30\x4b\x30\x01\x30\xe1\x30\xe2\x30\xea\x30\x4c\x30\x34\x78\xca\x58\x55\x30\x8c\x30\x66\x30\x44\x30\x7e\x30\x59\x30\x00"/*@ L"HeapErrorCheck Error : ƒƒ‚ƒŠƒ^ƒO‚Ì MagicID ‚ª•s³‚Å‚·AŒë‚Á‚½ƒƒ‚ƒŠƒAƒhƒŒƒX‚ª“n‚³‚ê‚½‚©Aƒƒ‚ƒŠ‚ª”j‰ó‚³‚ê‚Ä‚¢‚Ü‚·" @*/ )) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\x48\x00\x65\x00\x61\x00\x70\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x43\x00\x68\x00\x65\x00\x63\x00\x6b\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xe1\x30\xe2\x30\xea\x30\xbf\x30\xb0\x30\x6e\x30\x20\x00\x4d\x00\x61\x00\x67\x00\x69\x00\x63\x00\x49\x00\x44\x00\x20\x00\x4c\x30\x0d\x4e\x63\x6b\x67\x30\x59\x30\x01\x30\xa4\x8a\x63\x30\x5f\x30\xe1\x30\xe2\x30\xea\x30\xa2\x30\xc9\x30\xec\x30\xb9\x30\x4c\x30\x21\x6e\x55\x30\x8c\x30\x5f\x30\x4b\x30\x01\x30\xe1\x30\xe2\x30\xea\x30\x4c\x30\x34\x78\xca\x58\x55\x30\x8c\x30\x66\x30\x44\x30\x7e\x30\x59\x30\x00"/*@ L"HeapErrorCheck Error : ãƒ¡ãƒ¢ãƒªã‚¿ã‚°ã® MagicID ãŒä¸æ­£ã§ã™ã€èª¤ã£ãŸãƒ¡ãƒ¢ãƒªã‚¢ãƒ‰ãƒ¬ã‚¹ãŒæ¸¡ã•ã‚ŒãŸã‹ã€ãƒ¡ãƒ¢ãƒªãŒç ´å£Šã•ã‚Œã¦ã„ã¾ã™" @*/ )) ;
 			*( ( DWORD * )0x00000000 ) = 0xffffffff ;
 		}
 
@@ -2537,7 +2537,7 @@ extern int HeapErrorCheck( HEAPINFO *Heap )
 			if( ( DWORD_PTR )MemTag->AllocAddress <  ( DWORD_PTR )MemTag->UseHeapMem->HeapAddress ||
 				( DWORD_PTR )MemTag->AllocAddress >= ( DWORD_PTR )MemTag->UseHeapMem->HeapAddress + MemTag->UseHeapMem->HeapSize )
 			{
-				DXST_LOGFILEFMT_ADDUTF16LE(( "\x48\x00\x65\x00\x61\x00\x70\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x43\x00\x68\x00\x65\x00\x63\x00\x6b\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xe1\x30\xe2\x30\xea\x30\xbf\x30\xb0\x30\x4c\x30\xba\x78\xdd\x4f\x57\x30\x5f\x30\xd2\x30\xfc\x30\xd7\x30\xe1\x30\xe2\x30\xea\x30\x6e\x30\xc4\x7b\xf2\x56\x6b\x30\x42\x30\x8a\x30\x7e\x30\x5b\x30\x93\x30\x20\x00\x20\x00\x48\x00\x65\x00\x61\x00\x70\x00\x2d\x00\x3e\x00\x55\x00\x73\x00\x65\x00\x53\x00\x65\x00\x70\x00\x61\x00\x72\x00\x61\x00\x74\x00\x65\x00\x49\x00\x6e\x00\x66\x00\x6f\x00\x20\x00\x3d\x00\x20\x00\x54\x00\x52\x00\x55\x00\x45\x00\x00"/*@ L"HeapErrorCheck Error : ƒƒ‚ƒŠƒ^ƒO‚ªŠm•Û‚µ‚½ƒq[ƒvƒƒ‚ƒŠ‚Ì”ÍˆÍ‚É‚ ‚è‚Ü‚¹‚ñ  Heap->UseSeparateInfo = TRUE" @*/ )) ;
+				DXST_LOGFILEFMT_ADDUTF16LE(( "\x48\x00\x65\x00\x61\x00\x70\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x43\x00\x68\x00\x65\x00\x63\x00\x6b\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xe1\x30\xe2\x30\xea\x30\xbf\x30\xb0\x30\x4c\x30\xba\x78\xdd\x4f\x57\x30\x5f\x30\xd2\x30\xfc\x30\xd7\x30\xe1\x30\xe2\x30\xea\x30\x6e\x30\xc4\x7b\xf2\x56\x6b\x30\x42\x30\x8a\x30\x7e\x30\x5b\x30\x93\x30\x20\x00\x20\x00\x48\x00\x65\x00\x61\x00\x70\x00\x2d\x00\x3e\x00\x55\x00\x73\x00\x65\x00\x53\x00\x65\x00\x70\x00\x61\x00\x72\x00\x61\x00\x74\x00\x65\x00\x49\x00\x6e\x00\x66\x00\x6f\x00\x20\x00\x3d\x00\x20\x00\x54\x00\x52\x00\x55\x00\x45\x00\x00"/*@ L"HeapErrorCheck Error : ãƒ¡ãƒ¢ãƒªã‚¿ã‚°ãŒç¢ºä¿ã—ãŸãƒ’ãƒ¼ãƒ—ãƒ¡ãƒ¢ãƒªã®ç¯„å›²ã«ã‚ã‚Šã¾ã›ã‚“  Heap->UseSeparateInfo = TRUE" @*/ )) ;
 				PrintInfoMemory( Heap->UseSeparateInfo ? MemTag : MemTag->UserAddress, Heap->UseSeparateInfo ) ;
 				*( ( DWORD * )0x00000000 ) = 0xffffffff ;
 			}
@@ -2547,21 +2547,21 @@ extern int HeapErrorCheck( HEAPINFO *Heap )
 			if( ( DWORD_PTR )MemTag <  ( DWORD_PTR )MemTag->UseHeapMem->HeapAddress ||
 				( DWORD_PTR )MemTag >= ( DWORD_PTR )MemTag->UseHeapMem->HeapAddress + MemTag->UseHeapMem->HeapSize )
 			{
-				DXST_LOGFILEFMT_ADDUTF16LE(( "\x48\x00\x65\x00\x61\x00\x70\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x43\x00\x68\x00\x65\x00\x63\x00\x6b\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xe1\x30\xe2\x30\xea\x30\xbf\x30\xb0\x30\x4c\x30\xba\x78\xdd\x4f\x57\x30\x5f\x30\xd2\x30\xfc\x30\xd7\x30\xe1\x30\xe2\x30\xea\x30\x6e\x30\xc4\x7b\xf2\x56\x6b\x30\x42\x30\x8a\x30\x7e\x30\x5b\x30\x93\x30\x20\x00\x20\x00\x48\x00\x65\x00\x61\x00\x70\x00\x2d\x00\x3e\x00\x55\x00\x73\x00\x65\x00\x53\x00\x65\x00\x70\x00\x61\x00\x72\x00\x61\x00\x74\x00\x65\x00\x49\x00\x6e\x00\x66\x00\x6f\x00\x20\x00\x3d\x00\x20\x00\x46\x00\x41\x00\x4c\x00\x53\x00\x45\x00\x00"/*@ L"HeapErrorCheck Error : ƒƒ‚ƒŠƒ^ƒO‚ªŠm•Û‚µ‚½ƒq[ƒvƒƒ‚ƒŠ‚Ì”ÍˆÍ‚É‚ ‚è‚Ü‚¹‚ñ  Heap->UseSeparateInfo = FALSE" @*/ )) ;
+				DXST_LOGFILEFMT_ADDUTF16LE(( "\x48\x00\x65\x00\x61\x00\x70\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x43\x00\x68\x00\x65\x00\x63\x00\x6b\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xe1\x30\xe2\x30\xea\x30\xbf\x30\xb0\x30\x4c\x30\xba\x78\xdd\x4f\x57\x30\x5f\x30\xd2\x30\xfc\x30\xd7\x30\xe1\x30\xe2\x30\xea\x30\x6e\x30\xc4\x7b\xf2\x56\x6b\x30\x42\x30\x8a\x30\x7e\x30\x5b\x30\x93\x30\x20\x00\x20\x00\x48\x00\x65\x00\x61\x00\x70\x00\x2d\x00\x3e\x00\x55\x00\x73\x00\x65\x00\x53\x00\x65\x00\x70\x00\x61\x00\x72\x00\x61\x00\x74\x00\x65\x00\x49\x00\x6e\x00\x66\x00\x6f\x00\x20\x00\x3d\x00\x20\x00\x46\x00\x41\x00\x4c\x00\x53\x00\x45\x00\x00"/*@ L"HeapErrorCheck Error : ãƒ¡ãƒ¢ãƒªã‚¿ã‚°ãŒç¢ºä¿ã—ãŸãƒ’ãƒ¼ãƒ—ãƒ¡ãƒ¢ãƒªã®ç¯„å›²ã«ã‚ã‚Šã¾ã›ã‚“  Heap->UseSeparateInfo = FALSE" @*/ )) ;
 				PrintInfoMemory( Heap->UseSeparateInfo ? MemTag : MemTag->UserAddress, Heap->UseSeparateInfo ) ;
 				*( ( DWORD * )0x00000000 ) = 0xffffffff ;
 			}
 
 			if( AllocMemTag_CheckDebugData( MemTag ) < 0 )
 			{
-				DXST_LOGFILEFMT_ADDUTF16LE(( "\x48\x00\x65\x00\x61\x00\x70\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x43\x00\x68\x00\x65\x00\x63\x00\x6b\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xc7\x30\xd0\x30\xc3\x30\xb0\x30\x18\x98\xdf\x57\x6e\x30\x34\x78\xca\x58\x92\x30\xba\x78\x8d\x8a\x57\x30\x7e\x30\x57\x30\x5f\x30\x01\x30\xe1\x30\xe2\x30\xea\x30\x6e\x30\x0d\x4e\x63\x6b\x6a\x30\xa2\x30\xaf\x30\xbb\x30\xb9\x30\x4c\x30\x7a\x76\x1f\x75\x57\x30\x5f\x30\x53\x30\x68\x30\x4c\x30\x03\x80\x48\x30\x89\x30\x8c\x30\x7e\x30\x59\x30\x00"/*@ L"HeapErrorCheck Error : ƒfƒoƒbƒO—Ìˆæ‚Ì”j‰ó‚ğŠm”F‚µ‚Ü‚µ‚½Aƒƒ‚ƒŠ‚Ì•s³‚ÈƒAƒNƒZƒX‚ª”­¶‚µ‚½‚±‚Æ‚ªl‚¦‚ç‚ê‚Ü‚·" @*/ )) ;
+				DXST_LOGFILEFMT_ADDUTF16LE(( "\x48\x00\x65\x00\x61\x00\x70\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x43\x00\x68\x00\x65\x00\x63\x00\x6b\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xc7\x30\xd0\x30\xc3\x30\xb0\x30\x18\x98\xdf\x57\x6e\x30\x34\x78\xca\x58\x92\x30\xba\x78\x8d\x8a\x57\x30\x7e\x30\x57\x30\x5f\x30\x01\x30\xe1\x30\xe2\x30\xea\x30\x6e\x30\x0d\x4e\x63\x6b\x6a\x30\xa2\x30\xaf\x30\xbb\x30\xb9\x30\x4c\x30\x7a\x76\x1f\x75\x57\x30\x5f\x30\x53\x30\x68\x30\x4c\x30\x03\x80\x48\x30\x89\x30\x8c\x30\x7e\x30\x59\x30\x00"/*@ L"HeapErrorCheck Error : ãƒ‡ãƒãƒƒã‚°é ˜åŸŸã®ç ´å£Šã‚’ç¢ºèªã—ã¾ã—ãŸã€ãƒ¡ãƒ¢ãƒªã®ä¸æ­£ãªã‚¢ã‚¯ã‚»ã‚¹ãŒç™ºç”Ÿã—ãŸã“ã¨ãŒè€ƒãˆã‚‰ã‚Œã¾ã™" @*/ )) ;
 				PrintInfoMemory( Heap->UseSeparateInfo ? MemTag : MemTag->UserAddress, Heap->UseSeparateInfo ) ;
 				*( ( DWORD * )0x00000000 ) = 0xffffffff ;
 			}
 		}
 	}
 
-	// ƒAƒ‰ƒCƒ“ƒ`ƒFƒbƒN
+	// ã‚¢ãƒ©ã‚¤ãƒ³ãƒã‚§ãƒƒã‚¯
 	{
 		if( Heap->UseSeparateInfo )
 		{
@@ -2569,7 +2569,7 @@ extern int HeapErrorCheck( HEAPINFO *Heap )
 			{
 				if( ( DWORD_PTR )MemTag->AllocAddress % ALLOCMEM_MIN_ALIGNED != 0 )
 				{
-					DXST_LOGFILEFMT_ADDUTF16LE(( "\x48\x00\x65\x00\x61\x00\x70\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x43\x00\x68\x00\x65\x00\x63\x00\x6b\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xe1\x30\xe2\x30\xea\x30\xbf\x30\xb0\x30\x6e\x30\xa2\x30\xe9\x30\xa4\x30\xf3\x30\x4c\x30\x0d\x4e\x63\x6b\x67\x30\x59\x30\x20\x00\x20\x00\x48\x00\x65\x00\x61\x00\x70\x00\x2d\x00\x3e\x00\x55\x00\x73\x00\x65\x00\x53\x00\x65\x00\x70\x00\x61\x00\x72\x00\x61\x00\x74\x00\x65\x00\x49\x00\x6e\x00\x66\x00\x6f\x00\x20\x00\x3d\x00\x20\x00\x54\x00\x52\x00\x55\x00\x45\x00\x00"/*@ L"HeapErrorCheck Error : ƒƒ‚ƒŠƒ^ƒO‚ÌƒAƒ‰ƒCƒ“‚ª•s³‚Å‚·  Heap->UseSeparateInfo = TRUE" @*/ )) ;
+					DXST_LOGFILEFMT_ADDUTF16LE(( "\x48\x00\x65\x00\x61\x00\x70\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x43\x00\x68\x00\x65\x00\x63\x00\x6b\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xe1\x30\xe2\x30\xea\x30\xbf\x30\xb0\x30\x6e\x30\xa2\x30\xe9\x30\xa4\x30\xf3\x30\x4c\x30\x0d\x4e\x63\x6b\x67\x30\x59\x30\x20\x00\x20\x00\x48\x00\x65\x00\x61\x00\x70\x00\x2d\x00\x3e\x00\x55\x00\x73\x00\x65\x00\x53\x00\x65\x00\x70\x00\x61\x00\x72\x00\x61\x00\x74\x00\x65\x00\x49\x00\x6e\x00\x66\x00\x6f\x00\x20\x00\x3d\x00\x20\x00\x54\x00\x52\x00\x55\x00\x45\x00\x00"/*@ L"HeapErrorCheck Error : ãƒ¡ãƒ¢ãƒªã‚¿ã‚°ã®ã‚¢ãƒ©ã‚¤ãƒ³ãŒä¸æ­£ã§ã™  Heap->UseSeparateInfo = TRUE" @*/ )) ;
 					PrintInfoMemory( Heap->UseSeparateInfo ? MemTag : MemTag->UserAddress, Heap->UseSeparateInfo ) ;
 					*( ( DWORD * )0x00000000 ) = 0xffffffff ;
 				}
@@ -2581,7 +2581,7 @@ extern int HeapErrorCheck( HEAPINFO *Heap )
 			{
 				if( ( DWORD_PTR )MemTag % ALLOCMEM_MIN_ALIGNED != 0 )
 				{
-					DXST_LOGFILEFMT_ADDUTF16LE(( "\x48\x00\x65\x00\x61\x00\x70\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x43\x00\x68\x00\x65\x00\x63\x00\x6b\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xe1\x30\xe2\x30\xea\x30\xbf\x30\xb0\x30\x6e\x30\xa2\x30\xe9\x30\xa4\x30\xf3\x30\x4c\x30\x0d\x4e\x63\x6b\x67\x30\x59\x30\x20\x00\x20\x00\x48\x00\x65\x00\x61\x00\x70\x00\x2d\x00\x3e\x00\x55\x00\x73\x00\x65\x00\x53\x00\x65\x00\x70\x00\x61\x00\x72\x00\x61\x00\x74\x00\x65\x00\x49\x00\x6e\x00\x66\x00\x6f\x00\x20\x00\x3d\x00\x20\x00\x46\x00\x41\x00\x4c\x00\x53\x00\x45\x00\x00"/*@ L"HeapErrorCheck Error : ƒƒ‚ƒŠƒ^ƒO‚ÌƒAƒ‰ƒCƒ“‚ª•s³‚Å‚·  Heap->UseSeparateInfo = FALSE" @*/ )) ;
+					DXST_LOGFILEFMT_ADDUTF16LE(( "\x48\x00\x65\x00\x61\x00\x70\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x43\x00\x68\x00\x65\x00\x63\x00\x6b\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xe1\x30\xe2\x30\xea\x30\xbf\x30\xb0\x30\x6e\x30\xa2\x30\xe9\x30\xa4\x30\xf3\x30\x4c\x30\x0d\x4e\x63\x6b\x67\x30\x59\x30\x20\x00\x20\x00\x48\x00\x65\x00\x61\x00\x70\x00\x2d\x00\x3e\x00\x55\x00\x73\x00\x65\x00\x53\x00\x65\x00\x70\x00\x61\x00\x72\x00\x61\x00\x74\x00\x65\x00\x49\x00\x6e\x00\x66\x00\x6f\x00\x20\x00\x3d\x00\x20\x00\x46\x00\x41\x00\x4c\x00\x53\x00\x45\x00\x00"/*@ L"HeapErrorCheck Error : ãƒ¡ãƒ¢ãƒªã‚¿ã‚°ã®ã‚¢ãƒ©ã‚¤ãƒ³ãŒä¸æ­£ã§ã™  Heap->UseSeparateInfo = FALSE" @*/ )) ;
 					PrintInfoMemory( Heap->UseSeparateInfo ? MemTag : MemTag->UserAddress, Heap->UseSeparateInfo ) ;
 					*( ( DWORD * )0x00000000 ) = 0xffffffff ;
 				}
@@ -2589,7 +2589,7 @@ extern int HeapErrorCheck( HEAPINFO *Heap )
 		}
 	}
 
-	// ‘ƒƒ‚ƒŠƒTƒCƒY‚Ìƒ`ƒFƒbƒN
+	// ç·ãƒ¡ãƒ¢ãƒªã‚µã‚¤ã‚ºã®ãƒã‚§ãƒƒã‚¯
 	{
 		ALLOCMEM_SIZE_TYPE TotalSize ;
 		ALLOCMEM_SIZE_TYPE TotalSize2 ;
@@ -2608,17 +2608,17 @@ extern int HeapErrorCheck( HEAPINFO *Heap )
 		}
 		if( TotalSize != Heap->TotalUseSize + Heap->TotalFreeSize )
 		{
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\x48\x00\x65\x00\x61\x00\x70\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x43\x00\x68\x00\x65\x00\x63\x00\x6b\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xcf\x7d\xe1\x30\xe2\x30\xea\x30\xb5\x30\xa4\x30\xba\x30\x4c\x30\x00\x4e\xf4\x81\x57\x30\x7e\x30\x5b\x30\x93\x30\x20\x00\x20\x00\x54\x00\x6f\x00\x74\x00\x61\x00\x6c\x00\x53\x00\x69\x00\x7a\x00\x65\x00\x3a\x00\x25\x00\x6c\x00\x6c\x00\x64\x00\x20\x00\x20\x00\x20\x00\x28\x00\x20\x00\x48\x00\x65\x00\x61\x00\x70\x00\x2d\x00\x3e\x00\x54\x00\x6f\x00\x74\x00\x61\x00\x6c\x00\x55\x00\x73\x00\x65\x00\x53\x00\x69\x00\x7a\x00\x65\x00\x20\x00\x2b\x00\x20\x00\x48\x00\x65\x00\x61\x00\x70\x00\x2d\x00\x3e\x00\x54\x00\x6f\x00\x74\x00\x61\x00\x6c\x00\x46\x00\x72\x00\x65\x00\x65\x00\x53\x00\x69\x00\x7a\x00\x65\x00\x20\x00\x29\x00\x3a\x00\x25\x00\x6c\x00\x6c\x00\x64\x00\x00"/*@ L"HeapErrorCheck Error : ‘ƒƒ‚ƒŠƒTƒCƒY‚ªˆê’v‚µ‚Ü‚¹‚ñ  TotalSize:%lld   ( Heap->TotalUseSize + Heap->TotalFreeSize ):%lld" @*/, ( ULONGLONG )TotalSize, ( ULONGLONG )( Heap->TotalUseSize + Heap->TotalFreeSize ) )) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\x48\x00\x65\x00\x61\x00\x70\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x43\x00\x68\x00\x65\x00\x63\x00\x6b\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xcf\x7d\xe1\x30\xe2\x30\xea\x30\xb5\x30\xa4\x30\xba\x30\x4c\x30\x00\x4e\xf4\x81\x57\x30\x7e\x30\x5b\x30\x93\x30\x20\x00\x20\x00\x54\x00\x6f\x00\x74\x00\x61\x00\x6c\x00\x53\x00\x69\x00\x7a\x00\x65\x00\x3a\x00\x25\x00\x6c\x00\x6c\x00\x64\x00\x20\x00\x20\x00\x20\x00\x28\x00\x20\x00\x48\x00\x65\x00\x61\x00\x70\x00\x2d\x00\x3e\x00\x54\x00\x6f\x00\x74\x00\x61\x00\x6c\x00\x55\x00\x73\x00\x65\x00\x53\x00\x69\x00\x7a\x00\x65\x00\x20\x00\x2b\x00\x20\x00\x48\x00\x65\x00\x61\x00\x70\x00\x2d\x00\x3e\x00\x54\x00\x6f\x00\x74\x00\x61\x00\x6c\x00\x46\x00\x72\x00\x65\x00\x65\x00\x53\x00\x69\x00\x7a\x00\x65\x00\x20\x00\x29\x00\x3a\x00\x25\x00\x6c\x00\x6c\x00\x64\x00\x00"/*@ L"HeapErrorCheck Error : ç·ãƒ¡ãƒ¢ãƒªã‚µã‚¤ã‚ºãŒä¸€è‡´ã—ã¾ã›ã‚“  TotalSize:%lld   ( Heap->TotalUseSize + Heap->TotalFreeSize ):%lld" @*/, ( ULONGLONG )TotalSize, ( ULONGLONG )( Heap->TotalUseSize + Heap->TotalFreeSize ) )) ;
 			*( ( DWORD * )0x00000000 ) = 0xffffffff ;
 		}
 		if( TotalSize != TotalSize2 )
 		{
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\x48\x00\x65\x00\x61\x00\x70\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x43\x00\x68\x00\x65\x00\x63\x00\x6b\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xcf\x7d\xe1\x30\xe2\x30\xea\x30\xb5\x30\xa4\x30\xba\x30\x4c\x30\x00\x4e\xf4\x81\x57\x30\x7e\x30\x5b\x30\x93\x30\x20\x00\x20\x00\x54\x00\x6f\x00\x74\x00\x61\x00\x6c\x00\x53\x00\x69\x00\x7a\x00\x65\x00\x3a\x00\x25\x00\x6c\x00\x6c\x00\x64\x00\x20\x00\x20\x00\x20\x00\x54\x00\x6f\x00\x74\x00\x61\x00\x6c\x00\x53\x00\x69\x00\x7a\x00\x65\x00\x32\x00\x3a\x00\x25\x00\x6c\x00\x6c\x00\x64\x00\x00"/*@ L"HeapErrorCheck Error : ‘ƒƒ‚ƒŠƒTƒCƒY‚ªˆê’v‚µ‚Ü‚¹‚ñ  TotalSize:%lld   TotalSize2:%lld" @*/, ( ULONGLONG )TotalSize, ( ULONGLONG )TotalSize2 )) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\x48\x00\x65\x00\x61\x00\x70\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x43\x00\x68\x00\x65\x00\x63\x00\x6b\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xcf\x7d\xe1\x30\xe2\x30\xea\x30\xb5\x30\xa4\x30\xba\x30\x4c\x30\x00\x4e\xf4\x81\x57\x30\x7e\x30\x5b\x30\x93\x30\x20\x00\x20\x00\x54\x00\x6f\x00\x74\x00\x61\x00\x6c\x00\x53\x00\x69\x00\x7a\x00\x65\x00\x3a\x00\x25\x00\x6c\x00\x6c\x00\x64\x00\x20\x00\x20\x00\x20\x00\x54\x00\x6f\x00\x74\x00\x61\x00\x6c\x00\x53\x00\x69\x00\x7a\x00\x65\x00\x32\x00\x3a\x00\x25\x00\x6c\x00\x6c\x00\x64\x00\x00"/*@ L"HeapErrorCheck Error : ç·ãƒ¡ãƒ¢ãƒªã‚µã‚¤ã‚ºãŒä¸€è‡´ã—ã¾ã›ã‚“  TotalSize:%lld   TotalSize2:%lld" @*/, ( ULONGLONG )TotalSize, ( ULONGLONG )TotalSize2 )) ;
 			*( ( DWORD * )0x00000000 ) = 0xffffffff ;
 		}
 	}
 
-	// ƒƒ‚ƒŠ—Ìˆæ‚Ì‘OŒãŠÖŒW‚Ìƒ`ƒFƒbƒN
+	// ãƒ¡ãƒ¢ãƒªé ˜åŸŸã®å‰å¾Œé–¢ä¿‚ã®ãƒã‚§ãƒƒã‚¯
 	{
 		if( Heap->UseSeparateInfo )
 		{
@@ -2628,7 +2628,7 @@ extern int HeapErrorCheck( HEAPINFO *Heap )
 				{
 					if( ( DWORD_PTR )MemTag->Prev->AllocAddress + MemTag->Prev->Size != ( DWORD_PTR )MemTag->AllocAddress )
 					{
-						DXST_LOGFILEFMT_ADDUTF16LE(( "\x48\x00\x65\x00\x61\x00\x70\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x43\x00\x68\x00\x65\x00\x63\x00\x6b\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xe1\x30\xe2\x30\xea\x30\xbf\x30\xb0\x30\x6e\x30\x23\x90\x50\x7d\xc5\x60\x31\x58\x4c\x30\x0d\x4e\x63\x6b\x67\x30\x59\x30\x20\x00\x20\x00\x28\x00\x20\x00\x4d\x00\x65\x00\x6d\x00\x54\x00\x61\x00\x67\x00\x2d\x00\x3e\x00\x50\x00\x72\x00\x65\x00\x76\x00\x2d\x00\x3e\x00\x41\x00\x6c\x00\x6c\x00\x6f\x00\x63\x00\x41\x00\x64\x00\x64\x00\x72\x00\x65\x00\x73\x00\x73\x00\x20\x00\x2b\x00\x20\x00\x4d\x00\x65\x00\x6d\x00\x54\x00\x61\x00\x67\x00\x2d\x00\x3e\x00\x50\x00\x72\x00\x65\x00\x76\x00\x2d\x00\x3e\x00\x53\x00\x69\x00\x7a\x00\x65\x00\x20\x00\x29\x00\x3a\x00\x30\x00\x78\x00\x25\x00\x6c\x00\x6c\x00\x30\x00\x31\x00\x36\x00\x78\x00\x20\x00\x20\x00\x4d\x00\x65\x00\x6d\x00\x54\x00\x61\x00\x67\x00\x2d\x00\x3e\x00\x41\x00\x6c\x00\x6c\x00\x6f\x00\x63\x00\x41\x00\x64\x00\x64\x00\x72\x00\x65\x00\x73\x00\x73\x00\x3a\x00\x30\x00\x78\x00\x25\x00\x6c\x00\x6c\x00\x30\x00\x31\x00\x36\x00\x78\x00\x00"/*@ L"HeapErrorCheck Error : ƒƒ‚ƒŠƒ^ƒO‚Ì˜AŒ‹î•ñ‚ª•s³‚Å‚·  ( MemTag->Prev->AllocAddress + MemTag->Prev->Size ):0x%ll016x  MemTag->AllocAddress:0x%ll016x" @*/, ( ULONGLONG )( ( DWORD_PTR )MemTag->Prev->AllocAddress + MemTag->Prev->Size ), ( ULONGLONG )MemTag->AllocAddress )) ;
+						DXST_LOGFILEFMT_ADDUTF16LE(( "\x48\x00\x65\x00\x61\x00\x70\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x43\x00\x68\x00\x65\x00\x63\x00\x6b\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xe1\x30\xe2\x30\xea\x30\xbf\x30\xb0\x30\x6e\x30\x23\x90\x50\x7d\xc5\x60\x31\x58\x4c\x30\x0d\x4e\x63\x6b\x67\x30\x59\x30\x20\x00\x20\x00\x28\x00\x20\x00\x4d\x00\x65\x00\x6d\x00\x54\x00\x61\x00\x67\x00\x2d\x00\x3e\x00\x50\x00\x72\x00\x65\x00\x76\x00\x2d\x00\x3e\x00\x41\x00\x6c\x00\x6c\x00\x6f\x00\x63\x00\x41\x00\x64\x00\x64\x00\x72\x00\x65\x00\x73\x00\x73\x00\x20\x00\x2b\x00\x20\x00\x4d\x00\x65\x00\x6d\x00\x54\x00\x61\x00\x67\x00\x2d\x00\x3e\x00\x50\x00\x72\x00\x65\x00\x76\x00\x2d\x00\x3e\x00\x53\x00\x69\x00\x7a\x00\x65\x00\x20\x00\x29\x00\x3a\x00\x30\x00\x78\x00\x25\x00\x6c\x00\x6c\x00\x30\x00\x31\x00\x36\x00\x78\x00\x20\x00\x20\x00\x4d\x00\x65\x00\x6d\x00\x54\x00\x61\x00\x67\x00\x2d\x00\x3e\x00\x41\x00\x6c\x00\x6c\x00\x6f\x00\x63\x00\x41\x00\x64\x00\x64\x00\x72\x00\x65\x00\x73\x00\x73\x00\x3a\x00\x30\x00\x78\x00\x25\x00\x6c\x00\x6c\x00\x30\x00\x31\x00\x36\x00\x78\x00\x00"/*@ L"HeapErrorCheck Error : ãƒ¡ãƒ¢ãƒªã‚¿ã‚°ã®é€£çµæƒ…å ±ãŒä¸æ­£ã§ã™  ( MemTag->Prev->AllocAddress + MemTag->Prev->Size ):0x%ll016x  MemTag->AllocAddress:0x%ll016x" @*/, ( ULONGLONG )( ( DWORD_PTR )MemTag->Prev->AllocAddress + MemTag->Prev->Size ), ( ULONGLONG )MemTag->AllocAddress )) ;
 						PrintInfoMemory( Heap->UseSeparateInfo ? MemTag : MemTag->UserAddress, Heap->UseSeparateInfo ) ;
 						*( ( DWORD * )0x00000000 ) = 0xffffffff ;
 					}
@@ -2638,7 +2638,7 @@ extern int HeapErrorCheck( HEAPINFO *Heap )
 				{
 					if( ( DWORD_PTR )MemTag->Next->AllocAddress != ( DWORD_PTR )MemTag->AllocAddress + MemTag->Size )
 					{
-						DXST_LOGFILEFMT_ADDUTF16LE(( "\x48\x00\x65\x00\x61\x00\x70\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x43\x00\x68\x00\x65\x00\x63\x00\x6b\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xe1\x30\xe2\x30\xea\x30\xbf\x30\xb0\x30\x6e\x30\x23\x90\x50\x7d\xc5\x60\x31\x58\x4c\x30\x0d\x4e\x63\x6b\x67\x30\x59\x30\x20\x00\x20\x00\x4d\x00\x65\x00\x6d\x00\x54\x00\x61\x00\x67\x00\x2d\x00\x3e\x00\x4e\x00\x65\x00\x78\x00\x74\x00\x2d\x00\x3e\x00\x41\x00\x6c\x00\x6c\x00\x6f\x00\x63\x00\x41\x00\x64\x00\x64\x00\x72\x00\x65\x00\x73\x00\x73\x00\x3a\x00\x30\x00\x78\x00\x25\x00\x6c\x00\x6c\x00\x30\x00\x31\x00\x36\x00\x78\x00\x20\x00\x20\x00\x28\x00\x20\x00\x4d\x00\x65\x00\x6d\x00\x54\x00\x61\x00\x67\x00\x2d\x00\x3e\x00\x41\x00\x6c\x00\x6c\x00\x6f\x00\x63\x00\x41\x00\x64\x00\x64\x00\x72\x00\x65\x00\x73\x00\x73\x00\x20\x00\x2b\x00\x20\x00\x4d\x00\x65\x00\x6d\x00\x54\x00\x61\x00\x67\x00\x2d\x00\x3e\x00\x53\x00\x69\x00\x7a\x00\x65\x00\x20\x00\x29\x00\x3a\x00\x30\x00\x78\x00\x25\x00\x6c\x00\x6c\x00\x30\x00\x31\x00\x36\x00\x78\x00\x00"/*@ L"HeapErrorCheck Error : ƒƒ‚ƒŠƒ^ƒO‚Ì˜AŒ‹î•ñ‚ª•s³‚Å‚·  MemTag->Next->AllocAddress:0x%ll016x  ( MemTag->AllocAddress + MemTag->Size ):0x%ll016x" @*/, ( ULONGLONG )MemTag->Next->AllocAddress, ( ULONGLONG )( ( DWORD_PTR )MemTag->AllocAddress + MemTag->Size ) )) ;
+						DXST_LOGFILEFMT_ADDUTF16LE(( "\x48\x00\x65\x00\x61\x00\x70\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x43\x00\x68\x00\x65\x00\x63\x00\x6b\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xe1\x30\xe2\x30\xea\x30\xbf\x30\xb0\x30\x6e\x30\x23\x90\x50\x7d\xc5\x60\x31\x58\x4c\x30\x0d\x4e\x63\x6b\x67\x30\x59\x30\x20\x00\x20\x00\x4d\x00\x65\x00\x6d\x00\x54\x00\x61\x00\x67\x00\x2d\x00\x3e\x00\x4e\x00\x65\x00\x78\x00\x74\x00\x2d\x00\x3e\x00\x41\x00\x6c\x00\x6c\x00\x6f\x00\x63\x00\x41\x00\x64\x00\x64\x00\x72\x00\x65\x00\x73\x00\x73\x00\x3a\x00\x30\x00\x78\x00\x25\x00\x6c\x00\x6c\x00\x30\x00\x31\x00\x36\x00\x78\x00\x20\x00\x20\x00\x28\x00\x20\x00\x4d\x00\x65\x00\x6d\x00\x54\x00\x61\x00\x67\x00\x2d\x00\x3e\x00\x41\x00\x6c\x00\x6c\x00\x6f\x00\x63\x00\x41\x00\x64\x00\x64\x00\x72\x00\x65\x00\x73\x00\x73\x00\x20\x00\x2b\x00\x20\x00\x4d\x00\x65\x00\x6d\x00\x54\x00\x61\x00\x67\x00\x2d\x00\x3e\x00\x53\x00\x69\x00\x7a\x00\x65\x00\x20\x00\x29\x00\x3a\x00\x30\x00\x78\x00\x25\x00\x6c\x00\x6c\x00\x30\x00\x31\x00\x36\x00\x78\x00\x00"/*@ L"HeapErrorCheck Error : ãƒ¡ãƒ¢ãƒªã‚¿ã‚°ã®é€£çµæƒ…å ±ãŒä¸æ­£ã§ã™  MemTag->Next->AllocAddress:0x%ll016x  ( MemTag->AllocAddress + MemTag->Size ):0x%ll016x" @*/, ( ULONGLONG )MemTag->Next->AllocAddress, ( ULONGLONG )( ( DWORD_PTR )MemTag->AllocAddress + MemTag->Size ) )) ;
 						*( ( DWORD * )0x00000000 ) = 0xffffffff ;
 					}
 				}
@@ -2652,7 +2652,7 @@ extern int HeapErrorCheck( HEAPINFO *Heap )
 				{
 					if( ( DWORD_PTR )MemTag->Prev + MemTag->Prev->Size != ( DWORD_PTR )MemTag )
 					{
-						DXST_LOGFILEFMT_ADDUTF16LE(( "\x48\x00\x65\x00\x61\x00\x70\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x43\x00\x68\x00\x65\x00\x63\x00\x6b\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xe1\x30\xe2\x30\xea\x30\xbf\x30\xb0\x30\x6e\x30\x23\x90\x50\x7d\xc5\x60\x31\x58\x4c\x30\x0d\x4e\x63\x6b\x67\x30\x59\x30\x20\x00\x20\x00\x28\x00\x20\x00\x4d\x00\x65\x00\x6d\x00\x54\x00\x61\x00\x67\x00\x2d\x00\x3e\x00\x50\x00\x72\x00\x65\x00\x76\x00\x20\x00\x2b\x00\x20\x00\x4d\x00\x65\x00\x6d\x00\x54\x00\x61\x00\x67\x00\x2d\x00\x3e\x00\x50\x00\x72\x00\x65\x00\x76\x00\x2d\x00\x3e\x00\x53\x00\x69\x00\x7a\x00\x65\x00\x20\x00\x29\x00\x3a\x00\x30\x00\x78\x00\x25\x00\x6c\x00\x6c\x00\x30\x00\x31\x00\x36\x00\x78\x00\x20\x00\x20\x00\x4d\x00\x65\x00\x6d\x00\x54\x00\x61\x00\x67\x00\x3a\x00\x30\x00\x78\x00\x25\x00\x6c\x00\x6c\x00\x30\x00\x31\x00\x36\x00\x78\x00\x00"/*@ L"HeapErrorCheck Error : ƒƒ‚ƒŠƒ^ƒO‚Ì˜AŒ‹î•ñ‚ª•s³‚Å‚·  ( MemTag->Prev + MemTag->Prev->Size ):0x%ll016x  MemTag:0x%ll016x" @*/, ( ULONGLONG )( MemTag->Prev + MemTag->Prev->Size ), ( ULONGLONG )MemTag )) ;
+						DXST_LOGFILEFMT_ADDUTF16LE(( "\x48\x00\x65\x00\x61\x00\x70\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x43\x00\x68\x00\x65\x00\x63\x00\x6b\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xe1\x30\xe2\x30\xea\x30\xbf\x30\xb0\x30\x6e\x30\x23\x90\x50\x7d\xc5\x60\x31\x58\x4c\x30\x0d\x4e\x63\x6b\x67\x30\x59\x30\x20\x00\x20\x00\x28\x00\x20\x00\x4d\x00\x65\x00\x6d\x00\x54\x00\x61\x00\x67\x00\x2d\x00\x3e\x00\x50\x00\x72\x00\x65\x00\x76\x00\x20\x00\x2b\x00\x20\x00\x4d\x00\x65\x00\x6d\x00\x54\x00\x61\x00\x67\x00\x2d\x00\x3e\x00\x50\x00\x72\x00\x65\x00\x76\x00\x2d\x00\x3e\x00\x53\x00\x69\x00\x7a\x00\x65\x00\x20\x00\x29\x00\x3a\x00\x30\x00\x78\x00\x25\x00\x6c\x00\x6c\x00\x30\x00\x31\x00\x36\x00\x78\x00\x20\x00\x20\x00\x4d\x00\x65\x00\x6d\x00\x54\x00\x61\x00\x67\x00\x3a\x00\x30\x00\x78\x00\x25\x00\x6c\x00\x6c\x00\x30\x00\x31\x00\x36\x00\x78\x00\x00"/*@ L"HeapErrorCheck Error : ãƒ¡ãƒ¢ãƒªã‚¿ã‚°ã®é€£çµæƒ…å ±ãŒä¸æ­£ã§ã™  ( MemTag->Prev + MemTag->Prev->Size ):0x%ll016x  MemTag:0x%ll016x" @*/, ( ULONGLONG )( MemTag->Prev + MemTag->Prev->Size ), ( ULONGLONG )MemTag )) ;
 						PrintInfoMemory( Heap->UseSeparateInfo ? MemTag : MemTag->UserAddress, Heap->UseSeparateInfo ) ;
 						*( ( DWORD * )0x00000000 ) = 0xffffffff ;
 					}
@@ -2662,7 +2662,7 @@ extern int HeapErrorCheck( HEAPINFO *Heap )
 				{
 					if( ( DWORD_PTR )MemTag->Next != ( DWORD_PTR )MemTag + MemTag->Size )
 					{
-						DXST_LOGFILEFMT_ADDUTF16LE(( "\x48\x00\x65\x00\x61\x00\x70\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x43\x00\x68\x00\x65\x00\x63\x00\x6b\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xe1\x30\xe2\x30\xea\x30\xbf\x30\xb0\x30\x6e\x30\x23\x90\x50\x7d\xc5\x60\x31\x58\x4c\x30\x0d\x4e\x63\x6b\x67\x30\x59\x30\x20\x00\x20\x00\x4d\x00\x65\x00\x6d\x00\x54\x00\x61\x00\x67\x00\x2d\x00\x3e\x00\x4e\x00\x65\x00\x78\x00\x74\x00\x3a\x00\x30\x00\x78\x00\x25\x00\x6c\x00\x6c\x00\x30\x00\x31\x00\x36\x00\x78\x00\x20\x00\x20\x00\x28\x00\x20\x00\x4d\x00\x65\x00\x6d\x00\x54\x00\x61\x00\x67\x00\x20\x00\x2b\x00\x20\x00\x4d\x00\x65\x00\x6d\x00\x54\x00\x61\x00\x67\x00\x2d\x00\x3e\x00\x53\x00\x69\x00\x7a\x00\x65\x00\x20\x00\x29\x00\x3a\x00\x30\x00\x78\x00\x25\x00\x6c\x00\x6c\x00\x30\x00\x31\x00\x36\x00\x78\x00\x00"/*@ L"HeapErrorCheck Error : ƒƒ‚ƒŠƒ^ƒO‚Ì˜AŒ‹î•ñ‚ª•s³‚Å‚·  MemTag->Next:0x%ll016x  ( MemTag + MemTag->Size ):0x%ll016x" @*/, ( ULONGLONG )MemTag->Next, ( ULONGLONG )( MemTag + MemTag->Size ) )) ;
+						DXST_LOGFILEFMT_ADDUTF16LE(( "\x48\x00\x65\x00\x61\x00\x70\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x43\x00\x68\x00\x65\x00\x63\x00\x6b\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xe1\x30\xe2\x30\xea\x30\xbf\x30\xb0\x30\x6e\x30\x23\x90\x50\x7d\xc5\x60\x31\x58\x4c\x30\x0d\x4e\x63\x6b\x67\x30\x59\x30\x20\x00\x20\x00\x4d\x00\x65\x00\x6d\x00\x54\x00\x61\x00\x67\x00\x2d\x00\x3e\x00\x4e\x00\x65\x00\x78\x00\x74\x00\x3a\x00\x30\x00\x78\x00\x25\x00\x6c\x00\x6c\x00\x30\x00\x31\x00\x36\x00\x78\x00\x20\x00\x20\x00\x28\x00\x20\x00\x4d\x00\x65\x00\x6d\x00\x54\x00\x61\x00\x67\x00\x20\x00\x2b\x00\x20\x00\x4d\x00\x65\x00\x6d\x00\x54\x00\x61\x00\x67\x00\x2d\x00\x3e\x00\x53\x00\x69\x00\x7a\x00\x65\x00\x20\x00\x29\x00\x3a\x00\x30\x00\x78\x00\x25\x00\x6c\x00\x6c\x00\x30\x00\x31\x00\x36\x00\x78\x00\x00"/*@ L"HeapErrorCheck Error : ãƒ¡ãƒ¢ãƒªã‚¿ã‚°ã®é€£çµæƒ…å ±ãŒä¸æ­£ã§ã™  MemTag->Next:0x%ll016x  ( MemTag + MemTag->Size ):0x%ll016x" @*/, ( ULONGLONG )MemTag->Next, ( ULONGLONG )( MemTag + MemTag->Size ) )) ;
 						PrintInfoMemory( Heap->UseSeparateInfo ? MemTag : MemTag->UserAddress, Heap->UseSeparateInfo ) ;
 						*( ( DWORD * )0x00000000 ) = 0xffffffff ;
 					}
@@ -2671,7 +2671,7 @@ extern int HeapErrorCheck( HEAPINFO *Heap )
 		}
 	}
 
-	// ‹ó‚«ƒƒ‚ƒŠƒ^ƒO‚ª˜A‘±‚µ‚Ä‚µ‚Ü‚Á‚Ä‚¢‚È‚¢‚©ƒ`ƒFƒbƒN
+	// ç©ºããƒ¡ãƒ¢ãƒªã‚¿ã‚°ãŒé€£ç¶šã—ã¦ã—ã¾ã£ã¦ã„ãªã„ã‹ãƒã‚§ãƒƒã‚¯
 	{
 		for( MemTag = Heap->FirstTag ; MemTag != NULL ; MemTag = MemTag->Next )
 		{
@@ -2684,7 +2684,7 @@ extern int HeapErrorCheck( HEAPINFO *Heap )
 			{
 				if( ( MemTag->Prev->Flag & ALLOCMEMTAG_FLAG_USE ) == 0 )
 				{
-					DXST_LOGFILEFMT_ADDUTF16LE(( "\x48\x00\x65\x00\x61\x00\x70\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x43\x00\x68\x00\x65\x00\x63\x00\x6b\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\x7a\x7a\x4d\x30\xe1\x30\xe2\x30\xea\x30\xbf\x30\xb0\x30\x4c\x30\x0b\x4e\x4d\x4f\xe1\x30\xe2\x30\xea\x30\xa2\x30\xc9\x30\xec\x30\xb9\x30\xb9\x65\x11\x54\x6b\x30\x23\x90\x9a\x7d\x57\x30\x66\x30\x44\x30\x7e\x30\x59\x30\x00"/*@ L"HeapErrorCheck Error : ‹ó‚«ƒƒ‚ƒŠƒ^ƒO‚ª‰ºˆÊƒƒ‚ƒŠƒAƒhƒŒƒX•ûŒü‚É˜A‘±‚µ‚Ä‚¢‚Ü‚·" @*/ )) ;
+					DXST_LOGFILEFMT_ADDUTF16LE(( "\x48\x00\x65\x00\x61\x00\x70\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x43\x00\x68\x00\x65\x00\x63\x00\x6b\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\x7a\x7a\x4d\x30\xe1\x30\xe2\x30\xea\x30\xbf\x30\xb0\x30\x4c\x30\x0b\x4e\x4d\x4f\xe1\x30\xe2\x30\xea\x30\xa2\x30\xc9\x30\xec\x30\xb9\x30\xb9\x65\x11\x54\x6b\x30\x23\x90\x9a\x7d\x57\x30\x66\x30\x44\x30\x7e\x30\x59\x30\x00"/*@ L"HeapErrorCheck Error : ç©ºããƒ¡ãƒ¢ãƒªã‚¿ã‚°ãŒä¸‹ä½ãƒ¡ãƒ¢ãƒªã‚¢ãƒ‰ãƒ¬ã‚¹æ–¹å‘ã«é€£ç¶šã—ã¦ã„ã¾ã™" @*/ )) ;
 					PrintInfoMemory( Heap->UseSeparateInfo ? MemTag : MemTag->UserAddress, Heap->UseSeparateInfo ) ;
 					*( ( DWORD * )0x00000000 ) = 0xffffffff ;
 				}
@@ -2694,7 +2694,7 @@ extern int HeapErrorCheck( HEAPINFO *Heap )
 			{
 				if( ( MemTag->Next->Flag & ALLOCMEMTAG_FLAG_USE ) == 0 )
 				{
-					DXST_LOGFILEFMT_ADDUTF16LE(( "\x48\x00\x65\x00\x61\x00\x70\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x43\x00\x68\x00\x65\x00\x63\x00\x6b\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\x7a\x7a\x4d\x30\xe1\x30\xe2\x30\xea\x30\xbf\x30\xb0\x30\x4c\x30\x0a\x4e\x4d\x4f\xe1\x30\xe2\x30\xea\x30\xa2\x30\xc9\x30\xec\x30\xb9\x30\xb9\x65\x11\x54\x6b\x30\x23\x90\x9a\x7d\x57\x30\x66\x30\x44\x30\x7e\x30\x59\x30\x00"/*@ L"HeapErrorCheck Error : ‹ó‚«ƒƒ‚ƒŠƒ^ƒO‚ªãˆÊƒƒ‚ƒŠƒAƒhƒŒƒX•ûŒü‚É˜A‘±‚µ‚Ä‚¢‚Ü‚·" @*/ )) ;
+					DXST_LOGFILEFMT_ADDUTF16LE(( "\x48\x00\x65\x00\x61\x00\x70\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x43\x00\x68\x00\x65\x00\x63\x00\x6b\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\x7a\x7a\x4d\x30\xe1\x30\xe2\x30\xea\x30\xbf\x30\xb0\x30\x4c\x30\x0a\x4e\x4d\x4f\xe1\x30\xe2\x30\xea\x30\xa2\x30\xc9\x30\xec\x30\xb9\x30\xb9\x65\x11\x54\x6b\x30\x23\x90\x9a\x7d\x57\x30\x66\x30\x44\x30\x7e\x30\x59\x30\x00"/*@ L"HeapErrorCheck Error : ç©ºããƒ¡ãƒ¢ãƒªã‚¿ã‚°ãŒä¸Šä½ãƒ¡ãƒ¢ãƒªã‚¢ãƒ‰ãƒ¬ã‚¹æ–¹å‘ã«é€£ç¶šã—ã¦ã„ã¾ã™" @*/ )) ;
 					PrintInfoMemory( Heap->UseSeparateInfo ? MemTag : MemTag->UserAddress, Heap->UseSeparateInfo ) ;
 					*( ( DWORD * )0x00000000 ) = 0xffffffff ;
 				}
@@ -2702,22 +2702,22 @@ extern int HeapErrorCheck( HEAPINFO *Heap )
 		}
 	}
 
-	// –¢g—pƒŠƒXƒg‚Ìƒ`ƒFƒbƒN
+	// æœªä½¿ç”¨ãƒªã‚¹ãƒˆã®ãƒã‚§ãƒƒã‚¯
 	if( Heap->UseSeparateInfo )
 	{
-		// –¢g—pƒ^ƒO‚Ì”‚ğƒ`ƒFƒbƒN
+		// æœªä½¿ç”¨ã‚¿ã‚°ã®æ•°ã‚’ãƒã‚§ãƒƒã‚¯
 		{
 			int TagNum ;
 
 			for( MemTag = Heap->SepTagArrayNotUseFirst, TagNum = 0 ; MemTag != NULL ; MemTag = MemTag->ListNext, TagNum ++ ){}
 			if( TagNum != Heap->SepTagArrayLength - Heap->SepTagArrayUseNum )
 			{
-				DXST_LOGFILEFMT_ADDUTF16LE(( "\x48\x00\x65\x00\x61\x00\x70\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x43\x00\x68\x00\x65\x00\x63\x00\x6b\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xbf\x30\xb0\x30\x4d\x91\x17\x52\x06\x52\xe2\x96\xbf\x30\xa4\x30\xd7\x30\x6e\x30\x2a\x67\x7f\x4f\x28\x75\xbf\x30\xb0\x30\x6e\x30\x70\x65\x4c\x30\x00\x4e\xf4\x81\x57\x30\x7e\x30\x5b\x30\x93\x30\x20\x00\x20\x00\x54\x00\x61\x00\x67\x00\x4e\x00\x75\x00\x6d\x00\x3a\x00\x25\x00\x64\x00\x20\x00\x20\x00\x28\x00\x20\x00\x48\x00\x65\x00\x61\x00\x70\x00\x2d\x00\x3e\x00\x53\x00\x65\x00\x70\x00\x54\x00\x61\x00\x67\x00\x41\x00\x72\x00\x72\x00\x61\x00\x79\x00\x4c\x00\x65\x00\x6e\x00\x67\x00\x74\x00\x68\x00\x20\x00\x2d\x00\x20\x00\x48\x00\x65\x00\x61\x00\x70\x00\x2d\x00\x3e\x00\x53\x00\x65\x00\x70\x00\x54\x00\x61\x00\x67\x00\x41\x00\x72\x00\x72\x00\x61\x00\x79\x00\x55\x00\x73\x00\x65\x00\x4e\x00\x75\x00\x6d\x00\x20\x00\x29\x00\x3a\x00\x25\x00\x64\x00\x00"/*@ L"HeapErrorCheck Error : ƒ^ƒO”z—ñ•ª—£ƒ^ƒCƒv‚Ì–¢g—pƒ^ƒO‚Ì”‚ªˆê’v‚µ‚Ü‚¹‚ñ  TagNum:%d  ( Heap->SepTagArrayLength - Heap->SepTagArrayUseNum ):%d" @*/, TagNum, Heap->SepTagArrayLength - Heap->SepTagArrayUseNum )) ;
+				DXST_LOGFILEFMT_ADDUTF16LE(( "\x48\x00\x65\x00\x61\x00\x70\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x43\x00\x68\x00\x65\x00\x63\x00\x6b\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xbf\x30\xb0\x30\x4d\x91\x17\x52\x06\x52\xe2\x96\xbf\x30\xa4\x30\xd7\x30\x6e\x30\x2a\x67\x7f\x4f\x28\x75\xbf\x30\xb0\x30\x6e\x30\x70\x65\x4c\x30\x00\x4e\xf4\x81\x57\x30\x7e\x30\x5b\x30\x93\x30\x20\x00\x20\x00\x54\x00\x61\x00\x67\x00\x4e\x00\x75\x00\x6d\x00\x3a\x00\x25\x00\x64\x00\x20\x00\x20\x00\x28\x00\x20\x00\x48\x00\x65\x00\x61\x00\x70\x00\x2d\x00\x3e\x00\x53\x00\x65\x00\x70\x00\x54\x00\x61\x00\x67\x00\x41\x00\x72\x00\x72\x00\x61\x00\x79\x00\x4c\x00\x65\x00\x6e\x00\x67\x00\x74\x00\x68\x00\x20\x00\x2d\x00\x20\x00\x48\x00\x65\x00\x61\x00\x70\x00\x2d\x00\x3e\x00\x53\x00\x65\x00\x70\x00\x54\x00\x61\x00\x67\x00\x41\x00\x72\x00\x72\x00\x61\x00\x79\x00\x55\x00\x73\x00\x65\x00\x4e\x00\x75\x00\x6d\x00\x20\x00\x29\x00\x3a\x00\x25\x00\x64\x00\x00"/*@ L"HeapErrorCheck Error : ã‚¿ã‚°é…åˆ—åˆ†é›¢ã‚¿ã‚¤ãƒ—ã®æœªä½¿ç”¨ã‚¿ã‚°ã®æ•°ãŒä¸€è‡´ã—ã¾ã›ã‚“  TagNum:%d  ( Heap->SepTagArrayLength - Heap->SepTagArrayUseNum ):%d" @*/, TagNum, Heap->SepTagArrayLength - Heap->SepTagArrayUseNum )) ;
 				*( ( DWORD * )0x00000000 ) = 0xffffffff ;
 			}
 		}
 
-		// –¢g—pƒƒ‚ƒŠƒq[ƒv‚Ì”‚ğƒ`ƒFƒbƒN
+		// æœªä½¿ç”¨ãƒ¡ãƒ¢ãƒªãƒ’ãƒ¼ãƒ—ã®æ•°ã‚’ãƒã‚§ãƒƒã‚¯
 		{
 			int HeapMemNum ;
 			HEAPMEMINFO *HeapMem ;
@@ -2725,13 +2725,13 @@ extern int HeapErrorCheck( HEAPINFO *Heap )
 			for( HeapMem = Heap->SepHeapMemArrayNotUseFirst, HeapMemNum = 0 ; HeapMem != NULL ; HeapMem = HeapMem->Next, HeapMemNum ++ ){}
 			if( HeapMemNum != Heap->SepHeapMemArrayLength - Heap->SepHeapMemArrayUseNum )
 			{
-				DXST_LOGFILEFMT_ADDUTF16LE(( "\x48\x00\x65\x00\x61\x00\x70\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x43\x00\x68\x00\x65\x00\x63\x00\x6b\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xd2\x30\xfc\x30\xd7\x30\xe1\x30\xe2\x30\xea\x30\xc5\x60\x31\x58\x06\x52\xe2\x96\xbf\x30\xa4\x30\xd7\x30\x6e\x30\x2a\x67\x7f\x4f\x28\x75\xc5\x60\x31\x58\x6e\x30\x70\x65\x4c\x30\x00\x4e\xf4\x81\x57\x30\x7e\x30\x5b\x30\x93\x30\x20\x00\x20\x00\x48\x00\x65\x00\x61\x00\x70\x00\x4d\x00\x65\x00\x6d\x00\x4e\x00\x75\x00\x6d\x00\x3a\x00\x25\x00\x64\x00\x20\x00\x20\x00\x28\x00\x20\x00\x48\x00\x65\x00\x61\x00\x70\x00\x2d\x00\x3e\x00\x53\x00\x65\x00\x70\x00\x48\x00\x65\x00\x61\x00\x70\x00\x4d\x00\x65\x00\x6d\x00\x41\x00\x72\x00\x72\x00\x61\x00\x79\x00\x4c\x00\x65\x00\x6e\x00\x67\x00\x74\x00\x68\x00\x20\x00\x2d\x00\x20\x00\x48\x00\x65\x00\x61\x00\x70\x00\x2d\x00\x3e\x00\x53\x00\x65\x00\x70\x00\x48\x00\x65\x00\x61\x00\x70\x00\x4d\x00\x65\x00\x6d\x00\x41\x00\x72\x00\x72\x00\x61\x00\x79\x00\x55\x00\x73\x00\x65\x00\x4e\x00\x75\x00\x6d\x00\x20\x00\x29\x00\x3a\x00\x25\x00\x64\x00\x00"/*@ L"HeapErrorCheck Error : ƒq[ƒvƒƒ‚ƒŠî•ñ•ª—£ƒ^ƒCƒv‚Ì–¢g—pî•ñ‚Ì”‚ªˆê’v‚µ‚Ü‚¹‚ñ  HeapMemNum:%d  ( Heap->SepHeapMemArrayLength - Heap->SepHeapMemArrayUseNum ):%d" @*/, HeapMemNum, Heap->SepHeapMemArrayLength - Heap->SepHeapMemArrayUseNum )) ;
+				DXST_LOGFILEFMT_ADDUTF16LE(( "\x48\x00\x65\x00\x61\x00\x70\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x43\x00\x68\x00\x65\x00\x63\x00\x6b\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xd2\x30\xfc\x30\xd7\x30\xe1\x30\xe2\x30\xea\x30\xc5\x60\x31\x58\x06\x52\xe2\x96\xbf\x30\xa4\x30\xd7\x30\x6e\x30\x2a\x67\x7f\x4f\x28\x75\xc5\x60\x31\x58\x6e\x30\x70\x65\x4c\x30\x00\x4e\xf4\x81\x57\x30\x7e\x30\x5b\x30\x93\x30\x20\x00\x20\x00\x48\x00\x65\x00\x61\x00\x70\x00\x4d\x00\x65\x00\x6d\x00\x4e\x00\x75\x00\x6d\x00\x3a\x00\x25\x00\x64\x00\x20\x00\x20\x00\x28\x00\x20\x00\x48\x00\x65\x00\x61\x00\x70\x00\x2d\x00\x3e\x00\x53\x00\x65\x00\x70\x00\x48\x00\x65\x00\x61\x00\x70\x00\x4d\x00\x65\x00\x6d\x00\x41\x00\x72\x00\x72\x00\x61\x00\x79\x00\x4c\x00\x65\x00\x6e\x00\x67\x00\x74\x00\x68\x00\x20\x00\x2d\x00\x20\x00\x48\x00\x65\x00\x61\x00\x70\x00\x2d\x00\x3e\x00\x53\x00\x65\x00\x70\x00\x48\x00\x65\x00\x61\x00\x70\x00\x4d\x00\x65\x00\x6d\x00\x41\x00\x72\x00\x72\x00\x61\x00\x79\x00\x55\x00\x73\x00\x65\x00\x4e\x00\x75\x00\x6d\x00\x20\x00\x29\x00\x3a\x00\x25\x00\x64\x00\x00"/*@ L"HeapErrorCheck Error : ãƒ’ãƒ¼ãƒ—ãƒ¡ãƒ¢ãƒªæƒ…å ±åˆ†é›¢ã‚¿ã‚¤ãƒ—ã®æœªä½¿ç”¨æƒ…å ±ã®æ•°ãŒä¸€è‡´ã—ã¾ã›ã‚“  HeapMemNum:%d  ( Heap->SepHeapMemArrayLength - Heap->SepHeapMemArrayUseNum ):%d" @*/, HeapMemNum, Heap->SepHeapMemArrayLength - Heap->SepHeapMemArrayUseNum )) ;
 				*( ( DWORD * )0x00000000 ) = 0xffffffff ;
 			}
 		}
 	}
 
-	// ‘g—pƒƒ‚ƒŠƒTƒCƒY‚Ìƒ`ƒFƒbƒN
+	// ç·ä½¿ç”¨ãƒ¡ãƒ¢ãƒªã‚µã‚¤ã‚ºã®ãƒã‚§ãƒƒã‚¯
 	{
 		ALLOCMEM_SIZE_TYPE TotalUseSize ;
 		int UseNum ;
@@ -2742,7 +2742,7 @@ extern int HeapErrorCheck( HEAPINFO *Heap )
 		{
 			if( ( MemTag->Flag & ALLOCMEMTAG_FLAG_USE ) == 0 )
 			{
-				DXST_LOGFILEFMT_ADDUTF16LE(( "\x48\x00\x65\x00\x61\x00\x70\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x43\x00\x68\x00\x65\x00\x63\x00\x6b\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\x7f\x4f\x28\x75\xe1\x30\xe2\x30\xea\x30\xbf\x30\xb0\x30\x6e\x30\xea\x30\xb9\x30\xc8\x30\x6e\x30\x2d\x4e\x6b\x30\x7a\x7a\x4d\x30\xe1\x30\xe2\x30\xea\x30\xbf\x30\xb0\x30\x4c\x30\x42\x30\x8a\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"HeapErrorCheck Error : g—pƒƒ‚ƒŠƒ^ƒO‚ÌƒŠƒXƒg‚Ì’†‚É‹ó‚«ƒƒ‚ƒŠƒ^ƒO‚ª‚ ‚è‚Ü‚µ‚½" @*/ )) ;
+				DXST_LOGFILEFMT_ADDUTF16LE(( "\x48\x00\x65\x00\x61\x00\x70\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x43\x00\x68\x00\x65\x00\x63\x00\x6b\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\x7f\x4f\x28\x75\xe1\x30\xe2\x30\xea\x30\xbf\x30\xb0\x30\x6e\x30\xea\x30\xb9\x30\xc8\x30\x6e\x30\x2d\x4e\x6b\x30\x7a\x7a\x4d\x30\xe1\x30\xe2\x30\xea\x30\xbf\x30\xb0\x30\x4c\x30\x42\x30\x8a\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"HeapErrorCheck Error : ä½¿ç”¨ãƒ¡ãƒ¢ãƒªã‚¿ã‚°ã®ãƒªã‚¹ãƒˆã®ä¸­ã«ç©ºããƒ¡ãƒ¢ãƒªã‚¿ã‚°ãŒã‚ã‚Šã¾ã—ãŸ" @*/ )) ;
 				PrintInfoMemory( Heap->UseSeparateInfo ? MemTag : MemTag->UserAddress, Heap->UseSeparateInfo ) ;
 				*( ( DWORD * )0x00000000 ) = 0xffffffff ;
 			}
@@ -2750,17 +2750,17 @@ extern int HeapErrorCheck( HEAPINFO *Heap )
 		}
 		if( UseNum != Heap->UseTagNum )
 		{
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\x48\x00\x65\x00\x61\x00\x70\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x43\x00\x68\x00\x65\x00\x63\x00\x6b\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\x7f\x4f\x28\x75\xe1\x30\xe2\x30\xea\x30\xbf\x30\xb0\x30\x6e\x30\x70\x65\x4c\x30\x00\x4e\xf4\x81\x57\x30\x7e\x30\x5b\x30\x93\x30\x20\x00\x20\x00\x55\x00\x73\x00\x65\x00\x4e\x00\x75\x00\x6d\x00\x3a\x00\x25\x00\x64\x00\x20\x00\x20\x00\x48\x00\x65\x00\x61\x00\x70\x00\x2d\x00\x3e\x00\x55\x00\x73\x00\x65\x00\x54\x00\x61\x00\x67\x00\x4e\x00\x75\x00\x6d\x00\x3a\x00\x25\x00\x64\x00\x00"/*@ L"HeapErrorCheck Error : g—pƒƒ‚ƒŠƒ^ƒO‚Ì”‚ªˆê’v‚µ‚Ü‚¹‚ñ  UseNum:%d  Heap->UseTagNum:%d" @*/, UseNum, Heap->UseTagNum )) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\x48\x00\x65\x00\x61\x00\x70\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x43\x00\x68\x00\x65\x00\x63\x00\x6b\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\x7f\x4f\x28\x75\xe1\x30\xe2\x30\xea\x30\xbf\x30\xb0\x30\x6e\x30\x70\x65\x4c\x30\x00\x4e\xf4\x81\x57\x30\x7e\x30\x5b\x30\x93\x30\x20\x00\x20\x00\x55\x00\x73\x00\x65\x00\x4e\x00\x75\x00\x6d\x00\x3a\x00\x25\x00\x64\x00\x20\x00\x20\x00\x48\x00\x65\x00\x61\x00\x70\x00\x2d\x00\x3e\x00\x55\x00\x73\x00\x65\x00\x54\x00\x61\x00\x67\x00\x4e\x00\x75\x00\x6d\x00\x3a\x00\x25\x00\x64\x00\x00"/*@ L"HeapErrorCheck Error : ä½¿ç”¨ãƒ¡ãƒ¢ãƒªã‚¿ã‚°ã®æ•°ãŒä¸€è‡´ã—ã¾ã›ã‚“  UseNum:%d  Heap->UseTagNum:%d" @*/, UseNum, Heap->UseTagNum )) ;
 			*( ( DWORD * )0x00000000 ) = 0xffffffff ;
 		}
 		if( TotalUseSize != Heap->TotalUseSize )
 		{
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\x48\x00\x65\x00\x61\x00\x70\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x43\x00\x68\x00\x65\x00\x63\x00\x6b\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\x7f\x4f\x28\x75\xe1\x30\xe2\x30\xea\x30\x6e\x30\xb5\x30\xa4\x30\xba\x30\x4c\x30\x00\x4e\xf4\x81\x57\x30\x7e\x30\x5b\x30\x93\x30\x20\x00\x20\x00\x54\x00\x6f\x00\x74\x00\x61\x00\x6c\x00\x55\x00\x73\x00\x65\x00\x53\x00\x69\x00\x7a\x00\x65\x00\x3a\x00\x25\x00\x6c\x00\x6c\x00\x64\x00\x20\x00\x20\x00\x48\x00\x65\x00\x61\x00\x70\x00\x2d\x00\x3e\x00\x54\x00\x6f\x00\x74\x00\x61\x00\x6c\x00\x55\x00\x73\x00\x65\x00\x53\x00\x69\x00\x7a\x00\x65\x00\x3a\x00\x25\x00\x6c\x00\x6c\x00\x64\x00\x00"/*@ L"HeapErrorCheck Error : g—pƒƒ‚ƒŠ‚ÌƒTƒCƒY‚ªˆê’v‚µ‚Ü‚¹‚ñ  TotalUseSize:%lld  Heap->TotalUseSize:%lld" @*/, TotalUseSize, Heap->TotalUseSize )) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\x48\x00\x65\x00\x61\x00\x70\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x43\x00\x68\x00\x65\x00\x63\x00\x6b\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\x7f\x4f\x28\x75\xe1\x30\xe2\x30\xea\x30\x6e\x30\xb5\x30\xa4\x30\xba\x30\x4c\x30\x00\x4e\xf4\x81\x57\x30\x7e\x30\x5b\x30\x93\x30\x20\x00\x20\x00\x54\x00\x6f\x00\x74\x00\x61\x00\x6c\x00\x55\x00\x73\x00\x65\x00\x53\x00\x69\x00\x7a\x00\x65\x00\x3a\x00\x25\x00\x6c\x00\x6c\x00\x64\x00\x20\x00\x20\x00\x48\x00\x65\x00\x61\x00\x70\x00\x2d\x00\x3e\x00\x54\x00\x6f\x00\x74\x00\x61\x00\x6c\x00\x55\x00\x73\x00\x65\x00\x53\x00\x69\x00\x7a\x00\x65\x00\x3a\x00\x25\x00\x6c\x00\x6c\x00\x64\x00\x00"/*@ L"HeapErrorCheck Error : ä½¿ç”¨ãƒ¡ãƒ¢ãƒªã®ã‚µã‚¤ã‚ºãŒä¸€è‡´ã—ã¾ã›ã‚“  TotalUseSize:%lld  Heap->TotalUseSize:%lld" @*/, TotalUseSize, Heap->TotalUseSize )) ;
 			*( ( DWORD * )0x00000000 ) = 0xffffffff ;
 		}
 	}
 
-	// ‘‹ó‚«ƒƒ‚ƒŠƒTƒCƒY‚Ìƒ`ƒFƒbƒN
+	// ç·ç©ºããƒ¡ãƒ¢ãƒªã‚µã‚¤ã‚ºã®ãƒã‚§ãƒƒã‚¯
 	{
 		ALLOCMEM_SIZE_TYPE TotalFreeSize ;
 		int FreeNum ;
@@ -2773,7 +2773,7 @@ extern int HeapErrorCheck( HEAPINFO *Heap )
 			{
 				if( ( MemTag->Flag & ALLOCMEMTAG_FLAG_USE ) != 0 )
 				{
-					DXST_LOGFILEFMT_ADDUTF16LE(( "\x48\x00\x65\x00\x61\x00\x70\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x43\x00\x68\x00\x65\x00\x63\x00\x6b\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\x7a\x7a\x4d\x30\xe1\x30\xe2\x30\xea\x30\xbf\x30\xb0\x30\x6e\x30\xea\x30\xb9\x30\xc8\x30\x6e\x30\x2d\x4e\x6b\x30\x7f\x4f\x28\x75\xe1\x30\xe2\x30\xea\x30\xbf\x30\xb0\x30\x4c\x30\x42\x30\x8a\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"HeapErrorCheck Error : ‹ó‚«ƒƒ‚ƒŠƒ^ƒO‚ÌƒŠƒXƒg‚Ì’†‚Ég—pƒƒ‚ƒŠƒ^ƒO‚ª‚ ‚è‚Ü‚µ‚½" @*/ )) ;
+					DXST_LOGFILEFMT_ADDUTF16LE(( "\x48\x00\x65\x00\x61\x00\x70\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x43\x00\x68\x00\x65\x00\x63\x00\x6b\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\x7a\x7a\x4d\x30\xe1\x30\xe2\x30\xea\x30\xbf\x30\xb0\x30\x6e\x30\xea\x30\xb9\x30\xc8\x30\x6e\x30\x2d\x4e\x6b\x30\x7f\x4f\x28\x75\xe1\x30\xe2\x30\xea\x30\xbf\x30\xb0\x30\x4c\x30\x42\x30\x8a\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"HeapErrorCheck Error : ç©ºããƒ¡ãƒ¢ãƒªã‚¿ã‚°ã®ãƒªã‚¹ãƒˆã®ä¸­ã«ä½¿ç”¨ãƒ¡ãƒ¢ãƒªã‚¿ã‚°ãŒã‚ã‚Šã¾ã—ãŸ" @*/ )) ;
 					PrintInfoMemory( Heap->UseSeparateInfo ? MemTag : MemTag->UserAddress, Heap->UseSeparateInfo ) ;
 					*( ( DWORD * )0x00000000 ) = 0xffffffff ;
 				}
@@ -2814,31 +2814,31 @@ extern int HeapErrorCheck( HEAPINFO *Heap )
 
 					if( Heap->FreeFirstTagArray[ i ][ j ] == NULL )
 					{
-						DXST_LOGFILEFMT_ADDUTF16LE(( "\x48\x00\x65\x00\x61\x00\x70\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x43\x00\x68\x00\x65\x00\x63\x00\x6b\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\x54\x00\x4c\x00\x53\x00\x46\x00\xa8\x30\xe9\x30\xfc\x30\x00\x30\x00\x30\xab\x30\xc6\x30\xb4\x30\xea\x30\x12\xff\xc6\x30\xfc\x30\xd6\x30\xeb\x30\xa8\x30\xe9\x30\xfc\x30\x00"/*@ L"HeapErrorCheck Error : TLSFƒGƒ‰[@@ƒJƒeƒSƒŠ‚Qƒe[ƒuƒ‹ƒGƒ‰[" @*/ )) ;
+						DXST_LOGFILEFMT_ADDUTF16LE(( "\x48\x00\x65\x00\x61\x00\x70\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x43\x00\x68\x00\x65\x00\x63\x00\x6b\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\x54\x00\x4c\x00\x53\x00\x46\x00\xa8\x30\xe9\x30\xfc\x30\x00\x30\x00\x30\xab\x30\xc6\x30\xb4\x30\xea\x30\x12\xff\xc6\x30\xfc\x30\xd6\x30\xeb\x30\xa8\x30\xe9\x30\xfc\x30\x00"/*@ L"HeapErrorCheck Error : TLSFã‚¨ãƒ©ãƒ¼ã€€ã€€ã‚«ãƒ†ã‚´ãƒªï¼’ãƒ†ãƒ¼ãƒ–ãƒ«ã‚¨ãƒ©ãƒ¼" @*/ )) ;
 						*( ( DWORD * )0x00000000 ) = 0xffffffff ;
 					}
 
 					for( MemTag = Heap->FreeFirstTagArray[ i ][ j ] ; MemTag != NULL ; MemTag = MemTag->ListNext, FreeNum ++ )
 					{
-						// ƒJƒeƒSƒŠ‚É“K‡‚µ‚½ƒTƒCƒY‚©‚ğƒ`ƒFƒbƒN
+						// ã‚«ãƒ†ã‚´ãƒªã«é©åˆã—ãŸã‚µã‚¤ã‚ºã‹ã‚’ãƒã‚§ãƒƒã‚¯
 						int MSB = GetMSB( MemTag->Size ) ; 
 						int SLI = GetSLI( MemTag->Size, MSB, ALLOCMEM_CATEGORY_2_SHIFT_NUM ) ; 
 
 						if( MSB != i || SLI != j )
 						{
-							DXST_LOGFILEFMT_ADDUTF16LE(( "\x48\x00\x65\x00\x61\x00\x70\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x43\x00\x68\x00\x65\x00\x63\x00\x6b\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\x54\x00\x4c\x00\x53\x00\x46\x00\xa8\x30\xe9\x30\xfc\x30\x00\x30\x00\x30\x7a\x7a\x4d\x30\xe1\x30\xe2\x30\xea\x30\xbf\x30\xb0\x30\xb5\x30\xa4\x30\xba\x30\xa8\x30\xe9\x30\xfc\x30\x20\x00\x20\x00\x4d\x00\x53\x00\x42\x00\x3a\x00\x25\x00\x64\x00\x20\x00\x20\x00\x69\x00\x3a\x00\x25\x00\x64\x00\x20\x00\x20\x00\x53\x00\x4c\x00\x49\x00\x3a\x00\x25\x00\x64\x00\x20\x00\x20\x00\x6a\x00\x3a\x00\x25\x00\x64\x00\x00"/*@ L"HeapErrorCheck Error : TLSFƒGƒ‰[@@‹ó‚«ƒƒ‚ƒŠƒ^ƒOƒTƒCƒYƒGƒ‰[  MSB:%d  i:%d  SLI:%d  j:%d" @*/, MSB, i, SLI, j )) ;
+							DXST_LOGFILEFMT_ADDUTF16LE(( "\x48\x00\x65\x00\x61\x00\x70\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x43\x00\x68\x00\x65\x00\x63\x00\x6b\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\x54\x00\x4c\x00\x53\x00\x46\x00\xa8\x30\xe9\x30\xfc\x30\x00\x30\x00\x30\x7a\x7a\x4d\x30\xe1\x30\xe2\x30\xea\x30\xbf\x30\xb0\x30\xb5\x30\xa4\x30\xba\x30\xa8\x30\xe9\x30\xfc\x30\x20\x00\x20\x00\x4d\x00\x53\x00\x42\x00\x3a\x00\x25\x00\x64\x00\x20\x00\x20\x00\x69\x00\x3a\x00\x25\x00\x64\x00\x20\x00\x20\x00\x53\x00\x4c\x00\x49\x00\x3a\x00\x25\x00\x64\x00\x20\x00\x20\x00\x6a\x00\x3a\x00\x25\x00\x64\x00\x00"/*@ L"HeapErrorCheck Error : TLSFã‚¨ãƒ©ãƒ¼ã€€ã€€ç©ºããƒ¡ãƒ¢ãƒªã‚¿ã‚°ã‚µã‚¤ã‚ºã‚¨ãƒ©ãƒ¼  MSB:%d  i:%d  SLI:%d  j:%d" @*/, MSB, i, SLI, j )) ;
 							*( ( DWORD * )0x00000000 ) = 0xffffffff ;
 						}
 
 						if( MemTag->FLI != MSB || MemTag->SLI != SLI )
 						{
-							DXST_LOGFILEFMT_ADDUTF16LE(( "\x48\x00\x65\x00\x61\x00\x70\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x43\x00\x68\x00\x65\x00\x63\x00\x6b\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\x54\x00\x4c\x00\x53\x00\x46\x00\xa8\x30\xe9\x30\xfc\x30\x00\x30\x00\x30\x7a\x7a\x4d\x30\xe1\x30\xe2\x30\xea\x30\xbf\x30\xb0\x30\xab\x30\xc6\x30\xb4\x30\xea\x30\xc5\x60\x31\x58\xa8\x30\xe9\x30\xfc\x30\x20\x00\x20\x00\x4d\x00\x65\x00\x6d\x00\x54\x00\x61\x00\x67\x00\x2d\x00\x3e\x00\x46\x00\x4c\x00\x49\x00\x3a\x00\x25\x00\x64\x00\x20\x00\x20\x00\x4d\x00\x53\x00\x42\x00\x3a\x00\x25\x00\x64\x00\x20\x00\x20\x00\x4d\x00\x65\x00\x6d\x00\x54\x00\x61\x00\x67\x00\x2d\x00\x3e\x00\x53\x00\x4c\x00\x49\x00\x3a\x00\x25\x00\x64\x00\x20\x00\x20\x00\x53\x00\x4c\x00\x49\x00\x3a\x00\x25\x00\x64\x00\x00"/*@ L"HeapErrorCheck Error : TLSFƒGƒ‰[@@‹ó‚«ƒƒ‚ƒŠƒ^ƒOƒJƒeƒSƒŠî•ñƒGƒ‰[  MemTag->FLI:%d  MSB:%d  MemTag->SLI:%d  SLI:%d" @*/, MemTag->FLI, MSB, MemTag->SLI, SLI )) ;
+							DXST_LOGFILEFMT_ADDUTF16LE(( "\x48\x00\x65\x00\x61\x00\x70\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x43\x00\x68\x00\x65\x00\x63\x00\x6b\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\x54\x00\x4c\x00\x53\x00\x46\x00\xa8\x30\xe9\x30\xfc\x30\x00\x30\x00\x30\x7a\x7a\x4d\x30\xe1\x30\xe2\x30\xea\x30\xbf\x30\xb0\x30\xab\x30\xc6\x30\xb4\x30\xea\x30\xc5\x60\x31\x58\xa8\x30\xe9\x30\xfc\x30\x20\x00\x20\x00\x4d\x00\x65\x00\x6d\x00\x54\x00\x61\x00\x67\x00\x2d\x00\x3e\x00\x46\x00\x4c\x00\x49\x00\x3a\x00\x25\x00\x64\x00\x20\x00\x20\x00\x4d\x00\x53\x00\x42\x00\x3a\x00\x25\x00\x64\x00\x20\x00\x20\x00\x4d\x00\x65\x00\x6d\x00\x54\x00\x61\x00\x67\x00\x2d\x00\x3e\x00\x53\x00\x4c\x00\x49\x00\x3a\x00\x25\x00\x64\x00\x20\x00\x20\x00\x53\x00\x4c\x00\x49\x00\x3a\x00\x25\x00\x64\x00\x00"/*@ L"HeapErrorCheck Error : TLSFã‚¨ãƒ©ãƒ¼ã€€ã€€ç©ºããƒ¡ãƒ¢ãƒªã‚¿ã‚°ã‚«ãƒ†ã‚´ãƒªæƒ…å ±ã‚¨ãƒ©ãƒ¼  MemTag->FLI:%d  MSB:%d  MemTag->SLI:%d  SLI:%d" @*/, MemTag->FLI, MSB, MemTag->SLI, SLI )) ;
 							*( ( DWORD * )0x00000000 ) = 0xffffffff ;
 						}
 
 						if( ( MemTag->Flag & ALLOCMEMTAG_FLAG_USE ) != 0 )
 						{
-							DXST_LOGFILEFMT_ADDUTF16LE(( "\x48\x00\x65\x00\x61\x00\x70\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x43\x00\x68\x00\x65\x00\x63\x00\x6b\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\x54\x00\x4c\x00\x53\x00\x46\x00\xa8\x30\xe9\x30\xfc\x30\x00\x30\x00\x30\x7a\x7a\x4d\x30\xe1\x30\xe2\x30\xea\x30\xbf\x30\xb0\x30\xea\x30\xb9\x30\xc8\x30\x6b\x30\x7f\x4f\x28\x75\xe1\x30\xe2\x30\xea\x30\xbf\x30\xb0\x30\x4c\x30\x2b\x54\x7e\x30\x8c\x30\x66\x30\x44\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"HeapErrorCheck Error : TLSFƒGƒ‰[@@‹ó‚«ƒƒ‚ƒŠƒ^ƒOƒŠƒXƒg‚Ég—pƒƒ‚ƒŠƒ^ƒO‚ªŠÜ‚Ü‚ê‚Ä‚¢‚Ü‚µ‚½" @*/ )) ;
+							DXST_LOGFILEFMT_ADDUTF16LE(( "\x48\x00\x65\x00\x61\x00\x70\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x43\x00\x68\x00\x65\x00\x63\x00\x6b\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\x54\x00\x4c\x00\x53\x00\x46\x00\xa8\x30\xe9\x30\xfc\x30\x00\x30\x00\x30\x7a\x7a\x4d\x30\xe1\x30\xe2\x30\xea\x30\xbf\x30\xb0\x30\xea\x30\xb9\x30\xc8\x30\x6b\x30\x7f\x4f\x28\x75\xe1\x30\xe2\x30\xea\x30\xbf\x30\xb0\x30\x4c\x30\x2b\x54\x7e\x30\x8c\x30\x66\x30\x44\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"HeapErrorCheck Error : TLSFã‚¨ãƒ©ãƒ¼ã€€ã€€ç©ºããƒ¡ãƒ¢ãƒªã‚¿ã‚°ãƒªã‚¹ãƒˆã«ä½¿ç”¨ãƒ¡ãƒ¢ãƒªã‚¿ã‚°ãŒå«ã¾ã‚Œã¦ã„ã¾ã—ãŸ" @*/ )) ;
 							PrintInfoMemory( Heap->UseSeparateInfo ? MemTag : MemTag->UserAddress, Heap->UseSeparateInfo ) ;
 							*( ( DWORD * )0x00000000 ) = 0xffffffff ;
 						}
@@ -2848,30 +2848,30 @@ extern int HeapErrorCheck( HEAPINFO *Heap )
 
 				if( ValidCount == 0 )
 				{
-					DXST_LOGFILEFMT_ADDUTF16LE(( "\x48\x00\x65\x00\x61\x00\x70\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x43\x00\x68\x00\x65\x00\x63\x00\x6b\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\x54\x00\x4c\x00\x53\x00\x46\x00\xa8\x30\xe9\x30\xfc\x30\x00\x30\x00\x30\xab\x30\xc6\x30\xb4\x30\xea\x30\x11\xff\xc6\x30\xfc\x30\xd6\x30\xeb\x30\xa8\x30\xe9\x30\xfc\x30\x00"/*@ L"HeapErrorCheck Error : TLSFƒGƒ‰[@@ƒJƒeƒSƒŠ‚Pƒe[ƒuƒ‹ƒGƒ‰[" @*/ )) ;
+					DXST_LOGFILEFMT_ADDUTF16LE(( "\x48\x00\x65\x00\x61\x00\x70\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x43\x00\x68\x00\x65\x00\x63\x00\x6b\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\x54\x00\x4c\x00\x53\x00\x46\x00\xa8\x30\xe9\x30\xfc\x30\x00\x30\x00\x30\xab\x30\xc6\x30\xb4\x30\xea\x30\x11\xff\xc6\x30\xfc\x30\xd6\x30\xeb\x30\xa8\x30\xe9\x30\xfc\x30\x00"/*@ L"HeapErrorCheck Error : TLSFã‚¨ãƒ©ãƒ¼ã€€ã€€ã‚«ãƒ†ã‚´ãƒªï¼‘ãƒ†ãƒ¼ãƒ–ãƒ«ã‚¨ãƒ©ãƒ¼" @*/ )) ;
 					*( ( DWORD * )0x00000000 ) = 0xffffffff ;
 				}
 			}
 		}
 		if( FreeNum != Heap->FreeTagNum )
 		{
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\x48\x00\x65\x00\x61\x00\x70\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x43\x00\x68\x00\x65\x00\x63\x00\x6b\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\x7a\x7a\x4d\x30\xe1\x30\xe2\x30\xea\x30\xbf\x30\xb0\x30\x6e\x30\x70\x65\x4c\x30\x00\x4e\xf4\x81\x57\x30\x7e\x30\x5b\x30\x93\x30\x20\x00\x20\x00\x46\x00\x72\x00\x65\x00\x65\x00\x4e\x00\x75\x00\x6d\x00\x3a\x00\x25\x00\x64\x00\x20\x00\x20\x00\x48\x00\x65\x00\x61\x00\x70\x00\x2d\x00\x3e\x00\x46\x00\x72\x00\x65\x00\x65\x00\x54\x00\x61\x00\x67\x00\x4e\x00\x75\x00\x6d\x00\x3a\x00\x25\x00\x64\x00\x00"/*@ L"HeapErrorCheck Error : ‹ó‚«ƒƒ‚ƒŠƒ^ƒO‚Ì”‚ªˆê’v‚µ‚Ü‚¹‚ñ  FreeNum:%d  Heap->FreeTagNum:%d" @*/, FreeNum, Heap->FreeTagNum )) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\x48\x00\x65\x00\x61\x00\x70\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x43\x00\x68\x00\x65\x00\x63\x00\x6b\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\x7a\x7a\x4d\x30\xe1\x30\xe2\x30\xea\x30\xbf\x30\xb0\x30\x6e\x30\x70\x65\x4c\x30\x00\x4e\xf4\x81\x57\x30\x7e\x30\x5b\x30\x93\x30\x20\x00\x20\x00\x46\x00\x72\x00\x65\x00\x65\x00\x4e\x00\x75\x00\x6d\x00\x3a\x00\x25\x00\x64\x00\x20\x00\x20\x00\x48\x00\x65\x00\x61\x00\x70\x00\x2d\x00\x3e\x00\x46\x00\x72\x00\x65\x00\x65\x00\x54\x00\x61\x00\x67\x00\x4e\x00\x75\x00\x6d\x00\x3a\x00\x25\x00\x64\x00\x00"/*@ L"HeapErrorCheck Error : ç©ºããƒ¡ãƒ¢ãƒªã‚¿ã‚°ã®æ•°ãŒä¸€è‡´ã—ã¾ã›ã‚“  FreeNum:%d  Heap->FreeTagNum:%d" @*/, FreeNum, Heap->FreeTagNum )) ;
 			*( ( DWORD * )0x00000000 ) = 0xffffffff ;
 		}
 		if( TotalFreeSize != Heap->TotalFreeSize )
 		{
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\x48\x00\x65\x00\x61\x00\x70\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x43\x00\x68\x00\x65\x00\x63\x00\x6b\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\x7a\x7a\x4d\x30\xe1\x30\xe2\x30\xea\x30\x6e\x30\xb5\x30\xa4\x30\xba\x30\x4c\x30\x00\x4e\xf4\x81\x57\x30\x7e\x30\x5b\x30\x93\x30\x20\x00\x20\x00\x54\x00\x6f\x00\x74\x00\x61\x00\x6c\x00\x46\x00\x72\x00\x65\x00\x65\x00\x53\x00\x69\x00\x7a\x00\x65\x00\x3a\x00\x25\x00\x6c\x00\x6c\x00\x64\x00\x20\x00\x20\x00\x48\x00\x65\x00\x61\x00\x70\x00\x2d\x00\x3e\x00\x54\x00\x6f\x00\x74\x00\x61\x00\x6c\x00\x46\x00\x72\x00\x65\x00\x65\x00\x53\x00\x69\x00\x7a\x00\x65\x00\x3a\x00\x25\x00\x6c\x00\x6c\x00\x64\x00\x00"/*@ L"HeapErrorCheck Error : ‹ó‚«ƒƒ‚ƒŠ‚ÌƒTƒCƒY‚ªˆê’v‚µ‚Ü‚¹‚ñ  TotalFreeSize:%lld  Heap->TotalFreeSize:%lld" @*/, TotalFreeSize, Heap->TotalFreeSize )) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\x48\x00\x65\x00\x61\x00\x70\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x43\x00\x68\x00\x65\x00\x63\x00\x6b\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\x7a\x7a\x4d\x30\xe1\x30\xe2\x30\xea\x30\x6e\x30\xb5\x30\xa4\x30\xba\x30\x4c\x30\x00\x4e\xf4\x81\x57\x30\x7e\x30\x5b\x30\x93\x30\x20\x00\x20\x00\x54\x00\x6f\x00\x74\x00\x61\x00\x6c\x00\x46\x00\x72\x00\x65\x00\x65\x00\x53\x00\x69\x00\x7a\x00\x65\x00\x3a\x00\x25\x00\x6c\x00\x6c\x00\x64\x00\x20\x00\x20\x00\x48\x00\x65\x00\x61\x00\x70\x00\x2d\x00\x3e\x00\x54\x00\x6f\x00\x74\x00\x61\x00\x6c\x00\x46\x00\x72\x00\x65\x00\x65\x00\x53\x00\x69\x00\x7a\x00\x65\x00\x3a\x00\x25\x00\x6c\x00\x6c\x00\x64\x00\x00"/*@ L"HeapErrorCheck Error : ç©ºããƒ¡ãƒ¢ãƒªã®ã‚µã‚¤ã‚ºãŒä¸€è‡´ã—ã¾ã›ã‚“  TotalFreeSize:%lld  Heap->TotalFreeSize:%lld" @*/, TotalFreeSize, Heap->TotalFreeSize )) ;
 			*( ( DWORD * )0x00000000 ) = 0xffffffff ;
 		}
 	}
 
-	// ƒ†[ƒU[ƒƒ‚ƒŠƒAƒhƒŒƒXƒ`ƒFƒbƒN
+	// ãƒ¦ãƒ¼ã‚¶ãƒ¼ãƒ¡ãƒ¢ãƒªã‚¢ãƒ‰ãƒ¬ã‚¹ãƒã‚§ãƒƒã‚¯
 	{
 		for( MemTag = Heap->UseFirstTag ; MemTag != NULL ; MemTag = MemTag->ListNext )
 		{
 			if( ( DWORD_PTR )MemTag->UserAddress % Heap->Aligned != 0 )
 			{
-				DXST_LOGFILEFMT_ADDUTF16LE(( "\x48\x00\x65\x00\x61\x00\x70\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x43\x00\x68\x00\x65\x00\x63\x00\x6b\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xe6\x30\xfc\x30\xb6\x30\xfc\x30\xe1\x30\xe2\x30\xea\x30\x6e\x30\xa2\x30\xe9\x30\xa4\x30\xf3\x30\x4c\x30\x07\x63\x9a\x5b\x55\x30\x8c\x30\x5f\x30\xa2\x30\xe9\x30\xa4\x30\xf3\x30\x68\x30\x70\x75\x6a\x30\x8a\x30\x7e\x30\x59\x30\x20\x00\x20\x00\x4d\x00\x65\x00\x6d\x00\x54\x00\x61\x00\x67\x00\x2d\x00\x3e\x00\x55\x00\x73\x00\x65\x00\x72\x00\x41\x00\x64\x00\x64\x00\x72\x00\x65\x00\x73\x00\x73\x00\x3a\x00\x30\x00\x78\x00\x25\x00\x6c\x00\x6c\x00\x30\x00\x31\x00\x36\x00\x78\x00\x20\x00\x20\x00\x48\x00\x65\x00\x61\x00\x70\x00\x2d\x00\x3e\x00\x41\x00\x6c\x00\x69\x00\x67\x00\x6e\x00\x65\x00\x64\x00\x3a\x00\x30\x00\x78\x00\x25\x00\x30\x00\x38\x00\x78\x00\x00"/*@ L"HeapErrorCheck Error : ƒ†[ƒU[ƒƒ‚ƒŠ‚ÌƒAƒ‰ƒCƒ“‚ªw’è‚³‚ê‚½ƒAƒ‰ƒCƒ“‚ÆˆÙ‚È‚è‚Ü‚·  MemTag->UserAddress:0x%ll016x  Heap->Aligned:0x%08x" @*/, ( ULONGLONG )MemTag->UserAddress, ( DWORD )Heap->Aligned )) ;
+				DXST_LOGFILEFMT_ADDUTF16LE(( "\x48\x00\x65\x00\x61\x00\x70\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x43\x00\x68\x00\x65\x00\x63\x00\x6b\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xe6\x30\xfc\x30\xb6\x30\xfc\x30\xe1\x30\xe2\x30\xea\x30\x6e\x30\xa2\x30\xe9\x30\xa4\x30\xf3\x30\x4c\x30\x07\x63\x9a\x5b\x55\x30\x8c\x30\x5f\x30\xa2\x30\xe9\x30\xa4\x30\xf3\x30\x68\x30\x70\x75\x6a\x30\x8a\x30\x7e\x30\x59\x30\x20\x00\x20\x00\x4d\x00\x65\x00\x6d\x00\x54\x00\x61\x00\x67\x00\x2d\x00\x3e\x00\x55\x00\x73\x00\x65\x00\x72\x00\x41\x00\x64\x00\x64\x00\x72\x00\x65\x00\x73\x00\x73\x00\x3a\x00\x30\x00\x78\x00\x25\x00\x6c\x00\x6c\x00\x30\x00\x31\x00\x36\x00\x78\x00\x20\x00\x20\x00\x48\x00\x65\x00\x61\x00\x70\x00\x2d\x00\x3e\x00\x41\x00\x6c\x00\x69\x00\x67\x00\x6e\x00\x65\x00\x64\x00\x3a\x00\x30\x00\x78\x00\x25\x00\x30\x00\x38\x00\x78\x00\x00"/*@ L"HeapErrorCheck Error : ãƒ¦ãƒ¼ã‚¶ãƒ¼ãƒ¡ãƒ¢ãƒªã®ã‚¢ãƒ©ã‚¤ãƒ³ãŒæŒ‡å®šã•ã‚ŒãŸã‚¢ãƒ©ã‚¤ãƒ³ã¨ç•°ãªã‚Šã¾ã™  MemTag->UserAddress:0x%ll016x  Heap->Aligned:0x%08x" @*/, ( ULONGLONG )MemTag->UserAddress, ( DWORD )Heap->Aligned )) ;
 				PrintInfoMemory( Heap->UseSeparateInfo ? MemTag : MemTag->UserAddress, Heap->UseSeparateInfo ) ;
 				*( ( DWORD * )0x00000000 ) = 0xffffffff ;
 			}
@@ -2880,7 +2880,7 @@ extern int HeapErrorCheck( HEAPINFO *Heap )
 				if( ( DWORD_PTR )MemTag->UserAddress <  ( DWORD_PTR )MemTag->UseHeapMem->HeapAddress ||
 					( DWORD_PTR )MemTag->UserAddress >= ( DWORD_PTR )MemTag->UseHeapMem->HeapAddress + MemTag->UseHeapMem->HeapSize )
 				{
-					DXST_LOGFILEFMT_ADDUTF16LE(( "\x48\x00\x65\x00\x61\x00\x70\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x43\x00\x68\x00\x65\x00\x63\x00\x6b\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xe6\x30\xfc\x30\xb6\x30\xfc\x30\xe1\x30\xe2\x30\xea\x30\x4c\x30\xba\x78\xdd\x4f\x57\x30\x5f\x30\xd2\x30\xfc\x30\xd7\x30\xe1\x30\xe2\x30\xea\x30\x6e\x30\xc4\x7b\xf2\x56\x6b\x30\x42\x30\x8a\x30\x7e\x30\x5b\x30\x93\x30\x20\x00\x20\x00\x48\x00\x65\x00\x61\x00\x70\x00\x2d\x00\x3e\x00\x55\x00\x73\x00\x65\x00\x53\x00\x65\x00\x70\x00\x61\x00\x72\x00\x61\x00\x74\x00\x65\x00\x49\x00\x6e\x00\x66\x00\x6f\x00\x20\x00\x3d\x00\x20\x00\x54\x00\x52\x00\x55\x00\x45\x00\x00"/*@ L"HeapErrorCheck Error : ƒ†[ƒU[ƒƒ‚ƒŠ‚ªŠm•Û‚µ‚½ƒq[ƒvƒƒ‚ƒŠ‚Ì”ÍˆÍ‚É‚ ‚è‚Ü‚¹‚ñ  Heap->UseSeparateInfo = TRUE" @*/ )) ;
+					DXST_LOGFILEFMT_ADDUTF16LE(( "\x48\x00\x65\x00\x61\x00\x70\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x43\x00\x68\x00\x65\x00\x63\x00\x6b\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xe6\x30\xfc\x30\xb6\x30\xfc\x30\xe1\x30\xe2\x30\xea\x30\x4c\x30\xba\x78\xdd\x4f\x57\x30\x5f\x30\xd2\x30\xfc\x30\xd7\x30\xe1\x30\xe2\x30\xea\x30\x6e\x30\xc4\x7b\xf2\x56\x6b\x30\x42\x30\x8a\x30\x7e\x30\x5b\x30\x93\x30\x20\x00\x20\x00\x48\x00\x65\x00\x61\x00\x70\x00\x2d\x00\x3e\x00\x55\x00\x73\x00\x65\x00\x53\x00\x65\x00\x70\x00\x61\x00\x72\x00\x61\x00\x74\x00\x65\x00\x49\x00\x6e\x00\x66\x00\x6f\x00\x20\x00\x3d\x00\x20\x00\x54\x00\x52\x00\x55\x00\x45\x00\x00"/*@ L"HeapErrorCheck Error : ãƒ¦ãƒ¼ã‚¶ãƒ¼ãƒ¡ãƒ¢ãƒªãŒç¢ºä¿ã—ãŸãƒ’ãƒ¼ãƒ—ãƒ¡ãƒ¢ãƒªã®ç¯„å›²ã«ã‚ã‚Šã¾ã›ã‚“  Heap->UseSeparateInfo = TRUE" @*/ )) ;
 					PrintInfoMemory( Heap->UseSeparateInfo ? MemTag : MemTag->UserAddress, Heap->UseSeparateInfo ) ;
 					*( ( DWORD * )0x00000000 ) = 0xffffffff ;
 				}
@@ -2889,7 +2889,7 @@ extern int HeapErrorCheck( HEAPINFO *Heap )
 			{
 				if( ( DWORD_PTR )MemTag->UserAddress - *( ( DWORD * )( ( BYTE * )MemTag->UserAddress - sizeof( DWORD ) ) ) != ( DWORD_PTR )MemTag )
 				{
-					DXST_LOGFILEFMT_ADDUTF16LE(( "\x48\x00\x65\x00\x61\x00\x70\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x43\x00\x68\x00\x65\x00\x63\x00\x6b\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xe6\x30\xfc\x30\xb6\x30\xfc\x30\xe1\x30\xe2\x30\xea\x30\x4c\x30\xba\x78\xdd\x4f\x57\x30\x5f\x30\xd2\x30\xfc\x30\xd7\x30\xe1\x30\xe2\x30\xea\x30\x6e\x30\xc4\x7b\xf2\x56\x6b\x30\x42\x30\x8a\x30\x7e\x30\x5b\x30\x93\x30\x20\x00\x20\x00\x48\x00\x65\x00\x61\x00\x70\x00\x2d\x00\x3e\x00\x55\x00\x73\x00\x65\x00\x53\x00\x65\x00\x70\x00\x61\x00\x72\x00\x61\x00\x74\x00\x65\x00\x49\x00\x6e\x00\x66\x00\x6f\x00\x20\x00\x3d\x00\x20\x00\x46\x00\x41\x00\x4c\x00\x53\x00\x45\x00\x00"/*@ L"HeapErrorCheck Error : ƒ†[ƒU[ƒƒ‚ƒŠ‚ªŠm•Û‚µ‚½ƒq[ƒvƒƒ‚ƒŠ‚Ì”ÍˆÍ‚É‚ ‚è‚Ü‚¹‚ñ  Heap->UseSeparateInfo = FALSE" @*/ )) ;
+					DXST_LOGFILEFMT_ADDUTF16LE(( "\x48\x00\x65\x00\x61\x00\x70\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x43\x00\x68\x00\x65\x00\x63\x00\x6b\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xe6\x30\xfc\x30\xb6\x30\xfc\x30\xe1\x30\xe2\x30\xea\x30\x4c\x30\xba\x78\xdd\x4f\x57\x30\x5f\x30\xd2\x30\xfc\x30\xd7\x30\xe1\x30\xe2\x30\xea\x30\x6e\x30\xc4\x7b\xf2\x56\x6b\x30\x42\x30\x8a\x30\x7e\x30\x5b\x30\x93\x30\x20\x00\x20\x00\x48\x00\x65\x00\x61\x00\x70\x00\x2d\x00\x3e\x00\x55\x00\x73\x00\x65\x00\x53\x00\x65\x00\x70\x00\x61\x00\x72\x00\x61\x00\x74\x00\x65\x00\x49\x00\x6e\x00\x66\x00\x6f\x00\x20\x00\x3d\x00\x20\x00\x46\x00\x41\x00\x4c\x00\x53\x00\x45\x00\x00"/*@ L"HeapErrorCheck Error : ãƒ¦ãƒ¼ã‚¶ãƒ¼ãƒ¡ãƒ¢ãƒªãŒç¢ºä¿ã—ãŸãƒ’ãƒ¼ãƒ—ãƒ¡ãƒ¢ãƒªã®ç¯„å›²ã«ã‚ã‚Šã¾ã›ã‚“  Heap->UseSeparateInfo = FALSE" @*/ )) ;
 					PrintInfoMemory( Heap->UseSeparateInfo ? MemTag : MemTag->UserAddress, Heap->UseSeparateInfo ) ;
 					*( ( DWORD * )0x00000000 ) = 0xffffffff ;
 				}
@@ -2902,7 +2902,7 @@ extern int HeapErrorCheck( HEAPINFO *Heap )
 	return 0 ;
 }
 
-// ƒq[ƒv‚ÌŠm•Ûó‹µ‚ğ•`‰æ‚·‚é
+// ãƒ’ãƒ¼ãƒ—ã®ç¢ºä¿çŠ¶æ³ã‚’æç”»ã™ã‚‹
 
 #ifndef DX_NON_GRAPHICS
 

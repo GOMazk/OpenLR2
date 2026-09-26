@@ -1,15 +1,15 @@
 //-----------------------------------------------------------------------------
 // 
-// 		�c�w���C�u����		Windows�p�������֌W�v���O����
+// 		ＤＸライブラリ		Windows用メモリ関係プログラム
 // 
 //  	Ver 3.25a
 // 
 //-----------------------------------------------------------------------------
 
-// �c�w���C�u�����쐬���p��`
+// ＤＸライブラリ作成時用定義
 #define DX_MAKE
 
-// �C���N���[�h ---------------------------------------------------------------
+// インクルード ---------------------------------------------------------------
 #include "DxWinAPI.h"
 #include "../DxMemory.h"
 
@@ -29,41 +29,41 @@ namespace DxLib
 
 #endif // DX_NON_NAMESPACE
 
-// �}�N����` -----------------------------------------------------------------
+// マクロ定義 -----------------------------------------------------------------
 
-// �\���̐錾 -----------------------------------------------------------------
+// 構造体宣言 -----------------------------------------------------------------
 
-// �f�[�^��` -----------------------------------------------------------------
+// データ定義 -----------------------------------------------------------------
 
-// �֐��錾 -------------------------------------------------------------------
+// 関数宣言 -------------------------------------------------------------------
 
-// �v���O���� -----------------------------------------------------------------
+// プログラム -----------------------------------------------------------------
 
-// �����������̏��������s���֐��̊��ˑ�����
+// メモリ処理の初期化を行う関数の環境依存処理
 extern int MemoryInitialize_PF( void )
 {
 	return 0 ;
 }
 
-// �����������̌�n�����s���֐��̊��ˑ�����
+// メモリ処理の後始末を行う関数の環境依存処理
 extern int MemoryTerminate_PF( void )
 {
 	return 0 ;
 }
 
-// �����������̎����I�����̊��ˑ�����
+// メモリ処理の周期的処理の環境依存処理
 extern int MemoryProcess_PF( void )
 {
 	return 0 ;
 }
 
-// �������̃G���[�`�F�b�N�̊��ˑ�����
+// メモリのエラーチェックの環境依存処理
 extern int MemoryErrorCheck_PF( void )
 {
 	return 0 ;
 }
 
-// ���ˑ��̈�ʓI�ȃq�[�v�p�̃������̈���m�ۂ��邽�߂̃R�[���o�b�N�֐��Q�� AutoAlloc_CreateHeapCallback
+// 環境依存の一般的なヒープ用のメモリ領域を確保するためのコールバック関数群の AutoAlloc_CreateHeapCallback
 extern int NormalMemory_AutoAlloc_CreateHeapCallback_PF( int /*Param*/, void *Buffer, ALLOCMEM_SIZE_TYPE Size )
 {
 	MEMORY_BASIC_INFORMATION	MemoryBasicInfo ;
@@ -72,20 +72,20 @@ extern int NormalMemory_AutoAlloc_CreateHeapCallback_PF( int /*Param*/, void *Bu
 
 	SETUP_WIN_API
 
-	// �o�b�t�@�T�C�Y�`�F�b�N
+	// バッファサイズチェック
 	if( sizeof( PLATFORMHEAP_WIN ) > ALLOCHEAP_CALLBACK_INFO_SIZE )
 	{
 		*( ( DWORD * )0x00000000 ) = 0xffffffff ;
 	}
 
-	// ���������m��
+	// メモリを確保
 	PlatformHeap->AllocAddress = WinAPIData.Win32Func.VirtualAllocFunc( NULL, Size, MEM_COMMIT, PAGE_READWRITE ) ;
 	if( PlatformHeap->AllocAddress == NULL )
 	{
 		return -1 ;
 	}
 
-	// �m�ۂ����������̃T�C�Y���擾
+	// 確保したメモリのサイズを取得
 	Result = WinAPIData.Win32Func.VirtualQueryFunc( PlatformHeap->AllocAddress, &MemoryBasicInfo, sizeof( MemoryBasicInfo ) ) ;
 	if( Result == 0 )
 	{
@@ -97,7 +97,7 @@ extern int NormalMemory_AutoAlloc_CreateHeapCallback_PF( int /*Param*/, void *Bu
 	return 0 ;
 }
 
-// ���ˑ��̈�ʓI�ȃq�[�v�p�̃������̈���m�ۂ��邽�߂̃R�[���o�b�N�֐��Q�� AutoAlloc_GetHeapAddressCallback
+// 環境依存の一般的なヒープ用のメモリ領域を確保するためのコールバック関数群の AutoAlloc_GetHeapAddressCallback
 extern void * NormalMemory_AutoAlloc_GetHeapAddressCallback_PF( int /*Param*/, void *Buffer )
 {
 	PLATFORMHEAP_WIN *			PlatformHeap = ( PLATFORMHEAP_WIN * )Buffer ;
@@ -105,7 +105,7 @@ extern void * NormalMemory_AutoAlloc_GetHeapAddressCallback_PF( int /*Param*/, v
 	return PlatformHeap->AllocAddress ;
 }
 
-// ���ˑ��̈�ʓI�ȃq�[�v�p�̃������̈���m�ۂ��邽�߂̃R�[���o�b�N�֐��Q�� AutoAlloc_GetHeapSizeCallback
+// 環境依存の一般的なヒープ用のメモリ領域を確保するためのコールバック関数群の AutoAlloc_GetHeapSizeCallback
 extern	ALLOCMEM_SIZE_TYPE	 NormalMemory_AutoAlloc_GetHeapSizeCallback_PF( int /*Param*/, void *Buffer )
 {
 	PLATFORMHEAP_WIN *			PlatformHeap = ( PLATFORMHEAP_WIN * )Buffer ;
@@ -113,20 +113,20 @@ extern	ALLOCMEM_SIZE_TYPE	 NormalMemory_AutoAlloc_GetHeapSizeCallback_PF( int /*
 	return ( ALLOCMEM_SIZE_TYPE )PlatformHeap->AllocSize ;
 }
 
-// ���ˑ��̈�ʓI�ȃq�[�v�p�̃������̈���m�ۂ��邽�߂̃R�[���o�b�N�֐��Q�� AutoAlloc_DeleteHeapCallback
+// 環境依存の一般的なヒープ用のメモリ領域を確保するためのコールバック関数群の AutoAlloc_DeleteHeapCallback
 extern int  NormalMemory_AutoAlloc_DeleteHeapCallback_PF( int /*Param*/, void *Buffer )
 {
 	PLATFORMHEAP_WIN *			PlatformHeap = ( PLATFORMHEAP_WIN * )Buffer ;
 
 	SETUP_WIN_API
 
-	// �����������
+	// メモリを解放
 	WinAPIData.Win32Func.VirtualFreeFunc( PlatformHeap->AllocAddress, 0, MEM_RELEASE ) ;
 
 	return 0 ;
 }
 
-// �m�ۂ��Ă��郁������񋓂���֐��̊��ˑ�����
+// 確保しているメモリを列挙する関数の環境依存処理
 extern int DxDumpAlloc_PF( void )
 {
 	return 0 ;

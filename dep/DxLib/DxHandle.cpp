@@ -1,15 +1,15 @@
 // -------------------------------------------------------------------------------
 // 
-// 		‚c‚wƒ‰ƒCƒuƒ‰ƒŠ		ƒnƒ“ƒhƒ‹ŠÇ—ƒvƒƒOƒ‰ƒ€
+// 		ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒª		ãƒãƒ³ãƒ‰ãƒ«ç®¡ç†ãƒ—ãƒ­ã‚°ãƒ©ãƒ 
 // 
 // 				Ver 3.25a
 // 
 // -------------------------------------------------------------------------------
 
-// ‚c‚wƒ‰ƒCƒuƒ‰ƒŠì¬—p’è‹`
+// ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªä½œæˆæ™‚ç”¨å®šç¾©
 #define DX_MAKE
 
-// ƒCƒ“ƒNƒ‹[ƒh ------------------------------------------------------------------
+// ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ ------------------------------------------------------------------
 #include "DxHandle.h"
 #include "DxLib.h"
 #include "DxStatic.h"
@@ -36,23 +36,23 @@ namespace DxLib
 
 #endif // DX_NON_NAMESPACE
 
-// ƒ}ƒNƒ’è‹` --------------------------------------------------------------------
+// ãƒã‚¯ãƒ­å®šç¾© --------------------------------------------------------------------
 
-// \‘¢‘Ì’è‹` --------------------------------------------------------------------
+// æ§‹é€ ä½“å®šç¾© --------------------------------------------------------------------
 
-// “à•”‘åˆæ•Ï”éŒ¾ --------------------------------------------------------------
+// å†…éƒ¨å¤§åŸŸå¤‰æ•°å®£è¨€ --------------------------------------------------------------
 
 HANDLEMANAGE HandleManageArray[ DX_HANDLETYPE_MAX ] ;
 
-// ŠÖ”ƒvƒƒgƒ^ƒCƒvéŒ¾-----------------------------------------------------------
+// é–¢æ•°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€-----------------------------------------------------------
 
-// ƒvƒƒOƒ‰ƒ€ --------------------------------------------------------------------
+// ãƒ—ãƒ­ã‚°ãƒ©ãƒ  --------------------------------------------------------------------
 
 
-// ƒnƒ“ƒhƒ‹‹¤’ÊŠÖŒW
+// ãƒãƒ³ãƒ‰ãƒ«å…±é€šé–¢ä¿‚
 
-// ƒnƒ“ƒhƒ‹ŠÇ—î•ñ‚ğ‰Šú‰»‚·‚é
-// ( InitializeFlag ‚É‚Í FALSE ‚ª“ü‚Á‚Ä‚¢‚é•K—v‚ª‚ ‚é )
+// ãƒãƒ³ãƒ‰ãƒ«ç®¡ç†æƒ…å ±ã‚’åˆæœŸåŒ–ã™ã‚‹
+// ( InitializeFlag ã«ã¯ FALSE ãŒå…¥ã£ã¦ã„ã‚‹å¿…è¦ãŒã‚ã‚‹ )
 extern int InitializeHandleManage(
 	int HandleType,
 	int OneSize,
@@ -65,16 +65,16 @@ extern int InitializeHandleManage(
 {
 	HANDLEMANAGE *HandleManage = &HandleManageArray[ HandleType ] ;
 
-	// Šù‚É‰Šú‰»‚³‚ê‚Ä‚¢‚½‚ç‰½‚à‚µ‚È‚¢
+	// æ—¢ã«åˆæœŸåŒ–ã•ã‚Œã¦ã„ãŸã‚‰ä½•ã‚‚ã—ãªã„
 	if( HandleManage->InitializeFlag )
 		return -1 ;
 
-	// NextIDˆÈŠOƒ[ƒ‰Šú‰»
+	// NextIDä»¥å¤–ã‚¼ãƒ­åˆæœŸåŒ–
 	int NextID = HandleManage->NextID ;
 	_MEMSET( HandleManage, 0, sizeof( *HandleManage ) ) ;
 	HandleManage->NextID = NextID ;
 
-	// ƒpƒ‰ƒ[ƒ^ƒZƒbƒg
+	// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ
 	HandleManage->HandleTypeMask = HandleType << DX_HANDLETYPE_ADDRESS ;
 	HandleManage->OneSize = OneSize ;
 	HandleManage->MaxNum = MaxNum ;
@@ -84,62 +84,62 @@ extern int InitializeHandleManage(
 	HandleManage->Name = Name ;
 	ConvString( ( const char * )HandleManage->Name, -1, WCHAR_T_CHARCODEFORMAT, HandleManage->NameUTF16LE, sizeof( HandleManage->NameUTF16LE ), DX_CHARCODEFORMAT_UTF16LE ) ;
 
-	// ƒnƒ“ƒhƒ‹‚Ìƒf[ƒ^ƒ|ƒCƒ“ƒ^ƒAƒhƒŒƒX‚ğŠi”[‚·‚éƒƒ‚ƒŠƒAƒhƒŒƒX”z—ñ‚ÌŠm•Û
+	// ãƒãƒ³ãƒ‰ãƒ«ã®ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’æ ¼ç´ã™ã‚‹ãƒ¡ãƒ¢ãƒªã‚¢ãƒ‰ãƒ¬ã‚¹é…åˆ—ã®ç¢ºä¿
 	HandleManage->Handle = ( HANDLEINFO ** )DXCALLOC( sizeof( HANDLEINFO * ) * MaxNum ) ;
 	if( HandleManage->Handle == NULL )
 		return -1 ;
 
-	// ƒnƒ“ƒhƒ‹ƒŠƒXƒg‚Ì‰Šú‰»
+	// ãƒãƒ³ãƒ‰ãƒ«ãƒªã‚¹ãƒˆã®åˆæœŸåŒ–
 	InitializeHandleList( &HandleManage->ListFirst, &HandleManage->ListLast ) ;
 
-	// íœƒŠƒNƒGƒXƒg‚Ìƒnƒ“ƒhƒ‹ƒŠƒXƒg‚Ì‰Šú‰»
+	// å‰Šé™¤ãƒªã‚¯ã‚¨ã‚¹ãƒˆã®ãƒãƒ³ãƒ‰ãƒ«ãƒªã‚¹ãƒˆã®åˆæœŸåŒ–
 	InitializeHandleList( &HandleManage->DeleteRequestListFirst, &HandleManage->DeleteRequestListLast ) ;
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰Šú‰»
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®åˆæœŸåŒ–
 	CriticalSection_Initialize( &HandleManage->CriticalSection ) ;
 
-	// ‰Šú‰»ƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// åˆæœŸåŒ–ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	HandleManage->InitializeFlag = TRUE ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒnƒ“ƒhƒ‹ŠÇ—î•ñ‚ÌŒãn––‚ğs‚¤
+// ãƒãƒ³ãƒ‰ãƒ«ç®¡ç†æƒ…å ±ã®å¾Œå§‹æœ«ã‚’è¡Œã†
 extern int TerminateHandleManage( int HandleType )
 {
 	HANDLEMANAGE *HandleManage = &HandleManageArray[ HandleType ] ;
 
-	// Šù‚ÉŒãn––‚³‚ê‚Ä‚¢‚½‚ç‰½‚à‚µ‚È‚¢
+	// æ—¢ã«å¾Œå§‹æœ«ã•ã‚Œã¦ã„ãŸã‚‰ä½•ã‚‚ã—ãªã„
 	if( HandleManage->InitializeFlag == FALSE )
 		return -1 ;
 
-	// ‚·‚×‚Ä‚Ìƒnƒ“ƒhƒ‹‚ğíœ
+	// ã™ã¹ã¦ã®ãƒãƒ³ãƒ‰ãƒ«ã‚’å‰Šé™¤
 	AllHandleSub( HandleType ) ;
 
-	// ƒnƒ“ƒhƒ‹ƒ|ƒCƒ“ƒ^Ši”[—p‚Ìƒƒ‚ƒŠƒAƒhƒŒƒX”z—ñ‚ğ‰ğ•ú
+	// ãƒãƒ³ãƒ‰ãƒ«ãƒã‚¤ãƒ³ã‚¿æ ¼ç´ç”¨ã®ãƒ¡ãƒ¢ãƒªã‚¢ãƒ‰ãƒ¬ã‚¹é…åˆ—ã‚’è§£æ”¾
 	if( HandleManage->Handle != NULL )
 	{
 		DXFREE( HandleManage->Handle ) ;
 		HandleManage->Handle = NULL ;
 	}
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìíœ
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å‰Šé™¤
 	CriticalSection_Delete( &HandleManage->CriticalSection ) ;
 
-	// NextIDˆÈŠOƒ[ƒ‰Šú‰»
+	// NextIDä»¥å¤–ã‚¼ãƒ­åˆæœŸåŒ–
 	int NextID = HandleManage->NextID ;
 	_MEMSET( HandleManage, 0, sizeof( *HandleManage ) ) ;
 	HandleManage->NextID = NextID ;
 
-	// ‰Šú‰»ƒtƒ‰ƒO‚ğ“|‚·
+	// åˆæœŸåŒ–ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 	HandleManage->InitializeFlag = FALSE ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒnƒ“ƒhƒ‹‚ğ’Ç‰Á‚·‚é
+// ãƒãƒ³ãƒ‰ãƒ«ã‚’è¿½åŠ ã™ã‚‹
 extern int AddHandle( int HandleType, int ASyncThread, int Handle )
 {
 	int NextIndex ;
@@ -150,20 +150,20 @@ extern int AddHandle( int HandleType, int ASyncThread, int Handle )
 	if( HandleManage->InitializeFlag == FALSE )
 		return -1 ;
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 	CRITICALSECTION_LOCK( &HandleManage->CriticalSection ) ;
 
-	// ’Ç‰Á‚Å‚«‚È‚¢ê‡‚ÍI—¹
+	// è¿½åŠ ã§ããªã„å ´åˆã¯çµ‚äº†
 	if( HandleManage->Num == HandleManage->MaxNum )
 	{
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 		CriticalSection_Unlock( &HandleManage->CriticalSection ) ;
 
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\x25\x00\x73\x00\xcf\x30\xf3\x30\xc9\x30\xeb\x30\x6e\x30\x70\x65\x4c\x30\x50\x96\x4c\x75\x70\x65\x28\x00\x20\x00\x25\x00\x64\x00\x20\x00\x29\x00\x6b\x30\x54\x90\x57\x30\x66\x30\x44\x30\x66\x30\xb0\x65\x5f\x30\x6a\x30\xcf\x30\xf3\x30\xc9\x30\xeb\x30\x92\x30\x5c\x4f\x10\x62\x67\x30\x4d\x30\x7e\x30\x5b\x30\x93\x30\x00"/*@ L"%sƒnƒ“ƒhƒ‹‚Ì”‚ªŒÀŠE”( %d )‚É’B‚µ‚Ä‚¢‚ÄV‚½‚Èƒnƒ“ƒhƒ‹‚ğì¬‚Å‚«‚Ü‚¹‚ñ" @*/, HandleManage->NameUTF16LE, HandleManage->MaxNum )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\x25\x00\x73\x00\xcf\x30\xf3\x30\xc9\x30\xeb\x30\x6e\x30\x70\x65\x4c\x30\x50\x96\x4c\x75\x70\x65\x28\x00\x20\x00\x25\x00\x64\x00\x20\x00\x29\x00\x6b\x30\x54\x90\x57\x30\x66\x30\x44\x30\x66\x30\xb0\x65\x5f\x30\x6a\x30\xcf\x30\xf3\x30\xc9\x30\xeb\x30\x92\x30\x5c\x4f\x10\x62\x67\x30\x4d\x30\x7e\x30\x5b\x30\x93\x30\x00"/*@ L"%sãƒãƒ³ãƒ‰ãƒ«ã®æ•°ãŒé™ç•Œæ•°( %d )ã«é”ã—ã¦ã„ã¦æ–°ãŸãªãƒãƒ³ãƒ‰ãƒ«ã‚’ä½œæˆã§ãã¾ã›ã‚“" @*/, HandleManage->NameUTF16LE, HandleManage->MaxNum )) ;
 		return -1 ;
 	}
 
-	// ‹ó‚«”z—ñ”Ô†‚ÌŒŸõ
+	// ç©ºãé…åˆ—ç•ªå·ã®æ¤œç´¢
 	if( Handle != -1 && HandleManage->Handle[ Handle & DX_HANDLEINDEX_MASK ] == NULL )
 	{
 		NextIndex = Handle & DX_HANDLEINDEX_MASK ;
@@ -197,18 +197,18 @@ extern int AddHandle( int HandleType, int ASyncThread, int Handle )
 		}
 	}
 
-	// ƒf[ƒ^—Ìˆæ‚ğŠm•Û‚·‚é
+	// ãƒ‡ãƒ¼ã‚¿é ˜åŸŸã‚’ç¢ºä¿ã™ã‚‹
 	*ppHandleInfo = ( HANDLEINFO * )DXCALLOC( ( size_t )HandleManage->OneSize ) ;
 	if( *ppHandleInfo == NULL )
 	{
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 		CriticalSection_Unlock( &HandleManage->CriticalSection ) ;
 
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\x25\x00\x73\x00\xcf\x30\xf3\x30\xc9\x30\xeb\x30\x6e\x30\xc7\x30\xfc\x30\xbf\x30\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"%sƒnƒ“ƒhƒ‹‚Ìƒf[ƒ^‚ğŠi”[‚·‚éƒƒ‚ƒŠ—Ìˆæ‚ÌŠm•Û‚É¸”s‚µ‚Ü‚µ‚½" @*/, HandleManage->NameUTF16LE )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\x25\x00\x73\x00\xcf\x30\xf3\x30\xc9\x30\xeb\x30\x6e\x30\xc7\x30\xfc\x30\xbf\x30\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"%sãƒãƒ³ãƒ‰ãƒ«ã®ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹ãƒ¡ãƒ¢ãƒªé ˜åŸŸã®ç¢ºä¿ã«å¤±æ•—ã—ã¾ã—ãŸ" @*/, HandleManage->NameUTF16LE )) ;
 		return -1 ;
 	}
 
-	// ƒGƒ‰[ƒ`ƒFƒbƒN—p‚h‚c‚Ìİ’è
+	// ã‚¨ãƒ©ãƒ¼ãƒã‚§ãƒƒã‚¯ç”¨ï¼©ï¼¤ã®è¨­å®š
 	if( Handle != -1 )
 	{
 		(*ppHandleInfo)->ID = ( Handle & DX_HANDLECHECK_MASK ) >> DX_HANDLECHECK_ADDRESS ;
@@ -222,18 +222,18 @@ extern int AddHandle( int HandleType, int ASyncThread, int Handle )
 		(*ppHandleInfo)->ID = HandleManage->NextID ;
 	}
 
-	// ƒƒ‚ƒŠ‚ÌŠm•ÛƒTƒCƒY‚ğ•Û‘¶
+	// ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿ã‚µã‚¤ã‚ºã‚’ä¿å­˜
 	( *ppHandleInfo )->AllocSize = HandleManage->OneSize ;
 
 #ifndef DX_NON_ASYNCLOAD
-	// ”ñ“¯Šú“Ç‚İ‚İ‚ªŠ®—¹‚µ‚½‚çƒnƒ“ƒhƒ‹‚ğíœ‚·‚éƒtƒ‰ƒO‚ğ‰Šú‰»
+	// éåŒæœŸèª­ã¿è¾¼ã¿ãŒå®Œäº†ã—ãŸã‚‰ãƒãƒ³ãƒ‰ãƒ«ã‚’å‰Šé™¤ã™ã‚‹ãƒ•ãƒ©ã‚°ã‚’åˆæœŸåŒ–
 	( *ppHandleInfo )->ASyncLoadFinishDeleteRequestFlag = FALSE ;
 
-	// ”ñ“¯Šú“Ç‚İ‚İ‚ªŠ®—¹‚µ‚½‚çŒÄ‚Î‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”‚Ìî•ñ‚ğ‰Šú‰»
+	// éåŒæœŸèª­ã¿è¾¼ã¿ãŒå®Œäº†ã—ãŸã‚‰å‘¼ã°ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã®æƒ…å ±ã‚’åˆæœŸåŒ–
 	( *ppHandleInfo )->ASyncLoadFinishCallback = NULL ;
 	( *ppHandleInfo )->ASyncLoadFinishCallbackData = NULL ;
 
-	// ”ñ“¯ŠúƒXƒŒƒbƒh‚©‚çŒÄ‚Î‚ê‚½ê‡‚Í”ñ“¯Šú“Ç‚İ‚İƒJƒEƒ“ƒg‚ğ‚P‚É‚·‚é
+	// éåŒæœŸã‚¹ãƒ¬ãƒƒãƒ‰ã‹ã‚‰å‘¼ã°ã‚ŒãŸå ´åˆã¯éåŒæœŸèª­ã¿è¾¼ã¿ã‚«ã‚¦ãƒ³ãƒˆã‚’ï¼‘ã«ã™ã‚‹
 	if( ASyncThread )
 	{
 		( *ppHandleInfo )->ASyncLoadCount  = 1 ;
@@ -241,13 +241,13 @@ extern int AddHandle( int HandleType, int ASyncThread, int Handle )
 	}
 #endif // DX_NON_ASYNCLOAD
 
-	// ƒnƒ“ƒhƒ‹’l‚ğ•Û‘¶
+	// ãƒãƒ³ãƒ‰ãƒ«å€¤ã‚’ä¿å­˜
 	NewHandle = (*ppHandleInfo)->Handle = NextIndex | HandleManage->HandleTypeMask | ( (*ppHandleInfo)->ID << DX_HANDLECHECK_ADDRESS ) ;
 
-	// ƒnƒ“ƒhƒ‹‚Ì”‚ğ‘‚â‚·
+	// ãƒãƒ³ãƒ‰ãƒ«ã®æ•°ã‚’å¢—ã‚„ã™
 	HandleManage->Num ++ ;
 
-	// g—p‚³‚ê‚Ä‚¢‚éƒnƒ“ƒhƒ‹‚ª‘¶İ‚·‚é”ÍˆÍ‚ğXV‚·‚é
+	// ä½¿ç”¨ã•ã‚Œã¦ã„ã‚‹ãƒãƒ³ãƒ‰ãƒ«ãŒå­˜åœ¨ã™ã‚‹ç¯„å›²ã‚’æ›´æ–°ã™ã‚‹
 	if( HandleManage->Num == 1 )
 	{
 		HandleManage->AreaMax = NextIndex ;
@@ -259,23 +259,23 @@ extern int AddHandle( int HandleType, int ASyncThread, int Handle )
 		if( HandleManage->AreaMin > NextIndex ) HandleManage->AreaMin = NextIndex ;
 	}
 
-	// ƒŠƒXƒg‚Ö—v‘f‚ğ’Ç‰Á
+	// ãƒªã‚¹ãƒˆã¸è¦ç´ ã‚’è¿½åŠ 
 	AddHandleList( &HandleManage->ListFirst, &(*ppHandleInfo)->List, (*ppHandleInfo)->Handle, *ppHandleInfo ) ;
 
-	// ‰Šú‰»ŠÖ”‚ğŒÄ‚Ô
+	// åˆæœŸåŒ–é–¢æ•°ã‚’å‘¼ã¶
 	if( HandleManage->InitializeFunction )
 	{
 		HandleManage->InitializeFunction( *ppHandleInfo ) ;
 	}
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 	CriticalSection_Unlock( &HandleManage->CriticalSection ) ;
 
-	// ƒnƒ“ƒhƒ‹‚ğ•Ô‚·
+	// ãƒãƒ³ãƒ‰ãƒ«ã‚’è¿”ã™
 	return NewHandle ;
 }
 
-// SubHandle ‚ÌÀˆ—ŠÖ”
+// SubHandle ã®å®Ÿå‡¦ç†é–¢æ•°
 static int SubHandleBase( int Handle )
 {
 	int Index ;
@@ -286,13 +286,13 @@ static int SubHandleBase( int Handle )
 	if( HandleManage->InitializeFlag == FALSE )
 		return -1 ;
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 	CRITICALSECTION_LOCK( &HandleManage->CriticalSection ) ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( HANDLECHK_ASYNC( HandleType, Handle, HandleInfo ) )
 	{
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 		CriticalSection_Unlock( &HandleManage->CriticalSection ) ;
 
 		return -1 ;
@@ -301,42 +301,42 @@ static int SubHandleBase( int Handle )
 	Index = HandleInfo->Handle & DX_HANDLEINDEX_MASK ;
 
 #ifndef DX_NON_ASYNCLOAD
-	// ”ñ“¯Šú“Ç‚İ‚İ’†‚Å‚ ‚éê‡‚Å‚Ü‚¾ˆ—‚ª‘–‚Á‚Ä‚¢‚È‚©‚Á‚½‚çˆ—‚ğƒLƒƒƒ“ƒZƒ‹‚·‚é
+	// éåŒæœŸèª­ã¿è¾¼ã¿ä¸­ã§ã‚ã‚‹å ´åˆã§ã¾ã å‡¦ç†ãŒèµ°ã£ã¦ã„ãªã‹ã£ãŸã‚‰å‡¦ç†ã‚’ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã™ã‚‹
 	if( HandleInfo->ASyncLoadCount != 0 )
 	{
 		if( HandleInfo->ASyncDataNumber < 0 ||
 			DeleteASyncLoadData( HandleInfo->ASyncDataNumber, TRUE ) < -1 )
 		{
-			// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+			// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 			CriticalSection_Unlock( &HandleManage->CriticalSection ) ;
 
-			// íœ‚É¸”s‚µ‚½‚ç“Ç‚İ‚İˆ—‚ªI‚í‚é‚Ü‚Å‘Ò‚Â
+			// å‰Šé™¤ã«å¤±æ•—ã—ãŸã‚‰èª­ã¿è¾¼ã¿å‡¦ç†ãŒçµ‚ã‚ã‚‹ã¾ã§å¾…ã¤
 			while( HandleInfo->ASyncLoadCount != 0 )
 			{
 				ProcessASyncLoadRequestMainThread() ;
 				Thread_Sleep( 0 );
 			}
 
-			// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+			// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 			CRITICALSECTION_LOCK( &HandleManage->CriticalSection ) ;
 		}
 	}
 #endif // DX_NON_ASYNCLOAD
 
-	// ƒnƒ“ƒhƒ‹ƒ^ƒCƒvŒÂX‚ÌŒãn––ˆ—
+	// ãƒãƒ³ãƒ‰ãƒ«ã‚¿ã‚¤ãƒ—å€‹ã€…ã®å¾Œå§‹æœ«å‡¦ç†
 	if( HandleManage->TerminateFunction )
 	{
-		// –ß‚è’l‚ª‚P‚Ìê‡‚ÍíœƒLƒƒƒ“ƒZƒ‹
+		// æˆ»ã‚Šå€¤ãŒï¼‘ã®å ´åˆã¯å‰Šé™¤ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 		if( HandleManage->TerminateFunction( HandleInfo ) == 1 )
 		{
-			// íœƒŠƒNƒGƒXƒg‚³‚ê‚Ä‚¢‚½‚çíœƒŠƒNƒGƒXƒgƒŠƒXƒg‚©‚çŠO‚·
+			// å‰Šé™¤ãƒªã‚¯ã‚¨ã‚¹ãƒˆã•ã‚Œã¦ã„ãŸã‚‰å‰Šé™¤ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒªã‚¹ãƒˆã‹ã‚‰å¤–ã™
 			if( HandleInfo->DeleteRequestFlag )
 			{
 				HandleInfo->DeleteRequestFlag = FALSE ;
 
 				SubHandleList( &HandleInfo->DeleteRequestList ) ;
 
-				// íœƒŠƒNƒGƒXƒg‚³‚ê‚Ä‚¢‚½”‚à 1 Œ¸‚ç‚·
+				// å‰Šé™¤ãƒªã‚¯ã‚¨ã‚¹ãƒˆã•ã‚Œã¦ã„ãŸæ•°ã‚‚ 1 æ¸›ã‚‰ã™
 				HandleManage->DeleteRequestHandleNum -- ;
 			}
 
@@ -344,34 +344,34 @@ static int SubHandleBase( int Handle )
 		}
 	}
 
-	// íœƒtƒ‰ƒO‚É-1‚ğ‘ã“ü‚·‚é
+	// å‰Šé™¤ãƒ•ãƒ©ã‚°ã«-1ã‚’ä»£å…¥ã™ã‚‹
 	if( HandleInfo->DeleteFlag != NULL )
 	{
 		*HandleInfo->DeleteFlag = -1 ;
 	}
 
-	// ƒŠƒXƒg‚©‚ç—v‘f‚ğŠO‚·
+	// ãƒªã‚¹ãƒˆã‹ã‚‰è¦ç´ ã‚’å¤–ã™
 	SubHandleList( &HandleInfo->List ) ;
 
-	// íœƒŠƒNƒGƒXƒg‚³‚ê‚Ä‚¢‚½‚çíœƒŠƒNƒGƒXƒgƒŠƒXƒg‚©‚çŠO‚·
+	// å‰Šé™¤ãƒªã‚¯ã‚¨ã‚¹ãƒˆã•ã‚Œã¦ã„ãŸã‚‰å‰Šé™¤ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒªã‚¹ãƒˆã‹ã‚‰å¤–ã™
 	if( HandleInfo->DeleteRequestFlag )
 	{
 		SubHandleList( &HandleInfo->DeleteRequestList ) ;
 
-		// íœƒŠƒNƒGƒXƒg‚³‚ê‚Ä‚¢‚½”‚à 1 Œ¸‚ç‚·
+		// å‰Šé™¤ãƒªã‚¯ã‚¨ã‚¹ãƒˆã•ã‚Œã¦ã„ãŸæ•°ã‚‚ 1 æ¸›ã‚‰ã™
 		HandleManage->DeleteRequestHandleNum -- ;
 	}
 
-	// ƒf[ƒ^—Ìˆæ‚ğ‰ğ•ú‚·‚é
+	// ãƒ‡ãƒ¼ã‚¿é ˜åŸŸã‚’è§£æ”¾ã™ã‚‹
 	DXFREE( HandleInfo ) ;
 
-	// ƒe[ƒuƒ‹‚É NULL ‚ğƒZƒbƒg‚·‚é
+	// ãƒ†ãƒ¼ãƒ–ãƒ«ã« NULL ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 	HandleManage->Handle[ Index ] = NULL ;
 
-	// ƒnƒ“ƒhƒ‹‚Ì‘”‚ğŒ¸‚ç‚·
+	// ãƒãƒ³ãƒ‰ãƒ«ã®ç·æ•°ã‚’æ¸›ã‚‰ã™
 	HandleManage->Num -- ;
 
-	// —LŒø‚Èƒnƒ“ƒhƒ‹‚ª‘¶İ‚·‚é”ÍˆÍ‚ÌXV
+	// æœ‰åŠ¹ãªãƒãƒ³ãƒ‰ãƒ«ãŒå­˜åœ¨ã™ã‚‹ç¯„å›²ã®æ›´æ–°
 	if( HandleManage->Num == 0 )
 	{
 		HandleManage->AreaMax = 0 ;
@@ -394,14 +394,14 @@ static int SubHandleBase( int Handle )
 
 END :
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 	CriticalSection_Unlock( &HandleManage->CriticalSection ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒnƒ“ƒhƒ‹‚ğíœ‚·‚é
+// ãƒãƒ³ãƒ‰ãƒ«ã‚’å‰Šé™¤ã™ã‚‹
 extern int SubHandle( int Handle, int ASyncLoadFlag, int ASyncThread )
 {
 	HANDLEINFO *HandleInfo ;
@@ -411,22 +411,22 @@ extern int SubHandle( int Handle, int ASyncLoadFlag, int ASyncThread )
 	if( HandleManage->InitializeFlag == FALSE )
 		return -1 ;
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 	CRITICALSECTION_LOCK( &HandleManage->CriticalSection ) ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( HANDLECHK_ASYNC( HandleType, Handle, HandleInfo ) )
 	{
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 		CriticalSection_Unlock( &HandleManage->CriticalSection ) ;
 
 		return -1 ;
 	}
 
-	// Šù‚ÉíœƒŠƒNƒGƒXƒgƒŠƒXƒg‚É“o˜^‚³‚ê‚Ä‚¢‚éê‡‚ÍƒGƒ‰[
+	// æ—¢ã«å‰Šé™¤ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒªã‚¹ãƒˆã«ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹å ´åˆã¯ã‚¨ãƒ©ãƒ¼
 	if( HandleInfo->DeleteRequestFlag )
 	{
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 		CriticalSection_Unlock( &HandleManage->CriticalSection ) ;
 
 		return -1 ;
@@ -435,36 +435,36 @@ extern int SubHandle( int Handle, int ASyncLoadFlag, int ASyncThread )
 #ifndef DX_NON_ASYNCLOAD
 	if( ASyncThread || ASyncLoadFlag )
 	{
-		// ”ñ“¯ŠúÀsŠó–]‚â•ÊƒXƒŒƒbƒh‚©‚ç‚ÌŒÄ‚Ño‚µ‚Ìê‡‚ÍíœƒŠƒNƒGƒXƒgƒŠƒXƒg‚É’Ç‰Á
+		// éåŒæœŸå®Ÿè¡Œå¸Œæœ›ã‚„åˆ¥ã‚¹ãƒ¬ãƒƒãƒ‰ã‹ã‚‰ã®å‘¼ã³å‡ºã—ã®å ´åˆã¯å‰Šé™¤ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒªã‚¹ãƒˆã«è¿½åŠ 
 		AddHandleList( &HandleManage->DeleteRequestListFirst, &HandleInfo->DeleteRequestList, HandleInfo->Handle, HandleInfo ) ;
 
-		// íœƒŠƒNƒGƒXƒgƒŠƒXƒg‚É“o˜^‚³‚ê‚Ä‚¢‚éƒtƒ‰ƒO‚ğ—§‚Ä‚é
+		// å‰Šé™¤ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒªã‚¹ãƒˆã«ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 		HandleInfo->DeleteRequestFlag = TRUE ;
 
-		// íœƒŠƒNƒGƒXƒg‚Ìƒnƒ“ƒhƒ‹”‚ğƒCƒ“ƒNƒŠƒƒ“ƒg
+		// å‰Šé™¤ãƒªã‚¯ã‚¨ã‚¹ãƒˆã®ãƒãƒ³ãƒ‰ãƒ«æ•°ã‚’ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆ
 		HandleManage->DeleteRequestHandleNum ++ ;
 
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 		CriticalSection_Unlock( &HandleManage->CriticalSection ) ;
 	}
 	else
 #endif // DX_NON_ASYNCLOAD
 	{
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 		CriticalSection_Unlock( &HandleManage->CriticalSection ) ;
 
-		// ”ñ“¯ŠúÀsŠó–]‚â•ÊƒXƒŒƒbƒh‚©‚ç‚ÌŒÄ‚Ño‚µ‚Å‚Í‚È‚¢ê‡‚Í‘¦À‚Éíœ
+		// éåŒæœŸå®Ÿè¡Œå¸Œæœ›ã‚„åˆ¥ã‚¹ãƒ¬ãƒƒãƒ‰ã‹ã‚‰ã®å‘¼ã³å‡ºã—ã§ã¯ãªã„å ´åˆã¯å³åº§ã«å‰Šé™¤
 		if( SubHandleBase( Handle ) < 0 )
 		{
 			return -1 ;
 		}
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒnƒ“ƒhƒ‹‚Ìî•ñ‚ğŠi”[‚·‚éƒƒ‚ƒŠ—Ìˆæ‚ÌƒTƒCƒY‚ğ•ÏX‚·‚éA”ñ“¯Šú“Ç‚İ‚İ’†‚Å‚È‚¢‚±‚Æ‚ª‘O’ñ
+// ãƒãƒ³ãƒ‰ãƒ«ã®æƒ…å ±ã‚’æ ¼ç´ã™ã‚‹ãƒ¡ãƒ¢ãƒªé ˜åŸŸã®ã‚µã‚¤ã‚ºã‚’å¤‰æ›´ã™ã‚‹ã€éåŒæœŸèª­ã¿è¾¼ã¿ä¸­ã§ãªã„ã“ã¨ãŒå‰æ
 extern int ReallocHandle( int Handle, size_t NewSize )
 {
 	HANDLEINFO *HandleInfo ;
@@ -476,50 +476,50 @@ extern int ReallocHandle( int Handle, size_t NewSize )
 	if( HandleManage->InitializeFlag == FALSE )
 		return -1 ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( HANDLECHK_ASYNC( HandleType, Handle, HandleInfo ) )
 		return -1 ;
 
 	Index = Handle & DX_HANDLEINDEX_MASK ;
 
-	// Šm•Ûƒƒ‚ƒŠ‚ÌƒTƒCƒY‚ª•Ï‰»‚µ‚È‚¢ê‡‚Í‰½‚à‚¹‚¸I—¹
+	// ç¢ºä¿ãƒ¡ãƒ¢ãƒªã®ã‚µã‚¤ã‚ºãŒå¤‰åŒ–ã—ãªã„å ´åˆã¯ä½•ã‚‚ã›ãšçµ‚äº†
 	if( ( size_t )HandleInfo->AllocSize == NewSize )
 		return 0 ;
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 	CRITICALSECTION_LOCK( &HandleManage->CriticalSection ) ;
 
-	// ƒƒ‚ƒŠ‚ÌÄŠm•Û
+	// ãƒ¡ãƒ¢ãƒªã®å†ç¢ºä¿
 	NewBuffer = ( HANDLEINFO * )DXREALLOC( HandleInfo, ( size_t )NewSize ) ;
 
-	// ƒƒ‚ƒŠ‚ÌÄŠm•Û¬Œ÷ƒ`ƒFƒbƒN
+	// ãƒ¡ãƒ¢ãƒªã®å†ç¢ºä¿æˆåŠŸãƒã‚§ãƒƒã‚¯
 	if( NewBuffer == NULL )
 	{
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 		CriticalSection_Unlock( &HandleManage->CriticalSection ) ;
 
-		// ƒGƒ‰[I—¹
+		// ã‚¨ãƒ©ãƒ¼çµ‚äº†
 		return -1 ;
 	}
 
-	// Šm•Ûƒƒ‚ƒŠƒAƒhƒŒƒX‚ª•Ï‰»‚µ‚½ê‡‚ÍƒŠƒXƒg‚Ì‚Â‚È‚¬’¼‚µ
+	// ç¢ºä¿ãƒ¡ãƒ¢ãƒªã‚¢ãƒ‰ãƒ¬ã‚¹ãŒå¤‰åŒ–ã—ãŸå ´åˆã¯ãƒªã‚¹ãƒˆã®ã¤ãªãç›´ã—
 	if( NewBuffer != ( void * )HandleInfo )
 	{
-		// V‚µ‚¢ƒƒ‚ƒŠƒAƒhƒŒƒX‚ğƒZƒbƒg
+		// æ–°ã—ã„ãƒ¡ãƒ¢ãƒªã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ã‚»ãƒƒãƒˆ
 		HandleInfo = HandleManage->Handle[ Index ] = ( HANDLEINFO * )NewBuffer ;
 
-		// ƒŠƒXƒg‚ÌŒq‚¬’¼‚µ
+		// ãƒªã‚¹ãƒˆã®ç¹‹ãç›´ã—
 		NewMemoryHandleList( &HandleInfo->List, HandleInfo ) ;
 	}
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 	CriticalSection_Unlock( &HandleManage->CriticalSection ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒnƒ“ƒhƒ‹‚Ìî•ñ‚ğæ“¾‚·‚é
+// ãƒãƒ³ãƒ‰ãƒ«ã®æƒ…å ±ã‚’å–å¾—ã™ã‚‹
 extern HANDLEINFO *GetHandleInfo( int Handle )
 {
 	HANDLEINFO *HandleInfo ;
@@ -529,15 +529,15 @@ extern HANDLEINFO *GetHandleInfo( int Handle )
 	if( HandleManage->InitializeFlag == FALSE )
 		return NULL ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( HANDLECHK_ASYNC( HandleType, Handle, HandleInfo ) )
 		return NULL ;
 
-	// ƒnƒ“ƒhƒ‹‚Ìî•ñ‚ğ•Ô‚·
+	// ãƒãƒ³ãƒ‰ãƒ«ã®æƒ…å ±ã‚’è¿”ã™
 	return HandleInfo ;
 }
 
-// ƒnƒ“ƒhƒ‹ŠÇ—î•ñ‚É“o˜^‚³‚ê‚Ä‚¢‚é‚·‚×‚Ä‚Ìƒnƒ“ƒhƒ‹‚ğíœ
+// ãƒãƒ³ãƒ‰ãƒ«ç®¡ç†æƒ…å ±ã«ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹ã™ã¹ã¦ã®ãƒãƒ³ãƒ‰ãƒ«ã‚’å‰Šé™¤
 extern int AllHandleSub( int HandleType, int (*DeleteCancelCheckFunction)( HANDLEINFO *HandleInfo ) )
 {
 	int i ;
@@ -547,11 +547,11 @@ extern int AllHandleSub( int HandleType, int (*DeleteCancelCheckFunction)( HANDL
 	if( HandleManage->InitializeFlag == FALSE )
 		return -1 ;
 
-//	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+//	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 //	CRITICALSECTION_LOCK( &HandleManage->CriticalSection ) ;
 //
 //#ifndef DX_NON_ASYNCLOAD
-//	// ”ñ“¯Šú“Ç‚İ‚İˆË—Š‚ª‚ ‚Á‚½‚çíœ‚µ‚Ä‚¨‚­
+//	// éåŒæœŸèª­ã¿è¾¼ã¿ä¾é ¼ãŒã‚ã£ãŸã‚‰å‰Šé™¤ã—ã¦ãŠã
 //	ppHandleInfo = &HandleManage->Handle[ HandleManage->AreaMin ] ;
 //	for( i = HandleManage->AreaMin ; i <= HandleManage->AreaMax ; i ++, ppHandleInfo ++ )
 //	{
@@ -572,10 +572,10 @@ extern int AllHandleSub( int HandleType, int (*DeleteCancelCheckFunction)( HANDL
 //	}
 //#endif // DX_NON_ASYNCLOAD
 //
-//	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+//	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 //	CriticalSection_Unlock( &HandleManage->CriticalSection ) ;
 
-	// ‚·‚×‚Ä‚Ìƒnƒ“ƒhƒ‹ƒf[ƒ^‚ğíœ‚·‚é
+	// ã™ã¹ã¦ã®ãƒãƒ³ãƒ‰ãƒ«ãƒ‡ãƒ¼ã‚¿ã‚’å‰Šé™¤ã™ã‚‹
 	{
 		int AreaMin ;
 		int AreaMax ;
@@ -583,7 +583,7 @@ extern int AllHandleSub( int HandleType, int (*DeleteCancelCheckFunction)( HANDL
 		int DeleteFlag ;
 		int LoopFlag ;
 
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 		CRITICALSECTION_LOCK( &HandleManage->CriticalSection ) ;
 
 		do
@@ -614,12 +614,12 @@ extern int AllHandleSub( int HandleType, int (*DeleteCancelCheckFunction)( HANDL
 				{
 					Handle = (*ppHandleInfo)->Handle ;
 
-					// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+					// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 					CriticalSection_Unlock( &HandleManage->CriticalSection ) ;
 
 					SubHandle( Handle, FALSE, FALSE ) ;
 
-					// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+					// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 					CRITICALSECTION_LOCK( &HandleManage->CriticalSection ) ;
 
 					LoopFlag = TRUE ;
@@ -629,11 +629,11 @@ extern int AllHandleSub( int HandleType, int (*DeleteCancelCheckFunction)( HANDL
 
 		}while( LoopFlag == TRUE ) ;
 
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 		CriticalSection_Unlock( &HandleManage->CriticalSection ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
@@ -647,9 +647,9 @@ extern int AllHandleSub( int HandleType, int (*DeleteCancelCheckFunction)( HANDL
 
 #ifndef DX_NON_ASYNCLOAD
 
-// ”ñ“¯Šú“Ç‚İ‚İŠÖŒW
+// éåŒæœŸèª­ã¿è¾¼ã¿é–¢ä¿‚
 
-// ƒnƒ“ƒhƒ‹‚Ì”ñ“¯Šú“Ç‚İ‚İ‚ªŠ®—¹‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©‚ğæ“¾‚·‚é( TRUE:‚Ü‚¾Š®—¹‚µ‚Ä‚¢‚È‚¢  FALSE:Š®—¹‚µ‚Ä‚¢‚é  -1:ƒGƒ‰[ )
+// ãƒãƒ³ãƒ‰ãƒ«ã®éåŒæœŸèª­ã¿è¾¼ã¿ãŒå®Œäº†ã—ã¦ã„ã‚‹ã‹ã©ã†ã‹ã‚’å–å¾—ã™ã‚‹( TRUE:ã¾ã å®Œäº†ã—ã¦ã„ãªã„  FALSE:å®Œäº†ã—ã¦ã„ã‚‹  -1:ã‚¨ãƒ©ãƒ¼ )
 extern int NS_CheckHandleASyncLoad( int Handle )
 {
 	HANDLEINFO *HandleInfo ;
@@ -662,13 +662,13 @@ extern int NS_CheckHandleASyncLoad( int Handle )
 		return -1 ;
 	}
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 	CRITICALSECTION_LOCK( &HandleManage->CriticalSection ) ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( HANDLECHK_ASYNC( HandleType, Handle, HandleInfo ) )
 	{
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 		CriticalSection_Unlock( &HandleManage->CriticalSection ) ;
 
 		return -1 ;
@@ -676,13 +676,13 @@ extern int NS_CheckHandleASyncLoad( int Handle )
 
 	Result = HandleInfo->ASyncLoadCount != 0 ? TRUE : FALSE ;
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 	CriticalSection_Unlock( &HandleManage->CriticalSection ) ;
 
 	return Result ;
 }
 
-// ƒnƒ“ƒhƒ‹‚Ì”ñ“¯Šú“Ç‚İ‚İˆ—‚Ì–ß‚è’l‚ğæ“¾‚·‚é( ”ñ“¯Šú“Ç‚İ‚İ’†‚Ìê‡‚Íˆê‚Â‘O‚Ì”ñ“¯Šú“Ç‚İ‚İˆ—‚Ì–ß‚è’l‚ª•Ô‚Á‚Ä‚«‚Ü‚· )
+// ãƒãƒ³ãƒ‰ãƒ«ã®éåŒæœŸèª­ã¿è¾¼ã¿å‡¦ç†ã®æˆ»ã‚Šå€¤ã‚’å–å¾—ã™ã‚‹( éåŒæœŸèª­ã¿è¾¼ã¿ä¸­ã®å ´åˆã¯ä¸€ã¤å‰ã®éåŒæœŸèª­ã¿è¾¼ã¿å‡¦ç†ã®æˆ»ã‚Šå€¤ãŒè¿”ã£ã¦ãã¾ã™ )
 extern int NS_GetHandleASyncLoadResult( int Handle )
 {
 	HANDLEINFO *HandleInfo ;
@@ -695,13 +695,13 @@ extern int NS_GetHandleASyncLoadResult( int Handle )
 		return -1 ;
 	}
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 	CRITICALSECTION_LOCK( &HandleManage->CriticalSection ) ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( HANDLECHK_ASYNC( HandleType, Handle, HandleInfo ) )
 	{
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 		CriticalSection_Unlock( &HandleManage->CriticalSection ) ;
 
 		return -1 ;
@@ -709,13 +709,13 @@ extern int NS_GetHandleASyncLoadResult( int Handle )
 
 	Result = HandleInfo->ASyncLoadResult ;
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 	CriticalSection_Unlock( &HandleManage->CriticalSection ) ;
 
 	return Result ;
 }
 
-// ƒnƒ“ƒhƒ‹‚Ì”ñ“¯Šú“Ç‚İ‚İˆ—‚ªŠ®—¹‚µ‚½‚çƒnƒ“ƒhƒ‹‚ğíœ‚·‚éƒtƒ‰ƒO‚ğ—§‚Ä‚é
+// ãƒãƒ³ãƒ‰ãƒ«ã®éåŒæœŸèª­ã¿è¾¼ã¿å‡¦ç†ãŒå®Œäº†ã—ãŸã‚‰ãƒãƒ³ãƒ‰ãƒ«ã‚’å‰Šé™¤ã™ã‚‹ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 extern int NS_SetASyncLoadFinishDeleteFlag(	int Handle )
 {
 	HANDLEINFO *HandleInfo ;
@@ -727,19 +727,19 @@ extern int NS_SetASyncLoadFinishDeleteFlag(	int Handle )
 		return -1 ;
 	}
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 	CRITICALSECTION_LOCK( &HandleManage->CriticalSection ) ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( HANDLECHK_ASYNC( HandleType, Handle, HandleInfo ) )
 	{
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 		CriticalSection_Unlock( &HandleManage->CriticalSection ) ;
 
 		return -1 ;
 	}
 
-	// Šù‚É”ñ“¯Šú“Ç‚İ‚İ‚ªŠ®—¹‚µ‚Ä‚¢‚½‚ç‚±‚Ìê‚Åƒnƒ“ƒhƒ‹‚ğíœ‚·‚é
+	// æ—¢ã«éåŒæœŸèª­ã¿è¾¼ã¿ãŒå®Œäº†ã—ã¦ã„ãŸã‚‰ã“ã®å ´ã§ãƒãƒ³ãƒ‰ãƒ«ã‚’å‰Šé™¤ã™ã‚‹
 	if( HandleInfo->ASyncLoadCount == 0 )
 	{
 		SubHandle( Handle, FALSE, FALSE ) ;
@@ -749,13 +749,13 @@ extern int NS_SetASyncLoadFinishDeleteFlag(	int Handle )
 		HandleInfo->ASyncLoadFinishDeleteRequestFlag = TRUE ;
 	}
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 	CriticalSection_Unlock( &HandleManage->CriticalSection ) ;
 
 	return 0 ;
 }
 
-// ƒnƒ“ƒhƒ‹‚Ì”ñ“¯Šú“Ç‚İ‚İˆ—‚ªŠ®—¹‚µ‚½‚çŒÄ‚Î‚ê‚éŠÖ”‚ğƒZƒbƒg‚·‚é
+// ãƒãƒ³ãƒ‰ãƒ«ã®éåŒæœŸèª­ã¿è¾¼ã¿å‡¦ç†ãŒå®Œäº†ã—ãŸã‚‰å‘¼ã°ã‚Œã‚‹é–¢æ•°ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern int NS_SetASyncLoadFinishCallback( int Handle, void ( *Callback )( int Handle, void *Data ), void *Data )
 {
 	HANDLEINFO *HandleInfo ;
@@ -767,19 +767,19 @@ extern int NS_SetASyncLoadFinishCallback( int Handle, void ( *Callback )( int Ha
 		return -1 ;
 	}
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 	CRITICALSECTION_LOCK( &HandleManage->CriticalSection ) ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( HANDLECHK_ASYNC( HandleType, Handle, HandleInfo ) )
 	{
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 		CriticalSection_Unlock( &HandleManage->CriticalSection ) ;
 
 		return -1 ;
 	}
 
-	// Šù‚É”ñ“¯Šú“Ç‚İ‚İ‚ªŠ®—¹‚µ‚Ä‚¢‚½‚ç‚±‚Ìê‚ÅƒR[ƒ‹ƒoƒbƒNŠÖ”‚ğŒÄ‚Ô
+	// æ—¢ã«éåŒæœŸèª­ã¿è¾¼ã¿ãŒå®Œäº†ã—ã¦ã„ãŸã‚‰ã“ã®å ´ã§ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã‚’å‘¼ã¶
 	if( HandleInfo->ASyncLoadCount == 0 )
 	{
 		Callback( Handle, Data ) ;
@@ -790,19 +790,19 @@ extern int NS_SetASyncLoadFinishCallback( int Handle, void ( *Callback )( int Ha
 		HandleInfo->ASyncLoadFinishCallbackData = Data ;
 	}
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 	CriticalSection_Unlock( &HandleManage->CriticalSection ) ;
 
 	return 0 ;
 }
 
-// w’è‚Ìƒnƒ“ƒhƒ‹‚Ì”ñ“¯Šú“Ç‚İ‚İˆ—‚ªI—¹‚·‚é‚Ü‚Å‘Ò‚Â
+// æŒ‡å®šã®ãƒãƒ³ãƒ‰ãƒ«ã®éåŒæœŸèª­ã¿è¾¼ã¿å‡¦ç†ãŒçµ‚äº†ã™ã‚‹ã¾ã§å¾…ã¤
 extern int NS_WaitHandleASyncLoad( int Handle )
 {
 	return WaitASyncLoad( Handle ) ;
 }
 
-// ‘S‚Ä‚Ì”ñ“¯Šú“Ç‚İ‚İƒf[ƒ^‚ª“Ç‚İ‚İI‚í‚é‚Ü‚Å‘Ò‚Â
+// å…¨ã¦ã®éåŒæœŸèª­ã¿è¾¼ã¿ãƒ‡ãƒ¼ã‚¿ãŒèª­ã¿è¾¼ã¿çµ‚ã‚ã‚‹ã¾ã§å¾…ã¤
 extern int NS_WaitHandleASyncLoadAll( void )
 {
 	while( NS_GetASyncLoadNum() > 0 )
@@ -817,7 +817,7 @@ extern int NS_WaitHandleASyncLoadAll( void )
 	return 0 ;
 }
 
-// ƒnƒ“ƒhƒ‹‚Ì”ñ“¯Šú“Ç‚İ‚İ’†ƒJƒEƒ“ƒg‚ğƒCƒ“ƒNƒŠƒƒ“ƒg‚·‚é
+// ãƒãƒ³ãƒ‰ãƒ«ã®éåŒæœŸèª­ã¿è¾¼ã¿ä¸­ã‚«ã‚¦ãƒ³ãƒˆã‚’ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆã™ã‚‹
 extern int IncASyncLoadCount( int Handle, int ASyncDataNumber )
 {
 	HANDLEINFO *HandleInfo ;
@@ -829,13 +829,13 @@ extern int IncASyncLoadCount( int Handle, int ASyncDataNumber )
 		return -1 ;
 	}
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 	CRITICALSECTION_LOCK( &HandleManage->CriticalSection ) ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( HANDLECHK_ASYNC( HandleType, Handle, HandleInfo ) )
 	{
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 		CriticalSection_Unlock( &HandleManage->CriticalSection ) ;
 
 		return -1 ;
@@ -844,14 +844,14 @@ extern int IncASyncLoadCount( int Handle, int ASyncDataNumber )
 	HandleInfo->ASyncLoadCount ++ ;
 	HandleInfo->ASyncDataNumber = ASyncDataNumber ;
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 	CriticalSection_Unlock( &HandleManage->CriticalSection ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒnƒ“ƒhƒ‹‚Ì”ñ“¯Šú“Ç‚İ‚İ’†ƒJƒEƒ“ƒg‚ğƒfƒNƒŠƒƒ“ƒg‚·‚é
+// ãƒãƒ³ãƒ‰ãƒ«ã®éåŒæœŸèª­ã¿è¾¼ã¿ä¸­ã‚«ã‚¦ãƒ³ãƒˆã‚’ãƒ‡ã‚¯ãƒªãƒ¡ãƒ³ãƒˆã™ã‚‹
 extern int DecASyncLoadCount( int Handle )
 {
 	HANDLEINFO *HandleInfo ;
@@ -863,13 +863,13 @@ extern int DecASyncLoadCount( int Handle )
 		return -1 ;
 	}
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 	CRITICALSECTION_LOCK( &HandleManage->CriticalSection ) ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( HANDLECHK_ASYNC( HandleType, Handle, HandleInfo ) )
 	{
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 		CriticalSection_Unlock( &HandleManage->CriticalSection ) ;
 
 		return -1 ;
@@ -877,30 +877,30 @@ extern int DecASyncLoadCount( int Handle )
 
 	HandleInfo->ASyncLoadCount -- ;
 
-	// ƒJƒEƒ“ƒg‚ª 0 ‚¾‚Á‚½‚çˆ—‚ğ•ªŠò
+	// ã‚«ã‚¦ãƒ³ãƒˆãŒ 0 ã ã£ãŸã‚‰å‡¦ç†ã‚’åˆ†å²
 	if( HandleInfo->ASyncLoadCount == 0 )
 	{
-		// “Ç‚İ‚İ‚ªI‚í‚Á‚½‚çŒÄ‚ÔƒR[ƒ‹ƒoƒbƒNŠÖ”‚ªİ’è‚³‚ê‚Ä‚¢‚½‚çŒÄ‚Ô
+		// èª­ã¿è¾¼ã¿ãŒçµ‚ã‚ã£ãŸã‚‰å‘¼ã¶ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ãŒè¨­å®šã•ã‚Œã¦ã„ãŸã‚‰å‘¼ã¶
 		if( HandleInfo->ASyncLoadFinishCallback != NULL )
 		{
 			HandleInfo->ASyncLoadFinishCallback( Handle, HandleInfo->ASyncLoadFinishCallbackData ) ;
 		}
 
-		// “Ç‚İ‚İ‚ªI‚í‚Á‚½‚çíœ‚·‚éƒtƒ‰ƒO‚ª—§‚Á‚Ä‚¢‚½‚çƒnƒ“ƒhƒ‹‚ğíœ‚·‚é
+		// èª­ã¿è¾¼ã¿ãŒçµ‚ã‚ã£ãŸã‚‰å‰Šé™¤ã™ã‚‹ãƒ•ãƒ©ã‚°ãŒç«‹ã£ã¦ã„ãŸã‚‰ãƒãƒ³ãƒ‰ãƒ«ã‚’å‰Šé™¤ã™ã‚‹
 		if( HandleInfo->ASyncLoadFinishDeleteRequestFlag )
 		{
 			SubHandle( Handle, FALSE, TRUE ) ;
 		}
 	}
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 	CriticalSection_Unlock( &HandleManage->CriticalSection ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒnƒ“ƒhƒ‹‚Ì”ñ“¯Šú“Ç‚İ‚İŠ®—¹Œã‚Éíœ‚·‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğæ“¾‚·‚é
+// ãƒãƒ³ãƒ‰ãƒ«ã®éåŒæœŸèª­ã¿è¾¼ã¿å®Œäº†å¾Œã«å‰Šé™¤ã™ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’å–å¾—ã™ã‚‹
 extern int GetASyncLoadFinishDeleteFlag( int Handle )
 {
 	HANDLEINFO *HandleInfo ;
@@ -913,13 +913,13 @@ extern int GetASyncLoadFinishDeleteFlag( int Handle )
 		return -1 ;
 	}
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 	CRITICALSECTION_LOCK( &HandleManage->CriticalSection ) ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( HANDLECHK_ASYNC( HandleType, Handle, HandleInfo ) )
 	{
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 		CriticalSection_Unlock( &HandleManage->CriticalSection ) ;
 
 		return -1 ;
@@ -927,21 +927,21 @@ extern int GetASyncLoadFinishDeleteFlag( int Handle )
 
 	Result = HandleInfo->ASyncLoadFinishDeleteRequestFlag ;
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 	CriticalSection_Unlock( &HandleManage->CriticalSection ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return Result ;
 }
 
-// ƒnƒ“ƒhƒ‹‚ª”ñ“¯Šú“Ç‚İ‚İ’†‚¾‚Á‚½ê‡A”ñ“¯Šú“Ç‚İ‚İ‚ªŠ®—¹‚·‚é‚Ü‚Å‘Ò‚Â
+// ãƒãƒ³ãƒ‰ãƒ«ãŒéåŒæœŸèª­ã¿è¾¼ã¿ä¸­ã ã£ãŸå ´åˆã€éåŒæœŸèª­ã¿è¾¼ã¿ãŒå®Œäº†ã™ã‚‹ã¾ã§å¾…ã¤
 extern int WaitASyncLoad( int Handle )
 {
 	HANDLEINFO *HandleInfo ;
 	int HandleType = ( int )( ( ( DWORD )Handle & DX_HANDLETYPE_MASK ) >> DX_HANDLETYPE_ADDRESS ) ;
 	HANDLEMANAGE *HandleManage = &HandleManageArray[ HandleType ] ;
 
-	// ƒƒCƒ“ƒXƒŒƒbƒh‚Å‚Í‚È‚©‚Á‚½‚çƒGƒ‰[
+	// ãƒ¡ã‚¤ãƒ³ã‚¹ãƒ¬ãƒƒãƒ‰ã§ã¯ãªã‹ã£ãŸã‚‰ã‚¨ãƒ©ãƒ¼
 	if( CheckMainThread() == FALSE )
 	{
 		return -1 ;
@@ -950,25 +950,25 @@ extern int WaitASyncLoad( int Handle )
 	if( HandleManage->InitializeFlag == FALSE )
 		return -1 ;
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 	CRITICALSECTION_LOCK( &HandleManage->CriticalSection ) ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( HANDLECHK_ASYNC( HandleType, Handle, HandleInfo ) )
 	{
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 		CriticalSection_Unlock( &HandleManage->CriticalSection ) ;
 
 		return -1 ;
 	}
 
-	// ”ñ“¯Šú“Ç‚İ‚İ’†‚Å‚ ‚éê‡‚Íˆ—‚ªŠ®—¹‚·‚é‚Ü‚Å‘Ò‚Â
+	// éåŒæœŸèª­ã¿è¾¼ã¿ä¸­ã§ã‚ã‚‹å ´åˆã¯å‡¦ç†ãŒå®Œäº†ã™ã‚‹ã¾ã§å¾…ã¤
 	if( HandleInfo->ASyncLoadCount != 0 )
 	{
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 		CriticalSection_Unlock( &HandleManage->CriticalSection ) ;
 
-		// ˆ—I—¹‘Ò‚¿
+		// å‡¦ç†çµ‚äº†å¾…ã¡
 		while( HandleInfo->ASyncLoadCount != 0 )
 		{
 			ProcessASyncLoadRequestMainThread() ;
@@ -977,15 +977,15 @@ extern int WaitASyncLoad( int Handle )
 	}
 	else
 	{
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 		CriticalSection_Unlock( &HandleManage->CriticalSection ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// íœƒŠƒNƒGƒXƒg‚ª—ˆ‚Ä‚¢‚éƒnƒ“ƒhƒ‹‚ğíœ‚·‚é
+// å‰Šé™¤ãƒªã‚¯ã‚¨ã‚¹ãƒˆãŒæ¥ã¦ã„ã‚‹ãƒãƒ³ãƒ‰ãƒ«ã‚’å‰Šé™¤ã™ã‚‹
 extern int DeleteRequestHandleDelete( int AllDelete )
 {
 	HANDLEINFO *HandleInfo ;
@@ -993,7 +993,7 @@ extern int DeleteRequestHandleDelete( int AllDelete )
 	int i ;
 	int DeleteRequestTotal ;
 
-	// ƒƒCƒ“ƒXƒŒƒbƒh‚Å‚Í‚È‚©‚Á‚½‚çƒGƒ‰[
+	// ãƒ¡ã‚¤ãƒ³ã‚¹ãƒ¬ãƒƒãƒ‰ã§ã¯ãªã‹ã£ãŸã‚‰ã‚¨ãƒ©ãƒ¼
 	if( CheckMainThread() == FALSE )
 	{
 		return -1 ;
@@ -1005,67 +1005,67 @@ START:
 
 	for( i = 0 ; i < DX_HANDLETYPE_MAX ; i ++ )
 	{
-		// ƒnƒ“ƒhƒ‹ŠÇ—ƒf[ƒ^‚ª‰Šú‰»‚³‚ê‚Ä‚¢‚È‚¯‚ê‚Î‰½‚à‚µ‚È‚¢
+		// ãƒãƒ³ãƒ‰ãƒ«ç®¡ç†ãƒ‡ãƒ¼ã‚¿ãŒåˆæœŸåŒ–ã•ã‚Œã¦ã„ãªã‘ã‚Œã°ä½•ã‚‚ã—ãªã„
 		if( HandleManageArray[ i ].InitializeFlag == FALSE )
 		{
 			continue ;
 		}
 
-		// íœƒŠƒNƒGƒXƒg‚ª–³‚¯‚ê‚Î‰½‚à‚µ‚È‚¢
+		// å‰Šé™¤ãƒªã‚¯ã‚¨ã‚¹ãƒˆãŒç„¡ã‘ã‚Œã°ä½•ã‚‚ã—ãªã„
 		if( HandleManageArray[ i ].DeleteRequestHandleNum == 0 )
 		{
 			continue ;
 		}
 
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 		CRITICALSECTION_LOCK( &HandleManageArray[ i ].CriticalSection ) ;
 
-		// íœƒŠƒNƒGƒXƒg‚ª–³‚¯‚ê‚Îƒ‹[ƒv‚©‚ç”²‚¯‚é
+		// å‰Šé™¤ãƒªã‚¯ã‚¨ã‚¹ãƒˆãŒç„¡ã‘ã‚Œã°ãƒ«ãƒ¼ãƒ—ã‹ã‚‰æŠœã‘ã‚‹
 		while( HandleManageArray[ i ].DeleteRequestHandleNum > 0 )
 		{
-			// ”ñ“¯Šú“Ç‚İ‚İ‚ªŠ®—¹‚µ‚Ä‚¢‚éƒnƒ“ƒhƒ‹‚ğ’T‚·
+			// éåŒæœŸèª­ã¿è¾¼ã¿ãŒå®Œäº†ã—ã¦ã„ã‚‹ãƒãƒ³ãƒ‰ãƒ«ã‚’æ¢ã™
 			HandleInfo = ( HANDLEINFO * )HandleManageArray[ i ].DeleteRequestListLast.Prev->Data ;
 			while( HandleInfo != NULL && HandleInfo->ASyncLoadCount != 0 )
 			{
 				HandleInfo = ( HANDLEINFO * )HandleInfo->DeleteRequestList.Next->Data ;
 			}
 
-			// ”ñ“¯Šú“Ç‚İ‚İ‚ªŠ®—¹‚µ‚Ä‚¢‚éƒnƒ“ƒhƒ‹‚ª–³‚©‚Á‚½‚çƒ‹[ƒv‚ğ”²‚¯‚é
+			// éåŒæœŸèª­ã¿è¾¼ã¿ãŒå®Œäº†ã—ã¦ã„ã‚‹ãƒãƒ³ãƒ‰ãƒ«ãŒç„¡ã‹ã£ãŸã‚‰ãƒ«ãƒ¼ãƒ—ã‚’æŠœã‘ã‚‹
 			if( HandleInfo == NULL )
 			{
 				break ;
 			}
 
-			// ƒnƒ“ƒhƒ‹‚ğíœ
+			// ãƒãƒ³ãƒ‰ãƒ«ã‚’å‰Šé™¤
 			if( HandleInfo != NULL )
 			{
 				SubHandleBase( HandleInfo->Handle ) ;
 			}
 
-			// 2msŒo‰ß‚µ‚Ä‚¢‚½‚çƒ‹[ƒv‚ğ”²‚¯‚é
+			// 2msçµŒéã—ã¦ã„ãŸã‚‰ãƒ«ãƒ¼ãƒ—ã‚’æŠœã‘ã‚‹
 			if( NS_GetNowCount( FALSE ) - StartTime >= 2 )
 			{
 				break ;
 			}
 		}
 
-		// íœƒŠƒNƒGƒXƒg‚Ìc‚è”‚ğ‰ÁZ
+		// å‰Šé™¤ãƒªã‚¯ã‚¨ã‚¹ãƒˆã®æ®‹ã‚Šæ•°ã‚’åŠ ç®—
 		DeleteRequestTotal += HandleManageArray[ i ].DeleteRequestHandleNum ;
 
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 		CriticalSection_Unlock( &HandleManageArray[ i ].CriticalSection ) ;
 	}
 
-	// ‘S‚Äíœ‚·‚éw’è‚ÅA‚Ü‚¾íœ‚Å‚«‚Ä‚¢‚È‚¢ƒnƒ“ƒhƒ‹‚ª‚ ‚éê‡‚ÍŠÖ”‚Ìæ“ª‚É–ß‚é
+	// å…¨ã¦å‰Šé™¤ã™ã‚‹æŒ‡å®šã§ã€ã¾ã å‰Šé™¤ã§ãã¦ã„ãªã„ãƒãƒ³ãƒ‰ãƒ«ãŒã‚ã‚‹å ´åˆã¯é–¢æ•°ã®å…ˆé ­ã«æˆ»ã‚‹
 	if( AllDelete && DeleteRequestTotal > 0 )
 	{
-		// ƒƒCƒ“ƒXƒŒƒbƒh‚ªˆ—‚·‚é”ñ“¯Šú“Ç‚İ‚İ‚Ìˆ—‚ğs‚¤
+		// ãƒ¡ã‚¤ãƒ³ã‚¹ãƒ¬ãƒƒãƒ‰ãŒå‡¦ç†ã™ã‚‹éåŒæœŸèª­ã¿è¾¼ã¿ã®å‡¦ç†ã‚’è¡Œã†
 		ProcessASyncLoadRequestMainThread() ;
 
 		goto START ;
 	}
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
@@ -1079,9 +1079,9 @@ START:
 
 
 
-// ƒnƒ“ƒhƒ‹ƒŠƒXƒg
+// ãƒãƒ³ãƒ‰ãƒ«ãƒªã‚¹ãƒˆ
 
-// ƒŠƒXƒg‚Ì‰Šú‰»
+// ãƒªã‚¹ãƒˆã®åˆæœŸåŒ–
 extern int InitializeHandleList( HANDLELIST *First, HANDLELIST *Last )
 {
 	First->Handle = -1 ;
@@ -1093,11 +1093,11 @@ extern int InitializeHandleList( HANDLELIST *First, HANDLELIST *Last )
 	Last->Prev    = First ;
 	Last->Next    = NULL ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒŠƒXƒg‚Ö—v‘f‚ğ’Ç‰Á
+// ãƒªã‚¹ãƒˆã¸è¦ç´ ã‚’è¿½åŠ 
 extern int AddHandleList( HANDLELIST *First, HANDLELIST *List, int Handle, void *Data )
 {
 	List->Handle      = Handle ;
@@ -1107,11 +1107,11 @@ extern int AddHandleList( HANDLELIST *First, HANDLELIST *List, int Handle, void 
 	First->Next->Prev = List ;
 	First->Next       = List ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒŠƒXƒg‚©‚ç—v‘f‚ğŠO‚·
+// ãƒªã‚¹ãƒˆã‹ã‚‰è¦ç´ ã‚’å¤–ã™
 extern int SubHandleList( HANDLELIST *List )
 {
 	List->Prev->Next = List->Next ;
@@ -1122,7 +1122,7 @@ extern int SubHandleList( HANDLELIST *List )
 	return 0 ;
 }
 
-// ƒŠƒXƒg‚ª‘¶İ‚·‚éƒƒ‚ƒŠ‚ª•ÏX‚³‚ê‚½ê‡‚ÉƒŠƒXƒg‚Ì‘OŒã‚ğXV‚·‚é
+// ãƒªã‚¹ãƒˆãŒå­˜åœ¨ã™ã‚‹ãƒ¡ãƒ¢ãƒªãŒå¤‰æ›´ã•ã‚ŒãŸå ´åˆã«ãƒªã‚¹ãƒˆã®å‰å¾Œã‚’æ›´æ–°ã™ã‚‹
 extern int NewMemoryHandleList( HANDLELIST *List, void *Data )
 {
 	List->Data = Data ;
@@ -1130,7 +1130,7 @@ extern int NewMemoryHandleList( HANDLELIST *List, void *Data )
 	List->Prev->Next = List ;
 	List->Next->Prev = List ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
@@ -1142,9 +1142,9 @@ extern int NewMemoryHandleList( HANDLELIST *List, void *Data )
 
 
 
-// ƒVƒ“ƒvƒ‹ƒŠƒXƒg
+// ã‚·ãƒ³ãƒ—ãƒ«ãƒªã‚¹ãƒˆ
 
-// ƒŠƒXƒg‚Ì‰Šú‰»
+// ãƒªã‚¹ãƒˆã®åˆæœŸåŒ–
 extern int InitializeSimpleList( SIMPLELIST *First, SIMPLELIST *Last )
 {
 	First->Data = NULL ;
@@ -1154,11 +1154,11 @@ extern int InitializeSimpleList( SIMPLELIST *First, SIMPLELIST *Last )
 	Last->Prev  = First ;
 	Last->Next  = NULL ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒŠƒXƒg‚Ö—v‘f‚ğ’Ç‰Á
+// ãƒªã‚¹ãƒˆã¸è¦ç´ ã‚’è¿½åŠ 
 extern int AddSimpleList( SIMPLELIST *First, SIMPLELIST *List, void *Data )
 {
 	List->Data        = Data ;
@@ -1167,11 +1167,11 @@ extern int AddSimpleList( SIMPLELIST *First, SIMPLELIST *List, void *Data )
 	First->Next->Prev = List ;
 	First->Next       = List ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒŠƒXƒg‚©‚ç—v‘f‚ğŠO‚·
+// ãƒªã‚¹ãƒˆã‹ã‚‰è¦ç´ ã‚’å¤–ã™
 extern int SubSimpleList( SIMPLELIST *List )
 {
 	List->Prev->Next = List->Next ;
@@ -1180,7 +1180,7 @@ extern int SubSimpleList( SIMPLELIST *List )
 	return 0 ;
 }
 
-// ƒŠƒXƒg‚ª‘¶İ‚·‚éƒƒ‚ƒŠ‚ª•ÏX‚³‚ê‚½ê‡‚ÉƒŠƒXƒg‚Ì‘OŒã‚ğXV‚·‚é
+// ãƒªã‚¹ãƒˆãŒå­˜åœ¨ã™ã‚‹ãƒ¡ãƒ¢ãƒªãŒå¤‰æ›´ã•ã‚ŒãŸå ´åˆã«ãƒªã‚¹ãƒˆã®å‰å¾Œã‚’æ›´æ–°ã™ã‚‹
 extern int NewMemorySimpleList( SIMPLELIST *List, void *Data )
 {
 	List->Data = Data ;
@@ -1188,7 +1188,7 @@ extern int NewMemorySimpleList( SIMPLELIST *List, void *Data )
 	List->Prev->Next = List ;
 	List->Next->Prev = List ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
@@ -1198,56 +1198,56 @@ extern int NewMemorySimpleList( SIMPLELIST *List, void *Data )
 
 
 
-// ƒnƒ“ƒhƒ‹‚ªíœ‚³‚ê‚½‚Æ‚«‚É|‚P‚ªİ’è‚³‚ê‚é•Ï”‚ğ“o˜^‚·‚é
+// ãƒãƒ³ãƒ‰ãƒ«ãŒå‰Šé™¤ã•ã‚ŒãŸã¨ãã«ï¼ï¼‘ãŒè¨­å®šã•ã‚Œã‚‹å¤‰æ•°ã‚’ç™»éŒ²ã™ã‚‹
 extern int NS_SetDeleteHandleFlag( int Handle, int *DeleteFlag )
 {
 	HANDLEINFO *HandleInfo ;
 	int HandleType = ( int )( ( ( DWORD )Handle & DX_HANDLETYPE_MASK ) >> DX_HANDLETYPE_ADDRESS ) ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( HANDLECHK_ASYNC( HandleType, Handle, HandleInfo ) )
 		return -1 ;
 
 	HandleInfo->DeleteFlag = DeleteFlag  ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// w’è‚Ìƒ^ƒCƒv‚Ìƒnƒ“ƒhƒ‹‚Ì”‚ğæ“¾‚·‚é
-extern int NS_GetHandleNum(	int HandleType /* DX_HANDLETYPE_GRAPH“™ */ )
+// æŒ‡å®šã®ã‚¿ã‚¤ãƒ—ã®ãƒãƒ³ãƒ‰ãƒ«ã®æ•°ã‚’å–å¾—ã™ã‚‹
+extern int NS_GetHandleNum(	int HandleType /* DX_HANDLETYPE_GRAPHç­‰ */ )
 {
-	// ƒ^ƒCƒvƒ`ƒFƒbƒN
+	// ã‚¿ã‚¤ãƒ—ãƒã‚§ãƒƒã‚¯
 	if( HandleType < 0 || HandleType >= DX_HANDLETYPE_MAX )
 	{
 		return -1 ;
 	}
 
-	// ƒnƒ“ƒhƒ‹‚Ì”‚ğ•Ô‚·
+	// ãƒãƒ³ãƒ‰ãƒ«ã®æ•°ã‚’è¿”ã™
 	return HandleManageArray[ HandleType ].Num ;
 }
 
-// w’è‚Ìƒ^ƒCƒv‚Ìƒnƒ“ƒhƒ‹‚ªÅ‘å‚ÅŠô‚Âì¬‚Å‚«‚é‚©‚ğæ“¾‚·‚é
-extern int NS_GetMaxHandleNum( int HandleType /* DX_HANDLETYPE_GRAPH“™ */ )
+// æŒ‡å®šã®ã‚¿ã‚¤ãƒ—ã®ãƒãƒ³ãƒ‰ãƒ«ãŒæœ€å¤§ã§å¹¾ã¤ä½œæˆã§ãã‚‹ã‹ã‚’å–å¾—ã™ã‚‹
+extern int NS_GetMaxHandleNum( int HandleType /* DX_HANDLETYPE_GRAPHç­‰ */ )
 {
-	// ƒ^ƒCƒvƒ`ƒFƒbƒN
+	// ã‚¿ã‚¤ãƒ—ãƒã‚§ãƒƒã‚¯
 	if( HandleType < 0 || HandleType >= DX_HANDLETYPE_MAX )
 	{
 		return -1 ;
 	}
 
-	// ƒnƒ“ƒhƒ‹‚ÌÅ‘å”‚ğ•Ô‚·
+	// ãƒãƒ³ãƒ‰ãƒ«ã®æœ€å¤§æ•°ã‚’è¿”ã™
 	return HandleManageArray[ HandleType ].MaxNum ;
 }
 
-// w’è‚Ìƒ^ƒCƒv‚Ì‘Sƒnƒ“ƒhƒ‹‚Ìî•ñ‚ğƒƒO‚Éo—Í‚·‚é
-extern int NS_DumpHandleInfo( int HandleType /* DX_HANDLETYPE_GRAPH“™ */ )
+// æŒ‡å®šã®ã‚¿ã‚¤ãƒ—ã®å…¨ãƒãƒ³ãƒ‰ãƒ«ã®æƒ…å ±ã‚’ãƒ­ã‚°ã«å‡ºåŠ›ã™ã‚‹
+extern int NS_DumpHandleInfo( int HandleType /* DX_HANDLETYPE_GRAPHç­‰ */ )
 {
 	int i ;
 	HANDLEINFO **ppHandleInfo ;
 	HANDLEMANAGE *HandleManage = &HandleManageArray[ HandleType ] ;
 
-	// ƒ^ƒCƒvƒ`ƒFƒbƒN
+	// ã‚¿ã‚¤ãƒ—ãƒã‚§ãƒƒã‚¯
 	if( HandleType < 0 || HandleType >= DX_HANDLETYPE_MAX )
 	{
 		return -1 ;
@@ -1256,7 +1256,7 @@ extern int NS_DumpHandleInfo( int HandleType /* DX_HANDLETYPE_GRAPH“™ */ )
 	if( HandleManage->InitializeFlag == FALSE )
 		return -1 ;
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 	CRITICALSECTION_LOCK( &HandleManage->CriticalSection ) ;
 
 	ppHandleInfo = &HandleManage->Handle[ HandleManage->AreaMin ] ;
@@ -1274,10 +1274,10 @@ extern int NS_DumpHandleInfo( int HandleType /* DX_HANDLETYPE_GRAPH“™ */ )
 	}
 	DXST_LOGFILEFMT_ADDW(( L"Total Count : %d", HandleManage->Num )) ;
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 	CriticalSection_Unlock( &HandleManage->CriticalSection ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 

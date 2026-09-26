@@ -1,15 +1,15 @@
 // -------------------------------------------------------------------------------
 // 
-// 		‚c‚wƒ‰ƒCƒuƒ‰ƒŠ		“à•”‚Æ‚Ìo“ü‚èŒûƒvƒƒOƒ‰ƒ€ƒtƒ@ƒCƒ‹
+// 		ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒª		å†…éƒ¨ã¨ã®å‡ºå…¥ã‚Šå£ãƒ—ãƒ­ã‚°ãƒ©ãƒ ãƒ•ã‚¡ã‚¤ãƒ«
 // 
 // 				Ver 3.25a
 // 
 // -------------------------------------------------------------------------------
 
-// ‚c‚wƒ‰ƒCƒuƒ‰ƒŠì¬Žž—p’è‹`
+// ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªä½œæˆæ™‚ç”¨å®šç¾©
 #define DX_MAKE
 
-// ƒCƒ“ƒNƒ‹[ƒh ------------------------------------------------------------------
+// ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ ------------------------------------------------------------------
 #include "DxCompileConfig.h"
 #include "DxLib.h"
 #include "DxModel.h"
@@ -27,7 +27,7 @@
 #include "Windows/DxWinAPI.h"
 #endif // WINDOWS_DESKTOP_OS
 
-// ƒ}ƒNƒ’è‹` --------------------------------------------------------------------
+// ãƒžã‚¯ãƒ­å®šç¾© --------------------------------------------------------------------
 
 #if defined( DX_THREAD_SAFE ) && defined( WINDOWS_DESKTOP_OS )
 	#define DXFUNC_BEGIN		CheckConflictAndWaitDxFunction() ;
@@ -46,9 +46,9 @@
 #endif
 
 
-// ƒvƒƒOƒ‰ƒ€ --------------------------------------------------------------------
+// ãƒ—ãƒ­ã‚°ãƒ©ãƒ  --------------------------------------------------------------------
 
-// DxWin.cppŠÖ”ƒvƒƒgƒ^ƒCƒvéŒ¾
+// DxWin.cppé–¢æ•°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 
 #ifndef DX_NON_NAMESPACE
 
@@ -59,12 +59,12 @@ namespace DxLib
 
 #if defined( DX_THREAD_SAFE ) || defined( DX_THREAD_SAFE_NETWORK_ONLY )
 
-// ‰Šú‰»I—¹ŒnŠÖ”
+// åˆæœŸåŒ–çµ‚äº†ç³»é–¢æ•°
 extern int DxLib_Init( void )
 {
 	int Result ;
 
-	// Šù‚É‰Šú‰»Ï‚Ý‚Ìê‡‚Í‰½‚à‚¹‚¸I—¹
+	// æ—¢ã«åˆæœŸåŒ–æ¸ˆã¿ã®å ´åˆã¯ä½•ã‚‚ã›ãšçµ‚äº†
 	if( DxSysData.DxLib_InitializeFlag == TRUE ) return 0 ;
 
 	DXFUNC_NET_BEGIN
@@ -76,7 +76,7 @@ extern int DxLib_End( void )
 {
 	int Result ;
 
-	// Šù‚ÉI—¹ˆ—‚ªs‚í‚ê‚Ä‚¢‚é‚©A‚»‚à‚»‚à‰Šú‰»‚³‚ê‚Ä‚¢‚È‚¢ê‡‚Í‰½‚à‚µ‚È‚¢
+	// æ—¢ã«çµ‚äº†å‡¦ç†ãŒè¡Œã‚ã‚Œã¦ã„ã‚‹ã‹ã€ãã‚‚ãã‚‚åˆæœŸåŒ–ã•ã‚Œã¦ã„ãªã„å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( DxSysData.DxLib_InitializeFlag == FALSE ) return 0 ;
 
 	DXFUNC_NET_BEGIN
@@ -86,15 +86,15 @@ extern int DxLib_End( void )
 #ifdef WINDOWS_DESKTOP_OS
 	SETUP_WIN_API
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚ÆƒCƒxƒ“ƒgƒnƒ“ƒhƒ‹‚ð‰ð•ú‚·‚é
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã¨ã‚¤ãƒ™ãƒ³ãƒˆãƒãƒ³ãƒ‰ãƒ«ã‚’è§£æ”¾ã™ã‚‹
 	if( WinData.DxConflictWaitThreadIDInitializeFlag == TRUE )
 	{
 		int i ;
 
-		// ‰Šú‰»ƒtƒ‰ƒO‚ð“|‚·
+		// åˆæœŸåŒ–ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 		WinData.DxConflictWaitThreadIDInitializeFlag = FALSE ;
 
-		// Õ“ËŽž‚ÉŽg—p‚·‚éƒCƒxƒ“ƒg‚Ì‰ð•ú
+		// è¡çªæ™‚ã«ä½¿ç”¨ã™ã‚‹ã‚¤ãƒ™ãƒ³ãƒˆã®è§£æ”¾
 		for( i = 0 ; i < MAX_THREADWAIT_NUM ; i ++ )
 		{
 			if( WinData.DxConflictWaitThreadID[i][1] != 0 )
@@ -102,7 +102,7 @@ extern int DxLib_End( void )
 			WinData.DxConflictWaitThreadID[i][1] = 0 ;
 		}
 
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚àíœ‚·‚é
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã‚‚å‰Šé™¤ã™ã‚‹
 		CriticalSection_Delete( &WinData.DxConflictCheckCriticalSection ) ;
 	}
 #endif // WINDOWS_DESKTOP_OS
@@ -153,7 +153,7 @@ extern int GetLastErrorMessage( TCHAR *StringBuffer, int StringBufferBytes )
 
 #ifndef DX_NON_LOG
 
-// ƒƒOƒtƒ@ƒCƒ‹ŠÖ”
+// ãƒ­ã‚°ãƒ•ã‚¡ã‚¤ãƒ«é–¢æ•°
 extern int LogFileAdd( const TCHAR *String )
 {
 	int Result ;
@@ -266,7 +266,7 @@ extern int AppLogAdd( const TCHAR *String, ... )
 
 #endif // DX_NON_LOG
 
-// ƒƒ‚ƒŠŠm•ÛŒnŠÖ”
+// ãƒ¡ãƒ¢ãƒªç¢ºä¿ç³»é–¢æ•°
 extern	void 		*DxAlloc( size_t AllocSize, const char *File , int Line  )
 {
 	void *Result ;
@@ -390,7 +390,7 @@ extern int DxSetAllocMemoryErrorCheckFlag( int Flag )
 	return Result ;
 }
 
-extern int GetCharBytes( int CharCodeFormat /* DX_CHARCODEFORMAT_SHIFTJIS “™ */ , const void *String )
+extern int GetCharBytes( int CharCodeFormat /* DX_CHARCODEFORMAT_SHIFTJIS ç­‰ */ , const void *String )
 {
 	int Result ;
 	DXFUNC_BEGIN
@@ -399,7 +399,7 @@ extern int GetCharBytes( int CharCodeFormat /* DX_CHARCODEFORMAT_SHIFTJIS “™ */ 
 	return Result ;
 }
 
-extern int ConvertStringCharCodeFormat( int SrcCharCodeFormat /* DX_CHARCODEFORMAT_SHIFTJIS “™ */, const void *SrcString, int DestCharCodeFormat /* DX_CHARCODEFORMAT_SHIFTJIS “™ */, void *DestStringBuffer )
+extern int ConvertStringCharCodeFormat( int SrcCharCodeFormat /* DX_CHARCODEFORMAT_SHIFTJIS ç­‰ */, const void *SrcString, int DestCharCodeFormat /* DX_CHARCODEFORMAT_SHIFTJIS ç­‰ */, void *DestStringBuffer )
 {
 	int Result ;
 	DXFUNC_BEGIN
@@ -407,7 +407,7 @@ extern int ConvertStringCharCodeFormat( int SrcCharCodeFormat /* DX_CHARCODEFORM
 	DXFUNC_END
 	return Result ;
 }
-extern int SetUseCharCodeFormat( int CharCodeFormat /* DX_CHARCODEFORMAT_SHIFTJIS “™ */ )
+extern int SetUseCharCodeFormat( int CharCodeFormat /* DX_CHARCODEFORMAT_SHIFTJIS ç­‰ */ )
 {
 	int Result ;
 	DXFUNC_BEGIN
@@ -825,7 +825,7 @@ extern	int				sscanfDx(   const TCHAR *String, const TCHAR *FormatString, ... )
 
 #ifndef DX_NON_PRINTF_DX
 
-// ƒƒOo—Í‹@”\ŠÖ”
+// ãƒ­ã‚°å‡ºåŠ›æ©Ÿèƒ½é–¢æ•°
 extern int SetLogDrawOutFlag( int DrawFlag )
 {
 	int Result ;
@@ -867,7 +867,7 @@ extern int SetLogDrawArea( int x1, int y1, int x2, int y2 )
 	return Result ;
 }
 
-// ŠÈˆÕ‰æ–Êo—ÍŠÖ”
+// ç°¡æ˜“ç”»é¢å‡ºåŠ›é–¢æ•°
 extern int printfDx( const TCHAR *FormatString, ... )
 {
 	int Result ;
@@ -1016,7 +1016,7 @@ extern int FileRead_eof( int FileHandle )
 	DXFUNC_END
 	return Result ;
 }
-extern int FileRead_set_format( int FileHandle, int CharCodeFormat /* DX_CHARCODEFORMAT_SHIFTJIS “™ */ )
+extern int FileRead_set_format( int FileHandle, int CharCodeFormat /* DX_CHARCODEFORMAT_SHIFTJIS ç­‰ */ )
 {
 	int Result ;
 	DXFUNC_BEGIN
@@ -1179,7 +1179,7 @@ extern	LONGLONG	FileRead_fullyLoad_getSize(	int FLoadHandle )
 }
 
 
-// •Ö—˜ŠÖ”
+// ä¾¿åˆ©é–¢æ•°
 extern int GetResourceInfo( const TCHAR *ResourceName, const TCHAR *ResourceType, void **DataPointerP, size_t *DataSizeP )
 {
 	int Result ;
@@ -1206,7 +1206,7 @@ extern const TCHAR *GetResourceIDString( int ResourceID )
 
 #if defined( DX_THREAD_SAFE ) || defined( DX_THREAD_SAFE_NETWORK_ONLY )
 
-// ƒƒbƒZ[ƒWˆ—ŠÖ”
+// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å‡¦ç†é–¢æ•°
 extern int ProcessMessage( void )
 {
 	int Result ;
@@ -1220,7 +1220,7 @@ extern int ProcessMessage( void )
 
 #ifdef DX_THREAD_SAFE
 
-// ƒEƒCƒ“ƒhƒEŠÖŒWî•ñŽæ“¾ŠÖ”
+// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦é–¢ä¿‚æƒ…å ±å–å¾—é–¢æ•°
 extern int GetWindowCRect( RECT *RectBuf )
 {
 	int Result ;
@@ -1343,18 +1343,18 @@ extern int GetSystemInfo_( int *DxLibVer, int *DirectXVer, int *WindowsVer )
 	return Result ;
 }
 extern int GetPcInfo( TCHAR *OSString, TCHAR *DirectXString,
-								TCHAR *CPUString, int *CPUSpeed/*’PˆÊMHz*/,
-								double *FreeMemorySize/*’PˆÊMByte*/, double *TotalMemorySize,
+								TCHAR *CPUString, int *CPUSpeed/*å˜ä½MHz*/,
+								double *FreeMemorySize/*å˜ä½MByte*/, double *TotalMemorySize,
 								TCHAR *VideoDriverFileName, TCHAR *VideoDriverString,
-								double *FreeVideoMemorySize/*’PˆÊMByte*/, double *TotalVideoMemorySize )
+								double *FreeVideoMemorySize/*å˜ä½MByte*/, double *TotalVideoMemorySize )
 {
 	int Result ;
 	DXFUNC_BEGIN
 	Result = NS_GetPcInfo( OSString, DirectXString,
-								CPUString, CPUSpeed/*’PˆÊMHz*/,
-								FreeMemorySize/*’PˆÊMByte*/, TotalMemorySize,
+								CPUString, CPUSpeed/*å˜ä½MHz*/,
+								FreeMemorySize/*å˜ä½MByte*/, TotalMemorySize,
 								VideoDriverFileName, VideoDriverString,
-								FreeVideoMemorySize/*’PˆÊMByte*/, TotalVideoMemorySize ) ;
+								FreeVideoMemorySize/*å˜ä½MByte*/, TotalVideoMemorySize ) ;
 	DXFUNC_END
 	return Result ;
 }
@@ -1505,7 +1505,7 @@ extern TCHAR GetInputSystemChar( int DeleteFlag )
 
 
 
-// Ý’èŒnŠÖ”
+// è¨­å®šç³»é–¢æ•°
 extern int ChangeWindowMode( int Flag )
 {
 	int Result ;
@@ -1514,7 +1514,7 @@ extern int ChangeWindowMode( int Flag )
 	DXFUNC_END
 	return Result ;
 }
-extern int SetUseCharSet( int CharSet /* = DX_CHARSET_SHFTJIS “™ */ )
+extern int SetUseCharSet( int CharSet /* = DX_CHARSET_SHFTJIS ç­‰ */ )
 {
 	int Result ;
 	DXFUNC_BEGIN
@@ -1712,7 +1712,7 @@ extern int SetWindowStyleMode( int Mode )
 	DXFUNC_END
 	return Result ;
 }
-extern int SetWindowZOrder( int ZType /* = DX_WIN_ZTYPE_TOP “™ */ , int WindowActivateFlag )
+extern int SetWindowZOrder( int ZType /* = DX_WIN_ZTYPE_TOP ç­‰ */ , int WindowActivateFlag )
 {
 	int Result ;
 	DXFUNC_BEGIN
@@ -2345,7 +2345,7 @@ extern int GetPrivateProfileIntDxForMemWithStrLen( const TCHAR *AppName, size_t 
 	return Result ;
 }
 
-// ƒhƒ‰ƒbƒO•ƒhƒƒbƒv‚³‚ê‚½ƒtƒ@ƒCƒ‹ŠÖŒW
+// ãƒ‰ãƒ©ãƒƒã‚°ï¼†ãƒ‰ãƒ­ãƒƒãƒ—ã•ã‚ŒãŸãƒ•ã‚¡ã‚¤ãƒ«é–¢ä¿‚
 extern int SetDragFileValidFlag( int Flag )
 {
 	int Result ;
@@ -2379,7 +2379,7 @@ extern int GetDragFileNum( void )
 	return Result ;
 }
 
-// ƒEƒCƒ“ƒhƒE•`‰æ—ÌˆæÝ’èŒnŠÖ”
+// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦æç”»é ˜åŸŸè¨­å®šç³»é–¢æ•°
 extern	HRGN		CreateRgnFromGraph( int Width, int Height, const void *MaskData, int Pitch, int Byte )
 {
 	HRGN Result ;
@@ -2421,7 +2421,7 @@ extern int UpdateTransColorWindowRgn( void )
 	return Result ;
 }
 
-// ƒc[ƒ‹ƒo[ŠÖŒW
+// ãƒ„ãƒ¼ãƒ«ãƒãƒ¼é–¢ä¿‚
 extern int SetupToolBar( const TCHAR *BitmapName, int DivNum, int ResourceID )
 {
 	int Result ;
@@ -2480,7 +2480,7 @@ extern int DeleteAllToolBarButton( void )
 }
 
 
-// ƒƒjƒ…[ŠÖŒW
+// ãƒ¡ãƒ‹ãƒ¥ãƒ¼é–¢ä¿‚
 extern int SetUseMenuFlag( int Flag )
 {
 	int Result ;
@@ -2547,7 +2547,7 @@ extern int ClearKeyAccel( void )
 	return Result ;
 }
 
-extern int AddMenuItem( int AddType/*MENUITEM_ADD_CHILD“™*/, const TCHAR *ItemName, int ItemID,
+extern int AddMenuItem( int AddType/*MENUITEM_ADD_CHILDç­‰*/, const TCHAR *ItemName, int ItemID,
 									int SeparatorFlag, const TCHAR *NewItemName , int NewItemID  )
 {
 	int Result ;
@@ -2948,7 +2948,7 @@ extern int SetAutoMenuDisplayFlag( int Flag )
 	return Result ;
 }
 
-// ƒ}ƒEƒXŠÖŒWŠÖ”
+// ãƒžã‚¦ã‚¹é–¢ä¿‚é–¢æ•°
 extern int SetMouseDispFlag( int DispFlag )
 {
 	int Result ;
@@ -3040,7 +3040,7 @@ extern int GetMouseInputLog2( int *Button, int *ClickX, int *ClickY, int *LogTyp
 }
 #endif // DX_NON_INPUT
 
-// ƒ^ƒbƒ`ƒpƒlƒ‹“ü—ÍŠÖŒWŠÖ”
+// ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«å…¥åŠ›é–¢ä¿‚é–¢æ•°
 #ifndef DX_NON_INPUT
 extern	int	GetTouchInputNum( void )
 {
@@ -3170,7 +3170,7 @@ extern	int	GetTouchInputUpLog( TOUCHINPUTPOINT *PointData, int GetNum, int PeekF
 
 #endif // DX_NON_INPUT
 
-// ƒEƒGƒCƒgŒnŠÖ”
+// ã‚¦ã‚¨ã‚¤ãƒˆç³»é–¢æ•°
 extern int WaitTimer( int WaitTime ) 
 {
 	int Result ;
@@ -3192,7 +3192,7 @@ extern int SleepThread( int WaitTime )
 	return Result ;
 }
 
-// ƒJƒEƒ“ƒ^‹y‚ÑŽžŽæ“¾ŒnŠÖ”
+// ã‚«ã‚¦ãƒ³ã‚¿åŠã³æ™‚åˆ»å–å¾—ç³»é–¢æ•°
 extern int GetNowCount( int UseRDTSCFlag  )
 {
 	int Result ;
@@ -3298,7 +3298,7 @@ extern int GetDateTime( DATEDATA *DateBuf )
 	return Result ;
 }
 
-// —”Žæ“¾
+// ä¹±æ•°å–å¾—
 extern int GetRand( int RandMax )
 {
 	int Result ;
@@ -3367,7 +3367,7 @@ extern DWORD GetMersenneTwisterRandHandle( DWORD_PTR RandHandle )
 
 #endif // DX_NON_MERSENNE_TWISTER
 
-// ƒoƒbƒeƒŠ[ŠÖ˜A
+// ãƒãƒƒãƒ†ãƒªãƒ¼é–¢é€£
 extern int GetBatteryLifePercent( void )
 {
 	int Result ;
@@ -3382,7 +3382,7 @@ extern int GetBatteryLifePercent( void )
 
 #ifndef DX_NON_NETWORK
 
-// ’ÊMŠÖŒW
+// é€šä¿¡é–¢ä¿‚
 extern int ProcessNetMessage( int RunReleaseProcess  )
 {
 	int Result ;
@@ -3877,7 +3877,7 @@ extern int URLParamAnalysis( char **ParamList, char **ParamStringP )
 
 #ifndef DX_NON_INPUTSTRING
 
-// •¶ŽšƒR[ƒhƒoƒbƒtƒ@‘€ìŠÖŒW
+// æ–‡å­—ã‚³ãƒ¼ãƒ‰ãƒãƒƒãƒ•ã‚¡æ“ä½œé–¢ä¿‚
 extern int StockInputChar( TCHAR CharCode )
 {
 	int Result ;
@@ -4201,7 +4201,7 @@ extern int SetKeyInputStringColor( ULONGLONG NmlStr, ULONGLONG NmlCur, ULONGLONG
 	return Result ;
 }
 
-extern int SetKeyInputStringColor2(	int TargetColor /* DX_KEYINPSTRCOLOR_NORMAL_STR “™ */, unsigned int Color )
+extern int SetKeyInputStringColor2(	int TargetColor /* DX_KEYINPSTRCOLOR_NORMAL_STR ç­‰ */, unsigned int Color )
 {
 	int Result ;
 	DXFUNC_BEGIN
@@ -4210,7 +4210,7 @@ extern int SetKeyInputStringColor2(	int TargetColor /* DX_KEYINPSTRCOLOR_NORMAL_
 	return Result ;
 }
 
-extern int ResetKeyInputStringColor2(	int TargetColor /* DX_KEYINPSTRCOLOR_NORMAL_STR “™ */ )
+extern int ResetKeyInputStringColor2(	int TargetColor /* DX_KEYINPSTRCOLOR_NORMAL_STR ç­‰ */ )
 {
 	int Result ;
 	DXFUNC_BEGIN
@@ -4228,7 +4228,7 @@ extern int SetKeyInputStringFont( int FontHandle )
 	return Result ;
 }
 
-extern int SetKeyInputStringEndCharaMode( int EndCharaMode /* DX_KEYINPSTR_ENDCHARAMODE_OVERWRITE “™ */ )
+extern int SetKeyInputStringEndCharaMode( int EndCharaMode /* DX_KEYINPSTR_ENDCHARAMODE_OVERWRITE ç­‰ */ )
 {
 	int Result ;
 	DXFUNC_BEGIN
@@ -4471,7 +4471,7 @@ extern int GetKeyInputCursorPosition( int InputHandle )
 
 
 
-// DxNetwork.cppŠÖ”ƒvƒƒgƒ^ƒCƒvéŒ¾
+// DxNetwork.cppé–¢æ•°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 
 #ifndef DX_NON_NETWORK
 
@@ -4503,11 +4503,11 @@ extern	int GetWinSockLastError( void )
 
 
 
-// DxInput.cppŠÖ”ƒvƒƒgƒ^ƒCƒvéŒ¾
+// DxInput.cppé–¢æ•°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 
 #ifndef DX_NON_INPUT
 
-// “ü—Íó‘ÔŽæ“¾ŠÖ”
+// å…¥åŠ›çŠ¶æ…‹å–å¾—é–¢æ•°
 extern int CheckHitKey( int KeyCode )
 {
 	int Result ;
@@ -4806,9 +4806,9 @@ extern	int ConvertVirtualKeyToKeyCode( int VirtualKey )
 
 
 
-// DxDraw.cppŠÖ”ƒvƒƒgƒ^ƒCƒvéŒ¾
+// DxDraw.cppé–¢æ•°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 
-// Ý’èŠÖŒWŠÖ”
+// è¨­å®šé–¢ä¿‚é–¢æ•°
 extern int SetNotUse3DFlag( int Flag )
 {
 	int Result ;
@@ -4858,7 +4858,7 @@ extern int GetDrawFloatCoordType( void )
 	return Result ;
 }
 
-// ‚c‚‰‚’‚…‚ƒ‚”‚c‚’‚‚—ŠÖŒWî•ñ’ñ‹ŸŠÖ”
+// ï¼¤ï½‰ï½’ï½…ï½ƒï½”ï¼¤ï½’ï½ï½—é–¢ä¿‚æƒ…å ±æä¾›é–¢æ•°
 extern int GetDrawScreenSize( int *XBuf, int *YBuf )
 {
 	int Result ;
@@ -4981,7 +4981,7 @@ extern int GetDisplayMaxResolution( int *SizeX, int *SizeY, int DisplayIndex )
 }
 
 
-// ƒpƒŒƒbƒg‘€ìŠÖŒWŠÖ”
+// ãƒ‘ãƒ¬ãƒƒãƒˆæ“ä½œé–¢ä¿‚é–¢æ•°
 extern int GetGraphPalette( int GrHandle, int ColorIndex, int *Red, int *Green, int *Blue )
 {
 	int Result ;
@@ -5015,7 +5015,7 @@ extern int ResetGraphPalette( int GrHandle )
 	return Result ;
 }
 
-// ŠÈˆÕƒOƒ‰ƒtƒBƒbƒNŠÖŒWŠÖ”
+// ç°¡æ˜“ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯é–¢ä¿‚é–¢æ•°
 #ifndef DX_COMPILE_TYPE_C_LANGUAGE
 extern unsigned int GetPixel( int x, int y )
 {
@@ -5051,7 +5051,7 @@ extern int Paint( int x, int y, unsigned int FillColor, ULONGLONG BoundaryColor 
 	return Result ;
 }
 
-// ƒEƒGƒCƒgŠÖŒWŠÖ”
+// ã‚¦ã‚¨ã‚¤ãƒˆé–¢ä¿‚é–¢æ•°
 extern int WaitVSync( int SyncNum )
 {
 	int Result ;
@@ -5061,7 +5061,7 @@ extern int WaitVSync( int SyncNum )
 	return Result ;
 }
 
-// ‰æ–Ê‘€ìŠÖŒWŠÖ”
+// ç”»é¢æ“ä½œé–¢ä¿‚é–¢æ•°
 extern int ScreenFlip( void )
 {
 	int Result ;
@@ -5169,7 +5169,7 @@ extern int SetChangeScreenModeGraphicsSystemResetFlag( int Flag )
 
 #ifndef DX_NON_SAVEFUNCTION
 
-// ‚a‚l‚o•Û‘¶ŠÖ”
+// ï¼¢ï¼­ï¼°ä¿å­˜é–¢æ•°
 extern int SaveDrawScreen( int x1, int y1, int x2, int y2, const TCHAR *FileName, int SaveType, int Jpeg_Quality, int Jpeg_Sample2x1, int Png_CompressionLevel )
 {
 	int Result ;
@@ -5352,10 +5352,10 @@ extern int SaveDrawValidGraphToPNGWithStrLen( int GrHandle, int x1, int y1, int 
 
 
 
-// Dx3D.cppŠÖ”ƒvƒƒgƒ^ƒCƒvéŒ¾
+// Dx3D.cppé–¢æ•°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 
 
-// “ÁŽê—p“rŠÖŒW
+// ç‰¹æ®Šç”¨é€”é–¢ä¿‚
 extern int RenderVertex( void )
 {
 	int Result ;
@@ -5384,7 +5384,7 @@ extern float GetFPS( void )
 }
 
 
-// Ý’èŠÖŒW
+// è¨­å®šé–¢ä¿‚
 extern int SetUseDivGraphFlag( int Flag )
 {
 	int Result ;
@@ -5418,7 +5418,7 @@ extern int SetUseOldDrawModiGraphCodeFlag( int Flag )
 	return Result ;
 }
 
-// ‚»‚Ì‘¼•â•ŠÖ”
+// ãã®ä»–è£œåŠ©é–¢æ•°
 extern const COLORDATA * GetTexColorData( int AlphaCh, int AlphaTest, int ColorBitDepth, int DrawValid  )
 {
 	const COLORDATA * Result ;
@@ -5469,9 +5469,9 @@ extern const COLORDATA * GetTexColorData3( int FormatIndex )
 
 
 
-// DxGraphicsŠÖ”ƒvƒƒgƒ^ƒCƒvéŒ¾
+// DxGraphicsé–¢æ•°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 
-// ƒOƒ‰ƒtƒBƒbƒN§ŒäŠÖŒWŠÖ”
+// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯åˆ¶å¾¡é–¢ä¿‚é–¢æ•°
 extern int MakeGraph( int SizeX, int SizeY, int NotUse3DFlag )
 {
 	int Result ;
@@ -5613,7 +5613,7 @@ extern int ReloadFileGraphAll( void )
 
 
 
-// ƒVƒƒƒhƒEƒ}ƒbƒvƒnƒ“ƒhƒ‹ŠÖŒWŠÖ”
+// ã‚·ãƒ£ãƒ‰ã‚¦ãƒžãƒƒãƒ—ãƒãƒ³ãƒ‰ãƒ«é–¢ä¿‚é–¢æ•°
 extern int MakeShadowMap( int SizeX, int SizeY )
 {
 	int Result ;
@@ -5728,7 +5728,7 @@ extern int TestDrawShadowMap( int SmHandle, int x1, int y1, int x2, int y2 )
 
 
 
-// ƒOƒ‰ƒtƒBƒbƒN•`‰æŠÖŒWŠÖ”
+// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯æç”»é–¢ä¿‚é–¢æ•°
 extern int ClearDrawScreen( const RECT *ClearRect )
 {
 	int Result ;
@@ -6196,7 +6196,7 @@ extern int DrawGraphToZBuffer( int X, int Y, int GrHandle, int WriteZMode )
 	DXFUNC_END
 	return Result ;
 }
-extern int DrawTurnGraphToZBuffer( int x, int y, int GrHandle, int WriteZMode /* DX_ZWRITE_MASK “™ */ )
+extern int DrawTurnGraphToZBuffer( int x, int y, int GrHandle, int WriteZMode /* DX_ZWRITE_MASK ç­‰ */ )
 {
 	int Result ;
 	DXFUNC_BEGIN
@@ -6204,7 +6204,7 @@ extern int DrawTurnGraphToZBuffer( int x, int y, int GrHandle, int WriteZMode /*
 	DXFUNC_END
 	return Result ;
 }
-extern int DrawReverseGraphToZBuffer( int x, int y, int GrHandle, int WriteZMode /* DX_ZWRITE_MASK “™ */, int ReverseXFlag, int ReverseYFlag )
+extern int DrawReverseGraphToZBuffer( int x, int y, int GrHandle, int WriteZMode /* DX_ZWRITE_MASK ç­‰ */, int ReverseXFlag, int ReverseYFlag )
 {
 	int Result ;
 	DXFUNC_BEGIN
@@ -6212,7 +6212,7 @@ extern int DrawReverseGraphToZBuffer( int x, int y, int GrHandle, int WriteZMode
 	DXFUNC_END
 	return Result ;
 }
-extern int DrawExtendGraphToZBuffer( int x1, int y1, int x2, int y2, int GrHandle, int WriteZMode /* DX_ZWRITE_MASK “™ */ )
+extern int DrawExtendGraphToZBuffer( int x1, int y1, int x2, int y2, int GrHandle, int WriteZMode /* DX_ZWRITE_MASK ç­‰ */ )
 {
 	int Result ;
 	DXFUNC_BEGIN
@@ -6220,7 +6220,7 @@ extern int DrawExtendGraphToZBuffer( int x1, int y1, int x2, int y2, int GrHandl
 	DXFUNC_END
 	return Result ;
 }
-extern int DrawRotaGraphToZBuffer( int x, int y, double ExRate, double Angle, int GrHandle, int WriteZMode /* DX_ZWRITE_MASK “™ */, int ReverseXFlag, int ReverseYFlag  )
+extern int DrawRotaGraphToZBuffer( int x, int y, double ExRate, double Angle, int GrHandle, int WriteZMode /* DX_ZWRITE_MASK ç­‰ */, int ReverseXFlag, int ReverseYFlag  )
 {
 	int Result ;
 	DXFUNC_BEGIN
@@ -6228,23 +6228,23 @@ extern int DrawRotaGraphToZBuffer( int x, int y, double ExRate, double Angle, in
 	DXFUNC_END
 	return Result ;
 }
-extern int DrawRotaGraph2ToZBuffer(  int x, int y, int cx, int cy, double ExtRate,                   double Angle, int GrHandle, int WriteZMode /* DX_ZWRITE_MASK “™ */ , int ReverseXFlag, int ReverseYFlag )
+extern int DrawRotaGraph2ToZBuffer(  int x, int y, int cx, int cy, double ExtRate,                   double Angle, int GrHandle, int WriteZMode /* DX_ZWRITE_MASK ç­‰ */ , int ReverseXFlag, int ReverseYFlag )
 {
 	int Result ;
 	DXFUNC_BEGIN
-	Result = NS_DrawRotaGraph2ToZBuffer(   x,  y,  cx,  cy,  ExtRate,                    Angle,  GrHandle,  WriteZMode /* DX_ZWRITE_MASK “™ */ ,  ReverseXFlag, ReverseYFlag );
+	Result = NS_DrawRotaGraph2ToZBuffer(   x,  y,  cx,  cy,  ExtRate,                    Angle,  GrHandle,  WriteZMode /* DX_ZWRITE_MASK ç­‰ */ ,  ReverseXFlag, ReverseYFlag );
 	DXFUNC_END
 	return Result ;
 }
-extern int DrawRotaGraph3ToZBuffer(  int x, int y, int cx, int cy, double ExtRateX, double ExtRateY, double Angle, int GrHandle, int WriteZMode /* DX_ZWRITE_MASK “™ */ , int ReverseXFlag, int ReverseYFlag )
+extern int DrawRotaGraph3ToZBuffer(  int x, int y, int cx, int cy, double ExtRateX, double ExtRateY, double Angle, int GrHandle, int WriteZMode /* DX_ZWRITE_MASK ç­‰ */ , int ReverseXFlag, int ReverseYFlag )
 {
 	int Result ;
 	DXFUNC_BEGIN
-	Result = NS_DrawRotaGraph3ToZBuffer(   x,  y,  cx,  cy,  ExtRateX,  ExtRateY,  Angle,  GrHandle,  WriteZMode /* DX_ZWRITE_MASK “™ */ ,  ReverseXFlag, ReverseYFlag );
+	Result = NS_DrawRotaGraph3ToZBuffer(   x,  y,  cx,  cy,  ExtRateX,  ExtRateY,  Angle,  GrHandle,  WriteZMode /* DX_ZWRITE_MASK ç­‰ */ ,  ReverseXFlag, ReverseYFlag );
 	DXFUNC_END
 	return Result ;
 }
-extern int DrawRotaGraphFastToZBuffer( int x, int y, float ExRate, float Angle, int GrHandle, int WriteZMode /* DX_ZWRITE_MASK “™ */, int ReverseXFlag, int ReverseYFlag  )
+extern int DrawRotaGraphFastToZBuffer( int x, int y, float ExRate, float Angle, int GrHandle, int WriteZMode /* DX_ZWRITE_MASK ç­‰ */, int ReverseXFlag, int ReverseYFlag  )
 {
 	int Result ;
 	DXFUNC_BEGIN
@@ -6252,23 +6252,23 @@ extern int DrawRotaGraphFastToZBuffer( int x, int y, float ExRate, float Angle, 
 	DXFUNC_END
 	return Result ;
 }
-extern int DrawRotaGraphFast2ToZBuffer(  int x, int y, int cx, int cy, float ExtRate,                   float Angle, int GrHandle, int WriteZMode /* DX_ZWRITE_MASK “™ */ , int ReverseXFlag, int ReverseYFlag )
+extern int DrawRotaGraphFast2ToZBuffer(  int x, int y, int cx, int cy, float ExtRate,                   float Angle, int GrHandle, int WriteZMode /* DX_ZWRITE_MASK ç­‰ */ , int ReverseXFlag, int ReverseYFlag )
 {
 	int Result ;
 	DXFUNC_BEGIN
-	Result = NS_DrawRotaGraphFast2ToZBuffer(   x,  y,  cx,  cy,  ExtRate,                    Angle,  GrHandle,  WriteZMode /* DX_ZWRITE_MASK “™ */ ,  ReverseXFlag, ReverseYFlag );
+	Result = NS_DrawRotaGraphFast2ToZBuffer(   x,  y,  cx,  cy,  ExtRate,                    Angle,  GrHandle,  WriteZMode /* DX_ZWRITE_MASK ç­‰ */ ,  ReverseXFlag, ReverseYFlag );
 	DXFUNC_END
 	return Result ;
 }
-extern int DrawRotaGraphFast3ToZBuffer(  int x, int y, int cx, int cy, float ExtRateX, float ExtRateY, float Angle, int GrHandle, int WriteZMode /* DX_ZWRITE_MASK “™ */ , int ReverseXFlag, int ReverseYFlag )
+extern int DrawRotaGraphFast3ToZBuffer(  int x, int y, int cx, int cy, float ExtRateX, float ExtRateY, float Angle, int GrHandle, int WriteZMode /* DX_ZWRITE_MASK ç­‰ */ , int ReverseXFlag, int ReverseYFlag )
 {
 	int Result ;
 	DXFUNC_BEGIN
-	Result = NS_DrawRotaGraphFast3ToZBuffer(   x,  y,  cx,  cy,  ExtRateX,  ExtRateY,  Angle,  GrHandle,  WriteZMode /* DX_ZWRITE_MASK “™ */ ,  ReverseXFlag, ReverseYFlag );
+	Result = NS_DrawRotaGraphFast3ToZBuffer(   x,  y,  cx,  cy,  ExtRateX,  ExtRateY,  Angle,  GrHandle,  WriteZMode /* DX_ZWRITE_MASK ç­‰ */ ,  ReverseXFlag, ReverseYFlag );
 	DXFUNC_END
 	return Result ;
 }
-extern int DrawModiGraphToZBuffer( int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4, int GrHandle, int WriteZMode /* DX_ZWRITE_MASK “™ */ )
+extern int DrawModiGraphToZBuffer( int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4, int GrHandle, int WriteZMode /* DX_ZWRITE_MASK ç­‰ */ )
 {
 	int Result ;
 	DXFUNC_BEGIN
@@ -6276,7 +6276,7 @@ extern int DrawModiGraphToZBuffer( int x1, int y1, int x2, int y2, int x3, int y
 	DXFUNC_END
 	return Result ;
 }
-extern int DrawBoxToZBuffer( int x1, int y1, int x2, int y2, int FillFlag, int WriteZMode /* DX_ZWRITE_MASK “™ */ )
+extern int DrawBoxToZBuffer( int x1, int y1, int x2, int y2, int FillFlag, int WriteZMode /* DX_ZWRITE_MASK ç­‰ */ )
 {
 	int Result ;
 	DXFUNC_BEGIN
@@ -6284,7 +6284,7 @@ extern int DrawBoxToZBuffer( int x1, int y1, int x2, int y2, int FillFlag, int W
 	DXFUNC_END
 	return Result ;
 }
-extern int DrawCircleToZBuffer( int x, int y, int r, int FillFlag, int WriteZMode /* DX_ZWRITE_MASK “™ */ )
+extern int DrawCircleToZBuffer( int x, int y, int r, int FillFlag, int WriteZMode /* DX_ZWRITE_MASK ç­‰ */ )
 {
 	int Result ;
 	DXFUNC_BEGIN
@@ -6293,7 +6293,7 @@ extern int DrawCircleToZBuffer( int x, int y, int r, int FillFlag, int WriteZMod
 	return Result ;
 }
 
-extern int DrawTriangleToZBuffer(    int x1, int y1, int x2, int y2, int x3, int y3, int FillFlag, int WriteZMode /* DX_ZWRITE_MASK “™ */ )
+extern int DrawTriangleToZBuffer(    int x1, int y1, int x2, int y2, int x3, int y3, int FillFlag, int WriteZMode /* DX_ZWRITE_MASK ç­‰ */ )
 {
 	int Result ;
 	DXFUNC_BEGIN
@@ -6302,7 +6302,7 @@ extern int DrawTriangleToZBuffer(    int x1, int y1, int x2, int y2, int x3, int
 	return Result ;
 }
 
-extern int DrawQuadrangleToZBuffer(  int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4, int FillFlag, int WriteZMode /* DX_ZWRITE_MASK “™ */ )
+extern int DrawQuadrangleToZBuffer(  int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4, int FillFlag, int WriteZMode /* DX_ZWRITE_MASK ç­‰ */ )
 {
 	int Result ;
 	DXFUNC_BEGIN
@@ -6311,7 +6311,7 @@ extern int DrawQuadrangleToZBuffer(  int x1, int y1, int x2, int y2, int x3, int
 	return Result ;
 }
 
-extern int DrawRoundRectToZBuffer(   int x1, int y1, int x2, int y2, int rx, int ry, int FillFlag, int WriteZMode /* DX_ZWRITE_MASK “™ */ )
+extern int DrawRoundRectToZBuffer(   int x1, int y1, int x2, int y2, int rx, int ry, int FillFlag, int WriteZMode /* DX_ZWRITE_MASK ç­‰ */ )
 {
 	int Result ;
 	DXFUNC_BEGIN
@@ -6379,7 +6379,7 @@ extern int DrawPolygon32bitIndexed3D( const VERTEX3D *Vertex, int VertexNum, con
 	DXFUNC_END
 	return Result ;
 }
-extern int DrawPolygonIndexed3DBase( const VERTEX_3D *Vertex, int VertexNum, const unsigned short *Indices, int IndexNum, int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST “™ */, int GrHandle, int TransFlag )
+extern int DrawPolygonIndexed3DBase( const VERTEX_3D *Vertex, int VertexNum, const unsigned short *Indices, int IndexNum, int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST ç­‰ */, int GrHandle, int TransFlag )
 {
 	int Result ;
 	DXFUNC_BEGIN
@@ -6387,7 +6387,7 @@ extern int DrawPolygonIndexed3DBase( const VERTEX_3D *Vertex, int VertexNum, con
 	DXFUNC_END
 	return Result ;
 }
-extern int DrawPolygon32bitIndexed3DBase( const VERTEX_3D *Vertex, int VertexNum, const unsigned int *Indices, int IndexNum, int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST “™ */, int GrHandle, int TransFlag )
+extern int DrawPolygon32bitIndexed3DBase( const VERTEX_3D *Vertex, int VertexNum, const unsigned int *Indices, int IndexNum, int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST ç­‰ */, int GrHandle, int TransFlag )
 {
 	int Result ;
 	DXFUNC_BEGIN
@@ -6485,7 +6485,7 @@ extern int DrawPolygon3D_UseVertexBuffer( int VertexBufHandle, int GrHandle, int
 	DXFUNC_END
 	return Result ;
 }
-extern int DrawPrimitive3D_UseVertexBuffer( int VertexBufHandle, int PrimitiveType  /* DX_PRIMTYPE_TRIANGLELIST “™ */, int GrHandle, int TransFlag )
+extern int DrawPrimitive3D_UseVertexBuffer( int VertexBufHandle, int PrimitiveType  /* DX_PRIMTYPE_TRIANGLELIST ç­‰ */, int GrHandle, int TransFlag )
 {
 	int Result ;
 	DXFUNC_BEGIN
@@ -6493,7 +6493,7 @@ extern int DrawPrimitive3D_UseVertexBuffer( int VertexBufHandle, int PrimitiveTy
 	DXFUNC_END
 	return Result ;
 }
-extern int DrawPrimitive3D_UseVertexBuffer2( int VertexBufHandle, int PrimitiveType  /* DX_PRIMTYPE_TRIANGLELIST “™ */, int StartVertex, int UseVertexNum, int GrHandle, int TransFlag )
+extern int DrawPrimitive3D_UseVertexBuffer2( int VertexBufHandle, int PrimitiveType  /* DX_PRIMTYPE_TRIANGLELIST ç­‰ */, int StartVertex, int UseVertexNum, int GrHandle, int TransFlag )
 {
 	int Result ;
 	DXFUNC_BEGIN
@@ -6509,7 +6509,7 @@ extern int DrawPolygonIndexed3D_UseVertexBuffer( int VertexBufHandle, int IndexB
 	DXFUNC_END
 	return Result ;
 }
-extern int DrawPrimitiveIndexed3D_UseVertexBuffer( int VertexBufHandle, int IndexBufHandle, int PrimitiveType  /* DX_PRIMTYPE_TRIANGLELIST “™ */, int GrHandle, int TransFlag )
+extern int DrawPrimitiveIndexed3D_UseVertexBuffer( int VertexBufHandle, int IndexBufHandle, int PrimitiveType  /* DX_PRIMTYPE_TRIANGLELIST ç­‰ */, int GrHandle, int TransFlag )
 {
 	int Result ;
 	DXFUNC_BEGIN
@@ -6517,7 +6517,7 @@ extern int DrawPrimitiveIndexed3D_UseVertexBuffer( int VertexBufHandle, int Inde
 	DXFUNC_END
 	return Result ;
 }
-extern int DrawPrimitiveIndexed3D_UseVertexBuffer2( int VertexBufHandle, int IndexBufHandle, int PrimitiveType  /* DX_PRIMTYPE_TRIANGLELIST “™ */, int BaseVertex, int StartVertex, int UseVertexNum, int StartIndex, int UseIndexNum, int GrHandle, int TransFlag )
+extern int DrawPrimitiveIndexed3D_UseVertexBuffer2( int VertexBufHandle, int IndexBufHandle, int PrimitiveType  /* DX_PRIMTYPE_TRIANGLELIST ç­‰ */, int BaseVertex, int StartVertex, int UseVertexNum, int StartIndex, int UseIndexNum, int GrHandle, int TransFlag )
 {
 	int Result ;
 	DXFUNC_BEGIN
@@ -7459,7 +7459,7 @@ extern int DrawNumberPlusToF( int x, int y, const TCHAR *NoteString, double Num,
 }
 
 
-extern int DrawStringToZBuffer( int x, int y, const TCHAR *String, int WriteZMode /* DX_ZWRITE_MASK “™ */ )
+extern int DrawStringToZBuffer( int x, int y, const TCHAR *String, int WriteZMode /* DX_ZWRITE_MASK ç­‰ */ )
 {
 	int Result ;
 	DXFUNC_BEGIN
@@ -7467,7 +7467,7 @@ extern int DrawStringToZBuffer( int x, int y, const TCHAR *String, int WriteZMod
 	DXFUNC_END
 	return Result ;
 }
-extern int DrawNStringToZBuffer( int x, int y, const TCHAR *String, size_t StringLength, int WriteZMode /* DX_ZWRITE_MASK “™ */ )
+extern int DrawNStringToZBuffer( int x, int y, const TCHAR *String, size_t StringLength, int WriteZMode /* DX_ZWRITE_MASK ç­‰ */ )
 {
 	int Result ;
 	DXFUNC_BEGIN
@@ -7475,7 +7475,7 @@ extern int DrawNStringToZBuffer( int x, int y, const TCHAR *String, size_t Strin
 	DXFUNC_END
 	return Result ;
 }
-extern int DrawVStringToZBuffer( int x, int y, const TCHAR *String, int WriteZMode /* DX_ZWRITE_MASK “™ */ )
+extern int DrawVStringToZBuffer( int x, int y, const TCHAR *String, int WriteZMode /* DX_ZWRITE_MASK ç­‰ */ )
 {
 	int Result ;
 	DXFUNC_BEGIN
@@ -7483,7 +7483,7 @@ extern int DrawVStringToZBuffer( int x, int y, const TCHAR *String, int WriteZMo
 	DXFUNC_END
 	return Result ;
 }
-extern int DrawNVStringToZBuffer( int x, int y, const TCHAR *String, size_t StringLength, int WriteZMode /* DX_ZWRITE_MASK “™ */ )
+extern int DrawNVStringToZBuffer( int x, int y, const TCHAR *String, size_t StringLength, int WriteZMode /* DX_ZWRITE_MASK ç­‰ */ )
 {
 	int Result ;
 	DXFUNC_BEGIN
@@ -7491,7 +7491,7 @@ extern int DrawNVStringToZBuffer( int x, int y, const TCHAR *String, size_t Stri
 	DXFUNC_END
 	return Result ;
 }
-extern int DrawFormatStringToZBuffer( int x, int y, int WriteZMode /* DX_ZWRITE_MASK “™ */, const TCHAR *FormatString, ... )
+extern int DrawFormatStringToZBuffer( int x, int y, int WriteZMode /* DX_ZWRITE_MASK ç­‰ */, const TCHAR *FormatString, ... )
 {
 	int Result ;
 	va_list VaList ;
@@ -7506,7 +7506,7 @@ extern int DrawFormatStringToZBuffer( int x, int y, int WriteZMode /* DX_ZWRITE_
 	DXFUNC_END
 	return Result ;
 }
-extern int DrawFormatVStringToZBuffer( int x, int y, int WriteZMode /* DX_ZWRITE_MASK “™ */, const TCHAR *FormatString, ... )
+extern int DrawFormatVStringToZBuffer( int x, int y, int WriteZMode /* DX_ZWRITE_MASK ç­‰ */, const TCHAR *FormatString, ... )
 {
 	int Result ;
 	va_list VaList ;
@@ -7521,7 +7521,7 @@ extern int DrawFormatVStringToZBuffer( int x, int y, int WriteZMode /* DX_ZWRITE
 	DXFUNC_END
 	return Result ;
 }
-extern int DrawExtendStringToZBuffer( int x, int y, double ExRateX, double ExRateY, const TCHAR *String, int WriteZMode /* DX_ZWRITE_MASK “™ */ )
+extern int DrawExtendStringToZBuffer( int x, int y, double ExRateX, double ExRateY, const TCHAR *String, int WriteZMode /* DX_ZWRITE_MASK ç­‰ */ )
 {
 	int Result ;
 	DXFUNC_BEGIN
@@ -7529,7 +7529,7 @@ extern int DrawExtendStringToZBuffer( int x, int y, double ExRateX, double ExRat
 	DXFUNC_END
 	return Result ;
 }
-extern int DrawExtendNStringToZBuffer( int x, int y, double ExRateX, double ExRateY, const TCHAR *String, size_t StringLength, int WriteZMode /* DX_ZWRITE_MASK “™ */ )
+extern int DrawExtendNStringToZBuffer( int x, int y, double ExRateX, double ExRateY, const TCHAR *String, size_t StringLength, int WriteZMode /* DX_ZWRITE_MASK ç­‰ */ )
 {
 	int Result ;
 	DXFUNC_BEGIN
@@ -7537,7 +7537,7 @@ extern int DrawExtendNStringToZBuffer( int x, int y, double ExRateX, double ExRa
 	DXFUNC_END
 	return Result ;
 }
-extern int DrawExtendVStringToZBuffer( int x, int y, double ExRateX, double ExRateY, const TCHAR *String, int WriteZMode /* DX_ZWRITE_MASK “™ */ )
+extern int DrawExtendVStringToZBuffer( int x, int y, double ExRateX, double ExRateY, const TCHAR *String, int WriteZMode /* DX_ZWRITE_MASK ç­‰ */ )
 {
 	int Result ;
 	DXFUNC_BEGIN
@@ -7545,7 +7545,7 @@ extern int DrawExtendVStringToZBuffer( int x, int y, double ExRateX, double ExRa
 	DXFUNC_END
 	return Result ;
 }
-extern int DrawExtendNVStringToZBuffer( int x, int y, double ExRateX, double ExRateY, const TCHAR *String, size_t StringLength, int WriteZMode /* DX_ZWRITE_MASK “™ */ )
+extern int DrawExtendNVStringToZBuffer( int x, int y, double ExRateX, double ExRateY, const TCHAR *String, size_t StringLength, int WriteZMode /* DX_ZWRITE_MASK ç­‰ */ )
 {
 	int Result ;
 	DXFUNC_BEGIN
@@ -7553,7 +7553,7 @@ extern int DrawExtendNVStringToZBuffer( int x, int y, double ExRateX, double ExR
 	DXFUNC_END
 	return Result ;
 }
-extern int DrawExtendFormatStringToZBuffer( int x, int y, double ExRateX, double ExRateY, int WriteZMode /* DX_ZWRITE_MASK “™ */, const TCHAR *FormatString, ... )
+extern int DrawExtendFormatStringToZBuffer( int x, int y, double ExRateX, double ExRateY, int WriteZMode /* DX_ZWRITE_MASK ç­‰ */, const TCHAR *FormatString, ... )
 {
 	int Result ;
 	va_list VaList ;
@@ -7568,7 +7568,7 @@ extern int DrawExtendFormatStringToZBuffer( int x, int y, double ExRateX, double
 	DXFUNC_END
 	return Result ;
 }
-extern int DrawExtendFormatVStringToZBuffer( int x, int y, double ExRateX, double ExRateY, int WriteZMode /* DX_ZWRITE_MASK “™ */, const TCHAR *FormatString, ... )
+extern int DrawExtendFormatVStringToZBuffer( int x, int y, double ExRateX, double ExRateY, int WriteZMode /* DX_ZWRITE_MASK ç­‰ */, const TCHAR *FormatString, ... )
 {
 	int Result ;
 	va_list VaList ;
@@ -7583,23 +7583,23 @@ extern int DrawExtendFormatVStringToZBuffer( int x, int y, double ExRateX, doubl
 	DXFUNC_END
 	return Result ;
 }
-extern int DrawRotaStringToZBuffer( int x, int y, double ExRateX, double ExRateY, double RotCenterX, double RotCenterY, double RotAngle, int WriteZMode /* DX_ZWRITE_MASK “™ */ , int VerticalFlag , const TCHAR *String )
+extern int DrawRotaStringToZBuffer( int x, int y, double ExRateX, double ExRateY, double RotCenterX, double RotCenterY, double RotAngle, int WriteZMode /* DX_ZWRITE_MASK ç­‰ */ , int VerticalFlag , const TCHAR *String )
 {
 	int Result ;
 	DXFUNC_BEGIN
-	Result = NS_DrawRotaStringToZBuffer(  x,  y,  ExRateX,  ExRateY, RotCenterX, RotCenterY, RotAngle,  WriteZMode /* DX_ZWRITE_MASK “™ */ ,  VerticalFlag , String ) ;
+	Result = NS_DrawRotaStringToZBuffer(  x,  y,  ExRateX,  ExRateY, RotCenterX, RotCenterY, RotAngle,  WriteZMode /* DX_ZWRITE_MASK ç­‰ */ ,  VerticalFlag , String ) ;
 	DXFUNC_END
 	return Result ;
 }
-extern int DrawRotaNStringToZBuffer( int x, int y, double ExRateX, double ExRateY, double RotCenterX, double RotCenterY, double RotAngle, int WriteZMode /* DX_ZWRITE_MASK “™ */ , int VerticalFlag , const TCHAR *String, size_t StringLength )
+extern int DrawRotaNStringToZBuffer( int x, int y, double ExRateX, double ExRateY, double RotCenterX, double RotCenterY, double RotAngle, int WriteZMode /* DX_ZWRITE_MASK ç­‰ */ , int VerticalFlag , const TCHAR *String, size_t StringLength )
 {
 	int Result ;
 	DXFUNC_BEGIN
-	Result = NS_DrawRotaNStringToZBuffer(  x,  y,  ExRateX,  ExRateY, RotCenterX, RotCenterY, RotAngle,  WriteZMode /* DX_ZWRITE_MASK “™ */ ,  VerticalFlag , String, StringLength ) ;
+	Result = NS_DrawRotaNStringToZBuffer(  x,  y,  ExRateX,  ExRateY, RotCenterX, RotCenterY, RotAngle,  WriteZMode /* DX_ZWRITE_MASK ç­‰ */ ,  VerticalFlag , String, StringLength ) ;
 	DXFUNC_END
 	return Result ;
 }
-extern int DrawRotaFormatStringToZBuffer( int x, int y, double ExRateX, double ExRateY, double RotCenterX, double RotCenterY, double RotAngle, int WriteZMode /* DX_ZWRITE_MASK “™ */ , int VerticalFlag , const TCHAR *FormatString , ... )
+extern int DrawRotaFormatStringToZBuffer( int x, int y, double ExRateX, double ExRateY, double RotCenterX, double RotCenterY, double RotAngle, int WriteZMode /* DX_ZWRITE_MASK ç­‰ */ , int VerticalFlag , const TCHAR *FormatString , ... )
 {
 	int Result ;
 	va_list VaList ;
@@ -7610,7 +7610,7 @@ extern int DrawRotaFormatStringToZBuffer( int x, int y, double ExRateX, double E
 	va_end( VaList ) ;
 	
 	DXFUNC_BEGIN
-	Result = NS_DrawRotaStringToZBuffer(  x,  y,  ExRateX,  ExRateY, RotCenterX, RotCenterY, RotAngle,  WriteZMode /* DX_ZWRITE_MASK “™ */ ,  VerticalFlag , String ) ;
+	Result = NS_DrawRotaStringToZBuffer(  x,  y,  ExRateX,  ExRateY, RotCenterX, RotCenterY, RotAngle,  WriteZMode /* DX_ZWRITE_MASK ç­‰ */ ,  VerticalFlag , String ) ;
 	DXFUNC_END
 	return Result ;
 }
@@ -7641,7 +7641,7 @@ extern int DrawModiFormatStringToZBuffer( int x1, int y1, int x2, int y2, int x3
 	va_end( VaList ) ;
 	
 	DXFUNC_BEGIN
-	Result = NS_DrawModiStringToZBuffer( x1, y1, x2, y2, x3, y3, x4, y4,  WriteZMode /* DX_ZWRITE_MASK “™ */ ,  VerticalFlag , String ) ;
+	Result = NS_DrawModiStringToZBuffer( x1, y1, x2, y2, x3, y3, x4, y4,  WriteZMode /* DX_ZWRITE_MASK ç­‰ */ ,  VerticalFlag , String ) ;
 	DXFUNC_END
 	return Result ;
 }
@@ -8167,7 +8167,7 @@ extern int DrawNumberPlusToFToHandle( int x, int y, const TCHAR *NoteString, dou
 
 
 
-extern int DrawStringToHandleToZBuffer( int x, int y, const TCHAR *String, int FontHandle, int WriteZMode /* DX_ZWRITE_MASK “™ */ , int VerticalFlag )
+extern int DrawStringToHandleToZBuffer( int x, int y, const TCHAR *String, int FontHandle, int WriteZMode /* DX_ZWRITE_MASK ç­‰ */ , int VerticalFlag )
 {
 	int Result ;
 	DXFUNC_BEGIN
@@ -8175,7 +8175,7 @@ extern int DrawStringToHandleToZBuffer( int x, int y, const TCHAR *String, int F
 	DXFUNC_END
 	return Result ;
 }
-extern int DrawNStringToHandleToZBuffer( int x, int y, const TCHAR *String, size_t StringLength, int FontHandle, int WriteZMode /* DX_ZWRITE_MASK “™ */ , int VerticalFlag )
+extern int DrawNStringToHandleToZBuffer( int x, int y, const TCHAR *String, size_t StringLength, int FontHandle, int WriteZMode /* DX_ZWRITE_MASK ç­‰ */ , int VerticalFlag )
 {
 	int Result ;
 	DXFUNC_BEGIN
@@ -8183,7 +8183,7 @@ extern int DrawNStringToHandleToZBuffer( int x, int y, const TCHAR *String, size
 	DXFUNC_END
 	return Result ;
 }
-extern int DrawVStringToHandleToZBuffer( int x, int y, const TCHAR *String, int FontHandle, int WriteZMode /* DX_ZWRITE_MASK “™ */ )
+extern int DrawVStringToHandleToZBuffer( int x, int y, const TCHAR *String, int FontHandle, int WriteZMode /* DX_ZWRITE_MASK ç­‰ */ )
 {
 	int Result ;
 	DXFUNC_BEGIN
@@ -8191,7 +8191,7 @@ extern int DrawVStringToHandleToZBuffer( int x, int y, const TCHAR *String, int 
 	DXFUNC_END
 	return Result ;
 }
-extern int DrawNVStringToHandleToZBuffer( int x, int y, const TCHAR *String, size_t StringLength, int FontHandle, int WriteZMode /* DX_ZWRITE_MASK “™ */ )
+extern int DrawNVStringToHandleToZBuffer( int x, int y, const TCHAR *String, size_t StringLength, int FontHandle, int WriteZMode /* DX_ZWRITE_MASK ç­‰ */ )
 {
 	int Result ;
 	DXFUNC_BEGIN
@@ -8199,7 +8199,7 @@ extern int DrawNVStringToHandleToZBuffer( int x, int y, const TCHAR *String, siz
 	DXFUNC_END
 	return Result ;
 }
-extern int DrawFormatStringToHandleToZBuffer( int x, int y, int FontHandle, int WriteZMode /* DX_ZWRITE_MASK “™ */, const TCHAR *FormatString, ... )
+extern int DrawFormatStringToHandleToZBuffer( int x, int y, int FontHandle, int WriteZMode /* DX_ZWRITE_MASK ç­‰ */, const TCHAR *FormatString, ... )
 {
 	int Result ;
 	va_list VaList ;
@@ -8214,7 +8214,7 @@ extern int DrawFormatStringToHandleToZBuffer( int x, int y, int FontHandle, int 
 	DXFUNC_END
 	return Result ;
 }
-extern int DrawFormatVStringToHandleToZBuffer( int x, int y, int FontHandle, int WriteZMode /* DX_ZWRITE_MASK “™ */, const TCHAR *FormatString, ... )
+extern int DrawFormatVStringToHandleToZBuffer( int x, int y, int FontHandle, int WriteZMode /* DX_ZWRITE_MASK ç­‰ */, const TCHAR *FormatString, ... )
 {
 	int Result ;
 	va_list VaList ;
@@ -8229,7 +8229,7 @@ extern int DrawFormatVStringToHandleToZBuffer( int x, int y, int FontHandle, int
 	DXFUNC_END
 	return Result ;
 }
-extern int DrawExtendStringToHandleToZBuffer( int x, int y, double ExRateX, double ExRateY, const TCHAR *String, int FontHandle, int WriteZMode /* DX_ZWRITE_MASK “™ */ , int VerticalFlag )
+extern int DrawExtendStringToHandleToZBuffer( int x, int y, double ExRateX, double ExRateY, const TCHAR *String, int FontHandle, int WriteZMode /* DX_ZWRITE_MASK ç­‰ */ , int VerticalFlag )
 {
 	int Result ;
 	DXFUNC_BEGIN
@@ -8237,7 +8237,7 @@ extern int DrawExtendStringToHandleToZBuffer( int x, int y, double ExRateX, doub
 	DXFUNC_END
 	return Result ;
 }
-extern int DrawExtendNStringToHandleToZBuffer( int x, int y, double ExRateX, double ExRateY, const TCHAR *String, size_t StringLength, int FontHandle, int WriteZMode /* DX_ZWRITE_MASK “™ */ , int VerticalFlag )
+extern int DrawExtendNStringToHandleToZBuffer( int x, int y, double ExRateX, double ExRateY, const TCHAR *String, size_t StringLength, int FontHandle, int WriteZMode /* DX_ZWRITE_MASK ç­‰ */ , int VerticalFlag )
 {
 	int Result ;
 	DXFUNC_BEGIN
@@ -8245,7 +8245,7 @@ extern int DrawExtendNStringToHandleToZBuffer( int x, int y, double ExRateX, dou
 	DXFUNC_END
 	return Result ;
 }
-extern int DrawExtendVStringToHandleToZBuffer( int x, int y, double ExRateX, double ExRateY, const TCHAR *String, int FontHandle, int WriteZMode /* DX_ZWRITE_MASK “™ */ )
+extern int DrawExtendVStringToHandleToZBuffer( int x, int y, double ExRateX, double ExRateY, const TCHAR *String, int FontHandle, int WriteZMode /* DX_ZWRITE_MASK ç­‰ */ )
 {
 	int Result ;
 	DXFUNC_BEGIN
@@ -8253,7 +8253,7 @@ extern int DrawExtendVStringToHandleToZBuffer( int x, int y, double ExRateX, dou
 	DXFUNC_END
 	return Result ;
 }
-extern int DrawExtendNVStringToHandleToZBuffer( int x, int y, double ExRateX, double ExRateY, const TCHAR *String, size_t StringLength, int FontHandle, int WriteZMode /* DX_ZWRITE_MASK “™ */ )
+extern int DrawExtendNVStringToHandleToZBuffer( int x, int y, double ExRateX, double ExRateY, const TCHAR *String, size_t StringLength, int FontHandle, int WriteZMode /* DX_ZWRITE_MASK ç­‰ */ )
 {
 	int Result ;
 	DXFUNC_BEGIN
@@ -8261,7 +8261,7 @@ extern int DrawExtendNVStringToHandleToZBuffer( int x, int y, double ExRateX, do
 	DXFUNC_END
 	return Result ;
 }
-extern int DrawExtendFormatStringToHandleToZBuffer( int x, int y, double ExRateX, double ExRateY, int FontHandle, int WriteZMode /* DX_ZWRITE_MASK “™ */, const TCHAR *FormatString, ... )
+extern int DrawExtendFormatStringToHandleToZBuffer( int x, int y, double ExRateX, double ExRateY, int FontHandle, int WriteZMode /* DX_ZWRITE_MASK ç­‰ */, const TCHAR *FormatString, ... )
 {
 	int Result ;
 	va_list VaList ;
@@ -8276,7 +8276,7 @@ extern int DrawExtendFormatStringToHandleToZBuffer( int x, int y, double ExRateX
 	DXFUNC_END
 	return Result ;
 }
-extern int DrawExtendFormatVStringToHandleToZBuffer( int x, int y, double ExRateX, double ExRateY, int FontHandle, int WriteZMode /* DX_ZWRITE_MASK “™ */, const TCHAR *FormatString, ... )
+extern int DrawExtendFormatVStringToHandleToZBuffer( int x, int y, double ExRateX, double ExRateY, int FontHandle, int WriteZMode /* DX_ZWRITE_MASK ç­‰ */, const TCHAR *FormatString, ... )
 {
 	int Result ;
 	va_list VaList ;
@@ -8291,23 +8291,23 @@ extern int DrawExtendFormatVStringToHandleToZBuffer( int x, int y, double ExRate
 	DXFUNC_END
 	return Result ;
 }
-extern int DrawRotaStringToHandleToZBuffer( int x, int y, double ExRateX, double ExRateY, double RotCenterX, double RotCenterY, double RotAngle, int FontHandle, int WriteZMode /* DX_ZWRITE_MASK “™ */ , int VerticalFlag , const TCHAR *String )
+extern int DrawRotaStringToHandleToZBuffer( int x, int y, double ExRateX, double ExRateY, double RotCenterX, double RotCenterY, double RotAngle, int FontHandle, int WriteZMode /* DX_ZWRITE_MASK ç­‰ */ , int VerticalFlag , const TCHAR *String )
 {
 	int Result ;
 	DXFUNC_BEGIN
-	Result = NS_DrawRotaStringToHandleToZBuffer(  x,  y,  ExRateX,  ExRateY, RotCenterX, RotCenterY, RotAngle,  FontHandle,  WriteZMode /* DX_ZWRITE_MASK “™ */ ,  VerticalFlag , String ) ;
+	Result = NS_DrawRotaStringToHandleToZBuffer(  x,  y,  ExRateX,  ExRateY, RotCenterX, RotCenterY, RotAngle,  FontHandle,  WriteZMode /* DX_ZWRITE_MASK ç­‰ */ ,  VerticalFlag , String ) ;
 	DXFUNC_END
 	return Result ;
 }
-extern int DrawRotaNStringToHandleToZBuffer( int x, int y, double ExRateX, double ExRateY, double RotCenterX, double RotCenterY, double RotAngle, int FontHandle, int WriteZMode /* DX_ZWRITE_MASK “™ */ , int VerticalFlag , const TCHAR *String, size_t StringLength )
+extern int DrawRotaNStringToHandleToZBuffer( int x, int y, double ExRateX, double ExRateY, double RotCenterX, double RotCenterY, double RotAngle, int FontHandle, int WriteZMode /* DX_ZWRITE_MASK ç­‰ */ , int VerticalFlag , const TCHAR *String, size_t StringLength )
 {
 	int Result ;
 	DXFUNC_BEGIN
-	Result = NS_DrawRotaNStringToHandleToZBuffer(  x,  y,  ExRateX,  ExRateY, RotCenterX, RotCenterY, RotAngle,  FontHandle,  WriteZMode /* DX_ZWRITE_MASK “™ */ ,  VerticalFlag , String, StringLength ) ;
+	Result = NS_DrawRotaNStringToHandleToZBuffer(  x,  y,  ExRateX,  ExRateY, RotCenterX, RotCenterY, RotAngle,  FontHandle,  WriteZMode /* DX_ZWRITE_MASK ç­‰ */ ,  VerticalFlag , String, StringLength ) ;
 	DXFUNC_END
 	return Result ;
 }
-extern int DrawRotaFormatStringToHandleToZBuffer( int x, int y, double ExRateX, double ExRateY, double RotCenterX, double RotCenterY, double RotAngle, int FontHandle, int WriteZMode /* DX_ZWRITE_MASK “™ */ , int VerticalFlag , const TCHAR *FormatString , ... )
+extern int DrawRotaFormatStringToHandleToZBuffer( int x, int y, double ExRateX, double ExRateY, double RotCenterX, double RotCenterY, double RotAngle, int FontHandle, int WriteZMode /* DX_ZWRITE_MASK ç­‰ */ , int VerticalFlag , const TCHAR *FormatString , ... )
 {
 	int Result ;
 	va_list VaList ;
@@ -8318,27 +8318,27 @@ extern int DrawRotaFormatStringToHandleToZBuffer( int x, int y, double ExRateX, 
 	va_end( VaList ) ;
 	
 	DXFUNC_BEGIN
-	Result = NS_DrawRotaStringToHandleToZBuffer(  x,  y,  ExRateX,  ExRateY, RotCenterX, RotCenterY, RotAngle,  FontHandle,  WriteZMode /* DX_ZWRITE_MASK “™ */ ,  VerticalFlag , String ) ;
+	Result = NS_DrawRotaStringToHandleToZBuffer(  x,  y,  ExRateX,  ExRateY, RotCenterX, RotCenterY, RotAngle,  FontHandle,  WriteZMode /* DX_ZWRITE_MASK ç­‰ */ ,  VerticalFlag , String ) ;
 	DXFUNC_END
 	return Result ;
 }
-extern int DrawModiStringToHandleToZBuffer( int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4, int FontHandle, int WriteZMode /* DX_ZWRITE_MASK “™ */ , int VerticalFlag, const TCHAR *String )
+extern int DrawModiStringToHandleToZBuffer( int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4, int FontHandle, int WriteZMode /* DX_ZWRITE_MASK ç­‰ */ , int VerticalFlag, const TCHAR *String )
 {
 	int Result ;
 	DXFUNC_BEGIN
-	Result = NS_DrawModiStringToHandleToZBuffer( x1, y1, x2, y2, x3, y3, x4, y4, FontHandle, WriteZMode /* DX_ZWRITE_MASK “™ */ , VerticalFlag, String ) ;
+	Result = NS_DrawModiStringToHandleToZBuffer( x1, y1, x2, y2, x3, y3, x4, y4, FontHandle, WriteZMode /* DX_ZWRITE_MASK ç­‰ */ , VerticalFlag, String ) ;
 	DXFUNC_END
 	return Result ;
 }
-extern int DrawModiNStringToHandleToZBuffer( int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4, int FontHandle, int WriteZMode /* DX_ZWRITE_MASK “™ */ , int VerticalFlag, const TCHAR *String, size_t StringLength )
+extern int DrawModiNStringToHandleToZBuffer( int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4, int FontHandle, int WriteZMode /* DX_ZWRITE_MASK ç­‰ */ , int VerticalFlag, const TCHAR *String, size_t StringLength )
 {
 	int Result ;
 	DXFUNC_BEGIN
-	Result = NS_DrawModiNStringToHandleToZBuffer( x1, y1, x2, y2, x3, y3, x4, y4, FontHandle, WriteZMode /* DX_ZWRITE_MASK “™ */ , VerticalFlag, String, StringLength ) ;
+	Result = NS_DrawModiNStringToHandleToZBuffer( x1, y1, x2, y2, x3, y3, x4, y4, FontHandle, WriteZMode /* DX_ZWRITE_MASK ç­‰ */ , VerticalFlag, String, StringLength ) ;
 	DXFUNC_END
 	return Result ;
 }
-extern int DrawModiFormatStringToHandleToZBuffer(	int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4, int FontHandle, int WriteZMode /* DX_ZWRITE_MASK “™ */ , int VerticalFlag, const TCHAR *FormatString, ... )
+extern int DrawModiFormatStringToHandleToZBuffer(	int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4, int FontHandle, int WriteZMode /* DX_ZWRITE_MASK ç­‰ */ , int VerticalFlag, const TCHAR *FormatString, ... )
 {
 	int Result ;
 	va_list VaList ;
@@ -8349,14 +8349,14 @@ extern int DrawModiFormatStringToHandleToZBuffer(	int x1, int y1, int x2, int y2
 	va_end( VaList ) ;
 	
 	DXFUNC_BEGIN
-	Result = NS_DrawModiStringToHandleToZBuffer( x1, y1, x2, y2, x3, y3, x4, y4,  FontHandle,  WriteZMode /* DX_ZWRITE_MASK “™ */ ,  VerticalFlag , String ) ;
+	Result = NS_DrawModiStringToHandleToZBuffer( x1, y1, x2, y2, x3, y3, x4, y4,  FontHandle,  WriteZMode /* DX_ZWRITE_MASK ç­‰ */ ,  VerticalFlag , String ) ;
 	DXFUNC_END
 	return Result ;
 }
 
 #endif // DX_NON_FONT
 
-extern int CreateVertexBuffer( int VertexNum, int VertexType /* DX_VERTEX_TYPE_NORMAL_3D “™ */ )
+extern int CreateVertexBuffer( int VertexNum, int VertexType /* DX_VERTEX_TYPE_NORMAL_3D ç­‰ */ )
 {
 	int Result ;
 	DXFUNC_BEGIN
@@ -8404,7 +8404,7 @@ extern int UpdateVertexBuffer( int VertexBufHandle, int UpdateStartIndex, int Up
 	DXFUNC_END
 	return Result ;
 }
-extern int CreateIndexBuffer( int IndexNum, int IndexType /* DX_INDEX_TYPE_16BIT “™ */  )
+extern int CreateIndexBuffer( int IndexNum, int IndexType /* DX_INDEX_TYPE_16BIT ç­‰ */  )
 {
 	int Result ;
 	DXFUNC_BEGIN
@@ -9183,7 +9183,7 @@ extern	int			DrawPolygonIndexed3DToShader_UseVertexBuffer( int VertexBufHandle, 
 	DXFUNC_END
 	return Result ;
 }
-extern	int			DrawPrimitive3DToShader_UseVertexBuffer( int VertexBufHandle, int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST “™ */ )
+extern	int			DrawPrimitive3DToShader_UseVertexBuffer( int VertexBufHandle, int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST ç­‰ */ )
 {
 	int Result ;
 	DXFUNC_BEGIN
@@ -9191,7 +9191,7 @@ extern	int			DrawPrimitive3DToShader_UseVertexBuffer( int VertexBufHandle, int P
 	DXFUNC_END
 	return Result ;
 }
-extern	int			DrawPrimitive3DToShader_UseVertexBuffer2( int VertexBufHandle, int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST “™ */, int StartVertex, int UseVertexNum )
+extern	int			DrawPrimitive3DToShader_UseVertexBuffer2( int VertexBufHandle, int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST ç­‰ */, int StartVertex, int UseVertexNum )
 {
 	int Result ;
 	DXFUNC_BEGIN
@@ -9199,7 +9199,7 @@ extern	int			DrawPrimitive3DToShader_UseVertexBuffer2( int VertexBufHandle, int 
 	DXFUNC_END
 	return Result ;
 }
-extern	int			DrawPrimitiveIndexed3DToShader_UseVertexBuffer( int VertexBufHandle, int IndexBufHandle, int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST “™ */ )
+extern	int			DrawPrimitiveIndexed3DToShader_UseVertexBuffer( int VertexBufHandle, int IndexBufHandle, int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST ç­‰ */ )
 {
 	int Result ;
 	DXFUNC_BEGIN
@@ -9207,7 +9207,7 @@ extern	int			DrawPrimitiveIndexed3DToShader_UseVertexBuffer( int VertexBufHandle
 	DXFUNC_END
 	return Result ;
 }
-extern	int			DrawPrimitiveIndexed3DToShader_UseVertexBuffer2( int VertexBufHandle, int IndexBufHandle, int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST “™ */, int BaseVertex, int StartVertex, int UseVertexNum, int StartIndex, int UseIndexNum )
+extern	int			DrawPrimitiveIndexed3DToShader_UseVertexBuffer2( int VertexBufHandle, int IndexBufHandle, int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST ç­‰ */, int BaseVertex, int StartVertex, int UseVertexNum, int StartIndex, int UseIndexNum )
 {
 	int Result ;
 	DXFUNC_BEGIN
@@ -9259,7 +9259,7 @@ extern	int			UpdateShaderConstantBuffer( int SConstBufHandle )
 	DXFUNC_END
 	return Result ;
 }
-extern	int			SetShaderConstantBuffer( int SConstBufHandle, int TargetShader /* DX_SHADERTYPE_VERTEX ‚È‚Ç */ , int Slot )
+extern	int			SetShaderConstantBuffer( int SConstBufHandle, int TargetShader /* DX_SHADERTYPE_VERTEX ãªã© */ , int Slot )
 {
 	int Result ;
 	DXFUNC_BEGIN
@@ -9270,7 +9270,7 @@ extern	int			SetShaderConstantBuffer( int SConstBufHandle, int TargetShader /* D
 
 #ifndef DX_NON_FILTER
 
-extern	int			SetGraphFilterBltBlendMode( int BlendMode /* DX_BLENDMODE_ALPHA ‚È‚Ç */ )
+extern	int			SetGraphFilterBltBlendMode( int BlendMode /* DX_BLENDMODE_ALPHA ãªã© */ )
 {
 	int Result ;
 	DXFUNC_BEGIN
@@ -9288,7 +9288,7 @@ extern	int			SetGraphBlendScalingFilterMode( int IsBilinearFilter )
 	return Result ;
 }
 
-extern	int			GraphFilter( int GrHandle, int FilterType /* DX_BLTFILTER_GAUSS_H “™ */ , ... )
+extern	int			GraphFilter( int GrHandle, int FilterType /* DX_BLTFILTER_GAUSS_H ç­‰ */ , ... )
 {
 	int Result ;
 	va_list VaList ;
@@ -9396,7 +9396,7 @@ extern	int			GraphBlendRectBlt( int SrcGrHandle, int BlendGrHandle, int DestGrHa
 	return Result ;
 }
 
-extern	int			GraphBlendRectBlt2( int SrcGrHandle, int BlendGrHandle, int DestGrHandle, int SrcX1, int SrcY1, int SrcX2, int SrcY2, int BlendX1, int BlendY1, int BlendX2, int BlendY2, int DestX, int DestY, int BlendRatio /* ƒuƒŒƒ“ƒhŒø‰Ê‚Ì‰e‹¿“x( 0:‚O“  255:‚P‚O‚O“ ) */ , int BlendType /* DX_GRAPH_BLEND_ADD “™ */ , ... )
+extern	int			GraphBlendRectBlt2( int SrcGrHandle, int BlendGrHandle, int DestGrHandle, int SrcX1, int SrcY1, int SrcX2, int SrcY2, int BlendX1, int BlendY1, int BlendX2, int BlendY2, int DestX, int DestY, int BlendRatio /* ãƒ–ãƒ¬ãƒ³ãƒ‰åŠ¹æžœã®å½±éŸ¿åº¦( 0:ï¼ï¼…  255:ï¼‘ï¼ï¼ï¼… ) */ , int BlendType /* DX_GRAPH_BLEND_ADD ç­‰ */ , ... )
 {
 	int Result ;
 	va_list VaList ;
@@ -9416,9 +9416,9 @@ extern	int			GraphBlendRectBlt2( int SrcGrHandle, int BlendGrHandle, int DestGrH
 
 
 
-// ‚R‚c•`‰æŠÖŒWŠÖ”
+// ï¼“ï¼¤æç”»é–¢ä¿‚é–¢æ•°
 
-// •`‰æÝ’èŠÖŒWŠÖ”
+// æç”»è¨­å®šé–¢ä¿‚é–¢æ•°
 extern int SetDrawMode( int DrawMode )
 {
 	int Result ;
@@ -9506,7 +9506,7 @@ extern int SetBlendGraphPosition( int x, int y )
 	DXFUNC_END
 	return Result ;
 }
-extern int SetBlendGraphPositionMode( int BlendGraphPositionMode /* DX_BLENDGRAPH_POSMODE_DRAWGRAPH ‚È‚Ç */ )
+extern int SetBlendGraphPositionMode( int BlendGraphPositionMode /* DX_BLENDGRAPH_POSMODE_DRAWGRAPH ãªã© */ )
 {
 	int Result ;
 	DXFUNC_BEGIN
@@ -9930,7 +9930,7 @@ extern int GetVerticalFogEnable( void )
 	DXFUNC_END
 	return Result ;
 }
-extern int SetVerticalFogMode( int Mode /* DX_FOGMODE_NONE “™ */ )
+extern int SetVerticalFogMode( int Mode /* DX_FOGMODE_NONE ç­‰ */ )
 {
 	int Result ;
 	DXFUNC_BEGIN
@@ -10970,7 +10970,7 @@ extern int DerivationGraphF( float SrcX, float SrcY, float Width, float Height, 
 }
 
 #ifndef DX_NON_MOVIE
-// ƒ€[ƒr[ƒOƒ‰ƒtƒBƒbƒNŠÖŒWŠÖ”
+// ãƒ ãƒ¼ãƒ“ãƒ¼ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯é–¢ä¿‚é–¢æ•°
 extern int PlayMovie( const TCHAR *FileName, int ExRate, int PlayType )
 {
 	int Result ;
@@ -11176,7 +11176,7 @@ extern int UpdateMovieToGraph( int GraphHandle )
 #endif
 
 
-// ƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹ì¬Œn
+// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ä½œæˆç³»
 extern int LoadBmpToGraph( const TCHAR *FileName, int TextureFlag, int ReverseFlag, int SurfaceMode )
 {
 	int Result ;
@@ -12980,7 +12980,7 @@ extern	int		GetEnableLightHandle( int Index )
 }
 
 
-// ƒOƒ‰ƒtƒBƒbƒNŠÖŒWÝ’èŠÖ”
+// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯é–¢ä¿‚è¨­å®šé–¢æ•°
 extern int SetGraphColorBitDepth( int ColorBitDepth )
 {
 	int Result ;
@@ -13389,7 +13389,7 @@ extern int SetWriteZBuffer3D( int Flag )
 	DXFUNC_END
 	return Result ;
 }
-extern int SetZBufferCmpType3D( int CmpType /* DX_CMP_NEVER “™ */ )
+extern int SetZBufferCmpType3D( int CmpType /* DX_CMP_NEVER ç­‰ */ )
 {
 	int Result ;
 	DXFUNC_BEGIN
@@ -13557,7 +13557,7 @@ extern int GetDrawBlendMode( int *BlendMode, int *BlendParam )
 	DXFUNC_END
 	return Result ;
 }
-extern int SetDrawCustomBlendMode( int BlendEnable, int SrcBlendRGB /* DX_BLEND_SRC_COLOR “™ */, int DestBlendRGB /* DX_BLEND_SRC_COLOR “™ */, int BlendOpRGB /* DX_BLENDOP_ADD “™ */, int SrcBlendA /* DX_BLEND_SRC_COLOR “™ */, int DestBlendA /* DX_BLEND_SRC_COLOR “™ */, int BlendOpA /* DX_BLENDOP_ADD “™ */, int BlendParam )
+extern int SetDrawCustomBlendMode( int BlendEnable, int SrcBlendRGB /* DX_BLEND_SRC_COLOR ç­‰ */, int DestBlendRGB /* DX_BLEND_SRC_COLOR ç­‰ */, int BlendOpRGB /* DX_BLENDOP_ADD ç­‰ */, int SrcBlendA /* DX_BLEND_SRC_COLOR ç­‰ */, int DestBlendA /* DX_BLEND_SRC_COLOR ç­‰ */, int BlendOpA /* DX_BLENDOP_ADD ç­‰ */, int BlendParam )
 {
 	int Result ;
 	DXFUNC_BEGIN
@@ -13698,7 +13698,7 @@ extern int GetUseGraphBaseDataBackup( void )
 
 #ifndef DX_NON_MASK
 
-// ƒ}ƒXƒNŠÖŒW
+// ãƒžã‚¹ã‚¯é–¢ä¿‚
 extern int CreateMaskScreen( void )
 {
 	int Result ;
@@ -14027,7 +14027,7 @@ extern	int	SetMovieUseYUVFormatSurfaceFlag(	int Flag )
 
 #ifndef DX_NON_FONT
 
-// ƒtƒHƒ“ƒgA•¶Žš—ñ•`‰æŠÖŒWŠÖ”
+// ãƒ•ã‚©ãƒ³ãƒˆã€æ–‡å­—åˆ—æç”»é–¢ä¿‚é–¢æ•°
 extern int EnumFontName( TCHAR *NameBuffer, int NameBufferNum, int JapanOnlyFlag  )
 {
 	int Result ;
@@ -14140,7 +14140,7 @@ extern int SetFontLineSpaceToHandle( int Pixel, int FontHandle )
 	DXFUNC_END
 	return Result ;
 }
-extern int SetFontCharCodeFormatToHandle( int CharCodeFormat /* DX_CHARCODEFORMAT_SHIFTJIS “™ */ , int FontHandle )
+extern int SetFontCharCodeFormatToHandle( int CharCodeFormat /* DX_CHARCODEFORMAT_SHIFTJIS ç­‰ */ , int FontHandle )
 {
 	int Result ;
 	DXFUNC_BEGIN
@@ -14276,11 +14276,11 @@ extern int GetFontLineSpace( void )
 	DXFUNC_END
 	return Result ;
 }
-extern int SetFontCharCodeFormat( int CharCodeFormat /* DX_CHARCODEFORMAT_SHIFTJIS “™ */ )
+extern int SetFontCharCodeFormat( int CharCodeFormat /* DX_CHARCODEFORMAT_SHIFTJIS ç­‰ */ )
 {
 	int Result ;
 	DXFUNC_BEGIN
-	Result = NS_SetFontCharCodeFormat( CharCodeFormat /* DX_CHARCODEFORMAT_SHIFTJIS “™ */ ) ;
+	Result = NS_SetFontCharCodeFormat( CharCodeFormat /* DX_CHARCODEFORMAT_SHIFTJIS ç­‰ */ ) ;
 	DXFUNC_END
 	return Result ;
 }
@@ -14349,7 +14349,7 @@ extern const TCHAR *GetFontName( void )
 	return Result ;
 }
 extern int FontCacheStringDrawToHandle( int x, int y, const TCHAR *StrData, unsigned int Color, unsigned int EdgeColor,
-													BASEIMAGE *DestImage, const RECT *ClipRect/*NULL ‰Â*/, int FontHandle,
+													BASEIMAGE *DestImage, const RECT *ClipRect/*NULL å¯*/, int FontHandle,
 													int VerticalFlag , SIZE *DrawSizeP  )
 {
 	int Result ;
@@ -15127,7 +15127,7 @@ extern int RemoveFontFile( HANDLE FontHandle )
 
 #ifndef DX_NON_SAVEFUNCTION
 
-extern int CreateFontDataFile( const TCHAR *SaveFilePath, const TCHAR *FontName, int Size, int BitDepth /* DX_FONTIMAGE_BIT_1“™ */ , int Thick, int Italic, int CharSet, const TCHAR *SaveCharaList )
+extern int CreateFontDataFile( const TCHAR *SaveFilePath, const TCHAR *FontName, int Size, int BitDepth /* DX_FONTIMAGE_BIT_1ç­‰ */ , int Thick, int Italic, int CharSet, const TCHAR *SaveCharaList )
 {
 	int Result ;
 	DXFUNC_BEGIN
@@ -15148,7 +15148,7 @@ extern int CreateFontDataFileWithStrLen( const TCHAR *SaveFilePath, size_t SaveF
 
 #endif // DX_NON_FONT
 
-// Šî–{ƒCƒ[ƒWƒf[ƒ^‚Ìƒ[ƒh{‚c‚h‚aŠÖŒW
+// åŸºæœ¬ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ã®ãƒ­ãƒ¼ãƒ‰ï¼‹ï¼¤ï¼©ï¼¢é–¢ä¿‚
 extern int CreateGraphImageOrDIBGraph( const TCHAR *FileName, const void *DataImage, int DataImageSize, int DataImageType, int BmpFlag, int ReverseFlag, BASEIMAGE *BaseImage, BITMAPINFO **BmpInfo, void **GraphData )
 {
 	int Result ;
@@ -15307,7 +15307,7 @@ extern int CreateDIBGraph_plus_AlphaWithStrLen( const TCHAR *FileName, size_t Fi
 	return Result ;
 }
 
-// •â•ŠÖŒW
+// è£œåŠ©é–¢ä¿‚
 //extern int AddUserGraphLoadFunction( int ( *UserLoadFunc )( FILE *fp, BITMAPINFO **BmpInfo, void **GraphData ))
 //extern int AddUserGraphLoadFunction2( int ( *UserLoadFunc )( void *Image, int ImageSize, int ImageType, BITMAPINFO **BmpInfo, void **GraphData ))
 //extern int AddUserGraphLoadFunction3( int ( *UserLoadFunc )( void *DataImage, int DataImageSize, int DataImageType, int BmpFlag, BASEIMAGE *BaseImage, BITMAPINFO **BmpInfo, void **GraphData ))
@@ -15388,7 +15388,7 @@ extern int GetUseConvertNormalFormatLoad( void )
 }
 
 
-// Šî–{ƒCƒ[ƒWƒf[ƒ^‹@”\ŒöŠJ—pŠÖ”
+// åŸºæœ¬ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿æ©Ÿèƒ½å…¬é–‹ç”¨é–¢æ•°
 
 #ifndef DX_NON_SOFTIMAGE
 
@@ -15979,7 +15979,7 @@ extern int BltStringSoftImageWithStrLen( int x, int y, const TCHAR *StrData, siz
 }
 extern	int			BltStringSoftImageToHandle( 
 						int x, int y, const TCHAR *StrData,
-						int DestSIHandle, int DestEdgeSIHandle /* ‰‚ª•K—v‚È‚¢ê‡‚Í -1 */,
+						int DestSIHandle, int DestEdgeSIHandle /* ç¸ãŒå¿…è¦ãªã„å ´åˆã¯ -1 */,
 						int FontHandle, int VerticalFlag )
 {
 	int Result ;
@@ -16088,7 +16088,7 @@ extern int SaveSoftImageToJpegWithStrLen( const TCHAR *FilePath, size_t FilePath
 
 #endif // DX_NON_SOFTIMAGE
 
-//Šî–{ƒCƒ[ƒWƒf[ƒ^\‘¢‘ÌŠÖŒW
+//åŸºæœ¬ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“é–¢ä¿‚
 extern	int		CreateBaseImage(  const TCHAR *FileName, const void *FileImage, int FileImageSize, int DataType, BASEIMAGE *BaseImage, int ReverseFlag ) 
 {
 	int Result ;
@@ -16664,7 +16664,7 @@ extern int SaveBaseImageToJpegWithStrLen( const TCHAR *FilePath, size_t FilePath
 #endif // DX_NON_SAVEFUNCTION
 
 
-// ƒJƒ‰[ƒ}ƒbƒ`ƒ“ƒO‚µ‚È‚ª‚çƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^ŠÔ“]‘—‚ðs‚¤ Ver2
+// ã‚«ãƒ©ãƒ¼ãƒžãƒƒãƒãƒ³ã‚°ã—ãªãŒã‚‰ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿é–“è»¢é€ã‚’è¡Œã† Ver2
 extern int GraphColorMatchBltVer2( void *DestGraphData, int DestPitch, const COLORDATA *DestColorData,
 									const void *SrcGraphData, int SrcPitch, const COLORDATA *SrcColorData,
 									const void *AlphaMask, int AlphaPitch, const COLORDATA *AlphaColorData,
@@ -16683,7 +16683,7 @@ extern int GraphColorMatchBltVer2( void *DestGraphData, int DestPitch, const COL
 }
 
 
-// Fî•ñŽæ“¾ŠÖŒW
+// è‰²æƒ…å ±å–å¾—é–¢ä¿‚
 extern COLOR_F GetColorF( float Red, float Green, float Blue, float Alpha )
 {
 	COLOR_F Ret = { Red,  Green,  Blue,  Alpha } ;
@@ -16908,11 +16908,11 @@ extern int CmpColorData( const COLORDATA * ColorData1, const COLORDATA * ColorDa
 
 
 
-// DxSound.cppŠÖ”ƒvƒƒgƒ^ƒCƒvéŒ¾
+// DxSound.cppé–¢æ•°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 
 #ifndef DX_NON_SOUND
 
-// ƒTƒEƒ“ƒhƒf[ƒ^ŠÇ—ŒnŠÖ”
+// ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ç®¡ç†ç³»é–¢æ•°
 extern int InitSoundMem( void )
 {
 	int Result ;
@@ -17560,7 +17560,7 @@ extern int Set3DReverbParamSoundMem( const SOUND3D_REVERB_PARAM *Param, int Soun
 	DXFUNC_END
 	return Result ;
 }
-extern int Set3DPresetReverbParamSoundMem( int PresetNo /* DX_REVERB_PRESET_DEFAULT “™ */ , int SoundHandle )
+extern int Set3DPresetReverbParamSoundMem( int PresetNo /* DX_REVERB_PRESET_DEFAULT ç­‰ */ , int SoundHandle )
 {
 	int Result ;
 	DXFUNC_BEGIN
@@ -17576,7 +17576,7 @@ extern int Set3DReverbParamSoundMemAll( const SOUND3D_REVERB_PARAM *Param, int P
 	DXFUNC_END
 	return Result ;
 }
-extern int Set3DPresetReverbParamSoundMemAll( int PresetNo /* DX_REVERB_PRESET_DEFAULT “™ */, int PlaySoundOnly )
+extern int Set3DPresetReverbParamSoundMemAll( int PresetNo /* DX_REVERB_PRESET_DEFAULT ç­‰ */, int PlaySoundOnly )
 {
 	int Result ;
 	DXFUNC_BEGIN
@@ -17592,7 +17592,7 @@ extern int Get3DReverbParamSoundMem( SOUND3D_REVERB_PARAM *ParamBuffer, int Soun
 	DXFUNC_END
 	return Result ;
 }
-extern int Get3DPresetReverbParamSoundMem( SOUND3D_REVERB_PARAM *ParamBuffer, int PresetNo /* DX_REVERB_PRESET_DEFAULT “™ */ )
+extern int Get3DPresetReverbParamSoundMem( SOUND3D_REVERB_PARAM *ParamBuffer, int PresetNo /* DX_REVERB_PRESET_DEFAULT ç­‰ */ )
 {
 	int Result ;
 	DXFUNC_BEGIN
@@ -17696,7 +17696,7 @@ extern int SetNextPlay3DVelocitySoundMem( VECTOR Velocity, int SoundHandle )
 }
 
 
-// “ÁŽêŠÖ”
+// ç‰¹æ®Šé–¢æ•°
 extern int GetMP3TagInfo( const TCHAR *FileName, TCHAR *TitleBuffer, size_t TitleBufferBytes, TCHAR *ArtistBuffer, size_t ArtistBufferBytes, TCHAR *AlbumBuffer, size_t AlbumBufferBytes, TCHAR *YearBuffer, size_t YearBufferBytes, TCHAR *CommentBuffer, size_t CommentBufferBytes, TCHAR *TrackBuffer, size_t TrackBufferBytes, TCHAR *GenreBuffer, size_t GenreBufferBytes, int *PictureGrHandle )
 {
 	int Result ;
@@ -17749,7 +17749,7 @@ extern int GetOggCommentWithStrLen( const TCHAR *FileName, size_t FileNameLength
 #endif // DX_NON_OGGVORBIS
 
 
-// Ý’èŠÖŒWŠÖ”
+// è¨­å®šé–¢ä¿‚é–¢æ•°
 extern int SetCreateSoundDataType( int SoundDataType )
 {
 	int Result ;
@@ -17928,7 +17928,7 @@ extern	int SetUseOldVolumeCalcFlag( int Flag )
 	DXFUNC_END
 	return Result ;
 }
-extern int SetSoundCurrentTimeType( int Type /* DX_SOUNDCURRENTTIME_TYPE_LOW_LEVEL ‚È‚Ç */ )
+extern int SetSoundCurrentTimeType( int Type /* DX_SOUNDCURRENTTIME_TYPE_LOW_LEVEL ãªã© */ )
 {
 	int Result ;
 	DXFUNC_BEGIN
@@ -18001,7 +18001,7 @@ extern int Set3DSoundListenerConeVolume( float InnerAngleVolume, float OuterAngl
 	return Result ;
 }
 
-// î•ñŽæ“¾ŒnŠÖ”
+// æƒ…å ±å–å¾—ç³»é–¢æ•°
 extern const void *GetDSoundObj( void )
 {
 	const void *Result ;
@@ -18012,7 +18012,7 @@ extern const void *GetDSoundObj( void )
 }
 
 #ifndef DX_NON_BEEP
-// BEEP‰¹Ä¶—p–½—ß
+// BEEPéŸ³å†ç”Ÿç”¨å‘½ä»¤
 extern int SetBeepFrequency( int Freq )
 {
 	int Result ;
@@ -18039,7 +18039,7 @@ extern int StopBeep( void )
 }
 #endif
 
-// ƒ‰ƒbƒp[ŠÖ”
+// ãƒ©ãƒƒãƒ‘ãƒ¼é–¢æ•°
 extern int PlaySoundFile( const TCHAR *FileName, int PlayType )
 {
 	int Result ;
@@ -18143,7 +18143,7 @@ extern int SetVolumeSound( int VolumePal )
 
 
 
-// ƒ\ƒtƒgƒEƒGƒA§ŒäƒTƒEƒ“ƒhŒnŠÖ”
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢åˆ¶å¾¡ã‚µã‚¦ãƒ³ãƒ‰ç³»é–¢æ•°
 extern	int			InitSoftSound( void )
 {
 	int Result ;
@@ -18555,7 +18555,7 @@ extern	int			CheckSoftSoundPlayerNoneData( int SSoundPlayerHandle )
 
 
 
-// ‚l‚h‚c‚h§ŒäŠÖ”
+// ï¼­ï¼©ï¼¤ï¼©åˆ¶å¾¡é–¢æ•°
 extern int DeleteMusicMem( int MusicHandle )
 {
 	int Result ;
@@ -18753,7 +18753,7 @@ extern int SelectMidiMode( int Mode )
 
 
 
-// DxArchive.cpp ŠÖ”
+// DxArchive.cpp é–¢æ•°
 
 extern int DXArchivePreLoad( const TCHAR *FilePath , int ASync )
 {
@@ -18854,7 +18854,7 @@ extern int DXArchiveCheckFileWithStrLen( const TCHAR *FilePath, size_t FilePathL
 #endif
 }
 
-// ƒƒ‚ƒŠã‚É“WŠJ‚³‚ê‚½‚c‚w‚`ƒtƒ@ƒCƒ‹‚ðŽw’è‚Ìƒtƒ@ƒCƒ‹ƒpƒX‚É‚ ‚é‚±‚Æ‚É‚·‚é
+// ãƒ¡ãƒ¢ãƒªä¸Šã«å±•é–‹ã•ã‚ŒãŸï¼¤ï¼¸ï¼¡ãƒ•ã‚¡ã‚¤ãƒ«ã‚’æŒ‡å®šã®ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹ã«ã‚ã‚‹ã“ã¨ã«ã™ã‚‹
 extern int DXArchiveSetMemImage( void *ArchiveImage, int ArchiveImageSize, const TCHAR *EmulateFilePath, int ArchiveImageCopyFlag, int ArchiveImageReadOnly )
 {
 #ifndef DX_NON_DXA
@@ -18880,7 +18880,7 @@ extern int DXArchiveSetMemImageWithStrLen( void *ArchiveImage, int ArchiveImageS
 #endif
 }
 
-// DXArchiveSetMemImage ‚ÌÝ’è‚ð‰ðœ‚·‚é
+// DXArchiveSetMemImage ã®è¨­å®šã‚’è§£é™¤ã™ã‚‹
 extern int DXArchiveReleaseMemImage( void *ArchiveImage )
 {
 #ifndef DX_NON_DXA
@@ -18909,11 +18909,11 @@ extern int DXArchiveReleaseMemImage( void *ArchiveImage )
 
 
 
-// DxModel.cpp ŠÖ”
+// DxModel.cpp é–¢æ•°
 
 #ifndef DX_NON_MODEL
 
-// ƒ‚ƒfƒ‹‚Ì“Ç‚Ýž‚Ý( -1:ƒGƒ‰[  0ˆÈã:ƒ‚ƒfƒ‹ƒnƒ“ƒhƒ‹ )
+// ãƒ¢ãƒ‡ãƒ«ã®èª­ã¿è¾¼ã¿( -1:ã‚¨ãƒ©ãƒ¼  0ä»¥ä¸Š:ãƒ¢ãƒ‡ãƒ«ãƒãƒ³ãƒ‰ãƒ« )
 extern int MV1LoadModel( const TCHAR *FileName )
 {
 	int Result ;
@@ -19022,7 +19022,7 @@ extern int MV1SetLoadModelNotEqNormalSide_AddZeroAreaPolygon( int Flag )
 	DXFUNC_END
 	return Result ;
 }
-extern int MV1SetLoadModelUsePhysicsMode( int PhysicsMode /* DX_LOADMODEL_PHYSICS_LOADCALC “™ */ )
+extern int MV1SetLoadModelUsePhysicsMode( int PhysicsMode /* DX_LOADMODEL_PHYSICS_LOADCALC ç­‰ */ )
 {
 	int Result ;
 	DXFUNC_BEGIN
@@ -19279,7 +19279,7 @@ extern int MV1SetUseOrigShader( int UseFlag )
 	DXFUNC_END
 	return Result ;
 }
-extern int MV1SetDrawMode( int DrawMode /* DX_MV1_DRAWMODE_NORMAL “™ */ )
+extern int MV1SetDrawMode( int DrawMode /* DX_MV1_DRAWMODE_NORMAL ç­‰ */ )
 {
 	int Result ;
 	DXFUNC_BEGIN
@@ -19614,11 +19614,11 @@ extern int MV1SetWriteZBuffer( int MHandle, int Flag )
 	return Result ;
 }
 
-extern int MV1SetZBufferCmpType( int MHandle, int CmpType /* DX_CMP_NEVER “™ */ )
+extern int MV1SetZBufferCmpType( int MHandle, int CmpType /* DX_CMP_NEVER ç­‰ */ )
 {
 	int Result ;
 	DXFUNC_BEGIN
-	Result = NS_MV1SetZBufferCmpType(  MHandle,  CmpType /* DX_CMP_NEVER “™ */ ) ;
+	Result = NS_MV1SetZBufferCmpType(  MHandle,  CmpType /* DX_CMP_NEVER ç­‰ */ ) ;
 	DXFUNC_END
 	return Result ;
 }

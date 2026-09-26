@@ -1,6 +1,6 @@
 // -------------------------------------------------------------------------------
 // 
-// 		‚c‚wƒ‰ƒCƒuƒ‰ƒŠ		•W€‚bƒ‰ƒCƒuƒ‰ƒŠg—pƒvƒƒOƒ‰ƒ€ƒwƒbƒ_ƒtƒ@ƒCƒ‹
+// 		ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒª		æ¨™æº–ï¼£ãƒ©ã‚¤ãƒ–ãƒ©ãƒªä½¿ç”¨ãƒ—ãƒ­ã‚°ãƒ©ãƒ ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«
 // 
 // 				Ver 3.25a
 // 
@@ -9,7 +9,7 @@
 #ifndef DX_USECLIB_H
 #define DX_USECLIB_H
 
-// ƒCƒ“ƒNƒ‹[ƒh ------------------------------------------------------------------
+// ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ ------------------------------------------------------------------
 #include "DxCompileConfig.h"
 
 #ifndef DX_NON_OGGTHEORA
@@ -26,9 +26,9 @@
 //namespace DxLib
 //{
 
-// ƒ}ƒNƒ’è‹` --------------------------------------------------------------------
+// ãƒã‚¯ãƒ­å®šç¾© --------------------------------------------------------------------
 
-// \‘¢‘Ì’è‹` --------------------------------------------------------------------
+// æ§‹é€ ä½“å®šç¾© --------------------------------------------------------------------
 
 #ifndef DX_NON_MERSENNE_TWISTER
 
@@ -43,11 +43,11 @@ typedef struct tagMERSENNE_TWISTER_DATA
 
 #endif // DX_NON_MERSENNE_TWISTER
 
-// ƒe[ƒuƒ‹-----------------------------------------------------------------------
+// ãƒ†ãƒ¼ãƒ–ãƒ«-----------------------------------------------------------------------
 
-// “à•”‘åˆæ•Ï”éŒ¾ --------------------------------------------------------------
+// å†…éƒ¨å¤§åŸŸå¤‰æ•°å®£è¨€ --------------------------------------------------------------
 
-// ŠÖ”ƒvƒƒgƒ^ƒCƒvéŒ¾-----------------------------------------------------------
+// é–¢æ•°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€-----------------------------------------------------------
 
 
 
@@ -78,38 +78,38 @@ extern unsigned int		randMTData( MERSENNE_TWISTER_DATA *MTData ) ;
 
 #ifndef DX_NON_NAMESPACE
 	#ifndef DX_NON_TIFFREAD
-	extern	int		LoadTiffImage( DxLib::STREAMDATA *Src, DxLib::BASEIMAGE *BaseImage, int GetFormatOnly ) ;						// ‚s‚h‚e‚e‰æ‘œ‚Ì“Ç‚İ‚±‚İ
+	extern	int		LoadTiffImage( DxLib::STREAMDATA *Src, DxLib::BASEIMAGE *BaseImage, int GetFormatOnly ) ;						// ï¼´ï¼©ï¼¦ï¼¦ç”»åƒã®èª­ã¿ã“ã¿
 	#endif
 	#ifndef DX_NON_PNGREAD
-	extern	int		LoadPngImage(      DxLib::STREAMDATA *Src, DxLib::BASEIMAGE *BaseImage, int GetFormatOnly ) ;					// ‚o‚m‚f‰æ‘œ‚Ì“Ç‚İ‚±‚İ
-	extern	int		LoadPngImage_Fast( DxLib::STREAMDATA *Src, DxLib::BASEIMAGE *BaseImage, int GetFormatOnly ) ;					// ‚o‚m‚f‰æ‘œ‚Ì“Ç‚İ‚±‚İ( ­‚µ‚‘¬”Å )
+	extern	int		LoadPngImage(      DxLib::STREAMDATA *Src, DxLib::BASEIMAGE *BaseImage, int GetFormatOnly ) ;					// ï¼°ï¼®ï¼§ç”»åƒã®èª­ã¿ã“ã¿
+	extern	int		LoadPngImage_Fast( DxLib::STREAMDATA *Src, DxLib::BASEIMAGE *BaseImage, int GetFormatOnly ) ;					// ï¼°ï¼®ï¼§ç”»åƒã®èª­ã¿ã“ã¿( å°‘ã—é«˜é€Ÿç‰ˆ )
 	#ifndef DX_NON_SAVEFUNCTION
-	extern	int		SaveBaseImageToPngBase( const char *FilePathW, const char *FilePathA, DxLib::BASEIMAGE *BaseImage, int CompressionLevel ) ;																					// Šî–{‰æ‘œƒf[ƒ^‚ğ‚o‚m‚f‰æ‘œ‚Æ‚µ‚Ä•Û‘¶‚·‚é
+	extern	int		SaveBaseImageToPngBase( const char *FilePathW, const char *FilePathA, DxLib::BASEIMAGE *BaseImage, int CompressionLevel ) ;																					// åŸºæœ¬ç”»åƒãƒ‡ãƒ¼ã‚¿ã‚’ï¼°ï¼®ï¼§ç”»åƒã¨ã—ã¦ä¿å­˜ã™ã‚‹
 	#endif
 	#endif
 	#ifndef DX_NON_JPEGREAD
-	extern	int		LoadJpegImageBase( DxLib::STREAMDATA *Src, DxLib::BASEIMAGE *BaseImage, int GetFormatOnly, int GetExifOnly, void *ExifBuffer, size_t ExifBufferSize ) ;	// ‚i‚o‚d‚f‰æ‘œ‚Ì“Ç‚İ‚±‚İ (À‘Ì‚Í DxUseCLib.cpp ‚Ì’†)
-	extern	int		LoadJpegImage( DxLib::STREAMDATA *Src, DxLib::BASEIMAGE *BaseImage, int GetFormatOnly ) ;						// ‚i‚o‚d‚f‰æ‘œ‚Ì“Ç‚İ‚±‚İ (À‘Ì‚Í DxUseCLib.cpp ‚Ì’†)
+	extern	int		LoadJpegImageBase( DxLib::STREAMDATA *Src, DxLib::BASEIMAGE *BaseImage, int GetFormatOnly, int GetExifOnly, void *ExifBuffer, size_t ExifBufferSize ) ;	// ï¼ªï¼°ï¼¥ï¼§ç”»åƒã®èª­ã¿ã“ã¿ (å®Ÿä½“ã¯ DxUseCLib.cpp ã®ä¸­)
+	extern	int		LoadJpegImage( DxLib::STREAMDATA *Src, DxLib::BASEIMAGE *BaseImage, int GetFormatOnly ) ;						// ï¼ªï¼°ï¼¥ï¼§ç”»åƒã®èª­ã¿ã“ã¿ (å®Ÿä½“ã¯ DxUseCLib.cpp ã®ä¸­)
 	#ifndef DX_NON_SAVEFUNCTION
-	extern	int		SaveBaseImageToJpegBase( const char *FilePathW, const char *FilePathA, DxLib::BASEIMAGE *BaseImage, int Quality, int Sample2x1 ) ;																			// Šî–{‰æ‘œƒf[ƒ^‚ğ‚i‚o‚d‚f‰æ‘œ‚Æ‚µ‚Ä•Û‘¶‚·‚é
+	extern	int		SaveBaseImageToJpegBase( const char *FilePathW, const char *FilePathA, DxLib::BASEIMAGE *BaseImage, int Quality, int Sample2x1 ) ;																			// åŸºæœ¬ç”»åƒãƒ‡ãƒ¼ã‚¿ã‚’ï¼ªï¼°ï¼¥ï¼§ç”»åƒã¨ã—ã¦ä¿å­˜ã™ã‚‹
 	#endif
 	#endif
 #else // DX_NON_NAMESPACE
 	#ifndef DX_NON_TIFFREAD
-	extern	int		LoadTiffImage( STREAMDATA *Src, BASEIMAGE *BaseImage, int GetFormatOnly ) ;						// ‚s‚h‚e‚e‰æ‘œ‚Ì“Ç‚İ‚±‚İ
+	extern	int		LoadTiffImage( STREAMDATA *Src, BASEIMAGE *BaseImage, int GetFormatOnly ) ;						// ï¼´ï¼©ï¼¦ï¼¦ç”»åƒã®èª­ã¿ã“ã¿
 	#endif
 	#ifndef DX_NON_PNGREAD
-	extern	int		LoadPngImage(      STREAMDATA *Src, BASEIMAGE *BaseImage, int GetFormatOnly ) ;					// ‚o‚m‚f‰æ‘œ‚Ì“Ç‚İ‚±‚İ
-	extern	int		LoadPngImage_Fast( STREAMDATA *Src, BASEIMAGE *BaseImage, int GetFormatOnly ) ;					// ‚o‚m‚f‰æ‘œ‚Ì“Ç‚İ‚±‚İ( ­‚µ‚‘¬”Å )
+	extern	int		LoadPngImage(      STREAMDATA *Src, BASEIMAGE *BaseImage, int GetFormatOnly ) ;					// ï¼°ï¼®ï¼§ç”»åƒã®èª­ã¿ã“ã¿
+	extern	int		LoadPngImage_Fast( STREAMDATA *Src, BASEIMAGE *BaseImage, int GetFormatOnly ) ;					// ï¼°ï¼®ï¼§ç”»åƒã®èª­ã¿ã“ã¿( å°‘ã—é«˜é€Ÿç‰ˆ )
 	#ifndef DX_NON_SAVEFUNCTION
-	extern	int		SaveBaseImageToPngBase( const char *FilePathW, const char *FilePathA, BASEIMAGE *BaseImage, int CompressionLevel ) ;																					// Šî–{‰æ‘œƒf[ƒ^‚ğ‚o‚m‚f‰æ‘œ‚Æ‚µ‚Ä•Û‘¶‚·‚é
+	extern	int		SaveBaseImageToPngBase( const char *FilePathW, const char *FilePathA, BASEIMAGE *BaseImage, int CompressionLevel ) ;																					// åŸºæœ¬ç”»åƒãƒ‡ãƒ¼ã‚¿ã‚’ï¼°ï¼®ï¼§ç”»åƒã¨ã—ã¦ä¿å­˜ã™ã‚‹
 	#endif
 	#endif
 	#ifndef DX_NON_JPEGREAD
-	extern	int		LoadJpegImageBase( STREAMDATA *Src, BASEIMAGE *BaseImage, int GetFormatOnly, int GetExifOnly, void *ExifBuffer, size_t ExifBufferSize ) ;	// ‚i‚o‚d‚f‰æ‘œ‚Ì“Ç‚İ‚±‚İ (À‘Ì‚Í DxUseCLib.cpp ‚Ì’†)
-	extern	int		LoadJpegImage( STREAMDATA *Src, BASEIMAGE *BaseImage, int GetFormatOnly ) ;						// ‚i‚o‚d‚f‰æ‘œ‚Ì“Ç‚İ‚±‚İ (À‘Ì‚Í DxUseCLib.cpp ‚Ì’†)
+	extern	int		LoadJpegImageBase( STREAMDATA *Src, BASEIMAGE *BaseImage, int GetFormatOnly, int GetExifOnly, void *ExifBuffer, size_t ExifBufferSize ) ;	// ï¼ªï¼°ï¼¥ï¼§ç”»åƒã®èª­ã¿ã“ã¿ (å®Ÿä½“ã¯ DxUseCLib.cpp ã®ä¸­)
+	extern	int		LoadJpegImage( STREAMDATA *Src, BASEIMAGE *BaseImage, int GetFormatOnly ) ;						// ï¼ªï¼°ï¼¥ï¼§ç”»åƒã®èª­ã¿ã“ã¿ (å®Ÿä½“ã¯ DxUseCLib.cpp ã®ä¸­)
 	#ifndef DX_NON_SAVEFUNCTION
-	extern	int		SaveBaseImageToJpegBase( const char *FilePathW, const char *FilePathA, BASEIMAGE *BaseImage, int Quality, int Sample2x1 ) ;																			// Šî–{‰æ‘œƒf[ƒ^‚ğ‚i‚o‚d‚f‰æ‘œ‚Æ‚µ‚Ä•Û‘¶‚·‚é
+	extern	int		SaveBaseImageToJpegBase( const char *FilePathW, const char *FilePathA, BASEIMAGE *BaseImage, int Quality, int Sample2x1 ) ;																			// åŸºæœ¬ç”»åƒãƒ‡ãƒ¼ã‚¿ã‚’ï¼ªï¼°ï¼¥ï¼§ç”»åƒã¨ã—ã¦ä¿å­˜ã™ã‚‹
 	#endif
 	#endif
 #endif // DX_NON_NAMESPACE
@@ -126,7 +126,7 @@ extern	DWORD		UINT64MOD( const BYTE *UInt64, DWORD ModNum ) ;
 
 
 
-extern	int			MQOZ_ZIP_uncompress( void *dest, size_t destLen, const void *source, size_t sourceLen ) ;		// MQOZŒ`®“à‚Ì ZIP ˆ³k‚³‚ê‚½ƒf[ƒ^‚ğ‰ğ“€‚·‚é
+extern	int			MQOZ_ZIP_uncompress( void *dest, size_t destLen, const void *source, size_t sourceLen ) ;		// MQOZå½¢å¼å†…ã® ZIP åœ§ç¸®ã•ã‚ŒãŸãƒ‡ãƒ¼ã‚¿ã‚’è§£å‡ã™ã‚‹
 
 
 
@@ -136,9 +136,9 @@ extern	int			MQOZ_ZIP_uncompress( void *dest, size_t destLen, const void *source
 #ifndef DX_NON_DSHOW_MOVIE
 #ifndef DX_NON_DSHOW_MP3
 	#ifndef DX_NON_NAMESPACE
-		extern	int SetupSoundConvert_DSMP3(            DxLib::SOUNDCONV *SoundConv ) ;							// DirectShow‚ğg‚Á‚ÄMP3ƒtƒ@ƒCƒ‹‚ğƒRƒ“ƒo[ƒg‚·‚éƒZƒbƒgƒAƒbƒvˆ—‚ğs‚¤( [–ß] -1:ƒGƒ‰[ )
+		extern	int SetupSoundConvert_DSMP3(            DxLib::SOUNDCONV *SoundConv ) ;							// DirectShowã‚’ä½¿ã£ã¦MP3ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ã‚³ãƒ³ãƒãƒ¼ãƒˆã™ã‚‹ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—å‡¦ç†ã‚’è¡Œã†( [æˆ»] -1:ã‚¨ãƒ©ãƒ¼ )
 	#else // DX_NON_NAMESPACE
-		extern	int SetupSoundConvert_DSMP3(            SOUNDCONV *SoundConv ) ;								// DirectShow‚ğg‚Á‚ÄMP3ƒtƒ@ƒCƒ‹‚ğƒRƒ“ƒo[ƒg‚·‚éƒZƒbƒgƒAƒbƒvˆ—‚ğs‚¤( [–ß] -1:ƒGƒ‰[ )
+		extern	int SetupSoundConvert_DSMP3(            SOUNDCONV *SoundConv ) ;								// DirectShowã‚’ä½¿ã£ã¦MP3ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ã‚³ãƒ³ãƒãƒ¼ãƒˆã™ã‚‹ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—å‡¦ç†ã‚’è¡Œã†( [æˆ»] -1:ã‚¨ãƒ©ãƒ¼ )
 	#endif // DX_NON_NAMESPACE
 #endif
 #endif
@@ -149,21 +149,21 @@ extern	int			MQOZ_ZIP_uncompress( void *dest, size_t destLen, const void *source
 
 #ifndef DX_NON_OGGVORBIS
 	#ifndef DX_NON_NAMESPACE
-		extern	int      SetupSoundConvert_OGG(            DxLib::SOUNDCONV *SoundConv ) ;								// ‚n‚f‚fƒtƒ@ƒCƒ‹‚ÌƒZƒbƒgƒAƒbƒvˆ—‚ğs‚¤( [–ß] -1:ƒGƒ‰[ )
-		extern	int      TerminateSoundConvert_OGG(        DxLib::SOUNDCONV *SoundConv ) ;								// ‚n‚f‚fƒtƒ@ƒCƒ‹‚ÌŒãn––ˆ—‚ğs‚¤
-		extern	int      ConvertProcessSoundConvert_OGG(   DxLib::SOUNDCONV *SoundConv ) ;								// •ÏŠ·Œã‚Ìƒoƒbƒtƒ@‚Éƒf[ƒ^‚ğ•â[‚·‚é
-		//extern int     SetTimeSoundConvert_OGG(          DxLib::SOUNDCONV *SoundConv, int Time ) ;					// •ÏŠ·ˆ—‚ğˆÊ’u‚ğ•ÏX‚·‚é( ƒ~ƒŠ•b’PˆÊ )
-		extern	int      SetSampleTimeSoundConvert_OGG(    DxLib::SOUNDCONV *SoundConv, LONGLONG SampleTime ) ;		// •ÏŠ·ˆ—‚ÌˆÊ’u‚ğ•ÏX‚·‚é( ƒTƒ“ƒvƒ‹’PˆÊ )
-		extern	LONGLONG GetSoundConvertDestSize_Fast_OGG( DxLib::SOUNDCONV *SoundConv ) ;								// •ÏŠ·Œã‚Ì‘å–}‚Ìƒf[ƒ^ƒTƒCƒY‚ğ“¾‚é
-		extern	int      GetSoundConvertLoopAreaInfo_OGG(  DxLib::SOUNDCONV *SoundConv, LONGLONG *LoopStartPos, LONGLONG *LoopEndPos ) ;	// ƒ‹[ƒvî•ñ‚ğæ“¾( [–ß] -1:ƒGƒ‰[ )
+		extern	int      SetupSoundConvert_OGG(            DxLib::SOUNDCONV *SoundConv ) ;								// ï¼¯ï¼§ï¼§ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—å‡¦ç†ã‚’è¡Œã†( [æˆ»] -1:ã‚¨ãƒ©ãƒ¼ )
+		extern	int      TerminateSoundConvert_OGG(        DxLib::SOUNDCONV *SoundConv ) ;								// ï¼¯ï¼§ï¼§ãƒ•ã‚¡ã‚¤ãƒ«ã®å¾Œå§‹æœ«å‡¦ç†ã‚’è¡Œã†
+		extern	int      ConvertProcessSoundConvert_OGG(   DxLib::SOUNDCONV *SoundConv ) ;								// å¤‰æ›å¾Œã®ãƒãƒƒãƒ•ã‚¡ã«ãƒ‡ãƒ¼ã‚¿ã‚’è£œå……ã™ã‚‹
+		//extern int     SetTimeSoundConvert_OGG(          DxLib::SOUNDCONV *SoundConv, int Time ) ;					// å¤‰æ›å‡¦ç†ã‚’ä½ç½®ã‚’å¤‰æ›´ã™ã‚‹( ãƒŸãƒªç§’å˜ä½ )
+		extern	int      SetSampleTimeSoundConvert_OGG(    DxLib::SOUNDCONV *SoundConv, LONGLONG SampleTime ) ;		// å¤‰æ›å‡¦ç†ã®ä½ç½®ã‚’å¤‰æ›´ã™ã‚‹( ã‚µãƒ³ãƒ—ãƒ«å˜ä½ )
+		extern	LONGLONG GetSoundConvertDestSize_Fast_OGG( DxLib::SOUNDCONV *SoundConv ) ;								// å¤‰æ›å¾Œã®å¤§å‡¡ã®ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºã‚’å¾—ã‚‹
+		extern	int      GetSoundConvertLoopAreaInfo_OGG(  DxLib::SOUNDCONV *SoundConv, LONGLONG *LoopStartPos, LONGLONG *LoopEndPos ) ;	// ãƒ«ãƒ¼ãƒ—æƒ…å ±ã‚’å–å¾—( [æˆ»] -1:ã‚¨ãƒ©ãƒ¼ )
 	#else // DX_NON_NAMESPACE
-		extern	int      SetupSoundConvert_OGG(            SOUNDCONV *SoundConv ) ;								// ‚n‚f‚fƒtƒ@ƒCƒ‹‚ÌƒZƒbƒgƒAƒbƒvˆ—‚ğs‚¤( [–ß] -1:ƒGƒ‰[ )
-		extern	int      TerminateSoundConvert_OGG(        SOUNDCONV *SoundConv ) ;								// ‚n‚f‚fƒtƒ@ƒCƒ‹‚ÌŒãn––ˆ—‚ğs‚¤
-		extern	int      ConvertProcessSoundConvert_OGG(   SOUNDCONV *SoundConv ) ;								// •ÏŠ·Œã‚Ìƒoƒbƒtƒ@‚Éƒf[ƒ^‚ğ•â[‚·‚é
-		//extern int     SetTimeSoundConvert_OGG(          SOUNDCONV *SoundConv, int Time ) ;					// •ÏŠ·ˆ—‚ğˆÊ’u‚ğ•ÏX‚·‚é( ƒ~ƒŠ•b’PˆÊ )
-		extern	int      SetSampleTimeSoundConvert_OGG(    SOUNDCONV *SoundConv, LONGLONG SampleTime ) ;		// •ÏŠ·ˆ—‚ÌˆÊ’u‚ğ•ÏX‚·‚é( ƒTƒ“ƒvƒ‹’PˆÊ )
-		extern	LONGLONG GetSoundConvertDestSize_Fast_OGG( SOUNDCONV *SoundConv ) ;								// •ÏŠ·Œã‚Ì‘å–}‚Ìƒf[ƒ^ƒTƒCƒY‚ğ“¾‚é
-		extern	int      GetSoundConvertLoopAreaInfo_OGG(  SOUNDCONV *SoundConv, LONGLONG *LoopStartPos, LONGLONG *LoopEndPos ) ;	// ƒ‹[ƒvî•ñ‚ğæ“¾( [–ß] -1:ƒGƒ‰[ )
+		extern	int      SetupSoundConvert_OGG(            SOUNDCONV *SoundConv ) ;								// ï¼¯ï¼§ï¼§ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—å‡¦ç†ã‚’è¡Œã†( [æˆ»] -1:ã‚¨ãƒ©ãƒ¼ )
+		extern	int      TerminateSoundConvert_OGG(        SOUNDCONV *SoundConv ) ;								// ï¼¯ï¼§ï¼§ãƒ•ã‚¡ã‚¤ãƒ«ã®å¾Œå§‹æœ«å‡¦ç†ã‚’è¡Œã†
+		extern	int      ConvertProcessSoundConvert_OGG(   SOUNDCONV *SoundConv ) ;								// å¤‰æ›å¾Œã®ãƒãƒƒãƒ•ã‚¡ã«ãƒ‡ãƒ¼ã‚¿ã‚’è£œå……ã™ã‚‹
+		//extern int     SetTimeSoundConvert_OGG(          SOUNDCONV *SoundConv, int Time ) ;					// å¤‰æ›å‡¦ç†ã‚’ä½ç½®ã‚’å¤‰æ›´ã™ã‚‹( ãƒŸãƒªç§’å˜ä½ )
+		extern	int      SetSampleTimeSoundConvert_OGG(    SOUNDCONV *SoundConv, LONGLONG SampleTime ) ;		// å¤‰æ›å‡¦ç†ã®ä½ç½®ã‚’å¤‰æ›´ã™ã‚‹( ã‚µãƒ³ãƒ—ãƒ«å˜ä½ )
+		extern	LONGLONG GetSoundConvertDestSize_Fast_OGG( SOUNDCONV *SoundConv ) ;								// å¤‰æ›å¾Œã®å¤§å‡¡ã®ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºã‚’å¾—ã‚‹
+		extern	int      GetSoundConvertLoopAreaInfo_OGG(  SOUNDCONV *SoundConv, LONGLONG *LoopStartPos, LONGLONG *LoopEndPos ) ;	// ãƒ«ãƒ¼ãƒ—æƒ…å ±ã‚’å–å¾—( [æˆ»] -1:ã‚¨ãƒ©ãƒ¼ )
 	#endif // DX_NON_NAMESPACE
 #endif
 
@@ -174,17 +174,17 @@ extern	int			MQOZ_ZIP_uncompress( void *dest, size_t destLen, const void *source
 
 #ifndef DX_NON_OPUS
 	#ifndef DX_NON_NAMESPACE
-		extern	int      SetupSoundConvert_OPUS(            DxLib::SOUNDCONV *SoundConv ) ;							// Opusƒtƒ@ƒCƒ‹‚ÌƒZƒbƒgƒAƒbƒvˆ—‚ğs‚¤( [–ß] -1:ƒGƒ‰[ )
-		extern	int      TerminateSoundConvert_OPUS(        DxLib::SOUNDCONV *SoundConv ) ;							// Opusƒtƒ@ƒCƒ‹‚ÌŒãn––ˆ—‚ğs‚¤
-		extern	int      ConvertProcessSoundConvert_OPUS(   DxLib::SOUNDCONV *SoundConv ) ;							// •ÏŠ·Œã‚Ìƒoƒbƒtƒ@‚Éƒf[ƒ^‚ğ•â[‚·‚é
-		extern	int      SetSampleTimeSoundConvert_OPUS(    DxLib::SOUNDCONV *SoundConv, LONGLONG SampleTime ) ;		// •ÏŠ·ˆ—‚ÌˆÊ’u‚ğ•ÏX‚·‚é( ƒTƒ“ƒvƒ‹’PˆÊ )
-		extern	LONGLONG GetSoundConvertDestSize_Fast_OPUS( DxLib::SOUNDCONV *SoundConv ) ;							// •ÏŠ·Œã‚Ì‘å–}‚Ìƒf[ƒ^ƒTƒCƒY‚ğ“¾‚é
+		extern	int      SetupSoundConvert_OPUS(            DxLib::SOUNDCONV *SoundConv ) ;							// Opusãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—å‡¦ç†ã‚’è¡Œã†( [æˆ»] -1:ã‚¨ãƒ©ãƒ¼ )
+		extern	int      TerminateSoundConvert_OPUS(        DxLib::SOUNDCONV *SoundConv ) ;							// Opusãƒ•ã‚¡ã‚¤ãƒ«ã®å¾Œå§‹æœ«å‡¦ç†ã‚’è¡Œã†
+		extern	int      ConvertProcessSoundConvert_OPUS(   DxLib::SOUNDCONV *SoundConv ) ;							// å¤‰æ›å¾Œã®ãƒãƒƒãƒ•ã‚¡ã«ãƒ‡ãƒ¼ã‚¿ã‚’è£œå……ã™ã‚‹
+		extern	int      SetSampleTimeSoundConvert_OPUS(    DxLib::SOUNDCONV *SoundConv, LONGLONG SampleTime ) ;		// å¤‰æ›å‡¦ç†ã®ä½ç½®ã‚’å¤‰æ›´ã™ã‚‹( ã‚µãƒ³ãƒ—ãƒ«å˜ä½ )
+		extern	LONGLONG GetSoundConvertDestSize_Fast_OPUS( DxLib::SOUNDCONV *SoundConv ) ;							// å¤‰æ›å¾Œã®å¤§å‡¡ã®ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºã‚’å¾—ã‚‹
 	#else // DX_NON_NAMESPACE
-		extern	int      SetupSoundConvert_OPUS(            SOUNDCONV *SoundConv ) ;							// Opusƒtƒ@ƒCƒ‹‚ÌƒZƒbƒgƒAƒbƒvˆ—‚ğs‚¤( [–ß] -1:ƒGƒ‰[ )
-		extern	int      TerminateSoundConvert_OPUS(        SOUNDCONV *SoundConv ) ;							// Opusƒtƒ@ƒCƒ‹‚ÌŒãn––ˆ—‚ğs‚¤
-		extern	int      ConvertProcessSoundConvert_OPUS(   SOUNDCONV *SoundConv ) ;							// •ÏŠ·Œã‚Ìƒoƒbƒtƒ@‚Éƒf[ƒ^‚ğ•â[‚·‚é
-		extern	int      SetSampleTimeSoundConvert_OPUS(    SOUNDCONV *SoundConv, LONGLONG SampleTime ) ;		// •ÏŠ·ˆ—‚ÌˆÊ’u‚ğ•ÏX‚·‚é( ƒTƒ“ƒvƒ‹’PˆÊ )
-		extern	LONGLONG GetSoundConvertDestSize_Fast_OPUS( SOUNDCONV *SoundConv ) ;							// •ÏŠ·Œã‚Ì‘å–}‚Ìƒf[ƒ^ƒTƒCƒY‚ğ“¾‚é
+		extern	int      SetupSoundConvert_OPUS(            SOUNDCONV *SoundConv ) ;							// Opusãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—å‡¦ç†ã‚’è¡Œã†( [æˆ»] -1:ã‚¨ãƒ©ãƒ¼ )
+		extern	int      TerminateSoundConvert_OPUS(        SOUNDCONV *SoundConv ) ;							// Opusãƒ•ã‚¡ã‚¤ãƒ«ã®å¾Œå§‹æœ«å‡¦ç†ã‚’è¡Œã†
+		extern	int      ConvertProcessSoundConvert_OPUS(   SOUNDCONV *SoundConv ) ;							// å¤‰æ›å¾Œã®ãƒãƒƒãƒ•ã‚¡ã«ãƒ‡ãƒ¼ã‚¿ã‚’è£œå……ã™ã‚‹
+		extern	int      SetSampleTimeSoundConvert_OPUS(    SOUNDCONV *SoundConv, LONGLONG SampleTime ) ;		// å¤‰æ›å‡¦ç†ã®ä½ç½®ã‚’å¤‰æ›´ã™ã‚‹( ã‚µãƒ³ãƒ—ãƒ«å˜ä½ )
+		extern	LONGLONG GetSoundConvertDestSize_Fast_OPUS( SOUNDCONV *SoundConv ) ;							// å¤‰æ›å¾Œã®å¤§å‡¡ã®ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºã‚’å¾—ã‚‹
 	#endif // DX_NON_NAMESPACE
 #endif
 
@@ -195,9 +195,9 @@ extern	int			MQOZ_ZIP_uncompress( void *dest, size_t destLen, const void *source
 
 #ifndef DX_NON_OGGTHEORA
 
-extern int	TheoraDecode_GrobalInitialize( void ) ;																					// ƒ\ƒtƒg“I‚Éˆê“x‚¾‚¯ŒÄ‚Ô‚×‚«‰Šú‰»ŠÖ”
+extern int	TheoraDecode_GrobalInitialize( void ) ;																					// ã‚½ãƒ•ãƒˆçš„ã«ä¸€åº¦ã ã‘å‘¼ã¶ã¹ãåˆæœŸåŒ–é–¢æ•°
 
-// Ogg Theora “Ç‚İ‚İˆ—‚Ì€”õ‚ğs‚¤( –ß‚è’l  0:¸”s  1ˆÈã:‰Šú‰»¬Œ÷ )
+// Ogg Theora èª­ã¿è¾¼ã¿å‡¦ç†ã®æº–å‚™ã‚’è¡Œã†( æˆ»ã‚Šå€¤  0:å¤±æ•—  1ä»¥ä¸Š:åˆæœŸåŒ–æˆåŠŸ )
 extern DWORD_PTR  TheoraDecode_InitializeStream(
 #ifndef DX_NON_NAMESPACE
 	DxLib::STREAMDATASHRED * StreamShred,
@@ -210,31 +210,31 @@ extern DWORD_PTR  TheoraDecode_InitializeStream(
 	int					NotUseYUVGrHandle /* = TRUE */,
 	int					ASyncTrhead /* = FALSE */
 ) ;
-extern int	TheoraDecode_Terminate( DWORD_PTR Handle ) ;																			// Ogg Theora “Ç‚İ‚İˆ—‚ÌŒãn––‚ğs‚¤
-extern int	TheoraDecode_SurfaceTerminate( DWORD_PTR Handle ) ;																		// Ogg Theora ‚Åg—p‚µ‚Ä‚¢‚éƒT[ƒtƒFƒX‚ğ‰ğ•ú‚·‚é
+extern int	TheoraDecode_Terminate( DWORD_PTR Handle ) ;																			// Ogg Theora èª­ã¿è¾¼ã¿å‡¦ç†ã®å¾Œå§‹æœ«ã‚’è¡Œã†
+extern int	TheoraDecode_SurfaceTerminate( DWORD_PTR Handle ) ;																		// Ogg Theora ã§ä½¿ç”¨ã—ã¦ã„ã‚‹ã‚µãƒ¼ãƒ•ã‚§ã‚¹ã‚’è§£æ”¾ã™ã‚‹
 
 #ifndef DX_NON_NAMESPACE
-extern int	TheoraDecode_GetInfo( DWORD_PTR Handle, DxLib::THEORADECODE_INFO *Info ) ;														// “®‰æ‚Ìî•ñ‚ğæ“¾‚·‚é
+extern int	TheoraDecode_GetInfo( DWORD_PTR Handle, DxLib::THEORADECODE_INFO *Info ) ;														// å‹•ç”»ã®æƒ…å ±ã‚’å–å¾—ã™ã‚‹
 #else // DX_NON_NAMESPACE
-extern int	TheoraDecode_GetInfo( DWORD_PTR Handle, THEORADECODE_INFO *Info ) ;														// “®‰æ‚Ìî•ñ‚ğæ“¾‚·‚é
+extern int	TheoraDecode_GetInfo( DWORD_PTR Handle, THEORADECODE_INFO *Info ) ;														// å‹•ç”»ã®æƒ…å ±ã‚’å–å¾—ã™ã‚‹
 #endif // DX_NON_NAMESPACE
-extern int	TheoraDecode_GetCurrentFrame( DWORD_PTR Handle ) ;																		// ƒJƒŒƒ“ƒgƒtƒŒ[ƒ€‚ğæ“¾‚·‚é
+extern int	TheoraDecode_GetCurrentFrame( DWORD_PTR Handle ) ;																		// ã‚«ãƒ¬ãƒ³ãƒˆãƒ•ãƒ¬ãƒ¼ãƒ ã‚’å–å¾—ã™ã‚‹
 	
-extern int	TheoraDecode_IncToFrame( DWORD_PTR Handle, int AddNum = 1 ) ;															// ƒJƒŒƒ“ƒgƒtƒŒ[ƒ€‚ğ‚PƒtƒŒ[ƒ€•ªi‚ß‚é( –ß‚è’l  0:ƒL[ƒtƒŒ[ƒ€‚¶‚á‚È‚©‚Á‚½  1:ƒL[ƒtƒŒ[ƒ€  -1:ƒGƒ‰[ )
-extern int	TheoraDecode_SeekToFrame( DWORD_PTR Handle, int Frame ) ;																// ƒJƒŒƒ“ƒgƒtƒŒ[ƒ€‚ğw’è‚ÌƒtƒŒ[ƒ€‚ÉˆÚ“®‚·‚é
-extern int	TheoraDecode_SeekToTime( DWORD_PTR Handle, LONGLONG Time ) ;															// ƒJƒŒƒ“ƒgƒtƒŒ[ƒ€‚ğw’è‚ÌÄ¶ŠÔ‚ÉˆÚ“®‚·‚é( ’PˆÊ‚Íƒ}ƒCƒNƒ•b )
+extern int	TheoraDecode_IncToFrame( DWORD_PTR Handle, int AddNum = 1 ) ;															// ã‚«ãƒ¬ãƒ³ãƒˆãƒ•ãƒ¬ãƒ¼ãƒ ã‚’ï¼‘ãƒ•ãƒ¬ãƒ¼ãƒ åˆ†é€²ã‚ã‚‹( æˆ»ã‚Šå€¤  0:ã‚­ãƒ¼ãƒ•ãƒ¬ãƒ¼ãƒ ã˜ã‚ƒãªã‹ã£ãŸ  1:ã‚­ãƒ¼ãƒ•ãƒ¬ãƒ¼ãƒ   -1:ã‚¨ãƒ©ãƒ¼ )
+extern int	TheoraDecode_SeekToFrame( DWORD_PTR Handle, int Frame ) ;																// ã‚«ãƒ¬ãƒ³ãƒˆãƒ•ãƒ¬ãƒ¼ãƒ ã‚’æŒ‡å®šã®ãƒ•ãƒ¬ãƒ¼ãƒ ã«ç§»å‹•ã™ã‚‹
+extern int	TheoraDecode_SeekToTime( DWORD_PTR Handle, LONGLONG Time ) ;															// ã‚«ãƒ¬ãƒ³ãƒˆãƒ•ãƒ¬ãƒ¼ãƒ ã‚’æŒ‡å®šã®å†ç”Ÿæ™‚é–“ã«ç§»å‹•ã™ã‚‹( å˜ä½ã¯ãƒã‚¤ã‚¯ãƒ­ç§’ )
 
-extern int	TheoraDecode_SetupImage( DWORD_PTR Handle, int BaseImage = 0, int YUVGrHandle = 0, int YUVImage = 0, int ASyncThread = FALSE ) ;				// ƒJƒŒƒ“ƒgƒtƒŒ[ƒ€‚ÌRGB‰æ‘œ‚ğì¬‚·‚é( –ß‚è’l  1:ì¬‚³‚ê‚½  0:‚³‚ê‚È‚©‚Á‚½ )
+extern int	TheoraDecode_SetupImage( DWORD_PTR Handle, int BaseImage = 0, int YUVGrHandle = 0, int YUVImage = 0, int ASyncThread = FALSE ) ;				// ã‚«ãƒ¬ãƒ³ãƒˆãƒ•ãƒ¬ãƒ¼ãƒ ã®RGBç”»åƒã‚’ä½œæˆã™ã‚‹( æˆ»ã‚Šå€¤  1:ä½œæˆã•ã‚ŒãŸ  0:ã•ã‚Œãªã‹ã£ãŸ )
 #ifndef DX_NON_NAMESPACE
-extern const DxLib::BASEIMAGE *TheoraDecode_GetBaseImage( DWORD_PTR Handle ) ;														// ˆêƒoƒbƒtƒ@‚ÌƒAƒhƒŒƒX‚ğæ“¾‚·‚é
+extern const DxLib::BASEIMAGE *TheoraDecode_GetBaseImage( DWORD_PTR Handle ) ;														// ä¸€æ™‚ãƒãƒƒãƒ•ã‚¡ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å–å¾—ã™ã‚‹
 #else // DX_NON_NAMESPACE
-extern const BASEIMAGE *	TheoraDecode_GetBaseImage( DWORD_PTR Handle ) ;															// ˆêƒoƒbƒtƒ@‚ÌƒAƒhƒŒƒX‚ğæ“¾‚·‚é
+extern const BASEIMAGE *	TheoraDecode_GetBaseImage( DWORD_PTR Handle ) ;															// ä¸€æ™‚ãƒãƒƒãƒ•ã‚¡ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å–å¾—ã™ã‚‹
 #endif // DX_NON_NAMESPACE
-extern const void *			TheoraDecode_GetYUVImage( DWORD_PTR Handle ) ;															// ˆêƒoƒbƒtƒ@‚Ì YUV ƒtƒH[ƒ}ƒbƒg‚ÌƒT[ƒtƒFƒX‚ğ“¾‚é
-extern int	TheoraDecode_GetYGrHandle( DWORD_PTR Handle ) ;																			// YUVƒJƒ‰[‚Ì Y¬•ª‚ÌƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ğæ“¾‚·‚é
-extern int	TheoraDecode_GetUVGrHandle( DWORD_PTR Handle ) ;																		// YUVƒJƒ‰[‚Ì UV¬•ª‚ÌƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ğæ“¾‚·‚é
+extern const void *			TheoraDecode_GetYUVImage( DWORD_PTR Handle ) ;															// ä¸€æ™‚ãƒãƒƒãƒ•ã‚¡ã® YUV ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®ã‚µãƒ¼ãƒ•ã‚§ã‚¹ã‚’å¾—ã‚‹
+extern int	TheoraDecode_GetYGrHandle( DWORD_PTR Handle ) ;																			// YUVã‚«ãƒ©ãƒ¼ã® Yæˆåˆ†ã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã‚’å–å¾—ã™ã‚‹
+extern int	TheoraDecode_GetUVGrHandle( DWORD_PTR Handle ) ;																		// YUVã‚«ãƒ©ãƒ¼ã® UVæˆåˆ†ã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã‚’å–å¾—ã™ã‚‹
 
-extern int	TheoraDecode_IsIdle( DWORD_PTR Handle ) ;																				// ƒfƒR[ƒhƒXƒŒƒbƒh‚ªƒAƒCƒhƒ‹ó‘Ô‚©‚Ç‚¤‚©‚ğ’²‚×‚é( –ß‚è’l  1:ƒAƒCƒhƒ‹ó‘Ô  0:‰Ò“®’† )
+extern int	TheoraDecode_IsIdle( DWORD_PTR Handle ) ;																				// ãƒ‡ã‚³ãƒ¼ãƒ‰ã‚¹ãƒ¬ãƒƒãƒ‰ãŒã‚¢ã‚¤ãƒ‰ãƒ«çŠ¶æ…‹ã‹ã©ã†ã‹ã‚’èª¿ã¹ã‚‹( æˆ»ã‚Šå€¤  1:ã‚¢ã‚¤ãƒ‰ãƒ«çŠ¶æ…‹  0:ç¨¼å‹•ä¸­ )
 
 #endif
 

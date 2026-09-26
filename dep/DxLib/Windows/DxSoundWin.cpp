@@ -1,19 +1,19 @@
 //-----------------------------------------------------------------------------
 // 
-// 		‚c‚wƒ‰ƒCƒuƒ‰ƒŠ		WindowsOS—pƒTƒEƒ“ƒhƒvƒƒOƒ‰ƒ€
+// 		ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒª		WindowsOSç”¨ã‚µã‚¦ãƒ³ãƒ‰ãƒ—ãƒ­ã‚°ãƒ©ãƒ 
 // 
 //  	Ver 3.25a
 // 
 //-----------------------------------------------------------------------------
 
-// ‚c‚wƒ‰ƒCƒuƒ‰ƒŠì¬—p’è‹`
+// ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªä½œæˆæ™‚ç”¨å®šç¾©
 #define DX_MAKE
 
 #include "../DxCompileConfig.h"
 
 #ifndef DX_NON_SOUND
 
-// ƒCƒ“ƒNƒ‹[ƒh----------------------------------------------------------------
+// ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰----------------------------------------------------------------
 #include "DxSoundWin.h"
 #include "DxGuid.h"
 #include "DxWinAPI.h"
@@ -37,14 +37,14 @@ namespace DxLib
 
 #endif // DX_NON_NAMESPACE
 
-// ƒ}ƒNƒ’è‹`------------------------------------------------------------------
+// ãƒã‚¯ãƒ­å®šç¾©------------------------------------------------------------------
 
-// ‚l‚h‚c‚hÅ¬ƒ{ƒŠƒ…[ƒ€
+// ï¼­ï¼©ï¼¤ï¼©æœ€å°ãƒœãƒªãƒ¥ãƒ¼ãƒ 
 #define DM_MIN_VOLUME						(-10000)
 
-// Œ^’è‹`----------------------------------------------------------------------
+// å‹å®šç¾©----------------------------------------------------------------------
 
-// ƒf[ƒ^éŒ¾------------------------------------------------------------------
+// ãƒ‡ãƒ¼ã‚¿å®£è¨€------------------------------------------------------------------
 
 static const D_X3DAUDIO_DISTANCE_CURVE_POINT D_X3DAudioDefault_LinearCurvePoints[2] = { 0.0f, 1.0f, 1.0f, 0.0f };
 static const D_X3DAUDIO_DISTANCE_CURVE       D_X3DAudioDefault_LinearCurve          = { ( D_X3DAUDIO_DISTANCE_CURVE_POINT * )& D_X3DAudioDefault_LinearCurvePoints[ 0 ], 2 } ;
@@ -206,23 +206,23 @@ D_PROPERTYKEY D_PKEY_Device_InstallState						 = { 0xa45c254e, 0xdf1c, 0x4efd,0x
 D_PROPERTYKEY D_PKEY_Device_LocationPaths						 = { 0xa45c254e, 0xdf1c, 0x4efd,0x80,0x20,0x67,0xd1,0x46,0xa8,0x50,0xe0, 37 };    // DEVPROP_TYPE_STRING_LIST
 D_PROPERTYKEY D_PKEY_Device_BaseContainerId						 = { 0xa45c254e, 0xdf1c, 0x4efd,0x80,0x20,0x67,0xd1,0x46,0xa8,0x50,0xe0, 38 };    // DEVPROP_TYPE_GUID
 
-// ŠÖ”ƒvƒƒgƒ^ƒCƒvéŒ¾ -------------------------------------------------------
+// é–¢æ•°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€ -------------------------------------------------------
 
 
-static	DWORD WINAPI StreamSoundThreadFunction( void * ) ;											// ƒXƒgƒŠ[ƒ€ƒTƒEƒ“ƒhˆ——pƒXƒŒƒbƒh
+static	DWORD WINAPI StreamSoundThreadFunction( void * ) ;											// ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‚µã‚¦ãƒ³ãƒ‰å‡¦ç†ç”¨ã‚¹ãƒ¬ãƒƒãƒ‰
 
-// XAudio2ŠÖŒW
+// XAudio2é–¢ä¿‚
 static HRESULT D_XAudio2CreateReverb( D_IUnknown** ppApo, DWORD Flags = 0 ) ;
 static HRESULT D_XAudio2CreateVolumeMeter( D_IUnknown** ppApo, DWORD Flags = 0 ) ;
 static void D_ReverbConvertI3DL2ToNative( const D_XAUDIO2FX_REVERB_I3DL2_PARAMETERS* pI3DL2, D_XAUDIO2FX_REVERB_PARAMETERS* pNative ) ;
 static void D_ReverbConvertI3DL2ToNative2_8( const D_XAUDIO2FX_REVERB_I3DL2_PARAMETERS* pI3DL2, D_XAUDIO2FX_REVERB_PARAMETERS2_8* pNative ) ;
 
-// MME waveOutŠÖŒW
+// MME waveOuté–¢ä¿‚
 void waveOutCallback( HWAVEOUT hwo, UINT uMsg, DWORD_PTR dwInstance, DWORD_PTR dwParam1, DWORD_PTR dwParam2 ) ;
 
-// ƒvƒƒOƒ‰ƒ€------------------------------------------------------------------
+// ãƒ—ãƒ­ã‚°ãƒ©ãƒ ------------------------------------------------------------------
 
-// XAudio2ŠÖŒW
+// XAudio2é–¢ä¿‚
 static HRESULT D_XAudio2CreateVolumeMeter( D_IUnknown** ppApo, DWORD Flags )
 {
 	if( SoundSysData.PF.XAudio2_8DLL != NULL )
@@ -408,7 +408,7 @@ static void ASIO_BufferSwitch( long index, long /* processNow */ )
 		SoundSysData.PF.ASIO_BufferSize
 	) ;
 
-	// o—ÍŠ®—¹‚ğ’Ê’m
+	// å‡ºåŠ›å®Œäº†ã‚’é€šçŸ¥
 	if( SoundSysData.PF.ASIO_Driver[ SoundSysData.PF.ASIO_DriverUseIndex ] != NULL )
 	{
 		SoundSysData.PF.ASIO_Driver[ SoundSysData.PF.ASIO_DriverUseIndex ]->outputReady() ;
@@ -437,24 +437,24 @@ D_ASIOTime* ASIO_BufferSwitchTimeInfo( D_ASIOTime * params, long /* doubleBuffer
 
 DWORD CALLBACK WASAPI_SoundPlayThread( void * )
 {
-	// ”r‘¼ƒ‚[ƒh‚Æ‹¤—Lƒ‚[ƒh‚Åˆ—‚ğ•ªŠò
+	// æ’ä»–ãƒ¢ãƒ¼ãƒ‰ã¨å…±æœ‰ãƒ¢ãƒ¼ãƒ‰ã§å‡¦ç†ã‚’åˆ†å²
 	if( SoundSysData.PF.WASAPI_IsExclusiveFlag )
 	{
-		// ”r‘¼ƒ‚[ƒh‚Ìê‡‚ÍƒCƒxƒ“ƒg‹ì“®
+		// æ’ä»–ãƒ¢ãƒ¼ãƒ‰ã®å ´åˆã¯ã‚¤ãƒ™ãƒ³ãƒˆé§†å‹•
 		while( SoundSysData.PF.WASAPI_ThreadLoop )
 		{
 			DWORD FrameCount ;
 			HRESULT ret ;
 			BYTE *Dest ;
 
-			// Ÿ‚Ìƒoƒbƒtƒ@æ“¾‚ª•K—v‚É‚È‚é‚Ü‚Å‘Ò‹@
+			// æ¬¡ã®ãƒãƒƒãƒ•ã‚¡å–å¾—ãŒå¿…è¦ã«ãªã‚‹ã¾ã§å¾…æ©Ÿ
 			DWORD retval = WinAPIData.Win32Func.WaitForSingleObjectFunc( SoundSysData.PF.WASAPI_Event, 2000 ) ;
 			if( retval != WAIT_OBJECT_0 )
 			{
 				continue ;
 			}
 
-			// ©‘Oƒ~ƒLƒVƒ“ƒO‚Ì‘Ä¶ŠÔ‚ÌŠî€’l‚ª‰Šú‰»‚³‚ê‚Ä‚¢‚È‚©‚Á‚½‚ç‰Šú‰»‚·‚é
+			// è‡ªå‰ãƒŸã‚­ã‚·ãƒ³ã‚°ã®ç·å†ç”Ÿæ™‚é–“ã®åŸºæº–å€¤ãŒåˆæœŸåŒ–ã•ã‚Œã¦ã„ãªã‹ã£ãŸã‚‰åˆæœŸåŒ–ã™ã‚‹
 //			if( SoundSysData.SelfMixingInitlizeTotalPlayTimeBaseCountFlag == FALSE )
 //			{
 //				UINT64 Pos, QPCPos, Freq ;
@@ -468,23 +468,23 @@ DWORD CALLBACK WASAPI_SoundPlayThread( void * )
 //				}
 //			}
 
-			// ¡‰ñ•K—v‚ÈƒtƒŒ[ƒ€”‚ğæ“¾
+			// ä»Šå›å¿…è¦ãªãƒ•ãƒ¬ãƒ¼ãƒ æ•°ã‚’å–å¾—
 			ret = SoundSysData.PF.AudioClient->GetBufferSize( &FrameCount ) ;
 
-			// o—Íƒoƒbƒtƒ@‚Ìƒ|ƒCƒ“ƒ^‚ğæ“¾
+			// å‡ºåŠ›ãƒãƒƒãƒ•ã‚¡ã®ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—
 			ret = SoundSysData.PF.AudioRenderClient->GetBuffer( FrameCount, &Dest ) ;
 			if( SUCCEEDED( ret ) )
 			{
 				WriteSelfMixingSample( Dest, ( BYTE * )Dest + ( SoundSysData.PF.SelfMixingFormatEx.Format.wBitsPerSample >> 3 ), SoundSysData.PF.SelfMixingFormatEx.Format.nBlockAlign, FrameCount ) ;
 
-				// ƒoƒbƒtƒ@‚ğŠJ•ú
+				// ãƒãƒƒãƒ•ã‚¡ã‚’é–‹æ”¾
 				SoundSysData.PF.AudioRenderClient->ReleaseBuffer( FrameCount, 0 ) ;
 			}
 		}
 	}
 	else
 	{
-		// ‹¤—Lƒ‚[ƒh‚Ìê‡‚Íƒoƒbƒtƒ@ŠÄ‹
+		// å…±æœ‰ãƒ¢ãƒ¼ãƒ‰ã®å ´åˆã¯ãƒãƒƒãƒ•ã‚¡ç›£è¦–
 		DWORD SleepTime = ( DWORD )( SoundSysData.PF.WASAPI_DevicePeriod / 20000 ) ;
 		if( SleepTime <= 0 ) SleepTime = 1 ;
 		while( SoundSysData.PF.WASAPI_ThreadLoop )
@@ -494,16 +494,16 @@ DWORD CALLBACK WASAPI_SoundPlayThread( void * )
 			BYTE *Dest ;
 			DWORD Padding ;
 
-			// ƒfƒoƒCƒXƒsƒŠƒIƒh‚Ì”¼•ª‚ÌŠÔQ‚é
+			// ãƒ‡ãƒã‚¤ã‚¹ãƒ”ãƒªã‚ªãƒ‰ã®åŠåˆ†ã®æ™‚é–“å¯ã‚‹
 			WinAPIData.Win32Func.SleepFunc( SleepTime ) ;
 
-			// ‚Ü‚¾Ä¶‚³‚ê‚Ä‚¢‚È‚¢—LŒø‚Èƒf[ƒ^—Ê‚ğæ“¾‚·‚é
+			// ã¾ã å†ç”Ÿã•ã‚Œã¦ã„ãªã„æœ‰åŠ¹ãªãƒ‡ãƒ¼ã‚¿é‡ã‚’å–å¾—ã™ã‚‹
 			ret = SoundSysData.PF.AudioClient->GetCurrentPadding( &Padding ) ;
 
-			// ¡‰ñ“n‚·‚×‚«ƒTƒ“ƒvƒ‹”‚ğZo
+			// ä»Šå›æ¸¡ã™ã¹ãã‚µãƒ³ãƒ—ãƒ«æ•°ã‚’ç®—å‡º
 			FrameCount = SoundSysData.PF.WASAPI_BufferSamples - Padding ;
 
-			// ©‘Oƒ~ƒLƒVƒ“ƒO‚Ì‘Ä¶ŠÔ‚ÌŠî€’l‚ª‰Šú‰»‚³‚ê‚Ä‚¢‚È‚©‚Á‚½‚ç‰Šú‰»‚·‚é
+			// è‡ªå‰ãƒŸã‚­ã‚·ãƒ³ã‚°ã®ç·å†ç”Ÿæ™‚é–“ã®åŸºæº–å€¤ãŒåˆæœŸåŒ–ã•ã‚Œã¦ã„ãªã‹ã£ãŸã‚‰åˆæœŸåŒ–ã™ã‚‹
 //			if( SoundSysData.SelfMixingInitlizeTotalPlayTimeBaseCountFlag == FALSE )
 //			{
 //				UINT64 Pos, QPCPos, Freq ;
@@ -517,7 +517,7 @@ DWORD CALLBACK WASAPI_SoundPlayThread( void * )
 //				}
 //			}
 
-			// o—Íƒoƒbƒtƒ@‚Ìƒ|ƒCƒ“ƒ^‚ğæ“¾
+			// å‡ºåŠ›ãƒãƒƒãƒ•ã‚¡ã®ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—
 			if( FrameCount > 0 )
 			{
 				ret = SoundSysData.PF.AudioRenderClient->GetBuffer( FrameCount, &Dest ) ;
@@ -525,7 +525,7 @@ DWORD CALLBACK WASAPI_SoundPlayThread( void * )
 				{
 					WriteSelfMixingSample( Dest, ( BYTE * )Dest + ( SoundSysData.PF.SelfMixingFormatEx.Format.wBitsPerSample >> 3 ), SoundSysData.PF.SelfMixingFormatEx.Format.nBlockAlign, FrameCount ) ;
 
-					// ƒoƒbƒtƒ@‚ğŠJ•ú
+					// ãƒãƒƒãƒ•ã‚¡ã‚’é–‹æ”¾
 					SoundSysData.PF.AudioRenderClient->ReleaseBuffer( FrameCount, 0 ) ;
 				}
 			}
@@ -536,7 +536,7 @@ DWORD CALLBACK WASAPI_SoundPlayThread( void * )
 }
 
 
-// ƒXƒgƒŠ[ƒ€ƒTƒEƒ“ƒhˆ——pƒXƒŒƒbƒh
+// ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‚µã‚¦ãƒ³ãƒ‰å‡¦ç†ç”¨ã‚¹ãƒ¬ãƒƒãƒ‰
 static	DWORD WINAPI StreamSoundThreadFunction( void * )
 {
 	SETUP_WIN_API
@@ -546,39 +546,39 @@ static	DWORD WINAPI StreamSoundThreadFunction( void * )
 		if( SoundSysData.PF.StreamSoundThreadEndFlag == 1 ) break ;
 		if( SoundSysData.InitializeFlag == FALSE ) break ;
 
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 		CRITICALSECTION_LOCK( &HandleManageArray[ DX_HANDLETYPE_SOUND ].CriticalSection ) ;
 
-		// ƒXƒgƒŠ[ƒ~ƒ“ƒOˆ—
+		// ã‚¹ãƒˆãƒªãƒ¼ãƒŸãƒ³ã‚°å‡¦ç†
 		NS_ProcessStreamSoundMemAll() ;
 
-		// Ä¶‚ªI—¹‚µ‚½‚çƒnƒ“ƒhƒ‹‚ğíœ‚·‚éˆ—‚ğs‚¤
+		// å†ç”ŸãŒçµ‚äº†ã—ãŸã‚‰ãƒãƒ³ãƒ‰ãƒ«ã‚’å‰Šé™¤ã™ã‚‹å‡¦ç†ã‚’è¡Œã†
 //		ProcessPlayFinishDeleteSoundMemAll() ;
 
-		// ‚R‚cƒTƒEƒ“ƒh‚ğÄ¶‚µ‚Ä‚¢‚éƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹‚É‘Î‚·‚éˆ—‚ğs‚¤
+		// ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰ã‚’å†ç”Ÿã—ã¦ã„ã‚‹ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ã«å¯¾ã™ã‚‹å‡¦ç†ã‚’è¡Œã†
 		ProcessPlay3DSoundMemAll() ;
 
-		// Ä¶‚µ‚Ä‚¢‚éƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹‚É‘Î‚·‚éˆ—‚ğs‚¤
+		// å†ç”Ÿã—ã¦ã„ã‚‹ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ã«å¯¾ã™ã‚‹å‡¦ç†ã‚’è¡Œã†
 		ProcessPlaySoundMemAll() ;
 
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 		CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_SOUND ].CriticalSection ) ;
 
 
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 		CRITICALSECTION_LOCK( &HandleManageArray[ DX_HANDLETYPE_SOFTSOUND ].CriticalSection ) ;
 
-		// ƒXƒgƒŠ[ƒ~ƒ“ƒOˆ—
+		// ã‚¹ãƒˆãƒªãƒ¼ãƒŸãƒ³ã‚°å‡¦ç†
 		ST_SoftSoundPlayerProcessAll() ;
 
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 		CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_SOFTSOUND ].CriticalSection ) ;
 
-		// ‘Ò‚¿
+		// å¾…ã¡
 		WinAPIData.Win32Func.SleepFunc( 10 ) ;
 	}
 
-	// ƒXƒŒƒbƒhI—¹
+	// ã‚¹ãƒ¬ãƒƒãƒ‰çµ‚äº†
 	SoundSysData.PF.StreamSoundThreadEndFlag = 2 ;
 	WinAPIData.Win32Func.ExitThreadFunc( 0 ) ;
 
@@ -588,7 +588,7 @@ static	DWORD WINAPI StreamSoundThreadFunction( void * )
 
 
 
-// WASAPI ‚Ì‰Šú‰»‚ğs‚¤
+// WASAPI ã®åˆæœŸåŒ–ã‚’è¡Œã†
 static	int		InitializeWASAPI( void )
 {
 	HRESULT ret ;
@@ -596,32 +596,32 @@ static	int		InitializeWASAPI( void )
 	int IsExclusive = SoundSysData.PF.WASAPI_IsExclusiveFlag ;
 	int ChangeFormat = FALSE ;
 
-	// ©‘Oƒ~ƒLƒVƒ“ƒO‚ğs‚¤ƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// è‡ªå‰ãƒŸã‚­ã‚·ãƒ³ã‚°ã‚’è¡Œã†ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	SoundSysData.EnableSelfMixingFlag = TRUE ;
 
-	DXST_LOGFILE_ADDUTF16LE( "\x57\x00\x41\x00\x53\x00\x41\x00\x50\x00\x49\x00\x20\x00\x6e\x30\x1d\x52\x1f\x67\x16\x53\x92\x30\x4c\x88\x44\x30\x7e\x30\x59\x30\x0a\x00\x00"/*@ L"WASAPI ‚Ì‰Šú‰»‚ğs‚¢‚Ü‚·\n" @*/ ) ;
+	DXST_LOGFILE_ADDUTF16LE( "\x57\x00\x41\x00\x53\x00\x41\x00\x50\x00\x49\x00\x20\x00\x6e\x30\x1d\x52\x1f\x67\x16\x53\x92\x30\x4c\x88\x44\x30\x7e\x30\x59\x30\x0a\x00\x00"/*@ L"WASAPI ã®åˆæœŸåŒ–ã‚’è¡Œã„ã¾ã™\n" @*/ ) ;
 
 	DXST_LOGFILE_TABADD ;
 
-	// ƒ}ƒ‹ƒ`ƒƒfƒBƒAƒfƒoƒCƒX—ñ‹“q
+	// ãƒãƒ«ãƒãƒ¡ãƒ‡ã‚£ã‚¢ãƒ‡ãƒã‚¤ã‚¹åˆ—æŒ™å­
 	ret = WinAPIData.Win32Func.CoCreateInstanceFunc( CLSID_MMDEVICEENUMERATOR, NULL, CLSCTX_ALL, IID_IMMDEVICEENUMERATOR, ( void** )&SoundSysData.PF.IMMDeviceEnumerator ) ;
 	if( FAILED( ret ) )
 	{
 		DXST_LOGFILE_TABSUB ;
-		DXST_LOGFILE_ADDUTF16LE( "\x49\x00\x4d\x00\x4d\x00\x44\x00\x65\x00\x76\x00\x69\x00\x63\x00\x65\x00\x45\x00\x6e\x00\x75\x00\x6d\x00\x65\x00\x72\x00\x61\x00\x74\x00\x6f\x00\x72\x00\x20\x00\x6e\x30\xd6\x53\x97\x5f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"IMMDeviceEnumerator ‚Ìæ“¾‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+		DXST_LOGFILE_ADDUTF16LE( "\x49\x00\x4d\x00\x4d\x00\x44\x00\x65\x00\x76\x00\x69\x00\x63\x00\x65\x00\x45\x00\x6e\x00\x75\x00\x6d\x00\x65\x00\x72\x00\x61\x00\x74\x00\x6f\x00\x72\x00\x20\x00\x6e\x30\xd6\x53\x97\x5f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"IMMDeviceEnumerator ã®å–å¾—ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 		SoundSysData.PF.DisableWASAPIFlag = TRUE ;
 		SoundSysData.EnableSelfMixingFlag = FALSE ;
 		return -1 ;
 	}
 
-	// ƒR[ƒ‹ƒoƒbƒN‚Ìİ’è
+	// ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã®è¨­å®š
 	SoundSysData.PF.CMMNotificationClient = new D_CMMNotificationClient ;
 	if( SoundSysData.PF.CMMNotificationClient != NULL )
 	{
 		SoundSysData.PF.IMMDeviceEnumerator->RegisterEndpointNotificationCallback( SoundSysData.PF.CMMNotificationClient ) ;
 	}
 
-	// ƒfƒtƒHƒ‹ƒg‚ÌƒfƒoƒCƒX‚ğ‘I‘ğ
+	// ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®ãƒ‡ãƒã‚¤ã‚¹ã‚’é¸æŠ
 	ret = SoundSysData.PF.IMMDeviceEnumerator->GetDefaultAudioEndpoint( D_eRender, D_eConsole, &SoundSysData.PF.IMMDevice ) ;
 	if( FAILED( ret ) )
 	{
@@ -640,13 +640,13 @@ static	int		InitializeWASAPI( void )
 		}
 
 		DXST_LOGFILE_TABSUB ;
-		DXST_LOGFILE_ADDUTF16LE( "\x49\x00\x4d\x00\x4d\x00\x44\x00\x65\x00\x76\x00\x69\x00\x63\x00\x65\x00\x20\x00\x6e\x30\xd6\x53\x97\x5f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"IMMDevice ‚Ìæ“¾‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+		DXST_LOGFILE_ADDUTF16LE( "\x49\x00\x4d\x00\x4d\x00\x44\x00\x65\x00\x76\x00\x69\x00\x63\x00\x65\x00\x20\x00\x6e\x30\xd6\x53\x97\x5f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"IMMDevice ã®å–å¾—ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 		SoundSysData.PF.DisableWASAPIFlag = TRUE ;
 		SoundSysData.EnableSelfMixingFlag = FALSE ;
 		return -1 ;
 	}
 
-	// ƒfƒoƒCƒX–¼‚Ìo—Í
+	// ãƒ‡ãƒã‚¤ã‚¹åã®å‡ºåŠ›
 	{
 		D_IPropertyStore *pProps = NULL ;
 		D_PROPVARIANT varString ;
@@ -657,13 +657,13 @@ static	int		InitializeWASAPI( void )
 			ret = pProps->GetValue( D_PKEY_Device_FriendlyName, &varString ) ;
 			if( ret == S_OK )
 			{
-				DXST_LOGFILEFMT_ADDUTF16LE(( "\xc7\x30\xd0\x30\xa4\x30\xb9\x30\x0d\x54\x20\x00\x3a\x00\x20\x00\x25\x00\x73\x00\x00"/*@ L"ƒfƒoƒCƒX–¼ : %s" @*/, *( ( WCHAR ** )&varString.hVal ) )) ;
+				DXST_LOGFILEFMT_ADDUTF16LE(( "\xc7\x30\xd0\x30\xa4\x30\xb9\x30\x0d\x54\x20\x00\x3a\x00\x20\x00\x25\x00\x73\x00\x00"/*@ L"ãƒ‡ãƒã‚¤ã‚¹å : %s" @*/, *( ( WCHAR ** )&varString.hVal ) )) ;
 				WinAPIData.Win32Func.PropVariantClearFunc( &varString ) ;
 			}
 		}
 	}
 
-	// ƒI[ƒfƒBƒIƒNƒ‰ƒCƒAƒ“ƒg‚Ìæ“¾
+	// ã‚ªãƒ¼ãƒ‡ã‚£ã‚ªã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã®å–å¾—
 	ret = SoundSysData.PF.IMMDevice->Activate( IID_IAUDIOCLIENT, CLSCTX_ALL, NULL, ( void** )&SoundSysData.PF.AudioClient ) ;
 	if( FAILED( ret ) )
 	{
@@ -690,19 +690,19 @@ static	int		InitializeWASAPI( void )
 		}
 
 		DXST_LOGFILE_TABSUB ;
-		DXST_LOGFILE_ADDUTF16LE( "\xaa\x30\xfc\x30\xc7\x30\xa3\x30\xaa\x30\xaf\x30\xe9\x30\xa4\x30\xa2\x30\xf3\x30\xc8\x30\x6e\x30\xd6\x53\x97\x5f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ƒI[ƒfƒBƒIƒNƒ‰ƒCƒAƒ“ƒg‚Ìæ“¾‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+		DXST_LOGFILE_ADDUTF16LE( "\xaa\x30\xfc\x30\xc7\x30\xa3\x30\xaa\x30\xaf\x30\xe9\x30\xa4\x30\xa2\x30\xf3\x30\xc8\x30\x6e\x30\xd6\x53\x97\x5f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ã‚ªãƒ¼ãƒ‡ã‚£ã‚ªã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã®å–å¾—ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 		SoundSysData.PF.DisableWASAPIFlag = TRUE ;
 		SoundSysData.EnableSelfMixingFlag = FALSE ;
 		return -1 ;
 	}
 
-	// ƒfƒtƒHƒ‹ƒgƒfƒoƒCƒXƒsƒŠƒIƒh‚ÆÅ¬ƒfƒoƒCƒXƒsƒŠƒIƒh‚ğæ“¾
+	// ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãƒ‡ãƒã‚¤ã‚¹ãƒ”ãƒªã‚ªãƒ‰ã¨æœ€å°ãƒ‡ãƒã‚¤ã‚¹ãƒ”ãƒªã‚ªãƒ‰ã‚’å–å¾—
 	ret = SoundSysData.PF.AudioClient->GetDevicePeriod( &SoundSysData.PF.WASAPI_DefaultDevicePeriod, &SoundSysData.PF.WASAPI_MinimumDevicePeriod ) ;
 
-	DXST_LOGFILEFMT_ADDUTF16LE(( "\xc7\x30\xd5\x30\xa9\x30\xeb\x30\xc8\x30\x45\x90\xf6\x5e\x42\x66\x93\x95\x20\x00\x3a\x00\x20\x00\x25\x00\x2e\x00\x33\x00\x66\x00\x20\x00\x6d\x00\x73\x00\x00"/*@ L"ƒfƒtƒHƒ‹ƒg’x‰„ŠÔ : %.3f ms" @*/, ( float )SoundSysData.PF.WASAPI_DefaultDevicePeriod / 10000.0f )) ;
-	DXST_LOGFILEFMT_ADDUTF16LE(( "\x00\x67\x0f\x5c\x45\x90\xf6\x5e\x42\x66\x93\x95\x20\x00\x20\x00\x20\x00\x20\x00\x20\x00\x20\x00\x20\x00\x3a\x00\x20\x00\x25\x00\x2e\x00\x33\x00\x66\x00\x20\x00\x6d\x00\x73\x00\x00"/*@ L"Å¬’x‰„ŠÔ       : %.3f ms" @*/, ( float )SoundSysData.PF.WASAPI_MinimumDevicePeriod / 10000.0f )) ;
+	DXST_LOGFILEFMT_ADDUTF16LE(( "\xc7\x30\xd5\x30\xa9\x30\xeb\x30\xc8\x30\x45\x90\xf6\x5e\x42\x66\x93\x95\x20\x00\x3a\x00\x20\x00\x25\x00\x2e\x00\x33\x00\x66\x00\x20\x00\x6d\x00\x73\x00\x00"/*@ L"ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆé…å»¶æ™‚é–“ : %.3f ms" @*/, ( float )SoundSysData.PF.WASAPI_DefaultDevicePeriod / 10000.0f )) ;
+	DXST_LOGFILEFMT_ADDUTF16LE(( "\x00\x67\x0f\x5c\x45\x90\xf6\x5e\x42\x66\x93\x95\x20\x00\x20\x00\x20\x00\x20\x00\x20\x00\x20\x00\x20\x00\x3a\x00\x20\x00\x25\x00\x2e\x00\x33\x00\x66\x00\x20\x00\x6d\x00\x73\x00\x00"/*@ L"æœ€å°é…å»¶æ™‚é–“       : %.3f ms" @*/, ( float )SoundSysData.PF.WASAPI_MinimumDevicePeriod / 10000.0f )) ;
 
-	// ÀÛ‚Ég—p‚·‚éƒfƒoƒCƒXƒsƒŠƒIƒh‚ÌZo
+	// å®Ÿéš›ã«ä½¿ç”¨ã™ã‚‹ãƒ‡ãƒã‚¤ã‚¹ãƒ”ãƒªã‚ªãƒ‰ã®ç®—å‡º
 	if( SoundSysData.PF.WASAPI_EnableUserParam && SoundSysData.PF.WASAPI_UserParam_DevicePeriod >= 0 )
 	{
 		SoundSysData.PF.WASAPI_DevicePeriod = SoundSysData.PF.WASAPI_MinimumDevicePeriod > SoundSysData.PF.WASAPI_UserParam_DevicePeriod ? SoundSysData.PF.WASAPI_MinimumDevicePeriod : SoundSysData.PF.WASAPI_UserParam_DevicePeriod ;
@@ -712,12 +712,12 @@ static	int		InitializeWASAPI( void )
 		SoundSysData.PF.WASAPI_DevicePeriod = SoundSysData.PF.WASAPI_DefaultDevicePeriod ;
 	}
 
-	DXST_LOGFILEFMT_ADDUTF16LE(( "\x45\x90\xf6\x5e\x42\x66\x93\x95\x20\x00\x20\x00\x20\x00\x20\x00\x20\x00\x20\x00\x20\x00\x20\x00\x20\x00\x20\x00\x20\x00\x3a\x00\x20\x00\x25\x00\x2e\x00\x33\x00\x66\x00\x20\x00\x6d\x00\x73\x00\x00"/*@ L"’x‰„ŠÔ           : %.3f ms" @*/, ( float )SoundSysData.PF.WASAPI_DevicePeriod / 10000.0f )) ;
+	DXST_LOGFILEFMT_ADDUTF16LE(( "\x45\x90\xf6\x5e\x42\x66\x93\x95\x20\x00\x20\x00\x20\x00\x20\x00\x20\x00\x20\x00\x20\x00\x20\x00\x20\x00\x20\x00\x20\x00\x3a\x00\x20\x00\x25\x00\x2e\x00\x33\x00\x66\x00\x20\x00\x6d\x00\x73\x00\x00"/*@ L"é…å»¶æ™‚é–“           : %.3f ms" @*/, ( float )SoundSysData.PF.WASAPI_DevicePeriod / 10000.0f )) ;
 
-	// ”r‘¼ƒ‚[ƒh‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+	// æ’ä»–ãƒ¢ãƒ¼ãƒ‰ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 	if( IsExclusive )
 	{
-		// ƒtƒH[ƒ}ƒbƒg‚Ìİ’è
+		// ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®è¨­å®š
 		D_WAVEFORMATEXTENSIBLE WaveFormat ;
 		_MEMSET( &WaveFormat, 0, sizeof( WaveFormat ) ) ;
 		WaveFormat.Format.cbSize                = sizeof( D_WAVEFORMATEXTENSIBLE ) - sizeof( WAVEFORMATEX );
@@ -731,15 +731,15 @@ static	int		InitializeWASAPI( void )
 		WaveFormat.dwChannelMask                = D_SPEAKER_FRONT_LEFT | D_SPEAKER_FRONT_RIGHT ;
 		WaveFormat.SubFormat                    = D_KSDATAFORMAT_SUBTYPE_PCM ;
 
-		// ƒtƒH[ƒ}ƒbƒg‚ÌƒTƒ|[ƒgƒ`ƒFƒbƒN
+		// ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®ã‚µãƒãƒ¼ãƒˆãƒã‚§ãƒƒã‚¯
 		ret = SoundSysData.PF.AudioClient->IsFormatSupported( D_AUDCLNT_SHAREMODE_EXCLUSIVE, ( WAVEFORMATEX * )&WaveFormat, NULL ) ;
 		if( FAILED( ret ) )
 		{
 			int i, j ;
 
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\xc7\x30\xd0\x30\xa4\x30\xb9\x30\x4c\x30\x07\x63\x9a\x5b\x6e\x30\xd5\x30\xa9\x30\xfc\x30\xde\x30\xc3\x30\xc8\x30\x6b\x30\x5e\x97\xfe\x5b\xdc\x5f\x60\x30\x63\x30\x5f\x30\x5f\x30\x81\x30\xd6\x4e\x6e\x30\xd5\x30\xa9\x30\xfc\x30\xde\x30\xc3\x30\xc8\x30\x67\x30\x6e\x30\x1d\x52\x1f\x67\x16\x53\x92\x30\x66\x8a\x7f\x30\x7e\x30\x59\x30\x00"/*@ L"ƒfƒoƒCƒX‚ªw’è‚ÌƒtƒH[ƒ}ƒbƒg‚É”ñ‘Î‰‚¾‚Á‚½‚½‚ß‘¼‚ÌƒtƒH[ƒ}ƒbƒg‚Å‚Ì‰Šú‰»‚ğ‚İ‚Ü‚·" @*/ )) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\xc7\x30\xd0\x30\xa4\x30\xb9\x30\x4c\x30\x07\x63\x9a\x5b\x6e\x30\xd5\x30\xa9\x30\xfc\x30\xde\x30\xc3\x30\xc8\x30\x6b\x30\x5e\x97\xfe\x5b\xdc\x5f\x60\x30\x63\x30\x5f\x30\x5f\x30\x81\x30\xd6\x4e\x6e\x30\xd5\x30\xa9\x30\xfc\x30\xde\x30\xc3\x30\xc8\x30\x67\x30\x6e\x30\x1d\x52\x1f\x67\x16\x53\x92\x30\x66\x8a\x7f\x30\x7e\x30\x59\x30\x00"/*@ L"ãƒ‡ãƒã‚¤ã‚¹ãŒæŒ‡å®šã®ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã«éå¯¾å¿œã ã£ãŸãŸã‚ä»–ã®ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã§ã®åˆæœŸåŒ–ã‚’è©¦ã¿ã¾ã™" @*/ )) ;
 
-			// ƒTƒ|[ƒgŠO‚¾‚Á‚½ê‡A‘Î‰‚µ‚Ä‚¢‚»‚¤‚ÈƒtƒH[ƒ}ƒbƒg‚ğŒ¬•À‚İ‚·
+			// ã‚µãƒãƒ¼ãƒˆå¤–ã ã£ãŸå ´åˆã€å¯¾å¿œã—ã¦ã„ãã†ãªãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã‚’è»’ä¸¦ã¿è©¦ã™
 			for( i = 0 ; WASAPI_SamplePerSec[ i ] != 0 ; i ++ )
 			{
 				for( j = 0 ; WASAPI_BitPerSample[ j ] != 0 ; j ++ )
@@ -785,14 +785,14 @@ static	int		InitializeWASAPI( void )
 				}
 
 				DXST_LOGFILE_TABSUB ;
-				DXST_LOGFILE_ADDUTF16LE( "\x57\x00\x41\x00\x53\x00\x41\x00\x50\x00\x49\x00\x20\x00\x6e\x30\x92\x63\xd6\x4e\xe2\x30\xfc\x30\xc9\x30\x4c\x30\xb5\x30\xdd\x30\xfc\x30\xc8\x30\x59\x30\x8b\x30\xd5\x30\xa9\x30\xfc\x30\xde\x30\xc3\x30\xc8\x30\x4c\x30\x8b\x89\x64\x30\x4b\x30\x8a\x30\x7e\x30\x5b\x30\x93\x30\x67\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"WASAPI ‚Ì”r‘¼ƒ‚[ƒh‚ªƒTƒ|[ƒg‚·‚éƒtƒH[ƒ}ƒbƒg‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñ‚Å‚µ‚½\n" @*/ ) ;
-				DXST_LOGFILE_ADDUTF16LE( "\x92\x63\xd6\x4e\xe2\x30\xfc\x30\xc9\x30\x6e\x30\x1d\x52\x1f\x67\x16\x53\x6b\x30\x31\x59\x57\x65\x57\x30\x5f\x30\x6e\x30\x67\x30\x71\x51\x09\x67\xe2\x30\xfc\x30\xc9\x30\x6e\x30\x1d\x52\x1f\x67\x16\x53\x92\x30\x66\x8a\x4c\x88\x57\x30\x7e\x30\x59\x30\x0a\x00\x00"/*@ L"”r‘¼ƒ‚[ƒh‚Ì‰Šú‰»‚É¸”s‚µ‚½‚Ì‚Å‹¤—Lƒ‚[ƒh‚Ì‰Šú‰»‚ğs‚µ‚Ü‚·\n" @*/ ) ;
+				DXST_LOGFILE_ADDUTF16LE( "\x57\x00\x41\x00\x53\x00\x41\x00\x50\x00\x49\x00\x20\x00\x6e\x30\x92\x63\xd6\x4e\xe2\x30\xfc\x30\xc9\x30\x4c\x30\xb5\x30\xdd\x30\xfc\x30\xc8\x30\x59\x30\x8b\x30\xd5\x30\xa9\x30\xfc\x30\xde\x30\xc3\x30\xc8\x30\x4c\x30\x8b\x89\x64\x30\x4b\x30\x8a\x30\x7e\x30\x5b\x30\x93\x30\x67\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"WASAPI ã®æ’ä»–ãƒ¢ãƒ¼ãƒ‰ãŒã‚µãƒãƒ¼ãƒˆã™ã‚‹ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“ã§ã—ãŸ\n" @*/ ) ;
+				DXST_LOGFILE_ADDUTF16LE( "\x92\x63\xd6\x4e\xe2\x30\xfc\x30\xc9\x30\x6e\x30\x1d\x52\x1f\x67\x16\x53\x6b\x30\x31\x59\x57\x65\x57\x30\x5f\x30\x6e\x30\x67\x30\x71\x51\x09\x67\xe2\x30\xfc\x30\xc9\x30\x6e\x30\x1d\x52\x1f\x67\x16\x53\x92\x30\x66\x8a\x4c\x88\x57\x30\x7e\x30\x59\x30\x0a\x00\x00"/*@ L"æ’ä»–ãƒ¢ãƒ¼ãƒ‰ã®åˆæœŸåŒ–ã«å¤±æ•—ã—ãŸã®ã§å…±æœ‰ãƒ¢ãƒ¼ãƒ‰ã®åˆæœŸåŒ–ã‚’è©¦è¡Œã—ã¾ã™\n" @*/ ) ;
 				SoundSysData.PF.WASAPI_IsExclusiveFlag = FALSE ;
 				return -1 ;
 			}
 		}
 
-		// ƒtƒH[ƒ}ƒbƒg‚ğ•Û‘¶
+		// ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã‚’ä¿å­˜
 		SoundSysData.PF.SelfMixingFormatEx = WaveFormat ;
 	}
 	else
@@ -821,44 +821,44 @@ static	int		InitializeWASAPI( void )
 			}
 
 			DXST_LOGFILE_TABSUB ;
-			DXST_LOGFILE_ADDUTF16LE( "\x57\x00\x41\x00\x53\x00\x41\x00\x50\x00\x49\x00\x20\x00\x6e\x30\x71\x51\x09\x67\xe2\x30\xfc\x30\xc9\x30\x6e\x30\xb5\x30\xa6\x30\xf3\x30\xc9\x30\xd5\x30\xa9\x30\xfc\x30\xde\x30\xc3\x30\xc8\x30\x6e\x30\xd6\x53\x97\x5f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"WASAPI ‚Ì‹¤—Lƒ‚[ƒh‚ÌƒTƒEƒ“ƒhƒtƒH[ƒ}ƒbƒg‚Ìæ“¾‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+			DXST_LOGFILE_ADDUTF16LE( "\x57\x00\x41\x00\x53\x00\x41\x00\x50\x00\x49\x00\x20\x00\x6e\x30\x71\x51\x09\x67\xe2\x30\xfc\x30\xc9\x30\x6e\x30\xb5\x30\xa6\x30\xf3\x30\xc9\x30\xd5\x30\xa9\x30\xfc\x30\xde\x30\xc3\x30\xc8\x30\x6e\x30\xd6\x53\x97\x5f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"WASAPI ã®å…±æœ‰ãƒ¢ãƒ¼ãƒ‰ã®ã‚µã‚¦ãƒ³ãƒ‰ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®å–å¾—ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 			SoundSysData.PF.DisableWASAPIFlag = TRUE ;
 			SoundSysData.EnableSelfMixingFlag = FALSE ;
 			return -1 ;
 		}
 
-		// ƒtƒH[ƒ}ƒbƒg‚ğ•Û‘¶
+		// ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã‚’ä¿å­˜
 		SoundSysData.PF.SelfMixingFormatEx = *MatchWaveFormat ;
 	}
 
-	// ©‘Oƒ~ƒLƒVƒ“ƒOƒtƒH[ƒ}ƒbƒgî•ñ‚É‚à”½‰f
+	// è‡ªå‰ãƒŸã‚­ã‚·ãƒ³ã‚°ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆæƒ…å ±ã«ã‚‚åæ˜ 
 	SoundSysData.SelfMixingFormat = SoundSysData.PF.SelfMixingFormatEx.Format ;
 	SoundSysData.SelfMixingFormatValidBitsPerSample = SoundSysData.PF.SelfMixingFormatEx.Samples.wValidBitsPerSample ;
 	SoundSysData.SelfMixingFormatIsMSB = FALSE ;
 	SoundSysData.SelfMixingFormatIsFloat = _MEMCMP( &SoundSysData.PF.SelfMixingFormatEx.SubFormat, &D_KSDATAFORMAT_SUBTYPE_IEEE_FLOAT, sizeof( GUID ) ) == 0 ? TRUE : FALSE ;
 
-	DXST_LOGFILEFMT_ADDUTF16LE(( "\xc1\x30\xe3\x30\xf3\x30\xcd\x30\xeb\x30\x70\x65\x20\x00\x20\x00\x00\x30\x20\x00\x20\x00\x20\x00\x3a\x00\x20\x00\x25\x00\x64\x00\x20\x00\x63\x00\x68\x00\x00"/*@ L"ƒ`ƒƒƒ“ƒlƒ‹”  @   : %d ch" @*/, SoundSysData.PF.SelfMixingFormatEx.Format.nChannels )) ;
-	DXST_LOGFILEFMT_ADDUTF16LE(( "\xcf\x91\x50\x5b\x16\x53\xd3\x30\xc3\x30\xc8\x30\xf1\x6d\xa6\x5e\x20\x00\x20\x00\x20\x00\x3a\x00\x20\x00\x25\x00\x64\x00\x20\x00\x62\x00\x69\x00\x74\x00\x00"/*@ L"—Êq‰»ƒrƒbƒg[“x   : %d bit" @*/, SoundSysData.PF.SelfMixingFormatEx.Format.wBitsPerSample )) ;
-	DXST_LOGFILEFMT_ADDUTF16LE(( "\x09\x67\xb9\x52\xd3\x30\xc3\x30\xc8\x30\xf1\x6d\xa6\x5e\x00\x30\x20\x00\x20\x00\x20\x00\x3a\x00\x20\x00\x25\x00\x64\x00\x20\x00\x62\x00\x69\x00\x74\x00\x00"/*@ L"—LŒøƒrƒbƒg[“x@   : %d bit" @*/, SoundSysData.PF.SelfMixingFormatEx.Samples.wValidBitsPerSample )) ;
+	DXST_LOGFILEFMT_ADDUTF16LE(( "\xc1\x30\xe3\x30\xf3\x30\xcd\x30\xeb\x30\x70\x65\x20\x00\x20\x00\x00\x30\x20\x00\x20\x00\x20\x00\x3a\x00\x20\x00\x25\x00\x64\x00\x20\x00\x63\x00\x68\x00\x00"/*@ L"ãƒãƒ£ãƒ³ãƒãƒ«æ•°  ã€€   : %d ch" @*/, SoundSysData.PF.SelfMixingFormatEx.Format.nChannels )) ;
+	DXST_LOGFILEFMT_ADDUTF16LE(( "\xcf\x91\x50\x5b\x16\x53\xd3\x30\xc3\x30\xc8\x30\xf1\x6d\xa6\x5e\x20\x00\x20\x00\x20\x00\x3a\x00\x20\x00\x25\x00\x64\x00\x20\x00\x62\x00\x69\x00\x74\x00\x00"/*@ L"é‡å­åŒ–ãƒ“ãƒƒãƒˆæ·±åº¦   : %d bit" @*/, SoundSysData.PF.SelfMixingFormatEx.Format.wBitsPerSample )) ;
+	DXST_LOGFILEFMT_ADDUTF16LE(( "\x09\x67\xb9\x52\xd3\x30\xc3\x30\xc8\x30\xf1\x6d\xa6\x5e\x00\x30\x20\x00\x20\x00\x20\x00\x3a\x00\x20\x00\x25\x00\x64\x00\x20\x00\x62\x00\x69\x00\x74\x00\x00"/*@ L"æœ‰åŠ¹ãƒ“ãƒƒãƒˆæ·±åº¦ã€€   : %d bit" @*/, SoundSysData.PF.SelfMixingFormatEx.Samples.wValidBitsPerSample )) ;
 
-	DXST_LOGFILEFMT_ADDUTF16LE(( "\xb5\x30\xf3\x30\xd7\x30\xea\x30\xf3\x30\xb0\x30\xec\x30\xfc\x30\xc8\x30\x20\x00\x3a\x00\x20\x00\x25\x00\x64\x00\x20\x00\x48\x00\x7a\x00\x00"/*@ L"ƒTƒ“ƒvƒŠƒ“ƒOƒŒ[ƒg : %d Hz" @*/, SoundSysData.PF.SelfMixingFormatEx.Format.nSamplesPerSec )) ;
+	DXST_LOGFILEFMT_ADDUTF16LE(( "\xb5\x30\xf3\x30\xd7\x30\xea\x30\xf3\x30\xb0\x30\xec\x30\xfc\x30\xc8\x30\x20\x00\x3a\x00\x20\x00\x25\x00\x64\x00\x20\x00\x48\x00\x7a\x00\x00"/*@ L"ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ãƒ¬ãƒ¼ãƒˆ : %d Hz" @*/, SoundSysData.PF.SelfMixingFormatEx.Format.nSamplesPerSec )) ;
 	if( SoundSysData.SelfMixingFormatIsFloat )
 	{
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\xc7\x30\xfc\x30\xbf\x30\x62\x5f\x0f\x5f\x20\x00\x20\x00\x20\x00\x20\x00\x20\x00\x20\x00\x20\x00\x20\x00\x20\x00\x3a\x00\x20\x00\x6e\x6d\xd5\x52\x0f\x5c\x70\x65\xb9\x70\x8b\x57\x00"/*@ L"ƒf[ƒ^Œ`®         : •‚“®¬”“_Œ^" @*/ )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\xc7\x30\xfc\x30\xbf\x30\x62\x5f\x0f\x5f\x20\x00\x20\x00\x20\x00\x20\x00\x20\x00\x20\x00\x20\x00\x20\x00\x20\x00\x3a\x00\x20\x00\x6e\x6d\xd5\x52\x0f\x5c\x70\x65\xb9\x70\x8b\x57\x00"/*@ L"ãƒ‡ãƒ¼ã‚¿å½¢å¼         : æµ®å‹•å°æ•°ç‚¹å‹" @*/ )) ;
 	}
 	else
 	{
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\xc7\x30\xfc\x30\xbf\x30\x62\x5f\x0f\x5f\x20\x00\x20\x00\x20\x00\x20\x00\x20\x00\x20\x00\x20\x00\x20\x00\x20\x00\x3a\x00\x20\x00\x74\x65\x70\x65\x8b\x57\x00"/*@ L"ƒf[ƒ^Œ`®         : ®”Œ^" @*/ )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\xc7\x30\xfc\x30\xbf\x30\x62\x5f\x0f\x5f\x20\x00\x20\x00\x20\x00\x20\x00\x20\x00\x20\x00\x20\x00\x20\x00\x20\x00\x3a\x00\x20\x00\x74\x65\x70\x65\x8b\x57\x00"/*@ L"ãƒ‡ãƒ¼ã‚¿å½¢å¼         : æ•´æ•°å‹" @*/ )) ;
 	}
 
-	// ƒI[ƒfƒBƒIƒNƒ‰ƒCƒAƒ“ƒg‚Ì‰Šú‰»ƒ‹[ƒv
+	// ã‚ªãƒ¼ãƒ‡ã‚£ã‚ªã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã®åˆæœŸåŒ–ãƒ«ãƒ¼ãƒ—
 	{
 		int i = 0, j = 0 ;
 		int ErrorLoop = FALSE ;
 
 		for(;;)
 		{
-			// ƒGƒ‰[ƒ‹[ƒv‚ªŠJn‚³‚ê‚Ä‚¢‚½‚çA‚±‚±‚ÅƒtƒH[ƒ}ƒbƒg‚ğ€”õ‚·‚é
+			// ã‚¨ãƒ©ãƒ¼ãƒ«ãƒ¼ãƒ—ãŒé–‹å§‹ã•ã‚Œã¦ã„ãŸã‚‰ã€ã“ã“ã§ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã‚’æº–å‚™ã™ã‚‹
 			if( ErrorLoop == TRUE )
 			{
 				SoundSysData.PF.SelfMixingFormatEx.Format.nSamplesPerSec        = WASAPI_SamplePerSec[ i ] ;
@@ -874,7 +874,7 @@ static	int		InitializeWASAPI( void )
 				SoundSysData.SelfMixingFormatIsFloat = WASAPI_IsFloatType[ j ] ;
 			}
 
-			// ƒI[ƒfƒBƒIƒNƒ‰ƒCƒAƒ“ƒg‚Ì‰Šú‰»
+			// ã‚ªãƒ¼ãƒ‡ã‚£ã‚ªã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã®åˆæœŸåŒ–
 			ret = SoundSysData.PF.AudioClient->Initialize(
 				IsExclusive ? D_AUDCLNT_SHAREMODE_EXCLUSIVE : D_AUDCLNT_SHAREMODE_SHARED,
 				IsExclusive ? D_AUDCLNT_STREAMFLAGS_EVENTCALLBACK : 0, 
@@ -888,19 +888,19 @@ static	int		InitializeWASAPI( void )
 //					HRESULT hrlist[] = { AUDCLNT_E_NOT_INITIALIZED, AUDCLNT_E_ALREADY_INITIALIZED, AUDCLNT_E_WRONG_ENDPOINT_TYPE, AUDCLNT_E_DEVICE_INVALIDATED, AUDCLNT_E_NOT_STOPPED, AUDCLNT_E_BUFFER_TOO_LARGE, AUDCLNT_E_OUT_OF_ORDER, AUDCLNT_E_UNSUPPORTED_FORMAT, AUDCLNT_E_INVALID_SIZE, AUDCLNT_E_DEVICE_IN_USE, AUDCLNT_E_BUFFER_OPERATION_PENDING, AUDCLNT_E_THREAD_NOT_REGISTERED, AUDCLNT_E_EXCLUSIVE_MODE_NOT_ALLOWED, AUDCLNT_E_ENDPOINT_CREATE_FAILED, AUDCLNT_E_SERVICE_NOT_RUNNING, AUDCLNT_E_EVENTHANDLE_NOT_EXPECTED, AUDCLNT_E_EXCLUSIVE_MODE_ONLY, AUDCLNT_E_BUFDURATION_PERIOD_NOT_EQUAL, AUDCLNT_E_EVENTHANDLE_NOT_SET, AUDCLNT_E_INCORRECT_BUFFER_SIZE, AUDCLNT_E_BUFFER_SIZE_ERROR, AUDCLNT_E_CPUUSAGE_EXCEEDED, AUDCLNT_E_BUFFER_ERROR, AUDCLNT_E_BUFFER_SIZE_NOT_ALIGNED, AUDCLNT_E_INVALID_DEVICE_PERIOD, AUDCLNT_E_INVALID_STREAM_FLAG, AUDCLNT_E_ENDPOINT_OFFLOAD_NOT_CAPABLE, AUDCLNT_E_OUT_OF_OFFLOAD_RESOURCES, AUDCLNT_E_OFFLOAD_MODE_ONLY, AUDCLNT_E_NONOFFLOAD_MODE_ONLY, AUDCLNT_E_RESOURCES_INVALIDATED, AUDCLNT_E_RAW_MODE_UNSUPPORTED, AUDCLNT_E_ENGINE_PERIODICITY_LOCKED, AUDCLNT_E_ENGINE_FORMAT_LOCKED, AUDCLNT_E_HEADTRACKING_ENABLED, AUDCLNT_E_HEADTRACKING_UNSUPPORTED, };
 			if( FAILED( ret ) )
 			{
-				// ƒoƒbƒtƒ@ƒTƒCƒYƒAƒ‰ƒCƒƒ“ƒgƒGƒ‰[‚ª”­¶‚µ‚½ê‡‚ÍƒfƒoƒCƒXƒsƒŠƒIƒh‚ğC³‚·‚é
+				// ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚ºã‚¢ãƒ©ã‚¤ãƒ¡ãƒ³ãƒˆã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ãŸå ´åˆã¯ãƒ‡ãƒã‚¤ã‚¹ãƒ”ãƒªã‚ªãƒ‰ã‚’ä¿®æ­£ã™ã‚‹
 				if( ret == D_AUDCLNT_E_BUFFER_SIZE_NOT_ALIGNED )
 				{
-					DXST_LOGFILEFMT_ADDUTF16LE(( "\xaa\x30\xfc\x30\xc7\x30\xa3\x30\xaa\x30\xaf\x30\xe9\x30\xa4\x30\xa2\x30\xf3\x30\xc8\x30\x6e\x30\x1d\x52\x1f\x67\x16\x53\x4c\x30\x20\x00\x41\x00\x55\x00\x44\x00\x43\x00\x4c\x00\x4e\x00\x54\x00\x5f\x00\x45\x00\x5f\x00\x42\x00\x55\x00\x46\x00\x46\x00\x45\x00\x52\x00\x5f\x00\x53\x00\x49\x00\x5a\x00\x45\x00\x5f\x00\x4e\x00\x4f\x00\x54\x00\x5f\x00\x41\x00\x4c\x00\x49\x00\x47\x00\x4e\x00\x45\x00\x44\x00\x20\x00\xa8\x30\xe9\x30\xfc\x30\x67\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x01\x30\x45\x90\xf6\x5e\x42\x66\x93\x95\x92\x30\xbf\x8a\x74\x65\x57\x30\x7e\x30\x59\x30\x00"/*@ L"ƒI[ƒfƒBƒIƒNƒ‰ƒCƒAƒ“ƒg‚Ì‰Šú‰»‚ª AUDCLNT_E_BUFFER_SIZE_NOT_ALIGNED ƒGƒ‰[‚Å¸”s‚µ‚Ü‚µ‚½A’x‰„ŠÔ‚ğ’²®‚µ‚Ü‚·" @*/ )) ;
+					DXST_LOGFILEFMT_ADDUTF16LE(( "\xaa\x30\xfc\x30\xc7\x30\xa3\x30\xaa\x30\xaf\x30\xe9\x30\xa4\x30\xa2\x30\xf3\x30\xc8\x30\x6e\x30\x1d\x52\x1f\x67\x16\x53\x4c\x30\x20\x00\x41\x00\x55\x00\x44\x00\x43\x00\x4c\x00\x4e\x00\x54\x00\x5f\x00\x45\x00\x5f\x00\x42\x00\x55\x00\x46\x00\x46\x00\x45\x00\x52\x00\x5f\x00\x53\x00\x49\x00\x5a\x00\x45\x00\x5f\x00\x4e\x00\x4f\x00\x54\x00\x5f\x00\x41\x00\x4c\x00\x49\x00\x47\x00\x4e\x00\x45\x00\x44\x00\x20\x00\xa8\x30\xe9\x30\xfc\x30\x67\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x01\x30\x45\x90\xf6\x5e\x42\x66\x93\x95\x92\x30\xbf\x8a\x74\x65\x57\x30\x7e\x30\x59\x30\x00"/*@ L"ã‚ªãƒ¼ãƒ‡ã‚£ã‚ªã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã®åˆæœŸåŒ–ãŒ AUDCLNT_E_BUFFER_SIZE_NOT_ALIGNED ã‚¨ãƒ©ãƒ¼ã§å¤±æ•—ã—ã¾ã—ãŸã€é…å»¶æ™‚é–“ã‚’èª¿æ•´ã—ã¾ã™" @*/ )) ;
 
-					// ƒoƒbƒtƒ@‚ÌƒTƒ“ƒvƒ‹”‚©‚çƒfƒoƒCƒXƒsƒŠƒIƒh‚ğZo
+					// ãƒãƒƒãƒ•ã‚¡ã®ã‚µãƒ³ãƒ—ãƒ«æ•°ã‹ã‚‰ãƒ‡ãƒã‚¤ã‚¹ãƒ”ãƒªã‚ªãƒ‰ã‚’ç®—å‡º
 					{
 						LONGLONG MulValue1, MulValue2, DivValue, DivResult ;
 						DWORD MulResult[ 4 ] ;
 
 						ret = SoundSysData.PF.AudioClient->GetBufferSize( &SoundSysData.PF.WASAPI_BufferSamples ) ;
 
-						DXST_LOGFILEFMT_ADDUTF16LE(( "\xaa\x30\xfc\x30\xc7\x30\xa3\x30\xaa\x30\xaf\x30\xe9\x30\xa4\x30\xa2\x30\xf3\x30\xc8\x30\x6e\x30\xd0\x30\xc3\x30\xd5\x30\xa1\x30\xb5\x30\xf3\x30\xd7\x30\xeb\x30\x70\x65\x20\x00\x3a\x00\x20\x00\x25\x00\x64\x00\x20\x00\x73\x00\x61\x00\x6d\x00\x70\x00\x6c\x00\x65\x00\x00"/*@ L"ƒI[ƒfƒBƒIƒNƒ‰ƒCƒAƒ“ƒg‚Ìƒoƒbƒtƒ@ƒTƒ“ƒvƒ‹” : %d sample" @*/, SoundSysData.PF.WASAPI_BufferSamples )) ;
+						DXST_LOGFILEFMT_ADDUTF16LE(( "\xaa\x30\xfc\x30\xc7\x30\xa3\x30\xaa\x30\xaf\x30\xe9\x30\xa4\x30\xa2\x30\xf3\x30\xc8\x30\x6e\x30\xd0\x30\xc3\x30\xd5\x30\xa1\x30\xb5\x30\xf3\x30\xd7\x30\xeb\x30\x70\x65\x20\x00\x3a\x00\x20\x00\x25\x00\x64\x00\x20\x00\x73\x00\x61\x00\x6d\x00\x70\x00\x6c\x00\x65\x00\x00"/*@ L"ã‚ªãƒ¼ãƒ‡ã‚£ã‚ªã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã®ãƒãƒƒãƒ•ã‚¡ã‚µãƒ³ãƒ—ãƒ«æ•° : %d sample" @*/, SoundSysData.PF.WASAPI_BufferSamples )) ;
 
 						MulValue1 = SoundSysData.PF.WASAPI_BufferSamples ;
 						MulValue2 = 10000000 ;
@@ -912,10 +912,10 @@ static	int		InitializeWASAPI( void )
 
 //								SoundSysData.PF.WASAPI_DevicePeriod = ( LONGLONG )_DTOL( 10000000.0 * SoundSysData.PF.WASAPI_BufferSamples / SoundSysData.PF.SelfMixingFormatEx.Format.nSamplesPerSec + 0.5 ) ;
 
-						DXST_LOGFILEFMT_ADDUTF16LE(( "\xbf\x8a\x74\x65\x8c\x5f\x6e\x30\x45\x90\xf6\x5e\x42\x66\x93\x95\x20\x00\x20\x00\x20\x00\x3a\x00\x20\x00\x25\x00\x2e\x00\x31\x00\x66\x00\x20\x00\xbc\x03\x73\x00\x20\x00\x28\x00\x20\x00\x25\x00\x2e\x00\x33\x00\x66\x00\x20\x00\x6d\x00\x73\x00\x20\x00\x29\x00\x00"/*@ L"’²®Œã‚Ì’x‰„ŠÔ   : %.1f ƒÊs ( %.3f ms )" @*/, ( float )SoundSysData.PF.WASAPI_DevicePeriod / 10.0f, ( float )SoundSysData.PF.WASAPI_DevicePeriod / 10000.0f )) ;
+						DXST_LOGFILEFMT_ADDUTF16LE(( "\xbf\x8a\x74\x65\x8c\x5f\x6e\x30\x45\x90\xf6\x5e\x42\x66\x93\x95\x20\x00\x20\x00\x20\x00\x3a\x00\x20\x00\x25\x00\x2e\x00\x31\x00\x66\x00\x20\x00\xbc\x03\x73\x00\x20\x00\x28\x00\x20\x00\x25\x00\x2e\x00\x33\x00\x66\x00\x20\x00\x6d\x00\x73\x00\x20\x00\x29\x00\x00"/*@ L"èª¿æ•´å¾Œã®é…å»¶æ™‚é–“   : %.1f Î¼s ( %.3f ms )" @*/, ( float )SoundSysData.PF.WASAPI_DevicePeriod / 10.0f, ( float )SoundSysData.PF.WASAPI_DevicePeriod / 10000.0f )) ;
 					}
 
-					// ƒI[ƒfƒBƒIƒNƒ‰ƒCƒAƒ“ƒg‚ğÄì¬
+					// ã‚ªãƒ¼ãƒ‡ã‚£ã‚ªã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã‚’å†ä½œæˆ
 					SoundSysData.PF.AudioClient->Release() ;
 					SoundSysData.PF.AudioClient = NULL ;
 					ret = SoundSysData.PF.IMMDevice->Activate( IID_IAUDIOCLIENT, CLSCTX_ALL, NULL, ( void** )&SoundSysData.PF.AudioClient );
@@ -945,10 +945,10 @@ static	int		InitializeWASAPI( void )
 						}
 
 						DXST_LOGFILE_TABSUB ;
-						DXST_LOGFILE_ADDUTF16LE( "\xaa\x30\xfc\x30\xc7\x30\xa3\x30\xaa\x30\xaf\x30\xe9\x30\xa4\x30\xa2\x30\xf3\x30\xc8\x30\x6e\x30\x8d\x51\xd6\x53\x97\x5f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ƒI[ƒfƒBƒIƒNƒ‰ƒCƒAƒ“ƒg‚ÌÄæ“¾‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+						DXST_LOGFILE_ADDUTF16LE( "\xaa\x30\xfc\x30\xc7\x30\xa3\x30\xaa\x30\xaf\x30\xe9\x30\xa4\x30\xa2\x30\xf3\x30\xc8\x30\x6e\x30\x8d\x51\xd6\x53\x97\x5f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ã‚ªãƒ¼ãƒ‡ã‚£ã‚ªã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã®å†å–å¾—ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 						if( IsExclusive )
 						{
-							DXST_LOGFILE_ADDUTF16LE( "\x92\x63\xd6\x4e\xe2\x30\xfc\x30\xc9\x30\x67\x30\x6e\x30\x1d\x52\x1f\x67\x16\x53\x6b\x30\x31\x59\x57\x65\x57\x30\x5f\x30\x6e\x30\x67\x30\x71\x51\x09\x67\xe2\x30\xfc\x30\xc9\x30\x67\x30\x6e\x30\x1d\x52\x1f\x67\x16\x53\x92\x30\x66\x8a\x4c\x88\x57\x30\x7e\x30\x59\x30\x0a\x00\x00"/*@ L"”r‘¼ƒ‚[ƒh‚Å‚Ì‰Šú‰»‚É¸”s‚µ‚½‚Ì‚Å‹¤—Lƒ‚[ƒh‚Å‚Ì‰Šú‰»‚ğs‚µ‚Ü‚·\n" @*/ ) ;
+							DXST_LOGFILE_ADDUTF16LE( "\x92\x63\xd6\x4e\xe2\x30\xfc\x30\xc9\x30\x67\x30\x6e\x30\x1d\x52\x1f\x67\x16\x53\x6b\x30\x31\x59\x57\x65\x57\x30\x5f\x30\x6e\x30\x67\x30\x71\x51\x09\x67\xe2\x30\xfc\x30\xc9\x30\x67\x30\x6e\x30\x1d\x52\x1f\x67\x16\x53\x92\x30\x66\x8a\x4c\x88\x57\x30\x7e\x30\x59\x30\x0a\x00\x00"/*@ L"æ’ä»–ãƒ¢ãƒ¼ãƒ‰ã§ã®åˆæœŸåŒ–ã«å¤±æ•—ã—ãŸã®ã§å…±æœ‰ãƒ¢ãƒ¼ãƒ‰ã§ã®åˆæœŸåŒ–ã‚’è©¦è¡Œã—ã¾ã™\n" @*/ ) ;
 							SoundSysData.PF.WASAPI_IsExclusiveFlag = FALSE ;
 						}
 						else
@@ -959,7 +959,7 @@ static	int		InitializeWASAPI( void )
 						return -1 ;
 					}
 
-					// Ä“x‰Šú‰»‚ğ‚·
+					// å†åº¦åˆæœŸåŒ–ã‚’è©¦ã™
 					ret = SoundSysData.PF.AudioClient->Initialize(
 						IsExclusive ? D_AUDCLNT_SHAREMODE_EXCLUSIVE : D_AUDCLNT_SHAREMODE_SHARED,
 						IsExclusive ? D_AUDCLNT_STREAMFLAGS_EVENTCALLBACK : 0,
@@ -972,23 +972,23 @@ static	int		InitializeWASAPI( void )
 					) ;
 				}
 				else
-				// ”r‘¼ƒ‚[ƒh‚¾‚Á‚½ê‡‚Í‘¼‚ÌƒtƒH[ƒ}ƒbƒg‚à‚·
+				// æ’ä»–ãƒ¢ãƒ¼ãƒ‰ã ã£ãŸå ´åˆã¯ä»–ã®ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã‚‚è©¦ã™
 				if( IsExclusive )
 				{
 					int IsLoop = TRUE ;
 
-					// ƒGƒ‰[ƒ‹[ƒv‚ªn‚Ü‚Á‚Ä‚¢‚é‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+					// ã‚¨ãƒ©ãƒ¼ãƒ«ãƒ¼ãƒ—ãŒå§‹ã¾ã£ã¦ã„ã‚‹ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 					if( ErrorLoop == FALSE )
 					{
-						// ‰‰ñ‚Íƒtƒ‰ƒO‚ğ—§‚Ä‚Ä–ß‚é‚¾‚¯
+						// åˆå›ã¯ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã¦æˆ»ã‚‹ã ã‘
 						ErrorLoop = TRUE ;
 
-						// ƒtƒH[ƒ}ƒbƒg‚ğ•ÏX‚µ‚½ƒtƒ‰ƒO‚ğ—§‚Ä‚é
+						// ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã‚’å¤‰æ›´ã—ãŸãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 						ChangeFormat = TRUE ;
 					}
 					else
 					{
-						// ‚Q‰ñ–ÚˆÈ~‚Íƒ‹[ƒvˆ—
+						// ï¼’å›ç›®ä»¥é™ã¯ãƒ«ãƒ¼ãƒ—å‡¦ç†
 						j++ ;
 						if( WASAPI_BitPerSample[ j ] == 0 )
 						{
@@ -996,13 +996,13 @@ static	int		InitializeWASAPI( void )
 							i++ ;
 							if( WASAPI_SamplePerSec[ i ] == 0 )
 							{
-								// ‘S‚Ä‚µ‚Ä‚à‘Ê–Ú‚¾‚Á‚½‚çI—¹
+								// å…¨ã¦è©¦ã—ã¦ã‚‚é§„ç›®ã ã£ãŸã‚‰çµ‚äº†
 								IsLoop = FALSE ;
 							}
 						}
 					}
 
-					// ƒ‹[ƒv‚·‚éê‡‚ÍƒI[ƒfƒBƒIƒNƒ‰ƒCƒAƒ“ƒg‚ğÄæ“¾
+					// ãƒ«ãƒ¼ãƒ—ã™ã‚‹å ´åˆã¯ã‚ªãƒ¼ãƒ‡ã‚£ã‚ªã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã‚’å†å–å¾—
 					if( IsLoop == TRUE )
 					{
 						SoundSysData.PF.AudioClient->Release() ;
@@ -1034,10 +1034,10 @@ static	int		InitializeWASAPI( void )
 							}
 
 							DXST_LOGFILE_TABSUB ;
-							DXST_LOGFILE_ADDUTF16LE( "\xaa\x30\xfc\x30\xc7\x30\xa3\x30\xaa\x30\xaf\x30\xe9\x30\xa4\x30\xa2\x30\xf3\x30\xc8\x30\x6e\x30\x8d\x51\xd6\x53\x97\x5f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ƒI[ƒfƒBƒIƒNƒ‰ƒCƒAƒ“ƒg‚ÌÄæ“¾‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+							DXST_LOGFILE_ADDUTF16LE( "\xaa\x30\xfc\x30\xc7\x30\xa3\x30\xaa\x30\xaf\x30\xe9\x30\xa4\x30\xa2\x30\xf3\x30\xc8\x30\x6e\x30\x8d\x51\xd6\x53\x97\x5f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ã‚ªãƒ¼ãƒ‡ã‚£ã‚ªã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã®å†å–å¾—ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 							if( IsExclusive )
 							{
-								DXST_LOGFILE_ADDUTF16LE( "\x92\x63\xd6\x4e\xe2\x30\xfc\x30\xc9\x30\x67\x30\x6e\x30\x1d\x52\x1f\x67\x16\x53\x6b\x30\x31\x59\x57\x65\x57\x30\x5f\x30\x6e\x30\x67\x30\x71\x51\x09\x67\xe2\x30\xfc\x30\xc9\x30\x67\x30\x6e\x30\x1d\x52\x1f\x67\x16\x53\x92\x30\x66\x8a\x4c\x88\x57\x30\x7e\x30\x59\x30\x0a\x00\x00"/*@ L"”r‘¼ƒ‚[ƒh‚Å‚Ì‰Šú‰»‚É¸”s‚µ‚½‚Ì‚Å‹¤—Lƒ‚[ƒh‚Å‚Ì‰Šú‰»‚ğs‚µ‚Ü‚·\n" @*/ ) ;
+								DXST_LOGFILE_ADDUTF16LE( "\x92\x63\xd6\x4e\xe2\x30\xfc\x30\xc9\x30\x67\x30\x6e\x30\x1d\x52\x1f\x67\x16\x53\x6b\x30\x31\x59\x57\x65\x57\x30\x5f\x30\x6e\x30\x67\x30\x71\x51\x09\x67\xe2\x30\xfc\x30\xc9\x30\x67\x30\x6e\x30\x1d\x52\x1f\x67\x16\x53\x92\x30\x66\x8a\x4c\x88\x57\x30\x7e\x30\x59\x30\x0a\x00\x00"/*@ L"æ’ä»–ãƒ¢ãƒ¼ãƒ‰ã§ã®åˆæœŸåŒ–ã«å¤±æ•—ã—ãŸã®ã§å…±æœ‰ãƒ¢ãƒ¼ãƒ‰ã§ã®åˆæœŸåŒ–ã‚’è©¦è¡Œã—ã¾ã™\n" @*/ ) ;
 								SoundSysData.PF.WASAPI_IsExclusiveFlag = FALSE ;
 							}
 							else
@@ -1080,10 +1080,10 @@ static	int		InitializeWASAPI( void )
 					}
 
 					DXST_LOGFILE_TABSUB ;
-					DXST_LOGFILEFMT_ADDUTF16LE(( "\xaa\x30\xfc\x30\xc7\x30\xa3\x30\xaa\x30\xaf\x30\xe9\x30\xa4\x30\xa2\x30\xf3\x30\xc8\x30\x6e\x30\x1d\x52\x1f\x67\x16\x53\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00\x30\xa8\x30\xe9\x30\xfc\x30\xb3\x30\xfc\x30\xc9\x30\x1a\xff\x25\x00\x30\x00\x38\x00\x78\x00\x00"/*@ L"ƒI[ƒfƒBƒIƒNƒ‰ƒCƒAƒ“ƒg‚Ì‰Šú‰»‚É¸”s‚µ‚Ü‚µ‚½@ƒGƒ‰[ƒR[ƒhF%08x" @*/, ret )) ;
+					DXST_LOGFILEFMT_ADDUTF16LE(( "\xaa\x30\xfc\x30\xc7\x30\xa3\x30\xaa\x30\xaf\x30\xe9\x30\xa4\x30\xa2\x30\xf3\x30\xc8\x30\x6e\x30\x1d\x52\x1f\x67\x16\x53\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00\x30\xa8\x30\xe9\x30\xfc\x30\xb3\x30\xfc\x30\xc9\x30\x1a\xff\x25\x00\x30\x00\x38\x00\x78\x00\x00"/*@ L"ã‚ªãƒ¼ãƒ‡ã‚£ã‚ªã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã®åˆæœŸåŒ–ã«å¤±æ•—ã—ã¾ã—ãŸã€€ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰ï¼š%08x" @*/, ret )) ;
 					if( IsExclusive )
 					{
-						DXST_LOGFILE_ADDUTF16LE( "\x92\x63\xd6\x4e\xe2\x30\xfc\x30\xc9\x30\x67\x30\x6e\x30\x1d\x52\x1f\x67\x16\x53\x6b\x30\x31\x59\x57\x65\x57\x30\x5f\x30\x6e\x30\x67\x30\x71\x51\x09\x67\xe2\x30\xfc\x30\xc9\x30\x67\x30\x6e\x30\x1d\x52\x1f\x67\x16\x53\x92\x30\x66\x8a\x4c\x88\x57\x30\x7e\x30\x59\x30\x0a\x00\x00"/*@ L"”r‘¼ƒ‚[ƒh‚Å‚Ì‰Šú‰»‚É¸”s‚µ‚½‚Ì‚Å‹¤—Lƒ‚[ƒh‚Å‚Ì‰Šú‰»‚ğs‚µ‚Ü‚·\n" @*/ ) ;
+						DXST_LOGFILE_ADDUTF16LE( "\x92\x63\xd6\x4e\xe2\x30\xfc\x30\xc9\x30\x67\x30\x6e\x30\x1d\x52\x1f\x67\x16\x53\x6b\x30\x31\x59\x57\x65\x57\x30\x5f\x30\x6e\x30\x67\x30\x71\x51\x09\x67\xe2\x30\xfc\x30\xc9\x30\x67\x30\x6e\x30\x1d\x52\x1f\x67\x16\x53\x92\x30\x66\x8a\x4c\x88\x57\x30\x7e\x30\x59\x30\x0a\x00\x00"/*@ L"æ’ä»–ãƒ¢ãƒ¼ãƒ‰ã§ã®åˆæœŸåŒ–ã«å¤±æ•—ã—ãŸã®ã§å…±æœ‰ãƒ¢ãƒ¼ãƒ‰ã§ã®åˆæœŸåŒ–ã‚’è©¦è¡Œã—ã¾ã™\n" @*/ ) ;
 						SoundSysData.PF.WASAPI_IsExclusiveFlag = FALSE ;
 					}
 					else
@@ -1099,7 +1099,7 @@ static	int		InitializeWASAPI( void )
 		}
 	}
 
-	// ƒI[ƒfƒBƒIƒNƒƒbƒN‚Ìæ“¾
+	// ã‚ªãƒ¼ãƒ‡ã‚£ã‚ªã‚¯ãƒ­ãƒƒã‚¯ã®å–å¾—
 	ret = SoundSysData.PF.AudioClient->GetService( IID_IAUDIOCLOCK, ( void** )&SoundSysData.PF.AudioClock ) ;
 	if( FAILED( ret ) )
 	{
@@ -1124,36 +1124,36 @@ static	int		InitializeWASAPI( void )
 		}
 
 		DXST_LOGFILE_TABSUB ;
-		DXST_LOGFILE_ADDUTF16LE( "\xaa\x30\xfc\x30\xc7\x30\xa3\x30\xaa\x30\xaf\x30\xed\x30\xc3\x30\xaf\x30\x6e\x30\xd6\x53\x97\x5f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ƒI[ƒfƒBƒIƒNƒƒbƒN‚Ìæ“¾‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+		DXST_LOGFILE_ADDUTF16LE( "\xaa\x30\xfc\x30\xc7\x30\xa3\x30\xaa\x30\xaf\x30\xed\x30\xc3\x30\xaf\x30\x6e\x30\xd6\x53\x97\x5f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ã‚ªãƒ¼ãƒ‡ã‚£ã‚ªã‚¯ãƒ­ãƒƒã‚¯ã®å–å¾—ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 		SoundSysData.PF.DisableWASAPIFlag = TRUE ;
 		SoundSysData.EnableSelfMixingFlag = FALSE ;
 		return -1 ;
 	}
 
-	// ƒtƒH[ƒ}ƒbƒg‚É•ÏX‚ª‚ ‚Á‚½ê‡‚ÍÄo—Í
+	// ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã«å¤‰æ›´ãŒã‚ã£ãŸå ´åˆã¯å†å‡ºåŠ›
 	if( ChangeFormat )
 	{
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\xd5\x30\xa9\x30\xfc\x30\xde\x30\xc3\x30\xc8\x30\x6b\x30\x09\x59\xf4\x66\x4c\x30\x42\x30\x63\x30\x5f\x30\x5f\x30\x81\x30\xd5\x30\xa9\x30\xfc\x30\xde\x30\xc3\x30\xc8\x30\xc5\x60\x31\x58\x92\x30\x8d\x51\xfa\x51\x9b\x52\x00"/*@ L"ƒtƒH[ƒ}ƒbƒg‚É•ÏX‚ª‚ ‚Á‚½‚½‚ßƒtƒH[ƒ}ƒbƒgî•ñ‚ğÄo—Í" @*/ )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\xd5\x30\xa9\x30\xfc\x30\xde\x30\xc3\x30\xc8\x30\x6b\x30\x09\x59\xf4\x66\x4c\x30\x42\x30\x63\x30\x5f\x30\x5f\x30\x81\x30\xd5\x30\xa9\x30\xfc\x30\xde\x30\xc3\x30\xc8\x30\xc5\x60\x31\x58\x92\x30\x8d\x51\xfa\x51\x9b\x52\x00"/*@ L"ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã«å¤‰æ›´ãŒã‚ã£ãŸãŸã‚ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆæƒ…å ±ã‚’å†å‡ºåŠ›" @*/ )) ;
 
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\xc1\x30\xe3\x30\xf3\x30\xcd\x30\xeb\x30\x70\x65\x20\x00\x20\x00\x00\x30\x20\x00\x20\x00\x20\x00\x3a\x00\x20\x00\x25\x00\x64\x00\x20\x00\x63\x00\x68\x00\x00"/*@ L"ƒ`ƒƒƒ“ƒlƒ‹”  @   : %d ch" @*/, SoundSysData.PF.SelfMixingFormatEx.Format.nChannels )) ;
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\xcf\x91\x50\x5b\x16\x53\xd3\x30\xc3\x30\xc8\x30\xf1\x6d\xa6\x5e\x20\x00\x20\x00\x20\x00\x3a\x00\x20\x00\x25\x00\x64\x00\x20\x00\x62\x00\x69\x00\x74\x00\x00"/*@ L"—Êq‰»ƒrƒbƒg[“x   : %d bit" @*/, SoundSysData.PF.SelfMixingFormatEx.Format.wBitsPerSample )) ;
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\x09\x67\xb9\x52\xd3\x30\xc3\x30\xc8\x30\xf1\x6d\xa6\x5e\x00\x30\x20\x00\x20\x00\x20\x00\x3a\x00\x20\x00\x25\x00\x64\x00\x20\x00\x62\x00\x69\x00\x74\x00\x00"/*@ L"—LŒøƒrƒbƒg[“x@   : %d bit" @*/, SoundSysData.PF.SelfMixingFormatEx.Samples.wValidBitsPerSample )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\xc1\x30\xe3\x30\xf3\x30\xcd\x30\xeb\x30\x70\x65\x20\x00\x20\x00\x00\x30\x20\x00\x20\x00\x20\x00\x3a\x00\x20\x00\x25\x00\x64\x00\x20\x00\x63\x00\x68\x00\x00"/*@ L"ãƒãƒ£ãƒ³ãƒãƒ«æ•°  ã€€   : %d ch" @*/, SoundSysData.PF.SelfMixingFormatEx.Format.nChannels )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\xcf\x91\x50\x5b\x16\x53\xd3\x30\xc3\x30\xc8\x30\xf1\x6d\xa6\x5e\x20\x00\x20\x00\x20\x00\x3a\x00\x20\x00\x25\x00\x64\x00\x20\x00\x62\x00\x69\x00\x74\x00\x00"/*@ L"é‡å­åŒ–ãƒ“ãƒƒãƒˆæ·±åº¦   : %d bit" @*/, SoundSysData.PF.SelfMixingFormatEx.Format.wBitsPerSample )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\x09\x67\xb9\x52\xd3\x30\xc3\x30\xc8\x30\xf1\x6d\xa6\x5e\x00\x30\x20\x00\x20\x00\x20\x00\x3a\x00\x20\x00\x25\x00\x64\x00\x20\x00\x62\x00\x69\x00\x74\x00\x00"/*@ L"æœ‰åŠ¹ãƒ“ãƒƒãƒˆæ·±åº¦ã€€   : %d bit" @*/, SoundSysData.PF.SelfMixingFormatEx.Samples.wValidBitsPerSample )) ;
 
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\xb5\x30\xf3\x30\xd7\x30\xea\x30\xf3\x30\xb0\x30\xec\x30\xfc\x30\xc8\x30\x20\x00\x3a\x00\x20\x00\x25\x00\x64\x00\x20\x00\x48\x00\x7a\x00\x00"/*@ L"ƒTƒ“ƒvƒŠƒ“ƒOƒŒ[ƒg : %d Hz" @*/, SoundSysData.PF.SelfMixingFormatEx.Format.nSamplesPerSec )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\xb5\x30\xf3\x30\xd7\x30\xea\x30\xf3\x30\xb0\x30\xec\x30\xfc\x30\xc8\x30\x20\x00\x3a\x00\x20\x00\x25\x00\x64\x00\x20\x00\x48\x00\x7a\x00\x00"/*@ L"ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ãƒ¬ãƒ¼ãƒˆ : %d Hz" @*/, SoundSysData.PF.SelfMixingFormatEx.Format.nSamplesPerSec )) ;
 		if( SoundSysData.SelfMixingFormatIsFloat )
 		{
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\xc7\x30\xfc\x30\xbf\x30\x62\x5f\x0f\x5f\x20\x00\x20\x00\x20\x00\x20\x00\x20\x00\x20\x00\x20\x00\x20\x00\x20\x00\x3a\x00\x20\x00\x6e\x6d\xd5\x52\x0f\x5c\x70\x65\xb9\x70\x8b\x57\x00"/*@ L"ƒf[ƒ^Œ`®         : •‚“®¬”“_Œ^" @*/ )) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\xc7\x30\xfc\x30\xbf\x30\x62\x5f\x0f\x5f\x20\x00\x20\x00\x20\x00\x20\x00\x20\x00\x20\x00\x20\x00\x20\x00\x20\x00\x3a\x00\x20\x00\x6e\x6d\xd5\x52\x0f\x5c\x70\x65\xb9\x70\x8b\x57\x00"/*@ L"ãƒ‡ãƒ¼ã‚¿å½¢å¼         : æµ®å‹•å°æ•°ç‚¹å‹" @*/ )) ;
 		}
 		else
 		{
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\xc7\x30\xfc\x30\xbf\x30\x62\x5f\x0f\x5f\x20\x00\x20\x00\x20\x00\x20\x00\x20\x00\x20\x00\x20\x00\x20\x00\x20\x00\x3a\x00\x20\x00\x74\x65\x70\x65\x8b\x57\x00"/*@ L"ƒf[ƒ^Œ`®         : ®”Œ^" @*/ )) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\xc7\x30\xfc\x30\xbf\x30\x62\x5f\x0f\x5f\x20\x00\x20\x00\x20\x00\x20\x00\x20\x00\x20\x00\x20\x00\x20\x00\x20\x00\x3a\x00\x20\x00\x74\x65\x70\x65\x8b\x57\x00"/*@ L"ãƒ‡ãƒ¼ã‚¿å½¢å¼         : æ•´æ•°å‹" @*/ )) ;
 		}
 	}
 
-	// ”r‘¼ƒ‚[ƒh‚Ìê‡‚Ì‚İƒCƒxƒ“ƒg‚ğg—p‚·‚é
+	// æ’ä»–ãƒ¢ãƒ¼ãƒ‰ã®å ´åˆã®ã¿ã‚¤ãƒ™ãƒ³ãƒˆã‚’ä½¿ç”¨ã™ã‚‹
 	if( IsExclusive )
 	{
-		// ƒCƒxƒ“ƒg¶¬
+		// ã‚¤ãƒ™ãƒ³ãƒˆç”Ÿæˆ
 		SoundSysData.PF.WASAPI_Event = WinAPIData.Win32Func.CreateEventAFunc( NULL, FALSE, FALSE, NULL ) ;
 		if( SoundSysData.PF.WASAPI_Event == NULL )
 		{
@@ -1184,10 +1184,10 @@ static	int		InitializeWASAPI( void )
 			}
 
 			DXST_LOGFILE_TABSUB ;
-			DXST_LOGFILE_ADDUTF16LE( "\xa4\x30\xd9\x30\xf3\x30\xc8\x30\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ƒCƒxƒ“ƒgƒIƒuƒWƒFƒNƒg‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+			DXST_LOGFILE_ADDUTF16LE( "\xa4\x30\xd9\x30\xf3\x30\xc8\x30\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ã‚¤ãƒ™ãƒ³ãƒˆã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 			if( IsExclusive )
 			{
-				DXST_LOGFILE_ADDUTF16LE( "\x92\x63\xd6\x4e\xe2\x30\xfc\x30\xc9\x30\x67\x30\x6e\x30\x1d\x52\x1f\x67\x16\x53\x6b\x30\x31\x59\x57\x65\x57\x30\x5f\x30\x6e\x30\x67\x30\x71\x51\x09\x67\xe2\x30\xfc\x30\xc9\x30\x67\x30\x6e\x30\x1d\x52\x1f\x67\x16\x53\x92\x30\x66\x8a\x4c\x88\x57\x30\x7e\x30\x59\x30\x0a\x00\x00"/*@ L"”r‘¼ƒ‚[ƒh‚Å‚Ì‰Šú‰»‚É¸”s‚µ‚½‚Ì‚Å‹¤—Lƒ‚[ƒh‚Å‚Ì‰Šú‰»‚ğs‚µ‚Ü‚·\n" @*/ ) ;
+				DXST_LOGFILE_ADDUTF16LE( "\x92\x63\xd6\x4e\xe2\x30\xfc\x30\xc9\x30\x67\x30\x6e\x30\x1d\x52\x1f\x67\x16\x53\x6b\x30\x31\x59\x57\x65\x57\x30\x5f\x30\x6e\x30\x67\x30\x71\x51\x09\x67\xe2\x30\xfc\x30\xc9\x30\x67\x30\x6e\x30\x1d\x52\x1f\x67\x16\x53\x92\x30\x66\x8a\x4c\x88\x57\x30\x7e\x30\x59\x30\x0a\x00\x00"/*@ L"æ’ä»–ãƒ¢ãƒ¼ãƒ‰ã§ã®åˆæœŸåŒ–ã«å¤±æ•—ã—ãŸã®ã§å…±æœ‰ãƒ¢ãƒ¼ãƒ‰ã§ã®åˆæœŸåŒ–ã‚’è©¦è¡Œã—ã¾ã™\n" @*/ ) ;
 				SoundSysData.PF.WASAPI_IsExclusiveFlag = FALSE ;
 			}
 			else
@@ -1198,7 +1198,7 @@ static	int		InitializeWASAPI( void )
 			return -1 ;
 		}
 
-		// ƒCƒxƒ“ƒg‚ÌƒZƒbƒg
+		// ã‚¤ãƒ™ãƒ³ãƒˆã®ã‚»ãƒƒãƒˆ
 		ret = SoundSysData.PF.AudioClient->SetEventHandle( SoundSysData.PF.WASAPI_Event ) ;
 		if( FAILED( ret ) )
 		{
@@ -1232,10 +1232,10 @@ static	int		InitializeWASAPI( void )
 			}
 
 			DXST_LOGFILE_TABSUB ;
-			DXST_LOGFILE_ADDUTF16LE( "\xa4\x30\xd9\x30\xf3\x30\xc8\x30\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x6e\x30\x2d\x8a\x9a\x5b\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ƒCƒxƒ“ƒgƒIƒuƒWƒFƒNƒg‚Ìİ’è‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+			DXST_LOGFILE_ADDUTF16LE( "\xa4\x30\xd9\x30\xf3\x30\xc8\x30\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x6e\x30\x2d\x8a\x9a\x5b\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ã‚¤ãƒ™ãƒ³ãƒˆã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®è¨­å®šã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 			if( IsExclusive )
 			{
-				DXST_LOGFILE_ADDUTF16LE( "\x92\x63\xd6\x4e\xe2\x30\xfc\x30\xc9\x30\x67\x30\x6e\x30\x1d\x52\x1f\x67\x16\x53\x6b\x30\x31\x59\x57\x65\x57\x30\x5f\x30\x6e\x30\x67\x30\x71\x51\x09\x67\xe2\x30\xfc\x30\xc9\x30\x67\x30\x6e\x30\x1d\x52\x1f\x67\x16\x53\x92\x30\x66\x8a\x4c\x88\x57\x30\x7e\x30\x59\x30\x0a\x00\x00"/*@ L"”r‘¼ƒ‚[ƒh‚Å‚Ì‰Šú‰»‚É¸”s‚µ‚½‚Ì‚Å‹¤—Lƒ‚[ƒh‚Å‚Ì‰Šú‰»‚ğs‚µ‚Ü‚·\n" @*/ ) ;
+				DXST_LOGFILE_ADDUTF16LE( "\x92\x63\xd6\x4e\xe2\x30\xfc\x30\xc9\x30\x67\x30\x6e\x30\x1d\x52\x1f\x67\x16\x53\x6b\x30\x31\x59\x57\x65\x57\x30\x5f\x30\x6e\x30\x67\x30\x71\x51\x09\x67\xe2\x30\xfc\x30\xc9\x30\x67\x30\x6e\x30\x1d\x52\x1f\x67\x16\x53\x92\x30\x66\x8a\x4c\x88\x57\x30\x7e\x30\x59\x30\x0a\x00\x00"/*@ L"æ’ä»–ãƒ¢ãƒ¼ãƒ‰ã§ã®åˆæœŸåŒ–ã«å¤±æ•—ã—ãŸã®ã§å…±æœ‰ãƒ¢ãƒ¼ãƒ‰ã§ã®åˆæœŸåŒ–ã‚’è©¦è¡Œã—ã¾ã™\n" @*/ ) ;
 				SoundSysData.PF.WASAPI_IsExclusiveFlag = FALSE ;
 			}
 			else
@@ -1247,7 +1247,7 @@ static	int		InitializeWASAPI( void )
 		}
 	}
 
-	// ƒI[ƒfƒBƒIƒŒƒ“ƒ_ƒ‰[‚Ìæ“¾
+	// ã‚ªãƒ¼ãƒ‡ã‚£ã‚ªãƒ¬ãƒ³ãƒ€ãƒ©ãƒ¼ã®å–å¾—
 	ret = SoundSysData.PF.AudioClient->GetService( IID_IAUDIORENDERCLIENT,( void ** )&SoundSysData.PF.AudioRenderClient ) ;
 	if( FAILED( ret ) )
 	{
@@ -1281,10 +1281,10 @@ static	int		InitializeWASAPI( void )
 		}
 
 		DXST_LOGFILE_TABSUB ;
-		DXST_LOGFILE_ADDUTF16LE( "\xaa\x30\xfc\x30\xc7\x30\xa3\x30\xaa\x30\xec\x30\xf3\x30\xc0\x30\xe9\x30\xfc\x30\x6e\x30\xd6\x53\x97\x5f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ƒI[ƒfƒBƒIƒŒƒ“ƒ_ƒ‰[‚Ìæ“¾‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+		DXST_LOGFILE_ADDUTF16LE( "\xaa\x30\xfc\x30\xc7\x30\xa3\x30\xaa\x30\xec\x30\xf3\x30\xc0\x30\xe9\x30\xfc\x30\x6e\x30\xd6\x53\x97\x5f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ã‚ªãƒ¼ãƒ‡ã‚£ã‚ªãƒ¬ãƒ³ãƒ€ãƒ©ãƒ¼ã®å–å¾—ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 		if( IsExclusive )
 		{
-			DXST_LOGFILE_ADDUTF16LE( "\x92\x63\xd6\x4e\xe2\x30\xfc\x30\xc9\x30\x67\x30\x6e\x30\x1d\x52\x1f\x67\x16\x53\x6b\x30\x31\x59\x57\x65\x57\x30\x5f\x30\x6e\x30\x67\x30\x71\x51\x09\x67\xe2\x30\xfc\x30\xc9\x30\x67\x30\x6e\x30\x1d\x52\x1f\x67\x16\x53\x92\x30\x66\x8a\x4c\x88\x57\x30\x7e\x30\x59\x30\x0a\x00\x00"/*@ L"”r‘¼ƒ‚[ƒh‚Å‚Ì‰Šú‰»‚É¸”s‚µ‚½‚Ì‚Å‹¤—Lƒ‚[ƒh‚Å‚Ì‰Šú‰»‚ğs‚µ‚Ü‚·\n" @*/ ) ;
+			DXST_LOGFILE_ADDUTF16LE( "\x92\x63\xd6\x4e\xe2\x30\xfc\x30\xc9\x30\x67\x30\x6e\x30\x1d\x52\x1f\x67\x16\x53\x6b\x30\x31\x59\x57\x65\x57\x30\x5f\x30\x6e\x30\x67\x30\x71\x51\x09\x67\xe2\x30\xfc\x30\xc9\x30\x67\x30\x6e\x30\x1d\x52\x1f\x67\x16\x53\x92\x30\x66\x8a\x4c\x88\x57\x30\x7e\x30\x59\x30\x0a\x00\x00"/*@ L"æ’ä»–ãƒ¢ãƒ¼ãƒ‰ã§ã®åˆæœŸåŒ–ã«å¤±æ•—ã—ãŸã®ã§å…±æœ‰ãƒ¢ãƒ¼ãƒ‰ã§ã®åˆæœŸåŒ–ã‚’è©¦è¡Œã—ã¾ã™\n" @*/ ) ;
 			SoundSysData.PF.WASAPI_IsExclusiveFlag = FALSE ;
 		}
 		else
@@ -1295,7 +1295,7 @@ static	int		InitializeWASAPI( void )
 		return -1 ;
 	}
 
-	// ƒoƒbƒtƒ@‚ğƒ[ƒƒNƒŠƒA
+	// ãƒãƒƒãƒ•ã‚¡ã‚’ã‚¼ãƒ­ã‚¯ãƒªã‚¢
 	{
 		LPBYTE pData ;
 
@@ -1308,7 +1308,7 @@ static	int		InitializeWASAPI( void )
 		}
 	}
 
-	// ì‹Æ—pƒoƒbƒtƒ@‚Ì€”õ
+	// ä½œæ¥­ç”¨ãƒãƒƒãƒ•ã‚¡ã®æº–å‚™
 	if( SetupSelfMixingWorkBuffer( SoundSysData.SelfMixingFormatIsFloat, SoundSysData.PF.WASAPI_BufferSamples ) < 0 )
 	{
 		SoundSysData.PF.AudioRenderClient->Release() ;
@@ -1344,16 +1344,16 @@ static	int		InitializeWASAPI( void )
 		}
 
 		DXST_LOGFILE_TABSUB ;
-		DXST_LOGFILE_ADDUTF16LE( "\xea\x81\x4d\x52\xdf\x30\xad\x30\xb7\x30\xf3\x30\xb0\x30\x5c\x4f\x6d\x69\x28\x75\xd0\x30\xc3\x30\xd5\x30\xa1\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"©‘Oƒ~ƒLƒVƒ“ƒOì‹Æ—pƒoƒbƒtƒ@‚ÌŠm•Û‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+		DXST_LOGFILE_ADDUTF16LE( "\xea\x81\x4d\x52\xdf\x30\xad\x30\xb7\x30\xf3\x30\xb0\x30\x5c\x4f\x6d\x69\x28\x75\xd0\x30\xc3\x30\xd5\x30\xa1\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"è‡ªå‰ãƒŸã‚­ã‚·ãƒ³ã‚°ä½œæ¥­ç”¨ãƒãƒƒãƒ•ã‚¡ã®ç¢ºä¿ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 		SoundSysData.PF.DisableWASAPIFlag = TRUE ;
 		SoundSysData.EnableSelfMixingFlag = FALSE ;
 		return -1 ;
 	}
 
-	// ƒXƒŒƒbƒhƒ‹[ƒvƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// ã‚¹ãƒ¬ãƒƒãƒ‰ãƒ«ãƒ¼ãƒ—ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	SoundSysData.PF.WASAPI_ThreadLoop = TRUE;
 
-	// Ä¶ˆ——pƒXƒŒƒbƒh‹N“®
+	// å†ç”Ÿå‡¦ç†ç”¨ã‚¹ãƒ¬ãƒƒãƒ‰èµ·å‹•
 	{
 		DWORD dwThread ;
 		SoundSysData.PF.WASAPI_ThreadHandle = WinAPIData.Win32Func.CreateThreadFunc( NULL, 0, WASAPI_SoundPlayThread, NULL, 0, &dwThread ) ;
@@ -1392,7 +1392,7 @@ static	int		InitializeWASAPI( void )
 			}
 
 			DXST_LOGFILE_TABSUB ;
-			DXST_LOGFILE_ADDUTF16LE( "\xaa\x30\xfc\x30\xc7\x30\xa3\x30\xaa\x30\x8d\x51\x1f\x75\x28\x75\xb9\x30\xec\x30\xc3\x30\xc9\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ƒI[ƒfƒBƒIÄ¶—pƒXƒŒƒbƒh‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+			DXST_LOGFILE_ADDUTF16LE( "\xaa\x30\xfc\x30\xc7\x30\xa3\x30\xaa\x30\x8d\x51\x1f\x75\x28\x75\xb9\x30\xec\x30\xc3\x30\xc9\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ã‚ªãƒ¼ãƒ‡ã‚£ã‚ªå†ç”Ÿç”¨ã‚¹ãƒ¬ãƒƒãƒ‰ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 			SoundSysData.PF.DisableWASAPIFlag = TRUE ;
 			SoundSysData.EnableSelfMixingFlag = FALSE ;
 			return -1 ;
@@ -1400,39 +1400,39 @@ static	int		InitializeWASAPI( void )
 		WinAPIData.Win32Func.SetThreadPriorityFunc( SoundSysData.PF.WASAPI_ThreadHandle, THREAD_PRIORITY_TIME_CRITICAL ) ;
 	}
 
-	// ƒƒ‚ƒŠ‚ÌŠJ•ú
+	// ãƒ¡ãƒ¢ãƒªã®é–‹æ”¾
 	if( MatchWaveFormat != NULL )
 	{
 		WinAPIData.Win32Func.CoTaskMemFreeFunc( MatchWaveFormat ) ;
 		MatchWaveFormat = NULL ;
 	}
 
-	// Ä¶ŠJn
+	// å†ç”Ÿé–‹å§‹
 	SoundSysData.PF.AudioClient->Start() ;
 
 	if( SoundSysData.PF.WASAPI_IsExclusiveFlag )
 	{
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\xd5\x52\x5c\x4f\xe2\x30\xfc\x30\xc9\x30\x20\x00\x20\x00\x20\x00\x20\x00\x20\x00\x20\x00\x20\x00\x20\x00\x20\x00\x3a\x00\x20\x00\x92\x63\xd6\x4e\xe2\x30\xfc\x30\xc9\x30\x00"/*@ L"“®ìƒ‚[ƒh         : ”r‘¼ƒ‚[ƒh" @*/ )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\xd5\x52\x5c\x4f\xe2\x30\xfc\x30\xc9\x30\x20\x00\x20\x00\x20\x00\x20\x00\x20\x00\x20\x00\x20\x00\x20\x00\x20\x00\x3a\x00\x20\x00\x92\x63\xd6\x4e\xe2\x30\xfc\x30\xc9\x30\x00"/*@ L"å‹•ä½œãƒ¢ãƒ¼ãƒ‰         : æ’ä»–ãƒ¢ãƒ¼ãƒ‰" @*/ )) ;
 	}
 	else
 	{
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\xd5\x52\x5c\x4f\xe2\x30\xfc\x30\xc9\x30\x20\x00\x20\x00\x20\x00\x20\x00\x20\x00\x20\x00\x20\x00\x20\x00\x20\x00\x3a\x00\x20\x00\x71\x51\x09\x67\xe2\x30\xfc\x30\xc9\x30\x00"/*@ L"“®ìƒ‚[ƒh         : ‹¤—Lƒ‚[ƒh" @*/ )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\xd5\x52\x5c\x4f\xe2\x30\xfc\x30\xc9\x30\x20\x00\x20\x00\x20\x00\x20\x00\x20\x00\x20\x00\x20\x00\x20\x00\x20\x00\x3a\x00\x20\x00\x71\x51\x09\x67\xe2\x30\xfc\x30\xc9\x30\x00"/*@ L"å‹•ä½œãƒ¢ãƒ¼ãƒ‰         : å…±æœ‰ãƒ¢ãƒ¼ãƒ‰" @*/ )) ;
 	}
 
 	DXST_LOGFILE_TABSUB ;
 
-	DXST_LOGFILE_ADDUTF16LE( "\x57\x00\x41\x00\x53\x00\x41\x00\x50\x00\x49\x00\x20\x00\x6e\x30\x1d\x52\x1f\x67\x16\x53\x6f\x30\x63\x6b\x38\x5e\x6b\x30\x42\x7d\x86\x4e\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"WASAPI ‚Ì‰Šú‰»‚Í³í‚ÉI—¹‚µ‚Ü‚µ‚½\n" @*/ ) ;
+	DXST_LOGFILE_ADDUTF16LE( "\x57\x00\x41\x00\x53\x00\x41\x00\x50\x00\x49\x00\x20\x00\x6e\x30\x1d\x52\x1f\x67\x16\x53\x6f\x30\x63\x6b\x38\x5e\x6b\x30\x42\x7d\x86\x4e\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"WASAPI ã®åˆæœŸåŒ–ã¯æ­£å¸¸ã«çµ‚äº†ã—ã¾ã—ãŸ\n" @*/ ) ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// WASAPI ‚ÌŒãn––‚ğs‚¤
+// WASAPI ã®å¾Œå§‹æœ«ã‚’è¡Œã†
 static	int		TerminateWASAPI( void )
 {
 	SETUP_WIN_API
 
-	// WASAPI—pƒXƒŒƒbƒh‚ğI—¹‚·‚é
+	// WASAPIç”¨ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’çµ‚äº†ã™ã‚‹
 	if( SoundSysData.PF.WASAPI_ThreadHandle != NULL )
 	{
 		SoundSysData.PF.WASAPI_ThreadLoop = FALSE ;
@@ -1481,7 +1481,7 @@ static	int		TerminateWASAPI( void )
 		SoundSysData.PF.CMMNotificationClient = NULL ;
 	}
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
@@ -1495,7 +1495,7 @@ BOOL CALLBACK DSEnum( LPGUID /*lpGuid*/, LPCSTR lpcstrDescription, LPCSTR lpcstr
 	return TRUE ;
 }
 
-// ƒTƒEƒ“ƒhƒVƒXƒeƒ€‚ğ‰Šú‰»‚·‚éŠÖ”‚ÌŠÂ‹«ˆË‘¶ˆ—‚ğs‚¤ŠÖ”
+// ã‚µã‚¦ãƒ³ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ã‚’åˆæœŸåŒ–ã™ã‚‹é–¢æ•°ã®ç’°å¢ƒä¾å­˜å‡¦ç†ã‚’è¡Œã†é–¢æ•°
 extern int InitializeSoundSystem_PF_Timing0( void )
 {
 	HRESULT hr ;
@@ -1511,7 +1511,7 @@ extern int InitializeSoundSystem_PF_Timing0( void )
 
 INITSTART:
 
-	// Ä¶ƒ‚[ƒh‚É‚æ‚Á‚Äˆ—‚ğ•ªŠò
+	// å†ç”Ÿãƒ¢ãƒ¼ãƒ‰ã«ã‚ˆã£ã¦å‡¦ç†ã‚’åˆ†å²
 	switch( SoundSysData.SoundMode )
 	{
 	case DX_MIDIMODE_MCI :
@@ -1523,12 +1523,12 @@ INITSTART:
 			double SampleRate ;
 			int i ;
 
-			// ©‘Oƒ~ƒLƒVƒ“ƒO‚ğs‚¤ƒtƒ‰ƒO‚ğ—§‚Ä‚é
+			// è‡ªå‰ãƒŸã‚­ã‚·ãƒ³ã‚°ã‚’è¡Œã†ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 			SoundSysData.EnableSelfMixingFlag = TRUE ;
 
-			DXST_LOGFILE_ADDUTF16LE( "\x41\x00\x53\x00\x49\x00\x4f\x00\x20\x00\x6e\x30\x1d\x52\x1f\x67\x16\x53\x92\x30\x4c\x88\x44\x30\x7e\x30\x59\x30\x0a\x00\x00"/*@ L"ASIO ‚Ì‰Šú‰»‚ğs‚¢‚Ü‚·\n" @*/ ) ;
+			DXST_LOGFILE_ADDUTF16LE( "\x41\x00\x53\x00\x49\x00\x4f\x00\x20\x00\x6e\x30\x1d\x52\x1f\x67\x16\x53\x92\x30\x4c\x88\x44\x30\x7e\x30\x59\x30\x0a\x00\x00"/*@ L"ASIO ã®åˆæœŸåŒ–ã‚’è¡Œã„ã¾ã™\n" @*/ ) ;
 
-			// •K—v‚È API ‚ªg—p‚Å‚«‚È‚¯‚ê‚Î ASIO g—p‚ğ’ú‚ß‚é
+			// å¿…è¦ãª API ãŒä½¿ç”¨ã§ããªã‘ã‚Œã° ASIO ä½¿ç”¨ã‚’è«¦ã‚ã‚‹
 			if( WinAPIData.Win32Func.CharLowerBuffWFunc == NULL ||
 				WinAPIData.Win32Func.RegOpenKeyWFunc == NULL ||
 				WinAPIData.Win32Func.RegEnumKeyWFunc == NULL ||
@@ -1539,7 +1539,7 @@ INITSTART:
 				WinAPIData.Win32Func.CLSIDFromStringFunc == NULL )
 			{
 				DXST_LOGFILE_TABSUB ;
-				DXST_LOGFILE_ADDUTF16LE( "\x41\x00\x53\x00\x49\x00\x4f\x00\x20\x00\x6e\x30\x7f\x4f\x28\x75\x6b\x30\xc5\x5f\x81\x89\x6a\x30\x20\x00\x41\x00\x50\x00\x49\x00\x20\x00\x4c\x30\x7f\x4f\x28\x75\x67\x30\x4d\x30\x7e\x30\x5b\x30\x93\x30\x67\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ASIO ‚Ìg—p‚É•K—v‚È API ‚ªg—p‚Å‚«‚Ü‚¹‚ñ‚Å‚µ‚½\n" @*/ ) ;
+				DXST_LOGFILE_ADDUTF16LE( "\x41\x00\x53\x00\x49\x00\x4f\x00\x20\x00\x6e\x30\x7f\x4f\x28\x75\x6b\x30\xc5\x5f\x81\x89\x6a\x30\x20\x00\x41\x00\x50\x00\x49\x00\x20\x00\x4c\x30\x7f\x4f\x28\x75\x67\x30\x4d\x30\x7e\x30\x5b\x30\x93\x30\x67\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ASIO ã®ä½¿ç”¨ã«å¿…è¦ãª API ãŒä½¿ç”¨ã§ãã¾ã›ã‚“ã§ã—ãŸ\n" @*/ ) ;
 				SoundSysData.PF.EnableASIOFlag = FALSE ;
 				SoundSysData.EnableSelfMixingFlag = FALSE ;
 				goto INITSTART ;
@@ -1548,16 +1548,16 @@ INITSTART:
 
 			DXST_LOGFILE_TABADD ;
 
-			// ASIOƒhƒ‰ƒCƒo‚Ì—ñ‹“
+			// ASIOãƒ‰ãƒ©ã‚¤ãƒã®åˆ—æŒ™
 			{
 				HKEY hkASIO = 0 ;
 				LONG cr ;
 				DWORD datatype, datasize ;
 				DWORD index = 0 ;
 
-				DXST_LOGFILEFMT_ADDUTF16LE(( "\x41\x00\x53\x00\x49\x00\x4f\x00\xc9\x30\xe9\x30\xa4\x30\xd0\x30\x6e\x30\x17\x52\x19\x63\x92\x30\x8b\x95\xcb\x59\x57\x30\x7e\x30\x59\x30\x00"/*@ L"ASIOƒhƒ‰ƒCƒo‚Ì—ñ‹“‚ğŠJn‚µ‚Ü‚·" @*/ )) ;
+				DXST_LOGFILEFMT_ADDUTF16LE(( "\x41\x00\x53\x00\x49\x00\x4f\x00\xc9\x30\xe9\x30\xa4\x30\xd0\x30\x6e\x30\x17\x52\x19\x63\x92\x30\x8b\x95\xcb\x59\x57\x30\x7e\x30\x59\x30\x00"/*@ L"ASIOãƒ‰ãƒ©ã‚¤ãƒã®åˆ—æŒ™ã‚’é–‹å§‹ã—ã¾ã™" @*/ )) ;
 
-				// ASIO‚ÌƒŒƒWƒXƒgƒŠŠK‘w‚ğæ“¾
+				// ASIOã®ãƒ¬ã‚¸ã‚¹ãƒˆãƒªéšå±¤ã‚’å–å¾—
 				cr = RegOpenKeyWFunc( HKEY_LOCAL_MACHINE, ASIO_PATH, &hkASIO ) ;
 				while( cr == ERROR_SUCCESS && SoundSysData.PF.ASIO_DriverNum < ASIO_MAX_DRIVER_NUM )
 				{
@@ -1565,27 +1565,27 @@ INITSTART:
 
 					if( index == 0 )
 					{
-						DXST_LOGFILEFMT_ADDUTF16LE(( "\x41\x00\x53\x00\x49\x00\x4f\x00\xc9\x30\xe9\x30\xa4\x30\xd0\x30\x6e\x30\xec\x30\xb8\x30\xb9\x30\xc8\x30\xea\x30\x8e\x96\x64\x5c\x92\x30\xd6\x53\x97\x5f\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"ASIOƒhƒ‰ƒCƒo‚ÌƒŒƒWƒXƒgƒŠŠK‘w‚ğæ“¾‚µ‚Ü‚µ‚½" @*/ )) ;
+						DXST_LOGFILEFMT_ADDUTF16LE(( "\x41\x00\x53\x00\x49\x00\x4f\x00\xc9\x30\xe9\x30\xa4\x30\xd0\x30\x6e\x30\xec\x30\xb8\x30\xb9\x30\xc8\x30\xea\x30\x8e\x96\x64\x5c\x92\x30\xd6\x53\x97\x5f\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"ASIOãƒ‰ãƒ©ã‚¤ãƒã®ãƒ¬ã‚¸ã‚¹ãƒˆãƒªéšå±¤ã‚’å–å¾—ã—ã¾ã—ãŸ" @*/ )) ;
 					}
 
-					// ASIO‚Ìƒhƒ‰ƒCƒoƒL[–¼‚ğæ“¾
+					// ASIOã®ãƒ‰ãƒ©ã‚¤ãƒã‚­ãƒ¼åã‚’å–å¾—
 					cr = RegEnumKeyWFunc( hkASIO, index, DriverKeyName, ASIO_MAX_DRVNAME_LEN ) ;
 					index++ ;
 					if( cr == ERROR_SUCCESS )
 					{
 						HKEY hkDriver = 0 ;
 
-						DXST_LOGFILEFMT_ADDUTF16LE(( "\x41\x00\x53\x00\x49\x00\x4f\x00\xc9\x30\xe9\x30\xa4\x30\xd0\x30\x4e\x00\x6f\x00\x2e\x00\x25\x00\x64\x00\x20\x00\x6e\x30\xc9\x30\xe9\x30\xa4\x30\xd0\x30\xad\x30\xfc\x30\x0d\x54\x6f\x30\x20\x00\x25\x00\x73\x00\x20\x00\x67\x30\x59\x30\x00"/*@ L"ASIOƒhƒ‰ƒCƒoNo.%d ‚Ìƒhƒ‰ƒCƒoƒL[–¼‚Í %s ‚Å‚·" @*/, index - 1, DriverKeyName )) ;
+						DXST_LOGFILEFMT_ADDUTF16LE(( "\x41\x00\x53\x00\x49\x00\x4f\x00\xc9\x30\xe9\x30\xa4\x30\xd0\x30\x4e\x00\x6f\x00\x2e\x00\x25\x00\x64\x00\x20\x00\x6e\x30\xc9\x30\xe9\x30\xa4\x30\xd0\x30\xad\x30\xfc\x30\x0d\x54\x6f\x30\x20\x00\x25\x00\x73\x00\x20\x00\x67\x30\x59\x30\x00"/*@ L"ASIOãƒ‰ãƒ©ã‚¤ãƒNo.%d ã®ãƒ‰ãƒ©ã‚¤ãƒã‚­ãƒ¼åã¯ %s ã§ã™" @*/, index - 1, DriverKeyName )) ;
 
-						// ƒhƒ‰ƒCƒoƒL[‚ÌŠK‘w‚ğæ“¾
+						// ãƒ‰ãƒ©ã‚¤ãƒã‚­ãƒ¼ã®éšå±¤ã‚’å–å¾—
 						cr = RegOpenKeyExWFunc( hkASIO, DriverKeyName, 0, KEY_READ, &hkDriver ) ;
 						if( cr == ERROR_SUCCESS )
 						{
 							wchar_t DriverCLSID[ 256 ] ;
 
-							DXST_LOGFILEFMT_ADDUTF16LE(( "\x41\x00\x53\x00\x49\x00\x4f\x00\xc9\x30\xe9\x30\xa4\x30\xd0\x30\x4e\x00\x6f\x00\x2e\x00\x25\x00\x64\x00\x20\x00\x6e\x30\xc9\x30\xe9\x30\xa4\x30\xd0\x30\xad\x30\xfc\x30\x8e\x96\x64\x5c\x6e\x30\xd6\x53\x97\x5f\x6b\x30\x10\x62\x9f\x52\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"ASIOƒhƒ‰ƒCƒoNo.%d ‚Ìƒhƒ‰ƒCƒoƒL[ŠK‘w‚Ìæ“¾‚É¬Œ÷‚µ‚Ü‚µ‚½" @*/, index - 1 )) ;
+							DXST_LOGFILEFMT_ADDUTF16LE(( "\x41\x00\x53\x00\x49\x00\x4f\x00\xc9\x30\xe9\x30\xa4\x30\xd0\x30\x4e\x00\x6f\x00\x2e\x00\x25\x00\x64\x00\x20\x00\x6e\x30\xc9\x30\xe9\x30\xa4\x30\xd0\x30\xad\x30\xfc\x30\x8e\x96\x64\x5c\x6e\x30\xd6\x53\x97\x5f\x6b\x30\x10\x62\x9f\x52\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"ASIOãƒ‰ãƒ©ã‚¤ãƒNo.%d ã®ãƒ‰ãƒ©ã‚¤ãƒã‚­ãƒ¼éšå±¤ã®å–å¾—ã«æˆåŠŸã—ã¾ã—ãŸ" @*/, index - 1 )) ;
 
-							// ƒhƒ‰ƒCƒo‚ÌCLSID‚ğæ“¾
+							// ãƒ‰ãƒ©ã‚¤ãƒã®CLSIDã‚’å–å¾—
 							datatype = REG_SZ ;
 							datasize = 256 ;
 							cr = RegQueryValueExWFunc( hkDriver, L"clsid", 0, &datatype, ( BYTE * )DriverCLSID, &datasize ) ;
@@ -1593,12 +1593,12 @@ INITSTART:
 							{
 								HKEY hkCLSIDEnum = 0 ;
 
-								// ƒhƒ‰ƒCƒo‚Ì CLSID “à‚Ì‘å•¶š‚ğ¬•¶š‚É•ÏŠ·
+								// ãƒ‰ãƒ©ã‚¤ãƒã® CLSID å†…ã®å¤§æ–‡å­—ã‚’å°æ–‡å­—ã«å¤‰æ›
 								CharLowerBuffWFunc( DriverCLSID, ( DWORD )CL_strlen( DX_CHARCODEFORMAT_UTF16LE, ( char * )DriverCLSID ) ) ;
 
-								DXST_LOGFILEFMT_ADDUTF16LE(( "\x41\x00\x53\x00\x49\x00\x4f\x00\xc9\x30\xe9\x30\xa4\x30\xd0\x30\x4e\x00\x6f\x00\x2e\x00\x25\x00\x64\x00\x20\x00\x6e\x30\x43\x00\x4c\x00\x53\x00\x49\x00\x44\x00\x6f\x30\x20\x00\x25\x00\x73\x00\x20\x00\x67\x30\x59\x30\x00"/*@ L"ASIOƒhƒ‰ƒCƒoNo.%d ‚ÌCLSID‚Í %s ‚Å‚·" @*/, index - 1, DriverCLSID )) ;
+								DXST_LOGFILEFMT_ADDUTF16LE(( "\x41\x00\x53\x00\x49\x00\x4f\x00\xc9\x30\xe9\x30\xa4\x30\xd0\x30\x4e\x00\x6f\x00\x2e\x00\x25\x00\x64\x00\x20\x00\x6e\x30\x43\x00\x4c\x00\x53\x00\x49\x00\x44\x00\x6f\x30\x20\x00\x25\x00\x73\x00\x20\x00\x67\x30\x59\x30\x00"/*@ L"ASIOãƒ‰ãƒ©ã‚¤ãƒNo.%d ã®CLSIDã¯ %s ã§ã™" @*/, index - 1, DriverCLSID )) ;
 
-								// ƒhƒ‰ƒCƒo‚ÌƒpƒX‚ğæ“¾‚·‚é‚½‚ß‚É CLSIDŠK‘w‚ğæ“¾
+								// ãƒ‰ãƒ©ã‚¤ãƒã®ãƒ‘ã‚¹ã‚’å–å¾—ã™ã‚‹ãŸã‚ã« CLSIDéšå±¤ã‚’å–å¾—
 								cr = RegOpenKeyWFunc( HKEY_CLASSES_ROOT, L"clsid", &hkCLSIDEnum ) ;
 								if( cr == ERROR_SUCCESS )
 								{
@@ -1608,41 +1608,41 @@ INITSTART:
 									{
 										wchar_t TempCLSID[ 1024 ] ;
 
-										// CLSID‚ğæ“¾
+										// CLSIDã‚’å–å¾—
 										cr = RegEnumKeyWFunc( hkCLSIDEnum, index2, TempCLSID, 1024 ) ;
 										index2++ ;
 										if( cr == ERROR_SUCCESS )
 										{
-											// CLSID“à‚Ì‘å•¶š‚ğ¬•¶š‚É•ÏŠ·
+											// CLSIDå†…ã®å¤§æ–‡å­—ã‚’å°æ–‡å­—ã«å¤‰æ›
 											CharLowerBuffWFunc( TempCLSID, ( DWORD )CL_strlen( DX_CHARCODEFORMAT_UTF16LE, ( char * )TempCLSID ) ) ;
 
-											// ƒhƒ‰ƒCƒoCLSID ‚Æ“¯‚¶‚©ƒ`ƒFƒbƒN
+											// ãƒ‰ãƒ©ã‚¤ãƒCLSID ã¨åŒã˜ã‹ãƒã‚§ãƒƒã‚¯
 											if( CL_strcmp( DX_CHARCODEFORMAT_UTF16LE, ( char * )TempCLSID, ( char * )DriverCLSID ) == 0 )
 											{
 												HKEY hkCLSID = 0 ;
 
-												DXST_LOGFILEFMT_ADDUTF16LE(( "\x41\x00\x53\x00\x49\x00\x4f\x00\xc9\x30\xe9\x30\xa4\x30\xd0\x30\x4e\x00\x6f\x00\x2e\x00\x25\x00\x64\x00\x20\x00\x6e\x30\x43\x00\x4c\x00\x53\x00\x49\x00\x44\x00\x6e\x30\xc5\x60\x31\x58\x92\x30\x7a\x76\x8b\x89\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"ASIOƒhƒ‰ƒCƒoNo.%d ‚ÌCLSID‚Ìî•ñ‚ğ”­Œ©‚µ‚Ü‚µ‚½" @*/, index - 1 )) ;
+												DXST_LOGFILEFMT_ADDUTF16LE(( "\x41\x00\x53\x00\x49\x00\x4f\x00\xc9\x30\xe9\x30\xa4\x30\xd0\x30\x4e\x00\x6f\x00\x2e\x00\x25\x00\x64\x00\x20\x00\x6e\x30\x43\x00\x4c\x00\x53\x00\x49\x00\x44\x00\x6e\x30\xc5\x60\x31\x58\x92\x30\x7a\x76\x8b\x89\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"ASIOãƒ‰ãƒ©ã‚¤ãƒNo.%d ã®CLSIDã®æƒ…å ±ã‚’ç™ºè¦‹ã—ã¾ã—ãŸ" @*/, index - 1 )) ;
 
-												// “¯‚¶CLSID‚ªŒ©‚Â‚©‚Á‚½‚çƒ‹[ƒv‚©‚ç”²‚¯‚é
+												// åŒã˜CLSIDãŒè¦‹ã¤ã‹ã£ãŸã‚‰ãƒ«ãƒ¼ãƒ—ã‹ã‚‰æŠœã‘ã‚‹
 												LoopEnd = TRUE ;
 
-												// CLSID‚ÌŠK‘w‚ğæ“¾
+												// CLSIDã®éšå±¤ã‚’å–å¾—
 												cr = RegOpenKeyExWFunc( hkCLSIDEnum, TempCLSID, 0, KEY_READ, &hkCLSID ) ;
 												if( cr == ERROR_SUCCESS )
 												{
 													HKEY hkDLLPath = 0 ;
 
-													DXST_LOGFILEFMT_ADDUTF16LE(( "\x41\x00\x53\x00\x49\x00\x4f\x00\xc9\x30\xe9\x30\xa4\x30\xd0\x30\x4e\x00\x6f\x00\x2e\x00\x25\x00\x64\x00\x20\x00\x6e\x30\x43\x00\x4c\x00\x53\x00\x49\x00\x44\x00\x6e\x30\xc5\x60\x31\x58\x8e\x96\x64\x5c\x6e\x30\xd6\x53\x97\x5f\x6b\x30\x10\x62\x9f\x52\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"ASIOƒhƒ‰ƒCƒoNo.%d ‚ÌCLSID‚Ìî•ñŠK‘w‚Ìæ“¾‚É¬Œ÷‚µ‚Ü‚µ‚½" @*/, index - 1 )) ;
+													DXST_LOGFILEFMT_ADDUTF16LE(( "\x41\x00\x53\x00\x49\x00\x4f\x00\xc9\x30\xe9\x30\xa4\x30\xd0\x30\x4e\x00\x6f\x00\x2e\x00\x25\x00\x64\x00\x20\x00\x6e\x30\x43\x00\x4c\x00\x53\x00\x49\x00\x44\x00\x6e\x30\xc5\x60\x31\x58\x8e\x96\x64\x5c\x6e\x30\xd6\x53\x97\x5f\x6b\x30\x10\x62\x9f\x52\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"ASIOãƒ‰ãƒ©ã‚¤ãƒNo.%d ã®CLSIDã®æƒ…å ±éšå±¤ã®å–å¾—ã«æˆåŠŸã—ã¾ã—ãŸ" @*/, index - 1 )) ;
 
-													// DLL‚ÌƒpƒXƒL[‚ğæ“¾
+													// DLLã®ãƒ‘ã‚¹ã‚­ãƒ¼ã‚’å–å¾—
 													cr = RegOpenKeyExWFunc( hkCLSID, L"InprocServer32", 0, KEY_READ, &hkDLLPath ) ;
 													if( cr == ERROR_SUCCESS )
 													{
 														wchar_t DllPath[ ASIO_MAX_PATH_LEN ] ;
 
-														DXST_LOGFILEFMT_ADDUTF16LE(( "\x41\x00\x53\x00\x49\x00\x4f\x00\xc9\x30\xe9\x30\xa4\x30\xd0\x30\x4e\x00\x6f\x00\x2e\x00\x25\x00\x64\x00\x20\x00\x6e\x30\xc9\x30\xe9\x30\xa4\x30\xd0\x30\x6e\x30\xd1\x30\xb9\x30\xad\x30\xfc\x30\x6e\x30\xd6\x53\x97\x5f\x6b\x30\x10\x62\x9f\x52\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"ASIOƒhƒ‰ƒCƒoNo.%d ‚Ìƒhƒ‰ƒCƒo‚ÌƒpƒXƒL[‚Ìæ“¾‚É¬Œ÷‚µ‚Ü‚µ‚½" @*/, index - 1 )) ;
+														DXST_LOGFILEFMT_ADDUTF16LE(( "\x41\x00\x53\x00\x49\x00\x4f\x00\xc9\x30\xe9\x30\xa4\x30\xd0\x30\x4e\x00\x6f\x00\x2e\x00\x25\x00\x64\x00\x20\x00\x6e\x30\xc9\x30\xe9\x30\xa4\x30\xd0\x30\x6e\x30\xd1\x30\xb9\x30\xad\x30\xfc\x30\x6e\x30\xd6\x53\x97\x5f\x6b\x30\x10\x62\x9f\x52\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"ASIOãƒ‰ãƒ©ã‚¤ãƒNo.%d ã®ãƒ‰ãƒ©ã‚¤ãƒã®ãƒ‘ã‚¹ã‚­ãƒ¼ã®å–å¾—ã«æˆåŠŸã—ã¾ã—ãŸ" @*/, index - 1 )) ;
 
-														// DLL ‚ÌƒpƒX‚ğæ“¾
+														// DLL ã®ãƒ‘ã‚¹ã‚’å–å¾—
 														datatype = REG_SZ ;
 														datasize = ( DWORD )ASIO_MAX_PATH_LEN ;
 														cr = RegQueryValueExWFunc( hkDLLPath, 0, 0, &datatype, ( BYTE * )DllPath, &datasize ) ;
@@ -1651,9 +1651,9 @@ INITSTART:
 															HANDLE hFind = NULL ;
 															WIN32_FIND_DATAW FindFileData ;
 
-															DXST_LOGFILEFMT_ADDUTF16LE(( "\x41\x00\x53\x00\x49\x00\x4f\x00\xc9\x30\xe9\x30\xa4\x30\xd0\x30\x4e\x00\x6f\x00\x2e\x00\x25\x00\x64\x00\x20\x00\x6e\x30\xc9\x30\xe9\x30\xa4\x30\xd0\x30\x6e\x30\xd1\x30\xb9\x30\x6f\x30\x20\x00\x25\x00\x73\x00\x20\x00\x67\x30\x59\x30\x00"/*@ L"ASIOƒhƒ‰ƒCƒoNo.%d ‚Ìƒhƒ‰ƒCƒo‚ÌƒpƒX‚Í %s ‚Å‚·" @*/, index - 1, DllPath )) ;
+															DXST_LOGFILEFMT_ADDUTF16LE(( "\x41\x00\x53\x00\x49\x00\x4f\x00\xc9\x30\xe9\x30\xa4\x30\xd0\x30\x4e\x00\x6f\x00\x2e\x00\x25\x00\x64\x00\x20\x00\x6e\x30\xc9\x30\xe9\x30\xa4\x30\xd0\x30\x6e\x30\xd1\x30\xb9\x30\x6f\x30\x20\x00\x25\x00\x73\x00\x20\x00\x67\x30\x59\x30\x00"/*@ L"ASIOãƒ‰ãƒ©ã‚¤ãƒNo.%d ã®ãƒ‰ãƒ©ã‚¤ãƒã®ãƒ‘ã‚¹ã¯ %s ã§ã™" @*/, index - 1, DllPath )) ;
 
-															// DLL ‚ªw’è‚ÌƒpƒX‚É‘¶İ‚·‚é‚©‚ğŠm”F
+															// DLL ãŒæŒ‡å®šã®ãƒ‘ã‚¹ã«å­˜åœ¨ã™ã‚‹ã‹ã‚’ç¢ºèª
 															hFind = FindFirstFileWFunc( DllPath, &FindFileData ) ;
 															if( hFind != INVALID_HANDLE_VALUE )
 															{
@@ -1662,33 +1662,33 @@ INITSTART:
 																{
 																	CLSID clsid ;
 
-																	DXST_LOGFILEFMT_ADDUTF16LE(( "\x41\x00\x53\x00\x49\x00\x4f\x00\xc9\x30\xe9\x30\xa4\x30\xd0\x30\x4e\x00\x6f\x00\x2e\x00\x25\x00\x64\x00\x20\x00\x6e\x30\xc9\x30\xe9\x30\xa4\x30\xd0\x30\x44\x00\x6c\x00\x6c\x00\x6e\x30\x58\x5b\x28\x57\x4c\x30\xba\x78\x8d\x8a\x67\x30\x4d\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"ASIOƒhƒ‰ƒCƒoNo.%d ‚Ìƒhƒ‰ƒCƒoDll‚Ì‘¶İ‚ªŠm”F‚Å‚«‚Ü‚µ‚½" @*/, index - 1 )) ;
+																	DXST_LOGFILEFMT_ADDUTF16LE(( "\x41\x00\x53\x00\x49\x00\x4f\x00\xc9\x30\xe9\x30\xa4\x30\xd0\x30\x4e\x00\x6f\x00\x2e\x00\x25\x00\x64\x00\x20\x00\x6e\x30\xc9\x30\xe9\x30\xa4\x30\xd0\x30\x44\x00\x6c\x00\x6c\x00\x6e\x30\x58\x5b\x28\x57\x4c\x30\xba\x78\x8d\x8a\x67\x30\x4d\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"ASIOãƒ‰ãƒ©ã‚¤ãƒNo.%d ã®ãƒ‰ãƒ©ã‚¤ãƒDllã®å­˜åœ¨ãŒç¢ºèªã§ãã¾ã—ãŸ" @*/, index - 1 )) ;
 
-																	// CLSID•¶š—ñ‚©‚ç CLSID ‚ğæ“¾
+																	// CLSIDæ–‡å­—åˆ—ã‹ã‚‰ CLSID ã‚’å–å¾—
 																	cr = WinAPIData.Win32Func.CLSIDFromStringFunc( ( LPOLESTR )DriverCLSID, ( LPCLSID )&clsid ) ;
 																	if( cr == S_OK )
 																	{
 																		wchar_t DriverName[ ASIO_MAX_DRVNAME_LEN ] ;
 
-																		// CLSID ‚ğ•Û‘¶
+																		// CLSID ã‚’ä¿å­˜
 																		_MEMCPY( &SoundSysData.PF.ASIO_DriverGUID[ SoundSysData.PF.ASIO_DriverNum ], &clsid, sizeof( GUID ) ) ;
 
-																		// ƒhƒ‰ƒCƒo–¼‚ğæ“¾
+																		// ãƒ‰ãƒ©ã‚¤ãƒåã‚’å–å¾—
 																		datatype = REG_SZ ;
 																		datasize = ASIO_MAX_DRVNAME_LEN ;
 																		cr = RegQueryValueExWFunc( hkDriver, ASIO_DRV_DESC, 0, &datatype, ( LPBYTE )DriverName, &datasize ) ;
 																		CL_strcpy( DX_CHARCODEFORMAT_UTF16LE, ( char * )SoundSysData.PF.ASIO_DriverNames[ SoundSysData.PF.ASIO_DriverNum ], cr == ERROR_SUCCESS ? ( char * )DriverName : ( char * )DriverKeyName ) ;
 
-																		// ƒhƒ‰ƒCƒo‚Ì”‚ğ‘‚â‚·
+																		// ãƒ‰ãƒ©ã‚¤ãƒã®æ•°ã‚’å¢—ã‚„ã™
 																		SoundSysData.PF.ASIO_DriverNum ++ ;
 
-																		DXST_LOGFILEFMT_ADDUTF16LE(( "\x41\x00\x53\x00\x49\x00\x4f\x00\xc9\x30\xe9\x30\xa4\x30\xd0\x30\x4e\x00\x6f\x00\x2e\x00\x25\x00\x64\x00\x20\x00\x6e\x30\xc9\x30\xe9\x30\xa4\x30\xd0\x30\x92\x30\xea\x30\xb9\x30\xc8\x30\x6b\x30\xfd\x8f\xa0\x52\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"ASIOƒhƒ‰ƒCƒoNo.%d ‚Ìƒhƒ‰ƒCƒo‚ğƒŠƒXƒg‚É’Ç‰Á‚µ‚Ü‚µ‚½" @*/, index - 1 )) ;
+																		DXST_LOGFILEFMT_ADDUTF16LE(( "\x41\x00\x53\x00\x49\x00\x4f\x00\xc9\x30\xe9\x30\xa4\x30\xd0\x30\x4e\x00\x6f\x00\x2e\x00\x25\x00\x64\x00\x20\x00\x6e\x30\xc9\x30\xe9\x30\xa4\x30\xd0\x30\x92\x30\xea\x30\xb9\x30\xc8\x30\x6b\x30\xfd\x8f\xa0\x52\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"ASIOãƒ‰ãƒ©ã‚¤ãƒNo.%d ã®ãƒ‰ãƒ©ã‚¤ãƒã‚’ãƒªã‚¹ãƒˆã«è¿½åŠ ã—ã¾ã—ãŸ" @*/, index - 1 )) ;
 																	}
 																}
 															}
 															else
 															{
-																DXST_LOGFILEFMT_ADDUTF16LE(( "\x41\x00\x53\x00\x49\x00\x4f\x00\xc9\x30\xe9\x30\xa4\x30\xd0\x30\x4e\x00\x6f\x00\x2e\x00\x25\x00\x64\x00\x20\x00\x6e\x30\xc9\x30\xe9\x30\xa4\x30\xd0\x30\x44\x00\x6c\x00\x6c\x00\x6e\x30\x58\x5b\x28\x57\x4c\x30\xba\x78\x8d\x8a\x67\x30\x4d\x30\x7e\x30\x5b\x30\x93\x30\x67\x30\x57\x30\x5f\x30\x00"/*@ L"ASIOƒhƒ‰ƒCƒoNo.%d ‚Ìƒhƒ‰ƒCƒoDll‚Ì‘¶İ‚ªŠm”F‚Å‚«‚Ü‚¹‚ñ‚Å‚µ‚½" @*/, index - 1 )) ;
+																DXST_LOGFILEFMT_ADDUTF16LE(( "\x41\x00\x53\x00\x49\x00\x4f\x00\xc9\x30\xe9\x30\xa4\x30\xd0\x30\x4e\x00\x6f\x00\x2e\x00\x25\x00\x64\x00\x20\x00\x6e\x30\xc9\x30\xe9\x30\xa4\x30\xd0\x30\x44\x00\x6c\x00\x6c\x00\x6e\x30\x58\x5b\x28\x57\x4c\x30\xba\x78\x8d\x8a\x67\x30\x4d\x30\x7e\x30\x5b\x30\x93\x30\x67\x30\x57\x30\x5f\x30\x00"/*@ L"ASIOãƒ‰ãƒ©ã‚¤ãƒNo.%d ã®ãƒ‰ãƒ©ã‚¤ãƒDllã®å­˜åœ¨ãŒç¢ºèªã§ãã¾ã›ã‚“ã§ã—ãŸ" @*/, index - 1 )) ;
 															}
 														}
 														RegCloseKey( hkDLLPath ) ;
@@ -1710,20 +1710,20 @@ INITSTART:
 					RegCloseKey( hkASIO );
 				}
 
-				DXST_LOGFILEFMT_ADDUTF16LE(( "\x41\x00\x53\x00\x49\x00\x4f\x00\xc9\x30\xe9\x30\xa4\x30\xd0\x30\x6e\x30\x17\x52\x19\x63\x4c\x30\x8c\x5b\x86\x4e\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"ASIOƒhƒ‰ƒCƒo‚Ì—ñ‹“‚ªŠ®—¹‚µ‚Ü‚µ‚½" @*/ )) ;
+				DXST_LOGFILEFMT_ADDUTF16LE(( "\x41\x00\x53\x00\x49\x00\x4f\x00\xc9\x30\xe9\x30\xa4\x30\xd0\x30\x6e\x30\x17\x52\x19\x63\x4c\x30\x8c\x5b\x86\x4e\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"ASIOãƒ‰ãƒ©ã‚¤ãƒã®åˆ—æŒ™ãŒå®Œäº†ã—ã¾ã—ãŸ" @*/ )) ;
 
-				// ƒhƒ‰ƒCƒo‚ªˆê‚Â‚àŒ©‚Â‚©‚ç‚È‚©‚Á‚½‚çƒGƒ‰[
+				// ãƒ‰ãƒ©ã‚¤ãƒãŒä¸€ã¤ã‚‚è¦‹ã¤ã‹ã‚‰ãªã‹ã£ãŸã‚‰ã‚¨ãƒ©ãƒ¼
 				if( SoundSysData.PF.ASIO_DriverNum == 0 )
 				{
 					DXST_LOGFILE_TABSUB ;
-					DXST_LOGFILE_ADDUTF16LE( "\x41\x00\x53\x00\x49\x00\x4f\x00\xc9\x30\xe9\x30\xa4\x30\xd0\x30\x4c\x30\x7f\x30\x64\x30\x4b\x30\x8a\x30\x7e\x30\x5b\x30\x93\x30\x67\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ASIOƒhƒ‰ƒCƒo‚ª‚İ‚Â‚©‚è‚Ü‚¹‚ñ‚Å‚µ‚½\n" @*/ ) ;
+					DXST_LOGFILE_ADDUTF16LE( "\x41\x00\x53\x00\x49\x00\x4f\x00\xc9\x30\xe9\x30\xa4\x30\xd0\x30\x4c\x30\x7f\x30\x64\x30\x4b\x30\x8a\x30\x7e\x30\x5b\x30\x93\x30\x67\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ASIOãƒ‰ãƒ©ã‚¤ãƒãŒã¿ã¤ã‹ã‚Šã¾ã›ã‚“ã§ã—ãŸ\n" @*/ ) ;
 					SoundSysData.PF.EnableASIOFlag = FALSE ;
 					SoundSysData.EnableSelfMixingFlag = FALSE ;
 					goto INITSTART ;
 				}
 			}
 
-			// g—p‚·‚éƒhƒ‰ƒCƒo[”Ô†‚Ì•â³
+			// ä½¿ç”¨ã™ã‚‹ãƒ‰ãƒ©ã‚¤ãƒãƒ¼ç•ªå·ã®è£œæ­£
 			if( SoundSysData.PF.ASIO_DriverUseIndex < 0 )
 			{
 				SoundSysData.PF.ASIO_DriverUseIndex = 0 ;
@@ -1734,39 +1734,39 @@ INITSTART:
 				SoundSysData.PF.ASIO_DriverUseIndex = SoundSysData.PF.ASIO_DriverNum - 1 ;
 			}
 
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\x41\x00\x53\x00\x49\x00\x4f\x00\xc9\x30\xe9\x30\xa4\x30\xd0\x30\x92\x30\xed\x30\xfc\x30\xc9\x30\x57\x30\x7e\x30\x59\x30\x00"/*@ L"ASIOƒhƒ‰ƒCƒo‚ğƒ[ƒh‚µ‚Ü‚·" @*/ )) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\x41\x00\x53\x00\x49\x00\x4f\x00\xc9\x30\xe9\x30\xa4\x30\xd0\x30\x92\x30\xed\x30\xfc\x30\xc9\x30\x57\x30\x7e\x30\x59\x30\x00"/*@ L"ASIOãƒ‰ãƒ©ã‚¤ãƒã‚’ãƒ­ãƒ¼ãƒ‰ã—ã¾ã™" @*/ )) ;
 
-			// ASIOƒhƒ‰ƒCƒo‚ğƒ[ƒh
+			// ASIOãƒ‰ãƒ©ã‚¤ãƒã‚’ãƒ­ãƒ¼ãƒ‰
 			hr = WinAPIData.Win32Func.CoCreateInstanceFunc( SoundSysData.PF.ASIO_DriverGUID[ SoundSysData.PF.ASIO_DriverUseIndex ], 0, CLSCTX_INPROC_SERVER, SoundSysData.PF.ASIO_DriverGUID[ SoundSysData.PF.ASIO_DriverUseIndex ], ( void ** )&SoundSysData.PF.ASIO_Driver[ SoundSysData.PF.ASIO_DriverUseIndex ] ) ;
 			if( FAILED( hr ) )
 			{
 				DXST_LOGFILE_TABSUB ;
-				DXST_LOGFILE_ADDUTF16LE( "\x41\x00\x53\x00\x49\x00\x4f\x00\xc9\x30\xe9\x30\xa4\x30\xd0\x30\x6e\x30\xed\x30\xfc\x30\xc9\x30\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ASIOƒhƒ‰ƒCƒo‚Ìƒ[ƒh‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+				DXST_LOGFILE_ADDUTF16LE( "\x41\x00\x53\x00\x49\x00\x4f\x00\xc9\x30\xe9\x30\xa4\x30\xd0\x30\x6e\x30\xed\x30\xfc\x30\xc9\x30\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ASIOãƒ‰ãƒ©ã‚¤ãƒã®ãƒ­ãƒ¼ãƒ‰ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 				SoundSysData.PF.EnableASIOFlag = FALSE ;
 				SoundSysData.EnableSelfMixingFlag = FALSE ;
 				goto INITSTART ;
 			}
 
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\x41\x00\x53\x00\x49\x00\x4f\x00\xc9\x30\xe9\x30\xa4\x30\xd0\x30\x92\x30\xed\x30\xfc\x30\xc9\x30\x6b\x30\x10\x62\x9f\x52\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"ASIOƒhƒ‰ƒCƒo‚ğƒ[ƒh‚É¬Œ÷‚µ‚Ü‚µ‚½" @*/ )) ;
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\x41\x00\x53\x00\x49\x00\x4f\x00\x92\x30\x1d\x52\x1f\x67\x16\x53\x57\x30\x7e\x30\x59\x30\x00"/*@ L"ASIO‚ğ‰Šú‰»‚µ‚Ü‚·" @*/ )) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\x41\x00\x53\x00\x49\x00\x4f\x00\xc9\x30\xe9\x30\xa4\x30\xd0\x30\x92\x30\xed\x30\xfc\x30\xc9\x30\x6b\x30\x10\x62\x9f\x52\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"ASIOãƒ‰ãƒ©ã‚¤ãƒã‚’ãƒ­ãƒ¼ãƒ‰ã«æˆåŠŸã—ã¾ã—ãŸ" @*/ )) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\x41\x00\x53\x00\x49\x00\x4f\x00\x92\x30\x1d\x52\x1f\x67\x16\x53\x57\x30\x7e\x30\x59\x30\x00"/*@ L"ASIOã‚’åˆæœŸåŒ–ã—ã¾ã™" @*/ )) ;
 
-			// ASIO‚ğ‰Šú‰»
+			// ASIOã‚’åˆæœŸåŒ–
 			if( SoundSysData.PF.ASIO_Driver[ SoundSysData.PF.ASIO_DriverUseIndex ]->init( GetMainWindowHandle() ) == 0 )
 			{
 				SoundSysData.PF.ASIO_Driver[ SoundSysData.PF.ASIO_DriverUseIndex ]->Release() ;
 				SoundSysData.PF.ASIO_Driver[ SoundSysData.PF.ASIO_DriverUseIndex ] = NULL ;
 
 				DXST_LOGFILE_TABSUB ;
-				DXST_LOGFILE_ADDUTF16LE( "\x41\x00\x53\x00\x49\x00\x4f\x00\x6e\x30\x1d\x52\x1f\x67\x16\x53\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ASIO‚Ì‰Šú‰»‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+				DXST_LOGFILE_ADDUTF16LE( "\x41\x00\x53\x00\x49\x00\x4f\x00\x6e\x30\x1d\x52\x1f\x67\x16\x53\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ASIOã®åˆæœŸåŒ–ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 				SoundSysData.PF.EnableASIOFlag = FALSE ;
 				SoundSysData.EnableSelfMixingFlag = FALSE ;
 				goto INITSTART ;
 			}
 
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\x41\x00\x53\x00\x49\x00\x4f\x00\x92\x30\x1d\x52\x1f\x67\x16\x53\x6b\x30\x10\x62\x9f\x52\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"ASIO‚ğ‰Šú‰»‚É¬Œ÷‚µ‚Ü‚µ‚½" @*/ )) ;
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\x41\x00\x53\x00\x49\x00\x4f\x00\x6e\x30\xd0\x30\xc3\x30\xd5\x30\xa1\x30\xb5\x30\xa4\x30\xba\x30\x92\x30\xd6\x53\x97\x5f\x57\x30\x7e\x30\x59\x30\x00"/*@ L"ASIO‚Ìƒoƒbƒtƒ@ƒTƒCƒY‚ğæ“¾‚µ‚Ü‚·" @*/ )) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\x41\x00\x53\x00\x49\x00\x4f\x00\x92\x30\x1d\x52\x1f\x67\x16\x53\x6b\x30\x10\x62\x9f\x52\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"ASIOã‚’åˆæœŸåŒ–ã«æˆåŠŸã—ã¾ã—ãŸ" @*/ )) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\x41\x00\x53\x00\x49\x00\x4f\x00\x6e\x30\xd0\x30\xc3\x30\xd5\x30\xa1\x30\xb5\x30\xa4\x30\xba\x30\x92\x30\xd6\x53\x97\x5f\x57\x30\x7e\x30\x59\x30\x00"/*@ L"ASIOã®ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚ºã‚’å–å¾—ã—ã¾ã™" @*/ )) ;
 
-			// ì¬‰Â”\‚Èƒoƒbƒtƒ@ƒTƒCƒY‚ğæ“¾
+			// ä½œæˆå¯èƒ½ãªãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚ºã‚’å–å¾—
 			if( SoundSysData.PF.ASIO_Driver[ SoundSysData.PF.ASIO_DriverUseIndex ]->getBufferSize( 
 				&SoundSysData.PF.ASIO_BufferMiniNum,
 				&SoundSysData.PF.ASIO_BufferMaxiNum,
@@ -1777,13 +1777,13 @@ INITSTART:
 				SoundSysData.PF.ASIO_Driver[ SoundSysData.PF.ASIO_DriverUseIndex ] = NULL ;
 
 				DXST_LOGFILE_TABSUB ;
-				DXST_LOGFILE_ADDUTF16LE( "\x41\x00\x53\x00\x49\x00\x4f\x00\x6e\x30\x5c\x4f\x10\x62\xef\x53\xfd\x80\x6a\x30\xd0\x30\xc3\x30\xd5\x30\xa1\x30\xb5\x30\xa4\x30\xba\x30\x6e\x30\xd6\x53\x97\x5f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ASIO‚Ìì¬‰Â”\‚Èƒoƒbƒtƒ@ƒTƒCƒY‚Ìæ“¾‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+				DXST_LOGFILE_ADDUTF16LE( "\x41\x00\x53\x00\x49\x00\x4f\x00\x6e\x30\x5c\x4f\x10\x62\xef\x53\xfd\x80\x6a\x30\xd0\x30\xc3\x30\xd5\x30\xa1\x30\xb5\x30\xa4\x30\xba\x30\x6e\x30\xd6\x53\x97\x5f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ASIOã®ä½œæˆå¯èƒ½ãªãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚ºã®å–å¾—ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 				SoundSysData.PF.EnableASIOFlag = FALSE ;
 				SoundSysData.EnableSelfMixingFlag = FALSE ;
 				goto INITSTART ;
 			}
 
-			// ƒoƒbƒtƒ@ƒTƒCƒY‚ÌŒˆ’è
+			// ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚ºã®æ±ºå®š
 			if( SoundSysData.PF.ASIO_EnableUserParam && SoundSysData.PF.ASIO_UserParam_BufferSize >= 0 )
 			{
 				SoundSysData.PF.ASIO_BufferSize = SoundSysData.PF.ASIO_UserParam_BufferSize ;
@@ -1802,14 +1802,14 @@ INITSTART:
 				SoundSysData.PF.ASIO_BufferSize = SoundSysData.PF.ASIO_Preferred ;
 			}
 
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\x41\x00\x53\x00\x49\x00\x4f\x00\x6e\x30\xd0\x30\xc3\x30\xd5\x30\xa1\x30\xb5\x30\xa4\x30\xba\x30\x6e\x30\xd6\x53\x97\x5f\x6b\x30\x10\x62\x9f\x52\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"ASIO‚Ìƒoƒbƒtƒ@ƒTƒCƒY‚Ìæ“¾‚É¬Œ÷‚µ‚Ü‚µ‚½" @*/ )) ;
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\x09\x00\x00\x67\x0f\x5c\xd0\x30\xc3\x30\xd5\x30\xa1\x30\xb5\x30\xa4\x30\xba\x30\x20\x00\x20\x00\x20\x00\x3a\x00\x20\x00\x25\x00\x64\x00\x00"/*@ L"\tÅ¬ƒoƒbƒtƒ@ƒTƒCƒY   : %d" @*/, SoundSysData.PF.ASIO_BufferMiniNum )) ;
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\x09\x00\x00\x67\x27\x59\xd0\x30\xc3\x30\xd5\x30\xa1\x30\xb5\x30\xa4\x30\xba\x30\x20\x00\x20\x00\x20\x00\x3a\x00\x20\x00\x25\x00\x64\x00\x00"/*@ L"\tÅ‘åƒoƒbƒtƒ@ƒTƒCƒY   : %d" @*/, SoundSysData.PF.ASIO_BufferMaxiNum )) ;
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\x09\x00\x2a\x51\x48\x51\xd0\x30\xc3\x30\xd5\x30\xa1\x30\xb5\x30\xa4\x30\xba\x30\x20\x00\x20\x00\x20\x00\x3a\x00\x20\x00\x25\x00\x64\x00\x00"/*@ L"\t—Dæƒoƒbƒtƒ@ƒTƒCƒY   : %d" @*/, SoundSysData.PF.ASIO_Preferred )) ;
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\x09\x00\xd0\x30\xc3\x30\xd5\x30\xa1\x30\xb5\x30\xa4\x30\xba\x30\x6e\x30\x92\x7c\xa6\x5e\x20\x00\x3a\x00\x20\x00\x25\x00\x64\x00\x00"/*@ L"\tƒoƒbƒtƒ@ƒTƒCƒY‚Ì—±“x : %d" @*/, SoundSysData.PF.ASIO_Granularity )) ;
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\x09\x00\x7f\x4f\x28\x75\x59\x30\x8b\x30\xd0\x30\xc3\x30\xd5\x30\xa1\x30\xb5\x30\xa4\x30\xba\x30\x20\x00\x3a\x00\x20\x00\x25\x00\x64\x00\x00"/*@ L"\tg—p‚·‚éƒoƒbƒtƒ@ƒTƒCƒY : %d" @*/, SoundSysData.PF.ASIO_BufferSize )) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\x41\x00\x53\x00\x49\x00\x4f\x00\x6e\x30\xd0\x30\xc3\x30\xd5\x30\xa1\x30\xb5\x30\xa4\x30\xba\x30\x6e\x30\xd6\x53\x97\x5f\x6b\x30\x10\x62\x9f\x52\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"ASIOã®ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚ºã®å–å¾—ã«æˆåŠŸã—ã¾ã—ãŸ" @*/ )) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\x09\x00\x00\x67\x0f\x5c\xd0\x30\xc3\x30\xd5\x30\xa1\x30\xb5\x30\xa4\x30\xba\x30\x20\x00\x20\x00\x20\x00\x3a\x00\x20\x00\x25\x00\x64\x00\x00"/*@ L"\tæœ€å°ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚º   : %d" @*/, SoundSysData.PF.ASIO_BufferMiniNum )) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\x09\x00\x00\x67\x27\x59\xd0\x30\xc3\x30\xd5\x30\xa1\x30\xb5\x30\xa4\x30\xba\x30\x20\x00\x20\x00\x20\x00\x3a\x00\x20\x00\x25\x00\x64\x00\x00"/*@ L"\tæœ€å¤§ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚º   : %d" @*/, SoundSysData.PF.ASIO_BufferMaxiNum )) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\x09\x00\x2a\x51\x48\x51\xd0\x30\xc3\x30\xd5\x30\xa1\x30\xb5\x30\xa4\x30\xba\x30\x20\x00\x20\x00\x20\x00\x3a\x00\x20\x00\x25\x00\x64\x00\x00"/*@ L"\tå„ªå…ˆãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚º   : %d" @*/, SoundSysData.PF.ASIO_Preferred )) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\x09\x00\xd0\x30\xc3\x30\xd5\x30\xa1\x30\xb5\x30\xa4\x30\xba\x30\x6e\x30\x92\x7c\xa6\x5e\x20\x00\x3a\x00\x20\x00\x25\x00\x64\x00\x00"/*@ L"\tãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚ºã®ç²’åº¦ : %d" @*/, SoundSysData.PF.ASIO_Granularity )) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\x09\x00\x7f\x4f\x28\x75\x59\x30\x8b\x30\xd0\x30\xc3\x30\xd5\x30\xa1\x30\xb5\x30\xa4\x30\xba\x30\x20\x00\x3a\x00\x20\x00\x25\x00\x64\x00\x00"/*@ L"\tä½¿ç”¨ã™ã‚‹ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚º : %d" @*/, SoundSysData.PF.ASIO_BufferSize )) ;
 
-			// ƒoƒbƒtƒ@î•ñ‚ğŠi”[‚·‚é—Ìˆæ‚ğƒ[ƒ‰Šú‰»
+			// ãƒãƒƒãƒ•ã‚¡æƒ…å ±ã‚’æ ¼ç´ã™ã‚‹é ˜åŸŸã‚’ã‚¼ãƒ­åˆæœŸåŒ–
 			_MEMSET( SoundSysData.PF.ASIO_BufferInfo, 0, sizeof( SoundSysData.PF.ASIO_BufferInfo ) ) ;
 			for( i = 0 ; i < 2; i++ )
 			{
@@ -1817,8 +1817,8 @@ INITSTART:
 				SoundSysData.PF.ASIO_BufferInfo[ i ].channelNum = ( long )i ;
 			}
 
-			// ƒ`ƒƒƒ“ƒlƒ‹î•ñ‚Ìæ“¾
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\x41\x00\x53\x00\x49\x00\x4f\x00\x6e\x30\xc1\x30\xe3\x30\xf3\x30\xcd\x30\xeb\x30\xc5\x60\x31\x58\x92\x30\xd6\x53\x97\x5f\x57\x30\x7e\x30\x59\x30\x00"/*@ L"ASIO‚Ìƒ`ƒƒƒ“ƒlƒ‹î•ñ‚ğæ“¾‚µ‚Ü‚·" @*/ )) ;
+			// ãƒãƒ£ãƒ³ãƒãƒ«æƒ…å ±ã®å–å¾—
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\x41\x00\x53\x00\x49\x00\x4f\x00\x6e\x30\xc1\x30\xe3\x30\xf3\x30\xcd\x30\xeb\x30\xc5\x60\x31\x58\x92\x30\xd6\x53\x97\x5f\x57\x30\x7e\x30\x59\x30\x00"/*@ L"ASIOã®ãƒãƒ£ãƒ³ãƒãƒ«æƒ…å ±ã‚’å–å¾—ã—ã¾ã™" @*/ )) ;
 			ChannelInfo.channel = SoundSysData.PF.ASIO_BufferInfo[ 0 ].channelNum ;
 			ChannelInfo.isInput = SoundSysData.PF.ASIO_BufferInfo[ 0 ].isInput ;
 			if( SoundSysData.PF.ASIO_Driver[ SoundSysData.PF.ASIO_DriverUseIndex ]->getChannelInfo( &ChannelInfo ) != 0 )
@@ -1827,43 +1827,43 @@ INITSTART:
 				SoundSysData.PF.ASIO_Driver[ SoundSysData.PF.ASIO_DriverUseIndex ] = NULL ;
 
 				DXST_LOGFILE_TABSUB ;
-				DXST_LOGFILE_ADDUTF16LE( "\x41\x00\x53\x00\x49\x00\x4f\x00\x6e\x30\xc1\x30\xe3\x30\xf3\x30\xcd\x30\xeb\x30\xc5\x60\x31\x58\x6e\x30\xd6\x53\x97\x5f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ASIO‚Ìƒ`ƒƒƒ“ƒlƒ‹î•ñ‚Ìæ“¾‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+				DXST_LOGFILE_ADDUTF16LE( "\x41\x00\x53\x00\x49\x00\x4f\x00\x6e\x30\xc1\x30\xe3\x30\xf3\x30\xcd\x30\xeb\x30\xc5\x60\x31\x58\x6e\x30\xd6\x53\x97\x5f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ASIOã®ãƒãƒ£ãƒ³ãƒãƒ«æƒ…å ±ã®å–å¾—ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 				SoundSysData.PF.EnableASIOFlag = FALSE ;
 				SoundSysData.EnableSelfMixingFlag = FALSE ;
 				goto INITSTART ;
 			}
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\x41\x00\x53\x00\x49\x00\x4f\x00\x6e\x30\xc1\x30\xe3\x30\xf3\x30\xcd\x30\xeb\x30\xc5\x60\x31\x58\x6e\x30\xd6\x53\x97\x5f\x6b\x30\x10\x62\x9f\x52\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"ASIO‚Ìƒ`ƒƒƒ“ƒlƒ‹î•ñ‚Ìæ“¾‚É¬Œ÷‚µ‚Ü‚µ‚½" @*/ )) ;
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\x09\x00\xd5\x30\xa9\x30\xfc\x30\xde\x30\xc3\x30\xc8\x30\xbf\x30\xa4\x30\xd7\x30\x20\x00\x3a\x00\x20\x00\x25\x00\x73\x00\x00"/*@ L"\tƒtƒH[ƒ}ƒbƒgƒ^ƒCƒv : %s" @*/, ASIO_FormatInfoTable[ ChannelInfo.type ].Name )) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\x41\x00\x53\x00\x49\x00\x4f\x00\x6e\x30\xc1\x30\xe3\x30\xf3\x30\xcd\x30\xeb\x30\xc5\x60\x31\x58\x6e\x30\xd6\x53\x97\x5f\x6b\x30\x10\x62\x9f\x52\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"ASIOã®ãƒãƒ£ãƒ³ãƒãƒ«æƒ…å ±ã®å–å¾—ã«æˆåŠŸã—ã¾ã—ãŸ" @*/ )) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\x09\x00\xd5\x30\xa9\x30\xfc\x30\xde\x30\xc3\x30\xc8\x30\xbf\x30\xa4\x30\xd7\x30\x20\x00\x3a\x00\x20\x00\x25\x00\x73\x00\x00"/*@ L"\tãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã‚¿ã‚¤ãƒ— : %s" @*/, ASIO_FormatInfoTable[ ChannelInfo.type ].Name )) ;
 
-			// ƒTƒ“ƒvƒ‹ƒŒ[ƒg‚ğİ’è‚·‚é
+			// ã‚µãƒ³ãƒ—ãƒ«ãƒ¬ãƒ¼ãƒˆã‚’è¨­å®šã™ã‚‹
 			SampleRate = SoundSysData.PF.ASIO_EnableUserParam ? ( float )SoundSysData.PF.ASIO_UserParam_SamplePerSec : 44100.0 ;
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\x41\x00\x53\x00\x49\x00\x4f\x00\x6e\x30\xb5\x30\xf3\x30\xd7\x30\xeb\x30\xec\x30\xfc\x30\xc8\x30\x92\x30\x20\x00\x25\x00\x64\x00\x48\x00\x7a\x00\x20\x00\x6b\x30\x2d\x8a\x9a\x5b\x57\x30\x7e\x30\x59\x30\x00"/*@ L"ASIO‚ÌƒTƒ“ƒvƒ‹ƒŒ[ƒg‚ğ %dHz ‚Éİ’è‚µ‚Ü‚·" @*/, _DTOL( SampleRate ) )) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\x41\x00\x53\x00\x49\x00\x4f\x00\x6e\x30\xb5\x30\xf3\x30\xd7\x30\xeb\x30\xec\x30\xfc\x30\xc8\x30\x92\x30\x20\x00\x25\x00\x64\x00\x48\x00\x7a\x00\x20\x00\x6b\x30\x2d\x8a\x9a\x5b\x57\x30\x7e\x30\x59\x30\x00"/*@ L"ASIOã®ã‚µãƒ³ãƒ—ãƒ«ãƒ¬ãƒ¼ãƒˆã‚’ %dHz ã«è¨­å®šã—ã¾ã™" @*/, _DTOL( SampleRate ) )) ;
 			if( SoundSysData.PF.ASIO_Driver[ SoundSysData.PF.ASIO_DriverUseIndex ]->setSampleRate( SampleRate ) != 0 )
 			{
-				DXST_LOGFILEFMT_ADDUTF16LE(( "\x41\x00\x53\x00\x49\x00\x4f\x00\x6e\x30\xb5\x30\xf3\x30\xd7\x30\xeb\x30\xec\x30\xfc\x30\xc8\x30\x6e\x30\x2d\x8a\x9a\x5b\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"ASIO‚ÌƒTƒ“ƒvƒ‹ƒŒ[ƒg‚Ìİ’è‚É¸”s‚µ‚Ü‚µ‚½" @*/ )) ;
+				DXST_LOGFILEFMT_ADDUTF16LE(( "\x41\x00\x53\x00\x49\x00\x4f\x00\x6e\x30\xb5\x30\xf3\x30\xd7\x30\xeb\x30\xec\x30\xfc\x30\xc8\x30\x6e\x30\x2d\x8a\x9a\x5b\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"ASIOã®ã‚µãƒ³ãƒ—ãƒ«ãƒ¬ãƒ¼ãƒˆã®è¨­å®šã«å¤±æ•—ã—ã¾ã—ãŸ" @*/ )) ;
 			}
 			else
 			{
-				DXST_LOGFILEFMT_ADDUTF16LE(( "\x41\x00\x53\x00\x49\x00\x4f\x00\x6e\x30\xb5\x30\xf3\x30\xd7\x30\xeb\x30\xec\x30\xfc\x30\xc8\x30\x6e\x30\x2d\x8a\x9a\x5b\x6b\x30\x10\x62\x9f\x52\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"ASIO‚ÌƒTƒ“ƒvƒ‹ƒŒ[ƒg‚Ìİ’è‚É¬Œ÷‚µ‚Ü‚µ‚½" @*/ )) ;
+				DXST_LOGFILEFMT_ADDUTF16LE(( "\x41\x00\x53\x00\x49\x00\x4f\x00\x6e\x30\xb5\x30\xf3\x30\xd7\x30\xeb\x30\xec\x30\xfc\x30\xc8\x30\x6e\x30\x2d\x8a\x9a\x5b\x6b\x30\x10\x62\x9f\x52\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"ASIOã®ã‚µãƒ³ãƒ—ãƒ«ãƒ¬ãƒ¼ãƒˆã®è¨­å®šã«æˆåŠŸã—ã¾ã—ãŸ" @*/ )) ;
 			}
 
-			// ƒTƒ“ƒvƒŠƒ“ƒOƒŒ[ƒg‚ğæ“¾‚·‚é
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\x41\x00\x53\x00\x49\x00\x4f\x00\x6e\x30\xb5\x30\xf3\x30\xd7\x30\xeb\x30\xec\x30\xfc\x30\xc8\x30\x92\x30\xd6\x53\x97\x5f\x57\x30\x7e\x30\x59\x30\x00"/*@ L"ASIO‚ÌƒTƒ“ƒvƒ‹ƒŒ[ƒg‚ğæ“¾‚µ‚Ü‚·" @*/ )) ;
+			// ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ãƒ¬ãƒ¼ãƒˆã‚’å–å¾—ã™ã‚‹
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\x41\x00\x53\x00\x49\x00\x4f\x00\x6e\x30\xb5\x30\xf3\x30\xd7\x30\xeb\x30\xec\x30\xfc\x30\xc8\x30\x92\x30\xd6\x53\x97\x5f\x57\x30\x7e\x30\x59\x30\x00"/*@ L"ASIOã®ã‚µãƒ³ãƒ—ãƒ«ãƒ¬ãƒ¼ãƒˆã‚’å–å¾—ã—ã¾ã™" @*/ )) ;
 			if( SoundSysData.PF.ASIO_Driver[ SoundSysData.PF.ASIO_DriverUseIndex ]->getSampleRate( &SampleRate ) != 0 )
 			{
 				SoundSysData.PF.ASIO_Driver[ SoundSysData.PF.ASIO_DriverUseIndex ]->Release() ;
 				SoundSysData.PF.ASIO_Driver[ SoundSysData.PF.ASIO_DriverUseIndex ] = NULL ;
 
 				DXST_LOGFILE_TABSUB ;
-				DXST_LOGFILE_ADDUTF16LE( "\x41\x00\x53\x00\x49\x00\x4f\x00\x6e\x30\xb5\x30\xf3\x30\xd7\x30\xeb\x30\xec\x30\xfc\x30\xc8\x30\x6e\x30\xd6\x53\x97\x5f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ASIO‚ÌƒTƒ“ƒvƒ‹ƒŒ[ƒg‚Ìæ“¾‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+				DXST_LOGFILE_ADDUTF16LE( "\x41\x00\x53\x00\x49\x00\x4f\x00\x6e\x30\xb5\x30\xf3\x30\xd7\x30\xeb\x30\xec\x30\xfc\x30\xc8\x30\x6e\x30\xd6\x53\x97\x5f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ASIOã®ã‚µãƒ³ãƒ—ãƒ«ãƒ¬ãƒ¼ãƒˆã®å–å¾—ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 				SoundSysData.PF.EnableASIOFlag = FALSE ;
 				SoundSysData.EnableSelfMixingFlag = FALSE ;
 				goto INITSTART ;
 			}
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\x41\x00\x53\x00\x49\x00\x4f\x00\x6e\x30\xb5\x30\xf3\x30\xd7\x30\xeb\x30\xec\x30\xfc\x30\xc8\x30\x6e\x30\xd6\x53\x97\x5f\x6b\x30\x10\x62\x9f\x52\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"ASIO‚ÌƒTƒ“ƒvƒ‹ƒŒ[ƒg‚Ìæ“¾‚É¬Œ÷‚µ‚Ü‚µ‚½" @*/ )) ;
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\x09\x00\xb5\x30\xf3\x30\xd7\x30\xeb\x30\xec\x30\xfc\x30\xc8\x30\x20\x00\x3a\x00\x20\x00\x25\x00\x2e\x00\x33\x00\x66\x00\x00"/*@ L"\tƒTƒ“ƒvƒ‹ƒŒ[ƒg : %.3f" @*/, SampleRate )) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\x41\x00\x53\x00\x49\x00\x4f\x00\x6e\x30\xb5\x30\xf3\x30\xd7\x30\xeb\x30\xec\x30\xfc\x30\xc8\x30\x6e\x30\xd6\x53\x97\x5f\x6b\x30\x10\x62\x9f\x52\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"ASIOã®ã‚µãƒ³ãƒ—ãƒ«ãƒ¬ãƒ¼ãƒˆã®å–å¾—ã«æˆåŠŸã—ã¾ã—ãŸ" @*/ )) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\x09\x00\xb5\x30\xf3\x30\xd7\x30\xeb\x30\xec\x30\xfc\x30\xc8\x30\x20\x00\x3a\x00\x20\x00\x25\x00\x2e\x00\x33\x00\x66\x00\x00"/*@ L"\tã‚µãƒ³ãƒ—ãƒ«ãƒ¬ãƒ¼ãƒˆ : %.3f" @*/, SampleRate )) ;
 
-			// ©‘Oƒ~ƒLƒVƒ“ƒO‚Ìƒpƒ‰ƒ[ƒ^‚ğİ’è‚·‚é
+			// è‡ªå‰ãƒŸã‚­ã‚·ãƒ³ã‚°ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’è¨­å®šã™ã‚‹
 			{
 				ASIO_FORMATINFO *Format = &ASIO_FormatInfoTable[ ChannelInfo.type ] ;
 				_MEMSET( &SoundSysData.PF.SelfMixingFormatEx, 0, sizeof( SoundSysData.PF.SelfMixingFormatEx ) ) ;
@@ -1884,8 +1884,8 @@ INITSTART:
 				SoundSysData.SelfMixingFormatIsMSB   = Format->IsMSB ;
 			}
 
-			// g—p‚·‚éƒ`ƒƒƒ“ƒlƒ‹‚Ìƒf[ƒ^ƒoƒbƒtƒ@‚ÌŠm•Û
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\x41\x00\x53\x00\x49\x00\x4f\x00\x6e\x30\xd0\x30\xc3\x30\xd5\x30\xa1\x30\x92\x30\x5c\x4f\x10\x62\x57\x30\x7e\x30\x59\x30\x00"/*@ L"ASIO‚Ìƒoƒbƒtƒ@‚ğì¬‚µ‚Ü‚·" @*/ )) ;
+			// ä½¿ç”¨ã™ã‚‹ãƒãƒ£ãƒ³ãƒãƒ«ã®ãƒ‡ãƒ¼ã‚¿ãƒãƒƒãƒ•ã‚¡ã®ç¢ºä¿
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\x41\x00\x53\x00\x49\x00\x4f\x00\x6e\x30\xd0\x30\xc3\x30\xd5\x30\xa1\x30\x92\x30\x5c\x4f\x10\x62\x57\x30\x7e\x30\x59\x30\x00"/*@ L"ASIOã®ãƒãƒƒãƒ•ã‚¡ã‚’ä½œæˆã—ã¾ã™" @*/ )) ;
 			Callbacks.bufferSwitch         = &ASIO_BufferSwitch ;
 			Callbacks.sampleRateDidChange  = ASIO_SampleRateDidChange ;
 			Callbacks.asioMessage          = ASIO_AsioMessage ;
@@ -1896,14 +1896,14 @@ INITSTART:
 				SoundSysData.PF.ASIO_Driver[ SoundSysData.PF.ASIO_DriverUseIndex ] = NULL ;
 
 				DXST_LOGFILE_TABSUB ;
-				DXST_LOGFILE_ADDUTF16LE( "\x41\x00\x53\x00\x49\x00\x4f\x00\x6e\x30\xd0\x30\xc3\x30\xd5\x30\xa1\x30\xfc\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ASIO‚Ìƒoƒbƒtƒ@[ì¬‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+				DXST_LOGFILE_ADDUTF16LE( "\x41\x00\x53\x00\x49\x00\x4f\x00\x6e\x30\xd0\x30\xc3\x30\xd5\x30\xa1\x30\xfc\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ASIOã®ãƒãƒƒãƒ•ã‚¡ãƒ¼ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 				SoundSysData.PF.EnableASIOFlag = FALSE ;
 				SoundSysData.EnableSelfMixingFlag = FALSE ;
 				goto INITSTART ;
 			}
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\x41\x00\x53\x00\x49\x00\x4f\x00\x6e\x30\xd0\x30\xc3\x30\xd5\x30\xa1\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x10\x62\x9f\x52\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"ASIO‚Ìƒoƒbƒtƒ@‚Ìì¬‚É¬Œ÷‚µ‚Ü‚µ‚½" @*/ )) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\x41\x00\x53\x00\x49\x00\x4f\x00\x6e\x30\xd0\x30\xc3\x30\xd5\x30\xa1\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x10\x62\x9f\x52\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"ASIOã®ãƒãƒƒãƒ•ã‚¡ã®ä½œæˆã«æˆåŠŸã—ã¾ã—ãŸ" @*/ )) ;
 
-			// ì‹Æ—pƒoƒbƒtƒ@‚Ì€”õ
+			// ä½œæ¥­ç”¨ãƒãƒƒãƒ•ã‚¡ã®æº–å‚™
 			if( SetupSelfMixingWorkBuffer( SoundSysData.SelfMixingFormatIsFloat, SoundSysData.PF.ASIO_BufferSize ) < 0 )
 			{
 				SoundSysData.PF.ASIO_Driver[ SoundSysData.PF.ASIO_DriverUseIndex ]->disposeBuffers() ;
@@ -1911,17 +1911,17 @@ INITSTART:
 				SoundSysData.PF.ASIO_Driver[ SoundSysData.PF.ASIO_DriverUseIndex ] = NULL ;
 
 				DXST_LOGFILE_TABSUB ;
-				DXST_LOGFILE_ADDUTF16LE( "\xea\x81\x4d\x52\xdf\x30\xad\x30\xb7\x30\xf3\x30\xb0\x30\x5c\x4f\x6d\x69\x28\x75\xd0\x30\xc3\x30\xd5\x30\xa1\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"©‘Oƒ~ƒLƒVƒ“ƒOì‹Æ—pƒoƒbƒtƒ@‚ÌŠm•Û‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+				DXST_LOGFILE_ADDUTF16LE( "\xea\x81\x4d\x52\xdf\x30\xad\x30\xb7\x30\xf3\x30\xb0\x30\x5c\x4f\x6d\x69\x28\x75\xd0\x30\xc3\x30\xd5\x30\xa1\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"è‡ªå‰ãƒŸã‚­ã‚·ãƒ³ã‚°ä½œæ¥­ç”¨ãƒãƒƒãƒ•ã‚¡ã®ç¢ºä¿ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 				SoundSysData.PF.EnableASIOFlag = FALSE ;
 				SoundSysData.EnableSelfMixingFlag = FALSE ;
 				goto INITSTART ;
 			}
 
-			// ‰Šú‰»‚ÌØ‹’‚ğc‚·
+			// åˆæœŸåŒ–ã®è¨¼æ‹ ã‚’æ®‹ã™
 			SoundSysData.PF.InitializeFlag = TRUE ;
 
-			// ƒTƒEƒ“ƒho—Í‚ğŠJn‚·‚é
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\x41\x00\x53\x00\x49\x00\x4f\x00\x6e\x30\xb5\x30\xa6\x30\xf3\x30\xc9\x30\x6e\x30\x8d\x51\x1f\x75\x92\x30\x8b\x95\xcb\x59\x57\x30\x7e\x30\x59\x30\x00"/*@ L"ASIO‚ÌƒTƒEƒ“ƒh‚ÌÄ¶‚ğŠJn‚µ‚Ü‚·" @*/ )) ;
+			// ã‚µã‚¦ãƒ³ãƒ‰å‡ºåŠ›ã‚’é–‹å§‹ã™ã‚‹
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\x41\x00\x53\x00\x49\x00\x4f\x00\x6e\x30\xb5\x30\xa6\x30\xf3\x30\xc9\x30\x6e\x30\x8d\x51\x1f\x75\x92\x30\x8b\x95\xcb\x59\x57\x30\x7e\x30\x59\x30\x00"/*@ L"ASIOã®ã‚µã‚¦ãƒ³ãƒ‰ã®å†ç”Ÿã‚’é–‹å§‹ã—ã¾ã™" @*/ )) ;
 			if( SoundSysData.PF.ASIO_Driver[ SoundSysData.PF.ASIO_DriverUseIndex ]->start() != 0 )
 			{
 				SoundSysData.PF.ASIO_Driver[ SoundSysData.PF.ASIO_DriverUseIndex ]->disposeBuffers() ;
@@ -1929,13 +1929,13 @@ INITSTART:
 				SoundSysData.PF.ASIO_Driver[ SoundSysData.PF.ASIO_DriverUseIndex ] = NULL ;
 
 				DXST_LOGFILE_TABSUB ;
-				DXST_LOGFILE_ADDUTF16LE( "\x41\x00\x53\x00\x49\x00\x4f\x00\x6e\x30\xb5\x30\xa6\x30\xf3\x30\xc9\x30\x6e\x30\x8d\x51\x1f\x75\x6e\x30\x8b\x95\xcb\x59\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ASIO‚ÌƒTƒEƒ“ƒh‚ÌÄ¶‚ÌŠJn‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+				DXST_LOGFILE_ADDUTF16LE( "\x41\x00\x53\x00\x49\x00\x4f\x00\x6e\x30\xb5\x30\xa6\x30\xf3\x30\xc9\x30\x6e\x30\x8d\x51\x1f\x75\x6e\x30\x8b\x95\xcb\x59\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ASIOã®ã‚µã‚¦ãƒ³ãƒ‰ã®å†ç”Ÿã®é–‹å§‹ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 				SoundSysData.PF.EnableASIOFlag = FALSE ;
 				SoundSysData.EnableSelfMixingFlag = FALSE ;
 				goto INITSTART ;
 			}
 			DXST_LOGFILE_TABSUB ;
-			DXST_LOGFILE_ADDUTF16LE( "\x41\x00\x53\x00\x49\x00\x4f\x00\x20\x00\x6e\x30\x1d\x52\x1f\x67\x16\x53\x6b\x30\x10\x62\x9f\x52\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ASIO ‚Ì‰Šú‰»‚É¬Œ÷‚µ‚Ü‚µ‚½\n" @*/ ) ;
+			DXST_LOGFILE_ADDUTF16LE( "\x41\x00\x53\x00\x49\x00\x4f\x00\x20\x00\x6e\x30\x1d\x52\x1f\x67\x16\x53\x6b\x30\x10\x62\x9f\x52\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ASIO ã®åˆæœŸåŒ–ã«æˆåŠŸã—ã¾ã—ãŸ\n" @*/ ) ;
 		}
 		else
 #endif // DX_NON_ASIO
@@ -1944,17 +1944,17 @@ INITSTART:
 			WAVEFORMATEX WaveFormat ;
 			int i ;
 
-			// ©‘Oƒ~ƒLƒVƒ“ƒO‚ğs‚¤ƒtƒ‰ƒO‚ğ—§‚Ä‚é
+			// è‡ªå‰ãƒŸã‚­ã‚·ãƒ³ã‚°ã‚’è¡Œã†ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 			SoundSysData.EnableSelfMixingFlag = TRUE ;
 
-			DXST_LOGFILE_ADDUTF16LE( "\x4d\x00\x4d\x00\x45\x00\x20\x00\x77\x00\x61\x00\x76\x00\x65\x00\x4f\x00\x75\x00\x74\x00\x20\x00\x6e\x30\x1d\x52\x1f\x67\x16\x53\x92\x30\x4c\x88\x44\x30\x7e\x30\x59\x30\x0a\x00\x00"/*@ L"MME waveOut ‚Ì‰Šú‰»‚ğs‚¢‚Ü‚·\n" @*/ ) ;
+			DXST_LOGFILE_ADDUTF16LE( "\x4d\x00\x4d\x00\x45\x00\x20\x00\x77\x00\x61\x00\x76\x00\x65\x00\x4f\x00\x75\x00\x74\x00\x20\x00\x6e\x30\x1d\x52\x1f\x67\x16\x53\x92\x30\x4c\x88\x44\x30\x7e\x30\x59\x30\x0a\x00\x00"/*@ L"MME waveOut ã®åˆæœŸåŒ–ã‚’è¡Œã„ã¾ã™\n" @*/ ) ;
 
 			DXST_LOGFILE_TABADD ;
 
-			// I—¹ƒtƒ‰ƒO‚ğ“|‚·
+			// çµ‚äº†ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 			SoundSysData.PF.waveOut_EndFlag = FALSE ;
 
-			// ƒtƒH[ƒ}ƒbƒg‚Ìİ’è
+			// ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®è¨­å®š
 			_MEMSET( &WaveFormat, 0, sizeof( WaveFormat ) ) ;
 			WaveFormat.wFormatTag = WAVE_FORMAT_PCM ;
 			WaveFormat.nChannels = 2 ;
@@ -1963,7 +1963,7 @@ INITSTART:
 			WaveFormat.nSamplesPerSec = SoundSysData.PF.waveOut_EnableUserParam ? SoundSysData.PF.waveOut_UserParam_SamplePerSec : 44100 ;
 			WaveFormat.nAvgBytesPerSec = WaveFormat.nSamplesPerSec * WaveFormat.nBlockAlign ;
 
-			// ƒoƒbƒtƒ@[ƒTƒ“ƒvƒ‹”‚Ì€”õ
+			// ãƒãƒƒãƒ•ã‚¡ãƒ¼ã‚µãƒ³ãƒ—ãƒ«æ•°ã®æº–å‚™
 			if( SoundSysData.PF.waveOut_EnableUserParam && SoundSysData.PF.waveOut_UserParam_BufferSamples > 0 )
 			{
 				SoundSysData.PF.waveOut_BufferSamples = SoundSysData.PF.waveOut_UserParam_BufferSamples ;
@@ -1973,7 +1973,7 @@ INITSTART:
 				SoundSysData.PF.waveOut_BufferSamples = WaveFormat.nSamplesPerSec / 30 ;
 			}
 
-			// ©‘Oƒ~ƒLƒVƒ“ƒO‚Ìƒpƒ‰ƒ[ƒ^‚ğİ’è‚·‚é
+			// è‡ªå‰ãƒŸã‚­ã‚·ãƒ³ã‚°ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’è¨­å®šã™ã‚‹
 			{
 				_MEMSET( &SoundSysData.PF.SelfMixingFormatEx, 0, sizeof( SoundSysData.PF.SelfMixingFormatEx ) ) ;
 				SoundSysData.PF.SelfMixingFormatEx.Format.cbSize	            = sizeof( D_WAVEFORMATEXTENSIBLE ) - sizeof( WAVEFORMATEX ) ;
@@ -1993,48 +1993,48 @@ INITSTART:
 				SoundSysData.SelfMixingFormatIsMSB   = FALSE ;
 			}
 
-			// ƒtƒH[ƒ}ƒbƒg‚Ìo—Í
+			// ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®å‡ºåŠ›
 			{
-				DXST_LOGFILEFMT_ADDUTF16LE(( "\xc1\x30\xe3\x30\xf3\x30\xcd\x30\xeb\x30\x70\x65\x20\x00\x20\x00\x00\x30\x20\x00\x20\x00\x20\x00\x3a\x00\x20\x00\x25\x00\x64\x00\x20\x00\x63\x00\x68\x00\x00"/*@ L"ƒ`ƒƒƒ“ƒlƒ‹”  @   : %d ch" @*/, SoundSysData.PF.SelfMixingFormatEx.Format.nChannels )) ;
-				DXST_LOGFILEFMT_ADDUTF16LE(( "\xcf\x91\x50\x5b\x16\x53\xd3\x30\xc3\x30\xc8\x30\xf1\x6d\xa6\x5e\x20\x00\x20\x00\x20\x00\x3a\x00\x20\x00\x25\x00\x64\x00\x20\x00\x62\x00\x69\x00\x74\x00\x00"/*@ L"—Êq‰»ƒrƒbƒg[“x   : %d bit" @*/, SoundSysData.PF.SelfMixingFormatEx.Format.wBitsPerSample )) ;
-				DXST_LOGFILEFMT_ADDUTF16LE(( "\x09\x67\xb9\x52\xd3\x30\xc3\x30\xc8\x30\xf1\x6d\xa6\x5e\x00\x30\x20\x00\x20\x00\x20\x00\x3a\x00\x20\x00\x25\x00\x64\x00\x20\x00\x62\x00\x69\x00\x74\x00\x00"/*@ L"—LŒøƒrƒbƒg[“x@   : %d bit" @*/, SoundSysData.PF.SelfMixingFormatEx.Samples.wValidBitsPerSample )) ;
+				DXST_LOGFILEFMT_ADDUTF16LE(( "\xc1\x30\xe3\x30\xf3\x30\xcd\x30\xeb\x30\x70\x65\x20\x00\x20\x00\x00\x30\x20\x00\x20\x00\x20\x00\x3a\x00\x20\x00\x25\x00\x64\x00\x20\x00\x63\x00\x68\x00\x00"/*@ L"ãƒãƒ£ãƒ³ãƒãƒ«æ•°  ã€€   : %d ch" @*/, SoundSysData.PF.SelfMixingFormatEx.Format.nChannels )) ;
+				DXST_LOGFILEFMT_ADDUTF16LE(( "\xcf\x91\x50\x5b\x16\x53\xd3\x30\xc3\x30\xc8\x30\xf1\x6d\xa6\x5e\x20\x00\x20\x00\x20\x00\x3a\x00\x20\x00\x25\x00\x64\x00\x20\x00\x62\x00\x69\x00\x74\x00\x00"/*@ L"é‡å­åŒ–ãƒ“ãƒƒãƒˆæ·±åº¦   : %d bit" @*/, SoundSysData.PF.SelfMixingFormatEx.Format.wBitsPerSample )) ;
+				DXST_LOGFILEFMT_ADDUTF16LE(( "\x09\x67\xb9\x52\xd3\x30\xc3\x30\xc8\x30\xf1\x6d\xa6\x5e\x00\x30\x20\x00\x20\x00\x20\x00\x3a\x00\x20\x00\x25\x00\x64\x00\x20\x00\x62\x00\x69\x00\x74\x00\x00"/*@ L"æœ‰åŠ¹ãƒ“ãƒƒãƒˆæ·±åº¦ã€€   : %d bit" @*/, SoundSysData.PF.SelfMixingFormatEx.Samples.wValidBitsPerSample )) ;
 
-				DXST_LOGFILEFMT_ADDUTF16LE(( "\xb5\x30\xf3\x30\xd7\x30\xea\x30\xf3\x30\xb0\x30\xec\x30\xfc\x30\xc8\x30\x20\x00\x3a\x00\x20\x00\x25\x00\x64\x00\x20\x00\x48\x00\x7a\x00\x00"/*@ L"ƒTƒ“ƒvƒŠƒ“ƒOƒŒ[ƒg : %d Hz" @*/, SoundSysData.PF.SelfMixingFormatEx.Format.nSamplesPerSec )) ;
+				DXST_LOGFILEFMT_ADDUTF16LE(( "\xb5\x30\xf3\x30\xd7\x30\xea\x30\xf3\x30\xb0\x30\xec\x30\xfc\x30\xc8\x30\x20\x00\x3a\x00\x20\x00\x25\x00\x64\x00\x20\x00\x48\x00\x7a\x00\x00"/*@ L"ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ãƒ¬ãƒ¼ãƒˆ : %d Hz" @*/, SoundSysData.PF.SelfMixingFormatEx.Format.nSamplesPerSec )) ;
 				if( SoundSysData.SelfMixingFormatIsFloat )
 				{
-					DXST_LOGFILEFMT_ADDUTF16LE(( "\xc7\x30\xfc\x30\xbf\x30\x62\x5f\x0f\x5f\x20\x00\x20\x00\x20\x00\x20\x00\x20\x00\x20\x00\x20\x00\x20\x00\x20\x00\x3a\x00\x20\x00\x6e\x6d\xd5\x52\x0f\x5c\x70\x65\xb9\x70\x8b\x57\x00"/*@ L"ƒf[ƒ^Œ`®         : •‚“®¬”“_Œ^" @*/ )) ;
+					DXST_LOGFILEFMT_ADDUTF16LE(( "\xc7\x30\xfc\x30\xbf\x30\x62\x5f\x0f\x5f\x20\x00\x20\x00\x20\x00\x20\x00\x20\x00\x20\x00\x20\x00\x20\x00\x20\x00\x3a\x00\x20\x00\x6e\x6d\xd5\x52\x0f\x5c\x70\x65\xb9\x70\x8b\x57\x00"/*@ L"ãƒ‡ãƒ¼ã‚¿å½¢å¼         : æµ®å‹•å°æ•°ç‚¹å‹" @*/ )) ;
 				}
 				else
 				{
-					DXST_LOGFILEFMT_ADDUTF16LE(( "\xc7\x30\xfc\x30\xbf\x30\x62\x5f\x0f\x5f\x20\x00\x20\x00\x20\x00\x20\x00\x20\x00\x20\x00\x20\x00\x20\x00\x20\x00\x3a\x00\x20\x00\x74\x65\x70\x65\x8b\x57\x00"/*@ L"ƒf[ƒ^Œ`®         : ®”Œ^" @*/ )) ;
+					DXST_LOGFILEFMT_ADDUTF16LE(( "\xc7\x30\xfc\x30\xbf\x30\x62\x5f\x0f\x5f\x20\x00\x20\x00\x20\x00\x20\x00\x20\x00\x20\x00\x20\x00\x20\x00\x20\x00\x3a\x00\x20\x00\x74\x65\x70\x65\x8b\x57\x00"/*@ L"ãƒ‡ãƒ¼ã‚¿å½¢å¼         : æ•´æ•°å‹" @*/ )) ;
 				}
 
-				DXST_LOGFILEFMT_ADDUTF16LE(( "\x45\x90\xf6\x5e\x42\x66\x93\x95\x20\x00\x20\x00\x20\x00\x20\x00\x20\x00\x20\x00\x20\x00\x20\x00\x20\x00\x20\x00\x20\x00\x3a\x00\x20\x00\x25\x00\x2e\x00\x33\x00\x66\x00\x20\x00\x6d\x00\x73\x00\x00"/*@ L"’x‰„ŠÔ           : %.3f ms" @*/, ( float )SoundSysData.PF.waveOut_BufferSamples / WaveFormat.nSamplesPerSec * 1000.0f )) ;
+				DXST_LOGFILEFMT_ADDUTF16LE(( "\x45\x90\xf6\x5e\x42\x66\x93\x95\x20\x00\x20\x00\x20\x00\x20\x00\x20\x00\x20\x00\x20\x00\x20\x00\x20\x00\x20\x00\x20\x00\x3a\x00\x20\x00\x25\x00\x2e\x00\x33\x00\x66\x00\x20\x00\x6d\x00\x73\x00\x00"/*@ L"é…å»¶æ™‚é–“           : %.3f ms" @*/, ( float )SoundSysData.PF.waveOut_BufferSamples / WaveFormat.nSamplesPerSec * 1000.0f )) ;
 			}
 
-			// ì‹Æ—pƒoƒbƒtƒ@‚Ì€”õ
+			// ä½œæ¥­ç”¨ãƒãƒƒãƒ•ã‚¡ã®æº–å‚™
 			if( SetupSelfMixingWorkBuffer( SoundSysData.SelfMixingFormatIsFloat, SoundSysData.PF.waveOut_BufferSamples ) < 0 )
 			{
 				DXST_LOGFILE_TABSUB ;
-				DXST_LOGFILE_ADDUTF16LE( "\xea\x81\x4d\x52\xdf\x30\xad\x30\xb7\x30\xf3\x30\xb0\x30\x5c\x4f\x6d\x69\x28\x75\xd0\x30\xc3\x30\xd5\x30\xa1\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"©‘Oƒ~ƒLƒVƒ“ƒOì‹Æ—pƒoƒbƒtƒ@‚ÌŠm•Û‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+				DXST_LOGFILE_ADDUTF16LE( "\xea\x81\x4d\x52\xdf\x30\xad\x30\xb7\x30\xf3\x30\xb0\x30\x5c\x4f\x6d\x69\x28\x75\xd0\x30\xc3\x30\xd5\x30\xa1\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"è‡ªå‰ãƒŸã‚­ã‚·ãƒ³ã‚°ä½œæ¥­ç”¨ãƒãƒƒãƒ•ã‚¡ã®ç¢ºä¿ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 
 				SoundSysData.PF.EnableMMEwaveOutFlag = FALSE ;
 				SoundSysData.EnableSelfMixingFlag = FALSE ;
 				goto INITSTART ;
 			}
 
-			// waveOut ‚ÌƒI[ƒvƒ“
+			// waveOut ã®ã‚ªãƒ¼ãƒ—ãƒ³
 			if( WinAPIData.Win32Func.waveOutOpenFunc( &SoundSysData.PF.waveOut_WaveOut, WAVE_MAPPER, &WaveFormat, ( DWORD_PTR )waveOutCallback, NULL, CALLBACK_FUNCTION ) != MMSYSERR_NOERROR )
 			{
 				DXST_LOGFILE_TABSUB ;
-				DXST_LOGFILE_ADDUTF16LE( "\x77\x00\x61\x00\x76\x00\x65\x00\x4f\x00\x75\x00\x74\x00\x4f\x00\x70\x00\x65\x00\x6e\x00\x20\x00\x4c\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"waveOutOpen ‚ª¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+				DXST_LOGFILE_ADDUTF16LE( "\x77\x00\x61\x00\x76\x00\x65\x00\x4f\x00\x75\x00\x74\x00\x4f\x00\x70\x00\x65\x00\x6e\x00\x20\x00\x4c\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"waveOutOpen ãŒå¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 
 				SoundSysData.PF.EnableMMEwaveOutFlag = FALSE ;
 				SoundSysData.EnableSelfMixingFlag = FALSE ;
 				goto INITSTART ;
 			}
 
-			// waveOutWrite—pƒoƒbƒtƒ@‚Ì€”õ
+			// waveOutWriteç”¨ãƒãƒƒãƒ•ã‚¡ã®æº–å‚™
 			for( i = 0 ; i < 2 ; i ++ )
 			{
 				_MEMSET( &SoundSysData.PF.waveOut_WaveHeader[ i ], 0, sizeof( SoundSysData.PF.waveOut_WaveHeader[ i ] ) ) ;
@@ -2046,7 +2046,7 @@ INITSTART:
 			if( SoundSysData.PF.waveOut_WaveHeader[ 0 ].lpData == NULL )
 			{
 				DXST_LOGFILE_TABSUB ;
-				DXST_LOGFILE_ADDUTF16LE( "\x77\x00\x61\x00\x76\x00\x65\x00\x4f\x00\x75\x00\x74\x00\x57\x00\x72\x00\x69\x00\x74\x00\x65\x00\x20\x00\x28\x75\x6e\x30\xd0\x30\xc3\x30\xd5\x30\xa1\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"waveOutWrite —p‚Ìƒoƒbƒtƒ@‚ÌŠm•Û‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+				DXST_LOGFILE_ADDUTF16LE( "\x77\x00\x61\x00\x76\x00\x65\x00\x4f\x00\x75\x00\x74\x00\x57\x00\x72\x00\x69\x00\x74\x00\x65\x00\x20\x00\x28\x75\x6e\x30\xd0\x30\xc3\x30\xd5\x30\xa1\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"waveOutWrite ç”¨ã®ãƒãƒƒãƒ•ã‚¡ã®ç¢ºä¿ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 
 				WinAPIData.Win32Func.waveOutResetFunc( SoundSysData.PF.waveOut_WaveOut ) ;
 				WinAPIData.Win32Func.waveOutCloseFunc( SoundSysData.PF.waveOut_WaveOut ) ;
@@ -2056,13 +2056,13 @@ INITSTART:
 				goto INITSTART ;
 			}
 
-			// ƒwƒbƒ_‚Ì€”õ
+			// ãƒ˜ãƒƒãƒ€ã®æº–å‚™
 			for( i = 0 ; i < 2 ; i ++ )
 			{
 				if( WinAPIData.Win32Func.waveOutPrepareHeaderFunc( SoundSysData.PF.waveOut_WaveOut, &SoundSysData.PF.waveOut_WaveHeader[ i ], sizeof( SoundSysData.PF.waveOut_WaveHeader[ i ] ) ) != MMSYSERR_NOERROR )
 				{
 					DXST_LOGFILE_TABSUB ;
-					DXST_LOGFILE_ADDUTF16LE( "\x77\x00\x61\x00\x76\x00\x65\x00\x4f\x00\x75\x00\x74\x00\x50\x00\x72\x00\x65\x00\x70\x00\x61\x00\x72\x00\x65\x00\x48\x00\x65\x00\x61\x00\x64\x00\x65\x00\x72\x00\x20\x00\x4c\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"waveOutPrepareHeader ‚ª¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+					DXST_LOGFILE_ADDUTF16LE( "\x77\x00\x61\x00\x76\x00\x65\x00\x4f\x00\x75\x00\x74\x00\x50\x00\x72\x00\x65\x00\x70\x00\x61\x00\x72\x00\x65\x00\x48\x00\x65\x00\x61\x00\x64\x00\x65\x00\x72\x00\x20\x00\x4c\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"waveOutPrepareHeader ãŒå¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 
 					WinAPIData.Win32Func.waveOutResetFunc( SoundSysData.PF.waveOut_WaveOut ) ;
 					if( i == 1 )
@@ -2081,7 +2081,7 @@ INITSTART:
 				}
 			}
 
-			// Å‰‚Ìo—Í‚ğs‚¤
+			// æœ€åˆã®å‡ºåŠ›ã‚’è¡Œã†
 			for( i = 0 ; i < 2 ; i ++ )
 			{
 				WriteSelfMixingSample(
@@ -2094,7 +2094,7 @@ INITSTART:
 				if( WinAPIData.Win32Func.waveOutWriteFunc( SoundSysData.PF.waveOut_WaveOut, &SoundSysData.PF.waveOut_WaveHeader[ i ], sizeof( SoundSysData.PF.waveOut_WaveHeader[ i ] ) ) != MMSYSERR_NOERROR )
 				{
 					DXST_LOGFILE_TABSUB ;
-					DXST_LOGFILE_ADDUTF16LE( "\x77\x00\x61\x00\x76\x00\x65\x00\x4f\x00\x75\x00\x74\x00\x57\x00\x72\x00\x69\x00\x74\x00\x65\x00\x20\x00\x4c\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"waveOutWrite ‚ª¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+					DXST_LOGFILE_ADDUTF16LE( "\x77\x00\x61\x00\x76\x00\x65\x00\x4f\x00\x75\x00\x74\x00\x57\x00\x72\x00\x69\x00\x74\x00\x65\x00\x20\x00\x4c\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"waveOutWrite ãŒå¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 
 					WinAPIData.Win32Func.waveOutResetFunc( SoundSysData.PF.waveOut_WaveOut ) ;
 					WinAPIData.Win32Func.waveOutUnprepareHeaderFunc( SoundSysData.PF.waveOut_WaveOut,&SoundSysData.PF.waveOut_WaveHeader[ 0 ],sizeof( SoundSysData.PF.waveOut_WaveHeader[ 0 ] ) );
@@ -2113,21 +2113,21 @@ INITSTART:
 
 			DXST_LOGFILE_TABSUB ;
 
-			DXST_LOGFILE_ADDUTF16LE( "\x4d\x00\x4d\x00\x45\x00\x20\x00\x77\x00\x61\x00\x76\x00\x65\x00\x4f\x00\x75\x00\x74\x00\x20\x00\x6e\x30\x1d\x52\x1f\x67\x16\x53\x6f\x30\x63\x6b\x38\x5e\x6b\x30\x42\x7d\x86\x4e\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"MME waveOut ‚Ì‰Šú‰»‚Í³í‚ÉI—¹‚µ‚Ü‚µ‚½\n" @*/ ) ;
+			DXST_LOGFILE_ADDUTF16LE( "\x4d\x00\x4d\x00\x45\x00\x20\x00\x77\x00\x61\x00\x76\x00\x65\x00\x4f\x00\x75\x00\x74\x00\x20\x00\x6e\x30\x1d\x52\x1f\x67\x16\x53\x6f\x30\x63\x6b\x38\x5e\x6b\x30\x42\x7d\x86\x4e\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"MME waveOut ã®åˆæœŸåŒ–ã¯æ­£å¸¸ã«çµ‚äº†ã—ã¾ã—ãŸ\n" @*/ ) ;
 
-			// ‰Šú‰»‚ÌØ‹’‚ğc‚·
+			// åˆæœŸåŒ–ã®è¨¼æ‹ ã‚’æ®‹ã™
 			SoundSysData.PF.InitializeFlag = TRUE ;
 		}
 		else
 		if( SoundSysData.PF.DisableWASAPIFlag == FALSE )
 		{
-			// WASAPI ‚Ì‰Šú‰»
+			// WASAPI ã®åˆæœŸåŒ–
 			if( InitializeWASAPI() < 0 )
 			{
 				goto INITSTART ;
 			}
 
-			// ‰Šú‰»‚ÌØ‹’‚ğc‚·
+			// åˆæœŸåŒ–ã®è¨¼æ‹ ã‚’æ®‹ã™
 			SoundSysData.PF.InitializeFlag = TRUE ;
 		}
 		else
@@ -2185,42 +2185,42 @@ INITSTART:
 					NULL
 				},
 			} ;
-			DXST_LOGFILE_ADDUTF16LE( "\x58\x00\x41\x00\x75\x00\x64\x00\x69\x00\x6f\x00\x32\x00\x20\x00\x6e\x30\x1d\x52\x1f\x67\x16\x53\x92\x30\x4c\x88\x44\x30\x7e\x30\x59\x30\x0a\x00\x00"/*@ L"XAudio2 ‚Ì‰Šú‰»‚ğs‚¢‚Ü‚·\n" @*/ ) ;
+			DXST_LOGFILE_ADDUTF16LE( "\x58\x00\x41\x00\x75\x00\x64\x00\x69\x00\x6f\x00\x32\x00\x20\x00\x6e\x30\x1d\x52\x1f\x67\x16\x53\x92\x30\x4c\x88\x44\x30\x7e\x30\x59\x30\x0a\x00\x00"/*@ L"XAudio2 ã®åˆæœŸåŒ–ã‚’è¡Œã„ã¾ã™\n" @*/ ) ;
 
 			DXST_LOGFILE_TABADD ;
 
-			// Å‰‚ÉXAudio2_8.dll‚ª–³‚¢‚©’²‚×‚é
+			// æœ€åˆã«XAudio2_8.dllãŒç„¡ã„ã‹èª¿ã¹ã‚‹
 			SoundSysData.PF.XAudio2_8DLL = LoadLibraryW( L"XAudio2_8.dll" ) ;
 			if( SoundSysData.PF.XAudio2_8DLL != NULL )
 			{
-				DXST_LOGFILE_ADDUTF16LE( "\x58\x00\x41\x00\x75\x00\x64\x00\x69\x00\x6f\x00\x32\x00\x5f\x00\x38\x00\x2e\x00\x64\x00\x6c\x00\x6c\x00\x20\x00\x92\x30\x7f\x4f\x28\x75\x57\x30\x7e\x30\x59\x30\x0a\x00\x00"/*@ L"XAudio2_8.dll ‚ğg—p‚µ‚Ü‚·\n" @*/ ) ;
+				DXST_LOGFILE_ADDUTF16LE( "\x58\x00\x41\x00\x75\x00\x64\x00\x69\x00\x6f\x00\x32\x00\x5f\x00\x38\x00\x2e\x00\x64\x00\x6c\x00\x6c\x00\x20\x00\x92\x30\x7f\x4f\x28\x75\x57\x30\x7e\x30\x59\x30\x0a\x00\x00"/*@ L"XAudio2_8.dll ã‚’ä½¿ç”¨ã—ã¾ã™\n" @*/ ) ;
 
-				// ‚ ‚Á‚½ê‡‚Ìˆ—
+				// ã‚ã£ãŸå ´åˆã®å‡¦ç†
 				SoundSysData.PF.XAudio2CreateFunc          = ( HRESULT ( WINAPI * )( D_IXAudio2_8 **, DWORD, D_XAUDIO2_PROCESSOR ) )GetProcAddress( SoundSysData.PF.XAudio2_8DLL, "XAudio2Create" ) ;
 				SoundSysData.PF.CreateAudioVolumeMeterFunc = ( HRESULT ( WINAPI * )( D_IUnknown** ppApo ) )GetProcAddress( SoundSysData.PF.XAudio2_8DLL, "CreateAudioVolumeMeter" ) ;
 				SoundSysData.PF.CreateAudioReverbFunc      = ( HRESULT ( WINAPI * )( D_IUnknown** ppApo ) )GetProcAddress( SoundSysData.PF.XAudio2_8DLL, "CreateAudioReverb" ) ;
 				SoundSysData.PF.X3DAudioInitializeFunc     = ( void ( __cdecl * )( DWORD, float, D_X3DAUDIO_HANDLE ) )GetProcAddress( SoundSysData.PF.XAudio2_8DLL, "X3DAudioInitialize" ) ;
 				SoundSysData.PF.X3DAudioCalculateFunc      = ( void ( __cdecl * )( const D_X3DAUDIO_HANDLE, const D_X3DAUDIO_LISTENER *, const D_X3DAUDIO_EMITTER *, DWORD, D_X3DAUDIO_DSP_SETTINGS * ) )GetProcAddress( SoundSysData.PF.XAudio2_8DLL, "X3DAudioCalculate" ) ;
 
-				DXST_LOGFILE_ADDUTF16LE( "\x58\x00\x41\x00\x75\x00\x64\x00\x69\x00\x6f\x00\x32\x00\x20\x00\xa4\x30\xf3\x30\xbf\x30\xfc\x30\xd5\x30\xa7\x30\xfc\x30\xb9\x30\x6e\x30\xd6\x53\x97\x5f\x68\x30\x1d\x52\x1f\x67\x16\x53\x92\x30\x4c\x88\x44\x30\x7e\x30\x59\x30\x2e\x00\x2e\x00\x2e\x00\x2e\x00\x20\x00\x20\x00\x00"/*@ L"XAudio2 ƒCƒ“ƒ^[ƒtƒF[ƒX‚Ìæ“¾‚Æ‰Šú‰»‚ğs‚¢‚Ü‚·....  " @*/ ) ;
+				DXST_LOGFILE_ADDUTF16LE( "\x58\x00\x41\x00\x75\x00\x64\x00\x69\x00\x6f\x00\x32\x00\x20\x00\xa4\x30\xf3\x30\xbf\x30\xfc\x30\xd5\x30\xa7\x30\xfc\x30\xb9\x30\x6e\x30\xd6\x53\x97\x5f\x68\x30\x1d\x52\x1f\x67\x16\x53\x92\x30\x4c\x88\x44\x30\x7e\x30\x59\x30\x2e\x00\x2e\x00\x2e\x00\x2e\x00\x20\x00\x20\x00\x00"/*@ L"XAudio2 ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ã®å–å¾—ã¨åˆæœŸåŒ–ã‚’è¡Œã„ã¾ã™....  " @*/ ) ;
 
 				hr = SoundSysData.PF.XAudio2CreateFunc( &SoundSysData.PF.XAudio2_8Object, 0, D_XAUDIO2_DEFAULT_PROCESSOR ) ;
 				if( FAILED( hr ) )
 				{
-					DXST_LOGFILE_ADDUTF16LE( "\x1d\x52\x1f\x67\x16\x53\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"‰Šú‰»‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
-					DXST_LOGFILEFMT_ADDA(( "\x83\x47\x83\x89\x81\x5b\x83\x52\x81\x5b\x83\x68 %x"/*@ "ƒGƒ‰[ƒR[ƒh %x" @*/, hr )) ;
+					DXST_LOGFILE_ADDUTF16LE( "\x1d\x52\x1f\x67\x16\x53\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"åˆæœŸåŒ–ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
+					DXST_LOGFILEFMT_ADDA(( "\x83\x47\x83\x89\x81\x5b\x83\x52\x81\x5b\x83\x68 %x"/*@ "ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰ %x" @*/, hr )) ;
 					SoundSysData.PF.XAudio2_8Object->Release() ;
 					SoundSysData.PF.XAudio2_8Object = NULL ;
 
 					SoundSysData.PF.EnableXAudioFlag = FALSE ;
 					goto INITSTART ;
 				}
-				DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x20\x00\x56\x00\x65\x00\x72\x00\x32\x00\x2e\x00\x38\x00\x0a\x00\x00"/*@ L"¬Œ÷ Ver2.8\n" @*/ ) ;
+				DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x20\x00\x56\x00\x65\x00\x72\x00\x32\x00\x2e\x00\x38\x00\x0a\x00\x00"/*@ L"æˆåŠŸ Ver2.8\n" @*/ ) ;
 
 				hr = SoundSysData.PF.XAudio2_8Object->CreateMasteringVoice( &SoundSysData.PF.XAudio2_8MasteringVoiceObject, D_XAUDIO2_DEFAULT_CHANNELS, SoundSysData.OutputSmaplesPerSec ) ;
 				if( FAILED( hr ) )
 				{
-					DXST_LOGFILE_ADDUTF16LE( "\x58\x00\x41\x00\x75\x00\x64\x00\x69\x00\x6f\x00\x32\x00\x4d\x00\x61\x00\x73\x00\x74\x00\x65\x00\x72\x00\x69\x00\x6e\x00\x67\x00\x56\x00\x6f\x00\x69\x00\x63\x00\x65\x00\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"XAudio2MasteringVoice‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+					DXST_LOGFILE_ADDUTF16LE( "\x58\x00\x41\x00\x75\x00\x64\x00\x69\x00\x6f\x00\x32\x00\x4d\x00\x61\x00\x73\x00\x74\x00\x65\x00\x72\x00\x69\x00\x6e\x00\x67\x00\x56\x00\x6f\x00\x69\x00\x63\x00\x65\x00\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"XAudio2MasteringVoiceã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 					SoundSysData.PF.XAudio2_8Object->Release() ;
 					SoundSysData.PF.XAudio2_8Object = NULL ;
 
@@ -2228,7 +2228,7 @@ INITSTART:
 					goto INITSTART ;
 				}
 
-				// ƒŠƒo[ƒuŒvZ—pƒpƒ‰ƒ[ƒ^€”õ
+				// ãƒªãƒãƒ¼ãƒ–è¨ˆç®—ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æº–å‚™
 				for( i = 0 ; i < D_XAUDIO2FX_PRESET_NUM ; i ++ )
 				{
 					D_ReverbConvertI3DL2ToNative2_8( &D_PRESET_PARAMS[ i ], &SoundSysData.PF.XAudio2_8ReverbParameters[ i ] ) ;
@@ -2236,7 +2236,7 @@ INITSTART:
 			}
 			else
 			{
-				DXST_LOGFILE_ADDUTF16LE( "\x58\x00\x41\x00\x75\x00\x64\x00\x69\x00\x6f\x00\x32\x00\x20\x00\xa4\x30\xf3\x30\xbf\x30\xfc\x30\xd5\x30\xa7\x30\xfc\x30\xb9\x30\x6e\x30\xd6\x53\x97\x5f\x92\x30\x4c\x88\x44\x30\x7e\x30\x59\x30\x2e\x00\x2e\x00\x2e\x00\x2e\x00\x20\x00\x20\x00\x00"/*@ L"XAudio2 ƒCƒ“ƒ^[ƒtƒF[ƒX‚Ìæ“¾‚ğs‚¢‚Ü‚·....  " @*/ ) ;
+				DXST_LOGFILE_ADDUTF16LE( "\x58\x00\x41\x00\x75\x00\x64\x00\x69\x00\x6f\x00\x32\x00\x20\x00\xa4\x30\xf3\x30\xbf\x30\xfc\x30\xd5\x30\xa7\x30\xfc\x30\xb9\x30\x6e\x30\xd6\x53\x97\x5f\x92\x30\x4c\x88\x44\x30\x7e\x30\x59\x30\x2e\x00\x2e\x00\x2e\x00\x2e\x00\x20\x00\x20\x00\x00"/*@ L"XAudio2 ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ã®å–å¾—ã‚’è¡Œã„ã¾ã™....  " @*/ ) ;
 				for( i = 0 ; XAudioGuidList[ i ][ 0 ] != NULL ; i ++ )
 				{
 					hr = WinAPIData.Win32Func.CoCreateInstanceFunc( *XAudioGuidList[ i ][ 0 ], NULL, CLSCTX_ALL, IID_IXAUDIO2, ( LPVOID *)&SoundSysData.PF.XAudio2Object );
@@ -2247,22 +2247,22 @@ INITSTART:
 				}
 				if( XAudioGuidList[ i ][ 0 ] != NULL )
 				{
-					DXST_LOGFILEFMT_ADDUTF16LE(( "\x10\x62\x9f\x52\x20\x00\x56\x00\x65\x00\x72\x00\x32\x00\x2e\x00\x25\x00\x64\x00\x0a\x00\x00"/*@ L"¬Œ÷ Ver2.%d\n" @*/, 7 - i )) ;
-					DXST_LOGFILE_ADDUTF16LE(( "\x15\x5f\x4d\x30\x9a\x7d\x4d\x30\xa4\x30\xf3\x30\xbf\x30\xfc\x30\xd5\x30\xa7\x30\xfc\x30\xb9\x30\x6e\x30\x1d\x52\x1f\x67\x16\x53\xe6\x51\x06\x74\x2e\x00\x2e\x00\x2e\x00\x20\x00\x20\x00\x00"/*@ L"ˆø‚«‘±‚«ƒCƒ“ƒ^[ƒtƒF[ƒX‚Ì‰Šú‰»ˆ—...  " @*/ )) ;
+					DXST_LOGFILEFMT_ADDUTF16LE(( "\x10\x62\x9f\x52\x20\x00\x56\x00\x65\x00\x72\x00\x32\x00\x2e\x00\x25\x00\x64\x00\x0a\x00\x00"/*@ L"æˆåŠŸ Ver2.%d\n" @*/, 7 - i )) ;
+					DXST_LOGFILE_ADDUTF16LE(( "\x15\x5f\x4d\x30\x9a\x7d\x4d\x30\xa4\x30\xf3\x30\xbf\x30\xfc\x30\xd5\x30\xa7\x30\xfc\x30\xb9\x30\x6e\x30\x1d\x52\x1f\x67\x16\x53\xe6\x51\x06\x74\x2e\x00\x2e\x00\x2e\x00\x20\x00\x20\x00\x00"/*@ L"å¼•ãç¶šãã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ã®åˆæœŸåŒ–å‡¦ç†...  " @*/ )) ;
 					hr = SoundSysData.PF.XAudio2Object->Initialize( 0 ) ;
 					if( FAILED( hr ) )
 					{
-						DXST_LOGFILE_ADDUTF16LE( "\x1d\x52\x1f\x67\x16\x53\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"‰Šú‰»‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
-						DXST_LOGFILEFMT_ADDA(( "\x83\x47\x83\x89\x81\x5b\x83\x52\x81\x5b\x83\x68 %x"/*@ "ƒGƒ‰[ƒR[ƒh %x" @*/, hr )) ;
+						DXST_LOGFILE_ADDUTF16LE( "\x1d\x52\x1f\x67\x16\x53\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"åˆæœŸåŒ–ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
+						DXST_LOGFILEFMT_ADDA(( "\x83\x47\x83\x89\x81\x5b\x83\x52\x81\x5b\x83\x68 %x"/*@ "ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰ %x" @*/, hr )) ;
 						SoundSysData.PF.XAudio2Object->Release() ;
 						SoundSysData.PF.XAudio2Object = NULL ;
 
 						SoundSysData.PF.EnableXAudioFlag = FALSE ;
 						goto INITSTART ;
 					}
-					DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"¬Œ÷\n" @*/ ) ;
+					DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"æˆåŠŸ\n" @*/ ) ;
 
-					DXST_LOGFILE_ADDUTF16LE( "\x58\x00\x33\x00\x44\x00\x41\x00\x75\x00\x64\x00\x69\x00\x6f\x00\x2e\x00\x44\x00\x4c\x00\x4c\x00\x20\x00\x6e\x30\xad\x8a\x7f\x30\xbc\x8f\x7f\x30\x2d\x4e\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"X3DAudio.DLL ‚Ì“Ç‚İ‚İ’†... " @*/ ) ;
+					DXST_LOGFILE_ADDUTF16LE( "\x58\x00\x33\x00\x44\x00\x41\x00\x75\x00\x64\x00\x69\x00\x6f\x00\x2e\x00\x44\x00\x4c\x00\x4c\x00\x20\x00\x6e\x30\xad\x8a\x7f\x30\xbc\x8f\x7f\x30\x2d\x4e\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"X3DAudio.DLL ã®èª­ã¿è¾¼ã¿ä¸­... " @*/ ) ;
 					for( i = 0 ; X3DAudioDLLName[ i ] != NULL ; i ++ )
 					{
 						SoundSysData.PF.X3DAudioDLL = LoadLibraryW( X3DAudioDLLName[ i ] ) ;
@@ -2271,7 +2271,7 @@ INITSTART:
 					}
 					if( SoundSysData.PF.X3DAudioDLL == NULL )
 					{
-						DXST_LOGFILE_ADDUTF16LE( "\x31\x59\x57\x65\x01\x30\x58\x00\x33\x00\x44\x00\x41\x00\x75\x00\x64\x00\x69\x00\x6f\x00\x01\x30\x58\x00\x41\x00\x75\x00\x64\x00\x69\x00\x6f\x00\x32\x00\x6f\x30\x7f\x4f\x28\x75\x57\x30\x7e\x30\x5b\x30\x93\x30\x0a\x00\x00"/*@ L"¸”sAX3DAudioAXAudio2‚Íg—p‚µ‚Ü‚¹‚ñ\n" @*/ ) ;
+						DXST_LOGFILE_ADDUTF16LE( "\x31\x59\x57\x65\x01\x30\x58\x00\x33\x00\x44\x00\x41\x00\x75\x00\x64\x00\x69\x00\x6f\x00\x01\x30\x58\x00\x41\x00\x75\x00\x64\x00\x69\x00\x6f\x00\x32\x00\x6f\x30\x7f\x4f\x28\x75\x57\x30\x7e\x30\x5b\x30\x93\x30\x0a\x00\x00"/*@ L"å¤±æ•—ã€X3DAudioã€XAudio2ã¯ä½¿ç”¨ã—ã¾ã›ã‚“\n" @*/ ) ;
 						SoundSysData.PF.XAudio2Object->Release() ;
 						SoundSysData.PF.XAudio2Object = NULL ;
 
@@ -2280,7 +2280,7 @@ INITSTART:
 					}
 					else
 					{
-						DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"¬Œ÷\n" @*/ ) ;
+						DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"æˆåŠŸ\n" @*/ ) ;
 
 						SoundSysData.PF.X3DAudioInitializeFunc = ( void ( __cdecl * )( DWORD, float, D_X3DAUDIO_HANDLE ) )GetProcAddress( SoundSysData.PF.X3DAudioDLL, "X3DAudioInitialize" ) ;
 						SoundSysData.PF.X3DAudioCalculateFunc  = ( void ( __cdecl * )( const D_X3DAUDIO_HANDLE, const D_X3DAUDIO_LISTENER *, const D_X3DAUDIO_EMITTER *, DWORD, D_X3DAUDIO_DSP_SETTINGS * ) )GetProcAddress( SoundSysData.PF.X3DAudioDLL, "X3DAudioCalculate" ) ;
@@ -2289,7 +2289,7 @@ INITSTART:
 				else
 				{
 					SoundSysData.PF.XAudio2Object = NULL ;
-					DXST_LOGFILE_ADDUTF16LE( "\x58\x00\x41\x00\x75\x00\x64\x00\x69\x00\x6f\x00\x32\x00\xa4\x30\xf3\x30\xbf\x30\xfc\x30\xd5\x30\xa7\x30\xfc\x30\xb9\x30\x6e\x30\xd6\x53\x97\x5f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"XAudio2ƒCƒ“ƒ^[ƒtƒF[ƒX‚Ìæ“¾‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+					DXST_LOGFILE_ADDUTF16LE( "\x58\x00\x41\x00\x75\x00\x64\x00\x69\x00\x6f\x00\x32\x00\xa4\x30\xf3\x30\xbf\x30\xfc\x30\xd5\x30\xa7\x30\xfc\x30\xb9\x30\x6e\x30\xd6\x53\x97\x5f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"XAudio2ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ã®å–å¾—ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 
 					SoundSysData.PF.EnableXAudioFlag = FALSE ;
 					goto INITSTART ;
@@ -2298,7 +2298,7 @@ INITSTART:
 				hr = SoundSysData.PF.XAudio2Object->CreateMasteringVoice( &SoundSysData.PF.XAudio2MasteringVoiceObject, D_XAUDIO2_DEFAULT_CHANNELS, SoundSysData.OutputSmaplesPerSec ) ;
 				if( FAILED( hr ) )
 				{
-					DXST_LOGFILE_ADDUTF16LE( "\x58\x00\x41\x00\x75\x00\x64\x00\x69\x00\x6f\x00\x32\x00\x4d\x00\x61\x00\x73\x00\x74\x00\x65\x00\x72\x00\x69\x00\x6e\x00\x67\x00\x56\x00\x6f\x00\x69\x00\x63\x00\x65\x00\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"XAudio2MasteringVoice‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+					DXST_LOGFILE_ADDUTF16LE( "\x58\x00\x41\x00\x75\x00\x64\x00\x69\x00\x6f\x00\x32\x00\x4d\x00\x61\x00\x73\x00\x74\x00\x65\x00\x72\x00\x69\x00\x6e\x00\x67\x00\x56\x00\x6f\x00\x69\x00\x63\x00\x65\x00\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"XAudio2MasteringVoiceã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 
 					if( SoundSysData.PF.X3DAudioDLL != NULL )
 					{
@@ -2315,103 +2315,103 @@ INITSTART:
 					goto INITSTART ;
 				}
 
-				// ƒŠƒo[ƒuŒvZ—pƒpƒ‰ƒ[ƒ^€”õ
+				// ãƒªãƒãƒ¼ãƒ–è¨ˆç®—ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æº–å‚™
 				for( i = 0 ; i < D_XAUDIO2FX_PRESET_NUM ; i ++ )
 				{
 					D_ReverbConvertI3DL2ToNative( &D_PRESET_PARAMS[ i ], &SoundSysData.PF.XAudio2ReverbParameters[ i ] ) ;
 				}
 			}
 
-			// XAudio ‚ÍÄ¶“r’†‚Ì Loopƒtƒ‰ƒO‚Ì•ÏX‚É‘Î‰‚µ‚Ä‚¢‚é‚Ì‚Å TRUE ‚ğİ’è
+			// XAudio ã¯å†ç”Ÿé€”ä¸­ã® Loopãƒ•ãƒ©ã‚°ã®å¤‰æ›´ã«å¯¾å¿œã—ã¦ã„ã‚‹ã®ã§ TRUE ã‚’è¨­å®š
 			SoundSysData.EnableChangeLoopFlag = TRUE ;
 		}
 		else
 		{
-			DXST_LOGFILE_ADDUTF16LE( "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x53\x00\x6f\x00\x75\x00\x6e\x00\x64\x00\x20\x00\x6e\x30\x1d\x52\x1f\x67\x16\x53\x92\x30\x4c\x88\x44\x30\x7e\x30\x59\x30\x0a\x00\x00"/*@ L"DirectSound ‚Ì‰Šú‰»‚ğs‚¢‚Ü‚·\n" @*/ ) ;
-			DXST_LOGFILE_ADDUTF16LE( "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x53\x00\x6f\x00\x75\x00\x6e\x00\x64\x00\x20\x00\xa4\x30\xf3\x30\xbf\x30\xfc\x30\xd5\x30\xa7\x30\xfc\x30\xb9\x30\x6e\x30\xd6\x53\x97\x5f\x92\x30\x4c\x88\x44\x30\x7e\x30\x59\x30\x2e\x00\x2e\x00\x2e\x00\x2e\x00\x20\x00\x20\x00\x00"/*@ L"DirectSound ƒCƒ“ƒ^[ƒtƒF[ƒX‚Ìæ“¾‚ğs‚¢‚Ü‚·....  " @*/ ) ; 
+			DXST_LOGFILE_ADDUTF16LE( "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x53\x00\x6f\x00\x75\x00\x6e\x00\x64\x00\x20\x00\x6e\x30\x1d\x52\x1f\x67\x16\x53\x92\x30\x4c\x88\x44\x30\x7e\x30\x59\x30\x0a\x00\x00"/*@ L"DirectSound ã®åˆæœŸåŒ–ã‚’è¡Œã„ã¾ã™\n" @*/ ) ;
+			DXST_LOGFILE_ADDUTF16LE( "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x53\x00\x6f\x00\x75\x00\x6e\x00\x64\x00\x20\x00\xa4\x30\xf3\x30\xbf\x30\xfc\x30\xd5\x30\xa7\x30\xfc\x30\xb9\x30\x6e\x30\xd6\x53\x97\x5f\x92\x30\x4c\x88\x44\x30\x7e\x30\x59\x30\x2e\x00\x2e\x00\x2e\x00\x2e\x00\x20\x00\x20\x00\x00"/*@ L"DirectSound ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ã®å–å¾—ã‚’è¡Œã„ã¾ã™....  " @*/ ) ; 
 			hr = WinAPIData.Win32Func.CoCreateInstanceFunc( CLSID_DIRECTSOUND, NULL, CLSCTX_ALL, IID_IDIRECTSOUND, ( LPVOID *)&SoundSysData.PF.DirectSoundObject );
 			if( !FAILED( hr ) )
 			{
-				DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"¬Œ÷\n" @*/ ) ;
-				DXST_LOGFILE_ADDUTF16LE( "\x15\x5f\x4d\x30\x9a\x7d\x4d\x30\xa4\x30\xf3\x30\xbf\x30\xfc\x30\xd5\x30\xa7\x30\xfc\x30\xb9\x30\x6e\x30\x1d\x52\x1f\x67\x16\x53\xe6\x51\x06\x74\x2e\x00\x2e\x00\x2e\x00\x20\x00\x20\x00\x00"/*@ L"ˆø‚«‘±‚«ƒCƒ“ƒ^[ƒtƒF[ƒX‚Ì‰Šú‰»ˆ—...  " @*/ ) ;
+				DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"æˆåŠŸ\n" @*/ ) ;
+				DXST_LOGFILE_ADDUTF16LE( "\x15\x5f\x4d\x30\x9a\x7d\x4d\x30\xa4\x30\xf3\x30\xbf\x30\xfc\x30\xd5\x30\xa7\x30\xfc\x30\xb9\x30\x6e\x30\x1d\x52\x1f\x67\x16\x53\xe6\x51\x06\x74\x2e\x00\x2e\x00\x2e\x00\x20\x00\x20\x00\x00"/*@ L"å¼•ãç¶šãã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ã®åˆæœŸåŒ–å‡¦ç†...  " @*/ ) ;
 				hr = SoundSysData.PF.DirectSoundObject->Initialize( NULL ) ;
 				if( FAILED( hr ) )
 				{
-					DXST_LOGFILE_ADDUTF16LE( "\x1d\x52\x1f\x67\x16\x53\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"‰Šú‰»‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
-					DXST_LOGFILEFMT_ADDA(( "\x83\x47\x83\x89\x81\x5b\x83\x52\x81\x5b\x83\x68 %x"/*@ "ƒGƒ‰[ƒR[ƒh %x" @*/, hr )) ;
+					DXST_LOGFILE_ADDUTF16LE( "\x1d\x52\x1f\x67\x16\x53\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"åˆæœŸåŒ–ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
+					DXST_LOGFILEFMT_ADDA(( "\x83\x47\x83\x89\x81\x5b\x83\x52\x81\x5b\x83\x68 %x"/*@ "ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰ %x" @*/, hr )) ;
 					SoundSysData.PF.DirectSoundObject->Release() ;
 					SoundSysData.PF.DirectSoundObject = NULL ;
 					return -1 ;
 				}
-				DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"¬Œ÷\n" @*/ ) ;
+				DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"æˆåŠŸ\n" @*/ ) ;
 			}
 			else
 			{
 				SoundSysData.PF.DirectSoundObject = NULL ;
-				DXST_LOGFILE_ADDUTF16LE( "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x53\x00\x6f\x00\x75\x00\x6e\x00\x64\x00\xa4\x30\xf3\x30\xbf\x30\xfc\x30\xd5\x30\xa7\x30\xfc\x30\xb9\x30\x6e\x30\xd6\x53\x97\x5f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"DirectSoundƒCƒ“ƒ^[ƒtƒF[ƒX‚Ìæ“¾‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+				DXST_LOGFILE_ADDUTF16LE( "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x53\x00\x6f\x00\x75\x00\x6e\x00\x64\x00\xa4\x30\xf3\x30\xbf\x30\xfc\x30\xd5\x30\xa7\x30\xfc\x30\xb9\x30\x6e\x30\xd6\x53\x97\x5f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"DirectSoundã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ã®å–å¾—ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 				return -1 ;
 			}
 	/*
-			DXST_LOGFILE_ADDUTF16LE( L"DirectSound ‚Ì‰Šú‰»‚ğs‚¢‚Ü‚·\n" ) ; 
+			DXST_LOGFILE_ADDUTF16LE( L"DirectSound ã®åˆæœŸåŒ–ã‚’è¡Œã„ã¾ã™\n" ) ; 
 			hr = DirectSoundCreate( NULL , &SoundSysData.PF.DirectSoundObject , NULL ) ;
 			if( hr != D_DS_OK )
 			{
 				SoundSysData.PF.DirectSoundObject = NULL ;
-				DXST_LOGFILE_ADDUTF16LE( L"DirectSound‚Ì‰Šú‰»‚É¸”s‚µ‚Ü‚µ‚½\n" ) ;
+				DXST_LOGFILE_ADDUTF16LE( L"DirectSoundã®åˆæœŸåŒ–ã«å¤±æ•—ã—ã¾ã—ãŸ\n" ) ;
 				return -1 ;
 			}
 	*/
 
-			// ‹¦’²ƒŒƒxƒ‹‚ğƒZƒbƒg‚·‚é
+			// å”èª¿ãƒ¬ãƒ™ãƒ«ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 			hr = SoundSysData.PF.DirectSoundObject->SetCooperativeLevel( WinAPIData.Win32Func.GetDesktopWindowFunc(), D_DSSCL_PRIORITY ) ;
 			if( hr != D_DS_OK )
 			{
-				DXST_LOGFILE_ADDUTF16LE( "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x53\x00\x6f\x00\x75\x00\x6e\x00\x64\x00\x6e\x30\x54\x53\xbf\x8a\xec\x30\xd9\x30\xeb\x30\x6e\x30\x2d\x8a\x9a\x5b\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"DirectSound‚Ì‹¦’²ƒŒƒxƒ‹‚Ìİ’è‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+				DXST_LOGFILE_ADDUTF16LE( "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x53\x00\x6f\x00\x75\x00\x6e\x00\x64\x00\x6e\x30\x54\x53\xbf\x8a\xec\x30\xd9\x30\xeb\x30\x6e\x30\x2d\x8a\x9a\x5b\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"DirectSoundã®å”èª¿ãƒ¬ãƒ™ãƒ«ã®è¨­å®šã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 				SoundSysData.PF.DirectSoundObject->Release() ;
 				SoundSysData.PF.DirectSoundObject = NULL ;
 				return -1 ;
 			}
 
-			// ƒvƒ‰ƒCƒ}ƒŠƒTƒEƒ“ƒhƒoƒbƒtƒ@‚ğì¬‚·‚é
+			// ãƒ—ãƒ©ã‚¤ãƒãƒªã‚µã‚¦ãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡ã‚’ä½œæˆã™ã‚‹
 			{
 				D_DSBUFFERDESC dsbdesc ;
 				DWORD ChNum , Rate , Byte ;
 
-				// ì¬ƒXƒe[ƒ^ƒX‚ğƒZƒbƒg‚·‚é
+				// ä½œæˆã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 				_MEMSET( &dsbdesc, 0, sizeof( dsbdesc ) ) ;
 				dsbdesc.dwSize = sizeof( dsbdesc ) ;
 				dsbdesc.dwFlags = ( DWORD )( D_DSBCAPS_PRIMARYBUFFER | ( SoundSysData.PF.UseSoftwareMixing ? D_DSBCAPS_LOCSOFTWARE : 0 ) ) ;
 				hr = SoundSysData.PF.DirectSoundObject->CreateSoundBuffer( &dsbdesc , &SoundSysData.PF.PrimarySoundBuffer , NULL ) ;
 				if( hr != D_DS_OK )
 				{
-					DXST_LOGFILE_ADDUTF16LE( "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x53\x00\x6f\x00\x75\x00\x6e\x00\x64\x00\x6e\x30\xd7\x30\xe9\x30\xa4\x30\xde\x30\xea\x30\xb5\x30\xa6\x30\xf3\x30\xc9\x30\xd0\x30\xc3\x30\xd5\x30\xa1\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"DirectSound‚Ìƒvƒ‰ƒCƒ}ƒŠƒTƒEƒ“ƒhƒoƒbƒtƒ@‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+					DXST_LOGFILE_ADDUTF16LE( "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x53\x00\x6f\x00\x75\x00\x6e\x00\x64\x00\x6e\x30\xd7\x30\xe9\x30\xa4\x30\xde\x30\xea\x30\xb5\x30\xa6\x30\xf3\x30\xc9\x30\xd0\x30\xc3\x30\xd5\x30\xa1\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"DirectSoundã®ãƒ—ãƒ©ã‚¤ãƒãƒªã‚µã‚¦ãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 					SoundSysData.PF.DirectSoundObject->Release() ;
 					SoundSysData.PF.DirectSoundObject = NULL ;
 					return -1 ;
 				}
 
-				// î•ñ‚ğ“¾‚é
+				// æƒ…å ±ã‚’å¾—ã‚‹
 				_MEMSET( &caps, 0, sizeof( caps ) ) ;
 				caps.dwSize = sizeof( caps ) ;
 				SoundSysData.PF.DirectSoundObject->GetCaps( &caps ) ;
 
 
-				// ƒvƒ‰ƒCƒ}ƒŠƒoƒbƒtƒ@‚ÌƒtƒH[ƒ}ƒbƒg‚ğƒZƒbƒg‚·‚é
+				// ãƒ—ãƒ©ã‚¤ãƒãƒªãƒãƒƒãƒ•ã‚¡ã®ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 				ChNum = ( DWORD )( caps.dwFlags & D_DSCAPS_PRIMARYSTEREO ? 2 : 1 ) ;
 				Rate  = caps.dwMaxSecondarySampleRate < 44100 ? caps.dwMaxSecondarySampleRate : 44100  ;
 				Byte  = ( DWORD )( caps.dwFlags & D_DSCAPS_PRIMARY16BIT  ? 2 : 1 ) ;
 
 				_MEMSET( &wfmtx, 0, sizeof( wfmtx ) ) ;
-				wfmtx.wFormatTag		= WAVE_FORMAT_PCM ;											// PCMƒtƒH[ƒ}ƒbƒg
-				wfmtx.nChannels			= ( WORD )ChNum ;											// ƒ`ƒƒƒ“ƒlƒ‹‚Q‚ÂƒXƒeƒŒƒI
-				wfmtx.nSamplesPerSec	= Rate ;													// Ä¶ƒŒ[ƒg
-				wfmtx.wBitsPerSample	= ( WORD )( Byte * 8 ) ;									// ‚P‰¹‚É‚©‚©‚éƒf[ƒ^ƒrƒbƒg”
-				wfmtx.nBlockAlign		= ( WORD )( wfmtx.wBitsPerSample / 8 * wfmtx.nChannels ) ;	// ‚Pƒwƒ‹ƒc‚É‚©‚©‚éƒf[ƒ^ƒoƒCƒg”
-				wfmtx.nAvgBytesPerSec	= wfmtx.nSamplesPerSec * wfmtx.nBlockAlign ;				// ‚P•b‚É‚©‚©‚éƒf[ƒ^ƒoƒCƒg”
+				wfmtx.wFormatTag		= WAVE_FORMAT_PCM ;											// PCMãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆ
+				wfmtx.nChannels			= ( WORD )ChNum ;											// ãƒãƒ£ãƒ³ãƒãƒ«ï¼’ã¤ï¼ã‚¹ãƒ†ãƒ¬ã‚ª
+				wfmtx.nSamplesPerSec	= Rate ;													// å†ç”Ÿãƒ¬ãƒ¼ãƒˆ
+				wfmtx.wBitsPerSample	= ( WORD )( Byte * 8 ) ;									// ï¼‘éŸ³ã«ã‹ã‹ã‚‹ãƒ‡ãƒ¼ã‚¿ãƒ“ãƒƒãƒˆæ•°
+				wfmtx.nBlockAlign		= ( WORD )( wfmtx.wBitsPerSample / 8 * wfmtx.nChannels ) ;	// ï¼‘ãƒ˜ãƒ«ãƒ„ã«ã‹ã‹ã‚‹ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒˆæ•°
+				wfmtx.nAvgBytesPerSec	= wfmtx.nSamplesPerSec * wfmtx.nBlockAlign ;				// ï¼‘ç§’ã«ã‹ã‹ã‚‹ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒˆæ•°
 				hr = SoundSysData.PF.PrimarySoundBuffer->SetFormat( &wfmtx ) ;
 				if( hr != D_DS_OK )
 				{
-					DXST_LOGFILE_ADDUTF16LE( "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x53\x00\x6f\x00\x75\x00\x6e\x00\x64\x00\x6e\x30\xd7\x30\xe9\x30\xa4\x30\xde\x30\xea\x30\xb5\x30\xa6\x30\xf3\x30\xc9\x30\xd0\x30\xc3\x30\xd5\x30\xa1\x30\x6e\x30\xd5\x30\xa9\x30\xfc\x30\xde\x30\xc3\x30\xc8\x30\x2d\x8a\x9a\x5b\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"DirectSound‚Ìƒvƒ‰ƒCƒ}ƒŠƒTƒEƒ“ƒhƒoƒbƒtƒ@‚ÌƒtƒH[ƒ}ƒbƒgİ’è‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+					DXST_LOGFILE_ADDUTF16LE( "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x53\x00\x6f\x00\x75\x00\x6e\x00\x64\x00\x6e\x30\xd7\x30\xe9\x30\xa4\x30\xde\x30\xea\x30\xb5\x30\xa6\x30\xf3\x30\xc9\x30\xd0\x30\xc3\x30\xd5\x30\xa1\x30\x6e\x30\xd5\x30\xa9\x30\xfc\x30\xde\x30\xc3\x30\xc8\x30\x2d\x8a\x9a\x5b\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"DirectSoundã®ãƒ—ãƒ©ã‚¤ãƒãƒªã‚µã‚¦ãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡ã®ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆè¨­å®šã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 				}
 
 			}
@@ -2422,23 +2422,23 @@ INITSTART:
 	case DX_MIDIMODE_DIRECT_MUSIC_NORMAL :
 		SoundSysData.PF.EnableXAudioFlag = FALSE ;
 
-		// ‚c‚‰‚’‚…‚ƒ‚”‚l‚•‚“‚‰‚ƒ‚É‚æ‚éÄ¶‚Ìê‡‚Ìˆ—
+		// ï¼¤ï½‰ï½’ï½…ï½ƒï½”ï¼­ï½•ï½“ï½‰ï½ƒã«ã‚ˆã‚‹å†ç”Ÿã®å ´åˆã®å‡¦ç†
 		{
 			D_IDirectMusic *DMusic ;
 			D_IDirectMusic8 *DMusic8 ;
 			GUID MidiGuid = {0};
 			bool MidiGuidValid ;
 				
-			DXST_LOGFILE_ADDUTF16LE( "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x53\x00\x6f\x00\x75\x00\x6e\x00\x64\x00\x38\x00\x20\x00\x6e\x30\x1d\x52\x1f\x67\x16\x53\x92\x30\x4c\x88\x44\x30\x7e\x30\x59\x30\x0a\x00\x00"/*@ L"DirectSound8 ‚Ì‰Šú‰»‚ğs‚¢‚Ü‚·\n" @*/ ) ; 
+			DXST_LOGFILE_ADDUTF16LE( "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x53\x00\x6f\x00\x75\x00\x6e\x00\x64\x00\x38\x00\x20\x00\x6e\x30\x1d\x52\x1f\x67\x16\x53\x92\x30\x4c\x88\x44\x30\x7e\x30\x59\x30\x0a\x00\x00"/*@ L"DirectSound8 ã®åˆæœŸåŒ–ã‚’è¡Œã„ã¾ã™\n" @*/ ) ; 
 
-			// DirectMusic ƒIƒuƒWƒFƒNƒg‚Ìì¬
+			// DirectMusic ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ä½œæˆ
 //			if( FAILED(	WinAPIData.Win32Func.CoCreateInstanceFunc( CLSID_DirectMusicLoader , NULL , 
 //											CLSCTX_INPROC , IID_IDirectMusicLoader8 , ( void ** )&SoundSysData.PF.DirectMusicLoaderObject ) ) )
 			if( FAILED(	WinAPIData.Win32Func.CoCreateInstanceFunc( CLSID_DIRECTMUSICLOADER, NULL , 
 											CLSCTX_INPROC , IID_IDIRECTMUSICLOADER8 , ( void ** )&SoundSysData.PF.DirectMusicLoaderObject ) ) )
 			{
-				DXST_LOGFILE_ADDUTF16LE( "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x4d\x00\x75\x00\x73\x00\x69\x00\x63\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x65\x00\x72\x00\x38\x00\x20\x00\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"DirectMusicLoader8 ƒIƒuƒWƒFƒNƒg‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
-				DXST_LOGFILE_ADDUTF16LE( "\x4d\x52\xd0\x30\xfc\x30\xb8\x30\xe7\x30\xf3\x30\x67\x30\x6e\x30\x1d\x52\x1f\x67\x16\x53\xe6\x51\x06\x74\x6b\x30\xfb\x79\x8a\x30\x7e\x30\x59\x30\x0a\x00\x00"/*@ L"‘Oƒo[ƒWƒ‡ƒ“‚Å‚Ì‰Šú‰»ˆ—‚ÉˆÚ‚è‚Ü‚·\n" @*/ ) ;
+				DXST_LOGFILE_ADDUTF16LE( "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x4d\x00\x75\x00\x73\x00\x69\x00\x63\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x65\x00\x72\x00\x38\x00\x20\x00\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"DirectMusicLoader8 ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
+				DXST_LOGFILE_ADDUTF16LE( "\x4d\x52\xd0\x30\xfc\x30\xb8\x30\xe7\x30\xf3\x30\x67\x30\x6e\x30\x1d\x52\x1f\x67\x16\x53\xe6\x51\x06\x74\x6b\x30\xfb\x79\x8a\x30\x7e\x30\x59\x30\x0a\x00\x00"/*@ L"å‰ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã§ã®åˆæœŸåŒ–å‡¦ç†ã«ç§»ã‚Šã¾ã™\n" @*/ ) ;
 				SoundSysData.SoundMode = DX_MIDIMODE_MCI ;
 				goto INITSTART ;
 			}
@@ -2448,14 +2448,14 @@ INITSTART:
 			if( FAILED( WinAPIData.Win32Func.CoCreateInstanceFunc( CLSID_DIRECTMUSICPERFORMANCE, NULL , 
 											CLSCTX_INPROC , IID_IDIRECTMUSICPERFORMANCE8 , ( void ** )&SoundSysData.PF.DirectMusicPerformanceObject ) ) )
 			{
-				// ƒ[ƒ_[‚ğ‰ğ•ú‚·‚é
+				// ãƒ­ãƒ¼ãƒ€ãƒ¼ã‚’è§£æ”¾ã™ã‚‹
 				if( SoundSysData.PF.DirectMusicLoaderObject )
 				{
 					SoundSysData.PF.DirectMusicLoaderObject->Release() ; 
 					SoundSysData.PF.DirectMusicLoaderObject = NULL ;
 				}
 
-				DXST_LOGFILE_ADDUTF16LE( "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x4d\x00\x75\x00\x73\x00\x69\x00\x63\x00\x50\x00\x65\x00\x72\x00\x66\x00\x6f\x00\x72\x00\x6d\x00\x61\x00\x6e\x00\x63\x00\x65\x00\x20\x00\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"DirectMusicPerformance ƒIƒuƒWƒFƒNƒg‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+				DXST_LOGFILE_ADDUTF16LE( "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x4d\x00\x75\x00\x73\x00\x69\x00\x63\x00\x50\x00\x65\x00\x72\x00\x66\x00\x6f\x00\x72\x00\x6d\x00\x61\x00\x6e\x00\x63\x00\x65\x00\x20\x00\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"DirectMusicPerformance ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 				SoundSysData.SoundMode = DX_MIDIMODE_MCI ;
 				goto INITSTART ;
 //				TerminateSoundSystem() ;
@@ -2463,7 +2463,7 @@ INITSTART:
 			}
 
 			MidiGuidValid = false ;
-			// MidiSystemData‰¹Œ¹‚Ì—ñ‹“
+			// MidiSystemDataéŸ³æºã®åˆ—æŒ™
 			{
 				D_DMUS_PORTCAPS Param ;
 				WCHAR wStr[D_DMUS_MAX_DESCRIPTION+3] ;
@@ -2472,7 +2472,7 @@ INITSTART:
 				if( FAILED( WinAPIData.Win32Func.CoCreateInstanceFunc( CLSID_DIRECTMUSIC, NULL,
 												CLSCTX_INPROC_SERVER, IID_IDIRECTMUSIC, (LPVOID*)&DMusic ) ) )
 				{
-					DXST_LOGFILE_ADDUTF16LE( "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x4d\x00\x75\x00\x73\x00\x69\x00\x63\x00\x20\x00\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x6e\x30\xd6\x53\x97\x5f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"DirectMusic ƒIƒuƒWƒFƒNƒg‚Ìæ“¾‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+					DXST_LOGFILE_ADDUTF16LE( "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x4d\x00\x75\x00\x73\x00\x69\x00\x63\x00\x20\x00\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x6e\x30\xd6\x53\x97\x5f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"DirectMusic ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®å–å¾—ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 					TerminateSoundSystem() ;
 					return -1 ;
 				}
@@ -2481,7 +2481,7 @@ INITSTART:
 				if( FAILED( DMusic->QueryInterface( IID_IDIRECTMUSIC8, (void **)&DMusic8 ) ) )
 				{
 					DMusic->Release() ;
-					DXST_LOGFILE_ADDUTF16LE( "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x4d\x00\x75\x00\x73\x00\x69\x00\x63\x00\x38\x00\x20\x00\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x6e\x30\xd6\x53\x97\x5f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"DirectMusic8 ƒIƒuƒWƒFƒNƒg‚Ìæ“¾‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+					DXST_LOGFILE_ADDUTF16LE( "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x4d\x00\x75\x00\x73\x00\x69\x00\x63\x00\x38\x00\x20\x00\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x6e\x30\xd6\x53\x97\x5f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"DirectMusic8 ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®å–å¾—ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 					TerminateSoundSystem() ;
 					return -1 ;
 				}
@@ -2500,7 +2500,7 @@ INITSTART:
 				DMusic->Release() ;
 			}
 	
-			// DirectMusicPerformanceƒIƒuƒWƒFƒNƒg‚Ì‰Šú‰»
+			// DirectMusicPerformanceã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®åˆæœŸåŒ–
 			{
 				D_DMUS_AUDIOPARAMS AudioParams ;
 
@@ -2519,22 +2519,22 @@ INITSTART:
 				SoundSysData.PF.DirectSoundObject = NULL ;
 				DMusic = NULL ;
 				if( SoundSysData.PF.DirectMusicPerformanceObject->InitAudio(
-											&DMusic ,									// IDirectMusicƒCƒ“ƒ^[ƒtƒFƒCƒX‚Í•s—vB
-											&SoundSysData.PF.DirectSoundObject,			// IDirectSoundƒCƒ“ƒ^[ƒtƒFƒCƒXƒ|ƒCƒ“ƒ^‚ğ“n‚·B
-											NULL ,										// ƒEƒBƒ“ƒhƒE‚Ìƒnƒ“ƒhƒ‹B
-											SoundSysData.SoundMode == DX_MIDIMODE_DIRECT_MUSIC_NORMAL ? D_DMUS_APATH_DYNAMIC_STEREO : D_DMUS_APATH_SHARED_STEREOPLUSREVERB,		// ƒfƒtƒHƒ‹ƒg‚ÌƒI[ƒfƒBƒIƒpƒXƒ^ƒCƒv
-											64 ,										// ƒpƒtƒH[ƒ}ƒ“ƒXƒ`ƒƒƒ“ƒlƒ‹‚Ì”B
-											D_DMUS_AUDIOF_ALL ,							// ƒVƒ“ƒZƒTƒCƒU‚Ì‹@”\B
-											&AudioParams								// ƒI[ƒfƒBƒIƒpƒ‰ƒ[ƒ^‚É‚ÍƒfƒtƒHƒ‹ƒg‚ğg—pB
+											&DMusic ,									// IDirectMusicã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ã‚¤ã‚¹ã¯ä¸è¦ã€‚
+											&SoundSysData.PF.DirectSoundObject,			// IDirectSoundã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ã‚¤ã‚¹ãƒã‚¤ãƒ³ã‚¿ã‚’æ¸¡ã™ã€‚
+											NULL ,										// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ãƒãƒ³ãƒ‰ãƒ«ã€‚
+											SoundSysData.SoundMode == DX_MIDIMODE_DIRECT_MUSIC_NORMAL ? D_DMUS_APATH_DYNAMIC_STEREO : D_DMUS_APATH_SHARED_STEREOPLUSREVERB,		// ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®ã‚ªãƒ¼ãƒ‡ã‚£ã‚ªãƒ‘ã‚¹ã‚¿ã‚¤ãƒ—
+											64 ,										// ãƒ‘ãƒ•ã‚©ãƒ¼ãƒãƒ³ã‚¹ãƒãƒ£ãƒ³ãƒãƒ«ã®æ•°ã€‚
+											D_DMUS_AUDIOF_ALL ,							// ã‚·ãƒ³ã‚»ã‚µã‚¤ã‚¶ã®æ©Ÿèƒ½ã€‚
+											&AudioParams								// ã‚ªãƒ¼ãƒ‡ã‚£ã‚ªãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã«ã¯ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã‚’ä½¿ç”¨ã€‚
 										) != S_OK )
 				{
-					DXST_LOGFILE_ADDUTF16LE( "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x4d\x00\x75\x00\x73\x00\x69\x00\x63\x00\x50\x00\x65\x00\x72\x00\x66\x00\x6f\x00\x72\x00\x6d\x00\x61\x00\x6e\x00\x63\x00\x65\x00\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x6e\x30\x1d\x52\x1f\x67\x16\x53\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"DirectMusicPerformanceƒIƒuƒWƒFƒNƒg‚Ì‰Šú‰»‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+					DXST_LOGFILE_ADDUTF16LE( "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x4d\x00\x75\x00\x73\x00\x69\x00\x63\x00\x50\x00\x65\x00\x72\x00\x66\x00\x6f\x00\x72\x00\x6d\x00\x61\x00\x6e\x00\x63\x00\x65\x00\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x6e\x30\x1d\x52\x1f\x67\x16\x53\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"DirectMusicPerformanceã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®åˆæœŸåŒ–ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 					TerminateSoundSystem() ;
 					return -1 ;
 				}
 			}
 
-			// Å‘å‰¹—Ê‚Ìæ“¾
+			// æœ€å¤§éŸ³é‡ã®å–å¾—
 			SoundSysData.PF.DirectMusicPerformanceObject->GetGlobalParam( GUID_PERFMASTERVOLUME , ( void * )&SoundSysData.MaxVolume , sizeof( long ) ) ;
 		}
 		break ;
@@ -2556,7 +2556,7 @@ INITSTART:
 	else
 	if( SoundSysData.PF.EnableXAudioFlag )
 	{
-		// î•ño—Í
+		// æƒ…å ±å‡ºåŠ›
 		if( SoundSysData.PF.XAudio2_8DLL == NULL )
 		{
 			D_XAUDIO2_DEVICE_DETAILS Details ;
@@ -2568,9 +2568,9 @@ INITSTART:
 #ifndef DX_GCC_COMPILE
 			DXST_LOGFILEFMT_ADDW(( L"Device Name : %s", Details.DisplayName )) ;
 #endif
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\xc1\x30\xe3\x30\xf3\x30\xcd\x30\xeb\x30\x70\x65\x3a\x00\x25\x00\x64\x00\x00"/*@ L"ƒ`ƒƒƒ“ƒlƒ‹”:%d" @*/, Details.OutputFormat.Format.nChannels )) ;
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\xd3\x30\xc3\x30\xc8\x30\xbe\x7c\xa6\x5e\x3a\x00\x25\x00\x64\x00\x62\x00\x69\x00\x74\x00\x00"/*@ L"ƒrƒbƒg¸“x:%dbit" @*/, Details.OutputFormat.Format.wBitsPerSample )) ;
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\xb5\x30\xf3\x30\xd7\x30\xea\x30\xf3\x30\xb0\x30\xec\x30\xfc\x30\xc8\x30\x3a\x00\x25\x00\x64\x00\x48\x00\x7a\x00\x00"/*@ L"ƒTƒ“ƒvƒŠƒ“ƒOƒŒ[ƒg:%dHz" @*/, Details.OutputFormat.Format.nSamplesPerSec )) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\xc1\x30\xe3\x30\xf3\x30\xcd\x30\xeb\x30\x70\x65\x3a\x00\x25\x00\x64\x00\x00"/*@ L"ãƒãƒ£ãƒ³ãƒãƒ«æ•°:%d" @*/, Details.OutputFormat.Format.nChannels )) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\xd3\x30\xc3\x30\xc8\x30\xbe\x7c\xa6\x5e\x3a\x00\x25\x00\x64\x00\x62\x00\x69\x00\x74\x00\x00"/*@ L"ãƒ“ãƒƒãƒˆç²¾åº¦:%dbit" @*/, Details.OutputFormat.Format.wBitsPerSample )) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\xb5\x30\xf3\x30\xd7\x30\xea\x30\xf3\x30\xb0\x30\xec\x30\xfc\x30\xc8\x30\x3a\x00\x25\x00\x64\x00\x48\x00\x7a\x00\x00"/*@ L"ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ãƒ¬ãƒ¼ãƒˆ:%dHz" @*/, Details.OutputFormat.Format.nSamplesPerSec )) ;
 
 			DXST_LOGFILE_TABSUB ;
 
@@ -2590,24 +2590,24 @@ INITSTART:
 			}
 		}
 
-		// X3DAudio ‚Ì‰Šú‰»
+		// X3DAudio ã®åˆæœŸåŒ–
 		SoundSysData.PF.X3DAudioInitializeFunc( SoundSysData.PF.XAudio2OutputChannelMask, D_X3DAUDIO_SPEED_OF_SOUND, SoundSysData.PF.X3DAudioInstance ) ;
 	}
 	else
 	{
-		// –³‰¹ƒoƒbƒtƒ@‚Ì‰Šú‰»
+		// ç„¡éŸ³ãƒãƒƒãƒ•ã‚¡ã®åˆæœŸåŒ–
 		{
 			D_DSBUFFERDESC dsbdesc ;
 			WAVEFORMATEX wfmtex ;
 
-			// ƒoƒbƒtƒ@¶¬ƒXƒe[ƒ^ƒX‚ÌƒZƒbƒg
+			// ãƒãƒƒãƒ•ã‚¡ç”Ÿæˆã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã®ã‚»ãƒƒãƒˆ
 			_MEMSET( &wfmtex, 0, sizeof( wfmtex ) ) ;
-			wfmtex.wFormatTag		= WAVE_FORMAT_PCM ;								// PCMƒtƒH[ƒ}ƒbƒg
-			wfmtex.nChannels			= 1 ;										// ƒ`ƒƒƒ“ƒlƒ‹‚P‚Âƒ‚ƒmƒ‰ƒ‹
-			wfmtex.nSamplesPerSec	= 22050 ;										// ƒTƒ“ƒvƒŠƒ“ƒOƒŒ[ƒg
-			wfmtex.wBitsPerSample	= 16 ;											// ‚PƒTƒ“ƒvƒ‹‚É‚©‚©‚éƒrƒbƒg”
-			wfmtex.nBlockAlign		= 2 ;											// ‚PƒTƒ“ƒvƒ‹‚É‚©‚©‚éƒoƒCƒg”@~@ƒ`ƒƒƒ“ƒlƒ‹”
-			wfmtex.nAvgBytesPerSec	= wfmtex.nSamplesPerSec * wfmtex.nBlockAlign ;	// ‚P•b•ª‚Ìƒf[ƒ^ƒoƒCƒg”
+			wfmtex.wFormatTag		= WAVE_FORMAT_PCM ;								// PCMãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆ
+			wfmtex.nChannels			= 1 ;										// ãƒãƒ£ãƒ³ãƒãƒ«ï¼‘ã¤ï¼ãƒ¢ãƒãƒ©ãƒ«
+			wfmtex.nSamplesPerSec	= 22050 ;										// ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ãƒ¬ãƒ¼ãƒˆ
+			wfmtex.wBitsPerSample	= 16 ;											// ï¼‘ã‚µãƒ³ãƒ—ãƒ«ã«ã‹ã‹ã‚‹ãƒ“ãƒƒãƒˆæ•°
+			wfmtex.nBlockAlign		= 2 ;											// ï¼‘ã‚µãƒ³ãƒ—ãƒ«ã«ã‹ã‹ã‚‹ãƒã‚¤ãƒˆæ•°ã€€Ã—ã€€ãƒãƒ£ãƒ³ãƒãƒ«æ•°
+			wfmtex.nAvgBytesPerSec	= wfmtex.nSamplesPerSec * wfmtex.nBlockAlign ;	// ï¼‘ç§’åˆ†ã®ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒˆæ•°
 
 			_MEMSET( &dsbdesc, 0, sizeof( dsbdesc ) ) ;
 			dsbdesc.dwSize			= sizeof( dsbdesc ) ;
@@ -2617,7 +2617,7 @@ INITSTART:
 
 			if( SoundSysData.PF.DirectSoundObject->CreateSoundBuffer( &dsbdesc , &SoundSysData.PF.NoSoundBuffer , NULL ) != D_DS_OK )
 			{
-				// ì¬‚É¸”s‚µ‚½ê‡‚ÍAŠÜ‚ß‚é‹@”\‚ğŒ¸‚ç‚µ‚ÄÄ“xì¬‚·‚é
+				// ä½œæˆã«å¤±æ•—ã—ãŸå ´åˆã¯ã€å«ã‚ã‚‹æ©Ÿèƒ½ã‚’æ¸›ã‚‰ã—ã¦å†åº¦ä½œæˆã™ã‚‹
 				_MEMSET( &dsbdesc, 0, sizeof( dsbdesc ) ) ;
 				dsbdesc.dwSize			= sizeof( dsbdesc ) ;
 				dsbdesc.dwFlags			= ( DWORD )( D_DSBCAPS_CTRLPAN | D_DSBCAPS_CTRLVOLUME | ( SoundSysData.PF.UseSoftwareMixing ? D_DSBCAPS_LOCSOFTWARE : D_DSBCAPS_STATIC ) ) ;
@@ -2625,23 +2625,23 @@ INITSTART:
 				dsbdesc.lpwfxFormat		= &wfmtex ;
 				if( SoundSysData.PF.DirectSoundObject->CreateSoundBuffer( &dsbdesc , &SoundSysData.PF.NoSoundBuffer , NULL ) != D_DS_OK )
 				{
-					DXST_LOGFILE_ADDUTF16LE( "\x21\x71\xf3\x97\xd0\x30\xc3\x30\xd5\x30\xa1\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"–³‰¹ƒoƒbƒtƒ@‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½" @*/ ) ;
+					DXST_LOGFILE_ADDUTF16LE( "\x21\x71\xf3\x97\xd0\x30\xc3\x30\xd5\x30\xa1\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"ç„¡éŸ³ãƒãƒƒãƒ•ã‚¡ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ" @*/ ) ;
 					SoundSysData.PF.NoSoundBuffer = NULL ;
 					goto R1 ;
 				}
 			}
 
-			// –³‰¹‚Å–„‚ß‚é
+			// ç„¡éŸ³ã§åŸ‹ã‚ã‚‹
 			{
 				LPVOID write1 ;
 				DWORD length1 ;
 				LPVOID write2 ;
 				DWORD length2 ;
 
-				hr = SoundSysData.PF.NoSoundBuffer->Lock( 0 , dsbdesc.dwBufferBytes, &write1 , &length1 , &write2 , &length2 , 0 ) ;		// ƒoƒbƒtƒ@‚ÌƒƒbƒN
+				hr = SoundSysData.PF.NoSoundBuffer->Lock( 0 , dsbdesc.dwBufferBytes, &write1 , &length1 , &write2 , &length2 , 0 ) ;		// ãƒãƒƒãƒ•ã‚¡ã®ãƒ­ãƒƒã‚¯
 				if( hr != D_DS_OK )
 				{
-					DXST_LOGFILE_ADDUTF16LE( "\x21\x71\xf3\x97\xd0\x30\xc3\x30\xd5\x30\xa1\x30\x6e\x30\xed\x30\xc3\x30\xaf\x30\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"–³‰¹ƒoƒbƒtƒ@‚ÌƒƒbƒN‚É¸”s‚µ‚Ü‚µ‚½" @*/ ) ;
+					DXST_LOGFILE_ADDUTF16LE( "\x21\x71\xf3\x97\xd0\x30\xc3\x30\xd5\x30\xa1\x30\x6e\x30\xed\x30\xc3\x30\xaf\x30\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"ç„¡éŸ³ãƒãƒƒãƒ•ã‚¡ã®ãƒ­ãƒƒã‚¯ã«å¤±æ•—ã—ã¾ã—ãŸ" @*/ ) ;
 					SoundSysData.PF.NoSoundBuffer->Release() ;
 					SoundSysData.PF.NoSoundBuffer = NULL ;
 				}
@@ -2652,15 +2652,15 @@ INITSTART:
 					_MEMSET( write2, 0, length2 ) ;
 				}
 
-				hr = SoundSysData.PF.NoSoundBuffer->Unlock( write1, length1, write2, length2 ) ;								// ƒoƒbƒtƒ@‚ÌƒƒbƒN‰ğœ
+				hr = SoundSysData.PF.NoSoundBuffer->Unlock( write1, length1, write2, length2 ) ;								// ãƒãƒƒãƒ•ã‚¡ã®ãƒ­ãƒƒã‚¯è§£é™¤
 			}
 
-			// –³‰¹ƒoƒbƒtƒ@‚ÌÄ¶
+			// ç„¡éŸ³ãƒãƒƒãƒ•ã‚¡ã®å†ç”Ÿ
 			SoundSysData.PF.NoSoundBuffer->Play( 0, 0, D_DSBPLAY_LOOPING ) ;
 		}
 
 R1 :
-		// «”\•\¦
+		// æ€§èƒ½è¡¨ç¤º
 		if( SoundSysData.PF.DirectSoundObject )
 		{
 			typedef HRESULT ( WINAPI *DIRECTSOUNDENUMERATEFUNC )( LPD_DSENUMCALLBACKA, LPVOID lpContext ) ;
@@ -2672,42 +2672,42 @@ R1 :
 			caps.dwSize = sizeof( caps ) ;
 			SoundSysData.PF.DirectSoundObject->GetCaps( &caps ) ;
 
-			DXST_LOGFILE_ADDUTF16LE( "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x53\x00\x6f\x00\x75\x00\x6e\x00\x64\x00\x20\x00\xc7\x30\xd0\x30\xa4\x30\xb9\x30\x92\x30\x17\x52\x19\x63\x57\x30\x7e\x30\x59\x30\x0a\x00\x00"/*@ L"DirectSound ƒfƒoƒCƒX‚ğ—ñ‹“‚µ‚Ü‚·\n" @*/ ) ;
+			DXST_LOGFILE_ADDUTF16LE( "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x53\x00\x6f\x00\x75\x00\x6e\x00\x64\x00\x20\x00\xc7\x30\xd0\x30\xa4\x30\xb9\x30\x92\x30\x17\x52\x19\x63\x57\x30\x7e\x30\x59\x30\x0a\x00\x00"/*@ L"DirectSound ãƒ‡ãƒã‚¤ã‚¹ã‚’åˆ—æŒ™ã—ã¾ã™\n" @*/ ) ;
 			DXST_LOGFILE_TABADD ;
 			
-			// DirectSound DLL ‚ğƒ[ƒh‚·‚é
+			// DirectSound DLL ã‚’ãƒ­ãƒ¼ãƒ‰ã™ã‚‹
 			if( ( DSoundDLL = LoadLibraryA( "DSound.DLL" ) ) == NULL )
 			{
-				DXST_LOGFILE_ADDUTF16LE( "\x44\x00\x53\x00\x4f\x00\x55\x00\x4e\x00\x44\x00\x2e\x00\x44\x00\x4c\x00\x4c\x00\x20\x00\x6e\x30\xed\x30\xfc\x30\xc9\x30\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"SoundSysData.DLL ‚Ìƒ[ƒh‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+				DXST_LOGFILE_ADDUTF16LE( "\x44\x00\x53\x00\x4f\x00\x55\x00\x4e\x00\x44\x00\x2e\x00\x44\x00\x4c\x00\x4c\x00\x20\x00\x6e\x30\xed\x30\xfc\x30\xc9\x30\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"SoundSysData.DLL ã®ãƒ­ãƒ¼ãƒ‰ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 				DXST_LOGFILE_TABSUB ;
 				DXST_LOGFILE_TABSUB ;
 				goto ENUMEND ;
 			}
 		
-			// —ñ‹“—pŠÖ”‚Ìæ“¾
+			// åˆ—æŒ™ç”¨é–¢æ•°ã®å–å¾—
 			if( ( DirectSoundEnumerateFunc = ( DIRECTSOUNDENUMERATEFUNC )GetProcAddress( DSoundDLL, "DirectSoundEnumerateW" ) ) == NULL )
 			{
 				FreeLibrary( DSoundDLL );
-				DXST_LOGFILE_ADDUTF16LE( "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x53\x00\x6f\x00\x75\x00\x6e\x00\x64\x00\x20\x00\xc7\x30\xd0\x30\xa4\x30\xb9\x30\x6e\x30\x17\x52\x19\x63\x28\x75\xa2\x95\x70\x65\x6e\x30\xdd\x30\xa4\x30\xf3\x30\xbf\x30\xd6\x53\x97\x5f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"DirectSound ƒfƒoƒCƒX‚Ì—ñ‹“—pŠÖ”‚Ìƒ|ƒCƒ“ƒ^æ“¾‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+				DXST_LOGFILE_ADDUTF16LE( "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x53\x00\x6f\x00\x75\x00\x6e\x00\x64\x00\x20\x00\xc7\x30\xd0\x30\xa4\x30\xb9\x30\x6e\x30\x17\x52\x19\x63\x28\x75\xa2\x95\x70\x65\x6e\x30\xdd\x30\xa4\x30\xf3\x30\xbf\x30\xd6\x53\x97\x5f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"DirectSound ãƒ‡ãƒã‚¤ã‚¹ã®åˆ—æŒ™ç”¨é–¢æ•°ã®ãƒã‚¤ãƒ³ã‚¿å–å¾—ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 				DXST_LOGFILE_TABSUB ;
 				DXST_LOGFILE_TABSUB ;
 				goto ENUMEND ;
 			}
 
-			// —ñ‹“
+			// åˆ—æŒ™
 			DirectSoundEnumerateFunc( DSEnum , NULL ) ;
 
 			DXST_LOGFILE_TABSUB ;
 
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\x00\x67\x27\x59\xb5\x30\xf3\x30\xd7\x30\xea\x30\xf3\x30\xb0\x30\xec\x30\xfc\x30\xc8\x30\x3a\x00\x25\x00\x2e\x00\x32\x00\x66\x00\x4b\x00\x48\x00\x7a\x00\x20\x00\x00\x67\x0f\x5c\xb5\x30\xf3\x30\xd7\x30\xea\x30\xf3\x30\xb0\x30\xec\x30\xfc\x30\xc8\x30\x3a\x00\x25\x00\x2e\x00\x32\x00\x66\x00\x4b\x00\x48\x00\x7a\x00\x20\x00\x00"/*@ L"Å‘åƒTƒ“ƒvƒŠƒ“ƒOƒŒ[ƒg:%.2fKHz Å¬ƒTƒ“ƒvƒŠƒ“ƒOƒŒ[ƒg:%.2fKHz " @*/,
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\x00\x67\x27\x59\xb5\x30\xf3\x30\xd7\x30\xea\x30\xf3\x30\xb0\x30\xec\x30\xfc\x30\xc8\x30\x3a\x00\x25\x00\x2e\x00\x32\x00\x66\x00\x4b\x00\x48\x00\x7a\x00\x20\x00\x00\x67\x0f\x5c\xb5\x30\xf3\x30\xd7\x30\xea\x30\xf3\x30\xb0\x30\xec\x30\xfc\x30\xc8\x30\x3a\x00\x25\x00\x2e\x00\x32\x00\x66\x00\x4b\x00\x48\x00\x7a\x00\x20\x00\x00"/*@ L"æœ€å¤§ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ãƒ¬ãƒ¼ãƒˆ:%.2fKHz æœ€å°ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ãƒ¬ãƒ¼ãƒˆ:%.2fKHz " @*/,
 						( double )caps.dwMaxSecondarySampleRate / 1000 ,
 						( double )caps.dwMinSecondarySampleRate / 1000 )) ;
 
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\xcf\x7d\xb5\x30\xa6\x30\xf3\x30\xc9\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x3a\x00\x25\x00\x2e\x00\x32\x00\x66\x00\x4b\x00\x42\x00\x20\x00\x7a\x7a\x4d\x30\xb5\x30\xa6\x30\xf3\x30\xc9\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x3a\x00\x25\x00\x2e\x00\x32\x00\x66\x00\x4b\x00\x42\x00\x20\x00\x0a\x00\x00"/*@ L"‘ƒTƒEƒ“ƒhƒƒ‚ƒŠ—Ìˆæ:%.2fKB ‹ó‚«ƒTƒEƒ“ƒhƒƒ‚ƒŠ—Ìˆæ:%.2fKB \n" @*/,
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\xcf\x7d\xb5\x30\xa6\x30\xf3\x30\xc9\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x3a\x00\x25\x00\x2e\x00\x32\x00\x66\x00\x4b\x00\x42\x00\x20\x00\x7a\x7a\x4d\x30\xb5\x30\xa6\x30\xf3\x30\xc9\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x3a\x00\x25\x00\x2e\x00\x32\x00\x66\x00\x4b\x00\x42\x00\x20\x00\x0a\x00\x00"/*@ L"ç·ã‚µã‚¦ãƒ³ãƒ‰ãƒ¡ãƒ¢ãƒªé ˜åŸŸ:%.2fKB ç©ºãã‚µã‚¦ãƒ³ãƒ‰ãƒ¡ãƒ¢ãƒªé ˜åŸŸ:%.2fKB \n" @*/,
 						( double )caps.dwTotalHwMemBytes / 0x100 ,
 						( double )caps.dwFreeHwMemBytes / 0x100 )) ;
 
-			DXST_LOGFILE_ADDUTF16LE( "\x29\x52\x28\x75\xef\x53\xfd\x80\xb5\x30\xf3\x30\xd7\x30\xea\x30\xf3\x30\xb0\x30\xbe\x7c\xa6\x5e\x0a\x00\x00"/*@ L"—˜—p‰Â”\ƒTƒ“ƒvƒŠƒ“ƒO¸“x\n" @*/ ) ;
+			DXST_LOGFILE_ADDUTF16LE( "\x29\x52\x28\x75\xef\x53\xfd\x80\xb5\x30\xf3\x30\xd7\x30\xea\x30\xf3\x30\xb0\x30\xbe\x7c\xa6\x5e\x0a\x00\x00"/*@ L"åˆ©ç”¨å¯èƒ½ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ç²¾åº¦\n" @*/ ) ;
 			DXST_LOGFILEFMT_ADDW(( L"  Primary    16bit = %s  8bit = %s ",
 				( caps.dwFlags & D_DSCAPS_PRIMARY16BIT ? L"OK" : L"NO" ) ,
 				( caps.dwFlags & D_DSCAPS_PRIMARY8BIT  ? L"OK" : L"NO" ) )) ;
@@ -2716,7 +2716,7 @@ R1 :
 				( caps.dwFlags & D_DSCAPS_SECONDARY16BIT ? L"OK" : L"NO" ) ,
 				( caps.dwFlags & D_DSCAPS_SECONDARY8BIT  ? L"OK" : L"NO" ) )) ;
 
-			DXST_LOGFILE_ADDUTF16LE( "\x29\x52\x28\x75\xef\x53\xfd\x80\xc1\x30\xe3\x30\xf3\x30\xcd\x30\xeb\x30\x0a\x00\x00"/*@ L"—˜—p‰Â”\ƒ`ƒƒƒ“ƒlƒ‹\n" @*/ ) ;
+			DXST_LOGFILE_ADDUTF16LE( "\x29\x52\x28\x75\xef\x53\xfd\x80\xc1\x30\xe3\x30\xf3\x30\xcd\x30\xeb\x30\x0a\x00\x00"/*@ L"åˆ©ç”¨å¯èƒ½ãƒãƒ£ãƒ³ãƒãƒ«\n" @*/ ) ;
 			DXST_LOGFILEFMT_ADDW(( L"  Primary    MONO = %s   STEREO = %s ",
 				( caps.dwFlags & D_DSCAPS_PRIMARYMONO   ? L"OK" : L"NO" ) ,
 				( caps.dwFlags & D_DSCAPS_PRIMARYSTEREO ? L"OK" : L"NO" ) )) ;
@@ -2727,14 +2727,14 @@ R1 :
 
 			DXST_LOGFILE_TABSUB ;
 
-			// DirectSound DLL ‚ğ‰ğ•ú‚·‚é
+			// DirectSound DLL ã‚’è§£æ”¾ã™ã‚‹
 			FreeLibrary( DSoundDLL );
 		}
 	}
 
 ENUMEND :
 
-	// ‚R‚cƒTƒEƒ“ƒhˆ——p‚ÌƒŠƒXƒi[î•ñ‚ğ‰Šú‰»
+	// ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰å‡¦ç†ç”¨ã®ãƒªã‚¹ãƒŠãƒ¼æƒ…å ±ã‚’åˆæœŸåŒ–
 	SoundSysData.PF.X3DAudioListenerConeData = Listener_DirectionalCone ;
 	SoundSysData.PF.X3DAudioListenerData.Position.x = 0.0f ;
 	SoundSysData.PF.X3DAudioListenerData.Position.y = 0.0f ;
@@ -2750,18 +2750,18 @@ ENUMEND :
 	SoundSysData.PF.X3DAudioListenerData.OrientTop.z = 0.0f ;
 	SoundSysData.PF.X3DAudioListenerData.pCone = &SoundSysData.PF.X3DAudioListenerConeData ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
 
-// ƒTƒEƒ“ƒhƒVƒXƒeƒ€‚ğ‰Šú‰»‚·‚éŠÖ”‚ÌŠÂ‹«ˆË‘¶ˆ—‚ğs‚¤ŠÖ”( Às‰ÓŠ‹æ•Ê‚P )
+// ã‚µã‚¦ãƒ³ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ã‚’åˆæœŸåŒ–ã™ã‚‹é–¢æ•°ã®ç’°å¢ƒä¾å­˜å‡¦ç†ã‚’è¡Œã†é–¢æ•°( å®Ÿè¡Œç®‡æ‰€åŒºåˆ¥ï¼‘ )
 extern	int		InitializeSoundSystem_PF_Timing1( void )
 {
 #ifndef DX_NON_MULTITHREAD
 	SETUP_WIN_API
 
-	// ƒXƒgƒŠ[ƒ€ƒTƒEƒ“ƒhÄ¶—p‚Ìˆ—‚ğs‚¤ƒXƒŒƒbƒh‚Ìì¬
+	// ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‚µã‚¦ãƒ³ãƒ‰å†ç”Ÿç”¨ã®å‡¦ç†ã‚’è¡Œã†ã‚¹ãƒ¬ãƒƒãƒ‰ã®ä½œæˆ
 	SoundSysData.PF.StreamSoundThreadHandle = NULL ;
 	if( WinData.ProcessorNum > 1 )
 	{
@@ -2789,27 +2789,27 @@ extern	int		InitializeSoundSystem_PF_Timing1( void )
 	if( SoundSysData.PF.EnableXAudioFlag )
 	{
 		DXST_LOGFILE_TABSUB ;
-		DXST_LOGFILE_ADDUTF16LE( "\x58\x00\x41\x00\x75\x00\x64\x00\x69\x00\x6f\x00\x32\x00\x20\x00\x6e\x30\x1d\x52\x1f\x67\x16\x53\x6f\x30\x63\x6b\x38\x5e\x6b\x30\x42\x7d\x86\x4e\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"XAudio2 ‚Ì‰Šú‰»‚Í³í‚ÉI—¹‚µ‚Ü‚µ‚½\n" @*/ ) ;
+		DXST_LOGFILE_ADDUTF16LE( "\x58\x00\x41\x00\x75\x00\x64\x00\x69\x00\x6f\x00\x32\x00\x20\x00\x6e\x30\x1d\x52\x1f\x67\x16\x53\x6f\x30\x63\x6b\x38\x5e\x6b\x30\x42\x7d\x86\x4e\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"XAudio2 ã®åˆæœŸåŒ–ã¯æ­£å¸¸ã«çµ‚äº†ã—ã¾ã—ãŸ\n" @*/ ) ;
 	}
 	else
 	{
-		DXST_LOGFILE_ADDUTF16LE( "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x53\x00\x6f\x00\x75\x00\x6e\x00\x64\x00\x20\x00\x6e\x30\x1d\x52\x1f\x67\x16\x53\x6f\x30\x63\x6b\x38\x5e\x6b\x30\x42\x7d\x86\x4e\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"DirectSound ‚Ì‰Šú‰»‚Í³í‚ÉI—¹‚µ‚Ü‚µ‚½\n" @*/ ) ;
+		DXST_LOGFILE_ADDUTF16LE( "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x53\x00\x6f\x00\x75\x00\x6e\x00\x64\x00\x20\x00\x6e\x30\x1d\x52\x1f\x67\x16\x53\x6f\x30\x63\x6b\x38\x5e\x6b\x30\x42\x7d\x86\x4e\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"DirectSound ã®åˆæœŸåŒ–ã¯æ­£å¸¸ã«çµ‚äº†ã—ã¾ã—ãŸ\n" @*/ ) ;
 	}
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
 
 
 
-// ƒTƒEƒ“ƒhƒVƒXƒeƒ€‚ÌŒãn––‚ğ‚·‚éŠÖ”‚ÌŠÂ‹«ˆË‘¶ˆ—‚ğs‚¤ŠÖ”( Às‰ÓŠ‹æ•Ê‚O )
+// ã‚µã‚¦ãƒ³ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ã®å¾Œå§‹æœ«ã‚’ã™ã‚‹é–¢æ•°ã®ç’°å¢ƒä¾å­˜å‡¦ç†ã‚’è¡Œã†é–¢æ•°( å®Ÿè¡Œç®‡æ‰€åŒºåˆ¥ï¼ )
 extern	int		TerminateSoundSystem_PF_Timing0( void )
 {
 #ifndef DX_NON_MULTITHREAD
 	SETUP_WIN_API
 
-	// ƒXƒgƒŠ[ƒ€ƒTƒEƒ“ƒhÄ¶—pƒXƒŒƒbƒh‚ğI—¹‚·‚é
+	// ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‚µã‚¦ãƒ³ãƒ‰å†ç”Ÿç”¨ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’çµ‚äº†ã™ã‚‹
 	if( SoundSysData.PF.StreamSoundThreadHandle != NULL )
 	{
 		SoundSysData.PF.StreamSoundThreadEndFlag = 1 ;
@@ -2818,37 +2818,37 @@ extern	int		TerminateSoundSystem_PF_Timing0( void )
 
 #endif // DX_NON_MULTITHREAD
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// ƒTƒEƒ“ƒhƒVƒXƒeƒ€‚ÌŒãn––‚ğ‚·‚éŠÖ”‚ÌŠÂ‹«ˆË‘¶ˆ—‚ğs‚¤ŠÖ”( Às‰ÓŠ‹æ•Ê‚P )
+// ã‚µã‚¦ãƒ³ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ã®å¾Œå§‹æœ«ã‚’ã™ã‚‹é–¢æ•°ã®ç’°å¢ƒä¾å­˜å‡¦ç†ã‚’è¡Œã†é–¢æ•°( å®Ÿè¡Œç®‡æ‰€åŒºåˆ¥ï¼‘ )
 extern	int		TerminateSoundSystem_PF_Timing1( void )
 {
 	SETUP_WIN_API
 
-	// ƒeƒ“ƒ|ƒ‰ƒŠƒtƒ@ƒCƒ‹‚Ìíœ
+	// ãƒ†ãƒ³ãƒãƒ©ãƒªãƒ•ã‚¡ã‚¤ãƒ«ã®å‰Šé™¤
 	if( MidiSystemData.FileName[ 0 ] != L'\0' )
 	{
 		DeleteFileWFunc( MidiSystemData.FileName ) ;
 	}
 
-	// Ä¶ƒ‚[ƒh‚É‚æ‚Á‚Äˆ—‚ğ•ªŠò
+	// å†ç”Ÿãƒ¢ãƒ¼ãƒ‰ã«ã‚ˆã£ã¦å‡¦ç†ã‚’åˆ†å²
 	switch( SoundSysData.SoundMode )
 	{
 	case DX_MIDIMODE_MCI :
-		// ’Êí‚ÌÄ¶ƒ‚[ƒh‚Ì‚Ìˆ—
+		// é€šå¸¸ã®å†ç”Ÿãƒ¢ãƒ¼ãƒ‰ã®æ™‚ã®å‡¦ç†
 
-		// PlayWavŠÖ”‚ÅÄ¶‚³‚ê‚Ä‚¢‚éƒTƒEƒ“ƒh‚Í‚È‚¢‚Ì‚Å-1‚ğƒZƒbƒg‚µ‚Ä‚¨‚­
+		// PlayWavé–¢æ•°ã§å†ç”Ÿã•ã‚Œã¦ã„ã‚‹ã‚µã‚¦ãƒ³ãƒ‰ã¯ãªã„ã®ã§-1ã‚’ã‚»ãƒƒãƒˆã—ã¦ãŠã
 		SoundSysData.PlayWavSoundHandle = -1 ;
 
 		break ;
 
 	case DX_MIDIMODE_DIRECT_MUSIC_REVERB :
 	case DX_MIDIMODE_DIRECT_MUSIC_NORMAL :
-		// DirectMusic ‚É‚æ‚é‰‰‘t‚ğs‚Á‚Ä‚¢‚½ê‡‚Ìˆ—
+		// DirectMusic ã«ã‚ˆã‚‹æ¼”å¥ã‚’è¡Œã£ã¦ã„ãŸå ´åˆã®å‡¦ç†
 
-		// ‚·‚×‚Ä‚ÌƒTƒEƒ“ƒh‚ÌÄ¶‚ğ~‚ß‚é
+		// ã™ã¹ã¦ã®ã‚µã‚¦ãƒ³ãƒ‰ã®å†ç”Ÿã‚’æ­¢ã‚ã‚‹
 		if( SoundSysData.PF.DirectMusicPerformanceObject )
 		{
 			SoundSysData.PF.DirectMusicPerformanceObject->Stop( NULL , NULL , 0 , 0 ) ;
@@ -2858,7 +2858,7 @@ extern	int		TerminateSoundSystem_PF_Timing1( void )
 			SoundSysData.PF.DirectMusicPerformanceObject = NULL ;
 		}
 
-		// ƒ[ƒ_[‚ğ‰ğ•ú‚·‚é
+		// ãƒ­ãƒ¼ãƒ€ãƒ¼ã‚’è§£æ”¾ã™ã‚‹
 		if( SoundSysData.PF.DirectMusicLoaderObject )
 		{
 			SoundSysData.PF.DirectMusicLoaderObject->Release() ; 
@@ -2868,7 +2868,7 @@ extern	int		TerminateSoundSystem_PF_Timing1( void )
 		break ;
 	}
 
-	// waveOut ‚ğg—p‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+	// waveOut ã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 	if( SoundSysData.PF.EnableMMEwaveOutFlag )
 	{
 		SoundSysData.PF.waveOut_EndFlag = TRUE ;
@@ -2891,7 +2891,7 @@ extern	int		TerminateSoundSystem_PF_Timing1( void )
 	}
 #ifndef DX_NON_ASIO
 	else
-	// ASIO ‚ğg—p‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+	// ASIO ã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 	if( SoundSysData.PF.EnableASIOFlag )
 	{
 		if( SoundSysData.PF.ASIO_Driver[ SoundSysData.PF.ASIO_DriverUseIndex ] != NULL )
@@ -2904,20 +2904,20 @@ extern	int		TerminateSoundSystem_PF_Timing1( void )
 	}
 #endif // DX_NON_ASIO
 	else
-	// WASAPI ‚ğg—p‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+	// WASAPI ã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 	if( SoundSysData.PF.DisableWASAPIFlag == FALSE )
 	{
-		// WASAPI ‚ÌŒãn––‚ğs‚¤
+		// WASAPI ã®å¾Œå§‹æœ«ã‚’è¡Œã†
 		TerminateWASAPI() ;
 
-		// ‰Šú‰»‚ÌØ‹’‚Ìƒtƒ‰ƒO‚ğ“|‚·
+		// åˆæœŸåŒ–ã®è¨¼æ‹ ã®ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 		SoundSysData.PF.InitializeFlag = FALSE ;
 	}
 	else
-	// XAudio2 ‚ğg—p‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+	// XAudio2 ã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 	if( SoundSysData.PF.EnableXAudioFlag )
 	{
-		// ƒ}ƒXƒ^ƒŠƒ“ƒOƒ{ƒCƒX‚Ì‰ğ•ú
+		// ãƒã‚¹ã‚¿ãƒªãƒ³ã‚°ãƒœã‚¤ã‚¹ã®è§£æ”¾
 		if( SoundSysData.PF.XAudio2MasteringVoiceObject != NULL )
 		{
 			SoundSysData.PF.XAudio2MasteringVoiceObject->DestroyVoice() ;
@@ -2929,14 +2929,14 @@ extern	int		TerminateSoundSystem_PF_Timing1( void )
 			SoundSysData.PF.XAudio2_8MasteringVoiceObject = NULL ;
 		}
 
-		// XAudio2‚Ì‰ğ•ú
+		// XAudio2ã®è§£æ”¾
 		if( SoundSysData.PF.XAudio2Object != NULL )
 		{
 			SoundSysData.PF.XAudio2Object->Release() ;
 			SoundSysData.PF.XAudio2Object = NULL ;
 		}
 
-		// XAudio2.dll‚ÌŒãn––ˆ—
+		// XAudio2.dllã®å¾Œå§‹æœ«å‡¦ç†
 		if( SoundSysData.PF.XAudio2_8DLL != NULL )
 		{
 			FreeLibrary( SoundSysData.PF.XAudio2_8DLL ) ;
@@ -2948,7 +2948,7 @@ extern	int		TerminateSoundSystem_PF_Timing1( void )
 			SoundSysData.PF.X3DAudioCalculateFunc = NULL ;
 		}
 
-		// X3DAudio‚ÌŒãn––ˆ—
+		// X3DAudioã®å¾Œå§‹æœ«å‡¦ç†
 		if( SoundSysData.PF.X3DAudioDLL != NULL )
 		{
 			FreeLibrary( SoundSysData.PF.X3DAudioDLL ) ;
@@ -2959,7 +2959,7 @@ extern	int		TerminateSoundSystem_PF_Timing1( void )
 	}
 	else
 	{
-		// ƒvƒ‰ƒCƒ}ƒŠƒTƒEƒ“ƒhƒoƒbƒtƒ@‚ÌÄ¶’â~A”jŠü
+		// ãƒ—ãƒ©ã‚¤ãƒãƒªã‚µã‚¦ãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡ã®å†ç”Ÿåœæ­¢ã€ç ´æ£„
 		if( SoundSysData.PF.PrimarySoundBuffer )
 		{
 			SoundSysData.PF.PrimarySoundBuffer->Stop() ;
@@ -2967,7 +2967,7 @@ extern	int		TerminateSoundSystem_PF_Timing1( void )
 			SoundSysData.PF.PrimarySoundBuffer = NULL ;
 		}
 
-		// –³‰¹ƒoƒbƒtƒ@‚ÌÄ¶’â~A”jŠü
+		// ç„¡éŸ³ãƒãƒƒãƒ•ã‚¡ã®å†ç”Ÿåœæ­¢ã€ç ´æ£„
 		if( SoundSysData.PF.NoSoundBuffer )
 		{
 			SoundSysData.PF.NoSoundBuffer->Stop() ;
@@ -2975,7 +2975,7 @@ extern	int		TerminateSoundSystem_PF_Timing1( void )
 			SoundSysData.PF.NoSoundBuffer = NULL ;
 		}
 
-		// ‚c‚‰‚’‚…‚ƒ‚”‚r‚‚•‚‚„ƒIƒuƒWƒFƒNƒg‚Ì‰ğ•ú
+		// ï¼¤ï½‰ï½’ï½…ï½ƒï½”ï¼³ï½ï½•ï½ï½„ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®è§£æ”¾
 		if( SoundSysData.PF.DirectSoundObject > (D_IDirectSound *)1 )
 		{
 			SoundSysData.PF.DirectSoundObject->Release() ;
@@ -2983,39 +2983,39 @@ extern	int		TerminateSoundSystem_PF_Timing1( void )
 		SoundSysData.PF.DirectSoundObject = NULL ;
 
 
-		DXST_LOGFILE_ADDUTF16LE( "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x53\x00\x6f\x00\x75\x00\x6e\x00\x64\x00\x20\x00\x6e\x30\x42\x7d\x86\x4e\xe6\x51\x06\x74\x6f\x30\x63\x6b\x38\x5e\x6b\x30\x42\x7d\x86\x4e\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"DirectSound ‚ÌI—¹ˆ—‚Í³í‚ÉI—¹‚µ‚Ü‚µ‚½\n" @*/ ) ;
+		DXST_LOGFILE_ADDUTF16LE( "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x53\x00\x6f\x00\x75\x00\x6e\x00\x64\x00\x20\x00\x6e\x30\x42\x7d\x86\x4e\xe6\x51\x06\x74\x6f\x30\x63\x6b\x38\x5e\x6b\x30\x42\x7d\x86\x4e\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"DirectSound ã®çµ‚äº†å‡¦ç†ã¯æ­£å¸¸ã«çµ‚äº†ã—ã¾ã—ãŸ\n" @*/ ) ;
 	}
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// ƒTƒEƒ“ƒhƒVƒXƒeƒ€‚ÅüŠú“I‚És‚¤ˆ——p‚ÌŠÖ”‚ÌŠÂ‹«ˆË‘¶ˆ—‚ğs‚¤ŠÖ”
+// ã‚µã‚¦ãƒ³ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ã§å‘¨æœŸçš„ã«è¡Œã†å‡¦ç†ç”¨ã®é–¢æ•°ã®ç’°å¢ƒä¾å­˜å‡¦ç†ã‚’è¡Œã†é–¢æ•°
 extern	int		ProcessSoundSystem_PF( void )
 {
-	// ƒfƒtƒHƒ‹ƒg‚ÌƒTƒEƒ“ƒho—ÍƒfƒoƒCƒX‚ª•Ï‰»‚µ‚½ê‡‚Í WASAPI ‚ÌÄƒZƒbƒgƒAƒbƒv‚ğs‚¤
+	// ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®ã‚µã‚¦ãƒ³ãƒ‰å‡ºåŠ›ãƒ‡ãƒã‚¤ã‚¹ãŒå¤‰åŒ–ã—ãŸå ´åˆã¯ WASAPI ã®å†ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã‚’è¡Œã†
 	if( SoundSysData.PF.WASAPI_DefaultDeviceChange != 0 )
 	{
 		SoundSysData.PF.WASAPI_DefaultDeviceChange = 0 ;
 
-		// WASAPI ‚ÌŒãn––‚ğs‚¤
+		// WASAPI ã®å¾Œå§‹æœ«ã‚’è¡Œã†
 		TerminateWASAPI() ;
 
-		// WASAPI ‚Ì‰Šú‰»‚ğs‚¤
+		// WASAPI ã®åˆæœŸåŒ–ã‚’è¡Œã†
 		InitializeWASAPI() ;
 	}
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// ƒTƒEƒ“ƒhƒVƒXƒeƒ€‚Ì‰Šú‰»ƒ`ƒFƒbƒN‚ÌŠÂ‹«ˆË‘¶ˆ—‚ğs‚¤ŠÖ”( TRUE:‰Šú‰»‚³‚ê‚Ä‚¢‚é  FALSE:‰Šú‰»‚³‚ê‚Ä‚¢‚È‚¢ )
+// ã‚µã‚¦ãƒ³ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ã®åˆæœŸåŒ–ãƒã‚§ãƒƒã‚¯ã®ç’°å¢ƒä¾å­˜å‡¦ç†ã‚’è¡Œã†é–¢æ•°( TRUE:åˆæœŸåŒ–ã•ã‚Œã¦ã„ã‚‹  FALSE:åˆæœŸåŒ–ã•ã‚Œã¦ã„ãªã„ )
 extern	int		CheckSoundSystem_Initialize_PF( void )
 {
 	return SoundSysData.PF.DirectSoundObject == NULL ? FALSE : TRUE ;
 }
 
-// ƒTƒEƒ“ƒhƒVƒXƒeƒ€‚Ì‘Ä¶ŠÔ‚ğæ“¾‚·‚é
+// ã‚µã‚¦ãƒ³ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ã®ç·å†ç”Ÿæ™‚é–“ã‚’å–å¾—ã™ã‚‹
 extern	int GetSoundSystemTotalPlaySamples_PF( ULONGLONG *TotalPlaySamples, ULONGLONG *Frequency )
 {
 	if( SoundSysData.PF.AudioClock != NULL )
@@ -3033,32 +3033,32 @@ extern	int GetSoundSystemTotalPlaySamples_PF( ULONGLONG *TotalPlaySamples, ULONG
 	return -1 ;
 }
 
-// ‚l‚h‚c‚hƒnƒ“ƒhƒ‹‚ÌŒãn––‚ğs‚¤ŠÖ”‚ÌŠÂ‹«ˆË‘¶ˆ—
+// ï¼­ï¼©ï¼¤ï¼©ãƒãƒ³ãƒ‰ãƒ«ã®å¾Œå§‹æœ«ã‚’è¡Œã†é–¢æ•°ã®ç’°å¢ƒä¾å­˜å‡¦ç†
 extern	int		TerminateMidiHandle_PF( MIDIHANDLEDATA *MusicData )
 {
-	// DirectMusicSegment8 ƒIƒuƒWƒFƒNƒg‚Ì‰ğ•ú
+	// DirectMusicSegment8 ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®è§£æ”¾
 	if( MusicData->PF.DirectMusicSegmentObject != NULL )
 	{
-		// ‰¹Fƒf[ƒ^‚Ì‰ğ•ú
+		// éŸ³è‰²ãƒ‡ãƒ¼ã‚¿ã®è§£æ”¾
 		MusicData->PF.DirectMusicSegmentObject->Unload( SoundSysData.PF.DirectMusicPerformanceObject ) ;
 
-		// ƒIƒuƒWƒFƒNƒg‚Ì‰ğ•ú
+		// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®è§£æ”¾
 		SoundSysData.PF.DirectMusicLoaderObject->ReleaseObjectByUnknown( MusicData->PF.DirectMusicSegmentObject ) ;
 		MusicData->PF.DirectMusicSegmentObject->Release() ;
 		MusicData->PF.DirectMusicSegmentObject = NULL ;
 	}
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// ƒvƒŠƒZƒbƒg‚Ì‚R‚cƒTƒEƒ“ƒh—p‚ÌƒŠƒo[ƒuƒpƒ‰ƒ[ƒ^‚ğæ“¾‚·‚éˆ—‚ÌŠÂ‹«ˆË‘¶ˆ—‚ğs‚¤ŠÖ”
-extern	int		Get3DPresetReverbParamSoundMem_PF( SOUND3D_REVERB_PARAM *ParamBuffer, int PresetNo /* DX_REVERB_PRESET_DEFAULT “™ */ )
+// ãƒ—ãƒªã‚»ãƒƒãƒˆã®ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰ç”¨ã®ãƒªãƒãƒ¼ãƒ–ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’å–å¾—ã™ã‚‹å‡¦ç†ã®ç’°å¢ƒä¾å­˜å‡¦ç†ã‚’è¡Œã†é–¢æ•°
+extern	int		Get3DPresetReverbParamSoundMem_PF( SOUND3D_REVERB_PARAM *ParamBuffer, int PresetNo /* DX_REVERB_PRESET_DEFAULT ç­‰ */ )
 {
 	if( SoundSysData.PF.EnableXAudioFlag == FALSE )
 		return -1 ;
 
-	// ƒpƒ‰ƒ[ƒ^‚ğƒRƒs[
+	// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ã‚³ãƒ”ãƒ¼
 	if( ParamBuffer != NULL )
 	{
 		if( SoundSysData.PF.XAudio2_8DLL != NULL )
@@ -3130,7 +3130,7 @@ extern	int		Get3DPresetReverbParamSoundMem_PF( SOUND3D_REVERB_PARAM *ParamBuffer
 	return 0 ;
 }
 
-// ‚R‚cƒTƒEƒ“ƒh‚ÌƒŠƒXƒi[‚ÌˆÊ’u‚ÆƒŠƒXƒi[‚Ì‘O•ûˆÊ’u‚ÆƒŠƒXƒi[‚Ìã•ûŒüˆÊ’u‚ğİ’è‚·‚éˆ—‚ÌŠÂ‹«ˆË‘¶ˆ—‚ğs‚¤ŠÖ”
+// ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰ã®ãƒªã‚¹ãƒŠãƒ¼ã®ä½ç½®ã¨ãƒªã‚¹ãƒŠãƒ¼ã®å‰æ–¹ä½ç½®ã¨ãƒªã‚¹ãƒŠãƒ¼ã®ä¸Šæ–¹å‘ä½ç½®ã‚’è¨­å®šã™ã‚‹å‡¦ç†ã®ç’°å¢ƒä¾å­˜å‡¦ç†ã‚’è¡Œã†é–¢æ•°
 extern int Set3DSoundListenerPosAndFrontPosAndUpVec_PF( VECTOR /*Position*/, VECTOR /*FrontPosition*/, VECTOR /*UpVector*/ )
 {
 	SoundSysData.PF.X3DAudioListenerData.Position.x = SoundSysData.ListenerInfo.Position.x ;
@@ -3148,7 +3148,7 @@ extern int Set3DSoundListenerPosAndFrontPosAndUpVec_PF( VECTOR /*Position*/, VEC
 	return 0 ;
 }
 
-// ‚R‚cƒTƒEƒ“ƒh‚ÌƒŠƒXƒi[‚ÌˆÚ“®‘¬“x‚ğİ’è‚·‚éˆ—‚ÌŠÂ‹«ˆË‘¶ˆ—‚ğs‚¤ŠÖ”
+// ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰ã®ãƒªã‚¹ãƒŠãƒ¼ã®ç§»å‹•é€Ÿåº¦ã‚’è¨­å®šã™ã‚‹å‡¦ç†ã®ç’°å¢ƒä¾å­˜å‡¦ç†ã‚’è¡Œã†é–¢æ•°
 extern int Set3DSoundListenerVelocity_PF( VECTOR Velocity )
 {
 	SoundSysData.PF.X3DAudioListenerData.Velocity.x = Velocity.x ;
@@ -3158,7 +3158,7 @@ extern int Set3DSoundListenerVelocity_PF( VECTOR Velocity )
 	return 0 ;
 }
 
-// ‚R‚cƒTƒEƒ“ƒh‚ÌƒŠƒXƒi[‚Ì‰Â’®Šp“x”ÍˆÍ‚ğİ’è‚·‚éˆ—‚ÌŠÂ‹«ˆË‘¶ˆ—‚ğs‚¤ŠÖ”
+// ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰ã®ãƒªã‚¹ãƒŠãƒ¼ã®å¯è´è§’åº¦ç¯„å›²ã‚’è¨­å®šã™ã‚‹å‡¦ç†ã®ç’°å¢ƒä¾å­˜å‡¦ç†ã‚’è¡Œã†é–¢æ•°
 extern int Set3DSoundListenerConeAngle_PF( float InnerAngle, float OuterAngle )
 {
 	SoundSysData.PF.X3DAudioListenerConeData.InnerAngle = InnerAngle ;
@@ -3167,7 +3167,7 @@ extern int Set3DSoundListenerConeAngle_PF( float InnerAngle, float OuterAngle )
 	return 0 ;
 }
 
-// ‚R‚cƒTƒEƒ“ƒh‚ÌƒŠƒXƒi[‚Ì‰Â’®Šp“x”ÍˆÍ‚Ì‰¹—Ê”{—¦‚ğİ’è‚·‚éˆ—‚ÌŠÂ‹«ˆË‘¶ˆ—‚ğs‚¤ŠÖ”
+// ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰ã®ãƒªã‚¹ãƒŠãƒ¼ã®å¯è´è§’åº¦ç¯„å›²ã®éŸ³é‡å€ç‡ã‚’è¨­å®šã™ã‚‹å‡¦ç†ã®ç’°å¢ƒä¾å­˜å‡¦ç†ã‚’è¡Œã†é–¢æ•°
 extern int Set3DSoundListenerConeVolume_PF( float InnerAngleVolume, float OuterAngleVolume )
 {
 	SoundSysData.PF.X3DAudioListenerConeData.InnerVolume = InnerAngleVolume ;
@@ -3176,7 +3176,7 @@ extern int Set3DSoundListenerConeVolume_PF( float InnerAngleVolume, float OuterA
 	return 0 ;
 }
 
-// ƒTƒEƒ“ƒh‚ğƒŠƒ\[ƒX‚©‚ç“Ç‚İ‚Ş
+// ã‚µã‚¦ãƒ³ãƒ‰ã‚’ãƒªã‚½ãƒ¼ã‚¹ã‹ã‚‰èª­ã¿è¾¼ã‚€
 extern int NS_LoadSoundMemByResource( const TCHAR *ResourceName, const TCHAR *ResourceType, int BufferNum )
 {
 #ifdef UNICODE
@@ -3232,7 +3232,7 @@ ERR :
 #endif
 }
 
-// ƒTƒEƒ“ƒhƒŠƒ\[ƒX‚©‚çƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹‚ğì¬‚·‚é
+// ã‚µã‚¦ãƒ³ãƒ‰ãƒªã‚½ãƒ¼ã‚¹ã‹ã‚‰ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ã‚’ä½œæˆã™ã‚‹
 extern int NS_LoadSoundMemByResourceWithStrLen( const TCHAR *ResourceName, size_t ResourceNameLength, const TCHAR *ResourceType, size_t ResourceTypeLength, int BufferNum )
 {
 	int Result = -1 ;
@@ -3250,23 +3250,23 @@ ERR :
 	return Result ;
 }
 
-// ƒTƒEƒ“ƒh‚ğƒŠƒ\[ƒX‚©‚ç“Ç‚İ‚Ş
+// ã‚µã‚¦ãƒ³ãƒ‰ã‚’ãƒªã‚½ãƒ¼ã‚¹ã‹ã‚‰èª­ã¿è¾¼ã‚€
 extern int LoadSoundMemByResource_WCHAR_T( const wchar_t *ResourceName, const wchar_t *ResourceType, int BufferNum )
 {
 	void *Image ;
 	size_t ImageSize ;
 
-	// ƒŠƒ\[ƒX‚Ìî•ñ‚ğæ“¾
+	// ãƒªã‚½ãƒ¼ã‚¹ã®æƒ…å ±ã‚’å–å¾—
 	if( GetResourceInfo_WCHAR_T( ResourceName, ResourceType, &Image, &ImageSize ) < 0 )
 	{
 		return -1 ;
 	}
 
-	// ƒnƒ“ƒhƒ‹‚Ìì¬
+	// ãƒãƒ³ãƒ‰ãƒ«ã®ä½œæˆ
 	return NS_LoadSoundMemByMemImageBase( Image, ImageSize, BufferNum, -1 ) ;
 }
 
-// LoadMusicMemByResource ‚ÌÀˆ—ŠÖ”
+// LoadMusicMemByResource ã®å®Ÿå‡¦ç†é–¢æ•°
 static int LoadMusicMemByResource_Static(
 	int MusicHandle,
 	const wchar_t *ResourceName,
@@ -3289,18 +3289,18 @@ static int LoadMusicMemByResource_Static(
 			return -1 ;
 	}
 
-	// ƒŠƒ\[ƒX‚Ìî•ñ‚ğæ“¾
+	// ãƒªã‚½ãƒ¼ã‚¹ã®æƒ…å ±ã‚’å–å¾—
 	if( GetResourceInfo_WCHAR_T( ResourceName, ResourceType, &Image, &ImageSize ) < 0 )
 	{
 		return -1 ;
 	}
 
-	// ƒnƒ“ƒhƒ‹‚ÌƒZƒbƒgƒAƒbƒv
+	// ãƒãƒ³ãƒ‰ãƒ«ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 	return LoadMusicMemByMemImage_Static( MusicHandle, Image, ImageSize, ASyncThread ) ;
 }
 
 #ifndef DX_NON_ASYNCLOAD
-// LoadMusicMemByResource ‚Ì”ñ“¯Šú“Ç‚İ‚İƒXƒŒƒbƒh‚©‚çŒÄ‚Î‚ê‚éŠÖ”
+// LoadMusicMemByResource ã®éåŒæœŸèª­ã¿è¾¼ã¿ã‚¹ãƒ¬ãƒƒãƒ‰ã‹ã‚‰å‘¼ã°ã‚Œã‚‹é–¢æ•°
 static void LoadMusicMemByResource_ASync( ASYNCLOADDATA_COMMON *AParam )
 {
 	int MusicHandle ;
@@ -3329,7 +3329,7 @@ static void LoadMusicMemByResource_ASync( ASYNCLOADDATA_COMMON *AParam )
 }
 #endif // DX_NON_ASYNCLOAD
 
-// LoadMusicMemByResource ‚ÌƒOƒ[ƒoƒ‹•Ï”‚ÉƒAƒNƒZƒX‚µ‚È‚¢ƒo[ƒWƒ‡ƒ“
+// LoadMusicMemByResource ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°ã«ã‚¢ã‚¯ã‚»ã‚¹ã—ãªã„ãƒãƒ¼ã‚¸ãƒ§ãƒ³
 extern int LoadMusicMemByResource_UseGParam(
 	const wchar_t *ResourceName,
 	const wchar_t *ResourceType,
@@ -3341,10 +3341,10 @@ extern int LoadMusicMemByResource_UseGParam(
 	if( SoundSysData.InitializeFlag == FALSE )
 		return -1 ;
 
-	// ƒ\ƒtƒg‚ª”ñƒAƒNƒeƒBƒu‚Ìê‡‚ÍƒAƒNƒeƒBƒu‚É‚È‚é‚Ü‚Å‘Ò‚Â
+	// ã‚½ãƒ•ãƒˆãŒéã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã®å ´åˆã¯ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ãªã‚‹ã¾ã§å¾…ã¤
 	CheckActiveState() ;
 
-	// ƒnƒ“ƒhƒ‹‚Ìì¬
+	// ãƒãƒ³ãƒ‰ãƒ«ã®ä½œæˆ
 	MusicHandle = AddHandle( DX_HANDLETYPE_MUSIC, FALSE, -1 ) ;
 	if( MusicHandle == -1 ) return -1 ;
 
@@ -3354,25 +3354,25 @@ extern int LoadMusicMemByResource_UseGParam(
 		ASYNCLOADDATA_COMMON *AParam = NULL ;
 		int Addr ;
 
-		// ƒpƒ‰ƒ[ƒ^‚É•K—v‚Èƒƒ‚ƒŠ‚ÌƒTƒCƒY‚ğZo
+		// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã«å¿…è¦ãªãƒ¡ãƒ¢ãƒªã®ã‚µã‚¤ã‚ºã‚’ç®—å‡º
 		Addr = 0 ;
 		AddASyncLoadParamInt( NULL, &Addr, MusicHandle ) ;
 		AddASyncLoadParamString( NULL, &Addr, ResourceName ) ;
 		AddASyncLoadParamString( NULL, &Addr, ResourceType ) ;
 
-		// ƒƒ‚ƒŠ‚ÌŠm•Û
+		// ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿
 		AParam = AllocASyncLoadDataMemory( Addr ) ;
 		if( AParam == NULL )
 			goto ERR ;
 
-		// ˆ—‚É•K—v‚Èî•ñ‚ğƒZƒbƒg
+		// å‡¦ç†ã«å¿…è¦ãªæƒ…å ±ã‚’ã‚»ãƒƒãƒˆ
 		AParam->ProcessFunction = LoadMusicMemByResource_ASync ;
 		Addr = 0 ;
 		AddASyncLoadParamInt( AParam->Data, &Addr, MusicHandle ) ;
 		AddASyncLoadParamString( AParam->Data, &Addr, ResourceName ) ;
 		AddASyncLoadParamString( AParam->Data, &Addr, ResourceType ) ;
 
-		// ƒf[ƒ^‚ğ’Ç‰Á
+		// ãƒ‡ãƒ¼ã‚¿ã‚’è¿½åŠ 
 		if( AddASyncLoadData( AParam ) < 0 )
 		{
 			DXFREE( AParam ) ;
@@ -3380,7 +3380,7 @@ extern int LoadMusicMemByResource_UseGParam(
 			goto ERR ;
 		}
 
-		// ”ñ“¯Šú“Ç‚İ‚İƒJƒEƒ“ƒg‚ğƒCƒ“ƒNƒŠƒƒ“ƒg
+		// éåŒæœŸèª­ã¿è¾¼ã¿ã‚«ã‚¦ãƒ³ãƒˆã‚’ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆ
 		IncASyncLoadCount( MusicHandle, AParam->Index ) ;
 	}
 	else
@@ -3390,7 +3390,7 @@ extern int LoadMusicMemByResource_UseGParam(
 			goto ERR ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return MusicHandle ;
 
 ERR :
@@ -3399,7 +3399,7 @@ ERR :
 	return -1 ;
 }
 
-// ƒŠƒ\[ƒXã‚Ì‚l‚h‚c‚hƒtƒ@ƒCƒ‹‚ğ“Ç‚İ‚Ş
+// ãƒªã‚½ãƒ¼ã‚¹ä¸Šã®ï¼­ï¼©ï¼¤ï¼©ãƒ•ã‚¡ã‚¤ãƒ«ã‚’èª­ã¿è¾¼ã‚€
 extern int NS_LoadMusicMemByResource( const TCHAR *ResourceName, const TCHAR *ResourceType )
 {
 #ifdef UNICODE
@@ -3455,7 +3455,7 @@ ERR :
 #endif
 }
 
-// ƒŠƒ\[ƒXã‚Ì‚l‚h‚c‚hƒtƒ@ƒCƒ‹‚©‚ç‚l‚h‚c‚hƒnƒ“ƒhƒ‹‚ğì¬‚·‚é
+// ãƒªã‚½ãƒ¼ã‚¹ä¸Šã®ï¼­ï¼©ï¼¤ï¼©ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰ï¼­ï¼©ï¼¤ï¼©ãƒãƒ³ãƒ‰ãƒ«ã‚’ä½œæˆã™ã‚‹
 extern int NS_LoadMusicMemByResourceWithStrLen( const TCHAR *ResourceName, size_t ResourceNameLength, const TCHAR *ResourceType, size_t ResourceTypeLength )
 {
 	int Result = -1 ;
@@ -3473,13 +3473,13 @@ ERR :
 	return Result ;
 }
 
-// ƒŠƒ\[ƒXã‚Ì‚l‚h‚c‚hƒtƒ@ƒCƒ‹‚ğ“Ç‚İ‚Ş
+// ãƒªã‚½ãƒ¼ã‚¹ä¸Šã®ï¼­ï¼©ï¼¤ï¼©ãƒ•ã‚¡ã‚¤ãƒ«ã‚’èª­ã¿è¾¼ã‚€
 extern int LoadMusicMemByResource_WCHAR_T( const wchar_t *ResourceName, const wchar_t *ResourceType )
 {
 	return LoadMusicMemByResource_UseGParam( ResourceName, ResourceType, GetASyncLoadFlag() ) ;
 }
 
-// LoadMusicMemByMemImage ‚ÌÀˆ—ŠÖ”‚ÌŠÂ‹«ˆË‘¶ˆ—‚ğs‚¤ŠÖ”
+// LoadMusicMemByMemImage ã®å®Ÿå‡¦ç†é–¢æ•°ã®ç’°å¢ƒä¾å­˜å‡¦ç†ã‚’è¡Œã†é–¢æ•°
 extern int LoadMusicMemByMemImage_Static_PF( MIDIHANDLEDATA *MusicData, int /*ASyncThread*/ )
 {
 	switch( SoundSysData.SoundMode )
@@ -3489,7 +3489,7 @@ extern int LoadMusicMemByMemImage_Static_PF( MIDIHANDLEDATA *MusicData, int /*AS
 
 	case DX_MIDIMODE_DIRECT_MUSIC_REVERB :
 	case DX_MIDIMODE_DIRECT_MUSIC_NORMAL :
-		// DirectMusic ‚ğg—p‚·‚éê‡‚Íƒƒ‚ƒŠ‚©‚ç DirectMusicSegment8 ‚ğì¬‚·‚é
+		// DirectMusic ã‚’ä½¿ç”¨ã™ã‚‹å ´åˆã¯ãƒ¡ãƒ¢ãƒªã‹ã‚‰ DirectMusicSegment8 ã‚’ä½œæˆã™ã‚‹
 		{
 			D_DMUS_OBJECTDESC ObjDesc ;
 
@@ -3504,14 +3504,14 @@ extern int LoadMusicMemByMemImage_Static_PF( MIDIHANDLEDATA *MusicData, int /*AS
 //			if( SoundSysData.PF.DirectMusicLoaderObject->GetObject( &ObjDesc, IID_IDirectMusicSegment8, ( void ** )&MusicData->PF.DirectMusicSegmentObject ) != S_OK )
 			if( SoundSysData.PF.DirectMusicLoaderObject->GetObject( &ObjDesc, IID_IDIRECTMUSICSEGMENT8, ( void ** )&MusicData->PF.DirectMusicSegmentObject ) != S_OK )
 			{
-				DXST_LOGFILE_ADDUTF16LE( "\xdf\x30\xe5\x30\xfc\x30\xb8\x30\xc3\x30\xaf\x30\xc7\x30\xfc\x30\xbf\x30\x4b\x30\x89\x30\x20\x00\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x4d\x00\x75\x00\x73\x00\x69\x00\x63\x00\x53\x00\x65\x00\x67\x00\x6d\x00\x65\x00\x6e\x00\x74\x00\x38\x00\x20\x00\x92\x30\xd6\x53\x97\x5f\x59\x30\x8b\x30\xe6\x51\x06\x74\x4c\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ƒ~ƒ…[ƒWƒbƒNƒf[ƒ^‚©‚ç DirectMusicSegment8 ‚ğæ“¾‚·‚éˆ—‚ª¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+				DXST_LOGFILE_ADDUTF16LE( "\xdf\x30\xe5\x30\xfc\x30\xb8\x30\xc3\x30\xaf\x30\xc7\x30\xfc\x30\xbf\x30\x4b\x30\x89\x30\x20\x00\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x4d\x00\x75\x00\x73\x00\x69\x00\x63\x00\x53\x00\x65\x00\x67\x00\x6d\x00\x65\x00\x6e\x00\x74\x00\x38\x00\x20\x00\x92\x30\xd6\x53\x97\x5f\x59\x30\x8b\x30\xe6\x51\x06\x74\x4c\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ãƒŸãƒ¥ãƒ¼ã‚¸ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰ DirectMusicSegment8 ã‚’å–å¾—ã™ã‚‹å‡¦ç†ãŒå¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 				return -1 ;
 			}
 
-			// ƒf[ƒ^Œ`®‚ğ MidiSystemData ‚ÉƒZƒbƒg
+			// ãƒ‡ãƒ¼ã‚¿å½¢å¼ã‚’ MidiSystemData ã«ã‚»ãƒƒãƒˆ
 			MusicData->PF.DirectMusicSegmentObject->SetParam( GUID_STANDARDMIDIFILE, 0xFFFFFFFF, 0, 0, NULL);
 
-			// ‰¹Fƒf[ƒ^‚Ìƒ_ƒEƒ“ƒ[ƒh
+			// éŸ³è‰²ãƒ‡ãƒ¼ã‚¿ã®ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰
 			MusicData->PF.DirectMusicSegmentObject->Download( SoundSysData.PF.DirectMusicPerformanceObject ) ;
 		}
 		break ;
@@ -3520,7 +3520,7 @@ extern int LoadMusicMemByMemImage_Static_PF( MIDIHANDLEDATA *MusicData, int /*AS
 	return 0 ;
 }
 
-// ƒŠƒ\[ƒX‚©‚ç‚l‚h‚c‚hƒtƒ@ƒCƒ‹‚ğ“Ç‚İ‚ñ‚Å‰‰‘t‚·‚é
+// ãƒªã‚½ãƒ¼ã‚¹ã‹ã‚‰ï¼­ï¼©ï¼¤ï¼©ãƒ•ã‚¡ã‚¤ãƒ«ã‚’èª­ã¿è¾¼ã‚“ã§æ¼”å¥ã™ã‚‹
 extern int NS_PlayMusicByResource( const TCHAR *ResourceName, const TCHAR *ResourceType, int PlayType )
 {
 #ifdef UNICODE
@@ -3576,7 +3576,7 @@ ERR :
 #endif
 }
 
-// ƒŠƒ\[ƒX‚©‚ç‚l‚h‚c‚hƒtƒ@ƒCƒ‹‚ğ“Ç‚İ‚ñ‚Å‰‰‘t‚·‚é
+// ãƒªã‚½ãƒ¼ã‚¹ã‹ã‚‰ï¼­ï¼©ï¼¤ï¼©ãƒ•ã‚¡ã‚¤ãƒ«ã‚’èª­ã¿è¾¼ã‚“ã§æ¼”å¥ã™ã‚‹
 extern int NS_PlayMusicByResourceWithStrLen( const TCHAR *ResourceName, size_t ResourceNameLength, const TCHAR *ResourceType, size_t ResourceTypeLength, int PlayType )
 {
 	int Result = -1 ;
@@ -3594,23 +3594,23 @@ ERR :
 	return Result ;
 }
 
-// ƒŠƒ\[ƒX‚©‚ç‚l‚h‚c‚hƒtƒ@ƒCƒ‹‚ğ“Ç‚İ‚ñ‚Å‰‰‘t‚·‚é
+// ãƒªã‚½ãƒ¼ã‚¹ã‹ã‚‰ï¼­ï¼©ï¼¤ï¼©ãƒ•ã‚¡ã‚¤ãƒ«ã‚’èª­ã¿è¾¼ã‚“ã§æ¼”å¥ã™ã‚‹
 extern int PlayMusicByResource_WCHAR_T( const wchar_t *ResourceName, const wchar_t *ResourceType, int PlayType )
 {
 	void *Image ;
 	size_t ImageSize ;
 
-	// ƒŠƒ\[ƒX‚Ìî•ñ‚ğæ“¾
+	// ãƒªã‚½ãƒ¼ã‚¹ã®æƒ…å ±ã‚’å–å¾—
 	if( GetResourceInfo_WCHAR_T( ResourceName, ResourceType, &Image, &ImageSize ) < 0 )
 	{
 		return -1 ;
 	}
 
-	// ‰‰‘tŠJn
+	// æ¼”å¥é–‹å§‹
 	return NS_PlayMusicByMemImage( Image, ImageSize, PlayType ) ;
 }
 
-// “Ç‚İ‚ñ‚¾‚l‚h‚c‚hƒf[ƒ^‚Ì‰‰‘t‚ğŠJn‚·‚éˆ—‚ÌŠÂ‹«ˆË‘¶ˆ—‚ğs‚¤ŠÖ”
+// èª­ã¿è¾¼ã‚“ã ï¼­ï¼©ï¼¤ï¼©ãƒ‡ãƒ¼ã‚¿ã®æ¼”å¥ã‚’é–‹å§‹ã™ã‚‹å‡¦ç†ã®ç’°å¢ƒä¾å­˜å‡¦ç†ã‚’è¡Œã†é–¢æ•°
 extern int PlayMusicMem_PF( MIDIHANDLEDATA *MusicData, int PlayType )
 {
 	SETUP_WIN_API
@@ -3626,49 +3626,49 @@ extern int PlayMusicMem_PF( MIDIHANDLEDATA *MusicData, int PlayType )
 			HANDLE FileHandle ;
 			DWORD WriteSize ;
 
-			// ˆÈ‘O‚Ìƒeƒ“ƒ|ƒ‰ƒŠƒtƒ@ƒCƒ‹‚ªc‚Á‚Ä‚¢‚é‚©‚à‚µ‚ê‚È‚¢‚Ì‚ÅAˆê‰íœ
+			// ä»¥å‰ã®ãƒ†ãƒ³ãƒãƒ©ãƒªãƒ•ã‚¡ã‚¤ãƒ«ãŒæ®‹ã£ã¦ã„ã‚‹ã‹ã‚‚ã—ã‚Œãªã„ã®ã§ã€ä¸€å¿œå‰Šé™¤
 			DeleteFileWFunc( MidiSystemData.FileName ) ;
 
-			// ƒeƒ“ƒ|ƒ‰ƒŠƒtƒ@ƒCƒ‹‚ğŠJ‚­
+			// ãƒ†ãƒ³ãƒãƒ©ãƒªãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‹ã
 			FileHandle = CreateTemporaryFile( MidiSystemData.FileName, sizeof( MidiSystemData.FileName ) ) ;
 			if( FileHandle == NULL ) return -1 ;
 
-			// ƒeƒ“ƒ|ƒ‰ƒŠƒtƒ@ƒCƒ‹‚Éƒf[ƒ^‚ğ‘‚«‚Ş
+			// ãƒ†ãƒ³ãƒãƒ©ãƒªãƒ•ã‚¡ã‚¤ãƒ«ã«ãƒ‡ãƒ¼ã‚¿ã‚’æ›¸ãè¾¼ã‚€
 			WinAPIData.Win32Func.WriteFileFunc( FileHandle, MusicData->DataImage, ( DWORD )MusicData->DataSize, &WriteSize, NULL ) ;
 			WinAPIData.Win32Func.CloseHandleFunc( FileHandle ) ;
 
-			// ƒI[ƒvƒ“ƒXƒe[ƒ^ƒXƒZƒbƒg
+			// ã‚ªãƒ¼ãƒ—ãƒ³ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚»ãƒƒãƒˆ
 			mciOpenParms.lpstrElementName = MidiSystemData.FileName ;
 			mciOpenParms.lpstrDeviceType  = L"sequencer" ;
 
-			// ‚l‚b‚h‚ÌƒI[ƒvƒ“
+			// ï¼­ï¼£ï¼©ã®ã‚ªãƒ¼ãƒ—ãƒ³
 			Result = ( int )WinAPIData.Win32Func.mciSendCommandFunc( 0, MCI_OPEN, MCI_OPEN_TYPE | MCI_OPEN_ELEMENT, ( DWORD_PTR )( LPVOID )&mciOpenParms ) ;
 			if( Result != 0 )
 			{
 				LOADSOUND_GPARAM GParam ;
 				int OldHandle ;
 
-	//			DXST_LOGFILE_ADDUTF16LE( L"‚l‚b‚h‚ÌƒI[ƒvƒ“‚É¸”s‚µ‚Ü‚µ‚½\n" ) ;
+	//			DXST_LOGFILE_ADDUTF16LE( L"ï¼­ï¼£ï¼©ã®ã‚ªãƒ¼ãƒ—ãƒ³ã«å¤±æ•—ã—ã¾ã—ãŸ\n" ) ;
 
-				// ƒGƒ‰[‚ª‹N‚«‚½‚çˆêƒtƒ@ƒCƒ‹‚ğíœ
+				// ã‚¨ãƒ©ãƒ¼ãŒèµ·ããŸã‚‰ä¸€æ™‚ãƒ•ã‚¡ã‚¤ãƒ«ã‚’å‰Šé™¤
 				DeleteFileWFunc( MidiSystemData.FileName ) ;
 
-				// ‰‰‘t‚É¸”s‚µ‚½‚ç•’Ê‚ÌƒTƒEƒ“ƒhƒtƒ@ƒCƒ‹‚Ì‰Â”\«‚ª‚ ‚é
+				// æ¼”å¥ã«å¤±æ•—ã—ãŸã‚‰æ™®é€šã®ã‚µã‚¦ãƒ³ãƒ‰ãƒ•ã‚¡ã‚¤ãƒ«ã®å¯èƒ½æ€§ãŒã‚ã‚‹
 				OldHandle = MidiSystemData.DefaultHandle ;
 				InitLoadSoundGParam( &GParam ) ;
 				GParam.CreateSoundDataType = DX_SOUNDDATATYPE_MEMPRESS ;
 				MidiSystemData.DefaultHandle = LoadSoundMemByMemImageBase_UseGParam( &GParam, TRUE, -1, MusicData->DataImage, MusicData->DataSize, 1, -1, 0 ) ;
 				if( MidiSystemData.DefaultHandle == -1 )
 				{
-					// ‚»‚ê‚Å‚à¸”s‚µ‚½‚çƒtƒ@ƒCƒ‹‚ª‚È‚¢‚Æ‚¢‚¤‚±‚Æ
+					// ãã‚Œã§ã‚‚å¤±æ•—ã—ãŸã‚‰ãƒ•ã‚¡ã‚¤ãƒ«ãŒãªã„ã¨ã„ã†ã“ã¨
 					MidiSystemData.DefaultHandle = 0;
 					return -1 ;
 				}
 
-				// ‰¹—Êİ’è
+				// éŸ³é‡è¨­å®š
 				NS_ChangeVolumeSoundMem( MusicData->Volume, MidiSystemData.DefaultHandle ) ;
 
-				// ¡‚Ü‚Å‚Ìƒnƒ“ƒhƒ‹‚Ííœ
+				// ä»Šã¾ã§ã®ãƒãƒ³ãƒ‰ãƒ«ã¯å‰Šé™¤
 				if( OldHandle != 0 )
 				{
 					if( MidiSystemData.DefaultHandleToSoundHandleFlag == TRUE )
@@ -3683,39 +3683,39 @@ extern int PlayMusicMem_PF( MIDIHANDLEDATA *MusicData, int PlayType )
 				}
 				MidiSystemData.DefaultHandleToSoundHandleFlag = TRUE ;
 
-				// Ä¶ŠJn
+				// å†ç”Ÿé–‹å§‹
 				NS_PlaySoundMem( MidiSystemData.DefaultHandle, PlayType, TRUE ) ;
 				return 0 ;
 			}
 
-			// ‚l‚h‚c‚h‚ÌƒfƒoƒCƒX‚h‚c‚ğ•Û‘¶
+			// ï¼­ï¼©ï¼¤ï¼©ã®ãƒ‡ãƒã‚¤ã‚¹ï¼©ï¼¤ã‚’ä¿å­˜
 			MidiSystemData.PF.MidiDeviceID = mciOpenParms.wDeviceID ;
 
-			// ‚l‚h‚c‚hƒ}ƒbƒp[‚©”»’è
+			// ï¼­ï¼©ï¼¤ï¼©ãƒãƒƒãƒ‘ãƒ¼ã‹åˆ¤å®š
 			mciStatusParms.dwItem = MCI_SEQ_STATUS_PORT ;
 			if( WinAPIData.Win32Func.mciSendCommandFunc( MidiSystemData.PF.MidiDeviceID , MCI_STATUS , MCI_STATUS_ITEM , ( DWORD_PTR )( LPVOID )&mciStatusParms ) )
 			{
 				WinAPIData.Win32Func.mciSendCommandFunc( MidiSystemData.PF.MidiDeviceID , MCI_CLOSE , 0 , 0 ) ;
-				DXST_LOGFILE_ADDUTF16LE( "\x2d\xff\x29\xff\x24\xff\x29\xff\x14\x6f\x4f\x59\x8b\x95\xcb\x59\xe6\x51\x06\x74\x67\x30\xa8\x30\xe9\x30\xfc\x30\x4c\x30\x77\x8d\x4d\x30\x7e\x30\x57\x30\x5f\x30\x11\xff\x0a\x00\x00"/*@ L"‚l‚h‚c‚h‰‰‘tŠJnˆ—‚ÅƒGƒ‰[‚ª‹N‚«‚Ü‚µ‚½‚P\n" @*/ ) ;
+				DXST_LOGFILE_ADDUTF16LE( "\x2d\xff\x29\xff\x24\xff\x29\xff\x14\x6f\x4f\x59\x8b\x95\xcb\x59\xe6\x51\x06\x74\x67\x30\xa8\x30\xe9\x30\xfc\x30\x4c\x30\x77\x8d\x4d\x30\x7e\x30\x57\x30\x5f\x30\x11\xff\x0a\x00\x00"/*@ L"ï¼­ï¼©ï¼¤ï¼©æ¼”å¥é–‹å§‹å‡¦ç†ã§ã‚¨ãƒ©ãƒ¼ãŒèµ·ãã¾ã—ãŸï¼‘\n" @*/ ) ;
 				goto MCI_ERROR ;
 			}
 			if( LOWORD( mciStatusParms.dwReturn ) != LOWORD( MIDI_MAPPER ) )
 			{
 				WinAPIData.Win32Func.mciSendCommandFunc( MidiSystemData.PF.MidiDeviceID , MCI_CLOSE , 0 , 0 ) ;
-				DXST_LOGFILE_ADDUTF16LE( "\x2d\xff\x29\xff\x24\xff\x29\xff\x14\x6f\x4f\x59\x8b\x95\xcb\x59\xe6\x51\x06\x74\x67\x30\xa8\x30\xe9\x30\xfc\x30\x4c\x30\x77\x8d\x4d\x30\x7e\x30\x57\x30\x5f\x30\x12\xff\x0a\x00\x00"/*@ L"‚l‚h‚c‚h‰‰‘tŠJnˆ—‚ÅƒGƒ‰[‚ª‹N‚«‚Ü‚µ‚½‚Q\n" @*/ ) ;
+				DXST_LOGFILE_ADDUTF16LE( "\x2d\xff\x29\xff\x24\xff\x29\xff\x14\x6f\x4f\x59\x8b\x95\xcb\x59\xe6\x51\x06\x74\x67\x30\xa8\x30\xe9\x30\xfc\x30\x4c\x30\x77\x8d\x4d\x30\x7e\x30\x57\x30\x5f\x30\x12\xff\x0a\x00\x00"/*@ L"ï¼­ï¼©ï¼¤ï¼©æ¼”å¥é–‹å§‹å‡¦ç†ã§ã‚¨ãƒ©ãƒ¼ãŒèµ·ãã¾ã—ãŸï¼’\n" @*/ ) ;
 				goto MCI_ERROR ;
 			}
 
-			// ƒR[ƒ‹ƒoƒbƒN‘ÎÛ‚ğƒƒCƒ“ƒEƒCƒ“ƒhƒE‚Éİ’è‚µ‚Ä‰‰‘tŠJn
+			// ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯å¯¾è±¡ã‚’ãƒ¡ã‚¤ãƒ³ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã«è¨­å®šã—ã¦æ¼”å¥é–‹å§‹
 			mciPlayParms.dwCallback = ( DWORD_PTR )NS_GetMainWindowHandle() ;
 			if( WinAPIData.Win32Func.mciSendCommandFunc( MidiSystemData.PF.MidiDeviceID , MCI_PLAY , MCI_NOTIFY , ( DWORD_PTR )( LPVOID )&mciPlayParms ) )
 			{
 				WinAPIData.Win32Func.mciSendCommandFunc( MidiSystemData.PF.MidiDeviceID , MCI_CLOSE , 0 , 0 ) ;
-				DXST_LOGFILE_ADDUTF16LE( "\x2d\xff\x29\xff\x24\xff\x29\xff\x14\x6f\x4f\x59\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"‚l‚h‚c‚h‰‰‘t‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+				DXST_LOGFILE_ADDUTF16LE( "\x2d\xff\x29\xff\x24\xff\x29\xff\x14\x6f\x4f\x59\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ï¼­ï¼©ï¼¤ï¼©æ¼”å¥ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 				goto MCI_ERROR ;
 			}
 
-			// ƒeƒ“ƒ|ƒ‰ƒŠƒtƒ@ƒCƒ‹‚©‚çÄ¶‚µ‚Ä‚¢‚é‚±‚Æ‚ğ¦‚·ƒtƒ‰ƒO‚ğ—§‚Ä‚é
+			// ãƒ†ãƒ³ãƒãƒ©ãƒªãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰å†ç”Ÿã—ã¦ã„ã‚‹ã“ã¨ã‚’ç¤ºã™ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 			MidiSystemData.MemImagePlayFlag = TRUE ;
 		}
 		break ;
@@ -3726,26 +3726,26 @@ extern int PlayMusicMem_PF( MIDIHANDLEDATA *MusicData, int PlayType )
 			D_REFERENCE_TIME RTime ;
 			HRESULT hr ;
 
-			// ƒ‹[ƒvİ’è
+			// ãƒ«ãƒ¼ãƒ—è¨­å®š
 			MusicData->PF.DirectMusicSegmentObject->SetRepeats( PlayType == DX_PLAYTYPE_LOOP ? D_DMUS_SEG_REPEAT_INFINITE : 0 ) ;
 
-			// ‰‰‘tŠJn
+			// æ¼”å¥é–‹å§‹
 			hr = SoundSysData.PF.DirectMusicPerformanceObject->PlaySegmentEx( 
-				MusicData->PF.DirectMusicSegmentObject,	// ‰‰‘t‚·‚éƒZƒOƒƒ“ƒgB
-				NULL,									// ƒ\ƒ“ƒO‚Ég—p‚·‚éƒpƒ‰ƒ[ƒ^BÀ‘•‚³‚ê‚Ä‚¢‚È‚¢B
-				NULL,									// ƒgƒ‰ƒ“ƒWƒVƒ‡ƒ“‚ÉŠÖ‚·‚éƒpƒ‰ƒ[ƒ^B
-				D_DMUS_SEGF_REFTIME,					// ƒtƒ‰ƒOB
-				0,										// ŠJnƒ^ƒCƒ€B0‚Í’¼‚¿‚ÉŠJnB
-				NULL,									// ƒZƒOƒƒ“ƒgó‘Ô‚ğó‚¯æ‚éƒ|ƒCƒ“ƒ^B
-				NULL,									// ’â~‚·‚éƒIƒuƒWƒFƒNƒgB
-				NULL									// ƒfƒtƒHƒ‹ƒg‚Å‚È‚¢ê‡‚ÍƒI[ƒfƒBƒIƒpƒXB
+				MusicData->PF.DirectMusicSegmentObject,	// æ¼”å¥ã™ã‚‹ã‚»ã‚°ãƒ¡ãƒ³ãƒˆã€‚
+				NULL,									// ã‚½ãƒ³ã‚°ã«ä½¿ç”¨ã™ã‚‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã€‚å®Ÿè£…ã•ã‚Œã¦ã„ãªã„ã€‚
+				NULL,									// ãƒˆãƒ©ãƒ³ã‚¸ã‚·ãƒ§ãƒ³ã«é–¢ã™ã‚‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã€‚
+				D_DMUS_SEGF_REFTIME,					// ãƒ•ãƒ©ã‚°ã€‚
+				0,										// é–‹å§‹ã‚¿ã‚¤ãƒ ã€‚0ã¯ç›´ã¡ã«é–‹å§‹ã€‚
+				NULL,									// ã‚»ã‚°ãƒ¡ãƒ³ãƒˆçŠ¶æ…‹ã‚’å—ã‘å–ã‚‹ãƒã‚¤ãƒ³ã‚¿ã€‚
+				NULL,									// åœæ­¢ã™ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã€‚
+				NULL									// ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã§ãªã„å ´åˆã¯ã‚ªãƒ¼ãƒ‡ã‚£ã‚ªãƒ‘ã‚¹ã€‚
 			) ;
 
-			// ‰‰‘tŠJnŠÔ‚Ì•Û‘¶
+			// æ¼”å¥é–‹å§‹æ™‚é–“ã®ä¿å­˜
 			SoundSysData.PF.DirectMusicPerformanceObject->GetTime( &RTime, NULL ) ;
 			MusicData->StartTime = _DTOL( (double)RTime / 10000.0 ) ;
 		}
-		// ƒeƒ“ƒ|ƒ‰ƒŠƒtƒ@ƒCƒ‹‚©‚çÄ¶‚µ‚Ä‚¢‚é‚±‚Æ‚ğ¦‚·ƒtƒ‰ƒO‚ğ“|‚·
+		// ãƒ†ãƒ³ãƒãƒ©ãƒªãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰å†ç”Ÿã—ã¦ã„ã‚‹ã“ã¨ã‚’ç¤ºã™ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 		MidiSystemData.MemImagePlayFlag = FALSE ;
 		break ;
 	}
@@ -3753,14 +3753,14 @@ extern int PlayMusicMem_PF( MIDIHANDLEDATA *MusicData, int PlayType )
 	return 0 ;
 
 MCI_ERROR:
-	// ƒGƒ‰[‚ª‹N‚«‚½‚çˆêƒtƒ@ƒCƒ‹‚ğíœ‚µ‚ÄI—¹
+	// ã‚¨ãƒ©ãƒ¼ãŒèµ·ããŸã‚‰ä¸€æ™‚ãƒ•ã‚¡ã‚¤ãƒ«ã‚’å‰Šé™¤ã—ã¦çµ‚äº†
 	DeleteFileWFunc( MidiSystemData.FileName ) ;
 
-	// ƒGƒ‰[I—¹
+	// ã‚¨ãƒ©ãƒ¼çµ‚äº†
 	return -1 ;
 }
 
-// ‚l‚h‚c‚hƒf[ƒ^‚Ì‰‰‘t‚ğ’â~‚·‚éˆ—‚ÌŠÂ‹«ˆË‘¶ˆ—‚ğs‚¤
+// ï¼­ï¼©ï¼¤ï¼©ãƒ‡ãƒ¼ã‚¿ã®æ¼”å¥ã‚’åœæ­¢ã™ã‚‹å‡¦ç†ã®ç’°å¢ƒä¾å­˜å‡¦ç†ã‚’è¡Œã†
 extern int StopMusicMem_PF( MIDIHANDLEDATA *MusicData )
 {
 	int i ;
@@ -3770,21 +3770,21 @@ extern int StopMusicMem_PF( MIDIHANDLEDATA *MusicData )
 	switch( SoundSysData.SoundMode )
 	{
 	case DX_MIDIMODE_MCI :
-		// ‰‰‘tI—¹ŠÖ”‚ğŒÄ‚Ô
+		// æ¼”å¥çµ‚äº†é–¢æ•°ã‚’å‘¼ã¶
 		MidiCallBackProcess() ;
 
-		// ƒEƒGƒCƒg
+		// ã‚¦ã‚¨ã‚¤ãƒˆ
 		for( i = 0 ; i <= 4 ; i++ ) NS_ProcessMessage() ;
 		break ;
 
 	case DX_MIDIMODE_DIRECT_MUSIC_REVERB :
 	case DX_MIDIMODE_DIRECT_MUSIC_NORMAL :
-		// ‰‰‘t‚ğ’â~‚·‚é
+		// æ¼”å¥ã‚’åœæ­¢ã™ã‚‹
 		SoundSysData.PF.DirectMusicPerformanceObject->StopEx( MusicData->PF.DirectMusicSegmentObject, 0, 0 ) ;
 		break ;
 	}
 
-	// ƒeƒ“ƒ|ƒ‰ƒŠƒtƒ@ƒCƒ‹‚©‚çÄ¶‚³‚ê‚Ä‚¢‚½ê‡‚Ííœ‚·‚é
+	// ãƒ†ãƒ³ãƒãƒ©ãƒªãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰å†ç”Ÿã•ã‚Œã¦ã„ãŸå ´åˆã¯å‰Šé™¤ã™ã‚‹
 	if( MidiSystemData.MemImagePlayFlag == TRUE )
 	{
 		DeleteFileWFunc( MidiSystemData.FileName ) ;
@@ -3794,7 +3794,7 @@ extern int StopMusicMem_PF( MIDIHANDLEDATA *MusicData )
 	return 0 ;
 }
 
-// ‚l‚h‚c‚hƒf[ƒ^‚ª‰‰‘t’†‚©‚Ç‚¤‚©‚ğæ“¾‚·‚é( TRUE:‰‰‘t’†  FALSE:’â~’† )ˆ—‚ÌŠÂ‹«ˆË‘¶ˆ—‚ğs‚¤ŠÖ”
+// ï¼­ï¼©ï¼¤ï¼©ãƒ‡ãƒ¼ã‚¿ãŒæ¼”å¥ä¸­ã‹ã©ã†ã‹ã‚’å–å¾—ã™ã‚‹( TRUE:æ¼”å¥ä¸­  FALSE:åœæ­¢ä¸­ )å‡¦ç†ã®ç’°å¢ƒä¾å­˜å‡¦ç†ã‚’è¡Œã†é–¢æ•°
 extern int CheckMusicMem_PF( MIDIHANDLEDATA *MusicData )
 {
 	int Result = -1 ;
@@ -3814,7 +3814,7 @@ extern int CheckMusicMem_PF( MIDIHANDLEDATA *MusicData )
 	return Result ;
 }
 
-// ‚l‚h‚c‚hƒf[ƒ^‚ÌüŠú“Iˆ—‚ÌŠÂ‹«ˆË‘¶ˆ—‚ğs‚¤ŠÖ”
+// ï¼­ï¼©ï¼¤ï¼©ãƒ‡ãƒ¼ã‚¿ã®å‘¨æœŸçš„å‡¦ç†ã®ç’°å¢ƒä¾å­˜å‡¦ç†ã‚’è¡Œã†é–¢æ•°
 extern int ProcessMusicMem_PF( MIDIHANDLEDATA *MusicData )
 {
 	int play ;
@@ -3829,13 +3829,13 @@ extern int ProcessMusicMem_PF( MIDIHANDLEDATA *MusicData )
 		play = SoundSysData.PF.DirectMusicPerformanceObject->IsPlaying( MusicData->PF.DirectMusicSegmentObject , NULL ) != S_FALSE ;
 		if( MusicData->PlayStartFlag == FALSE )
 		{
-			// ‚Ü‚¾‰‰‘t‚ªn‚Ü‚Á‚Ä‚¢‚È‚©‚Á‚½ê‡‚Íó‘Ô‚ª‰‰‘t’†‚É‚È‚Á‚½‚±‚Æ‚Å
-			// ‰‚ß‚Ä‰‰‘t’†‚Æ‚¢‚¤‚±‚Æ‚É‚È‚é
+			// ã¾ã æ¼”å¥ãŒå§‹ã¾ã£ã¦ã„ãªã‹ã£ãŸå ´åˆã¯çŠ¶æ…‹ãŒæ¼”å¥ä¸­ã«ãªã£ãŸã“ã¨ã§
+			// åˆã‚ã¦æ¼”å¥ä¸­ã¨ã„ã†ã“ã¨ã«ãªã‚‹
 			if( play == TRUE ) MusicData->PlayStartFlag = TRUE ;
 		}
 		else
 		{
-			// ‰‰‘t‚ªn‚Ü‚Á‚½‚ ‚Æ‚ÍŒ»İ‚Ìó‘Ô‚ª‚»‚Ì‚Ü‚Ü”½‰f‚³‚ê‚é
+			// æ¼”å¥ãŒå§‹ã¾ã£ãŸã‚ã¨ã¯ç¾åœ¨ã®çŠ¶æ…‹ãŒãã®ã¾ã¾åæ˜ ã•ã‚Œã‚‹
 			MusicData->PlayFlag = play ;
 		}
 		break ;
@@ -3844,7 +3844,7 @@ extern int ProcessMusicMem_PF( MIDIHANDLEDATA *MusicData )
 	return 0 ;
 }
 
-// ‚l‚h‚c‚hƒf[ƒ^‚ÌŒ»İ‚ÌÄ¶ˆÊ’u‚ğæ“¾‚·‚éˆ—‚ÌŠÂ‹«ˆË‘¶ˆ—‚ğs‚¤ŠÖ”
+// ï¼­ï¼©ï¼¤ï¼©ãƒ‡ãƒ¼ã‚¿ã®ç¾åœ¨ã®å†ç”Ÿä½ç½®ã‚’å–å¾—ã™ã‚‹å‡¦ç†ã®ç’°å¢ƒä¾å­˜å‡¦ç†ã‚’è¡Œã†é–¢æ•°
 extern int GetMusicMemPosition_PF( MIDIHANDLEDATA *MusicData )
 {
 	int Result = -1 ;
@@ -3869,7 +3869,7 @@ extern int GetMusicMemPosition_PF( MIDIHANDLEDATA *MusicData )
 			State->GetSeek( &Time ) ;
 			State->Release() ;
 
-			// ŠÔ‚ğ•Ô‚·
+			// æ™‚é–“ã‚’è¿”ã™
 			Result = _DTOL( (double)RTime / 10000.0 ) - MusicData->StartTime ;
 		}
 		break ;
@@ -3878,7 +3878,7 @@ extern int GetMusicMemPosition_PF( MIDIHANDLEDATA *MusicData )
 	return Result ;
 }
 
-// ‚l‚h‚c‚h‚ÌÄ¶‰¹—Ê‚ğƒZƒbƒg‚·‚éˆ—‚ÌŠÂ‹«ˆË‘¶ˆ—‚ğs‚¤ŠÖ”
+// ï¼­ï¼©ï¼¤ï¼©ã®å†ç”ŸéŸ³é‡ã‚’ã‚»ãƒƒãƒˆã™ã‚‹å‡¦ç†ã®ç’°å¢ƒä¾å­˜å‡¦ç†ã‚’è¡Œã†é–¢æ•°
 extern int SetVolumeMusic_PF( int Volume )
 {
 	long V ;
@@ -3886,12 +3886,12 @@ extern int SetVolumeMusic_PF( int Volume )
 	switch( SoundSysData.SoundMode )
 	{
 	case DX_MIDIMODE_MCI :
-		// ‚l‚b‚h‚Ìê‡‚Í‰¹—Ê‚Ì•ÏX‚Ío—ˆ‚È‚¢
+		// ï¼­ï¼£ï¼©ã®å ´åˆã¯éŸ³é‡ã®å¤‰æ›´ã¯å‡ºæ¥ãªã„
 		break ;
 
 	case DX_MIDIMODE_DIRECT_MUSIC_REVERB :
 	case DX_MIDIMODE_DIRECT_MUSIC_NORMAL :
-		// ‰¹—Ê‚ÌƒZƒbƒg
+		// éŸ³é‡ã®ã‚»ãƒƒãƒˆ
 		V = _DTOL( ( double )( SoundSysData.MaxVolume - DM_MIN_VOLUME ) / 256 * Volume ) + DM_MIN_VOLUME ;
 		if( Volume == 255 ) V = SoundSysData.MaxVolume ;
 		SoundSysData.PF.DirectMusicPerformanceObject->SetGlobalParam( GUID_PERFMASTERVOLUME , &V , sizeof( long ) ) ;
@@ -3902,7 +3902,7 @@ extern int SetVolumeMusic_PF( int Volume )
 	return 0 ;
 }
 
-// ‚l‚h‚c‚h‚ÌŒ»İ‚ÌÄ¶ˆÊ’u‚ğæ“¾‚·‚éˆ—‚ÌŠÂ‹«ˆË‘¶ˆ—‚ğs‚¤ŠÖ”
+// ï¼­ï¼©ï¼¤ï¼©ã®ç¾åœ¨ã®å†ç”Ÿä½ç½®ã‚’å–å¾—ã™ã‚‹å‡¦ç†ã®ç’°å¢ƒä¾å­˜å‡¦ç†ã‚’è¡Œã†é–¢æ•°
 extern int GetMusicPosition_PF( void )
 {
 	SETUP_WIN_API
@@ -3914,19 +3914,19 @@ extern int GetMusicPosition_PF( void )
 			MCI_SET_PARMS mciSetParms ;
 			MCI_STATUS_PARMS mciStatusParms ;
 
-			// æ“¾‚·‚éŠÔ‚Ì’PˆÊ‚ğƒ~ƒŠ•b’PˆÊ‚É‚·‚é
+			// å–å¾—ã™ã‚‹æ™‚é–“ã®å˜ä½ã‚’ãƒŸãƒªç§’å˜ä½ã«ã™ã‚‹
 			_MEMSET( &mciSetParms, 0, sizeof( mciSetParms ) ) ;
 			mciSetParms.dwTimeFormat = MCI_FORMAT_MILLISECONDS ;
 			if( WinAPIData.Win32Func.mciSendCommandFunc( MidiSystemData.PF.MidiDeviceID, MCI_SET, MCI_SET_TIME_FORMAT, (DWORD_PTR)&mciSetParms ) != 0 )
 				return -1 ;
 
-			// ŠÔ‚ğæ“¾‚·‚é
+			// æ™‚é–“ã‚’å–å¾—ã™ã‚‹
 			_MEMSET( &mciStatusParms, 0, sizeof( mciStatusParms ) ) ;
 			mciStatusParms.dwItem = MCI_STATUS_POSITION ;
 			if( WinAPIData.Win32Func.mciSendCommandFunc( MidiSystemData.PF.MidiDeviceID, MCI_STATUS, MCI_STATUS_ITEM, (DWORD_PTR)&mciStatusParms ) != 0 )
 				return -1 ;
 
-			// ŠÔ‚ğ•Ô‚·
+			// æ™‚é–“ã‚’è¿”ã™
 			return ( int )mciStatusParms.dwReturn ;
 		}
 		break ;
@@ -3947,7 +3947,7 @@ extern int GetMusicPosition_PF( void )
 
 //			SoundSysData.PF.DirectMusicPerformanceObject->MusicToReferenceTime( Time, &RTime ) ;
 
-			// ŠÔ‚ğ•Ô‚·
+			// æ™‚é–“ã‚’è¿”ã™
 //			return (int)Time ;
 			return _DTOL( (double)RTime / 10000.0 ) - MidiSystemData.StartTime ;
 		}
@@ -4250,13 +4250,13 @@ extern int SoundBuffer_Initialize_Timing0_PF( SOUNDBUFFER *Buffer, DWORD Bytes, 
 
 	if( SoundSysData.PF.EnableXAudioFlag )
 	{
-		// ‚R‚cƒTƒEƒ“ƒh‚©‚Ç‚¤‚©‚Å•ªŠò
+		// ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰ã‹ã©ã†ã‹ã§åˆ†å²
 		if( Is3DSound != FALSE )
 		{
 			D_XAUDIO2_EFFECT_DESCRIPTOR effects[ 1 ] ;
 			D_XAUDIO2_EFFECT_CHAIN effectChain ;
 
-			// ‚R‚cƒTƒEƒ“ƒh‚Ìê‡‚ÍƒTƒuƒ~ƒbƒNƒXƒ{ƒCƒX‚àì¬‚·‚é
+			// ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰ã®å ´åˆã¯ã‚µãƒ–ãƒŸãƒƒã‚¯ã‚¹ãƒœã‚¤ã‚¹ã‚‚ä½œæˆã™ã‚‹
 			hr = D_XAudio2CreateReverb( &Buffer->PF.XA2ReverbEffect, 0 ) ;
 			if( FAILED( hr ) )
 				goto ERR ;
@@ -4301,7 +4301,7 @@ extern int SoundBuffer_Initialize_Timing0_PF( SOUNDBUFFER *Buffer, DWORD Bytes, 
 		}
 		else
 		{
-			// ƒ‚ƒmƒ‰ƒ‹ƒTƒEƒ“ƒh‚Å‚à‚R‚cƒTƒEƒ“ƒh‚Å‚Í‚È‚¢ê‡‚Íƒpƒ“‚Ì‚½‚ß‚ÉƒXƒeƒŒƒI‚É•ÏX
+			// ãƒ¢ãƒãƒ©ãƒ«ã‚µã‚¦ãƒ³ãƒ‰ã§ã‚‚ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰ã§ã¯ãªã„å ´åˆã¯ãƒ‘ãƒ³ã®ãŸã‚ã«ã‚¹ãƒ†ãƒ¬ã‚ªã«å¤‰æ›´
 			if( waveformat.nChannels == 1 )
 			{
 				waveformat.nChannels = 2 ;
@@ -4397,7 +4397,7 @@ extern int SoundBuffer_Initialize_Timing0_PF( SOUNDBUFFER *Buffer, DWORD Bytes, 
 
 		if( SoundSysData.PF.DirectSoundObject->CreateSoundBuffer( &Desc, &Buffer->PF.DSBuffer, NULL ) != D_DS_OK )
 		{
-			// ì¬‚É¸”s‚µ‚½ê‡‚ÍAŠÜ‚ß‚é‹@”\‚ğŒ¸‚ç‚µ‚ÄÄ“xì¬‚·‚é
+			// ä½œæˆã«å¤±æ•—ã—ãŸå ´åˆã¯ã€å«ã‚ã‚‹æ©Ÿèƒ½ã‚’æ¸›ã‚‰ã—ã¦å†åº¦ä½œæˆã™ã‚‹
 			_MEMSET( &Desc, 0, sizeof( Desc ) ) ;
 			Desc.dwSize			= sizeof( Desc ) ;
 			Desc.dwFlags		= ( DWORD )( D_DSBCAPS_CTRLPAN | D_DSBCAPS_CTRLVOLUME | ( SoundSysData.PF.UseSoftwareMixing ? D_DSBCAPS_LOCSOFTWARE : D_DSBCAPS_STATIC ) ) ;
@@ -4466,10 +4466,10 @@ extern int SoundBuffer_Initialize_Timing1_PF( SOUNDBUFFER *Buffer, SOUNDBUFFER *
 {
 	int i ;
 
-	// ‚R‚cƒTƒEƒ“ƒh‚Ìê‡‚Í‚R‚cƒTƒEƒ“ƒhƒpƒ‰ƒ[ƒ^‚ğ‰Šú‰»
+	// ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰ã®å ´åˆã¯ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’åˆæœŸåŒ–
 	if( Is3DSound != FALSE )
 	{
-		// ƒGƒ~ƒbƒ^[‚ÌŠî–{“I‚Èî•ñ‚ğƒZƒbƒg‚·‚é
+		// ã‚¨ãƒŸãƒƒã‚¿ãƒ¼ã®åŸºæœ¬çš„ãªæƒ…å ±ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 		if( Src != NULL )
 		{
 			Buffer->PF.X3DAudioEmitterConeData              = Src->PF.X3DAudioEmitterConeData ;
@@ -4522,7 +4522,7 @@ extern int SoundBuffer_Initialize_Timing1_PF( SOUNDBUFFER *Buffer, SOUNDBUFFER *
 			Buffer->EmitterRadius = Buffer->PF.X3DAudioEmitterData.CurveDistanceScaler ;
 			Buffer->EmitterInnerRadius = Buffer->PF.X3DAudioEmitterData.InnerRadius ;
 
-			// ƒ`ƒƒƒ“ƒlƒ‹”‚ğ•Û‘¶‚·‚é
+			// ãƒãƒ£ãƒ³ãƒãƒ«æ•°ã‚’ä¿å­˜ã™ã‚‹
 			Buffer->PF.X3DAudioEmitterData.ChannelCount = Buffer->Format.nChannels/*D_X3DAUDIO_INPUTCHANNELS*/ ;
 			for( i = 0 ; i < Buffer->Format.nChannels ; i ++ )
 			{
@@ -4707,7 +4707,7 @@ extern int SoundBuffer_Unlock_PF( SOUNDBUFFER *Buffer, void *LockPos1, DWORD Loc
 	{
 		DWORD i ;
 
-		// ƒ_ƒuƒ‹ƒTƒCƒY‚Ìê‡‚ÍƒXƒeƒŒƒIƒf[ƒ^‚É‚·‚é
+		// ãƒ€ãƒ–ãƒ«ã‚µã‚¤ã‚ºã®å ´åˆã¯ã‚¹ãƒ†ãƒ¬ã‚ªãƒ‡ãƒ¼ã‚¿ã«ã™ã‚‹
 		if( Buffer->Wave->DoubleSizeBuffer != NULL )
 		{
 			switch( Buffer->Format.wBitsPerSample )
@@ -5068,7 +5068,7 @@ extern int SoundBuffer_CycleProcess_PF( SOUNDBUFFER *Buffer )
 
 		NowCount = NS_GetNowCount( FALSE ) ;
 
-		// Ä¶‚ª’â~‚µ‚Ä‚©‚ç‚R•bŒã‚ÉƒGƒtƒFƒNƒg‚à’â~‚·‚é
+		// å†ç”ŸãŒåœæ­¢ã—ã¦ã‹ã‚‰ï¼“ç§’å¾Œã«ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚‚åœæ­¢ã™ã‚‹
 		if( NowCount < Buffer->StopTime )
 		{
 			Time = 0x7ffffff - Buffer->StopTime + NowCount ;
@@ -5107,7 +5107,7 @@ extern int SoundBuffer_CycleProcess_PF( SOUNDBUFFER *Buffer )
 
 extern int SoundBuffer_Set3DPosition_PF( SOUNDBUFFER *Buffer, VECTOR *Position )
 {
-	// ’l‚ğ•Û‘¶
+	// å€¤ã‚’ä¿å­˜
 	Buffer->PF.X3DAudioEmitterData.Position.x = Position->x ;
 	Buffer->PF.X3DAudioEmitterData.Position.y = Position->y ;
 	Buffer->PF.X3DAudioEmitterData.Position.z = Position->z ;
@@ -5117,7 +5117,7 @@ extern int SoundBuffer_Set3DPosition_PF( SOUNDBUFFER *Buffer, VECTOR *Position )
 
 extern int SoundBuffer_Set3DRadius_PF( SOUNDBUFFER *Buffer, float Radius )
 {
-	// •·‚±‚¦‚é‹——£‚ğ•Û‘¶
+	// èã“ãˆã‚‹è·é›¢ã‚’ä¿å­˜
 	Buffer->PF.X3DAudioEmitterData.CurveDistanceScaler = Radius ;
 
 	return 0 ;
@@ -5132,7 +5132,7 @@ extern int SoundBuffer_Set3DInnerRadius_PF(	SOUNDBUFFER *Buffer, float Radius )
 
 extern int SoundBuffer_Set3DVelocity_PF( SOUNDBUFFER *Buffer, VECTOR *Velocity )
 {
-	// ’l‚ğ•Û‘¶
+	// å€¤ã‚’ä¿å­˜
 	Buffer->PF.X3DAudioEmitterData.Velocity.x = Velocity->x ;
 	Buffer->PF.X3DAudioEmitterData.Velocity.y = Velocity->y ;
 	Buffer->PF.X3DAudioEmitterData.Velocity.z = Velocity->z ;
@@ -5142,7 +5142,7 @@ extern int SoundBuffer_Set3DVelocity_PF( SOUNDBUFFER *Buffer, VECTOR *Velocity )
 
 extern int SoundBuffer_Set3DFrontPosition_PF( SOUNDBUFFER *Buffer, VECTOR * /*FrontPosition*/, VECTOR * /*UpVector*/ )
 {
-	// ’l‚ğ•Û‘¶
+	// å€¤ã‚’ä¿å­˜
 	Buffer->PF.X3DAudioEmitterData.OrientFront.x = Buffer->EmitterInfo.FrontDirection.x ;
 	Buffer->PF.X3DAudioEmitterData.OrientFront.y = Buffer->EmitterInfo.FrontDirection.y ;
 	Buffer->PF.X3DAudioEmitterData.OrientFront.z = Buffer->EmitterInfo.FrontDirection.z ;
@@ -5181,10 +5181,10 @@ extern int SoundBuffer_Refresh3DSoundParam_PF(	SOUNDBUFFER *Buffer, int /*Always
 	int i ;
 	int Num ;
 
-	// XAudio2 ‚ğg—p‚·‚é‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+	// XAudio2 ã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 	if( SoundSysData.PF.EnableXAudioFlag )
 	{
-		// XAudio2 ‚ğg—p‚·‚éê‡
+		// XAudio2 ã‚’ä½¿ç”¨ã™ã‚‹å ´åˆ
 		CalcFlags =
 			D_X3DAUDIO_CALCULATE_MATRIX |
 			D_X3DAUDIO_CALCULATE_DOPPLER |
@@ -5282,7 +5282,7 @@ extern int SoundBuffer_Refresh3DSoundParam_PF(	SOUNDBUFFER *Buffer, int /*Always
 		VECTOR ListenerToEmitterVec ;
 		VECTOR PanVec ;
 
-		// ‹——£‚Å‚ÌŒ¸Š—¦‚ğŒvZ
+		// è·é›¢ã§ã®æ¸›è¡°ç‡ã‚’è¨ˆç®—
 		ListenerToEmitterVec = VSub( Buffer->EmitterInfo.Position, SoundSysData.ListenerInfo.Position ) ;
 		Distance = VSize( ListenerToEmitterVec ) ;
 		if( Distance < 0.0000000000001f )
@@ -5299,7 +5299,7 @@ extern int SoundBuffer_Refresh3DSoundParam_PF(	SOUNDBUFFER *Buffer, int /*Always
 		}
 		ListenerToEmitterVec = VScale( ListenerToEmitterVec, 1.0f / Distance ) ;
 
-		// Šp“x‚Å‚ÌŒ¸Š—¦‚ğŒvZ
+		// è§’åº¦ã§ã®æ¸›è¡°ç‡ã‚’è¨ˆç®—
 		Angle = _ACOS( VDot( SoundSysData.ListenerInfo.FrontDirection, ListenerToEmitterVec ) ) * 2.0f ;
 		if( Angle < SoundSysData.ListenerInfo.InnerAngle )
 		{
@@ -5315,10 +5315,10 @@ extern int SoundBuffer_Refresh3DSoundParam_PF(	SOUNDBUFFER *Buffer, int /*Always
 			AngleVolumeRatio = ( Angle - SoundSysData.ListenerInfo.InnerAngle ) / ( SoundSysData.ListenerInfo.OuterAngle - SoundSysData.ListenerInfo.InnerAngle ) ;
 			AngleVolumeRatio = ( SoundSysData.ListenerInfo.OuterVolume - SoundSysData.ListenerInfo.InnerVolume ) * AngleVolumeRatio + SoundSysData.ListenerInfo.InnerVolume ;
 		}
-		// —v‘f‚ÌŠ|‚¯‡‚í‚¹
+		// è¦ç´ ã®æ›ã‘åˆã‚ã›
 		fVolume = DistanceVolumeRatio * AngleVolumeRatio ;
 
-		// ¶‰Eƒoƒ‰ƒ“ƒX‚ğŒvZ
+		// å·¦å³ãƒãƒ©ãƒ³ã‚¹ã‚’è¨ˆç®—
 		PanVec.x = VDot( ListenerToEmitterVec, SoundSysData.ListenerSideDirection ) ;
 		PanVec.y = VDot( ListenerToEmitterVec, SoundSysData.ListenerInfo.UpDirection ) ;
 		PanVec.z = VDot( ListenerToEmitterVec, SoundSysData.ListenerInfo.FrontDirection ) ;
@@ -5335,13 +5335,13 @@ extern int SoundBuffer_Refresh3DSoundParam_PF(	SOUNDBUFFER *Buffer, int /*Always
 		SoundBuffer_RefreshVolume( Buffer ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
 extern int SoundBuffer_SetReverbParam_PF( SOUNDBUFFER *Buffer, SOUND3D_REVERB_PARAM *Param )
 {
-	// XAudio2 ‚ğg—p‚·‚éê‡‚Ì‚İ—LŒø
+	// XAudio2 ã‚’ä½¿ç”¨ã™ã‚‹å ´åˆã®ã¿æœ‰åŠ¹
 	if( SoundSysData.PF.EnableXAudioFlag )
 	{
 		if( SoundSysData.PF.XAudio2_8DLL != NULL )
@@ -5416,7 +5416,7 @@ extern int SoundBuffer_SetReverbParam_PF( SOUNDBUFFER *Buffer, SOUND3D_REVERB_PA
 
 extern int SoundBuffer_SetPresetReverbParam_PF( SOUNDBUFFER *Buffer, int PresetNo )
 {
-	// XAudio2 ‚ğg—p‚·‚éê‡‚Ì‚İ—LŒø
+	// XAudio2 ã‚’ä½¿ç”¨ã™ã‚‹å ´åˆã®ã¿æœ‰åŠ¹
 	if( SoundSysData.PF.EnableXAudioFlag )
 	{
 		if( SoundSysData.PF.XAudio2_8DLL != NULL )
@@ -5457,14 +5457,14 @@ extern int SoundBuffer_SetPresetReverbParam_PF( SOUNDBUFFER *Buffer, int PresetN
 
 
 
-// ‚l‚h‚c‚h‰‰‘tI—¹ŒÄ‚Î‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”
+// ï¼­ï¼©ï¼¤ï¼©æ¼”å¥çµ‚äº†æ™‚å‘¼ã°ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 extern int MidiCallBackProcess( void )
 {
 	MCI_PLAY_PARMS		mciPlayParms;
 
 	SETUP_WIN_API
 
-	// ƒ‹[ƒvw’è‚ª‚ ‚éê‡Ä‚Ñ‰‰‘t‚ğŠJn‚·‚é
+	// ãƒ«ãƒ¼ãƒ—æŒ‡å®šãŒã‚ã‚‹å ´åˆå†ã³æ¼”å¥ã‚’é–‹å§‹ã™ã‚‹
 	if( MidiSystemData.LoopFlag == TRUE )
 	{
 		mciPlayParms.dwCallback = (DWORD_PTR) NS_GetMainWindowHandle() ;
@@ -5475,7 +5475,7 @@ extern int MidiCallBackProcess( void )
 	}
 	else 
 	{
-		// ‰‰‘t’†‚¾‚Á‚½ê‡‚Í~‚ß‚é
+		// æ¼”å¥ä¸­ã ã£ãŸå ´åˆã¯æ­¢ã‚ã‚‹
 		if( MidiSystemData.PlayFlag == TRUE )
 		{
 			WinAPIData.Win32Func.mciSendCommandFunc( MidiSystemData.PF.MidiDeviceID , MCI_CLOSE, 0, 0 );
@@ -5497,24 +5497,24 @@ extern int MidiCallBackProcess( void )
 
 
 
-// ƒTƒEƒ“ƒh‚Ìˆ—‚ğƒ\ƒtƒgƒEƒGƒA‚Ås‚¤‚©‚Ç‚¤‚©‚ğİ’è‚·‚é( TRUE:ƒ\ƒtƒgƒEƒGƒA  FALSE:ƒn[ƒhƒEƒGƒA( ƒfƒtƒHƒ‹ƒg ) )
+// ã‚µã‚¦ãƒ³ãƒ‰ã®å‡¦ç†ã‚’ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§è¡Œã†ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹( TRUE:ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢  FALSE:ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢( ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ ) )
 extern int NS_SetUseSoftwareMixingSoundFlag( int Flag )
 {
-	// ƒtƒ‰ƒO‚ğ•Û‘¶
+	// ãƒ•ãƒ©ã‚°ã‚’ä¿å­˜
 	SoundSysData.PF.UseSoftwareMixing = Flag ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒTƒEƒ“ƒh‚ÌÄ¶‚ÉXAudio‚ğg—p‚·‚é‚©‚Ç‚¤‚©‚ğİ’è‚·‚é( TRUE:g—p‚·‚é  FALSE:g—p‚µ‚È‚¢( ƒfƒtƒHƒ‹ƒg ) )
+// ã‚µã‚¦ãƒ³ãƒ‰ã®å†ç”Ÿã«XAudioã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹( TRUE:ä½¿ç”¨ã™ã‚‹  FALSE:ä½¿ç”¨ã—ãªã„( ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ ) )
 extern int NS_SetEnableXAudioFlag( int Flag )
 {
-	// ‰Šú‰»Ï‚İ‚Ìê‡‚ÍƒGƒ‰[
+	// åˆæœŸåŒ–æ¸ˆã¿ã®å ´åˆã¯ã‚¨ãƒ©ãƒ¼
 	if( SoundSysData.InitializeFlag != FALSE )
 		return -1 ;
 
-	// ƒtƒ‰ƒO‚ğ•Û‘¶‚·‚é
+	// ãƒ•ãƒ©ã‚°ã‚’ä¿å­˜ã™ã‚‹
 	if( Flag )
 	{
 		SoundSysData.PF.EnableXAudioFlag = TRUE ;
@@ -5529,20 +5529,20 @@ extern int NS_SetEnableXAudioFlag( int Flag )
 		SoundSysData.PF.EnableXAudioFlag = FALSE ;
 	}
 	
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒTƒEƒ“ƒh‚ÌÄ¶‚ÉWASAPI‚ğg—p‚·‚é‚©‚Ç‚¤‚©‚ğİ’è‚·‚é( Flag  TRUE:g—p‚·‚é  FALSE:g—p‚µ‚È‚¢( ƒfƒtƒHƒ‹ƒg ), IsExclusive  TRUE:”r‘¼ƒ‚[ƒh‚ğg—p‚·‚é  FALSE:”r‘¼ƒ‚[ƒh‚ğg—p‚µ‚È‚¢, DevicePeriod Ä¶’x‰„ŠÔA100ƒiƒm•b’PˆÊ( 100000 ‚Å 10ƒ~ƒŠ•b )A-1‚ÅƒfƒtƒHƒ‹ƒg’l, SamplePerSec ƒTƒ“ƒvƒŠƒ“ƒOƒŒ[ƒg )
+// ã‚µã‚¦ãƒ³ãƒ‰ã®å†ç”Ÿã«WASAPIã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹( Flag  TRUE:ä½¿ç”¨ã™ã‚‹  FALSE:ä½¿ç”¨ã—ãªã„( ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ ), IsExclusive  TRUE:æ’ä»–ãƒ¢ãƒ¼ãƒ‰ã‚’ä½¿ç”¨ã™ã‚‹  FALSE:æ’ä»–ãƒ¢ãƒ¼ãƒ‰ã‚’ä½¿ç”¨ã—ãªã„, DevicePeriod å†ç”Ÿé…å»¶æ™‚é–“ã€100ãƒŠãƒç§’å˜ä½( 100000 ã§ 10ãƒŸãƒªç§’ )ã€-1ã§ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå€¤, SamplePerSec ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ãƒ¬ãƒ¼ãƒˆ )
 extern int NS_SetEnableWASAPIFlag( int Flag, int IsExclusive, int DevicePeriod, int SamplePerSec )
 {
-	// ‰Šú‰»Ï‚İ‚Ìê‡‚ÍƒGƒ‰[
+	// åˆæœŸåŒ–æ¸ˆã¿ã®å ´åˆã¯ã‚¨ãƒ©ãƒ¼
 	if( SoundSysData.InitializeFlag != FALSE )
 		return -1 ;
 
 	if( Flag )
 	{
-		// ƒtƒ‰ƒO‚ğ•Û‘¶‚·‚é
+		// ãƒ•ãƒ©ã‚°ã‚’ä¿å­˜ã™ã‚‹
 		SoundSysData.PF.DisableWASAPIFlag = FALSE ;
 		SoundSysData.PF.EnableXAudioFlag = FALSE ;
 #ifndef DX_NON_ASIO
@@ -5550,43 +5550,43 @@ extern int NS_SetEnableWASAPIFlag( int Flag, int IsExclusive, int DevicePeriod, 
 #endif // DX_NON_ASIO
 		SoundSysData.PF.EnableMMEwaveOutFlag = FALSE ;
 
-		// ”r‘¼ƒ‚[ƒh‚©‚Ç‚¤‚©‚ğ•Û‘¶‚·‚é
+		// æ’ä»–ãƒ¢ãƒ¼ãƒ‰ã‹ã©ã†ã‹ã‚’ä¿å­˜ã™ã‚‹
 		SoundSysData.PF.WASAPI_IsExclusiveFlag = IsExclusive ;
 
-		// ƒpƒ‰ƒ[ƒ^‚ğ•Û‘¶‚·‚é
+		// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ä¿å­˜ã™ã‚‹
 		SoundSysData.PF.WASAPI_EnableUserParam = TRUE ;
 		SoundSysData.PF.WASAPI_UserParam_DevicePeriod = DevicePeriod ;
 		SoundSysData.PF.WASAPI_UserParam_SamplePerSec = SamplePerSec ;
 	}
 	else
 	{
-		// ƒtƒ‰ƒO‚ğ•Û‘¶‚·‚é
+		// ãƒ•ãƒ©ã‚°ã‚’ä¿å­˜ã™ã‚‹
 		SoundSysData.PF.DisableWASAPIFlag = TRUE ;
 		SoundSysData.PF.WASAPI_EnableUserParam = FALSE ;
 	}
 	
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
 #ifndef DX_NON_ASIO
 
-// ƒTƒEƒ“ƒh‚ÌÄ¶‚ÉASIO‚ğg—p‚·‚é‚©‚Ç‚¤‚©‚ğİ’è‚·‚é( Flag  TRUE:g—p‚·‚é  FALSE:g—p‚µ‚È‚¢( ƒfƒtƒHƒ‹ƒg ), BufferSize Ä¶ƒoƒbƒtƒ@‚ÌƒTƒCƒYA¬‚³‚¢‚Ù‚Ç’x‰„‚ª­‚È‚­‚È‚è‚Ü‚·‚ªAˆ—‚ªŠÔ‚É‡‚í‚¸‚ÉƒuƒcƒuƒcƒmƒCƒY‚ª”­¶‚·‚é‰Â”\«‚à‚‚­‚È‚è‚Ü‚·( -1 ‚ÅƒfƒtƒHƒ‹ƒg’l ), SamplePerSec ƒTƒ“ƒvƒŠƒ“ƒOƒŒ[ƒg )
+// ã‚µã‚¦ãƒ³ãƒ‰ã®å†ç”Ÿã«ASIOã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹( Flag  TRUE:ä½¿ç”¨ã™ã‚‹  FALSE:ä½¿ç”¨ã—ãªã„( ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ ), BufferSize å†ç”Ÿãƒãƒƒãƒ•ã‚¡ã®ã‚µã‚¤ã‚ºã€å°ã•ã„ã»ã©é…å»¶ãŒå°‘ãªããªã‚Šã¾ã™ãŒã€å‡¦ç†ãŒé–“ã«åˆã‚ãšã«ãƒ–ãƒ„ãƒ–ãƒ„ãƒã‚¤ã‚ºãŒç™ºç”Ÿã™ã‚‹å¯èƒ½æ€§ã‚‚é«˜ããªã‚Šã¾ã™( -1 ã§ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå€¤ ), SamplePerSec ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ãƒ¬ãƒ¼ãƒˆ )
 extern int NS_SetEnableASIOFlag( int Flag, int BufferSize, int SamplePerSec )
 {
-	// ‰Šú‰»Ï‚İ‚Ìê‡‚ÍƒGƒ‰[
+	// åˆæœŸåŒ–æ¸ˆã¿ã®å ´åˆã¯ã‚¨ãƒ©ãƒ¼
 	if( SoundSysData.InitializeFlag != FALSE )
 		return -1 ;
 
 	if( Flag )
 	{
-		// ƒtƒ‰ƒO‚ğ•Û‘¶‚·‚é
+		// ãƒ•ãƒ©ã‚°ã‚’ä¿å­˜ã™ã‚‹
 		SoundSysData.PF.EnableASIOFlag = TRUE ;
 //		SoundSysData.PF.DisableWASAPIFlag = TRUE ;
 		SoundSysData.PF.EnableXAudioFlag = FALSE ;
 		SoundSysData.PF.EnableMMEwaveOutFlag = FALSE ;
 
-		// ƒpƒ‰ƒ[ƒ^‚ğ•Û‘¶‚·‚é
+		// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ä¿å­˜ã™ã‚‹
 		SoundSysData.PF.ASIO_EnableUserParam = TRUE ;
 		SoundSysData.PF.ASIO_UserParam_BufferSize = BufferSize ;
 		SoundSysData.PF.ASIO_UserParam_SamplePerSec = SamplePerSec ;
@@ -5597,36 +5597,36 @@ extern int NS_SetEnableASIOFlag( int Flag, int BufferSize, int SamplePerSec )
 		SoundSysData.PF.ASIO_EnableUserParam = FALSE ;
 	}
 	
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒTƒEƒ“ƒh‚ÌÄ¶‚Ég—p‚·‚éASIOƒhƒ‰ƒCƒo[‚Ì”Ô†‚ğİ’è‚·‚é( ƒfƒtƒHƒ‹ƒg‚Å‚Í 0 )
+// ã‚µã‚¦ãƒ³ãƒ‰ã®å†ç”Ÿã«ä½¿ç”¨ã™ã‚‹ASIOãƒ‰ãƒ©ã‚¤ãƒãƒ¼ã®ç•ªå·ã‚’è¨­å®šã™ã‚‹( ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã§ã¯ 0 )
 extern int NS_SetUseASIODriverIndex( int Index )
 {
-	// ‰Šú‰»Ï‚İ‚Ìê‡‚ÍƒGƒ‰[
+	// åˆæœŸåŒ–æ¸ˆã¿ã®å ´åˆã¯ã‚¨ãƒ©ãƒ¼
 	if( SoundSysData.InitializeFlag != FALSE )
 		return -1 ;
 
-	// ”Ô†‚ğ•Û‘¶
+	// ç•ªå·ã‚’ä¿å­˜
 	SoundSysData.PF.ASIO_DriverUseIndex = Index ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
 #endif // DX_NON_ASIO
 
-// ƒTƒEƒ“ƒh‚ÌÄ¶‚Éƒ}ƒ‹ƒ`ƒƒfƒBƒAAPI‚Ì waveOut ‚ğg—p‚·‚é‚©‚Ç‚¤‚©‚ğİ’è‚·‚é( Flag  TRUE:g—p‚·‚é  FALSE:g—p‚µ‚È‚¢( ƒfƒtƒHƒ‹ƒg ), BufferSize Ä¶ƒoƒbƒtƒ@‚ÌƒTƒCƒYA¬‚³‚¢‚Ù‚Ç’x‰„‚ª­‚È‚­‚È‚è‚Ü‚·‚ªAˆ—‚ªŠÔ‚É‡‚í‚¸‚ÉƒuƒcƒuƒcƒmƒCƒY‚ª”­¶‚·‚é‰Â”\«‚à‚‚­‚È‚è‚Ü‚·( -1 ‚ÅƒfƒtƒHƒ‹ƒg’l ), SamplePerSec ƒTƒ“ƒvƒŠƒ“ƒOƒŒ[ƒg )
+// ã‚µã‚¦ãƒ³ãƒ‰ã®å†ç”Ÿã«ãƒãƒ«ãƒãƒ¡ãƒ‡ã‚£ã‚¢APIã® waveOut ã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹( Flag  TRUE:ä½¿ç”¨ã™ã‚‹  FALSE:ä½¿ç”¨ã—ãªã„( ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ ), BufferSize å†ç”Ÿãƒãƒƒãƒ•ã‚¡ã®ã‚µã‚¤ã‚ºã€å°ã•ã„ã»ã©é…å»¶ãŒå°‘ãªããªã‚Šã¾ã™ãŒã€å‡¦ç†ãŒé–“ã«åˆã‚ãšã«ãƒ–ãƒ„ãƒ–ãƒ„ãƒã‚¤ã‚ºãŒç™ºç”Ÿã™ã‚‹å¯èƒ½æ€§ã‚‚é«˜ããªã‚Šã¾ã™( -1 ã§ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå€¤ ), SamplePerSec ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ãƒ¬ãƒ¼ãƒˆ )
 extern int NS_SetEnableMMEwaveOutFlag( int Flag, int BufferSamples, int SamplePerSec )
 {
-	// ‰Šú‰»Ï‚İ‚Ìê‡‚ÍƒGƒ‰[
+	// åˆæœŸåŒ–æ¸ˆã¿ã®å ´åˆã¯ã‚¨ãƒ©ãƒ¼
 	if( SoundSysData.InitializeFlag != FALSE )
 		return -1 ;
 
 	if( Flag )
 	{
-		// ƒtƒ‰ƒO‚ğ•Û‘¶‚·‚é
+		// ãƒ•ãƒ©ã‚°ã‚’ä¿å­˜ã™ã‚‹
 		SoundSysData.PF.EnableMMEwaveOutFlag = TRUE ;
 		SoundSysData.PF.DisableWASAPIFlag = TRUE ;
 		SoundSysData.PF.EnableXAudioFlag = FALSE ;
@@ -5634,7 +5634,7 @@ extern int NS_SetEnableMMEwaveOutFlag( int Flag, int BufferSamples, int SamplePe
 		SoundSysData.PF.EnableASIOFlag = FALSE ;
 #endif // DX_NON_ASIO
 
-		// ƒpƒ‰ƒ[ƒ^‚ğ•Û‘¶‚·‚é
+		// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ä¿å­˜ã™ã‚‹
 		SoundSysData.PF.waveOut_EnableUserParam = TRUE ;
 		SoundSysData.PF.waveOut_UserParam_BufferSamples = BufferSamples ;
 		SoundSysData.PF.waveOut_UserParam_SamplePerSec = SamplePerSec ;
@@ -5645,13 +5645,13 @@ extern int NS_SetEnableMMEwaveOutFlag( int Flag, int BufferSamples, int SamplePe
 		SoundSysData.PF.waveOut_EnableUserParam = FALSE ;
 	}
 	
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// î•ñæ“¾ŒnŠÖ”
+// æƒ…å ±å–å¾—ç³»é–¢æ•°
 
-// ‚c‚wƒ‰ƒCƒuƒ‰ƒŠ‚ªg—p‚µ‚Ä‚¢‚é DirectSound ƒIƒuƒWƒFƒNƒg‚ğæ“¾‚·‚é
+// ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªãŒä½¿ç”¨ã—ã¦ã„ã‚‹ DirectSound ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å–å¾—ã™ã‚‹
 extern const void *NS_GetDSoundObj( void )
 {
 	return SoundSysData.PF.DirectSoundObject ;

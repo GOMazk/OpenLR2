@@ -1,6 +1,6 @@
 // -------------------------------------------------------------------------------
 // 
-// 		‚c‚wƒ‰ƒCƒuƒ‰ƒŠ		Android—pƒ‚ƒfƒ‹ƒf[ƒ^§ŒäƒvƒƒOƒ‰ƒ€ƒwƒbƒ_ƒtƒ@ƒCƒ‹
+// 		ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒª		Androidç”¨ãƒ¢ãƒ‡ãƒ«ãƒ‡ãƒ¼ã‚¿åˆ¶å¾¡ãƒ—ãƒ­ã‚°ãƒ©ãƒ ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«
 // 
 // 				Ver 3.25a
 // 
@@ -9,7 +9,7 @@
 #ifndef DX_MODELANDROID_H
 #define DX_MODELANDROID_H
 
-// ƒCƒ“ƒNƒ‹[ƒh ------------------------------------------------------------------
+// ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ ------------------------------------------------------------------
 #include "../DxCompileConfig.h"
 
 #ifndef DX_NON_MODEL
@@ -25,49 +25,49 @@ namespace DxLib
 
 #endif // DX_NON_NAMESPACE
 
-// ƒ}ƒNƒ’è‹` --------------------------------------------------------------------
+// ãƒžã‚¯ãƒ­å®šç¾© --------------------------------------------------------------------
 
-// \‘¢‘Ì’è‹` --------------------------------------------------------------------
+// æ§‹é€ ä½“å®šç¾© --------------------------------------------------------------------
 
-// Android—p ƒ‚ƒfƒ‹ƒf[ƒ^ŠÇ——p\‘¢‘Ì
+// Androidç”¨ ãƒ¢ãƒ‡ãƒ«ãƒ‡ãƒ¼ã‚¿ç®¡ç†ç”¨æ§‹é€ ä½“
 struct MV1_MODEL_MANAGE_ANDR
 {
-	void *					CommonBuffer ;						// Žå‚ÉƒVƒFƒCƒvÀ•W‚ÌXV‚ÅŽg—p‚·‚é”Ä—pƒoƒbƒtƒ@
-	int						CommonBufferSize ;					// Žå‚ÉƒVƒFƒCƒvÀ•W‚ÌXV‚ÅŽg—p‚·‚é”Ä—pƒoƒbƒtƒ@‚ÌƒTƒCƒY
+	void *					CommonBuffer ;						// ä¸»ã«ã‚·ã‚§ã‚¤ãƒ—åº§æ¨™ã®æ›´æ–°ã§ä½¿ç”¨ã™ã‚‹æ±Žç”¨ãƒãƒƒãƒ•ã‚¡
+	int						CommonBufferSize ;					// ä¸»ã«ã‚·ã‚§ã‚¤ãƒ—åº§æ¨™ã®æ›´æ–°ã§ä½¿ç”¨ã™ã‚‹æ±Žç”¨ãƒãƒƒãƒ•ã‚¡ã®ã‚µã‚¤ã‚º
 
-	int						EnableLightNum ;					// —LŒø‚Èƒ‰ƒCƒg‚Ì”
+	int						EnableLightNum ;					// æœ‰åŠ¹ãªãƒ©ã‚¤ãƒˆã®æ•°
 } ;
 
-// Android—p ’¸“_ƒoƒbƒtƒ@ŠÂ‹«ˆË‘¶î•ñ
+// Androidç”¨ é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ç’°å¢ƒä¾å­˜æƒ…å ±
 struct MV1_VERTEXBUFFER_PF
 {
-	GLuint					VertexBufferObject ;				// ’¸“_ƒoƒbƒtƒ@
-	GLuint					IndexBufferObject ;					// ƒCƒ“ƒfƒbƒNƒXƒoƒbƒtƒ@
+	GLuint					VertexBufferObject ;				// é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡
+	GLuint					IndexBufferObject ;					// ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒãƒƒãƒ•ã‚¡
 } ;
 
-// Android—p ƒgƒ‰ƒCƒAƒ“ƒOƒ‹ƒŠƒXƒgŠîƒf[ƒ^ŠÂ‹«ˆË‘¶î•ñ
+// Androidç”¨ ãƒˆãƒ©ã‚¤ã‚¢ãƒ³ã‚°ãƒ«ãƒªã‚¹ãƒˆåŸºãƒ‡ãƒ¼ã‚¿ç’°å¢ƒä¾å­˜æƒ…å ±
 struct MV1_TRIANGLE_LIST_BASE_PF
 {
-	BYTE					SkinFreeBoneVertexBufferUpdate ;	// ‚Xƒ{[ƒ“ˆÈã‚ÌƒXƒLƒjƒ“ƒOƒƒbƒVƒ…ˆ——p’¸“_ƒf[ƒ^‚ðXV‚µ‚½‚©‚Ç‚¤‚©( TRUE:XVÏ‚Ý  FALSE:–¢XV )
-	void *					SkinFreeBoneVertexBuffer ;			// ‚Xƒ{[ƒ“ˆÈã‚ÌƒXƒLƒjƒ“ƒOƒƒbƒVƒ…ˆ——p’¸“_ƒf[ƒ^
+	BYTE					SkinFreeBoneVertexBufferUpdate ;	// ï¼™ãƒœãƒ¼ãƒ³ä»¥ä¸Šã®ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥å‡¦ç†ç”¨é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ã‚’æ›´æ–°ã—ãŸã‹ã©ã†ã‹( TRUE:æ›´æ–°æ¸ˆã¿  FALSE:æœªæ›´æ–° )
+	void *					SkinFreeBoneVertexBuffer ;			// ï¼™ãƒœãƒ¼ãƒ³ä»¥ä¸Šã®ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥å‡¦ç†ç”¨é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿
 } ;
 
-// Android—p ƒgƒ‰ƒCƒAƒ“ƒOƒ‹ƒŠƒXƒgŠÂ‹«ˆË‘¶î•ñ
+// Androidç”¨ ãƒˆãƒ©ã‚¤ã‚¢ãƒ³ã‚°ãƒ«ãƒªã‚¹ãƒˆç’°å¢ƒä¾å­˜æƒ…å ±
 struct MV1_TRIANGLE_LIST_PF
 {
-	void *					SkinFreeBoneVertexPositionBuffer ;	// ‚Xƒ{[ƒ“ˆÈã‚ÌƒXƒLƒjƒ“ƒOƒƒbƒVƒ…ˆ——p’¸“_À•Wƒf[ƒ^
-	GLuint					VertexBufferObject ;				// ’¸“_ƒoƒbƒtƒ@
+	void *					SkinFreeBoneVertexPositionBuffer ;	// ï¼™ãƒœãƒ¼ãƒ³ä»¥ä¸Šã®ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥å‡¦ç†ç”¨é ‚ç‚¹åº§æ¨™ãƒ‡ãƒ¼ã‚¿
+	GLuint					VertexBufferObject ;				// é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡
 } ;
 
-// “à•”‘åˆæ•Ï”éŒ¾ --------------------------------------------------------------
+// å†…éƒ¨å¤§åŸŸå¤‰æ•°å®£è¨€ --------------------------------------------------------------
 
 extern MV1_MODEL_MANAGE_ANDR MV1Man_Android ;
 
-// ŠÖ”ƒvƒƒgƒ^ƒCƒvéŒ¾-----------------------------------------------------------
+// é–¢æ•°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€-----------------------------------------------------------
 
-// ”Ä—pƒoƒbƒtƒ@ŠÖ”
-extern	int				MV1_ANDR_CommonBuffer_Setup( int Size ) ;						// Žw’èƒTƒCƒY‚Ì”Ä—pƒoƒbƒtƒ@‚Ì€”õ‚ðs‚¤
-extern	int				MV1_ANDR_CommonBuffer_Terminate( void ) ;						// ”Ä—pƒoƒbƒtƒ@‚ÌŒãŽn––‚ðs‚¤
+// æ±Žç”¨ãƒãƒƒãƒ•ã‚¡é–¢æ•°
+extern	int				MV1_ANDR_CommonBuffer_Setup( int Size ) ;						// æŒ‡å®šã‚µã‚¤ã‚ºã®æ±Žç”¨ãƒãƒƒãƒ•ã‚¡ã®æº–å‚™ã‚’è¡Œã†
+extern	int				MV1_ANDR_CommonBuffer_Terminate( void ) ;						// æ±Žç”¨ãƒãƒƒãƒ•ã‚¡ã®å¾Œå§‹æœ«ã‚’è¡Œã†
 
 #ifndef DX_NON_NAMESPACE
 

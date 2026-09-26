@@ -1,6 +1,6 @@
 // -------------------------------------------------------------------------------
 // 
-// 		‚c‚wƒ‰ƒCƒuƒ‰ƒŠ		•W€‚bƒ‰ƒCƒuƒ‰ƒŠŽg—pƒR[ƒh@OggŠÖŒWƒwƒbƒ_ƒtƒ@ƒCƒ‹
+// 		ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒª		æ¨™æº–ï¼£ãƒ©ã‚¤ãƒ–ãƒ©ãƒªä½¿ç”¨ã‚³ãƒ¼ãƒ‰ã€€Oggé–¢ä¿‚ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«
 // 
 // 				Ver 3.25a
 // 
@@ -9,7 +9,7 @@
 #ifndef DX_USECLIBOGG_H
 #define DX_USECLIBOGG_H
 
-// ƒCƒ“ƒNƒ‹[ƒh ------------------------------------------------------------------
+// ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ ------------------------------------------------------------------
 #include "DxCompileConfig.h"
 
 #ifndef DX_NON_OGGTHEORA
@@ -53,154 +53,154 @@
 //namespace DxLib
 //{
 
-// ƒ}ƒNƒ’è‹` --------------------------------------------------------------------
+// ãƒžã‚¯ãƒ­å®šç¾© --------------------------------------------------------------------
 
-// Theora ƒfƒR[ƒhƒXƒŒƒbƒh‚Ìó‘Ô
-#define THEORAT_STATE_IDLE		(0)				// ‰½‚à‚µ‚Ä‚¢‚È‚¢
-#define THEORAT_STATE_DECODE	(1)				// ƒtƒŒ[ƒ€ƒfƒR[ƒh’†
-#define THEORAT_STATE_SEEK		(2)				// ƒV[ƒN’†
-#define THEORAT_STATE_EXIT		(3)				// ƒXƒŒƒbƒhI—¹
-#define THEORAT_STATE_STOP		(4)				// ƒXƒŒƒbƒhƒXƒgƒbƒv’†
+// Theora ãƒ‡ã‚³ãƒ¼ãƒ‰ã‚¹ãƒ¬ãƒƒãƒ‰ã®çŠ¶æ…‹
+#define THEORAT_STATE_IDLE		(0)				// ä½•ã‚‚ã—ã¦ã„ãªã„
+#define THEORAT_STATE_DECODE	(1)				// ãƒ•ãƒ¬ãƒ¼ãƒ ãƒ‡ã‚³ãƒ¼ãƒ‰ä¸­
+#define THEORAT_STATE_SEEK		(2)				// ã‚·ãƒ¼ã‚¯ä¸­
+#define THEORAT_STATE_EXIT		(3)				// ã‚¹ãƒ¬ãƒƒãƒ‰çµ‚äº†
+#define THEORAT_STATE_STOP		(4)				// ã‚¹ãƒ¬ãƒƒãƒ‰ã‚¹ãƒˆãƒƒãƒ—ä¸­
 
-// \‘¢‘Ì’è‹` --------------------------------------------------------------------
+// æ§‹é€ ä½“å®šç¾© --------------------------------------------------------------------
 
 #ifndef DX_NON_OGGTHEORA
-// Ogg ƒy[ƒWƒwƒbƒ_( ƒwƒbƒ_‚ÌƒTƒCƒY‚Ì‹‚ß•û‚Í Segments + 27 )
+// Ogg ãƒšãƒ¼ã‚¸ãƒ˜ãƒƒãƒ€( ãƒ˜ãƒƒãƒ€ã®ã‚µã‚¤ã‚ºã®æ±‚ã‚æ–¹ã¯ Segments + 27 )
 typedef struct tagOGG_HEADER
 {
-	char					ID[ 4 ] ;					// Ž¯•ÊID "OggS"
-	BYTE					Version ;					// ƒo[ƒWƒ‡ƒ“
-	BYTE					HeadType ;					// ƒwƒbƒ_[ƒ^ƒCƒv
-	BYTE					GranulePosition[ 8 ] ;		// ƒAƒhƒŒƒX( ƒŠƒgƒ‹ƒGƒ“ƒfƒBƒAƒ“ )
-	BYTE					SerialNumber[ 4 ] ;			// ƒVƒŠƒAƒ‹ƒiƒ“ƒo[
-	BYTE					PageNumber[ 4 ] ;			// ƒy[ƒWƒiƒ“ƒo[
-	BYTE					CRCCehckSum[ 4 ] ;			// CRCƒ`ƒFƒbƒNƒTƒ€
-	BYTE					Segments ;					// ƒZƒOƒƒ“ƒg”
-	BYTE					SegmentTable[ 1 ] ;			// ƒZƒOƒƒ“ƒgƒe[ƒuƒ‹
+	char					ID[ 4 ] ;					// è­˜åˆ¥ID "OggS"
+	BYTE					Version ;					// ãƒãƒ¼ã‚¸ãƒ§ãƒ³
+	BYTE					HeadType ;					// ãƒ˜ãƒƒãƒ€ãƒ¼ã‚¿ã‚¤ãƒ—
+	BYTE					GranulePosition[ 8 ] ;		// ã‚¢ãƒ‰ãƒ¬ã‚¹( ãƒªãƒˆãƒ«ã‚¨ãƒ³ãƒ‡ã‚£ã‚¢ãƒ³ )
+	BYTE					SerialNumber[ 4 ] ;			// ã‚·ãƒªã‚¢ãƒ«ãƒŠãƒ³ãƒãƒ¼
+	BYTE					PageNumber[ 4 ] ;			// ãƒšãƒ¼ã‚¸ãƒŠãƒ³ãƒãƒ¼
+	BYTE					CRCCehckSum[ 4 ] ;			// CRCãƒã‚§ãƒƒã‚¯ã‚µãƒ 
+	BYTE					Segments ;					// ã‚»ã‚°ãƒ¡ãƒ³ãƒˆæ•°
+	BYTE					SegmentTable[ 1 ] ;			// ã‚»ã‚°ãƒ¡ãƒ³ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«
 } OGG_HEADER ;
 
-// ƒy[ƒW‚Ìî•ñ
+// ãƒšãƒ¼ã‚¸ã®æƒ…å ±
 typedef struct tagTHEORA_PAGEINFO
 {
-	int						StreamAddres ;				// ƒXƒgƒŠ[ƒ€ã‚ÌƒAƒhƒŒƒX
-	int						FrameAddres ;				// Theora “®‰æ’†‚ÌƒtƒŒ[ƒ€
-	int						KeyFrame ;					// ƒL[ƒtƒŒ[ƒ€‚ªŠÜ‚Ü‚ê‚Ä‚¢‚é‚©‚Ç‚¤‚©
-	int						FrameNum ;					// ƒy[ƒW‚ÉŠÜ‚Ü‚ê‚éƒtƒŒ[ƒ€”
+	int						StreamAddres ;				// ã‚¹ãƒˆãƒªãƒ¼ãƒ ä¸Šã®ã‚¢ãƒ‰ãƒ¬ã‚¹
+	int						FrameAddres ;				// Theora å‹•ç”»ä¸­ã®ãƒ•ãƒ¬ãƒ¼ãƒ 
+	int						KeyFrame ;					// ã‚­ãƒ¼ãƒ•ãƒ¬ãƒ¼ãƒ ãŒå«ã¾ã‚Œã¦ã„ã‚‹ã‹ã©ã†ã‹
+	int						FrameNum ;					// ãƒšãƒ¼ã‚¸ã«å«ã¾ã‚Œã‚‹ãƒ•ãƒ¬ãƒ¼ãƒ æ•°
 } THEORA_PAGEINFO ;
 
-// ƒXƒgƒbƒNƒtƒŒ[ƒ€‚Ìî•ñ
+// ã‚¹ãƒˆãƒƒã‚¯ãƒ•ãƒ¬ãƒ¼ãƒ ã®æƒ…å ±
 typedef struct tagTHEORA_STOCKFRAME
 {
-	volatile int			UseFlag ;					// Žg—p‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©( 1:Žg—p‚µ‚Ä‚¢‚é  0:Žg—p‚µ‚Ä‚¢‚È‚¢ )
-	volatile int			FrameNumber ;				// •Û‘¶‚µ‚Ä‚¢‚é‰æ‘œ‚ÌƒtƒŒ[ƒ€
+	volatile int			UseFlag ;					// ä½¿ç”¨ã—ã¦ã„ã‚‹ã‹ã©ã†ã‹( 1:ä½¿ç”¨ã—ã¦ã„ã‚‹  0:ä½¿ç”¨ã—ã¦ã„ãªã„ )
+	volatile int			FrameNumber ;				// ä¿å­˜ã—ã¦ã„ã‚‹ç”»åƒã®ãƒ•ãƒ¬ãƒ¼ãƒ 
 
-	void					*YBuffer ;					// ‚xƒCƒ[ƒW‚Ö‚ÌƒAƒhƒŒƒX
-	void					*UVBuffer ;					// ‚t‚uƒCƒ[ƒW‚Ö‚ÌƒAƒhƒŒƒX
-	int						YWidth, YHeight ;			// ‚xƒCƒ[ƒW‚Ì•‚Æ‚‚³
-	int						YStride ;					// ‚xƒoƒbƒtƒ@‚Ìƒsƒbƒ`
-	int						UVWidth, UVHeight ;			// ‚t‚uƒCƒ[ƒW‚Ì•‚Æ‚‚³
-	int						UVStride ;					// ‚t‚uƒoƒbƒtƒ@‚Ìƒsƒbƒ`
+	void					*YBuffer ;					// ï¼¹ã‚¤ãƒ¡ãƒ¼ã‚¸ã¸ã®ã‚¢ãƒ‰ãƒ¬ã‚¹
+	void					*UVBuffer ;					// ï¼µï¼¶ã‚¤ãƒ¡ãƒ¼ã‚¸ã¸ã®ã‚¢ãƒ‰ãƒ¬ã‚¹
+	int						YWidth, YHeight ;			// ï¼¹ã‚¤ãƒ¡ãƒ¼ã‚¸ã®å¹…ã¨é«˜ã•
+	int						YStride ;					// ï¼¹ãƒãƒƒãƒ•ã‚¡ã®ãƒ”ãƒƒãƒ
+	int						UVWidth, UVHeight ;			// ï¼µï¼¶ã‚¤ãƒ¡ãƒ¼ã‚¸ã®å¹…ã¨é«˜ã•
+	int						UVStride ;					// ï¼µï¼¶ãƒãƒƒãƒ•ã‚¡ã®ãƒ”ãƒƒãƒ
 } THEORA_STOCKFRAME ;
 
-// Ogg Theora ƒfƒR[ƒhˆ——pƒf[ƒ^\‘¢‘Ì
+// Ogg Theora ãƒ‡ã‚³ãƒ¼ãƒ‰å‡¦ç†ç”¨ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
 typedef struct tagDECODE_THEORA
 {
 #ifndef DX_NON_NAMESPACE
-	DxLib::DX_CRITICAL_SECTION	CriticalSection ;		// •¡”ƒXƒŒƒbƒh‚Å‚Ì‹£‡–hŽ~—p‚ÌƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“
+	DxLib::DX_CRITICAL_SECTION	CriticalSection ;		// è¤‡æ•°ã‚¹ãƒ¬ãƒƒãƒ‰ã§ã®ç«¶åˆé˜²æ­¢ç”¨ã®ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³
 #else // DX_NON_NAMESPACE
-	DX_CRITICAL_SECTION		CriticalSection ;			// •¡”ƒXƒŒƒbƒh‚Å‚Ì‹£‡–hŽ~—p‚ÌƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“
+	DX_CRITICAL_SECTION		CriticalSection ;			// è¤‡æ•°ã‚¹ãƒ¬ãƒƒãƒ‰ã§ã®ç«¶åˆé˜²æ­¢ç”¨ã®ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³
 #endif // DX_NON_NAMESPACE
 
-	volatile int			ThreadState ;				// ƒXƒŒƒbƒh‚Ìó‘Ô( THEORAT_STATE_IDLE “™ )
-	volatile int			ThreadStopRequest ;			// ƒXƒŒƒbƒh‚ÉŽ~‚Ü‚Á‚Ä‚Ù‚µ‚¢‚Æ‚«‚É 1 ‚É‚·‚é
-	volatile int			ThreadExitRequest ;			// ƒXƒŒƒbƒh‚ÉI—¹‚µ‚Ä‚Ù‚µ‚¢‚Æ‚«‚É 1 ‚É‚·‚é
-	volatile int			ThreadSeekRequest ;			// ƒXƒŒƒbƒh‚ÉƒV[ƒN‚µ‚Ä—~‚µ‚¢‚Æ‚«‚É 1 ‚É‚·‚é
-	volatile int			ThreadEnableCacheRead ;		// ƒXƒŒƒbƒh‚É“Á‚Éƒ^ƒXƒN‚ª‚È‚¢ê‡‚Éæ“Ç‚Ý‚ð‹–‰Â‚·‚é‚©‚Ç‚¤‚©( 1:‹–‰Â  0:‹–‰Â‚µ‚È‚¢ )
-	volatile int			ThreadSeekFrame  ;			// ƒXƒŒƒbƒh‚ÉƒV[ƒN‚µ‚Ä–á‚¤‚Æ‚«‚ÌƒV[ƒNæƒtƒŒ[ƒ€
-	volatile int			ThreadPacketEnd ;			// ƒf[ƒ^‚ð‘S‚Ä“Ç‚ÝI‚í‚Á‚½ƒtƒ‰ƒO
-	volatile int			ThreadStandbyTime ;			// ‘Ò‹@ó‘Ô‚ðˆÛŽ‚·‚é–ÚˆÀ‚Æ‚·‚éŽžŠÔ
-//	volatile HANDLE			DecodeThreadHandle ;		// ƒfƒR[ƒhˆ—ƒXƒŒƒbƒh
-//	volatile DWORD			DecodeThreadID ;			// ƒfƒR[ƒhˆ—ƒXƒŒƒbƒh‚Ì‚h‚c 
+	volatile int			ThreadState ;				// ã‚¹ãƒ¬ãƒƒãƒ‰ã®çŠ¶æ…‹( THEORAT_STATE_IDLE ç­‰ )
+	volatile int			ThreadStopRequest ;			// ã‚¹ãƒ¬ãƒƒãƒ‰ã«æ­¢ã¾ã£ã¦ã»ã—ã„ã¨ãã« 1 ã«ã™ã‚‹
+	volatile int			ThreadExitRequest ;			// ã‚¹ãƒ¬ãƒƒãƒ‰ã«çµ‚äº†ã—ã¦ã»ã—ã„ã¨ãã« 1 ã«ã™ã‚‹
+	volatile int			ThreadSeekRequest ;			// ã‚¹ãƒ¬ãƒƒãƒ‰ã«ã‚·ãƒ¼ã‚¯ã—ã¦æ¬²ã—ã„ã¨ãã« 1 ã«ã™ã‚‹
+	volatile int			ThreadEnableCacheRead ;		// ã‚¹ãƒ¬ãƒƒãƒ‰ã«ç‰¹ã«ã‚¿ã‚¹ã‚¯ãŒãªã„å ´åˆã«å…ˆèª­ã¿ã‚’è¨±å¯ã™ã‚‹ã‹ã©ã†ã‹( 1:è¨±å¯  0:è¨±å¯ã—ãªã„ )
+	volatile int			ThreadSeekFrame  ;			// ã‚¹ãƒ¬ãƒƒãƒ‰ã«ã‚·ãƒ¼ã‚¯ã—ã¦è²°ã†ã¨ãã®ã‚·ãƒ¼ã‚¯å…ˆãƒ•ãƒ¬ãƒ¼ãƒ 
+	volatile int			ThreadPacketEnd ;			// ãƒ‡ãƒ¼ã‚¿ã‚’å…¨ã¦èª­ã¿çµ‚ã‚ã£ãŸãƒ•ãƒ©ã‚°
+	volatile int			ThreadStandbyTime ;			// å¾…æ©ŸçŠ¶æ…‹ã‚’ç¶­æŒã™ã‚‹ç›®å®‰ã¨ã™ã‚‹æ™‚é–“
+//	volatile HANDLE			DecodeThreadHandle ;		// ãƒ‡ã‚³ãƒ¼ãƒ‰å‡¦ç†ã‚¹ãƒ¬ãƒƒãƒ‰
+//	volatile DWORD			DecodeThreadID ;			// ãƒ‡ã‚³ãƒ¼ãƒ‰å‡¦ç†ã‚¹ãƒ¬ãƒƒãƒ‰ã®ï¼©ï¼¤ 
 #ifndef DX_NON_NAMESPACE
-	DxLib::THREAD_INFO		DecodeThreadInfo ;			// ƒfƒR[ƒhƒXƒŒƒbƒhî•ñ
+	DxLib::THREAD_INFO		DecodeThreadInfo ;			// ãƒ‡ã‚³ãƒ¼ãƒ‰ã‚¹ãƒ¬ãƒƒãƒ‰æƒ…å ±
 #else // DX_NON_NAMESPACE
-	THREAD_INFO				DecodeThreadInfo ;			// ƒfƒR[ƒhƒXƒŒƒbƒhî•ñ
+	THREAD_INFO				DecodeThreadInfo ;			// ãƒ‡ã‚³ãƒ¼ãƒ‰ã‚¹ãƒ¬ãƒƒãƒ‰æƒ…å ±
 #endif // DX_NON_NAMESPACE
 
 #ifndef DX_NON_NAMESPACE
-	DxLib::STREAMDATASHRED	StreamShred ;				// ƒXƒgƒŠ[ƒ€ŠÖ”
+	DxLib::STREAMDATASHRED	StreamShred ;				// ã‚¹ãƒˆãƒªãƒ¼ãƒ é–¢æ•°
 #else // DX_NON_NAMESPACE
-	STREAMDATASHRED			StreamShred ;				// ƒXƒgƒŠ[ƒ€ŠÖ”
+	STREAMDATASHRED			StreamShred ;				// ã‚¹ãƒˆãƒªãƒ¼ãƒ é–¢æ•°
 #endif // DX_NON_NAMESPACE
-	DWORD_PTR				StreamData ;				// ƒXƒgƒŠ[ƒ€ƒf[ƒ^
+	DWORD_PTR				StreamData ;				// ã‚¹ãƒˆãƒªãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿
 
-	ogg_sync_state			OggSyncState ;				// Ogg ƒx[ƒXƒf[ƒ^
-	ogg_page				OggPage ;					// Ogg ƒy[ƒW
-	ogg_stream_state		OggTheoraStream ;			// Ogg ƒXƒgƒŠ[ƒ€
-	ogg_packet				OggPacket ;					// Ogg ƒpƒPƒbƒg
+	ogg_sync_state			OggSyncState ;				// Ogg ãƒ™ãƒ¼ã‚¹ãƒ‡ãƒ¼ã‚¿
+	ogg_page				OggPage ;					// Ogg ãƒšãƒ¼ã‚¸
+	ogg_stream_state		OggTheoraStream ;			// Ogg ã‚¹ãƒˆãƒªãƒ¼ãƒ 
+	ogg_packet				OggPacket ;					// Ogg ãƒ‘ã‚±ãƒƒãƒˆ
 
-	theora_info				TheoraInfo ;				// Theora î•ñ
+	theora_info				TheoraInfo ;				// Theora æƒ…å ±
 	theora_comment			TheoraComment ;				// Theora Comment
 	theora_state			TheoraState ;				// Theora State
-	int						TheoraSerialNo ;			// Theora ƒf[ƒ^‚ÌƒVƒŠƒAƒ‹ƒiƒ“ƒo[
+	int						TheoraSerialNo ;			// Theora ãƒ‡ãƒ¼ã‚¿ã®ã‚·ãƒªã‚¢ãƒ«ãƒŠãƒ³ãƒãƒ¼
 
-	THEORA_PAGEINFO			*TheoraPageInfo ;			// ƒy[ƒW‚Ìî•ñ
-	int						TheoraPageInfoNum ;			// ƒy[ƒW‚Ìî•ñ‚Ì”
-	int						*TheoraTimeFrameToDataFrame ;	// Ä¶ŽžŠÔƒtƒŒ[ƒ€‚É‘Î‰ž‚·‚éƒf[ƒ^ƒtƒŒ[ƒ€‚Æ‚Ì‘Î‰ž”z—ñ( Ä¶ŽžŠÔƒtƒŒ[ƒ€‚Ì‰ÓŠ‚Éƒf[ƒ^ƒtƒŒ[ƒ€”Ô†‚ª“ü‚Á‚Ä‚¢‚é )
-	unsigned char			*TheoraKeyFrameInfo ;		// ƒL[ƒtƒŒ[ƒ€î•ñ”z—ñ( ƒL[ƒtƒŒ[ƒ€‚Ì”z—ñ—v‘f‚ª 1 ‚É‚È‚Á‚Ä‚¢‚é )
-	ogg_int64_t				TheoraTotalDataFrame ;		// ‘ƒf[ƒ^ƒtƒŒ[ƒ€”
-	int						TheoraTotalTimeFrame ;		// ‘Ä¶ŽžŠÔƒtƒŒ[ƒ€”
-	volatile int			TheoraCurrentTimeFrame ;	// ‘ÎŠO“I‚ÈƒJƒŒƒ“ƒgƒ^ƒCƒ€ƒtƒŒ[ƒ€
-	volatile int			TheoraCurrentDataFrame ;	// ‘ÎŠO“I‚ÈƒJƒŒƒ“ƒgƒf[ƒ^ƒtƒŒ[ƒ€
-	volatile int			TheoraInCurrentDataFrame ;	// ŽÀÛ‚ÌƒJƒŒƒ“ƒgƒf[ƒ^ƒtƒŒ[ƒ€
+	THEORA_PAGEINFO			*TheoraPageInfo ;			// ãƒšãƒ¼ã‚¸ã®æƒ…å ±
+	int						TheoraPageInfoNum ;			// ãƒšãƒ¼ã‚¸ã®æƒ…å ±ã®æ•°
+	int						*TheoraTimeFrameToDataFrame ;	// å†ç”Ÿæ™‚é–“ãƒ•ãƒ¬ãƒ¼ãƒ ã«å¯¾å¿œã™ã‚‹ãƒ‡ãƒ¼ã‚¿ãƒ•ãƒ¬ãƒ¼ãƒ ã¨ã®å¯¾å¿œé…åˆ—( å†ç”Ÿæ™‚é–“ãƒ•ãƒ¬ãƒ¼ãƒ ã®ç®‡æ‰€ã«ãƒ‡ãƒ¼ã‚¿ãƒ•ãƒ¬ãƒ¼ãƒ ç•ªå·ãŒå…¥ã£ã¦ã„ã‚‹ )
+	unsigned char			*TheoraKeyFrameInfo ;		// ã‚­ãƒ¼ãƒ•ãƒ¬ãƒ¼ãƒ æƒ…å ±é…åˆ—( ã‚­ãƒ¼ãƒ•ãƒ¬ãƒ¼ãƒ ã®é…åˆ—è¦ç´ ãŒ 1 ã«ãªã£ã¦ã„ã‚‹ )
+	ogg_int64_t				TheoraTotalDataFrame ;		// ç·ãƒ‡ãƒ¼ã‚¿ãƒ•ãƒ¬ãƒ¼ãƒ æ•°
+	int						TheoraTotalTimeFrame ;		// ç·å†ç”Ÿæ™‚é–“ãƒ•ãƒ¬ãƒ¼ãƒ æ•°
+	volatile int			TheoraCurrentTimeFrame ;	// å¯¾å¤–çš„ãªã‚«ãƒ¬ãƒ³ãƒˆã‚¿ã‚¤ãƒ ãƒ•ãƒ¬ãƒ¼ãƒ 
+	volatile int			TheoraCurrentDataFrame ;	// å¯¾å¤–çš„ãªã‚«ãƒ¬ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ãƒ•ãƒ¬ãƒ¼ãƒ 
+	volatile int			TheoraInCurrentDataFrame ;	// å®Ÿéš›ã®ã‚«ãƒ¬ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ãƒ•ãƒ¬ãƒ¼ãƒ 
 
-	int						NumOfTheoraHeader ;			// Theora ‚Ìƒwƒbƒ_‚Ì”
+	int						NumOfTheoraHeader ;			// Theora ã®ãƒ˜ãƒƒãƒ€ã®æ•°
 
-	volatile THEORA_STOCKFRAME *StockFrame ;			// ƒXƒgƒbƒNƒtƒŒ[ƒ€
-	volatile int			StockFrameMaxNum ;			// ƒXƒgƒbƒNƒtƒŒ[ƒ€‚ÌÅ‘å”
+	volatile THEORA_STOCKFRAME *StockFrame ;			// ã‚¹ãƒˆãƒƒã‚¯ãƒ•ãƒ¬ãƒ¼ãƒ 
+	volatile int			StockFrameMaxNum ;			// ã‚¹ãƒˆãƒƒã‚¯ãƒ•ãƒ¬ãƒ¼ãƒ ã®æœ€å¤§æ•°
 
 #ifndef DX_NON_NAMESPACE
-	DxLib::BASEIMAGE		BaseImage ;					// ƒJƒŒƒ“ƒgƒtƒŒ[ƒ€‚ªŠi”[‚³‚ê‚½ƒtƒŒ[ƒ€ƒXƒ^ƒbƒN’†‚ÌƒCƒ[ƒW‚ÌƒRƒs[
+	DxLib::BASEIMAGE		BaseImage ;					// ã‚«ãƒ¬ãƒ³ãƒˆãƒ•ãƒ¬ãƒ¼ãƒ ãŒæ ¼ç´ã•ã‚ŒãŸãƒ•ãƒ¬ãƒ¼ãƒ ã‚¹ã‚¿ãƒƒã‚¯ä¸­ã®ã‚¤ãƒ¡ãƒ¼ã‚¸ã®ã‚³ãƒ”ãƒ¼
 #else // DX_NON_NAMESPACE
-	BASEIMAGE				BaseImage ;					// ƒJƒŒƒ“ƒgƒtƒŒ[ƒ€‚ªŠi”[‚³‚ê‚½ƒtƒŒ[ƒ€ƒXƒ^ƒbƒN’†‚ÌƒCƒ[ƒW‚ÌƒRƒs[
+	BASEIMAGE				BaseImage ;					// ã‚«ãƒ¬ãƒ³ãƒˆãƒ•ãƒ¬ãƒ¼ãƒ ãŒæ ¼ç´ã•ã‚ŒãŸãƒ•ãƒ¬ãƒ¼ãƒ ã‚¹ã‚¿ãƒƒã‚¯ä¸­ã®ã‚¤ãƒ¡ãƒ¼ã‚¸ã®ã‚³ãƒ”ãƒ¼
 #endif // DX_NON_NAMESPACE
-	volatile int			BaseImageSetup ;			// ƒJƒŒƒ“ƒgƒtƒŒ[ƒ€‚Ì RGB ƒCƒ[ƒW‚ª\’z‚³‚ê‚Ä‚¢‚é‚©‚Ç‚¤‚©( 1:‚³‚ê‚Ä‚¢‚é  0:‚³‚ê‚Ä‚¢‚È‚¢ )
+	volatile int			BaseImageSetup ;			// ã‚«ãƒ¬ãƒ³ãƒˆãƒ•ãƒ¬ãƒ¼ãƒ ã® RGB ã‚¤ãƒ¡ãƒ¼ã‚¸ãŒæ§‹ç¯‰ã•ã‚Œã¦ã„ã‚‹ã‹ã©ã†ã‹( 1:ã•ã‚Œã¦ã„ã‚‹  0:ã•ã‚Œã¦ã„ãªã„ )
 
-	volatile int			NotUseYUVFormatSurface ;	// ‚x‚t‚uƒtƒH[ƒ}ƒbƒg‚ÌƒT[ƒtƒFƒX‚ðŽg—p‚µ‚È‚¢‚©‚Ç‚¤‚©
-	volatile int			ValidYUVSurface ;			// ‚x‚t‚uƒT[ƒtƒFƒX‚ª—LŒø‚©‚Ç‚¤‚©( TRUE:—LŒø  FALSE:–³Œø )
-	volatile int			YUVSurfaceReleaseRequest ;	// ‚x‚t‚uƒtƒH[ƒ}ƒbƒgƒT[ƒtƒFƒX‚Ì‰ð•úˆË—Šƒtƒ‰ƒO
-	volatile DWORD			YUVImageFourCC ;			// ‚x‚t‚uƒT[ƒtƒFƒX‚ÉŽg—p‚³‚ê‚Ä‚¢‚é FourCC ƒtƒH[ƒ}ƒbƒg
-	volatile int			YUVImageSetup ;				// ƒJƒŒƒ“ƒgƒtƒŒ[ƒ€‚Ì YUV ƒCƒ[ƒW‚ª\’z‚³‚ê‚Ä‚¢‚é‚©‚Ç‚¤‚©( 1:‚³‚ê‚Ä‚¢‚é  0:‚³‚ê‚Ä‚¢‚È‚¢ )
+	volatile int			NotUseYUVFormatSurface ;	// ï¼¹ï¼µï¼¶ãƒ•ã‚©ãƒ¼ãƒžãƒƒãƒˆã®ã‚µãƒ¼ãƒ•ã‚§ã‚¹ã‚’ä½¿ç”¨ã—ãªã„ã‹ã©ã†ã‹
+	volatile int			ValidYUVSurface ;			// ï¼¹ï¼µï¼¶ã‚µãƒ¼ãƒ•ã‚§ã‚¹ãŒæœ‰åŠ¹ã‹ã©ã†ã‹( TRUE:æœ‰åŠ¹  FALSE:ç„¡åŠ¹ )
+	volatile int			YUVSurfaceReleaseRequest ;	// ï¼¹ï¼µï¼¶ãƒ•ã‚©ãƒ¼ãƒžãƒƒãƒˆã‚µãƒ¼ãƒ•ã‚§ã‚¹ã®è§£æ”¾ä¾é ¼ãƒ•ãƒ©ã‚°
+	volatile DWORD			YUVImageFourCC ;			// ï¼¹ï¼µï¼¶ã‚µãƒ¼ãƒ•ã‚§ã‚¹ã«ä½¿ç”¨ã•ã‚Œã¦ã„ã‚‹ FourCC ãƒ•ã‚©ãƒ¼ãƒžãƒƒãƒˆ
+	volatile int			YUVImageSetup ;				// ã‚«ãƒ¬ãƒ³ãƒˆãƒ•ãƒ¬ãƒ¼ãƒ ã® YUV ã‚¤ãƒ¡ãƒ¼ã‚¸ãŒæ§‹ç¯‰ã•ã‚Œã¦ã„ã‚‹ã‹ã©ã†ã‹( 1:ã•ã‚Œã¦ã„ã‚‹  0:ã•ã‚Œã¦ã„ãªã„ )
 
-	volatile int			NotUseYUVGrHandle ;			// YUVƒJƒ‰[‚ÌƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ðŽg—p‚µ‚È‚¢‚©‚Ç‚¤‚©
-	volatile int			YGrHandle ;					// YUVƒJƒ‰[‚ÌY¬•ª‚Ì‚Ý‚ÌƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹
-	volatile int			UVGrHandle ;				// YUVƒJƒ‰[‚ÌUV¬•ª‚Ì‚Ý‚ÌƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹
-	volatile int			YUVGrHandleSetup ;			// YUVƒJƒ‰[‚ÌƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ÌƒZƒbƒgƒAƒbƒv‚ªŠ®—¹‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©( 1:Š®—¹‚µ‚Ä‚¢‚é  0:Š®—¹‚µ‚Ä‚¢‚È‚¢ )
+	volatile int			NotUseYUVGrHandle ;			// YUVã‚«ãƒ©ãƒ¼ã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã‚’ä½¿ç”¨ã—ãªã„ã‹ã©ã†ã‹
+	volatile int			YGrHandle ;					// YUVã‚«ãƒ©ãƒ¼ã®Yæˆåˆ†ã®ã¿ã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«
+	volatile int			UVGrHandle ;				// YUVã‚«ãƒ©ãƒ¼ã®UVæˆåˆ†ã®ã¿ã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«
+	volatile int			YUVGrHandleSetup ;			// YUVã‚«ãƒ©ãƒ¼ã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ãŒå®Œäº†ã—ã¦ã„ã‚‹ã‹ã©ã†ã‹( 1:å®Œäº†ã—ã¦ã„ã‚‹  0:å®Œäº†ã—ã¦ã„ãªã„ )
 
-	volatile struct DECODE_THEORA_PF *PF ;						// ŠÂ‹«ˆË‘¶ƒf[ƒ^
+	volatile struct DECODE_THEORA_PF *PF ;						// ç’°å¢ƒä¾å­˜ãƒ‡ãƒ¼ã‚¿
 } DECODE_THEORA ;
 
 #endif
 
-// ƒe[ƒuƒ‹-----------------------------------------------------------------------
+// ãƒ†ãƒ¼ãƒ–ãƒ«-----------------------------------------------------------------------
 
-// “à•”‘åˆæ•Ï”éŒ¾ --------------------------------------------------------------
+// å†…éƒ¨å¤§åŸŸå¤‰æ•°å®£è¨€ --------------------------------------------------------------
 
-// ŠÖ”ƒvƒƒgƒ^ƒCƒvéŒ¾-----------------------------------------------------------
+// é–¢æ•°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€-----------------------------------------------------------
 
 
 #ifndef DX_NON_OGGTHEORA
 
-extern	int		TheoraDecode_Thread_LoopProcess( DECODE_THEORA *DT ) ;														// Ogg Theora ‚ÌƒfƒR[ƒhƒXƒŒƒbƒh‚Ås‚¤ƒ‹[ƒvˆ—‚ðs‚¤( –ß‚è’l 2 ‚ÅI—¹ )
+extern	int		TheoraDecode_Thread_LoopProcess( DECODE_THEORA *DT ) ;														// Ogg Theora ã®ãƒ‡ã‚³ãƒ¼ãƒ‰ã‚¹ãƒ¬ãƒƒãƒ‰ã§è¡Œã†ãƒ«ãƒ¼ãƒ—å‡¦ç†ã‚’è¡Œã†( æˆ»ã‚Šå€¤ 2 ã§çµ‚äº† )
 
 extern	void	TheoraDecode_CreateSurface( DECODE_THEORA *DT, int ASyncThread ) ;
 
-// ŠÂ‹«ˆË‘¶ŠÖ”
-extern	int		TheoraDecode_CreateSurface_PF(  DECODE_THEORA *DT ) ;														// ƒn[ƒhƒEƒGƒA‹@”\‚ª—LŒø‚Èê‡‚Í YUV ƒtƒH[ƒ}ƒbƒg‚ÌˆêŽž•Û‘¶—pƒeƒNƒXƒ`ƒƒ‚ðì¬‚·‚é
+// ç’°å¢ƒä¾å­˜é–¢æ•°
+extern	int		TheoraDecode_CreateSurface_PF(  DECODE_THEORA *DT ) ;														// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢æ©Ÿèƒ½ãŒæœ‰åŠ¹ãªå ´åˆã¯ YUV ãƒ•ã‚©ãƒ¼ãƒžãƒƒãƒˆã®ä¸€æ™‚ä¿å­˜ç”¨ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ä½œæˆã™ã‚‹
 extern	void	TheoraDecode_ReleaseSurface_PF(	DECODE_THEORA *DT ) ;
-extern	int		TheoraDecode_SetupImage_PF( DECODE_THEORA *DT, volatile THEORA_STOCKFRAME *Stock, int ASyncThread ) ;		// ƒJƒŒƒ“ƒgƒtƒŒ[ƒ€‚ÌRGB‰æ‘œ‚ðì¬‚·‚é( –ß‚è’l  1:ì¬‚³‚ê‚½  0:‚³‚ê‚È‚©‚Á‚½ )
-extern	const void * TheoraDecode_GetYUVImage_PF( DECODE_THEORA *DT ) ;														// ˆêŽžƒoƒbƒtƒ@‚Ì YUV ƒtƒH[ƒ}ƒbƒg‚ÌƒeƒNƒXƒ`ƒƒ‚ð“¾‚é
-extern	int		TheoraDecode_InitializeStream_PF( DECODE_THEORA *DT ) ;														// Ogg Theora ‚Ì“Ç‚Ýž‚Ýˆ—‚Ì€”õ‚ðs‚¤ˆ—‚ÌŠÂ‹«ˆË‘¶ˆ—‚ðs‚¤ŠÖ”
+extern	int		TheoraDecode_SetupImage_PF( DECODE_THEORA *DT, volatile THEORA_STOCKFRAME *Stock, int ASyncThread ) ;		// ã‚«ãƒ¬ãƒ³ãƒˆãƒ•ãƒ¬ãƒ¼ãƒ ã®RGBç”»åƒã‚’ä½œæˆã™ã‚‹( æˆ»ã‚Šå€¤  1:ä½œæˆã•ã‚ŒãŸ  0:ã•ã‚Œãªã‹ã£ãŸ )
+extern	const void * TheoraDecode_GetYUVImage_PF( DECODE_THEORA *DT ) ;														// ä¸€æ™‚ãƒãƒƒãƒ•ã‚¡ã® YUV ãƒ•ã‚©ãƒ¼ãƒžãƒƒãƒˆã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’å¾—ã‚‹
+extern	int		TheoraDecode_InitializeStream_PF( DECODE_THEORA *DT ) ;														// Ogg Theora ã®èª­ã¿è¾¼ã¿å‡¦ç†ã®æº–å‚™ã‚’è¡Œã†å‡¦ç†ã®ç’°å¢ƒä¾å­˜å‡¦ç†ã‚’è¡Œã†é–¢æ•°
 
 #endif // DX_NON_OGGTHEORA
 

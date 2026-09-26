@@ -1,19 +1,19 @@
 //-----------------------------------------------------------------------------
 // 
-// 		‚c‚wƒ‰ƒCƒuƒ‰ƒŠ		ƒ}ƒXƒNƒf[ƒ^ŠÇ—ƒvƒƒOƒ‰ƒ€
+// 		ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒª		ãƒã‚¹ã‚¯ãƒ‡ãƒ¼ã‚¿ç®¡ç†ãƒ—ãƒ­ã‚°ãƒ©ãƒ 
 // 
 //  	Ver 3.25a
 // 
 //-----------------------------------------------------------------------------
 
-// ‚c‚wƒ‰ƒCƒuƒ‰ƒŠì¬—p’è‹`
+// ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªä½œæˆæ™‚ç”¨å®šç¾©
 #define DX_MAKE
 
 #include "DxCompileConfig.h"
 
 #ifndef DX_NON_MASK
 
-// ƒCƒ“ƒNƒ‹[ƒh----------------------------------------------------------------
+// ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰----------------------------------------------------------------
 #include "DxLib.h"
 #include "DxStatic.h"
 #include "DxMask.h"
@@ -54,71 +54,71 @@ namespace DxLib
 
 #endif // DX_NON_NAMESPACE
 
-// ƒ}ƒNƒ’è‹`------------------------------------------------------------------
+// ãƒã‚¯ãƒ­å®šç¾©------------------------------------------------------------------
 
-// ƒ}ƒXƒNƒnƒ“ƒhƒ‹‚Ì—LŒø«ƒ`ƒFƒbƒN
+// ãƒã‚¹ã‚¯ãƒãƒ³ãƒ‰ãƒ«ã®æœ‰åŠ¹æ€§ãƒã‚§ãƒƒã‚¯
 #define MASKHCHK( HAND, MPOINT )		HANDLECHK(       DX_HANDLETYPE_GMASK, HAND, *( ( HANDLEINFO ** )&MPOINT ) )
 #define MASKHCHK_ASYNC( HAND, MPOINT )	HANDLECHK_ASYNC( DX_HANDLETYPE_GMASK, HAND, *( ( HANDLEINFO ** )&MPOINT ) )
 
-// Œ^’è‹`----------------------------------------------------------------------
+// å‹å®šç¾©----------------------------------------------------------------------
 
-// ƒf[ƒ^éŒ¾------------------------------------------------------------------
+// ãƒ‡ãƒ¼ã‚¿å®£è¨€------------------------------------------------------------------
 
 MASKMANAGEDATA MaskManageData ;
 
-// ŠÖ”ƒvƒƒgƒ^ƒCƒvéŒ¾ -------------------------------------------------------
+// é–¢æ•°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€ -------------------------------------------------------
 
-// ƒvƒƒOƒ‰ƒ€------------------------------------------------------------------
+// ãƒ—ãƒ­ã‚°ãƒ©ãƒ ------------------------------------------------------------------
 
-// ƒ}ƒXƒNˆ—‚Ì‰Šú‰»
+// ãƒã‚¹ã‚¯å‡¦ç†ã®åˆæœŸåŒ–
 extern int Mask_Initialize( void )
 {
 	if( MASKD.InitializeFlag == TRUE )
 		return -1 ;
 
-	// ƒ}ƒXƒNƒnƒ“ƒhƒ‹ŠÇ—ƒf[ƒ^‚Ì‰Šú‰»
+	// ãƒã‚¹ã‚¯ãƒãƒ³ãƒ‰ãƒ«ç®¡ç†ãƒ‡ãƒ¼ã‚¿ã®åˆæœŸåŒ–
 	InitializeHandleManage( DX_HANDLETYPE_GMASK, sizeof( MASKDATA ), MAX_MASK_NUM, Mask_InitializeHandle, Mask_TerminateHandle, NULL, L"Mask" ) ;
 
-	// ‰Šú‰»ƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// åˆæœŸåŒ–ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	MASKD.InitializeFlag = TRUE ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒ}ƒXƒNˆ—‚ÌŒãn––
+// ãƒã‚¹ã‚¯å‡¦ç†ã®å¾Œå§‹æœ«
 extern int Mask_Terminate( void )
 {
 	if( MASKD.InitializeFlag == FALSE )
 		return -1 ;
 
-	// ƒ}ƒXƒNƒXƒNƒŠ[ƒ“‚ğíœ‚·‚é
+	// ãƒã‚¹ã‚¯ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚’å‰Šé™¤ã™ã‚‹
 	NS_DeleteMaskScreen() ;
 
-	// ì¬‚µ‚½ƒ}ƒXƒNƒOƒ‰ƒtƒBƒbƒN‚ğíœ
+	// ä½œæˆã—ãŸãƒã‚¹ã‚¯ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚’å‰Šé™¤
 	NS_InitMask() ;
 
-	// ‰Šú‰»ƒtƒ‰ƒO‚ğ“|‚·
+	// åˆæœŸåŒ–ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 	MASKD.InitializeFlag = FALSE ;
 
-	// ƒ}ƒXƒNƒnƒ“ƒhƒ‹‚ÌŒãn––
+	// ãƒã‚¹ã‚¯ãƒãƒ³ãƒ‰ãƒ«ã®å¾Œå§‹æœ«
 	TerminateHandleManage( DX_HANDLETYPE_GMASK ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒ}ƒXƒNƒf[ƒ^‚ğ‰Šú‰»‚·‚é
+// ãƒã‚¹ã‚¯ãƒ‡ãƒ¼ã‚¿ã‚’åˆæœŸåŒ–ã™ã‚‹
 extern int NS_InitMask( void )
 {
 	if( MASKD.InitializeFlag == FALSE )
 		return -1 ;
 
-	// ƒnƒ“ƒhƒ‹‚ğ‰Šú‰»
+	// ãƒãƒ³ãƒ‰ãƒ«ã‚’åˆæœŸåŒ–
 	return AllHandleSub( DX_HANDLETYPE_GMASK ) ;
 }
 
-// ƒ}ƒXƒNƒXƒNƒŠ[ƒ“‚ğì¬‚·‚é
+// ãƒã‚¹ã‚¯ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚’ä½œæˆã™ã‚‹
 extern int NS_CreateMaskScreen( void )
 {
 	if( MASKD.InitializeFlag == FALSE )
@@ -126,68 +126,68 @@ extern int NS_CreateMaskScreen( void )
 
 	CheckActiveState() ;
 
-	// ƒ}ƒXƒN•Û‘¶—pƒT[ƒtƒFƒX‚Æƒ}ƒXƒN•`‰æ—pƒT[ƒtƒFƒX‚Ìì¬
+	// ãƒã‚¹ã‚¯ä¿å­˜ç”¨ã‚µãƒ¼ãƒ•ã‚§ã‚¹ã¨ãƒã‚¹ã‚¯æç”»ç”¨ã‚µãƒ¼ãƒ•ã‚§ã‚¹ã®ä½œæˆ
 	Mask_CreateScreenFunction( TRUE, GSYS.Screen.MainScreenSizeX, GSYS.Screen.MainScreenSizeY ) ; 
 
-	// ƒ}ƒXƒNƒT[ƒtƒFƒX‚ªì¬‚³‚ê‚Ä‚¢‚é‚©ƒtƒ‰ƒO‚ğ‚½‚Ä‚é
+	// ãƒã‚¹ã‚¯ã‚µãƒ¼ãƒ•ã‚§ã‚¹ãŒä½œæˆã•ã‚Œã¦ã„ã‚‹ã‹ãƒ•ãƒ©ã‚°ã‚’ãŸã¦ã‚‹
 	MASKD.CreateMaskFlag = TRUE ;
 	MASKD.MaskValidFlag = MASKD.MaskUseFlag && MASKD.CreateMaskFlag ;
 
-//	// ‚à‚µƒ}ƒXƒNg—pƒtƒ‰ƒO‚ª—§‚Á‚Ä‚¢‚½‚çƒ}ƒXƒN‚ğ—LŒø‚É‚·‚éì‹Æ‚ğs‚¤
+//	// ã‚‚ã—ãƒã‚¹ã‚¯ä½¿ç”¨ãƒ•ãƒ©ã‚°ãŒç«‹ã£ã¦ã„ãŸã‚‰ãƒã‚¹ã‚¯ã‚’æœ‰åŠ¹ã«ã™ã‚‹ä½œæ¥­ã‚’è¡Œã†
 //	if( MASKD.MaskUseFlag )
 		NS_SetUseMaskScreenFlag( TRUE ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒ}ƒXƒNƒT[ƒtƒFƒX‚Ìì¬
+// ãƒã‚¹ã‚¯ã‚µãƒ¼ãƒ•ã‚§ã‚¹ã®ä½œæˆ
 extern int Mask_CreateSurface( BYTE **MaskBuffer, int *BufferPitch, int Width, int Height, int *TransModeP )
 {
-	// ƒsƒbƒ`‚ÌZo
+	// ãƒ”ãƒƒãƒã®ç®—å‡º
 	*BufferPitch = ( Width + 3 ) / 4 * 4 ;
 
-	// ƒoƒbƒtƒ@‚Ìì¬
+	// ãƒãƒƒãƒ•ã‚¡ã®ä½œæˆ
 	*MaskBuffer = ( BYTE * )DXALLOC( ( size_t )( *BufferPitch * Height ) ) ;
 	if( *MaskBuffer == NULL )
 		return -1 ;
 
-	// ƒoƒbƒtƒ@‚Ì‰Šú‰»
+	// ãƒãƒƒãƒ•ã‚¡ã®åˆæœŸåŒ–
 	_MEMSET( *MaskBuffer, 0, ( size_t )( *BufferPitch * Height ) ) ;
 
-	// “§‰ßFƒ‚[ƒh‚ÌƒZƒbƒg
+	// é€éè‰²ãƒ¢ãƒ¼ãƒ‰ã®ã‚»ãƒƒãƒˆ
 	*TransModeP = DX_MASKTRANS_BLACK ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒ}ƒXƒNƒnƒ“ƒhƒ‹‚Ì‰Šú‰»
+// ãƒã‚¹ã‚¯ãƒãƒ³ãƒ‰ãƒ«ã®åˆæœŸåŒ–
 extern int Mask_InitializeHandle( HANDLEINFO * )
 {
-	// “Á‚É‰½‚à‚¹‚¸I—¹
+	// ç‰¹ã«ä½•ã‚‚ã›ãšçµ‚äº†
 	return 0 ;
 }
 
-// ƒ}ƒXƒNƒnƒ“ƒhƒ‹‚ÌŒãn––
+// ãƒã‚¹ã‚¯ãƒãƒ³ãƒ‰ãƒ«ã®å¾Œå§‹æœ«
 extern int Mask_TerminateHandle( HANDLEINFO *HandleInfo )
 {
 	MASKDATA *Mask ;
 
 	Mask = ( MASKDATA * )HandleInfo ;
 
-	// ƒ}ƒXƒN—pƒf[ƒ^—Ìˆæ‚Ì‰ğ•ú
+	// ãƒã‚¹ã‚¯ç”¨ãƒ‡ãƒ¼ã‚¿é ˜åŸŸã®è§£æ”¾
 	if( Mask->SrcData )
 	{
 		DXFREE( Mask->SrcData ) ;
 		Mask->SrcData = NULL ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// MakeMask ‚ÌÀˆ—ŠÖ”
+// MakeMask ã®å®Ÿå‡¦ç†é–¢æ•°
 static int Mask_MakeMask_Static(
 	int MaskHandle,
 	int Width,
@@ -203,21 +203,21 @@ static int Mask_MakeMask_Static(
 	if( MASKHCHK_ASYNC( MaskHandle, Mask ) )
 		return -1 ;
 
-	// ƒ}ƒXƒN•Û‘¶—pƒT[ƒtƒFƒX‚Ìì¬
+	// ãƒã‚¹ã‚¯ä¿å­˜ç”¨ã‚µãƒ¼ãƒ•ã‚§ã‚¹ã®ä½œæˆ
 	if( Mask_CreateSurface( &Mask->SrcData, &Mask->SrcDataPitch, Width, Height, &Mask->TransMode ) < 0 )
 		return -1 ;
 
-	// ƒf[ƒ^‚ÌƒZƒbƒg
+	// ãƒ‡ãƒ¼ã‚¿ã®ã‚»ãƒƒãƒˆ
 	Mask->MaskWidth = Width ;
 	Mask->MaskHeight = Height ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
 #ifndef DX_NON_ASYNCLOAD
 
-// MakeMask ‚Ì”ñ“¯Šú“Ç‚İ‚İƒXƒŒƒbƒh‚©‚çŒÄ‚Î‚ê‚éŠÖ”
+// MakeMask ã®éåŒæœŸèª­ã¿è¾¼ã¿ã‚¹ãƒ¬ãƒƒãƒ‰ã‹ã‚‰å‘¼ã°ã‚Œã‚‹é–¢æ•°
 static void Mask_MakeMask_ASync( ASYNCLOADDATA_COMMON *AParam )
 {
 	int MaskHandle ;
@@ -246,7 +246,7 @@ static void Mask_MakeMask_ASync( ASYNCLOADDATA_COMMON *AParam )
 }
 #endif // DX_NON_ASYNCLOAD
 
-// ƒ}ƒXƒNƒf[ƒ^‚Ì’Ç‰Á
+// ãƒã‚¹ã‚¯ãƒ‡ãƒ¼ã‚¿ã®è¿½åŠ 
 extern int Mask_MakeMask_UseGParam( int Width, int Height, int ASyncLoadFlag )
 {
 	int MaskHandle ;
@@ -256,7 +256,7 @@ extern int Mask_MakeMask_UseGParam( int Width, int Height, int ASyncLoadFlag )
 
 	CheckActiveState() ;
 
-	// ƒnƒ“ƒhƒ‹‚Ìì¬
+	// ãƒãƒ³ãƒ‰ãƒ«ã®ä½œæˆ
 	MaskHandle = AddHandle( DX_HANDLETYPE_GMASK, FALSE, -1 ) ;
 	if( MaskHandle == -1 )
 	{
@@ -269,25 +269,25 @@ extern int Mask_MakeMask_UseGParam( int Width, int Height, int ASyncLoadFlag )
 		ASYNCLOADDATA_COMMON *AParam = NULL ;
 		int Addr ;
 
-		// ƒpƒ‰ƒ[ƒ^‚É•K—v‚Èƒƒ‚ƒŠ‚ÌƒTƒCƒY‚ğZo
+		// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã«å¿…è¦ãªãƒ¡ãƒ¢ãƒªã®ã‚µã‚¤ã‚ºã‚’ç®—å‡º
 		Addr = 0 ;
 		AddASyncLoadParamInt( NULL, &Addr, MaskHandle ) ;
 		AddASyncLoadParamInt( NULL, &Addr, Width ) ;
 		AddASyncLoadParamInt( NULL, &Addr, Height ) ;
 
-		// ƒƒ‚ƒŠ‚ÌŠm•Û
+		// ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿
 		AParam = AllocASyncLoadDataMemory( Addr ) ;
 		if( AParam == NULL )
 			goto ERR ;
 
-		// ˆ—‚É•K—v‚Èî•ñ‚ğƒZƒbƒg
+		// å‡¦ç†ã«å¿…è¦ãªæƒ…å ±ã‚’ã‚»ãƒƒãƒˆ
 		AParam->ProcessFunction = Mask_MakeMask_ASync ;
 		Addr = 0 ;
 		AddASyncLoadParamInt( AParam->Data, &Addr, MaskHandle ) ;
 		AddASyncLoadParamInt( AParam->Data, &Addr, Width ) ;
 		AddASyncLoadParamInt( AParam->Data, &Addr, Height ) ;
 
-		// ƒf[ƒ^‚ğ’Ç‰Á
+		// ãƒ‡ãƒ¼ã‚¿ã‚’è¿½åŠ 
 		if( AddASyncLoadData( AParam ) < 0 )
 		{
 			DXFREE( AParam ) ;
@@ -295,7 +295,7 @@ extern int Mask_MakeMask_UseGParam( int Width, int Height, int ASyncLoadFlag )
 			goto ERR ;
 		}
 
-		// ”ñ“¯Šú“Ç‚İ‚İƒJƒEƒ“ƒg‚ğƒCƒ“ƒNƒŠƒƒ“ƒg
+		// éåŒæœŸèª­ã¿è¾¼ã¿ã‚«ã‚¦ãƒ³ãƒˆã‚’ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆ
 		IncASyncLoadCount( MaskHandle, AParam->Index ) ;
 	}
 	else
@@ -305,7 +305,7 @@ extern int Mask_MakeMask_UseGParam( int Width, int Height, int ASyncLoadFlag )
 			goto ERR ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return MaskHandle ;
 
 ERR :
@@ -314,13 +314,13 @@ ERR :
 	return -1 ;
 }
 
-// ƒ}ƒXƒNƒf[ƒ^‚Ì’Ç‰Á
+// ãƒã‚¹ã‚¯ãƒ‡ãƒ¼ã‚¿ã®è¿½åŠ 
 extern int NS_MakeMask( int Width, int Height )
 {
 	return Mask_MakeMask_UseGParam( Width, Height, GetASyncLoadFlag() ) ;
 }
 
-// ƒ}ƒXƒNƒf[ƒ^‚ğíœ
+// ãƒã‚¹ã‚¯ãƒ‡ãƒ¼ã‚¿ã‚’å‰Šé™¤
 extern int NS_DeleteMask( int MaskHandle )
 {
 	return SubHandle( MaskHandle, GetASyncLoadFlag(), FALSE ) ;
@@ -328,7 +328,7 @@ extern int NS_DeleteMask( int MaskHandle )
 
 #ifdef WINDOWS_DESKTOP_OS
 
-// ƒ}ƒXƒNƒf[ƒ^ƒT[ƒtƒFƒX‚É‚a‚l‚oƒf[ƒ^‚ğƒ}ƒXƒNƒf[ƒ^‚ÆŒ©‚½‚Ä‚Ä“]‘—
+// ãƒã‚¹ã‚¯ãƒ‡ãƒ¼ã‚¿ã‚µãƒ¼ãƒ•ã‚§ã‚¹ã«ï¼¢ï¼­ï¼°ãƒ‡ãƒ¼ã‚¿ã‚’ãƒã‚¹ã‚¯ãƒ‡ãƒ¼ã‚¿ã¨è¦‹ãŸã¦ã¦è»¢é€
 extern int NS_BmpBltToMask( HBITMAP Bmp, int BmpPointX, int BmpPointY, int MaskHandle )
 {
 	MASKDATA * MaskData ;
@@ -343,11 +343,11 @@ extern int NS_BmpBltToMask( HBITMAP Bmp, int BmpPointX, int BmpPointY, int MaskH
 	if( MASKHCHK_ASYNC( MaskHandle, MaskData ) )
 		return -1 ;
 
-	// ƒrƒbƒgƒ}ƒbƒvƒf[ƒ^‚Ìæ“¾
+	// ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ã®å–å¾—
 	WinAPIData.Win32Func.GetObjectAFunc( Bmp, sizeof( BITMAP ), ( void * )&bm ) ;
 	bm.bmWidthBytes += bm.bmWidthBytes % 4 ? 4 - bm.bmWidthBytes % 4 : 0 ;
 
-	// “]‘—ˆ—
+	// è»¢é€å‡¦ç†
 	ColorBitDepth = NS_GetScreenBitDepth() ;
 	{
 		BYTE *SrcPoint, *DestPoint ;
@@ -408,13 +408,13 @@ extern int NS_BmpBltToMask( HBITMAP Bmp, int BmpPointX, int BmpPointY, int MaskH
 #endif
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
 #endif // WINDOWS_DESKTOP_OS
 
-// ƒ}ƒXƒNƒnƒ“ƒhƒ‹‚ÉBASEIMAGEƒf[ƒ^‚ğ“]‘—‚·‚é
+// ãƒã‚¹ã‚¯ãƒãƒ³ãƒ‰ãƒ«ã«BASEIMAGEãƒ‡ãƒ¼ã‚¿ã‚’è»¢é€ã™ã‚‹
 extern int NS_GraphImageBltToMask( const BASEIMAGE *BaseImage, int ImageX, int ImageY, int MaskHandle )
 {
 	MASKDATA * MaskData ;
@@ -428,7 +428,7 @@ extern int NS_GraphImageBltToMask( const BASEIMAGE *BaseImage, int ImageX, int I
 	if( MASKHCHK_ASYNC( MaskHandle, MaskData ) )
 		return -1 ;
 
-	// BASEIMAGE ‚ªƒtƒ‹ƒJƒ‰[( 24bit )‚Å‚à32bitƒJƒ‰[‚Å‚à‚È‚©‚Á‚½ê‡‚Í‚Å‚Í‚È‚©‚Á‚½ê‡‚Íƒtƒ‹ƒJƒ‰[‰æ‘œ‚É•ÏŠ·
+	// BASEIMAGE ãŒãƒ•ãƒ«ã‚«ãƒ©ãƒ¼( 24bit )ã§ã‚‚32bitã‚«ãƒ©ãƒ¼ã§ã‚‚ãªã‹ã£ãŸå ´åˆã¯ã§ã¯ãªã‹ã£ãŸå ´åˆã¯ãƒ•ãƒ«ã‚«ãƒ©ãƒ¼ç”»åƒã«å¤‰æ›
 	if( BaseImage->ColorData.Format        != DX_BASEIMAGE_FORMAT_NORMAL ||
 		BaseImage->ColorData.FloatTypeFlag != FALSE ||
 		( BaseImage->ColorData.ColorBitDepth != 24 &&
@@ -443,7 +443,7 @@ extern int NS_GraphImageBltToMask( const BASEIMAGE *BaseImage, int ImageX, int I
 		BaseImage = &TempBaseImage ;
 	}
 
-	// “]‘—ˆ—
+	// è»¢é€å‡¦ç†
 //	ColorBitDepth = NS_GetScreenBitDepth() ;
 	{
 		BYTE *SrcPoint,   *DestPoint ;
@@ -555,17 +555,17 @@ extern int NS_GraphImageBltToMask( const BASEIMAGE *BaseImage, int ImageX, int I
 #endif
 	}
 
-	// ƒtƒ‹ƒJƒ‰[‰æ‘œ‚É•ÏŠ·‚µ‚½‚à‚Ì‚ğg—p‚µ‚½ê‡‚Íƒtƒ‹ƒJƒ‰[‰æ‘œ‚ğ‰ğ•ú‚·‚é
+	// ãƒ•ãƒ«ã‚«ãƒ©ãƒ¼ç”»åƒã«å¤‰æ›ã—ãŸã‚‚ã®ã‚’ä½¿ç”¨ã—ãŸå ´åˆã¯ãƒ•ãƒ«ã‚«ãƒ©ãƒ¼ç”»åƒã‚’è§£æ”¾ã™ã‚‹
 	if( UseTempBaseImage )
 	{
 		NS_ReleaseBaseImage( &TempBaseImage ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒ}ƒXƒN‚Ì‘å‚«‚³‚ğ“¾‚é 
+// ãƒã‚¹ã‚¯ã®å¤§ãã•ã‚’å¾—ã‚‹ 
 extern int NS_GetMaskSize( int *WidthBuf, int *HeightBuf, int MaskHandle )
 {
 	MASKDATA * Mask ;
@@ -579,11 +579,11 @@ extern int NS_GetMaskSize( int *WidthBuf, int *HeightBuf, int MaskHandle )
 	*WidthBuf = Mask->MaskWidth ;
 	*HeightBuf = Mask->MaskHeight ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒ}ƒXƒNƒnƒ“ƒhƒ‹‚ª‚Âƒ}ƒXƒNƒCƒ[ƒW‚ÌBASEIMAGEƒf[ƒ^‚ğæ“¾‚·‚é( ƒtƒH[ƒ}ƒbƒg‚ª•ÏX‚³‚ê‚é‚æ‚¤‚È‘€ì‚ğ‚·‚é‚Æ³í‚É“®ì‚µ‚È‚­‚È‚è‚Ü‚·A‚ ‚ÆAReleaseBaseImage ‚ÍÀs‚·‚é•K—v‚Í‚ ‚è‚Ü‚¹‚ñ )
+// ãƒã‚¹ã‚¯ãƒãƒ³ãƒ‰ãƒ«ãŒæŒã¤ãƒã‚¹ã‚¯ã‚¤ãƒ¡ãƒ¼ã‚¸ã®BASEIMAGEãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—ã™ã‚‹( ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆãŒå¤‰æ›´ã•ã‚Œã‚‹ã‚ˆã†ãªæ“ä½œã‚’ã™ã‚‹ã¨æ­£å¸¸ã«å‹•ä½œã—ãªããªã‚Šã¾ã™ã€ã‚ã¨ã€ReleaseBaseImage ã¯å®Ÿè¡Œã™ã‚‹å¿…è¦ã¯ã‚ã‚Šã¾ã›ã‚“ )
 extern int NS_GetMaskBaseImageInfo( BASEIMAGE *BaseImage, int MaskHandle )
 {
 	MASKDATA * Mask ;
@@ -603,11 +603,11 @@ extern int NS_GetMaskBaseImageInfo( BASEIMAGE *BaseImage, int MaskHandle )
 	BaseImage->MipMapCount    = 0 ;
 	BaseImage->GraphDataCount = 0 ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// LoadMask ‚ÌÀˆ—ŠÖ”
+// LoadMask ã®å®Ÿå‡¦ç†é–¢æ•°
 static int Mask_LoadMask_Static(
 	int MaskHandle,
 	const wchar_t *FileName,
@@ -623,41 +623,41 @@ static int Mask_LoadMask_Static(
 	if( MASKHCHK_ASYNC( MaskHandle, Mask ) )
 		return -1 ;
 
-	// ‰æ‘œ‚Ì“Ç‚İ‚İ‚ğ‚İ‚é
+	// ç”»åƒã®èª­ã¿è¾¼ã¿ã‚’è©¦ã¿ã‚‹
 	if( CreateGraphImageOrDIBGraph_WCHAR_T( FileName, NULL, 0, LOADIMAGE_TYPE_FILE, FALSE, FALSE, FALSE, &BaseImage, NULL, NULL ) < 0 )
 	{
 		return -1 ;
 	}
 
-	// ’ÊíƒtƒH[ƒ}ƒbƒg‚Å‚Í‚È‚©‚Á‚½‚ç’ÊíƒtƒH[ƒ}ƒbƒg‚É•ÏŠ·
+	// é€šå¸¸ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã§ã¯ãªã‹ã£ãŸã‚‰é€šå¸¸ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã«å¤‰æ›
 	if( BaseImage.ColorData.Format != DX_BASEIMAGE_FORMAT_NORMAL )
 	{
 		NS_ConvertNormalFormatBaseImage( &BaseImage, TRUE ) ;
 	}
 
-	// ƒ}ƒXƒN•Û‘¶—pƒT[ƒtƒFƒX‚Ìì¬
+	// ãƒã‚¹ã‚¯ä¿å­˜ç”¨ã‚µãƒ¼ãƒ•ã‚§ã‚¹ã®ä½œæˆ
 	if( Mask_CreateSurface( &Mask->SrcData, &Mask->SrcDataPitch, BaseImage.Width, BaseImage.Height, &Mask->TransMode ) < 0 )
 	{
 		NS_ReleaseBaseImage( &BaseImage ) ;
 		return -1 ;
 	}
 
-	// ƒf[ƒ^‚ÌƒZƒbƒg
+	// ãƒ‡ãƒ¼ã‚¿ã®ã‚»ãƒƒãƒˆ
 	Mask->MaskWidth  = BaseImage.Width ;
 	Mask->MaskHeight = BaseImage.Height ;
 
-	// ƒ}ƒXƒNƒf[ƒ^‚ğ“]‘—
+	// ãƒã‚¹ã‚¯ãƒ‡ãƒ¼ã‚¿ã‚’è»¢é€
 	NS_GraphImageBltToMask( &BaseImage, 0, 0, MaskHandle ) ;
 
-	// ‰æ‘œ‚ğ‰ğ•ú
+	// ç”»åƒã‚’è§£æ”¾
 	NS_ReleaseBaseImage( &BaseImage ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return MaskHandle ;
 }
 
 #ifndef DX_NON_ASYNCLOAD
-// LoadMask ‚Ì”ñ“¯Šú“Ç‚İ‚İƒXƒŒƒbƒh‚©‚çŒÄ‚Î‚ê‚éŠÖ”
+// LoadMask ã®éåŒæœŸèª­ã¿è¾¼ã¿ã‚¹ãƒ¬ãƒƒãƒ‰ã‹ã‚‰å‘¼ã°ã‚Œã‚‹é–¢æ•°
 static void Mask_LoadMask_ASync( ASYNCLOADDATA_COMMON *AParam )
 {
 	int MaskHandle ;
@@ -684,7 +684,7 @@ static void Mask_LoadMask_ASync( ASYNCLOADDATA_COMMON *AParam )
 }
 #endif // DX_NON_ASYNCLOAD
 
-// ƒ}ƒXƒNƒf[ƒ^‚ğ‰æ‘œƒtƒ@ƒCƒ‹‚©‚ç“Ç‚İ‚Ş
+// ãƒã‚¹ã‚¯ãƒ‡ãƒ¼ã‚¿ã‚’ç”»åƒãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰èª­ã¿è¾¼ã‚€
 extern int Mask_LoadMask_UseGParam( const wchar_t *FileName, int ASyncLoadFlag )
 {
 	int MaskHandle ;
@@ -694,7 +694,7 @@ extern int Mask_LoadMask_UseGParam( const wchar_t *FileName, int ASyncLoadFlag )
 
 	CheckActiveState() ;
 
-	// ƒnƒ“ƒhƒ‹‚Ìì¬
+	// ãƒãƒ³ãƒ‰ãƒ«ã®ä½œæˆ
 	MaskHandle = AddHandle( DX_HANDLETYPE_GMASK, FALSE, -1 ) ;
 	if( MaskHandle == -1 )
 	{
@@ -710,23 +710,23 @@ extern int Mask_LoadMask_UseGParam( const wchar_t *FileName, int ASyncLoadFlag )
 
 		ConvertFullPathW_( FileName, FullPath, sizeof( FullPath ) ) ;
 
-		// ƒpƒ‰ƒ[ƒ^‚É•K—v‚Èƒƒ‚ƒŠ‚ÌƒTƒCƒY‚ğZo
+		// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã«å¿…è¦ãªãƒ¡ãƒ¢ãƒªã®ã‚µã‚¤ã‚ºã‚’ç®—å‡º
 		Addr = 0 ;
 		AddASyncLoadParamInt( NULL, &Addr, MaskHandle ) ;
 		AddASyncLoadParamString( NULL, &Addr, FullPath ) ;
 
-		// ƒƒ‚ƒŠ‚ÌŠm•Û
+		// ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿
 		AParam = AllocASyncLoadDataMemory( Addr ) ;
 		if( AParam == NULL )
 			goto ERR ;
 
-		// ˆ—‚É•K—v‚Èî•ñ‚ğƒZƒbƒg
+		// å‡¦ç†ã«å¿…è¦ãªæƒ…å ±ã‚’ã‚»ãƒƒãƒˆ
 		AParam->ProcessFunction = Mask_LoadMask_ASync ;
 		Addr = 0 ;
 		AddASyncLoadParamInt( AParam->Data, &Addr, MaskHandle ) ;
 		AddASyncLoadParamString( AParam->Data, &Addr, FullPath ) ;
 
-		// ƒf[ƒ^‚ğ’Ç‰Á
+		// ãƒ‡ãƒ¼ã‚¿ã‚’è¿½åŠ 
 		if( AddASyncLoadData( AParam ) < 0 )
 		{
 			DXFREE( AParam ) ;
@@ -734,7 +734,7 @@ extern int Mask_LoadMask_UseGParam( const wchar_t *FileName, int ASyncLoadFlag )
 			goto ERR ;
 		}
 
-		// ”ñ“¯Šú“Ç‚İ‚İƒJƒEƒ“ƒg‚ğƒCƒ“ƒNƒŠƒƒ“ƒg
+		// éåŒæœŸèª­ã¿è¾¼ã¿ã‚«ã‚¦ãƒ³ãƒˆã‚’ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆ
 		IncASyncLoadCount( MaskHandle, AParam->Index ) ;
 	}
 	else
@@ -744,7 +744,7 @@ extern int Mask_LoadMask_UseGParam( const wchar_t *FileName, int ASyncLoadFlag )
 			goto ERR ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return MaskHandle ;
 
 ERR :
@@ -753,7 +753,7 @@ ERR :
 	return -1 ;
 }
 
-// ƒ}ƒXƒNƒf[ƒ^‚ğƒ[ƒh‚·‚é
+// ãƒã‚¹ã‚¯ãƒ‡ãƒ¼ã‚¿ã‚’ãƒ­ãƒ¼ãƒ‰ã™ã‚‹
 extern int NS_LoadMask( const TCHAR *FileName )
 {
 #ifdef UNICODE
@@ -775,7 +775,7 @@ extern int NS_LoadMask( const TCHAR *FileName )
 #endif
 }
 
-// ‰æ‘œƒtƒ@ƒCƒ‹‚ğ“Ç‚İ‚İƒ}ƒXƒNƒnƒ“ƒhƒ‹‚ğì¬‚·‚é
+// ç”»åƒãƒ•ã‚¡ã‚¤ãƒ«ã‚’èª­ã¿è¾¼ã¿ãƒã‚¹ã‚¯ãƒãƒ³ãƒ‰ãƒ«ã‚’ä½œæˆã™ã‚‹
 extern int NS_LoadMaskWithStrLen( const TCHAR *FileName, size_t FileNameLength )
 {
 	int Result ;
@@ -791,13 +791,13 @@ extern int NS_LoadMaskWithStrLen( const TCHAR *FileName, size_t FileNameLength )
 	return Result ;
 }
 
-// ƒ}ƒXƒNƒf[ƒ^‚ğƒ[ƒh‚·‚é
+// ãƒã‚¹ã‚¯ãƒ‡ãƒ¼ã‚¿ã‚’ãƒ­ãƒ¼ãƒ‰ã™ã‚‹
 extern int LoadMask_WCHAR_T( const wchar_t *FileName )
 {
 	return Mask_LoadMask_UseGParam( FileName, GetASyncLoadFlag() ) ;
 }
 
-// LoadDivMask ‚ÌÀˆ—ŠÖ”
+// LoadDivMask ã®å®Ÿå‡¦ç†é–¢æ•°
 static int Mask_LoadDivMask_Static(
 	const wchar_t *FileName,
 	int AllNum,
@@ -816,17 +816,17 @@ static int Mask_LoadDivMask_Static(
 	if( MASKD.InitializeFlag == FALSE )
 		return -1 ;
 
-	// ‰æ‘œ‚Ì“Ç‚İ‚İ‚ğ‚İ‚é
+	// ç”»åƒã®èª­ã¿è¾¼ã¿ã‚’è©¦ã¿ã‚‹
 	if( CreateGraphImageOrDIBGraph_WCHAR_T( FileName, NULL, 0, LOADIMAGE_TYPE_FILE, FALSE, FALSE, FALSE, &BaseImage, NULL, NULL ) < 0 )
 	{
 		return -1 ;
 	}
 
-	// ƒTƒCƒYŠm”F
+	// ã‚µã‚¤ã‚ºç¢ºèª
 	if( XNum * XSize > BaseImage.Width || YNum * YSize > BaseImage.Height )
 		goto ERR ;
 
-	// •ªŠ„“]‘—ŠJn
+	// åˆ†å‰²è»¢é€é–‹å§‹
 	k = 0 ;
 	for( i = 0 ; k != AllNum && i < YNum ; i ++ )
 	{
@@ -835,35 +835,35 @@ static int Mask_LoadDivMask_Static(
 			if( MASKHCHK_ASYNC( HandleArray[ k ], Mask ) )
 				goto ERR ;
 
-			// ƒ}ƒXƒN‚Ìì¬
+			// ãƒã‚¹ã‚¯ã®ä½œæˆ
 			if( Mask_CreateSurface( &Mask->SrcData, &Mask->SrcDataPitch, XSize, YSize, &Mask->TransMode ) < 0 )
 				goto ERR ;
 
-			// ƒf[ƒ^‚ÌƒZƒbƒg
+			// ãƒ‡ãƒ¼ã‚¿ã®ã‚»ãƒƒãƒˆ
 			Mask->MaskWidth = XSize ;
 			Mask->MaskHeight = YSize ;
 
-			// ƒ}ƒXƒNƒf[ƒ^‚Ì“]‘—
+			// ãƒã‚¹ã‚¯ãƒ‡ãƒ¼ã‚¿ã®è»¢é€
 			NS_GraphImageBltToMask( &BaseImage, XSize * j, YSize * i, HandleArray[ k ] ) ;
 		}
 	}
 
-	// ‰æ‘œ‚ğ‰ğ•ú
+	// ç”»åƒã‚’è§£æ”¾
 	NS_ReleaseBaseImage( &BaseImage ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 
-	// ƒGƒ‰[I—¹
+	// ã‚¨ãƒ©ãƒ¼çµ‚äº†
 ERR :
-	// ‰æ‘œ‚ğ‰ğ•ú
+	// ç”»åƒã‚’è§£æ”¾
 	NS_ReleaseBaseImage( &BaseImage ) ;
 	
 	return -1 ;
 }
 
 #ifndef DX_NON_ASYNCLOAD
-// LoadDivMask ‚Ì”ñ“¯Šú“Ç‚İ‚İƒXƒŒƒbƒh‚©‚çŒÄ‚Î‚ê‚éŠÖ”
+// LoadDivMask ã®éåŒæœŸèª­ã¿è¾¼ã¿ã‚¹ãƒ¬ãƒƒãƒ‰ã‹ã‚‰å‘¼ã°ã‚Œã‚‹é–¢æ•°
 static void Mask_LoadDivMask_ASync( ASYNCLOADDATA_COMMON *AParam )
 {
 	const wchar_t *FileName ;
@@ -909,7 +909,7 @@ static void Mask_LoadDivMask_ASync( ASYNCLOADDATA_COMMON *AParam )
 }
 #endif // DX_NON_ASYNCLOAD
 
-// ƒ}ƒXƒN‚ğ‰æ‘œƒtƒ@ƒCƒ‹‚©‚ç•ªŠ„“Ç‚İ‚±‚İ
+// ãƒã‚¹ã‚¯ã‚’ç”»åƒãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰åˆ†å‰²èª­ã¿ã“ã¿
 extern int Mask_LoadDivMask_UseGParam(
 	const wchar_t *FileName,
 	int AllNum,
@@ -928,7 +928,7 @@ extern int Mask_LoadDivMask_UseGParam(
 	if( AllNum == 0 )
 		return -1 ;
 
-	// ƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚Ìì¬
+	// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã®ä½œæˆ
 	_MEMSET( HandleArray, 0, sizeof( int ) * AllNum ) ;
 	for( i = 0 ; i < AllNum ; i ++ )
 	{
@@ -948,7 +948,7 @@ extern int Mask_LoadDivMask_UseGParam(
 
 		ConvertFullPathW_( FileName, FullPath, sizeof( FullPath ) ) ;
 
-		// ƒpƒ‰ƒ[ƒ^‚É•K—v‚Èƒƒ‚ƒŠ‚ÌƒTƒCƒY‚ğZo
+		// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã«å¿…è¦ãªãƒ¡ãƒ¢ãƒªã®ã‚µã‚¤ã‚ºã‚’ç®—å‡º
 		Addr = 0 ;
 		AddASyncLoadParamString( NULL, &Addr, FullPath ) ; 
 		AddASyncLoadParamInt( NULL, &Addr, AllNum ) ;
@@ -958,12 +958,12 @@ extern int Mask_LoadDivMask_UseGParam(
 		AddASyncLoadParamInt( NULL, &Addr, YSize ) ;
 		AddASyncLoadParamStruct( NULL, &Addr, HandleArray, ( int )( sizeof( int ) * AllNum ) ) ;
 
-		// ƒƒ‚ƒŠ‚ÌŠm•Û
+		// ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿
 		AParam = AllocASyncLoadDataMemory( Addr ) ;
 		if( AParam == NULL )
 			goto ERR ;
 
-		// ˆ—‚É•K—v‚Èî•ñ‚ğƒZƒbƒg
+		// å‡¦ç†ã«å¿…è¦ãªæƒ…å ±ã‚’ã‚»ãƒƒãƒˆ
 		AParam->ProcessFunction = Mask_LoadDivMask_ASync ;
 		Addr = 0 ;
 		AddASyncLoadParamString( AParam->Data, &Addr, FullPath ) ; 
@@ -974,7 +974,7 @@ extern int Mask_LoadDivMask_UseGParam(
 		AddASyncLoadParamInt( AParam->Data, &Addr, YSize ) ;
 		AddASyncLoadParamStruct( AParam->Data, &Addr, HandleArray, ( int )( sizeof( int ) * AllNum ) ) ;
 
-		// ƒf[ƒ^‚ğ’Ç‰Á
+		// ãƒ‡ãƒ¼ã‚¿ã‚’è¿½åŠ 
 		if( AddASyncLoadData( AParam ) < 0 )
 		{
 			DXFREE( AParam ) ;
@@ -982,7 +982,7 @@ extern int Mask_LoadDivMask_UseGParam(
 			goto ERR ;
 		}
 
-		// ”ñ“¯Šú“Ç‚İ‚İƒJƒEƒ“ƒg‚ğƒCƒ“ƒNƒŠƒƒ“ƒg
+		// éåŒæœŸèª­ã¿è¾¼ã¿ã‚«ã‚¦ãƒ³ãƒˆã‚’ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆ
 		for( i = 0 ; i < AllNum ; i ++ )
 			IncASyncLoadCount( HandleArray[ i ], AParam->Index ) ;
 	}
@@ -993,7 +993,7 @@ extern int Mask_LoadDivMask_UseGParam(
 			goto ERR ;
 	}
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 
 ERR :
@@ -1006,7 +1006,7 @@ ERR :
 	return -1 ;
 }
 
-// ƒ}ƒXƒN‚ğ‰æ‘œ‚©‚ç•ªŠ„“Ç‚İ‚±‚İ
+// ãƒã‚¹ã‚¯ã‚’ç”»åƒã‹ã‚‰åˆ†å‰²èª­ã¿ã“ã¿
 extern int NS_LoadDivMask( const TCHAR *FileName, int AllNum, int XNum, int YNum, int XSize, int YSize, int *HandleArray )
 {
 #ifdef UNICODE
@@ -1028,7 +1028,7 @@ extern int NS_LoadDivMask( const TCHAR *FileName, int AllNum, int XNum, int YNum
 #endif
 }
 
-// ‰æ‘œƒtƒ@ƒCƒ‹‚ğ•ªŠ„“Ç‚İ‚İ‚µ‚Äƒ}ƒXƒNƒnƒ“ƒhƒ‹‚ğì¬‚·‚é
+// ç”»åƒãƒ•ã‚¡ã‚¤ãƒ«ã‚’åˆ†å‰²èª­ã¿è¾¼ã¿ã—ã¦ãƒã‚¹ã‚¯ãƒãƒ³ãƒ‰ãƒ«ã‚’ä½œæˆã™ã‚‹
 extern int NS_LoadDivMaskWithStrLen( const TCHAR *FileName, size_t FileNameLength, int AllNum, int XNum, int YNum, int XSize, int YSize, int *HandleArray )
 {
 	int Result ;
@@ -1044,7 +1044,7 @@ extern int NS_LoadDivMaskWithStrLen( const TCHAR *FileName, size_t FileNameLengt
 	return Result ;
 }
 
-// ƒ}ƒXƒN‚ğ‰æ‘œ‚©‚ç•ªŠ„“Ç‚İ‚±‚İ
+// ãƒã‚¹ã‚¯ã‚’ç”»åƒã‹ã‚‰åˆ†å‰²èª­ã¿ã“ã¿
 extern int LoadDivMask_WCHAR_T( const wchar_t *FileName, int AllNum, int XNum, int YNum, int XSize, int YSize, int *HandleArray )
 {
 	return Mask_LoadDivMask_UseGParam( FileName, AllNum, XNum, YNum, XSize, YSize, HandleArray, GetASyncLoadFlag() ) ;
@@ -1061,7 +1061,7 @@ extern int LoadDivMask_WCHAR_T( const wchar_t *FileName, int AllNum, int XNum, i
 
 
 
-// CreateMaskFromMem ‚ÌÀˆ—ŠÖ”
+// CreateMaskFromMem ã®å®Ÿå‡¦ç†é–¢æ•°
 static int Mask_CreateMaskFromMem_Static(
 	int         MaskHandle,
 	const void *FileImage,
@@ -1078,35 +1078,35 @@ static int Mask_CreateMaskFromMem_Static(
 	if( MASKHCHK_ASYNC( MaskHandle, Mask ) )
 		return -1 ;
 
-	// ƒ[ƒh‚ğ‚İ‚é
+	// ãƒ­ãƒ¼ãƒ‰ã‚’è©¦ã¿ã‚‹
 	if( NS_CreateBaseImage( NULL, FileImage, FileImageSize, LOADIMAGE_TYPE_MEM, &BaseImage, FALSE ) < 0 )
 	{
 		return -1 ;
 	}
 	
-	// ƒ}ƒXƒN•Û‘¶—pƒT[ƒtƒFƒX‚Ìì¬
+	// ãƒã‚¹ã‚¯ä¿å­˜ç”¨ã‚µãƒ¼ãƒ•ã‚§ã‚¹ã®ä½œæˆ
 	if( Mask_CreateSurface( &Mask->SrcData, &Mask->SrcDataPitch, BaseImage.Width, BaseImage.Height, &Mask->TransMode ) < 0 )
 	{
 		NS_ReleaseBaseImage( &BaseImage ) ;
 		return -1 ;
 	}
 
-	// ƒf[ƒ^‚ÌƒZƒbƒg
+	// ãƒ‡ãƒ¼ã‚¿ã®ã‚»ãƒƒãƒˆ
 	Mask->MaskWidth  = BaseImage.Width ;
 	Mask->MaskHeight = BaseImage.Height ;
 
-	// ƒ}ƒXƒNƒf[ƒ^‚ğ“]‘—
+	// ãƒã‚¹ã‚¯ãƒ‡ãƒ¼ã‚¿ã‚’è»¢é€
 	NS_GraphImageBltToMask( &BaseImage, 0, 0, MaskHandle ) ;
 
-	// BASEIMAGE ‚ğ‰ğ•ú
+	// BASEIMAGE ã‚’è§£æ”¾
 	NS_ReleaseBaseImage( &BaseImage ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return MaskHandle ;
 }
 
 #ifndef DX_NON_ASYNCLOAD
-// CreateMaskFromMem ‚Ì”ñ“¯Šú“Ç‚İ‚İƒXƒŒƒbƒh‚©‚çŒÄ‚Î‚ê‚éŠÖ”
+// CreateMaskFromMem ã®éåŒæœŸèª­ã¿è¾¼ã¿ã‚¹ãƒ¬ãƒƒãƒ‰ã‹ã‚‰å‘¼ã°ã‚Œã‚‹é–¢æ•°
 static void Mask_CreateMaskFromMem_ASync( ASYNCLOADDATA_COMMON *AParam )
 {
 	int         MaskHandle ;
@@ -1135,7 +1135,7 @@ static void Mask_CreateMaskFromMem_ASync( ASYNCLOADDATA_COMMON *AParam )
 }
 #endif // DX_NON_ASYNCLOAD
 
-// ƒ}ƒXƒNƒf[ƒ^‚ğƒƒ‚ƒŠã‚Ì‰æ‘œƒtƒ@ƒCƒ‹ƒCƒ[ƒW‚©‚ç“Ç‚İ‚Ş
+// ãƒã‚¹ã‚¯ãƒ‡ãƒ¼ã‚¿ã‚’ãƒ¡ãƒ¢ãƒªä¸Šã®ç”»åƒãƒ•ã‚¡ã‚¤ãƒ«ã‚¤ãƒ¡ãƒ¼ã‚¸ã‹ã‚‰èª­ã¿è¾¼ã‚€
 extern int Mask_CreateMaskFromMem_UseGParam( const void *FileImage, int FileImageSize, int ASyncLoadFlag )
 {
 	int MaskHandle ;
@@ -1145,7 +1145,7 @@ extern int Mask_CreateMaskFromMem_UseGParam( const void *FileImage, int FileImag
 
 	CheckActiveState() ;
 
-	// ƒnƒ“ƒhƒ‹‚Ìì¬
+	// ãƒãƒ³ãƒ‰ãƒ«ã®ä½œæˆ
 	MaskHandle = AddHandle( DX_HANDLETYPE_GMASK, FALSE, -1 ) ;
 	if( MaskHandle == -1 )
 	{
@@ -1158,25 +1158,25 @@ extern int Mask_CreateMaskFromMem_UseGParam( const void *FileImage, int FileImag
 		ASYNCLOADDATA_COMMON *AParam = NULL ;
 		int Addr ;
 
-		// ƒpƒ‰ƒ[ƒ^‚É•K—v‚Èƒƒ‚ƒŠ‚ÌƒTƒCƒY‚ğZo
+		// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã«å¿…è¦ãªãƒ¡ãƒ¢ãƒªã®ã‚µã‚¤ã‚ºã‚’ç®—å‡º
 		Addr = 0 ;
 		AddASyncLoadParamInt(        NULL, &Addr, MaskHandle ) ;
 		AddASyncLoadParamConstVoidP( NULL, &Addr, FileImage ) ;
 		AddASyncLoadParamInt(        NULL, &Addr, FileImageSize ) ;
 
-		// ƒƒ‚ƒŠ‚ÌŠm•Û
+		// ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿
 		AParam = AllocASyncLoadDataMemory( Addr ) ;
 		if( AParam == NULL )
 			goto ERR ;
 
-		// ˆ—‚É•K—v‚Èî•ñ‚ğƒZƒbƒg
+		// å‡¦ç†ã«å¿…è¦ãªæƒ…å ±ã‚’ã‚»ãƒƒãƒˆ
 		AParam->ProcessFunction = Mask_CreateMaskFromMem_ASync ;
 		Addr = 0 ;
 		AddASyncLoadParamInt(        AParam->Data, &Addr, MaskHandle ) ;
 		AddASyncLoadParamConstVoidP( AParam->Data, &Addr, FileImage ) ;
 		AddASyncLoadParamInt(        AParam->Data, &Addr, FileImageSize ) ;
 
-		// ƒf[ƒ^‚ğ’Ç‰Á
+		// ãƒ‡ãƒ¼ã‚¿ã‚’è¿½åŠ 
 		if( AddASyncLoadData( AParam ) < 0 )
 		{
 			DXFREE( AParam ) ;
@@ -1184,7 +1184,7 @@ extern int Mask_CreateMaskFromMem_UseGParam( const void *FileImage, int FileImag
 			goto ERR ;
 		}
 
-		// ”ñ“¯Šú“Ç‚İ‚İƒJƒEƒ“ƒg‚ğƒCƒ“ƒNƒŠƒƒ“ƒg
+		// éåŒæœŸèª­ã¿è¾¼ã¿ã‚«ã‚¦ãƒ³ãƒˆã‚’ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆ
 		IncASyncLoadCount( MaskHandle, AParam->Index ) ;
 	}
 	else
@@ -1194,7 +1194,7 @@ extern int Mask_CreateMaskFromMem_UseGParam( const void *FileImage, int FileImag
 			goto ERR ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return MaskHandle ;
 
 ERR :
@@ -1203,7 +1203,7 @@ ERR :
 	return -1 ;
 }
 
-// ƒƒ‚ƒŠã‚É‚ ‚é‰æ‘œƒtƒ@ƒCƒ‹ƒCƒ[ƒW‚ğ“Ç‚İ‚İƒ}ƒXƒNƒnƒ“ƒhƒ‹‚ğì¬‚·‚é
+// ãƒ¡ãƒ¢ãƒªä¸Šã«ã‚ã‚‹ç”»åƒãƒ•ã‚¡ã‚¤ãƒ«ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’èª­ã¿è¾¼ã¿ãƒã‚¹ã‚¯ãƒãƒ³ãƒ‰ãƒ«ã‚’ä½œæˆã™ã‚‹
 extern int NS_CreateMaskFromMem( const void *FileImage, int FileImageSize )
 {
 	return Mask_CreateMaskFromMem_UseGParam( FileImage, FileImageSize, GetASyncLoadFlag() ) ;
@@ -1220,7 +1220,7 @@ extern int NS_CreateMaskFromMem( const void *FileImage, int FileImageSize )
 
 
 
-// CreateDivMaskFromMem ‚ÌÀˆ—ŠÖ”
+// CreateDivMaskFromMem ã®å®Ÿå‡¦ç†é–¢æ•°
 static int Mask_CreateDivMaskFromMem_Static(
 	const void *FileImage,
 	int FileImageSize,
@@ -1242,17 +1242,17 @@ static int Mask_CreateDivMaskFromMem_Static(
 	if( MASKD.InitializeFlag == FALSE )
 		return -1 ;
 
-	// ƒ[ƒh‚ğ‚İ‚é
+	// ãƒ­ãƒ¼ãƒ‰ã‚’è©¦ã¿ã‚‹
 	if( NS_CreateBaseImage( NULL, FileImage, FileImageSize, LOADIMAGE_TYPE_MEM, &BaseImage, FALSE ) < 0 )
 	{
 		return -1 ;
 	}
 
-	// ƒTƒCƒYŠm”F
+	// ã‚µã‚¤ã‚ºç¢ºèª
 	if( XNum * XSize > BaseImage.Width || YNum * YSize > BaseImage.Height )
 		goto ERR ;
 
-	// •ªŠ„“]‘—ŠJn
+	// åˆ†å‰²è»¢é€é–‹å§‹
 	k = 0 ;
 	for( i = 0 ; k != AllNum && i < YNum ; i ++ )
 	{
@@ -1261,35 +1261,35 @@ static int Mask_CreateDivMaskFromMem_Static(
 			if( MASKHCHK_ASYNC( HandleArray[ k ], Mask ) )
 				goto ERR ;
 
-			// ƒ}ƒXƒN‚Ìì¬
+			// ãƒã‚¹ã‚¯ã®ä½œæˆ
 			if( Mask_CreateSurface( &Mask->SrcData, &Mask->SrcDataPitch, XSize, YSize, &Mask->TransMode ) < 0 )
 				goto ERR ;
 
-			// ƒf[ƒ^‚ÌƒZƒbƒg
+			// ãƒ‡ãƒ¼ã‚¿ã®ã‚»ãƒƒãƒˆ
 			Mask->MaskWidth = XSize ;
 			Mask->MaskHeight = YSize ;
 
-			// ƒ}ƒXƒNƒf[ƒ^‚Ì“]‘—
+			// ãƒã‚¹ã‚¯ãƒ‡ãƒ¼ã‚¿ã®è»¢é€
 			NS_GraphImageBltToMask( &BaseImage, XSize * j, YSize * i, HandleArray[ k ] ) ;
 		}
 	}
 
-	// BASEIMAGE ‚ğ‰ğ•ú
+	// BASEIMAGE ã‚’è§£æ”¾
 	NS_ReleaseBaseImage( &BaseImage ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 
-	// ƒGƒ‰[I—¹
+	// ã‚¨ãƒ©ãƒ¼çµ‚äº†
 ERR :
-	// BASEIMAGE ‚ğ‰ğ•ú
+	// BASEIMAGE ã‚’è§£æ”¾
 	NS_ReleaseBaseImage( &BaseImage ) ;
 	
 	return -1 ;
 }
 
 #ifndef DX_NON_ASYNCLOAD
-// CreateDivMaskFromMem ‚Ì”ñ“¯Šú“Ç‚İ‚İƒXƒŒƒbƒh‚©‚çŒÄ‚Î‚ê‚éŠÖ”
+// CreateDivMaskFromMem ã®éåŒæœŸèª­ã¿è¾¼ã¿ã‚¹ãƒ¬ãƒƒãƒ‰ã‹ã‚‰å‘¼ã°ã‚Œã‚‹é–¢æ•°
 static void Mask_CreateDivMaskFromMem_ASync( ASYNCLOADDATA_COMMON *AParam )
 {
 	const void *FileImage ;
@@ -1334,7 +1334,7 @@ static void Mask_CreateDivMaskFromMem_ASync( ASYNCLOADDATA_COMMON *AParam )
 }
 #endif // DX_NON_ASYNCLOAD
 
-// ƒ}ƒXƒN‚ğƒƒ‚ƒŠã‚Ì‰æ‘œƒtƒ@ƒCƒ‹ƒCƒ[ƒW‚©‚ç•ªŠ„“Ç‚İ‚±‚İ
+// ãƒã‚¹ã‚¯ã‚’ãƒ¡ãƒ¢ãƒªä¸Šã®ç”»åƒãƒ•ã‚¡ã‚¤ãƒ«ã‚¤ãƒ¡ãƒ¼ã‚¸ã‹ã‚‰åˆ†å‰²èª­ã¿ã“ã¿
 extern int Mask_CreateDivMaskFromMem_UseGParam(
 	const void *FileImage,
 	int FileImageSize,
@@ -1354,7 +1354,7 @@ extern int Mask_CreateDivMaskFromMem_UseGParam(
 	if( AllNum == 0 )
 		return -1 ;
 
-	// ƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚Ìì¬
+	// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã®ä½œæˆ
 	_MEMSET( HandleArray, 0, sizeof( int ) * AllNum ) ;
 	for( i = 0 ; i < AllNum ; i ++ )
 	{
@@ -1371,7 +1371,7 @@ extern int Mask_CreateDivMaskFromMem_UseGParam(
 		ASYNCLOADDATA_COMMON *AParam = NULL ;
 		int Addr ;
 
-		// ƒpƒ‰ƒ[ƒ^‚É•K—v‚Èƒƒ‚ƒŠ‚ÌƒTƒCƒY‚ğZo
+		// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã«å¿…è¦ãªãƒ¡ãƒ¢ãƒªã®ã‚µã‚¤ã‚ºã‚’ç®—å‡º
 		Addr = 0 ;
 		AddASyncLoadParamConstVoidP( NULL, &Addr, FileImage ) ;
 		AddASyncLoadParamInt(        NULL, &Addr, FileImageSize ) ;
@@ -1382,12 +1382,12 @@ extern int Mask_CreateDivMaskFromMem_UseGParam(
 		AddASyncLoadParamInt(        NULL, &Addr, YSize ) ;
 		AddASyncLoadParamStruct(     NULL, &Addr, HandleArray, ( int )( sizeof( int ) * AllNum ) ) ;
 
-		// ƒƒ‚ƒŠ‚ÌŠm•Û
+		// ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿
 		AParam = AllocASyncLoadDataMemory( Addr ) ;
 		if( AParam == NULL )
 			goto ERR ;
 
-		// ˆ—‚É•K—v‚Èî•ñ‚ğƒZƒbƒg
+		// å‡¦ç†ã«å¿…è¦ãªæƒ…å ±ã‚’ã‚»ãƒƒãƒˆ
 		AParam->ProcessFunction = Mask_CreateDivMaskFromMem_ASync ;
 		Addr = 0 ;
 		AddASyncLoadParamConstVoidP( AParam->Data, &Addr, FileImage ) ;
@@ -1399,7 +1399,7 @@ extern int Mask_CreateDivMaskFromMem_UseGParam(
 		AddASyncLoadParamInt(        AParam->Data, &Addr, YSize ) ;
 		AddASyncLoadParamStruct(     AParam->Data, &Addr, HandleArray, ( int )( sizeof( int ) * AllNum ) ) ;
 
-		// ƒf[ƒ^‚ğ’Ç‰Á
+		// ãƒ‡ãƒ¼ã‚¿ã‚’è¿½åŠ 
 		if( AddASyncLoadData( AParam ) < 0 )
 		{
 			DXFREE( AParam ) ;
@@ -1407,7 +1407,7 @@ extern int Mask_CreateDivMaskFromMem_UseGParam(
 			goto ERR ;
 		}
 
-		// ”ñ“¯Šú“Ç‚İ‚İƒJƒEƒ“ƒg‚ğƒCƒ“ƒNƒŠƒƒ“ƒg
+		// éåŒæœŸèª­ã¿è¾¼ã¿ã‚«ã‚¦ãƒ³ãƒˆã‚’ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆ
 		for( i = 0 ; i < AllNum ; i ++ )
 			IncASyncLoadCount( HandleArray[ i ], AParam->Index ) ;
 	}
@@ -1418,7 +1418,7 @@ extern int Mask_CreateDivMaskFromMem_UseGParam(
 			goto ERR ;
 	}
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 
 ERR :
@@ -1430,7 +1430,7 @@ ERR :
 	return -1 ;
 }
 
-// ƒƒ‚ƒŠã‚É‚ ‚é‰æ‘œƒtƒ@ƒCƒ‹ƒCƒ[ƒW‚ğ•ªŠ„“Ç‚İ‚İ‚µ‚Äƒ}ƒXƒNƒnƒ“ƒhƒ‹‚ğì¬‚·‚é
+// ãƒ¡ãƒ¢ãƒªä¸Šã«ã‚ã‚‹ç”»åƒãƒ•ã‚¡ã‚¤ãƒ«ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’åˆ†å‰²èª­ã¿è¾¼ã¿ã—ã¦ãƒã‚¹ã‚¯ãƒãƒ³ãƒ‰ãƒ«ã‚’ä½œæˆã™ã‚‹
 extern int NS_CreateDivMaskFromMem( const void *FileImage, int FileImageSize, int AllNum, int XNum, int YNum, int XSize, int YSize, int *HandleArray )
 {
 	return Mask_CreateDivMaskFromMem_UseGParam( FileImage, FileImageSize, AllNum, XNum, YNum, XSize, YSize, HandleArray, GetASyncLoadFlag() ) ;
@@ -1449,7 +1449,7 @@ extern int NS_CreateDivMaskFromMem( const void *FileImage, int FileImageSize, in
 
 #ifndef DX_NON_FONT
 
-// ‘®w’è‚ ‚è‚Ì•¶š—ñ‚ğƒ}ƒXƒNƒXƒNƒŠ[ƒ“‚É•`‰æ‚·‚é
+// æ›¸å¼æŒ‡å®šã‚ã‚Šã®æ–‡å­—åˆ—ã‚’ãƒã‚¹ã‚¯ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã«æç”»ã™ã‚‹
 extern int NS_DrawFormatStringMask( int x, int y, int Flag, const TCHAR *FormatString, ... )
 {
 	va_list VaList ;
@@ -1458,7 +1458,7 @@ extern int NS_DrawFormatStringMask( int x, int y, int Flag, const TCHAR *FormatS
 	if( MASKD.InitializeFlag == FALSE )
 		return -1 ;
 
-	// •ÒWŒã‚Ì•¶š—ñ‚ğæ“¾‚·‚é
+	// ç·¨é›†å¾Œã®æ–‡å­—åˆ—ã‚’å–å¾—ã™ã‚‹
 	{
 		va_start( VaList, FormatString ) ;
 		_TVSNPRINTF( String, sizeof( String ) / sizeof( TCHAR ), FormatString, VaList ) ;
@@ -1468,7 +1468,7 @@ extern int NS_DrawFormatStringMask( int x, int y, int Flag, const TCHAR *FormatS
 	return NS_DrawStringMaskToHandle( x, y, Flag, NS_GetDefaultFontHandle(), String ) ;
 }
 
-// ‘®w’è‚ ‚è‚Ì•¶š—ñ‚ğƒ}ƒXƒNƒXƒNƒŠ[ƒ“‚É•`‰æ‚·‚é
+// æ›¸å¼æŒ‡å®šã‚ã‚Šã®æ–‡å­—åˆ—ã‚’ãƒã‚¹ã‚¯ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã«æç”»ã™ã‚‹
 extern int DrawFormatStringMask_WCHAR_T( int x, int y, int Flag, const wchar_t *FormatString, ... )
 {
 	va_list VaList ;
@@ -1477,7 +1477,7 @@ extern int DrawFormatStringMask_WCHAR_T( int x, int y, int Flag, const wchar_t *
 	if( MASKD.InitializeFlag == FALSE )
 		return -1 ;
 
-	// •ÒWŒã‚Ì•¶š—ñ‚ğæ“¾‚·‚é
+	// ç·¨é›†å¾Œã®æ–‡å­—åˆ—ã‚’å–å¾—ã™ã‚‹
 	{
 		va_start( VaList, FormatString ) ;
 		_VSWNPRINTF( String, sizeof( String ) / 2, FormatString, VaList ) ;
@@ -1487,7 +1487,7 @@ extern int DrawFormatStringMask_WCHAR_T( int x, int y, int Flag, const wchar_t *
 	return DrawStringMaskToHandle_WCHAR_T( x, y, Flag, NS_GetDefaultFontHandle(), String, -1 ) ;
 }
 
-// ‘®w’è‚ ‚è‚Ì•¶š—ñ‚ğƒ}ƒXƒNƒXƒNƒŠ[ƒ“‚É•`‰æ‚·‚é
+// æ›¸å¼æŒ‡å®šã‚ã‚Šã®æ–‡å­—åˆ—ã‚’ãƒã‚¹ã‚¯ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã«æç”»ã™ã‚‹
 extern int NS_DrawFormatStringMaskToHandle( int x, int y, int Flag, int FontHandle, const TCHAR *FormatString, ... )
 {
 	va_list VaList ;
@@ -1496,7 +1496,7 @@ extern int NS_DrawFormatStringMaskToHandle( int x, int y, int Flag, int FontHand
 	if( MASKD.InitializeFlag == FALSE )
 		return -1 ;
 
-	// •ÒWŒã‚Ì•¶š—ñ‚ğæ“¾‚·‚é
+	// ç·¨é›†å¾Œã®æ–‡å­—åˆ—ã‚’å–å¾—ã™ã‚‹
 	{
 		va_start( VaList, FormatString ) ;
 		_TVSNPRINTF( String, sizeof( String ) / sizeof( TCHAR ), FormatString, VaList ) ;
@@ -1506,7 +1506,7 @@ extern int NS_DrawFormatStringMaskToHandle( int x, int y, int Flag, int FontHand
 	return NS_DrawStringMaskToHandle( x, y, Flag, FontHandle, String ) ;
 }
 
-// ‘®w’è‚ ‚è‚Ì•¶š—ñ‚ğƒ}ƒXƒNƒXƒNƒŠ[ƒ“‚É•`‰æ‚·‚é
+// æ›¸å¼æŒ‡å®šã‚ã‚Šã®æ–‡å­—åˆ—ã‚’ãƒã‚¹ã‚¯ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã«æç”»ã™ã‚‹
 extern int DrawFormatStringMaskToHandle_WCHAR_T( int x, int y, int Flag, int FontHandle, const wchar_t *FormatString, ... )
 {
 	va_list VaList ;
@@ -1515,7 +1515,7 @@ extern int DrawFormatStringMaskToHandle_WCHAR_T( int x, int y, int Flag, int Fon
 	if( MASKD.InitializeFlag == FALSE )
 		return -1 ;
 
-	// •ÒWŒã‚Ì•¶š—ñ‚ğæ“¾‚·‚é
+	// ç·¨é›†å¾Œã®æ–‡å­—åˆ—ã‚’å–å¾—ã™ã‚‹
 	{
 		va_start( VaList, FormatString ) ;
 		_VSWNPRINTF( String, sizeof( String ) / 2, FormatString, VaList ) ;
@@ -1525,7 +1525,7 @@ extern int DrawFormatStringMaskToHandle_WCHAR_T( int x, int y, int Flag, int Fon
 	return DrawStringMaskToHandle_WCHAR_T( x, y, Flag, FontHandle, String, -1 ) ;
 }
 
-// •¶š—ñ‚ğƒ}ƒXƒNƒXƒNƒŠ[ƒ“‚É•`‰æ‚·‚é(ƒtƒHƒ“ƒgƒnƒ“ƒhƒ‹w’è”Å)
+// æ–‡å­—åˆ—ã‚’ãƒã‚¹ã‚¯ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã«æç”»ã™ã‚‹(ãƒ•ã‚©ãƒ³ãƒˆãƒãƒ³ãƒ‰ãƒ«æŒ‡å®šç‰ˆ)
 extern int NS_DrawStringMaskToHandle( int x, int y, int Flag, int FontHandle, const TCHAR *String )
 {
 #ifdef UNICODE
@@ -1547,7 +1547,7 @@ extern int NS_DrawStringMaskToHandle( int x, int y, int Flag, int FontHandle, co
 #endif
 }
 
-// •¶š—ñ‚ğƒ}ƒXƒNƒXƒNƒŠ[ƒ“‚É•`‰æ‚·‚é( ƒtƒHƒ“ƒgƒnƒ“ƒhƒ‹w’è”Å )( SetFontCacheToTextureFlag( FALSE ) ; ‚É‚µ‚Äì¬‚µ‚½ƒtƒHƒ“ƒgƒnƒ“ƒhƒ‹‚Ì‚İg—p‰Â”\ )
+// æ–‡å­—åˆ—ã‚’ãƒã‚¹ã‚¯ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã«æç”»ã™ã‚‹( ãƒ•ã‚©ãƒ³ãƒˆãƒãƒ³ãƒ‰ãƒ«æŒ‡å®šç‰ˆ )( SetFontCacheToTextureFlag( FALSE ) ; ã«ã—ã¦ä½œæˆã—ãŸãƒ•ã‚©ãƒ³ãƒˆãƒãƒ³ãƒ‰ãƒ«ã®ã¿ä½¿ç”¨å¯èƒ½ )
 extern int NS_DrawNStringMaskToHandle( int x, int y, int Flag, int FontHandle, const TCHAR *String, size_t StringLength )
 {
 #ifdef UNICODE
@@ -1569,7 +1569,7 @@ extern int NS_DrawNStringMaskToHandle( int x, int y, int Flag, int FontHandle, c
 #endif
 }
 
-// •¶š—ñ‚ğƒ}ƒXƒNƒXƒNƒŠ[ƒ“‚É•`‰æ‚·‚é(ƒtƒHƒ“ƒgƒnƒ“ƒhƒ‹w’è”Å)
+// æ–‡å­—åˆ—ã‚’ãƒã‚¹ã‚¯ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã«æç”»ã™ã‚‹(ãƒ•ã‚©ãƒ³ãƒˆãƒãƒ³ãƒ‰ãƒ«æŒ‡å®šç‰ˆ)
 extern int DrawStringMaskToHandle_WCHAR_T( int x, int y, int Flag, int FontHandle, const wchar_t *String, int StrLen )
 {
 	BASEIMAGE BaseImage ;
@@ -1580,19 +1580,19 @@ extern int DrawStringMaskToHandle_WCHAR_T( int x, int y, int Flag, int FontHandl
 	if( MASKD.InitializeFlag == FALSE )
 		return -1 ;
 
-	// ƒ}ƒXƒNƒXƒNƒŠ[ƒ“‚ªì¬‚³‚ê‚Ä‚¢‚È‚©‚Á‚½‚çƒGƒ‰[
+	// ãƒã‚¹ã‚¯ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãŒä½œæˆã•ã‚Œã¦ã„ãªã‹ã£ãŸã‚‰ã‚¨ãƒ©ãƒ¼
 	if( MASKD.MaskBuffer == NULL )
 		return -1 ;
 
 	RefreshDefaultFont() ;
 
-	// BASEIMAGEƒf[ƒ^‚Ìì¬
+	// BASEIMAGEãƒ‡ãƒ¼ã‚¿ã®ä½œæˆ
 	NS_CreatePaletteColorData( &BaseImage.ColorData ) ;
 	NS_GetDrawScreenSize( &BaseImage.Width, &BaseImage.Height ) ;
 	BaseImage.Pitch = MASKD.MaskBufferPitch ;
 	BaseImage.GraphData = MASKD.MaskBuffer ;
 
-	// ƒ}ƒXƒNƒXƒNƒŠ[ƒ“ã‚É•¶š‚ğ•`‰æ
+	// ãƒã‚¹ã‚¯ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ä¸Šã«æ–‡å­—ã‚’æç”»
 	Color = ( DWORD )( Flag == 0 ? 0 : 0xff ) ;
 	Result = FontCacheStringDrawToHandle_WCHAR_T(
 		x, y, String, StrLen, Color, Color, 
@@ -1604,7 +1604,7 @@ extern int DrawStringMaskToHandle_WCHAR_T( int x, int y, int Flag, int FontHandl
 
 	if( GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )
 	{
-		// XV
+		// æ›´æ–°
 		Rect.left   = x ;
 		Rect.top    = y ;
 		Rect.right  = x + DrawSize.cx ;
@@ -1615,19 +1615,19 @@ extern int DrawStringMaskToHandle_WCHAR_T( int x, int y, int Flag, int FontHandl
 	return Result ;
 }
 
-// •¶š—ñ‚ğƒ}ƒXƒNƒXƒNƒŠ[ƒ“‚É•`‰æ‚·‚é
+// æ–‡å­—åˆ—ã‚’ãƒã‚¹ã‚¯ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã«æç”»ã™ã‚‹
 extern int NS_DrawStringMask( int x, int y, int Flag, const TCHAR *String )
 {
 	return NS_DrawStringMaskToHandle( x, y, Flag, NS_GetDefaultFontHandle(), String ) ;
 }
 
-// •¶š—ñ‚ğƒ}ƒXƒNƒXƒNƒŠ[ƒ“‚É•`‰æ‚·‚é
+// æ–‡å­—åˆ—ã‚’ãƒã‚¹ã‚¯ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã«æç”»ã™ã‚‹
 extern int NS_DrawNStringMask( int x, int y, int Flag, const TCHAR *String, size_t StringLength )
 {
 	return NS_DrawNStringMaskToHandle( x, y, Flag, NS_GetDefaultFontHandle(), String, StringLength ) ;
 }
 
-// •¶š—ñ‚ğƒ}ƒXƒNƒXƒNƒŠ[ƒ“‚É•`‰æ‚·‚é
+// æ–‡å­—åˆ—ã‚’ãƒã‚¹ã‚¯ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã«æç”»ã™ã‚‹
 extern int DrawStringMask_WCHAR_T( int x, int y, int Flag, const wchar_t *String, int StrLen )
 {
 	return DrawStringMaskToHandle_WCHAR_T( x, y, Flag, NS_GetDefaultFontHandle(), String, StrLen ) ;
@@ -1635,46 +1635,46 @@ extern int DrawStringMask_WCHAR_T( int x, int y, int Flag, const wchar_t *String
 
 #endif // DX_NON_FONT
 
-// ƒ}ƒXƒNƒXƒNƒŠ[ƒ“‚ğg—p’†‚©ƒtƒ‰ƒO‚Ìæ“¾
+// ãƒã‚¹ã‚¯ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚’ä½¿ç”¨ä¸­ã‹ãƒ•ãƒ©ã‚°ã®å–å¾—
 extern int NS_GetMaskUseFlag( void )
 {
 	return MASKD.MaskUseFlag ;
 }
 
-// ƒ}ƒXƒN‚Ì”’l‚É‘Î‚·‚éŒø‰Ê‚ğ‹t“]‚³‚¹‚é
+// ãƒã‚¹ã‚¯ã®æ•°å€¤ã«å¯¾ã™ã‚‹åŠ¹æœã‚’é€†è»¢ã•ã›ã‚‹
 extern int NS_SetMaskReverseEffectFlag( int ReverseFlag )
 {
 	MASKD.MaskReverseEffectFlag = ReverseFlag ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒ}ƒXƒNg—pƒ‚[ƒh‚Ìæ“¾
+// ãƒã‚¹ã‚¯ä½¿ç”¨ãƒ¢ãƒ¼ãƒ‰ã®å–å¾—
 extern int NS_GetUseMaskScreenFlag( void )
 {
 	return MASKD.MaskUseFlag ;
 }
 
-// ƒ}ƒXƒNƒXƒNƒŠ[ƒ“‚ğ•œ‹Œ‚³‚¹‚é
+// ãƒã‚¹ã‚¯ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚’å¾©æ—§ã•ã›ã‚‹
 extern int Mask_ReCreateSurface( void )
 {
 	if( MASKD.InitializeFlag == FALSE )
 		return -1 ;
 
-	// ƒƒCƒ“‚Ìƒ}ƒXƒNƒT[ƒtƒFƒX‚ğì¬‚·‚é
+	// ãƒ¡ã‚¤ãƒ³ã®ãƒã‚¹ã‚¯ã‚µãƒ¼ãƒ•ã‚§ã‚¹ã‚’ä½œæˆã™ã‚‹
 	Mask_CreateScreenFunction( MASKD.CreateMaskFlag, GSYS.DrawSetting.DrawSizeX, GSYS.DrawSetting.DrawSizeY ) ;
 
-	// ‚à‚µƒ}ƒXƒNg—pƒtƒ‰ƒO‚ª—§‚Á‚Ä‚¢‚½‚çƒ}ƒXƒN‚ğ—LŒø‚É‚·‚éì‹Æ‚ğs‚¤
+	// ã‚‚ã—ãƒã‚¹ã‚¯ä½¿ç”¨ãƒ•ãƒ©ã‚°ãŒç«‹ã£ã¦ã„ãŸã‚‰ãƒã‚¹ã‚¯ã‚’æœ‰åŠ¹ã«ã™ã‚‹ä½œæ¥­ã‚’è¡Œã†
 	if( MASKD.MaskUseFlag )
 		NS_SetUseMaskScreenFlag( TRUE ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
 
-// ƒ}ƒXƒNƒpƒ^[ƒ“‚Ì“WŠJ
+// ãƒã‚¹ã‚¯ãƒ‘ã‚¿ãƒ¼ãƒ³ã®å±•é–‹
 extern int DrawMaskToDirectData_Base( int DrawPointX, int DrawPointY, void *DestBufP, int DestPitch, 
 											int SrcWidth, int SrcHeight, const void *SrcData, int TransMode  )
 {
@@ -1700,7 +1700,7 @@ extern int DrawMaskToDirectData_Base( int DrawPointX, int DrawPointY, void *Dest
 	if( Rect.left > 0 ) DrawPointX += Rect.left ;
 	if( Rect.top > 0 ) DrawPointY += Rect.top ;
 
-	// “]‘—€”õ
+	// è»¢é€æº–å‚™
 	BltWidth = Rect.right - Rect.left ;
 	BltHeight = Rect.bottom - Rect.top ;
 	SrcP = ( BYTE * )SrcData + Rect.left + Rect.top * SrcWidth ;
@@ -1711,7 +1711,7 @@ extern int DrawMaskToDirectData_Base( int DrawPointX, int DrawPointY, void *Dest
 
 	TransColor = ( BYTE )( TransMode == DX_MASKTRANS_WHITE ? 0xff : 0 ) ;
 
-	// “§‰ßF‚ª‚ ‚é‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+	// é€éè‰²ãŒã‚ã‚‹ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 	if( TransMode == DX_MASKTRANS_NONE )
 	{
 #ifdef DX_NON_INLINE_ASM
@@ -1732,7 +1732,7 @@ extern int DrawMaskToDirectData_Base( int DrawPointX, int DrawPointY, void *Dest
 
 		}while( -- BltHeight != 0 ) ;
 #else
-		// “§‰ßF‚È‚¢ƒo[ƒWƒ‡ƒ“
+		// é€éè‰²ãªã„ãƒãƒ¼ã‚¸ãƒ§ãƒ³
 		__asm{
 			CLD
 			MOV		EDI, DestP
@@ -1756,7 +1756,7 @@ extern int DrawMaskToDirectData_Base( int DrawPointX, int DrawPointY, void *Dest
 	}
 	else
 	{
-		// “§‰ßF‚ ‚èƒo[ƒWƒ‡ƒ“
+		// é€éè‰²ã‚ã‚Šãƒãƒ¼ã‚¸ãƒ§ãƒ³
 		
 #ifdef DX_NON_INLINE_ASM
 		int i ;
@@ -1802,11 +1802,11 @@ extern int DrawMaskToDirectData_Base( int DrawPointX, int DrawPointY, void *Dest
 #endif
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒ}ƒXƒN‚Ìƒf[ƒ^‚ğ’¼Úƒ}ƒXƒN‰æ–Ê‘S‘Ì‚É•`‰æ‚·‚é
+// ãƒã‚¹ã‚¯ã®ãƒ‡ãƒ¼ã‚¿ã‚’ç›´æ¥ãƒã‚¹ã‚¯ç”»é¢å…¨ä½“ã«æç”»ã™ã‚‹
 extern int NS_DrawFillMaskToDirectData( int x1, int y1, int x2, int y2,  int Width, int Height, const void *MaskData )
 {
 	int MaskHandle ;
@@ -1816,23 +1816,23 @@ extern int NS_DrawFillMaskToDirectData( int x1, int y1, int x2, int y2,  int Wid
 
 	CheckActiveState() ;
 
-	// ‹ó‚Ìƒ}ƒXƒN‚ğì¬
+	// ç©ºã®ãƒã‚¹ã‚¯ã‚’ä½œæˆ
 	if( ( MaskHandle = NS_MakeMask( Width, Height ) ) == -1 ) return -1 ;
 
-	// ƒ}ƒXƒN‚Éƒf[ƒ^‚ğƒZƒbƒg
+	// ãƒã‚¹ã‚¯ã«ãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆ
 	NS_SetDataToMask( Width, Height, MaskData, MaskHandle ) ;
 
-	// ƒ}ƒXƒN‚ğ‰æ–Ê‘S‘Ì‚É•`‰æ
+	// ãƒã‚¹ã‚¯ã‚’ç”»é¢å…¨ä½“ã«æç”»
 	NS_DrawFillMask( x1, y1, x2, y2, MaskHandle ) ;
 
-	// ƒ}ƒXƒNƒnƒ“ƒhƒ‹‚ğíœ
+	// ãƒã‚¹ã‚¯ãƒãƒ³ãƒ‰ãƒ«ã‚’å‰Šé™¤
 	SubHandle( MaskHandle, FALSE, FALSE ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒ}ƒXƒN‚Ìƒf[ƒ^‚ğƒ}ƒXƒN‚É“]‘—‚·‚é
+// ãƒã‚¹ã‚¯ã®ãƒ‡ãƒ¼ã‚¿ã‚’ãƒã‚¹ã‚¯ã«è»¢é€ã™ã‚‹
 extern int NS_SetDataToMask( int Width, int Height, const void *MaskData, int MaskHandle )
 {
 	MASKDATA * Mask ;
@@ -1847,20 +1847,20 @@ extern int NS_SetDataToMask( int Width, int Height, const void *MaskData, int Ma
 
 	CheckActiveState() ;
 
-	// ƒ}ƒXƒNƒf[ƒ^‚ª‚È‚©‚Á‚½ê‡‚Íˆ—‚ğI—¹
+	// ãƒã‚¹ã‚¯ãƒ‡ãƒ¼ã‚¿ãŒãªã‹ã£ãŸå ´åˆã¯å‡¦ç†ã‚’çµ‚äº†
 	if( MaskData == NULL ) return 0 ;
 
-	// ƒ}ƒXƒNƒOƒ‰ƒtƒBƒbƒN‚Éƒ}ƒXƒNƒf[ƒ^‚ğ“WŠJ
+	// ãƒã‚¹ã‚¯ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã«ãƒã‚¹ã‚¯ãƒ‡ãƒ¼ã‚¿ã‚’å±•é–‹
 	DrawMaskToDirectData_Base( 0, 0, Mask->SrcData, Mask->SrcDataPitch,
 							Width, Height, MaskData, DX_MASKTRANS_NONE ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
 
 
-// ƒ}ƒXƒN‰æ–Êã‚Ì•`‰æó‘Ô‚ğæ“¾‚·‚é
+// ãƒã‚¹ã‚¯ç”»é¢ä¸Šã®æç”»çŠ¶æ…‹ã‚’å–å¾—ã™ã‚‹
 extern int NS_GetMaskScreenData( int x1, int y1, int x2, int y2, int MaskHandle )
 {
 	MASKDATA * Mask ; 
@@ -1875,7 +1875,7 @@ extern int NS_GetMaskScreenData( int x1, int y1, int x2, int y2, int MaskHandle 
 	if( MASKD.MaskBuffer == NULL )
 		return 0 ;
 
-	// æ“¾‹éŒ`‚ÌƒZƒbƒg
+	// å–å¾—çŸ©å½¢ã®ã‚»ãƒƒãƒˆ
 	SETRECT( Rect, x1, y1, x2, y2 ) ;
 	NS_GetDrawScreenSize( ( int * )&Rect2.right, ( int * )&Rect2.bottom ) ;
 	Rect2.left = 0 ; Rect2.top = 0 ;
@@ -1885,7 +1885,7 @@ extern int NS_GetMaskScreenData( int x1, int y1, int x2, int y2, int MaskHandle 
 	if( Rect.right - Rect.left != Mask->MaskWidth ||
 		Rect.bottom - Rect.top != Mask->MaskHeight ) return -1 ;
 
-	// ƒf[ƒ^‚Ì“]‘—
+	// ãƒ‡ãƒ¼ã‚¿ã®è»¢é€
 	{
 		BYTE *Dest, *Src ;
 		int DestAddPitch, SrcAddPitch ;
@@ -1945,11 +1945,11 @@ extern int NS_GetMaskScreenData( int x1, int y1, int x2, int y2, int MaskHandle 
 #endif
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒ}ƒXƒNƒXƒNƒŠ[ƒ“‚ğíœ‚·‚é
+// ãƒã‚¹ã‚¯ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚’å‰Šé™¤ã™ã‚‹
 extern int NS_DeleteMaskScreen( void )
 {
 	if( MASKD.InitializeFlag == FALSE )
@@ -1957,18 +1957,18 @@ extern int NS_DeleteMaskScreen( void )
 
 //	CheckActiveState() ;
 
-	// ‚à‚µƒ}ƒXƒNg—pƒtƒ‰ƒO‚ª—§‚Á‚Ä‚¢‚½‚çƒ}ƒXƒN‚ğ–³Œø‚É‚·‚éì‹Æ‚ğs‚¤
+	// ã‚‚ã—ãƒã‚¹ã‚¯ä½¿ç”¨ãƒ•ãƒ©ã‚°ãŒç«‹ã£ã¦ã„ãŸã‚‰ãƒã‚¹ã‚¯ã‚’ç„¡åŠ¹ã«ã™ã‚‹ä½œæ¥­ã‚’è¡Œã†
 	if( MASKD.MaskUseFlag )
 		NS_SetUseMaskScreenFlag( FALSE ) ;
 
-	// ƒ}ƒXƒN—pƒT[ƒtƒFƒX‚ğíœ‚·‚é
+	// ãƒã‚¹ã‚¯ç”¨ã‚µãƒ¼ãƒ•ã‚§ã‚¹ã‚’å‰Šé™¤ã™ã‚‹
 	Mask_ReleaseSurface() ;
 
-	// ƒ}ƒXƒNƒT[ƒtƒFƒX‚ªì¬‚³‚ê‚Ä‚¢‚é‚©ƒtƒ‰ƒO‚ğ“|‚·
+	// ãƒã‚¹ã‚¯ã‚µãƒ¼ãƒ•ã‚§ã‚¹ãŒä½œæˆã•ã‚Œã¦ã„ã‚‹ã‹ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 	MASKD.CreateMaskFlag = FALSE ;
 	MASKD.MaskValidFlag = MASKD.MaskUseFlag && MASKD.CreateMaskFlag ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
@@ -1985,7 +1985,7 @@ extern int NS_DeleteMaskScreen( void )
 
 
 
-// ƒ}ƒXƒNƒXƒNƒŠ[ƒ“‚ğì¬‚·‚éŠÖ”
+// ãƒã‚¹ã‚¯ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚’ä½œæˆã™ã‚‹é–¢æ•°
 extern int Mask_CreateScreenFunction( int MaskSurfaceFlag, int Width, int Height )
 {
 	bool   OldEnable = false ;
@@ -1997,15 +1997,15 @@ extern int Mask_CreateScreenFunction( int MaskSurfaceFlag, int Width, int Height
 
 	if( MaskSurfaceFlag == FALSE ) return 0 ;
 
-	// ƒTƒCƒY‚Ì’²®
+	// ã‚µã‚¤ã‚ºã®èª¿æ•´
 	if( MASKD.MaskBuffer != NULL )
 	{
-		// ƒTƒCƒY‚Í‘å‚«‚¢‚Ù‚¤‚É‡‚í‚¹‚é
+		// ã‚µã‚¤ã‚ºã¯å¤§ãã„ã»ã†ã«åˆã‚ã›ã‚‹
 		if( Width  < MASKD.MaskBufferSizeX ) Width  = MASKD.MaskBufferSizeX ;
 		if( Height < MASKD.MaskBufferSizeY ) Height = MASKD.MaskBufferSizeY ;
 	}
 
-	// Šù‚Éƒ}ƒXƒNƒoƒbƒtƒ@‚ª‘¶İ‚µ‚ÄAŠ‚Â¡‚Ü‚Å‚æ‚è‚à‘å‚«‚ÈƒTƒCƒY‚Ìƒoƒbƒtƒ@‚ªw’è‚³‚ê‚½ê‡‚Íƒoƒbƒtƒ@‚ğ‘å‚«‚­ì‚è’¼‚·
+	// æ—¢ã«ãƒã‚¹ã‚¯ãƒãƒƒãƒ•ã‚¡ãŒå­˜åœ¨ã—ã¦ã€ä¸”ã¤ä»Šã¾ã§ã‚ˆã‚Šã‚‚å¤§ããªã‚µã‚¤ã‚ºã®ãƒãƒƒãƒ•ã‚¡ãŒæŒ‡å®šã•ã‚ŒãŸå ´åˆã¯ãƒãƒƒãƒ•ã‚¡ã‚’å¤§ããä½œã‚Šç›´ã™
 	if( MASKD.MaskBuffer != NULL && ( Width > MASKD.MaskBufferSizeX || Height > MASKD.MaskBufferSizeY ) )
 	{
 		OldEnable = true ;
@@ -2020,27 +2020,27 @@ extern int Mask_CreateScreenFunction( int MaskSurfaceFlag, int Width, int Height
 		MaskDrawMemImgOld  = MASKD.MaskDrawMemImg ;
 		_MEMSET( &MASKD.MaskDrawMemImg, 0, sizeof( MEMIMG ) ) ;
 
-		// ŠÂ‹«ˆË‘¶ˆ—
+		// ç’°å¢ƒä¾å­˜å‡¦ç†
 		Mask_CreateScreenFunction_Timing0_PF() ;
 	}
 
 	MASKD.MaskBufferSizeX = Width ;
 	MASKD.MaskBufferSizeY = Height ;
 
-	// ƒ}ƒXƒN•Û‘¶—pƒoƒbƒtƒ@‚Ìì¬
+	// ãƒã‚¹ã‚¯ä¿å­˜ç”¨ãƒãƒƒãƒ•ã‚¡ã®ä½œæˆ
 	if( MASKD.MaskBuffer == NULL )
 	{
-		// ƒ}ƒXƒNƒoƒbƒtƒ@‚Ìƒsƒbƒ`‚ğZo( 4‚Ì”{”‚É‚·‚é )
+		// ãƒã‚¹ã‚¯ãƒãƒƒãƒ•ã‚¡ã®ãƒ”ãƒƒãƒã‚’ç®—å‡º( 4ã®å€æ•°ã«ã™ã‚‹ )
 		MASKD.MaskBufferPitch = ( Width + 3 ) / 4 * 4 ;
 
-		// ƒƒ‚ƒŠ‚ÌŠm•Û
+		// ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿
 		MASKD.MaskBuffer = ( BYTE * )DXALLOC( ( size_t )( MASKD.MaskBufferPitch * Height ) ) ;
 
-		// ƒ}ƒXƒN‚ÌƒNƒŠƒA
+		// ãƒã‚¹ã‚¯ã®ã‚¯ãƒªã‚¢
 		_MEMSET( MASKD.MaskBuffer, 0, ( size_t )( MASKD.MaskBufferPitch * Height ) ) ;
 	}
 
-	// ƒn[ƒhƒEƒGƒA‚Ì‹@”\‚ğg—p‚·‚éê‡‚ÍƒeƒNƒXƒ`ƒƒ‚àì¬‚·‚é
+	// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã®æ©Ÿèƒ½ã‚’ä½¿ç”¨ã™ã‚‹å ´åˆã¯ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚‚ä½œæˆã™ã‚‹
 	if( GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )
 	{
 		if( Mask_CreateScreenFunction_Timing1_PF( Width, Height ) < 0 )
@@ -2050,23 +2050,23 @@ extern int Mask_CreateScreenFunction( int MaskSurfaceFlag, int Width, int Height
 	}
 	else
 	{
-		// •`‰ææ—pƒT[ƒtƒFƒX‚Ìì¬
+		// æç”»å…ˆç”¨ã‚µãƒ¼ãƒ•ã‚§ã‚¹ã®ä½œæˆ
 		if( CheckValidMemImg( &MASKD.MaskDrawMemImg ) == FALSE )
 		{
-			// MEMIMG ‚ğg—p‚·‚éê‡‚Í‰æ–Ê‚Æ“¯‚¶‘å‚«‚³‚Ì MEMIMG ‚ğì¬‚·‚é
+			// MEMIMG ã‚’ä½¿ç”¨ã™ã‚‹å ´åˆã¯ç”»é¢ã¨åŒã˜å¤§ãã•ã® MEMIMG ã‚’ä½œæˆã™ã‚‹
 			if( MakeMemImgScreen( &MASKD.MaskDrawMemImg, Width, Height, -1 ) < 0 )
-				return DXST_LOGFILE_ADDUTF16LE( "\xde\x30\xb9\x30\xaf\x30\x28\x75\x20\x00\x4d\x00\x45\x00\x4d\x00\x49\x00\x4d\x00\x47\x00\x20\x00\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"ƒ}ƒXƒN—p MEMIMG ‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½" @*/ ) ;
+				return DXST_LOGFILE_ADDUTF16LE( "\xde\x30\xb9\x30\xaf\x30\x28\x75\x20\x00\x4d\x00\x45\x00\x4d\x00\x49\x00\x4d\x00\x47\x00\x20\x00\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"ãƒã‚¹ã‚¯ç”¨ MEMIMG ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ" @*/ ) ;
 
 			MASKD.ValidMaskDrawMemImg = TRUE ;
 		}
 	}
 
-	// ì‚è’¼‚µ‚½ê‡‚ÍˆÈ‘O‚Ì“à—e‚ğƒRƒs[‚·‚é
+	// ä½œã‚Šç›´ã—ãŸå ´åˆã¯ä»¥å‰ã®å†…å®¹ã‚’ã‚³ãƒ”ãƒ¼ã™ã‚‹
 	if( OldEnable )
 	{
 		int i ;
 
-		// ƒ}ƒXƒNƒoƒbƒtƒ@‚Ì“à—e‚ğƒRƒs[
+		// ãƒã‚¹ã‚¯ãƒãƒƒãƒ•ã‚¡ã®å†…å®¹ã‚’ã‚³ãƒ”ãƒ¼
 		for( i = 0 ; i < MaskBufferSizeYOld ; i ++ )
 		{
 			_MEMCPY( MASKD.MaskBuffer + MASKD.MaskBufferPitch * i, MaskBufferOld + MaskBufferPitchOld * i, ( size_t )MaskBufferSizeXOld ) ;
@@ -2074,7 +2074,7 @@ extern int Mask_CreateScreenFunction( int MaskSurfaceFlag, int Width, int Height
 		DXFREE( MaskBufferOld ) ;
 		MaskBufferOld = NULL ;
 
-		// ƒn[ƒhƒEƒGƒA‚Ì‹@”\‚ğg—p‚·‚éê‡‚ÍƒeƒNƒXƒ`ƒƒ‚àì¬‚·‚é
+		// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã®æ©Ÿèƒ½ã‚’ä½¿ç”¨ã™ã‚‹å ´åˆã¯ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚‚ä½œæˆã™ã‚‹
 		if( GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )
 		{
 			if( Mask_CreateScreenFunction_Timing2_PF( MaskBufferSizeXOld, MaskBufferSizeYOld ) < 0 )
@@ -2084,41 +2084,41 @@ extern int Mask_CreateScreenFunction( int MaskSurfaceFlag, int Width, int Height
 		}
 		else
 		{
-			// ŒÃ‚¢•`‰ææ—pMEMIMG ‚Ì“à—e‚ğV‚µ‚¢ MEMIMG ‚ÉƒRƒs[‚·‚é
+			// å¤ã„æç”»å…ˆç”¨MEMIMG ã®å†…å®¹ã‚’æ–°ã—ã„ MEMIMG ã«ã‚³ãƒ”ãƒ¼ã™ã‚‹
 			DrawMemImg( &MASKD.MaskDrawMemImg, &MaskDrawMemImgOld, 0, 0, FALSE, NULL ) ;
 			TerminateMemImg( &MaskDrawMemImgOld ) ;
 		}
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒ}ƒXƒNƒXƒNƒŠ[ƒ“‚ğˆêíœ‚·‚é
+// ãƒã‚¹ã‚¯ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚’ä¸€æ™‚å‰Šé™¤ã™ã‚‹
 extern int Mask_ReleaseSurface( void )
 {
-	// ƒ}ƒXƒN•Û‘¶—pƒoƒbƒtƒ@‚Ì‰ğ•ú
+	// ãƒã‚¹ã‚¯ä¿å­˜ç”¨ãƒãƒƒãƒ•ã‚¡ã®è§£æ”¾
 	if( MASKD.MaskBuffer != NULL )
 	{
 		DXFREE( MASKD.MaskBuffer ) ;
 		MASKD.MaskBuffer = NULL ;
 	}
 
-	// ƒ}ƒXƒN•`‰æ—p‚Ì MEMIMG ‚ğ‰ğ•ú
+	// ãƒã‚¹ã‚¯æç”»ç”¨ã® MEMIMG ã‚’è§£æ”¾
 	if( MASKD.ValidMaskDrawMemImg == TRUE )
 	{
 		TerminateMemImg( &MASKD.MaskDrawMemImg ) ;
 		MASKD.ValidMaskDrawMemImg = FALSE ;
 	}
 
-	// ŠÂ‹«ˆË‘¶ˆ—
+	// ç’°å¢ƒä¾å­˜å‡¦ç†
 	Mask_ReleaseSurface_PF() ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒ}ƒXƒNg—pƒ‚[ƒh‚ğ•ÏX
+// ãƒã‚¹ã‚¯ä½¿ç”¨ãƒ¢ãƒ¼ãƒ‰ã‚’å¤‰æ›´
 extern int NS_SetUseMaskScreenFlag( int ValidFlag )
 {
 	IMAGEDATA *Image ;
@@ -2126,48 +2126,48 @@ extern int NS_SetUseMaskScreenFlag( int ValidFlag )
 	if( MASKD.InitializeFlag == FALSE )
 		return -1 ;
 
-	// ƒ}ƒXƒNƒXƒNƒŠ[ƒ“‚ª‚È‚¢ê‡‚Í‚±‚±‚Åˆ—‚ğI—¹
+	// ãƒã‚¹ã‚¯ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãŒãªã„å ´åˆã¯ã“ã“ã§å‡¦ç†ã‚’çµ‚äº†
 	if( MASKD.MaskBuffer == NULL ) return -1 ;
 
-	// ƒtƒ‹ƒXƒNƒŠ[ƒ“ƒ}ƒXƒNˆ—‚ğs‚Á‚Ä‚¢‚éê‡‚Íƒ}ƒXƒN•`‰æ‚ÌŒ‹‰Ê‚ğ”½‰f‚³‚¹‚é
+	// ãƒ•ãƒ«ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒã‚¹ã‚¯å‡¦ç†ã‚’è¡Œã£ã¦ã„ã‚‹å ´åˆã¯ãƒã‚¹ã‚¯æç”»ã®çµæœã‚’åæ˜ ã•ã›ã‚‹
 	MASK_FULLSCREEN_MASKUPDATE
 
-	// ¡‚Ü‚Å‚Æƒtƒ‰ƒO‚ª“¯‚¶ê‡‚Í–³‹
+	// ä»Šã¾ã§ã¨ãƒ•ãƒ©ã‚°ãŒåŒã˜å ´åˆã¯ç„¡è¦–
 //	if( ValidFlag == MASKD.MaskUseFlag ) return 0 ;
 
-	// ƒ}ƒXƒN‚ğg—p‚·‚é‚©‚Ìƒtƒ‰ƒO‚ğƒZƒbƒg
+	// ãƒã‚¹ã‚¯ã‚’ä½¿ç”¨ã™ã‚‹ã‹ã®ãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆ
 	MASKD.MaskUseFlag = ValidFlag ;
 	MASKD.MaskValidFlag = MASKD.MaskUseFlag && MASKD.CreateMaskFlag ;
 
-	// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒ^‚ª—LŒø‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+	// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚¿ãŒæœ‰åŠ¹ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 	if( GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )
 	{
-		// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒ^‚ª—LŒø‚Èê‡
+		// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚¿ãŒæœ‰åŠ¹ãªå ´åˆ
 
-		// ŠÂ‹«ˆË‘¶ˆ—
+		// ç’°å¢ƒä¾å­˜å‡¦ç†
 		Mask_SetUseMaskScreenFlag_PF() ;
 	}
 	else
 	{
-		// ƒ\ƒtƒgƒEƒGƒAƒŒƒ“ƒ_ƒŠƒ“ƒO‚Ìê‡
+		// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã®å ´åˆ
 
-		// •`‰ææ‚ÌŒˆ’è
+		// æç”»å…ˆã®æ±ºå®š
 		if( MASKD.MaskValidFlag )
 		{
-			// ƒ}ƒXƒN‚ª—LŒø‚Èê‡‚Íƒ}ƒXƒN‚ğ•`‰ææ‚É‚·‚é
+			// ãƒã‚¹ã‚¯ãŒæœ‰åŠ¹ãªå ´åˆã¯ãƒã‚¹ã‚¯ã‚’æç”»å…ˆã«ã™ã‚‹
 			GSYS.SoftRender.TargetMemImg = &MASKD.MaskDrawMemImg ;
 		}
 		else
 		{
-			// •`‰ææ‚Ì‰æ‘œƒf[ƒ^ƒAƒhƒŒƒX‚ğæ“¾‚·‚é
+			// æç”»å…ˆã®ç”»åƒãƒ‡ãƒ¼ã‚¿ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å–å¾—ã™ã‚‹
 			Image = Graphics_Image_GetData( GSYS.DrawSetting.TargetScreen[ 0 ] ) ;
 
-			// ‚»‚êˆÈŠO‚Ìê‡‚Í•`‰æ‰Â”\‰æ‘œ‚©ƒƒCƒ“ƒoƒbƒtƒ@
+			// ãã‚Œä»¥å¤–ã®å ´åˆã¯æç”»å¯èƒ½ç”»åƒã‹ãƒ¡ã‚¤ãƒ³ãƒãƒƒãƒ•ã‚¡
 			GSYS.SoftRender.TargetMemImg = Image ? &Image->Soft.MemImg : &GSYS.SoftRender.MainBufferMemImg ;
 		}
 	}
 
-	// •`‰ææ‚É‚æ‚Á‚Äƒrƒ…[ƒ|[ƒgs—ñ‚ğ•Ï‰»‚³‚¹‚éŠÂ‹«‚Ìê‡‚Í•`‰æ”ÍˆÍ‚ğÄİ’è‚·‚é
+	// æç”»å…ˆã«ã‚ˆã£ã¦ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆè¡Œåˆ—ã‚’å¤‰åŒ–ã•ã›ã‚‹ç’°å¢ƒã®å ´åˆã¯æç”»ç¯„å›²ã‚’å†è¨­å®šã™ã‚‹
 	if( GSYS.HardInfo.ScreenAxisYReverse_OnlyDrawValidGraph )
 	{
 		NS_SetDrawArea(
@@ -2178,39 +2178,39 @@ extern int NS_SetUseMaskScreenFlag( int ValidFlag )
 		) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒ}ƒXƒN‚ğg—p‚µ‚½•`‰æ‚Ì‘O‚ÉŒÄ‚ÔŠÖ”
-// ( ‚Â‚¢‚Å‚ÉƒTƒuƒoƒbƒtƒ@‚ğg—p‚µ‚½•`‰æƒGƒŠƒA‹@”\‚ğg—p‚µ‚Ä‚¢‚éê‡‚Ìˆ—‚à‚¢‚ê‚Ä‚µ‚Ü‚Á‚Ä‚¢‚é‚æ )
+// ãƒã‚¹ã‚¯ã‚’ä½¿ç”¨ã—ãŸæç”»ã®å‰ã«å‘¼ã¶é–¢æ•°
+// ( ã¤ã„ã§ã«ã‚µãƒ–ãƒãƒƒãƒ•ã‚¡ã‚’ä½¿ç”¨ã—ãŸæç”»ã‚¨ãƒªã‚¢æ©Ÿèƒ½ã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹å ´åˆã®å‡¦ç†ã‚‚ã„ã‚Œã¦ã—ã¾ã£ã¦ã„ã‚‹ã‚ˆ )
 extern int Mask_DrawBeginFunction( RECT Rect )
 {
-	// ƒtƒ‹ƒXƒNƒŠ[ƒ“ƒ}ƒXƒNˆ—‚ğs‚Á‚Ä‚¢‚éê‡‚Íƒ}ƒXƒN•`‰æ‚ÌŒ‹‰Ê‚ğ”½‰f‚³‚¹‚é
+	// ãƒ•ãƒ«ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒã‚¹ã‚¯å‡¦ç†ã‚’è¡Œã£ã¦ã„ã‚‹å ´åˆã¯ãƒã‚¹ã‚¯æç”»ã®çµæœã‚’åæ˜ ã•ã›ã‚‹
 	MASK_FULLSCREEN_MASKUPDATE
 
 	MASKD.MaskBeginFunctionCount ++ ;
 	if( MASKD.MaskBeginFunctionCount == 1 )
 	{
-		// •`‰æƒGƒŠƒA‚ÅƒNƒŠƒbƒsƒ“ƒO
+		// æç”»ã‚¨ãƒªã‚¢ã§ã‚¯ãƒªãƒƒãƒ”ãƒ³ã‚°
 		RectClipping_Inline( &Rect, &GSYS.DrawSetting.DrawArea ) ;
 
-		// ƒn[ƒhƒEƒGƒA‚ğg—p‚·‚é‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+		// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 		if( GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )
 		{
-			// ƒn[ƒhƒEƒGƒA‚ğg—p‚·‚éê‡
+			// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚’ä½¿ç”¨ã™ã‚‹å ´åˆ
 			Mask_DrawBeginFunction_PF( &Rect ) ;
 		}
 		else
 		{
 			IMAGEDATA *Image ;
 
-			// ƒn[ƒhƒEƒGƒA‚ğg—p‚µ‚È‚¢ê‡
+			// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚’ä½¿ç”¨ã—ãªã„å ´åˆ
 
-			// •`‰ææ‚Ì‰æ‘œƒf[ƒ^ƒAƒhƒŒƒX‚ğæ“¾‚·‚é
+			// æç”»å…ˆã®ç”»åƒãƒ‡ãƒ¼ã‚¿ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å–å¾—ã™ã‚‹
 			Image = Graphics_Image_GetData( GSYS.DrawSetting.TargetScreen[ 0 ] ) ;
 
-			// •`‰æ‘ÎÛ MEMIMG ‚©‚çƒ}ƒXƒNˆ——p MEMIMG ‚ÉƒCƒ[ƒW‚ğ“]‘—
+			// æç”»å¯¾è±¡ MEMIMG ã‹ã‚‰ãƒã‚¹ã‚¯å‡¦ç†ç”¨ MEMIMG ã«ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’è»¢é€
 			if( MASKD.MaskValidFlag )
 			{
 				BltMemImg(
@@ -2223,35 +2223,35 @@ extern int Mask_DrawBeginFunction( RECT Rect )
 		}
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒ}ƒXƒN‚ğg—p‚µ‚½•`‰æ‚ÌŒã‚ÉŒÄ‚ÔŠÖ”
-// ( ‚Â‚¢‚Å‚ÉƒTƒuƒoƒbƒtƒ@‚ğg—p‚µ‚½•`‰æƒGƒŠƒA‹@”\‚ğg—p‚µ‚Ä‚¢‚éê‡‚Ìˆ—‚à‚¢‚ê‚Ä‚µ‚Ü‚Á‚Ä‚¢‚é‚æ )
+// ãƒã‚¹ã‚¯ã‚’ä½¿ç”¨ã—ãŸæç”»ã®å¾Œã«å‘¼ã¶é–¢æ•°
+// ( ã¤ã„ã§ã«ã‚µãƒ–ãƒãƒƒãƒ•ã‚¡ã‚’ä½¿ç”¨ã—ãŸæç”»ã‚¨ãƒªã‚¢æ©Ÿèƒ½ã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹å ´åˆã®å‡¦ç†ã‚‚ã„ã‚Œã¦ã—ã¾ã£ã¦ã„ã‚‹ã‚ˆ )
 extern int Mask_DrawAfterFunction( RECT Rect )
 {
 	MASKD.MaskBeginFunctionCount -- ;
 	if( MASKD.MaskBeginFunctionCount == 0 )
 	{
-		// •`‰æƒGƒŠƒA‚ÅƒNƒŠƒbƒsƒ“ƒO
+		// æç”»ã‚¨ãƒªã‚¢ã§ã‚¯ãƒªãƒƒãƒ”ãƒ³ã‚°
 		RectClipping_Inline( &Rect, &GSYS.DrawSetting.DrawArea ) ;
 		if( Rect.left == Rect.right || Rect.top == Rect.bottom ) return 0 ;
 
-		// Direct3D ‚ğg—p‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
-		// ƒn[ƒhƒEƒGƒA‚ğg—p‚·‚é‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+		// Direct3D ã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
+		// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 		if( GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )
 		{
-			// ƒn[ƒhƒEƒGƒA‚ğg—p‚·‚éê‡
+			// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚’ä½¿ç”¨ã™ã‚‹å ´åˆ
 			Mask_DrawAfterFunction_PF( &Rect ) ;
 		}
 		else
 		{
 			IMAGEDATA *Image ;
 
-			// ƒn[ƒhƒEƒGƒA‚ğg—p‚µ‚È‚¢ê‡
+			// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚’ä½¿ç”¨ã—ãªã„å ´åˆ
 
-			// ƒ}ƒXƒN‚ªŠ|‚©‚Á‚Ä‚¢‚È‚¢•”•ª‚ğ•`‰ææ‚É“]‘—‚·‚é
+			// ãƒã‚¹ã‚¯ãŒæ›ã‹ã£ã¦ã„ãªã„éƒ¨åˆ†ã‚’æç”»å…ˆã«è»¢é€ã™ã‚‹
 			if( MASKD.MaskValidFlag )
 			{
 				BYTE *Dest, *Src, *Mask ;
@@ -2260,7 +2260,7 @@ extern int Mask_DrawAfterFunction( RECT Rect )
 				MEMIMG *TargetMemImg ;
 				int PixelByte ;
 
-				// •`‰ææ‚Ì‰æ‘œƒf[ƒ^ƒAƒhƒŒƒX‚ğæ“¾‚·‚é
+				// æç”»å…ˆã®ç”»åƒãƒ‡ãƒ¼ã‚¿ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å–å¾—ã™ã‚‹
 				Image = Graphics_Image_GetData( GSYS.DrawSetting.TargetScreen[ 0 ] ) ;
 				
 				TargetMemImg = Image ? &Image->Soft.MemImg : &GSYS.SoftRender.MainBufferMemImg ;
@@ -2281,7 +2281,7 @@ extern int Mask_DrawAfterFunction( RECT Rect )
 				{
 #ifdef DX_NON_INLINE_ASM
 					int i ;
-					// Œø‰Ê”½“]”Å
+					// åŠ¹æœåè»¢ç‰ˆ
 					switch( PixelByte )
 					{
 					case 2 :
@@ -2329,7 +2329,7 @@ extern int Mask_DrawAfterFunction( RECT Rect )
 						break ;
 					}
 #else
-					// Œø‰Ê”½“]”Å
+					// åŠ¹æœåè»¢ç‰ˆ
 					switch( PixelByte )
 					{
 					case 2 :
@@ -2398,7 +2398,7 @@ extern int Mask_DrawAfterFunction( RECT Rect )
 				{
 #ifdef DX_NON_INLINE_ASM
 					int i ;
-					// Œø‰Ê”½“]‚µ‚Ä‚È‚¢”Å
+					// åŠ¹æœåè»¢ã—ã¦ãªã„ç‰ˆ
 					switch( PixelByte )
 					{
 					case 2 :
@@ -2446,7 +2446,7 @@ extern int Mask_DrawAfterFunction( RECT Rect )
 						break ;
 					}
 #else
-					// Œø‰Ê”½“]‚µ‚Ä‚È‚¢”Å
+					// åŠ¹æœåè»¢ã—ã¦ãªã„ç‰ˆ
 					switch( PixelByte )
 					{
 					case 2 :
@@ -2515,11 +2515,11 @@ extern int Mask_DrawAfterFunction( RECT Rect )
 		}
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒ}ƒXƒN‚ğƒZƒbƒg‚·‚é
+// ãƒã‚¹ã‚¯ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern int NS_DrawMask( int x, int y, int MaskHandle, int TransMode )
 {
 	MASKDATA * Mask ; 
@@ -2534,7 +2534,7 @@ extern int NS_DrawMask( int x, int y, int MaskHandle, int TransMode )
 	if( MASKD.MaskBuffer == NULL )
 		return 0 ;
 
-	// ƒNƒŠƒbƒsƒ“ƒOˆ—
+	// ã‚¯ãƒªãƒƒãƒ”ãƒ³ã‚°å‡¦ç†
 	SETRECT( Rect, x, y, x + Mask->MaskWidth, y + Mask->MaskHeight ) ;
 	RectClipping_Inline( &Rect, &GSYS.DrawSetting.DrawArea ) ;
 	MovRect = Rect ;
@@ -2546,7 +2546,7 @@ extern int NS_DrawMask( int x, int y, int MaskHandle, int TransMode )
 	if( Rect.left > 0 ){ x += Rect.left ; }
 	if( Rect.top  > 0 ){ y += Rect.top  ; }
 
-	// “]‘—ˆ—
+	// è»¢é€å‡¦ç†
 	{
 		BYTE *Dest, *Src ;
 		int DestAddPitch, SrcAddPitch ;
@@ -2569,7 +2569,7 @@ extern int NS_DrawMask( int x, int y, int MaskHandle, int TransMode )
 		switch( TransMode )
 		{
 		case DX_MASKTRANS_NONE :
-			// “§‰ßF‚È‚µ“]‘—
+			// é€éè‰²ãªã—è»¢é€
 #ifdef DX_NON_INLINE_ASM
 			do
 			{
@@ -2607,7 +2607,7 @@ extern int NS_DrawMask( int x, int y, int MaskHandle, int TransMode )
 			break ;
 
 		case DX_MASKTRANS_BLACK :
-			// •“§‰ßF
+			// é»’é€éè‰²
 #ifdef DX_NON_INLINE_ASM
 			do
 			{
@@ -2687,7 +2687,7 @@ extern int NS_DrawMask( int x, int y, int MaskHandle, int TransMode )
 			break ;
 
 		case DX_MASKTRANS_WHITE :
-			// ”’“§‰ßF
+			// ç™½é€éè‰²
 #ifdef DX_NON_INLINE_ASM
 			do
 			{
@@ -2766,17 +2766,17 @@ extern int NS_DrawMask( int x, int y, int MaskHandle, int TransMode )
 		}
 	}
 
-	// XV
+	// æ›´æ–°
 	if( GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )
 	{
 		Mask_UpdateMaskImageTexture_PF( &MovRect ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// w’è‚Ìƒ}ƒXƒN‚ğ‰æ–Ê‚¢‚Á‚Ï‚¢‚É“WŠJ‚·‚é
+// æŒ‡å®šã®ãƒã‚¹ã‚¯ã‚’ç”»é¢ã„ã£ã±ã„ã«å±•é–‹ã™ã‚‹
 extern int NS_DrawFillMask( int x1, int y1, int x2, int y2, int MaskHandle )
 {
 	MASKDATA * Mask ;
@@ -2796,7 +2796,7 @@ extern int NS_DrawFillMask( int x1, int y1, int x2, int y2, int MaskHandle )
 
 	CheckActiveState() ;
 
-	// ƒNƒŠƒbƒsƒ“ƒOˆ—
+	// ã‚¯ãƒªãƒƒãƒ”ãƒ³ã‚°å‡¦ç†
 	SETRECT( Rect, x1, y1, x2, y2 ) ;
 	RectClipping_Inline( &Rect, &GSYS.DrawSetting.DrawArea ) ;
 	MovRect = Rect ;
@@ -2913,25 +2913,25 @@ extern int NS_DrawFillMask( int x1, int y1, int x2, int y2, int MaskHandle )
 		Mask_UpdateMaskImageTexture_PF( &MovRect ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒ}ƒXƒN‚ÌƒZƒbƒg
+// ãƒã‚¹ã‚¯ã®ã‚»ãƒƒãƒˆ
 extern int NS_DrawMaskToDirectData( int x, int y, int Width, int Height, const void *MaskData, int TransMode )
 {
 	if( MASKD.InitializeFlag == FALSE )
 		return -1 ;
 
-	// ƒ}ƒXƒNƒXƒNƒŠ[ƒ“‚ª‚È‚¢ê‡‚Í‚±‚±‚Åˆ—‚ğI—¹
+	// ãƒã‚¹ã‚¯ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãŒãªã„å ´åˆã¯ã“ã“ã§å‡¦ç†ã‚’çµ‚äº†
 	if( MASKD.MaskBuffer == NULL ) return 0 ;
 
-	// ƒ}ƒXƒNƒf[ƒ^‚ª‚È‚©‚Á‚½ê‡‚Íˆ—‚ğI—¹
+	// ãƒã‚¹ã‚¯ãƒ‡ãƒ¼ã‚¿ãŒãªã‹ã£ãŸå ´åˆã¯å‡¦ç†ã‚’çµ‚äº†
 	if( MaskData == NULL ) return 0 ;
 
 	CheckActiveState() ;
 
-	// ƒ}ƒXƒNƒXƒNƒŠ[ƒ“‚Éƒ}ƒXƒN‚ğ“WŠJ
+	// ãƒã‚¹ã‚¯ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã«ãƒã‚¹ã‚¯ã‚’å±•é–‹
 	DrawMaskToDirectData_Base( x, y, MASKD.MaskBuffer, MASKD.MaskBufferPitch,
 							Width, Height, MaskData, TransMode ) ;
 
@@ -2939,7 +2939,7 @@ extern int NS_DrawMaskToDirectData( int x, int y, int Width, int Height, const v
 
 	if( GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )
 	{
-		// XV
+		// æ›´æ–°
 		Rect.left   = x ;
 		Rect.top    = y ;
 		Rect.right  = x + Width ;
@@ -2947,22 +2947,22 @@ extern int NS_DrawMaskToDirectData( int x, int y, int Width, int Height, const v
 		Mask_UpdateMaskImageTexture_PF( &Rect ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒ}ƒXƒNƒXƒNƒŠ[ƒ“‚ğw’è‚ÌF‚Å“h‚è‚Â‚Ô‚·
+// ãƒã‚¹ã‚¯ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚’æŒ‡å®šã®è‰²ã§å¡—ã‚Šã¤ã¶ã™
 extern int NS_FillMaskScreen( int Flag )
 {
 	if( MASKD.InitializeFlag == FALSE )
 		return -1 ;
 
-	// ƒ}ƒXƒNƒXƒNƒŠ[ƒ“‚ª‚È‚¢ê‡‚Í‚±‚±‚Åˆ—‚ğI—¹
+	// ãƒã‚¹ã‚¯ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãŒãªã„å ´åˆã¯ã“ã“ã§å‡¦ç†ã‚’çµ‚äº†
 	if( MASKD.MaskBuffer == NULL ) return -1 ;
 
 	CheckActiveState() ;
 
-	// ƒ}ƒXƒNƒXƒNƒŠ[ƒ“‚ğƒNƒŠƒA‚·‚é
+	// ãƒã‚¹ã‚¯ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚’ã‚¯ãƒªã‚¢ã™ã‚‹
 	_MEMSET( MASKD.MaskBuffer, ( unsigned char )( Flag ? 0xff : 0 ), ( size_t )( MASKD.MaskBufferPitch * GSYS.DrawSetting.DrawSizeY ) ) ;
 
 	if( GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )
@@ -2970,11 +2970,11 @@ extern int NS_FillMaskScreen( int Flag )
 		Mask_FillMaskScreen_PF( Flag ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒ}ƒXƒNƒXƒNƒŠ[ƒ“‚Æ‚µ‚Äg—p‚·‚éƒOƒ‰ƒtƒBƒbƒN‚Ìƒnƒ“ƒhƒ‹‚ğİ’è‚·‚éA-1‚ğ“n‚·‚Æ‰ğœ( ˆø”‚Å“n‚·ƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚Í MakeScreen ‚Åì¬‚µ‚½uƒAƒ‹ƒtƒ@ƒ`ƒƒƒ“ƒlƒ‹•t‚«‚Ì•`‰æ‘ÎÛ‚É‚Å‚«‚éƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹v‚Å‚ ‚é•K—v‚ª‚ ‚è‚Ü‚·( ƒAƒ‹ƒtƒ@ƒ`ƒƒƒ“ƒlƒ‹‚ªƒ}ƒXƒN‚Ég—p‚³‚ê‚Ü‚· ) )
+// ãƒã‚¹ã‚¯ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã¨ã—ã¦ä½¿ç”¨ã™ã‚‹ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®ãƒãƒ³ãƒ‰ãƒ«ã‚’è¨­å®šã™ã‚‹ã€-1ã‚’æ¸¡ã™ã¨è§£é™¤( å¼•æ•°ã§æ¸¡ã™ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã¯ MakeScreen ã§ä½œæˆã—ãŸã€Œã‚¢ãƒ«ãƒ•ã‚¡ãƒãƒ£ãƒ³ãƒãƒ«ä»˜ãã®æç”»å¯¾è±¡ã«ã§ãã‚‹ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã€ã§ã‚ã‚‹å¿…è¦ãŒã‚ã‚Šã¾ã™( ã‚¢ãƒ«ãƒ•ã‚¡ãƒãƒ£ãƒ³ãƒãƒ«ãŒãƒã‚¹ã‚¯ã«ä½¿ç”¨ã•ã‚Œã¾ã™ ) )
 extern int NS_SetMaskScreenGraph( int GraphHandle )
 {
 	IMAGEDATA *Image ;
@@ -2984,14 +2984,14 @@ extern int NS_SetMaskScreenGraph( int GraphHandle )
 		return -1 ;
 	}
 
-	// -1 ‚Ìê‡‚Í 0 ‚É‚·‚é
+	// -1 ã®å ´åˆã¯ 0 ã«ã™ã‚‹
 	if( GraphHandle == -1 )
 	{
 		GraphHandle = 0 ;
 	}
 	else
 	{
-		// –³Œø‚ÈƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚©A•`‰æ‘ÎÛ‚É‚Å‚«‚È‚¢ƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚Å‚ ‚éê‡‚ÍƒGƒ‰[
+		// ç„¡åŠ¹ãªã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã‹ã€æç”»å¯¾è±¡ã«ã§ããªã„ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã§ã‚ã‚‹å ´åˆã¯ã‚¨ãƒ©ãƒ¼
 		Image = Graphics_Image_GetData( GraphHandle ) ;
 		if( Image == NULL ||
 			Image->Orig->FormatDesc.TextureFlag == FALSE ||
@@ -3001,23 +3001,23 @@ extern int NS_SetMaskScreenGraph( int GraphHandle )
 		}
 	}
 
-	// ¡‚Ü‚Å‚Æ’l‚ª“¯‚¶‚Å‚ ‚éê‡‚Í‰½‚à‚¹‚¸I—¹
+	// ä»Šã¾ã§ã¨å€¤ãŒåŒã˜ã§ã‚ã‚‹å ´åˆã¯ä½•ã‚‚ã›ãšçµ‚äº†
 	if( GraphHandle == MASKD.MaskScreenGraphHandle )
 	{
 		return 0 ;
 	}
 
-	// ƒtƒ‹ƒXƒNƒŠ[ƒ“ƒ}ƒXƒNˆ—‚ğs‚Á‚Ä‚¢‚éê‡‚Íƒ}ƒXƒN•`‰æ‚ÌŒ‹‰Ê‚ğ”½‰f‚³‚¹‚é
+	// ãƒ•ãƒ«ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒã‚¹ã‚¯å‡¦ç†ã‚’è¡Œã£ã¦ã„ã‚‹å ´åˆã¯ãƒã‚¹ã‚¯æç”»ã®çµæœã‚’åæ˜ ã•ã›ã‚‹
 	MASK_FULLSCREEN_MASKUPDATE
 
-	// ƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ğ•Û‘¶
+	// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã‚’ä¿å­˜
 	MASKD.MaskScreenGraphHandle = GraphHandle ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// ƒ}ƒXƒNƒXƒNƒŠ[ƒ“‚Æ‚µ‚Äg—p‚·‚éƒOƒ‰ƒtƒBƒbƒN‚ÌA‚Ç‚Ìƒ`ƒƒƒ“ƒlƒ‹‚ğƒ}ƒXƒN‚Æ‚µ‚Äg—p‚·‚é‚©‚ğİ’è‚·‚é( ƒfƒtƒHƒ‹ƒg‚Í DX_MASKGRAPH_CH_AA ®ADX_MASKGRAPH_CH_AˆÈŠO‚ğg—p‚·‚éê‡‚ÍƒOƒ‰ƒtƒBƒbƒNƒXƒfƒoƒCƒX‚ªƒVƒF[ƒ_[ƒ‚ƒfƒ‹2.0ˆÈ~‚É‘Î‰‚µ‚Ä‚¢‚é•K—v‚ª‚ ‚è‚Ü‚· )
+// ãƒã‚¹ã‚¯ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã¨ã—ã¦ä½¿ç”¨ã™ã‚‹ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®ã€ã©ã®ãƒãƒ£ãƒ³ãƒãƒ«ã‚’ãƒã‚¹ã‚¯ã¨ã—ã¦ä½¿ç”¨ã™ã‚‹ã‹ã‚’è¨­å®šã™ã‚‹( ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã¯ DX_MASKGRAPH_CH_Aã€ å°šã€DX_MASKGRAPH_CH_Aä»¥å¤–ã‚’ä½¿ç”¨ã™ã‚‹å ´åˆã¯ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¹ãƒ‡ãƒã‚¤ã‚¹ãŒã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒ¢ãƒ‡ãƒ«2.0ä»¥é™ã«å¯¾å¿œã—ã¦ã„ã‚‹å¿…è¦ãŒã‚ã‚Šã¾ã™ )
 extern int NS_SetMaskScreenGraphUseChannel(	int UseChannel )
 {
 	if( UseChannel < 0 || UseChannel > DX_MASKGRAPH_CH_B )
@@ -3027,7 +3027,7 @@ extern int NS_SetMaskScreenGraphUseChannel(	int UseChannel )
 
 	MASKD.MaskScreenGraphHandleUseChannel = UseChannel ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
@@ -3058,10 +3058,10 @@ extern int NS_SetMaskScreenGraphUseChannel(	int UseChannel )
 
 
 
-// va_list ŠÖ”
+// va_list é–¢æ•°
 #ifndef DX_NON_FONT
 
-// ‘®w’è‚ ‚è‚Ì•¶š—ñ‚ğƒ}ƒXƒNƒXƒNƒŠ[ƒ“‚É•`‰æ‚·‚é
+// æ›¸å¼æŒ‡å®šã‚ã‚Šã®æ–‡å­—åˆ—ã‚’ãƒã‚¹ã‚¯ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã«æç”»ã™ã‚‹
 extern int DrawFormatStringMask_VaList( int x, int y, int Flag, const TCHAR *FormatString, va_list VaList )
 {
 	TCHAR String[ 2048 ] ;
@@ -3069,13 +3069,13 @@ extern int DrawFormatStringMask_VaList( int x, int y, int Flag, const TCHAR *For
 	if( MASKD.InitializeFlag == FALSE )
 		return -1 ;
 
-	// •ÒWŒã‚Ì•¶š—ñ‚ğæ“¾‚·‚é
+	// ç·¨é›†å¾Œã®æ–‡å­—åˆ—ã‚’å–å¾—ã™ã‚‹
 	_TVSNPRINTF( String, sizeof( String ) / sizeof( TCHAR ), FormatString, VaList ) ;
 
 	return NS_DrawStringMaskToHandle( x, y, Flag, NS_GetDefaultFontHandle(), String ) ;
 }
 
-// ‘®w’è‚ ‚è‚Ì•¶š—ñ‚ğƒ}ƒXƒNƒXƒNƒŠ[ƒ“‚É•`‰æ‚·‚é( ƒtƒHƒ“ƒgƒnƒ“ƒhƒ‹w’è”Å )( SetFontCacheToTextureFlag( FALSE ) ; ‚É‚µ‚Äì¬‚µ‚½ƒtƒHƒ“ƒgƒnƒ“ƒhƒ‹‚Ì‚İg—p‰Â”\ )
+// æ›¸å¼æŒ‡å®šã‚ã‚Šã®æ–‡å­—åˆ—ã‚’ãƒã‚¹ã‚¯ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã«æç”»ã™ã‚‹( ãƒ•ã‚©ãƒ³ãƒˆãƒãƒ³ãƒ‰ãƒ«æŒ‡å®šç‰ˆ )( SetFontCacheToTextureFlag( FALSE ) ; ã«ã—ã¦ä½œæˆã—ãŸãƒ•ã‚©ãƒ³ãƒˆãƒãƒ³ãƒ‰ãƒ«ã®ã¿ä½¿ç”¨å¯èƒ½ )
 extern int DrawFormatStringMaskToHandle_VaList( int x, int y, int Flag, int FontHandle, const TCHAR *FormatString, va_list VaList )
 {
 	TCHAR String[ 2048 ] ;
@@ -3083,7 +3083,7 @@ extern int DrawFormatStringMaskToHandle_VaList( int x, int y, int Flag, int Font
 	if( MASKD.InitializeFlag == FALSE )
 		return -1 ;
 
-	// •ÒWŒã‚Ì•¶š—ñ‚ğæ“¾‚·‚é
+	// ç·¨é›†å¾Œã®æ–‡å­—åˆ—ã‚’å–å¾—ã™ã‚‹
 	_TVSNPRINTF( String, sizeof( String ) / sizeof( TCHAR ), FormatString, VaList ) ;
 
 	return NS_DrawStringMaskToHandle( x, y, Flag, FontHandle, String ) ;

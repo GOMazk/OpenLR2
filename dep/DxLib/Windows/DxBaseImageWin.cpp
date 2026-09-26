@@ -1,17 +1,17 @@
 //-----------------------------------------------------------------------------
 // 
-// 		ÇcÇwÉâÉCÉuÉâÉä		WindowsOSópBaseImageÉvÉçÉOÉâÉÄ
+// 		Ôº§Ôº∏„É©„Ç§„Éñ„É©„É™		WindowsOSÁî®BaseImage„Éó„É≠„Ç∞„É©„É†
 // 
 //  	Ver 3.25a
 // 
 //-----------------------------------------------------------------------------
 
-// ÇcÇwÉâÉCÉuÉâÉäçÏê¨éûópíËã`
+// Ôº§Ôº∏„É©„Ç§„Éñ„É©„É™‰ΩúÊàêÊôÇÁî®ÂÆöÁæ©
 #define DX_MAKE
 
 #include "../DxCompileConfig.h"
 
-// ÉCÉìÉNÉãÅ[Éh ---------------------------------------------------------------
+// „Ç§„É≥„ÇØ„É´„Éº„Éâ ---------------------------------------------------------------
 #include "DxBaseImageWin.h"
 #include "DxGuid.h"
 #include "DxWinAPI.h"
@@ -28,20 +28,20 @@ namespace DxLib
 
 #endif // DX_NON_NAMESPACE
 
-// É}ÉNÉçíËã` -----------------------------------------------------------------
+// „Éû„ÇØ„É≠ÂÆöÁæ© -----------------------------------------------------------------
 
-// ç\ë¢ëÃêÈåæ -----------------------------------------------------------------
+// ÊßãÈÄ†‰ΩìÂÆ£Ë®Ä -----------------------------------------------------------------
 
 typedef struct tagBASEIMAGEMANAGE_WIN
 {
 	D_IWICImagingFactory *WICImagingFactory ;
 } BASEIMAGEMANAGE_WIN ;
 
-// ä÷êîêÈåæ -------------------------------------------------------------------
+// Èñ¢Êï∞ÂÆ£Ë®Ä -------------------------------------------------------------------
 
-static	int LoadWICProcess( STREAMDATA *Src, BASEIMAGE *BaseImage, int GetFormatOnly ) ;						// WICÇ…ÇÊÇÈì«Ç›çûÇ›
+static	int LoadWICProcess( STREAMDATA *Src, BASEIMAGE *BaseImage, int GetFormatOnly ) ;						// WIC„Å´„Çà„ÇãË™≠„ÅøËæº„Åø
 
-// ÉfÅ[É^íËã` -----------------------------------------------------------------
+// „Éá„Éº„ÇøÂÆöÁæ© -----------------------------------------------------------------
 
 int ( *DefaultImageLoadFunc_PF[] )( STREAMDATA *Src, BASEIMAGE *BaseImage, int GetFormatOnly ) =
 {
@@ -51,38 +51,38 @@ int ( *DefaultImageLoadFunc_PF[] )( STREAMDATA *Src, BASEIMAGE *BaseImage, int G
 
 BASEIMAGEMANAGE_WIN BaseImageManageWin ;
 
-// ÉvÉçÉOÉâÉÄ -----------------------------------------------------------------
+// „Éó„É≠„Ç∞„É©„É† -----------------------------------------------------------------
 
-// ä¬ã´àÀë∂èâä˙âªÅEèIóπä÷êî
+// Áí∞Â¢É‰æùÂ≠òÂàùÊúüÂåñ„ÉªÁµÇ‰∫ÜÈñ¢Êï∞
 
-// äÓñ{ÉCÉÅÅ[ÉWä«óùèÓïÒÇÃä¬ã´àÀë∂èàóùÇÃèâä˙âª
+// Âü∫Êú¨„Ç§„É°„Éº„Ç∏ÁÆ°ÁêÜÊÉÖÂ†±„ÅÆÁí∞Â¢É‰æùÂ≠òÂá¶ÁêÜ„ÅÆÂàùÊúüÂåñ
 extern int InitializeBaseImageManage_PF( void )
 {
-	// IWICImagingFactory ÇÃê∂ê¨
+	// IWICImagingFactory „ÅÆÁîüÊàê
 	WinAPIData.Win32Func.CoCreateInstanceFunc( CLSID_WICIMAGINGFACTORY, NULL, CLSCTX_INPROC_SERVER, IID_IWICIMAGINGFACTORY, ( void ** )&BaseImageManageWin.WICImagingFactory ) ;
 
-	// ä¬ã´àÀë∂ÇÃì«Ç›çûÇ›ä÷êîÇÕå„Ç…é¿çsÇ∑ÇÈÇÊÇ§Ç…Ç∑ÇÈ
+	// Áí∞Â¢É‰æùÂ≠ò„ÅÆË™≠„ÅøËæº„ÅøÈñ¢Êï∞„ÅØÂæå„Å´ÂÆüË°å„Åô„Çã„Çà„ÅÜ„Å´„Åô„Çã
 	BASEIM.PlatformLoadFunctionAfterFlag = TRUE ;
 
-	// èIóπ
+	// ÁµÇ‰∫Ü
 	return 0 ;
 }
 
-// äÓñ{ÉCÉÅÅ[ÉWä«óùèÓïÒÇÃä¬ã´àÀë∂èàóùÇÃå„énññ
+// Âü∫Êú¨„Ç§„É°„Éº„Ç∏ÁÆ°ÁêÜÊÉÖÂ†±„ÅÆÁí∞Â¢É‰æùÂ≠òÂá¶ÁêÜ„ÅÆÂæåÂßãÊú´
 extern int TerminateBaseImageManage_PF( void )
 {
-	// IWICImagingFactory ÇÃâï˙
+	// IWICImagingFactory „ÅÆËß£Êîæ
 	if( BaseImageManageWin.WICImagingFactory != NULL )
 	{
 		BaseImageManageWin.WICImagingFactory->Release() ;
 		BaseImageManageWin.WICImagingFactory = NULL ;
 	}
 
-	// èIóπ
+	// ÁµÇ‰∫Ü
 	return 0 ;
 }
 
-// WICÇ…ÇÊÇÈì«Ç›çûÇ›
+// WIC„Å´„Çà„ÇãË™≠„ÅøËæº„Åø
 static int LoadWICProcess( STREAMDATA *Src, BASEIMAGE *BaseImage, int GetFormatOnly )
 {
 	HRESULT hr ;
@@ -95,23 +95,23 @@ static int LoadWICProcess( STREAMDATA *Src, BASEIMAGE *BaseImage, int GetFormatO
 	size_t FileBytes ;
 	int UseConvert = FALSE ;
 
-	// IWICImagingFactory Ç™Ç»ÇØÇÍÇŒâΩÇ‡ÇπÇ∏èIóπ
+	// IWICImagingFactory „Åå„Å™„Åë„Çå„Å∞‰Ωï„ÇÇ„Åõ„ÅöÁµÇ‰∫Ü
 	if( BaseImageManageWin.WICImagingFactory == NULL )
 	{
 		return -1 ;
 	}
 
-	// ÉÅÉÇÉäÇ…ì«Ç›çûÇ‹ÇÍÇΩÉfÅ[É^Ç≈ÇÕÇ»Ç¢èÍçáÇÕèàóùÇµÇ»Ç¢
+	// „É°„É¢„É™„Å´Ë™≠„ÅøËæº„Åæ„Çå„Åü„Éá„Éº„Çø„Åß„ÅØ„Å™„ÅÑÂ†¥Âêà„ÅØÂá¶ÁêÜ„Åó„Å™„ÅÑ
 	if( GetMemStreamDataShredStruct()->Read != Src->ReadShred.Read )
 	{
 		return -1 ;
 	}
 
-	// ÉÅÉÇÉäÇÃì«Ç›çûÇ‹ÇÍÇΩÉfÅ[É^ÇÃÉAÉhÉåÉXÇéÊìæ
+	// „É°„É¢„É™„ÅÆË™≠„ÅøËæº„Åæ„Çå„Åü„Éá„Éº„Çø„ÅÆ„Ç¢„Éâ„É¨„Çπ„ÇíÂèñÂæó
 	SrcP = *( ( BYTE ** )Src->DataPoint ) ;
 	FileBytes = *( ( size_t * )( ( BYTE ** )Src->DataPoint + 1 ) ) ;
 
-	// IWICStream ÇÃçÏê¨Ç∆ÉZÉbÉgÉAÉbÉv
+	// IWICStream „ÅÆ‰ΩúÊàê„Å®„Çª„ÉÉ„Éà„Ç¢„ÉÉ„Éó
 	hr = BaseImageManageWin.WICImagingFactory->CreateStream( &WICStream ) ;
 	if( FAILED( hr ) )
 	{
@@ -123,35 +123,35 @@ static int LoadWICProcess( STREAMDATA *Src, BASEIMAGE *BaseImage, int GetFormatO
 		goto ERR ;
 	}
 
-    // ÉfÉRÅ[É_Å[ÇÃçÏê¨
+    // „Éá„Ç≥„Éº„ÉÄ„Éº„ÅÆ‰ΩúÊàê
 	hr = BaseImageManageWin.WICImagingFactory->CreateDecoderFromStream( WICStream, NULL, D_WICDecodeMetadataCacheOnDemand, &WICBitmapDecoder ) ;
 	if( FAILED( hr ) )
 	{
 		goto ERR ;
 	}
 
-	// ÉtÉåÅ[ÉÄÇÃéÊìæ
+	// „Éï„É¨„Éº„É†„ÅÆÂèñÂæó
 	hr = WICBitmapDecoder->GetFrame( 0, &WICBitmapFrameDecode );
 	if( FAILED( hr ) )
 	{
 		goto ERR ;
 	}
 
-	// ÉTÉCÉYÇÃéÊìæ
+	// „Çµ„Ç§„Ç∫„ÅÆÂèñÂæó
 	hr = WICBitmapFrameDecode->GetSize( ( UINT * )&BaseImage->Width, ( UINT * )&BaseImage->Height ) ;
 	if( FAILED( hr ) )
 	{
 		goto ERR ;
 	}
 
-	// ÉsÉNÉZÉãÉtÉHÅ[É}ÉbÉgÇÃéÊìæ
+	// „Éî„ÇØ„Çª„É´„Éï„Ç©„Éº„Éû„ÉÉ„Éà„ÅÆÂèñÂæó
 	hr = WICBitmapFrameDecode->GetPixelFormat( &WICPixelFormatGUID ) ;
 	if( FAILED( hr ) )
 	{
 		goto ERR ;
 	}
 
-	// ÉsÉNÉZÉãÉtÉHÅ[É}ÉbÉgÇÃîªíË
+	// „Éî„ÇØ„Çª„É´„Éï„Ç©„Éº„Éû„ÉÉ„Éà„ÅÆÂà§ÂÆö
 	if( _MEMCMP( &WICPixelFormatGUID, &GUID_WICPIXELFORMAT32bppBGRA, sizeof( GUID ) ) == 0 )
 	{
 		NS_CreateARGB8ColorData( &BaseImage->ColorData ) ;
@@ -185,11 +185,11 @@ static int LoadWICProcess( STREAMDATA *Src, BASEIMAGE *BaseImage, int GetFormatO
 	{
 		UseConvert = TRUE ;
 
-		// îÒëŒâûÇÃÉtÉHÅ[É}ÉbÉgÇÃèÍçáÇÕÉRÉìÉoÅ[Ég
+		// ÈùûÂØæÂøú„ÅÆ„Éï„Ç©„Éº„Éû„ÉÉ„Éà„ÅÆÂ†¥Âêà„ÅØ„Ç≥„É≥„Éê„Éº„Éà
 		NS_CreateARGB8ColorData( &BaseImage->ColorData ) ;
 	}
 
-	// âÊëúÇï€ë∂Ç∑ÇÈÉÅÉÇÉäóÃàÊÇÃämï€
+	// ÁîªÂÉè„Çí‰øùÂ≠ò„Åô„Çã„É°„É¢„É™È†òÂüü„ÅÆÁ¢∫‰øù
 	BaseImage->Pitch = BaseImage->ColorData.PixelByte * BaseImage->Width ;
 	BaseImage->GraphData = DXALLOC( BaseImage->Pitch * BaseImage->Height ) ;
 	if( BaseImage->GraphData == NULL )
@@ -199,36 +199,36 @@ static int LoadWICProcess( STREAMDATA *Src, BASEIMAGE *BaseImage, int GetFormatO
 	BaseImage->MipMapCount    = 0 ;
 	BaseImage->GraphDataCount = 0 ; 
 
-	// ÉRÉìÉoÅ[ÉgÇ∑ÇÈÇ©Ç«Ç§Ç©Ç≈èàóùÇï™äÚ
+	// „Ç≥„É≥„Éê„Éº„Éà„Åô„Çã„Åã„Å©„ÅÜ„Åã„ÅßÂá¶ÁêÜ„ÇíÂàÜÂ≤ê
 	if( UseConvert )
 	{
 		BOOL CanConvertResult = FALSE ;
 
-		// ARGB8 ÉtÉHÅ[É}ÉbÉgÇ…ÉRÉìÉoÅ[ÉgÇ∑ÇÈ
+		// ARGB8 „Éï„Ç©„Éº„Éû„ÉÉ„Éà„Å´„Ç≥„É≥„Éê„Éº„Éà„Åô„Çã
 		NS_CreateARGB8ColorData( &BaseImage->ColorData ) ;
 
-		// ÉRÉìÉoÅ[É^Å[ÇÃçÏê¨
+		// „Ç≥„É≥„Éê„Éº„Çø„Éº„ÅÆ‰ΩúÊàê
 		hr = BaseImageManageWin.WICImagingFactory->CreateFormatConverter( &WICFormatConverter ) ;
 		if( FAILED( hr ) )
 		{
 			goto ERR ;
 		}
 
-		// ÉRÉìÉoÅ[Égâ¬î\Ç©É`ÉFÉbÉN
+		// „Ç≥„É≥„Éê„Éº„ÉàÂèØËÉΩ„Åã„ÉÅ„Çß„ÉÉ„ÇØ
 		hr = WICFormatConverter->CanConvert( WICPixelFormatGUID, GUID_WICPIXELFORMAT32bppBGRA, &CanConvertResult ) ;
 		if( FAILED( hr ) || CanConvertResult == FALSE )
 		{
 			goto ERR ;
 		}
 
-		// ÉRÉìÉoÅ[É^Å[ÇÃèâä˙âª
+		// „Ç≥„É≥„Éê„Éº„Çø„Éº„ÅÆÂàùÊúüÂåñ
 		hr = WICFormatConverter->Initialize( WICBitmapFrameDecode, GUID_WICPIXELFORMAT32bppBGRA, D_WICBitmapDitherTypeErrorDiffusion, NULL, 0, D_WICBitmapPaletteTypeMedianCut ) ;
 		if( FAILED( hr ) )
 		{
 			goto ERR ;
 		}
 
-		// ÉsÉNÉZÉãèÓïÒÇéÊìæ
+		// „Éî„ÇØ„Çª„É´ÊÉÖÂ†±„ÇíÂèñÂæó
 		hr = WICFormatConverter->CopyPixels( NULL, BaseImage->Pitch, BaseImage->Pitch * BaseImage->Height, ( BYTE * )BaseImage->GraphData ) ;
 		if( FAILED( hr ) )
 		{
@@ -237,7 +237,7 @@ static int LoadWICProcess( STREAMDATA *Src, BASEIMAGE *BaseImage, int GetFormatO
 	}
 	else
 	{
-		// ÉsÉNÉZÉãèÓïÒÇéÊìæ
+		// „Éî„ÇØ„Çª„É´ÊÉÖÂ†±„ÇíÂèñÂæó
 		hr = WICBitmapFrameDecode->CopyPixels( NULL, BaseImage->Pitch, BaseImage->Pitch * BaseImage->Height, ( BYTE * )BaseImage->GraphData ) ;
 		if( FAILED( hr ) )
 		{
@@ -269,7 +269,7 @@ static int LoadWICProcess( STREAMDATA *Src, BASEIMAGE *BaseImage, int GetFormatO
 		WICStream = NULL ;
 	}
 
-	// ê≥èÌèIóπ
+	// Ê≠£Â∏∏ÁµÇ‰∫Ü
 	return 0 ;
 
 ERR :
@@ -304,7 +304,7 @@ ERR :
 		WICStream = NULL ;
 	}
 
-	// ÉGÉâÅ[èIóπ
+	// „Ç®„É©„ÉºÁµÇ‰∫Ü
 	return -1 ;
 }
 

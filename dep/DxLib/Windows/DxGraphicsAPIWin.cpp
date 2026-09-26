@@ -1,19 +1,19 @@
 // ----------------------------------------------------------------------------
 // 
-// 		‚c‚wƒ‰ƒCƒuƒ‰ƒŠ		•`‰æ‚`‚o‚hƒvƒƒOƒ‰ƒ€
+// 		ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒª		æç”»ï¼¡ï¼°ï¼©ãƒ—ãƒ­ã‚°ãƒ©ãƒ 
 // 
 // 				Ver 3.25a
 // 
 // ----------------------------------------------------------------------------
 
-// ‚c‚wƒ‰ƒCƒuƒ‰ƒŠì¬—p’è‹`
+// ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªä½œæˆæ™‚ç”¨å®šç¾©
 #define DX_MAKE
 
 #include "DxGraphicsAPIWin.h"
 
 #ifndef DX_NON_GRAPHICS
 
-// ƒCƒ“ƒNƒ‹[ƒh----------------------------------------------------------------
+// ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰----------------------------------------------------------------
 #include "DxGraphicsWin.h"
 #include "DxGraphicsD3D9.h"
 #include "DxGraphicsD3D11.h"
@@ -34,26 +34,26 @@ namespace DxLib
 
 #endif // DX_NON_NAMESPACE
 
-// ƒ}ƒNƒ’è‹` -----------------------------------------------------------------
+// ãƒã‚¯ãƒ­å®šç¾© -----------------------------------------------------------------
 
-// ƒ^ƒCƒ}[‚h‚c
+// ã‚¿ã‚¤ãƒãƒ¼ï¼©ï¼¤
 #define SCREENFLIPTIMER_ID		(32767)
 
-// \‘¢‘ÌéŒ¾ -----------------------------------------------------------------
+// æ§‹é€ ä½“å®£è¨€ -----------------------------------------------------------------
 
-// ƒf[ƒ^’è‹` -----------------------------------------------------------------
+// ãƒ‡ãƒ¼ã‚¿å®šç¾© -----------------------------------------------------------------
 
 GRAPHICSAPIINFO_WIN GAPIWin ;
 
-// ŠÖ”éŒ¾ -------------------------------------------------------------------
+// é–¢æ•°å®£è¨€ -------------------------------------------------------------------
 
 #if _MSC_VER > 1200 || defined( DX_GCC_COMPILE_4_9_2 )
-static  VOID CALLBACK ScreenFlipTimerProc( HWND hwnd, UINT uMsg, UINT_PTR idEvent, DWORD dwTime );							// ƒeƒ“ƒ|ƒ‰ƒŠƒvƒ‰ƒCƒ}ƒŠƒoƒbƒtƒ@‚Ì“à—e‚ğƒvƒ‰ƒCƒ}ƒŠƒoƒbƒtƒ@‚É“]‘—‚·‚éƒR[ƒ‹ƒoƒbƒNŠÖ”
+static  VOID CALLBACK ScreenFlipTimerProc( HWND hwnd, UINT uMsg, UINT_PTR idEvent, DWORD dwTime );							// ãƒ†ãƒ³ãƒãƒ©ãƒªãƒ—ãƒ©ã‚¤ãƒãƒªãƒãƒƒãƒ•ã‚¡ã®å†…å®¹ã‚’ãƒ—ãƒ©ã‚¤ãƒãƒªãƒãƒƒãƒ•ã‚¡ã«è»¢é€ã™ã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 #else
-static  VOID CALLBACK ScreenFlipTimerProc( HWND hwnd, UINT uMsg, UINT idEvent, DWORD dwTime );								// ƒeƒ“ƒ|ƒ‰ƒŠƒvƒ‰ƒCƒ}ƒŠƒoƒbƒtƒ@‚Ì“à—e‚ğƒvƒ‰ƒCƒ}ƒŠƒoƒbƒtƒ@‚É“]‘—‚·‚éƒR[ƒ‹ƒoƒbƒNŠÖ”
+static  VOID CALLBACK ScreenFlipTimerProc( HWND hwnd, UINT uMsg, UINT idEvent, DWORD dwTime );								// ãƒ†ãƒ³ãƒãƒ©ãƒªãƒ—ãƒ©ã‚¤ãƒãƒªãƒãƒƒãƒ•ã‚¡ã®å†…å®¹ã‚’ãƒ—ãƒ©ã‚¤ãƒãƒªãƒãƒƒãƒ•ã‚¡ã«è»¢é€ã™ã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 #endif
 
-// ƒvƒƒOƒ‰ƒ€ -----------------------------------------------------------------
+// ãƒ—ãƒ­ã‚°ãƒ©ãƒ  -----------------------------------------------------------------
 
 
 
@@ -66,42 +66,42 @@ extern int DirectDraw7_Create( void )
 
 	SETUP_WIN_API
 
-	// Šù‚Éì¬Ï‚İ‚Ìê‡‚Íˆê“xíœ‚·‚é
+	// æ—¢ã«ä½œæˆæ¸ˆã¿ã®å ´åˆã¯ä¸€åº¦å‰Šé™¤ã™ã‚‹
 	if( GAPIWin.DirectDraw7Object )
 	{
 		GAPIWin.DirectDraw7Object->Release() ;
 		GAPIWin.DirectDraw7Object = NULL ;
 	}
 
-	// ‚c‚‰‚’‚…‚ƒ‚”‚c‚’‚‚—ƒIƒuƒWƒFƒNƒg‚Ìì¬
-	DXST_LOGFILE_ADDUTF16LE( "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x44\x00\x72\x00\x61\x00\x77\x00\x20\x00\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x6e\x30\xd6\x53\x97\x5f\x92\x30\x4c\x88\x44\x30\x7e\x30\x59\x30\x2e\x00\x2e\x00\x2e\x00\x2e\x00\x20\x00\x20\x00\x00"/*@ L"DirectDraw ƒIƒuƒWƒFƒNƒg‚Ìæ“¾‚ğs‚¢‚Ü‚·....  " @*/ ) ;
+	// ï¼¤ï½‰ï½’ï½…ï½ƒï½”ï¼¤ï½’ï½ï½—ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ä½œæˆ
+	DXST_LOGFILE_ADDUTF16LE( "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x44\x00\x72\x00\x61\x00\x77\x00\x20\x00\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x6e\x30\xd6\x53\x97\x5f\x92\x30\x4c\x88\x44\x30\x7e\x30\x59\x30\x2e\x00\x2e\x00\x2e\x00\x2e\x00\x20\x00\x20\x00\x00"/*@ L"DirectDraw ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®å–å¾—ã‚’è¡Œã„ã¾ã™....  " @*/ ) ;
 	hr = WinAPIData.Win32Func.CoCreateInstanceFunc( CLSID_DIRECTDRAW7, NULL, CLSCTX_ALL, IID_IDIRECTDRAW7, ( LPVOID *)&GAPIWin.DirectDraw7Object );
 	if( !FAILED( hr ) )
 	{
-		DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"¬Œ÷\n" @*/ ) ;
-		DXST_LOGFILE_ADDUTF16LE( "\x15\x5f\x4d\x30\x9a\x7d\x4d\x30\x1d\x52\x1f\x67\x16\x53\xe6\x51\x06\x74\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"ˆø‚«‘±‚«‰Šú‰»ˆ—... " @*/ ) ; 
+		DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"æˆåŠŸ\n" @*/ ) ;
+		DXST_LOGFILE_ADDUTF16LE( "\x15\x5f\x4d\x30\x9a\x7d\x4d\x30\x1d\x52\x1f\x67\x16\x53\xe6\x51\x06\x74\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"å¼•ãç¶šãåˆæœŸåŒ–å‡¦ç†... " @*/ ) ; 
 		hr = GAPIWin.DirectDraw7Object->Initialize( NULL ) ;
 		if( FAILED( hr ) ) 
 		{
-			DXST_LOGFILE_ERRCODE_ADDUTF16LE( DX_ERRORCODE_WIN_FAILED_INITIALIZE_DIRECTDRAW7, "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x44\x00\x72\x00\x61\x00\x77\x00\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x6e\x30\x1d\x52\x1f\x67\x16\x53\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"DirectDrawƒIƒuƒWƒFƒNƒg‚Ì‰Šú‰»‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ );
+			DXST_LOGFILE_ERRCODE_ADDUTF16LE( DX_ERRORCODE_WIN_FAILED_INITIALIZE_DIRECTDRAW7, "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x44\x00\x72\x00\x61\x00\x77\x00\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x6e\x30\x1d\x52\x1f\x67\x16\x53\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"DirectDrawã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®åˆæœŸåŒ–ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ );
 			GAPIWin.DirectDraw7Object->Release() ;
 			return -1 ;
 		}
-		DXST_LOGFILE_ADDUTF16LE( "\x1d\x52\x1f\x67\x16\x53\x6b\x30\x10\x62\x9f\x52\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"‰Šú‰»‚É¬Œ÷‚µ‚Ü‚µ‚½\n" @*/ ) ;
+		DXST_LOGFILE_ADDUTF16LE( "\x1d\x52\x1f\x67\x16\x53\x6b\x30\x10\x62\x9f\x52\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"åˆæœŸåŒ–ã«æˆåŠŸã—ã¾ã—ãŸ\n" @*/ ) ;
 	}
 	else
 	{
-		DXST_LOGFILE_ERRCODE_ADDUTF16LE( DX_ERRORCODE_WIN_FAILED_CREATE_DIRECTDRAW7, "\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x6e\x30\xd6\x53\x97\x5f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ƒIƒuƒWƒFƒNƒg‚Ìæ“¾‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+		DXST_LOGFILE_ERRCODE_ADDUTF16LE( DX_ERRORCODE_WIN_FAILED_CREATE_DIRECTDRAW7, "\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x6e\x30\xd6\x53\x97\x5f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®å–å¾—ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 		return -1 ;
 	}
 
-	// ‹¦’²ƒŒƒxƒ‹‚ğ“K“–‚ÉƒZƒbƒg
+	// å”èª¿ãƒ¬ãƒ™ãƒ«ã‚’é©å½“ã«ã‚»ãƒƒãƒˆ
 	GAPIWin.DirectDraw7Object->SetCooperativeLevel( NS_GetMainWindowHandle(), ( DWORD )( D_DDSCL_NORMAL | ( WinData.UseFPUPreserve ? D_DDSCL_FPUPRESERVE : 0 ) ) ) ;
 
-	// Aero ‚ğ–³Œø‚É‚·‚éˆ—
+	// Aero ã‚’ç„¡åŠ¹ã«ã™ã‚‹å‡¦ç†
 	if( GRAWIN.Setting.DisableAeroFlag == 2 )
 	{
-		// DWM ‚ğ–³Œø‚É‚·‚é
+		// DWM ã‚’ç„¡åŠ¹ã«ã™ã‚‹
 		SetEnableAero( FALSE ) ;
 #if 0
 		D_DDSURFACEDESC2 ddsd ;
@@ -109,17 +109,17 @@ extern int DirectDraw7_Create( void )
 		HDC prmdc ;
 		HRESULT hr ;
 
-		//  ì¬ƒpƒ‰ƒ[ƒ^‚ÌƒZƒbƒg	
+		//  ä½œæˆãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®ã‚»ãƒƒãƒˆ	
 		_MEMSET( &ddsd, 0, sizeof( ddsd ) ) ; 
 		ddsd.dwSize				= sizeof( ddsd ) ;
 		ddsd.dwFlags			= D_DDSD_CAPS ;	
 		ddsd.ddsCaps.dwCaps		= D_DDSCAPS_PRIMARYSURFACE | D_DDSCAPS_3DDEVICE ;
 
-		// ƒvƒ‰ƒCƒ}ƒŠƒT[ƒtƒFƒX‚Ìì¬
+		// ãƒ—ãƒ©ã‚¤ãƒãƒªã‚µãƒ¼ãƒ•ã‚§ã‚¹ã®ä½œæˆ
 		hr = GAPIWin.DirectDraw7Object->CreateSurface( &ddsd, &prmsuf, NULL ) ;
 		if( hr == D_DD_OK )
 		{
-			// GetDC ‚ğ‚µ‚Ä Aero –³Œø
+			// GetDC ã‚’ã—ã¦ Aero ç„¡åŠ¹
 			hr = prmsuf->GetDC( &prmdc ) ;
 			if( hr == D_DD_OK )
 			{
@@ -132,7 +132,7 @@ extern int DirectDraw7_Create( void )
 #endif
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
@@ -144,7 +144,7 @@ extern int DirectDraw7_Release( void )
 		GAPIWin.DirectDraw7Object = NULL ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
@@ -177,11 +177,11 @@ extern int DirectDraw7_GetVideoMemorySize( DWORD *TotalSize, DWORD *FreeSize )
 		*FreeSize  = ( int )FreeMem ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ‚u‚r‚x‚m‚b‚Ì‘O‚ÉSleep‚·‚éŠÔ‚ğæ“¾‚·‚é
+// ï¼¶ï¼³ï¼¹ï¼®ï¼£ã®å‰ã«Sleepã™ã‚‹æ™‚é–“ã‚’å–å¾—ã™ã‚‹
 extern void DirectDraw7_WaitVSyncInitialize( void )
 {
 	GAPIWin.DirectDraw7_VSyncWaitTime = -1 ;
@@ -237,7 +237,7 @@ extern void DirectDraw7_WaitVSyncInitialize( void )
 //		}
 	}
 
-	// ‚PƒtƒŒ[ƒ€‘Ò‚Â
+	// ï¼‘ãƒ•ãƒ¬ãƒ¼ãƒ å¾…ã¤
 	DirectDraw7_LocalWaitVSync() ;
 }
 
@@ -253,7 +253,7 @@ extern void DirectDraw7_LocalWaitVSync( void )
 
 	SETUP_WIN_API
 
-	// ‘O‰ñ‚u‚r‚x‚m‚b‘Ò‚¿‚ğ‚µ‚Ä‚©‚çÅ’áŒÀ‘Ò‚ÂŠÔ‚ª‰ß‚¬‚Ä‚¢‚é‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+	// å‰å›ï¼¶ï¼³ï¼¹ï¼®ï¼£å¾…ã¡ã‚’ã—ã¦ã‹ã‚‰æœ€ä½é™å¾…ã¤æ™‚é–“ãŒéãã¦ã„ã‚‹ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 	WaitTime = GAPIWin.DirectDraw7_VSyncWaitTime != -1 ? ( ULONGLONG )GAPIWin.DirectDraw7_VSyncWaitTime - ConvMilliSecondsToSysPerformanceCount( 3 ) : ConvMilliSecondsToSysPerformanceCount( 4 ) ;
 	if( NS_GetNowSysPerformanceCount() - GAPIWin.DirectDraw7_VSyncTime < WaitTime )
 	{
@@ -277,7 +277,7 @@ extern int DirectDraw7_WaitVSync( int SyncNum )
 	int i ;
 	BOOL vsync ;
 
-	// SyncNum ‚ª 1 ‚Ìê‡‚Í ProcessMessage ‚ğŒÄ‚Î‚È‚¢
+	// SyncNum ãŒ 1 ã®å ´åˆã¯ ProcessMessage ã‚’å‘¼ã°ãªã„
 	if( SyncNum == 1 )
 	{
 		vsync = TRUE ;
@@ -328,7 +328,7 @@ extern int DirectDraw7_WaitVSync( int SyncNum )
 		}
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
@@ -1659,7 +1659,7 @@ extern void Direct3D11_DumpObject( void )
 {
 	int TotalNum ;
 
-	DXST_LOGFILE_ADDUTF16LE( "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x33\x00\x44\x00\x31\x00\x31\x00\x20\x00\x6e\x30\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x70\x65\x92\x30\xfa\x51\x9b\x52\x0a\x00\x00"/*@ L"Direct3D11 ‚ÌƒIƒuƒWƒFƒNƒg”‚ğo—Í\n" @*/ ) ;
+	DXST_LOGFILE_ADDUTF16LE( "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x33\x00\x44\x00\x31\x00\x31\x00\x20\x00\x6e\x30\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x70\x65\x92\x30\xfa\x51\x9b\x52\x0a\x00\x00"/*@ L"Direct3D11 ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæ•°ã‚’å‡ºåŠ›\n" @*/ ) ;
 
 	TotalNum = 0 ;
 
@@ -1747,7 +1747,7 @@ extern void Direct3D11_DumpObject( void )
 		DXST_LOGFILEFMT_ADDW(( L"ID3D11SamplerState : %d", GAPIWin.D3D11SamplerStateNum )) ;
 	}
 
-	DXST_LOGFILEFMT_ADDUTF16LE(( "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x33\x00\x44\x00\x31\x00\x31\x00\x20\x00\x6e\x30\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x08\x54\x08\x8a\x70\x65\x20\x00\x3a\x00\x20\x00\x25\x00\x64\x00\x00"/*@ L"Direct3D11 ‚ÌƒIƒuƒWƒFƒNƒg‡Œv” : %d" @*/, TotalNum )) ;
+	DXST_LOGFILEFMT_ADDUTF16LE(( "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x33\x00\x44\x00\x31\x00\x31\x00\x20\x00\x6e\x30\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x08\x54\x08\x8a\x70\x65\x20\x00\x3a\x00\x20\x00\x25\x00\x64\x00\x00"/*@ L"Direct3D11 ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆåˆè¨ˆæ•° : %d" @*/, TotalNum )) ;
 }
 
 
@@ -1762,10 +1762,10 @@ extern int DXGI_LoadDLL( int OutputLog )
 {
 	if( OutputLog )
 	{
-		DXST_LOGFILE_ADDUTF16LE( "\x64\x00\x78\x00\x67\x00\x69\x00\x2e\x00\x64\x00\x6c\x00\x6c\x00\x20\x00\x6e\x30\xad\x8a\x7f\x30\xbc\x8f\x7f\x30\x2e\x00\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"dxgi.dll ‚Ì“Ç‚İ‚İ.... " @*/ ) ;
+		DXST_LOGFILE_ADDUTF16LE( "\x64\x00\x78\x00\x67\x00\x69\x00\x2e\x00\x64\x00\x6c\x00\x6c\x00\x20\x00\x6e\x30\xad\x8a\x7f\x30\xbc\x8f\x7f\x30\x2e\x00\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"dxgi.dll ã®èª­ã¿è¾¼ã¿.... " @*/ ) ;
 	}
 
-	// dxgi.dll ‚Ì“Ç‚İ‚İ
+	// dxgi.dll ã®èª­ã¿è¾¼ã¿
 	GAPIWin.DXGIDLL = LoadLibraryW( L"dxgi.dll" ) ;
 	if( GAPIWin.DXGIDLL == NULL )
 	{
@@ -1774,7 +1774,7 @@ extern int DXGI_LoadDLL( int OutputLog )
 
 		if( OutputLog )
 		{
-			DXST_LOGFILE_ADDUTF16LE( "\x31\x59\x57\x65\x0a\x00\x00"/*@ L"¸”s\n" @*/ ) ;
+			DXST_LOGFILE_ADDUTF16LE( "\x31\x59\x57\x65\x0a\x00\x00"/*@ L"å¤±æ•—\n" @*/ ) ;
 		}
 
 		return -1 ;
@@ -1782,58 +1782,58 @@ extern int DXGI_LoadDLL( int OutputLog )
 
 	if( OutputLog )
 	{
-		DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"¬Œ÷\n" @*/ ) ;
+		DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"æˆåŠŸ\n" @*/ ) ;
 	}
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
 extern int DXGI_FreeDLL( int OutputLog )
 {
-	// dxgi.dll ‚Ì‰ğ•ú
+	// dxgi.dll ã®è§£æ”¾
 	if( GAPIWin.DXGIDLL )
 	{
 		if( OutputLog )
 		{
-			DXST_LOGFILE_ADDUTF16LE( "\x64\x00\x78\x00\x67\x00\x69\x00\x2e\x00\x64\x00\x6c\x00\x6c\x00\x20\x00\x6e\x30\xe3\x89\x3e\x65\x20\x00\x31\x00\x0a\x00\x00"/*@ L"dxgi.dll ‚Ì‰ğ•ú 1\n" @*/ ) ;
+			DXST_LOGFILE_ADDUTF16LE( "\x64\x00\x78\x00\x67\x00\x69\x00\x2e\x00\x64\x00\x6c\x00\x6c\x00\x20\x00\x6e\x30\xe3\x89\x3e\x65\x20\x00\x31\x00\x0a\x00\x00"/*@ L"dxgi.dll ã®è§£æ”¾ 1\n" @*/ ) ;
 		}
 		FreeLibrary( GAPIWin.DXGIDLL ) ;
 		GAPIWin.DXGIDLL = NULL ;
 	}
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
 extern int Direct3D11_LoadDLL( void )
 {
-	DXST_LOGFILE_ADDUTF16LE( "\x64\x00\x33\x00\x64\x00\x31\x00\x31\x00\x2e\x00\x64\x00\x6c\x00\x6c\x00\x20\x00\x6e\x30\xad\x8a\x7f\x30\xbc\x8f\x7f\x30\x2e\x00\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"d3d11.dll ‚Ì“Ç‚İ‚İ.... " @*/ ) ;
+	DXST_LOGFILE_ADDUTF16LE( "\x64\x00\x33\x00\x64\x00\x31\x00\x31\x00\x2e\x00\x64\x00\x6c\x00\x6c\x00\x20\x00\x6e\x30\xad\x8a\x7f\x30\xbc\x8f\x7f\x30\x2e\x00\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"d3d11.dll ã®èª­ã¿è¾¼ã¿.... " @*/ ) ;
 
-	// Direct3D11.DLL ‚Ì“Ç‚İ‚İ
+	// Direct3D11.DLL ã®èª­ã¿è¾¼ã¿
 	GAPIWin.Direct3D11DLL = LoadLibraryW( L"d3d11.dll" ) ;
 	if( GAPIWin.Direct3D11DLL == NULL )
 	{
-		return DXST_LOGFILE_ADDUTF16LE( "\x31\x59\x57\x65\x0a\x00\x00"/*@ L"¸”s\n" @*/ ) ;
+		return DXST_LOGFILE_ADDUTF16LE( "\x31\x59\x57\x65\x0a\x00\x00"/*@ L"å¤±æ•—\n" @*/ ) ;
 	}
 
-	DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"¬Œ÷\n" @*/ ) ;
+	DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"æˆåŠŸ\n" @*/ ) ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
 extern int Direct3D11_FreeDLL( void )
 {
-	// d3d11.dll ‚Ì‰ğ•ú
+	// d3d11.dll ã®è§£æ”¾
 	if( GAPIWin.Direct3D11DLL )
 	{
-		DXST_LOGFILE_ADDUTF16LE( "\x64\x00\x33\x00\x64\x00\x31\x00\x31\x00\x2e\x00\x64\x00\x6c\x00\x6c\x00\x20\x00\x6e\x30\xe3\x89\x3e\x65\x20\x00\x31\x00\x0a\x00\x00"/*@ L"d3d11.dll ‚Ì‰ğ•ú 1\n" @*/ ) ;
+		DXST_LOGFILE_ADDUTF16LE( "\x64\x00\x33\x00\x64\x00\x31\x00\x31\x00\x2e\x00\x64\x00\x6c\x00\x6c\x00\x20\x00\x6e\x30\xe3\x89\x3e\x65\x20\x00\x31\x00\x0a\x00\x00"/*@ L"d3d11.dll ã®è§£æ”¾ 1\n" @*/ ) ;
 		FreeLibrary( GAPIWin.Direct3D11DLL ) ;
 		GAPIWin.Direct3D11DLL = NULL ;
 	}
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
@@ -1850,7 +1850,7 @@ extern int DXGIFactory_Create( int OutputLog )
 
 	if( OutputLog )
 	{
-		DXST_LOGFILE_ADDUTF16LE( "\x41\x00\x50\x00\x49\x00\x20\x00\x43\x00\x72\x00\x65\x00\x61\x00\x74\x00\x65\x00\x44\x00\x58\x00\x47\x00\x49\x00\x46\x00\x61\x00\x63\x00\x74\x00\x6f\x00\x72\x00\x79\x00\x32\x00\x20\x00\x6e\x30\xa2\x30\xc9\x30\xec\x30\xb9\x30\x92\x30\xd6\x53\x97\x5f\x57\x30\x7e\x30\x59\x30\x2e\x00\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"API CreateDXGIFactory2 ‚ÌƒAƒhƒŒƒX‚ğæ“¾‚µ‚Ü‚·.... " @*/ ) ;
+		DXST_LOGFILE_ADDUTF16LE( "\x41\x00\x50\x00\x49\x00\x20\x00\x43\x00\x72\x00\x65\x00\x61\x00\x74\x00\x65\x00\x44\x00\x58\x00\x47\x00\x49\x00\x46\x00\x61\x00\x63\x00\x74\x00\x6f\x00\x72\x00\x79\x00\x32\x00\x20\x00\x6e\x30\xa2\x30\xc9\x30\xec\x30\xb9\x30\x92\x30\xd6\x53\x97\x5f\x57\x30\x7e\x30\x59\x30\x2e\x00\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"API CreateDXGIFactory2 ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å–å¾—ã—ã¾ã™.... " @*/ ) ;
 	}
 
 	D_CreateDXGIFactory2Function = ( LPD_CREATEDXGIFACTORY2 )GetProcAddress( GAPIWin.DXGIDLL, "CreateDXGIFactory2" ) ;
@@ -1858,31 +1858,31 @@ extern int DXGIFactory_Create( int OutputLog )
 	{
 		if( OutputLog )
 		{
-			DXST_LOGFILE_ADDUTF16LE( "\x31\x59\x57\x65\x0a\x00\x00"/*@ L"¸”s\n" @*/ ) ;
+			DXST_LOGFILE_ADDUTF16LE( "\x31\x59\x57\x65\x0a\x00\x00"/*@ L"å¤±æ•—\n" @*/ ) ;
 		}
 	}
 	else
 	{
 		if( OutputLog )
 		{
-			DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"¬Œ÷\n" @*/ ) ;
+			DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"æˆåŠŸ\n" @*/ ) ;
 
-			DXST_LOGFILE_ADDUTF16LE( "\x49\x00\x44\x00\x58\x00\x47\x00\x49\x00\x46\x00\x61\x00\x63\x00\x74\x00\x6f\x00\x72\x00\x79\x00\x32\x00\x20\x00\x92\x30\x5c\x4f\x10\x62\x57\x30\x7e\x30\x59\x30\x2e\x00\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"IDXGIFactory2 ‚ğì¬‚µ‚Ü‚·.... " @*/ ) ;
+			DXST_LOGFILE_ADDUTF16LE( "\x49\x00\x44\x00\x58\x00\x47\x00\x49\x00\x46\x00\x61\x00\x63\x00\x74\x00\x6f\x00\x72\x00\x79\x00\x32\x00\x20\x00\x92\x30\x5c\x4f\x10\x62\x57\x30\x7e\x30\x59\x30\x2e\x00\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"IDXGIFactory2 ã‚’ä½œæˆã—ã¾ã™.... " @*/ ) ;
 		}
 
-		// IDXGIFactory2 ‚Ìì¬
+		// IDXGIFactory2 ã®ä½œæˆ
 		if( FAILED( D_CreateDXGIFactory2Function( 0, IID_IDXGIFACTORY2, ( void ** )&GAPIWin.DXGIFactory2Object ) ) )
 		{
 			if( OutputLog )
 			{
-				DXST_LOGFILE_ADDUTF16LE( "\x31\x59\x57\x65\x0a\x00\x00"/*@ L"¸”s\n" @*/ ) ;
+				DXST_LOGFILE_ADDUTF16LE( "\x31\x59\x57\x65\x0a\x00\x00"/*@ L"å¤±æ•—\n" @*/ ) ;
 			}
 		}
 		else
 		{
 			if( OutputLog )
 			{
-				DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"¬Œ÷\n" @*/ ) ;
+				DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"æˆåŠŸ\n" @*/ ) ;
 			}
 
 			GAPIWin.DXGIFactoryObject = GAPIWin.DXGIFactory2Object ;
@@ -1893,7 +1893,7 @@ extern int DXGIFactory_Create( int OutputLog )
 	{
 		if( OutputLog )
 		{
-			DXST_LOGFILE_ADDUTF16LE( "\x41\x00\x50\x00\x49\x00\x20\x00\x43\x00\x72\x00\x65\x00\x61\x00\x74\x00\x65\x00\x44\x00\x58\x00\x47\x00\x49\x00\x46\x00\x61\x00\x63\x00\x74\x00\x6f\x00\x72\x00\x79\x00\x31\x00\x20\x00\x6e\x30\xa2\x30\xc9\x30\xec\x30\xb9\x30\x92\x30\xd6\x53\x97\x5f\x57\x30\x7e\x30\x59\x30\x2e\x00\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"API CreateDXGIFactory1 ‚ÌƒAƒhƒŒƒX‚ğæ“¾‚µ‚Ü‚·.... " @*/ ) ;
+			DXST_LOGFILE_ADDUTF16LE( "\x41\x00\x50\x00\x49\x00\x20\x00\x43\x00\x72\x00\x65\x00\x61\x00\x74\x00\x65\x00\x44\x00\x58\x00\x47\x00\x49\x00\x46\x00\x61\x00\x63\x00\x74\x00\x6f\x00\x72\x00\x79\x00\x31\x00\x20\x00\x6e\x30\xa2\x30\xc9\x30\xec\x30\xb9\x30\x92\x30\xd6\x53\x97\x5f\x57\x30\x7e\x30\x59\x30\x2e\x00\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"API CreateDXGIFactory1 ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å–å¾—ã—ã¾ã™.... " @*/ ) ;
 		}
 
 		D_CreateDXGIFactory1Function = ( LPD_CREATEDXGIFACTORY1 )GetProcAddress( GAPIWin.DXGIDLL, "CreateDXGIFactory1" ) ;
@@ -1901,31 +1901,31 @@ extern int DXGIFactory_Create( int OutputLog )
 		{
 			if( OutputLog )
 			{
-				DXST_LOGFILE_ADDUTF16LE( "\x31\x59\x57\x65\x0a\x00\x00"/*@ L"¸”s\n" @*/ ) ;
+				DXST_LOGFILE_ADDUTF16LE( "\x31\x59\x57\x65\x0a\x00\x00"/*@ L"å¤±æ•—\n" @*/ ) ;
 			}
 		}
 		else
 		{
 			if( OutputLog )
 			{
-				DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"¬Œ÷\n" @*/ ) ;
+				DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"æˆåŠŸ\n" @*/ ) ;
 
-				DXST_LOGFILE_ADDUTF16LE( "\x49\x00\x44\x00\x58\x00\x47\x00\x49\x00\x46\x00\x61\x00\x63\x00\x74\x00\x6f\x00\x72\x00\x79\x00\x31\x00\x20\x00\x92\x30\x5c\x4f\x10\x62\x57\x30\x7e\x30\x59\x30\x2e\x00\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"IDXGIFactory1 ‚ğì¬‚µ‚Ü‚·.... " @*/ ) ;
+				DXST_LOGFILE_ADDUTF16LE( "\x49\x00\x44\x00\x58\x00\x47\x00\x49\x00\x46\x00\x61\x00\x63\x00\x74\x00\x6f\x00\x72\x00\x79\x00\x31\x00\x20\x00\x92\x30\x5c\x4f\x10\x62\x57\x30\x7e\x30\x59\x30\x2e\x00\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"IDXGIFactory1 ã‚’ä½œæˆã—ã¾ã™.... " @*/ ) ;
 			}
 
-			// IDXGIFactory1 ‚Ìì¬
+			// IDXGIFactory1 ã®ä½œæˆ
 			if( FAILED( D_CreateDXGIFactory1Function( IID_IDXGIFACTORY1, ( void ** )&GAPIWin.DXGIFactory1Object ) ) )
 			{
 				if( OutputLog )
 				{
-					DXST_LOGFILE_ADDUTF16LE( "\x31\x59\x57\x65\x0a\x00\x00"/*@ L"¸”s\n" @*/ ) ;
+					DXST_LOGFILE_ADDUTF16LE( "\x31\x59\x57\x65\x0a\x00\x00"/*@ L"å¤±æ•—\n" @*/ ) ;
 				}
 			}
 			else
 			{
 				if( OutputLog )
 				{
-					DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"¬Œ÷\n" @*/ ) ;
+					DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"æˆåŠŸ\n" @*/ ) ;
 				}
 
 				GAPIWin.DXGIFactoryObject = GAPIWin.DXGIFactory1Object ;
@@ -1937,7 +1937,7 @@ extern int DXGIFactory_Create( int OutputLog )
 	{
 		if( OutputLog )
 		{
-			DXST_LOGFILE_ADDUTF16LE( "\x41\x00\x50\x00\x49\x00\x20\x00\x43\x00\x72\x00\x65\x00\x61\x00\x74\x00\x65\x00\x44\x00\x58\x00\x47\x00\x49\x00\x46\x00\x61\x00\x63\x00\x74\x00\x6f\x00\x72\x00\x79\x00\x20\x00\x6e\x30\xa2\x30\xc9\x30\xec\x30\xb9\x30\x92\x30\xd6\x53\x97\x5f\x57\x30\x7e\x30\x59\x30\x2e\x00\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"API CreateDXGIFactory ‚ÌƒAƒhƒŒƒX‚ğæ“¾‚µ‚Ü‚·.... " @*/ ) ;
+			DXST_LOGFILE_ADDUTF16LE( "\x41\x00\x50\x00\x49\x00\x20\x00\x43\x00\x72\x00\x65\x00\x61\x00\x74\x00\x65\x00\x44\x00\x58\x00\x47\x00\x49\x00\x46\x00\x61\x00\x63\x00\x74\x00\x6f\x00\x72\x00\x79\x00\x20\x00\x6e\x30\xa2\x30\xc9\x30\xec\x30\xb9\x30\x92\x30\xd6\x53\x97\x5f\x57\x30\x7e\x30\x59\x30\x2e\x00\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"API CreateDXGIFactory ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å–å¾—ã—ã¾ã™.... " @*/ ) ;
 		}
 
 		D_CreateDXGIFactoryFunction  = ( LPD_CREATEDXGIFACTORY )GetProcAddress( GAPIWin.DXGIDLL, "CreateDXGIFactory" ) ;
@@ -1945,7 +1945,7 @@ extern int DXGIFactory_Create( int OutputLog )
 		{
 			if( OutputLog )
 			{
-				DXST_LOGFILE_ADDUTF16LE( "\x31\x59\x57\x65\x0a\x00\x00"/*@ L"¸”s\n" @*/ ) ;
+				DXST_LOGFILE_ADDUTF16LE( "\x31\x59\x57\x65\x0a\x00\x00"/*@ L"å¤±æ•—\n" @*/ ) ;
 			}
 
 			return -1 ;
@@ -1953,24 +1953,24 @@ extern int DXGIFactory_Create( int OutputLog )
 
 		if( OutputLog )
 		{
-			DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"¬Œ÷\n" @*/ ) ;
+			DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"æˆåŠŸ\n" @*/ ) ;
 
-			DXST_LOGFILE_ADDUTF16LE( "\x49\x00\x44\x00\x58\x00\x47\x00\x49\x00\x46\x00\x61\x00\x63\x00\x74\x00\x6f\x00\x72\x00\x79\x00\x20\x00\x92\x30\x5c\x4f\x10\x62\x57\x30\x7e\x30\x59\x30\x2e\x00\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"IDXGIFactory ‚ğì¬‚µ‚Ü‚·.... " @*/ ) ;
+			DXST_LOGFILE_ADDUTF16LE( "\x49\x00\x44\x00\x58\x00\x47\x00\x49\x00\x46\x00\x61\x00\x63\x00\x74\x00\x6f\x00\x72\x00\x79\x00\x20\x00\x92\x30\x5c\x4f\x10\x62\x57\x30\x7e\x30\x59\x30\x2e\x00\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"IDXGIFactory ã‚’ä½œæˆã—ã¾ã™.... " @*/ ) ;
 		}
 
-		// IDXGIFactory ‚Ìì¬
+		// IDXGIFactory ã®ä½œæˆ
 		if( FAILED( D_CreateDXGIFactoryFunction( IID_IDXGIFACTORY, ( void ** )&GAPIWin.DXGIFactoryObject ) ) )
 		{
 			if( OutputLog )
 			{
-				DXST_LOGFILE_ADDUTF16LE( "\x31\x59\x57\x65\x0a\x00\x00"/*@ L"¸”s\n" @*/ ) ;
+				DXST_LOGFILE_ADDUTF16LE( "\x31\x59\x57\x65\x0a\x00\x00"/*@ L"å¤±æ•—\n" @*/ ) ;
 			}
 			return -1 ;
 		}
 
 		if( OutputLog )
 		{
-			DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"¬Œ÷\n" @*/ ) ;
+			DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"æˆåŠŸ\n" @*/ ) ;
 		}
 	}
 
@@ -1978,26 +1978,26 @@ extern int DXGIFactory_Create( int OutputLog )
 	{
 		if( OutputLog )
 		{
-			DXST_LOGFILE_ADDUTF16LE( "\x41\x00\x50\x00\x49\x00\x20\x00\x43\x00\x72\x00\x65\x00\x61\x00\x74\x00\x65\x00\x44\x00\x58\x00\x47\x00\x49\x00\x46\x00\x61\x00\x63\x00\x74\x00\x6f\x00\x72\x00\x79\x00\x36\x00\x20\x00\x6e\x30\xa2\x30\xc9\x30\xec\x30\xb9\x30\x92\x30\xd6\x53\x97\x5f\x57\x30\x7e\x30\x59\x30\x2e\x00\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"API CreateDXGIFactory6 ‚ÌƒAƒhƒŒƒX‚ğæ“¾‚µ‚Ü‚·.... " @*/ ) ;
+			DXST_LOGFILE_ADDUTF16LE( "\x41\x00\x50\x00\x49\x00\x20\x00\x43\x00\x72\x00\x65\x00\x61\x00\x74\x00\x65\x00\x44\x00\x58\x00\x47\x00\x49\x00\x46\x00\x61\x00\x63\x00\x74\x00\x6f\x00\x72\x00\x79\x00\x36\x00\x20\x00\x6e\x30\xa2\x30\xc9\x30\xec\x30\xb9\x30\x92\x30\xd6\x53\x97\x5f\x57\x30\x7e\x30\x59\x30\x2e\x00\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"API CreateDXGIFactory6 ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å–å¾—ã—ã¾ã™.... " @*/ ) ;
 		}
 
 		if( FAILED( GAPIWin.DXGIFactoryObject->QueryInterface( IID_IDXGIFACTORY6, ( void ** )&GAPIWin.DXGIFactory6Object ) ) )
 		{
 			if( OutputLog )
 			{
-				DXST_LOGFILE_ADDUTF16LE( "\x31\x59\x57\x65\x0a\x00\x00"/*@ L"¸”s\n" @*/ ) ;
+				DXST_LOGFILE_ADDUTF16LE( "\x31\x59\x57\x65\x0a\x00\x00"/*@ L"å¤±æ•—\n" @*/ ) ;
 			}
 		}
 		else
 		{
 			if( OutputLog )
 			{
-				DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"¬Œ÷\n" @*/ ) ;
+				DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"æˆåŠŸ\n" @*/ ) ;
 			}
 		}
 	}
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
@@ -2017,7 +2017,7 @@ extern int DXGIFactory_Release( void )
 		GAPIWin.DXGIFactory6Object = NULL ;
 	}
 
-	// ³íC—¹
+	// æ­£å¸¸ä¿®äº†
 	return 0 ;
 }
 
@@ -2123,28 +2123,28 @@ extern int D3D11_CreateDevice( void )
 		return -1 ;
 	}
 
-	// Aero ‚Ì—LŒøE–³Œø‚ğİ’è‚·‚é
+	// Aero ã®æœ‰åŠ¹ãƒ»ç„¡åŠ¹ã‚’è¨­å®šã™ã‚‹
 	if( NS_GetWindowModeFlag() == TRUE || NS_GetUseFullScreenResolutionMode() == DX_FSRESOLUTIONMODE_BORDERLESS_WINDOW )
 	{
 		SetEnableAero( GRAWIN.Setting.DisableAeroFlag == 2 ? FALSE : TRUE ) ;
 	}
 
 
-	DXST_LOGFILE_ADDUTF16LE( "\x41\x00\x50\x00\x49\x00\x20\x00\x44\x00\x33\x00\x44\x00\x31\x00\x31\x00\x43\x00\x72\x00\x65\x00\x61\x00\x74\x00\x65\x00\x44\x00\x65\x00\x76\x00\x69\x00\x63\x00\x65\x00\x20\x00\x6e\x30\xa2\x30\xc9\x30\xec\x30\xb9\x30\x92\x30\xd6\x53\x97\x5f\x57\x30\x7e\x30\x59\x30\x2e\x00\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"API D3D11CreateDevice ‚ÌƒAƒhƒŒƒX‚ğæ“¾‚µ‚Ü‚·.... " @*/ ) ;
+	DXST_LOGFILE_ADDUTF16LE( "\x41\x00\x50\x00\x49\x00\x20\x00\x44\x00\x33\x00\x44\x00\x31\x00\x31\x00\x43\x00\x72\x00\x65\x00\x61\x00\x74\x00\x65\x00\x44\x00\x65\x00\x76\x00\x69\x00\x63\x00\x65\x00\x20\x00\x6e\x30\xa2\x30\xc9\x30\xec\x30\xb9\x30\x92\x30\xd6\x53\x97\x5f\x57\x30\x7e\x30\x59\x30\x2e\x00\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"API D3D11CreateDevice ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å–å¾—ã—ã¾ã™.... " @*/ ) ;
 
 	D_D3D11CreateDeviceFunction = ( LPD_D3D11CREATEDEVICE )GetProcAddress( GAPIWin.Direct3D11DLL, "D3D11CreateDevice" ) ;
 	if( D_D3D11CreateDeviceFunction == NULL )
 	{
-		DXST_LOGFILE_ADDUTF16LE( "\x31\x59\x57\x65\x0a\x00\x00"/*@ L"¸”s\n" @*/ ) ;
+		DXST_LOGFILE_ADDUTF16LE( "\x31\x59\x57\x65\x0a\x00\x00"/*@ L"å¤±æ•—\n" @*/ ) ;
 		return -1 ;
 	}
 
-	DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"¬Œ÷\n" @*/ ) ;
+	DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"æˆåŠŸ\n" @*/ ) ;
 
 
-	DXST_LOGFILE_ADDUTF16LE( "\x49\x00\x44\x00\x58\x00\x47\x00\x49\x00\x41\x00\x64\x00\x61\x00\x70\x00\x74\x00\x65\x00\x72\x00\x20\x00\x92\x30\xd6\x53\x97\x5f\x57\x30\x7e\x30\x59\x30\x2e\x00\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"IDXGIAdapter ‚ğæ“¾‚µ‚Ü‚·.... " @*/ ) ;
+	DXST_LOGFILE_ADDUTF16LE( "\x49\x00\x44\x00\x58\x00\x47\x00\x49\x00\x41\x00\x64\x00\x61\x00\x70\x00\x74\x00\x65\x00\x72\x00\x20\x00\x92\x30\xd6\x53\x97\x5f\x57\x30\x7e\x30\x59\x30\x2e\x00\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"IDXGIAdapter ã‚’å–å¾—ã—ã¾ã™.... " @*/ ) ;
 
-	// ƒEƒBƒ“ƒhƒE‚Ìì¬ˆÊ’u‚ªƒAƒ_ƒvƒ^[‚Ìo—Í”ÍˆÍ‚©‚çŠO‚ê‚Ä‚¢‚½‚çAƒEƒBƒ“ƒhƒE‚Ìì¬ˆÊ’u‚É“K‚µ‚½ƒAƒ_ƒvƒ^[‚ğo—Íæ‚É‚·‚é
+	// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ä½œæˆä½ç½®ãŒã‚¢ãƒ€ãƒ—ã‚¿ãƒ¼ã®å‡ºåŠ›ç¯„å›²ã‹ã‚‰å¤–ã‚Œã¦ã„ãŸã‚‰ã€ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ä½œæˆä½ç½®ã«é©ã—ãŸã‚¢ãƒ€ãƒ—ã‚¿ãƒ¼ã‚’å‡ºåŠ›å…ˆã«ã™ã‚‹
 	for( i = 0 ; i < GD3D11.Adapter.Info[ GraphicsHardDataDirect3D11.Setting.UseDXGIAdapterIndex ].OutputNum ; i ++ )
 	{
 		D_DXGI_OUTPUT_DESC *OutputDesc = &GD3D11.Adapter.Info[ GraphicsHardDataDirect3D11.Setting.UseDXGIAdapterIndex ].OutputDesc[ i ] ;
@@ -2158,7 +2158,7 @@ extern int D3D11_CreateDevice( void )
 	}
 	if( i == GD3D11.Adapter.Info[ GraphicsHardDataDirect3D11.Setting.UseDXGIAdapterIndex ].OutputNum )
 	{
-		// ƒƒCƒ“ƒEƒBƒ“ƒhƒE‚ª‚·‚Á‚Û‚èû‚Ü‚éƒAƒ_ƒvƒ^‚ğ’T‚·
+		// ãƒ¡ã‚¤ãƒ³ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãŒã™ã£ã½ã‚Šåã¾ã‚‹ã‚¢ãƒ€ãƒ—ã‚¿ã‚’æ¢ã™
 		for( j = 0 ; j < GD3D11.Adapter.InfoNum ; j ++ )
 		{
 			for( i = 0 ; i < GD3D11.Adapter.Info[ j ].OutputNum ; i ++ )
@@ -2180,7 +2180,7 @@ extern int D3D11_CreateDevice( void )
 		}
 		if( j == GD3D11.Adapter.InfoNum )
 		{
-			// ƒƒCƒ“ƒEƒBƒ“ƒhƒE‚ª‚·‚Á‚Û‚èû‚Ü‚éƒAƒ_ƒvƒ^‚ª‚È‚©‚Á‚½ê‡‚Íˆê”Ôû‚Ü‚Á‚Ä‚¢‚é–ÊÏ‚ª‘½‚¢ƒAƒ_ƒvƒ^‚ğ’T‚·
+			// ãƒ¡ã‚¤ãƒ³ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãŒã™ã£ã½ã‚Šåã¾ã‚‹ã‚¢ãƒ€ãƒ—ã‚¿ãŒãªã‹ã£ãŸå ´åˆã¯ä¸€ç•ªåã¾ã£ã¦ã„ã‚‹é¢ç©ãŒå¤šã„ã‚¢ãƒ€ãƒ—ã‚¿ã‚’æ¢ã™
 			RECT WindowRect ;
 			int WindowPixels ;
 			int MaxPixels = 0 ;
@@ -2226,12 +2226,12 @@ extern int D3D11_CreateDevice( void )
 		}
 	}
 
-	// IDXGIAdapter ‚Ìæ“¾
+	// IDXGIAdapter ã®å–å¾—
 	if( GAPIWin.DXGIFactory6Object != NULL )
 	{
 		if( FAILED( GAPIWin.DXGIFactory6Object->EnumAdapterByGpuPreference( GD3D11.Setting.UseDXGIAdapterIndex, D_DXGI_GPU_PREFERENCE_HIGH_PERFORMANCE, IID_IDXGIADAPTER, ( void ** )&GAPIWin.DXGIAdapterObject ) ) )
 		{
-			DXST_LOGFILE_ADDUTF16LE( "\x31\x59\x57\x65\x0a\x00\x00"/*@ L"¸”s\n" @*/ ) ;
+			DXST_LOGFILE_ADDUTF16LE( "\x31\x59\x57\x65\x0a\x00\x00"/*@ L"å¤±æ•—\n" @*/ ) ;
 			goto ERR ;
 		}
 	}
@@ -2239,74 +2239,74 @@ extern int D3D11_CreateDevice( void )
 	{
 		if( FAILED( GAPIWin.DXGIFactoryObject->EnumAdapters( GD3D11.Setting.UseDXGIAdapterIndex, &GAPIWin.DXGIAdapterObject ) ) )
 		{
-			DXST_LOGFILE_ADDUTF16LE( "\x31\x59\x57\x65\x0a\x00\x00"/*@ L"¸”s\n" @*/ ) ;
+			DXST_LOGFILE_ADDUTF16LE( "\x31\x59\x57\x65\x0a\x00\x00"/*@ L"å¤±æ•—\n" @*/ ) ;
 			goto ERR ;
 		}
 	}
 
-	DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"¬Œ÷\n" @*/ ) ;
+	DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"æˆåŠŸ\n" @*/ ) ;
 
 	GAPIWin.DXGIAdapter1Object = NULL ;
 	if( GAPIWin.DXGIAdapterObject != NULL )
 	{
-		DXST_LOGFILE_ADDUTF16LE( "\x49\x00\x44\x00\x58\x00\x47\x00\x49\x00\x41\x00\x64\x00\x61\x00\x70\x00\x74\x00\x65\x00\x72\x00\x31\x00\x20\x00\x92\x30\xd6\x53\x97\x5f\x57\x30\x7e\x30\x59\x30\x2e\x00\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"IDXGIAdapter1 ‚ğæ“¾‚µ‚Ü‚·.... " @*/ ) ;
+		DXST_LOGFILE_ADDUTF16LE( "\x49\x00\x44\x00\x58\x00\x47\x00\x49\x00\x41\x00\x64\x00\x61\x00\x70\x00\x74\x00\x65\x00\x72\x00\x31\x00\x20\x00\x92\x30\xd6\x53\x97\x5f\x57\x30\x7e\x30\x59\x30\x2e\x00\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"IDXGIAdapter1 ã‚’å–å¾—ã—ã¾ã™.... " @*/ ) ;
 
 		if( FAILED( GAPIWin.DXGIAdapterObject->QueryInterface( IID_IDXGIADAPTER1, ( void ** )&GAPIWin.DXGIAdapter1Object ) ) )
 		{
-			DXST_LOGFILE_ADDUTF16LE( "\x31\x59\x57\x65\x0a\x00\x00"/*@ L"¸”s\n" @*/ ) ;
+			DXST_LOGFILE_ADDUTF16LE( "\x31\x59\x57\x65\x0a\x00\x00"/*@ L"å¤±æ•—\n" @*/ ) ;
 		}
 		else
 		{
-			DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"¬Œ÷\n" @*/ ) ;
+			DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"æˆåŠŸ\n" @*/ ) ;
 		}
 	}
 
 	GAPIWin.DXGIAdapter2Object = NULL ;
 	if( GAPIWin.DXGIAdapter1Object != NULL )
 	{
-		DXST_LOGFILE_ADDUTF16LE( "\x49\x00\x44\x00\x58\x00\x47\x00\x49\x00\x41\x00\x64\x00\x61\x00\x70\x00\x74\x00\x65\x00\x72\x00\x32\x00\x20\x00\x92\x30\xd6\x53\x97\x5f\x57\x30\x7e\x30\x59\x30\x2e\x00\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"IDXGIAdapter2 ‚ğæ“¾‚µ‚Ü‚·.... " @*/ ) ;
+		DXST_LOGFILE_ADDUTF16LE( "\x49\x00\x44\x00\x58\x00\x47\x00\x49\x00\x41\x00\x64\x00\x61\x00\x70\x00\x74\x00\x65\x00\x72\x00\x32\x00\x20\x00\x92\x30\xd6\x53\x97\x5f\x57\x30\x7e\x30\x59\x30\x2e\x00\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"IDXGIAdapter2 ã‚’å–å¾—ã—ã¾ã™.... " @*/ ) ;
 
 		if( FAILED( GAPIWin.DXGIAdapter1Object->QueryInterface( IID_IDXGIADAPTER2, ( void ** )&GAPIWin.DXGIAdapter2Object ) ) )
 		{
-			DXST_LOGFILE_ADDUTF16LE( "\x31\x59\x57\x65\x0a\x00\x00"/*@ L"¸”s\n" @*/ ) ;
+			DXST_LOGFILE_ADDUTF16LE( "\x31\x59\x57\x65\x0a\x00\x00"/*@ L"å¤±æ•—\n" @*/ ) ;
 		}
 		else
 		{
-			DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"¬Œ÷\n" @*/ ) ;
+			DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"æˆåŠŸ\n" @*/ ) ;
 		}
 	}
 
 	GAPIWin.DXGIAdapter3Object = NULL ;
 	if( GAPIWin.DXGIAdapter2Object != NULL )
 	{
-		DXST_LOGFILE_ADDUTF16LE( "\x49\x00\x44\x00\x58\x00\x47\x00\x49\x00\x41\x00\x64\x00\x61\x00\x70\x00\x74\x00\x65\x00\x72\x00\x33\x00\x20\x00\x92\x30\xd6\x53\x97\x5f\x57\x30\x7e\x30\x59\x30\x2e\x00\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"IDXGIAdapter3 ‚ğæ“¾‚µ‚Ü‚·.... " @*/ ) ;
+		DXST_LOGFILE_ADDUTF16LE( "\x49\x00\x44\x00\x58\x00\x47\x00\x49\x00\x41\x00\x64\x00\x61\x00\x70\x00\x74\x00\x65\x00\x72\x00\x33\x00\x20\x00\x92\x30\xd6\x53\x97\x5f\x57\x30\x7e\x30\x59\x30\x2e\x00\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"IDXGIAdapter3 ã‚’å–å¾—ã—ã¾ã™.... " @*/ ) ;
 
 		if( FAILED( GAPIWin.DXGIAdapter2Object->QueryInterface( IID_IDXGIADAPTER3, ( void ** )&GAPIWin.DXGIAdapter3Object ) ) )
 		{
-			DXST_LOGFILE_ADDUTF16LE( "\x31\x59\x57\x65\x0a\x00\x00"/*@ L"¸”s\n" @*/ ) ;
+			DXST_LOGFILE_ADDUTF16LE( "\x31\x59\x57\x65\x0a\x00\x00"/*@ L"å¤±æ•—\n" @*/ ) ;
 		}
 		else
 		{
-			DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"¬Œ÷\n" @*/ ) ;
+			DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"æˆåŠŸ\n" @*/ ) ;
 		}
 	}
 
 	GAPIWin.DXGIAdapter4Object = NULL ;
 	if( GAPIWin.DXGIAdapter3Object != NULL )
 	{
-		DXST_LOGFILE_ADDUTF16LE( "\x49\x00\x44\x00\x58\x00\x47\x00\x49\x00\x41\x00\x64\x00\x61\x00\x70\x00\x74\x00\x65\x00\x72\x00\x34\x00\x20\x00\x92\x30\xd6\x53\x97\x5f\x57\x30\x7e\x30\x59\x30\x2e\x00\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"IDXGIAdapter4 ‚ğæ“¾‚µ‚Ü‚·.... " @*/ ) ;
+		DXST_LOGFILE_ADDUTF16LE( "\x49\x00\x44\x00\x58\x00\x47\x00\x49\x00\x41\x00\x64\x00\x61\x00\x70\x00\x74\x00\x65\x00\x72\x00\x34\x00\x20\x00\x92\x30\xd6\x53\x97\x5f\x57\x30\x7e\x30\x59\x30\x2e\x00\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"IDXGIAdapter4 ã‚’å–å¾—ã—ã¾ã™.... " @*/ ) ;
 
 		if( FAILED( GAPIWin.DXGIAdapter3Object->QueryInterface( IID_IDXGIADAPTER4, ( void ** )&GAPIWin.DXGIAdapter4Object ) ) )
 		{
-			DXST_LOGFILE_ADDUTF16LE( "\x31\x59\x57\x65\x0a\x00\x00"/*@ L"¸”s\n" @*/ ) ;
+			DXST_LOGFILE_ADDUTF16LE( "\x31\x59\x57\x65\x0a\x00\x00"/*@ L"å¤±æ•—\n" @*/ ) ;
 		}
 		else
 		{
-			DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"¬Œ÷\n" @*/ ) ;
+			DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"æˆåŠŸ\n" @*/ ) ;
 		}
 	}
 
-	// D3D11Device ‚Ìì¬
+	// D3D11Device ã®ä½œæˆ
 	{
 		static int FeatureLevelTable[] = 
 		{
@@ -2334,7 +2334,7 @@ extern int D3D11_CreateDevice( void )
 				GD3D11.Setting.UseMinFeatureLevelDirect3D11 = DX_DIRECT3D_11_FEATURE_LEVEL_10_0 ;
 			}
 
-			DXST_LOGFILE_ADDUTF16LE( "\x07\x63\x9a\x5b\x6e\x30\x20\x00\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x33\x00\x44\x00\x20\x00\x31\x00\x31\x00\x20\x00\x46\x00\x65\x00\x61\x00\x74\x00\x75\x00\x72\x00\x65\x00\x4c\x00\x65\x00\x76\x00\x65\x00\x6c\x00\x20\x00\xe5\x4e\x0a\x4e\x92\x30\xfe\x5b\x61\x8c\x68\x30\x57\x30\x7e\x30\x59\x30\x0a\x00\x00"/*@ L"w’è‚Ì Direct3D 11 FeatureLevel ˆÈã‚ğ‘ÎÛ‚Æ‚µ‚Ü‚·\n" @*/ ) ;
+			DXST_LOGFILE_ADDUTF16LE( "\x07\x63\x9a\x5b\x6e\x30\x20\x00\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x33\x00\x44\x00\x20\x00\x31\x00\x31\x00\x20\x00\x46\x00\x65\x00\x61\x00\x74\x00\x75\x00\x72\x00\x65\x00\x4c\x00\x65\x00\x76\x00\x65\x00\x6c\x00\x20\x00\xe5\x4e\x0a\x4e\x92\x30\xfe\x5b\x61\x8c\x68\x30\x57\x30\x7e\x30\x59\x30\x0a\x00\x00"/*@ L"æŒ‡å®šã® Direct3D 11 FeatureLevel ä»¥ä¸Šã‚’å¯¾è±¡ã¨ã—ã¾ã™\n" @*/ ) ;
 
 			FeatureLevelNum = 0 ;
 			for( i = 0 ; FeatureLevelTable[ i ] != -1 ; i ++ )
@@ -2348,7 +2348,7 @@ extern int D3D11_CreateDevice( void )
 		}
 		else
 		{
-			DXST_LOGFILE_ADDUTF16LE( "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x33\x00\x44\x00\x20\x00\x31\x00\x31\x00\x20\x00\x46\x00\x65\x00\x61\x00\x74\x00\x75\x00\x72\x00\x65\x00\x4c\x00\x65\x00\x76\x00\x65\x00\x6c\x00\x20\x00\x31\x00\x31\x00\x5f\x00\x30\x00\x20\x00\xe5\x4e\x0a\x4e\x92\x30\xfe\x5b\x61\x8c\x68\x30\x57\x30\x7e\x30\x59\x30\x0a\x00\x00"/*@ L"Direct3D 11 FeatureLevel 11_0 ˆÈã‚ğ‘ÎÛ‚Æ‚µ‚Ü‚·\n" @*/ ) ;
+			DXST_LOGFILE_ADDUTF16LE( "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x33\x00\x44\x00\x20\x00\x31\x00\x31\x00\x20\x00\x46\x00\x65\x00\x61\x00\x74\x00\x75\x00\x72\x00\x65\x00\x4c\x00\x65\x00\x76\x00\x65\x00\x6c\x00\x20\x00\x31\x00\x31\x00\x5f\x00\x30\x00\x20\x00\xe5\x4e\x0a\x4e\x92\x30\xfe\x5b\x61\x8c\x68\x30\x57\x30\x7e\x30\x59\x30\x0a\x00\x00"/*@ L"Direct3D 11 FeatureLevel 11_0 ä»¥ä¸Šã‚’å¯¾è±¡ã¨ã—ã¾ã™\n" @*/ ) ;
 			FeatureLevels[ 0 ] = D_D3D_FEATURE_LEVEL_11_1 ;
 			FeatureLevels[ 1 ] = D_D3D_FEATURE_LEVEL_11_0 ;
 //			FeatureLevels[ 2 ] = D_D3D_FEATURE_LEVEL_10_0 ;
@@ -2358,7 +2358,7 @@ extern int D3D11_CreateDevice( void )
 		{
 			int i ;
 
-			DXST_LOGFILE_ADDUTF16LE( "\x68\x51\x66\x30\x6e\x30\x20\x00\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x33\x00\x44\x00\x20\x00\x31\x00\x31\x00\x20\x00\x46\x00\x65\x00\x61\x00\x74\x00\x75\x00\x72\x00\x65\x00\x4c\x00\x65\x00\x76\x00\x65\x00\x6c\x00\x20\x00\x92\x30\xfe\x5b\x61\x8c\x68\x30\x57\x30\x7e\x30\x59\x30\x0a\x00\x00"/*@ L"‘S‚Ä‚Ì Direct3D 11 FeatureLevel ‚ğ‘ÎÛ‚Æ‚µ‚Ü‚·\n" @*/ ) ;
+			DXST_LOGFILE_ADDUTF16LE( "\x68\x51\x66\x30\x6e\x30\x20\x00\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x33\x00\x44\x00\x20\x00\x31\x00\x31\x00\x20\x00\x46\x00\x65\x00\x61\x00\x74\x00\x75\x00\x72\x00\x65\x00\x4c\x00\x65\x00\x76\x00\x65\x00\x6c\x00\x20\x00\x92\x30\xfe\x5b\x61\x8c\x68\x30\x57\x30\x7e\x30\x59\x30\x0a\x00\x00"/*@ L"å…¨ã¦ã® Direct3D 11 FeatureLevel ã‚’å¯¾è±¡ã¨ã—ã¾ã™\n" @*/ ) ;
 			FeatureLevelNum = 0 ;
 			for( i = 0 ; FeatureLevelTable[ i ] != -1 ; i ++ )
 			{
@@ -2368,9 +2368,9 @@ extern int D3D11_CreateDevice( void )
 		}
 #endif // DX_NON_DIRECT3D9
 
-		DXST_LOGFILE_ADDUTF16LE( "\x49\x00\x44\x00\x33\x00\x44\x00\x31\x00\x31\x00\x44\x00\x65\x00\x76\x00\x69\x00\x63\x00\x65\x00\x20\x00\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x92\x30\xd6\x53\x97\x5f\x57\x30\x7e\x30\x59\x30\x2e\x00\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"ID3D11Device ƒIƒuƒWƒFƒNƒg‚ğæ“¾‚µ‚Ü‚·.... " @*/ ) ;
+		DXST_LOGFILE_ADDUTF16LE( "\x49\x00\x44\x00\x33\x00\x44\x00\x31\x00\x31\x00\x44\x00\x65\x00\x76\x00\x69\x00\x63\x00\x65\x00\x20\x00\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x92\x30\xd6\x53\x97\x5f\x57\x30\x7e\x30\x59\x30\x2e\x00\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"ID3D11Device ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å–å¾—ã—ã¾ã™.... " @*/ ) ;
 
-		// D3D11Device ‚Ìì¬
+		// D3D11Device ã®ä½œæˆ
 		Result = D_D3D11CreateDeviceFunction(
 //			NULL,									// D_IDXGIAdapter                *  pAdapter,
 //			D_D3D_DRIVER_TYPE_HARDWARE,				// D_D3D_DRIVER_TYPE                DriverType,
@@ -2388,47 +2388,47 @@ extern int D3D11_CreateDevice( void )
 		) ;
 		if( Result != S_OK )
 		{
-			DXST_LOGFILE_ADDUTF16LE( "\x31\x59\x57\x65\x0a\x00\x00"/*@ L"¸”s\n" @*/ ) ;
+			DXST_LOGFILE_ADDUTF16LE( "\x31\x59\x57\x65\x0a\x00\x00"/*@ L"å¤±æ•—\n" @*/ ) ;
 			goto ERR ;
 		}
 
-		DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"¬Œ÷\n" @*/ ) ;
+		DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"æˆåŠŸ\n" @*/ ) ;
 	}
 
-	// DeferredContext ‚Ìì¬
+	// DeferredContext ã®ä½œæˆ
 	if( GRAWIN.Setting.UseMultiThread )
 	{
-		DXST_LOGFILE_ADDUTF16LE( "\x49\x00\x44\x00\x33\x00\x44\x00\x31\x00\x31\x00\x44\x00\x65\x00\x76\x00\x69\x00\x63\x00\x65\x00\x43\x00\x6f\x00\x6e\x00\x74\x00\x65\x00\x78\x00\x74\x00\x28\x00\x20\x00\x44\x00\x65\x00\x66\x00\x65\x00\x72\x00\x72\x00\x65\x00\x64\x00\x43\x00\x6f\x00\x6e\x00\x74\x00\x65\x00\x78\x00\x74\x00\x20\x00\x29\x00\x20\x00\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x92\x30\xd6\x53\x97\x5f\x57\x30\x7e\x30\x59\x30\x2e\x00\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"ID3D11DeviceContext( DeferredContext ) ƒIƒuƒWƒFƒNƒg‚ğæ“¾‚µ‚Ü‚·.... " @*/ ) ;
+		DXST_LOGFILE_ADDUTF16LE( "\x49\x00\x44\x00\x33\x00\x44\x00\x31\x00\x31\x00\x44\x00\x65\x00\x76\x00\x69\x00\x63\x00\x65\x00\x43\x00\x6f\x00\x6e\x00\x74\x00\x65\x00\x78\x00\x74\x00\x28\x00\x20\x00\x44\x00\x65\x00\x66\x00\x65\x00\x72\x00\x72\x00\x65\x00\x64\x00\x43\x00\x6f\x00\x6e\x00\x74\x00\x65\x00\x78\x00\x74\x00\x20\x00\x29\x00\x20\x00\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x92\x30\xd6\x53\x97\x5f\x57\x30\x7e\x30\x59\x30\x2e\x00\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"ID3D11DeviceContext( DeferredContext ) ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å–å¾—ã—ã¾ã™.... " @*/ ) ;
 
 		Result = GAPIWin.D3D11DeviceObject->CreateDeferredContext( 0, &GAPIWin.D3D11DeferredContext ) ;
 		if( Result != S_OK )
 		{
-			DXST_LOGFILE_ADDUTF16LE( "\x31\x59\x57\x65\x0a\x00\x00"/*@ L"¸”s\n" @*/ ) ;
+			DXST_LOGFILE_ADDUTF16LE( "\x31\x59\x57\x65\x0a\x00\x00"/*@ L"å¤±æ•—\n" @*/ ) ;
 			goto ERR ;
 		}
 
-		DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"¬Œ÷\n" @*/ ) ;
+		DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"æˆåŠŸ\n" @*/ ) ;
 	}
 
-	DXST_LOGFILE_ADDUTF16LE( "\x49\x00\x44\x00\x58\x00\x47\x00\x49\x00\x44\x00\x65\x00\x76\x00\x69\x00\x63\x00\x65\x00\x31\x00\x20\x00\x92\x30\xd6\x53\x97\x5f\x57\x30\x7e\x30\x59\x30\x2e\x00\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"IDXGIDevice1 ‚ğæ“¾‚µ‚Ü‚·.... " @*/ ) ;
+	DXST_LOGFILE_ADDUTF16LE( "\x49\x00\x44\x00\x58\x00\x47\x00\x49\x00\x44\x00\x65\x00\x76\x00\x69\x00\x63\x00\x65\x00\x31\x00\x20\x00\x92\x30\xd6\x53\x97\x5f\x57\x30\x7e\x30\x59\x30\x2e\x00\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"IDXGIDevice1 ã‚’å–å¾—ã—ã¾ã™.... " @*/ ) ;
 
-	// IDXGIDevice1 ‚Ìæ“¾
+	// IDXGIDevice1 ã®å–å¾—
 	if( FAILED( GAPIWin.D3D11DeviceObject->QueryInterface( IID_IDXGIDEVICE1, ( void ** )&GAPIWin.DXGIDevice1Object ) ) )
 	{
-		DXST_LOGFILE_ADDUTF16LE( "\x31\x59\x57\x65\x0a\x00\x00"/*@ L"¸”s\n" @*/ ) ;
+		DXST_LOGFILE_ADDUTF16LE( "\x31\x59\x57\x65\x0a\x00\x00"/*@ L"å¤±æ•—\n" @*/ ) ;
 	}
 
-	DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"¬Œ÷\n" @*/ ) ;
+	DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"æˆåŠŸ\n" @*/ ) ;
 
 
-	// IDXGIDevice1 ‚Ìæ“¾‚É¬Œ÷‚µ‚½ê‡‚Í SetMaximumFrameLatency( 1 ) ‚ğÀs‚·‚é
+	// IDXGIDevice1 ã®å–å¾—ã«æˆåŠŸã—ãŸå ´åˆã¯ SetMaximumFrameLatency( 1 ) ã‚’å®Ÿè¡Œã™ã‚‹
 	if( GAPIWin.DXGIDevice1Object != NULL )
 	{
 		GAPIWin.DXGIDevice1Object->SetMaximumFrameLatency( 1 ) ;
-		DXST_LOGFILE_ADDUTF16LE( "\x49\x00\x44\x00\x58\x00\x47\x00\x49\x00\x44\x00\x65\x00\x76\x00\x69\x00\x63\x00\x65\x00\x31\x00\x2d\x00\x3e\x00\x53\x00\x65\x00\x74\x00\x4d\x00\x61\x00\x78\x00\x69\x00\x6d\x00\x75\x00\x6e\x00\x46\x00\x72\x00\x61\x00\x6d\x00\x65\x00\x4c\x00\x61\x00\x74\x00\x65\x00\x6e\x00\x63\x00\x79\x00\x28\x00\x20\x00\x31\x00\x20\x00\x29\x00\x3b\x00\x20\x00\x92\x30\x9f\x5b\x4c\x88\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"IDXGIDevice1->SetMaximunFrameLatency( 1 ); ‚ğÀs‚µ‚Ü‚µ‚½\n" @*/ ) ;
+		DXST_LOGFILE_ADDUTF16LE( "\x49\x00\x44\x00\x58\x00\x47\x00\x49\x00\x44\x00\x65\x00\x76\x00\x69\x00\x63\x00\x65\x00\x31\x00\x2d\x00\x3e\x00\x53\x00\x65\x00\x74\x00\x4d\x00\x61\x00\x78\x00\x69\x00\x6d\x00\x75\x00\x6e\x00\x46\x00\x72\x00\x61\x00\x6d\x00\x65\x00\x4c\x00\x61\x00\x74\x00\x65\x00\x6e\x00\x63\x00\x79\x00\x28\x00\x20\x00\x31\x00\x20\x00\x29\x00\x3b\x00\x20\x00\x92\x30\x9f\x5b\x4c\x88\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"IDXGIDevice1->SetMaximunFrameLatency( 1 ); ã‚’å®Ÿè¡Œã—ã¾ã—ãŸ\n" @*/ ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 
 ERR :
@@ -2486,7 +2486,7 @@ ERR :
 		GAPIWin.DXGIDevice1Object = NULL ;
 	}
 
-	// ƒGƒ‰[I—¹
+	// ã‚¨ãƒ©ãƒ¼çµ‚äº†
 	return -1 ;
 }
 
@@ -2845,19 +2845,19 @@ extern	HRESULT	D3D11Device_CheckMultisampleQualityLevels(	D_DXGI_FORMAT Format, 
 	return GAPIWin.D3D11DeviceObject->CheckMultisampleQualityLevels( Format, SampleCount, pNumQualityLevels ) ;
 }
 
-// ƒ}ƒ‹ƒ`ƒTƒ“ƒvƒ‹ƒŒƒ“ƒ_ƒŠƒ“ƒO‚ÌƒTƒ“ƒvƒ‹”‚ÆƒNƒIƒŠƒeƒB‚ğƒ`ƒFƒbƒN
+// ãƒãƒ«ãƒã‚µãƒ³ãƒ—ãƒ«ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã®ã‚µãƒ³ãƒ—ãƒ«æ•°ã¨ã‚¯ã‚ªãƒªãƒ†ã‚£ã‚’ãƒã‚§ãƒƒã‚¯
 extern int D3D11Device_CheckMultiSampleParam( D_DXGI_FORMAT Format, UINT *Samples, UINT *Quality, int SamplesFailedBreak )
 {
 	UINT ColorBufferQuality, ZBufferQuality, MaxQuality ;
 
-	// Samples ‚ª 1 ‚Ìê‡‚ÍƒAƒ“ƒ`ƒGƒCƒŠƒAƒX‚È‚µ‚È‚Ì‚Å Quality ‚à 0 ‚É‚µ‚Ä•Ô‚·
+	// Samples ãŒ 1 ã®å ´åˆã¯ã‚¢ãƒ³ãƒã‚¨ã‚¤ãƒªã‚¢ã‚¹ãªã—ãªã®ã§ Quality ã‚‚ 0 ã«ã—ã¦è¿”ã™
 	if( *Samples == 1 )
 	{
 		*Quality = 0 ;
 		return 0 ;
 	}
 
-	// ƒJƒ‰[ƒoƒbƒtƒ@‚Åg—p‚Å‚«‚éƒ}ƒ‹ƒ`ƒTƒ“ƒvƒ‹ƒ^ƒCƒv‚Æ‚»‚ÌÛ‚ÌƒNƒIƒŠƒeƒB‚ğæ“¾‚·‚é
+	// ã‚«ãƒ©ãƒ¼ãƒãƒƒãƒ•ã‚¡ã§ä½¿ç”¨ã§ãã‚‹ãƒãƒ«ãƒã‚µãƒ³ãƒ—ãƒ«ã‚¿ã‚¤ãƒ—ã¨ãã®éš›ã®ã‚¯ã‚ªãƒªãƒ†ã‚£ã‚’å–å¾—ã™ã‚‹
 	ColorBufferQuality = 0 ;
 	for(;;)
 	{
@@ -2874,14 +2874,14 @@ extern int D3D11Device_CheckMultiSampleParam( D_DXGI_FORMAT Format, UINT *Sample
 		if( *Samples == 1 ) break ;
 	}
 
-	// g—p‚Å‚«‚éƒ}ƒ‹ƒ`ƒTƒ“ƒvƒ‹ƒ^ƒCƒv‚ª–³‚©‚Á‚½‚çI—¹
+	// ä½¿ç”¨ã§ãã‚‹ãƒãƒ«ãƒã‚µãƒ³ãƒ—ãƒ«ã‚¿ã‚¤ãƒ—ãŒç„¡ã‹ã£ãŸã‚‰çµ‚äº†
 	if( *Samples == 1 )
 	{
 		*Quality = 0 ;
 		return 0 ;
 	}
 
-	// ‚yƒoƒbƒtƒ@‚Åg—p‚Å‚«‚éƒ}ƒ‹ƒ`ƒTƒ“ƒvƒ‹ƒ^ƒCƒv‚Æ‚»‚ÌÛ‚ÌƒNƒIƒŠƒeƒB‚ğæ“¾‚·‚é
+	// ï¼ºãƒãƒƒãƒ•ã‚¡ã§ä½¿ç”¨ã§ãã‚‹ãƒãƒ«ãƒã‚µãƒ³ãƒ—ãƒ«ã‚¿ã‚¤ãƒ—ã¨ãã®éš›ã®ã‚¯ã‚ªãƒªãƒ†ã‚£ã‚’å–å¾—ã™ã‚‹
 	ZBufferQuality = 0 ;
 	for(;;)
 	{
@@ -2898,18 +2898,18 @@ extern int D3D11Device_CheckMultiSampleParam( D_DXGI_FORMAT Format, UINT *Sample
 		if( *Samples == 1 ) break ;
 	}
 
-	// g—p‚Å‚«‚éƒ}ƒ‹ƒ`ƒTƒ“ƒvƒ‹ƒ^ƒCƒv‚ª–³‚©‚Á‚½‚çI—¹
+	// ä½¿ç”¨ã§ãã‚‹ãƒãƒ«ãƒã‚µãƒ³ãƒ—ãƒ«ã‚¿ã‚¤ãƒ—ãŒç„¡ã‹ã£ãŸã‚‰çµ‚äº†
 	if( *Samples == 1 )
 	{
 		*Quality = 0 ;
 		return 0 ;
 	}
 
-	// ƒNƒIƒŠƒeƒB‚Í’á‚¢‚Ù‚¤‚É‡‚í‚¹‚é
+	// ã‚¯ã‚ªãƒªãƒ†ã‚£ã¯ä½ã„ã»ã†ã«åˆã‚ã›ã‚‹
 	MaxQuality = ( ZBufferQuality < ColorBufferQuality ? ZBufferQuality : ColorBufferQuality ) - 1 ;
 	if( *Quality > MaxQuality ) *Quality = MaxQuality ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
@@ -3194,7 +3194,7 @@ extern ULONG Direct3D9_ObjectRelease_ASync( void *pObject, int ASyncThread )
 
 #ifndef DX_NON_ASYNCLOAD
 
-// ƒ}ƒ‹ƒ`ƒTƒ“ƒvƒ‹ƒŒƒ“ƒ_ƒŠƒ“ƒO‚ÌƒTƒ“ƒvƒ‹”‚ÆƒNƒIƒŠƒeƒB‚ğƒ`ƒFƒbƒN‚·‚é”ñ“¯Šú“Ç‚İ‚İˆ——pƒR[ƒ‹ƒoƒbƒNŠÖ”
+// ãƒãƒ«ãƒã‚µãƒ³ãƒ—ãƒ«ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã®ã‚µãƒ³ãƒ—ãƒ«æ•°ã¨ã‚¯ã‚ªãƒªãƒ†ã‚£ã‚’ãƒã‚§ãƒƒã‚¯ã™ã‚‹éåŒæœŸèª­ã¿è¾¼ã¿å‡¦ç†ç”¨ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 static int Direct3D9_CheckMultiSampleParamASyncCallback( ASYNCLOAD_MAINTHREAD_REQUESTINFO *Info )
 {
 	return Direct3D9_CheckMultiSampleParam_ASync( 
@@ -3208,7 +3208,7 @@ static int Direct3D9_CheckMultiSampleParamASyncCallback( ASYNCLOAD_MAINTHREAD_RE
 
 #endif // DX_NON_ASYNCLOAD
 
-// ƒ}ƒ‹ƒ`ƒTƒ“ƒvƒ‹ƒŒƒ“ƒ_ƒŠƒ“ƒO‚ÌƒTƒ“ƒvƒ‹”‚ÆƒNƒIƒŠƒeƒB‚ğƒ`ƒFƒbƒN
+// ãƒãƒ«ãƒã‚µãƒ³ãƒ—ãƒ«ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã®ã‚µãƒ³ãƒ—ãƒ«æ•°ã¨ã‚¯ã‚ªãƒªãƒ†ã‚£ã‚’ãƒã‚§ãƒƒã‚¯
 extern int Direct3D9_CheckMultiSampleParam_ASync( D_D3DFORMAT Format, D_D3DMULTISAMPLE_TYPE *Samples, DWORD *Quality, int SamplesFailedBreak, int ASyncThread )
 {
 #ifndef DX_NON_ASYNCLOAD
@@ -3271,14 +3271,14 @@ extern HRESULT Direct3DDevice9_CreateRenderTarget_ASync( UINT Width, UINT Height
 #endif // DX_NON_ASYNCLOAD
 
 	return Direct3DDevice9_CreateRenderTarget(
-					Width,					// •
-					Height,					// ‚‚³
-					Format,					// ƒtƒH[ƒ}ƒbƒg
-					MultiSample,			// ƒ}ƒ‹ƒ`ƒTƒ“ƒvƒŠƒ“ƒOƒ^ƒCƒv
-					MultisampleQuality,		// ƒ}ƒ‹ƒ`ƒTƒ“ƒvƒŠƒ“ƒOƒNƒIƒŠƒeƒB
-					Lockable,				// ƒƒbƒN‚Í‚Å‚«‚È‚¢
-					ppSurface,				// D_IDirect3DSurface9 ‚Ìƒ|ƒCƒ“ƒ^‚ğó‚¯æ‚éƒAƒhƒŒƒX
-					pSharedHandle			// â‘Î NULL
+					Width,					// å¹…
+					Height,					// é«˜ã•
+					Format,					// ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆ
+					MultiSample,			// ãƒãƒ«ãƒã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ã‚¿ã‚¤ãƒ—
+					MultisampleQuality,		// ãƒãƒ«ãƒã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ã‚¯ã‚ªãƒªãƒ†ã‚£
+					Lockable,				// ãƒ­ãƒƒã‚¯ã¯ã§ããªã„
+					ppSurface,				// D_IDirect3DSurface9 ã®ãƒã‚¤ãƒ³ã‚¿ã‚’å—ã‘å–ã‚‹ã‚¢ãƒ‰ãƒ¬ã‚¹
+					pSharedHandle			// çµ¶å¯¾ NULL
 				) ;
 }
 
@@ -3319,14 +3319,14 @@ extern HRESULT Direct3DDevice9_CreateDepthStencilSurface_ASync( UINT Width, UINT
 #endif // DX_NON_ASYNCLOAD
 
 	return Direct3DDevice9_CreateDepthStencilSurface(
-					Width,					// •
-					Height,					// ‚‚³
-					Format,					// ƒtƒH[ƒ}ƒbƒg
-					MultiSample,			// ƒ}ƒ‹ƒ`ƒTƒ“ƒvƒŠƒ“ƒOƒ^ƒCƒv
-					MultisampleQuality,		// ƒ}ƒ‹ƒ`ƒTƒ“ƒvƒŠƒ“ƒOƒNƒIƒŠƒeƒB
-					Discard,				// ƒƒbƒN‚Í‚Å‚«‚È‚¢
-					ppSurface,				// D_IDirect3DSurface9 ‚Ìƒ|ƒCƒ“ƒ^‚ğó‚¯æ‚éƒAƒhƒŒƒX
-					pSharedHandle			// â‘Î NULL
+					Width,					// å¹…
+					Height,					// é«˜ã•
+					Format,					// ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆ
+					MultiSample,			// ãƒãƒ«ãƒã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ã‚¿ã‚¤ãƒ—
+					MultisampleQuality,		// ãƒãƒ«ãƒã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ã‚¯ã‚ªãƒªãƒ†ã‚£
+					Discard,				// ãƒ­ãƒƒã‚¯ã¯ã§ããªã„
+					ppSurface,				// D_IDirect3DSurface9 ã®ãƒã‚¤ãƒ³ã‚¿ã‚’å—ã‘å–ã‚‹ã‚¢ãƒ‰ãƒ¬ã‚¹
+					pSharedHandle			// çµ¶å¯¾ NULL
 				) ;
 }
 
@@ -3367,14 +3367,14 @@ extern HRESULT Direct3DDevice9_CreateTexture_ASync( UINT Width, UINT Height, UIN
 #endif // DX_NON_ASYNCLOAD
 
 	return Direct3DDevice9_CreateTexture(
-				Width,				// •
-				Height,				// ‚‚³
-				Levels,				// MipMap ƒŒƒxƒ‹
-				Usage,				// ƒtƒ‰ƒO
-				Format,				// ƒtƒH[ƒ}ƒbƒg
-				Pool,				// ƒeƒNƒXƒ`ƒƒ‚ğ DirectX ‚ªŠÇ—‚·‚é‚©‚Ç‚¤‚©
-				ppTexture,			// D_IDirect3DTexture9 ‚Ìƒ|ƒCƒ“ƒ^‚ğó‚¯æ‚éƒAƒhƒŒƒX
-				pSharedHandle		// â‘Î NULL
+				Width,				// å¹…
+				Height,				// é«˜ã•
+				Levels,				// MipMap ãƒ¬ãƒ™ãƒ«
+				Usage,				// ãƒ•ãƒ©ã‚°
+				Format,				// ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆ
+				Pool,				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ DirectX ãŒç®¡ç†ã™ã‚‹ã‹ã©ã†ã‹
+				ppTexture,			// D_IDirect3DTexture9 ã®ãƒã‚¤ãƒ³ã‚¿ã‚’å—ã‘å–ã‚‹ã‚¢ãƒ‰ãƒ¬ã‚¹
+				pSharedHandle		// çµ¶å¯¾ NULL
 			) ;
 }
 
@@ -3413,13 +3413,13 @@ extern HRESULT Direct3DDevice9_CreateCubeTexture_ASync( UINT EdgeLength, UINT Le
 #endif // DX_NON_ASYNCLOAD
 
 	return Direct3DDevice9_CreateCubeTexture(
-				EdgeLength,			// ƒGƒbƒWƒTƒCƒY
-				Levels,				// MipMap ƒŒƒxƒ‹
-				Usage,				// ƒtƒ‰ƒO
-				Format,				// ƒtƒH[ƒ}ƒbƒg
-				Pool,				// ƒeƒNƒXƒ`ƒƒ‚ğ DirectX ‚ªŠÇ—‚·‚é‚©‚Ç‚¤‚©
-				ppCubeTexture,		// D_IDirect3DCubeTexture9 ‚Ìƒ|ƒCƒ“ƒ^‚ğó‚¯æ‚éƒAƒhƒŒƒX
-				pSharedHandle		// â‘Î NULL
+				EdgeLength,			// ã‚¨ãƒƒã‚¸ã‚µã‚¤ã‚º
+				Levels,				// MipMap ãƒ¬ãƒ™ãƒ«
+				Usage,				// ãƒ•ãƒ©ã‚°
+				Format,				// ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆ
+				Pool,				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ DirectX ãŒç®¡ç†ã™ã‚‹ã‹ã©ã†ã‹
+				ppCubeTexture,		// D_IDirect3DCubeTexture9 ã®ãƒã‚¤ãƒ³ã‚¿ã‚’å—ã‘å–ã‚‹ã‚¢ãƒ‰ãƒ¬ã‚¹
+				pSharedHandle		// çµ¶å¯¾ NULL
 			) ;
 }
 
@@ -3612,7 +3612,7 @@ extern int Direct3DDevice9_CreateVertexBuffer_ASyncCallback( ASYNCLOAD_MAINTHREA
 }
 #endif // DX_NON_ASYNCLOAD
 
-// ’¸“_ƒoƒbƒtƒ@‚ğì¬‚·‚é
+// é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã‚’ä½œæˆã™ã‚‹
 extern int Direct3DDevice9_CreateVertexBuffer_ASync( DWORD Length, DWORD Usage, DWORD FVFFlag, D_D3DPOOL Pool, D_IDirect3DVertexBuffer9 **BufferP, int ASyncThread )
 {
 	HRESULT Result ;
@@ -3652,7 +3652,7 @@ extern int Direct3DDevice9_CreateIndexBuffer_ASyncCallback( ASYNCLOAD_MAINTHREAD
 }
 #endif // DX_NON_ASYNCLOAD
 
-// ƒCƒ“ƒfƒbƒNƒXƒoƒbƒtƒ@‚ğì¬‚·‚é
+// ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒãƒƒãƒ•ã‚¡ã‚’ä½œæˆã™ã‚‹
 extern int Direct3DDevice9_CreateIndexBuffer_ASync( DWORD Length, DWORD Usage, D_D3DFORMAT Format, D_D3DPOOL Pool, D_IDirect3DIndexBuffer9 **BufferP, int ASyncThread )
 {
 	HRESULT Result ;
@@ -4124,22 +4124,22 @@ extern int Direct3D9_Create( void )
 	D_IDirect3D9 * ( WINAPI *DF_Direct3DCreate9 )( UINT SDKVersion ) ;
 	HRESULT ( WINAPI * DF_Direct3DCreate9Ex )(  UINT SDKVersion, D_IDirect3D9Ex **ppD3D ) ;
 
-	// Šù‚Éì¬Ï‚İ‚Ìê‡‚Íˆê“xíœ‚·‚é
+	// æ—¢ã«ä½œæˆæ¸ˆã¿ã®å ´åˆã¯ä¸€åº¦å‰Šé™¤ã™ã‚‹
 	if( GAPIWin.Direct3D9Object )
 	{
 		Direct3D9_Release() ;
 	}
 	GAPIWin.Direct3D9ExObject = NULL ;
 
-	// æ‚É Direct3DCreate9Ex ‚ÌƒAƒhƒŒƒXæ“¾‚ğ‚İ‚é
+	// å…ˆã« Direct3DCreate9Ex ã®ã‚¢ãƒ‰ãƒ¬ã‚¹å–å¾—ã‚’è©¦ã¿ã‚‹
 	if( GD3D9.Setting.NotUseDirect3D9Ex == FALSE )
 	{
-		DXST_LOGFILE_ADDUTF16LE( "\x49\x00\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x33\x00\x44\x00\x39\x00\x45\x00\x78\x00\x20\x00\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x92\x30\xd6\x53\x97\x5f\x57\x30\x7e\x30\x59\x30\x2e\x00\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"IDirect3D9Ex ƒIƒuƒWƒFƒNƒg‚ğæ“¾‚µ‚Ü‚·.... " @*/ ) ;
+		DXST_LOGFILE_ADDUTF16LE( "\x49\x00\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x33\x00\x44\x00\x39\x00\x45\x00\x78\x00\x20\x00\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x92\x30\xd6\x53\x97\x5f\x57\x30\x7e\x30\x59\x30\x2e\x00\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"IDirect3D9Ex ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å–å¾—ã—ã¾ã™.... " @*/ ) ;
 
 		DF_Direct3DCreate9Ex = ( HRESULT ( WINAPI * )( UINT SDKVersion, D_IDirect3D9Ex ** ) )GetProcAddress( GAPIWin.Direct3D9DLL, "Direct3DCreate9Ex" ) ;
 		if( DF_Direct3DCreate9Ex != NULL )
 		{
-			// IDirect3D9Ex ƒIƒuƒWƒFƒNƒg‚Ìì¬
+			// IDirect3D9Ex ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ä½œæˆ
 			if( DF_Direct3DCreate9Ex( 32, &GAPIWin.Direct3D9ExObject ) == S_OK )
 			{
 				GAPIWin.Direct3D9Object = GAPIWin.Direct3D9ExObject ;
@@ -4147,56 +4147,56 @@ extern int Direct3D9_Create( void )
 		}
 	}
 
-	// IDirect3D9Ex ‚ªì¬‚Å‚«‚È‚©‚Á‚½‚ç IDirect3D9 ‚ğì¬‚·‚é
+	// IDirect3D9Ex ãŒä½œæˆã§ããªã‹ã£ãŸã‚‰ IDirect3D9 ã‚’ä½œæˆã™ã‚‹
 	if( GAPIWin.Direct3D9Object == NULL )
 	{
-		DXST_LOGFILE_ADDUTF16LE( "\x49\x00\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x33\x00\x44\x00\x39\x00\x20\x00\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x92\x30\xd6\x53\x97\x5f\x57\x30\x7e\x30\x59\x30\x2e\x00\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"IDirect3D9 ƒIƒuƒWƒFƒNƒg‚ğæ“¾‚µ‚Ü‚·.... " @*/ ) ;
+		DXST_LOGFILE_ADDUTF16LE( "\x49\x00\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x33\x00\x44\x00\x39\x00\x20\x00\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x92\x30\xd6\x53\x97\x5f\x57\x30\x7e\x30\x59\x30\x2e\x00\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"IDirect3D9 ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å–å¾—ã—ã¾ã™.... " @*/ ) ;
 
-		// Direct3DCreate9 API ‚ÌƒAƒhƒŒƒXæ“¾
+		// Direct3DCreate9 API ã®ã‚¢ãƒ‰ãƒ¬ã‚¹å–å¾—
 		DF_Direct3DCreate9 = ( D_IDirect3D9 * ( WINAPI * )( UINT SDKVersion ) )GetProcAddress( GAPIWin.Direct3D9DLL, "Direct3DCreate9" ) ;
 		if( DF_Direct3DCreate9 == NULL )
 		{
-			return DXST_LOGFILE_ADDUTF16LE( "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x33\x00\x44\x00\x43\x00\x72\x00\x65\x00\x61\x00\x74\x00\x65\x00\x39\x00\x20\x00\x41\x00\x50\x00\x49\x00\x6e\x30\xa2\x30\xc9\x30\xec\x30\xb9\x30\xd6\x53\x97\x5f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Direct3DCreate9 API‚ÌƒAƒhƒŒƒXæ“¾‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+			return DXST_LOGFILE_ADDUTF16LE( "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x33\x00\x44\x00\x43\x00\x72\x00\x65\x00\x61\x00\x74\x00\x65\x00\x39\x00\x20\x00\x41\x00\x50\x00\x49\x00\x6e\x30\xa2\x30\xc9\x30\xec\x30\xb9\x30\xd6\x53\x97\x5f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Direct3DCreate9 APIã®ã‚¢ãƒ‰ãƒ¬ã‚¹å–å¾—ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 		}
 
-		// IDirect3D9 ƒIƒuƒWƒFƒNƒg‚Ìì¬
+		// IDirect3D9 ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ä½œæˆ
 		GAPIWin.Direct3D9Object = DF_Direct3DCreate9( 32 ) ;
 		if( GAPIWin.Direct3D9Object == NULL )
 		{
-			return DXST_LOGFILE_ADDUTF16LE( "\x49\x00\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x33\x00\x44\x00\x39\x00\x20\x00\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x6e\x30\xd6\x53\x97\x5f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"IDirect3D9 ƒIƒuƒWƒFƒNƒg‚Ìæ“¾‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+			return DXST_LOGFILE_ADDUTF16LE( "\x49\x00\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x33\x00\x44\x00\x39\x00\x20\x00\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x6e\x30\xd6\x53\x97\x5f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"IDirect3D9 ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®å–å¾—ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 		}
 	}
 
-	DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"¬Œ÷\n" @*/ ) ;
+	DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"æˆåŠŸ\n" @*/ ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
 extern int Direct3D9_LoadDLL( void )
 {
-	// Direct3D9.DLL ‚Ì“Ç‚İ‚İ
+	// Direct3D9.DLL ã®èª­ã¿è¾¼ã¿
 	GAPIWin.Direct3D9DLL = LoadLibraryW( L"d3d9.dll" ) ;
 	if( GAPIWin.Direct3D9DLL == NULL )
 	{
-		return DXST_LOGFILE_ADDUTF16LE( "\x64\x00\x33\x00\x64\x00\x39\x00\x2e\x00\x64\x00\x6c\x00\x6c\x00\x20\x00\x6e\x30\xad\x8a\x7f\x30\xbc\x8f\x7f\x30\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"d3d9.dll ‚Ì“Ç‚İ‚İ‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+		return DXST_LOGFILE_ADDUTF16LE( "\x64\x00\x33\x00\x64\x00\x39\x00\x2e\x00\x64\x00\x6c\x00\x6c\x00\x20\x00\x6e\x30\xad\x8a\x7f\x30\xbc\x8f\x7f\x30\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"d3d9.dll ã®èª­ã¿è¾¼ã¿ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 	}
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
 extern int Direct3D9_FreeDLL( void )
 {
-	// d3d9.dll ‚Ì‰ğ•ú
+	// d3d9.dll ã®è§£æ”¾
 	if( GAPIWin.Direct3D9DLL )
 	{
-		DXST_LOGFILE_ADDUTF16LE( "\x64\x00\x33\x00\x64\x00\x39\x00\x2e\x00\x64\x00\x6c\x00\x6c\x00\x20\x00\x6e\x30\xe3\x89\x3e\x65\x20\x00\x31\x00\x0a\x00\x00"/*@ L"d3d9.dll ‚Ì‰ğ•ú 1\n" @*/ ) ;
+		DXST_LOGFILE_ADDUTF16LE( "\x64\x00\x33\x00\x64\x00\x39\x00\x2e\x00\x64\x00\x6c\x00\x6c\x00\x20\x00\x6e\x30\xe3\x89\x3e\x65\x20\x00\x31\x00\x0a\x00\x00"/*@ L"d3d9.dll ã®è§£æ”¾ 1\n" @*/ ) ;
 		FreeLibrary( GAPIWin.Direct3D9DLL ) ;
 		GAPIWin.Direct3D9DLL = NULL ;
 	}
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
@@ -4276,11 +4276,11 @@ extern int Direct3D9_CreateDevice( void )
 
 	SETUP_WIN_API
 
-	// ƒpƒ‰ƒ[ƒ^‚ÌƒZƒbƒg
+	// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®ã‚»ãƒƒãƒˆ
 	_MEMSET( &param, 0, sizeof( D_D3DPRESENT_PARAMETERS ) ) ;
 	if( NS_GetWindowModeFlag() == TRUE || NS_GetUseFullScreenResolutionMode() == DX_FSRESOLUTIONMODE_BORDERLESS_WINDOW )
 	{
-		// ƒEƒCƒ“ƒhƒEƒ‚[ƒh
+		// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ¢ãƒ¼ãƒ‰
 		Direct3D9_GetAdapterDisplayMode( 0, &DisplayMode ) ;
 		param.BackBufferFormat = DisplayMode.Format ;
 		param.BackBufferCount  = 1 ;
@@ -4314,12 +4314,12 @@ extern int Direct3D9_CreateDevice( void )
 			break ;
 		}
 
-		// Aero ‚Ì—LŒøE–³Œø‚ğİ’è‚·‚é
+		// Aero ã®æœ‰åŠ¹ãƒ»ç„¡åŠ¹ã‚’è¨­å®šã™ã‚‹
 		SetEnableAero( GRAWIN.Setting.DisableAeroFlag == 2 ? FALSE : TRUE ) ;
 	}
 	else
 	{
-		// ƒtƒ‹ƒXƒNƒŠ[ƒ“ƒ‚[ƒh
+		// ãƒ•ãƒ«ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ¢ãƒ¼ãƒ‰
 		Graphics_Screen_SetupFullScreenModeInfo() ;
 		switch( GSYS.Screen.FullScreenUseDispModeData.ColorBitDepth )
 		{
@@ -4333,7 +4333,7 @@ extern int Direct3D9_CreateDevice( void )
 			break ;
 
 		default :
-			DXST_LOGFILE_ADDUTF16LE( "\x5e\x97\xfe\x5b\xdc\x5f\x6e\x30\xd0\x30\xc3\x30\xaf\x30\xd0\x30\xc3\x30\xd5\x30\xa1\x30\xfc\x30\xd3\x30\xc3\x30\xc8\x30\xf1\x6d\xa6\x5e\x4c\x30\x07\x63\x9a\x5b\x55\x30\x8c\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"”ñ‘Î‰‚ÌƒoƒbƒNƒoƒbƒtƒ@[ƒrƒbƒg[“x‚ªw’è‚³‚ê‚Ü‚µ‚½\n" @*/ ) ;
+			DXST_LOGFILE_ADDUTF16LE( "\x5e\x97\xfe\x5b\xdc\x5f\x6e\x30\xd0\x30\xc3\x30\xaf\x30\xd0\x30\xc3\x30\xd5\x30\xa1\x30\xfc\x30\xd3\x30\xc3\x30\xc8\x30\xf1\x6d\xa6\x5e\x4c\x30\x07\x63\x9a\x5b\x55\x30\x8c\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"éå¯¾å¿œã®ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ãƒ¼ãƒ“ãƒƒãƒˆæ·±åº¦ãŒæŒ‡å®šã•ã‚Œã¾ã—ãŸ\n" @*/ ) ;
 			goto ERR ;
 		}
 		param.BackBufferCount            = 1 ;
@@ -4343,33 +4343,33 @@ extern int Direct3D9_CreateDevice( void )
 //		param.SwapEffect                 = ( D_D3DMULTISAMPLE_TYPE )GSYS.Setting.FSAAMultiSampleCount == D_D3DMULTISAMPLE_NONE ? D_D3DSWAPEFFECT_COPY : D_D3DSWAPEFFECT_DISCARD ;
 		param.SwapEffect                 = D_D3DSWAPEFFECT_DISCARD ;
 
-		// ƒfƒBƒXƒvƒŒƒCƒ‚[ƒh‚Ìİ’è
+		// ãƒ‡ã‚£ã‚¹ãƒ—ãƒ¬ã‚¤ãƒ¢ãƒ¼ãƒ‰ã®è¨­å®š
 		{
 			DisplayModeEx.Size             = sizeof( DisplayModeEx ) ;
 			DisplayModeEx.Format           = param.BackBufferFormat ;
 			DisplayModeEx.RefreshRate      = param.FullScreen_RefreshRateInHz ;
 			DisplayModeEx.ScanLineOrdering = D_D3DSCANLINEORDERING_PROGRESSIVE ;
 
-			// ƒoƒbƒNƒoƒbƒtƒ@‚ÆƒfƒBƒXƒvƒŒƒCƒ‚[ƒh‚Ì‰ğ‘œ“x‚ğƒZƒbƒg
+			// ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã¨ãƒ‡ã‚£ã‚¹ãƒ—ãƒ¬ã‚¤ãƒ¢ãƒ¼ãƒ‰ã®è§£åƒåº¦ã‚’ã‚»ãƒƒãƒˆ
 			param.BackBufferWidth  = ( UINT )GSYS.Screen.FullScreenUseDispModeData.Width ;
 			param.BackBufferHeight = ( UINT )GSYS.Screen.FullScreenUseDispModeData.Height ;
 			DisplayModeEx.Width    = param.BackBufferWidth ;
 			DisplayModeEx.Height   = param.BackBufferHeight ;
 		}
 
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\x3b\x75\x62\x97\xe3\x89\xcf\x50\xa6\x5e\x92\x30\x20\x00\x25\x00\x75\x00\x20\x00\x78\x00\x20\x00\x25\x00\x75\x00\x20\x00\x20\x00\xea\x30\xd5\x30\xec\x30\xc3\x30\xb7\x30\xe5\x30\xec\x30\xfc\x30\xc8\x30\x92\x30\x20\x00\x25\x00\x64\x00\x48\x00\x7a\x00\x20\x00\x6b\x30\x09\x59\xf4\x66\x57\x30\x7e\x30\x59\x30\x00"/*@ L"‰æ–Ê‰ğ‘œ“x‚ğ %u x %u  ƒŠƒtƒŒƒbƒVƒ…ƒŒ[ƒg‚ğ %dHz ‚É•ÏX‚µ‚Ü‚·" @*/,
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\x3b\x75\x62\x97\xe3\x89\xcf\x50\xa6\x5e\x92\x30\x20\x00\x25\x00\x75\x00\x20\x00\x78\x00\x20\x00\x25\x00\x75\x00\x20\x00\x20\x00\xea\x30\xd5\x30\xec\x30\xc3\x30\xb7\x30\xe5\x30\xec\x30\xfc\x30\xc8\x30\x92\x30\x20\x00\x25\x00\x64\x00\x48\x00\x7a\x00\x20\x00\x6b\x30\x09\x59\xf4\x66\x57\x30\x7e\x30\x59\x30\x00"/*@ L"ç”»é¢è§£åƒåº¦ã‚’ %u x %u  ãƒªãƒ•ãƒ¬ãƒƒã‚·ãƒ¥ãƒ¬ãƒ¼ãƒˆã‚’ %dHz ã«å¤‰æ›´ã—ã¾ã™" @*/,
 			GSYS.Screen.FullScreenUseDispModeData.Width,
 			GSYS.Screen.FullScreenUseDispModeData.Height,
 			GSYS.Screen.FullScreenUseDispModeData.RefreshRate )) ;
 
-		// ƒtƒ‹ƒXƒNƒŠ[ƒ“‚Ìê‡‚Å–¾¦“I‚É Aero ‚Ì‚n‚m‚ğİ’è‚µ‚Ä‚¢‚È‚¢ê‡‚Í•K‚¸ DWM ‚ğ–³Œø‚É‚·‚é
+		// ãƒ•ãƒ«ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã®å ´åˆã§æ˜ç¤ºçš„ã« Aero ã®ï¼¯ï¼®ã‚’è¨­å®šã—ã¦ã„ãªã„å ´åˆã¯å¿…ãš DWM ã‚’ç„¡åŠ¹ã«ã™ã‚‹
 		if( GRAWIN.Setting.DisableAeroFlag != 1 )
 		{
 			SetEnableAero( FALSE ) ;
 		}
 		if( WinAPIData.DF_DwmEnableComposition )
 		{
-			DXST_LOGFILE_ADDUTF16LE( "\x44\x00\x65\x00\x73\x00\x6b\x00\x74\x00\x6f\x00\x70\x00\x20\x00\x57\x00\x69\x00\x6e\x00\x64\x00\x6f\x00\x77\x00\x20\x00\x4d\x00\x61\x00\x6e\x00\x61\x00\x67\x00\x65\x00\x72\x00\x20\x00\x92\x30\x21\x71\xb9\x52\x6b\x30\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Desktop Window Manager ‚ğ–³Œø‚É‚µ‚Ü‚µ‚½\n" @*/ ) ;
+			DXST_LOGFILE_ADDUTF16LE( "\x44\x00\x65\x00\x73\x00\x6b\x00\x74\x00\x6f\x00\x70\x00\x20\x00\x57\x00\x69\x00\x6e\x00\x64\x00\x6f\x00\x77\x00\x20\x00\x4d\x00\x61\x00\x6e\x00\x61\x00\x67\x00\x65\x00\x72\x00\x20\x00\x92\x30\x21\x71\xb9\x52\x6b\x30\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Desktop Window Manager ã‚’ç„¡åŠ¹ã«ã—ã¾ã—ãŸ\n" @*/ ) ;
 		}
 	}
 	param.MultiSampleType    = ( D_D3DMULTISAMPLE_TYPE )GSYS.Setting.FSAAMultiSampleCount ;
@@ -4381,7 +4381,7 @@ extern int Direct3D9_CreateDevice( void )
 	param.EnableAutoDepthStencil = FALSE ;
 	param.Flags                  = ( DWORD )( ( D_D3DMULTISAMPLE_TYPE )GSYS.Setting.FSAAMultiSampleCount == D_D3DMULTISAMPLE_NONE ? D_D3DPRESENTFLAG_LOCKABLE_BACKBUFFER/* D_D3DPRESENTFLAG_DEVICECLIP */ : 0 ) ;
 
-	// FSAA‚Ìİ’è’l‚ğ’²‚×‚é
+	// FSAAã®è¨­å®šå€¤ã‚’èª¿ã¹ã‚‹
 	if( GSYS.Setting.FSAAMultiSampleCount != 0 )
 	{
 		param.MultiSampleType                 = ( D_D3DMULTISAMPLE_TYPE )GSYS.Setting.FSAAMultiSampleCount ;
@@ -4408,8 +4408,8 @@ extern int Direct3D9_CreateDevice( void )
 		}
 	}
 
-	// ƒVƒF[ƒ_[ƒo[ƒWƒ‡ƒ“‚QD‚O‚ğg—p‚Å‚«‚È‚¢ê‡‚Í
-	// ’¸“_ˆ—‚Í‚·‚×‚Äƒ\ƒtƒgƒEƒGƒA‚Ås‚¤
+	// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒãƒ¼ã‚¸ãƒ§ãƒ³ï¼’ï¼ï¼ã‚’ä½¿ç”¨ã§ããªã„å ´åˆã¯
+	// é ‚ç‚¹å‡¦ç†ã¯ã™ã¹ã¦ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§è¡Œã†
 	Direct3D9_GetDeviceCaps( ( DWORD )( GSYS.Screen.ValidUseDisplayIndex ? GSYS.Screen.UseDisplayIndex : D_D3DADAPTER_DEFAULT ), D_D3DDEVTYPE_HAL, &DevCaps ) ;
 	if( ( DevCaps.VertexShaderVersion & 0xffff ) < 0x200 || 
 		( DevCaps.PixelShaderVersion  & 0xffff ) < 0x200 )
@@ -4423,7 +4423,7 @@ extern int Direct3D9_CreateDevice( void )
 	GD3D9.Device.Shader.NativeVertexShaderVersion = DevCaps.VertexShaderVersion ;
 	if( GAPIWin.Direct3D9ExObject )
 	{
-		DXST_LOGFILE_ADDUTF16LE( "\x49\x00\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x33\x00\x44\x00\x44\x00\x65\x00\x76\x00\x69\x00\x63\x00\x65\x00\x39\x00\x45\x00\x78\x00\x20\x00\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x92\x30\xd6\x53\x97\x5f\x57\x30\x7e\x30\x59\x30\x2e\x00\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"IDirect3DDevice9Ex ƒIƒuƒWƒFƒNƒg‚ğæ“¾‚µ‚Ü‚·.... " @*/ ) ;
+		DXST_LOGFILE_ADDUTF16LE( "\x49\x00\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x33\x00\x44\x00\x44\x00\x65\x00\x76\x00\x69\x00\x63\x00\x65\x00\x39\x00\x45\x00\x78\x00\x20\x00\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x92\x30\xd6\x53\x97\x5f\x57\x30\x7e\x30\x59\x30\x2e\x00\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"IDirect3DDevice9Ex ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å–å¾—ã—ã¾ã™.... " @*/ ) ;
 
 		hr = GAPIWin.Direct3D9ExObject->CreateDeviceEx(
 			( DWORD )( GSYS.Screen.ValidUseDisplayIndex ? GSYS.Screen.UseDisplayIndex : D_D3DADAPTER_DEFAULT ),
@@ -4443,7 +4443,7 @@ extern int Direct3D9_CreateDevice( void )
 NOTUSEHARDWARE_VERTEXPROCESSINGEX:
 			GD3D9.Device.Caps.VertexHardwareProcess = FALSE ;
 
-			// ‚¾‚ß‚¾‚Á‚½ê‡‚Íƒ\ƒtƒgƒEƒGƒAƒvƒƒZƒbƒVƒ“ƒO
+			// ã ã‚ã ã£ãŸå ´åˆã¯ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ãƒ—ãƒ­ã‚»ãƒƒã‚·ãƒ³ã‚°
 			hr = GAPIWin.Direct3D9ExObject->CreateDeviceEx(
 				( UINT )( GSYS.Screen.ValidUseDisplayIndex ? GSYS.Screen.UseDisplayIndex : D_D3DADAPTER_DEFAULT ),
 				D_D3DDEVTYPE_HAL,
@@ -4460,27 +4460,27 @@ NOTUSEHARDWARE_VERTEXPROCESSINGEX:
 			{
 				GD3D9.Setting.NotUseDirect3D9Ex = TRUE ;
 
-				DXST_LOGFILE_ADDUTF16LE( "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x33\x00\x44\x00\x44\x00\x65\x00\x76\x00\x69\x00\x63\x00\x65\x00\x39\x00\x45\x00\x78\x00\x20\x00\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Direct3DDevice9Ex ‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+				DXST_LOGFILE_ADDUTF16LE( "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x33\x00\x44\x00\x44\x00\x65\x00\x76\x00\x69\x00\x63\x00\x65\x00\x39\x00\x45\x00\x78\x00\x20\x00\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Direct3DDevice9Ex ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 				ErrorRet = -2 ;
 				goto ERR ;
 			}
 			else
 			{
-				DXST_LOGFILE_ADDUTF16LE( "\xbd\x30\xd5\x30\xc8\x30\xa6\x30\xa8\x30\xa2\x30\x02\x98\xb9\x70\x14\x6f\x97\x7b\x92\x30\x7f\x4f\x28\x75\x57\x30\x7e\x30\x59\x30\x0a\x00\x00"/*@ L"ƒ\ƒtƒgƒEƒGƒA’¸“_‰‰Z‚ğg—p‚µ‚Ü‚·\n" @*/ ) ;
+				DXST_LOGFILE_ADDUTF16LE( "\xbd\x30\xd5\x30\xc8\x30\xa6\x30\xa8\x30\xa2\x30\x02\x98\xb9\x70\x14\x6f\x97\x7b\x92\x30\x7f\x4f\x28\x75\x57\x30\x7e\x30\x59\x30\x0a\x00\x00"/*@ L"ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢é ‚ç‚¹æ¼”ç®—ã‚’ä½¿ç”¨ã—ã¾ã™\n" @*/ ) ;
 			}
 		}
 		else
 		{
-			DXST_LOGFILE_ADDUTF16LE( "\xcf\x30\xfc\x30\xc9\x30\xa6\x30\xa8\x30\xa2\x30\x02\x98\xb9\x70\x14\x6f\x97\x7b\x92\x30\x7f\x4f\x28\x75\x57\x30\x7e\x30\x59\x30\x0a\x00\x00"/*@ L"ƒn[ƒhƒEƒGƒA’¸“_‰‰Z‚ğg—p‚µ‚Ü‚·\n" @*/ ) ;
+			DXST_LOGFILE_ADDUTF16LE( "\xcf\x30\xfc\x30\xc9\x30\xa6\x30\xa8\x30\xa2\x30\x02\x98\xb9\x70\x14\x6f\x97\x7b\x92\x30\x7f\x4f\x28\x75\x57\x30\x7e\x30\x59\x30\x0a\x00\x00"/*@ L"ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢é ‚ç‚¹æ¼”ç®—ã‚’ä½¿ç”¨ã—ã¾ã™\n" @*/ ) ;
 		}
 		GAPIWin.Direct3DDevice9Object = GAPIWin.Direct3DDevice9ExObject ;
 
-		// ƒŒƒ“ƒ_ƒŠƒ“ƒO•Û‚Å‚«‚éƒtƒŒ[ƒ€”‚ğÅ¬‚É‚·‚é
+		// ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ä¿æŒã§ãã‚‹ãƒ•ãƒ¬ãƒ¼ãƒ æ•°ã‚’æœ€å°ã«ã™ã‚‹
 		GAPIWin.Direct3DDevice9ExObject->SetMaximumFrameLatency( 1 ) ;
 	}
 	else
 	{
-		DXST_LOGFILE_ADDUTF16LE( "\x49\x00\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x33\x00\x44\x00\x44\x00\x65\x00\x76\x00\x69\x00\x63\x00\x65\x00\x39\x00\x20\x00\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x92\x30\xd6\x53\x97\x5f\x57\x30\x7e\x30\x59\x30\x2e\x00\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"IDirect3DDevice9 ƒIƒuƒWƒFƒNƒg‚ğæ“¾‚µ‚Ü‚·.... " @*/ ) ;
+		DXST_LOGFILE_ADDUTF16LE( "\x49\x00\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x33\x00\x44\x00\x44\x00\x65\x00\x76\x00\x69\x00\x63\x00\x65\x00\x39\x00\x20\x00\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x92\x30\xd6\x53\x97\x5f\x57\x30\x7e\x30\x59\x30\x2e\x00\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"IDirect3DDevice9 ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å–å¾—ã—ã¾ã™.... " @*/ ) ;
 
 		hr = GAPIWin.Direct3D9Object->CreateDevice(
 			( UINT )( GSYS.Screen.ValidUseDisplayIndex ? GSYS.Screen.UseDisplayIndex : D_D3DADAPTER_DEFAULT ),
@@ -4499,7 +4499,7 @@ NOTUSEHARDWARE_VERTEXPROCESSINGEX:
 NOTUSEHARDWARE_VERTEXPROCESSING:
 			GD3D9.Device.Caps.VertexHardwareProcess = FALSE ;
 
-			// ‚¾‚ß‚¾‚Á‚½ê‡‚Íƒ\ƒtƒgƒEƒGƒAƒvƒƒZƒbƒVƒ“ƒO
+			// ã ã‚ã ã£ãŸå ´åˆã¯ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ãƒ—ãƒ­ã‚»ãƒƒã‚·ãƒ³ã‚°
 			hr = GAPIWin.Direct3D9Object->CreateDevice(
 				( UINT )( GSYS.Screen.ValidUseDisplayIndex ? GSYS.Screen.UseDisplayIndex : D_D3DADAPTER_DEFAULT ),
 				D_D3DDEVTYPE_HAL,
@@ -4513,25 +4513,25 @@ NOTUSEHARDWARE_VERTEXPROCESSING:
 			) ;
 			if( FAILED( hr ) )
 			{
-				DXST_LOGFILE_ADDUTF16LE( "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x33\x00\x44\x00\x44\x00\x65\x00\x76\x00\x69\x00\x63\x00\x65\x00\x39\x00\x20\x00\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Direct3DDevice9 ‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+				DXST_LOGFILE_ADDUTF16LE( "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x33\x00\x44\x00\x44\x00\x65\x00\x76\x00\x69\x00\x63\x00\x65\x00\x39\x00\x20\x00\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Direct3DDevice9 ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 				goto ERR ;
 			}
 			else
 			{
-				DXST_LOGFILE_ADDUTF16LE( "\xbd\x30\xd5\x30\xc8\x30\xa6\x30\xa8\x30\xa2\x30\x02\x98\xb9\x70\x14\x6f\x97\x7b\x92\x30\x7f\x4f\x28\x75\x57\x30\x7e\x30\x59\x30\x0a\x00\x00"/*@ L"ƒ\ƒtƒgƒEƒGƒA’¸“_‰‰Z‚ğg—p‚µ‚Ü‚·\n" @*/ ) ;
+				DXST_LOGFILE_ADDUTF16LE( "\xbd\x30\xd5\x30\xc8\x30\xa6\x30\xa8\x30\xa2\x30\x02\x98\xb9\x70\x14\x6f\x97\x7b\x92\x30\x7f\x4f\x28\x75\x57\x30\x7e\x30\x59\x30\x0a\x00\x00"/*@ L"ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢é ‚ç‚¹æ¼”ç®—ã‚’ä½¿ç”¨ã—ã¾ã™\n" @*/ ) ;
 			}
 		}
 		else
 		{
-			DXST_LOGFILE_ADDUTF16LE( "\xcf\x30\xfc\x30\xc9\x30\xa6\x30\xa8\x30\xa2\x30\x02\x98\xb9\x70\x14\x6f\x97\x7b\x92\x30\x7f\x4f\x28\x75\x57\x30\x7e\x30\x59\x30\x0a\x00\x00"/*@ L"ƒn[ƒhƒEƒGƒA’¸“_‰‰Z‚ğg—p‚µ‚Ü‚·\n" @*/ ) ;
+			DXST_LOGFILE_ADDUTF16LE( "\xcf\x30\xfc\x30\xc9\x30\xa6\x30\xa8\x30\xa2\x30\x02\x98\xb9\x70\x14\x6f\x97\x7b\x92\x30\x7f\x4f\x28\x75\x57\x30\x7e\x30\x59\x30\x0a\x00\x00"/*@ L"ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢é ‚ç‚¹æ¼”ç®—ã‚’ä½¿ç”¨ã—ã¾ã™\n" @*/ ) ;
 		}
 	}
 
-	// ƒoƒbƒNƒoƒbƒtƒ@‚Ì‰Šú‰»
+	// ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã®åˆæœŸåŒ–
 	{
 		DWORD ClearColor ;
 
-		// ƒtƒ‹ƒXƒNƒŠ[ƒ“ƒ‚[ƒhŠ‚Âƒtƒ‹ƒXƒNƒŠ[ƒ“‰ğ‘œ“xƒ‚[ƒh‚ª DX_FSRESOLUTIONMODE_NATIVE ˆÈŠO‚Ìê‡‚Í•K‚¸^‚Á•‚Å‰Šú‰»‚·‚é
+		// ãƒ•ãƒ«ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ¢ãƒ¼ãƒ‰ä¸”ã¤ãƒ•ãƒ«ã‚¹ã‚¯ãƒªãƒ¼ãƒ³è§£åƒåº¦ãƒ¢ãƒ¼ãƒ‰ãŒ DX_FSRESOLUTIONMODE_NATIVE ä»¥å¤–ã®å ´åˆã¯å¿…ãšçœŸã£é»’ã§åˆæœŸåŒ–ã™ã‚‹
 		if( NS_GetWindowModeFlag() == FALSE && GSYS.Screen.FullScreenResolutionModeAct != DX_FSRESOLUTIONMODE_NATIVE )
 		{
 			ClearColor = 0 ;
@@ -4551,25 +4551,25 @@ NOTUSEHARDWARE_VERTEXPROCESSING:
 		Direct3DDevice9_Clear( 0, NULL, D_D3DCLEAR_TARGET, ClearColor, 1.0f, 0 ) ;
 	}
 
-	// ƒXƒƒbƒvƒ`ƒFƒCƒ“‚ÌƒAƒhƒŒƒX‚ğæ“¾
+	// ã‚¹ãƒ¯ãƒƒãƒ—ãƒã‚§ã‚¤ãƒ³ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å–å¾—
 	GAPIWin.Direct3DDevice9Object->GetSwapChain( 0, &GAPIWin.Direct3DSwapChain9Object ) ;
 
 	CL_strcpy( WCHAR_T_CHARCODEFORMAT, ( char * )WinData.PcInfo.DirectXString, ( char * )L"DirectX 9" ) ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 
-	// ƒGƒ‰[ˆ—
+	// ã‚¨ãƒ©ãƒ¼å‡¦ç†
 ERR:
 	return ErrorRet ;
 }
 
-// ƒ}ƒ‹ƒ`ƒTƒ“ƒvƒ‹ƒŒƒ“ƒ_ƒŠƒ“ƒO‚ÌƒTƒ“ƒvƒ‹”‚ÆƒNƒIƒŠƒeƒB‚ğƒ`ƒFƒbƒN
+// ãƒãƒ«ãƒã‚µãƒ³ãƒ—ãƒ«ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã®ã‚µãƒ³ãƒ—ãƒ«æ•°ã¨ã‚¯ã‚ªãƒªãƒ†ã‚£ã‚’ãƒã‚§ãƒƒã‚¯
 extern int Direct3D9_CheckMultiSampleParam( D_D3DFORMAT Format, D_D3DMULTISAMPLE_TYPE *Samples, DWORD *Quality, int SamplesFailedBreak )
 {
 	DWORD ColorBufferQuality, ZBufferQuality, MaxQuality ;
 
-	// ƒJƒ‰[ƒoƒbƒtƒ@‚Åg—p‚Å‚«‚éƒ}ƒ‹ƒ`ƒTƒ“ƒvƒ‹ƒ^ƒCƒv‚Æ‚»‚ÌÛ‚ÌƒNƒIƒŠƒeƒB‚ğæ“¾‚·‚é
+	// ã‚«ãƒ©ãƒ¼ãƒãƒƒãƒ•ã‚¡ã§ä½¿ç”¨ã§ãã‚‹ãƒãƒ«ãƒã‚µãƒ³ãƒ—ãƒ«ã‚¿ã‚¤ãƒ—ã¨ãã®éš›ã®ã‚¯ã‚ªãƒªãƒ†ã‚£ã‚’å–å¾—ã™ã‚‹
 	ColorBufferQuality = 0 ;
 	for(;;)
 	{
@@ -4586,14 +4586,14 @@ extern int Direct3D9_CheckMultiSampleParam( D_D3DFORMAT Format, D_D3DMULTISAMPLE
 		if( *Samples == D_D3DMULTISAMPLE_NONE ) break ;
 	}
 
-	// g—p‚Å‚«‚éƒ}ƒ‹ƒ`ƒTƒ“ƒvƒ‹ƒ^ƒCƒv‚ª–³‚©‚Á‚½‚çI—¹
+	// ä½¿ç”¨ã§ãã‚‹ãƒãƒ«ãƒã‚µãƒ³ãƒ—ãƒ«ã‚¿ã‚¤ãƒ—ãŒç„¡ã‹ã£ãŸã‚‰çµ‚äº†
 	if( *Samples == D_D3DMULTISAMPLE_NONE )
 	{
 		*Quality = 0 ;
 		return 0 ;
 	}
 
-	// ‚yƒoƒbƒtƒ@‚Åg—p‚Å‚«‚éƒ}ƒ‹ƒ`ƒTƒ“ƒvƒ‹ƒ^ƒCƒv‚Æ‚»‚ÌÛ‚ÌƒNƒIƒŠƒeƒB‚ğæ“¾‚·‚é
+	// ï¼ºãƒãƒƒãƒ•ã‚¡ã§ä½¿ç”¨ã§ãã‚‹ãƒãƒ«ãƒã‚µãƒ³ãƒ—ãƒ«ã‚¿ã‚¤ãƒ—ã¨ãã®éš›ã®ã‚¯ã‚ªãƒªãƒ†ã‚£ã‚’å–å¾—ã™ã‚‹
 	ZBufferQuality = 0 ;
 	for(;;)
 	{
@@ -4610,18 +4610,18 @@ extern int Direct3D9_CheckMultiSampleParam( D_D3DFORMAT Format, D_D3DMULTISAMPLE
 		if( *Samples == D_D3DMULTISAMPLE_NONE ) break ;
 	}
 
-	// g—p‚Å‚«‚éƒ}ƒ‹ƒ`ƒTƒ“ƒvƒ‹ƒ^ƒCƒv‚ª–³‚©‚Á‚½‚çI—¹
+	// ä½¿ç”¨ã§ãã‚‹ãƒãƒ«ãƒã‚µãƒ³ãƒ—ãƒ«ã‚¿ã‚¤ãƒ—ãŒç„¡ã‹ã£ãŸã‚‰çµ‚äº†
 	if( *Samples == D_D3DMULTISAMPLE_NONE )
 	{
 		*Quality = 0 ;
 		return 0 ;
 	}
 
-	// ƒNƒIƒŠƒeƒB‚Í’á‚¢‚Ù‚¤‚É‡‚í‚¹‚é
+	// ã‚¯ã‚ªãƒªãƒ†ã‚£ã¯ä½ã„ã»ã†ã«åˆã‚ã›ã‚‹
 	MaxQuality = ( ZBufferQuality < ColorBufferQuality ? ZBufferQuality : ColorBufferQuality ) - 1 ;
 	if( *Quality > MaxQuality ) *Quality = MaxQuality ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
@@ -4649,7 +4649,7 @@ extern long Direct3DDevice9_SetDialogBoxMode( BOOL bEnableDialogs )
 
 extern int Direct3DDevice9_Release( void )
 {
-	// ƒXƒƒbƒvƒ`ƒFƒCƒ“‚Ì‰ğ•ú
+	// ã‚¹ãƒ¯ãƒƒãƒ—ãƒã‚§ã‚¤ãƒ³ã®è§£æ”¾
 	if( GAPIWin.Direct3DSwapChain9Object )
 	{
 		GAPIWin.Direct3DSwapChain9Object->Release() ;
@@ -4658,13 +4658,13 @@ extern int Direct3DDevice9_Release( void )
 
 	if( GAPIWin.Direct3DDevice9Object )
 	{
-		DXST_LOGFILE_ADDUTF16LE( "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x33\x00\x44\x00\x44\x00\x65\x00\x76\x00\x69\x00\x63\x00\x65\x00\x39\x00\x20\x00\x6e\x30\xe3\x89\x3e\x65\x20\x00\x32\x00\x0a\x00\x00"/*@ L"Direct3DDevice9 ‚Ì‰ğ•ú 2\n" @*/ ) ;
+		DXST_LOGFILE_ADDUTF16LE( "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x33\x00\x44\x00\x44\x00\x65\x00\x76\x00\x69\x00\x63\x00\x65\x00\x39\x00\x20\x00\x6e\x30\xe3\x89\x3e\x65\x20\x00\x32\x00\x0a\x00\x00"/*@ L"Direct3DDevice9 ã®è§£æ”¾ 2\n" @*/ ) ;
 
 		GAPIWin.Direct3DDevice9Object->Release() ;
 		GAPIWin.Direct3DDevice9Object = NULL ;
 	}
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
@@ -4928,7 +4928,7 @@ extern long Direct3DDevice9_SetPixelShaderConstantB( UINT StartRegister, CONST B
 	return GAPIWin.Direct3DDevice9Object->SetPixelShaderConstantB( StartRegister, pConstantData,  BoolCount) ;
 }
 
-// ƒeƒ“ƒ|ƒ‰ƒŠƒvƒ‰ƒCƒ}ƒŠƒoƒbƒtƒ@‚Ì“à—e‚ğƒvƒ‰ƒCƒ}ƒŠƒoƒbƒtƒ@‚É“]‘—‚·‚éƒR[ƒ‹ƒoƒbƒNŠÖ”
+// ãƒ†ãƒ³ãƒãƒ©ãƒªãƒ—ãƒ©ã‚¤ãƒãƒªãƒãƒƒãƒ•ã‚¡ã®å†…å®¹ã‚’ãƒ—ãƒ©ã‚¤ãƒãƒªãƒãƒƒãƒ•ã‚¡ã«è»¢é€ã™ã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 #if _MSC_VER > 1200 || defined( DX_GCC_COMPILE_4_9_2 )
 static VOID CALLBACK ScreenFlipTimerProc( HWND /*hwnd*/, UINT /*uMsg*/, UINT_PTR /*idEvent*/, DWORD /*dwTime*/ )
 #else
@@ -4952,20 +4952,20 @@ static VOID CALLBACK ScreenFlipTimerProc( HWND /*hwnd*/, UINT /*uMsg*/, UINT /*i
 	}
 }
 
-// ƒTƒuƒoƒbƒNƒoƒbƒtƒ@‚Ì“à—e‚ğƒoƒbƒNƒoƒbƒtƒ@‚ÉŠg‘å“]‘—‚·‚é
+// ã‚µãƒ–ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã®å†…å®¹ã‚’ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã«æ‹¡å¤§è»¢é€ã™ã‚‹
 static int Direct3DDevice9_ScalingSubBackbuffer( const RECT *SubBackBufferSrcRect )
 {
 	HRESULT hr ;
 
-	// “]‘—æ‹éŒ`‚ÌƒZƒbƒgƒAƒbƒv
+	// è»¢é€å…ˆçŸ©å½¢ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 	Graphics_Screen_SetupFullScreenScalingDestRect() ;
 
-	// ƒTƒuƒoƒbƒNƒoƒbƒtƒ@ƒeƒNƒXƒ`ƒƒ‚ª‚È‚¢ê‡‚Í’Pƒ“]‘—
+	// ã‚µãƒ–ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ãƒ†ã‚¯ã‚¹ãƒãƒ£ãŒãªã„å ´åˆã¯å˜ç´”è»¢é€
 	if( GD3D9.Device.Screen.SubBackBufferTexture == NULL )
 	{
 		D_D3DTEXTUREFILTERTYPE StretchType ;
 
-		// “]‘—‚ÌŠg‘å•û®‚ğŒˆ’è
+		// è»¢é€æ™‚ã®æ‹¡å¤§æ–¹å¼ã‚’æ±ºå®š
 		StretchType = D_D3DTEXF_POINT ;
 		switch( GSYS.Screen.FullScreenScalingMode )
 		{
@@ -4990,7 +4990,7 @@ static int Direct3DDevice9_ScalingSubBackbuffer( const RECT *SubBackBufferSrcRec
 			break ;
 		}
 
-		// ƒTƒuƒoƒbƒNƒoƒbƒtƒ@‚Æ–{ƒoƒbƒNƒoƒbƒtƒ@‚ÌƒTƒCƒY‚ªˆÙ‚È‚éê‡‚Í–{ƒoƒbƒNƒoƒbƒtƒ@‚ğæ‚ÉƒNƒŠƒA‚·‚é
+		// ã‚µãƒ–ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã¨æœ¬ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã®ã‚µã‚¤ã‚ºãŒç•°ãªã‚‹å ´åˆã¯æœ¬ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã‚’å…ˆã«ã‚¯ãƒªã‚¢ã™ã‚‹
 		if( ( GSYS.Screen.FullScreenScalingDestRect.right - GSYS.Screen.FullScreenScalingDestRect.left ) != ( DWORD )GD3D9.Device.Screen.SubBackBufferTextureSizeX ||
 			( GSYS.Screen.FullScreenScalingDestRect.bottom - GSYS.Screen.FullScreenScalingDestRect.top ) != ( DWORD )GD3D9.Device.Screen.SubBackBufferTextureSizeY )
 		{
@@ -5001,55 +5001,55 @@ static int Direct3DDevice9_ScalingSubBackbuffer( const RECT *SubBackBufferSrcRec
 			D_D3DTEXTUREFILTERTYPE                BackupMagFilter ;
 			D_D3DTEXTUREFILTERTYPE                BackupMinFilter ;
 
-			// ƒtƒBƒ‹ƒ^ƒŠƒ“ƒOƒ‚[ƒh‚ğ•Û‘¶
+			// ãƒ•ã‚£ãƒ«ã‚¿ãƒªãƒ³ã‚°ãƒ¢ãƒ¼ãƒ‰ã‚’ä¿å­˜
 			BackupMagFilter = GD3D9.Device.State.MagFilter[ 0 ] ;
 			BackupMinFilter = GD3D9.Device.State.MinFilter[ 0 ] ;
 
-			// ƒrƒ…[ƒ|[ƒgİ’è‚Ì•Û‘¶
+			// ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆè¨­å®šã®ä¿å­˜
 			BackupViewport = GD3D9.Device.State.Viewport ;
 
-			// •`‰ææ‚Ì•Û‘¶
+			// æç”»å…ˆã®ä¿å­˜
 			for( i = 0 ; i < DX_RENDERTARGET_COUNT ; i ++ )
 			{
 				BackupTargetSurface[ i ] = GD3D9.Device.State.TargetSurface[ i ] ;
 			}
 
-			// •`‰ææ‚ğ•ÏX
+			// æç”»å…ˆã‚’å¤‰æ›´
 			Graphics_D3D9_DeviceState_SetRenderTarget( GD3D9.Device.Screen.BackBufferSurface, 0 ) ;
 			for( i = 1 ; i < DX_RENDERTARGET_COUNT ; i ++ )
 			{
 				Graphics_D3D9_DeviceState_SetRenderTarget( NULL, i ) ;
 			}
 
-			// ƒoƒbƒNƒoƒbƒtƒ@‚ğƒNƒŠƒA
+			// ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã‚’ã‚¯ãƒªã‚¢
 			DWORD ClearColor = ( ( DWORD )GSYS.Screen.BackgroundAlpha << 24 ) | ( ( DWORD )GSYS.Screen.BackgroundRed << 16 ) | ( ( DWORD )GSYS.Screen.BackgroundGreen << 8 ) | ( DWORD )GSYS.Screen.BackgroundBlue ;
 			Direct3DDevice9_Clear( 0, NULL, D_D3DCLEAR_TARGET, ClearColor, 1.0f, 0 ) ;
 
-			// ‚yƒoƒbƒtƒ@‚ğg—p‚µ‚È‚¢İ’è‚É‚·‚é
+			// ï¼ºãƒãƒƒãƒ•ã‚¡ã‚’ä½¿ç”¨ã—ãªã„è¨­å®šã«ã™ã‚‹
 			BackupUseZBufferFlag = GD3D9.Device.State.ZEnable ;
 			Graphics_D3D9_DeviceState_SetZEnable( FALSE ) ;
 
-			// •`‰ææ‚ğŒ³‚É–ß‚·
+			// æç”»å…ˆã‚’å…ƒã«æˆ»ã™
 			for( i = 0 ; i < DX_RENDERTARGET_COUNT ; i ++ )
 			{
 				Graphics_D3D9_DeviceState_SetRenderTarget( BackupTargetSurface[ i ], i ) ;
 			}
 
-			// ƒtƒBƒ‹ƒ^ƒŠƒ“ƒOƒ‚[ƒh‚ğŒ³‚É–ß‚·
+			// ãƒ•ã‚£ãƒ«ã‚¿ãƒªãƒ³ã‚°ãƒ¢ãƒ¼ãƒ‰ã‚’å…ƒã«æˆ»ã™
 			Direct3DDevice9_SetSamplerState( 0, D_D3DSAMP_MAGFILTER, BackupMagFilter ) ;
 			Direct3DDevice9_SetSamplerState( 0, D_D3DSAMP_MINFILTER, BackupMinFilter ) ;
 
-			// ‚yƒoƒbƒtƒ@‚Ìİ’è‚ğŒ³‚É–ß‚·
+			// ï¼ºãƒãƒƒãƒ•ã‚¡ã®è¨­å®šã‚’å…ƒã«æˆ»ã™
 			Graphics_D3D9_DeviceState_SetZEnable( BackupUseZBufferFlag ) ;
 
-			// ƒrƒ…[ƒ|[ƒgİ’è‚ğŒ³‚É–ß‚·
+			// ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆè¨­å®šã‚’å…ƒã«æˆ»ã™
 			GD3D9.Device.DrawSetting.CancelSettingEqualCheck = TRUE ;
 			Graphics_D3D9_DeviceState_SetViewport( &BackupViewport ) ;
 			GD3D9.Device.DrawSetting.CancelSettingEqualCheck = FALSE ;
 		}
 
-		// ƒTƒuƒoƒbƒNƒoƒbƒtƒ@‚Ì“à—e‚ğƒoƒbƒNƒoƒbƒtƒ@‚É“]‘—
-//		DXST_LOGFILEFMT_ADDW(( L"ƒpƒ‰ƒ[ƒ^ StretchType( %d ) SrcRect( %d, %d, %d, %d ), DestRect( %d, %d, %d, %d )",
+		// ã‚µãƒ–ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã®å†…å®¹ã‚’ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã«è»¢é€
+//		DXST_LOGFILEFMT_ADDW(( L"ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ StretchType( %d ) SrcRect( %d, %d, %d, %d ), DestRect( %d, %d, %d, %d )",
 //			StretchType,
 //			SubBackBufferSrcRect.left,
 //			SubBackBufferSrcRect.top,
@@ -5069,13 +5069,13 @@ static int Direct3DDevice9_ScalingSubBackbuffer( const RECT *SubBackBufferSrcRec
 		) ;
 		if( hr != D_D3D_OK )
 		{
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x33\x00\x44\x00\x44\x00\x65\x00\x76\x00\x69\x00\x63\x00\x65\x00\x39\x00\x20\x00\x53\x00\x74\x00\x72\x00\x65\x00\x74\x00\x63\x00\x68\x00\x52\x00\x65\x00\x63\x00\x74\x00\x20\x00\x31\x59\x57\x65\x20\x00\x87\x7b\x40\x62\x13\xff\x20\x00\x3b\x62\x8a\x30\x24\x50\x20\x00\x30\x00\x78\x00\x25\x00\x30\x00\x38\x00\x78\x00\x00"/*@ L"Direct3DDevice9 StretchRect ¸”s ‰ÓŠ‚R –ß‚è’l 0x%08x" @*/, hr )) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x33\x00\x44\x00\x44\x00\x65\x00\x76\x00\x69\x00\x63\x00\x65\x00\x39\x00\x20\x00\x53\x00\x74\x00\x72\x00\x65\x00\x74\x00\x63\x00\x68\x00\x52\x00\x65\x00\x63\x00\x74\x00\x20\x00\x31\x59\x57\x65\x20\x00\x87\x7b\x40\x62\x13\xff\x20\x00\x3b\x62\x8a\x30\x24\x50\x20\x00\x30\x00\x78\x00\x25\x00\x30\x00\x38\x00\x78\x00\x00"/*@ L"Direct3DDevice9 StretchRect å¤±æ•— ç®‡æ‰€ï¼“ æˆ»ã‚Šå€¤ 0x%08x" @*/, hr )) ;
 			return -1 ;
 		}
 	}
 	else
 	{
-		// ƒeƒNƒXƒ`ƒƒ‚ª‚ ‚éê‡‚ÍƒoƒbƒNƒoƒbƒtƒ@‚É•`‰æ
+		// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãŒã‚ã‚‹å ´åˆã¯ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã«æç”»
 		int                                   i ;
 		VERTEX_2D                             Vert[ 4 ] ;
 		GRAPHICS_HARDDATA_DIRECT3D9_BLENDINFO BlendInfo ;
@@ -5085,27 +5085,27 @@ static int Direct3DDevice9_ScalingSubBackbuffer( const RECT *SubBackBufferSrcRec
 		D_D3DTEXTUREFILTERTYPE                BackupMagFilter ;
 		D_D3DTEXTUREFILTERTYPE                BackupMinFilter ;
 
-		// ƒtƒBƒ‹ƒ^ƒŠƒ“ƒOƒ‚[ƒh‚ğ•Û‘¶
+		// ãƒ•ã‚£ãƒ«ã‚¿ãƒªãƒ³ã‚°ãƒ¢ãƒ¼ãƒ‰ã‚’ä¿å­˜
 		BackupMagFilter = GD3D9.Device.State.MagFilter[ 0 ] ;
 		BackupMinFilter = GD3D9.Device.State.MinFilter[ 0 ] ;
 
-		// ƒrƒ…[ƒ|[ƒgİ’è‚Ì•Û‘¶
+		// ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆè¨­å®šã®ä¿å­˜
 		BackupViewport = GD3D9.Device.State.Viewport ;
 
-		// •`‰ææ‚Ì•Û‘¶
+		// æç”»å…ˆã®ä¿å­˜
 		for( i = 0 ; i < DX_RENDERTARGET_COUNT ; i ++ )
 		{
 			BackupTargetSurface[ i ] = GD3D9.Device.State.TargetSurface[ i ] ;
 		}
 
-		// •`‰ææ‚ğ•ÏX
+		// æç”»å…ˆã‚’å¤‰æ›´
 		Graphics_D3D9_DeviceState_SetRenderTarget( GD3D9.Device.Screen.BackBufferSurface, 0 ) ;
 		for( i = 1 ; i < DX_RENDERTARGET_COUNT ; i ++ )
 		{
 			Graphics_D3D9_DeviceState_SetRenderTarget( NULL, i ) ;
 		}
 
-		// ƒTƒuƒoƒbƒNƒoƒbƒtƒ@‚Æ–{ƒoƒbƒNƒoƒbƒtƒ@‚ÌƒTƒCƒY‚ªˆÙ‚È‚éê‡‚Í–{ƒoƒbƒNƒoƒbƒtƒ@‚ğæ‚ÉƒNƒŠƒA‚·‚é
+		// ã‚µãƒ–ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã¨æœ¬ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã®ã‚µã‚¤ã‚ºãŒç•°ãªã‚‹å ´åˆã¯æœ¬ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã‚’å…ˆã«ã‚¯ãƒªã‚¢ã™ã‚‹
 		if( ( GSYS.Screen.FullScreenScalingDestRect.right - GSYS.Screen.FullScreenScalingDestRect.left ) != ( DWORD )GD3D9.Device.Screen.SubBackBufferTextureSizeX ||
 			( GSYS.Screen.FullScreenScalingDestRect.bottom - GSYS.Screen.FullScreenScalingDestRect.top ) != ( DWORD )GD3D9.Device.Screen.SubBackBufferTextureSizeY )
 		{
@@ -5113,10 +5113,10 @@ static int Direct3DDevice9_ScalingSubBackbuffer( const RECT *SubBackBufferSrcRec
 			Direct3DDevice9_Clear( 0, NULL, D_D3DCLEAR_TARGET, ClearColor, 1.0f, 0 ) ;
 		}
 
-		// •`‰æ€”õ
+		// æç”»æº–å‚™
 		Graphics_D3D9_BeginScene() ;
 
-		// ƒtƒBƒ‹ƒ^ƒŠƒ“ƒOƒ‚[ƒh‚ğİ’è
+		// ãƒ•ã‚£ãƒ«ã‚¿ãƒªãƒ³ã‚°ãƒ¢ãƒ¼ãƒ‰ã‚’è¨­å®š
 		switch( GSYS.Screen.FullScreenScalingMode )
 		{
 		default :
@@ -5131,17 +5131,17 @@ static int Direct3DDevice9_ScalingSubBackbuffer( const RECT *SubBackBufferSrcRec
 			break ;
 		}
 
-		// ‚yƒoƒbƒtƒ@‚ğg—p‚µ‚È‚¢İ’è‚É‚·‚é
+		// ï¼ºãƒãƒƒãƒ•ã‚¡ã‚’ä½¿ç”¨ã—ãªã„è¨­å®šã«ã™ã‚‹
 		BackupUseZBufferFlag = GD3D9.Device.State.ZEnable ;
 		Graphics_D3D9_DeviceState_SetZEnable( FALSE ) ;
 
-		// ƒVƒF[ƒ_[‚ªƒZƒbƒg‚³‚ê‚Ä‚¢‚½‚ç‚Í‚¸‚·
+		// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãŒã‚»ãƒƒãƒˆã•ã‚Œã¦ã„ãŸã‚‰ã¯ãšã™
 		Graphics_D3D9_DeviceState_ResetVertexShader() ;
 		Graphics_D3D9_DeviceState_ResetPixelShader() ;
 		Graphics_D3D9_DeviceState_SetVertexBuffer( NULL ) ;
 		Graphics_D3D9_DeviceState_SetIndexBuffer( NULL ) ;
 
-		// ƒuƒŒƒ“ƒhî•ñ‚Ìİ’è
+		// ãƒ–ãƒ¬ãƒ³ãƒ‰æƒ…å ±ã®è¨­å®š
 		_MEMSET( &BlendInfo, 0, sizeof( BlendInfo ) ) ;
 		BlendInfo.AlphaTestEnable          = FALSE ;
 		BlendInfo.AlphaRef                 = 0 ;
@@ -5179,9 +5179,9 @@ static int Direct3DDevice9_ScalingSubBackbuffer( const RECT *SubBackBufferSrcRec
 
 		Graphics_D3D9_DeviceState_SetUserBlendInfo( &BlendInfo, FALSE, FALSE, FALSE ) ;
 
-		// ’PƒŠg‘å“]‘—
+		// å˜ç´”æ‹¡å¤§è»¢é€
 
-		// ’¸“_‚Ì€”õ
+		// é ‚ç‚¹ã®æº–å‚™
 		Vert[ 2 ].pos.x = Vert[ 0 ].pos.x = ( float )GSYS.Screen.FullScreenScalingDestRect.left   - 0.5f ;
 		Vert[ 1 ].pos.y = Vert[ 0 ].pos.y = ( float )GSYS.Screen.FullScreenScalingDestRect.top    - 0.5f ;
 
@@ -5208,33 +5208,33 @@ static int Direct3DDevice9_ScalingSubBackbuffer( const RECT *SubBackBufferSrcRec
 		Vert[ 2 ].rhw = 
 		Vert[ 3 ].rhw = 1.0f ;
 
-		// •`‰æ
+		// æç”»
 		Graphics_D3D9_DeviceState_SetFVF( VERTEXFVF_2D ) ;
 		Direct3DDevice9_DrawPrimitiveUP( D_D3DPT_TRIANGLESTRIP, 2, Vert, sizeof( VERTEX_2D ) ) ;
 
-		// •`‰æˆ—I—¹
+		// æç”»å‡¦ç†çµ‚äº†
 		Graphics_D3D9_EndScene() ;
 
-		// •`‰ææ‚ğŒ³‚É–ß‚·
+		// æç”»å…ˆã‚’å…ƒã«æˆ»ã™
 		for( i = 0 ; i < DX_RENDERTARGET_COUNT ; i ++ )
 		{
 			Graphics_D3D9_DeviceState_SetRenderTarget( BackupTargetSurface[ i ], i ) ;
 		}
 
-		// ƒtƒBƒ‹ƒ^ƒŠƒ“ƒOƒ‚[ƒh‚ğŒ³‚É–ß‚·
+		// ãƒ•ã‚£ãƒ«ã‚¿ãƒªãƒ³ã‚°ãƒ¢ãƒ¼ãƒ‰ã‚’å…ƒã«æˆ»ã™
 		Direct3DDevice9_SetSamplerState( 0, D_D3DSAMP_MAGFILTER, BackupMagFilter ) ;
 		Direct3DDevice9_SetSamplerState( 0, D_D3DSAMP_MINFILTER, BackupMinFilter ) ;
 
-		// ‚yƒoƒbƒtƒ@‚Ìİ’è‚ğŒ³‚É–ß‚·
+		// ï¼ºãƒãƒƒãƒ•ã‚¡ã®è¨­å®šã‚’å…ƒã«æˆ»ã™
 		Graphics_D3D9_DeviceState_SetZEnable( BackupUseZBufferFlag ) ;
 
-		// ƒrƒ…[ƒ|[ƒgİ’è‚ğŒ³‚É–ß‚·
+		// ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆè¨­å®šã‚’å…ƒã«æˆ»ã™
 		GD3D9.Device.DrawSetting.CancelSettingEqualCheck = TRUE ;
 		Graphics_D3D9_DeviceState_SetViewport( &BackupViewport ) ;
 		GD3D9.Device.DrawSetting.CancelSettingEqualCheck = FALSE ;
 	}
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
@@ -5248,7 +5248,7 @@ extern int Direct3DDevice9_Present( void )
 
 	SETUP_WIN_API
 
-	// “]‘—Œ³‚Æ‚È‚é‰æ–Ê‚Ì‹éŒ`‚ğƒZƒbƒg
+	// è»¢é€å…ƒã¨ãªã‚‹ç”»é¢ã®çŸ©å½¢ã‚’ã‚»ãƒƒãƒˆ
 	{
 		NS_GetDrawScreenSize( &DrawScreenWidth, &DrawScreenHeight ) ;
 		ScreenRect.left   = 0 ;
@@ -5257,10 +5257,10 @@ extern int Direct3DDevice9_Present( void )
 		ScreenRect.bottom = GSYS.Screen.MainScreenSizeY ;
 	}
 
-	// ƒEƒCƒ“ƒhƒEƒ‚[ƒh‚Ìê‡‚Í“]‘—æƒEƒCƒ“ƒhƒE‚ÌƒfƒXƒNƒgƒbƒvã‚ÌÀ•W‚ğŠ„‚èo‚·
+	// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ¢ãƒ¼ãƒ‰ã®å ´åˆã¯è»¢é€å…ˆã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ãƒ‡ã‚¹ã‚¯ãƒˆãƒƒãƒ—ä¸Šã®åº§æ¨™ã‚’å‰²ã‚Šå‡ºã™
 	if( NS_GetWindowModeFlag() == TRUE || NS_GetUseFullScreenResolutionMode() == DX_FSRESOLUTIONMODE_BORDERLESS_WINDOW )
 	{
-		// ƒƒCƒ“ƒEƒCƒ“ƒhƒEˆÈŠO‚Ö‚Ì“]‘—‚Ìê‡‚ÍÅ‘å‰»ŠÖŒW‚È‚µ
+		// ãƒ¡ã‚¤ãƒ³ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ä»¥å¤–ã¸ã®è»¢é€ã®å ´åˆã¯æœ€å¤§åŒ–é–¢ä¿‚ãªã—
 		if( GRAWIN.Setting.ScreenFlipTargetWindow != NULL )
 		{
 			WindRect.left   = 0 ;
@@ -5334,13 +5334,13 @@ extern int Direct3DDevice9_Present( void )
 		WindRect.bottom = GSYS.Screen.MainScreenSizeY ;
 	}
 
-	// •`‰æ‘Ò‹@‚µ‚Ä‚¢‚é•`‰æ•¨‚ğ•`‰æ
+	// æç”»å¾…æ©Ÿã—ã¦ã„ã‚‹æç”»ç‰©ã‚’æç”»
 	DRAWSTOCKINFO
 
-	// •`‰æ‚ğI‚í‚ç‚¹‚é
+	// æç”»ã‚’çµ‚ã‚ã‚‰ã›ã‚‹
 	Graphics_D3D9_EndScene();
 
-	// ƒoƒbƒNƒoƒbƒtƒ@‚Ì“§‰ßF‚Ì•”•ª‚ğ“§‰ß‚·‚éƒtƒ‰ƒO‚©AUpdateLayerdWindow ‚ğg—p‚·‚éƒtƒ‰ƒO‚ª—§‚Á‚Ä‚¢‚éê‡‚Íˆ—‚ğ•ªŠò
+	// ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã®é€éè‰²ã®éƒ¨åˆ†ã‚’é€éã™ã‚‹ãƒ•ãƒ©ã‚°ã‹ã€UpdateLayerdWindow ã‚’ä½¿ç”¨ã™ã‚‹ãƒ•ãƒ©ã‚°ãŒç«‹ã£ã¦ã„ã‚‹å ´åˆã¯å‡¦ç†ã‚’åˆ†å²
 	if( WinData.BackBufferTransColorFlag || WinData.UseUpdateLayerdWindowFlag )
 	{
 		BASEIMAGE BackBufferImage ;
@@ -5348,10 +5348,10 @@ extern int Direct3DDevice9_Present( void )
 		int       OldTargetScreen ;
 		int       OldTargetScreenSurfaceIndex ;
 
-		// ‚u‚r‚x‚m‚b‚ğ‘Ò‚Â	
+		// ï¼¶ï¼³ï¼¹ï¼®ï¼£ã‚’å¾…ã¤	
 		if( GSYS.Screen.NotWaitVSyncFlag == FALSE ) DirectDraw7_LocalWaitVSync() ;
 
-		// Graphics_Screen_LockDrawScreen ‚ğg‚¤•û–@
+		// Graphics_Screen_LockDrawScreen ã‚’ä½¿ã†æ–¹æ³•
 		OldTargetScreen                           = GSYS.DrawSetting.TargetScreen[ 0 ] ;
 		OldTargetScreenSurfaceIndex               = GSYS.DrawSetting.TargetScreenSurface [ 0 ] ;
 		GSYS.DrawSetting.TargetScreen[ 0 ]        = DX_SCREEN_BACK ;
@@ -5369,7 +5369,7 @@ extern int Direct3DDevice9_Present( void )
 	}
 	else
 	{
-		// ƒEƒCƒ“ƒhƒEƒ‚[ƒh‚Å320x240‰æ–ÊƒGƒ~ƒ…ƒŒ[ƒVƒ‡ƒ“ƒ‚[ƒh‚Ìê‡‚Í“]‘—Œ³‚Æ“]‘—æ‚Ì‹éŒ`‚ÍŒÅ’è
+		// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ¢ãƒ¼ãƒ‰ã§320x240ç”»é¢ã‚¨ãƒŸãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ãƒ¢ãƒ¼ãƒ‰ã®å ´åˆã¯è»¢é€å…ƒã¨è»¢é€å…ˆã®çŸ©å½¢ã¯å›ºå®š
 		if( ( NS_GetWindowModeFlag() == TRUE || NS_GetUseFullScreenResolutionMode() == DX_FSRESOLUTIONMODE_BORDERLESS_WINDOW ) && GSYS.Screen.Emulation320x240Flag )
 		{
 			double WindowSizeExRateX ;
@@ -5388,12 +5388,12 @@ extern int Direct3DDevice9_Present( void )
 			ScreenRect.bottom = 240 ;
 		}
 
-		// ƒTƒuƒoƒbƒNƒoƒbƒtƒ@‚ğg—p‚µ‚Ä‚¢‚éê‡‚Í“à—e‚ğƒƒCƒ“ƒoƒbƒNƒoƒbƒtƒ@‚É“]‘—‚·‚é
+		// ã‚µãƒ–ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹å ´åˆã¯å†…å®¹ã‚’ãƒ¡ã‚¤ãƒ³ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã«è»¢é€ã™ã‚‹
 		if( GD3D9.Device.Screen.SubBackBufferSurface != NULL )
 		{
 			RECT SubBackBufferSrcRect ;
 
-			// ƒTƒuƒoƒbƒNƒoƒbƒtƒ@‚É“]‘—‚·‚é—Ìˆæ‚ğİ’è‚·‚é
+			// ã‚µãƒ–ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã«è»¢é€ã™ã‚‹é ˜åŸŸã‚’è¨­å®šã™ã‚‹
 			if( GSYS.Screen.ValidGraphDisplayArea )
 			{
 				RECT ClipRect ;
@@ -5419,7 +5419,7 @@ extern int Direct3DDevice9_Present( void )
 				SubBackBufferSrcRect.bottom = GSYS.Screen.MainScreenSizeY ;
 			}
 
-			// ƒ†[ƒU[w’è‚Ìƒƒ‚ƒŠƒCƒ[ƒW‚ª‚ ‚éê‡‚ÍƒTƒuƒoƒbƒNƒoƒbƒtƒ@‚É“]‘—
+			// ãƒ¦ãƒ¼ã‚¶ãƒ¼æŒ‡å®šã®ãƒ¡ãƒ¢ãƒªã‚¤ãƒ¡ãƒ¼ã‚¸ãŒã‚ã‚‹å ´åˆã¯ã‚µãƒ–ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã«è»¢é€
 			if( GSYS.Screen.UserScreenImage != NULL )
 			{
 				int UseSysMemSurfaceIndex ;
@@ -5430,7 +5430,7 @@ extern int Direct3DDevice9_Present( void )
 				POINT DestPoint = { 0, 0 } ;
 				RECT DestRectT ;
 
-				// “]‘——p‚ÌƒVƒXƒeƒ€ƒƒ‚ƒŠƒT[ƒtƒFƒX‚ğæ“¾
+				// è»¢é€ç”¨ã®ã‚·ã‚¹ãƒ†ãƒ ãƒ¡ãƒ¢ãƒªã‚µãƒ¼ãƒ•ã‚§ã‚¹ã‚’å–å¾—
 				for(;;)
 				{
 					UseSysMemSurfaceIndex = Graphics_D3D9_GetSysMemSurface( GD3D9.Device.Screen.SubBackBufferTextureSizeX, GD3D9.Device.Screen.SubBackBufferTextureSizeY, GD3D9.Device.Screen.SubBackBufferTexturePixelFormat, FALSE ) ;
@@ -5444,14 +5444,14 @@ extern int Direct3DDevice9_Present( void )
 				}
 				UseSurface = GD3D9.SysMemTexSurf.Surface[ UseSysMemSurfaceIndex ].MemSurface ;
 
-				// “]‘——p‚ÌƒVƒXƒeƒ€ƒƒ‚ƒŠƒT[ƒtƒFƒX‚ğƒƒbƒN
+				// è»¢é€ç”¨ã®ã‚·ã‚¹ãƒ†ãƒ ãƒ¡ãƒ¢ãƒªã‚µãƒ¼ãƒ•ã‚§ã‚¹ã‚’ãƒ­ãƒƒã‚¯
 				DestRectT.left   = 0 ;
 				DestRectT.top    = 0 ;
 				DestRectT.right  = GD3D9.Device.Screen.SubBackBufferTextureSizeX ;
 				DestRectT.bottom = GD3D9.Device.Screen.SubBackBufferTextureSizeY ;
 				Direct3DSurface9_LockRect_ASync( UseSurface, &LockRect, &DestRectT, D_D3DLOCK_DISCARD, FALSE ) ;
 
-				// “]‘—
+				// è»¢é€
 				NS_GraphColorMatchBltVer2(
 					LockRect.pBits,              DestColorData->PixelByte * GD3D9.Device.Screen.SubBackBufferTextureSizeX, DestColorData,
 					GSYS.Screen.UserScreenImage, SrcColorData->PixelByte  * GD3D9.Device.Screen.SubBackBufferTextureSizeX, SrcColorData,
@@ -5463,21 +5463,21 @@ extern int Direct3DDevice9_Present( void )
 					FALSE 
 				) ;
 
-				// “]‘——p‚ÌƒVƒXƒeƒ€ƒƒ‚ƒŠƒT[ƒtƒFƒX‚ÌƒƒbƒN‰ğœ
+				// è»¢é€ç”¨ã®ã‚·ã‚¹ãƒ†ãƒ ãƒ¡ãƒ¢ãƒªã‚µãƒ¼ãƒ•ã‚§ã‚¹ã®ãƒ­ãƒƒã‚¯è§£é™¤
 				Direct3DSurface9_UnlockRect_ASync( UseSurface, FALSE ) ;
 
-				// “]‘——p‚ÌƒVƒXƒeƒ€ƒƒ‚ƒŠƒT[ƒtƒFƒX‚©‚çƒTƒuƒoƒbƒNƒoƒbƒtƒ@‚ÌƒT[ƒtƒFƒX‚É“]‘—
+				// è»¢é€ç”¨ã®ã‚·ã‚¹ãƒ†ãƒ ãƒ¡ãƒ¢ãƒªã‚µãƒ¼ãƒ•ã‚§ã‚¹ã‹ã‚‰ã‚µãƒ–ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã®ã‚µãƒ¼ãƒ•ã‚§ã‚¹ã«è»¢é€
 				Direct3DDevice9_UpdateSurface_ASync( UseSurface, &DestRectT, GD3D9.Device.Screen.SubBackBufferSurface, &DestPoint, FALSE ) ; 
 
-				// “]‘——p‚ÌƒVƒXƒeƒ€ƒƒ‚ƒŠƒT[ƒtƒFƒX‚ğ‰ğ•ú
+				// è»¢é€ç”¨ã®ã‚·ã‚¹ãƒ†ãƒ ãƒ¡ãƒ¢ãƒªã‚µãƒ¼ãƒ•ã‚§ã‚¹ã‚’è§£æ”¾
 				Graphics_D3D9_ReleaseSysMemSurface( UseSysMemSurfaceIndex, FALSE ) ;
 				UseSysMemSurfaceIndex = -1 ;
 			}
 
-			// ƒEƒCƒ“ƒhƒEƒ‚[ƒh‚Ìê‡‚Æƒtƒ‹ƒXƒNƒŠ[ƒ“ƒ‚[ƒh‚Ìê‡‚Åˆ—‚ğ•ªŠò
+			// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ¢ãƒ¼ãƒ‰ã®å ´åˆã¨ãƒ•ãƒ«ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ¢ãƒ¼ãƒ‰ã®å ´åˆã§å‡¦ç†ã‚’åˆ†å²
 			if( NS_GetWindowModeFlag() )
 			{
-				// ƒEƒCƒ“ƒhƒEƒ‚[ƒh‚Ìê‡‚Í‚»‚Ì‚Ü‚Ü“]‘—
+				// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ¢ãƒ¼ãƒ‰ã®å ´åˆã¯ãã®ã¾ã¾è»¢é€
 				hr = Direct3DDevice9_StretchRect(
 						GD3D9.Device.Screen.SubBackBufferSurface,
 						&SubBackBufferSrcRect,
@@ -5487,17 +5487,17 @@ extern int Direct3DDevice9_Present( void )
 				) ;
 				if( hr != D_D3D_OK )
 				{
-					DXST_LOGFILEFMT_ADDUTF16LE(( "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x33\x00\x44\x00\x44\x00\x65\x00\x76\x00\x69\x00\x63\x00\x65\x00\x39\x00\x20\x00\x53\x00\x74\x00\x72\x00\x65\x00\x74\x00\x63\x00\x68\x00\x52\x00\x65\x00\x63\x00\x74\x00\x20\x00\x31\x59\x57\x65\x20\x00\x87\x7b\x40\x62\x11\xff\x20\x00\x3b\x62\x8a\x30\x24\x50\x20\x00\x30\x00\x78\x00\x25\x00\x30\x00\x38\x00\x78\x00\x00"/*@ L"Direct3DDevice9 StretchRect ¸”s ‰ÓŠ‚P –ß‚è’l 0x%08x" @*/, hr )) ;
+					DXST_LOGFILEFMT_ADDUTF16LE(( "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x33\x00\x44\x00\x44\x00\x65\x00\x76\x00\x69\x00\x63\x00\x65\x00\x39\x00\x20\x00\x53\x00\x74\x00\x72\x00\x65\x00\x74\x00\x63\x00\x68\x00\x52\x00\x65\x00\x63\x00\x74\x00\x20\x00\x31\x59\x57\x65\x20\x00\x87\x7b\x40\x62\x11\xff\x20\x00\x3b\x62\x8a\x30\x24\x50\x20\x00\x30\x00\x78\x00\x25\x00\x30\x00\x38\x00\x78\x00\x00"/*@ L"Direct3DDevice9 StretchRect å¤±æ•— ç®‡æ‰€ï¼‘ æˆ»ã‚Šå€¤ 0x%08x" @*/, hr )) ;
 					goto ERR ;
 				}
 			}
 			else
 			{
-				// ƒtƒ‹ƒXƒNƒŠ[ƒ“ƒ‚[ƒh‚Ìê‡‚Íƒtƒ‹ƒXƒNƒŠ[ƒ“‰ğ‘œ“xƒ‚[ƒh‚É‚æ‚Á‚Äˆ—‚ğ•ªŠò
+				// ãƒ•ãƒ«ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ¢ãƒ¼ãƒ‰ã®å ´åˆã¯ãƒ•ãƒ«ã‚¹ã‚¯ãƒªãƒ¼ãƒ³è§£åƒåº¦ãƒ¢ãƒ¼ãƒ‰ã«ã‚ˆã£ã¦å‡¦ç†ã‚’åˆ†å²
 				switch( GSYS.Screen.FullScreenResolutionModeAct )
 				{
 				case DX_FSRESOLUTIONMODE_NATIVE :
-					// ‚»‚Ì‚Ü‚Ü“]‘—
+					// ãã®ã¾ã¾è»¢é€
 					hr = Direct3DDevice9_StretchRect(
 							GD3D9.Device.Screen.SubBackBufferSurface,
 							&SubBackBufferSrcRect,
@@ -5507,7 +5507,7 @@ extern int Direct3DDevice9_Present( void )
 					) ;
 					if( hr != D_D3D_OK )
 					{
-						DXST_LOGFILEFMT_ADDUTF16LE(( "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x33\x00\x44\x00\x44\x00\x65\x00\x76\x00\x69\x00\x63\x00\x65\x00\x39\x00\x20\x00\x53\x00\x74\x00\x72\x00\x65\x00\x74\x00\x63\x00\x68\x00\x52\x00\x65\x00\x63\x00\x74\x00\x20\x00\x31\x59\x57\x65\x20\x00\x87\x7b\x40\x62\x12\xff\x20\x00\x3b\x62\x8a\x30\x24\x50\x20\x00\x30\x00\x78\x00\x25\x00\x30\x00\x38\x00\x78\x00\x00"/*@ L"Direct3DDevice9 StretchRect ¸”s ‰ÓŠ‚Q –ß‚è’l 0x%08x" @*/, hr )) ;
+						DXST_LOGFILEFMT_ADDUTF16LE(( "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x33\x00\x44\x00\x44\x00\x65\x00\x76\x00\x69\x00\x63\x00\x65\x00\x39\x00\x20\x00\x53\x00\x74\x00\x72\x00\x65\x00\x74\x00\x63\x00\x68\x00\x52\x00\x65\x00\x63\x00\x74\x00\x20\x00\x31\x59\x57\x65\x20\x00\x87\x7b\x40\x62\x12\xff\x20\x00\x3b\x62\x8a\x30\x24\x50\x20\x00\x30\x00\x78\x00\x25\x00\x30\x00\x38\x00\x78\x00\x00"/*@ L"Direct3DDevice9 StretchRect å¤±æ•— ç®‡æ‰€ï¼’ æˆ»ã‚Šå€¤ 0x%08x" @*/, hr )) ;
 						goto ERR ;
 					}
 					break ;
@@ -5515,10 +5515,10 @@ extern int Direct3DDevice9_Present( void )
 				case DX_FSRESOLUTIONMODE_MAXIMUM :
 				case DX_FSRESOLUTIONMODE_DESKTOP :
 				case DX_FSRESOLUTIONMODE_BORDERLESS_WINDOW :
-					// ƒTƒuƒoƒbƒNƒoƒbƒtƒ@‚Ì“à—e‚ğƒsƒNƒZƒ‹‚Ìc‰¡”ä‚ğ‚PF‚P‚É•Û‚¿‚Â‚ÂÅ‘å‚Ü‚ÅŠg‘å‚µ‚Ä“]‘—
+					// ã‚µãƒ–ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã®å†…å®¹ã‚’ãƒ”ã‚¯ã‚»ãƒ«ã®ç¸¦æ¨ªæ¯”ã‚’ï¼‘ï¼šï¼‘ã«ä¿ã¡ã¤ã¤æœ€å¤§ã¾ã§æ‹¡å¤§ã—ã¦è»¢é€
 					if( Direct3DDevice9_ScalingSubBackbuffer( &SubBackBufferSrcRect ) < 0 )
 					{
-						DXST_LOGFILEFMT_ADDUTF16LE(( "\xb5\x30\xd6\x30\xd0\x30\xc3\x30\xaf\x30\xd0\x30\xc3\x30\xd5\x30\xa1\x30\x6e\x30\x85\x51\xb9\x5b\x92\x30\xd0\x30\xc3\x30\xaf\x30\xd0\x30\xc3\x30\xd5\x30\xa1\x30\x78\x30\xe2\x8e\x01\x90\x59\x30\x8b\x30\xe6\x51\x06\x74\x4c\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"ƒTƒuƒoƒbƒNƒoƒbƒtƒ@‚Ì“à—e‚ğƒoƒbƒNƒoƒbƒtƒ@‚Ö“]‘—‚·‚éˆ—‚ª¸”s‚µ‚Ü‚µ‚½" @*/ )) ;
+						DXST_LOGFILEFMT_ADDUTF16LE(( "\xb5\x30\xd6\x30\xd0\x30\xc3\x30\xaf\x30\xd0\x30\xc3\x30\xd5\x30\xa1\x30\x6e\x30\x85\x51\xb9\x5b\x92\x30\xd0\x30\xc3\x30\xaf\x30\xd0\x30\xc3\x30\xd5\x30\xa1\x30\x78\x30\xe2\x8e\x01\x90\x59\x30\x8b\x30\xe6\x51\x06\x74\x4c\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"ã‚µãƒ–ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã®å†…å®¹ã‚’ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã¸è»¢é€ã™ã‚‹å‡¦ç†ãŒå¤±æ•—ã—ã¾ã—ãŸ" @*/ )) ;
 						goto ERR ;
 					}
 					break ;
@@ -5526,13 +5526,13 @@ extern int Direct3DDevice9_Present( void )
 			}
 		}
 
-		// ƒtƒŠƒbƒv
+		// ãƒ•ãƒªãƒƒãƒ—
 		if( GAPIWin.Direct3DSwapChain9Object )
 		{
-			// Å¬‰»‚µ‚Ä‚¢‚È‚¢‚Æ‚«‚¾‚¯ Present ‚ğÀs
+			// æœ€å°åŒ–ã—ã¦ã„ãªã„ã¨ãã ã‘ Present ã‚’å®Ÿè¡Œ
 			if( WinData.WindowMinSizeFlag == FALSE )
 			{
-				// ƒEƒCƒ“ƒhƒEƒ‚[ƒh‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+				// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ¢ãƒ¼ãƒ‰ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 				if( NS_GetWindowModeFlag() )
 				{
 					hr = GAPIWin.Direct3DSwapChain9Object->Present(
@@ -5545,10 +5545,10 @@ extern int Direct3DDevice9_Present( void )
 					{
 						if( hr == 0x88760868 )
 						{
-							// ƒfƒoƒCƒXƒƒXƒg‚Ìê‡‚Í‰Šú‰»‚ğs‚¤
+							// ãƒ‡ãƒã‚¤ã‚¹ãƒ­ã‚¹ãƒˆã®å ´åˆã¯åˆæœŸåŒ–ã‚’è¡Œã†
 							NS_RestoreGraphSystem() ;
 
-							// ˆê’UI—¹
+							// ä¸€æ—¦çµ‚äº†
 							return 0 ;
 						}
 						else
@@ -5557,14 +5557,14 @@ extern int Direct3DDevice9_Present( void )
 						}
 					}
 
-					// ƒEƒCƒ“ƒhƒE‚ªÅ‘å‰»‚³‚ê‚Ä‚¢‚ÄAŠ‚Â“]‘—æ‚ªƒNƒ‰ƒCƒAƒ“ƒg—Ìˆæ‚Æ“™‚µ‚­‚È‚¢ê‡‚Íc‚è‚Ì—Ìˆæ‚ğ GDI ‚ğg‚Á‚Ä“h‚è‚Â‚Ô‚·
+					// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãŒæœ€å¤§åŒ–ã•ã‚Œã¦ã„ã¦ã€ä¸”ã¤è»¢é€å…ˆãŒã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆé ˜åŸŸã¨ç­‰ã—ããªã„å ´åˆã¯æ®‹ã‚Šã®é ˜åŸŸã‚’ GDI ã‚’ä½¿ã£ã¦å¡—ã‚Šã¤ã¶ã™
 					if( GRAWIN.Setting.ScreenFlipTargetWindow == NULL &&
 						WinData.ToolBarUseFlag == FALSE &&
 						WinData.WindowMaximizeFlag &&
 						WinData.ScreenNotFitWindowSize == FALSE &&
 						WinData.WindowSizeValid == FALSE )
 					{
-						// ‚½‚¾‚µ WM_PAINT ƒƒbƒZ[ƒW‚ª—ˆ‚Ä‚©‚ç‰½‰ñ‚©‚Ì‚İÀs
+						// ãŸã ã— WM_PAINT ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãŒæ¥ã¦ã‹ã‚‰ä½•å›ã‹ã®ã¿å®Ÿè¡Œ
 						if( WinData.WM_PAINTMessageFlag )
 						{
 							WinData.WM_PAINTMessageFlag = FALSE ;
@@ -5656,7 +5656,7 @@ extern int Direct3DDevice9_Present( void )
 				}
 				else
 				{
-					// ƒtƒ‹ƒXƒNƒŠ[ƒ“ƒ‚[ƒh‚Ìê‡‚Í•K‚¸‰æ–Ê‘S‘Ì‚ğ“]‘—
+					// ãƒ•ãƒ«ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ¢ãƒ¼ãƒ‰ã®å ´åˆã¯å¿…ãšç”»é¢å…¨ä½“ã‚’è»¢é€
 					hr = GAPIWin.Direct3DSwapChain9Object->Present(
 							NULL,
 							NULL,
@@ -5670,8 +5670,8 @@ extern int Direct3DDevice9_Present( void )
 				}
 			}
 
-			// ”ñƒAƒNƒeƒBƒu‚Å‚àÀs‚·‚éİ’è‚ÅAVSYNC‘Ò‚¿‚ğ‚·‚éw’è‚ğ‚µ‚Ä‚¢‚éİ’è‚ÅŠ‚ÂÅ¬‰»‚³‚ê‚Ä‚¢‚éê‡‚ÍVSYNC‘Ò‚¿‚ğ‚·‚é
-			// ( Å¬‰»‚³‚ê‚Ä‚¢‚éó‘Ô‚ÅƒƒCƒ“ƒ‹[ƒv‚ª¦‚¢‘¬‚³‚Å‹ó‰ñ‚è‚·‚é‚Ì‚ğ–h~‚·‚é–Ú“I )
+			// éã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã§ã‚‚å®Ÿè¡Œã™ã‚‹è¨­å®šã§ã€VSYNCå¾…ã¡ã‚’ã™ã‚‹æŒ‡å®šã‚’ã—ã¦ã„ã‚‹è¨­å®šã§ä¸”ã¤æœ€å°åŒ–ã•ã‚Œã¦ã„ã‚‹å ´åˆã¯VSYNCå¾…ã¡ã‚’ã™ã‚‹
+			// ( æœ€å°åŒ–ã•ã‚Œã¦ã„ã‚‹çŠ¶æ…‹ã§ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒ—ãŒå‡„ã„é€Ÿã•ã§ç©ºå›ã‚Šã™ã‚‹ã®ã‚’é˜²æ­¢ã™ã‚‹ç›®çš„ )
 			if( NS_GetAlwaysRunFlag() &&
 				GSYS.Screen.NotWaitVSyncFlag == FALSE &&
 				WinData.WindowMinSizeFlag )
@@ -5681,38 +5681,38 @@ extern int Direct3DDevice9_Present( void )
 		}
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 
 ERR:
-	// ƒGƒ‰[I—¹
+	// ã‚¨ãƒ©ãƒ¼çµ‚äº†
 	return -1;
 }
 
 extern int Direct3DDevice9_BltRectBackScreenToWindow( HWND Window, RECT BackScreenRect, RECT WindowClientRect )
 {
-	// •`‰æ‘Ò‹@‚µ‚Ä‚¢‚é•`‰æ•¨‚ğ•`‰æ
+	// æç”»å¾…æ©Ÿã—ã¦ã„ã‚‹æç”»ç‰©ã‚’æç”»
 	DRAWSTOCKINFO
 
-	// •`‰æ‚ğI‚í‚ç‚¹‚é
+	// æç”»ã‚’çµ‚ã‚ã‚‰ã›ã‚‹
 	Graphics_D3D9_EndScene();
 
-	// ƒTƒuƒoƒbƒNƒoƒbƒtƒ@‚ğg—p‚µ‚Ä‚¢‚éê‡‚Í“à—e‚ğƒƒCƒ“ƒoƒbƒNƒoƒbƒtƒ@‚É“]‘—‚·‚é
+	// ã‚µãƒ–ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹å ´åˆã¯å†…å®¹ã‚’ãƒ¡ã‚¤ãƒ³ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã«è»¢é€ã™ã‚‹
 	if( GD3D9.Device.Screen.SubBackBufferSurface != NULL )
 	{
-		// g‚Á‚Ä‚¢‚éê‡
+		// ä½¿ã£ã¦ã„ã‚‹å ´åˆ
 		if( Direct3DDevice9_StretchRect( GD3D9.Device.Screen.SubBackBufferSurface, NULL, GD3D9.Device.Screen.BackBufferSurface, NULL, D_D3DTEXF_NONE ) != D_D3D_OK )
 			return -1 ;
 	}
 
-	// ƒtƒŠƒbƒv
+	// ãƒ•ãƒªãƒƒãƒ—
 	if( GAPIWin.Direct3DSwapChain9Object )
 	{
 		if( GAPIWin.Direct3DSwapChain9Object->Present( &BackScreenRect, &WindowClientRect, Window, NULL, 0 ) != D_D3D_OK )
 			return -1 ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
@@ -5740,7 +5740,7 @@ extern int Direct3DDevice9_SetupTimerPresent( int EnableFlag )
 
 	WinAPIData.Win32Func.SetTimerFunc( NS_GetMainWindowHandle(), SCREENFLIPTIMER_ID, 32, ScreenFlipTimerProc ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 

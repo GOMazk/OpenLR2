@@ -1,15 +1,15 @@
 // -------------------------------------------------------------------------------
 // 
-// 		‚c‚wƒ‰ƒCƒuƒ‰ƒŠ		ƒVƒXƒeƒ€ƒvƒƒOƒ‰ƒ€
+// 		ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒª		ã‚·ã‚¹ãƒ†ãƒ ãƒ—ãƒ­ã‚°ãƒ©ãƒ 
 // 
 // 				Ver 3.25a
 // 
 // -------------------------------------------------------------------------------
 
-// ‚c‚wƒ‰ƒCƒuƒ‰ƒŠì¬—p’è‹`
+// ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªä½œæˆæ™‚ç”¨å®šç¾©
 #define DX_MAKE
 
-// ƒCƒ“ƒNƒ‹[ƒh ------------------------------------------------------------------
+// ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ ------------------------------------------------------------------
 #include "DxSystem.h"
 #include "DxMemory.h"
 #include "DxBaseFunc.h"
@@ -23,42 +23,42 @@ namespace DxLib
 
 #endif // DX_NON_NAMESPACE
 
-// ƒ}ƒNƒ’è‹` --------------------------------------------------------------------
+// ãƒã‚¯ãƒ­å®šç¾© --------------------------------------------------------------------
 
-// \‘¢‘Ì’è‹` --------------------------------------------------------------------
+// æ§‹é€ ä½“å®šç¾© --------------------------------------------------------------------
 
-// ƒe[ƒuƒ‹-----------------------------------------------------------------------
+// ãƒ†ãƒ¼ãƒ–ãƒ«-----------------------------------------------------------------------
 
-// “à•”‘åˆæ•Ï”éŒ¾ --------------------------------------------------------------
+// å†…éƒ¨å¤§åŸŸå¤‰æ•°å®£è¨€ --------------------------------------------------------------
 
 DXSYSTEMDATA DxSysData ;
 
-// ŠÖ”ƒvƒƒgƒ^ƒCƒvéŒ¾-----------------------------------------------------------
+// é–¢æ•°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€-----------------------------------------------------------
 
-// ƒvƒƒOƒ‰ƒ€ --------------------------------------------------------------------
+// ãƒ—ãƒ­ã‚°ãƒ©ãƒ  --------------------------------------------------------------------
 
-// ‰Šú‰»EI—¹ŠÖŒW
+// åˆæœŸåŒ–ãƒ»çµ‚äº†é–¢ä¿‚
 
-// DxSysData ŠÖŒW‚Ì‰Šú‰»‚ğs‚¤
+// DxSysData é–¢ä¿‚ã®åˆæœŸåŒ–ã‚’è¡Œã†
 extern int DxLib_SysInit( void )
 {
-	// I—¹ƒŠƒNƒGƒXƒg‚Ìƒtƒ‰ƒO‚ğ“|‚·
+	// çµ‚äº†ãƒªã‚¯ã‚¨ã‚¹ãƒˆã®ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 	DxSysData.EndRequestFlag = FALSE ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// I—¹ƒŠƒNƒGƒXƒg‚ğs‚¤
+// çµ‚äº†ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚’è¡Œã†
 extern int DxLib_EndRequest( void )
 {
 	DxSysData.EndRequestFlag = TRUE ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// I—¹ƒŠƒNƒGƒXƒg‚Ìó‘Ô‚ğæ“¾‚·‚é
+// çµ‚äº†ãƒªã‚¯ã‚¨ã‚¹ãƒˆã®çŠ¶æ…‹ã‚’å–å¾—ã™ã‚‹
 extern int DxLib_GetEndRequest( void )
 {
 	return DxSysData.EndRequestFlag ;
@@ -70,7 +70,7 @@ extern int DxLib_GetEndRequest( void )
 
 
 
-// ƒ‰ƒCƒuƒ‰ƒŠ‚ª‰Šú‰»‚³‚ê‚Ä‚¢‚é‚©‚Ç‚¤‚©‚ğæ“¾‚·‚é( –ß‚è’l: TRUE=‰Šú‰»‚³‚ê‚Ä‚¢‚é  FALSE=‚³‚ê‚Ä‚¢‚È‚¢ )
+// ãƒ©ã‚¤ãƒ–ãƒ©ãƒªãŒåˆæœŸåŒ–ã•ã‚Œã¦ã„ã‚‹ã‹ã©ã†ã‹ã‚’å–å¾—ã™ã‚‹( æˆ»ã‚Šå€¤: TRUE=åˆæœŸåŒ–ã•ã‚Œã¦ã„ã‚‹  FALSE=ã•ã‚Œã¦ã„ãªã„ )
 extern int NS_DxLib_IsInit( void )
 {
 	return DxSysData.DxLib_InitializeFlag ;
@@ -81,15 +81,15 @@ extern int NS_DxLib_IsInit( void )
 
 
 
-// ƒGƒ‰[ˆ—ŠÖ”
+// ã‚¨ãƒ©ãƒ¼å‡¦ç†é–¢æ•°
 
-// ÅŒã‚É”­¶‚µ‚½ƒGƒ‰[‚ÌƒGƒ‰[ƒR[ƒh‚ğæ“¾‚·‚é( –ß‚è’l@0:ƒGƒ‰[‚ª”­¶‚µ‚Ä‚¢‚È‚¢A–”‚ÍƒGƒ‰[ƒR[ƒho—Í‚É‘Î‰‚µ‚½ƒGƒ‰[‚ª”­¶‚µ‚Ä‚¢‚È‚¢@@0ˆÈŠOFƒGƒ‰[ƒR[ƒhADX_ERRORCODE_WIN_DESKTOP_24BIT_COLOR ‚È‚Ç )
+// æœ€å¾Œã«ç™ºç”Ÿã—ãŸã‚¨ãƒ©ãƒ¼ã®ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰ã‚’å–å¾—ã™ã‚‹( æˆ»ã‚Šå€¤ã€€0:ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¦ã„ãªã„ã€åˆã¯ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰å‡ºåŠ›ã«å¯¾å¿œã—ãŸã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¦ã„ãªã„ã€€ã€€0ä»¥å¤–ï¼šã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰ã€DX_ERRORCODE_WIN_DESKTOP_24BIT_COLOR ãªã© )
 extern int NS_GetLastErrorCode( void )
 {
 	return DxSysData.LastErrorCode ;
 }
 
-// ÅŒã‚É”­¶‚µ‚½ƒGƒ‰[‚ÌƒGƒ‰[ƒƒbƒZ[ƒW‚ğw’è‚Ì•¶š—ñƒoƒbƒtƒ@‚Éæ“¾‚·‚é
+// æœ€å¾Œã«ç™ºç”Ÿã—ãŸã‚¨ãƒ©ãƒ¼ã®ã‚¨ãƒ©ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’æŒ‡å®šã®æ–‡å­—åˆ—ãƒãƒƒãƒ•ã‚¡ã«å–å¾—ã™ã‚‹
 extern int NS_GetLastErrorMessage( TCHAR *StringBuffer, int StringBufferBytes )
 {
 	ConvString( ( char * )DxSysData.LastErrorMessage, -1, WCHAR_T_CHARCODEFORMAT, ( char * )StringBuffer, StringBufferBytes, _TCHARCODEFORMAT ) ;
@@ -97,8 +97,8 @@ extern int NS_GetLastErrorMessage( TCHAR *StringBuffer, int StringBufferBytes )
 	return 0 ;
 }
 
-// ƒGƒ‰[ƒR[ƒhEƒƒbƒZ[ƒW‚ğİ’è‚·‚é
-extern int DxLib_SetLastError( int ErrorCode/* DX_ERRORCODE_WIN_24BIT_COLOR ‚È‚Ç */, const wchar_t *ErrorMessage )
+// ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰ãƒ»ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’è¨­å®šã™ã‚‹
+extern int DxLib_SetLastError( int ErrorCode/* DX_ERRORCODE_WIN_24BIT_COLOR ãªã© */, const wchar_t *ErrorMessage )
 {
 	DxSysData.LastErrorCode = ErrorCode ;
 
@@ -114,41 +114,41 @@ extern int DxLib_SetLastError( int ErrorCode/* DX_ERRORCODE_WIN_24BIT_COLOR ‚È‚Ç
 	return 0 ;
 }
 
-// ‘®•t‚«ƒ‰ƒCƒuƒ‰ƒŠ‚ÌƒGƒ‰[ˆ—‚ğs‚¤
+// æ›¸å¼ä»˜ããƒ©ã‚¤ãƒ–ãƒ©ãƒªã®ã‚¨ãƒ©ãƒ¼å‡¦ç†ã‚’è¡Œã†
 extern int DxLib_FmtError( const wchar_t *FormatString , ... )
 {
 	va_list VaList ;
 	wchar_t String[ 1024 ];
 
-	// ƒƒOo—Í—p‚ÌƒŠƒXƒg‚ğƒZƒbƒg‚·‚é
+	// ãƒ­ã‚°å‡ºåŠ›ç”¨ã®ãƒªã‚¹ãƒˆã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 	va_start( VaList , FormatString ) ;
 
-	// •ÒWŒã‚Ì•¶š—ñ‚ğæ“¾‚·‚é
+	// ç·¨é›†å¾Œã®æ–‡å­—åˆ—ã‚’å–å¾—ã™ã‚‹
 	_VSWNPRINTF( String , sizeof( String ) / 2, FormatString , VaList ) ;
 
-	// ‰Â•Ï’·ƒŠƒXƒg‚Ìƒ|ƒCƒ“ƒ^‚ğƒŠƒZƒbƒg‚·‚é
+	// å¯å¤‰é•·ãƒªã‚¹ãƒˆã®ãƒã‚¤ãƒ³ã‚¿ã‚’ãƒªã‚»ãƒƒãƒˆã™ã‚‹
 	va_end( VaList ) ;
 
-	// ƒGƒ‰[ˆ—‚É‚Ü‚í‚·
+	// ã‚¨ãƒ©ãƒ¼å‡¦ç†ã«ã¾ã‚ã™
 	return DxLib_Error( String ) ;
 }
 
-// ‘®•t‚«ƒ‰ƒCƒuƒ‰ƒŠ‚ÌƒGƒ‰[ˆ—‚ğs‚¤
+// æ›¸å¼ä»˜ããƒ©ã‚¤ãƒ–ãƒ©ãƒªã®ã‚¨ãƒ©ãƒ¼å‡¦ç†ã‚’è¡Œã†
 extern int DxLib_FmtErrorUTF16LE( const char *FormatString , ... )
 {
 	va_list VaList ;
 	char String[ 2048 ];
 
-	// ƒƒOo—Í—p‚ÌƒŠƒXƒg‚ğƒZƒbƒg‚·‚é
+	// ãƒ­ã‚°å‡ºåŠ›ç”¨ã®ãƒªã‚¹ãƒˆã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 	va_start( VaList , FormatString ) ;
 
-	// •ÒWŒã‚Ì•¶š—ñ‚ğæ“¾‚·‚é
+	// ç·¨é›†å¾Œã®æ–‡å­—åˆ—ã‚’å–å¾—ã™ã‚‹
 	CL_vsnprintf( DX_CHARCODEFORMAT_UTF16LE, TRUE, CHAR_CHARCODEFORMAT, WCHAR_T_CHARCODEFORMAT, String, sizeof( String ) / 2, FormatString, VaList ) ;
 
-	// ‰Â•Ï’·ƒŠƒXƒg‚Ìƒ|ƒCƒ“ƒ^‚ğƒŠƒZƒbƒg‚·‚é
+	// å¯å¤‰é•·ãƒªã‚¹ãƒˆã®ãƒã‚¤ãƒ³ã‚¿ã‚’ãƒªã‚»ãƒƒãƒˆã™ã‚‹
 	va_end( VaList ) ;
 
-	// ƒGƒ‰[ˆ—‚É‚Ü‚í‚·
+	// ã‚¨ãƒ©ãƒ¼å‡¦ç†ã«ã¾ã‚ã™
 	return DxLib_ErrorUTF16LE( String ) ;
 }
 
@@ -168,21 +168,21 @@ extern int DxLib_FmtErrorUTF16LE( const char *FormatString , ... )
 
 
 
-// ƒNƒŠƒbƒvƒ{[ƒhŠÖŒW
+// ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰é–¢ä¿‚
 
-// ƒNƒŠƒbƒvƒ{[ƒh‚ÉŠi”[‚³‚ê‚Ä‚¢‚éƒeƒLƒXƒgƒf[ƒ^‚ğ“Ç‚İo‚·A-1 ‚Ìê‡‚ÍƒNƒŠƒbƒvƒ{[ƒh‚ÉƒeƒLƒXƒgƒf[ƒ^‚Í–³‚¢‚Æ‚¢‚¤‚±‚Æ( DestBuffer ‚É NULL ‚ğ“n‚·‚ÆŠi”[‚É•K—v‚Èƒf[ƒ^ƒTƒCƒY‚ª•Ô‚Á‚Ä‚­‚é )
+// ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ã«æ ¼ç´ã•ã‚Œã¦ã„ã‚‹ãƒ†ã‚­ã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿å‡ºã™ã€-1 ã®å ´åˆã¯ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ã«ãƒ†ã‚­ã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿ã¯ç„¡ã„ã¨ã„ã†ã“ã¨( DestBuffer ã« NULL ã‚’æ¸¡ã™ã¨æ ¼ç´ã«å¿…è¦ãªãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºãŒè¿”ã£ã¦ãã‚‹ )
 extern int NS_GetClipboardText( TCHAR *DestBuffer, int DestBufferBytes )
 {
 	return GetClipboardText_PF( DestBuffer, DestBufferBytes ) ;
 }
 
-// ƒNƒŠƒbƒvƒ{[ƒh‚ÉŠi”[‚³‚ê‚Ä‚¢‚éƒeƒLƒXƒgƒf[ƒ^‚ğ“Ç‚İo‚·A-1 ‚Ìê‡‚ÍƒNƒŠƒbƒvƒ{[ƒh‚ÉƒeƒLƒXƒgƒf[ƒ^‚Í–³‚¢‚Æ‚¢‚¤‚±‚Æ( DestBuffer ‚É NULL ‚ğ“n‚·‚ÆŠi”[‚É•K—v‚Èƒf[ƒ^ƒTƒCƒY‚ª•Ô‚Á‚Ä‚­‚é )
+// ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ã«æ ¼ç´ã•ã‚Œã¦ã„ã‚‹ãƒ†ã‚­ã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿å‡ºã™ã€-1 ã®å ´åˆã¯ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ã«ãƒ†ã‚­ã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿ã¯ç„¡ã„ã¨ã„ã†ã“ã¨( DestBuffer ã« NULL ã‚’æ¸¡ã™ã¨æ ¼ç´ã«å¿…è¦ãªãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºãŒè¿”ã£ã¦ãã‚‹ )
 extern int GetClipboardText_WCHAR_T( wchar_t *DestBuffer, int DestBufferBytes )
 {
 	return GetClipboardText_WCHAR_T_PF( DestBuffer, DestBufferBytes ) ;
 }
 
-// ƒNƒŠƒbƒvƒ{[ƒh‚ÉƒeƒLƒXƒgƒf[ƒ^‚ğŠi”[‚·‚é
+// ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ã«ãƒ†ã‚­ã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹
 extern int NS_SetClipboardText( const TCHAR *Text )
 {
 #ifdef UNICODE
@@ -200,13 +200,13 @@ extern int NS_SetClipboardText( const TCHAR *Text )
 #endif
 }
 
-// ƒNƒŠƒbƒvƒ{[ƒh‚ÉƒeƒLƒXƒgƒf[ƒ^‚ğŠi”[‚·‚é
+// ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ã«ãƒ†ã‚­ã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹
 extern int SetClipboardText_WCHAR_T( const wchar_t *Text )
 {
 	return SetClipboardText_WCHAR_T_PF( Text ) ;
 }
 
-// ƒNƒŠƒbƒvƒ{[ƒh‚ÉƒeƒLƒXƒgƒf[ƒ^‚ğŠi”[‚·‚é
+// ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ã«ãƒ†ã‚­ã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹
 extern int NS_SetClipboardTextWithStrLen( const TCHAR *Text, size_t TextLength )
 {
 	int Result ;
@@ -222,7 +222,7 @@ extern int NS_SetClipboardTextWithStrLen( const TCHAR *Text, size_t TextLength )
 	return Result ;
 }
 
-// ƒNƒŠƒbƒvƒ{[ƒh‚ÉƒeƒLƒXƒgƒf[ƒ^‚ğŠi”[‚·‚é
+// ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ã«ãƒ†ã‚­ã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹
 extern int SetClipboardTextWithStrLen_WCHAR_T( const wchar_t *Text, size_t TextLength )
 {
 	int Result ;
@@ -257,9 +257,9 @@ extern int SetClipboardTextWithStrLen_WCHAR_T( const wchar_t *Text, size_t TextL
 
 
 
-// iniƒtƒ@ƒCƒ‹ŠÖŒW
+// iniãƒ•ã‚¡ã‚¤ãƒ«é–¢ä¿‚
 
-// GetPrivateProfileString ‚Ì‚c‚wƒ‰ƒCƒuƒ‰ƒŠ”Å
+// GetPrivateProfileString ã®ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªç‰ˆ
 struct GetPrivateProfileStringDxInfo
 {
 	BYTE		*FileBuffer ;
@@ -412,7 +412,7 @@ extern int NS_GetPrivateProfileStringDx( const TCHAR *AppName, const TCHAR *KeyN
 	TCHAR_TO_WCHAR_T_STRING_BEGIN( IniFilePath )
 	TCHAR_TO_WCHAR_T_STRING_SETUP( IniFilePath, goto END )
 
-	// ƒtƒ@ƒCƒ‹‚ğŠÛ‚²‚Æ“Ç‚İ‚İ
+	// ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ä¸¸ã”ã¨èª­ã¿è¾¼ã¿
 	{
 		fp = DX_FOPEN( UseIniFilePathBuffer ) ;
 		if( fp == 0 )
@@ -453,7 +453,7 @@ END :
 	return Return ;
 }
 
-// GetPrivateProfileString ‚Ì‚c‚wƒ‰ƒCƒuƒ‰ƒŠ”Å
+// GetPrivateProfileString ã®ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªç‰ˆ
 extern int NS_GetPrivateProfileStringDxWithStrLen( const TCHAR *AppName, size_t AppNameLength, const TCHAR *KeyName, size_t KeyNameLength, const TCHAR *Default, size_t DefaultLength, TCHAR *ReturnedString, size_t ReturnedStringBufferBytes, const TCHAR *IniFilePath, size_t IniFilePathLength, int IniFileCharCodeFormat )
 {
 	int Result = -1 ;
@@ -479,7 +479,7 @@ ERR :
 	return Result ;
 }
 
-// GetPrivateProfileInt ‚Ì‚c‚wƒ‰ƒCƒuƒ‰ƒŠ”Å
+// GetPrivateProfileInt ã®ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªç‰ˆ
 extern int NS_GetPrivateProfileIntDx( const TCHAR *AppName, const TCHAR *KeyName, int Default, const TCHAR *IniFilePath, int IniFileCharCodeFormat )
 {
 	TCHAR TempString[ 2048 ] ;
@@ -499,7 +499,7 @@ extern int NS_GetPrivateProfileIntDx( const TCHAR *AppName, const TCHAR *KeyName
 	return CL_atoi( _TCHARCODEFORMAT, ( char * )TempString ) ;
 }
 
-// GetPrivateProfileInt ‚Ì‚c‚wƒ‰ƒCƒuƒ‰ƒŠ”Å
+// GetPrivateProfileInt ã®ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªç‰ˆ
 extern int NS_GetPrivateProfileIntDxWithStrLen( const TCHAR *AppName, size_t AppNameLength, const TCHAR *KeyName, size_t KeyNameLength, int Default, const TCHAR *IniFilePath, size_t IniFilePathLength, int IniFileCharCodeFormat )
 {
 	int Result = -1 ;
@@ -522,7 +522,7 @@ ERR :
 	return Result ;
 }
 
-// GetPrivateProfileStringDx ‚Ìƒƒ‚ƒŠ‚©‚ç“Ç‚İ‚Ş”Å
+// GetPrivateProfileStringDx ã®ãƒ¡ãƒ¢ãƒªã‹ã‚‰èª­ã¿è¾¼ã‚€ç‰ˆ
 extern int NS_GetPrivateProfileStringDxForMem( const TCHAR *AppName, const TCHAR *KeyName, const TCHAR *Default, TCHAR *ReturnedStringBuffer, size_t ReturnedStringBufferBytes, const void *IniFileImage, size_t IniFileImageBytes, int IniFileCharCodeFormat )
 {
 	int Return = -1 ;
@@ -539,7 +539,7 @@ extern int NS_GetPrivateProfileStringDxForMem( const TCHAR *AppName, const TCHAR
 	Info.FileSize = IniFileImageBytes ;
 	Info.FileBuffer = ( BYTE * )IniFileImage ;
 
-	// ƒtƒ@ƒCƒ‹‚Ì•¶šƒR[ƒh‚ğƒ`ƒFƒbƒN
+	// ãƒ•ã‚¡ã‚¤ãƒ«ã®æ–‡å­—ã‚³ãƒ¼ãƒ‰ã‚’ãƒã‚§ãƒƒã‚¯
 	{
 		if( IniFileCharCodeFormat < 0 )
 		{
@@ -572,15 +572,15 @@ extern int NS_GetPrivateProfileStringDxForMem( const TCHAR *AppName, const TCHAR
 		Info.IniFileCharCodeFormat = IniFileCharCodeFormat ;
 	}
 
-	// ˆê•¶š•Ó‚è‚ÌƒoƒCƒg”‚ğ‘ã“ü
+	// ä¸€æ–‡å­—è¾ºã‚Šã®ãƒã‚¤ãƒˆæ•°ã‚’ä»£å…¥
 	Info.UnitBytes = GetCharCodeFormatUnitSize( _TCHARCODEFORMAT ) ;
 
-	// o—Íæ‚ğ‰Šú‰»
+	// å‡ºåŠ›å…ˆã‚’åˆæœŸåŒ–
 	Info.ReturnedStringBuffer = ReturnedStringBuffer ;
 	Info.ReturnedStringBufferBytes = ReturnedStringBufferBytes ;
 	Info.DestBytes = 0 ;
 
-	// ƒtƒ@ƒCƒ‹ƒtƒH[ƒ}ƒbƒg‚É‡‚Á‚½•¶š—ñ‚Ì€”õ
+	// ãƒ•ã‚¡ã‚¤ãƒ«ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã«åˆã£ãŸæ–‡å­—åˆ—ã®æº–å‚™
 	TCHAR_TO_CHAR_STRING_SETUP( AppName, goto END, IniFileCharCodeFormat )
 	TCHAR_TO_CHAR_STRING_SETUP( KeyName, goto END, IniFileCharCodeFormat )
 	TCHAR_TO_CHAR_STRING_SETUP( Default, goto END, IniFileCharCodeFormat )
@@ -593,7 +593,7 @@ extern int NS_GetPrivateProfileStringDxForMem( const TCHAR *AppName, const TCHAR
 	Info.CR        = ConvCharCode( GetCharCode( "\r", DX_CHARCODEFORMAT_ASCII, NULL ), DX_CHARCODEFORMAT_ASCII, IniFileCharCodeFormat ) ;
 	Info.LF        = ConvCharCode( GetCharCode( "\n", DX_CHARCODEFORMAT_ASCII, NULL ), DX_CHARCODEFORMAT_ASCII, IniFileCharCodeFormat ) ;
 
-	// ƒZƒNƒVƒ‡ƒ“‚ÆƒL[‚ÌƒoƒCƒg”‚ğZo
+	// ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã¨ã‚­ãƒ¼ã®ãƒã‚¤ãƒˆæ•°ã‚’ç®—å‡º
 	if( AppName != NULL )
 	{
 		AppNameBytes = ( DWORD )CL_strlen( IniFileCharCodeFormat, ( char * )UseAppNameBuffer ) * GetCharCodeFormatUnitSize( IniFileCharCodeFormat ) ;
@@ -603,7 +603,7 @@ extern int NS_GetPrivateProfileStringDxForMem( const TCHAR *AppName, const TCHAR
 		KeyNameBytes = ( DWORD )CL_strlen( IniFileCharCodeFormat, ( char * )UseKeyNameBuffer ) * GetCharCodeFormatUnitSize( IniFileCharCodeFormat ) ;
 	}
 
-	// ƒZƒNƒVƒ‡ƒ“‚ÌƒŠƒXƒgƒAƒbƒv‚Ìê‡
+	// ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®ãƒªã‚¹ãƒˆã‚¢ãƒƒãƒ—ã®å ´åˆ
 	if( AppName == NULL )
 	{
 		if( Info.ReturnedStringBufferBytes < Info.UnitBytes * 2 )
@@ -620,7 +620,7 @@ extern int NS_GetPrivateProfileStringDxForMem( const TCHAR *AppName, const TCHAR
 				break ;
 			}
 
-			// ‘åŠ‡ŒÊ‚¾‚Á‚½‚çƒZƒNƒVƒ‡ƒ“
+			// å¤§æ‹¬å¼§ã ã£ãŸã‚‰ã‚»ã‚¯ã‚·ãƒ§ãƒ³
 			if( CharCode == Info.BracketL )
 			{
 				Info.FileAddr += ( DWORD )CharBytes ;
@@ -656,7 +656,7 @@ extern int NS_GetPrivateProfileStringDxForMem( const TCHAR *AppName, const TCHAR
 				}
 			}
 
-			// Ÿ‚Ìs‚ÖˆÚ“®
+			// æ¬¡ã®è¡Œã¸ç§»å‹•
 			GetPrivateProfileStringDx_NextLine( Info ) ;
 		}
 		_MEMSET( ( BYTE * )Info.ReturnedStringBuffer + Info.DestBytes, 0, Info.UnitBytes ) ;
@@ -664,7 +664,7 @@ extern int NS_GetPrivateProfileStringDxForMem( const TCHAR *AppName, const TCHAR
 	}
 	else
 	{
-		// ƒZƒNƒVƒ‡ƒ“‚ÌŒŸõ
+		// ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®æ¤œç´¢
 		while( Info.FileAddr < Info.FileSize )
 		{
 			CharCode = GetPrivateProfileStringDx_NextChar( Info, &CharBytes, TRUE, FALSE ) ;
@@ -694,7 +694,7 @@ extern int NS_GetPrivateProfileStringDxForMem( const TCHAR *AppName, const TCHAR
 				}
 			}
 
-			// Ÿ‚Ìs‚ÖˆÚ“®
+			// æ¬¡ã®è¡Œã¸ç§»å‹•
 			GetPrivateProfileStringDx_NextLine( Info ) ;
 		}
 		if( Info.FileAddr >= Info.FileSize )
@@ -703,7 +703,7 @@ extern int NS_GetPrivateProfileStringDxForMem( const TCHAR *AppName, const TCHAR
 		}
 		GetPrivateProfileStringDx_NextLine( Info ) ;
 
-		// ƒL[‚ÌƒŠƒXƒgƒAƒbƒv‚Ìê‡
+		// ã‚­ãƒ¼ã®ãƒªã‚¹ãƒˆã‚¢ãƒƒãƒ—ã®å ´åˆ
 		if( KeyName == NULL )
 		{
 			if( Info.ReturnedStringBufferBytes < Info.UnitBytes * 2 )
@@ -726,7 +726,7 @@ extern int NS_GetPrivateProfileStringDxForMem( const TCHAR *AppName, const TCHAR
 					BYTE *Addr = Info.FileBuffer + Info.FileAddr ;
 					Info.FileAddr += NameBytes ;
 
-					// Ÿ‚Ì•¶š‚ª = ‚©‚Ç‚¤‚©‚ğŠm”F
+					// æ¬¡ã®æ–‡å­—ãŒ = ã‹ã©ã†ã‹ã‚’ç¢ºèª
 					CharCode = GetPrivateProfileStringDx_NextChar( Info, &CharBytes, TRUE, TRUE ) ;
 					if( Info.FileAddr < Info.FileSize && CharCode == Info.Equal )
 					{
@@ -750,14 +750,14 @@ extern int NS_GetPrivateProfileStringDxForMem( const TCHAR *AppName, const TCHAR
 					}
 				}
 
-				// Ÿ‚Ìs‚ÖˆÚ“®
+				// æ¬¡ã®è¡Œã¸ç§»å‹•
 				GetPrivateProfileStringDx_NextLine( Info ) ;
 			}
 			_MEMSET( ( BYTE * )Info.ReturnedStringBuffer + Info.DestBytes, 0, Info.UnitBytes ) ;
 			Return = ( int )( Info.DestBytes / Info.UnitBytes ) ;
 		}
 		else
-		// ƒL[‚Ìæ“¾‚Ìê‡
+		// ã‚­ãƒ¼ã®å–å¾—ã®å ´åˆ
 		{
 			if( Info.ReturnedStringBufferBytes <= Info.UnitBytes )
 			{
@@ -770,7 +770,7 @@ extern int NS_GetPrivateProfileStringDxForMem( const TCHAR *AppName, const TCHAR
 				goto END ;
 			}
 
-			// ƒL[‚ÌŒŸõ
+			// ã‚­ãƒ¼ã®æ¤œç´¢
 			while( Info.FileAddr < Info.FileSize )
 			{
 				CharCode = GetPrivateProfileStringDx_NextChar( Info, &CharBytes, TRUE, FALSE ) ;
@@ -787,7 +787,7 @@ extern int NS_GetPrivateProfileStringDxForMem( const TCHAR *AppName, const TCHAR
 				}
 				Info.FileAddr += NameBytes ;
 
-				// Ÿ‚Ìs‚ÖˆÚ“®
+				// æ¬¡ã®è¡Œã¸ç§»å‹•
 				GetPrivateProfileStringDx_NextLine( Info ) ;
 			}
 			if( Info.FileAddr >= Info.FileSize )
@@ -795,7 +795,7 @@ extern int NS_GetPrivateProfileStringDxForMem( const TCHAR *AppName, const TCHAR
 				goto DEFAULT_END ;
 			}
 
-			// Ÿ‚Ì•¶š‚ª = ‚©‚Ç‚¤‚©‚ğŠm”F
+			// æ¬¡ã®æ–‡å­—ãŒ = ã‹ã©ã†ã‹ã‚’ç¢ºèª
 			CharCode = GetPrivateProfileStringDx_NextChar( Info, &CharBytes, TRUE, TRUE ) ;
 			if( Info.FileAddr >= Info.FileSize || CharCode != Info.Equal )
 			{
@@ -803,7 +803,7 @@ extern int NS_GetPrivateProfileStringDxForMem( const TCHAR *AppName, const TCHAR
 			}
 			Info.FileAddr += CharBytes ;
 
-			// •¶š—ñ‚Ìæ“¾
+			// æ–‡å­—åˆ—ã®å–å¾—
 			CharCode = GetPrivateProfileStringDx_NextChar( Info, &CharBytes, FALSE, TRUE ) ;
 			if( CharCode == 0 )
 			{
@@ -863,7 +863,7 @@ DEFAULT_END :
 	goto END ;
 }
 
-// GetPrivateProfileStringDx ‚Ìƒƒ‚ƒŠ‚©‚ç“Ç‚İ‚Ş”Å
+// GetPrivateProfileStringDx ã®ãƒ¡ãƒ¢ãƒªã‹ã‚‰èª­ã¿è¾¼ã‚€ç‰ˆ
 extern int NS_GetPrivateProfileStringDxForMemWithStrLen( const TCHAR *AppName, size_t AppNameLength, const TCHAR *KeyName, size_t KeyNameLength, const TCHAR *Default, size_t DefaultLength, TCHAR *ReturnedString, size_t ReturnedStringBufferBytes, const void *IniFileImage, size_t IniFileImageBytes, int IniFileCharCodeFormat )
 {
 	int Result = -1 ;
@@ -886,7 +886,7 @@ ERR :
 	return Result ;
 }
 
-// GetPrivateProfileIntDx ‚Ìƒƒ‚ƒŠ‚©‚ç“Ç‚İ‚Ş”Å
+// GetPrivateProfileIntDx ã®ãƒ¡ãƒ¢ãƒªã‹ã‚‰èª­ã¿è¾¼ã‚€ç‰ˆ
 extern int NS_GetPrivateProfileIntDxForMem( const TCHAR *AppName, const TCHAR *KeyName, int Default, const void *IniFileImage, size_t IniFileImageBytes, int IniFileCharCodeFormat )
 {
 	TCHAR TempString[ 2048 ] ;
@@ -906,7 +906,7 @@ extern int NS_GetPrivateProfileIntDxForMem( const TCHAR *AppName, const TCHAR *K
 	return CL_atoi( _TCHARCODEFORMAT, ( char * )TempString ) ;
 }
 
-// GetPrivateProfileIntDx ‚Ìƒƒ‚ƒŠ‚©‚ç“Ç‚İ‚Ş”Å
+// GetPrivateProfileIntDx ã®ãƒ¡ãƒ¢ãƒªã‹ã‚‰èª­ã¿è¾¼ã‚€ç‰ˆ
 extern int NS_GetPrivateProfileIntDxForMemWithStrLen( const TCHAR *AppName, size_t AppNameLength, const TCHAR *KeyName, size_t KeyNameLength, int Default, const void *IniFileImage, size_t IniFileImageBytes, int IniFileCharCodeFormat )
 {
 	int Result = -1 ;
@@ -946,15 +946,15 @@ ERR :
 
 
 
-// ƒ[ƒ‹ƒAƒvƒŠ‚ğ‘—Mƒ[ƒ‹•ÒWó‘Ô‚Å‹N“®‚·‚é
-// MailAddr    : ˆ¶æ( NULL ‚Å–³Œø )Aƒ[ƒ‹ƒAƒhƒŒƒX‚ª•¡”‚ ‚éê‡‚ÍƒJƒ“ƒ}w,x‚Å‹æØ‚Á‚Ä‚­‚¾‚³‚¢
-// MainCCAddr  : CC ‚Ìˆ¶æ( NULL ‚Å–³Œø )Aƒ[ƒ‹ƒAƒhƒŒƒX‚ª•¡”‚ ‚éê‡‚ÍƒJƒ“ƒ}w,x‚Å‹æØ‚Á‚Ä‚­‚¾‚³‚¢
-// MainBCCAddr : BCC ‚Ìˆ¶æ( NULL ‚Å–³Œø )Aƒ[ƒ‹ƒAƒhƒŒƒX‚ª•¡”‚ ‚éê‡‚ÍƒJƒ“ƒ}w,x‚Å‹æØ‚Á‚Ä‚­‚¾‚³‚¢
-// Subject     : ƒ^ƒCƒgƒ‹( NULL ‚Å–³Œø )Aƒ[ƒ‹ƒAƒhƒŒƒX‚ª•¡”‚ ‚éê‡‚ÍƒJƒ“ƒ}w,x‚Å‹æØ‚Á‚Ä‚­‚¾‚³‚¢
-// Text        : –{•¶( NULL ‚Å–³Œø )Aƒ[ƒ‹ƒAƒhƒŒƒX‚ª•¡”‚ ‚éê‡‚ÍƒJƒ“ƒ}w,x‚Å‹æØ‚Á‚Ä‚­‚¾‚³‚¢
+// ãƒ¡ãƒ¼ãƒ«ã‚¢ãƒ—ãƒªã‚’é€ä¿¡ãƒ¡ãƒ¼ãƒ«ç·¨é›†çŠ¶æ…‹ã§èµ·å‹•ã™ã‚‹
+// MailAddr    : å®›å…ˆ( NULL ã§ç„¡åŠ¹ )ã€ãƒ¡ãƒ¼ãƒ«ã‚¢ãƒ‰ãƒ¬ã‚¹ãŒè¤‡æ•°ã‚ã‚‹å ´åˆã¯ã‚«ãƒ³ãƒã€,ã€ã§åŒºåˆ‡ã£ã¦ãã ã•ã„
+// MainCCAddr  : CC ã®å®›å…ˆ( NULL ã§ç„¡åŠ¹ )ã€ãƒ¡ãƒ¼ãƒ«ã‚¢ãƒ‰ãƒ¬ã‚¹ãŒè¤‡æ•°ã‚ã‚‹å ´åˆã¯ã‚«ãƒ³ãƒã€,ã€ã§åŒºåˆ‡ã£ã¦ãã ã•ã„
+// MainBCCAddr : BCC ã®å®›å…ˆ( NULL ã§ç„¡åŠ¹ )ã€ãƒ¡ãƒ¼ãƒ«ã‚¢ãƒ‰ãƒ¬ã‚¹ãŒè¤‡æ•°ã‚ã‚‹å ´åˆã¯ã‚«ãƒ³ãƒã€,ã€ã§åŒºåˆ‡ã£ã¦ãã ã•ã„
+// Subject     : ã‚¿ã‚¤ãƒˆãƒ«( NULL ã§ç„¡åŠ¹ )ã€ãƒ¡ãƒ¼ãƒ«ã‚¢ãƒ‰ãƒ¬ã‚¹ãŒè¤‡æ•°ã‚ã‚‹å ´åˆã¯ã‚«ãƒ³ãƒã€,ã€ã§åŒºåˆ‡ã£ã¦ãã ã•ã„
+// Text        : æœ¬æ–‡( NULL ã§ç„¡åŠ¹ )ã€ãƒ¡ãƒ¼ãƒ«ã‚¢ãƒ‰ãƒ¬ã‚¹ãŒè¤‡æ•°ã‚ã‚‹å ´åˆã¯ã‚«ãƒ³ãƒã€,ã€ã§åŒºåˆ‡ã£ã¦ãã ã•ã„
 extern int MailApp_Send_WCHAR_T( const wchar_t *MailAddr, const wchar_t *MailCCAddr, const wchar_t *MailBCCAddr, const wchar_t *Subject, const wchar_t *Text )
 {
-	// ŠÂ‹«ˆË‘¶ŠÖ”‚ğŒÄ‚Ô
+	// ç’°å¢ƒä¾å­˜é–¢æ•°ã‚’å‘¼ã¶
 	return MailApp_Send_WCHAR_T_PF( MailAddr, MailCCAddr, MailBCCAddr, Subject, Text ) ;
 }
 
@@ -1032,28 +1032,28 @@ ERR :
 
 
 
-// “Ç‚İ‚İˆ—Œn‚ÌŠÖ”‚Å”ñ“¯Šú“Ç‚İ‚İ‚ğs‚¤‚©‚Ç‚¤‚©‚ğİ’è‚·‚é( ”ñ“¯Šú“Ç‚İ‚İ‚É‘Î‰‚µ‚Ä‚¢‚éŠÖ”‚Ì‚İ—LŒø )( TRUE:”ñ“¯Šú“Ç‚İ‚İ‚ğs‚¤  FALSE:”ñ“¯Šú“Ç‚İ‚İ‚ğs‚í‚È‚¢( ƒfƒtƒHƒ‹ƒg ) )
+// èª­ã¿è¾¼ã¿å‡¦ç†ç³»ã®é–¢æ•°ã§éåŒæœŸèª­ã¿è¾¼ã¿ã‚’è¡Œã†ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹( éåŒæœŸèª­ã¿è¾¼ã¿ã«å¯¾å¿œã—ã¦ã„ã‚‹é–¢æ•°ã®ã¿æœ‰åŠ¹ )( TRUE:éåŒæœŸèª­ã¿è¾¼ã¿ã‚’è¡Œã†  FALSE:éåŒæœŸèª­ã¿è¾¼ã¿ã‚’è¡Œã‚ãªã„( ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ ) )
 extern int NS_SetUseASyncLoadFlag( int Flag )
 {
 	DxSysData.ASyncLoadFlag = Flag ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// “Ç‚İ‚İˆ—Œn‚ÌŠÖ”‚Å”ñ“¯Šú“Ç‚İ‚İ‚ğs‚¤‚©‚Ç‚¤‚©‚ğæ“¾‚·‚é( ”ñ“¯Šú“Ç‚İ‚İ‚É‘Î‰‚µ‚Ä‚¢‚éŠÖ”‚Ì‚İ—LŒø )( TRUE:”ñ“¯Šú“Ç‚İ‚İ‚ğs‚¤  FALSE:”ñ“¯Šú“Ç‚İ‚İ‚ğs‚í‚È‚¢( ƒfƒtƒHƒ‹ƒg ) )
+// èª­ã¿è¾¼ã¿å‡¦ç†ç³»ã®é–¢æ•°ã§éåŒæœŸèª­ã¿è¾¼ã¿ã‚’è¡Œã†ã‹ã©ã†ã‹ã‚’å–å¾—ã™ã‚‹( éåŒæœŸèª­ã¿è¾¼ã¿ã«å¯¾å¿œã—ã¦ã„ã‚‹é–¢æ•°ã®ã¿æœ‰åŠ¹ )( TRUE:éåŒæœŸèª­ã¿è¾¼ã¿ã‚’è¡Œã†  FALSE:éåŒæœŸèª­ã¿è¾¼ã¿ã‚’è¡Œã‚ãªã„( ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ ) )
 extern int NS_GetUseASyncLoadFlag( void )
 {
 	return GetASyncLoadFlag() ;
 }
 
-// ”ñ“¯Šú“Ç‚İ‚İ‚ğs‚¤‚©‚Ç‚¤‚©‚ğæ“¾‚·‚é( TRUE:”ñ“¯Šú“Ç‚İ‚İ‚ğs‚¤   FALSE:”ñ“¯Šú“Ç‚İ‚İ‚ğs‚í‚È‚¢ )
+// éåŒæœŸèª­ã¿è¾¼ã¿ã‚’è¡Œã†ã‹ã©ã†ã‹ã‚’å–å¾—ã™ã‚‹( TRUE:éåŒæœŸèª­ã¿è¾¼ã¿ã‚’è¡Œã†   FALSE:éåŒæœŸèª­ã¿è¾¼ã¿ã‚’è¡Œã‚ãªã„ )
 extern int GetASyncLoadFlag( void )
 {
 	return DxSysData.ASyncLoadFlag ? TRUE : FALSE ;
 }
 
-// ‚c‚wƒ‰ƒCƒuƒ‰ƒŠ‚ÌƒEƒCƒ“ƒhƒEŠÖ˜A‚Ì‹@”\‚ğg—p‚µ‚È‚¢ƒtƒ‰ƒO
+// ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦é–¢é€£ã®æ©Ÿèƒ½ã‚’ä½¿ç”¨ã—ãªã„ãƒ•ãƒ©ã‚°
 extern int NS_SetNotWinFlag( int Flag )
 {
 	if( Flag == TRUE ) DxSysData.NotDrawFlag = TRUE;
@@ -1062,7 +1062,7 @@ extern int NS_SetNotWinFlag( int Flag )
 	return 0 ;
 }
 
-// •`‰æ‹@”\‚ğg‚¤‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğƒZƒbƒg‚·‚é
+// æç”»æ©Ÿèƒ½ã‚’ä½¿ã†ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern int NS_SetNotDrawFlag( int Flag )
 {
 	DxSysData.NotDrawFlag = Flag ;
@@ -1070,13 +1070,13 @@ extern int NS_SetNotDrawFlag( int Flag )
 	return 0 ;
 }
 
-// •`‰æ‹@”\‚ğg‚¤‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğæ“¾‚·‚é
+// æç”»æ©Ÿèƒ½ã‚’ä½¿ã†ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’å–å¾—ã™ã‚‹
 extern int NS_GetNotDrawFlag( void )
 {
 	return DxSysData.NotDrawFlag ;
 }
 
-// ƒTƒEƒ“ƒh‹@”\‚ğg‚¤‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğƒZƒbƒg‚·‚é
+// ã‚µã‚¦ãƒ³ãƒ‰æ©Ÿèƒ½ã‚’ä½¿ã†ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern int NS_SetNotSoundFlag( int Flag )
 {
 	DxSysData.NotSoundFlag = Flag ;
@@ -1084,7 +1084,7 @@ extern int NS_SetNotSoundFlag( int Flag )
 	return 0;
 }
 
-// “ü—Íó‘Ôæ“¾‹@”\‚ğg‚¤‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğƒZƒbƒg‚·‚é
+// å…¥åŠ›çŠ¶æ…‹å–å¾—æ©Ÿèƒ½ã‚’ä½¿ã†ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern int NS_SetNotInputFlag( int Flag )
 {
 	DxSysData.NotInputFlag = Flag ;
@@ -1105,23 +1105,23 @@ extern int NS_SetNotInputFlag( int Flag )
 
 
 
-// ƒEƒGƒCƒgŒnŠÖ”
+// ã‚¦ã‚¨ã‚¤ãƒˆç³»é–¢æ•°
 
-// w’è‚ÌŠÔ‚¾‚¯ˆ—‚ğ‚Æ‚ß‚é
+// æŒ‡å®šã®æ™‚é–“ã ã‘å‡¦ç†ã‚’ã¨ã‚ã‚‹
 extern int NS_WaitTimer( int WaitTime )
 {
 	ULONGLONG StartTime, EndTime ;
 
 	StartTime = NS_GetNowSysPerformanceCount() ;
 
-	// 4msec‘O‚Ü‚ÅQ‚é
+	// 4msecå‰ã¾ã§å¯ã‚‹
 	if( WaitTime > 4 )
 	{
-		// w’èŠÔ‚ÌŠÔƒƒbƒZ[ƒWƒ‹[ƒv
+		// æŒ‡å®šæ™‚é–“ã®é–“ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ«ãƒ¼ãƒ—
 		EndTime = StartTime + NS_ConvMilliSecondsToSysPerformanceCount( WaitTime - 4 ) ;
 		while( EndTime > NS_GetNowSysPerformanceCount() )
 		{
-			// ƒEƒBƒ“ƒhƒE‚ª•Â‚¶‚ç‚ê‚½ê‡‚Í‘¦À‚ÉI—¹
+			// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãŒé–‰ã˜ã‚‰ã‚ŒãŸå ´åˆã¯å³åº§ã«çµ‚äº†
 			if( NS_ProcessMessage() != 0 )
 			{
 				return 0 ;
@@ -1131,28 +1131,28 @@ extern int NS_WaitTimer( int WaitTime )
 
 	}
 
-	// 4msecˆÈ‰º‚Ì•ª‚Í³Šm‚É‘Ò‚Â
+	// 4msecä»¥ä¸‹ã®åˆ†ã¯æ­£ç¢ºã«å¾…ã¤
 	EndTime = StartTime + NS_ConvMilliSecondsToSysPerformanceCount( WaitTime ) ;
 	while( EndTime > NS_GetNowSysPerformanceCount() ){}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// w’è‚ÌŠÔ‚¾‚¯ƒXƒŒƒbƒh‚ğ–°‚ç‚¹‚é
+// æŒ‡å®šã®æ™‚é–“ã ã‘ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’çœ ã‚‰ã›ã‚‹
 extern int NS_SleepThread( int WaitTime )
 {
 	if( WaitTime < 0 ) WaitTime = 0 ;
 
 	Thread_Sleep( ( DWORD )WaitTime ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
 #ifndef DX_NON_INPUT
 
-// ƒL[‚Ì“ü—Í‘Ò‚¿
+// ã‚­ãƒ¼ã®å…¥åŠ›å¾…ã¡
 extern int NS_WaitKey( void )
 {
 	int BackCode = 0 ;
@@ -1182,21 +1182,21 @@ extern int NS_WaitKey( void )
 
 
 
-// —”æ“¾
+// ä¹±æ•°å–å¾—
 
 #ifndef DX_NON_MERSENNE_TWISTER
 
-// —”‚Ì‰Šú’l‚ğİ’è‚·‚é
+// ä¹±æ•°ã®åˆæœŸå€¤ã‚’è¨­å®šã™ã‚‹
 extern int NS_SRand( int Seed )
 {
-	// ‰Šú’lƒZƒbƒg
+	// åˆæœŸå€¤ã‚»ãƒƒãƒˆ
 	srandMT( ( unsigned int )Seed ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// —”‚ğæ“¾‚·‚é( RandMax : •Ô‚Á‚Ä—ˆ‚é’l‚ÌÅ‘å’l )
+// ä¹±æ•°ã‚’å–å¾—ã™ã‚‹( RandMax : è¿”ã£ã¦æ¥ã‚‹å€¤ã®æœ€å¤§å€¤ )
 extern int NS_GetRand( int RandMax )
 {
 	int Result ;
@@ -1209,68 +1209,68 @@ extern int NS_GetRand( int RandMax )
 	return Result ;
 }
 
-// ƒƒ‹ƒZƒ“ƒkEƒcƒCƒXƒ^[ƒAƒ‹ƒSƒŠƒYƒ€‚Å¶¬‚³‚ê‚½—”’l‚ğ–³‰ÁH‚Åæ“¾‚·‚é
+// ãƒ¡ãƒ«ã‚»ãƒ³ãƒŒãƒ»ãƒ„ã‚¤ã‚¹ã‚¿ãƒ¼ã‚¢ãƒ«ã‚´ãƒªã‚ºãƒ ã§ç”Ÿæˆã•ã‚ŒãŸä¹±æ•°å€¤ã‚’ç„¡åŠ å·¥ã§å–å¾—ã™ã‚‹
 extern DWORD NS_GetMersenneTwisterRand( void )
 {
 	return randMT() ;
 }
 
-// —”ƒnƒ“ƒhƒ‹‚ğì¬‚·‚é( –ß‚è’l@0ˆÈŠO:—”ƒnƒ“ƒhƒ‹@0:ƒGƒ‰[ )
+// ä¹±æ•°ãƒãƒ³ãƒ‰ãƒ«ã‚’ä½œæˆã™ã‚‹( æˆ»ã‚Šå€¤ã€€0ä»¥å¤–:ä¹±æ•°ãƒãƒ³ãƒ‰ãƒ«ã€€0:ã‚¨ãƒ©ãƒ¼ )
 extern DWORD_PTR NS_CreateRandHandle( int Seed )
 {
 	MERSENNE_TWISTER_DATA *MTData ;
 
-	// V‚µ‚¢—”ƒnƒ“ƒhƒ‹—p‚Ìƒƒ‚ƒŠ‚ğŠm•Û‚·‚é
+	// æ–°ã—ã„ä¹±æ•°ãƒãƒ³ãƒ‰ãƒ«ç”¨ã®ãƒ¡ãƒ¢ãƒªã‚’ç¢ºä¿ã™ã‚‹
 	MTData = ( MERSENNE_TWISTER_DATA * )DXALLOC( sizeof( MERSENNE_TWISTER_DATA ) ) ;
 	if( MTData == NULL )
 	{
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\x71\x4e\x70\x65\xcf\x30\xf3\x30\xc9\x30\xeb\x30\x28\x75\x6e\x30\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"—”ƒnƒ“ƒhƒ‹—p‚Ìƒƒ‚ƒŠ‚ÌŠm•Û‚É¸”s‚µ‚Ü‚µ‚½" @*/ )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\x71\x4e\x70\x65\xcf\x30\xf3\x30\xc9\x30\xeb\x30\x28\x75\x6e\x30\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"ä¹±æ•°ãƒãƒ³ãƒ‰ãƒ«ç”¨ã®ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿ã«å¤±æ•—ã—ã¾ã—ãŸ" @*/ )) ;
 		return 0 ;
 	}
 
-	// —”î•ñ‚ğ‰Šú‰»
+	// ä¹±æ•°æƒ…å ±ã‚’åˆæœŸåŒ–
 	NS_SRandHandle( ( DWORD_PTR )MTData, ( unsigned int )( Seed >= 0 ? Seed : NS_GetRand( 0x7fffffff ) ) ) ;
 
-	// ƒnƒ“ƒhƒ‹‚ğ•Ô‚·
+	// ãƒãƒ³ãƒ‰ãƒ«ã‚’è¿”ã™
 	return ( DWORD_PTR )MTData ;
 }
 
-// —”ƒnƒ“ƒhƒ‹‚ğíœ‚·‚é
+// ä¹±æ•°ãƒãƒ³ãƒ‰ãƒ«ã‚’å‰Šé™¤ã™ã‚‹
 extern int NS_DeleteRandHandle( DWORD_PTR RandHandle )
 {
-	// ƒƒ‚ƒŠ‚ğ‰ğ•ú‚·‚é
+	// ãƒ¡ãƒ¢ãƒªã‚’è§£æ”¾ã™ã‚‹
 	if( RandHandle != 0 )
 	{
 		DXFREE( ( void * )RandHandle ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// —”ƒnƒ“ƒhƒ‹‚Ì‰Šú’l‚ğÄİ’è‚·‚é
+// ä¹±æ•°ãƒãƒ³ãƒ‰ãƒ«ã®åˆæœŸå€¤ã‚’å†è¨­å®šã™ã‚‹
 extern int NS_SRandHandle( DWORD_PTR RandHandle, int Seed )
 {
-	// ƒGƒ‰[ƒ`ƒFƒbƒN
+	// ã‚¨ãƒ©ãƒ¼ãƒã‚§ãƒƒã‚¯
 	if( RandHandle == 0 )
 	{
 		return -1 ;
 	}
 
-	// —”î•ñ‚ğ‰Šú‰»
+	// ä¹±æ•°æƒ…å ±ã‚’åˆæœŸåŒ–
 	initMTData( ( MERSENNE_TWISTER_DATA * )RandHandle, ( unsigned int )Seed ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// —”ƒnƒ“ƒhƒ‹‚ğg—p‚µ‚Ä—”‚ğæ“¾‚·‚é( RandMax : •Ô‚Á‚Ä—ˆ‚é’l‚ÌÅ‘å’l )
+// ä¹±æ•°ãƒãƒ³ãƒ‰ãƒ«ã‚’ä½¿ç”¨ã—ã¦ä¹±æ•°ã‚’å–å¾—ã™ã‚‹( RandMax : è¿”ã£ã¦æ¥ã‚‹å€¤ã®æœ€å¤§å€¤ )
 extern int NS_GetRandHandle( DWORD_PTR RandHandle, int RandMax )
 {
 	int Result ;
 	LONGLONG RandMaxLL ;
 
-	// ƒGƒ‰[ƒ`ƒFƒbƒN
+	// ã‚¨ãƒ©ãƒ¼ãƒã‚§ãƒƒã‚¯
 	if( RandHandle == 0 )
 	{
 		return -1 ;
@@ -1283,7 +1283,7 @@ extern int NS_GetRandHandle( DWORD_PTR RandHandle, int RandMax )
 	return Result ;
 }
 
-// —”ƒnƒ“ƒhƒ‹‚ğg—p‚µ‚Äƒƒ‹ƒZƒ“ƒkEƒcƒCƒXƒ^[ƒAƒ‹ƒSƒŠƒYƒ€‚Å¶¬‚³‚ê‚½—”’l‚ğ–³‰ÁH‚Åæ“¾‚·‚é
+// ä¹±æ•°ãƒãƒ³ãƒ‰ãƒ«ã‚’ä½¿ç”¨ã—ã¦ãƒ¡ãƒ«ã‚»ãƒ³ãƒŒãƒ»ãƒ„ã‚¤ã‚¹ã‚¿ãƒ¼ã‚¢ãƒ«ã‚´ãƒªã‚ºãƒ ã§ç”Ÿæˆã•ã‚ŒãŸä¹±æ•°å€¤ã‚’ç„¡åŠ å·¥ã§å–å¾—ã™ã‚‹
 extern DWORD NS_GetMersenneTwisterRandHandle( DWORD_PTR RandHandle )
 {
 	return randMTData( ( MERSENNE_TWISTER_DATA * )RandHandle ) ;
@@ -1291,17 +1291,17 @@ extern DWORD NS_GetMersenneTwisterRandHandle( DWORD_PTR RandHandle )
 
 #else // DX_NON_MERSENNE_TWISTER
 
-// —”‚Ì‰Šú’l‚ğİ’è‚·‚é
+// ä¹±æ•°ã®åˆæœŸå€¤ã‚’è¨­å®šã™ã‚‹
 extern int NS_SRand( int Seed )
 {
-	// ‰Šú’lƒZƒbƒg
+	// åˆæœŸå€¤ã‚»ãƒƒãƒˆ
 	srand( Seed ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// —”‚ğæ“¾‚·‚é( RandMax : •Ô‚Á‚Ä—ˆ‚é’l‚ÌÅ‘å’l )
+// ä¹±æ•°ã‚’å–å¾—ã™ã‚‹( RandMax : è¿”ã£ã¦æ¥ã‚‹å€¤ã®æœ€å¤§å€¤ )
 extern int NS_GetRand( int RandMax )
 {
 	int Result ;

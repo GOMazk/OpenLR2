@@ -1,17 +1,17 @@
 //-----------------------------------------------------------------------------
 // 
-// 		‚c‚wƒ‰ƒCƒuƒ‰ƒŠ		Android—pƒƒOƒvƒƒOƒ‰ƒ€
+// 		ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒª		Androidç”¨ãƒ­ã‚°ãƒ—ãƒ­ã‚°ãƒ©ãƒ 
 // 
 //  	Ver 3.25a
 // 
 //-----------------------------------------------------------------------------
 
-// ‚c‚wƒ‰ƒCƒuƒ‰ƒŠì¬—p’è‹`
+// ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªä½œæˆæ™‚ç”¨å®šç¾©
 #define DX_MAKE
 
 #include "../DxCompileConfig.h"
 
-// ƒCƒ“ƒNƒ‹[ƒh ---------------------------------------------------------------
+// ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ ---------------------------------------------------------------
 #ifndef DX_NON_LOG
 
 #include "DxLogAndroid.h"
@@ -34,32 +34,32 @@ namespace DxLib
 
 #endif // DX_NON_NAMESPACE
 
-// ƒ}ƒNƒ’è‹` -----------------------------------------------------------------
+// ãƒã‚¯ãƒ­å®šç¾© -----------------------------------------------------------------
 
 #define LOGI(...) ((void)__android_log_print(ANDROID_LOG_INFO, "DxLibLog", __VA_ARGS__))
 #define LOGW(...) ((void)__android_log_print(ANDROID_LOG_WARN, "DxLibLog", __VA_ARGS__))
 
-// \‘¢‘ÌéŒ¾ -----------------------------------------------------------------
+// æ§‹é€ ä½“å®£è¨€ -----------------------------------------------------------------
 
-// ƒf[ƒ^’è‹` -----------------------------------------------------------------
+// ãƒ‡ãƒ¼ã‚¿å®šç¾© -----------------------------------------------------------------
 
-// ŠÖ”éŒ¾ -------------------------------------------------------------------
+// é–¢æ•°å®£è¨€ -------------------------------------------------------------------
 
-// ƒvƒƒOƒ‰ƒ€ -----------------------------------------------------------------
+// ãƒ—ãƒ­ã‚°ãƒ©ãƒ  -----------------------------------------------------------------
 
-// ƒƒOƒtƒ@ƒCƒ‹‚ğ‰Šú‰»‚·‚éˆ—‚ÌŠÂ‹«ˆË‘¶•”•ª
+// ãƒ­ã‚°ãƒ•ã‚¡ã‚¤ãƒ«ã‚’åˆæœŸåŒ–ã™ã‚‹å‡¦ç†ã®ç’°å¢ƒä¾å­˜éƒ¨åˆ†
 extern int LogFileInitialize_PF( const wchar_t *LogFilePath )
 {
-	// Šù‚É‰Šú‰»Ï‚İ‚Ìê‡‚Í‰½‚à‚µ‚È‚¢
+	// æ—¢ã«åˆæœŸåŒ–æ¸ˆã¿ã®å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( LogData.PF.InitializeFlag == TRUE )
 	{
 		return 0 ;
 	}
 
-	// ‰Šú‰»ƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// åˆæœŸåŒ–ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	LogData.PF.InitializeFlag = TRUE ;
 
-	// ƒGƒ‰[ƒƒOƒtƒ@ƒCƒ‹‚ÌƒpƒX‚ğƒRƒs[
+	// ã‚¨ãƒ©ãƒ¼ãƒ­ã‚°ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ‘ã‚¹ã‚’ã‚³ãƒ”ãƒ¼
 	if( g_AndroidSys.NativeActivity == NULL ||
 		g_AndroidSys.NativeActivity->externalDataPath == NULL )
 	{
@@ -70,7 +70,7 @@ extern int LogFileInitialize_PF( const wchar_t *LogFilePath )
 		CL_strcpy_s( DX_CHARCODEFORMAT_UTF8, LogData.PF.ExternalDataPath, sizeof( LogData.PF.ExternalDataPath ), g_AndroidSys.NativeActivity->externalDataPath ) ;
 	}
 
-	// ƒGƒ‰[ƒƒOƒtƒ@ƒCƒ‹‚ğÄì¬‚·‚é
+	// ã‚¨ãƒ©ãƒ¼ãƒ­ã‚°ãƒ•ã‚¡ã‚¤ãƒ«ã‚’å†ä½œæˆã™ã‚‹
 	if( LogData.PF.ExternalDataPath[ 0 ] != '\0' )
 	{
 		char TempLogFilePath[ 1024 ] ;
@@ -103,17 +103,17 @@ extern int LogFileInitialize_PF( const wchar_t *LogFilePath )
 		}
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒƒOƒtƒ@ƒCƒ‹‚ÌŒãn––‚ÌŠÂ‹«ˆË‘¶•”•ª
+// ãƒ­ã‚°ãƒ•ã‚¡ã‚¤ãƒ«ã®å¾Œå§‹æœ«ã®ç’°å¢ƒä¾å­˜éƒ¨åˆ†
 extern int LogFileTerminate_PF( void )
 {
 	return 0 ;
 }
 
-// ƒƒOƒtƒ@ƒCƒ‹‚Ö•¶š—ñ‚ğ‘‚«o‚·ˆ—‚ÌŠÂ‹«ˆË‘¶•”•ª
+// ãƒ­ã‚°ãƒ•ã‚¡ã‚¤ãƒ«ã¸æ–‡å­—åˆ—ã‚’æ›¸ãå‡ºã™å‡¦ç†ã®ç’°å¢ƒä¾å­˜éƒ¨åˆ†
 extern int LogFileAdd_WCHAR_T_PF( const wchar_t *LogFilePath, const wchar_t *ErrorStr )
 {
 	char ErrorStrDefaultBuffer[ 1024 ] ;
@@ -123,7 +123,7 @@ extern int LogFileAdd_WCHAR_T_PF( const wchar_t *LogFilePath, const wchar_t *Err
 	int Bytes ;
 	int StringBytes ;
 
-	// UTF8 ‚Ì•¶š—ñ‚É•ÏŠ·‚·‚é
+	// UTF8 ã®æ–‡å­—åˆ—ã«å¤‰æ›ã™ã‚‹
 	StringBytes = ( ( int )_WCSLEN( ErrorStr ) + 1 ) * sizeof( wchar_t ) ;
 	if( ( size_t )StringBytes > sizeof( ErrorStrDefaultBuffer ) )
 	{
@@ -143,7 +143,7 @@ extern int LogFileAdd_WCHAR_T_PF( const wchar_t *LogFilePath, const wchar_t *Err
 
 	Bytes = ConvString( ( char * )ErrorStr, -1, WCHAR_T_CHARCODEFORMAT, ErrorStrUseBuffer, ErrorStrUseBufferBytes, DX_CHARCODEFORMAT_UTF8 ) ;
 
-	// ƒGƒ‰[ƒƒOƒtƒ@ƒCƒ‹‚ğŠJ‚­
+	// ã‚¨ãƒ©ãƒ¼ãƒ­ã‚°ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‹ã
 	if( Bytes > 1 &&
 		LogData.PF.ExternalDataPath[ 0 ] != '\0' )
 	{
@@ -168,16 +168,16 @@ extern int LogFileAdd_WCHAR_T_PF( const wchar_t *LogFilePath, const wchar_t *Err
 			fp = fopen( TempLogFilePath, "ab" ) ;
 			if( fp != NULL )
 			{
-				// ƒGƒ‰[ƒƒOƒtƒ@ƒCƒ‹‚É‘‚«o‚·
+				// ã‚¨ãƒ©ãƒ¼ãƒ­ã‚°ãƒ•ã‚¡ã‚¤ãƒ«ã«æ›¸ãå‡ºã™
 				fwrite( ErrorStrUseBuffer, ( DWORD )( Bytes - 1 ), 1, fp ) ;
 
-				// ƒtƒ@ƒCƒ‹‚ğ•Â‚¶‚é
+				// ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‰ã˜ã‚‹
 				fclose( fp ) ;
 			}
 		}
 	}
 
-	// ƒRƒ“ƒ\[ƒ‹‚É‚ào—Í
+	// ã‚³ãƒ³ã‚½ãƒ¼ãƒ«ã«ã‚‚å‡ºåŠ›
 	LOGI( "%s", ErrorStrUseBuffer ) ;
 
 	if( ErrorStrTempBuffer != NULL )
@@ -186,12 +186,12 @@ extern int LogFileAdd_WCHAR_T_PF( const wchar_t *LogFilePath, const wchar_t *Err
 		ErrorStrTempBuffer = NULL ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
 
-// ƒƒO‹@”\‚Ì‰Šú‰»‚ğs‚¤‚©‚Ç‚¤‚©‚ğæ“¾‚·‚é
+// ãƒ­ã‚°æ©Ÿèƒ½ã®åˆæœŸåŒ–ã‚’è¡Œã†ã‹ã©ã†ã‹ã‚’å–å¾—ã™ã‚‹
 extern int IsInitializeLog( void )
 {
 	return TRUE ;

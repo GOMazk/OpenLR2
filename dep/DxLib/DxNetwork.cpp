@@ -1,19 +1,19 @@
 // -------------------------------------------------------------------------------
 // 
-// 		‚c‚wƒ‰ƒCƒuƒ‰ƒŠ		’ÊMŠÖ˜AƒvƒƒOƒ‰ƒ€
+// 		ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒª		é€šä¿¡é–¢é€£ãƒ—ãƒ­ã‚°ãƒ©ãƒ 
 // 
 // 				Ver 3.25a
 // 
 // -------------------------------------------------------------------------------
 
-// ‚c‚wƒ‰ƒCƒuƒ‰ƒŠì¬—p’è‹`
+// ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªä½œæˆæ™‚ç”¨å®šç¾©
 #define DX_MAKE
 
 #include "DxNetwork.h"
 
 #ifndef DX_NON_NETWORK
 
-// ƒCƒ“ƒNƒ‹[ƒh ------------------------------------------------------------------
+// ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ ------------------------------------------------------------------
 #include "DxStatic.h"
 #include "DxBaseFunc.h"
 #include "DxSystem.h"
@@ -36,22 +36,22 @@ namespace DxLib
 
 #endif // DX_NON_NAMESPACE
 
-// ƒ}ƒNƒ’è‹` --------------------------------------------------------------------
+// ãƒã‚¯ãƒ­å®šç¾© --------------------------------------------------------------------
 
-// ƒlƒbƒgƒ[ƒNƒnƒ“ƒhƒ‹‚Ì—LŒø«ƒ`ƒFƒbƒN
+// ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ãƒãƒ³ãƒ‰ãƒ«ã®æœ‰åŠ¹æ€§ãƒã‚§ãƒƒã‚¯
 #define NETHCHK( HAND, NPOINT )			HANDLECHK(       DX_HANDLETYPE_NETWORK, HAND, *( ( HANDLEINFO ** )&NPOINT ) )
 #define NETHCHK_ASYNC( HAND, NPOINT )	HANDLECHK_ASYNC( DX_HANDLETYPE_NETWORK, HAND, *( ( HANDLEINFO ** )&NPOINT ) )
 
-// ƒlƒbƒgƒ[ƒNƒnƒ“ƒhƒ‹‚Ì—LŒø«ƒ`ƒFƒbƒN( ‚s‚b‚o )
+// ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ãƒãƒ³ãƒ‰ãƒ«ã®æœ‰åŠ¹æ€§ãƒã‚§ãƒƒã‚¯( ï¼´ï¼£ï¼° )
 #define TCPNETHCHK( HAND, NPOINT )			( ( NETHCHK( HAND, NPOINT ) ) || (NPOINT)->IsUDP != 0 )
 #define TCPNETHCHK_ASYNC( HAND, NPOINT )	( ( NETHCHK_ASYNC( HAND, NPOINT ) ) || (NPOINT)->IsUDP != 0 )
 
-// ƒlƒbƒgƒ[ƒNƒnƒ“ƒhƒ‹‚Ì—LŒø«ƒ`ƒFƒbƒN( ‚t‚c‚o )
+// ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ãƒãƒ³ãƒ‰ãƒ«ã®æœ‰åŠ¹æ€§ãƒã‚§ãƒƒã‚¯( ï¼µï¼¤ï¼° )
 #define UDPNETHCHK( HAND, NPOINT )			( ( NETHCHK( HAND, NPOINT ) ) || (NPOINT)->IsUDP == 0 )
 #define UDPNETHCHK_ASYNC( HAND, NPOINT )	( ( NETHCHK_ASYNC( HAND, NPOINT ) ) || (NPOINT)->IsUDP == 0 )
 
 
-// WinSock—p’è‹`
+// WinSockç”¨å®šç¾©
 #define WSA_DEFAULTPORT				(10001)
 #define WSA_TIMEOUTWAIT				(2000)
 
@@ -61,102 +61,102 @@ namespace DxLib
 #define	WSA_WRITE					(WM_USER + 259)
 #define	WSA_CLOSE					(WM_USER + 260)
 
-#define WINFILEACCESS_BUFFERSIZE	(64 * 1024)			// ƒtƒ@ƒCƒ‹‚Ìˆê‹L‰¯ƒoƒbƒtƒ@‚ÌƒTƒCƒY
+#define WINFILEACCESS_BUFFERSIZE	(64 * 1024)			// ãƒ•ã‚¡ã‚¤ãƒ«ã®ä¸€æ™‚è¨˜æ†¶ãƒãƒƒãƒ•ã‚¡ã®ã‚µã‚¤ã‚º
 
-// ‚h‚d‚ÌƒvƒƒLƒVƒT[ƒoƒAƒhƒŒƒX‚ªŠi”[‚³‚ê‚Ä‚¢‚éƒŒƒWƒXƒgƒŠƒAƒhƒŒƒX
+// ï¼©ï¼¥ã®ãƒ—ãƒ­ã‚­ã‚·ã‚µãƒ¼ãƒã‚¢ãƒ‰ãƒ¬ã‚¹ãŒæ ¼ç´ã•ã‚Œã¦ã„ã‚‹ãƒ¬ã‚¸ã‚¹ãƒˆãƒªã‚¢ãƒ‰ãƒ¬ã‚¹
 #define IEPROXY						"Software\\Microsoft\\Windows\\CurrentVersion\\Internet Settings"
 
-// \‘¢‘Ì’è‹` --------------------------------------------------------------------
+// æ§‹é€ ä½“å®šç¾© --------------------------------------------------------------------
 
-// ƒe[ƒuƒ‹-----------------------------------------------------------------------
+// ãƒ†ãƒ¼ãƒ–ãƒ«-----------------------------------------------------------------------
 
-// “à•”‘åˆæ•Ï”éŒ¾ --------------------------------------------------------------
+// å†…éƒ¨å¤§åŸŸå¤‰æ•°å®£è¨€ --------------------------------------------------------------
 
-WINSOCKDATA SockData ;									// ‚v‚‰‚‚r‚‚ƒ‚‹‚…‚”‚“ƒf[ƒ^
-HTTPSYS HttpData ;										// HTTP ŠÖŒWˆ——pƒf[ƒ^
+WINSOCKDATA SockData ;									// ï¼·ï½‰ï½ï¼³ï½ï½ƒï½‹ï½…ï½”ï½“ãƒ‡ãƒ¼ã‚¿
+HTTPSYS HttpData ;										// HTTP é–¢ä¿‚å‡¦ç†ç”¨ãƒ‡ãƒ¼ã‚¿
 
-// ŠÖ”ƒvƒƒgƒ^ƒCƒvéŒ¾-----------------------------------------------------------
+// é–¢æ•°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€-----------------------------------------------------------
 
-// ’ÊMŠÖŒW
-static	int			ConnectNetWorkBase( IPDATA *IPData_IPv4, IPDATA_IPv6 *IPData_IPv6, int Port, int ASync ) ;	// ConnectNetWork ‚Ìˆ—‚ğs‚¤ŠÖ”
-static	int			PreparationListenNetWork_Base( int IsIPv6, int Port ) ;					// Ú‘±‚ğó‚¯‚ç‚ê‚éó‘Ô‚É‚·‚é
-static	int			MakeUDPSocketBase( int IsIPv6, int RecvPort ) ;							// UDP‚ğg—p‚µ‚½’ÊM‚ğs‚¤ƒ\ƒPƒbƒgƒnƒ“ƒhƒ‹‚ğì¬‚·‚é( RecvPort ‚ğ -1 ‚É‚·‚é‚Æ‘—Mê—p‚Ìƒ\ƒPƒbƒgƒnƒ“ƒhƒ‹‚É‚È‚è‚Ü‚· )
+// é€šä¿¡é–¢ä¿‚
+static	int			ConnectNetWorkBase( IPDATA *IPData_IPv4, IPDATA_IPv6 *IPData_IPv6, int Port, int ASync ) ;	// ConnectNetWork ã®å‡¦ç†ã‚’è¡Œã†é–¢æ•°
+static	int			PreparationListenNetWork_Base( int IsIPv6, int Port ) ;					// æ¥ç¶šã‚’å—ã‘ã‚‰ã‚Œã‚‹çŠ¶æ…‹ã«ã™ã‚‹
+static	int			MakeUDPSocketBase( int IsIPv6, int RecvPort ) ;							// UDPã‚’ä½¿ç”¨ã—ãŸé€šä¿¡ã‚’è¡Œã†ã‚½ã‚±ãƒƒãƒˆãƒãƒ³ãƒ‰ãƒ«ã‚’ä½œæˆã™ã‚‹( RecvPort ã‚’ -1 ã«ã™ã‚‹ã¨é€ä¿¡å°‚ç”¨ã®ã‚½ã‚±ãƒƒãƒˆãƒãƒ³ãƒ‰ãƒ«ã«ãªã‚Šã¾ã™ )
 
-static	int			RecvSocket( int NetHandle ) ;											// ƒf[ƒ^‚ÌóMˆ—
-static	int			SendSocket( int NetHandle ) ;											// —­‚Ü‚Á‚½ƒf[ƒ^‚Ì‘—Mˆ—
+static	int			RecvSocket( int NetHandle ) ;											// ãƒ‡ãƒ¼ã‚¿ã®å—ä¿¡å‡¦ç†
+static	int			SendSocket( int NetHandle ) ;											// æºœã¾ã£ãŸãƒ‡ãƒ¼ã‚¿ã®é€ä¿¡å‡¦ç†
 
-static	int			ErrorNetWork( const char *ErrorStr, ... ) ;								// ’ÊMƒGƒ‰[ˆ—ŠÖ”
-static	int			ErrorNetLogAdd( const char *String ) ;									// ’ÊMƒƒbƒZ[ƒWo—ÍŠÖ”
-static	int			ErrorNetLogTabAdd( void ) ;												// ’ÊMƒƒbƒZ[ƒW‚Éƒ^ƒu‚ğ’Ç‰Á‚·‚éŠÖ”
-static	int			ErrorNetLogTabSub( void ) ;												// ’ÊMƒƒbƒZ[ƒW‚Ìƒ^ƒu‚ğŒ¸‚ç‚·ŠÖ”
+static	int			ErrorNetWork( const char *ErrorStr, ... ) ;								// é€šä¿¡ã‚¨ãƒ©ãƒ¼å‡¦ç†é–¢æ•°
+static	int			ErrorNetLogAdd( const char *String ) ;									// é€šä¿¡ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å‡ºåŠ›é–¢æ•°
+static	int			ErrorNetLogTabAdd( void ) ;												// é€šä¿¡ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã«ã‚¿ãƒ–ã‚’è¿½åŠ ã™ã‚‹é–¢æ•°
+static	int			ErrorNetLogTabSub( void ) ;												// é€šä¿¡ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®ã‚¿ãƒ–ã‚’æ¸›ã‚‰ã™é–¢æ•°
 
-extern	LRESULT		CALLBACK WinSockWindowProc( HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam ) ;	// ‚v‚‰‚‚r‚‚ƒ‚‹ê—p‚ÌƒEƒCƒ“ƒhƒE‚ÌƒƒbƒZ[ƒWƒR[ƒ‹ƒoƒbƒNŠÖ”
+extern	LRESULT		CALLBACK WinSockWindowProc( HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam ) ;	// ï¼·ï½‰ï½ï¼³ï½ï½ƒï½‹å°‚ç”¨ã®ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 
-DWORD	WINAPI		ProcessNetMessageThreadFunction( LPVOID ) ;									// ProcessNetMessage ‚ğ‚Ğ‚½‚·‚çŒÄ‚Ñ‘±‚¯‚éƒXƒŒƒbƒh
+DWORD	WINAPI		ProcessNetMessageThreadFunction( LPVOID ) ;									// ProcessNetMessage ã‚’ã²ãŸã™ã‚‰å‘¼ã³ç¶šã‘ã‚‹ã‚¹ãƒ¬ãƒƒãƒ‰
 
 #if 0
 
-static	int			HTTP_Initialize( void ) ;													// HTTP ŠÖŒW‚Ìˆ—‚Ì‰Šú‰»‚ğs‚¤
-static	int			HTTP_Terminate( void ) ;													// HTTP ŠÖŒW‚Ìˆ—‚ÌŒãn––‚ğs‚¤
+static	int			HTTP_Initialize( void ) ;													// HTTP é–¢ä¿‚ã®å‡¦ç†ã®åˆæœŸåŒ–ã‚’è¡Œã†
+static	int			HTTP_Terminate( void ) ;													// HTTP é–¢ä¿‚ã®å‡¦ç†ã®å¾Œå§‹æœ«ã‚’è¡Œã†
 
-static	int			HTTP_GetResult( const char *ResStr ) ;										// HTTP ƒƒbƒZ[ƒW‚ÌŒ‹‰Ê‚ğ“¾‚é
+static	int			HTTP_GetResult( const char *ResStr ) ;										// HTTP ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®çµæœã‚’å¾—ã‚‹
 
 static	int			HTTP_GetConnectInfo( const char *URL, int UseProxy, char *HostBuf,
-											char *PathBuf, char *FileNameBuf, int *PortBuf ) ;	// w’è‚Ì‚t‚q‚k‚©‚çƒzƒXƒgƒpƒXAƒzƒXƒg‚ÌƒAƒNƒZƒXƒpƒXAƒAƒNƒZƒXƒ|[ƒg‚ğæ“¾‚·‚é
+											char *PathBuf, char *FileNameBuf, int *PortBuf ) ;	// æŒ‡å®šã®ï¼µï¼²ï¼¬ã‹ã‚‰ãƒ›ã‚¹ãƒˆãƒ‘ã‚¹ã€ãƒ›ã‚¹ãƒˆã®ã‚¢ã‚¯ã‚»ã‚¹ãƒ‘ã‚¹ã€ã‚¢ã‚¯ã‚»ã‚¹ãƒãƒ¼ãƒˆã‚’å–å¾—ã™ã‚‹
 static	int			HTTP_ConnectHost( const char *URL, int UseProxy, IPDATA *HostIPBuf = NULL,
-									 char *HostBuf = NULL, char *PathBuf = NULL, char *FileNameBuf = NULL, int *PortBuf = NULL ) ;	// w’è‚Ì HTTP ƒzƒXƒg‚ÉÚ‘±‚·‚é( –ß‚è’l: 0ˆÈã = ƒlƒbƒgƒ[ƒNƒnƒ“ƒhƒ‹  -1 = ƒGƒ‰[ )
-static	int			HTTP_AddHandle( void ) ;													// V‚µ‚­HTTPƒnƒ“ƒhƒ‹‚ğ’Ç‰Á‚·‚é( –ß‚è’l: -1 = ƒGƒ‰[  0ˆÈã = HTTPƒnƒ“ƒhƒ‹ )
-static	int			HTTP_DelHandle( int HttpHandle ) ;											// HTTPƒnƒ“ƒhƒ‹‚ÌŒãn––‚ğs‚¤
-static	int			HTTP_ReleaseResource( int HttpHandle, int Result = HTTP_RES_COMPLETE, int Error = HTTP_ERR_NONE ) ;		// HTTP ‚Ìˆ—‚Ég—p‚µ‚Ä‚¢‚éƒŠƒ\[ƒX‚ğ‰ğ•ú‚·‚é
-static	int			HTTP_Process( int HttpHandle ) ;											// HTTP ‚Ìˆ—‚ğs‚¤
-static	int			HTTP_ProcessAll( void ) ;													// HTTP_Proess ‚ğ‘S‚Ä‚Ìƒnƒ“ƒhƒ‹‚É‘Î‚µ‚Äs‚¤
-static	int			HTTP_ProcessForGET( int HttpHandle ) ;										// HTTP ‚Ì GET ƒƒ\ƒbƒh‚Ìˆ—‚ğ‚·‚é
-static	int			HTTP_ProcessForPOST( int HttpHandle ) ;										// HTTP ‚Ì POST ƒƒ\ƒbƒh‚Ìˆ—‚ğ‚·‚é
-static	int			HTTP_ProcessForHEAD( int HttpHandle ) ;										// HTTP ‚Ì HEAD ƒƒ\ƒbƒh‚Ìˆ—‚ğ‚·‚é
+									 char *HostBuf = NULL, char *PathBuf = NULL, char *FileNameBuf = NULL, int *PortBuf = NULL ) ;	// æŒ‡å®šã® HTTP ãƒ›ã‚¹ãƒˆã«æ¥ç¶šã™ã‚‹( æˆ»ã‚Šå€¤: 0ä»¥ä¸Š = ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ãƒãƒ³ãƒ‰ãƒ«  -1 = ã‚¨ãƒ©ãƒ¼ )
+static	int			HTTP_AddHandle( void ) ;													// æ–°ã—ãHTTPãƒãƒ³ãƒ‰ãƒ«ã‚’è¿½åŠ ã™ã‚‹( æˆ»ã‚Šå€¤: -1 = ã‚¨ãƒ©ãƒ¼  0ä»¥ä¸Š = HTTPãƒãƒ³ãƒ‰ãƒ« )
+static	int			HTTP_DelHandle( int HttpHandle ) ;											// HTTPãƒãƒ³ãƒ‰ãƒ«ã®å¾Œå§‹æœ«ã‚’è¡Œã†
+static	int			HTTP_ReleaseResource( int HttpHandle, int Result = HTTP_RES_COMPLETE, int Error = HTTP_ERR_NONE ) ;		// HTTP ã®å‡¦ç†ã«ä½¿ç”¨ã—ã¦ã„ã‚‹ãƒªã‚½ãƒ¼ã‚¹ã‚’è§£æ”¾ã™ã‚‹
+static	int			HTTP_Process( int HttpHandle ) ;											// HTTP ã®å‡¦ç†ã‚’è¡Œã†
+static	int			HTTP_ProcessAll( void ) ;													// HTTP_Proess ã‚’å…¨ã¦ã®ãƒãƒ³ãƒ‰ãƒ«ã«å¯¾ã—ã¦è¡Œã†
+static	int			HTTP_ProcessForGET( int HttpHandle ) ;										// HTTP ã® GET ãƒ¡ã‚½ãƒƒãƒ‰ã®å‡¦ç†ã‚’ã™ã‚‹
+static	int			HTTP_ProcessForPOST( int HttpHandle ) ;										// HTTP ã® POST ãƒ¡ã‚½ãƒƒãƒ‰ã®å‡¦ç†ã‚’ã™ã‚‹
+static	int			HTTP_ProcessForHEAD( int HttpHandle ) ;										// HTTP ã® HEAD ãƒ¡ã‚½ãƒƒãƒ‰ã®å‡¦ç†ã‚’ã™ã‚‹
 
-static	char		GetDataSizeString( int ByteSize, char *SizeString ) ;						// ƒTƒCƒY‚ÉŒ©‡‚Á‚½’PˆÊ‚Å•\‚µ‚½•¶š—ñ‚Æ‚»‚Ì’PˆÊ‚ğ•\‚·ˆê•¶š‚ğ•Ô‚·
-static	int			GetTimeLengthString( int MillSec, char *LengthString ) ;					// ƒ~ƒŠ•b‚ÌŠÔ’·‚©‚çŠÔ’·‚É‡‚Á‚½’PˆÊ‚Ì•¶š—ñ‚É•ÏŠ·‚·‚é
+static	char		GetDataSizeString( int ByteSize, char *SizeString ) ;						// ã‚µã‚¤ã‚ºã«è¦‹åˆã£ãŸå˜ä½ã§è¡¨ã—ãŸæ–‡å­—åˆ—ã¨ãã®å˜ä½ã‚’è¡¨ã™ä¸€æ–‡å­—ã‚’è¿”ã™
+static	int			GetTimeLengthString( int MillSec, char *LengthString ) ;					// ãƒŸãƒªç§’ã®æ™‚é–“é•·ã‹ã‚‰æ™‚é–“é•·ã«åˆã£ãŸå˜ä½ã®æ–‡å­—åˆ—ã«å¤‰æ›ã™ã‚‹
 
 #endif
 
 extern	int			HTTP_FileDownload( const char *FileURL, const char *SavePath = NULL,
 										 void **SaveBufferP = NULL, int *FileSize = NULL,
-										 char **ParamList = NULL ) ;						// HTTP ‚ğg—p‚µ‚Äƒlƒbƒgƒ[ƒNã‚Ìƒtƒ@ƒCƒ‹‚ğƒ_ƒEƒ“ƒ[ƒh‚·‚é
-extern	int			HTTP_GetFileSize( const char *FileURL ) ;								// HTTP ‚ğg—p‚µ‚Äƒlƒbƒgƒ[ƒNã‚Ìƒtƒ@ƒCƒ‹‚ÌƒTƒCƒY‚ğ“¾‚é
+										 char **ParamList = NULL ) ;						// HTTP ã‚’ä½¿ç”¨ã—ã¦ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ä¸Šã®ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ã™ã‚‹
+extern	int			HTTP_GetFileSize( const char *FileURL ) ;								// HTTP ã‚’ä½¿ç”¨ã—ã¦ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ä¸Šã®ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚µã‚¤ã‚ºã‚’å¾—ã‚‹
 
-extern	int			HTTP_StartFileDownload( const char *FileURL, const char *SavePath, void **SaveBufferP = NULL, char **ParamList = NULL ) ;	// HTTP ‚ğg—p‚µ‚½ƒlƒbƒgƒ[ƒNã‚Ìƒtƒ@ƒCƒ‹‚ğƒ_ƒEƒ“ƒ[ƒh‚·‚éˆ—‚ğŠJn‚·‚é
-extern	int			HTTP_StartGetFileSize( const char *FileURL ) ;							// HTTP ‚ğg—p‚µ‚½ƒlƒbƒgƒ[ƒNã‚Ìƒtƒ@ƒCƒ‹‚ÌƒTƒCƒY‚ğ“¾‚éˆ—‚ğŠJn‚·‚é
-extern	int			HTTP_Close( int HttpHandle ) ;											// HTTP ‚Ìˆ—‚ğI—¹‚µAƒnƒ“ƒhƒ‹‚ğ‰ğ•ú‚·‚é
-extern	int			HTTP_CloseAll( void ) ;													// ‘S‚Ä‚Ìƒnƒ“ƒhƒ‹‚É‘Î‚µ‚Ä HTTP_Close ‚ğs‚¤
-extern	int			HTTP_GetState( int HttpHandle ) ;										// HTTP ˆ—‚ÌŒ»İ‚Ìó‘Ô‚ğ“¾‚é( NET_RES_COMPLETE “™ )
-extern	int			HTTP_GetError( int HttpHandle ) ;										// HTTP ˆ—‚ÅƒGƒ‰[‚ª”­¶‚µ‚½ê‡AƒGƒ‰[‚Ì“à—e‚ğ“¾‚é( HTTP_ERR_NONE “™ )
-extern	int			HTTP_GetDownloadFileSize( int HttpHandle ) ;							// HTTP ˆ—‚Å‘ÎÛ‚Æ‚È‚Á‚Ä‚¢‚éƒtƒ@ƒCƒ‹‚ÌƒTƒCƒY‚ğ“¾‚é( –ß‚è’l: -1 = ƒGƒ‰[Eá‚µ‚­‚Í‚Ü‚¾ƒtƒ@ƒCƒ‹‚ÌƒTƒCƒY‚ğæ“¾‚µ‚Ä‚¢‚È‚¢  0ˆÈã = ƒtƒ@ƒCƒ‹‚ÌƒTƒCƒY )
-extern	int			HTTP_GetDownloadedFileSize( int HttpHandle ) ;							// HTTP ˆ—‚ÅŠù‚Éƒ_ƒEƒ“ƒ[ƒh‚µ‚½ƒtƒ@ƒCƒ‹‚ÌƒTƒCƒY‚ğæ“¾‚·‚é
+extern	int			HTTP_StartFileDownload( const char *FileURL, const char *SavePath, void **SaveBufferP = NULL, char **ParamList = NULL ) ;	// HTTP ã‚’ä½¿ç”¨ã—ãŸãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ä¸Šã®ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ã™ã‚‹å‡¦ç†ã‚’é–‹å§‹ã™ã‚‹
+extern	int			HTTP_StartGetFileSize( const char *FileURL ) ;							// HTTP ã‚’ä½¿ç”¨ã—ãŸãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ä¸Šã®ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚µã‚¤ã‚ºã‚’å¾—ã‚‹å‡¦ç†ã‚’é–‹å§‹ã™ã‚‹
+extern	int			HTTP_Close( int HttpHandle ) ;											// HTTP ã®å‡¦ç†ã‚’çµ‚äº†ã—ã€ãƒãƒ³ãƒ‰ãƒ«ã‚’è§£æ”¾ã™ã‚‹
+extern	int			HTTP_CloseAll( void ) ;													// å…¨ã¦ã®ãƒãƒ³ãƒ‰ãƒ«ã«å¯¾ã—ã¦ HTTP_Close ã‚’è¡Œã†
+extern	int			HTTP_GetState( int HttpHandle ) ;										// HTTP å‡¦ç†ã®ç¾åœ¨ã®çŠ¶æ…‹ã‚’å¾—ã‚‹( NET_RES_COMPLETE ç­‰ )
+extern	int			HTTP_GetError( int HttpHandle ) ;										// HTTP å‡¦ç†ã§ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ãŸå ´åˆã€ã‚¨ãƒ©ãƒ¼ã®å†…å®¹ã‚’å¾—ã‚‹( HTTP_ERR_NONE ç­‰ )
+extern	int			HTTP_GetDownloadFileSize( int HttpHandle ) ;							// HTTP å‡¦ç†ã§å¯¾è±¡ã¨ãªã£ã¦ã„ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚µã‚¤ã‚ºã‚’å¾—ã‚‹( æˆ»ã‚Šå€¤: -1 = ã‚¨ãƒ©ãƒ¼ãƒ»è‹¥ã—ãã¯ã¾ã ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚µã‚¤ã‚ºã‚’å–å¾—ã—ã¦ã„ãªã„  0ä»¥ä¸Š = ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚µã‚¤ã‚º )
+extern	int			HTTP_GetDownloadedFileSize( int HttpHandle ) ;							// HTTP å‡¦ç†ã§æ—¢ã«ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ã—ãŸãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚µã‚¤ã‚ºã‚’å–å¾—ã™ã‚‹
 
-extern	int			fgetsForNetHandle( int NetHandle, char *strbuffer ) ;					// fgets ‚Ìƒlƒbƒgƒ[ƒNƒnƒ“ƒhƒ‹”Å( -1:æ“¾‚Å‚«‚¸ 0:æ“¾‚Å‚«‚½ )
+extern	int			fgetsForNetHandle( int NetHandle, char *strbuffer ) ;					// fgets ã®ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ãƒãƒ³ãƒ‰ãƒ«ç‰ˆ( -1:å–å¾—ã§ããš 0:å–å¾—ã§ããŸ )
 extern	int			URLAnalys( const char *URL, char *HostBuf = NULL, char *PathBuf = NULL,
-												 char *FileNameBuf = NULL, int *PortBuf = NULL ) ;	// ‚t‚q‚k‚ğ‰ğÍ‚·‚é
-extern	int			URLConvert( char *URL, int ParamConvert = TRUE, int NonConvert = FALSE ) ;	// HTTP ‚É“n‚¹‚È‚¢‹L†‚ªg‚í‚ê‚½•¶š—ñ‚ğ“n‚¹‚é‚æ‚¤‚È•¶š—ñ‚É•ÏŠ·‚·‚é( –ß‚è’l: -1 = ƒGƒ‰[  0ˆÈã = •ÏŠ·Œã‚Ì•¶š—ñ‚ÌƒTƒCƒY )
-extern	int			URLParamAnalysis( char **ParamList, char **ParamStringP ) ;				// HTTP —pƒpƒ‰ƒ[ƒ^ƒŠƒXƒg‚©‚çˆê‚Â‚Ìƒpƒ‰ƒ[ƒ^•¶š—ñ‚ğì¬‚·‚é( –ß‚è’l:  -1 = ƒGƒ‰[  0ˆÈã = ƒpƒ‰ƒ[ƒ^‚Ì•¶š—ñ‚Ì’·‚³ )
+												 char *FileNameBuf = NULL, int *PortBuf = NULL ) ;	// ï¼µï¼²ï¼¬ã‚’è§£æã™ã‚‹
+extern	int			URLConvert( char *URL, int ParamConvert = TRUE, int NonConvert = FALSE ) ;	// HTTP ã«æ¸¡ã›ãªã„è¨˜å·ãŒä½¿ã‚ã‚ŒãŸæ–‡å­—åˆ—ã‚’æ¸¡ã›ã‚‹ã‚ˆã†ãªæ–‡å­—åˆ—ã«å¤‰æ›ã™ã‚‹( æˆ»ã‚Šå€¤: -1 = ã‚¨ãƒ©ãƒ¼  0ä»¥ä¸Š = å¤‰æ›å¾Œã®æ–‡å­—åˆ—ã®ã‚µã‚¤ã‚º )
+extern	int			URLParamAnalysis( char **ParamList, char **ParamStringP ) ;				// HTTP ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒªã‚¹ãƒˆã‹ã‚‰ä¸€ã¤ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ–‡å­—åˆ—ã‚’ä½œæˆã™ã‚‹( æˆ»ã‚Šå€¤:  -1 = ã‚¨ãƒ©ãƒ¼  0ä»¥ä¸Š = ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®æ–‡å­—åˆ—ã®é•·ã• )
 
-// ƒvƒƒOƒ‰ƒ€ --------------------------------------------------------------------
+// ãƒ—ãƒ­ã‚°ãƒ©ãƒ  --------------------------------------------------------------------
 
-// ’ÊMŠÖŒW
+// é€šä¿¡é–¢ä¿‚
 
-// ’ÊMƒGƒ‰[ˆ—ŠÖ”
+// é€šä¿¡ã‚¨ãƒ©ãƒ¼å‡¦ç†é–¢æ•°
 static	int ErrorNetWork( const char *ErrorStr, ... )
 {
 	va_list VaList ;
 	char String[ 1024 ] ;
 	int ErrorNum ;
 
-	// ƒƒOo—Í—p‚ÌƒŠƒXƒg‚ğƒZƒbƒg‚·‚é
+	// ãƒ­ã‚°å‡ºåŠ›ç”¨ã®ãƒªã‚¹ãƒˆã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 	va_start( VaList, ErrorStr ) ;
 
-	// •ÒWŒã‚Ì•¶š—ñ‚ğæ“¾‚·‚é
+	// ç·¨é›†å¾Œã®æ–‡å­—åˆ—ã‚’å–å¾—ã™ã‚‹
 	CL_vsnprintf( DX_CHARCODEFORMAT_UTF16LE, TRUE, CHAR_CHARCODEFORMAT, WCHAR_T_CHARCODEFORMAT, String, sizeof( String ) / 2, ErrorStr, VaList ) ;
 	
-	// ‰Â•Ï’·ƒŠƒXƒg‚Ìƒ|ƒCƒ“ƒ^‚ğƒŠƒZƒbƒg‚·‚é
+	// å¯å¤‰é•·ãƒªã‚¹ãƒˆã®ãƒã‚¤ãƒ³ã‚¿ã‚’ãƒªã‚»ãƒƒãƒˆã™ã‚‹
 	va_end( VaList ) ;
 
 //	if( SockData.MessageWindow != NULL ) return -1 ;
@@ -164,14 +164,14 @@ static	int ErrorNetWork( const char *ErrorStr, ... )
 	SETUP_WIN_API
 
 	ErrorNum = WinAPIData.WinSockFunc.WSAGetLastErrorFunc() ;
-	DXST_LOGFILEFMT_ADDUTF16LE(( "\xcd\x30\xc3\x30\xc8\x30\xef\x30\xfc\x30\xaf\x30\xed\x30\xb0\x30\x02\x30\x25\x00\x73\x00\x5b\x00\x25\x00\x64\x00\x5d\x00\x00"/*@ L"ƒlƒbƒgƒ[ƒNƒƒOB%s[%d]" @*/, String, ErrorNum )) ;
+	DXST_LOGFILEFMT_ADDUTF16LE(( "\xcd\x30\xc3\x30\xc8\x30\xef\x30\xfc\x30\xaf\x30\xed\x30\xb0\x30\x02\x30\x25\x00\x73\x00\x5b\x00\x25\x00\x64\x00\x5d\x00\x00"/*@ L"ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ãƒ­ã‚°ã€‚%s[%d]" @*/, String, ErrorNum )) ;
 
-	// I—¹
+	// çµ‚äº†
 	return -1 ;
 }
 
 
-// ’ÊMƒƒbƒZ[ƒWo—ÍŠÖ”
+// é€šä¿¡ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å‡ºåŠ›é–¢æ•°
 static int ErrorNetLogAdd( const char *String )
 {
 //	if( SockData.MessageWindow != NULL ) return 0 ;
@@ -179,7 +179,7 @@ static int ErrorNetLogAdd( const char *String )
 	return ErrorNetWork( String ) ;
 }
 
-// ’ÊMƒƒbƒZ[ƒW‚Éƒ^ƒu‚ğ’Ç‰Á‚·‚éŠÖ”
+// é€šä¿¡ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã«ã‚¿ãƒ–ã‚’è¿½åŠ ã™ã‚‹é–¢æ•°
 static int ErrorNetLogTabAdd( void )
 {
 //	if( SockData.MessageWindow != NULL ) return 0 ;
@@ -187,7 +187,7 @@ static int ErrorNetLogTabAdd( void )
 	return DXST_LOGFILE_TABADD ;
 }
 
-// ’ÊMƒƒbƒZ[ƒW‚Ìƒ^ƒu‚ğŒ¸‚ç‚·ŠÖ”
+// é€šä¿¡ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®ã‚¿ãƒ–ã‚’æ¸›ã‚‰ã™é–¢æ•°
 static int ErrorNetLogTabSub( void )
 {
 //	if( SockData.MessageWindow != NULL ) return 0 ;
@@ -195,50 +195,50 @@ static int ErrorNetLogTabSub( void )
 	return DXST_LOGFILE_TABSUB ;
 }
 
-// ’ÊMƒƒbƒZ[ƒW‚Ìˆ—‚ğ‚·‚éŠÖ”
+// é€šä¿¡ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®å‡¦ç†ã‚’ã™ã‚‹é–¢æ•°
 extern int NS_ProcessNetMessage( int RunReleaseProcess )
 {
 	SETUP_WIN_API
 
-	// ’ÊMŠÖŒW‚ª‰Šú‰»‚³‚ê‚Ä‚¢‚È‚¢ê‡‚Í‰½‚à‚¹‚¸I—¹
+	// é€šä¿¡é–¢ä¿‚ãŒåˆæœŸåŒ–ã•ã‚Œã¦ã„ãªã„å ´åˆã¯ä½•ã‚‚ã›ãšçµ‚äº†
 	if( SockData.MessageWindow == NULL || SockData.InitializeFlag == FALSE ) return 0 ;
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 	if( HandleManageArray[ DX_HANDLETYPE_NETWORK ].InitializeFlag != FALSE )
 		CRITICALSECTION_LOCK( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 
-	// ƒnƒ“ƒhƒ‹‰ğ•úˆ—‚ğ‚·‚éw’è‚ª‚ ‚éê‡‚Íƒnƒ“ƒhƒ‹‰ğ•úˆ—‚ğs‚¤
+	// ãƒãƒ³ãƒ‰ãƒ«è§£æ”¾å‡¦ç†ã‚’ã™ã‚‹æŒ‡å®šãŒã‚ã‚‹å ´åˆã¯ãƒãƒ³ãƒ‰ãƒ«è§£æ”¾å‡¦ç†ã‚’è¡Œã†
 	if( RunReleaseProcess == TRUE )
 	{
 		SOCKETDATA * Sock ;
 		HANDLELIST *List, *temp ;
 
-		// Ø’f’¼Œã‚É‰ğ•ú‚·‚éƒtƒ‰ƒO‚ª—§‚Á‚Ä‚¢‚Ä
-		// ‘Šè‚©‚çÚ‘±‚µA‘Šè‚©‚çØ’f‚³‚ê‚½ê‡A©“®“I‚Éƒnƒ“ƒhƒ‹‚Ì‰ğ•ú‚ğs‚¤
-		// á‚µ‚­‚Íd‘å‚ÈƒGƒ‰[‚ª”­¶‚µ‚Ä‚¢‚éê‡‚à©“®“I‚Éƒnƒ“ƒhƒ‹‚ğ‰ğ•ú‚·‚é
+		// åˆ‡æ–­ç›´å¾Œã«è§£æ”¾ã™ã‚‹ãƒ•ãƒ©ã‚°ãŒç«‹ã£ã¦ã„ã¦
+		// ç›¸æ‰‹ã‹ã‚‰æ¥ç¶šã—ã€ç›¸æ‰‹ã‹ã‚‰åˆ‡æ–­ã•ã‚ŒãŸå ´åˆã€è‡ªå‹•çš„ã«ãƒãƒ³ãƒ‰ãƒ«ã®è§£æ”¾ã‚’è¡Œã†
+		// è‹¥ã—ãã¯é‡å¤§ãªã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¦ã„ã‚‹å ´åˆã‚‚è‡ªå‹•çš„ã«ãƒãƒ³ãƒ‰ãƒ«ã‚’è§£æ”¾ã™ã‚‹
 		for( List = HandleManageArray[ DX_HANDLETYPE_NETWORK ].ListFirst.Next ; List->Next != NULL ; List = temp )
 		{
 			temp = List->Next ;
 			Sock = (SOCKETDATA *)List->Data ;
-			if( Sock->UseFlag == TRUE &&					// ƒnƒ“ƒhƒ‹‚ª—LŒø‚Å
+			if( Sock->UseFlag == TRUE &&					// ãƒãƒ³ãƒ‰ãƒ«ãŒæœ‰åŠ¹ã§
 				( ( 
-					Sock->ConnectionFlag == FALSE &&			// Ú‘±‚ª’f‚½‚ê‚Ä‚¢‚Ä
-					Sock->ConnectionLostFlag == TRUE &&			// Ú‘±‚ª’f‚½‚ê‚½‚±‚Æ‚àŠm”FÏ‚İ‚Å
-//					Sock->AcceptFlag == TRUE &&					// ‘Šè‚©‚çÚ‘±‚³‚ê‚Ä‚¢‚Ä
-					Sock->CloseAfterLostFlag == TRUE ) ||		// ©“®“I‚É‰ğ•ú‚·‚éƒtƒ‰ƒO‚ª—§‚Á‚Ä‚¢‚éê‡
-				  Sock->ErrorFlag == TRUE ) )					// ‚à‚µ‚­‚Íd‘å‚ÈƒGƒ‰[‚ª”­¶‚µ‚Ä‚¢‚éê‡
+					Sock->ConnectionFlag == FALSE &&			// æ¥ç¶šãŒæ–­ãŸã‚Œã¦ã„ã¦
+					Sock->ConnectionLostFlag == TRUE &&			// æ¥ç¶šãŒæ–­ãŸã‚ŒãŸã“ã¨ã‚‚ç¢ºèªæ¸ˆã¿ã§
+//					Sock->AcceptFlag == TRUE &&					// ç›¸æ‰‹ã‹ã‚‰æ¥ç¶šã•ã‚Œã¦ã„ã¦
+					Sock->CloseAfterLostFlag == TRUE ) ||		// è‡ªå‹•çš„ã«è§£æ”¾ã™ã‚‹ãƒ•ãƒ©ã‚°ãŒç«‹ã£ã¦ã„ã‚‹å ´åˆ
+				  Sock->ErrorFlag == TRUE ) )					// ã‚‚ã—ãã¯é‡å¤§ãªã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¦ã„ã‚‹å ´åˆ
 			{
-				// ƒnƒ“ƒhƒ‹‚ğ‰ğ•ú
+				// ãƒãƒ³ãƒ‰ãƒ«ã‚’è§£æ”¾
 				NS_CloseNetWork( List->Handle ) ;
 			}
 		}
 	}
 
-	// ’ÊM—pƒEƒCƒ“ƒhƒEƒƒbƒZ[ƒW‚ğˆ—‚·‚é
+	// é€šä¿¡ç”¨ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å‡¦ç†ã™ã‚‹
 	{
 		MSG msg;
 
-		// ƒƒbƒZ[ƒW‚ª‰½‚à‚È‚¢‚©‚ ‚Á‚½ê‡‚ÍÒ¯¾°¼Ş‚Ìˆ—‚ªI‚í‚é‚Ü‚Åƒ‹[ƒv‚·‚éi§ŒÀ‚ ‚èj
+		// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãŒä½•ã‚‚ãªã„ã‹ã‚ã£ãŸå ´åˆã¯ï¾’ï½¯ï½¾ï½°ï½¼ï¾ã®å‡¦ç†ãŒçµ‚ã‚ã‚‹ã¾ã§ãƒ«ãƒ¼ãƒ—ã™ã‚‹ï¼ˆåˆ¶é™ã‚ã‚Šï¼‰
 		while( PeekMessageWFunc( &msg, SockData.MessageWindow, 0, 0, PM_REMOVE ) )
 		{
 			WinAPIData.Win32Func.TranslateMessageFunc( &msg );
@@ -246,16 +246,16 @@ extern int NS_ProcessNetMessage( int RunReleaseProcess )
 		}
 	}
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 	if( HandleManageArray[ DX_HANDLETYPE_NETWORK ].InitializeFlag != FALSE )
 		CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
 
-// ’ÊM‹@”\‚ğ‰Šú‰»‚·‚é
+// é€šä¿¡æ©Ÿèƒ½ã‚’åˆæœŸåŒ–ã™ã‚‹
 extern 	int InitializeNetWork( HWND WindowHandle )
 {
 	WSADATA wsaData;
@@ -264,27 +264,27 @@ extern 	int InitializeNetWork( HWND WindowHandle )
 
 	SETUP_WIN_API
 
-	DXERRORNETLOG_ADD( "\xcd\x30\xc3\x30\xc8\x30\xef\x30\xfc\x30\xaf\x30\xa2\x95\x23\x90\x92\x30\x1d\x52\x1f\x67\x16\x53\x57\x30\x7e\x30\x59\x30\x0a\x00\x00"/*@ L"ƒlƒbƒgƒ[ƒNŠÖ˜A‚ğ‰Šú‰»‚µ‚Ü‚·\n" @*/ ) ;
+	DXERRORNETLOG_ADD( "\xcd\x30\xc3\x30\xc8\x30\xef\x30\xfc\x30\xaf\x30\xa2\x95\x23\x90\x92\x30\x1d\x52\x1f\x67\x16\x53\x57\x30\x7e\x30\x59\x30\x0a\x00\x00"/*@ L"ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯é–¢é€£ã‚’åˆæœŸåŒ–ã—ã¾ã™\n" @*/ ) ;
 	ErrorNetLogTabAdd() ;
 
-	// ƒnƒ“ƒhƒ‹ŠÇ—î•ñ‚Ì‰Šú‰»
+	// ãƒãƒ³ãƒ‰ãƒ«ç®¡ç†æƒ…å ±ã®åˆæœŸåŒ–
 	InitializeHandleManage( DX_HANDLETYPE_NETWORK, sizeof( SOCKETDATA ), MAX_SOCKET_NUM, InitializeNetworkHandle, TerminateNetworkHandle, NULL, L"Network" ) ;
 
-	// WinSockets‰Šú‰»
+	// WinSocketsåˆæœŸåŒ–
 	if( WinAPIData.WinSockFunc.WSAStartupFunc( MAKEWORD( 2 , 2 ), &wsaData ) != 0 ) 
-		return DXERRORNETLOG_ADD( "\x77\x00\x73\x00\x32\x00\x5f\x00\x33\x00\x32\x00\x2e\x00\x64\x00\x6c\x00\x6c\x00\x4c\x30\x0e\x5c\x65\x51\x55\x30\x8c\x30\x66\x30\x44\x30\x7e\x30\x5b\x30\x93\x30\x0a\x00\x00"/*@ L"ws2_32.dll‚ª“±“ü‚³‚ê‚Ä‚¢‚Ü‚¹‚ñ\n" @*/ ) ;
+		return DXERRORNETLOG_ADD( "\x77\x00\x73\x00\x32\x00\x5f\x00\x33\x00\x32\x00\x2e\x00\x64\x00\x6c\x00\x6c\x00\x4c\x30\x0e\x5c\x65\x51\x55\x30\x8c\x30\x66\x30\x44\x30\x7e\x30\x5b\x30\x93\x30\x0a\x00\x00"/*@ L"ws2_32.dllãŒå°å…¥ã•ã‚Œã¦ã„ã¾ã›ã‚“\n" @*/ ) ;
 
-	// w’èƒo[ƒWƒ‡ƒ“‚Å‰Šú‰»‚³‚ê‚È‚©‚Á‚½ê‡‚ÍI—¹
+	// æŒ‡å®šãƒãƒ¼ã‚¸ãƒ§ãƒ³ã§åˆæœŸåŒ–ã•ã‚Œãªã‹ã£ãŸå ´åˆã¯çµ‚äº†
 	if ( LOBYTE( wsaData.wVersion ) != 2 ||
         HIBYTE( wsaData.wVersion ) != 2 )
 	{
 		WinAPIData.WinSockFunc.WSACleanupFunc();
 
-		DXERRORNETLOG_ADD( "\x77\x00\x73\x00\x32\x00\x5f\x00\x33\x00\x32\x00\x2e\x00\x64\x00\x6c\x00\x6c\x00\x6e\x30\xd0\x30\xfc\x30\xb8\x30\xe7\x30\xf3\x30\x4c\x30\x55\x90\x44\x30\x7e\x30\x59\x30\x0a\x00\x00"/*@ L"ws2_32.dll‚Ìƒo[ƒWƒ‡ƒ“‚ªˆá‚¢‚Ü‚·\n" @*/ ) ;
+		DXERRORNETLOG_ADD( "\x77\x00\x73\x00\x32\x00\x5f\x00\x33\x00\x32\x00\x2e\x00\x64\x00\x6c\x00\x6c\x00\x6e\x30\xd0\x30\xfc\x30\xb8\x30\xe7\x30\xf3\x30\x4c\x30\x55\x90\x44\x30\x7e\x30\x59\x30\x0a\x00\x00"/*@ L"ws2_32.dllã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³ãŒé•ã„ã¾ã™\n" @*/ ) ;
 		return -1;
 	}
 
-	// ‚h‚oƒAƒhƒŒƒX‚ğæ“¾‚·‚é
+	// ï¼©ï¼°ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å–å¾—ã™ã‚‹
 	{
 		char HostName[ 1024 ] ;
 		HOSTENT *Host ;
@@ -292,15 +292,15 @@ extern 	int InitializeNetWork( HWND WindowHandle )
 //		_MEMSET( &SockData.MyIPv4, 0, sizeof( IPDATA ) ) ;
 		if( WinAPIData.WinSockFunc.gethostnameFunc( HostName, 256 ) == 0 )
 		{
-			// IPv4 ƒAƒhƒŒƒX‚ğæ“¾
+			// IPv4 ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å–å¾—
 			{
 				Host = WinAPIData.WinSockFunc.gethostbynameFunc( HostName ) ;
 				if( Host != NULL )
 				{
-					// ‚h‚oƒAƒhƒŒƒX‚Ì”‚ğ”‚¦‚é
+					// ï¼©ï¼°ã‚¢ãƒ‰ãƒ¬ã‚¹ã®æ•°ã‚’æ•°ãˆã‚‹
 					for( SockData.MyIPv4Num = 0 ; Host->h_addr_list[ SockData.MyIPv4Num ] != NULL ; SockData.MyIPv4Num ++ ){}
 
-					// ‚OŒÂ‚¾‚Á‚½ê‡‚Í NULL ‚ğƒZƒbƒg‚µ‚ÄI—¹
+					// ï¼å€‹ã ã£ãŸå ´åˆã¯ NULL ã‚’ã‚»ãƒƒãƒˆã—ã¦çµ‚äº†
 					if( SockData.MyIPv4Num == 0 )
 					{
 						SockData.MyIPv4 = NULL ;
@@ -309,17 +309,17 @@ extern 	int InitializeNetWork( HWND WindowHandle )
 					{
 						int i ;
 
-						// ‚h‚oƒAƒhƒŒƒX‚ğ•Û‘¶‚·‚éƒƒ‚ƒŠ‚ğŠm•Û‚·‚é
+						// ï¼©ï¼°ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ä¿å­˜ã™ã‚‹ãƒ¡ãƒ¢ãƒªã‚’ç¢ºä¿ã™ã‚‹
 						SockData.MyIPv4 = ( IPDATA * )DXALLOC( sizeof( IPDATA ) * SockData.MyIPv4Num ) ;
 						if( SockData.MyIPv4 == NULL )
 						{
 							WinAPIData.WinSockFunc.WSACleanupFunc() ;
 
-							DXERRORNETLOG_ADD( "\x49\x00\x50\x00\x76\x00\x34\x00\xa2\x30\xc9\x30\xec\x30\xb9\x30\x92\x30\xdd\x4f\x58\x5b\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"IPv4ƒAƒhƒŒƒX‚ğ•Û‘¶‚·‚éƒƒ‚ƒŠ‚ÌŠm•Û‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+							DXERRORNETLOG_ADD( "\x49\x00\x50\x00\x76\x00\x34\x00\xa2\x30\xc9\x30\xec\x30\xb9\x30\x92\x30\xdd\x4f\x58\x5b\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"IPv4ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ä¿å­˜ã™ã‚‹ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 							return -1 ;
 						}
 
-						// ‚h‚oƒAƒhƒŒƒX‚ğ•Û‘¶
+						// ï¼©ï¼°ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ä¿å­˜
 						for( i = 0 ; i < SockData.MyIPv4Num ; i ++ )
 						{
 							SockData.MyIPv4[ i ].d1 = ( unsigned char )Host->h_addr_list[ i ][ 0 ] ;
@@ -331,24 +331,24 @@ extern 	int InitializeNetWork( HWND WindowHandle )
 				}
 			}
 
-			// IPv6 ƒAƒhƒŒƒX‚ğæ“¾
+			// IPv6 ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å–å¾—
 			{
 				_addrinfo hints ;
 				_addrinfo *ainfo = NULL ;
 
 				_MEMSET( &hints, 0, sizeof( hints ) ) ;
-				hints.ai_family = 23/*AF_INET6 ‚Í 23*/ ;
+				hints.ai_family = 23/*AF_INET6 ã¯ 23*/ ;
 				if( WinAPIData.WinSockFunc.getaddrinfoFunc( HostName, NULL, &hints, &ainfo ) == 0 )
 				{
-					// IPv6 ‚ÌƒAƒhƒŒƒX‚©ƒ`ƒFƒbƒN
-					if( ainfo->ai_family == 23/*AF_INET6 ‚Í 23*/ && ainfo->ai_addr != NULL )
+					// IPv6 ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‹ãƒã‚§ãƒƒã‚¯
+					if( ainfo->ai_family == 23/*AF_INET6 ã¯ 23*/ && ainfo->ai_addr != NULL )
 					{
 						_addrinfo *tmp_ainfo ;
 
-						// ƒAƒhƒŒƒX‚Ì”‚ğ”‚¦‚é
+						// ã‚¢ãƒ‰ãƒ¬ã‚¹ã®æ•°ã‚’æ•°ãˆã‚‹
 						for( SockData.MyIPv6Num = 0, tmp_ainfo = ainfo ; tmp_ainfo != NULL ; SockData.MyIPv6Num++, tmp_ainfo = tmp_ainfo->ai_next ){}
 
-						// ‚OŒÂ‚¾‚Á‚½ê‡‚Í NULL ‚ğƒZƒbƒg‚µ‚ÄI—¹
+						// ï¼å€‹ã ã£ãŸå ´åˆã¯ NULL ã‚’ã‚»ãƒƒãƒˆã—ã¦çµ‚äº†
 						if( SockData.MyIPv6Num == 0 )
 						{
 							SockData.MyIPv6 = NULL ;
@@ -357,17 +357,17 @@ extern 	int InitializeNetWork( HWND WindowHandle )
 						{
 							int i ;
 
-							// ‚h‚oƒAƒhƒŒƒX‚ğ•Û‘¶‚·‚éƒƒ‚ƒŠ‚ğŠm•Û‚·‚é
+							// ï¼©ï¼°ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ä¿å­˜ã™ã‚‹ãƒ¡ãƒ¢ãƒªã‚’ç¢ºä¿ã™ã‚‹
 							SockData.MyIPv6 = ( IPDATA_IPv6 * )DXALLOC( sizeof( IPDATA_IPv6 ) * SockData.MyIPv6Num ) ;
 							if( SockData.MyIPv6 == NULL )
 							{
 								WinAPIData.WinSockFunc.WSACleanupFunc() ;
 
-								DXERRORNETLOG_ADD( "\x49\x00\x50\x00\x76\x00\x36\x00\xa2\x30\xc9\x30\xec\x30\xb9\x30\x92\x30\xdd\x4f\x58\x5b\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"IPv6ƒAƒhƒŒƒX‚ğ•Û‘¶‚·‚éƒƒ‚ƒŠ‚ÌŠm•Û‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+								DXERRORNETLOG_ADD( "\x49\x00\x50\x00\x76\x00\x36\x00\xa2\x30\xc9\x30\xec\x30\xb9\x30\x92\x30\xdd\x4f\x58\x5b\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"IPv6ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ä¿å­˜ã™ã‚‹ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 								return -1 ;
 							}
 
-							// IPv6ƒAƒhƒŒƒX‚ğ•Û‘¶
+							// IPv6ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ä¿å­˜
 							for( i = 0, tmp_ainfo = ainfo ; tmp_ainfo != NULL ; i ++, tmp_ainfo = tmp_ainfo->ai_next )
 							{
 								_sockaddr_in6 *addrv6 ;
@@ -377,31 +377,31 @@ extern 	int InitializeNetWork( HWND WindowHandle )
 						}
 					}
 
-					// ƒƒ‚ƒŠ‚Ì‰ğ•ú
+					// ãƒ¡ãƒ¢ãƒªã®è§£æ”¾
 					WinAPIData.WinSockFunc.freeaddrinfoFunc( ainfo ) ;
 				}
 			}
 		}
 	}
 
-	// ƒ\ƒPƒbƒgƒf[ƒ^ƒ[ƒ‰Šú‰»
+	// ã‚½ã‚±ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã‚¼ãƒ­åˆæœŸåŒ–
 //	_MEMSET( SockData.CSocket, 0, sizeof( SockData.CSocket ) ) ;
 
-	// Ú‘±Å‘å”‚ğƒZƒbƒg‚·‚éA‰Šú‰»ƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// æ¥ç¶šæœ€å¤§æ•°ã‚’ã‚»ãƒƒãƒˆã™ã‚‹ã€åˆæœŸåŒ–ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 //	SockData.MaxSockets = MAX_SOCKET_NUM ;
 	SockData.InitializeFlag = TRUE ;
 
-	// ƒEƒCƒ“ƒhƒEƒnƒ“ƒhƒ‹‚ğ•Û‘¶‚·‚é
+	// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒãƒ³ãƒ‰ãƒ«ã‚’ä¿å­˜ã™ã‚‹
 	SockData.ParentWindow = WindowHandle ;
 
-	// ƒƒbƒZ[ƒWˆ——pqƒEƒCƒ“ƒhƒE‚ğì¬‚·‚é
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å‡¦ç†ç”¨å­ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚’ä½œæˆã™ã‚‹
 	{
 		WNDCLASSEXW wc ;
 		HWND ParentWindow ;
 		HINSTANCE hInst = GetModuleHandleWFunc( NULL ) ;
 		const wchar_t *Name = L"WinSockProc" ;
 
-		// qƒEƒCƒ“ƒhƒE‚ÌƒEƒCƒ“ƒhƒEƒNƒ‰ƒX‚ğ“o˜^
+		// å­ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚¯ãƒ©ã‚¹ã‚’ç™»éŒ²
 		_MEMSET( &wc, 0, sizeof( wc ) ) ;
 		{
 			wc.style			= 0 ;
@@ -419,15 +419,15 @@ extern 	int InitializeNetWork( HWND WindowHandle )
 
 			if( !RegisterClassExWFunc( &wc ) )
 			{
-				DXST_LOGFILE_ADDUTF16LE( "\xcd\x30\xc3\x30\xc8\x30\xef\x30\xfc\x30\xaf\x30\xe6\x51\x06\x74\x28\x75\x6e\x30\x50\x5b\xa6\x30\xa4\x30\xf3\x30\xc9\x30\xa6\x30\xaf\x30\xe9\x30\xb9\x30\x6e\x30\x7b\x76\x32\x93\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ƒlƒbƒgƒ[ƒNˆ——p‚ÌqƒEƒCƒ“ƒhƒEƒNƒ‰ƒX‚Ì“o˜^‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+				DXST_LOGFILE_ADDUTF16LE( "\xcd\x30\xc3\x30\xc8\x30\xef\x30\xfc\x30\xaf\x30\xe6\x51\x06\x74\x28\x75\x6e\x30\x50\x5b\xa6\x30\xa4\x30\xf3\x30\xc9\x30\xa6\x30\xaf\x30\xe9\x30\xb9\x30\x6e\x30\x7b\x76\x32\x93\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯å‡¦ç†ç”¨ã®å­ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚¯ãƒ©ã‚¹ã®ç™»éŒ²ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 				return -1 ;
 			}
 		}
 
-		// eƒEƒCƒ“ƒhƒE‚ÌŠm’è
+		// è¦ªã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ç¢ºå®š
 		ParentWindow = SockData.ParentWindow != NULL ? SockData.ParentWindow : WinData.MainWindow ;
 
-		// qƒEƒCƒ“ƒhƒE‚ğ¶¬
+		// å­ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚’ç”Ÿæˆ
 		SockData.MessageWindow = 
 			CreateWindowExWFunc(
 				WS_EX_TRANSPARENT,
@@ -441,27 +441,27 @@ extern 	int InitializeNetWork( HWND WindowHandle )
 				NULL );
 		if( SockData.MessageWindow == NULL )
 		{
-			DXST_LOGFILE_ADDUTF16LE( "\xcd\x30\xc3\x30\xc8\x30\xef\x30\xfc\x30\xaf\x30\xe6\x51\x06\x74\x28\x75\x6e\x30\x50\x5b\xa6\x30\xa4\x30\xf3\x30\xc9\x30\xa6\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ƒlƒbƒgƒ[ƒNˆ——p‚ÌqƒEƒCƒ“ƒhƒE‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+			DXST_LOGFILE_ADDUTF16LE( "\xcd\x30\xc3\x30\xc8\x30\xef\x30\xfc\x30\xaf\x30\xe6\x51\x06\x74\x28\x75\x6e\x30\x50\x5b\xa6\x30\xa4\x30\xf3\x30\xc9\x30\xa6\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯å‡¦ç†ç”¨ã®å­ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 			return -1 ;
 		}
 		SockData.DestroyFlag = FALSE ;
 	}
 
-	// ƒnƒ“ƒhƒ‹ƒŠƒXƒg‚Ì‰Šú‰»
+	// ãƒãƒ³ãƒ‰ãƒ«ãƒªã‚¹ãƒˆã®åˆæœŸåŒ–
 //	InitializeHandleList( &SockData.SocketListFirst, &SockData.SocketListLast ) ;
 
-	// ProcessNetMessage ‚ğ‚Ğ‚½‚·‚çŒÄ‚ÔƒXƒŒƒbƒh‚ğ—§‚Ä‚é
+	// ProcessNetMessage ã‚’ã²ãŸã™ã‚‰å‘¼ã¶ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’ç«‹ã¦ã‚‹
 	SockData.ProcessNetMessageThreadHandle = WinAPIData.Win32Func.CreateThreadFunc( NULL, 0, ProcessNetMessageThreadFunction, NULL, CREATE_SUSPENDED, &SockData.ProcessNetMessageThreadID ) ;
 	WinAPIData.Win32Func.ResumeThreadFunc( SockData.ProcessNetMessageThreadHandle ) ;
 
 	ErrorNetLogTabSub() ;
-	DXERRORNETLOG_ADD( "\x1d\x52\x1f\x67\x16\x53\x92\x30\x8c\x5b\x86\x4e\x57\x30\x7e\x30\x57\x30\x5f\x30\x20\x00\x0a\x00\x00"/*@ L"‰Šú‰»‚ğŠ®—¹‚µ‚Ü‚µ‚½ \n" @*/ ) ;
+	DXERRORNETLOG_ADD( "\x1d\x52\x1f\x67\x16\x53\x92\x30\x8c\x5b\x86\x4e\x57\x30\x7e\x30\x57\x30\x5f\x30\x20\x00\x0a\x00\x00"/*@ L"åˆæœŸåŒ–ã‚’å®Œäº†ã—ã¾ã—ãŸ \n" @*/ ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ’ÊM‹@”\‚ğI—¹‚·‚é
+// é€šä¿¡æ©Ÿèƒ½ã‚’çµ‚äº†ã™ã‚‹
 extern int TerminateNetWork( void )
 {
 //	int i, Handle ;
@@ -470,27 +470,27 @@ extern int TerminateNetWork( void )
 
 	SETUP_WIN_API
 
-	DXERRORNETLOG_ADD( "\xcd\x30\xc3\x30\xc8\x30\xef\x30\xfc\x30\xaf\x30\xa2\x95\x23\x90\x6e\x30\x42\x7d\x86\x4e\xe6\x51\x06\x74\x92\x30\x4c\x88\x44\x30\x7e\x30\x59\x30\x20\x00\x0a\x00\x00"/*@ L"ƒlƒbƒgƒ[ƒNŠÖ˜A‚ÌI—¹ˆ—‚ğs‚¢‚Ü‚· \n" @*/ ) ;
+	DXERRORNETLOG_ADD( "\xcd\x30\xc3\x30\xc8\x30\xef\x30\xfc\x30\xaf\x30\xa2\x95\x23\x90\x6e\x30\x42\x7d\x86\x4e\xe6\x51\x06\x74\x92\x30\x4c\x88\x44\x30\x7e\x30\x59\x30\x20\x00\x0a\x00\x00"/*@ L"ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯é–¢é€£ã®çµ‚äº†å‡¦ç†ã‚’è¡Œã„ã¾ã™ \n" @*/ ) ;
 
-	// ProcessNetMessage ‚ğ‚Ğ‚½‚·‚çŒÄ‚Ñ‚Â‚Ã‚¯‚éƒXƒŒƒbƒh‚ğ•Â‚¶‚é
+	// ProcessNetMessage ã‚’ã²ãŸã™ã‚‰å‘¼ã³ã¤ã¥ã‘ã‚‹ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’é–‰ã˜ã‚‹
 	if( SockData.ProcessNetMessageThreadHandle != NULL )
 	{
-		// ƒXƒŒƒbƒh‚ªI—¹‚·‚é‚Ü‚Å‘Ò‚Â
+		// ã‚¹ãƒ¬ãƒƒãƒ‰ãŒçµ‚äº†ã™ã‚‹ã¾ã§å¾…ã¤
 		SockData.ProcessNetMessageThreadEndRequest = TRUE ;
 		while( SockData.ProcessNetMessageThreadExitFlag == 0 )
 		{
 			Thread_Sleep( 1 ) ;
 		}
 
-		// ƒXƒŒƒbƒh‚Ìƒnƒ“ƒhƒ‹‚ğ•Â‚¶‚é
+		// ã‚¹ãƒ¬ãƒƒãƒ‰ã®ãƒãƒ³ãƒ‰ãƒ«ã‚’é–‰ã˜ã‚‹
 		WinAPIData.Win32Func.CloseHandleFunc( SockData.ProcessNetMessageThreadHandle ) ;
 		SockData.ProcessNetMessageThreadHandle = NULL ;
 	}
 
-	// ƒnƒ“ƒhƒ‹ŠÇ—î•ñ‚ÌŒãn––
+	// ãƒãƒ³ãƒ‰ãƒ«ç®¡ç†æƒ…å ±ã®å¾Œå§‹æœ«
 	TerminateHandleManage( DX_HANDLETYPE_NETWORK ) ;
 /*
-	// I—¹ˆ—
+	// çµ‚äº†å‡¦ç†
 	for( i = 0 ; i < MAX_SOCKET_NUM + 1 ; i ++ )
 	{
 		if( SockData.CSocket[i] != NULL )
@@ -507,7 +507,7 @@ extern int TerminateNetWork( void )
 		}
 	}
 */
-	// ‚h‚oƒAƒhƒŒƒX‚ğ•Û‘¶‚·‚é‚½‚ß‚Éƒƒ‚ƒŠ‚ğŠm•Û‚µ‚Ä‚¢‚½‚ç‰ğ•ú‚·‚é
+	// ï¼©ï¼°ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ä¿å­˜ã™ã‚‹ãŸã‚ã«ãƒ¡ãƒ¢ãƒªã‚’ç¢ºä¿ã—ã¦ã„ãŸã‚‰è§£æ”¾ã™ã‚‹
 	if( SockData.MyIPv4 != NULL )
 	{
 		DXFREE( SockData.MyIPv4 ) ;
@@ -519,7 +519,7 @@ extern int TerminateNetWork( void )
 		SockData.MyIPv6 = NULL ;
 	}
 
-	// ƒEƒCƒ“ƒhƒE‚ğíœ‚·‚é
+	// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚’å‰Šé™¤ã™ã‚‹
 	if( SockData.MessageWindow != NULL )
 	{
 		PostMessageWFunc( SockData.MessageWindow, WM_CLOSE, 0, 0 );
@@ -529,19 +529,19 @@ extern int TerminateNetWork( void )
 		}
 	}
 
-	// ƒ[ƒƒNƒŠƒA
+	// ã‚¼ãƒ­ã‚¯ãƒªã‚¢
 	_MEMSET( &SockData, 0, sizeof( SockData ) ) ;
 
-	// WinSockets‚Ìg—p‚ğI—¹‚·‚é
+	// WinSocketsã®ä½¿ç”¨ã‚’çµ‚äº†ã™ã‚‹
 	WinAPIData.WinSockFunc.WSACleanupFunc() ;
 
-	DXERRORNETLOG_ADD( "\xcd\x30\xc3\x30\xc8\x30\xef\x30\xfc\x30\xaf\x30\xa2\x95\x23\x90\x6e\x30\x42\x7d\x86\x4e\xe6\x51\x06\x74\x6f\x30\x8c\x5b\x86\x4e\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ƒlƒbƒgƒ[ƒNŠÖ˜A‚ÌI—¹ˆ—‚ÍŠ®—¹‚µ‚Ü‚µ‚½\n" @*/ ) ;
+	DXERRORNETLOG_ADD( "\xcd\x30\xc3\x30\xc8\x30\xef\x30\xfc\x30\xaf\x30\xa2\x95\x23\x90\x6e\x30\x42\x7d\x86\x4e\xe6\x51\x06\x74\x6f\x30\x8c\x5b\x86\x4e\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯é–¢é€£ã®çµ‚äº†å‡¦ç†ã¯å®Œäº†ã—ã¾ã—ãŸ\n" @*/ ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ‚v‚‰‚‚r‚‚ƒ‚‹ƒƒbƒZ[ƒW‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+// ï¼·ï½‰ï½ï¼³ï½ï½ƒï½‹ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 extern int WinSockProc( HWND /*hWnd*/, UINT /*message*/, WPARAM wParam, LPARAM lParam )
 {
 	WORD _event , error ;
@@ -551,11 +551,11 @@ extern int WinSockProc( HWND /*hWnd*/, UINT /*message*/, WPARAM wParam, LPARAM l
 	int ReturnValue = TRUE ;
 	HANDLELIST *List ;
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 	if( HandleManageArray[ DX_HANDLETYPE_NETWORK ].InitializeFlag != FALSE )
 		CRITICALSECTION_LOCK( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 
-	// ‚Ç‚Ìƒnƒ“ƒhƒ‹‚Ö‚ÌƒƒbƒZ[ƒW‚È‚Ì‚©‚ğæ“¾
+	// ã©ã®ãƒãƒ³ãƒ‰ãƒ«ã¸ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãªã®ã‹ã‚’å–å¾—
 	Sock = ( SOCKET )wParam ;
 	for( List = HandleManageArray[ DX_HANDLETYPE_NETWORK ].ListFirst.Next ;
 		List->Next != NULL &&
@@ -564,33 +564,33 @@ extern int WinSockProc( HWND /*hWnd*/, UINT /*message*/, WPARAM wParam, LPARAM l
 	SockD = (SOCKETDATA *)List->Data ;
 	if( List->Next == NULL )
 	{
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 		if( HandleManageArray[ DX_HANDLETYPE_NETWORK ].InitializeFlag != FALSE )
 			CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 
-		DXST_LOGFILE_ADDUTF16LE( "\x1a\x90\xe1\x4f\xa8\x30\xe9\x30\xfc\x30\x20\x00\x4e\x00\x6f\x00\x2e\x00\x31\x00\x0a\x00\x00"/*@ L"’ÊMƒGƒ‰[ No.1\n" @*/ ) ;
+		DXST_LOGFILE_ADDUTF16LE( "\x1a\x90\xe1\x4f\xa8\x30\xe9\x30\xfc\x30\x20\x00\x4e\x00\x6f\x00\x2e\x00\x31\x00\x0a\x00\x00"/*@ L"é€šä¿¡ã‚¨ãƒ©ãƒ¼ No.1\n" @*/ ) ;
 		return FALSE ;
 	}
 	NetHandle = SockD->HandleInfo.Handle ;
 
-	// ƒƒbƒZ[ƒW‚Ìæ“¾
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®å–å¾—
 	_event = WSAGETSELECTEVENT( (LPARAM) lParam ) ;
 	error = WSAGETSELECTERROR( (LPARAM) lParam ) ;
 
-	// UDP‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+	// UDPã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 	if( SockD->IsUDP )
 	{
 		switch( _event )
 		{
-		// ƒf[ƒ^óM
+		// ãƒ‡ãƒ¼ã‚¿å—ä¿¡
 		case FD_READ:
-			// óMƒf[ƒ^‘¶İƒtƒ‰ƒO‚ğ—§‚Ä‚é
+			// å—ä¿¡ãƒ‡ãƒ¼ã‚¿å­˜åœ¨ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 			SockD->UDPReadFlag = TRUE ;
 			break ;
 
-		// ƒf[ƒ^‘—M€”õŠ®—¹
+		// ãƒ‡ãƒ¼ã‚¿é€ä¿¡æº–å‚™å®Œäº†
 		case FD_WRITE:
-			// ‘—M‰Â”\ƒtƒ‰ƒO‚ğ—§‚Ä‚é
+			// é€ä¿¡å¯èƒ½ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 			SockD->UDPWriteFlag = TRUE ;
 			break;
 		}
@@ -599,62 +599,62 @@ extern int WinSockProc( HWND /*hWnd*/, UINT /*message*/, WPARAM wParam, LPARAM l
 	{
 		switch( _event )
 		{
-		// ƒRƒlƒNƒgƒƒbƒZ[ƒW
+		// ã‚³ãƒã‚¯ãƒˆãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 		case FD_CONNECT :
-			// ƒGƒ‰[‚ª”­¶‚µ‚½‚çƒRƒlƒNƒg¸”s
+			// ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ãŸã‚‰ã‚³ãƒã‚¯ãƒˆå¤±æ•—
 			if( error != 0 ) break ;
 			
-			// Ú‘±ƒtƒ‰ƒO‚ğ—§‚Ä‚é
+			// æ¥ç¶šãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 			SockD->ConnectionFlag = TRUE ;
 
-			// Ú‘±‘Oƒtƒ‰ƒO‚ğ“|‚·
+			// æ¥ç¶šå‰ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 			SockD->PreConnectionFlag = FALSE ;
 			break ;
 
-		// ƒAƒNƒZƒvƒgƒƒbƒZ[ƒW
+		// ã‚¢ã‚¯ã‚»ãƒ—ãƒˆãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 		case FD_ACCEPT :
-			// ƒAƒNƒZƒvƒgˆ—
+			// ã‚¢ã‚¯ã‚»ãƒ—ãƒˆå‡¦ç†
 			ReturnValue = AcceptNetWork() ;
 			break ;
 
-		// ƒf[ƒ^óM
+		// ãƒ‡ãƒ¼ã‚¿å—ä¿¡
 		case FD_READ:
-			// “à•”ƒf[ƒ^óMˆ—‚ğs‚¤
+			// å†…éƒ¨ãƒ‡ãƒ¼ã‚¿å—ä¿¡å‡¦ç†ã‚’è¡Œã†
 			RecvSocket( NetHandle ) ;
 			break ;
 
 
-		// ƒf[ƒ^‘—M€”õŠ®—¹
+		// ãƒ‡ãƒ¼ã‚¿é€ä¿¡æº–å‚™å®Œäº†
 		case FD_WRITE:
-			// “à•”‘—Mˆ—ŠÖ”‚ğÀs‚·‚é
+			// å†…éƒ¨é€ä¿¡å‡¦ç†é–¢æ•°ã‚’å®Ÿè¡Œã™ã‚‹
 			SendSocket( NetHandle ) ;
 			break;
 
-		// ƒNƒ[ƒYƒƒbƒZ[ƒW
+		// ã‚¯ãƒ­ãƒ¼ã‚ºãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 		case FD_CLOSE:
-			// Ú‘±ƒtƒ‰ƒO‚ÆØ’fŠm”Fƒtƒ‰ƒO‚ğ“|‚·
+			// æ¥ç¶šãƒ•ãƒ©ã‚°ã¨åˆ‡æ–­ç¢ºèªãƒ•ãƒ©ã‚°ã‚’å€’ã™
 			SockD->ConnectionFlag = FALSE ;
 			SockD->ConnectionLostFlag = FALSE ;
 			break ;
 		}
 	}
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 	if( HandleManageArray[ DX_HANDLETYPE_NETWORK ].InitializeFlag != FALSE )
 		CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return ReturnValue ;
 }
 
-// ‚v‚‰‚‚r‚‚ƒ‚‹ê—p‚ÌƒEƒCƒ“ƒhƒE‚ÌƒƒbƒZ[ƒWƒR[ƒ‹ƒoƒbƒNŠÖ”
+// ï¼·ï½‰ï½ï¼³ï½ï½ƒï½‹å°‚ç”¨ã®ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 extern LRESULT CALLBACK WinSockWindowProc( HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam )
 {
 	int Ret ;
 
 	SETUP_WIN_API
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 	if( HandleManageArray[ DX_HANDLETYPE_NETWORK ].InitializeFlag != FALSE )
 		CRITICALSECTION_LOCK( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 
@@ -675,14 +675,14 @@ extern LRESULT CALLBACK WinSockWindowProc( HWND hWnd, UINT message, WPARAM wPara
 	case WSA_WINSOCKMESSAGE :
 		Ret = WinSockProc( hWnd , message , wParam , lParam ) ;
 
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 		if( HandleManageArray[ DX_HANDLETYPE_NETWORK ].InitializeFlag != FALSE )
 			CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 
 		return Ret ;
 	}
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 	if( HandleManageArray[ DX_HANDLETYPE_NETWORK ].InitializeFlag != FALSE )
 		CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 
@@ -691,7 +691,7 @@ extern LRESULT CALLBACK WinSockWindowProc( HWND hWnd, UINT message, WPARAM wPara
 	
 
 
-// ‚c‚m‚rƒT[ƒo[‚ğg‚Á‚ÄƒzƒXƒg–¼‚©‚ç‚h‚oƒAƒhƒŒƒX‚ğæ“¾‚·‚é
+// ï¼¤ï¼®ï¼³ã‚µãƒ¼ãƒãƒ¼ã‚’ä½¿ã£ã¦ãƒ›ã‚¹ãƒˆåã‹ã‚‰ï¼©ï¼°ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å–å¾—ã™ã‚‹
 extern int NS_GetHostIPbyName( const TCHAR *HostName, IPDATA *IPDataBuf, int IPDataBufLength , int *IPDataGetNum )
 {
 	hostent *HostInfo ;
@@ -716,20 +716,20 @@ extern int NS_GetHostIPbyName( const TCHAR *HostName, IPDATA *IPDataBuf, int IPD
 
 	SETUP_WIN_API
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 	CRITICALSECTION_LOCK( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 
-	// ‚h‚o‚ğ”’l•¶š—ñ‚É‚µ‚½‚¾‚¯‚¾‚Á‚½‚Ì‚½‚ß‚Ìˆ—
-	// ¬Œ÷‚·‚ê‚Î•ªŠò
+	// ï¼©ï¼°ã‚’æ•°å€¤æ–‡å­—åˆ—ã«ã—ãŸã ã‘ã ã£ãŸæ™‚ã®ãŸã‚ã®å‡¦ç†
+	// æˆåŠŸã™ã‚Œã°åˆ†å²
 	ip = WinAPIData.WinSockFunc.inet_addrFunc( UseHostName ) ;
 	if( ip != INADDR_NONE )
 	{
-		// ƒAƒhƒŒƒXƒf[ƒ^‚©‚çƒzƒXƒg‚Ìî•ñ‚ğ“¾‚é
+		// ã‚¢ãƒ‰ãƒ¬ã‚¹ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰ãƒ›ã‚¹ãƒˆã®æƒ…å ±ã‚’å¾—ã‚‹
 		HostInfo = WinAPIData.WinSockFunc.gethostbyaddrFunc( ( const char * )&ip, 4, AF_INET ) ;
 	}
 	else
 	{
-		// ƒzƒXƒg–¼‚©‚çƒzƒXƒg‚Ìî•ñ‚ğ“¾‚é
+		// ãƒ›ã‚¹ãƒˆåã‹ã‚‰ãƒ›ã‚¹ãƒˆã®æƒ…å ±ã‚’å¾—ã‚‹
 		HostInfo = WinAPIData.WinSockFunc.gethostbynameFunc( UseHostName ) ;
 	}
 	if( HostInfo == NULL )
@@ -738,14 +738,14 @@ extern int NS_GetHostIPbyName( const TCHAR *HostName, IPDATA *IPDataBuf, int IPD
 		goto ENDLABEL ;
 	}
 
-	// IPv4 ‚ÌƒAƒhƒŒƒX‚©ƒ`ƒFƒbƒN
+	// IPv4 ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‹ãƒã‚§ãƒƒã‚¯
 	if( HostInfo->h_addrtype != AF_INET || HostInfo->h_length != 4 )
 	{
 		Ret = -2 ;
 		goto ENDLABEL ;
 	}
 
-	// ƒzƒXƒg‚Ìî•ñ‚©‚ç‚h‚oƒAƒhƒŒƒX‚ğ“¾‚é
+	// ãƒ›ã‚¹ãƒˆã®æƒ…å ±ã‹ã‚‰ï¼©ï¼°ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å¾—ã‚‹
 	for( IPNum = 0 ; HostInfo->h_addr_list[ IPNum ] != NULL ; IPNum ++ )
 	{
 		if( IPNum < IPDataBufLength )
@@ -764,14 +764,14 @@ extern int NS_GetHostIPbyName( const TCHAR *HostName, IPDATA *IPDataBuf, int IPD
 
 ENDLABEL :
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 	CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return Ret ;
 }
 
-// ‚c‚m‚rƒT[ƒo[‚ğg‚Á‚ÄƒzƒXƒg–¼‚©‚ç‚h‚oƒAƒhƒŒƒX‚ğæ“¾‚·‚é( IPv4”Å )
+// ï¼¤ï¼®ï¼³ã‚µãƒ¼ãƒãƒ¼ã‚’ä½¿ã£ã¦ãƒ›ã‚¹ãƒˆåã‹ã‚‰ï¼©ï¼°ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å–å¾—ã™ã‚‹( IPv4ç‰ˆ )
 extern int NS_GetHostIPbyNameWithStrLen( const TCHAR *HostName, size_t HostNameLength, IPDATA *IPDataBuf, int IPDataBufLength , int *IPDataGetNum )
 {
 	int Result ;
@@ -787,7 +787,7 @@ extern int NS_GetHostIPbyNameWithStrLen( const TCHAR *HostName, size_t HostNameL
 	return Result ;
 }
 
-// ‚c‚m‚rƒT[ƒo[‚ğg‚Á‚ÄƒzƒXƒg–¼‚©‚ç‚h‚oƒAƒhƒŒƒX‚ğæ“¾‚·‚é( IPv6”Å )
+// ï¼¤ï¼®ï¼³ã‚µãƒ¼ãƒãƒ¼ã‚’ä½¿ã£ã¦ãƒ›ã‚¹ãƒˆåã‹ã‚‰ï¼©ï¼°ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å–å¾—ã™ã‚‹( IPv6ç‰ˆ )
 extern int NS_GetHostIPbyName_IPv6( const TCHAR *HostName, IPDATA_IPv6 *IPDataBuf, int IPDataBufLength , int *IPDataGetNum )
 {
 	const char *UseHostName ;
@@ -814,26 +814,26 @@ extern int NS_GetHostIPbyName_IPv6( const TCHAR *HostName, IPDATA_IPv6 *IPDataBu
 
 	SETUP_WIN_API
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 	CRITICALSECTION_LOCK( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 
-	// ƒzƒXƒg–¼‚©‚ç‚h‚oî•ñ‚ğæ“¾
+	// ãƒ›ã‚¹ãƒˆåã‹ã‚‰ï¼©ï¼°æƒ…å ±ã‚’å–å¾—
     _MEMSET( &hints, 0, sizeof( hints ) ) ;
-    hints.ai_family = 23/*AF_INET6 ‚Í 23*/ ;
+    hints.ai_family = 23/*AF_INET6 ã¯ 23*/ ;
 	if( WinAPIData.WinSockFunc.getaddrinfoFunc( UseHostName, NULL, &hints, &ainfo ) != 0 )
 	{
 		Ret = -1 ;
 		goto ENDLABEL ;
 	}
 
-	// IPv6 ‚ÌƒAƒhƒŒƒX‚©ƒ`ƒFƒbƒN
-	if( ainfo->ai_family != 23/*AF_INET6 ‚Í 23*/ || ainfo->ai_addr == NULL )
+	// IPv6 ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‹ãƒã‚§ãƒƒã‚¯
+	if( ainfo->ai_family != 23/*AF_INET6 ã¯ 23*/ || ainfo->ai_addr == NULL )
 	{
 		Ret = -2 ;
 		goto ENDLABEL ;
 	}
 
-	// IPv6ƒAƒhƒŒƒX‚ğ•Û‘¶
+	// IPv6ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ä¿å­˜
 	for( IPNum = 0, tmp_ainfo = ainfo ; tmp_ainfo != NULL ; IPNum ++, tmp_ainfo = tmp_ainfo->ai_next )
 	{
 		if( IPNum < IPDataBufLength )
@@ -850,20 +850,20 @@ extern int NS_GetHostIPbyName_IPv6( const TCHAR *HostName, IPDATA_IPv6 *IPDataBu
 
 ENDLABEL :
 
-	// ƒƒ‚ƒŠ‚Ì‰ğ•ú
+	// ãƒ¡ãƒ¢ãƒªã®è§£æ”¾
 	if( ainfo != NULL )
 	{
 		WinAPIData.WinSockFunc.freeaddrinfoFunc( ainfo ) ;
 	}
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 	CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return Ret ;
 }
 
-// ‚c‚m‚rƒT[ƒo[‚ğg‚Á‚ÄƒzƒXƒg–¼‚©‚ç‚h‚oƒAƒhƒŒƒX‚ğæ“¾‚·‚é( IPv6”Å )
+// ï¼¤ï¼®ï¼³ã‚µãƒ¼ãƒãƒ¼ã‚’ä½¿ã£ã¦ãƒ›ã‚¹ãƒˆåã‹ã‚‰ï¼©ï¼°ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å–å¾—ã™ã‚‹( IPv6ç‰ˆ )
 extern int NS_GetHostIPbyName_IPv6WithStrLen( const TCHAR *HostName, size_t HostNameLength, IPDATA_IPv6 *IPDataBuf, int IPDataBufLength , int *IPDataGetNum )
 {
 	int Result ;
@@ -873,30 +873,30 @@ extern int NS_GetHostIPbyName_IPv6WithStrLen( const TCHAR *HostName, size_t Host
 	return Result ;
 }
 
-// ƒlƒbƒgƒ[ƒNƒnƒ“ƒhƒ‹‚ğ‰Šú‰»‚·‚é
+// ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ãƒãƒ³ãƒ‰ãƒ«ã‚’åˆæœŸåŒ–ã™ã‚‹
 extern int InitializeNetworkHandle( HANDLEINFO * /*HandleInfo*/ )
 {
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒlƒbƒgƒ[ƒNƒnƒ“ƒhƒ‹‚ÌŒãn––‚ğs‚¤
+// ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ãƒãƒ³ãƒ‰ãƒ«ã®å¾Œå§‹æœ«ã‚’è¡Œã†
 extern int TerminateNetworkHandle( HANDLEINFO *HandleInfo )
 {
 	SOCKETDATA *Sock = ( SOCKETDATA * )HandleInfo ;
 
 	SETUP_WIN_API
 
-	// UDP‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+	// UDPã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 	if( Sock->IsUDP )
 	{
-		// ƒ\ƒPƒbƒg‚ª—LŒø‚¾‚Á‚½ê‡ˆ—
+		// ã‚½ã‚±ãƒƒãƒˆãŒæœ‰åŠ¹ã ã£ãŸå ´åˆå‡¦ç†
 		if( Sock->Socket != NULL && Sock->Socket != INVALID_SOCKET )
 		{
-			// ”ñƒuƒƒbƒLƒ“ƒO‰ğœ
+			// éãƒ–ãƒ­ãƒƒã‚­ãƒ³ã‚°è§£é™¤
 			WinAPIData.WinSockFunc.WSAAsyncSelectFunc( Sock->Socket, SockData.MessageWindow, 0, 0 );
 
-			// ƒ\ƒPƒbƒg‚ğ•Â‚¶‚é
+			// ã‚½ã‚±ãƒƒãƒˆã‚’é–‰ã˜ã‚‹
 			WinAPIData.WinSockFunc.closesocketFunc( Sock->Socket );
 			Sock->Socket = NULL ;
 		}
@@ -905,43 +905,43 @@ extern int TerminateNetworkHandle( HANDLEINFO *HandleInfo )
 	{
 		// TCP
 
-		// Ú‘±‘Ò‚¿—pƒnƒ“ƒhƒ‹‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+		// æ¥ç¶šå¾…ã¡ç”¨ãƒãƒ³ãƒ‰ãƒ«ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 		if( SockData.ListenHandle == HandleInfo->Handle )
 		{
-			// Ú‘±‘Ò‚¿—pƒnƒ“ƒhƒ‹
+			// æ¥ç¶šå¾…ã¡ç”¨ãƒãƒ³ãƒ‰ãƒ«
 
 			if( Sock->Socket && Sock->Socket != INVALID_SOCKET )
 			{
-				// ’ÊMŠÖŒWˆ—
+				// é€šä¿¡é–¢ä¿‚å‡¦ç†
 				NS_ProcessNetMessage( FALSE ) ;
 
-				// ”ñƒuƒƒbƒLƒ“ƒO‰ğœ
+				// éãƒ–ãƒ­ãƒƒã‚­ãƒ³ã‚°è§£é™¤
 				WinAPIData.WinSockFunc.WSAAsyncSelectFunc( Sock->Socket, SockData.MessageWindow, 0, 0 );
 
-				// ƒf[ƒ^‘—óMƒVƒƒƒbƒgƒ_ƒEƒ“
+				// ãƒ‡ãƒ¼ã‚¿é€å—ä¿¡ã‚·ãƒ£ãƒƒãƒˆãƒ€ã‚¦ãƒ³
 				WinAPIData.WinSockFunc.shutdownFunc( Sock->Socket , 2 ) ;
 
-				// ƒ\ƒPƒbƒg‚ğ•Â‚¶‚é
+				// ã‚½ã‚±ãƒƒãƒˆã‚’é–‰ã˜ã‚‹
 				WinAPIData.WinSockFunc.closesocketFunc( Sock->Socket );
 				Sock->Socket = NULL ;
 			}
 			
-			// g—p’†ƒtƒ‰ƒO‚ğ“|‚·
+			// ä½¿ç”¨ä¸­ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 			Sock->UseFlag = FALSE ;
 
-			// Ú‘±ó•t—p‚Ìƒnƒ“ƒhƒ‹‚ğ–³Œø‚É‚·‚é
+			// æ¥ç¶šå—ä»˜ç”¨ã®ãƒãƒ³ãƒ‰ãƒ«ã‚’ç„¡åŠ¹ã«ã™ã‚‹
 			SockData.ListenHandle = 0 ;
 		}
 		else
 		{
-			// —LŒø‚Èƒ\ƒPƒbƒgƒf[ƒ^‚Å‚Í‚È‚©‚Á‚½‚ç‰½‚à‚¹‚¸I—¹
+			// æœ‰åŠ¹ãªã‚½ã‚±ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã§ã¯ãªã‹ã£ãŸã‚‰ä½•ã‚‚ã›ãšçµ‚äº†
 			if( Sock->UseFlag == FALSE )
 				return 0 ;
 
-			// ’ÊMŠÖŒWˆ—
+			// é€šä¿¡é–¢ä¿‚å‡¦ç†
 			NS_ProcessNetMessage( FALSE ) ;
 
-			// c‚è‚Ìƒf[ƒ^‚ğƒoƒbƒtƒ@‚©‚çÁ‹‚·‚é
+			// æ®‹ã‚Šã®ãƒ‡ãƒ¼ã‚¿ã‚’ãƒãƒƒãƒ•ã‚¡ã‹ã‚‰æ¶ˆå»ã™ã‚‹
 			{
 				int time ;
 				
@@ -960,43 +960,43 @@ extern int TerminateNetworkHandle( HANDLEINFO *HandleInfo )
 				}
 			}
 
-			// ƒ\ƒPƒbƒg‚ğ‚ÌŒãn––‚ğs‚¤
+			// ã‚½ã‚±ãƒƒãƒˆã‚’ã®å¾Œå§‹æœ«ã‚’è¡Œã†
 			if( Sock->Socket && Sock->Socket != INVALID_SOCKET )
 			{
-				// ”ñƒuƒƒbƒLƒ“ƒO‰ğœ
+				// éãƒ–ãƒ­ãƒƒã‚­ãƒ³ã‚°è§£é™¤
 				WinAPIData.WinSockFunc.WSAAsyncSelectFunc( Sock->Socket, SockData.MessageWindow, 0, 0 );
 
-				// ƒ\ƒPƒbƒg‚ğ•Â‚¶‚é
+				// ã‚½ã‚±ãƒƒãƒˆã‚’é–‰ã˜ã‚‹
 				WinAPIData.WinSockFunc.closesocketFunc( Sock->Socket );
 				Sock->Socket = NULL ;
 			}
 
-			// ‘—óM—pƒoƒbƒtƒ@‚Ì‰ğ•ú
+			// é€å—ä¿¡ç”¨ãƒãƒƒãƒ•ã‚¡ã®è§£æ”¾
 			RingBufTerminate( &Sock->RecvBufferToUserR ) ;
 			RingBufTerminate( &Sock->SendBufferR ) ;
 
-			// g—p’†ƒtƒ‰ƒO‚ğ“|‚·
+			// ä½¿ç”¨ä¸­ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 			Sock->UseFlag = FALSE ;
 			
-			// ‚»‚Ì‘¼“K“–‚Éƒtƒ‰ƒO‚ğƒZƒbƒg
+			// ãã®ä»–é©å½“ã«ãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆ
 			Sock->ConnectionFlag = FALSE ;
 			Sock->ConnectionLostFlag = TRUE ;
 			Sock->AccepteConfirFlag = FALSE ;
 		}
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// CONNECTNETWORK_GPARAM ‚ğ‰Šú‰»‚·‚é
+// CONNECTNETWORK_GPARAM ã‚’åˆæœŸåŒ–ã™ã‚‹
 extern void InitConnectNetWorkBaseGParam( CONNECTNETWORK_GPARAM *GParam )
 {
 	GParam->NonCloseAfterLostFlag = SockData.NonCloseAfterLostFlag ;
 	GParam->NonUseDXProtocolFlag = SockData.NonUseDXProtocolFlag ;
 }
 
-// ConnectNetWorkBase ‚ÌÀˆ—ŠÖ”
+// ConnectNetWorkBase ã®å®Ÿå‡¦ç†é–¢æ•°
 static int ConnectNetWorkBase_Static(
 	CONNECTNETWORK_GPARAM *GParam,
 	int NetHandle,
@@ -1018,7 +1018,7 @@ static int ConnectNetWorkBase_Static(
 
 	SETUP_WIN_API
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 	CRITICALSECTION_LOCK( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 
 	if( ASyncThread )
@@ -1032,83 +1032,83 @@ static int ConnectNetWorkBase_Static(
 			goto ERR ;
 	}
 
-	// IPv6 ‚©‚Ç‚¤‚©‚ğƒZƒbƒg
+	// IPv6 ã‹ã©ã†ã‹ã‚’ã‚»ãƒƒãƒˆ
 	IsIPv6 = IPData_IPv6 != NULL ? TRUE : FALSE ;
 
-	// ’ÊMŠÖŒWˆ—
+	// é€šä¿¡é–¢ä¿‚å‡¦ç†
 	NS_ProcessNetMessage( FALSE ) ;
 	
-	// ƒ|[ƒg‚Ì’l‚ğŒˆ’è
+	// ãƒãƒ¼ãƒˆã®å€¤ã‚’æ±ºå®š
 	pt = Port == -1 ? WinAPIData.WinSockFunc.htonsFunc( WSA_DEFAULTPORT ) : WinAPIData.WinSockFunc.htonsFunc( ( unsigned short )Port ) ;
 
-	// ƒf[ƒ^‚ğ‰Šú‰»
-	Sock->IsUDP					= FALSE ;							// ‚t‚c‚o‚Íg—p‚µ‚È‚¢
-	Sock->IsUDPBroadCast		= FALSE ;							// ƒuƒ[ƒhƒLƒƒƒXƒg‚Íg—p‚µ‚È‚¢
-	Sock->IsIPv6				= IsIPv6 ;							// ‚h‚o‚–‚U‚©‚Ç‚¤‚©‚ğ•Û‘¶
-	Sock->ErrorFlag 			= FALSE ;							// ƒGƒ‰[‚ª”­¶‚µ‚½ƒtƒ‰ƒO‚ğ“|‚·
-	Sock->UseFlag				= TRUE ;							// ƒf[ƒ^‚ğg—p’†‚É‚·‚é
-	Sock->PreConnectionFlag		= TRUE ;							// Ú‘±‘Oƒtƒ‰ƒO‚ğƒZƒbƒg‚·‚é
-	Sock->ConnectionFlag		= FALSE ;							// Ú‘±‚µ‚½‚©ƒtƒ‰ƒO‚ğÚ‘±‚µ‚Ä‚¢‚È‚¢ó‘Ô‚É
-	Sock->ConnectionLostFlag 	= FALSE ;							// Ø’fŠm”Fƒtƒ‰ƒO‚Í‚Æ‚è‚ ‚¦‚¸“|‚µ‚Ä‚¨‚­
-	Sock->AccepteConfirFlag 	= TRUE ;							// Ú‘±Šm”Fƒtƒ‰ƒO‚Í©‚çÚ‘±‚µ‚Ä‚¢‚é‚Ì‚Å”cˆ¬Ï‚İ‚Æ‚¢‚¤‚±‚Æ‚É‚µ‚Ä‚¨‚­
-	Sock->AcceptFlag			= FALSE ;							// ‘Šè‚©‚çÚ‘±‚³‚ê‚½‚Ì‚©ƒtƒ‰ƒO‚ğ“|‚·
-	Sock->DXProtocolFlag 		= !GParam->NonUseDXProtocolFlag ;	// ‚c‚wƒ‰ƒCƒuƒ‰ƒŠ“Æ©‚Ì’ÊM•û®‚ğg‚¤‚©‚Ç‚¤‚©‚ğƒZƒbƒg
-	Sock->CloseAfterLostFlag	= !GParam->NonCloseAfterLostFlag ;	// Ø’f’¼Œã‚Éƒnƒ“ƒhƒ‹‚ğ‰ğ•ú‚·‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğƒZƒbƒg
+	// ãƒ‡ãƒ¼ã‚¿ã‚’åˆæœŸåŒ–
+	Sock->IsUDP					= FALSE ;							// ï¼µï¼¤ï¼°ã¯ä½¿ç”¨ã—ãªã„
+	Sock->IsUDPBroadCast		= FALSE ;							// ãƒ–ãƒ­ãƒ¼ãƒ‰ã‚­ãƒ£ã‚¹ãƒˆã¯ä½¿ç”¨ã—ãªã„
+	Sock->IsIPv6				= IsIPv6 ;							// ï¼©ï¼°ï½–ï¼–ã‹ã©ã†ã‹ã‚’ä¿å­˜
+	Sock->ErrorFlag 			= FALSE ;							// ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ãŸãƒ•ãƒ©ã‚°ã‚’å€’ã™
+	Sock->UseFlag				= TRUE ;							// ãƒ‡ãƒ¼ã‚¿ã‚’ä½¿ç”¨ä¸­ã«ã™ã‚‹
+	Sock->PreConnectionFlag		= TRUE ;							// æ¥ç¶šå‰ãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
+	Sock->ConnectionFlag		= FALSE ;							// æ¥ç¶šã—ãŸã‹ãƒ•ãƒ©ã‚°ã‚’æ¥ç¶šã—ã¦ã„ãªã„çŠ¶æ…‹ã«
+	Sock->ConnectionLostFlag 	= FALSE ;							// åˆ‡æ–­ç¢ºèªãƒ•ãƒ©ã‚°ã¯ã¨ã‚Šã‚ãˆãšå€’ã—ã¦ãŠã
+	Sock->AccepteConfirFlag 	= TRUE ;							// æ¥ç¶šç¢ºèªãƒ•ãƒ©ã‚°ã¯è‡ªã‚‰æ¥ç¶šã—ã¦ã„ã‚‹ã®ã§æŠŠæ¡æ¸ˆã¿ã¨ã„ã†ã“ã¨ã«ã—ã¦ãŠã
+	Sock->AcceptFlag			= FALSE ;							// ç›¸æ‰‹ã‹ã‚‰æ¥ç¶šã•ã‚ŒãŸã®ã‹ãƒ•ãƒ©ã‚°ã‚’å€’ã™
+	Sock->DXProtocolFlag 		= !GParam->NonUseDXProtocolFlag ;	// ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªç‹¬è‡ªã®é€šä¿¡æ–¹å¼ã‚’ä½¿ã†ã‹ã©ã†ã‹ã‚’ã‚»ãƒƒãƒˆ
+	Sock->CloseAfterLostFlag	= !GParam->NonCloseAfterLostFlag ;	// åˆ‡æ–­ç›´å¾Œã«ãƒãƒ³ãƒ‰ãƒ«ã‚’è§£æ”¾ã™ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆ
 	if( IsIPv6 )
 	{
-		Sock->AcceptedIP_IPv6	= *IPData_IPv6 ;					// Ú‘±æ‚Ì‚h‚o‚ğ•Û‘¶
+		Sock->AcceptedIP_IPv6	= *IPData_IPv6 ;					// æ¥ç¶šå…ˆã®ï¼©ï¼°ã‚’ä¿å­˜
 	}
 	else
 	{
-		Sock->AcceptedIP 		= *IPData_IPv4 ;					// Ú‘±æ‚Ì‚h‚o‚ğ•Û‘¶
+		Sock->AcceptedIP 		= *IPData_IPv4 ;					// æ¥ç¶šå…ˆã®ï¼©ï¼°ã‚’ä¿å­˜
 	}
-	Sock->Port 					= pt ;								// Ú‘±æ‚Ìƒ|[ƒg‚ğ•Û‘¶
+	Sock->Port 					= pt ;								// æ¥ç¶šå…ˆã®ãƒãƒ¼ãƒˆã‚’ä¿å­˜
 
-	// ‚c‚wƒ‰ƒCƒuƒ‰ƒŠ“Æ©‚Ì•û®‚ğæ‚éê‡‚Í‘—óM—pƒoƒbƒtƒ@‚ğ‰Šú‰»
+	// ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªç‹¬è‡ªã®æ–¹å¼ã‚’å–ã‚‹å ´åˆã¯é€å—ä¿¡ç”¨ãƒãƒƒãƒ•ã‚¡ã‚’åˆæœŸåŒ–
 	if( Sock->DXProtocolFlag == TRUE )
 	{
-		// ƒ†[ƒU[‚É“n‚·‚Æ‚«‚Ég‚¤ƒŠƒ“ƒOƒoƒbƒtƒ@‚Ì‰Šú‰»
+		// ãƒ¦ãƒ¼ã‚¶ãƒ¼ã«æ¸¡ã™ã¨ãã«ä½¿ã†ãƒªãƒ³ã‚°ãƒãƒƒãƒ•ã‚¡ã®åˆæœŸåŒ–
 		RingBufInitialize( &Sock->RecvBufferToUserR ) ;
 		Sock->RecvComDataVol = 0 ;
 		Sock->RecvComDataOriginalVol = 0 ;
 		Sock->RecvBufferToUserOpenSize = 0 ;
 
-		// ‘—Mƒoƒbƒtƒ@ŠÖ˜A‚Ì‰Šú‰»
+		// é€ä¿¡ãƒãƒƒãƒ•ã‚¡é–¢é€£ã®åˆæœŸåŒ–
 		RingBufInitialize( &Sock->SendBufferR ) ;
 		Sock->SendComDataVol = 0 ;
 		Sock->SendComDataComVol = 0 ;
 	}
 
-	// ƒ\ƒPƒbƒg‚Ìì¬
-	Sock->Socket = WinAPIData.WinSockFunc.socketFunc( IsIPv6 ? 23/*AF_INET6 ‚Í 23*/ : AF_INET , SOCK_STREAM , IPPROTO_TCP ) ;
+	// ã‚½ã‚±ãƒƒãƒˆã®ä½œæˆ
+	Sock->Socket = WinAPIData.WinSockFunc.socketFunc( IsIPv6 ? 23/*AF_INET6 ã¯ 23*/ : AF_INET , SOCK_STREAM , IPPROTO_TCP ) ;
 	if( Sock->Socket == INVALID_SOCKET )
 	{
-		DXERRORNETWORK(( "\x77\x00\x73\x00\x32\x00\x5f\x00\x33\x00\x32\x00\x2e\x00\x64\x00\x6c\x00\x6c\x00\x20\x00\x4c\x30\xd5\x52\x5c\x4f\x57\x30\x66\x30\x44\x30\x7e\x30\x5b\x30\x93\x30\x01\x30\xbd\x30\xb1\x30\xc3\x30\xc8\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x5f\x00\x32\x00\x00"/*@ L"ws2_32.dll ‚ª“®ì‚µ‚Ä‚¢‚Ü‚¹‚ñAƒ\ƒPƒbƒg‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½_2" @*/ )) ;
+		DXERRORNETWORK(( "\x77\x00\x73\x00\x32\x00\x5f\x00\x33\x00\x32\x00\x2e\x00\x64\x00\x6c\x00\x6c\x00\x20\x00\x4c\x30\xd5\x52\x5c\x4f\x57\x30\x66\x30\x44\x30\x7e\x30\x5b\x30\x93\x30\x01\x30\xbd\x30\xb1\x30\xc3\x30\xc8\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x5f\x00\x32\x00\x00"/*@ L"ws2_32.dll ãŒå‹•ä½œã—ã¦ã„ã¾ã›ã‚“ã€ã‚½ã‚±ãƒƒãƒˆã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ_2" @*/ )) ;
 		goto ERR ;
 	}
 
-	// WinSock ƒƒbƒZ[ƒWó‚¯æ‚èİ’è
+	// WinSock ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å—ã‘å–ã‚Šè¨­å®š
 	if( WinAPIData.WinSockFunc.WSAAsyncSelectFunc(
 			Sock->Socket,
 			SockData.MessageWindow,
 			WSA_WINSOCKMESSAGE,
 			FD_CONNECT | FD_WRITE | FD_READ | FD_CLOSE ) == SOCKET_ERROR )
 	{
-		DXERRORNETWORK(( "\x57\x00\x53\x00\x41\x00\x41\x00\x73\x00\x79\x00\x6e\x00\x63\x00\x53\x00\x65\x00\x6c\x00\x65\x00\x63\x00\x74\x00\x67\x30\xa8\x30\xe9\x30\xfc\x30\x4c\x30\x7a\x76\x1f\x75\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"WSAAsyncSelect‚ÅƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½" @*/ )) ;
+		DXERRORNETWORK(( "\x57\x00\x53\x00\x41\x00\x41\x00\x73\x00\x79\x00\x6e\x00\x63\x00\x53\x00\x65\x00\x6c\x00\x65\x00\x63\x00\x74\x00\x67\x30\xa8\x30\xe9\x30\xfc\x30\x4c\x30\x7a\x76\x1f\x75\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"WSAAsyncSelectã§ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¾ã—ãŸ" @*/ )) ;
 		goto ERR ;
 	}
 
-	// Ú‘±
+	// æ¥ç¶š
 	if( IsIPv6 )
 	{
-		// Ú‘±ƒpƒ‰ƒ[ƒ^ƒZƒbƒg
+		// æ¥ç¶šãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ
 		_MEMSET( &con_v6, 0, sizeof( con_v6 ) ) ;
-		con_v6.sin6_family = 23/*AF_INET6 ‚Í 23*/ ;
+		con_v6.sin6_family = 23/*AF_INET6 ã¯ 23*/ ;
 		con_v6.sin6_port = ( unsigned short )Sock->Port ;
 		for( i = 0 ; i < 8 ; i ++ )
 			con_v6.sin6_addr.Word[ i ] = IPData_IPv6->Word[ i ] ;
 
-		// Ú‘±
+		// æ¥ç¶š
 		if( WinAPIData.WinSockFunc.connectFunc( Sock->Socket , (PSOCKADDR) &con_v6, sizeof( _sockaddr_in6 ) ) == SOCKET_ERROR )
 		{
 			if( WinAPIData.WinSockFunc.WSAGetLastErrorFunc() != WSAEWOULDBLOCK )
@@ -1118,13 +1118,13 @@ static int ConnectNetWorkBase_Static(
 	else
 	{
 
-		// Ú‘±ƒpƒ‰ƒ[ƒ^ƒZƒbƒg
+		// æ¥ç¶šãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ
 		_MEMSET( &con, 0, sizeof( con ) ) ;
 		con.sin_family = AF_INET;
 		con.sin_addr = *(( in_addr *)IPData_IPv4 ) ;
 		con.sin_port = ( u_short )Sock->Port ;
 
-		// Ú‘±
+		// æ¥ç¶š
 		if( WinAPIData.WinSockFunc.connectFunc( Sock->Socket , (PSOCKADDR) &con, sizeof( SOCKADDR_IN ) ) == SOCKET_ERROR )
 		{
 			if( WinAPIData.WinSockFunc.WSAGetLastErrorFunc() != WSAEWOULDBLOCK )
@@ -1132,7 +1132,7 @@ static int ConnectNetWorkBase_Static(
 		}
 	}
 
-	// “¯ŠúÚ‘±w’è‚Ìê‡‚Í‚±‚±‚ÅÚ‘±‚ğˆê’èŠÔÚ‘±‚ğ‘Ò‚Â
+	// åŒæœŸæ¥ç¶šæŒ‡å®šã®å ´åˆã¯ã“ã“ã§æ¥ç¶šã‚’ä¸€å®šæ™‚é–“æ¥ç¶šã‚’å¾…ã¤
 	if( ASyncThread == FALSE && ASync == FALSE )
 	{
 		int StTime ;
@@ -1148,24 +1148,24 @@ static int ConnectNetWorkBase_Static(
 			goto ERR ;
 	}
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 	CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 
 ERR :
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 	CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 
-	// ƒGƒ‰[I—¹
+	// ã‚¨ãƒ©ãƒ¼çµ‚äº†
 	return -1 ;
 }
 
 #ifndef DX_NON_ASYNCLOAD
 
-// ConnectNetWorkBase ‚Ì”ñ“¯Šú“Ç‚İ‚İƒXƒŒƒbƒh‚©‚çŒÄ‚Î‚ê‚éŠÖ”
+// ConnectNetWorkBase ã®éåŒæœŸèª­ã¿è¾¼ã¿ã‚¹ãƒ¬ãƒƒãƒ‰ã‹ã‚‰å‘¼ã°ã‚Œã‚‹é–¢æ•°
 static void ConnectNetWorkBase_ASync( ASYNCLOADDATA_COMMON *AParam )
 {
 	CONNECTNETWORK_GPARAM *GParam ;
@@ -1208,7 +1208,7 @@ static void ConnectNetWorkBase_ASync( ASYNCLOADDATA_COMMON *AParam )
 
 #endif // DX_NON_ASYNCLOAD
 
-// ConnectNetWorkBase ‚ÌƒOƒ[ƒoƒ‹ƒf[ƒ^‚ÉƒAƒNƒZƒX‚µ‚È‚¢”Å
+// ConnectNetWorkBase ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿ã«ã‚¢ã‚¯ã‚»ã‚¹ã—ãªã„ç‰ˆ
 extern int ConnectNetWorkBase_UseGParam(
 	CONNECTNETWORK_GPARAM *GParam,
 	IPDATA *IPData_IPv4,
@@ -1225,7 +1225,7 @@ extern int ConnectNetWorkBase_UseGParam(
 	unsigned int pt ;
 	int i ;
 
-	// ’ÊMŠÖŒW‚ª‰Šú‰»‚³‚ê‚Ä‚¢‚È‚©‚Á‚½‚ç‰Šú‰»
+	// é€šä¿¡é–¢ä¿‚ãŒåˆæœŸåŒ–ã•ã‚Œã¦ã„ãªã‹ã£ãŸã‚‰åˆæœŸåŒ–
 	if( SockData.InitializeFlag == FALSE )
 	{
 		if( WinData.CloseMessagePostFlag != TRUE )	InitializeNetWork() ;
@@ -1238,19 +1238,19 @@ extern int ConnectNetWorkBase_UseGParam(
 
 	SETUP_WIN_API
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 	CRITICALSECTION_LOCK( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 
-	// ’ÊMŠÖŒWˆ—
+	// é€šä¿¡é–¢ä¿‚å‡¦ç†
 	NS_ProcessNetMessage( FALSE ) ;
 
-	// IPv6 ‚©‚Ç‚¤‚©‚ğƒZƒbƒg
+	// IPv6 ã‹ã©ã†ã‹ã‚’ã‚»ãƒƒãƒˆ
 	IsIPv6 = IPData_IPv6 != NULL ? TRUE : FALSE ;
 
-	// ƒ|[ƒg‚Ì’l‚ğŒˆ’è
+	// ãƒãƒ¼ãƒˆã®å€¤ã‚’æ±ºå®š
 	pt = Port == -1 ? WinAPIData.WinSockFunc.htonsFunc( WSA_DEFAULTPORT ) : WinAPIData.WinSockFunc.htonsFunc( ( unsigned short )Port ) ;
 
-	// Œ»İÚ‘±‚µ‚Ä‚¢‚é’†‚Éw’è‚Ì‚h‚o‚ª‚ ‚é‚©Šm”FA‚ ‚Á‚½‚ç‚»‚Ìƒnƒ“ƒhƒ‹‚ğ•Ô‚·
+	// ç¾åœ¨æ¥ç¶šã—ã¦ã„ã‚‹ä¸­ã«æŒ‡å®šã®ï¼©ï¼°ãŒã‚ã‚‹ã‹ç¢ºèªã€ã‚ã£ãŸã‚‰ãã®ãƒãƒ³ãƒ‰ãƒ«ã‚’è¿”ã™
 	for( List = HandleManageArray[ DX_HANDLETYPE_NETWORK ].ListFirst.Next ; List->Next != NULL ; List = List->Next )
 	{
 		Sock = ( SOCKETDATA * )List->Data ;
@@ -1279,18 +1279,18 @@ extern int ConnectNetWorkBase_UseGParam(
 		}
 		NetHandle = Sock->HandleInfo.Handle ;
 
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 		CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 
-		// ƒnƒ“ƒhƒ‹‚ğ•Ô‚·
+		// ãƒãƒ³ãƒ‰ãƒ«ã‚’è¿”ã™
 		return NetHandle ;
 	}
 
-	// ƒnƒ“ƒhƒ‹‚Ìì¬
+	// ãƒãƒ³ãƒ‰ãƒ«ã®ä½œæˆ
 	NetHandle = AddHandle( DX_HANDLETYPE_NETWORK, FALSE, -1 ) ;
 	if( NetHandle == -1 )
 	{
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 		CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 
 		return -1 ;
@@ -1302,7 +1302,7 @@ extern int ConnectNetWorkBase_UseGParam(
 		ASYNCLOADDATA_COMMON *AParam = NULL ;
 		int Addr ;
 
-		// ƒpƒ‰ƒ[ƒ^‚É•K—v‚Èƒƒ‚ƒŠ‚ÌƒTƒCƒY‚ğZo
+		// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã«å¿…è¦ãªãƒ¡ãƒ¢ãƒªã®ã‚µã‚¤ã‚ºã‚’ç®—å‡º
 		Addr = 0 ;
 		AddASyncLoadParamStruct( NULL, &Addr, GParam, sizeof( CONNECTNETWORK_GPARAM ) ) ;
 		AddASyncLoadParamInt( NULL, &Addr, NetHandle ) ;
@@ -1319,12 +1319,12 @@ extern int ConnectNetWorkBase_UseGParam(
 			AddASyncLoadParamStruct( NULL, &Addr, IPData_IPv6, sizeof( IPDATA_IPv6 ) ) ;
 		}
 
-		// ƒƒ‚ƒŠ‚ÌŠm•Û
+		// ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿
 		AParam = AllocASyncLoadDataMemory( Addr ) ;
 		if( AParam == NULL )
 			goto ERR ;
 
-		// ˆ—‚É•K—v‚Èî•ñ‚ğƒZƒbƒg
+		// å‡¦ç†ã«å¿…è¦ãªæƒ…å ±ã‚’ã‚»ãƒƒãƒˆ
 		AParam->ProcessFunction = ConnectNetWorkBase_ASync ;
 		Addr = 0 ;
 		AddASyncLoadParamStruct( AParam->Data, &Addr, GParam, sizeof( CONNECTNETWORK_GPARAM ) ) ;
@@ -1342,7 +1342,7 @@ extern int ConnectNetWorkBase_UseGParam(
 			AddASyncLoadParamStruct( AParam->Data, &Addr, IPData_IPv6, sizeof( IPDATA_IPv6 ) ) ;
 		}
 
-		// ƒf[ƒ^‚ğ’Ç‰Á
+		// ãƒ‡ãƒ¼ã‚¿ã‚’è¿½åŠ 
 		if( AddASyncLoadData( AParam ) < 0 )
 		{
 			DXFREE( AParam ) ;
@@ -1350,7 +1350,7 @@ extern int ConnectNetWorkBase_UseGParam(
 			goto ERR ;
 		}
 
-		// ”ñ“¯Šú“Ç‚İ‚İƒJƒEƒ“ƒg‚ğƒCƒ“ƒNƒŠƒƒ“ƒg
+		// éåŒæœŸèª­ã¿è¾¼ã¿ã‚«ã‚¦ãƒ³ãƒˆã‚’ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆ
 		IncASyncLoadCount( NetHandle, AParam->Index ) ;
 	}
 	else
@@ -1360,22 +1360,22 @@ extern int ConnectNetWorkBase_UseGParam(
 			goto ERR ;
 	}
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 	CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return NetHandle ;
 
 ERR :
 	SubHandle( NetHandle, ASyncLoadFlag, FALSE ) ;
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 	CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 
 	return -1 ;
 }
 
-// ConnectNetWork ‚Ìˆ—‚ğs‚¤ŠÖ”
+// ConnectNetWork ã®å‡¦ç†ã‚’è¡Œã†é–¢æ•°
 static int ConnectNetWorkBase( IPDATA *IPData_IPv4, IPDATA_IPv6 *IPData_IPv6, int Port, int ASync )
 {
 	CONNECTNETWORK_GPARAM GParam ;
@@ -1388,50 +1388,50 @@ static int ConnectNetWorkBase( IPDATA *IPData_IPv4, IPDATA_IPv6 *IPData_IPv6, in
 	{
 		if( IPData_IPv6 != NULL )
 		{
-			DXERRORNETWORK(( "\x25\x00\x78\x00\x3a\x00\x25\x00\x78\x00\x3a\x00\x25\x00\x78\x00\x3a\x00\x25\x00\x78\x00\x3a\x00\x25\x00\x78\x00\x3a\x00\x25\x00\x78\x00\x3a\x00\x25\x00\x78\x00\x3a\x00\x25\x00\x78\x00\x20\x00\x78\x30\x6e\x30\xa5\x63\x9a\x7d\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x02\x30\x0a\x00\x00"/*@ L"%x:%x:%x:%x:%x:%x:%x:%x ‚Ö‚ÌÚ‘±‚É¸”s‚µ‚Ü‚µ‚½B\n" @*/,
+			DXERRORNETWORK(( "\x25\x00\x78\x00\x3a\x00\x25\x00\x78\x00\x3a\x00\x25\x00\x78\x00\x3a\x00\x25\x00\x78\x00\x3a\x00\x25\x00\x78\x00\x3a\x00\x25\x00\x78\x00\x3a\x00\x25\x00\x78\x00\x3a\x00\x25\x00\x78\x00\x20\x00\x78\x30\x6e\x30\xa5\x63\x9a\x7d\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x02\x30\x0a\x00\x00"/*@ L"%x:%x:%x:%x:%x:%x:%x:%x ã¸ã®æ¥ç¶šã«å¤±æ•—ã—ã¾ã—ãŸã€‚\n" @*/,
 				IPData_IPv6->Word[ 0 ], IPData_IPv6->Word[ 1 ], IPData_IPv6->Word[ 2 ], IPData_IPv6->Word[ 3 ],
 				IPData_IPv6->Word[ 4 ], IPData_IPv6->Word[ 5 ], IPData_IPv6->Word[ 6 ], IPData_IPv6->Word[ 7 ] ) ) ;
 		}
 		else
 		{
-			DXERRORNETWORK(( "\x25\x00\x64\x00\x2e\x00\x25\x00\x64\x00\x2e\x00\x25\x00\x64\x00\x2e\x00\x25\x00\x64\x00\x20\x00\x78\x30\x6e\x30\xa5\x63\x9a\x7d\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x02\x30\x0a\x00\x00"/*@ L"%d.%d.%d.%d ‚Ö‚ÌÚ‘±‚É¸”s‚µ‚Ü‚µ‚½B\n" @*/,IPData_IPv4->d1 , IPData_IPv4->d2 , IPData_IPv4->d3 , IPData_IPv4->d4) ) ;
+			DXERRORNETWORK(( "\x25\x00\x64\x00\x2e\x00\x25\x00\x64\x00\x2e\x00\x25\x00\x64\x00\x2e\x00\x25\x00\x64\x00\x20\x00\x78\x30\x6e\x30\xa5\x63\x9a\x7d\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x02\x30\x0a\x00\x00"/*@ L"%d.%d.%d.%d ã¸ã®æ¥ç¶šã«å¤±æ•—ã—ã¾ã—ãŸã€‚\n" @*/,IPData_IPv4->d1 , IPData_IPv4->d2 , IPData_IPv4->d3 , IPData_IPv4->d4) ) ;
 		}
 	}
 
 	return Result ;
 }
 
-// ‘¼ƒ}ƒVƒ“‚ÉÚ‘±‚·‚é
+// ä»–ãƒã‚·ãƒ³ã«æ¥ç¶šã™ã‚‹
 extern int NS_ConnectNetWork_IPv6( IPDATA_IPv6 IPData, int Port )
 {
 	return ConnectNetWorkBase( NULL, &IPData, Port, FALSE ) ;
 }
 
-// ‘¼ƒ}ƒVƒ“‚ÉÚ‘±‚·‚é
+// ä»–ãƒã‚·ãƒ³ã«æ¥ç¶šã™ã‚‹
 extern int NS_ConnectNetWork( IPDATA IPData, int Port )
 {
 	return ConnectNetWorkBase( &IPData, NULL, Port, FALSE ) ;
 }
 
-// ‘¼ƒ}ƒVƒ“‚ÉÚ‘±‚·‚é
+// ä»–ãƒã‚·ãƒ³ã«æ¥ç¶šã™ã‚‹
 extern int NS_ConnectNetWork_IPv6_ASync( IPDATA_IPv6 IPData, int Port )
 {
 	return ConnectNetWorkBase( NULL, &IPData, Port, TRUE ) ;
 }
 
-// ‘¼ƒ}ƒVƒ“‚ÉÚ‘±‚·‚é
+// ä»–ãƒã‚·ãƒ³ã«æ¥ç¶šã™ã‚‹
 extern int NS_ConnectNetWork_ASync( IPDATA IPData, int Port )
 {
 	return ConnectNetWorkBase( &IPData, NULL, Port, TRUE ) ;
 }
 
-// Ú‘±‚ğó‚¯‚ç‚ê‚éó‘Ô‚É‚·‚é
+// æ¥ç¶šã‚’å—ã‘ã‚‰ã‚Œã‚‹çŠ¶æ…‹ã«ã™ã‚‹
 static int PreparationListenNetWork_Base( int IsIPv6, int Port )
 {
 	int ReturnValue = 0 ;
 	SOCKETDATA *ListenSock ;
 
-	// ’ÊMŠÖŒW‚ª‰Šú‰»‚³‚ê‚Ä‚¢‚È‚©‚Á‚½‚ç‰Šú‰»
+	// é€šä¿¡é–¢ä¿‚ãŒåˆæœŸåŒ–ã•ã‚Œã¦ã„ãªã‹ã£ãŸã‚‰åˆæœŸåŒ–
 	if( SockData.InitializeFlag == FALSE )
 	{
 		if( WinData.CloseMessagePostFlag != TRUE ) InitializeNetWork() ;
@@ -1441,13 +1441,13 @@ static int PreparationListenNetWork_Base( int IsIPv6, int Port )
 
 	SETUP_WIN_API
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 	CRITICALSECTION_LOCK( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 
-	// ’ÊMŠÖŒWˆ—
+	// é€šä¿¡é–¢ä¿‚å‡¦ç†
 	NS_ProcessNetMessage( FALSE ) ;
 
-	// Šù‚Éó•t’†‚¾‚Á‚½‚ç‰½‚à‚¹‚¸I—¹	
+	// æ—¢ã«å—ä»˜ä¸­ã ã£ãŸã‚‰ä½•ã‚‚ã›ãšçµ‚äº†	
 //	if( SockData.CSocket[ MAX_SOCKET_NUM ] != NULL )
 	if( !NETHCHK( SockData.ListenHandle, ListenSock ) )
 	{
@@ -1455,49 +1455,49 @@ static int PreparationListenNetWork_Base( int IsIPv6, int Port )
 		goto FUNCTIONEND ;
 	}
 
-	// Ú‘±ó•t‘Ò‚¿—p‚Ìƒnƒ“ƒhƒ‹‚ğ’Ç‰Á
+	// æ¥ç¶šå—ä»˜å¾…ã¡ç”¨ã®ãƒãƒ³ãƒ‰ãƒ«ã‚’è¿½åŠ 
 	SockData.ListenHandle = AddHandle( DX_HANDLETYPE_NETWORK, FALSE, -1 ) ;
 	if( NETHCHK_ASYNC( SockData.ListenHandle, ListenSock ) )
 	{
-		DXERRORNETWORK(( "\xa5\x63\x9a\x7d\x85\x5f\x61\x30\x28\x75\xcd\x30\xc3\x30\xc8\x30\xcf\x30\xf3\x30\xc9\x30\xeb\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"Ú‘±‘Ò‚¿—pƒlƒbƒgƒnƒ“ƒhƒ‹‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½" @*/ )) ;
+		DXERRORNETWORK(( "\xa5\x63\x9a\x7d\x85\x5f\x61\x30\x28\x75\xcd\x30\xc3\x30\xc8\x30\xcf\x30\xf3\x30\xc9\x30\xeb\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"æ¥ç¶šå¾…ã¡ç”¨ãƒãƒƒãƒˆãƒãƒ³ãƒ‰ãƒ«ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ" @*/ )) ;
 		ReturnValue = -1 ;
 		goto FUNCTIONEND ;
 	}
 
-	// g—p‚·‚éƒf[ƒ^‚¾‚¯‰Šú‰»
-	ListenSock->ErrorFlag 			= FALSE ;			// ƒGƒ‰[‚ª”­¶‚µ‚½ƒtƒ‰ƒO‚ğ“|‚·
-	ListenSock->UseFlag				= TRUE ;			// ƒf[ƒ^‚ğg—p’†‚É‚·‚é
-	ListenSock->IsIPv6				= IsIPv6 ;			// IPv6 ‚©‚Ç‚¤‚©‚ğ•Û‘¶
+	// ä½¿ç”¨ã™ã‚‹ãƒ‡ãƒ¼ã‚¿ã ã‘åˆæœŸåŒ–
+	ListenSock->ErrorFlag 			= FALSE ;			// ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ãŸãƒ•ãƒ©ã‚°ã‚’å€’ã™
+	ListenSock->UseFlag				= TRUE ;			// ãƒ‡ãƒ¼ã‚¿ã‚’ä½¿ç”¨ä¸­ã«ã™ã‚‹
+	ListenSock->IsIPv6				= IsIPv6 ;			// IPv6 ã‹ã©ã†ã‹ã‚’ä¿å­˜
 
-	// ƒAƒNƒZƒvƒg—pƒ\ƒPƒbƒg‚Ìì¬
-	ListenSock->Socket = WinAPIData.WinSockFunc.socketFunc( IsIPv6 ? 23/*AF_INET6 ‚Í 23*/ : AF_INET , SOCK_STREAM , IPPROTO_TCP ) ;
+	// ã‚¢ã‚¯ã‚»ãƒ—ãƒˆç”¨ã‚½ã‚±ãƒƒãƒˆã®ä½œæˆ
+	ListenSock->Socket = WinAPIData.WinSockFunc.socketFunc( IsIPv6 ? 23/*AF_INET6 ã¯ 23*/ : AF_INET , SOCK_STREAM , IPPROTO_TCP ) ;
 	if( ListenSock->Socket == INVALID_SOCKET )
 	{
-		DXERRORNETWORK(( "\xbd\x30\xb1\x30\xc3\x30\xc8\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x02\x30\x77\x00\x73\x00\x32\x00\x5f\x00\x33\x00\x32\x00\x2e\x00\x64\x00\x6c\x00\x6c\x00\x4c\x30\x5c\x4f\xd5\x52\x57\x30\x66\x30\x44\x30\x7e\x30\x5b\x30\x93\x30\x00"/*@ L"ƒ\ƒPƒbƒg‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½Bws2_32.dll‚ªì“®‚µ‚Ä‚¢‚Ü‚¹‚ñ" @*/ )) ;
+		DXERRORNETWORK(( "\xbd\x30\xb1\x30\xc3\x30\xc8\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x02\x30\x77\x00\x73\x00\x32\x00\x5f\x00\x33\x00\x32\x00\x2e\x00\x64\x00\x6c\x00\x6c\x00\x4c\x30\x5c\x4f\xd5\x52\x57\x30\x66\x30\x44\x30\x7e\x30\x5b\x30\x93\x30\x00"/*@ L"ã‚½ã‚±ãƒƒãƒˆã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸã€‚ws2_32.dllãŒä½œå‹•ã—ã¦ã„ã¾ã›ã‚“" @*/ )) ;
 		goto ERR ;
 	}
 
-	// WinSock ƒƒbƒZ[ƒWó‚¯æ‚èİ’è
+	// WinSock ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å—ã‘å–ã‚Šè¨­å®š
 	if( WinAPIData.WinSockFunc.WSAAsyncSelectFunc( ListenSock->Socket, SockData.MessageWindow, WSA_WINSOCKMESSAGE , FD_READ | FD_WRITE | FD_CLOSE | FD_ACCEPT ) == SOCKET_ERROR )
 	{
-		DXERRORNETWORK(( "\x57\x00\x53\x00\x41\x00\x73\x00\x79\x00\x6e\x00\x63\x00\x53\x00\x65\x00\x6c\x00\x65\x00\x63\x00\x74\x00\x67\x30\xa8\x30\xe9\x30\xfc\x30\x4c\x30\x7a\x76\x1f\x75\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"WSAsyncSelect‚ÅƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½" @*/ )) ;
+		DXERRORNETWORK(( "\x57\x00\x53\x00\x41\x00\x73\x00\x79\x00\x6e\x00\x63\x00\x53\x00\x65\x00\x6c\x00\x65\x00\x63\x00\x74\x00\x67\x30\xa8\x30\xe9\x30\xfc\x30\x4c\x30\x7a\x76\x1f\x75\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"WSAsyncSelectã§ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¾ã—ãŸ" @*/ )) ;
 		goto ERR ;
 	}
 
-	// ì¬‚µ‚½ƒ\ƒPƒbƒg‚Æƒ|[ƒg”Ô†‚ÌŠÖ˜A•t‚¯‚ğs‚¤
+	// ä½œæˆã—ãŸã‚½ã‚±ãƒƒãƒˆã¨ãƒãƒ¼ãƒˆç•ªå·ã®é–¢é€£ä»˜ã‘ã‚’è¡Œã†
 	if( IsIPv6 )
 	{
 		_sockaddr_in6 local_v6;
 	
 		_MEMSET( &local_v6, 0, sizeof( local_v6 ) ) ;
-		local_v6.sin6_family = 23/*AF_INET6 ‚Í 23*/ ;
+		local_v6.sin6_family = 23/*AF_INET6 ã¯ 23*/ ;
 		local_v6.sin6_port = Port == -1 ? WinAPIData.WinSockFunc.htonsFunc( WSA_DEFAULTPORT ) : WinAPIData.WinSockFunc.htonsFunc( ( unsigned short )Port ) ;
 
 		if( WinAPIData.WinSockFunc.bindFunc( ListenSock->Socket , (struct sockaddr FAR *) &local_v6, sizeof(local_v6) ) == SOCKET_ERROR )
 		{
 			if( WinAPIData.WinSockFunc.WSAGetLastErrorFunc() != WSAEWOULDBLOCK )
 			{
-				DXERRORNETWORK(( "\x62\x00\x69\x00\x6e\x00\x64\x00\xfa\x51\x65\x67\x7e\x30\x5b\x30\x93\x30\x00"/*@ L"bindo—ˆ‚Ü‚¹‚ñ" @*/ )) ;
+				DXERRORNETWORK(( "\x62\x00\x69\x00\x6e\x00\x64\x00\xfa\x51\x65\x67\x7e\x30\x5b\x30\x93\x30\x00"/*@ L"bindå‡ºæ¥ã¾ã›ã‚“" @*/ )) ;
 				goto ERR ;
 			}
 		}
@@ -1515,51 +1515,51 @@ static int PreparationListenNetWork_Base( int IsIPv6, int Port )
 		{
 			if( WinAPIData.WinSockFunc.WSAGetLastErrorFunc() != WSAEWOULDBLOCK )
 			{
-				DXERRORNETWORK(( "\x62\x00\x69\x00\x6e\x00\x64\x00\xfa\x51\x65\x67\x7e\x30\x5b\x30\x93\x30\x00"/*@ L"bindo—ˆ‚Ü‚¹‚ñ" @*/ )) ;
+				DXERRORNETWORK(( "\x62\x00\x69\x00\x6e\x00\x64\x00\xfa\x51\x65\x67\x7e\x30\x5b\x30\x93\x30\x00"/*@ L"bindå‡ºæ¥ã¾ã›ã‚“" @*/ )) ;
 				goto ERR ;
 			}
 		}
 	}
 
-	// Ú‘±‘Ò‚¿—pƒ\ƒPƒbƒg‚ğ‘Ò‹@ó‘Ô‚É‚·‚é
+	// æ¥ç¶šå¾…ã¡ç”¨ã‚½ã‚±ãƒƒãƒˆã‚’å¾…æ©ŸçŠ¶æ…‹ã«ã™ã‚‹
 	if( WinAPIData.WinSockFunc.listenFunc( ListenSock->Socket, SOMAXCONN ) == SOCKET_ERROR )
 	{
-		DXERRORNETWORK(( "\x6c\x00\x69\x00\x73\x00\x74\x00\x65\x00\x6e\x00\x92\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"listen‚ğ¸”s‚µ‚Ü‚µ‚½" @*/ )) ;
+		DXERRORNETWORK(( "\x6c\x00\x69\x00\x73\x00\x74\x00\x65\x00\x6e\x00\x92\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"listenã‚’å¤±æ•—ã—ã¾ã—ãŸ" @*/ )) ;
 		goto ERR ;
 	}
 
 FUNCTIONEND :
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 	CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return ReturnValue ;
 	
-	// ƒGƒ‰[ˆ—
+	// ã‚¨ãƒ©ãƒ¼å‡¦ç†
 ERR :
-	// ƒnƒ“ƒhƒ‹‚Ìíœ
+	// ãƒãƒ³ãƒ‰ãƒ«ã®å‰Šé™¤
 	SubHandle( SockData.ListenHandle, FALSE, FALSE ) ;
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 	CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 
 	return -1 ;
 }
 
-// Ú‘±‚ğó‚¯‚ç‚ê‚éó‘Ô‚É‚·‚é
+// æ¥ç¶šã‚’å—ã‘ã‚‰ã‚Œã‚‹çŠ¶æ…‹ã«ã™ã‚‹
 extern int NS_PreparationListenNetWork_IPv6( int Port )
 {
 	return PreparationListenNetWork_Base( TRUE, Port ) ;
 }
 
-// Ú‘±‚ğó‚¯‚ç‚ê‚éó‘Ô‚É‚·‚é
+// æ¥ç¶šã‚’å—ã‘ã‚‰ã‚Œã‚‹çŠ¶æ…‹ã«ã™ã‚‹
 extern int NS_PreparationListenNetWork( int Port )
 {
 	return PreparationListenNetWork_Base( FALSE, Port ) ;
 }
 
-// ƒAƒNƒZƒvƒg‚·‚é
+// ã‚¢ã‚¯ã‚»ãƒ—ãƒˆã™ã‚‹
 extern int AcceptNetWork( void )
 {
 	int ReturnValue = TRUE ;
@@ -1568,18 +1568,18 @@ extern int AcceptNetWork( void )
 	SOCKETDATA *Sock = NULL ;
 	int NewNetHandle ;
 
-	// ’ÊMŠÖŒW‚ª‰Šú‰»‚³‚ê‚Ä‚¢‚È‚©‚Á‚½‚ç‰½‚à‚¹‚¸I—¹
+	// é€šä¿¡é–¢ä¿‚ãŒåˆæœŸåŒ–ã•ã‚Œã¦ã„ãªã‹ã£ãŸã‚‰ä½•ã‚‚ã›ãšçµ‚äº†
 	if( SockData.InitializeFlag == FALSE ) return -1 ;
 
 	SETUP_WIN_API
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 	CRITICALSECTION_LOCK( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 
-	// ’ÊMŠÖŒW‚Ìˆ—‚ğs‚¤
+	// é€šä¿¡é–¢ä¿‚ã®å‡¦ç†ã‚’è¡Œã†
 	NS_ProcessNetMessage( FALSE ) ;
 
-	// Ú‘±‘Ò‚¿‚ğ‚µ‚Ä‚¢‚È‚¢ê‡‚Í‰½‚à‚¹‚¸I—¹
+	// æ¥ç¶šå¾…ã¡ã‚’ã—ã¦ã„ãªã„å ´åˆã¯ä½•ã‚‚ã›ãšçµ‚äº†
 //	if( ListenSock == NULL )
 	if( NETHCHK( SockData.ListenHandle, ListenSock ) )
 	{
@@ -1587,45 +1587,45 @@ extern int AcceptNetWork( void )
 		goto FUNCTIONEND ;
 	}
 
-	// V‚µ‚¢ƒnƒ“ƒhƒ‹‚ğ’Ç‰Á
+	// æ–°ã—ã„ãƒãƒ³ãƒ‰ãƒ«ã‚’è¿½åŠ 
 	NewNetHandle = AddHandle( DX_HANDLETYPE_NETWORK, FALSE, -1 ) ;
 	if( NETHCHK_ASYNC( NewNetHandle, Sock ) )
 	{
-		DXST_LOGFILE_ADDUTF16LE( "\x61\x00\x63\x00\x63\x00\x65\x00\x70\x00\x74\x00\x20\x00\x28\x75\x6e\x30\xcf\x30\xf3\x30\xc9\x30\xeb\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x20\x00\x0a\x00\x00"/*@ L"accept —p‚Ìƒnƒ“ƒhƒ‹ì¬‚É¸”s‚µ‚Ü‚µ‚½ \n" @*/ ) ;
+		DXST_LOGFILE_ADDUTF16LE( "\x61\x00\x63\x00\x63\x00\x65\x00\x70\x00\x74\x00\x20\x00\x28\x75\x6e\x30\xcf\x30\xf3\x30\xc9\x30\xeb\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x20\x00\x0a\x00\x00"/*@ L"accept ç”¨ã®ãƒãƒ³ãƒ‰ãƒ«ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ \n" @*/ ) ;
 		ReturnValue = -1 ;
 		goto FUNCTIONEND ;
 	}
 
-	// ƒf[ƒ^‰Šú‰»
-	Sock->IsUDP					= FALSE ;							// Ú‘±‚³‚ê‚½ê‡‚Í•K‚¸‚s‚b‚o
-	Sock->IsUDPBroadCast		= FALSE ;							// ƒuƒ[ƒhƒLƒƒƒXƒg‚Íg—p‚µ‚È‚¢
-	Sock->IsIPv6				= ListenSock->IsIPv6 ;				// ‚h‚o‚–‚U‚©‚Ç‚¤‚©‚ğ•Û‘¶
-	Sock->ErrorFlag 			= FALSE ;							// ƒGƒ‰[‚ª”­¶‚µ‚½ƒtƒ‰ƒO‚ğ“|‚·
-	Sock->UseFlag				= TRUE ;							// ƒf[ƒ^‚ğg—p’†‚É‚·‚é
-	Sock->PreConnectionFlag		= FALSE ;							// Ú‘±‘Oƒtƒ‰ƒO‚ğ“|‚·
-	Sock->ConnectionFlag		= TRUE ;							// Ú‘±‚µ‚½‚©ƒtƒ‰ƒO‚ğÚ‘±‚µ‚Ä‚¢‚éó‘Ô‚É
-	Sock->ConnectionLostFlag 	= FALSE ;							// Ø’fŠm”Fƒtƒ‰ƒO‚Í‚Æ‚è‚ ‚¦‚¸“|‚µ‚Ä‚¨‚­
-	Sock->AccepteConfirFlag 	= FALSE ;							// Ú‘±Šm”Fƒtƒ‰ƒO‚Í‘Šè‚©‚çŸè‚ÉÚ‘±‚³‚ê‚½‚Ì‚ÅŠm”F‚µ‚Ä‚¢‚È‚¢ó‘Ô‚É‚µ‚Ä‚¨‚­
-	Sock->AcceptFlag			= TRUE ;							// ‘Šè‚©‚çÚ‘±‚³‚ê‚½‚Ì‚©ƒtƒ‰ƒO‚ğ—§‚Ä‚é
-	Sock->DXProtocolFlag 		= !SockData.NonUseDXProtocolFlag ;	// ‚c‚wƒ‰ƒCƒuƒ‰ƒŠ“Æ©‚Ì’ÊM•û®‚ğg‚¤‚©‚Ç‚¤‚©‚ğƒZƒbƒg
-	Sock->CloseAfterLostFlag	= !SockData.NonCloseAfterLostFlag ;	// Ø’f’¼Œã‚Éƒnƒ“ƒhƒ‹‚ğ‰ğ•ú‚·‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğƒZƒbƒg
+	// ãƒ‡ãƒ¼ã‚¿åˆæœŸåŒ–
+	Sock->IsUDP					= FALSE ;							// æ¥ç¶šã•ã‚ŒãŸå ´åˆã¯å¿…ãšï¼´ï¼£ï¼°
+	Sock->IsUDPBroadCast		= FALSE ;							// ãƒ–ãƒ­ãƒ¼ãƒ‰ã‚­ãƒ£ã‚¹ãƒˆã¯ä½¿ç”¨ã—ãªã„
+	Sock->IsIPv6				= ListenSock->IsIPv6 ;				// ï¼©ï¼°ï½–ï¼–ã‹ã©ã†ã‹ã‚’ä¿å­˜
+	Sock->ErrorFlag 			= FALSE ;							// ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ãŸãƒ•ãƒ©ã‚°ã‚’å€’ã™
+	Sock->UseFlag				= TRUE ;							// ãƒ‡ãƒ¼ã‚¿ã‚’ä½¿ç”¨ä¸­ã«ã™ã‚‹
+	Sock->PreConnectionFlag		= FALSE ;							// æ¥ç¶šå‰ãƒ•ãƒ©ã‚°ã‚’å€’ã™
+	Sock->ConnectionFlag		= TRUE ;							// æ¥ç¶šã—ãŸã‹ãƒ•ãƒ©ã‚°ã‚’æ¥ç¶šã—ã¦ã„ã‚‹çŠ¶æ…‹ã«
+	Sock->ConnectionLostFlag 	= FALSE ;							// åˆ‡æ–­ç¢ºèªãƒ•ãƒ©ã‚°ã¯ã¨ã‚Šã‚ãˆãšå€’ã—ã¦ãŠã
+	Sock->AccepteConfirFlag 	= FALSE ;							// æ¥ç¶šç¢ºèªãƒ•ãƒ©ã‚°ã¯ç›¸æ‰‹ã‹ã‚‰å‹æ‰‹ã«æ¥ç¶šã•ã‚ŒãŸã®ã§ç¢ºèªã—ã¦ã„ãªã„çŠ¶æ…‹ã«ã—ã¦ãŠã
+	Sock->AcceptFlag			= TRUE ;							// ç›¸æ‰‹ã‹ã‚‰æ¥ç¶šã•ã‚ŒãŸã®ã‹ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
+	Sock->DXProtocolFlag 		= !SockData.NonUseDXProtocolFlag ;	// ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªç‹¬è‡ªã®é€šä¿¡æ–¹å¼ã‚’ä½¿ã†ã‹ã©ã†ã‹ã‚’ã‚»ãƒƒãƒˆ
+	Sock->CloseAfterLostFlag	= !SockData.NonCloseAfterLostFlag ;	// åˆ‡æ–­ç›´å¾Œã«ãƒãƒ³ãƒ‰ãƒ«ã‚’è§£æ”¾ã™ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆ
 
-	// ‚c‚wƒ‰ƒCƒuƒ‰ƒŠ“Æ©‚Ì•û®‚ğæ‚éê‡‚Í‘—óM—pƒoƒbƒtƒ@‚ğ‰Šú‰»
+	// ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªç‹¬è‡ªã®æ–¹å¼ã‚’å–ã‚‹å ´åˆã¯é€å—ä¿¡ç”¨ãƒãƒƒãƒ•ã‚¡ã‚’åˆæœŸåŒ–
 	if( Sock->DXProtocolFlag == TRUE )
 	{
-		// ƒ†[ƒU[‚É“n‚·‚Æ‚«‚Ég‚¤ƒŠƒ“ƒOƒoƒbƒtƒ@‚Ì‰Šú‰»
+		// ãƒ¦ãƒ¼ã‚¶ãƒ¼ã«æ¸¡ã™ã¨ãã«ä½¿ã†ãƒªãƒ³ã‚°ãƒãƒƒãƒ•ã‚¡ã®åˆæœŸåŒ–
 		RingBufInitialize( &Sock->RecvBufferToUserR ) ;
 		Sock->RecvComDataVol = 0 ;
 		Sock->RecvComDataOriginalVol = 0 ;
 		Sock->RecvBufferToUserOpenSize = 0 ;
 
-		// ‘—Mƒoƒbƒtƒ@ŠÖ˜A‚Ì‰Šú‰»
+		// é€ä¿¡ãƒãƒƒãƒ•ã‚¡é–¢é€£ã®åˆæœŸåŒ–
 		RingBufInitialize( &Sock->SendBufferR ) ;
 		Sock->SendComDataVol = 0 ;
 		Sock->SendComDataComVol = 0 ;
 	}
 	
-	// Ú‘±‘Ò‚¿‚ğ‚µ‚Ä‚¢‚éÚ‘±æ‚Ìî•ñ‚ğæ“¾‚·‚é
+	// æ¥ç¶šå¾…ã¡ã‚’ã—ã¦ã„ã‚‹æ¥ç¶šå…ˆã®æƒ…å ±ã‚’å–å¾—ã™ã‚‹
 	{
 		int Len ;
 		if( Sock->IsIPv6 )
@@ -1633,19 +1633,19 @@ extern int AcceptNetWork( void )
 			int i ;
 			_sockaddr_in6 AcIP_v6 ;
 
-			// Ú‘±Šm—§
+			// æ¥ç¶šç¢ºç«‹
 			Len = sizeof( _sockaddr_in6 ) ;
 			if( ( Sock->Socket = WinAPIData.WinSockFunc.acceptFunc( ListenSock->Socket , ( SOCKADDR * )&AcIP_v6 , &Len ) ) == INVALID_SOCKET )
 			{
-				DXERRORNETWORK(( "\x61\x00\x63\x00\x63\x00\x65\x00\x70\x00\x74\x00\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"accept‚É¸”s‚µ‚Ü‚µ‚½" @*/ )) ;
+				DXERRORNETWORK(( "\x61\x00\x63\x00\x63\x00\x65\x00\x70\x00\x74\x00\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"acceptã«å¤±æ•—ã—ã¾ã—ãŸ" @*/ )) ;
 				goto ERR ;
 			}
 
-			// ‚h‚o‚Ì•Û‘¶
+			// ï¼©ï¼°ã®ä¿å­˜
 			for( i = 0 ; i < 8 ; i ++ )
 				Sock->AcceptedIP_IPv6.Word[ i ] = AcIP_v6.sin6_addr.Word[ i ] ;
 			
-			// ƒ|[ƒg‚Ì•Û‘¶
+			// ãƒãƒ¼ãƒˆã®ä¿å­˜
 			Sock->Port = AcIP_v6.sin6_port ;
 		}
 		else
@@ -1653,66 +1653,66 @@ extern int AcceptNetWork( void )
 			SOCKADDR AcIP ;
 			SOCKADDR_IN *AcIP_IN ;
 
-			// Ú‘±Šm—§
+			// æ¥ç¶šç¢ºç«‹
 			Len = sizeof( SOCKADDR_IN ) ;
 			if( ( Sock->Socket = WinAPIData.WinSockFunc.acceptFunc( ListenSock->Socket , &AcIP , &Len ) ) == INVALID_SOCKET )
 			{
-				DXERRORNETWORK(( "\x61\x00\x63\x00\x63\x00\x65\x00\x70\x00\x74\x00\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"accept‚É¸”s‚µ‚Ü‚µ‚½" @*/ )) ;
+				DXERRORNETWORK(( "\x61\x00\x63\x00\x63\x00\x65\x00\x70\x00\x74\x00\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"acceptã«å¤±æ•—ã—ã¾ã—ãŸ" @*/ )) ;
 				goto ERR ;
 			}
 
-			// ‚h‚o‚Ì•Û‘¶
+			// ï¼©ï¼°ã®ä¿å­˜
 			AcIP_IN = ( SOCKADDR_IN * )&AcIP ;
 			Sock->AcceptedIP.d1 = AcIP_IN->sin_addr.S_un.S_un_b.s_b1 ;
 			Sock->AcceptedIP.d2 = AcIP_IN->sin_addr.S_un.S_un_b.s_b2 ;
 			Sock->AcceptedIP.d3 = AcIP_IN->sin_addr.S_un.S_un_b.s_b3 ;
 			Sock->AcceptedIP.d4 = AcIP_IN->sin_addr.S_un.S_un_b.s_b4 ;
 			
-			// ƒ|[ƒg‚Ì•Û‘¶
+			// ãƒãƒ¼ãƒˆã®ä¿å­˜
 			Sock->Port = AcIP_IN->sin_port ;
 		}
 	}
 
-	// WinSock ƒƒbƒZ[ƒWó‚¯æ‚èİ’è
+	// WinSock ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å—ã‘å–ã‚Šè¨­å®š
 	if( WinAPIData.WinSockFunc.WSAAsyncSelectFunc( Sock->Socket , SockData.MessageWindow, WSA_WINSOCKMESSAGE , FD_WRITE | FD_READ | FD_CLOSE ) == SOCKET_ERROR )
 	{
-		DXERRORNETWORK(( "\x57\x00\x53\x00\x41\x00\x41\x00\x73\x00\x79\x00\x6e\x00\x63\x00\x53\x00\x65\x00\x6c\x00\x65\x00\x63\x00\x74\x00\x6e\x30\xa8\x30\xe9\x30\xfc\x30\x20\x00\x69\x00\x6e\x00\x20\x00\x41\x00\x63\x00\x63\x00\x65\x00\x70\x00\x74\x00\x4e\x00\x65\x00\x74\x00\x57\x00\x6f\x00\x72\x00\x6b\x00\x00"/*@ L"WSAAsyncSelect‚ÌƒGƒ‰[ in AcceptNetWork" @*/ )) ;
+		DXERRORNETWORK(( "\x57\x00\x53\x00\x41\x00\x41\x00\x73\x00\x79\x00\x6e\x00\x63\x00\x53\x00\x65\x00\x6c\x00\x65\x00\x63\x00\x74\x00\x6e\x30\xa8\x30\xe9\x30\xfc\x30\x20\x00\x69\x00\x6e\x00\x20\x00\x41\x00\x63\x00\x63\x00\x65\x00\x70\x00\x74\x00\x4e\x00\x65\x00\x74\x00\x57\x00\x6f\x00\x72\x00\x6b\x00\x00"/*@ L"WSAAsyncSelectã®ã‚¨ãƒ©ãƒ¼ in AcceptNetWork" @*/ )) ;
 		goto ERR ;
 	}
 
 FUNCTIONEND :
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 	CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return ReturnValue ;
 	
-	// ƒGƒ‰[ˆ—	
+	// ã‚¨ãƒ©ãƒ¼å‡¦ç†	
 ERR :
 
-	// ƒnƒ“ƒhƒ‹‚ğíœ
+	// ãƒãƒ³ãƒ‰ãƒ«ã‚’å‰Šé™¤
 	SubHandle( NewNetHandle, FALSE, FALSE ) ;
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 	CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 
 	return -1 ;
 }
 
-// Ú‘±‚ğó‚¯‚Â‚¯ó‘Ô‚Ì‰ğœ
+// æ¥ç¶šã‚’å—ã‘ã¤ã‘çŠ¶æ…‹ã®è§£é™¤
 extern int NS_StopListenNetWork( void )
 {
 	if( SockData.InitializeFlag == FALSE )
 		return -1 ;
 
-	// Ú‘±ó‚¯•t‚¯—p‚Ìƒnƒ“ƒhƒ‹‚ğíœ
+	// æ¥ç¶šå—ã‘ä»˜ã‘ç”¨ã®ãƒãƒ³ãƒ‰ãƒ«ã‚’å‰Šé™¤
 	return SubHandle( SockData.ListenHandle, FALSE, FALSE ) ;
 /*
 	int ReturnValue = 0 ;
 	SOCKETDATA * ListenSock = SockData.CSocket[ MAX_SOCKET_NUM ] ;
 
-	// ’ÊMŠÖŒW‚ª‰Šú‰»‚³‚ê‚Ä‚¢‚È‚©‚Á‚½‚ç‰Šú‰»
+	// é€šä¿¡é–¢ä¿‚ãŒåˆæœŸåŒ–ã•ã‚Œã¦ã„ãªã‹ã£ãŸã‚‰åˆæœŸåŒ–
 	if( SockData.InitializeFlag == FALSE )
 	{
 		if( WinData.CloseMessagePostFlag != TRUE ) InitializeNetWork() ;
@@ -1720,92 +1720,92 @@ extern int NS_StopListenNetWork( void )
 	}
 	if( SockData.InitializeFlag == FALSE ) return -1 ;
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 	CRITICALSECTION_LOCK( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 
-	// ’ÊMŠÖŒWˆ—
+	// é€šä¿¡é–¢ä¿‚å‡¦ç†
 	NS_ProcessNetMessage() ;
 
-	// Ú‘±ó•tó‘Ô‚Å‚Í–³‚©‚Á‚½‚ç‰½‚à‚¹‚¸I—¹
+	// æ¥ç¶šå—ä»˜çŠ¶æ…‹ã§ã¯ç„¡ã‹ã£ãŸã‚‰ä½•ã‚‚ã›ãšçµ‚äº†
 	if( ListenSock == NULL )
 	{
 		ReturnValue = -1 ;
 		goto FUNCTIONEND ;
 	}
 
-	// ”ñƒuƒƒbƒLƒ“ƒO‰ğœ
+	// éãƒ–ãƒ­ãƒƒã‚­ãƒ³ã‚°è§£é™¤
 	WinAPIData.WinSockFunc.WSAAsyncSelectFunc( ListenSock->Socket, SockData.MessageWindow, 0, 0 );
 
-	// ƒf[ƒ^‘—óMƒVƒƒƒbƒgƒ_ƒEƒ“
+	// ãƒ‡ãƒ¼ã‚¿é€å—ä¿¡ã‚·ãƒ£ãƒƒãƒˆãƒ€ã‚¦ãƒ³
 	WinAPIData.WinSockFunc.shutdownFunc( ListenSock->Socket , 2 ) ;
 
-	// ƒ\ƒPƒbƒg‚ğ•Â‚¶‚é
+	// ã‚½ã‚±ãƒƒãƒˆã‚’é–‰ã˜ã‚‹
 	WinAPIData.WinSockFunc.closesocketFunc( ListenSock->Socket );
 	ListenSock->Socket = 0 ;
 	
-	// g—p’†ƒtƒ‰ƒO‚ğ“|‚·
+	// ä½¿ç”¨ä¸­ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 	ListenSock->UseFlag = FALSE ;
 
-	// ƒŠƒXƒg‚©‚çŠO‚·
+	// ãƒªã‚¹ãƒˆã‹ã‚‰å¤–ã™
 	SubHandleList( &ListenSock->List ) ;
 
-	// ƒƒ‚ƒŠ‚Ì‰ğ•ú
+	// ãƒ¡ãƒ¢ãƒªã®è§£æ”¾
 	DXFREE( ListenSock ) ;
 	SockData.CSocket[ MAX_SOCKET_NUM ] = NULL ;
 
-	// ƒ\ƒPƒbƒg‚Ì‘”‚ğƒfƒNƒŠƒƒ“ƒg
+	// ã‚½ã‚±ãƒƒãƒˆã®ç·æ•°ã‚’ãƒ‡ã‚¯ãƒªãƒ¡ãƒ³ãƒˆ
 	SockData.SocketNum -- ;
 
 FUNCTIONEND :
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 	CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return ReturnValue ;
 */
 }
 
 
-// Ú‘±‚ğI—¹‚·‚é
+// æ¥ç¶šã‚’çµ‚äº†ã™ã‚‹
 extern int NS_CloseNetWork( int NetHandle )
 {
-	// ’ÊMŠÖŒW‚Ì‰Šú‰»‚ª‚³‚ê‚Ä‚¢‚È‚©‚Á‚½‚ç‰½‚à‚¹‚¸I—¹
+	// é€šä¿¡é–¢ä¿‚ã®åˆæœŸåŒ–ãŒã•ã‚Œã¦ã„ãªã‹ã£ãŸã‚‰ä½•ã‚‚ã›ãšçµ‚äº†
 	if( SockData.InitializeFlag == FALSE )
 		return -1 ;
 
-	// ƒnƒ“ƒhƒ‹‚ğíœ
+	// ãƒãƒ³ãƒ‰ãƒ«ã‚’å‰Šé™¤
 	return SubHandle( NetHandle, GetASyncLoadFlag(), FALSE ) ;
 /*
 	int ReturnValue = 0 ;
 	SOCKETDATA * Sock ;
 
-	// ’ÊMŠÖŒW‚Ì‰Šú‰»‚ª‚³‚ê‚Ä‚¢‚È‚©‚Á‚½‚ç‰½‚à‚¹‚¸I—¹
+	// é€šä¿¡é–¢ä¿‚ã®åˆæœŸåŒ–ãŒã•ã‚Œã¦ã„ãªã‹ã£ãŸã‚‰ä½•ã‚‚ã›ãšçµ‚äº†
 	if( SockData.InitializeFlag == FALSE ) return -1 ;
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 	CRITICALSECTION_LOCK( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 
-	// —LŒø‚Èƒnƒ“ƒhƒ‹‚Å‚Í‚È‚©‚Á‚½‚çƒGƒ‰[
+	// æœ‰åŠ¹ãªãƒãƒ³ãƒ‰ãƒ«ã§ã¯ãªã‹ã£ãŸã‚‰ã‚¨ãƒ©ãƒ¼
 	if( TCPNETHCHK( NetHandle, Sock ) )
 	{
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 		CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 
 		return -1 ;
 	}
 
-	// —LŒø‚Èƒ\ƒPƒbƒgƒf[ƒ^‚Å‚Í‚È‚©‚Á‚½‚ç‰½‚à‚¹‚¸I—¹
+	// æœ‰åŠ¹ãªã‚½ã‚±ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã§ã¯ãªã‹ã£ãŸã‚‰ä½•ã‚‚ã›ãšçµ‚äº†
 	if( Sock->UseFlag == FALSE )
 	{
 		ReturnValue = -1 ;
 		goto FUNCTIONEND ;
 	}
 
-	// ’ÊMŠÖŒWˆ—
+	// é€šä¿¡é–¢ä¿‚å‡¦ç†
 	NS_ProcessNetMessage() ;
 
-	// c‚è‚Ìƒf[ƒ^‚ğƒoƒbƒtƒ@‚©‚çÁ‹‚·‚é
+	// æ®‹ã‚Šã®ãƒ‡ãƒ¼ã‚¿ã‚’ãƒãƒƒãƒ•ã‚¡ã‹ã‚‰æ¶ˆå»ã™ã‚‹
 	{
 		int time ;
 		
@@ -1824,44 +1824,44 @@ extern int NS_CloseNetWork( int NetHandle )
 		}
 	}
 
-	// ƒ\ƒPƒbƒg‚ğ‚ÌŒãn––‚ğs‚¤
+	// ã‚½ã‚±ãƒƒãƒˆã‚’ã®å¾Œå§‹æœ«ã‚’è¡Œã†
 	{
-		// ”ñƒuƒƒbƒLƒ“ƒO‰ğœ
+		// éãƒ–ãƒ­ãƒƒã‚­ãƒ³ã‚°è§£é™¤
 		WinAPIData.WinSockFunc.WSAAsyncSelectFunc( Sock->Socket, SockData.MessageWindow, 0, 0 );
 
-		// ƒ\ƒPƒbƒg‚ğ•Â‚¶‚é
+		// ã‚½ã‚±ãƒƒãƒˆã‚’é–‰ã˜ã‚‹
 		WinAPIData.WinSockFunc.closesocketFunc( Sock->Socket );
 		Sock->Socket = 0 ;
 	}
 
-	// ‘—óM—pƒoƒbƒtƒ@‚Ì‰ğ•ú
+	// é€å—ä¿¡ç”¨ãƒãƒƒãƒ•ã‚¡ã®è§£æ”¾
 	RingBufTerminate( &Sock->RecvBufferToUserR ) ;
 	RingBufTerminate( &Sock->SendBufferR ) ;
 
-	// g—p’†ƒtƒ‰ƒO‚ğ“|‚·
+	// ä½¿ç”¨ä¸­ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 	Sock->UseFlag = FALSE ;
 	
-	// ‚»‚Ì‘¼“K“–‚Éƒtƒ‰ƒO‚ğƒZƒbƒg
+	// ãã®ä»–é©å½“ã«ãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆ
 	Sock->ConnectionFlag = FALSE ;
 	Sock->ConnectionLostFlag = TRUE ;
 	Sock->AccepteConfirFlag = FALSE ;
 
-	// ƒŠƒXƒg‚©‚çŠO‚·
+	// ãƒªã‚¹ãƒˆã‹ã‚‰å¤–ã™
 	SubHandleList( &Sock->List ) ;
 
-	// ƒƒ‚ƒŠ‚Ì‰ğ•ú
+	// ãƒ¡ãƒ¢ãƒªã®è§£æ”¾
 	DXFREE( Sock ) ;
 	SockData.CSocket[ NetHandle & DX_HANDLEINDEX_MASK ] = NULL ;
 
-	// ƒ\ƒPƒbƒg‚Ì‘”‚ğƒfƒNƒŠƒƒ“ƒg
+	// ã‚½ã‚±ãƒƒãƒˆã®ç·æ•°ã‚’ãƒ‡ã‚¯ãƒªãƒ¡ãƒ³ãƒˆ
 	SockData.SocketNum -- ;
 
 FUNCTIONEND :
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 	CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return ReturnValue ;
 */
 }
@@ -1869,7 +1869,7 @@ FUNCTIONEND :
 
 
 
-// ƒf[ƒ^‚ÌóMˆ—
+// ãƒ‡ãƒ¼ã‚¿ã®å—ä¿¡å‡¦ç†
 static int RecvSocket( int NetHandle )
 {
 	static int ProcessRunFlag = FALSE ;
@@ -1877,84 +1877,84 @@ static int RecvSocket( int NetHandle )
 	SOCKETDATA * Sock ;
 	int RecvLen ;
 
-	// ’ÊMŠÖŒW‚Ì‰Šú‰»‚ª‚³‚ê‚Ä‚¢‚È‚©‚Á‚½‚ç‰½‚à‚¹‚¸I—¹
+	// é€šä¿¡é–¢ä¿‚ã®åˆæœŸåŒ–ãŒã•ã‚Œã¦ã„ãªã‹ã£ãŸã‚‰ä½•ã‚‚ã›ãšçµ‚äº†
 	if( SockData.InitializeFlag == FALSE ) return -1 ;
 
 	SETUP_WIN_API
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 	CRITICALSECTION_LOCK( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 
-	// —LŒø‚Èƒnƒ“ƒhƒ‹‚Å‚Í‚È‚©‚Á‚½‚çƒGƒ‰[
+	// æœ‰åŠ¹ãªãƒãƒ³ãƒ‰ãƒ«ã§ã¯ãªã‹ã£ãŸã‚‰ã‚¨ãƒ©ãƒ¼
 	if( TCPNETHCHK( NetHandle, Sock ) )
 	{
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 		CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 		return -1 ;
 	}
 
-	// Šù‚Éˆ—‚ªÀs‚³‚ê‚Ä‚¢‚½‚ç‰½‚à‚¹‚¸I—¹
+	// æ—¢ã«å‡¦ç†ãŒå®Ÿè¡Œã•ã‚Œã¦ã„ãŸã‚‰ä½•ã‚‚ã›ãšçµ‚äº†
 	if( ProcessRunFlag == TRUE )
 	{
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 		CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 		return -1 ;
 	}
 
-	// uˆ—‚ğÀs’†vƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// ã€Œå‡¦ç†ã‚’å®Ÿè¡Œä¸­ã€ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	ProcessRunFlag = TRUE ;
 
 
-	// ’ÊMŠÖŒWˆ—
+	// é€šä¿¡é–¢ä¿‚å‡¦ç†
 	NS_ProcessNetMessage( FALSE ) ;
 	
-	// —LŒø‚Èƒ\ƒPƒbƒgƒf[ƒ^‚Å‚Í‚È‚©‚Á‚½‚ç‰½‚à‚¹‚¸I—¹
+	// æœ‰åŠ¹ãªã‚½ã‚±ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã§ã¯ãªã‹ã£ãŸã‚‰ä½•ã‚‚ã›ãšçµ‚äº†
 	if( Sock->UseFlag == FALSE )
 	{
-		DXST_LOGFILE_ADDUTF16LE( "\x09\x67\xb9\x52\x6a\x30\xcd\x30\xc3\x30\xc8\x30\xef\x30\xfc\x30\xaf\x30\xcf\x30\xf3\x30\xc9\x30\xeb\x30\x67\x30\x6f\x30\x42\x30\x8a\x30\x7e\x30\x5b\x30\x93\x30\x20\x00\x69\x00\x6e\x00\x20\x00\x52\x00\x65\x00\x63\x00\x76\x00\x53\x00\x6f\x00\x63\x00\x6b\x00\x65\x00\x74\x00\x0a\x00\x00"/*@ L"—LŒø‚Èƒlƒbƒgƒ[ƒNƒnƒ“ƒhƒ‹‚Å‚Í‚ ‚è‚Ü‚¹‚ñ in RecvSocket\n" @*/ ) ; 
+		DXST_LOGFILE_ADDUTF16LE( "\x09\x67\xb9\x52\x6a\x30\xcd\x30\xc3\x30\xc8\x30\xef\x30\xfc\x30\xaf\x30\xcf\x30\xf3\x30\xc9\x30\xeb\x30\x67\x30\x6f\x30\x42\x30\x8a\x30\x7e\x30\x5b\x30\x93\x30\x20\x00\x69\x00\x6e\x00\x20\x00\x52\x00\x65\x00\x63\x00\x76\x00\x53\x00\x6f\x00\x63\x00\x6b\x00\x65\x00\x74\x00\x0a\x00\x00"/*@ L"æœ‰åŠ¹ãªãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ãƒãƒ³ãƒ‰ãƒ«ã§ã¯ã‚ã‚Šã¾ã›ã‚“ in RecvSocket\n" @*/ ) ; 
 		ReturnValue = -1 ;
 		goto FUNCTIONEND ;
 	}
 
 
-	// d‘å‚ÈƒGƒ‰[‚ª”­¶‚µ‚Ä‚¢‚éê‡‚Í‰½‚à‚¹‚¸I—¹
+	// é‡å¤§ãªã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¦ã„ã‚‹å ´åˆã¯ä½•ã‚‚ã›ãšçµ‚äº†
 	if( Sock->ErrorFlag == TRUE )
 	{
-		DXST_LOGFILE_ADDUTF16LE( "\x53\x30\x6e\x30\xcd\x30\xc3\x30\xc8\x30\xef\x30\xfc\x30\xaf\x30\xcf\x30\xf3\x30\xc9\x30\xeb\x30\x6b\x30\x6f\x30\xa8\x30\xe9\x30\xfc\x30\x4c\x30\x7a\x76\x1f\x75\x57\x30\x66\x30\x44\x30\x7e\x30\x59\x30\x20\x00\x69\x00\x6e\x00\x20\x00\x52\x00\x65\x00\x63\x00\x76\x00\x53\x00\x6f\x00\x63\x00\x6b\x00\x65\x00\x74\x00\x0a\x00\x00"/*@ L"‚±‚Ìƒlƒbƒgƒ[ƒNƒnƒ“ƒhƒ‹‚É‚ÍƒGƒ‰[‚ª”­¶‚µ‚Ä‚¢‚Ü‚· in RecvSocket\n" @*/ ) ;
+		DXST_LOGFILE_ADDUTF16LE( "\x53\x30\x6e\x30\xcd\x30\xc3\x30\xc8\x30\xef\x30\xfc\x30\xaf\x30\xcf\x30\xf3\x30\xc9\x30\xeb\x30\x6b\x30\x6f\x30\xa8\x30\xe9\x30\xfc\x30\x4c\x30\x7a\x76\x1f\x75\x57\x30\x66\x30\x44\x30\x7e\x30\x59\x30\x20\x00\x69\x00\x6e\x00\x20\x00\x52\x00\x65\x00\x63\x00\x76\x00\x53\x00\x6f\x00\x63\x00\x6b\x00\x65\x00\x74\x00\x0a\x00\x00"/*@ L"ã“ã®ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ãƒãƒ³ãƒ‰ãƒ«ã«ã¯ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¦ã„ã¾ã™ in RecvSocket\n" @*/ ) ;
 		ReturnValue = -1 ;
 		goto FUNCTIONEND ;
 	}
 
-	// ‚c‚wƒ‰ƒCƒuƒ‰ƒŠ“Æ©‚Ì•û®‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+	// ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªç‹¬è‡ªã®æ–¹å¼ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 	if( Sock->DXProtocolFlag == TRUE )
 	{
 		do{ 
-			// óM‚·‚éƒf[ƒ^‚Ì—Ê‚ğƒZƒbƒg
+			// å—ä¿¡ã™ã‚‹ãƒ‡ãƒ¼ã‚¿ã®é‡ã‚’ã‚»ãƒƒãƒˆ
 			if( Sock->RecvComDataVol == 0 )
 			{
-				// óM‚·‚éƒf[ƒ^‚Ì—Ê‚ªæ“¾‚Å‚«‚é‚©’²‚×‚é
+				// å—ä¿¡ã™ã‚‹ãƒ‡ãƒ¼ã‚¿ã®é‡ãŒå–å¾—ã§ãã‚‹ã‹èª¿ã¹ã‚‹
 				RecvLen = WinAPIData.WinSockFunc.recvFunc( Sock->Socket , ( char * )&Sock->RecvComDataVol , sizeof( int ) , MSG_PEEK ) ;
 				if( RecvLen < 0 )
 					break ;
 
-				// óM‚·‚éƒf[ƒ^—Ê‚ğ•Û‘¶o—ˆ‚éƒf[ƒ^—Ê‚ª‘—‚ç‚ê‚Ä‚¢‚È‚©‚Á‚½‚ç‰½‚à‚¹‚¸I—¹
+				// å—ä¿¡ã™ã‚‹ãƒ‡ãƒ¼ã‚¿é‡ã‚’ä¿å­˜å‡ºæ¥ã‚‹ãƒ‡ãƒ¼ã‚¿é‡ãŒé€ã‚‰ã‚Œã¦ã„ãªã‹ã£ãŸã‚‰ä½•ã‚‚ã›ãšçµ‚äº†
 				if( RecvLen < 4 )
 					break ;
 
-				// óM‚·‚éƒf[ƒ^‚Ì—Ê‚ğ³®‚Éæ“¾
+				// å—ä¿¡ã™ã‚‹ãƒ‡ãƒ¼ã‚¿ã®é‡ã‚’æ­£å¼ã«å–å¾—
 				RecvLen = WinAPIData.WinSockFunc.recvFunc( Sock->Socket , ( char * )&Sock->RecvComDataVol , sizeof( int ) , 0 ) ;
 				if( RecvLen < 4 )
 					break ;
 
-				// óM‚·‚éƒf[ƒ^ƒTƒCƒY‚ğ•Û‘¶
+				// å—ä¿¡ã™ã‚‹ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºã‚’ä¿å­˜
 				Sock->RecvComDataOriginalVol  = Sock->RecvComDataVol ;
 
-				// V‚½‚ÉóM‚·‚éƒf[ƒ^‚ªû‚Ü‚é‚æ‚¤‚Éƒoƒbƒtƒ@‚ğƒŠƒTƒCƒY
+				// æ–°ãŸã«å—ä¿¡ã™ã‚‹ãƒ‡ãƒ¼ã‚¿ãŒåã¾ã‚‹ã‚ˆã†ã«ãƒãƒƒãƒ•ã‚¡ã‚’ãƒªã‚µã‚¤ã‚º
 				if( RingBufReSize( &Sock->RecvBufferToUserR, Sock->RecvComDataVol ) < 0 )
 				{
-					DXST_LOGFILEFMT_ADDUTF16LE(( "\xd7\x53\xe1\x4f\xc7\x30\xfc\x30\xbf\x30\x92\x30\xdd\x4f\x58\x5b\x59\x30\x8b\x30\xea\x30\xf3\x30\xb0\x30\xd0\x30\xc3\x30\xd5\x30\xa1\x30\x6e\x30\xea\x30\xb5\x30\xa4\x30\xba\x30\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x28\x00\xc7\x30\xfc\x30\xbf\x30\xb5\x30\xa4\x30\xba\x30\x20\x00\x25\x00\x64\x00\x20\x00\x62\x00\x79\x00\x74\x00\x65\x00\x29\x00\x00"/*@ L"óMƒf[ƒ^‚ğ•Û‘¶‚·‚éƒŠƒ“ƒOƒoƒbƒtƒ@‚ÌƒŠƒTƒCƒY‚É¸”s‚µ‚Ü‚µ‚½(ƒf[ƒ^ƒTƒCƒY %d byte)" @*/, Sock->RecvComDataVol )) ;
+					DXST_LOGFILEFMT_ADDUTF16LE(( "\xd7\x53\xe1\x4f\xc7\x30\xfc\x30\xbf\x30\x92\x30\xdd\x4f\x58\x5b\x59\x30\x8b\x30\xea\x30\xf3\x30\xb0\x30\xd0\x30\xc3\x30\xd5\x30\xa1\x30\x6e\x30\xea\x30\xb5\x30\xa4\x30\xba\x30\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x28\x00\xc7\x30\xfc\x30\xbf\x30\xb5\x30\xa4\x30\xba\x30\x20\x00\x25\x00\x64\x00\x20\x00\x62\x00\x79\x00\x74\x00\x65\x00\x29\x00\x00"/*@ L"å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã‚’ä¿å­˜ã™ã‚‹ãƒªãƒ³ã‚°ãƒãƒƒãƒ•ã‚¡ã®ãƒªã‚µã‚¤ã‚ºã«å¤±æ•—ã—ã¾ã—ãŸ(ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º %d byte)" @*/, Sock->RecvComDataVol )) ;
 
-					// ¸”s‚µ‚½‚çd‘å‚ÈƒGƒ‰[
+					// å¤±æ•—ã—ãŸã‚‰é‡å¤§ãªã‚¨ãƒ©ãƒ¼
 					Sock->ErrorFlag = TRUE ;
 
 					ReturnValue = -1 ;
@@ -1962,41 +1962,41 @@ static int RecvSocket( int NetHandle )
 				}
 			}
 
-			// ƒf[ƒ^‚ÌóM
+			// ãƒ‡ãƒ¼ã‚¿ã®å—ä¿¡
 			{
 				RINGBUF *RingBuf = &Sock->RecvBufferToUserR ;
 
-				// ƒAƒhƒŒƒXƒ`ƒFƒbƒN
+				// ã‚¢ãƒ‰ãƒ¬ã‚¹ãƒã‚§ãƒƒã‚¯
 				RingBufAddressCheck( RingBuf ) ;
 
-				// ‚Q‰ñ‚É•ª‚¯‚ÄŠi”[‚µ‚È‚¯‚ê‚Î‚È‚ç‚È‚¢‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+				// ï¼’å›ã«åˆ†ã‘ã¦æ ¼ç´ã—ãªã‘ã‚Œã°ãªã‚‰ãªã„ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 				if( RingBuf->End + Sock->RecvComDataVol > RingBuf->BufferSize )
 				{
 					int AllRecvLen ;
 				
-					// ‚Q‰ñ‚É•Ê‚¯‚ÄŠi”[‚·‚éê‡‚Ìˆ—
+					// ï¼’å›ã«åˆ¥ã‘ã¦æ ¼ç´ã™ã‚‹å ´åˆã®å‡¦ç†
 
-					// Å‰‚Ìƒf[ƒ^‚ğæ“¾
+					// æœ€åˆã®ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
 					AllRecvLen = 0 ;
 					RecvLen = WinAPIData.WinSockFunc.recvFunc( Sock->Socket,(char *)RingBuf->DataBuffer + RingBuf->End,
 															 RingBuf->BufferSize - RingBuf->End, 0 ) ;
 					if( RecvLen < 0 )
 						break ;
 
-					// w’è‚µ‚½ƒf[ƒ^—Ê‚ª‚¿‚á‚ñ‚Ææ“¾‚Å‚«‚½‚©’²‚×‚é
+					// æŒ‡å®šã—ãŸãƒ‡ãƒ¼ã‚¿é‡ãŒã¡ã‚ƒã‚“ã¨å–å¾—ã§ããŸã‹èª¿ã¹ã‚‹
 					if( RecvLen < RingBuf->BufferSize - RingBuf->End )
 					{
 						RingBuf->End += RecvLen ;
 					}
 					else
 					{
-						// æ“¾‚µ‚½ƒf[ƒ^—Ê‚Ì•Û‘¶
+						// å–å¾—ã—ãŸãƒ‡ãƒ¼ã‚¿é‡ã®ä¿å­˜
 						AllRecvLen = RecvLen ;
 
-						// Ÿ‚Ìƒf[ƒ^‚ğæ“¾
+						// æ¬¡ã®ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
 						RecvLen = WinAPIData.WinSockFunc.recvFunc( Sock->Socket, (char *)RingBuf->DataBuffer, Sock->RecvComDataVol - AllRecvLen, 0 ) ;
 
-						// ƒGƒ‰[‚ª‹N‚«‚Ä‰½‚àƒf[ƒ^‚ğóM‚Å‚«‚È‚©‚Á‚½‚çÅ‰‚Éæ“¾‚µ‚½ƒf[ƒ^•ª‚¾‚¯æ“¾‚µ‚½‚±‚Æ‚É‚·‚é
+						// ã‚¨ãƒ©ãƒ¼ãŒèµ·ãã¦ä½•ã‚‚ãƒ‡ãƒ¼ã‚¿ã‚’å—ä¿¡ã§ããªã‹ã£ãŸã‚‰æœ€åˆã«å–å¾—ã—ãŸãƒ‡ãƒ¼ã‚¿åˆ†ã ã‘å–å¾—ã—ãŸã“ã¨ã«ã™ã‚‹
 						if( RecvLen < 0 )
 						{
 							RecvLen = AllRecvLen ;
@@ -2004,59 +2004,59 @@ static int RecvSocket( int NetHandle )
 						}
 						else
 						{
-							// ÅŒã‚Ü‚Å‚«‚Á‚¿‚èƒf[ƒ^‚ğæ“¾‚Å‚«‚½ê‡
+							// æœ€å¾Œã¾ã§ãã£ã¡ã‚Šãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—ã§ããŸå ´åˆ
 						
-							// ƒAƒhƒŒƒX‚Ì®—
+							// ã‚¢ãƒ‰ãƒ¬ã‚¹ã®æ•´ç†
 							RingBuf->End = RecvLen  ;
 
-							// æ“¾‚µ‚½ƒf[ƒ^‚Ì‘—Ê‚ğƒZƒbƒg
+							// å–å¾—ã—ãŸãƒ‡ãƒ¼ã‚¿ã®ç·é‡ã‚’ã‚»ãƒƒãƒˆ
 							RecvLen += AllRecvLen ;
 						}
 					}
 				}
 				else
 				{
-					// ‚P‰ñ‚ÅŠi”[‚·‚éê‡‚Ìˆ—
+					// ï¼‘å›ã§æ ¼ç´ã™ã‚‹å ´åˆã®å‡¦ç†
 					
-					// ˆê“x‚Éæ“¾
+					// ä¸€åº¦ã«å–å¾—
 					RecvLen = WinAPIData.WinSockFunc.recvFunc( Sock->Socket, (char *)RingBuf->DataBuffer + RingBuf->End, Sock->RecvComDataVol, 0 ) ;
 					if( RecvLen < 0 )
 						break ;
 
-					// ƒAƒhƒŒƒX‚Ì®—
+					// ã‚¢ãƒ‰ãƒ¬ã‚¹ã®æ•´ç†
 					RingBuf->End += RecvLen ;
 				}
 
-				// æ“¾‚µ‚½ƒf[ƒ^‚Ì—Ê‚¾‚¯—LŒøƒf[ƒ^—Ê‚ğ‘‚â‚·
+				// å–å¾—ã—ãŸãƒ‡ãƒ¼ã‚¿ã®é‡ã ã‘æœ‰åŠ¹ãƒ‡ãƒ¼ã‚¿é‡ã‚’å¢—ã‚„ã™
 				RingBuf->DataLength += RecvLen ;
 			}
 
-			// óM‚·‚×‚«ƒf[ƒ^—Ê‚ğóM‚µ‚½ƒf[ƒ^—Ê•ª‚¾‚¯Œ¸‚ç‚·
+			// å—ä¿¡ã™ã¹ããƒ‡ãƒ¼ã‚¿é‡ã‚’å—ä¿¡ã—ãŸãƒ‡ãƒ¼ã‚¿é‡åˆ†ã ã‘æ¸›ã‚‰ã™
 			Sock->RecvComDataVol -= RecvLen ;
 
-			// óM‚·‚×‚«ƒf[ƒ^—Ê‚ª‚O‚É‚È‚Á‚½ê‡‚Í—˜—pÒ‚ÉŒöŠJ‚·‚éƒf[ƒ^—Ê‚É¡‰ñóM‚µ‚½ƒf[ƒ^‚Ì—Ê‚ğ‰ÁZ‚·‚é
+			// å—ä¿¡ã™ã¹ããƒ‡ãƒ¼ã‚¿é‡ãŒï¼ã«ãªã£ãŸå ´åˆã¯åˆ©ç”¨è€…ã«å…¬é–‹ã™ã‚‹ãƒ‡ãƒ¼ã‚¿é‡ã«ä»Šå›å—ä¿¡ã—ãŸãƒ‡ãƒ¼ã‚¿ã®é‡ã‚’åŠ ç®—ã™ã‚‹
 			if( Sock->RecvComDataVol == 0 )
 				Sock->RecvBufferToUserOpenSize += Sock->RecvComDataOriginalVol ;
 
 			if( NS_ProcessNetMessage( FALSE ) != 0 ) break ;
 		
-		}// ƒGƒ‰[‚ª‹N‚«‚Ä‚¢‚È‚­‚Ä‚Ü‚¾æ“¾‚·‚×‚«ƒf[ƒ^‚ª‚ ‚éê‡‚Íƒ‹[ƒv
+		}// ã‚¨ãƒ©ãƒ¼ãŒèµ·ãã¦ã„ãªãã¦ã¾ã å–å¾—ã™ã¹ããƒ‡ãƒ¼ã‚¿ãŒã‚ã‚‹å ´åˆã¯ãƒ«ãƒ¼ãƒ—
 		while( RecvLen > 0 && Sock->RecvComDataVol == 0 ) ;
 	}
 
 FUNCTIONEND :
 
-	// uˆ—‚ğÀs’†vƒtƒ‰ƒO‚ğ“|‚·
+	// ã€Œå‡¦ç†ã‚’å®Ÿè¡Œä¸­ã€ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 	ProcessRunFlag = FALSE ; 
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 	CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return ReturnValue ;
 }
 
-// —­‚Ü‚Á‚½ƒf[ƒ^‚Ì‘—Mˆ—
+// æºœã¾ã£ãŸãƒ‡ãƒ¼ã‚¿ã®é€ä¿¡å‡¦ç†
 extern int SendSocket( int NetHandle )
 {
 	static int ProcessRunFlag = FALSE ;
@@ -2064,93 +2064,93 @@ extern int SendSocket( int NetHandle )
 	SOCKETDATA * Sock ;
 	int SendVol ;
 
-	// ’ÊMŠÖŒW‚Ì‰Šú‰»‚ª‚³‚ê‚Ä‚¢‚È‚©‚Á‚½‚ç‰½‚à‚¹‚¸I—¹
+	// é€šä¿¡é–¢ä¿‚ã®åˆæœŸåŒ–ãŒã•ã‚Œã¦ã„ãªã‹ã£ãŸã‚‰ä½•ã‚‚ã›ãšçµ‚äº†
 	if( SockData.InitializeFlag == FALSE ) return -1 ;
 
 	SETUP_WIN_API
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 	CRITICALSECTION_LOCK( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 
-	// —LŒø‚Èƒnƒ“ƒhƒ‹‚Å‚Í‚È‚©‚Á‚½‚çƒGƒ‰[
+	// æœ‰åŠ¹ãªãƒãƒ³ãƒ‰ãƒ«ã§ã¯ãªã‹ã£ãŸã‚‰ã‚¨ãƒ©ãƒ¼
 	if( TCPNETHCHK( NetHandle, Sock ) )
 	{
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 		CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 		return -1 ;
 	}
 
-	// Šù‚Éˆ—‚ªÀs‚³‚ê‚Ä‚¢‚½‚ç‰½‚à‚¹‚¸I—¹
+	// æ—¢ã«å‡¦ç†ãŒå®Ÿè¡Œã•ã‚Œã¦ã„ãŸã‚‰ä½•ã‚‚ã›ãšçµ‚äº†
 	if( ProcessRunFlag == TRUE )
 	{
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 		CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 		return -1 ;
 	}
 
-	// uˆ—‚ğÀs’†vƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// ã€Œå‡¦ç†ã‚’å®Ÿè¡Œä¸­ã€ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	ProcessRunFlag = TRUE ;
 
-	// ’ÊMŠÖŒWˆ—
+	// é€šä¿¡é–¢ä¿‚å‡¦ç†
 	NS_ProcessNetMessage( FALSE ) ;
 
-	// —LŒø‚Èƒ\ƒPƒbƒgƒf[ƒ^‚Å‚Í‚È‚©‚Á‚½‚ç‰½‚à‚¹‚¸I—¹
+	// æœ‰åŠ¹ãªã‚½ã‚±ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã§ã¯ãªã‹ã£ãŸã‚‰ä½•ã‚‚ã›ãšçµ‚äº†
 	if( Sock->UseFlag == FALSE )
 	{
-		DXST_LOGFILE_ADDUTF16LE( "\x09\x67\xb9\x52\x6a\x30\xcd\x30\xc3\x30\xc8\x30\xef\x30\xfc\x30\xaf\x30\xcf\x30\xf3\x30\xc9\x30\xeb\x30\x67\x30\x6f\x30\x42\x30\x8a\x30\x7e\x30\x5b\x30\x93\x30\x20\x00\x69\x00\x6e\x00\x20\x00\x53\x00\x65\x00\x6e\x00\x64\x00\x53\x00\x6f\x00\x63\x00\x6b\x00\x65\x00\x74\x00\x0a\x00\x00"/*@ L"—LŒø‚Èƒlƒbƒgƒ[ƒNƒnƒ“ƒhƒ‹‚Å‚Í‚ ‚è‚Ü‚¹‚ñ in SendSocket\n" @*/ ) ; 
+		DXST_LOGFILE_ADDUTF16LE( "\x09\x67\xb9\x52\x6a\x30\xcd\x30\xc3\x30\xc8\x30\xef\x30\xfc\x30\xaf\x30\xcf\x30\xf3\x30\xc9\x30\xeb\x30\x67\x30\x6f\x30\x42\x30\x8a\x30\x7e\x30\x5b\x30\x93\x30\x20\x00\x69\x00\x6e\x00\x20\x00\x53\x00\x65\x00\x6e\x00\x64\x00\x53\x00\x6f\x00\x63\x00\x6b\x00\x65\x00\x74\x00\x0a\x00\x00"/*@ L"æœ‰åŠ¹ãªãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ãƒãƒ³ãƒ‰ãƒ«ã§ã¯ã‚ã‚Šã¾ã›ã‚“ in SendSocket\n" @*/ ) ; 
 		ReturnValue = -1 ;
 		goto FUNCTIONEND ;
 	}
 
-	// d‘å‚ÈƒGƒ‰[‚ª”­¶‚µ‚Ä‚¢‚éê‡‚Í‰½‚à‚¹‚¸I—¹
+	// é‡å¤§ãªã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¦ã„ã‚‹å ´åˆã¯ä½•ã‚‚ã›ãšçµ‚äº†
 	if( Sock->ErrorFlag == TRUE )
 	{
-		DXST_LOGFILE_ADDUTF16LE( "\x53\x30\x6e\x30\xcd\x30\xc3\x30\xc8\x30\xef\x30\xfc\x30\xaf\x30\xcf\x30\xf3\x30\xc9\x30\xeb\x30\x6b\x30\x6f\x30\xa8\x30\xe9\x30\xfc\x30\x4c\x30\x7a\x76\x1f\x75\x57\x30\x66\x30\x44\x30\x7e\x30\x59\x30\x20\x00\x69\x00\x6e\x00\x20\x00\x53\x00\x65\x00\x6e\x00\x64\x00\x53\x00\x6f\x00\x63\x00\x6b\x00\x65\x00\x74\x00\x0a\x00\x00"/*@ L"‚±‚Ìƒlƒbƒgƒ[ƒNƒnƒ“ƒhƒ‹‚É‚ÍƒGƒ‰[‚ª”­¶‚µ‚Ä‚¢‚Ü‚· in SendSocket\n" @*/ ) ;
+		DXST_LOGFILE_ADDUTF16LE( "\x53\x30\x6e\x30\xcd\x30\xc3\x30\xc8\x30\xef\x30\xfc\x30\xaf\x30\xcf\x30\xf3\x30\xc9\x30\xeb\x30\x6b\x30\x6f\x30\xa8\x30\xe9\x30\xfc\x30\x4c\x30\x7a\x76\x1f\x75\x57\x30\x66\x30\x44\x30\x7e\x30\x59\x30\x20\x00\x69\x00\x6e\x00\x20\x00\x53\x00\x65\x00\x6e\x00\x64\x00\x53\x00\x6f\x00\x63\x00\x6b\x00\x65\x00\x74\x00\x0a\x00\x00"/*@ L"ã“ã®ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ãƒãƒ³ãƒ‰ãƒ«ã«ã¯ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¦ã„ã¾ã™ in SendSocket\n" @*/ ) ;
 		ReturnValue = -1 ;
 		goto FUNCTIONEND ;
 	}
 
-	// ‘—M‚·‚×‚«ƒf[ƒ^—e—Ê‚ª‚È‚¢ê‡‚ÍI—¹
+	// é€ä¿¡ã™ã¹ããƒ‡ãƒ¼ã‚¿å®¹é‡ãŒãªã„å ´åˆã¯çµ‚äº†
 	if( Sock->SendBufferR.DataLength == 0 )
 	{
 		ReturnValue = 0 ;
 		goto FUNCTIONEND ;
 	}
 
-	// ‚c‚wƒ‰ƒCƒuƒ‰ƒŠ“Æ©‚Ì•û®‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+	// ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªç‹¬è‡ªã®æ–¹å¼ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 	if( Sock->DXProtocolFlag == TRUE )
 	{
 		do{
-			// ‚Ü‚¾Ÿ‚É‘—M‚·‚éƒf[ƒ^—Ê‚ğ‘—M‚µ‚Ä‚¢‚È‚¢ê‡‚Í‘—M‚·‚é
+			// ã¾ã æ¬¡ã«é€ä¿¡ã™ã‚‹ãƒ‡ãƒ¼ã‚¿é‡ã‚’é€ä¿¡ã—ã¦ã„ãªã„å ´åˆã¯é€ä¿¡ã™ã‚‹
 			if( Sock->SendComDataComVol != 0 )
 			{
 				SendVol = WinAPIData.WinSockFunc.sendFunc( Sock->Socket , ( char * )&Sock->SendComDataVol + 4 - Sock->SendComDataComVol , Sock->SendComDataComVol , 0 ) ;
 				if( SendVol < 0 )
 					break ;
 
-				// ‘—M‚Å‚«‚½•ª‚ğŒ¸Z
+				// é€ä¿¡ã§ããŸåˆ†ã‚’æ¸›ç®—
 				Sock->SendComDataComVol -= SendVol ;
 				
-				// ‘—M‚µ‚«‚ê‚È‚©‚Á‚½‚ç‚±‚±‚ÅI—¹
+				// é€ä¿¡ã—ãã‚Œãªã‹ã£ãŸã‚‰ã“ã“ã§çµ‚äº†
 				if( Sock->SendComDataComVol != 0 )
 					break ;
 			}
 
-			// ‘—M’†ƒf[ƒ^‚ª‚È‚¢ê‡‚ÍŸ‚È‚éƒf[ƒ^‚Ì‘—M‚É‚©‚©‚é
+			// é€ä¿¡ä¸­ãƒ‡ãƒ¼ã‚¿ãŒãªã„å ´åˆã¯æ¬¡ãªã‚‹ãƒ‡ãƒ¼ã‚¿ã®é€ä¿¡ã«ã‹ã‹ã‚‹
 			if( Sock->SendComDataVol == 0 )
 			{
-				// ‘—M‚·‚éƒf[ƒ^—Ê‚ğ‘—M‚·‚é
+				// é€ä¿¡ã™ã‚‹ãƒ‡ãƒ¼ã‚¿é‡ã‚’é€ä¿¡ã™ã‚‹
 				Sock->SendComDataVol = Sock->SendBufferR.DataLength ;
 				SendVol = WinAPIData.WinSockFunc.sendFunc( Sock->Socket , ( char * )&Sock->SendComDataVol , 4 , 0 ) ;
 				
-				// ‘S‚­‘—M‚Å‚«‚È‚©‚Á‚½‚çŸ‰ñ‚É‚à‚¿‚±‚µ
+				// å…¨ãé€ä¿¡ã§ããªã‹ã£ãŸã‚‰æ¬¡å›ã«ã‚‚ã¡ã“ã—
 				if( SendVol < 0 )
 				{
 					Sock->SendComDataVol = 0 ;
 					break ;
 				}
 
-				// ‘—M‚µ‚«‚ê‚È‚©‚Á‚½‚çŸ‰ñ‘±‚«‚ğ‘—M‚·‚é
+				// é€ä¿¡ã—ãã‚Œãªã‹ã£ãŸã‚‰æ¬¡å›ç¶šãã‚’é€ä¿¡ã™ã‚‹
 				if( SendVol < 4 )
 				{
 					Sock->SendComDataComVol = 4 - SendVol ;
@@ -2158,138 +2158,138 @@ extern int SendSocket( int NetHandle )
 				}
 			}
 
-			// ƒf[ƒ^‚Ì‘—M
+			// ãƒ‡ãƒ¼ã‚¿ã®é€ä¿¡
 			{
 				RINGBUF *RingBuf = &Sock->SendBufferR ;
 				
-				// ƒAƒhƒŒƒXƒ`ƒFƒbƒN
+				// ã‚¢ãƒ‰ãƒ¬ã‚¹ãƒã‚§ãƒƒã‚¯
 				RingBufAddressCheck( RingBuf ) ;
 
-				// ‚Q‰ñ‚É•Ê‚¯‚È‚¯‚ê‚Î‚¢‚¯‚È‚¢‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+				// ï¼’å›ã«åˆ¥ã‘ãªã‘ã‚Œã°ã„ã‘ãªã„ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 				if( RingBuf->Start + Sock->SendComDataVol > RingBuf->BufferSize )
 				{
 					int AllSendVol ;
 				
-					// ‚Q‰ñ‚É•Ê‚¯‚éê‡‚Ìˆ—
+					// ï¼’å›ã«åˆ¥ã‘ã‚‹å ´åˆã®å‡¦ç†
 
-					// Å‰‚Ìƒf[ƒ^‚ğ‘—M
+					// æœ€åˆã®ãƒ‡ãƒ¼ã‚¿ã‚’é€ä¿¡
 					AllSendVol = 0 ;
 					SendVol = WinAPIData.WinSockFunc.sendFunc( Sock->Socket , (char *)RingBuf->DataBuffer + RingBuf->Start, RingBuf->BufferSize - RingBuf->Start, 0 ) ;
 					if( SendVol < 0 )
 						break ;
 
-					// ‘—M‚Å‚«‚½ƒf[ƒ^—Ê‚ªw’è‚æ‚è‚à­‚È‚©‚Á‚½‚ç‚±‚±‚ÅI—¹
+					// é€ä¿¡ã§ããŸãƒ‡ãƒ¼ã‚¿é‡ãŒæŒ‡å®šã‚ˆã‚Šã‚‚å°‘ãªã‹ã£ãŸã‚‰ã“ã“ã§çµ‚äº†
 					if( SendVol < RingBuf->BufferSize - RingBuf->Start )
 					{
-						// ƒAƒhƒŒƒX‚Ì’²®
+						// ã‚¢ãƒ‰ãƒ¬ã‚¹ã®èª¿æ•´
 						RingBuf->Start += SendVol ;
 					}
 					else
 					{
-						// ‚Ü‚¾‘—M‚Å‚«‚éê‡‚Í‘—M
+						// ã¾ã é€ä¿¡ã§ãã‚‹å ´åˆã¯é€ä¿¡
 
-						// ‘—M‚Å‚«‚½ƒf[ƒ^—Ê‚ğ•Û‘¶
+						// é€ä¿¡ã§ããŸãƒ‡ãƒ¼ã‚¿é‡ã‚’ä¿å­˜
 						AllSendVol = SendVol ;
 
-						// Ÿ‚Ìƒf[ƒ^‚ğ‘—M
+						// æ¬¡ã®ãƒ‡ãƒ¼ã‚¿ã‚’é€ä¿¡
 						SendVol = WinAPIData.WinSockFunc.sendFunc( Sock->Socket, RingBuf->DataBuffer, Sock->SendComDataVol - AllSendVol, 0 ) ;
 						
-						// ƒGƒ‰[‚ª‹N‚«‚½ê‡‚Íˆê‚Â‘O‚É‘—M‚Å‚«‚½•ª‚¾‚¯‚ğ‘—M‚µ‚½‚±‚Æ‚É‚µ‚Ä’²®
+						// ã‚¨ãƒ©ãƒ¼ãŒèµ·ããŸå ´åˆã¯ä¸€ã¤å‰ã«é€ä¿¡ã§ããŸåˆ†ã ã‘ã‚’é€ä¿¡ã—ãŸã“ã¨ã«ã—ã¦èª¿æ•´
 						if( SendVol < 0 )
 						{
-							// ƒAƒhƒŒƒX‚Ì’²®
+							// ã‚¢ãƒ‰ãƒ¬ã‚¹ã®èª¿æ•´
 							RingBuf->Start = 0 ;
 
-							// æ“¾‚µ‚½ƒf[ƒ^‚Ì—Ê‚ğƒZƒbƒg
+							// å–å¾—ã—ãŸãƒ‡ãƒ¼ã‚¿ã®é‡ã‚’ã‚»ãƒƒãƒˆ
 							SendVol = AllSendVol ;
 						}
 						else
 						if( SendVol == Sock->SendComDataVol - AllSendVol )
 						{
-							// ‚«‚Á‚¿‚è‘S•”‘—M‚Å‚«‚½‚Ìˆ—
+							// ãã£ã¡ã‚Šå…¨éƒ¨é€ä¿¡ã§ããŸæ™‚ã®å‡¦ç†
 
-							// ƒAƒhƒŒƒX‚Ì’²®
+							// ã‚¢ãƒ‰ãƒ¬ã‚¹ã®èª¿æ•´
 							RingBuf->Start = SendVol ;
 							
-							// æ“¾‚µ‚½ƒf[ƒ^—Ê‚ÌƒZƒbƒg
+							// å–å¾—ã—ãŸãƒ‡ãƒ¼ã‚¿é‡ã®ã‚»ãƒƒãƒˆ
 							SendVol += AllSendVol ;
 						}
 					}
 				}
 				else
 				{
-					// ‚P‰ñ‚ÅŠi”[‚·‚éê‡‚Ìˆ—
+					// ï¼‘å›ã§æ ¼ç´ã™ã‚‹å ´åˆã®å‡¦ç†
 					
-					// ˆê‹C‚É‘—M
+					// ä¸€æ°—ã«é€ä¿¡
 					SendVol = WinAPIData.WinSockFunc.sendFunc( Sock->Socket , (char *)RingBuf->DataBuffer + RingBuf->Start, Sock->SendComDataVol, 0 ) ;
 					if( SendVol < 0 )
 						break ;
 
-					// ƒAƒhƒŒƒX‚Ì’²®
+					// ã‚¢ãƒ‰ãƒ¬ã‚¹ã®èª¿æ•´
 					RingBuf->Start += SendVol ;
 				}
 
-				// ‘—Mo—ˆ‚½ƒf[ƒ^—Ê•ª‚¾‚¯‘—M‘Ò‚¿‚ğ‹ò‚ç‚Á‚Ä‚¢‚éƒf[ƒ^—Ê‚ğŒ¸‚ç‚·
+				// é€ä¿¡å‡ºæ¥ãŸãƒ‡ãƒ¼ã‚¿é‡åˆ†ã ã‘é€ä¿¡å¾…ã¡ã‚’å–°ã‚‰ã£ã¦ã„ã‚‹ãƒ‡ãƒ¼ã‚¿é‡ã‚’æ¸›ã‚‰ã™
 				RingBuf->DataLength -= SendVol ;
 
-				// ‘—M‚Å‚«‚½ƒf[ƒ^—Ê•ª‚¾‚¯¡‰ñ‘—M‚·‚×‚«ƒf[ƒ^—Ê‚ğŒ¸‚ç‚·
+				// é€ä¿¡ã§ããŸãƒ‡ãƒ¼ã‚¿é‡åˆ†ã ã‘ä»Šå›é€ä¿¡ã™ã¹ããƒ‡ãƒ¼ã‚¿é‡ã‚’æ¸›ã‚‰ã™
 				Sock->SendComDataVol -= SendVol ;
 			}
 
 			if( NS_ProcessNetMessage( FALSE ) != 0 ) break ;
 		
-		}// ƒGƒ‰[‚ª‹N‚«‚Ä‚¢‚È‚­‚Ä‚Ü‚¾‘—M‚·‚×‚«ƒf[ƒ^‚ª‚ ‚éê‡‚Íƒ‹[ƒv
+		}// ã‚¨ãƒ©ãƒ¼ãŒèµ·ãã¦ã„ãªãã¦ã¾ã é€ä¿¡ã™ã¹ããƒ‡ãƒ¼ã‚¿ãŒã‚ã‚‹å ´åˆã¯ãƒ«ãƒ¼ãƒ—
 		while( SendVol != 0 && Sock->SendComDataVol == 0 && Sock->SendBufferR.DataLength != 0 );
 	}
 
 FUNCTIONEND :
 
-	// uˆ—‚ğÀs’†vƒtƒ‰ƒO‚ğ“|‚·
+	// ã€Œå‡¦ç†ã‚’å®Ÿè¡Œä¸­ã€ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 	ProcessRunFlag = FALSE ; 
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 	CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return ReturnValue ;
 }
 
 
 
-// Ú‘±ó‘Ô‚ğæ“¾‚·‚é
+// æ¥ç¶šçŠ¶æ…‹ã‚’å–å¾—ã™ã‚‹
 extern int NS_GetNetWorkAcceptState( int NetHandle )
 {
 	SOCKETDATA * Sock ;
 	int Result = -1 ;
 
-	// ’ÊMŠÖŒW‚Ì‰Šú‰»‚ª‚³‚ê‚Ä‚¢‚È‚©‚Á‚½‚ç‰½‚à‚¹‚¸I—¹
+	// é€šä¿¡é–¢ä¿‚ã®åˆæœŸåŒ–ãŒã•ã‚Œã¦ã„ãªã‹ã£ãŸã‚‰ä½•ã‚‚ã›ãšçµ‚äº†
 	if( SockData.InitializeFlag == FALSE ) return -1 ;
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 	CRITICALSECTION_LOCK( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 
-	// ’ÊMŠÖŒWˆ—
+	// é€šä¿¡é–¢ä¿‚å‡¦ç†
 	NS_ProcessNetMessage( FALSE ) ;
 
-	// —LŒø‚Èƒnƒ“ƒhƒ‹‚Å‚Í‚È‚©‚Á‚½‚çƒGƒ‰[
+	// æœ‰åŠ¹ãªãƒãƒ³ãƒ‰ãƒ«ã§ã¯ãªã‹ã£ãŸã‚‰ã‚¨ãƒ©ãƒ¼
 	if( TCPNETHCHK( NetHandle, Sock ) )
 		goto ENDLABEL ;
 
-	// —LŒø‚Èƒ\ƒPƒbƒgƒf[ƒ^‚Å‚Í‚È‚©‚Á‚½‚ç‰½‚à‚¹‚¸I—¹
+	// æœ‰åŠ¹ãªã‚½ã‚±ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã§ã¯ãªã‹ã£ãŸã‚‰ä½•ã‚‚ã›ãšçµ‚äº†
 	if( Sock->UseFlag == FALSE )
 	{
-		DXST_LOGFILE_ADDUTF16LE( "\x09\x67\xb9\x52\x6a\x30\xcd\x30\xc3\x30\xc8\x30\xef\x30\xfc\x30\xaf\x30\xcf\x30\xf3\x30\xc9\x30\xeb\x30\x67\x30\x6f\x30\x42\x30\x8a\x30\x7e\x30\x5b\x30\x93\x30\x20\x00\x69\x00\x6e\x00\x20\x00\x47\x00\x65\x00\x74\x00\x4e\x00\x65\x00\x74\x00\x57\x00\x6f\x00\x72\x00\x6b\x00\x41\x00\x63\x00\x63\x00\x65\x00\x70\x00\x74\x00\x53\x00\x74\x00\x61\x00\x74\x00\x65\x00\x0a\x00\x00"/*@ L"—LŒø‚Èƒlƒbƒgƒ[ƒNƒnƒ“ƒhƒ‹‚Å‚Í‚ ‚è‚Ü‚¹‚ñ in GetNetWorkAcceptState\n" @*/ ) ; 
+		DXST_LOGFILE_ADDUTF16LE( "\x09\x67\xb9\x52\x6a\x30\xcd\x30\xc3\x30\xc8\x30\xef\x30\xfc\x30\xaf\x30\xcf\x30\xf3\x30\xc9\x30\xeb\x30\x67\x30\x6f\x30\x42\x30\x8a\x30\x7e\x30\x5b\x30\x93\x30\x20\x00\x69\x00\x6e\x00\x20\x00\x47\x00\x65\x00\x74\x00\x4e\x00\x65\x00\x74\x00\x57\x00\x6f\x00\x72\x00\x6b\x00\x41\x00\x63\x00\x63\x00\x65\x00\x70\x00\x74\x00\x53\x00\x74\x00\x61\x00\x74\x00\x65\x00\x0a\x00\x00"/*@ L"æœ‰åŠ¹ãªãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ãƒãƒ³ãƒ‰ãƒ«ã§ã¯ã‚ã‚Šã¾ã›ã‚“ in GetNetWorkAcceptState\n" @*/ ) ; 
 		goto ENDLABEL ;
 	}
 
-	// d‘å‚ÈƒGƒ‰[‚ª”­¶‚µ‚Ä‚¢‚éê‡‚Í‰½‚à‚¹‚¸I—¹
+	// é‡å¤§ãªã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¦ã„ã‚‹å ´åˆã¯ä½•ã‚‚ã›ãšçµ‚äº†
 	if( Sock->ErrorFlag == TRUE )
 	{
-		DXST_LOGFILE_ADDUTF16LE( "\x53\x30\x6e\x30\xcd\x30\xc3\x30\xc8\x30\xef\x30\xfc\x30\xaf\x30\xcf\x30\xf3\x30\xc9\x30\xeb\x30\x6b\x30\x6f\x30\xa8\x30\xe9\x30\xfc\x30\x4c\x30\x7a\x76\x1f\x75\x57\x30\x66\x30\x44\x30\x7e\x30\x59\x30\x20\x00\x69\x00\x6e\x00\x20\x00\x47\x00\x65\x00\x74\x00\x4e\x00\x65\x00\x74\x00\x57\x00\x6f\x00\x72\x00\x6b\x00\x41\x00\x63\x00\x63\x00\x65\x00\x70\x00\x74\x00\x53\x00\x74\x00\x61\x00\x74\x00\x65\x00\x68\x00\x0a\x00\x00"/*@ L"‚±‚Ìƒlƒbƒgƒ[ƒNƒnƒ“ƒhƒ‹‚É‚ÍƒGƒ‰[‚ª”­¶‚µ‚Ä‚¢‚Ü‚· in GetNetWorkAcceptStateh\n" @*/ ) ;
+		DXST_LOGFILE_ADDUTF16LE( "\x53\x30\x6e\x30\xcd\x30\xc3\x30\xc8\x30\xef\x30\xfc\x30\xaf\x30\xcf\x30\xf3\x30\xc9\x30\xeb\x30\x6b\x30\x6f\x30\xa8\x30\xe9\x30\xfc\x30\x4c\x30\x7a\x76\x1f\x75\x57\x30\x66\x30\x44\x30\x7e\x30\x59\x30\x20\x00\x69\x00\x6e\x00\x20\x00\x47\x00\x65\x00\x74\x00\x4e\x00\x65\x00\x74\x00\x57\x00\x6f\x00\x72\x00\x6b\x00\x41\x00\x63\x00\x63\x00\x65\x00\x70\x00\x74\x00\x53\x00\x74\x00\x61\x00\x74\x00\x65\x00\x68\x00\x0a\x00\x00"/*@ L"ã“ã®ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ãƒãƒ³ãƒ‰ãƒ«ã«ã¯ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¦ã„ã¾ã™ in GetNetWorkAcceptStateh\n" @*/ ) ;
 		goto ENDLABEL ;
 	}
 	
-	// ‚à‚µØ’f‚³‚ê‚Ä‚¢‚Ä‚»‚ê‚ª‚Ü‚¾Šm”F‚³‚ê‚Ä‚¢‚È‚©‚Á‚½‚çŠm”F‚³‚ê‚½ƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// ã‚‚ã—åˆ‡æ–­ã•ã‚Œã¦ã„ã¦ãã‚ŒãŒã¾ã ç¢ºèªã•ã‚Œã¦ã„ãªã‹ã£ãŸã‚‰ç¢ºèªã•ã‚ŒãŸãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	if( Sock->PreConnectionFlag  == FALSE &&
 		Sock->ConnectionFlag     == FALSE &&
 		Sock->ConnectionLostFlag == FALSE )
@@ -2297,324 +2297,324 @@ extern int NS_GetNetWorkAcceptState( int NetHandle )
 		Sock->ConnectionLostFlag = TRUE ;
 	}
 
-	// Ú‘±‚³‚ê‚Ä‚¢‚é‚©‚Ç‚¤‚©‚ğ•Ô‚·
+	// æ¥ç¶šã•ã‚Œã¦ã„ã‚‹ã‹ã©ã†ã‹ã‚’è¿”ã™
 	Result = Sock->ConnectionFlag == TRUE ? 1 : 0 ;
 
 ENDLABEL :
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 	CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return Result ;
 }
 
-// óMƒf[ƒ^‚Ì—Ê‚ğ“¾‚é
+// å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã®é‡ã‚’å¾—ã‚‹
 extern int NS_GetNetWorkDataLength( int NetHandle )
 {
 	SOCKETDATA * Sock ;
 	int temp ;
 	int Result = -1 ;
 
-	// ’ÊMŠÖŒW‚Ì‰Šú‰»‚ª‚³‚ê‚Ä‚¢‚È‚©‚Á‚½‚ç‰½‚à‚¹‚¸I—¹
+	// é€šä¿¡é–¢ä¿‚ã®åˆæœŸåŒ–ãŒã•ã‚Œã¦ã„ãªã‹ã£ãŸã‚‰ä½•ã‚‚ã›ãšçµ‚äº†
 	if( SockData.InitializeFlag == FALSE ) return -1 ;
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 	CRITICALSECTION_LOCK( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 
-	// ’ÊMŠÖŒWˆ—
+	// é€šä¿¡é–¢ä¿‚å‡¦ç†
 	NS_ProcessNetMessage( FALSE ) ;
 
-	// “à•”ƒf[ƒ^‘—óMˆ—‚ğs‚¤
+	// å†…éƒ¨ãƒ‡ãƒ¼ã‚¿é€å—ä¿¡å‡¦ç†ã‚’è¡Œã†
 	RecvSocket( NetHandle ) ;
 	SendSocket( NetHandle ) ;
 
-	// —LŒø‚Èƒnƒ“ƒhƒ‹‚Å‚Í‚È‚©‚Á‚½‚çƒGƒ‰[
+	// æœ‰åŠ¹ãªãƒãƒ³ãƒ‰ãƒ«ã§ã¯ãªã‹ã£ãŸã‚‰ã‚¨ãƒ©ãƒ¼
 	if( TCPNETHCHK( NetHandle, Sock ) )
 		goto ENDLABEL ;
 
-	// —LŒø‚Èƒ\ƒPƒbƒgƒf[ƒ^‚Å‚Í‚È‚©‚Á‚½‚ç‰½‚à‚¹‚¸I—¹
+	// æœ‰åŠ¹ãªã‚½ã‚±ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã§ã¯ãªã‹ã£ãŸã‚‰ä½•ã‚‚ã›ãšçµ‚äº†
 	if( Sock->UseFlag == FALSE )
 	{
-		DXST_LOGFILE_ADDUTF16LE( "\x09\x67\xb9\x52\x6a\x30\xcd\x30\xc3\x30\xc8\x30\xef\x30\xfc\x30\xaf\x30\xcf\x30\xf3\x30\xc9\x30\xeb\x30\x67\x30\x6f\x30\x42\x30\x8a\x30\x7e\x30\x5b\x30\x93\x30\x20\x00\x69\x00\x6e\x00\x20\x00\x47\x00\x65\x00\x74\x00\x4e\x00\x65\x00\x74\x00\x57\x00\x6f\x00\x72\x00\x6b\x00\x44\x00\x61\x00\x74\x00\x61\x00\x4c\x00\x65\x00\x6e\x00\x67\x00\x74\x00\x68\x00\x0a\x00\x00"/*@ L"—LŒø‚Èƒlƒbƒgƒ[ƒNƒnƒ“ƒhƒ‹‚Å‚Í‚ ‚è‚Ü‚¹‚ñ in GetNetWorkDataLength\n" @*/ ) ; 
+		DXST_LOGFILE_ADDUTF16LE( "\x09\x67\xb9\x52\x6a\x30\xcd\x30\xc3\x30\xc8\x30\xef\x30\xfc\x30\xaf\x30\xcf\x30\xf3\x30\xc9\x30\xeb\x30\x67\x30\x6f\x30\x42\x30\x8a\x30\x7e\x30\x5b\x30\x93\x30\x20\x00\x69\x00\x6e\x00\x20\x00\x47\x00\x65\x00\x74\x00\x4e\x00\x65\x00\x74\x00\x57\x00\x6f\x00\x72\x00\x6b\x00\x44\x00\x61\x00\x74\x00\x61\x00\x4c\x00\x65\x00\x6e\x00\x67\x00\x74\x00\x68\x00\x0a\x00\x00"/*@ L"æœ‰åŠ¹ãªãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ãƒãƒ³ãƒ‰ãƒ«ã§ã¯ã‚ã‚Šã¾ã›ã‚“ in GetNetWorkDataLength\n" @*/ ) ; 
 		goto ENDLABEL ;
 	}
 
-	// d‘å‚ÈƒGƒ‰[‚ª”­¶‚µ‚Ä‚¢‚éê‡‚Í‰½‚à‚¹‚¸I—¹
+	// é‡å¤§ãªã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¦ã„ã‚‹å ´åˆã¯ä½•ã‚‚ã›ãšçµ‚äº†
 	if( Sock->ErrorFlag == TRUE )
 	{
-		DXST_LOGFILE_ADDUTF16LE( "\x53\x30\x6e\x30\xcd\x30\xc3\x30\xc8\x30\xef\x30\xfc\x30\xaf\x30\xcf\x30\xf3\x30\xc9\x30\xeb\x30\x6b\x30\x6f\x30\xa8\x30\xe9\x30\xfc\x30\x4c\x30\x7a\x76\x1f\x75\x57\x30\x66\x30\x44\x30\x7e\x30\x59\x30\x20\x00\x69\x00\x6e\x00\x20\x00\x47\x00\x65\x00\x74\x00\x4e\x00\x65\x00\x74\x00\x57\x00\x6f\x00\x72\x00\x6b\x00\x44\x00\x61\x00\x74\x00\x61\x00\x4c\x00\x65\x00\x6e\x00\x67\x00\x74\x00\x68\x00\x0a\x00\x00"/*@ L"‚±‚Ìƒlƒbƒgƒ[ƒNƒnƒ“ƒhƒ‹‚É‚ÍƒGƒ‰[‚ª”­¶‚µ‚Ä‚¢‚Ü‚· in GetNetWorkDataLength\n" @*/ ) ;
+		DXST_LOGFILE_ADDUTF16LE( "\x53\x30\x6e\x30\xcd\x30\xc3\x30\xc8\x30\xef\x30\xfc\x30\xaf\x30\xcf\x30\xf3\x30\xc9\x30\xeb\x30\x6b\x30\x6f\x30\xa8\x30\xe9\x30\xfc\x30\x4c\x30\x7a\x76\x1f\x75\x57\x30\x66\x30\x44\x30\x7e\x30\x59\x30\x20\x00\x69\x00\x6e\x00\x20\x00\x47\x00\x65\x00\x74\x00\x4e\x00\x65\x00\x74\x00\x57\x00\x6f\x00\x72\x00\x6b\x00\x44\x00\x61\x00\x74\x00\x61\x00\x4c\x00\x65\x00\x6e\x00\x67\x00\x74\x00\x68\x00\x0a\x00\x00"/*@ L"ã“ã®ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ãƒãƒ³ãƒ‰ãƒ«ã«ã¯ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¦ã„ã¾ã™ in GetNetWorkDataLength\n" @*/ ) ;
 		goto ENDLABEL ;
 	}
 
-	// ‚c‚wƒ‰ƒCƒuƒ‰ƒŠ“Æ©‚Ì•û®‚ğ‚Æ‚é‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+	// ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªç‹¬è‡ªã®æ–¹å¼ã‚’ã¨ã‚‹ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 	if( Sock->DXProtocolFlag == FALSE )
 	{
-		// ‚c‚wƒ‰ƒCƒuƒ‰ƒŠ“Æ©‚Ì•û®‚Å‚Í‚È‚¢ê‡óM—Ê‚Ìæ“¾‚Ío—ˆ‚È‚¢‚Ì‚Å
-		// ƒf[ƒ^‚ª—ˆ‚Ä‚¢‚é‚©‚Ç‚¤‚©‚¾‚¯•Ô‚·
+		// ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªç‹¬è‡ªã®æ–¹å¼ã§ã¯ãªã„å ´åˆå—ä¿¡é‡ã®å–å¾—ã¯å‡ºæ¥ãªã„ã®ã§
+		// ãƒ‡ãƒ¼ã‚¿ãŒæ¥ã¦ã„ã‚‹ã‹ã©ã†ã‹ã ã‘è¿”ã™
 		Result = NS_NetWorkRecvToPeek( NetHandle, &temp, 1 ) ;
 		Result = Result < 0 ? Result : ( Result == 1 ? TRUE : FALSE ) ;
 	}
 	else
 	{
-//		// óMƒoƒbƒtƒ@‚É—­‚Ü‚Á‚Ä‚¢‚éƒf[ƒ^—Ê‚ğ•Ô‚·
+//		// å—ä¿¡ãƒãƒƒãƒ•ã‚¡ã«æºœã¾ã£ã¦ã„ã‚‹ãƒ‡ãƒ¼ã‚¿é‡ã‚’è¿”ã™
 //		Result = RingBufGetDataLength( &Sock->RecvBufferToUserR ) ;
 
-		// óMƒoƒbƒtƒ@‚ÉóM‚ªŠ®—¹‚µ‚Ä‚¢‚éƒf[ƒ^—Ê‚ğ•Ô‚·
+		// å—ä¿¡ãƒãƒƒãƒ•ã‚¡ã«å—ä¿¡ãŒå®Œäº†ã—ã¦ã„ã‚‹ãƒ‡ãƒ¼ã‚¿é‡ã‚’è¿”ã™
 		Result = Sock->RecvBufferToUserOpenSize ;
 	}
 
 ENDLABEL :
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 	CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return Result ;
 }
 
-// –¢‘—M‚Ìƒf[ƒ^‚Ì—Ê‚ğ“¾‚é 
+// æœªé€ä¿¡ã®ãƒ‡ãƒ¼ã‚¿ã®é‡ã‚’å¾—ã‚‹ 
 extern int NS_GetNetWorkSendDataLength( int NetHandle )
 {
 	SOCKETDATA * Sock ;
 	int Result = -1 ;
 
-	// ’ÊMŠÖŒW‚Ì‰Šú‰»‚ª‚³‚ê‚Ä‚¢‚È‚©‚Á‚½‚ç‰½‚à‚¹‚¸I—¹
+	// é€šä¿¡é–¢ä¿‚ã®åˆæœŸåŒ–ãŒã•ã‚Œã¦ã„ãªã‹ã£ãŸã‚‰ä½•ã‚‚ã›ãšçµ‚äº†
 	if( SockData.InitializeFlag == FALSE ) return -1 ;
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 	CRITICALSECTION_LOCK( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 
-	// ’ÊMŠÖŒWˆ—
+	// é€šä¿¡é–¢ä¿‚å‡¦ç†
 	NS_ProcessNetMessage( FALSE ) ;
 
-	// —LŒø‚Èƒnƒ“ƒhƒ‹‚Å‚Í‚È‚©‚Á‚½‚çƒGƒ‰[
+	// æœ‰åŠ¹ãªãƒãƒ³ãƒ‰ãƒ«ã§ã¯ãªã‹ã£ãŸã‚‰ã‚¨ãƒ©ãƒ¼
 	if( TCPNETHCHK( NetHandle, Sock ) )
 		goto ENDLABEL ;
 
-	// —LŒø‚Èƒ\ƒPƒbƒgƒf[ƒ^‚Å‚Í‚È‚©‚Á‚½‚ç‰½‚à‚¹‚¸I—¹
+	// æœ‰åŠ¹ãªã‚½ã‚±ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã§ã¯ãªã‹ã£ãŸã‚‰ä½•ã‚‚ã›ãšçµ‚äº†
 	if( Sock->UseFlag == FALSE )
 	{
-		DXST_LOGFILE_ADDUTF16LE( "\x09\x67\xb9\x52\x6a\x30\xcd\x30\xc3\x30\xc8\x30\xef\x30\xfc\x30\xaf\x30\xcf\x30\xf3\x30\xc9\x30\xeb\x30\x67\x30\x6f\x30\x42\x30\x8a\x30\x7e\x30\x5b\x30\x93\x30\x20\x00\x69\x00\x6e\x00\x20\x00\x47\x00\x65\x00\x74\x00\x4e\x00\x65\x00\x74\x00\x57\x00\x6f\x00\x72\x00\x6b\x00\x53\x00\x65\x00\x6e\x00\x64\x00\x44\x00\x61\x00\x74\x00\x61\x00\x4c\x00\x65\x00\x6e\x00\x67\x00\x74\x00\x68\x00\x0a\x00\x00"/*@ L"—LŒø‚Èƒlƒbƒgƒ[ƒNƒnƒ“ƒhƒ‹‚Å‚Í‚ ‚è‚Ü‚¹‚ñ in GetNetWorkSendDataLength\n" @*/ ) ; 
+		DXST_LOGFILE_ADDUTF16LE( "\x09\x67\xb9\x52\x6a\x30\xcd\x30\xc3\x30\xc8\x30\xef\x30\xfc\x30\xaf\x30\xcf\x30\xf3\x30\xc9\x30\xeb\x30\x67\x30\x6f\x30\x42\x30\x8a\x30\x7e\x30\x5b\x30\x93\x30\x20\x00\x69\x00\x6e\x00\x20\x00\x47\x00\x65\x00\x74\x00\x4e\x00\x65\x00\x74\x00\x57\x00\x6f\x00\x72\x00\x6b\x00\x53\x00\x65\x00\x6e\x00\x64\x00\x44\x00\x61\x00\x74\x00\x61\x00\x4c\x00\x65\x00\x6e\x00\x67\x00\x74\x00\x68\x00\x0a\x00\x00"/*@ L"æœ‰åŠ¹ãªãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ãƒãƒ³ãƒ‰ãƒ«ã§ã¯ã‚ã‚Šã¾ã›ã‚“ in GetNetWorkSendDataLength\n" @*/ ) ; 
 		goto ENDLABEL ;
 	}
 
-	// d‘å‚ÈƒGƒ‰[‚ª”­¶‚µ‚Ä‚¢‚éê‡‚Í‰½‚à‚¹‚¸I—¹
+	// é‡å¤§ãªã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¦ã„ã‚‹å ´åˆã¯ä½•ã‚‚ã›ãšçµ‚äº†
 	if( Sock->ErrorFlag == TRUE )
 	{
-		DXST_LOGFILE_ADDUTF16LE( "\x53\x30\x6e\x30\xcd\x30\xc3\x30\xc8\x30\xef\x30\xfc\x30\xaf\x30\xcf\x30\xf3\x30\xc9\x30\xeb\x30\x6b\x30\x6f\x30\xa8\x30\xe9\x30\xfc\x30\x4c\x30\x7a\x76\x1f\x75\x57\x30\x66\x30\x44\x30\x7e\x30\x59\x30\x20\x00\x69\x00\x6e\x00\x20\x00\x47\x00\x65\x00\x74\x00\x4e\x00\x65\x00\x74\x00\x57\x00\x6f\x00\x72\x00\x6b\x00\x53\x00\x65\x00\x6e\x00\x64\x00\x44\x00\x61\x00\x74\x00\x61\x00\x4c\x00\x65\x00\x6e\x00\x67\x00\x74\x00\x68\x00\x0a\x00\x00"/*@ L"‚±‚Ìƒlƒbƒgƒ[ƒNƒnƒ“ƒhƒ‹‚É‚ÍƒGƒ‰[‚ª”­¶‚µ‚Ä‚¢‚Ü‚· in GetNetWorkSendDataLength\n" @*/ ) ;
+		DXST_LOGFILE_ADDUTF16LE( "\x53\x30\x6e\x30\xcd\x30\xc3\x30\xc8\x30\xef\x30\xfc\x30\xaf\x30\xcf\x30\xf3\x30\xc9\x30\xeb\x30\x6b\x30\x6f\x30\xa8\x30\xe9\x30\xfc\x30\x4c\x30\x7a\x76\x1f\x75\x57\x30\x66\x30\x44\x30\x7e\x30\x59\x30\x20\x00\x69\x00\x6e\x00\x20\x00\x47\x00\x65\x00\x74\x00\x4e\x00\x65\x00\x74\x00\x57\x00\x6f\x00\x72\x00\x6b\x00\x53\x00\x65\x00\x6e\x00\x64\x00\x44\x00\x61\x00\x74\x00\x61\x00\x4c\x00\x65\x00\x6e\x00\x67\x00\x74\x00\x68\x00\x0a\x00\x00"/*@ L"ã“ã®ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ãƒãƒ³ãƒ‰ãƒ«ã«ã¯ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¦ã„ã¾ã™ in GetNetWorkSendDataLength\n" @*/ ) ;
 		goto ENDLABEL ;
 	}
 
-	// ‚c‚wƒ‰ƒCƒuƒ‰ƒŠ“Æ©‚Ì•û®‚ğ‚Æ‚Á‚Ä‚¢‚é‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+	// ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªç‹¬è‡ªã®æ–¹å¼ã‚’ã¨ã£ã¦ã„ã‚‹ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 	if( Sock->DXProtocolFlag == FALSE )
 	{
-		// ‚c‚wƒ‰ƒCƒuƒ‰ƒŠ“Æ©‚Ì•û®‚ğ‚Æ‚Á‚Ä‚¢‚È‚¢ê‡–¢‘—M•ª‚Ìƒf[ƒ^‚Í’~‚¦‚ç‚ê‚È‚¢‚Ì‚Åí‚É‚O
+		// ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªç‹¬è‡ªã®æ–¹å¼ã‚’ã¨ã£ã¦ã„ãªã„å ´åˆæœªé€ä¿¡åˆ†ã®ãƒ‡ãƒ¼ã‚¿ã¯è“„ãˆã‚‰ã‚Œãªã„ã®ã§å¸¸ã«ï¼
 		Result = 0 ;
 	}
 	else
 	{
-		// ‘—Mƒoƒbƒtƒ@‚É—­‚Ü‚Á‚½ƒf[ƒ^—Ê‚ğ•Ô‚·
+		// é€ä¿¡ãƒãƒƒãƒ•ã‚¡ã«æºœã¾ã£ãŸãƒ‡ãƒ¼ã‚¿é‡ã‚’è¿”ã™
 		Result = RingBufGetDataLength( &Sock->SendBufferR ) ;
 	}
 
 ENDLABEL :
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 	CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return Result ;
 }
 
 
 
 
-// V‚½‚ÉÚ‘±‚µ‚½’ÊM‰ñü‚ğ“¾‚é
+// æ–°ãŸã«æ¥ç¶šã—ãŸé€šä¿¡å›ç·šã‚’å¾—ã‚‹
 extern int NS_GetNewAcceptNetWork( void )
 {
 	int Result = 0 ;
 	SOCKETDATA * Sock ;
 	HANDLELIST *List ;
 
-	// ’ÊMŠÖŒW‚Ì‰Šú‰»‚ª‚³‚ê‚Ä‚¢‚È‚©‚Á‚½‚ç‰½‚à‚¹‚¸I—¹
+	// é€šä¿¡é–¢ä¿‚ã®åˆæœŸåŒ–ãŒã•ã‚Œã¦ã„ãªã‹ã£ãŸã‚‰ä½•ã‚‚ã›ãšçµ‚äº†
 	if( SockData.InitializeFlag == FALSE ) return -1 ;
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 	CRITICALSECTION_LOCK( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 
-	// ’ÊMŠÖŒWˆ—
+	// é€šä¿¡é–¢ä¿‚å‡¦ç†
 	NS_ProcessNetMessage( FALSE ) ;
 
-	// V‚½‚ÉÚ‘±‚µ‚½Ú‘±æ‚ª‚ ‚éê‡‚Í‚»‚ÌÚ‘±ƒnƒ“ƒhƒ‹‚ğ•Ô‚·
+	// æ–°ãŸã«æ¥ç¶šã—ãŸæ¥ç¶šå…ˆãŒã‚ã‚‹å ´åˆã¯ãã®æ¥ç¶šãƒãƒ³ãƒ‰ãƒ«ã‚’è¿”ã™
 	for( List = HandleManageArray[ DX_HANDLETYPE_NETWORK ].ListFirst.Next ; List->Next != NULL ; List = List->Next )
 	{
 		Sock = (SOCKETDATA *)List->Data ;
 
-		// V‚½‚ÉÚ‘±‚³‚ê‚½ƒnƒ“ƒhƒ‹‚©”»’è
-		if( Sock->UseFlag == TRUE &&			// ƒnƒ“ƒhƒ‹‚ª—LŒø‚Å‚ ‚é‚©”»’è
-			Sock->ConnectionFlag == TRUE &&		// ‚»‚à‚»‚àÚ‘±‚³‚ê‚Ä‚¢‚é‚©”»’è
-			Sock->AccepteConfirFlag == FALSE )	// Ú‘±‚³‚ê‚Ä‚¢‚é‚±‚Æ‚ª‚Ü‚¾Šm”F‚³‚ê‚Ä‚¢‚È‚¢‚©”»’è
+		// æ–°ãŸã«æ¥ç¶šã•ã‚ŒãŸãƒãƒ³ãƒ‰ãƒ«ã‹åˆ¤å®š
+		if( Sock->UseFlag == TRUE &&			// ãƒãƒ³ãƒ‰ãƒ«ãŒæœ‰åŠ¹ã§ã‚ã‚‹ã‹åˆ¤å®š
+			Sock->ConnectionFlag == TRUE &&		// ãã‚‚ãã‚‚æ¥ç¶šã•ã‚Œã¦ã„ã‚‹ã‹åˆ¤å®š
+			Sock->AccepteConfirFlag == FALSE )	// æ¥ç¶šã•ã‚Œã¦ã„ã‚‹ã“ã¨ãŒã¾ã ç¢ºèªã•ã‚Œã¦ã„ãªã„ã‹åˆ¤å®š
 		{
-			// ¡‰ñ‚ÅÚ‘±‚³‚ê‚½‚±‚Æ‚ÍŠmÀ‚ÉŠm”F‚³‚ê‚é‚Ì‚Å
-			// Ú‘±‚³‚ê‚½‚±‚Æ‚ªŠm”F‚³‚ê‚½‚±‚Æ‚É‚·‚é
+			// ä»Šå›ã§æ¥ç¶šã•ã‚ŒãŸã“ã¨ã¯ç¢ºå®Ÿã«ç¢ºèªã•ã‚Œã‚‹ã®ã§
+			// æ¥ç¶šã•ã‚ŒãŸã“ã¨ãŒç¢ºèªã•ã‚ŒãŸã“ã¨ã«ã™ã‚‹
 			Sock->AccepteConfirFlag = TRUE ;
 
-			// Œ©‚Â‚¯‚½–¢Šm”FÚ‘±æ‚Ìƒnƒ“ƒhƒ‹‚ğ•Ô‚·
+			// è¦‹ã¤ã‘ãŸæœªç¢ºèªæ¥ç¶šå…ˆã®ãƒãƒ³ãƒ‰ãƒ«ã‚’è¿”ã™
 			Result = Sock->HandleInfo.Handle ;
 			goto FUNCTIONEND ;
 		}
 	}
 
-	// Ÿˆ‚É—ˆ‚½‚çV‚½‚ÉÚ‘±‚³‚ê‚½Ú‘±æ‚Í‚È‚¢‚Æ‚¢‚¤‚±‚Æ‚È‚Ì‚Å -1 ‚ğ•Ô‚·
+	// æ­¤å‡¦ã«æ¥ãŸã‚‰æ–°ãŸã«æ¥ç¶šã•ã‚ŒãŸæ¥ç¶šå…ˆã¯ãªã„ã¨ã„ã†ã“ã¨ãªã®ã§ -1 ã‚’è¿”ã™
 	Result = -1 ;
 
 FUNCTIONEND :
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 	CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return Result ;
 }
 
-// Ú‘±‚ğØ’f‚³‚ê‚½’ÊM‰ñü‚ğ“¾‚é
+// æ¥ç¶šã‚’åˆ‡æ–­ã•ã‚ŒãŸé€šä¿¡å›ç·šã‚’å¾—ã‚‹
 extern int NS_GetLostNetWork( void )
 {
 	int ReturnValue = 0 ;
 	SOCKETDATA * Sock ;
 	HANDLELIST *List ;
 
-	// ’ÊMŠÖŒW‚Ì‰Šú‰»‚ª‚³‚ê‚Ä‚¢‚È‚©‚Á‚½‚ç‰½‚à‚¹‚¸I—¹
+	// é€šä¿¡é–¢ä¿‚ã®åˆæœŸåŒ–ãŒã•ã‚Œã¦ã„ãªã‹ã£ãŸã‚‰ä½•ã‚‚ã›ãšçµ‚äº†
 	if( SockData.InitializeFlag == FALSE ) return -1 ;
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 	CRITICALSECTION_LOCK( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 
-	// ’ÊMŠÖŒWˆ—
+	// é€šä¿¡é–¢ä¿‚å‡¦ç†
 	NS_ProcessNetMessage( FALSE ) ;
 
-	// ‚Ü‚¾ƒ‰ƒCƒuƒ‰ƒŠƒ†[ƒU[‚ª–¢Šm”F‚ÌØ’f‚³‚ê‚½Ú‘±æ‚ğ’T‚·
+	// ã¾ã ãƒ©ã‚¤ãƒ–ãƒ©ãƒªãƒ¦ãƒ¼ã‚¶ãƒ¼ãŒæœªç¢ºèªã®åˆ‡æ–­ã•ã‚ŒãŸæ¥ç¶šå…ˆã‚’æ¢ã™
 	for( List = HandleManageArray[ DX_HANDLETYPE_NETWORK ].ListFirst.Next ; List->Next != NULL ; List = List->Next )
 	{
 		Sock = (SOCKETDATA *)List->Data ;
 
-		// ”»’è
-		if( Sock->UseFlag == TRUE &&								// ƒf[ƒ^‚Í—LŒø‚Å‚ ‚é‚©‚Ì”»’è
-			Sock->HandleInfo.Handle  != SockData.ListenHandle &&	// Ú‘±‘Ò‚¿ƒ\ƒPƒbƒg‚Å‚Í‚È‚¢‚©”»’è
-			Sock->PreConnectionFlag  == FALSE &&					// Ú‘±‘O‚Å‚Í‚È‚¢‚©”»’è
-			Sock->ConnectionFlag     == FALSE &&					// Ú‘±‚ğØ’f‚³‚ê‚Ä‚¢‚é‚©‚Ì”»’è
-			Sock->ConnectionLostFlag == FALSE )						// Ø’f‚³‚ê‚½‚±‚Æ‚ª‚Ü‚¾Šm”F‚³‚ê‚Ä‚¢‚È‚¢‚©‚Ì”»’è
+		// åˆ¤å®š
+		if( Sock->UseFlag == TRUE &&								// ãƒ‡ãƒ¼ã‚¿ã¯æœ‰åŠ¹ã§ã‚ã‚‹ã‹ã®åˆ¤å®š
+			Sock->HandleInfo.Handle  != SockData.ListenHandle &&	// æ¥ç¶šå¾…ã¡ã‚½ã‚±ãƒƒãƒˆã§ã¯ãªã„ã‹åˆ¤å®š
+			Sock->PreConnectionFlag  == FALSE &&					// æ¥ç¶šå‰ã§ã¯ãªã„ã‹åˆ¤å®š
+			Sock->ConnectionFlag     == FALSE &&					// æ¥ç¶šã‚’åˆ‡æ–­ã•ã‚Œã¦ã„ã‚‹ã‹ã®åˆ¤å®š
+			Sock->ConnectionLostFlag == FALSE )						// åˆ‡æ–­ã•ã‚ŒãŸã“ã¨ãŒã¾ã ç¢ºèªã•ã‚Œã¦ã„ãªã„ã‹ã®åˆ¤å®š
 		{
-			// Ø’f‚ğŠm”F‚µ‚½ƒtƒ‰ƒO‚ğ—§‚Ä‚é
+			// åˆ‡æ–­ã‚’ç¢ºèªã—ãŸãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 			Sock->ConnectionLostFlag = TRUE ;
 
-			// ‚ ‚ç‚½‚ÉŠm”F‚³‚ê‚½Ú‘±ƒnƒ“ƒhƒ‹‚ğ•Ô‚·
+			// ã‚ã‚‰ãŸã«ç¢ºèªã•ã‚ŒãŸæ¥ç¶šãƒãƒ³ãƒ‰ãƒ«ã‚’è¿”ã™
 			ReturnValue = Sock->HandleInfo.Handle ;
 			goto FUNCTIONEND ;
 		}
 	}
 
-	// ‚±‚±‚É‚«‚½‚çV‚½‚ÉØ’f‚³‚ê‚½Ú‘±‚Í‚È‚©‚Á‚½‚ÆŒ¾‚¤‚±‚Æ‚È‚Ì‚Å -1 ‚ğ•Ô‚·
+	// ã“ã“ã«ããŸã‚‰æ–°ãŸã«åˆ‡æ–­ã•ã‚ŒãŸæ¥ç¶šã¯ãªã‹ã£ãŸã¨è¨€ã†ã“ã¨ãªã®ã§ -1 ã‚’è¿”ã™
 	ReturnValue = -1 ;
 
 FUNCTIONEND :
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 	CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return ReturnValue ;
 }
 
-// Ú‘±æ‚Ì‚h‚o‚ğ“¾‚é( Ø’f‚³‚ê‚Ä‚¢‚éÚ‘±æ‚Å‚à OK )
+// æ¥ç¶šå…ˆã®ï¼©ï¼°ã‚’å¾—ã‚‹( åˆ‡æ–­ã•ã‚Œã¦ã„ã‚‹æ¥ç¶šå…ˆã§ã‚‚ OK )
 extern int NS_GetNetWorkIP_IPv6( int NetHandle , IPDATA_IPv6 *IpBuf )
 {
 	SOCKETDATA * Sock ;
 
-	// ’ÊMŠÖŒW‚Ì‰Šú‰»‚ª‚³‚ê‚Ä‚¢‚È‚©‚Á‚½‚ç‰½‚à‚¹‚¸I—¹
+	// é€šä¿¡é–¢ä¿‚ã®åˆæœŸåŒ–ãŒã•ã‚Œã¦ã„ãªã‹ã£ãŸã‚‰ä½•ã‚‚ã›ãšçµ‚äº†
 	if( SockData.InitializeFlag == FALSE ) return -1 ;
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 	CRITICALSECTION_LOCK( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 
-	// —LŒø‚Èƒnƒ“ƒhƒ‹‚Å‚Í‚È‚©‚Á‚½‚çƒGƒ‰[
+	// æœ‰åŠ¹ãªãƒãƒ³ãƒ‰ãƒ«ã§ã¯ãªã‹ã£ãŸã‚‰ã‚¨ãƒ©ãƒ¼
 	if( TCPNETHCHK( NetHandle, Sock ) )
 	{
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 		CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 		return -1 ;
 	}
 
-	// IPv6 ‚Å‚Í–³‚©‚Á‚½‚çƒGƒ‰[
+	// IPv6 ã§ã¯ç„¡ã‹ã£ãŸã‚‰ã‚¨ãƒ©ãƒ¼
 	if( Sock->IsIPv6 == FALSE )
 	{
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 		CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 		return -1 ;
 	}
 
-	// ‚h‚o‚ğ‘ã“ü‚·‚é
+	// ï¼©ï¼°ã‚’ä»£å…¥ã™ã‚‹
 	*IpBuf = Sock->AcceptedIP_IPv6 ;
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 	CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// Ú‘±æ‚Ì‚h‚o‚ğ“¾‚é( Ø’f‚³‚ê‚Ä‚¢‚éÚ‘±æ‚Å‚à OK )
+// æ¥ç¶šå…ˆã®ï¼©ï¼°ã‚’å¾—ã‚‹( åˆ‡æ–­ã•ã‚Œã¦ã„ã‚‹æ¥ç¶šå…ˆã§ã‚‚ OK )
 extern int NS_GetNetWorkIP( int NetHandle , IPDATA *IpBuf )
 {
 	SOCKETDATA * Sock ;
 
-	// ’ÊMŠÖŒW‚Ì‰Šú‰»‚ª‚³‚ê‚Ä‚¢‚È‚©‚Á‚½‚ç‰½‚à‚¹‚¸I—¹
+	// é€šä¿¡é–¢ä¿‚ã®åˆæœŸåŒ–ãŒã•ã‚Œã¦ã„ãªã‹ã£ãŸã‚‰ä½•ã‚‚ã›ãšçµ‚äº†
 	if( SockData.InitializeFlag == FALSE ) return -1 ;
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 	CRITICALSECTION_LOCK( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 
-	// —LŒø‚Èƒnƒ“ƒhƒ‹‚Å‚Í‚È‚©‚Á‚½‚çƒGƒ‰[
+	// æœ‰åŠ¹ãªãƒãƒ³ãƒ‰ãƒ«ã§ã¯ãªã‹ã£ãŸã‚‰ã‚¨ãƒ©ãƒ¼
 	if( TCPNETHCHK( NetHandle, Sock ) )
 	{
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 		CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 		return -1 ;
 	}
 
-	// IPv4 ‚Å‚Í–³‚©‚Á‚½‚çƒGƒ‰[
+	// IPv4 ã§ã¯ç„¡ã‹ã£ãŸã‚‰ã‚¨ãƒ©ãƒ¼
 	if( Sock->IsIPv6 == TRUE )
 	{
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 		CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 		return -1 ;
 	}
 
-	// ‚h‚o‚ğ‘ã“ü‚·‚é
+	// ï¼©ï¼°ã‚’ä»£å…¥ã™ã‚‹
 	*IpBuf = Sock->AcceptedIP ;
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 	CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ©•ª‚ÌIPv4‚ğ“¾‚é
+// è‡ªåˆ†ã®IPv4ã‚’å¾—ã‚‹
 extern int NS_GetMyIPAddress( IPDATA *IpBuf, int IpBufLength, int *IpNum )
 {
-	// ’ÊMŠÖŒW‚Ì‰Šú‰»‚ª‚Ü‚¾s‚í‚ê‚Ä‚¢‚È‚¢ê‡‚Í‰Šú‰»‚·‚é
+	// é€šä¿¡é–¢ä¿‚ã®åˆæœŸåŒ–ãŒã¾ã è¡Œã‚ã‚Œã¦ã„ãªã„å ´åˆã¯åˆæœŸåŒ–ã™ã‚‹
 	if( !SockData.InitializeFlag )
 	{
 		if( WinData.CloseMessagePostFlag != TRUE ) InitializeNetWork() ;
 		else										return -1 ;
 	}
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 	CRITICALSECTION_LOCK( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 
-	// ‚h‚o‚ğ‘‚«‚Ş
+	// ï¼©ï¼°ã‚’æ›¸ãè¾¼ã‚€
 	if( SockData.MyIPv4 != NULL && IpBuf != NULL )
 	{
 		int i ;
@@ -2625,33 +2625,33 @@ extern int NS_GetMyIPAddress( IPDATA *IpBuf, int IpBufLength, int *IpNum )
 		}
 	}
 
-	// ‚h‚oƒAƒhƒŒƒX‚Ì”‚ğƒZƒbƒg‚·‚é
+	// ï¼©ï¼°ã‚¢ãƒ‰ãƒ¬ã‚¹ã®æ•°ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 	if( IpNum != NULL )
 	{
 		*IpNum = SockData.MyIPv4Num ;
 	}
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 	CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ©•ª‚ÌIPv6‚ğ“¾‚é
+// è‡ªåˆ†ã®IPv6ã‚’å¾—ã‚‹
 extern int NS_GetMyIPAddress_IPv6( IPDATA_IPv6 *IpBuf, int IpBufLength, int *IpNum )
 {
-	// ’ÊMŠÖŒW‚Ì‰Šú‰»‚ª‚Ü‚¾s‚í‚ê‚Ä‚¢‚È‚¢ê‡‚Í‰Šú‰»‚·‚é
+	// é€šä¿¡é–¢ä¿‚ã®åˆæœŸåŒ–ãŒã¾ã è¡Œã‚ã‚Œã¦ã„ãªã„å ´åˆã¯åˆæœŸåŒ–ã™ã‚‹
 	if( !SockData.InitializeFlag )
 	{
 		if( WinData.CloseMessagePostFlag != TRUE ) InitializeNetWork() ;
 		else										return -1 ;
 	}
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 	CRITICALSECTION_LOCK( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 
-	// ‚h‚o‚ğ‘‚«‚Ş
+	// ï¼©ï¼°ã‚’æ›¸ãè¾¼ã‚€
 	if( SockData.MyIPv6 != NULL && IpBuf != NULL )
 	{
 		int i ;
@@ -2662,23 +2662,23 @@ extern int NS_GetMyIPAddress_IPv6( IPDATA_IPv6 *IpBuf, int IpBufLength, int *IpN
 		}
 	}
 
-	// ‚h‚oƒAƒhƒŒƒX‚Ì”‚ğƒZƒbƒg‚·‚é
+	// ï¼©ï¼°ã‚¢ãƒ‰ãƒ¬ã‚¹ã®æ•°ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 	if( IpNum != NULL )
 	{
 		*IpNum = SockData.MyIPv6Num ;
 	}
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 	CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// Ú‘±‚Ìƒ^ƒCƒ€ƒAƒEƒg‚Ü‚Å‚ÌŠÔ‚ğİ’è‚·‚é
+// æ¥ç¶šã®ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆã¾ã§ã®æ™‚é–“ã‚’è¨­å®šã™ã‚‹
 extern int NS_SetConnectTimeOutWait( int Time )
 {
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 	if( SockData.InitializeFlag )
 	{
 		CRITICALSECTION_LOCK( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
@@ -2686,20 +2686,20 @@ extern int NS_SetConnectTimeOutWait( int Time )
 
 	SockData.TimeOutWait = Time ;
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 	if( DxSysData.DxLib_InitializeFlag == TRUE )
 	{
 		CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ‚c‚wƒ‰ƒCƒuƒ‰ƒŠ‚Ì’ÊMŒ`‘Ô‚ğg‚¤‚©‚Ç‚¤‚©‚ğƒZƒbƒg‚·‚é
+// ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®é€šä¿¡å½¢æ…‹ã‚’ä½¿ã†ã‹ã©ã†ã‹ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern int NS_SetUseDXNetWorkProtocol( int Flag )
 {
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 	if( SockData.InitializeFlag )
 	{
 		CRITICALSECTION_LOCK( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
@@ -2707,66 +2707,66 @@ extern int NS_SetUseDXNetWorkProtocol( int Flag )
 
 	SockData.NonUseDXProtocolFlag = !Flag ;
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 	if( SockData.InitializeFlag )
 	{
 		CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ‚c‚wƒ‰ƒCƒuƒ‰ƒŠ‚Ì’ÊMŒ`‘Ô‚ğg‚¤‚©‚Ç‚¤‚©‚ğæ“¾‚·‚é
+// ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®é€šä¿¡å½¢æ…‹ã‚’ä½¿ã†ã‹ã©ã†ã‹ã‚’å–å¾—ã™ã‚‹
 extern int NS_GetUseDXNetWorkProtocol( void )
 {
 	return SockData.NonUseDXProtocolFlag ;
 }
 
-// SetUseDXNetWorkProtocol ‚Ì•Ê–¼
+// SetUseDXNetWorkProtocol ã®åˆ¥å
 extern int NS_SetUseDXProtocol( int Flag )
 {
 	return NS_SetUseDXNetWorkProtocol( Flag ) ;
 }
 
-// GetUseDXNetWorkProtocol ‚Ì•Ê–¼
+// GetUseDXNetWorkProtocol ã®åˆ¥å
 extern int NS_GetUseDXProtocol( void )
 {
 	return NS_GetUseDXNetWorkProtocol() ;
 }
 
 
-// Ú‘±‚ªØ’f‚³‚ê‚½’¼Œã‚ÉÚ‘±ƒnƒ“ƒhƒ‹‚ğ‰ğ•ú‚·‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğƒZƒbƒg‚·‚é
+// æ¥ç¶šãŒåˆ‡æ–­ã•ã‚ŒãŸç›´å¾Œã«æ¥ç¶šãƒãƒ³ãƒ‰ãƒ«ã‚’è§£æ”¾ã™ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern int NS_SetNetWorkCloseAfterLostFlag( int Flag )
 {
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 	if( SockData.InitializeFlag )
 	{
 		CRITICALSECTION_LOCK( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 	}
 
-	// ƒtƒ‰ƒO‚ğ•Û‘¶‚·‚é
+	// ãƒ•ãƒ©ã‚°ã‚’ä¿å­˜ã™ã‚‹
 	SockData.NonCloseAfterLostFlag = !Flag ;
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 	if( SockData.InitializeFlag )
 	{
 		CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// Ú‘±‚ªØ’f‚³‚ê‚½’¼Œã‚ÉÚ‘±ƒnƒ“ƒhƒ‹‚ğ‰ğ•ú‚·‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğæ“¾‚·‚é
+// æ¥ç¶šãŒåˆ‡æ–­ã•ã‚ŒãŸç›´å¾Œã«æ¥ç¶šãƒãƒ³ãƒ‰ãƒ«ã‚’è§£æ”¾ã™ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’å–å¾—ã™ã‚‹
 extern int NS_GetNetWorkCloseAfterLostFlag( void )
 {
-	// ƒtƒ‰ƒO‚ğ•Ô‚·
+	// ãƒ•ãƒ©ã‚°ã‚’è¿”ã™
 	return SockData.NonCloseAfterLostFlag ;
 }
 
 /*
-// ‚h‚d‚Åİ’è‚³‚ê‚Ä‚¢‚éƒvƒƒLƒV‚ğg—p‚·‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğƒZƒbƒg‚·‚é
+// ï¼©ï¼¥ã§è¨­å®šã•ã‚Œã¦ã„ã‚‹ãƒ—ãƒ­ã‚­ã‚·ã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern	int			SetUseIEProxySettingFlag( int Flag )
 {
 	HttpData.NonUseIEProxy = !Flag ;
@@ -2774,13 +2774,13 @@ extern	int			SetUseIEProxySettingFlag( int Flag )
 	return 0 ;
 }
 
-// ‚h‚d‚Åİ’è‚³‚ê‚Ä‚¢‚éƒvƒƒLƒV‚ğg—p‚·‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğæ“¾‚·‚é
+// ï¼©ï¼¥ã§è¨­å®šã•ã‚Œã¦ã„ã‚‹ãƒ—ãƒ­ã‚­ã‚·ã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’å–å¾—ã™ã‚‹
 extern	int			GetUseIEProxySettingFlag( void )
 {
 	return !HttpData.NonUseIEProxy ;
 }
 
-// ‚g‚s‚s‚o’ÊM‚Åg—p‚·‚éƒvƒƒLƒVİ’è‚ğs‚¤
+// ï¼¨ï¼´ï¼´ï¼°é€šä¿¡ã§ä½¿ç”¨ã™ã‚‹ãƒ—ãƒ­ã‚­ã‚·è¨­å®šã‚’è¡Œã†
 extern int NS_SetProxySetting( int UseFlag, const char *Address, int Port )
 {
 	HttpData.UseProxy = UseFlag ;
@@ -2790,7 +2790,7 @@ extern int NS_SetProxySetting( int UseFlag, const char *Address, int Port )
 	return 0 ;
 }
 
-// ‚g‚s‚s‚o’ÊM‚Åg—p‚·‚éƒvƒƒLƒVİ’è‚ğæ“¾‚·‚é
+// ï¼¨ï¼´ï¼´ï¼°é€šä¿¡ã§ä½¿ç”¨ã™ã‚‹ãƒ—ãƒ­ã‚­ã‚·è¨­å®šã‚’å–å¾—ã™ã‚‹
 extern int NS_GetProxySetting( int *UseFlagBuffer, char *AddressBuffer, int *PortBuffer )
 {
 	if( UseFlagBuffer != NULL ) *UseFlagBuffer = HttpData.UseProxy ;
@@ -2800,7 +2800,7 @@ extern int NS_GetProxySetting( int *UseFlagBuffer, char *AddressBuffer, int *Por
 	return 0 ;
 }
 
-// ‚h‚d‚ÌƒvƒƒLƒVİ’è‚ğ“K‰‚·‚é
+// ï¼©ï¼¥ã®ãƒ—ãƒ­ã‚­ã‚·è¨­å®šã‚’é©å¿œã™ã‚‹
 extern int NS_SetIEProxySetting( void ) 
 {
 	char str[256] ;
@@ -2811,30 +2811,30 @@ extern int NS_SetIEProxySetting( void )
 	HKEY key ;
 	int OpenFlag ;
 
-	// ƒŒƒWƒXƒgƒŠ‚©‚çƒvƒƒLƒV‚Ìî•ñ‚ğ“¾‚é
+	// ãƒ¬ã‚¸ã‚¹ãƒˆãƒªã‹ã‚‰ãƒ—ãƒ­ã‚­ã‚·ã®æƒ…å ±ã‚’å¾—ã‚‹
 	_MEMSET( str, 0, 256 ) ;
 	type = REG_SZ ;
 	size = 256 ;
 	OpenFlag = FALSE ;
 	
-	// ƒŒƒWƒXƒgƒŠ‚ğŠJ‚­
+	// ãƒ¬ã‚¸ã‚¹ãƒˆãƒªã‚’é–‹ã
 	hr = RegOpenKeyEx( HKEY_CURRENT_USER, IEPROXY, 0, KEY_ALL_ACCESS, &key ) ; 
 	if( hr != ERROR_SUCCESS ) goto ERR ;
 	OpenFlag = TRUE ;
 
-	// ƒŒƒWƒXƒgƒŠ‚ğŠi”[‚·‚é‚Ì‚É•K—v‚Èƒf[ƒ^‚ÌƒTƒCƒY‚ğ“¾‚é
+	// ãƒ¬ã‚¸ã‚¹ãƒˆãƒªã‚’æ ¼ç´ã™ã‚‹ã®ã«å¿…è¦ãªãƒ‡ãƒ¼ã‚¿ã®ã‚µã‚¤ã‚ºã‚’å¾—ã‚‹
 	hr = RegQueryValueEx( key, "ProxyServer", NULL, &type, NULL, &size ) ;
 	if( hr != ERROR_SUCCESS ) goto ERR ;
 
-	// ƒŒƒWƒXƒgƒŠ‚Ì“à—e‚ğ“¾‚é
+	// ãƒ¬ã‚¸ã‚¹ãƒˆãƒªã®å†…å®¹ã‚’å¾—ã‚‹
 	hr = RegQueryValueEx( key, "ProxyServer", NULL, &type, ( unsigned char * )str, &size ) ;
 	if( hr != ERROR_SUCCESS ) goto ERR ;
 
-	// ƒŒƒWƒXƒgƒŠ‚ğ•Â‚¶‚é
+	// ãƒ¬ã‚¸ã‚¹ãƒˆãƒªã‚’é–‰ã˜ã‚‹
 	RegCloseKey( key ) ;
 	OpenFlag = FALSE ;
 						
-	// g—p‚µ‚Ä‚¢‚éƒvƒƒLƒVƒT[ƒo[‚Ì•¶š—ñ‚ğ‰ğÍ‚·‚é
+	// ä½¿ç”¨ã—ã¦ã„ã‚‹ãƒ—ãƒ­ã‚­ã‚·ã‚µãƒ¼ãƒãƒ¼ã®æ–‡å­—åˆ—ã‚’è§£æã™ã‚‹
 	p = _STRCHR( str, ':' ) ;
 	_STRCPY( HttpData.ProxyHost, str ) ;
 	if( p == NULL )
@@ -2848,10 +2848,10 @@ extern int NS_SetIEProxySetting( void )
 		if( HttpData.ProxyPort <= 0 ) HttpData.ProxyPort = -1 ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 	
-	// ƒGƒ‰[ˆ—
+	// ã‚¨ãƒ©ãƒ¼å‡¦ç†
 ERR :
 	if( OpenFlag == TRUE ) 	RegCloseKey( key ) ;
 
@@ -2859,7 +2859,7 @@ ERR :
 }
 */
 
-// NetWorkRecv ‚ÌÀˆ—ŠÖ”
+// NetWorkRecv ã®å®Ÿå‡¦ç†é–¢æ•°
 static int NetWorkRecv_Static(
 	int NetHandle,
 	void *Buffer,
@@ -2871,20 +2871,20 @@ static int NetWorkRecv_Static(
 	int ReturnValue = 0 ;
 	SOCKETDATA * Sock ;
 
-	// æ“¾‚·‚éƒf[ƒ^’·‚Ì’l‚ª•s³‚Èê‡‚Í‰½‚à‚¹‚¸I—¹
+	// å–å¾—ã™ã‚‹ãƒ‡ãƒ¼ã‚¿é•·ã®å€¤ãŒä¸æ­£ãªå ´åˆã¯ä½•ã‚‚ã›ãšçµ‚äº†
 	if( Length < 0 ) return -1 ;
 
 	SETUP_WIN_API
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 	CRITICALSECTION_LOCK( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 
-	// ƒlƒbƒgƒ[ƒNƒnƒ“ƒhƒ‹‚Ìƒ`ƒFƒbƒN
+	// ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ãƒãƒ³ãƒ‰ãƒ«ã®ãƒã‚§ãƒƒã‚¯
 	if( ASyncThread )
 	{
 		if( TCPNETHCHK_ASYNC( NetHandle, Sock ) )
 		{
-			// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+			// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 			CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 			return -1 ;
 		}
@@ -2893,61 +2893,61 @@ static int NetWorkRecv_Static(
 	{
 		if( TCPNETHCHK( NetHandle, Sock ) )
 		{
-			// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+			// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 			CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 			return -1 ;
 		}
 	}
 
-	// ’ÊMŠÖŒWˆ—
+	// é€šä¿¡é–¢ä¿‚å‡¦ç†
 	NS_ProcessNetMessage( FALSE ) ;
 
-	// —LŒø‚Èƒ\ƒPƒbƒgƒf[ƒ^‚Å‚Í‚È‚©‚Á‚½‚ç‰½‚à‚¹‚¸I—¹
+	// æœ‰åŠ¹ãªã‚½ã‚±ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã§ã¯ãªã‹ã£ãŸã‚‰ä½•ã‚‚ã›ãšçµ‚äº†
 	if( Sock->UseFlag == FALSE )
 	{
-		DXST_LOGFILE_ADDUTF16LE( "\x09\x67\xb9\x52\x6a\x30\xcd\x30\xc3\x30\xc8\x30\xef\x30\xfc\x30\xaf\x30\xcf\x30\xf3\x30\xc9\x30\xeb\x30\x67\x30\x6f\x30\x42\x30\x8a\x30\x7e\x30\x5b\x30\x93\x30\x20\x00\x69\x00\x6e\x00\x20\x00\x4e\x00\x65\x00\x74\x00\x57\x00\x6f\x00\x72\x00\x6b\x00\x52\x00\x65\x00\x63\x00\x76\x00\x0a\x00\x00"/*@ L"—LŒø‚Èƒlƒbƒgƒ[ƒNƒnƒ“ƒhƒ‹‚Å‚Í‚ ‚è‚Ü‚¹‚ñ in NetWorkRecv\n" @*/ ) ; 
+		DXST_LOGFILE_ADDUTF16LE( "\x09\x67\xb9\x52\x6a\x30\xcd\x30\xc3\x30\xc8\x30\xef\x30\xfc\x30\xaf\x30\xcf\x30\xf3\x30\xc9\x30\xeb\x30\x67\x30\x6f\x30\x42\x30\x8a\x30\x7e\x30\x5b\x30\x93\x30\x20\x00\x69\x00\x6e\x00\x20\x00\x4e\x00\x65\x00\x74\x00\x57\x00\x6f\x00\x72\x00\x6b\x00\x52\x00\x65\x00\x63\x00\x76\x00\x0a\x00\x00"/*@ L"æœ‰åŠ¹ãªãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ãƒãƒ³ãƒ‰ãƒ«ã§ã¯ã‚ã‚Šã¾ã›ã‚“ in NetWorkRecv\n" @*/ ) ; 
 		ReturnValue = -1 ;
 		goto FUNCTIONEND ;
 	}
 
-	// d‘å‚ÈƒGƒ‰[‚ª”­¶‚µ‚Ä‚¢‚éê‡‚Í‰½‚à‚¹‚¸I—¹
+	// é‡å¤§ãªã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¦ã„ã‚‹å ´åˆã¯ä½•ã‚‚ã›ãšçµ‚äº†
 	if( Sock->ErrorFlag == TRUE )
 	{
-		DXST_LOGFILE_ADDUTF16LE( "\x53\x30\x6e\x30\xcd\x30\xc3\x30\xc8\x30\xef\x30\xfc\x30\xaf\x30\xcf\x30\xf3\x30\xc9\x30\xeb\x30\x6b\x30\x6f\x30\xa8\x30\xe9\x30\xfc\x30\x4c\x30\x7a\x76\x1f\x75\x57\x30\x66\x30\x44\x30\x7e\x30\x59\x30\x20\x00\x69\x00\x6e\x00\x20\x00\x4e\x00\x65\x00\x74\x00\x57\x00\x6f\x00\x72\x00\x6b\x00\x52\x00\x65\x00\x63\x00\x76\x00\x0a\x00\x00"/*@ L"‚±‚Ìƒlƒbƒgƒ[ƒNƒnƒ“ƒhƒ‹‚É‚ÍƒGƒ‰[‚ª”­¶‚µ‚Ä‚¢‚Ü‚· in NetWorkRecv\n" @*/ ) ;
+		DXST_LOGFILE_ADDUTF16LE( "\x53\x30\x6e\x30\xcd\x30\xc3\x30\xc8\x30\xef\x30\xfc\x30\xaf\x30\xcf\x30\xf3\x30\xc9\x30\xeb\x30\x6b\x30\x6f\x30\xa8\x30\xe9\x30\xfc\x30\x4c\x30\x7a\x76\x1f\x75\x57\x30\x66\x30\x44\x30\x7e\x30\x59\x30\x20\x00\x69\x00\x6e\x00\x20\x00\x4e\x00\x65\x00\x74\x00\x57\x00\x6f\x00\x72\x00\x6b\x00\x52\x00\x65\x00\x63\x00\x76\x00\x0a\x00\x00"/*@ L"ã“ã®ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ãƒãƒ³ãƒ‰ãƒ«ã«ã¯ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¦ã„ã¾ã™ in NetWorkRecv\n" @*/ ) ;
 		ReturnValue = -1 ;
 		goto FUNCTIONEND ;
 	}
 
-	// “à•”óMƒf[ƒ^æ“¾ˆ—‚ğs‚¤
+	// å†…éƒ¨å—ä¿¡ãƒ‡ãƒ¼ã‚¿å–å¾—å‡¦ç†ã‚’è¡Œã†
 	if( RecvSocket( NetHandle ) < 0 )
 	{
 		ReturnValue = -1 ;
 		goto FUNCTIONEND ;
 	}
 
-	// ‚c‚wƒ‰ƒCƒuƒ‰ƒŠ“Æ©‚Ì•û®‚ğg—p‚·‚é‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+	// ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªç‹¬è‡ªã®æ–¹å¼ã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 	if( Sock->DXProtocolFlag == FALSE )
 	{
-		// WinSock ‚©‚ç’¼Ú“Ç‚İ‚Ş
+		// WinSock ã‹ã‚‰ç›´æ¥èª­ã¿è¾¼ã‚€
 		int RecvVol ;
 
-		// óM‚Å‚«‚éê‡‚ÍóMAóM‚µ‚½ƒf[ƒ^—Ê‚ğ•Ô‚·
+		// å—ä¿¡ã§ãã‚‹å ´åˆã¯å—ä¿¡ã€å—ä¿¡ã—ãŸãƒ‡ãƒ¼ã‚¿é‡ã‚’è¿”ã™
 		RecvVol = WinAPIData.WinSockFunc.recvFunc( Sock->Socket, (char *)Buffer, Length, Peek ? MSG_PEEK : 0 ) ;
 
-		// ƒTƒCƒY‚ğ•Ô‚·
+		// ã‚µã‚¤ã‚ºã‚’è¿”ã™
 		ReturnValue = RecvVol ;
 		goto FUNCTIONEND ;
 	}
 	else
 	{
-		// óM‚µ‚½ƒf[ƒ^—e—Ê‚ª—v‹—e—Ê‚æ‚è‚à­‚È‚¢ê‡‚Í¸”s
+		// å—ä¿¡ã—ãŸãƒ‡ãƒ¼ã‚¿å®¹é‡ãŒè¦æ±‚å®¹é‡ã‚ˆã‚Šã‚‚å°‘ãªã„å ´åˆã¯å¤±æ•—
 		if( RingBufGetDataLength( &Sock->RecvBufferToUserR ) < Length )
 		{
 			ReturnValue = -1 ;
 			goto FUNCTIONEND ;
 		}
 
-		// ƒf[ƒ^‚Ìæ“¾
+		// ãƒ‡ãƒ¼ã‚¿ã®å–å¾—
 		if( Peek )
 		{
 			RingBufDataGet( &Sock->RecvBufferToUserR, Buffer, Length, TRUE ) ;
@@ -2958,21 +2958,21 @@ static int NetWorkRecv_Static(
 			Sock->RecvBufferToUserOpenSize -= Length ;
 		}
 
-		// “à•”óMƒf[ƒ^æ“¾ˆ—‚ğs‚¤
+		// å†…éƒ¨å—ä¿¡ãƒ‡ãƒ¼ã‚¿å–å¾—å‡¦ç†ã‚’è¡Œã†
 		RecvSocket( NetHandle ) ;
 	}
 
 FUNCTIONEND :
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 	CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return ReturnValue ;
 }
 
 #ifndef DX_NON_ASYNCLOAD
-// NetWorkRecv ‚Ì”ñ“¯Šú“Ç‚İ‚İƒXƒŒƒbƒh‚©‚çŒÄ‚Î‚ê‚éŠÖ”
+// NetWorkRecv ã®éåŒæœŸèª­ã¿è¾¼ã¿ã‚¹ãƒ¬ãƒƒãƒ‰ã‹ã‚‰å‘¼ã°ã‚Œã‚‹é–¢æ•°
 static void NetWorkRecv_ASync( ASYNCLOADDATA_COMMON *AParam )
 {
 	SOCKETDATA * Sock ;
@@ -2996,7 +2996,7 @@ static void NetWorkRecv_ASync( ASYNCLOADDATA_COMMON *AParam )
 }
 #endif // DX_NON_ASYNCLOAD
 
-// NetWorkRecv ‚ÌƒOƒ[ƒoƒ‹ƒf[ƒ^‚ÉƒAƒNƒZƒX‚µ‚È‚¢ƒo[ƒWƒ‡ƒ“
+// NetWorkRecv ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿ã«ã‚¢ã‚¯ã‚»ã‚¹ã—ãªã„ãƒãƒ¼ã‚¸ãƒ§ãƒ³
 extern int NetWorkRecv_UseGParam(
 	int NetHandle,
 	void *Buffer,
@@ -3007,13 +3007,13 @@ extern int NetWorkRecv_UseGParam(
 {
 	int Result = -1 ;
 
-	// ’ÊMŠÖŒW‚Ì‰Šú‰»‚ª‚³‚ê‚Ä‚¢‚È‚©‚Á‚½‚ç‰½‚à‚¹‚¸I—¹
+	// é€šä¿¡é–¢ä¿‚ã®åˆæœŸåŒ–ãŒã•ã‚Œã¦ã„ãªã‹ã£ãŸã‚‰ä½•ã‚‚ã›ãšçµ‚äº†
 	if( SockData.InitializeFlag == FALSE ) return -1 ;
 
 	if( WinData.ActiveFlag == FALSE )
 		DxActiveWait() ;
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 	CRITICALSECTION_LOCK( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 
 #ifndef DX_NON_ASYNCLOAD
@@ -3022,19 +3022,19 @@ extern int NetWorkRecv_UseGParam(
 		ASYNCLOADDATA_COMMON *AParam = NULL ;
 		int Addr ;
 
-		// ƒpƒ‰ƒ[ƒ^‚É•K—v‚Èƒƒ‚ƒŠ‚ÌƒTƒCƒY‚ğZo
+		// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã«å¿…è¦ãªãƒ¡ãƒ¢ãƒªã®ã‚µã‚¤ã‚ºã‚’ç®—å‡º
 		Addr = 0 ;
 		AddASyncLoadParamInt( NULL, &Addr, NetHandle ) ;
 		AddASyncLoadParamConstVoidP( NULL, &Addr, Buffer ) ;
 		AddASyncLoadParamInt( NULL, &Addr, Length ) ;
 		AddASyncLoadParamInt( NULL, &Addr, Peek ) ;
 
-		// ƒƒ‚ƒŠ‚ÌŠm•Û
+		// ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿
 		AParam = AllocASyncLoadDataMemory( Addr ) ;
 		if( AParam == NULL )
 			goto END ;
 
-		// ˆ—‚É•K—v‚Èî•ñ‚ğƒZƒbƒg
+		// å‡¦ç†ã«å¿…è¦ãªæƒ…å ±ã‚’ã‚»ãƒƒãƒˆ
 		AParam->ProcessFunction = NetWorkRecv_ASync ;
 		Addr = 0 ;
 		AddASyncLoadParamInt( AParam->Data, &Addr, NetHandle ) ;
@@ -3042,7 +3042,7 @@ extern int NetWorkRecv_UseGParam(
 		AddASyncLoadParamInt( AParam->Data, &Addr, Length ) ;
 		AddASyncLoadParamInt( AParam->Data, &Addr, Peek ) ;
 
-		// ƒf[ƒ^‚ğ’Ç‰Á
+		// ãƒ‡ãƒ¼ã‚¿ã‚’è¿½åŠ 
 		if( AddASyncLoadData( AParam ) < 0 )
 		{
 			DXFREE( AParam ) ;
@@ -3050,7 +3050,7 @@ extern int NetWorkRecv_UseGParam(
 			goto END ;
 		}
 
-		// ”ñ“¯Šú“Ç‚İ‚İƒJƒEƒ“ƒg‚ğƒCƒ“ƒNƒŠƒƒ“ƒg
+		// éåŒæœŸèª­ã¿è¾¼ã¿ã‚«ã‚¦ãƒ³ãƒˆã‚’ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆ
 		IncASyncLoadCount( NetHandle, AParam->Index ) ;
 
 		Result = 0 ;
@@ -3065,14 +3065,14 @@ extern int NetWorkRecv_UseGParam(
 END :
 #endif
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 	CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return Result ;
 }
 
-// óM‚µ‚½ƒf[ƒ^‚ğ“Ç‚İ‚Ş
+// å—ä¿¡ã—ãŸãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿è¾¼ã‚€
 extern int NS_NetWorkRecv( int NetHandle, void *Buffer, int Length )
 {
 	return NetWorkRecv_UseGParam( NetHandle, Buffer, Length, FALSE, GetASyncLoadFlag() ) ;
@@ -3080,90 +3080,90 @@ extern int NS_NetWorkRecv( int NetHandle, void *Buffer, int Length )
 	int ReturnValue = 0 ;
 	SOCKETDATA * Sock ;
 
-	// ’ÊMŠÖŒW‚Ì‰Šú‰»‚ª‚³‚ê‚Ä‚¢‚È‚©‚Á‚½‚ç‰½‚à‚¹‚¸I—¹
+	// é€šä¿¡é–¢ä¿‚ã®åˆæœŸåŒ–ãŒã•ã‚Œã¦ã„ãªã‹ã£ãŸã‚‰ä½•ã‚‚ã›ãšçµ‚äº†
 	if( SockData.InitializeFlag == FALSE ) return -1 ;
 
-	// æ“¾‚·‚éƒf[ƒ^’·‚Ì’l‚ª•s³‚Èê‡‚Í‰½‚à‚¹‚¸I—¹
+	// å–å¾—ã™ã‚‹ãƒ‡ãƒ¼ã‚¿é•·ã®å€¤ãŒä¸æ­£ãªå ´åˆã¯ä½•ã‚‚ã›ãšçµ‚äº†
 	if( Length < 0 ) return -1 ;
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 	CRITICALSECTION_LOCK( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 
-	// ƒlƒbƒgƒ[ƒNƒnƒ“ƒhƒ‹‚Ìƒ`ƒFƒbƒN
+	// ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ãƒãƒ³ãƒ‰ãƒ«ã®ãƒã‚§ãƒƒã‚¯
 	if( TCPNETHCHK( NetHandle, Sock ) )
 	{
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 		CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 		return -1 ;
 	}
 
-	// ’ÊMŠÖŒWˆ—
+	// é€šä¿¡é–¢ä¿‚å‡¦ç†
 	NS_ProcessNetMessage() ;
 
-	// —LŒø‚Èƒ\ƒPƒbƒgƒf[ƒ^‚Å‚Í‚È‚©‚Á‚½‚ç‰½‚à‚¹‚¸I—¹
+	// æœ‰åŠ¹ãªã‚½ã‚±ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã§ã¯ãªã‹ã£ãŸã‚‰ä½•ã‚‚ã›ãšçµ‚äº†
 	if( Sock->UseFlag == FALSE )
 	{
-		DXST_LOGFILE_ADDUTF16LE( L"—LŒø‚Èƒlƒbƒgƒ[ƒNƒnƒ“ƒhƒ‹‚Å‚Í‚ ‚è‚Ü‚¹‚ñ in NetWorkRecv\n" ) ; 
+		DXST_LOGFILE_ADDUTF16LE( L"æœ‰åŠ¹ãªãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ãƒãƒ³ãƒ‰ãƒ«ã§ã¯ã‚ã‚Šã¾ã›ã‚“ in NetWorkRecv\n" ) ; 
 		ReturnValue = -1 ;
 		goto FUNCTIONEND ;
 	}
 
-	// d‘å‚ÈƒGƒ‰[‚ª”­¶‚µ‚Ä‚¢‚éê‡‚Í‰½‚à‚¹‚¸I—¹
+	// é‡å¤§ãªã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¦ã„ã‚‹å ´åˆã¯ä½•ã‚‚ã›ãšçµ‚äº†
 	if( Sock->ErrorFlag == TRUE )
 	{
-		DXST_LOGFILE_ADDUTF16LE( L"‚±‚Ìƒlƒbƒgƒ[ƒNƒnƒ“ƒhƒ‹‚É‚ÍƒGƒ‰[‚ª”­¶‚µ‚Ä‚¢‚Ü‚· in NetWorkRecv\n" ) ;
+		DXST_LOGFILE_ADDUTF16LE( L"ã“ã®ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ãƒãƒ³ãƒ‰ãƒ«ã«ã¯ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¦ã„ã¾ã™ in NetWorkRecv\n" ) ;
 		ReturnValue = -1 ;
 		goto FUNCTIONEND ;
 	}
 
-	// “à•”óMƒf[ƒ^æ“¾ˆ—‚ğs‚¤
+	// å†…éƒ¨å—ä¿¡ãƒ‡ãƒ¼ã‚¿å–å¾—å‡¦ç†ã‚’è¡Œã†
 	if( RecvSocket( NetHandle ) < 0 )
 	{
 		ReturnValue = -1 ;
 		goto FUNCTIONEND ;
 	}
 
-	// ‚c‚wƒ‰ƒCƒuƒ‰ƒŠ“Æ©‚Ì•û®‚ğg—p‚·‚é‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+	// ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªç‹¬è‡ªã®æ–¹å¼ã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 	if( Sock->DXProtocolFlag == FALSE )
 	{
-		// WinSock ‚©‚ç’¼Ú“Ç‚İ‚Ş
+		// WinSock ã‹ã‚‰ç›´æ¥èª­ã¿è¾¼ã‚€
 		int RecvVol ;
 
-		// óM‚Å‚«‚éê‡‚ÍóMAóM‚µ‚½ƒf[ƒ^—Ê‚ğ•Ô‚·
+		// å—ä¿¡ã§ãã‚‹å ´åˆã¯å—ä¿¡ã€å—ä¿¡ã—ãŸãƒ‡ãƒ¼ã‚¿é‡ã‚’è¿”ã™
 		RecvVol = WinAPIData.WinSockFunc.recvFunc( Sock->Socket, (char *)Buffer, Length, 0 ) ;
 
-		// ƒTƒCƒY‚ğ•Ô‚·
+		// ã‚µã‚¤ã‚ºã‚’è¿”ã™
 		ReturnValue = RecvVol ;
 		goto FUNCTIONEND ;
 	}
 	else
 	{
-		// óM‚µ‚½ƒf[ƒ^—e—Ê‚ª—v‹—e—Ê‚æ‚è‚à­‚È‚¢ê‡‚Í¸”s
+		// å—ä¿¡ã—ãŸãƒ‡ãƒ¼ã‚¿å®¹é‡ãŒè¦æ±‚å®¹é‡ã‚ˆã‚Šã‚‚å°‘ãªã„å ´åˆã¯å¤±æ•—
 		if( RingBufGetDataLength( &Sock->RecvBufferToUserR ) < Length )
 		{
 			ReturnValue = -1 ;
 			goto FUNCTIONEND ;
 		}
 
-		// ƒf[ƒ^‚Ìæ“¾
+		// ãƒ‡ãƒ¼ã‚¿ã®å–å¾—
 		RingBufDataGet( &Sock->RecvBufferToUserR, Buffer, Length, FALSE ) ;
 		Sock->RecvBufferToUserOpenSize -= Length ;
 
-		// “à•”óMƒf[ƒ^æ“¾ˆ—‚ğs‚¤
+		// å†…éƒ¨å—ä¿¡ãƒ‡ãƒ¼ã‚¿å–å¾—å‡¦ç†ã‚’è¡Œã†
 		RecvSocket( NetHandle ) ;
 	}
 
 FUNCTIONEND :
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 	CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return ReturnValue ;
 */
 }
 
-// óM‚µ‚½ƒf[ƒ^‚ğ“Ç‚İ‚ŞA“Ç‚İ‚ñ‚¾ƒf[ƒ^‚Íƒoƒbƒtƒ@‚©‚çíœ‚³‚ê‚È‚¢
+// å—ä¿¡ã—ãŸãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿è¾¼ã‚€ã€èª­ã¿è¾¼ã‚“ã ãƒ‡ãƒ¼ã‚¿ã¯ãƒãƒƒãƒ•ã‚¡ã‹ã‚‰å‰Šé™¤ã•ã‚Œãªã„
 extern int NS_NetWorkRecvToPeek( int NetHandle , void *Buffer , int Length )
 {
 	return NetWorkRecv_UseGParam( NetHandle, Buffer, Length, TRUE, GetASyncLoadFlag() ) ;
@@ -3171,149 +3171,149 @@ extern int NS_NetWorkRecvToPeek( int NetHandle , void *Buffer , int Length )
 	int ReturnValue = 0 ;
 	SOCKETDATA * Sock ;
 
-	// ’ÊMŠÖŒW‚Ì‰Šú‰»‚ª‚³‚ê‚Ä‚¢‚È‚©‚Á‚½‚ç‰½‚à‚¹‚¸I—¹
+	// é€šä¿¡é–¢ä¿‚ã®åˆæœŸåŒ–ãŒã•ã‚Œã¦ã„ãªã‹ã£ãŸã‚‰ä½•ã‚‚ã›ãšçµ‚äº†
 	if( SockData.InitializeFlag == FALSE ) return -1 ;
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 	CRITICALSECTION_LOCK( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 
-	// ƒlƒbƒgƒ[ƒNƒnƒ“ƒhƒ‹‚Ìƒ`ƒFƒbƒN
+	// ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ãƒãƒ³ãƒ‰ãƒ«ã®ãƒã‚§ãƒƒã‚¯
 	if( TCPNETHCHK( NetHandle, Sock ) )
 	{
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 		CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 		return -1 ;
 	}
 
-	// ’ÊMŠÖŒWˆ—
+	// é€šä¿¡é–¢ä¿‚å‡¦ç†
 	NS_ProcessNetMessage() ;
 
-	// —LŒø‚Èƒ\ƒPƒbƒgƒf[ƒ^‚Å‚Í‚È‚©‚Á‚½‚ç‰½‚à‚¹‚¸I—¹
+	// æœ‰åŠ¹ãªã‚½ã‚±ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã§ã¯ãªã‹ã£ãŸã‚‰ä½•ã‚‚ã›ãšçµ‚äº†
 	if( Sock->UseFlag == FALSE )
 	{
-		DXST_LOGFILE_ADDUTF16LE( L"—LŒø‚Èƒlƒbƒgƒ[ƒNƒnƒ“ƒhƒ‹‚Å‚Í‚ ‚è‚Ü‚¹‚ñ in NetWorkRecvToPeek\n" ) ; 
+		DXST_LOGFILE_ADDUTF16LE( L"æœ‰åŠ¹ãªãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ãƒãƒ³ãƒ‰ãƒ«ã§ã¯ã‚ã‚Šã¾ã›ã‚“ in NetWorkRecvToPeek\n" ) ; 
 		ReturnValue = -1 ;
 		goto FUNCTIONEND ;
 	}
 
-	// d‘å‚ÈƒGƒ‰[‚ª”­¶‚µ‚Ä‚¢‚éê‡‚Í‰½‚à‚¹‚¸I—¹
+	// é‡å¤§ãªã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¦ã„ã‚‹å ´åˆã¯ä½•ã‚‚ã›ãšçµ‚äº†
 	if( Sock->ErrorFlag == TRUE )
 	{
-		DXST_LOGFILE_ADDUTF16LE( L"‚±‚Ìƒlƒbƒgƒ[ƒNƒnƒ“ƒhƒ‹‚É‚ÍƒGƒ‰[‚ª”­¶‚µ‚Ä‚¢‚Ü‚· in NetWorkRecvToPeek\n" ) ;
+		DXST_LOGFILE_ADDUTF16LE( L"ã“ã®ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ãƒãƒ³ãƒ‰ãƒ«ã«ã¯ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¦ã„ã¾ã™ in NetWorkRecvToPeek\n" ) ;
 		ReturnValue = -1 ;
 		goto FUNCTIONEND ;
 	}
 
-	// “à•”óMƒf[ƒ^æ“¾ˆ—‚ğs‚¤
+	// å†…éƒ¨å—ä¿¡ãƒ‡ãƒ¼ã‚¿å–å¾—å‡¦ç†ã‚’è¡Œã†
 	if( RecvSocket( NetHandle ) < 0 )
 	{
 		ReturnValue = -1 ;
 		goto FUNCTIONEND ;
 	}
 	
-	// ‚c‚wƒ‰ƒCƒuƒ‰ƒŠ“Æ©‚Ì•û®‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+	// ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªç‹¬è‡ªã®æ–¹å¼ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 	if( Sock->DXProtocolFlag == FALSE )
 	{
 		int RecvVol ;
 
-		// óM‚Å‚«‚éê‡‚ÍóMAóM‚µ‚½ƒf[ƒ^—Ê‚ğ•Ô‚·
+		// å—ä¿¡ã§ãã‚‹å ´åˆã¯å—ä¿¡ã€å—ä¿¡ã—ãŸãƒ‡ãƒ¼ã‚¿é‡ã‚’è¿”ã™
 		RecvVol = WinAPIData.WinSockFunc.recvFunc( Sock->Socket, (char *)Buffer, Length, MSG_PEEK ) ;
 
-		// ƒTƒCƒY‚ğ•Ô‚·
+		// ã‚µã‚¤ã‚ºã‚’è¿”ã™
 		ReturnValue = RecvVol ;
 		goto FUNCTIONEND ;
 	}
 	else
 	{
-		// óM‚µ‚½ƒf[ƒ^—e—Ê‚ª—v‹—e—Ê‚æ‚è‚à­‚È‚¢ê‡‚Í¸”s
+		// å—ä¿¡ã—ãŸãƒ‡ãƒ¼ã‚¿å®¹é‡ãŒè¦æ±‚å®¹é‡ã‚ˆã‚Šã‚‚å°‘ãªã„å ´åˆã¯å¤±æ•—
 		if( RingBufGetDataLength( &Sock->RecvBufferToUserR ) < Length )
 		{
 			ReturnValue = -1 ;
 			goto FUNCTIONEND ;
 		}
 
-		// ƒf[ƒ^‚Ìæ“¾
+		// ãƒ‡ãƒ¼ã‚¿ã®å–å¾—
 		RingBufDataGet( &Sock->RecvBufferToUserR, Buffer, Length, TRUE ) ;
 
-		// “à•”óMƒf[ƒ^æ“¾ˆ—‚ğs‚¤
+		// å†…éƒ¨å—ä¿¡ãƒ‡ãƒ¼ã‚¿å–å¾—å‡¦ç†ã‚’è¡Œã†
 		RecvSocket( NetHandle ) ;
 	}
 
 FUNCTIONEND :
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 	CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return ReturnValue ;
 */
 }
 
-// óM‚µ‚½ƒf[ƒ^‚ğƒNƒŠƒA‚·‚é
+// å—ä¿¡ã—ãŸãƒ‡ãƒ¼ã‚¿ã‚’ã‚¯ãƒªã‚¢ã™ã‚‹
 extern int NS_NetWorkRecvBufferClear( int NetHandle )
 {
 	int ReturnValue = 0 ;
 	SOCKETDATA * Sock ;
 
-	// ’ÊMŠÖŒW‚Ì‰Šú‰»‚ª‚³‚ê‚Ä‚¢‚È‚©‚Á‚½‚ç‰½‚à‚¹‚¸I—¹
+	// é€šä¿¡é–¢ä¿‚ã®åˆæœŸåŒ–ãŒã•ã‚Œã¦ã„ãªã‹ã£ãŸã‚‰ä½•ã‚‚ã›ãšçµ‚äº†
 	if( SockData.InitializeFlag == FALSE ) return -1 ;
 
 	SETUP_WIN_API
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 	CRITICALSECTION_LOCK( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 
-	// ƒlƒbƒgƒ[ƒNƒnƒ“ƒhƒ‹‚Ìƒ`ƒFƒbƒN
+	// ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ãƒãƒ³ãƒ‰ãƒ«ã®ãƒã‚§ãƒƒã‚¯
 	if( TCPNETHCHK( NetHandle, Sock ) )
 	{
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 		CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 		return -1 ;
 	}
 
-	// ’ÊMŠÖŒWˆ—
+	// é€šä¿¡é–¢ä¿‚å‡¦ç†
 	NS_ProcessNetMessage( FALSE ) ;
 
-	// —LŒø‚Èƒ\ƒPƒbƒgƒf[ƒ^‚Å‚Í‚È‚©‚Á‚½‚ç‰½‚à‚¹‚¸I—¹
+	// æœ‰åŠ¹ãªã‚½ã‚±ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã§ã¯ãªã‹ã£ãŸã‚‰ä½•ã‚‚ã›ãšçµ‚äº†
 	if( Sock->UseFlag == FALSE )
 	{
-		DXST_LOGFILE_ADDUTF16LE( "\x09\x67\xb9\x52\x6a\x30\xcd\x30\xc3\x30\xc8\x30\xef\x30\xfc\x30\xaf\x30\xcf\x30\xf3\x30\xc9\x30\xeb\x30\x67\x30\x6f\x30\x42\x30\x8a\x30\x7e\x30\x5b\x30\x93\x30\x20\x00\x69\x00\x6e\x00\x20\x00\x4e\x00\x65\x00\x74\x00\x57\x00\x6f\x00\x72\x00\x6b\x00\x52\x00\x65\x00\x63\x00\x76\x00\x42\x00\x75\x00\x66\x00\x66\x00\x65\x00\x72\x00\x43\x00\x6c\x00\x65\x00\x61\x00\x72\x00\x0a\x00\x00"/*@ L"—LŒø‚Èƒlƒbƒgƒ[ƒNƒnƒ“ƒhƒ‹‚Å‚Í‚ ‚è‚Ü‚¹‚ñ in NetWorkRecvBufferClear\n" @*/ ) ; 
+		DXST_LOGFILE_ADDUTF16LE( "\x09\x67\xb9\x52\x6a\x30\xcd\x30\xc3\x30\xc8\x30\xef\x30\xfc\x30\xaf\x30\xcf\x30\xf3\x30\xc9\x30\xeb\x30\x67\x30\x6f\x30\x42\x30\x8a\x30\x7e\x30\x5b\x30\x93\x30\x20\x00\x69\x00\x6e\x00\x20\x00\x4e\x00\x65\x00\x74\x00\x57\x00\x6f\x00\x72\x00\x6b\x00\x52\x00\x65\x00\x63\x00\x76\x00\x42\x00\x75\x00\x66\x00\x66\x00\x65\x00\x72\x00\x43\x00\x6c\x00\x65\x00\x61\x00\x72\x00\x0a\x00\x00"/*@ L"æœ‰åŠ¹ãªãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ãƒãƒ³ãƒ‰ãƒ«ã§ã¯ã‚ã‚Šã¾ã›ã‚“ in NetWorkRecvBufferClear\n" @*/ ) ; 
 		ReturnValue = -1 ;
 		goto FUNCTIONEND ;
 	}
 
-	// d‘å‚ÈƒGƒ‰[‚ª”­¶‚µ‚Ä‚¢‚éê‡‚Í‰½‚à‚¹‚¸I—¹
+	// é‡å¤§ãªã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¦ã„ã‚‹å ´åˆã¯ä½•ã‚‚ã›ãšçµ‚äº†
 	if( Sock->ErrorFlag == TRUE )
 	{
-		DXST_LOGFILE_ADDUTF16LE( "\x53\x30\x6e\x30\xcd\x30\xc3\x30\xc8\x30\xef\x30\xfc\x30\xaf\x30\xcf\x30\xf3\x30\xc9\x30\xeb\x30\x6b\x30\x6f\x30\xa8\x30\xe9\x30\xfc\x30\x4c\x30\x7a\x76\x1f\x75\x57\x30\x66\x30\x44\x30\x7e\x30\x59\x30\x20\x00\x69\x00\x6e\x00\x20\x00\x4e\x00\x65\x00\x74\x00\x57\x00\x6f\x00\x72\x00\x6b\x00\x52\x00\x65\x00\x63\x00\x76\x00\x42\x00\x75\x00\x66\x00\x66\x00\x65\x00\x72\x00\x43\x00\x6c\x00\x65\x00\x61\x00\x72\x00\x0a\x00\x00"/*@ L"‚±‚Ìƒlƒbƒgƒ[ƒNƒnƒ“ƒhƒ‹‚É‚ÍƒGƒ‰[‚ª”­¶‚µ‚Ä‚¢‚Ü‚· in NetWorkRecvBufferClear\n" @*/ ) ;
+		DXST_LOGFILE_ADDUTF16LE( "\x53\x30\x6e\x30\xcd\x30\xc3\x30\xc8\x30\xef\x30\xfc\x30\xaf\x30\xcf\x30\xf3\x30\xc9\x30\xeb\x30\x6b\x30\x6f\x30\xa8\x30\xe9\x30\xfc\x30\x4c\x30\x7a\x76\x1f\x75\x57\x30\x66\x30\x44\x30\x7e\x30\x59\x30\x20\x00\x69\x00\x6e\x00\x20\x00\x4e\x00\x65\x00\x74\x00\x57\x00\x6f\x00\x72\x00\x6b\x00\x52\x00\x65\x00\x63\x00\x76\x00\x42\x00\x75\x00\x66\x00\x66\x00\x65\x00\x72\x00\x43\x00\x6c\x00\x65\x00\x61\x00\x72\x00\x0a\x00\x00"/*@ L"ã“ã®ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ãƒãƒ³ãƒ‰ãƒ«ã«ã¯ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¦ã„ã¾ã™ in NetWorkRecvBufferClear\n" @*/ ) ;
 		ReturnValue = -1 ;
 		goto FUNCTIONEND ;
 	}
 
-	// “à•”óMƒf[ƒ^æ“¾ˆ—‚ğs‚¤
+	// å†…éƒ¨å—ä¿¡ãƒ‡ãƒ¼ã‚¿å–å¾—å‡¦ç†ã‚’è¡Œã†
 	if( RecvSocket( NetHandle ) < 0 )
 	{
 		ReturnValue = -1 ;
 		goto FUNCTIONEND ;
 	}
 	
-	// ‚c‚wƒ‰ƒCƒuƒ‰ƒŠ“Æ©‚Ì•û®‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+	// ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªç‹¬è‡ªã®æ–¹å¼ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 	if( Sock->DXProtocolFlag == FALSE )
 	{
 		void *Buffer;
 
-		// ˆê“I‚ÈóMƒoƒbƒtƒ@‚ğŠm•Û‚·‚é
+		// ä¸€æ™‚çš„ãªå—ä¿¡ãƒãƒƒãƒ•ã‚¡ã‚’ç¢ºä¿ã™ã‚‹
 		Buffer = DXALLOC( 256 * 1024 ) ;
 
-		// óM‚Å‚«‚½ƒTƒCƒY‚ªƒoƒbƒtƒ@‚æ‚è¬‚³‚­‚È‚é‚Ü‚ÅŒJ‚è•Ô‚·
+		// å—ä¿¡ã§ããŸã‚µã‚¤ã‚ºãŒãƒãƒƒãƒ•ã‚¡ã‚ˆã‚Šå°ã•ããªã‚‹ã¾ã§ç¹°ã‚Šè¿”ã™
 		while( WinAPIData.WinSockFunc.recvFunc( Sock->Socket, (char *)Buffer, 256 * 1024, 0 ) < 256 * 1024 ){}
 
-		// ˆê“I‚ÈóMƒoƒbƒtƒ@‚ğŠJ•ú‚·‚é
+		// ä¸€æ™‚çš„ãªå—ä¿¡ãƒãƒƒãƒ•ã‚¡ã‚’é–‹æ”¾ã™ã‚‹
 		DXFREE( Buffer ) ;
 	}
 	else
 	{
-		// ƒŠƒ“ƒOƒoƒbƒtƒ@‚ğÄ‰Šú‰»‚·‚é
+		// ãƒªãƒ³ã‚°ãƒãƒƒãƒ•ã‚¡ã‚’å†åˆæœŸåŒ–ã™ã‚‹
 		RingBufTerminate( &Sock->RecvBufferToUserR );
 		RingBufInitialize( &Sock->RecvBufferToUserR );
 		Sock->RecvComDataOriginalVol = 0 ;
@@ -3322,14 +3322,14 @@ extern int NS_NetWorkRecvBufferClear( int NetHandle )
 
 FUNCTIONEND :
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 	CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return ReturnValue ;
 }
 
-// NetWorkSend ‚ÌÀˆ—ŠÖ”
+// NetWorkSend ã®å®Ÿå‡¦ç†é–¢æ•°
 static int NetWorkSend_Static(
 	int NetHandle,
 	const void *Buffer,
@@ -3342,15 +3342,15 @@ static int NetWorkSend_Static(
 
 	SETUP_WIN_API
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 	CRITICALSECTION_LOCK( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 
-	// ƒlƒbƒgƒ[ƒNƒnƒ“ƒhƒ‹‚Ìƒ`ƒFƒbƒN
+	// ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ãƒãƒ³ãƒ‰ãƒ«ã®ãƒã‚§ãƒƒã‚¯
 	if( ASyncThread )
 	{
 		if( TCPNETHCHK_ASYNC( NetHandle, Sock ) )
 		{
-			// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+			// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 			CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 			return -1 ;
 		}
@@ -3359,77 +3359,77 @@ static int NetWorkSend_Static(
 	{
 		if( TCPNETHCHK( NetHandle, Sock ) )
 		{
-			// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+			// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 			CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 			return -1 ;
 		}
 	}
 
-	// ’ÊMŠÖŒWˆ—
+	// é€šä¿¡é–¢ä¿‚å‡¦ç†
 	NS_ProcessNetMessage( FALSE ) ;
 
-	// —LŒø‚Èƒ\ƒPƒbƒgƒf[ƒ^‚Å‚Í‚È‚©‚Á‚½‚ç‰½‚à‚¹‚¸I—¹
+	// æœ‰åŠ¹ãªã‚½ã‚±ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã§ã¯ãªã‹ã£ãŸã‚‰ä½•ã‚‚ã›ãšçµ‚äº†
 	if( Sock->UseFlag == FALSE )
 	{
-		DXST_LOGFILE_ADDUTF16LE( "\x09\x67\xb9\x52\x6a\x30\xcd\x30\xc3\x30\xc8\x30\xef\x30\xfc\x30\xaf\x30\xcf\x30\xf3\x30\xc9\x30\xeb\x30\x67\x30\x6f\x30\x42\x30\x8a\x30\x7e\x30\x5b\x30\x93\x30\x20\x00\x69\x00\x6e\x00\x20\x00\x4e\x00\x65\x00\x74\x00\x57\x00\x6f\x00\x72\x00\x6b\x00\x53\x00\x65\x00\x6e\x00\x64\x00\x0a\x00\x00"/*@ L"—LŒø‚Èƒlƒbƒgƒ[ƒNƒnƒ“ƒhƒ‹‚Å‚Í‚ ‚è‚Ü‚¹‚ñ in NetWorkSend\n" @*/ ) ; 
+		DXST_LOGFILE_ADDUTF16LE( "\x09\x67\xb9\x52\x6a\x30\xcd\x30\xc3\x30\xc8\x30\xef\x30\xfc\x30\xaf\x30\xcf\x30\xf3\x30\xc9\x30\xeb\x30\x67\x30\x6f\x30\x42\x30\x8a\x30\x7e\x30\x5b\x30\x93\x30\x20\x00\x69\x00\x6e\x00\x20\x00\x4e\x00\x65\x00\x74\x00\x57\x00\x6f\x00\x72\x00\x6b\x00\x53\x00\x65\x00\x6e\x00\x64\x00\x0a\x00\x00"/*@ L"æœ‰åŠ¹ãªãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ãƒãƒ³ãƒ‰ãƒ«ã§ã¯ã‚ã‚Šã¾ã›ã‚“ in NetWorkSend\n" @*/ ) ; 
 		ReturnValue = -1 ;
 		goto FUNCTIONEND ;
 	}
 
-	// d‘å‚ÈƒGƒ‰[‚ª”­¶‚µ‚Ä‚¢‚éê‡‚Í‰½‚à‚¹‚¸I—¹
+	// é‡å¤§ãªã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¦ã„ã‚‹å ´åˆã¯ä½•ã‚‚ã›ãšçµ‚äº†
 	if( Sock->ErrorFlag == TRUE )
 	{
-		DXST_LOGFILE_ADDUTF16LE( "\x53\x30\x6e\x30\xcd\x30\xc3\x30\xc8\x30\xef\x30\xfc\x30\xaf\x30\xcf\x30\xf3\x30\xc9\x30\xeb\x30\x6b\x30\x6f\x30\xa8\x30\xe9\x30\xfc\x30\x4c\x30\x7a\x76\x1f\x75\x57\x30\x66\x30\x44\x30\x7e\x30\x59\x30\x20\x00\x69\x00\x6e\x00\x20\x00\x4e\x00\x65\x00\x74\x00\x57\x00\x6f\x00\x72\x00\x6b\x00\x53\x00\x65\x00\x6e\x00\x64\x00\x0a\x00\x00"/*@ L"‚±‚Ìƒlƒbƒgƒ[ƒNƒnƒ“ƒhƒ‹‚É‚ÍƒGƒ‰[‚ª”­¶‚µ‚Ä‚¢‚Ü‚· in NetWorkSend\n" @*/ ) ;
+		DXST_LOGFILE_ADDUTF16LE( "\x53\x30\x6e\x30\xcd\x30\xc3\x30\xc8\x30\xef\x30\xfc\x30\xaf\x30\xcf\x30\xf3\x30\xc9\x30\xeb\x30\x6b\x30\x6f\x30\xa8\x30\xe9\x30\xfc\x30\x4c\x30\x7a\x76\x1f\x75\x57\x30\x66\x30\x44\x30\x7e\x30\x59\x30\x20\x00\x69\x00\x6e\x00\x20\x00\x4e\x00\x65\x00\x74\x00\x57\x00\x6f\x00\x72\x00\x6b\x00\x53\x00\x65\x00\x6e\x00\x64\x00\x0a\x00\x00"/*@ L"ã“ã®ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ãƒãƒ³ãƒ‰ãƒ«ã«ã¯ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¦ã„ã¾ã™ in NetWorkSend\n" @*/ ) ;
 		ReturnValue = -1 ;
 		goto FUNCTIONEND ;
 	}
 	
-	// Ú‘±‚ª’f‚½‚ê‚Ä‚¢‚éê‡‚à‰½‚à‚¹‚¸I—¹
+	// æ¥ç¶šãŒæ–­ãŸã‚Œã¦ã„ã‚‹å ´åˆã‚‚ä½•ã‚‚ã›ãšçµ‚äº†
 	if( Sock->ConnectionFlag == FALSE )
 	{
 		ReturnValue = -1 ;
 		goto FUNCTIONEND ;
 	}
 
-	// “à•”‘—MƒvƒƒZƒX‚ğÀs‚·‚é
+	// å†…éƒ¨é€ä¿¡ãƒ—ãƒ­ã‚»ã‚¹ã‚’å®Ÿè¡Œã™ã‚‹
 	SendSocket( NetHandle ) ;
 
-	// ‚c‚wƒ‰ƒCƒuƒ‰ƒŠ“Æ©‚Ì•û®‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+	// ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªç‹¬è‡ªã®æ–¹å¼ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 	if( Sock->DXProtocolFlag == FALSE )
 	{
 		int SendVol ;
 	
 		SendVol = WinAPIData.WinSockFunc.sendFunc( Sock->Socket, (char *)Buffer, Length, 0 ) ;
 
-		// I—¹
+		// çµ‚äº†
 		ReturnValue = SendVol ;
 		goto FUNCTIONEND ;
 	}
 	else
 	{
-		// ‘—Mƒoƒbƒtƒ@‚Éƒf[ƒ^’Ç‰Á
+		// é€ä¿¡ãƒãƒƒãƒ•ã‚¡ã«ãƒ‡ãƒ¼ã‚¿è¿½åŠ 
 		if( RingBufDataAdd( &Sock->SendBufferR, Buffer, Length ) < 0 )
 		{
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\x01\x90\xe1\x4f\xc7\x30\xfc\x30\xbf\x30\x20\x00\x25\x00\x64\x00\x20\x00\x62\x00\x79\x00\x74\x00\x65\x00\x20\x00\x6e\x30\xfd\x8f\xa0\x52\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x20\x00\x69\x00\x6e\x00\x20\x00\x4e\x00\x65\x00\x77\x00\x57\x00\x6f\x00\x72\x00\x6b\x00\x53\x00\x65\x00\x6e\x00\x64\x00\x00"/*@ L"‘—Mƒf[ƒ^ %d byte ‚Ì’Ç‰Á‚É¸”s‚µ‚Ü‚µ‚½ in NewWorkSend" @*/, Length )) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\x01\x90\xe1\x4f\xc7\x30\xfc\x30\xbf\x30\x20\x00\x25\x00\x64\x00\x20\x00\x62\x00\x79\x00\x74\x00\x65\x00\x20\x00\x6e\x30\xfd\x8f\xa0\x52\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x20\x00\x69\x00\x6e\x00\x20\x00\x4e\x00\x65\x00\x77\x00\x57\x00\x6f\x00\x72\x00\x6b\x00\x53\x00\x65\x00\x6e\x00\x64\x00\x00"/*@ L"é€ä¿¡ãƒ‡ãƒ¼ã‚¿ %d byte ã®è¿½åŠ ã«å¤±æ•—ã—ã¾ã—ãŸ in NewWorkSend" @*/, Length )) ;
 			ReturnValue = -1 ;
 			goto FUNCTIONEND ;
 		}
 
-		// “à•”‘—MƒvƒƒZƒX‚ğÀs‚·‚é
+		// å†…éƒ¨é€ä¿¡ãƒ—ãƒ­ã‚»ã‚¹ã‚’å®Ÿè¡Œã™ã‚‹
 		SendSocket( NetHandle ) ;
 	}
 
 FUNCTIONEND :
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 	CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return ReturnValue ;
 }
 
 #ifndef DX_NON_ASYNCLOAD
-// NetWorkSend ‚Ì”ñ“¯Šú“Ç‚İ‚İƒXƒŒƒbƒh‚©‚çŒÄ‚Î‚ê‚éŠÖ”
+// NetWorkSend ã®éåŒæœŸèª­ã¿è¾¼ã¿ã‚¹ãƒ¬ãƒƒãƒ‰ã‹ã‚‰å‘¼ã°ã‚Œã‚‹é–¢æ•°
 static void NetWorkSend_ASync( ASYNCLOADDATA_COMMON *AParam )
 {
 	SOCKETDATA * Sock ;
@@ -3451,7 +3451,7 @@ static void NetWorkSend_ASync( ASYNCLOADDATA_COMMON *AParam )
 }
 #endif // DX_NON_ASYNCLOAD
 
-// NetWorkSend ‚ÌƒOƒ[ƒoƒ‹ƒf[ƒ^‚ÉƒAƒNƒZƒX‚µ‚È‚¢ƒo[ƒWƒ‡ƒ“
+// NetWorkSend ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿ã«ã‚¢ã‚¯ã‚»ã‚¹ã—ãªã„ãƒãƒ¼ã‚¸ãƒ§ãƒ³
 extern int NetWorkSend_UseGParam(
 	int NetHandle,
 	const void *Buffer,
@@ -3461,13 +3461,13 @@ extern int NetWorkSend_UseGParam(
 {
 	int Result = -1 ;
 
-	// ’ÊMŠÖŒW‚Ì‰Šú‰»‚ª‚³‚ê‚Ä‚¢‚È‚©‚Á‚½‚ç‰½‚à‚¹‚¸I—¹
+	// é€šä¿¡é–¢ä¿‚ã®åˆæœŸåŒ–ãŒã•ã‚Œã¦ã„ãªã‹ã£ãŸã‚‰ä½•ã‚‚ã›ãšçµ‚äº†
 	if( SockData.InitializeFlag == FALSE ) return -1 ;
 
 	if( WinData.ActiveFlag == FALSE )
 		DxActiveWait() ;
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 	CRITICALSECTION_LOCK( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 
 #ifndef DX_NON_ASYNCLOAD
@@ -3476,25 +3476,25 @@ extern int NetWorkSend_UseGParam(
 		ASYNCLOADDATA_COMMON *AParam = NULL ;
 		int Addr ;
 
-		// ƒpƒ‰ƒ[ƒ^‚É•K—v‚Èƒƒ‚ƒŠ‚ÌƒTƒCƒY‚ğZo
+		// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã«å¿…è¦ãªãƒ¡ãƒ¢ãƒªã®ã‚µã‚¤ã‚ºã‚’ç®—å‡º
 		Addr = 0 ;
 		AddASyncLoadParamInt( NULL, &Addr, NetHandle ) ;
 		AddASyncLoadParamStruct( NULL, &Addr, Buffer, Length ) ;
 		AddASyncLoadParamInt( NULL, &Addr, Length ) ;
 
-		// ƒƒ‚ƒŠ‚ÌŠm•Û
+		// ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿
 		AParam = AllocASyncLoadDataMemory( Addr ) ;
 		if( AParam == NULL )
 			goto END ;
 
-		// ˆ—‚É•K—v‚Èî•ñ‚ğƒZƒbƒg
+		// å‡¦ç†ã«å¿…è¦ãªæƒ…å ±ã‚’ã‚»ãƒƒãƒˆ
 		AParam->ProcessFunction = NetWorkSend_ASync ;
 		Addr = 0 ;
 		AddASyncLoadParamInt( AParam->Data, &Addr, NetHandle ) ;
 		AddASyncLoadParamStruct( AParam->Data, &Addr, Buffer, Length ) ;
 		AddASyncLoadParamInt( AParam->Data, &Addr, Length ) ;
 
-		// ƒf[ƒ^‚ğ’Ç‰Á
+		// ãƒ‡ãƒ¼ã‚¿ã‚’è¿½åŠ 
 		if( AddASyncLoadData( AParam ) < 0 )
 		{
 			DXFREE( AParam ) ;
@@ -3502,7 +3502,7 @@ extern int NetWorkSend_UseGParam(
 			goto END ;
 		}
 
-		// ”ñ“¯Šú“Ç‚İ‚İƒJƒEƒ“ƒg‚ğƒCƒ“ƒNƒŠƒƒ“ƒg
+		// éåŒæœŸèª­ã¿è¾¼ã¿ã‚«ã‚¦ãƒ³ãƒˆã‚’ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆ
 		IncASyncLoadCount( NetHandle, AParam->Index ) ;
 
 		Result = 0 ;
@@ -3517,20 +3517,20 @@ extern int NetWorkSend_UseGParam(
 END :
 #endif
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 	CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return Result ;
 }
 
-// ƒf[ƒ^‚ğ‘—M‚·‚é
+// ãƒ‡ãƒ¼ã‚¿ã‚’é€ä¿¡ã™ã‚‹
 extern int NS_NetWorkSend( int NetHandle, const void *Buffer, int Length )
 {
 	return NetWorkSend_UseGParam( NetHandle, Buffer, Length, GetASyncLoadFlag() ) ;
 }
 
-// MakeUDPSocketBase ‚ÌÀˆ—ŠÖ”
+// MakeUDPSocketBase ã®å®Ÿå‡¦ç†é–¢æ•°
 static int MakeUDPSocketBase_Static(
 	int NetHandle,
 	int IsIPv6,
@@ -3544,7 +3544,7 @@ static int MakeUDPSocketBase_Static(
 
 	SETUP_WIN_API
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 	CRITICALSECTION_LOCK( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 
 	if( ASyncThread )
@@ -3558,26 +3558,26 @@ static int MakeUDPSocketBase_Static(
 			return -1 ;
 	}
 
-	// ƒ|[ƒg‚Ì’l‚ğŒˆ’è
+	// ãƒãƒ¼ãƒˆã®å€¤ã‚’æ±ºå®š
 	pt = ( unsigned int )( RecvPort == -1 ? -1 : WinAPIData.WinSockFunc.htonsFunc( ( unsigned short )RecvPort ) ) ;
 
-	// ƒf[ƒ^‚ğ‰Šú‰»
-	Sock->IsUDP					= TRUE ;							// ‚t‚c‚o‚ğg—p‚·‚é
-	Sock->IsUDPBroadCast		= FALSE ;							// ƒuƒ[ƒhƒLƒƒƒXƒg‚Íg—p‚µ‚È‚¢
-	Sock->IsIPv6				= IsIPv6 ? TRUE : FALSE ;			// IPv6‚ğg—p‚·‚é‚©‚Ç‚¤‚©‚ğ•Û‘¶‚·‚é
-	Sock->Port 					= pt ;								// Ú‘±æ‚Ìƒ|[ƒg‚ğ•Û‘¶
-	Sock->UDPReadFlag			= FALSE ;							// óMƒf[ƒ^‚ª‘¶İ‚·‚é‚©Aƒtƒ‰ƒO‚ğ“|‚·
-	Sock->UDPWriteFlag			= TRUE ;							// ‘—M‰Â”\‚Èó‘Ô‚©Aƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// ãƒ‡ãƒ¼ã‚¿ã‚’åˆæœŸåŒ–
+	Sock->IsUDP					= TRUE ;							// ï¼µï¼¤ï¼°ã‚’ä½¿ç”¨ã™ã‚‹
+	Sock->IsUDPBroadCast		= FALSE ;							// ãƒ–ãƒ­ãƒ¼ãƒ‰ã‚­ãƒ£ã‚¹ãƒˆã¯ä½¿ç”¨ã—ãªã„
+	Sock->IsIPv6				= IsIPv6 ? TRUE : FALSE ;			// IPv6ã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã‚’ä¿å­˜ã™ã‚‹
+	Sock->Port 					= pt ;								// æ¥ç¶šå…ˆã®ãƒãƒ¼ãƒˆã‚’ä¿å­˜
+	Sock->UDPReadFlag			= FALSE ;							// å—ä¿¡ãƒ‡ãƒ¼ã‚¿ãŒå­˜åœ¨ã™ã‚‹ã‹ã€ãƒ•ãƒ©ã‚°ã‚’å€’ã™
+	Sock->UDPWriteFlag			= TRUE ;							// é€ä¿¡å¯èƒ½ãªçŠ¶æ…‹ã‹ã€ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 
-	// ƒ\ƒPƒbƒg‚Ìì¬
-	Sock->Socket = WinAPIData.WinSockFunc.socketFunc( IsIPv6 ? 23/*AF_INET6 ‚Í 23*/ : AF_INET , SOCK_DGRAM , IPPROTO_UDP ) ;
+	// ã‚½ã‚±ãƒƒãƒˆã®ä½œæˆ
+	Sock->Socket = WinAPIData.WinSockFunc.socketFunc( IsIPv6 ? 23/*AF_INET6 ã¯ 23*/ : AF_INET , SOCK_DGRAM , IPPROTO_UDP ) ;
 	if( Sock->Socket == INVALID_SOCKET )
 	{
-		DXERRORNETWORK(( "\x77\x00\x73\x00\x32\x00\x5f\x00\x33\x00\x32\x00\x2e\x00\x64\x00\x6c\x00\x6c\x00\x4c\x30\xd5\x52\x5c\x4f\x57\x30\x66\x30\x44\x30\x7e\x30\x5b\x30\x93\x30\x01\x30\xbd\x30\xb1\x30\xc3\x30\xc8\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x5f\x00\x31\x00\x00"/*@ L"ws2_32.dll‚ª“®ì‚µ‚Ä‚¢‚Ü‚¹‚ñAƒ\ƒPƒbƒg‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½_1" @*/ )) ;
+		DXERRORNETWORK(( "\x77\x00\x73\x00\x32\x00\x5f\x00\x33\x00\x32\x00\x2e\x00\x64\x00\x6c\x00\x6c\x00\x4c\x30\xd5\x52\x5c\x4f\x57\x30\x66\x30\x44\x30\x7e\x30\x5b\x30\x93\x30\x01\x30\xbd\x30\xb1\x30\xc3\x30\xc8\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x5f\x00\x31\x00\x00"/*@ L"ws2_32.dllãŒå‹•ä½œã—ã¦ã„ã¾ã›ã‚“ã€ã‚½ã‚±ãƒƒãƒˆã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ_1" @*/ )) ;
 		goto ERR ;
 	}
 
-	// RecvPort ‚ª -1 ˆÈŠO‚Ìê‡‚Íì¬‚µ‚½ƒ\ƒPƒbƒg‚Æƒ|[ƒg”Ô†‚ÌŠÖ˜A•t‚¯‚ğs‚¤
+	// RecvPort ãŒ -1 ä»¥å¤–ã®å ´åˆã¯ä½œæˆã—ãŸã‚½ã‚±ãƒƒãƒˆã¨ãƒãƒ¼ãƒˆç•ªå·ã®é–¢é€£ä»˜ã‘ã‚’è¡Œã†
 	if( RecvPort != -1 )
 	{
 		if( IsIPv6 )
@@ -3585,14 +3585,14 @@ static int MakeUDPSocketBase_Static(
 			_sockaddr_in6 local_v6;
 		
 			_MEMSET( &local_v6, 0, sizeof( local_v6 ) ) ;
-			local_v6.sin6_family = 23/*AF_INET6 ‚Í 23*/;
+			local_v6.sin6_family = 23/*AF_INET6 ã¯ 23*/;
 			local_v6.sin6_port = ( unsigned short )pt ;
 
 			if( WinAPIData.WinSockFunc.bindFunc( Sock->Socket , (struct sockaddr FAR *) &local_v6, sizeof( local_v6 ) ) == SOCKET_ERROR )
 			{
 				if( WinAPIData.WinSockFunc.WSAGetLastErrorFunc() != WSAEWOULDBLOCK )
 				{
-					DXERRORNETWORK(( "\x62\x00\x69\x00\x6e\x00\x64\x00\xfa\x51\x65\x67\x7e\x30\x5b\x30\x93\x30\x00"/*@ L"bindo—ˆ‚Ü‚¹‚ñ" @*/ )) ;
+					DXERRORNETWORK(( "\x62\x00\x69\x00\x6e\x00\x64\x00\xfa\x51\x65\x67\x7e\x30\x5b\x30\x93\x30\x00"/*@ L"bindå‡ºæ¥ã¾ã›ã‚“" @*/ )) ;
 					goto ERR ;
 				}
 			}
@@ -3610,39 +3610,39 @@ static int MakeUDPSocketBase_Static(
 			{
 				if( WinAPIData.WinSockFunc.WSAGetLastErrorFunc() != WSAEWOULDBLOCK )
 				{
-					DXERRORNETWORK(( "\x62\x00\x69\x00\x6e\x00\x64\x00\xfa\x51\x65\x67\x7e\x30\x5b\x30\x93\x30\x00"/*@ L"bindo—ˆ‚Ü‚¹‚ñ" @*/ )) ;
+					DXERRORNETWORK(( "\x62\x00\x69\x00\x6e\x00\x64\x00\xfa\x51\x65\x67\x7e\x30\x5b\x30\x93\x30\x00"/*@ L"bindå‡ºæ¥ã¾ã›ã‚“" @*/ )) ;
 					goto ERR ;
 				}
 			}
 		}
 	}
 
-	// WinSock ƒƒbƒZ[ƒWó‚¯æ‚èİ’è
+	// WinSock ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å—ã‘å–ã‚Šè¨­å®š
 	if( WinAPIData.WinSockFunc.WSAAsyncSelectFunc(
 			Sock->Socket,
 			SockData.MessageWindow,
 			WSA_WINSOCKMESSAGE,
 			FD_WRITE | FD_READ ) == SOCKET_ERROR )
 	{
-		DXERRORNETWORK(( "\x57\x00\x53\x00\x41\x00\x41\x00\x73\x00\x79\x00\x6e\x00\x63\x00\x53\x00\x65\x00\x6c\x00\x65\x00\x63\x00\x74\x00\x67\x30\xa8\x30\xe9\x30\xfc\x30\x4c\x30\x7a\x76\x1f\x75\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"WSAAsyncSelect‚ÅƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½" @*/ )) ;
+		DXERRORNETWORK(( "\x57\x00\x53\x00\x41\x00\x41\x00\x73\x00\x79\x00\x6e\x00\x63\x00\x53\x00\x65\x00\x6c\x00\x65\x00\x63\x00\x74\x00\x67\x30\xa8\x30\xe9\x30\xfc\x30\x4c\x30\x7a\x76\x1f\x75\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"WSAAsyncSelectã§ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¾ã—ãŸ" @*/ )) ;
 		goto ERR ;
 	}
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 	CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 
 	return ReturnValue ;
 
-	// ƒGƒ‰[ˆ—	
+	// ã‚¨ãƒ©ãƒ¼å‡¦ç†	
 ERR :
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 	CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 
 	return -1 ;
 }
 
 #ifndef DX_NON_ASYNCLOAD
-// MakeUDPSocketBase ‚Ì”ñ“¯Šú“Ç‚İ‚İƒXƒŒƒbƒh‚©‚çŒÄ‚Î‚ê‚éŠÖ”
+// MakeUDPSocketBase ã®éåŒæœŸèª­ã¿è¾¼ã¿ã‚¹ãƒ¬ãƒƒãƒ‰ã‹ã‚‰å‘¼ã°ã‚Œã‚‹é–¢æ•°
 static void MakeUDPSocketBase_ASync( ASYNCLOADDATA_COMMON *AParam )
 {
 	int NetHandle ;
@@ -3671,7 +3671,7 @@ static void MakeUDPSocketBase_ASync( ASYNCLOADDATA_COMMON *AParam )
 }
 #endif // DX_NON_ASYNCLOAD
 
-// MakeUDPSocketBase ‚ÌƒOƒ[ƒoƒ‹ƒf[ƒ^‚ÉƒAƒNƒZƒX‚µ‚È‚¢ƒo[ƒWƒ‡ƒ“
+// MakeUDPSocketBase ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿ã«ã‚¢ã‚¯ã‚»ã‚¹ã—ãªã„ãƒãƒ¼ã‚¸ãƒ§ãƒ³
 extern int MakeUDPSocketBase_UseGParam(
 	int IsIPv6,
 	int RecvPort,
@@ -3680,7 +3680,7 @@ extern int MakeUDPSocketBase_UseGParam(
 {
 	int NetHandle ;
 
-	// ’ÊMŠÖŒW‚ª‰Šú‰»‚³‚ê‚Ä‚¢‚È‚©‚Á‚½‚ç‰Šú‰»
+	// é€šä¿¡é–¢ä¿‚ãŒåˆæœŸåŒ–ã•ã‚Œã¦ã„ãªã‹ã£ãŸã‚‰åˆæœŸåŒ–
 	if( SockData.InitializeFlag == FALSE )
 	{
 		if( WinData.CloseMessagePostFlag != TRUE )	InitializeNetWork() ;
@@ -3691,14 +3691,14 @@ extern int MakeUDPSocketBase_UseGParam(
 	if( WinData.ActiveFlag == FALSE )
 		DxActiveWait() ;
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 	CRITICALSECTION_LOCK( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 
-	// ƒnƒ“ƒhƒ‹‚Ìì¬
+	// ãƒãƒ³ãƒ‰ãƒ«ã®ä½œæˆ
 	NetHandle = AddHandle( DX_HANDLETYPE_NETWORK, FALSE, -1 ) ;
 	if( NetHandle == -1 )
 	{
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 		CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 		return -1 ;
 	}
@@ -3709,25 +3709,25 @@ extern int MakeUDPSocketBase_UseGParam(
 		ASYNCLOADDATA_COMMON *AParam = NULL ;
 		int Addr ;
 
-		// ƒpƒ‰ƒ[ƒ^‚É•K—v‚Èƒƒ‚ƒŠ‚ÌƒTƒCƒY‚ğZo
+		// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã«å¿…è¦ãªãƒ¡ãƒ¢ãƒªã®ã‚µã‚¤ã‚ºã‚’ç®—å‡º
 		Addr = 0 ;
 		AddASyncLoadParamInt( NULL, &Addr, NetHandle ) ;
 		AddASyncLoadParamInt( NULL, &Addr, IsIPv6 ) ;
 		AddASyncLoadParamInt( NULL, &Addr, RecvPort ) ;
 
-		// ƒƒ‚ƒŠ‚ÌŠm•Û
+		// ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿
 		AParam = AllocASyncLoadDataMemory( Addr ) ;
 		if( AParam == NULL )
 			goto ERR ;
 
-		// ˆ—‚É•K—v‚Èî•ñ‚ğƒZƒbƒg
+		// å‡¦ç†ã«å¿…è¦ãªæƒ…å ±ã‚’ã‚»ãƒƒãƒˆ
 		AParam->ProcessFunction = MakeUDPSocketBase_ASync ;
 		Addr = 0 ;
 		AddASyncLoadParamInt( AParam->Data, &Addr, NetHandle ) ;
 		AddASyncLoadParamInt( AParam->Data, &Addr, IsIPv6 ) ;
 		AddASyncLoadParamInt( AParam->Data, &Addr, RecvPort ) ;
 
-		// ƒf[ƒ^‚ğ’Ç‰Á
+		// ãƒ‡ãƒ¼ã‚¿ã‚’è¿½åŠ 
 		if( AddASyncLoadData( AParam ) < 0 )
 		{
 			DXFREE( AParam ) ;
@@ -3735,7 +3735,7 @@ extern int MakeUDPSocketBase_UseGParam(
 			goto ERR ;
 		}
 
-		// ”ñ“¯Šú“Ç‚İ‚İƒJƒEƒ“ƒg‚ğƒCƒ“ƒNƒŠƒƒ“ƒg
+		// éåŒæœŸèª­ã¿è¾¼ã¿ã‚«ã‚¦ãƒ³ãƒˆã‚’ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆ
 		IncASyncLoadCount( NetHandle, AParam->Index ) ;
 	}
 	else
@@ -3745,46 +3745,46 @@ extern int MakeUDPSocketBase_UseGParam(
 			goto ERR ;
 	}
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 	CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return NetHandle ;
 
 ERR :
 	SubHandle( NetHandle, ASyncLoadFlag, FALSE ) ;
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 	CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 
 	return -1 ;
 }
 
-// UDP‚ğg—p‚µ‚½’ÊM‚ğs‚¤ƒ\ƒPƒbƒgƒnƒ“ƒhƒ‹‚ğì¬‚·‚é( RecvPort ‚ğ -1 ‚É‚·‚é‚Æ‘—Mê—p‚Ìƒ\ƒPƒbƒgƒnƒ“ƒhƒ‹‚É‚È‚è‚Ü‚· )
+// UDPã‚’ä½¿ç”¨ã—ãŸé€šä¿¡ã‚’è¡Œã†ã‚½ã‚±ãƒƒãƒˆãƒãƒ³ãƒ‰ãƒ«ã‚’ä½œæˆã™ã‚‹( RecvPort ã‚’ -1 ã«ã™ã‚‹ã¨é€ä¿¡å°‚ç”¨ã®ã‚½ã‚±ãƒƒãƒˆãƒãƒ³ãƒ‰ãƒ«ã«ãªã‚Šã¾ã™ )
 static int MakeUDPSocketBase( int IsIPv6, int RecvPort )
 {
 	return MakeUDPSocketBase_UseGParam( IsIPv6, RecvPort, GetASyncLoadFlag() ) ;
 }
 
-// UDP‚ğg—p‚µ‚½’ÊM‚ğs‚¤ƒ\ƒPƒbƒgƒnƒ“ƒhƒ‹‚ğì¬‚·‚é( RecvPort ‚ğ -1 ‚É‚·‚é‚Æ‘—Mê—p‚Ìƒ\ƒPƒbƒgƒnƒ“ƒhƒ‹‚É‚È‚è‚Ü‚· )
+// UDPã‚’ä½¿ç”¨ã—ãŸé€šä¿¡ã‚’è¡Œã†ã‚½ã‚±ãƒƒãƒˆãƒãƒ³ãƒ‰ãƒ«ã‚’ä½œæˆã™ã‚‹( RecvPort ã‚’ -1 ã«ã™ã‚‹ã¨é€ä¿¡å°‚ç”¨ã®ã‚½ã‚±ãƒƒãƒˆãƒãƒ³ãƒ‰ãƒ«ã«ãªã‚Šã¾ã™ )
 extern int NS_MakeUDPSocket( int RecvPort )
 {
 	return MakeUDPSocketBase( FALSE, RecvPort ) ;
 }
 
-// UDP‚ğg—p‚µ‚½’ÊM‚ğs‚¤ƒ\ƒPƒbƒgƒnƒ“ƒhƒ‹‚ğì¬‚·‚é( RecvPort ‚ğ -1 ‚É‚·‚é‚Æ‘—Mê—p‚Ìƒ\ƒPƒbƒgƒnƒ“ƒhƒ‹‚É‚È‚è‚Ü‚· )( IPv6”Å )
+// UDPã‚’ä½¿ç”¨ã—ãŸé€šä¿¡ã‚’è¡Œã†ã‚½ã‚±ãƒƒãƒˆãƒãƒ³ãƒ‰ãƒ«ã‚’ä½œæˆã™ã‚‹( RecvPort ã‚’ -1 ã«ã™ã‚‹ã¨é€ä¿¡å°‚ç”¨ã®ã‚½ã‚±ãƒƒãƒˆãƒãƒ³ãƒ‰ãƒ«ã«ãªã‚Šã¾ã™ )( IPv6ç‰ˆ )
 extern int NS_MakeUDPSocket_IPv6( int RecvPort )
 {
 	return MakeUDPSocketBase( TRUE, RecvPort ) ;
 }
 
-// UDP‚ğg—p‚µ‚½’ÊM‚ğs‚¤ƒ\ƒPƒbƒgƒnƒ“ƒhƒ‹‚ğíœ‚·‚é
+// UDPã‚’ä½¿ç”¨ã—ãŸé€šä¿¡ã‚’è¡Œã†ã‚½ã‚±ãƒƒãƒˆãƒãƒ³ãƒ‰ãƒ«ã‚’å‰Šé™¤ã™ã‚‹
 extern int NS_DeleteUDPSocket( int NetUDPHandle )
 {
 	return SubHandle( NetUDPHandle, GetASyncLoadFlag(), FALSE ) ;
 }
 
-// NetWorkSendUDP ‚ÌÀˆ—ŠÖ”
+// NetWorkSendUDP ã®å®Ÿå‡¦ç†é–¢æ•°
 static int NetWorkSendUDP_Static(
 	int NetUDPHandle,
 	IPDATA SendIP_IPv4,
@@ -3800,36 +3800,36 @@ static int NetWorkSendUDP_Static(
 	int Result ;
 	int i ;
 
-	// ’ÊMŠÖŒW‚Ì‰Šú‰»‚ª‚³‚ê‚Ä‚¢‚È‚©‚Á‚½‚ç‰½‚à‚¹‚¸I—¹
+	// é€šä¿¡é–¢ä¿‚ã®åˆæœŸåŒ–ãŒã•ã‚Œã¦ã„ãªã‹ã£ãŸã‚‰ä½•ã‚‚ã›ãšçµ‚äº†
 	if( SockData.InitializeFlag == FALSE ) return -1 ;
 
 	SETUP_WIN_API
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 	CRITICALSECTION_LOCK( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 
-	// ƒlƒbƒgƒ[ƒNƒnƒ“ƒhƒ‹‚Ìƒ`ƒFƒbƒN
+	// ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ãƒãƒ³ãƒ‰ãƒ«ã®ãƒã‚§ãƒƒã‚¯
 	if( ( ASyncThread          && UDPNETHCHK_ASYNC( NetUDPHandle, Sock ) ) ||
 		( ASyncThread == FALSE && UDPNETHCHK_ASYNC( NetUDPHandle, Sock ) ) )
 	{
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 		CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 		return -1 ;
 	}
 	if( SendPort == -1 && Sock->Port == -1 )
 	{
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 		CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 		return -1 ;
 	}
 
-	// ƒf[ƒ^‚Ì‘—M
+	// ãƒ‡ãƒ¼ã‚¿ã®é€ä¿¡
 	if( Sock->IsIPv6 )
 	{
 		_sockaddr_in6 addr ;
 
 		_MEMSET( &addr, 0, sizeof( addr ) ) ;
-		addr.sin6_family = 23/*AF_INET6 ‚Í 23*/ ;
+		addr.sin6_family = 23/*AF_INET6 ã¯ 23*/ ;
 		for( i = 0 ; i < 8 ; i ++ )
 			addr.sin6_addr.Word[ i ] = SendIP_IPv6.Word[ i ] ;
 		addr.sin6_port = SendPort == -1 ? ( unsigned short )Sock->Port : WinAPIData.WinSockFunc.htonsFunc( ( unsigned short )SendPort ) ;
@@ -3840,11 +3840,11 @@ static int NetWorkSendUDP_Static(
 		SOCKADDR_IN addr ;
 		BOOL Enable ;
 
-		// ƒuƒ[ƒhƒLƒƒƒXƒg‚¾‚Á‚½‚çİ’è‚ğØ‚è‘Ö‚¦‚é
+		// ãƒ–ãƒ­ãƒ¼ãƒ‰ã‚­ãƒ£ã‚¹ãƒˆã ã£ãŸã‚‰è¨­å®šã‚’åˆ‡ã‚Šæ›¿ãˆã‚‹
 		if( SendIP_IPv4.d1 == 255 && SendIP_IPv4.d2 == 255 &&
 			SendIP_IPv4.d3 == 255 && SendIP_IPv4.d4 == 255 )
 		{
-			// Šù‚Éƒuƒ[ƒhƒLƒƒƒXƒg—LŒø‰»İ’è‚ğs‚Á‚Ä‚¢‚½ê‡‚Í‰½‚à‚µ‚È‚¢
+			// æ—¢ã«ãƒ–ãƒ­ãƒ¼ãƒ‰ã‚­ãƒ£ã‚¹ãƒˆæœ‰åŠ¹åŒ–è¨­å®šã‚’è¡Œã£ã¦ã„ãŸå ´åˆã¯ä½•ã‚‚ã—ãªã„
 			if( Sock->IsUDPBroadCast == FALSE )
 			{
 				Sock->IsUDPBroadCast = TRUE ;
@@ -3854,7 +3854,7 @@ static int NetWorkSendUDP_Static(
 		}
 		else
 		{
-			// Šù‚Éƒuƒ[ƒhƒLƒƒƒXƒg–³Œø‰»İ’è‚ğs‚Á‚Ä‚¢‚½ê‡‚Í‰½‚à‚µ‚È‚¢
+			// æ—¢ã«ãƒ–ãƒ­ãƒ¼ãƒ‰ã‚­ãƒ£ã‚¹ãƒˆç„¡åŠ¹åŒ–è¨­å®šã‚’è¡Œã£ã¦ã„ãŸå ´åˆã¯ä½•ã‚‚ã—ãªã„
 			if( Sock->IsUDPBroadCast == TRUE )
 			{
 				Sock->IsUDPBroadCast = FALSE ;
@@ -3880,7 +3880,7 @@ static int NetWorkSendUDP_Static(
 			goto ENDLABEL ;
 
 		case WSAEWOULDBLOCK :
-			// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+			// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 			CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 
 			NS_ProcessMessage() ;
@@ -3896,20 +3896,20 @@ static int NetWorkSendUDP_Static(
 		Result = SendVol ;
 	}
 
-	// ‘—M‰Â”\ƒtƒ‰ƒO‚ğ“|‚·
+	// é€ä¿¡å¯èƒ½ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 	Sock->UDPWriteFlag = FALSE ;
 
 ENDLABEL :
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 	CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return Result ;
 }
 
 #ifndef DX_NON_ASYNCLOAD
-// NetWorkSendUDP ‚Ì”ñ“¯Šú“Ç‚İ‚İƒXƒŒƒbƒh‚©‚çŒÄ‚Î‚ê‚éŠÖ”
+// NetWorkSendUDP ã®éåŒæœŸèª­ã¿è¾¼ã¿ã‚¹ãƒ¬ãƒƒãƒ‰ã‹ã‚‰å‘¼ã°ã‚Œã‚‹é–¢æ•°
 static void NetWorkSendUDP_ASync( ASYNCLOADDATA_COMMON *AParam )
 {
 	SOCKETDATA *Sock ;
@@ -3937,7 +3937,7 @@ static void NetWorkSendUDP_ASync( ASYNCLOADDATA_COMMON *AParam )
 }
 #endif // DX_NON_ASYNCLOAD
 
-// NetWorkSendUDP ‚ÌƒOƒ[ƒoƒ‹ƒf[ƒ^‚ÉƒAƒNƒZƒX‚µ‚È‚¢ƒo[ƒWƒ‡ƒ“
+// NetWorkSendUDP ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿ã«ã‚¢ã‚¯ã‚»ã‚¹ã—ãªã„ãƒãƒ¼ã‚¸ãƒ§ãƒ³
 extern int NetWorkSendUDP_UseGParam(
 	int NetUDPHandle,
 	IPDATA SendIP_IPv4,
@@ -3950,13 +3950,13 @@ extern int NetWorkSendUDP_UseGParam(
 {
 	int Result = -1 ;
 
-	// ’ÊMŠÖŒW‚Ì‰Šú‰»‚ª‚³‚ê‚Ä‚¢‚È‚©‚Á‚½‚ç‰½‚à‚¹‚¸I—¹
+	// é€šä¿¡é–¢ä¿‚ã®åˆæœŸåŒ–ãŒã•ã‚Œã¦ã„ãªã‹ã£ãŸã‚‰ä½•ã‚‚ã›ãšçµ‚äº†
 	if( SockData.InitializeFlag == FALSE ) return -1 ;
 
 	if( WinData.ActiveFlag == FALSE )
 		DxActiveWait() ;
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 	CRITICALSECTION_LOCK( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 
 #ifndef DX_NON_ASYNCLOAD
@@ -3965,7 +3965,7 @@ extern int NetWorkSendUDP_UseGParam(
 		ASYNCLOADDATA_COMMON *AParam = NULL ;
 		int Addr ;
 
-		// ƒpƒ‰ƒ[ƒ^‚É•K—v‚Èƒƒ‚ƒŠ‚ÌƒTƒCƒY‚ğZo
+		// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã«å¿…è¦ãªãƒ¡ãƒ¢ãƒªã®ã‚µã‚¤ã‚ºã‚’ç®—å‡º
 		Addr = 0 ;
 		AddASyncLoadParamInt( NULL, &Addr, NetUDPHandle ) ;
 		AddASyncLoadParamStruct( NULL, &Addr, &SendIP_IPv4, sizeof( IPDATA ) ) ;
@@ -3974,12 +3974,12 @@ extern int NetWorkSendUDP_UseGParam(
 		AddASyncLoadParamStruct( NULL, &Addr, Buffer, Length ) ;
 		AddASyncLoadParamInt( NULL, &Addr, Length ) ;
 
-		// ƒƒ‚ƒŠ‚ÌŠm•Û
+		// ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿
 		AParam = AllocASyncLoadDataMemory( Addr ) ;
 		if( AParam == NULL )
 			goto END ;
 
-		// ˆ—‚É•K—v‚Èî•ñ‚ğƒZƒbƒg
+		// å‡¦ç†ã«å¿…è¦ãªæƒ…å ±ã‚’ã‚»ãƒƒãƒˆ
 		AParam->ProcessFunction = NetWorkSendUDP_ASync ;
 		Addr = 0 ;
 		AddASyncLoadParamInt( AParam->Data, &Addr, NetUDPHandle ) ;
@@ -3989,7 +3989,7 @@ extern int NetWorkSendUDP_UseGParam(
 		AddASyncLoadParamStruct( AParam->Data, &Addr, Buffer, Length ) ;
 		AddASyncLoadParamInt( AParam->Data, &Addr, Length ) ;
 
-		// ƒf[ƒ^‚ğ’Ç‰Á
+		// ãƒ‡ãƒ¼ã‚¿ã‚’è¿½åŠ 
 		if( AddASyncLoadData( AParam ) < 0 )
 		{
 			DXFREE( AParam ) ;
@@ -3997,7 +3997,7 @@ extern int NetWorkSendUDP_UseGParam(
 			goto END ;
 		}
 
-		// ”ñ“¯Šú“Ç‚İ‚İƒJƒEƒ“ƒg‚ğƒCƒ“ƒNƒŠƒƒ“ƒg
+		// éåŒæœŸèª­ã¿è¾¼ã¿ã‚«ã‚¦ãƒ³ãƒˆã‚’ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆ
 		IncASyncLoadCount( NetUDPHandle, AParam->Index ) ;
 
 		Result = 0 ;
@@ -4012,20 +4012,20 @@ extern int NetWorkSendUDP_UseGParam(
 END :
 #endif
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 	CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return Result ;
 }
 
-// UDP‚ğg—p‚µ‚½’ÊM‚Åw’è‚Ì‚h‚o‚Éƒf[ƒ^‚ğ‘—M‚·‚éALength ‚ÍÅ‘å65507ASendPort ‚ğ -1 ‚É‚·‚é‚Æ MakeUDPSocket ‚É RecvPort ‚Å“n‚µ‚½ƒ|[ƒg‚ªg—p‚³‚ê‚Ü‚·( –ß‚è’l  0ˆÈã;‘—M‚Å‚«‚½ƒf[ƒ^ƒTƒCƒY  -1:ƒGƒ‰[   -2:‘—Mƒf[ƒ^‚ª‘å‚«‚·‚¬‚é  -3:‘—M€”õ‚ª‚Å‚«‚Ä‚¢‚È‚¢ )
+// UDPã‚’ä½¿ç”¨ã—ãŸé€šä¿¡ã§æŒ‡å®šã®ï¼©ï¼°ã«ãƒ‡ãƒ¼ã‚¿ã‚’é€ä¿¡ã™ã‚‹ã€Length ã¯æœ€å¤§65507ã€SendPort ã‚’ -1 ã«ã™ã‚‹ã¨ MakeUDPSocket ã« RecvPort ã§æ¸¡ã—ãŸãƒãƒ¼ãƒˆãŒä½¿ç”¨ã•ã‚Œã¾ã™( æˆ»ã‚Šå€¤  0ä»¥ä¸Š;é€ä¿¡ã§ããŸãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º  -1:ã‚¨ãƒ©ãƒ¼   -2:é€ä¿¡ãƒ‡ãƒ¼ã‚¿ãŒå¤§ãã™ãã‚‹  -3:é€ä¿¡æº–å‚™ãŒã§ãã¦ã„ãªã„ )
 extern int NS_NetWorkSendUDP( int NetUDPHandle, IPDATA SendIP, int SendPort, const void *Buffer, int Length )
 {
 	SOCKETDATA *Sock ;
 	IPDATA_IPv6 SendIP_IPv6 ;
 
-	// ƒlƒbƒgƒ[ƒNƒnƒ“ƒhƒ‹‚Ìƒ`ƒFƒbƒN
+	// ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ãƒãƒ³ãƒ‰ãƒ«ã®ãƒã‚§ãƒƒã‚¯
 	if( UDPNETHCHK( NetUDPHandle, Sock ) ||
 		Sock->IsIPv6 == TRUE )
 		return -1 ;
@@ -4038,23 +4038,23 @@ extern int NS_NetWorkSendUDP( int NetUDPHandle, IPDATA SendIP, int SendPort, con
 	int SendVol ;
 	int Result ;
 
-	// ’ÊMŠÖŒW‚Ì‰Šú‰»‚ª‚³‚ê‚Ä‚¢‚È‚©‚Á‚½‚ç‰½‚à‚¹‚¸I—¹
+	// é€šä¿¡é–¢ä¿‚ã®åˆæœŸåŒ–ãŒã•ã‚Œã¦ã„ãªã‹ã£ãŸã‚‰ä½•ã‚‚ã›ãšçµ‚äº†
 	if( SockData.InitializeFlag == FALSE ) return -1 ;
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 	CRITICALSECTION_LOCK( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 
-	// ƒlƒbƒgƒ[ƒNƒnƒ“ƒhƒ‹‚Ìƒ`ƒFƒbƒN
+	// ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ãƒãƒ³ãƒ‰ãƒ«ã®ãƒã‚§ãƒƒã‚¯
 	if( UDPNETHCHK( NetUDPHandle, Sock ) ||
 	    ( SendPort == -1 && Sock->Port == -1 ) ||
 	    Sock->IsIPv6 == TRUE )
 	{
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 		CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 		return -1 ;
 	}
 
-	// ƒf[ƒ^‚Ì‘—M
+	// ãƒ‡ãƒ¼ã‚¿ã®é€ä¿¡
 	_MEMSET( &addr, 0, sizeof( addr ) ) ;
 	addr.sin_family = AF_INET ;
 	addr.sin_addr = *(( in_addr *)&SendIP ) ;
@@ -4071,7 +4071,7 @@ extern int NS_NetWorkSendUDP( int NetUDPHandle, IPDATA SendIP, int SendPort, con
 			goto ENDLABEL ;
 
 		case WSAEWOULDBLOCK :
-			// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+			// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 			CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 
 			NS_ProcessMessage() ;
@@ -4087,26 +4087,26 @@ extern int NS_NetWorkSendUDP( int NetUDPHandle, IPDATA SendIP, int SendPort, con
 		Result = SendVol ;
 	}
 
-	// ‘—M‰Â”\ƒtƒ‰ƒO‚ğ“|‚·
+	// é€ä¿¡å¯èƒ½ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 	Sock->UDPWriteFlag = FALSE ;
 
 ENDLABEL :
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 	CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return Result ;
 */
 }
 
-// UDP‚ğg—p‚µ‚½’ÊM‚Åw’è‚Ì‚h‚o‚Éƒf[ƒ^‚ğ‘—M‚·‚éALength ‚ÍÅ‘å65507ASendPort ‚ğ -1 ‚É‚·‚é‚Æ MakeUDPSocket ‚É RecvPort ‚Å“n‚µ‚½ƒ|[ƒg‚ªg—p‚³‚ê‚Ü‚·( –ß‚è’l  0ˆÈã;‘—M‚Å‚«‚½ƒf[ƒ^ƒTƒCƒY  -1:ƒGƒ‰[   -2:‘—Mƒf[ƒ^‚ª‘å‚«‚·‚¬‚é  -3:‘—M€”õ‚ª‚Å‚«‚Ä‚¢‚È‚¢ )( IPv6”Å )
+// UDPã‚’ä½¿ç”¨ã—ãŸé€šä¿¡ã§æŒ‡å®šã®ï¼©ï¼°ã«ãƒ‡ãƒ¼ã‚¿ã‚’é€ä¿¡ã™ã‚‹ã€Length ã¯æœ€å¤§65507ã€SendPort ã‚’ -1 ã«ã™ã‚‹ã¨ MakeUDPSocket ã« RecvPort ã§æ¸¡ã—ãŸãƒãƒ¼ãƒˆãŒä½¿ç”¨ã•ã‚Œã¾ã™( æˆ»ã‚Šå€¤  0ä»¥ä¸Š;é€ä¿¡ã§ããŸãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º  -1:ã‚¨ãƒ©ãƒ¼   -2:é€ä¿¡ãƒ‡ãƒ¼ã‚¿ãŒå¤§ãã™ãã‚‹  -3:é€ä¿¡æº–å‚™ãŒã§ãã¦ã„ãªã„ )( IPv6ç‰ˆ )
 extern int NS_NetWorkSendUDP_IPv6( int NetUDPHandle, IPDATA_IPv6 SendIP, int SendPort, const void *Buffer, int Length )
 {
 	SOCKETDATA *Sock ;
 	IPDATA SendIP_IPv4 ;
 
-	// ƒlƒbƒgƒ[ƒNƒnƒ“ƒhƒ‹‚Ìƒ`ƒFƒbƒN
+	// ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ãƒãƒ³ãƒ‰ãƒ«ã®ãƒã‚§ãƒƒã‚¯
 	if( UDPNETHCHK( NetUDPHandle, Sock ) ||
 		Sock->IsIPv6 == FALSE )
 		return -1 ;
@@ -4120,25 +4120,25 @@ extern int NS_NetWorkSendUDP_IPv6( int NetUDPHandle, IPDATA_IPv6 SendIP, int Sen
 	int Result ;
 	int i ;
 
-	// ’ÊMŠÖŒW‚Ì‰Šú‰»‚ª‚³‚ê‚Ä‚¢‚È‚©‚Á‚½‚ç‰½‚à‚¹‚¸I—¹
+	// é€šä¿¡é–¢ä¿‚ã®åˆæœŸåŒ–ãŒã•ã‚Œã¦ã„ãªã‹ã£ãŸã‚‰ä½•ã‚‚ã›ãšçµ‚äº†
 	if( SockData.InitializeFlag == FALSE ) return -1 ;
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 	CRITICALSECTION_LOCK( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 
-	// ƒlƒbƒgƒ[ƒNƒnƒ“ƒhƒ‹‚Ìƒ`ƒFƒbƒN
+	// ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ãƒãƒ³ãƒ‰ãƒ«ã®ãƒã‚§ãƒƒã‚¯
 	if( UDPNETHCHK( NetUDPHandle, Sock ) ||
 	    ( SendPort == -1 && Sock->Port == -1 ) ||
 	    Sock->IsIPv6 == FALSE )
 	{
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 		CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 		return -1 ;
 	}
 
-	// ƒf[ƒ^‚Ì‘—M
+	// ãƒ‡ãƒ¼ã‚¿ã®é€ä¿¡
 	_MEMSET( &addr, 0, sizeof( addr ) ) ;
-	// AF_INET6 ‚Í 23
+	// AF_INET6 ã¯ 23
 	addr.sin6_family = 23 ;
 	for( i = 0 ; i < 8 ; i ++ )
 		addr.sin6_addr.Word[ i ] = SendIP.Word[ i ] ;
@@ -4155,7 +4155,7 @@ extern int NS_NetWorkSendUDP_IPv6( int NetUDPHandle, IPDATA_IPv6 SendIP, int Sen
 			goto ENDLABEL ;
 
 		case WSAEWOULDBLOCK :
-			// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+			// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 			CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 
 			NS_ProcessMessage() ;
@@ -4171,20 +4171,20 @@ extern int NS_NetWorkSendUDP_IPv6( int NetUDPHandle, IPDATA_IPv6 SendIP, int Sen
 		Result = SendVol ;
 	}
 
-	// ‘—M‰Â”\ƒtƒ‰ƒO‚ğ“|‚·
+	// é€ä¿¡å¯èƒ½ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 	Sock->UDPWriteFlag = FALSE ;
 
 ENDLABEL :
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 	CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return Result ;
 */
 }
 
-// NetWorkRecvUDP ‚ÌÀˆ—ŠÖ”
+// NetWorkRecvUDP ã®å®Ÿå‡¦ç†é–¢æ•°
 static int NetWorkRecvUDP_Static(
 	int NetUDPHandle,
 	void *RecvIP,
@@ -4202,24 +4202,24 @@ static int NetWorkRecvUDP_Static(
 	int RecvVol ;
 	int Result ;
 
-	// ’ÊMŠÖŒW‚Ì‰Šú‰»‚ª‚³‚ê‚Ä‚¢‚È‚©‚Á‚½‚ç‰½‚à‚¹‚¸I—¹
+	// é€šä¿¡é–¢ä¿‚ã®åˆæœŸåŒ–ãŒã•ã‚Œã¦ã„ãªã‹ã£ãŸã‚‰ä½•ã‚‚ã›ãšçµ‚äº†
 	if( SockData.InitializeFlag == FALSE ) return -1 ;
 
 	SETUP_WIN_API
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 	CRITICALSECTION_LOCK( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 
-	// ƒlƒbƒgƒ[ƒNƒnƒ“ƒhƒ‹‚Ìƒ`ƒFƒbƒN
+	// ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ãƒãƒ³ãƒ‰ãƒ«ã®ãƒã‚§ãƒƒã‚¯
 	if( ( ASyncThread          && UDPNETHCHK_ASYNC( NetUDPHandle, Sock ) ) ||
 		( ASyncThread == FALSE && UDPNETHCHK_ASYNC( NetUDPHandle, Sock ) ) )
 	{
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 		CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 		return -1 ;
 	}
 
-	// ƒf[ƒ^‚ÌóM
+	// ãƒ‡ãƒ¼ã‚¿ã®å—ä¿¡
 	if( Sock->IsIPv6 )
 	{
 		_MEMSET( &addr_ipv6, 0, sizeof( addr_ipv6 ) ) ;
@@ -4245,7 +4245,7 @@ static int NetWorkRecvUDP_Static(
 					&addrsize ) ;
 	}
 
-	// óMƒf[ƒ^‚ ‚èƒtƒ‰ƒO‚ğ“|‚·
+	// å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã‚ã‚Šãƒ•ãƒ©ã‚°ã‚’å€’ã™
 	Sock->UDPReadFlag = FALSE ;
 
 	if( RecvVol < 0 )
@@ -4260,7 +4260,7 @@ static int NetWorkRecvUDP_Static(
 			goto ENDLABEL ;
 
 		case WSAEWOULDBLOCK :
-			// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+			// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 			CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 
 			NS_ProcessMessage() ;
@@ -4307,14 +4307,14 @@ static int NetWorkRecvUDP_Static(
 
 ENDLABEL :
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 	CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 
 	return Result ;
 }
 
 #ifndef DX_NON_ASYNCLOAD
-// NetWorkRecvUDP ‚Ì”ñ“¯Šú“Ç‚İ‚İƒXƒŒƒbƒh‚©‚çŒÄ‚Î‚ê‚éŠÖ”
+// NetWorkRecvUDP ã®éåŒæœŸèª­ã¿è¾¼ã¿ã‚¹ãƒ¬ãƒƒãƒ‰ã‹ã‚‰å‘¼ã°ã‚Œã‚‹é–¢æ•°
 static void NetWorkRecvUDP_ASync( ASYNCLOADDATA_COMMON *AParam )
 {
 	SOCKETDATA *Sock ;
@@ -4342,7 +4342,7 @@ static void NetWorkRecvUDP_ASync( ASYNCLOADDATA_COMMON *AParam )
 }
 #endif // DX_NON_ASYNCLOAD
 
-// NetWorkRecvUDP ‚ÌƒOƒ[ƒoƒ‹ƒf[ƒ^‚ÉƒAƒNƒZƒX‚µ‚È‚¢ƒo[ƒWƒ‡ƒ“
+// NetWorkRecvUDP ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿ã«ã‚¢ã‚¯ã‚»ã‚¹ã—ãªã„ãƒãƒ¼ã‚¸ãƒ§ãƒ³
 extern int NetWorkRecvUDP_UseGParam(
 	int NetUDPHandle,
 	void *RecvIP,
@@ -4355,13 +4355,13 @@ extern int NetWorkRecvUDP_UseGParam(
 {
 	int Result = -1 ;
 
-	// ’ÊMŠÖŒW‚Ì‰Šú‰»‚ª‚³‚ê‚Ä‚¢‚È‚©‚Á‚½‚ç‰½‚à‚¹‚¸I—¹
+	// é€šä¿¡é–¢ä¿‚ã®åˆæœŸåŒ–ãŒã•ã‚Œã¦ã„ãªã‹ã£ãŸã‚‰ä½•ã‚‚ã›ãšçµ‚äº†
 	if( SockData.InitializeFlag == FALSE ) return -1 ;
 
 	if( WinData.ActiveFlag == FALSE )
 		DxActiveWait() ;
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 	CRITICALSECTION_LOCK( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 
 #ifndef DX_NON_ASYNCLOAD
@@ -4370,7 +4370,7 @@ extern int NetWorkRecvUDP_UseGParam(
 		ASYNCLOADDATA_COMMON *AParam = NULL ;
 		int Addr ;
 
-		// ƒpƒ‰ƒ[ƒ^‚É•K—v‚Èƒƒ‚ƒŠ‚ÌƒTƒCƒY‚ğZo
+		// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã«å¿…è¦ãªãƒ¡ãƒ¢ãƒªã®ã‚µã‚¤ã‚ºã‚’ç®—å‡º
 		Addr = 0 ;
 		AddASyncLoadParamInt( NULL, &Addr, NetUDPHandle ) ;
 		AddASyncLoadParamConstVoidP( NULL, &Addr, RecvIP ) ;
@@ -4379,12 +4379,12 @@ extern int NetWorkRecvUDP_UseGParam(
 		AddASyncLoadParamInt( NULL, &Addr, Length ) ;
 		AddASyncLoadParamInt( NULL, &Addr, Peek ) ;
 
-		// ƒƒ‚ƒŠ‚ÌŠm•Û
+		// ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿
 		AParam = AllocASyncLoadDataMemory( Addr ) ;
 		if( AParam == NULL )
 			goto END ;
 
-		// ˆ—‚É•K—v‚Èî•ñ‚ğƒZƒbƒg
+		// å‡¦ç†ã«å¿…è¦ãªæƒ…å ±ã‚’ã‚»ãƒƒãƒˆ
 		AParam->ProcessFunction = NetWorkRecvUDP_ASync ;
 		Addr = 0 ;
 		AddASyncLoadParamInt( AParam->Data, &Addr, NetUDPHandle ) ;
@@ -4394,7 +4394,7 @@ extern int NetWorkRecvUDP_UseGParam(
 		AddASyncLoadParamInt( AParam->Data, &Addr, Length ) ;
 		AddASyncLoadParamInt( AParam->Data, &Addr, Peek ) ;
 
-		// ƒf[ƒ^‚ğ’Ç‰Á
+		// ãƒ‡ãƒ¼ã‚¿ã‚’è¿½åŠ 
 		if( AddASyncLoadData( AParam ) < 0 )
 		{
 			DXFREE( AParam ) ;
@@ -4402,7 +4402,7 @@ extern int NetWorkRecvUDP_UseGParam(
 			goto END ;
 		}
 
-		// ”ñ“¯Šú“Ç‚İ‚İƒJƒEƒ“ƒg‚ğƒCƒ“ƒNƒŠƒƒ“ƒg
+		// éåŒæœŸèª­ã¿è¾¼ã¿ã‚«ã‚¦ãƒ³ãƒˆã‚’ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆ
 		IncASyncLoadCount( NetUDPHandle, AParam->Index ) ;
 
 		Result = 0 ;
@@ -4417,22 +4417,22 @@ extern int NetWorkRecvUDP_UseGParam(
 END :
 #endif
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 	CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return Result ;
 }
 
-// UDP‚ğg—p‚µ‚½’ÊM‚Åƒf[ƒ^‚ğóM‚·‚éAPeek ‚É TRUE ‚ğ“n‚·‚ÆóM‚É¬Œ÷‚µ‚Ä‚àƒf[ƒ^‚ğóMƒLƒ…[‚©‚çíœ‚µ‚Ü‚¹‚ñ( –ß‚è’l  0ˆÈã:óM‚µ‚½ƒf[ƒ^‚ÌƒTƒCƒY  -1:ƒGƒ‰[  -2:ƒoƒbƒtƒ@‚ÌƒTƒCƒY‚ª‘«‚è‚È‚¢  -3:óMƒf[ƒ^‚ª‚È‚¢ )
+// UDPã‚’ä½¿ç”¨ã—ãŸé€šä¿¡ã§ãƒ‡ãƒ¼ã‚¿ã‚’å—ä¿¡ã™ã‚‹ã€Peek ã« TRUE ã‚’æ¸¡ã™ã¨å—ä¿¡ã«æˆåŠŸã—ã¦ã‚‚ãƒ‡ãƒ¼ã‚¿ã‚’å—ä¿¡ã‚­ãƒ¥ãƒ¼ã‹ã‚‰å‰Šé™¤ã—ã¾ã›ã‚“( æˆ»ã‚Šå€¤  0ä»¥ä¸Š:å—ä¿¡ã—ãŸãƒ‡ãƒ¼ã‚¿ã®ã‚µã‚¤ã‚º  -1:ã‚¨ãƒ©ãƒ¼  -2:ãƒãƒƒãƒ•ã‚¡ã®ã‚µã‚¤ã‚ºãŒè¶³ã‚Šãªã„  -3:å—ä¿¡ãƒ‡ãƒ¼ã‚¿ãŒãªã„ )
 extern int NS_NetWorkRecvUDP( int NetUDPHandle, IPDATA *RecvIP, int *RecvPort, void *Buffer, int Length, int Peek )
 {
 	SOCKETDATA * Sock ;
 
-	// ’ÊMŠÖŒW‚Ì‰Šú‰»‚ª‚³‚ê‚Ä‚¢‚È‚©‚Á‚½‚ç‰½‚à‚¹‚¸I—¹
+	// é€šä¿¡é–¢ä¿‚ã®åˆæœŸåŒ–ãŒã•ã‚Œã¦ã„ãªã‹ã£ãŸã‚‰ä½•ã‚‚ã›ãšçµ‚äº†
 	if( SockData.InitializeFlag == FALSE ) return -1 ;
 
-	// ƒlƒbƒgƒ[ƒNƒnƒ“ƒhƒ‹‚Ìƒ`ƒFƒbƒN
+	// ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ãƒãƒ³ãƒ‰ãƒ«ã®ãƒã‚§ãƒƒã‚¯
 	if( UDPNETHCHK( NetUDPHandle, Sock ) ||
 		Sock->IsIPv6 == TRUE )
 		return -1 ;
@@ -4445,22 +4445,22 @@ extern int NS_NetWorkRecvUDP( int NetUDPHandle, IPDATA *RecvIP, int *RecvPort, v
 	int RecvVol ;
 	int Result ;
 
-	// ’ÊMŠÖŒW‚Ì‰Šú‰»‚ª‚³‚ê‚Ä‚¢‚È‚©‚Á‚½‚ç‰½‚à‚¹‚¸I—¹
+	// é€šä¿¡é–¢ä¿‚ã®åˆæœŸåŒ–ãŒã•ã‚Œã¦ã„ãªã‹ã£ãŸã‚‰ä½•ã‚‚ã›ãšçµ‚äº†
 	if( SockData.InitializeFlag == FALSE ) return -1 ;
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 	CRITICALSECTION_LOCK( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 
-	// ƒlƒbƒgƒ[ƒNƒnƒ“ƒhƒ‹‚Ìƒ`ƒFƒbƒN
+	// ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ãƒãƒ³ãƒ‰ãƒ«ã®ãƒã‚§ãƒƒã‚¯
 	if( UDPNETHCHK( NetUDPHandle, Sock ) ||
 	    Sock->IsIPv6 == TRUE )
 	{
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 		CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 		return -1 ;
 	}
 
-	// ƒf[ƒ^‚ÌóM
+	// ãƒ‡ãƒ¼ã‚¿ã®å—ä¿¡
 	_MEMSET( &addr, 0, sizeof( addr ) ) ;
 	addrsize = sizeof( addr ) ;
 	RecvVol = WinAPIData.WinSockFunc.recvfromFunc(
@@ -4471,7 +4471,7 @@ extern int NS_NetWorkRecvUDP( int NetUDPHandle, IPDATA *RecvIP, int *RecvPort, v
 				( struct sockaddr FAR * )&addr,
 				&addrsize ) ;
 
-	// óMƒf[ƒ^‚ ‚èƒtƒ‰ƒO‚ğ“|‚·
+	// å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã‚ã‚Šãƒ•ãƒ©ã‚°ã‚’å€’ã™
 	Sock->UDPReadFlag = FALSE ;
 
 	if( RecvVol < 0 )
@@ -4486,7 +4486,7 @@ extern int NS_NetWorkRecvUDP( int NetUDPHandle, IPDATA *RecvIP, int *RecvPort, v
 			goto ENDLABEL ;
 
 		case WSAEWOULDBLOCK :
-			// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+			// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 			CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 
 			NS_ProcessMessage() ;
@@ -4517,22 +4517,22 @@ extern int NS_NetWorkRecvUDP( int NetUDPHandle, IPDATA *RecvIP, int *RecvPort, v
 
 ENDLABEL :
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 	CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 
 	return Result ;
 */
 }
 
-// UDP‚ğg—p‚µ‚½’ÊM‚Åƒf[ƒ^‚ğóM‚·‚éAPeek ‚É TRUE ‚ğ“n‚·‚ÆóM‚É¬Œ÷‚µ‚Ä‚àƒf[ƒ^‚ğóMƒLƒ…[‚©‚çíœ‚µ‚Ü‚¹‚ñ( –ß‚è’l  0ˆÈã:óM‚µ‚½ƒf[ƒ^‚ÌƒTƒCƒY  -1:ƒGƒ‰[  -2:ƒoƒbƒtƒ@‚ÌƒTƒCƒY‚ª‘«‚è‚È‚¢  -3:óMƒf[ƒ^‚ª‚È‚¢ )( IPv6”Å )
+// UDPã‚’ä½¿ç”¨ã—ãŸé€šä¿¡ã§ãƒ‡ãƒ¼ã‚¿ã‚’å—ä¿¡ã™ã‚‹ã€Peek ã« TRUE ã‚’æ¸¡ã™ã¨å—ä¿¡ã«æˆåŠŸã—ã¦ã‚‚ãƒ‡ãƒ¼ã‚¿ã‚’å—ä¿¡ã‚­ãƒ¥ãƒ¼ã‹ã‚‰å‰Šé™¤ã—ã¾ã›ã‚“( æˆ»ã‚Šå€¤  0ä»¥ä¸Š:å—ä¿¡ã—ãŸãƒ‡ãƒ¼ã‚¿ã®ã‚µã‚¤ã‚º  -1:ã‚¨ãƒ©ãƒ¼  -2:ãƒãƒƒãƒ•ã‚¡ã®ã‚µã‚¤ã‚ºãŒè¶³ã‚Šãªã„  -3:å—ä¿¡ãƒ‡ãƒ¼ã‚¿ãŒãªã„ )( IPv6ç‰ˆ )
 extern int NS_NetWorkRecvUDP_IPv6( int NetUDPHandle, IPDATA_IPv6 *RecvIP, int *RecvPort, void *Buffer, int Length, int Peek )
 {
 	SOCKETDATA * Sock ;
 
-	// ’ÊMŠÖŒW‚Ì‰Šú‰»‚ª‚³‚ê‚Ä‚¢‚È‚©‚Á‚½‚ç‰½‚à‚¹‚¸I—¹
+	// é€šä¿¡é–¢ä¿‚ã®åˆæœŸåŒ–ãŒã•ã‚Œã¦ã„ãªã‹ã£ãŸã‚‰ä½•ã‚‚ã›ãšçµ‚äº†
 	if( SockData.InitializeFlag == FALSE ) return -1 ;
 
-	// ƒlƒbƒgƒ[ƒNƒnƒ“ƒhƒ‹‚Ìƒ`ƒFƒbƒN
+	// ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ãƒãƒ³ãƒ‰ãƒ«ã®ãƒã‚§ãƒƒã‚¯
 	if( UDPNETHCHK( NetUDPHandle, Sock ) ||
 		Sock->IsIPv6 == FALSE )
 		return -1 ;
@@ -4545,22 +4545,22 @@ extern int NS_NetWorkRecvUDP_IPv6( int NetUDPHandle, IPDATA_IPv6 *RecvIP, int *R
 	int RecvVol ;
 	int Result ;
 
-	// ’ÊMŠÖŒW‚Ì‰Šú‰»‚ª‚³‚ê‚Ä‚¢‚È‚©‚Á‚½‚ç‰½‚à‚¹‚¸I—¹
+	// é€šä¿¡é–¢ä¿‚ã®åˆæœŸåŒ–ãŒã•ã‚Œã¦ã„ãªã‹ã£ãŸã‚‰ä½•ã‚‚ã›ãšçµ‚äº†
 	if( SockData.InitializeFlag == FALSE ) return -1 ;
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 	CRITICALSECTION_LOCK( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 
-	// ƒlƒbƒgƒ[ƒNƒnƒ“ƒhƒ‹‚Ìƒ`ƒFƒbƒN
+	// ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ãƒãƒ³ãƒ‰ãƒ«ã®ãƒã‚§ãƒƒã‚¯
 	if( UDPNETHCHK( NetUDPHandle, Sock ) ||
 	    Sock->IsIPv6 == FALSE )
 	{
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 		CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 		return -1 ;
 	}
 
-	// ƒf[ƒ^‚ÌóM
+	// ãƒ‡ãƒ¼ã‚¿ã®å—ä¿¡
 	_MEMSET( &addr, 0, sizeof( addr ) ) ;
 	addrsize = sizeof( addr ) ;
 	RecvVol = WinAPIData.WinSockFunc.recvfromFunc(
@@ -4571,7 +4571,7 @@ extern int NS_NetWorkRecvUDP_IPv6( int NetUDPHandle, IPDATA_IPv6 *RecvIP, int *R
 				( struct sockaddr FAR * )&addr,
 				&addrsize ) ;
 
-	// óMƒf[ƒ^‚ ‚èƒtƒ‰ƒO‚ğ“|‚·
+	// å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã‚ã‚Šãƒ•ãƒ©ã‚°ã‚’å€’ã™
 	Sock->UDPReadFlag = FALSE ;
 
 	if( RecvVol < 0 )
@@ -4586,7 +4586,7 @@ extern int NS_NetWorkRecvUDP_IPv6( int NetUDPHandle, IPDATA_IPv6 *RecvIP, int *R
 			goto ENDLABEL ;
 
 		case WSAEWOULDBLOCK :
-			// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+			// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 			CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 
 			NS_ProcessMessage() ;
@@ -4616,44 +4616,44 @@ extern int NS_NetWorkRecvUDP_IPv6( int NetUDPHandle, IPDATA_IPv6 *RecvIP, int *R
 
 ENDLABEL :
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 	CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 
 	return Result ;
 */
 }
 
-// UDP‚ğg—p‚µ‚½’ÊM‚Åƒf[ƒ^‚ª‘—M‚Å‚«‚éó‘Ô‚©‚Ç‚¤‚©‚ğ’²‚×‚é( –ß‚è’l  -1:ƒGƒ‰[  TRUE:‘—M‰Â”\  FALSE:‘—M•s‰Â”\ )
+// UDPã‚’ä½¿ç”¨ã—ãŸé€šä¿¡ã§ãƒ‡ãƒ¼ã‚¿ãŒé€ä¿¡ã§ãã‚‹çŠ¶æ…‹ã‹ã©ã†ã‹ã‚’èª¿ã¹ã‚‹( æˆ»ã‚Šå€¤  -1:ã‚¨ãƒ©ãƒ¼  TRUE:é€ä¿¡å¯èƒ½  FALSE:é€ä¿¡ä¸å¯èƒ½ )
 extern int NS_CheckNetWorkSendUDP( int NetUDPHandle )
 {
 	SOCKETDATA * Sock ;
 	int Result ;
 
-	// ’ÊMŠÖŒW‚Ì‰Šú‰»‚ª‚³‚ê‚Ä‚¢‚È‚©‚Á‚½‚ç‰½‚à‚¹‚¸I—¹
+	// é€šä¿¡é–¢ä¿‚ã®åˆæœŸåŒ–ãŒã•ã‚Œã¦ã„ãªã‹ã£ãŸã‚‰ä½•ã‚‚ã›ãšçµ‚äº†
 	if( SockData.InitializeFlag == FALSE ) return -1 ;
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 	CRITICALSECTION_LOCK( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 
-	// ƒlƒbƒgƒ[ƒNƒnƒ“ƒhƒ‹‚Ìƒ`ƒFƒbƒN
+	// ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ãƒãƒ³ãƒ‰ãƒ«ã®ãƒã‚§ãƒƒã‚¯
 	if( UDPNETHCHK( NetUDPHandle, Sock ) )
 	{
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 		CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 		return -1 ;
 	}
 
-	// ƒf[ƒ^‘—M‰Â”\ƒtƒ‰ƒO‚ğƒZƒbƒg
+	// ãƒ‡ãƒ¼ã‚¿é€ä¿¡å¯èƒ½ãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆ
 	Result = Sock->UDPWriteFlag ;
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 	CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 
-	// ƒf[ƒ^‘—M‰Â”\ƒtƒ‰ƒO‚ğ•Ô‚·
+	// ãƒ‡ãƒ¼ã‚¿é€ä¿¡å¯èƒ½ãƒ•ãƒ©ã‚°ã‚’è¿”ã™
 	return Result ;
 }
 
-// UDP‚ğg—p‚µ‚½’ÊM‚ÅV‚½‚ÈóMƒf[ƒ^‚ª‘¶İ‚·‚é‚©‚Ç‚¤‚©‚ğ’²‚×‚é( –ß‚è’l  -1:ƒGƒ‰[  TRUE:óMƒf[ƒ^‚ ‚è  FALSE:óMƒf[ƒ^‚È‚µ )
+// UDPã‚’ä½¿ç”¨ã—ãŸé€šä¿¡ã§æ–°ãŸãªå—ä¿¡ãƒ‡ãƒ¼ã‚¿ãŒå­˜åœ¨ã™ã‚‹ã‹ã©ã†ã‹ã‚’èª¿ã¹ã‚‹( æˆ»ã‚Šå€¤  -1:ã‚¨ãƒ©ãƒ¼  TRUE:å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã‚ã‚Š  FALSE:å—ä¿¡ãƒ‡ãƒ¼ã‚¿ãªã— )
 extern int NS_CheckNetWorkRecvUDP( int NetUDPHandle )
 {
 	SOCKETDATA * Sock ;
@@ -4661,33 +4661,33 @@ extern int NS_CheckNetWorkRecvUDP( int NetUDPHandle )
 	int RecvVol ;
 	BYTE TempBuffer[ 16 ] ;
 
-	// ’ÊMŠÖŒW‚Ì‰Šú‰»‚ª‚³‚ê‚Ä‚¢‚È‚©‚Á‚½‚ç‰½‚à‚¹‚¸I—¹
+	// é€šä¿¡é–¢ä¿‚ã®åˆæœŸåŒ–ãŒã•ã‚Œã¦ã„ãªã‹ã£ãŸã‚‰ä½•ã‚‚ã›ãšçµ‚äº†
 	if( SockData.InitializeFlag == FALSE ) return -1 ;
 
 	SETUP_WIN_API
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 	CRITICALSECTION_LOCK( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 
-	// ƒlƒbƒgƒ[ƒNƒnƒ“ƒhƒ‹‚Ìƒ`ƒFƒbƒN
+	// ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ãƒãƒ³ãƒ‰ãƒ«ã®ãƒã‚§ãƒƒã‚¯
 	if( UDPNETHCHK( NetUDPHandle, Sock ) )
 	{
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 		CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 		return -1 ;
 	}
 
-	// óMƒf[ƒ^‚ª‚ ‚éê‡‚Í TRUE ‚ğ•Ô‚·
+	// å—ä¿¡ãƒ‡ãƒ¼ã‚¿ãŒã‚ã‚‹å ´åˆã¯ TRUE ã‚’è¿”ã™
 	if( Sock->UDPReadFlag )
 	{
 		Sock->UDPReadFlag = FALSE ;
 
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 		CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 		return TRUE ;
 	}
 
-	// ƒf[ƒ^‚ÌóMƒ`ƒFƒbƒN
+	// ãƒ‡ãƒ¼ã‚¿ã®å—ä¿¡ãƒã‚§ãƒƒã‚¯
 	if( Sock->IsIPv6 )
 	{
 		_sockaddr_in6 addr_v6 ;
@@ -4717,17 +4717,17 @@ extern int NS_CheckNetWorkRecvUDP( int NetUDPHandle )
 
 	if( RecvVol >= 0 || WinAPIData.WinSockFunc.WSAGetLastErrorFunc() == WSAEMSGSIZE )
 	{
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 		CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 		return TRUE ;
 	}
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 	CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_NETWORK ].CriticalSection ) ;
 
 	NS_ProcessMessage() ;
 
-	// I—¹
+	// çµ‚äº†
 	return FALSE ;
 }
 
@@ -4741,7 +4741,7 @@ extern int NS_CheckNetWorkRecvUDP( int NetUDPHandle )
 
 
 
-// WinSock ‚ÅÅŒã‚É”­¶‚µ‚½ƒGƒ‰[‚ÌƒR[ƒh‚ğæ“¾‚·‚é
+// WinSock ã§æœ€å¾Œã«ç™ºç”Ÿã—ãŸã‚¨ãƒ©ãƒ¼ã®ã‚³ãƒ¼ãƒ‰ã‚’å–å¾—ã™ã‚‹
 extern int NS_GetWinSockLastError( void )
 {
 	SETUP_WIN_API
@@ -4761,7 +4761,7 @@ extern int NS_GetWinSockLastError( void )
 
 
 
-// ProcessNetMessage ‚ğ‚Ğ‚½‚·‚çŒÄ‚Ñ‘±‚¯‚éƒXƒŒƒbƒh
+// ProcessNetMessage ã‚’ã²ãŸã™ã‚‰å‘¼ã³ç¶šã‘ã‚‹ã‚¹ãƒ¬ãƒƒãƒ‰
 DWORD WINAPI ProcessNetMessageThreadFunction( LPVOID )
 {
 	for(;;)
@@ -4769,16 +4769,16 @@ DWORD WINAPI ProcessNetMessageThreadFunction( LPVOID )
 		if( SockData.ProcessNetMessageThreadEndRequest != FALSE ) break ;
 		if( SockData.InitializeFlag == FALSE ) break ;
 
-		// ƒlƒbƒgƒƒbƒZ[ƒWƒvƒƒZƒXˆ—
+		// ãƒãƒƒãƒˆãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ—ãƒ­ã‚»ã‚¹å‡¦ç†
 		NS_ProcessNetMessage( FALSE ) ;
 
-		// ‘Ò‚¿
+		// å¾…ã¡
 		Thread_Sleep( 8 ) ;
 	}
 
 	SETUP_WIN_API
 
-	// ƒXƒŒƒbƒhI—¹
+	// ã‚¹ãƒ¬ãƒƒãƒ‰çµ‚äº†
 	SockData.ProcessNetMessageThreadExitFlag = TRUE ;
 	WinAPIData.Win32Func.ExitThreadFunc( 0 ) ;
 
@@ -4795,27 +4795,27 @@ DWORD WINAPI ProcessNetMessageThreadFunction( LPVOID )
 
 #if 0
 
-// HTTP ŠÖŒW‚Ìˆ—‚Ì‰Šú‰»‚ğs‚¤
+// HTTP é–¢ä¿‚ã®å‡¦ç†ã®åˆæœŸåŒ–ã‚’è¡Œã†
 static int HTTP_Initialize( void )
 {
-	// —ë‰Šú‰»
+	// é›¶åˆæœŸåŒ–
 	_MEMSET( &HttpData, 0, sizeof( HttpData ) ) ;
 	
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// HTTP ŠÖŒW‚Ìˆ—‚ÌŒãn––‚ğs‚¤
+// HTTP é–¢ä¿‚ã®å‡¦ç†ã®å¾Œå§‹æœ«ã‚’è¡Œã†
 static int HTTP_Terminate( void )
 {
-	// ‘S‚Ä‚Ìƒnƒ“ƒhƒ‹‚ğ‰ğ•ú
+	// å…¨ã¦ã®ãƒãƒ³ãƒ‰ãƒ«ã‚’è§£æ”¾
 	NS_HTTP_CloseAll() ;
 	
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// HTTP ƒƒbƒZ[ƒW‚ÌŒ‹‰Ê‚ğ“¾‚é
+// HTTP ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®çµæœã‚’å¾—ã‚‹
 static int HTTP_GetResult( const char *ResStr )
 {
 	const char *p ;
@@ -4826,7 +4826,7 @@ static int HTTP_GetResult( const char *ResStr )
 	return _ATOI( p ) ;
 }
 
-// HTTP ‚ğg—p‚µ‚Äƒlƒbƒgƒ[ƒNã‚Ìƒtƒ@ƒCƒ‹‚ğƒ_ƒEƒ“ƒ[ƒh‚·‚é
+// HTTP ã‚’ä½¿ç”¨ã—ã¦ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ä¸Šã®ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ã™ã‚‹
 extern int NS_HTTP_FileDownload( const char *FileURL, const char *SavePath, void **SaveBufferP,
 										int *FileSize, char **ParamList )
 {
@@ -4836,29 +4836,29 @@ extern int NS_HTTP_FileDownload( const char *FileURL, const char *SavePath, void
 	char FileName[64] ;
 	const int CommentY = -32, MeterX = -15, MeterY = 32, MeterH = 8, MeterW = 110, SpeedX = 30, SpeedY = 8 ;
 	const int DownSizeX = 10, DownSizeY = 8, SecY = -10, FontSize = 10, BlackW = 320, BlackH = 120 ;
-	const char *Message1 = "\x90\xda\x91\xb1\x92\x86\x82\xc5\x82\xb7"/*@ "Ú‘±’†‚Å‚·" @*/ ;
-	const char *Message2 = "%s \x82\xf0\x83\x5f\x83\x45\x83\x93\x83\x8d\x81\x5b\x83\x68\x92\x86\x82\xc5\x82\xb7"/*@ "%s ‚ğƒ_ƒEƒ“ƒ[ƒh’†‚Å‚·" @*/ ;
-	const char *Message3 = "\x82\xa0\x82\xc6 %s"/*@ "‚ ‚Æ %s" @*/ ;
+	const char *Message1 = "\x90\xda\x91\xb1\x92\x86\x82\xc5\x82\xb7"/*@ "æ¥ç¶šä¸­ã§ã™" @*/ ;
+	const char *Message2 = "%s \x82\xf0\x83\x5f\x83\x45\x83\x93\x83\x8d\x81\x5b\x83\x68\x92\x86\x82\xc5\x82\xb7"/*@ "%s ã‚’ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ä¸­ã§ã™" @*/ ;
+	const char *Message3 = "\x82\xa0\x82\xc6 %s"/*@ "ã‚ã¨ %s" @*/ ;
 	const char *Message4 = "%s %cbyte/sec" ;
 	const char *Message5 = "%s %cbyte/%s %cbyte" ;
 
 	SETUP_WIN_API
 
-	// ƒpƒX‚Ìw’è‚ª‚È‚¢ê‡‚ÍƒJƒŒƒ“ƒgƒtƒHƒ‹ƒ_‚ÉŠi”[‚·‚é	
+	// ãƒ‘ã‚¹ã®æŒ‡å®šãŒãªã„å ´åˆã¯ã‚«ãƒ¬ãƒ³ãƒˆãƒ•ã‚©ãƒ«ãƒ€ã«æ ¼ç´ã™ã‚‹	
 	if( SaveBufferP == NULL && SavePath == NULL ) SavePath = "" ;
 	
-	// ƒtƒ@ƒCƒ‹–¼‚ğ“¾‚é
+	// ãƒ•ã‚¡ã‚¤ãƒ«åã‚’å¾—ã‚‹
 	NS_URLAnalys( FileURL, NULL, NULL, FileName, NULL ) ;
 //	ErrorLogFmtAdd( "FileName:%s\n", FileName ) ;
 
-	// •`‰ææ‚ğ•\‰æ–Ê‚É‚·‚é
+	// æç”»å…ˆã‚’è¡¨ç”»é¢ã«ã™ã‚‹
 	DrawScreen = GetActiveGraph() ;
 	SetDrawScreen( DX_SCREEN_FRONT ) ;
 
-	// •`‰æƒuƒŒƒ“ƒhƒ‚[ƒh‚ğ•Û‘¶
+	// æç”»ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã‚’ä¿å­˜
 	GetDrawBlendMode( &BlendMode, &BlendPal ) ;
 
-	// ƒƒbƒZ[ƒW‚ğ•`‰æ‚·‚éˆ×‚ÌƒtƒHƒ“ƒg‚ğì¬
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’æç”»ã™ã‚‹ç‚ºã®ãƒ•ã‚©ãƒ³ãƒˆã‚’ä½œæˆ
 	{
 		int FontTexFlag = GetUseSystemMemGraphCreateFlag() ;
 		int CacheNum = GetFontCacheCharNum() ;
@@ -4870,7 +4870,7 @@ extern int NS_HTTP_FileDownload( const char *FileURL, const char *SavePath, void
 		SetFontCacheToTextureFlag( FontTexFlag ) ;
 	}
 
-	// •`‰æ—p‰æ–Ê‚Ìì¬‚Æ‰æ–Ê‚ÌƒRƒs[‚ğæ‚é
+	// æç”»ç”¨ç”»é¢ã®ä½œæˆã¨ç”»é¢ã®ã‚³ãƒ”ãƒ¼ã‚’å–ã‚‹
 	{
 		int UseSystemMem ;
 
@@ -4889,7 +4889,7 @@ extern int NS_HTTP_FileDownload( const char *FileURL, const char *SavePath, void
 		CY = BlackH / 2 ;
 	}
 
-	// Ú‘±‘Ò‚¿•\¦
+	// æ¥ç¶šå¾…ã¡è¡¨ç¤º
 	if( GetActiveFlag() == TRUE )
 	{
 		SetDrawScreen( Screen ) ;
@@ -4902,34 +4902,34 @@ extern int NS_HTTP_FileDownload( const char *FileURL, const char *SavePath, void
 		DrawGraph( ScW / 2 - BlackW / 2, ScH / 2 - BlackH / 2, Screen, FALSE ) ;
 	}
 
-	// ƒ_ƒEƒ“ƒ[ƒhˆ—ŠJn
+	// ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰å‡¦ç†é–‹å§‹
 	DHandle = HTTP_StartFileDownload( FileURL, SavePath, SaveBufferP, ParamList ) ;
 	if( DHandle == -1 )
 	{
-		ErrorLogFmtAdd( "\x83\x74\x83\x40\x83\x43\x83\x8b %s \x82\xcc\x83\x5f\x83\x45\x83\x93\x83\x8d\x81\x5b\x83\x68\x82\xc9\x8e\xb8\x94\x73\x82\xb5\x82\xdc\x82\xb5\x82\xbd"/*@ "ƒtƒ@ƒCƒ‹ %s ‚Ìƒ_ƒEƒ“ƒ[ƒh‚É¸”s‚µ‚Ü‚µ‚½" @*/, FileName ) ;
+		ErrorLogFmtAdd( "\x83\x74\x83\x40\x83\x43\x83\x8b %s \x82\xcc\x83\x5f\x83\x45\x83\x93\x83\x8d\x81\x5b\x83\x68\x82\xc9\x8e\xb8\x94\x73\x82\xb5\x82\xdc\x82\xb5\x82\xbd"/*@ "ãƒ•ã‚¡ã‚¤ãƒ« %s ã®ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ã«å¤±æ•—ã—ã¾ã—ãŸ" @*/, FileName ) ;
 		goto ERR ;
 	}
 
-	// ‘¬“xŒvZ‚Ì€”õ
+	// é€Ÿåº¦è¨ˆç®—ã®æº–å‚™
 	StartTime = GetNowCount( FALSE ) ;
 
-	// ƒ_ƒEƒ“ƒ[ƒhŠ®—¹‚Ü‚Å‘Ò‚Â
+	// ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰å®Œäº†ã¾ã§å¾…ã¤
 	while( ProcessMessage() == 0 && HTTP_GetState( DHandle ) == HTTP_RES_NOW )
 	{
-		// ‚’¼“¯Šú‘Ò‚¿
+		// å‚ç›´åŒæœŸå¾…ã¡
 		WaitVSync(1) ;
 
-		// ƒ_ƒEƒ“ƒ[ƒhŠ®—¹—¦‚Ì•\¦
+		// ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰å®Œäº†ç‡ã®è¡¨ç¤º
 		if( ProcessMessage() == 0 && GetActiveFlag() == TRUE && HTTP_GetDownloadedFileSize( DHandle ) != -1 )
 		{
 			SetDrawScreen( Screen ) ;
 			DrawBox( 0, 0, BlackW, BlackH, GetColor( 0,0,0 ), TRUE ) ;
 
-			// à–¾‚Ì•\¦
+			// èª¬æ˜ã®è¡¨ç¤º
 			width = GetDrawFormatStringWidthToHandle( Font, Message2, FileName ) ;
 			DrawFormatStringToHandle( CX - width / 2, CY + CommentY, GetColor( 255,255,255 ), Font, Message2, FileName ) ;
 
-			// ƒ_ƒEƒ“ƒ[ƒhî•ñ‚ğ•\¦
+			// ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰æƒ…å ±ã‚’è¡¨ç¤º
 			if( GetNowCount( FALSE ) - StartTime > 1000 )
 			{
 				int RecvSize, FileSize, LapsTime ;
@@ -4939,7 +4939,7 @@ extern int NS_HTTP_FileDownload( const char *FileURL, const char *SavePath, void
 				FileSize = HTTP_GetDownloadFileSize( DHandle ) ;
 				LapsTime = GetNowCount( FALSE ) - StartTime ;
 
-				// ƒ_ƒEƒ“ƒ[ƒhƒ[ƒ^[‚Ì•`‰æ
+				// ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ãƒ¡ãƒ¼ã‚¿ãƒ¼ã®æç”»
 				{
 					rate = _DTOL( (double)HTTP_GetDownloadedFileSize( DHandle ) * MeterW / HTTP_GetDownloadFileSize( DHandle ) ) ;
 					DrawBox( CX - MeterW / 2 + MeterX, CY + MeterY, CX - MeterW / 2 + MeterX + rate, CY + MeterY + MeterH, GetColor( 255,0,0 ), TRUE ) ;
@@ -4949,7 +4949,7 @@ extern int NS_HTTP_FileDownload( const char *FileURL, const char *SavePath, void
 					DrawStringToHandle( CX - MeterW / 2 + MeterW, CY + MeterY + MeterH - FontSize, tempstr, GetColor( 255,255,255 ), Font ) ;
 				}
 
-				// c‚èŠÔ‚Ì•`‰æ
+				// æ®‹ã‚Šæ™‚é–“ã®æç”»
 				if( RecvSize != 0 )
 				{
 					GetTimeLengthString( _DTOL( ( double )( FileSize - RecvSize ) / RecvSize * LapsTime ), timestr ) ;
@@ -4958,7 +4958,7 @@ extern int NS_HTTP_FileDownload( const char *FileURL, const char *SavePath, void
 					DrawStringToHandle( CX - width / 2, CY + SecY, tempstr, GetColor( 255,255,255 ), Font ) ;
 				}
 				
-				// ƒ_ƒEƒ“ƒ[ƒh‘¬“x‚Ì•`‰æ
+				// ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰é€Ÿåº¦ã®æç”»
 				{
 					unit1 = GetDataSizeString( _DTOL( ( double )RecvSize / ( ( double )LapsTime / 1000.0 ) ), numstr1 ) ;
 					_SNPRINTF( tempstr, sizeof( tempstr ), Message4, numstr1, unit1 ) ;
@@ -4966,7 +4966,7 @@ extern int NS_HTTP_FileDownload( const char *FileURL, const char *SavePath, void
 					DrawStringToHandle( CX + SpeedX, CY + SpeedY, tempstr, GetColor( 255,255,255 ), Font ) ;
 				}
 				
-				// ƒ_ƒEƒ“ƒ[ƒhŠ®—¹ƒTƒCƒY‚Ì•`‰æ
+				// ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰å®Œäº†ã‚µã‚¤ã‚ºã®æç”»
 				{
 					unit1 = GetDataSizeString( RecvSize, numstr1 ) ;
 					unit2 = GetDataSizeString( FileSize, numstr2 ) ;
@@ -4976,7 +4976,7 @@ extern int NS_HTTP_FileDownload( const char *FileURL, const char *SavePath, void
 				}
 			}
 			
-			// •\‰æ–Ê‚É”½‰f
+			// è¡¨ç”»é¢ã«åæ˜ 
 			SetDrawScreen( DX_SCREEN_FRONT ) ;
 			DrawGraph( ScW / 2 - BlackW / 2, ScH / 2 - BlackH / 2, Screen, FALSE ) ;
 		}
@@ -4985,41 +4985,41 @@ extern int NS_HTTP_FileDownload( const char *FileURL, const char *SavePath, void
 	{
 		switch( HTTP_GetState( DHandle ) )
 		{
-		case HTTP_RES_STOP : ErrorLogFmtAdd( "\x83\x74\x83\x40\x83\x43\x83\x8b %s \x82\xcc\x83\x5f\x83\x45\x83\x93\x83\x8d\x81\x5b\x83\x68\x82\xcd\x92\x86\x8e\x7e\x82\xb3\x82\xea\x82\xdc\x82\xb5\x82\xbd"/*@ "ƒtƒ@ƒCƒ‹ %s ‚Ìƒ_ƒEƒ“ƒ[ƒh‚Í’†~‚³‚ê‚Ü‚µ‚½" @*/, FileName ) ; break ;
-		case HTTP_RES_ERROR : ErrorLogFmtAdd( "\x83\x74\x83\x40\x83\x43\x83\x8b %s \x82\xcc\x83\x5f\x83\x45\x83\x93\x83\x8d\x81\x5b\x83\x68\x82\xc5\x83\x47\x83\x89\x81\x5b\x82\xaa\x94\xad\x90\xb6\x82\xb5\x82\xdc\x82\xb5\x82\xbd"/*@ "ƒtƒ@ƒCƒ‹ %s ‚Ìƒ_ƒEƒ“ƒ[ƒh‚ÅƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½" @*/, FileName ) ; break ;
+		case HTTP_RES_STOP : ErrorLogFmtAdd( "\x83\x74\x83\x40\x83\x43\x83\x8b %s \x82\xcc\x83\x5f\x83\x45\x83\x93\x83\x8d\x81\x5b\x83\x68\x82\xcd\x92\x86\x8e\x7e\x82\xb3\x82\xea\x82\xdc\x82\xb5\x82\xbd"/*@ "ãƒ•ã‚¡ã‚¤ãƒ« %s ã®ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ã¯ä¸­æ­¢ã•ã‚Œã¾ã—ãŸ" @*/, FileName ) ; break ;
+		case HTTP_RES_ERROR : ErrorLogFmtAdd( "\x83\x74\x83\x40\x83\x43\x83\x8b %s \x82\xcc\x83\x5f\x83\x45\x83\x93\x83\x8d\x81\x5b\x83\x68\x82\xc5\x83\x47\x83\x89\x81\x5b\x82\xaa\x94\xad\x90\xb6\x82\xb5\x82\xdc\x82\xb5\x82\xbd"/*@ "ãƒ•ã‚¡ã‚¤ãƒ« %s ã®ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ã§ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¾ã—ãŸ" @*/, FileName ) ; break ;
 		}
 		goto ERR ;
 	}
 	
-	// ƒtƒ@ƒCƒ‹ƒTƒCƒY‚ğ“¾‚é
+	// ãƒ•ã‚¡ã‚¤ãƒ«ã‚µã‚¤ã‚ºã‚’å¾—ã‚‹
 	if( FileSize != NULL ) *FileSize = HTTP_GetDownloadFileSize( DHandle ) ;
 
-	// HTTP ƒnƒ“ƒhƒ‹‚ğ•Â‚¶‚é
+	// HTTP ãƒãƒ³ãƒ‰ãƒ«ã‚’é–‰ã˜ã‚‹
 	HTTP_Close( DHandle ) ;
 
-	// ƒtƒHƒ“ƒgƒnƒ“ƒhƒ‹‚Ìíœ
+	// ãƒ•ã‚©ãƒ³ãƒˆãƒãƒ³ãƒ‰ãƒ«ã®å‰Šé™¤
 	DeleteFontToHandle( Font ) ;
 
-	// FXŒ³‚É–ß‚·
+	// è‰²ã€…å…ƒã«æˆ»ã™
 	if( ProcessMessage() == 0 && GetActiveFlag() == TRUE )
 	{
-		// ƒoƒbƒNƒAƒbƒv‚µ‚Ä‚¢‚½‰æ‘œ‚ğ•œŒ³
+		// ãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—ã—ã¦ã„ãŸç”»åƒã‚’å¾©å…ƒ
 		SetDrawBlendMode( DX_BLENDMODE_NOBLEND, 0 ) ;
 		DrawGraph( ScW / 2 - BlackW / 2, ScH / 2 - BlackH / 2, BackUp, FALSE ) ;
 		DeleteGraph( BackUp ) ;
 		
-		// •`‰ææ‚Ég—p‚µ‚Ä‚¢‚½‰æ–Ê‚ğíœ
+		// æç”»å…ˆã«ä½¿ç”¨ã—ã¦ã„ãŸç”»é¢ã‚’å‰Šé™¤
 		DeleteGraph( Screen ) ;
 
-		SetDrawScreen( DrawScreen ) ;				// •`‰ææ‚ğŒ³‚É–ß‚·
-		SetDrawBlendMode( BlendMode, BlendPal ) ;	// •`‰æƒuƒŒƒ“ƒhƒ‚[ƒh‚ğŒ³‚É–ß‚·
+		SetDrawScreen( DrawScreen ) ;				// æç”»å…ˆã‚’å…ƒã«æˆ»ã™
+		SetDrawBlendMode( BlendMode, BlendPal ) ;	// æç”»ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã‚’å…ƒã«æˆ»ã™
 	}
 	
 	
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 
-	// ƒGƒ‰[ˆ—
+	// ã‚¨ãƒ©ãƒ¼å‡¦ç†
 ERR :
 	if( BackUp != -1 )
 	{
@@ -5037,80 +5037,80 @@ ERR :
 	return -1 ;
 }
 
-// HTTP ‚ğg—p‚µ‚Äƒlƒbƒgƒ[ƒNã‚Ìƒtƒ@ƒCƒ‹‚ÌƒTƒCƒY‚ğ“¾‚é
+// HTTP ã‚’ä½¿ç”¨ã—ã¦ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ä¸Šã®ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚µã‚¤ã‚ºã‚’å¾—ã‚‹
 extern int NS_HTTP_GetFileSize( const char *FileURL )
 {
 	int DHandle, FileSize ;
 
-	// ƒtƒ@ƒCƒ‹ƒTƒCƒYæ“¾ŠJn
+	// ãƒ•ã‚¡ã‚¤ãƒ«ã‚µã‚¤ã‚ºå–å¾—é–‹å§‹
 	DHandle = HTTP_StartGetFileSize( FileURL ) ;
 	if( DHandle == -1 ) return -1 ;
 	
-	// ƒ_ƒEƒ“ƒ[ƒhŠ®—¹‚Ü‚Å‘Ò‚Â
+	// ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰å®Œäº†ã¾ã§å¾…ã¤
 	while( ProcessMessage() == 0 && HTTP_GetState( DHandle ) == HTTP_RES_NOW ){}
 	if( HTTP_GetState( DHandle ) != HTTP_RES_COMPLETE )
 	{
-		// ¸”s‚µ‚½‚çŸˆ‚ÅI—¹
+		// å¤±æ•—ã—ãŸã‚‰æ­¤å‡¦ã§çµ‚äº†
 		HTTP_Close( DHandle ) ;
 		return -1 ;
 	}
 	
-	// ƒtƒ@ƒCƒ‹ƒTƒCƒY‚ğ“¾‚é
+	// ãƒ•ã‚¡ã‚¤ãƒ«ã‚µã‚¤ã‚ºã‚’å¾—ã‚‹
 	FileSize = HTTP_GetDownloadFileSize( DHandle ) ;
 
-	// HTTP ƒnƒ“ƒhƒ‹‚ğ•Â‚¶‚é
+	// HTTP ãƒãƒ³ãƒ‰ãƒ«ã‚’é–‰ã˜ã‚‹
 	HTTP_Close( DHandle ) ;
 	
-	// ƒtƒ@ƒCƒ‹ƒTƒCƒY‚ğ•Ô‚·
+	// ãƒ•ã‚¡ã‚¤ãƒ«ã‚µã‚¤ã‚ºã‚’è¿”ã™
 	return FileSize ;
 }
 
-// w’è‚Ì‚t‚q‚k‚©‚çƒzƒXƒgƒpƒXAƒzƒXƒg‚ÌƒAƒNƒZƒXƒpƒXAƒAƒNƒZƒXƒ|[ƒg‚ğæ“¾‚·‚é
+// æŒ‡å®šã®ï¼µï¼²ï¼¬ã‹ã‚‰ãƒ›ã‚¹ãƒˆãƒ‘ã‚¹ã€ãƒ›ã‚¹ãƒˆã®ã‚¢ã‚¯ã‚»ã‚¹ãƒ‘ã‚¹ã€ã‚¢ã‚¯ã‚»ã‚¹ãƒãƒ¼ãƒˆã‚’å–å¾—ã™ã‚‹
 static int HTTP_GetConnectInfo( const char *URL, int UseProxy, char *HostBuf,
 								char *PathBuf, char *FileNameBuf, int *PortBuf )
 {
 	SETUP_WIN_API
 
-	// ‚h‚d‚ÌƒvƒƒLƒV‚ğg‚í‚È‚¢ê‡‚Æg‚¤ê‡‚Åˆ—‚ğ•ªŠò
+	// ï¼©ï¼¥ã®ãƒ—ãƒ­ã‚­ã‚·ã‚’ä½¿ã‚ãªã„å ´åˆã¨ä½¿ã†å ´åˆã§å‡¦ç†ã‚’åˆ†å²
 	HostBuf[0] = '\0' ;
 	if( UseProxy == TRUE )
 	{
 		char temppath[128] ;
 		int tempport ;
 
-		// ‚t‚q‚k‚ğ‰ğÍ
+		// ï¼µï¼²ï¼¬ã‚’è§£æ
 		if( NS_URLAnalys( URL, HostBuf, temppath, FileNameBuf, &tempport ) == -1 ) return -1 ;
 
-		// g‚¦‚È‚¢‹L†‚ğg‚¦‚é‹L†‚É•ÏŠ·
+		// ä½¿ãˆãªã„è¨˜å·ã‚’ä½¿ãˆã‚‹è¨˜å·ã«å¤‰æ›
 		NS_URLConvert( temppath, FALSE ) ;
 
-		// ƒpƒX‚ğ\’z
+		// ãƒ‘ã‚¹ã‚’æ§‹ç¯‰
 		_STRCPY( PathBuf, "http://" ) ;
 		_STRCAT( PathBuf, HostBuf ) ;
 		if( tempport != -1 ) _SNPRINTF( PathBuf + WinAPIData.Win32Func.lstrlenAFunc( PathBuf ), sizeof( PathBuf ) - WinAPIData.Win32Func.lstrlenAFunc( PathBuf ), ":%d", tempport ) ;
 		_STRCAT( PathBuf, temppath ) ;
 		
-		// ƒvƒƒLƒV‚Ìî•ñ‚ğ“¾‚é
+		// ãƒ—ãƒ­ã‚­ã‚·ã®æƒ…å ±ã‚’å¾—ã‚‹
 		_STRCPY( HostBuf, HttpData.ProxyHost ) ;
 		*PortBuf = HttpData.ProxyPort ;
 	}
 
-	// ƒvƒƒLƒV‚ª—LŒø‚Å‚Í‚È‚©‚Á‚½ê‡
+	// ãƒ—ãƒ­ã‚­ã‚·ãŒæœ‰åŠ¹ã§ã¯ãªã‹ã£ãŸå ´åˆ
 	if( HostBuf[0] == '\0' )
 	{
-		// ‚t‚q‚k‚ğ‰ğÍ
+		// ï¼µï¼²ï¼¬ã‚’è§£æ
 		if( NS_URLAnalys( URL, HostBuf, PathBuf, FileNameBuf, PortBuf ) == -1 ) return -1 ;
 		if( *PortBuf == -1 ) *PortBuf = 80 ;
 
-		// g‚¦‚È‚¢‹L†‚ğg‚¦‚é‹L†‚É•ÏŠ·
+		// ä½¿ãˆãªã„è¨˜å·ã‚’ä½¿ãˆã‚‹è¨˜å·ã«å¤‰æ›
 		NS_URLConvert( PathBuf, FALSE ) ;
 	}
 	
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// w’è‚Ì HTTP ƒzƒXƒg‚ÉÚ‘±‚·‚é( –ß‚è’l: 0ˆÈã = ƒlƒbƒgƒ[ƒNƒnƒ“ƒhƒ‹  -1 = ƒGƒ‰[ )
+// æŒ‡å®šã® HTTP ãƒ›ã‚¹ãƒˆã«æ¥ç¶šã™ã‚‹( æˆ»ã‚Šå€¤: 0ä»¥ä¸Š = ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ãƒãƒ³ãƒ‰ãƒ«  -1 = ã‚¨ãƒ©ãƒ¼ )
 static int HTTP_ConnectHost( const char *URL, int UseProxy, IPDATA *HostIPBuf,
 							 char *HostBuf, char *PathBuf, char *FileNameBuf, int *PortBuf )
 {
@@ -5118,112 +5118,112 @@ static int HTTP_ConnectHost( const char *URL, int UseProxy, IPDATA *HostIPBuf,
 	int Port, NetHandle ;
 	IPDATA HostIP ;
 
-	// Ú‘±æƒzƒXƒgAƒzƒXƒg‚Ö‚ÌƒAƒNƒZƒXƒpƒXAƒAƒNƒZƒXƒ|[ƒg‚ğ“¾‚é
+	// æ¥ç¶šå…ˆãƒ›ã‚¹ãƒˆã€ãƒ›ã‚¹ãƒˆã¸ã®ã‚¢ã‚¯ã‚»ã‚¹ãƒ‘ã‚¹ã€ã‚¢ã‚¯ã‚»ã‚¹ãƒãƒ¼ãƒˆã‚’å¾—ã‚‹
 	if( HTTP_GetConnectInfo( URL, UseProxy, Host, Path, FileName, &Port ) < 0 )
 	{
-		DXST_LOGFILEFMT_ADDA(( "\x82\x74\x82\x71\x82\x6b %s \x82\xcc\x89\xf0\x90\xcd\x82\xc9\x8e\xb8\x94\x73\x82\xb5\x82\xdc\x82\xb5\x82\xbd\n"/*@ "‚t‚q‚k %s ‚Ì‰ğÍ‚É¸”s‚µ‚Ü‚µ‚½\n" @*/, URL )) ;
+		DXST_LOGFILEFMT_ADDA(( "\x82\x74\x82\x71\x82\x6b %s \x82\xcc\x89\xf0\x90\xcd\x82\xc9\x8e\xb8\x94\x73\x82\xb5\x82\xdc\x82\xb5\x82\xbd\n"/*@ "ï¼µï¼²ï¼¬ %s ã®è§£æã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/, URL )) ;
 		return -1 ;
 	}
 
-	// w’è‚ÌƒzƒXƒg‚ª‘¶İ‚·‚é‚©“¾‚é
+	// æŒ‡å®šã®ãƒ›ã‚¹ãƒˆãŒå­˜åœ¨ã™ã‚‹ã‹å¾—ã‚‹
 	if( NS_GetHostIPbyName( Host, &HostIP ) == -1 )
 	{
-		DXST_LOGFILEFMT_ADDA(( "\x83\x5f\x83\x45\x83\x93\x83\x8d\x81\x5b\x83\x68\x90\xe6\x83\x7a\x83\x58\x83\x67 %s \x82\xaa\x8c\xa9\x82\xc2\x82\xa9\x82\xe8\x82\xdc\x82\xb9\x82\xf1\x82\xc5\x82\xb5\x82\xbd"/*@ "ƒ_ƒEƒ“ƒ[ƒhæƒzƒXƒg %s ‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñ‚Å‚µ‚½" @*/, Host )) ;
+		DXST_LOGFILEFMT_ADDA(( "\x83\x5f\x83\x45\x83\x93\x83\x8d\x81\x5b\x83\x68\x90\xe6\x83\x7a\x83\x58\x83\x67 %s \x82\xaa\x8c\xa9\x82\xc2\x82\xa9\x82\xe8\x82\xdc\x82\xb9\x82\xf1\x82\xc5\x82\xb5\x82\xbd"/*@ "ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰å…ˆãƒ›ã‚¹ãƒˆ %s ãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“ã§ã—ãŸ" @*/, Host )) ;
 		return -1 ;
 	}
 
-	// ƒzƒXƒg‚ÉÚ‘±‚·‚é
+	// ãƒ›ã‚¹ãƒˆã«æ¥ç¶šã™ã‚‹
 	{
 		int DXProtocol, CloseAfterLost ;
 
-		// ƒtƒ‰ƒO‚ğ‘Ş”ğ		
+		// ãƒ•ãƒ©ã‚°ã‚’é€€é¿		
 		DXProtocol = NS_GetUseDXNetWorkProtocol() ;
 		CloseAfterLost = NS_GetNetWorkCloseAfterLostFlag() ;
 
-		// ƒtƒ‰ƒO‚ğƒZƒbƒg
+		// ãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆ
 		NS_SetUseDXNetWorkProtocol( FALSE ) ;
 		NS_SetNetWorkCloseAfterLostFlag( FALSE )  ;
 
-		// Ú‘±
+		// æ¥ç¶š
 		NetHandle = NS_ConnectNetWork( HostIP, Port ) ;
 
-		// ƒtƒ‰ƒO‚ğ•œ‹A
+		// ãƒ•ãƒ©ã‚°ã‚’å¾©å¸°
 		NS_SetUseDXNetWorkProtocol( DXProtocol ) ;
 		NS_SetNetWorkCloseAfterLostFlag( CloseAfterLost )  ;
 		
-		// ¸”s‚Ì”»’è
+		// å¤±æ•—ã®åˆ¤å®š
 		if( NetHandle == -1 )
 		{
-			DXST_LOGFILEFMT_ADDA(( "\x83\x5f\x83\x45\x83\x93\x83\x8d\x81\x5b\x83\x68\x90\xe6\x83\x7a\x83\x58\x83\x67 %s \x82\xd6\x82\xcc\x90\xda\x91\xb1\x82\xc9\x8e\xb8\x94\x73\x82\xb5\x82\xdc\x82\xb5\x82\xbd"/*@ "ƒ_ƒEƒ“ƒ[ƒhæƒzƒXƒg %s ‚Ö‚ÌÚ‘±‚É¸”s‚µ‚Ü‚µ‚½" @*/, Host )) ;
+			DXST_LOGFILEFMT_ADDA(( "\x83\x5f\x83\x45\x83\x93\x83\x8d\x81\x5b\x83\x68\x90\xe6\x83\x7a\x83\x58\x83\x67 %s \x82\xd6\x82\xcc\x90\xda\x91\xb1\x82\xc9\x8e\xb8\x94\x73\x82\xb5\x82\xdc\x82\xb5\x82\xbd"/*@ "ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰å…ˆãƒ›ã‚¹ãƒˆ %s ã¸ã®æ¥ç¶šã«å¤±æ•—ã—ã¾ã—ãŸ" @*/, Host )) ;
 			return -1 ;
 		}
 	}
 	
-	// ƒoƒbƒtƒ@‚Ìƒ|ƒCƒ“ƒ^‚ª“n‚³‚ê‚Ä‚¢‚éê‡î•ñ‚ğƒRƒs[‚·‚é
+	// ãƒãƒƒãƒ•ã‚¡ã®ãƒã‚¤ãƒ³ã‚¿ãŒæ¸¡ã•ã‚Œã¦ã„ã‚‹å ´åˆæƒ…å ±ã‚’ã‚³ãƒ”ãƒ¼ã™ã‚‹
 	if( HostBuf != NULL ) _STRCPY( HostBuf, Host ) ;
 	if( PathBuf != NULL ) _STRCPY( PathBuf, Path ) ;
 	if( FileNameBuf != NULL ) _STRCPY( FileNameBuf, FileName ) ;
 	if( PortBuf != NULL ) *PortBuf = Port ;
 	if( HostIPBuf != NULL ) *HostIPBuf = HostIP ;
 
-	// ƒlƒbƒgƒnƒ“ƒhƒ‹‚ğ•Ô‚·
+	// ãƒãƒƒãƒˆãƒãƒ³ãƒ‰ãƒ«ã‚’è¿”ã™
 	return NetHandle ;
 }
 
-// V‚µ‚­HTTPƒnƒ“ƒhƒ‹‚ğ’Ç‰Á‚·‚é( –ß‚è’l: -1 = ƒGƒ‰[  0ˆÈã = HTTPƒnƒ“ƒhƒ‹ )
+// æ–°ã—ãHTTPãƒãƒ³ãƒ‰ãƒ«ã‚’è¿½åŠ ã™ã‚‹( æˆ»ã‚Šå€¤: -1 = ã‚¨ãƒ©ãƒ¼  0ä»¥ä¸Š = HTTPãƒãƒ³ãƒ‰ãƒ« )
 static	int			HTTP_AddHandle( void )
 {
 	int NewHandle ;
 	HTTPDATA *http ;
 
-	// Šù‚ÉHTTPƒnƒ“ƒhƒ‹‚ªˆê”t‚Ìê‡‚ÍƒGƒ‰[
+	// æ—¢ã«HTTPãƒãƒ³ãƒ‰ãƒ«ãŒä¸€æ¯ã®å ´åˆã¯ã‚¨ãƒ©ãƒ¼
 	if( HttpData.Num == MAX_HTTPHANDLE_NUM )
 	{
-		DXST_LOGFILE_ADDUTF16LE( "\x0c\x54\x42\x66\x6b\x30\xc0\x30\xa6\x30\xf3\x30\xed\x30\xfc\x30\xc9\x30\x57\x30\x66\x30\x44\x30\x8b\x30\xd5\x30\xa1\x30\xa4\x30\xeb\x30\x4c\x30\x50\x96\x4c\x75\x6b\x30\x54\x90\x57\x30\x66\x30\x44\x30\x5f\x30\x5f\x30\x81\x30\xc0\x30\xa6\x30\xf3\x30\xed\x30\xfc\x30\xc9\x30\x92\x30\x8b\x95\xcb\x59\x67\x30\x4d\x30\x7e\x30\x5b\x30\x93\x30\x67\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"“¯‚Éƒ_ƒEƒ“ƒ[ƒh‚µ‚Ä‚¢‚éƒtƒ@ƒCƒ‹‚ªŒÀŠE‚É’B‚µ‚Ä‚¢‚½‚½‚ßƒ_ƒEƒ“ƒ[ƒh‚ğŠJn‚Å‚«‚Ü‚¹‚ñ‚Å‚µ‚½\n" @*/ ) ;
+		DXST_LOGFILE_ADDUTF16LE( "\x0c\x54\x42\x66\x6b\x30\xc0\x30\xa6\x30\xf3\x30\xed\x30\xfc\x30\xc9\x30\x57\x30\x66\x30\x44\x30\x8b\x30\xd5\x30\xa1\x30\xa4\x30\xeb\x30\x4c\x30\x50\x96\x4c\x75\x6b\x30\x54\x90\x57\x30\x66\x30\x44\x30\x5f\x30\x5f\x30\x81\x30\xc0\x30\xa6\x30\xf3\x30\xed\x30\xfc\x30\xc9\x30\x92\x30\x8b\x95\xcb\x59\x67\x30\x4d\x30\x7e\x30\x5b\x30\x93\x30\x67\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"åŒæ™‚ã«ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ã—ã¦ã„ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«ãŒé™ç•Œã«é”ã—ã¦ã„ãŸãŸã‚ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ã‚’é–‹å§‹ã§ãã¾ã›ã‚“ã§ã—ãŸ\n" @*/ ) ;
 		return -1 ;
 	}
 	
-	// g‚í‚ê‚Ä‚¢‚È‚¢HTTPƒnƒ“ƒhƒ‹‚ğ’T‚·
+	// ä½¿ã‚ã‚Œã¦ã„ãªã„HTTPãƒãƒ³ãƒ‰ãƒ«ã‚’æ¢ã™
 	for( NewHandle = 0 ; HttpData.Data[NewHandle] != NULL ; NewHandle ++ ){}
 
-	// ƒf[ƒ^‚ğŠi”[‚·‚éƒƒ‚ƒŠ—Ìˆæ‚ğŠm•Û
+	// ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹ãƒ¡ãƒ¢ãƒªé ˜åŸŸã‚’ç¢ºä¿
 	HttpData.Data[NewHandle] = http = ( HTTPDATA * )DXALLOC( sizeof( HTTPDATA ) ) ;
 	if( http == NULL )
 	{
-		DXST_LOGFILE_ADDUTF16LE( "\xc0\x30\xa6\x30\xf3\x30\xed\x30\xfc\x30\xc9\x30\xe6\x51\x06\x74\x28\x75\xc7\x30\xfc\x30\xbf\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ƒ_ƒEƒ“ƒ[ƒhˆ——pƒf[ƒ^—Ìˆæ‚ÌŠm•Û‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+		DXST_LOGFILE_ADDUTF16LE( "\xc0\x30\xa6\x30\xf3\x30\xed\x30\xfc\x30\xc9\x30\xe6\x51\x06\x74\x28\x75\xc7\x30\xfc\x30\xbf\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰å‡¦ç†ç”¨ãƒ‡ãƒ¼ã‚¿é ˜åŸŸã®ç¢ºä¿ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 		return -1 ;
 	}
 	
-	// —ë‰Šú‰»
+	// é›¶åˆæœŸåŒ–
 	_MEMSET( http, 0, sizeof( HTTPDATA ) ) ;
 
-	// ƒnƒ“ƒhƒ‹‚Ì”‚ğ‘‚â‚·
+	// ãƒãƒ³ãƒ‰ãƒ«ã®æ•°ã‚’å¢—ã‚„ã™
 	HttpData.Num ++ ;
 
-	// ƒnƒ“ƒhƒ‹‚ğ•Ô‚·
+	// ãƒãƒ³ãƒ‰ãƒ«ã‚’è¿”ã™
 	return NewHandle ;
 }
 
-// HTTPƒnƒ“ƒhƒ‹‚ÌŒãn––‚ğs‚¤
+// HTTPãƒãƒ³ãƒ‰ãƒ«ã®å¾Œå§‹æœ«ã‚’è¡Œã†
 static	int			HTTP_DelHandle( int HttpHandle )
 {
 	HTTPDATA *http = HttpData.Data[HttpHandle] ;
 	
-	// Šù‚É‰ğ•ú‚³‚ê‚Ä‚¢‚½‚ç‰½‚à‚¹‚¸I—¹
+	// æ—¢ã«è§£æ”¾ã•ã‚Œã¦ã„ãŸã‚‰ä½•ã‚‚ã›ãšçµ‚äº†
 	if( http == NULL ) return 0 ;
 	
-	// ƒƒ‚ƒŠ‚Ì‰ğ•ú
+	// ãƒ¡ãƒ¢ãƒªã®è§£æ”¾
 	DXFREE( http ) ;
 	HttpData.Data[HttpHandle] = NULL ;
 	
-	// ƒnƒ“ƒhƒ‹‚Ì”‚ğŒ¸‚ç‚·
+	// ãƒãƒ³ãƒ‰ãƒ«ã®æ•°ã‚’æ¸›ã‚‰ã™
 	HttpData.Num -- ;
 	
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// HTTP ‚ğg—p‚µ‚½ƒlƒbƒgƒ[ƒNã‚Ìƒtƒ@ƒCƒ‹‚ğƒ_ƒEƒ“ƒ[ƒh‚·‚éˆ—‚ğŠJn‚·‚é
+// HTTP ã‚’ä½¿ç”¨ã—ãŸãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ä¸Šã®ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ã™ã‚‹å‡¦ç†ã‚’é–‹å§‹ã™ã‚‹
 extern int NS_HTTP_StartFileDownload( const char *FileURL, const char *SavePath, void **SaveBufferP, char **ParamList )
 {
 	HTTPDATA *http = NULL ;
@@ -5231,34 +5231,34 @@ extern int NS_HTTP_StartFileDownload( const char *FileURL, const char *SavePath,
 
 	SETUP_WIN_API
 
-	// •Û‘¶æ‚Ìw’è‚ª•s³‚Èê‡‚ÍƒGƒ‰[
+	// ä¿å­˜å…ˆã®æŒ‡å®šãŒä¸æ­£ãªå ´åˆã¯ã‚¨ãƒ©ãƒ¼
 	if( SavePath == NULL && SaveBufferP == NULL )
 	{
-		DXST_LOGFILE_ADDUTF16LE( "\xdd\x4f\x58\x5b\x48\x51\x6e\x30\x07\x63\x9a\x5b\x4c\x30\x0d\x4e\x63\x6b\x6a\x30\x5f\x30\x81\x30\xc0\x30\xa6\x30\xf3\x30\xed\x30\xfc\x30\xc9\x30\xfa\x51\x65\x67\x7e\x30\x5b\x30\x93\x30\x0a\x00\x00"/*@ L"•Û‘¶æ‚Ìw’è‚ª•s³‚È‚½‚ßƒ_ƒEƒ“ƒ[ƒho—ˆ‚Ü‚¹‚ñ\n" @*/ ) ;
+		DXST_LOGFILE_ADDUTF16LE( "\xdd\x4f\x58\x5b\x48\x51\x6e\x30\x07\x63\x9a\x5b\x4c\x30\x0d\x4e\x63\x6b\x6a\x30\x5f\x30\x81\x30\xc0\x30\xa6\x30\xf3\x30\xed\x30\xfc\x30\xc9\x30\xfa\x51\x65\x67\x7e\x30\x5b\x30\x93\x30\x0a\x00\x00"/*@ L"ä¿å­˜å…ˆã®æŒ‡å®šãŒä¸æ­£ãªãŸã‚ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰å‡ºæ¥ã¾ã›ã‚“\n" @*/ ) ;
 		return -1 ;
 	}
 
-	// HTTP ˆ——pƒnƒ“ƒhƒ‹‚ğ’Ç‰Á‚·‚é
+	// HTTP å‡¦ç†ç”¨ãƒãƒ³ãƒ‰ãƒ«ã‚’è¿½åŠ ã™ã‚‹
 	NewHandle = HTTP_AddHandle() ;
 	if( NewHandle < 0 ) goto ERR ;
 	http = HttpData.Data[NewHandle] ;
 
-	// ƒzƒXƒg‚ÉÚ‘±‚·‚é
+	// ãƒ›ã‚¹ãƒˆã«æ¥ç¶šã™ã‚‹
 	http->NetHandle = HTTP_ConnectHost( FileURL, HttpData.UseProxy,
 								&http->HostIP, http->Host, http->Path, http->FileName, &http->Port ) ;
 	if( http->NetHandle < 0 )
 	{
-		DXST_LOGFILE_ADDUTF16LE( "\x48\x00\x54\x00\x54\x00\x50\x00\x20\x00\xdb\x30\xb9\x30\xc8\x30\x78\x30\x6e\x30\xa5\x63\x9a\x7d\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"HTTP ƒzƒXƒg‚Ö‚ÌÚ‘±‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+		DXST_LOGFILE_ADDUTF16LE( "\x48\x00\x54\x00\x54\x00\x50\x00\x20\x00\xdb\x30\xb9\x30\xc8\x30\x78\x30\x6e\x30\xa5\x63\x9a\x7d\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"HTTP ãƒ›ã‚¹ãƒˆã¸ã®æ¥ç¶šã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 		goto ERR ;
 	}
 
-	// ƒpƒ‰ƒ[ƒ^‚ğ‰ğÍ‚·‚é
+	// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’è§£æã™ã‚‹
 	if( ParamList != NULL )
 	{
 		http->ParamLength = NS_URLParamAnalysis( ParamList, &http->Param ) ;
 		if( http->ParamLength < 0 )
 		{
-			DXST_LOGFILE_ADDUTF16LE( "\x48\x00\x54\x00\x54\x00\x50\x00\x20\x00\x6e\x30\xd1\x30\xe9\x30\xe1\x30\xfc\x30\xbf\x30\xe3\x89\x90\x67\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"HTTP ‚Ìƒpƒ‰ƒ[ƒ^‰ğÍ‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+			DXST_LOGFILE_ADDUTF16LE( "\x48\x00\x54\x00\x54\x00\x50\x00\x20\x00\x6e\x30\xd1\x30\xe9\x30\xe1\x30\xfc\x30\xbf\x30\xe3\x89\x90\x67\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"HTTP ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿è§£æã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 			goto ERR ;
 		}
 	}
@@ -5268,7 +5268,7 @@ extern int NS_HTTP_StartFileDownload( const char *FileURL, const char *SavePath,
 		http->ParamLength = 0 ;
 	}
 
-	// ƒf[ƒ^‚Ì‰Šú‰»
+	// ãƒ‡ãƒ¼ã‚¿ã®åˆæœŸåŒ–
 	http->Process 		= http->Param != NULL ? HTTP_PR_POST : HTTP_PR_GET ;
 	http->State 		= HTTP_ST_CONNECT ;
 	http->Step			= 0 ;
@@ -5278,17 +5278,17 @@ extern int NS_HTTP_StartFileDownload( const char *FileURL, const char *SavePath,
 	http->Result		= HTTP_RES_NOW ;
 	http->Error			= HTTP_ERR_NONE ;
 
-	// •Û‘¶æî•ñ‚ğƒZƒbƒgƒAƒbƒv
+	// ä¿å­˜å…ˆæƒ…å ±ã‚’ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 	if( SaveBufferP != NULL )
 	{
-		// ƒƒ‚ƒŠ‚ÉŠi”[
+		// ãƒ¡ãƒ¢ãƒªã«æ ¼ç´
 		http->SavePlace = HTTP_SV_MEM ;
 		http->BufferPoint = SaveBufferP ;
 		*http->BufferPoint = NULL ;
 	}
 	else
 	{
-		// ƒtƒ@ƒCƒ‹‚É•Û‘¶
+		// ãƒ•ã‚¡ã‚¤ãƒ«ã«ä¿å­˜
 #ifdef UNICODE
 		DeleteFileWFunc( http->FileName ) ;
 		http->FilePoint = CreateFileWFunc( http->FileName, GENERIC_WRITE, 0, NULL, CREATE_NEW, FILE_ATTRIBUTE_NORMAL, NULL ) ;
@@ -5298,22 +5298,22 @@ extern int NS_HTTP_StartFileDownload( const char *FileURL, const char *SavePath,
 #endif
 		if( http->FilePoint == NULL )
 		{
-			DXST_LOGFILEFMT_ADDA(( "\x83\x5f\x83\x45\x83\x93\x83\x8d\x81\x5b\x83\x68\x82\xb5\x82\xbd\x83\x74\x83\x40\x83\x43\x83\x8b\x82\xf0\x95\xdb\x91\xb6\x82\xb7\x82\xe9\x83\x74\x83\x40\x83\x43\x83\x8b %s \x82\xf0\x8a\x4a\x82\xaf\x82\xdc\x82\xb9\x82\xf1\x82\xc5\x82\xb5\x82\xbd\n"/*@ "ƒ_ƒEƒ“ƒ[ƒh‚µ‚½ƒtƒ@ƒCƒ‹‚ğ•Û‘¶‚·‚éƒtƒ@ƒCƒ‹ %s ‚ğŠJ‚¯‚Ü‚¹‚ñ‚Å‚µ‚½\n" @*/, http->FileName )) ;
+			DXST_LOGFILEFMT_ADDA(( "\x83\x5f\x83\x45\x83\x93\x83\x8d\x81\x5b\x83\x68\x82\xb5\x82\xbd\x83\x74\x83\x40\x83\x43\x83\x8b\x82\xf0\x95\xdb\x91\xb6\x82\xb7\x82\xe9\x83\x74\x83\x40\x83\x43\x83\x8b %s \x82\xf0\x8a\x4a\x82\xaf\x82\xdc\x82\xb9\x82\xf1\x82\xc5\x82\xb5\x82\xbd\n"/*@ "ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ã—ãŸãƒ•ã‚¡ã‚¤ãƒ«ã‚’ä¿å­˜ã™ã‚‹ãƒ•ã‚¡ã‚¤ãƒ« %s ã‚’é–‹ã‘ã¾ã›ã‚“ã§ã—ãŸ\n" @*/, http->FileName )) ;
 			goto ERR ;
 		}
 	}
 
-	// HTTP ˆ—‚ğˆê‰ñ•ªs‚¤
+	// HTTP å‡¦ç†ã‚’ä¸€å›åˆ†è¡Œã†
 	if( HTTP_Process( NewHandle ) == -1 )
 	{
 		NS_HTTP_Close( NewHandle ) ;
 		return -1 ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return NewHandle ;
 
-	// ƒGƒ‰[ˆ—	
+	// ã‚¨ãƒ©ãƒ¼å‡¦ç†	
 ERR :
 	if( NewHandle != -1 )
 	{
@@ -5329,23 +5329,23 @@ ERR :
 	return -1 ; 
 }
 
-// HTTP ‚ğg—p‚µ‚½ƒlƒbƒgƒ[ƒNã‚Ìƒtƒ@ƒCƒ‹‚ÌƒTƒCƒY‚ğ“¾‚éˆ—‚ğŠJn‚·‚é
+// HTTP ã‚’ä½¿ç”¨ã—ãŸãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ä¸Šã®ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚µã‚¤ã‚ºã‚’å¾—ã‚‹å‡¦ç†ã‚’é–‹å§‹ã™ã‚‹
 extern int NS_HTTP_StartGetFileSize( const char *FileURL )
 {
 	HTTPDATA *http = NULL ;
 	int NewHandle = -1 ;
 
-	// HTTP ˆ——pƒnƒ“ƒhƒ‹‚ğ’Ç‰Á‚·‚é
+	// HTTP å‡¦ç†ç”¨ãƒãƒ³ãƒ‰ãƒ«ã‚’è¿½åŠ ã™ã‚‹
 	NewHandle = HTTP_AddHandle() ;
 	if( NewHandle < 0 ) goto ERR ;
 	http = HttpData.Data[NewHandle] ;
 
-	// ƒzƒXƒg‚ÉÚ‘±‚·‚é
+	// ãƒ›ã‚¹ãƒˆã«æ¥ç¶šã™ã‚‹
 	http->NetHandle = HTTP_ConnectHost( FileURL, HttpData.UseProxy,
 								&http->HostIP, http->Host, http->Path, http->FileName, &http->Port ) ;
 	if( http->NetHandle < 0 ) goto ERR ;
 	
-	// ƒf[ƒ^‚Ì‰Šú‰»
+	// ãƒ‡ãƒ¼ã‚¿ã®åˆæœŸåŒ–
 	http->Process 		= HTTP_PR_HEAD ;
 	http->State 		= HTTP_ST_CONNECT ;
 	http->Step			= 0 ;
@@ -5355,17 +5355,17 @@ extern int NS_HTTP_StartGetFileSize( const char *FileURL )
 	http->Param			= NULL ;
 	http->Error			= HTTP_ERR_NONE ;
 
-	// HTTP ˆ—‚ğˆê‰ñ•ªs‚¤
+	// HTTP å‡¦ç†ã‚’ä¸€å›åˆ†è¡Œã†
 	if( HTTP_Process( NewHandle ) == -1 )
 	{
 		NS_HTTP_Close( NewHandle ) ;
 		return -1 ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return NewHandle ;
 
-	// ƒGƒ‰[ˆ—	
+	// ã‚¨ãƒ©ãƒ¼å‡¦ç†	
 ERR :
 	if( NewHandle != -1 )
 	{
@@ -5380,7 +5380,7 @@ ERR :
 	return -1 ; 
 }
 
-// HTTP ‚Ìˆ—‚Ég—p‚µ‚Ä‚¢‚éƒŠƒ\[ƒX‚ğ‰ğ•ú‚·‚é
+// HTTP ã®å‡¦ç†ã«ä½¿ç”¨ã—ã¦ã„ã‚‹ãƒªã‚½ãƒ¼ã‚¹ã‚’è§£æ”¾ã™ã‚‹
 static int HTTP_ReleaseResource( int HttpHandle, int Result, int Error )
 {
 	HTTPDATA *http = HttpData.Data[HttpHandle] ;
@@ -5389,37 +5389,37 @@ static int HTTP_ReleaseResource( int HttpHandle, int Result, int Error )
 
 	if( http == NULL ) return -1 ;
 
-	// ƒlƒbƒgƒnƒ“ƒhƒ‹‚ğ•Â‚¶‚é
+	// ãƒãƒƒãƒˆãƒãƒ³ãƒ‰ãƒ«ã‚’é–‰ã˜ã‚‹
 	if( http->NetHandle != -1 )
 	{
 		NS_CloseNetWork( http->NetHandle ) ;
 	}
 	http->NetHandle = -1 ;
 	
-	// POST ƒƒ\ƒbƒh—p‚Ì’·‚¢•¶š—ñ‚Ì‚½‚ß‚É•¶š—ñ‚ğŠm•Û‚µ‚Ä‚¢‚½ê‡‚Í‰ğ•ú‚·‚é
+	// POST ãƒ¡ã‚½ãƒƒãƒ‰ç”¨ã®é•·ã„æ–‡å­—åˆ—ã®ãŸã‚ã«æ–‡å­—åˆ—ã‚’ç¢ºä¿ã—ã¦ã„ãŸå ´åˆã¯è§£æ”¾ã™ã‚‹
 	if( http->Param != NULL ) DXFREE( http->Param ) ;
 	http->Param = NULL ;
 
-	// ƒtƒ@ƒCƒ‹‘‚«o‚µ‚¾‚Á‚½ê‡Aƒtƒ@ƒCƒ‹ƒnƒ“ƒhƒ‹‚ğ‰ğ•ú‚·‚é
+	// ãƒ•ã‚¡ã‚¤ãƒ«æ›¸ãå‡ºã—ã ã£ãŸå ´åˆã€ãƒ•ã‚¡ã‚¤ãƒ«ãƒãƒ³ãƒ‰ãƒ«ã‚’è§£æ”¾ã™ã‚‹
 	if( http->FilePoint != NULL ) WinAPIData.Win32Func.CloseHandleFunc( http->FilePoint ) ;
 	http->FilePoint = NULL ;
 
-	// ˆ—Œ‹‰Ê‚ğƒZƒbƒg‚·‚é
+	// å‡¦ç†çµæœã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 	if( http->Result == -1 ) http->Result = Result ;
 	if( http->Error == -1 ) http->Error = Error ;
 
-	// ƒƒ‚ƒŠ“Ç‚İ‚İ‚¾‚Á‚½ê‡‚Å“Ç‚İ‚İ‚ªŠ®—¹‚µ‚Ä‚¢‚È‚¢ê‡AŠm•Û‚µ‚½ƒƒ‚ƒŠ‚ğ‰ğ•ú‚·‚é
+	// ãƒ¡ãƒ¢ãƒªèª­ã¿è¾¼ã¿ã ã£ãŸå ´åˆã§èª­ã¿è¾¼ã¿ãŒå®Œäº†ã—ã¦ã„ãªã„å ´åˆã€ç¢ºä¿ã—ãŸãƒ¡ãƒ¢ãƒªã‚’è§£æ”¾ã™ã‚‹
 	if( http->BufferPoint != NULL && http->Result != HTTP_RES_COMPLETE )
 	{
 		DXFREE( *http->BufferPoint ) ;
 		*http->BufferPoint = NULL ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// HTTP ‚Ìˆ—‚ğI—¹‚µAƒnƒ“ƒhƒ‹‚ğ‰ğ•ú‚·‚é
+// HTTP ã®å‡¦ç†ã‚’çµ‚äº†ã—ã€ãƒãƒ³ãƒ‰ãƒ«ã‚’è§£æ”¾ã™ã‚‹
 extern int NS_HTTP_Close( int HttpHandle )
 {
 	HTTPDATA *http ;
@@ -5428,26 +5428,26 @@ extern int NS_HTTP_Close( int HttpHandle )
 	http = HttpData.Data[HttpHandle] ;
 	if( http == NULL ) return -1 ;
 
-	// HTTP ‚Ìˆ—‚Ég—p‚µ‚½ƒŠƒ\[ƒX‚ğ‰ğ•ú‚·‚é
+	// HTTP ã®å‡¦ç†ã«ä½¿ç”¨ã—ãŸãƒªã‚½ãƒ¼ã‚¹ã‚’è§£æ”¾ã™ã‚‹
 	HTTP_ReleaseResource( HttpHandle, HTTP_RES_COMPLETE ) ;
 
-	// HTTP ƒnƒ“ƒhƒ‹‚Ì‰ğ•ú
+	// HTTP ãƒãƒ³ãƒ‰ãƒ«ã®è§£æ”¾
 	HTTP_DelHandle( HttpHandle ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;	
 }
 
-// ‘S‚Ä‚Ìƒnƒ“ƒhƒ‹‚É‘Î‚µ‚Ä HTTP_Close ‚ğs‚¤
+// å…¨ã¦ã®ãƒãƒ³ãƒ‰ãƒ«ã«å¯¾ã—ã¦ HTTP_Close ã‚’è¡Œã†
 extern int NS_HTTP_CloseAll( void )
 {
 	HTTPDATA **http ;
 	int Num, i, j ;
 
-	// HTTP ƒnƒ“ƒhƒ‹‚ªˆê‚Â‚à–³‚©‚Á‚½‚ç‰½‚à‚µ‚È‚¢
+	// HTTP ãƒãƒ³ãƒ‰ãƒ«ãŒä¸€ã¤ã‚‚ç„¡ã‹ã£ãŸã‚‰ä½•ã‚‚ã—ãªã„
 	if( HttpData.Num == 0 ) return 0 ;
 
-	// ‘S‚Ä‚Ì HTTP ƒnƒ“ƒhƒ‹‚ğ‰ğ•ú‚·‚é
+	// å…¨ã¦ã® HTTP ãƒãƒ³ãƒ‰ãƒ«ã‚’è§£æ”¾ã™ã‚‹
 	http = HttpData.Data ;
 	Num = HttpData.Num ;
 	for( i = 0, j = 0 ; i < Num ; j ++ )
@@ -5457,11 +5457,11 @@ extern int NS_HTTP_CloseAll( void )
 		i ++ ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// HTTP ‚Ìˆ—‚ğs‚¤
+// HTTP ã®å‡¦ç†ã‚’è¡Œã†
 static int HTTP_Process( int HttpHandle )
 {
 	HTTPDATA *http = HttpData.Data[HttpHandle] ;
@@ -5469,10 +5469,10 @@ static int HTTP_Process( int HttpHandle )
 	
 	if( http == NULL ) return -1 ;
 	
-	// HTTP ‚Ìˆ—‚ª‰½‚ç‚©‚ÌŒ`‚ÅI—¹‚µ‚Ä‚¢‚½‚ç‰½‚à‚¹‚¸I—¹
+	// HTTP ã®å‡¦ç†ãŒä½•ã‚‰ã‹ã®å½¢ã§çµ‚äº†ã—ã¦ã„ãŸã‚‰ä½•ã‚‚ã›ãšçµ‚äº†
 	if( http->Result != HTTP_RES_NOW ) return 0;
 
-	// Ø’f‚³‚ê‚Ä‚¢‚½‚ç’†~
+	// åˆ‡æ–­ã•ã‚Œã¦ã„ãŸã‚‰ä¸­æ­¢
 	res1 = NS_GetNetWorkAcceptState( http->NetHandle ) ;
 	res2 = NS_GetNetWorkDataLength( http->NetHandle ) ;
 	if( res1 == 0 && res2 == 0 )
@@ -5481,33 +5481,33 @@ static int HTTP_Process( int HttpHandle )
 		return 0 ;
 	}
 	
-	// s‚¤ˆ—‚É‚æ‚Á‚Äˆ—‚ğ•ªŠò
+	// è¡Œã†å‡¦ç†ã«ã‚ˆã£ã¦å‡¦ç†ã‚’åˆ†å²
 	switch( http->Process )
 	{
-	case HTTP_PR_GET :	// GET ƒƒ\ƒbƒh‚Ìˆ—
+	case HTTP_PR_GET :	// GET ãƒ¡ã‚½ãƒƒãƒ‰ã®å‡¦ç†
 		return HTTP_ProcessForGET( HttpHandle ) ;
 		
-	case HTTP_PR_POST :	// POST ƒƒ\ƒbƒh‚Ìˆ—
+	case HTTP_PR_POST :	// POST ãƒ¡ã‚½ãƒƒãƒ‰ã®å‡¦ç†
 		return HTTP_ProcessForPOST( HttpHandle ) ;
 		
-	case HTTP_PR_HEAD :	// HEAD ƒƒ\ƒbƒh‚Ìˆ—
+	case HTTP_PR_HEAD :	// HEAD ãƒ¡ã‚½ãƒƒãƒ‰ã®å‡¦ç†
 		return HTTP_ProcessForHEAD( HttpHandle ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// HTTP_Proess ‚ğ‘S‚Ä‚Ìƒnƒ“ƒhƒ‹‚É‘Î‚µ‚Äs‚¤
+// HTTP_Proess ã‚’å…¨ã¦ã®ãƒãƒ³ãƒ‰ãƒ«ã«å¯¾ã—ã¦è¡Œã†
 static int HTTP_ProcessAll( void )
 {
 	HTTPDATA **http ;
 	int i, j, Num ;
 
-	// HTTP ‚Ìˆ—‚ª‰½‚às‚í‚ê‚Ä‚¢‚È‚©‚Á‚½‚ç‰½‚à‚µ‚È‚¢
+	// HTTP ã®å‡¦ç†ãŒä½•ã‚‚è¡Œã‚ã‚Œã¦ã„ãªã‹ã£ãŸã‚‰ä½•ã‚‚ã—ãªã„
 	if( HttpData.Num == 0 ) return 0 ;
 
-	// ‘S‚Ä‚Ì HTTP ƒnƒ“ƒhƒ‹‚ğˆ—‚·‚é
+	// å…¨ã¦ã® HTTP ãƒãƒ³ãƒ‰ãƒ«ã‚’å‡¦ç†ã™ã‚‹
 	http = HttpData.Data ;
 	Num = HttpData.Num ;
 	for( i = 0, j = 0 ; i < Num ; j ++ )
@@ -5517,11 +5517,11 @@ static int HTTP_ProcessAll( void )
 		i ++ ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// HTTP ‚Ì GET ƒƒ\ƒbƒh‚Ìˆ—‚ğ‚·‚é
+// HTTP ã® GET ãƒ¡ã‚½ãƒƒãƒ‰ã®å‡¦ç†ã‚’ã™ã‚‹
 static	int			HTTP_ProcessForGET( int HttpHandle )
 {
 	HTTPDATA *http = HttpData.Data[HttpHandle] ;
@@ -5532,17 +5532,17 @@ static	int			HTTP_ProcessForGET( int HttpHandle )
 
 	if( http == NULL ) return -1 ;
 	
-	// ó‘Ô‚É‚æ‚Á‚Äˆ—‚ğ•ªŠò
+	// çŠ¶æ…‹ã«ã‚ˆã£ã¦å‡¦ç†ã‚’åˆ†å²
 	switch( http->Step ) 
 	{
-	case 0 :		// GET ƒƒbƒZ[ƒW‚ğƒzƒXƒg‚É‘—‚é
+	case 0 :		// GET ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’ãƒ›ã‚¹ãƒˆã«é€ã‚‹
 		_SNPRINTF( str, sizeof( str ), "GET %s HTTP/1.0\r\nHost: %s:%d\r\nConnection: close\r\n\r\n", http->Path, http->Host, http->Port ) ;
 		NS_NetWorkSend( http->NetHandle, str, WinAPIData.Win32Func.lstrlenAFunc( str ) ) ;
 		
 		http->Step ++ ;
 
 		
-	case 1 :		// Ú‘±‚É¬Œ÷‚µ‚È‚©‚Á‚½‚çI—¹
+	case 1 :		// æ¥ç¶šã«æˆåŠŸã—ãªã‹ã£ãŸã‚‰çµ‚äº†
 		if( NS_fgetsForNetHandle( http->NetHandle, str ) == -1 ) break ;
 //		sscanf( str, "%s%d", buf, &i ) ;
 		i = HTTP_GetResult( str ) ;
@@ -5557,7 +5557,7 @@ static	int			HTTP_ProcessForGET( int HttpHandle )
 			default : err = HTTP_ERR_SERVER ; break ;
 			}
 			
-			DXST_LOGFILEFMT_ADDA(( "\x90\xda\x91\xb1\x82\xc9\x8e\xb8\x94\x73\x82\xb5\x82\xdc\x82\xb5\x82\xbd (\x96\xdf\x82\xe8\x92\x6c:%d)"/*@ "Ú‘±‚É¸”s‚µ‚Ü‚µ‚½ (–ß‚è’l:%d)" @*/, i )) ;
+			DXST_LOGFILEFMT_ADDA(( "\x90\xda\x91\xb1\x82\xc9\x8e\xb8\x94\x73\x82\xb5\x82\xdc\x82\xb5\x82\xbd (\x96\xdf\x82\xe8\x92\x6c:%d)"/*@ "æ¥ç¶šã«å¤±æ•—ã—ã¾ã—ãŸ (æˆ»ã‚Šå€¤:%d)" @*/, i )) ;
 			
 			HTTP_ReleaseResource( HttpHandle, HTTP_RES_ERROR, err ) ;
 			break ;
@@ -5565,24 +5565,24 @@ static	int			HTTP_ProcessForGET( int HttpHandle )
 
 		http->Step ++ ;
 		
-	case 2 :		// ƒwƒbƒ_‚ğ‰ğÍ‚·‚é
+	case 2 :		// ãƒ˜ãƒƒãƒ€ã‚’è§£æã™ã‚‹
 		if( NS_fgetsForNetHandle( http->NetHandle, str ) == -1 ) break ;
 
-		// ƒwƒbƒ_I—¹‚¾‚Á‚½‚çŸ‚Ö
+		// ãƒ˜ãƒƒãƒ€çµ‚äº†ã ã£ãŸã‚‰æ¬¡ã¸
 		if( _STRCHR( str, ':' ) == NULL )
 		{
 			http->Step ++ ;
 		}
 		else
 		{
-			// ƒtƒ@ƒCƒ‹ƒTƒCƒY‚Ìî•ñ‚¾‚Á‚½‚çƒTƒCƒY‚ğæ“¾‚·‚é
+			// ãƒ•ã‚¡ã‚¤ãƒ«ã‚µã‚¤ã‚ºã®æƒ…å ±ã ã£ãŸã‚‰ã‚µã‚¤ã‚ºã‚’å–å¾—ã™ã‚‹
 //			sscanf( str, "%s%d", buf, &i ) ;
 			i = HTTP_GetResult( str ) ;
 //			if( lstrcmp( buf, "Content-Length:" ) != 0 ) break ;
 			if( _STRNCMP( str, "Content-Length:", WinAPIData.Win32Func.lstrlenAFunc( "Content-Length:" ) ) != 0 ) break ;
 			http->FileSize = i ;
 
-			// ƒƒ‚ƒŠ‚É“Ç‚İ‚Şê‡‚Íƒƒ‚ƒŠ‚ÌŠm•Û‚ğs‚¤
+			// ãƒ¡ãƒ¢ãƒªã«èª­ã¿è¾¼ã‚€å ´åˆã¯ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿ã‚’è¡Œã†
 			if( http->SavePlace == HTTP_SV_MEM )
 			{
 				*http->BufferPoint = DXALLOC( http->FileSize ) ;
@@ -5595,33 +5595,33 @@ static	int			HTTP_ProcessForGET( int HttpHandle )
 			break ;
 		}
 
-	case 3 :		// ƒf[ƒ^‚ğæ“¾‚·‚é
+	case 3 :		// ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—ã™ã‚‹
 		{
 			int GetSize ;
 			int res1, res2 ;
 			
 	GETLOOP :
 
-			// •Û‘¶æ‚É‚æ‚Á‚Äˆ—‚ğ•ªŠò
+			// ä¿å­˜å…ˆã«ã‚ˆã£ã¦å‡¦ç†ã‚’åˆ†å²
 			switch( http->SavePlace )
 			{
-			case HTTP_SV_FILE :		// ƒtƒ@ƒCƒ‹‚Ìê‡
+			case HTTP_SV_FILE :		// ãƒ•ã‚¡ã‚¤ãƒ«ã®å ´åˆ
 				{
 					static char buf[4096] ;
 					DWORD WriteSize ;
 					
-					// ƒf[ƒ^‚ğæ“¾
+					// ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
 					GetSize = NS_NetWorkRecv( http->NetHandle, buf, 4096 ) ;
 					if( GetSize < 0 ) break ;
 					
-					// ƒf[ƒ^‚Ì‘‚«o‚µ
+					// ãƒ‡ãƒ¼ã‚¿ã®æ›¸ãå‡ºã—
 					WinAPIData.Win32Func.WriteFileFunc( http->FilePoint, buf, GetSize, &WriteSize, NULL ) ;
 				}
 				break ;
 				
-			case HTTP_SV_MEM :		// ƒƒ‚ƒŠ‚Ìê‡
+			case HTTP_SV_MEM :		// ãƒ¡ãƒ¢ãƒªã®å ´åˆ
 				{
-					// ƒf[ƒ^‚ğæ“¾
+					// ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
 					GetSize = NS_NetWorkRecv( http->NetHandle, ( char * )*http->BufferPoint + http->RecvFileSize, http->FileSize - http->RecvFileSize ) ;
 					if( GetSize < 0 ) break ;
 				}
@@ -5629,10 +5629,10 @@ static	int			HTTP_ProcessForGET( int HttpHandle )
 			}
 			if( GetSize < 0 ) break ;
 			
-			// æ“¾•ª‚ğ‰ÁZ
+			// å–å¾—åˆ†ã‚’åŠ ç®—
 			http->RecvFileSize += GetSize ;
 
-			// ƒ_ƒEƒ“ƒ[ƒhI—¹ŒŸ’m
+			// ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰çµ‚äº†æ¤œçŸ¥
 			res1 = NS_GetNetWorkAcceptState( http->NetHandle ) ;
 			res2 = NS_GetNetWorkDataLength( http->NetHandle ) ;
 			if( ( http->FileSize == -1 && ( res1 != 0 || res2 != 0 ) ) || 
@@ -5644,16 +5644,16 @@ static	int			HTTP_ProcessForGET( int HttpHandle )
 		}
 		http->Step ++ ;
 
-	case 4 :	// I—¹
+	case 4 :	// çµ‚äº†
 		HTTP_ReleaseResource( HttpHandle, HTTP_RES_COMPLETE ) ;
 		break ;
 	}
 	
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// HTTP ‚Ì POST ƒƒ\ƒbƒh‚Ìˆ—‚ğ‚·‚é
+// HTTP ã® POST ãƒ¡ã‚½ãƒƒãƒ‰ã®å‡¦ç†ã‚’ã™ã‚‹
 static	int			HTTP_ProcessForPOST( int HttpHandle )
 {
 	HTTPDATA *http = HttpData.Data[HttpHandle] ;
@@ -5664,10 +5664,10 @@ static	int			HTTP_ProcessForPOST( int HttpHandle )
 
 	if( http == NULL ) return -1 ;
 	
-	// ó‘Ô‚É‚æ‚Á‚Äˆ—‚ğ•ªŠò
+	// çŠ¶æ…‹ã«ã‚ˆã£ã¦å‡¦ç†ã‚’åˆ†å²
 	switch( http->Step ) 
 	{
-	case 0 :		// POST ƒƒbƒZ[ƒW‚ğƒzƒXƒg‚É‘—‚é
+	case 0 :		// POST ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’ãƒ›ã‚¹ãƒˆã«é€ã‚‹
 
 		_SNPRINTF( str, sizeof( str ), "POST %s HTTP/1.0\nHost: %s:%d\nContent-Length: %d\n\n", http->Path, http->Host, http->Port, http->ParamLength ) ;
 		NS_NetWorkSend( http->NetHandle, str, WinAPIData.Win32Func.lstrlenAFunc( str ) ) ;
@@ -5682,7 +5682,7 @@ static	int			HTTP_ProcessForPOST( int HttpHandle )
 		http->Step ++ ;
 
 		
-	case 1 :		// Ú‘±‚É¬Œ÷‚µ‚È‚©‚Á‚½‚çI—¹
+	case 1 :		// æ¥ç¶šã«æˆåŠŸã—ãªã‹ã£ãŸã‚‰çµ‚äº†
 		if( NS_fgetsForNetHandle( http->NetHandle, str ) == -1 ) break ;
 //		sscanf( str, "%s%d", buf, &i ) ;
 		i = HTTP_GetResult( str ) ;
@@ -5702,24 +5702,24 @@ static	int			HTTP_ProcessForPOST( int HttpHandle )
 
 		http->Step ++ ;
 		
-	case 2 :		// ƒwƒbƒ_‚ğ‰ğÍ‚·‚é
+	case 2 :		// ãƒ˜ãƒƒãƒ€ã‚’è§£æã™ã‚‹
 		if( NS_fgetsForNetHandle( http->NetHandle, str ) == -1 ) break ;
 
-		// ƒwƒbƒ_I—¹‚¾‚Á‚½‚çŸ‚Ö
+		// ãƒ˜ãƒƒãƒ€çµ‚äº†ã ã£ãŸã‚‰æ¬¡ã¸
 		if( _STRCHR( str, ':' ) == NULL )
 		{
 			http->Step ++ ;
 		}
 		else
 		{
-			// ƒtƒ@ƒCƒ‹ƒTƒCƒY‚Ìî•ñ‚¾‚Á‚½‚çƒTƒCƒY‚ğæ“¾‚·‚é
+			// ãƒ•ã‚¡ã‚¤ãƒ«ã‚µã‚¤ã‚ºã®æƒ…å ±ã ã£ãŸã‚‰ã‚µã‚¤ã‚ºã‚’å–å¾—ã™ã‚‹
 //			sscanf( str, "%s%d", buf, &i ) ;
 			i = HTTP_GetResult( str ) ;
 //			if( lstrcmp( buf, "Content-Length:" ) != 0 ) break ;
 			if( _STRNCMP( str, "Content-Length:", WinAPIData.Win32Func.lstrlenAFunc( "Content-Length:" ) ) != 0 ) break ;
 			http->FileSize = i ;
 
-			// ƒƒ‚ƒŠ‚É“Ç‚İ‚Şê‡‚Íƒƒ‚ƒŠ‚ÌŠm•Û‚ğs‚¤
+			// ãƒ¡ãƒ¢ãƒªã«èª­ã¿è¾¼ã‚€å ´åˆã¯ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿ã‚’è¡Œã†
 			if( http->SavePlace == HTTP_SV_MEM )
 			{
 				*http->BufferPoint = DXALLOC( http->FileSize ) ;
@@ -5732,33 +5732,33 @@ static	int			HTTP_ProcessForPOST( int HttpHandle )
 			break ;
 		}
 
-	case 3 :		// ƒf[ƒ^‚ğæ“¾‚·‚é
+	case 3 :		// ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—ã™ã‚‹
 		{
 			int GetSize ;
 			int res1, res2 ;
 			
 	GETLOOP :
 
-			// •Û‘¶æ‚É‚æ‚Á‚Äˆ—‚ğ•ªŠò
+			// ä¿å­˜å…ˆã«ã‚ˆã£ã¦å‡¦ç†ã‚’åˆ†å²
 			switch( http->SavePlace )
 			{
-			case HTTP_SV_FILE :		// ƒtƒ@ƒCƒ‹‚Ìê‡
+			case HTTP_SV_FILE :		// ãƒ•ã‚¡ã‚¤ãƒ«ã®å ´åˆ
 				{
 					static char buf[4096] ;
 					DWORD WriteSize ;
 					
-					// ƒf[ƒ^‚ğæ“¾
+					// ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
 					GetSize = NS_NetWorkRecv( http->NetHandle, buf, 4096 ) ;
 					if( GetSize < 0 ) break ;
 					
-					// ƒf[ƒ^‚Ì‘‚«o‚µ
+					// ãƒ‡ãƒ¼ã‚¿ã®æ›¸ãå‡ºã—
 					WinAPIData.Win32Func.WriteFileFunc( http->FilePoint, buf, GetSize, &WriteSize, NULL ) ;
 				}
 				break ;
 				
-			case HTTP_SV_MEM :		// ƒƒ‚ƒŠ‚Ìê‡
+			case HTTP_SV_MEM :		// ãƒ¡ãƒ¢ãƒªã®å ´åˆ
 				{
-					// ƒf[ƒ^‚ğæ“¾
+					// ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
 					GetSize = NS_NetWorkRecv( http->NetHandle, ( char * )*http->BufferPoint + http->RecvFileSize, http->FileSize - http->RecvFileSize ) ;
 					if( GetSize < 0 ) break ;
 				}
@@ -5766,10 +5766,10 @@ static	int			HTTP_ProcessForPOST( int HttpHandle )
 			}
 			if( GetSize < 0 ) break ;
 			
-			// æ“¾•ª‚ğ‰ÁZ
+			// å–å¾—åˆ†ã‚’åŠ ç®—
 			http->RecvFileSize += GetSize ;
 
-			// ƒ_ƒEƒ“ƒ[ƒhI—¹ŒŸ’m
+			// ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰çµ‚äº†æ¤œçŸ¥
 			res1 = NS_GetNetWorkAcceptState( http->NetHandle ) ;
 			res2 = NS_GetNetWorkDataLength( http->NetHandle ) ;
 			if( ( http->FileSize == -1 && ( res1 != 0 || res2 != 0 ) ) || 
@@ -5781,16 +5781,16 @@ static	int			HTTP_ProcessForPOST( int HttpHandle )
 		}
 		http->Step ++ ;
 
-	case 4 :	// I—¹
+	case 4 :	// çµ‚äº†
 		HTTP_ReleaseResource( HttpHandle, HTTP_RES_COMPLETE ) ;
 		break ;
 	}
 	
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// HTTP ‚Ì HEAD ƒƒ\ƒbƒh‚Ìˆ—‚ğ‚·‚é
+// HTTP ã® HEAD ãƒ¡ã‚½ãƒƒãƒ‰ã®å‡¦ç†ã‚’ã™ã‚‹
 static	int			HTTP_ProcessForHEAD( int HttpHandle )
 {
 	HTTPDATA *http = HttpData.Data[HttpHandle] ;
@@ -5801,16 +5801,16 @@ static	int			HTTP_ProcessForHEAD( int HttpHandle )
 
 	if( http == NULL ) return -1 ;
 
-	// ó‘Ô‚É‚æ‚Á‚Äˆ—‚ğ•ªŠò
+	// çŠ¶æ…‹ã«ã‚ˆã£ã¦å‡¦ç†ã‚’åˆ†å²
 	switch( http->Step ) 
 	{
-	case 0 :		// HEAD ƒƒbƒZ[ƒW‚ğƒzƒXƒg‚É‘—‚é
+	case 0 :		// HEAD ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’ãƒ›ã‚¹ãƒˆã«é€ã‚‹
 		_SNPRINTF( str, sizeof( str ), "HEAD %s HTTP/1.0\n\n", http->Path ) ;
 		NS_NetWorkSend( http->NetHandle, str, WinAPIData.Win32Func.lstrlenAFunc( str ) ) ;
 		
 		http->Step ++ ;
 		
-	case 1 :		// Ú‘±‚É¬Œ÷‚µ‚È‚©‚Á‚½‚çI—¹
+	case 1 :		// æ¥ç¶šã«æˆåŠŸã—ãªã‹ã£ãŸã‚‰çµ‚äº†
 		if( NS_fgetsForNetHandle( http->NetHandle, str ) == -1 ) break ;
 		i = HTTP_GetResult( str ) ;
 //		sscanf( str, "%s%d", buf, &i ) ;
@@ -5830,30 +5830,30 @@ static	int			HTTP_ProcessForHEAD( int HttpHandle )
 
 		http->Step ++ ;
 		
-	case 2 :		// ƒwƒbƒ_‚ğ‰ğÍ‚·‚é
-		// •¶š—ñ‚ª—ˆ‚Ä‚¢‚È‚©‚Á‚½‚ç‰½‚à‚¹‚¸I—¹
+	case 2 :		// ãƒ˜ãƒƒãƒ€ã‚’è§£æã™ã‚‹
+		// æ–‡å­—åˆ—ãŒæ¥ã¦ã„ãªã‹ã£ãŸã‚‰ä½•ã‚‚ã›ãšçµ‚äº†
 		if( NS_fgetsForNetHandle( http->NetHandle, str ) == -1 ) break ;
 
-		// ƒtƒ@ƒCƒ‹ƒTƒCƒY‚Ìî•ñ‚¾‚Á‚½‚çƒTƒCƒY‚ğæ“¾‚·‚é
+		// ãƒ•ã‚¡ã‚¤ãƒ«ã‚µã‚¤ã‚ºã®æƒ…å ±ã ã£ãŸã‚‰ã‚µã‚¤ã‚ºã‚’å–å¾—ã™ã‚‹
 //		sscanf( str, "%s%d", buf, &i ) ;
 //		if( lstrcmp( buf, "Content-Length:" ) != 0 ) break ;
 		i = HTTP_GetResult( str ) ;
 		if( _STRNCMP( str, "Content-Length:", WinAPIData.Win32Func.lstrlenAFunc( "Content-Length:" ) ) != 0 ) break ;
 		http->FileSize = i ;
 
-		// ƒtƒ@ƒCƒ‹ƒTƒCƒY‚Ìæ“¾‚ªo—ˆ‚½‚çƒvƒƒZƒXŠ®—¹
+		// ãƒ•ã‚¡ã‚¤ãƒ«ã‚µã‚¤ã‚ºã®å–å¾—ãŒå‡ºæ¥ãŸã‚‰ãƒ—ãƒ­ã‚»ã‚¹å®Œäº†
 		http->Step ++ ;
 
-	case 3 :	// I—¹
+	case 3 :	// çµ‚äº†
 		HTTP_ReleaseResource( HttpHandle, HTTP_RES_COMPLETE ) ;
 		break ;
 	}
 	
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// HTTP ˆ—‚ÌŒ»İ‚Ìó‘Ô‚ğ“¾‚é( HTTP_RES_COMPLETE “™ )
+// HTTP å‡¦ç†ã®ç¾åœ¨ã®çŠ¶æ…‹ã‚’å¾—ã‚‹( HTTP_RES_COMPLETE ç­‰ )
 extern int NS_HTTP_GetState( int HttpHandle )
 {
 	HTTPDATA *http ;
@@ -5862,11 +5862,11 @@ extern int NS_HTTP_GetState( int HttpHandle )
 	http = HttpData.Data[HttpHandle] ;
 	if( http == NULL ) return -1 ;
 
-	// ó‘Ô‚ğ•Ô‚·
+	// çŠ¶æ…‹ã‚’è¿”ã™
 	return http->Result ;
 }
 
-// HTTP ˆ—‚ÅƒGƒ‰[‚ª”­¶‚µ‚½ê‡AƒGƒ‰[‚Ì“à—e‚ğ“¾‚é( HTTP_ERR_NONE “™ )
+// HTTP å‡¦ç†ã§ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ãŸå ´åˆã€ã‚¨ãƒ©ãƒ¼ã®å†…å®¹ã‚’å¾—ã‚‹( HTTP_ERR_NONE ç­‰ )
 extern int NS_HTTP_GetError( int HttpHandle )
 {
 	HTTPDATA *http ;
@@ -5875,12 +5875,12 @@ extern int NS_HTTP_GetError( int HttpHandle )
 	http = HttpData.Data[HttpHandle] ;
 	if( http == NULL ) return -1 ;
 
-	// ƒGƒ‰[ó‘Ô‚ğ•Ô‚·
+	// ã‚¨ãƒ©ãƒ¼çŠ¶æ…‹ã‚’è¿”ã™
 	return http->Error ;
 }
 
 
-// HTTP ˆ—‚Å‘ÎÛ‚Æ‚È‚Á‚Ä‚¢‚éƒtƒ@ƒCƒ‹‚ÌƒTƒCƒY‚ğ“¾‚é( –ß‚è’l: -1 = ƒGƒ‰[Eá‚µ‚­‚Í‚Ü‚¾ƒtƒ@ƒCƒ‹‚ÌƒTƒCƒY‚ğæ“¾‚µ‚Ä‚¢‚È‚¢  0ˆÈã = ƒtƒ@ƒCƒ‹‚ÌƒTƒCƒY )
+// HTTP å‡¦ç†ã§å¯¾è±¡ã¨ãªã£ã¦ã„ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚µã‚¤ã‚ºã‚’å¾—ã‚‹( æˆ»ã‚Šå€¤: -1 = ã‚¨ãƒ©ãƒ¼ãƒ»è‹¥ã—ãã¯ã¾ã ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚µã‚¤ã‚ºã‚’å–å¾—ã—ã¦ã„ãªã„  0ä»¥ä¸Š = ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚µã‚¤ã‚º )
 extern int NS_HTTP_GetDownloadFileSize( int HttpHandle )
 {
 	HTTPDATA *http ;
@@ -5892,7 +5892,7 @@ extern int NS_HTTP_GetDownloadFileSize( int HttpHandle )
 	return http->FileSize ;
 }
 
-// HTTP ˆ—‚ÅŠù‚Éƒ_ƒEƒ“ƒ[ƒh‚µ‚½ƒtƒ@ƒCƒ‹‚ÌƒTƒCƒY‚ğæ“¾‚·‚é
+// HTTP å‡¦ç†ã§æ—¢ã«ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ã—ãŸãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚µã‚¤ã‚ºã‚’å–å¾—ã™ã‚‹
 extern int NS_HTTP_GetDownloadedFileSize( int HttpHandle ) 
 {
 	HTTPDATA *http ;
@@ -5904,34 +5904,34 @@ extern int NS_HTTP_GetDownloadedFileSize( int HttpHandle )
 	return http->RecvFileSize ;
 }
 
-// fgets ‚Ìƒlƒbƒgƒ[ƒNƒnƒ“ƒhƒ‹”Å( -1:æ“¾‚Å‚«‚¸ 0:æ“¾‚Å‚«‚½ )
+// fgets ã®ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ãƒãƒ³ãƒ‰ãƒ«ç‰ˆ( -1:å–å¾—ã§ããš 0:å–å¾—ã§ããŸ )
 extern int NS_fgetsForNetHandle( int NetHandle, char *strbuffer )
 {
 	char str[256], *p ;
 	int length ;
 
-	// Œ»İæ“¾‚µ‚Ä‚¢‚éƒf[ƒ^‚ğæ“¾‚·‚é
+	// ç¾åœ¨å–å¾—ã—ã¦ã„ã‚‹ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—ã™ã‚‹
 	_MEMSET( str, 0, 255 ) ;
 	length = NS_NetWorkRecvToPeek( NetHandle, str, 255 ) ;
 	if( length <= 0 ) return -1 ;
 	str[length] = '\0' ;
 	
-	// ‰üs•¶š‚ªŠÜ‚Ü‚ê‚Ä‚¢‚È‚©‚Á‚½‚ç‰½‚à‚¹‚¸I—¹
+	// æ”¹è¡Œæ–‡å­—ãŒå«ã¾ã‚Œã¦ã„ãªã‹ã£ãŸã‚‰ä½•ã‚‚ã›ãšçµ‚äº†
 	p = _STRCHR( str, '\n' ) ;
 	if( p == NULL ) return -1 ;
 	
-	// ŠÜ‚Ü‚ê‚Ä‚¢‚½‚ç‚»‚±‚Ü‚Å‚Ì•¶š—ñ‚ğ•Ô‚·
+	// å«ã¾ã‚Œã¦ã„ãŸã‚‰ãã“ã¾ã§ã®æ–‡å­—åˆ—ã‚’è¿”ã™
 	*p = '\0' ;
 	_STRCPY( strbuffer, str ) ;
 	
-	// æ“¾‚µ‚½•ª‚¾‚¯ƒoƒbƒtƒ@‚©‚çƒf[ƒ^‚ğÁ‚·
+	// å–å¾—ã—ãŸåˆ†ã ã‘ãƒãƒƒãƒ•ã‚¡ã‹ã‚‰ãƒ‡ãƒ¼ã‚¿ã‚’æ¶ˆã™
 	NS_NetWorkRecv( NetHandle, str, ( p - str ) + 1 ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ‚t‚q‚k‚ğ‰ğÍ‚·‚é
+// ï¼µï¼²ï¼¬ã‚’è§£æã™ã‚‹
 extern int NS_URLAnalys( const char *URL, char *HostBuf, char *PathBuf, char *FileNameBuf, int *PortBuf )
 {
 	char tempHost[128], tempPath[128], tempFileName[128] ;
@@ -5943,29 +5943,29 @@ extern int NS_URLAnalys( const char *URL, char *HostBuf, char *PathBuf, char *Fi
 	if( FileNameBuf == NULL ) FileNameBuf = tempFileName ;
 	if( PortBuf == NULL ) PortBuf = &tempPort ;
 	
-	// ƒvƒƒgƒRƒ‹–¼ˆÈ~‚Ì•”•ª‚ğæ“¾‚·‚é
-	// ‚È‚©‚Á‚½‚çƒGƒ‰[
+	// ãƒ—ãƒ­ãƒˆã‚³ãƒ«åä»¥é™ã®éƒ¨åˆ†ã‚’å–å¾—ã™ã‚‹
+	// ãªã‹ã£ãŸã‚‰ã‚¨ãƒ©ãƒ¼
 	hp = _STRSTR( ( char * )URL, "//" ) ;
 	if( hp == NULL ) return -1 ;
 	hp += 2 ;
 	
-	// ƒpƒX‚Ìæ“ª‚ğæ“¾‚·‚é
+	// ãƒ‘ã‚¹ã®å…ˆé ­ã‚’å–å¾—ã™ã‚‹
 	p = _STRCHR( hp, '/' ) ;
 	if( p == NULL )
 	{
-		// ƒpƒX‚ª‚È‚¢ê‡‚Ìˆ—
+		// ãƒ‘ã‚¹ãŒãªã„å ´åˆã®å‡¦ç†
 		_STRCPY( HostBuf, hp ) ;
 		_STRCPY( PathBuf, "/" ) ;
 	}
 	else
 	{
-		// ƒpƒX‚ª‚ ‚éê‡‚Ìˆ—
+		// ãƒ‘ã‚¹ãŒã‚ã‚‹å ´åˆã®å‡¦ç†
 		_MEMCPY( HostBuf, hp, p - hp ) ;
 		HostBuf[p - hp] = '\0' ;
 		_STRCPY( PathBuf, p ) ;
 	}
 	
-	// ƒ|[ƒg‚Ìæ“¾
+	// ãƒãƒ¼ãƒˆã®å–å¾—
 	pt = _STRCHR( HostBuf, ':' ) ;
 	if( pt == NULL )
 	{
@@ -5978,7 +5978,7 @@ extern int NS_URLAnalys( const char *URL, char *HostBuf, char *PathBuf, char *Fi
 		*pt = '\0' ;
 	}
 
-	// ƒtƒ@ƒCƒ‹–¼‚Ìæ“¾
+	// ãƒ•ã‚¡ã‚¤ãƒ«åã®å–å¾—
 	{
 		char *p ;
 
@@ -5993,12 +5993,12 @@ extern int NS_URLAnalys( const char *URL, char *HostBuf, char *PathBuf, char *Fi
 		}
 	}
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
 
-// HTTP ‚É“n‚¹‚È‚¢‹L†‚ªg‚í‚ê‚½•¶š—ñ‚ğ“n‚¹‚é‚æ‚¤‚È•¶š—ñ‚É•ÏŠ·‚·‚é
+// HTTP ã«æ¸¡ã›ãªã„è¨˜å·ãŒä½¿ã‚ã‚ŒãŸæ–‡å­—åˆ—ã‚’æ¸¡ã›ã‚‹ã‚ˆã†ãªæ–‡å­—åˆ—ã«å¤‰æ›ã™ã‚‹
 extern int NS_URLConvert( char *URL, int ParamConvert, int NonConvert )
 {
 	int len, count ;
@@ -6068,11 +6068,11 @@ extern int NS_URLConvert( char *URL, int ParamConvert, int NonConvert )
 		len -- ;
 	}
 	
-	// I—¹
+	// çµ‚äº†
 	return count ;
 }
 
-// HTTP —pƒpƒ‰ƒ[ƒ^ƒŠƒXƒg‚©‚çˆê‚Â‚Ìƒpƒ‰ƒ[ƒ^•¶š—ñ‚ğì¬‚·‚é( –ß‚è’l:  -1 = ƒGƒ‰[  0ˆÈã = ƒpƒ‰ƒ[ƒ^‚Ì•¶š—ñ‚Ì’·‚³ )
+// HTTP ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒªã‚¹ãƒˆã‹ã‚‰ä¸€ã¤ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ–‡å­—åˆ—ã‚’ä½œæˆã™ã‚‹( æˆ»ã‚Šå€¤:  -1 = ã‚¨ãƒ©ãƒ¼  0ä»¥ä¸Š = ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®æ–‡å­—åˆ—ã®é•·ã• )
 extern int NS_URLParamAnalysis( char **ParamList, char **ParamStringP )
 {
 	int i, len ;
@@ -6080,7 +6080,7 @@ extern int NS_URLParamAnalysis( char **ParamList, char **ParamStringP )
 
 	if( ParamList == NULL ) return -1 ;
 
-	// ‘S‚Ä‚Ìƒpƒ‰ƒ[ƒ^‚ğ•ÏŠ·‚µ‚½Œã‚Ì•¶š—ñ’·‚ğ“¾‚é
+	// å…¨ã¦ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’å¤‰æ›ã—ãŸå¾Œã®æ–‡å­—åˆ—é•·ã‚’å¾—ã‚‹
 	len = 0 ;
 	for( i = 0 ; ParamList[i] != NULL ; i ++ )
 	{
@@ -6091,19 +6091,19 @@ extern int NS_URLParamAnalysis( char **ParamList, char **ParamStringP )
 	}
 	len -- ;
 
-	// ƒpƒ‰ƒ[ƒ^‚ªˆê‚Â‚à‚È‚©‚Á‚½ê‡‚Ìˆ—
+	// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãŒä¸€ã¤ã‚‚ãªã‹ã£ãŸå ´åˆã®å‡¦ç†
 	if( len == 0 )
 	{
 		if( ParamStringP != NULL ) *ParamStringP = NULL ;
 		return 0 ;
 	}
 
-	// ƒƒ‚ƒŠ‚ÌŠm•Û
+	// ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿
 	ParamString = ( char * )DXALLOC( len + 1 ) ;
 	if( ParamString == NULL ) return -1 ;
 	_MEMSET( ParamString, 0, len + 1 ) ;
 
-	// ‘S‚Ä‚Ìƒpƒ‰ƒ[ƒ^‚ğ•ÏŠ·‚µ‚½•¶š—ñ‚ğ“¾‚é
+	// å…¨ã¦ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’å¤‰æ›ã—ãŸæ–‡å­—åˆ—ã‚’å¾—ã‚‹
 	p = ParamString ;
 	for( i = 0 ; ParamList[i] != NULL ; i ++ )
 	{
@@ -6116,15 +6116,15 @@ extern int NS_URLParamAnalysis( char **ParamList, char **ParamStringP )
 	p -- ;
 	*p = '\0' ;
 
-	// ƒ|ƒCƒ“ƒ^‚ğ•Û‘¶
+	// ãƒã‚¤ãƒ³ã‚¿ã‚’ä¿å­˜
 	if( ParamStringP != NULL ) *ParamStringP = ParamString ;
 
-	// I—¹
+	// çµ‚äº†
 	return len ;
 }
 
 
-// ƒTƒCƒY‚ÉŒ©‡‚Á‚½’PˆÊ‚Å•\‚µ‚½•¶š—ñ‚Æ‚»‚Ì’PˆÊ‚ğ•\‚·ˆê•¶š‚ğ•Ô‚·
+// ã‚µã‚¤ã‚ºã«è¦‹åˆã£ãŸå˜ä½ã§è¡¨ã—ãŸæ–‡å­—åˆ—ã¨ãã®å˜ä½ã‚’è¡¨ã™ä¸€æ–‡å­—ã‚’è¿”ã™
 static	char		GetDataSizeString( int ByteSize, char *SizeString )
 {
 	const int KByte = 1024, MByte = KByte * 1024, GByte = MByte * 1024 ;
@@ -6147,11 +6147,11 @@ static	char		GetDataSizeString( int ByteSize, char *SizeString )
 		return 'k' ;
 	}
 
-	// Ÿˆ‚É—ˆ‚é‚±‚Æ‚Í–³‚¢	
+	// æ­¤å‡¦ã«æ¥ã‚‹ã“ã¨ã¯ç„¡ã„	
 	return 0 ;
 }
 
-// ƒ~ƒŠ•b‚ÌŠÔ’·‚©‚çŠÔ’·‚É‡‚Á‚½’PˆÊ‚Ì•¶š—ñ‚É•ÏŠ·‚·‚é
+// ãƒŸãƒªç§’ã®æ™‚é–“é•·ã‹ã‚‰æ™‚é–“é•·ã«åˆã£ãŸå˜ä½ã®æ–‡å­—åˆ—ã«å¤‰æ›ã™ã‚‹
 static	int			GetTimeLengthString( int MillSec, char *LengthString )
 {
 	int Sec = 1000, Min = Sec * 60, Hour = Min * 60, Day = Hour * 24 ;
@@ -6162,7 +6162,7 @@ static	int			GetTimeLengthString( int MillSec, char *LengthString )
 	LengthString[0] = '\0' ;
 	if( MillSec >= Day )
 	{
-		_SPRINTF( LengthString, "%d\x93\xfa "/*@ "%d“ú " @*/, MillSec / Day ) ;
+		_SPRINTF( LengthString, "%d\x93\xfa "/*@ "%dæ—¥ " @*/, MillSec / Day ) ;
 		MillSec %= Day ;
 		LengthString += WinAPIData.Win32Func.lstrlenAFunc( LengthString ) ;
 		
@@ -6171,7 +6171,7 @@ static	int			GetTimeLengthString( int MillSec, char *LengthString )
 
 	if( MillSec >= Hour )
 	{
-		_SPRINTF( LengthString, "%d\x8e\x9e\x8a\xd4 "/*@ "%dŠÔ " @*/, MillSec / Hour ) ;
+		_SPRINTF( LengthString, "%d\x8e\x9e\x8a\xd4 "/*@ "%dæ™‚é–“ " @*/, MillSec / Hour ) ;
 		MillSec %= Hour ;
 		LengthString += WinAPIData.Win32Func.lstrlenAFunc( LengthString ) ;
 		
@@ -6180,7 +6180,7 @@ static	int			GetTimeLengthString( int MillSec, char *LengthString )
 
 	if( MillSec >= Min && DayFlag == FALSE )
 	{
-		_SPRINTF( LengthString, "%d\x95\xaa "/*@ "%d•ª " @*/, MillSec / Min ) ;
+		_SPRINTF( LengthString, "%d\x95\xaa "/*@ "%dåˆ† " @*/, MillSec / Min ) ;
 		MillSec %= Hour ;
 		LengthString += WinAPIData.Win32Func.lstrlenAFunc( LengthString ) ;
 		
@@ -6189,12 +6189,12 @@ static	int			GetTimeLengthString( int MillSec, char *LengthString )
 
 	if( DayFlag == FALSE && HourFlag == FALSE )
 	{
-		_SPRINTF( LengthString, "%d\x95\x62"/*@ "%d•b" @*/, MillSec / Sec ) ;
+		_SPRINTF( LengthString, "%d\x95\x62"/*@ "%dç§’" @*/, MillSec / Sec ) ;
 		MillSec %= Sec ;
 		LengthString += WinAPIData.Win32Func.lstrlenAFunc( LengthString ) ;
 	}
 	
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 

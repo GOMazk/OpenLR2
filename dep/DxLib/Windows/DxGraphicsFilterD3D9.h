@@ -1,6 +1,6 @@
 // -------------------------------------------------------------------------------
 // 
-// 		‚c‚wƒ‰ƒCƒuƒ‰ƒŠ		GraphFilterŒnƒvƒƒOƒ‰ƒ€( Direct3D9 )ƒwƒbƒ_ƒtƒ@ƒCƒ‹
+// 		ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒª		GraphFilterç³»ãƒ—ãƒ­ã‚°ãƒ©ãƒ ( Direct3D9 )ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«
 // 
 // 				Ver 3.25a
 // 
@@ -15,7 +15,7 @@
 
 #ifndef DX_NON_DIRECT3D9
 
-// ƒCƒ“ƒNƒ‹[ƒh ------------------------------------------------------------------
+// ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ ------------------------------------------------------------------
 #include "../DxLib.h"
 #include "../DxGraphicsFilter.h"
 #include "../DxArchive_.h"
@@ -30,12 +30,12 @@ namespace DxLib
 
 #endif // DX_NON_NAMESPACE
 
-// ƒ}ƒNƒ’è‹` --------------------------------------------------------------------
+// ãƒã‚¯ãƒ­å®šç¾© --------------------------------------------------------------------
 
 
-// \‘¢‘Ì’è‹` --------------------------------------------------------------------
+// æ§‹é€ ä½“å®šç¾© --------------------------------------------------------------------
 
-// ƒtƒBƒ‹ƒ^[ŠÖ”—p‚Ìƒ‰ƒCƒuƒ‰ƒŠ‚Ìİ’èî•ñ‚ğˆê“I‚É‘Ş”ğ‚·‚é‚½‚ß‚Ég‚¤\‘¢‘Ì
+// ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼é–¢æ•°ç”¨ã®ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®è¨­å®šæƒ…å ±ã‚’ä¸€æ™‚çš„ã«é€€é¿ã™ã‚‹ãŸã‚ã«ä½¿ã†æ§‹é€ ä½“
 struct GRAPHFILTER_DRAWPARAMTEMP_DIRECT3D9
 {
 	D_IDirect3DSurface9 *	TargetSurface[ DX_RENDERTARGET_COUNT ] ;
@@ -50,21 +50,21 @@ struct GRAPHFILTER_DRAWPARAMTEMP_DIRECT3D9
 	int						LightEnable ;
 } ;
 
-// ƒtƒBƒ‹ƒ^[ˆ——p‚Ìî•ñ\‘¢‘Ì
+// ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼å‡¦ç†ç”¨ã®æƒ…å ±æ§‹é€ ä½“
 struct GRAPHFILTER_SYSTEMIFNO_DIRET3D9
 {
-	int									WorkDrawValidGrHandle[ 2 ][ 2 ][ 18 ][ 18 ][ 2 ] ;	// ƒtƒBƒ‹ƒ^[ˆ—ì‹Æ—p•`‰æ‰Â”\ƒeƒNƒXƒ`ƒƒ[ 0:®”ƒeƒNƒXƒ`ƒƒ 1:•‚“®¬”“_ƒeƒNƒXƒ`ƒƒ ][ ƒ`ƒƒƒ“ƒlƒ‹ƒrƒbƒg[“x  0:16bit  1:32bit ][ ‚Q‚Ì‚æ ][ ì‹Æ—p‚Q–‡ ]
+	int									WorkDrawValidGrHandle[ 2 ][ 2 ][ 18 ][ 18 ][ 2 ] ;	// ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼å‡¦ç†ä½œæ¥­ç”¨æç”»å¯èƒ½ãƒ†ã‚¯ã‚¹ãƒãƒ£[ 0:æ•´æ•°ãƒ†ã‚¯ã‚¹ãƒãƒ£ 1:æµ®å‹•å°æ•°ç‚¹ãƒ†ã‚¯ã‚¹ãƒãƒ£ ][ ãƒãƒ£ãƒ³ãƒãƒ«ãƒ“ãƒƒãƒˆæ·±åº¦  0:16bit  1:32bit ][ ï¼’ã®ï½ä¹— ][ ä½œæ¥­ç”¨ï¼’æš ]
 	GRAPHFILTER_DRAWPARAMTEMP_DIRECT3D9	DrawParamTemp ;
 } ;
 
 
-// “à•”‘åˆæ•Ï”éŒ¾ --------------------------------------------------------------
+// å†…éƒ¨å¤§åŸŸå¤‰æ•°å®£è¨€ --------------------------------------------------------------
 
 extern GRAPHFILTER_SYSTEMIFNO_DIRET3D9 GraphFilterSystemInfoD3D9 ;
 
-// ŠÖ”ƒvƒƒgƒ^ƒCƒvéŒ¾-----------------------------------------------------------
+// é–¢æ•°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€-----------------------------------------------------------
 
-// ŠÂ‹«ˆË‘¶ŠÖŒW
+// ç’°å¢ƒä¾å­˜é–¢ä¿‚
 extern int	GraphFilter_D3D9_Mono_PF(            GRAPHFILTER_INFO *Info, float Cb, float Cr ) ;
 extern int	GraphFilter_D3D9_Gauss_PF(           GRAPHFILTER_INFO *Info, int PixelWidth, float Param, float *Table ) ;
 extern int	GraphFilter_D3D9_Down_Scale_PF(      GRAPHFILTER_INFO *Info, int DivNum ) ;
@@ -84,9 +84,9 @@ extern int	GraphFilter_D3D9_Lanczos3Scale_PF(   GRAPHFILTER_INFO *Info, int Dest
 extern int	GraphFilter_D3D9_SSAO_PF(            GRAPHFILTER_INFO *Info, int DepthMapGrHandle, float KernelRadius, float MinDistance, float MaxDistance, float Strength, int OcclusionColor, float OcclusionPower, int ColorMapGrHandle ) ;
 extern int	GraphFilter_D3D9_FloatColorScale_PF( GRAPHFILTER_INFO *Info, COLOR_F ColorScale, COLOR_F ColorPreSub ) ;
 
-//extern int	GraphFilter_D3D9_RectBltBase_PF( int IsBlend, int SrcGrHandle, int BlendGrHandle, int DestGrHandle, int BlendRatio, int FilterOrBlendType, int SrcX1, int SrcY1, int SrcX2, int SrcY2, int BlendX, int BlendY, int BlendPosEnable, int DestX, int DestY, va_list ParamList ) ;			// ‰æ‘œ‚ÌƒtƒBƒ‹ƒ^[•t‚«“]‘—‚ğs‚¤( ‰Â•Ïˆø”î•ñ•t‚« )
+//extern int	GraphFilter_D3D9_RectBltBase_PF( int IsBlend, int SrcGrHandle, int BlendGrHandle, int DestGrHandle, int BlendRatio, int FilterOrBlendType, int SrcX1, int SrcY1, int SrcX2, int SrcY2, int BlendX, int BlendY, int BlendPosEnable, int DestX, int DestY, va_list ParamList ) ;			// ç”»åƒã®ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ä»˜ãè»¢é€ã‚’è¡Œã†( å¯å¤‰å¼•æ•°æƒ…å ±ä»˜ã )
 //extern int	GraphFilter_D3D9_RectBltBase_Timing0_PF( int SrcGrHandle, int DestGrHandle, int BlendGrHandle, int IsBlend, IMAGEDATA *TargetScreenImage ) ;
-//extern int	GraphFilter_D3D9_RectBltBase_PF(     GRAPHFILTER_INFO *Info, GRAPHFILTER_PARAM *Param ) ;			// ‰æ‘œ‚ÌƒtƒBƒ‹ƒ^[•t‚«“]‘—‚ğs‚¤( ‰Â•Ïˆø”î•ñ•t‚« )
+//extern int	GraphFilter_D3D9_RectBltBase_PF(     GRAPHFILTER_INFO *Info, GRAPHFILTER_PARAM *Param ) ;			// ç”»åƒã®ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ä»˜ãè»¢é€ã‚’è¡Œã†( å¯å¤‰å¼•æ•°æƒ…å ±ä»˜ã )
 
 extern int	GraphFilter_D3D9_RectBltBase_Timing0_PF( GRAPHFILTER_INFO *Info, GRAPHFILTER_PARAM *Param ) ;
 extern int	GraphFilter_D3D9_RectBltBase_Timing1_PF( void ) ;

@@ -1,6 +1,6 @@
 // -------------------------------------------------------------------------------
 // 
-// 		‚c‚wƒ‰ƒCƒuƒ‰ƒŠ		Android—p“ü—Íî•ñƒvƒƒOƒ‰ƒ€ƒwƒbƒ_ƒtƒ@ƒCƒ‹
+// 		ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒª		Androidç”¨å…¥åŠ›æƒ…å ±ãƒ—ãƒ­ã‚°ãƒ©ãƒ ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«
 // 
 // 				Ver 3.25a
 // 
@@ -13,7 +13,7 @@
 
 #ifndef DX_NON_INPUT
 
-// ƒCƒ“ƒNƒ‹[ƒh ------------------------------------------------------------------
+// ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ ------------------------------------------------------------------
 #include "../DxLib.h"
 #include <Android/input.h>
 
@@ -24,14 +24,14 @@ namespace DxLib
 
 #endif // DX_NON_NAMESPACE
 
-// ƒ}ƒNƒ’è‹` --------------------------------------------------------------------
+// ãƒã‚¯ãƒ­å®šç¾© --------------------------------------------------------------------
 
 #define ANDR_INPUT_LOG_NUM					(64)
 #define ANDR_DEVICE_MAX_NUM					(64)
 #define ANDR_POINTER_MAX_NUM				(256)
 #define ANDR_KEYCODE_MAX					(320)
 
-// “ü—Íƒ\[ƒX
+// å…¥åŠ›ã‚½ãƒ¼ã‚¹
 #define ANDR_INPUT_SOURCE_UNKNOWN			(0)
 #define ANDR_INPUT_SOURCE_KEYBOARD			(1)
 #define ANDR_INPUT_SOURCE_DPAD				(2)
@@ -45,21 +45,21 @@ namespace DxLib
 #define ANDR_INPUT_SOURCE_JOYSTICK			(10)
 #define ANDR_INPUT_SOURCE_NUM				(11)
 
-// \‘¢‘Ì’è‹` --------------------------------------------------------------------
+// æ§‹é€ ä½“å®šç¾© --------------------------------------------------------------------
 
-// U“®‚ÌŠÂ‹«ˆË‘¶î•ñ
+// æŒ¯å‹•ã®ç’°å¢ƒä¾å­˜æƒ…å ±
 struct INPUTVIBRATIONDATA_PF
 {
 	int						Dummy ;
 } ;
 
-// ƒQ[ƒ€ƒpƒbƒh‚ÌŠÂ‹«ˆË‘¶î•ñ
+// ã‚²ãƒ¼ãƒ ãƒ‘ãƒƒãƒ‰ã®ç’°å¢ƒä¾å­˜æƒ…å ±
 struct INPUTPADDATA_PF
 {
 	int						Dummy ;
 } ;
 
-// ˆê‚Â‚Ì“ü—ÍƒfƒoƒCƒX‚Ì“ü—Íî•ñ
+// ä¸€ã¤ã®å…¥åŠ›ãƒ‡ãƒã‚¤ã‚¹ã®å…¥åŠ›æƒ…å ±
 struct INPUT_ANDROID_DEVICE_INFO
 {
 	int32_t					Source ;
@@ -92,7 +92,7 @@ struct INPUT_ANDROID_DEVICE_INFO
 	float					Distance ;
 } ;
 
-// “ü—ÍƒVƒXƒeƒ€—pŠÂ‹«ˆË‘¶ƒf[ƒ^\‘¢‘ÌŒ^
+// å…¥åŠ›ã‚·ã‚¹ãƒ†ãƒ ç”¨ç’°å¢ƒä¾å­˜ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“å‹
 struct INPUTSYSTEMDATA_PF
 {
 	LONGLONG					UpdateCount ;
@@ -100,21 +100,21 @@ struct INPUTSYSTEMDATA_PF
 	INPUT_ANDROID_DEVICE_INFO	InputInfo[ ANDR_DEVICE_MAX_NUM ] ;
 	int							SourceNum[ ANDR_INPUT_SOURCE_NUM ] ;
 	int							SourceNoToInputInfoTable[ ANDR_INPUT_SOURCE_NUM ][ ANDR_DEVICE_MAX_NUM ] ;
-	int							GamePadSourceNum ;											// ƒQ[ƒ€ƒpƒbƒh‚Ì”
-	int							GamePadSourceNoToInputInfoTable[ ANDR_DEVICE_MAX_NUM ] ;	// ƒQ[ƒ€ƒpƒbƒh‚Ìƒiƒ“ƒo[‚Æ InputInfoTable ‚Ì‘Î‰ƒe[ƒuƒ‹ 
+	int							GamePadSourceNum ;											// ã‚²ãƒ¼ãƒ ãƒ‘ãƒƒãƒ‰ã®æ•°
+	int							GamePadSourceNoToInputInfoTable[ ANDR_DEVICE_MAX_NUM ] ;	// ã‚²ãƒ¼ãƒ ãƒ‘ãƒƒãƒ‰ã®ãƒŠãƒ³ãƒãƒ¼ã¨ InputInfoTable ã®å¯¾å¿œãƒ†ãƒ¼ãƒ–ãƒ« 
 	TOUCHINPUTDATA				TouchInputData ;
-	float						MouseX ;													// ƒ}ƒEƒXƒJ[ƒ\ƒ‹‚ÌXÀ•W
-	float						MouseY ;													// ƒ}ƒEƒXƒJ[ƒ\ƒ‹‚ÌYÀ•W
+	float						MouseX ;													// ãƒã‚¦ã‚¹ã‚«ãƒ¼ã‚½ãƒ«ã®Xåº§æ¨™
+	float						MouseY ;													// ãƒã‚¦ã‚¹ã‚«ãƒ¼ã‚½ãƒ«ã®Yåº§æ¨™
 } ;
 
-// “à•”‘åˆæ•Ï”éŒ¾ --------------------------------------------------------------
+// å†…éƒ¨å¤§åŸŸå¤‰æ•°å®£è¨€ --------------------------------------------------------------
 
-// ŠÖ”ƒvƒƒgƒ^ƒCƒvéŒ¾-----------------------------------------------------------
+// é–¢æ•°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€-----------------------------------------------------------
 
-extern	int GetAndroidDeviceIdToInputInfoNo( int32_t Source, int32_t DeviceId ) ;	// ƒfƒoƒCƒX‚h‚c‚©‚ç’l‚ğ‘ã“ü‚·‚×‚«“ü—Íî•ñ”Ô†‚ğæ“¾‚·‚é
-extern	int RefreshAndroidSourceNoToInputInfoTable( int32_t Source ) ;				// “ü—Íƒ\[ƒX”Ô†‚Æ“ü—Íî•ñ‚Æ‚Ì‘Î‰ƒe[ƒuƒ‹‚ğXV‚·‚é
-extern	int RefreshAndroidGamePadSourceNoToInputInfoTable( void ) ;					// ƒQ[ƒ€ƒpƒbƒh‚Ì”Ô†‚Æ“ü—Íî•ñ‚Æ‚Ì‘Î‰ƒe[ƒuƒ‹‚ğXV‚·‚é
-extern	int32_t ProcessInputEvent( AInputEvent* event ) ;							// “ü—ÍƒCƒxƒ“ƒg‚ğˆ—‚·‚é
+extern	int GetAndroidDeviceIdToInputInfoNo( int32_t Source, int32_t DeviceId ) ;	// ãƒ‡ãƒã‚¤ã‚¹ï¼©ï¼¤ã‹ã‚‰å€¤ã‚’ä»£å…¥ã™ã¹ãå…¥åŠ›æƒ…å ±ç•ªå·ã‚’å–å¾—ã™ã‚‹
+extern	int RefreshAndroidSourceNoToInputInfoTable( int32_t Source ) ;				// å…¥åŠ›ã‚½ãƒ¼ã‚¹ç•ªå·ã¨å…¥åŠ›æƒ…å ±ã¨ã®å¯¾å¿œãƒ†ãƒ¼ãƒ–ãƒ«ã‚’æ›´æ–°ã™ã‚‹
+extern	int RefreshAndroidGamePadSourceNoToInputInfoTable( void ) ;					// ã‚²ãƒ¼ãƒ ãƒ‘ãƒƒãƒ‰ã®ç•ªå·ã¨å…¥åŠ›æƒ…å ±ã¨ã®å¯¾å¿œãƒ†ãƒ¼ãƒ–ãƒ«ã‚’æ›´æ–°ã™ã‚‹
+extern	int32_t ProcessInputEvent( AInputEvent* event ) ;							// å…¥åŠ›ã‚¤ãƒ™ãƒ³ãƒˆã‚’å‡¦ç†ã™ã‚‹
 
 #ifndef DX_NON_NAMESPACE
 

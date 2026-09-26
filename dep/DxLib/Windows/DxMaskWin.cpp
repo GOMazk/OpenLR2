@@ -1,12 +1,12 @@
 //-----------------------------------------------------------------------------
 // 
-// 		‚c‚wƒ‰ƒCƒuƒ‰ƒŠ		WindowsOS—pƒ}ƒXƒNƒf[ƒ^ŠÇ—ƒvƒƒOƒ‰ƒ€
+// 		ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒª		WindowsOSç”¨ãƒã‚¹ã‚¯ãƒ‡ãƒ¼ã‚¿ç®¡ç†ãƒ—ãƒ­ã‚°ãƒ©ãƒ 
 // 
 //  	Ver 3.25a
 // 
 //-----------------------------------------------------------------------------
 
-// ‚c‚wƒ‰ƒCƒuƒ‰ƒŠì¬—p’è‹`
+// ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªä½œæˆæ™‚ç”¨å®šç¾©
 #define DX_MAKE
 
 #include "../DxCompileConfig.h"
@@ -15,7 +15,7 @@
 
 #ifndef DX_NON_MASK
 
-// ƒCƒ“ƒNƒ‹[ƒh ---------------------------------------------------------------
+// ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ ---------------------------------------------------------------
 #include "DxGraphicsWin.h"
 #include "DxMaskWin.h"
 #include "DxMaskD3D9.h"
@@ -28,19 +28,19 @@ namespace DxLib
 
 #endif // DX_NON_NAMESPACE
 
-// ƒ}ƒNƒ’è‹` -----------------------------------------------------------------
+// ãƒã‚¯ãƒ­å®šç¾© -----------------------------------------------------------------
 
-// \‘¢‘ÌéŒ¾ -----------------------------------------------------------------
+// æ§‹é€ ä½“å®£è¨€ -----------------------------------------------------------------
 
-// ƒf[ƒ^’è‹` -----------------------------------------------------------------
+// ãƒ‡ãƒ¼ã‚¿å®šç¾© -----------------------------------------------------------------
 
-// ŠÖ”éŒ¾ -------------------------------------------------------------------
+// é–¢æ•°å®£è¨€ -------------------------------------------------------------------
 
-// ƒvƒƒOƒ‰ƒ€ -----------------------------------------------------------------
+// ãƒ—ãƒ­ã‚°ãƒ©ãƒ  -----------------------------------------------------------------
 
-// ŠÂ‹«ˆË‘¶ŠÖ”
+// ç’°å¢ƒä¾å­˜é–¢æ•°
 
-// ƒ}ƒXƒNƒXƒNƒŠ[ƒ“‚ğì¬‚·‚éŠÖ”
+// ãƒã‚¹ã‚¯ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚’ä½œæˆã™ã‚‹é–¢æ•°
 extern	int			Mask_CreateScreenFunction_Timing0_PF( void )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -60,7 +60,7 @@ extern	int			Mask_CreateScreenFunction_Timing0_PF( void )
 	}
 }
 
-// ƒ}ƒXƒNƒXƒNƒŠ[ƒ“‚ğì¬‚·‚éŠÖ”
+// ãƒã‚¹ã‚¯ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚’ä½œæˆã™ã‚‹é–¢æ•°
 extern	int			Mask_CreateScreenFunction_Timing1_PF( int Width, int Height )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -80,7 +80,7 @@ extern	int			Mask_CreateScreenFunction_Timing1_PF( int Width, int Height )
 	}
 }
 
-// ƒ}ƒXƒNƒXƒNƒŠ[ƒ“‚ğì¬‚·‚éŠÖ”
+// ãƒã‚¹ã‚¯ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚’ä½œæˆã™ã‚‹é–¢æ•°
 extern	int			Mask_CreateScreenFunction_Timing2_PF( int MaskBufferSizeXOld, int MaskBufferSizeYOld )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -100,7 +100,7 @@ extern	int			Mask_CreateScreenFunction_Timing2_PF( int MaskBufferSizeXOld, int M
 	}
 }
 
-// ƒ}ƒXƒNƒXƒNƒŠ[ƒ“‚ğˆêíœ‚·‚é
+// ãƒã‚¹ã‚¯ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚’ä¸€æ™‚å‰Šé™¤ã™ã‚‹
 extern	int			Mask_ReleaseSurface_PF( void )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -120,7 +120,7 @@ extern	int			Mask_ReleaseSurface_PF( void )
 	}
 }
 
-// ƒ}ƒXƒNg—pƒ‚[ƒh‚ğ•ÏX
+// ãƒã‚¹ã‚¯ä½¿ç”¨ãƒ¢ãƒ¼ãƒ‰ã‚’å¤‰æ›´
 extern	int			Mask_SetUseMaskScreenFlag_PF( void )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -140,7 +140,7 @@ extern	int			Mask_SetUseMaskScreenFlag_PF( void )
 	}
 }
 
-// ƒ}ƒXƒN‚ğg—p‚µ‚½•`‰æ‚Ì‘O‚ÉŒÄ‚ÔŠÖ”( ‚Â‚¢‚Å‚ÉƒTƒuƒoƒbƒtƒ@‚ğg—p‚µ‚½•`‰æƒGƒŠƒA‹@”\‚ğg—p‚µ‚Ä‚¢‚éê‡‚Ìˆ—‚à‚¢‚ê‚Ä‚µ‚Ü‚Á‚Ä‚¢‚é‚æ )
+// ãƒã‚¹ã‚¯ã‚’ä½¿ç”¨ã—ãŸæç”»ã®å‰ã«å‘¼ã¶é–¢æ•°( ã¤ã„ã§ã«ã‚µãƒ–ãƒãƒƒãƒ•ã‚¡ã‚’ä½¿ç”¨ã—ãŸæç”»ã‚¨ãƒªã‚¢æ©Ÿèƒ½ã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹å ´åˆã®å‡¦ç†ã‚‚ã„ã‚Œã¦ã—ã¾ã£ã¦ã„ã‚‹ã‚ˆ )
 extern	int			Mask_DrawBeginFunction_PF( RECT *Rect )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -160,7 +160,7 @@ extern	int			Mask_DrawBeginFunction_PF( RECT *Rect )
 	}
 }
 
-// ƒ}ƒXƒN‚ğg—p‚µ‚½•`‰æ‚ÌŒã‚ÉŒÄ‚ÔŠÖ”( ‚Â‚¢‚Å‚ÉƒTƒuƒoƒbƒtƒ@‚ğg—p‚µ‚½•`‰æƒGƒŠƒA‹@”\‚ğg—p‚µ‚Ä‚¢‚éê‡‚Ìˆ—‚à‚¢‚ê‚Ä‚µ‚Ü‚Á‚Ä‚¢‚é‚æ )
+// ãƒã‚¹ã‚¯ã‚’ä½¿ç”¨ã—ãŸæç”»ã®å¾Œã«å‘¼ã¶é–¢æ•°( ã¤ã„ã§ã«ã‚µãƒ–ãƒãƒƒãƒ•ã‚¡ã‚’ä½¿ç”¨ã—ãŸæç”»ã‚¨ãƒªã‚¢æ©Ÿèƒ½ã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹å ´åˆã®å‡¦ç†ã‚‚ã„ã‚Œã¦ã—ã¾ã£ã¦ã„ã‚‹ã‚ˆ )
 extern	int			Mask_DrawAfterFunction_PF( RECT *Rect )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -180,7 +180,7 @@ extern	int			Mask_DrawAfterFunction_PF( RECT *Rect )
 	}
 }
 
-// ƒ}ƒXƒNƒXƒNƒŠ[ƒ“‚ğw’è‚ÌF‚Å“h‚è‚Â‚Ô‚·
+// ãƒã‚¹ã‚¯ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚’æŒ‡å®šã®è‰²ã§å¡—ã‚Šã¤ã¶ã™
 extern	int			Mask_FillMaskScreen_PF( int Flag )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -200,7 +200,7 @@ extern	int			Mask_FillMaskScreen_PF( int Flag )
 	}
 }
 
-// w’è—Ìˆæ‚Ìƒ}ƒXƒNƒCƒ[ƒWƒeƒNƒXƒ`ƒƒ‚ğXV‚·‚é
+// æŒ‡å®šé ˜åŸŸã®ãƒã‚¹ã‚¯ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’æ›´æ–°ã™ã‚‹
 extern	int			Mask_UpdateMaskImageTexture_PF( RECT *Rect )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )

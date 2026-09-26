@@ -1,6 +1,6 @@
 // -------------------------------------------------------------------------------
 // 
-// 		‚c‚wƒ‰ƒCƒuƒ‰ƒŠ		Direct3D11 ƒVƒF[ƒ_[‹¤’Ê’è‹`ƒR[ƒh
+// 		ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒª		Direct3D11 ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼å…±é€šå®šç¾©ã‚³ãƒ¼ãƒ‰
 // 
 // 				Ver 3.25a
 // 
@@ -9,75 +9,75 @@
 #ifndef DX_SHADER_COMMON_D3D11_H
 #define DX_SHADER_COMMON_D3D11_H
 
-// ƒ}ƒNƒ’è‹` -----------------------------------
+// ãƒžã‚¯ãƒ­å®šç¾© -----------------------------------
 
-#define DX_D3D11_COMMON_CONST_LIGHT_NUM			(6)		// ‹¤’Êƒpƒ‰ƒ[ƒ^‚Ìƒ‰ƒCƒg‚ÌÅ‘å”
+#define DX_D3D11_COMMON_CONST_LIGHT_NUM			(6)		// å…±é€šãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®ãƒ©ã‚¤ãƒˆã®æœ€å¤§æ•°
 
-// \‘¢‘Ì’è‹` --------------------------------------------------------------------
+// æ§‹é€ ä½“å®šç¾© --------------------------------------------------------------------
 
-// ƒ}ƒeƒŠƒAƒ‹ƒpƒ‰ƒ[ƒ^
+// ãƒžãƒ†ãƒªã‚¢ãƒ«ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 struct DX_D3D11_CONST_MATERIAL
 {
-	DX_D3D11_SHADER_FLOAT4		Diffuse ;				// ƒfƒBƒtƒ…[ƒYƒJƒ‰[
-	DX_D3D11_SHADER_FLOAT4		Specular ;				// ƒXƒyƒLƒ…ƒ‰ƒJƒ‰[
-	DX_D3D11_SHADER_FLOAT4		Ambient_Emissive ;		// ƒ}ƒeƒŠƒAƒ‹ƒGƒ~ƒbƒVƒuƒJƒ‰[ + ƒ}ƒeƒŠƒAƒ‹ƒAƒ“ƒrƒGƒ“ƒgƒJƒ‰[ * ƒOƒ[ƒoƒ‹ƒAƒ“ƒrƒGƒ“ƒgƒJƒ‰[
+	DX_D3D11_SHADER_FLOAT4		Diffuse ;				// ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚«ãƒ©ãƒ¼
+	DX_D3D11_SHADER_FLOAT4		Specular ;				// ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã‚«ãƒ©ãƒ¼
+	DX_D3D11_SHADER_FLOAT4		Ambient_Emissive ;		// ãƒžãƒ†ãƒªã‚¢ãƒ«ã‚¨ãƒŸãƒƒã‚·ãƒ–ã‚«ãƒ©ãƒ¼ + ãƒžãƒ†ãƒªã‚¢ãƒ«ã‚¢ãƒ³ãƒ“ã‚¨ãƒ³ãƒˆã‚«ãƒ©ãƒ¼ * ã‚°ãƒ­ãƒ¼ãƒãƒ«ã‚¢ãƒ³ãƒ“ã‚¨ãƒ³ãƒˆã‚«ãƒ©ãƒ¼
 
-	DX_D3D11_SHADER_FLOAT		Power ;					// ƒXƒyƒLƒ…ƒ‰‚Ì‹­‚³
-	DX_D3D11_SHADER_FLOAT		TypeParam0 ;			// ƒ}ƒeƒŠƒAƒ‹ƒ^ƒCƒvƒpƒ‰ƒ[ƒ^0
-	DX_D3D11_SHADER_FLOAT		TypeParam1 ;			// ƒ}ƒeƒŠƒAƒ‹ƒ^ƒCƒvƒpƒ‰ƒ[ƒ^1
-	DX_D3D11_SHADER_FLOAT		TypeParam2 ;			// ƒ}ƒeƒŠƒAƒ‹ƒ^ƒCƒvƒpƒ‰ƒ[ƒ^2
+	DX_D3D11_SHADER_FLOAT		Power ;					// ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã®å¼·ã•
+	DX_D3D11_SHADER_FLOAT		TypeParam0 ;			// ãƒžãƒ†ãƒªã‚¢ãƒ«ã‚¿ã‚¤ãƒ—ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿0
+	DX_D3D11_SHADER_FLOAT		TypeParam1 ;			// ãƒžãƒ†ãƒªã‚¢ãƒ«ã‚¿ã‚¤ãƒ—ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿1
+	DX_D3D11_SHADER_FLOAT		TypeParam2 ;			// ãƒžãƒ†ãƒªã‚¢ãƒ«ã‚¿ã‚¤ãƒ—ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿2
 } ;
 
-// ƒtƒHƒOƒpƒ‰ƒ[ƒ^
+// ãƒ•ã‚©ã‚°ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 struct DX_D3D11_VS_CONST_FOG
 {
-	DX_D3D11_SHADER_INT			Mode ;					// ƒtƒHƒOƒ‚[ƒh( DX_FOGMODE_LINEAR ‚È‚Ç )
-	DX_D3D11_SHADER_INT3		Padding1 ;				// ƒpƒfƒBƒ“ƒO‚P
+	DX_D3D11_SHADER_INT			Mode ;					// ãƒ•ã‚©ã‚°ãƒ¢ãƒ¼ãƒ‰( DX_FOGMODE_LINEAR ãªã© )
+	DX_D3D11_SHADER_INT3		Padding1 ;				// ãƒ‘ãƒ‡ã‚£ãƒ³ã‚°ï¼‘
 
-	DX_D3D11_SHADER_FLOAT		LinearAdd ;				// ƒtƒHƒO—pƒpƒ‰ƒ[ƒ^ end / ( end - start )
-	DX_D3D11_SHADER_FLOAT		LinearDiv ;				// ƒtƒHƒO—pƒpƒ‰ƒ[ƒ^ -1  / ( end - start )
-	DX_D3D11_SHADER_FLOAT		Density ;				// ƒtƒHƒO—pƒpƒ‰ƒ[ƒ^ density
-	DX_D3D11_SHADER_FLOAT		DensityStart ;			// ƒtƒHƒO—pƒpƒ‰ƒ[ƒ^ density start
+	DX_D3D11_SHADER_FLOAT		LinearAdd ;				// ãƒ•ã‚©ã‚°ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ end / ( end - start )
+	DX_D3D11_SHADER_FLOAT		LinearDiv ;				// ãƒ•ã‚©ã‚°ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ -1  / ( end - start )
+	DX_D3D11_SHADER_FLOAT		Density ;				// ãƒ•ã‚©ã‚°ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ density
+	DX_D3D11_SHADER_FLOAT		DensityStart ;			// ãƒ•ã‚©ã‚°ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ density start
 
-	DX_D3D11_SHADER_FLOAT		E ;						// ƒtƒHƒO—pƒpƒ‰ƒ[ƒ^ Ž©‘R‘Î”‚Ì’á
-	DX_D3D11_SHADER_FLOAT3		Padding2 ;				// ƒpƒfƒBƒ“ƒO‚Q
+	DX_D3D11_SHADER_FLOAT		E ;						// ãƒ•ã‚©ã‚°ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ è‡ªç„¶å¯¾æ•°ã®ä½Ž
+	DX_D3D11_SHADER_FLOAT3		Padding2 ;				// ãƒ‘ãƒ‡ã‚£ãƒ³ã‚°ï¼’
 
-	DX_D3D11_SHADER_FLOAT4		Color ;					// ƒJƒ‰[
+	DX_D3D11_SHADER_FLOAT4		Color ;					// ã‚«ãƒ©ãƒ¼
 } ;
 
-// ƒ‰ƒCƒgƒpƒ‰ƒ[ƒ^
+// ãƒ©ã‚¤ãƒˆãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 struct DX_D3D11_CONST_LIGHT
 {
-	DX_D3D11_SHADER_INT			Type ;					// ƒ‰ƒCƒgƒ^ƒCƒv( DX_LIGHTTYPE_POINT ‚È‚Ç )
-	DX_D3D11_SHADER_INT3		Padding1 ;				// ƒpƒfƒBƒ“ƒO‚P
+	DX_D3D11_SHADER_INT			Type ;					// ãƒ©ã‚¤ãƒˆã‚¿ã‚¤ãƒ—( DX_LIGHTTYPE_POINT ãªã© )
+	DX_D3D11_SHADER_INT3		Padding1 ;				// ãƒ‘ãƒ‡ã‚£ãƒ³ã‚°ï¼‘
 
-	DX_D3D11_SHADER_FLOAT3		Position ;				// À•W( ƒrƒ…[‹óŠÔ )
-	DX_D3D11_SHADER_FLOAT		RangePow2 ;				// —LŒø‹——£‚Ì‚Qæ
+	DX_D3D11_SHADER_FLOAT3		Position ;				// åº§æ¨™( ãƒ“ãƒ¥ãƒ¼ç©ºé–“ )
+	DX_D3D11_SHADER_FLOAT		RangePow2 ;				// æœ‰åŠ¹è·é›¢ã®ï¼’ä¹—
 
-	DX_D3D11_SHADER_FLOAT3		Direction ;				// •ûŒü( ƒrƒ…[‹óŠÔ )
-	DX_D3D11_SHADER_FLOAT		FallOff ;				// ƒXƒ|ƒbƒgƒ‰ƒCƒg—pFallOff
+	DX_D3D11_SHADER_FLOAT3		Direction ;				// æ–¹å‘( ãƒ“ãƒ¥ãƒ¼ç©ºé–“ )
+	DX_D3D11_SHADER_FLOAT		FallOff ;				// ã‚¹ãƒãƒƒãƒˆãƒ©ã‚¤ãƒˆç”¨FallOff
 
-	DX_D3D11_SHADER_FLOAT3		Diffuse ;				// ƒfƒBƒtƒ…[ƒYƒJƒ‰[
-	DX_D3D11_SHADER_FLOAT		SpotParam0 ;			// ƒXƒ|ƒbƒgƒ‰ƒCƒg—pƒpƒ‰ƒ[ƒ^‚O( cos( Phi / 2.0f ) )
+	DX_D3D11_SHADER_FLOAT3		Diffuse ;				// ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚«ãƒ©ãƒ¼
+	DX_D3D11_SHADER_FLOAT		SpotParam0 ;			// ã‚¹ãƒãƒƒãƒˆãƒ©ã‚¤ãƒˆç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ï¼( cos( Phi / 2.0f ) )
 
-	DX_D3D11_SHADER_FLOAT3		Specular ;				// ƒXƒyƒLƒ…ƒ‰ƒJƒ‰[
-	DX_D3D11_SHADER_FLOAT		SpotParam1 ;			// ƒXƒ|ƒbƒgƒ‰ƒCƒg—pƒpƒ‰ƒ[ƒ^‚P( 1.0f / ( cos( Theta / 2.0f ) - cos( Phi / 2.0f ) ) )
+	DX_D3D11_SHADER_FLOAT3		Specular ;				// ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã‚«ãƒ©ãƒ¼
+	DX_D3D11_SHADER_FLOAT		SpotParam1 ;			// ã‚¹ãƒãƒƒãƒˆãƒ©ã‚¤ãƒˆç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ï¼‘( 1.0f / ( cos( Theta / 2.0f ) - cos( Phi / 2.0f ) ) )
 
-	DX_D3D11_SHADER_FLOAT4		Ambient ;				// ƒAƒ“ƒrƒGƒ“ƒgƒJƒ‰[‚Æƒ}ƒeƒŠƒAƒ‹‚ÌƒAƒ“ƒrƒGƒ“ƒgƒJƒ‰[‚ðæŽZ‚µ‚½‚à‚Ì
+	DX_D3D11_SHADER_FLOAT4		Ambient ;				// ã‚¢ãƒ³ãƒ“ã‚¨ãƒ³ãƒˆã‚«ãƒ©ãƒ¼ã¨ãƒžãƒ†ãƒªã‚¢ãƒ«ã®ã‚¢ãƒ³ãƒ“ã‚¨ãƒ³ãƒˆã‚«ãƒ©ãƒ¼ã‚’ä¹—ç®—ã—ãŸã‚‚ã®
 
-	DX_D3D11_SHADER_FLOAT		Attenuation0 ;			// ‹——£‚É‚æ‚éŒ¸Šˆ——pƒpƒ‰ƒ[ƒ^‚O
-	DX_D3D11_SHADER_FLOAT		Attenuation1 ;			// ‹——£‚É‚æ‚éŒ¸Šˆ——pƒpƒ‰ƒ[ƒ^‚P
-	DX_D3D11_SHADER_FLOAT		Attenuation2 ;			// ‹——£‚É‚æ‚éŒ¸Šˆ——pƒpƒ‰ƒ[ƒ^‚Q
-	DX_D3D11_SHADER_FLOAT		Padding2 ;				// ƒpƒfƒBƒ“ƒO‚Q
+	DX_D3D11_SHADER_FLOAT		Attenuation0 ;			// è·é›¢ã«ã‚ˆã‚‹æ¸›è¡°å‡¦ç†ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ï¼
+	DX_D3D11_SHADER_FLOAT		Attenuation1 ;			// è·é›¢ã«ã‚ˆã‚‹æ¸›è¡°å‡¦ç†ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ï¼‘
+	DX_D3D11_SHADER_FLOAT		Attenuation2 ;			// è·é›¢ã«ã‚ˆã‚‹æ¸›è¡°å‡¦ç†ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ï¼’
+	DX_D3D11_SHADER_FLOAT		Padding2 ;				// ãƒ‘ãƒ‡ã‚£ãƒ³ã‚°ï¼’
 } ;
 
-// ƒsƒNƒZƒ‹ƒVƒF[ƒ_[E’¸“_ƒVƒF[ƒ_[‹¤’Êƒpƒ‰ƒ[ƒ^
+// ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒ»é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼å…±é€šãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 struct DX_D3D11_CONST_BUFFER_COMMON
 {
-	DX_D3D11_CONST_LIGHT		Light[ DX_D3D11_COMMON_CONST_LIGHT_NUM ] ;			// ƒ‰ƒCƒgƒpƒ‰ƒ[ƒ^
-	DX_D3D11_CONST_MATERIAL		Material ;				// ƒ}ƒeƒŠƒAƒ‹ƒpƒ‰ƒ[ƒ^
-	DX_D3D11_VS_CONST_FOG		Fog ;					// ƒtƒHƒOƒpƒ‰ƒ[ƒ^
-	DX_D3D11_VS_CONST_FOG		VerticalFog ;			// ‚‚³ƒtƒHƒOƒpƒ‰ƒ[ƒ^
+	DX_D3D11_CONST_LIGHT		Light[ DX_D3D11_COMMON_CONST_LIGHT_NUM ] ;			// ãƒ©ã‚¤ãƒˆãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+	DX_D3D11_CONST_MATERIAL		Material ;				// ãƒžãƒ†ãƒªã‚¢ãƒ«ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+	DX_D3D11_VS_CONST_FOG		Fog ;					// ãƒ•ã‚©ã‚°ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+	DX_D3D11_VS_CONST_FOG		VerticalFog ;			// é«˜ã•ãƒ•ã‚©ã‚°ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 } ;
 
 #endif // DXSHADER_COMMON_D3D11

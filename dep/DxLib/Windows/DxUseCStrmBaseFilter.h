@@ -1,6 +1,6 @@
 // -------------------------------------------------------------------------------
 // 
-// 		‚c‚wƒ‰ƒCƒuƒ‰ƒŠ		•W€‚bƒ‰ƒCƒuƒ‰ƒŠg—pƒR[ƒh		DirectShow BaseClasses
+// 		ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒª		æ¨™æº–ï¼£ãƒ©ã‚¤ãƒ–ãƒ©ãƒªä½¿ç”¨ã‚³ãƒ¼ãƒ‰		DirectShow BaseClasses
 // 
 // 				Ver 3.25a
 //
@@ -8,7 +8,7 @@
 // 
 // -------------------------------------------------------------------------------
 
-// ‘½dƒCƒ“ƒNƒ‹[ƒh–h~—pƒ}ƒNƒ
+// å¤šé‡ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰é˜²æ­¢ç”¨ãƒã‚¯ãƒ­
 #ifndef DX_USECSTRMBASEFILTER_H
 #define DX_USECSTRMBASEFILTER_H
 
@@ -19,7 +19,7 @@
 #include "DxDirectX.h"
 #include "DxWinAPI.h"
 
-// ‚c‚‰‚’‚…‚ƒ‚”‚r‚ˆ‚‚— -------------------------------------------------------
+// ï¼¤ï½‰ï½’ï½…ï½ƒï½”ï¼³ï½ˆï½ï½— -------------------------------------------------------
 
 #ifndef DX_NON_MOVIE
 #ifndef DX_NON_DSHOW_MOVIE
@@ -2595,18 +2595,18 @@ private:
 	LONGLONG					SeekRequestPoint ;
 } ;
 
-// Media Foundation ƒf[ƒ^•ÏŠ·—p\‘¢‘Ì
+// Media Foundation ãƒ‡ãƒ¼ã‚¿å¤‰æ›ç”¨æ§‹é€ ä½“
 typedef struct tagSOUNDCONV_MF
 {
-	D_IMFSourceReader			*pReader ;						// ƒ\[ƒXƒŠ[ƒ_[
-	D_IMFMediaType				*pMediaTypeAudioStream ;		// •ÏŠ·‘O‚ÌƒI[ƒfƒBƒIƒXƒgƒŠ[ƒ€ƒƒfƒBƒA‘®«
-	D_IMFMediaType				*pMediaTypeOutputAudioStream ;	// •ÏŠ·Œã‚ÌƒI[ƒfƒBƒIƒXƒgƒŠ[ƒ€ƒƒfƒBƒA‘®«
-	D_SoundConvertMFByteStream	*pByteStream ;					// ƒoƒCƒgƒXƒgƒŠ[ƒ€
-	LONGLONG					Duration ;						// ’·‚³
-	DWORD						SampleBufferBytes ;				// “Ç‚İ‚ñ‚¾ƒTƒ“ƒvƒ‹‚ğ•Û‘¶‚µ‚Ä‚¢‚éƒoƒbƒtƒ@‚ÌƒTƒCƒY
-	void						*pSampleBuffer ;				// “Ç‚İ‚ñ‚¾ƒTƒ“ƒvƒ‹‚ğ•Û‘¶‚µ‚Ä‚¢‚éƒoƒbƒtƒ@
-	DWORD						OutSampleBufferBytes ;			// o—ÍÏ‚İ‚ÌƒTƒCƒY
-	DWORD						UseSampleBufferBytes ;			// Àƒf[ƒ^‚ªŠi”[‚³‚ê‚Ä‚¢‚éƒTƒCƒY
+	D_IMFSourceReader			*pReader ;						// ã‚½ãƒ¼ã‚¹ãƒªãƒ¼ãƒ€ãƒ¼
+	D_IMFMediaType				*pMediaTypeAudioStream ;		// å¤‰æ›å‰ã®ã‚ªãƒ¼ãƒ‡ã‚£ã‚ªã‚¹ãƒˆãƒªãƒ¼ãƒ ãƒ¡ãƒ‡ã‚£ã‚¢å±æ€§
+	D_IMFMediaType				*pMediaTypeOutputAudioStream ;	// å¤‰æ›å¾Œã®ã‚ªãƒ¼ãƒ‡ã‚£ã‚ªã‚¹ãƒˆãƒªãƒ¼ãƒ ãƒ¡ãƒ‡ã‚£ã‚¢å±æ€§
+	D_SoundConvertMFByteStream	*pByteStream ;					// ãƒã‚¤ãƒˆã‚¹ãƒˆãƒªãƒ¼ãƒ 
+	LONGLONG					Duration ;						// é•·ã•
+	DWORD						SampleBufferBytes ;				// èª­ã¿è¾¼ã‚“ã ã‚µãƒ³ãƒ—ãƒ«ã‚’ä¿å­˜ã—ã¦ã„ã‚‹ãƒãƒƒãƒ•ã‚¡ã®ã‚µã‚¤ã‚º
+	void						*pSampleBuffer ;				// èª­ã¿è¾¼ã‚“ã ã‚µãƒ³ãƒ—ãƒ«ã‚’ä¿å­˜ã—ã¦ã„ã‚‹ãƒãƒƒãƒ•ã‚¡
+	DWORD						OutSampleBufferBytes ;			// å‡ºåŠ›æ¸ˆã¿ã®ã‚µã‚¤ã‚º
+	DWORD						UseSampleBufferBytes ;			// å®Ÿãƒ‡ãƒ¼ã‚¿ãŒæ ¼ç´ã•ã‚Œã¦ã„ã‚‹ã‚µã‚¤ã‚º
 } SOUNDCONV_MF ;
 
 #ifndef DX_NON_NAMESPACE

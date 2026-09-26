@@ -1,19 +1,19 @@
 //-----------------------------------------------------------------------------
 // 
-// 		‚c‚wƒ‰ƒCƒuƒ‰ƒŠ		Windows—pƒtƒHƒ“ƒgŠÖŒWƒvƒƒOƒ‰ƒ€
+// 		ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒª		Windowsç”¨ãƒ•ã‚©ãƒ³ãƒˆé–¢ä¿‚ãƒ—ãƒ­ã‚°ãƒ©ãƒ 
 // 
 //  	Ver 3.25a
 // 
 //-----------------------------------------------------------------------------
 
-// ‚c‚wƒ‰ƒCƒuƒ‰ƒŠì¬—p’è‹`
+// ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªä½œæˆæ™‚ç”¨å®šç¾©
 #define DX_MAKE
 
 #include "../DxCompileConfig.h"
 
 #ifndef DX_NON_FONT
 
-// ƒCƒ“ƒNƒ‹[ƒh ---------------------------------------------------------------
+// ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ ---------------------------------------------------------------
 #include "DxFontWin.h"
 #include "DxWindow.h"
 #include "DxBaseFuncWin.h"
@@ -40,13 +40,13 @@ namespace DxLib
 
 #endif // DX_NON_NAMESPACE
 
-// ƒ}ƒNƒ’è‹` -----------------------------------------------------------------
+// ãƒã‚¯ãƒ­å®šç¾© -----------------------------------------------------------------
 
-// \‘¢‘ÌéŒ¾ -----------------------------------------------------------------
+// æ§‹é€ ä½“å®£è¨€ -----------------------------------------------------------------
 
-// ƒf[ƒ^’è‹` -----------------------------------------------------------------
+// ãƒ‡ãƒ¼ã‚¿å®šç¾© -----------------------------------------------------------------
 
-// ƒLƒƒƒ‰ƒZƒbƒgƒe[ƒuƒ‹
+// ã‚­ãƒ£ãƒ©ã‚»ãƒƒãƒˆãƒ†ãƒ¼ãƒ–ãƒ«
 DWORD CharSetTable[ DX_CHARSET_NUM ] =
 {
 	DEFAULT_CHARSET,		// DX_CHARSET_DEFAULT
@@ -59,30 +59,30 @@ DWORD CharSetTable[ DX_CHARSET_NUM ] =
 	DEFAULT_CHARSET,		// DX_CHARSET_UTF8
 } ;
 
-const unsigned char Japanese1[ 7 ] = { 0x93, 0xfa, 0x96, 0x7b, 0x8c, 0xea, 0x00 } ;		// “ú–{Œê
-const unsigned char Japanese2[ 5 ] = { 0xa4, 0xe9, 0xa4, 0xe5, 0x00 } ;					// “ú•¶
+const unsigned char Japanese1[ 7 ] = { 0x93, 0xfa, 0x96, 0x7b, 0x8c, 0xea, 0x00 } ;		// æ—¥æœ¬èª
+const unsigned char Japanese2[ 5 ] = { 0xa4, 0xe9, 0xa4, 0xe5, 0x00 } ;					// æ—¥æ–‡
 
 FONTSYSTEM_WIN FontSystem_Win ;
 
-// ŠÖ”éŒ¾ -------------------------------------------------------------------
+// é–¢æ•°å®£è¨€ -------------------------------------------------------------------
 
-// ƒvƒƒOƒ‰ƒ€ -----------------------------------------------------------------
+// ãƒ—ãƒ­ã‚°ãƒ©ãƒ  -----------------------------------------------------------------
 
-// InitFontManage ‚ÌŠÂ‹«ˆË‘¶ˆ—‚ğs‚¤ŠÖ”
+// InitFontManage ã®ç’°å¢ƒä¾å­˜å‡¦ç†ã‚’è¡Œã†é–¢æ•°
 extern int InitFontManage_PF( void )
 {
-	// “Á‚É‰½‚à‚µ‚È‚¢
+	// ç‰¹ã«ä½•ã‚‚ã—ãªã„
 	return 0 ;
 }
 
-// TermFontManage ‚ÌŠÂ‹«ˆË‘¶ˆ—‚ğs‚¤ŠÖ”
+// TermFontManage ã®ç’°å¢ƒä¾å­˜å‡¦ç†ã‚’è¡Œã†é–¢æ•°
 extern int TermFontManage_PF( void )
 {
-	// “Á‚É‰½‚à‚µ‚È‚¢
+	// ç‰¹ã«ä½•ã‚‚ã—ãªã„
 	return 0 ;
 }
 
-// CreateFontToHandle ‚ÌŠÂ‹«ˆË‘¶ˆ—‚ğs‚¤ŠÖ”
+// CreateFontToHandle ã®ç’°å¢ƒä¾å­˜å‡¦ç†ã‚’è¡Œã†é–¢æ•°
 extern int CreateFontToHandle_PF( CREATEFONTTOHANDLE_GPARAM *GParam, FONTMANAGE *ManageData, int DefaultCharSet )
 {
 	int CreateFontSize ;
@@ -101,7 +101,7 @@ extern int CreateFontToHandle_PF( CREATEFONTTOHANDLE_GPARAM *GParam, FONTMANAGE 
 		return -1 ;
 	}
 
-	// ƒtƒHƒ“ƒgƒf[ƒ^ƒtƒ@ƒCƒ‹‚ğg—p‚·‚éê‡‚Í‰½‚à‚¹‚¸‚ÉI—¹
+	// ãƒ•ã‚©ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ä½¿ç”¨ã™ã‚‹å ´åˆã¯ä½•ã‚‚ã›ãšã«çµ‚äº†
 	if( ManageData->UseFontDataFile )
 	{
 		return 0 ;
@@ -135,7 +135,7 @@ extern int CreateFontToHandle_PF( CREATEFONTTOHANDLE_GPARAM *GParam, FONTMANAGE 
 
 CREATEFONTLABEL:
 
-	// Šù‚ÉƒtƒHƒ“ƒg‚ªì¬‚³‚ê‚Ä‚¢‚½‚çíœ
+	// æ—¢ã«ãƒ•ã‚©ãƒ³ãƒˆãŒä½œæˆã•ã‚Œã¦ã„ãŸã‚‰å‰Šé™¤
 	if( ManageData->PF->FontObj != NULL )
 	{
 		WinAPIData.Win32Func.DeleteObjectFunc( ManageData->PF->FontObj ) ;
@@ -143,7 +143,7 @@ CREATEFONTLABEL:
 
 	if( ManageData->FontName[0] != L'\0' )
 	{
-		// “Á‚É•¶šƒZƒbƒg‚Ìw’è‚ª–³‚¢ê‡‚ÅAŠ‚Âw’è‚ÌƒtƒHƒ“ƒg–¼‚Ìw’è‚Ì•¶šƒZƒbƒg‚ª–³‚¢ê‡‚Í•¶šƒZƒbƒg‚ğ DEFAULT_CHARSET ‚É‚·‚é
+		// ç‰¹ã«æ–‡å­—ã‚»ãƒƒãƒˆã®æŒ‡å®šãŒç„¡ã„å ´åˆã§ã€ä¸”ã¤æŒ‡å®šã®ãƒ•ã‚©ãƒ³ãƒˆåã®æŒ‡å®šã®æ–‡å­—ã‚»ãƒƒãƒˆãŒç„¡ã„å ´åˆã¯æ–‡å­—ã‚»ãƒƒãƒˆã‚’ DEFAULT_CHARSET ã«ã™ã‚‹
 		if( DefaultCharSet == TRUE )
 		{
 			wchar_t	TempNameBuffer[ 16 ][ 64 ] ;
@@ -216,7 +216,7 @@ CREATEFONTLABEL:
 
 				if( ManageData->PF->FontObj == NULL )
 				{
-					DXST_LOGFILE_ADDUTF16LE( "\x07\x63\x9a\x5b\x6e\x30\xd5\x30\xa9\x30\xf3\x30\xc8\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"w’è‚ÌƒtƒHƒ“ƒg‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+					DXST_LOGFILE_ADDUTF16LE( "\x07\x63\x9a\x5b\x6e\x30\xd5\x30\xa9\x30\xf3\x30\xc8\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"æŒ‡å®šã®ãƒ•ã‚©ãƒ³ãƒˆã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 					goto ERR ;
 				}
 			}
@@ -231,7 +231,7 @@ CREATEFONTLABEL:
 			CharSetTable[ ManageData->BaseInfo.CharSet ],
 			OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS,
 			NONANTIALIASED_QUALITY, FIXED_PITCH,
-			( wchar_t * )"\x2d\xff\x33\xff\x20\x00\xb4\x30\xb7\x30\xc3\x30\xaf\x30\x00"/*@ L"‚l‚r ƒSƒVƒbƒN" @*/
+			( wchar_t * )"\x2d\xff\x33\xff\x20\x00\xb4\x30\xb7\x30\xc3\x30\xaf\x30\x00"/*@ L"ï¼­ï¼³ ã‚´ã‚·ãƒƒã‚¯" @*/
 		) ;
 		ManageData->FontName[ 0 ] = L'\0' ;
 	}
@@ -245,7 +245,7 @@ CREATEFONTLABEL:
 			DEFAULT_CHARSET,
 			OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS,
 			NONANTIALIASED_QUALITY, FIXED_PITCH,
-			( wchar_t * )"\x2d\xff\x33\xff\x20\x00\xb4\x30\xb7\x30\xc3\x30\xaf\x30\x00"/*@ L"‚l‚r ƒSƒVƒbƒN" @*/
+			( wchar_t * )"\x2d\xff\x33\xff\x20\x00\xb4\x30\xb7\x30\xc3\x30\xaf\x30\x00"/*@ L"ï¼­ï¼³ ã‚´ã‚·ãƒƒã‚¯" @*/
 		) ;
 
 		if( ManageData->PF->FontObj == NULL )
@@ -264,12 +264,12 @@ CREATEFONTLABEL:
 
 		if( ManageData->PF->FontObj == NULL )
 		{
-			DXST_LOGFILE_ADDUTF16LE( "\xd5\x30\xa9\x30\xf3\x30\xc8\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ƒtƒHƒ“ƒg‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+			DXST_LOGFILE_ADDUTF16LE( "\xd5\x30\xa9\x30\xf3\x30\xc8\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ãƒ•ã‚©ãƒ³ãƒˆã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 			goto ERR ;
 		}
 	}
 
-	// ì¬‚µ‚½ƒtƒHƒ“ƒg‚ÌƒtƒHƒ“ƒg–¼‚ğæ“¾‚·‚é
+	// ä½œæˆã—ãŸãƒ•ã‚©ãƒ³ãƒˆã®ãƒ•ã‚©ãƒ³ãƒˆåã‚’å–å¾—ã™ã‚‹
 	{
 		if( WinAPIData.EnableWideCharaFunction )
 		{
@@ -285,28 +285,28 @@ CREATEFONTLABEL:
 		}
 	}
 
-	// •¶š‚ÌƒTƒCƒY‚ğæ“¾‚·‚é
+	// æ–‡å­—ã®ã‚µã‚¤ã‚ºã‚’å–å¾—ã™ã‚‹
 	{
 		TEXTMETRICW	TextInfo ;
 
-		// ƒfƒoƒCƒXƒRƒ“ƒeƒLƒXƒg‚ğæ“¾
+		// ãƒ‡ãƒã‚¤ã‚¹ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã‚’å–å¾—
 		DC = WinAPIData.Win32Func.CreateCompatibleDCFunc( NULL ) ;
 		if( DC == NULL )
 		{
-			DXST_LOGFILE_ADDUTF16LE( "\xc7\x30\xd0\x30\xa4\x30\xb9\x30\xb3\x30\xf3\x30\xc6\x30\xad\x30\xb9\x30\xc8\x30\x6e\x30\xd6\x53\x97\x5f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ƒfƒoƒCƒXƒRƒ“ƒeƒLƒXƒg‚Ìæ“¾‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+			DXST_LOGFILE_ADDUTF16LE( "\xc7\x30\xd0\x30\xa4\x30\xb9\x30\xb3\x30\xf3\x30\xc6\x30\xad\x30\xb9\x30\xc8\x30\x6e\x30\xd6\x53\x97\x5f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ãƒ‡ãƒã‚¤ã‚¹ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã®å–å¾—ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 			goto ERR ;
 		}
 
-		// ƒtƒHƒ“ƒg‚ÌƒZƒbƒg
+		// ãƒ•ã‚©ãƒ³ãƒˆã®ã‚»ãƒƒãƒˆ
 		OldFont = ( HFONT )WinAPIData.Win32Func.SelectObjectFunc( DC, ManageData->PF->FontObj ) ;
 
-		// ƒtƒHƒ“ƒg‚ÌƒXƒe[ƒ^ƒX‚ğæ“¾
+		// ãƒ•ã‚©ãƒ³ãƒˆã®ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚’å–å¾—
 		GetTextMetricsWFunc( DC, &TextInfo ) ;
 
-		// ‚à‚µ TextInfo.tmInternalLeading + TextInfo.tmExternalLeading ‚ª 0 ‚Å‚Í‚È‚©‚Á‚½‚ç‚»‚Ì‚‚³‚ğ’Ç‰Á‚µ‚ÄƒtƒHƒ“ƒg‚ğì¬‚µ‚È‚¨‚·
+		// ã‚‚ã— TextInfo.tmInternalLeading + TextInfo.tmExternalLeading ãŒ 0 ã§ã¯ãªã‹ã£ãŸã‚‰ãã®é«˜ã•ã‚’è¿½åŠ ã—ã¦ãƒ•ã‚©ãƒ³ãƒˆã‚’ä½œæˆã—ãªãŠã™
 		if( EnableAddHeight == FALSE )
 		{
-			// •â³‚ğs‚í‚È‚¢ƒtƒ‰ƒO‚ª—§‚Á‚Ä‚¢‚½‚ç•â³‚Í•K‚¸s‚í‚È‚¢
+			// è£œæ­£ã‚’è¡Œã‚ãªã„ãƒ•ãƒ©ã‚°ãŒç«‹ã£ã¦ã„ãŸã‚‰è£œæ­£ã¯å¿…ãšè¡Œã‚ãªã„
 			if( GParam->DisableAdjustFontSize == FALSE && TextInfo.tmInternalLeading + TextInfo.tmExternalLeading > 0 )
 			{
 				OrigHeight		= TextInfo.tmHeight ;
@@ -329,10 +329,10 @@ CREATEFONTLABEL:
 			ManageData->BaseInfo.FontAddHeight = ( WORD )( ( TextInfo.tmHeight - OrigHeight ) / SampleScale ) ;
 		}
 
-		// ƒtƒHƒ“ƒg‚ÌÅ‘åƒTƒCƒY‚ğæ“¾
+		// ãƒ•ã‚©ãƒ³ãƒˆã®æœ€å¤§ã‚µã‚¤ã‚ºã‚’å–å¾—
 		if( ManageData->BaseInfo.Italic )
 		{
-			// ƒCƒ^ƒŠƒbƒN‘Ì‚Ìê‡‚ÍÅ‘å•‚ª 1.35”{‚É‚È‚é
+			// ã‚¤ã‚¿ãƒªãƒƒã‚¯ä½“ã®å ´åˆã¯æœ€å¤§å¹…ãŒ 1.35å€ã«ãªã‚‹
 			ManageData->BaseInfo.MaxWidth = ( WORD )( ( TextInfo.tmMaxCharWidth * 135 / SampleScale + 4 * 135 ) / 100 ) ;
 		}
 		else
@@ -340,17 +340,17 @@ CREATEFONTLABEL:
 			ManageData->BaseInfo.MaxWidth = ( WORD )( TextInfo.tmMaxCharWidth / SampleScale + 4 ) ;
 		}
 
-		// ƒtƒHƒ“ƒg‚Ì‚‚³‚ğ•Û‘¶
+		// ãƒ•ã‚©ãƒ³ãƒˆã®é«˜ã•ã‚’ä¿å­˜
 		ManageData->BaseInfo.FontHeight = ( WORD )( TextInfo.tmHeight / SampleScale + 1 ) ;
 
-		// ƒx[ƒXƒ‰ƒCƒ“‚©‚çˆê”Ôã‚Ü‚Å‚Ì‚‚³‚ğ•Û‘¶
+		// ãƒ™ãƒ¼ã‚¹ãƒ©ã‚¤ãƒ³ã‹ã‚‰ä¸€ç•ªä¸Šã¾ã§ã®é«˜ã•ã‚’ä¿å­˜
 		ManageData->BaseInfo.Ascent = ( WORD )( TextInfo.tmAscent / SampleScale ) ;
 		if( TextInfo.tmAscent % SampleScale >= SampleScale / 2 )
 		{
 			ManageData->BaseInfo.Ascent ++ ;
 		}
 
-		// GetGlyphOutline ‚ªg—p‚Å‚«‚é‚©‚Ç‚¤‚©‚ğ’²‚×‚é
+		// GetGlyphOutline ãŒä½¿ç”¨ã§ãã‚‹ã‹ã©ã†ã‹ã‚’èª¿ã¹ã‚‹
 		{
 			GLYPHMETRICS	gm ;
 			MAT2			mt = { { 0, 1 }, { 0, 0 }, { 0, 0 }, { 0, 1 } } ;
@@ -361,17 +361,17 @@ CREATEFONTLABEL:
 			Code		= L' ' ;
 			DataSize	= GetGlyphOutlineWFunc( DC, Code, GGO_BITMAP, &gm, 0, NULL, &mt ) ;
 
-			// ¸”s‚µ‚½ê‡‚Í TextOut •û®‚ğg—p‚·‚é
+			// å¤±æ•—ã—ãŸå ´åˆã¯ TextOut æ–¹å¼ã‚’ä½¿ç”¨ã™ã‚‹
 			if( DataSize == GDI_ERROR )
 			{
 				ManageData->PF->UseTextOut = TRUE ;
 
-				// g—p‚·‚éƒeƒNƒXƒ`ƒƒƒLƒƒƒbƒVƒ…‚Í 16bit ŒÅ’è
+				// ä½¿ç”¨ã™ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã¯ 16bit å›ºå®š
 				ManageData->TextureCacheColorBitDepth = 16 ;
 			}
 		}
 
-		// ƒtƒHƒ“ƒg‚ª‚Á‚Ä‚¢‚é•¶š‚Ì”ÍˆÍ‚ğæ“¾‚·‚é
+		// ãƒ•ã‚©ãƒ³ãƒˆãŒæŒã£ã¦ã„ã‚‹æ–‡å­—ã®ç¯„å›²ã‚’å–å¾—ã™ã‚‹
 		ManageData->PF->Glyphset = NULL ;
 		if( WinAPIData.Win32Func.GetFontUnicodeRangesFunc != NULL )
 		{
@@ -383,7 +383,7 @@ CREATEFONTLABEL:
 				ManageData->PF->Glyphset = ( D_LPGLYPHSET )DXALLOC( DataSize ) ;
 				if( ManageData->PF->Glyphset == NULL )
 				{
-					DXST_LOGFILE_ADDUTF16LE( "\xd5\x30\xa9\x30\xf3\x30\xc8\x30\x4c\x30\x01\x63\x64\x30\x87\x65\x57\x5b\x6e\x30\xc5\x60\x31\x58\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"ƒtƒHƒ“ƒg‚ª‚Â•¶š‚Ìî•ñ‚ğŠi”[‚·‚éƒƒ‚ƒŠ‚ÌŠm•Û‚É¸”s‚µ‚Ü‚µ‚½" @*/ ) ;
+					DXST_LOGFILE_ADDUTF16LE( "\xd5\x30\xa9\x30\xf3\x30\xc8\x30\x4c\x30\x01\x63\x64\x30\x87\x65\x57\x5b\x6e\x30\xc5\x60\x31\x58\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"ãƒ•ã‚©ãƒ³ãƒˆãŒæŒã¤æ–‡å­—ã®æƒ…å ±ã‚’æ ¼ç´ã™ã‚‹ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿ã«å¤±æ•—ã—ã¾ã—ãŸ" @*/ ) ;
 					goto ERR ;
 				}
 
@@ -391,7 +391,7 @@ CREATEFONTLABEL:
 			}
 		}
 
-		// ƒJ[ƒjƒ“ƒOƒyƒAî•ñ‚ğæ“¾‚·‚é
+		// ã‚«ãƒ¼ãƒ‹ãƒ³ã‚°ãƒšã‚¢æƒ…å ±ã‚’å–å¾—ã™ã‚‹
 		ManageData->BaseInfo.KerningPairNum = 0 ;
 		if( WinAPIData.Win32Func.GetKerningPairsFunc != NULL )
 		{
@@ -403,20 +403,20 @@ CREATEFONTLABEL:
 				KerningPair = ( KERNINGPAIR * )DXALLOC( sizeof( KERNINGPAIR ) * ManageData->BaseInfo.KerningPairNum ) ;
 				if( KerningPair == NULL )
 				{
-					DXST_LOGFILE_ADDUTF16LE( "\xab\x30\xfc\x30\xcb\x30\xf3\x30\xb0\x30\xda\x30\xa2\x30\xc5\x60\x31\x58\x92\x30\x00\x4e\x42\x66\x84\x76\x6b\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x20\x00\x69\x00\x6e\x00\x20\x00\x43\x00\x46\x00\x6f\x00\x6e\x00\x74\x00\x00"/*@ L"ƒJ[ƒjƒ“ƒOƒyƒAî•ñ‚ğˆê“I‚ÉŠi”[‚·‚éƒƒ‚ƒŠ‚ÌŠm•Û‚É¸”s‚µ‚Ü‚µ‚½ in CFont" @*/ ) ;
+					DXST_LOGFILE_ADDUTF16LE( "\xab\x30\xfc\x30\xcb\x30\xf3\x30\xb0\x30\xda\x30\xa2\x30\xc5\x60\x31\x58\x92\x30\x00\x4e\x42\x66\x84\x76\x6b\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x20\x00\x69\x00\x6e\x00\x20\x00\x43\x00\x46\x00\x6f\x00\x6e\x00\x74\x00\x00"/*@ L"ã‚«ãƒ¼ãƒ‹ãƒ³ã‚°ãƒšã‚¢æƒ…å ±ã‚’ä¸€æ™‚çš„ã«æ ¼ç´ã™ã‚‹ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿ã«å¤±æ•—ã—ã¾ã—ãŸ in CFont" @*/ ) ;
 					goto ERR ;
 				}
 				ManageData->KerningPairData = ( FONTDATAFILEKERNINGPAIRDATA * )DXALLOC( sizeof( FONTDATAFILEKERNINGPAIRDATA ) * ManageData->BaseInfo.KerningPairNum ) ;
 				if( ManageData->KerningPairData == NULL )
 				{
-					DXST_LOGFILE_ADDUTF16LE( "\xab\x30\xfc\x30\xcb\x30\xf3\x30\xb0\x30\xda\x30\xa2\x30\xc5\x60\x31\x58\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x20\x00\x69\x00\x6e\x00\x20\x00\x43\x00\x46\x00\x6f\x00\x6e\x00\x74\x00\x00"/*@ L"ƒJ[ƒjƒ“ƒOƒyƒAî•ñ‚ğŠi”[‚·‚éƒƒ‚ƒŠ‚ÌŠm•Û‚É¸”s‚µ‚Ü‚µ‚½ in CFont" @*/ ) ;
+					DXST_LOGFILE_ADDUTF16LE( "\xab\x30\xfc\x30\xcb\x30\xf3\x30\xb0\x30\xda\x30\xa2\x30\xc5\x60\x31\x58\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x20\x00\x69\x00\x6e\x00\x20\x00\x43\x00\x46\x00\x6f\x00\x6e\x00\x74\x00\x00"/*@ L"ã‚«ãƒ¼ãƒ‹ãƒ³ã‚°ãƒšã‚¢æƒ…å ±ã‚’æ ¼ç´ã™ã‚‹ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿ã«å¤±æ•—ã—ã¾ã—ãŸ in CFont" @*/ ) ;
 					goto ERR ;
 				}
 				_MEMSET( ManageData->KerningPairData, 0, sizeof( FONTDATAFILEKERNINGPAIRDATA ) * ManageData->BaseInfo.KerningPairNum ) ;
 
 				WinAPIData.Win32Func.GetKerningPairsFunc( DC, ManageData->BaseInfo.KerningPairNum, KerningPair ) ;
 
-				// ƒJ[ƒjƒ“ƒOƒyƒAî•ñ‚ğƒ\[ƒg‚µ‚È‚ª‚ç•Û‘¶
+				// ã‚«ãƒ¼ãƒ‹ãƒ³ã‚°ãƒšã‚¢æƒ…å ±ã‚’ã‚½ãƒ¼ãƒˆã—ãªãŒã‚‰ä¿å­˜
 				for( i = 0 ; ( DWORD )i < ManageData->BaseInfo.KerningPairNum ; i ++ )
 				{
 					for( j = 0 ; j < i ; j ++ )
@@ -448,17 +448,17 @@ CREATEFONTLABEL:
 			}
 		}
 
-		// ƒtƒHƒ“ƒg‚ğŒ³‚É–ß‚·
+		// ãƒ•ã‚©ãƒ³ãƒˆã‚’å…ƒã«æˆ»ã™
 		WinAPIData.Win32Func.SelectObjectFunc( DC, OldFont ) ;
 
-		// ƒfƒoƒCƒXƒRƒ“ƒeƒLƒXƒg‚ğíœ‚·‚é
+		// ãƒ‡ãƒã‚¤ã‚¹ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã‚’å‰Šé™¤ã™ã‚‹
 		WinAPIData.Win32Func.DeleteDCFunc( DC ) ;
 	}
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 
-	// ƒGƒ‰[ˆ—
+	// ã‚¨ãƒ©ãƒ¼å‡¦ç†
 ERR :
 	if( KerningPair != NULL )
 	{
@@ -513,13 +513,13 @@ ERR :
 	return -1 ;
 }
 
-// SetupFontCache ‚ÌŠÂ‹«ˆË‘¶ˆ—‚ğs‚¤ŠÖ”
+// SetupFontCache ã®ç’°å¢ƒä¾å­˜å‡¦ç†ã‚’è¡Œã†é–¢æ•°
 extern int SetupFontCache_PF( CREATEFONTTOHANDLE_GPARAM * /* GParam */, FONTMANAGE *ManageData, int /* ASyncThread */ )
 {
 	HDC DC              = NULL ;
 	HFONT OldFont       = NULL ;
 
-	// TextOut •û®‚ğg—p‚·‚éê‡‚Í DIB ‚ğì¬‚µ‚Ä‚¨‚­
+	// TextOut æ–¹å¼ã‚’ä½¿ç”¨ã™ã‚‹å ´åˆã¯ DIB ã‚’ä½œæˆã—ã¦ãŠã
 	ManageData->PF->CacheBitmap			= NULL ;
 	ManageData->PF->CacheBitmapMem		= NULL ;
 	ManageData->PF->CacheBitmapMemPitch	= 0 ;
@@ -528,18 +528,18 @@ extern int SetupFontCache_PF( CREATEFONTTOHANDLE_GPARAM * /* GParam */, FONTMANA
 		BITMAPINFO	*BmpInfoPlus ;
 		BITMAP		BmpData ;
 
-		// ƒfƒoƒCƒXƒRƒ“ƒeƒLƒXƒg‚ğæ“¾
+		// ãƒ‡ãƒã‚¤ã‚¹ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã‚’å–å¾—
 		DC = WinAPIData.Win32Func.CreateCompatibleDCFunc( NULL ) ;
 		if( DC == NULL )
 		{
-			DXST_LOGFILE_ADDUTF16LE( "\xc7\x30\xd0\x30\xa4\x30\xb9\x30\xb3\x30\xf3\x30\xc6\x30\xad\x30\xb9\x30\xc8\x30\x6e\x30\xd6\x53\x97\x5f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ƒfƒoƒCƒXƒRƒ“ƒeƒLƒXƒg‚Ìæ“¾‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+			DXST_LOGFILE_ADDUTF16LE( "\xc7\x30\xd0\x30\xa4\x30\xb9\x30\xb3\x30\xf3\x30\xc6\x30\xad\x30\xb9\x30\xc8\x30\x6e\x30\xd6\x53\x97\x5f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ãƒ‡ãƒã‚¤ã‚¹ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã®å–å¾—ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 			goto ERR ;
 		}
 
-		// ƒtƒHƒ“ƒg‚ÌƒZƒbƒg
+		// ãƒ•ã‚©ãƒ³ãƒˆã®ã‚»ãƒƒãƒˆ
 		OldFont = ( HFONT )WinAPIData.Win32Func.SelectObjectFunc( DC, ManageData->PF->FontObj ) ;
 
-		// ƒtƒHƒ“ƒgƒ^ƒCƒv‚à DX_FONTTYPE_NORMAL ‚© DX_FONTTYPE_EDGE ‚ÉŒÀ‚ç‚ê‚é
+		// ãƒ•ã‚©ãƒ³ãƒˆã‚¿ã‚¤ãƒ—ã‚‚ DX_FONTTYPE_NORMAL ã‹ DX_FONTTYPE_EDGE ã«é™ã‚‰ã‚Œã‚‹
 		switch( ManageData->FontType )
 		{
 		case DX_FONTTYPE_ANTIALIASING :
@@ -557,11 +557,11 @@ extern int SetupFontCache_PF( CREATEFONTTOHANDLE_GPARAM * /* GParam */, FONTMANA
 			break ;
 		}
 
-		// ƒLƒƒƒbƒVƒ…—Ìˆæ‚ÌƒXƒe[ƒ^ƒX‚Ì‰Šú‰»
+		// ã‚­ãƒ£ãƒƒã‚·ãƒ¥é ˜åŸŸã®ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã®åˆæœŸåŒ–
 		BmpInfoPlus = ( BITMAPINFO * )DXCALLOC( sizeof( BITMAPINFO ) + sizeof( RGBQUAD ) * 256 ) ;
 		if( BmpInfoPlus == NULL )
 		{
-			DXST_LOGFILE_ADDUTF16LE( "\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x20\x00\x69\x00\x6e\x00\x20\x00\x43\x00\x46\x00\x6f\x00\x6e\x00\x74\x00\x00"/*@ L"ƒƒ‚ƒŠ‚ÌŠm•Û‚É¸”s‚µ‚Ü‚µ‚½ in CFont" @*/ ) ;
+			DXST_LOGFILE_ADDUTF16LE( "\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x20\x00\x69\x00\x6e\x00\x20\x00\x43\x00\x46\x00\x6f\x00\x6e\x00\x74\x00\x00"/*@ L"ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿ã«å¤±æ•—ã—ã¾ã—ãŸ in CFont" @*/ ) ;
 			goto ERR ;
 		}
 		BmpInfoPlus->bmiHeader.biSize			= sizeof( BITMAPINFOHEADER ) ;
@@ -572,7 +572,7 @@ extern int SetupFontCache_PF( CREATEFONTTOHANDLE_GPARAM * /* GParam */, FONTMANA
 		BmpInfoPlus->bmiHeader.biCompression	= BI_RGB ;
 		BmpInfoPlus->bmiHeader.biSizeImage		= ( DWORD )( ManageData->BaseInfo.MaxWidth * ManageData->BaseInfo.MaxWidth ) ;
 
-		// ƒJƒ‰[ƒpƒŒƒbƒg‚ÌƒZƒbƒg
+		// ã‚«ãƒ©ãƒ¼ãƒ‘ãƒ¬ãƒƒãƒˆã®ã‚»ãƒƒãƒˆ
 		{
 			RGBQUAD *Color ;
 			int		i ;
@@ -589,27 +589,27 @@ extern int SetupFontCache_PF( CREATEFONTTOHANDLE_GPARAM * /* GParam */, FONTMANA
 			}
 		}
 
-		// ‚c‚h‚aƒf[ƒ^‚ğì¬‚·‚é
+		// ï¼¤ï¼©ï¼¢ãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆã™ã‚‹
 		ManageData->PF->CacheBitmapMem	= NULL ; 
 		ManageData->PF->CacheBitmap		= WinAPIData.Win32Func.CreateDIBSectionFunc( DC, BmpInfoPlus, DIB_PAL_COLORS, ( void ** )&ManageData->PF->CacheBitmapMem, NULL, 0 ) ;
 		if( ManageData->PF->CacheBitmap == NULL )
 		{
 			DXFREE( BmpInfoPlus ) ;
-			DXST_LOGFILE_ADDUTF16LE( "\xd5\x30\xa9\x30\xf3\x30\xc8\x30\xad\x30\xe3\x30\xc3\x30\xb7\x30\xe5\x30\x28\x75\x6e\x30\x20\x00\x44\x00\x49\x00\x42\x00\x20\x00\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x20\x00\x69\x00\x6e\x00\x20\x00\x43\x00\x46\x00\x6f\x00\x6e\x00\x74\x00\x00"/*@ L"ƒtƒHƒ“ƒgƒLƒƒƒbƒVƒ…—p‚Ì DIB ‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½ in CFont" @*/ ) ;
+			DXST_LOGFILE_ADDUTF16LE( "\xd5\x30\xa9\x30\xf3\x30\xc8\x30\xad\x30\xe3\x30\xc3\x30\xb7\x30\xe5\x30\x28\x75\x6e\x30\x20\x00\x44\x00\x49\x00\x42\x00\x20\x00\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x20\x00\x69\x00\x6e\x00\x20\x00\x43\x00\x46\x00\x6f\x00\x6e\x00\x74\x00\x00"/*@ L"ãƒ•ã‚©ãƒ³ãƒˆã‚­ãƒ£ãƒƒã‚·ãƒ¥ç”¨ã® DIB ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ in CFont" @*/ ) ;
 			goto ERR ;
 		}
 
-		// ƒsƒbƒ`‚ğ“¾‚é
+		// ãƒ”ãƒƒãƒã‚’å¾—ã‚‹
 		WinAPIData.Win32Func.GetObjectAFunc( ManageData->PF->CacheBitmap, sizeof( BITMAP ), &BmpData ) ;
 		ManageData->PF->CacheBitmapMemPitch = BmpData.bmWidthBytes ;
 
-		// ƒƒ‚ƒŠ‚Ì‰ğ•ú
+		// ãƒ¡ãƒ¢ãƒªã®è§£æ”¾
 		DXFREE( BmpInfoPlus ) ;
 
-		// ƒtƒHƒ“ƒg‚ğŒ³‚É–ß‚·
+		// ãƒ•ã‚©ãƒ³ãƒˆã‚’å…ƒã«æˆ»ã™
 		WinAPIData.Win32Func.SelectObjectFunc( DC, OldFont ) ;
 
-		// ƒfƒoƒCƒXƒRƒ“ƒeƒLƒXƒg‚ğíœ‚·‚é
+		// ãƒ‡ãƒã‚¤ã‚¹ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã‚’å‰Šé™¤ã™ã‚‹
 		WinAPIData.Win32Func.DeleteDCFunc( DC ) ;
 	}
 
@@ -664,7 +664,7 @@ ERR :
 	return -1 ;
 }
 
-// CreateFontToHandle ‚ÌŠÂ‹«ˆË‘¶ƒGƒ‰[ˆ—‚ğs‚¤ŠÖ”
+// CreateFontToHandle ã®ç’°å¢ƒä¾å­˜ã‚¨ãƒ©ãƒ¼å‡¦ç†ã‚’è¡Œã†é–¢æ•°
 extern int CreateFontToHandle_Error_PF( FONTMANAGE * ManageData )
 {
 	SETUP_WIN_API
@@ -674,16 +674,16 @@ extern int CreateFontToHandle_Error_PF( FONTMANAGE * ManageData )
 		WinAPIData.Win32Func.DeleteObjectFunc( ManageData->PF->FontObj ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// TerminateFontHandle ‚ÌŠÂ‹«ˆË‘¶ˆ—‚ğs‚¤ŠÖ”
+// TerminateFontHandle ã®ç’°å¢ƒä¾å­˜å‡¦ç†ã‚’è¡Œã†é–¢æ•°
 extern int TerminateFontHandle_PF( FONTMANAGE *ManageData )
 {
 	SETUP_WIN_API
 
-	// ƒtƒHƒ“ƒgƒCƒ[ƒWæ“¾—p‚Ég—p‚µ‚½ƒƒ‚ƒŠ‚Ì‰ğ•ú
+	// ãƒ•ã‚©ãƒ³ãƒˆã‚¤ãƒ¡ãƒ¼ã‚¸å–å¾—ç”¨ã«ä½¿ç”¨ã—ãŸãƒ¡ãƒ¢ãƒªã®è§£æ”¾
 	if( ManageData->PF->GetGlyphOutlineBuffer != NULL )
 	{
 		DXFREE( ManageData->PF->GetGlyphOutlineBuffer ) ;
@@ -691,14 +691,14 @@ extern int TerminateFontHandle_PF( FONTMANAGE *ManageData )
 		ManageData->PF->GetGlyphOutlineBufferSize = 0 ;
 	}
 
-	// ƒtƒHƒ“ƒgƒIƒuƒWƒFƒNƒg‚ğíœ
+	// ãƒ•ã‚©ãƒ³ãƒˆã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å‰Šé™¤
 	if( ManageData->PF->FontObj != NULL )
 	{
 		WinAPIData.Win32Func.DeleteObjectFunc( ManageData->PF->FontObj ) ;
 		ManageData->PF->FontObj = NULL ;
 	}
 
-	// TextOut ‚ğg—p‚·‚éƒtƒHƒ“ƒg‚Åg—p‚·‚éƒrƒbƒgƒ}ƒbƒv‚ğ‰ğ•ú
+	// TextOut ã‚’ä½¿ç”¨ã™ã‚‹ãƒ•ã‚©ãƒ³ãƒˆã§ä½¿ç”¨ã™ã‚‹ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚’è§£æ”¾
 	if( ManageData->PF->CacheBitmap != NULL )
 	{
 		WinAPIData.Win32Func.DeleteObjectFunc( ManageData->PF->CacheBitmap ) ;
@@ -706,59 +706,59 @@ extern int TerminateFontHandle_PF( FONTMANAGE *ManageData )
 		ManageData->PF->CacheBitmapMem = NULL ;
 	}
 
-	// ƒtƒHƒ“ƒg‚ÉŠÜ‚Ü‚ê‚é•¶š‚Ìî•ñ‚ğ‰ğ•ú‚·‚é
+	// ãƒ•ã‚©ãƒ³ãƒˆã«å«ã¾ã‚Œã‚‹æ–‡å­—ã®æƒ…å ±ã‚’è§£æ”¾ã™ã‚‹
 	if( ManageData->PF->Glyphset != NULL )
 	{
 		DXFREE( ManageData->PF->Glyphset ) ;
 		ManageData->PF->Glyphset = NULL ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// FontCacheCharaAddToHandle‚ÌŠÂ‹«ˆË‘¶ˆ—‚ğs‚¤ŠÖ”( Às‰ÓŠ‹æ•Ê 0 )
+// FontCacheCharaAddToHandleã®ç’°å¢ƒä¾å­˜å‡¦ç†ã‚’è¡Œã†é–¢æ•°( å®Ÿè¡Œç®‡æ‰€åŒºåˆ¥ 0 )
 extern int FontCacheCharAddToHandle_Timing0_PF( FONTMANAGE *ManageData )
 {
 	SETUP_WIN_API
 
-	// ƒfƒoƒCƒXƒRƒ“ƒeƒLƒXƒg‚Ìì¬
+	// ãƒ‡ãƒã‚¤ã‚¹ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã®ä½œæˆ
 	FontSystem_Win.Devicecontext = WinAPIData.Win32Func.CreateCompatibleDCFunc( NULL ) ;
 	if( FontSystem_Win.Devicecontext == NULL )
 	{
-		DXST_LOGFILE_ADDUTF16LE( "\xc6\x30\xad\x30\xb9\x30\xc8\x30\xad\x30\xe3\x30\xc3\x30\xb7\x30\xe5\x30\xb5\x30\xfc\x30\xd5\x30\xa7\x30\xb9\x30\x6e\x30\xc7\x30\xd0\x30\xa4\x30\xb9\x30\xb3\x30\xf3\x30\xc6\x30\xad\x30\xb9\x30\xc8\x30\x6e\x30\xd6\x53\x97\x5f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"ƒeƒLƒXƒgƒLƒƒƒbƒVƒ…ƒT[ƒtƒFƒX‚ÌƒfƒoƒCƒXƒRƒ“ƒeƒLƒXƒg‚Ìæ“¾‚É¸”s‚µ‚Ü‚µ‚½" @*/ ) ;
+		DXST_LOGFILE_ADDUTF16LE( "\xc6\x30\xad\x30\xb9\x30\xc8\x30\xad\x30\xe3\x30\xc3\x30\xb7\x30\xe5\x30\xb5\x30\xfc\x30\xd5\x30\xa7\x30\xb9\x30\x6e\x30\xc7\x30\xd0\x30\xa4\x30\xb9\x30\xb3\x30\xf3\x30\xc6\x30\xad\x30\xb9\x30\xc8\x30\x6e\x30\xd6\x53\x97\x5f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"ãƒ†ã‚­ã‚¹ãƒˆã‚­ãƒ£ãƒƒã‚·ãƒ¥ã‚µãƒ¼ãƒ•ã‚§ã‚¹ã®ãƒ‡ãƒã‚¤ã‚¹ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã®å–å¾—ã«å¤±æ•—ã—ã¾ã—ãŸ" @*/ ) ;
 		return -1 ;
 	}
 
-	// ƒtƒHƒ“ƒg‚ğƒZƒbƒg
+	// ãƒ•ã‚©ãƒ³ãƒˆã‚’ã‚»ãƒƒãƒˆ
 	FontSystem_Win.OldFont = ( HFONT )WinAPIData.Win32Func.SelectObjectFunc( FontSystem_Win.Devicecontext, ManageData->PF->FontObj ) ;
 	if( FontSystem_Win.OldFont == NULL )
 	{
 		WinAPIData.Win32Func.DeleteDCFunc( FontSystem_Win.Devicecontext ) ;
-		DXST_LOGFILE_ADDUTF16LE( "\xc6\x30\xad\x30\xb9\x30\xc8\x30\xad\x30\xe3\x30\xc3\x30\xb7\x30\xe5\x30\xb5\x30\xfc\x30\xd5\x30\xa7\x30\xb9\x30\x6e\x30\xc7\x30\xd0\x30\xa4\x30\xb9\x30\xb3\x30\xf3\x30\xc6\x30\xad\x30\xb9\x30\xc8\x30\x6e\x30\xd6\x53\x97\x5f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"ƒeƒLƒXƒgƒLƒƒƒbƒVƒ…ƒT[ƒtƒFƒX‚ÌƒfƒoƒCƒXƒRƒ“ƒeƒLƒXƒg‚Ìæ“¾‚É¸”s‚µ‚Ü‚µ‚½" @*/ ) ;
+		DXST_LOGFILE_ADDUTF16LE( "\xc6\x30\xad\x30\xb9\x30\xc8\x30\xad\x30\xe3\x30\xc3\x30\xb7\x30\xe5\x30\xb5\x30\xfc\x30\xd5\x30\xa7\x30\xb9\x30\x6e\x30\xc7\x30\xd0\x30\xa4\x30\xb9\x30\xb3\x30\xf3\x30\xc6\x30\xad\x30\xb9\x30\xc8\x30\x6e\x30\xd6\x53\x97\x5f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"ãƒ†ã‚­ã‚¹ãƒˆã‚­ãƒ£ãƒƒã‚·ãƒ¥ã‚µãƒ¼ãƒ•ã‚§ã‚¹ã®ãƒ‡ãƒã‚¤ã‚¹ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã®å–å¾—ã«å¤±æ•—ã—ã¾ã—ãŸ" @*/ ) ;
 		return -1 ;
 	}
 
-	// ƒtƒHƒ“ƒg‚Ìî•ñ‚ğæ“¾
+	// ãƒ•ã‚©ãƒ³ãƒˆã®æƒ…å ±ã‚’å–å¾—
 	GetTextMetricsWFunc( FontSystem_Win.Devicecontext, &FontSystem_Win.TextMetric ) ;
 
-	// TextOut ‚ğg—p‚·‚é‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+	// TextOut ã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 	if( ManageData->PF->UseTextOut )
 	{
-		// •`‰ææƒrƒbƒgƒ}ƒbƒv‚ğƒZƒbƒg
+		// æç”»å…ˆãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚’ã‚»ãƒƒãƒˆ
 		FontSystem_Win.OldBitmap = ( HBITMAP )WinAPIData.Win32Func.SelectObjectFunc( FontSystem_Win.Devicecontext , ManageData->PF->CacheBitmap ) ;
 
-		// •¶š‚Ì•`‰æİ’è‚ğs‚¤
+		// æ–‡å­—ã®æç”»è¨­å®šã‚’è¡Œã†
 		{
-			WinAPIData.Win32Func.SetTextColorFunc( FontSystem_Win.Devicecontext , RGB( 255 , 255 , 255 ) ) ; 		// F‚ğƒZƒbƒg	
+			WinAPIData.Win32Func.SetTextColorFunc( FontSystem_Win.Devicecontext , RGB( 255 , 255 , 255 ) ) ; 		// è‰²ã‚’ã‚»ãƒƒãƒˆ	
 
-			// ”wŒiF‚ğƒZƒbƒg
+			// èƒŒæ™¯è‰²ã‚’ã‚»ãƒƒãƒˆ
 			WinAPIData.Win32Func.SetBkColorFunc( FontSystem_Win.Devicecontext , 0 ) ;
-			WinAPIData.Win32Func.SetBkModeFunc( FontSystem_Win.Devicecontext , OPAQUE ) ;							// ”wŒi‚ğ“h‚è‚Â‚Ô‚·w’è
+			WinAPIData.Win32Func.SetBkModeFunc( FontSystem_Win.Devicecontext , OPAQUE ) ;							// èƒŒæ™¯ã‚’å¡—ã‚Šã¤ã¶ã™æŒ‡å®š
 		}
 	}
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
@@ -766,7 +766,7 @@ extern int FontCacheCharAddToHandle_Timing0_PF( FONTMANAGE *ManageData )
 // GLYPHMETRICS GlyphData;
 // DWORD GlyphDataSize;
 
-// FontCacheCharaAddToHandle‚ÌŠÂ‹«ˆË‘¶ˆ—‚ğs‚¤ŠÖ”( Às‰ÓŠ‹æ•Ê 1 )
+// FontCacheCharaAddToHandleã®ç’°å¢ƒä¾å­˜å‡¦ç†ã‚’è¡Œã†é–¢æ•°( å®Ÿè¡Œç®‡æ‰€åŒºåˆ¥ 1 )
 extern int FontCacheCharAddToHandle_Timing1_PF( FONTMANAGE *ManageData, FONTCHARDATA *CharData, DWORD CharCode, DWORD IVSCode, int TextureCacheUpdate )
 {
 	int				ImageType = 0 ;
@@ -775,10 +775,10 @@ extern int FontCacheCharAddToHandle_Timing1_PF( FONTMANAGE *ManageData, FONTCHAR
 
 	SETUP_WIN_API
 
-	// ƒXƒy[ƒX‚©‚Ç‚¤‚©‚ğæ“¾‚µ‚Ä‚¨‚­
+	// ã‚¹ãƒšãƒ¼ã‚¹ã‹ã©ã†ã‹ã‚’å–å¾—ã—ã¦ãŠã
 	Space = CharCode == L' ' ? 1 : ( CharCode == FSYS.DoubleByteSpaceCharCode ? 2 : 0 ) ;
 
-	// ƒXƒy[ƒX‚Å‚È‚¢ê‡‚ÅAŠ‚Â‘ã‘ÖƒtƒHƒ“ƒg‚ª“o˜^‚³‚ê‚Ä‚¢‚éê‡‚ÍƒtƒHƒ“ƒg‚É•¶š‚ª‘¶İ‚·‚é‚©’²‚×‚é
+	// ã‚¹ãƒšãƒ¼ã‚¹ã§ãªã„å ´åˆã§ã€ä¸”ã¤ä»£æ›¿ãƒ•ã‚©ãƒ³ãƒˆãŒç™»éŒ²ã•ã‚Œã¦ã„ã‚‹å ´åˆã¯ãƒ•ã‚©ãƒ³ãƒˆã«æ–‡å­—ãŒå­˜åœ¨ã™ã‚‹ã‹èª¿ã¹ã‚‹
 	if( Space == 0 && ManageData->SubstitutionInfoNum > 0 && ManageData->PF->Glyphset != NULL )
 	{
 		DWORD i ;
@@ -798,7 +798,7 @@ extern int FontCacheCharAddToHandle_Timing1_PF( FONTMANAGE *ManageData, FONTCHAR
 		}
 	}
 
-	// TextOut ‚ğg—p‚·‚é‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+	// TextOut ã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 	if( ManageData->PF->UseTextOut )
 	{
 		SIZE    TempSize ;
@@ -811,13 +811,13 @@ extern int FontCacheCharAddToHandle_Timing1_PF( FONTMANAGE *ManageData, FONTCHAR
 			CharNum += PutCharCode( IVSCode, WIN32_WCHAR_CHARCODEFORMAT, ( char * )AddStr + CharNum * sizeof( wchar_t ), sizeof( AddStr ) - CharNum * sizeof( wchar_t ) ) / sizeof( wchar_t ) ;
 		}
 
-		// ’Ç‰Á‚·‚é•¶š‚Ì‘å‚«‚³‚ğæ“¾
+		// è¿½åŠ ã™ã‚‹æ–‡å­—ã®å¤§ãã•ã‚’å–å¾—
 		GetTextExtentPoint32WFunc( FontSystem_Win.Devicecontext, AddStr, CharNum, &TempSize );
 
-		// •¶šƒCƒ[ƒW‚ğo—Í
+		// æ–‡å­—ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’å‡ºåŠ›
 		TextOutWFunc( FontSystem_Win.Devicecontext, 0, 0, AddStr, CharNum ) ;
 
-		// ƒCƒ[ƒW‚ğ“]‘—
+		// ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’è»¢é€
 		FontCacheCharImageBltToHandle(
 			ManageData,
 			CharData,
@@ -846,7 +846,7 @@ extern int FontCacheCharAddToHandle_Timing1_PF( FONTMANAGE *ManageData, FONTCHAR
 
 		_MEMSET( &gcp, 0, sizeof( gcp ) ) ;
 
-		// æ“¾‚·‚éƒCƒ[ƒWŒ`®‚ğŒˆ’è‚·‚é
+		// å–å¾—ã™ã‚‹ã‚¤ãƒ¡ãƒ¼ã‚¸å½¢å¼ã‚’æ±ºå®šã™ã‚‹
 		switch( ManageData->FontType )
 		{
 		case DX_FONTTYPE_NORMAL :
@@ -898,7 +898,7 @@ extern int FontCacheCharAddToHandle_Timing1_PF( FONTMANAGE *ManageData, FONTCHAR
 			break ;
 		}
 
-		// ƒTƒƒQ[ƒgƒyƒA‚©ˆÙ‘Ìš‚Ìê‡‚Í•¶š‚ÌƒOƒŠƒtƒCƒ“ƒfƒbƒNƒX‚ğæ“¾‚·‚é
+		// ã‚µãƒ­ã‚²ãƒ¼ãƒˆãƒšã‚¢ã‹ç•°ä½“å­—ã®å ´åˆã¯æ–‡å­—ã®ã‚°ãƒªãƒ•ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’å–å¾—ã™ã‚‹
 		if( CharCode > 0xffff || IVSCode != 0 )
 		{
 			wchar_t CodeWString[ 16 ] ;
@@ -913,16 +913,16 @@ extern int FontCacheCharAddToHandle_Timing1_PF( FONTMANAGE *ManageData, FONTCHAR
 			{
 				Bytes += PutCharCode( IVSCode, DX_CHARCODEFORMAT_UTF16LE, ( char * )CodeWString + Bytes, sizeof( CodeWString ) - Bytes ) ;
 
-				// ˆÙ‘Ìš‚Í usp10.dll ‚ªg—p‚Å‚«‚È‚¢ê‡‚ÍƒGƒ‰[
+				// ç•°ä½“å­—ã¯ usp10.dll ãŒä½¿ç”¨ã§ããªã„å ´åˆã¯ã‚¨ãƒ©ãƒ¼
 				if( WinAPIData.Win32Func.ScriptShapeFunc == NULL ||
 					WinAPIData.Win32Func.ScriptItemizeFunc == NULL )
 				{
-					DXST_LOGFILE_ADDUTF16LE( "\x57\x00\x69\x00\x6e\x00\x33\x00\x32\x00\x41\x00\x50\x00\x49\x00\x20\x00\x53\x00\x63\x00\x72\x00\x69\x00\x70\x00\x74\x00\x53\x00\x68\x00\x61\x00\x70\x00\x65\x00\x20\x00\xc8\x53\x6f\x30\x20\x00\x57\x00\x69\x00\x6e\x00\x33\x00\x32\x00\x20\x00\x53\x00\x63\x00\x72\x00\x69\x00\x70\x00\x74\x00\x49\x00\x74\x00\x65\x00\x6d\x00\x69\x00\x7a\x00\x65\x00\x20\x00\x4c\x30\x7f\x4f\x28\x75\x67\x30\x4d\x30\x7e\x30\x5b\x30\x93\x30\x67\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Win32API ScriptShape –”‚Í Win32 ScriptItemize ‚ªg—p‚Å‚«‚Ü‚¹‚ñ‚Å‚µ‚½\n" @*/ ) ;
+					DXST_LOGFILE_ADDUTF16LE( "\x57\x00\x69\x00\x6e\x00\x33\x00\x32\x00\x41\x00\x50\x00\x49\x00\x20\x00\x53\x00\x63\x00\x72\x00\x69\x00\x70\x00\x74\x00\x53\x00\x68\x00\x61\x00\x70\x00\x65\x00\x20\x00\xc8\x53\x6f\x30\x20\x00\x57\x00\x69\x00\x6e\x00\x33\x00\x32\x00\x20\x00\x53\x00\x63\x00\x72\x00\x69\x00\x70\x00\x74\x00\x49\x00\x74\x00\x65\x00\x6d\x00\x69\x00\x7a\x00\x65\x00\x20\x00\x4c\x30\x7f\x4f\x28\x75\x67\x30\x4d\x30\x7e\x30\x5b\x30\x93\x30\x67\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Win32API ScriptShape åˆã¯ Win32 ScriptItemize ãŒä½¿ç”¨ã§ãã¾ã›ã‚“ã§ã—ãŸ\n" @*/ ) ;
 					return -1 ;
 				}
 				else
 				{
-					// Uniscribe ‚ğg—p‚µ‚ÄˆÙ‘Ìš‚ÌƒOƒŠƒtƒCƒ“ƒfƒbƒNƒX‚ğæ“¾‚·‚é
+					// Uniscribe ã‚’ä½¿ç”¨ã—ã¦ç•°ä½“å­—ã®ã‚°ãƒªãƒ•ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’å–å¾—ã™ã‚‹
 					HRESULT hResult ;
 					D_SCRIPT_ITEM ScriptItems[ 2 ] ;
 					const D_SCRIPT_CONTROL *ScriptControl = NULL ;
@@ -963,7 +963,7 @@ extern int FontCacheCharAddToHandle_Timing1_PF( FONTMANAGE *ManageData, FONTCHAR
 
 					if( hResult != 0 )
 					{
-						DXST_LOGFILE_ADDUTF16LE( "\x57\x00\x69\x00\x6e\x00\x33\x00\x32\x00\x41\x00\x50\x00\x49\x00\x20\x00\x53\x00\x63\x00\x72\x00\x69\x00\x70\x00\x74\x00\x53\x00\x68\x00\x61\x00\x70\x00\x65\x00\x20\x00\x6b\x30\x88\x30\x8b\x30\x70\x75\x53\x4f\x57\x5b\x6e\x30\xb0\x30\xea\x30\xd5\x30\xa4\x30\xf3\x30\xc7\x30\xc3\x30\xaf\x30\xb9\x30\x6e\x30\xd6\x53\x97\x5f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Win32API ScriptShape ‚É‚æ‚éˆÙ‘Ìš‚ÌƒOƒŠƒtƒCƒ“ƒfƒbƒNƒX‚Ìæ“¾‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+						DXST_LOGFILE_ADDUTF16LE( "\x57\x00\x69\x00\x6e\x00\x33\x00\x32\x00\x41\x00\x50\x00\x49\x00\x20\x00\x53\x00\x63\x00\x72\x00\x69\x00\x70\x00\x74\x00\x53\x00\x68\x00\x61\x00\x70\x00\x65\x00\x20\x00\x6b\x30\x88\x30\x8b\x30\x70\x75\x53\x4f\x57\x5b\x6e\x30\xb0\x30\xea\x30\xd5\x30\xa4\x30\xf3\x30\xc7\x30\xc3\x30\xaf\x30\xb9\x30\x6e\x30\xd6\x53\x97\x5f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Win32API ScriptShape ã«ã‚ˆã‚‹ç•°ä½“å­—ã®ã‚°ãƒªãƒ•ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã®å–å¾—ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 						return -1 ;
 					}
 				}
@@ -973,13 +973,13 @@ extern int FontCacheCharAddToHandle_Timing1_PF( FONTMANAGE *ManageData, FONTCHAR
 				Result = GetCharacterPlacementWFunc( FontSystem_Win.Devicecontext, CodeWString, Bytes / 2, 0, &gcp, GCP_GLYPHSHAPE ) ;
 				if( Result == 0 )
 				{
-					DXST_LOGFILE_ADDUTF16LE( "\x57\x00\x69\x00\x6e\x00\x33\x00\x32\x00\x41\x00\x50\x00\x49\x00\x20\x00\x47\x00\x65\x00\x74\x00\x43\x00\x68\x00\x61\x00\x72\x00\x61\x00\x63\x00\x74\x00\x65\x00\x72\x00\x50\x00\x6c\x00\x61\x00\x63\x00\x65\x00\x6d\x00\x65\x00\x6e\x00\x74\x00\x20\x00\x4c\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Win32API GetCharacterPlacement ‚ª¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+					DXST_LOGFILE_ADDUTF16LE( "\x57\x00\x69\x00\x6e\x00\x33\x00\x32\x00\x41\x00\x50\x00\x49\x00\x20\x00\x47\x00\x65\x00\x74\x00\x43\x00\x68\x00\x61\x00\x72\x00\x61\x00\x63\x00\x74\x00\x65\x00\x72\x00\x50\x00\x6c\x00\x61\x00\x63\x00\x65\x00\x6d\x00\x65\x00\x6e\x00\x74\x00\x20\x00\x4c\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Win32API GetCharacterPlacement ãŒå¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 					return -1 ;
 				}
 			}
 		}
 
-		// •¶šî•ñ‚Ìæ“¾
+		// æ–‡å­—æƒ…å ±ã®å–å¾—
 		_MEMSET( &gm, 0, sizeof( GLYPHMETRICS ) ) ;
 		if( CharCode > 0xffff || IVSCode != 0 )
 		{
@@ -991,11 +991,11 @@ extern int FontCacheCharAddToHandle_Timing1_PF( FONTMANAGE *ManageData, FONTCHAR
 		}
 		if( DataSize == GDI_ERROR )
 		{
-			DXST_LOGFILE_ADDUTF16LE( "\x57\x00\x69\x00\x6e\x00\x33\x00\x32\x00\x41\x00\x50\x00\x49\x00\x20\x00\x47\x00\x65\x00\x74\x00\x47\x00\x6c\x00\x79\x00\x70\x00\x68\x00\x4f\x00\x75\x00\x74\x00\x6c\x00\x69\x00\x6e\x00\x65\x00\x20\x00\x4c\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Win32API GetGlyphOutline ‚ª¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+			DXST_LOGFILE_ADDUTF16LE( "\x57\x00\x69\x00\x6e\x00\x33\x00\x32\x00\x41\x00\x50\x00\x49\x00\x20\x00\x47\x00\x65\x00\x74\x00\x47\x00\x6c\x00\x79\x00\x70\x00\x68\x00\x4f\x00\x75\x00\x74\x00\x6c\x00\x69\x00\x6e\x00\x65\x00\x20\x00\x4c\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Win32API GetGlyphOutline ãŒå¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 			return -1 ;
 		}
 
-		// ƒXƒy[ƒX•¶š‚¾‚Á‚½ê‡
+		// ã‚¹ãƒšãƒ¼ã‚¹æ–‡å­—ã ã£ãŸå ´åˆ
 		if( Space != 0 )
 		{
 			FontCacheCharImageBltToHandle(
@@ -1016,7 +1016,7 @@ extern int FontCacheCharAddToHandle_Timing1_PF( FONTMANAGE *ManageData, FONTCHAR
 			) ;
 		}
 		else
-		// ƒXƒy[ƒXˆÈŠO‚Åƒf[ƒ^ƒTƒCƒY‚ª‚O‚Ìê‡
+		// ã‚¹ãƒšãƒ¼ã‚¹ä»¥å¤–ã§ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºãŒï¼ã®å ´åˆ
 		if( DataSize == 0 )
 		{
 			FontCacheCharImageBltToHandle(
@@ -1067,7 +1067,7 @@ extern int FontCacheCharAddToHandle_Timing1_PF( FONTMANAGE *ManageData, FONTCHAR
 				ManageData->PF->GetGlyphOutlineBuffer = DXALLOC( ManageData->PF->GetGlyphOutlineBufferSize ) ;
 				if( ManageData->PF->GetGlyphOutlineBuffer == NULL )
 				{
-					DXST_LOGFILE_ADDUTF16LE( "\xa2\x30\xf3\x30\xc1\x30\xa8\x30\xa4\x30\xea\x30\xa2\x30\xb9\x30\x87\x65\x57\x5b\xd6\x53\x97\x5f\x28\x75\xd0\x30\xc3\x30\xd5\x30\xa1\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"ƒAƒ“ƒ`ƒGƒCƒŠƒAƒX•¶šæ“¾—pƒoƒbƒtƒ@‚ÌŠm•Û‚É¸”s‚µ‚Ü‚µ‚½" @*/ ) ;
+					DXST_LOGFILE_ADDUTF16LE( "\xa2\x30\xf3\x30\xc1\x30\xa8\x30\xa4\x30\xea\x30\xa2\x30\xb9\x30\x87\x65\x57\x5b\xd6\x53\x97\x5f\x28\x75\xd0\x30\xc3\x30\xd5\x30\xa1\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"ã‚¢ãƒ³ãƒã‚¨ã‚¤ãƒªã‚¢ã‚¹æ–‡å­—å–å¾—ç”¨ãƒãƒƒãƒ•ã‚¡ã®ç¢ºä¿ã«å¤±æ•—ã—ã¾ã—ãŸ" @*/ ) ;
 					return -1 ;
 				}
 			}
@@ -1085,7 +1085,7 @@ extern int FontCacheCharAddToHandle_Timing1_PF( FONTMANAGE *ManageData, FONTCHAR
 			}
 			if( DataSize == GDI_ERROR )
 			{
-				DXST_LOGFILE_ADDUTF16LE( "\x57\x00\x69\x00\x6e\x00\x33\x00\x32\x00\x41\x00\x50\x00\x49\x00\x20\x00\x47\x00\x65\x00\x74\x00\x47\x00\x6c\x00\x79\x00\x70\x00\x68\x00\x4f\x00\x75\x00\x74\x00\x6c\x00\x69\x00\x6e\x00\x65\x00\x20\x00\x4c\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Win32API GetGlyphOutline ‚ª¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+				DXST_LOGFILE_ADDUTF16LE( "\x57\x00\x69\x00\x6e\x00\x33\x00\x32\x00\x41\x00\x50\x00\x49\x00\x20\x00\x47\x00\x65\x00\x74\x00\x47\x00\x6c\x00\x79\x00\x70\x00\x68\x00\x4f\x00\x75\x00\x74\x00\x6c\x00\x69\x00\x6e\x00\x65\x00\x20\x00\x4c\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Win32API GetGlyphOutline ãŒå¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 				return -1 ;
 			}
 
@@ -1093,7 +1093,7 @@ extern int FontCacheCharAddToHandle_Timing1_PF( FONTMANAGE *ManageData, FONTCHAR
 			// GlyphData = gm;
 			// GlyphDataSize = DataSize;
 
-			// ƒCƒ[ƒW‚ğ“]‘—
+			// ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’è»¢é€
 			FontCacheCharImageBltToHandle(
 				ManageData,
 				CharData,
@@ -1113,29 +1113,29 @@ extern int FontCacheCharAddToHandle_Timing1_PF( FONTMANAGE *ManageData, FONTCHAR
 		}
 	}
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// FontCacheCharaAddToHandle‚ÌŠÂ‹«ˆË‘¶ˆ—‚ğs‚¤ŠÖ”( Às‰ÓŠ‹æ•Ê 2 )
+// FontCacheCharaAddToHandleã®ç’°å¢ƒä¾å­˜å‡¦ç†ã‚’è¡Œã†é–¢æ•°( å®Ÿè¡Œç®‡æ‰€åŒºåˆ¥ 2 )
 extern int FontCacheCharAddToHandle_Timing2_PF( FONTMANAGE *ManageData )
 {
 	SETUP_WIN_API
 
-	// ƒtƒHƒ“ƒg‚ğŒ³‚É–ß‚·
+	// ãƒ•ã‚©ãƒ³ãƒˆã‚’å…ƒã«æˆ»ã™
 	WinAPIData.Win32Func.SelectObjectFunc( FontSystem_Win.Devicecontext, FontSystem_Win.OldFont ) ;
 
 	if( ManageData->PF->UseTextOut )
 	{
-		// ƒrƒbƒgƒ}ƒbƒv‚ğŒ³‚É–ß‚·
+		// ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚’å…ƒã«æˆ»ã™
 		WinAPIData.Win32Func.SelectObjectFunc( FontSystem_Win.Devicecontext, FontSystem_Win.OldBitmap ) ;
 		FontSystem_Win.OldBitmap = NULL ;
 	}
 
-	// ƒfƒoƒCƒXƒRƒ“ƒeƒLƒXƒg‚Ìíœ
+	// ãƒ‡ãƒã‚¤ã‚¹ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã®å‰Šé™¤
 	WinAPIData.Win32Func.DeleteDCFunc( FontSystem_Win.Devicecontext ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
@@ -1148,7 +1148,7 @@ extern int FontCacheCharAddToHandle_Timing2_PF( FONTMANAGE *ManageData )
 
 
 
-// w’è‚ÌƒtƒHƒ“ƒgƒtƒ@ƒCƒ‹‚ğƒVƒXƒeƒ€‚É’Ç‰Á‚·‚é( –ß‚è’l  NULL:¸”s  NULLˆÈŠO:ƒtƒHƒ“ƒgƒnƒ“ƒhƒ‹( WindowsOS ‚Ì‚à‚Ì‚È‚Ì‚ÅA‚c‚wƒ‰ƒCƒuƒ‰ƒŠ‚ÌƒtƒHƒ“ƒgƒnƒ“ƒhƒ‹‚Æ‚Í•Ê•¨‚Å‚· ) )
+// æŒ‡å®šã®ãƒ•ã‚©ãƒ³ãƒˆãƒ•ã‚¡ã‚¤ãƒ«ã‚’ã‚·ã‚¹ãƒ†ãƒ ã«è¿½åŠ ã™ã‚‹( æˆ»ã‚Šå€¤  NULL:å¤±æ•—  NULLä»¥å¤–:ãƒ•ã‚©ãƒ³ãƒˆãƒãƒ³ãƒ‰ãƒ«( WindowsOS ã®ã‚‚ã®ãªã®ã§ã€ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®ãƒ•ã‚©ãƒ³ãƒˆãƒãƒ³ãƒ‰ãƒ«ã¨ã¯åˆ¥ç‰©ã§ã™ ) )
 extern HANDLE NS_AddFontFile( const TCHAR *FontFilePath )
 {
 #ifdef UNICODE
@@ -1170,7 +1170,7 @@ extern HANDLE NS_AddFontFile( const TCHAR *FontFilePath )
 #endif
 }
 
-// w’è‚ÌƒtƒHƒ“ƒgƒtƒ@ƒCƒ‹‚ğƒVƒXƒeƒ€‚É’Ç‰Á‚·‚é( –ß‚è’l  NULL:¸”s  NULLˆÈŠO:ƒtƒHƒ“ƒgƒnƒ“ƒhƒ‹( WindowsOS ‚Ì‚à‚Ì‚È‚Ì‚ÅA‚c‚wƒ‰ƒCƒuƒ‰ƒŠ‚ÌƒtƒHƒ“ƒgƒnƒ“ƒhƒ‹‚Æ‚Í•Ê•¨‚Å‚· ) )
+// æŒ‡å®šã®ãƒ•ã‚©ãƒ³ãƒˆãƒ•ã‚¡ã‚¤ãƒ«ã‚’ã‚·ã‚¹ãƒ†ãƒ ã«è¿½åŠ ã™ã‚‹( æˆ»ã‚Šå€¤  NULL:å¤±æ•—  NULLä»¥å¤–:ãƒ•ã‚©ãƒ³ãƒˆãƒãƒ³ãƒ‰ãƒ«( WindowsOS ã®ã‚‚ã®ãªã®ã§ã€ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®ãƒ•ã‚©ãƒ³ãƒˆãƒãƒ³ãƒ‰ãƒ«ã¨ã¯åˆ¥ç‰©ã§ã™ ) )
 extern HANDLE NS_AddFontFileWithStrLen( const TCHAR *FontFilePath, size_t FontFilePathLength )
 {
 	HANDLE Result ;
@@ -1186,7 +1186,7 @@ extern HANDLE NS_AddFontFileWithStrLen( const TCHAR *FontFilePath, size_t FontFi
 	return Result ;
 }
 
-// w’è‚ÌƒtƒHƒ“ƒgƒtƒ@ƒCƒ‹‚ğƒVƒXƒeƒ€‚É’Ç‰Á‚·‚é( –ß‚è’l  NULL:¸”s  NULLˆÈŠO:ƒtƒHƒ“ƒgƒnƒ“ƒhƒ‹( WindowsOS ‚Ì‚à‚Ì‚È‚Ì‚ÅA‚c‚wƒ‰ƒCƒuƒ‰ƒŠ‚ÌƒtƒHƒ“ƒgƒnƒ“ƒhƒ‹‚Æ‚Í•Ê•¨‚Å‚· ) )
+// æŒ‡å®šã®ãƒ•ã‚©ãƒ³ãƒˆãƒ•ã‚¡ã‚¤ãƒ«ã‚’ã‚·ã‚¹ãƒ†ãƒ ã«è¿½åŠ ã™ã‚‹( æˆ»ã‚Šå€¤  NULL:å¤±æ•—  NULLä»¥å¤–:ãƒ•ã‚©ãƒ³ãƒˆãƒãƒ³ãƒ‰ãƒ«( WindowsOS ã®ã‚‚ã®ãªã®ã§ã€ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®ãƒ•ã‚©ãƒ³ãƒˆãƒãƒ³ãƒ‰ãƒ«ã¨ã¯åˆ¥ç‰©ã§ã™ ) )
 extern HANDLE AddFontFile_WCHAR_T( const wchar_t *FontFilePath )
 {
 	HANDLE FontHandle = NULL ;
@@ -1197,7 +1197,7 @@ extern HANDLE AddFontFile_WCHAR_T( const wchar_t *FontFilePath )
 
 	ConvertFullPathW_( FontFilePath, FullPath, sizeof( FullPath ) ) ;
 
-	// ƒtƒ@ƒCƒ‹‚ğŠÛ‚²‚Æ“Ç‚İ‚Ş
+	// ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ä¸¸ã”ã¨èª­ã¿è¾¼ã‚€
 	FileHandle = DX_FOPEN( FontFilePath ) ;
 	if( FileHandle == 0 )
 	{
@@ -1205,12 +1205,12 @@ extern HANDLE AddFontFile_WCHAR_T( const wchar_t *FontFilePath )
 		goto ERRORLABEL ;
 	}
 
-	// ƒtƒ@ƒCƒ‹‚ÌƒTƒCƒY‚ğæ“¾‚·‚é
+	// ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚µã‚¤ã‚ºã‚’å–å¾—ã™ã‚‹
 	DX_FSEEK( FileHandle, 0, SEEK_END ) ;
 	DataSize = ( size_t )DX_FTELL( FileHandle ) ;
 	DX_FSEEK( FileHandle, 0, SEEK_SET ) ;
 
-	// ƒtƒ@ƒCƒ‹‚ğŠi”[‚·‚éƒƒ‚ƒŠ‚ğŠm•Û
+	// ãƒ•ã‚¡ã‚¤ãƒ«ã‚’æ ¼ç´ã™ã‚‹ãƒ¡ãƒ¢ãƒªã‚’ç¢ºä¿
 	DataBuffer = DXALLOC( DataSize ) ;
 	if( DataBuffer == NULL )
 	{
@@ -1218,43 +1218,43 @@ extern HANDLE AddFontFile_WCHAR_T( const wchar_t *FontFilePath )
 		goto ERRORLABEL ;
 	}
 
-	// ƒf[ƒ^‚ğ“Ç‚İ‚Ş
+	// ãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿è¾¼ã‚€
 	DX_FREAD( DataBuffer, DataSize, 1, FileHandle ) ;
 
-	// ƒtƒ@ƒCƒ‹‚ğ•Â‚¶‚é
+	// ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‰ã˜ã‚‹
 	DX_FCLOSE( FileHandle ) ;
 	FileHandle = 0 ;
 
-	// ƒtƒHƒ“ƒgƒtƒ@ƒCƒ‹‚ğƒVƒXƒeƒ€‚É’Ç‰Á‚·‚é
+	// ãƒ•ã‚©ãƒ³ãƒˆãƒ•ã‚¡ã‚¤ãƒ«ã‚’ã‚·ã‚¹ãƒ†ãƒ ã«è¿½åŠ ã™ã‚‹
 	FontHandle = NS_AddFontFileFromMem( DataBuffer, ( int )DataSize ) ;
 
-	// ƒtƒHƒ“ƒgƒtƒ@ƒCƒ‹Ši”[—p‚Ìƒƒ‚ƒŠ‚ğ‰ğ•ú‚·‚é
+	// ãƒ•ã‚©ãƒ³ãƒˆãƒ•ã‚¡ã‚¤ãƒ«æ ¼ç´ç”¨ã®ãƒ¡ãƒ¢ãƒªã‚’è§£æ”¾ã™ã‚‹
 	DXFREE( DataBuffer ) ;
 	DataBuffer = NULL ;
 
-	// –ß‚è’l‚ğ•Ô‚·
+	// æˆ»ã‚Šå€¤ã‚’è¿”ã™
 	return FontHandle ;
 
 ERRORLABEL :
-	// ƒtƒ@ƒCƒ‹‚©‚ç“Ç‚İ‚ñ‚¾ƒf[ƒ^‚ğ‰ğ•ú‚·‚é
+	// ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰èª­ã¿è¾¼ã‚“ã ãƒ‡ãƒ¼ã‚¿ã‚’è§£æ”¾ã™ã‚‹
 	if( DataBuffer )
 	{
 		DXFREE( DataBuffer ) ;
 		DataBuffer = NULL ;
 	}
 
-	// ƒtƒ@ƒCƒ‹‚ğ•Â‚¶‚é
+	// ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‰ã˜ã‚‹
 	if( FileHandle )
 	{
 		DX_FCLOSE( FileHandle ) ;
 		FileHandle = 0 ;
 	}
 
-	// ’l‚ğ•Ô‚·
+	// å€¤ã‚’è¿”ã™
 	return NULL ;
 }
 
-// w’è‚Ìƒƒ‚ƒŠƒAƒhƒŒƒX‚É“WŠJ‚µ‚½ƒtƒHƒ“ƒgƒtƒ@ƒCƒ‹ƒCƒ[ƒW‚ğƒVƒXƒeƒ€‚É’Ç‰Á‚·‚é( –ß‚è’l  NULL:¸”s  NULLˆÈŠO:ƒtƒHƒ“ƒgƒnƒ“ƒhƒ‹( WindowsOS ‚Ì‚à‚Ì‚È‚Ì‚ÅA‚c‚wƒ‰ƒCƒuƒ‰ƒŠ‚ÌƒtƒHƒ“ƒgƒnƒ“ƒhƒ‹‚Æ‚Í•Ê•¨‚Å‚· ) )
+// æŒ‡å®šã®ãƒ¡ãƒ¢ãƒªã‚¢ãƒ‰ãƒ¬ã‚¹ã«å±•é–‹ã—ãŸãƒ•ã‚©ãƒ³ãƒˆãƒ•ã‚¡ã‚¤ãƒ«ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’ã‚·ã‚¹ãƒ†ãƒ ã«è¿½åŠ ã™ã‚‹( æˆ»ã‚Šå€¤  NULL:å¤±æ•—  NULLä»¥å¤–:ãƒ•ã‚©ãƒ³ãƒˆãƒãƒ³ãƒ‰ãƒ«( WindowsOS ã®ã‚‚ã®ãªã®ã§ã€ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®ãƒ•ã‚©ãƒ³ãƒˆãƒãƒ³ãƒ‰ãƒ«ã¨ã¯åˆ¥ç‰©ã§ã™ ) )
 extern HANDLE NS_AddFontFileFromMem( const void *FontFileImage, int FontFileImageSize )
 {
 	DWORD Fonts = 0 ;
@@ -1269,7 +1269,7 @@ extern HANDLE NS_AddFontFileFromMem( const void *FontFileImage, int FontFileImag
 	return WinAPIData.Win32Func.AddFontMemResourceExFunc( ( void * )FontFileImage, ( DWORD )FontFileImageSize, NULL, &Fonts ) ;
 }
 
-// w’è‚ÌƒtƒHƒ“ƒgƒnƒ“ƒhƒ‹‚ğƒVƒXƒeƒ€‚©‚çíœ‚·‚é( ˆø”‚Í AddFontFile ‚â AddFontFileFromMem ‚Ì–ß‚è’l )
+// æŒ‡å®šã®ãƒ•ã‚©ãƒ³ãƒˆãƒãƒ³ãƒ‰ãƒ«ã‚’ã‚·ã‚¹ãƒ†ãƒ ã‹ã‚‰å‰Šé™¤ã™ã‚‹( å¼•æ•°ã¯ AddFontFile ã‚„ AddFontFileFromMem ã®æˆ»ã‚Šå€¤ )
 extern int NS_RemoveFontFile( HANDLE FontHandle )
 {
 	SETUP_WIN_API
@@ -1285,8 +1285,8 @@ extern int NS_RemoveFontFile( HANDLE FontHandle )
 
 #ifndef DX_NON_SAVEFUNCTION
 
-// ƒtƒHƒ“ƒgƒf[ƒ^ƒtƒ@ƒCƒ‹‚ğì¬‚·‚é
-extern int NS_CreateFontDataFile( const TCHAR *SaveFilePath, const TCHAR *FontName, int Size, int BitDepth /* DX_FONTIMAGE_BIT_1“™ */ , int Thick, int Italic, int CharSet, const TCHAR *SaveCharaList )
+// ãƒ•ã‚©ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ä½œæˆã™ã‚‹
+extern int NS_CreateFontDataFile( const TCHAR *SaveFilePath, const TCHAR *FontName, int Size, int BitDepth /* DX_FONTIMAGE_BIT_1ç­‰ */ , int Thick, int Italic, int CharSet, const TCHAR *SaveCharaList )
 {
 	FONTMANAGE				*ManageData ;
 	FONTMANAGE				*UseManageData ;
@@ -1322,7 +1322,7 @@ extern int NS_CreateFontDataFile( const TCHAR *SaveFilePath, const TCHAR *FontNa
 
 	SETUP_WIN_API
 
-	// w’è‚Ìƒpƒ‰ƒ[ƒ^‚É‡‚Á‚½ƒtƒHƒ“ƒgƒnƒ“ƒhƒ‹‚ğì¬‚·‚é
+	// æŒ‡å®šã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã«åˆã£ãŸãƒ•ã‚©ãƒ³ãƒˆãƒãƒ³ãƒ‰ãƒ«ã‚’ä½œæˆã™ã‚‹
 	FontCacheToTextureFlag        = NS_GetFontCacheToTextureFlag() ;
 	FontCacheTextureColorBitDepth = NS_GetFontCacheTextureColorBitDepth() ;
 	FontCacheCharaNum             = NS_GetFontCacheCharNum() ;
@@ -1355,10 +1355,10 @@ extern int NS_CreateFontDataFile( const TCHAR *SaveFilePath, const TCHAR *FontNa
 
 	ManageData = GetFontManageDataToHandle( FontHandle ) ;
 
-	// •¶šƒR[ƒhŒ`®‚Ìæ“¾
+	// æ–‡å­—ã‚³ãƒ¼ãƒ‰å½¢å¼ã®å–å¾—
 	CharCodeFormat = GetFontHandleCharCodeFormat( FontHandle ) ;
 
-	// SaveCharaList ‚ª NULL ‚Ìê‡‚ÍA‘S‚Ä‚Ì•¶š‚ğ•ÏŠ·‚Ì‘ÎÛ‚É‚·‚é
+	// SaveCharaList ãŒ NULL ã®å ´åˆã¯ã€å…¨ã¦ã®æ–‡å­—ã‚’å¤‰æ›ã®å¯¾è±¡ã«ã™ã‚‹
 	CharaNum = 0 ;
 	if( SaveCharaList == NULL )
 	{
@@ -1403,36 +1403,36 @@ extern int NS_CreateFontDataFile( const TCHAR *SaveFilePath, const TCHAR *FontNa
 		}
 	}
 
-	// ƒeƒNƒXƒ`ƒƒƒLƒƒƒbƒVƒ…‚ªg—p‚Å‚«‚È‚¢ê‡‚ÍƒGƒ‰[
+	// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚­ãƒ£ãƒƒã‚·ãƒ¥ãŒä½¿ç”¨ã§ããªã„å ´åˆã¯ã‚¨ãƒ©ãƒ¼
 	if( ManageData->TextureCacheFlag == FALSE )
 	{
 		goto ERR ;
 	}
 
-	// TextOut ‚ğg—p‚·‚éê‡‚Í‹­§“I‚É DX_FONTIMAGE_BIT_1 ‚É‚È‚é
+	// TextOut ã‚’ä½¿ç”¨ã™ã‚‹å ´åˆã¯å¼·åˆ¶çš„ã« DX_FONTIMAGE_BIT_1 ã«ãªã‚‹
 	if( ManageData->PF->UseTextOut )
 	{
 		FontType = DX_FONTTYPE_NORMAL ;
 		BitDepth = DX_FONTIMAGE_BIT_1 ;
 	}
 
-	// ƒwƒbƒ_ƒoƒbƒtƒ@‚ğŠm•Û
+	// ãƒ˜ãƒƒãƒ€ãƒãƒƒãƒ•ã‚¡ã‚’ç¢ºä¿
 	FileHeaderBufferSize = sizeof( FONTDATAFILEHEADER ) + CharaNum * sizeof( FONTDATAFILECHARADATA ) ; 
 	FileHeaderBuffer = ( BYTE * )DXALLOC( FileHeaderBufferSize * 3 ) ;
 	if( FileHeaderBuffer == NULL )
 	{
-		DXST_LOGFILE_ADDUTF16LE( "\xd5\x30\xa9\x30\xf3\x30\xc8\x30\xc7\x30\xfc\x30\xbf\x30\xd5\x30\xa1\x30\xa4\x30\xeb\x30\xd8\x30\xc3\x30\xc0\x30\xc5\x60\x31\x58\x00\x4e\x42\x66\x18\x8a\xb6\x61\x28\x75\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ƒtƒHƒ“ƒgƒf[ƒ^ƒtƒ@ƒCƒ‹ƒwƒbƒ_î•ñˆê‹L‰¯—pƒƒ‚ƒŠ‚ÌŠm•Û‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+		DXST_LOGFILE_ADDUTF16LE( "\xd5\x30\xa9\x30\xf3\x30\xc8\x30\xc7\x30\xfc\x30\xbf\x30\xd5\x30\xa1\x30\xa4\x30\xeb\x30\xd8\x30\xc3\x30\xc0\x30\xc5\x60\x31\x58\x00\x4e\x42\x66\x18\x8a\xb6\x61\x28\x75\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ãƒ•ã‚©ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ãƒ•ã‚¡ã‚¤ãƒ«ãƒ˜ãƒƒãƒ€æƒ…å ±ä¸€æ™‚è¨˜æ†¶ç”¨ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 		goto ERR ;
 	}
 	_MEMSET( FileHeaderBuffer, 0, FileHeaderBufferSize * 3 ) ;
 	FilePressHeaderBuffer = FileHeaderBuffer + FileHeaderBufferSize ;
 
-	// ƒCƒ[ƒWƒoƒbƒtƒ@‚ğŠm•Û
+	// ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒãƒƒãƒ•ã‚¡ã‚’ç¢ºä¿
 	FileImageBufferSize = 1024 * 1024 * 32 ; 
 	FileImageBuffer = ( BYTE * )DXALLOC( FileImageBufferSize ) ;
 	if( FileImageBuffer == NULL )
 	{
-		DXST_LOGFILE_ADDUTF16LE( "\xd5\x30\xa9\x30\xf3\x30\xc8\x30\xc7\x30\xfc\x30\xbf\x30\xd5\x30\xa1\x30\xa4\x30\xeb\x30\xd8\x30\xc3\x30\xc0\x30\xc5\x60\x31\x58\x00\x4e\x42\x66\x18\x8a\xb6\x61\x28\x75\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ƒtƒHƒ“ƒgƒf[ƒ^ƒtƒ@ƒCƒ‹ƒwƒbƒ_î•ñˆê‹L‰¯—pƒƒ‚ƒŠ‚ÌŠm•Û‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+		DXST_LOGFILE_ADDUTF16LE( "\xd5\x30\xa9\x30\xf3\x30\xc8\x30\xc7\x30\xfc\x30\xbf\x30\xd5\x30\xa1\x30\xa4\x30\xeb\x30\xd8\x30\xc3\x30\xc0\x30\xc5\x60\x31\x58\x00\x4e\x42\x66\x18\x8a\xb6\x61\x28\x75\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ãƒ•ã‚©ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ãƒ•ã‚¡ã‚¤ãƒ«ãƒ˜ãƒƒãƒ€æƒ…å ±ä¸€æ™‚è¨˜æ†¶ç”¨ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 		goto ERR ;
 	}
 	_MEMSET( FileImageBuffer, 0, FileImageBufferSize ) ;
@@ -1457,7 +1457,7 @@ extern int NS_CreateFontDataFile( const TCHAR *SaveFilePath, const TCHAR *FontNa
 
 	for( CharaIndex = 0 ; CharaIndex < CharaNum ; CharaIndex ++ )
 	{
-		// ƒLƒƒƒbƒVƒ…‚É•¶š‚ğ’Ç‰Á
+		// ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã«æ–‡å­—ã‚’è¿½åŠ 
 		if( CharaIndex % CacheCharNum == 0 )
 		{
 			int AddNum ;
@@ -1471,14 +1471,14 @@ extern int NS_CreateFontDataFile( const TCHAR *SaveFilePath, const TCHAR *FontNa
 			FontCacheCharAddToHandle( AddNum, &CharaList[ CharaIndex ], &IVSList[ CharaIndex ], ManageData, FALSE ) ;
 		}
 
-		// ƒLƒƒƒbƒVƒ…‚É‘¶İ‚µ‚È‚¢ê‡‚Í’Ç‰Á‚·‚é
+		// ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã«å­˜åœ¨ã—ãªã„å ´åˆã¯è¿½åŠ ã™ã‚‹
 		CharData = GetFontCacheChar( ManageData, CharaList[ CharaIndex ], IVSList[ CharaIndex ], &UseManageData, &DrawOffsetX, &DrawOffsetY, FALSE, FALSE ) ;
 		if( CharData == NULL )
 		{
 			continue ;
 		}
 
-		// ‰æ‘œƒTƒCƒY‚ª‚O‚Ìê‡‚Í’Ç‰Á‚µ‚È‚¢
+		// ç”»åƒã‚µã‚¤ã‚ºãŒï¼ã®å ´åˆã¯è¿½åŠ ã—ãªã„
 		if( CharData->SizeX == 0 &&
 			CharData->SizeY == 0 &&
 			CharData->AddX  == 0 )
@@ -1486,7 +1486,7 @@ extern int NS_CreateFontDataFile( const TCHAR *SaveFilePath, const TCHAR *FontNa
 			continue ;
 		}
 
-		// ƒtƒHƒ“ƒg‚Ìî•ñ‚ğƒZƒbƒg
+		// ãƒ•ã‚©ãƒ³ãƒˆã®æƒ…å ±ã‚’ã‚»ãƒƒãƒˆ
 		FontCharaData->CodeUnicode   = CharaList[ CharaIndex ] ;
 		FontCharaData->DrawX         = CharData->DrawX ;
 		FontCharaData->DrawY         = CharData->DrawY ;
@@ -1495,7 +1495,7 @@ extern int NS_CreateFontDataFile( const TCHAR *SaveFilePath, const TCHAR *FontNa
 		FontCharaData->SizeY         = CharData->SizeY ;
 		FontCharaData->ImageAddress  = FileImageBufferAddress ;
 
-		// ƒCƒ[ƒWƒf[ƒ^‚Ì\’z
+		// ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ã®æ§‹ç¯‰
 		{
 			DWORD		 DestPitch = 0 ;
 			DWORD		 k ;
@@ -1537,7 +1537,7 @@ extern int NS_CreateFontDataFile( const TCHAR *SaveFilePath, const TCHAR *FontNa
 				FontTempImageBuffer = ( BYTE * )DXREALLOC( FontTempImageBuffer, FontTempImageBufferSize ) ;
 				if( FontTempImageBuffer == NULL )
 				{
-					DXST_LOGFILE_ADDUTF16LE( "\xd5\x30\xa9\x30\xf3\x30\xc8\x30\xc7\x30\xfc\x30\xbf\x30\x3b\x75\xcf\x50\x00\x4e\x42\x66\x18\x8a\xb6\x61\x28\x75\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ƒtƒHƒ“ƒgƒf[ƒ^‰æ‘œˆê‹L‰¯—pƒƒ‚ƒŠ‚ÌŠm•Û‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+					DXST_LOGFILE_ADDUTF16LE( "\xd5\x30\xa9\x30\xf3\x30\xc8\x30\xc7\x30\xfc\x30\xbf\x30\x3b\x75\xcf\x50\x00\x4e\x42\x66\x18\x8a\xb6\x61\x28\x75\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ãƒ•ã‚©ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ç”»åƒä¸€æ™‚è¨˜æ†¶ç”¨ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 					goto ERR ;
 				}
 			}
@@ -1659,14 +1659,14 @@ extern int NS_CreateFontDataFile( const TCHAR *SaveFilePath, const TCHAR *FontNa
 				break ;
 			}
 
-			// ƒCƒ[ƒW‚ğˆ³k‚·‚é
+			// ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’åœ§ç¸®ã™ã‚‹
 			if( FileImageBufferSize < FileImageBufferAddress + FontTempImageSize * 2 )
 			{
 				FileImageBufferSize += FontTempImageSize * 2 + 1024 * 1024 * 32 ;
 				FileImageBuffer = ( BYTE * )DXREALLOC( FileImageBuffer, FileImageBufferSize ) ;
 				if( FileImageBuffer == NULL )
 				{
-					DXST_LOGFILE_ADDUTF16LE( "\xd5\x30\xa9\x30\xf3\x30\xc8\x30\xc7\x30\xfc\x30\xbf\x30\xd5\x30\xa1\x30\xa4\x30\xeb\x30\xd8\x30\xc3\x30\xc0\x30\xc5\x60\x31\x58\x00\x4e\x42\x66\x18\x8a\xb6\x61\x28\x75\xe1\x30\xe2\x30\xea\x30\x6e\x30\xe1\x62\x35\x5f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ƒtƒHƒ“ƒgƒf[ƒ^ƒtƒ@ƒCƒ‹ƒwƒbƒ_î•ñˆê‹L‰¯—pƒƒ‚ƒŠ‚ÌŠg’£‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+					DXST_LOGFILE_ADDUTF16LE( "\xd5\x30\xa9\x30\xf3\x30\xc8\x30\xc7\x30\xfc\x30\xbf\x30\xd5\x30\xa1\x30\xa4\x30\xeb\x30\xd8\x30\xc3\x30\xc0\x30\xc5\x60\x31\x58\x00\x4e\x42\x66\x18\x8a\xb6\x61\x28\x75\xe1\x30\xe2\x30\xea\x30\x6e\x30\xe1\x62\x35\x5f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ãƒ•ã‚©ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ãƒ•ã‚¡ã‚¤ãƒ«ãƒ˜ãƒƒãƒ€æƒ…å ±ä¸€æ™‚è¨˜æ†¶ç”¨ãƒ¡ãƒ¢ãƒªã®æ‹¡å¼µã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 					goto ERR ;
 				}
 			}
@@ -1683,7 +1683,7 @@ extern int NS_CreateFontDataFile( const TCHAR *SaveFilePath, const TCHAR *FontNa
 				FontCharaData->Press = 1 ;
 			}
 
-			// Šù‚É“o˜^‚µ‚Ä‚¢‚é•¶š‚Æ‚Ü‚Á‚½‚­“¯‚¶‰æ‘œ‚ª‚ ‚é‚©’²‚×‚é
+			// æ—¢ã«ç™»éŒ²ã—ã¦ã„ã‚‹æ–‡å­—ã¨ã¾ã£ãŸãåŒã˜ç”»åƒãŒã‚ã‚‹ã‹èª¿ã¹ã‚‹
 			{
 				FONTDATAFILECHARADATA	*FontCharaDataSub ;
 
@@ -1723,14 +1723,14 @@ extern int NS_CreateFontDataFile( const TCHAR *SaveFilePath, const TCHAR *FontNa
 					}
 				}
 
-				// ‘S‚­“¯‚¶‰æ‘œ‚ª‚ ‚Á‚½ê‡‚Í‰æ‘œ‚ğ‹¤—L‚·‚é
+				// å…¨ãåŒã˜ç”»åƒãŒã‚ã£ãŸå ´åˆã¯ç”»åƒã‚’å…±æœ‰ã™ã‚‹
 				if( k != FontFileHeader->CharaNum )
 				{
 					FontCharaData->ImageAddress = FontCharaDataSub->ImageAddress ;
 				}
 				else
 				{
-					// ‚»‚êˆÈŠO‚Ìê‡‚Í‰æ‘œ‚ÌƒAƒhƒŒƒX‚ği‚ß‚é
+					// ãã‚Œä»¥å¤–ã®å ´åˆã¯ç”»åƒã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’é€²ã‚ã‚‹
 					if( FontCharaData->Press )
 					{
 						FileImageBufferAddress += FontImagePressSize ;
@@ -1754,7 +1754,7 @@ extern int NS_CreateFontDataFile( const TCHAR *SaveFilePath, const TCHAR *FontNa
 
 	DXFREE( IVSList ) ;
 
-	// ƒtƒ@ƒCƒ‹ƒwƒbƒ_•”•ª‚Ìˆ³k
+	// ãƒ•ã‚¡ã‚¤ãƒ«ãƒ˜ãƒƒãƒ€éƒ¨åˆ†ã®åœ§ç¸®
 	{
 		int NotPressSize ;
 
@@ -1765,48 +1765,48 @@ extern int NS_CreateFontDataFile( const TCHAR *SaveFilePath, const TCHAR *FontNa
 			( DWORD )( ( BYTE * )FontCharaData - FileHeaderBuffer ) - NotPressSize,
 			FilePressHeaderBuffer + NotPressSize ) + NotPressSize ;
 
-		// ‰æ‘œƒf[ƒ^ŠJnƒAƒhƒŒƒX‚ğƒZƒbƒg
+		// ç”»åƒãƒ‡ãƒ¼ã‚¿é–‹å§‹ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ã‚»ãƒƒãƒˆ
 		FontFileHeader->ImageAddress = FilePressHeaderSize ;
 
-		// ˆ³k‚µ‚È‚¢•”•ª‚ğƒRƒs[
+		// åœ§ç¸®ã—ãªã„éƒ¨åˆ†ã‚’ã‚³ãƒ”ãƒ¼
 		_MEMCPY( FilePressHeaderBuffer, FileHeaderBuffer, NotPressSize ) ;
 	}
 
-	// ƒtƒ@ƒCƒ‹‚É•Û‘¶
+	// ãƒ•ã‚¡ã‚¤ãƒ«ã«ä¿å­˜
 	{
 		HANDLE FileHandle ;
 		DWORD WriteSize ;
 
 #ifdef UNICODE
-		// Šù‚Éƒtƒ@ƒCƒ‹‚ª‚ ‚Á‚½ê‡—p‚ÉAƒtƒ@ƒCƒ‹íœˆ—
+		// æ—¢ã«ãƒ•ã‚¡ã‚¤ãƒ«ãŒã‚ã£ãŸå ´åˆç”¨ã«ã€ãƒ•ã‚¡ã‚¤ãƒ«å‰Šé™¤å‡¦ç†
 		DeleteFileWFunc( SaveFilePath ) ;
 
-		// ƒtƒ@ƒCƒ‹‚ğŠJ‚­
+		// ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‹ã
 		FileHandle = CreateFileWFunc( SaveFilePath, GENERIC_WRITE, 0, NULL, CREATE_NEW, FILE_ATTRIBUTE_NORMAL, NULL ) ;
 #else
-		// Šù‚Éƒtƒ@ƒCƒ‹‚ª‚ ‚Á‚½ê‡—p‚ÉAƒtƒ@ƒCƒ‹íœˆ—
+		// æ—¢ã«ãƒ•ã‚¡ã‚¤ãƒ«ãŒã‚ã£ãŸå ´åˆç”¨ã«ã€ãƒ•ã‚¡ã‚¤ãƒ«å‰Šé™¤å‡¦ç†
 		WinAPIData.Win32Func.DeleteFileAFunc( SaveFilePath ) ;
 
-		// ƒtƒ@ƒCƒ‹‚ğŠJ‚­
+		// ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‹ã
 		FileHandle = WinAPIData.Win32Func.CreateFileAFunc( SaveFilePath, GENERIC_WRITE, 0, NULL, CREATE_NEW, FILE_ATTRIBUTE_NORMAL, NULL ) ;
 #endif
 		if( FileHandle == NULL ) 
 		{
-			DXST_LOGFILE_ADDUTF16LE( "\xd5\x30\xa9\x30\xf3\x30\xc8\x30\xc7\x30\xfc\x30\xbf\x30\xd5\x30\xa1\x30\xa4\x30\xeb\x30\x6e\x30\xaa\x30\xfc\x30\xd7\x30\xf3\x30\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ƒtƒHƒ“ƒgƒf[ƒ^ƒtƒ@ƒCƒ‹‚ÌƒI[ƒvƒ“‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+			DXST_LOGFILE_ADDUTF16LE( "\xd5\x30\xa9\x30\xf3\x30\xc8\x30\xc7\x30\xfc\x30\xbf\x30\xd5\x30\xa1\x30\xa4\x30\xeb\x30\x6e\x30\xaa\x30\xfc\x30\xd7\x30\xf3\x30\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ãƒ•ã‚©ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚ªãƒ¼ãƒ—ãƒ³ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 			goto ERR ;
 		}
 
-		// ƒtƒ@ƒCƒ‹ƒwƒbƒ_‚Ì‘‚«o‚µ
+		// ãƒ•ã‚¡ã‚¤ãƒ«ãƒ˜ãƒƒãƒ€ã®æ›¸ãå‡ºã—
 		WinAPIData.Win32Func.WriteFileFunc( FileHandle, FilePressHeaderBuffer, FilePressHeaderSize, &WriteSize, NULL ) ;
 		
-		// ƒCƒ[ƒW‚Ì‘‚«o‚µ
+		// ã‚¤ãƒ¡ãƒ¼ã‚¸ã®æ›¸ãå‡ºã—
 		WinAPIData.Win32Func.WriteFileFunc( FileHandle, FileImageBuffer, FileImageBufferAddress, &WriteSize, NULL ) ;
 
-		// ƒtƒ@ƒCƒ‹‚ğ•Â‚¶‚é
+		// ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‰ã˜ã‚‹
 		WinAPIData.Win32Func.CloseHandleFunc( FileHandle ) ;
 	}
 
-	// Šm•Û‚µ‚Ä‚¢‚½ƒƒ‚ƒŠ‚ğ‰ğ•ú
+	// ç¢ºä¿ã—ã¦ã„ãŸãƒ¡ãƒ¢ãƒªã‚’è§£æ”¾
 	if( FontTempImageBuffer != NULL )
 	{
 		DXFREE( FontTempImageBuffer ) ;
@@ -1831,13 +1831,13 @@ extern int NS_CreateFontDataFile( const TCHAR *SaveFilePath, const TCHAR *FontNa
 		CharaList = NULL ;
 	}
 
-	// ƒtƒHƒ“ƒgƒf[ƒ^ì¬ˆ——p‚Éì¬‚µ‚½ƒtƒHƒ“ƒgƒnƒ“ƒhƒ‹‚ğíœ
+	// ãƒ•ã‚©ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ä½œæˆå‡¦ç†ç”¨ã«ä½œæˆã—ãŸãƒ•ã‚©ãƒ³ãƒˆãƒãƒ³ãƒ‰ãƒ«ã‚’å‰Šé™¤
 	SubHandle( FontHandle, FALSE, FALSE ) ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 
-	// ƒGƒ‰[ˆ—
+	// ã‚¨ãƒ©ãƒ¼å‡¦ç†
 ERR :
 	if( FontTempImageBuffer != NULL )
 	{
@@ -1871,7 +1871,7 @@ ERR :
 	return -1 ;
 }
 
-// ƒtƒHƒ“ƒgƒf[ƒ^ƒtƒ@ƒCƒ‹‚ğì¬‚·‚é
+// ãƒ•ã‚©ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ä½œæˆã™ã‚‹
 extern int NS_CreateFontDataFileWithStrLen( const TCHAR *SaveFilePath, size_t SaveFilePathLength, const TCHAR *FontName, size_t FontNameLength, int Size, int BitDepth, int Thick, int Italic , int CharSet , const TCHAR *SaveCharaList, size_t SaveCharaListLength )
 {
 	int Result = -1 ;
@@ -1894,20 +1894,20 @@ ERR :
 
 #endif // DX_NON_SAVEFUNCTION
 
-// ƒtƒHƒ“ƒg—ñ‹“—pƒR[ƒ‹ƒoƒbƒNŠÖ”
+// ãƒ•ã‚©ãƒ³ãƒˆåˆ—æŒ™ç”¨ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 int CALLBACK EnumFontFamExProc( ENUMLOGFONTEXW *lpelf, NEWTEXTMETRICEXW * /*lpntm*/, int nFontType, LPARAM lParam )
 {
 	ENUMFONTDATA *EnumFontData = ( ENUMFONTDATA * )lParam ;
 
-	// JapanOnlyƒtƒ‰ƒO‚ª—§‚Á‚Ä‚¢‚½‚ç TrueType A“ú–{ŒêƒtƒHƒ“ƒg‚¾‚¯‚ğ—ñ‹“‚·‚é
-	// ‰¡Œü‚«ƒtƒHƒ“ƒg(@•t)‚Í‚¢‚¸‚ê‚à‚Í‚¶‚­
+	// JapanOnlyãƒ•ãƒ©ã‚°ãŒç«‹ã£ã¦ã„ãŸã‚‰ TrueType ã€æ—¥æœ¬èªãƒ•ã‚©ãƒ³ãƒˆã ã‘ã‚’åˆ—æŒ™ã™ã‚‹
+	// æ¨ªå‘ããƒ•ã‚©ãƒ³ãƒˆ(@ä»˜)ã¯ã„ãšã‚Œã‚‚ã¯ã˜ã
 	if( ( EnumFontData->JapanOnlyFlag == TRUE && ( nFontType & TRUETYPE_FONTTYPE ) &&
-		( _WCSCMP( ( wchar_t * )"\xe5\x65\x2c\x67\x9e\x8a\x00"/*@ L"“ú–{Œê" @*/, &lpelf->elfScript[0] ) == 0 ||
-		  _WCSCMP( ( wchar_t * )"\xe5\x65\x87\x65\x00"/*@ L"“ú•¶" @*/,   &lpelf->elfScript[0] ) == 0 )
+		( _WCSCMP( ( wchar_t * )"\xe5\x65\x2c\x67\x9e\x8a\x00"/*@ L"æ—¥æœ¬èª" @*/, &lpelf->elfScript[0] ) == 0 ||
+		  _WCSCMP( ( wchar_t * )"\xe5\x65\x87\x65\x00"/*@ L"æ—¥æ–‡" @*/,   &lpelf->elfScript[0] ) == 0 )
 		  && lpelf->elfFullName[0] != L'@' ) || 
 		( EnumFontData->JapanOnlyFlag == FALSE && lpelf->elfFullName[0] != L'@' ) )
 	{
-		// “¯‚¶ƒtƒHƒ“ƒg–¼‚ªˆÈ‘O‚É‚à‚ ‚Á‚½ê‡‚Í’e‚­
+		// åŒã˜ãƒ•ã‚©ãƒ³ãƒˆåãŒä»¥å‰ã«ã‚‚ã‚ã£ãŸå ´åˆã¯å¼¾ã
 		{
 			int i ;
 
@@ -1920,38 +1920,38 @@ int CALLBACK EnumFontFamExProc( ENUMLOGFONTEXW *lpelf, NEWTEXTMETRICEXW * /*lpnt
 			}
 		}
 
-		// ƒl[ƒ€‚ğ•Û‘¶‚·‚é
+		// ãƒãƒ¼ãƒ ã‚’ä¿å­˜ã™ã‚‹
 		_WCSCPY_S( &EnumFontData->FontBuffer[ 64 * EnumFontData->FontNum ], sizeof( wchar_t ) * 64, &lpelf->elfFullName[0] ) ;
 
-		// ƒtƒHƒ“ƒg‚Ì”‚ğ‘‚â‚·
+		// ãƒ•ã‚©ãƒ³ãƒˆã®æ•°ã‚’å¢—ã‚„ã™
 		EnumFontData->FontNum ++ ;
 
-		// ‚à‚µƒoƒbƒtƒ@‚Ì”‚ªŒÀŠE‚É—ˆ‚Ä‚¢‚½‚ç—ñ‹“I—¹
+		// ã‚‚ã—ãƒãƒƒãƒ•ã‚¡ã®æ•°ãŒé™ç•Œã«æ¥ã¦ã„ãŸã‚‰åˆ—æŒ™çµ‚äº†
 		if( EnumFontData->BufferNum != 0 && EnumFontData->BufferNum == EnumFontData->FontNum )
 		{
 			return FALSE ;
 		}
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return TRUE ;
 }
 
-// ƒtƒHƒ“ƒg—ñ‹“—pƒR[ƒ‹ƒoƒbƒNŠÖ”
+// ãƒ•ã‚©ãƒ³ãƒˆåˆ—æŒ™ç”¨ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 int CALLBACK EnumFontFamExProcEx( ENUMLOGFONTEXW *lpelf, NEWTEXTMETRICEXW * /*lpntm*/, int /*nFontType*/, LPARAM lParam )
 {
 	ENUMFONTDATA *EnumFontData = ( ENUMFONTDATA * )lParam ;
 
-	// ƒtƒHƒ“ƒgƒoƒbƒtƒ@‚ª–³Œø‚Èê‡‚ÍƒtƒHƒ“ƒg–¼‚Ì‚İƒ`ƒFƒbƒN‚·‚é
+	// ãƒ•ã‚©ãƒ³ãƒˆãƒãƒƒãƒ•ã‚¡ãŒç„¡åŠ¹ãªå ´åˆã¯ãƒ•ã‚©ãƒ³ãƒˆåã®ã¿ãƒã‚§ãƒƒã‚¯ã™ã‚‹
 	if( EnumFontData->FontBuffer == NULL )
 	{
-		// ‰¡Œü‚«ƒtƒHƒ“ƒg(@•t)‚Í‚¢‚¸‚ê‚à‚Í‚¶‚­
+		// æ¨ªå‘ããƒ•ã‚©ãƒ³ãƒˆ(@ä»˜)ã¯ã„ãšã‚Œã‚‚ã¯ã˜ã
 		if( lpelf->elfFullName[0] != L'@' )
 		{
 			EnumFontData->Valid = TRUE ;
 		}
 
-		// EnumFontName ‚ª‰pŒêAelfFullName ‚ª“ú–{Œê‚Æ‚¢‚¤ê‡‚ª‚ ‚é‚Ì‚ÅŠÈˆÕƒ`ƒFƒbƒN‚É•ÏX
+		// EnumFontName ãŒè‹±èªã€elfFullName ãŒæ—¥æœ¬èªã¨ã„ã†å ´åˆãŒã‚ã‚‹ã®ã§ç°¡æ˜“ãƒã‚§ãƒƒã‚¯ã«å¤‰æ›´
 //		if( EnumFontData->EnumFontName != NULL )
 //		{
 //			if( _WCSCMP( &lpelf->elfFullName[ 0 ], EnumFontData->EnumFontName ) == 0 )
@@ -1962,12 +1962,12 @@ int CALLBACK EnumFontFamExProcEx( ENUMLOGFONTEXW *lpelf, NEWTEXTMETRICEXW * /*lp
 	}
 	else
 	{
-		// ‰¡Œü‚«ƒtƒHƒ“ƒg(@•t)‚Í‚¢‚¸‚ê‚à‚Í‚¶‚­
+		// æ¨ªå‘ããƒ•ã‚©ãƒ³ãƒˆ(@ä»˜)ã¯ã„ãšã‚Œã‚‚ã¯ã˜ã
 		if( lpelf->elfFullName[0] != L'@' )
 		{
 			int i ;
 
-			// “¯‚¶ƒtƒHƒ“ƒg–¼‚ªˆÈ‘O‚É‚à‚ ‚Á‚½ê‡‚Í’e‚­
+			// åŒã˜ãƒ•ã‚©ãƒ³ãƒˆåãŒä»¥å‰ã«ã‚‚ã‚ã£ãŸå ´åˆã¯å¼¾ã
 			for( i = 0 ; i < EnumFontData->FontNum ; i ++ )
 			{
 				if( _WCSCMP( &lpelf->elfFullName[0], &EnumFontData->FontBuffer[64 * i] ) == 0 )
@@ -1976,13 +1976,13 @@ int CALLBACK EnumFontFamExProcEx( ENUMLOGFONTEXW *lpelf, NEWTEXTMETRICEXW * /*lp
 				}
 			}
 
-			// ƒl[ƒ€‚ğ•Û‘¶‚·‚é
+			// ãƒãƒ¼ãƒ ã‚’ä¿å­˜ã™ã‚‹
 			_WCSCPY_S( &EnumFontData->FontBuffer[ 64 * EnumFontData->FontNum ], sizeof( wchar_t ) * 64, &lpelf->elfFullName[0] ) ;
 
-			// ƒtƒHƒ“ƒg‚Ì”‚ğ‘‚â‚·
+			// ãƒ•ã‚©ãƒ³ãƒˆã®æ•°ã‚’å¢—ã‚„ã™
 			EnumFontData->FontNum ++ ;
 
-			// ‚à‚µƒoƒbƒtƒ@‚Ì”‚ªŒÀŠE‚É—ˆ‚Ä‚¢‚½‚ç—ñ‹“I—¹
+			// ã‚‚ã—ãƒãƒƒãƒ•ã‚¡ã®æ•°ãŒé™ç•Œã«æ¥ã¦ã„ãŸã‚‰åˆ—æŒ™çµ‚äº†
 			if( EnumFontData->BufferNum != 0 && EnumFontData->BufferNum == EnumFontData->FontNum )
 			{
 				return FALSE ;
@@ -1990,11 +1990,11 @@ int CALLBACK EnumFontFamExProcEx( ENUMLOGFONTEXW *lpelf, NEWTEXTMETRICEXW * /*lp
 		}
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return TRUE ;
 }
 
-// EnumFontName ‚ÌŠÂ‹«ˆË‘¶ˆ—‚ğs‚¤ŠÖ”
+// EnumFontName ã®ç’°å¢ƒä¾å­˜å‡¦ç†ã‚’è¡Œã†é–¢æ•°
 extern int EnumFontName_PF( ENUMFONTDATA *EnumFontData, int IsEx, int CharSet )
 {
 	HDC			hdc ;
@@ -2002,10 +2002,10 @@ extern int EnumFontName_PF( ENUMFONTDATA *EnumFontData, int IsEx, int CharSet )
 
 	SETUP_WIN_API
 
-	// ƒfƒoƒCƒXƒRƒ“ƒeƒLƒXƒg‚ğæ“¾
+	// ãƒ‡ãƒã‚¤ã‚¹ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã‚’å–å¾—
 	hdc = WinAPIData.Win32Func.GetDCFunc( NULL );
 
-	// —ñ‹“ŠJn
+	// åˆ—æŒ™é–‹å§‹
 	_MEMSET( &LogFont, 0, sizeof( LOGFONT ) ) ;
 	if( IsEx )
 	{
@@ -2026,10 +2026,10 @@ extern int EnumFontName_PF( ENUMFONTDATA *EnumFontData, int IsEx, int CharSet )
 	LogFont.lfPitchAndFamily	= 0 ;
 	EnumFontFamiliesExWFunc( hdc, &LogFont, ( FONTENUMPROCW )( IsEx ? EnumFontFamExProcEx : EnumFontFamExProc ), ( LPARAM )EnumFontData, 0  ) ;
 
-	// ƒfƒoƒCƒXƒRƒ“ƒeƒLƒXƒg‚Ì‰ğ•ú
+	// ãƒ‡ãƒã‚¤ã‚¹ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã®è§£æ”¾
 	WinAPIData.Win32Func.ReleaseDCFunc( NULL, hdc ) ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 

@@ -1,6 +1,6 @@
 // -------------------------------------------------------------------------------
 // 
-// 		‚c‚wƒ‰ƒCƒuƒ‰ƒŠ		ƒXƒŒƒbƒhŠÖŒWƒvƒƒOƒ‰ƒ€ƒwƒbƒ_ƒtƒ@ƒCƒ‹
+// 		ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒª		ã‚¹ãƒ¬ãƒƒãƒ‰é–¢ä¿‚ãƒ—ãƒ­ã‚°ãƒ©ãƒ ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«
 // 
 // 				Ver 3.25a
 // 
@@ -9,7 +9,7 @@
 #ifndef DX_THREAD_H
 #define DX_THREAD_H
 
-// ƒCƒ“ƒNƒ‹[ƒh ------------------------------------------------------------------
+// ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ ------------------------------------------------------------------
 #include "DxCompileConfig.h"
 
 #ifdef WINDOWS_DESKTOP_OS
@@ -38,9 +38,9 @@ namespace DxLib
 
 #endif // DX_NON_NAMESPACE
 
-// ƒ}ƒNƒ’è‹` --------------------------------------------------------------------
+// ãƒã‚¯ãƒ­å®šç¾© --------------------------------------------------------------------
 
-// —Dæ‡ˆÊ
+// å„ªå…ˆé †ä½
 #define DX_THREAD_PRIORITY_LOWEST			(0)
 #define DX_THREAD_PRIORITY_BELOW_NORMAL		(1)
 #define DX_THREAD_PRIORITY_NORMAL			(2)
@@ -53,37 +53,37 @@ namespace DxLib
 	#define CRITICALSECTION_LOCK( csection )			CriticalSection_Lock( (csection) )
 #endif
 
-// Œ^’è‹` ------------------------------------------------------------------------
+// å‹å®šç¾© ------------------------------------------------------------------------
 
-// \‘¢‘Ì’è‹` --------------------------------------------------------------------
+// æ§‹é€ ä½“å®šç¾© --------------------------------------------------------------------
 
-// ƒe[ƒuƒ‹-----------------------------------------------------------------------
+// ãƒ†ãƒ¼ãƒ–ãƒ«-----------------------------------------------------------------------
 
-// “à•”‘åˆæ•Ï”éŒ¾ --------------------------------------------------------------
+// å†…éƒ¨å¤§åŸŸå¤‰æ•°å®£è¨€ --------------------------------------------------------------
 
-// ŠÖ”ƒvƒƒgƒ^ƒCƒvéŒ¾-----------------------------------------------------------
+// é–¢æ•°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€-----------------------------------------------------------
 
-extern	void		Thread_Initialize( void ) ;																				// ƒXƒŒƒbƒh‚Ìˆ—‚ğ‰Šú‰»‚·‚é
-extern	int			Thread_Create( THREAD_INFO *pThreadInfo, void ( *pFunction )( THREAD_INFO *, void * ), void *pParam ) ;	// ƒXƒŒƒbƒh‚ğì¬‚·‚é
-extern	void		Thread_Delete( THREAD_INFO *pThreadInfo ) ;																// ƒXƒŒƒbƒh‚ÌŒãn––‚ğs‚¤
-extern	int			Thread_IsValid( THREAD_INFO *pThreadInfo ) ;															// ƒXƒŒƒbƒh‚ª—LŒø‚©‚Ç‚¤‚©‚ğæ“¾‚·‚é( 1:—LŒø  0:–³Œø )
-extern	void		Thread_SetPriority( THREAD_INFO *pThreadInfo, int Priority /* DX_THREAD_PRIORITY_LOWEST ‚È‚Ç */ ) ;		// ƒXƒŒƒbƒh‚ÌÀs—Dæ‡ˆÊ‚ğİ’è‚·‚é
-extern	DWORD_PTR	Thread_GetCurrentId( void ) ;																			// ƒJƒŒƒ“ƒgƒXƒŒƒbƒh‚Ì‚h‚c‚ğæ“¾‚·‚é
-extern	DWORD_PTR	Thread_GetId( THREAD_INFO *pThreadInfo ) ;																// ƒXƒŒƒbƒh‚Ì‚h‚c‚ğæ“¾‚·‚é
-extern	void		Thread_Suspend( THREAD_INFO *pThreadInfo ) ;															// ƒXƒŒƒbƒh‚ğ‹x~ó‘Ô‚É‚·‚é
-extern	int			Thread_Resume( THREAD_INFO *pThreadInfo ) ;																// ƒXƒŒƒbƒh‚Ì‹x~ó‘Ô‚ğ‰ğœ‚·‚é( 0:‹x~ó‘Ô‚¶‚á‚È‚©‚Á‚½  1:‹x~ó‘Ô‚¾‚Á‚½ )
+extern	void		Thread_Initialize( void ) ;																				// ã‚¹ãƒ¬ãƒƒãƒ‰ã®å‡¦ç†ã‚’åˆæœŸåŒ–ã™ã‚‹
+extern	int			Thread_Create( THREAD_INFO *pThreadInfo, void ( *pFunction )( THREAD_INFO *, void * ), void *pParam ) ;	// ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’ä½œæˆã™ã‚‹
+extern	void		Thread_Delete( THREAD_INFO *pThreadInfo ) ;																// ã‚¹ãƒ¬ãƒƒãƒ‰ã®å¾Œå§‹æœ«ã‚’è¡Œã†
+extern	int			Thread_IsValid( THREAD_INFO *pThreadInfo ) ;															// ã‚¹ãƒ¬ãƒƒãƒ‰ãŒæœ‰åŠ¹ã‹ã©ã†ã‹ã‚’å–å¾—ã™ã‚‹( 1:æœ‰åŠ¹  0:ç„¡åŠ¹ )
+extern	void		Thread_SetPriority( THREAD_INFO *pThreadInfo, int Priority /* DX_THREAD_PRIORITY_LOWEST ãªã© */ ) ;		// ã‚¹ãƒ¬ãƒƒãƒ‰ã®å®Ÿè¡Œå„ªå…ˆé †ä½ã‚’è¨­å®šã™ã‚‹
+extern	DWORD_PTR	Thread_GetCurrentId( void ) ;																			// ã‚«ãƒ¬ãƒ³ãƒˆã‚¹ãƒ¬ãƒƒãƒ‰ã®ï¼©ï¼¤ã‚’å–å¾—ã™ã‚‹
+extern	DWORD_PTR	Thread_GetId( THREAD_INFO *pThreadInfo ) ;																// ã‚¹ãƒ¬ãƒƒãƒ‰ã®ï¼©ï¼¤ã‚’å–å¾—ã™ã‚‹
+extern	void		Thread_Suspend( THREAD_INFO *pThreadInfo ) ;															// ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’ä¼‘æ­¢çŠ¶æ…‹ã«ã™ã‚‹
+extern	int			Thread_Resume( THREAD_INFO *pThreadInfo ) ;																// ã‚¹ãƒ¬ãƒƒãƒ‰ã®ä¼‘æ­¢çŠ¶æ…‹ã‚’è§£é™¤ã™ã‚‹( 0:ä¼‘æ­¢çŠ¶æ…‹ã˜ã‚ƒãªã‹ã£ãŸ  1:ä¼‘æ­¢çŠ¶æ…‹ã ã£ãŸ )
 
-extern	void		Thread_Sleep( DWORD MiliSecond ) ;																		// w’èŠÔƒXƒŒƒbƒh‚ğ’â~‚·‚é
+extern	void		Thread_Sleep( DWORD MiliSecond ) ;																		// æŒ‡å®šæ™‚é–“ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’åœæ­¢ã™ã‚‹
 
-extern	int			CriticalSection_Initialize( DX_CRITICAL_SECTION *pCSection ) ;									// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰Šú‰»
-extern	int			CriticalSection_Delete( DX_CRITICAL_SECTION *pCSection ) ;										// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìíœ
+extern	int			CriticalSection_Initialize( DX_CRITICAL_SECTION *pCSection ) ;									// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®åˆæœŸåŒ–
+extern	int			CriticalSection_Delete( DX_CRITICAL_SECTION *pCSection ) ;										// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å‰Šé™¤
 
 #if !defined( BC_COMPILER ) || defined( _DEBUG )
-extern	int			CriticalSection_Lock( DX_CRITICAL_SECTION *pCSection, const char *FilePath, int LineNo ) ;		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚ÌƒƒbƒN‚Ìæ“¾
+extern	int			CriticalSection_Lock( DX_CRITICAL_SECTION *pCSection, const char *FilePath, int LineNo ) ;		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®ãƒ­ãƒƒã‚¯ã®å–å¾—
 #else
-extern	int			CriticalSection_Lock( DX_CRITICAL_SECTION *pCSection ) ;										// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚ÌƒƒbƒN‚Ìæ“¾
+extern	int			CriticalSection_Lock( DX_CRITICAL_SECTION *pCSection ) ;										// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®ãƒ­ãƒƒã‚¯ã®å–å¾—
 #endif
-extern	int			CriticalSection_Unlock( DX_CRITICAL_SECTION *pCSection ) ;										// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚ÌƒƒbƒN‚ğ‰ğ•ú‚·‚é
+extern	int			CriticalSection_Unlock( DX_CRITICAL_SECTION *pCSection ) ;										// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®ãƒ­ãƒƒã‚¯ã‚’è§£æ”¾ã™ã‚‹
 
 #ifndef DX_NON_NAMESPACE
 

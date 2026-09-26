@@ -1,15 +1,15 @@
 // -------------------------------------------------------------------------------
 // 
-// 		‚c‚wƒ‰ƒCƒuƒ‰ƒŠ		ƒƒ‚ƒŠƒCƒ[ƒW§Œä—pƒvƒƒOƒ‰ƒ€
+// 		ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒª		ãƒ¡ãƒ¢ãƒªã‚¤ãƒ¡ãƒ¼ã‚¸åˆ¶å¾¡ç”¨ãƒ—ãƒ­ã‚°ãƒ©ãƒ 
 // 
 // 				Ver 3.25a
 // 
 // -------------------------------------------------------------------------------
 
-// ‚c‚wƒ‰ƒCƒuƒ‰ƒŠì¬—p’è‹`
+// ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªä½œæˆæ™‚ç”¨å®šç¾©
 #define DX_MAKE
 
-// ƒCƒ“ƒNƒ‹[ƒh----------------------------------------------------------------
+// ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰----------------------------------------------------------------
 #include "DxMemImg.h"
 #include "DxMath.h"
 #include "DxLib.h"
@@ -26,15 +26,15 @@ namespace DxLib
 
 #endif // DX_NON_NAMESPACE
 
-// ƒ}ƒNƒ’è‹`------------------------------------------------------------------
+// ãƒã‚¯ãƒ­å®šç¾©------------------------------------------------------------------
 
-// ƒf[ƒ^Œ^’è‹`----------------------------------------------------------------
+// ãƒ‡ãƒ¼ã‚¿å‹å®šç¾©----------------------------------------------------------------
 
-// ƒf[ƒ^éŒ¾------------------------------------------------------------------
+// ãƒ‡ãƒ¼ã‚¿å®£è¨€------------------------------------------------------------------
 
-// ŠÖ”ƒvƒƒgƒ^ƒCƒvéŒ¾--------------------------------------------------------
+// é–¢æ•°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€--------------------------------------------------------
 
-// ƒvƒƒOƒ‰ƒ€------------------------------------------------------------------
+// ãƒ—ãƒ­ã‚°ãƒ©ãƒ ------------------------------------------------------------------
 
 #ifdef DX_NON_2DDRAW
 
@@ -235,7 +235,7 @@ extern void DrawTurnMemImg( MEMIMG *DestImg, const MEMIMG *SrcImg, int XTurnFlag
 }
 
 
-// ƒCƒ[ƒW‚ğ•`‰æ‚·‚é
+// ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’æç”»ã™ã‚‹
 #define PAL16	PaletteWP[ *SrcBP ]
 #define DST16	*DestWP
 #define SRC16	*SrcWP
@@ -289,16 +289,16 @@ extern void DrawMemImg( MEMIMG *DestImg, const MEMIMG *SrcImg, int DestX, int De
 		DWORD *DestDP ;
 	} ;
 
-	// “§‰ßF–³Œø‚Ìê‡‚Í TransFlag ‚ğ“|‚·
+	// é€éè‰²ç„¡åŠ¹ã®å ´åˆã¯ TransFlag ã‚’å€’ã™
 	if( SrcImg->Base->UseTransColor == 0 )
 	{
 		TransFlag = FALSE ;
 	}
 
-	// ƒJƒ‰[ƒ^ƒCƒv‚ªˆá‚¤‚©A•`‰ææ‚ªƒ¿ƒ`ƒƒƒ“ƒlƒ‹•t‚©ƒpƒŒƒbƒg•t‚«‚¾‚Á‚½ê‡‚ÍƒGƒ‰[
+	// ã‚«ãƒ©ãƒ¼ã‚¿ã‚¤ãƒ—ãŒé•ã†ã‹ã€æç”»å…ˆãŒÎ±ãƒãƒ£ãƒ³ãƒãƒ«ä»˜ã‹ãƒ‘ãƒ¬ãƒƒãƒˆä»˜ãã ã£ãŸå ´åˆã¯ã‚¨ãƒ©ãƒ¼
 	if( SrcImg->Base->ColorType != DestImg->Base->ColorType || DestImg->Base->UsePalette == 1 || DestImg->Base->UseAlpha == 1 ) return ;
 
-	// •`‰æ‹éŒ`‚ÌƒZƒbƒg
+	// æç”»çŸ©å½¢ã®ã‚»ãƒƒãƒˆ
 	{
 		RECT DrawRect ;
 
@@ -318,10 +318,10 @@ extern void DrawMemImg( MEMIMG *DestImg, const MEMIMG *SrcImg, int DestX, int De
 		if( Width == 0 || Height == 0 ) return ;
 	}
 
-	// ‚‘¬•`‰æ‚ğs‚¤‚©‚Ç‚¤‚©‚ğƒZƒbƒg
+	// é«˜é€Ÿæç”»ã‚’è¡Œã†ã‹ã©ã†ã‹ã‚’ã‚»ãƒƒãƒˆ
 	FastDrawFlag = ( TransFlag == TRUE ) && ( SrcImg->Base->AnalysisDataValid == 1 ) && ( Width == SrcImg->Width ) && ( Height == SrcImg->Height ) ;
 
-	// “]‘—Œ³A“]‘—æ‚ÌƒAƒhƒŒƒX‚ğƒZƒbƒg
+	// è»¢é€å…ƒã€è»¢é€å…ˆã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ã‚»ãƒƒãƒˆ
 //	SrcBP = FastDrawFlag && SrcImg->AlphaImage != NULL ? SrcImg->AlphaImage : SrcImg->UseImage ;
 	SrcBP        = SrcImg->UseImage ;
 	SrcBP       += SrcX * SrcImg->Base->ColorDataP->PixelByte + SrcY * SrcImg->Base->Pitch ;
@@ -368,22 +368,22 @@ extern void DrawMemImg( MEMIMG *DestImg, const MEMIMG *SrcImg, int DestX, int De
 		}
 	}
 
-	// ƒNƒŠƒbƒsƒ“ƒO‚ªs‚í‚ê‚È‚­‚ÄAŠ‚Â‰ğÍƒf[ƒ^‚ª‚ ‚éê‡‚ÆA‚»‚¤‚Å‚È‚¢ê‡‚Åˆ—‚ğ•ªŠò
+	// ã‚¯ãƒªãƒƒãƒ”ãƒ³ã‚°ãŒè¡Œã‚ã‚Œãªãã¦ã€ä¸”ã¤è§£æãƒ‡ãƒ¼ã‚¿ãŒã‚ã‚‹å ´åˆã¨ã€ãã†ã§ãªã„å ´åˆã§å‡¦ç†ã‚’åˆ†å²
 //	if( ( SrcImg->AnalysisDataValid == 0 ) || ( Width != SrcImg->Width ) || ( Height != SrcImg->Height ) )
 	if( !FastDrawFlag )
-	// ‰ğÍî•ñ‚ğg—p‚µ‚È‚¢’Êí‚Ì“]‘—ˆ—
+	// è§£ææƒ…å ±ã‚’ä½¿ç”¨ã—ãªã„é€šå¸¸ã®è»¢é€å‡¦ç†
 	{
-		// ƒJƒ‰[ƒ‚[ƒh‚É‚æ‚Á‚Äˆ—‚ğ•ªŠò
+		// ã‚«ãƒ©ãƒ¼ãƒ¢ãƒ¼ãƒ‰ã«ã‚ˆã£ã¦å‡¦ç†ã‚’åˆ†å²
 		switch( SrcImg->Base->ColorType )
 		{
-		case 0 :	// 16bit ƒ‚[ƒh
+		case 0 :	// 16bit ãƒ¢ãƒ¼ãƒ‰
 			if( SrcImg->Base->UsePalette == 1 )
-			// ƒpƒŒƒbƒg‚ª‚ ‚éê‡
+			// ãƒ‘ãƒ¬ãƒƒãƒˆãŒã‚ã‚‹å ´åˆ
 			{
-				// ƒuƒŒƒ“ƒhƒ‚[ƒh‚É‚æ‚Á‚Äˆ—‚ğ•ªŠò
+				// ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã«ã‚ˆã£ã¦å‡¦ç†ã‚’åˆ†å²
 				switch( MemImgManage.BlendMode )
 				{
-				case DX_BLENDMODE_NOBLEND :		// ƒuƒŒƒ“ƒh–³‚µ
+				case DX_BLENDMODE_NOBLEND :		// ãƒ–ãƒ¬ãƒ³ãƒ‰ç„¡ã—
 NOMALDRAW_C16_USEPAL_BNO:
 					if( BlendImg != NULL ){
 						if( ( MemImgManage.bDrawBright & 0xffffff ) == 0xffffff ){
@@ -537,7 +537,7 @@ NOMALDRAW_C16_USEPAL_BNO:
 					}
 					break ;
 					
-				case DX_BLENDMODE_ALPHA :		// ƒ¿ƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_ALPHA :		// Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
 					if( MemImgManage.BlendParam == 255 ) goto NOMALDRAW_C16_USEPAL_BNO ;
 					else
 					if( MemImgManage.BlendParam == 0 ) return ;
@@ -847,7 +847,7 @@ NOMALDRAW_C16_USEPAL_BNO:
 					}
 					break ;
 					
-				case DX_BLENDMODE_ADD :			// ‰ÁZƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_ADD :			// åŠ ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 					if( MemImgManage.BlendParam == 0 ) return ;
 					
 					if( BlendImg != NULL ){
@@ -1080,7 +1080,7 @@ NOMALDRAW_C16_USEPAL_BNO:
 					}
 					break ;
 
-				case DX_BLENDMODE_SUB :			// Œ¸ZƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_SUB :			// æ¸›ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 					if( BlendImg != NULL ){
 						if( ( MemImgManage.bDrawBright & 0xffffff ) == 0xffffff ){
 							if( TransFlag )		DRAWMEMIMG_UBI_ND( if( *SrcBP != TransColor )	CODE_UBI_C16_NBR_NAC_BSB( PAL16, DST16, DSTP16, BLND ), 1, 2 )
@@ -1295,7 +1295,7 @@ NOMALDRAW_C16_USEPAL_BNO:
 					}
 					break ;
 					
-				case DX_BLENDMODE_MUL :			// æZƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_MUL :			// ä¹—ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 					if( BlendImg != NULL ){
 						if( ( MemImgManage.bDrawBright & 0xffffff ) == 0xffffff ){
 							if( TransFlag )		DRAWMEMIMG_UBI_ND( if( *SrcBP != TransColor )	CODE_UBI_C16_NBR_NAC_BML( PAL16, DST16, DSTP16, BLND ), 1, 2 )
@@ -1315,7 +1315,7 @@ NOMALDRAW_C16_USEPAL_BNO:
 					}
 					break ;
 
-				case DX_BLENDMODE_MULA :		// æZ+ƒ¿ƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_MULA :		// ä¹—ç®—+Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
 					if( BlendImg != NULL ){
 						if( ( MemImgManage.bDrawBright & 0xffffff ) == 0xffffff ){
 							if( TransFlag )		DRAWMEMIMG_UBI_ND( if( *SrcBP != TransColor )	CODE_UBI_C16_NBR_NAC_BMA( PAL16, DST16, DSTP16, BLND ), 1, 2 )
@@ -1335,7 +1335,7 @@ NOMALDRAW_C16_USEPAL_BNO:
 					}
 					break ;
 
-				case DX_BLENDMODE_INVSRC :		// •`‰æŒ³‚ÌF‚ğ”½“]{ƒ¿ƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_INVSRC :		// æç”»å…ƒã®è‰²ã‚’åè»¢ï¼‹Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
 					if( BlendImg != NULL ){
 						if( ( MemImgManage.bDrawBright & 0xffffff ) == 0xffffff ){
 							if( TransFlag )		DRAWMEMIMG_UBI_ND( if( *SrcBP != TransColor )	CODE_UBI_C16_NBR_NAC_BIS( PAL16, DST16, DSTP16, BLND ), 1, 2 )
@@ -1357,12 +1357,12 @@ NOMALDRAW_C16_USEPAL_BNO:
 				}
 			}
 			else
-			// ƒpƒŒƒbƒg‚ª–³‚¢ê‡
+			// ãƒ‘ãƒ¬ãƒƒãƒˆãŒç„¡ã„å ´åˆ
 			{
-				// ƒuƒŒƒ“ƒhƒ‚[ƒh‚É‚æ‚Á‚Äˆ—‚ğ•ªŠò
+				// ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã«ã‚ˆã£ã¦å‡¦ç†ã‚’åˆ†å²
 				switch( MemImgManage.BlendMode )
 				{
-				case DX_BLENDMODE_NOBLEND :		// ƒuƒŒƒ“ƒh–³‚µ
+				case DX_BLENDMODE_NOBLEND :		// ãƒ–ãƒ¬ãƒ³ãƒ‰ç„¡ã—
 NOMALDRAW_C16_NOPAL_BNO:
 					if( BlendImg != NULL ){
 						if( ( MemImgManage.bDrawBright & 0xffffff ) == 0xffffff ){
@@ -1495,7 +1495,7 @@ NOMALDRAW_C16_NOPAL_BNO:
 					}
 					break ;
 
-				case DX_BLENDMODE_ALPHA :		// ƒ¿ƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_ALPHA :		// Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
 					if( MemImgManage.BlendParam == 255 ) goto NOMALDRAW_C16_NOPAL_BNO ;
 					else
 					if( MemImgManage.BlendParam == 0 ) return ;
@@ -1808,7 +1808,7 @@ NOMALDRAW_C16_NOPAL_BNO:
 					}
 					break ;
 
-				case DX_BLENDMODE_ADD :		// ‰ÁZƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_ADD :		// åŠ ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 					if( MemImgManage.BlendParam == 0 ) return ;
 					
 					if( BlendImg != NULL ){
@@ -2027,7 +2027,7 @@ NOMALDRAW_C16_NOPAL_BNO:
 					}
 					break ;
 
-				case DX_BLENDMODE_SUB :		// Œ¸ZƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_SUB :		// æ¸›ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 					if( MemImgManage.BlendParam == 0 ) return ;
 					
 					if( BlendImg != NULL ){
@@ -2248,7 +2248,7 @@ NOMALDRAW_C16_NOPAL_BNO:
 					}
 					break ;
 
-				case DX_BLENDMODE_MUL :		// æZƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_MUL :		// ä¹—ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 					if( BlendImg != NULL ){
 						if( ( MemImgManage.bDrawBright & 0xffffff ) == 0xffffff ){
 							if( SrcImg->Base->UseAlpha == 1 ){
@@ -2288,7 +2288,7 @@ NOMALDRAW_C16_NOPAL_BNO:
 					}
 					break ;
 
-				case DX_BLENDMODE_MULA :	// æZ+ƒ¿ƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_MULA :	// ä¹—ç®—+Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
 					if( BlendImg != NULL ){
 						if( ( MemImgManage.bDrawBright & 0xffffff ) == 0xffffff ){
 							if( SrcImg->Base->UseAlpha == 1 ){
@@ -2328,7 +2328,7 @@ NOMALDRAW_C16_NOPAL_BNO:
 					}
 					break ;
 
-				case DX_BLENDMODE_INVSRC :		// •`‰æŒ³‚ÌF‚ğ”½“]{ƒ¿ƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_INVSRC :		// æç”»å…ƒã®è‰²ã‚’åè»¢ï¼‹Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
 					if( BlendImg != NULL ){
 						if( ( MemImgManage.bDrawBright & 0xffffff ) == 0xffffff ){
 							if( SrcImg->Base->UseAlpha == 1 ){
@@ -2371,14 +2371,14 @@ NOMALDRAW_C16_NOPAL_BNO:
 			}
 			break ;
 			
-		case 1 :	// 32bit ƒ‚[ƒh
+		case 1 :	// 32bit ãƒ¢ãƒ¼ãƒ‰
 			if( SrcImg->Base->UsePalette == 1 )
-			// ƒpƒŒƒbƒg‚ª‚ ‚éê‡
+			// ãƒ‘ãƒ¬ãƒƒãƒˆãŒã‚ã‚‹å ´åˆ
 			{
-				// ƒuƒŒƒ“ƒhƒ‚[ƒh‚É‚æ‚Á‚Äˆ—‚ğ•ªŠò
+				// ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã«ã‚ˆã£ã¦å‡¦ç†ã‚’åˆ†å²
 				switch( MemImgManage.BlendMode )
 				{
-				case DX_BLENDMODE_NOBLEND :		// ƒuƒŒƒ“ƒh–³‚µ
+				case DX_BLENDMODE_NOBLEND :		// ãƒ–ãƒ¬ãƒ³ãƒ‰ç„¡ã—
 NOMALDRAW_C32_USEPAL_BNO:
 					if( BlendImg != NULL ){
 						if( ( MemImgManage.bDrawBright & 0xffffff ) == 0xffffff ){
@@ -2499,7 +2499,7 @@ NOMALDRAW_C32_USEPAL_BNO:
 					}
 					break ;
 					
-				case DX_BLENDMODE_ALPHA :		// ƒ¿ƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_ALPHA :		// Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
 					if( MemImgManage.BlendParam == 255 ) goto NOMALDRAW_C32_USEPAL_BNO ;
 					else
 					if( MemImgManage.BlendParam == 0 ) return ;
@@ -2600,7 +2600,7 @@ NOMALDRAW_C32_USEPAL_BNO:
 					}
 					break ;
 					
-				case DX_BLENDMODE_ADD :			// ‰ÁZƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_ADD :			// åŠ ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 					if( MemImgManage.BlendParam == 0 ) return ;
 					
 					if( BlendImg != NULL ){
@@ -2851,7 +2851,7 @@ NOMALDRAW_C32_USEPAL_BNO:
 					}
 					break ;
 
-				case DX_BLENDMODE_SUB :			// Œ¸ZƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_SUB :			// æ¸›ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 					if( BlendImg != NULL ){
 						if( ( MemImgManage.bDrawBright & 0xffffff ) == 0xffffff ){
 							if( TransFlag )		DRAWMEMIMG_UBI_ND( if( *SrcBP != TransColor )	CODE_UBI_C32_NBR_NAC_BSB( PALP32, DSTP32, BLND ), 1, 4 )
@@ -3100,7 +3100,7 @@ NOMALDRAW_C32_USEPAL_BNO:
 					}
 					break ;
 					
-				case DX_BLENDMODE_MUL :			// æZƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_MUL :			// ä¹—ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 					if( BlendImg != NULL ){
 						if( ( MemImgManage.bDrawBright & 0xffffff ) == 0xffffff ){
 							if( TransFlag )		DRAWMEMIMG_UBI_ND( if( *SrcBP != TransColor )	CODE_UBI_C32_NBR_NAC_BML( PALP32, DSTP32, BLND ), 1, 4 )
@@ -3120,7 +3120,7 @@ NOMALDRAW_C32_USEPAL_BNO:
 					}
 					break ;
 
-				case DX_BLENDMODE_MULA :		// æZ+ƒ¿ƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_MULA :		// ä¹—ç®—+Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
 					if( BlendImg != NULL ){
 						if( ( MemImgManage.bDrawBright & 0xffffff ) == 0xffffff ){
 							if( TransFlag )		DRAWMEMIMG_UBI_ND( if( *SrcBP != TransColor )	CODE_UBI_C32_NBR_NAC_BMA( PALP32, DSTP32, BLND ), 1, 4 )
@@ -3140,7 +3140,7 @@ NOMALDRAW_C32_USEPAL_BNO:
 					}
 					break ;
 
-				case DX_BLENDMODE_INVSRC :		// •`‰æŒ³‚ÌF‚ğ”½“]{ƒ¿ƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_INVSRC :		// æç”»å…ƒã®è‰²ã‚’åè»¢ï¼‹Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
 					if( BlendImg != NULL ){
 						if( ( MemImgManage.bDrawBright & 0xffffff ) == 0xffffff ){
 							if( TransFlag )		DRAWMEMIMG_UBI_ND( if( *SrcBP != TransColor )	CODE_UBI_C32_NBR_NAC_BIS( PALP32, DSTP32, BLND ), 1, 4 )
@@ -3162,12 +3162,12 @@ NOMALDRAW_C32_USEPAL_BNO:
 				}
 			}
 			else
-			// ƒpƒŒƒbƒg‚ª–³‚¢ê‡
+			// ãƒ‘ãƒ¬ãƒƒãƒˆãŒç„¡ã„å ´åˆ
 			{
-				// ƒuƒŒƒ“ƒhƒ‚[ƒh‚É‚æ‚Á‚Äˆ—‚ğ•ªŠò
+				// ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã«ã‚ˆã£ã¦å‡¦ç†ã‚’åˆ†å²
 				switch( MemImgManage.BlendMode )
 				{
-				case DX_BLENDMODE_NOBLEND :		// ƒuƒŒƒ“ƒh–³‚µ
+				case DX_BLENDMODE_NOBLEND :		// ãƒ–ãƒ¬ãƒ³ãƒ‰ç„¡ã—
 NOMALDRAW_C32_NOPAL_BNO:
 					if( BlendImg != NULL ){
 						if( ( MemImgManage.bDrawBright & 0xffffff ) == 0xffffff ){
@@ -3298,7 +3298,7 @@ NOMALDRAW_C32_NOPAL_BNO:
 					}
 					break ;
 
-				case DX_BLENDMODE_ALPHA :		// ƒ¿ƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_ALPHA :		// Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
 					if( MemImgManage.BlendParam == 255 ) goto NOMALDRAW_C32_NOPAL_BNO ;
 					else
 					if( MemImgManage.BlendParam == 0 ) return ;
@@ -3596,7 +3596,7 @@ NOMALDRAW_C32_NOPAL_BNO:
 					}
 					break ;
 
-				case DX_BLENDMODE_ADD :		// ‰ÁZƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_ADD :		// åŠ ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 					if( MemImgManage.BlendParam == 0 ) return ;
 					
 					if( BlendImg != NULL ){
@@ -3850,7 +3850,7 @@ NOMALDRAW_C32_NOPAL_BNO:
 					}
 					break ;
 
-				case DX_BLENDMODE_SUB :		// Œ¸ZƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_SUB :		// æ¸›ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 					if( MemImgManage.BlendParam == 0 ) return ;
 					
 					if( BlendImg != NULL ){
@@ -4104,7 +4104,7 @@ NOMALDRAW_C32_NOPAL_BNO:
 					}
 					break ;
 
-				case DX_BLENDMODE_MUL :		// æZƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_MUL :		// ä¹—ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 					if( BlendImg != NULL ){
 						if( ( MemImgManage.bDrawBright & 0xffffff ) == 0xffffff ){
 							if( SrcImg->Base->UseAlpha == 1 ){
@@ -4144,7 +4144,7 @@ NOMALDRAW_C32_NOPAL_BNO:
 					}
 					break ;
 
-				case DX_BLENDMODE_MULA :	// æZ+ƒ¿ƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_MULA :	// ä¹—ç®—+Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
 					if( BlendImg != NULL ){
 						if( ( MemImgManage.bDrawBright & 0xffffff ) == 0xffffff ){
 							if( SrcImg->Base->UseAlpha == 1 ){
@@ -4184,7 +4184,7 @@ NOMALDRAW_C32_NOPAL_BNO:
 					}
 					break ;
 
-				case DX_BLENDMODE_INVSRC :		// •`‰æŒ³‚ÌF‚ğ”½“]{ƒ¿ƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_INVSRC :		// æç”»å…ƒã®è‰²ã‚’åè»¢ï¼‹Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
 					if( BlendImg != NULL ){
 						if( ( MemImgManage.bDrawBright & 0xffffff ) == 0xffffff ){
 							if( SrcImg->Base->UseAlpha == 1 ){
@@ -4228,20 +4228,20 @@ NOMALDRAW_C32_NOPAL_BNO:
 			break ;
 		}
 	}
-	// ‰ğÍî•ñ‚ğg—p‚·‚é•`‰æˆ—
+	// è§£ææƒ…å ±ã‚’ä½¿ç”¨ã™ã‚‹æç”»å‡¦ç†
 	else
 	{
-		// ƒJƒ‰[ƒ‚[ƒh‚É‚æ‚Á‚Äˆ—‚ğ•ªŠò
+		// ã‚«ãƒ©ãƒ¼ãƒ¢ãƒ¼ãƒ‰ã«ã‚ˆã£ã¦å‡¦ç†ã‚’åˆ†å²
 		switch( SrcImg->Base->ColorType )
 		{
-		case 0 :	// 16bit ƒ‚[ƒh
+		case 0 :	// 16bit ãƒ¢ãƒ¼ãƒ‰
 			if( SrcImg->Base->UsePalette == 1 )
-			// ƒpƒŒƒbƒg‚ª‚ ‚éê‡
+			// ãƒ‘ãƒ¬ãƒƒãƒˆãŒã‚ã‚‹å ´åˆ
 			{
-				// ƒuƒŒƒ“ƒhƒ‚[ƒh‚É‚æ‚Á‚Äˆ—‚ğ•ªŠò
+				// ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã«ã‚ˆã£ã¦å‡¦ç†ã‚’åˆ†å²
 				switch( MemImgManage.BlendMode )
 				{
-				case DX_BLENDMODE_NOBLEND :		// ƒuƒŒƒ“ƒh–³‚µ
+				case DX_BLENDMODE_NOBLEND :		// ãƒ–ãƒ¬ãƒ³ãƒ‰ç„¡ã—
 FD_C16_USEPAL_BNO:
 					if( BlendImg != NULL ){
 						if( ( MemImgManage.bDrawBright & 0xffffff ) == 0xffffff ){
@@ -4258,7 +4258,7 @@ FD_C16_USEPAL_BNO:
 					}
 					break ;
 					
-				case DX_BLENDMODE_ALPHA :		// ƒ¿ƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_ALPHA :		// Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
 					if( MemImgManage.BlendParam == 255 ) goto FD_C16_USEPAL_BNO ;
 					else
 					if( MemImgManage.BlendParam == 0 ) return ;
@@ -4278,7 +4278,7 @@ FD_C16_USEPAL_BNO:
 					}
 					break ;
 					
-				case DX_BLENDMODE_ADD :			// ‰ÁZƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_ADD :			// åŠ ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 					if( MemImgManage.BlendParam == 0 ) return ;
 					
 					if( BlendImg != NULL ){
@@ -4296,7 +4296,7 @@ FD_C16_USEPAL_BNO:
 					}
 					break ;
 
-				case DX_BLENDMODE_SUB :			// Œ¸ZƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_SUB :			// æ¸›ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 					if( BlendImg != NULL ){
 						if( ( MemImgManage.bDrawBright & 0xffffff ) == 0xffffff ){
 							DRAWMEMIMG_UBI_NAC_FD( CODE_UBI_C16_NBR_NAC_BSB( PAL16, DST16, DSTP16, BLND ), 1, 2 )
@@ -4312,7 +4312,7 @@ FD_C16_USEPAL_BNO:
 					}
 					break ;
 					
-				case DX_BLENDMODE_MUL :			// æZƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_MUL :			// ä¹—ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 					if( BlendImg != NULL ){
 						if( ( MemImgManage.bDrawBright & 0xffffff ) == 0xffffff ){
 							DRAWMEMIMG_UBI_NAC_FD( CODE_UBI_C16_NBR_NAC_BML( PAL16, DST16, DSTP16, BLND ), 1, 2 )
@@ -4328,7 +4328,7 @@ FD_C16_USEPAL_BNO:
 					}
 					break ;
 
-				case DX_BLENDMODE_MULA :		// æZ+ƒ¿ƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_MULA :		// ä¹—ç®—+Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
 					if( BlendImg != NULL ){
 						if( ( MemImgManage.bDrawBright & 0xffffff ) == 0xffffff ){
 							DRAWMEMIMG_UBI_NAC_FD( CODE_UBI_C16_NBR_NAC_BMA( PAL16, DST16, DSTP16, BLND ), 1, 2 )
@@ -4344,7 +4344,7 @@ FD_C16_USEPAL_BNO:
 					}
 					break ;
 
-				case DX_BLENDMODE_INVSRC :		// •`‰æŒ³‚ÌF‚ğ”½“]{ƒ¿ƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_INVSRC :		// æç”»å…ƒã®è‰²ã‚’åè»¢ï¼‹Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
 					if( BlendImg != NULL ){
 						if( ( MemImgManage.bDrawBright & 0xffffff ) == 0xffffff ){
 							DRAWMEMIMG_UBI_NAC_FD( CODE_UBI_C16_NBR_NAC_BIS( PAL16, DST16, DSTP16, BLND ), 1, 2 )
@@ -4362,12 +4362,12 @@ FD_C16_USEPAL_BNO:
 				}
 			}
 			else
-			// ƒpƒŒƒbƒg‚ª–³‚¢ê‡
+			// ãƒ‘ãƒ¬ãƒƒãƒˆãŒç„¡ã„å ´åˆ
 			{
-				// ƒuƒŒƒ“ƒhƒ‚[ƒh‚É‚æ‚Á‚Äˆ—‚ğ•ªŠò
+				// ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã«ã‚ˆã£ã¦å‡¦ç†ã‚’åˆ†å²
 				switch( MemImgManage.BlendMode )
 				{
-				case DX_BLENDMODE_NOBLEND :		// ƒuƒŒƒ“ƒh–³‚µ
+				case DX_BLENDMODE_NOBLEND :		// ãƒ–ãƒ¬ãƒ³ãƒ‰ç„¡ã—
 FD_C16_NOPAL_BNO:
 					if( BlendImg != NULL ){
 						if( ( MemImgManage.bDrawBright & 0xffffff ) == 0xffffff ){
@@ -4524,7 +4524,7 @@ FD_C16_NOPAL_BNO:
 					}
 					break ;
 
-				case DX_BLENDMODE_ALPHA :		// ƒ¿ƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_ALPHA :		// Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
 					if( MemImgManage.BlendParam == 255 ) goto FD_C16_NOPAL_BNO ;
 					else
 					if( MemImgManage.BlendParam == 0 ) return ;
@@ -4564,7 +4564,7 @@ FD_C16_NOPAL_BNO:
 					}
 					break ;
 
-				case DX_BLENDMODE_ADD :		// ‰ÁZƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_ADD :		// åŠ ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 					if( MemImgManage.BlendParam == 0 ) return ;
 					
 					if( BlendImg != NULL ){
@@ -4602,7 +4602,7 @@ FD_C16_NOPAL_BNO:
 					}
 					break ;
 
-				case DX_BLENDMODE_SUB :		// Œ¸ZƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_SUB :		// æ¸›ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 					if( MemImgManage.BlendParam == 0 ) return ;
 					
 					if( BlendImg != NULL ){
@@ -4640,7 +4640,7 @@ FD_C16_NOPAL_BNO:
 					}
 					break ;
 
-				case DX_BLENDMODE_MUL :		// æZƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_MUL :		// ä¹—ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 					if( BlendImg != NULL ){
 						if( ( MemImgManage.bDrawBright & 0xffffff ) == 0xffffff ){
 							if( SrcImg->Base->UseAlpha == 1 ){
@@ -4676,7 +4676,7 @@ FD_C16_NOPAL_BNO:
 					}
 					break ;
 
-				case DX_BLENDMODE_MULA :	// æZ+ƒ¿ƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_MULA :	// ä¹—ç®—+Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
 					if( BlendImg != NULL ){
 						if( ( MemImgManage.bDrawBright & 0xffffff ) == 0xffffff ){
 							if( SrcImg->Base->UseAlpha == 1 ){
@@ -4712,7 +4712,7 @@ FD_C16_NOPAL_BNO:
 					}
 					break ;
 
-				case DX_BLENDMODE_INVSRC :		// •`‰æŒ³‚ÌF‚ğ”½“]{ƒ¿ƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_INVSRC :		// æç”»å…ƒã®è‰²ã‚’åè»¢ï¼‹Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
 					if( BlendImg != NULL ){
 						if( ( MemImgManage.bDrawBright & 0xffffff ) == 0xffffff ){
 							if( SrcImg->Base->UseAlpha == 1 ){
@@ -4751,14 +4751,14 @@ FD_C16_NOPAL_BNO:
 			}
 			break ;
 			
-		case 1 :	// 32bit ƒ‚[ƒh
+		case 1 :	// 32bit ãƒ¢ãƒ¼ãƒ‰
 			if( SrcImg->Base->UsePalette == 1 )
-			// ƒpƒŒƒbƒg‚ª‚ ‚éê‡
+			// ãƒ‘ãƒ¬ãƒƒãƒˆãŒã‚ã‚‹å ´åˆ
 			{
-				// ƒuƒŒƒ“ƒhƒ‚[ƒh‚É‚æ‚Á‚Äˆ—‚ğ•ªŠò
+				// ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã«ã‚ˆã£ã¦å‡¦ç†ã‚’åˆ†å²
 				switch( MemImgManage.BlendMode )
 				{
-				case DX_BLENDMODE_NOBLEND :		// ƒuƒŒƒ“ƒh–³‚µ
+				case DX_BLENDMODE_NOBLEND :		// ãƒ–ãƒ¬ãƒ³ãƒ‰ç„¡ã—
 FD_C32_USEPAL_BNO:
 					if( BlendImg != NULL ){
 						if( ( MemImgManage.bDrawBright & 0xffffff ) == 0xffffff ){
@@ -4775,7 +4775,7 @@ FD_C32_USEPAL_BNO:
 					}
 					break ;
 					
-				case DX_BLENDMODE_ALPHA :		// ƒ¿ƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_ALPHA :		// Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
 					if( MemImgManage.BlendParam == 255 ) goto FD_C32_USEPAL_BNO ;
 					else
 					if( MemImgManage.BlendParam == 0 ) return ;
@@ -4795,7 +4795,7 @@ FD_C32_USEPAL_BNO:
 					}
 					break ;
 					
-				case DX_BLENDMODE_ADD :			// ‰ÁZƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_ADD :			// åŠ ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 					if( MemImgManage.BlendParam == 0 ) return ;
 					
 					if( BlendImg != NULL ){
@@ -4813,7 +4813,7 @@ FD_C32_USEPAL_BNO:
 					}
 					break ;
 
-				case DX_BLENDMODE_SUB :			// Œ¸ZƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_SUB :			// æ¸›ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 					if( BlendImg != NULL ){
 						if( ( MemImgManage.bDrawBright & 0xffffff ) == 0xffffff ){
 							DRAWMEMIMG_UBI_NAC_FD( CODE_UBI_C32_NBR_NAC_BSB( PALP32, DSTP32, BLND ), 1, 4 )
@@ -4829,7 +4829,7 @@ FD_C32_USEPAL_BNO:
 					}
 					break ;
 					
-				case DX_BLENDMODE_MUL :			// æZƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_MUL :			// ä¹—ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 					if( BlendImg != NULL ){
 						if( ( MemImgManage.bDrawBright & 0xffffff ) == 0xffffff ){
 							DRAWMEMIMG_UBI_NAC_FD( CODE_UBI_C32_NBR_NAC_BML( PALP32, DSTP32, BLND ), 1, 4 )
@@ -4845,7 +4845,7 @@ FD_C32_USEPAL_BNO:
 					}
 					break ;
 
-				case DX_BLENDMODE_MULA :		// æZ+ƒ¿ƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_MULA :		// ä¹—ç®—+Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
 					if( BlendImg != NULL ){
 						if( ( MemImgManage.bDrawBright & 0xffffff ) == 0xffffff ){
 							DRAWMEMIMG_UBI_NAC_FD( CODE_UBI_C32_NBR_NAC_BMA( PALP32, DSTP32, BLND ), 1, 4 )
@@ -4861,7 +4861,7 @@ FD_C32_USEPAL_BNO:
 					}
 					break ;
 
-				case DX_BLENDMODE_INVSRC :		// •`‰æŒ³‚ÌF‚ğ”½“]{ƒ¿ƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_INVSRC :		// æç”»å…ƒã®è‰²ã‚’åè»¢ï¼‹Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
 					if( BlendImg != NULL ){
 						if( ( MemImgManage.bDrawBright & 0xffffff ) == 0xffffff ){
 							DRAWMEMIMG_UBI_NAC_FD( CODE_UBI_C32_NBR_NAC_BIS( PALP32, DSTP32, BLND ), 1, 4 )
@@ -4879,12 +4879,12 @@ FD_C32_USEPAL_BNO:
 				}
 			}
 			else
-			// ƒpƒŒƒbƒg‚ª–³‚¢ê‡
+			// ãƒ‘ãƒ¬ãƒƒãƒˆãŒç„¡ã„å ´åˆ
 			{
-				// ƒuƒŒƒ“ƒhƒ‚[ƒh‚É‚æ‚Á‚Äˆ—‚ğ•ªŠò
+				// ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã«ã‚ˆã£ã¦å‡¦ç†ã‚’åˆ†å²
 				switch( MemImgManage.BlendMode )
 				{
-				case DX_BLENDMODE_NOBLEND :		// ƒuƒŒƒ“ƒh–³‚µ
+				case DX_BLENDMODE_NOBLEND :		// ãƒ–ãƒ¬ãƒ³ãƒ‰ç„¡ã—
 FD_C32_NOPAL_BNO:
 					if( BlendImg != NULL ){
 						if( ( MemImgManage.bDrawBright & 0xffffff ) == 0xffffff ){
@@ -4921,7 +4921,7 @@ FD_C32_NOPAL_BNO:
 					}
 					break ;
 
-				case DX_BLENDMODE_ALPHA :		// ƒ¿ƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_ALPHA :		// Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
 					if( MemImgManage.BlendParam == 255 ) goto FD_C32_NOPAL_BNO ;
 					else
 					if( MemImgManage.BlendParam == 0 ) return ;
@@ -4961,7 +4961,7 @@ FD_C32_NOPAL_BNO:
 					}
 					break ;
 
-				case DX_BLENDMODE_ADD :		// ‰ÁZƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_ADD :		// åŠ ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 					if( MemImgManage.BlendParam == 0 ) return ;
 					
 					if( BlendImg != NULL ){
@@ -4999,7 +4999,7 @@ FD_C32_NOPAL_BNO:
 					}
 					break ;
 
-				case DX_BLENDMODE_SUB :		// Œ¸ZƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_SUB :		// æ¸›ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 					if( MemImgManage.BlendParam == 0 ) return ;
 					
 					if( BlendImg != NULL ){
@@ -5037,7 +5037,7 @@ FD_C32_NOPAL_BNO:
 					}
 					break ;
 
-				case DX_BLENDMODE_MUL :		// æZƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_MUL :		// ä¹—ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 					if( BlendImg != NULL ){
 						if( ( MemImgManage.bDrawBright & 0xffffff ) == 0xffffff ){
 							if( SrcImg->Base->UseAlpha == 1 ){
@@ -5073,7 +5073,7 @@ FD_C32_NOPAL_BNO:
 					}
 					break ;
 
-				case DX_BLENDMODE_MULA :	// æZ+ƒ¿ƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_MULA :	// ä¹—ç®—+Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
 					if( BlendImg != NULL ){
 						if( ( MemImgManage.bDrawBright & 0xffffff ) == 0xffffff ){
 							if( SrcImg->Base->UseAlpha == 1 ){
@@ -5109,7 +5109,7 @@ FD_C32_NOPAL_BNO:
 					}
 					break ;
 
-				case DX_BLENDMODE_INVSRC :		// •`‰æŒ³‚ÌF‚ğ”½“]{ƒ¿ƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_INVSRC :		// æç”»å…ƒã®è‰²ã‚’åè»¢ï¼‹Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
 					if( BlendImg != NULL ){
 						if( ( MemImgManage.bDrawBright & 0xffffff ) == 0xffffff ){
 							if( SrcImg->Base->UseAlpha == 1 ){
@@ -5150,7 +5150,7 @@ FD_C32_NOPAL_BNO:
 		}
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return ;
 }
 #undef PALP32
@@ -5422,7 +5422,7 @@ FD_C32_NOPAL_BNO:
 	}while( -- DrawHeight ) ;\
 }
 
-// ƒCƒ[ƒW‚ğŠg‘å•`‰æ‚·‚é
+// ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’æ‹¡å¤§æç”»ã™ã‚‹
 extern void DrawEnlargeMemImg( MEMIMG *DestImg, const MEMIMG *SrcImg, int x1, int y1, int x2, int y2, int TransFlag, const MEMIMG *BlendImg )
 {
 	RECT rect ;
@@ -5434,7 +5434,7 @@ extern void DrawEnlargeMemImg( MEMIMG *DestImg, const MEMIMG *SrcImg, int x1, in
 	DrawEnlargeMemImg( DestImg, SrcImg, &rect, TransFlag, BlendImg ) ;
 }
 
-// ƒCƒ[ƒW‚ğŠg‘å•`‰æ‚·‚é
+// ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’æ‹¡å¤§æç”»ã™ã‚‹
 #define SRC8	*SrcBPT
 #define PAL16	PaletteWP[ *SrcBPT ]
 #define DST16	*DestWPT
@@ -5510,7 +5510,7 @@ extern void DrawEnlargeMemImg( MEMIMG *DestImg, const MEMIMG *SrcImg, const RECT
 	DWORD dwtemp ;
 	int fastXRtemp ;
 
-	// “§‰ßF–³Œø‚Ìê‡‚Í TransFlag ‚ğ“|‚·
+	// é€éè‰²ç„¡åŠ¹ã®å ´åˆã¯ TransFlag ã‚’å€’ã™
 	if( SrcImg->Base->UseTransColor == 0 )
 	{
 		TransFlag = FALSE ;
@@ -5518,7 +5518,7 @@ extern void DrawEnlargeMemImg( MEMIMG *DestImg, const MEMIMG *SrcImg, const RECT
 
 	DrawRect = *DestRect ;
 	
-	// À•W•â³‚Æ”»’èİ’è
+	// åº§æ¨™è£œæ­£ã¨åˆ¤å®šè¨­å®š
 	if( DestRect->left > DestRect->right )
 	{
 		DrawRect.left  = DestRect->right ;
@@ -5545,7 +5545,7 @@ extern void DrawEnlargeMemImg( MEMIMG *DestImg, const MEMIMG *SrcImg, const RECT
 		UDFlag          = 1 ;
 	}
 
-	// Šg‘å”{—¦‚ğ“¾‚é
+	// æ‹¡å¤§å€ç‡ã‚’å¾—ã‚‹
 	{
 		DWORD w, h ;
 		
@@ -5561,7 +5561,7 @@ extern void DrawEnlargeMemImg( MEMIMG *DestImg, const MEMIMG *SrcImg, const RECT
 		ExRateY = ( int )( ( h << 16 ) / SrcImg->Height ) ;
 	}
 
-	// •`‰æ‹éŒ`‚ğì¬
+	// æç”»çŸ©å½¢ã‚’ä½œæˆ
 	{
 		RECT temp ;
 		temp = DrawRect ;
@@ -5578,9 +5578,9 @@ extern void DrawEnlargeMemImg( MEMIMG *DestImg, const MEMIMG *SrcImg, const RECT
 		if( DrawWidth == 0 || DrawHeight == 0 ) return ;
 	}
 
-	// “]‘—Œ³A“]‘—æ‚ÌƒAƒhƒŒƒX‚ğƒZƒbƒg
+	// è»¢é€å…ƒã€è»¢é€å…ˆã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ã‚»ãƒƒãƒˆ
 	{
-		// ”½“]‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©‚Å•ªŠò
+		// åè»¢ã—ã¦ã„ã‚‹ã‹ã©ã†ã‹ã§åˆ†å²
 		SrcBP = SrcImg->UseImage ;
 		LBFlagB = LBFlag ;
 		if( LBFlag != 1 )
@@ -5650,17 +5650,17 @@ extern void DrawEnlargeMemImg( MEMIMG *DestImg, const MEMIMG *SrcImg, const RECT
 	DestPP    = (DWORD_PTR)DestBP ;
 	PalettePP = (DWORD_PTR)PaletteBP ;
 
-	// ƒJƒ‰[ƒ‚[ƒh‚É‚æ‚Á‚Äˆ—‚ğ•ªŠò
+	// ã‚«ãƒ©ãƒ¼ãƒ¢ãƒ¼ãƒ‰ã«ã‚ˆã£ã¦å‡¦ç†ã‚’åˆ†å²
 	switch( SrcImg->Base->ColorType )
 	{
-	case 0 :	// 16bit ƒ‚[ƒh
+	case 0 :	// 16bit ãƒ¢ãƒ¼ãƒ‰
 		if( SrcImg->Base->UsePalette == 1 )
-		// ƒpƒŒƒbƒg‚ª‚ ‚éê‡
+		// ãƒ‘ãƒ¬ãƒƒãƒˆãŒã‚ã‚‹å ´åˆ
 		{
-			// ƒuƒŒƒ“ƒhƒ‚[ƒh‚É‚æ‚Á‚Äˆ—‚ğ•ªŠò
+			// ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã«ã‚ˆã£ã¦å‡¦ç†ã‚’åˆ†å²
 			switch( MemImgManage.BlendMode )
 			{
-			case DX_BLENDMODE_NOBLEND :		// ƒuƒŒƒ“ƒh–³‚µ
+			case DX_BLENDMODE_NOBLEND :		// ãƒ–ãƒ¬ãƒ³ãƒ‰ç„¡ã—
 NOMALDRAW_C16_USEPAL_BNO:
 				if( BlendImg != NULL ){
 					if( ( MemImgManage.bDrawBright & 0xffffff ) == 0xffffff ){
@@ -5789,7 +5789,7 @@ NOMALDRAW_C16_USEPAL_BNO:
 				}
 				break ;
 				
-			case DX_BLENDMODE_ALPHA :		// ƒ¿ƒuƒŒƒ“ƒh
+			case DX_BLENDMODE_ALPHA :		// Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
 				if( MemImgManage.BlendParam == 255 ) goto NOMALDRAW_C16_USEPAL_BNO ;
 				else
 				if( MemImgManage.BlendParam == 0 ) return ;
@@ -5813,7 +5813,7 @@ NOMALDRAW_C16_USEPAL_BNO:
 				}
 				break ;
 				
-			case DX_BLENDMODE_ADD :			// ‰ÁZƒuƒŒƒ“ƒh
+			case DX_BLENDMODE_ADD :			// åŠ ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 				if( MemImgManage.BlendParam == 0 ) return ;
 				
 				if( BlendImg != NULL ){
@@ -5835,7 +5835,7 @@ NOMALDRAW_C16_USEPAL_BNO:
 				}
 				break ;
 
-			case DX_BLENDMODE_SUB :			// Œ¸ZƒuƒŒƒ“ƒh
+			case DX_BLENDMODE_SUB :			// æ¸›ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 				if( BlendImg != NULL ){
 					if( ( MemImgManage.bDrawBright & 0xffffff ) == 0xffffff ){
 						if( TransFlag )	DRAWENLARGEMEMIMG_UBI_TCK_ND( CODE_UBI_C16_NBR_NAC_BSB( PAL16, DST16, DSTP16, BLND ), 2, SRC8 )
@@ -5986,7 +5986,7 @@ NOMALDRAW_C16_USEPAL_BNO:
 				}
 				break ;
 				
-			case DX_BLENDMODE_MUL :			// æZƒuƒŒƒ“ƒh
+			case DX_BLENDMODE_MUL :			// ä¹—ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 				if( BlendImg != NULL ){
 					if( ( MemImgManage.bDrawBright & 0xffffff ) == 0xffffff ){
 						if( TransFlag )	DRAWENLARGEMEMIMG_UBI_TCK_ND( CODE_UBI_C16_NBR_NAC_BML( PAL16, DST16, DSTP16, BLND ), 2, SRC8 )
@@ -6006,7 +6006,7 @@ NOMALDRAW_C16_USEPAL_BNO:
 				}
 				break ;
 
-			case DX_BLENDMODE_MULA :		// æZ+ƒ¿ƒuƒŒƒ“ƒh
+			case DX_BLENDMODE_MULA :		// ä¹—ç®—+Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
 				if( BlendImg != NULL ){
 					if( ( MemImgManage.bDrawBright & 0xffffff ) == 0xffffff ){
 						if( TransFlag )	DRAWENLARGEMEMIMG_UBI_TCK_ND( CODE_UBI_C16_NBR_NAC_BMA( PAL16, DST16, DSTP16, BLND ), 2, SRC8 )
@@ -6026,7 +6026,7 @@ NOMALDRAW_C16_USEPAL_BNO:
 				}
 				break ;
 
-			case DX_BLENDMODE_INVSRC :		// •`‰æŒ³‚ÌF‚ğ”½“]{ƒ¿ƒuƒŒƒ“ƒh
+			case DX_BLENDMODE_INVSRC :		// æç”»å…ƒã®è‰²ã‚’åè»¢ï¼‹Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
 				if( BlendImg != NULL ){
 					if( ( MemImgManage.bDrawBright & 0xffffff ) == 0xffffff ){
 						if( TransFlag )	DRAWENLARGEMEMIMG_UBI_TCK_ND( CODE_UBI_C16_NBR_NAC_BIS( PAL16, DST16, DSTP16, BLND ), 2, SRC8 )
@@ -6048,12 +6048,12 @@ NOMALDRAW_C16_USEPAL_BNO:
 			}
 		}
 		else
-		// ƒpƒŒƒbƒg‚ª–³‚¢ê‡
+		// ãƒ‘ãƒ¬ãƒƒãƒˆãŒç„¡ã„å ´åˆ
 		{
-			// ƒuƒŒƒ“ƒhƒ‚[ƒh‚É‚æ‚Á‚Äˆ—‚ğ•ªŠò
+			// ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã«ã‚ˆã£ã¦å‡¦ç†ã‚’åˆ†å²
 			switch( MemImgManage.BlendMode )
 			{
-			case DX_BLENDMODE_NOBLEND :		// ƒuƒŒƒ“ƒh–³‚µ
+			case DX_BLENDMODE_NOBLEND :		// ãƒ–ãƒ¬ãƒ³ãƒ‰ç„¡ã—
 NOMALDRAW_C16_NOPAL_BNO:
 				if( BlendImg != NULL ){
 					if( ( MemImgManage.bDrawBright & 0xffffff ) == 0xffffff ){
@@ -6198,7 +6198,7 @@ NOMALDRAW_C16_NOPAL_BNO:
 				}
 				break ;
 
-			case DX_BLENDMODE_ALPHA :		// ƒ¿ƒuƒŒƒ“ƒh
+			case DX_BLENDMODE_ALPHA :		// Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
 				if( MemImgManage.BlendParam == 255 ) goto NOMALDRAW_C16_NOPAL_BNO ;
 				else
 				if( MemImgManage.BlendParam == 0 ) return ;
@@ -6242,7 +6242,7 @@ NOMALDRAW_C16_NOPAL_BNO:
 				}
 				break ;
 
-			case DX_BLENDMODE_ADD :		// ‰ÁZƒuƒŒƒ“ƒh
+			case DX_BLENDMODE_ADD :		// åŠ ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 				if( MemImgManage.BlendParam == 0 ) return ;
 				
 				if( BlendImg != NULL ){
@@ -6284,7 +6284,7 @@ NOMALDRAW_C16_NOPAL_BNO:
 				}
 				break ;
 
-			case DX_BLENDMODE_SUB :		// Œ¸ZƒuƒŒƒ“ƒh
+			case DX_BLENDMODE_SUB :		// æ¸›ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 				if( MemImgManage.BlendParam == 0 ) return ;
 				
 				if( BlendImg != NULL ){
@@ -6455,7 +6455,7 @@ NOMALDRAW_C16_NOPAL_BNO:
 				}
 				break ;
 
-			case DX_BLENDMODE_MUL :		// æZƒuƒŒƒ“ƒh
+			case DX_BLENDMODE_MUL :		// ä¹—ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 				if( BlendImg != NULL ){
 					if( ( MemImgManage.bDrawBright & 0xffffff ) == 0xffffff ){
 						if( SrcImg->Base->UseAlpha == 1 ){
@@ -6495,7 +6495,7 @@ NOMALDRAW_C16_NOPAL_BNO:
 				}
 				break ;
 
-			case DX_BLENDMODE_MULA :	// æZ+ƒ¿ƒuƒŒƒ“ƒh
+			case DX_BLENDMODE_MULA :	// ä¹—ç®—+Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
 				if( BlendImg != NULL ){
 					if( ( MemImgManage.bDrawBright & 0xffffff ) == 0xffffff ){
 						if( SrcImg->Base->UseAlpha == 1 ){
@@ -6535,7 +6535,7 @@ NOMALDRAW_C16_NOPAL_BNO:
 				}
 				break ;
 
-			case DX_BLENDMODE_INVSRC :		// •`‰æŒ³‚ÌF‚ğ”½“]{ƒ¿ƒuƒŒƒ“ƒh
+			case DX_BLENDMODE_INVSRC :		// æç”»å…ƒã®è‰²ã‚’åè»¢ï¼‹Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
 				if( BlendImg != NULL ){
 					if( ( MemImgManage.bDrawBright & 0xffffff ) == 0xffffff ){
 						if( SrcImg->Base->UseAlpha == 1 ){
@@ -6578,14 +6578,14 @@ NOMALDRAW_C16_NOPAL_BNO:
 		}
 		break ;
 		
-	case 1 :	// 32bit ƒ‚[ƒh
+	case 1 :	// 32bit ãƒ¢ãƒ¼ãƒ‰
 		if( SrcImg->Base->UsePalette == 1 )
-		// ƒpƒŒƒbƒg‚ª‚ ‚éê‡
+		// ãƒ‘ãƒ¬ãƒƒãƒˆãŒã‚ã‚‹å ´åˆ
 		{
-			// ƒuƒŒƒ“ƒhƒ‚[ƒh‚É‚æ‚Á‚Äˆ—‚ğ•ªŠò
+			// ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã«ã‚ˆã£ã¦å‡¦ç†ã‚’åˆ†å²
 			switch( MemImgManage.BlendMode )
 			{
-			case DX_BLENDMODE_NOBLEND :		// ƒuƒŒƒ“ƒh–³‚µ
+			case DX_BLENDMODE_NOBLEND :		// ãƒ–ãƒ¬ãƒ³ãƒ‰ç„¡ã—
 NOMALDRAW_C32_USEPAL_BNO:
 				if( BlendImg != NULL ){
 					if( ( MemImgManage.bDrawBright & 0xffffff ) == 0xffffff ){
@@ -6714,7 +6714,7 @@ NOMALDRAW_C32_USEPAL_BNO:
 				}
 				break ;
 				
-			case DX_BLENDMODE_ALPHA :		// ƒ¿ƒuƒŒƒ“ƒh
+			case DX_BLENDMODE_ALPHA :		// Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
 				if( MemImgManage.BlendParam == 255 ) goto NOMALDRAW_C32_USEPAL_BNO ;
 				else
 				if( MemImgManage.BlendParam == 0 ) return ;
@@ -6738,7 +6738,7 @@ NOMALDRAW_C32_USEPAL_BNO:
 				}
 				break ;
 				
-			case DX_BLENDMODE_ADD :			// ‰ÁZƒuƒŒƒ“ƒh
+			case DX_BLENDMODE_ADD :			// åŠ ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 				if( MemImgManage.BlendParam == 0 ) return ;
 				
 				if( BlendImg != NULL ){
@@ -6760,7 +6760,7 @@ NOMALDRAW_C32_USEPAL_BNO:
 				}
 				break ;
 
-			case DX_BLENDMODE_SUB :			// Œ¸ZƒuƒŒƒ“ƒh
+			case DX_BLENDMODE_SUB :			// æ¸›ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 				if( BlendImg != NULL ){
 					if( ( MemImgManage.bDrawBright & 0xffffff ) == 0xffffff ){
 						if( TransFlag )	DRAWENLARGEMEMIMG_UBI_TCK_ND( CODE_UBI_C32_NBR_NAC_BSB( PALP32, DSTP32, BLND ), 4, SRC8 )
@@ -7026,7 +7026,7 @@ NOMALDRAW_C32_USEPAL_BNO:
 				}
 				break ;
 				
-			case DX_BLENDMODE_MUL :			// æZƒuƒŒƒ“ƒh
+			case DX_BLENDMODE_MUL :			// ä¹—ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 				if( BlendImg != NULL ){
 					if( ( MemImgManage.bDrawBright & 0xffffff ) == 0xffffff ){
 						if( TransFlag )	DRAWENLARGEMEMIMG_UBI_TCK_ND( CODE_UBI_C32_NBR_NAC_BML( PALP32, DSTP32, BLND ), 4, SRC8 )
@@ -7046,7 +7046,7 @@ NOMALDRAW_C32_USEPAL_BNO:
 				}
 				break ;
 
-			case DX_BLENDMODE_MULA :		// æZ+ƒ¿ƒuƒŒƒ“ƒh
+			case DX_BLENDMODE_MULA :		// ä¹—ç®—+Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
 				if( BlendImg != NULL ){
 					if( ( MemImgManage.bDrawBright & 0xffffff ) == 0xffffff ){
 						if( TransFlag )	DRAWENLARGEMEMIMG_UBI_TCK_ND( CODE_UBI_C32_NBR_NAC_BMA( PALP32, DSTP32, BLND ), 4, SRC8 )
@@ -7066,7 +7066,7 @@ NOMALDRAW_C32_USEPAL_BNO:
 				}
 				break ;
 
-			case DX_BLENDMODE_INVSRC :		// •`‰æŒ³‚ÌF‚ğ”½“]{ƒ¿ƒuƒŒƒ“ƒh
+			case DX_BLENDMODE_INVSRC :		// æç”»å…ƒã®è‰²ã‚’åè»¢ï¼‹Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
 				if( BlendImg != NULL ){
 					if( ( MemImgManage.bDrawBright & 0xffffff ) == 0xffffff ){
 						if( TransFlag )	DRAWENLARGEMEMIMG_UBI_TCK_ND( CODE_UBI_C32_NBR_NAC_BIS( PALP32, DSTP32, BLND ), 4, SRC8 )
@@ -7088,12 +7088,12 @@ NOMALDRAW_C32_USEPAL_BNO:
 			}
 		}
 		else
-		// ƒpƒŒƒbƒg‚ª–³‚¢ê‡
+		// ãƒ‘ãƒ¬ãƒƒãƒˆãŒç„¡ã„å ´åˆ
 		{
-			// ƒuƒŒƒ“ƒhƒ‚[ƒh‚É‚æ‚Á‚Äˆ—‚ğ•ªŠò
+			// ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã«ã‚ˆã£ã¦å‡¦ç†ã‚’åˆ†å²
 			switch( MemImgManage.BlendMode )
 			{
-			case DX_BLENDMODE_NOBLEND :		// ƒuƒŒƒ“ƒh–³‚µ
+			case DX_BLENDMODE_NOBLEND :		// ãƒ–ãƒ¬ãƒ³ãƒ‰ç„¡ã—
 NOMALDRAW_C32_NOPAL_BNO:
 				if( BlendImg != NULL ){
 					if( ( MemImgManage.bDrawBright & 0xffffff ) == 0xffffff ){
@@ -7238,7 +7238,7 @@ NOMALDRAW_C32_NOPAL_BNO:
 				}
 				break ;
 
-			case DX_BLENDMODE_ALPHA :		// ƒ¿ƒuƒŒƒ“ƒh
+			case DX_BLENDMODE_ALPHA :		// Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
 				if( MemImgManage.BlendParam == 255 ) goto NOMALDRAW_C32_NOPAL_BNO ;
 				else
 				if( MemImgManage.BlendParam == 0 ) return ;
@@ -7282,7 +7282,7 @@ NOMALDRAW_C32_NOPAL_BNO:
 				}
 				break ;
 
-			case DX_BLENDMODE_ADD :		// ‰ÁZƒuƒŒƒ“ƒh
+			case DX_BLENDMODE_ADD :		// åŠ ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 				if( MemImgManage.BlendParam == 0 ) return ;
 				
 				if( BlendImg != NULL ){
@@ -7324,7 +7324,7 @@ NOMALDRAW_C32_NOPAL_BNO:
 				}
 				break ;
 
-			case DX_BLENDMODE_SUB :		// Œ¸ZƒuƒŒƒ“ƒh
+			case DX_BLENDMODE_SUB :		// æ¸›ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 				if( MemImgManage.BlendParam == 0 ) return ;
 				
 				if( BlendImg != NULL ){
@@ -7608,7 +7608,7 @@ NOMALDRAW_C32_NOPAL_BNO:
 				}
 				break ;
 
-			case DX_BLENDMODE_MUL :		// æZƒuƒŒƒ“ƒh
+			case DX_BLENDMODE_MUL :		// ä¹—ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 				if( BlendImg != NULL ){
 					if( ( MemImgManage.bDrawBright & 0xffffff ) == 0xffffff ){
 						if( SrcImg->Base->UseAlpha == 1 ){
@@ -7648,7 +7648,7 @@ NOMALDRAW_C32_NOPAL_BNO:
 				}
 				break ;
 
-			case DX_BLENDMODE_MULA :	// æZ+ƒ¿ƒuƒŒƒ“ƒh
+			case DX_BLENDMODE_MULA :	// ä¹—ç®—+Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
 				if( BlendImg != NULL ){
 					if( ( MemImgManage.bDrawBright & 0xffffff ) == 0xffffff ){
 						if( SrcImg->Base->UseAlpha == 1 ){
@@ -7688,7 +7688,7 @@ NOMALDRAW_C32_NOPAL_BNO:
 				}
 				break ;
 
-			case DX_BLENDMODE_INVSRC :		// •`‰æŒ³‚ÌF‚ğ”½“]{ƒ¿ƒuƒŒƒ“ƒh
+			case DX_BLENDMODE_INVSRC :		// æç”»å…ƒã®è‰²ã‚’åè»¢ï¼‹Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
 				if( BlendImg != NULL ){
 					if( ( MemImgManage.bDrawBright & 0xffffff ) == 0xffffff ){
 						if( SrcImg->Base->UseAlpha == 1 ){
@@ -7732,7 +7732,7 @@ NOMALDRAW_C32_NOPAL_BNO:
 		break ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return ;
 }
 #undef PAL16

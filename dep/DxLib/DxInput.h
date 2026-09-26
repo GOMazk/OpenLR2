@@ -1,6 +1,6 @@
 // -------------------------------------------------------------------------------
 // 
-// 		‚c‚wƒ‰ƒCƒuƒ‰ƒŠ		“ü—Íî•ñƒvƒƒOƒ‰ƒ€ƒwƒbƒ_ƒtƒ@ƒCƒ‹
+// 		ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒª		å…¥åŠ›æƒ…å ±ãƒ—ãƒ­ã‚°ãƒ©ãƒ ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«
 // 
 // 				Ver 3.25a
 // 
@@ -13,7 +13,7 @@
 
 #ifndef DX_NON_INPUT
 
-// ƒCƒ“ƒNƒ‹[ƒh ------------------------------------------------------------------
+// ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ ------------------------------------------------------------------
 #include "DxLib.h"
 #include "DxStatic.h"
 
@@ -43,200 +43,200 @@ namespace DxLib
 
 #endif // DX_NON_NAMESPACE
 
-// ƒ}ƒNƒ’è‹` --------------------------------------------------------------------
+// ãƒã‚¯ãƒ­å®šç¾© --------------------------------------------------------------------
 
-// ƒWƒ‡ƒCƒpƒbƒh‚ÌƒfƒtƒHƒ‹ƒgƒfƒbƒhƒ][ƒ“
+// ã‚¸ãƒ§ã‚¤ãƒ‘ãƒƒãƒ‰ã®ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãƒ‡ãƒƒãƒ‰ã‚¾ãƒ¼ãƒ³
 #define PAD_DEFAULT_DEADZONE_D		(0.35)
 #define PAD_DEFAULT_DEADZONE		( DWORD )( PAD_DEFAULT_DEADZONE_D * 65536 )
 
-// •Û‚·‚éƒ}ƒEƒX‚ÌƒNƒŠƒbƒNî•ñ
+// ä¿æŒã™ã‚‹ãƒã‚¦ã‚¹ã®ã‚¯ãƒªãƒƒã‚¯æƒ…å ±
 #define MOUSEINPUT_LOG_NUM			(64)
 
-// •ûŒü“ü—Í‚ÌÅ‘å’l
+// æ–¹å‘å…¥åŠ›ã®æœ€å¤§å€¤
 #define DIRINPUT_MAX				(1000)
 
-// U“®ƒpƒ[‚ÌÅ‘å’l
+// æŒ¯å‹•ãƒ‘ãƒ¯ãƒ¼ã®æœ€å¤§å€¤
 #define DX_FFNOMINALMAX				(10000)
 
-// ƒ‚[ƒ^[‚Ì”Ô†’è‹`
+// ãƒ¢ãƒ¼ã‚¿ãƒ¼ã®ç•ªå·å®šç¾©
 #define DINPUTPAD_MOTOR_LEFT		0
 #define DINPUTPAD_MOTOR_RIGHT		1
 #define DINPUTPAD_MOTOR_NUM			2
 
-#define INPUTTOUCH_LOG_NUM			(120)				// ƒ^ƒbƒ`î•ñ‚ÌƒƒO‚Ì”
+#define INPUTTOUCH_LOG_NUM			(120)				// ã‚¿ãƒƒãƒæƒ…å ±ã®ãƒ­ã‚°ã®æ•°
 
-// \‘¢‘Ì’è‹` --------------------------------------------------------------------
+// æ§‹é€ ä½“å®šç¾© --------------------------------------------------------------------
 
-// ƒ^ƒbƒ`ƒpƒlƒ‹‚Ìƒ^ƒbƒ`‚Ìî•ñ
+// ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã®ã‚¿ãƒƒãƒã®æƒ…å ±
 struct INPUTTOUCHDATA
 {
-	int						LogNum ;							// —LŒø‚Èƒ^ƒbƒ`ƒƒOî•ñ‚Ì”
-	TOUCHINPUTDATA			Log[ INPUTTOUCH_LOG_NUM ] ;			// ƒ^ƒbƒ`ƒƒOî•ñ
-	int						LogStartIndex ;						// ƒ^ƒbƒ`ƒƒOî•ñ‚Ìæ“ªƒf[ƒ^‚ªŠi”[‚³‚ê‚Ä‚¢‚éƒCƒ“ƒfƒbƒNƒX
+	int						LogNum ;							// æœ‰åŠ¹ãªã‚¿ãƒƒãƒãƒ­ã‚°æƒ…å ±ã®æ•°
+	TOUCHINPUTDATA			Log[ INPUTTOUCH_LOG_NUM ] ;			// ã‚¿ãƒƒãƒãƒ­ã‚°æƒ…å ±
+	int						LogStartIndex ;						// ã‚¿ãƒƒãƒãƒ­ã‚°æƒ…å ±ã®å…ˆé ­ãƒ‡ãƒ¼ã‚¿ãŒæ ¼ç´ã•ã‚Œã¦ã„ã‚‹ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 
-	int						DownLogNum ;						// ƒ^ƒbƒ`‚³‚ê‚½À•W‚ÌƒƒO‚Ì”
-	TOUCHINPUTPOINT			DownLog[ INPUTTOUCH_LOG_NUM ] ;		// ƒ^ƒbƒ`‚³‚ê‚½À•W‚ÌƒƒOî•ñ
-	int						DownLogStartIndex ;					// ƒ^ƒbƒ`‚³‚ê‚½À•W‚ÌƒƒOî•ñ‚Ìæ“ªƒf[ƒ^‚ªŠi”[‚³‚ê‚Ä‚¢‚éƒCƒ“ƒfƒbƒNƒX
+	int						DownLogNum ;						// ã‚¿ãƒƒãƒã•ã‚ŒãŸåº§æ¨™ã®ãƒ­ã‚°ã®æ•°
+	TOUCHINPUTPOINT			DownLog[ INPUTTOUCH_LOG_NUM ] ;		// ã‚¿ãƒƒãƒã•ã‚ŒãŸåº§æ¨™ã®ãƒ­ã‚°æƒ…å ±
+	int						DownLogStartIndex ;					// ã‚¿ãƒƒãƒã•ã‚ŒãŸåº§æ¨™ã®ãƒ­ã‚°æƒ…å ±ã®å…ˆé ­ãƒ‡ãƒ¼ã‚¿ãŒæ ¼ç´ã•ã‚Œã¦ã„ã‚‹ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 
-	int						UpLogNum ;							// ƒ^ƒbƒ`‚ª—£‚³‚ê‚½À•W‚ÌƒƒO‚Ì”
-	TOUCHINPUTPOINT			UpLog[ INPUTTOUCH_LOG_NUM ] ;		// ƒ^ƒbƒ`‚ª—£‚³‚ê‚½À•W‚ÌƒƒOî•ñ
-	int						UpLogStartIndex ;					// ƒ^ƒbƒ`‚ª—£‚³‚ê‚½À•W‚ÌƒƒOî•ñ‚Ìæ“ªƒf[ƒ^‚ªŠi”[‚³‚ê‚Ä‚¢‚éƒCƒ“ƒfƒbƒNƒX
+	int						UpLogNum ;							// ã‚¿ãƒƒãƒãŒé›¢ã•ã‚ŒãŸåº§æ¨™ã®ãƒ­ã‚°ã®æ•°
+	TOUCHINPUTPOINT			UpLog[ INPUTTOUCH_LOG_NUM ] ;		// ã‚¿ãƒƒãƒãŒé›¢ã•ã‚ŒãŸåº§æ¨™ã®ãƒ­ã‚°æƒ…å ±
+	int						UpLogStartIndex ;					// ã‚¿ãƒƒãƒãŒé›¢ã•ã‚ŒãŸåº§æ¨™ã®ãƒ­ã‚°æƒ…å ±ã®å…ˆé ­ãƒ‡ãƒ¼ã‚¿ãŒæ ¼ç´ã•ã‚Œã¦ã„ã‚‹ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 
-	int						MouseInputDevice ;					// ƒ}ƒEƒX“ü—Í‚Æ‚·‚éƒ^ƒbƒ`î•ñ‚ÌDevice
-	int						MouseInputID ;						// ƒ}ƒEƒX“ü—Í‚Æ‚·‚éƒ^ƒbƒ`î•ñ‚ÌID
-	int						MouseInputIndex ;					// ƒ}ƒEƒX“ü—Í‚Æ‚·‚éƒ^ƒbƒ`î•ñ‚ÌƒCƒ“ƒfƒbƒNƒX
-	TOUCHINPUTDATA			NowData ;							// ÅV‚Ìƒ^ƒbƒ`î•ñ
+	int						MouseInputDevice ;					// ãƒã‚¦ã‚¹å…¥åŠ›ã¨ã™ã‚‹ã‚¿ãƒƒãƒæƒ…å ±ã®Device
+	int						MouseInputID ;						// ãƒã‚¦ã‚¹å…¥åŠ›ã¨ã™ã‚‹ã‚¿ãƒƒãƒæƒ…å ±ã®ID
+	int						MouseInputIndex ;					// ãƒã‚¦ã‚¹å…¥åŠ›ã¨ã™ã‚‹ã‚¿ãƒƒãƒæƒ…å ±ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+	TOUCHINPUTDATA			NowData ;							// æœ€æ–°ã®ã‚¿ãƒƒãƒæƒ…å ±
 } ;
 
-// U“®‚Ìî•ñ
+// æŒ¯å‹•ã®æƒ…å ±
 struct INPUTVIBRATIONDATA
 {
-	int						PlayFlag ;							// ƒGƒtƒFƒNƒg‚ªÄ¶’†‚©Aƒtƒ‰ƒO
-	int						Power ;								// ƒGƒtƒFƒNƒg‚Ì‹­‚³
-	int						Time ;								// ƒGƒtƒFƒNƒg‚Ì’·‚³
-	int						CompTime ;							// ƒGƒtƒFƒNƒg‚ğŠJn‚µ‚Ä‚©‚çŒo‰ß‚µ‚½ŠÔ
-	int						BackTime ;							// ƒGƒtƒFƒNƒg‚Ì‘O‰ñ’²‚×‚½
-	int						PrevSetTime ;						// ‘O‰ñƒXƒe[ƒ^ƒX‚ğƒZƒbƒg‚µ‚½ŠÔ
+	int						PlayFlag ;							// ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãŒå†ç”Ÿä¸­ã‹ã€ãƒ•ãƒ©ã‚°
+	int						Power ;								// ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®å¼·ã•
+	int						Time ;								// ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®é•·ã•
+	int						CompTime ;							// ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’é–‹å§‹ã—ã¦ã‹ã‚‰çµŒéã—ãŸæ™‚é–“
+	int						BackTime ;							// ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®å‰å›èª¿ã¹ãŸæ™‚åˆ»
+	int						PrevSetTime ;						// å‰å›ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚’ã‚»ãƒƒãƒˆã—ãŸæ™‚é–“
 
-	int						PlayState ;							// U“®‚ÌÄ¶ó‘Ô(ƒ\ƒtƒg‚ª”ñƒAƒNƒeƒBƒu‚É‚È‚ê‚ÎÄ¶’â~‚·‚éˆ×)
-	int						SetPower ;							// U“®‚Ìİ’èƒpƒ[
+	int						PlayState ;							// æŒ¯å‹•ã®å†ç”ŸçŠ¶æ…‹(ã‚½ãƒ•ãƒˆãŒéã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ãªã‚Œã°å†ç”Ÿåœæ­¢ã™ã‚‹ç‚º)
+	int						SetPower ;							// æŒ¯å‹•ã®è¨­å®šãƒ‘ãƒ¯ãƒ¼
 
-	INPUTVIBRATIONDATA_PF	PF ;								// ŠÂ‹«ˆË‘¶î•ñ
+	INPUTVIBRATIONDATA_PF	PF ;								// ç’°å¢ƒä¾å­˜æƒ…å ±
 } ;
 
-// ƒQ[ƒ€ƒpƒbƒh‚Ìî•ñ
+// ã‚²ãƒ¼ãƒ ãƒ‘ãƒƒãƒ‰ã®æƒ…å ±
 struct INPUTPADDATA
 {
-	int						GetTime ;							// æ“¾ŠÔ
-	INPUTVIBRATIONDATA		Effect[ DINPUTPAD_MOTOR_NUM ] ;		// ƒ‚[ƒ^[‚Ìî•ñ
-	int						UserChangeDeadZone ;				// DeadZone ‚Ì’l‚ğƒ†[ƒU[‚ª•ÏX‚µ‚½‚©
-	DWORD					DeadZone ;							// –³Œøƒ][ƒ“( 65536 = 100% )
-	double					DeadZoneD ;							// –³Œøƒ][ƒ“( 1.0 = 100% )
-	int						Buttons ;							// —LŒø‚Èƒ{ƒ^ƒ“‚Ì”
+	int						GetTime ;							// å–å¾—æ™‚é–“
+	INPUTVIBRATIONDATA		Effect[ DINPUTPAD_MOTOR_NUM ] ;		// ãƒ¢ãƒ¼ã‚¿ãƒ¼ã®æƒ…å ±
+	int						UserChangeDeadZone ;				// DeadZone ã®å€¤ã‚’ãƒ¦ãƒ¼ã‚¶ãƒ¼ãŒå¤‰æ›´ã—ãŸã‹
+	DWORD					DeadZone ;							// ç„¡åŠ¹ã‚¾ãƒ¼ãƒ³( 65536 = 100% )
+	double					DeadZoneD ;							// ç„¡åŠ¹ã‚¾ãƒ¼ãƒ³( 1.0 = 100% )
+	int						Buttons ;							// æœ‰åŠ¹ãªãƒœã‚¿ãƒ³ã®æ•°
 
-	DINPUT_JOYSTATE			State ;								// ó‘Ô
-	XINPUT_STATE			XInputState ;						// XInput‚Å‚Ìƒpƒbƒh‚Ìó‘Ô
+	DINPUT_JOYSTATE			State ;								// çŠ¶æ…‹
+	XINPUT_STATE			XInputState ;						// XInputã§ã®ãƒ‘ãƒƒãƒ‰ã®çŠ¶æ…‹
 
-	INPUTPADDATA_PF			PF ;								// ŠÂ‹«ˆË‘¶î•ñ
+	INPUTPADDATA_PF			PF ;								// ç’°å¢ƒä¾å­˜æƒ…å ±
 } ;
 
-// ƒ}ƒEƒX‚Ì“ü—ÍƒƒOî•ñ
+// ãƒã‚¦ã‚¹ã®å…¥åŠ›ãƒ­ã‚°æƒ…å ±
 struct MOUSEINPUTLOGDATA
 {
-	int						LogType ;							// ƒƒOƒ^ƒCƒv( MOUSE_INPUT_LOG_DOWN –”‚Í MOUSE_INPUT_LOG_UP )
-	int						Button ;							// ƒNƒŠƒbƒN‚µ‚½ƒ{ƒ^ƒ“
-	int						ClickX, ClickY ;					// ƒNƒŠƒbƒN‚µ‚½ƒNƒ‰ƒCƒAƒ“ƒgÀ•W
-	int						IsDummy ;							// GetMousePoint ‚Æ GetMouseInput ‚ğg—p‚µ‚½ƒ_ƒ~[î•ñ‚©‚Ç‚¤‚©
+	int						LogType ;							// ãƒ­ã‚°ã‚¿ã‚¤ãƒ—( MOUSE_INPUT_LOG_DOWN åˆã¯ MOUSE_INPUT_LOG_UP )
+	int						Button ;							// ã‚¯ãƒªãƒƒã‚¯ã—ãŸãƒœã‚¿ãƒ³
+	int						ClickX, ClickY ;					// ã‚¯ãƒªãƒƒã‚¯ã—ãŸã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆåº§æ¨™
+	int						IsDummy ;							// GetMousePoint ã¨ GetMouseInput ã‚’ä½¿ç”¨ã—ãŸãƒ€ãƒŸãƒ¼æƒ…å ±ã‹ã©ã†ã‹
 } ;
 
-// “ü—ÍƒVƒXƒeƒ€—pƒf[ƒ^\‘¢‘ÌŒ^
+// å…¥åŠ›ã‚·ã‚¹ãƒ†ãƒ ç”¨ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“å‹
 struct INPUTSYSTEMDATA
 {
-	volatile int			InitializeFlag ;					// ‰Šú‰»Š®—¹ƒtƒ‰ƒO
+	volatile int			InitializeFlag ;					// åˆæœŸåŒ–å®Œäº†ãƒ•ãƒ©ã‚°
 
-	int						NoUseVibrationFlag ;				// ‚c‚‰‚’‚…‚ƒ‚”‚h‚‚‚•‚”‚ÌU“®‹@”\‚ğg—p‚µ‚È‚¢‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO
-	int						KeyInputGetTime ;					// ˆê‚Â‘O‚Éó‘Ô‚ğæ“¾‚µ‚½ŠÔ
-	unsigned char			KeyInputBuf[ 256 ] ;				// ƒL[ƒ{[ƒh‚Ì“ü—Íó‘Ô
+	int						NoUseVibrationFlag ;				// ï¼¤ï½‰ï½’ï½…ï½ƒï½”ï¼©ï½ï½ï½•ï½”ã®æŒ¯å‹•æ©Ÿèƒ½ã‚’ä½¿ç”¨ã—ãªã„ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°
+	int						KeyInputGetTime ;					// ä¸€ã¤å‰ã«çŠ¶æ…‹ã‚’å–å¾—ã—ãŸæ™‚é–“
+	unsigned char			KeyInputBuf[ 256 ] ;				// ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ã®å…¥åŠ›çŠ¶æ…‹
 
-	int						KeyToJoypadInputInitializeFlag ;	// KeyToJoypadInput ‚ğˆê“x‚Å‚à‰Šú‰»‚µ‚½‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO
-	int						KeyToJoypadInput[ MAX_JOYPAD_NUM ][ 32 ][ 4 ] ;	// ƒWƒ‡ƒCƒpƒbƒh‚Ì“ü—Í‚É‘Î‰‚µ‚½ƒL[ƒ{[ƒh‚Ì“ü—Í
+	int						KeyToJoypadInputInitializeFlag ;	// KeyToJoypadInput ã‚’ä¸€åº¦ã§ã‚‚åˆæœŸåŒ–ã—ãŸã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°
+	int						KeyToJoypadInput[ MAX_JOYPAD_NUM ][ 32 ][ 4 ] ;	// ã‚¸ãƒ§ã‚¤ãƒ‘ãƒƒãƒ‰ã®å…¥åŠ›ã«å¯¾å¿œã—ãŸã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ã®å…¥åŠ›
 
-	int						MouseInputBufValidFlag ;			// MouseInputBuf ‚ª—LŒø‚©‚Ç‚¤‚©( TRUE:—LŒø  FALSE:–³Œø )
-	BYTE					MouseInputBuf[ 8 ] ;				// ƒ}ƒEƒX‚Ì“ü—Íó‘Ô( 0:LEFT 1:RIGHT 2:MIDDLE 3:4ƒ{ƒ^ƒ“(XBUTTON1) 4:5ƒ{ƒ^ƒ“(XBUTTON2) )
-	int						MouseMoveZ ;						// ƒ}ƒEƒXƒzƒC[ƒ‹‚ÌˆÚ“®’l
-	int						MouseMoveHZ ;						// ƒ}ƒEƒX‚Ì…•½ƒzƒC[ƒ‹‚ÌˆÚ“®—Ê
+	int						MouseInputBufValidFlag ;			// MouseInputBuf ãŒæœ‰åŠ¹ã‹ã©ã†ã‹( TRUE:æœ‰åŠ¹  FALSE:ç„¡åŠ¹ )
+	BYTE					MouseInputBuf[ 8 ] ;				// ãƒã‚¦ã‚¹ã®å…¥åŠ›çŠ¶æ…‹( 0:LEFT 1:RIGHT 2:MIDDLE 3:4ãƒœã‚¿ãƒ³(XBUTTON1) 4:5ãƒœã‚¿ãƒ³(XBUTTON2) )
+	int						MouseMoveZ ;						// ãƒã‚¦ã‚¹ãƒ›ã‚¤ãƒ¼ãƒ«ã®ç§»å‹•å€¤
+	int						MouseMoveHZ ;						// ãƒã‚¦ã‚¹ã®æ°´å¹³ãƒ›ã‚¤ãƒ¼ãƒ«ã®ç§»å‹•é‡
 
-	int						MouseInputLogNum ;						// ƒ}ƒEƒX‚Ì“ü—Íî•ñ‚Ì”( GetMouseInputLog—p )
-	MOUSEINPUTLOGDATA		MouseInputLog[ MOUSEINPUT_LOG_NUM ] ;	// ƒ}ƒEƒX‚Ì“ü—Íî•ñ( GetMouseInputLog—p )
+	int						MouseInputLogNum ;						// ãƒã‚¦ã‚¹ã®å…¥åŠ›æƒ…å ±ã®æ•°( GetMouseInputLogç”¨ )
+	MOUSEINPUTLOGDATA		MouseInputLog[ MOUSEINPUT_LOG_NUM ] ;	// ãƒã‚¦ã‚¹ã®å…¥åŠ›æƒ…å ±( GetMouseInputLogç”¨ )
 
-	int						MouseInputLog2Num ;							// ƒ}ƒEƒX‚Ì“ü—Íî•ñ‚Ì”( GetMouseInputLog2—p )
-	MOUSEINPUTLOGDATA		MouseInputLog2[ MOUSEINPUT_LOG_NUM ] ;	// ƒ}ƒEƒX‚Ì“ü—Íî•ñ( GetMouseInputLog2—p )
+	int						MouseInputLog2Num ;							// ãƒã‚¦ã‚¹ã®å…¥åŠ›æƒ…å ±ã®æ•°( GetMouseInputLog2ç”¨ )
+	MOUSEINPUTLOGDATA		MouseInputLog2[ MOUSEINPUT_LOG_NUM ] ;	// ãƒã‚¦ã‚¹ã®å…¥åŠ›æƒ…å ±( GetMouseInputLog2ç”¨ )
 
-	int						MouseInputLog2PrevEnable[ 3 ] ;			// ’¼‹ß‚Ìƒ}ƒEƒX‚Ì“ü—Íî•ñ‚ª—LŒø‚©‚Ç‚¤‚©( TRUE:—LŒø  FALSE:–³Œø )( GetMouseInputLog2—p )
-	MOUSEINPUTLOGDATA		MouseInputLog2Prev[ 3 ] ;				// ’¼‹ß‚Ìƒ}ƒEƒX‚Ì“ü—Íî•ñ
+	int						MouseInputLog2PrevEnable[ 3 ] ;			// ç›´è¿‘ã®ãƒã‚¦ã‚¹ã®å…¥åŠ›æƒ…å ±ãŒæœ‰åŠ¹ã‹ã©ã†ã‹( TRUE:æœ‰åŠ¹  FALSE:ç„¡åŠ¹ )( GetMouseInputLog2ç”¨ )
+	MOUSEINPUTLOGDATA		MouseInputLog2Prev[ 3 ] ;				// ç›´è¿‘ã®ãƒã‚¦ã‚¹ã®å…¥åŠ›æƒ…å ±
 
-	int						PadNum ;							// ƒWƒ‡ƒCƒpƒbƒh‚Ì”
-	INPUTPADDATA			Pad[ MAX_JOYPAD_NUM ] ;				// ƒpƒbƒhƒfƒoƒCƒXî•ñ
+	int						PadNum ;							// ã‚¸ãƒ§ã‚¤ãƒ‘ãƒƒãƒ‰ã®æ•°
+	INPUTPADDATA			Pad[ MAX_JOYPAD_NUM ] ;				// ãƒ‘ãƒƒãƒ‰ãƒ‡ãƒã‚¤ã‚¹æƒ…å ±
 
-	int						EnablePadDefaultDeadZone ;			// PadDefaultDeadZone ‚Æ PadDefaultDeadZoneD ‚ª—LŒø‚©‚Ç‚¤‚©( TRUE:—LŒø  FALSE:–³Œø )
-	DWORD					PadDefaultDeadZone ;				// ƒWƒ‡ƒCƒpƒbƒh‚ÌƒfƒtƒHƒ‹ƒg–³Œøƒ][ƒ“( 65536 = 100% )
-	double					PadDefaultDeadZoneD ;				// ƒWƒ‡ƒCƒpƒbƒh‚ÌƒfƒtƒHƒ‹ƒg–³Œøƒ][ƒ“( 1.0 = 100% )
+	int						EnablePadDefaultDeadZone ;			// PadDefaultDeadZone ã¨ PadDefaultDeadZoneD ãŒæœ‰åŠ¹ã‹ã©ã†ã‹( TRUE:æœ‰åŠ¹  FALSE:ç„¡åŠ¹ )
+	DWORD					PadDefaultDeadZone ;				// ã‚¸ãƒ§ã‚¤ãƒ‘ãƒƒãƒ‰ã®ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆç„¡åŠ¹ã‚¾ãƒ¼ãƒ³( 65536 = 100% )
+	double					PadDefaultDeadZoneD ;				// ã‚¸ãƒ§ã‚¤ãƒ‘ãƒƒãƒ‰ã®ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆç„¡åŠ¹ã‚¾ãƒ¼ãƒ³( 1.0 = 100% )
 
 	int						EndFlag ;
 
-	int						F10Flag ;							// F10 ‚ª‰Ÿ‚³‚ê‚½‚©ƒtƒ‰ƒO
-	int						F10InputTime ;						// F10 ‚ª‰Ÿ‚³‚ê‚½ŠÔ
-	int						F12Flag ;							// F12 ‚ª‰Ÿ‚³‚ê‚½‚©ƒtƒ‰ƒO
-	int						F12InputTime ;						// F12 ‚ª‰Ÿ‚³‚ê‚½ŠÔ
+	int						F10Flag ;							// F10 ãŒæŠ¼ã•ã‚ŒãŸã‹ãƒ•ãƒ©ã‚°
+	int						F10InputTime ;						// F10 ãŒæŠ¼ã•ã‚ŒãŸæ™‚é–“
+	int						F12Flag ;							// F12 ãŒæŠ¼ã•ã‚ŒãŸã‹ãƒ•ãƒ©ã‚°
+	int						F12InputTime ;						// F12 ãŒæŠ¼ã•ã‚ŒãŸæ™‚é–“
 
-	INPUTTOUCHDATA			Touch ;								// ƒ^ƒbƒ`ƒpƒlƒ‹‚Ìƒ^ƒbƒ`î•ñ
+	INPUTTOUCHDATA			Touch ;								// ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã®ã‚¿ãƒƒãƒæƒ…å ±
 
-	INPUTSYSTEMDATA_PF		PF ;								// ŠÂ‹«ˆË‘¶î•ñ
+	INPUTSYSTEMDATA_PF		PF ;								// ç’°å¢ƒä¾å­˜æƒ…å ±
 } ;
 
-// ƒe[ƒuƒ‹-----------------------------------------------------------------------
+// ãƒ†ãƒ¼ãƒ–ãƒ«-----------------------------------------------------------------------
 
-// “à•”‘åˆæ•Ï”éŒ¾ --------------------------------------------------------------
+// å†…éƒ¨å¤§åŸŸå¤‰æ•°å®£è¨€ --------------------------------------------------------------
 
-// “ü—ÍƒVƒXƒeƒ€—pƒf[ƒ^
+// å…¥åŠ›ã‚·ã‚¹ãƒ†ãƒ ç”¨ãƒ‡ãƒ¼ã‚¿
 extern INPUTSYSTEMDATA InputSysData ;
 
-// ŠÖ”ƒvƒƒgƒ^ƒCƒvéŒ¾-----------------------------------------------------------
+// é–¢æ•°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€-----------------------------------------------------------
 
-// “ü—ÍƒVƒXƒeƒ€‚Ì‰Šú‰»AI—¹ŠÖ”
-extern	int InitializeInputSystem( void ) ;											// “ü—ÍƒVƒXƒeƒ€‚ğ‰Šú‰»‚·‚é 
-extern	int TerminateInputSystem( void ) ;											// “ü—ÍƒVƒXƒeƒ€‚ÌŒãn––‚ğ‚·‚é
+// å…¥åŠ›ã‚·ã‚¹ãƒ†ãƒ ã®åˆæœŸåŒ–ã€çµ‚äº†é–¢æ•°
+extern	int InitializeInputSystem( void ) ;											// å…¥åŠ›ã‚·ã‚¹ãƒ†ãƒ ã‚’åˆæœŸåŒ–ã™ã‚‹ 
+extern	int TerminateInputSystem( void ) ;											// å…¥åŠ›ã‚·ã‚¹ãƒ†ãƒ ã®å¾Œå§‹æœ«ã‚’ã™ã‚‹
 
-extern	int JoypadEffectProcess( void ) ;											// ƒpƒbƒhƒGƒtƒFƒNƒg‚ÉŠÖ‚·‚éƒtƒŒ[ƒ€ˆ—‚ğs‚¤
-extern	int RefreshEffectPlayState( int AlwaysRunFlag = FALSE ) ;					// ƒpƒbƒhƒGƒtƒFƒNƒg‚ÌÄ¶ó‘Ô‚ğXV‚·‚é(ƒ\ƒtƒg‚ª”ñƒAƒNƒeƒBƒu‚É‚È‚é‚±‚Æ‚à‚ ‚é‚½‚ß)
-extern	int UpdateKeyboardInputState( int UseProcessMessage = TRUE ) ;				// “ü—Íó‘Ô‚ÌXV
-extern	int SetupJoypad( void ) ;													// ƒWƒ‡ƒCƒpƒbƒh‚ÌƒZƒbƒgƒAƒbƒv‚ğs‚¤
-extern	int TerminateJoypad( void ) ;												// ƒWƒ‡ƒCƒpƒbƒh‚ÌŒãn––‚ğs‚¤
+extern	int JoypadEffectProcess( void ) ;											// ãƒ‘ãƒƒãƒ‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã«é–¢ã™ã‚‹ãƒ•ãƒ¬ãƒ¼ãƒ å‡¦ç†ã‚’è¡Œã†
+extern	int RefreshEffectPlayState( int AlwaysRunFlag = FALSE ) ;					// ãƒ‘ãƒƒãƒ‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®å†ç”ŸçŠ¶æ…‹ã‚’æ›´æ–°ã™ã‚‹(ã‚½ãƒ•ãƒˆãŒéã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ãªã‚‹ã“ã¨ã‚‚ã‚ã‚‹ãŸã‚)
+extern	int UpdateKeyboardInputState( int UseProcessMessage = TRUE ) ;				// å…¥åŠ›çŠ¶æ…‹ã®æ›´æ–°
+extern	int SetupJoypad( void ) ;													// ã‚¸ãƒ§ã‚¤ãƒ‘ãƒƒãƒ‰ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã‚’è¡Œã†
+extern	int TerminateJoypad( void ) ;												// ã‚¸ãƒ§ã‚¤ãƒ‘ãƒƒãƒ‰ã®å¾Œå§‹æœ«ã‚’è¡Œã†
 
-extern	int SetF10Input( void ) ;													// F10 ‚ª‰Ÿ‚³‚ê‚½‚±‚Æ‚É‚·‚éƒtƒ‰ƒO‚ğ—§‚Ä‚é
-extern	int ResetF10Input( void ) ;													// F10 ‚ª—£‚³‚ê‚½‚±‚Æ‚É‚·‚éƒtƒ‰ƒO‚ğ—§‚Ä‚é
-extern	int SetF12Input( void ) ;													// F12 ‚ª‰Ÿ‚³‚ê‚½‚±‚Æ‚É‚·‚éƒtƒ‰ƒO‚ğ—§‚Ä‚é
-extern	int ResetF12Input( void ) ;													// F12 ‚ª—£‚³‚ê‚½‚±‚Æ‚É‚·‚éƒtƒ‰ƒO‚ğ—§‚Ä‚é
+extern	int SetF10Input( void ) ;													// F10 ãŒæŠ¼ã•ã‚ŒãŸã“ã¨ã«ã™ã‚‹ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
+extern	int ResetF10Input( void ) ;													// F10 ãŒé›¢ã•ã‚ŒãŸã“ã¨ã«ã™ã‚‹ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
+extern	int SetF12Input( void ) ;													// F12 ãŒæŠ¼ã•ã‚ŒãŸã“ã¨ã«ã™ã‚‹ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
+extern	int ResetF12Input( void ) ;													// F12 ãŒé›¢ã•ã‚ŒãŸã“ã¨ã«ã™ã‚‹ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 
 
-// ƒ}ƒEƒX‚Ì“ü—ÍƒƒOî•ñ‚ğ•Û‘¶‚·‚é
+// ãƒã‚¦ã‚¹ã®å…¥åŠ›ãƒ­ã‚°æƒ…å ±ã‚’ä¿å­˜ã™ã‚‹
 extern	void StockMouseInputLogData(  int Button, int ClickX, int ClickY ) ;
 extern	void StockMouseInputLogData2( int Button, int ClickX, int ClickY, int LogType, int IsDummy = FALSE ) ;
 
 
-// ƒ^ƒbƒ`ƒpƒlƒ‹ŠÖŒW‚ÌŠÖ”
-extern	int AddTouchInputData( TOUCHINPUTDATA *TouchData ) ;						// ƒ^ƒbƒ`ƒpƒlƒ‹‚Ì“ü—Íî•ñ‚ğ’Ç‰Á‚·‚é
+// ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«é–¢ä¿‚ã®é–¢æ•°
+extern	int AddTouchInputData( TOUCHINPUTDATA *TouchData ) ;						// ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã®å…¥åŠ›æƒ…å ±ã‚’è¿½åŠ ã™ã‚‹
 
 
-// wchar_t”ÅŠÖ”
+// wchar_tç‰ˆé–¢æ•°
 extern int GetJoypadName_WCHAR_T( int InputType, wchar_t *InstanceNameBuffer, wchar_t *ProductNameBuffer ) ;
 
 
-// ŠÂ‹«ˆË‘¶ŠÖŒWŠÖ”
-extern	int InitializeInputSystem_PF_Timing0( void ) ;								// “ü—ÍƒVƒXƒeƒ€‚ğ‰Šú‰»‚·‚éˆ—‚ÌŠÂ‹«ˆË‘¶ˆ—
-extern	int TerminateInputSystem_PF_Timing0( void ) ;								// “ü—ÍƒVƒXƒeƒ€‚ÌŒãn––‚ğ‚·‚éˆ—‚ÌŠÂ‹«ˆË‘¶ˆ—
+// ç’°å¢ƒä¾å­˜é–¢ä¿‚é–¢æ•°
+extern	int InitializeInputSystem_PF_Timing0( void ) ;								// å…¥åŠ›ã‚·ã‚¹ãƒ†ãƒ ã‚’åˆæœŸåŒ–ã™ã‚‹å‡¦ç†ã®ç’°å¢ƒä¾å­˜å‡¦ç†
+extern	int TerminateInputSystem_PF_Timing0( void ) ;								// å…¥åŠ›ã‚·ã‚¹ãƒ†ãƒ ã®å¾Œå§‹æœ«ã‚’ã™ã‚‹å‡¦ç†ã®ç’°å¢ƒä¾å­˜å‡¦ç†
 
-extern	int	AutoInitialize_PF( void ) ;												// ©“®‰Šú‰»‚ğs‚¤ŠÂ‹«ˆË‘¶ˆ—
+extern	int	AutoInitialize_PF( void ) ;												// è‡ªå‹•åˆæœŸåŒ–ã‚’è¡Œã†ç’°å¢ƒä¾å­˜å‡¦ç†
 
-extern	int SetupJoypad_PF( void ) ;												// ƒWƒ‡ƒCƒpƒbƒh‚ÌƒZƒbƒgƒAƒbƒv‚ÌŠÂ‹«ˆË‘¶ˆ—
-extern	int TerminateJoypad_PF( void ) ;											// ƒWƒ‡ƒCƒpƒbƒh‚ÌŒãn––‚ğs‚¤ˆ—‚ÌŠÂ‹«ˆË‘¶ˆ—
+extern	int SetupJoypad_PF( void ) ;												// ã‚¸ãƒ§ã‚¤ãƒ‘ãƒƒãƒ‰ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã®ç’°å¢ƒä¾å­˜å‡¦ç†
+extern	int TerminateJoypad_PF( void ) ;											// ã‚¸ãƒ§ã‚¤ãƒ‘ãƒƒãƒ‰ã®å¾Œå§‹æœ«ã‚’è¡Œã†å‡¦ç†ã®ç’°å¢ƒä¾å­˜å‡¦ç†
 
-extern	int UpdateKeyboardInputState_PF( int UseProcessMessage = TRUE ) ;			// “ü—Íó‘Ô‚ÌXV‚ÌŠÂ‹«ˆË‘¶ˆ—
-extern	int UpdateJoypadInputState_PF( int PadNo ) ;								// ƒpƒbƒh‚Ì“ü—Íó‘Ô‚ÌXV‚ÌŠÂ‹«ˆË‘¶ˆ—
-extern	int RefreshEffectPlayState_PF( int AlwaysRunFlag ) ;						// ƒpƒbƒhƒGƒtƒFƒNƒg‚ÌÄ¶ó‘Ô‚ğXV‚·‚éŠÖ”‚ÌŠÂ‹«ˆË‘¶ˆ—
+extern	int UpdateKeyboardInputState_PF( int UseProcessMessage = TRUE ) ;			// å…¥åŠ›çŠ¶æ…‹ã®æ›´æ–°ã®ç’°å¢ƒä¾å­˜å‡¦ç†
+extern	int UpdateJoypadInputState_PF( int PadNo ) ;								// ãƒ‘ãƒƒãƒ‰ã®å…¥åŠ›çŠ¶æ…‹ã®æ›´æ–°ã®ç’°å¢ƒä¾å­˜å‡¦ç†
+extern	int RefreshEffectPlayState_PF( int AlwaysRunFlag ) ;						// ãƒ‘ãƒƒãƒ‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®å†ç”ŸçŠ¶æ…‹ã‚’æ›´æ–°ã™ã‚‹é–¢æ•°ã®ç’°å¢ƒä¾å­˜å‡¦ç†
 
-extern	int CheckJoypadVibrationEnable_PF( INPUTPADDATA *pad, int EffectIndex ) ;	// w’è‚Ìƒpƒbƒh‚ªU“®‚É‘Î‰‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©‚ğæ“¾‚·‚é( TRUE:‘Î‰‚µ‚Ä‚¢‚é  FALSE:‘Î‰‚µ‚Ä‚¢‚È‚¢ )
-extern	int CheckJoypadXInput_PF( int InputType ) ;									// w’è‚Ì“ü—ÍƒfƒoƒCƒX‚ª XInput ‚É‘Î‰‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©‚ğæ“¾‚·‚éˆ—‚ÌŠÂ‹«ˆË‘¶ˆ—( –ß‚è’l  TRUE:XInput‘Î‰‚Ì“ü—ÍƒfƒoƒCƒX  FALSE:XInput”ñ‘Î‰‚Ì“ü—ÍƒfƒoƒCƒX   -1:ƒGƒ‰[ )( DX_INPUT_KEY ‚â DX_INPUT_KEY_PAD1 ‚È‚ÇAƒL[ƒ{[ƒh‚ª—‚Şƒ^ƒCƒv‚ğ InputType ‚É“n‚·‚ÆƒGƒ‰[‚Æ‚È‚è -1 ‚ğ•Ô‚· )
-extern	int GetJoypadType_PF( int InputType ) ;										// ƒWƒ‡ƒCƒpƒbƒh‚Ìƒ^ƒCƒv‚ğæ“¾‚·‚é( –ß‚è’l  -1:ƒGƒ‰[  0ˆÈã:ƒWƒ‡ƒCƒpƒbƒhƒ^ƒCƒv( DX_PADTYPE_XBOX_360 ‚È‚Ç ) )
-extern	int SetJoypadDeadZone_PF( INPUTPADDATA *pad ) ;								// ƒWƒ‡ƒCƒpƒbƒh‚Ì–³Œøƒ][ƒ“‚Ìİ’è‚ğs‚¤ŠÖ”‚ÌŠÂ‹«ˆË‘¶ˆ—
+extern	int CheckJoypadVibrationEnable_PF( INPUTPADDATA *pad, int EffectIndex ) ;	// æŒ‡å®šã®ãƒ‘ãƒƒãƒ‰ãŒæŒ¯å‹•ã«å¯¾å¿œã—ã¦ã„ã‚‹ã‹ã©ã†ã‹ã‚’å–å¾—ã™ã‚‹( TRUE:å¯¾å¿œã—ã¦ã„ã‚‹  FALSE:å¯¾å¿œã—ã¦ã„ãªã„ )
+extern	int CheckJoypadXInput_PF( int InputType ) ;									// æŒ‡å®šã®å…¥åŠ›ãƒ‡ãƒã‚¤ã‚¹ãŒ XInput ã«å¯¾å¿œã—ã¦ã„ã‚‹ã‹ã©ã†ã‹ã‚’å–å¾—ã™ã‚‹å‡¦ç†ã®ç’°å¢ƒä¾å­˜å‡¦ç†( æˆ»ã‚Šå€¤  TRUE:XInputå¯¾å¿œã®å…¥åŠ›ãƒ‡ãƒã‚¤ã‚¹  FALSE:XInputéå¯¾å¿œã®å…¥åŠ›ãƒ‡ãƒã‚¤ã‚¹   -1:ã‚¨ãƒ©ãƒ¼ )( DX_INPUT_KEY ã‚„ DX_INPUT_KEY_PAD1 ãªã©ã€ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ãŒçµ¡ã‚€ã‚¿ã‚¤ãƒ—ã‚’ InputType ã«æ¸¡ã™ã¨ã‚¨ãƒ©ãƒ¼ã¨ãªã‚Š -1 ã‚’è¿”ã™ )
+extern	int GetJoypadType_PF( int InputType ) ;										// ã‚¸ãƒ§ã‚¤ãƒ‘ãƒƒãƒ‰ã®ã‚¿ã‚¤ãƒ—ã‚’å–å¾—ã™ã‚‹( æˆ»ã‚Šå€¤  -1:ã‚¨ãƒ©ãƒ¼  0ä»¥ä¸Š:ã‚¸ãƒ§ã‚¤ãƒ‘ãƒƒãƒ‰ã‚¿ã‚¤ãƒ—( DX_PADTYPE_XBOX_360 ãªã© ) )
+extern	int SetJoypadDeadZone_PF( INPUTPADDATA *pad ) ;								// ã‚¸ãƒ§ã‚¤ãƒ‘ãƒƒãƒ‰ã®ç„¡åŠ¹ã‚¾ãƒ¼ãƒ³ã®è¨­å®šã‚’è¡Œã†é–¢æ•°ã®ç’°å¢ƒä¾å­˜å‡¦ç†
 
-extern	int		GetMousePoint_PF( int *XBuf, int *YBuf ) ;							// ƒ}ƒEƒX‚ÌˆÊ’u‚ğæ“¾‚·‚éˆ—‚ÌŠÂ‹«ˆË‘¶ˆ—
-extern	int		SetMousePoint_PF( int PointX, int PointY ) ;						// ƒ}ƒEƒX‚ÌˆÊ’u‚ğƒZƒbƒg‚·‚éˆ—‚ÌŠÂ‹«ˆË‘¶ˆ—
-extern	int		GetMouseInput_PF( void ) ;											// ƒ}ƒEƒX‚Ìƒ{ƒ^ƒ“‚Ìó‘Ô‚ğ“¾‚éˆ—‚ÌŠÂ‹«ˆË‘¶ˆ—
-extern	int		GetMouseWheelRotVol_PF(   int CounterReset = TRUE ) ;				// ‚’¼ƒ}ƒEƒXƒzƒC[ƒ‹‚Ì‰ñ“]—Ê‚ğæ“¾‚·‚é
-extern	int		GetMouseHWheelRotVol_PF(  int CounterReset = TRUE ) ;				// …•½ƒ}ƒEƒXƒzƒC[ƒ‹‚Ì‰ñ“]—Ê‚ğæ“¾‚·‚é
-extern	float	GetMouseWheelRotVolF_PF(  int CounterReset = TRUE ) ;				// ‚’¼ƒ}ƒEƒXƒzƒC[ƒ‹‚Ì‰ñ“]—Ê‚ğæ“¾‚·‚é( –ß‚è’l‚ª float Œ^ )
-extern	float	GetMouseHWheelRotVolF_PF( int CounterReset = TRUE ) ;				// …•½ƒ}ƒEƒXƒzƒC[ƒ‹‚Ì‰ñ“]—Ê‚ğæ“¾‚·‚é( –ß‚è’l‚ª float Œ^ )
+extern	int		GetMousePoint_PF( int *XBuf, int *YBuf ) ;							// ãƒã‚¦ã‚¹ã®ä½ç½®ã‚’å–å¾—ã™ã‚‹å‡¦ç†ã®ç’°å¢ƒä¾å­˜å‡¦ç†
+extern	int		SetMousePoint_PF( int PointX, int PointY ) ;						// ãƒã‚¦ã‚¹ã®ä½ç½®ã‚’ã‚»ãƒƒãƒˆã™ã‚‹å‡¦ç†ã®ç’°å¢ƒä¾å­˜å‡¦ç†
+extern	int		GetMouseInput_PF( void ) ;											// ãƒã‚¦ã‚¹ã®ãƒœã‚¿ãƒ³ã®çŠ¶æ…‹ã‚’å¾—ã‚‹å‡¦ç†ã®ç’°å¢ƒä¾å­˜å‡¦ç†
+extern	int		GetMouseWheelRotVol_PF(   int CounterReset = TRUE ) ;				// å‚ç›´ãƒã‚¦ã‚¹ãƒ›ã‚¤ãƒ¼ãƒ«ã®å›è»¢é‡ã‚’å–å¾—ã™ã‚‹
+extern	int		GetMouseHWheelRotVol_PF(  int CounterReset = TRUE ) ;				// æ°´å¹³ãƒã‚¦ã‚¹ãƒ›ã‚¤ãƒ¼ãƒ«ã®å›è»¢é‡ã‚’å–å¾—ã™ã‚‹
+extern	float	GetMouseWheelRotVolF_PF(  int CounterReset = TRUE ) ;				// å‚ç›´ãƒã‚¦ã‚¹ãƒ›ã‚¤ãƒ¼ãƒ«ã®å›è»¢é‡ã‚’å–å¾—ã™ã‚‹( æˆ»ã‚Šå€¤ãŒ float å‹ )
+extern	float	GetMouseHWheelRotVolF_PF( int CounterReset = TRUE ) ;				// æ°´å¹³ãƒã‚¦ã‚¹ãƒ›ã‚¤ãƒ¼ãƒ«ã®å›è»¢é‡ã‚’å–å¾—ã™ã‚‹( æˆ»ã‚Šå€¤ãŒ float å‹ )
 
 
 

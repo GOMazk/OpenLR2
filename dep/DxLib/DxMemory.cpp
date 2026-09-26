@@ -1,15 +1,15 @@
 // -------------------------------------------------------------------------------
 // 
-// 		‚c‚wƒ‰ƒCƒuƒ‰ƒŠ		ƒƒ‚ƒŠŠÖ˜AƒvƒƒOƒ‰ƒ€
+// 		ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒª		ãƒ¡ãƒ¢ãƒªé–¢é€£ãƒ—ãƒ­ã‚°ãƒ©ãƒ 
 // 
 // 				Ver 3.25a
 // 
 // -------------------------------------------------------------------------------
 
-// ‚c‚wƒ‰ƒCƒuƒ‰ƒŠì¬Žž—p’è‹`
+// ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªä½œæˆæ™‚ç”¨å®šç¾©
 #define DX_MAKE
 
-// ƒCƒ“ƒNƒ‹[ƒh ------------------------------------------------------------------
+// ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ ------------------------------------------------------------------
 #include "DxMemory.h"
 #include "DxLib.h"
 #include "DxStatic.h"
@@ -24,9 +24,9 @@ namespace DxLib
 
 #endif // DX_NON_NAMESPACE
 
-// ƒ}ƒNƒ’è‹` --------------------------------------------------------------------
+// ãƒžã‚¯ãƒ­å®šç¾© --------------------------------------------------------------------
 
-#define DXMEMORY_ALIGNED				(16)						// ƒƒ‚ƒŠ‚ÌƒAƒ‰ƒCƒ“
+#define DXMEMORY_ALIGNED				(16)						// ãƒ¡ãƒ¢ãƒªã®ã‚¢ãƒ©ã‚¤ãƒ³
 
 
 #if defined( DX_THREAD_SAFE ) || defined( DX_THREAD_SAFE_NETWORK_ONLY )
@@ -34,16 +34,16 @@ namespace DxLib
 #define DX_ALLOC_ENTER_CRITICAL_SECTION\
 	if( MemData.InitMemoryAllocCriticalSection == 0 )\
 	{\
-		/* ƒƒ‚ƒŠŠm•ÛA‰ð•úˆ——pƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰Šú‰» */\
+		/* ãƒ¡ãƒ¢ãƒªç¢ºä¿ã€è§£æ”¾å‡¦ç†ç”¨ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®åˆæœŸåŒ– */\
 		CriticalSection_Initialize( &MemData.MemoryAllocCriticalSection ) ;\
 		MemData.InitMemoryAllocCriticalSection = 1 ;\
 	}\
 \
-	/* ƒƒ‚ƒŠŠm•ÛŠÖŒW‚Ìˆ—‚ðŽÀs’†‚Ìê‡‚Í‘Ò‚Â */\
+	/* ãƒ¡ãƒ¢ãƒªç¢ºä¿é–¢ä¿‚ã®å‡¦ç†ã‚’å®Ÿè¡Œä¸­ã®å ´åˆã¯å¾…ã¤ */\
 	CRITICALSECTION_LOCK( &MemData.MemoryAllocCriticalSection ) ;
 
 #define DX_ALLOC_LEAVE_CRITICAL_SECTION\
-	/* ‚±‚ÌŠÖ”‚ðŽg—p’†Aƒtƒ‰ƒO‚ð“|‚· */\
+	/* ã“ã®é–¢æ•°ã‚’ä½¿ç”¨ä¸­ã€ãƒ•ãƒ©ã‚°ã‚’å€’ã™ */\
 	CriticalSection_Unlock( &MemData.MemoryAllocCriticalSection ) ;
 
 #else
@@ -53,49 +53,49 @@ namespace DxLib
 
 #endif
 
-// \‘¢‘Ì’è‹` --------------------------------------------------------------------
+// æ§‹é€ ä½“å®šç¾© --------------------------------------------------------------------
 
-// ƒe[ƒuƒ‹-----------------------------------------------------------------------
+// ãƒ†ãƒ¼ãƒ–ãƒ«-----------------------------------------------------------------------
 
-// “à•”‘åˆæ•Ï”éŒ¾ --------------------------------------------------------------
+// å†…éƒ¨å¤§åŸŸå¤‰æ•°å®£è¨€ --------------------------------------------------------------
 
 MEMORYDATA MemData ;
 
-// ŠÖ”ƒvƒƒgƒ^ƒCƒvéŒ¾-----------------------------------------------------------
+// é–¢æ•°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€-----------------------------------------------------------
 
-static	void		DxPrintAllocSize( void ) ;													// ƒƒ‚ƒŠ‚ÌŠm•Û‘—Ê‚ðo—Í‚·‚é
+static	void		DxPrintAllocSize( void ) ;													// ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿ç·é‡ã‚’å‡ºåŠ›ã™ã‚‹
 
-// ƒvƒƒOƒ‰ƒ€ --------------------------------------------------------------------
+// ãƒ—ãƒ­ã‚°ãƒ©ãƒ  --------------------------------------------------------------------
 
-// ƒƒ‚ƒŠ‚ÌŠm•Û‘—Ê‚ðo—Í‚·‚é
+// ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿ç·é‡ã‚’å‡ºåŠ›ã™ã‚‹
 static void DxPrintAllocSize( void )
 {
 	DXST_LOGFILEFMT_ADDW(( L"\tTotal size:%d(%.3fkb)  Alloc num:%d",MemData.AllocMemorySize, MemData.AllocMemorySize / 1024.0F, MemData.AllocMemoryNum )) ;
 }
 
-// ƒƒ‚ƒŠˆ—‚Ì‰Šú‰»‚ðs‚¤
+// ãƒ¡ãƒ¢ãƒªå‡¦ç†ã®åˆæœŸåŒ–ã‚’è¡Œã†
 extern int MemoryInitialize( void )
 {
 	DX_ALLOC_ENTER_CRITICAL_SECTION
 
-	// Šù‚É‰Šú‰»‚³‚ê‚Ä‚¢‚½‚ç‰½‚à‚µ‚È‚¢
+	// æ—¢ã«åˆæœŸåŒ–ã•ã‚Œã¦ã„ãŸã‚‰ä½•ã‚‚ã—ãªã„
 	if( MemData.InitializeFlag )
 	{
 		DX_ALLOC_LEAVE_CRITICAL_SECTION
 		return 0 ;
 	}
 
-	// ‰Šú‰»ƒtƒ‰ƒO‚ð—§‚Ä‚é
+	// åˆæœŸåŒ–ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	MemData.InitializeFlag = TRUE ;
 
-	// ŠÂ‹«ˆË‘¶ˆ—
+	// ç’°å¢ƒä¾å­˜å‡¦ç†
 	if( MemoryInitialize_PF() < 0 )
 	{
 		DX_ALLOC_LEAVE_CRITICAL_SECTION
 		return 1 ;
 	}
 
-	// ¬‚³‚¢ƒƒ‚ƒŠŠm•Û—p‚Ìƒq[ƒv‚ð‰Šú‰»
+	// å°ã•ã„ãƒ¡ãƒ¢ãƒªç¢ºä¿ç”¨ã®ãƒ’ãƒ¼ãƒ—ã‚’åˆæœŸåŒ–
 	InitializeHeap(
 		&MemData.SmallHeap,
 		ALLOCMEMTYPE_TLSF,
@@ -109,7 +109,7 @@ extern int MemoryInitialize( void )
 		NormalMemory_AutoAlloc_DeleteHeapCallback_PF
 	) ;
 
-	// ‘å‚«‚¢ƒƒ‚ƒŠŠm•Û—p‚Ìƒq[ƒv‚ð‰Šú‰»
+	// å¤§ãã„ãƒ¡ãƒ¢ãƒªç¢ºä¿ç”¨ã®ãƒ’ãƒ¼ãƒ—ã‚’åˆæœŸåŒ–
 	InitializeHeap(
 		&MemData.BigHeap,
 		ALLOCMEMTYPE_TLSF,
@@ -125,41 +125,41 @@ extern int MemoryInitialize( void )
 
 	DX_ALLOC_LEAVE_CRITICAL_SECTION
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒƒ‚ƒŠˆ—‚ÌŒãŽn––‚ðs‚¤
+// ãƒ¡ãƒ¢ãƒªå‡¦ç†ã®å¾Œå§‹æœ«ã‚’è¡Œã†
 extern int MemoryTerminate( void )
 {
 	DX_ALLOC_ENTER_CRITICAL_SECTION
 
-	// Šù‚ÉŒãŽn––‚³‚ê‚Ä‚¢‚½‚ç‰½‚à‚µ‚È‚¢
+	// æ—¢ã«å¾Œå§‹æœ«ã•ã‚Œã¦ã„ãŸã‚‰ä½•ã‚‚ã—ãªã„
 	if( MemData.InitializeFlag == FALSE )
 	{
 		DX_ALLOC_LEAVE_CRITICAL_SECTION
 		return 0 ;
 	}
 
-	// ‰Šú‰»ƒtƒ‰ƒO‚ð“|‚·
+	// åˆæœŸåŒ–ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 	MemData.InitializeFlag = FALSE ;
 
-	// ¬‚³‚¢ƒƒ‚ƒŠŠm•Û—p‚Ìƒq[ƒv‚ÌŒãŽn––
+	// å°ã•ã„ãƒ¡ãƒ¢ãƒªç¢ºä¿ç”¨ã®ãƒ’ãƒ¼ãƒ—ã®å¾Œå§‹æœ«
 	TerminateHeap( &MemData.SmallHeap ) ;
 
-	// ‘å‚«‚¢ƒƒ‚ƒŠŠm•Û—p‚Ìƒq[ƒv‚ÌŒãŽn––
+	// å¤§ãã„ãƒ¡ãƒ¢ãƒªç¢ºä¿ç”¨ã®ãƒ’ãƒ¼ãƒ—ã®å¾Œå§‹æœ«
 	TerminateHeap( &MemData.BigHeap ) ;
 
-	// ŠÂ‹«ˆË‘¶ˆ—
+	// ç’°å¢ƒä¾å­˜å‡¦ç†
 	MemoryTerminate_PF() ;
 
 	DX_ALLOC_LEAVE_CRITICAL_SECTION
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒƒ‚ƒŠˆ—‚ÌŽüŠú“Iˆ—
+// ãƒ¡ãƒ¢ãƒªå‡¦ç†ã®å‘¨æœŸçš„å‡¦ç†
 extern int MemoryProcess( void )
 {
 	int Time ;
@@ -179,11 +179,11 @@ extern int MemoryProcess( void )
 	}
 	NowSec = ( WORD )( NowTime / 1000 ) ;
 
-	// ƒq[ƒv‚ÉŒ»Ý‚Ì•b”‚ðƒZƒbƒg
+	// ãƒ’ãƒ¼ãƒ—ã«ç¾åœ¨ã®ç§’æ•°ã‚’ã‚»ãƒƒãƒˆ
 	SetHeapTime( &MemData.SmallHeap, NowSec ) ;
 	SetHeapTime( &MemData.BigHeap,   NowSec ) ;
 
-	// ŠÂ‹«ˆË‘¶ˆ—
+	// ç’°å¢ƒä¾å­˜å‡¦ç†
 	if( MemoryProcess_PF() < 0 )
 	{
 		DX_ALLOC_LEAVE_CRITICAL_SECTION
@@ -192,11 +192,11 @@ extern int MemoryProcess( void )
 
 	DX_ALLOC_LEAVE_CRITICAL_SECTION
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒƒ‚ƒŠ‚ÌŠm•Ûó‹µ‚ð•`‰æ‚·‚é
+// ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿çŠ¶æ³ã‚’æç”»ã™ã‚‹
 extern int MemoryDrawAllocInfo( int x, int y, int Width, int Height )
 {
 	ALLOCMEM_SIZE_TYPE TotalSize ;
@@ -226,9 +226,9 @@ extern int MemoryDrawAllocInfo( int x, int y, int Width, int Height )
 
 
 
-// ƒƒ‚ƒŠŠm•ÛŒnŠÖ”
+// ãƒ¡ãƒ¢ãƒªç¢ºä¿ç³»é–¢æ•°
 
-// DxAlloc ‚Ì“à•”ˆ——pŠÖ”
+// DxAlloc ã®å†…éƒ¨å‡¦ç†ç”¨é–¢æ•°
 extern void *DxAllocBase( size_t AllocSize, size_t Aligned, const char *File, int Line, int NoMemoryDump )
 {
 	void *ReturnAddress ;
@@ -238,7 +238,7 @@ extern void *DxAllocBase( size_t AllocSize, size_t Aligned, const char *File, in
 	{
 		HEAPINFO *Heap ;
 
-		// ƒƒ‚ƒŠ‚Ì‰Šú‰»‚ªs‚í‚ê‚Ä‚¢‚È‚©‚Á‚½‚ç‰Šú‰»‚ðs‚¤
+		// ãƒ¡ãƒ¢ãƒªã®åˆæœŸåŒ–ãŒè¡Œã‚ã‚Œã¦ã„ãªã‹ã£ãŸã‚‰åˆæœŸåŒ–ã‚’è¡Œã†
 		if( MemData.InitializeFlag == FALSE )
 		{
 			if( MemoryInitialize() < 0 )
@@ -248,13 +248,13 @@ extern void *DxAllocBase( size_t AllocSize, size_t Aligned, const char *File, in
 			}
 		}
 
-		// ƒ[ƒƒoƒCƒg‚ÌŠm•ÛŽw’è‚¾‚Á‚½ê‡‚Í1ƒoƒCƒg‚É‚·‚é
+		// ã‚¼ãƒ­ãƒã‚¤ãƒˆã®ç¢ºä¿æŒ‡å®šã ã£ãŸå ´åˆã¯1ãƒã‚¤ãƒˆã«ã™ã‚‹
 		if( AllocSize == 0 )
 		{
 			AllocSize = 1 ;
 		}
 
-		// ƒƒ‚ƒŠ‚ÌŠm•Û
+		// ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿
 		Heap = AllocSize > DXMEMORY_SMALL_MAX_SIZE ? &MemData.BigHeap : &MemData.SmallHeap ;
 		ReturnAddress = AllocMemory( Heap, AllocSize, Aligned, FALSE, File, Line, NoMemoryDump ) ;
 		if( ReturnAddress == NULL )
@@ -262,7 +262,7 @@ extern void *DxAllocBase( size_t AllocSize, size_t Aligned, const char *File, in
 			goto ERR ;
 		}
 
-		// ðŒ‚ª‘µ‚Á‚Ä‚¢‚éê‡‚ÍƒƒO‚ðo—Í‚·‚é
+		// æ¡ä»¶ãŒæƒã£ã¦ã„ã‚‹å ´åˆã¯ãƒ­ã‚°ã‚’å‡ºåŠ›ã™ã‚‹
 		if( ( int )MemData.AllocTrapSize < 0 || MemData.AllocTrapSize == AllocSize || MemData.AllocMemoryPrintFlag == TRUE )
 		{
 			DXST_LOGFILE_ADDW( L"mem alloc  " ) ;
@@ -270,17 +270,17 @@ extern void *DxAllocBase( size_t AllocSize, size_t Aligned, const char *File, in
 		}
 	}
 
-	// Šm•Û‚µ‚½ƒƒ‚ƒŠ‚Ì‘—Ê‚Æ‘”‚ð‰ÁŽZ‚·‚é
+	// ç¢ºä¿ã—ãŸãƒ¡ãƒ¢ãƒªã®ç·é‡ã¨ç·æ•°ã‚’åŠ ç®—ã™ã‚‹
 	MemData.AllocMemorySize += GetAllocSize( ReturnAddress ) ;
 	MemData.AllocMemoryNum ++ ;
 
-	// Šm•Û‚µ‚Ä‚¢‚éƒƒ‚ƒŠ‚Ì‘—Ê‚ðo—Í‚·‚é
+	// ç¢ºä¿ã—ã¦ã„ã‚‹ãƒ¡ãƒ¢ãƒªã®ç·é‡ã‚’å‡ºåŠ›ã™ã‚‹
 	if( MemData.AllocMemorySizeOutFlag == TRUE )
 	{
 		DxPrintAllocSize() ;
 	}
 
-	// ƒƒ‚ƒŠ”j‰ó‚Ìƒ`ƒFƒbƒN
+	// ãƒ¡ãƒ¢ãƒªç ´å£Šã®ãƒã‚§ãƒƒã‚¯
 	if( MemData.AllocMemoryErrorCheckFlag == TRUE )
 	{
 		NS_DxErrorCheckAlloc() ;
@@ -288,14 +288,14 @@ extern void *DxAllocBase( size_t AllocSize, size_t Aligned, const char *File, in
 
 	DX_ALLOC_LEAVE_CRITICAL_SECTION
 
-	// ƒƒ‚ƒŠƒAƒhƒŒƒX‚ð•Ô‚·
+	// ãƒ¡ãƒ¢ãƒªã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’è¿”ã™
 	return ReturnAddress ;
 
 ERR :
-	// ƒƒ‚ƒŠ‚ª‘«‚è‚È‚©‚Á‚½‚ç‚»‚ÌŽž‚Ìƒƒ‚ƒŠ‚ðƒ_ƒ“ƒv‚·‚é
+	// ãƒ¡ãƒ¢ãƒªãŒè¶³ã‚Šãªã‹ã£ãŸã‚‰ãã®æ™‚ã®ãƒ¡ãƒ¢ãƒªã‚’ãƒ€ãƒ³ãƒ—ã™ã‚‹
 	NS_DxDumpAlloc() ;
 
-	// ƒGƒ‰[î•ñ‚ào—Í‚·‚é
+	// ã‚¨ãƒ©ãƒ¼æƒ…å ±ã‚‚å‡ºåŠ›ã™ã‚‹
 	NS_DxErrorCheckAlloc() ;
 
 	DX_ALLOC_LEAVE_CRITICAL_SECTION
@@ -304,57 +304,57 @@ ERR :
 }
 
 
-// ƒƒ‚ƒŠ‚ðŠm•Û‚·‚é
+// ãƒ¡ãƒ¢ãƒªã‚’ç¢ºä¿ã™ã‚‹
 extern void *NS_DxAlloc( size_t AllocSize, const char *File, int Line )
 {
 	return DxAllocBase( AllocSize, 0, File, Line ) ;
 }
 
-// Žw’è‚ÌƒTƒCƒY‚Ìƒƒ‚ƒŠ‚ðŠm•Û‚·‚é( ƒAƒ‰ƒCƒ“Žw’è”Å )( AllocSize:Šm•Û‚·‚éƒƒ‚ƒŠ‚ÌƒTƒCƒY( ’PˆÊ:byte )  Alignment:Šm•Û‚·‚éƒƒ‚ƒŠ—Ìˆæ‚ÌƒAƒhƒŒƒX’l‚Ì”{”  File:DxAlloc‚ðŒÄ‚ñ‚¾ƒ\[ƒXƒtƒ@ƒCƒ‹–¼( ƒfƒoƒbƒO—p )  Line:DxAlloc‚ðŒÄ‚ñ‚¾ƒ\[ƒXƒtƒ@ƒCƒ‹’†‚Ìs”Ô†( ƒfƒoƒbƒO—p )@@–ß‚è’l  NULL:ƒƒ‚ƒŠ‚ÌŠm•ÛŽ¸”s   NULLˆÈŠO:Šm•Û‚µ‚½ƒƒ‚ƒŠ—Ìˆæ‚Ìæ“ªƒAƒhƒŒƒX )
+// æŒ‡å®šã®ã‚µã‚¤ã‚ºã®ãƒ¡ãƒ¢ãƒªã‚’ç¢ºä¿ã™ã‚‹( ã‚¢ãƒ©ã‚¤ãƒ³æŒ‡å®šç‰ˆ )( AllocSize:ç¢ºä¿ã™ã‚‹ãƒ¡ãƒ¢ãƒªã®ã‚µã‚¤ã‚º( å˜ä½:byte )  Alignment:ç¢ºä¿ã™ã‚‹ãƒ¡ãƒ¢ãƒªé ˜åŸŸã®ã‚¢ãƒ‰ãƒ¬ã‚¹å€¤ã®å€æ•°  File:DxAllocã‚’å‘¼ã‚“ã ã‚½ãƒ¼ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«å( ãƒ‡ãƒãƒƒã‚°ç”¨ )  Line:DxAllocã‚’å‘¼ã‚“ã ã‚½ãƒ¼ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«ä¸­ã®è¡Œç•ªå·( ãƒ‡ãƒãƒƒã‚°ç”¨ )ã€€ã€€æˆ»ã‚Šå€¤  NULL:ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿å¤±æ•—   NULLä»¥å¤–:ç¢ºä¿ã—ãŸãƒ¡ãƒ¢ãƒªé ˜åŸŸã®å…ˆé ­ã‚¢ãƒ‰ãƒ¬ã‚¹ )
 extern void* NS_DxAllocAligned( size_t AllocSize, size_t Alignment, const char *File, int Line )
 {
 	return DxAllocBase( AllocSize, Alignment, File, Line ) ;
 }
 
-// ƒƒ‚ƒŠ‚ðŠm•Û‚µ‚Ä‚O‚Å‰Šú‰»‚·‚é
+// ãƒ¡ãƒ¢ãƒªã‚’ç¢ºä¿ã—ã¦ï¼ã§åˆæœŸåŒ–ã™ã‚‹
 extern void *NS_DxCalloc( size_t AllocSize, const char *File, int Line )
 {
 	void *buf ;
 
-	// ƒƒ‚ƒŠ‚ÌŠm•Û
+	// ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿
 	buf = DxAllocBase( AllocSize, 0, File, Line ) ;
 	if( buf == NULL )
 	{
 		return NULL ;
 	}
 	
-	// Šm•Û‚µ‚½ƒƒ‚ƒŠ‚ð‰Šú‰»
+	// ç¢ºä¿ã—ãŸãƒ¡ãƒ¢ãƒªã‚’åˆæœŸåŒ–
 	_MEMSET( buf, 0, AllocSize ) ;
 
-	// Šm•Û‚µ‚½ƒƒ‚ƒŠ‚ÌƒAƒhƒŒƒX‚ð•Ô‚·
+	// ç¢ºä¿ã—ãŸãƒ¡ãƒ¢ãƒªã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’è¿”ã™
 	return buf ;
 }
 
-// ƒƒ‚ƒŠ‚ðŠm•Û‚µ‚Ä‚O‚Å‰Šú‰»‚·‚é
+// ãƒ¡ãƒ¢ãƒªã‚’ç¢ºä¿ã—ã¦ï¼ã§åˆæœŸåŒ–ã™ã‚‹
 extern void *NS_DxCallocAligned( size_t AllocSize, size_t Alignment, const char *File, int Line )
 {
 	void *buf ;
 
-	// ƒƒ‚ƒŠ‚ÌŠm•Û
+	// ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿
 	buf = DxAllocBase( AllocSize, Alignment, File, Line ) ;
 	if( buf == NULL )
 	{
 		return NULL ;
 	}
 	
-	// Šm•Û‚µ‚½ƒƒ‚ƒŠ‚ð‰Šú‰»
+	// ç¢ºä¿ã—ãŸãƒ¡ãƒ¢ãƒªã‚’åˆæœŸåŒ–
 	_MEMSET( buf, 0, AllocSize ) ;
 
-	// Šm•Û‚µ‚½ƒƒ‚ƒŠ‚ÌƒAƒhƒŒƒX‚ð•Ô‚·
+	// ç¢ºä¿ã—ãŸãƒ¡ãƒ¢ãƒªã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’è¿”ã™
 	return buf ;
 }
 
-// DxRealloc ‚Ì“à•”ˆ——pŠÖ”
+// DxRealloc ã®å†…éƒ¨å‡¦ç†ç”¨é–¢æ•°
 extern void *DxReallocBase( void *Memory, size_t AllocSize, size_t Aligned, const char *File, int Line )
 {
 	void *ReturnAddress ;
@@ -376,24 +376,24 @@ extern void *DxReallocBase( void *Memory, size_t AllocSize, size_t Aligned, cons
 		goto ERR ;
 	}
 
-	// Šm•Û‚µ‚½ƒƒ‚ƒŠ‚Ì‘—Ê‚ÌC³
+	// ç¢ºä¿ã—ãŸãƒ¡ãƒ¢ãƒªã®ç·é‡ã®ä¿®æ­£
 	MemData.AllocMemorySize -= PrevSize ;
 	MemData.AllocMemorySize += GetAllocSize( ReturnAddress ) ;
 
-	// ðŒ‚ª‘µ‚Á‚Ä‚¢‚éê‡‚ÍƒƒO‚ðo—Í‚·‚é
+	// æ¡ä»¶ãŒæƒã£ã¦ã„ã‚‹å ´åˆã¯ãƒ­ã‚°ã‚’å‡ºåŠ›ã™ã‚‹
 	if( (int)MemData.AllocTrapSize < 0 || MemData.AllocTrapSize == AllocSize || MemData.AllocMemoryPrintFlag == TRUE )
 	{
 		DXST_LOGFILE_ADDW( L"mem realloc  " ) ;
 		PrintInfoMemory( Memory ) ;
 	}
 
-	// Šm•Û‚µ‚Ä‚¢‚éƒƒ‚ƒŠ‚Ì‘—Ê‚ðo—Í‚·‚é
+	// ç¢ºä¿ã—ã¦ã„ã‚‹ãƒ¡ãƒ¢ãƒªã®ç·é‡ã‚’å‡ºåŠ›ã™ã‚‹
 	if( MemData.AllocMemorySizeOutFlag == TRUE )
 	{
 		DxPrintAllocSize() ;
 	}
 
-	// ƒƒ‚ƒŠ”j‰ó‚Ìƒ`ƒFƒbƒN
+	// ãƒ¡ãƒ¢ãƒªç ´å£Šã®ãƒã‚§ãƒƒã‚¯
 	if( MemData.AllocMemoryErrorCheckFlag == TRUE )
 	{
 		NS_DxErrorCheckAlloc() ;
@@ -401,11 +401,11 @@ extern void *DxReallocBase( void *Memory, size_t AllocSize, size_t Aligned, cons
 
 	DX_ALLOC_LEAVE_CRITICAL_SECTION
 
-	// Šm•Û‚µ‚½ƒƒ‚ƒŠƒAƒhƒŒƒX‚ð•Ô‚·
+	// ç¢ºä¿ã—ãŸãƒ¡ãƒ¢ãƒªã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’è¿”ã™
 	return ReturnAddress ;
 
 ERR :
-	// ƒƒ‚ƒŠ‚ª‘«‚è‚È‚©‚Á‚½‚ç‚»‚ÌŽž‚Ìƒƒ‚ƒŠ‚ðƒ_ƒ“ƒv‚·‚é
+	// ãƒ¡ãƒ¢ãƒªãŒè¶³ã‚Šãªã‹ã£ãŸã‚‰ãã®æ™‚ã®ãƒ¡ãƒ¢ãƒªã‚’ãƒ€ãƒ³ãƒ—ã™ã‚‹
 	NS_DxDumpAlloc() ;
 
 	DX_ALLOC_LEAVE_CRITICAL_SECTION
@@ -413,22 +413,22 @@ ERR :
 	return NULL ;
 }
 
-// ƒƒ‚ƒŠ‚ÌÄŠm•Û‚ðs‚¤
+// ãƒ¡ãƒ¢ãƒªã®å†ç¢ºä¿ã‚’è¡Œã†
 extern void *NS_DxRealloc( void *Memory, size_t AllocSize, const char *File, int Line )
 {
 	return DxReallocBase( Memory, AllocSize, 0, File, Line ) ;
 }
 
-// ƒƒ‚ƒŠ‚ÌÄŠm•Û‚ðs‚¤
+// ãƒ¡ãƒ¢ãƒªã®å†ç¢ºä¿ã‚’è¡Œã†
 extern void *NS_DxReallocAligned( void *Memory, size_t AllocSize, size_t Alignment, const char *File, int Line )
 {
 	return DxReallocBase( Memory, AllocSize, Alignment, File, Line ) ;
 }
 
-// ƒƒ‚ƒŠ‚ð‰ð•ú‚·‚é
+// ãƒ¡ãƒ¢ãƒªã‚’è§£æ”¾ã™ã‚‹
 extern void NS_DxFree( void *Memory )
 {
-	// NULL ‚ª“n‚³‚ê‚½ê‡‚Í‰½‚à‚µ‚È‚¢
+	// NULL ãŒæ¸¡ã•ã‚ŒãŸå ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( Memory == NULL )
 	{
 		return ;
@@ -436,7 +436,7 @@ extern void NS_DxFree( void *Memory )
 
 	DX_ALLOC_ENTER_CRITICAL_SECTION
 
-	// ƒƒ‚ƒŠ”j‰ó‚Ìƒ`ƒFƒbƒN
+	// ãƒ¡ãƒ¢ãƒªç ´å£Šã®ãƒã‚§ãƒƒã‚¯
 	if( MemData.AllocMemoryErrorCheckFlag == TRUE )
 	{
 		NS_DxErrorCheckAlloc() ;
@@ -444,21 +444,21 @@ extern void NS_DxFree( void *Memory )
 
 	ALLOCMEM_SIZE_TYPE AllocSize = GetAllocSize( Memory ) ;
 
-	// ‰ð•ú‚·‚éƒƒ‚ƒŠ‚Ì•ª‚¾‚¯Šm•Û‚µ‚½ƒƒ‚ƒŠ‚Ì‘—Ê‚Æ”‚ðŒ¸‚ç‚·
+	// è§£æ”¾ã™ã‚‹ãƒ¡ãƒ¢ãƒªã®åˆ†ã ã‘ç¢ºä¿ã—ãŸãƒ¡ãƒ¢ãƒªã®ç·é‡ã¨æ•°ã‚’æ¸›ã‚‰ã™
 	MemData.AllocMemorySize -= AllocSize ;
 	MemData.AllocMemoryNum -- ;
 
-	// ðŒ‚ª‘µ‚Á‚Ä‚¢‚éê‡‚ÍƒƒO‚ðo—Í‚·‚é
+	// æ¡ä»¶ãŒæƒã£ã¦ã„ã‚‹å ´åˆã¯ãƒ­ã‚°ã‚’å‡ºåŠ›ã™ã‚‹
 	if( (int)MemData.AllocTrapSize < 0 || MemData.AllocTrapSize == AllocSize || MemData.AllocMemoryPrintFlag == TRUE )
 	{
 		DXST_LOGFILE_ADDW( L"mem free  " ) ;
 		PrintInfoMemory( Memory ) ;
 	}
 
-	// ƒƒ‚ƒŠ‚Ì‰ð•ú
+	// ãƒ¡ãƒ¢ãƒªã®è§£æ”¾
 	FreeMemory( Memory ) ;
 
-	// Šm•Û‚µ‚Ä‚¢‚éƒƒ‚ƒŠ‚Ì‘—Ê‚ðo—Í‚·‚é
+	// ç¢ºä¿ã—ã¦ã„ã‚‹ãƒ¡ãƒ¢ãƒªã®ç·é‡ã‚’å‡ºåŠ›ã™ã‚‹
 	if( MemData.AllocMemorySizeOutFlag == TRUE )
 	{
 		DxPrintAllocSize() ;
@@ -467,7 +467,7 @@ extern void NS_DxFree( void *Memory )
 	DX_ALLOC_LEAVE_CRITICAL_SECTION
 }
 
-// —ñ‹“‘ÎÛ‚É‚·‚éƒƒ‚ƒŠ‚ÌŠm•Û—e—Ê‚ðƒZƒbƒg‚·‚é
+// åˆ—æŒ™å¯¾è±¡ã«ã™ã‚‹ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿å®¹é‡ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern size_t NS_DxSetAllocSizeTrap( size_t Size )
 {
 	size_t trapsize ;
@@ -478,7 +478,7 @@ extern size_t NS_DxSetAllocSizeTrap( size_t Size )
 	return trapsize ;
 }
 
-// ‚c‚wƒ‰ƒCƒuƒ‰ƒŠ“à‚Åƒƒ‚ƒŠŠm•Û‚ªs‚í‚ê‚éŽž‚Éî•ñ‚ðo—Í‚·‚é‚©‚Ç‚¤‚©‚ðƒZƒbƒg‚·‚é
+// ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªå†…ã§ãƒ¡ãƒ¢ãƒªç¢ºä¿ãŒè¡Œã‚ã‚Œã‚‹æ™‚ã«æƒ…å ±ã‚’å‡ºåŠ›ã™ã‚‹ã‹ã©ã†ã‹ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern int NS_DxSetAllocPrintFlag( int Flag )
 {
 	int printflag ;
@@ -490,19 +490,19 @@ extern int NS_DxSetAllocPrintFlag( int Flag )
 	return printflag ;
 }
 
-// Šm•Û‚µ‚Ä‚¢‚éƒƒ‚ƒŠƒTƒCƒY‚ðŽæ“¾‚·‚é
+// ç¢ºä¿ã—ã¦ã„ã‚‹ãƒ¡ãƒ¢ãƒªã‚µã‚¤ã‚ºã‚’å–å¾—ã™ã‚‹
 extern size_t NS_DxGetAllocSize( void )
 {
 	return MemData.AllocMemorySize ;
 }
 
-// Šm•Û‚µ‚Ä‚¢‚éƒƒ‚ƒŠ‚Ì”‚ðŽæ“¾‚·‚é
+// ç¢ºä¿ã—ã¦ã„ã‚‹ãƒ¡ãƒ¢ãƒªã®æ•°ã‚’å–å¾—ã™ã‚‹
 extern int NS_DxGetAllocNum( void )
 {
 	return MemData.AllocMemoryNum ;
 }
 
-// Šm•Û‚µ‚Ä‚¢‚éƒƒ‚ƒŠ‚ð—ñ‹“‚·‚é
+// ç¢ºä¿ã—ã¦ã„ã‚‹ãƒ¡ãƒ¢ãƒªã‚’åˆ—æŒ™ã™ã‚‹
 extern void NS_DxDumpAlloc( void )
 {
 	DX_ALLOC_ENTER_CRITICAL_SECTION
@@ -510,15 +510,15 @@ extern void NS_DxDumpAlloc( void )
 	DXST_LOGFILE_ADDW( L"\n" ) ;
 	DXST_LOGFILE_ADDW( L"Alloc memory dump\n" ) ;
 
-	// ¬‚³‚¢ƒƒ‚ƒŠŠm•Û‚Ìî•ñ‚ðo—Í
+	// å°ã•ã„ãƒ¡ãƒ¢ãƒªç¢ºä¿ã®æƒ…å ±ã‚’å‡ºåŠ›
 	HeapInfoDump( &MemData.SmallHeap ) ;
 
-	// ‘å‚«‚¢ƒƒ‚ƒŠŠm•Û‚Ìî•ñ‚ðo—Í
+	// å¤§ãã„ãƒ¡ãƒ¢ãƒªç¢ºä¿ã®æƒ…å ±ã‚’å‡ºåŠ›
 	HeapInfoDump( &MemData.BigHeap ) ;
 
 	DxPrintAllocSize() ;
 
-	// ŠÂ‹«ˆË‘¶‚Ìƒƒ‚ƒŠŠm•Û‚Ìî•ñ‚ðo—Í
+	// ç’°å¢ƒä¾å­˜ã®ãƒ¡ãƒ¢ãƒªç¢ºä¿ã®æƒ…å ±ã‚’å‡ºåŠ›
 	DxDumpAlloc_PF() ;
 
 	DXST_LOGFILE_ADDW( L"\n" ) ;
@@ -526,24 +526,24 @@ extern void NS_DxDumpAlloc( void )
 	DX_ALLOC_LEAVE_CRITICAL_SECTION
 }
 
-// DxAlloc ‚â DxCalloc ‚ÅŠm•Û‚µ‚Ä‚¢‚éƒƒ‚ƒŠ‚Ìó‹µ‚ð•`‰æ‚·‚é
+// DxAlloc ã‚„ DxCalloc ã§ç¢ºä¿ã—ã¦ã„ã‚‹ãƒ¡ãƒ¢ãƒªã®çŠ¶æ³ã‚’æç”»ã™ã‚‹
 extern void NS_DxDrawAlloc( int x, int y, int Width, int Height )
 {
 	MemoryDrawAllocInfo( x, y, Width, Height ) ;
 }
 
-// Šm•Û‚µ‚½ƒƒ‚ƒŠî•ñ‚ª”j‰ó‚³‚ê‚Ä‚¢‚È‚¢‚©’²‚×‚é( -1:”j‰ó‚ ‚è  0:‚È‚µ )
+// ç¢ºä¿ã—ãŸãƒ¡ãƒ¢ãƒªæƒ…å ±ãŒç ´å£Šã•ã‚Œã¦ã„ãªã„ã‹èª¿ã¹ã‚‹( -1:ç ´å£Šã‚ã‚Š  0:ãªã— )
 extern int NS_DxErrorCheckAlloc( void )
 {
 	DX_ALLOC_ENTER_CRITICAL_SECTION
 
-	// ¬‚³‚¢ƒƒ‚ƒŠŠm•Û—p‚Ìƒq[ƒv‚ÌƒGƒ‰[ƒ`ƒFƒbƒN
+	// å°ã•ã„ãƒ¡ãƒ¢ãƒªç¢ºä¿ç”¨ã®ãƒ’ãƒ¼ãƒ—ã®ã‚¨ãƒ©ãƒ¼ãƒã‚§ãƒƒã‚¯
 	if( HeapErrorCheck( &MemData.SmallHeap ) < 0 )
 	{
 		return -1 ;
 	}
 
-	// ‘å‚«‚¢ƒƒ‚ƒŠŠm•Û—p‚Ìƒq[ƒv‚ÌƒGƒ‰[ƒ`ƒFƒbƒN
+	// å¤§ãã„ãƒ¡ãƒ¢ãƒªç¢ºä¿ç”¨ã®ãƒ’ãƒ¼ãƒ—ã®ã‚¨ãƒ©ãƒ¼ãƒã‚§ãƒƒã‚¯
 	if( HeapErrorCheck( &MemData.BigHeap ) < 0 )
 	{
 		return -1 ;
@@ -551,11 +551,11 @@ extern int NS_DxErrorCheckAlloc( void )
 
 	DX_ALLOC_LEAVE_CRITICAL_SECTION
 
-	// ‰½Ž–‚à–³‚­I—¹
+	// ä½•äº‹ã‚‚ç„¡ãçµ‚äº†
 	return 0 ;
 }
 
-// ƒƒ‚ƒŠ‚ªŠm•ÛA‰ð•ú‚³‚ê‚é‚½‚Ñ‚ÉŠm•Û‚µ‚Ä‚¢‚éƒƒ‚ƒŠ‚Ì—e—Ê‚ðo—Í‚·‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ðƒZƒbƒg‚·‚é
+// ãƒ¡ãƒ¢ãƒªãŒç¢ºä¿ã€è§£æ”¾ã•ã‚Œã‚‹ãŸã³ã«ç¢ºä¿ã—ã¦ã„ã‚‹ãƒ¡ãƒ¢ãƒªã®å®¹é‡ã‚’å‡ºåŠ›ã™ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern int NS_DxSetAllocSizeOutFlag( int Flag )
 {
 	int OutFlag ;
@@ -566,7 +566,7 @@ extern int NS_DxSetAllocSizeOutFlag( int Flag )
 	return OutFlag ;
 }
 
-// ƒƒ‚ƒŠ‚ÌŠm•ÛA‰ð•ú‚ªs‚í‚ê‚é“x‚ÉŠm•Û‚µ‚Ä‚¢‚éƒƒ‚ƒŠŠm•Ûî•ñ‚ª”j‘¹‚µ‚Ä‚¢‚È‚¢‚©’²‚×‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ðƒZƒbƒg‚·‚é
+// ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿ã€è§£æ”¾ãŒè¡Œã‚ã‚Œã‚‹åº¦ã«ç¢ºä¿ã—ã¦ã„ã‚‹ãƒ¡ãƒ¢ãƒªç¢ºä¿æƒ…å ±ãŒç ´æã—ã¦ã„ãªã„ã‹èª¿ã¹ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern int NS_DxSetAllocMemoryErrorCheckFlag( int Flag )
 {
 	int CheckFlag ;
@@ -577,7 +577,7 @@ extern int NS_DxSetAllocMemoryErrorCheckFlag( int Flag )
 	return CheckFlag ;
 }
 
-// ƒƒ‚ƒŠƒ_ƒ“ƒv
+// ãƒ¡ãƒ¢ãƒªãƒ€ãƒ³ãƒ—
 extern void	MemoryDump( void *buffer, int size )
 {
 #ifndef DX_NON_LITERAL_STRING
@@ -629,7 +629,7 @@ extern void	MemoryDump( void *buffer, int size )
 #endif
 }
 
-// ƒƒ‚ƒŠ‚ÌƒGƒ‰[‚ðƒ`ƒFƒbƒN‚·‚é
+// ãƒ¡ãƒ¢ãƒªã®ã‚¨ãƒ©ãƒ¼ã‚’ãƒã‚§ãƒƒã‚¯ã™ã‚‹
 extern int MemoryErrorCheck( void )
 {
 	HeapErrorCheck( &MemData.SmallHeap ) ;

@@ -1,6 +1,6 @@
 // -------------------------------------------------------------------------------
 // 
-// 		‚c‚wƒ‰ƒCƒuƒ‰ƒŠ		ƒL[ƒ{[ƒhƒtƒbƒN‚c‚k‚kƒvƒƒOƒ‰ƒ€ƒtƒ@ƒCƒ‹
+// 		ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒª		ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ãƒ•ãƒƒã‚¯ï¼¤ï¼¬ï¼¬ãƒ—ãƒ­ã‚°ãƒ©ãƒ ãƒ•ã‚¡ã‚¤ãƒ«
 // 
 // 				Ver 3.25a
 // 
@@ -12,12 +12,12 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-static HINSTANCE InstanceDLL;				// DLL ‚ÌƒCƒ“ƒXƒ^ƒ“ƒXƒnƒ“ƒhƒ‹
-static HHOOK     KeyboardHookHandle;		// ƒL[ƒ{[ƒhƒtƒbƒNƒnƒ“ƒhƒ‹
-//static HHOOK     GetMessageHookHandle;		// ƒƒbƒZ[ƒWƒtƒbƒNƒnƒ“ƒhƒ‹
+static HINSTANCE InstanceDLL;				// DLL ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ãƒãƒ³ãƒ‰ãƒ«
+static HHOOK     KeyboardHookHandle;		// ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ãƒ•ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«
+//static HHOOK     GetMessageHookHandle;		// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ•ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«
 
 
-// ’áƒŒƒxƒ‹ƒL[ƒ{[ƒhƒtƒbƒNƒvƒ[ƒWƒƒ
+// ä½ãƒ¬ãƒ™ãƒ«ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ãƒ•ãƒƒã‚¯ãƒ—ãƒ­ãƒ¼ã‚¸ãƒ£
 LRESULT CALLBACK Dx_LowLevelKeyboardProc( int Code, WPARAM WParam, LPARAM LParam )
 {
 	/*
@@ -40,34 +40,34 @@ LRESULT CALLBACK Dx_LowLevelKeyboardProc( int Code, WPARAM WParam, LPARAM LParam
 		OutputDebugString( String ) ;
 		*/
 
-		// ¶Windows ƒL[ or ‰EWindows ƒL[ ƒLƒƒƒ“ƒZƒ‹
+		// å·¦Windows ã‚­ãƒ¼ or å³Windows ã‚­ãƒ¼ ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 		if( KeyHookStruct->vkCode == 91 || KeyHookStruct->vkCode == 92 )
 			return TRUE ;
 
-		// CTRL + ESC ƒLƒƒƒ“ƒZƒ‹
+		// CTRL + ESC ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 		if( KeyHookStruct->vkCode == VK_ESCAPE && 
 			( GetAsyncKeyState( VK_CONTROL ) >> ( ( sizeof( SHORT ) * 8 ) - 1 ) ) != 0 &&
 			( GetAsyncKeyState( VK_SHIFT ) >> ( ( sizeof( SHORT ) * 8 ) - 1 ) ) == 0 )
 			return TRUE ;
 
 		/*
-		// ALT + TAB ƒLƒƒƒ“ƒZƒ‹
+		// ALT + TAB ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 		if( ( KeyHookStruct->flags & LLKHF_ALTDOWN ) && KeyHookStruct->vkCode == VK_TAB )
 			return TRUE ;
 		*/
 
 		/*
-		// ALT + ESC ƒLƒƒƒ“ƒZƒ‹
+		// ALT + ESC ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 		if( ( KeyHookStruct->flags & LLKHF_ALTDOWN ) && KeyHookStruct->vkCode == VK_ESCAPE )
 			return TRUE ;
 		*/
 	}
 
-	// Ÿ‚ÌƒtƒbƒNƒvƒ[ƒWƒƒ‚É”ò‚Î‚·
+	// æ¬¡ã®ãƒ•ãƒƒã‚¯ãƒ—ãƒ­ãƒ¼ã‚¸ãƒ£ã«é£›ã°ã™
 	return CallNextHookEx( KeyboardHookHandle, Code, WParam, LParam );
 }
 /*
-// ƒƒbƒZ[ƒWƒtƒbƒNƒvƒ[ƒWƒƒ
+// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ•ãƒƒã‚¯ãƒ—ãƒ­ãƒ¼ã‚¸ãƒ£
 LRESULT CALLBACK Dx_MsgHookProc(int Code, WPARAM WParam, LPARAM LParam)
 {
 	MSG *pmsg;
@@ -78,11 +78,11 @@ LRESULT CALLBACK Dx_MsgHookProc(int Code, WPARAM WParam, LPARAM LParam)
 		pmsg->message = WM_NULL;
 	}
 
-	// Ÿ‚ÌƒtƒbƒNƒvƒ[ƒWƒƒ‚É”ò‚Î‚·
+	// æ¬¡ã®ãƒ•ãƒƒã‚¯ãƒ—ãƒ­ãƒ¼ã‚¸ãƒ£ã«é£›ã°ã™
 	return CallNextHookEx( GetMessageHookHandle, Code, WParam, LParam );
 }
 */
-// ’áƒŒƒxƒ‹ƒL[ƒ{[ƒhƒtƒbƒN‚ÌŠJn‚ğs‚¤ŠÖ”
+// ä½ãƒ¬ãƒ™ãƒ«ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ãƒ•ãƒƒã‚¯ã®é–‹å§‹ã‚’è¡Œã†é–¢æ•°
 __declspec(dllexport) BOOL SetMSGHookDll( HWND MainWindowHandle, HHOOK *pKeyboardHookHandle/*, HHOOK *pGetMessageHookHandle*/, int Enable )
 {
 	MainWindowHandle = MainWindowHandle;

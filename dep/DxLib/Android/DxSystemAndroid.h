@@ -1,6 +1,6 @@
 // -------------------------------------------------------------------------------
 // 
-// 		‚c‚wƒ‰ƒCƒuƒ‰ƒŠ		Android—pƒVƒXƒeƒ€ƒvƒƒOƒ‰ƒ€ƒwƒbƒ_ƒtƒ@ƒCƒ‹
+// 		ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒª		Androidç”¨ã‚·ã‚¹ãƒ†ãƒ ãƒ—ãƒ­ã‚°ãƒ©ãƒ ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«
 // 
 // 				Ver 3.25a
 // 
@@ -9,7 +9,7 @@
 #ifndef DX_SYSTEMANDROID_H
 #define DX_SYSTEMANDROID_H
 
-// ƒCƒ“ƒNƒ‹[ƒh ------------------------------------------------------------------
+// ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ ------------------------------------------------------------------
 #include "../DxCompileConfig.h"
 #include <android/configuration.h>
 #include <android/looper.h>
@@ -27,9 +27,9 @@ namespace DxLib
 
 #endif // DX_NON_NAMESPACE
 
-// ƒ}ƒNƒ’è‹` --------------------------------------------------------------------
+// ãƒã‚¯ãƒ­å®šç¾© --------------------------------------------------------------------
 
-// ƒ\ƒtƒg‚ªƒAƒNƒeƒBƒu‚©‚Ç‚¤‚©‚ğƒ`ƒFƒbƒN‚·‚é
+// ã‚½ãƒ•ãƒˆãŒã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã‹ã©ã†ã‹ã‚’ãƒã‚§ãƒƒã‚¯ã™ã‚‹
 #define CheckActiveState()					\
 		if( g_AndroidSys.NonActiveRunFlag == FALSE &&\
 			( ( g_AndroidSys.ActivityState != DX_ANDR_CMD_START &&\
@@ -39,103 +39,103 @@ namespace DxLib
 			DxActiveWait_Android() ;\
 		}
 
-// Looper ‚ÌƒCƒxƒ“ƒgID
-#define DX_LOOPER_ID_MAIN							(1)				// ƒƒCƒ“ƒXƒŒƒbƒh‚©‚ç‘—‚éƒRƒ}ƒ“ƒhƒCƒxƒ“ƒg
-#define DX_LOOPER_ID_INPUT							(2)				// “ü—ÍƒCƒxƒ“ƒg
-#define DX_LOOPER_ID_SENSOR_ACCELEROMETER			(3)				// ‰Á‘¬“xƒZƒ“ƒT[‚ÌƒCƒxƒ“ƒg
-#define DX_LOOPER_ID_SENSOR_MAGNETIC_FIELD			(4)				// ¥ŠEƒZƒ“ƒT[‚ÌƒCƒxƒ“ƒg
-#define DX_LOOPER_ID_SENSOR_GYROSCOPE				(5)				// ƒWƒƒƒCƒƒXƒR[ƒvƒZƒ“ƒT[‚ÌƒCƒxƒ“ƒg
-#define DX_LOOPER_ID_SENSOR_LIGHT					(6)				// Æ“xƒZƒ“ƒT[‚ÌƒCƒxƒ“ƒg
-#define DX_LOOPER_ID_SENSOR_PROXIMITY				(7)				// ‹ßÚƒZƒ“ƒT[‚ÌƒCƒxƒ“ƒg
-#define DX_LOOPER_ID_SENSOR_PRESSURE				(8)				// ‰Áˆ³ƒZƒ“ƒT[‚ÌƒCƒxƒ“ƒg
-#define DX_LOOPER_ID_SENSOR_AMBIENT_TEMPERATURE		(9)				// ‰·“xƒZƒ“ƒT[‚ÌƒCƒxƒ“ƒg
+// Looper ã®ã‚¤ãƒ™ãƒ³ãƒˆID
+#define DX_LOOPER_ID_MAIN							(1)				// ãƒ¡ã‚¤ãƒ³ã‚¹ãƒ¬ãƒƒãƒ‰ã‹ã‚‰é€ã‚‹ã‚³ãƒãƒ³ãƒ‰ã‚¤ãƒ™ãƒ³ãƒˆ
+#define DX_LOOPER_ID_INPUT							(2)				// å…¥åŠ›ã‚¤ãƒ™ãƒ³ãƒˆ
+#define DX_LOOPER_ID_SENSOR_ACCELEROMETER			(3)				// åŠ é€Ÿåº¦ã‚»ãƒ³ã‚µãƒ¼ã®ã‚¤ãƒ™ãƒ³ãƒˆ
+#define DX_LOOPER_ID_SENSOR_MAGNETIC_FIELD			(4)				// ç£ç•Œã‚»ãƒ³ã‚µãƒ¼ã®ã‚¤ãƒ™ãƒ³ãƒˆ
+#define DX_LOOPER_ID_SENSOR_GYROSCOPE				(5)				// ã‚¸ãƒ£ã‚¤ãƒ­ã‚¹ã‚³ãƒ¼ãƒ—ã‚»ãƒ³ã‚µãƒ¼ã®ã‚¤ãƒ™ãƒ³ãƒˆ
+#define DX_LOOPER_ID_SENSOR_LIGHT					(6)				// ç…§åº¦ã‚»ãƒ³ã‚µãƒ¼ã®ã‚¤ãƒ™ãƒ³ãƒˆ
+#define DX_LOOPER_ID_SENSOR_PROXIMITY				(7)				// è¿‘æ¥ã‚»ãƒ³ã‚µãƒ¼ã®ã‚¤ãƒ™ãƒ³ãƒˆ
+#define DX_LOOPER_ID_SENSOR_PRESSURE				(8)				// åŠ åœ§ã‚»ãƒ³ã‚µãƒ¼ã®ã‚¤ãƒ™ãƒ³ãƒˆ
+#define DX_LOOPER_ID_SENSOR_AMBIENT_TEMPERATURE		(9)				// æ¸©åº¦ã‚»ãƒ³ã‚µãƒ¼ã®ã‚¤ãƒ™ãƒ³ãƒˆ
 
-// ƒ\ƒtƒgÀs—pƒXƒŒƒbƒh‚É‘—‚éƒRƒ}ƒ“ƒh
-#define DX_ANDR_CMD_START							(0)				// onStart ‚ªŒÄ‚Î‚ê‚½
-#define DX_ANDR_CMD_RESUME							(1)				// onResume ‚ªŒÄ‚Î‚ê‚½
-#define DX_ANDR_CMD_PAUSE							(2)				// onPause ‚ªŒÄ‚Î‚ê‚½
-#define DX_ANDR_CMD_STOP							(3)				// onStop ‚ªŒÄ‚Î‚ê‚½
-#define DX_ANDR_CMD_DESTROY							(4)				// onDestroy ‚ªŒÄ‚Î‚ê‚½
-#define DX_ANDR_CMD_GAINED_FOCUS					(5)				// onWindowFocusChanged ‚ªŒÄ‚Î‚êAƒtƒH[ƒJƒXON‚É‚È‚Á‚½
-#define DX_ANDR_CMD_LOST_FOCUS						(6)				// onWindowFocusChanged ‚ªŒÄ‚Î‚êAƒtƒH[ƒJƒXOFF‚É‚È‚Á‚½
-#define DX_ANDR_CMD_WINDOW_CHANGED					(7)				// ƒEƒCƒ“ƒhƒE‚Ì•ÏX
-#define DX_ANDR_CMD_INPUT_CHANGED					(8)				// “ü—ÍƒCƒxƒ“ƒg‚ğó‚¯æ‚éƒLƒ…[‚Ì•ÏX
+// ã‚½ãƒ•ãƒˆå®Ÿè¡Œç”¨ã‚¹ãƒ¬ãƒƒãƒ‰ã«é€ã‚‹ã‚³ãƒãƒ³ãƒ‰
+#define DX_ANDR_CMD_START							(0)				// onStart ãŒå‘¼ã°ã‚ŒãŸ
+#define DX_ANDR_CMD_RESUME							(1)				// onResume ãŒå‘¼ã°ã‚ŒãŸ
+#define DX_ANDR_CMD_PAUSE							(2)				// onPause ãŒå‘¼ã°ã‚ŒãŸ
+#define DX_ANDR_CMD_STOP							(3)				// onStop ãŒå‘¼ã°ã‚ŒãŸ
+#define DX_ANDR_CMD_DESTROY							(4)				// onDestroy ãŒå‘¼ã°ã‚ŒãŸ
+#define DX_ANDR_CMD_GAINED_FOCUS					(5)				// onWindowFocusChanged ãŒå‘¼ã°ã‚Œã€ãƒ•ã‚©ãƒ¼ã‚«ã‚¹ONã«ãªã£ãŸ
+#define DX_ANDR_CMD_LOST_FOCUS						(6)				// onWindowFocusChanged ãŒå‘¼ã°ã‚Œã€ãƒ•ã‚©ãƒ¼ã‚«ã‚¹OFFã«ãªã£ãŸ
+#define DX_ANDR_CMD_WINDOW_CHANGED					(7)				// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®å¤‰æ›´
+#define DX_ANDR_CMD_INPUT_CHANGED					(8)				// å…¥åŠ›ã‚¤ãƒ™ãƒ³ãƒˆã‚’å—ã‘å–ã‚‹ã‚­ãƒ¥ãƒ¼ã®å¤‰æ›´
 
-// \‘¢‘Ì’è‹` --------------------------------------------------------------------
+// æ§‹é€ ä½“å®šç¾© --------------------------------------------------------------------
 
 struct ANDROID_SENSOR_INFO
 {
-	const ASensor				*Sensor ;							// ƒZƒ“ƒT[
-	ASensorEventQueue			*SensorEventQueue ;					// ƒZƒ“ƒT[ƒCƒxƒ“ƒgƒLƒ…[
-	ASensorEvent				SensorEvent ;						// ƒZƒ“ƒT[ƒCƒxƒ“ƒg
+	const ASensor				*Sensor ;							// ã‚»ãƒ³ã‚µãƒ¼
+	ASensorEventQueue			*SensorEventQueue ;					// ã‚»ãƒ³ã‚µãƒ¼ã‚¤ãƒ™ãƒ³ãƒˆã‚­ãƒ¥ãƒ¼
+	ASensorEvent				SensorEvent ;						// ã‚»ãƒ³ã‚µãƒ¼ã‚¤ãƒ™ãƒ³ãƒˆ
 } ;
 
 struct DXLIB_ANDROID_SYSTEMINFO
 {
-	volatile int				NativeActivityBufferLength ;		// NativeActivity ƒAƒhƒŒƒXŠi”[—pƒoƒbƒtƒ@‚ÉŠi”[‚Å‚«‚é—v‘f”
-	volatile int				NativeActivityNum ;					// NativeActivity ƒAƒhƒŒƒXŠi”[—pƒoƒbƒtƒ@‚ÉŠi”[‚³‚ê‚Ä‚¢‚é—v‘f‚Ì”
-	ANativeActivity				**NativeActivityBuffer ;			// NativeActivity ƒAƒhƒŒƒXŠi”[—pƒoƒbƒtƒ@
-	ANativeActivity				*NativeActivity ;					// ƒ\ƒtƒg‚Ì Activity
-	pthread_mutex_t				NativeActivityMutex ;				// NativeActivity ƒAƒNƒZƒX—pƒ~ƒ…[ƒeƒbƒNƒX
-	ALooper						*Looper ;							// ƒ\ƒtƒg‚ÌƒCƒxƒ“ƒgˆ——p Looper
+	volatile int				NativeActivityBufferLength ;		// NativeActivity ã‚¢ãƒ‰ãƒ¬ã‚¹æ ¼ç´ç”¨ãƒãƒƒãƒ•ã‚¡ã«æ ¼ç´ã§ãã‚‹è¦ç´ æ•°
+	volatile int				NativeActivityNum ;					// NativeActivity ã‚¢ãƒ‰ãƒ¬ã‚¹æ ¼ç´ç”¨ãƒãƒƒãƒ•ã‚¡ã«æ ¼ç´ã•ã‚Œã¦ã„ã‚‹è¦ç´ ã®æ•°
+	ANativeActivity				**NativeActivityBuffer ;			// NativeActivity ã‚¢ãƒ‰ãƒ¬ã‚¹æ ¼ç´ç”¨ãƒãƒƒãƒ•ã‚¡
+	ANativeActivity				*NativeActivity ;					// ã‚½ãƒ•ãƒˆã® Activity
+	pthread_mutex_t				NativeActivityMutex ;				// NativeActivity ã‚¢ã‚¯ã‚»ã‚¹æ™‚ç”¨ãƒŸãƒ¥ãƒ¼ãƒ†ãƒƒã‚¯ã‚¹
+	ALooper						*Looper ;							// ã‚½ãƒ•ãƒˆã®ã‚¤ãƒ™ãƒ³ãƒˆå‡¦ç†ç”¨ Looper
 
-	volatile AInputQueue		*InputQueue ;						// “ü—ÍƒCƒxƒ“ƒg‚ğó‚¯æ‚é‚½‚ß‚ÌƒLƒ…[
-	volatile AInputQueue		*NewInputQueue ;					// V‚µ‚¢“ü—ÍƒCƒxƒ“ƒg‚ğó‚¯æ‚é‚½‚ß‚ÌƒLƒ…[
+	volatile AInputQueue		*InputQueue ;						// å…¥åŠ›ã‚¤ãƒ™ãƒ³ãƒˆã‚’å—ã‘å–ã‚‹ãŸã‚ã®ã‚­ãƒ¥ãƒ¼
+	volatile AInputQueue		*NewInputQueue ;					// æ–°ã—ã„å…¥åŠ›ã‚¤ãƒ™ãƒ³ãƒˆã‚’å—ã‘å–ã‚‹ãŸã‚ã®ã‚­ãƒ¥ãƒ¼
 
-	int32_t ( *UserInputEventCallbackFunction )( AInputEvent *, void * ) ;	// “ü—ÍƒCƒxƒ“ƒg”­¶‚ÉŒÄ‚Î‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”
-	void *						UserInputEventCallbackFunctionData ;// “ü—ÍƒCƒxƒ“ƒg”­¶‚ÉŒÄ‚Î‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”‚É“n‚·ƒAƒhƒŒƒX
+	int32_t ( *UserInputEventCallbackFunction )( AInputEvent *, void * ) ;	// å…¥åŠ›ã‚¤ãƒ™ãƒ³ãƒˆç™ºç”Ÿæ™‚ã«å‘¼ã°ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+	void *						UserInputEventCallbackFunctionData ;// å…¥åŠ›ã‚¤ãƒ™ãƒ³ãƒˆç™ºç”Ÿæ™‚ã«å‘¼ã°ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã«æ¸¡ã™ã‚¢ãƒ‰ãƒ¬ã‚¹
 
-	volatile ANativeWindow		*NativeWindow ;						// ƒ\ƒtƒg‚ÌƒEƒCƒ“ƒhƒE
-	volatile ANativeWindow		*NewNativeWindow ;					// V‚µ‚¢ƒ\ƒtƒg‚ÌƒEƒCƒ“ƒhƒE
+	volatile ANativeWindow		*NativeWindow ;						// ã‚½ãƒ•ãƒˆã®ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦
+	volatile ANativeWindow		*NewNativeWindow ;					// æ–°ã—ã„ã‚½ãƒ•ãƒˆã®ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦
 
-	volatile int				ActivityState ;						// Œ»İ‚Ì Activity ‚Ìó‘Ô( DX_APP_CMD_RESUME, DX_APP_CMD_START, DX_APP_CMD_PAUSE, DX_APP_CMD_STOP ‚Ì‚¢‚¸‚ê‚© )
-	volatile int				DestroyRequested ;					// onDestroy ƒRƒ}ƒ“ƒh‚ğƒ\ƒtƒgÀs—pƒXƒŒƒbƒh‚ªó‚¯æ‚Á‚½‚©‚Ç‚¤‚©( 1:ó‚¯æ‚Á‚½  0:ó‚¯æ‚Á‚Ä‚¢‚È‚¢ )
-	volatile int				DestroyRequestedTime ;				// onDestroy ƒRƒ}ƒ“ƒh‚ª”­¶‚µ‚½
-	volatile int				onDestroyEnd ;						// onDestroy ƒRƒ}ƒ“ƒh‚Ìˆ—‚ªI—¹‚µ‚½‚©‚Ç‚¤‚©( 0:I—¹‚µ‚Ä‚¢‚È‚¢  1:I—¹‚µ‚½ )
+	volatile int				ActivityState ;						// ç¾åœ¨ã® Activity ã®çŠ¶æ…‹( DX_APP_CMD_RESUME, DX_APP_CMD_START, DX_APP_CMD_PAUSE, DX_APP_CMD_STOP ã®ã„ãšã‚Œã‹ )
+	volatile int				DestroyRequested ;					// onDestroy ã‚³ãƒãƒ³ãƒ‰ã‚’ã‚½ãƒ•ãƒˆå®Ÿè¡Œç”¨ã‚¹ãƒ¬ãƒƒãƒ‰ãŒå—ã‘å–ã£ãŸã‹ã©ã†ã‹( 1:å—ã‘å–ã£ãŸ  0:å—ã‘å–ã£ã¦ã„ãªã„ )
+	volatile int				DestroyRequestedTime ;				// onDestroy ã‚³ãƒãƒ³ãƒ‰ãŒç™ºç”Ÿã—ãŸæ™‚åˆ»
+	volatile int				onDestroyEnd ;						// onDestroy ã‚³ãƒãƒ³ãƒ‰ã®å‡¦ç†ãŒçµ‚äº†ã—ãŸã‹ã©ã†ã‹( 0:çµ‚äº†ã—ã¦ã„ãªã„  1:çµ‚äº†ã—ãŸ )
 
-	volatile int				AppKillProcessFlag ;				// ƒAƒvƒŠI—¹‚ÉƒvƒƒZƒX‚ğŠ®‘SI—¹‚·‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO
+	volatile int				AppKillProcessFlag ;				// ã‚¢ãƒ—ãƒªçµ‚äº†æ™‚ã«ãƒ—ãƒ­ã‚»ã‚¹ã‚’å®Œå…¨çµ‚äº†ã™ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°
 
 	volatile int				MutexLockIndex ;
-	pthread_mutex_t				Mutex ;								// ƒƒCƒ“ƒXƒŒƒbƒh‚Æƒ\ƒtƒgÀs—pƒXƒŒƒbƒh‚Å‚¨Œİ‚¢‚Ég—p‚·‚é•Ï”ƒAƒNƒZƒX“™‚Ég—p‚·‚éƒ~ƒ…[ƒeƒbƒNƒX
-	pthread_cond_t				Cond ;								// ƒƒCƒ“ƒXƒŒƒbƒh‚Æƒ\ƒtƒgÀs—pƒXƒŒƒbƒh‚Å‚¨Œİ‚¢‚Ìˆ—‚ÌÀsŠ®—¹‘Ò‚¿‚È‚Ç‚Ég—p‚·‚éğŒ•Ï”
+	pthread_mutex_t				Mutex ;								// ãƒ¡ã‚¤ãƒ³ã‚¹ãƒ¬ãƒƒãƒ‰ã¨ã‚½ãƒ•ãƒˆå®Ÿè¡Œç”¨ã‚¹ãƒ¬ãƒƒãƒ‰ã§ãŠäº’ã„ã«ä½¿ç”¨ã™ã‚‹å¤‰æ•°ã‚¢ã‚¯ã‚»ã‚¹æ™‚ç­‰ã«ä½¿ç”¨ã™ã‚‹ãƒŸãƒ¥ãƒ¼ãƒ†ãƒƒã‚¯ã‚¹
+	pthread_cond_t				Cond ;								// ãƒ¡ã‚¤ãƒ³ã‚¹ãƒ¬ãƒƒãƒ‰ã¨ã‚½ãƒ•ãƒˆå®Ÿè¡Œç”¨ã‚¹ãƒ¬ãƒƒãƒ‰ã§ãŠäº’ã„ã®å‡¦ç†ã®å®Ÿè¡Œå®Œäº†å¾…ã¡ãªã©ã«ä½¿ç”¨ã™ã‚‹æ¡ä»¶å¤‰æ•°
 
-	volatile int				NonActiveRunFlag ;					// ƒAƒvƒŠ‚ªƒAƒNƒeƒBƒu‚Å‚Í‚È‚­‚Ä‚àˆ—‚ğÀs‚·‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO
-	volatile int				IsFullScreen ;						// ƒtƒ‹ƒXƒNƒŠ[ƒ“‚©‚Ç‚¤‚©( TRUE:ƒtƒ‹ƒXƒNƒŠ[ƒ“  FALSE:ƒ^ƒCƒgƒ‹ƒo[‚ÆƒiƒrƒQ[ƒVƒ‡ƒ“ƒo[‚ ‚è )
+	volatile int				NonActiveRunFlag ;					// ã‚¢ãƒ—ãƒªãŒã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã§ã¯ãªãã¦ã‚‚å‡¦ç†ã‚’å®Ÿè¡Œã™ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°
+	volatile int				IsFullScreen ;						// ãƒ•ãƒ«ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‹ã©ã†ã‹( TRUE:ãƒ•ãƒ«ã‚¹ã‚¯ãƒªãƒ¼ãƒ³  FALSE:ã‚¿ã‚¤ãƒˆãƒ«ãƒãƒ¼ã¨ãƒŠãƒ“ã‚²ãƒ¼ã‚·ãƒ§ãƒ³ãƒãƒ¼ã‚ã‚Š )
 
-	volatile int				MessageRead ;						// ƒƒCƒ“ƒXƒŒƒbƒh‚©‚çƒ\ƒtƒgÀs—pƒXƒŒƒbƒh‚Ö‚ÌƒƒbƒZ[ƒWó‚¯æ‚è—pƒtƒ@ƒCƒ‹ƒfƒBƒXƒNƒŠƒvƒ^
-	volatile int				MessageWrite ;						// ƒƒCƒ“ƒXƒŒƒbƒh‚©‚çƒ\ƒtƒgÀs—pƒXƒŒƒbƒh‚Ö‚ÌƒƒbƒZ[ƒW‘‚«‚İ—pƒtƒ@ƒCƒ‹ƒfƒBƒXƒNƒŠƒvƒ^
+	volatile int				MessageRead ;						// ãƒ¡ã‚¤ãƒ³ã‚¹ãƒ¬ãƒƒãƒ‰ã‹ã‚‰ã‚½ãƒ•ãƒˆå®Ÿè¡Œç”¨ã‚¹ãƒ¬ãƒƒãƒ‰ã¸ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å—ã‘å–ã‚Šç”¨ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‡ã‚£ã‚¹ã‚¯ãƒªãƒ—ã‚¿
+	volatile int				MessageWrite ;						// ãƒ¡ã‚¤ãƒ³ã‚¹ãƒ¬ãƒƒãƒ‰ã‹ã‚‰ã‚½ãƒ•ãƒˆå®Ÿè¡Œç”¨ã‚¹ãƒ¬ãƒƒãƒ‰ã¸ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸æ›¸ãè¾¼ã¿ç”¨ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‡ã‚£ã‚¹ã‚¯ãƒªãƒ—ã‚¿
 
-	pthread_t					SoftThread ;						// ƒ\ƒtƒgÀs—pƒXƒŒƒbƒh
-	volatile int				SoftThreadRunning ;					// ƒ\ƒtƒgÀs—pƒXƒŒƒbƒh‚ÌÀs‚ªŠJn‚³‚ê‚½‚©‚Ç‚¤‚©( 0:ŠJn‚³‚ê‚Ä‚¢‚È‚¢  1:ŠJn‚³‚ê‚½ )
-	volatile int				SoftThreadDestroyedStart ;			// ƒ\ƒtƒgÀs—pƒXƒŒƒbƒh‚ÌI—¹ˆ—‚ğŠJn‚µ‚½‚©‚Ç‚¤‚©( 0:ŠJn‚³‚ê‚Ä‚¢‚È‚¢  1:ŠJn‚³‚ê‚½ )
-	volatile int				SoftThreadDestroyed ;				// ƒ\ƒtƒgÀs—pƒXƒŒƒbƒh‚ªI—¹‚µ‚½‚©‚Ç‚¤‚©( 0:I—¹‚µ‚Ä‚¢‚È‚¢  1:I—¹‚µ‚½ )
-	volatile int				SoftThreadWait ;					// ƒ\ƒtƒgÀs—pƒXƒŒƒbƒh‚ª‘Ò‚¿ó‘Ô‚©‚Ç‚¤‚©( 1:‘Ò‚¿ó‘Ô  0:Àsó‘Ô )
+	pthread_t					SoftThread ;						// ã‚½ãƒ•ãƒˆå®Ÿè¡Œç”¨ã‚¹ãƒ¬ãƒƒãƒ‰
+	volatile int				SoftThreadRunning ;					// ã‚½ãƒ•ãƒˆå®Ÿè¡Œç”¨ã‚¹ãƒ¬ãƒƒãƒ‰ã®å®Ÿè¡ŒãŒé–‹å§‹ã•ã‚ŒãŸã‹ã©ã†ã‹( 0:é–‹å§‹ã•ã‚Œã¦ã„ãªã„  1:é–‹å§‹ã•ã‚ŒãŸ )
+	volatile int				SoftThreadDestroyedStart ;			// ã‚½ãƒ•ãƒˆå®Ÿè¡Œç”¨ã‚¹ãƒ¬ãƒƒãƒ‰ã®çµ‚äº†å‡¦ç†ã‚’é–‹å§‹ã—ãŸã‹ã©ã†ã‹( 0:é–‹å§‹ã•ã‚Œã¦ã„ãªã„  1:é–‹å§‹ã•ã‚ŒãŸ )
+	volatile int				SoftThreadDestroyed ;				// ã‚½ãƒ•ãƒˆå®Ÿè¡Œç”¨ã‚¹ãƒ¬ãƒƒãƒ‰ãŒçµ‚äº†ã—ãŸã‹ã©ã†ã‹( 0:çµ‚äº†ã—ã¦ã„ãªã„  1:çµ‚äº†ã—ãŸ )
+	volatile int				SoftThreadWait ;					// ã‚½ãƒ•ãƒˆå®Ÿè¡Œç”¨ã‚¹ãƒ¬ãƒƒãƒ‰ãŒå¾…ã¡çŠ¶æ…‹ã‹ã©ã†ã‹( 1:å¾…ã¡çŠ¶æ…‹  0:å®Ÿè¡ŒçŠ¶æ…‹ )
 
-	volatile int				SoundAndMoviePause ;				// ƒEƒCƒ“ƒhƒE‚ª”ñƒAƒNƒeƒBƒu‚É‚È‚èƒTƒEƒ“ƒh‚Æ“®‰æ‚ªˆê’â~‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©( TRUE:ˆê’â~‚µ‚Ä‚¢‚é  FALSE:ˆê’â~‚µ‚Ä‚¢‚È‚¢ )
+	volatile int				SoundAndMoviePause ;				// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãŒéã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ãªã‚Šã‚µã‚¦ãƒ³ãƒ‰ã¨å‹•ç”»ãŒä¸€æ™‚åœæ­¢ã—ã¦ã„ã‚‹ã‹ã©ã†ã‹( TRUE:ä¸€æ™‚åœæ­¢ã—ã¦ã„ã‚‹  FALSE:ä¸€æ™‚åœæ­¢ã—ã¦ã„ãªã„ )
 
-	volatile void				( *LostFocusCallbackFunction )( void *Data ) ;		// ƒAƒvƒŠ‚ÌƒtƒH[ƒJƒX‚ª¸‚í‚ê‚½Û‚ÉŒÄ‚Î‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”
-	volatile void				*LostFocusCallbackFunctionData ;					// ƒAƒvƒŠ‚ÌƒtƒH[ƒJƒX‚ª¸‚í‚ê‚½Û‚ÉŒÄ‚Î‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”‚É“n‚·ƒ|ƒCƒ“ƒ^
-	volatile void				( *GainedFocusCallbackFunction )( void *Data ) ;	// ƒAƒvƒŠ‚ÌƒtƒH[ƒJƒX‚ª“¾‚ç‚ê‚½Û‚ÉŒÄ‚Î‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”
-	volatile void				*GainedFocusCallbackFunctionData ;					// ƒAƒvƒŠ‚ÌƒtƒH[ƒJƒX‚ª“¾‚ç‚ê‚½Û‚ÉŒÄ‚Î‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”‚É“n‚·ƒ|ƒCƒ“ƒ^
+	volatile void				( *LostFocusCallbackFunction )( void *Data ) ;		// ã‚¢ãƒ—ãƒªã®ãƒ•ã‚©ãƒ¼ã‚«ã‚¹ãŒå¤±ã‚ã‚ŒãŸéš›ã«å‘¼ã°ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+	volatile void				*LostFocusCallbackFunctionData ;					// ã‚¢ãƒ—ãƒªã®ãƒ•ã‚©ãƒ¼ã‚«ã‚¹ãŒå¤±ã‚ã‚ŒãŸéš›ã«å‘¼ã°ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã«æ¸¡ã™ãƒã‚¤ãƒ³ã‚¿
+	volatile void				( *GainedFocusCallbackFunction )( void *Data ) ;	// ã‚¢ãƒ—ãƒªã®ãƒ•ã‚©ãƒ¼ã‚«ã‚¹ãŒå¾—ã‚‰ã‚ŒãŸéš›ã«å‘¼ã°ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+	volatile void				*GainedFocusCallbackFunctionData ;					// ã‚¢ãƒ—ãƒªã®ãƒ•ã‚©ãƒ¼ã‚«ã‚¹ãŒå¾—ã‚‰ã‚ŒãŸéš›ã«å‘¼ã°ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã«æ¸¡ã™ãƒã‚¤ãƒ³ã‚¿
 
-	ASensorManager				*SensorManager ;					// ƒZƒ“ƒT[ƒ}ƒl[ƒWƒƒ[
-	ANDROID_SENSOR_INFO			SensorInfos[ DX_ANDROID_SENSOR_NUM ] ;	// ŠeƒZƒ“ƒT[‚Ìî•ñ
+	ASensorManager				*SensorManager ;					// ã‚»ãƒ³ã‚µãƒ¼ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼
+	ANDROID_SENSOR_INFO			SensorInfos[ DX_ANDROID_SENSOR_NUM ] ;	// å„ã‚»ãƒ³ã‚µãƒ¼ã®æƒ…å ±
 
-	jobject						object_EditText ;					// •¶š—ñ“ü—Í‚ğs‚¤‚½‚ß‚Ì EditText
-	jobject						object_AlertDialog_Builder ;		// •¶š—ñ“ü—Íƒ_ƒCƒAƒƒO‚Ì AlertDialog.Builder
-	jobject						object_Dialog ;						// •¶š—ñ“ü—Íƒ_ƒCƒAƒƒO‚Ì Dialog
+	jobject						object_EditText ;					// æ–‡å­—åˆ—å…¥åŠ›ã‚’è¡Œã†ãŸã‚ã® EditText
+	jobject						object_AlertDialog_Builder ;		// æ–‡å­—åˆ—å…¥åŠ›ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã® AlertDialog.Builder
+	jobject						object_Dialog ;						// æ–‡å­—åˆ—å…¥åŠ›ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã® Dialog
 } ;
 
-// ƒe[ƒuƒ‹-----------------------------------------------------------------------
+// ãƒ†ãƒ¼ãƒ–ãƒ«-----------------------------------------------------------------------
 
-// “à•”‘åˆæ•Ï”éŒ¾ --------------------------------------------------------------
+// å†…éƒ¨å¤§åŸŸå¤‰æ•°å®£è¨€ --------------------------------------------------------------
 
 extern DXLIB_ANDROID_SYSTEMINFO g_AndroidSys ;
 extern int g_AndroidRunFlag ;
 
-// ŠÖ”ƒvƒƒgƒ^ƒCƒvéŒ¾-----------------------------------------------------------
+// é–¢æ•°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€-----------------------------------------------------------
 
-// ƒAƒNƒeƒBƒu‚É‚È‚é‚Ü‚Å‰½‚à‚µ‚È‚¢
+// ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ãªã‚‹ã¾ã§ä½•ã‚‚ã—ãªã„
 extern void DxActiveWait_Android( void ) ;
 
 #ifndef DX_NON_NAMESPACE

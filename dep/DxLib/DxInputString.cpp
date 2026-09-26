@@ -1,17 +1,17 @@
 // -------------------------------------------------------------------------------
 // 
-// 		‚c‚wƒ‰ƒCƒuƒ‰ƒŠ		•¶š—ñ“ü—ÍƒvƒƒOƒ‰ƒ€
+// 		ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒª		æ–‡å­—åˆ—å…¥åŠ›ãƒ—ãƒ­ã‚°ãƒ©ãƒ 
 // 
 // 				Ver 3.25a
 // 
 // -------------------------------------------------------------------------------
 
-// ‚c‚wƒ‰ƒCƒuƒ‰ƒŠì¬—p’è‹`
+// ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªä½œæˆæ™‚ç”¨å®šç¾©
 #define DX_MAKE
 
 #include "DxInputString.h"
 
-// ƒCƒ“ƒNƒ‹[ƒh ------------------------------------------------------------------
+// ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ ------------------------------------------------------------------
 #include "DxLib.h"
 #include "DxStatic.h"
 #include "DxBaseFunc.h"
@@ -35,9 +35,9 @@ namespace DxLib
 
 #endif // DX_NON_NAMESPACE
 
-// ƒ}ƒNƒ’è‹` --------------------------------------------------------------------
+// ãƒã‚¯ãƒ­å®šç¾© --------------------------------------------------------------------
 
-// •¶š—ñ“ü—Íƒnƒ“ƒhƒ‹‚Ì—LŒø«ƒ`ƒFƒbƒN
+// æ–‡å­—åˆ—å…¥åŠ›ãƒãƒ³ãƒ‰ãƒ«ã®æœ‰åŠ¹æ€§ãƒã‚§ãƒƒã‚¯
 #define KEYHCHK( HAND, KPOINT )																			\
 	  ( ( ( (HAND) & DX_HANDLEERROR_MASK ) != 0 ) ||													\
 		( ( (HAND) & DX_HANDLETYPE_MASK ) != DX_HANDLETYPE_MASK_KEYINPUT ) ||								\
@@ -46,7 +46,7 @@ namespace DxLib
 		( ( (KPOINT)->ID << DX_HANDLECHECK_ADDRESS ) != ( (HAND) & DX_HANDLECHECK_MASK ) ) )
 
 
-#define CURSORBRINKWAIT				(500)				// ƒJ[ƒ\ƒ‹“_–Å‚ÌŠÔŠu
+#define CURSORBRINKWAIT				(500)				// ã‚«ãƒ¼ã‚½ãƒ«ç‚¹æ»…ã®é–“éš”
 
 #ifndef WM_IME_REQUEST
 #define WM_IME_REQUEST				(0x0288)
@@ -61,7 +61,7 @@ namespace DxLib
 #define SCS_QUERYRECONVERTSTRING	(0x00020000)
 #endif
 
-// \‘¢‘Ì’è‹` --------------------------------------------------------------------
+// æ§‹é€ ä½“å®šç¾© --------------------------------------------------------------------
 
 #ifndef DX_NON_INPUTSTRING
 
@@ -77,71 +77,71 @@ typedef struct tagD_RECONVERTSTRING
 	DWORD dwTargetStrOffset ;
 } D_RECONVERTSTRING ;
 
-// IME•¶š—ñ•`‰æ—p•¶šî•ñ
+// IMEæ–‡å­—åˆ—æç”»ç”¨æ–‡å­—æƒ…å ±
 struct DRAWIMESTRCHARINFO
 {
-	int						DrawX ;								// •`‰æxÀ•W
-	int						DrawY ;								// •`‰æyÀ•W
-	wchar_t					Char[ 3 ] ;							// ‚P•¶š•ª‚Ìî•ñ
-	short					CharLength ;						// ‚P•¶š‚Ì’·‚³
-	short					IsSelect ;							// ‘I‘ğ‚µ‚Ä‚¢‚é‚©
-	short					Width ;								// •¶š‚Ì•
+	int						DrawX ;								// æç”»xåº§æ¨™
+	int						DrawY ;								// æç”»yåº§æ¨™
+	wchar_t					Char[ 3 ] ;							// ï¼‘æ–‡å­—åˆ†ã®æƒ…å ±
+	short					CharLength ;						// ï¼‘æ–‡å­—ã®é•·ã•
+	short					IsSelect ;							// é¸æŠã—ã¦ã„ã‚‹ã‹
+	short					Width ;								// æ–‡å­—ã®å¹…
 } ;
 
-// IME•¶š—ñ•`‰æ—psî•ñ
+// IMEæ–‡å­—åˆ—æç”»ç”¨è¡Œæƒ…å ±
 struct DRAWIMESTRLINEINFO
 {
-	int						LineWidth ;							// s‚Ì•
-	DRAWIMESTRCHARINFO		*CharInfo ;							// s‚Ìæ“ª•¶š
-	int						CharNum ;							// s‚Ì•¶š”
+	int						LineWidth ;							// è¡Œã®å¹…
+	DRAWIMESTRCHARINFO		*CharInfo ;							// è¡Œã®å…ˆé ­æ–‡å­—
+	int						CharNum ;							// è¡Œã®æ–‡å­—æ•°
 } ;
 
-// IME•¶š—ñ•`‰æ—p•¶š—ñî•ñ
+// IMEæ–‡å­—åˆ—æç”»ç”¨æ–‡å­—åˆ—æƒ…å ±
 struct DRAWIMESTRINFO
 {
-	int						LineNum ;							// s”
-	DRAWIMESTRLINEINFO		*LineInfo ;							// sî•ñ
-	int						CharNum ;							// •¶š”
-	DRAWIMESTRCHARINFO		*CharInfo ;							// •¶šî•ñ
+	int						LineNum ;							// è¡Œæ•°
+	DRAWIMESTRLINEINFO		*LineInfo ;							// è¡Œæƒ…å ±
+	int						CharNum ;							// æ–‡å­—æ•°
+	DRAWIMESTRCHARINFO		*CharInfo ;							// æ–‡å­—æƒ…å ±
 } ;
 
 #endif // DX_NON_INPUTSTRING
 
-// ƒe[ƒuƒ‹-----------------------------------------------------------------------
+// ãƒ†ãƒ¼ãƒ–ãƒ«-----------------------------------------------------------------------
 
 #ifndef DX_NON_INPUTSTRING
 
-// ‰¼‘zƒL[ƒR[ƒh‚ğƒRƒ“ƒgƒ[ƒ‹•¶šƒR[ƒh‚É•ÏŠ·‚·‚é‚½‚ß‚Ìƒe[ƒuƒ‹
+// ä»®æƒ³ã‚­ãƒ¼ã‚³ãƒ¼ãƒ‰ã‚’ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«æ–‡å­—ã‚³ãƒ¼ãƒ‰ã«å¤‰æ›ã™ã‚‹ãŸã‚ã®ãƒ†ãƒ¼ãƒ–ãƒ«
 char CtrlCode[ 10 ][ 2 ] =
 {
-	VK_DELETE	,	CTRL_CODE_DEL		,	// ‚c‚d‚kƒL[
+	VK_DELETE	,	CTRL_CODE_DEL		,	// ï¼¤ï¼¥ï¼¬ã‚­ãƒ¼
 
-	VK_LEFT		,	CTRL_CODE_LEFT		,	// ©ƒL[
-	VK_RIGHT	,	CTRL_CODE_RIGHT		,	// ¨ƒL[
-	VK_UP		,	CTRL_CODE_UP		,	// ªƒL[
-	VK_DOWN		,	CTRL_CODE_DOWN		,	// «ƒL[
+	VK_LEFT		,	CTRL_CODE_LEFT		,	// â†ã‚­ãƒ¼
+	VK_RIGHT	,	CTRL_CODE_RIGHT		,	// â†’ã‚­ãƒ¼
+	VK_UP		,	CTRL_CODE_UP		,	// â†‘ã‚­ãƒ¼
+	VK_DOWN		,	CTRL_CODE_DOWN		,	// â†“ã‚­ãƒ¼
 
-	VK_HOME		,	CTRL_CODE_HOME		,	// ‚g‚n‚l‚dƒL[
-	VK_END		,	CTRL_CODE_END		,	// ‚d‚m‚cƒL[
-	VK_PRIOR	,	CTRL_CODE_PAGE_UP	,	// ‚o‚`‚f‚d@‚t‚oƒL[
-	VK_NEXT		,	CTRL_CODE_PAGE_DOWN	,	// ‚o‚`‚f‚d@‚c‚n‚v‚mƒL[
+	VK_HOME		,	CTRL_CODE_HOME		,	// ï¼¨ï¼¯ï¼­ï¼¥ã‚­ãƒ¼
+	VK_END		,	CTRL_CODE_END		,	// ï¼¥ï¼®ï¼¤ã‚­ãƒ¼
+	VK_PRIOR	,	CTRL_CODE_PAGE_UP	,	// ï¼°ï¼¡ï¼§ï¼¥ã€€ï¼µï¼°ã‚­ãƒ¼
+	VK_NEXT		,	CTRL_CODE_PAGE_DOWN	,	// ï¼°ï¼¡ï¼§ï¼¥ã€€ï¼¤ï¼¯ï¼·ï¼®ã‚­ãƒ¼
 	0			,	0
 } ;
 
-// “à•”‘åˆæ•Ï”éŒ¾ --------------------------------------------------------------
+// å†…éƒ¨å¤§åŸŸå¤‰æ•°å®£è¨€ --------------------------------------------------------------
 
-CHARBUFFER CharBuf ;										// •¶šƒR[ƒhƒoƒbƒtƒ@
+CHARBUFFER CharBuf ;										// æ–‡å­—ã‚³ãƒ¼ãƒ‰ãƒãƒƒãƒ•ã‚¡
 
-// ŠÖ”ƒvƒƒgƒ^ƒCƒvéŒ¾-----------------------------------------------------------
+// é–¢æ•°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€-----------------------------------------------------------
 
-// •¶šƒR[ƒhƒoƒbƒtƒ@‘€ìŠÖŒW
+// æ–‡å­—ã‚³ãƒ¼ãƒ‰ãƒãƒƒãƒ•ã‚¡æ“ä½œé–¢ä¿‚
 #ifndef DX_NON_KEYEX
-static	int			ResetKeyInputCursorBrinkCount( void ) ;										// ƒL[“ü—Í‚ÌƒJ[ƒ\ƒ‹“_–Åˆ—‚ÌƒJƒEƒ“ƒ^‚ğƒŠƒZƒbƒg
-static	int			SetIMEOpenState( int OpenFlag ) ;											// ‚h‚l‚d‚ğg—pó‘Ô‚ğ•ÏX‚·‚é
-static	int			KeyInputSelectAreaDelete( INPUTDATA *Input ) ;								// ƒL[“ü—Í‚Ì‘I‘ğ”ÍˆÍ‚ğíœ‚·‚é
+static	int			ResetKeyInputCursorBrinkCount( void ) ;										// ã‚­ãƒ¼å…¥åŠ›æ™‚ã®ã‚«ãƒ¼ã‚½ãƒ«ç‚¹æ»…å‡¦ç†ã®ã‚«ã‚¦ãƒ³ã‚¿ã‚’ãƒªã‚»ãƒƒãƒˆ
+static	int			SetIMEOpenState( int OpenFlag ) ;											// ï¼©ï¼­ï¼¥ã‚’ä½¿ç”¨çŠ¶æ…‹ã‚’å¤‰æ›´ã™ã‚‹
+static	int			KeyInputSelectAreaDelete( INPUTDATA *Input ) ;								// ã‚­ãƒ¼å…¥åŠ›ã®é¸æŠç¯„å›²ã‚’å‰Šé™¤ã™ã‚‹
 #endif
 
-// ƒvƒƒOƒ‰ƒ€ --------------------------------------------------------------------
+// ãƒ—ãƒ­ã‚°ãƒ©ãƒ  --------------------------------------------------------------------
 
 #ifndef DX_NON_KEYEX
 
@@ -226,7 +226,7 @@ static void Tsf_MakeCandidateStrings( D_ITfCandidateListUIElement* pcandidate )
 
 	SETUP_WIN_API
 
-	// •ÏŠ·Œó•â‚Ìî•ñ‚ğƒŠƒZƒbƒg
+	// å¤‰æ›å€™è£œã®æƒ…å ±ã‚’ãƒªã‚»ãƒƒãƒˆ
 	if( CharBuf.CandidateList )
 	{
 		DXFREE( CharBuf.CandidateList ) ;
@@ -264,7 +264,7 @@ static void Tsf_MakeCandidateStrings( D_ITfCandidateListUIElement* pcandidate )
 	CharBuf.CandidateList = ( CANDIDATELIST * )DXALLOC( CharBuf.CandidateListSize ) ;
 	if( CharBuf.CandidateList == NULL )
 	{
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\x22\x6f\x57\x5b\x09\x59\xdb\x63\x19\x50\xdc\x88\x92\x30\xdd\x4f\x58\x5b\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x28\x00\x20\x00\xba\x78\xdd\x4f\x57\x30\x88\x30\x46\x30\x68\x30\x57\x30\x5f\x30\xb5\x30\xa4\x30\xba\x30\x20\x00\x25\x00\x64\x00\x20\x00\xd0\x30\xa4\x30\xc8\x30\x20\x00\x29\x00\x00"/*@ L"Š¿š•ÏŠ·Œó•â‚ğ•Û‘¶‚·‚éƒƒ‚ƒŠ‚ÌŠm•Û‚É¸”s‚µ‚Ü‚µ‚½( Šm•Û‚µ‚æ‚¤‚Æ‚µ‚½ƒTƒCƒY %d ƒoƒCƒg )" @*/, CharBuf.CandidateListSize )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\x22\x6f\x57\x5b\x09\x59\xdb\x63\x19\x50\xdc\x88\x92\x30\xdd\x4f\x58\x5b\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x28\x00\x20\x00\xba\x78\xdd\x4f\x57\x30\x88\x30\x46\x30\x68\x30\x57\x30\x5f\x30\xb5\x30\xa4\x30\xba\x30\x20\x00\x25\x00\x64\x00\x20\x00\xd0\x30\xa4\x30\xc8\x30\x20\x00\x29\x00\x00"/*@ L"æ¼¢å­—å¤‰æ›å€™è£œã‚’ä¿å­˜ã™ã‚‹ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿ã«å¤±æ•—ã—ã¾ã—ãŸ( ç¢ºä¿ã—ã‚ˆã†ã¨ã—ãŸã‚µã‚¤ã‚º %d ãƒã‚¤ãƒˆ )" @*/, CharBuf.CandidateListSize )) ;
 		CharBuf.CandidateListSize = 0 ;
 		return ;
 	}
@@ -373,7 +373,7 @@ HRESULT __stdcall DX_UIElementSink::EndUIElement(DWORD dwUIElementId)
 		CharBuf.TsfCandidateRefCount --;
 		if( CharBuf.TsfCandidateRefCount == 0 )
 		{
-			// ƒƒ‚ƒŠ‚Ì‰ğ•ú
+			// ãƒ¡ãƒ¢ãƒªã®è§£æ”¾
 			if( CharBuf.CandidateList != NULL )
 			{
 				DXFREE( CharBuf.CandidateList ) ;
@@ -393,16 +393,16 @@ HRESULT __stdcall DX_UIElementSink::EndUIElement(DWORD dwUIElementId)
 
 
 
-// •¶šƒR[ƒhƒoƒbƒtƒ@‘€ìŠÖŒW
+// æ–‡å­—ã‚³ãƒ¼ãƒ‰ãƒãƒƒãƒ•ã‚¡æ“ä½œé–¢ä¿‚
 
-// •¶šƒR[ƒhƒoƒbƒtƒ@ŠÖŒW‚Ì‰Šú‰»
+// æ–‡å­—ã‚³ãƒ¼ãƒ‰ãƒãƒƒãƒ•ã‚¡é–¢ä¿‚ã®åˆæœŸåŒ–
 extern int InitializeInputCharBuf( void )
 {
 	SETUP_WIN_API
 
-	DXST_LOGFILE_ADDUTF16LE( "\x87\x65\x57\x5b\xb3\x30\xfc\x30\xc9\x30\xd0\x30\xc3\x30\xd5\x30\xa1\x30\x6e\x30\x1d\x52\x1f\x67\x16\x53\x92\x30\x4c\x88\x44\x30\x7e\x30\x59\x30\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"•¶šƒR[ƒhƒoƒbƒtƒ@‚Ì‰Šú‰»‚ğs‚¢‚Ü‚·... " @*/ ) ; 
+	DXST_LOGFILE_ADDUTF16LE( "\x87\x65\x57\x5b\xb3\x30\xfc\x30\xc9\x30\xd0\x30\xc3\x30\xd5\x30\xa1\x30\x6e\x30\x1d\x52\x1f\x67\x16\x53\x92\x30\x4c\x88\x44\x30\x7e\x30\x59\x30\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"æ–‡å­—ã‚³ãƒ¼ãƒ‰ãƒãƒƒãƒ•ã‚¡ã®åˆæœŸåŒ–ã‚’è¡Œã„ã¾ã™... " @*/ ) ; 
 
-	// ƒ[ƒ‰Šú‰»
+	// ã‚¼ãƒ­åˆæœŸåŒ–
 	int IMEUseFlag           = CharBuf.IMEUseFlag ;
 	int IMEUseFlag_OSSet     = CharBuf.IMEUseFlag_OSSet ;
 	int TSFNotUseFlag        = CharBuf.TSFNotUseFlag ;
@@ -415,7 +415,7 @@ extern int InitializeInputCharBuf( void )
 
 #ifndef DX_NON_KEYEX
 
-	// ‚h‚l‚dg—pƒtƒ‰ƒO‚ª FALSE ‚¾‚Á‚½‚ç“ü—ÍƒRƒ“ƒeƒLƒXƒg‚É NULL ‚ğİ’è‚·‚é
+	// ï¼©ï¼­ï¼¥ä½¿ç”¨ãƒ•ãƒ©ã‚°ãŒ FALSE ã ã£ãŸã‚‰å…¥åŠ›ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã« NULL ã‚’è¨­å®šã™ã‚‹
 	if( CharBuf.IMEUseFlag_OSSet == FALSE )
 	{
 		HIMC Result ;
@@ -426,7 +426,7 @@ extern int InitializeInputCharBuf( void )
 		}
 	}
 
-	// ƒfƒtƒHƒ‹ƒgF‚ğƒZƒbƒg
+	// ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆè‰²ã‚’ã‚»ãƒƒãƒˆ
 	{
 		int i ;
 		for( i = 0 ; i < DX_KEYINPSTRCOLOR_NUM ; i ++ )
@@ -435,7 +435,7 @@ extern int InitializeInputCharBuf( void )
 		}
 	}
 
-	// Windows7 ˆÈ~‚Í TSF ‚Ì‰Šú‰»‚às‚¤
+	// Windows7 ä»¥é™ã¯ TSF ã®åˆæœŸåŒ–ã‚‚è¡Œã†
 	if( CharBuf.TSFNotUseFlag == FALSE && WinData.WindowsVersion >= DX_WINDOWSVERSION_7 )
 	{
 		HRESULT hr ;
@@ -504,25 +504,25 @@ TSF_SETUP_END :
 
 #endif // DX_NON_KEYEX
 
-	// •`‰æ‚Ég—p‚·‚éƒtƒHƒ“ƒg‚ÍƒfƒtƒHƒ‹ƒgƒtƒHƒ“ƒg
+	// æç”»ã«ä½¿ç”¨ã™ã‚‹ãƒ•ã‚©ãƒ³ãƒˆã¯ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãƒ•ã‚©ãƒ³ãƒˆ
 	CharBuf.UseFontHandle = -1 ;
 
-	// “ü—ÍƒAƒNƒeƒBƒuƒnƒ“ƒhƒ‹‚ğ‰Šú‰»
+	// å…¥åŠ›ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ãƒãƒ³ãƒ‰ãƒ«ã‚’åˆæœŸåŒ–
 	CharBuf.ActiveInputHandle = -1 ;
 	
-	// ƒJ[ƒ\ƒ‹“_–Åˆ—ŠÖŒW‚Ì‰Šú‰»
+	// ã‚«ãƒ¼ã‚½ãƒ«ç‚¹æ»…å‡¦ç†é–¢ä¿‚ã®åˆæœŸåŒ–
 	CharBuf.CBrinkFlag = FALSE ;
 	CharBuf.CBrinkCount = 0 ;
 	CharBuf.CBrinkWait = CURSORBRINKWAIT ;
 	CharBuf.CBrinkDrawFlag = TRUE ;
 
-	DXST_LOGFILE_ADDUTF16LE( "\x8c\x5b\x86\x4e\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Š®—¹‚µ‚Ü‚µ‚½\n" @*/ ) ;
+	DXST_LOGFILE_ADDUTF16LE( "\x8c\x5b\x86\x4e\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"å®Œäº†ã—ã¾ã—ãŸ\n" @*/ ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// •¶šƒR[ƒhƒoƒbƒtƒ@ŠÖŒW‚ÌŒãn––
+// æ–‡å­—ã‚³ãƒ¼ãƒ‰ãƒãƒƒãƒ•ã‚¡é–¢ä¿‚ã®å¾Œå§‹æœ«
 extern int TerminateInputCharBuf( void )
 {
 #ifndef DX_NON_KEYEX
@@ -558,11 +558,11 @@ extern int TerminateInputCharBuf( void )
 
 #endif // DX_NON_KEYEX
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒoƒbƒtƒ@‚ÉƒR[ƒh‚ğƒXƒgƒbƒN‚·‚é
+// ãƒãƒƒãƒ•ã‚¡ã«ã‚³ãƒ¼ãƒ‰ã‚’ã‚¹ãƒˆãƒƒã‚¯ã™ã‚‹
 extern int NS_StockInputChar( TCHAR CharCode )
 {
 #ifdef UNICODE
@@ -570,22 +570,22 @@ extern int NS_StockInputChar( TCHAR CharCode )
 #else
 	int CharBytes ;
 
-	// ƒXƒgƒbƒN‚É‘ã“ü
+	// ã‚¹ãƒˆãƒƒã‚¯ã«ä»£å…¥
 	CharBuf.TempStock[ CharBuf.TempStockNum     ] = CharCode ;
 	CharBuf.TempStock[ CharBuf.TempStockNum + 1 ] = 0 ;
 	CharBuf.TempStockNum ++ ;
 
-	// •¶š‚ÌƒoƒCƒg”‚ğæ“¾
+	// æ–‡å­—ã®ãƒã‚¤ãƒˆæ•°ã‚’å–å¾—
 	CharBytes = GetCharBytes_( CharBuf.TempStock, _TCHARCODEFORMAT ) ;
 
-	// ‚PƒoƒCƒg•¶š‚Ìê‡‚Í’¼‚®‚É wchar_t”ÅŠÖ”‚É“n‚·
+	// ï¼‘ãƒã‚¤ãƒˆæ–‡å­—ã®å ´åˆã¯ç›´ãã« wchar_tç‰ˆé–¢æ•°ã«æ¸¡ã™
 	if( CharBytes == 1 )
 	{
 		StockInputChar_WCHAR_T( ( wchar_t )CharCode ) ;
 		CharBuf.TempStockNum = 0 ;
 	}
 	else
-	// ‚QƒoƒCƒgˆÈã‚Ì•¶š‚Ìê‡‚Í•¶š‚ÌƒoƒCƒg”‚É’B‚µ‚½‚ç wchar_t •¶š—ñ‚É•ÏŠ·‚µ‚Ä wchar_t”ÅŠÖ”‚É“n‚·
+	// ï¼’ãƒã‚¤ãƒˆä»¥ä¸Šã®æ–‡å­—ã®å ´åˆã¯æ–‡å­—ã®ãƒã‚¤ãƒˆæ•°ã«é”ã—ãŸã‚‰ wchar_t æ–‡å­—åˆ—ã«å¤‰æ›ã—ã¦ wchar_tç‰ˆé–¢æ•°ã«æ¸¡ã™
 	if( CharBuf.TempStockNum >= CharBytes )
 	{
 		wchar_t WCharString[ 16 ] ;
@@ -606,26 +606,26 @@ extern int NS_StockInputChar( TCHAR CharCode )
 }
 
 
-// ƒoƒbƒtƒ@‚ÉƒR[ƒh‚ğƒXƒgƒbƒN‚·‚é
+// ãƒãƒƒãƒ•ã‚¡ã«ã‚³ãƒ¼ãƒ‰ã‚’ã‚¹ãƒˆãƒƒã‚¯ã™ã‚‹
 extern int StockInputChar_WCHAR_T( wchar_t CharCode )
 {
-	// ƒoƒbƒtƒ@‚ªˆê”t‚Ìê‡‚Í‚È‚É‚à‚µ‚È‚¢
+	// ãƒãƒƒãƒ•ã‚¡ãŒä¸€æ¯ã®å ´åˆã¯ãªã«ã‚‚ã—ãªã„
 	if( ( CharBuf.EdPoint + 1 == CharBuf.StPoint ) ||
 		( CharBuf.StPoint == 0 && CharBuf.EdPoint == CHARBUFFER_SIZE ) )
 	{
 		return -1 ;
 	}
 
-	// ƒoƒbƒtƒ@‚É•¶šƒR[ƒh‚ğ‘ã“ü
+	// ãƒãƒƒãƒ•ã‚¡ã«æ–‡å­—ã‚³ãƒ¼ãƒ‰ã‚’ä»£å…¥
 	CharBuf.CharBuffer[ CharBuf.EdPoint ] = CharCode ;
 	CharBuf.EdPoint ++ ;
 	if( CharBuf.EdPoint == CHARBUFFER_SIZE + 1 ) CharBuf.EdPoint = 0 ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// •¶šƒR[ƒhƒoƒbƒtƒ@‚ğƒNƒŠƒA‚·‚é
+// æ–‡å­—ã‚³ãƒ¼ãƒ‰ãƒãƒƒãƒ•ã‚¡ã‚’ã‚¯ãƒªã‚¢ã™ã‚‹
 extern int NS_ClearInputCharBuf( void )
 {
 	SETUP_WIN_API
@@ -636,16 +636,16 @@ extern int NS_ClearInputCharBuf( void )
 	} 
 
 #ifndef UNICODE
-	// ƒ}ƒ‹ƒ`ƒoƒCƒg•¶šƒZƒbƒg”Å‚Ìê‡‚ÍƒXƒgƒbƒN‚à‰Šú‰»‚·‚é
+	// ãƒãƒ«ãƒãƒã‚¤ãƒˆæ–‡å­—ã‚»ãƒƒãƒˆç‰ˆã®å ´åˆã¯ã‚¹ãƒˆãƒƒã‚¯ã‚‚åˆæœŸåŒ–ã™ã‚‹
 	CharBuf.TempStockNum    = 0 ;
 	CharBuf.TempGetStockNum = 0 ;
 #endif // UNICODE
 
-	// ƒXƒ^[ƒgƒ|ƒCƒ“ƒ^‚ÆƒGƒ“ƒhƒ|ƒCƒ“ƒ^‚ğ‰Šú‰»
+	// ã‚¹ã‚¿ãƒ¼ãƒˆãƒã‚¤ãƒ³ã‚¿ã¨ã‚¨ãƒ³ãƒ‰ãƒã‚¤ãƒ³ã‚¿ã‚’åˆæœŸåŒ–
 	CharBuf.EdPoint = CharBuf.StPoint = 0 ;
 
 #ifndef DX_NON_KEYEX
-	// IME“ü—Í‚Ìó‘Ô‚àƒŠƒZƒbƒg‚·‚é
+	// IMEå…¥åŠ›ã®çŠ¶æ…‹ã‚‚ãƒªã‚»ãƒƒãƒˆã™ã‚‹
 	if( WinData.MainWindow )
 	{
 		if( CharBuf.IMEUseFlag_OSSet == TRUE && CharBuf.IMESwitch == TRUE )
@@ -664,11 +664,11 @@ extern int NS_ClearInputCharBuf( void )
 	}
 #endif
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// •¶šƒR[ƒhƒoƒbƒtƒ@‚É—­‚Ü‚Á‚½ƒf[ƒ^‚©‚ç‚PƒoƒCƒg•ªæ“¾‚·‚é
+// æ–‡å­—ã‚³ãƒ¼ãƒ‰ãƒãƒƒãƒ•ã‚¡ã«æºœã¾ã£ãŸãƒ‡ãƒ¼ã‚¿ã‹ã‚‰ï¼‘ãƒã‚¤ãƒˆåˆ†å–å¾—ã™ã‚‹
 extern TCHAR NS_GetInputChar( int DeleteFlag )
 {
 #ifdef UNICODE
@@ -676,39 +676,39 @@ extern TCHAR NS_GetInputChar( int DeleteFlag )
 #else
 	char Result = 0 ;
 
-	// ƒXƒgƒbƒN‚ª–³‚¢ê‡‚Í wchar_t •¶š—ñ‚©‚ç•¶š‚ğæ“¾‚·‚é
+	// ã‚¹ãƒˆãƒƒã‚¯ãŒç„¡ã„å ´åˆã¯ wchar_t æ–‡å­—åˆ—ã‹ã‚‰æ–‡å­—ã‚’å–å¾—ã™ã‚‹
 	if( CharBuf.TempGetStockNum == 0 )
 	{
 		wchar_t WCharString[ 16 ] ;
 
 		do
 		{
-			// wchar_t ‚ÌƒXƒgƒbƒN‚©‚ç‚P•¶šæ“¾
+			// wchar_t ã®ã‚¹ãƒˆãƒƒã‚¯ã‹ã‚‰ï¼‘æ–‡å­—å–å¾—
 			WCharString[ 0 ] = GetInputChar_WCHAR_T( TRUE ) ;
 			WCharString[ 1 ] = L'\0' ;
 
-			// wchar_t ‚ÌƒXƒgƒbƒN‚ª–³‚©‚Á‚½‚ç 0 ‚ğ•Ô‚·
+			// wchar_t ã®ã‚¹ãƒˆãƒƒã‚¯ãŒç„¡ã‹ã£ãŸã‚‰ 0 ã‚’è¿”ã™
 			if( WCharString[ 0 ] == 0 )
 			{
 				return 0 ;
 			}
 
-			// ƒXƒgƒbƒN‚ª‚ ‚Á‚½‚çƒTƒƒQ[ƒgƒyƒAƒ`ƒFƒbƒN
+			// ã‚¹ãƒˆãƒƒã‚¯ãŒã‚ã£ãŸã‚‰ã‚µãƒ­ã‚²ãƒ¼ãƒˆãƒšã‚¢ãƒã‚§ãƒƒã‚¯
 			if( CHECK_WCHAR_T_DOUBLE( WCharString[ 0 ] ) )
 			{
-				// ƒTƒƒQ[ƒgƒyƒA‚¾‚Á‚½‚çX‚É‚P•¶šæ“¾
+				// ã‚µãƒ­ã‚²ãƒ¼ãƒˆãƒšã‚¢ã ã£ãŸã‚‰æ›´ã«ï¼‘æ–‡å­—å–å¾—
 				WCharString[ 1 ] = GetInputChar_WCHAR_T( TRUE ) ;
 				WCharString[ 2 ] = L'\0' ;
 			}
 
-			// ƒ}ƒ‹ƒ`ƒoƒCƒg•¶š—ñ‚É•ÏŠ·
+			// ãƒãƒ«ãƒãƒã‚¤ãƒˆæ–‡å­—åˆ—ã«å¤‰æ›
 			CharBuf.TempGetStockNum = ConvString( ( const char * )WCharString, -1, WCHAR_T_CHARCODEFORMAT, CharBuf.TempGetStock, sizeof( CharBuf.TempGetStock ), _TCHARCODEFORMAT ) ;
 
-			// ƒ}ƒ‹ƒ`ƒoƒCƒg•¶š—ñ‚É•ÏŠ·‚Å‚«‚½‚çƒ‹[ƒv‚ğ”²‚¯‚é
+			// ãƒãƒ«ãƒãƒã‚¤ãƒˆæ–‡å­—åˆ—ã«å¤‰æ›ã§ããŸã‚‰ãƒ«ãƒ¼ãƒ—ã‚’æŠœã‘ã‚‹
 		}while( CharBuf.TempGetStockNum <= 0 ) ;
 	}
 
-	// ƒXƒgƒbƒN‚©‚ç‚P•¶š•Ô‚·
+	// ã‚¹ãƒˆãƒƒã‚¯ã‹ã‚‰ï¼‘æ–‡å­—è¿”ã™
 	Result = CharBuf.TempGetStock[ 0 ] ;
 	if( DeleteFlag )
 	{
@@ -723,21 +723,21 @@ extern TCHAR NS_GetInputChar( int DeleteFlag )
 #endif
 }
 
-// •¶šƒR[ƒhƒoƒbƒtƒ@‚É—­‚Ü‚Á‚½ƒf[ƒ^‚©‚ç‚PƒoƒCƒg•ªæ“¾‚·‚é
+// æ–‡å­—ã‚³ãƒ¼ãƒ‰ãƒãƒƒãƒ•ã‚¡ã«æºœã¾ã£ãŸãƒ‡ãƒ¼ã‚¿ã‹ã‚‰ï¼‘ãƒã‚¤ãƒˆåˆ†å–å¾—ã™ã‚‹
 extern wchar_t GetInputChar_WCHAR_T( int DeleteFlag )
 {
 	wchar_t RetChar ;
 
-	// ƒoƒbƒtƒ@‚É•¶š‚ª‚È‚©‚Á‚½ê‡‚Í‚O‚ğ•Ô‚·
+	// ãƒãƒƒãƒ•ã‚¡ã«æ–‡å­—ãŒãªã‹ã£ãŸå ´åˆã¯ï¼ã‚’è¿”ã™
 	if( CharBuf.EdPoint == CharBuf.StPoint )
 	{
 		return 0 ;
 	}
 
-	// •Ô‚·•¶šƒR[ƒh‚ğƒZƒbƒg
+	// è¿”ã™æ–‡å­—ã‚³ãƒ¼ãƒ‰ã‚’ã‚»ãƒƒãƒˆ
 	RetChar = CharBuf.CharBuffer[ CharBuf.StPoint ] ;
 
-	// —LŒøƒf[ƒ^ƒXƒ^[ƒgƒ|ƒCƒ“ƒ^‚ğƒCƒ“ƒNƒŠƒƒ“ƒg
+	// æœ‰åŠ¹ãƒ‡ãƒ¼ã‚¿ã‚¹ã‚¿ãƒ¼ãƒˆãƒã‚¤ãƒ³ã‚¿ã‚’ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆ
 	if( DeleteFlag )
 	{
 		CharBuf.StPoint ++ ;
@@ -746,15 +746,15 @@ extern wchar_t GetInputChar_WCHAR_T( int DeleteFlag )
 
 	if( RetChar == -1 ) 
 	{
-		DXST_LOGFILE_ADDUTF16LE( "\x87\x65\x57\x5b\xd0\x30\xc3\x30\xd5\x30\xa1\x30\xa8\x30\xe9\x30\xfc\x30\x0a\x00\x00"/*@ L"•¶šƒoƒbƒtƒ@ƒGƒ‰[\n" @*/ ) ;
+		DXST_LOGFILE_ADDUTF16LE( "\x87\x65\x57\x5b\xd0\x30\xc3\x30\xd5\x30\xa1\x30\xa8\x30\xe9\x30\xfc\x30\x0a\x00\x00"/*@ L"æ–‡å­—ãƒãƒƒãƒ•ã‚¡ã‚¨ãƒ©ãƒ¼\n" @*/ ) ;
 		return ( wchar_t )-1 ;
 	}
 
-	// •¶šƒR[ƒh‚ğ•Ô‚·
+	// æ–‡å­—ã‚³ãƒ¼ãƒ‰ã‚’è¿”ã™
 	return RetChar ;
 }
 
-// •¶šƒR[ƒhƒoƒbƒtƒ@‚É—­‚Ü‚Á‚½ƒf[ƒ^‚©‚ç‚P•¶š•ªæ“¾‚·‚é
+// æ–‡å­—ã‚³ãƒ¼ãƒ‰ãƒãƒƒãƒ•ã‚¡ã«æºœã¾ã£ãŸãƒ‡ãƒ¼ã‚¿ã‹ã‚‰ï¼‘æ–‡å­—åˆ†å–å¾—ã™ã‚‹
 extern int NS_GetOneChar( TCHAR *CharBuffer , int DeleteFlag )
 {
 #ifdef UNICODE
@@ -763,45 +763,45 @@ extern int NS_GetOneChar( TCHAR *CharBuffer , int DeleteFlag )
 	int CharBytes ;
 	int Result = 0 ;
 
-	// 1ƒoƒCƒg–Ú‚ğæ“¾
+	// 1ãƒã‚¤ãƒˆç›®ã‚’å–å¾—
 	CharBuffer[ 0 ] = NS_GetInputChar( FALSE ) ;
 
-	// ‰½‚à•¶š‚ª–³‚©‚Á‚½‚ç 0 ‚ğ•Ô‚·
+	// ä½•ã‚‚æ–‡å­—ãŒç„¡ã‹ã£ãŸã‚‰ 0 ã‚’è¿”ã™
 	if( CharBuffer[ 0 ] == 0 )
 	{
 		return 0 ;
 	}
 
-	// •¡”ƒoƒCƒg•¶š‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+	// è¤‡æ•°ãƒã‚¤ãƒˆæ–‡å­—ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 	CharBytes = GetCharBytes_( CharBuffer, _TCHARCODEFORMAT ) ;
 	if( CharBytes == 1 )
 	{
-		// ƒoƒbƒtƒ@íœw’è‚ª‚ ‚éê‡‚Ííœ
+		// ãƒãƒƒãƒ•ã‚¡å‰Šé™¤æŒ‡å®šãŒã‚ã‚‹å ´åˆã¯å‰Šé™¤
 		if( DeleteFlag )
 		{
 			NS_GetInputChar( TRUE ) ;
 		}
 
-		// 1 ‚ğ•Ô‚·
+		// 1 ã‚’è¿”ã™
 		return 1 ;
 	}
 
-	// •¡”ƒoƒCƒg‚Ì•¶š‚ğƒRƒs[
+	// è¤‡æ•°ãƒã‚¤ãƒˆã®æ–‡å­—ã‚’ã‚³ãƒ”ãƒ¼
 	_MEMCPY( CharBuffer, CharBuf.TempGetStock, CharBuf.TempGetStockNum ) ;
 	Result = CharBuf.TempGetStockNum ;
 
-	// ƒoƒbƒtƒ@íœw’è‚ª‚ ‚éê‡‚ÍƒXƒgƒbƒN‚ğ 0 ‚É‚·‚é
+	// ãƒãƒƒãƒ•ã‚¡å‰Šé™¤æŒ‡å®šãŒã‚ã‚‹å ´åˆã¯ã‚¹ãƒˆãƒƒã‚¯ã‚’ 0 ã«ã™ã‚‹
 	if( DeleteFlag )
 	{
 		CharBuf.TempGetStockNum = 0 ;
 	}
 
-	// •¶š‚ÌƒoƒCƒg”‚ğ•Ô‚·
+	// æ–‡å­—ã®ãƒã‚¤ãƒˆæ•°ã‚’è¿”ã™
 	return Result ;
 #endif
 }
 
-// •¶šƒR[ƒhƒoƒbƒtƒ@‚É—­‚Ü‚Á‚½ƒf[ƒ^‚©‚ç‚P•¶š•ªæ“¾‚·‚é
+// æ–‡å­—ã‚³ãƒ¼ãƒ‰ãƒãƒƒãƒ•ã‚¡ã«æºœã¾ã£ãŸãƒ‡ãƒ¼ã‚¿ã‹ã‚‰ï¼‘æ–‡å­—åˆ†å–å¾—ã™ã‚‹
 extern int GetOneChar_WCHAR_T( wchar_t *CharBuffer , int DeleteFlag )
 {
 	int Ret ;
@@ -811,30 +811,30 @@ extern int GetOneChar_WCHAR_T( wchar_t *CharBuffer , int DeleteFlag )
 
 	Ret = 0 ;
 
-	// ƒoƒbƒtƒ@‚É•¶š‚ª‚È‚©‚Á‚½ê‡‚Í‚O‚ğ•Ô‚·
+	// ãƒãƒƒãƒ•ã‚¡ã«æ–‡å­—ãŒãªã‹ã£ãŸå ´åˆã¯ï¼ã‚’è¿”ã™
 	if( CharBuf.EdPoint == CharBuf.StPoint )
 	{
 		return 0 ;
 	}
 
-	// ‚P•¶š–Ú‚ğæ“¾
+	// ï¼‘æ–‡å­—ç›®ã‚’å–å¾—
 	CharBuffer[ 0 ] = CharBuf.CharBuffer[ CharBuf.StPoint ] ;
 	Ret ++ ;
 
-	// —LŒøƒf[ƒ^ƒXƒ^[ƒgƒ|ƒCƒ“ƒ^‚ğƒCƒ“ƒNƒŠƒƒ“ƒg
+	// æœ‰åŠ¹ãƒ‡ãƒ¼ã‚¿ã‚¹ã‚¿ãƒ¼ãƒˆãƒã‚¤ãƒ³ã‚¿ã‚’ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆ
 	CharBuf.StPoint ++ ;
 	if( CharBuf.StPoint == CHARBUFFER_SIZE + 1 )
 	{
 		CharBuf.StPoint = 0 ;
 	}
 
-	// ƒTƒƒQ[ƒgƒyƒA‚©‚Ç‚¤‚©‚ğƒ`ƒFƒbƒN
+	// ã‚µãƒ­ã‚²ãƒ¼ãƒˆãƒšã‚¢ã‹ã©ã†ã‹ã‚’ãƒã‚§ãƒƒã‚¯
 	if( GetCtrlCodeCmp_WCHAR_T( CharBuffer[ 0 ] ) == 0 && CHECK_WCHAR_T_DOUBLE( *CharBuffer ) )
 	{
-		// ƒoƒbƒtƒ@‚É•¶š‚ª‚È‚©‚Á‚½ê‡‚Í‚O‚ğ•Ô‚·	
+		// ãƒãƒƒãƒ•ã‚¡ã«æ–‡å­—ãŒãªã‹ã£ãŸå ´åˆã¯ï¼ã‚’è¿”ã™	
 		if( CharBuf.EdPoint == CharBuf.StPoint )
 		{
-			// 1 wchar_t •ªƒf[ƒ^ƒXƒ^[ƒgƒ|ƒCƒ“ƒ^‚ğ–ß‚·
+			// 1 wchar_t åˆ†ãƒ‡ãƒ¼ã‚¿ã‚¹ã‚¿ãƒ¼ãƒˆãƒã‚¤ãƒ³ã‚¿ã‚’æˆ»ã™
 			if( CharBuf.StPoint == 0 )
 			{
 				CharBuf.StPoint = CHARBUFFER_SIZE ;
@@ -847,11 +847,11 @@ extern int GetOneChar_WCHAR_T( wchar_t *CharBuffer , int DeleteFlag )
 			return 0 ;
 		}
 
-		// 2 wchar_t –Ú‚ğæ“¾
+		// 2 wchar_t ç›®ã‚’å–å¾—
 		CharBuffer[ 1 ] = CharBuf.CharBuffer[ CharBuf.StPoint ] ;
 		Ret ++ ;
 
-		// —LŒøƒf[ƒ^ƒXƒ^[ƒgƒ|ƒCƒ“ƒ^‚ğƒCƒ“ƒNƒŠƒƒ“ƒg
+		// æœ‰åŠ¹ãƒ‡ãƒ¼ã‚¿ã‚¹ã‚¿ãƒ¼ãƒˆãƒã‚¤ãƒ³ã‚¿ã‚’ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆ
 		if( DeleteFlag )
 		{
 			CharBuf.StPoint ++ ;
@@ -862,7 +862,7 @@ extern int GetOneChar_WCHAR_T( wchar_t *CharBuffer , int DeleteFlag )
 		}
 	}
 
-	// ‚à‚µƒoƒbƒtƒ@íœƒtƒ‰ƒO‚ª‚Á—§‚Á‚Ä‚¢‚È‚¯‚ê‚Î‚PƒoƒCƒg•ª–ß‚·
+	// ã‚‚ã—ãƒãƒƒãƒ•ã‚¡å‰Šé™¤ãƒ•ãƒ©ã‚°ãŒã£ç«‹ã£ã¦ã„ãªã‘ã‚Œã°ï¼‘ãƒã‚¤ãƒˆåˆ†æˆ»ã™
 	if( !DeleteFlag )
 	{
 		if( CharBuf.StPoint == 0 )
@@ -875,11 +875,11 @@ extern int GetOneChar_WCHAR_T( wchar_t *CharBuffer , int DeleteFlag )
 		}
 	}
 
-	// æ“¾‚µ‚½ƒoƒCƒg”‚ğ•Ô‚·
+	// å–å¾—ã—ãŸãƒã‚¤ãƒˆæ•°ã‚’è¿”ã™
 	return Ret ;
 }
 
-// •¶šƒR[ƒhƒoƒbƒtƒ@‚É—­‚Ü‚Á‚½ƒf[ƒ^‚©‚ç‚PƒoƒCƒg•ªæ“¾‚·‚éAƒoƒbƒtƒ@‚É‚È‚É‚à•¶šƒR[ƒh‚ª‚È‚¢ê‡‚ÍƒL[‚ª‰Ÿ‚³‚ê‚é‚Ü‚Å‘Ò‚Â
+// æ–‡å­—ã‚³ãƒ¼ãƒ‰ãƒãƒƒãƒ•ã‚¡ã«æºœã¾ã£ãŸãƒ‡ãƒ¼ã‚¿ã‹ã‚‰ï¼‘ãƒã‚¤ãƒˆåˆ†å–å¾—ã™ã‚‹ã€ãƒãƒƒãƒ•ã‚¡ã«ãªã«ã‚‚æ–‡å­—ã‚³ãƒ¼ãƒ‰ãŒãªã„å ´åˆã¯ã‚­ãƒ¼ãŒæŠ¼ã•ã‚Œã‚‹ã¾ã§å¾…ã¤
 extern TCHAR NS_GetInputCharWait( int DeleteFlag )
 {
 #ifdef UNICODE
@@ -887,7 +887,7 @@ extern TCHAR NS_GetInputCharWait( int DeleteFlag )
 #else
 	TCHAR RetChar = 0 ;
 
-	// ƒL[ƒoƒbƒtƒ@‚É•¶šƒR[ƒh‚ª—­‚Ü‚é‚Ü‚Å‘Ò‚Â
+	// ã‚­ãƒ¼ãƒãƒƒãƒ•ã‚¡ã«æ–‡å­—ã‚³ãƒ¼ãƒ‰ãŒæºœã¾ã‚‹ã¾ã§å¾…ã¤
 	while( NS_ProcessMessage() == 0 )
 	{
 		RetChar = NS_GetInputChar( DeleteFlag ) ;
@@ -897,17 +897,17 @@ extern TCHAR NS_GetInputCharWait( int DeleteFlag )
 		}
 	}
 
-	// ƒL[ƒR[ƒh‚ğ•Ô‚·
+	// ã‚­ãƒ¼ã‚³ãƒ¼ãƒ‰ã‚’è¿”ã™
 	return RetChar ;
 #endif
 }
 
-// •¶šƒR[ƒhƒoƒbƒtƒ@‚É—­‚Ü‚Á‚½ƒf[ƒ^‚©‚ç‚PƒoƒCƒg•ªæ“¾‚·‚éAƒoƒbƒtƒ@‚É‚È‚É‚à•¶šƒR[ƒh‚ª‚È‚¢ê‡‚ÍƒL[‚ª‰Ÿ‚³‚ê‚é‚Ü‚Å‘Ò‚Â
+// æ–‡å­—ã‚³ãƒ¼ãƒ‰ãƒãƒƒãƒ•ã‚¡ã«æºœã¾ã£ãŸãƒ‡ãƒ¼ã‚¿ã‹ã‚‰ï¼‘ãƒã‚¤ãƒˆåˆ†å–å¾—ã™ã‚‹ã€ãƒãƒƒãƒ•ã‚¡ã«ãªã«ã‚‚æ–‡å­—ã‚³ãƒ¼ãƒ‰ãŒãªã„å ´åˆã¯ã‚­ãƒ¼ãŒæŠ¼ã•ã‚Œã‚‹ã¾ã§å¾…ã¤
 extern wchar_t GetInputCharWait_WCHAR_T( int DeleteFlag )
 {
 	wchar_t RetChar = 0 ;
 
-	// ƒL[ƒoƒbƒtƒ@‚É•¶šƒR[ƒh‚ª—­‚Ü‚é‚Ü‚Å‘Ò‚Â
+	// ã‚­ãƒ¼ãƒãƒƒãƒ•ã‚¡ã«æ–‡å­—ã‚³ãƒ¼ãƒ‰ãŒæºœã¾ã‚‹ã¾ã§å¾…ã¤
 	while( NS_ProcessMessage() == 0 )
 	{
 		RetChar = GetInputChar_WCHAR_T( DeleteFlag ) ;
@@ -917,11 +917,11 @@ extern wchar_t GetInputCharWait_WCHAR_T( int DeleteFlag )
 		}
 	}
 
-	// ƒL[ƒR[ƒh‚ğ•Ô‚·
+	// ã‚­ãƒ¼ã‚³ãƒ¼ãƒ‰ã‚’è¿”ã™
 	return RetChar ;
 }
 
-// •¶šƒR[ƒhƒoƒbƒtƒ@‚É—­‚Ü‚Á‚½ƒf[ƒ^‚©‚ç‚P•¶š•ªæ“¾‚·‚éAƒoƒbƒtƒ@‚É‰½‚à•¶šƒR[ƒh‚ª‚È‚¢ê‡‚ÍƒL[‚ª‰Ÿ‚³‚ê‚é‚Ü‚Å‘Ò‚Â
+// æ–‡å­—ã‚³ãƒ¼ãƒ‰ãƒãƒƒãƒ•ã‚¡ã«æºœã¾ã£ãŸãƒ‡ãƒ¼ã‚¿ã‹ã‚‰ï¼‘æ–‡å­—åˆ†å–å¾—ã™ã‚‹ã€ãƒãƒƒãƒ•ã‚¡ã«ä½•ã‚‚æ–‡å­—ã‚³ãƒ¼ãƒ‰ãŒãªã„å ´åˆã¯ã‚­ãƒ¼ãŒæŠ¼ã•ã‚Œã‚‹ã¾ã§å¾…ã¤
 extern int NS_GetOneCharWait( TCHAR *CharBuffer , int DeleteFlag ) 
 {
 #ifdef UNICODE
@@ -929,7 +929,7 @@ extern int NS_GetOneCharWait( TCHAR *CharBuffer , int DeleteFlag )
 #else
 	int Ret = 0 ;
 
-	// ƒL[ƒoƒbƒtƒ@‚É•¶šƒR[ƒh‚ª—­‚Ü‚é‚Ü‚Å‘Ò‚Â
+	// ã‚­ãƒ¼ãƒãƒƒãƒ•ã‚¡ã«æ–‡å­—ã‚³ãƒ¼ãƒ‰ãŒæºœã¾ã‚‹ã¾ã§å¾…ã¤
 	while( NS_ProcessMessage() == 0 )
 	{
 		Ret = NS_GetOneChar( CharBuffer , DeleteFlag ) ;
@@ -939,17 +939,17 @@ extern int NS_GetOneCharWait( TCHAR *CharBuffer , int DeleteFlag )
 		}
 	}
 
-	// æ“¾‚µ‚½ƒoƒCƒg”‚ğ•Ô‚·
+	// å–å¾—ã—ãŸãƒã‚¤ãƒˆæ•°ã‚’è¿”ã™
 	return Ret ;
 #endif
 }
 
-// •¶šƒR[ƒhƒoƒbƒtƒ@‚É—­‚Ü‚Á‚½ƒf[ƒ^‚©‚ç‚P•¶š•ªæ“¾‚·‚éAƒoƒbƒtƒ@‚É‰½‚à•¶šƒR[ƒh‚ª‚È‚¢ê‡‚ÍƒL[‚ª‰Ÿ‚³‚ê‚é‚Ü‚Å‘Ò‚Â
+// æ–‡å­—ã‚³ãƒ¼ãƒ‰ãƒãƒƒãƒ•ã‚¡ã«æºœã¾ã£ãŸãƒ‡ãƒ¼ã‚¿ã‹ã‚‰ï¼‘æ–‡å­—åˆ†å–å¾—ã™ã‚‹ã€ãƒãƒƒãƒ•ã‚¡ã«ä½•ã‚‚æ–‡å­—ã‚³ãƒ¼ãƒ‰ãŒãªã„å ´åˆã¯ã‚­ãƒ¼ãŒæŠ¼ã•ã‚Œã‚‹ã¾ã§å¾…ã¤
 extern int GetOneCharWait_WCHAR_T( wchar_t *CharBuffer , int DeleteFlag ) 
 {
 	int Ret = 0 ;
 
-	// ƒL[ƒoƒbƒtƒ@‚É•¶šƒR[ƒh‚ª—­‚Ü‚é‚Ü‚Å‘Ò‚Â
+	// ã‚­ãƒ¼ãƒãƒƒãƒ•ã‚¡ã«æ–‡å­—ã‚³ãƒ¼ãƒ‰ãŒæºœã¾ã‚‹ã¾ã§å¾…ã¤
 	while( NS_ProcessMessage() == 0 )
 	{
 		Ret = GetOneChar_WCHAR_T( CharBuffer , DeleteFlag ) ;
@@ -959,14 +959,14 @@ extern int GetOneCharWait_WCHAR_T( wchar_t *CharBuffer , int DeleteFlag )
 		}
 	}
 
-	// æ“¾‚µ‚½ƒoƒCƒg”‚ğ•Ô‚·
+	// å–å¾—ã—ãŸãƒã‚¤ãƒˆæ•°ã‚’è¿”ã™
 	return Ret ;
 }
 
 
 #ifndef DX_NON_KEYEX
 
-// ‚h‚l‚dƒƒbƒZ[ƒW‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+// ï¼©ï¼­ï¼¥ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 extern LRESULT IMEProc( HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam )
 {
 	HIMC Imc ;
@@ -975,7 +975,7 @@ extern LRESULT IMEProc( HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam )
 
 	SETUP_WIN_API
 
-	// ‚h‚l‚d–³‹ó‘Ô‚¾‚Á‚½ê‡‚Í‚È‚É‚à‚¹‚¸I—¹
+	// ï¼©ï¼­ï¼¥ç„¡è¦–çŠ¶æ…‹ã ã£ãŸå ´åˆã¯ãªã«ã‚‚ã›ãšçµ‚äº†
 /*	if( CharBuf.IMEUseFlag == FALSE )
 	{
 //		DefWindowProcWFunc( hWnd , message , wParam , lParam ) ;
@@ -987,16 +987,16 @@ extern LRESULT IMEProc( HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam )
 		Input = NULL ;
 	}
 
-	// •Ï‰»‚ª‚ ‚Á‚½ƒtƒ‰ƒOƒZƒbƒg
+	// å¤‰åŒ–ãŒã‚ã£ãŸãƒ•ãƒ©ã‚°ã‚»ãƒƒãƒˆ
 	CharBuf.ChangeFlag = TRUE ;
 
-	// ƒJ[ƒ\ƒ‹“_–Åˆ—‚ÌƒJƒEƒ“ƒ^‚ğƒŠƒZƒbƒg
+	// ã‚«ãƒ¼ã‚½ãƒ«ç‚¹æ»…å‡¦ç†ã®ã‚«ã‚¦ãƒ³ã‚¿ã‚’ãƒªã‚»ãƒƒãƒˆ
 	ResetKeyInputCursorBrinkCount() ;
 
-	// ƒXƒCƒbƒ`
+	// ã‚¹ã‚¤ãƒƒãƒ
 	switch( message )
 	{
-	// ‚h‚l‚dƒŠƒNƒGƒXƒg
+	// ï¼©ï¼­ï¼¥ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
 	case WM_IME_REQUEST :
 		if( Input != NULL && wParam == IMR_RECONVERTSTRING )
 		{
@@ -1006,7 +1006,7 @@ extern LRESULT IMEProc( HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam )
 			int TargetStrLength ;
 			D_RECONVERTSTRING *ReConvString = ( D_RECONVERTSTRING * )lParam ;
 
-			// Ä•ÏŠ·‘ÎÛ‚Ì•¶š”‚ğæ“¾
+			// å†å¤‰æ›å¯¾è±¡ã®æ–‡å­—æ•°ã‚’å–å¾—
 			if( Input->SelectStart != -1 )
 			{
 				if( Input->SelectStart > Input->SelectEnd )
@@ -1027,13 +1027,13 @@ extern LRESULT IMEProc( HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam )
 				TargetStrLength = ( int )_WCSLEN( Input->Buffer ) ;
 			}
 
-			// Ä•ÏŠ·î•ñ‚Ìİ’è‚ª—v‹‚³‚ê‚Ä‚¢‚È‚¢ê‡‚Í•K—vƒf[ƒ^ƒTƒCƒY‚ğ•Ô‚·
+			// å†å¤‰æ›æƒ…å ±ã®è¨­å®šãŒè¦æ±‚ã•ã‚Œã¦ã„ãªã„å ´åˆã¯å¿…è¦ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºã‚’è¿”ã™
 			if( ReConvString == NULL )
 			{
 				return ( LRESULT )( sizeof( D_RECONVERTSTRING ) + ( TargetStrLength + 1 ) * sizeof( wchar_t ) ) ;
 			}
 
-			// Ä•ÏŠ·î•ñ‚Ìİ’è‚ğs‚¤
+			// å†å¤‰æ›æƒ…å ±ã®è¨­å®šã‚’è¡Œã†
 			TargetStr = ( wchar_t * )( ( BYTE * )ReConvString + sizeof( D_RECONVERTSTRING ) ) ;
 			if( Input != NULL && Input->SelectStart != -1 )
 			{
@@ -1053,27 +1053,27 @@ extern LRESULT IMEProc( HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam )
 			Imc = WinAPIData.ImmFunc.ImmGetContextFunc( hWnd ) ;
 			if( Imc != NULL )
 			{
-				// Ä•ÏŠ·‘ÎÛ•¶š—ñ‚ÌˆÊ’u‚Æ•¶š”‚ğƒZƒbƒg
+				// å†å¤‰æ›å¯¾è±¡æ–‡å­—åˆ—ã®ä½ç½®ã¨æ–‡å­—æ•°ã‚’ã‚»ãƒƒãƒˆ
 				if( Input->SelectStart != -1 )
 				{
-					// Ä•ÏŠ·‚Ì‘ÎÛ‚Æ‚È‚é•”•ª‚ÍA“n‚µ‚½•¶š—ñ‚Ìæ“ª‚©‚ç‚·‚×‚Ä
+					// å†å¤‰æ›ã®å¯¾è±¡ã¨ãªã‚‹éƒ¨åˆ†ã¯ã€æ¸¡ã—ãŸæ–‡å­—åˆ—ã®å…ˆé ­ã‹ã‚‰ã™ã¹ã¦
 					ReConvString->dwCompStrOffset = 0 ;
 					ReConvString->dwCompStrLen    = ( DWORD )TargetStrLength ;
 				}
 				else
 				{
-					// ”ÍˆÍ‘I‘ğ‚ª–³‚¢‚Æ‚«‚Í“ü—Í•¶š—ñ‘S‘Ì‚ğ“n‚µAƒJ[ƒ\ƒ‹ˆÊ’u‚ğw’è‚·‚é
+					// ç¯„å›²é¸æŠãŒç„¡ã„ã¨ãã¯å…¥åŠ›æ–‡å­—åˆ—å…¨ä½“ã‚’æ¸¡ã—ã€ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ã‚’æŒ‡å®šã™ã‚‹
 					ReConvString->dwCompStrOffset = Input->Point * sizeof( wchar_t ) ;
 					ReConvString->dwCompStrLen    = ( DWORD )_WCSLEN( Input->Buffer ) ;
 				}
 
-				// Ä•ÏŠ·‚Ì€”õ
+				// å†å¤‰æ›ã®æº–å‚™
 				WinAPIData.ImmFunc.ImmSetCompositionStringFunc( Imc, SCS_QUERYRECONVERTSTRING, ReConvString, ReConvString->dwSize, NULL, 0 ) ;
 
-				// Ä•ÏŠ·‚ÌÀs
+				// å†å¤‰æ›ã®å®Ÿè¡Œ
 				if( WinAPIData.ImmFunc.ImmSetCompositionStringFunc( Imc, SCS_SETRECONVERTSTRING, ReConvString, ReConvString->dwSize, NULL, 0 ) != 0 )
 				{
-					// Ä•ÏŠ·‘ÎÛ‚Æ‚È‚Á‚½‰ÓŠ‚ğíœ‚·‚é
+					// å†å¤‰æ›å¯¾è±¡ã¨ãªã£ãŸç®‡æ‰€ã‚’å‰Šé™¤ã™ã‚‹
 					if( Input->SelectStart == -1 )
 					{
 						Input->SelectStart = ( int )( ReConvString->dwCompStrOffset / sizeof( wchar_t ) ) ;
@@ -1092,31 +1092,31 @@ extern LRESULT IMEProc( HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam )
 		}
 		break ;
 
-	// ‚h‚l‚dƒEƒCƒ“ƒhƒEƒAƒNƒeƒBƒuó‘Ô•Ï‰»
+	// ï¼©ï¼­ï¼¥ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚¢ã‚¯ãƒ†ã‚£ãƒ–çŠ¶æ…‹å¤‰åŒ–
 	case WM_IME_SETCONTEXT :
 //		lParam &= ~ISC_SHOWUICANDIDATEWINDOW ;
 		lParam = 0;
 		return DefWindowProcWFunc( hWnd , message , wParam , lParam ) ;
 
-	// ‚h‚l‚d“ü—ÍŠJnƒƒbƒZ[ƒW
+	// ï¼©ï¼­ï¼¥å…¥åŠ›é–‹å§‹ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 	case WM_IME_STARTCOMPOSITION :
 
 		CharBuf.InputPoint = 0 ;
 		CharBuf.IMEInputFlag = TRUE ;
 
-//		// ‚h‚l‚d‚Ìg—pó‘Ô‚ğ“¾‚é
+//		// ï¼©ï¼­ï¼¥ã®ä½¿ç”¨çŠ¶æ…‹ã‚’å¾—ã‚‹
 //		if( CharBuf.IMESwitch == FALSE && WinData.WindowsVersion >= DX_WINDOWSVERSION_VISTA )
 //		{
 //			CharBuf.IMESwitch = TRUE ;
 //		}
 		return 0;
 
-	// ‚h‚l‚d“ü—ÍI—¹ƒƒbƒZ[ƒW
+	// ï¼©ï¼­ï¼¥å…¥åŠ›çµ‚äº†ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 	case WM_IME_ENDCOMPOSITION :
 		_MEMSET( CharBuf.InputString, 0, CHARBUFFER_SIZE );
 		CharBuf.IMEInputFlag = FALSE ;
 
-//		// ‚h‚l‚d‚Ìg—pó‘Ô‚ğ“¾‚é
+//		// ï¼©ï¼­ï¼¥ã®ä½¿ç”¨çŠ¶æ…‹ã‚’å¾—ã‚‹
 //		if( CharBuf.IMESwitch == TRUE && WinData.WindowsVersion >= DX_WINDOWSVERSION_VISTA )
 //		{
 //			CharBuf.IMESwitch = FALSE ;
@@ -1124,31 +1124,31 @@ extern LRESULT IMEProc( HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam )
 		break ;
 
 
-	// ‚h‚l‚d•¶š•ÒW•Ï‰»ƒƒbƒZ[ƒW
+	// ï¼©ï¼­ï¼¥æ–‡å­—ç·¨é›†å¤‰åŒ–ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 	case WM_IME_COMPOSITION :
 		{
 //			HWND DefHwnd = ImmGetDefaultIMEWnd( WinData.MainWindow ) ;
 			HWND DefHwnd = hWnd;
 
-			// “ü—ÍƒRƒ“ƒeƒLƒXƒg‚ğæ“¾
+			// å…¥åŠ›ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã‚’å–å¾—
 //			SendMessage( DefHwnd , WM_CLOSE , 0 , 0 ) ;
 			Imc = WinAPIData.ImmFunc.ImmGetContextFunc( DefHwnd ) ;
 //			Imc = WinAPIData.ImmFunc.ImmGetContextFunc( hWnd ) ;
 
-			// •ÒW•¶š•Ï‰»‚Ìˆ—
+			// ç·¨é›†æ–‡å­—å¤‰åŒ–æ™‚ã®å‡¦ç†
 			if( lParam & GCS_COMPSTR )
 			{
-				// •ÒW’†•¶š—ñ‚Ìæ“¾
+				// ç·¨é›†ä¸­æ–‡å­—åˆ—ã®å–å¾—
 				_MEMSET( CharBuf.InputString, 0, CHARBUFFER_SIZE );
 				WinAPIData.ImmFunc.ImmGetCompositionStringFunc( Imc , GCS_COMPSTR , CharBuf.InputString , CHARBUFFER_SIZE );
 			}
 
-			// •ÒW’†•¶šŒˆ’è‚Ìˆ—
+			// ç·¨é›†ä¸­æ–‡å­—æ±ºå®šæ™‚ã®å‡¦ç†
 			if( lParam & GCS_RESULTSTR )
 			{
 				_MEMSET( CharBuf.InputString, 0, CHARBUFFER_SIZE );
 				WinAPIData.ImmFunc.ImmGetCompositionStringFunc( Imc , GCS_RESULTSTR , CharBuf.InputString , CHARBUFFER_SIZE );
-				// ƒoƒbƒtƒ@‚ÉƒXƒgƒbƒN
+				// ãƒãƒƒãƒ•ã‚¡ã«ã‚¹ãƒˆãƒƒã‚¯
 				{
 					int StrLen , i ;
 
@@ -1159,11 +1159,11 @@ extern LRESULT IMEProc( HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam )
 					}
 				}
 
-				// •ÒW’†•¶š—ñ‰Šú‰»
+				// ç·¨é›†ä¸­æ–‡å­—åˆ—åˆæœŸåŒ–
 				_MEMSET( CharBuf.InputString, 0, sizeof( CharBuf.InputString ) );
 				WinAPIData.ImmFunc.ImmGetCompositionStringFunc( Imc , GCS_COMPSTR , CharBuf.InputString , CHARBUFFER_SIZE );
 
-				// •ÏŠ·Œó•â‚Ìî•ñ‚ğƒŠƒZƒbƒg
+				// å¤‰æ›å€™è£œã®æƒ…å ±ã‚’ãƒªã‚»ãƒƒãƒˆ
 				if( CharBuf.CandidateList )
 				{
 					DXFREE( CharBuf.CandidateList ) ;
@@ -1172,13 +1172,13 @@ extern LRESULT IMEProc( HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam )
 				}
 			}
 
-			// ƒJ[ƒ\ƒ‹ˆÊ’u•Ï‰»‚Ìˆ—
+			// ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®å¤‰åŒ–æ™‚ã®å‡¦ç†
 			if( lParam & GCS_CURSORPOS )
 			{
 				int OlgPoint = CharBuf.InputPoint ;
 				CharBuf.InputPoint = GetStringPoint2_WCHAR_T( CharBuf.InputString , WinAPIData.ImmFunc.ImmGetCompositionStringFunc( Imc , GCS_CURSORPOS , NULL , 0 ) ) ;
 
-				// •ÏŠ·Œó•â‚Ìî•ñ‚ğƒŠƒZƒbƒg
+				// å¤‰æ›å€™è£œã®æƒ…å ±ã‚’ãƒªã‚»ãƒƒãƒˆ
 //				if( CharBuf.CandidateList && OlgPoint != CharBuf.InputPoint )
 //				{
 //					DXFREE( CharBuf.CandidateList ) ;
@@ -1187,33 +1187,33 @@ extern LRESULT IMEProc( HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam )
 //				}
 			}
 
-			// •¶ßî•ñ•Ï‰»
+			// æ–‡ç¯€æƒ…å ±å¤‰åŒ–æ™‚
 			if( lParam & GCS_COMPCLAUSE )
 			{
-				// •¶ßî•ñ‚Ìæ“¾
+				// æ–‡ç¯€æƒ…å ±ã®å–å¾—
 				_MEMSET( CharBuf.ClauseData, 0, sizeof( CharBuf.ClauseData ) ) ;
 				CharBuf.ClauseNum = WinAPIData.ImmFunc.ImmGetCompositionStringFunc( Imc , GCS_COMPCLAUSE , ( void * )CharBuf.ClauseData , 1024 * sizeof( int ) ) / 4 ;
 			}
 
-			// “ü—Í•¶š‘®«•Ï‰»
+			// å…¥åŠ›æ–‡å­—å±æ€§å¤‰åŒ–æ™‚
 			if( lParam & GCS_COMPATTR )
 			{
 				_MEMSET( CharBuf.CharAttr, 0, sizeof( CharBuf.CharAttr ) ) ;
 				CharBuf.CharAttrNum = WinAPIData.ImmFunc.ImmGetCompositionStringFunc( Imc , GCS_COMPATTR , ( void * )CharBuf.CharAttr , 1024 * sizeof( BYTE ) ) ;
 			}
 
-			// “ü—ÍƒRƒ“ƒeƒLƒXƒg‚Ìíœ
+			// å…¥åŠ›ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã®å‰Šé™¤
 			WinAPIData.ImmFunc.ImmReleaseContextFunc( DefHwnd , Imc );
 //			WinAPIData.ImmFunc.ImmReleaseContextFunc( hWnd , Imc ) ;
 		}
 		break;
 
-	// ‚h‚l‚dó‘Ô•Ï‰»ƒƒbƒZ[ƒW
+	// ï¼©ï¼­ï¼¥çŠ¶æ…‹å¤‰åŒ–ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 	case WM_IME_NOTIFY :
 
 		switch( wParam )
 		{
-		// ‚h‚l‚d‚Ì‚n‚mA‚n‚e‚e•Ï‰»
+		// ï¼©ï¼­ï¼¥ã®ï¼¯ï¼®ã€ï¼¯ï¼¦ï¼¦å¤‰åŒ–
 		case IMN_SETOPENSTATUS :
 
 			if( Flag ) break ;
@@ -1222,7 +1222,7 @@ extern LRESULT IMEProc( HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam )
 
 			DefWindowProcWFunc( hWnd , message , wParam , lParam ) ;
 
-			// ƒL[‚ª‰Ÿ‚³‚ê‚Ä‚¢‚éŠÔ‚±‚±‚Å~‚Ü‚é
+			// ã‚­ãƒ¼ãŒæŠ¼ã•ã‚Œã¦ã„ã‚‹é–“ã“ã“ã§æ­¢ã¾ã‚‹
 			{
 				ULONGLONG Time = NS_GetNowSysPerformanceCount() ;
 
@@ -1231,7 +1231,7 @@ extern LRESULT IMEProc( HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam )
 
 			Flag = FALSE ;
 
-			// ‚h‚l‚d‚Ìg—pó‘Ô‚ğ“¾‚é
+			// ï¼©ï¼­ï¼¥ã®ä½¿ç”¨çŠ¶æ…‹ã‚’å¾—ã‚‹
 			{
 				HWND DefHwnd = hWnd;
 //				HWND DefHwnd = ImmGetDefaultIMEWnd( hWnd ) ;
@@ -1248,7 +1248,7 @@ extern LRESULT IMEProc( HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam )
 			break ;
 
 
-		// Œó•â•Ï‰»‚Ìˆ—
+		// å€™è£œå¤‰åŒ–æ™‚ã®å‡¦ç†
 		case IMN_CHANGECANDIDATE:
 		case IMN_OPENCANDIDATE :
 		case IMN_SETCANDIDATEPOS :
@@ -1259,11 +1259,11 @@ extern LRESULT IMEProc( HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam )
 				HWND DefHwnd = hWnd;
 //				int Result ;
 
-				// “ü—ÍƒRƒ“ƒeƒLƒXƒg‚ğæ“¾
+				// å…¥åŠ›ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã‚’å–å¾—
 				Imc = WinAPIData.ImmFunc.ImmGetContextFunc( DefHwnd ) ;
 //				Imc = WinAPIData.ImmFunc.ImmGetContextFunc( hWnd ) ;
 
-				// ƒoƒbƒtƒ@ƒTƒCƒYæ“¾
+				// ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚ºå–å¾—
 //				BufSize = ImmGetCandidateListCount( Imc , &ListSize ) ;
 				BufSize = WinAPIData.ImmFunc.ImmGetCandidateListFunc( Imc , 0 , NULL , 0 ) ;
 				if( BufSize != 0 )
@@ -1272,11 +1272,11 @@ extern LRESULT IMEProc( HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam )
 					if( BufSize == 0 )
 					{
 						WinAPIData.ImmFunc.ImmReleaseContextFunc( DefHwnd , Imc );
-						DXST_LOGFILEFMT_ADDUTF16LE(( "\x22\x6f\x57\x5b\x09\x59\xdb\x63\x19\x50\xdc\x88\x6e\x30\xc7\x30\xfc\x30\xbf\x30\xb5\x30\xa4\x30\xba\x30\x4c\x30\x10\xff\x67\x30\x57\x30\x5f\x30\x20\x00\x20\x00\x44\x00\x65\x00\x66\x00\x48\x00\x57\x00\x4e\x00\x44\x00\x3a\x00\x25\x00\x78\x00\x20\x00\x49\x00\x4d\x00\x43\x00\x3a\x00\x25\x00\x78\x00\x0a\x00\x00"/*@ L"Š¿š•ÏŠ·Œó•â‚Ìƒf[ƒ^ƒTƒCƒY‚ª‚O‚Å‚µ‚½  DefHWND:%x IMC:%x\n" @*/, DefHwnd, Imc )) ;
+						DXST_LOGFILEFMT_ADDUTF16LE(( "\x22\x6f\x57\x5b\x09\x59\xdb\x63\x19\x50\xdc\x88\x6e\x30\xc7\x30\xfc\x30\xbf\x30\xb5\x30\xa4\x30\xba\x30\x4c\x30\x10\xff\x67\x30\x57\x30\x5f\x30\x20\x00\x20\x00\x44\x00\x65\x00\x66\x00\x48\x00\x57\x00\x4e\x00\x44\x00\x3a\x00\x25\x00\x78\x00\x20\x00\x49\x00\x4d\x00\x43\x00\x3a\x00\x25\x00\x78\x00\x0a\x00\x00"/*@ L"æ¼¢å­—å¤‰æ›å€™è£œã®ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºãŒï¼ã§ã—ãŸ  DefHWND:%x IMC:%x\n" @*/, DefHwnd, Imc )) ;
 						return 0 ;
 					}
 
-					// ƒoƒbƒtƒ@—pƒƒ‚ƒŠ‚ÌŠm•Û
+					// ãƒãƒƒãƒ•ã‚¡ç”¨ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿
 					if( CharBuf.CandidateList != NULL )
 					{
 						DXFREE( CharBuf.CandidateList ) ;
@@ -1285,34 +1285,34 @@ extern LRESULT IMEProc( HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam )
 					{
 						WinAPIData.ImmFunc.ImmReleaseContextFunc( DefHwnd , Imc );
 #ifndef DX_NON_LITERAL_STRING
-						return DxLib_FmtErrorUTF16LE( "\x22\x6f\x57\x5b\x09\x59\xdb\x63\x19\x50\xdc\x88\x92\x30\xdd\x4f\x58\x5b\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x28\x00\x20\x00\xba\x78\xdd\x4f\x57\x30\x88\x30\x46\x30\x68\x30\x57\x30\x5f\x30\xb5\x30\xa4\x30\xba\x30\x20\x00\x25\x00\x64\x00\x20\x00\xd0\x30\xa4\x30\xc8\x30\x20\x00\x29\x00\x00"/*@ L"Š¿š•ÏŠ·Œó•â‚ğ•Û‘¶‚·‚éƒƒ‚ƒŠ‚ÌŠm•Û‚É¸”s‚µ‚Ü‚µ‚½( Šm•Û‚µ‚æ‚¤‚Æ‚µ‚½ƒTƒCƒY %d ƒoƒCƒg )" @*/, BufSize ) ;
+						return DxLib_FmtErrorUTF16LE( "\x22\x6f\x57\x5b\x09\x59\xdb\x63\x19\x50\xdc\x88\x92\x30\xdd\x4f\x58\x5b\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x28\x00\x20\x00\xba\x78\xdd\x4f\x57\x30\x88\x30\x46\x30\x68\x30\x57\x30\x5f\x30\xb5\x30\xa4\x30\xba\x30\x20\x00\x25\x00\x64\x00\x20\x00\xd0\x30\xa4\x30\xc8\x30\x20\x00\x29\x00\x00"/*@ L"æ¼¢å­—å¤‰æ›å€™è£œã‚’ä¿å­˜ã™ã‚‹ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿ã«å¤±æ•—ã—ã¾ã—ãŸ( ç¢ºä¿ã—ã‚ˆã†ã¨ã—ãŸã‚µã‚¤ã‚º %d ãƒã‚¤ãƒˆ )" @*/, BufSize ) ;
 #else
 						return DxLib_FmtError( "" ) ;
 #endif
 					}
 
-					// ƒf[ƒ^‚Ìæ“¾
+					// ãƒ‡ãƒ¼ã‚¿ã®å–å¾—
 					if( WinAPIData.ImmFunc.ImmGetCandidateListFunc( Imc , 0 , CharBuf.CandidateList , BufSize ) == 0 )
 					{
 						DXFREE( CharBuf.CandidateList ) ;
 						CharBuf.CandidateList = NULL ;
 						WinAPIData.ImmFunc.ImmReleaseContextFunc( DefHwnd , Imc );
 
-						DXST_LOGFILEFMT_ADDUTF16LE(( "\x22\x6f\x57\x5b\x09\x59\xdb\x63\x19\x50\xdc\x88\x6e\x30\xd6\x53\x97\x5f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x20\x00\x20\x00\x42\x00\x75\x00\x66\x00\x53\x00\x69\x00\x7a\x00\x65\x00\x3a\x00\x25\x00\x64\x00\x0a\x00\x00"/*@ L"Š¿š•ÏŠ·Œó•â‚Ìæ“¾‚É¸”s‚µ‚Ü‚µ‚½  BufSize:%d\n" @*/, BufSize )) ;
+						DXST_LOGFILEFMT_ADDUTF16LE(( "\x22\x6f\x57\x5b\x09\x59\xdb\x63\x19\x50\xdc\x88\x6e\x30\xd6\x53\x97\x5f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x20\x00\x20\x00\x42\x00\x75\x00\x66\x00\x53\x00\x69\x00\x7a\x00\x65\x00\x3a\x00\x25\x00\x64\x00\x0a\x00\x00"/*@ L"æ¼¢å­—å¤‰æ›å€™è£œã®å–å¾—ã«å¤±æ•—ã—ã¾ã—ãŸ  BufSize:%d\n" @*/, BufSize )) ;
 						return 0 ;
 					}
 				}
 
-				// “ü—ÍƒRƒ“ƒeƒLƒXƒg‚Ìíœ
+				// å…¥åŠ›ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã®å‰Šé™¤
 				WinAPIData.ImmFunc.ImmReleaseContextFunc( DefHwnd , Imc );
 //				WinAPIData.ImmFunc.ImmReleaseContextFunc( hWnd , Imc );
 			}
 			break ;
 
-		// “ü—ÍŒó•âƒEƒCƒ“ƒhƒE‚ğ•Â‚¶‚æ‚¤‚Æ‚µ‚Ä‚¢‚é‚Ìˆ—
+		// å…¥åŠ›å€™è£œã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚’é–‰ã˜ã‚ˆã†ã¨ã—ã¦ã„ã‚‹æ™‚ã®å‡¦ç†
 		case IMN_CLOSECANDIDATE :
 
-			// ƒƒ‚ƒŠ‚Ì‰ğ•ú
+			// ãƒ¡ãƒ¢ãƒªã®è§£æ”¾
 			if( CharBuf.CandidateList )
 			{
 				DXFREE( CharBuf.CandidateList ) ;
@@ -1331,7 +1331,7 @@ extern LRESULT IMEProc( HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam )
 	return 0 ;
 }
 
-// ‰æ–Êã‚É“ü—Í’†‚Ì•¶š—ñ‚ğ•`‰æ‚·‚é
+// ç”»é¢ä¸Šã«å…¥åŠ›ä¸­ã®æ–‡å­—åˆ—ã‚’æç”»ã™ã‚‹
 static size_t SetupDrawIMEInputStringInfo( int x, int y, int EnableExRate, double ExRateX, double ExRateY, int AddY, RECT *DrawArea, int StrLen, int FontHandle, DRAWIMESTRINFO *DrawImeStrInfo, int *pCharNum, int *pLineNum )
 {
 	int PosX ;
@@ -1473,10 +1473,10 @@ static int DrawIMEInputStringBase( int x , int y , int EnableExRate, double ExRa
 
 	if( CharBuf.IMEUseFlag_OSSet == FALSE || CharBuf.IMESwitch == FALSE ) return -1 ;
 
-	// g—p‚·‚éƒtƒHƒ“ƒg‚Ìƒnƒ“ƒhƒ‹‚ğƒZƒbƒg‚·‚é
+	// ä½¿ç”¨ã™ã‚‹ãƒ•ã‚©ãƒ³ãƒˆã®ãƒãƒ³ãƒ‰ãƒ«ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 	FontHandle = CharBuf.UseFontHandle == -1 ? NS_GetDefaultFontHandle() : CharBuf.UseFontHandle ;
 
-	// ƒtƒHƒ“ƒgƒTƒCƒY‚ğ“¾‚é
+	// ãƒ•ã‚©ãƒ³ãƒˆã‚µã‚¤ã‚ºã‚’å¾—ã‚‹
 	FontSizeY = FontSizeX = NS_GetFontSizeToHandle( FontHandle ) ;
 	if( EnableExRate )
 	{
@@ -1484,28 +1484,28 @@ static int DrawIMEInputStringBase( int x , int y , int EnableExRate, double ExRa
 		FontSizeY = _DTOL( FontSizeY * ExRateY ) ;
 	}
 
-	// ‚R‚c—LŒøƒtƒ‰ƒO‚ğ“¾‚é
+	// ï¼“ï¼¤æœ‰åŠ¹ãƒ•ãƒ©ã‚°ã‚’å¾—ã‚‹
 	Use3DFlag = NS_GetUse3DFlag() ;
 	NS_SetUse3DFlag( FALSE ) ;
 
-	// •`‰æ‰Â”\—Ìˆæ‚ğ“¾‚é
+	// æç”»å¯èƒ½é ˜åŸŸã‚’å¾—ã‚‹
 	NS_GetDrawArea( &DrawRect ) ;
 
-	// ‚Ps•Ó‚è‚Ìc•‚ğZo
+	// ï¼‘è¡Œè¾ºã‚Šã®ç¸¦å¹…ã‚’ç®—å‡º
 	AddY = FontSizeY + FontSizeY / 10 * 3 ;
 
-	// “ü—Í•¶š—ñ‚ª‚È‚¢ê‡‚Í‚±‚±‚ÅI—¹
+	// å…¥åŠ›æ–‡å­—åˆ—ãŒãªã„å ´åˆã¯ã“ã“ã§çµ‚äº†
 	if( CharBuf.InputString[ 0 ] == 0 )
 	{
-		// ‚R‚c—LŒøƒtƒ‰ƒO‚ğŒ³‚É–ß‚·
+		// ï¼“ï¼¤æœ‰åŠ¹ãƒ•ãƒ©ã‚°ã‚’å…ƒã«æˆ»ã™
 		NS_SetUse3DFlag( Use3DFlag ) ;
 		return 0 ;
 	}
 
-	// •`‰æ•¶š—ñ‚Ì’·‚³‚ğ“¾‚é
+	// æç”»æ–‡å­—åˆ—ã®é•·ã•ã‚’å¾—ã‚‹
 	StrLen = ( int )_WCSLEN( CharBuf.InputString ) ;
 
-	// •`‰æˆÊ’u‚ğ•â³
+	// æç”»ä½ç½®ã‚’è£œæ­£
 	if( x < DrawRect.left ) x = DrawRect.left ;
 	if( y < DrawRect.top  ) y = DrawRect.top ;
 
@@ -1515,7 +1515,7 @@ static int DrawIMEInputStringBase( int x , int y , int EnableExRate, double ExRa
 		y += AddY ;
 	}
 
-	// •¶š—ñ•`‰æ‚É•K—v‚Èî•ñ‚ğƒZƒbƒgƒAƒbƒv‚·‚é
+	// æ–‡å­—åˆ—æç”»ã«å¿…è¦ãªæƒ…å ±ã‚’ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã™ã‚‹
 	{
 		size_t BufferBytes ;
 
@@ -1523,7 +1523,7 @@ static int DrawIMEInputStringBase( int x , int y , int EnableExRate, double ExRa
 		DrawStrInfo = ( DRAWIMESTRINFO * )DXALLOC( BufferBytes ) ;
 		if( DrawStrInfo == NULL )
 		{
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\x49\x00\x4d\x00\x45\x00\x87\x65\x57\x5b\x17\x52\xcf\x63\x3b\x75\xc5\x60\x31\x58\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x28\x00\x20\x00\xba\x78\xdd\x4f\x57\x30\x88\x30\x46\x30\x68\x30\x57\x30\x5f\x30\xb5\x30\xa4\x30\xba\x30\x20\x00\x25\x00\x64\x00\x20\x00\xd0\x30\xa4\x30\xc8\x30\x20\x00\x29\x00\x00"/*@ L"IME•¶š—ñ•`‰æî•ñ‚ğŠi”[‚·‚éƒƒ‚ƒŠ—Ìˆæ‚ÌŠm•Û‚É¸”s‚µ‚Ü‚µ‚½( Šm•Û‚µ‚æ‚¤‚Æ‚µ‚½ƒTƒCƒY %d ƒoƒCƒg )" @*/, BufferBytes )) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\x49\x00\x4d\x00\x45\x00\x87\x65\x57\x5b\x17\x52\xcf\x63\x3b\x75\xc5\x60\x31\x58\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x28\x00\x20\x00\xba\x78\xdd\x4f\x57\x30\x88\x30\x46\x30\x68\x30\x57\x30\x5f\x30\xb5\x30\xa4\x30\xba\x30\x20\x00\x25\x00\x64\x00\x20\x00\xd0\x30\xa4\x30\xc8\x30\x20\x00\x29\x00\x00"/*@ L"IMEæ–‡å­—åˆ—æç”»æƒ…å ±ã‚’æ ¼ç´ã™ã‚‹ãƒ¡ãƒ¢ãƒªé ˜åŸŸã®ç¢ºä¿ã«å¤±æ•—ã—ã¾ã—ãŸ( ç¢ºä¿ã—ã‚ˆã†ã¨ã—ãŸã‚µã‚¤ã‚º %d ãƒã‚¤ãƒˆ )" @*/, BufferBytes )) ;
 			return -1 ;
 		}
 		DrawStrInfo->LineInfo = ( DRAWIMESTRLINEINFO * )( DrawStrInfo + 1 ) ;
@@ -1531,9 +1531,9 @@ static int DrawIMEInputStringBase( int x , int y , int EnableExRate, double ExRa
 		SetupDrawIMEInputStringInfo( x, y, EnableExRate, ExRateX, ExRateY, AddY, &DrawRect, StrLen, FontHandle, DrawStrInfo, NULL, NULL ) ;
 	}
 
-	// “ü—Í•¶š—ñ‚ğ•`‰æ
+	// å…¥åŠ›æ–‡å­—åˆ—ã‚’æç”»
 	{
-		// “ü—Í’†•¶š—ñ‚ğ•¢‚¤‹éŒ`‚ğ•`‰æ
+		// å…¥åŠ›ä¸­æ–‡å­—åˆ—ã‚’è¦†ã†çŸ©å½¢ã‚’æç”»
 		for( i = 0 ; i < DrawStrInfo->CharNum ; i++ )
 		{
 			NS_DrawBox(
@@ -1544,7 +1544,7 @@ static int DrawIMEInputStringBase( int x , int y , int EnableExRate, double ExRa
 			) ;
 		}
 
-		// “ü—Í’†•¶š—ñ‚ğ•`‰æ
+		// å…¥åŠ›ä¸­æ–‡å­—åˆ—ã‚’æç”»
 		if( EnableExRate )
 		{
 			for( i = 0 ; i < DrawStrInfo->CharNum ; i++ )
@@ -1580,7 +1580,7 @@ static int DrawIMEInputStringBase( int x , int y , int EnableExRate, double ExRa
 		}
 	}
 
-	// ƒJ[ƒ\ƒ‹‚ğ•`‰æ( ‘I‘ğ•¶š—ñ‚ª‘¶İ‚·‚éê‡‚Ì‚İ•`‰æ )
+	// ã‚«ãƒ¼ã‚½ãƒ«ã‚’æç”»( é¸æŠæ–‡å­—åˆ—ãŒå­˜åœ¨ã™ã‚‹å ´åˆã®ã¿æç”» )
 	if( CharBuf.InputPoint == DrawStrInfo->CharNum )
 	{
 		CPointX = DrawStrInfo->CharInfo[ DrawStrInfo->CharNum - 1 ].DrawX + DrawStrInfo->CharInfo[ DrawStrInfo->CharNum - 1 ].Width ;
@@ -1593,7 +1593,7 @@ static int DrawIMEInputStringBase( int x , int y , int EnableExRate, double ExRa
 	}
 	if( /* CharBuf.CandidateList != NULL && */ CharBuf.CBrinkDrawFlag == TRUE )
 	{
-		// ƒJ[ƒ\ƒ‹‚Ì•`‰æ
+		// ã‚«ãƒ¼ã‚½ãƒ«ã®æç”»
 		NS_DrawBox(
 			CPointX,      CPointY,
 			CPointX + 2 , CPointY + FontSizeY,
@@ -1602,7 +1602,7 @@ static int DrawIMEInputStringBase( int x , int y , int EnableExRate, double ExRa
 		) ;
 	}
 
-	// ‰ºü‚ğ•`‰æ
+	// ä¸‹ç·šã‚’æç”»
 	{
 		int StrNum, LinePX, LinePY, LineX ;
 
@@ -1666,7 +1666,7 @@ static int DrawIMEInputStringBase( int x , int y , int EnableExRate, double ExRa
 		}
 	}
 
-	// Œó•âƒŠƒXƒg‚ªo‚Ä‚¢‚éê‡‚Í‚»‚Ì•`‰æ
+	// å€™è£œãƒªã‚¹ãƒˆãŒå‡ºã¦ã„ã‚‹å ´åˆã¯ãã®æç”»
 	if( DrawCandidateList && CharBuf.CandidateList && CharBuf.CandidateList->dwCount > 0 )
 	{
 		DWORD ui ;
@@ -1677,7 +1677,7 @@ static int DrawIMEInputStringBase( int x , int y , int EnableExRate, double ExRa
 		int ValidNum ;
 		int SelectionNumWidth ;
 
-		// ‘I‘ğŒó•â‚ÌÅ‘å”‚ğ•\¦‚·‚é‚Æ•`‰æ”ÍˆÍ‚ğ’´‚¦‚Ä‚µ‚Ü‚¤ê‡‚Í•`‰æ‚·‚éŒó•â‚Ì”‚ğ§ŒÀ‚·‚é
+		// é¸æŠå€™è£œã®æœ€å¤§æ•°ã‚’è¡¨ç¤ºã™ã‚‹ã¨æç”»ç¯„å›²ã‚’è¶…ãˆã¦ã—ã¾ã†å ´åˆã¯æç”»ã™ã‚‹å€™è£œã®æ•°ã‚’åˆ¶é™ã™ã‚‹
 		h = FontSizeY / 3 ;
 		if( FontSizeY * ( SelectStringNum + 1 ) + h * 2 > DrawRect.bottom - DrawRect.top )
 		{
@@ -1688,7 +1688,7 @@ static int DrawIMEInputStringBase( int x , int y , int EnableExRate, double ExRa
 			}
 		}
 
-		// Å’·‘I‘ğŒó•â‚ğ’²‚×‚é
+		// æœ€é•·é¸æŠå€™è£œã‚’èª¿ã¹ã‚‹
 		MaxWidth = 0 ;
 		ValidNum = 0 ;
 		j = 0 ;
@@ -1730,10 +1730,10 @@ static int DrawIMEInputStringBase( int x , int y , int EnableExRate, double ExRa
 		}
 		j ++ ;
 
-		// —LŒø‚È‘I‘ğ‘ÎÛ‚ª‚ ‚éê‡‚Ì‚İ•`‰æ
+		// æœ‰åŠ¹ãªé¸æŠå¯¾è±¡ãŒã‚ã‚‹å ´åˆã®ã¿æç”»
 		if( ValidNum > 0 )
 		{
-			// •`‰æ”ÍˆÍ‚ğƒZƒbƒg
+			// æç”»ç¯„å›²ã‚’ã‚»ãƒƒãƒˆ
 			{
 				SETRECT(
 					SelectRect,
@@ -1741,27 +1741,27 @@ static int DrawIMEInputStringBase( int x , int y , int EnableExRate, double ExRa
 					CPointX + MaxWidth + h * 2,	CPointY + FontSizeY + FontSizeY / 2 + FontSizeY * j + h * 2
 				) ;
 
-				// ƒCƒ“ƒvƒbƒg•¶š•`‰æˆÊ’u‚æ‚è‰º‚ÌˆÊ’u‚É”z’u‚Å‚«‚é‚©ŒŸØ
+				// ã‚¤ãƒ³ãƒ—ãƒƒãƒˆæ–‡å­—æç”»ä½ç½®ã‚ˆã‚Šä¸‹ã®ä½ç½®ã«é…ç½®ã§ãã‚‹ã‹æ¤œè¨¼
 				if( SelectRect.bottom > DrawRect.bottom )
 				{
-					// o—ˆ‚È‚¢ê‡‚ÍƒCƒ“ƒvƒbƒg•¶š•`‰æˆÊ’u‚æ‚èã‚ÌˆÊ’u‚É”z’u‚ğ‚İ‚é
+					// å‡ºæ¥ãªã„å ´åˆã¯ã‚¤ãƒ³ãƒ—ãƒƒãƒˆæ–‡å­—æç”»ä½ç½®ã‚ˆã‚Šä¸Šã®ä½ç½®ã«é…ç½®ã‚’è©¦ã¿ã‚‹
 					if( y - FontSizeY * j - FontSizeY / 2 - h * 2 < DrawRect.top )
 					{	
-						// ‚»‚ê‚Å‚à‘Ê–Ú‚Èê‡‚Í–³—‚â‚è‰º‚ÌˆÊ’u‚É•`‰æ‚·‚é
+						// ãã‚Œã§ã‚‚é§„ç›®ãªå ´åˆã¯ç„¡ç†ã‚„ã‚Šä¸‹ã®ä½ç½®ã«æç”»ã™ã‚‹
 						j = SelectRect.bottom - DrawRect.bottom ;
 					}
 					else
 					{
-						// ã‚ÌˆÊ’u‚ğ‹N“_‚É”z’u
+						// ä¸Šã®ä½ç½®ã‚’èµ·ç‚¹ã«é…ç½®
 						j = SelectRect.top - ( y - FontSizeY * j - FontSizeY / 2 - h * 2 ) ;
 					}
 
-					// ‚‚³‚ğ•â³
+					// é«˜ã•ã‚’è£œæ­£
 					SelectRect.bottom -= j ;
 					SelectRect.top -= j ;
 				}
 
-				// ƒCƒ“ƒvƒbƒg•¶š•`‰æ•‚Ì‚¹‚¢‚Å•`‰æ‰Â”\—Ìˆæ‰E’[‚É“’B‚µ‚Ä‚¢‚½ê‡‚Í•â³
+				// ã‚¤ãƒ³ãƒ—ãƒƒãƒˆæ–‡å­—æç”»å¹…ã®ã›ã„ã§æç”»å¯èƒ½é ˜åŸŸå³ç«¯ã«åˆ°é”ã—ã¦ã„ãŸå ´åˆã¯è£œæ­£
 				if( SelectRect.right > DrawRect.right )
 				{
 					j = SelectRect.right - DrawRect.right ;	
@@ -1771,11 +1771,11 @@ static int DrawIMEInputStringBase( int x , int y , int EnableExRate, double ExRa
 				}
 			}
 
-			// •`‰æ”ÍˆÍ‚ğ•‚Å“h‚è‚Â‚Ô‚µ
+			// æç”»ç¯„å›²ã‚’é»’ã§å¡—ã‚Šã¤ã¶ã—
 			NS_DrawBox( SelectRect.left , SelectRect.top , SelectRect.right , SelectRect.bottom , CharBuf.IMEConvWinBackColor , TRUE,  1 ) ;
 			NS_DrawBox( SelectRect.left , SelectRect.top , SelectRect.right , SelectRect.bottom , CharBuf.IMEConvWinEdgeColor , FALSE, 1 ) ;
 
-			// Œó•â‚ğ•`‰æ
+			// å€™è£œã‚’æç”»
 			PointX = SelectRect.left + h ;
 			PointY = SelectRect.top + h ;
 			j = 0 ;
@@ -1809,7 +1809,7 @@ static int DrawIMEInputStringBase( int x , int y , int EnableExRate, double ExRa
 				}
 			}
  
-			// Œó•â‘”‚Ì“à‰½”Ô–Ú‚©A‚Ìî•ñ‚ğ•`‰æ‚·‚é
+			// å€™è£œç·æ•°ã®å†…ä½•ç•ªç›®ã‹ã€ã®æƒ…å ±ã‚’æç”»ã™ã‚‹
 			_SWNPRINTF( StringBuf, sizeof( StringBuf ) / 2, L"%d/%d", CharBuf.CandidateList->dwSelection + 1, CharBuf.CandidateList->dwCount ) ;
 			if( EnableExRate )
 			{
@@ -1825,36 +1825,36 @@ static int DrawIMEInputStringBase( int x , int y , int EnableExRate, double ExRa
 					StringBuf, _WCSLEN( StringBuf ), CharBuf.IMEConvWinStrColor , FontHandle , CharBuf.IMEConvWinStrEdgeColor, FALSE ) ;
 			}
 
-			// Œó•âƒŠƒXƒg‚ÌŠJnƒCƒ“ƒfƒbƒNƒX‚ÆŒó•âƒŠƒXƒg‚Ìƒy[ƒWƒTƒCƒY‚ğ•ÏX
+			// å€™è£œãƒªã‚¹ãƒˆã®é–‹å§‹ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã¨å€™è£œãƒªã‚¹ãƒˆã®ãƒšãƒ¼ã‚¸ã‚µã‚¤ã‚ºã‚’å¤‰æ›´
 			{
 				HWND DefHwnd = WinData.MainWindow;
 				HIMC Imc ;
 
 				SETUP_WIN_API
 
-				// “ü—ÍƒRƒ“ƒeƒLƒXƒg‚ğæ“¾
+				// å…¥åŠ›ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã‚’å–å¾—
 				Imc = WinAPIData.ImmFunc.ImmGetContextFunc( DefHwnd ) ;
 
-				// Œó•âƒŠƒXƒg‚Ìƒy[ƒWƒTƒCƒY‚ğ•ÏX
+				// å€™è£œãƒªã‚¹ãƒˆã®ãƒšãƒ¼ã‚¸ã‚µã‚¤ã‚ºã‚’å¤‰æ›´
 				WinAPIData.ImmFunc.ImmNotifyIMEFunc( Imc, NI_SETCANDIDATE_PAGESIZE, 0, ( DWORD )SelectStringNum ) ;
 
-				// Œó•âƒŠƒXƒg‚ÌŠJnƒCƒ“ƒfƒbƒNƒX‚Ì•ÏXƒƒbƒZ[ƒW‚ğ‘—‚é
+				// å€™è£œãƒªã‚¹ãƒˆã®é–‹å§‹ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã®å¤‰æ›´ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’é€ã‚‹
 				WinAPIData.ImmFunc.ImmNotifyIMEFunc( Imc, NI_SETCANDIDATE_PAGESTART, 0, ( CharBuf.CandidateList->dwSelection / SelectStringNum ) * SelectStringNum ) ;
 
-				// “ü—ÍƒRƒ“ƒeƒLƒXƒg‚Ìíœ
+				// å…¥åŠ›ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã®å‰Šé™¤
 				WinAPIData.ImmFunc.ImmReleaseContextFunc( DefHwnd , Imc );
 			}
 		}
 	}
 
-	// ‚R‚c—LŒøƒtƒ‰ƒO‚ğŒ³‚É–ß‚·
+	// ï¼“ï¼¤æœ‰åŠ¹ãƒ•ãƒ©ã‚°ã‚’å…ƒã«æˆ»ã™
 	NS_SetUse3DFlag( Use3DFlag ) ;
 
-	// IME•¶š—ñ•`‰æ—pî•ñ‚ğŠi”[‚µ‚Ä‚¢‚½ƒƒ‚ƒŠ‚Ì‰ğ•ú
+	// IMEæ–‡å­—åˆ—æç”»ç”¨æƒ…å ±ã‚’æ ¼ç´ã—ã¦ã„ãŸãƒ¡ãƒ¢ãƒªã®è§£æ”¾
 	DXFREE( DrawStrInfo ) ;
 	DrawStrInfo = NULL ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
@@ -1863,13 +1863,13 @@ extern int NS_DrawIMEInputString( int x , int y , int SelectStringNum , int Draw
 	return DrawIMEInputStringBase( x, y, FALSE, 1.0, 1.0, SelectStringNum, DrawCandidateList ) ;
 }
 
-// ‰æ–Êã‚É“ü—Í’†‚Ì•¶š—ñ‚ğ•`‰æ‚·‚é( Šg‘å—¦•t‚« )
+// ç”»é¢ä¸Šã«å…¥åŠ›ä¸­ã®æ–‡å­—åˆ—ã‚’æç”»ã™ã‚‹( æ‹¡å¤§ç‡ä»˜ã )
 extern int NS_DrawIMEInputExtendString( int x, int y, double ExRateX, double ExRateY, int SelectStringNum , int DrawCandidateList )
 {
 	return DrawIMEInputStringBase( x, y, TRUE, ExRateX, ExRateY, SelectStringNum, DrawCandidateList ) ;
 }
 
-// ‚h‚l‚d‚ğg—p‚·‚é‚©‚Ç‚¤‚©‚Ìó‘Ô‚ğXV‚·‚é
+// ï¼©ï¼­ï¼¥ã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã®çŠ¶æ…‹ã‚’æ›´æ–°ã™ã‚‹
 extern void RefreshIMEFlag( int Always )
 {
 	int NewUseFlag ;
@@ -1878,21 +1878,21 @@ extern void RefreshIMEFlag( int Always )
 
 	NewUseFlag = CharBuf.IMEUseFlag || CharBuf.IMEUseFlag_System ;
 
-	// ƒtƒ‰ƒO‚ªˆÈ‘O‚Æ“¯‚¶ê‡‚Í‰½‚à‚¹‚¸I—¹
+	// ãƒ•ãƒ©ã‚°ãŒä»¥å‰ã¨åŒã˜å ´åˆã¯ä½•ã‚‚ã›ãšçµ‚äº†
 	if( NewUseFlag == CharBuf.IMEUseFlag_OSSet && Always == FALSE ) return ;
 
-	// —LŒøƒtƒ‰ƒO‚ğƒZƒbƒg
+	// æœ‰åŠ¹ãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆ
 	if( WinAPIData.Win32Func.WINNLSEnableIME_Func )
 	{
 		WinAPIData.Win32Func.WINNLSEnableIME_Func( WinData.MainWindow, NewUseFlag ) ;
 	}
 
-	// ƒtƒ‰ƒO•Û‘¶
+	// ãƒ•ãƒ©ã‚°ä¿å­˜
 	CharBuf.IMEUseFlag_OSSet = NewUseFlag ;
 
 	if( WinAPIData.ImmFunc.ImmAssociateContextFunc )
 	{
-		// ‚à‚µ FALSE ‚¾‚Á‚½ê‡‚Í“ü—ÍƒRƒ“ƒeƒLƒXƒg‚É NULL ‚ğİ’è‚·‚é
+		// ã‚‚ã— FALSE ã ã£ãŸå ´åˆã¯å…¥åŠ›ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã« NULL ã‚’è¨­å®šã™ã‚‹
 		if( NewUseFlag == FALSE )
 		{
 			HIMC Result ;
@@ -1904,7 +1904,7 @@ extern void RefreshIMEFlag( int Always )
 		}
 		else
 		{
-			// TRUE ‚¾‚Á‚½ê‡‚Í“ü—ÍƒRƒ“ƒeƒLƒXƒg‚ğŒ³‚É–ß‚·
+			// TRUE ã ã£ãŸå ´åˆã¯å…¥åŠ›ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã‚’å…ƒã«æˆ»ã™
 			if( CharBuf.IMEContext != NULL )
 			{
 				WinAPIData.ImmFunc.ImmAssociateContextFunc( WinData.MainWindow, CharBuf.IMEContext ) ;
@@ -1912,7 +1912,7 @@ extern void RefreshIMEFlag( int Always )
 		}
 	}
 
-	// ‚à‚µFALSE‚¾‚Á‚½ê‡‚ÍŠeíƒƒ‚ƒŠ‚ğ‰ğ•ú‚·‚é
+	// ã‚‚ã—FALSEã ã£ãŸå ´åˆã¯å„ç¨®ãƒ¡ãƒ¢ãƒªã‚’è§£æ”¾ã™ã‚‹
 	if( NewUseFlag == FALSE ) 
 	{
 		DXFREE( CharBuf.CandidateList ) ;
@@ -1921,62 +1921,62 @@ extern void RefreshIMEFlag( int Always )
 
 		_MEMSET( CharBuf.InputString, 0, CHARBUFFER_SIZE ) ;
 
-		// “ü—Í’†‚©Aƒtƒ‰ƒO‚à“|‚·
+		// å…¥åŠ›ä¸­ã‹ã€ãƒ•ãƒ©ã‚°ã‚‚å€’ã™
 		CharBuf.IMEInputFlag = FALSE ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return ;
 }
 
-// ‚h‚l‚d‚ğg—p‚·‚é‚©‚Ç‚¤‚©‚ğƒZƒbƒg‚·‚é
+// ï¼©ï¼­ï¼¥ã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern int NS_SetUseIMEFlag( int UseFlag )
 {
-	// ƒtƒ‰ƒO•Û‘¶
+	// ãƒ•ãƒ©ã‚°ä¿å­˜
 	CharBuf.IMEUseFlag = UseFlag ;
 
-	// ó‘Ô‚ğXV
+	// çŠ¶æ…‹ã‚’æ›´æ–°
 	RefreshIMEFlag() ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ‚h‚l‚d‚ğg—p‚·‚é‚©‚Ç‚¤‚©‚ğæ“¾‚·‚é
+// ï¼©ï¼­ï¼¥ã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã‚’å–å¾—ã™ã‚‹
 extern int NS_GetUseIMEFlag( void )
 {
-	// ƒtƒ‰ƒO‚ğ•Ô‚·
+	// ãƒ•ãƒ©ã‚°ã‚’è¿”ã™
 	return CharBuf.IMEUseFlag ;
 }
 
-// ‚h‚l‚d‚Å“ü—Í‚Å‚«‚éÅ‘å•¶š”‚ğ MakeKeyInput ‚Ìİ’è‚É‡‚í‚¹‚é‚©‚Ç‚¤‚©‚ğƒZƒbƒg‚·‚é( TRUE:‚ ‚í‚¹‚é  FALSE:‚ ‚í‚¹‚È‚¢(ƒfƒtƒHƒ‹ƒg) )
+// ï¼©ï¼­ï¼¥ã§å…¥åŠ›ã§ãã‚‹æœ€å¤§æ–‡å­—æ•°ã‚’ MakeKeyInput ã®è¨­å®šã«åˆã‚ã›ã‚‹ã‹ã©ã†ã‹ã‚’ã‚»ãƒƒãƒˆã™ã‚‹( TRUE:ã‚ã‚ã›ã‚‹  FALSE:ã‚ã‚ã›ãªã„(ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ) )
 extern int NS_SetInputStringMaxLengthIMESync( int Flag )
 {
 	CharBuf.IMEInputStringMaxLengthIMESync = Flag ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ‚h‚l‚d‚Åˆê“x‚É“ü—Í‚Å‚«‚éÅ‘å•¶š”‚ğİ’è‚·‚é( 0:§ŒÀ‚È‚µ  1ˆÈã:w’è‚Ì•¶š”‚Å§ŒÀ )
+// ï¼©ï¼­ï¼¥ã§ä¸€åº¦ã«å…¥åŠ›ã§ãã‚‹æœ€å¤§æ–‡å­—æ•°ã‚’è¨­å®šã™ã‚‹( 0:åˆ¶é™ãªã—  1ä»¥ä¸Š:æŒ‡å®šã®æ–‡å­—æ•°ã§åˆ¶é™ )
 extern int NS_SetIMEInputStringMaxLength( int Length )
 {
 	CharBuf.IMEInputMaxLength = Length ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ‚h‚l‚d‚ÌŠ¿š•ÏŠ·Œó•â•\¦‚Ìˆ—‚É TSF ‚ğg—p‚·‚é‚©‚Ç‚¤‚©‚ğİ’è‚·‚é( TRUE:g—p‚·‚é( ƒfƒtƒHƒ‹ƒg )  FALSE:g—p‚µ‚È‚¢ )
+// ï¼©ï¼­ï¼¥ã®æ¼¢å­—å¤‰æ›å€™è£œè¡¨ç¤ºã®å‡¦ç†ã« TSF ã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹( TRUE:ä½¿ç”¨ã™ã‚‹( ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ )  FALSE:ä½¿ç”¨ã—ãªã„ )
 extern int NS_SetUseTSFFlag( int UseFlag )
 {
 	CharBuf.TSFNotUseFlag = UseFlag != FALSE ? FALSE : TRUE ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ‚h‚l‚d‚ğg—pó‘Ô‚ğ•ÏX‚·‚é
+// ï¼©ï¼­ï¼¥ã‚’ä½¿ç”¨çŠ¶æ…‹ã‚’å¤‰æ›´ã™ã‚‹
 static int SetIMEOpenState( int OpenFlag ) 
 {
 	HIMC Imc ;
@@ -1984,20 +1984,20 @@ static int SetIMEOpenState( int OpenFlag )
 
 	SETUP_WIN_API
 
-	// “ü—ÍƒRƒ“ƒeƒLƒXƒg‚ğæ“¾
+	// å…¥åŠ›ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã‚’å–å¾—
 	Imc = WinAPIData.ImmFunc.ImmGetContextFunc( DefHwnd ) ;
 
-	// g—pó‘Ô‚ğ•ÏX‚·‚é
+	// ä½¿ç”¨çŠ¶æ…‹ã‚’å¤‰æ›´ã™ã‚‹
 	WinAPIData.ImmFunc.ImmSetOpenStatusFunc( Imc, OpenFlag == TRUE ? true : false ) ;
 
-	// “ü—ÍƒRƒ“ƒeƒLƒXƒg‚Ìíœ
+	// å…¥åŠ›ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã®å‰Šé™¤
 	WinAPIData.ImmFunc.ImmReleaseContextFunc( DefHwnd , Imc );
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒL[“ü—Í‚Ì‘I‘ğ”ÍˆÍ‚ğíœ‚·‚é
+// ã‚­ãƒ¼å…¥åŠ›ã®é¸æŠç¯„å›²ã‚’å‰Šé™¤ã™ã‚‹
 static int KeyInputSelectAreaDelete( INPUTDATA * Input )
 {
 	int smin, smax, DelNum ;
@@ -2027,7 +2027,7 @@ static int KeyInputSelectAreaDelete( INPUTDATA * Input )
 	Input->SelectEnd = -1 ;
 	if( Input->StrLength < Input->DrawStartPos ) Input->DrawStartPos = Input->StrLength ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
@@ -2036,7 +2036,7 @@ static int KeyInputSelectAreaDelete( INPUTDATA * Input )
 
 #endif // DX_NON_INPUTSTRING
 
-// ‘SŠp•¶šA”¼Šp•¶š“ü‚è—‚ê‚é’†‚©‚çw’è‚Ì‘S”¼¬İ•¶š”‚Å‚Ì”¼Šp•¶š”‚ğ“¾‚é
+// å…¨è§’æ–‡å­—ã€åŠè§’æ–‡å­—å…¥ã‚Šä¹±ã‚Œã‚‹ä¸­ã‹ã‚‰æŒ‡å®šã®å…¨åŠæ··åœ¨æ–‡å­—æ•°ã§ã®åŠè§’æ–‡å­—æ•°ã‚’å¾—ã‚‹
 extern int NS_GetStringPoint( const TCHAR *String , int Point )
 {
 #ifdef UNICODE
@@ -2062,7 +2062,7 @@ extern int NS_GetStringPoint( const TCHAR *String , int Point )
 #endif
 }
 
-// ‘SŠp•¶šA”¼Šp•¶š“ü‚è—‚ê‚é’†‚©‚çw’è‚Ì•¶š”‚Å‚Ì”¼Šp•¶š”‚ğ“¾‚é
+// å…¨è§’æ–‡å­—ã€åŠè§’æ–‡å­—å…¥ã‚Šä¹±ã‚Œã‚‹ä¸­ã‹ã‚‰æŒ‡å®šã®æ–‡å­—æ•°ã§ã®åŠè§’æ–‡å­—æ•°ã‚’å¾—ã‚‹
 extern int NS_GetStringPointWithStrLen( const TCHAR *String, size_t StringLength, int Point )
 {
 	int Result ;
@@ -2072,7 +2072,7 @@ extern int NS_GetStringPointWithStrLen( const TCHAR *String, size_t StringLength
 	return Result ;
 }
 
-// ‘SŠp•¶šA”¼Šp•¶š“ü‚è—‚ê‚é’†‚©‚çw’è‚Ì‘S”¼¬İ•¶š”‚Å‚Ì”¼Šp•¶š”‚ğ“¾‚é
+// å…¨è§’æ–‡å­—ã€åŠè§’æ–‡å­—å…¥ã‚Šä¹±ã‚Œã‚‹ä¸­ã‹ã‚‰æŒ‡å®šã®å…¨åŠæ··åœ¨æ–‡å­—æ•°ã§ã®åŠè§’æ–‡å­—æ•°ã‚’å¾—ã‚‹
 extern int GetStringPoint_WCHAR_T( const wchar_t *String , int Point )
 {
 	int i , p ;
@@ -2098,7 +2098,7 @@ extern int GetStringPoint_WCHAR_T( const wchar_t *String , int Point )
 	return p ;
 }
 
-// ‘SŠp•¶šA”¼Šp•¶š“ü‚è—‚ê‚é’†‚©‚çw’è‚Ì”¼Šp•¶š”‚Å‚Ì•¶š”‚ğ“¾‚é
+// å…¨è§’æ–‡å­—ã€åŠè§’æ–‡å­—å…¥ã‚Šä¹±ã‚Œã‚‹ä¸­ã‹ã‚‰æŒ‡å®šã®åŠè§’æ–‡å­—æ•°ã§ã®æ–‡å­—æ•°ã‚’å¾—ã‚‹
 extern int NS_GetStringPoint2( const TCHAR *String , int Point )
 {
 #ifdef UNICODE
@@ -2126,7 +2126,7 @@ extern int NS_GetStringPoint2( const TCHAR *String , int Point )
 #endif
 }
 
-// ‘SŠp•¶šA”¼Šp•¶š“ü‚è—‚ê‚é’†‚©‚çw’è‚Ì”¼Šp•¶š”‚Å‚Ì•¶š”‚ğ“¾‚é
+// å…¨è§’æ–‡å­—ã€åŠè§’æ–‡å­—å…¥ã‚Šä¹±ã‚Œã‚‹ä¸­ã‹ã‚‰æŒ‡å®šã®åŠè§’æ–‡å­—æ•°ã§ã®æ–‡å­—æ•°ã‚’å¾—ã‚‹
 extern int NS_GetStringPoint2WithStrLen( const TCHAR *String, size_t StringLength, int Point )
 {
 	int Result ;
@@ -2142,7 +2142,7 @@ extern int NS_GetStringPoint2WithStrLen( const TCHAR *String, size_t StringLengt
 	return Result ;
 }
 
-// ‘SŠp•¶šA”¼Šp•¶š“ü‚è—‚ê‚é’†‚©‚çw’è‚Ì”¼Šp•¶š”‚Å‚Ì‘SŠp•¶š”‚ğ“¾‚é
+// å…¨è§’æ–‡å­—ã€åŠè§’æ–‡å­—å…¥ã‚Šä¹±ã‚Œã‚‹ä¸­ã‹ã‚‰æŒ‡å®šã®åŠè§’æ–‡å­—æ•°ã§ã®å…¨è§’æ–‡å­—æ•°ã‚’å¾—ã‚‹
 extern int GetStringPoint2_WCHAR_T( const wchar_t *String , int Point )
 {
 	int i , p ;
@@ -2171,7 +2171,7 @@ extern int GetStringPoint2_WCHAR_T( const wchar_t *String , int Point )
 	return p ;
 }
 
-// ‘SŠp•¶šA”¼Šp•¶š“ü‚è—‚ê‚é’†‚©‚ç•¶š”‚ğæ“¾‚·‚é
+// å…¨è§’æ–‡å­—ã€åŠè§’æ–‡å­—å…¥ã‚Šä¹±ã‚Œã‚‹ä¸­ã‹ã‚‰æ–‡å­—æ•°ã‚’å–å¾—ã™ã‚‹
 extern int NS_GetStringLength( const TCHAR *String )
 {
 #ifdef UNICODE
@@ -2199,7 +2199,7 @@ extern int NS_GetStringLength( const TCHAR *String )
 #endif
 }
 
-// ‘SŠp•¶šA”¼Šp•¶š“ü‚è—‚ê‚é’†‚©‚ç•¶š”‚ğæ“¾‚·‚é
+// å…¨è§’æ–‡å­—ã€åŠè§’æ–‡å­—å…¥ã‚Šä¹±ã‚Œã‚‹ä¸­ã‹ã‚‰æ–‡å­—æ•°ã‚’å–å¾—ã™ã‚‹
 extern int GetStringLength_WCHAR_T( const wchar_t *String )
 {
 	int i , p ;
@@ -2225,7 +2225,7 @@ extern int GetStringLength_WCHAR_T( const wchar_t *String )
 
 #ifndef DX_NON_FONT
 
-// ‹K’è—Ìˆæ‚Éû‚ß‚½‚©‚½‚¿‚Å•¶š—ñ‚ğ•`‰æ
+// è¦å®šé ˜åŸŸã«åã‚ãŸã‹ãŸã¡ã§æ–‡å­—åˆ—ã‚’æç”»
 extern int NS_DrawObtainsString(
 	int x , int y ,
 	int AddY ,
@@ -2290,7 +2290,7 @@ extern int NS_DrawObtainsString(
 #endif
 }
 
-// •`‰æ‰Â”\—Ìˆæ‚Éû‚Ü‚é‚æ‚¤‚É‰üs‚µ‚È‚ª‚ç•¶š—ñ‚ğ•`‰æ
+// æç”»å¯èƒ½é ˜åŸŸã«åã¾ã‚‹ã‚ˆã†ã«æ”¹è¡Œã—ãªãŒã‚‰æ–‡å­—åˆ—ã‚’æç”»
 extern int NS_DrawObtainsNString( int x, int y, int AddY, const TCHAR *String, size_t StringLength, unsigned int StrColor, unsigned int StrEdgeColor, int FontHandle, unsigned int SelectBackColor, unsigned int SelectStrColor, unsigned int SelectStrEdgeColor, int SelectStart, int SelectEnd, int *LineCount )
 {
 	int Result ;
@@ -2340,7 +2340,7 @@ extern int NS_DrawObtainsNString( int x, int y, int AddY, const TCHAR *String, s
 	return Result ;
 }
 
-// ‹K’è—Ìˆæ‚Éû‚ß‚½‚©‚½‚¿‚Å•¶š—ñ‚ğ•`‰æ
+// è¦å®šé ˜åŸŸã«åã‚ãŸã‹ãŸã¡ã§æ–‡å­—åˆ—ã‚’æç”»
 extern int DrawObtainsString_WCHAR_T(
 	int x , int y ,
 	int AddY ,
@@ -2368,12 +2368,12 @@ extern int DrawObtainsString_WCHAR_T(
 	RECT DrawRect ;
 //	RECT Rect ;
 
-	// FontHandle ‚ª -1 ‚Ìê‡‚ÍƒfƒtƒHƒ‹ƒg‚ÌƒtƒHƒ“ƒg‚ğg—p‚·‚é
+	// FontHandle ãŒ -1 ã®å ´åˆã¯ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®ãƒ•ã‚©ãƒ³ãƒˆã‚’ä½¿ç”¨ã™ã‚‹
 	if( FontHandle == -1 ) FontHandle = NS_GetDefaultFontHandle() ;
 
 	if( DrawFlag )
 	{
-		// ‚R‚c—LŒøƒtƒ‰ƒO‚ğ“¾‚é
+		// ï¼“ï¼¤æœ‰åŠ¹ãƒ•ãƒ©ã‚°ã‚’å¾—ã‚‹
 		Use3DFlag = NS_GetUse3DFlag() ;
 		NS_SetUse3DFlag( FALSE ) ;
 	}
@@ -2383,10 +2383,10 @@ extern int DrawObtainsString_WCHAR_T(
 		*LineCount = 1 ;
 	}
 
-	// •`‰æ‰Â”\—Ìˆæ‚ğ“¾‚é
+	// æç”»å¯èƒ½é ˜åŸŸã‚’å¾—ã‚‹
 	NS_GetDrawArea( &DrawRect ) ;
 
-	// ‰Šú’l‚ğƒZƒbƒg
+	// åˆæœŸå€¤ã‚’ã‚»ãƒƒãƒˆ
 	if( PosX )
 	{
 		*PosX = 0 ;
@@ -2396,7 +2396,7 @@ extern int DrawObtainsString_WCHAR_T(
 		*PosY = 0 ;
 	}
 
-	// •`‰æˆÊ’u‚ğ•â³
+	// æç”»ä½ç½®ã‚’è£œæ­£
 	if( x < DrawRect.left ) x = DrawRect.left ;
 	if( y < DrawRect.top  ) y = DrawRect.top ;
 
@@ -2411,10 +2411,10 @@ extern int DrawObtainsString_WCHAR_T(
 		}
 	}
 
-	// “ü—Í•¶š—ñ‚ğ•`‰æ
+	// å…¥åŠ›æ–‡å­—åˆ—ã‚’æç”»
 //	if( SelectStart == -1 )
 //	{
-//		// •`‰æ•¶š—ñ‚Ì’·‚³‚ğ“¾‚é
+//		// æç”»æ–‡å­—åˆ—ã®é•·ã•ã‚’å¾—ã‚‹
 //		StrWidth = GetDrawStringWidthToHandle_WCHAR_T( String , ( int )_WCSLEN( String ) , FontHandle ) ;
 //
 //		Width = StrWidth ;
@@ -2527,11 +2527,11 @@ extern int DrawObtainsString_WCHAR_T(
 
 	if( DrawFlag )
 	{
-		// ‚R‚c•`‰æƒtƒ‰ƒO‚ğŒ³‚É–ß‚·
+		// ï¼“ï¼¤æç”»ãƒ•ãƒ©ã‚°ã‚’å…ƒã«æˆ»ã™
 		NS_SetUse3DFlag( Use3DFlag ) ;
 	}
 
-	// À•W‚ğƒZƒbƒg
+	// åº§æ¨™ã‚’ã‚»ãƒƒãƒˆ
 	if( PosX )
 	{
 		*PosX = PointX ;
@@ -2541,14 +2541,14 @@ extern int DrawObtainsString_WCHAR_T(
 		*PosY = PointY ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 #else // DX_NON_GRAPHICS
 	return -1 ;
 #endif // DX_NON_GRAPHICS
 }
 
-// •`‰æ‰Â”\—Ìˆæ‚Éû‚Ü‚é‚æ‚¤‚É‰üs‚µ‚È‚ª‚ç•¶š—ñ‚ğ•`‰æ( ƒNƒŠƒbƒv‚ª•¶š’PˆÊ )
+// æç”»å¯èƒ½é ˜åŸŸã«åã¾ã‚‹ã‚ˆã†ã«æ”¹è¡Œã—ãªãŒã‚‰æ–‡å­—åˆ—ã‚’æç”»( ã‚¯ãƒªãƒƒãƒ—ãŒæ–‡å­—å˜ä½ )
 extern int NS_DrawObtainsString_CharClip(
 	int x, int y,
 	int AddY,
@@ -2615,7 +2615,7 @@ extern int NS_DrawObtainsString_CharClip(
 #endif
 }
 
-// •`‰æ‰Â”\—Ìˆæ‚Éû‚Ü‚é‚æ‚¤‚É‰üs‚µ‚È‚ª‚ç•¶š—ñ‚ğ•`‰æ( ƒNƒŠƒbƒv‚ª•¶š’PˆÊ )
+// æç”»å¯èƒ½é ˜åŸŸã«åã¾ã‚‹ã‚ˆã†ã«æ”¹è¡Œã—ãªãŒã‚‰æ–‡å­—åˆ—ã‚’æç”»( ã‚¯ãƒªãƒƒãƒ—ãŒæ–‡å­—å˜ä½ )
 extern int NS_DrawObtainsNString_CharClip( int x, int y, int AddY, const TCHAR *String, size_t StringLength, unsigned int StrColor, unsigned int StrEdgeColor, int FontHandle, unsigned int SelectBackColor, unsigned int SelectStrColor, unsigned int SelectStrEdgeColor, int SelectStart, int SelectEnd, int *LineCount )
 {
 	int Result ;
@@ -2667,7 +2667,7 @@ extern int NS_DrawObtainsNString_CharClip( int x, int y, int AddY, const TCHAR *
 	return Result ;
 }
 
-// •`‰æ‰Â”\—Ìˆæ‚Éû‚Ü‚é‚æ‚¤‚É‰üs‚µ‚È‚ª‚ç•¶š—ñ‚ğ•`‰æ( ƒNƒŠƒbƒv‚ª•¶š’PˆÊ )
+// æç”»å¯èƒ½é ˜åŸŸã«åã¾ã‚‹ã‚ˆã†ã«æ”¹è¡Œã—ãªãŒã‚‰æ–‡å­—åˆ—ã‚’æç”»( ã‚¯ãƒªãƒƒãƒ—ãŒæ–‡å­—å˜ä½ )
 extern int DrawObtainsString_CharClip_WCHAR_T(
 	int x, int y,
 	int EnableExRate, double ExRateX, double ExRateY,
@@ -2696,7 +2696,7 @@ extern int DrawObtainsString_CharClip_WCHAR_T(
 	int i, Num ;
 	wchar_t TempBuf[ 3 ] ;
 
-	// FontHandle ‚ª -1 ‚Ìê‡‚ÍƒfƒtƒHƒ‹ƒg‚ÌƒtƒHƒ“ƒg‚ğg—p‚·‚é
+	// FontHandle ãŒ -1 ã®å ´åˆã¯ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®ãƒ•ã‚©ãƒ³ãƒˆã‚’ä½¿ç”¨ã™ã‚‹
 	if( FontHandle == -1 )
 	{
 		FontHandle = NS_GetDefaultFontHandle() ;
@@ -2704,7 +2704,7 @@ extern int DrawObtainsString_CharClip_WCHAR_T(
 
 	if( DrawFlag )
 	{
-		// ‚R‚c—LŒøƒtƒ‰ƒO‚ğ“¾‚é
+		// ï¼“ï¼¤æœ‰åŠ¹ãƒ•ãƒ©ã‚°ã‚’å¾—ã‚‹
 		Use3DFlag = NS_GetUse3DFlag() ;
 		NS_SetUse3DFlag( FALSE ) ;
 	}
@@ -2715,10 +2715,10 @@ extern int DrawObtainsString_CharClip_WCHAR_T(
 		*LineCount = 1 ;
 	}
 
-	// •`‰æ‰Â”\—Ìˆæ‚ğ“¾‚é
+	// æç”»å¯èƒ½é ˜åŸŸã‚’å¾—ã‚‹
 	NS_GetDrawArea( &DrawRect ) ;
 
-	// ‰Šú’l‚ğƒZƒbƒg
+	// åˆæœŸå€¤ã‚’ã‚»ãƒƒãƒˆ
 	if( PosX )
 	{
 		*PosX = 0 ;
@@ -2728,14 +2728,14 @@ extern int DrawObtainsString_CharClip_WCHAR_T(
 		*PosY = 0 ;
 	}
 
-	// •`‰æ”ÍˆÍ‚É•‚ª–³‚¢ê‡‚Í‰½‚à‚¹‚¸‚ÉI—¹
+	// æç”»ç¯„å›²ã«å¹…ãŒç„¡ã„å ´åˆã¯ä½•ã‚‚ã›ãšã«çµ‚äº†
 	if( DrawRect.left == DrawRect.right ||
 		DrawRect.top  == DrawRect.bottom )
 	{
 		return 0 ;
 	}
 
-	// •`‰æˆÊ’u‚ğ•â³
+	// æç”»ä½ç½®ã‚’è£œæ­£
 	if( x < DrawRect.left ) x = DrawRect.left ;
 	if( y < DrawRect.top  ) y = DrawRect.top ;
 
@@ -2755,7 +2755,7 @@ extern int DrawObtainsString_CharClip_WCHAR_T(
 		StrLen = ( int )_WCSLEN( String ) ;
 	}
 
-	// “ü—Í•¶š—ñ‚ğ•`‰æ
+	// å…¥åŠ›æ–‡å­—åˆ—ã‚’æç”»
 //	if( SelectStart == -1 )
 //	{
 //		PointX = x ;
@@ -2900,11 +2900,11 @@ extern int DrawObtainsString_CharClip_WCHAR_T(
 
 	if( DrawFlag )
 	{
-		// ‚R‚c•`‰æƒtƒ‰ƒO‚ğŒ³‚É–ß‚·
+		// ï¼“ï¼¤æç”»ãƒ•ãƒ©ã‚°ã‚’å…ƒã«æˆ»ã™
 		NS_SetUse3DFlag( Use3DFlag ) ;
 	}
 
-	// À•W‚ğƒZƒbƒg
+	// åº§æ¨™ã‚’ã‚»ãƒƒãƒˆ
 	if( PosX )
 	{
 		*PosX = PointX ;
@@ -2914,14 +2914,14 @@ extern int DrawObtainsString_CharClip_WCHAR_T(
 		*PosY = PointY ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 #else // DX_NON_GRAPHICS
 	return -1 ;
 #endif // DX_NON_GRAPHICS
 }
 
-// •`‰æ‰Â”\—Ìˆæ‚Éû‚Ü‚é‚æ‚¤‚É‰üs‚µ‚È‚ª‚ç•¶š—ñ‚ğ•`‰æ( ƒNƒŠƒbƒv‚ª’PŒê’PˆÊ )
+// æç”»å¯èƒ½é ˜åŸŸã«åã¾ã‚‹ã‚ˆã†ã«æ”¹è¡Œã—ãªãŒã‚‰æ–‡å­—åˆ—ã‚’æç”»( ã‚¯ãƒªãƒƒãƒ—ãŒå˜èªå˜ä½ )
 extern int NS_DrawObtainsString_WordClip(
 	int x, int y,
 	int AddY,
@@ -2988,7 +2988,7 @@ extern int NS_DrawObtainsString_WordClip(
 #endif
 }
 
-// •`‰æ‰Â”\—Ìˆæ‚Éû‚Ü‚é‚æ‚¤‚É‰üs‚µ‚È‚ª‚ç•¶š—ñ‚ğ•`‰æ( ƒNƒŠƒbƒv‚ª’PŒê’PˆÊ )
+// æç”»å¯èƒ½é ˜åŸŸã«åã¾ã‚‹ã‚ˆã†ã«æ”¹è¡Œã—ãªãŒã‚‰æ–‡å­—åˆ—ã‚’æç”»( ã‚¯ãƒªãƒƒãƒ—ãŒå˜èªå˜ä½ )
 extern int NS_DrawObtainsNString_WordClip( int x, int y, int AddY, const TCHAR *String, size_t StringLength, unsigned int StrColor, unsigned int StrEdgeColor, int FontHandle, unsigned int SelectBackColor, unsigned int SelectStrColor, unsigned int SelectStrEdgeColor, int SelectStart, int SelectEnd, int *LineCount )
 {
 	int Result ;
@@ -3040,7 +3040,7 @@ extern int NS_DrawObtainsNString_WordClip( int x, int y, int AddY, const TCHAR *
 	return Result ;
 }
 
-// •`‰æ‰Â”\—Ìˆæ‚Éû‚Ü‚é‚æ‚¤‚É‰üs‚µ‚È‚ª‚ç•¶š—ñ‚ğ•`‰æ( ƒNƒŠƒbƒv‚ª’PŒê’PˆÊ )
+// æç”»å¯èƒ½é ˜åŸŸã«åã¾ã‚‹ã‚ˆã†ã«æ”¹è¡Œã—ãªãŒã‚‰æ–‡å­—åˆ—ã‚’æç”»( ã‚¯ãƒªãƒƒãƒ—ãŒå˜èªå˜ä½ )
 extern int DrawObtainsString_WordClip_WCHAR_T(
 	int x, int y,
 	int EnableExRate, double ExRateX, double ExRateY,
@@ -3069,7 +3069,7 @@ extern int DrawObtainsString_WordClip_WCHAR_T(
 	int i, j, Num ;
 	wchar_t TempBuf[ 3 ] ;
 
-	// FontHandle ‚ª -1 ‚Ìê‡‚ÍƒfƒtƒHƒ‹ƒg‚ÌƒtƒHƒ“ƒg‚ğg—p‚·‚é
+	// FontHandle ãŒ -1 ã®å ´åˆã¯ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®ãƒ•ã‚©ãƒ³ãƒˆã‚’ä½¿ç”¨ã™ã‚‹
 	if( FontHandle == -1 )
 	{
 		FontHandle = NS_GetDefaultFontHandle() ;
@@ -3077,7 +3077,7 @@ extern int DrawObtainsString_WordClip_WCHAR_T(
 
 	if( DrawFlag )
 	{
-		// ‚R‚c—LŒøƒtƒ‰ƒO‚ğ“¾‚é
+		// ï¼“ï¼¤æœ‰åŠ¹ãƒ•ãƒ©ã‚°ã‚’å¾—ã‚‹
 		Use3DFlag = NS_GetUse3DFlag() ;
 		NS_SetUse3DFlag( FALSE ) ;
 	}
@@ -3087,10 +3087,10 @@ extern int DrawObtainsString_WordClip_WCHAR_T(
 		*LineCount = 1 ;
 	}
 
-	// •`‰æ‰Â”\—Ìˆæ‚ğ“¾‚é
+	// æç”»å¯èƒ½é ˜åŸŸã‚’å¾—ã‚‹
 	NS_GetDrawArea( &DrawRect ) ;
 
-	// ‰Šú’l‚ğƒZƒbƒg
+	// åˆæœŸå€¤ã‚’ã‚»ãƒƒãƒˆ
 	if( PosX )
 	{
 		*PosX = 0 ;
@@ -3100,14 +3100,14 @@ extern int DrawObtainsString_WordClip_WCHAR_T(
 		*PosY = 0 ;
 	}
 
-	// •`‰æ”ÍˆÍ‚É•‚ª–³‚¢ê‡‚Í‰½‚à‚¹‚¸‚ÉI—¹
+	// æç”»ç¯„å›²ã«å¹…ãŒç„¡ã„å ´åˆã¯ä½•ã‚‚ã›ãšã«çµ‚äº†
 	if( DrawRect.left == DrawRect.right ||
 		DrawRect.top  == DrawRect.bottom )
 	{
 		return 0 ;
 	}
 
-	// •`‰æˆÊ’u‚ğ•â³
+	// æç”»ä½ç½®ã‚’è£œæ­£
 	if( x < DrawRect.left ) x = DrawRect.left ;
 	if( y < DrawRect.top  ) y = DrawRect.top ;
 
@@ -3127,7 +3127,7 @@ extern int DrawObtainsString_WordClip_WCHAR_T(
 		StrLen = ( int )_WCSLEN( String ) ;
 	}
 
-	// “ü—Í•¶š—ñ‚ğ•`‰æ
+	// å…¥åŠ›æ–‡å­—åˆ—ã‚’æç”»
 	{
 		int smin = 0, smax = 0 ;
 		int FontSize ;
@@ -3158,7 +3158,7 @@ extern int DrawObtainsString_WordClip_WCHAR_T(
 		PointY = y ;
 		for( i = 0 ; i < StrLen ; )
 		{
-			// ’PŒê‚Ì•¶š”‚ğ”‚¦‚é
+			// å˜èªã®æ–‡å­—æ•°ã‚’æ•°ãˆã‚‹
 			c = 0 ;
 			for(;;)
 			{
@@ -3297,11 +3297,11 @@ extern int DrawObtainsString_WordClip_WCHAR_T(
 
 	if( DrawFlag )
 	{
-		// ‚R‚c•`‰æƒtƒ‰ƒO‚ğŒ³‚É–ß‚·
+		// ï¼“ï¼¤æç”»ãƒ•ãƒ©ã‚°ã‚’å…ƒã«æˆ»ã™
 		NS_SetUse3DFlag( Use3DFlag ) ;
 	}
 
-	// À•W‚ğƒZƒbƒg
+	// åº§æ¨™ã‚’ã‚»ãƒƒãƒˆ
 	if( PosX )
 	{
 		*PosX = PointX ;
@@ -3311,7 +3311,7 @@ extern int DrawObtainsString_WordClip_WCHAR_T(
 		*PosY = PointY ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 #else // DX_NON_GRAPHICS
 	return -1 ;
@@ -3324,7 +3324,7 @@ extern int DrawObtainsString_WordClip_WCHAR_T(
 
 
 
-// •`‰æ‰Â”\—Ìˆæ‚Éû‚Ü‚é‚æ‚¤‚É‰üs‚µ‚È‚ª‚ç•¶š—ñ‚ğ•`‰æ‚µ‚½ê‡‚Ì•¶š—ñ‚Ì––’[‚ÌÀ•W‚ğæ“¾‚·‚é
+// æç”»å¯èƒ½é ˜åŸŸã«åã¾ã‚‹ã‚ˆã†ã«æ”¹è¡Œã—ãªãŒã‚‰æ–‡å­—åˆ—ã‚’æç”»ã—ãŸå ´åˆã®æ–‡å­—åˆ—ã®æœ«ç«¯ã®åº§æ¨™ã‚’å–å¾—ã™ã‚‹
 extern int NS_GetObtainsStringCharPosition(	int x, int y, int AddY, const TCHAR *String, int StrLen, int *PosX, int *PosY, int FontHandle, int *LineCount )
 {
 #ifdef UNICODE
@@ -3376,7 +3376,7 @@ extern int NS_GetObtainsStringCharPosition(	int x, int y, int AddY, const TCHAR 
 #endif
 }
 
-// •`‰æ‰Â”\—Ìˆæ‚Éû‚Ü‚é‚æ‚¤‚É‰üs‚µ‚È‚ª‚ç•¶š—ñ‚ğ•`‰æ‚µ‚½ê‡‚Ì•¶š—ñ‚Ì––’[‚ÌÀ•W‚ğæ“¾‚·‚é( ƒNƒŠƒbƒv‚ª•¶š’PˆÊ )
+// æç”»å¯èƒ½é ˜åŸŸã«åã¾ã‚‹ã‚ˆã†ã«æ”¹è¡Œã—ãªãŒã‚‰æ–‡å­—åˆ—ã‚’æç”»ã—ãŸå ´åˆã®æ–‡å­—åˆ—ã®æœ«ç«¯ã®åº§æ¨™ã‚’å–å¾—ã™ã‚‹( ã‚¯ãƒªãƒƒãƒ—ãŒæ–‡å­—å˜ä½ )
 extern int NS_GetObtainsStringCharPosition_CharClip( int x, int y, int AddY, const TCHAR *String, int StrLen, int *PosX, int *PosY, int FontHandle, int *LineCount )
 {
 #ifdef UNICODE
@@ -3430,7 +3430,7 @@ extern int NS_GetObtainsStringCharPosition_CharClip( int x, int y, int AddY, con
 #endif
 }
 
-// •`‰æ‰Â”\—Ìˆæ‚Éû‚Ü‚é‚æ‚¤‚É‰üs‚µ‚È‚ª‚ç•¶š—ñ‚ğ•`‰æ‚µ‚½ê‡‚Ì•¶š—ñ‚Ì––’[‚ÌÀ•W‚ğæ“¾‚·‚é( ƒNƒŠƒbƒv‚ª’PŒê’PˆÊ )
+// æç”»å¯èƒ½é ˜åŸŸã«åã¾ã‚‹ã‚ˆã†ã«æ”¹è¡Œã—ãªãŒã‚‰æ–‡å­—åˆ—ã‚’æç”»ã—ãŸå ´åˆã®æ–‡å­—åˆ—ã®æœ«ç«¯ã®åº§æ¨™ã‚’å–å¾—ã™ã‚‹( ã‚¯ãƒªãƒƒãƒ—ãŒå˜èªå˜ä½ )
 extern int NS_GetObtainsStringCharPosition_WordClip( int x, int y, int AddY, const TCHAR *String, int StrLen, int *PosX, int *PosY, int FontHandle, int *LineCount )
 {
 #ifdef UNICODE
@@ -3490,7 +3490,7 @@ extern int NS_GetObtainsStringCharPosition_WordClip( int x, int y, int AddY, con
 
 #endif // DX_NON_FONT
 
-// ‹K’è—Ìˆæ‚Éû‚ß‚½‚©‚½‚¿‚Å‹éŒ`‚ğ•`‰æ 
+// è¦å®šé ˜åŸŸã«åã‚ãŸã‹ãŸã¡ã§çŸ©å½¢ã‚’æç”» 
 extern int NS_DrawObtainsBox( int x1 , int y1 , int x2 , int y2 , int AddY , unsigned int Color , int FillFlag )
 {
 #ifndef DX_NON_GRAPHICS
@@ -3499,18 +3499,18 @@ extern int NS_DrawObtainsBox( int x1 , int y1 , int x2 , int y2 , int AddY , uns
 	int Use3DFlag ;
 	RECT DrawRect , Rect ;
 
-	// ‚R‚c—LŒøƒtƒ‰ƒO‚ğ“¾‚é
+	// ï¼“ï¼¤æœ‰åŠ¹ãƒ•ãƒ©ã‚°ã‚’å¾—ã‚‹
 	Use3DFlag = NS_GetUse3DFlag() ;
 	NS_SetUse3DFlag( FALSE ) ;
 
-	// •`‰æ‚·‚é’·‚³‚Æ‚‚³‚ğ“¾‚é
+	// æç”»ã™ã‚‹é•·ã•ã¨é«˜ã•ã‚’å¾—ã‚‹
 	AllWidth = x2 - x1 ;
 	Height = y2 - y1 ;
 
-	// •`‰æ‰Â”\—Ìˆæ‚ğ“¾‚é
+	// æç”»å¯èƒ½é ˜åŸŸã‚’å¾—ã‚‹
 	NS_GetDrawArea( &DrawRect ) ;
 
-	// •`‰æˆÊ’u‚ğ•â³
+	// æç”»ä½ç½®ã‚’è£œæ­£
 	if( x1 < DrawRect.left ){ x2 += DrawRect.left - x1 ; x1 = DrawRect.left ; }
 	if( y1 < DrawRect.top  ){ y2 += DrawRect.top  - y1 ; y1 = DrawRect.top  ; }
 
@@ -3520,7 +3520,7 @@ extern int NS_DrawObtainsBox( int x1 , int y1 , int x2 , int y2 , int AddY , uns
 		y1 += AddY ;
 	}
 
-	// “ü—Í•¶š—ñ‚ğ•`‰æ
+	// å…¥åŠ›æ–‡å­—åˆ—ã‚’æç”»
 	Width = AllWidth ;
 	PointX = x1 ;
 	PointY = y1 ;
@@ -3541,10 +3541,10 @@ extern int NS_DrawObtainsBox( int x1 , int y1 , int x2 , int y2 , int AddY , uns
 		else break ;
 	}
 
-	// ‚R‚c•`‰æƒtƒ‰ƒO‚ğŒ³‚É–ß‚·
+	// ï¼“ï¼¤æç”»ãƒ•ãƒ©ã‚°ã‚’å…ƒã«æˆ»ã™
 	NS_SetUse3DFlag( Use3DFlag ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 #else // DX_NON_GRAPHICS
 	return -1 ;
@@ -3554,7 +3554,7 @@ extern int NS_DrawObtainsBox( int x1 , int y1 , int x2 , int y2 , int AddY , uns
 
 #ifndef DX_NON_INPUTSTRING
 
-// ƒAƒXƒL[ƒRƒ“ƒgƒ[ƒ‹ƒR[ƒh‚©’²‚×‚é
+// ã‚¢ã‚¹ã‚­ãƒ¼ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã‚³ãƒ¼ãƒ‰ã‹èª¿ã¹ã‚‹
 extern int NS_GetCtrlCodeCmp( TCHAR Char ) 
 {
 	return GetCtrlCodeCmp_WCHAR_T( ( wchar_t )Char ) ;
@@ -3566,11 +3566,11 @@ extern int GetCtrlCodeCmp_WCHAR_T( wchar_t Char )
 
 	for( i = 0 ; CtrlCode[ i ][ 0 ] != 0  &&  ( wchar_t )CtrlCode[ i ][ 1 ] != Char ; i ++ ){}
 	
-	// Œ‹‰Ê‚ğ•Ô‚·
+	// çµæœã‚’è¿”ã™
 	return CtrlCode[ i ][ 0 ] != 0 ;
 }
 
-// ‚h‚l‚d‚É•Ï‰»‚ª‚ ‚Á‚½‚©Aƒtƒ‰ƒO‚Ìæ“¾
+// ï¼©ï¼­ï¼¥ã«å¤‰åŒ–ãŒã‚ã£ãŸã‹ã€ãƒ•ãƒ©ã‚°ã®å–å¾—
 extern int GetIMEChangeFlag( void )
 {
 	int Flag = CharBuf.ChangeFlag ;
@@ -3582,7 +3582,7 @@ extern int GetIMEChangeFlag( void )
 
 #ifndef DX_NON_KEYEX
 
-// •¶š—ñ‚Ì“ü—Íæ“¾
+// æ–‡å­—åˆ—ã®å…¥åŠ›å–å¾—
 extern int NS_InputStringToCustom(
 	int x , int y ,
 	size_t BufLength ,
@@ -3640,7 +3640,7 @@ extern int NS_InputStringToCustom(
 		DisplayCandidateList
 	) ;
 
-	// ƒLƒƒƒ“ƒZƒ‹‚³‚ê‚Ä‚¢‚È‚¢ê‡‚Ì‚İ•¶š—ñ‚ğ•ÏŠ·
+	// ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã•ã‚Œã¦ã„ãªã„å ´åˆã®ã¿æ–‡å­—åˆ—ã‚’å¤‰æ›
 	if( Result == 1 )
 	{
 		ConvString( ( const char * )UseTempBuffer, -1, WCHAR_T_CHARCODEFORMAT, StrBuffer, BUFFERBYTES_CANCEL, _TCHARCODEFORMAT ) ;
@@ -3656,7 +3656,7 @@ extern int NS_InputStringToCustom(
 #endif
 }
 
-// •¶š—ñ‚Ì“ü—Íæ“¾
+// æ–‡å­—åˆ—ã®å…¥åŠ›å–å¾—
 extern int InputStringToCustom_WCHAR_T(
 	int x , int y ,
 	size_t BufLength ,
@@ -3680,28 +3680,28 @@ extern int InputStringToCustom_WCHAR_T(
 	int ScreenWidth, ScreenHeight ;
 	SCREENDRAWSETTINGINFO ScreenDrawSettingInfo ;
 
-	// Šeí•`‰æİ’èî•ñ‚ğæ“¾
+	// å„ç¨®æç”»è¨­å®šæƒ…å ±ã‚’å–å¾—
 	Graphics_DrawSetting_GetScreenDrawSettingInfo( &ScreenDrawSettingInfo ) ;
 	GetTransColor( &Red , &Green , &Blue ) ;
 	
-	// ‰æ–Ê‚Ì‘å‚«‚³‚ğ“¾‚é
+	// ç”»é¢ã®å¤§ãã•ã‚’å¾—ã‚‹
 	GetDrawScreenSize( &ScreenWidth, &ScreenHeight ) ;
 
-	// •`‰æ—Ìˆæ‚ğ“¾‚é
+	// æç”»é ˜åŸŸã‚’å¾—ã‚‹
 	GetDrawArea( &DrawRect ) ;
 
-	// ‚u‚q‚`‚l‚Ìg—pA‚R‚c•`‰æ‹@”\‚Ìg—p•ÏX
+	// ï¼¶ï¼²ï¼¡ï¼­ã®ä½¿ç”¨ã€ï¼“ï¼¤æç”»æ©Ÿèƒ½ã®ä½¿ç”¨å¤‰æ›´
 	SetUseSystemMemGraphCreateFlag( CheckFontChacheToTextureFlag( GetDefaultFontHandle() ) == TRUE ? FALSE : TRUE ) ;
 	SetUse3DFlag( FALSE ) ;
 
-	// “§‰ßF‚ğ^‚Á•‚É‚·‚é
+	// é€éè‰²ã‚’çœŸã£é»’ã«ã™ã‚‹
 	SetTransColor( 0 , 0 , 0 ) ;
 
-	// ƒVƒ“ƒOƒ‹•¶š‚Ì‚İ‚Å‚Í‚È‚¢ê‡‚Í‚h‚l‚d‚ğ—LŒø‚É‚·‚é
+	// ã‚·ãƒ³ã‚°ãƒ«æ–‡å­—ã®ã¿ã§ã¯ãªã„å ´åˆã¯ï¼©ï¼­ï¼¥ã‚’æœ‰åŠ¹ã«ã™ã‚‹
 	CharBuf.IMEUseFlag_System = SingleCharOnlyFlag == FALSE ? TRUE : FALSE ;
 	RefreshIMEFlag() ;
 
-	// ‰æ–Ê‚ğ•Û‘¶‚·‚é‚½‚ß‚Ìƒƒ‚ƒŠ‚ğŠm•Û
+	// ç”»é¢ã‚’ä¿å­˜ã™ã‚‹ãŸã‚ã®ãƒ¡ãƒ¢ãƒªã‚’ç¢ºä¿
 	DrawWidth			= DrawRect.right  - DrawRect.left ;
 	DrawHeight			= DrawRect.bottom - DrawRect.top ; 
 	ScreenGraphFront	= MakeGraph( ScreenWidth, ScreenHeight, FALSE ) ;
@@ -3713,118 +3713,118 @@ extern int InputStringToCustom_WCHAR_T(
 	SetDrawArea( 0, 0, ScreenWidth, ScreenHeight ) ;
 	GetDrawScreenGraph( 0, 0, ScreenWidth, ScreenHeight, ScreenGraphBack, TRUE ) ;
 
-	// •¶š“ü—Í—pƒoƒbƒtƒ@‚ÌŠm•Û
+	// æ–‡å­—å…¥åŠ›ç”¨ãƒãƒƒãƒ•ã‚¡ã®ç¢ºä¿
 //	if( ( Buffer = ( wchar_t * )DXCALLOC( BufLength + 1 ) ) == NULL ) return -1 ;
 
-	// “ü—Íƒnƒ“ƒhƒ‹‚ğ“¾‚é
+	// å…¥åŠ›ãƒãƒ³ãƒ‰ãƒ«ã‚’å¾—ã‚‹
 	InputHandle = MakeKeyInput( BufLength , CancelValidFlag , SingleCharOnlyFlag , NumCharOnlyFlag, DoubleCharOnlyFlag, EnableNewLineFlag ) ;
 	if( InputHandle != -1 )
 	{
-		// “ü—Í‚ğƒAƒNƒeƒBƒu‚É‚·‚é
+		// å…¥åŠ›ã‚’ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ã™ã‚‹
 		SetActiveKeyInput( InputHandle ) ;
 
-		// “ü—Í•¶š”‚ğ‚O‚É‚·‚é
+		// å…¥åŠ›æ–‡å­—æ•°ã‚’ï¼ã«ã™ã‚‹
 		FontSize = GetFontSize() ;
 
-		// À•W‚Ì•â³
+		// åº§æ¨™ã®è£œæ­£
 //		x -= DrawRect.left ;
 //		y -= DrawRect.top ;
 
-		// ‚P‰ñ•`‰æ
+		// ï¼‘å›æç”»
 		DrawKeyInputString( x , y , InputHandle, DisplayCandidateList ) ;
 
-		// •`‰ææ‚ğ— ‰æ–Ê‚É
+		// æç”»å…ˆã‚’è£ç”»é¢ã«
 		SetDrawScreen( DX_SCREEN_BACK ) ;
 		while( ProcessMessage() == 0 )
 		{
-			// “ü—Í‚ªI—¹‚µ‚Ä‚¢‚éê‡‚ÍI—¹
+			// å…¥åŠ›ãŒçµ‚äº†ã—ã¦ã„ã‚‹å ´åˆã¯çµ‚äº†
 			EndFlag = CheckKeyInput( InputHandle ) ;
 			if( EndFlag ) break ;
 
-			// “ü—Í•¶š‚ÌXV
+			// å…¥åŠ›æ–‡å­—ã®æ›´æ–°
 			{
-				// ‚à‚Æ‰æ–Ê‚Ì•`‰æ
+				// ã‚‚ã¨ç”»é¢ã®æç”»
 				DrawGraph( 0 , 0 , ScreenGraphFront , FALSE ) ;
 
-				// ‚h‚l‚d“ü—Íƒ‚[ƒh‚Ì•`‰æ
+				// ï¼©ï¼­ï¼¥å…¥åŠ›ãƒ¢ãƒ¼ãƒ‰ã®æç”»
 				DrawKeyInputModeString( DrawRect.right , DrawRect.bottom ) ; 
 
-				// “ü—Íó‘Ô‚Ì•`‰æ
+				// å…¥åŠ›çŠ¶æ…‹ã®æç”»
 				SetDrawArea( DrawRect.left, DrawRect.top, DrawRect.right, DrawRect.bottom ) ;
 				DrawKeyInputString( x , y , InputHandle, DisplayCandidateList ) ;
 				SetDrawArea( 0, 0, ScreenWidth, ScreenHeight ) ;
 
-				// •\‰æ–Ê‚É“]‘—
+				// è¡¨ç”»é¢ã«è»¢é€
 				ScreenFlip() ;
 			}
 		}
 	}
 
-	// ƒEƒCƒ“ƒhƒE‚ª•Â‚¶‚ç‚ê‚½ê‡‚Í|‚P‚ğ•Ô‚·
+	// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãŒé–‰ã˜ã‚‰ã‚ŒãŸå ´åˆã¯ï¼ï¼‘ã‚’è¿”ã™
 	if( ProcessMessage() == -1 ) return -1;
 
-	// ƒLƒƒƒ“ƒZƒ‹‚³‚ê‚Ä‚¢‚È‚¢ê‡‚Í•¶š—ñ‚ğæ“¾
+	// ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã•ã‚Œã¦ã„ãªã„å ´åˆã¯æ–‡å­—åˆ—ã‚’å–å¾—
 	if( EndFlag == 1 )
 	{
 		GetKeyInputString_WCHAR_T( StrBuffer , InputHandle ) ;
 	}
 
-	// ‰æ–Ê‚ğŒ³‚É‚à‚Ç‚·
+	// ç”»é¢ã‚’å…ƒã«ã‚‚ã©ã™
 	SetDrawArea( 0, 0, ScreenWidth, ScreenHeight ) ;
 	DrawGraph( 0, 0, ScreenGraphBack, FALSE ) ;
 	SetDrawScreen( DX_SCREEN_FRONT ) ;
 	DrawGraph( 0, 0, ScreenGraphFront, FALSE ) ;
 
-	// ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‚ğÁ‚·
+	// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã‚’æ¶ˆã™
 	DeleteKeyInput( InputHandle ) ;
 	SubHandle( ScreenGraphFront, FALSE, FALSE ) ;
 	SubHandle( ScreenGraphBack, FALSE, FALSE ) ;
 
-	// •`‰æİ’èî•ñ‚ğŒ³‚É–ß‚·
+	// æç”»è¨­å®šæƒ…å ±ã‚’å…ƒã«æˆ»ã™
 	Graphics_DrawSetting_SetScreenDrawSettingInfo( &ScreenDrawSettingInfo ) ;
 	SetTransColor( Red , Green , Blue ) ;
 
-	// ‚h‚l‚dİ’è‚ğŒ³‚É–ß‚·
+	// ï¼©ï¼­ï¼¥è¨­å®šã‚’å…ƒã«æˆ»ã™
 	CharBuf.IMEUseFlag_System = FALSE ;
 	RefreshIMEFlag() ;
 
-	// I—¹
+	// çµ‚äº†
 	return EndFlag ;
 }
 
 
-// •¶š—ñ‚Ì“ü—Íæ“¾
+// æ–‡å­—åˆ—ã®å…¥åŠ›å–å¾—
 extern int NS_KeyInputString( int x , int y , size_t CharMaxLength , TCHAR *StrBuffer , int CancelValidFlag )
 {
 	return NS_InputStringToCustom( x , y , CharMaxLength , StrBuffer , CancelValidFlag , FALSE , FALSE, FALSE, FALSE, TRUE ) ;
 }
 
-// •¶š—ñ‚Ì“ü—Íæ“¾
+// æ–‡å­—åˆ—ã®å…¥åŠ›å–å¾—
 extern int KeyInputString_WCHAR_T( int x , int y , size_t CharMaxLength , wchar_t *StrBuffer , int CancelValidFlag )
 {
 	return InputStringToCustom_WCHAR_T( x , y , CharMaxLength , StrBuffer , CancelValidFlag , FALSE , FALSE, FALSE ) ;
 }
 
-// ”¼Šp•¶š—ñ‚Ì‚İ‚Ì“ü—Íæ“¾
+// åŠè§’æ–‡å­—åˆ—ã®ã¿ã®å…¥åŠ›å–å¾—
 extern int NS_KeyInputSingleCharString( int x , int y , size_t CharMaxLength , TCHAR *StrBuffer , int CancelValidFlag )
 {
 	return NS_InputStringToCustom( x , y, CharMaxLength , StrBuffer , CancelValidFlag , TRUE , FALSE, FALSE, FALSE, TRUE ) ;
 }
 
-// ”¼Šp•¶š—ñ‚Ì‚İ‚Ì“ü—Íæ“¾
+// åŠè§’æ–‡å­—åˆ—ã®ã¿ã®å…¥åŠ›å–å¾—
 extern int KeyInputSingleCharString_WCHAR_T( int x , int y , size_t CharMaxLength , wchar_t *StrBuffer , int CancelValidFlag )
 {
 	return InputStringToCustom_WCHAR_T( x , y, CharMaxLength , StrBuffer , CancelValidFlag , TRUE , FALSE, FALSE ) ;
 }
 
-// ”’l‚Ì“ü—Í
+// æ•°å€¤ã®å…¥åŠ›
 extern int NS_KeyInputNumber( int x , int y , int MaxNum , int MinNum , int CancelValidFlag )
 {
 	int Num ;
 	wchar_t Buffer[ 50 ] ;
 	int StrLen , hr ;
 
-	// Å‘å•¶š—ñ•‚ğæ“¾
+	// æœ€å¤§æ–‡å­—åˆ—å¹…ã‚’å–å¾—
 	{
 		int MaxLen , MinLen ;
 
@@ -3837,7 +3837,7 @@ extern int NS_KeyInputNumber( int x , int y , int MaxNum , int MinNum , int Canc
 		StrLen = MaxLen > MinLen ? MaxLen : MinLen ;
 	}
 
-	// ”š‚ğæ“¾
+	// æ•°å­—ã‚’å–å¾—
 	hr = InputStringToCustom_WCHAR_T( x , y , StrLen , Buffer , CancelValidFlag , TRUE , TRUE ) ;
 	if( hr == -1 )
 	{
@@ -3848,10 +3848,10 @@ extern int NS_KeyInputNumber( int x , int y , int MaxNum , int MinNum , int Canc
 		return MaxNum + 1 ;
 	}
 
-	// ”’l‚É•ÏŠ·
+	// æ•°å€¤ã«å¤‰æ›
 	Num = _ATOIW( Buffer ) ;
 
-	// ‹K’è”ÍˆÍ‚Ì’†‚Éæ“¾‚µ‚½”’l‚ª“–‚Ä‚Í‚Ü‚ç‚È‚¢ŠÔ‚ÍŒJ‚è•Ô‚·
+	// è¦å®šç¯„å›²ã®ä¸­ã«å–å¾—ã—ãŸæ•°å€¤ãŒå½“ã¦ã¯ã¾ã‚‰ãªã„é–“ã¯ç¹°ã‚Šè¿”ã™
 	while( ProcessMessage() == 0 && ( Num > MaxNum || Num < MinNum ) )
 	{
 		hr = InputStringToCustom_WCHAR_T( x , y , StrLen , Buffer , CancelValidFlag , TRUE , TRUE ) ;
@@ -3864,15 +3864,15 @@ extern int NS_KeyInputNumber( int x , int y , int MaxNum , int MinNum , int Canc
 			return MaxNum + 1 ;
 		}
 
-		// ”’l‚É•ÏŠ·
+		// æ•°å€¤ã«å¤‰æ›
 		Num = _ATOIW( Buffer ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return Num ;
 }
 
-// IME‚Ì“ü—Íƒ‚[ƒh•¶š—ñ‚Ìæ“¾
+// IMEã®å…¥åŠ›ãƒ¢ãƒ¼ãƒ‰æ–‡å­—åˆ—ã®å–å¾—
 extern int NS_GetIMEInputModeStr( TCHAR *GetBuffer ) 
 {
 #ifdef UNICODE
@@ -3889,7 +3889,7 @@ extern int NS_GetIMEInputModeStr( TCHAR *GetBuffer )
 #endif
 }
 
-// IME‚Ì“ü—Íƒ‚[ƒh•¶š—ñ‚Ìæ“¾
+// IMEã®å…¥åŠ›ãƒ¢ãƒ¼ãƒ‰æ–‡å­—åˆ—ã®å–å¾—
 extern int GetIMEInputModeStr_WCHAR_T( wchar_t *GetBuffer ) 
 {
 	HIMC	Imc ;
@@ -3905,30 +3905,30 @@ extern int GetIMEInputModeStr_WCHAR_T( wchar_t *GetBuffer )
 
 	SETUP_WIN_API
 
-	// ‚h‚l‚d‚ªg‚í‚ê‚Ä‚¢‚È‚¢‚Æ‚«‚Í-1‚ğ•Ô‚·
+	// ï¼©ï¼­ï¼¥ãŒä½¿ã‚ã‚Œã¦ã„ãªã„ã¨ãã¯-1ã‚’è¿”ã™
 	if( CharBuf.IMEUseFlag_OSSet == FALSE || CharBuf.IMESwitch == FALSE ) return -1 ;
 
-	// •¶š—ñ‚Ì€”õ‚ª‚Å‚«‚Ä‚¢‚È‚¢ê‡‚Í€”õ‚ğs‚¤
+	// æ–‡å­—åˆ—ã®æº–å‚™ãŒã§ãã¦ã„ãªã„å ´åˆã¯æº–å‚™ã‚’è¡Œã†
 	if( StringSetup == FALSE )
 	{
-		ConvString( "\x68\x51\xd2\x89\xab\x30\xbf\x30\xab\x30\xca\x30\x00"/*@ L"‘SŠpƒJƒ^ƒJƒi" @*/, -1, DX_CHARCODEFORMAT_UTF16LE, ( char * )ZenkakuKanaString, sizeof( ZenkakuKanaString ), WCHAR_T_CHARCODEFORMAT ) ;
-		ConvString( "\x4a\x53\xd2\x89\xab\x30\xbf\x30\xab\x30\xca\x30\x00"/*@ L"”¼ŠpƒJƒ^ƒJƒi" @*/, -1, DX_CHARCODEFORMAT_UTF16LE, ( char * )HankakuKanaString, sizeof( HankakuKanaString ), WCHAR_T_CHARCODEFORMAT ) ;
-		ConvString( "\x68\x51\xd2\x89\x72\x30\x89\x30\x4c\x30\x6a\x30\x00"/*@ L"‘SŠp‚Ğ‚ç‚ª‚È" @*/, -1, DX_CHARCODEFORMAT_UTF16LE, ( char * )ZenkakuHiraString, sizeof( ZenkakuHiraString ), WCHAR_T_CHARCODEFORMAT ) ;
-		ConvString( "\x68\x51\xd2\x89\xf1\x82\x70\x65\x00"/*@ L"‘SŠp‰p”" @*/, -1, DX_CHARCODEFORMAT_UTF16LE, ( char * )ZenkakuEisuString, sizeof( ZenkakuEisuString ), WCHAR_T_CHARCODEFORMAT ) ;
-		ConvString( "\x4a\x53\xd2\x89\xf1\x82\x70\x65\x00"/*@ L"”¼Šp‰p”" @*/, -1, DX_CHARCODEFORMAT_UTF16LE, ( char * )HankakuEisuString, sizeof( HankakuEisuString ), WCHAR_T_CHARCODEFORMAT ) ;
-		ConvString( "\x0d\x4e\x0e\x66\x6a\x30\x65\x51\x9b\x52\xe2\x30\xfc\x30\xc9\x30\x00"/*@ L"•s–¾‚È“ü—Íƒ‚[ƒh" @*/, -1, DX_CHARCODEFORMAT_UTF16LE, ( char * )FumeiString, sizeof( FumeiString ), WCHAR_T_CHARCODEFORMAT ) ;
+		ConvString( "\x68\x51\xd2\x89\xab\x30\xbf\x30\xab\x30\xca\x30\x00"/*@ L"å…¨è§’ã‚«ã‚¿ã‚«ãƒŠ" @*/, -1, DX_CHARCODEFORMAT_UTF16LE, ( char * )ZenkakuKanaString, sizeof( ZenkakuKanaString ), WCHAR_T_CHARCODEFORMAT ) ;
+		ConvString( "\x4a\x53\xd2\x89\xab\x30\xbf\x30\xab\x30\xca\x30\x00"/*@ L"åŠè§’ã‚«ã‚¿ã‚«ãƒŠ" @*/, -1, DX_CHARCODEFORMAT_UTF16LE, ( char * )HankakuKanaString, sizeof( HankakuKanaString ), WCHAR_T_CHARCODEFORMAT ) ;
+		ConvString( "\x68\x51\xd2\x89\x72\x30\x89\x30\x4c\x30\x6a\x30\x00"/*@ L"å…¨è§’ã²ã‚‰ãŒãª" @*/, -1, DX_CHARCODEFORMAT_UTF16LE, ( char * )ZenkakuHiraString, sizeof( ZenkakuHiraString ), WCHAR_T_CHARCODEFORMAT ) ;
+		ConvString( "\x68\x51\xd2\x89\xf1\x82\x70\x65\x00"/*@ L"å…¨è§’è‹±æ•°" @*/, -1, DX_CHARCODEFORMAT_UTF16LE, ( char * )ZenkakuEisuString, sizeof( ZenkakuEisuString ), WCHAR_T_CHARCODEFORMAT ) ;
+		ConvString( "\x4a\x53\xd2\x89\xf1\x82\x70\x65\x00"/*@ L"åŠè§’è‹±æ•°" @*/, -1, DX_CHARCODEFORMAT_UTF16LE, ( char * )HankakuEisuString, sizeof( HankakuEisuString ), WCHAR_T_CHARCODEFORMAT ) ;
+		ConvString( "\x0d\x4e\x0e\x66\x6a\x30\x65\x51\x9b\x52\xe2\x30\xfc\x30\xc9\x30\x00"/*@ L"ä¸æ˜ãªå…¥åŠ›ãƒ¢ãƒ¼ãƒ‰" @*/, -1, DX_CHARCODEFORMAT_UTF16LE, ( char * )FumeiString, sizeof( FumeiString ), WCHAR_T_CHARCODEFORMAT ) ;
 
 		StringSetup = TRUE ;
 	}
 
-	// “ü—ÍƒRƒ“ƒeƒLƒXƒg‚ğæ“¾
+	// å…¥åŠ›ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã‚’å–å¾—
 	HWND DefHwnd = WinData.MainWindow;
 	Imc = WinAPIData.ImmFunc.ImmGetContextFunc( DefHwnd ) ;
 
-	// “ü—Íƒ‚[ƒh‚ğ“¾‚é
+	// å…¥åŠ›ãƒ¢ãƒ¼ãƒ‰ã‚’å¾—ã‚‹
 	WinAPIData.ImmFunc.ImmGetConversionStatusFunc( Imc , &InputState , &SentenceState ) ;
 
-	// ”»’f
+	// åˆ¤æ–­
 	Buf = InputState & ( IME_CMODE_NATIVE | IME_CMODE_FULLSHAPE | IME_CMODE_KATAKANA ) ;
 	if( Buf == ( IME_CMODE_NATIVE | IME_CMODE_FULLSHAPE | IME_CMODE_KATAKANA ) )
 	{
@@ -3973,32 +3973,32 @@ extern int GetIMEInputModeStr_WCHAR_T( wchar_t *GetBuffer )
 
 	_WCSCPY( GetBuffer , SelectStr ) ;
 
-	// “ü—ÍƒRƒ“ƒeƒLƒXƒg‚Ìíœ
+	// å…¥åŠ›ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã®å‰Šé™¤
 	WinAPIData.ImmFunc.ImmReleaseContextFunc( DefHwnd , Imc );
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// InputStringŠÖ”g—p‚Ì•¶š‚ÌŠeF‚ğ•ÏX‚·‚é
+// InputStringé–¢æ•°ä½¿ç”¨æ™‚ã®æ–‡å­—ã®å„è‰²ã‚’å¤‰æ›´ã™ã‚‹
 extern int NS_SetKeyInputStringColor(
-	ULONGLONG NmlStr ,				// “ü—Í•¶š—ñ‚ÌF
-	ULONGLONG NmlCur ,				// ‚h‚l‚d”ñg—p‚ÌƒJ[ƒ\ƒ‹‚ÌF
-	ULONGLONG IMEStrBack ,			// ‚h‚l‚dg—p‚Ì“ü—Í•¶š—ñ‚Ì”wŒi‚ÌF
-	ULONGLONG IMECur ,				// ‚h‚l‚dg—p‚ÌƒJ[ƒ\ƒ‹‚ÌF
-	ULONGLONG IMELine ,				// ‚h‚l‚dg—p‚Ì•ÏŠ·•¶š—ñ‚Ì‰ºü
-	ULONGLONG IMESelectStr ,		// ‚h‚l‚dg—p‚Ì‘I‘ğ‘ÎÛ‚Ì•ÏŠ·Œó•â•¶š—ñ‚ÌF
-	ULONGLONG IMEModeStr  ,			// ‚h‚l‚dg—p‚Ì“ü—Íƒ‚[ƒh•¶š—ñ‚ÌF(u‘SŠp‚Ğ‚ç‚ª‚Èv“™)
-	ULONGLONG NmlStrE ,				// “ü—Í•¶š—ñ‚Ì‰‚ÌF
-	ULONGLONG IMESelectStrE ,		// ‚h‚l‚dg—p‚Ì‘I‘ğ‘ÎÛ‚Ì•ÏŠ·Œó•â•¶š—ñ‚Ì‰‚ÌF
-	ULONGLONG IMEModeStrE	,		// ‚h‚l‚dg—p‚Ì“ü—Íƒ‚[ƒh•¶š—ñ‚Ì‰‚ÌF
-	ULONGLONG IMESelectWinE ,		// ‚h‚l‚dg—p‚Ì•ÏŠ·Œó•âƒEƒCƒ“ƒhƒE‚Ì‰‚ÌF
-	ULONGLONG IMESelectWinF	,		// ‚h‚l‚dg—p‚Ì•ÏŠ·Œó•âƒEƒCƒ“ƒhƒE‚Ì‰º’n‚ÌF
-	ULONGLONG SelectStrBackColor ,	// ‘I‘ğ‚³‚ê‚½“ü—Í•¶š—ñ‚Ì”wŒi‚ÌF
-	ULONGLONG SelectStrColor ,		// ‘I‘ğ‚³‚ê‚½“ü—Í•¶š—ñ‚ÌF
-	ULONGLONG SelectStrEdgeColor,	// ‘I‘ğ‚³‚ê‚½“ü—Í•¶š—ñ‚Ì‰‚ÌF
-	ULONGLONG IMEStr,				// ‚h‚l‚dg—p‚Ì“ü—Í•¶š—ñ‚ÌF
-	ULONGLONG IMEStrE				// ‚h‚l‚dg—p‚Ì“ü—Í•¶š—ñ‚Ì‰‚ÌF
+	ULONGLONG NmlStr ,				// å…¥åŠ›æ–‡å­—åˆ—ã®è‰²
+	ULONGLONG NmlCur ,				// ï¼©ï¼­ï¼¥éä½¿ç”¨æ™‚ã®ã‚«ãƒ¼ã‚½ãƒ«ã®è‰²
+	ULONGLONG IMEStrBack ,			// ï¼©ï¼­ï¼¥ä½¿ç”¨æ™‚ã®å…¥åŠ›æ–‡å­—åˆ—ã®èƒŒæ™¯ã®è‰²
+	ULONGLONG IMECur ,				// ï¼©ï¼­ï¼¥ä½¿ç”¨æ™‚ã®ã‚«ãƒ¼ã‚½ãƒ«ã®è‰²
+	ULONGLONG IMELine ,				// ï¼©ï¼­ï¼¥ä½¿ç”¨æ™‚ã®å¤‰æ›æ–‡å­—åˆ—ã®ä¸‹ç·š
+	ULONGLONG IMESelectStr ,		// ï¼©ï¼­ï¼¥ä½¿ç”¨æ™‚ã®é¸æŠå¯¾è±¡ã®å¤‰æ›å€™è£œæ–‡å­—åˆ—ã®è‰²
+	ULONGLONG IMEModeStr  ,			// ï¼©ï¼­ï¼¥ä½¿ç”¨æ™‚ã®å…¥åŠ›ãƒ¢ãƒ¼ãƒ‰æ–‡å­—åˆ—ã®è‰²(ã€Œå…¨è§’ã²ã‚‰ãŒãªã€ç­‰)
+	ULONGLONG NmlStrE ,				// å…¥åŠ›æ–‡å­—åˆ—ã®ç¸ã®è‰²
+	ULONGLONG IMESelectStrE ,		// ï¼©ï¼­ï¼¥ä½¿ç”¨æ™‚ã®é¸æŠå¯¾è±¡ã®å¤‰æ›å€™è£œæ–‡å­—åˆ—ã®ç¸ã®è‰²
+	ULONGLONG IMEModeStrE	,		// ï¼©ï¼­ï¼¥ä½¿ç”¨æ™‚ã®å…¥åŠ›ãƒ¢ãƒ¼ãƒ‰æ–‡å­—åˆ—ã®ç¸ã®è‰²
+	ULONGLONG IMESelectWinE ,		// ï¼©ï¼­ï¼¥ä½¿ç”¨æ™‚ã®å¤‰æ›å€™è£œã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ç¸ã®è‰²
+	ULONGLONG IMESelectWinF	,		// ï¼©ï¼­ï¼¥ä½¿ç”¨æ™‚ã®å¤‰æ›å€™è£œã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ä¸‹åœ°ã®è‰²
+	ULONGLONG SelectStrBackColor ,	// é¸æŠã•ã‚ŒãŸå…¥åŠ›æ–‡å­—åˆ—ã®èƒŒæ™¯ã®è‰²
+	ULONGLONG SelectStrColor ,		// é¸æŠã•ã‚ŒãŸå…¥åŠ›æ–‡å­—åˆ—ã®è‰²
+	ULONGLONG SelectStrEdgeColor,	// é¸æŠã•ã‚ŒãŸå…¥åŠ›æ–‡å­—åˆ—ã®ç¸ã®è‰²
+	ULONGLONG IMEStr,				// ï¼©ï¼­ï¼¥ä½¿ç”¨æ™‚ã®å…¥åŠ›æ–‡å­—åˆ—ã®è‰²
+	ULONGLONG IMEStrE				// ï¼©ï¼­ï¼¥ä½¿ç”¨æ™‚ã®å…¥åŠ›æ–‡å­—åˆ—ã®ç¸ã®è‰²
 	)
 {
 	if( NmlStr != -1 )
@@ -4113,12 +4113,12 @@ extern int NS_SetKeyInputStringColor(
 		*((DWORD *)&CharBuf.IMEStrEdgeColor) = *((DWORD *)&IMEStrE) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// InputStringŠÖ”g—p‚Ì•¶š‚ÌŠeF‚ğ•ÏX‚·‚é
-extern int NS_SetKeyInputStringColor2(	int TargetColor /* DX_KEYINPSTRCOLOR_NORMAL_STR “™ */, unsigned int Color )
+// InputStringé–¢æ•°ä½¿ç”¨æ™‚ã®æ–‡å­—ã®å„è‰²ã‚’å¤‰æ›´ã™ã‚‹
+extern int NS_SetKeyInputStringColor2(	int TargetColor /* DX_KEYINPSTRCOLOR_NORMAL_STR ç­‰ */, unsigned int Color )
 {
 	switch( TargetColor )
 	{
@@ -4221,12 +4221,12 @@ extern int NS_SetKeyInputStringColor2(	int TargetColor /* DX_KEYINPSTRCOLOR_NORM
 		break ;
 	}
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// SetKeyInputStringColor2 ‚Åİ’è‚µ‚½F‚ğƒfƒtƒHƒ‹ƒg‚É–ß‚·
-extern int NS_ResetKeyInputStringColor2(	int TargetColor /* DX_KEYINPSTRCOLOR_NORMAL_STR “™ */ )
+// SetKeyInputStringColor2 ã§è¨­å®šã—ãŸè‰²ã‚’ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã«æˆ»ã™
+extern int NS_ResetKeyInputStringColor2(	int TargetColor /* DX_KEYINPSTRCOLOR_NORMAL_STR ç­‰ */ )
 {
 	switch( TargetColor )
 	{
@@ -4329,29 +4329,29 @@ extern int NS_ResetKeyInputStringColor2(	int TargetColor /* DX_KEYINPSTRCOLOR_NO
 		break ;
 	}
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// ƒL[“ü—Í•¶š—ñ•`‰æŠÖ˜A‚Åg—p‚·‚éƒtƒHƒ“ƒg‚Ìƒnƒ“ƒhƒ‹‚ğ•ÏX‚·‚é(-1‚ÅƒfƒtƒHƒ‹ƒg‚ÌƒtƒHƒ“ƒgƒnƒ“ƒhƒ‹)
+// ã‚­ãƒ¼å…¥åŠ›æ–‡å­—åˆ—æç”»é–¢é€£ã§ä½¿ç”¨ã™ã‚‹ãƒ•ã‚©ãƒ³ãƒˆã®ãƒãƒ³ãƒ‰ãƒ«ã‚’å¤‰æ›´ã™ã‚‹(-1ã§ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®ãƒ•ã‚©ãƒ³ãƒˆãƒãƒ³ãƒ‰ãƒ«)
 extern int NS_SetKeyInputStringFont( int FontHandle )
 {
 	CharBuf.UseFontHandle = FontHandle ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒL[“ü—Í•¶š—ñˆ—‚Ì“ü—Í•¶š”‚ªŒÀŠE‚É’B‚µ‚Ä‚¢‚éó‘Ô‚ÅA•¶š—ñ‚Ì––’[•”•ª‚Å“ü—Í‚ªs‚í‚ê‚½ê‡‚Ìˆ—ƒ‚[ƒh‚ğ•ÏX‚·‚é
-extern int NS_SetKeyInputStringEndCharaMode( int EndCharaMode /* DX_KEYINPSTR_ENDCHARAMODE_OVERWRITE “™ */ )
+// ã‚­ãƒ¼å…¥åŠ›æ–‡å­—åˆ—å‡¦ç†ã®å…¥åŠ›æ–‡å­—æ•°ãŒé™ç•Œã«é”ã—ã¦ã„ã‚‹çŠ¶æ…‹ã§ã€æ–‡å­—åˆ—ã®æœ«ç«¯éƒ¨åˆ†ã§å…¥åŠ›ãŒè¡Œã‚ã‚ŒãŸå ´åˆã®å‡¦ç†ãƒ¢ãƒ¼ãƒ‰ã‚’å¤‰æ›´ã™ã‚‹
+extern int NS_SetKeyInputStringEndCharaMode( int EndCharaMode /* DX_KEYINPSTR_ENDCHARAMODE_OVERWRITE ç­‰ */ )
 {
 	CharBuf.EndCharaMode = EndCharaMode ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// “ü—Íƒ‚[ƒh•¶š—ñ‚ğ•`‰æ‚·‚é
+// å…¥åŠ›ãƒ¢ãƒ¼ãƒ‰æ–‡å­—åˆ—ã‚’æç”»ã™ã‚‹
 extern int NS_DrawKeyInputModeString( int x , int y )
 {
 	RECT DrawRect ;
@@ -4361,18 +4361,18 @@ extern int NS_DrawKeyInputModeString( int x , int y )
 	FontSize = NS_GetFontSizeToHandle( FontHandle ) ;
 	NS_GetDrawArea( &DrawRect ) ;
 
-	// “ü—Íƒ‚[ƒh‚ğ•`‰æ
+	// å…¥åŠ›ãƒ¢ãƒ¼ãƒ‰ã‚’æç”»
 	if( CharBuf.IMEUseFlag_OSSet == TRUE && CharBuf.IMESwitch == TRUE )
 	{
 		wchar_t InputModeStr[ 20 ] ;
 		int Width ;
 
-		// •¶š—ñæ“¾
+		// æ–‡å­—åˆ—å–å¾—
 		if( GetIMEInputModeStr_WCHAR_T( InputModeStr ) != -1 )
 		{
 			int StrLength = ( int )_WCSLEN( InputModeStr ) ;
 
-			// •æ“¾
+			// å¹…å–å¾—
 			Width = GetDrawStringWidthToHandle_WCHAR_T( InputModeStr, 0, StrLength, FontHandle, FALSE ) ;
 
 			if( Width    + x > DrawRect.right  ) x = DrawRect.right  - Width ;
@@ -4380,16 +4380,16 @@ extern int NS_DrawKeyInputModeString( int x , int y )
 			if( x < DrawRect.left ) x = DrawRect.left ;
 			if( y < DrawRect.top  ) y = DrawRect.top ;
 
-			// •`‰æ
+			// æç”»
 			DrawStringToHandle_WCHAR_T( x , y , InputModeStr , StrLength, CharBuf.IMEModeStrColor , FontHandle , CharBuf.IMEModeStrEdgeColor, FALSE )  ;
 		}
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒL[“ü—Íƒf[ƒ^‰Šú‰»
+// ã‚­ãƒ¼å…¥åŠ›ãƒ‡ãƒ¼ã‚¿åˆæœŸåŒ–
 extern int NS_InitKeyInput( void )
 {
 	int i ;
@@ -4404,38 +4404,38 @@ extern int NS_InitKeyInput( void )
 		}
 	}
 
-	// ‚h‚l‚d‚Ì“ü—Íî•ñæ“¾—p‚ÉŠm•Û‚µ‚Ä‚¢‚éƒƒ‚ƒŠ‚ª‚ ‚éê‡‚Í‰ğ•ú
+	// ï¼©ï¼­ï¼¥ã®å…¥åŠ›æƒ…å ±å–å¾—ç”¨ã«ç¢ºä¿ã—ã¦ã„ã‚‹ãƒ¡ãƒ¢ãƒªãŒã‚ã‚‹å ´åˆã¯è§£æ”¾
 	if( CharBuf.IMEInputData )
 	{
 		DXFREE( CharBuf.IMEInputData ) ;
 		CharBuf.IMEInputData = NULL ;
 	}
 
-	// ƒAƒNƒeƒBƒuƒnƒ“ƒhƒ‹‚ğ-1‚É‚·‚é
+	// ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ãƒãƒ³ãƒ‰ãƒ«ã‚’-1ã«ã™ã‚‹
 	CharBuf.ActiveInputHandle = -1 ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// V‚µ‚¢ƒL[“ü—Íƒf[ƒ^‚Ìì¬
+// æ–°ã—ã„ã‚­ãƒ¼å…¥åŠ›ãƒ‡ãƒ¼ã‚¿ã®ä½œæˆ
 extern int NS_MakeKeyInput( size_t MaxStrLength , int CancelValidFlag , int SingleCharOnlyFlag , int NumCharOnlyFlag, int DoubleCharOnlyFlag, int EnableNewLineFlag )
 {
 	int i, Result ;
 	INPUTDATA * Input ;
 
-	// MaxStrLength ‚ª 0 ‚¾‚Á‚½ê‡‚ÍƒGƒ‰[
+	// MaxStrLength ãŒ 0 ã ã£ãŸå ´åˆã¯ã‚¨ãƒ©ãƒ¼
 	if( MaxStrLength <= 0 )
 	{
 		return -1 ;
 	}
 
-	// g‚í‚ê‚Ä‚¢‚È‚¢ƒL[“ü—Íƒf[ƒ^‚ğ’T‚·
+	// ä½¿ã‚ã‚Œã¦ã„ãªã„ã‚­ãƒ¼å…¥åŠ›ãƒ‡ãƒ¼ã‚¿ã‚’æ¢ã™
 	for( i = 0 ; i != MAX_INPUT_NUM && CharBuf.InputData[ i ].UseFlag ; i ++ ){}
 	if( i == MAX_INPUT_NUM ) return -1 ;
 	Input = &CharBuf.InputData[ i ] ;
 
-	// ƒf[ƒ^‚Ì‰Šú‰»
+	// ãƒ‡ãƒ¼ã‚¿ã®åˆæœŸåŒ–
 	_MEMSET( Input, 0, sizeof( *Input ) ) ;
 #ifdef UNICODE
 	Input->Buffer = ( wchar_t * )DXCALLOC( ( MaxStrLength + 1 ) * sizeof( wchar_t ) ) ;
@@ -4464,21 +4464,21 @@ extern int NS_MakeKeyInput( size_t MaxStrLength , int CancelValidFlag , int Sing
 		CharBuf.HandleID = 0 ;
 	}
 
-	// ”¼Šp•¶š‚Ì‚İ‚Å‚Í‚È‚¢ê‡‚Í‚h‚l‚d‚ğ—LŒø‚É‚·‚é
+	// åŠè§’æ–‡å­—ã®ã¿ã§ã¯ãªã„å ´åˆã¯ï¼©ï¼­ï¼¥ã‚’æœ‰åŠ¹ã«ã™ã‚‹
 	CharBuf.IMEUseFlag_System = SingleCharOnlyFlag ? FALSE : TRUE ;
 	RefreshIMEFlag() ;
 
-	// •¶šƒR[ƒhƒoƒbƒtƒ@‚ğƒNƒŠƒA‚·‚é
+	// æ–‡å­—ã‚³ãƒ¼ãƒ‰ãƒãƒƒãƒ•ã‚¡ã‚’ã‚¯ãƒªã‚¢ã™ã‚‹
 	NS_ClearInputCharBuf() ;
 
-	// ƒnƒ“ƒhƒ‹’l‚Ìì¬
+	// ãƒãƒ³ãƒ‰ãƒ«å€¤ã®ä½œæˆ
 	Result = i | DX_HANDLETYPE_MASK_KEYINPUT | ( Input->ID << DX_HANDLECHECK_ADDRESS ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return Result ;
 }
 
-// ƒL[“ü—Íƒf[ƒ^‚Ìíœ
+// ã‚­ãƒ¼å…¥åŠ›ãƒ‡ãƒ¼ã‚¿ã®å‰Šé™¤
 extern int NS_DeleteKeyInput( int InputHandle )
 {
 	INPUTDATA * Input ;
@@ -4486,10 +4486,10 @@ extern int NS_DeleteKeyInput( int InputHandle )
 
 	if( KEYHCHK( InputHandle, Input ) ) return -1 ;
 
-	// Šm•Û‚µ‚Ä‚¢‚½ƒƒ‚ƒŠ‚Ì‰ğ•ú
+	// ç¢ºä¿ã—ã¦ã„ãŸãƒ¡ãƒ¢ãƒªã®è§£æ”¾
 	if( Input->Buffer != NULL ) DXFREE( Input->Buffer ) ;
 
-	// ƒf[ƒ^‚Ì‰Šú‰»
+	// ãƒ‡ãƒ¼ã‚¿ã®åˆæœŸåŒ–
 	_MEMSET( &CharBuf.InputData[ InputHandle & DX_HANDLEINDEX_MASK ], 0, sizeof( INPUTDATA ) ) ;
 	
 	if( CharBuf.ActiveInputHandle == InputHandle )
@@ -4497,7 +4497,7 @@ extern int NS_DeleteKeyInput( int InputHandle )
 		CharBuf.ActiveInputHandle = -1 ;
 	}
 
-	// ‚·‚×‚Ä‚ÌƒL[“ü—Í‚ª–³Œø‚É‚È‚Á‚Ä‚¢‚ê‚Î‚h‚l‚d‚Í–³Œø‚É‚·‚é
+	// ã™ã¹ã¦ã®ã‚­ãƒ¼å…¥åŠ›ãŒç„¡åŠ¹ã«ãªã£ã¦ã„ã‚Œã°ï¼©ï¼­ï¼¥ã¯ç„¡åŠ¹ã«ã™ã‚‹
 	for( i = 0 ; i != MAX_INPUT_NUM && !CharBuf.InputData[ i & DX_HANDLEINDEX_MASK ].UseFlag ; i ++ ){}
 	if( i == MAX_INPUT_NUM )
 	{
@@ -4505,31 +4505,31 @@ extern int NS_DeleteKeyInput( int InputHandle )
 		RefreshIMEFlag() ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// w’è‚ÌƒL[“ü—Í‚ğƒAƒNƒeƒBƒu‚É‚·‚é
+// æŒ‡å®šã®ã‚­ãƒ¼å…¥åŠ›ã‚’ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ã™ã‚‹
 extern int NS_SetActiveKeyInput( int InputHandle )
 {
 	INPUTDATA * Input ;
 	INPUTDATA * ActInput ;
 
-	// ƒnƒ“ƒhƒ‹ƒ`ƒFƒbƒN
+	// ãƒãƒ³ãƒ‰ãƒ«ãƒã‚§ãƒƒã‚¯
 	Input = NULL ;
 	if( InputHandle > 0 )
 	{
 		if( KEYHCHK( InputHandle, Input ) ) return -1 ;
 	}
 
-	// ƒJ[ƒ\ƒ‹“_–Åˆ—‚ÌƒJƒEƒ“ƒ^‚ğƒŠƒZƒbƒg
+	// ã‚«ãƒ¼ã‚½ãƒ«ç‚¹æ»…å‡¦ç†ã®ã‚«ã‚¦ãƒ³ã‚¿ã‚’ãƒªã‚»ãƒƒãƒˆ
 	ResetKeyInputCursorBrinkCount() ;
 
-	// ¡‚Ü‚Å‚Æ“¯‚¶ê‡‚Í‰½‚à‚µ‚È‚¢
+	// ä»Šã¾ã§ã¨åŒã˜å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( InputHandle == CharBuf.ActiveInputHandle &&
 		( ( Input != NULL && Input->EndFlag == FALSE ) || ( Input == NULL && InputHandle >= 0 ) ) ) return 0 ;
 
-	// ¡‚Ü‚ÅƒAƒNƒeƒBƒu‚¾‚Á‚½ƒnƒ“ƒhƒ‹‚Å‘I‘ğ—Ìˆæ‚ª‚ ‚éê‡‚Í‰ğœ‚·‚é
+	// ä»Šã¾ã§ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã ã£ãŸãƒãƒ³ãƒ‰ãƒ«ã§é¸æŠé ˜åŸŸãŒã‚ã‚‹å ´åˆã¯è§£é™¤ã™ã‚‹
 	if( CharBuf.ActiveInputHandle != -1 )
 	{
 		if( KEYHCHK( CharBuf.ActiveInputHandle, ActInput ) ) return -1 ;
@@ -4542,37 +4542,37 @@ extern int NS_SetActiveKeyInput( int InputHandle )
 	{
 		CharBuf.ActiveInputHandle = -1 ;
 
-		// ‚h‚l‚d‚ğ–³Œø‚É‚·‚é
+		// ï¼©ï¼­ï¼¥ã‚’ç„¡åŠ¹ã«ã™ã‚‹
 		CharBuf.IMEUseFlag_System = FALSE ;
 		RefreshIMEFlag() ;
 	}
 	else
 	{
-		// ƒAƒNƒeƒBƒu‚È“ü—Íƒnƒ“ƒhƒ‹‚ğ•ÏX‚·‚é‘O‚É“ü—Í•¶š—ñ‚ğƒNƒŠƒA‚µ‚Ä‚¨‚­
+		// ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ãªå…¥åŠ›ãƒãƒ³ãƒ‰ãƒ«ã‚’å¤‰æ›´ã™ã‚‹å‰ã«å…¥åŠ›æ–‡å­—åˆ—ã‚’ã‚¯ãƒªã‚¢ã—ã¦ãŠã
 		NS_ClearInputCharBuf() ;
 
 		CharBuf.ActiveInputHandle = InputHandle ;
 
-		// ƒGƒ“ƒhƒtƒ‰ƒO‚Ì—Ş‚ğ‰Šú‰»‚·‚é
+		// ã‚¨ãƒ³ãƒ‰ãƒ•ãƒ©ã‚°ã®é¡ã‚’åˆæœŸåŒ–ã™ã‚‹
 		Input->EndFlag = FALSE ;
 		Input->CancellFlag = FALSE ;
 
-		// ”¼Šp•¶šŒÀ’è‚Å‚Í‚È‚¢ê‡‚Í‚h‚l‚d‚ğ—LŒø‚É‚·‚é
+		// åŠè§’æ–‡å­—é™å®šã§ã¯ãªã„å ´åˆã¯ï¼©ï¼­ï¼¥ã‚’æœ‰åŠ¹ã«ã™ã‚‹
 		CharBuf.IMEUseFlag_System = Input->SingleCharOnlyFlag ? FALSE : TRUE ;
 		RefreshIMEFlag() ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// Œ»İƒAƒNƒeƒBƒu‚É‚È‚Á‚Ä‚¢‚éƒL[“ü—Íƒnƒ“ƒhƒ‹‚ğæ“¾‚·‚é
+// ç¾åœ¨ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ãªã£ã¦ã„ã‚‹ã‚­ãƒ¼å…¥åŠ›ãƒãƒ³ãƒ‰ãƒ«ã‚’å–å¾—ã™ã‚‹
 extern int NS_GetActiveKeyInput( void )
 {
 	return CharBuf.ActiveInputHandle ;
 }
 
-// “ü—Í‚ªI—¹‚µ‚Ä‚¢‚é‚©æ“¾‚·‚é
+// å…¥åŠ›ãŒçµ‚äº†ã—ã¦ã„ã‚‹ã‹å–å¾—ã™ã‚‹
 extern int NS_CheckKeyInput( int InputHandle )
 {
 	INPUTDATA * Input ;
@@ -4585,7 +4585,7 @@ extern int NS_CheckKeyInput( int InputHandle )
 	return Result ;
 }
 
-// “ü—Í‚ªŠ®—¹‚µ‚½ƒL[“ü—Í‚ğÄ“x•ÒWó‘Ô‚É–ß‚·
+// å…¥åŠ›ãŒå®Œäº†ã—ãŸã‚­ãƒ¼å…¥åŠ›ã‚’å†åº¦ç·¨é›†çŠ¶æ…‹ã«æˆ»ã™
 extern int NS_ReStartKeyInput( int InputHandle )
 {
 	INPUTDATA * Input ;
@@ -4594,11 +4594,11 @@ extern int NS_ReStartKeyInput( int InputHandle )
 
 	Input->EndFlag = FALSE ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// w’è‚Ì•¶š—ñ‚Ìw’è‚ÌˆÊ’u‚Ì•¶š‚Ìƒ^ƒCƒv‚ğ•Ô‚·( 0:wchar_tˆê‚Â‚ÅŠ®Œ‹‚µ‚Ä‚¢‚é•¶š  1:ƒTƒƒQ[ƒgƒyƒA‚Ìwchar_tˆê‚Â‚ß  2:ƒTƒƒQ[ƒgƒyƒA‚Ìwchar_t“ñ‚Â–Ú )
+// æŒ‡å®šã®æ–‡å­—åˆ—ã®æŒ‡å®šã®ä½ç½®ã®æ–‡å­—ã®ã‚¿ã‚¤ãƒ—ã‚’è¿”ã™( 0:wchar_tä¸€ã¤ã§å®Œçµã—ã¦ã„ã‚‹æ–‡å­—  1:ã‚µãƒ­ã‚²ãƒ¼ãƒˆãƒšã‚¢ã®wchar_tä¸€ã¤ã‚  2:ã‚µãƒ­ã‚²ãƒ¼ãƒˆãƒšã‚¢ã®wchar_täºŒã¤ç›® )
 static int CheckWCharType( const wchar_t *String, int CharPosition )
 {
 	int i ;
@@ -4621,7 +4621,7 @@ static int CheckWCharType( const wchar_t *String, int CharPosition )
 	return -1 ;
 }
 
-// ƒL[“ü—Íˆ—ŠÖ”
+// ã‚­ãƒ¼å…¥åŠ›å‡¦ç†é–¢æ•°
 extern int NS_ProcessActKeyInput( void )
 {
 	INPUTDATA * Input ;
@@ -4635,7 +4635,7 @@ extern int NS_ProcessActKeyInput( void )
 
 	SETUP_WIN_API
 
-	// ‚h‚l‚d‚ÌƒŠƒtƒŒƒbƒVƒ…ˆ—
+	// ï¼©ï¼­ï¼¥ã®ãƒªãƒ•ãƒ¬ãƒƒã‚·ãƒ¥å‡¦ç†
 	{
 		HWND DefHwnd;
 		static wchar_t str[256];
@@ -4704,7 +4704,7 @@ extern int NS_ProcessActKeyInput( void )
 		return 0 ;
 	}
 
-	// ‚h‚l‚d‚Ì“ü—Í•¶š”§ŒÀˆ—
+	// ï¼©ï¼­ï¼¥ã®å…¥åŠ›æ–‡å­—æ•°åˆ¶é™å‡¦ç†
 	if( CharBuf.IMEInputStringMaxLengthIMESync || CharBuf.IMEInputMaxLength )
 	{
 		int i, maxlen ;
@@ -4712,13 +4712,13 @@ extern int NS_ProcessActKeyInput( void )
 		int InputStrLength ;
 		int StrLength ;
 
-		// •¶š”‚ªw’èÅ‘åƒoƒCƒg”‚ğ’´‚¦‚Ä‚¢‚½‚ç‹­§“I‚É•¶š”‚ğŒ¸‚ç‚·
+		// æ–‡å­—æ•°ãŒæŒ‡å®šæœ€å¤§ãƒã‚¤ãƒˆæ•°ã‚’è¶…ãˆã¦ã„ãŸã‚‰å¼·åˆ¶çš„ã«æ–‡å­—æ•°ã‚’æ¸›ã‚‰ã™
 		flag = FALSE ;
 #ifdef UNICODE
 		InputStrLength = ( int )_WCSLEN( CharBuf.InputString ) ;
 		StrLength      = Input->StrLength ;
 #else // UNICODE
-		// ƒ}ƒ‹ƒ`ƒoƒCƒg•¶š—ñ‚Æ‚µ‚Ä‚Ì’·‚³‚ğæ“¾‚·‚é
+		// ãƒãƒ«ãƒãƒã‚¤ãƒˆæ–‡å­—åˆ—ã¨ã—ã¦ã®é•·ã•ã‚’å–å¾—ã™ã‚‹
 		{
 			ConvString( ( const char * )Input->Buffer, -1, WCHAR_T_CHARCODEFORMAT, Input->TempBuffer, Input->TempBufferBytes, CHAR_CHARCODEFORMAT ) ;
 			StrLength = ( int )CL_strlen( CHAR_CHARCODEFORMAT, Input->TempBuffer ) ;
@@ -4745,25 +4745,25 @@ extern int NS_ProcessActKeyInput( void )
 
 		if( flag )
 		{
-			// “ü—ÍƒRƒ“ƒeƒLƒXƒg‚Ìæ“¾
+			// å…¥åŠ›ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã®å–å¾—
 			Imc = WinAPIData.ImmFunc.ImmGetContextFunc( WinData.MainWindow ) ;
 			if( Imc )
 			{
-				// Àƒoƒbƒtƒ@‚É‚ ‚é•¶š—ñ‚à‚»‚¤‚È‚Á‚Ä‚¢‚é‚©’²‚×‚é
+				// å®Ÿãƒãƒƒãƒ•ã‚¡ã«ã‚ã‚‹æ–‡å­—åˆ—ã‚‚ãã†ãªã£ã¦ã„ã‚‹ã‹èª¿ã¹ã‚‹
 				_MEMSET( TempString, 0, sizeof( TempString ) );
 				WinAPIData.ImmFunc.ImmGetCompositionStringFunc( Imc , GCS_COMPSTR , TempString , CHARBUFFER_SIZE );
 #ifdef UNICODE
 				len = ( int )_WCSLEN( TempString ) ;
 #else // UNICODE
-				// ƒ}ƒ‹ƒ`ƒoƒCƒg•¶š—ñ‚É•ÏŠ·
+				// ãƒãƒ«ãƒãƒã‚¤ãƒˆæ–‡å­—åˆ—ã«å¤‰æ›
 				ConvString( ( const char * )TempString, -1, WCHAR_T_CHARCODEFORMAT, TempString2, sizeof( TempString2 ), CHAR_CHARCODEFORMAT ) ;
 
-				// •¶š—ñ‚Ì’·‚³‚ğæ“¾
+				// æ–‡å­—åˆ—ã®é•·ã•ã‚’å–å¾—
 				len = ( int )CL_strlen( CHAR_CHARCODEFORMAT, TempString2 ) ;
 #endif // UNICODE
 				if( len > maxlen )
 				{
-					// •¶š—ñ‚ğ’Z‚­‚·‚é
+					// æ–‡å­—åˆ—ã‚’çŸ­ãã™ã‚‹
 #ifdef UNICODE
 					for( i = 0; i < len ; )
 					{
@@ -4795,21 +4795,21 @@ extern int NS_ProcessActKeyInput( void )
 					}
 					TempString2[ i ] = '\0' ;
 
-					// wchar_t•¶š—ñ‚É•ÏŠ·
+					// wchar_tæ–‡å­—åˆ—ã«å¤‰æ›
 					ConvString( TempString2, -1, CHAR_CHARCODEFORMAT, ( char * )TempString, sizeof( TempString ), WCHAR_T_CHARCODEFORMAT ) ;
 #endif // UNICODE
-					// İ’è‚ğ‰Šú‰»
+					// è¨­å®šã‚’åˆæœŸåŒ–
 					WinAPIData.ImmFunc.ImmNotifyIMEFunc( Imc , NI_COMPOSITIONSTR ,  CPS_CANCEL , 0  );
 					WinAPIData.ImmFunc.ImmSetCompositionStringFunc( Imc, SCS_SETSTR, TempString, ( DWORD )_WCSLEN( TempString ) * sizeof( wchar_t ), 0, 0 );
 				}
 
-				// “ü—ÍƒRƒ“ƒeƒLƒXƒg‚Ìíœ
+				// å…¥åŠ›ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã®å‰Šé™¤
 				WinAPIData.ImmFunc.ImmReleaseContextFunc( WinData.MainWindow , Imc );
 			}
 		}
 	}
 
-	// ƒL[ƒR[ƒhƒoƒbƒtƒ@‚Ì‘±‚­ŒÀ‚èˆ—
+	// ã‚­ãƒ¼ã‚³ãƒ¼ãƒ‰ãƒãƒƒãƒ•ã‚¡ã®ç¶šãé™ã‚Šå‡¦ç†
 	while( Input->EndFlag == FALSE )
 	{
 		CharLen = GetOneChar_WCHAR_T( C , TRUE ) ;
@@ -4818,16 +4818,16 @@ extern int NS_ProcessActKeyInput( void )
 			break ;
 		}
 
-		// ƒJ[ƒ\ƒ‹“_–Åˆ—‚ÌƒJƒEƒ“ƒ^‚ğƒŠƒZƒbƒg
+		// ã‚«ãƒ¼ã‚½ãƒ«ç‚¹æ»…å‡¦ç†ã®ã‚«ã‚¦ãƒ³ã‚¿ã‚’ãƒªã‚»ãƒƒãƒˆ
 		ResetKeyInputCursorBrinkCount() ;
 		
 		switch( C[0] )
 		{
-			// ã‰ºƒ^ƒuƒL[‚Í–³‹
+			// ä¸Šä¸‹ã‚¿ãƒ–ã‚­ãƒ¼ã¯ç„¡è¦–
 		case CTRL_CODE_TAB :
 			break ;
 
-			// ƒz[ƒ€ƒ{ƒ^ƒ“
+			// ãƒ›ãƒ¼ãƒ ãƒœã‚¿ãƒ³
 		case CTRL_CODE_HOME :
 			if( NS_CheckHitKey( KEY_INPUT_LCONTROL ) || NS_CheckHitKey( KEY_INPUT_RCONTROL ) )
 			{
@@ -4858,7 +4858,7 @@ extern int NS_ProcessActKeyInput( void )
 
 				OldPos = Input->Point ;
 
-				// s‚Ìæ“ª‚ÉˆÚ“®
+				// è¡Œã®å…ˆé ­ã«ç§»å‹•
 				do
 				{
 					CharNum = 1 ;
@@ -4894,7 +4894,7 @@ extern int NS_ProcessActKeyInput( void )
 			}
 			break ;
 
-			// ƒGƒ“ƒhƒ{ƒ^ƒ“
+			// ã‚¨ãƒ³ãƒ‰ãƒœã‚¿ãƒ³
 		case CTRL_CODE_END :
 			if( NS_CheckHitKey( KEY_INPUT_LCONTROL ) || NS_CheckHitKey( KEY_INPUT_RCONTROL ) )
 			{
@@ -4923,7 +4923,7 @@ extern int NS_ProcessActKeyInput( void )
 
 				OldPos = Input->Point ;
 
-				// s‚ÌI’[‚ÉˆÚ“®
+				// è¡Œã®çµ‚ç«¯ã«ç§»å‹•
 				while( Input->Point < Input->StrLength && Input->Buffer[ Input->Point ] != L'\n' )
 				{
 					len = 1 ;
@@ -4955,7 +4955,7 @@ extern int NS_ProcessActKeyInput( void )
 			}
 			break ;
 
-			// ƒJƒbƒg
+			// ã‚«ãƒƒãƒˆ
 		case CTRL_CODE_CUT :
 CUT:
 			if( Input->SelectStart != -1 )
@@ -4986,7 +4986,7 @@ CUT:
 			}
 			break ;
 
-			// ƒRƒs[
+			// ã‚³ãƒ”ãƒ¼
 		case CTRL_CODE_COPY :
 			if( Input->SelectStart != -1 )
 			{
@@ -5015,7 +5015,7 @@ CUT:
 			}
 			break ;
 
-			// ƒy[ƒXƒg
+			// ãƒšãƒ¼ã‚¹ãƒˆ
 		case CTRL_CODE_PASTE :
 			if( GetClipboardText_WCHAR_T( NULL ) != -1 )
 			{
@@ -5048,9 +5048,9 @@ CUT:
 			}
 			break ;
 
-			// ƒGƒ“ƒ^[•¶š‚¾‚Á‚½ê‡
+			// ã‚¨ãƒ³ã‚¿ãƒ¼æ–‡å­—ã ã£ãŸå ´åˆ
 		case CTRL_CODE_CR :
-			// ‰üs‚ª‹–‰Â‚³‚ê‚Ä‚¢‚éê‡‚Í‰üs•¶š‚ğ’Ç‰Á‚·‚é
+			// æ”¹è¡ŒãŒè¨±å¯ã•ã‚Œã¦ã„ã‚‹å ´åˆã¯æ”¹è¡Œæ–‡å­—ã‚’è¿½åŠ ã™ã‚‹
 			if( Input->EnableNewLineFlag )
 			{
 				C[ 0 ] = '\n' ;
@@ -5058,13 +5058,13 @@ CUT:
 			}
 			else
 			{
-				// ‚»‚¤‚Å‚È‚¢ê‡‚Í‰üs‚ÅI—¹
+				// ãã†ã§ãªã„å ´åˆã¯æ”¹è¡Œã§çµ‚äº†
 				Input->EndFlag = TRUE ;
 				CharBuf.ActiveInputHandle = -1 ;
 			}
 			break ;
 
-			// ƒGƒXƒP[ƒvƒL[‚¾‚Á‚½ê‡‚ÍƒLƒƒƒ“ƒZƒ‹
+			// ã‚¨ã‚¹ã‚±ãƒ¼ãƒ—ã‚­ãƒ¼ã ã£ãŸå ´åˆã¯ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 		case CTRL_CODE_ESC :
 			if( Input->CancelValidFlag )
 			{
@@ -5074,7 +5074,7 @@ CUT:
 			}
 			break ;
 
-			// ƒfƒŠ[ƒgƒL[‚¾‚Á‚½ê‡‚Í•¶š‚Ìíœ
+			// ãƒ‡ãƒªãƒ¼ãƒˆã‚­ãƒ¼ã ã£ãŸå ´åˆã¯æ–‡å­—ã®å‰Šé™¤
 		case CTRL_CODE_DEL :
 			if( Input->SelectStart == -1 )
 			{
@@ -5095,7 +5095,7 @@ CUT:
 			}
 			break ;
 
-			// ƒoƒbƒNƒXƒy[ƒXƒL[‚¾‚Á‚½ê‡‚Íˆê‚Â‘O‚Ì•¶š‚ğíœ
+			// ãƒãƒƒã‚¯ã‚¹ãƒšãƒ¼ã‚¹ã‚­ãƒ¼ã ã£ãŸå ´åˆã¯ä¸€ã¤å‰ã®æ–‡å­—ã‚’å‰Šé™¤
 		case CTRL_CODE_BS :
 			if( Input->SelectStart == -1 )
 			{
@@ -5115,14 +5115,14 @@ CUT:
 					_MEMMOVE( &Input->Buffer[ Input->Point ] , &Input->Buffer[ Input->Point + DelNum ] , ( Input->StrLength - Input->Point ) * sizeof( wchar_t ) ) ;
 					Input->StrLength -= DelNum ;
 
-					// ‚à‚µ‰üs•¶š‚ğíœ‚µ‚½ê‡‚Í•`‰æŠJnˆÊ’u‚ğ•ÏX‚·‚é‚©ƒ`ƒFƒbƒN‚·‚é
+					// ã‚‚ã—æ”¹è¡Œæ–‡å­—ã‚’å‰Šé™¤ã—ãŸå ´åˆã¯æç”»é–‹å§‹ä½ç½®ã‚’å¤‰æ›´ã™ã‚‹ã‹ãƒã‚§ãƒƒã‚¯ã™ã‚‹
 					if( DelNewLine )
 					{
 						if( Input->Point <= Input->DrawStartPos )
 						{
 							int CharNum ;
 
-							// s‚Ìæ“ª‚É•`‰æŠJnˆÊ’u‚ğˆÚ“®‚·‚é
+							// è¡Œã®å…ˆé ­ã«æç”»é–‹å§‹ä½ç½®ã‚’ç§»å‹•ã™ã‚‹
 							while( Input->DrawStartPos > 0 )
 							{
 								CharNum = 1 ;
@@ -5151,7 +5151,7 @@ CUT:
 			}
 			break ;
 
-			// ¶‰EƒL[‚Ìê‡‚Íˆê•¶šˆÚ“®
+			// å·¦å³ã‚­ãƒ¼ã®å ´åˆã¯ä¸€æ–‡å­—ç§»å‹•
 		case CTRL_CODE_LEFT :
 			if( Input->Point > 0 )
 			{
@@ -5184,14 +5184,14 @@ CUT:
 				}
 				Input->Point -= len ;
 
-				// ‚à‚µ‰üs•¶š‚ğˆÚ“®‚µ‚½ê‡‚Í•`‰æŠJnˆÊ’u‚ğ•ÏX‚·‚é‚©ƒ`ƒFƒbƒN‚·‚é
+				// ã‚‚ã—æ”¹è¡Œæ–‡å­—ã‚’ç§»å‹•ã—ãŸå ´åˆã¯æç”»é–‹å§‹ä½ç½®ã‚’å¤‰æ›´ã™ã‚‹ã‹ãƒã‚§ãƒƒã‚¯ã™ã‚‹
 				if( MoveNewLine )
 				{
 					if( Input->Point <= Input->DrawStartPos )
 					{
 						int CharNum ;
 
-						// s‚Ìæ“ª‚É•`‰æŠJnˆÊ’u‚ğˆÚ“®‚·‚é
+						// è¡Œã®å…ˆé ­ã«æç”»é–‹å§‹ä½ç½®ã‚’ç§»å‹•ã™ã‚‹
 						Input->DrawStartPos = Input->Point ;
 						while( Input->DrawStartPos > 0 )
 						{
@@ -5246,7 +5246,7 @@ CUT:
 			}
 			break ;
 
-			// ã‰ºƒL[‚Ís‚ğˆÚ“®
+			// ä¸Šä¸‹ã‚­ãƒ¼ã¯è¡Œã‚’ç§»å‹•
 		case CTRL_CODE_UP :
 			if( Input->Point > 0 )
 			{
@@ -5258,25 +5258,25 @@ CUT:
 
 				OldPos = Input->Point ;
 
-				// ƒJ[ƒ\ƒ‹‚ÌˆÊ’u‚ªs‚Ìæ“ª‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+				// ã‚«ãƒ¼ã‚½ãƒ«ã®ä½ç½®ãŒè¡Œã®å…ˆé ­ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 				if( Input->Buffer[ Input->Point - 1 ] == L'\n' )
 				{
-					// ƒJ[ƒ\ƒ‹‚ÌˆÊ’u‚ªs‚Ìæ“ª‚¾‚Á‚½ê‡
+					// ã‚«ãƒ¼ã‚½ãƒ«ã®ä½ç½®ãŒè¡Œã®å…ˆé ­ã ã£ãŸå ´åˆ
 
-					// ˆê”Ôã‚Ìs‚¾‚Á‚½ê‡‚Æ‚»‚¤‚Å‚È‚¢ê‡‚Åˆ—‚ğ•ªŠò
+					// ä¸€ç•ªä¸Šã®è¡Œã ã£ãŸå ´åˆã¨ãã†ã§ãªã„å ´åˆã§å‡¦ç†ã‚’åˆ†å²
 					if( Input->Point == 1 )
 					{
 						Input->Point = 0 ;
 					}
 					else
-					// ‚Ğ‚Æ‚Âã‚Ìs‚É‚P•¶š‚à‚È‚¢ê‡‚Æ‚ ‚éê‡‚Åˆ—‚ğ•ªŠò
+					// ã²ã¨ã¤ä¸Šã®è¡Œã«ï¼‘æ–‡å­—ã‚‚ãªã„å ´åˆã¨ã‚ã‚‹å ´åˆã§å‡¦ç†ã‚’åˆ†å²
 					if( Input->Buffer[ Input->Point - 2 ] == L'\n' )
 					{
 						Input->Point -- ;
 					}
 					else
 					{
-						// ‚Ğ‚Æ‚Âã‚Ìs‚Ìæ“ª‚ÉˆÚ“®
+						// ã²ã¨ã¤ä¸Šã®è¡Œã®å…ˆé ­ã«ç§»å‹•
 						Input->Point -- ;
 						do
 						{
@@ -5298,7 +5298,7 @@ CUT:
 				}
 				else
 				{
-					// s‚Ìæ“ª‚ÉˆÚ“®
+					// è¡Œã®å…ˆé ­ã«ç§»å‹•
 					CharPos = 0 ;
 					MoveLength = 0 ;
 					do
@@ -5313,10 +5313,10 @@ CUT:
 						CharPos ++ ;
 					}while( Input->Point - MoveLength >= 0 && Input->Buffer[ Input->Point - MoveLength ] != L'\n' ) ;
 
-					// ˆê”Ôã‚Ìs‚¾‚Á‚½ê‡‚Í‰½‚à‚µ‚È‚¢
+					// ä¸€ç•ªä¸Šã®è¡Œã ã£ãŸå ´åˆã¯ä½•ã‚‚ã—ãªã„
 					if( Input->Point - MoveLength < 0 )
 					{
-						// ‘I‘ğ‚µ‚Ä‚¢‚½‚ç‰ğœˆ—‚ğs‚¤
+						// é¸æŠã—ã¦ã„ãŸã‚‰è§£é™¤å‡¦ç†ã‚’è¡Œã†
 						if( NS_CheckHitKey( KEY_INPUT_LSHIFT ) == 0 && NS_CheckHitKey( KEY_INPUT_RSHIFT ) == 0 )
 						{
 							Input->SelectStart = -1 ;
@@ -5326,7 +5326,7 @@ CUT:
 						break ;
 					}
 
-					// ‚Ğ‚Æ‚Âã‚Ìs‚Ìæ“ª‚ÉˆÚ“®
+					// ã²ã¨ã¤ä¸Šã®è¡Œã®å…ˆé ­ã«ç§»å‹•
 					Input->Point -= MoveLength ;
 					do
 					{
@@ -5339,7 +5339,7 @@ CUT:
 						Input->Point -= CharNum ;
 					}while( Input->Point > 0 && Input->Buffer[ Input->Point ] != L'\n' ) ;
 
-					// ˆÚ“®‘O‚Ìs‚Æ“¯‚¶•¶š”‚Ì‰ÓŠ‚ÉˆÚ“®
+					// ç§»å‹•å‰ã®è¡Œã¨åŒã˜æ–‡å­—æ•°ã®ç®‡æ‰€ã«ç§»å‹•
 					if( Input->Point != 0 )
 					{
 						Input->Point ++ ;
@@ -5392,7 +5392,7 @@ CUT:
 
 				OldPos = Input->Point ;
 
-				// s‚Ìæ“ª‚Ü‚Å‚Ì•¶š”‚ğ”‚¦‚é
+				// è¡Œã®å…ˆé ­ã¾ã§ã®æ–‡å­—æ•°ã‚’æ•°ãˆã‚‹
 				CharPos = 0 ;
 				MoveLength = 0 ;
 				do
@@ -5412,7 +5412,7 @@ CUT:
 					CharPos ++ ;
 				}
 
-				// ‚Ğ‚Æ‚Â‰º‚Ìs‚ÉˆÚ“®
+				// ã²ã¨ã¤ä¸‹ã®è¡Œã«ç§»å‹•
 				MoveLength = 0 ;
 				while( Input->Point + MoveLength < Input->StrLength && Input->Buffer[ Input->Point + MoveLength ] != L'\n' )
 				{
@@ -5425,10 +5425,10 @@ CUT:
 					MoveLength += len ;
 				}
 
-				// ‚Ğ‚Æ‚Â‰º‚Ìs‚ª‚È‚¢ê‡‚Í‰½‚à‚¹‚¸‚ÉI—¹
+				// ã²ã¨ã¤ä¸‹ã®è¡ŒãŒãªã„å ´åˆã¯ä½•ã‚‚ã›ãšã«çµ‚äº†
 				if( Input->Point + MoveLength == Input->StrLength )
 				{
-					// ‘I‘ğ‚µ‚Ä‚¢‚½‚ç‰ğœˆ—‚ğs‚¤
+					// é¸æŠã—ã¦ã„ãŸã‚‰è§£é™¤å‡¦ç†ã‚’è¡Œã†
 					if( NS_CheckHitKey( KEY_INPUT_LSHIFT ) == 0 && NS_CheckHitKey( KEY_INPUT_RSHIFT ) == 0 )
 					{
 						Input->SelectStart = -1 ;
@@ -5438,10 +5438,10 @@ CUT:
 					break ;
 				}
 
-				// Œ»İ‚Ìs‚Ì––’[‚ÉˆÚ“®
+				// ç¾åœ¨ã®è¡Œã®æœ«ç«¯ã«ç§»å‹•
 				Input->Point += MoveLength ;
 
-				// ‚Ğ‚Æ‚Â‰º‚Ìs‚ÌAˆÚ“®‘O‚Ìs‚Æ“¯‚¶•¶š”‚Ì‰ÓŠ‚ÉˆÚ“®
+				// ã²ã¨ã¤ä¸‹ã®è¡Œã®ã€ç§»å‹•å‰ã®è¡Œã¨åŒã˜æ–‡å­—æ•°ã®ç®‡æ‰€ã«ç§»å‹•
 				Input->Point ++ ;
 				CharPos -- ;
 				for( i = 0 ; i < CharPos && Input->Point < Input->StrLength && Input->Buffer[ Input->Point ] != L'\n' ; i ++ )
@@ -5479,22 +5479,22 @@ CUT:
 DEFAULTCHARADD:
 			KeyInputSelectAreaDelete( Input ) ;
 
-			// ”’l•¶š‚Ì‚İ‚Ìˆ—
+			// æ•°å€¤æ–‡å­—ã®ã¿æ™‚ã®å‡¦ç†
 			if( Input->NumCharOnlyFlag )
 			{
-				// ”’l•¶š‚Å‚È‚¯‚ê‚ÎƒLƒƒƒ“ƒZƒ‹
+				// æ•°å€¤æ–‡å­—ã§ãªã‘ã‚Œã°ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 				if( C[ 0 ] < L'0' || C[ 0 ] > L'9' )
 				{
-					// ƒ}ƒCƒiƒX•¶š‚ÅƒJ[ƒ\ƒ‹ˆÊ’u‚ª‚O‚¾‚Á‚½ê‡‚Í“ü—Í‰Â”\@ 
+					// ãƒã‚¤ãƒŠã‚¹æ–‡å­—ã§ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ãŒï¼ã ã£ãŸå ´åˆã¯å…¥åŠ›å¯èƒ½ã€€ 
 					if( C[ 0 ] != L'-' || Input->Point != 0 )
 					{
-						// ƒsƒŠƒIƒh‚àˆêŒÂ‚Ü‚Å‚n‚j
+						// ãƒ”ãƒªã‚ªãƒ‰ã‚‚ä¸€å€‹ã¾ã§ï¼¯ï¼«
 						if( ( C[ 0 ] == L'.' && _WCSCHR( Input->Buffer, L'.' ) != NULL ) || C[ 0 ] != L'.' ) break ;
 					}
 				}
 			}
 
-			// •¶š—ñ‚Ì’Ç‰Á
+			// æ–‡å­—åˆ—ã®è¿½åŠ 
 			{
 				int CharLen2 ;
 				int CharLen3 ;
@@ -5517,31 +5517,31 @@ DEFAULTCHARADD:
 				ConvString( ( const char * )Input->Buffer, -1, WCHAR_T_CHARCODEFORMAT, Input->TempBuffer, Input->TempBufferBytes, CHAR_CHARCODEFORMAT ) ;
 				StrLength2 = ( int )CL_strlen( CHAR_CHARCODEFORMAT, Input->TempBuffer ) ;
 #endif // UNICODE
-				// ‚PƒoƒCƒg•¶š‚Ì‚İ‚Ìˆ—
+				// ï¼‘ãƒã‚¤ãƒˆæ–‡å­—ã®ã¿æ™‚ã®å‡¦ç†
 				if( Input->SingleCharOnlyFlag )
 				{
 					if( CharLen3 != 1 ) break ;
 				}
 
-				// ‚QƒoƒCƒg•¶š‚Ì‚İ‚Ìˆ—
+				// ï¼’ãƒã‚¤ãƒˆæ–‡å­—ã®ã¿æ™‚ã®å‡¦ç†
 				if( Input->DoubleCharOnlyFlag )
 				{
 					if( CharLen3 == 1 ) break ;
 				}
 
-				// ƒJ[ƒ\ƒ‹‚ÌˆÊ’u‚ª•¶š—ñ‚Ì––’[‚ÅAŠ‚Â––’[•¶šˆ—ƒ‚[ƒh‚ª
-				// DX_KEYINPSTR_ENDCHARAMODE_NOTCHANGE ‚¾‚Á‚½‚ç‰½‚à‚¹‚¸I—¹
+				// ã‚«ãƒ¼ã‚½ãƒ«ã®ä½ç½®ãŒæ–‡å­—åˆ—ã®æœ«ç«¯ã§ã€ä¸”ã¤æœ«ç«¯æ–‡å­—å‡¦ç†ãƒ¢ãƒ¼ãƒ‰ãŒ
+				// DX_KEYINPSTR_ENDCHARAMODE_NOTCHANGE ã ã£ãŸã‚‰ä½•ã‚‚ã›ãšçµ‚äº†
 				if( CharBuf.EndCharaMode != DX_KEYINPSTR_ENDCHARAMODE_NOTCHANGE ||
 					StrLength2   + CharLen2 <= Input->MaxStrLength ||
 					Input->Point + CharLen  <= Input->StrLength )
 				{
-					// ƒoƒbƒtƒ@‚É‹ó‚«‚ª‚È‚¢‚Ìˆ—
+					// ãƒãƒƒãƒ•ã‚¡ã«ç©ºããŒãªã„æ™‚ã®å‡¦ç†
 					while( StrLength2   + CharLen2 > Input->MaxStrLength ||
 						   Input->Point + CharLen  > Input->MaxStrLength )
 					{
 						int Pos, CLen = 0 ;
 
-						// ÅŒã‚Ì•¶š‚ğí‚é
+						// æœ€å¾Œã®æ–‡å­—ã‚’å‰Šã‚‹
 						Pos = 0 ;
 						while( Pos < Input->StrLength )
 						{
@@ -5576,7 +5576,7 @@ DEFAULTCHARADD:
 						Input->Buffer[ Pos - CLen ] = L'\0' ;
 						Input->StrLength -= CLen ;
 
-						// ƒJ[ƒ\ƒ‹‚àˆÚ“®‚·‚é
+						// ã‚«ãƒ¼ã‚½ãƒ«ã‚‚ç§»å‹•ã™ã‚‹
 						if( Input->Point == Pos )
 						{
 							Input->Point -= CLen ;
@@ -5594,11 +5594,11 @@ DEFAULTCHARADD:
 		}
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒL[“ü—Íƒnƒ“ƒhƒ‹‚Ì“ü—Í’†•¶š—ñ‚ğ•`‰æ‚·‚éÛ‚Ì•`‰æ”ÍˆÍ‚ğİ’è‚·‚é
+// ã‚­ãƒ¼å…¥åŠ›ãƒãƒ³ãƒ‰ãƒ«ã®å…¥åŠ›ä¸­æ–‡å­—åˆ—ã‚’æç”»ã™ã‚‹éš›ã®æç”»ç¯„å›²ã‚’è¨­å®šã™ã‚‹
 extern int NS_SetKeyInputDrawArea( int x1, int y1, int x2, int y2, int InputHandle )
 {
 	INPUTDATA * Input ;
@@ -5614,11 +5614,11 @@ extern int NS_SetKeyInputDrawArea( int x1, int y1, int x2, int y2, int InputHand
 	Input->DrawArea.right = x2 ;
 	Input->DrawArea.bottom = y2 ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒL[“ü—Í’†ƒf[ƒ^‚Ì•`‰æ
+// ã‚­ãƒ¼å…¥åŠ›ä¸­ãƒ‡ãƒ¼ã‚¿ã®æç”»
 static int DrawKeyInputStringBase( int x, int y, int EnableExRate, double ExRateX, double ExRateY, int InputHandle , int DrawCandidateList )
 {
 	INPUTDATA * Input ;
@@ -5633,23 +5633,23 @@ static int DrawKeyInputStringBase( int x, int y, int EnableExRate, double ExRate
 	if( KEYHCHK( InputHandle, Input ) ) return -1 ;
 	if( Input->EndFlag ) return -1 ;
 
-	// Šeíƒf[ƒ^•Û‘¶
+	// å„ç¨®ãƒ‡ãƒ¼ã‚¿ä¿å­˜
 	Use3DFlag = NS_GetUse3DFlag() ;
 
-	// ‚R‚c•`‰æ‹@”\‚Ìg—p•ÏX
+	// ï¼“ï¼¤æç”»æ©Ÿèƒ½ã®ä½¿ç”¨å¤‰æ›´
 	NS_SetUse3DFlag( FALSE ) ;
 
-	// g—p‚·‚éƒtƒHƒ“ƒg‚Ìƒnƒ“ƒhƒ‹‚ğƒZƒbƒg‚·‚é
+	// ä½¿ç”¨ã™ã‚‹ãƒ•ã‚©ãƒ³ãƒˆã®ãƒãƒ³ãƒ‰ãƒ«ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 	FontHandle = CharBuf.UseFontHandle == -1 ? NS_GetDefaultFontHandle() : CharBuf.UseFontHandle ;
 
-	// ƒtƒHƒ“ƒgƒTƒCƒY‚Ìæ“¾
+	// ãƒ•ã‚©ãƒ³ãƒˆã‚µã‚¤ã‚ºã®å–å¾—
 	FontSizeY = NS_GetFontSizeToHandle( FontHandle ) ;
 	if( EnableExRate )
 	{
 		FontSizeY = _DTOL( FontSizeY * ExRateY ) ;
 	}
 
-	// ƒJ[ƒ\ƒ‹“_–Åˆ—
+	// ã‚«ãƒ¼ã‚½ãƒ«ç‚¹æ»…å‡¦ç†
 	if( CharBuf.CBrinkFlag == TRUE )
 	{
 		if( NS_GetNowCount( FALSE ) - CharBuf.CBrinkCount > CharBuf.CBrinkWait )
@@ -5663,7 +5663,7 @@ static int DrawKeyInputStringBase( int x, int y, int EnableExRate, double ExRate
 		CharBuf.CBrinkDrawFlag = TRUE ;
 	}
 
-	// •`‰æ”ÍˆÍ‚Ìİ’è
+	// æç”»ç¯„å›²ã®è¨­å®š
 	NS_GetDrawArea( &DrawRectBackup ) ;
 	if( Input->DrawAreaValidFlag )
 	{
@@ -5675,7 +5675,7 @@ static int DrawKeyInputStringBase( int x, int y, int EnableExRate, double ExRate
 		DrawRect = DrawRectBackup ;
 	}
 
-	// •`‰æŠJn•¶šˆÊ’u‚ÌŒˆ’è
+	// æç”»é–‹å§‹æ–‡å­—ä½ç½®ã®æ±ºå®š
 	{
 		int DrawWidth, DrawHNum ;
 		int tx, ty ;
@@ -5688,7 +5688,7 @@ static int DrawKeyInputStringBase( int x, int y, int EnableExRate, double ExRate
 		if( DrawRect.left == DrawRect.right ||
 			DrawRect.bottom == DrawRect.top )
 		{
-			// •`‰æ”ÍˆÍ‚ğ•ÏX‚µ‚Ä‚¢‚½ê‡‚ÍŒ³‚É–ß‚·
+			// æç”»ç¯„å›²ã‚’å¤‰æ›´ã—ã¦ã„ãŸå ´åˆã¯å…ƒã«æˆ»ã™
 			if( Input->DrawAreaValidFlag )
 			{
 				NS_SetDrawArea( DrawRectBackup.left, DrawRectBackup.top, DrawRectBackup.right, DrawRectBackup.bottom ) ;
@@ -5780,7 +5780,7 @@ static int DrawKeyInputStringBase( int x, int y, int EnableExRate, double ExRate
 		}
 	}
 
-	// ƒJ[ƒ\ƒ‹‚Ì•`‰æ
+	// ã‚«ãƒ¼ã‚½ãƒ«ã®æç”»
 	{
 		DrawObtainsString_CharClip_WCHAR_T(
 			x,
@@ -5809,7 +5809,7 @@ static int DrawKeyInputStringBase( int x, int y, int EnableExRate, double ExRate
 		}
 	}
 
-	// •¶š—ñ‚Ì•`‰æ
+	// æ–‡å­—åˆ—ã®æç”»
 	DrawObtainsString_CharClip_WCHAR_T(
 		x,
 		y,
@@ -5827,50 +5827,50 @@ static int DrawKeyInputStringBase( int x, int y, int EnableExRate, double ExRate
 		Input->SelectEnd   - Input->DrawStartPos
 	) ;
 
-	// •`‰æ”ÍˆÍ‚ğ•ÏX‚µ‚Ä‚¢‚½ê‡‚ÍŒ³‚É–ß‚·
+	// æç”»ç¯„å›²ã‚’å¤‰æ›´ã—ã¦ã„ãŸå ´åˆã¯å…ƒã«æˆ»ã™
 	if( Input->DrawAreaValidFlag )
 	{
 		NS_SetDrawArea( DrawRectBackup.left, DrawRectBackup.top, DrawRectBackup.right, DrawRectBackup.bottom ) ;
 	}
 
-	// “ü—Í’†•¶š—ñ‚Ì•`‰æ
+	// å…¥åŠ›ä¸­æ–‡å­—åˆ—ã®æç”»
 	if( InputHandle == CharBuf.ActiveInputHandle )
 	{
 		DrawIMEInputStringBase( PointX , PointY , EnableExRate, ExRateX, ExRateY, 5 , DrawCandidateList ) ; 
 	}
 
-	// ƒf[ƒ^‚ğŒ³‚É–ß‚·
+	// ãƒ‡ãƒ¼ã‚¿ã‚’å…ƒã«æˆ»ã™
 	NS_SetUse3DFlag( Use3DFlag ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒL[“ü—Í’†ƒf[ƒ^‚Ì•`‰æ
+// ã‚­ãƒ¼å…¥åŠ›ä¸­ãƒ‡ãƒ¼ã‚¿ã®æç”»
 extern int NS_DrawKeyInputString( int x , int y , int InputHandle , int DrawCandidateList )
 {
 	return DrawKeyInputStringBase( x, y, FALSE, 0.0, 0.0, InputHandle, DrawCandidateList ) ;
 }
 
-// ƒL[“ü—Íƒnƒ“ƒhƒ‹‚Ì“ü—Í’†î•ñ‚Ì•`‰æ( Šg‘å—¦w’è•t‚« )
+// ã‚­ãƒ¼å…¥åŠ›ãƒãƒ³ãƒ‰ãƒ«ã®å…¥åŠ›ä¸­æƒ…å ±ã®æç”»( æ‹¡å¤§ç‡æŒ‡å®šä»˜ã )
 extern int NS_DrawKeyInputExtendString( int x, int y, double ExRateX, double ExRateY, int InputHandle , int DrawCandidateList )
 {
 	return DrawKeyInputStringBase( x, y, TRUE, ExRateX, ExRateY, InputHandle, DrawCandidateList ) ;
 }
 
-// ƒL[“ü—Í‚ÌƒJ[ƒ\ƒ‹‚Ì“_–Å‚·‚é‘‚³‚ğƒZƒbƒg‚·‚é
+// ã‚­ãƒ¼å…¥åŠ›æ™‚ã®ã‚«ãƒ¼ã‚½ãƒ«ã®ç‚¹æ»…ã™ã‚‹æ—©ã•ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern int NS_SetKeyInputCursorBrinkTime( int Time )
 {
 	CharBuf.CBrinkWait = Time ;
 
-	// ƒJ[ƒ\ƒ‹“_–Åˆ—‚ÌƒJƒEƒ“ƒ^‚ğƒŠƒZƒbƒg
+	// ã‚«ãƒ¼ã‚½ãƒ«ç‚¹æ»…å‡¦ç†ã®ã‚«ã‚¦ãƒ³ã‚¿ã‚’ãƒªã‚»ãƒƒãƒˆ
 	ResetKeyInputCursorBrinkCount() ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// wchar_tŒ^‚Ì•¶š—ñ‚Ìw’è‚Ì•¶š”‚Ü‚Å‚ÌˆÊ’u‚ğA•¶š—ñ‚ğ charŒ^‚¾‚Á‚½ê‡‚ÌˆÊ’u‚É•ÏŠ·‚·‚é
+// wchar_tå‹ã®æ–‡å­—åˆ—ã®æŒ‡å®šã®æ–‡å­—æ•°ã¾ã§ã®ä½ç½®ã‚’ã€æ–‡å­—åˆ—ã‚’ charå‹ã ã£ãŸå ´åˆã®ä½ç½®ã«å¤‰æ›ã™ã‚‹
 static int Conv_wchar_t_Pos_To_char_Pos( const wchar_t *wchar_str, int wchar_pos )
 {
 	char TempBuffer[ 16 ] ;
@@ -5894,7 +5894,7 @@ static int Conv_wchar_t_Pos_To_char_Pos( const wchar_t *wchar_str, int wchar_pos
 	return DestCharBytes / GetCharCodeFormatUnitSize( CHAR_CHARCODEFORMAT ) ;
 }
 
-// wchar_tŒ^‚Ì•¶š—ñ‚Ìw’è‚Ì•¶š”‚Ü‚Å‚ÌˆÊ’u‚ğA•¶š—ñ‚ª charŒ^‚¾‚Á‚½ê‡‚Æ‚µ‚Äw’è‚·‚é
+// wchar_tå‹ã®æ–‡å­—åˆ—ã®æŒ‡å®šã®æ–‡å­—æ•°ã¾ã§ã®ä½ç½®ã‚’ã€æ–‡å­—åˆ—ãŒ charå‹ã ã£ãŸå ´åˆã¨ã—ã¦æŒ‡å®šã™ã‚‹
 static int Conv_char_Pos_To_wchar_t_Pos( const wchar_t *wchar_str, int char_pos )
 {
 	char TempBuffer[ 16 ] ;
@@ -5918,7 +5918,7 @@ static int Conv_char_Pos_To_wchar_t_Pos( const wchar_t *wchar_str, int char_pos 
 	return wchar_count ;
 }
 
-// ƒL[“ü—Íƒf[ƒ^‚Ìw’è‚Ì—Ìˆæ‚ğ‘I‘ğó‘Ô‚É‚·‚é( SelectStart ‚Æ SelectEnd ‚É -1 ‚ğw’è‚·‚é‚Æ‘I‘ğó‘Ô‚ª‰ğœ‚³‚ê‚Ü‚· )
+// ã‚­ãƒ¼å…¥åŠ›ãƒ‡ãƒ¼ã‚¿ã®æŒ‡å®šã®é ˜åŸŸã‚’é¸æŠçŠ¶æ…‹ã«ã™ã‚‹( SelectStart ã¨ SelectEnd ã« -1 ã‚’æŒ‡å®šã™ã‚‹ã¨é¸æŠçŠ¶æ…‹ãŒè§£é™¤ã•ã‚Œã¾ã™ )
 extern int NS_SetKeyInputSelectArea( int SelectStart, int SelectEnd, int InputHandle )
 {
 	INPUTDATA * Input ;
@@ -5953,18 +5953,18 @@ extern int NS_SetKeyInputSelectArea( int SelectStart, int SelectEnd, int InputHa
 #endif // UNICODE
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒL[“ü—Íƒf[ƒ^‚Ì‘I‘ğ—Ìˆæ‚ğæ“¾‚·‚é
+// ã‚­ãƒ¼å…¥åŠ›ãƒ‡ãƒ¼ã‚¿ã®é¸æŠé ˜åŸŸã‚’å–å¾—ã™ã‚‹
 extern int NS_GetKeyInputSelectArea( int *SelectStart, int *SelectEnd, int InputHandle )
 {
 	INPUTDATA * Input ;
 
 	if( KEYHCHK( InputHandle, Input ) ) return -1 ;
 
-	// UNICODE ˆÈŠO‚Ìê‡‚ÍAƒ}ƒ‹ƒ`ƒoƒCƒg•¶š—ñ‚Æ‚µ‚Ä‚Ì•¶šˆÊ’u‚ğ•Ô‚·
+	// UNICODE ä»¥å¤–ã®å ´åˆã¯ã€ãƒãƒ«ãƒãƒã‚¤ãƒˆæ–‡å­—åˆ—ã¨ã—ã¦ã®æ–‡å­—ä½ç½®ã‚’è¿”ã™
 #ifdef UNICODE
 	if( SelectStart ) *SelectStart = Input->SelectStart ;
 	if( SelectEnd   ) *SelectEnd   = Input->SelectEnd ;
@@ -5973,11 +5973,11 @@ extern int NS_GetKeyInputSelectArea( int *SelectStart, int *SelectEnd, int Input
 	if( SelectEnd   ) *SelectEnd   = Conv_wchar_t_Pos_To_char_Pos( Input->Buffer, Input->SelectEnd   ) ;
 #endif // UNICODE
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒL[“ü—Í‚Ì•`‰æŠJn•¶šˆÊ’u‚ğæ“¾‚·‚é
+// ã‚­ãƒ¼å…¥åŠ›ã®æç”»é–‹å§‹æ–‡å­—ä½ç½®ã‚’å–å¾—ã™ã‚‹
 extern int NS_GetKeyInputDrawStartPos( int InputHandle )
 {
 	INPUTDATA * Input ;
@@ -5991,7 +5991,7 @@ extern int NS_GetKeyInputDrawStartPos( int InputHandle )
 #endif // UNICODE
 }
 
-// ƒL[“ü—Í‚Ì•`‰æŠJn•¶šˆÊ’u‚ğİ’è‚·‚é
+// ã‚­ãƒ¼å…¥åŠ›ã®æç”»é–‹å§‹æ–‡å­—ä½ç½®ã‚’è¨­å®šã™ã‚‹
 extern int NS_SetKeyInputDrawStartPos( int DrawStartPos, int InputHandle )
 {
 	INPUTDATA * Input ;
@@ -6016,31 +6016,31 @@ extern int NS_SetKeyInputDrawStartPos( int DrawStartPos, int InputHandle )
 #endif // UNICODE
 }
 
-// ƒL[“ü—Í‚ÌƒJ[ƒ\ƒ‹‚ğ“_–Å‚³‚¹‚é‚©‚Ç‚¤‚©‚ğƒZƒbƒg‚·‚é
+// ã‚­ãƒ¼å…¥åŠ›æ™‚ã®ã‚«ãƒ¼ã‚½ãƒ«ã‚’ç‚¹æ»…ã•ã›ã‚‹ã‹ã©ã†ã‹ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern int NS_SetKeyInputCursorBrinkFlag( int Flag )
 {
 	CharBuf.CBrinkFlag = Flag ;
 
-	// ƒJ[ƒ\ƒ‹“_–Åˆ—‚ÌƒJƒEƒ“ƒ^‚ğƒŠƒZƒbƒg
+	// ã‚«ãƒ¼ã‚½ãƒ«ç‚¹æ»…å‡¦ç†ã®ã‚«ã‚¦ãƒ³ã‚¿ã‚’ãƒªã‚»ãƒƒãƒˆ
 	ResetKeyInputCursorBrinkCount() ;
 	
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒL[“ü—Í‚ÌƒJ[ƒ\ƒ‹“_–Åˆ—‚ÌƒJƒEƒ“ƒ^‚ğƒŠƒZƒbƒg
+// ã‚­ãƒ¼å…¥åŠ›æ™‚ã®ã‚«ãƒ¼ã‚½ãƒ«ç‚¹æ»…å‡¦ç†ã®ã‚«ã‚¦ãƒ³ã‚¿ã‚’ãƒªã‚»ãƒƒãƒˆ
 static int ResetKeyInputCursorBrinkCount( void )
 {
 	CharBuf.CBrinkCount = NS_GetNowCount( FALSE ) ;
 	CharBuf.CBrinkDrawFlag = TRUE ;
 	
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 	
 
 
-// ƒL[“ü—Íƒf[ƒ^‚Éw’è‚Ì•¶š—ñ‚ğƒZƒbƒg‚·‚é
+// ã‚­ãƒ¼å…¥åŠ›ãƒ‡ãƒ¼ã‚¿ã«æŒ‡å®šã®æ–‡å­—åˆ—ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern int NS_SetKeyInputString( const TCHAR *String , int InputHandle )
 {
 #ifdef UNICODE
@@ -6058,7 +6058,7 @@ extern int NS_SetKeyInputString( const TCHAR *String , int InputHandle )
 #endif
 }
 
-// ƒL[“ü—Íƒnƒ“ƒhƒ‹‚Éw’è‚Ì•¶š—ñ‚ğƒZƒbƒg‚·‚é
+// ã‚­ãƒ¼å…¥åŠ›ãƒãƒ³ãƒ‰ãƒ«ã«æŒ‡å®šã®æ–‡å­—åˆ—ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern int NS_SetKeyInputStringWithStrLen( const TCHAR *String, size_t StringLength, int InputHandle )
 {
 	int Result ;
@@ -6074,7 +6074,7 @@ extern int NS_SetKeyInputStringWithStrLen( const TCHAR *String, size_t StringLen
 	return Result ;
 }
 
-// ƒL[“ü—Íƒf[ƒ^‚Éw’è‚Ì•¶š—ñ‚ğƒZƒbƒg‚·‚é
+// ã‚­ãƒ¼å…¥åŠ›ãƒ‡ãƒ¼ã‚¿ã«æŒ‡å®šã®æ–‡å­—åˆ—ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern int SetKeyInputString_WCHAR_T( const wchar_t *String , int InputHandle )
 {
 	INPUTDATA * Input ;
@@ -6102,14 +6102,14 @@ extern int SetKeyInputString_WCHAR_T( const wchar_t *String , int InputHandle )
 		Input->DrawStartPos = Input->StrLength ;
 	}
 
-	// ƒJ[ƒ\ƒ‹“_–Åˆ—‚ÌƒJƒEƒ“ƒ^‚ğƒŠƒZƒbƒg
+	// ã‚«ãƒ¼ã‚½ãƒ«ç‚¹æ»…å‡¦ç†ã®ã‚«ã‚¦ãƒ³ã‚¿ã‚’ãƒªã‚»ãƒƒãƒˆ
 	ResetKeyInputCursorBrinkCount() ;
 	
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒL[“ü—Íƒf[ƒ^‚Éw’è‚Ì”’l‚ğ•¶š‚É’u‚«Š·‚¦‚ÄƒZƒbƒg‚·‚é
+// ã‚­ãƒ¼å…¥åŠ›ãƒ‡ãƒ¼ã‚¿ã«æŒ‡å®šã®æ•°å€¤ã‚’æ–‡å­—ã«ç½®ãæ›ãˆã¦ã‚»ãƒƒãƒˆã™ã‚‹
 extern int NS_SetKeyInputNumber( int Number , int InputHandle )
 {
 	INPUTDATA * Input ;
@@ -6118,7 +6118,7 @@ extern int NS_SetKeyInputNumber( int Number , int InputHandle )
 
 	if( KEYHCHK( InputHandle, Input ) ) return -1 ;
 
-	// •¶š‚É’u‚«Š·‚¦‚é
+	// æ–‡å­—ã«ç½®ãæ›ãˆã‚‹
 	_ITOAW_S( Number, StrBuf, sizeof( StrBuf ), 10 ) ;
 
 	StrLen = ( int )_WCSLEN( StrBuf ) ;
@@ -6138,14 +6138,14 @@ extern int NS_SetKeyInputNumber( int Number , int InputHandle )
 		Input->DrawStartPos = Input->StrLength ;
 	}
 
-	// ƒJ[ƒ\ƒ‹“_–Åˆ—‚ÌƒJƒEƒ“ƒ^‚ğƒŠƒZƒbƒg
+	// ã‚«ãƒ¼ã‚½ãƒ«ç‚¹æ»…å‡¦ç†ã®ã‚«ã‚¦ãƒ³ã‚¿ã‚’ãƒªã‚»ãƒƒãƒˆ
 	ResetKeyInputCursorBrinkCount() ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒL[“ü—Íƒf[ƒ^‚Éw’è‚Ì•‚“®¬”“_’l‚ğ•¶š‚É’u‚«Š·‚¦‚ÄƒZƒbƒg‚·‚é
+// ã‚­ãƒ¼å…¥åŠ›ãƒ‡ãƒ¼ã‚¿ã«æŒ‡å®šã®æµ®å‹•å°æ•°ç‚¹å€¤ã‚’æ–‡å­—ã«ç½®ãæ›ãˆã¦ã‚»ãƒƒãƒˆã™ã‚‹
 extern int NS_SetKeyInputNumberToFloat( float Number, int InputHandle )
 {
 	INPUTDATA * Input ;
@@ -6154,7 +6154,7 @@ extern int NS_SetKeyInputNumberToFloat( float Number, int InputHandle )
 
 	if( KEYHCHK( InputHandle, Input ) ) return -1 ;
 
-	// •¶š‚É’u‚«Š·‚¦‚é
+	// æ–‡å­—ã«ç½®ãæ›ãˆã‚‹
 	_SWNPRINTF( StrBuf, sizeof( StrBuf ) / 2, L"%f", Number ) ;
 
 	StrLen = ( int )_WCSLEN( StrBuf ) ;
@@ -6174,14 +6174,14 @@ extern int NS_SetKeyInputNumberToFloat( float Number, int InputHandle )
 		Input->DrawStartPos = Input->StrLength ;
 	}
 
-	// ƒJ[ƒ\ƒ‹“_–Åˆ—‚ÌƒJƒEƒ“ƒ^‚ğƒŠƒZƒbƒg
+	// ã‚«ãƒ¼ã‚½ãƒ«ç‚¹æ»…å‡¦ç†ã®ã‚«ã‚¦ãƒ³ã‚¿ã‚’ãƒªã‚»ãƒƒãƒˆ
 	ResetKeyInputCursorBrinkCount() ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// “ü—Í’†‚Ì•¶š—ñƒf[ƒ^‚ğæ“¾‚·‚é
+// å…¥åŠ›ä¸­ã®æ–‡å­—åˆ—ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—ã™ã‚‹
 extern int NS_GetKeyInputString( TCHAR *StrBuffer , int InputHandle )
 {
 #ifdef UNICODE
@@ -6193,12 +6193,12 @@ extern int NS_GetKeyInputString( TCHAR *StrBuffer , int InputHandle )
 
 	ConvString( ( const char * )Input->Buffer, -1, WCHAR_T_CHARCODEFORMAT, StrBuffer, BUFFERBYTES_CANCEL, _TCHARCODEFORMAT ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 #endif
 }
 
-// “ü—Í’†‚Ì•¶š—ñƒf[ƒ^‚ğæ“¾‚·‚é
+// å…¥åŠ›ä¸­ã®æ–‡å­—åˆ—ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—ã™ã‚‹
 extern int GetKeyInputString_WCHAR_T( wchar_t *StrBuffer , int InputHandle )
 {
 	INPUTDATA * Input ;
@@ -6207,11 +6207,11 @@ extern int GetKeyInputString_WCHAR_T( wchar_t *StrBuffer , int InputHandle )
 
 	_WCSCPY( StrBuffer , Input->Buffer ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// “ü—Íƒf[ƒ^‚Ì•¶š—ñ‚ğ®”’l‚Æ‚µ‚Äæ“¾‚·‚é
+// å…¥åŠ›ãƒ‡ãƒ¼ã‚¿ã®æ–‡å­—åˆ—ã‚’æ•´æ•°å€¤ã¨ã—ã¦å–å¾—ã™ã‚‹
 extern int NS_GetKeyInputNumber( int InputHandle )
 {
 	INPUTDATA * Input ;
@@ -6219,7 +6219,7 @@ extern int NS_GetKeyInputNumber( int InputHandle )
 
 	if( KEYHCHK( InputHandle, Input ) ) return -1 ;
 
-	// ”’l‚É•ÏŠ·
+	// æ•°å€¤ã«å¤‰æ›
 	if( _WCSCHR( Input->Buffer, L'.' ) )
 	{
 		Number = _FTOL( ( float )_ATOFW( Input->Buffer ) ) ;
@@ -6229,11 +6229,11 @@ extern int NS_GetKeyInputNumber( int InputHandle )
 		Number = _ATOIW( Input->Buffer ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return Number ;
 }
 
-// “ü—Íƒf[ƒ^‚Ì•¶š—ñ‚ğ•‚“®¬”“_’l‚Æ‚µ‚Äæ“¾‚·‚é
+// å…¥åŠ›ãƒ‡ãƒ¼ã‚¿ã®æ–‡å­—åˆ—ã‚’æµ®å‹•å°æ•°ç‚¹å€¤ã¨ã—ã¦å–å¾—ã™ã‚‹
 extern float NS_GetKeyInputNumberToFloat( int InputHandle )
 {
 	INPUTDATA * Input ;
@@ -6241,7 +6241,7 @@ extern float NS_GetKeyInputNumberToFloat( int InputHandle )
 
 	if( KEYHCHK( InputHandle, Input ) ) return -1 ;
 
-	// ”’l‚É•ÏŠ·
+	// æ•°å€¤ã«å¤‰æ›
 	if( _WCSCHR( Input->Buffer, L'.' ) )
 	{
 		Number = ( float )_ATOFW( Input->Buffer ) ;
@@ -6251,11 +6251,11 @@ extern float NS_GetKeyInputNumberToFloat( int InputHandle )
 		Number = ( float )_ATOIW( Input->Buffer ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return Number ;
 }
 
-// ƒL[“ü—Í‚ÌŒ»İ‚ÌƒJ[ƒ\ƒ‹ˆÊ’u‚ğİ’è‚·‚é
+// ã‚­ãƒ¼å…¥åŠ›ã®ç¾åœ¨ã®ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ã‚’è¨­å®šã™ã‚‹
 extern int NS_SetKeyInputCursorPosition( int Position, int InputHandle )
 {
 	INPUTDATA * Input ;
@@ -6264,7 +6264,7 @@ extern int NS_SetKeyInputCursorPosition( int Position, int InputHandle )
 
 	if( Position < 0                ) Position = 0 ;
 
-	// UNICODE ˆÈŠO‚Ìê‡‚ÍAƒ}ƒ‹ƒ`ƒoƒCƒg•¶š—ñ‚Æ‚µ‚Ä‚Ì•¶šˆÊ’u‚ğİ’è‚·‚é
+	// UNICODE ä»¥å¤–ã®å ´åˆã¯ã€ãƒãƒ«ãƒãƒã‚¤ãƒˆæ–‡å­—åˆ—ã¨ã—ã¦ã®æ–‡å­—ä½ç½®ã‚’è¨­å®šã™ã‚‹
 #ifdef UNICODE
 
 	if( Position > Input->StrLength ) Position = Input->StrLength ;
@@ -6277,18 +6277,18 @@ extern int NS_SetKeyInputCursorPosition( int Position, int InputHandle )
 	Input->Point = Conv_char_Pos_To_wchar_t_Pos( Input->Buffer, Position ) ;
 #endif // UNICODE
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒL[“ü—Í‚ÌŒ»İ‚ÌƒJ[ƒ\ƒ‹ˆÊ’u‚ğæ“¾‚·‚é
+// ã‚­ãƒ¼å…¥åŠ›ã®ç¾åœ¨ã®ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ã‚’å–å¾—ã™ã‚‹
 extern int NS_GetKeyInputCursorPosition( int InputHandle )
 {
 	INPUTDATA * Input ;
 
 	if( KEYHCHK( InputHandle, Input ) ) return -1 ;
 
-	// UNICODE ˆÈŠO‚Ìê‡‚ÍAƒ}ƒ‹ƒ`ƒoƒCƒg•¶š—ñ‚Æ‚µ‚Ä‚Ì•¶šˆÊ’u‚ğ•Ô‚·
+	// UNICODE ä»¥å¤–ã®å ´åˆã¯ã€ãƒãƒ«ãƒãƒã‚¤ãƒˆæ–‡å­—åˆ—ã¨ã—ã¦ã®æ–‡å­—ä½ç½®ã‚’è¿”ã™
 #ifdef UNICODE
 	return Input->Point ;
 #else // UNICODE
@@ -6296,7 +6296,7 @@ extern int NS_GetKeyInputCursorPosition( int InputHandle )
 #endif // UNICODE
 }
 
-// ‚h‚l‚d‚Å“ü—Í’†‚Ì•¶š—ñ‚Ìî•ñ‚ğæ“¾‚·‚é
+// ï¼©ï¼­ï¼¥ã§å…¥åŠ›ä¸­ã®æ–‡å­—åˆ—ã®æƒ…å ±ã‚’å–å¾—ã™ã‚‹
 extern const IMEINPUTDATA *NS_GetIMEInputData( void )
 {
 	LPIMEINPUTDATA IMEInput ;
@@ -6311,7 +6311,7 @@ extern const IMEINPUTDATA *NS_GetIMEInputData( void )
 	char *UseConvBuffer1 ;
 #endif // UNICODE
 
-	// Šù‚ÉŠm•Û‚³‚ê‚Ä‚¢‚½‚ç‰ğ•ú
+	// æ—¢ã«ç¢ºä¿ã•ã‚Œã¦ã„ãŸã‚‰è§£æ”¾
 	if( CharBuf.IMEInputData )
 	{
 		DXFREE( CharBuf.IMEInputData ) ;
@@ -6328,7 +6328,7 @@ extern const IMEINPUTDATA *NS_GetIMEInputData( void )
 		return NULL ;
 	}
 
-	// Šm•Û‚·‚×‚«ƒƒ‚ƒŠ—e—Ê‚ğŒvZ
+	// ç¢ºä¿ã™ã¹ããƒ¡ãƒ¢ãƒªå®¹é‡ã‚’è¨ˆç®—
 	Len = ( int )_WCSLEN( CharBuf.InputString ) ;
 	TotalSize = sizeof( IMEINPUTDATA ) ;
 	TotalSize += ( Len + 1 ) * sizeof( TCHAR ) * 8 ;
@@ -6341,26 +6341,26 @@ extern const IMEINPUTDATA *NS_GetIMEInputData( void )
 		TotalSize += CharBuf.CandidateList->dwCount * sizeof( wchar_t ** ) + CharBuf.CandidateListSize * 8 ;
 	}
 
-	// ƒƒ‚ƒŠ‚ÌŠm•Û
+	// ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿
 	IMEInput = ( LPIMEINPUTDATA )DXALLOC( ( size_t )TotalSize ) ;
 	if( IMEInput == NULL )
 	{
-		DXST_LOGFILE_ADDUTF16LE( "\x29\xff\x2d\xff\x25\xff\x65\x51\x9b\x52\xc5\x60\x31\x58\x28\x75\x6e\x30\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"‚h‚l‚d“ü—Íî•ñ—p‚Ìƒƒ‚ƒŠ‚ÌŠm•Û‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+		DXST_LOGFILE_ADDUTF16LE( "\x29\xff\x2d\xff\x25\xff\x65\x51\x9b\x52\xc5\x60\x31\x58\x28\x75\x6e\x30\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ï¼©ï¼­ï¼¥å…¥åŠ›æƒ…å ±ç”¨ã®ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 		return NULL ;
 	}
 	CharBuf.IMEInputData = IMEInput ;
 
-	// î•ñ‚ÌƒZƒbƒg
+	// æƒ…å ±ã®ã‚»ãƒƒãƒˆ
 	{
 		const void *NextP ;
 		int TLen ;
 
-		// •¶š—ñî•ñ‚ÌƒZƒbƒg
+		// æ–‡å­—åˆ—æƒ…å ±ã®ã‚»ãƒƒãƒˆ
 		IMEInput->InputString = ( TCHAR * )( IMEInput + 1 ) ;
 		ConvString( ( const char * )CharBuf.InputString, -1, WCHAR_T_CHARCODEFORMAT, ( char * )IMEInput->InputString, BUFFERBYTES_CANCEL, _TCHARCODEFORMAT ) ;
 		TLen = ( int )_TSTRLEN( IMEInput->InputString ) ;
 
-		// ƒJ[ƒ\ƒ‹ˆÊ’u‚ÌƒZƒbƒg
+		// ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ã®ã‚»ãƒƒãƒˆ
 		int CharPositionW ;
 #ifdef UNICODE
 		CharPositionW = NS_GetStringPoint( IMEInput->InputString , CharBuf.InputPoint ) ;
@@ -6372,7 +6372,7 @@ extern const IMEINPUTDATA *NS_GetIMEInputData( void )
 			TempConvBuffer0 = ( char * )DXALLOC( ( CharPositionW + 1 ) * 8 ) ;
 			if( TempConvBuffer0 == NULL )
 			{
-				DXST_LOGFILE_ADDUTF16LE( "\xab\x30\xfc\x30\xbd\x30\xeb\x30\x4d\x4f\x6e\x7f\xe6\x51\x06\x74\x28\x75\x30\x00\x6e\x30\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ƒJ[ƒ\ƒ‹ˆÊ’uˆ——p0‚Ìƒƒ‚ƒŠ‚ÌŠm•Û‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+				DXST_LOGFILE_ADDUTF16LE( "\xab\x30\xfc\x30\xbd\x30\xeb\x30\x4d\x4f\x6e\x7f\xe6\x51\x06\x74\x28\x75\x30\x00\x6e\x30\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®å‡¦ç†ç”¨0ã®ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 				return NULL ;
 			}
 			UseConvBuffer0 = TempConvBuffer0 ;
@@ -6392,7 +6392,7 @@ extern const IMEINPUTDATA *NS_GetIMEInputData( void )
 		}
 #endif // UNICODE
 
-		// •ªßî•ñ‚ÌƒZƒbƒg
+		// åˆ†ç¯€æƒ…å ±ã®ã‚»ãƒƒãƒˆ
 		if( CharBuf.ClauseNum > 1 )
 		{
 			IMEInput->ClauseNum		= CharBuf.ClauseNum - 1 ;
@@ -6423,7 +6423,7 @@ extern const IMEINPUTDATA *NS_GetIMEInputData( void )
 					TempConvBuffer0 = ( char * )DXALLOC( ( CharPosition0 + 1 ) * 8 ) ;
 					if( TempConvBuffer0 == NULL )
 					{
-						DXST_LOGFILE_ADDUTF16LE( "\x87\x65\xc0\x7b\x87\x65\x57\x5b\x17\x52\x09\x59\xdb\x63\xe6\x51\x06\x74\x28\x75\x30\x00\x6e\x30\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"•¶ß•¶š—ñ•ÏŠ·ˆ——p0‚Ìƒƒ‚ƒŠ‚ÌŠm•Û‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+						DXST_LOGFILE_ADDUTF16LE( "\x87\x65\xc0\x7b\x87\x65\x57\x5b\x17\x52\x09\x59\xdb\x63\xe6\x51\x06\x74\x28\x75\x30\x00\x6e\x30\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"æ–‡ç¯€æ–‡å­—åˆ—å¤‰æ›å‡¦ç†ç”¨0ã®ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 						return NULL ;
 					}
 					UseConvBuffer0 = TempConvBuffer0 ;
@@ -6438,7 +6438,7 @@ extern const IMEINPUTDATA *NS_GetIMEInputData( void )
 					TempConvBuffer1 = ( char * )DXALLOC( ( CharPosition1 + 1 ) * 8 ) ;
 					if( TempConvBuffer1 == NULL )
 					{
-						DXST_LOGFILE_ADDUTF16LE( "\x87\x65\xc0\x7b\x87\x65\x57\x5b\x17\x52\x09\x59\xdb\x63\xe6\x51\x06\x74\x28\x75\x30\x00\x6e\x30\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"•¶ß•¶š—ñ•ÏŠ·ˆ——p0‚Ìƒƒ‚ƒŠ‚ÌŠm•Û‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+						DXST_LOGFILE_ADDUTF16LE( "\x87\x65\xc0\x7b\x87\x65\x57\x5b\x17\x52\x09\x59\xdb\x63\xe6\x51\x06\x74\x28\x75\x30\x00\x6e\x30\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"æ–‡ç¯€æ–‡å­—åˆ—å¤‰æ›å‡¦ç†ç”¨0ã®ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 						if( TempConvBuffer0 != NULL )
 						{
 							DXFREE( TempConvBuffer0 ) ;
@@ -6492,7 +6492,7 @@ extern const IMEINPUTDATA *NS_GetIMEInputData( void )
 			NextP = IMEInput->InputString + TLen + 1 ;
 		}
 
-		// •ÏŠ·Œó•âî•ñ‚ÌƒZƒbƒg
+		// å¤‰æ›å€™è£œæƒ…å ±ã®ã‚»ãƒƒãƒˆ
 		if( CharBuf.CandidateList != NULL && CharBuf.CandidateList->dwCount > 0 )
 		{
 			TCHAR **CandidateList ;
@@ -6531,7 +6531,7 @@ extern const IMEINPUTDATA *NS_GetIMEInputData( void )
 			IMEInput->SelectCandidate = 0 ;
 		}
 
-		// •¶š—ñ•ÏŠ·’†‚©‚Ç‚¤‚©‚ğƒZƒbƒg
+		// æ–‡å­—åˆ—å¤‰æ›ä¸­ã‹ã©ã†ã‹ã‚’ã‚»ãƒƒãƒˆ
 		if( CharBuf.CharAttrNum == 0 )
 		{
 			IMEInput->ConvertFlag = FALSE ;
@@ -6543,11 +6543,11 @@ extern const IMEINPUTDATA *NS_GetIMEInputData( void )
 		}
 	}
 
-	// ì¬‚µ‚½î•ñ‚ğ•Ô‚·
+	// ä½œæˆã—ãŸæƒ…å ±ã‚’è¿”ã™
 	return CharBuf.IMEInputData ;
 }
 
-// IME‚Å“ü—Í’†‚Ì•¶š—ñ‚ğ•ÏX‚·‚é( IME‚Å•¶š—ñ‚ğ“ü—Í’†‚Å‚Í‚È‚©‚Á‚½ê‡‚Í‰½‚à‹N‚±‚è‚Ü‚¹‚ñ )
+// IMEã§å…¥åŠ›ä¸­ã®æ–‡å­—åˆ—ã‚’å¤‰æ›´ã™ã‚‹( IMEã§æ–‡å­—åˆ—ã‚’å…¥åŠ›ä¸­ã§ã¯ãªã‹ã£ãŸå ´åˆã¯ä½•ã‚‚èµ·ã“ã‚Šã¾ã›ã‚“ )
 extern int NS_SetIMEInputString( const TCHAR *String )
 {
 #ifdef UNICODE
@@ -6565,7 +6565,7 @@ extern int NS_SetIMEInputString( const TCHAR *String )
 #endif
 }
 
-// IME‚Å“ü—Í’†‚Ì•¶š—ñ‚ğ•ÏX‚·‚é( IME‚Å•¶š—ñ‚ğ“ü—Í’†‚Å‚Í‚È‚©‚Á‚½ê‡‚Í‰½‚à‹N‚±‚è‚Ü‚¹‚ñ )
+// IMEã§å…¥åŠ›ä¸­ã®æ–‡å­—åˆ—ã‚’å¤‰æ›´ã™ã‚‹( IMEã§æ–‡å­—åˆ—ã‚’å…¥åŠ›ä¸­ã§ã¯ãªã‹ã£ãŸå ´åˆã¯ä½•ã‚‚èµ·ã“ã‚Šã¾ã›ã‚“ )
 extern int NS_SetIMEInputStringWithStrLen( const TCHAR *String, size_t StringLength )
 {
 	int Result ;
@@ -6603,43 +6603,43 @@ extern int SetIMEInputString_WCHAR_T( const wchar_t *String )
 }
 
 /*
-// IME‚Å•¶š—ñ‚ğ•ÏŠ·’†‚Ìê‡‚É•ÏŠ·Œó•â‚Ì’†‚Å‘I‘ğ‚·‚éŒó•â‚ğ•ÏX‚·‚é
+// IMEã§æ–‡å­—åˆ—ã‚’å¤‰æ›ä¸­ã®å ´åˆã«å¤‰æ›å€™è£œã®ä¸­ã§é¸æŠã™ã‚‹å€™è£œã‚’å¤‰æ›´ã™ã‚‹
 extern int NS_SetIMESelectCandidate( int CandidateIndex )
 {
 	HIMC Imc ;
 
-	// ‚h‚l‚d‚ªg‚í‚ê‚Ä‚¢‚È‚¢‚Æ‚«‚Í -1 ‚ğ•Ô‚·
+	// ï¼©ï¼­ï¼¥ãŒä½¿ã‚ã‚Œã¦ã„ãªã„ã¨ãã¯ -1 ã‚’è¿”ã™
 	if( CharBuf.IMESwitch == FALSE )
 	{
 		return -1 ;
 	}
 
-	// •¶š—ñ•ÏŠ·’†‚Å‚Í–³‚¢ê‡‚Í -1 ‚ğ•Ô‚·
+	// æ–‡å­—åˆ—å¤‰æ›ä¸­ã§ã¯ç„¡ã„å ´åˆã¯ -1 ã‚’è¿”ã™
 	if( CharBuf.CandidateList == NULL )
 	{
 		return -1 ;
 	}
 
-	// Œó•â”Ô†‚ª•s³‚Èê‡‚Í -1 ‚ğ•Ô‚·
+	// å€™è£œç•ªå·ãŒä¸æ­£ãªå ´åˆã¯ -1 ã‚’è¿”ã™
 	if( CandidateIndex < 0 || ( DWORD )CandidateIndex >= CharBuf.CandidateList->dwCount )
 	{
 		return -1 ;
 	}
 
-	// ‚h‚l‚b‚Ìæ“¾
+	// ï¼©ï¼­ï¼£ã®å–å¾—
 	Imc = WinAPIData.ImmFunc.ImmGetContextFunc( WinData.MainWindow ) ;
 	if( Imc == NULL )
 	{
 		return -1 ;
 	}
 
-	// Œó•â‚Ì•ÏX
+	// å€™è£œã®å¤‰æ›´
 	WinAPIData.ImmFunc.ImmNotifyIMEFunc( Imc , NI_SELECTCANDIDATESTR, 0, CandidateIndex );
 
-	// ‚h‚l‚b‚ğ•Â‚¶‚é
+	// ï¼©ï¼­ï¼£ã‚’é–‰ã˜ã‚‹
 	WinAPIData.ImmFunc.ImmReleaseContextFunc( WinData.MainWindow, Imc );
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 */

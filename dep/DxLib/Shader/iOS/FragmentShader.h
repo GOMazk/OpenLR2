@@ -42,7 +42,7 @@ void AlphaTest( lowp float inAlpha )
 #endif
 #ifdef ALPHATEST_ALWAYS			// TRUE
 #endif
-#ifdef ALPHATEST_MIX // g—p‚µ‚È‚¢‰ÓŠ‚ÍƒRƒƒ“ƒgƒAƒEƒg
+#ifdef ALPHATEST_MIX // ä½¿ç”¨ã—ãªã„ç®‡æ‰€ã¯ã‚³ãƒ¡ãƒ³ãƒˆã‚¢ã‚¦ãƒˆ
 //	// DX_CMP_NEVER
 //	if( uATestCmpMode == 1 )
 //	{

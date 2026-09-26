@@ -1,12 +1,12 @@
 //-----------------------------------------------------------------------------
 // 
-// 		‚c‚wƒ‰ƒCƒuƒ‰ƒŠ		ƒ}ƒXƒNˆ—ƒvƒƒOƒ‰ƒ€( Direct3D9 )
+// 		ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒª		ãƒã‚¹ã‚¯å‡¦ç†ãƒ—ãƒ­ã‚°ãƒ©ãƒ ( Direct3D9 )
 // 
 //  	Ver 3.25a
 // 
 //-----------------------------------------------------------------------------
 
-// ‚c‚wƒ‰ƒCƒuƒ‰ƒŠì¬—p’è‹`
+// ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªä½œæˆæ™‚ç”¨å®šç¾©
 #define DX_MAKE
 
 #include "../DxCompileConfig.h"
@@ -17,7 +17,7 @@
 
 #ifndef DX_NON_MASK
 
-// ƒCƒ“ƒNƒ‹[ƒh----------------------------------------------------------------
+// ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰----------------------------------------------------------------
 #include "../DxLib.h"
 #include "../DxStatic.h"
 #include "../DxSystem.h"
@@ -37,21 +37,21 @@ namespace DxLib
 
 #endif // DX_NON_NAMESPACE
 
-// ƒ}ƒNƒ’è‹`------------------------------------------------------------------
+// ãƒã‚¯ãƒ­å®šç¾©------------------------------------------------------------------
 
-// Œ^’è‹`----------------------------------------------------------------------
+// å‹å®šç¾©----------------------------------------------------------------------
 
-// ƒf[ƒ^éŒ¾------------------------------------------------------------------
+// ãƒ‡ãƒ¼ã‚¿å®£è¨€------------------------------------------------------------------
 
 MASKMANAGEDATA_DIRECT3D9 MaskManageData_D3D9 ;
 
-// ŠÖ”ƒvƒƒgƒ^ƒCƒvéŒ¾ -------------------------------------------------------
+// é–¢æ•°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€ -------------------------------------------------------
 
-// ƒvƒƒOƒ‰ƒ€------------------------------------------------------------------
+// ãƒ—ãƒ­ã‚°ãƒ©ãƒ ------------------------------------------------------------------
 
-// ŠÂ‹«ˆË‘¶ŠÖ”
+// ç’°å¢ƒä¾å­˜é–¢æ•°
 
-// ƒ}ƒXƒNƒXƒNƒŠ[ƒ“‚ğì¬‚·‚éŠÖ”
+// ãƒã‚¹ã‚¯ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚’ä½œæˆã™ã‚‹é–¢æ•°
 extern int Mask_D3D9_CreateScreenFunction_Timing0_PF( void )
 {
 	MASKD3D9.MaskImageTextureOld     = MASKD3D9.MaskImageTexture ;
@@ -69,40 +69,40 @@ extern int Mask_D3D9_CreateScreenFunction_Timing0_PF( void )
 	MASKD3D9.MaskScreenSurfaceOld    = MASKD3D9.MaskScreenSurface ;
 	MASKD3D9.MaskScreenSurface       = NULL ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
 
-// ƒ}ƒXƒNƒXƒNƒŠ[ƒ“‚ğì¬‚·‚éŠÖ”
+// ãƒã‚¹ã‚¯ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚’ä½œæˆã™ã‚‹é–¢æ•°
 extern int Mask_D3D9_CreateScreenFunction_Timing1_PF( int Width, int Height )
 {
 	UINT w, h ;
 
-	// ƒJƒ‰[ƒoƒbƒtƒ@‚©ƒAƒ‹ƒtƒ@ƒoƒbƒtƒ@‚ªì¬•s‰Â”\‚Èê‡‚Í‚¦ƒGƒ‰[
+	// ã‚«ãƒ©ãƒ¼ãƒãƒƒãƒ•ã‚¡ã‹ã‚¢ãƒ«ãƒ•ã‚¡ãƒãƒƒãƒ•ã‚¡ãŒä½œæˆä¸å¯èƒ½ãªå ´åˆã¯ãˆã‚¨ãƒ©ãƒ¼
 	if( GD3D9.Device.Caps.MaskColorFormat == D_D3DFMT_UNKNOWN )
 	{
-		return DXST_LOGFILE_ADDUTF16LE( "\xde\x30\xb9\x30\xaf\x30\xcf\x63\x3b\x75\x28\x75\xab\x30\xe9\x30\xfc\x30\xd0\x30\xc3\x30\xd5\x30\xa1\x30\x67\x30\x7f\x4f\x28\x75\x67\x30\x4d\x30\x8b\x30\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\xd5\x30\xa9\x30\xfc\x30\xde\x30\xc3\x30\xc8\x30\x4c\x30\x42\x30\x8a\x30\x7e\x30\x5b\x30\x93\x30\x67\x30\x57\x30\x5f\x30\x00"/*@ L"ƒ}ƒXƒN•`‰æ—pƒJƒ‰[ƒoƒbƒtƒ@‚Åg—p‚Å‚«‚éƒeƒNƒXƒ`ƒƒƒtƒH[ƒ}ƒbƒg‚ª‚ ‚è‚Ü‚¹‚ñ‚Å‚µ‚½" @*/ ) ;
+		return DXST_LOGFILE_ADDUTF16LE( "\xde\x30\xb9\x30\xaf\x30\xcf\x63\x3b\x75\x28\x75\xab\x30\xe9\x30\xfc\x30\xd0\x30\xc3\x30\xd5\x30\xa1\x30\x67\x30\x7f\x4f\x28\x75\x67\x30\x4d\x30\x8b\x30\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\xd5\x30\xa9\x30\xfc\x30\xde\x30\xc3\x30\xc8\x30\x4c\x30\x42\x30\x8a\x30\x7e\x30\x5b\x30\x93\x30\x67\x30\x57\x30\x5f\x30\x00"/*@ L"ãƒã‚¹ã‚¯æç”»ç”¨ã‚«ãƒ©ãƒ¼ãƒãƒƒãƒ•ã‚¡ã§ä½¿ç”¨ã§ãã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆãŒã‚ã‚Šã¾ã›ã‚“ã§ã—ãŸ" @*/ ) ;
 	}
 
 	if( GD3D9.Device.Caps.MaskAlphaFormat == D_D3DFMT_UNKNOWN )
 	{
-		return DXST_LOGFILE_ADDUTF16LE( "\xde\x30\xb9\x30\xaf\x30\xcf\x63\x3b\x75\x28\x75\xa2\x30\xeb\x30\xd5\x30\xa1\x30\xc1\x30\xe3\x30\xf3\x30\xcd\x30\xeb\x30\xd0\x30\xc3\x30\xd5\x30\xa1\x30\x67\x30\x7f\x4f\x28\x75\x67\x30\x4d\x30\x8b\x30\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\xd5\x30\xa9\x30\xfc\x30\xde\x30\xc3\x30\xc8\x30\x4c\x30\x42\x30\x8a\x30\x7e\x30\x5b\x30\x93\x30\x67\x30\x57\x30\x5f\x30\x00"/*@ L"ƒ}ƒXƒN•`‰æ—pƒAƒ‹ƒtƒ@ƒ`ƒƒƒ“ƒlƒ‹ƒoƒbƒtƒ@‚Åg—p‚Å‚«‚éƒeƒNƒXƒ`ƒƒƒtƒH[ƒ}ƒbƒg‚ª‚ ‚è‚Ü‚¹‚ñ‚Å‚µ‚½" @*/ ) ;
+		return DXST_LOGFILE_ADDUTF16LE( "\xde\x30\xb9\x30\xaf\x30\xcf\x63\x3b\x75\x28\x75\xa2\x30\xeb\x30\xd5\x30\xa1\x30\xc1\x30\xe3\x30\xf3\x30\xcd\x30\xeb\x30\xd0\x30\xc3\x30\xd5\x30\xa1\x30\x67\x30\x7f\x4f\x28\x75\x67\x30\x4d\x30\x8b\x30\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\xd5\x30\xa9\x30\xfc\x30\xde\x30\xc3\x30\xc8\x30\x4c\x30\x42\x30\x8a\x30\x7e\x30\x5b\x30\x93\x30\x67\x30\x57\x30\x5f\x30\x00"/*@ L"ãƒã‚¹ã‚¯æç”»ç”¨ã‚¢ãƒ«ãƒ•ã‚¡ãƒãƒ£ãƒ³ãƒãƒ«ãƒãƒƒãƒ•ã‚¡ã§ä½¿ç”¨ã§ãã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆãŒã‚ã‚Šã¾ã›ã‚“ã§ã—ãŸ" @*/ ) ;
 	}
 
-	// ‰æ–ÊƒTƒCƒY‚ªû‚Ü‚é 2 ‚Ìnæ‚Ì’l‚ğŠ„‚èo‚·
+	// ç”»é¢ã‚µã‚¤ã‚ºãŒåã¾ã‚‹ 2 ã®nä¹—ã®å€¤ã‚’å‰²ã‚Šå‡ºã™
 	for( w = 1 ; w < ( UINT )Width  ; w <<= 1 ){}
 	for( h = 1 ; h < ( UINT )Height ; h <<= 1 ){}
 	MASKD3D9.MaskTextureSizeX = ( int )w ;
 	MASKD3D9.MaskTextureSizeY = ( int )h ;
 
-	// ƒ}ƒXƒN—pƒCƒ[ƒWƒeƒNƒXƒ`ƒƒ‚Ìì¬
+	// ãƒã‚¹ã‚¯ç”¨ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ä½œæˆ
 	if( MASKD3D9.MaskImageTexture == NULL )
 	{
 		if( Direct3DDevice9_CreateTexture( w, h, 1, D_D3DUSAGE_DYNAMIC, GD3D9.Device.Caps.MaskAlphaFormat, D_D3DPOOL_DEFAULT, &MASKD3D9.MaskImageTexture, NULL ) != D_D3D_OK )
-			return DXST_LOGFILE_ADDUTF16LE( "\xde\x30\xb9\x30\xaf\x30\x28\x75\xa4\x30\xe1\x30\xfc\x30\xb8\x30\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"ƒ}ƒXƒN—pƒCƒ[ƒWƒeƒNƒXƒ`ƒƒ‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½" @*/ ) ;
+			return DXST_LOGFILE_ADDUTF16LE( "\xde\x30\xb9\x30\xaf\x30\x28\x75\xa4\x30\xe1\x30\xfc\x30\xb8\x30\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"ãƒã‚¹ã‚¯ç”¨ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ" @*/ ) ;
 
-		// ƒ}ƒXƒN—pƒCƒ[ƒWƒeƒNƒXƒ`ƒƒ‚Ì‰Šú‰»
+		// ãƒã‚¹ã‚¯ç”¨ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®åˆæœŸåŒ–
 		{
 			D_D3DLOCKED_RECT LockRect ;
 			int i, Bytes ;
@@ -120,32 +120,32 @@ extern int Mask_D3D9_CreateScreenFunction_Timing1_PF( int Width, int Height )
 		}
 	}
 
-	// ƒ}ƒXƒN—pƒXƒNƒŠ[ƒ“ƒeƒNƒXƒ`ƒƒ‚Ìì¬
+	// ãƒã‚¹ã‚¯ç”¨ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ä½œæˆ
 	if( MASKD3D9.MaskScreenTexture == NULL )
 	{
 		if( Direct3DDevice9_CreateTexture( w, h, 1, D_D3DUSAGE_RENDERTARGET, GD3D9.Device.Caps.ScreenFormat, D_D3DPOOL_DEFAULT, &MASKD3D9.MaskScreenTexture, NULL ) != D_D3D_OK )
 		{
-			return DXST_LOGFILE_ADDUTF16LE( "\xde\x30\xb9\x30\xaf\x30\x28\x75\xb9\x30\xaf\x30\xea\x30\xfc\x30\xf3\x30\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"ƒ}ƒXƒN—pƒXƒNƒŠ[ƒ“ƒeƒNƒXƒ`ƒƒ‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½" @*/ ) ;
+			return DXST_LOGFILE_ADDUTF16LE( "\xde\x30\xb9\x30\xaf\x30\x28\x75\xb9\x30\xaf\x30\xea\x30\xfc\x30\xf3\x30\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"ãƒã‚¹ã‚¯ç”¨ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ" @*/ ) ;
 		}
 	}
 
-	// ƒ}ƒXƒN—pƒXƒNƒŠ[ƒ“ƒT[ƒtƒFƒX‚Ìæ“¾
+	// ãƒã‚¹ã‚¯ç”¨ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚µãƒ¼ãƒ•ã‚§ã‚¹ã®å–å¾—
 	if( MASKD3D9.MaskScreenTexture && MASKD3D9.MaskScreenSurface == NULL )
 	{
 		MASKD3D9.MaskScreenTexture->GetSurfaceLevel( 0, &MASKD3D9.MaskScreenSurface ) ;
 	}
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// ƒ}ƒXƒNƒXƒNƒŠ[ƒ“‚ğì¬‚·‚éŠÖ”
+// ãƒã‚¹ã‚¯ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚’ä½œæˆã™ã‚‹é–¢æ•°
 extern	int			Mask_D3D9_CreateScreenFunction_Timing2_PF( int MaskBufferSizeXOld, int MaskBufferSizeYOld )
 {
 	RECT UpdateRect ;
 	int i ;
 
-	// ƒ}ƒXƒN—pƒCƒ[ƒWƒeƒNƒXƒ`ƒƒ‚É“à—e‚ğ“]‘—
+	// ãƒã‚¹ã‚¯ç”¨ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ†ã‚¯ã‚¹ãƒãƒ£ã«å†…å®¹ã‚’è»¢é€
 	UpdateRect.left   = 0 ;
 	UpdateRect.top    = 0 ;
 	UpdateRect.right  = MaskBufferSizeXOld ;
@@ -161,12 +161,12 @@ extern	int			Mask_D3D9_CreateScreenFunction_Timing2_PF( int MaskBufferSizeXOld, 
 //	MASKD3D9.MaskMemImageSurfaceOld->Release() ;
 //	MASKD3D9.MaskMemImageSurfaceOld = NULL ;
 
-	// ƒ}ƒXƒN—pƒXƒNƒŠ[ƒ“ƒeƒNƒXƒ`ƒƒ‚É¡‚Ü‚Å‚Ì“à—e‚ğ“]‘—
+	// ãƒã‚¹ã‚¯ç”¨ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ†ã‚¯ã‚¹ãƒãƒ£ã«ä»Šã¾ã§ã®å†…å®¹ã‚’è»¢é€
 	Direct3DDevice9_StretchRect(
 		MASKD3D9.MaskScreenSurfaceOld, &UpdateRect,
 		MASKD3D9.MaskScreenSurface,    &UpdateRect, D_D3DTEXF_NONE ) ;
 
-	// ƒŒƒ“ƒ_[ƒ^[ƒQƒbƒg‚É‚³‚ê‚Ä‚¢‚½‚ç•ÏX‚·‚é
+	// ãƒ¬ãƒ³ãƒ€ãƒ¼ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã«ã•ã‚Œã¦ã„ãŸã‚‰å¤‰æ›´ã™ã‚‹
 	for( i = 0 ; i < DX_RENDERTARGET_COUNT ; i ++ )
 	{
 		if( GD3D9.Device.State.TargetSurface[ i ] == MASKD3D9.MaskScreenSurfaceOld )
@@ -181,59 +181,59 @@ extern	int			Mask_D3D9_CreateScreenFunction_Timing2_PF( int MaskBufferSizeXOld, 
 	MASKD3D9.MaskScreenTextureOld->Release() ;
 	MASKD3D9.MaskScreenTextureOld = NULL ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// ƒ}ƒXƒNƒXƒNƒŠ[ƒ“‚ğˆêíœ‚·‚é
+// ãƒã‚¹ã‚¯ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚’ä¸€æ™‚å‰Šé™¤ã™ã‚‹
 extern	int			Mask_D3D9_ReleaseSurface_PF( void )
 {
-//	// ƒ}ƒXƒNƒƒ‚ƒŠƒCƒ[ƒW—pƒT[ƒtƒFƒX‚Ì‰ğ•ú
+//	// ãƒã‚¹ã‚¯ãƒ¡ãƒ¢ãƒªã‚¤ãƒ¡ãƒ¼ã‚¸ç”¨ã‚µãƒ¼ãƒ•ã‚§ã‚¹ã®è§£æ”¾
 //	if( MASKD3D9.MaskMemImageSurface )
 //	{
 //		MASKD3D9.MaskMemImageSurface->Release() ;
 //		MASKD3D9.MaskMemImageSurface = NULL ;
 //	}
 //
-//	// ƒ}ƒXƒNƒCƒ[ƒW—pƒT[ƒtƒFƒX‚Ì‰ğ•ú
+//	// ãƒã‚¹ã‚¯ã‚¤ãƒ¡ãƒ¼ã‚¸ç”¨ã‚µãƒ¼ãƒ•ã‚§ã‚¹ã®è§£æ”¾
 //	if( MASKD3D9.MaskImageSurface )
 //	{
 //		MASKD3D9.MaskImageSurface->Release() ;
 //		MASKD3D9.MaskImageSurface = NULL ;
 //	}
 
-	// ƒ}ƒXƒNƒCƒ[ƒW—pƒeƒNƒXƒ`ƒƒ‚Ì‰ğ•ú
+	// ãƒã‚¹ã‚¯ã‚¤ãƒ¡ãƒ¼ã‚¸ç”¨ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®è§£æ”¾
 	if( MASKD3D9.MaskImageTexture )
 	{
 		MASKD3D9.MaskImageTexture->Release() ;
 		MASKD3D9.MaskImageTexture = NULL ;
 	}
 
-	// ƒ}ƒXƒNƒXƒNƒŠ[ƒ“ƒT[ƒtƒFƒX‚Ì‰ğ•ú
+	// ãƒã‚¹ã‚¯ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚µãƒ¼ãƒ•ã‚§ã‚¹ã®è§£æ”¾
 	if( MASKD3D9.MaskScreenSurface )
 	{
 		MASKD3D9.MaskScreenSurface->Release() ;
 		MASKD3D9.MaskScreenSurface = NULL ;
 	}
 
-	// ƒ}ƒXƒNƒXƒNƒŠ[ƒ“ƒeƒNƒXƒ`ƒƒ‚Ì‰ğ•ú
+	// ãƒã‚¹ã‚¯ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®è§£æ”¾
 	if( MASKD3D9.MaskScreenTexture )
 	{
 		MASKD3D9.MaskScreenTexture->Release() ;
 		MASKD3D9.MaskScreenTexture = NULL ;
 	}
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// ƒ}ƒXƒNg—pƒ‚[ƒh‚ğ•ÏX
+// ãƒã‚¹ã‚¯ä½¿ç”¨ãƒ¢ãƒ¼ãƒ‰ã‚’å¤‰æ›´
 extern	int			Mask_D3D9_SetUseMaskScreenFlag_PF( void )
 {
 	IMAGEDATA *Image = NULL ;
 	SHADOWMAPDATA *ShadowMap = NULL ;
 
-	// •`‰ææ‚Ì‰æ‘œƒf[ƒ^ƒAƒhƒŒƒX‚ğæ“¾‚·‚é
+	// æç”»å…ˆã®ç”»åƒãƒ‡ãƒ¼ã‚¿ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å–å¾—ã™ã‚‹
 	if( GSYS.DrawSetting.ShadowMapDrawSetupRequest )
 	{
 		ShadowMap = Graphics_ShadowMap_GetData( GSYS.DrawSetting.TargetScreen[ 0 ] ) ;
@@ -243,24 +243,24 @@ extern	int			Mask_D3D9_SetUseMaskScreenFlag_PF( void )
 		Image = Graphics_Image_GetData( GSYS.DrawSetting.TargetScreen[ 0 ] ) ;
 	}
 
-	// •`‰æ‘Ò‹@‚µ‚Ä‚¢‚é•`‰æ•¨‚ğ•`‰æ
+	// æç”»å¾…æ©Ÿã—ã¦ã„ã‚‹æç”»ç‰©ã‚’æç”»
 	DRAWSTOCKINFO
 
-	// •`‰ææ‚ğ•ÏX‚·‚é
+	// æç”»å…ˆã‚’å¤‰æ›´ã™ã‚‹
 
-	// ƒ}ƒXƒNƒT[ƒtƒFƒX‚ª‘¶İ‚µ‚Ä‚¢‚ÄŠ‚Â—LŒø‚Èê‡‚Íƒ}ƒXƒNƒT[ƒtƒFƒX‚ğ•`‰æ‘ÎÛ‚É‚·‚é
+	// ãƒã‚¹ã‚¯ã‚µãƒ¼ãƒ•ã‚§ã‚¹ãŒå­˜åœ¨ã—ã¦ã„ã¦ä¸”ã¤æœ‰åŠ¹ãªå ´åˆã¯ãƒã‚¹ã‚¯ã‚µãƒ¼ãƒ•ã‚§ã‚¹ã‚’æç”»å¯¾è±¡ã«ã™ã‚‹
 	if( MASKD.MaskValidFlag && MASKD3D9.MaskScreenSurface )
 	{
 		Graphics_D3D9_DeviceState_SetRenderTarget( MASKD3D9.MaskScreenSurface ) ;
 	}
 	else
-	// ƒVƒƒƒhƒEƒ}ƒbƒv‚ª—LŒø‚Èê‡‚ÍƒVƒƒƒhƒEƒ}ƒbƒv‚ğ•`‰æ‘ÎÛ‚É‚·‚é
+	// ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ãŒæœ‰åŠ¹ãªå ´åˆã¯ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ã‚’æç”»å¯¾è±¡ã«ã™ã‚‹
 	if( ShadowMap )
 	{
 		Graphics_D3D9_DeviceState_SetRenderTarget( ShadowMap->PF->D3D9.Surface ) ;
 	}
 	else
-	// •`‰æ‰Â”\‰æ‘œ‚ª—LŒø‚Èê‡‚Í•`‰æ‰Â”\‰æ‘œ‚ğ•`‰æ‘ÎÛ‚É‚·‚é
+	// æç”»å¯èƒ½ç”»åƒãŒæœ‰åŠ¹ãªå ´åˆã¯æç”»å¯èƒ½ç”»åƒã‚’æç”»å¯¾è±¡ã«ã™ã‚‹
 	if( Image )
 	{
 		if( Image->Hard.Draw[ 0 ].Tex->PF->D3D9.RenderTargetSurface )
@@ -274,42 +274,42 @@ extern	int			Mask_D3D9_SetUseMaskScreenFlag_PF( void )
 	}
 	else
 	{
-		// ‚»‚êˆÈŠO‚Ìê‡‚ÍƒTƒuƒoƒbƒNƒoƒbƒtƒ@‚ª—LŒø‚Èê‡‚ÍƒTƒuƒoƒbƒNƒoƒbƒtƒ@‚ğ•`‰æ‘ÎÛ‚É‚·‚é
+		// ãã‚Œä»¥å¤–ã®å ´åˆã¯ã‚µãƒ–ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ãŒæœ‰åŠ¹ãªå ´åˆã¯ã‚µãƒ–ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã‚’æç”»å¯¾è±¡ã«ã™ã‚‹
 		Graphics_D3D9_DeviceState_SetRenderTarget( GD3D9.Device.Screen.SubBackBufferSurface ? GD3D9.Device.Screen.SubBackBufferSurface : GD3D9.Device.Screen.BackBufferSurface ) ;
 	}
 
-	// g—p‚·‚é‚yƒoƒbƒtƒ@‚ÌƒZƒbƒgƒAƒbƒv
+	// ä½¿ç”¨ã™ã‚‹ï¼ºãƒãƒƒãƒ•ã‚¡ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 	Graphics_Screen_SetupUseZBuffer() ;
 
-	// ƒrƒ…[ƒ|[ƒg‚ğŒ³‚É–ß‚·
+	// ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆã‚’å…ƒã«æˆ»ã™
 	GD3D9.Device.DrawSetting.CancelSettingEqualCheck = TRUE ;
 	Graphics_D3D9_DeviceState_SetViewportEasy( GSYS.DrawSetting.DrawArea.left, GSYS.DrawSetting.DrawArea.top, GSYS.DrawSetting.DrawArea.right, GSYS.DrawSetting.DrawArea.bottom ) ;
 	GD3D9.Device.DrawSetting.CancelSettingEqualCheck = FALSE ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// ƒ}ƒXƒN‚ğg—p‚µ‚½•`‰æ‚Ì‘O‚ÉŒÄ‚ÔŠÖ”( ‚Â‚¢‚Å‚ÉƒTƒuƒoƒbƒtƒ@‚ğg—p‚µ‚½•`‰æƒGƒŠƒA‹@”\‚ğg—p‚µ‚Ä‚¢‚éê‡‚Ìˆ—‚à‚¢‚ê‚Ä‚µ‚Ü‚Á‚Ä‚¢‚é‚æ )
+// ãƒã‚¹ã‚¯ã‚’ä½¿ç”¨ã—ãŸæç”»ã®å‰ã«å‘¼ã¶é–¢æ•°( ã¤ã„ã§ã«ã‚µãƒ–ãƒãƒƒãƒ•ã‚¡ã‚’ä½¿ç”¨ã—ãŸæç”»ã‚¨ãƒªã‚¢æ©Ÿèƒ½ã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹å ´åˆã®å‡¦ç†ã‚‚ã„ã‚Œã¦ã—ã¾ã£ã¦ã„ã‚‹ã‚ˆ )
 extern	int			Mask_D3D9_DrawBeginFunction_PF( RECT *Rect )
 {
 	IMAGEDATA *Image ;
 
-	// •`‰ææ‚Ì‰æ‘œƒf[ƒ^ƒAƒhƒŒƒX‚ğæ“¾‚·‚é
+	// æç”»å…ˆã®ç”»åƒãƒ‡ãƒ¼ã‚¿ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å–å¾—ã™ã‚‹
 	Image = Graphics_Image_GetData( GSYS.DrawSetting.TargetScreen[ 0 ] ) ;
 
-	// ƒ}ƒXƒN‚ğg—p‚µ‚Ä‚¢‚é‚Æ‚«‚Ì‚İ“Á•Ê‚Èˆ—‚ğ‚·‚é
+	// ãƒã‚¹ã‚¯ã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹ã¨ãã®ã¿ç‰¹åˆ¥ãªå‡¦ç†ã‚’ã™ã‚‹
 	if( MASKD.MaskValidFlag && MASKD3D9.MaskScreenSurface )
 	{
-		// ƒ}ƒXƒN‚ğg—p‚µ‚Ä‚¢‚éê‡‚Í•`‰ææ‚ğƒ}ƒXƒNƒXƒNƒŠ[ƒ“‚É‚·‚é
+		// ãƒã‚¹ã‚¯ã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹å ´åˆã¯æç”»å…ˆã‚’ãƒã‚¹ã‚¯ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã«ã™ã‚‹
 		MASKD3D9.UseBackupSurface = MASKD3D9.MaskScreenSurface ;
 
-		// ÅIo—Íæ‚ÌŒˆ’è
+		// æœ€çµ‚å‡ºåŠ›å…ˆã®æ±ºå®š
 		
-		// •`‰æ‰Â”\‰æ‘œ‚ª•`‰ææ‚Ìê‡‚Í‚»‚ê‚ğA
-		// ‚»‚êˆÈŠO‚Ìê‡‚ÍƒTƒuƒoƒbƒNƒoƒbƒtƒ@‚ğ
-		// g—p‚µ‚Ä‚¢‚éê‡‚ÍƒTƒuƒoƒbƒNƒoƒbƒtƒ@‚ğA
-		// ‚»‚¤‚Å‚Í‚È‚¢ê‡‚ÍƒoƒbƒNƒoƒbƒtƒ@‚ğo—Íæ‚É‚·‚é
+		// æç”»å¯èƒ½ç”»åƒãŒæç”»å…ˆã®å ´åˆã¯ãã‚Œã‚’ã€
+		// ãã‚Œä»¥å¤–ã®å ´åˆã¯ã‚µãƒ–ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã‚’
+		// ä½¿ç”¨ã—ã¦ã„ã‚‹å ´åˆã¯ã‚µãƒ–ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã‚’ã€
+		// ãã†ã§ã¯ãªã„å ´åˆã¯ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã‚’å‡ºåŠ›å…ˆã«ã™ã‚‹
 		if( Image )
 		{
 			MASKD3D9.DestTargetSurface = Image->Orig->Hard.Tex[ 0 ].PF->D3D9.Surface[ GSYS.DrawSetting.TargetScreenSurface[ 0 ] ] ;
@@ -319,17 +319,17 @@ extern	int			Mask_D3D9_DrawBeginFunction_PF( RECT *Rect )
 			MASKD3D9.DestTargetSurface = GD3D9.Device.Screen.SubBackBufferSurface ? GD3D9.Device.Screen.SubBackBufferSurface : GD3D9.Device.Screen.BackBufferSurface ;
 		}
 
-		// ÅIo—Íæ‚©‚çƒ}ƒXƒNƒXƒNƒŠ[ƒ“‚ÉŒ»İ‚Ì•`‰æó‹µ‚ğƒRƒs[‚·‚é
+		// æœ€çµ‚å‡ºåŠ›å…ˆã‹ã‚‰ãƒã‚¹ã‚¯ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã«ç¾åœ¨ã®æç”»çŠ¶æ³ã‚’ã‚³ãƒ”ãƒ¼ã™ã‚‹
 		Direct3DDevice9_StretchRect(
 			MASKD3D9.DestTargetSurface, Rect,
 			MASKD3D9.MaskScreenSurface, Rect, D_D3DTEXF_NONE ) ; 
 	}
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// ƒ}ƒXƒN‚ğg—p‚µ‚½•`‰æ‚ÌŒã‚ÉŒÄ‚ÔŠÖ”( ‚Â‚¢‚Å‚ÉƒTƒuƒoƒbƒtƒ@‚ğg—p‚µ‚½•`‰æƒGƒŠƒA‹@”\‚ğg—p‚µ‚Ä‚¢‚éê‡‚Ìˆ—‚à‚¢‚ê‚Ä‚µ‚Ü‚Á‚Ä‚¢‚é‚æ )
+// ãƒã‚¹ã‚¯ã‚’ä½¿ç”¨ã—ãŸæç”»ã®å¾Œã«å‘¼ã¶é–¢æ•°( ã¤ã„ã§ã«ã‚µãƒ–ãƒãƒƒãƒ•ã‚¡ã‚’ä½¿ç”¨ã—ãŸæç”»ã‚¨ãƒªã‚¢æ©Ÿèƒ½ã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹å ´åˆã®å‡¦ç†ã‚‚ã„ã‚Œã¦ã—ã¾ã£ã¦ã„ã‚‹ã‚ˆ )
 extern	int			Mask_D3D9_DrawAfterFunction_PF( RECT *Rect )
 {
 	IMAGEDATA *MaskScreenImage = NULL ;
@@ -338,18 +338,18 @@ extern	int			Mask_D3D9_DrawAfterFunction_PF( RECT *Rect )
 	VERTEX_BLENDTEX_2D Vert[ 4 ] ;
 	GRAPHICS_HARDDATA_DIRECT3D9_BLENDINFO BlendInfo ;
 
-	// ƒ}ƒXƒN‚ğg—p‚µ‚Ä‚¢‚éê‡‚Æ‚µ‚È‚¢ê‡‚Åˆ—‚ğ•ªŠò
+	// ãƒã‚¹ã‚¯ã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹å ´åˆã¨ã—ãªã„å ´åˆã§å‡¦ç†ã‚’åˆ†å²
 	if( MASKD.MaskValidFlag == FALSE || MASKD3D9.MaskScreenSurface == NULL)
 	{
 		return 0 ;
 	}
 
-	// ƒ}ƒXƒN—pƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ª—LŒø‚Èê‡‚Íƒ}ƒXƒN—pƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚Ìî•ñ‚ğæ“¾‚·‚é
+	// ãƒã‚¹ã‚¯ç”¨ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ãŒæœ‰åŠ¹ãªå ´åˆã¯ãƒã‚¹ã‚¯ç”¨ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã®æƒ…å ±ã‚’å–å¾—ã™ã‚‹
 	if( MASKD.MaskScreenGraphHandle != 0 )
 	{
 		MaskScreenImage = Graphics_Image_GetData( MASKD.MaskScreenGraphHandle ) ;
 
-		// Šù‚É–³Œø‚É‚È‚Á‚Ä‚¢‚½‚çİ’è‚à 0 ‚É‚·‚é
+		// æ—¢ã«ç„¡åŠ¹ã«ãªã£ã¦ã„ãŸã‚‰è¨­å®šã‚‚ 0 ã«ã™ã‚‹
 		if( MaskScreenImage == NULL )
 		{
 			MASKD.MaskScreenGraphHandle = 0 ;
@@ -358,28 +358,28 @@ extern	int			Mask_D3D9_DrawAfterFunction_PF( RECT *Rect )
 
 #if 1
 
-	// •`‰ææ‚ğ•ÏX
+	// æç”»å…ˆã‚’å¤‰æ›´
 	Graphics_D3D9_DeviceState_SetRenderTarget( MASKD3D9.DestTargetSurface ) ;
 	Graphics_D3D9_BeginScene() ;
 
-	// ‚yƒoƒbƒtƒ@‚ğg—p‚µ‚È‚¢İ’è‚É‚·‚é
+	// ï¼ºãƒãƒƒãƒ•ã‚¡ã‚’ä½¿ç”¨ã—ãªã„è¨­å®šã«ã™ã‚‹
 	UseZBufferFlag = GD3D9.Device.State.ZEnable ;
 	Graphics_D3D9_DeviceState_SetZEnable( FALSE ) ;
 
-	// ƒVƒF[ƒ_[‚ªƒZƒbƒg‚³‚ê‚Ä‚¢‚½‚ç‚Í‚¸‚·
+	// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãŒã‚»ãƒƒãƒˆã•ã‚Œã¦ã„ãŸã‚‰ã¯ãšã™
 	Graphics_D3D9_DeviceState_ResetVertexShader() ;
 	Graphics_D3D9_DeviceState_ResetPixelShader() ;
 	Graphics_D3D9_DeviceState_SetVertexBuffer( NULL ) ;
 	Graphics_D3D9_DeviceState_SetIndexBuffer( NULL ) ;
 
-	// ƒrƒ…[ƒ|[ƒg‚ğŒ³‚É–ß‚·
+	// ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆã‚’å…ƒã«æˆ»ã™
 	GD3D9.Device.DrawSetting.CancelSettingEqualCheck = TRUE ;
 	Graphics_D3D9_DeviceState_SetViewportEasy( GSYS.DrawSetting.DrawArea.left, GSYS.DrawSetting.DrawArea.top, GSYS.DrawSetting.DrawArea.right, GSYS.DrawSetting.DrawArea.bottom ) ;
 	GD3D9.Device.DrawSetting.CancelSettingEqualCheck = FALSE ;
 
-	// ƒ}ƒXƒNƒAƒ‹ƒtƒ@ƒ`ƒƒƒ“ƒlƒ‹‚Æƒ}ƒXƒNƒJƒ‰[ƒoƒbƒtƒ@‚ğ—Z‡‚µ‚Ä•`‰æ
+	// ãƒã‚¹ã‚¯ã‚¢ãƒ«ãƒ•ã‚¡ãƒãƒ£ãƒ³ãƒãƒ«ã¨ãƒã‚¹ã‚¯ã‚«ãƒ©ãƒ¼ãƒãƒƒãƒ•ã‚¡ã‚’èåˆã—ã¦æç”»
 
-	// ƒ}ƒXƒNƒXƒNƒŠ[ƒ“—p‰æ‘œ‚ğg—p‚µ‚Ä‚¢‚éê‡‚ÍƒAƒ‹ƒtƒ@ƒuƒŒƒ“ƒhAg—p‚µ‚Ä‚¢‚È‚¢ê‡‚ÍƒAƒ‹ƒtƒ@ƒeƒXƒg‚ğs‚¤
+	// ãƒã‚¹ã‚¯ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ç”¨ç”»åƒã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹å ´åˆã¯ã‚¢ãƒ«ãƒ•ã‚¡ãƒ–ãƒ¬ãƒ³ãƒ‰ã€ä½¿ç”¨ã—ã¦ã„ãªã„å ´åˆã¯ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆã‚’è¡Œã†
 	_MEMSET( &BlendInfo, 0, sizeof( BlendInfo ) ) ;
 	if( MaskScreenImage != NULL )
 	{
@@ -437,11 +437,11 @@ extern	int			Mask_D3D9_DrawAfterFunction_PF( RECT *Rect )
 		BlendInfo.TextureStageInfo[ 2 ].AlphaARG2         = D_D3DTA_DIFFUSE ;
 		BlendInfo.TextureStageInfo[ 2 ].AlphaOP           = D_D3DTOP_DISABLE ;
 
-		// ƒuƒŒƒ“ƒhî•ñ‚Ì•ÏX
+		// ãƒ–ãƒ¬ãƒ³ãƒ‰æƒ…å ±ã®å¤‰æ›´
 		Graphics_D3D9_DeviceState_SetUserBlendInfo( &BlendInfo, FALSE, FALSE, FALSE ) ;
 
 #ifndef DX_NON_NORMAL_DRAW_SHADER
-		// DX_MASKGRAPH_CH_A ˆÈŠO‚Ìê‡‚Í‚±‚±‚ÅƒsƒNƒZƒ‹ƒVƒF[ƒ_[‚ğİ’è‚·‚é
+		// DX_MASKGRAPH_CH_A ä»¥å¤–ã®å ´åˆã¯ã“ã“ã§ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’è¨­å®šã™ã‚‹
 		if( GSYS.HardInfo.UseShader && MASKD.MaskScreenGraphHandleUseChannel != DX_MASKGRAPH_CH_A )
 		{
 			Graphics_D3D9_DeviceState_SetPixelShader(
@@ -499,20 +499,20 @@ extern	int			Mask_D3D9_DrawAfterFunction_PF( RECT *Rect )
 		BlendInfo.TextureStageInfo[ 2 ].AlphaARG2         = D_D3DTA_DIFFUSE ;
 		BlendInfo.TextureStageInfo[ 2 ].AlphaOP           = D_D3DTOP_DISABLE ;
 
-		// ƒuƒŒƒ“ƒhî•ñ‚Ì•ÏX
+		// ãƒ–ãƒ¬ãƒ³ãƒ‰æƒ…å ±ã®å¤‰æ›´
 		Graphics_D3D9_DeviceState_SetUserBlendInfo( &BlendInfo, FALSE, FALSE, FALSE ) ;
 	}
 
-	// ƒVƒF[ƒ_[‚ğg—p‚·‚éê‡‚Í‚±‚±‚ÅƒsƒNƒZƒ‹ƒVƒF[ƒ_[‚ğİ’è‚·‚é
+	// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ä½¿ç”¨ã™ã‚‹å ´åˆã¯ã“ã“ã§ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’è¨­å®šã™ã‚‹
 //	if( GSYS.HardInfo.UseShader && GD3D9.NormalDraw_NotUsePixelShader == FALSE )
 //	{
 //		Graphics_D3D9_DeviceState_SetPixelShader( GD3D9.Device.Shader.Base.MaskEffectPixelShader ) ;
 //	}
 
-	// •`‰æ€”õ
+	// æç”»æº–å‚™
 	Graphics_D3D9_BeginScene() ;
 
-	// ’¸“_‚Ì€”õ
+	// é ‚ç‚¹ã®æº–å‚™
 	Vert[ 2 ].pos.x = Vert[ 0 ].pos.x = ( float )Rect->left   - 0.5f ;
 	Vert[ 1 ].pos.y = Vert[ 0 ].pos.y = ( float )Rect->top    - 0.5f ;
 
@@ -559,7 +559,7 @@ extern	int			Mask_D3D9_DrawAfterFunction_PF( RECT *Rect )
 	Vert[ 2 ].rhw = 
 	Vert[ 3 ].rhw = 1.0f ;
 
-	// •`‰æ
+	// æç”»
 //	Graphics_D3D9_DeviceState_SetFVF( VERTEXFVF_2D ) ;
 	Graphics_D3D9_DeviceState_SetFVF( VERTEXFVF_BLENDTEX_2D ) ;
 	Direct3DDevice9_DrawPrimitiveUP( D_D3DPT_TRIANGLESTRIP, 2, Vert, sizeof( VERTEX_BLENDTEX_2D /* VERTEX_2D */ ) ) ;
@@ -567,17 +567,17 @@ extern	int			Mask_D3D9_DrawAfterFunction_PF( RECT *Rect )
 	Graphics_D3D9_EndScene() ;
 	Graphics_D3D9_BeginScene() ;
 
-	// ƒVƒF[ƒ_[‚ğg—p‚·‚éê‡‚Í‚±‚±‚ÅƒsƒNƒZƒ‹ƒVƒF[ƒ_[‚ğ–³Œø‚É‚·‚é
+	// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ä½¿ç”¨ã™ã‚‹å ´åˆã¯ã“ã“ã§ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ç„¡åŠ¹ã«ã™ã‚‹
 //	if( GSYS.HardInfo.UseShader && GD3D9.NormalDraw_NotUsePixelShader == FALSE )
 //	{
 //		Graphics_D3D9_DeviceState_ResetPixelShader() ;
 //	}
 
-	// ‚yƒoƒbƒtƒ@‚Ìİ’è‚ğŒ³‚É–ß‚·
+	// ï¼ºãƒãƒƒãƒ•ã‚¡ã®è¨­å®šã‚’å…ƒã«æˆ»ã™
 	Graphics_D3D9_DeviceState_SetZEnable( UseZBufferFlag ) ;
 
 #else
-	// •`‰æ‘Ò‹@‚µ‚Ä‚¢‚é•`‰æ•¨‚ğ•`‰æ
+	// æç”»å¾…æ©Ÿã—ã¦ã„ã‚‹æç”»ç‰©ã‚’æç”»
 	DRAWSTOCKINFO
 	Graphics_D3D9_EndScene() ;
 
@@ -586,19 +586,19 @@ extern	int			Mask_D3D9_DrawAfterFunction_PF( RECT *Rect )
 		DestTargetSurface, &Rect, D_D3DTEXF_NONE ) ;
 #endif
 
-	// •`‰ææ‚ğƒ}ƒXƒNƒT[ƒtƒFƒX‚É‚·‚é
+	// æç”»å…ˆã‚’ãƒã‚¹ã‚¯ã‚µãƒ¼ãƒ•ã‚§ã‚¹ã«ã™ã‚‹
 	Graphics_D3D9_DeviceState_SetRenderTarget( MASKD3D9.MaskScreenSurface ) ;
 
-	// ƒrƒ…[ƒ|[ƒg‚ğŒ³‚É–ß‚·
+	// ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆã‚’å…ƒã«æˆ»ã™
 	GD3D9.Device.DrawSetting.CancelSettingEqualCheck = TRUE ;
 	Graphics_D3D9_DeviceState_SetViewportEasy( GSYS.DrawSetting.DrawArea.left, GSYS.DrawSetting.DrawArea.top, GSYS.DrawSetting.DrawArea.right, GSYS.DrawSetting.DrawArea.bottom ) ;
 	GD3D9.Device.DrawSetting.CancelSettingEqualCheck = FALSE ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// ƒ}ƒXƒNƒXƒNƒŠ[ƒ“‚ğw’è‚ÌF‚Å“h‚è‚Â‚Ô‚·
+// ãƒã‚¹ã‚¯ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚’æŒ‡å®šã®è‰²ã§å¡—ã‚Šã¤ã¶ã™
 extern	int			Mask_D3D9_FillMaskScreen_PF( int Flag )
 {
 	D_D3DLOCKED_RECT LockRect ;
@@ -652,11 +652,11 @@ extern	int			Mask_D3D9_FillMaskScreen_PF( int Flag )
 //		);
 //	}
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// w’è—Ìˆæ‚Ìƒ}ƒXƒNƒCƒ[ƒWƒeƒNƒXƒ`ƒƒ‚ğXV‚·‚é
+// æŒ‡å®šé ˜åŸŸã®ãƒã‚¹ã‚¯ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’æ›´æ–°ã™ã‚‹
 extern	int			Mask_D3D9_UpdateMaskImageTexture_PF( RECT *Rect )
 {
 	D_D3DLOCKED_RECT LockRect ;
@@ -674,17 +674,17 @@ extern	int			Mask_D3D9_UpdateMaskImageTexture_PF( RECT *Rect )
 	Width = Rect->right - Rect->left ;
 	Height = Rect->bottom - Rect->top ;
 
-	// ƒ}ƒXƒNƒCƒ[ƒWƒeƒNƒXƒ`ƒƒ‚ğƒƒbƒN‚·‚é
+	// ãƒã‚¹ã‚¯ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ãƒ­ãƒƒã‚¯ã™ã‚‹
 	if( MASKD3D9.MaskImageTexture->LockRect( 0, &LockRect, Rect, 0 ) != D_D3D_OK )
 		return -1 ;
 //	if( MASKD3D9.MaskMemImageSurface->LockRect( &LockRect, Rect, 0 ) != D_D3D_OK )
 //		return -1 ;
 
-	// “]‘—Œ³‚Ì€”õ
+	// è»¢é€å…ƒã®æº–å‚™
 	Src    = MASKD.MaskBuffer + MASKD.MaskBufferPitch * Rect->top + Rect->left ;
 	SrcAdd = ( DWORD )( MASKD.MaskBufferPitch - Width ) ;
 
-	// w’è•”•ªƒCƒ[ƒW‚Ì“]‘—
+	// æŒ‡å®šéƒ¨åˆ†ã‚¤ãƒ¡ãƒ¼ã‚¸ã®è»¢é€
 	Dest = ( BYTE * )LockRect.pBits ;
 	switch( GD3D9.Device.Caps.MaskAlphaFormat )
 	{
@@ -768,7 +768,7 @@ LOOP_A1R5G5B5_2:
 		break ;
 	}
 
-	// ƒƒbƒN‚ğ‰ğœ‚·‚é
+	// ãƒ­ãƒƒã‚¯ã‚’è§£é™¤ã™ã‚‹
 	MASKD3D9.MaskImageTexture->UnlockRect( 0 ) ;
 //	MASKD3D9.MaskMemImageSurface->UnlockRect() ;
 //
@@ -781,7 +781,7 @@ LOOP_A1R5G5B5_2:
 //		&DestPoint
 //	);
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 

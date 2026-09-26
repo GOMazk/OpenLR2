@@ -1,6 +1,6 @@
 // -------------------------------------------------------------------------------
 // 
-// 		�c�w���C�u����		�ʐM�v���O�����w�b�_�t�@�C��
+// 		ＤＸライブラリ		通信プログラムヘッダファイル
 // 
 // 				Ver 3.25a
 // 
@@ -9,7 +9,7 @@
 #ifndef DX_ARCHIVE_H
 #define DX_ARCHIVE_H
 
-// �C���N���[�h -------------------------------------------------------------------
+// インクルード -------------------------------------------------------------------
 #include "DxCompileConfig.h"
 #include "DxLib.h"
 #include "DxThread.h"
@@ -21,297 +21,297 @@ namespace DxLib
 
 #endif // DX_NON_NAMESPACE
 
-// �}�N����` --------------------------------------------------------------------
+// マクロ定義 --------------------------------------------------------------------
 
-// �c�w�A�[�J�C�u�֘A
+// ＤＸアーカイブ関連
 
 /*
-	�o�[�W�������Ƃ̈Ⴂ
+	バージョンごとの違い
 
-	0x0002 DARC_FILEHEAD �� PressDataSize ��ǉ�
-	0x0004 DARC_HEAD �� CharCodeFormat ��ǉ�
-	0x0005 �Í����������ꕔ�ύX
-	0x0006 64bit��
-	0x0007 �Í���������ύX( �p�X���[�h���w�肵���ꍇ�̉�Ǔ�x������ )
-	0x0008 �Í����̒�����56bit�ɕύX
+	0x0002 DARC_FILEHEAD に PressDataSize を追加
+	0x0004 DARC_HEAD に CharCodeFormat を追加
+	0x0005 暗号化処理を一部変更
+	0x0006 64bit化
+	0x0007 暗号化処理を変更( パスワードを指定した場合の解読難度を向上 )
+	0x0008 暗号鍵の長さを56bitに変更
 
 
-	�f�[�^�}�b�v
+	データマップ
 		
 	DXARC_HEAD
-	�t�@�C�����f�[�^
-	�t�@�C�����e�[�u��
-	DXARC_FILEHEAD �e�[�u��
-	DXARC_DIRECTORY �e�[�u��
+	ファイル実データ
+	ファイル名テーブル
+	DXARC_FILEHEAD テーブル
+	DXARC_DIRECTORY テーブル
 
 
-	�t�@�C�����̃f�[�^�`��
-	2byte:������̒���(�o�C�g�T�C�Y���S)
-	2byte:������̃p���e�B�f�[�^(�S�Ă̕����̒l�𑫂�������)
-	�p���͑啶���ɕϊ����ꂽ�t�@�C�����̃f�[�^(�S�̔{���̃T�C�Y)
-	�p�����啶���ɕϊ�����Ă��Ȃ��t�@�C�����̃f�[�^
+	ファイル名のデータ形式
+	2byte:文字列の長さ(バイトサイズ÷４)
+	2byte:文字列のパリティデータ(全ての文字の値を足したもの)
+	英字は大文字に変換されたファイル名のデータ(４の倍数のサイズ)
+	英字が大文字に変換されていないファイル名のデータ
 */
 
-#define DXAHEAD							*((WORD *)"DX")		// �w�b�_
-#define DXAVER							(0x0008)			// �o�[�W����
-#define DXAVER_MIN						(0x0008)			// �Ή����Ă���Œ�o�[�W����
-#define DXA_KEY_BYTES					(7)					// ���̃o�C�g��
-#define DXA_KEY_STRING_LENGTH			(63)				// ���p������̒���
-#define DXA_KEY_STRING_MAXLENGTH		(2048)				// ���p������o�b�t�@�̃T�C�Y
-#define DXA_DIR_MAXARCHIVENUM			(4096)				// �����ɊJ���Ă�����A�[�J�C�u�t�@�C���̐�
-#define DXA_DIR_MAXFILENUM				(32768)				// �����ɊJ���Ă�����t�@�C���̐�
-#define DXA_MAXDRIVENUM					(64)				// �Ή�����h���C�u�̍ő吔
+#define DXAHEAD							*((WORD *)"DX")		// ヘッダ
+#define DXAVER							(0x0008)			// バージョン
+#define DXAVER_MIN						(0x0008)			// 対応している最低バージョン
+#define DXA_KEY_BYTES					(7)					// 鍵のバイト数
+#define DXA_KEY_STRING_LENGTH			(63)				// 鍵用文字列の長さ
+#define DXA_KEY_STRING_MAXLENGTH		(2048)				// 鍵用文字列バッファのサイズ
+#define DXA_DIR_MAXARCHIVENUM			(4096)				// 同時に開いておけるアーカイブファイルの数
+#define DXA_DIR_MAXFILENUM				(32768)				// 同時に開いておけるファイルの数
+#define DXA_MAXDRIVENUM					(64)				// 対応するドライブの最大数
 	
-// �t���O
-#define DXA_FLAG_NO_KEY					(0x00000001)	// ����������
-#define DXA_FLAG_NO_HEAD_PRESS			(0x00000002)	// �w�b�_�̈��k����
+// フラグ
+#define DXA_FLAG_NO_KEY					(0x00000001)	// 鍵処理無し
+#define DXA_FLAG_NO_HEAD_PRESS			(0x00000002)	// ヘッダの圧縮無し
 
-// �\���̒�` --------------------------------------------------------------------
+// 構造体定義 --------------------------------------------------------------------
 
-// �A�[�J�C�u�f�[�^�̍ŏ��̃w�b�_
+// アーカイブデータの最初のヘッダ
 struct DXARC_HEAD
 {
-	WORD						Head ;							// �h�c
-	WORD						Version ;						// �o�[�W����
-	DWORD						HeadSize ;						// �w�b�_���� DXARC_HEAD �𔲂����S�T�C�Y
-	ULONGLONG					DataStartAddress ;				// �ŏ��̃t�@�C���̃f�[�^���i�[����Ă���f�[�^�A�h���X(�t�@�C���̐擪�A�h���X���A�h���X�O�Ƃ���)
-	ULONGLONG					FileNameTableStartAddress ;		// �t�@�C�����e�[�u���̐擪�A�h���X(�t�@�C���̐擪�A�h���X���A�h���X�O�Ƃ���)
-	ULONGLONG					FileTableStartAddress ;			// �t�@�C���e�[�u���̐擪�A�h���X(�����o�ϐ� FileNameTableStartAddress �̃A�h���X���O�Ƃ���)
-	ULONGLONG					DirectoryTableStartAddress ;	// �f�B���N�g���e�[�u���̐擪�A�h���X(�����o�ϐ� FileNameTableStartAddress �̃A�h���X���O�Ƃ���)
-																// �A�h���X�O����z�u����Ă��� DXARC_DIRECTORY �\���̂����[�g�f�B���N�g��
-	DWORD						CharCodeFormat ;				// �t�@�C�����Ɏg�p���Ă���R�[�h�y�[�W�ԍ�
-	DWORD						Flags ;							// �t���O( DXA_FLAG_NO_KEY �� )
-	BYTE						HuffmanEncodeKB ;				// �t�@�C���̑O��̃n�t�}�����k����T�C�Y( �P�ʁF�L���o�C�g 0xff �̏ꍇ�͂��ׂĈ��k���� )
-	BYTE						Reserve[ 15 ] ;					// �\��̈�
+	WORD						Head ;							// ＩＤ
+	WORD						Version ;						// バージョン
+	DWORD						HeadSize ;						// ヘッダ情報の DXARC_HEAD を抜いた全サイズ
+	ULONGLONG					DataStartAddress ;				// 最初のファイルのデータが格納されているデータアドレス(ファイルの先頭アドレスをアドレス０とする)
+	ULONGLONG					FileNameTableStartAddress ;		// ファイル名テーブルの先頭アドレス(ファイルの先頭アドレスをアドレス０とする)
+	ULONGLONG					FileTableStartAddress ;			// ファイルテーブルの先頭アドレス(メンバ変数 FileNameTableStartAddress のアドレスを０とする)
+	ULONGLONG					DirectoryTableStartAddress ;	// ディレクトリテーブルの先頭アドレス(メンバ変数 FileNameTableStartAddress のアドレスを０とする)
+																// アドレス０から配置されている DXARC_DIRECTORY 構造体がルートディレクトリ
+	DWORD						CharCodeFormat ;				// ファイル名に使用しているコードページ番号
+	DWORD						Flags ;							// フラグ( DXA_FLAG_NO_KEY 等 )
+	BYTE						HuffmanEncodeKB ;				// ファイルの前後のハフマン圧縮するサイズ( 単位：キロバイト 0xff の場合はすべて圧縮する )
+	BYTE						Reserve[ 15 ] ;					// 予約領域
 } ;
 
-// �t�@�C���̎��ԏ��
+// ファイルの時間情報
 struct DXARC_FILETIME
 {
-	ULONGLONG					Create ;						// �쐬����
-	ULONGLONG					LastAccess ;					// �ŏI�A�N�Z�X����
-	ULONGLONG					LastWrite ;						// �ŏI�X�V����
+	ULONGLONG					Create ;						// 作成時間
+	ULONGLONG					LastAccess ;					// 最終アクセス時間
+	ULONGLONG					LastWrite ;						// 最終更新時間
 } ;
 
-// �t�@�C�����f�[�^�\����
+// ファイル名データ構造体
 struct DXARC_FILENAME
 {
-	WORD						Length ;						// ������̒������S
-	WORD						Parity ;						// �p���e�B���
+	WORD						Length ;						// 文字列の長さ÷４
+	WORD						Parity ;						// パリティ情報
 } ;
 
-// �t�@�C���i�[���
+// ファイル格納情報
 struct DXARC_FILEHEAD
 {
-	ULONGLONG					NameAddress ;					// �t�@�C�������i�[����Ă���A�h���X( ARCHIVE_HEAD�\���� �̃����o�ϐ� FileNameTableStartAddress �̃A�h���X���A�h���X�O�Ƃ���) 
-	ULONGLONG					Attributes ;					// �t�@�C������
-	DXARC_FILETIME				Time ;							// ���ԏ��
-	ULONGLONG					DataAddress ;					// �t�@�C�����i�[����Ă���A�h���X
-																//			�t�@�C���̏ꍇ�FDXARC_HEAD�\���� �̃����o�ϐ� DataStartAddress �������A�h���X���A�h���X�O�Ƃ���
-																//			�f�B���N�g���̏ꍇ�FDXARC_HEAD�\���� �̃����o�ϐ� DirectoryTableStartAddress �̂������A�h���X���A�h���X�O�Ƃ���
-	ULONGLONG					DataSize ;						// �t�@�C���̃f�[�^�T�C�Y
-	ULONGLONG					PressDataSize ;					// ���k��̃f�[�^�̃T�C�Y( 0xffffffff:���k����Ă��Ȃ� ) ( Ver0x0002 �Œǉ����ꂽ )
-	ULONGLONG					HuffPressDataSize ;				// �n�t�}�����k��̃f�[�^�̃T�C�Y( 0xffffffffffffffff:���k����Ă��Ȃ� ) ( Ver0x0008 �Œǉ����ꂽ )
+	ULONGLONG					NameAddress ;					// ファイル名が格納されているアドレス( ARCHIVE_HEAD構造体 のメンバ変数 FileNameTableStartAddress のアドレスをアドレス０とする) 
+	ULONGLONG					Attributes ;					// ファイル属性
+	DXARC_FILETIME				Time ;							// 時間情報
+	ULONGLONG					DataAddress ;					// ファイルが格納されているアドレス
+																//			ファイルの場合：DXARC_HEAD構造体 のメンバ変数 DataStartAddress が示すアドレスをアドレス０とする
+																//			ディレクトリの場合：DXARC_HEAD構造体 のメンバ変数 DirectoryTableStartAddress のが示すアドレスをアドレス０とする
+	ULONGLONG					DataSize ;						// ファイルのデータサイズ
+	ULONGLONG					PressDataSize ;					// 圧縮後のデータのサイズ( 0xffffffff:圧縮されていない ) ( Ver0x0002 で追加された )
+	ULONGLONG					HuffPressDataSize ;				// ハフマン圧縮後のデータのサイズ( 0xffffffffffffffff:圧縮されていない ) ( Ver0x0008 で追加された )
 } ;
 
-// �f�B���N�g���i�[���
+// ディレクトリ格納情報
 struct DXARC_DIRECTORY
 {
-	ULONGLONG					DirectoryAddress ;				// ������ DXARC_FILEHEAD ���i�[����Ă���A�h���X( DXARC_HEAD �\���� �̃����o�ϐ� FileTableStartAddress �������A�h���X���A�h���X�O�Ƃ���)
-	ULONGLONG					ParentDirectoryAddress ;		// �e�f�B���N�g���� DXARC_DIRECTORY ���i�[����Ă���A�h���X( DXARC_HEAD�\���� �̃����o�ϐ� DirectoryTableStartAddress �������A�h���X���A�h���X�O�Ƃ���)
-	ULONGLONG					FileHeadNum ;					// �f�B���N�g�����̃t�@�C���̐�
-	ULONGLONG					FileHeadAddress ;				// �f�B���N�g�����̃t�@�C���̃w�b�_�񂪊i�[����Ă���A�h���X( DXARC_HEAD�\���� �̃����o�ϐ� FileTableStartAddress �������A�h���X���A�h���X�O�Ƃ���) 
+	ULONGLONG					DirectoryAddress ;				// 自分の DXARC_FILEHEAD が格納されているアドレス( DXARC_HEAD 構造体 のメンバ変数 FileTableStartAddress が示すアドレスをアドレス０とする)
+	ULONGLONG					ParentDirectoryAddress ;		// 親ディレクトリの DXARC_DIRECTORY が格納されているアドレス( DXARC_HEAD構造体 のメンバ変数 DirectoryTableStartAddress が示すアドレスをアドレス０とする)
+	ULONGLONG					FileHeadNum ;					// ディレクトリ内のファイルの数
+	ULONGLONG					FileHeadAddress ;				// ディレクトリ内のファイルのヘッダ列が格納されているアドレス( DXARC_HEAD構造体 のメンバ変数 FileTableStartAddress が示すアドレスをアドレス０とする) 
 } ;
 
 
 
-// �t�@�C���������p�f�[�^�\����
+// ファイル名検索用データ構造体
 struct DXARC_SEARCHDATA
 {
-	BYTE						FileName[ 1024 ] ;				// �t�@�C����
-	WORD						Parity ;						// �p���e�B���
-	WORD						PackNum ;						// ������̒������S
+	BYTE						FileName[ 1024 ] ;				// ファイル名
+	WORD						Parity ;						// パリティ情報
+	WORD						PackNum ;						// 文字列の長さ÷４
 } ;
 
-// ���e�[�u���\����
+// 情報テーブル構造体
 struct DXARC_TABLE
 {
-	BYTE						*Top ;							// ���e�[�u���̐擪�|�C���^
-	BYTE						*FileTable ;					// �t�@�C�����e�[�u���ւ̃|�C���^
-	BYTE						*DirectoryTable ;				// �f�B���N�g�����e�[�u���ւ̃|�C���^
-	BYTE						*NameTable ;					// ���O���e�[�u���ւ̃|�C���^
+	BYTE						*Top ;							// 情報テーブルの先頭ポインタ
+	BYTE						*FileTable ;					// ファイル情報テーブルへのポインタ
+	BYTE						*DirectoryTable ;				// ディレクトリ情報テーブルへのポインタ
+	BYTE						*NameTable ;					// 名前情報テーブルへのポインタ
 } ;
 
-// �A�[�J�C�u�����p���\����
+// アーカイブ処理用情報構造体
 struct DXARC
 {
-	DXARC_HEAD					Head ;							// �A�[�J�C�u�̃w�b�_
-	int							CharCodeFormat ;				// �����R�[�h�`��
-	DWORD_PTR					ReadAccessOnlyFilePointer ;		// �A�[�J�C�u�t�@�C���̃|�C���^	
-	void						*MemoryImage ;					// �������C���[�W���J�����ꍇ�̃A�h���X
-	DXARC_TABLE					Table ;							// �e�e�[�u���ւ̐擪�A�h���X���i�[���ꂽ�\����
-	DXARC_DIRECTORY				*CurrentDirectory ;				// �J�����g�f�B���N�g���f�[�^�ւ̃|�C���^
+	DXARC_HEAD					Head ;							// アーカイブのヘッダ
+	int							CharCodeFormat ;				// 文字コード形式
+	DWORD_PTR					ReadAccessOnlyFilePointer ;		// アーカイブファイルのポインタ	
+	void						*MemoryImage ;					// メモリイメージを開いた場合のアドレス
+	DXARC_TABLE					Table ;							// 各テーブルへの先頭アドレスが格納された構造体
+	DXARC_DIRECTORY				*CurrentDirectory ;				// カレントディレクトリデータへのポインタ
 
-	wchar_t						FilePath[ 1024 ] ;				// �t�@�C���p�X
-	bool						NoKey ;							// ���������s��Ȃ����ǂ���
-	unsigned char				Key[ DXA_KEY_BYTES ] ;			// ��
-	char						KeyString[ DXA_KEY_STRING_LENGTH + 1 ] ;	// ��������
-	size_t						KeyStringBytes ;				// ��������̃o�C�g��
-	int							MemoryOpenFlag ;				// ��������̃t�@�C�����J���Ă��邩�A�t���O
-	int							UserMemoryImageFlag ;			// ���[�U�[���W�J�����������C���[�W���g�p���Ă��邩�A�t���O
-	LONGLONG					MemoryImageSize ;				// ��������̃t�@�C������J���Ă����ꍇ�̃C���[�W�̃T�C�Y
-	int							MemoryImageCopyFlag ;			// ��������̃C���[�W���R�s�[���Ďg�p���Ă��邩�ǂ����̃t���O
-	int							MemoryImageReadOnlyFlag ;		// ��������̃C���[�W���ǂݎ���p���ǂ����̃t���O
-	void						*MemoryImageOriginal ;			// ��������̃C���[�W���R�s�[���Ďg�p���Ă���ꍇ�́A�R�s�[���̃f�[�^���i�[����Ă��郁�����̈�
+	wchar_t						FilePath[ 1024 ] ;				// ファイルパス
+	bool						NoKey ;							// 鍵処理を行わないかどうか
+	unsigned char				Key[ DXA_KEY_BYTES ] ;			// 鍵
+	char						KeyString[ DXA_KEY_STRING_LENGTH + 1 ] ;	// 鍵文字列
+	size_t						KeyStringBytes ;				// 鍵文字列のバイト数
+	int							MemoryOpenFlag ;				// メモリ上のファイルを開いているか、フラグ
+	int							UserMemoryImageFlag ;			// ユーザーが展開したメモリイメージを使用しているか、フラグ
+	LONGLONG					MemoryImageSize ;				// メモリ上のファイルから開いていた場合のイメージのサイズ
+	int							MemoryImageCopyFlag ;			// メモリ上のイメージをコピーして使用しているかどうかのフラグ
+	int							MemoryImageReadOnlyFlag ;		// メモリ上のイメージが読み取り専用かどうかのフラグ
+	void						*MemoryImageOriginal ;			// メモリ上のイメージをコピーして使用している場合の、コピー元のデータが格納されているメモリ領域
 
-	int							ASyncOpenFlag ;					// �񓯊��ǂݍ��ݒ����t���O( TRUE:�񓯊��ǂݍ��ݒ� FALSE:�Ⴄ )
-	DWORD_PTR					ASyncOpenFilePointer ;			// �񓯊��I�[�v�������Ɏg�p����t�@�C���̃|�C���^
+	int							ASyncOpenFlag ;					// 非同期読み込み中かフラグ( TRUE:非同期読み込み中 FALSE:違う )
+	DWORD_PTR					ASyncOpenFilePointer ;			// 非同期オープン処理に使用するファイルのポインタ
 } ;
 
-// �񓯊��ǂݍ��ݏ��
-#define DXARC_STREAM_ASYNCSTATE_IDLE			(0)				// �������Ă��Ȃ�
-#define DXARC_STREAM_ASYNCSTATE_PRESSREAD		(1)				// ���k���ꂽ�t�@�C����ǂݍ��ݒ�
-#define DXARC_STREAM_ASYNCSTATE_READ			(2)				// �f�[�^��ǂݍ��ݒ�
+// 非同期読み込み状態
+#define DXARC_STREAM_ASYNCSTATE_IDLE			(0)				// 何もしていない
+#define DXARC_STREAM_ASYNCSTATE_PRESSREAD		(1)				// 圧縮されたファイルを読み込み中
+#define DXARC_STREAM_ASYNCSTATE_READ			(2)				// データを読み込み中
 
-// �A�[�J�C�u���̃t�@�C����ʏ�̃t�@�C���ǂݍ��݂̂悤�ɏ�������ׂ̍\����
+// アーカイブ内のファイルを通常のファイル読み込みのように処理する為の構造体
 struct DXARC_STREAM
 {
-	DXARC						*Archive ;						// �A�[�J�C�u�f�[�^�ւ̃|�C���^
-	DXARC_FILEHEAD				*FileHead ;						// �t�@�C�����ւ̃|�C���^
-	void						*DecodeDataBuffer ;				// �𓀂����f�[�^���i�[����Ă��郁�����̈�ւ̃|�C���^( �t�@�C�������k�f�[�^�������ꍇ�̂ݗL�� )
-	void						*DecodeTempBuffer ;				// ���k�f�[�^�ꎞ�ۑ��p�������̈�ւ̃|�C���^
-	DWORD_PTR					ReadOnlyFilePointer ;			// �A�[�J�C�u�t�@�C���̃|�C���^
+	DXARC						*Archive ;						// アーカイブデータへのポインタ
+	DXARC_FILEHEAD				*FileHead ;						// ファイル情報へのポインタ
+	void						*DecodeDataBuffer ;				// 解凍したデータが格納されているメモリ領域へのポインタ( ファイルが圧縮データだった場合のみ有効 )
+	void						*DecodeTempBuffer ;				// 圧縮データ一時保存用メモリ領域へのポインタ
+	DWORD_PTR					ReadOnlyFilePointer ;			// アーカイブファイルのポインタ
 
-	bool						NoKey ;							// ���������s��Ȃ����ǂ���
-	unsigned char				Key[ DXA_KEY_BYTES ] ;			// ��
+	bool						NoKey ;							// 鍵処理を行わないかどうか
+	unsigned char				Key[ DXA_KEY_BYTES ] ;			// 鍵
 
-	int							EOFFlag ;						// EOF�t���O
-	ULONGLONG					FilePoint ;						// �t�@�C���|�C���^
-	int							UseASyncReadFlag ;				// �񓯊��ǂݍ��݃t���O
-	int							ASyncState ;					// �񓯊��ǂݍ��ݏ��( DXARC_STREA_ASYNCSTATE �n )
-	ULONGLONG					ASyncReadFileAddress ;			// �񓯊��ǂݍ��ݎ��̃t�@�C���|�C���^
+	int							EOFFlag ;						// EOFフラグ
+	ULONGLONG					FilePoint ;						// ファイルポインタ
+	int							UseASyncReadFlag ;				// 非同期読み込みフラグ
+	int							ASyncState ;					// 非同期読み込み状態( DXARC_STREA_ASYNCSTATE 系 )
+	ULONGLONG					ASyncReadFileAddress ;			// 非同期読み込み時のファイルポインタ
 
-	void						*ReadBuffer ;					// �񓯊��ǂݍ��ݎ��̈����ɓn���ꂽ�o�b�t�@�ւ̃|�C���^
-	LONGLONG					ReadSize ;						// �񓯊��ǂݍ��ݎ��̈����ɓn���ꂽ�ǂݍ��݃T�C�Y�ւ̃|�C���^
+	void						*ReadBuffer ;					// 非同期読み込み時の引数に渡されたバッファへのポインタ
+	LONGLONG					ReadSize ;						// 非同期読み込み時の引数に渡された読み込みサイズへのポインタ
 } ;
 
 
 
-// �A�[�J�C�u�t�@�C�����f�B���N�g���Ɍ����Ă鏈���p�̊J���Ă���A�[�J�C�u�t�@�C���̏��
+// アーカイブファイルをディレクトリに見立てる処理用の開いているアーカイブファイルの情報
 struct DXARC_DIR_ARCHIVE
 {
-	int							UseCounter ;					// ���̃A�[�J�C�u�t�@�C�����g�p����Ă��鐔
-	DXARC						Archive ;						// �A�[�J�C�u�t�@�C���f�[�^
-	wchar_t						Path[ 520 ] ;					// �A�[�J�C�u�t�@�C���̃p�X
+	int							UseCounter ;					// このアーカイブファイルが使用されている数
+	DXARC						Archive ;						// アーカイブファイルデータ
+	wchar_t						Path[ 520 ] ;					// アーカイブファイルのパス
 } ;
 
-// �A�[�J�C�u�t�@�C�����f�B���N�g���Ɍ����Ă鏈���p�̊J���Ă���A�[�J�C�u�t�@�C�����̃t�@�C���̏��
+// アーカイブファイルをディレクトリに見立てる処理用の開いているアーカイブファイル中のファイルの情報
 struct DXARC_DIR_FILE
 {
-	int							UseArchiveFlag ;				// �A�[�J�C�u�t�@�C�����g�p���Ă��邩�t���O
-	DWORD_PTR					ReadOnlyFilePointer ;			// �A�[�J�C�u���g�p���Ă��Ȃ��ꍇ�́A�t�@�C���|�C���^
-	DWORD						UseArchiveIndex ;				// �A�[�J�C�u���g�p���Ă���ꍇ�A�g�p���Ă���A�[�J�C�u�t�@�C���f�[�^�̃C���f�b�N�X
-	DXARC_STREAM				DXAStream ;						// �A�[�J�C�u�t�@�C�����g�p���Ă���ꍇ�̃t�@�C���A�N�Z�X�p�f�[�^
+	int							UseArchiveFlag ;				// アーカイブファイルを使用しているかフラグ
+	DWORD_PTR					ReadOnlyFilePointer ;			// アーカイブを使用していない場合の、ファイルポインタ
+	DWORD						UseArchiveIndex ;				// アーカイブを使用している場合、使用しているアーカイブファイルデータのインデックス
+	DXARC_STREAM				DXAStream ;						// アーカイブファイルを使用している場合のファイルアクセス用データ
 } ;
 
-// �A�[�J�C�u���f�B���N�g���Ɍ����Ă鏈���p�̍\����
+// アーカイブをディレクトリに見立てる処理用の構造体
 struct DXARC_DIR
 {
-	int							InitializeFlag ;				// �����������t���O
-	DX_CRITICAL_SECTION			CriticalSection ;				// �����ɃA�[�J�C�u�t�@�C���̃��X�g�𑀍삵�Ȃ��悤�ɂ��邽�߂̃N���e�B�J���Z�N�V����
+	int							InitializeFlag ;				// 初期化完了フラグ
+	DX_CRITICAL_SECTION			CriticalSection ;				// 同時にアーカイブファイルのリストを操作しないようにするためのクリティカルセクション
 
-	int							NotArchivePathCharUp ;			// �A�[�J�C�u�p�X�̉p���̏�������啶���ɂ��Ȃ����ǂ���
+	int							NotArchivePathCharUp ;			// アーカイブパスの英字の小文字を大文字にしないかどうか
 
-	DXARC_DIR_ARCHIVE			*Archive[DXA_DIR_MAXARCHIVENUM] ;	// �g�p���Ă���A�[�J�C�u�t�@�C���̃f�[�^
-	DXARC_DIR_FILE				*File[DXA_DIR_MAXFILENUM] ;		// �J���Ă���t�@�C���̃f�[�^
-	wchar_t						ArchiveExtension[ 64 ] ;		// �A�[�J�C�u�t�@�C���̊g���q
-	int							ArchiveExtensionLength ;		// �A�[�J�C�u�t�@�C���̊g���q�̒���
-	int							DXAPriority ;					// �c�w�A�[�J�C�u�t�@�C���̗D��x( 1:�t�H���_�D�� 0:DX�A�[�J�C�u�D�� )
+	DXARC_DIR_ARCHIVE			*Archive[DXA_DIR_MAXARCHIVENUM] ;	// 使用しているアーカイブファイルのデータ
+	DXARC_DIR_FILE				*File[DXA_DIR_MAXFILENUM] ;		// 開いているファイルのデータ
+	wchar_t						ArchiveExtension[ 64 ] ;		// アーカイブファイルの拡張子
+	int							ArchiveExtensionLength ;		// アーカイブファイルの拡張子の長さ
+	int							DXAPriority ;					// ＤＸアーカイブファイルの優先度( 1:フォルダ優先 0:DXアーカイブ優先 )
 
-	int							ValidKeyString ;						// KeyString ���L�����ǂ���
-	char						KeyString[ DXA_KEY_STRING_LENGTH + 1 ] ;	// ��������
+	int							ValidKeyString ;						// KeyString が有効かどうか
+	char						KeyString[ DXA_KEY_STRING_LENGTH + 1 ] ;	// 鍵文字列
 
-	int							ArchiveNum ;					// �g�p���Ă���A�[�J�C�u�t�@�C���̐�
-	int							FileNum ;						// �J���Ă���t�@�C���̐�
+	int							ArchiveNum ;					// 使用しているアーカイブファイルの数
+	int							FileNum ;						// 開いているファイルの数
 
-	int							BackUseArchiveIndex ;			// �O��g�p�����A�[�J�C�u�̃C���f�b�N�X
-	wchar_t						BackUseDirectory[ 512 * 3 ] ;	// �O��g�p�����f�B���N�g���p�X
-	int							BackUseDirectoryPathLength ;	// �O��g�p�����f�B���N�g���p�X�̒���
+	int							BackUseArchiveIndex ;			// 前回使用したアーカイブのインデックス
+	wchar_t						BackUseDirectory[ 512 * 3 ] ;	// 前回使用したディレクトリパス
+	int							BackUseDirectoryPathLength ;	// 前回使用したディレクトリパスの長さ
 } ;
 
-// �e�[�u��-----------------------------------------------------------------------
+// テーブル-----------------------------------------------------------------------
 
-// �������ϐ��錾 -------------------------------------------------------------
+// 内部大域変数宣言 -------------------------------------------------------------
 
 extern DXARC_DIR DX_ArchiveDirData ;
 
-// �֐��v���g�^�C�v�錾-----------------------------------------------------------
+// 関数プロトタイプ宣言-----------------------------------------------------------
 
 #ifndef DX_NON_DXA
 
-extern	int			DXA_Initialize(					DXARC *DXA ) ;													// �A�[�J�C�u�t�@�C���������ׂ̍\���̂�����������
-extern	int			DXA_Terminate(					DXARC *DXA ) ;													// �A�[�J�C�u�t�@�C���������ׂ̍\���̂̌�n��������
-extern	int			DXA_OpenArchiveFromFile(		DXARC *DXA, const wchar_t *ArchivePath, const char *KeyString = NULL ) ;							// �A�[�J�C�u�t�@�C�����J��( 0:����  -1:���s )
-extern	int			DXA_OpenArchiveFromFileUseMem(	DXARC *DXA, const wchar_t *ArchivePath, const char *KeyString = NULL , int ASync = FALSE ) ;		// �A�[�J�C�u�t�@�C�����J���ŏ��ɂ��ׂă�������ɓǂݍ���ł��珈������( 0:����  -1:���s )
-extern	int			DXA_OpenArchiveFromMem(			DXARC *DXA, void *ArchiveImage, int ArchiveSize, int ArchiveImageCopyFlag, int ArchiveImageReadOnlyFlag, const char *KeyString = NULL, const wchar_t *EmulateArchivePath = NULL ) ;				// ��������ɂ���A�[�J�C�u�t�@�C���C���[�W���J��( 0:����  -1:���s )
-extern	int			DXA_CheckIdle(					DXARC *DXA ) ;													// �A�[�J�C�u�t�@�C�����������������������𓾂�( TRUE:�����Ă���  FALSE:�����Ă��Ȃ� )
-extern	int			DXA_CloseArchive(				DXARC *DXA ) ;													// �A�[�J�C�u�t�@�C�������
+extern	int			DXA_Initialize(					DXARC *DXA ) ;													// アーカイブファイルを扱う為の構造体を初期化する
+extern	int			DXA_Terminate(					DXARC *DXA ) ;													// アーカイブファイルを扱う為の構造体の後始末をする
+extern	int			DXA_OpenArchiveFromFile(		DXARC *DXA, const wchar_t *ArchivePath, const char *KeyString = NULL ) ;							// アーカイブファイルを開く( 0:成功  -1:失敗 )
+extern	int			DXA_OpenArchiveFromFileUseMem(	DXARC *DXA, const wchar_t *ArchivePath, const char *KeyString = NULL , int ASync = FALSE ) ;		// アーカイブファイルを開き最初にすべてメモリ上に読み込んでから処理する( 0:成功  -1:失敗 )
+extern	int			DXA_OpenArchiveFromMem(			DXARC *DXA, void *ArchiveImage, int ArchiveSize, int ArchiveImageCopyFlag, int ArchiveImageReadOnlyFlag, const char *KeyString = NULL, const wchar_t *EmulateArchivePath = NULL ) ;				// メモリ上にあるアーカイブファイルイメージを開く( 0:成功  -1:失敗 )
+extern	int			DXA_CheckIdle(					DXARC *DXA ) ;													// アーカイブファイルを扱う準備が整ったかを得る( TRUE:整っている  FALSE:整っていない )
+extern	int			DXA_CloseArchive(				DXARC *DXA ) ;													// アーカイブファイルを閉じる
 
-//extern int		DXA_LoadFile(					DXARC *DXA, const char *FilePath, void *Buffer, ULONGLONG BufferSize ) ;	// �A�[�J�C�u�t�@�C�����̎w��̃t�@�C�����������ɓǂݍ���( -1:�G���[ 0�ȏ�:�t�@�C���T�C�Y )
-extern	void *		DXA_GetFileImage(				DXARC *DXA ) ;													// �A�[�J�C�u�t�@�C�����������ɓǂݍ��񂾏ꍇ�̃t�@�C���C���[�W���i�[����Ă���擪�A�h���X���擾����( DXA_OpenArchiveFromFileUseMem �Ⴕ���� DXA_OpenArchiveFromMem �ŊJ�����ꍇ�ɗL���A�f�[�^�����k����Ă���ꍇ�͒��� )
-extern	int			DXA_GetFileInfo(				DXARC *DXA, int CharCodeFormat, const char *FilePath, int *Position, int *Size ) ;	// �A�[�J�C�u�t�@�C�����̎w��̃t�@�C���̃t�@�C�����̈ʒu�ƃt�@�C���̑傫���𓾂�( -1:�G���[ )
-extern	int			DXA_ChangeCurrentDir(			DXARC *DXA, int CharCodeFormat, const char *DirPath ) ;								// �A�[�J�C�u���̃J�����g�f�B���N�g����ύX����( 0:����  -1:���s )
-//extern int		DXA_GetCurrentDir(				DXARC *DXA, int CharCodeFormat, char *DirPathBuffer, int BufferSize ) ;				// �A�[�J�C�u���̃J�����g�f�B���N�g�����擾����
-extern	DWORD_PTR	DXA_FindFirst(					DXARC *DXA, const BYTE *FilePath, FILEINFOW *Buffer ) ;			// �A�[�J�C�u���̃I�u�W�F�N�g����������( -1:�G���[ -1�ȊO:DXA�����n���h�� )
-extern	int			DXA_FindNext(					DWORD_PTR DxaFindHandle, FILEINFOW *Buffer ) ;					// �A�[�J�C�u���̃I�u�W�F�N�g����������( -1:�G���[ 0:���� )
-extern	int			DXA_FindClose(					DWORD_PTR DxaFindHandle ) ;										// �A�[�J�C�u���̃I�u�W�F�N�g�������I������
+//extern int		DXA_LoadFile(					DXARC *DXA, const char *FilePath, void *Buffer, ULONGLONG BufferSize ) ;	// アーカイブファイル中の指定のファイルをメモリに読み込む( -1:エラー 0以上:ファイルサイズ )
+extern	void *		DXA_GetFileImage(				DXARC *DXA ) ;													// アーカイブファイルをメモリに読み込んだ場合のファイルイメージが格納されている先頭アドレスを取得する( DXA_OpenArchiveFromFileUseMem 若しくは DXA_OpenArchiveFromMem で開いた場合に有効、データが圧縮されている場合は注意 )
+extern	int			DXA_GetFileInfo(				DXARC *DXA, int CharCodeFormat, const char *FilePath, int *Position, int *Size ) ;	// アーカイブファイル中の指定のファイルのファイル内の位置とファイルの大きさを得る( -1:エラー )
+extern	int			DXA_ChangeCurrentDir(			DXARC *DXA, int CharCodeFormat, const char *DirPath ) ;								// アーカイブ内のカレントディレクトリを変更する( 0:成功  -1:失敗 )
+//extern int		DXA_GetCurrentDir(				DXARC *DXA, int CharCodeFormat, char *DirPathBuffer, int BufferSize ) ;				// アーカイブ内のカレントディレクトリを取得する
+extern	DWORD_PTR	DXA_FindFirst(					DXARC *DXA, const BYTE *FilePath, FILEINFOW *Buffer ) ;			// アーカイブ内のオブジェクトを検索する( -1:エラー -1以外:DXA検索ハンドル )
+extern	int			DXA_FindNext(					DWORD_PTR DxaFindHandle, FILEINFOW *Buffer ) ;					// アーカイブ内のオブジェクトを検索する( -1:エラー 0:成功 )
+extern	int			DXA_FindClose(					DWORD_PTR DxaFindHandle ) ;										// アーカイブ内のオブジェクト検索を終了する
 
-extern	int			DXA_STREAM_Initialize(			DXARC_STREAM *DXAStream, DXARC *DXA, const BYTE *FilePath, int UseASyncReadFlag ) ;	// �A�[�J�C�u�t�@�C�����̃t�@�C�����J��
-extern	int			DXA_STREAM_Terminate(			DXARC_STREAM *DXAStream ) ;										// �A�[�J�C�u�t�@�C�����̃t�@�C�������
-extern	int			DXA_STREAM_Read(				DXARC_STREAM *DXAStream, void *Buffer, size_t ReadLength ) ;	// �t�@�C���̓��e��ǂݍ���
-extern	int			DXA_STREAM_Seek(				DXARC_STREAM *DXAStream, LONGLONG SeekPoint, int SeekMode ) ;	// �t�@�C���|�C���^��ύX����
-extern	LONGLONG	DXA_STREAM_Tell(				DXARC_STREAM *DXAStream ) ;										// ���݂̃t�@�C���|�C���^�𓾂�
-extern	int			DXA_STREAM_Eof(					DXARC_STREAM *DXAStream ) ;										// �t�@�C���̏I�[�ɗ��Ă��邩�A�̃t���O�𓾂�
-extern	int			DXA_STREAM_IdleCheck(			DXARC_STREAM *DXAStream ) ;										// �ǂݍ��ݏ������������Ă��邩�ǂ����𒲂ׂ�
-extern	LONGLONG	DXA_STREAM_Size(				DXARC_STREAM *DXAStream ) ;										// �t�@�C���̃T�C�Y���擾����
+extern	int			DXA_STREAM_Initialize(			DXARC_STREAM *DXAStream, DXARC *DXA, const BYTE *FilePath, int UseASyncReadFlag ) ;	// アーカイブファイル内のファイルを開く
+extern	int			DXA_STREAM_Terminate(			DXARC_STREAM *DXAStream ) ;										// アーカイブファイル内のファイルを閉じる
+extern	int			DXA_STREAM_Read(				DXARC_STREAM *DXAStream, void *Buffer, size_t ReadLength ) ;	// ファイルの内容を読み込む
+extern	int			DXA_STREAM_Seek(				DXARC_STREAM *DXAStream, LONGLONG SeekPoint, int SeekMode ) ;	// ファイルポインタを変更する
+extern	LONGLONG	DXA_STREAM_Tell(				DXARC_STREAM *DXAStream ) ;										// 現在のファイルポインタを得る
+extern	int			DXA_STREAM_Eof(					DXARC_STREAM *DXAStream ) ;										// ファイルの終端に来ているか、のフラグを得る
+extern	int			DXA_STREAM_IdleCheck(			DXARC_STREAM *DXAStream ) ;										// 読み込み処理が完了しているかどうかを調べる
+extern	LONGLONG	DXA_STREAM_Size(				DXARC_STREAM *DXAStream ) ;										// ファイルのサイズを取得する
 
 
-extern	int			DXA_DIR_Initialize(				void ) ;														// �A�[�J�C�u���f�B���N�g���Ɍ����Ă鏈���̏�����
-extern	int			DXA_DIR_Terminate(				void ) ;														// �A�[�J�C�u���f�B���N�g���Ɍ����Ă鏈���̌�n��
-extern	int			DXA_DIR_SetNotArchivePathCharUp( int NotArchivePathCharUpFlag ) ;								// �A�[�J�C�u�t�@�C���̃p�X��啶���ɂ��Ȃ����ǂ����̃t���O���Z�b�g����
-extern	int			DXA_DIR_SetArchiveExtension(	const wchar_t *Extension = NULL ) ;								// �A�[�J�C�u�t�@�C���̊g���q��ݒ肷��
-extern	int			DXA_DIR_SetDXArchivePriority(	int Priority = 0 ) ;											// �A�[�J�C�u�t�@�C���ƒʏ�̃t�H���_�̂ǂ�������݂����ꍇ�A�ǂ����D�悳���邩��ݒ肷��( 1:�t�H���_��D�� 0:�c�w�A�[�J�C�u�t�@�C����D��(�f�t�H���g) )
-extern	int			DXA_DIR_SetKeyString(			const char *KeyString = NULL ) ;								// �A�[�J�C�u�t�@�C���̌��������ݒ肷��
-extern	LONGLONG	DXA_DIR_LoadFile(				const wchar_t *FilePath, void *Buffer, int BufferSize ) ;			// �t�@�C�����ۂ��Ɠǂݍ��ފ֐�
+extern	int			DXA_DIR_Initialize(				void ) ;														// アーカイブをディレクトリに見立てる処理の初期化
+extern	int			DXA_DIR_Terminate(				void ) ;														// アーカイブをディレクトリに見立てる処理の後始末
+extern	int			DXA_DIR_SetNotArchivePathCharUp( int NotArchivePathCharUpFlag ) ;								// アーカイブファイルのパスを大文字にしないかどうかのフラグをセットする
+extern	int			DXA_DIR_SetArchiveExtension(	const wchar_t *Extension = NULL ) ;								// アーカイブファイルの拡張子を設定する
+extern	int			DXA_DIR_SetDXArchivePriority(	int Priority = 0 ) ;											// アーカイブファイルと通常のフォルダのどちらも存在した場合、どちらを優先させるかを設定する( 1:フォルダを優先 0:ＤＸアーカイブファイルを優先(デフォルト) )
+extern	int			DXA_DIR_SetKeyString(			const char *KeyString = NULL ) ;								// アーカイブファイルの鍵文字列を設定する
+extern	LONGLONG	DXA_DIR_LoadFile(				const wchar_t *FilePath, void *Buffer, int BufferSize ) ;			// ファイルを丸ごと読み込む関数
 
-extern	DWORD_PTR	DXA_DIR_Open(					const wchar_t *FilePath, int UseCacheFlag = FALSE, int BlockReadFlag = TRUE, int UseASyncReadFlag = FALSE ) ;	// �t�@�C�����J��( �G���[�F-1  �����F�n���h�� )
-extern	int			DXA_DIR_Close(					DWORD_PTR Handle ) ;											// �t�@�C�������
-extern	LONGLONG	DXA_DIR_Tell(					DWORD_PTR Handle ) ;											// �t�@�C���|�C���^�̈ʒu���擾����
-extern	int			DXA_DIR_Seek(					DWORD_PTR Handle, LONGLONG SeekPoint, int SeekType ) ;			// �t�@�C���|�C���^�̈ʒu��ύX����
-extern	size_t		DXA_DIR_Read(					void *Buffer, size_t BlockSize, size_t BlockNum, DWORD_PTR Handle ) ; // �t�@�C������f�[�^��ǂݍ���
-extern	int			DXA_DIR_Eof(					DWORD_PTR Handle ) ;											// �t�@�C���̏I�[�𒲂ׂ�
-extern	int			DXA_DIR_IsDXA(					DWORD_PTR Handle ) ;											// �߂�l: -1=�G���[  0=�c�w�A�[�J�C�u�t�@�C�����̃t�@�C���ł͂Ȃ�  1=�c�w�A�[�J�C�u�t�@�C�����̃t�@�C��
+extern	DWORD_PTR	DXA_DIR_Open(					const wchar_t *FilePath, int UseCacheFlag = FALSE, int BlockReadFlag = TRUE, int UseASyncReadFlag = FALSE ) ;	// ファイルを開く( エラー：-1  成功：ハンドル )
+extern	int			DXA_DIR_Close(					DWORD_PTR Handle ) ;											// ファイルを閉じる
+extern	LONGLONG	DXA_DIR_Tell(					DWORD_PTR Handle ) ;											// ファイルポインタの位置を取得する
+extern	int			DXA_DIR_Seek(					DWORD_PTR Handle, LONGLONG SeekPoint, int SeekType ) ;			// ファイルポインタの位置を変更する
+extern	size_t		DXA_DIR_Read(					void *Buffer, size_t BlockSize, size_t BlockNum, DWORD_PTR Handle ) ; // ファイルからデータを読み込む
+extern	int			DXA_DIR_Eof(					DWORD_PTR Handle ) ;											// ファイルの終端を調べる
+extern	int			DXA_DIR_IsDXA(					DWORD_PTR Handle ) ;											// 戻り値: -1=エラー  0=ＤＸアーカイブファイル内のファイルではない  1=ＤＸアーカイブファイル内のファイル
 extern	int			DXA_DIR_ChDir(					const wchar_t *Path ) ;
 extern	int			DXA_DIR_GetDir(					wchar_t *Buffer ) ;
 extern	int			DXA_DIR_GetDirS(				wchar_t *Buffer, size_t BufferBytes ) ;
 extern	int			DXA_DIR_IdleCheck(				DWORD_PTR Handle ) ;
-extern	DWORD_PTR	DXA_DIR_FindFirst(				const wchar_t *FilePath, FILEINFOW *Buffer ) ;					// �߂�l: -1=�G���[  -1�ȊO=FindHandle
-extern	int			DXA_DIR_FindNext(				DWORD_PTR FindHandle, FILEINFOW *Buffer ) ;						// �߂�l: -1=�G���[  0=����
-extern	int			DXA_DIR_FindClose(				DWORD_PTR FindHandle ) ;										// �߂�l: -1=�G���[  0=����
+extern	DWORD_PTR	DXA_DIR_FindFirst(				const wchar_t *FilePath, FILEINFOW *Buffer ) ;					// 戻り値: -1=エラー  -1以外=FindHandle
+extern	int			DXA_DIR_FindNext(				DWORD_PTR FindHandle, FILEINFOW *Buffer ) ;						// 戻り値: -1=エラー  0=成功
+extern	int			DXA_DIR_FindClose(				DWORD_PTR FindHandle ) ;										// 戻り値: -1=エラー  0=成功
 
 #endif
 
-extern	int			DXA_Encode(						void *Src, DWORD SrcSize, void *Dest, int MaxPress = FALSE, int MaxSearchListNum = -1 ) ;	// �f�[�^�����k����( �߂�l:���k��̃f�[�^�T�C�Y )
-extern	int			DXA_Decode(						void *Src, void *Dest ) ;										// �f�[�^���𓀂���( �߂�l:�𓀌�̃f�[�^�T�C�Y )
+extern	int			DXA_Encode(						void *Src, DWORD SrcSize, void *Dest, int MaxPress = FALSE, int MaxSearchListNum = -1 ) ;	// データを圧縮する( 戻り値:圧縮後のデータサイズ )
+extern	int			DXA_Decode(						void *Src, void *Dest ) ;										// データを解凍する( 戻り値:解凍後のデータサイズ )
 
-extern	ULONGLONG	Huffman_Encode(					void *Src, ULONGLONG SrcSize, void *Dest ) ;					// �f�[�^���n�t�}�����k����( �߂�l:���k��̃T�C�Y  0 �̓G���[  Dest �� NULL ������ƈ��k�f�[�^�i�[�ɕK�v�ȃT�C�Y���Ԃ� )
-extern	ULONGLONG	Huffman_Decode(					void *Press, void *Dest ) ;										// �n�t�}�����k���ꂽ�f�[�^���𓀂���( �߂�l:�𓀌�̃T�C�Y  0 �̓G���[  Dest �� NULL ������Ɖ𓀃f�[�^�i�[�ɕK�v�ȃT�C�Y���Ԃ� )
+extern	ULONGLONG	Huffman_Encode(					void *Src, ULONGLONG SrcSize, void *Dest ) ;					// データをハフマン圧縮する( 戻り値:圧縮後のサイズ  0 はエラー  Dest に NULL を入れると圧縮データ格納に必要なサイズが返る )
+extern	ULONGLONG	Huffman_Decode(					void *Press, void *Dest ) ;										// ハフマン圧縮されたデータを解凍する( 戻り値:解凍後のサイズ  0 はエラー  Dest に NULL を入れると解凍データ格納に必要なサイズが返る )
 
-extern	DWORD		BinToChar128(					void *Src, DWORD SrcSize, void *Dest ) ;						// �o�C�i���f�[�^�𔼊p������ɕϊ�����( �߂�l:�ϊ���̃f�[�^�T�C�Y )
-extern	DWORD		Char128ToBin(					void *Src, void *Dest ) ;										// ���p��������o�C�i���f�[�^�ɕϊ�����( �߂�l:�ϊ���̃f�[�^�T�C�Y )
+extern	DWORD		BinToChar128(					void *Src, DWORD SrcSize, void *Dest ) ;						// バイナリデータを半角文字列に変換する( 戻り値:変換後のデータサイズ )
+extern	DWORD		Char128ToBin(					void *Src, void *Dest ) ;										// 半角文字列をバイナリデータに変換する( 戻り値:変換後のデータサイズ )
 
-extern	DWORD		BinToBase64(					void *Src, unsigned int SrcSize, void *Dest ) ;					// �o�C�i���f�[�^��Base64������ɕϊ�����( �߂�l:�ϊ���̃f�[�^�T�C�Y )
-extern	DWORD		Base64ToBin(					void *Src, void *Dest ) ;										// Base64��������o�C�i���f�[�^�ɕϊ�����( �߂�l:�ϊ���̃f�[�^�T�C�Y )
+extern	DWORD		BinToBase64(					void *Src, unsigned int SrcSize, void *Dest ) ;					// バイナリデータをBase64文字列に変換する( 戻り値:変換後のデータサイズ )
+extern	DWORD		Base64ToBin(					void *Src, void *Dest ) ;										// Base64文字列をバイナリデータに変換する( 戻り値:変換後のデータサイズ )
 
 #ifndef DX_NON_NAMESPACE
 

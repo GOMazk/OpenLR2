@@ -1,15 +1,15 @@
 // -------------------------------------------------------------------------------
 // 
-// 		‚c‚wƒ‰ƒCƒuƒ‰ƒŠ		•W€‚bƒ‰ƒCƒuƒ‰ƒŠg—pƒR[ƒh
+// 		ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒª		æ¨™æº–ï¼£ãƒ©ã‚¤ãƒ–ãƒ©ãƒªä½¿ç”¨ã‚³ãƒ¼ãƒ‰
 // 
 // 				Ver 3.25a
 // 
 // -------------------------------------------------------------------------------
 
-// ‚c‚wƒ‰ƒCƒuƒ‰ƒŠì¬—p’è‹`
+// ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªä½œæˆæ™‚ç”¨å®šç¾©
 #define DX_MAKE
 
-// ƒCƒ“ƒNƒ‹[ƒh ------------------------------------------------------------------
+// ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ ------------------------------------------------------------------
 #include "DxCompileConfig.h"
 
 #ifndef DX_NON_NAMESPACE
@@ -78,9 +78,9 @@ using namespace DxLib ;
 //namespace DxLib
 //{
 
-// \‘¢‘ÌŒ^éŒ¾ ------------------------------------------------------------------
+// æ§‹é€ ä½“å‹å®£è¨€ ------------------------------------------------------------------
 
-// ŠÖ”ƒvƒƒgƒ^ƒCƒvéŒ¾ ----------------------------------------------------------
+// é–¢æ•°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€ ----------------------------------------------------------
 
 // extern int LoadPngImage( STREAMDATA *Src, BASEIMAGE *BaseImage ) ;
 // extern int LoadJpegImage( STREAMDATA *Src, BASEIMAGE *BaseImage ) ;
@@ -89,7 +89,7 @@ using namespace DxLib ;
 // extern int NS_SRand( int Seed ) ;
 // extern int NS_GetRand( int RandMax ) ;
 
-// ƒvƒƒOƒ‰ƒ€ --------------------------------------------------------------------
+// ãƒ—ãƒ­ã‚°ãƒ©ãƒ  --------------------------------------------------------------------
 
 
 
@@ -98,18 +98,18 @@ using namespace DxLib ;
 
 
 
-// ”Ä—pƒf[ƒ^“Ç‚İ‚İˆ—‚©‚ç‚Ì‚s‚h‚e‚e‰æ‘œ“Ç‚İ‚İ‚Ì‚½‚ß‚ÌƒvƒƒOƒ‰ƒ€
+// æ±ç”¨ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿å‡¦ç†ã‹ã‚‰ã®ï¼´ï¼©ï¼¦ï¼¦ç”»åƒèª­ã¿è¾¼ã¿ã®ãŸã‚ã®ãƒ—ãƒ­ã‚°ãƒ©ãƒ 
 
 #ifndef DX_NON_TIFFREAD
 
-// ”Ä—pƒf[ƒ^“Ç‚İ‚İˆ—‚©‚ç‚Ì“Ç‚İ‚İ‚ğ‚·‚é‚½‚ß‚Ìƒf[ƒ^Œ^
+// æ±ç”¨ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿å‡¦ç†ã‹ã‚‰ã®èª­ã¿è¾¼ã¿ã‚’ã™ã‚‹ãŸã‚ã®ãƒ‡ãƒ¼ã‚¿å‹
 typedef struct tagTIFFHANDLE
 {
 	STREAMDATA *Data ;
 	LONGLONG DataSize ;
 } TIFFHANDLE ;
 
-// ”Ä—pƒf[ƒ^“Ç‚İæ‚èˆ—‚©‚çƒf[ƒ^‚ğ“Ç‚İ‚ŞƒR[ƒ‹ƒoƒbƒNŠÖ”
+// æ±ç”¨ãƒ‡ãƒ¼ã‚¿èª­ã¿å–ã‚Šå‡¦ç†ã‹ã‚‰ãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿è¾¼ã‚€ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 tmsize_t TIFFReadProc( thandle_t fd, void *buf, tmsize_t size )
 {
 	TIFFHANDLE *THnd ;
@@ -117,7 +117,7 @@ tmsize_t TIFFReadProc( thandle_t fd, void *buf, tmsize_t size )
 
 	THnd = ( TIFFHANDLE * )fd ;
 
-	// ƒTƒCƒY‚Ì’²®
+	// ã‚µã‚¤ã‚ºã®èª¿æ•´
 	if( ( tmsize_t )( THnd->DataSize - STTELL( THnd->Data ) ) < size )
 	{
 		size = ( tmsize_t )( THnd->DataSize - STTELL( THnd->Data ) ) ;
@@ -132,13 +132,13 @@ tmsize_t TIFFReadProc( thandle_t fd, void *buf, tmsize_t size )
 	return Result ;
 }
 
-// ”Ä—pƒf[ƒ^“Ç‚İæ‚èˆ—‚©‚ç‚Ì‘‚«‚İ‚É‚Í”ñ‘Î‰
+// æ±ç”¨ãƒ‡ãƒ¼ã‚¿èª­ã¿å–ã‚Šå‡¦ç†ã‹ã‚‰ã®æ›¸ãè¾¼ã¿ã«ã¯éå¯¾å¿œ
 tmsize_t TIFFWriteProc( thandle_t /* fd */, void * /* buf */, tmsize_t size )
 {
 	return size ;
 }
 
-// ”Ä—pƒf[ƒ^“Ç‚İæ‚èˆ—‚ÌƒV[ƒN‚ğs‚¤ƒR[ƒ‹ƒoƒbƒNŠÖ”
+// æ±ç”¨ãƒ‡ãƒ¼ã‚¿èª­ã¿å–ã‚Šå‡¦ç†ã®ã‚·ãƒ¼ã‚¯ã‚’è¡Œã†ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 toff_t   TIFFSeekProc_     ( thandle_t fd, toff_t offset, int whence )
 {
 	TIFFHANDLE *THnd ;
@@ -164,15 +164,15 @@ toff_t   TIFFSeekProc_     ( thandle_t fd, toff_t offset, int whence )
 	return ( toff_t )STTELL( THnd->Data ) ;
 }
 
-// ”Ä—pƒf[ƒ^“Ç‚İ‚İˆ—‚Ìƒtƒ@ƒCƒ‹‚ğ•Â‚¶‚éƒR[ƒ‹ƒoƒbƒNŠÖ”
+// æ±ç”¨ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿å‡¦ç†ã®ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‰ã˜ã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 int      TIFFCloseProc_    ( thandle_t /*fd*/ )
 {
-	// ƒtƒ@ƒCƒ‹‚ğ•Â‚¶‚éˆ—‚Í‚s‚h‚e‚e“Ç‚İ‚İŠO‚Ås‚¤‚Ì‚Å‰½‚à‚µ‚È‚¢
+	// ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‰ã˜ã‚‹å‡¦ç†ã¯ï¼´ï¼©ï¼¦ï¼¦èª­ã¿è¾¼ã¿å¤–ã§è¡Œã†ã®ã§ä½•ã‚‚ã—ãªã„
 	return 0 ;
 }
 
 
-// ”Ä—pƒf[ƒ^“Ç‚İ‚İˆ—‚Ìƒf[ƒ^ƒTƒCƒY‚ğæ“¾‚·‚éƒR[ƒ‹ƒoƒbƒNŠÖ”
+// æ±ç”¨ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿å‡¦ç†ã®ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºã‚’å–å¾—ã™ã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 toff_t   TIFFSizeProc_     ( thandle_t fd )
 {
 	TIFFHANDLE *THnd ;
@@ -193,7 +193,7 @@ void     TIFFUnmapFileProc_( thandle_t /*fd*/, void* /*base*/, toff_t /*size*/)
 }
 
 
-// ‚s‚h‚e‚e‰æ‘œ‚Ì“Ç‚İ‚±‚İ
+// ï¼´ï¼©ï¼¦ï¼¦ç”»åƒã®èª­ã¿ã“ã¿
 extern int LoadTiffImage( STREAMDATA *Src, BASEIMAGE *BaseImage, int GetFormatOnly )
 {
 	TIFFHANDLE    THnd ;
@@ -216,14 +216,14 @@ extern int LoadTiffImage( STREAMDATA *Src, BASEIMAGE *BaseImage, int GetFormatOn
 	uint32        pixel;
 	unsigned char checkhead[ 2 ] ;
 
-	// ”Ä—pƒf[ƒ^“Ç‚İæ‚èˆ—‚©‚çƒf[ƒ^‚ğ“Ç‚İ‚Ş‚½‚ß‚Ì€”õ
+	// æ±ç”¨ãƒ‡ãƒ¼ã‚¿èª­ã¿å–ã‚Šå‡¦ç†ã‹ã‚‰ãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿è¾¼ã‚€ãŸã‚ã®æº–å‚™
 	THnd.Data = Src ;
 	FilePoint = STTELL( Src ) ;
 	STSEEK( Src, 0, SEEK_END ) ;
 	THnd.DataSize = ( LONGLONG )STTELL( Src ) ;
 	STSEEK( Src, FilePoint, SEEK_SET ) ;
 
-	// ƒtƒ@ƒCƒ‹ƒtƒH[ƒ}ƒbƒg‚ÌŠÈˆÕƒ`ƒFƒbƒN
+	// ãƒ•ã‚¡ã‚¤ãƒ«ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®ç°¡æ˜“ãƒã‚§ãƒƒã‚¯
 	STREAD( checkhead, 2, 1, Src ) ;
 	if( ( checkhead[ 0 ] != 0x49 || checkhead[ 1 ] != 0x49 ) &&
 		( checkhead[ 0 ] != 0x4d || checkhead[ 1 ] != 0x4d ) )
@@ -232,7 +232,7 @@ extern int LoadTiffImage( STREAMDATA *Src, BASEIMAGE *BaseImage, int GetFormatOn
 	}
 	STSEEK( Src, -2, SEEK_CUR ) ;
 
-	// TIFFƒtƒ@ƒCƒ‹‚ÌƒI[ƒvƒ“
+	// TIFFãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚ªãƒ¼ãƒ—ãƒ³
 	Conv = TIFFClientOpen(
 		"Read",
 		"r",
@@ -246,13 +246,13 @@ extern int LoadTiffImage( STREAMDATA *Src, BASEIMAGE *BaseImage, int GetFormatOn
 		TIFFUnmapFileProc_
 	) ;
 
-	// ƒI[ƒvƒ“‚É¸”s‚µ‚½‚ç‚±‚±‚ÅI—¹
+	// ã‚ªãƒ¼ãƒ—ãƒ³ã«å¤±æ•—ã—ãŸã‚‰ã“ã“ã§çµ‚äº†
 	if( Conv == NULL )
 	{
 		return -1 ;
 	}
 
-	// ‰æ‘œ‚Ìî•ñ‚ğæ“¾
+	// ç”»åƒã®æƒ…å ±ã‚’å–å¾—
 	TIFFGetField( Conv, TIFFTAG_IMAGELENGTH,     &height ) ;
 	TIFFGetField( Conv, TIFFTAG_IMAGEWIDTH,      &width ) ;
 	TIFFGetField( Conv, TIFFTAG_ROWSPERSTRIP,    &rows_strip ) ;
@@ -262,10 +262,10 @@ extern int LoadTiffImage( STREAMDATA *Src, BASEIMAGE *BaseImage, int GetFormatOn
 
 	if( GetFormatOnly == FALSE )
 	{
-		// ‚PƒXƒgƒŠƒbƒv•ª‚Ì‰æ‘œƒf[ƒ^‚ğŠi”[‚·‚éƒƒ‚ƒŠ—Ìˆæ‚ÌŠm•Û
+		// ï¼‘ã‚¹ãƒˆãƒªãƒƒãƒ—åˆ†ã®ç”»åƒãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹ãƒ¡ãƒ¢ãƒªé ˜åŸŸã®ç¢ºä¿
 		strip = ( uint32 * )DXALLOC( sizeof( uint32 ) * ( width * rows_strip ) ) ;
 
-		// BASEIMAGE ‘¤‚Ì‰æ‘œƒf[ƒ^‚ğŠi”[‚·‚éƒƒ‚ƒŠ—Ìˆæ‚ÌŠm•Û
+		// BASEIMAGE å´ã®ç”»åƒãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹ãƒ¡ãƒ¢ãƒªé ˜åŸŸã®ç¢ºä¿
 		BaseImage->GraphData = DXALLOC( width * height * 4 ) ;
 		if( BaseImage->GraphData == NULL )
 		{
@@ -277,47 +277,47 @@ extern int LoadTiffImage( STREAMDATA *Src, BASEIMAGE *BaseImage, int GetFormatOn
 		BaseImage->GraphData = NULL ;
 	}
 
-	// ‰æ‘œ‚Ì•‚Æ‚‚³‚ğ•Û‘¶
+	// ç”»åƒã®å¹…ã¨é«˜ã•ã‚’ä¿å­˜
 	BaseImage->Width  = ( int )width ;
 	BaseImage->Height = ( int )height ;
 
-	// ƒsƒbƒ`‚Ì•Û‘¶
+	// ãƒ”ãƒƒãƒã®ä¿å­˜
 	BaseImage->Pitch  = ( int )width * 4 ;
 
-	// Œ»ó‚·‚×‚Ä‚Ì RGBA8 ƒtƒH[ƒ}ƒbƒg‚Æ‚µ‚Ä“Ç‚İ‚İ
+	// ç¾çŠ¶ã™ã¹ã¦ã® RGBA8 ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã¨ã—ã¦èª­ã¿è¾¼ã¿
 	NS_CreateARGB8ColorData( &BaseImage->ColorData ) ;
 
 	if( GetFormatOnly == FALSE )
 	{
-		// ‰æ‘œ‚Ì“Ç‚İ‚İ
+		// ç”»åƒã®èª­ã¿è¾¼ã¿
 		for( line_no = 0; line_no < ( int )height; line_no += rows_strip )
 		{
-			// ‚PƒXƒgƒŠƒbƒv‚Ìî•ñ‚ğ“Ç‚İ‚İ
+			// ï¼‘ã‚¹ãƒˆãƒªãƒƒãƒ—ã®æƒ…å ±ã‚’èª­ã¿è¾¼ã¿
 			if( !TIFFReadRGBAStrip( Conv, ( uint32 )line_no, strip ) )
 			{
 				goto ERR ;
 			}
 
-			// —LŒø‚Èƒ‰ƒCƒ“‚ğæ“¾
+			// æœ‰åŠ¹ãªãƒ©ã‚¤ãƒ³ã‚’å–å¾—
 			valid_line = ( int )rows_strip ;
 			if( line_no + rows_strip > height )
 			{
 				valid_line = ( int )( height - line_no ) ;
 			}
 
-			// ‰æ‘œî•ñ‚ğ BASEIMAGE ‘¤‚Ì‰æ‘œŠi”[—Ìˆæ‚É“]‘—
+			// ç”»åƒæƒ…å ±ã‚’ BASEIMAGE å´ã®ç”»åƒæ ¼ç´é ˜åŸŸã«è»¢é€
 			for( y = 0; y < valid_line ; y++ )
 			{
-				// o—Íæ‚Ì‰æ‘œ‚Å‚Ì‚xÀ•W‚ğZo
+				// å‡ºåŠ›å…ˆã®ç”»åƒã§ã®ï¼¹åº§æ¨™ã‚’ç®—å‡º
 				dest_y = line_no + ( ( valid_line - y ) - 1 ) ;
 
-				// “]‘—Œ³ƒAƒhƒŒƒX‚ÌZo
+				// è»¢é€å…ƒã‚¢ãƒ‰ãƒ¬ã‚¹ã®ç®—å‡º
 				src    = strip + ( width * y ) ;
 
-				// “]‘—æƒAƒhƒŒƒX‚ÌZo
+				// è»¢é€å…ˆã‚¢ãƒ‰ãƒ¬ã‚¹ã®ç®—å‡º
 				dest   = ( BYTE * )BaseImage->GraphData + 4 * width * dest_y ;
 
-				// ‚Pƒ‰ƒCƒ“•ª‚ÌƒsƒNƒZƒ‹î•ñ‚ğ BASEIMAGE ‘¤‚É“]‘—
+				// ï¼‘ãƒ©ã‚¤ãƒ³åˆ†ã®ãƒ”ã‚¯ã‚»ãƒ«æƒ…å ±ã‚’ BASEIMAGE å´ã«è»¢é€
 				for( x = 0; x < ( int )width; x++, dest += 4 )
 				{
 					pixel = src[ x ] ;
@@ -330,13 +330,13 @@ extern int LoadTiffImage( STREAMDATA *Src, BASEIMAGE *BaseImage, int GetFormatOn
 		}
 	}
 
-	// TIFFƒtƒ@ƒCƒ‹‚ÌƒNƒ[ƒY
+	// TIFFãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚¯ãƒ­ãƒ¼ã‚º
 	TIFFClose( Conv ) ;
 
-	// ‚PƒXƒgƒŠƒbƒv•ª‚Ì‰æ‘œƒf[ƒ^‚ğŠi”[‚·‚éƒƒ‚ƒŠ—Ìˆæ‚Ì‰ğ•ú
+	// ï¼‘ã‚¹ãƒˆãƒªãƒƒãƒ—åˆ†ã®ç”»åƒãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹ãƒ¡ãƒ¢ãƒªé ˜åŸŸã®è§£æ”¾
 	DXFREE( strip );
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 
 ERR :
@@ -355,7 +355,7 @@ ERR :
 	TIFFClose( Conv ) ;
 	Conv = NULL ;
 
-	// ƒGƒ‰[I—¹
+	// ã‚¨ãƒ©ãƒ¼çµ‚äº†
 	return -1 ;
 }
 
@@ -370,18 +370,18 @@ ERR :
 
 
 
-// ”Ä—pƒf[ƒ^“Ç‚İ‚İˆ—‚©‚ç‚Ì‚o‚m‚f‰æ‘œ“Ç‚İ‚İ‚Ì‚½‚ß‚ÌƒvƒƒOƒ‰ƒ€
+// æ±ç”¨ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿å‡¦ç†ã‹ã‚‰ã®ï¼°ï¼®ï¼§ç”»åƒèª­ã¿è¾¼ã¿ã®ãŸã‚ã®ãƒ—ãƒ­ã‚°ãƒ©ãƒ 
 
 #ifndef DX_NON_PNGREAD
 
-// ”Ä—pƒf[ƒ^“Ç‚İ‚İˆ—‚©‚ç‚Ì“Ç‚İ‚İ‚ğ‚·‚é‚½‚ß‚Ìƒf[ƒ^Œ^
+// æ±ç”¨ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿å‡¦ç†ã‹ã‚‰ã®èª­ã¿è¾¼ã¿ã‚’ã™ã‚‹ãŸã‚ã®ãƒ‡ãƒ¼ã‚¿å‹
 typedef struct tagPNGGENERAL
 {
 	STREAMDATA *Data ;
 	unsigned int DataSize ;
 } PNGGENERAL ;
 
-// ”Ä—pƒf[ƒ^“Ç‚İ‚İˆ—‚©‚çƒf[ƒ^‚ğ“Ç‚İ‚ŞƒR[ƒ‹ƒoƒbƒNŠÖ”
+// æ±ç”¨ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿å‡¦ç†ã‹ã‚‰ãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿è¾¼ã‚€ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 static void png_general_read_data(png_structp png_ptr, png_bytep data, png_size_t length)
 {
 	PNGGENERAL *PGen ;
@@ -389,7 +389,7 @@ static void png_general_read_data(png_structp png_ptr, png_bytep data, png_size_
 //	PGen = (PNGGENERAL *)/*CVT_PTR*/(png_ptr->io_ptr) ;
 	PGen = (PNGGENERAL *)png_get_io_ptr(png_ptr) ;
 
-	// c‚è‚ÌƒTƒCƒY‚ª‘«‚è‚È‚©‚Á‚½‚çƒGƒ‰[
+	// æ®‹ã‚Šã®ã‚µã‚¤ã‚ºãŒè¶³ã‚Šãªã‹ã£ãŸã‚‰ã‚¨ãƒ©ãƒ¼
 	if( PGen->DataSize - ( int )STTELL( PGen->Data ) < length )
 	{
 		png_error(png_ptr, "Read Error");
@@ -400,12 +400,12 @@ static void png_general_read_data(png_structp png_ptr, png_bytep data, png_size_
 	}
 }
 
-// ”Ä—pƒf[ƒ^“Ç‚İ‚İˆ—‚©‚ç‚Ì“Ç‚İ‚İ‚ğİ’è‚·‚éŠÖ”
+// æ±ç”¨ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿å‡¦ç†ã‹ã‚‰ã®èª­ã¿è¾¼ã¿ã‚’è¨­å®šã™ã‚‹é–¢æ•°
 int png_general_read_set( png_structp png_ptr, PNGGENERAL *PGen, STREAMDATA *Data )
 {
 	PGen->Data = Data ;
 
-	// Œ»İ‚Ìƒtƒ@ƒCƒ‹ƒ|ƒCƒ“ƒ^‚©‚çI’[‚Ü‚Å‚ÌƒTƒCƒY‚ğæ“¾‚·‚é
+	// ç¾åœ¨ã®ãƒ•ã‚¡ã‚¤ãƒ«ãƒã‚¤ãƒ³ã‚¿ã‹ã‚‰çµ‚ç«¯ã¾ã§ã®ã‚µã‚¤ã‚ºã‚’å–å¾—ã™ã‚‹
 	{
 		long pos ;
 		pos = ( long )STTELL( PGen->Data ) ;
@@ -414,14 +414,14 @@ int png_general_read_set( png_structp png_ptr, PNGGENERAL *PGen, STREAMDATA *Dat
 		STSEEK( PGen->Data, pos, STREAM_SEEKTYPE_SET ) ;
 	}
 
-	// ƒR[ƒ‹ƒoƒbƒNŠÖ”‚ÌƒZƒbƒg
+	// ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã®ã‚»ãƒƒãƒˆ
 	png_set_read_fn( png_ptr, PGen, png_general_read_data ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ‚o‚m‚f‰æ‘œ‚Ì“Ç‚İ‚±‚İ
+// ï¼°ï¼®ï¼§ç”»åƒã®èª­ã¿ã“ã¿
 extern int LoadPngImage( STREAMDATA *Src, BASEIMAGE *BaseImage, int GetFormatOnly )
 {
 	png_bytep *row_pointers;
@@ -438,7 +438,7 @@ extern int LoadPngImage( STREAMDATA *Src, BASEIMAGE *BaseImage, int GetFormatOnl
 	png_bytep BufPoint ;
 	BYTE Check[ 8 ] ;
 
-	// Å‰‚Ì‚WƒoƒCƒg‚ÅPNGƒtƒ@ƒCƒ‹‚©‚Ç‚¤‚©‚ğƒ`ƒFƒbƒN
+	// æœ€åˆã®ï¼˜ãƒã‚¤ãƒˆã§PNGãƒ•ã‚¡ã‚¤ãƒ«ã‹ã©ã†ã‹ã‚’ãƒã‚§ãƒƒã‚¯
 	STREAD( Check, 8, 1, Src ) ;
 	STSEEK( Src, 0, STREAM_SEEKTYPE_SET ) ;
 	if( Check[ 0 ] != 0x89 || Check[ 1 ] != 0x50 || Check[ 2 ] != 0x4E || Check[ 3 ] != 0x47 ||
@@ -447,50 +447,50 @@ extern int LoadPngImage( STREAMDATA *Src, BASEIMAGE *BaseImage, int GetFormatOnl
 		return -1 ;
 	}
 
-	// ‚o‚m‚fŠÇ—î•ñ‚Ìì¬
+	// ï¼°ï¼®ï¼§ç®¡ç†æƒ…å ±ã®ä½œæˆ
 	png_ptr = png_create_read_struct(PNG_LIBPNG_VER_STRING, NULL, NULL, NULL ) ;
 	if( png_ptr == NULL ) return -1 ;
 
-	// ‰æ‘œî•ñ\‘¢‘Ì‚Ìì¬
+	// ç”»åƒæƒ…å ±æ§‹é€ ä½“ã®ä½œæˆ
 	if( ( info_ptr = png_create_info_struct( png_ptr ) ) == NULL ) 
 	{
 		png_destroy_read_struct(&png_ptr, (png_infopp)NULL, (png_infopp)NULL);
 		return -1 ;
 	}
 
-	// ƒGƒ‰[‚Ìˆ—ƒZƒbƒgƒAƒbƒv‚¨‚æ‚Ñˆ—
+	// ã‚¨ãƒ©ãƒ¼æ™‚ã®å‡¦ç†ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ãŠã‚ˆã³å‡¦ç†
 	if( setjmp( png_jmpbuf( png_ptr ) ) )
 	{
 		png_destroy_read_struct( &png_ptr, &info_ptr, (png_infopp)NULL );
 		return -1 ;
 	}
 
-	// ”Ä—pƒf[ƒ^“Ç‚İ‚İˆ—‚©‚ç“Ç‚İ‚Şê‡‚Ìİ’è‚ğs‚¤
+	// æ±ç”¨ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿å‡¦ç†ã‹ã‚‰èª­ã¿è¾¼ã‚€å ´åˆã®è¨­å®šã‚’è¡Œã†
 	png_general_read_set( png_ptr, &PGen, Src ) ;
 
-	// İ’èˆ—ŒS
-	png_set_sig_bytes(		png_ptr, ( int )sig_read ) ;										// ‚æ‚­‚í‚©‚ç–³‚¢ˆ—(Š¾)
-	png_read_info(			png_ptr, info_ptr );												// ‰æ‘œî•ñ‚ğ“¾‚é
-	png_get_IHDR(			png_ptr, info_ptr, &width, &height, &bit_depth, &color_type,		// ‰æ‘œ‚ÌŠî–{ƒXƒe[ƒ^ƒX‚ğæ“¾‚·‚é
+	// è¨­å®šå‡¦ç†éƒ¡
+	png_set_sig_bytes(		png_ptr, ( int )sig_read ) ;										// ã‚ˆãã‚ã‹ã‚‰ç„¡ã„å‡¦ç†(æ±—)
+	png_read_info(			png_ptr, info_ptr );												// ç”»åƒæƒ…å ±ã‚’å¾—ã‚‹
+	png_get_IHDR(			png_ptr, info_ptr, &width, &height, &bit_depth, &color_type,		// ç”»åƒã®åŸºæœ¬ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚’å–å¾—ã™ã‚‹
 							&interlace_type, NULL, NULL ) ;
-	png_set_strip_16(		png_ptr ) ;															// ‚P‚Uƒrƒbƒg‚Ì‰æ‘œ‚Å‚à‚Wƒrƒbƒg‚Åû”[‚·‚é‚æ‚¤‚Éİ’è
-//	if( BmpFlag == TRUE )										png_set_strip_alpha( png_ptr ) ;// ƒAƒ‹ƒtƒ@ƒ`ƒƒƒ“ƒlƒ‹–³‹
-	png_set_packing(		png_ptr ) ;															// ‚PƒoƒCƒgˆÈ‰º‚ÌƒpƒŒƒbƒg‰æ‘œ‚ğƒoƒCƒg’PˆÊ‚Å“WŠJ‚·‚é‚æ‚¤w’è
-	png_set_packswap(		png_ptr ) ;															// ‚æ‚­‚í‚©‚ç–³‚¢ˆ—
+	png_set_strip_16(		png_ptr ) ;															// ï¼‘ï¼–ãƒ“ãƒƒãƒˆã®ç”»åƒã§ã‚‚ï¼˜ãƒ“ãƒƒãƒˆã§åç´ã™ã‚‹ã‚ˆã†ã«è¨­å®š
+//	if( BmpFlag == TRUE )										png_set_strip_alpha( png_ptr ) ;// ã‚¢ãƒ«ãƒ•ã‚¡ãƒãƒ£ãƒ³ãƒãƒ«ç„¡è¦–
+	png_set_packing(		png_ptr ) ;															// ï¼‘ãƒã‚¤ãƒˆä»¥ä¸‹ã®ãƒ‘ãƒ¬ãƒƒãƒˆç”»åƒã‚’ãƒã‚¤ãƒˆå˜ä½ã§å±•é–‹ã™ã‚‹ã‚ˆã†æŒ‡å®š
+	png_set_packswap(		png_ptr ) ;															// ã‚ˆãã‚ã‹ã‚‰ç„¡ã„å‡¦ç†
 
-//	if( color_type == PNG_COLOR_TYPE_PALETTE )					png_set_expand( png_ptr ) ;		// ƒpƒŒƒbƒgg—p‰æ‘œƒf[ƒ^‚Ì©“®“WŠJw’è
+//	if( color_type == PNG_COLOR_TYPE_PALETTE )					png_set_expand( png_ptr ) ;		// ãƒ‘ãƒ¬ãƒƒãƒˆä½¿ç”¨ç”»åƒãƒ‡ãƒ¼ã‚¿ã®è‡ªå‹•å±•é–‹æŒ‡å®š
 
-	png_set_bgr(			png_ptr ) ;															// ƒJƒ‰[”z—ñ‚ğ‚q‚f‚a‚©‚ç‚a‚f‚q‚É”½“]
+	png_set_bgr(			png_ptr ) ;															// ã‚«ãƒ©ãƒ¼é…åˆ—ã‚’ï¼²ï¼§ï¼¢ã‹ã‚‰ï¼¢ï¼§ï¼²ã«åè»¢
 
-	// •ÏX‚µ‚½İ’è‚ğ”½‰f‚³‚¹‚é
+	// å¤‰æ›´ã—ãŸè¨­å®šã‚’åæ˜ ã•ã›ã‚‹
 	png_read_update_info(	png_ptr, info_ptr ) ;
 
-	// ‚Pƒ‰ƒCƒ“‚ ‚½‚è‚É•K—v‚Èƒf[ƒ^—Ê‚ğ“¾‚é
+	// ï¼‘ãƒ©ã‚¤ãƒ³ã‚ãŸã‚Šã«å¿…è¦ãªãƒ‡ãƒ¼ã‚¿é‡ã‚’å¾—ã‚‹
 	rowbytes = png_get_rowbytes( png_ptr, info_ptr ) ;
 
 	if( GetFormatOnly == FALSE )
 	{
-		// ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‚ğŠi”[‚·‚éƒƒ‚ƒŠ—Ìˆæ‚ğì¬‚·‚é
+		// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹ãƒ¡ãƒ¢ãƒªé ˜åŸŸã‚’ä½œæˆã™ã‚‹
 		{
 			png_bytep BufP ;
 
@@ -516,10 +516,10 @@ extern int LoadPngImage( STREAMDATA *Src, BASEIMAGE *BaseImage, int GetFormatOnl
 			}
 		}
 
-		// ‰æ‘œƒf[ƒ^‚Ì“Ç‚İ‚İ
+		// ç”»åƒãƒ‡ãƒ¼ã‚¿ã®èª­ã¿è¾¼ã¿
 		png_read_image( png_ptr, row_pointers ) ;
 
-		// ÀÛ‚Ég‚¤ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^—Ìˆæ‚Ìì¬E“]‘—
+		// å®Ÿéš›ã«ä½¿ã†ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿é ˜åŸŸã®ä½œæˆãƒ»è»¢é€
 		ImageData = DXALLOC( rowbytes * height ) ;
 		if( ImageData == NULL )
 		{
@@ -532,22 +532,22 @@ extern int LoadPngImage( STREAMDATA *Src, BASEIMAGE *BaseImage, int GetFormatOnl
 		for (row = 0; row < height; row++, GData += rowbytes )
 			_MEMCPY( GData, row_pointers[row], rowbytes ) ;
 
-		// ƒƒ‚ƒŠ‚Ì‰ğ•ú
+		// ãƒ¡ãƒ¢ãƒªã®è§£æ”¾
 		png_free( png_ptr, BufPoint ) ;
 		DXFREE( row_pointers ) ;
 
-		// “Ç‚İ‚İˆ—‚ÌI—¹
+		// èª­ã¿è¾¼ã¿å‡¦ç†ã®çµ‚äº†
 		png_read_end( png_ptr, info_ptr ) ;
 	}
 
-	// BASEIMAGE ƒf[ƒ^‚Ìî•ñ‚ğƒZƒbƒg‚·‚é
+	// BASEIMAGE ãƒ‡ãƒ¼ã‚¿ã®æƒ…å ±ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 	{
 		BaseImage->Width		= ( int )width ;
 		BaseImage->Height		= ( int )height ;
 		BaseImage->Pitch		= ( int )rowbytes ;
 		BaseImage->GraphData	= ImageData ;
 
-		// ƒJƒ‰[î•ñ‚ğƒZƒbƒg‚·‚é
+		// ã‚«ãƒ©ãƒ¼æƒ…å ±ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 		if( color_type == PNG_COLOR_TYPE_PALETTE )
 		{
 			png_colorp SrcPalette ;
@@ -555,16 +555,16 @@ extern int LoadPngImage( STREAMDATA *Src, BASEIMAGE *BaseImage, int GetFormatOnl
 			int i ;
 			COLORPALETTEDATA *Palette ;
 			
-			// ƒpƒŒƒbƒgƒJƒ‰[‚Ìê‡
+			// ãƒ‘ãƒ¬ãƒƒãƒˆã‚«ãƒ©ãƒ¼ã®å ´åˆ
 			NS_CreatePaletteColorData( &BaseImage->ColorData ) ;
 
-			// ƒpƒŒƒbƒg‚ğæ“¾
+			// ãƒ‘ãƒ¬ãƒƒãƒˆã‚’å–å¾—
 			png_get_PLTE( png_ptr, info_ptr, &SrcPalette, &PaletteNum ) ;
 
-			// ƒpƒŒƒbƒg‚Ì”‚ª‚Q‚T‚UˆÈã‚¾‚Á‚½ê‡‚Í‚Q‚T‚U‚É•â³
+			// ãƒ‘ãƒ¬ãƒƒãƒˆã®æ•°ãŒï¼’ï¼•ï¼–ä»¥ä¸Šã ã£ãŸå ´åˆã¯ï¼’ï¼•ï¼–ã«è£œæ­£
 			if( PaletteNum > 256 ) PaletteNum = 256 ;
 
-			// ƒpƒŒƒbƒg‚ÌƒRƒs[
+			// ãƒ‘ãƒ¬ãƒƒãƒˆã®ã‚³ãƒ”ãƒ¼
 			Palette = BaseImage->ColorData.Palette ;
 			for( i = 0 ; i < PaletteNum ; i ++, Palette ++, SrcPalette ++ )
 			{
@@ -574,7 +574,7 @@ extern int LoadPngImage( STREAMDATA *Src, BASEIMAGE *BaseImage, int GetFormatOnl
 				Palette->Alpha = 0 ;
 			}
 
-			// ƒAƒ‹ƒtƒ@ƒ`ƒƒƒ“ƒlƒ‹ƒpƒŒƒbƒg‚ª‚ ‚éê‡‚Íƒf[ƒ^‚ğ“Ç‚İ‚Ş
+			// ã‚¢ãƒ«ãƒ•ã‚¡ãƒãƒ£ãƒ³ãƒãƒ«ãƒ‘ãƒ¬ãƒƒãƒˆãŒã‚ã‚‹å ´åˆã¯ãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿è¾¼ã‚€
 			if( png_get_valid( png_ptr, info_ptr, PNG_INFO_tRNS ) )
 			{
 				png_bytep trans ;
@@ -596,7 +596,7 @@ extern int LoadPngImage( STREAMDATA *Src, BASEIMAGE *BaseImage, int GetFormatOnl
 					}
 				}
 
-				// ƒAƒ‹ƒtƒ@ƒ`ƒƒƒ“ƒlƒ‹‚ ‚èƒpƒŒƒbƒg‚É‚·‚é
+				// ã‚¢ãƒ«ãƒ•ã‚¡ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Šãƒ‘ãƒ¬ãƒƒãƒˆã«ã™ã‚‹
 				BaseImage->ColorData.AlphaLoc   = 24 ;
 				BaseImage->ColorData.AlphaMask  = 0xff000000 ;
 				BaseImage->ColorData.AlphaWidth = 8 ;
@@ -605,7 +605,7 @@ extern int LoadPngImage( STREAMDATA *Src, BASEIMAGE *BaseImage, int GetFormatOnl
 		else
 		if( color_type == PNG_COLOR_TYPE_GRAY )
 		{
-			// “§‰ßFî•ñ‚ª‚ ‚éê‡‚ÍƒAƒ‹ƒtƒ@ƒ`ƒƒƒ“ƒlƒ‹‚Â‚«‰æ‘œ‚É‚·‚é
+			// é€éè‰²æƒ…å ±ãŒã‚ã‚‹å ´åˆã¯ã‚¢ãƒ«ãƒ•ã‚¡ãƒãƒ£ãƒ³ãƒãƒ«ã¤ãç”»åƒã«ã™ã‚‹
 			if( png_get_valid( png_ptr, info_ptr, PNG_INFO_tRNS ) )
 			{
 				png_bytep trans ;
@@ -613,10 +613,10 @@ extern int LoadPngImage( STREAMDATA *Src, BASEIMAGE *BaseImage, int GetFormatOnl
 				int num_trans ;
 				int i, j ;
 
-				// “§‰ßF‚ğæ“¾
+				// é€éè‰²ã‚’å–å¾—
 				png_get_tRNS( png_ptr, info_ptr, &trans, &num_trans, &trans_values ) ;
 
-				// ƒAƒ‹ƒtƒ@ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è‚É‚·‚é
+				// ã‚¢ãƒ«ãƒ•ã‚¡ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Šã«ã™ã‚‹
 				NS_CreateFullColorData( &BaseImage->ColorData ) ;
 				BaseImage->ColorData.ColorBitDepth	= 32 ;
 				BaseImage->ColorData.PixelByte		= 4 ;
@@ -624,7 +624,7 @@ extern int LoadPngImage( STREAMDATA *Src, BASEIMAGE *BaseImage, int GetFormatOnl
 				BaseImage->ColorData.AlphaWidth		= 8 ;
 				BaseImage->ColorData.AlphaMask		= 0xff000000 ;
 
-				// ƒOƒŒ[ƒXƒP[ƒ‹‰æ‘œ‚ğ 32ƒrƒbƒgƒAƒ‹ƒtƒ@ƒ`ƒƒƒ“ƒlƒ‹‚Â‚«‰æ‘œ‚É•ÏŠ·
+				// ã‚°ãƒ¬ãƒ¼ã‚¹ã‚±ãƒ¼ãƒ«ç”»åƒã‚’ 32ãƒ“ãƒƒãƒˆã‚¢ãƒ«ãƒ•ã‚¡ãƒãƒ£ãƒ³ãƒãƒ«ã¤ãç”»åƒã«å¤‰æ›
 				BYTE *OldGraphData = ( BYTE * )BaseImage->GraphData ;
 				BYTE *NewGraphData ;
 				BaseImage->Pitch		= BaseImage->Width * 4 ;
@@ -640,7 +640,7 @@ extern int LoadPngImage( STREAMDATA *Src, BASEIMAGE *BaseImage, int GetFormatOnl
 				BYTE *SrcBase  = OldGraphData ;
 				BYTE *DestBase = NewGraphData ;
 
-				// ‚à‚µƒOƒŒ[ƒXƒP[ƒ‹‚È‚Ì‚É‚PƒsƒNƒZƒ‹‚QƒoƒCƒg‚¾‚Á‚½‚çãˆÊ‚Wƒrƒbƒg‚¾‚¯‚ğg—p‚·‚é
+				// ã‚‚ã—ã‚°ãƒ¬ãƒ¼ã‚¹ã‚±ãƒ¼ãƒ«ãªã®ã«ï¼‘ãƒ”ã‚¯ã‚»ãƒ«ï¼’ãƒã‚¤ãƒˆã ã£ãŸã‚‰ä¸Šä½ï¼˜ãƒ“ãƒƒãƒˆã ã‘ã‚’ä½¿ç”¨ã™ã‚‹
 				if( rowbytes / 2 >= width )
 				{
 					for( i = 0 ; i < BaseImage->Height; i ++, SrcBase += rowbytes, DestBase += BaseImage->Pitch )
@@ -697,7 +697,7 @@ extern int LoadPngImage( STREAMDATA *Src, BASEIMAGE *BaseImage, int GetFormatOnl
 			}
 			else
 			{
-				// ‚à‚µƒOƒŒ[ƒXƒP[ƒ‹‚È‚Ì‚É‚PƒsƒNƒZƒ‹‚QƒoƒCƒg‚¾‚Á‚½‚çãˆÊ‚Wƒrƒbƒg‚¾‚¯‚ğg—p‚·‚é
+				// ã‚‚ã—ã‚°ãƒ¬ãƒ¼ã‚¹ã‚±ãƒ¼ãƒ«ãªã®ã«ï¼‘ãƒ”ã‚¯ã‚»ãƒ«ï¼’ãƒã‚¤ãƒˆã ã£ãŸã‚‰ä¸Šä½ï¼˜ãƒ“ãƒƒãƒˆã ã‘ã‚’ä½¿ç”¨ã™ã‚‹
 				if( rowbytes / 2 >= width )
 				{
 					BaseImage->ColorData.ColorBitDepth	= 16 ;
@@ -755,7 +755,7 @@ extern int LoadPngImage( STREAMDATA *Src, BASEIMAGE *BaseImage, int GetFormatOnl
 				SrcB = ( BYTE * )ImageData ;
 				Dest = NewBuffer ;
 
-				// ‚PƒsƒNƒZƒ‹‚QƒoƒCƒg‚Ìê‡‚Í‚PƒsƒNƒZƒ‹–Ú‚Í‹P“xA‚QƒoƒCƒg–Ú‚ÍƒAƒ‹ƒtƒ@’l
+				// ï¼‘ãƒ”ã‚¯ã‚»ãƒ«ï¼’ãƒã‚¤ãƒˆã®å ´åˆã¯ï¼‘ãƒ”ã‚¯ã‚»ãƒ«ç›®ã¯è¼åº¦ã€ï¼’ãƒã‚¤ãƒˆç›®ã¯ã‚¢ãƒ«ãƒ•ã‚¡å€¤
 				if( rowbytes / 2 >= width )
 				{
 					for( i = 0 ; i < height ; i ++ )
@@ -807,7 +807,7 @@ extern int LoadPngImage( STREAMDATA *Src, BASEIMAGE *BaseImage, int GetFormatOnl
 				BaseImage->ColorData.AlphaMask		= 0xff000000 ;
 			}
 			else
-			// “§‰ßFî•ñ‚ª‚ ‚éê‡‚ÍƒAƒ‹ƒtƒ@ƒ`ƒƒƒ“ƒlƒ‹‚Â‚«‰æ‘œ‚É‚·‚é
+			// é€éè‰²æƒ…å ±ãŒã‚ã‚‹å ´åˆã¯ã‚¢ãƒ«ãƒ•ã‚¡ãƒãƒ£ãƒ³ãƒãƒ«ã¤ãç”»åƒã«ã™ã‚‹
 			if( png_get_valid( png_ptr, info_ptr, PNG_INFO_tRNS ) )
 			{
 				png_bytep trans ;
@@ -815,10 +815,10 @@ extern int LoadPngImage( STREAMDATA *Src, BASEIMAGE *BaseImage, int GetFormatOnl
 				int num_trans ;
 				int i, j ;
 
-				// “§‰ßF‚ğæ“¾
+				// é€éè‰²ã‚’å–å¾—
 				png_get_tRNS( png_ptr, info_ptr, &trans, &num_trans, &trans_values ) ;
 
-				// ƒAƒ‹ƒtƒ@ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è‚É‚·‚é
+				// ã‚¢ãƒ«ãƒ•ã‚¡ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Šã«ã™ã‚‹
 				NS_CreateFullColorData( &BaseImage->ColorData ) ;
 				BaseImage->ColorData.ColorBitDepth	= 32 ;
 				BaseImage->ColorData.PixelByte		= 4 ;
@@ -826,7 +826,7 @@ extern int LoadPngImage( STREAMDATA *Src, BASEIMAGE *BaseImage, int GetFormatOnl
 				BaseImage->ColorData.AlphaWidth		= 8 ;
 				BaseImage->ColorData.AlphaMask		= 0xff000000 ;
 
-				// 24ƒrƒbƒgƒJƒ‰[‰æ‘œ‚ğ 32ƒrƒbƒgƒAƒ‹ƒtƒ@ƒ`ƒƒƒ“ƒlƒ‹‚Â‚«‰æ‘œ‚É•ÏŠ·
+				// 24ãƒ“ãƒƒãƒˆã‚«ãƒ©ãƒ¼ç”»åƒã‚’ 32ãƒ“ãƒƒãƒˆã‚¢ãƒ«ãƒ•ã‚¡ãƒãƒ£ãƒ³ãƒãƒ«ã¤ãç”»åƒã«å¤‰æ›
 				BYTE *OldGraphData = ( BYTE * )BaseImage->GraphData ;
 				BYTE *NewGraphData ;
 				BaseImage->Pitch		= BaseImage->Width * 4 ;
@@ -868,22 +868,22 @@ extern int LoadPngImage( STREAMDATA *Src, BASEIMAGE *BaseImage, int GetFormatOnl
 				OldGraphData = NULL ;
 			}
 			else
-			// ‚»‚êˆÈŠO‚Ìê‡‚Í’Êí‚Ìƒtƒ‹ƒJƒ‰[‰æ‘œ
+			// ãã‚Œä»¥å¤–ã®å ´åˆã¯é€šå¸¸ã®ãƒ•ãƒ«ã‚«ãƒ©ãƒ¼ç”»åƒ
 			{
 				NS_CreateFullColorData( &BaseImage->ColorData ) ;
 			}
 		}
 	}
 
-	// “Ç‚İ‚İˆ——p\‘¢‘Ì‚Ì”jŠü
+	// èª­ã¿è¾¼ã¿å‡¦ç†ç”¨æ§‹é€ ä½“ã®ç ´æ£„
 	png_destroy_read_struct( &png_ptr, &info_ptr, ( png_infopp )NULL ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0;
 }
 
 
-// ‚o‚m‚f‰æ‘œ‚Ì“Ç‚İ‚±‚İ( ‚‘¬”Å )
+// ï¼°ï¼®ï¼§ç”»åƒã®èª­ã¿ã“ã¿( é«˜é€Ÿç‰ˆ )
 #define READ_4BYTE( x )				( ( ( ( BYTE * )( x ) )[ 0 ] << 24 ) | ( ( ( BYTE * )( x ) )[ 1 ] << 16 ) | ( ( ( BYTE * )( x ) )[ 2 ] << 8 ) | ( ( ( BYTE * )( x ) )[ 3 ]  ) )
 
 #define PAETH_CODE( x )	up = UpP[ x ] ;\
@@ -1016,17 +1016,17 @@ extern int LoadPngImage_Fast( STREAMDATA *Src, BASEIMAGE *BaseImage, int GetForm
 	static BYTE Table2bit[ 4 ] = { 0, 85, 170, 255 } ;
 	static BYTE Table4bit[ 16 ] = { 0, 17, 34, 51, 68, 85, 102, 119, 136, 153, 170, 187, 204, 221, 238, 255 } ;
 
-	// ƒƒ‚ƒŠ‚É“Ç‚İ‚Ü‚ê‚½ƒf[ƒ^‚Å‚Í‚È‚¢ê‡‚Íˆ—‚µ‚È‚¢
+	// ãƒ¡ãƒ¢ãƒªã«èª­ã¿è¾¼ã¾ã‚ŒãŸãƒ‡ãƒ¼ã‚¿ã§ã¯ãªã„å ´åˆã¯å‡¦ç†ã—ãªã„
 	if( GetMemStreamDataShredStruct()->Read != Src->ReadShred.Read )
 	{
 		return -1 ;
 	}
 
-	// ƒƒ‚ƒŠ‚Ì“Ç‚İ‚Ü‚ê‚½ƒf[ƒ^‚ÌƒAƒhƒŒƒX‚ğæ“¾
+	// ãƒ¡ãƒ¢ãƒªã®èª­ã¿è¾¼ã¾ã‚ŒãŸãƒ‡ãƒ¼ã‚¿ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å–å¾—
 	SrcP = *( ( BYTE ** )Src->DataPoint ) ;
 	FileBytes = *( ( size_t * )( ( BYTE ** )Src->DataPoint + 1 ) ) ;
 
-	// Å‰‚Ì‚WƒoƒCƒg‚ÅPNGƒtƒ@ƒCƒ‹‚©‚Ç‚¤‚©‚ğƒ`ƒFƒbƒN
+	// æœ€åˆã®ï¼˜ãƒã‚¤ãƒˆã§PNGãƒ•ã‚¡ã‚¤ãƒ«ã‹ã©ã†ã‹ã‚’ãƒã‚§ãƒƒã‚¯
 	if( FileBytes < 8 ||
 		SrcP[ 0 ] != 0x89 || SrcP[ 1 ] != 0x50 || SrcP[ 2 ] != 0x4E || SrcP[ 3 ] != 0x47 ||
 		SrcP[ 4 ] != 0x0D || SrcP[ 5 ] != 0x0A || SrcP[ 6 ] != 0x1A || SrcP[ 7 ] != 0x0A )
@@ -1034,7 +1034,7 @@ extern int LoadPngImage_Fast( STREAMDATA *Src, BASEIMAGE *BaseImage, int GetForm
 		return -1 ;
 	}
 
-	// Šeƒ`ƒƒƒ“ƒN‚ğŒŸo
+	// å„ãƒãƒ£ãƒ³ã‚¯ã‚’æ¤œå‡º
 	SrcP += 8 ;
 	while( IsLoop )
 	{
@@ -1085,13 +1085,13 @@ extern int LoadPngImage_Fast( STREAMDATA *Src, BASEIMAGE *BaseImage, int GetForm
 		SrcP += ChunkBytes + 12 ;
 	}
 
-	// •K{ƒ`ƒƒƒ“ƒN‚ª–³‚©‚Á‚½‚çƒGƒ‰[
+	// å¿…é ˆãƒãƒ£ãƒ³ã‚¯ãŒç„¡ã‹ã£ãŸã‚‰ã‚¨ãƒ©ãƒ¼
 	if( IHDR == NULL || IDAT == NULL )
 	{
 		goto ERR ;
 	}
 
-	// ƒwƒbƒ_“Ç‚İ‚İ
+	// ãƒ˜ãƒƒãƒ€èª­ã¿è¾¼ã¿
 	BaseImage->Width  = ( int )READ_4BYTE( IHDR + 0 ) ;
 	BaseImage->Height = ( int )READ_4BYTE( IHDR + 4 ) ;
 	BitDepth = IHDR[ 8 ] ;
@@ -1100,25 +1100,25 @@ extern int LoadPngImage_Fast( STREAMDATA *Src, BASEIMAGE *BaseImage, int GetForm
 	FilterMethod = IHDR[ 11 ] ;
 	InterlaceMethod = IHDR[ 12 ] ;
 
-	// ƒCƒ“ƒ^[ƒŒ[ƒX‚É‚Í”ñ‘Î‰
+	// ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ¬ãƒ¼ã‚¹ã«ã¯éå¯¾å¿œ
 	if( InterlaceMethod != 0 )
 	{
 		goto ERR ;
 	}
 
-	// ˆ³k•û–@‚Í Deflate ‚Ì‚İ‘Î‰
+	// åœ§ç¸®æ–¹æ³•ã¯ Deflate ã®ã¿å¯¾å¿œ
 	if( CompressionMethod != 0 )
 	{
 		goto ERR ;
 	}
 
-	// •W€‚ÌƒtƒBƒ‹ƒ^[è–@‚Ì‚İ‘Î‰
+	// æ¨™æº–ã®ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼æ‰‹æ³•ã®ã¿å¯¾å¿œ
 	if( FilterMethod != 0 )
 	{
 		goto ERR ;
 	}
 
-	// ‘Î‰‚µ‚Ä‚¢‚éƒJƒ‰[ƒ^ƒCƒv‚Í 2( RGB ) ‚© 6( RGBA ) ‚Ì‚İ
+	// å¯¾å¿œã—ã¦ã„ã‚‹ã‚«ãƒ©ãƒ¼ã‚¿ã‚¤ãƒ—ã¯ 2( RGB ) ã‹ 6( RGBA ) ã®ã¿
 	switch( ColorType )
 	{
 	case 0 :	// GRAY
@@ -1233,19 +1233,19 @@ extern int LoadPngImage_Fast( STREAMDATA *Src, BASEIMAGE *BaseImage, int GetForm
 		goto ERR ;
 	}
 
-	// ƒsƒbƒ`‚ÌŒvZ
+	// ãƒ”ãƒƒãƒã®è¨ˆç®—
 	BaseImage->Pitch = BaseImage->Width * BaseImage->ColorData.PixelByte ;
 
 	if( GetFormatOnly == FALSE )
 	{
-		// ‰æ‘œ•Û‘¶—p‚Ìƒoƒbƒtƒ@‚ğŠm•Û
+		// ç”»åƒä¿å­˜ç”¨ã®ãƒãƒƒãƒ•ã‚¡ã‚’ç¢ºä¿
 		BaseImage->GraphData = DXALLOC( BaseImage->Pitch * BaseImage->Height ) ;
 		if( BaseImage->GraphData == NULL )
 		{
 			goto ERR ;
 		}
 
-		// ƒtƒBƒ‹ƒ^[ƒCƒ[ƒW‚Ìƒoƒbƒtƒ@‚ğŠm•Û
+		// ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ã‚¤ãƒ¡ãƒ¼ã‚¸ã®ãƒãƒƒãƒ•ã‚¡ã‚’ç¢ºä¿
 		FilterImagePitch = ( BaseImage->Width * PixelBits + 7 ) / 8 + 1 ;
 		FilterImageBytes = ( DWORD )( FilterImagePitch * BaseImage->Height ) ;
 		FilterImage = ( BYTE * )DXALLOC( FilterImageBytes ) ;
@@ -1254,7 +1254,7 @@ extern int LoadPngImage_Fast( STREAMDATA *Src, BASEIMAGE *BaseImage, int GetForm
 			goto ERR ;
 		}
 
-		// ˆ³kƒf[ƒ^‚Ì‰ğ“€€”õ
+		// åœ§ç¸®ãƒ‡ãƒ¼ã‚¿ã®è§£å‡æº–å‚™
 		_MEMSET( &ZStream, 0, sizeof( ZStream ) ) ;
 		if( inflateInit( &ZStream ) != Z_OK )
 		{
@@ -1264,7 +1264,7 @@ extern int LoadPngImage_Fast( STREAMDATA *Src, BASEIMAGE *BaseImage, int GetForm
 		ZStream.next_out = FilterImage ;
 		ZStream.avail_out = FilterImageBytes ;
 
-		// ˆ³kƒf[ƒ^‚Ì‰ğ“€
+		// åœ§ç¸®ãƒ‡ãƒ¼ã‚¿ã®è§£å‡
 		SrcP = *( ( BYTE ** )Src->DataPoint ) + 8 ;
 		IsLoop = 1 ;
 		while( IsLoop )
@@ -1276,7 +1276,7 @@ extern int LoadPngImage_Fast( STREAMDATA *Src, BASEIMAGE *BaseImage, int GetForm
 				IDAT = SrcP + 8 ;
 				IDATBytes = ChunkBytes ;
 
-				// IDATƒf[ƒ^‚Ì‰ğ“€
+				// IDATãƒ‡ãƒ¼ã‚¿ã®è§£å‡
 				ZStream.next_in = IDAT ;
 				ZStream.avail_in = IDATBytes ;
 				status = inflate( &ZStream, Z_NO_FLUSH ) ;
@@ -1301,18 +1301,18 @@ extern int LoadPngImage_Fast( STREAMDATA *Src, BASEIMAGE *BaseImage, int GetForm
 			SrcP += ChunkBytes + 12 ;
 		}
 
-		// ˆ³kƒf[ƒ^‚ª‘«‚è‚Ä‚¢‚È‚©‚Á‚½‚çƒGƒ‰[
+		// åœ§ç¸®ãƒ‡ãƒ¼ã‚¿ãŒè¶³ã‚Šã¦ã„ãªã‹ã£ãŸã‚‰ã‚¨ãƒ©ãƒ¼
 		if( status != Z_STREAM_END || ZStream.total_out != FilterImageBytes )
 		{
 			goto ERR ;
 		}
 
-		// ‰ğ“€ˆ—‚ÌŒãn––
+		// è§£å‡å‡¦ç†ã®å¾Œå§‹æœ«
 		inflateEnd( &ZStream ) ;
 		_MEMSET( &ZStream, 0, sizeof( ZStream ) ) ;
 		ZStreamInit = 0 ;
 
-		// ƒtƒBƒ‹ƒ^[‚ğ‰ğœ
+		// ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ã‚’è§£é™¤
 		{
 			DWORD Width = ( DWORD )BaseImage->Width ;
 			DWORD Height = ( DWORD )BaseImage->Height ;
@@ -3483,10 +3483,10 @@ static void png_general_write_data(png_structp png_ptr, png_bytep data, png_size
 
 int png_general_write_set( png_structp png_ptr, DWORD_PTR fp )
 {
-	// ƒR[ƒ‹ƒoƒbƒNŠÖ”‚ÌƒZƒbƒg
+	// ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã®ã‚»ãƒƒãƒˆ
 	png_set_write_fn( png_ptr, ( void * )fp, png_general_write_data, png_general_flush ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
@@ -3499,7 +3499,7 @@ extern int SaveBaseImageToPngBase( const char *pFilePathW, const char *pFilePath
 	png_bytep   sample;
 	int r, g, b, a, i, j;
 	
-	// •Û‘¶—p‚Ìƒtƒ@ƒCƒ‹‚ğŠJ‚­
+	// ä¿å­˜ç”¨ã®ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‹ã
 	if( pFilePathW )
 	{
 		fp = WriteOnlyFileAccessOpenWCHAR( pFilePathW ) ;
@@ -3513,19 +3513,19 @@ extern int SaveBaseImageToPngBase( const char *pFilePathW, const char *pFilePath
 	}
 	if( fp == 0 ) return -1;
 
-	// ‚o‚m‚fŠÇ—î•ñ‚Ìì¬
+	// ï¼°ï¼®ï¼§ç®¡ç†æƒ…å ±ã®ä½œæˆ
 	png_ptr = png_create_write_struct( PNG_LIBPNG_VER_STRING, NULL, NULL, NULL);
 	if( png_ptr == NULL ) return -1;
 
-	// ‰æ‘œî•ñ\‘¢‘Ì‚Ìì¬
-	info_ptr = png_create_info_struct(png_ptr);             // info_ptr\‘¢‘Ì‚ğŠm•ÛE‰Šú‰»‚µ‚Ü‚·
+	// ç”»åƒæƒ…å ±æ§‹é€ ä½“ã®ä½œæˆ
+	info_ptr = png_create_info_struct(png_ptr);             // info_ptræ§‹é€ ä½“ã‚’ç¢ºä¿ãƒ»åˆæœŸåŒ–ã—ã¾ã™
 	if( info_ptr == NULL )
 	{
 		png_destroy_write_struct(&png_ptr, (png_infopp)NULL);
 		return -1 ;
 	}
 
-	// ƒGƒ‰[‚Ìˆ—ƒZƒbƒgƒAƒbƒv‚¨‚æ‚Ñˆ—
+	// ã‚¨ãƒ©ãƒ¼æ™‚ã®å‡¦ç†ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ãŠã‚ˆã³å‡¦ç†
 	if( setjmp( png_jmpbuf( png_ptr ) ) )
 	{
 ERR:
@@ -3542,16 +3542,16 @@ ERR:
 
 	png_general_write_set( png_ptr, fp ) ;
 
-	// ŠJ‚¢‚½ƒtƒ@ƒCƒ‹ƒ|ƒCƒ“ƒ^‚ğƒZƒbƒg
+	// é–‹ã„ãŸãƒ•ã‚¡ã‚¤ãƒ«ãƒã‚¤ãƒ³ã‚¿ã‚’ã‚»ãƒƒãƒˆ
 //	png_init_io( png_ptr, fp );
 
-	// g—p‚·‚éƒtƒBƒ‹ƒ^‚ÌƒZƒbƒg
+	// ä½¿ç”¨ã™ã‚‹ãƒ•ã‚£ãƒ«ã‚¿ã®ã‚»ãƒƒãƒˆ
 	png_set_filter( png_ptr, 0, PNG_ALL_FILTERS );
 
-	// ˆ³kƒŒƒxƒ‹‚ÌƒZƒbƒg
+	// åœ§ç¸®ãƒ¬ãƒ™ãƒ«ã®ã‚»ãƒƒãƒˆ
 	png_set_compression_level( png_ptr, CompressionLevel );
 
-	// IHDRƒ`ƒƒƒ“ƒNî•ñ‚Ìİ’è
+	// IHDRãƒãƒ£ãƒ³ã‚¯æƒ…å ±ã®è¨­å®š
 	png_set_IHDR(
 		png_ptr,
 		info_ptr,
@@ -3564,12 +3564,12 @@ ERR:
 		PNG_FILTER_TYPE_DEFAULT
 	) ;
 
-	// ƒwƒbƒ_•”•ª‚Ì‘‚«o‚µ
+	// ãƒ˜ãƒƒãƒ€éƒ¨åˆ†ã®æ›¸ãå‡ºã—
 	png_write_info( png_ptr, info_ptr );
 
-	// ˆ³k—pƒf[ƒ^‚Ì—pˆÓ
+	// åœ§ç¸®ç”¨ãƒ‡ãƒ¼ã‚¿ã®ç”¨æ„
 	{
-		// ƒoƒbƒtƒ@‚ÌŠm•Û
+		// ãƒãƒƒãƒ•ã‚¡ã®ç¢ºä¿
 		buffer = (png_bytepp)DXALLOC( sizeof( png_bytep ) * BaseImage->Height );
 		if( buffer == NULL ) goto ERR;
 		_MEMSET( buffer, 0, sizeof( png_bytep ) * BaseImage->Height );
@@ -3602,24 +3602,24 @@ ERR:
 		}
 	}
 
-	// ƒCƒ[ƒW‚Ì‘‚«o‚µ
+	// ã‚¤ãƒ¡ãƒ¼ã‚¸ã®æ›¸ãå‡ºã—
 	png_write_image( png_ptr, buffer );
 
-	// ƒtƒbƒ_•”•ª‚Ì‘‚«o‚µ
+	// ãƒ•ãƒƒãƒ€éƒ¨åˆ†ã®æ›¸ãå‡ºã—
 	png_write_end( png_ptr, info_ptr );
 
-	// \‘¢‘Ì‚ÌŒãn––
+	// æ§‹é€ ä½“ã®å¾Œå§‹æœ«
 	png_destroy_write_struct( &png_ptr, &info_ptr );
 
-	// ƒtƒ@ƒCƒ‹‚ğ•Â‚¶‚é
+	// ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‰ã˜ã‚‹
 	WriteOnlyFileAccessClose( fp ) ;
 
-	// ƒƒ‚ƒŠ‚Ì‰ğ•ú
+	// ãƒ¡ãƒ¢ãƒªã®è§£æ”¾
 	for( i = 0; i < BaseImage->Height; i++ )
 		if( buffer[i] ) DXFREE( buffer[i] );
 	DXFREE( buffer );
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
@@ -3633,35 +3633,35 @@ ERR:
 
 
 
-// ‚i‚o‚d‚f‚ğƒƒ‚ƒŠ‚©‚ç“Ç‚İ‚Ş‚½‚ß‚ÌƒvƒƒOƒ‰ƒ€
+// ï¼ªï¼°ï¼¥ï¼§ã‚’ãƒ¡ãƒ¢ãƒªã‹ã‚‰èª­ã¿è¾¼ã‚€ãŸã‚ã®ãƒ—ãƒ­ã‚°ãƒ©ãƒ 
 #ifndef DX_NON_JPEGREAD
 
-// (–w‚Ç jdatasrc.c ‚Ì—¬—p)
+// (æ®†ã© jdatasrc.c ã®æµç”¨)
 #include "jpeglib.h"
 #include "jerror.h"
 
-// ‚i‚o‚d‚f“Ç‚İ‚±‚İƒGƒ‰[ˆ—ƒ‹[ƒ`ƒ“—p\‘¢‘Ì
+// ï¼ªï¼°ï¼¥ï¼§èª­ã¿ã“ã¿ã‚¨ãƒ©ãƒ¼æ™‚å‡¦ç†ãƒ«ãƒ¼ãƒãƒ³ç”¨æ§‹é€ ä½“
 typedef struct my_error_mgr {
-	struct jpeg_error_mgr pub;	// •W€ƒGƒ‰[ƒf[ƒ^
+	struct jpeg_error_mgr pub;	// æ¨™æº–ã‚¨ãƒ©ãƒ¼ãƒ‡ãƒ¼ã‚¿
 
-	jmp_buf setjmp_buffer;		// ƒƒ“ƒOƒWƒƒƒ“ƒv—p\‘¢‘Ì
+	jmp_buf setjmp_buffer;		// ãƒ­ãƒ³ã‚°ã‚¸ãƒ£ãƒ³ãƒ—ç”¨æ§‹é€ ä½“
 } *my_error_ptr ;
 
-// ƒGƒ‰[‚ÉŒÄ‚Î‚ê‚éŠÖ”
+// ã‚¨ãƒ©ãƒ¼æ™‚ã«å‘¼ã°ã‚Œã‚‹é–¢æ•°
 void my_error_exit( j_common_ptr cinfo )
 {
-	// cinfo->err‚ª¦‚·•W€ƒGƒ‰[ƒf[ƒ^‚Ìæ“ªƒAƒhƒŒƒX‚ğmy_error_mgr\‘¢‘Ì‚Ìæ“ªƒAƒhƒŒƒX‚É•ÏŠ·
+	// cinfo->errãŒç¤ºã™æ¨™æº–ã‚¨ãƒ©ãƒ¼ãƒ‡ãƒ¼ã‚¿ã®å…ˆé ­ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’my_error_mgræ§‹é€ ä½“ã®å…ˆé ­ã‚¢ãƒ‰ãƒ¬ã‚¹ã«å¤‰æ›
 	my_error_ptr myerr = (my_error_ptr) cinfo->err;
 
-	// ‚·‚¢‚Ü‚¹‚ñ‚æ‚­‚í‚©‚è‚Ü‚¹‚ñA‚Æ‚è‚ ‚¦‚¸ƒGƒ‰[ƒƒbƒZ[ƒW•W€ŠÖ”H
+	// ã™ã„ã¾ã›ã‚“ã‚ˆãã‚ã‹ã‚Šã¾ã›ã‚“ã€ã¨ã‚Šã‚ãˆãšã‚¨ãƒ©ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸æ¨™æº–é–¢æ•°ï¼Ÿ
 	(*cinfo->err->output_message) (cinfo);
 
-	// ƒ†[ƒU[‚ªŒˆ‚ß‚½ƒGƒ‰[ˆ—ƒR[ƒh‚ÌˆÊ’u‚Ü‚Å”ò‚Ô
+	// ãƒ¦ãƒ¼ã‚¶ãƒ¼ãŒæ±ºã‚ãŸã‚¨ãƒ©ãƒ¼å‡¦ç†ã‚³ãƒ¼ãƒ‰ã®ä½ç½®ã¾ã§é£›ã¶
 	longjmp( myerr->setjmp_buffer, 1 ) ;
 }
 
 
-// ”Ä—pƒf[ƒ^Œ`®‚Ì“]‘——p\‘¢‘Ì
+// æ±ç”¨ãƒ‡ãƒ¼ã‚¿å½¢å¼ã®è»¢é€ç”¨æ§‹é€ ä½“
 typedef struct
 {
 	struct jpeg_source_mgr pub;		/* public fields */
@@ -3669,37 +3669,37 @@ typedef struct
 	JOCTET *buffer;					/* start of buffer */
 	boolean start_of_file;			/* have we gotten any data yet? */
 
-	STREAMDATA *Data ;				// ”Ä—pƒf[ƒ^Œ`®“Ç‚İ‚İˆ——p\‘¢‘Ì
-	int DataSize ;					// ƒf[ƒ^‚ÌƒTƒCƒY
+	STREAMDATA *Data ;				// æ±ç”¨ãƒ‡ãƒ¼ã‚¿å½¢å¼èª­ã¿è¾¼ã¿å‡¦ç†ç”¨æ§‹é€ ä½“
+	int DataSize ;					// ãƒ‡ãƒ¼ã‚¿ã®ã‚µã‚¤ã‚º
 } my_source_general_mgr;
 
 typedef my_source_general_mgr	*my_src_general_ptr;
 
-#define INPUT_BUF_SIZE		(4096)	// ì‹Æ—pƒoƒbƒtƒ@‚ÌƒTƒCƒY
+#define INPUT_BUF_SIZE		(4096)	// ä½œæ¥­ç”¨ãƒãƒƒãƒ•ã‚¡ã®ã‚µã‚¤ã‚º
 
-// “Ç‚İ‚Şƒ\[ƒX‚ğ‰Šú‰»‚·‚éŠÖ”
+// èª­ã¿è¾¼ã‚€ã‚½ãƒ¼ã‚¹ã‚’åˆæœŸåŒ–ã™ã‚‹é–¢æ•°
 METHODDEF(void)
 init_source_general( j_decompress_ptr cinfo )
 {
 	my_src_general_ptr src = (my_src_general_ptr) cinfo->src;
 
-	// ƒtƒ@ƒCƒ‹“Ç‚İ‚İŠJn‚Ìƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// ãƒ•ã‚¡ã‚¤ãƒ«èª­ã¿è¾¼ã¿é–‹å§‹ã®ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	src->start_of_file = TRUE;
 }
 
-// ƒf[ƒ^ƒoƒbƒtƒ@‚Éƒf[ƒ^‚ğ“]‘—‚·‚é
+// ãƒ‡ãƒ¼ã‚¿ãƒãƒƒãƒ•ã‚¡ã«ãƒ‡ãƒ¼ã‚¿ã‚’è»¢é€ã™ã‚‹
 METHODDEF(boolean)
 fill_input_buffer_general (j_decompress_ptr cinfo)
 {
 	my_src_general_ptr src = (my_src_general_ptr) cinfo->src;
 	size_t nbytes;
 
-	// “]‘—‚·‚éƒf[ƒ^‚Ì—Ê‚ğƒRƒs[‚·‚é
+	// è»¢é€ã™ã‚‹ãƒ‡ãƒ¼ã‚¿ã®é‡ã‚’ã‚³ãƒ”ãƒ¼ã™ã‚‹
 	nbytes = ( size_t )( ( src->DataSize - STTELL( src->Data ) < INPUT_BUF_SIZE ) ?
 			 src->DataSize - STTELL( src->Data ) : INPUT_BUF_SIZE ) ;
 	if( nbytes != 0 ) STREAD( src->buffer, nbytes, 1, src->Data ) ;
 
-	// “Ç‚İ‚İ‚É¸”s‚µ‚½‚çƒGƒ‰[
+	// èª­ã¿è¾¼ã¿ã«å¤±æ•—ã—ãŸã‚‰ã‚¨ãƒ©ãƒ¼
 	if( nbytes <= 0 )
 	{
 		if (src->start_of_file)	/* Treat empty input file as fatal error */
@@ -3712,7 +3712,7 @@ fill_input_buffer_general (j_decompress_ptr cinfo)
 		nbytes = 2;
 	}
 
-	// ‚»‚Ì‘¼‚Ìˆ—
+	// ãã®ä»–ã®å‡¦ç†
 	src->pub.next_input_byte = src->buffer;
 	src->pub.bytes_in_buffer = nbytes;
 	src->start_of_file = FALSE;
@@ -3720,13 +3720,13 @@ fill_input_buffer_general (j_decompress_ptr cinfo)
 	return TRUE;
 }
 
-// w’è‚³‚ê‚½ƒTƒCƒY‚Ìƒf[ƒ^‚ğƒXƒLƒbƒv‚·‚éˆ—
+// æŒ‡å®šã•ã‚ŒãŸã‚µã‚¤ã‚ºã®ãƒ‡ãƒ¼ã‚¿ã‚’ã‚¹ã‚­ãƒƒãƒ—ã™ã‚‹å‡¦ç†
 METHODDEF(void)
 skip_input_data_general( j_decompress_ptr cinfo, long num_bytes)
 {
 	my_src_general_ptr src = (my_src_general_ptr) cinfo->src;
 
-	// ƒf[ƒ^ƒXƒLƒbƒvˆ—
+	// ãƒ‡ãƒ¼ã‚¿ã‚¹ã‚­ãƒƒãƒ—å‡¦ç†
 	if( num_bytes > 0 )
 	{
 		while( num_bytes > (long) src->pub.bytes_in_buffer )
@@ -3739,20 +3739,20 @@ skip_input_data_general( j_decompress_ptr cinfo, long num_bytes)
 	}
 }
 
-// ƒf[ƒ^‚ğ•Â‚¶‚é‚Æ‚«‚Ìˆ—
+// ãƒ‡ãƒ¼ã‚¿ã‚’é–‰ã˜ã‚‹ã¨ãã®å‡¦ç†
 METHODDEF(void)
 term_source_general( j_decompress_ptr /*cinfo*/ )
 {
   /* no work necessary here */
 }
 
-// ”Ä—pƒf[ƒ^“Ç‚İ‚İˆ—‚©‚çƒf[ƒ^‚ğ“Ç‚İ‚Ş‚æ‚¤‚É‚·‚éÀÛ‚Ìİ’è‚ğs‚¤ŠÖ”
+// æ±ç”¨ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿å‡¦ç†ã‹ã‚‰ãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿è¾¼ã‚€ã‚ˆã†ã«ã™ã‚‹å®Ÿéš›ã®è¨­å®šã‚’è¡Œã†é–¢æ•°
 GLOBAL(void)
 jpeg_general_src (j_decompress_ptr cinfo, STREAMDATA *Data )
 {
 	my_src_general_ptr src;
 
-	// ‚Ü‚¾‚i‚o‚d‚fƒf[ƒ^‚ğˆê“I‚ÉŠi”[‚·‚éƒoƒbƒtƒ@‚ğŠm•Û‚µ‚Ä‚¢‚È‚©‚Á‚½‚çŠm•Û‚·‚é
+	// ã¾ã ï¼ªï¼°ï¼¥ï¼§ãƒ‡ãƒ¼ã‚¿ã‚’ä¸€æ™‚çš„ã«æ ¼ç´ã™ã‚‹ãƒãƒƒãƒ•ã‚¡ã‚’ç¢ºä¿ã—ã¦ã„ãªã‹ã£ãŸã‚‰ç¢ºä¿ã™ã‚‹
 	if (cinfo->src == NULL)
 	{
 		/* first time for this JPEG object? */
@@ -3765,7 +3765,7 @@ jpeg_general_src (j_decompress_ptr cinfo, STREAMDATA *Data )
 					INPUT_BUF_SIZE * sizeof(JOCTET));
 	}
 
-	// ŠÖ”ƒ|ƒCƒ“ƒ^‚È‚Ç‚ğƒZƒbƒg‚·‚é
+	// é–¢æ•°ãƒã‚¤ãƒ³ã‚¿ãªã©ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 	src = (my_src_general_ptr) cinfo->src;
 	src->pub.init_source			= init_source_general ;
 	src->pub.fill_input_buffer		= fill_input_buffer_general ;
@@ -3775,7 +3775,7 @@ jpeg_general_src (j_decompress_ptr cinfo, STREAMDATA *Data )
 
 	src->Data = Data ;
 
-	// Œ»İ‚Ìƒtƒ@ƒCƒ‹ƒ|ƒCƒ“ƒ^‚©‚çI’[‚Ü‚Å‚ÌƒTƒCƒY‚ğæ“¾‚·‚é
+	// ç¾åœ¨ã®ãƒ•ã‚¡ã‚¤ãƒ«ãƒã‚¤ãƒ³ã‚¿ã‹ã‚‰çµ‚ç«¯ã¾ã§ã®ã‚µã‚¤ã‚ºã‚’å–å¾—ã™ã‚‹
 	{
 		long pos ;
 		pos = ( long )STTELL( src->Data ) ;
@@ -3788,7 +3788,7 @@ jpeg_general_src (j_decompress_ptr cinfo, STREAMDATA *Data )
 	src->pub.next_input_byte = NULL; /* until buffer loaded */
 }
 
-// ‚i‚o‚d‚f‰æ‘œ‚Ì“Ç‚İ‚±‚İ
+// ï¼ªï¼°ï¼¥ï¼§ç”»åƒã®èª­ã¿ã“ã¿
 extern int LoadJpegImage( STREAMDATA *Src, BASEIMAGE *BaseImage, int GetFormatOnly )
 {
 	return LoadJpegImageBase( Src, BaseImage, GetFormatOnly, FALSE, NULL, 0 ) ;
@@ -3807,7 +3807,7 @@ extern int LoadJpegImageBase( STREAMDATA *Src, BASEIMAGE *BaseImage, int GetForm
 	unsigned char Check ;
 	unsigned int PixelByte = 0 ;
 
-	// æ“ª‚Ì‚PƒoƒCƒg‚ª 0xFF ‚Å‚Í‚È‚©‚Á‚½‚çJPEGƒtƒ@ƒCƒ‹‚Å‚Í‚È‚¢
+	// å…ˆé ­ã®ï¼‘ãƒã‚¤ãƒˆãŒ 0xFF ã§ã¯ãªã‹ã£ãŸã‚‰JPEGãƒ•ã‚¡ã‚¤ãƒ«ã§ã¯ãªã„
 	STREAD( &Check, 1, 1, Src ) ;
 	STSEEK( Src, 0, STREAM_SEEKTYPE_SET ) ;
 	if( Check != 0xff )
@@ -3815,7 +3815,7 @@ extern int LoadJpegImageBase( STREAMDATA *Src, BASEIMAGE *BaseImage, int GetForm
 		return -1 ;
 	}
 	
-	// ’Êí‚i‚o‚d‚fƒGƒ‰[ƒ‹[ƒ`ƒ“‚ÌƒZƒbƒgƒAƒbƒv
+	// é€šå¸¸ï¼ªï¼°ï¼¥ï¼§ã‚¨ãƒ©ãƒ¼ãƒ«ãƒ¼ãƒãƒ³ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 	_MEMSET( &cinfo, 0, sizeof( cinfo ) );
 	cinfo.err = jpeg_std_error(&jerr.pub);
 	jerr.pub.error_exit = my_error_exit;
@@ -3825,27 +3825,27 @@ extern int LoadJpegImageBase( STREAMDATA *Src, BASEIMAGE *BaseImage, int GetForm
 		return -1;
 	}
 
-	// cinfoî•ñ‚ÌƒAƒƒP[ƒg‚Æ‰Šú‰»‚ğs‚¤
+	// cinfoæƒ…å ±ã®ã‚¢ãƒ­ã‚±ãƒ¼ãƒˆã¨åˆæœŸåŒ–ã‚’è¡Œã†
 	jpeg_create_decompress(&cinfo);
 
-	// ”Ä—pƒf[ƒ^“Ç‚İ‚İˆ—‚©‚çƒf[ƒ^‚ğ“Ç‚İ‚Şİ’è‚ğs‚¤
+	// æ±ç”¨ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿å‡¦ç†ã‹ã‚‰ãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿è¾¼ã‚€è¨­å®šã‚’è¡Œã†
 	jpeg_general_src( &cinfo, Src ) ;
 
-	// Exif î•ñ‚ğæ“¾‚·‚é‚½‚ß‚Ìİ’è‚ğs‚¤
+	// Exif æƒ…å ±ã‚’å–å¾—ã™ã‚‹ãŸã‚ã®è¨­å®šã‚’è¡Œã†
 	if( GetExifOnly == TRUE )
 	{
 		jpeg_save_markers( &cinfo, JPEG_APP0 + 1, 0xFFFF ) ;
 	}
 
-	// ‚i‚o‚d‚fƒtƒ@ƒCƒ‹‚Ìƒpƒ‰ƒ[ƒ^î•ñ‚Ì“Ç‚İ‚±‚İ
+	// ï¼ªï¼°ï¼¥ï¼§ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æƒ…å ±ã®èª­ã¿ã“ã¿
 	(void)jpeg_read_header(&cinfo, TRUE);
 
-	// Exif î•ñ‚ğæ“¾‚·‚éê‡‚Íˆ—‚ğ•ªŠò
+	// Exif æƒ…å ±ã‚’å–å¾—ã™ã‚‹å ´åˆã¯å‡¦ç†ã‚’åˆ†å²
 	if( GetExifOnly == TRUE )
 	{
 		int data_length ;
 
-		// Exifî•ñ‚ª‚È‚©‚Á‚½‚çƒGƒ‰[
+		// Exifæƒ…å ±ãŒãªã‹ã£ãŸã‚‰ã‚¨ãƒ©ãƒ¼
 		if( cinfo.marker_list == NULL ||
 			cinfo.marker_list->marker != JPEG_APP0 + 1 ||
 			cinfo.marker_list->data_length < 6 ||
@@ -3860,7 +3860,7 @@ extern int LoadJpegImageBase( STREAMDATA *Src, BASEIMAGE *BaseImage, int GetForm
 			return -1 ;
 		}
 
-		// ExifBuffer ‚ª NULL ‚Ìê‡‚ÍƒTƒCƒY‚Ì‚İ•Ô‚·
+		// ExifBuffer ãŒ NULL ã®å ´åˆã¯ã‚µã‚¤ã‚ºã®ã¿è¿”ã™
 		data_length = ( int )cinfo.marker_list->data_length ;
 		if( ExifBuffer == NULL )
 		{
@@ -3868,36 +3868,36 @@ extern int LoadJpegImageBase( STREAMDATA *Src, BASEIMAGE *BaseImage, int GetForm
 			return data_length ;
 		}
 
-		// ExifBufferSize ‚ÌƒTƒCƒY‚ª‘«‚è‚È‚¢ê‡‚ÍƒGƒ‰[
+		// ExifBufferSize ã®ã‚µã‚¤ã‚ºãŒè¶³ã‚Šãªã„å ´åˆã¯ã‚¨ãƒ©ãƒ¼
 		if( cinfo.marker_list->data_length > ExifBufferSize )
 		{
 			jpeg_destroy_decompress( &cinfo );
 			return -1 ;
 		}
 
-		// Exif î•ñ‚ğƒRƒs[
+		// Exif æƒ…å ±ã‚’ã‚³ãƒ”ãƒ¼
 		_MEMCPY( ExifBuffer, cinfo.marker_list->data, cinfo.marker_list->data_length ) ;
 
-		// Exif î•ñ‚ÌƒTƒCƒY‚ğ•Ô‚·
+		// Exif æƒ…å ±ã®ã‚µã‚¤ã‚ºã‚’è¿”ã™
 		jpeg_destroy_decompress( &cinfo );
 		return data_length ;
 	}
 
 	if( GetFormatOnly == FALSE )
 	{
-		// ‚i‚o‚d‚fƒtƒ@ƒCƒ‹‚Ì‰ğ“€‚ÌŠJn
+		// ï¼ªï¼°ï¼¥ï¼§ãƒ•ã‚¡ã‚¤ãƒ«ã®è§£å‡ã®é–‹å§‹
 		(void)jpeg_start_decompress(&cinfo);
 
-		// ‚Pƒ‰ƒCƒ““–‚½‚è‚Ìƒf[ƒ^ƒoƒCƒg”‚ğŒvZ
+		// ï¼‘ãƒ©ã‚¤ãƒ³å½“ãŸã‚Šã®ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒˆæ•°ã‚’è¨ˆç®—
 		PixelByte = ( unsigned int )( cinfo.output_components == 4 ? 3 : cinfo.output_components ) ;
 		InPitch   = cinfo.output_width * cinfo.output_components ;
 		OutPitch  = cinfo.output_width * PixelByte ;
 
-		// ƒf[ƒ^ƒoƒbƒtƒ@‚ÌŠm•Û
+		// ãƒ‡ãƒ¼ã‚¿ãƒãƒƒãƒ•ã‚¡ã®ç¢ºä¿
 		buffer = (*cinfo.mem->alloc_sarray)
 					((j_common_ptr) &cinfo, JPOOL_IMAGE, InPitch, 1 );
 
-		// o—ÍƒCƒ[ƒWƒf[ƒ^ƒTƒCƒY‚ÌƒZƒbƒgA‹y‚Ñƒf[ƒ^—Ìˆæ‚ÌŠm•Û
+		// å‡ºåŠ›ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºã®ã‚»ãƒƒãƒˆã€åŠã³ãƒ‡ãƒ¼ã‚¿é ˜åŸŸã®ç¢ºä¿
 		imgSize = cinfo.output_height * OutPitch ;
 		if( ( ImageData = ( unsigned char * ) DXALLOC( imgSize ) ) == NULL )
 		{
@@ -3905,16 +3905,16 @@ extern int LoadJpegImageBase( STREAMDATA *Src, BASEIMAGE *BaseImage, int GetForm
 			return -1 ;
 		}
 		
-		// ‰æ‘œƒf[ƒ^‚Ì“Ç‚İ‚±‚İ
+		// ç”»åƒãƒ‡ãƒ¼ã‚¿ã®èª­ã¿ã“ã¿
 		pImg = ( unsigned char * )ImageData ; 
 		while( cinfo.output_scanline < cinfo.output_height )
 		{
 			(void) jpeg_read_scanlines(&cinfo, buffer, 1);
 
-			// ƒf[ƒ^‚ğo—Íƒf[ƒ^‚É•ÏŠ·‚µ‚ÄA‚Ü‚½‚Í‚»‚Ì‚Ü‚Ü“]‘—
+			// ãƒ‡ãƒ¼ã‚¿ã‚’å‡ºåŠ›ãƒ‡ãƒ¼ã‚¿ã«å¤‰æ›ã—ã¦ã€ã¾ãŸã¯ãã®ã¾ã¾è»¢é€
 			switch( cinfo.output_components )
 			{
-			case 1 :	// ƒOƒŒ[ƒXƒP[ƒ‹
+			case 1 :	// ã‚°ãƒ¬ãƒ¼ã‚¹ã‚±ãƒ¼ãƒ«
 				for( i = 0 ; i < InPitch ; )
 				{
 					*pImg = *( buffer[0] + i ) ; pImg ++ ;
@@ -3945,7 +3945,7 @@ extern int LoadJpegImageBase( STREAMDATA *Src, BASEIMAGE *BaseImage, int GetForm
 			}
 		}
 
-		// ‰ğ“€ˆ—‚ÌI—¹
+		// è§£å‡å‡¦ç†ã®çµ‚äº†
 		(void) jpeg_finish_decompress(&cinfo);
 
 		BaseImage->Width     = ( int )cinfo.output_width ;
@@ -3959,11 +3959,11 @@ extern int LoadJpegImageBase( STREAMDATA *Src, BASEIMAGE *BaseImage, int GetForm
 		BaseImage->Pitch     = 0 ;
 	}
 
-	// BASEIMAGE \‘¢‘Ì‚Ìƒf[ƒ^‚ğ‹l‚ß‚é
+	// BASEIMAGE æ§‹é€ ä½“ã®ãƒ‡ãƒ¼ã‚¿ã‚’è©°ã‚ã‚‹
 	{
 		BaseImage->GraphData = ImageData ;
 
-		// ƒJƒ‰[î•ñ‚ğƒZƒbƒg‚·‚é
+		// ã‚«ãƒ©ãƒ¼æƒ…å ±ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 		switch( PixelByte )
 		{
 		case 1 :
@@ -3976,10 +3976,10 @@ extern int LoadJpegImageBase( STREAMDATA *Src, BASEIMAGE *BaseImage, int GetForm
 		}
 	}
 
-	// cinfo\‘¢‘Ì‚Ì‰ğ•ú
+	// cinfoæ§‹é€ ä½“ã®è§£æ”¾
 	jpeg_destroy_decompress(&cinfo);
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
@@ -4070,7 +4070,7 @@ extern int SaveBaseImageToJpegBase( const char *pFilePathW, const char *pFilePat
 	JSAMPROW sample;
 	int i, j, r, g, b, a;
 
-	// •Û‘¶—p‚Ìƒtƒ@ƒCƒ‹‚ğŠJ‚­
+	// ä¿å­˜ç”¨ã®ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‹ã
 	if( pFilePathW )
 	{
 		fp = WriteOnlyFileAccessOpenWCHAR( pFilePathW ) ;
@@ -4084,7 +4084,7 @@ extern int SaveBaseImageToJpegBase( const char *pFilePathW, const char *pFilePat
 	}
 	if( fp == 0 ) return -1;
 
-	// ’Êí‚i‚o‚d‚fƒGƒ‰[ƒ‹[ƒ`ƒ“‚ÌƒZƒbƒgƒAƒbƒv
+	// é€šå¸¸ï¼ªï¼°ï¼¥ï¼§ã‚¨ãƒ©ãƒ¼ãƒ«ãƒ¼ãƒãƒ³ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 	_MEMSET( &cinfo, 0, sizeof( cinfo ) );
 	cinfo.err = jpeg_std_error(&jerr.pub);
 	jerr.pub.error_exit = my_error_exit;
@@ -4103,29 +4103,29 @@ ERR:
 		return -1;
 	}
 
-	// cinfoî•ñ‚ÌƒAƒƒP[ƒg‚Æ‰Šú‰»‚ğs‚¤
+	// cinfoæƒ…å ±ã®ã‚¢ãƒ­ã‚±ãƒ¼ãƒˆã¨åˆæœŸåŒ–ã‚’è¡Œã†
 	jpeg_create_compress( &cinfo );
 
-	// o—Íƒtƒ@ƒCƒ‹‚Ìƒ|ƒCƒ“ƒ^‚ğƒZƒbƒg
+	// å‡ºåŠ›ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒã‚¤ãƒ³ã‚¿ã‚’ã‚»ãƒƒãƒˆ
 	jpeg_general_dest( &cinfo, fp ) ;
 //	jpeg_stdio_dest( &cinfo, fp );
 
-	// o—Í‰æ‘œ‚Ìî•ñ‚ğİ’è‚·‚é
+	// å‡ºåŠ›ç”»åƒã®æƒ…å ±ã‚’è¨­å®šã™ã‚‹
 	cinfo.image_width      = ( JDIMENSION )BaseImage->Width;
 	cinfo.image_height     = ( JDIMENSION )BaseImage->Height;
 	cinfo.input_components = 3;
 	cinfo.in_color_space   = JCS_RGB;
 	jpeg_set_defaults( &cinfo );
 
-	// ‰æ¿‚ğİ’è
+	// ç”»è³ªã‚’è¨­å®š
 	jpeg_set_quality( &cinfo, Quality, TRUE );
 
-	// ˆ³kˆ—ŠJn
+	// åœ§ç¸®å‡¦ç†é–‹å§‹
 	jpeg_start_compress( &cinfo, TRUE );
 
-	// ˆ³k—pƒf[ƒ^‚Ì—pˆÓ
+	// åœ§ç¸®ç”¨ãƒ‡ãƒ¼ã‚¿ã®ç”¨æ„
 	{
-		// ƒoƒbƒtƒ@‚ÌŠm•Û
+		// ãƒãƒƒãƒ•ã‚¡ã®ç¢ºä¿
 		buffer = (JSAMPARRAY)DXALLOC( sizeof( JSAMPROW ) * BaseImage->Height );
 		if( buffer == NULL ) goto ERR;
 		_MEMSET( buffer, 0, sizeof( JSAMPROW ) * BaseImage->Height );
@@ -4144,24 +4144,24 @@ ERR:
 		}
 	}
 
-	// ˆ³k
+	// åœ§ç¸®
 	jpeg_write_scanlines( &cinfo, buffer, ( JDIMENSION )BaseImage->Height );
 
-	// ˆ³kI—¹
+	// åœ§ç¸®çµ‚äº†
 	jpeg_finish_compress( &cinfo );
 
-	// Œãn––
+	// å¾Œå§‹æœ«
 	jpeg_destroy_compress( &cinfo );
 
-	// ƒtƒ@ƒCƒ‹‚ğ•Â‚¶‚é
+	// ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‰ã˜ã‚‹
 	WriteOnlyFileAccessClose( fp );
 
-	// ƒf[ƒ^‚Ì‰ğ•ú
+	// ãƒ‡ãƒ¼ã‚¿ã®è§£æ”¾
 	for( i = 0; i < BaseImage->Height; i++ )
 		DXFREE( buffer[i] );
 	DXFREE( buffer );
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0;
 }
 
@@ -4179,9 +4179,9 @@ ERR:
 //=====================================================================================
 //   Copyright (C) 1997 - 2002, Makoto Matsumoto and Takuji Nishimura,
 // 
-// ‰º‹L‚ÌƒvƒƒOƒ‰ƒ€‚Í¼–{—l‚Æ¼‘º—l‚ªì¬‚³‚ê‚½ƒvƒƒOƒ‰ƒ€‚ğŒ³‚É SYN—l ‚ª
-// ‚l‚l‚w‚ğg—p‚·‚é‰ü—Ç‚ğs‚í‚ê‚½ Mersenne Twister –@‹^——””­¶ƒvƒƒOƒ‰ƒ€‚ğ
-// X‚É BorlandC++ Compiler ‚Å‚àƒRƒ“ƒpƒCƒ‹o—ˆ‚é‚æ‚¤‚É‚µ‚½ƒo[ƒWƒ‡ƒ“
+// ä¸‹è¨˜ã®ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã¯æ¾æœ¬æ§˜ã¨è¥¿æ‘æ§˜ãŒä½œæˆã•ã‚ŒãŸãƒ—ãƒ­ã‚°ãƒ©ãƒ ã‚’å…ƒã« SYNæ§˜ ãŒ
+// ï¼­ï¼­ï¼¸ã‚’ä½¿ç”¨ã™ã‚‹æ”¹è‰¯ã‚’è¡Œã‚ã‚ŒãŸ Mersenne Twister æ³•ç–‘ä¼¼ä¹±æ•°ç™ºç”Ÿãƒ—ãƒ­ã‚°ãƒ©ãƒ ã‚’
+// æ›´ã« BorlandC++ Compiler ã§ã‚‚ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«å‡ºæ¥ã‚‹ã‚ˆã†ã«ã—ãŸãƒãƒ¼ã‚¸ãƒ§ãƒ³
 
 /* Period parameters */
 #define N 624
@@ -4294,7 +4294,7 @@ void MMX_generateMT(void)
 {
     _asm{
 #ifdef BC_COMPILER
-//PMMX // Borland C++ 5.6.4 for Win32 Copyright (c) 1993, 2002 Borland	‚Å‚Í—v‚ç‚È‚­‚È‚Á‚½‚æ‚¤‚Å‚·
+//PMMX // Borland C++ 5.6.4 for Win32 Copyright (c) 1993, 2002 Borland	ã§ã¯è¦ã‚‰ãªããªã£ãŸã‚ˆã†ã§ã™
 #endif
         mov         eax, MATRIX_A
         movd        mm4, eax
@@ -4449,7 +4449,7 @@ void MMX_generateMT(void)
         pop         ebp
         emms
 #ifdef BC_COMPILER
-//PNOMMX // Borland C++ 5.6.4 for Win32 Copyright (c) 1993, 2002 Borland	‚Å‚Í—v‚ç‚È‚­‚È‚Á‚½‚æ‚¤‚Å‚·
+//PNOMMX // Borland C++ 5.6.4 for Win32 Copyright (c) 1993, 2002 Borland	ã§ã¯è¦ã‚‰ãªããªã£ãŸã‚ˆã†ã§ã™
 #endif
     }
     mti = 0;
@@ -4718,7 +4718,7 @@ extern DWORD UINT64MOD( const BYTE *UInt64, DWORD ModNum )
 #ifndef DX_NON_MODEL
 
 
-// MQOZŒ`®“à‚Ì ZIP ˆ³k‚³‚ê‚½ƒf[ƒ^‚ğ‰ğ“€‚·‚é
+// MQOZå½¢å¼å†…ã® ZIP åœ§ç¸®ã•ã‚ŒãŸãƒ‡ãƒ¼ã‚¿ã‚’è§£å‡ã™ã‚‹
 int MQOZ_ZIP_uncompress( void *dest, size_t destLen, const void *source, size_t sourceLen )
 {
 	int result ;
@@ -4763,37 +4763,37 @@ HRESULT SoundCallback_DSMP3(  D_IMediaSample * pSample, D_REFERENCE_TIME * /*Sta
 	BYTE *pBuffer ;
 	long BufferLen ;
 
-	// ƒoƒbƒtƒ@‚ª‰ğ•ú‚³‚ê‚Ä‚¢‚½‚ç‰½‚à‚¹‚¸‚ÉI—¹
+	// ãƒãƒƒãƒ•ã‚¡ãŒè§£æ”¾ã•ã‚Œã¦ã„ãŸã‚‰ä½•ã‚‚ã›ãšã«çµ‚äº†
 	if( dsmp3->PCMBuffer == NULL )
 		return 0 ;
 
-	// ƒTƒ“ƒvƒ‹‚Ìƒf[ƒ^ƒTƒCƒY‚ğæ“¾‚·‚é
+	// ã‚µãƒ³ãƒ—ãƒ«ã®ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºã‚’å–å¾—ã™ã‚‹
 	pSample->GetPointer( &pBuffer ) ;
 	BufferLen = pSample->GetActualDataLength() ;
 
-	// ƒTƒ“ƒvƒ‹‚ªƒoƒbƒtƒ@‚Éû‚Ü‚ç‚È‚¢ê‡‚Íƒoƒbƒtƒ@‚ÌƒTƒCƒY‚ğ‘å‚«‚­‚·‚é
+	// ã‚µãƒ³ãƒ—ãƒ«ãŒãƒãƒƒãƒ•ã‚¡ã«åã¾ã‚‰ãªã„å ´åˆã¯ãƒãƒƒãƒ•ã‚¡ã®ã‚µã‚¤ã‚ºã‚’å¤§ããã™ã‚‹
 	if( dsmp3->PCMValidDataSize + BufferLen > dsmp3->PCMBufferSize )
 	{
 		void *OldBuffer ;
 
-		// ¡‚Ü‚Å‚Ìƒoƒbƒtƒ@‚ÌƒTƒCƒY‚ğ•Û‘¶
+		// ä»Šã¾ã§ã®ãƒãƒƒãƒ•ã‚¡ã®ã‚µã‚¤ã‚ºã‚’ä¿å­˜
 		OldBuffer = dsmp3->PCMBuffer ;
 
-		// ƒoƒbƒtƒ@‚ÌƒTƒCƒY‚ğ‚P‚l‚a‘‚â‚·
+		// ãƒãƒƒãƒ•ã‚¡ã®ã‚µã‚¤ã‚ºã‚’ï¼‘ï¼­ï¼¢å¢—ã‚„ã™
 		dsmp3->PCMBufferSize += 1 * 1024 * 1024 ;
 		dsmp3->PCMBuffer = DXALLOC( dsmp3->PCMBufferSize ) ;
 
-		// Šm•Û‚É¸”s‚µ‚½‚çƒGƒ‰[
+		// ç¢ºä¿ã«å¤±æ•—ã—ãŸã‚‰ã‚¨ãƒ©ãƒ¼
 		if( dsmp3->PCMBuffer == NULL )
 		{
 			DXFREE( OldBuffer ) ;
 			return 0 ;
 		}
 
-		// ¡‚Ü‚Å‚Ìƒf[ƒ^‚ğ“]‘—
+		// ä»Šã¾ã§ã®ãƒ‡ãƒ¼ã‚¿ã‚’è»¢é€
 		_MEMCPY( dsmp3->PCMBuffer, OldBuffer, dsmp3->PCMValidDataSize ) ;
 
-		// ¡‚Ü‚Å‚Ìƒoƒbƒtƒ@‚ğ‰ğ•ú
+		// ä»Šã¾ã§ã®ãƒãƒƒãƒ•ã‚¡ã‚’è§£æ”¾
 		DXFREE( OldBuffer ) ;
 	}
 
@@ -4802,7 +4802,7 @@ HRESULT SoundCallback_DSMP3(  D_IMediaSample * pSample, D_REFERENCE_TIME * /*Sta
 	return 0 ;
 }
 
-// ƒtƒBƒ‹ƒ^[‚Ìw’è•ûŒü‚ÌÅ‰‚Ìƒsƒ“‚ğæ“¾‚·‚é
+// ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ã®æŒ‡å®šæ–¹å‘ã®æœ€åˆã®ãƒ”ãƒ³ã‚’å–å¾—ã™ã‚‹
 D_IPin *_GetFilterPin( D_IBaseFilter *Filter, D_PIN_DIRECTION Direction )
 {
 	D_IEnumPins *EnumPin ;
@@ -4824,7 +4824,7 @@ D_IPin *_GetFilterPin( D_IBaseFilter *Filter, D_PIN_DIRECTION Direction )
 	return NULL ;
 }
 
-// DirectShow‚ğg‚Á‚ÄMP3ƒtƒ@ƒCƒ‹‚ğƒRƒ“ƒo[ƒg‚·‚éƒZƒbƒgƒAƒbƒvˆ—‚ğs‚¤( [–ß] -1:ƒGƒ‰[ )
+// DirectShowã‚’ä½¿ã£ã¦MP3ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ã‚³ãƒ³ãƒãƒ¼ãƒˆã™ã‚‹ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—å‡¦ç†ã‚’è¡Œã†( [æˆ»] -1:ã‚¨ãƒ©ãƒ¼ )
 extern int SetupSoundConvert_DSMP3( SOUNDCONV *SoundConv )
 {
 	SETUP_WIN_API
@@ -4846,15 +4846,15 @@ extern int SetupSoundConvert_DSMP3( SOUNDCONV *SoundConv )
 	WAVEFORMATEX *smpfmt;
 	DWORD TempSize ;
 
-	// ƒƒ“ƒo•Ï”‰Šú‰»
+	// ãƒ¡ãƒ³ãƒå¤‰æ•°åˆæœŸåŒ–
 	_MEMSET( dsmp3, 0, sizeof( SOUNDCONV_DSMP3 ) ) ;
 
-	// ƒtƒ@ƒCƒ‹‚ÌƒTƒCƒY‚ğæ“¾‚·‚é
+	// ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚µã‚¤ã‚ºã‚’å–å¾—ã™ã‚‹
 	Stream->ReadShred.Seek( Stream->DataPoint, 0, SEEK_END ) ;
 	TempSize = ( DWORD )Stream->ReadShred.Tell( Stream->DataPoint ) ;
 	Stream->ReadShred.Seek( Stream->DataPoint, 0, SEEK_SET ) ;
 
-	// ƒtƒ@ƒCƒ‹‚ğŠÛ‚²‚ÆŠi”[‚Å‚«‚éƒƒ‚ƒŠ—Ìˆæ‚ğæ“¾‚µ‚Ä‚»‚±‚Éƒtƒ@ƒCƒ‹‚ğŠÛ‚²‚Æ“Ç‚İ‚Ş
+	// ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ä¸¸ã”ã¨æ ¼ç´ã§ãã‚‹ãƒ¡ãƒ¢ãƒªé ˜åŸŸã‚’å–å¾—ã—ã¦ãã“ã«ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ä¸¸ã”ã¨èª­ã¿è¾¼ã‚€
 	TempBuffer = DXALLOC( TempSize ) ;
 	if( TempBuffer == NULL )
 	{
@@ -4862,11 +4862,11 @@ extern int SetupSoundConvert_DSMP3( SOUNDCONV *SoundConv )
 	}
 	Stream->ReadShred.Read( TempBuffer, TempSize, 1, Stream->DataPoint ) ;
 
-	// ƒƒ‚ƒŠƒ\[ƒXƒtƒBƒ‹ƒ^‚Ì€”õ
+	// ãƒ¡ãƒ¢ãƒªã‚½ãƒ¼ã‚¹ãƒ•ã‚£ãƒ«ã‚¿ã®æº–å‚™
 	MemStream = ( D_CMemStream * )D_CMemStream::CreateInstance( ( BYTE * )TempBuffer, TempSize ) ;
 	if( MemStream == NULL )
 	{
-		DXST_LOGFILE_ADDA( "MP3\x95\xcf\x8a\xb7\x97\x70 D_CMemStream \x82\xcc\x8d\xec\x90\xac\x82\xc9\x8e\xb8\x94\x73\x82\xb5\x82\xdc\x82\xb5\x82\xbd"/*@ "MP3•ÏŠ·—p D_CMemStream ‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½" @*/ );
+		DXST_LOGFILE_ADDA( "MP3\x95\xcf\x8a\xb7\x97\x70 D_CMemStream \x82\xcc\x8d\xec\x90\xac\x82\xc9\x8e\xb8\x94\x73\x82\xb5\x82\xdc\x82\xb5\x82\xbd"/*@ "MP3å¤‰æ›ç”¨ D_CMemStream ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ" @*/ );
 		goto ERR ;
 	}
 	hr = S_OK ;
@@ -4875,81 +4875,81 @@ extern int SetupSoundConvert_DSMP3( SOUNDCONV *SoundConv )
 	MemReader = ( D_CMemReader * )D_CMemReader::CreateInstance( MemStream, &ccmt, &hr ) ;
 	if( MemReader == NULL )
 	{
-		DXST_LOGFILE_ADDA( "MP3\x95\xcf\x8a\xb7\x97\x70 D_CMemReader \x82\xcc\x8d\xec\x90\xac\x82\xc9\x8e\xb8\x94\x73\x82\xb5\x82\xdc\x82\xb5\x82\xbd"/*@ "MP3•ÏŠ·—p D_CMemReader ‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½" @*/ );
+		DXST_LOGFILE_ADDA( "MP3\x95\xcf\x8a\xb7\x97\x70 D_CMemReader \x82\xcc\x8d\xec\x90\xac\x82\xc9\x8e\xb8\x94\x73\x82\xb5\x82\xdc\x82\xb5\x82\xbd"/*@ "MP3å¤‰æ›ç”¨ D_CMemReader ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ" @*/ );
 		goto ERR ;
 	}
 	MemReader->AddRef() ;
 
-	// NullƒŒƒ“ƒ_ƒ‰[ƒtƒBƒ‹ƒ^‚Ìì¬
+	// Nullãƒ¬ãƒ³ãƒ€ãƒ©ãƒ¼ãƒ•ã‚£ãƒ«ã‚¿ã®ä½œæˆ
 	if( ( FAILED( WinAPIData.Win32Func.CoCreateInstanceFunc( CLSID_NULLRENDERER, 0, CLSCTX_INPROC_SERVER, IID_IBASEFILTER, ( void ** )&NullRenderer ) ) ) )
 	{
 		WinAPIData.Win32Func.CoInitializeExFunc( NULL, COINIT_APARTMENTTHREADED ) ;
 		if( ( FAILED( WinAPIData.Win32Func.CoCreateInstanceFunc( CLSID_NULLRENDERER, 0, CLSCTX_INPROC_SERVER, IID_IBASEFILTER, ( void ** )&NullRenderer ) ) ) )
 		{
-			DXST_LOGFILE_ADDA( "MP3\x95\xcf\x8a\xb7\x97\x70 NullRender \x82\xcc\x8d\xec\x90\xac\x82\xc9\x8e\xb8\x94\x73\x82\xb5\x82\xdc\x82\xb5\x82\xbd"/*@ "MP3•ÏŠ·—p NullRender ‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½" @*/ );
+			DXST_LOGFILE_ADDA( "MP3\x95\xcf\x8a\xb7\x97\x70 NullRender \x82\xcc\x8d\xec\x90\xac\x82\xc9\x8e\xb8\x94\x73\x82\xb5\x82\xdc\x82\xb5\x82\xbd"/*@ "MP3å¤‰æ›ç”¨ NullRender ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ" @*/ );
 			goto ERR ;
 		}
 	}
 
-	// ƒOƒ‰ƒtƒBƒbƒNƒrƒ‹ƒ_[ƒIƒuƒWƒFƒNƒg‚Ìì¬
+	// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ“ãƒ«ãƒ€ãƒ¼ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ä½œæˆ
 	if( ( FAILED( WinAPIData.Win32Func.CoCreateInstanceFunc( CLSID_FILTERGRAPH, NULL, CLSCTX_INPROC, IID_IGRAPHBUILDER, ( void ** )&GraphBuilder ) ) ) )
 	{
-		DXST_LOGFILE_ADDA( "MP3\x95\xcf\x8a\xb7\x97\x70 IGraphBuilder \x82\xcc\x8d\xec\x90\xac\x82\xc9\x8e\xb8\x94\x73\x82\xb5\x82\xdc\x82\xb5\x82\xbd"/*@ "MP3•ÏŠ·—p IGraphBuilder ‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½" @*/ );
+		DXST_LOGFILE_ADDA( "MP3\x95\xcf\x8a\xb7\x97\x70 IGraphBuilder \x82\xcc\x8d\xec\x90\xac\x82\xc9\x8e\xb8\x94\x73\x82\xb5\x82\xdc\x82\xb5\x82\xbd"/*@ "MP3å¤‰æ›ç”¨ IGraphBuilder ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ" @*/ );
 		goto ERR ;
 	}
 
-	// ƒTƒ“ƒvƒ‹ƒOƒ‰ƒoƒtƒBƒ‹ƒ^¶¬
+	// ã‚µãƒ³ãƒ—ãƒ«ã‚°ãƒ©ãƒãƒ•ã‚£ãƒ«ã‚¿ç”Ÿæˆ
 	hr = TRUE ;
 	SampleGrabber = ( D_CSampleGrabber * )D_CSampleGrabber::CreateInstance( NULL, &hr ) ;
 	if( SampleGrabber == NULL )
 	{
-		DXST_LOGFILE_ADDA( "MP3\x95\xcf\x8a\xb7\x97\x70 D_CSampleGrabber \x82\xcc\x8d\xec\x90\xac\x82\xc9\x8e\xb8\x94\x73\x82\xb5\x82\xdc\x82\xb5\x82\xbd"/*@ "MP3•ÏŠ·—p D_CSampleGrabber ‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½" @*/ );
+		DXST_LOGFILE_ADDA( "MP3\x95\xcf\x8a\xb7\x97\x70 D_CSampleGrabber \x82\xcc\x8d\xec\x90\xac\x82\xc9\x8e\xb8\x94\x73\x82\xb5\x82\xdc\x82\xb5\x82\xbd"/*@ "MP3å¤‰æ›ç”¨ D_CSampleGrabber ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ" @*/ );
 		goto ERR ;
 	}
 
-	// ƒTƒ“ƒvƒ‹ƒOƒ‰ƒoƒtƒBƒ‹ƒ^‚Ìİ’è
+	// ã‚µãƒ³ãƒ—ãƒ«ã‚°ãƒ©ãƒãƒ•ã‚£ãƒ«ã‚¿ã®è¨­å®š
 	cmt.majortype = MEDIATYPE_AUDIO ;
 	cmt.subtype = D_MEDIASUBTYPE_PCM ;
 	hr = SampleGrabber->SetAcceptedMediaType( &cmt ) ;
 	if( hr != S_OK )
 	{
-		DXST_LOGFILE_ADDA( "\x83\x54\x83\x93\x83\x76\x83\x8b\x83\x4f\x83\x89\x83\x6f\x83\x74\x83\x42\x83\x8b\x83\x5e\x82\xcc\x83\x81\x83\x66\x83\x42\x83\x41\x83\x5e\x83\x43\x83\x76\x82\xcc\x90\xdd\x92\xe8\x82\xc9\x8e\xb8\x94\x73\x82\xb5\x82\xdc\x82\xb5\x82\xbd"/*@ "ƒTƒ“ƒvƒ‹ƒOƒ‰ƒoƒtƒBƒ‹ƒ^‚ÌƒƒfƒBƒAƒ^ƒCƒv‚Ìİ’è‚É¸”s‚µ‚Ü‚µ‚½" @*/ );
+		DXST_LOGFILE_ADDA( "\x83\x54\x83\x93\x83\x76\x83\x8b\x83\x4f\x83\x89\x83\x6f\x83\x74\x83\x42\x83\x8b\x83\x5e\x82\xcc\x83\x81\x83\x66\x83\x42\x83\x41\x83\x5e\x83\x43\x83\x76\x82\xcc\x90\xdd\x92\xe8\x82\xc9\x8e\xb8\x94\x73\x82\xb5\x82\xdc\x82\xb5\x82\xbd"/*@ "ã‚µãƒ³ãƒ—ãƒ«ã‚°ãƒ©ãƒãƒ•ã‚£ãƒ«ã‚¿ã®ãƒ¡ãƒ‡ã‚£ã‚¢ã‚¿ã‚¤ãƒ—ã®è¨­å®šã«å¤±æ•—ã—ã¾ã—ãŸ" @*/ );
 		goto ERR ;
 	}
 
-	// ƒTƒ“ƒvƒ‹ƒOƒ‰ƒoƒtƒBƒ‹ƒ^‚ğƒOƒ‰ƒt‚É’Ç‰Á
+	// ã‚µãƒ³ãƒ—ãƒ«ã‚°ãƒ©ãƒãƒ•ã‚£ãƒ«ã‚¿ã‚’ã‚°ãƒ©ãƒ•ã«è¿½åŠ 
 	hr = GraphBuilder->AddFilter( SampleGrabber, L"SampleGrabber") ;
 	if( hr != S_OK )
 	{
-		DXST_LOGFILE_ADDA( "\x83\x54\x83\x93\x83\x76\x83\x8b\x83\x4f\x83\x89\x83\x6f\x83\x74\x83\x42\x83\x8b\x83\x5e\x82\xcc\x83\x4f\x83\x89\x83\x74\x82\xd6\x82\xcc\x92\xc7\x89\xc1\x82\xc9\x8e\xb8\x94\x73\x82\xb5\x82\xdc\x82\xb5\x82\xbd"/*@ "ƒTƒ“ƒvƒ‹ƒOƒ‰ƒoƒtƒBƒ‹ƒ^‚ÌƒOƒ‰ƒt‚Ö‚Ì’Ç‰Á‚É¸”s‚µ‚Ü‚µ‚½" @*/ );
+		DXST_LOGFILE_ADDA( "\x83\x54\x83\x93\x83\x76\x83\x8b\x83\x4f\x83\x89\x83\x6f\x83\x74\x83\x42\x83\x8b\x83\x5e\x82\xcc\x83\x4f\x83\x89\x83\x74\x82\xd6\x82\xcc\x92\xc7\x89\xc1\x82\xc9\x8e\xb8\x94\x73\x82\xb5\x82\xdc\x82\xb5\x82\xbd"/*@ "ã‚µãƒ³ãƒ—ãƒ«ã‚°ãƒ©ãƒãƒ•ã‚£ãƒ«ã‚¿ã®ã‚°ãƒ©ãƒ•ã¸ã®è¿½åŠ ã«å¤±æ•—ã—ã¾ã—ãŸ" @*/ );
 		goto ERR ;
 	}
 
-	// ƒƒ‚ƒŠƒ\[ƒXƒtƒBƒ‹ƒ^‚ğƒOƒ‰ƒt‚É’Ç‰Á
+	// ãƒ¡ãƒ¢ãƒªã‚½ãƒ¼ã‚¹ãƒ•ã‚£ãƒ«ã‚¿ã‚’ã‚°ãƒ©ãƒ•ã«è¿½åŠ 
 	hr = GraphBuilder->AddFilter( MemReader, L"MemFile" ) ;
 	if( hr != S_OK )
 	{
-		DXST_LOGFILE_ADDA( "\x83\x81\x83\x82\x83\x8a\x83\x74\x83\x40\x83\x43\x83\x8b\x83\x74\x83\x42\x83\x8b\x83\x5e\x82\xcc\x83\x4f\x83\x89\x83\x74\x82\xd6\x82\xcc\x92\xc7\x89\xc1\x82\xc9\x8e\xb8\x94\x73\x82\xb5\x82\xdc\x82\xb5\x82\xbd"/*@ "ƒƒ‚ƒŠƒtƒ@ƒCƒ‹ƒtƒBƒ‹ƒ^‚ÌƒOƒ‰ƒt‚Ö‚Ì’Ç‰Á‚É¸”s‚µ‚Ü‚µ‚½" @*/ );
+		DXST_LOGFILE_ADDA( "\x83\x81\x83\x82\x83\x8a\x83\x74\x83\x40\x83\x43\x83\x8b\x83\x74\x83\x42\x83\x8b\x83\x5e\x82\xcc\x83\x4f\x83\x89\x83\x74\x82\xd6\x82\xcc\x92\xc7\x89\xc1\x82\xc9\x8e\xb8\x94\x73\x82\xb5\x82\xdc\x82\xb5\x82\xbd"/*@ "ãƒ¡ãƒ¢ãƒªãƒ•ã‚¡ã‚¤ãƒ«ãƒ•ã‚£ãƒ«ã‚¿ã®ã‚°ãƒ©ãƒ•ã¸ã®è¿½åŠ ã«å¤±æ•—ã—ã¾ã—ãŸ" @*/ );
 		goto ERR ;
 	}
 
-	// ƒtƒBƒ‹ƒ^˜AŒ‹
+	// ãƒ•ã‚£ãƒ«ã‚¿é€£çµ
 	hr = GraphBuilder->Render( MemReader->GetPin( 0 ) ) ;
 	if( hr != S_OK )
 	{
-		DXST_LOGFILE_ADDA( "\x83\x4f\x83\x89\x83\x74\x82\xcc\x8d\x5c\x92\x7a\x82\xc9\x8e\xb8\x94\x73\x82\xb5\x82\xdc\x82\xb5\x82\xbd"/*@ "ƒOƒ‰ƒt‚Ì\’z‚É¸”s‚µ‚Ü‚µ‚½" @*/ );
+		DXST_LOGFILE_ADDA( "\x83\x4f\x83\x89\x83\x74\x82\xcc\x8d\x5c\x92\x7a\x82\xc9\x8e\xb8\x94\x73\x82\xb5\x82\xdc\x82\xb5\x82\xbd"/*@ "ã‚°ãƒ©ãƒ•ã®æ§‹ç¯‰ã«å¤±æ•—ã—ã¾ã—ãŸ" @*/ );
 		goto ERR ;
 	}
 
-	// ƒkƒ‹ƒŒƒ“ƒ_ƒ‰[ƒtƒBƒ‹ƒ^‚ğƒOƒ‰ƒt‚É’Ç‰Á
+	// ãƒŒãƒ«ãƒ¬ãƒ³ãƒ€ãƒ©ãƒ¼ãƒ•ã‚£ãƒ«ã‚¿ã‚’ã‚°ãƒ©ãƒ•ã«è¿½åŠ 
 	hr = GraphBuilder->AddFilter( NullRenderer, L"File Renderer" ) ;
 	if( hr != S_OK )
 	{
-		DXST_LOGFILE_ADDA( "\x83\x6b\x83\x8b\x83\x8c\x83\x93\x83\x5f\x83\x89\x81\x5b\x83\x74\x83\x42\x83\x8b\x83\x5e\x82\xcc\x83\x4f\x83\x89\x83\x74\x82\xd6\x82\xcc\x92\xc7\x89\xc1\x82\xc9\x8e\xb8\x94\x73\x82\xb5\x82\xdc\x82\xb5\x82\xbd"/*@ "ƒkƒ‹ƒŒƒ“ƒ_ƒ‰[ƒtƒBƒ‹ƒ^‚ÌƒOƒ‰ƒt‚Ö‚Ì’Ç‰Á‚É¸”s‚µ‚Ü‚µ‚½" @*/ );
+		DXST_LOGFILE_ADDA( "\x83\x6b\x83\x8b\x83\x8c\x83\x93\x83\x5f\x83\x89\x81\x5b\x83\x74\x83\x42\x83\x8b\x83\x5e\x82\xcc\x83\x4f\x83\x89\x83\x74\x82\xd6\x82\xcc\x92\xc7\x89\xc1\x82\xc9\x8e\xb8\x94\x73\x82\xb5\x82\xdc\x82\xb5\x82\xbd"/*@ "ãƒŒãƒ«ãƒ¬ãƒ³ãƒ€ãƒ©ãƒ¼ãƒ•ã‚£ãƒ«ã‚¿ã®ã‚°ãƒ©ãƒ•ã¸ã®è¿½åŠ ã«å¤±æ•—ã—ã¾ã—ãŸ" @*/ );
 		goto ERR ;
 	}
 
-	// ƒkƒ‹ƒŒƒ“ƒ_ƒ‰[‚ğŒ³‚ÌƒŒƒ“ƒ_ƒ‰[‚ÆŒğŠ·‚·‚é
+	// ãƒŒãƒ«ãƒ¬ãƒ³ãƒ€ãƒ©ãƒ¼ã‚’å…ƒã®ãƒ¬ãƒ³ãƒ€ãƒ©ãƒ¼ã¨äº¤æ›ã™ã‚‹
 	{
 		D_IEnumFilters *EnumFilter ;
 		D_IPin         *LastOutput = NULL ;
@@ -4958,77 +4958,77 @@ extern int SetupSoundConvert_DSMP3( SOUNDCONV *SoundConv )
 		D_IPin         *OutputPin ;
 		D_IBaseFilter  *TmpFilter ;
 
-		// ƒtƒBƒ‹ƒ^[‚Ì—ñ‹“
+		// ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ã®åˆ—æŒ™
 		GraphBuilder->EnumFilters( &EnumFilter ) ;
 
-		// ƒtƒBƒ‹ƒ^[ŒQ‚Ì’†‚©‚çƒŒƒ“ƒ_ƒ‰[ƒtƒBƒ‹ƒ^‚ğ‘{‚·
+		// ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ç¾¤ã®ä¸­ã‹ã‚‰ãƒ¬ãƒ³ãƒ€ãƒ©ãƒ¼ãƒ•ã‚£ãƒ«ã‚¿ã‚’æœã™
 		while( EnumFilter->Next( 1, &TmpFilter, NULL ) == S_OK )
 		{
 			InputPin  = _GetFilterPin( TmpFilter, D_PINDIR_INPUT  ) ;
 			OutputPin = _GetFilterPin( TmpFilter, D_PINDIR_OUTPUT ) ;
 
-			// o—Í‚Ì‚È‚¢ƒtƒBƒ‹ƒ^[‚ÍƒŒƒ“ƒ_ƒ‰[ƒtƒBƒ‹ƒ^‚Æ‚¢‚¤”»’f
+			// å‡ºåŠ›ã®ãªã„ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ã¯ãƒ¬ãƒ³ãƒ€ãƒ©ãƒ¼ãƒ•ã‚£ãƒ«ã‚¿ã¨ã„ã†åˆ¤æ–­
 			if( InputPin != NULL && OutputPin == NULL )
 			{
-				// “ü—Íƒsƒ“‚ÉŒq‚ª‚ê‚Ä‚¢‚éo—Íƒsƒ“‚ğæ“¾‚·‚é
+				// å…¥åŠ›ãƒ”ãƒ³ã«ç¹‹ãŒã‚Œã¦ã„ã‚‹å‡ºåŠ›ãƒ”ãƒ³ã‚’å–å¾—ã™ã‚‹
 				InputPin->ConnectedTo( &LastOutput ) ;
 				if( LastOutput != NULL )
 				{
-					// Œ»İ‚ÌƒŒƒ“ƒ_ƒ‰[ƒtƒBƒ‹ƒ^‚Æo—Íƒsƒ“‚ÌÚ‘±‚ğ‰ğœ
+					// ç¾åœ¨ã®ãƒ¬ãƒ³ãƒ€ãƒ©ãƒ¼ãƒ•ã‚£ãƒ«ã‚¿ã¨å‡ºåŠ›ãƒ”ãƒ³ã®æ¥ç¶šã‚’è§£é™¤
 					GraphBuilder->Disconnect( LastOutput ) ;
 					GraphBuilder->Disconnect( InputPin ) ;
 
-					// —ñ‹“—p‚Éæ“¾‚µ‚½ƒIƒuƒWƒFƒNƒg‚ğ‰ğ•ú
+					// åˆ—æŒ™ç”¨ã«å–å¾—ã—ãŸã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’è§£æ”¾
 					InputPin->Release() ;
 					TmpFilter->Release() ;
 					break ;
 				}
 			}
 
-			// —ñ‹“—p‚Éæ“¾‚µ‚½ƒIƒuƒWƒFƒNƒg‚ğ‰ğ•ú
+			// åˆ—æŒ™ç”¨ã«å–å¾—ã—ãŸã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’è§£æ”¾
 			if( InputPin  ) InputPin->Release() ;
 			if( OutputPin ) OutputPin->Release() ; 
 			TmpFilter->Release() ;
 		}
 
-		// —ñ‹“—pƒCƒ“ƒ^[ƒtƒFƒCƒX‚Ì‰ğ•ú
+		// åˆ—æŒ™ç”¨ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ã‚¤ã‚¹ã®è§£æ”¾
 		EnumFilter->Release() ;
 
-		// ƒkƒ‹ƒŒƒ“ƒ_ƒ‰[‚Ì“ü—Íƒsƒ“‚ğæ“¾
+		// ãƒŒãƒ«ãƒ¬ãƒ³ãƒ€ãƒ©ãƒ¼ã®å…¥åŠ›ãƒ”ãƒ³ã‚’å–å¾—
 		LastInput = _GetFilterPin( NullRenderer, D_PINDIR_INPUT ) ;
 
-		// ƒkƒ‹ƒŒƒ“ƒ_ƒ‰[‚Ì“ü—Íƒsƒ“‚ÆÅ‰‚ÉƒŒƒ“ƒ_ƒ‰[‚ÆÚ‘±‚µ‚Ä‚¢‚½o—Íƒsƒ“‚ğÚ‘±
+		// ãƒŒãƒ«ãƒ¬ãƒ³ãƒ€ãƒ©ãƒ¼ã®å…¥åŠ›ãƒ”ãƒ³ã¨æœ€åˆã«ãƒ¬ãƒ³ãƒ€ãƒ©ãƒ¼ã¨æ¥ç¶šã—ã¦ã„ãŸå‡ºåŠ›ãƒ”ãƒ³ã‚’æ¥ç¶š
 		hr = GraphBuilder->Connect( LastOutput, LastInput ) ;
 
-		// ˆê“I‚ÈƒCƒ“ƒ^[ƒtƒFƒCƒX‚ğ‰ğ•ú
+		// ä¸€æ™‚çš„ãªã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ã‚¤ã‚¹ã‚’è§£æ”¾
 		LastOutput->Release() ;
 		LastInput->Release() ;
 
-		// ƒGƒ‰[”»’è
+		// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 		if( hr != S_OK )
 		{
-			DXST_LOGFILE_ADDA( "\x8a\xf9\x91\xb6\x83\x8c\x83\x93\x83\x5f\x83\x89\x81\x5b\x82\xf0Null\x83\x8c\x83\x93\x83\x5f\x83\x89\x81\x5b\x82\xc6\x8c\xf0\x8a\xb7\x82\xb7\x82\xe9\x8f\x88\x97\x9d\x82\xaa\x8e\xb8\x94\x73\x82\xb5\x82\xdc\x82\xb5\x82\xbd"/*@ "Šù‘¶ƒŒƒ“ƒ_ƒ‰[‚ğNullƒŒƒ“ƒ_ƒ‰[‚ÆŒğŠ·‚·‚éˆ—‚ª¸”s‚µ‚Ü‚µ‚½" @*/ );
+			DXST_LOGFILE_ADDA( "\x8a\xf9\x91\xb6\x83\x8c\x83\x93\x83\x5f\x83\x89\x81\x5b\x82\xf0Null\x83\x8c\x83\x93\x83\x5f\x83\x89\x81\x5b\x82\xc6\x8c\xf0\x8a\xb7\x82\xb7\x82\xe9\x8f\x88\x97\x9d\x82\xaa\x8e\xb8\x94\x73\x82\xb5\x82\xdc\x82\xb5\x82\xbd"/*@ "æ—¢å­˜ãƒ¬ãƒ³ãƒ€ãƒ©ãƒ¼ã‚’Nullãƒ¬ãƒ³ãƒ€ãƒ©ãƒ¼ã¨äº¤æ›ã™ã‚‹å‡¦ç†ãŒå¤±æ•—ã—ã¾ã—ãŸ" @*/ );
 			goto ERR ;
 		}
 	}
 
-	// ƒI[ƒfƒBƒIƒtƒH[ƒ}ƒbƒg‚Ìæ“¾
+	// ã‚ªãƒ¼ãƒ‡ã‚£ã‚ªãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®å–å¾—
 	_MEMSET( &csmpmt, 0, sizeof( csmpmt ) ) ;
 	hr = SampleGrabber->GetConnectedMediaType( &csmpmt ) ;
 	if( hr != S_OK )
 	{
-		DXST_LOGFILE_ADDA( "\x89\xb9\x90\xba\x82\xaa\x8a\xdc\x82\xdc\x82\xea\x82\xc4\x82\xa2\x82\xc8\x82\xa2\x82\xa9\x81\x41\x83\x49\x81\x5b\x83\x66\x83\x42\x83\x49\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xcc\x8e\xe6\x93\xbe\x82\xc9\x8e\xb8\x94\x73\x82\xb5\x82\xdc\x82\xb5\x82\xbd\x81\x42"/*@ "‰¹º‚ªŠÜ‚Ü‚ê‚Ä‚¢‚È‚¢‚©AƒI[ƒfƒBƒIƒtƒH[ƒ}ƒbƒg‚Ìæ“¾‚É¸”s‚µ‚Ü‚µ‚½B" @*/ );
+		DXST_LOGFILE_ADDA( "\x89\xb9\x90\xba\x82\xaa\x8a\xdc\x82\xdc\x82\xea\x82\xc4\x82\xa2\x82\xc8\x82\xa2\x82\xa9\x81\x41\x83\x49\x81\x5b\x83\x66\x83\x42\x83\x49\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xcc\x8e\xe6\x93\xbe\x82\xc9\x8e\xb8\x94\x73\x82\xb5\x82\xdc\x82\xb5\x82\xbd\x81\x42"/*@ "éŸ³å£°ãŒå«ã¾ã‚Œã¦ã„ãªã„ã‹ã€ã‚ªãƒ¼ãƒ‡ã‚£ã‚ªãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®å–å¾—ã«å¤±æ•—ã—ã¾ã—ãŸã€‚" @*/ );
 		goto ERR ;
 	}
 	if( csmpmt.formattype != FORMAT_WAVEFORMATEX )
 	{
-		DXST_LOGFILE_ADDA( "\x83\x54\x83\x7c\x81\x5b\x83\x67\x8a\x4f\x82\xcc\x83\x58\x83\x67\x83\x8a\x81\x5b\x83\x80\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xc5\x82\xb7\x81\x42"/*@ "ƒTƒ|[ƒgŠO‚ÌƒXƒgƒŠ[ƒ€ƒtƒH[ƒ}ƒbƒg‚Å‚·B" @*/ );
+		DXST_LOGFILE_ADDA( "\x83\x54\x83\x7c\x81\x5b\x83\x67\x8a\x4f\x82\xcc\x83\x58\x83\x67\x83\x8a\x81\x5b\x83\x80\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xc5\x82\xb7\x81\x42"/*@ "ã‚µãƒãƒ¼ãƒˆå¤–ã®ã‚¹ãƒˆãƒªãƒ¼ãƒ ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã§ã™ã€‚" @*/ );
 		goto ERR ;;
 	}
 	smpfmt = ( WAVEFORMATEX * )csmpmt.pbFormat ;
 	if( smpfmt->wFormatTag != WAVE_FORMAT_PCM )
 	{
-		DXST_LOGFILE_ADDA( "\x83\x54\x83\x7c\x81\x5b\x83\x67\x8a\x4f\x82\xcc\x83\x49\x81\x5b\x83\x66\x83\x42\x83\x49\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xc5\x82\xb7\x81\x42"/*@ "ƒTƒ|[ƒgŠO‚ÌƒI[ƒfƒBƒIƒtƒH[ƒ}ƒbƒg‚Å‚·B" @*/ );
+		DXST_LOGFILE_ADDA( "\x83\x54\x83\x7c\x81\x5b\x83\x67\x8a\x4f\x82\xcc\x83\x49\x81\x5b\x83\x66\x83\x42\x83\x49\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xc5\x82\xb7\x81\x42"/*@ "ã‚µãƒãƒ¼ãƒˆå¤–ã®ã‚ªãƒ¼ãƒ‡ã‚£ã‚ªãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã§ã™ã€‚" @*/ );
 		goto ERR ;
 	}
 	SoundConv->OutFormat.cbSize = 0 ;
@@ -5039,73 +5039,73 @@ extern int SetupSoundConvert_DSMP3( SOUNDCONV *SoundConv )
 	SoundConv->OutFormat.nAvgBytesPerSec	= SoundConv->OutFormat.nBlockAlign * smpfmt->nSamplesPerSec ;
 	SoundConv->OutFormat.wBitsPerSample		= ( WORD )( smpfmt->nBlockAlign * 8 / smpfmt->nChannels ) ;
 
-	// ƒTƒ“ƒvƒŠƒ“ƒO€”õ
+	// ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°æº–å‚™
 	hr = SampleGrabber->SetCallback( SoundCallback_DSMP3, SoundConv ) ;
 	if( hr != S_OK )
 	{
-		DXST_LOGFILE_ADDA( "\x83\x52\x81\x5b\x83\x8b\x83\x6f\x83\x62\x83\x4e\x8a\xd6\x90\x94\x82\xf0\x90\xdd\x92\xe8\x82\xc5\x82\xab\x82\xdc\x82\xb9\x82\xf1"/*@ "ƒR[ƒ‹ƒoƒbƒNŠÖ”‚ğİ’è‚Å‚«‚Ü‚¹‚ñ" @*/ );
+		DXST_LOGFILE_ADDA( "\x83\x52\x81\x5b\x83\x8b\x83\x6f\x83\x62\x83\x4e\x8a\xd6\x90\x94\x82\xf0\x90\xdd\x92\xe8\x82\xc5\x82\xab\x82\xdc\x82\xb9\x82\xf1"/*@ "ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã‚’è¨­å®šã§ãã¾ã›ã‚“" @*/ );
 		goto ERR ;;
 	}
 
-	// ‚Æ‚è‚ ‚¦‚¸Œ³ƒf[ƒ^‚Ì‚P‚O”{ƒTƒCƒY‚Ìƒƒ‚ƒŠ‚ğŠm•Û‚·‚é
+	// ã¨ã‚Šã‚ãˆãšå…ƒãƒ‡ãƒ¼ã‚¿ã®ï¼‘ï¼å€ã‚µã‚¤ã‚ºã®ãƒ¡ãƒ¢ãƒªã‚’ç¢ºä¿ã™ã‚‹
 	dsmp3->PCMBufferSize = TempSize * 10 ;
 	dsmp3->PCMBuffer = DXALLOC( dsmp3->PCMBufferSize ) ;
 	if( dsmp3->PCMBuffer == NULL )
 	{
-		DXST_LOGFILE_ADDA( "PCM\x83\x66\x81\x5b\x83\x5e\x82\xf0\x8a\x69\x94\x5b\x82\xb7\x82\xe9\x83\x81\x83\x82\x83\x8a\x97\xcc\x88\xe6\x82\xcc\x8a\x6d\x95\xdb\x82\xc9\x8e\xb8\x94\x73\x82\xb5\x82\xdc\x82\xb5\x82\xbd"/*@ "PCMƒf[ƒ^‚ğŠi”[‚·‚éƒƒ‚ƒŠ—Ìˆæ‚ÌŠm•Û‚É¸”s‚µ‚Ü‚µ‚½" @*/ );
+		DXST_LOGFILE_ADDA( "PCM\x83\x66\x81\x5b\x83\x5e\x82\xf0\x8a\x69\x94\x5b\x82\xb7\x82\xe9\x83\x81\x83\x82\x83\x8a\x97\xcc\x88\xe6\x82\xcc\x8a\x6d\x95\xdb\x82\xc9\x8e\xb8\x94\x73\x82\xb5\x82\xdc\x82\xb5\x82\xbd"/*@ "PCMãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹ãƒ¡ãƒ¢ãƒªé ˜åŸŸã®ç¢ºä¿ã«å¤±æ•—ã—ã¾ã—ãŸ" @*/ );
 		goto ERR ;
 	}
 
-	// ƒoƒbƒtƒ@’†‚Ì—LŒø‚Èƒf[ƒ^‚ÌƒTƒCƒY‚ğ‰Šú‰»
+	// ãƒãƒƒãƒ•ã‚¡ä¸­ã®æœ‰åŠ¹ãªãƒ‡ãƒ¼ã‚¿ã®ã‚µã‚¤ã‚ºã‚’åˆæœŸåŒ–
 	dsmp3->PCMValidDataSize = 0 ;
 
-	// ƒƒfƒBƒAƒtƒBƒ‹ƒ^[‚Ìæ“¾
+	// ãƒ¡ãƒ‡ã‚£ã‚¢ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ã®å–å¾—
 	hr = GraphBuilder->QueryInterface( IID_IMEDIAFILTER, ( void ** )&MediaFilter ) ;
 	if( hr != S_OK )
 	{
-		DXST_LOGFILE_ADDA( "IMediaFilter \x82\xcc\x8e\xe6\x93\xbe\x82\xc9\x8e\xb8\x94\x73\x82\xb5\x82\xdc\x82\xb5\x82\xbd"/*@ "IMediaFilter ‚Ìæ“¾‚É¸”s‚µ‚Ü‚µ‚½" @*/ );
+		DXST_LOGFILE_ADDA( "IMediaFilter \x82\xcc\x8e\xe6\x93\xbe\x82\xc9\x8e\xb8\x94\x73\x82\xb5\x82\xdc\x82\xb5\x82\xbd"/*@ "IMediaFilter ã®å–å¾—ã«å¤±æ•—ã—ã¾ã—ãŸ" @*/ );
 		goto ERR ;
 	}
 
-	// “¯Šúƒ\[ƒX‚ğ–³‚­‚·
+	// åŒæœŸã‚½ãƒ¼ã‚¹ã‚’ç„¡ãã™
 	MediaFilter->SetSyncSource( NULL ) ;
 
-	// ƒƒfƒBƒAƒRƒ“ƒgƒ[ƒ‹‚Ìæ“¾
+	// ãƒ¡ãƒ‡ã‚£ã‚¢ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã®å–å¾—
 	hr = GraphBuilder->QueryInterface( IID_IMEDIACONTROL, ( void ** )&MediaControl ) ;
 	if( hr != S_OK )
 	{
-		DXST_LOGFILE_ADDA( "IMediaControl \x82\xcc\x8e\xe6\x93\xbe\x82\xc9\x8e\xb8\x94\x73\x82\xb5\x82\xdc\x82\xb5\x82\xbd"/*@ "IMediaControl ‚Ìæ“¾‚É¸”s‚µ‚Ü‚µ‚½" @*/ );
+		DXST_LOGFILE_ADDA( "IMediaControl \x82\xcc\x8e\xe6\x93\xbe\x82\xc9\x8e\xb8\x94\x73\x82\xb5\x82\xdc\x82\xb5\x82\xbd"/*@ "IMediaControl ã®å–å¾—ã«å¤±æ•—ã—ã¾ã—ãŸ" @*/ );
 		goto ERR ;
 	}
 
-	// ƒƒfƒBƒAƒCƒxƒ“ƒg‚Ìæ“¾
+	// ãƒ¡ãƒ‡ã‚£ã‚¢ã‚¤ãƒ™ãƒ³ãƒˆã®å–å¾—
 	hr = GraphBuilder->QueryInterface( IID_IMEDIAEVENT, ( void ** )&MediaEvent ) ;
 	if( hr != S_OK )
 	{
-		DXST_LOGFILE_ADDA( "IMediaEvent \x82\xcc\x8e\xe6\x93\xbe\x82\xc9\x8e\xb8\x94\x73\x82\xb5\x82\xdc\x82\xb5\x82\xbd"/*@ "IMediaEvent ‚Ìæ“¾‚É¸”s‚µ‚Ü‚µ‚½" @*/ );
+		DXST_LOGFILE_ADDA( "IMediaEvent \x82\xcc\x8e\xe6\x93\xbe\x82\xc9\x8e\xb8\x94\x73\x82\xb5\x82\xdc\x82\xb5\x82\xbd"/*@ "IMediaEvent ã®å–å¾—ã«å¤±æ•—ã—ã¾ã—ãŸ" @*/ );
 		goto ERR ;
 	}
 
-	// Ä¶ŠJn
+	// å†ç”Ÿé–‹å§‹
 	MediaControl->Run() ;
 
-	// Ä¶‚ªI—¹‚·‚é‚Ì‚ğ‘Ò‚Â
+	// å†ç”ŸãŒçµ‚äº†ã™ã‚‹ã®ã‚’å¾…ã¤
 	for(;;)
 	{
 		long EvCode ;
 
 		if( NS_ProcessMessage() != 0 )
 		{
-			DXST_LOGFILE_ADDA( "MP3\x95\xcf\x8a\xb7\x82\xcc\x93\x72\x92\x86\x82\xc5\x83\x5c\x83\x74\x83\x67\x82\xaa\x8f\x49\x97\xb9\x82\xb5\x82\xdc\x82\xb5\x82\xbd"/*@ "MP3•ÏŠ·‚Ì“r’†‚Åƒ\ƒtƒg‚ªI—¹‚µ‚Ü‚µ‚½" @*/ );
+			DXST_LOGFILE_ADDA( "MP3\x95\xcf\x8a\xb7\x82\xcc\x93\x72\x92\x86\x82\xc5\x83\x5c\x83\x74\x83\x67\x82\xaa\x8f\x49\x97\xb9\x82\xb5\x82\xdc\x82\xb5\x82\xbd"/*@ "MP3å¤‰æ›ã®é€”ä¸­ã§ã‚½ãƒ•ãƒˆãŒçµ‚äº†ã—ã¾ã—ãŸ" @*/ );
 			goto ERR ;
 		}
 
-		// ƒƒ‚ƒŠ“]‘—‚ªŠ®—¹‚µ‚½‚çƒ‹[ƒv‚ğ”²‚¯‚é
+		// ãƒ¡ãƒ¢ãƒªè»¢é€ãŒå®Œäº†ã—ãŸã‚‰ãƒ«ãƒ¼ãƒ—ã‚’æŠœã‘ã‚‹
 		if( MediaEvent->WaitForCompletion( 100, &EvCode ) == S_OK )
 		{
 			if( EvCode == D_EC_ERRORABORT )
 			{
-				DXST_LOGFILE_ADDA( "MP3\x95\xcf\x8a\xb7\x82\xcc\x93\x72\x92\x86\x82\xc5\x83\x47\x83\x89\x81\x5b\x82\xaa\x94\xad\x90\xb6\x82\xb5\x82\xdc\x82\xb5\x82\xbd"/*@ "MP3•ÏŠ·‚Ì“r’†‚ÅƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½" @*/ );
+				DXST_LOGFILE_ADDA( "MP3\x95\xcf\x8a\xb7\x82\xcc\x93\x72\x92\x86\x82\xc5\x83\x47\x83\x89\x81\x5b\x82\xaa\x94\xad\x90\xb6\x82\xb5\x82\xdc\x82\xb5\x82\xbd"/*@ "MP3å¤‰æ›ã®é€”ä¸­ã§ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¾ã—ãŸ" @*/ );
 				goto ERR ;
 			}
 			if( EvCode == D_EC_COMPLETE )
@@ -5115,20 +5115,20 @@ extern int SetupSoundConvert_DSMP3( SOUNDCONV *SoundConv )
 		}
 	}
 
-	// ƒoƒbƒtƒ@‚ª‰ğ•ú‚³‚ê‚Ä‚¢‚½‚çƒGƒ‰[
+	// ãƒãƒƒãƒ•ã‚¡ãŒè§£æ”¾ã•ã‚Œã¦ã„ãŸã‚‰ã‚¨ãƒ©ãƒ¼
 	if( dsmp3->PCMBuffer == NULL )
 	{
-		DXST_LOGFILE_ADDA( "PCM\x83\x66\x81\x5b\x83\x5e\x82\xf0\x8a\x69\x94\x5b\x82\xb7\x82\xe9\x83\x81\x83\x82\x83\x8a\x97\xcc\x88\xe6\x82\xcc\x8d\xc4\x8a\x6d\x95\xdb\x82\xc9\x8e\xb8\x94\x73\x82\xb5\x82\xdc\x82\xb5\x82\xbd"/*@ "PCMƒf[ƒ^‚ğŠi”[‚·‚éƒƒ‚ƒŠ—Ìˆæ‚ÌÄŠm•Û‚É¸”s‚µ‚Ü‚µ‚½" @*/ );
+		DXST_LOGFILE_ADDA( "PCM\x83\x66\x81\x5b\x83\x5e\x82\xf0\x8a\x69\x94\x5b\x82\xb7\x82\xe9\x83\x81\x83\x82\x83\x8a\x97\xcc\x88\xe6\x82\xcc\x8d\xc4\x8a\x6d\x95\xdb\x82\xc9\x8e\xb8\x94\x73\x82\xb5\x82\xdc\x82\xb5\x82\xbd"/*@ "PCMãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹ãƒ¡ãƒ¢ãƒªé ˜åŸŸã®å†ç¢ºä¿ã«å¤±æ•—ã—ã¾ã—ãŸ" @*/ );
 		goto ERR ;
 	}
 
-	// DirectShow ‚ğg—p‚µ‚½‚l‚o‚RÄ¶‚Ìˆó‚ğ•Û‘¶
+	// DirectShow ã‚’ä½¿ç”¨ã—ãŸï¼­ï¼°ï¼“å†ç”Ÿã®å°ã‚’ä¿å­˜
 	SoundConv->MethodType = SOUND_METHODTYPE_DSMP3 ;
 
-	// •ÏŠ·Œã‚Ì‚o‚b‚lƒf[ƒ^‚ğˆê“I‚É•Û‘¶‚·‚éƒƒ‚ƒŠ—Ìˆæ‚ÌƒTƒCƒY‚Í‚P•b
+	// å¤‰æ›å¾Œã®ï¼°ï¼£ï¼­ãƒ‡ãƒ¼ã‚¿ã‚’ä¸€æ™‚çš„ã«ä¿å­˜ã™ã‚‹ãƒ¡ãƒ¢ãƒªé ˜åŸŸã®ã‚µã‚¤ã‚ºã¯ï¼‘ç§’
 	SoundConv->DestDataSize = ( int )SoundConv->OutFormat.nAvgBytesPerSec ;
 
-	// ŠeíƒCƒ“ƒ^[ƒtƒFƒCƒX‚Æƒƒ‚ƒŠ‚Ì‰ğ•ú
+	// å„ç¨®ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ã‚¤ã‚¹ã¨ãƒ¡ãƒ¢ãƒªã®è§£æ”¾
 	if( MediaEvent   ){ MediaEvent->Release() ; MediaEvent = NULL ; }
 	if( MediaFilter  ){ MediaFilter->Release() ; MediaFilter = NULL ; }
 	if( MediaControl ){ MediaControl->Release() ; MediaControl = NULL ; }
@@ -5139,7 +5139,7 @@ extern int SetupSoundConvert_DSMP3( SOUNDCONV *SoundConv )
 	if( MemReader ){ MemReader->DeleteInstance() ; MemReader = NULL ; }
 	if( TempBuffer ){ DXFREE( TempBuffer ) ; TempBuffer = NULL ; }
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 
 ERR :
@@ -5154,7 +5154,7 @@ ERR :
 	if( TempBuffer ){ DXFREE( TempBuffer ) ; TempBuffer = NULL ; }
 	if( dsmp3->PCMBuffer ){ DXFREE( dsmp3->PCMBuffer ) ; dsmp3->PCMBuffer = NULL ; }
 
-	// ƒGƒ‰[I—¹
+	// ã‚¨ãƒ©ãƒ¼çµ‚äº†
 	return -1 ;
 }
 

@@ -1,6 +1,6 @@
 // -------------------------------------------------------------------------------
 // 
-// 		‚c‚wƒ‰ƒCƒuƒ‰ƒŠ		WindowsOS—p“ü—Íî•ñƒvƒƒOƒ‰ƒ€ƒwƒbƒ_ƒtƒ@ƒCƒ‹
+// 		ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒª		WindowsOSç”¨å…¥åŠ›æƒ…å ±ãƒ—ãƒ­ã‚°ãƒ©ãƒ ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«
 // 
 // 				Ver 3.25a
 // 
@@ -9,7 +9,7 @@
 #ifndef DX_INPUTWIN_H
 #define DX_INPUTWIN_H
 
-// ƒCƒ“ƒNƒ‹[ƒh ------------------------------------------------------------------
+// ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ ------------------------------------------------------------------
 #include "../DxCompileConfig.h"
 #include "../DxLib.h"
 #include "DxDirectX.h"
@@ -21,74 +21,74 @@ namespace DxLib
 
 #endif // DX_NON_NAMESPACE
 
-// ƒ}ƒNƒ’è‹` --------------------------------------------------------------------
+// ãƒã‚¯ãƒ­å®šç¾© --------------------------------------------------------------------
 
-// \‘¢‘Ì’è‹` --------------------------------------------------------------------
+// æ§‹é€ ä½“å®šç¾© --------------------------------------------------------------------
 
-// U“®‚ÌŠÂ‹«ˆË‘¶î•ñ
+// æŒ¯å‹•ã®ç’°å¢ƒä¾å­˜æƒ…å ±
 struct INPUTVIBRATIONDATA_PF
 {
-	D_IDirectInputEffect	*DIEffect ;							// ƒpƒbƒhƒfƒoƒCƒXƒGƒtƒFƒNƒgƒIƒuƒWƒFƒNƒg
+	D_IDirectInputEffect	*DIEffect ;							// ãƒ‘ãƒƒãƒ‰ãƒ‡ãƒã‚¤ã‚¹ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
 } ;
 
-// ƒQ[ƒ€ƒpƒbƒh‚ÌŠÂ‹«ˆË‘¶î•ñ
+// ã‚²ãƒ¼ãƒ ãƒ‘ãƒƒãƒ‰ã®ç’°å¢ƒä¾å­˜æƒ…å ±
 struct INPUTPADDATA_PF
 {
-	int						XInputDeviceNo ;					// XInput‚ÅƒAƒNƒZƒX‚·‚éƒfƒoƒCƒX‚Ìê‡‚Í‚OˆÈã‚Ì’l‚ª“ü‚é( DirectInput ‚Åˆµ‚¤ê‡‚Í -1 )
+	int						XInputDeviceNo ;					// XInputã§ã‚¢ã‚¯ã‚»ã‚¹ã™ã‚‹ãƒ‡ãƒã‚¤ã‚¹ã®å ´åˆã¯ï¼ä»¥ä¸Šã®å€¤ãŒå…¥ã‚‹( DirectInput ã§æ‰±ã†å ´åˆã¯ -1 )
 
-	int						EnableSetVibState ;					// SetVibState ‚Ì’l‚ª—LŒø‚©‚Ç‚¤‚©
-	D_XINPUT_VIBRATION		SetVibState ;						// ƒfƒoƒCƒX‚Éİ’è‚µ‚Ä‚¢‚éƒpƒ‰ƒ[ƒ^
+	int						EnableSetVibState ;					// SetVibState ã®å€¤ãŒæœ‰åŠ¹ã‹ã©ã†ã‹
+	D_XINPUT_VIBRATION		SetVibState ;						// ãƒ‡ãƒã‚¤ã‚¹ã«è¨­å®šã—ã¦ã„ã‚‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 
-	D_IDirectInputDevice7	*Device ;							// ƒpƒbƒhƒfƒoƒCƒXƒIƒuƒWƒFƒNƒg
-	HANDLE					Event ;								// ƒpƒbƒh‚ÌƒCƒxƒ“ƒgƒnƒ“ƒhƒ‹
-	int						RightStickFlag ;					// ‰EƒXƒeƒBƒbƒN‚ª‚ ‚é‚©‚Ç‚¤‚©
-	DWORD					MultimediaAPICaps ;					// JOYCAPSW \‘¢‘Ì‚Ì wCaps					
+	D_IDirectInputDevice7	*Device ;							// ãƒ‘ãƒƒãƒ‰ãƒ‡ãƒã‚¤ã‚¹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+	HANDLE					Event ;								// ãƒ‘ãƒƒãƒ‰ã®ã‚¤ãƒ™ãƒ³ãƒˆãƒãƒ³ãƒ‰ãƒ«
+	int						RightStickFlag ;					// å³ã‚¹ãƒ†ã‚£ãƒƒã‚¯ãŒã‚ã‚‹ã‹ã©ã†ã‹
+	DWORD					MultimediaAPICaps ;					// JOYCAPSW æ§‹é€ ä½“ã® wCaps					
 
-	wchar_t					InstanceName[ MAX_PATH ];			// ƒfƒoƒCƒX‚Ì“o˜^–¼
-	wchar_t					ProductName[ MAX_PATH ];			// ƒfƒoƒCƒX‚Ì»•i“o˜^–¼
+	wchar_t					InstanceName[ MAX_PATH ];			// ãƒ‡ãƒã‚¤ã‚¹ã®ç™»éŒ²å
+	wchar_t					ProductName[ MAX_PATH ];			// ãƒ‡ãƒã‚¤ã‚¹ã®è£½å“ç™»éŒ²å
 	GUID					InstanceGUID ;						// Instance GUID
 	GUID					ProductGUID ;						// Product GUID
 } ;
 
-// “ü—ÍƒVƒXƒeƒ€—pŠÂ‹«ˆË‘¶ƒf[ƒ^\‘¢‘ÌŒ^
+// å…¥åŠ›ã‚·ã‚¹ãƒ†ãƒ ç”¨ç’°å¢ƒä¾å­˜ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“å‹
 struct INPUTSYSTEMDATA_PF
 {
-	HMODULE					XInputDLL ;							// ‚w‚h‚‚‚•‚”‚Ì‚c‚k‚k
+	HMODULE					XInputDLL ;							// ï¼¸ï¼©ï½ï½ï½•ï½”ã®ï¼¤ï¼¬ï¼¬
 
 	DWORD					( WINAPI * XInputGetStateFunc )( DWORD dwUserIndex, D_XINPUT_STATE* pState ) ;
 	DWORD					( WINAPI * XInputSetStateFunc )( DWORD dwUserIndex, D_XINPUT_VIBRATION* pVibration ) ;
 
-	int						NoUseXInputFlag ;					// ‚w‚h‚‚‚•‚”‚ğg—p‚µ‚È‚¢‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO
-	int						NoUseDirectInputFlag ;				// ‚c‚‰‚’‚…‚ƒ‚”‚h‚‚‚•‚”‚ğg—p‚µ‚È‚¢‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO
-	int						UseDirectInputFlag ;				// ‚c‚‰‚’‚…‚ƒ‚”‚h‚‚‚•‚”‚ğg—p‚·‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO( NoUseDirectInputFlag ‚ğ•â•‚·‚é‚à‚Ì )
-	int						UseDirectInput8Flag ;				// ‚c‚‰‚’‚…‚ƒ‚”‚h‚‚‚•‚”‚W‚ğg—p‚·‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO
-	int						UseXboxControllerDirectInputFlag ;	// Xbox360ƒRƒ“ƒgƒ[ƒ‰‚â Xbox OneƒRƒ“ƒgƒ[ƒ‰‚ğ DirectInputƒRƒ“ƒgƒ[ƒ‰‚Æ‚µ‚Ä‚àŒŸo‚·‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO( TRUE:DirectInputƒRƒ“ƒgƒ[ƒ‰‚Æ‚µ‚Ä‚àŒŸo‚·‚é  FALSE:DirectInputƒRƒ“ƒgƒ[ƒ‰‚Æ‚µ‚Ä‚ÍŒŸo‚µ‚È‚¢(ƒfƒtƒHƒ‹ƒg) )
-	int						DirectInputMouseMode ;				// ƒ}ƒEƒX‚Ì“ü—Í‚É DirectInput ‚ğg—p‚·‚éê‡‚Ì“®ìƒ‚[ƒh( 0:ƒEƒBƒ“ƒhƒE‚ªƒAƒNƒeƒBƒu‚Èê‡‚Ì‚İ DirectInput ‚ğg—p‚·‚é  1:ƒEƒBƒ“ƒhƒE‚ÌƒAƒNƒeƒBƒuó‘Ô‚ÉŠÖŒW‚È‚­ DirectInput ‚ğg—p‚·‚é )
-	D_IDirectInput7			*DirectInputObject ;				// ‚c‚‰‚’‚…‚ƒ‚”‚h‚‚‚•‚”ƒIƒuƒWƒFƒNƒg
-	int						XInputPadNum ;						// ‚w‚h‚‚‚•‚”‘Î‰‚ÌƒQ[ƒ€ƒpƒbƒh‚Ì”
+	int						NoUseXInputFlag ;					// ï¼¸ï¼©ï½ï½ï½•ï½”ã‚’ä½¿ç”¨ã—ãªã„ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°
+	int						NoUseDirectInputFlag ;				// ï¼¤ï½‰ï½’ï½…ï½ƒï½”ï¼©ï½ï½ï½•ï½”ã‚’ä½¿ç”¨ã—ãªã„ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°
+	int						UseDirectInputFlag ;				// ï¼¤ï½‰ï½’ï½…ï½ƒï½”ï¼©ï½ï½ï½•ï½”ã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°( NoUseDirectInputFlag ã‚’è£œåŠ©ã™ã‚‹ã‚‚ã® )
+	int						UseDirectInput8Flag ;				// ï¼¤ï½‰ï½’ï½…ï½ƒï½”ï¼©ï½ï½ï½•ï½”ï¼˜ã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°
+	int						UseXboxControllerDirectInputFlag ;	// Xbox360ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ã‚„ Xbox Oneã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ã‚’ DirectInputã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ã¨ã—ã¦ã‚‚æ¤œå‡ºã™ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°( TRUE:DirectInputã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ã¨ã—ã¦ã‚‚æ¤œå‡ºã™ã‚‹  FALSE:DirectInputã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ã¨ã—ã¦ã¯æ¤œå‡ºã—ãªã„(ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ) )
+	int						DirectInputMouseMode ;				// ãƒã‚¦ã‚¹ã®å…¥åŠ›ã« DirectInput ã‚’ä½¿ç”¨ã™ã‚‹å ´åˆã®å‹•ä½œãƒ¢ãƒ¼ãƒ‰( 0:ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãŒã‚¢ã‚¯ãƒ†ã‚£ãƒ–ãªå ´åˆã®ã¿ DirectInput ã‚’ä½¿ç”¨ã™ã‚‹  1:ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ã‚¢ã‚¯ãƒ†ã‚£ãƒ–çŠ¶æ…‹ã«é–¢ä¿‚ãªã DirectInput ã‚’ä½¿ç”¨ã™ã‚‹ )
+	D_IDirectInput7			*DirectInputObject ;				// ï¼¤ï½‰ï½’ï½…ï½ƒï½”ï¼©ï½ï½ï½•ï½”ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+	int						XInputPadNum ;						// ï¼¸ï¼©ï½ï½ï½•ï½”å¯¾å¿œã®ã‚²ãƒ¼ãƒ ãƒ‘ãƒƒãƒ‰ã®æ•°
 
-	D_IDirectInputDevice7	*MouseDeviceObject ;				// ƒ}ƒEƒXƒfƒoƒCƒXƒIƒuƒWƒFƒNƒg
-	D_IDirectInputDevice7	*KeyboardDeviceObject ;				// ƒL[ƒ{[ƒhƒfƒoƒCƒXƒIƒuƒWƒFƒNƒg
-	HANDLE					KeyEvent ;							// ƒL[ƒ{[ƒh‚ÌƒCƒxƒ“ƒgƒnƒ“ƒhƒ‹
+	D_IDirectInputDevice7	*MouseDeviceObject ;				// ãƒã‚¦ã‚¹ãƒ‡ãƒã‚¤ã‚¹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+	D_IDirectInputDevice7	*KeyboardDeviceObject ;				// ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ãƒ‡ãƒã‚¤ã‚¹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+	HANDLE					KeyEvent ;							// ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ã®ã‚¤ãƒ™ãƒ³ãƒˆãƒãƒ³ãƒ‰ãƒ«
 
-	int						KeyExclusiveCooperativeLevelFlag ;	// ƒL[ƒ{[ƒh‚Ì‹¦’²ƒŒƒxƒ‹‚ª”r‘¼ƒŒƒxƒ‹‚É‚È‚Á‚Ä‚¢‚é‚©‚Ç‚¤‚©ƒtƒ‰ƒO
-	int						KeyboardNotUseDirectInputFlag ;		// ƒL[ƒ{[ƒhƒfƒoƒCƒX‚ÌƒAƒNƒZƒX‚É DirectInput ‚ğg—p‚µ‚È‚¢‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO
+	int						KeyExclusiveCooperativeLevelFlag ;	// ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ã®å”èª¿ãƒ¬ãƒ™ãƒ«ãŒæ’ä»–ãƒ¬ãƒ™ãƒ«ã«ãªã£ã¦ã„ã‚‹ã‹ã©ã†ã‹ãƒ•ãƒ©ã‚°
+	int						KeyboardNotUseDirectInputFlag ;		// ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ãƒ‡ãƒã‚¤ã‚¹ã®ã‚¢ã‚¯ã‚»ã‚¹ã« DirectInput ã‚’ä½¿ç”¨ã—ãªã„ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°
 
-	int						PadInstanceGUIDNum ;				// ƒWƒ‡ƒCƒpƒbƒh‚ÌƒCƒ“ƒXƒ^ƒ“ƒXGUID‚Ì”
-	GUID					PadInstanceGUID[ MAX_JOYPAD_NUM ] ;	// ƒWƒ‡ƒCƒpƒbƒh‚ÌƒCƒ“ƒXƒ^ƒ“ƒXGUID
+	int						PadInstanceGUIDNum ;				// ã‚¸ãƒ§ã‚¤ãƒ‘ãƒƒãƒ‰ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹GUIDã®æ•°
+	GUID					PadInstanceGUID[ MAX_JOYPAD_NUM ] ;	// ã‚¸ãƒ§ã‚¤ãƒ‘ãƒƒãƒ‰ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹GUID
 } ;
 
-// “à•”‘åˆæ•Ï”éŒ¾ --------------------------------------------------------------
+// å†…éƒ¨å¤§åŸŸå¤‰æ•°å®£è¨€ --------------------------------------------------------------
 
-// ŠÖ”ƒvƒƒgƒ^ƒCƒvéŒ¾-----------------------------------------------------------
+// é–¢æ•°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€-----------------------------------------------------------
 
-extern	int	KeyboradBufferProcess( void ) ;											// ƒL[ƒ{[ƒh‚Ìƒoƒbƒtƒ@‚©‚çƒf[ƒ^‚ğæ“¾‚·‚éˆ—
+extern	int	KeyboradBufferProcess( void ) ;											// ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ã®ãƒãƒƒãƒ•ã‚¡ã‹ã‚‰ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—ã™ã‚‹å‡¦ç†
 
-extern	int RefreshInputDeviceAcquireState( void ) ;								// ‚c‚‰‚’‚…‚ƒ‚”‚h‚‚‚•‚”ƒfƒoƒCƒX‚Ìæ“¾ó‘Ô‚ğXV‚·‚é
+extern	int RefreshInputDeviceAcquireState( void ) ;								// ï¼¤ï½‰ï½’ï½…ï½ƒï½”ï¼©ï½ï½ï½•ï½”ãƒ‡ãƒã‚¤ã‚¹ã®å–å¾—çŠ¶æ…‹ã‚’æ›´æ–°ã™ã‚‹
 
-extern	int CheckUseDirectInputMouse( int IsButton = FALSE ) ;						// ƒ}ƒEƒX‚Ìî•ñæ“¾‚É‚c‚‰‚’‚…‚ƒ‚”‚h‚‚‚•‚”‚ğg—p‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©‚ğæ“¾‚·‚é( –ß‚è’l  TRUE:DirectInput‚ğg—p‚µ‚Ä‚¢‚é  FALSE:DirectInput‚ğg—p‚µ‚Ä‚¢‚È‚¢ )
-extern	int GetDirectInputMouseMoveZ( int CounterReset = TRUE ) ;					// ‚c‚‰‚’‚…‚ƒ‚”‚h‚‚‚•‚”‚ğg—p‚µ‚½ƒ}ƒEƒXƒzƒC[ƒ‹‚ÌˆÚ“®’l‚ğæ“¾‚·‚é
-extern	float GetDirectInputMouseMoveZF( int CounterReset = TRUE ) ;				// ‚c‚‰‚’‚…‚ƒ‚”‚h‚‚‚•‚”‚ğg—p‚µ‚½ƒ}ƒEƒXƒzƒC[ƒ‹‚ÌˆÚ“®’l‚ğæ“¾‚·‚é( float”Å )
+extern	int CheckUseDirectInputMouse( int IsButton = FALSE ) ;						// ãƒã‚¦ã‚¹ã®æƒ…å ±å–å¾—ã«ï¼¤ï½‰ï½’ï½…ï½ƒï½”ï¼©ï½ï½ï½•ï½”ã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹ã‹ã©ã†ã‹ã‚’å–å¾—ã™ã‚‹( æˆ»ã‚Šå€¤  TRUE:DirectInputã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹  FALSE:DirectInputã‚’ä½¿ç”¨ã—ã¦ã„ãªã„ )
+extern	int GetDirectInputMouseMoveZ( int CounterReset = TRUE ) ;					// ï¼¤ï½‰ï½’ï½…ï½ƒï½”ï¼©ï½ï½ï½•ï½”ã‚’ä½¿ç”¨ã—ãŸãƒã‚¦ã‚¹ãƒ›ã‚¤ãƒ¼ãƒ«ã®ç§»å‹•å€¤ã‚’å–å¾—ã™ã‚‹
+extern	float GetDirectInputMouseMoveZF( int CounterReset = TRUE ) ;				// ï¼¤ï½‰ï½’ï½…ï½ƒï½”ï¼©ï½ï½ï½•ï½”ã‚’ä½¿ç”¨ã—ãŸãƒã‚¦ã‚¹ãƒ›ã‚¤ãƒ¼ãƒ«ã®ç§»å‹•å€¤ã‚’å–å¾—ã™ã‚‹( floatç‰ˆ )
 
 #ifndef DX_NON_NAMESPACE
 

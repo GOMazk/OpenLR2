@@ -1,12 +1,12 @@
 // -------------------------------------------------------------------------------
 // 
-// 		‚c‚wƒ‰ƒCƒuƒ‰ƒŠ		•W€‚bƒ‰ƒCƒuƒ‰ƒŠg—pƒR[ƒh@OggŠÖŒW
+// 		ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒª		æ¨™æº–ï¼£ãƒ©ã‚¤ãƒ–ãƒ©ãƒªä½¿ç”¨ã‚³ãƒ¼ãƒ‰ã€€Oggé–¢ä¿‚
 // 
 // 				Ver 3.25a
 // 
 // -------------------------------------------------------------------------------
 
-// ‚c‚wƒ‰ƒCƒuƒ‰ƒŠì¬—p’è‹`
+// ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªä½œæˆæ™‚ç”¨å®šç¾©
 #define DX_MAKE
 
 #include "DxCompileConfig.h"
@@ -21,7 +21,7 @@ using namespace DxLib ;
 
 #if !defined( DX_NON_OPUS ) || !defined( DX_NON_OGGVORBIS ) || !defined( DX_NON_OGGTHEORA )
 
-// ƒCƒ“ƒNƒ‹[ƒh ------------------------------------------------------------------
+// ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ ------------------------------------------------------------------
 #include "DxUseCLib.h"
 #include "DxUseCLibOgg.h"
 #include "DxLib.h"
@@ -73,22 +73,22 @@ int ___Singou1, ___Singou2 ;
 volatile ULONGLONG Ogg_ReadBytes_ ;
 #endif
 
-// ’è”’è‹` ----------------------------------------------------------------------
+// å®šæ•°å®šç¾© ----------------------------------------------------------------------
 
-// \‘¢‘ÌŒ^éŒ¾ ------------------------------------------------------------------
+// æ§‹é€ ä½“å‹å®£è¨€ ------------------------------------------------------------------
 
 //namespace DxLib
 //{
 
 #ifndef DX_NON_OGGVORBIS
 
-// ‚n‚f‚fƒf[ƒ^•ÏŠ·—p\‘¢‘Ì
+// ï¼¯ï¼§ï¼§ãƒ‡ãƒ¼ã‚¿å¤‰æ›ç”¨æ§‹é€ ä½“
 typedef struct tagSOUNDCONV_OGG
 {
-	int							FileInitializeFlag ;	// File ‚ğ‰Šú‰»‚µ‚Ä‚¢‚é‚©Aƒtƒ‰ƒO
-	OggVorbis_File				File ;					// ‚n‚f‚fƒtƒ@ƒCƒ‹‚ğˆµ‚¤‚½‚ß‚ÌOggVorbisFile\‘¢‘Ì
-	int							Word ;					// ƒrƒbƒg” / 8
-	LONGLONG					LoopStart, LoopEnd ;	// ƒ‹[ƒvî•ñ
+	int							FileInitializeFlag ;	// File ã‚’åˆæœŸåŒ–ã—ã¦ã„ã‚‹ã‹ã€ãƒ•ãƒ©ã‚°
+	OggVorbis_File				File ;					// ï¼¯ï¼§ï¼§ãƒ•ã‚¡ã‚¤ãƒ«ã‚’æ‰±ã†ãŸã‚ã®OggVorbisFileæ§‹é€ ä½“
+	int							Word ;					// ãƒ“ãƒƒãƒˆæ•° / 8
+	LONGLONG					LoopStart, LoopEnd ;	// ãƒ«ãƒ¼ãƒ—æƒ…å ±
 } SOUNDCONV_OGG ;
 
 #endif
@@ -96,12 +96,12 @@ typedef struct tagSOUNDCONV_OGG
 
 #ifndef DX_NON_OPUS
 
-// Opusƒf[ƒ^•ÏŠ·—p\‘¢‘Ì
+// Opusãƒ‡ãƒ¼ã‚¿å¤‰æ›ç”¨æ§‹é€ ä½“
 typedef struct tagSOUNDCONV_OPUS
 {
-	int							FileInitializeFlag ;	// File ‚ğ‰Šú‰»‚µ‚Ä‚¢‚é‚©Aƒtƒ‰ƒO
-	OggOpusFile					*File ;					// Opusƒtƒ@ƒCƒ‹‚ğˆµ‚¤‚½‚ß‚ÌOggOpusFile\‘¢‘Ì
-	size_t						BlockAlign ;			// ‚PƒTƒ“ƒvƒ‹•ª‚ÌƒoƒCƒg”( ƒ`ƒƒƒ“ƒlƒ‹” * 2byte )
+	int							FileInitializeFlag ;	// File ã‚’åˆæœŸåŒ–ã—ã¦ã„ã‚‹ã‹ã€ãƒ•ãƒ©ã‚°
+	OggOpusFile					*File ;					// Opusãƒ•ã‚¡ã‚¤ãƒ«ã‚’æ‰±ã†ãŸã‚ã®OggOpusFileæ§‹é€ ä½“
+	size_t						BlockAlign ;			// ï¼‘ã‚µãƒ³ãƒ—ãƒ«åˆ†ã®ãƒã‚¤ãƒˆæ•°( ãƒãƒ£ãƒ³ãƒãƒ«æ•° * 2byte )
 } SOUNDCONV_OPUS ;
 
 #endif
@@ -109,32 +109,32 @@ typedef struct tagSOUNDCONV_OPUS
 
 //}
 
-// ŠÖ”ƒvƒƒgƒ^ƒCƒvéŒ¾ ----------------------------------------------------------
+// é–¢æ•°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€ ----------------------------------------------------------
 
-// extern int      SetupSoundConvert_OGG( SOUNDCONV *SoundConv ) ;										// ‚n‚f‚fƒtƒ@ƒCƒ‹‚ÌƒZƒbƒgƒAƒbƒvˆ—‚ğs‚¤( [–ß] -1:ƒGƒ‰[ )
-// extern int      TerminateSoundConvert_OGG( SOUNDCONV *SoundConv ) ;									// ‚n‚f‚fƒtƒ@ƒCƒ‹‚ÌŒãn––ˆ—‚ğs‚¤
-// extern int      ConvertProcessSoundConvert_OGG( SOUNDCONV *SoundConv ) ;								// •ÏŠ·Œã‚Ìƒoƒbƒtƒ@‚Éƒf[ƒ^‚ğ•â[‚·‚é
-// extern int      SetSampleTimeSoundConvert_OGG( SOUNDCONV *SoundConv, LONGLONG SampleTime ) ;			// •ÏŠ·ˆ—‚ÌˆÊ’u‚ğ•ÏX‚·‚é( ƒTƒ“ƒvƒ‹’PˆÊ )
-// extern LONGLONG GetSoundConvertDestSize_Fast_OGG( SOUNDCONV *SoundConv ) ;							// •ÏŠ·Œã‚Ì‘å–}‚Ìƒf[ƒ^ƒTƒCƒY‚ğ“¾‚é
+// extern int      SetupSoundConvert_OGG( SOUNDCONV *SoundConv ) ;										// ï¼¯ï¼§ï¼§ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—å‡¦ç†ã‚’è¡Œã†( [æˆ»] -1:ã‚¨ãƒ©ãƒ¼ )
+// extern int      TerminateSoundConvert_OGG( SOUNDCONV *SoundConv ) ;									// ï¼¯ï¼§ï¼§ãƒ•ã‚¡ã‚¤ãƒ«ã®å¾Œå§‹æœ«å‡¦ç†ã‚’è¡Œã†
+// extern int      ConvertProcessSoundConvert_OGG( SOUNDCONV *SoundConv ) ;								// å¤‰æ›å¾Œã®ãƒãƒƒãƒ•ã‚¡ã«ãƒ‡ãƒ¼ã‚¿ã‚’è£œå……ã™ã‚‹
+// extern int      SetSampleTimeSoundConvert_OGG( SOUNDCONV *SoundConv, LONGLONG SampleTime ) ;			// å¤‰æ›å‡¦ç†ã®ä½ç½®ã‚’å¤‰æ›´ã™ã‚‹( ã‚µãƒ³ãƒ—ãƒ«å˜ä½ )
+// extern LONGLONG GetSoundConvertDestSize_Fast_OGG( SOUNDCONV *SoundConv ) ;							// å¤‰æ›å¾Œã®å¤§å‡¡ã®ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºã‚’å¾—ã‚‹
 
-// extern int      SetupSoundConvert_OPUS( SOUNDCONV *SoundConv ) ;										// Opusƒtƒ@ƒCƒ‹‚ÌƒZƒbƒgƒAƒbƒvˆ—‚ğs‚¤( [–ß] -1:ƒGƒ‰[ )
-// extern int      TerminateSoundConvert_OPUS( SOUNDCONV *SoundConv ) ;									// Opusƒtƒ@ƒCƒ‹‚ÌŒãn––ˆ—‚ğs‚¤
-// extern int      ConvertProcessSoundConvert_OPUS( SOUNDCONV *SoundConv ) ;							// •ÏŠ·Œã‚Ìƒoƒbƒtƒ@‚Éƒf[ƒ^‚ğ•â[‚·‚é
-// extern int      SetSampleTimeSoundConvert_OPUS( SOUNDCONV *SoundConv, LONGLONG SampleTime ) ;		// •ÏŠ·ˆ—‚ÌˆÊ’u‚ğ•ÏX‚·‚é( ƒTƒ“ƒvƒ‹’PˆÊ )
-// extern LONGLONG GetSoundConvertDestSize_Fast_OPUS( SOUNDCONV *SoundConv ) ;							// •ÏŠ·Œã‚Ì‘å–}‚Ìƒf[ƒ^ƒTƒCƒY‚ğ“¾‚é
+// extern int      SetupSoundConvert_OPUS( SOUNDCONV *SoundConv ) ;										// Opusãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—å‡¦ç†ã‚’è¡Œã†( [æˆ»] -1:ã‚¨ãƒ©ãƒ¼ )
+// extern int      TerminateSoundConvert_OPUS( SOUNDCONV *SoundConv ) ;									// Opusãƒ•ã‚¡ã‚¤ãƒ«ã®å¾Œå§‹æœ«å‡¦ç†ã‚’è¡Œã†
+// extern int      ConvertProcessSoundConvert_OPUS( SOUNDCONV *SoundConv ) ;							// å¤‰æ›å¾Œã®ãƒãƒƒãƒ•ã‚¡ã«ãƒ‡ãƒ¼ã‚¿ã‚’è£œå……ã™ã‚‹
+// extern int      SetSampleTimeSoundConvert_OPUS( SOUNDCONV *SoundConv, LONGLONG SampleTime ) ;		// å¤‰æ›å‡¦ç†ã®ä½ç½®ã‚’å¤‰æ›´ã™ã‚‹( ã‚µãƒ³ãƒ—ãƒ«å˜ä½ )
+// extern LONGLONG GetSoundConvertDestSize_Fast_OPUS( SOUNDCONV *SoundConv ) ;							// å¤‰æ›å¾Œã®å¤§å‡¡ã®ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºã‚’å¾—ã‚‹
 
 //namespace DxLib
 //{
 
 #ifndef DX_NON_OGGTHEORA
 
-static int			TheoraDecode_ReadHeader(				DECODE_THEORA *DT ) ;		// ƒwƒbƒ_‚Ì“Ç‚İ‚İ
+static int			TheoraDecode_ReadHeader(				DECODE_THEORA *DT ) ;		// ãƒ˜ãƒƒãƒ€ã®èª­ã¿è¾¼ã¿
 static void			TheoraDecode_InitializeTheoraDecoder(	DECODE_THEORA *DT ) ;
 static void			TheoraDecode_InitializeVorbisDecoder(	DECODE_THEORA *DT ) ;
 static int			TheoraDecode_ReadData(					DECODE_THEORA *DT, int Bytes = 4096 ) ;
 static bool			TheoraDecode_PlayFile(					DECODE_THEORA *DT, const char *fileName ) ;
 static void			TheoraDecode_Rendering(					DECODE_THEORA *DT ) ;
-static int			_TheoraDecode_IncToFrame( DWORD_PTR Handle, int AddNum ) ;					// –ß‚è’l  1:ƒL[ƒtƒŒ[ƒ€  0:ƒL[ƒtƒŒ[ƒ€‚¶‚á‚È‚¢  -1:ƒXƒgƒŠ[ƒ€‚ÌI’[
+static int			_TheoraDecode_IncToFrame( DWORD_PTR Handle, int AddNum ) ;					// æˆ»ã‚Šå€¤  1:ã‚­ãƒ¼ãƒ•ãƒ¬ãƒ¼ãƒ   0:ã‚­ãƒ¼ãƒ•ãƒ¬ãƒ¼ãƒ ã˜ã‚ƒãªã„  -1:ã‚¹ãƒˆãƒªãƒ¼ãƒ ã®çµ‚ç«¯
 static void			TheoraDecode_ReleaseSurface(			DECODE_THEORA *DT, int ASyncThread ) ;
 
 #endif
@@ -215,7 +215,7 @@ static void				th_analysis_output_always( char *base,int i,float *v,int n,int ba
 
 #endif
 
-// ƒvƒƒOƒ‰ƒ€ --------------------------------------------------------------------
+// ãƒ—ãƒ­ã‚°ãƒ©ãƒ  --------------------------------------------------------------------
 
 //namespace DxLib
 //{
@@ -223,7 +223,7 @@ static void				th_analysis_output_always( char *base,int i,float *v,int n,int ba
 #if defined( DX_NON_OGGVORBIS ) && defined( DX_NON_OGGTHEORA )
 #else
 
-// ‚n‚‡‚‡—p“Ç‚İ‚İŠÖ”
+// ï¼¯ï½‡ï½‡ç”¨èª­ã¿è¾¼ã¿é–¢æ•°
 static size_t Ogg_StreamRead( void *Buffer, size_t Size, size_t Count, void *DataP )
 {
 	STREAMDATA *StreamP = ( STREAMDATA * )DataP ;
@@ -236,7 +236,7 @@ static size_t Ogg_StreamRead( void *Buffer, size_t Size, size_t Count, void *Dat
 	return StreamP->ReadShred.Read( Buffer, Size, Count, StreamP->DataPoint ) ;
 }
 
-// ‚n‚‡‚‡—p‚U‚Sƒrƒbƒg”ÅƒV[ƒNŠÖ”
+// ï¼¯ï½‡ï½‡ç”¨ï¼–ï¼”ãƒ“ãƒƒãƒˆç‰ˆã‚·ãƒ¼ã‚¯é–¢æ•°
 static int Ogg_StreamSeek64_wrap( void *DataP, ogg_int64_t Offset, int SeekMode )
 {
 	STREAMDATA *StreamP = ( STREAMDATA * )DataP ;
@@ -244,14 +244,14 @@ static int Ogg_StreamSeek64_wrap( void *DataP, ogg_int64_t Offset, int SeekMode 
 	return StreamP->ReadShred.Seek( StreamP->DataPoint, Offset, SeekMode );
 }
 
-// ‚n‚‡‚‡—pƒNƒ[ƒYŠÖ”
+// ï¼¯ï½‡ï½‡ç”¨ã‚¯ãƒ­ãƒ¼ã‚ºé–¢æ•°
 static int Ogg_StreamClose( void * /*StreamP*/ )
 {
-	// •’Ê‚ÉƒNƒ[ƒY‚ª¬Œ÷‚µ‚½‚Æ‚µ‚Ä•Ô‚·
+	// æ™®é€šã«ã‚¯ãƒ­ãƒ¼ã‚ºãŒæˆåŠŸã—ãŸã¨ã—ã¦è¿”ã™
 	return 0 ;
 }
 
-// ‚n‚‡‚‡—p‚Ìƒf[ƒ^ˆÊ’uæ“¾ŠÖ”
+// ï¼¯ï½‡ï½‡ç”¨ã®ãƒ‡ãƒ¼ã‚¿ä½ç½®å–å¾—é–¢æ•°
 static long Ogg_StreamTell( void *DataP )
 {
 	STREAMDATA *StreamP = ( STREAMDATA * )DataP ;
@@ -2798,11 +2798,11 @@ void th_analysis_output_always(char *base,int i,float *v,int n,int bark,int dB,o
 
 
 
-// Ogg Vorbis ŠÖŒW‚ÌƒvƒƒOƒ‰ƒ€
+// Ogg Vorbis é–¢ä¿‚ã®ãƒ—ãƒ­ã‚°ãƒ©ãƒ 
 
 #ifndef DX_NON_OGGVORBIS
 
-// •ÏŠ·Œã‚Ìƒf[ƒ^ƒTƒCƒY‚ğ“¾‚é
+// å¤‰æ›å¾Œã®ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºã‚’å¾—ã‚‹
 extern LONGLONG GetSoundConvertDestSize_OGG( SOUNDCONV *SoundConv )
 {
 //	SOUNDCONV_OGG *oggdata = &SoundConv->OggTypeData ;
@@ -2820,7 +2820,7 @@ extern LONGLONG GetSoundConvertDestSize_OGG( SOUNDCONV *SoundConv )
 	}
 }
 
-// ‚n‚f‚fƒtƒ@ƒCƒ‹‚ÌƒZƒbƒgƒAƒbƒvˆ—‚ğs‚¤( [–ß] -1:ƒGƒ‰[ )
+// ï¼¯ï¼§ï¼§ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—å‡¦ç†ã‚’è¡Œã†( [æˆ»] -1:ã‚¨ãƒ©ãƒ¼ )
 extern	int SetupSoundConvert_OGG( SOUNDCONV *SoundConv )
 {
 	ov_callbacks ogfunc ;
@@ -2832,13 +2832,13 @@ extern	int SetupSoundConvert_OGG( SOUNDCONV *SoundConv )
 	
 	oggdata->FileInitializeFlag = FALSE ;
 
-	// ƒR[ƒ‹ƒoƒbƒNŠÖ”‚ğ—pˆÓ‚·‚é
+	// ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã‚’ç”¨æ„ã™ã‚‹
 	ogfunc.read_func = ( size_t ( * )( void *, size_t, size_t, void * ) )Ogg_StreamRead ;
 	ogfunc.seek_func = ( int  ( * )( void *, ogg_int64_t, int ) )Ogg_StreamSeek64_wrap ;
 	ogfunc.close_func = ( int ( * )( void * ) )Ogg_StreamClose ;
 	ogfunc.tell_func = ( long ( * )( void * ) )Ogg_StreamTell ;
 
-	// ‚n‚‡‚‡ƒtƒ@ƒCƒ‹‚ÌƒZƒbƒgƒAƒbƒv
+	// ï¼¯ï½‡ï½‡ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 #ifndef DX_NON_OGGTHEORA
 	if( SoundConv->OggVorbisFromTheoraFile )
 	{
@@ -2852,7 +2852,7 @@ extern	int SetupSoundConvert_OGG( SOUNDCONV *SoundConv )
 	if( res != 0 ) return -1 ;
 	oggdata->FileInitializeFlag = TRUE ;
 
-	// ƒtƒ@ƒCƒ‹‚Ìî•ñ‚ğ“¾‚é
+	// ãƒ•ã‚¡ã‚¤ãƒ«ã®æƒ…å ±ã‚’å¾—ã‚‹
 #ifndef DX_NON_OGGTHEORA
 	if( SoundConv->OggVorbisFromTheoraFile )
 	{
@@ -2864,7 +2864,7 @@ extern	int SetupSoundConvert_OGG( SOUNDCONV *SoundConv )
 		info = ov_info( &oggdata->File, -1 ) ;
 	}
 
-	// ƒ‹[ƒvî•ñ‚ªƒRƒƒ“ƒg“à‚É‚ ‚é‚©ƒ`ƒFƒbƒN
+	// ãƒ«ãƒ¼ãƒ—æƒ…å ±ãŒã‚³ãƒ¡ãƒ³ãƒˆå†…ã«ã‚ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	{
 		vorbis_comment *comment ;
 		int i ;
@@ -2928,7 +2928,7 @@ extern	int SetupSoundConvert_OGG( SOUNDCONV *SoundConv )
 		}
 	}
 
-	// ‚v‚`‚u‚dƒtƒH[ƒ}ƒbƒg‚ğƒZƒbƒg‚·‚é
+	// ï¼·ï¼¡ï¼¶ï¼¥ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 	Byte = SoundConv->OggVorbisBitDepth ;
 	SoundConv->OutFormat.cbSize          = 0 ;
 	SoundConv->OutFormat.wFormatTag      = WAVE_FORMAT_PCM ;
@@ -2939,21 +2939,21 @@ extern	int SetupSoundConvert_OGG( SOUNDCONV *SoundConv )
 	SoundConv->OutFormat.nAvgBytesPerSec = SoundConv->OutFormat.nSamplesPerSec * SoundConv->OutFormat.nBlockAlign ;
 	oggdata->Word = Byte ;
 
-	// •ÏŠ·Œã‚Ì‚o‚b‚lƒf[ƒ^‚ğˆê“I‚É•Û‘¶‚·‚éƒƒ‚ƒŠ—Ìˆæ‚ÌƒTƒCƒY‚ğƒZƒbƒg
+	// å¤‰æ›å¾Œã®ï¼°ï¼£ï¼­ãƒ‡ãƒ¼ã‚¿ã‚’ä¸€æ™‚çš„ã«ä¿å­˜ã™ã‚‹ãƒ¡ãƒ¢ãƒªé ˜åŸŸã®ã‚µã‚¤ã‚ºã‚’ã‚»ãƒƒãƒˆ
 	SoundConv->DestDataSize = 4096 ;
 
-	// •ÏŠ·Œã‚Ì‚o‚b‚lƒf[ƒ^‚ÌƒTƒCƒY‚ğƒZƒbƒg
+	// å¤‰æ›å¾Œã®ï¼°ï¼£ï¼­ãƒ‡ãƒ¼ã‚¿ã®ã‚µã‚¤ã‚ºã‚’ã‚»ãƒƒãƒˆ
 	SoundConv->DataSize = GetSoundConvertDestSize_OGG( SoundConv );
 
-	// ƒ^ƒCƒvƒZƒbƒg
+	// ã‚¿ã‚¤ãƒ—ã‚»ãƒƒãƒˆ
 	SoundConv->MethodType = SOUND_METHODTYPE_OGG ;
 	
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
 
-// ‚n‚f‚fƒtƒ@ƒCƒ‹‚ÌŒãn––ˆ—‚ğs‚¤
+// ï¼¯ï¼§ï¼§ãƒ•ã‚¡ã‚¤ãƒ«ã®å¾Œå§‹æœ«å‡¦ç†ã‚’è¡Œã†
 extern	int TerminateSoundConvert_OGG( SOUNDCONV *SoundConv )
 {
 //	SOUNDCONV_OGG *oggdata = &SoundConv->OggTypeData ;
@@ -2978,7 +2978,7 @@ extern	int TerminateSoundConvert_OGG( SOUNDCONV *SoundConv )
 }
 
 
-// •ÏŠ·Œã‚Ìƒoƒbƒtƒ@‚Éƒf[ƒ^‚ğ•â[‚·‚é
+// å¤‰æ›å¾Œã®ãƒãƒƒãƒ•ã‚¡ã«ãƒ‡ãƒ¼ã‚¿ã‚’è£œå……ã™ã‚‹
 extern	int ConvertProcessSoundConvert_OGG( SOUNDCONV *SoundConv )
 {
 //	SOUNDCONV_OGG *oggdata = &SoundConv->OggTypeData ;
@@ -3008,7 +3008,7 @@ extern	int ConvertProcessSoundConvert_OGG( SOUNDCONV *SoundConv )
 }
 
 
-// •ÏŠ·ˆ—‚ğˆÊ’u‚ğ•ÏX‚·‚é( ƒTƒ“ƒvƒ‹’PˆÊ )
+// å¤‰æ›å‡¦ç†ã‚’ä½ç½®ã‚’å¤‰æ›´ã™ã‚‹( ã‚µãƒ³ãƒ—ãƒ«å˜ä½ )
 extern	int SetSampleTimeSoundConvert_OGG( SOUNDCONV *SoundConv, LONGLONG SampleTime )
 {
 //	SOUNDCONV_OGG *oggdata = &SoundConv->OggTypeData ;
@@ -3034,7 +3034,7 @@ extern	int SetSampleTimeSoundConvert_OGG( SOUNDCONV *SoundConv, LONGLONG SampleT
 
 
 
-// •ÏŠ·Œã‚Ì‘å–}‚Ìƒf[ƒ^ƒTƒCƒY‚ğ“¾‚é
+// å¤‰æ›å¾Œã®å¤§å‡¡ã®ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºã‚’å¾—ã‚‹
 extern	LONGLONG GetSoundConvertDestSize_Fast_OGG( SOUNDCONV *SoundConv )
 {
 //	SOUNDCONV_OGG *oggdata = &SoundConv->OggTypeData ;
@@ -3052,12 +3052,12 @@ extern	LONGLONG GetSoundConvertDestSize_Fast_OGG( SOUNDCONV *SoundConv )
 	}
 }
 
-// ƒ‹[ƒvî•ñ‚ğæ“¾( [–ß] -1:ƒGƒ‰[ )
+// ãƒ«ãƒ¼ãƒ—æƒ…å ±ã‚’å–å¾—( [æˆ»] -1:ã‚¨ãƒ©ãƒ¼ )
 extern int GetSoundConvertLoopAreaInfo_OGG(  SOUNDCONV *SoundConv, LONGLONG *LoopStartPos, LONGLONG *LoopEndPos )
 {
 	SOUNDCONV_OGG *oggdata = (SOUNDCONV_OGG *)SoundConv->ConvFunctionBuffer ;
 
-	// ƒ‹[ƒvî•ñ‚ª‚È‚¢ê‡‚ÍƒGƒ‰[
+	// ãƒ«ãƒ¼ãƒ—æƒ…å ±ãŒãªã„å ´åˆã¯ã‚¨ãƒ©ãƒ¼
 	if( oggdata->LoopStart < 0 || oggdata->LoopEnd < 0 )
 	{
 		return -1 ;
@@ -3066,7 +3066,7 @@ extern int GetSoundConvertLoopAreaInfo_OGG(  SOUNDCONV *SoundConv, LONGLONG *Loo
 	if( LoopStartPos != NULL ) *LoopStartPos = oggdata->LoopStart ;
 	if( LoopEndPos   != NULL ) *LoopEndPos   = oggdata->LoopEnd ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
@@ -3078,27 +3078,27 @@ extern int GetOggCommentNumBase( STREAMDATA *Stream )
 	ov_callbacks ogfunc ;
 	vorbis_comment *comment ;
 
-	// ƒR[ƒ‹ƒoƒbƒNŠÖ”‚ğ—pˆÓ‚·‚é
+	// ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã‚’ç”¨æ„ã™ã‚‹
 	ogfunc.read_func = ( size_t ( * )( void *, size_t, size_t, void * ) )Ogg_StreamRead ;
 	ogfunc.seek_func = ( int  ( * )( void *, ogg_int64_t, int ) )Ogg_StreamSeek64_wrap ;
 	ogfunc.close_func = ( int ( * )( void * ) )Ogg_StreamClose ;
 	ogfunc.tell_func = ( long ( * )( void * ) )Ogg_StreamTell ;
 
-	// ‚n‚‡‚‡ƒtƒ@ƒCƒ‹‚ÌƒZƒbƒgƒAƒbƒv
+	// ï¼¯ï½‡ï½‡ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 	if( ov_open_callbacks( Stream, &File, NULL, 0, ogfunc ) != 0 )
 	{
 		DXST_LOGFILE_ADDA( "GetOggCommentNum Ogg File Setup Error\n" ) ;
 		return -1 ;
 	}
 
-	// ƒRƒƒ“ƒg‚Ì”‚ğæ“¾
+	// ã‚³ãƒ¡ãƒ³ãƒˆã®æ•°ã‚’å–å¾—
 	comment = ov_comment( &File, -1 ) ;
 	Comments = comment->comments ;
 
-	// ƒtƒ@ƒCƒ‹‚ğ•Â‚¶‚é
+	// ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‰ã˜ã‚‹
 	ov_clear( &File ) ;
 
-	// ƒRƒƒ“ƒg‚Ì”‚ğ•Ô‚·
+	// ã‚³ãƒ¡ãƒ³ãƒˆã®æ•°ã‚’è¿”ã™
 	return Comments ;
 }
 
@@ -3112,30 +3112,30 @@ extern int GetOggCommentBase( STREAMDATA *Stream, int CommentIndex, char *Commen
 	DWORD TCHARCharCode ;
 	int CharBytes ;
 
-	// ƒR[ƒ‹ƒoƒbƒNŠÖ”‚ğ—pˆÓ‚·‚é
+	// ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã‚’ç”¨æ„ã™ã‚‹
 	ogfunc.read_func = ( size_t ( * )( void *, size_t, size_t, void * ) )Ogg_StreamRead ;
 	ogfunc.seek_func = ( int  ( * )( void *, ogg_int64_t, int ) )Ogg_StreamSeek64_wrap ;
 	ogfunc.close_func = ( int ( * )( void * ) )Ogg_StreamClose ;
 	ogfunc.tell_func = ( long ( * )( void * ) )Ogg_StreamTell ;
 
-	// ‚n‚‡‚‡ƒtƒ@ƒCƒ‹‚ÌƒZƒbƒgƒAƒbƒv
+	// ï¼¯ï½‡ï½‡ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 	if( ov_open_callbacks( Stream, &File, NULL, 0, ogfunc ) != 0 )
 	{
 		DXST_LOGFILE_ADDA( "GetOggComment Ogg File Setup Error\n" ) ;
 		return -1 ;
 	}
 
-	// ƒRƒƒ“ƒg‚Ìî•ñ‚ğæ“¾
+	// ã‚³ãƒ¡ãƒ³ãƒˆã®æƒ…å ±ã‚’å–å¾—
 	comment = ov_comment( &File, -1 ) ;
 
-	// ƒRƒƒ“ƒgƒCƒ“ƒfƒbƒNƒXƒ`ƒFƒbƒN
+	// ã‚³ãƒ¡ãƒ³ãƒˆã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒã‚§ãƒƒã‚¯
 	if( CommentIndex < 0 || CommentIndex >= comment->comments )
 	{
 		ov_clear( &File ) ;
 		return -1 ;
 	}
 
-	// ƒRƒƒ“ƒg–¼‚ğƒRƒs[
+	// ã‚³ãƒ¡ãƒ³ãƒˆåã‚’ã‚³ãƒ”ãƒ¼
 	SrcBytes = 0 ;
 	DestBytes = 0 ;
 	for(;;)
@@ -3165,7 +3165,7 @@ extern int GetOggCommentBase( STREAMDATA *Stream, int CommentIndex, char *Commen
 		DestBytes += PutCharCode( 0, _TCHARCODEFORMAT, ( char * )&CommentNameBuffer[ DestBytes ], ( size_t )CommentNameBufferBytes - DestBytes ) ;
 	}
 
-	// ƒRƒƒ“ƒg•¶š—ñ‚ğƒRƒs[
+	// ã‚³ãƒ¡ãƒ³ãƒˆæ–‡å­—åˆ—ã‚’ã‚³ãƒ”ãƒ¼
 	DestBytes = 0 ;
 	for(;;)
 	{
@@ -3188,10 +3188,10 @@ extern int GetOggCommentBase( STREAMDATA *Stream, int CommentIndex, char *Commen
 		DestBytes += PutCharCode( 0, _TCHARCODEFORMAT, ( char * )&CommentBuffer[ DestBytes ], ( size_t )CommentBufferBytes - DestBytes ) ;
 	}
 
-	// ƒtƒ@ƒCƒ‹‚ğ•Â‚¶‚é
+	// ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‰ã˜ã‚‹
 	ov_clear( &File ) ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
@@ -3208,11 +3208,11 @@ extern int GetOggCommentBase( STREAMDATA *Stream, int CommentIndex, char *Commen
 
 
 
-// Opus ŠÖŒW‚ÌƒvƒƒOƒ‰ƒ€
+// Opus é–¢ä¿‚ã®ãƒ—ãƒ­ã‚°ãƒ©ãƒ 
 
 #ifndef DX_NON_OPUS
 
-// Opus—p“Ç‚İ‚İŠÖ”
+// Opusç”¨èª­ã¿è¾¼ã¿é–¢æ•°
 static int Opus_StreamRead( void *_stream, unsigned char *_ptr, int _nbytes )
 {
 	STREAMDATA *StreamP = ( STREAMDATA * )_stream ;
@@ -3220,7 +3220,7 @@ static int Opus_StreamRead( void *_stream, unsigned char *_ptr, int _nbytes )
 	return ( int )StreamP->ReadShred.Read( _ptr, 1, _nbytes, StreamP->DataPoint ) ;
 }
 
-// Opus—p‚U‚Sƒrƒbƒg”ÅƒV[ƒNŠÖ”
+// Opusç”¨ï¼–ï¼”ãƒ“ãƒƒãƒˆç‰ˆã‚·ãƒ¼ã‚¯é–¢æ•°
 static int Opus_StreamSeek64_wrap( void *_stream, opus_int64 _offset,int _whence )
 {
 	STREAMDATA *StreamP = ( STREAMDATA * )_stream ;
@@ -3228,14 +3228,14 @@ static int Opus_StreamSeek64_wrap( void *_stream, opus_int64 _offset,int _whence
 	return StreamP->ReadShred.Seek( StreamP->DataPoint, _offset, _whence );
 }
 
-// Opus—pƒNƒ[ƒYŠÖ”
+// Opusç”¨ã‚¯ãƒ­ãƒ¼ã‚ºé–¢æ•°
 static int Opus_StreamClose( void * /* _stream */ )
 {
-	// •’Ê‚ÉƒNƒ[ƒY‚ª¬Œ÷‚µ‚½‚Æ‚µ‚Ä•Ô‚·
+	// æ™®é€šã«ã‚¯ãƒ­ãƒ¼ã‚ºãŒæˆåŠŸã—ãŸã¨ã—ã¦è¿”ã™
 	return 0 ;
 }
 
-// Opus—p‚Ìƒf[ƒ^ˆÊ’uæ“¾ŠÖ”
+// Opusç”¨ã®ãƒ‡ãƒ¼ã‚¿ä½ç½®å–å¾—é–¢æ•°
 static opus_int64 Opus_StreamTell( void *_stream )
 {
 	STREAMDATA *StreamP = ( STREAMDATA * )_stream ;
@@ -3243,7 +3243,7 @@ static opus_int64 Opus_StreamTell( void *_stream )
 	return StreamP->ReadShred.Tell( StreamP->DataPoint );
 }
 
-// •ÏŠ·Œã‚Ìƒf[ƒ^ƒTƒCƒY‚ğ“¾‚é
+// å¤‰æ›å¾Œã®ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºã‚’å¾—ã‚‹
 extern	LONGLONG GetSoundConvertDestSize_OPUS(      SOUNDCONV *SoundConv )
 {
 	SOUNDCONV_OPUS *opusdata = (SOUNDCONV_OPUS *)SoundConv->ConvFunctionBuffer ;
@@ -3251,7 +3251,7 @@ extern	LONGLONG GetSoundConvertDestSize_OPUS(      SOUNDCONV *SoundConv )
 	return op_pcm_total( opusdata->File, -1 )  * SoundConv->OutFormat.nChannels * opusdata->BlockAlign ;
 }
 
-// Opusƒtƒ@ƒCƒ‹‚ÌƒZƒbƒgƒAƒbƒvˆ—‚ğs‚¤( [–ß] -1:ƒGƒ‰[ )
+// Opusãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—å‡¦ç†ã‚’è¡Œã†( [æˆ»] -1:ã‚¨ãƒ©ãƒ¼ )
 extern	int SetupSoundConvert_OPUS( SOUNDCONV *SoundConv )
 {
 	OpusFileCallbacks opfunc ;
@@ -3262,13 +3262,13 @@ extern	int SetupSoundConvert_OPUS( SOUNDCONV *SoundConv )
 	
 	opusdata->FileInitializeFlag = FALSE ;
 
-	// ƒR[ƒ‹ƒoƒbƒNŠÖ”‚ğ—pˆÓ‚·‚é
+	// ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã‚’ç”¨æ„ã™ã‚‹
 	opfunc.read = ( int ( * )( void *, unsigned char *, int ) )Opus_StreamRead ;
 	opfunc.seek = ( int  ( * )( void *, opus_int64, int ) )Opus_StreamSeek64_wrap ;
 	opfunc.tell = ( opus_int64 ( * )( void * ) )Opus_StreamTell ;
 	opfunc.close = ( int ( * )( void * ) )Opus_StreamClose ;
 
-	// Opusƒtƒ@ƒCƒ‹‚ÌƒZƒbƒgƒAƒbƒv
+	// Opusãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 	opusdata->File = op_open_callbacks( Stream, &opfunc, NULL, 0, &res ) ;
 	if( opusdata->File == NULL )
 	{
@@ -3276,14 +3276,14 @@ extern	int SetupSoundConvert_OPUS( SOUNDCONV *SoundConv )
 	}
 	opusdata->FileInitializeFlag = TRUE ;
 
-	// ƒtƒ@ƒCƒ‹‚Ìî•ñ‚ğ“¾‚é
+	// ãƒ•ã‚¡ã‚¤ãƒ«ã®æƒ…å ±ã‚’å¾—ã‚‹
 	head = op_head( opusdata->File, -1 ) ;
 	if( head == NULL )
 	{
 		return -1 ;
 	}
 
-	// ‚v‚`‚u‚dƒtƒH[ƒ}ƒbƒg‚ğƒZƒbƒg‚·‚é
+	// ï¼·ï¼¡ï¼¶ï¼¥ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 	Byte = 2 ;
 	SoundConv->OutFormat.cbSize          = 0 ;
 	SoundConv->OutFormat.wFormatTag      = WAVE_FORMAT_PCM ;
@@ -3294,21 +3294,21 @@ extern	int SetupSoundConvert_OPUS( SOUNDCONV *SoundConv )
 	SoundConv->OutFormat.nAvgBytesPerSec = SoundConv->OutFormat.nSamplesPerSec * SoundConv->OutFormat.nBlockAlign ;
 	opusdata->BlockAlign = SoundConv->OutFormat.nBlockAlign ;
 
-	// •ÏŠ·Œã‚Ì‚o‚b‚lƒf[ƒ^‚ğˆê“I‚É•Û‘¶‚·‚éƒƒ‚ƒŠ—Ìˆæ‚ÌƒTƒCƒY‚ğƒZƒbƒg
+	// å¤‰æ›å¾Œã®ï¼°ï¼£ï¼­ãƒ‡ãƒ¼ã‚¿ã‚’ä¸€æ™‚çš„ã«ä¿å­˜ã™ã‚‹ãƒ¡ãƒ¢ãƒªé ˜åŸŸã®ã‚µã‚¤ã‚ºã‚’ã‚»ãƒƒãƒˆ
 	SoundConv->DestDataSize = 4096 ;
 
-	// •ÏŠ·Œã‚Ì‚o‚b‚lƒf[ƒ^‚ÌƒTƒCƒY‚ğƒZƒbƒg
+	// å¤‰æ›å¾Œã®ï¼°ï¼£ï¼­ãƒ‡ãƒ¼ã‚¿ã®ã‚µã‚¤ã‚ºã‚’ã‚»ãƒƒãƒˆ
 	SoundConv->DataSize = GetSoundConvertDestSize_OPUS( SoundConv );
 
-	// ƒ^ƒCƒvƒZƒbƒg
+	// ã‚¿ã‚¤ãƒ—ã‚»ãƒƒãƒˆ
 	SoundConv->MethodType = SOUND_METHODTYPE_OPUS ;
 	
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
 
-// Opusƒtƒ@ƒCƒ‹‚ÌŒãn––ˆ—‚ğs‚¤
+// Opusãƒ•ã‚¡ã‚¤ãƒ«ã®å¾Œå§‹æœ«å‡¦ç†ã‚’è¡Œã†
 extern	int TerminateSoundConvert_OPUS( SOUNDCONV *SoundConv )
 {
 	SOUNDCONV_OPUS *opusdata = (SOUNDCONV_OPUS *)SoundConv->ConvFunctionBuffer ;
@@ -3323,7 +3323,7 @@ extern	int TerminateSoundConvert_OPUS( SOUNDCONV *SoundConv )
 }
 
 
-// •ÏŠ·Œã‚Ìƒoƒbƒtƒ@‚Éƒf[ƒ^‚ğ•â[‚·‚é
+// å¤‰æ›å¾Œã®ãƒãƒƒãƒ•ã‚¡ã«ãƒ‡ãƒ¼ã‚¿ã‚’è£œå……ã™ã‚‹
 extern	int ConvertProcessSoundConvert_OPUS( SOUNDCONV *SoundConv )
 {
 	SOUNDCONV_OPUS *opusdata = (SOUNDCONV_OPUS *)SoundConv->ConvFunctionBuffer ;
@@ -3345,7 +3345,7 @@ extern	int ConvertProcessSoundConvert_OPUS( SOUNDCONV *SoundConv )
 }
 
 
-// •ÏŠ·ˆ—‚ğˆÊ’u‚ğ•ÏX‚·‚é( ƒ~ƒŠ•b’PˆÊ )
+// å¤‰æ›å‡¦ç†ã‚’ä½ç½®ã‚’å¤‰æ›´ã™ã‚‹( ãƒŸãƒªç§’å˜ä½ )
 extern	int SetSampleTimeSoundConvert_OPUS( SOUNDCONV *SoundConv, LONGLONG SampleTime )
 {
 	SOUNDCONV_OPUS *opusdata = (SOUNDCONV_OPUS *)SoundConv->ConvFunctionBuffer ;
@@ -3361,7 +3361,7 @@ extern	int SetSampleTimeSoundConvert_OPUS( SOUNDCONV *SoundConv, LONGLONG Sample
 
 
 
-// •ÏŠ·Œã‚Ì‘å–}‚Ìƒf[ƒ^ƒTƒCƒY‚ğ“¾‚é
+// å¤‰æ›å¾Œã®å¤§å‡¡ã®ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºã‚’å¾—ã‚‹
 extern	LONGLONG GetSoundConvertDestSize_Fast_OPUS( SOUNDCONV *SoundConv )
 {
 	SOUNDCONV_OPUS *opusdata = (SOUNDCONV_OPUS *)SoundConv->ConvFunctionBuffer ;
@@ -3384,15 +3384,15 @@ extern	LONGLONG GetSoundConvertDestSize_Fast_OPUS( SOUNDCONV *SoundConv )
 
 #ifndef DX_NON_OGGTHEORA
 
-// ƒ\ƒtƒg“I‚Éˆê“x‚¾‚¯ŒÄ‚Ô‚×‚«‰Šú‰»ŠÖ”
+// ã‚½ãƒ•ãƒˆçš„ã«ä¸€åº¦ã ã‘å‘¼ã¶ã¹ãåˆæœŸåŒ–é–¢æ•°
 extern int	TheoraDecode_GrobalInitialize( void )
 {
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
 
-// Ogg Theora ‚Ì“Ç‚İ‚İˆ—‚Ì€”õ‚ğs‚¤( –ß‚è’l  0:¸”s  1ˆÈã:‰Šú‰»¬Œ÷ )
+// Ogg Theora ã®èª­ã¿è¾¼ã¿å‡¦ç†ã®æº–å‚™ã‚’è¡Œã†( æˆ»ã‚Šå€¤  0:å¤±æ•—  1ä»¥ä¸Š:åˆæœŸåŒ–æˆåŠŸ )
 extern DWORD_PTR TheoraDecode_InitializeStream(
 	STREAMDATASHRED *	StreamShred,
 	DWORD_PTR			StreamData,
@@ -3410,7 +3410,7 @@ extern DWORD_PTR TheoraDecode_InitializeStream(
 	DWORD NowBytePos, NextBytePos ;
 	double FrameTime ;
 
-	// Å‰‚Ì‚SƒoƒCƒg‚ğ“Ç‚İ‚ñ‚Å OggS ‚¶‚á–³‚©‚Á‚½‚çƒGƒ‰[
+	// æœ€åˆã®ï¼”ãƒã‚¤ãƒˆã‚’èª­ã¿è¾¼ã‚“ã§ OggS ã˜ã‚ƒç„¡ã‹ã£ãŸã‚‰ã‚¨ãƒ©ãƒ¼
 	{
 		char Test[4];
 
@@ -3420,100 +3420,100 @@ extern DWORD_PTR TheoraDecode_InitializeStream(
 		StreamShred->Seek( StreamData, 0L, STREAM_SEEKTYPE_SET ) ;
 	}
 
-	// V‚µ‚¢ƒ€[ƒr[ƒfƒR[ƒhˆ——p‚Ìƒƒ‚ƒŠ—Ìˆæ‚ÌŠm•Û
+	// æ–°ã—ã„ãƒ ãƒ¼ãƒ“ãƒ¼ãƒ‡ã‚³ãƒ¼ãƒ‰å‡¦ç†ç”¨ã®ãƒ¡ãƒ¢ãƒªé ˜åŸŸã®ç¢ºä¿
 	DT = ( DECODE_THEORA * )DXALLOC( sizeof( DECODE_THEORA ) + sizeof( DECODE_THEORA_PF ) ) ;
 	if( DT == NULL )
 	{
-		DXST_LOGFILE_ADDA( "Theora \x83\x80\x81\x5b\x83\x72\x81\x5b\x83\x66\x83\x52\x81\x5b\x83\x68\x8f\x88\x97\x9d\x97\x70\x82\xcc\x83\x81\x83\x82\x83\x8a\x8a\x6d\x95\xdb\x82\xc9\x8e\xb8\x94\x73\x82\xb5\x82\xdc\x82\xb5\x82\xbd\n"/*@ "Theora ƒ€[ƒr[ƒfƒR[ƒhˆ——p‚Ìƒƒ‚ƒŠŠm•Û‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ );
+		DXST_LOGFILE_ADDA( "Theora \x83\x80\x81\x5b\x83\x72\x81\x5b\x83\x66\x83\x52\x81\x5b\x83\x68\x8f\x88\x97\x9d\x97\x70\x82\xcc\x83\x81\x83\x82\x83\x8a\x8a\x6d\x95\xdb\x82\xc9\x8e\xb8\x94\x73\x82\xb5\x82\xdc\x82\xb5\x82\xbd\n"/*@ "Theora ãƒ ãƒ¼ãƒ“ãƒ¼ãƒ‡ã‚³ãƒ¼ãƒ‰å‡¦ç†ç”¨ã®ãƒ¡ãƒ¢ãƒªç¢ºä¿ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ );
 		return 0 ;
 	}
 
-	// \‘¢‘Ì‚Ì‰Šú‰»
+	// æ§‹é€ ä½“ã®åˆæœŸåŒ–
 	_MEMSET( DT, 0, sizeof( DECODE_THEORA ) + sizeof( DECODE_THEORA_PF ) ) ;
 
-	// ŠÂ‹«ˆË‘¶ƒf[ƒ^‚ÌƒAƒhƒŒƒX‚ğƒZƒbƒg
+	// ç’°å¢ƒä¾å­˜ãƒ‡ãƒ¼ã‚¿ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ã‚»ãƒƒãƒˆ
 	DT->PF = ( DECODE_THEORA_PF * )( DT + 1 ) ;
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚à‰Šú‰»‚·‚é
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã‚‚åˆæœŸåŒ–ã™ã‚‹
 	CriticalSection_Initialize( &DT->CriticalSection ) ;
 
 	DT->NumOfTheoraHeader = 0 ;
 	DT->TheoraCurrentDataFrame = -1 ;
 	DT->TheoraCurrentTimeFrame = -1 ;
 
-	// ‚x‚t‚uƒtƒH[ƒ}ƒbƒg‚ÌƒT[ƒtƒFƒX‚ğg—p‚·‚é‚©‚Ç‚¤‚©‚ğƒZƒbƒg‚·‚é
+	// ï¼¹ï¼µï¼¶ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®ã‚µãƒ¼ãƒ•ã‚§ã‚¹ã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 	DT->NotUseYUVFormatSurface = NotUseYUVFormatSurface ;
 
-	// YUVƒJƒ‰[‚ÌƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ğg—p‚µ‚È‚¢‚©‚Ç‚¤‚©‚ğƒZƒbƒg‚·‚é
+	// YUVã‚«ãƒ©ãƒ¼ã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã‚’ä½¿ç”¨ã—ãªã„ã‹ã©ã†ã‹ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 	DT->NotUseYUVGrHandle = NotUseYUVGrHandle ;
 
-	// Ogg ƒ‰ƒCƒuƒ‰ƒŠ‚Åg—p‚·‚é\‘¢‘Ì‚Ì‰Šú‰»
+	// Ogg ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã§ä½¿ç”¨ã™ã‚‹æ§‹é€ ä½“ã®åˆæœŸåŒ–
 	ogg_sync_init(       &DT->OggSyncState ) ;
 	theora_info_init(    &DT->TheoraInfo ) ;
 	theora_comment_init( &DT->TheoraComment ) ;
 
-	// g—p‚·‚éƒXƒgƒŠ[ƒ€‚Ìî•ñ‚ğ•¡»
+	// ä½¿ç”¨ã™ã‚‹ã‚¹ãƒˆãƒªãƒ¼ãƒ ã®æƒ…å ±ã‚’è¤‡è£½
 	DT->StreamShred = *StreamShred ;
 	DT->StreamData = StreamData ;
 
-	// ƒwƒbƒ_‚Ì“Ç‚İ‚İ
+	// ãƒ˜ãƒƒãƒ€ã®èª­ã¿è¾¼ã¿
 	if( TheoraDecode_ReadHeader( DT ) == -1 )
 	{
 		goto ERR ;
 	}
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚ÌƒƒbƒN‚ğæ“¾
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®ãƒ­ãƒƒã‚¯ã‚’å–å¾—
 	CRITICALSECTION_LOCK( &DT->CriticalSection ) ;
 
-	// Theora ƒf[ƒ^ƒfƒR[ƒh‚Ì€”õ
+	// Theora ãƒ‡ãƒ¼ã‚¿ãƒ‡ã‚³ãƒ¼ãƒ‰ã®æº–å‚™
 	theora_decode_init( &DT->TheoraState, &DT->TheoraInfo ) ;
 
-	// ƒV[ƒN—p‚É‚·‚×‚Ä‚Ì Theora ƒrƒfƒIƒy[ƒW‚ğô‚¢o‚·
+	// ã‚·ãƒ¼ã‚¯ç”¨ã«ã™ã¹ã¦ã® Theora ãƒ“ãƒ‡ã‚ªãƒšãƒ¼ã‚¸ã‚’æ´—ã„å‡ºã™
 	{
 		int TimeFrame ;
 
 		FrameTime = 1.0 / ( ( double )DT->TheoraInfo.fps_numerator / DT->TheoraInfo.fps_denominator ) ;
 
-		// î•ñ‚ğƒŠƒZƒbƒg
+		// æƒ…å ±ã‚’ãƒªã‚»ãƒƒãƒˆ
 		ogg_sync_reset( &DT->OggSyncState ) ;
 		ogg_stream_reset( &DT->OggTheoraStream ) ;
 
-		// ƒtƒ@ƒCƒ‹‚Ìæ“ª‚ÉˆÚ“®
+		// ãƒ•ã‚¡ã‚¤ãƒ«ã®å…ˆé ­ã«ç§»å‹•
 		DT->StreamShred.Seek( DT->StreamData, 0, STREAM_SEEKTYPE_SET ) ;
 
-		// ƒy[ƒWî•ñŠi”[—p‚Ìƒƒ‚ƒŠ‚ğŠm•Û
+		// ãƒšãƒ¼ã‚¸æƒ…å ±æ ¼ç´ç”¨ã®ãƒ¡ãƒ¢ãƒªã‚’ç¢ºä¿
 		MaxPageNum = 1000 ;
 		DT->TheoraPageInfo = ( THEORA_PAGEINFO * )DXALLOC( sizeof( THEORA_PAGEINFO ) * MaxPageNum ) ;
 		if( DT->TheoraPageInfo == NULL )
 		{
-			DXST_LOGFILE_ADDA( "Theora \x83\x79\x81\x5b\x83\x57\x8f\xee\x95\xf1\x8a\x69\x94\x5b\x97\x70\x83\x81\x83\x82\x83\x8a\x82\xcc\x8a\x6d\x95\xdb\x82\xc9\x8e\xb8\x94\x73\x82\xb5\x82\xdc\x82\xb5\x82\xbd\n"/*@ "Theora ƒy[ƒWî•ñŠi”[—pƒƒ‚ƒŠ‚ÌŠm•Û‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ );
+			DXST_LOGFILE_ADDA( "Theora \x83\x79\x81\x5b\x83\x57\x8f\xee\x95\xf1\x8a\x69\x94\x5b\x97\x70\x83\x81\x83\x82\x83\x8a\x82\xcc\x8a\x6d\x95\xdb\x82\xc9\x8e\xb8\x94\x73\x82\xb5\x82\xdc\x82\xb5\x82\xbd\n"/*@ "Theora ãƒšãƒ¼ã‚¸æƒ…å ±æ ¼ç´ç”¨ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ );
 			goto ERR ;
 		}
 		DT->TheoraPageInfoNum = 0 ;
 
-		// ƒL[ƒtƒŒ[ƒ€î•ñŠi”[—p‚Ìƒƒ‚ƒŠ‚ğŠm•Û
+		// ã‚­ãƒ¼ãƒ•ãƒ¬ãƒ¼ãƒ æƒ…å ±æ ¼ç´ç”¨ã®ãƒ¡ãƒ¢ãƒªã‚’ç¢ºä¿
 		MaxDataFrameNum = 1000 ;
 		DT->TheoraKeyFrameInfo = ( unsigned char * )DXALLOC( sizeof( unsigned char ) * MaxDataFrameNum ) ;
 		if( DT->TheoraKeyFrameInfo == NULL )
 		{
-			DXST_LOGFILE_ADDA( "Theora \x83\x4c\x81\x5b\x83\x74\x83\x8c\x81\x5b\x83\x80\x8f\xee\x95\xf1\x8a\x69\x94\x5b\x97\x70\x83\x81\x83\x82\x83\x8a\x82\xcc\x8a\x6d\x95\xdb\x82\xc9\x8e\xb8\x94\x73\x82\xb5\x82\xdc\x82\xb5\x82\xbd\n"/*@ "Theora ƒL[ƒtƒŒ[ƒ€î•ñŠi”[—pƒƒ‚ƒŠ‚ÌŠm•Û‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ );
+			DXST_LOGFILE_ADDA( "Theora \x83\x4c\x81\x5b\x83\x74\x83\x8c\x81\x5b\x83\x80\x8f\xee\x95\xf1\x8a\x69\x94\x5b\x97\x70\x83\x81\x83\x82\x83\x8a\x82\xcc\x8a\x6d\x95\xdb\x82\xc9\x8e\xb8\x94\x73\x82\xb5\x82\xdc\x82\xb5\x82\xbd\n"/*@ "Theora ã‚­ãƒ¼ãƒ•ãƒ¬ãƒ¼ãƒ æƒ…å ±æ ¼ç´ç”¨ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ );
 			goto ERR ;
 		}
 
-		// Ä¶ŠÔƒtƒŒ[ƒ€‚Æƒf[ƒ^ƒtƒŒ[ƒ€‚Ì‘Î‰‚ğŠi”[‚·‚é‚½‚ß‚Ìƒƒ‚ƒŠ‚ğŠm•Û
+		// å†ç”Ÿæ™‚é–“ãƒ•ãƒ¬ãƒ¼ãƒ ã¨ãƒ‡ãƒ¼ã‚¿ãƒ•ãƒ¬ãƒ¼ãƒ ã®å¯¾å¿œã‚’æ ¼ç´ã™ã‚‹ãŸã‚ã®ãƒ¡ãƒ¢ãƒªã‚’ç¢ºä¿
 		MaxTimeFrameNum = 1000 ;
 		DT->TheoraTimeFrameToDataFrame = ( int * )DXALLOC( sizeof( int ) * MaxTimeFrameNum ) ;
 		if( DT->TheoraTimeFrameToDataFrame == NULL )
 		{
-			DXST_LOGFILE_ADDA( "Theora \x83\x5e\x83\x43\x83\x80\x83\x74\x83\x8c\x81\x5b\x83\x80\x82\xc6\x83\x66\x81\x5b\x83\x5e\x83\x74\x83\x8c\x81\x5b\x83\x80\x91\xce\x89\x9e\x8f\xee\x95\xf1\x8a\x69\x94\x5b\x97\x70\x83\x81\x83\x82\x83\x8a\x82\xcc\x8a\x6d\x95\xdb\x82\xc9\x8e\xb8\x94\x73\x82\xb5\x82\xdc\x82\xb5\x82\xbd\n"/*@ "Theora ƒ^ƒCƒ€ƒtƒŒ[ƒ€‚Æƒf[ƒ^ƒtƒŒ[ƒ€‘Î‰î•ñŠi”[—pƒƒ‚ƒŠ‚ÌŠm•Û‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ );
+			DXST_LOGFILE_ADDA( "Theora \x83\x5e\x83\x43\x83\x80\x83\x74\x83\x8c\x81\x5b\x83\x80\x82\xc6\x83\x66\x81\x5b\x83\x5e\x83\x74\x83\x8c\x81\x5b\x83\x80\x91\xce\x89\x9e\x8f\xee\x95\xf1\x8a\x69\x94\x5b\x97\x70\x83\x81\x83\x82\x83\x8a\x82\xcc\x8a\x6d\x95\xdb\x82\xc9\x8e\xb8\x94\x73\x82\xb5\x82\xdc\x82\xb5\x82\xbd\n"/*@ "Theora ã‚¿ã‚¤ãƒ ãƒ•ãƒ¬ãƒ¼ãƒ ã¨ãƒ‡ãƒ¼ã‚¿ãƒ•ãƒ¬ãƒ¼ãƒ å¯¾å¿œæƒ…å ±æ ¼ç´ç”¨ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ );
 			goto ERR ;
 		}
 
-		// ‘ƒtƒŒ[ƒ€”‚ğƒŠƒZƒbƒg
+		// ç·ãƒ•ãƒ¬ãƒ¼ãƒ æ•°ã‚’ãƒªã‚»ãƒƒãƒˆ
 		DT->TheoraTotalDataFrame = 0 ;
 		DT->TheoraTotalTimeFrame = 0 ;
 
-		/// ƒy[ƒWî•ñ‚ğ‘ô‚¢
+		/// ãƒšãƒ¼ã‚¸æƒ…å ±ã‚’ç·æ´—ã„
 		NowBytePos = 0 ;
 		NextBytePos = 0 ;
 		TimeFrame = 0 ;
@@ -3522,73 +3522,73 @@ extern DWORD_PTR TheoraDecode_InitializeStream(
 		{
 			do
 			{
-				// Theora ‚ÌƒpƒPƒbƒg‚ªæ“¾‚Å‚«‚é‚Ü‚Åƒ‹[ƒv
+				// Theora ã®ãƒ‘ã‚±ãƒƒãƒˆãŒå–å¾—ã§ãã‚‹ã¾ã§ãƒ«ãƒ¼ãƒ—
 				while( ogg_stream_packetout( &DT->OggTheoraStream, &DT->OggPacket ) != 1 )
 				{
-					// ƒy[ƒW‚ªæ“¾‚Å‚«‚é‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+					// ãƒšãƒ¼ã‚¸ãŒå–å¾—ã§ãã‚‹ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 					if( ogg_sync_pageout( &DT->OggSyncState, &DT->OggPage ) > 0 )
 					{
-						// ƒy[ƒW‚ªXV‚³‚ê‚½Ø‚ğc‚·
+						// ãƒšãƒ¼ã‚¸ãŒæ›´æ–°ã•ã‚ŒãŸè¨¼ã‚’æ®‹ã™
 						page_renew = true ;
 
-						// æ“¾‚Å‚«‚½ê‡‚Íƒy[ƒW‚ª•ÏX‚³‚ê‚½ˆó‚ğc‚µAƒoƒCƒg’PˆÊ‚ÌƒAƒhƒŒƒX‚àXV‚·‚é
+						// å–å¾—ã§ããŸå ´åˆã¯ãƒšãƒ¼ã‚¸ãŒå¤‰æ›´ã•ã‚ŒãŸå°ã‚’æ®‹ã—ã€ãƒã‚¤ãƒˆå˜ä½ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚‚æ›´æ–°ã™ã‚‹
 						NowBytePos = NextBytePos ;
 						NextBytePos += DT->OggPage.body_len + DT->OggPage.header_len ;
 
-						// ƒXƒgƒŠ[ƒ€‚Éƒy[ƒW‚ğ‘ã“ü‚·‚é
+						// ã‚¹ãƒˆãƒªãƒ¼ãƒ ã«ãƒšãƒ¼ã‚¸ã‚’ä»£å…¥ã™ã‚‹
 						ogg_stream_pagein( &DT->OggTheoraStream, &DT->OggPage ) ;
 					}
 					else
 					{
-						// ƒy[ƒW‚ªæ“¾‚Å‚«‚È‚©‚Á‚½ê‡‚Íƒtƒ@ƒCƒ‹‚©‚çV‚½‚Éƒf[ƒ^‚ğ“Ç‚İ‚Ş
+						// ãƒšãƒ¼ã‚¸ãŒå–å¾—ã§ããªã‹ã£ãŸå ´åˆã¯ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰æ–°ãŸã«ãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿è¾¼ã‚€
 						if( TheoraDecode_ReadData( DT ) == 0 )
 						{
 							goto SEARCH_END;
 						}
 					}
 				}
-				// Theora ‚ÌƒrƒfƒIƒf[ƒ^‚Å‚Í‚È‚©‚Á‚½ê‡‚Íƒ‹[ƒv
+				// Theora ã®ãƒ“ãƒ‡ã‚ªãƒ‡ãƒ¼ã‚¿ã§ã¯ãªã‹ã£ãŸå ´åˆã¯ãƒ«ãƒ¼ãƒ—
 			}while( theora_packet_iskeyframe( &DT->OggPacket ) < 0 ) ;
 
-			// ƒ^ƒCƒ€ƒtƒŒ[ƒ€‚Æƒf[ƒ^ƒtƒŒ[ƒ€‚Ì‚¸‚ê‚ğ•â³
+			// ã‚¿ã‚¤ãƒ ãƒ•ãƒ¬ãƒ¼ãƒ ã¨ãƒ‡ãƒ¼ã‚¿ãƒ•ãƒ¬ãƒ¼ãƒ ã®ãšã‚Œã‚’è£œæ­£
 			if( DT->OggPacket.granulepos >= 0 )
 			{
 				TimeFrame = _DTOL( theora_granule_time( &DT->TheoraState, DT->OggPacket.granulepos ) / FrameTime ) ;
 			}
 
-			// ƒy[ƒW‚ªXV‚³‚ê‚Ä‚¢‚é‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+			// ãƒšãƒ¼ã‚¸ãŒæ›´æ–°ã•ã‚Œã¦ã„ã‚‹ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 			if( page_renew )
 			{
-				// ”z—ñ‚ª‚¢‚Á‚Ï‚¢‚É‚È‚Á‚Ä‚¢‚½ê‡‚ÍŠg’£
+				// é…åˆ—ãŒã„ã£ã±ã„ã«ãªã£ã¦ã„ãŸå ´åˆã¯æ‹¡å¼µ
 				if( DT->TheoraPageInfoNum == MaxPageNum )
 				{
 					MaxPageNum += 1000 ;
 					DT->TheoraPageInfo = ( THEORA_PAGEINFO * )DXREALLOC( DT->TheoraPageInfo, sizeof( THEORA_PAGEINFO ) * MaxPageNum ) ;
 				}
 
-				// ƒtƒŒ[ƒ€ƒAƒhƒŒƒX‚ÆƒXƒgƒŠ[ƒ€‚ÌƒoƒCƒgƒAƒhƒŒƒX‚ğƒZƒbƒg
+				// ãƒ•ãƒ¬ãƒ¼ãƒ ã‚¢ãƒ‰ãƒ¬ã‚¹ã¨ã‚¹ãƒˆãƒªãƒ¼ãƒ ã®ãƒã‚¤ãƒˆã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ã‚»ãƒƒãƒˆ
 				DT->TheoraPageInfo[ DT->TheoraPageInfoNum ].FrameAddres = ( int )DT->TheoraTotalDataFrame ;
 				DT->TheoraPageInfo[ DT->TheoraPageInfoNum ].StreamAddres = ( int )NowBytePos ;
 
-				// ƒL[ƒtƒŒ[ƒ€‚ª‚ ‚é‚©‚Ç‚¤‚©‚ÆƒtƒŒ[ƒ€”‚Í‚±‚ê‚©‚çƒJƒEƒ“ƒg‚·‚é
+				// ã‚­ãƒ¼ãƒ•ãƒ¬ãƒ¼ãƒ ãŒã‚ã‚‹ã‹ã©ã†ã‹ã¨ãƒ•ãƒ¬ãƒ¼ãƒ æ•°ã¯ã“ã‚Œã‹ã‚‰ã‚«ã‚¦ãƒ³ãƒˆã™ã‚‹
 				DT->TheoraPageInfo[ DT->TheoraPageInfoNum ].FrameNum = 0 ;
 				DT->TheoraPageInfo[ DT->TheoraPageInfoNum ].KeyFrame = 0 ;
 
-				// Theora ‚ÌƒrƒfƒIƒf[ƒ^ƒy[ƒW‚Ì”‚ğƒCƒ“ƒNƒŠƒƒ“ƒg
+				// Theora ã®ãƒ“ãƒ‡ã‚ªãƒ‡ãƒ¼ã‚¿ãƒšãƒ¼ã‚¸ã®æ•°ã‚’ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆ
 				DT->TheoraPageInfoNum ++ ;
 
-				// ƒy[ƒW‚ªXV‚³‚ê‚½‚©ƒtƒ‰ƒO‚ğ“|‚·
+				// ãƒšãƒ¼ã‚¸ãŒæ›´æ–°ã•ã‚ŒãŸã‹ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 				page_renew = false ;
 			}
 
-			// ƒL[ƒtƒŒ[ƒ€‚©‚Ç‚¤‚©‚Ìî•ñ‚ğŠi”[‚·‚éƒƒ‚ƒŠ—Ìˆæ‚ª‘«‚è‚È‚­‚È‚Á‚½‚çŠg’£
+			// ã‚­ãƒ¼ãƒ•ãƒ¬ãƒ¼ãƒ ã‹ã©ã†ã‹ã®æƒ…å ±ã‚’æ ¼ç´ã™ã‚‹ãƒ¡ãƒ¢ãƒªé ˜åŸŸãŒè¶³ã‚Šãªããªã£ãŸã‚‰æ‹¡å¼µ
 			if( DT->TheoraTotalDataFrame == MaxDataFrameNum )
 			{
 				MaxDataFrameNum += 1000 ;
 				DT->TheoraKeyFrameInfo = ( unsigned char * )DXREALLOC( DT->TheoraKeyFrameInfo, sizeof( unsigned char ) * MaxDataFrameNum ) ;
 			}
 
-			// ƒL[ƒtƒŒ[ƒ€‚¾‚Á‚½‚çƒtƒ‰ƒO‚ğ—§‚Ä‚é
+			// ã‚­ãƒ¼ãƒ•ãƒ¬ãƒ¼ãƒ ã ã£ãŸã‚‰ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 			if( theora_packet_iskeyframe( &DT->OggPacket ) == 1 )
 			{
 				DT->TheoraKeyFrameInfo[ DT->TheoraTotalDataFrame ] = 1 ;
@@ -3609,7 +3609,7 @@ extern DWORD_PTR TheoraDecode_InitializeStream(
 				DT->TheoraTotalTimeFrame ++ ;
 			}
 
-			// ƒtƒŒ[ƒ€”‚ğƒCƒ“ƒNƒŠƒƒ“ƒg
+			// ãƒ•ãƒ¬ãƒ¼ãƒ æ•°ã‚’ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆ
 			TimeFrame ++ ;
 			DT->TheoraTotalDataFrame ++ ;
 			DT->TheoraPageInfo[ DT->TheoraPageInfoNum - 1 ].FrameNum ++ ;
@@ -3617,82 +3617,82 @@ extern DWORD_PTR TheoraDecode_InitializeStream(
 	}
 SEARCH_END:
 
-	// Å‰‚Ìƒy[ƒW‚ÍƒXƒgƒŠ[ƒ€‚Ìæ“ª‚É‚·‚é
+	// æœ€åˆã®ãƒšãƒ¼ã‚¸ã¯ã‚¹ãƒˆãƒªãƒ¼ãƒ ã®å…ˆé ­ã«ã™ã‚‹
 	DT->TheoraPageInfo[ 0 ].StreamAddres = 0 ;
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚ÌƒƒbƒN‚ğ‰ğ•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®ãƒ­ãƒƒã‚¯ã‚’è§£æ”¾
 	CriticalSection_Unlock( &DT->CriticalSection ) ;
 
-	// DirectDrawObject ‚ª—LŒø‚Èê‡‚Í YUV ƒtƒH[ƒ}ƒbƒg‚Ìˆê•Û‘¶—pƒT[ƒtƒFƒX‚ğì¬‚·‚é
+	// DirectDrawObject ãŒæœ‰åŠ¹ãªå ´åˆã¯ YUV ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®ä¸€æ™‚ä¿å­˜ç”¨ã‚µãƒ¼ãƒ•ã‚§ã‚¹ã‚’ä½œæˆã™ã‚‹
 	TheoraDecode_CreateSurface( DT, ASyncThread ) ;
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚ÌƒƒbƒN‚ğæ“¾
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®ãƒ­ãƒƒã‚¯ã‚’å–å¾—
 	CRITICALSECTION_LOCK( &DT->CriticalSection ) ;
 
-	// ’ÊíQÆ—p‚ÉƒVƒXƒeƒ€ƒƒ‚ƒŠ‚É XRGB Œ`®‚Ìƒoƒbƒtƒ@‚ğì¬‚·‚é
+	// é€šå¸¸å‚ç…§ç”¨ã«ã‚·ã‚¹ãƒ†ãƒ ãƒ¡ãƒ¢ãƒªã« XRGB å½¢å¼ã®ãƒãƒƒãƒ•ã‚¡ã‚’ä½œæˆã™ã‚‹
 //	DXST_LOGFILEFMT_ADDA(( "Theora w:%d  h:%d", DT->TheoraInfo.width, DT->TheoraInfo.height ));
 	if( CreateXRGB8ColorBaseImage( ( int )DT->TheoraInfo.width, ( int )DT->TheoraInfo.height, ( BASEIMAGE * )&DT->BaseImage ) == -1 )
 	{
-		DXST_LOGFILE_ADDA( "Theora \x83\x80\x81\x5b\x83\x72\x81\x5b\x83\x66\x83\x52\x81\x5b\x83\x68\x83\x74\x83\x8c\x81\x5b\x83\x80\x83\x58\x83\x67\x83\x62\x83\x4e\x97\x70\x89\xe6\x91\x9c\x83\x6f\x83\x62\x83\x74\x83\x40\x82\xcc\x8a\x6d\x95\xdb\x82\xc9\x8e\xb8\x94\x73\x82\xb5\x82\xdc\x82\xb5\x82\xbd\n"/*@ "Theora ƒ€[ƒr[ƒfƒR[ƒhƒtƒŒ[ƒ€ƒXƒgƒbƒN—p‰æ‘œƒoƒbƒtƒ@‚ÌŠm•Û‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ );
+		DXST_LOGFILE_ADDA( "Theora \x83\x80\x81\x5b\x83\x72\x81\x5b\x83\x66\x83\x52\x81\x5b\x83\x68\x83\x74\x83\x8c\x81\x5b\x83\x80\x83\x58\x83\x67\x83\x62\x83\x4e\x97\x70\x89\xe6\x91\x9c\x83\x6f\x83\x62\x83\x74\x83\x40\x82\xcc\x8a\x6d\x95\xdb\x82\xc9\x8e\xb8\x94\x73\x82\xb5\x82\xdc\x82\xb5\x82\xbd\n"/*@ "Theora ãƒ ãƒ¼ãƒ“ãƒ¼ãƒ‡ã‚³ãƒ¼ãƒ‰ãƒ•ãƒ¬ãƒ¼ãƒ ã‚¹ãƒˆãƒƒã‚¯ç”¨ç”»åƒãƒãƒƒãƒ•ã‚¡ã®ç¢ºä¿ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ );
 		goto ERR ;
 	}
 
-	// ƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚Íì¬‚³‚ê‚Ä‚¢‚È‚¢ó‘Ô‚ÉƒZƒbƒg
+	// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã¯ä½œæˆã•ã‚Œã¦ã„ãªã„çŠ¶æ…‹ã«ã‚»ãƒƒãƒˆ
 	DT->YGrHandle  = -1 ;
 	DT->UVGrHandle = -1 ;
 
-	// ƒXƒgƒbƒNƒtƒŒ[ƒ€—pƒoƒbƒtƒ@‚Ìì¬
+	// ã‚¹ãƒˆãƒƒã‚¯ãƒ•ãƒ¬ãƒ¼ãƒ ç”¨ãƒãƒƒãƒ•ã‚¡ã®ä½œæˆ
 	{
 		DT->StockFrameMaxNum = StockFrameNum ;
 		DT->StockFrame = ( THEORA_STOCKFRAME * )DXALLOC( sizeof( THEORA_STOCKFRAME ) * StockFrameNum ) ;
 		if( DT->StockFrame == NULL )
 		{
-			DXST_LOGFILE_ADDA( "Theora \x83\x80\x81\x5b\x83\x72\x81\x5b\x83\x66\x83\x52\x81\x5b\x83\x68\x83\x74\x83\x8c\x81\x5b\x83\x80\x83\x58\x83\x67\x83\x62\x83\x4e\x97\x70\x82\xcc\x83\x81\x83\x82\x83\x8a\x8a\x6d\x95\xdb\x82\xc9\x8e\xb8\x94\x73\x82\xb5\x82\xdc\x82\xb5\x82\xbd\n"/*@ "Theora ƒ€[ƒr[ƒfƒR[ƒhƒtƒŒ[ƒ€ƒXƒgƒbƒN—p‚Ìƒƒ‚ƒŠŠm•Û‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ );
+			DXST_LOGFILE_ADDA( "Theora \x83\x80\x81\x5b\x83\x72\x81\x5b\x83\x66\x83\x52\x81\x5b\x83\x68\x83\x74\x83\x8c\x81\x5b\x83\x80\x83\x58\x83\x67\x83\x62\x83\x4e\x97\x70\x82\xcc\x83\x81\x83\x82\x83\x8a\x8a\x6d\x95\xdb\x82\xc9\x8e\xb8\x94\x73\x82\xb5\x82\xdc\x82\xb5\x82\xbd\n"/*@ "Theora ãƒ ãƒ¼ãƒ“ãƒ¼ãƒ‡ã‚³ãƒ¼ãƒ‰ãƒ•ãƒ¬ãƒ¼ãƒ ã‚¹ãƒˆãƒƒã‚¯ç”¨ã®ãƒ¡ãƒ¢ãƒªç¢ºä¿ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ );
 			goto ERR ;
 		}
 
 		_MEMSET( ( void * )DT->StockFrame, 0, sizeof( THEORA_STOCKFRAME ) * StockFrameNum ) ;
 	}
 
-	// ƒfƒR[ƒhˆ—ƒXƒŒƒbƒh‚Ìì¬
+	// ãƒ‡ã‚³ãƒ¼ãƒ‰å‡¦ç†ã‚¹ãƒ¬ãƒƒãƒ‰ã®ä½œæˆ
 	if( TheoraDecode_InitializeStream_PF( DT ) < 0 )
 	{
 		goto ERR ;
 	}
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚ÌƒƒbƒN‚ğ‰ğ•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®ãƒ­ãƒƒã‚¯ã‚’è§£æ”¾
 	CriticalSection_Unlock( &DT->CriticalSection ) ;
 
-	// æ“ª‚ğƒV[ƒN
+	// å…ˆé ­ã‚’ã‚·ãƒ¼ã‚¯
 //	TheoraDecode_SeekToFrame( ( DWORD_PTR )DT, 491 ) ;
 //	TheoraDecode_SeekToFrame( ( DWORD_PTR )DT, 82 ) ;
 //	TheoraDecode_SeekToFrame( ( DWORD_PTR )DT, 83 ) ;
 	TheoraDecode_SeekToFrame( ( DWORD_PTR )DT, 0 ) ;
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚ÌƒƒbƒN‚ğæ“¾
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®ãƒ­ãƒƒã‚¯ã‚’å–å¾—
 	CRITICALSECTION_LOCK( &DT->CriticalSection ) ;
 
-	// æ“Ç‚İ‚ğ‹–‰Â
+	// å…ˆèª­ã¿ã‚’è¨±å¯
 	DT->ThreadEnableCacheRead = 1 ;
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚ÌƒƒbƒN‚ğ‰ğ•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®ãƒ­ãƒƒã‚¯ã‚’è§£æ”¾
 	CriticalSection_Unlock( &DT->CriticalSection ) ;
 
-	// Å‰‚ÌƒtƒŒ[ƒ€‚Ì‰æ‘œ‚ÍƒZƒbƒgƒAƒbƒv‚µ‚Ä‚¨‚­
+	// æœ€åˆã®ãƒ•ãƒ¬ãƒ¼ãƒ ã®ç”»åƒã¯ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã—ã¦ãŠã
 	TheoraDecode_SetupImage( ( DWORD_PTR )DT, 1, 1, 1, ASyncThread ) ;
 
-	// ƒAƒhƒŒƒX‚ğ•Ô‚·
+	// ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’è¿”ã™
 	return ( DWORD_PTR )DT ;
 
 ERR:
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚ÌƒƒbƒN‚ğ‰ğ•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®ãƒ­ãƒƒã‚¯ã‚’è§£æ”¾
 	CriticalSection_Unlock( &DT->CriticalSection ) ;
 
 	TheoraDecode_Terminate( ( DWORD_PTR )DT ) ;
 	return 0 ;
 }
 
-// Ogg Theora “Ç‚İ‚İˆ—‚ÌŒãn––‚ğs‚¤
+// Ogg Theora èª­ã¿è¾¼ã¿å‡¦ç†ã®å¾Œå§‹æœ«ã‚’è¡Œã†
 int	TheoraDecode_Terminate( DWORD_PTR Handle )
 {
 	DECODE_THEORA *DT = ( DECODE_THEORA * )Handle ;
@@ -3705,22 +3705,22 @@ int	TheoraDecode_Terminate( DWORD_PTR Handle )
 //	if( DT->DecodeThreadHandle )
 	if( Thread_IsValid( &DT->DecodeThreadInfo ) )
 	{
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚ÌƒƒbƒN‚ğæ“¾
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®ãƒ­ãƒƒã‚¯ã‚’å–å¾—
 		CRITICALSECTION_LOCK( &DT->CriticalSection ) ;
 
 		DT->ThreadExitRequest = 1 ;
 
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚ÌƒƒbƒN‚ğ‰ğ•ú
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®ãƒ­ãƒƒã‚¯ã‚’è§£æ”¾
 		CriticalSection_Unlock( &DT->CriticalSection ) ;
 
 		for(;;)
 		{
-			// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚ÌƒƒbƒN‚ğæ“¾
+			// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®ãƒ­ãƒƒã‚¯ã‚’å–å¾—
 			CRITICALSECTION_LOCK( &DT->CriticalSection ) ;
 
 			Result = DT->ThreadState == THEORAT_STATE_EXIT ;
 
-			// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚ÌƒƒbƒN‚ğ‰ğ•ú
+			// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®ãƒ­ãƒƒã‚¯ã‚’è§£æ”¾
 			CriticalSection_Unlock( &DT->CriticalSection ) ;
 
 			if( Result )
@@ -3731,7 +3731,7 @@ int	TheoraDecode_Terminate( DWORD_PTR Handle )
 			Thread_Sleep( 1 ) ;
 		}
 
-		// ƒXƒŒƒbƒh‚Ìƒnƒ“ƒhƒ‹‚ğ•Â‚¶‚é
+		// ã‚¹ãƒ¬ãƒƒãƒ‰ã®ãƒãƒ³ãƒ‰ãƒ«ã‚’é–‰ã˜ã‚‹
 //		WinAPIData.Win32Func.CloseHandleFunc( DT->DecodeThreadHandle ) ;
 //		DT->DecodeThreadHandle = NULL ;
 		Thread_Delete( &DT->DecodeThreadInfo ) ;
@@ -3802,23 +3802,23 @@ int	TheoraDecode_Terminate( DWORD_PTR Handle )
 
 	DXFREE( DT ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// Ogg Theora ‚Åg—p‚µ‚Ä‚¢‚éƒT[ƒtƒFƒX‚ğ‰ğ•ú‚·‚é
+// Ogg Theora ã§ä½¿ç”¨ã—ã¦ã„ã‚‹ã‚µãƒ¼ãƒ•ã‚§ã‚¹ã‚’è§£æ”¾ã™ã‚‹
 extern int TheoraDecode_SurfaceTerminate( DWORD_PTR Handle )
 {
 	DECODE_THEORA *DT = ( DECODE_THEORA * )Handle ;
 
-	// ƒT[ƒtƒFƒX‰ğ•úˆË—Šƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// ã‚µãƒ¼ãƒ•ã‚§ã‚¹è§£æ”¾ä¾é ¼ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	DT->YUVSurfaceReleaseRequest = TRUE ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// Ogg ‚Éƒf[ƒ^‚ğ“Ç‚İ‚ñ‚ÅƒZƒbƒg‚·‚é
+// Ogg ã«ãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿è¾¼ã‚“ã§ã‚»ãƒƒãƒˆã™ã‚‹
 int TheoraDecode_ReadData( DECODE_THEORA *DT, int Bytes )
 {
 	char *buffer ;
@@ -3832,7 +3832,7 @@ int TheoraDecode_ReadData( DECODE_THEORA *DT, int Bytes )
 	return ( int )bytes ;
 }
 
-// Theora ‚Ìƒwƒbƒ_‚ğ“Ç‚İ‚Ş
+// Theora ã®ãƒ˜ãƒƒãƒ€ã‚’èª­ã¿è¾¼ã‚€
 int TheoraDecode_ReadHeader( DECODE_THEORA *DT )
 {
 	ogg_stream_state test;
@@ -3841,14 +3841,14 @@ int TheoraDecode_ReadHeader( DECODE_THEORA *DT )
 
 	while( state == false )
 	{
-		// ƒtƒ@ƒCƒ‹‚©‚çƒf[ƒ^‚Ì“Ç‚İ‚İ
+		// ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰ãƒ‡ãƒ¼ã‚¿ã®èª­ã¿è¾¼ã¿
 		if( TheoraDecode_ReadData( DT ) == 0 )
 			break ;
 
-		// ƒy[ƒW‚Ìæ“¾
+		// ãƒšãƒ¼ã‚¸ã®å–å¾—
 		while( ogg_sync_pageout( &DT->OggSyncState, &DT->OggPage ) == 1 )
 		{
-			// ƒwƒbƒ_[‚©‚Ç‚¤‚©Šm”F‚·‚é
+			// ãƒ˜ãƒƒãƒ€ãƒ¼ã‹ã©ã†ã‹ç¢ºèªã™ã‚‹
 			if( ogg_page_bos( &DT->OggPage ) == 0 )
 			{
 				ogg_stream_pagein( &DT->OggTheoraStream, &DT->OggPage ) ;
@@ -3856,20 +3856,20 @@ int TheoraDecode_ReadHeader( DECODE_THEORA *DT )
 				break ;
 			}
 
-			// ƒXƒgƒŠ[ƒ€‚Ì‰Šú‰»
+			// ã‚¹ãƒˆãƒªãƒ¼ãƒ ã®åˆæœŸåŒ–
 			ogg_stream_init( &test, ogg_page_serialno( &DT->OggPage ) ) ;
 			ogg_stream_pagein( &test, &DT->OggPage ) ;
 			ogg_stream_packetout( &test, &DT->OggPacket ) ;
 
-			// Theora ‚Ìƒwƒbƒ_ƒpƒPƒbƒg‚©‚Ç‚¤‚©‚ğ’²‚×‚é
+			// Theora ã®ãƒ˜ãƒƒãƒ€ãƒ‘ã‚±ãƒƒãƒˆã‹ã©ã†ã‹ã‚’èª¿ã¹ã‚‹
 			if( theora_decode_header( &DT->TheoraInfo, &DT->TheoraComment, &DT->OggPacket ) != 0 )
 			{
-				// ‘¼‚ÌƒXƒgƒŠ[ƒ€‚Í‹C‚É‚µ‚È‚¢
+				// ä»–ã®ã‚¹ãƒˆãƒªãƒ¼ãƒ ã¯æ°—ã«ã—ãªã„
 				ogg_stream_clear( &test );
 				continue ;
 			}
 
-			// Theora”­Œ©
+			// Theoraç™ºè¦‹
 			DT->TheoraSerialNo = ogg_page_serialno( &DT->OggPage ) ;
 			memcpy( &DT->OggTheoraStream, &test, sizeof( test ) ) ;
 			DT->NumOfTheoraHeader = 1 ;
@@ -3879,21 +3879,21 @@ int TheoraDecode_ReadHeader( DECODE_THEORA *DT )
 		}
 	}
 
-	// ‚Ü‚¾ƒwƒbƒ_[ƒpƒPƒbƒg‚ ‚éH
+	// ã¾ã ãƒ˜ãƒƒãƒ€ãƒ¼ãƒ‘ã‚±ãƒƒãƒˆã‚ã‚‹ï¼Ÿ
 	while( DT->NumOfTheoraHeader < 3 )
 	{
-		// Theora‚Ìƒwƒbƒ_[‚ğ’T‚»‚¤
+		// Theoraã®ãƒ˜ãƒƒãƒ€ãƒ¼ã‚’æ¢ãã†
 		while( DT->NumOfTheoraHeader < 3 && ( ret = ogg_stream_packetout( &DT->OggTheoraStream, &DT->OggPacket ) ) != 0 )
 		{
 			if( ret < 0 )
 			{
-//				throw "Error parsing Theora stream headers; •s³‚ÈƒXƒgƒŠ[ƒ€H";
+//				throw "Error parsing Theora stream headers; ä¸æ­£ãªã‚¹ãƒˆãƒªãƒ¼ãƒ ï¼Ÿ";
 				return -1 ;
 			}
 
 			if( theora_decode_header( &DT->TheoraInfo, &DT->TheoraComment, &DT->OggPacket ) )
 			{
-//				throw "Error parsing Theora stream headers; •s³‚ÈƒXƒgƒŠ[ƒ€H";
+//				throw "Error parsing Theora stream headers; ä¸æ­£ãªã‚¹ãƒˆãƒªãƒ¼ãƒ ï¼Ÿ";
 				return -1 ;
 			}
 
@@ -3902,7 +3902,7 @@ int TheoraDecode_ReadHeader( DECODE_THEORA *DT )
 				break;
 		}
 
-		// ‘¼‚ÌƒXƒgƒŠ[ƒ€‚Ìƒwƒbƒ_[‚ğ“Ç‚İÌ‚Ä
+		// ä»–ã®ã‚¹ãƒˆãƒªãƒ¼ãƒ ã®ãƒ˜ãƒƒãƒ€ãƒ¼ã‚’èª­ã¿æ¨ã¦
 		if( ogg_sync_pageout( &DT->OggSyncState, &DT->OggPage ) > 0 )
 		{
 			ogg_stream_pagein( &DT->OggTheoraStream, &DT->OggPage ) ;
@@ -3920,34 +3920,34 @@ int TheoraDecode_ReadHeader( DECODE_THEORA *DT )
 	return DT->NumOfTheoraHeader != 0 ? 1 : -1 ;
 }
 
-// ƒfƒR[ƒhƒXƒŒƒbƒh‚ªƒAƒCƒhƒ‹ó‘Ô‚©‚Ç‚¤‚©‚ğ’²‚×‚é( –ß‚è’l  1:ƒAƒCƒhƒ‹ó‘Ô  0:‰Ò“®’† )
+// ãƒ‡ã‚³ãƒ¼ãƒ‰ã‚¹ãƒ¬ãƒƒãƒ‰ãŒã‚¢ã‚¤ãƒ‰ãƒ«çŠ¶æ…‹ã‹ã©ã†ã‹ã‚’èª¿ã¹ã‚‹( æˆ»ã‚Šå€¤  1:ã‚¢ã‚¤ãƒ‰ãƒ«çŠ¶æ…‹  0:ç¨¼å‹•ä¸­ )
 int TheoraDecode_IsIdle( DWORD_PTR Handle )
 {
 	DECODE_THEORA *DT = ( DECODE_THEORA * )Handle ;
 	int Result ;
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚ÌƒƒbƒN‚ğæ“¾
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®ãƒ­ãƒƒã‚¯ã‚’å–å¾—
 	CRITICALSECTION_LOCK( &DT->CriticalSection ) ;
 
 	Result = DT->ThreadState == THEORAT_STATE_IDLE ? 1 : 0 ;
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚ÌƒƒbƒN‚ğ‰ğ•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®ãƒ­ãƒƒã‚¯ã‚’è§£æ”¾
 	CriticalSection_Unlock( &DT->CriticalSection ) ;
 
 	return Result ;
 }
 
-// w’è‚ÌƒtƒŒ[ƒ€‚Ü‚ÅˆÚ“®‚·‚é
+// æŒ‡å®šã®ãƒ•ãƒ¬ãƒ¼ãƒ ã¾ã§ç§»å‹•ã™ã‚‹
 int TheoraDecode_SeekToFrame( DWORD_PTR Handle, int Frame )
 {
 	DECODE_THEORA *DT = ( DECODE_THEORA * )Handle ;
 	bool Result ;
 	int DataFrame ;
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚ÌƒƒbƒN‚ğæ“¾
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®ãƒ­ãƒƒã‚¯ã‚’å–å¾—
 	CRITICALSECTION_LOCK( &DT->CriticalSection ) ;
 
-	// ƒf[ƒ^ƒtƒŒ[ƒ€‚ğæ“¾
+	// ãƒ‡ãƒ¼ã‚¿ãƒ•ãƒ¬ãƒ¼ãƒ ã‚’å–å¾—
 	if( Frame < 0 )
 	{
 		Frame = 0 ;
@@ -3960,34 +3960,34 @@ int TheoraDecode_SeekToFrame( DWORD_PTR Handle, int Frame )
 //	if( DataFrame < 0 ) DataFrame = 0 ;
 //	if( DataFrame > DT->TheoraTotalDataFrame ) DataFrame = ( int )DT->TheoraTotalDataFrame ;
 
-	// ‚à‚µƒJƒŒƒ“ƒgƒtƒŒ[ƒ€‚Æ“¯‚¶ƒtƒŒ[ƒ€‚¾‚Á‚½ê‡‚Í‰½‚à‚¹‚¸I—¹
+	// ã‚‚ã—ã‚«ãƒ¬ãƒ³ãƒˆãƒ•ãƒ¬ãƒ¼ãƒ ã¨åŒã˜ãƒ•ãƒ¬ãƒ¼ãƒ ã ã£ãŸå ´åˆã¯ä½•ã‚‚ã›ãšçµ‚äº†
 	if( DataFrame == DT->TheoraCurrentDataFrame )
 	{
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚ÌƒƒbƒN‚ğ‰ğ•ú
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®ãƒ­ãƒƒã‚¯ã‚’è§£æ”¾
 		CriticalSection_Unlock( &DT->CriticalSection ) ;
 
 		return 0 ;
 	}
 
-	// ƒCƒ[ƒW‚ªƒZƒbƒgƒAƒbƒv‚³‚ê‚Ä‚¢‚éAƒtƒ‰ƒO‚ğ“|‚·
+	// ã‚¤ãƒ¡ãƒ¼ã‚¸ãŒã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã•ã‚Œã¦ã„ã‚‹ã€ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 	DT->BaseImageSetup = 0 ;
 	DT->YUVImageSetup = 0 ;
 	DT->YUVGrHandleSetup = 0 ;
 
-	// ƒXƒŒƒbƒh‚ğ~‚ß‚é
+	// ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’æ­¢ã‚ã‚‹
 	DT->ThreadStopRequest = 1 ;
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚ÌƒƒbƒN‚ğ‰ğ•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®ãƒ­ãƒƒã‚¯ã‚’è§£æ”¾
 	CriticalSection_Unlock( &DT->CriticalSection ) ;
 
 	for(;;)
 	{
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚ÌƒƒbƒN‚ğæ“¾
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®ãƒ­ãƒƒã‚¯ã‚’å–å¾—
 		CRITICALSECTION_LOCK( &DT->CriticalSection ) ;
 
 		Result = DT->ThreadState == THEORAT_STATE_STOP ;
 
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚ÌƒƒbƒN‚ğ‰ğ•ú
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®ãƒ­ãƒƒã‚¯ã‚’è§£æ”¾
 		CriticalSection_Unlock( &DT->CriticalSection ) ;
 
 		if( Result )
@@ -3998,31 +3998,31 @@ int TheoraDecode_SeekToFrame( DWORD_PTR Handle, int Frame )
 		Thread_Sleep( 0 ) ;
 	}
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚ÌƒƒbƒN‚ğæ“¾
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®ãƒ­ãƒƒã‚¯ã‚’å–å¾—
 	CRITICALSECTION_LOCK( &DT->CriticalSection ) ;
 
-	// Œ»İ‚ÌƒtƒŒ[ƒ€‚ğƒZƒbƒg
+	// ç¾åœ¨ã®ãƒ•ãƒ¬ãƒ¼ãƒ ã‚’ã‚»ãƒƒãƒˆ
 	DT->TheoraCurrentDataFrame = DataFrame ;
 	DT->TheoraCurrentTimeFrame = Frame ;
 
-	// ƒV[ƒNæ‚ğƒZƒbƒg
+	// ã‚·ãƒ¼ã‚¯å…ˆã‚’ã‚»ãƒƒãƒˆ
 	DT->ThreadSeekFrame = DataFrame ;
 
-	// ƒV[ƒNƒŠƒNƒGƒXƒg
+	// ã‚·ãƒ¼ã‚¯ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
 	DT->ThreadSeekRequest = 1 ;
 
-	// ƒXƒŒƒbƒh‚ğ“®‚©‚·
+	// ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’å‹•ã‹ã™
 	DT->ThreadStopRequest = 0 ;
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚ÌƒƒbƒN‚ğ‰ğ•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®ãƒ­ãƒƒã‚¯ã‚’è§£æ”¾
 	CriticalSection_Unlock( &DT->CriticalSection ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
 
-// ƒJƒŒƒ“ƒgƒtƒŒ[ƒ€‚ğw’è‚ÌÄ¶ŠÔ‚ÉˆÚ“®‚·‚é( ’PˆÊ‚Íƒ}ƒCƒNƒ•b )
+// ã‚«ãƒ¬ãƒ³ãƒˆãƒ•ãƒ¬ãƒ¼ãƒ ã‚’æŒ‡å®šã®å†ç”Ÿæ™‚é–“ã«ç§»å‹•ã™ã‚‹( å˜ä½ã¯ãƒã‚¤ã‚¯ãƒ­ç§’ )
 int TheoraDecode_SeekToTime( DWORD_PTR Handle, LONGLONG Time )
 {
 	DECODE_THEORA *DT = ( DECODE_THEORA * )Handle ;
@@ -4030,17 +4030,17 @@ int TheoraDecode_SeekToTime( DWORD_PTR Handle, LONGLONG Time )
 	return TheoraDecode_SeekToFrame( ( DWORD_PTR )DT, ( int )( Time / ( 1000000.0 / ( ( double )DT->TheoraInfo.fps_numerator / DT->TheoraInfo.fps_denominator ) ) ) ) ;
 }
 
-// ƒJƒŒƒ“ƒgƒtƒŒ[ƒ€‚ğw’èƒtƒŒ[ƒ€•ªi‚ß‚é
+// ã‚«ãƒ¬ãƒ³ãƒˆãƒ•ãƒ¬ãƒ¼ãƒ ã‚’æŒ‡å®šãƒ•ãƒ¬ãƒ¼ãƒ åˆ†é€²ã‚ã‚‹
 int TheoraDecode_IncToFrame( DWORD_PTR Handle, int AddNum )
 {
 	DECODE_THEORA *DT = ( DECODE_THEORA * )Handle ;
 
 	if( AddNum <= 0 ) return 0 ;
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚ÌƒƒbƒN‚ğæ“¾
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®ãƒ­ãƒƒã‚¯ã‚’å–å¾—
 	CRITICALSECTION_LOCK( &DT->CriticalSection ) ;
 
-	// ƒJƒŒƒ“ƒgƒtƒŒ[ƒ€‚ğ•ÏX
+	// ã‚«ãƒ¬ãƒ³ãƒˆãƒ•ãƒ¬ãƒ¼ãƒ ã‚’å¤‰æ›´
 	DT->TheoraCurrentTimeFrame += AddNum ;
 	if( DT->TheoraCurrentTimeFrame >= DT->TheoraTotalTimeFrame )
 	{
@@ -4054,15 +4054,15 @@ int TheoraDecode_IncToFrame( DWORD_PTR Handle, int AddNum )
 	___StockFrame[ 11 ] = AddNum ;
 #endif
 
-	// ƒCƒ[ƒW‚ªƒZƒbƒgƒAƒbƒv‚³‚ê‚Ä‚¢‚éAƒtƒ‰ƒO‚ğ“|‚·
+	// ã‚¤ãƒ¡ãƒ¼ã‚¸ãŒã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã•ã‚Œã¦ã„ã‚‹ã€ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 	DT->BaseImageSetup = 0 ;
 	DT->YUVImageSetup = 0 ;
 	DT->YUVGrHandleSetup = 0 ;
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚ÌƒƒbƒN‚ğ‰ğ•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®ãƒ­ãƒƒã‚¯ã‚’è§£æ”¾
 	CriticalSection_Unlock( &DT->CriticalSection ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
@@ -4070,7 +4070,7 @@ int TheoraDecode_IncToFrame( DWORD_PTR Handle, int AddNum )
 LONGLONG ___time3;
 #endif
 
-// ƒJƒŒƒ“ƒgƒtƒŒ[ƒ€‚ğw’èƒtƒŒ[ƒ€•ªi‚ß‚é( –ß‚è’l  1:ƒL[ƒtƒŒ[ƒ€  0:ƒL[ƒtƒŒ[ƒ€‚¶‚á‚È‚¢  -1:ƒXƒgƒŠ[ƒ€‚ÌI’[ )
+// ã‚«ãƒ¬ãƒ³ãƒˆãƒ•ãƒ¬ãƒ¼ãƒ ã‚’æŒ‡å®šãƒ•ãƒ¬ãƒ¼ãƒ åˆ†é€²ã‚ã‚‹( æˆ»ã‚Šå€¤  1:ã‚­ãƒ¼ãƒ•ãƒ¬ãƒ¼ãƒ   0:ã‚­ãƒ¼ãƒ•ãƒ¬ãƒ¼ãƒ ã˜ã‚ƒãªã„  -1:ã‚¹ãƒˆãƒªãƒ¼ãƒ ã®çµ‚ç«¯ )
 int _TheoraDecode_IncToFrame( DWORD_PTR Handle, int AddNum )
 {
 	DECODE_THEORA *DT = ( DECODE_THEORA * )Handle ;
@@ -4079,7 +4079,7 @@ int _TheoraDecode_IncToFrame( DWORD_PTR Handle, int AddNum )
 	LONGLONG time = GetNowHiPerformanceCount( FALSE ) ;
 #endif
 
-	// w’è‚ÌƒtƒŒ[ƒ€‚ğƒCƒ“ƒNƒŠƒƒ“ƒg‚·‚é‚É‚ ‚½‚èÅŒã‚ÉŒ»‚ê‚éƒL[ƒtƒŒ[ƒ€‚ğŒŸo‚·‚é
+	// æŒ‡å®šã®ãƒ•ãƒ¬ãƒ¼ãƒ ã‚’ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆã™ã‚‹ã«ã‚ãŸã‚Šæœ€å¾Œã«ç¾ã‚Œã‚‹ã‚­ãƒ¼ãƒ•ãƒ¬ãƒ¼ãƒ ã‚’æ¤œå‡ºã™ã‚‹
 	LastKeyFrame  = -1 ;
 	LastKeyFrame2 = -1 ;
 	for( i = 0 ; i < AddNum ; i ++ )
@@ -4091,33 +4091,33 @@ int _TheoraDecode_IncToFrame( DWORD_PTR Handle, int AddNum )
 		}
 	}
 
-	// w’è‰ñ”‚¾‚¯ŒJ‚è•Ô‚·
+	// æŒ‡å®šå›æ•°ã ã‘ç¹°ã‚Šè¿”ã™
 	for( i = 0 ; i < AddNum ; i ++ )
 	{
-		// —LŒø‚È Theora ƒrƒfƒIƒR[ƒh‚ğæ“¾
+		// æœ‰åŠ¹ãª Theora ãƒ“ãƒ‡ã‚ªã‚³ãƒ¼ãƒ‰ã‚’å–å¾—
 		do
 		{
-			// ogg packet ‚ªæ“¾‚Å‚«‚é‚Ü‚Åƒ‹[ƒv
+			// ogg packet ãŒå–å¾—ã§ãã‚‹ã¾ã§ãƒ«ãƒ¼ãƒ—
 			while( ogg_stream_packetout( &DT->OggTheoraStream, &DT->OggPacket ) != 1 )
 			{
-				// ogg page ‚ğæ“¾
+				// ogg page ã‚’å–å¾—
 				if( ogg_sync_pageout( &DT->OggSyncState, &DT->OggPage ) > 0 )
 				{
-					// æ“¾‚Å‚«‚½‚ç stream ‚ÉƒZƒbƒg
+					// å–å¾—ã§ããŸã‚‰ stream ã«ã‚»ãƒƒãƒˆ
 					ogg_stream_pagein( &DT->OggTheoraStream, &DT->OggPage );
 				}
 				else
 				{
-					// æ“¾‚Å‚«‚È‚©‚Á‚½‚ç‚Ü‚¸ƒtƒ@ƒCƒ‹‚ÌI’[‚É—ˆ‚Ä‚¢‚é‚©’²‚×A—ˆ‚Ä‚¢‚½‚ç‚±‚±‚ÅI—¹
+					// å–å¾—ã§ããªã‹ã£ãŸã‚‰ã¾ãšãƒ•ã‚¡ã‚¤ãƒ«ã®çµ‚ç«¯ã«æ¥ã¦ã„ã‚‹ã‹èª¿ã¹ã€æ¥ã¦ã„ãŸã‚‰ã“ã“ã§çµ‚äº†
 					if( DT->StreamShred.Eof( DT->StreamData ) != 0 )
 						return -1 ;
 
-					// —ˆ‚Ä‚¢‚È‚©‚Á‚½‚çV‚½‚Èƒf[ƒ^‚ğ ogg sync ‚ÉƒZƒbƒg
+					// æ¥ã¦ã„ãªã‹ã£ãŸã‚‰æ–°ãŸãªãƒ‡ãƒ¼ã‚¿ã‚’ ogg sync ã«ã‚»ãƒƒãƒˆ
 					TheoraDecode_ReadData( DT ) ;
 				}
 			}
 
-			// ƒL[ƒtƒŒ[ƒ€ˆÈŠO‚Åw’è‚ÌƒtƒŒ[ƒ€‚É’H‚è’…‚­‚Ü‚Å‚É‚Ü‚¾ƒL[ƒtƒŒ[ƒ€‚ª‘¶İ‚·‚éê‡‚ÍƒfƒR[ƒh‚ğƒXƒLƒbƒv
+			// ã‚­ãƒ¼ãƒ•ãƒ¬ãƒ¼ãƒ ä»¥å¤–ã§æŒ‡å®šã®ãƒ•ãƒ¬ãƒ¼ãƒ ã«è¾¿ã‚Šç€ãã¾ã§ã«ã¾ã ã‚­ãƒ¼ãƒ•ãƒ¬ãƒ¼ãƒ ãŒå­˜åœ¨ã™ã‚‹å ´åˆã¯ãƒ‡ã‚³ãƒ¼ãƒ‰ã‚’ã‚¹ã‚­ãƒƒãƒ—
 			if( LastKeyFrame2 == -1 || LastKeyFrame2 <= DT->TheoraInCurrentDataFrame )
 			{
 				if( theora_decode_packetin( &DT->TheoraState, &DT->OggPacket ) != 0 ) continue ;
@@ -4130,7 +4130,7 @@ int _TheoraDecode_IncToFrame( DWORD_PTR Handle, int AddNum )
 			theora_control( &DT->TheoraState, TH_DECCTL_SET_GRANPOS, &DT->OggPacket.granulepos, sizeof( DT->OggPacket.granulepos ) ) ;
 		}
 
-		// ƒJƒŒƒ“ƒgƒtƒŒ[ƒ€‚ğƒCƒ“ƒNƒŠƒƒ“ƒg
+		// ã‚«ãƒ¬ãƒ³ãƒˆãƒ•ãƒ¬ãƒ¼ãƒ ã‚’ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆ
 		DT->TheoraInCurrentDataFrame ++ ;
 	}
 
@@ -4138,7 +4138,7 @@ int _TheoraDecode_IncToFrame( DWORD_PTR Handle, int AddNum )
 	___time3 = GetNowHiPerformanceCount( FALSE ) - time;
 #endif
 
-	// ƒL[ƒtƒŒ[ƒ€‚©‚Ç‚¤‚©‚ğ•Ô‚·
+	// ã‚­ãƒ¼ãƒ•ãƒ¬ãƒ¼ãƒ ã‹ã©ã†ã‹ã‚’è¿”ã™
 	return theora_packet_iskeyframe( &DT->OggPacket ) == 1 ? 1 : 0 ;
 }
 
@@ -4201,80 +4201,80 @@ extern void TheoraDecode_CreateSurface( DECODE_THEORA *DT, int ASyncThread )
 	}
 #endif // DX_NON_ASYNCLOAD
 
-	// Šù‚ÉŠm•Û‚³‚ê‚Ä‚¢‚½‚à‚Ì‚Í‰ğ•ú
+	// æ—¢ã«ç¢ºä¿ã•ã‚Œã¦ã„ãŸã‚‚ã®ã¯è§£æ”¾
 	TheoraDecode_ReleaseSurface( DT, FALSE ) ;
 
-	// ŠÂ‹«ˆË‘¶ˆ—
+	// ç’°å¢ƒä¾å­˜å‡¦ç†
 	TheoraDecode_CreateSurface_PF( DT ) ;
 }
 
-// Ogg Theora ‚ÌƒfƒR[ƒhƒXƒŒƒbƒh‚Ås‚¤ƒ‹[ƒvˆ—‚ğs‚¤
+// Ogg Theora ã®ãƒ‡ã‚³ãƒ¼ãƒ‰ã‚¹ãƒ¬ãƒƒãƒ‰ã§è¡Œã†ãƒ«ãƒ¼ãƒ—å‡¦ç†ã‚’è¡Œã†
 extern int TheoraDecode_Thread_LoopProcess( DECODE_THEORA *DT )
 {
 	int i, j, k ;
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚ÌƒƒbƒN‚ğæ“¾
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®ãƒ­ãƒƒã‚¯ã‚’å–å¾—
 	CRITICALSECTION_LOCK( &DT->CriticalSection ) ;
 
-	// I—¹ƒŠƒNƒGƒXƒg‚ª‚ ‚Á‚½‚çƒXƒŒƒbƒh‚ğI—¹
+	// çµ‚äº†ãƒªã‚¯ã‚¨ã‚¹ãƒˆãŒã‚ã£ãŸã‚‰ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’çµ‚äº†
 	if( DT->ThreadExitRequest == 1 )
 	{
 		DT->ThreadState = THEORAT_STATE_EXIT ;
 
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚ÌƒƒbƒN‚ğ‰ğ•ú
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®ãƒ­ãƒƒã‚¯ã‚’è§£æ”¾
 		CriticalSection_Unlock( &DT->CriticalSection ) ;
 		return 2 ;
 	}
 	else
-	// ƒXƒgƒbƒvƒŠƒNƒGƒXƒg‚ª‚ ‚Á‚½‚çƒXƒŒƒbƒh‚ğƒXƒgƒbƒv
+	// ã‚¹ãƒˆãƒƒãƒ—ãƒªã‚¯ã‚¨ã‚¹ãƒˆãŒã‚ã£ãŸã‚‰ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’ã‚¹ãƒˆãƒƒãƒ—
 	if( DT->ThreadStopRequest == 1 )
 	{
 		DT->ThreadState = THEORAT_STATE_STOP ;
 
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚ÌƒƒbƒN‚ğ‰ğ•ú
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®ãƒ­ãƒƒã‚¯ã‚’è§£æ”¾
 		CriticalSection_Unlock( &DT->CriticalSection ) ;
 
 		Thread_Sleep( 1 ) ;
 	}
 	else
-	// ƒV[ƒNƒŠƒNƒGƒXƒg‚ª‚ ‚Á‚½‚çƒV[ƒN
+	// ã‚·ãƒ¼ã‚¯ãƒªã‚¯ã‚¨ã‚¹ãƒˆãŒã‚ã£ãŸã‚‰ã‚·ãƒ¼ã‚¯
 	if( DT->ThreadSeekRequest == 1 )
 	{
 		int now_frame ;
 
-		// ó‘Ô‚ğƒV[ƒNó‘Ô‚É‚·‚é
+		// çŠ¶æ…‹ã‚’ã‚·ãƒ¼ã‚¯çŠ¶æ…‹ã«ã™ã‚‹
 		DT->ThreadState = THEORAT_STATE_SEEK ;
 
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚ÌƒƒbƒN‚ğ‰ğ•ú
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®ãƒ­ãƒƒã‚¯ã‚’è§£æ”¾
 		CriticalSection_Unlock( &DT->CriticalSection ) ;
 
-		// w’è‚ÌƒtƒŒ[ƒ€‚ªŠÜ‚Ü‚ê‚éƒy[ƒW‚ğŒŸõ
+		// æŒ‡å®šã®ãƒ•ãƒ¬ãƒ¼ãƒ ãŒå«ã¾ã‚Œã‚‹ãƒšãƒ¼ã‚¸ã‚’æ¤œç´¢
 		for( i = 0 ; i < DT->TheoraPageInfoNum && DT->TheoraPageInfo[ i ].FrameAddres + DT->TheoraPageInfo[ i ].FrameNum <= DT->ThreadSeekFrame ; i ++ ){}
 		if( i == DT->TheoraPageInfoNum )
 		{
 			return (DWORD)-1 ;
 		}
 
-		// w’è‚ÌƒtƒŒ[ƒ€‚ªŠÜ‚Ü‚ê‚éƒy[ƒWˆÈ‘O‚ÌƒL[ƒtƒŒ[ƒ€‚ª‚ ‚éƒy[ƒW‚Ü‚Å‘k‚é
+		// æŒ‡å®šã®ãƒ•ãƒ¬ãƒ¼ãƒ ãŒå«ã¾ã‚Œã‚‹ãƒšãƒ¼ã‚¸ä»¥å‰ã®ã‚­ãƒ¼ãƒ•ãƒ¬ãƒ¼ãƒ ãŒã‚ã‚‹ãƒšãƒ¼ã‚¸ã¾ã§é¡ã‚‹
 		if( i != 0 ) i -- ;
 		while( i > 0 && DT->TheoraPageInfo[ i ].KeyFrame == 0 )
 			i -- ;
 
-		// ƒpƒPƒbƒg‚ª‘O‚Ìƒy[ƒW‚ğŒ×‚¢‚Å‚½‚è‚·‚é‚ÆƒL[ƒtƒŒ[ƒ€‚ğæ‚è“¦‚·‚±‚Æ‚ª‚ ‚é‚Ì‚ÅX‚Éˆê‚Â‘O‚Ìƒy[ƒW‚ğEEE
+		// ãƒ‘ã‚±ãƒƒãƒˆãŒå‰ã®ãƒšãƒ¼ã‚¸ã‚’è·¨ã„ã§ãŸã‚Šã™ã‚‹ã¨ã‚­ãƒ¼ãƒ•ãƒ¬ãƒ¼ãƒ ã‚’å–ã‚Šé€ƒã™ã“ã¨ãŒã‚ã‚‹ã®ã§æ›´ã«ä¸€ã¤å‰ã®ãƒšãƒ¼ã‚¸ã‚’ãƒ»ãƒ»ãƒ»
 		if( i != 0 ) i -- ;
 
-		// î•ñ‚ğƒŠƒZƒbƒg
+		// æƒ…å ±ã‚’ãƒªã‚»ãƒƒãƒˆ
 		ogg_sync_reset( &DT->OggSyncState ) ;
 		ogg_stream_reset( &DT->OggTheoraStream ) ;
 
-		// ŒŸo‚µ‚½ƒy[ƒW‚Ìæ“ª‚ÉˆÚ“®
+		// æ¤œå‡ºã—ãŸãƒšãƒ¼ã‚¸ã®å…ˆé ­ã«ç§»å‹•
 		DT->StreamShred.Seek( DT->StreamData, DT->TheoraPageInfo[ i ].StreamAddres, STREAM_SEEKTYPE_SET ) ;
 
-		// w’è‚ÌƒtƒŒ[ƒ€‚Ü‚ÅˆÚ“®
+		// æŒ‡å®šã®ãƒ•ãƒ¬ãƒ¼ãƒ ã¾ã§ç§»å‹•
 		{
 			now_frame = DT->TheoraPageInfo[ i ].FrameAddres ;
 
-			// ‚PƒtƒŒ[ƒ€–Ú‚Í‚±‚±‚Åˆ—( ƒy[ƒWŒ×‚¬‚ÌƒpƒPƒbƒg‚ğ—‚Æ‚µ‚Ä‚à‚PƒtƒŒ[ƒ€‚Æ‚µ‚ÄƒJƒEƒ“ƒg‚·‚é•K—v‚ª‚ ‚é‚½‚ß )
+			// ï¼‘ãƒ•ãƒ¬ãƒ¼ãƒ ç›®ã¯ã“ã“ã§å‡¦ç†( ãƒšãƒ¼ã‚¸è·¨ãã®ãƒ‘ã‚±ãƒƒãƒˆã‚’è½ã¨ã—ã¦ã‚‚ï¼‘ãƒ•ãƒ¬ãƒ¼ãƒ ã¨ã—ã¦ã‚«ã‚¦ãƒ³ãƒˆã™ã‚‹å¿…è¦ãŒã‚ã‚‹ãŸã‚ )
 			if( i != 0 )
 			{
 				do
@@ -4282,13 +4282,13 @@ extern int TheoraDecode_Thread_LoopProcess( DECODE_THEORA *DT )
 					TheoraDecode_ReadData( DT ) ;
 				}while( ogg_sync_pageout( &DT->OggSyncState, &DT->OggPage ) != 1 ) ;
 
-				// ƒy[ƒWŒ×‚¬‚ÌƒpƒPƒbƒg‚ª‚ ‚Á‚½‚ç”ò‚Î‚³‚ê‚é‚Ì‚Å‚±‚±‚Å‚»‚Ì•ª‚ÌƒtƒŒ[ƒ€‚ğƒCƒ“ƒNƒŠƒƒ“ƒg
+				// ãƒšãƒ¼ã‚¸è·¨ãã®ãƒ‘ã‚±ãƒƒãƒˆãŒã‚ã£ãŸã‚‰é£›ã°ã•ã‚Œã‚‹ã®ã§ã“ã“ã§ãã®åˆ†ã®ãƒ•ãƒ¬ãƒ¼ãƒ ã‚’ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆ
 				if( ogg_page_continued( &DT->OggPage ) != 0 )
 				{
 					now_frame ++ ;
 				}
 
-				// ƒXƒgƒŠ[ƒ€‚Éƒy[ƒW‚ğƒZƒbƒg
+				// ã‚¹ãƒˆãƒªãƒ¼ãƒ ã«ãƒšãƒ¼ã‚¸ã‚’ã‚»ãƒƒãƒˆ
 				ogg_stream_pagein( &DT->OggTheoraStream, &DT->OggPage ) ;
 			}
 
@@ -4300,35 +4300,35 @@ extern int TheoraDecode_Thread_LoopProcess( DECODE_THEORA *DT )
 //				}
 		}
 
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚ÌƒƒbƒN‚ğæ“¾
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®ãƒ­ãƒƒã‚¯ã‚’å–å¾—
 		CRITICALSECTION_LOCK( &DT->CriticalSection ) ;
 
-		// ƒtƒŒ[ƒ€ƒXƒ^ƒbƒNƒŠƒZƒbƒg
+		// ãƒ•ãƒ¬ãƒ¼ãƒ ã‚¹ã‚¿ãƒƒã‚¯ãƒªã‚»ãƒƒãƒˆ
 		for( i = 0 ; i < DT->StockFrameMaxNum ; i ++ )
 		{
 			DT->StockFrame[ i ].UseFlag = 0 ;
 		}
 
-		// ƒJƒŒƒ“ƒgƒtƒŒ[ƒ€‚ğƒZƒbƒg
+		// ã‚«ãƒ¬ãƒ³ãƒˆãƒ•ãƒ¬ãƒ¼ãƒ ã‚’ã‚»ãƒƒãƒˆ
 		DT->TheoraInCurrentDataFrame = DT->ThreadSeekFrame ;
 
-		// ƒV[ƒNƒŠƒNƒGƒXƒgI—¹
+		// ã‚·ãƒ¼ã‚¯ãƒªã‚¯ã‚¨ã‚¹ãƒˆçµ‚äº†
 		DT->ThreadSeekRequest = 0 ;
 
-		// ƒpƒPƒbƒg‚à‚¤–³‚¢ƒtƒ‰ƒO‚ğ“|‚·
+		// ãƒ‘ã‚±ãƒƒãƒˆã‚‚ã†ç„¡ã„ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 		DT->ThreadPacketEnd = 0 ;
 
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚ÌƒƒbƒN‚ğ‰ğ•ú
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®ãƒ­ãƒƒã‚¯ã‚’è§£æ”¾
 		CriticalSection_Unlock( &DT->CriticalSection ) ;
 	}
 	else
-	// ‰½‚à–³‚©‚Á‚½ê‡‚ÍƒtƒŒ[ƒ€‚Ìæ“Ç‚İ
+	// ä½•ã‚‚ç„¡ã‹ã£ãŸå ´åˆã¯ãƒ•ãƒ¬ãƒ¼ãƒ ã®å…ˆèª­ã¿
 	if( DT->ThreadEnableCacheRead )
 	{
 		volatile THEORA_STOCKFRAME *Stock ;
 		ogg_int64_t StockFrame ;
 
-		// ‰ß‚¬‚Ä‚µ‚Ü‚Á‚½ƒtƒŒ[ƒ€‚ÌƒXƒgƒbƒN‚Í‰ğ•ú
+		// éãã¦ã—ã¾ã£ãŸãƒ•ãƒ¬ãƒ¼ãƒ ã®ã‚¹ãƒˆãƒƒã‚¯ã¯è§£æ”¾
 		if( DT->ThreadPacketEnd == 0 )
 		{
 			Stock = DT->StockFrame ;
@@ -4336,15 +4336,15 @@ extern int TheoraDecode_Thread_LoopProcess( DECODE_THEORA *DT )
 			{
 				if( Stock->UseFlag == 0 ) continue ;
 
-				// ©•ª‚æ‚èŒã‚ÌƒtƒŒ[ƒ€‚©Aƒ‹[ƒv‚ğl—¶‚µ‚½ê‡‚Ì
-				// æ“ª•t‹ß‚ÌƒtƒŒ[ƒ€‚Å‚È‚¯‚ê‚Î”jŠü
+				// è‡ªåˆ†ã‚ˆã‚Šå¾Œã®ãƒ•ãƒ¬ãƒ¼ãƒ ã‹ã€ãƒ«ãƒ¼ãƒ—ã‚’è€ƒæ…®ã—ãŸå ´åˆã®
+				// å…ˆé ­ä»˜è¿‘ã®ãƒ•ãƒ¬ãƒ¼ãƒ ã§ãªã‘ã‚Œã°ç ´æ£„
 				StockFrame = DT->TheoraCurrentDataFrame + DT->StockFrameMaxNum ;
 				if( Stock->FrameNumber < DT->TheoraCurrentDataFrame )
 				{
-					// ƒXƒgƒbƒN‰Â”\‚ÈƒtƒŒ[ƒ€‚ÌÅ‘å‚ªƒtƒ@ƒCƒ‹‚Ì‘ƒtƒŒ[ƒ€”‚ğ’´‚¦‚Ä‚¢‚é‚©‚Ç‚¤‚©‚Å•ªŠò
+					// ã‚¹ãƒˆãƒƒã‚¯å¯èƒ½ãªãƒ•ãƒ¬ãƒ¼ãƒ ã®æœ€å¤§ãŒãƒ•ã‚¡ã‚¤ãƒ«ã®ç·ãƒ•ãƒ¬ãƒ¼ãƒ æ•°ã‚’è¶…ãˆã¦ã„ã‚‹ã‹ã©ã†ã‹ã§åˆ†å²
 					if( StockFrame >= DT->TheoraTotalDataFrame )
 					{
-						// ’´‚¦‚Ä‚¢‚éê‡‚Íƒtƒ@ƒCƒ‹æ“ª‚ÌƒtƒŒ[ƒ€‚©‚Ç‚¤‚©‚ğ‚µ‚ç‚×A‚»‚¤‚Å‚È‚¯‚ê‚Î”jŠü
+						// è¶…ãˆã¦ã„ã‚‹å ´åˆã¯ãƒ•ã‚¡ã‚¤ãƒ«å…ˆé ­ã®ãƒ•ãƒ¬ãƒ¼ãƒ ã‹ã©ã†ã‹ã‚’ã—ã‚‰ã¹ã€ãã†ã§ãªã‘ã‚Œã°ç ´æ£„
 						if( StockFrame - DT->TheoraTotalDataFrame < Stock->FrameNumber )
 						{
 							Stock->UseFlag = 0 ;
@@ -4352,12 +4352,12 @@ extern int TheoraDecode_Thread_LoopProcess( DECODE_THEORA *DT )
 					}
 					else
 					{
-						// ’´‚¦‚Ä‚¢‚È‚¢ê‡‚Í’Ê‚è‰ß‚¬‚Ä‚µ‚Ü‚Á‚½ƒtƒŒ[ƒ€
+						// è¶…ãˆã¦ã„ãªã„å ´åˆã¯é€šã‚Šéãã¦ã—ã¾ã£ãŸãƒ•ãƒ¬ãƒ¼ãƒ 
 						Stock->UseFlag = 0 ;
 					}
 				}
 				else
-				// “à•”ƒtƒŒ[ƒ€‚æ‚è‚àŒã‚Ìê‡‚ÍƒJƒŒƒ“ƒgƒtƒŒ[ƒ€‚Ìƒoƒbƒtƒ@•ª‚Å–³‚¢ê‡‚Í”jŠü
+				// å†…éƒ¨ãƒ•ãƒ¬ãƒ¼ãƒ ã‚ˆã‚Šã‚‚å¾Œã®å ´åˆã¯ã‚«ãƒ¬ãƒ³ãƒˆãƒ•ãƒ¬ãƒ¼ãƒ ã®ãƒãƒƒãƒ•ã‚¡åˆ†ã§ç„¡ã„å ´åˆã¯ç ´æ£„
 				if( Stock->FrameNumber > DT->TheoraInCurrentDataFrame &&
 					Stock->FrameNumber > DT->TheoraCurrentDataFrame + DT->StockFrameMaxNum )
 				{
@@ -4366,7 +4366,7 @@ extern int TheoraDecode_Thread_LoopProcess( DECODE_THEORA *DT )
 			}
 		}
 
-		// —LŒø‚ÈƒXƒgƒbƒN‚Ì”‚ğ’²‚×‚é
+		// æœ‰åŠ¹ãªã‚¹ãƒˆãƒƒã‚¯ã®æ•°ã‚’èª¿ã¹ã‚‹
 		Stock = DT->StockFrame ;
 		j = 0 ;
 		for( i = 0 ; i < DT->StockFrameMaxNum; i ++, Stock++ )
@@ -4388,12 +4388,12 @@ extern int TheoraDecode_Thread_LoopProcess( DECODE_THEORA *DT )
 		}
 #endif
 
-		// ‚½‚¾A‹ó‚«ƒtƒŒ[ƒ€‚ÌƒXƒgƒbƒN‚ª‰½‚à–³‚¢ê‡‚Í‰½‚à‚µ‚È‚¢
+		// ãŸã ã€ç©ºããƒ•ãƒ¬ãƒ¼ãƒ ã®ã‚¹ãƒˆãƒƒã‚¯ãŒä½•ã‚‚ç„¡ã„å ´åˆã¯ä½•ã‚‚ã—ãªã„
 		Stock = DT->StockFrame ;
 		for( i = 0 ; i < DT->StockFrameMaxNum && Stock->UseFlag; i ++, Stock ++ ){}
 		if( DT->StockFrameMaxNum == i )
 		{
-			// ‘ÎŠO“I‚ÈƒJƒŒƒ“ƒgƒf[ƒ^ƒtƒŒ[ƒ€‚É‘Î‰‚·‚éƒXƒgƒbƒN‚ª‚È‚­‚È‚Á‚½ê‡‚Íˆê‚ÂƒXƒgƒbƒN‚ğ–³Œø‚É‚·‚é
+			// å¯¾å¤–çš„ãªã‚«ãƒ¬ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ãƒ•ãƒ¬ãƒ¼ãƒ ã«å¯¾å¿œã™ã‚‹ã‚¹ãƒˆãƒƒã‚¯ãŒãªããªã£ãŸå ´åˆã¯ä¸€ã¤ã‚¹ãƒˆãƒƒã‚¯ã‚’ç„¡åŠ¹ã«ã™ã‚‹
 			Stock = DT->StockFrame ;
 			for( i = 0 ; i < DT->StockFrameMaxNum && ( Stock->UseFlag == 0 || Stock->FrameNumber != DT->TheoraCurrentDataFrame ) ; i ++, Stock ++ ){}
 			if( DT->StockFrameMaxNum == i )
@@ -4407,7 +4407,7 @@ extern int TheoraDecode_Thread_LoopProcess( DECODE_THEORA *DT )
 				}
 			}
 			else
-			// ó‘Ô‚ğƒAƒCƒhƒŠƒ“ƒO‚É‚·‚é
+			// çŠ¶æ…‹ã‚’ã‚¢ã‚¤ãƒ‰ãƒªãƒ³ã‚°ã«ã™ã‚‹
 			if( DT->ThreadState != THEORAT_STATE_IDLE )
 			{
 				DT->ThreadState = THEORAT_STATE_IDLE ;
@@ -4416,23 +4416,23 @@ extern int TheoraDecode_Thread_LoopProcess( DECODE_THEORA *DT )
 		}
 		else
 		{
-			// ó‘Ô‚ğƒfƒR[ƒh‚É‚·‚é
+			// çŠ¶æ…‹ã‚’ãƒ‡ã‚³ãƒ¼ãƒ‰ã«ã™ã‚‹
 			DT->ThreadState = THEORAT_STATE_DECODE ;
 
-			// Œ»İ‚Ì“à•”ƒtƒŒ[ƒ€‚ªŠù‚É“WŠJ‚³‚ê‚Ä‚¢‚é‚©‚Ç‚¤‚©‚ğ’²‚×‚é
+			// ç¾åœ¨ã®å†…éƒ¨ãƒ•ãƒ¬ãƒ¼ãƒ ãŒæ—¢ã«å±•é–‹ã•ã‚Œã¦ã„ã‚‹ã‹ã©ã†ã‹ã‚’èª¿ã¹ã‚‹
 			Stock = DT->StockFrame ;
 			for( i = 0 ; i < DT->StockFrameMaxNum && ( Stock->UseFlag == 0 || Stock->FrameNumber != DT->TheoraInCurrentDataFrame ) ; i ++, Stock ++ ){}
 
-			// Œ»İ‚ÌƒtƒŒ[ƒ€‚ªŠù‚É“WŠJ‚³‚ê‚Ä‚¢‚é‚©‚Ç‚¤‚©‚ğ’²‚×‚é
+			// ç¾åœ¨ã®ãƒ•ãƒ¬ãƒ¼ãƒ ãŒæ—¢ã«å±•é–‹ã•ã‚Œã¦ã„ã‚‹ã‹ã©ã†ã‹ã‚’èª¿ã¹ã‚‹
 			Stock = DT->StockFrame ;
 			for( k = 0 ; k < DT->StockFrameMaxNum && ( Stock->UseFlag == 0 || Stock->FrameNumber != DT->TheoraCurrentDataFrame ) ; k ++, Stock ++ ){}
 
-			// ‹ó‚«ƒtƒŒ[ƒ€‚ğ’T‚·
+			// ç©ºããƒ•ãƒ¬ãƒ¼ãƒ ã‚’æ¢ã™
 			Stock = DT->StockFrame ;
 			for( j = 0 ; j < DT->StockFrameMaxNum && Stock->UseFlag ; j ++, Stock ++ ){}
 
-			// ‹ó‚«ƒtƒŒ[ƒ€‚ª‚ ‚èAŠ‚ÂŒ»İ‚ÌƒtƒŒ[ƒ€‚ªŠù‚ÉƒXƒgƒbƒN‚É‚ ‚é‚©A
-			// ‚à‚µ‚­‚ÍƒfƒR[ƒh‚ª’x‚ê‚Ä‚¢‚½‚çŸ‚ÌƒpƒPƒbƒg‚ğ“Ç‚Ş
+			// ç©ºããƒ•ãƒ¬ãƒ¼ãƒ ãŒã‚ã‚Šã€ä¸”ã¤ç¾åœ¨ã®ãƒ•ãƒ¬ãƒ¼ãƒ ãŒæ—¢ã«ã‚¹ãƒˆãƒƒã‚¯ã«ã‚ã‚‹ã‹ã€
+			// ã‚‚ã—ãã¯ãƒ‡ã‚³ãƒ¼ãƒ‰ãŒé…ã‚Œã¦ã„ãŸã‚‰æ¬¡ã®ãƒ‘ã‚±ãƒƒãƒˆã‚’èª­ã‚€
 			if( j != DT->StockFrameMaxNum && 
 				( i != DT->StockFrameMaxNum || DT->TheoraCurrentDataFrame > DT->TheoraInCurrentDataFrame ) )
 			{
@@ -4441,7 +4441,7 @@ extern int TheoraDecode_Thread_LoopProcess( DECODE_THEORA *DT )
 #ifdef __DEBUG__
 				___StockValidFlag = 1 ;
 #endif
-				// —LŒø‚È Theora ƒrƒfƒIƒR[ƒh‚ğæ“¾
+				// æœ‰åŠ¹ãª Theora ãƒ“ãƒ‡ã‚ªã‚³ãƒ¼ãƒ‰ã‚’å–å¾—
 				if( k == DT->StockFrameMaxNum && DT->TheoraCurrentDataFrame > DT->TheoraInCurrentDataFrame )
 				{
 					AddFrame = DT->TheoraCurrentDataFrame - DT->TheoraInCurrentDataFrame ;
@@ -4452,54 +4452,54 @@ extern int TheoraDecode_Thread_LoopProcess( DECODE_THEORA *DT )
 					AddFrame = 1 ;
 				}
 
-				// I’[ƒtƒŒ[ƒ€‚É’B‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+				// çµ‚ç«¯ãƒ•ãƒ¬ãƒ¼ãƒ ã«é”ã—ã¦ã„ã‚‹ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 				if( DT->TheoraInCurrentDataFrame + AddFrame >= DT->TheoraTotalDataFrame )
 				{
-					// I’[ƒtƒŒ[ƒ€‚É’B‚µ‚Ä‚¢‚éê‡‚Íƒtƒ@ƒCƒ‹æ“ª‚ÉˆÚ“®‚·‚é
+					// çµ‚ç«¯ãƒ•ãƒ¬ãƒ¼ãƒ ã«é”ã—ã¦ã„ã‚‹å ´åˆã¯ãƒ•ã‚¡ã‚¤ãƒ«å…ˆé ­ã«ç§»å‹•ã™ã‚‹
 
-					// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚ÌƒƒbƒN‚ğ‰ğ•ú
+					// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®ãƒ­ãƒƒã‚¯ã‚’è§£æ”¾
 					CriticalSection_Unlock( &DT->CriticalSection ) ;
 
-					// ‰ÁZƒtƒŒ[ƒ€‚ğ•â³
+					// åŠ ç®—ãƒ•ãƒ¬ãƒ¼ãƒ ã‚’è£œæ­£
 					AddFrame = ( int )( ( DT->TheoraInCurrentDataFrame + AddFrame ) - DT->TheoraTotalDataFrame ) ;
 
-					// î•ñ‚ğƒŠƒZƒbƒg
+					// æƒ…å ±ã‚’ãƒªã‚»ãƒƒãƒˆ
 					ogg_sync_reset( &DT->OggSyncState ) ;
 					ogg_stream_reset( &DT->OggTheoraStream ) ;
 
-					// ƒy[ƒW‚Ìæ“ª‚ÉˆÚ“®
+					// ãƒšãƒ¼ã‚¸ã®å…ˆé ­ã«ç§»å‹•
 					DT->StreamShred.Seek( DT->StreamData, DT->TheoraPageInfo[ 0 ].StreamAddres, STREAM_SEEKTYPE_SET ) ;
 
-					// ƒJƒŒƒ“ƒgƒtƒŒ[ƒ€‚ğæ“ª‚É•ÏX
+					// ã‚«ãƒ¬ãƒ³ãƒˆãƒ•ãƒ¬ãƒ¼ãƒ ã‚’å…ˆé ­ã«å¤‰æ›´
 					DT->TheoraInCurrentDataFrame = 0 ;
 
-					// w’è‚ÌƒtƒŒ[ƒ€‚Ü‚ÅˆÚ“®
+					// æŒ‡å®šã®ãƒ•ãƒ¬ãƒ¼ãƒ ã¾ã§ç§»å‹•
 					if( AddFrame != 0 )
 					{
 						_TheoraDecode_IncToFrame( ( DWORD_PTR )DT, AddFrame ) ;
 					}
 
-					// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚ÌƒƒbƒN‚ğæ“¾
+					// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®ãƒ­ãƒƒã‚¯ã‚’å–å¾—
 					CRITICALSECTION_LOCK( &DT->CriticalSection ) ;
 				}
 				else
 				{
 					int Result ;
 
-					// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚ÌƒƒbƒN‚ğ‰ğ•ú
+					// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®ãƒ­ãƒƒã‚¯ã‚’è§£æ”¾
 					CriticalSection_Unlock( &DT->CriticalSection ) ;
 
-					// I’[‚É’B‚µ‚Ä‚¢‚È‚¢ê‡‚Í•’Ê‚ÉƒtƒŒ[ƒ€‚ğˆÚ“®
+					// çµ‚ç«¯ã«é”ã—ã¦ã„ãªã„å ´åˆã¯æ™®é€šã«ãƒ•ãƒ¬ãƒ¼ãƒ ã‚’ç§»å‹•
 					Result = _TheoraDecode_IncToFrame( ( DWORD_PTR )DT, AddFrame ) ;
 
-					// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚ÌƒƒbƒN‚ğæ“¾
+					// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®ãƒ­ãƒƒã‚¯ã‚’å–å¾—
 					CRITICALSECTION_LOCK( &DT->CriticalSection ) ;
 
 					if( Result == -1 )
 					{
 						DT->ThreadPacketEnd = 1 ;
 
-						// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚ÌƒƒbƒN‚ğ‰ğ•ú
+						// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®ãƒ­ãƒƒã‚¯ã‚’è§£æ”¾
 						CriticalSection_Unlock( &DT->CriticalSection ) ;
 
 						Thread_Sleep( 1 ) ;
@@ -4518,15 +4518,15 @@ extern int TheoraDecode_Thread_LoopProcess( DECODE_THEORA *DT )
 			___InCurrentFrameNumber = DT->TheoraInCurrentDataFrame ;
 #endif
 
-			// ƒXƒgƒbƒN‚É‹ó‚«‚ª‚ ‚éê‡‚ÍŒ»İ‚ÌƒtƒŒ[ƒ€‚ğƒXƒgƒbƒN‚·‚é
+			// ã‚¹ãƒˆãƒƒã‚¯ã«ç©ºããŒã‚ã‚‹å ´åˆã¯ç¾åœ¨ã®ãƒ•ãƒ¬ãƒ¼ãƒ ã‚’ã‚¹ãƒˆãƒƒã‚¯ã™ã‚‹
 			if( j != DT->StockFrameMaxNum )
 			{
 				yuv_buffer	yuv ;
 
-				// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚ÌƒƒbƒN‚ğ‰ğ•ú
+				// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®ãƒ­ãƒƒã‚¯ã‚’è§£æ”¾
 				CriticalSection_Unlock( &DT->CriticalSection ) ;
 
-				// yuv î•ñ‚ğo—Í
+				// yuv æƒ…å ±ã‚’å‡ºåŠ›
 				theora_decode_YUVout( &DT->TheoraState, &yuv );
 
 //					if( yuv.y_stride == 842150451 )
@@ -4536,9 +4536,9 @@ extern int TheoraDecode_Thread_LoopProcess( DECODE_THEORA *DT )
 //						*((DWORD *)0) = 0xffffffff ;
 //					}
 
-				// yuv î•ñ‚ğ•Û‘¶‚·‚é
+				// yuv æƒ…å ±ã‚’ä¿å­˜ã™ã‚‹
 
-				// ƒoƒbƒtƒ@‚ÌƒTƒCƒY‚ªˆá‚¤ê‡‚Íˆê“x‰ğ•ú‚·‚é
+				// ãƒãƒƒãƒ•ã‚¡ã®ã‚µã‚¤ã‚ºãŒé•ã†å ´åˆã¯ä¸€åº¦è§£æ”¾ã™ã‚‹
 				if( Stock->YStride  != yuv.y_stride  || Stock->YWidth  != yuv.y_width  || Stock->YHeight  != yuv.y_height  )
 				{
 					if( Stock->YBuffer )
@@ -4556,7 +4556,7 @@ extern int TheoraDecode_Thread_LoopProcess( DECODE_THEORA *DT )
 					}
 				}
 
-				// î•ñ‚ğ•Û‘¶‚·‚é
+				// æƒ…å ±ã‚’ä¿å­˜ã™ã‚‹
 				Stock->YStride = yuv.y_stride ;
 				Stock->YWidth  = yuv.y_width ;
 				Stock->YHeight = yuv.y_height ;
@@ -4565,7 +4565,7 @@ extern int TheoraDecode_Thread_LoopProcess( DECODE_THEORA *DT )
 				Stock->UVWidth  = yuv.uv_width ;
 				Stock->UVHeight = yuv.uv_height ;
 
-				// ƒoƒbƒtƒ@‚ª‚Ü‚¾Šm•Û‚³‚ê‚Ä‚¢‚È‚¢ê‡‚Íƒoƒbƒtƒ@‚ğŠm•Û‚·‚é
+				// ãƒãƒƒãƒ•ã‚¡ãŒã¾ã ç¢ºä¿ã•ã‚Œã¦ã„ãªã„å ´åˆã¯ãƒãƒƒãƒ•ã‚¡ã‚’ç¢ºä¿ã™ã‚‹
 				if( Stock->YBuffer == NULL )
 				{
 					Stock->YBuffer = DXALLOC( ( size_t )( Stock->YHeight * Stock->YStride   ) ) ;
@@ -4583,7 +4583,7 @@ extern int TheoraDecode_Thread_LoopProcess( DECODE_THEORA *DT )
 					}
 				}
 
-				// ƒoƒbƒtƒ@‚Éƒf[ƒ^‚ğƒRƒs[‚·‚é
+				// ãƒãƒƒãƒ•ã‚¡ã«ãƒ‡ãƒ¼ã‚¿ã‚’ã‚³ãƒ”ãƒ¼ã™ã‚‹
 				_MEMCPY( Stock->YBuffer, yuv.y, ( size_t )( yuv.y_stride  * yuv.y_height  ) ) ;
 				{
 					DWORD n, m ;
@@ -4625,19 +4625,19 @@ extern int TheoraDecode_Thread_LoopProcess( DECODE_THEORA *DT )
 					}
 				}
 
-				// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚ÌƒƒbƒN‚ğæ“¾
+				// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®ãƒ­ãƒƒã‚¯ã‚’å–å¾—
 				CRITICALSECTION_LOCK( &DT->CriticalSection ) ;
 
-				// “WŠJ‚µ‚½ƒtƒŒ[ƒ€‚Ìî•ñ‚ğc‚·
+				// å±•é–‹ã—ãŸãƒ•ãƒ¬ãƒ¼ãƒ ã®æƒ…å ±ã‚’æ®‹ã™
 				Stock->UseFlag = 1 ;
 				Stock->FrameNumber = DT->TheoraInCurrentDataFrame ;
 			}
 		}
 
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚ÌƒƒbƒN‚ğ‰ğ•ú
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®ãƒ­ãƒƒã‚¯ã‚’è§£æ”¾
 		CriticalSection_Unlock( &DT->CriticalSection ) ;
 
-		// ‚¿‚å‚Á‚Æ‘Ò‚Â
+		// ã¡ã‚‡ã£ã¨å¾…ã¤
 		if( DT->ThreadState == THEORAT_STATE_IDLE /* && NS_GetNowCount( FALSE ) - DT->ThreadStandbyTime > 200 */ )
 		{
 			Thread_Sleep( 1 ) ;
@@ -4648,12 +4648,12 @@ extern int TheoraDecode_Thread_LoopProcess( DECODE_THEORA *DT )
 		}
 	}
 	else
-	// æ“Ç‚İ‚ª‹–‰Â‚³‚ê‚Ä‚¢‚È‚¢ê‡‚Í‚½‚¾‘Ò‚Â
+	// å…ˆèª­ã¿ãŒè¨±å¯ã•ã‚Œã¦ã„ãªã„å ´åˆã¯ãŸã å¾…ã¤
 	{
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚ÌƒƒbƒN‚ğ‰ğ•ú
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®ãƒ­ãƒƒã‚¯ã‚’è§£æ”¾
 		CriticalSection_Unlock( &DT->CriticalSection ) ;
 
-		// ‚¿‚å‚Á‚Æ‘Ò‚Â
+		// ã¡ã‚‡ã£ã¨å¾…ã¤
 		if( DT->ThreadState == THEORAT_STATE_IDLE /* && NS_GetNowCount( FALSE ) - DT->ThreadStandbyTime > 200 */ )
 		{
 			Thread_Sleep( 1 ) ;
@@ -4667,7 +4667,7 @@ extern int TheoraDecode_Thread_LoopProcess( DECODE_THEORA *DT )
 	return 0 ;
 }
 
-// ƒJƒŒƒ“ƒgƒtƒŒ[ƒ€‚ÌRGB‰æ‘œ‚ğì¬‚·‚é( –ß‚è’l  1:ì¬‚³‚ê‚½  0:‚³‚ê‚È‚©‚Á‚½ )
+// ã‚«ãƒ¬ãƒ³ãƒˆãƒ•ãƒ¬ãƒ¼ãƒ ã®RGBç”»åƒã‚’ä½œæˆã™ã‚‹( æˆ»ã‚Šå€¤  1:ä½œæˆã•ã‚ŒãŸ  0:ã•ã‚Œãªã‹ã£ãŸ )
 int TheoraDecode_SetupImage( DWORD_PTR Handle, int BaseImage, int YUVGrHandle, int YUVImage, int ASyncThread )
 {
 	DECODE_THEORA *DT = ( DECODE_THEORA * )Handle ;
@@ -4678,19 +4678,19 @@ int TheoraDecode_SetupImage( DWORD_PTR Handle, int BaseImage, int YUVGrHandle, i
 	LONGLONG time ;
 #endif
 
-	// Œ»İ‚ÌƒtƒŒ[ƒ€‚Ì‰æ‘œ‚ªƒZƒbƒgƒAƒbƒv‚³‚ê‚Ä‚¢‚ê‚Î‰½‚à‚¹‚¸I—¹
+	// ç¾åœ¨ã®ãƒ•ãƒ¬ãƒ¼ãƒ ã®ç”»åƒãŒã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã•ã‚Œã¦ã„ã‚Œã°ä½•ã‚‚ã›ãšçµ‚äº†
 	if( ( ( YUVImage    && DT->YUVImageSetup    ) || YUVImage    == 0 || DT->ValidYUVSurface   == FALSE ) &&
 		( ( YUVGrHandle && DT->YUVGrHandleSetup ) || YUVGrHandle == 0 || DT->NotUseYUVGrHandle == TRUE  ) &&
 		( ( BaseImage   && DT->BaseImageSetup   ) || BaseImage   == 0 ) )
 		return 0 ;
 
-	// ‚Ü‚¾ƒZƒbƒgƒAƒbƒv‚³‚ê‚Ä‚¢‚È‚¢ê‡‚ÍƒJƒŒƒ“ƒgƒtƒŒ[ƒ€‚ªƒfƒR[ƒh‚³‚ê‚é‚Ü‚Å‘Ò‚Â
+	// ã¾ã ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã•ã‚Œã¦ã„ãªã„å ´åˆã¯ã‚«ãƒ¬ãƒ³ãƒˆãƒ•ãƒ¬ãƒ¼ãƒ ãŒãƒ‡ã‚³ãƒ¼ãƒ‰ã•ã‚Œã‚‹ã¾ã§å¾…ã¤
 	for(;;)
 	{
-		// ƒAƒCƒhƒŠƒ“ƒO’†‚©ƒfƒR[ƒfƒBƒ“ƒO’†ˆÈŠO‚Ìê‡‚Í‘Ò‚Â
+		// ã‚¢ã‚¤ãƒ‰ãƒªãƒ³ã‚°ä¸­ã‹ãƒ‡ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°ä¸­ä»¥å¤–ã®å ´åˆã¯å¾…ã¤
 		for(;;)
 		{
-			// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚ÌƒƒbƒN‚ğæ“¾
+			// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®ãƒ­ãƒƒã‚¯ã‚’å–å¾—
 			CRITICALSECTION_LOCK( &DT->CriticalSection ) ;
 
 			if( DT->ThreadState == THEORAT_STATE_IDLE   ||
@@ -4701,46 +4701,46 @@ int TheoraDecode_SetupImage( DWORD_PTR Handle, int BaseImage, int YUVGrHandle, i
 				break ;
 			}
 
-			// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚ÌƒƒbƒN‚ğ‰ğ•ú
+			// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®ãƒ­ãƒƒã‚¯ã‚’è§£æ”¾
 			CriticalSection_Unlock( &DT->CriticalSection ) ;
 
 			Thread_Sleep( 1 ) ;
 		}
 		if( DT->ThreadState == THEORAT_STATE_EXIT )
 		{
-			// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚ÌƒƒbƒN‚ğ‰ğ•ú
+			// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®ãƒ­ãƒƒã‚¯ã‚’è§£æ”¾
 			CriticalSection_Unlock( &DT->CriticalSection ) ;
 
-			// ƒXƒŒƒbƒh‚ª•Â‚¶‚Ä‚µ‚Ü‚Á‚Ä‚¢‚éê‡‚Íì¬‚³‚ê‚È‚©‚Á‚½A‚ğ•Ô‚·
+			// ã‚¹ãƒ¬ãƒƒãƒ‰ãŒé–‰ã˜ã¦ã—ã¾ã£ã¦ã„ã‚‹å ´åˆã¯ä½œæˆã•ã‚Œãªã‹ã£ãŸã€ã‚’è¿”ã™
 			return 0 ;
 		}
 
-		// ƒJƒŒƒ“ƒgƒtƒŒ[ƒ€‚ÌƒXƒgƒbƒN‚ğŒŸõ
+		// ã‚«ãƒ¬ãƒ³ãƒˆãƒ•ãƒ¬ãƒ¼ãƒ ã®ã‚¹ãƒˆãƒƒã‚¯ã‚’æ¤œç´¢
 		Stock = DT->StockFrame ;
 		for( i = 0 ; i < DT->StockFrameMaxNum && ( Stock->UseFlag == 0 || Stock->FrameNumber != DT->TheoraCurrentDataFrame ) ; i ++, Stock ++ ){}
 
-		// ‚ ‚Á‚½‚çƒ‹[ƒv‚ğ”²‚¯‚é
+		// ã‚ã£ãŸã‚‰ãƒ«ãƒ¼ãƒ—ã‚’æŠœã‘ã‚‹
 		if( i != DT->StockFrameMaxNum )
 		{
-			// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚ÌƒƒbƒN‚ğ‰ğ•ú
+			// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®ãƒ­ãƒƒã‚¯ã‚’è§£æ”¾
 			CriticalSection_Unlock( &DT->CriticalSection ) ;
 
 			break ;
 		}
 
-		// ƒpƒPƒbƒg‚ÌI’[‚É—ˆ‚Ä‚µ‚Ü‚Á‚Ä‚¢‚½‚çì¬‚³‚ê‚È‚©‚Á‚½A‚ğ•Ô‚·
+		// ãƒ‘ã‚±ãƒƒãƒˆã®çµ‚ç«¯ã«æ¥ã¦ã—ã¾ã£ã¦ã„ãŸã‚‰ä½œæˆã•ã‚Œãªã‹ã£ãŸã€ã‚’è¿”ã™
 		if( DT->ThreadPacketEnd == 1 )
 		{
-			// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚ÌƒƒbƒN‚ğ‰ğ•ú
+			// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®ãƒ­ãƒƒã‚¯ã‚’è§£æ”¾
 			CriticalSection_Unlock( &DT->CriticalSection ) ;
 
 			return 0 ;
 		}
 
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚ÌƒƒbƒN‚ğ‰ğ•ú
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®ãƒ­ãƒƒã‚¯ã‚’è§£æ”¾
 		CriticalSection_Unlock( &DT->CriticalSection ) ;
 
-		// –³‚©‚Á‚½‚ç‘Ò‚Â
+		// ç„¡ã‹ã£ãŸã‚‰å¾…ã¤
 		Thread_Sleep( 0 ) ;
 	}
 
@@ -4748,21 +4748,21 @@ int TheoraDecode_SetupImage( DWORD_PTR Handle, int BaseImage, int YUVGrHandle, i
 	time = GetNowHiPerformanceCount( FALSE );
 #endif
 
-	// ‚x‚t‚uƒCƒ[ƒW‚ÌƒZƒbƒgƒAƒbƒvw’è‚ª‚ ‚Á‚ÄA‚Ü‚¾ì¬‚³‚ê‚Ä‚¢‚È‚©‚Á‚½‚çì¬‚·‚é
+	// ï¼¹ï¼µï¼¶ã‚¤ãƒ¡ãƒ¼ã‚¸ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—æŒ‡å®šãŒã‚ã£ã¦ã€ã¾ã ä½œæˆã•ã‚Œã¦ã„ãªã‹ã£ãŸã‚‰ä½œæˆã™ã‚‹
 	if( YUVImage && DT->YUVImageSetup == 0 && DT->ValidYUVSurface )
 	{
-		// YUY2 ƒT[ƒtƒFƒX‚Ìê‡
+		// YUY2 ã‚µãƒ¼ãƒ•ã‚§ã‚¹ã®å ´åˆ
 		TheoraDecode_SetupImage_PF( DT, Stock, ASyncThread ) ;
 	}
 
-	// ƒVƒF[ƒ_[‚ªg—p‚Å‚«‚éê‡‚ÍYUVƒJƒ‰[‚ÌƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ğg—p‚·‚é
+	// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãŒä½¿ç”¨ã§ãã‚‹å ´åˆã¯YUVã‚«ãƒ©ãƒ¼ã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã‚’ä½¿ç”¨ã™ã‚‹
 	if( YUVGrHandle && DT->NotUseYUVGrHandle == FALSE && GetValidShaderVersion() >= 200 )
 	{
 		SETUP_GRAPHHANDLE_GPARAM GParam ;
 		BASEIMAGE BaseImage ;
 		RECT SrcRect ;
 
-		// ƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ª‚Ü‚¾ì¬‚³‚ê‚Ä‚¢‚È‚©‚Á‚½‚çì¬‚·‚é
+		// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ãŒã¾ã ä½œæˆã•ã‚Œã¦ã„ãªã‹ã£ãŸã‚‰ä½œæˆã™ã‚‹
 		if( DT->YGrHandle == -1 )
 		{
 			Graphics_Image_InitSetupGraphHandleGParam( &GParam ) ;
@@ -4829,19 +4829,19 @@ int TheoraDecode_SetupImage( DWORD_PTR Handle, int BaseImage, int YUVGrHandle, i
 			ASyncThread
 		) ;
 
-		// ƒZƒbƒgƒAƒbƒvƒtƒ‰ƒO‚ğ—§‚Ä‚é
+		// ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 		DT->YUVGrHandleSetup = 1 ;
 	}
 
-	// ‚q‚f‚aƒCƒ[ƒW‚ÌƒZƒbƒgƒAƒbƒvw’è‚ª‚ ‚Á‚ÄA‚Ü‚¾ì¬‚³‚ê‚Ä‚¢‚È‚©‚Á‚½‚çì¬‚·‚é
+	// ï¼²ï¼§ï¼¢ã‚¤ãƒ¡ãƒ¼ã‚¸ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—æŒ‡å®šãŒã‚ã£ã¦ã€ã¾ã ä½œæˆã•ã‚Œã¦ã„ãªã‹ã£ãŸã‚‰ä½œæˆã™ã‚‹
 	if( BaseImage && DT->BaseImageSetup == 0 )
 	{
-		// BASEIMAGE ‚Ìê‡
+		// BASEIMAGE ã®å ´åˆ
 		d  = ( unsigned char * )DT->BaseImage.GraphData ;
 		ys = ( unsigned char * )Stock->YBuffer ;
 		uvs = ( unsigned char * )Stock->UVBuffer ;
 
-		// yuv î•ñ‚ğ rgb ƒf[ƒ^‚É•ÏŠ·
+		// yuv æƒ…å ±ã‚’ rgb ãƒ‡ãƒ¼ã‚¿ã«å¤‰æ›
 		if( Stock->YWidth  == Stock->UVWidth  * 2 &&
 			Stock->YHeight == Stock->UVHeight * 2 )
 		{
@@ -4910,7 +4910,7 @@ int TheoraDecode_SetupImage( DWORD_PTR Handle, int BaseImage, int YUVGrHandle, i
 			}
 		}
 
-		// ƒZƒbƒgƒAƒbƒvƒtƒ‰ƒO‚ğ—§‚Ä‚é
+		// ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 		DT->BaseImageSetup = 1 ;
 	}
 
@@ -4918,26 +4918,26 @@ int TheoraDecode_SetupImage( DWORD_PTR Handle, int BaseImage, int YUVGrHandle, i
 	___time = GetNowHiPerformanceCount( FALSE ) - time;
 #endif
 
-	// I—¹
+	// çµ‚äº†
 	return 1 ;
 }
 
-// ˆêƒoƒbƒtƒ@‚ÌƒAƒhƒŒƒX‚ğæ“¾‚·‚é
+// ä¸€æ™‚ãƒãƒƒãƒ•ã‚¡ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å–å¾—ã™ã‚‹
 const BASEIMAGE *TheoraDecode_GetBaseImage( DWORD_PTR Handle )
 {
 	DECODE_THEORA *DT = ( DECODE_THEORA * )Handle ;
 
-	// BaseImage ‚ªƒZƒbƒgƒAƒbƒv‚³‚ê‚Ä‚¢‚È‚©‚Á‚½‚çƒZƒbƒgƒAƒbƒv‚·‚é
+	// BaseImage ãŒã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã•ã‚Œã¦ã„ãªã‹ã£ãŸã‚‰ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã™ã‚‹
 	if( DT->BaseImageSetup == 0 )
 	{
 		TheoraDecode_SetupImage( ( DWORD_PTR )DT, 1, 0, 0, FALSE ) ;
 	}
 
-	// ƒAƒhƒŒƒX‚ğ•Ô‚·
+	// ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’è¿”ã™
 	return ( const BASEIMAGE * )&DT->BaseImage ;
 }
 
-// ˆêƒoƒbƒtƒ@‚Ì YUV ƒtƒH[ƒ}ƒbƒg‚ÌƒeƒNƒXƒ`ƒƒ‚ğ“¾‚é
+// ä¸€æ™‚ãƒãƒƒãƒ•ã‚¡ã® YUV ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’å¾—ã‚‹
 const void * TheoraDecode_GetYUVImage( DWORD_PTR Handle )
 {
 	DECODE_THEORA *DT = ( DECODE_THEORA * )Handle ;
@@ -4945,7 +4945,7 @@ const void * TheoraDecode_GetYUVImage( DWORD_PTR Handle )
 	return TheoraDecode_GetYUVImage_PF( DT ) ;
 }
 
-// YUVƒJƒ‰[‚Ì Y¬•ª‚ÌƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ğæ“¾‚·‚é
+// YUVã‚«ãƒ©ãƒ¼ã® Yæˆåˆ†ã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã‚’å–å¾—ã™ã‚‹
 int TheoraDecode_GetYGrHandle( DWORD_PTR Handle )
 {
 	DECODE_THEORA *DT = ( DECODE_THEORA * )Handle ;
@@ -4953,7 +4953,7 @@ int TheoraDecode_GetYGrHandle( DWORD_PTR Handle )
 	return DT->YGrHandle ;
 }
 
-// YUVƒJƒ‰[‚Ì UV¬•ª‚ÌƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ğæ“¾‚·‚é
+// YUVã‚«ãƒ©ãƒ¼ã® UVæˆåˆ†ã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã‚’å–å¾—ã™ã‚‹
 int TheoraDecode_GetUVGrHandle( DWORD_PTR Handle )
 {
 	DECODE_THEORA *DT = ( DECODE_THEORA * )Handle ;
@@ -4961,7 +4961,7 @@ int TheoraDecode_GetUVGrHandle( DWORD_PTR Handle )
 	return DT->UVGrHandle ;
 }
 
-// “®‰æ‚Ìî•ñ‚ğæ“¾‚·‚é
+// å‹•ç”»ã®æƒ…å ±ã‚’å–å¾—ã™ã‚‹
 int	TheoraDecode_GetInfo( DWORD_PTR Handle, THEORADECODE_INFO *Info )
 {
 	DECODE_THEORA *DT = ( DECODE_THEORA * )Handle ;
@@ -4973,11 +4973,11 @@ int	TheoraDecode_GetInfo( DWORD_PTR Handle, THEORADECODE_INFO *Info )
 	Info->Width      = ( int )DT->TheoraInfo.frame_width ;
 	Info->Height     = ( int )DT->TheoraInfo.frame_height ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒJƒŒƒ“ƒgƒtƒŒ[ƒ€‚ğæ“¾‚·‚é
+// ã‚«ãƒ¬ãƒ³ãƒˆãƒ•ãƒ¬ãƒ¼ãƒ ã‚’å–å¾—ã™ã‚‹
 int	TheoraDecode_GetCurrentFrame( DWORD_PTR Handle )
 {
 	DECODE_THEORA *DT = ( DECODE_THEORA * )Handle ;

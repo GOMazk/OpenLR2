@@ -1,6 +1,6 @@
 // -------------------------------------------------------------------------------
 // 
-// 		‚c‚wƒ‰ƒCƒuƒ‰ƒŠ		OggŠÖŒWƒwƒbƒ_ƒtƒ@ƒCƒ‹( Direct3D9 )
+// 		ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒª		Oggé–¢ä¿‚ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«( Direct3D9 )
 // 
 // 				Ver 3.25a
 // 
@@ -15,7 +15,7 @@
 
 #ifndef DX_NON_DIRECT3D9
 
-// ƒCƒ“ƒNƒ‹[ƒh ------------------------------------------------------------------
+// ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ ------------------------------------------------------------------
 #include "../DxLib.h"
 #include "../DxUseCLibOgg.h"
 #include "DxDirectX.h"
@@ -25,31 +25,31 @@
 //namespace DxLib
 //{
 
-// ƒ}ƒNƒ’è‹` --------------------------------------------------------------------
+// ãƒžã‚¯ãƒ­å®šç¾© --------------------------------------------------------------------
 
-// \‘¢‘Ì’è‹` --------------------------------------------------------------------
+// æ§‹é€ ä½“å®šç¾© --------------------------------------------------------------------
 
 #ifndef DX_NON_OGGTHEORA
 
-// Direct3D9—p Ogg Theora ƒfƒR[ƒhˆ——pŠÂ‹«ˆË‘¶ƒf[ƒ^\‘¢‘Ì
+// Direct3D9ç”¨ Ogg Theora ãƒ‡ã‚³ãƒ¼ãƒ‰å‡¦ç†ç”¨ç’°å¢ƒä¾å­˜ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
 struct DECODE_THEORA_DIRECT3D9
 {
-	D_IDirect3DSurface9		*YUVSurface ;				// ƒJƒŒƒ“ƒgƒtƒŒ[ƒ€‚ªŠi”[‚³‚ê‚½ƒtƒŒ[ƒ€ƒXƒ^ƒbƒN’†‚Ì YUV ƒtƒH[ƒ}ƒbƒgƒT[ƒtƒFƒX
+	D_IDirect3DSurface9		*YUVSurface ;				// ã‚«ãƒ¬ãƒ³ãƒˆãƒ•ãƒ¬ãƒ¼ãƒ ãŒæ ¼ç´ã•ã‚ŒãŸãƒ•ãƒ¬ãƒ¼ãƒ ã‚¹ã‚¿ãƒƒã‚¯ä¸­ã® YUV ãƒ•ã‚©ãƒ¼ãƒžãƒƒãƒˆã‚µãƒ¼ãƒ•ã‚§ã‚¹
 } ;
 
 #endif // DX_NON_OGGTHEORA
 
-// “à•”‘åˆæ•Ï”éŒ¾ --------------------------------------------------------------
+// å†…éƒ¨å¤§åŸŸå¤‰æ•°å®£è¨€ --------------------------------------------------------------
 
-// ŠÖ”ƒvƒƒgƒ^ƒCƒvéŒ¾-----------------------------------------------------------
+// é–¢æ•°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€-----------------------------------------------------------
 
 #ifndef DX_NON_OGGTHEORA
 
-// ŠÂ‹«ˆË‘¶ŠÖ”
-extern	int		TheoraDecode_D3D9_CreateSurface_PF(	 DECODE_THEORA *DT ) ;																// ƒn[ƒhƒEƒGƒA‹@”\‚ª—LŒø‚Èê‡‚Í YUV ƒtƒH[ƒ}ƒbƒg‚ÌˆêŽž•Û‘¶—pƒeƒNƒXƒ`ƒƒ‚ðì¬‚·‚é
+// ç’°å¢ƒä¾å­˜é–¢æ•°
+extern	int		TheoraDecode_D3D9_CreateSurface_PF(	 DECODE_THEORA *DT ) ;																// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢æ©Ÿèƒ½ãŒæœ‰åŠ¹ãªå ´åˆã¯ YUV ãƒ•ã‚©ãƒ¼ãƒžãƒƒãƒˆã®ä¸€æ™‚ä¿å­˜ç”¨ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ä½œæˆã™ã‚‹
 extern	void	TheoraDecode_D3D9_ReleaseSurface_PF( DECODE_THEORA *DT ) ;
-extern	int		TheoraDecode_D3D9_SetupImage_PF( DECODE_THEORA *DT, volatile THEORA_STOCKFRAME *Stock, int ASyncThread ) ;				// ƒJƒŒƒ“ƒgƒtƒŒ[ƒ€‚ÌRGB‰æ‘œ‚ðì¬‚·‚é( –ß‚è’l  1:ì¬‚³‚ê‚½  0:‚³‚ê‚È‚©‚Á‚½ )
-extern	const void *TheoraDecode_D3D9_GetYUVImage_PF( DECODE_THEORA *DT ) ;												// ˆêŽžƒoƒbƒtƒ@‚Ì YUV ƒtƒH[ƒ}ƒbƒg‚ÌƒeƒNƒXƒ`ƒƒ‚ð“¾‚é
+extern	int		TheoraDecode_D3D9_SetupImage_PF( DECODE_THEORA *DT, volatile THEORA_STOCKFRAME *Stock, int ASyncThread ) ;				// ã‚«ãƒ¬ãƒ³ãƒˆãƒ•ãƒ¬ãƒ¼ãƒ ã®RGBç”»åƒã‚’ä½œæˆã™ã‚‹( æˆ»ã‚Šå€¤  1:ä½œæˆã•ã‚ŒãŸ  0:ã•ã‚Œãªã‹ã£ãŸ )
+extern	const void *TheoraDecode_D3D9_GetYUVImage_PF( DECODE_THEORA *DT ) ;												// ä¸€æ™‚ãƒãƒƒãƒ•ã‚¡ã® YUV ãƒ•ã‚©ãƒ¼ãƒžãƒƒãƒˆã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’å¾—ã‚‹
 
 #endif // DX_NON_OGGTHEORA
 

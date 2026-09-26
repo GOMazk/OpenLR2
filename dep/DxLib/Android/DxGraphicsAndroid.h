@@ -1,6 +1,6 @@
 // -------------------------------------------------------------------------------
 // 
-// 		‚c‚wƒ‰ƒCƒuƒ‰ƒŠ		•`‰æˆ—ƒvƒƒOƒ‰ƒ€( Android )ƒwƒbƒ_ƒtƒ@ƒCƒ‹
+// 		ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒª		æç”»å‡¦ç†ãƒ—ãƒ­ã‚°ãƒ©ãƒ ( Android )ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«
 // 
 // 				Ver 3.25a
 // 
@@ -14,7 +14,7 @@
 
 #ifndef DX_NON_GRAPHICS
 
-// ƒCƒ“ƒNƒ‹[ƒh ------------------------------------------------------------------
+// ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ ------------------------------------------------------------------
 #include "../DxLib.h"
 #include "../DxGraphics.h"
 #include "../DxArchive_.h"
@@ -31,11 +31,11 @@ namespace DxLib
 
 #endif // DX_NON_NAMESPACE
 
-// ƒ}ƒNƒ’è‹` --------------------------------------------------------------------
+// ãƒžã‚¯ãƒ­å®šç¾© --------------------------------------------------------------------
 
 #define GANDR										GraphicsHardDataAndroid
 
-// Graphics_Android_DrawPreparation ŠÖ”‚É“n‚·ƒtƒ‰ƒO
+// Graphics_Android_DrawPreparation é–¢æ•°ã«æ¸¡ã™ãƒ•ãƒ©ã‚°
 #define DX_ANDROID_DRAWPREP_TRANS						(0x00001)
 #define DX_ANDROID_DRAWPREP_VECTORINT					(0x00002)
 #define DX_ANDROID_DRAWPREP_GOURAUDSHADE				(0x00008)
@@ -54,9 +54,9 @@ namespace DxLib
 #define DX_ANDROID_DRAWPREP_TEXALPHACH					(0x10000)
 #define DX_ANDROID_DRAWPREP_TEXALPHATEST				(0x20000)
 
-// ƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[‚ÌƒAƒ‹ƒtƒ@ƒeƒXƒgƒ‚[ƒh
-#define ANDROID_FS_ALPHATEST_CMP_GREATER				(0)				// •`‰æƒAƒ‹ƒtƒ@’l‚ªƒeƒXƒgƒAƒ‹ƒtƒ@’l‚æ‚è‘å‚«‚¯‚ê‚Î•`‰æ
-#define ANDROID_FS_ALPHATEST_CMP_OTHER					(1)				// GREATER ˆÈŠO‚Ì”äŠrƒ‚[ƒh
+// ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆãƒ¢ãƒ¼ãƒ‰
+#define ANDROID_FS_ALPHATEST_CMP_GREATER				(0)				// æç”»ã‚¢ãƒ«ãƒ•ã‚¡å€¤ãŒãƒ†ã‚¹ãƒˆã‚¢ãƒ«ãƒ•ã‚¡å€¤ã‚ˆã‚Šå¤§ãã‘ã‚Œã°æç”»
+#define ANDROID_FS_ALPHATEST_CMP_OTHER					(1)				// GREATER ä»¥å¤–ã®æ¯”è¼ƒãƒ¢ãƒ¼ãƒ‰
 #define ANDROID_FS_ALPHATEST_NUM						(2)
 
 // GL Extensions
@@ -75,7 +75,7 @@ namespace DxLib
 #define ANDROID_GL_EXTENSION_TEXTURE_FORMAT_BGRA8888		(12)			// GL_EXT_texture_format_BGRA8888
 #define ANDROID_GL_EXTENSION_NUM							(13)
 
-// ƒsƒNƒZƒ‹ƒtƒH[ƒ}ƒbƒg
+// ãƒ”ã‚¯ã‚»ãƒ«ãƒ•ã‚©ãƒ¼ãƒžãƒƒãƒˆ
 #define ANDROID_PIXEL_FORMAT_R8G8B8A8					(0)
 #define ANDROID_PIXEL_FORMAT_R8G8B8						(1)
 #define ANDROID_PIXEL_FORMAT_A4B4G4R4					(2)
@@ -94,105 +94,105 @@ namespace DxLib
 #define ANDROID_PIXEL_FORMAT_R32G32B32A32_FLOAT			(15)
 #define ANDROID_PIXEL_FORMAT_NUM						(16)
 
-// •W€•`‰æ’¸“_ƒtƒH[ƒ}ƒbƒg
-#define ANDROID_VERTEX_INPUTLAYOUT_NOTEX_2D				(0)				// ( VERTEX_NOTEX_2D                      \‘¢‘ÌŒ`Ž® )ƒ‰ƒCƒ“Aƒ{ƒbƒNƒX•`‰æ—p’¸“_ƒtƒH[ƒ}ƒbƒg
-#define ANDROID_VERTEX_INPUTLAYOUT_2D					(1)				// ( VERTEX2D or VERTEX_2D                \‘¢‘ÌŒ`Ž® )ƒgƒ‰ƒ“ƒXƒtƒH[ƒ€Ï‚Ý’¸“_ƒtƒH[ƒ}ƒbƒg
-#define ANDROID_VERTEX_INPUTLAYOUT_BLENDTEX_2D			(2)				// ( VERTEX_BLENDTEX_2D or VERTEX2DSHADER \‘¢‘ÌŒ`Ž® )ƒ¿ƒuƒŒƒ“ƒhƒeƒNƒXƒ`ƒƒ•t‚«ƒgƒ‰ƒ“ƒXƒtƒH[ƒ€Ï‚Ý’¸“_ƒtƒH[ƒ}ƒbƒg
-#define ANDROID_VERTEX_INPUTLAYOUT_NOTEX_3D				(3)				// ( VERTEX_NOTEX_3D                      \‘¢‘ÌŒ`Ž® )ƒ‰ƒCƒ“Aƒ{ƒbƒNƒX•`‰æ—p’¸“_ƒtƒH[ƒ}ƒbƒgA‚R‚c—p( ‹Œƒo[ƒWƒ‡ƒ“—p )
-#define ANDROID_VERTEX_INPUTLAYOUT_3D					(4)				// ( VERTEX_3D                            \‘¢‘ÌŒ`Ž® )ƒOƒ‰ƒtƒBƒbƒNƒX•`‰æ—p’¸“_ƒtƒH[ƒ}ƒbƒgA‚R‚c—p( ‹Œƒo[ƒWƒ‡ƒ“—p )
-#define ANDROID_VERTEX_INPUTLAYOUT_3D_LIGHT				(5)				// ( VERTEX3D                             \‘¢‘ÌŒ`Ž® )ƒOƒ‰ƒtƒBƒbƒNƒX•`‰æ—p’¸“_ƒtƒH[ƒ}ƒbƒg
-#define ANDROID_VERTEX_INPUTLAYOUT_SHADER_3D			(6)				// ( VERTEX3DSHADER                       \‘¢‘ÌŒ`Ž® )ƒVƒF[ƒ_[•`‰æ—p’¸“_ƒtƒH[ƒ}ƒbƒg
+// æ¨™æº–æç”»é ‚ç‚¹ãƒ•ã‚©ãƒ¼ãƒžãƒƒãƒˆ
+#define ANDROID_VERTEX_INPUTLAYOUT_NOTEX_2D				(0)				// ( VERTEX_NOTEX_2D                      æ§‹é€ ä½“å½¢å¼ )ãƒ©ã‚¤ãƒ³ã€ãƒœãƒƒã‚¯ã‚¹æç”»ç”¨é ‚ç‚¹ãƒ•ã‚©ãƒ¼ãƒžãƒƒãƒˆ
+#define ANDROID_VERTEX_INPUTLAYOUT_2D					(1)				// ( VERTEX2D or VERTEX_2D                æ§‹é€ ä½“å½¢å¼ )ãƒˆãƒ©ãƒ³ã‚¹ãƒ•ã‚©ãƒ¼ãƒ æ¸ˆã¿é ‚ç‚¹ãƒ•ã‚©ãƒ¼ãƒžãƒƒãƒˆ
+#define ANDROID_VERTEX_INPUTLAYOUT_BLENDTEX_2D			(2)				// ( VERTEX_BLENDTEX_2D or VERTEX2DSHADER æ§‹é€ ä½“å½¢å¼ )Î±ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ†ã‚¯ã‚¹ãƒãƒ£ä»˜ããƒˆãƒ©ãƒ³ã‚¹ãƒ•ã‚©ãƒ¼ãƒ æ¸ˆã¿é ‚ç‚¹ãƒ•ã‚©ãƒ¼ãƒžãƒƒãƒˆ
+#define ANDROID_VERTEX_INPUTLAYOUT_NOTEX_3D				(3)				// ( VERTEX_NOTEX_3D                      æ§‹é€ ä½“å½¢å¼ )ãƒ©ã‚¤ãƒ³ã€ãƒœãƒƒã‚¯ã‚¹æç”»ç”¨é ‚ç‚¹ãƒ•ã‚©ãƒ¼ãƒžãƒƒãƒˆã€ï¼“ï¼¤ç”¨( æ—§ãƒãƒ¼ã‚¸ãƒ§ãƒ³ç”¨ )
+#define ANDROID_VERTEX_INPUTLAYOUT_3D					(4)				// ( VERTEX_3D                            æ§‹é€ ä½“å½¢å¼ )ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¹æç”»ç”¨é ‚ç‚¹ãƒ•ã‚©ãƒ¼ãƒžãƒƒãƒˆã€ï¼“ï¼¤ç”¨( æ—§ãƒãƒ¼ã‚¸ãƒ§ãƒ³ç”¨ )
+#define ANDROID_VERTEX_INPUTLAYOUT_3D_LIGHT				(5)				// ( VERTEX3D                             æ§‹é€ ä½“å½¢å¼ )ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¹æç”»ç”¨é ‚ç‚¹ãƒ•ã‚©ãƒ¼ãƒžãƒƒãƒˆ
+#define ANDROID_VERTEX_INPUTLAYOUT_SHADER_3D			(6)				// ( VERTEX3DSHADER                       æ§‹é€ ä½“å½¢å¼ )ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼æç”»ç”¨é ‚ç‚¹ãƒ•ã‚©ãƒ¼ãƒžãƒƒãƒˆ
 #define ANDROID_VERTEX_INPUTLAYOUT_NUM					(7)
 
-// •`‰æƒ^ƒCƒv
-#define ANDROID_RENDER_TYPE_NORMAL						(0)				// 0:’Êí•`‰æ
-#define ANDROID_RENDER_TYPE_MUL							(1)				// 1:æŽZ•`‰æ
-#define ANDROID_RENDER_TYPE_INVERSE						(2)				// 2:RGB”½“]
-#define ANDROID_RENDER_TYPE_X4							(3)				// 3:•`‰æ‹P“x4”{
-#define ANDROID_RENDER_TYPE_PMA_NORMAL					(4)				// 4:æŽZÏ‚Ýƒ¿ƒuƒŒƒ“ƒhƒ‚[ƒh‚Ì’Êí•`‰æ
-#define ANDROID_RENDER_TYPE_PMA_INVERSE					(5)				// 5:æŽZÏ‚Ýƒ¿ƒuƒŒƒ“ƒhƒ‚[ƒh‚ÌRGB”½“]
-#define ANDROID_RENDER_TYPE_PMA_X4						(6)				// 6:æŽZÏ‚Ýƒ¿ƒuƒŒƒ“ƒhƒ‚[ƒh‚Ì•`‰æ‹P“x4”{
+// æç”»ã‚¿ã‚¤ãƒ—
+#define ANDROID_RENDER_TYPE_NORMAL						(0)				// 0:é€šå¸¸æç”»
+#define ANDROID_RENDER_TYPE_MUL							(1)				// 1:ä¹—ç®—æç”»
+#define ANDROID_RENDER_TYPE_INVERSE						(2)				// 2:RGBåè»¢
+#define ANDROID_RENDER_TYPE_X4							(3)				// 3:æç”»è¼åº¦4å€
+#define ANDROID_RENDER_TYPE_PMA_NORMAL					(4)				// 4:ä¹—ç®—æ¸ˆã¿Î±ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã®é€šå¸¸æç”»
+#define ANDROID_RENDER_TYPE_PMA_INVERSE					(5)				// 5:ä¹—ç®—æ¸ˆã¿Î±ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã®RGBåè»¢
+#define ANDROID_RENDER_TYPE_PMA_X4						(6)				// 6:ä¹—ç®—æ¸ˆã¿Î±ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã®æç”»è¼åº¦4å€
 #define ANDROID_RENDER_TYPE_NUM							(7)
 
-// ’¸“_ƒf[ƒ^
-#define ANDROID_VERTEX_ATTR_POS_F2								(0)			// À•W( x, y )
-#define ANDROID_VERTEX_ATTR_POS_F3								(1)			// À•W( x, y, z )
-#define ANDROID_VERTEX_ATTR_POS_F4								(2)			// À•W( x, y, z, w )
-#define ANDROID_VERTEX_ATTR_NRM									(3)			// –@ü
-#define ANDROID_VERTEX_ATTR_DIF									(4)			// ƒfƒBƒtƒ…[ƒYƒJƒ‰[
-#define ANDROID_VERTEX_ATTR_SPC									(5)			// ƒXƒyƒLƒ…ƒ‰ƒJƒ‰[
-#define ANDROID_VERTEX_ATTR_TEXUV0_F2							(6)			// ƒeƒNƒXƒ`ƒƒÀ•W‚O( x, y )
-#define ANDROID_VERTEX_ATTR_TEXUV1_F2							(7)			// ƒeƒNƒXƒ`ƒƒÀ•W‚P( x, y )
-#define ANDROID_VERTEX_ATTR_TEXUV2_F2							(8)			// ƒeƒNƒXƒ`ƒƒÀ•W‚Q( x, y )
-#define ANDROID_VERTEX_ATTR_TEXUV3_F2							(9)			// ƒeƒNƒXƒ`ƒƒÀ•W‚R( x, y )
-#define ANDROID_VERTEX_ATTR_TEXUV4_F2							(10)		// ƒeƒNƒXƒ`ƒƒÀ•W‚S( x, y )
-#define ANDROID_VERTEX_ATTR_TEXUV5_F2							(11)		// ƒeƒNƒXƒ`ƒƒÀ•W‚T( x, y )
-#define ANDROID_VERTEX_ATTR_TEXUV6_F2							(12)		// ƒeƒNƒXƒ`ƒƒÀ•W‚U( x, y )
-#define ANDROID_VERTEX_ATTR_TEXUV7_F2							(13)		// ƒeƒNƒXƒ`ƒƒÀ•W‚V( x, y )
-#define ANDROID_VERTEX_ATTR_TEXUV0_F4							(14)		// ƒeƒNƒXƒ`ƒƒÀ•W‚O( x, y, z, w )
-#define ANDROID_VERTEX_ATTR_TEXUV1_F4							(15)		// ƒeƒNƒXƒ`ƒƒÀ•W‚P( x, y, z, w )
-#define ANDROID_VERTEX_ATTR_TAN									(16)		// Úü( ƒ[ƒJƒ‹‹óŠÔ )
-#define ANDROID_VERTEX_ATTR_BIN									(17)		// ]–@ü( ƒ[ƒJƒ‹‹óŠÔ )
-#define ANDROID_VERTEX_ATTR_BLENDIND0							(18)		// ƒ{[ƒ“ˆ——p FloatŒ^’è””z—ñƒCƒ“ƒfƒbƒNƒX‚O
-#define ANDROID_VERTEX_ATTR_BLENDWEIGHT0						(19)		// ƒ{[ƒ“ˆ——pƒEƒGƒCƒg’l‚O
-#define ANDROID_VERTEX_ATTR_BLENDIND1							(20)		// ƒ{[ƒ“ˆ——p FloatŒ^’è””z—ñƒCƒ“ƒfƒbƒNƒX‚P
-#define ANDROID_VERTEX_ATTR_BLENDWEIGHT1						(21)		// ƒ{[ƒ“ˆ——pƒEƒGƒCƒg’l‚P
+// é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿
+#define ANDROID_VERTEX_ATTR_POS_F2								(0)			// åº§æ¨™( x, y )
+#define ANDROID_VERTEX_ATTR_POS_F3								(1)			// åº§æ¨™( x, y, z )
+#define ANDROID_VERTEX_ATTR_POS_F4								(2)			// åº§æ¨™( x, y, z, w )
+#define ANDROID_VERTEX_ATTR_NRM									(3)			// æ³•ç·š
+#define ANDROID_VERTEX_ATTR_DIF									(4)			// ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚«ãƒ©ãƒ¼
+#define ANDROID_VERTEX_ATTR_SPC									(5)			// ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã‚«ãƒ©ãƒ¼
+#define ANDROID_VERTEX_ATTR_TEXUV0_F2							(6)			// ãƒ†ã‚¯ã‚¹ãƒãƒ£åº§æ¨™ï¼( x, y )
+#define ANDROID_VERTEX_ATTR_TEXUV1_F2							(7)			// ãƒ†ã‚¯ã‚¹ãƒãƒ£åº§æ¨™ï¼‘( x, y )
+#define ANDROID_VERTEX_ATTR_TEXUV2_F2							(8)			// ãƒ†ã‚¯ã‚¹ãƒãƒ£åº§æ¨™ï¼’( x, y )
+#define ANDROID_VERTEX_ATTR_TEXUV3_F2							(9)			// ãƒ†ã‚¯ã‚¹ãƒãƒ£åº§æ¨™ï¼“( x, y )
+#define ANDROID_VERTEX_ATTR_TEXUV4_F2							(10)		// ãƒ†ã‚¯ã‚¹ãƒãƒ£åº§æ¨™ï¼”( x, y )
+#define ANDROID_VERTEX_ATTR_TEXUV5_F2							(11)		// ãƒ†ã‚¯ã‚¹ãƒãƒ£åº§æ¨™ï¼•( x, y )
+#define ANDROID_VERTEX_ATTR_TEXUV6_F2							(12)		// ãƒ†ã‚¯ã‚¹ãƒãƒ£åº§æ¨™ï¼–( x, y )
+#define ANDROID_VERTEX_ATTR_TEXUV7_F2							(13)		// ãƒ†ã‚¯ã‚¹ãƒãƒ£åº§æ¨™ï¼—( x, y )
+#define ANDROID_VERTEX_ATTR_TEXUV0_F4							(14)		// ãƒ†ã‚¯ã‚¹ãƒãƒ£åº§æ¨™ï¼( x, y, z, w )
+#define ANDROID_VERTEX_ATTR_TEXUV1_F4							(15)		// ãƒ†ã‚¯ã‚¹ãƒãƒ£åº§æ¨™ï¼‘( x, y, z, w )
+#define ANDROID_VERTEX_ATTR_TAN									(16)		// æŽ¥ç·š( ãƒ­ãƒ¼ã‚«ãƒ«ç©ºé–“ )
+#define ANDROID_VERTEX_ATTR_BIN									(17)		// å¾“æ³•ç·š( ãƒ­ãƒ¼ã‚«ãƒ«ç©ºé–“ )
+#define ANDROID_VERTEX_ATTR_BLENDIND0							(18)		// ãƒœãƒ¼ãƒ³å‡¦ç†ç”¨ Floatåž‹å®šæ•°é…åˆ—ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ï¼
+#define ANDROID_VERTEX_ATTR_BLENDWEIGHT0						(19)		// ãƒœãƒ¼ãƒ³å‡¦ç†ç”¨ã‚¦ã‚¨ã‚¤ãƒˆå€¤ï¼
+#define ANDROID_VERTEX_ATTR_BLENDIND1							(20)		// ãƒœãƒ¼ãƒ³å‡¦ç†ç”¨ Floatåž‹å®šæ•°é…åˆ—ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ï¼‘
+#define ANDROID_VERTEX_ATTR_BLENDWEIGHT1						(21)		// ãƒœãƒ¼ãƒ³å‡¦ç†ç”¨ã‚¦ã‚¨ã‚¤ãƒˆå€¤ï¼‘
 #define ANDROID_VERTEX_ATTR_NUM									(22)
 #define ANDROID_VERTEX_ATTR_OTHER								(-1)
 
-// ƒVƒF[ƒ_[‚Ì’è”î•ñ
-#define ANDROID_SHADER_UNIFORM_SRC_TEX							(0)			// ƒ\[ƒXƒeƒNƒXƒ`ƒƒ
-#define ANDROID_SHADER_UNIFORM_BLEND_TEX						(1)			// ƒuƒŒƒ“ƒhƒeƒNƒXƒ`ƒƒ
-#define ANDROID_SHADER_UNIFORM_DIF_MAP_TEX						(2)			// ƒfƒBƒtƒ…[ƒYƒ}ƒbƒvƒeƒNƒXƒ`ƒƒ
-#define ANDROID_SHADER_UNIFORM_NRM_MAP_TEX						(3)			// –@üƒ}ƒbƒvƒeƒNƒXƒ`ƒƒ
-#define ANDROID_SHADER_UNIFORM_SPC_MAP_TEX						(4)			// ƒXƒyƒLƒ…ƒ‰ƒ}ƒbƒvƒeƒNƒXƒ`ƒƒ
-#define ANDROID_SHADER_UNIFORM_TOON_DIF_GRAD_TEX				(5)			// ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO—pƒfƒBƒtƒ…[ƒYƒJƒ‰[ƒOƒ‰ƒf[ƒVƒ‡ƒ“ƒeƒNƒXƒ`ƒƒ
-#define ANDROID_SHADER_UNIFORM_TOON_SPC_GRAD_TEX				(6)			// ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO—pƒXƒyƒLƒ…ƒ‰ƒJƒ‰[ƒOƒ‰ƒf[ƒVƒ‡ƒ“ƒeƒNƒXƒ`ƒƒ
-#define ANDROID_SHADER_UNIFORM_TOON_SPHERE_MAP_TEX				(7)			// ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO—pƒXƒtƒBƒAƒ}ƒbƒvƒeƒNƒXƒ`ƒƒ
-#define ANDROID_SHADER_UNIFORM_TOON_RGB_TO_VMAXRGBVOL_TEX		(8)			// ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO—pRGB‹P“x–O˜aˆ——pƒ{ƒŠƒ…[ƒ€ƒeƒNƒXƒ`ƒƒ
-#define ANDROID_SHADER_UNIFORM_SUB_TEX							(9)			// ƒTƒuƒeƒNƒXƒ`ƒƒ
-#define ANDROID_SHADER_UNIFORM_SHADOW_MAP0_TEX					(10)		// ƒVƒƒƒhƒEƒ}ƒbƒv0ƒeƒNƒXƒ`ƒƒ
-#define ANDROID_SHADER_UNIFORM_SHADOW_MAP1_TEX					(11)		// ƒVƒƒƒhƒEƒ}ƒbƒv1ƒeƒNƒXƒ`ƒƒ
-#define ANDROID_SHADER_UNIFORM_SHADOW_MAP2_TEX					(12)		// ƒVƒƒƒhƒEƒ}ƒbƒv2ƒeƒNƒXƒ`ƒƒ
-#define ANDROID_SHADER_UNIFORM_AMB_EMI							(13)		// ƒGƒ~ƒbƒVƒuƒJƒ‰[{ƒAƒ“ƒrƒGƒ“ƒgƒJƒ‰[( ƒGƒ~ƒbƒVƒuƒJƒ‰[ + ƒ}ƒeƒŠƒAƒ‹ƒAƒ“ƒrƒGƒ“ƒgƒJƒ‰[ * ƒOƒ[ƒoƒ‹ƒAƒ“ƒrƒGƒ“ƒgƒJƒ‰[ )
-#define ANDROID_SHADER_UNIFORM_MAT_DIF							(14)		// ƒfƒBƒtƒ…[ƒYƒJƒ‰[
-#define ANDROID_SHADER_UNIFORM_MAT_SPC							(15)		// ƒXƒyƒLƒ…ƒ‰ƒJƒ‰[
-#define ANDROID_SHADER_UNIFORM_MAT_POW							(16)		// ƒXƒyƒLƒ…ƒ‰‚Ì‹­‚³
-#define ANDROID_SHADER_UNIFORM_MAT_TYPE_PARAM0					(17)		// ƒ}ƒeƒŠƒAƒ‹ƒpƒ‰ƒ[ƒ^0
-#define ANDROID_SHADER_UNIFORM_MAT_TYPE_PARAM1					(18)		// ƒ}ƒeƒŠƒAƒ‹ƒpƒ‰ƒ[ƒ^1
-#define ANDROID_SHADER_UNIFORM_MAT_TYPE_PARAM2					(19)		// ƒ}ƒeƒŠƒAƒ‹ƒpƒ‰ƒ[ƒ^2
-#define ANDROID_SHADER_UNIFORM_LIGHT_POS						(20)		// À•W( ƒrƒ…[‹óŠÔ )
-#define ANDROID_SHADER_UNIFORM_LIGHT_DIR						(21)		// •ûŒü( ƒrƒ…[‹óŠÔ )
-#define ANDROID_SHADER_UNIFORM_LIGHT_DIF						(22)		// ƒfƒBƒtƒ…[ƒYƒJƒ‰[
-#define ANDROID_SHADER_UNIFORM_LIGHT_SPC						(23)		// ƒXƒyƒLƒ…ƒ‰ƒJƒ‰[
-#define ANDROID_SHADER_UNIFORM_LIGHT_AMB						(24)		// ƒAƒ“ƒrƒGƒ“ƒgƒJƒ‰[
-#define ANDROID_SHADER_UNIFORM_LIGHT_RANGE_FALLOFF_AT0_AT1		(25)		// x:—LŒø‹——£  y:ƒXƒ|ƒbƒgƒ‰ƒCƒg—pFllOff  z:‹——£‚É‚æ‚éŒ¸Šˆ——pƒpƒ‰ƒ[ƒ^‚O  w:‹——£‚É‚æ‚éŒ¸Šˆ——pƒpƒ‰ƒ[ƒ^‚P
-#define ANDROID_SHADER_UNIFORM_LIGHT_AT2_SPOTP0_SPOTP1			(26)		// x:‹——£‚É‚æ‚éŒ¸Šˆ——pƒpƒ‰ƒ[ƒ^‚Q  y:ƒXƒ|ƒbƒgƒ‰ƒCƒg—pƒpƒ‰ƒ[ƒ^‚O( cos( Phi / 2.0 ) )  z:ƒXƒ|ƒbƒgƒ‰ƒCƒg—pƒpƒ‰ƒ[ƒ^‚P( 1.0 / ( cos( Theta / 2.0 ) - cos( Phi / 2.0 ) ) )
-#define ANDROID_SHADER_UNIFORM_ANTI_VIEW_PORT_MAT				(27)		// ƒ[ƒ‹ƒh@¨@ƒrƒ…[s—ñ
-#define ANDROID_SHADER_UNIFORM_VIEW_MAT							(28)		// ƒ[ƒ‹ƒh@¨@ƒrƒ…[s—ñ
-#define ANDROID_SHADER_UNIFORM_PROJ_MAT							(29)		// ƒrƒ…[@¨@ƒvƒƒWƒFƒNƒVƒ‡ƒ“s—ñ
-#define ANDROID_SHADER_UNIFORM_FOG								(30)		// ƒtƒHƒO—pƒpƒ‰ƒ[ƒ^( x:end/(end - start)  y:-1/(end - start)  z:density  w:Ž©‘R‘Î”‚Ì’á )
-#define ANDROID_SHADER_UNIFORM_TOON_OUTLINE_SIZE				(31)		// ƒgƒD[ƒ“‚Ì—ÖŠsü‚Ì‘å‚«‚³
-#define ANDROID_SHADER_UNIFORM_DIFSRC_SPCSRC_MULSPECOL			(32)		// x:ƒfƒBƒtƒ…[ƒYƒJƒ‰[( 0.0:ƒ}ƒeƒŠƒAƒ‹  1.0:’¸“_ )  y:ƒXƒyƒLƒ…ƒ‰ƒJƒ‰[(   0.0:ƒ}ƒeƒŠƒAƒ‹  1.0:’¸“_ )  z:ƒXƒyƒLƒ…ƒ‰ƒJƒ‰[’l‚ÉæŽZ‚·‚é’l( ƒXƒyƒLƒ…ƒ‰–³Œøˆ—‚ÅŽg—p )
-#define ANDROID_SHADER_UNIFORM_SM_LVP_MAT						(33)		// ƒVƒƒƒhƒEƒ}ƒbƒv—p‚Ìƒ‰ƒCƒgƒrƒ…[s—ñ‚Æƒ‰ƒCƒgŽË‰es—ñ‚ðæŽZ‚µ‚½‚à‚Ì
-#define ANDROID_SHADER_UNIFORM_TEX_MAT							(34)		// ƒeƒNƒXƒ`ƒƒÀ•W‘€ì—ps—ñ
-#define ANDROID_SHADER_UNIFORM_LW_MAT							(35)		// ƒ[ƒJƒ‹@¨@ƒ[ƒ‹ƒhs—ñ
-#define ANDROID_SHADER_UNIFORM_MUL_ALPHA_COLOR					(36)		// ƒJƒ‰[‚ÉƒAƒ‹ƒtƒ@’l‚ðæŽZ‚·‚é‚©‚Ç‚¤‚©( 0.0:æŽZ‚µ‚È‚¢  1.0:æŽZ‚·‚é )
-#define ANDROID_SHADER_UNIFORM_ALPHA_TEST_REF					(37)		// ƒ¿ƒeƒXƒg’l
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®å®šæ•°æƒ…å ±
+#define ANDROID_SHADER_UNIFORM_SRC_TEX							(0)			// ã‚½ãƒ¼ã‚¹ãƒ†ã‚¯ã‚¹ãƒãƒ£
+#define ANDROID_SHADER_UNIFORM_BLEND_TEX						(1)			// ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ†ã‚¯ã‚¹ãƒãƒ£
+#define ANDROID_SHADER_UNIFORM_DIF_MAP_TEX						(2)			// ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºãƒžãƒƒãƒ—ãƒ†ã‚¯ã‚¹ãƒãƒ£
+#define ANDROID_SHADER_UNIFORM_NRM_MAP_TEX						(3)			// æ³•ç·šãƒžãƒƒãƒ—ãƒ†ã‚¯ã‚¹ãƒãƒ£
+#define ANDROID_SHADER_UNIFORM_SPC_MAP_TEX						(4)			// ã‚¹ãƒšã‚­ãƒ¥ãƒ©ãƒžãƒƒãƒ—ãƒ†ã‚¯ã‚¹ãƒãƒ£
+#define ANDROID_SHADER_UNIFORM_TOON_DIF_GRAD_TEX				(5)			// ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ç”¨ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚«ãƒ©ãƒ¼ã‚°ãƒ©ãƒ‡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ†ã‚¯ã‚¹ãƒãƒ£
+#define ANDROID_SHADER_UNIFORM_TOON_SPC_GRAD_TEX				(6)			// ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ç”¨ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã‚«ãƒ©ãƒ¼ã‚°ãƒ©ãƒ‡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ†ã‚¯ã‚¹ãƒãƒ£
+#define ANDROID_SHADER_UNIFORM_TOON_SPHERE_MAP_TEX				(7)			// ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ç”¨ã‚¹ãƒ•ã‚£ã‚¢ãƒžãƒƒãƒ—ãƒ†ã‚¯ã‚¹ãƒãƒ£
+#define ANDROID_SHADER_UNIFORM_TOON_RGB_TO_VMAXRGBVOL_TEX		(8)			// ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ç”¨RGBè¼åº¦é£½å’Œå‡¦ç†ç”¨ãƒœãƒªãƒ¥ãƒ¼ãƒ ãƒ†ã‚¯ã‚¹ãƒãƒ£
+#define ANDROID_SHADER_UNIFORM_SUB_TEX							(9)			// ã‚µãƒ–ãƒ†ã‚¯ã‚¹ãƒãƒ£
+#define ANDROID_SHADER_UNIFORM_SHADOW_MAP0_TEX					(10)		// ã‚·ãƒ£ãƒ‰ã‚¦ãƒžãƒƒãƒ—0ãƒ†ã‚¯ã‚¹ãƒãƒ£
+#define ANDROID_SHADER_UNIFORM_SHADOW_MAP1_TEX					(11)		// ã‚·ãƒ£ãƒ‰ã‚¦ãƒžãƒƒãƒ—1ãƒ†ã‚¯ã‚¹ãƒãƒ£
+#define ANDROID_SHADER_UNIFORM_SHADOW_MAP2_TEX					(12)		// ã‚·ãƒ£ãƒ‰ã‚¦ãƒžãƒƒãƒ—2ãƒ†ã‚¯ã‚¹ãƒãƒ£
+#define ANDROID_SHADER_UNIFORM_AMB_EMI							(13)		// ã‚¨ãƒŸãƒƒã‚·ãƒ–ã‚«ãƒ©ãƒ¼ï¼‹ã‚¢ãƒ³ãƒ“ã‚¨ãƒ³ãƒˆã‚«ãƒ©ãƒ¼( ã‚¨ãƒŸãƒƒã‚·ãƒ–ã‚«ãƒ©ãƒ¼ + ãƒžãƒ†ãƒªã‚¢ãƒ«ã‚¢ãƒ³ãƒ“ã‚¨ãƒ³ãƒˆã‚«ãƒ©ãƒ¼ * ã‚°ãƒ­ãƒ¼ãƒãƒ«ã‚¢ãƒ³ãƒ“ã‚¨ãƒ³ãƒˆã‚«ãƒ©ãƒ¼ )
+#define ANDROID_SHADER_UNIFORM_MAT_DIF							(14)		// ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚«ãƒ©ãƒ¼
+#define ANDROID_SHADER_UNIFORM_MAT_SPC							(15)		// ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã‚«ãƒ©ãƒ¼
+#define ANDROID_SHADER_UNIFORM_MAT_POW							(16)		// ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã®å¼·ã•
+#define ANDROID_SHADER_UNIFORM_MAT_TYPE_PARAM0					(17)		// ãƒžãƒ†ãƒªã‚¢ãƒ«ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿0
+#define ANDROID_SHADER_UNIFORM_MAT_TYPE_PARAM1					(18)		// ãƒžãƒ†ãƒªã‚¢ãƒ«ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿1
+#define ANDROID_SHADER_UNIFORM_MAT_TYPE_PARAM2					(19)		// ãƒžãƒ†ãƒªã‚¢ãƒ«ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿2
+#define ANDROID_SHADER_UNIFORM_LIGHT_POS						(20)		// åº§æ¨™( ãƒ“ãƒ¥ãƒ¼ç©ºé–“ )
+#define ANDROID_SHADER_UNIFORM_LIGHT_DIR						(21)		// æ–¹å‘( ãƒ“ãƒ¥ãƒ¼ç©ºé–“ )
+#define ANDROID_SHADER_UNIFORM_LIGHT_DIF						(22)		// ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚«ãƒ©ãƒ¼
+#define ANDROID_SHADER_UNIFORM_LIGHT_SPC						(23)		// ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã‚«ãƒ©ãƒ¼
+#define ANDROID_SHADER_UNIFORM_LIGHT_AMB						(24)		// ã‚¢ãƒ³ãƒ“ã‚¨ãƒ³ãƒˆã‚«ãƒ©ãƒ¼
+#define ANDROID_SHADER_UNIFORM_LIGHT_RANGE_FALLOFF_AT0_AT1		(25)		// x:æœ‰åŠ¹è·é›¢  y:ã‚¹ãƒãƒƒãƒˆãƒ©ã‚¤ãƒˆç”¨FllOff  z:è·é›¢ã«ã‚ˆã‚‹æ¸›è¡°å‡¦ç†ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ï¼  w:è·é›¢ã«ã‚ˆã‚‹æ¸›è¡°å‡¦ç†ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ï¼‘
+#define ANDROID_SHADER_UNIFORM_LIGHT_AT2_SPOTP0_SPOTP1			(26)		// x:è·é›¢ã«ã‚ˆã‚‹æ¸›è¡°å‡¦ç†ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ï¼’  y:ã‚¹ãƒãƒƒãƒˆãƒ©ã‚¤ãƒˆç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ï¼( cos( Phi / 2.0 ) )  z:ã‚¹ãƒãƒƒãƒˆãƒ©ã‚¤ãƒˆç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ï¼‘( 1.0 / ( cos( Theta / 2.0 ) - cos( Phi / 2.0 ) ) )
+#define ANDROID_SHADER_UNIFORM_ANTI_VIEW_PORT_MAT				(27)		// ãƒ¯ãƒ¼ãƒ«ãƒ‰ã€€â†’ã€€ãƒ“ãƒ¥ãƒ¼è¡Œåˆ—
+#define ANDROID_SHADER_UNIFORM_VIEW_MAT							(28)		// ãƒ¯ãƒ¼ãƒ«ãƒ‰ã€€â†’ã€€ãƒ“ãƒ¥ãƒ¼è¡Œåˆ—
+#define ANDROID_SHADER_UNIFORM_PROJ_MAT							(29)		// ãƒ“ãƒ¥ãƒ¼ã€€â†’ã€€ãƒ—ãƒ­ã‚¸ã‚§ã‚¯ã‚·ãƒ§ãƒ³è¡Œåˆ—
+#define ANDROID_SHADER_UNIFORM_FOG								(30)		// ãƒ•ã‚©ã‚°ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿( x:end/(end - start)  y:-1/(end - start)  z:density  w:è‡ªç„¶å¯¾æ•°ã®ä½Ž )
+#define ANDROID_SHADER_UNIFORM_TOON_OUTLINE_SIZE				(31)		// ãƒˆã‚¥ãƒ¼ãƒ³ã®è¼ªéƒ­ç·šã®å¤§ãã•
+#define ANDROID_SHADER_UNIFORM_DIFSRC_SPCSRC_MULSPECOL			(32)		// x:ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚«ãƒ©ãƒ¼( 0.0:ãƒžãƒ†ãƒªã‚¢ãƒ«  1.0:é ‚ç‚¹ )  y:ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã‚«ãƒ©ãƒ¼(   0.0:ãƒžãƒ†ãƒªã‚¢ãƒ«  1.0:é ‚ç‚¹ )  z:ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã‚«ãƒ©ãƒ¼å€¤ã«ä¹—ç®—ã™ã‚‹å€¤( ã‚¹ãƒšã‚­ãƒ¥ãƒ©ç„¡åŠ¹å‡¦ç†ã§ä½¿ç”¨ )
+#define ANDROID_SHADER_UNIFORM_SM_LVP_MAT						(33)		// ã‚·ãƒ£ãƒ‰ã‚¦ãƒžãƒƒãƒ—ç”¨ã®ãƒ©ã‚¤ãƒˆãƒ“ãƒ¥ãƒ¼è¡Œåˆ—ã¨ãƒ©ã‚¤ãƒˆå°„å½±è¡Œåˆ—ã‚’ä¹—ç®—ã—ãŸã‚‚ã®
+#define ANDROID_SHADER_UNIFORM_TEX_MAT							(34)		// ãƒ†ã‚¯ã‚¹ãƒãƒ£åº§æ¨™æ“ä½œç”¨è¡Œåˆ—
+#define ANDROID_SHADER_UNIFORM_LW_MAT							(35)		// ãƒ­ãƒ¼ã‚«ãƒ«ã€€â†’ã€€ãƒ¯ãƒ¼ãƒ«ãƒ‰è¡Œåˆ—
+#define ANDROID_SHADER_UNIFORM_MUL_ALPHA_COLOR					(36)		// ã‚«ãƒ©ãƒ¼ã«ã‚¢ãƒ«ãƒ•ã‚¡å€¤ã‚’ä¹—ç®—ã™ã‚‹ã‹ã©ã†ã‹( 0.0:ä¹—ç®—ã—ãªã„  1.0:ä¹—ç®—ã™ã‚‹ )
+#define ANDROID_SHADER_UNIFORM_ALPHA_TEST_REF					(37)		// Î±ãƒ†ã‚¹ãƒˆå€¤
 #define ANDROID_SHADER_UNIFORM_ALPHA_TEST_CMPMODE				(38)
-#define ANDROID_SHADER_UNIFORM_FOG_COLOR						(39)		// ƒtƒHƒOƒJƒ‰[
-#define ANDROID_SHADER_UNIFORM_FACTOR_COLOR						(40)		// ƒtƒ@ƒNƒ^[ƒJƒ‰[
-#define ANDROID_SHADER_UNIFORM_IGNORE_TEXTURE_COLOR				(41)		// ƒeƒNƒXƒ`ƒƒƒJƒ‰[–³Ž‹ˆ——pƒJƒ‰[
-#define ANDROID_SHADER_UNIFORM_ADD_COLOR						(42)		// ‰ÁŽZƒJƒ‰[
-#define ANDROID_SHADER_UNIFORM_SHADOWMAP_LIGHT_ENABLE			(43)		// ƒVƒƒƒhƒEƒ}ƒbƒv‚OE‚PE‚Q‚Ìƒ‰ƒCƒg—LŒøî•ñ( x:ƒVƒƒƒhƒEƒ}ƒbƒv‚O‚Åƒ‰ƒCƒgn‚ª—LŒø‚©  y:ƒVƒƒƒhƒEƒ}ƒbƒv‚P‚Åƒ‰ƒCƒgn‚ª—LŒø‚©  z:ƒVƒƒƒhƒEƒ}ƒbƒv‚Q‚Åƒ‰ƒCƒgn‚ª—LŒø‚© )
-#define ANDROID_SHADER_UNIFORM_SHADOWMAP_DADJ_GRAD				(44)		// ƒVƒƒƒhƒEƒ}ƒbƒv‚Ìî•ñ( x:è‡’l[“x•â³’l  y:ƒOƒ‰ƒf[ƒVƒ‡ƒ“”ÍˆÍ  )
+#define ANDROID_SHADER_UNIFORM_FOG_COLOR						(39)		// ãƒ•ã‚©ã‚°ã‚«ãƒ©ãƒ¼
+#define ANDROID_SHADER_UNIFORM_FACTOR_COLOR						(40)		// ãƒ•ã‚¡ã‚¯ã‚¿ãƒ¼ã‚«ãƒ©ãƒ¼
+#define ANDROID_SHADER_UNIFORM_IGNORE_TEXTURE_COLOR				(41)		// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚«ãƒ©ãƒ¼ç„¡è¦–å‡¦ç†ç”¨ã‚«ãƒ©ãƒ¼
+#define ANDROID_SHADER_UNIFORM_ADD_COLOR						(42)		// åŠ ç®—ã‚«ãƒ©ãƒ¼
+#define ANDROID_SHADER_UNIFORM_SHADOWMAP_LIGHT_ENABLE			(43)		// ã‚·ãƒ£ãƒ‰ã‚¦ãƒžãƒƒãƒ—ï¼ãƒ»ï¼‘ãƒ»ï¼’ã®ãƒ©ã‚¤ãƒˆæœ‰åŠ¹æƒ…å ±( x:ã‚·ãƒ£ãƒ‰ã‚¦ãƒžãƒƒãƒ—ï¼ã§ãƒ©ã‚¤ãƒˆnãŒæœ‰åŠ¹ã‹  y:ã‚·ãƒ£ãƒ‰ã‚¦ãƒžãƒƒãƒ—ï¼‘ã§ãƒ©ã‚¤ãƒˆnãŒæœ‰åŠ¹ã‹  z:ã‚·ãƒ£ãƒ‰ã‚¦ãƒžãƒƒãƒ—ï¼’ã§ãƒ©ã‚¤ãƒˆnãŒæœ‰åŠ¹ã‹ )
+#define ANDROID_SHADER_UNIFORM_SHADOWMAP_DADJ_GRAD				(44)		// ã‚·ãƒ£ãƒ‰ã‚¦ãƒžãƒƒãƒ—ã®æƒ…å ±( x:é–¾å€¤æ·±åº¦è£œæ­£å€¤  y:ã‚°ãƒ©ãƒ‡ãƒ¼ã‚·ãƒ§ãƒ³ç¯„å›²  )
 #define ANDROID_SHADER_UNIFORM_NUM								(45)
 #define ANDROID_SHADER_UNIFORM_OTHER							(-1)
 
-// ’¸“_ƒoƒbƒtƒ@‚ÌƒTƒCƒY
+// é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã®ã‚µã‚¤ã‚º
 #define DX_GLES2_VERTBUFFERSIZE							(64 * 1024)		// 64KB
 
-// ƒVƒF[ƒ_[ Uniform ƒZƒbƒg‚Ìƒwƒ‹ƒp[ƒ}ƒNƒ
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ Uniform ã‚»ãƒƒãƒˆã®ãƒ˜ãƒ«ãƒ‘ãƒ¼ãƒžã‚¯ãƒ­
 #define UNIFORM_SET_MATRIX4( index, _matrix4 )	glUniformMatrix4fv( (index), 1, GL_FALSE, _matrix4 ) ;
 #define UNIFORM_SET_FLOAT4(  index, _float4  )	glUniform4f(        (index), _float4[ 0 ], _float4[ 1 ], _float4[ 2 ], _float4[ 3 ] ) ;
 #define UNIFORM_SET_FLOAT3(  index, _float3  )	glUniform3f(        (index), _float3[ 0 ], _float3[ 1 ], _float3[ 2 ] ) ;
@@ -200,314 +200,314 @@ namespace DxLib
 #define UNIFORM_SET_FLOAT1(  index, _float1  )	glUniform1f(        (index), _float1 ) ;
 #define UNIFORM_SET_INT1(    index, _int1    )	glUniform1i(        (index), _int1   ) ;
 
-// GRAPHICS_ANDROID_SHADER_LIST ˆê‚Â‚ÉŠÜ‚Ü‚ê‚é GRAPHICS_ANDROID_SHADER ‚Ì”
+// GRAPHICS_ANDROID_SHADER_LIST ä¸€ã¤ã«å«ã¾ã‚Œã‚‹ GRAPHICS_ANDROID_SHADER ã®æ•°
 #define SHADERS_LIST_DATA_NUM							(256)
 
-// \‘¢‘Ì’è‹` --------------------------------------------------------------------
+// æ§‹é€ ä½“å®šç¾© --------------------------------------------------------------------
 
-// Android—p ƒeƒNƒXƒ`ƒƒî•ñ
+// Androidç”¨ ãƒ†ã‚¯ã‚¹ãƒãƒ£æƒ…å ±
 struct GRAPHICS_ANDROID_TEXTURE
 {
-	GLuint							TextureBuffer ;							// ƒeƒNƒXƒ`ƒƒƒoƒbƒtƒ@
-	int								MipMapCount ;							// ƒ~ƒbƒvƒ}ƒbƒv”( Level0 ‚µ‚©‚È‚¢ê‡‚Í 1, Level1 ‚Ü‚Å‚ ‚éê‡‚Í 2 )
-	int								PixelFormat ;							// ƒeƒNƒXƒ`ƒƒ‚ÌƒsƒNƒZƒ‹ƒtƒH[ƒ}ƒbƒg( ANDROID_PIXEL_FORMAT_R8G8B8A8 ‚È‚Ç )
-	GLuint							Width ;									// ƒeƒNƒXƒ`ƒƒ‚Ì•
-	GLuint							Height ;								// ƒeƒNƒXƒ`ƒƒ‚Ì‚‚³
-	GLint							MagFilter ;								// Šg‘åƒtƒBƒ‹ƒ^[( GL_TEXTURE_MAG_FILTER ‚Ìƒpƒ‰ƒ[ƒ^A GL_NEAREST ‚È‚Ç )
-	GLint							MinFilter ;								// k¬ƒtƒBƒ‹ƒ^[( GL_TEXTURE_MIN_FILTER ‚Ìƒpƒ‰ƒ[ƒ^A GL_NEAREST ‚È‚Ç )
-	GLint							WrapS ;									// ƒeƒNƒXƒ`ƒƒƒAƒhƒŒƒXƒ‚[ƒh‚r( GL_TEXTURE_WRAP_S ‚Ìƒpƒ‰ƒ[ƒ^A GL_REPEAT ‚È‚Ç )
-	GLint							WrapT ;									// ƒeƒNƒXƒ`ƒƒƒAƒhƒŒƒXƒ‚[ƒh‚s( GL_TEXTURE_WRAP_T ‚Ìƒpƒ‰ƒ[ƒ^A GL_REPEAT ‚È‚Ç )
-	GLint							WrapR ;									// ƒeƒNƒXƒ`ƒƒƒAƒhƒŒƒXƒ‚[ƒh‚q( GL_TEXTURE_WRAP_R ‚Ìƒpƒ‰ƒ[ƒ^A GL_REPEAT ‚È‚Ç )
+	GLuint							TextureBuffer ;							// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒãƒƒãƒ•ã‚¡
+	int								MipMapCount ;							// ãƒŸãƒƒãƒ—ãƒžãƒƒãƒ—æ•°( Level0 ã—ã‹ãªã„å ´åˆã¯ 1, Level1 ã¾ã§ã‚ã‚‹å ´åˆã¯ 2 )
+	int								PixelFormat ;							// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ãƒ”ã‚¯ã‚»ãƒ«ãƒ•ã‚©ãƒ¼ãƒžãƒƒãƒˆ( ANDROID_PIXEL_FORMAT_R8G8B8A8 ãªã© )
+	GLuint							Width ;									// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®å¹…
+	GLuint							Height ;								// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®é«˜ã•
+	GLint							MagFilter ;								// æ‹¡å¤§ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼( GL_TEXTURE_MAG_FILTER ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã€ GL_NEAREST ãªã© )
+	GLint							MinFilter ;								// ç¸®å°ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼( GL_TEXTURE_MIN_FILTER ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã€ GL_NEAREST ãªã© )
+	GLint							WrapS ;									// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¢ãƒ‰ãƒ¬ã‚¹ãƒ¢ãƒ¼ãƒ‰ï¼³( GL_TEXTURE_WRAP_S ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã€ GL_REPEAT ãªã© )
+	GLint							WrapT ;									// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¢ãƒ‰ãƒ¬ã‚¹ãƒ¢ãƒ¼ãƒ‰ï¼´( GL_TEXTURE_WRAP_T ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã€ GL_REPEAT ãªã© )
+	GLint							WrapR ;									// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¢ãƒ‰ãƒ¬ã‚¹ãƒ¢ãƒ¼ãƒ‰ï¼²( GL_TEXTURE_WRAP_R ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã€ GL_REPEAT ãªã© )
 } ;
 
-// Android—p ƒn[ƒhƒEƒGƒAƒŒƒ“ƒ_ƒŠƒ“ƒO—pƒIƒŠƒWƒiƒ‹‰æ‘œƒeƒNƒXƒ`ƒƒî•ñ
+// Androidç”¨ ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ç”¨ã‚ªãƒªã‚¸ãƒŠãƒ«ç”»åƒãƒ†ã‚¯ã‚¹ãƒãƒ£æƒ…å ±
 struct IMAGEDATA_ORIG_HARD_TEX_PF
 {
-	GLuint							MSRenderTarget ;						// ƒ}ƒ‹ƒ`ƒTƒ“ƒvƒ‹—pƒŒƒ“ƒ_[ƒ^[ƒQƒbƒg
+	GLuint							MSRenderTarget ;						// ãƒžãƒ«ãƒã‚µãƒ³ãƒ—ãƒ«ç”¨ãƒ¬ãƒ³ãƒ€ãƒ¼ã‚¿ãƒ¼ã‚²ãƒƒãƒˆ
 
-	GLuint							FrameBuffer ;							// ƒtƒŒ[ƒ€ƒoƒbƒtƒ@
-	GRAPHICS_ANDROID_TEXTURE		Texture ;								// ƒeƒNƒXƒ`ƒƒ
-	GLuint							DepthBuffer ;							// [“xƒoƒbƒtƒ@
+	GLuint							FrameBuffer ;							// ãƒ•ãƒ¬ãƒ¼ãƒ ãƒãƒƒãƒ•ã‚¡
+	GRAPHICS_ANDROID_TEXTURE		Texture ;								// ãƒ†ã‚¯ã‚¹ãƒãƒ£
+	GLuint							DepthBuffer ;							// æ·±åº¦ãƒãƒƒãƒ•ã‚¡
 } ;
 
-// Android—p ƒVƒƒƒhƒEƒ}ƒbƒvî•ñ
+// Androidç”¨ ã‚·ãƒ£ãƒ‰ã‚¦ãƒžãƒƒãƒ—æƒ…å ±
 struct SHADOWMAPDATA_PF
 {
-	GLuint							FrameBuffer ;							// [“x’l‘‚«ž‚Ý—pƒtƒŒ[ƒ€ƒoƒbƒtƒ@
-	GRAPHICS_ANDROID_TEXTURE		Texture ;								// [“x’l‘‚«ž‚Ý—pƒeƒNƒXƒ`ƒƒ
-	GLuint							DepthBuffer ;							// [“xƒoƒbƒtƒ@
+	GLuint							FrameBuffer ;							// æ·±åº¦å€¤æ›¸ãè¾¼ã¿ç”¨ãƒ•ãƒ¬ãƒ¼ãƒ ãƒãƒƒãƒ•ã‚¡
+	GRAPHICS_ANDROID_TEXTURE		Texture ;								// æ·±åº¦å€¤æ›¸ãè¾¼ã¿ç”¨ãƒ†ã‚¯ã‚¹ãƒãƒ£
+	GLuint							DepthBuffer ;							// æ·±åº¦ãƒãƒƒãƒ•ã‚¡
 } ;
 
-// ƒsƒNƒZƒ‹ƒtƒH[ƒ}ƒbƒg‚Ìî•ñ
+// ãƒ”ã‚¯ã‚»ãƒ«ãƒ•ã‚©ãƒ¼ãƒžãƒƒãƒˆã®æƒ…å ±
 struct PIXELFORMAT_INFO_ANDR
 {
-	int								IsExtFormat ;							// Šg’£ƒtƒH[ƒ}ƒbƒg‚©‚Ç‚¤‚©
-	int								PixelBits ;								// ‚PƒsƒNƒZƒ‹‚ ‚½‚è‚Ìƒrƒbƒg”
-	int								AddDataBytes ;							// ’Ç‰Áî•ñ‚ÌƒoƒCƒg”( ƒpƒŒƒbƒgî•ñ‚È‚Ç )
-	GLint							InternalFormat ;						// GL_RGBA , GL_PALETTE4_RGB8_OES ‚È‚Ç
-	GLenum							Format ;								// GL_RGBA ‚È‚Ç
-	GLenum							Type ;									// GL_UNSIGNED_SHORT_4_4_4_4 ‚È‚Ç
+	int								IsExtFormat ;							// æ‹¡å¼µãƒ•ã‚©ãƒ¼ãƒžãƒƒãƒˆã‹ã©ã†ã‹
+	int								PixelBits ;								// ï¼‘ãƒ”ã‚¯ã‚»ãƒ«ã‚ãŸã‚Šã®ãƒ“ãƒƒãƒˆæ•°
+	int								AddDataBytes ;							// è¿½åŠ æƒ…å ±ã®ãƒã‚¤ãƒˆæ•°( ãƒ‘ãƒ¬ãƒƒãƒˆæƒ…å ±ãªã© )
+	GLint							InternalFormat ;						// GL_RGBA , GL_PALETTE4_RGB8_OES ãªã©
+	GLenum							Format ;								// GL_RGBA ãªã©
+	GLenum							Type ;									// GL_UNSIGNED_SHORT_4_4_4_4 ãªã©
 } ;
 
-// ’¸“_ƒf[ƒ^—v‘fˆê‚Â“–‚½‚è‚ÌŠî–{î•ñ
+// é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿è¦ç´ ä¸€ã¤å½“ãŸã‚Šã®åŸºæœ¬æƒ…å ±
 struct VERTEXBUFFER_INPUT_ELEMENT_INFO_BASE_ANDR
 {
-	const GLchar *								AttrName ;					// ƒf[ƒ^–¼
-	GLint										Size ;						// ƒf[ƒ^”
-	GLenum										DataFormat ;				// ƒf[ƒ^Œ`Ž®
-	GLboolean									Normalized ;				// ³‹K‰»‚·‚é‚©‚Ç‚¤‚©
+	const GLchar *								AttrName ;					// ãƒ‡ãƒ¼ã‚¿å
+	GLint										Size ;						// ãƒ‡ãƒ¼ã‚¿æ•°
+	GLenum										DataFormat ;				// ãƒ‡ãƒ¼ã‚¿å½¢å¼
+	GLboolean									Normalized ;				// æ­£è¦åŒ–ã™ã‚‹ã‹ã©ã†ã‹
 } ;
 
-// ’¸“_ƒf[ƒ^—v‘fˆê‚Â“–‚½‚è‚Ìî•ñ
+// é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿è¦ç´ ä¸€ã¤å½“ãŸã‚Šã®æƒ…å ±
 struct VERTEXBUFFER_INPUT_ELEMENT_INFO_ANDR
 {
-	int											ElementBase ;				// ’¸“_Šî–{î•ñ( ANDROID_VERTEX_ATTR_POS ‚È‚Ç )
-	VERTEXBUFFER_INPUT_ELEMENT_INFO_BASE_ANDR *	OtherAttr ;					// ƒvƒŠƒZƒbƒg‚É‚È‚¢î•ñ‚Ìê‡‚ÌŽQÆæ( Attr ‚ª ANDROID_VERTEX_ATTR_OTHER ‚Ìê‡‚ÉŽg—p‚·‚é )
-	GLuint										Offset ;					// ƒIƒtƒZƒbƒg
+	int											ElementBase ;				// é ‚ç‚¹åŸºæœ¬æƒ…å ±( ANDROID_VERTEX_ATTR_POS ãªã© )
+	VERTEXBUFFER_INPUT_ELEMENT_INFO_BASE_ANDR *	OtherAttr ;					// ãƒ—ãƒªã‚»ãƒƒãƒˆã«ãªã„æƒ…å ±ã®å ´åˆã®å‚ç…§å…ˆ( Attr ãŒ ANDROID_VERTEX_ATTR_OTHER ã®å ´åˆã«ä½¿ç”¨ã™ã‚‹ )
+	GLuint										Offset ;					// ã‚ªãƒ•ã‚»ãƒƒãƒˆ
 } ;
 
-// ’¸“_ƒVƒF[ƒ_[‚Ì“ü—Íî•ñ
+// é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®å…¥åŠ›æƒ…å ±
 struct VERTEXBUFFER_INPUT_INFO_ANDR
 {
-	GLuint										VertexDataSize ;			// ’¸“_ƒf[ƒ^ˆê‚Â‚ ‚½‚è‚ÌƒoƒCƒg”
-	int											ElementInfoNum ;			// “ü—Í’¸“_ƒf[ƒ^‚Ì—v‘f”
-	VERTEXBUFFER_INPUT_ELEMENT_INFO_ANDR		ElementInfo[ 32 ] ;			// “ü—Í’¸“_ƒf[ƒ^î•ñ
+	GLuint										VertexDataSize ;			// é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ä¸€ã¤ã‚ãŸã‚Šã®ãƒã‚¤ãƒˆæ•°
+	int											ElementInfoNum ;			// å…¥åŠ›é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ã®è¦ç´ æ•°
+	VERTEXBUFFER_INPUT_ELEMENT_INFO_ANDR		ElementInfo[ 32 ] ;			// å…¥åŠ›é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿æƒ…å ±
 } ;
 
-// Android—p ’¸“_ƒoƒbƒtƒ@ƒnƒ“ƒhƒ‹î•ñ
+// Androidç”¨ é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ãƒãƒ³ãƒ‰ãƒ«æƒ…å ±
 struct VERTEXBUFFERHANDLEDATA_PF
 {
 	GLuint							VertexBuffer ;
 } ;
 
-// Android—p ƒCƒ“ƒfƒbƒNƒXƒoƒbƒtƒ@ƒnƒ“ƒhƒ‹î•ñ
+// Androidç”¨ ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒãƒƒãƒ•ã‚¡ãƒãƒ³ãƒ‰ãƒ«æƒ…å ±
 struct INDEXBUFFERHANDLEDATA_PF
 {
 	GLuint							IndexBuffer ;
 } ;
 
-// Android ‚ÌƒVƒF[ƒ_[ˆê‚Â•Ó‚è‚Ìî•ñ‚ð“Z‚ß‚½\‘¢‘Ì
+// Android ã®ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ä¸€ã¤è¾ºã‚Šã®æƒ…å ±ã‚’çºã‚ãŸæ§‹é€ ä½“
 struct GRAPHICS_ANDROID_SHADER
 {
 	GLuint							Shader ;
-	GLushort						AttributeIndex[ ANDROID_VERTEX_ATTR_NUM ] ;		// Še’¸“_—v‘f‚ª‰½”Ô–Ú‚Ì—v‘f‚Æ‚È‚Á‚Ä‚¢‚é‚©‚Ìî•ñ( 0xffffffff ‚Ìê‡‚Í‚»‚Ì—v‘f‚ª‚È‚¢‚Æ‚¢‚¤‚±‚Æ )
-	GLushort						UniformIndex[ ANDROID_SHADER_UNIFORM_NUM ] ;	// ŠeƒVƒF[ƒ_[—p’è”—v‘f‚ª‰½”Ô–Ú‚Ì—v‘f‚Æ‚È‚Á‚Ä‚¢‚é‚©‚Ìî•ñ( 0xffffffff ‚Ìê‡‚Í‚»‚Ì—v‘f‚ª‚È‚¢‚Æ‚¢‚¤‚±‚Æ )
-	int								ApplyUniformUpdateCount ;						// “K—p‚³‚ê‚Ä‚¢‚é’è”‚Ì•ÏXƒo[ƒWƒ‡ƒ“
+	GLushort						AttributeIndex[ ANDROID_VERTEX_ATTR_NUM ] ;		// å„é ‚ç‚¹è¦ç´ ãŒä½•ç•ªç›®ã®è¦ç´ ã¨ãªã£ã¦ã„ã‚‹ã‹ã®æƒ…å ±( 0xffffffff ã®å ´åˆã¯ãã®è¦ç´ ãŒãªã„ã¨ã„ã†ã“ã¨ )
+	GLushort						UniformIndex[ ANDROID_SHADER_UNIFORM_NUM ] ;	// å„ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ç”¨å®šæ•°è¦ç´ ãŒä½•ç•ªç›®ã®è¦ç´ ã¨ãªã£ã¦ã„ã‚‹ã‹ã®æƒ…å ±( 0xffffffff ã®å ´åˆã¯ãã®è¦ç´ ãŒãªã„ã¨ã„ã†ã“ã¨ )
+	int								ApplyUniformUpdateCount ;						// é©ç”¨ã•ã‚Œã¦ã„ã‚‹å®šæ•°ã®å¤‰æ›´ãƒãƒ¼ã‚¸ãƒ§ãƒ³
 } ;
 
-// Android—p ƒVƒF[ƒ_[ƒnƒ“ƒhƒ‹î•ñ
+// Androidç”¨ ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒãƒ³ãƒ‰ãƒ«æƒ…å ±
 struct SHADERHANDLEDATA_PF
 {
 	GLuint							Shader ;
 } ;
 
-// Android—p ƒVƒF[ƒ_[—p’è”ƒoƒbƒtƒ@ƒnƒ“ƒhƒ‹ŠÂ‹«ˆË‘¶î•ñ‚Ì\‘¢‘Ì
+// Androidç”¨ ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ç”¨å®šæ•°ãƒãƒƒãƒ•ã‚¡ãƒãƒ³ãƒ‰ãƒ«ç’°å¢ƒä¾å­˜æƒ…å ±ã®æ§‹é€ ä½“
 struct SHADERCONSTANTBUFFERHANDLEDATA_PF
 {
 	int								Dummy ;
 } ;
 
-// Android ‚Ì•W€•`‰æ—p‚ÌƒVƒF[ƒ_[‚ð“Z‚ß‚½\‘¢‘Ì
+// Android ã®æ¨™æº–æç”»ç”¨ã®ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’çºã‚ãŸæ§‹é€ ä½“
 struct GRAPHICS_HARDWARE_ANDROID_SHADER_BASE
 {
-	// •W€•`‰æ—p‚Ì•¡ŽG‚Èˆ—‚ðs‚í‚È‚¢’¸“_ƒVƒF[ƒ_[
+	// æ¨™æº–æç”»ç”¨ã®è¤‡é›‘ãªå‡¦ç†ã‚’è¡Œã‚ãªã„é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼
 	GLuint						BaseSimple_VS[ ANDROID_VERTEX_INPUTLAYOUT_NUM ] ;
 
-	// ŒÅ’è‹@”\ƒpƒCƒvƒ‰ƒCƒ“ŒÝŠ·‚Ì’¸“_ƒVƒF[ƒ_[( ƒeƒNƒXƒ`ƒƒ‚È‚µ )
-	// [ “ÁŽêŒø‰Ê( 0:’Êí•`‰æ  1:æŽZ•`‰æ  2:RGB”½“]  3:•`‰æ‹P“x‚S”{  4:æŽZÏ‚Ýƒ¿ƒuƒŒƒ“ƒhƒ‚[ƒh‚Ì’Êí•`‰æ  5:æŽZÏ‚Ýƒ¿ƒuƒŒƒ“ƒhƒ‚[ƒh‚ÌRGB”½“]  6:æŽZÏ‚Ýƒ¿ƒuƒŒƒ“ƒhƒ‚[ƒh‚Ì•`‰æ‹P“x4”{ ) ]
-	// [ ƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[‚ÌƒAƒ‹ƒtƒ@ƒeƒXƒgƒ‚[ƒh ]
+	// å›ºå®šæ©Ÿèƒ½ãƒ‘ã‚¤ãƒ—ãƒ©ã‚¤ãƒ³äº’æ›ã®é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼( ãƒ†ã‚¯ã‚¹ãƒãƒ£ãªã— )
+	// [ ç‰¹æ®ŠåŠ¹æžœ( 0:é€šå¸¸æç”»  1:ä¹—ç®—æç”»  2:RGBåè»¢  3:æç”»è¼åº¦ï¼”å€  4:ä¹—ç®—æ¸ˆã¿Î±ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã®é€šå¸¸æç”»  5:ä¹—ç®—æ¸ˆã¿Î±ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã®RGBåè»¢  6:ä¹—ç®—æ¸ˆã¿Î±ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã®æç”»è¼åº¦4å€ ) ]
+	// [ ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆãƒ¢ãƒ¼ãƒ‰ ]
 	GLuint						BaseNoneTex_FS[ ANDROID_RENDER_TYPE_NUM ][ ANDROID_FS_ALPHATEST_NUM ] ;
 
-	// ŒÅ’è‹@”\ƒpƒCƒvƒ‰ƒCƒ“ŒÝŠ·‚ÌƒVƒF[ƒ_[( ƒeƒNƒXƒ`ƒƒ‚È‚µ )
-	// [ •W€•`‰æ’¸“_ƒtƒH[ƒ}ƒbƒg ]
-	// [ “ÁŽêŒø‰Ê( 0:’Êí•`‰æ  1:æŽZ•`‰æ  2:RGB”½“]  3:•`‰æ‹P“x‚S”{  4:æŽZÏ‚Ýƒ¿ƒuƒŒƒ“ƒhƒ‚[ƒh‚Ì’Êí•`‰æ  5:æŽZÏ‚Ýƒ¿ƒuƒŒƒ“ƒhƒ‚[ƒh‚ÌRGB”½“]  6:æŽZÏ‚Ýƒ¿ƒuƒŒƒ“ƒhƒ‚[ƒh‚Ì•`‰æ‹P“x4”{ ) ]
-	// [ ƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[‚ÌƒAƒ‹ƒtƒ@ƒeƒXƒgƒ‚[ƒh ]
+	// å›ºå®šæ©Ÿèƒ½ãƒ‘ã‚¤ãƒ—ãƒ©ã‚¤ãƒ³äº’æ›ã®ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼( ãƒ†ã‚¯ã‚¹ãƒãƒ£ãªã— )
+	// [ æ¨™æº–æç”»é ‚ç‚¹ãƒ•ã‚©ãƒ¼ãƒžãƒƒãƒˆ ]
+	// [ ç‰¹æ®ŠåŠ¹æžœ( 0:é€šå¸¸æç”»  1:ä¹—ç®—æç”»  2:RGBåè»¢  3:æç”»è¼åº¦ï¼”å€  4:ä¹—ç®—æ¸ˆã¿Î±ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã®é€šå¸¸æç”»  5:ä¹—ç®—æ¸ˆã¿Î±ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã®RGBåè»¢  6:ä¹—ç®—æ¸ˆã¿Î±ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã®æç”»è¼åº¦4å€ ) ]
+	// [ ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆãƒ¢ãƒ¼ãƒ‰ ]
 	GRAPHICS_ANDROID_SHADER		*BaseNoneTex_Shader[ ANDROID_VERTEX_INPUTLAYOUT_NUM ][ ANDROID_RENDER_TYPE_NUM ][ ANDROID_FS_ALPHATEST_NUM ] ;
 
-	// ŒÅ’è‹@”\ƒpƒCƒvƒ‰ƒCƒ“ŒÝŠ·‚Ìƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[( ƒeƒNƒXƒ`ƒƒ‚ ‚è )
-	// [ ƒuƒŒƒ“ƒh‰æ‘œ‚Æ‚ÌƒuƒŒƒ“ƒhƒ^ƒCƒv( 0:‚È‚µ  1:DX_BLENDGRAPHTYPE_NORMAL  2:DX_BLENDGRAPHTYPE_WIPE  3:DX_BLENDGRAPHTYPE_ALPHA ) ]
-	// [ “ÁŽêŒø‰Ê( 0:’Êí•`‰æ  1:æŽZ•`‰æ  2:RGB”½“]  3:•`‰æ‹P“x‚S”{  4:æŽZÏ‚Ýƒ¿ƒuƒŒƒ“ƒhƒ‚[ƒh‚Ì’Êí•`‰æ  5:æŽZÏ‚Ýƒ¿ƒuƒŒƒ“ƒhƒ‚[ƒh‚ÌRGB”½“]  6:æŽZÏ‚Ýƒ¿ƒuƒŒƒ“ƒhƒ‚[ƒh‚Ì•`‰æ‹P“x4”{ ) ]
-	// [ ƒeƒNƒXƒ`ƒƒRGB–³Ž‹( 0:–³Ž‹‚µ‚È‚¢  1:–³Ž‹‚·‚é ) ]
-	// [ ƒeƒNƒXƒ`ƒƒAlpha–³Ž‹( 0:–³Ž‹‚µ‚È‚¢  1:–³Ž‹‚·‚é ) ]
-	// [ ƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[‚ÌƒAƒ‹ƒtƒ@ƒeƒXƒgƒ‚[ƒh ]
+	// å›ºå®šæ©Ÿèƒ½ãƒ‘ã‚¤ãƒ—ãƒ©ã‚¤ãƒ³äº’æ›ã®ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼( ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚ã‚Š )
+	// [ ãƒ–ãƒ¬ãƒ³ãƒ‰ç”»åƒã¨ã®ãƒ–ãƒ¬ãƒ³ãƒ‰ã‚¿ã‚¤ãƒ—( 0:ãªã—  1:DX_BLENDGRAPHTYPE_NORMAL  2:DX_BLENDGRAPHTYPE_WIPE  3:DX_BLENDGRAPHTYPE_ALPHA ) ]
+	// [ ç‰¹æ®ŠåŠ¹æžœ( 0:é€šå¸¸æç”»  1:ä¹—ç®—æç”»  2:RGBåè»¢  3:æç”»è¼åº¦ï¼”å€  4:ä¹—ç®—æ¸ˆã¿Î±ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã®é€šå¸¸æç”»  5:ä¹—ç®—æ¸ˆã¿Î±ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã®RGBåè»¢  6:ä¹—ç®—æ¸ˆã¿Î±ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã®æç”»è¼åº¦4å€ ) ]
+	// [ ãƒ†ã‚¯ã‚¹ãƒãƒ£RGBç„¡è¦–( 0:ç„¡è¦–ã—ãªã„  1:ç„¡è¦–ã™ã‚‹ ) ]
+	// [ ãƒ†ã‚¯ã‚¹ãƒãƒ£Alphaç„¡è¦–( 0:ç„¡è¦–ã—ãªã„  1:ç„¡è¦–ã™ã‚‹ ) ]
+	// [ ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆãƒ¢ãƒ¼ãƒ‰ ]
 	GLuint						BaseUseTex_FS[ 4 ][ ANDROID_RENDER_TYPE_NUM ][ 2 ][ 2 ][ ANDROID_FS_ALPHATEST_NUM ] ; 
 
-	// ŒÅ’è‹@”\ƒpƒCƒvƒ‰ƒCƒ“ŒÝŠ·‚ÌƒVƒF[ƒ_[( ƒeƒNƒXƒ`ƒƒ‚ ‚è )
-	// [ •W€•`‰æ’¸“_ƒtƒH[ƒ}ƒbƒg ]
-	// [ ƒuƒŒƒ“ƒh‰æ‘œ‚Æ‚ÌƒuƒŒƒ“ƒhƒ^ƒCƒv( 0:‚È‚µ  1:DX_BLENDGRAPHTYPE_NORMAL  2:DX_BLENDGRAPHTYPE_WIPE  3:DX_BLENDGRAPHTYPE_ALPHA ) ]
-	// [ “ÁŽêŒø‰Ê( 0:’Êí•`‰æ  1:æŽZ•`‰æ  2:RGB”½“]  3:•`‰æ‹P“x‚S”{  4:æŽZÏ‚Ýƒ¿ƒuƒŒƒ“ƒhƒ‚[ƒh‚Ì’Êí•`‰æ  5:æŽZÏ‚Ýƒ¿ƒuƒŒƒ“ƒhƒ‚[ƒh‚ÌRGB”½“]  6:æŽZÏ‚Ýƒ¿ƒuƒŒƒ“ƒhƒ‚[ƒh‚Ì•`‰æ‹P“x4”{ ) ]
-	// [ ƒeƒNƒXƒ`ƒƒRGB–³Ž‹( 0:–³Ž‹‚µ‚È‚¢  1:–³Ž‹‚·‚é ) ]
-	// [ ƒeƒNƒXƒ`ƒƒAlpha–³Ž‹( 0:–³Ž‹‚µ‚È‚¢  1:–³Ž‹‚·‚é ) ]
-	// [ ƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[‚ÌƒAƒ‹ƒtƒ@ƒeƒXƒgƒ‚[ƒh ]
+	// å›ºå®šæ©Ÿèƒ½ãƒ‘ã‚¤ãƒ—ãƒ©ã‚¤ãƒ³äº’æ›ã®ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼( ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚ã‚Š )
+	// [ æ¨™æº–æç”»é ‚ç‚¹ãƒ•ã‚©ãƒ¼ãƒžãƒƒãƒˆ ]
+	// [ ãƒ–ãƒ¬ãƒ³ãƒ‰ç”»åƒã¨ã®ãƒ–ãƒ¬ãƒ³ãƒ‰ã‚¿ã‚¤ãƒ—( 0:ãªã—  1:DX_BLENDGRAPHTYPE_NORMAL  2:DX_BLENDGRAPHTYPE_WIPE  3:DX_BLENDGRAPHTYPE_ALPHA ) ]
+	// [ ç‰¹æ®ŠåŠ¹æžœ( 0:é€šå¸¸æç”»  1:ä¹—ç®—æç”»  2:RGBåè»¢  3:æç”»è¼åº¦ï¼”å€  4:ä¹—ç®—æ¸ˆã¿Î±ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã®é€šå¸¸æç”»  5:ä¹—ç®—æ¸ˆã¿Î±ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã®RGBåè»¢  6:ä¹—ç®—æ¸ˆã¿Î±ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã®æç”»è¼åº¦4å€ ) ]
+	// [ ãƒ†ã‚¯ã‚¹ãƒãƒ£RGBç„¡è¦–( 0:ç„¡è¦–ã—ãªã„  1:ç„¡è¦–ã™ã‚‹ ) ]
+	// [ ãƒ†ã‚¯ã‚¹ãƒãƒ£Alphaç„¡è¦–( 0:ç„¡è¦–ã—ãªã„  1:ç„¡è¦–ã™ã‚‹ ) ]
+	// [ ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆãƒ¢ãƒ¼ãƒ‰ ]
 	GRAPHICS_ANDROID_SHADER		*BaseUseTex_Shader[ ANDROID_VERTEX_INPUTLAYOUT_NUM ][ 4 ][ ANDROID_RENDER_TYPE_NUM ][ 2 ][ 2 ][ ANDROID_FS_ALPHATEST_NUM ] ;
 
-	// ƒ}ƒXƒNˆ——pƒVƒF[ƒ_[
+	// ãƒžã‚¹ã‚¯å‡¦ç†ç”¨ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼
 	GRAPHICS_ANDROID_SHADER		MaskEffect_Shader ;
 	GRAPHICS_ANDROID_SHADER		MaskEffect_ReverseEffect_Shader ;
 	GRAPHICS_ANDROID_SHADER		MaskEffect_UseGraphHandle_Shader[ 4 ] ;
 	GRAPHICS_ANDROID_SHADER		MaskEffect_UseGraphHandle_ReverseEffect_Shader[ 4 ] ;
 
-	// ’Pƒ“]‘——pƒVƒF[ƒ_[
+	// å˜ç´”è»¢é€ç”¨ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼
 	GLuint		StretchRect_VS ;
 	GLuint		StretchRectTex2_VS ;
 	GLuint		StretchRectTex8_VS ;
 	GRAPHICS_ANDROID_SHADER		StretchRect_Shader ;
 
-	// ƒŒƒ“ƒ_[ƒ^[ƒQƒbƒgƒNƒŠƒA—pƒVƒF[ƒ_[
+	// ãƒ¬ãƒ³ãƒ€ãƒ¼ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã‚¯ãƒªã‚¢ç”¨ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼
 	GRAPHICS_ANDROID_SHADER		ClearRT_Shader ;
 } ;
 
-// Android ‚Ì•W€‚R‚c•`‰æ—p‚ÌƒVƒF[ƒ_[‚ð“Z‚ß‚½\‘¢‘Ì
+// Android ã®æ¨™æº–ï¼“ï¼¤æç”»ç”¨ã®ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’çºã‚ãŸæ§‹é€ ä½“
 struct GRAPHICS_HARDWARE_ANDROID_SHADER_BASE3D
 {
-	// •W€‚R‚c•`‰æ—pƒsƒNƒZƒ‹’PˆÊƒ‰ƒCƒeƒBƒ“ƒOƒ^ƒCƒv‚Ì’¸“_ƒVƒF[ƒ_[( ƒŠƒXƒg‚Í”z—ñ‚Ì¶‚©‚ç )
-	// [ ƒVƒƒƒhƒEƒ}ƒbƒv‚Ì—L–³( 0:–³‚µ 1:—L‚è ) ]
-	// [ ƒtƒHƒOƒ^ƒCƒv ]
+	// æ¨™æº–ï¼“ï¼¤æç”»ç”¨ãƒ”ã‚¯ã‚»ãƒ«å˜ä½ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ã‚¿ã‚¤ãƒ—ã®é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼( ãƒªã‚¹ãƒˆã¯é…åˆ—ã®å·¦ã‹ã‚‰ )
+	// [ ã‚·ãƒ£ãƒ‰ã‚¦ãƒžãƒƒãƒ—ã®æœ‰ç„¡( 0:ç„¡ã— 1:æœ‰ã‚Š ) ]
+	// [ ãƒ•ã‚©ã‚°ã‚¿ã‚¤ãƒ— ]
 	GLuint		Base3D_PixelLighting_VS[ 2 ][ 4 ] ;
 
-	// •W€‚R‚c•`‰æ—pƒsƒNƒZƒ‹’PˆÊƒ‰ƒCƒeƒBƒ“ƒOƒ^ƒCƒv‚Ìƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[( ƒŠƒXƒg‚Í”z—ñ‚Ì¶‚©‚ç )
-	// [ ƒVƒƒƒhƒEƒ}ƒbƒv‚Ì—L–³( 0:–³‚µ 1:—L‚è ) ]
-	// [ ƒ‰ƒCƒgƒCƒ“ƒfƒbƒNƒX ]
-	// [ “ÁŽêŒø‰Ê( 0:’Êí•`‰æ  1:æŽZ•`‰æ  2:RGB”½“]  3:•`‰æ‹P“x‚S”{  4:æŽZÏ‚Ýƒ¿ƒuƒŒƒ“ƒhƒ‚[ƒh‚Ì’Êí•`‰æ  5:æŽZÏ‚Ýƒ¿ƒuƒŒƒ“ƒhƒ‚[ƒh‚ÌRGB”½“]  6:æŽZÏ‚Ýƒ¿ƒuƒŒƒ“ƒhƒ‚[ƒh‚Ì•`‰æ‹P“x4”{ ) ]
-	// [ ƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[‚ÌƒAƒ‹ƒtƒ@ƒeƒXƒgƒ‚[ƒh ]
+	// æ¨™æº–ï¼“ï¼¤æç”»ç”¨ãƒ”ã‚¯ã‚»ãƒ«å˜ä½ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ã‚¿ã‚¤ãƒ—ã®ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼( ãƒªã‚¹ãƒˆã¯é…åˆ—ã®å·¦ã‹ã‚‰ )
+	// [ ã‚·ãƒ£ãƒ‰ã‚¦ãƒžãƒƒãƒ—ã®æœ‰ç„¡( 0:ç„¡ã— 1:æœ‰ã‚Š ) ]
+	// [ ãƒ©ã‚¤ãƒˆã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ ]
+	// [ ç‰¹æ®ŠåŠ¹æžœ( 0:é€šå¸¸æç”»  1:ä¹—ç®—æç”»  2:RGBåè»¢  3:æç”»è¼åº¦ï¼”å€  4:ä¹—ç®—æ¸ˆã¿Î±ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã®é€šå¸¸æç”»  5:ä¹—ç®—æ¸ˆã¿Î±ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã®RGBåè»¢  6:ä¹—ç®—æ¸ˆã¿Î±ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã®æç”»è¼åº¦4å€ ) ]
+	// [ ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆãƒ¢ãƒ¼ãƒ‰ ]
 	GLuint		Base3D_PixelLighting_Normal_FS[ 2 ][ 84 ][ ANDROID_RENDER_TYPE_NUM ][ ANDROID_FS_ALPHATEST_NUM ] ;
 
-	// •W€‚R‚c•`‰æ—pƒsƒNƒZƒ‹’PˆÊƒ‰ƒCƒeƒBƒ“ƒOƒ^ƒCƒv‚ÌƒVƒF[ƒ_[( ƒŠƒXƒg‚Í”z—ñ‚Ì¶‚©‚ç )
-	// ƒVƒƒƒhƒEƒ}ƒbƒv‚Ì—L–³( 0:–³‚µ 1:—L‚è )
-	// ’¸“_ƒVƒF[ƒ_[[ ƒtƒHƒOƒ^ƒCƒv ]
-	// ƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[[ ƒ‰ƒCƒgƒCƒ“ƒfƒbƒNƒX ]
-	// ƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[[ “ÁŽêŒø‰Ê( 0:’Êí•`‰æ  1:æŽZ•`‰æ  2:RGB”½“]  3:•`‰æ‹P“x‚S”{  4:æŽZÏ‚Ýƒ¿ƒuƒŒƒ“ƒhƒ‚[ƒh‚Ì’Êí•`‰æ  5:æŽZÏ‚Ýƒ¿ƒuƒŒƒ“ƒhƒ‚[ƒh‚ÌRGB”½“]  6:æŽZÏ‚Ýƒ¿ƒuƒŒƒ“ƒhƒ‚[ƒh‚Ì•`‰æ‹P“x4”{ ) ]
-	// ƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[[ ƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[‚ÌƒAƒ‹ƒtƒ@ƒeƒXƒgƒ‚[ƒh ]
+	// æ¨™æº–ï¼“ï¼¤æç”»ç”¨ãƒ”ã‚¯ã‚»ãƒ«å˜ä½ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ã‚¿ã‚¤ãƒ—ã®ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼( ãƒªã‚¹ãƒˆã¯é…åˆ—ã®å·¦ã‹ã‚‰ )
+	// ã‚·ãƒ£ãƒ‰ã‚¦ãƒžãƒƒãƒ—ã®æœ‰ç„¡( 0:ç„¡ã— 1:æœ‰ã‚Š )
+	// é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼[ ãƒ•ã‚©ã‚°ã‚¿ã‚¤ãƒ— ]
+	// ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼[ ãƒ©ã‚¤ãƒˆã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ ]
+	// ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼[ ç‰¹æ®ŠåŠ¹æžœ( 0:é€šå¸¸æç”»  1:ä¹—ç®—æç”»  2:RGBåè»¢  3:æç”»è¼åº¦ï¼”å€  4:ä¹—ç®—æ¸ˆã¿Î±ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã®é€šå¸¸æç”»  5:ä¹—ç®—æ¸ˆã¿Î±ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã®RGBåè»¢  6:ä¹—ç®—æ¸ˆã¿Î±ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã®æç”»è¼åº¦4å€ ) ]
+	// ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼[ ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆãƒ¢ãƒ¼ãƒ‰ ]
 	GRAPHICS_ANDROID_SHADER		*Base3D_PixelLighting_Normal_Shader[ 2 ][ 4 ][ 84 ][ ANDROID_RENDER_TYPE_NUM ][ ANDROID_FS_ALPHATEST_NUM ] ;
 
 
 
-	// •W€‚R‚c•`‰æ—p‚ÌƒVƒƒƒhƒEƒ}ƒbƒv‚Ö‚ÌƒŒƒ“ƒ_ƒŠƒ“ƒO—p’¸“_ƒVƒF[ƒ_[
-	// [ ƒoƒ“ƒvƒ}ƒbƒv‚Ì—L–³( 0:–³‚µ 1:—L‚è ) ]
+	// æ¨™æº–ï¼“ï¼¤æç”»ç”¨ã®ã‚·ãƒ£ãƒ‰ã‚¦ãƒžãƒƒãƒ—ã¸ã®ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ç”¨é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼
+	// [ ãƒãƒ³ãƒ—ãƒžãƒƒãƒ—ã®æœ‰ç„¡( 0:ç„¡ã— 1:æœ‰ã‚Š ) ]
 	GLuint		Base3D_ShadowMap_VS[ 2 ] ;
 
-	// •W€‚R‚c•`‰æ—p‚ÌƒVƒƒƒhƒEƒ}ƒbƒv‚Ö‚ÌƒŒƒ“ƒ_ƒŠƒ“ƒO—pƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[
-	// [ ƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[‚ÌƒAƒ‹ƒtƒ@ƒeƒXƒgƒ‚[ƒh ]
+	// æ¨™æº–ï¼“ï¼¤æç”»ç”¨ã®ã‚·ãƒ£ãƒ‰ã‚¦ãƒžãƒƒãƒ—ã¸ã®ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ç”¨ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼
+	// [ ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆãƒ¢ãƒ¼ãƒ‰ ]
 	GLuint		Base3D_ShadowMap_Normal_FS[ ANDROID_FS_ALPHATEST_NUM ] ;
 
-	// •W€‚R‚c•`‰æ—p‚ÌƒVƒƒƒhƒEƒ}ƒbƒv‚Ö‚ÌƒŒƒ“ƒ_ƒŠƒ“ƒO—pƒVƒF[ƒ_[
-	// ’¸“_ƒVƒF[ƒ_[[ ƒoƒ“ƒvƒ}ƒbƒv‚Ì—L–³( 0:–³‚µ 1:—L‚è ) ]
-	// ƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[[ ƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[‚ÌƒAƒ‹ƒtƒ@ƒeƒXƒgƒ‚[ƒh ]
+	// æ¨™æº–ï¼“ï¼¤æç”»ç”¨ã®ã‚·ãƒ£ãƒ‰ã‚¦ãƒžãƒƒãƒ—ã¸ã®ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ç”¨ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼
+	// é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼[ ãƒãƒ³ãƒ—ãƒžãƒƒãƒ—ã®æœ‰ç„¡( 0:ç„¡ã— 1:æœ‰ã‚Š ) ]
+	// ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼[ ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆãƒ¢ãƒ¼ãƒ‰ ]
 	GRAPHICS_ANDROID_SHADER		*Base3D_ShadowMap_Normal_Shader[ 2 ][ ANDROID_FS_ALPHATEST_NUM ] ;
 
 
 
-	// •W€‚R‚c•`‰æ—p‚Ìƒ‰ƒCƒeƒBƒ“ƒO‚È‚µ’¸“_ƒVƒF[ƒ_[
-	// [ ƒtƒHƒOƒ^ƒCƒv ]
+	// æ¨™æº–ï¼“ï¼¤æç”»ç”¨ã®ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ãªã—é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼
+	// [ ãƒ•ã‚©ã‚°ã‚¿ã‚¤ãƒ— ]
 	GLuint		Base3D_NoLighting_VS[ 4 ] ;
 
-	// •W€‚R‚c•`‰æ—p‚Ìƒ‰ƒCƒeƒBƒ“ƒO‚È‚µƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[
-	// [ “ÁŽêŒø‰Ê( 0:’Êí•`‰æ  1:æŽZ•`‰æ  2:RGB”½“]  3:•`‰æ‹P“x‚S”{  4:æŽZÏ‚Ýƒ¿ƒuƒŒƒ“ƒhƒ‚[ƒh‚Ì’Êí•`‰æ  5:æŽZÏ‚Ýƒ¿ƒuƒŒƒ“ƒhƒ‚[ƒh‚ÌRGB”½“]  6:æŽZÏ‚Ýƒ¿ƒuƒŒƒ“ƒhƒ‚[ƒh‚Ì•`‰æ‹P“x4”{ ) ]
-	// [ ƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[‚ÌƒAƒ‹ƒtƒ@ƒeƒXƒgƒ‚[ƒh ]
+	// æ¨™æº–ï¼“ï¼¤æç”»ç”¨ã®ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ãªã—ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼
+	// [ ç‰¹æ®ŠåŠ¹æžœ( 0:é€šå¸¸æç”»  1:ä¹—ç®—æç”»  2:RGBåè»¢  3:æç”»è¼åº¦ï¼”å€  4:ä¹—ç®—æ¸ˆã¿Î±ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã®é€šå¸¸æç”»  5:ä¹—ç®—æ¸ˆã¿Î±ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã®RGBåè»¢  6:ä¹—ç®—æ¸ˆã¿Î±ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã®æç”»è¼åº¦4å€ ) ]
+	// [ ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆãƒ¢ãƒ¼ãƒ‰ ]
 	GLuint		Base3D_NoLighting_Normal_FS[ ANDROID_RENDER_TYPE_NUM ][ ANDROID_FS_ALPHATEST_NUM ] ;
 
-	// •W€‚R‚c•`‰æ—p‚Ìƒ‰ƒCƒeƒBƒ“ƒO‚È‚µƒVƒF[ƒ_[
-	// ’¸“_ƒVƒF[ƒ_[[ ƒtƒHƒOƒ^ƒCƒv ]
-	// ƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[[ “ÁŽêŒø‰Ê( 0:’Êí•`‰æ  1:æŽZ•`‰æ  2:RGB”½“]  3:•`‰æ‹P“x‚S”{  4:æŽZÏ‚Ýƒ¿ƒuƒŒƒ“ƒhƒ‚[ƒh‚Ì’Êí•`‰æ  5:æŽZÏ‚Ýƒ¿ƒuƒŒƒ“ƒhƒ‚[ƒh‚ÌRGB”½“]  6:æŽZÏ‚Ýƒ¿ƒuƒŒƒ“ƒhƒ‚[ƒh‚Ì•`‰æ‹P“x4”{ ) ]
-	// ƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[[ ƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[‚ÌƒAƒ‹ƒtƒ@ƒeƒXƒgƒ‚[ƒh ]
+	// æ¨™æº–ï¼“ï¼¤æç”»ç”¨ã®ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ãªã—ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼
+	// é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼[ ãƒ•ã‚©ã‚°ã‚¿ã‚¤ãƒ— ]
+	// ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼[ ç‰¹æ®ŠåŠ¹æžœ( 0:é€šå¸¸æç”»  1:ä¹—ç®—æç”»  2:RGBåè»¢  3:æç”»è¼åº¦ï¼”å€  4:ä¹—ç®—æ¸ˆã¿Î±ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã®é€šå¸¸æç”»  5:ä¹—ç®—æ¸ˆã¿Î±ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã®RGBåè»¢  6:ä¹—ç®—æ¸ˆã¿Î±ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã®æç”»è¼åº¦4å€ ) ]
+	// ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼[ ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆãƒ¢ãƒ¼ãƒ‰ ]
 	GRAPHICS_ANDROID_SHADER		*Base3D_NoLighting_Normal_Shader[ 4 ][ ANDROID_RENDER_TYPE_NUM ][ ANDROID_FS_ALPHATEST_NUM ] ;
 
 
 
-	// •W€‚R‚c•`‰æ—p‚Ì’¸“_’PˆÊƒ‰ƒCƒeƒBƒ“ƒO’¸“_ƒVƒF[ƒ_[
-	// [ ƒVƒƒƒhƒEƒ}ƒbƒv‚Ì—L–³( 0:–³‚µ 1:—L‚è ) ]
-	// [ ƒtƒHƒOƒ^ƒCƒv ]
-	// [ ƒ‰ƒCƒgƒCƒ“ƒfƒbƒNƒX ]
+	// æ¨™æº–ï¼“ï¼¤æç”»ç”¨ã®é ‚ç‚¹å˜ä½ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼
+	// [ ã‚·ãƒ£ãƒ‰ã‚¦ãƒžãƒƒãƒ—ã®æœ‰ç„¡( 0:ç„¡ã— 1:æœ‰ã‚Š ) ]
+	// [ ãƒ•ã‚©ã‚°ã‚¿ã‚¤ãƒ— ]
+	// [ ãƒ©ã‚¤ãƒˆã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ ]
 	GLuint		Base3D_VertexLighting_VS[ 2 ][ 4 ][ 20 ] ;
 
-	// •W€‚R‚c•`‰æ—p‚Ì’¸“_’PˆÊƒ‰ƒCƒeƒBƒ“ƒOƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[
-	// [ ƒVƒƒƒhƒEƒ}ƒbƒv‚Ì—L–³( 0:–³‚µ 1:—L‚è ) ]
-	// [ ƒ‰ƒCƒgƒCƒ“ƒfƒbƒNƒX ]
-	// [ “ÁŽêŒø‰Ê( 0:’Êí•`‰æ  1:æŽZ•`‰æ  2:RGB”½“]  3:•`‰æ‹P“x‚S”{  4:æŽZÏ‚Ýƒ¿ƒuƒŒƒ“ƒhƒ‚[ƒh‚Ì’Êí•`‰æ  5:æŽZÏ‚Ýƒ¿ƒuƒŒƒ“ƒhƒ‚[ƒh‚ÌRGB”½“]  6:æŽZÏ‚Ýƒ¿ƒuƒŒƒ“ƒhƒ‚[ƒh‚Ì•`‰æ‹P“x4”{ ) ]
-	// [ ƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[‚ÌƒAƒ‹ƒtƒ@ƒeƒXƒgƒ‚[ƒh ]
+	// æ¨™æº–ï¼“ï¼¤æç”»ç”¨ã®é ‚ç‚¹å˜ä½ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼
+	// [ ã‚·ãƒ£ãƒ‰ã‚¦ãƒžãƒƒãƒ—ã®æœ‰ç„¡( 0:ç„¡ã— 1:æœ‰ã‚Š ) ]
+	// [ ãƒ©ã‚¤ãƒˆã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ ]
+	// [ ç‰¹æ®ŠåŠ¹æžœ( 0:é€šå¸¸æç”»  1:ä¹—ç®—æç”»  2:RGBåè»¢  3:æç”»è¼åº¦ï¼”å€  4:ä¹—ç®—æ¸ˆã¿Î±ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã®é€šå¸¸æç”»  5:ä¹—ç®—æ¸ˆã¿Î±ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã®RGBåè»¢  6:ä¹—ç®—æ¸ˆã¿Î±ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã®æç”»è¼åº¦4å€ ) ]
+	// [ ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆãƒ¢ãƒ¼ãƒ‰ ]
 	GLuint		Base3D_VertexLighting_Normal_FS[ 2 ][ 10 ][ ANDROID_RENDER_TYPE_NUM ][ ANDROID_FS_ALPHATEST_NUM ] ;
 
-	// •W€‚R‚c•`‰æ—p‚Ì’¸“_’PˆÊƒ‰ƒCƒeƒBƒ“ƒOƒVƒF[ƒ_[
-	// ƒVƒƒƒhƒEƒ}ƒbƒv‚Ì—L–³( 0:–³‚µ 1:—L‚è )
-	// ’¸“_ƒVƒF[ƒ_[[ ƒtƒHƒOƒ^ƒCƒv ]
-	// ’¸“_ƒVƒF[ƒ_[[ ƒ‰ƒCƒgƒCƒ“ƒfƒbƒNƒX ]
-	// ƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[[ ƒ‰ƒCƒgƒCƒ“ƒfƒbƒNƒX ]
-	// ƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[[ “ÁŽêŒø‰Ê( 0:’Êí•`‰æ  1:æŽZ•`‰æ  2:RGB”½“]  3:•`‰æ‹P“x‚S”{  4:æŽZÏ‚Ýƒ¿ƒuƒŒƒ“ƒhƒ‚[ƒh‚Ì’Êí•`‰æ  5:æŽZÏ‚Ýƒ¿ƒuƒŒƒ“ƒhƒ‚[ƒh‚ÌRGB”½“]  6:æŽZÏ‚Ýƒ¿ƒuƒŒƒ“ƒhƒ‚[ƒh‚Ì•`‰æ‹P“x4”{ ) ]
-	// ƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[[ ƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[‚ÌƒAƒ‹ƒtƒ@ƒeƒXƒgƒ‚[ƒh ]
+	// æ¨™æº–ï¼“ï¼¤æç”»ç”¨ã®é ‚ç‚¹å˜ä½ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼
+	// ã‚·ãƒ£ãƒ‰ã‚¦ãƒžãƒƒãƒ—ã®æœ‰ç„¡( 0:ç„¡ã— 1:æœ‰ã‚Š )
+	// é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼[ ãƒ•ã‚©ã‚°ã‚¿ã‚¤ãƒ— ]
+	// é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼[ ãƒ©ã‚¤ãƒˆã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ ]
+	// ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼[ ãƒ©ã‚¤ãƒˆã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ ]
+	// ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼[ ç‰¹æ®ŠåŠ¹æžœ( 0:é€šå¸¸æç”»  1:ä¹—ç®—æç”»  2:RGBåè»¢  3:æç”»è¼åº¦ï¼”å€  4:ä¹—ç®—æ¸ˆã¿Î±ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã®é€šå¸¸æç”»  5:ä¹—ç®—æ¸ˆã¿Î±ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã®RGBåè»¢  6:ä¹—ç®—æ¸ˆã¿Î±ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã®æç”»è¼åº¦4å€ ) ]
+	// ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼[ ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆãƒ¢ãƒ¼ãƒ‰ ]
 	GRAPHICS_ANDROID_SHADER		*Base3D_VertexLighting_Normal_Shader[ 2 ][ 4 ][ 20 ][ 10 ][ ANDROID_RENDER_TYPE_NUM ][ ANDROID_FS_ALPHATEST_NUM ] ;
 } ;
 
 
 #ifndef DX_NON_MODEL
 
-// Android ‚Ìƒ‚ƒfƒ‹•`‰æ—p‚ÌƒVƒF[ƒ_[‚ð“Z‚ß‚½\‘¢‘Ì
+// Android ã®ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ã®ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’çºã‚ãŸæ§‹é€ ä½“
 struct GRAPHICS_HARDWARE_ANDROID_SHADER_MODEL
 {
-	// ƒ‚ƒfƒ‹•`‰æ—pƒsƒNƒZƒ‹’PˆÊƒ‰ƒCƒeƒBƒ“ƒOƒ^ƒCƒv‚Ì’¸“_ƒVƒF[ƒ_[( ƒŠƒXƒg‚Í”z—ñ‚Ì¶‚©‚ç )
-	// [ ƒVƒƒƒhƒEƒ}ƒbƒv‚Ì—L–³( 0:–³‚µ 1:—L‚è ) ]
-	// [ ƒƒbƒVƒ…ƒ^ƒCƒv( 0:„‘ÌƒƒbƒVƒ… 1:4ƒ{[ƒ““àƒXƒLƒjƒ“ƒOƒƒbƒVƒ… 2:8ƒ{[ƒ““àƒXƒLƒjƒ“ƒOƒƒbƒVƒ… ) ]
-	// [ ƒoƒ“ƒvƒ}ƒbƒv‚Ì—L–³( 0:–³‚µ 1:—L‚è ) ]
-	// [ ƒtƒHƒOƒ^ƒCƒv ]
+	// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ãƒ”ã‚¯ã‚»ãƒ«å˜ä½ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ã‚¿ã‚¤ãƒ—ã®é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼( ãƒªã‚¹ãƒˆã¯é…åˆ—ã®å·¦ã‹ã‚‰ )
+	// [ ã‚·ãƒ£ãƒ‰ã‚¦ãƒžãƒƒãƒ—ã®æœ‰ç„¡( 0:ç„¡ã— 1:æœ‰ã‚Š ) ]
+	// [ ãƒ¡ãƒƒã‚·ãƒ¥ã‚¿ã‚¤ãƒ—( 0:å‰›ä½“ãƒ¡ãƒƒã‚·ãƒ¥ 1:4ãƒœãƒ¼ãƒ³å†…ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥ 2:8ãƒœãƒ¼ãƒ³å†…ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥ ) ]
+	// [ ãƒãƒ³ãƒ—ãƒžãƒƒãƒ—ã®æœ‰ç„¡( 0:ç„¡ã— 1:æœ‰ã‚Š ) ]
+	// [ ãƒ•ã‚©ã‚°ã‚¿ã‚¤ãƒ— ]
 	GLuint		MV1_PixelLighting_VS[ 2 ][ 3 ][ 2 ][ 4 ] ;
 
 
-	// ƒ‚ƒfƒ‹•`‰æ—pƒsƒNƒZƒ‹’PˆÊƒ‰ƒCƒeƒBƒ“ƒOƒ^ƒCƒv‚ÌƒgƒD[ƒ“ƒ^ƒCƒv‚P—pƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[( ƒŠƒXƒg‚Í”z—ñ‚Ì¶‚©‚ç )
-	// [ ƒVƒƒƒhƒEƒ}ƒbƒv‚Ì—L–³( 0:–³‚µ 1:—L‚è ) ]
-	// [ ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚ÌƒfƒBƒtƒ…[ƒYƒOƒ‰ƒf[ƒVƒ‡ƒ“‚ÌƒuƒŒƒ“ƒhƒ^ƒCƒv( 0:MV1_LAYERBLEND_TYPE_TRANSLUCENT  1:MV1_LAYERBLEND_TYPE_MODULATE ) ]
-	// [ ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚ÌƒXƒyƒLƒ…ƒ‰ƒOƒ‰ƒf[ƒVƒ‡ƒ“‚ÌƒuƒŒƒ“ƒhƒ^ƒCƒv( 0:MV1_LAYERBLEND_TYPE_TRANSLUCENT  1:MV1_LAYERBLEND_TYPE_ADDITIVE ) ]
-	// [ ƒoƒ“ƒvƒ}ƒbƒv ( 0:‚È‚µ 1:‚ ‚è ) ]
-	// [ —LŒø‚Èƒ‰ƒCƒg‚Ì” - 1 ]
-	// [ ƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[‚ÌƒAƒ‹ƒtƒ@ƒeƒXƒgƒ‚[ƒh ]
+	// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ãƒ”ã‚¯ã‚»ãƒ«å˜ä½ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ã‚¿ã‚¤ãƒ—ã®ãƒˆã‚¥ãƒ¼ãƒ³ã‚¿ã‚¤ãƒ—ï¼‘ç”¨ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼( ãƒªã‚¹ãƒˆã¯é…åˆ—ã®å·¦ã‹ã‚‰ )
+	// [ ã‚·ãƒ£ãƒ‰ã‚¦ãƒžãƒƒãƒ—ã®æœ‰ç„¡( 0:ç„¡ã— 1:æœ‰ã‚Š ) ]
+	// [ ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã®ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚°ãƒ©ãƒ‡ãƒ¼ã‚·ãƒ§ãƒ³ã®ãƒ–ãƒ¬ãƒ³ãƒ‰ã‚¿ã‚¤ãƒ—( 0:MV1_LAYERBLEND_TYPE_TRANSLUCENT  1:MV1_LAYERBLEND_TYPE_MODULATE ) ]
+	// [ ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã®ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã‚°ãƒ©ãƒ‡ãƒ¼ã‚·ãƒ§ãƒ³ã®ãƒ–ãƒ¬ãƒ³ãƒ‰ã‚¿ã‚¤ãƒ—( 0:MV1_LAYERBLEND_TYPE_TRANSLUCENT  1:MV1_LAYERBLEND_TYPE_ADDITIVE ) ]
+	// [ ãƒãƒ³ãƒ—ãƒžãƒƒãƒ— ( 0:ãªã— 1:ã‚ã‚Š ) ]
+	// [ æœ‰åŠ¹ãªãƒ©ã‚¤ãƒˆã®æ•° - 1 ]
+	// [ ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆãƒ¢ãƒ¼ãƒ‰ ]
 	GLuint		MV1_PixelLighting_ToonType1_FS[ 2 ][ 2 ][ 2 ][ 2 ][ DX_ANDR_COMMON_CONST_LIGHT_NUM ][ ANDROID_FS_ALPHATEST_NUM ] ;
 
-	// ƒ‚ƒfƒ‹•`‰æ—pƒsƒNƒZƒ‹’PˆÊƒ‰ƒCƒeƒBƒ“ƒOƒ^ƒCƒv‚ÌƒgƒD[ƒ“ƒ^ƒCƒv‚P—pƒVƒF[ƒ_[( ƒŠƒXƒg‚Í”z—ñ‚Ì¶‚©‚ç )
-	// ƒVƒƒƒhƒEƒ}ƒbƒv‚Ì—L–³( 0:–³‚µ 1:—L‚è )
-	// ƒoƒ“ƒvƒ}ƒbƒv‚Ì—L–³( 0:–³‚µ 1:—L‚è )
-	// ’¸“_ƒVƒF[ƒ_[[ ƒƒbƒVƒ…ƒ^ƒCƒv( 0:„‘ÌƒƒbƒVƒ… 1:4ƒ{[ƒ““àƒXƒLƒjƒ“ƒOƒƒbƒVƒ… 2:8ƒ{[ƒ““àƒXƒLƒjƒ“ƒOƒƒbƒVƒ… ) ]
-	// ’¸“_ƒVƒF[ƒ_[[ ƒtƒHƒOƒ^ƒCƒv ]
-	// ƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[[ ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚ÌƒfƒBƒtƒ…[ƒYƒOƒ‰ƒf[ƒVƒ‡ƒ“‚ÌƒuƒŒƒ“ƒhƒ^ƒCƒv( 0:MV1_LAYERBLEND_TYPE_TRANSLUCENT  1:MV1_LAYERBLEND_TYPE_MODULATE ) ]
-	// ƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[[ ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚ÌƒXƒyƒLƒ…ƒ‰ƒOƒ‰ƒf[ƒVƒ‡ƒ“‚ÌƒuƒŒƒ“ƒhƒ^ƒCƒv( 0:MV1_LAYERBLEND_TYPE_TRANSLUCENT  1:MV1_LAYERBLEND_TYPE_ADDITIVE ) ]
-	// ƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[[ —LŒø‚Èƒ‰ƒCƒg‚Ì” - 1 ]
-	// ƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[[ ƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[‚ÌƒAƒ‹ƒtƒ@ƒeƒXƒgƒ‚[ƒh ]
+	// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ãƒ”ã‚¯ã‚»ãƒ«å˜ä½ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ã‚¿ã‚¤ãƒ—ã®ãƒˆã‚¥ãƒ¼ãƒ³ã‚¿ã‚¤ãƒ—ï¼‘ç”¨ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼( ãƒªã‚¹ãƒˆã¯é…åˆ—ã®å·¦ã‹ã‚‰ )
+	// ã‚·ãƒ£ãƒ‰ã‚¦ãƒžãƒƒãƒ—ã®æœ‰ç„¡( 0:ç„¡ã— 1:æœ‰ã‚Š )
+	// ãƒãƒ³ãƒ—ãƒžãƒƒãƒ—ã®æœ‰ç„¡( 0:ç„¡ã— 1:æœ‰ã‚Š )
+	// é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼[ ãƒ¡ãƒƒã‚·ãƒ¥ã‚¿ã‚¤ãƒ—( 0:å‰›ä½“ãƒ¡ãƒƒã‚·ãƒ¥ 1:4ãƒœãƒ¼ãƒ³å†…ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥ 2:8ãƒœãƒ¼ãƒ³å†…ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥ ) ]
+	// é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼[ ãƒ•ã‚©ã‚°ã‚¿ã‚¤ãƒ— ]
+	// ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼[ ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã®ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚°ãƒ©ãƒ‡ãƒ¼ã‚·ãƒ§ãƒ³ã®ãƒ–ãƒ¬ãƒ³ãƒ‰ã‚¿ã‚¤ãƒ—( 0:MV1_LAYERBLEND_TYPE_TRANSLUCENT  1:MV1_LAYERBLEND_TYPE_MODULATE ) ]
+	// ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼[ ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã®ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã‚°ãƒ©ãƒ‡ãƒ¼ã‚·ãƒ§ãƒ³ã®ãƒ–ãƒ¬ãƒ³ãƒ‰ã‚¿ã‚¤ãƒ—( 0:MV1_LAYERBLEND_TYPE_TRANSLUCENT  1:MV1_LAYERBLEND_TYPE_ADDITIVE ) ]
+	// ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼[ æœ‰åŠ¹ãªãƒ©ã‚¤ãƒˆã®æ•° - 1 ]
+	// ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼[ ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆãƒ¢ãƒ¼ãƒ‰ ]
 	GRAPHICS_ANDROID_SHADER		*MV1_PixelLighting_ToonType1_Shader[ 2 ][ 2 ][ 3 ][ 4 ][ 2 ][ 2 ][ DX_ANDR_COMMON_CONST_LIGHT_NUM ][ ANDROID_FS_ALPHATEST_NUM ] ;
 
 
 
-	// ƒ‚ƒfƒ‹•`‰æ—pƒsƒNƒZƒ‹’PˆÊƒ‰ƒCƒeƒBƒ“ƒOƒ^ƒCƒv‚ÌƒgƒD[ƒ“ƒ^ƒCƒv‚Q—pƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[( ƒŠƒXƒg‚Í”z—ñ‚Ì¶‚©‚ç )
-	// [ ƒVƒƒƒhƒEƒ}ƒbƒv‚Ì—L–³( 0:–³‚µ 1:—L‚è ) ]
-	// [ ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚ÌƒXƒtƒBƒAƒ}ƒbƒv‚Ì—L–³‚ÆƒuƒŒƒ“ƒhƒ^ƒCƒv( 0:ƒXƒtƒBƒAƒ}ƒbƒv‚Í–³‚¢   1:MV1_LAYERBLEND_TYPE_MODULATE  2:MV1_LAYERBLEND_TYPE_ADDITIVE ) ]
-	// [ —LŒø‚Èƒ‰ƒCƒg‚Ì” - 1 ]
-	// [ ƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[‚ÌƒAƒ‹ƒtƒ@ƒeƒXƒgƒ‚[ƒh ]
+	// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ãƒ”ã‚¯ã‚»ãƒ«å˜ä½ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ã‚¿ã‚¤ãƒ—ã®ãƒˆã‚¥ãƒ¼ãƒ³ã‚¿ã‚¤ãƒ—ï¼’ç”¨ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼( ãƒªã‚¹ãƒˆã¯é…åˆ—ã®å·¦ã‹ã‚‰ )
+	// [ ã‚·ãƒ£ãƒ‰ã‚¦ãƒžãƒƒãƒ—ã®æœ‰ç„¡( 0:ç„¡ã— 1:æœ‰ã‚Š ) ]
+	// [ ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã®ã‚¹ãƒ•ã‚£ã‚¢ãƒžãƒƒãƒ—ã®æœ‰ç„¡ã¨ãƒ–ãƒ¬ãƒ³ãƒ‰ã‚¿ã‚¤ãƒ—( 0:ã‚¹ãƒ•ã‚£ã‚¢ãƒžãƒƒãƒ—ã¯ç„¡ã„   1:MV1_LAYERBLEND_TYPE_MODULATE  2:MV1_LAYERBLEND_TYPE_ADDITIVE ) ]
+	// [ æœ‰åŠ¹ãªãƒ©ã‚¤ãƒˆã®æ•° - 1 ]
+	// [ ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆãƒ¢ãƒ¼ãƒ‰ ]
 	GLuint		MV1_PixelLighting_ToonType2_FS[ 2 ][ 3 ][ DX_ANDR_COMMON_CONST_LIGHT_NUM ][ ANDROID_FS_ALPHATEST_NUM ] ;
 
-	// ƒ‚ƒfƒ‹•`‰æ—pƒsƒNƒZƒ‹’PˆÊƒ‰ƒCƒeƒBƒ“ƒOƒ^ƒCƒv‚ÌƒgƒD[ƒ“ƒ^ƒCƒv‚Q—pƒVƒF[ƒ_[( ƒŠƒXƒg‚Í”z—ñ‚Ì¶‚©‚ç )
-	// ƒVƒƒƒhƒEƒ}ƒbƒv‚Ì—L–³( 0:–³‚µ 1:—L‚è )
-	// ’¸“_ƒVƒF[ƒ_[[ ƒƒbƒVƒ…ƒ^ƒCƒv( 0:„‘ÌƒƒbƒVƒ… 1:4ƒ{[ƒ““àƒXƒLƒjƒ“ƒOƒƒbƒVƒ… 2:8ƒ{[ƒ““àƒXƒLƒjƒ“ƒOƒƒbƒVƒ… ) ]
-	// ’¸“_ƒVƒF[ƒ_[[ ƒoƒ“ƒvƒ}ƒbƒv‚Ì—L–³( 0:–³‚µ 1:—L‚è ) ]
-	// ’¸“_ƒVƒF[ƒ_[[ ƒtƒHƒOƒ^ƒCƒv ]
-	// ƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[[ ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚ÌƒXƒtƒBƒAƒ}ƒbƒv‚Ì—L–³‚ÆƒuƒŒƒ“ƒhƒ^ƒCƒv( 0:ƒXƒtƒBƒAƒ}ƒbƒv‚Í–³‚¢   1:MV1_LAYERBLEND_TYPE_MODULATE  2:MV1_LAYERBLEND_TYPE_ADDITIVE ) ]
-	// ƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[[ —LŒø‚Èƒ‰ƒCƒg‚Ì” - 1 ]
-	// ƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[[ ƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[‚ÌƒAƒ‹ƒtƒ@ƒeƒXƒgƒ‚[ƒh ]
+	// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ãƒ”ã‚¯ã‚»ãƒ«å˜ä½ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ã‚¿ã‚¤ãƒ—ã®ãƒˆã‚¥ãƒ¼ãƒ³ã‚¿ã‚¤ãƒ—ï¼’ç”¨ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼( ãƒªã‚¹ãƒˆã¯é…åˆ—ã®å·¦ã‹ã‚‰ )
+	// ã‚·ãƒ£ãƒ‰ã‚¦ãƒžãƒƒãƒ—ã®æœ‰ç„¡( 0:ç„¡ã— 1:æœ‰ã‚Š )
+	// é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼[ ãƒ¡ãƒƒã‚·ãƒ¥ã‚¿ã‚¤ãƒ—( 0:å‰›ä½“ãƒ¡ãƒƒã‚·ãƒ¥ 1:4ãƒœãƒ¼ãƒ³å†…ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥ 2:8ãƒœãƒ¼ãƒ³å†…ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥ ) ]
+	// é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼[ ãƒãƒ³ãƒ—ãƒžãƒƒãƒ—ã®æœ‰ç„¡( 0:ç„¡ã— 1:æœ‰ã‚Š ) ]
+	// é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼[ ãƒ•ã‚©ã‚°ã‚¿ã‚¤ãƒ— ]
+	// ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼[ ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã®ã‚¹ãƒ•ã‚£ã‚¢ãƒžãƒƒãƒ—ã®æœ‰ç„¡ã¨ãƒ–ãƒ¬ãƒ³ãƒ‰ã‚¿ã‚¤ãƒ—( 0:ã‚¹ãƒ•ã‚£ã‚¢ãƒžãƒƒãƒ—ã¯ç„¡ã„   1:MV1_LAYERBLEND_TYPE_MODULATE  2:MV1_LAYERBLEND_TYPE_ADDITIVE ) ]
+	// ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼[ æœ‰åŠ¹ãªãƒ©ã‚¤ãƒˆã®æ•° - 1 ]
+	// ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼[ ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆãƒ¢ãƒ¼ãƒ‰ ]
 	GRAPHICS_ANDROID_SHADER		*MV1_PixelLighting_ToonType2_Shader[ 2 ][ 3 ][ 2 ][ 4 ][ 3 ][ DX_ANDR_COMMON_CONST_LIGHT_NUM ][ ANDROID_FS_ALPHATEST_NUM ] ;
 
 
 
-	// ƒ‚ƒfƒ‹•`‰æ—pƒsƒNƒZƒ‹’PˆÊƒ‰ƒCƒeƒBƒ“ƒOƒ^ƒCƒv‚Ìƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[( ƒŠƒXƒg‚Í”z—ñ‚Ì¶‚©‚ç )
-	// [ ƒVƒƒƒhƒEƒ}ƒbƒv‚Ì—L–³( 0:–³‚µ 1:—L‚è ) ]
-	// [ ƒ}ƒ‹ƒ`ƒeƒNƒXƒ`ƒƒ‚ÌƒuƒŒƒ“ƒhƒ‚[ƒhAMV1_LAYERBLEND_TYPE_TRANSLUCENT ‚È‚Ç‚É +1 ‚µ‚½‚à‚Ì ( 0:ƒ}ƒ‹ƒ`ƒeƒNƒXƒ`ƒƒ–³‚µ  1:ƒ¿ƒuƒŒƒ“ƒh  2:‰ÁŽZƒuƒŒƒ“ƒh  3:æŽZƒuƒŒƒ“ƒh  4:æŽZƒuƒŒƒ“ƒh~2 ) ]
-	// [ ƒoƒ“ƒvƒ}ƒbƒv ( 0:‚È‚µ 1:‚ ‚è ) ]
-	// [ —LŒø‚Èƒ‰ƒCƒg‚Ì” - 1 ]
-	// [ ƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[‚ÌƒAƒ‹ƒtƒ@ƒeƒXƒgƒ‚[ƒh ]
+	// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ãƒ”ã‚¯ã‚»ãƒ«å˜ä½ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ã‚¿ã‚¤ãƒ—ã®ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼( ãƒªã‚¹ãƒˆã¯é…åˆ—ã®å·¦ã‹ã‚‰ )
+	// [ ã‚·ãƒ£ãƒ‰ã‚¦ãƒžãƒƒãƒ—ã®æœ‰ç„¡( 0:ç„¡ã— 1:æœ‰ã‚Š ) ]
+	// [ ãƒžãƒ«ãƒãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã€MV1_LAYERBLEND_TYPE_TRANSLUCENT ãªã©ã« +1 ã—ãŸã‚‚ã® ( 0:ãƒžãƒ«ãƒãƒ†ã‚¯ã‚¹ãƒãƒ£ç„¡ã—  1:Î±ãƒ–ãƒ¬ãƒ³ãƒ‰  2:åŠ ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰  3:ä¹—ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰  4:ä¹—ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰Ã—2 ) ]
+	// [ ãƒãƒ³ãƒ—ãƒžãƒƒãƒ— ( 0:ãªã— 1:ã‚ã‚Š ) ]
+	// [ æœ‰åŠ¹ãªãƒ©ã‚¤ãƒˆã®æ•° - 1 ]
+	// [ ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆãƒ¢ãƒ¼ãƒ‰ ]
 	GLuint		MV1_PixelLighting_Normal_FS[ 2 ][ 5 ][ 2 ][ DX_ANDR_COMMON_CONST_LIGHT_NUM ][ ANDROID_FS_ALPHATEST_NUM ] ;
 
-	// ƒ‚ƒfƒ‹•`‰æ—pƒsƒNƒZƒ‹’PˆÊƒ‰ƒCƒeƒBƒ“ƒOƒ^ƒCƒv‚ÌƒVƒF[ƒ_[( ƒŠƒXƒg‚Í”z—ñ‚Ì¶‚©‚ç )
-	// ƒVƒƒƒhƒEƒ}ƒbƒv‚Ì—L–³( 0:–³‚µ 1:—L‚è )
-	// ƒoƒ“ƒvƒ}ƒbƒv‚Ì—L–³( 0:–³‚µ 1:—L‚è )
-	// ’¸“_ƒVƒF[ƒ_[[ ƒƒbƒVƒ…ƒ^ƒCƒv( 0:„‘ÌƒƒbƒVƒ… 1:4ƒ{[ƒ““àƒXƒLƒjƒ“ƒOƒƒbƒVƒ… 2:8ƒ{[ƒ““àƒXƒLƒjƒ“ƒOƒƒbƒVƒ… ) ]
-	// ’¸“_ƒVƒF[ƒ_[[ ƒtƒHƒOƒ^ƒCƒv ]
-	// ƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[[ ƒ}ƒ‹ƒ`ƒeƒNƒXƒ`ƒƒ‚ÌƒuƒŒƒ“ƒhƒ‚[ƒhAMV1_LAYERBLEND_TYPE_TRANSLUCENT ‚È‚Ç‚É +1 ‚µ‚½‚à‚Ì ( 0:ƒ}ƒ‹ƒ`ƒeƒNƒXƒ`ƒƒ–³‚µ  1:ƒ¿ƒuƒŒƒ“ƒh  2:‰ÁŽZƒuƒŒƒ“ƒh  3:æŽZƒuƒŒƒ“ƒh  4:æŽZƒuƒŒƒ“ƒh~2 ) ]
-	// ƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[[ —LŒø‚Èƒ‰ƒCƒg‚Ì” - 1 ]
-	// ƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[[ ƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[‚ÌƒAƒ‹ƒtƒ@ƒeƒXƒgƒ‚[ƒh ]
+	// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ãƒ”ã‚¯ã‚»ãƒ«å˜ä½ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ã‚¿ã‚¤ãƒ—ã®ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼( ãƒªã‚¹ãƒˆã¯é…åˆ—ã®å·¦ã‹ã‚‰ )
+	// ã‚·ãƒ£ãƒ‰ã‚¦ãƒžãƒƒãƒ—ã®æœ‰ç„¡( 0:ç„¡ã— 1:æœ‰ã‚Š )
+	// ãƒãƒ³ãƒ—ãƒžãƒƒãƒ—ã®æœ‰ç„¡( 0:ç„¡ã— 1:æœ‰ã‚Š )
+	// é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼[ ãƒ¡ãƒƒã‚·ãƒ¥ã‚¿ã‚¤ãƒ—( 0:å‰›ä½“ãƒ¡ãƒƒã‚·ãƒ¥ 1:4ãƒœãƒ¼ãƒ³å†…ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥ 2:8ãƒœãƒ¼ãƒ³å†…ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥ ) ]
+	// é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼[ ãƒ•ã‚©ã‚°ã‚¿ã‚¤ãƒ— ]
+	// ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼[ ãƒžãƒ«ãƒãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã€MV1_LAYERBLEND_TYPE_TRANSLUCENT ãªã©ã« +1 ã—ãŸã‚‚ã® ( 0:ãƒžãƒ«ãƒãƒ†ã‚¯ã‚¹ãƒãƒ£ç„¡ã—  1:Î±ãƒ–ãƒ¬ãƒ³ãƒ‰  2:åŠ ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰  3:ä¹—ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰  4:ä¹—ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰Ã—2 ) ]
+	// ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼[ æœ‰åŠ¹ãªãƒ©ã‚¤ãƒˆã®æ•° - 1 ]
+	// ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼[ ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆãƒ¢ãƒ¼ãƒ‰ ]
 	GRAPHICS_ANDROID_SHADER		*MV1_PixelLighting_Normal_Shader[ 2 ][ 2 ][ 3 ][ 4 ][ 5 ][ DX_ANDR_COMMON_CONST_LIGHT_NUM ][ ANDROID_FS_ALPHATEST_NUM ] ;
 
 
@@ -515,284 +515,284 @@ struct GRAPHICS_HARDWARE_ANDROID_SHADER_MODEL
 
 
 
-	// ƒ‚ƒfƒ‹•`‰æ—p‚Ìƒ}ƒeƒŠƒAƒ‹—v‘f•`‰æ—pƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[
-	// ƒ}ƒeƒŠƒAƒ‹ƒ^ƒCƒv( DX_MATERIAL_TYPE_MAT_SPEC_LUMINANCE_UNORM ‚È‚Ç )
-	// ƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[‚ÌƒAƒ‹ƒtƒ@ƒeƒXƒgƒ‚[ƒh
+	// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ã®ãƒžãƒ†ãƒªã‚¢ãƒ«è¦ç´ æç”»ç”¨ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼
+	// ãƒžãƒ†ãƒªã‚¢ãƒ«ã‚¿ã‚¤ãƒ—( DX_MATERIAL_TYPE_MAT_SPEC_LUMINANCE_UNORM ãªã© )
+	// ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆãƒ¢ãƒ¼ãƒ‰
 	GLuint		MV1_MaterialType_FS[ DX_MATERIAL_TYPE_NUM ][ ANDROID_FS_ALPHATEST_NUM ] ;
 
-	// ƒ‚ƒfƒ‹•`‰æ—p‚Ìƒ}ƒeƒŠƒAƒ‹—v‘f•`‰æ—pƒVƒF[ƒ_[
+	// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ã®ãƒžãƒ†ãƒªã‚¢ãƒ«è¦ç´ æç”»ç”¨ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼
 	// MV1_NoLighting_VS + MV1_MaterialType_FS
-	// ’¸“_ƒVƒF[ƒ_[[ ƒƒbƒVƒ…ƒ^ƒCƒv( 0:„‘ÌƒƒbƒVƒ… 1:4ƒ{[ƒ““àƒXƒLƒjƒ“ƒOƒƒbƒVƒ…  2:8ƒ{[ƒ““àƒXƒLƒjƒ“ƒOƒƒbƒVƒ… ) ]
-	// ’¸“_ƒVƒF[ƒ_[[ ƒoƒ“ƒvƒ}ƒbƒv‚Ì—L–³( 0:–³‚µ 1:—L‚è ) ]
-	// ƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[[ ƒ}ƒeƒŠƒAƒ‹ƒ^ƒCƒv( DX_MATERIAL_TYPE_MAT_SPEC_LUMINANCE_UNORM ‚È‚Ç ) ]
-	// ƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[[ ƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[‚ÌƒAƒ‹ƒtƒ@ƒeƒXƒgƒ‚[ƒh ]
+	// é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼[ ãƒ¡ãƒƒã‚·ãƒ¥ã‚¿ã‚¤ãƒ—( 0:å‰›ä½“ãƒ¡ãƒƒã‚·ãƒ¥ 1:4ãƒœãƒ¼ãƒ³å†…ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥  2:8ãƒœãƒ¼ãƒ³å†…ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥ ) ]
+	// é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼[ ãƒãƒ³ãƒ—ãƒžãƒƒãƒ—ã®æœ‰ç„¡( 0:ç„¡ã— 1:æœ‰ã‚Š ) ]
+	// ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼[ ãƒžãƒ†ãƒªã‚¢ãƒ«ã‚¿ã‚¤ãƒ—( DX_MATERIAL_TYPE_MAT_SPEC_LUMINANCE_UNORM ãªã© ) ]
+	// ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼[ ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆãƒ¢ãƒ¼ãƒ‰ ]
 	GRAPHICS_ANDROID_SHADER		*MV1_MaterialType_Shader[ 3 ][ 2 ][ DX_MATERIAL_TYPE_NUM ][ ANDROID_FS_ALPHATEST_NUM ] ;
 
 
 
 
-	// ƒ‚ƒfƒ‹•`‰æ—p‚ÌƒVƒƒƒhƒEƒ}ƒbƒv‚Ö‚ÌƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO—ÖŠsü•`‰æ—p’¸“_ƒVƒF[ƒ_[
-	// [ ƒƒbƒVƒ…ƒ^ƒCƒv( 0:„‘ÌƒƒbƒVƒ… 1:4ƒ{[ƒ““àƒXƒLƒjƒ“ƒOƒƒbƒVƒ…  2:8ƒ{[ƒ““àƒXƒLƒjƒ“ƒOƒƒbƒVƒ… ) ]
-	// [ ƒoƒ“ƒvƒ}ƒbƒv‚Ì—L–³( 0:–³‚µ 1:—L‚è ) ]
+	// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ã®ã‚·ãƒ£ãƒ‰ã‚¦ãƒžãƒƒãƒ—ã¸ã®ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°è¼ªéƒ­ç·šæç”»ç”¨é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼
+	// [ ãƒ¡ãƒƒã‚·ãƒ¥ã‚¿ã‚¤ãƒ—( 0:å‰›ä½“ãƒ¡ãƒƒã‚·ãƒ¥ 1:4ãƒœãƒ¼ãƒ³å†…ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥  2:8ãƒœãƒ¼ãƒ³å†…ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥ ) ]
+	// [ ãƒãƒ³ãƒ—ãƒžãƒƒãƒ—ã®æœ‰ç„¡( 0:ç„¡ã— 1:æœ‰ã‚Š ) ]
 	GLuint		MV1_ToonOutLine_ShadowMap_VS[ 3 ][ 2 ] ;
 
-	// ƒ‚ƒfƒ‹•`‰æ—p‚ÌƒVƒƒƒhƒEƒ}ƒbƒv‚Ö‚ÌƒŒƒ“ƒ_ƒŠƒ“ƒO—pƒVƒF[ƒ_[
+	// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ã®ã‚·ãƒ£ãƒ‰ã‚¦ãƒžãƒƒãƒ—ã¸ã®ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ç”¨ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼
 	// MV1_ToonOutLine_ShadowMap_VS + MV1_ShadowMap_Normal_FS
-	// ’¸“_ƒVƒF[ƒ_[[ ƒƒbƒVƒ…ƒ^ƒCƒv( 0:„‘ÌƒƒbƒVƒ… 1:4ƒ{[ƒ““àƒXƒLƒjƒ“ƒOƒƒbƒVƒ…  2:8ƒ{[ƒ““àƒXƒLƒjƒ“ƒOƒƒbƒVƒ… ) ]
-	// ’¸“_ƒVƒF[ƒ_[[ ƒoƒ“ƒvƒ}ƒbƒv‚Ì—L–³( 0:–³‚µ 1:—L‚è ) ]
-	// ƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[[ ƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[‚ÌƒAƒ‹ƒtƒ@ƒeƒXƒgƒ‚[ƒh ]
+	// é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼[ ãƒ¡ãƒƒã‚·ãƒ¥ã‚¿ã‚¤ãƒ—( 0:å‰›ä½“ãƒ¡ãƒƒã‚·ãƒ¥ 1:4ãƒœãƒ¼ãƒ³å†…ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥  2:8ãƒœãƒ¼ãƒ³å†…ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥ ) ]
+	// é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼[ ãƒãƒ³ãƒ—ãƒžãƒƒãƒ—ã®æœ‰ç„¡( 0:ç„¡ã— 1:æœ‰ã‚Š ) ]
+	// ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼[ ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆãƒ¢ãƒ¼ãƒ‰ ]
 	GRAPHICS_ANDROID_SHADER		*MV1_ToonOutLine_ShadowMap_Shader[ 3 ][ 2 ][ ANDROID_FS_ALPHATEST_NUM ] ;
 
 
 
-	// ƒ‚ƒfƒ‹•`‰æ—p‚ÌƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚Ì—ÖŠsü•`‰æ—p’¸“_ƒVƒF[ƒ_[
-	// [ ƒƒbƒVƒ…ƒ^ƒCƒv( 0:„‘ÌƒƒbƒVƒ… 1:4ƒ{[ƒ““àƒXƒLƒjƒ“ƒOƒƒbƒVƒ…  2:8ƒ{[ƒ““àƒXƒLƒjƒ“ƒOƒƒbƒVƒ… ) ]
-	// [ ƒoƒ“ƒvƒ}ƒbƒv‚Ì—L–³( 0:–³‚µ 1:—L‚è ) ]
-	// [ ƒtƒHƒOƒ^ƒCƒv ]
+	// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ã®ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã®è¼ªéƒ­ç·šæç”»ç”¨é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼
+	// [ ãƒ¡ãƒƒã‚·ãƒ¥ã‚¿ã‚¤ãƒ—( 0:å‰›ä½“ãƒ¡ãƒƒã‚·ãƒ¥ 1:4ãƒœãƒ¼ãƒ³å†…ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥  2:8ãƒœãƒ¼ãƒ³å†…ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥ ) ]
+	// [ ãƒãƒ³ãƒ—ãƒžãƒƒãƒ—ã®æœ‰ç„¡( 0:ç„¡ã— 1:æœ‰ã‚Š ) ]
+	// [ ãƒ•ã‚©ã‚°ã‚¿ã‚¤ãƒ— ]
 	GLuint		MV1_ToonOutLine_VS[ 3 ][ 2 ][ 4 ] ;
 
-	// ƒ‚ƒfƒ‹•`‰æ—p‚Ìƒ‰ƒCƒeƒBƒ“ƒO‚È‚µƒVƒF[ƒ_[
+	// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ã®ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ãªã—ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼
 	// MV1_ToonOutLine_VS + MV1_NoLighting_Normal_FS[ 0 ]
-	// ’¸“_ƒVƒF[ƒ_[[ ƒƒbƒVƒ…ƒ^ƒCƒv( 0:„‘ÌƒƒbƒVƒ… 1:4ƒ{[ƒ““àƒXƒLƒjƒ“ƒOƒƒbƒVƒ…  2:8ƒ{[ƒ““àƒXƒLƒjƒ“ƒOƒƒbƒVƒ… ) ]
-	// ’¸“_ƒVƒF[ƒ_[[ ƒoƒ“ƒvƒ}ƒbƒv‚Ì—L–³( 0:–³‚µ 1:—L‚è ) ]
-	// ’¸“_ƒVƒF[ƒ_[[ ƒtƒHƒOƒ^ƒCƒv ]
-	// ƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[[ ƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[‚ÌƒAƒ‹ƒtƒ@ƒeƒXƒgƒ‚[ƒh ]
+	// é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼[ ãƒ¡ãƒƒã‚·ãƒ¥ã‚¿ã‚¤ãƒ—( 0:å‰›ä½“ãƒ¡ãƒƒã‚·ãƒ¥ 1:4ãƒœãƒ¼ãƒ³å†…ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥  2:8ãƒœãƒ¼ãƒ³å†…ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥ ) ]
+	// é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼[ ãƒãƒ³ãƒ—ãƒžãƒƒãƒ—ã®æœ‰ç„¡( 0:ç„¡ã— 1:æœ‰ã‚Š ) ]
+	// é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼[ ãƒ•ã‚©ã‚°ã‚¿ã‚¤ãƒ— ]
+	// ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼[ ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆãƒ¢ãƒ¼ãƒ‰ ]
 	GRAPHICS_ANDROID_SHADER		*MV1_ToonOutLine_Shader[ 3 ][ 2 ][ 4 ][ ANDROID_FS_ALPHATEST_NUM ] ;
 
 
 
 
-	// ƒ‚ƒfƒ‹•`‰æ—p‚ÌƒVƒƒƒhƒEƒ}ƒbƒv‚Ö‚ÌƒŒƒ“ƒ_ƒŠƒ“ƒO—p’¸“_ƒVƒF[ƒ_[
-	// [ ƒƒbƒVƒ…ƒ^ƒCƒv( 0:„‘ÌƒƒbƒVƒ… 1:4ƒ{[ƒ““àƒXƒLƒjƒ“ƒOƒƒbƒVƒ…  2:8ƒ{[ƒ““àƒXƒLƒjƒ“ƒOƒƒbƒVƒ… ) ]
-	// [ ƒoƒ“ƒvƒ}ƒbƒv‚Ì—L–³( 0:–³‚µ 1:—L‚è ) ]
+	// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ã®ã‚·ãƒ£ãƒ‰ã‚¦ãƒžãƒƒãƒ—ã¸ã®ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ç”¨é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼
+	// [ ãƒ¡ãƒƒã‚·ãƒ¥ã‚¿ã‚¤ãƒ—( 0:å‰›ä½“ãƒ¡ãƒƒã‚·ãƒ¥ 1:4ãƒœãƒ¼ãƒ³å†…ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥  2:8ãƒœãƒ¼ãƒ³å†…ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥ ) ]
+	// [ ãƒãƒ³ãƒ—ãƒžãƒƒãƒ—ã®æœ‰ç„¡( 0:ç„¡ã— 1:æœ‰ã‚Š ) ]
 	GLuint		MV1_ShadowMap_VS[ 3 ][ 2 ] ;
 
 
-	// ƒ‚ƒfƒ‹•`‰æ—p‚ÌƒVƒƒƒhƒEƒ}ƒbƒv‚Ö‚ÌƒŒƒ“ƒ_ƒŠƒ“ƒO—pƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[
-	// [ ƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[‚ÌƒAƒ‹ƒtƒ@ƒeƒXƒgƒ‚[ƒh ]
+	// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ã®ã‚·ãƒ£ãƒ‰ã‚¦ãƒžãƒƒãƒ—ã¸ã®ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ç”¨ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼
+	// [ ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆãƒ¢ãƒ¼ãƒ‰ ]
 	GLuint		MV1_ShadowMap_Normal_FS[ ANDROID_FS_ALPHATEST_NUM ] ;
 
-	// ƒ‚ƒfƒ‹•`‰æ—p‚ÌƒVƒƒƒhƒEƒ}ƒbƒv‚Ö‚ÌƒŒƒ“ƒ_ƒŠƒ“ƒO—pƒVƒF[ƒ_[
+	// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ã®ã‚·ãƒ£ãƒ‰ã‚¦ãƒžãƒƒãƒ—ã¸ã®ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ç”¨ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼
 	// MV1_ShadowMap_VS + MV1_ShadowMap_Normal_FS
-	// ’¸“_ƒVƒF[ƒ_[[ ƒƒbƒVƒ…ƒ^ƒCƒv( 0:„‘ÌƒƒbƒVƒ… 1:4ƒ{[ƒ““àƒXƒLƒjƒ“ƒOƒƒbƒVƒ…  2:8ƒ{[ƒ““àƒXƒLƒjƒ“ƒOƒƒbƒVƒ… ) ]
-	// ’¸“_ƒVƒF[ƒ_[[ ƒoƒ“ƒvƒ}ƒbƒv‚Ì—L–³( 0:–³‚µ 1:—L‚è ) ]
-	// ƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[[ ƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[‚ÌƒAƒ‹ƒtƒ@ƒeƒXƒgƒ‚[ƒh ]
+	// é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼[ ãƒ¡ãƒƒã‚·ãƒ¥ã‚¿ã‚¤ãƒ—( 0:å‰›ä½“ãƒ¡ãƒƒã‚·ãƒ¥ 1:4ãƒœãƒ¼ãƒ³å†…ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥  2:8ãƒœãƒ¼ãƒ³å†…ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥ ) ]
+	// é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼[ ãƒãƒ³ãƒ—ãƒžãƒƒãƒ—ã®æœ‰ç„¡( 0:ç„¡ã— 1:æœ‰ã‚Š ) ]
+	// ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼[ ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆãƒ¢ãƒ¼ãƒ‰ ]
 	GRAPHICS_ANDROID_SHADER		*MV1_ShadowMap_Normal_Shader[ 3 ][ 2 ][ ANDROID_FS_ALPHATEST_NUM ] ;
 
 
 
-	// ƒ‚ƒfƒ‹•`‰æ—p‚ÌƒVƒƒƒhƒEƒ}ƒbƒv‚Ö‚ÌƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO—pƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[
-	// [ ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒOƒ^ƒCƒv( 0:ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO type 1   1:ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO type 2 ) ]
-	// [ ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚ÌƒXƒtƒBƒAƒ}ƒbƒv‚Ì—L–³‚ÆƒuƒŒƒ“ƒhƒ^ƒCƒv( 0:ƒXƒtƒBƒAƒ}ƒbƒv‚Í–³‚¢   1:MV1_LAYERBLEND_TYPE_MODULATE  2:MV1_LAYERBLEND_TYPE_ADDITIVE ) ]
-	// [ ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚ÌƒfƒBƒtƒ…[ƒYƒOƒ‰ƒf[ƒVƒ‡ƒ“‚ÌƒuƒŒƒ“ƒhƒ^ƒCƒv( 0:MV1_LAYERBLEND_TYPE_TRANSLUCENT  1:MV1_LAYERBLEND_TYPE_MODULATE ) ]
-	// [ ƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[‚ÌƒAƒ‹ƒtƒ@ƒeƒXƒgƒ‚[ƒh ]
+	// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ã®ã‚·ãƒ£ãƒ‰ã‚¦ãƒžãƒƒãƒ—ã¸ã®ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ç”¨ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼
+	// [ ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã‚¿ã‚¤ãƒ—( 0:ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚° type 1   1:ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚° type 2 ) ]
+	// [ ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã®ã‚¹ãƒ•ã‚£ã‚¢ãƒžãƒƒãƒ—ã®æœ‰ç„¡ã¨ãƒ–ãƒ¬ãƒ³ãƒ‰ã‚¿ã‚¤ãƒ—( 0:ã‚¹ãƒ•ã‚£ã‚¢ãƒžãƒƒãƒ—ã¯ç„¡ã„   1:MV1_LAYERBLEND_TYPE_MODULATE  2:MV1_LAYERBLEND_TYPE_ADDITIVE ) ]
+	// [ ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã®ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚°ãƒ©ãƒ‡ãƒ¼ã‚·ãƒ§ãƒ³ã®ãƒ–ãƒ¬ãƒ³ãƒ‰ã‚¿ã‚¤ãƒ—( 0:MV1_LAYERBLEND_TYPE_TRANSLUCENT  1:MV1_LAYERBLEND_TYPE_MODULATE ) ]
+	// [ ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆãƒ¢ãƒ¼ãƒ‰ ]
 	GLuint		MV1_ShadowMap_Toon_FS[ 2 ][ 3 ][ 2 ][ ANDROID_FS_ALPHATEST_NUM ] ;
 
-	// ƒ‚ƒfƒ‹•`‰æ—p‚ÌƒVƒƒƒhƒEƒ}ƒbƒv‚Ö‚ÌƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO—pƒVƒF[ƒ_[
+	// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ã®ã‚·ãƒ£ãƒ‰ã‚¦ãƒžãƒƒãƒ—ã¸ã®ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ç”¨ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼
 	// MV1_ShadowMap_VS + MV1_ShadowMap_Toon_FS
-	// ’¸“_ƒVƒF[ƒ_[[ ƒƒbƒVƒ…ƒ^ƒCƒv( 0:„‘ÌƒƒbƒVƒ… 1:4ƒ{[ƒ““àƒXƒLƒjƒ“ƒOƒƒbƒVƒ…  2:8ƒ{[ƒ““àƒXƒLƒjƒ“ƒOƒƒbƒVƒ… ) ]
-	// ’¸“_ƒVƒF[ƒ_[[ ƒoƒ“ƒvƒ}ƒbƒv‚Ì—L–³( 0:–³‚µ 1:—L‚è ) ]
-	// ƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[[ ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒOƒ^ƒCƒv( 0:ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO type 1   1:ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO type 2 ) ]
-	// ƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[[ ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚ÌƒXƒtƒBƒAƒ}ƒbƒv‚Ì—L–³‚ÆƒuƒŒƒ“ƒhƒ^ƒCƒv( 0:ƒXƒtƒBƒAƒ}ƒbƒv‚Í–³‚¢   1:MV1_LAYERBLEND_TYPE_MODULATE  2:MV1_LAYERBLEND_TYPE_ADDITIVE ) ]
-	// ƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[[ ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚ÌƒfƒBƒtƒ…[ƒYƒOƒ‰ƒf[ƒVƒ‡ƒ“‚ÌƒuƒŒƒ“ƒhƒ^ƒCƒv( 0:MV1_LAYERBLEND_TYPE_TRANSLUCENT  1:MV1_LAYERBLEND_TYPE_MODULATE ) ]
-	// ƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[[ ƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[‚ÌƒAƒ‹ƒtƒ@ƒeƒXƒgƒ‚[ƒh ]
+	// é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼[ ãƒ¡ãƒƒã‚·ãƒ¥ã‚¿ã‚¤ãƒ—( 0:å‰›ä½“ãƒ¡ãƒƒã‚·ãƒ¥ 1:4ãƒœãƒ¼ãƒ³å†…ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥  2:8ãƒœãƒ¼ãƒ³å†…ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥ ) ]
+	// é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼[ ãƒãƒ³ãƒ—ãƒžãƒƒãƒ—ã®æœ‰ç„¡( 0:ç„¡ã— 1:æœ‰ã‚Š ) ]
+	// ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼[ ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã‚¿ã‚¤ãƒ—( 0:ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚° type 1   1:ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚° type 2 ) ]
+	// ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼[ ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã®ã‚¹ãƒ•ã‚£ã‚¢ãƒžãƒƒãƒ—ã®æœ‰ç„¡ã¨ãƒ–ãƒ¬ãƒ³ãƒ‰ã‚¿ã‚¤ãƒ—( 0:ã‚¹ãƒ•ã‚£ã‚¢ãƒžãƒƒãƒ—ã¯ç„¡ã„   1:MV1_LAYERBLEND_TYPE_MODULATE  2:MV1_LAYERBLEND_TYPE_ADDITIVE ) ]
+	// ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼[ ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã®ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚°ãƒ©ãƒ‡ãƒ¼ã‚·ãƒ§ãƒ³ã®ãƒ–ãƒ¬ãƒ³ãƒ‰ã‚¿ã‚¤ãƒ—( 0:MV1_LAYERBLEND_TYPE_TRANSLUCENT  1:MV1_LAYERBLEND_TYPE_MODULATE ) ]
+	// ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼[ ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆãƒ¢ãƒ¼ãƒ‰ ]
 	GRAPHICS_ANDROID_SHADER		*MV1_ShadowMap_Toon_Shader[ 3 ][ 2 ][ 2 ][ 3 ][ 2 ][ ANDROID_FS_ALPHATEST_NUM ] ;
 
 
 
-	// ƒ‚ƒfƒ‹•`‰æ—p‚Ìƒ‰ƒCƒeƒBƒ“ƒO‚È‚µ’¸“_ƒVƒF[ƒ_[
-	// [ ƒƒbƒVƒ…ƒ^ƒCƒv( 0:„‘ÌƒƒbƒVƒ… 1:4ƒ{[ƒ““àƒXƒLƒjƒ“ƒOƒƒbƒVƒ…  2:8ƒ{[ƒ““àƒXƒLƒjƒ“ƒOƒƒbƒVƒ… ) ]
-	// [ ƒoƒ“ƒvƒ}ƒbƒv‚Ì—L–³( 0:–³‚µ 1:—L‚è ) ]
-	// [ ƒtƒHƒOƒ^ƒCƒv ]
+	// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ã®ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ãªã—é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼
+	// [ ãƒ¡ãƒƒã‚·ãƒ¥ã‚¿ã‚¤ãƒ—( 0:å‰›ä½“ãƒ¡ãƒƒã‚·ãƒ¥ 1:4ãƒœãƒ¼ãƒ³å†…ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥  2:8ãƒœãƒ¼ãƒ³å†…ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥ ) ]
+	// [ ãƒãƒ³ãƒ—ãƒžãƒƒãƒ—ã®æœ‰ç„¡( 0:ç„¡ã— 1:æœ‰ã‚Š ) ]
+	// [ ãƒ•ã‚©ã‚°ã‚¿ã‚¤ãƒ— ]
 	GLuint		MV1_NoLighting_VS[ 3 ][ 2 ][ 4 ] ;
 
 
-	// ƒ‚ƒfƒ‹•`‰æ—p‚Ìƒ‰ƒCƒeƒBƒ“ƒO‚È‚µƒgƒD[ƒ“—pƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[( ƒŠƒXƒg‚Í”z—ñ‚Ì¶‚©‚ç )
-	// [ ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒOƒ^ƒCƒv( 0:ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO type 1   1:ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO type 2 ) ]
-	// [ ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚ÌƒfƒBƒtƒ…[ƒYƒOƒ‰ƒf[ƒVƒ‡ƒ“‚ÌƒuƒŒƒ“ƒhƒ^ƒCƒv( 0:MV1_LAYERBLEND_TYPE_TRANSLUCENT or ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚Å‚Í‚È‚¢  1:MV1_LAYERBLEND_TYPE_MODULATE ) ]
-	// [ ƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[‚ÌƒAƒ‹ƒtƒ@ƒeƒXƒgƒ‚[ƒh ]
+	// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ã®ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ãªã—ãƒˆã‚¥ãƒ¼ãƒ³ç”¨ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼( ãƒªã‚¹ãƒˆã¯é…åˆ—ã®å·¦ã‹ã‚‰ )
+	// [ ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã‚¿ã‚¤ãƒ—( 0:ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚° type 1   1:ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚° type 2 ) ]
+	// [ ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã®ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚°ãƒ©ãƒ‡ãƒ¼ã‚·ãƒ§ãƒ³ã®ãƒ–ãƒ¬ãƒ³ãƒ‰ã‚¿ã‚¤ãƒ—( 0:MV1_LAYERBLEND_TYPE_TRANSLUCENT or ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã§ã¯ãªã„  1:MV1_LAYERBLEND_TYPE_MODULATE ) ]
+	// [ ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆãƒ¢ãƒ¼ãƒ‰ ]
 	GLuint		MV1_NoLighting_Toon_FS[ 2 ][ 2 ][ ANDROID_FS_ALPHATEST_NUM ] ;
 
-	// ƒ‚ƒfƒ‹•`‰æ—p‚Ìƒ‰ƒCƒeƒBƒ“ƒO‚È‚µƒgƒD[ƒ“—pƒVƒF[ƒ_[( ƒŠƒXƒg‚Í”z—ñ‚Ì¶‚©‚ç )
+	// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ã®ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ãªã—ãƒˆã‚¥ãƒ¼ãƒ³ç”¨ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼( ãƒªã‚¹ãƒˆã¯é…åˆ—ã®å·¦ã‹ã‚‰ )
 	// MV1_NoLighting_VS + MV1_NoLighting_Toon_FS
-	// ’¸“_ƒVƒF[ƒ_[[ ƒƒbƒVƒ…ƒ^ƒCƒv( 0:„‘ÌƒƒbƒVƒ… 1:4ƒ{[ƒ““àƒXƒLƒjƒ“ƒOƒƒbƒVƒ…  2:8ƒ{[ƒ““àƒXƒLƒjƒ“ƒOƒƒbƒVƒ… ) ]
-	// ’¸“_ƒVƒF[ƒ_[[ ƒoƒ“ƒvƒ}ƒbƒv‚Ì—L–³( 0:–³‚µ 1:—L‚è ) ]
-	// ’¸“_ƒVƒF[ƒ_[[ ƒtƒHƒOƒ^ƒCƒv ]
-	// ƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[[ ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒOƒ^ƒCƒv( 0:ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO type 1   1:ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO type 2 ) ]
-	// ƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[[ ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚ÌƒfƒBƒtƒ…[ƒYƒOƒ‰ƒf[ƒVƒ‡ƒ“‚ÌƒuƒŒƒ“ƒhƒ^ƒCƒv( 0:MV1_LAYERBLEND_TYPE_TRANSLUCENT or ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚Å‚Í‚È‚¢  1:MV1_LAYERBLEND_TYPE_MODULATE ) ]
-	// ƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[[ ƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[‚ÌƒAƒ‹ƒtƒ@ƒeƒXƒgƒ‚[ƒh ]
+	// é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼[ ãƒ¡ãƒƒã‚·ãƒ¥ã‚¿ã‚¤ãƒ—( 0:å‰›ä½“ãƒ¡ãƒƒã‚·ãƒ¥ 1:4ãƒœãƒ¼ãƒ³å†…ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥  2:8ãƒœãƒ¼ãƒ³å†…ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥ ) ]
+	// é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼[ ãƒãƒ³ãƒ—ãƒžãƒƒãƒ—ã®æœ‰ç„¡( 0:ç„¡ã— 1:æœ‰ã‚Š ) ]
+	// é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼[ ãƒ•ã‚©ã‚°ã‚¿ã‚¤ãƒ— ]
+	// ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼[ ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã‚¿ã‚¤ãƒ—( 0:ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚° type 1   1:ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚° type 2 ) ]
+	// ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼[ ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã®ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚°ãƒ©ãƒ‡ãƒ¼ã‚·ãƒ§ãƒ³ã®ãƒ–ãƒ¬ãƒ³ãƒ‰ã‚¿ã‚¤ãƒ—( 0:MV1_LAYERBLEND_TYPE_TRANSLUCENT or ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã§ã¯ãªã„  1:MV1_LAYERBLEND_TYPE_MODULATE ) ]
+	// ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼[ ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆãƒ¢ãƒ¼ãƒ‰ ]
 	GRAPHICS_ANDROID_SHADER		*MV1_NoLighting_Toon_Shader[ 3 ][ 2 ][ 4 ][ 2 ][ 2 ][ ANDROID_FS_ALPHATEST_NUM ] ;
 
 
 
-	// ƒ‚ƒfƒ‹•`‰æ—p‚Ìƒ‰ƒCƒeƒBƒ“ƒO‚È‚µƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[
-	// [ ƒ}ƒ‹ƒ`ƒeƒNƒXƒ`ƒƒ‚ÌƒuƒŒƒ“ƒhƒ‚[ƒhAMV1_LAYERBLEND_TYPE_TRANSLUCENT ‚È‚Ç‚É +1 ‚µ‚½‚à‚Ì ( 0:ƒ}ƒ‹ƒ`ƒeƒNƒXƒ`ƒƒ–³‚µ  1:ƒ¿ƒuƒŒƒ“ƒh  2:‰ÁŽZƒuƒŒƒ“ƒh  3:æŽZƒuƒŒƒ“ƒh  4:æŽZƒuƒŒƒ“ƒh~2 ) ]
-	// [ ƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[‚ÌƒAƒ‹ƒtƒ@ƒeƒXƒgƒ‚[ƒh ]
+	// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ã®ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ãªã—ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼
+	// [ ãƒžãƒ«ãƒãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã€MV1_LAYERBLEND_TYPE_TRANSLUCENT ãªã©ã« +1 ã—ãŸã‚‚ã® ( 0:ãƒžãƒ«ãƒãƒ†ã‚¯ã‚¹ãƒãƒ£ç„¡ã—  1:Î±ãƒ–ãƒ¬ãƒ³ãƒ‰  2:åŠ ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰  3:ä¹—ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰  4:ä¹—ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰Ã—2 ) ]
+	// [ ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆãƒ¢ãƒ¼ãƒ‰ ]
 	GLuint		MV1_NoLighting_Normal_FS[ 5 ][ ANDROID_FS_ALPHATEST_NUM ] ;
 
-	// ƒ‚ƒfƒ‹•`‰æ—p‚Ìƒ‰ƒCƒeƒBƒ“ƒO‚È‚µƒVƒF[ƒ_[
+	// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ã®ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ãªã—ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼
 	// MV1_NoLighting_VS + MV1_NoLighting_Normal_FS
-	// ’¸“_ƒVƒF[ƒ_[[ ƒƒbƒVƒ…ƒ^ƒCƒv( 0:„‘ÌƒƒbƒVƒ… 1:4ƒ{[ƒ““àƒXƒLƒjƒ“ƒOƒƒbƒVƒ…  2:8ƒ{[ƒ““àƒXƒLƒjƒ“ƒOƒƒbƒVƒ… ) ]
-	// ’¸“_ƒVƒF[ƒ_[[ ƒoƒ“ƒvƒ}ƒbƒv‚Ì—L–³( 0:–³‚µ 1:—L‚è ) ]
-	// ’¸“_ƒVƒF[ƒ_[[ ƒtƒHƒOƒ^ƒCƒv ]
-	// ƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[[ ƒ}ƒ‹ƒ`ƒeƒNƒXƒ`ƒƒ‚ÌƒuƒŒƒ“ƒhƒ‚[ƒhAMV1_LAYERBLEND_TYPE_TRANSLUCENT ‚È‚Ç‚É +1 ‚µ‚½‚à‚Ì ( 0:ƒ}ƒ‹ƒ`ƒeƒNƒXƒ`ƒƒ–³‚µ  1:ƒ¿ƒuƒŒƒ“ƒh  2:‰ÁŽZƒuƒŒƒ“ƒh  3:æŽZƒuƒŒƒ“ƒh  4:æŽZƒuƒŒƒ“ƒh~2 ) ]
-	// ƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[[ ƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[‚ÌƒAƒ‹ƒtƒ@ƒeƒXƒgƒ‚[ƒh ]
+	// é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼[ ãƒ¡ãƒƒã‚·ãƒ¥ã‚¿ã‚¤ãƒ—( 0:å‰›ä½“ãƒ¡ãƒƒã‚·ãƒ¥ 1:4ãƒœãƒ¼ãƒ³å†…ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥  2:8ãƒœãƒ¼ãƒ³å†…ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥ ) ]
+	// é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼[ ãƒãƒ³ãƒ—ãƒžãƒƒãƒ—ã®æœ‰ç„¡( 0:ç„¡ã— 1:æœ‰ã‚Š ) ]
+	// é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼[ ãƒ•ã‚©ã‚°ã‚¿ã‚¤ãƒ— ]
+	// ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼[ ãƒžãƒ«ãƒãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã€MV1_LAYERBLEND_TYPE_TRANSLUCENT ãªã©ã« +1 ã—ãŸã‚‚ã® ( 0:ãƒžãƒ«ãƒãƒ†ã‚¯ã‚¹ãƒãƒ£ç„¡ã—  1:Î±ãƒ–ãƒ¬ãƒ³ãƒ‰  2:åŠ ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰  3:ä¹—ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰  4:ä¹—ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰Ã—2 ) ]
+	// ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼[ ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆãƒ¢ãƒ¼ãƒ‰ ]
 	GRAPHICS_ANDROID_SHADER		*MV1_NoLighting_Normal_Shader[ 3 ][ 2 ][ 4 ][ 5 ][ ANDROID_FS_ALPHATEST_NUM ] ;
 
 
 
-	// ƒ‚ƒfƒ‹•`‰æ—p‚Ì’¸“_’PˆÊƒ‰ƒCƒeƒBƒ“ƒO‚ ‚è’¸“_ƒVƒF[ƒ_[
-	// [ ƒVƒƒƒhƒEƒ}ƒbƒv‚Ì—L–³( 0:–³‚µ 1:—L‚è ) ]
-	// [ ƒƒbƒVƒ…ƒ^ƒCƒv( 0:„‘ÌƒƒbƒVƒ… 1:4ƒ{[ƒ““àƒXƒLƒjƒ“ƒOƒƒbƒVƒ…  2:8ƒ{[ƒ““àƒXƒLƒjƒ“ƒOƒƒbƒVƒ… ) ]
-	// [ ƒoƒ“ƒvƒ}ƒbƒv‚Ì—L–³( 0:–³‚µ 1:—L‚è ) ]
-	// [ ƒtƒHƒOƒ^ƒCƒv ]
-	// [ ƒ‰ƒCƒgƒCƒ“ƒfƒbƒNƒX ]
+	// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ã®é ‚ç‚¹å˜ä½ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ã‚ã‚Šé ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼
+	// [ ã‚·ãƒ£ãƒ‰ã‚¦ãƒžãƒƒãƒ—ã®æœ‰ç„¡( 0:ç„¡ã— 1:æœ‰ã‚Š ) ]
+	// [ ãƒ¡ãƒƒã‚·ãƒ¥ã‚¿ã‚¤ãƒ—( 0:å‰›ä½“ãƒ¡ãƒƒã‚·ãƒ¥ 1:4ãƒœãƒ¼ãƒ³å†…ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥  2:8ãƒœãƒ¼ãƒ³å†…ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥ ) ]
+	// [ ãƒãƒ³ãƒ—ãƒžãƒƒãƒ—ã®æœ‰ç„¡( 0:ç„¡ã— 1:æœ‰ã‚Š ) ]
+	// [ ãƒ•ã‚©ã‚°ã‚¿ã‚¤ãƒ— ]
+	// [ ãƒ©ã‚¤ãƒˆã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ ]
 	GLuint		MV1_VertexLighting_VS[ 2 ][ 3 ][ 2 ][ 4 ][ 20 ] ;
 
 
-	// ƒ‚ƒfƒ‹•`‰æ—p‚Ì’¸“_’PˆÊƒ‰ƒCƒeƒBƒ“ƒO‚ ‚èƒgƒD[ƒ“ƒ^ƒCƒv‚P—pƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[
-	// [ ƒVƒƒƒhƒEƒ}ƒbƒv‚Ì—L–³( 0:–³‚µ 1:—L‚è ) ]
-	// [ ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚ÌƒfƒBƒtƒ…[ƒYƒOƒ‰ƒf[ƒVƒ‡ƒ“‚ÌƒuƒŒƒ“ƒhƒ^ƒCƒv( 0:MV1_LAYERBLEND_TYPE_TRANSLUCENT  1:MV1_LAYERBLEND_TYPE_MODULATE ) ]
-	// [ ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚ÌƒXƒyƒLƒ…ƒ‰ƒOƒ‰ƒf[ƒVƒ‡ƒ“‚ÌƒuƒŒƒ“ƒhƒ^ƒCƒv( 0:MV1_LAYERBLEND_TYPE_TRANSLUCENT  1:MV1_LAYERBLEND_TYPE_ADDITIVE ) ]
-	// [ ƒoƒ“ƒvƒ}ƒbƒv ( 0:‚È‚µ 1:‚ ‚è ) ]
-	// [ ƒ‰ƒCƒgƒCƒ“ƒfƒbƒNƒX ]
-	// [ ƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[‚ÌƒAƒ‹ƒtƒ@ƒeƒXƒgƒ‚[ƒh ]
+	// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ã®é ‚ç‚¹å˜ä½ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ã‚ã‚Šãƒˆã‚¥ãƒ¼ãƒ³ã‚¿ã‚¤ãƒ—ï¼‘ç”¨ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼
+	// [ ã‚·ãƒ£ãƒ‰ã‚¦ãƒžãƒƒãƒ—ã®æœ‰ç„¡( 0:ç„¡ã— 1:æœ‰ã‚Š ) ]
+	// [ ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã®ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚°ãƒ©ãƒ‡ãƒ¼ã‚·ãƒ§ãƒ³ã®ãƒ–ãƒ¬ãƒ³ãƒ‰ã‚¿ã‚¤ãƒ—( 0:MV1_LAYERBLEND_TYPE_TRANSLUCENT  1:MV1_LAYERBLEND_TYPE_MODULATE ) ]
+	// [ ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã®ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã‚°ãƒ©ãƒ‡ãƒ¼ã‚·ãƒ§ãƒ³ã®ãƒ–ãƒ¬ãƒ³ãƒ‰ã‚¿ã‚¤ãƒ—( 0:MV1_LAYERBLEND_TYPE_TRANSLUCENT  1:MV1_LAYERBLEND_TYPE_ADDITIVE ) ]
+	// [ ãƒãƒ³ãƒ—ãƒžãƒƒãƒ— ( 0:ãªã— 1:ã‚ã‚Š ) ]
+	// [ ãƒ©ã‚¤ãƒˆã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ ]
+	// [ ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆãƒ¢ãƒ¼ãƒ‰ ]
 	GLuint		MV1_VertexLighting_ToonType1_FS[ 2 ][ 2 ][ 2 ][ 2 ][ 10 ][ ANDROID_FS_ALPHATEST_NUM ] ;
 
-	// ƒ‚ƒfƒ‹•`‰æ—p‚Ì’¸“_’PˆÊƒ‰ƒCƒeƒBƒ“ƒO‚ ‚èƒgƒD[ƒ“ƒ^ƒCƒv‚P—pƒVƒF[ƒ_[
-	// ƒVƒƒƒhƒEƒ}ƒbƒv‚Ì—L–³( 0:–³‚µ 1:—L‚è )
-	// ƒoƒ“ƒvƒ}ƒbƒv‚Ì—L–³( 0:–³‚µ 1:—L‚è )
-	// ’¸“_ƒVƒF[ƒ_[[ ƒƒbƒVƒ…ƒ^ƒCƒv( 0:„‘ÌƒƒbƒVƒ… 1:4ƒ{[ƒ““àƒXƒLƒjƒ“ƒOƒƒbƒVƒ…  2:8ƒ{[ƒ““àƒXƒLƒjƒ“ƒOƒƒbƒVƒ… ) ]
-	// ’¸“_ƒVƒF[ƒ_[[ ƒtƒHƒOƒ^ƒCƒv ]
-	// ’¸“_ƒVƒF[ƒ_[[ ƒ‰ƒCƒgƒCƒ“ƒfƒbƒNƒX ]
-	// ƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[[ ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚ÌƒfƒBƒtƒ…[ƒYƒOƒ‰ƒf[ƒVƒ‡ƒ“‚ÌƒuƒŒƒ“ƒhƒ^ƒCƒv( 0:MV1_LAYERBLEND_TYPE_TRANSLUCENT  1:MV1_LAYERBLEND_TYPE_MODULATE ) ]
-	// ƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[[ ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚ÌƒXƒyƒLƒ…ƒ‰ƒOƒ‰ƒf[ƒVƒ‡ƒ“‚ÌƒuƒŒƒ“ƒhƒ^ƒCƒv( 0:MV1_LAYERBLEND_TYPE_TRANSLUCENT  1:MV1_LAYERBLEND_TYPE_ADDITIVE ) ]
-	// ƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[[ ƒ‰ƒCƒgƒCƒ“ƒfƒbƒNƒX ]
-	// ƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[[ ƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[‚ÌƒAƒ‹ƒtƒ@ƒeƒXƒgƒ‚[ƒh ]
+	// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ã®é ‚ç‚¹å˜ä½ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ã‚ã‚Šãƒˆã‚¥ãƒ¼ãƒ³ã‚¿ã‚¤ãƒ—ï¼‘ç”¨ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼
+	// ã‚·ãƒ£ãƒ‰ã‚¦ãƒžãƒƒãƒ—ã®æœ‰ç„¡( 0:ç„¡ã— 1:æœ‰ã‚Š )
+	// ãƒãƒ³ãƒ—ãƒžãƒƒãƒ—ã®æœ‰ç„¡( 0:ç„¡ã— 1:æœ‰ã‚Š )
+	// é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼[ ãƒ¡ãƒƒã‚·ãƒ¥ã‚¿ã‚¤ãƒ—( 0:å‰›ä½“ãƒ¡ãƒƒã‚·ãƒ¥ 1:4ãƒœãƒ¼ãƒ³å†…ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥  2:8ãƒœãƒ¼ãƒ³å†…ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥ ) ]
+	// é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼[ ãƒ•ã‚©ã‚°ã‚¿ã‚¤ãƒ— ]
+	// é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼[ ãƒ©ã‚¤ãƒˆã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ ]
+	// ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼[ ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã®ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚°ãƒ©ãƒ‡ãƒ¼ã‚·ãƒ§ãƒ³ã®ãƒ–ãƒ¬ãƒ³ãƒ‰ã‚¿ã‚¤ãƒ—( 0:MV1_LAYERBLEND_TYPE_TRANSLUCENT  1:MV1_LAYERBLEND_TYPE_MODULATE ) ]
+	// ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼[ ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã®ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã‚°ãƒ©ãƒ‡ãƒ¼ã‚·ãƒ§ãƒ³ã®ãƒ–ãƒ¬ãƒ³ãƒ‰ã‚¿ã‚¤ãƒ—( 0:MV1_LAYERBLEND_TYPE_TRANSLUCENT  1:MV1_LAYERBLEND_TYPE_ADDITIVE ) ]
+	// ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼[ ãƒ©ã‚¤ãƒˆã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ ]
+	// ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼[ ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆãƒ¢ãƒ¼ãƒ‰ ]
 	GRAPHICS_ANDROID_SHADER		*MV1_VertexLighting_ToonType1_Shader[ 2 ][ 2 ][ 3 ][ 4 ][ 20 ][ 2 ][ 2 ][ 10 ][ ANDROID_FS_ALPHATEST_NUM ] ;
 
 
 
-	// ƒ‚ƒfƒ‹•`‰æ—p‚Ì’¸“_’PˆÊƒ‰ƒCƒeƒBƒ“ƒO‚ ‚èƒgƒD[ƒ“ƒ^ƒCƒv‚Q—pƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[
-	// [ ƒVƒƒƒhƒEƒ}ƒbƒv‚Ì—L–³( 0:–³‚µ 1:—L‚è ) ]
-	// [ ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚ÌƒXƒtƒBƒAƒ}ƒbƒv‚Ì—L–³‚ÆƒuƒŒƒ“ƒhƒ^ƒCƒv( 0:ƒXƒtƒBƒAƒ}ƒbƒv‚Í–³‚¢   1:MV1_LAYERBLEND_TYPE_MODULATE  2:MV1_LAYERBLEND_TYPE_ADDITIVE ) ]
-	// [ ƒ‰ƒCƒgƒCƒ“ƒfƒbƒNƒX ]
-	// [ ƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[‚ÌƒAƒ‹ƒtƒ@ƒeƒXƒgƒ‚[ƒh ]
+	// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ã®é ‚ç‚¹å˜ä½ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ã‚ã‚Šãƒˆã‚¥ãƒ¼ãƒ³ã‚¿ã‚¤ãƒ—ï¼’ç”¨ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼
+	// [ ã‚·ãƒ£ãƒ‰ã‚¦ãƒžãƒƒãƒ—ã®æœ‰ç„¡( 0:ç„¡ã— 1:æœ‰ã‚Š ) ]
+	// [ ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã®ã‚¹ãƒ•ã‚£ã‚¢ãƒžãƒƒãƒ—ã®æœ‰ç„¡ã¨ãƒ–ãƒ¬ãƒ³ãƒ‰ã‚¿ã‚¤ãƒ—( 0:ã‚¹ãƒ•ã‚£ã‚¢ãƒžãƒƒãƒ—ã¯ç„¡ã„   1:MV1_LAYERBLEND_TYPE_MODULATE  2:MV1_LAYERBLEND_TYPE_ADDITIVE ) ]
+	// [ ãƒ©ã‚¤ãƒˆã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ ]
+	// [ ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆãƒ¢ãƒ¼ãƒ‰ ]
 	GLuint		MV1_VertexLighting_ToonType2_FS[ 2 ][ 3 ][ 10 ][ ANDROID_FS_ALPHATEST_NUM ] ;
 
-	// ƒ‚ƒfƒ‹•`‰æ—p‚Ì’¸“_’PˆÊƒ‰ƒCƒeƒBƒ“ƒO‚ ‚èƒgƒD[ƒ“ƒ^ƒCƒv‚Q—pƒVƒF[ƒ_[
-	// ƒVƒƒƒhƒEƒ}ƒbƒv‚Ì—L–³( 0:–³‚µ 1:—L‚è )
-	// ’¸“_ƒVƒF[ƒ_[[ ƒƒbƒVƒ…ƒ^ƒCƒv( 0:„‘ÌƒƒbƒVƒ… 1:4ƒ{[ƒ““àƒXƒLƒjƒ“ƒOƒƒbƒVƒ…  2:8ƒ{[ƒ““àƒXƒLƒjƒ“ƒOƒƒbƒVƒ… ) ]
-	// ’¸“_ƒVƒF[ƒ_[[ ƒoƒ“ƒvƒ}ƒbƒv‚Ì—L–³( 0:–³‚µ 1:—L‚è ) ]
-	// ’¸“_ƒVƒF[ƒ_[[ ƒtƒHƒOƒ^ƒCƒv ]
-	// ’¸“_ƒVƒF[ƒ_[[ ƒ‰ƒCƒgƒCƒ“ƒfƒbƒNƒX ]
-	// ƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[[ ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚ÌƒXƒtƒBƒAƒ}ƒbƒv‚Ì—L–³‚ÆƒuƒŒƒ“ƒhƒ^ƒCƒv( 0:ƒXƒtƒBƒAƒ}ƒbƒv‚Í–³‚¢   1:MV1_LAYERBLEND_TYPE_MODULATE  2:MV1_LAYERBLEND_TYPE_ADDITIVE ) ]
-	// ƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[[ ƒ‰ƒCƒgƒCƒ“ƒfƒbƒNƒX ]
-	// ƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[[ ƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[‚ÌƒAƒ‹ƒtƒ@ƒeƒXƒgƒ‚[ƒh ]
+	// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ã®é ‚ç‚¹å˜ä½ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ã‚ã‚Šãƒˆã‚¥ãƒ¼ãƒ³ã‚¿ã‚¤ãƒ—ï¼’ç”¨ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼
+	// ã‚·ãƒ£ãƒ‰ã‚¦ãƒžãƒƒãƒ—ã®æœ‰ç„¡( 0:ç„¡ã— 1:æœ‰ã‚Š )
+	// é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼[ ãƒ¡ãƒƒã‚·ãƒ¥ã‚¿ã‚¤ãƒ—( 0:å‰›ä½“ãƒ¡ãƒƒã‚·ãƒ¥ 1:4ãƒœãƒ¼ãƒ³å†…ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥  2:8ãƒœãƒ¼ãƒ³å†…ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥ ) ]
+	// é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼[ ãƒãƒ³ãƒ—ãƒžãƒƒãƒ—ã®æœ‰ç„¡( 0:ç„¡ã— 1:æœ‰ã‚Š ) ]
+	// é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼[ ãƒ•ã‚©ã‚°ã‚¿ã‚¤ãƒ— ]
+	// é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼[ ãƒ©ã‚¤ãƒˆã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ ]
+	// ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼[ ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã®ã‚¹ãƒ•ã‚£ã‚¢ãƒžãƒƒãƒ—ã®æœ‰ç„¡ã¨ãƒ–ãƒ¬ãƒ³ãƒ‰ã‚¿ã‚¤ãƒ—( 0:ã‚¹ãƒ•ã‚£ã‚¢ãƒžãƒƒãƒ—ã¯ç„¡ã„   1:MV1_LAYERBLEND_TYPE_MODULATE  2:MV1_LAYERBLEND_TYPE_ADDITIVE ) ]
+	// ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼[ ãƒ©ã‚¤ãƒˆã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ ]
+	// ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼[ ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆãƒ¢ãƒ¼ãƒ‰ ]
 	GRAPHICS_ANDROID_SHADER		*MV1_VertexLighting_ToonType2_Shader[ 2 ][ 3 ][ 2 ][ 4 ][ 20 ][ 3 ][ 10 ][ ANDROID_FS_ALPHATEST_NUM ] ;
 
 
 
-	// ƒ‚ƒfƒ‹•`‰æ—p‚Ì’¸“_’PˆÊƒ‰ƒCƒeƒBƒ“ƒO‚ ‚èƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[
-	// [ ƒVƒƒƒhƒEƒ}ƒbƒv‚Ì—L–³( 0:–³‚µ 1:—L‚è ) ]
-	// [ ƒ}ƒ‹ƒ`ƒeƒNƒXƒ`ƒƒ‚ÌƒuƒŒƒ“ƒhƒ‚[ƒhAMV1_LAYERBLEND_TYPE_TRANSLUCENT ‚È‚Ç‚É +1 ‚µ‚½‚à‚Ì ( 0:ƒ}ƒ‹ƒ`ƒeƒNƒXƒ`ƒƒ–³‚µ  1:ƒ¿ƒuƒŒƒ“ƒh  2:‰ÁŽZƒuƒŒƒ“ƒh  3:æŽZƒuƒŒƒ“ƒh  4:æŽZƒuƒŒƒ“ƒh~2 ) ]
-	// [ ƒoƒ“ƒvƒ}ƒbƒv ( 0:‚È‚µ 1:‚ ‚è ) ]
-	// [ ƒ‰ƒCƒgƒCƒ“ƒfƒbƒNƒX ]
-	// [ ƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[‚ÌƒAƒ‹ƒtƒ@ƒeƒXƒgƒ‚[ƒh ]
+	// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ã®é ‚ç‚¹å˜ä½ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ã‚ã‚Šãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼
+	// [ ã‚·ãƒ£ãƒ‰ã‚¦ãƒžãƒƒãƒ—ã®æœ‰ç„¡( 0:ç„¡ã— 1:æœ‰ã‚Š ) ]
+	// [ ãƒžãƒ«ãƒãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã€MV1_LAYERBLEND_TYPE_TRANSLUCENT ãªã©ã« +1 ã—ãŸã‚‚ã® ( 0:ãƒžãƒ«ãƒãƒ†ã‚¯ã‚¹ãƒãƒ£ç„¡ã—  1:Î±ãƒ–ãƒ¬ãƒ³ãƒ‰  2:åŠ ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰  3:ä¹—ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰  4:ä¹—ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰Ã—2 ) ]
+	// [ ãƒãƒ³ãƒ—ãƒžãƒƒãƒ— ( 0:ãªã— 1:ã‚ã‚Š ) ]
+	// [ ãƒ©ã‚¤ãƒˆã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ ]
+	// [ ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆãƒ¢ãƒ¼ãƒ‰ ]
 	GLuint		MV1_VertexLighting_Normal_FS[ 2 ][ 5 ][ 2 ][ 10 ][ ANDROID_FS_ALPHATEST_NUM ] ;
 
-	// ƒ‚ƒfƒ‹•`‰æ—p‚Ì’¸“_’PˆÊƒ‰ƒCƒeƒBƒ“ƒO‚ ‚èƒVƒF[ƒ_[
-	// ƒVƒƒƒhƒEƒ}ƒbƒv‚Ì—L–³( 0:–³‚µ 1:—L‚è )
-	// ƒoƒ“ƒvƒ}ƒbƒv‚Ì—L–³( 0:–³‚µ 1:—L‚è )
-	// ’¸“_ƒVƒF[ƒ_[[ ƒƒbƒVƒ…ƒ^ƒCƒv( 0:„‘ÌƒƒbƒVƒ… 1:4ƒ{[ƒ““àƒXƒLƒjƒ“ƒOƒƒbƒVƒ…  2:8ƒ{[ƒ““àƒXƒLƒjƒ“ƒOƒƒbƒVƒ… ) ]
-	// ’¸“_ƒVƒF[ƒ_[[ ƒtƒHƒOƒ^ƒCƒv ]
-	// ’¸“_ƒVƒF[ƒ_[[ ƒ‰ƒCƒgƒCƒ“ƒfƒbƒNƒX ]
-	// ƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[[ ƒ}ƒ‹ƒ`ƒeƒNƒXƒ`ƒƒ‚ÌƒuƒŒƒ“ƒhƒ‚[ƒhAMV1_LAYERBLEND_TYPE_TRANSLUCENT ‚È‚Ç‚É +1 ‚µ‚½‚à‚Ì ( 0:ƒ}ƒ‹ƒ`ƒeƒNƒXƒ`ƒƒ–³‚µ  1:ƒ¿ƒuƒŒƒ“ƒh  2:‰ÁŽZƒuƒŒƒ“ƒh  3:æŽZƒuƒŒƒ“ƒh  4:æŽZƒuƒŒƒ“ƒh~2 ) ]
-	// ƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[[ ƒ‰ƒCƒgƒCƒ“ƒfƒbƒNƒX ]
-	// ƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[[ ƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[‚ÌƒAƒ‹ƒtƒ@ƒeƒXƒgƒ‚[ƒh ]
+	// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ã®é ‚ç‚¹å˜ä½ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ã‚ã‚Šã‚·ã‚§ãƒ¼ãƒ€ãƒ¼
+	// ã‚·ãƒ£ãƒ‰ã‚¦ãƒžãƒƒãƒ—ã®æœ‰ç„¡( 0:ç„¡ã— 1:æœ‰ã‚Š )
+	// ãƒãƒ³ãƒ—ãƒžãƒƒãƒ—ã®æœ‰ç„¡( 0:ç„¡ã— 1:æœ‰ã‚Š )
+	// é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼[ ãƒ¡ãƒƒã‚·ãƒ¥ã‚¿ã‚¤ãƒ—( 0:å‰›ä½“ãƒ¡ãƒƒã‚·ãƒ¥ 1:4ãƒœãƒ¼ãƒ³å†…ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥  2:8ãƒœãƒ¼ãƒ³å†…ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥ ) ]
+	// é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼[ ãƒ•ã‚©ã‚°ã‚¿ã‚¤ãƒ— ]
+	// é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼[ ãƒ©ã‚¤ãƒˆã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ ]
+	// ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼[ ãƒžãƒ«ãƒãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã€MV1_LAYERBLEND_TYPE_TRANSLUCENT ãªã©ã« +1 ã—ãŸã‚‚ã® ( 0:ãƒžãƒ«ãƒãƒ†ã‚¯ã‚¹ãƒãƒ£ç„¡ã—  1:Î±ãƒ–ãƒ¬ãƒ³ãƒ‰  2:åŠ ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰  3:ä¹—ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰  4:ä¹—ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰Ã—2 ) ]
+	// ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼[ ãƒ©ã‚¤ãƒˆã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ ]
+	// ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼[ ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆãƒ¢ãƒ¼ãƒ‰ ]
 	GRAPHICS_ANDROID_SHADER		*MV1_VertexLighting_Normal_Shader[ 2 ][ 2 ][ 3 ][ 4 ][ 20 ][ 5 ][ 10 ][ ANDROID_FS_ALPHATEST_NUM ] ;
 } ;
 #endif // DX_NON_MODEL
 
-// Android ‚Ì’è”î•ñ‚ð“Z‚ß‚½\‘¢‘Ì
+// Android ã®å®šæ•°æƒ…å ±ã‚’çºã‚ãŸæ§‹é€ ä½“
 struct GRAPHICS_HARDWARE_ANDROID_CONSTANT
 {
-	// ’¸“_ƒVƒF[ƒ_[Aƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[‹¤’Ê
-	DX_ANDR_SHADER_FLOAT4			uAmb_Emi ;									// ƒGƒ~ƒbƒVƒuƒJƒ‰[{ƒAƒ“ƒrƒGƒ“ƒgƒJƒ‰[( ƒGƒ~ƒbƒVƒuƒJƒ‰[ + ƒ}ƒeƒŠƒAƒ‹ƒAƒ“ƒrƒGƒ“ƒgƒJƒ‰[ * ƒOƒ[ƒoƒ‹ƒAƒ“ƒrƒGƒ“ƒgƒJƒ‰[ )
+	// é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã€ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼å…±é€š
+	DX_ANDR_SHADER_FLOAT4			uAmb_Emi ;									// ã‚¨ãƒŸãƒƒã‚·ãƒ–ã‚«ãƒ©ãƒ¼ï¼‹ã‚¢ãƒ³ãƒ“ã‚¨ãƒ³ãƒˆã‚«ãƒ©ãƒ¼( ã‚¨ãƒŸãƒƒã‚·ãƒ–ã‚«ãƒ©ãƒ¼ + ãƒžãƒ†ãƒªã‚¢ãƒ«ã‚¢ãƒ³ãƒ“ã‚¨ãƒ³ãƒˆã‚«ãƒ©ãƒ¼ * ã‚°ãƒ­ãƒ¼ãƒãƒ«ã‚¢ãƒ³ãƒ“ã‚¨ãƒ³ãƒˆã‚«ãƒ©ãƒ¼ )
 
-	DX_ANDR_SHADER_FLOAT4			uMatDif ;									// ƒfƒBƒtƒ…[ƒYƒJƒ‰[
-	DX_ANDR_SHADER_FLOAT4			uMatSpc ;									// ƒXƒyƒLƒ…ƒ‰ƒJƒ‰[
-	DX_ANDR_SHADER_FLOAT			uMatPow ;									// ƒXƒyƒLƒ…ƒ‰‚Ì‹­‚³
-	DX_ANDR_SHADER_FLOAT			uMatTypeParam0 ;							// ƒ^ƒCƒvƒpƒ‰ƒ[ƒ^0
-	DX_ANDR_SHADER_FLOAT			uMatTypeParam1 ;							// ƒ^ƒCƒvƒpƒ‰ƒ[ƒ^1
-	DX_ANDR_SHADER_FLOAT			uMatTypeParam2 ;							// ƒ^ƒCƒvƒpƒ‰ƒ[ƒ^2
+	DX_ANDR_SHADER_FLOAT4			uMatDif ;									// ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚«ãƒ©ãƒ¼
+	DX_ANDR_SHADER_FLOAT4			uMatSpc ;									// ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã‚«ãƒ©ãƒ¼
+	DX_ANDR_SHADER_FLOAT			uMatPow ;									// ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã®å¼·ã•
+	DX_ANDR_SHADER_FLOAT			uMatTypeParam0 ;							// ã‚¿ã‚¤ãƒ—ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿0
+	DX_ANDR_SHADER_FLOAT			uMatTypeParam1 ;							// ã‚¿ã‚¤ãƒ—ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿1
+	DX_ANDR_SHADER_FLOAT			uMatTypeParam2 ;							// ã‚¿ã‚¤ãƒ—ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿2
 
-	DX_ANDR_SHADER_FLOAT3			uLightPos[ 6 /* ’¸“_ƒVƒF[ƒ_[‚ÅŽg—p‚·‚é‚Ì‚Í 3 */ ] ;					// À•W( ƒrƒ…[‹óŠÔ )
-	DX_ANDR_SHADER_FLOAT3			uLightDir[ 6 /* ’¸“_ƒVƒF[ƒ_[‚ÅŽg—p‚·‚é‚Ì‚Í 3 */ ] ;					// •ûŒü( ƒrƒ…[‹óŠÔ )
-	DX_ANDR_SHADER_FLOAT4			uLightDif[ 6 /* ’¸“_ƒVƒF[ƒ_[‚ÅŽg—p‚·‚é‚Ì‚Í 3 */ ] ;					// ƒfƒBƒtƒ…[ƒYƒJƒ‰[
-	DX_ANDR_SHADER_FLOAT4			uLightSpc[ 6 /* ’¸“_ƒVƒF[ƒ_[‚ÅŽg—p‚·‚é‚Ì‚Í 3 */ ] ;					// ƒXƒyƒLƒ…ƒ‰ƒJƒ‰[
-	DX_ANDR_SHADER_FLOAT4			uLightAmb[ 6 /* ’¸“_ƒVƒF[ƒ_[‚ÅŽg—p‚·‚é‚Ì‚Í 3 */ ] ;					// ƒAƒ“ƒrƒGƒ“ƒgƒJƒ‰[
-	DX_ANDR_SHADER_FLOAT4			uLightRange_FallOff_AT0_AT1[ 6 /* ’¸“_ƒVƒF[ƒ_[‚ÅŽg—p‚·‚é‚Ì‚Í 3 */ ] ;	// x:—LŒø‹——£  y:ƒXƒ|ƒbƒgƒ‰ƒCƒg—pFllOff  z:‹——£‚É‚æ‚éŒ¸Šˆ——pƒpƒ‰ƒ[ƒ^‚O  w:‹——£‚É‚æ‚éŒ¸Šˆ——pƒpƒ‰ƒ[ƒ^‚P
-	DX_ANDR_SHADER_FLOAT4			uLightAT2_SpotP0_SpotP1[ 6 /* ’¸“_ƒVƒF[ƒ_[‚ÅŽg—p‚·‚é‚Ì‚Í 3 */ ] ;		// x:‹——£‚É‚æ‚éŒ¸Šˆ——pƒpƒ‰ƒ[ƒ^‚Q  y:ƒXƒ|ƒbƒgƒ‰ƒCƒg—pƒpƒ‰ƒ[ƒ^‚O( cos( Phi / 2.0 ) )  z:ƒXƒ|ƒbƒgƒ‰ƒCƒg—pƒpƒ‰ƒ[ƒ^‚P( 1.0 / ( cos( Theta / 2.0 ) - cos( Phi / 2.0 ) ) )
-
-
-	// ’¸“_ƒVƒF[ƒ_[—p
-	DX_ANDR_SHADER_FLOAT4			uAntiVPMat[ 4 ] ;							// ƒrƒ…[ƒ|[ƒgs—ñ‚ÌŒø‰Ê‚ð‘Å‚¿Á‚·s—ñ
-	DX_ANDR_SHADER_FLOAT4			uViewMat[ 3 ] ;								// ƒ[ƒ‹ƒh@¨@ƒrƒ…[s—ñ
-	DX_ANDR_SHADER_FLOAT4			uProjMat[ 4 ] ;								// ƒrƒ…[@¨@ƒvƒƒWƒFƒNƒVƒ‡ƒ“s—ñ
-	DX_ANDR_SHADER_FLOAT4			uFog ;										// ƒtƒHƒO—pƒpƒ‰ƒ[ƒ^( x:end/(end - start)  y:-1/(end - start)  z:density  w:Ž©‘R‘Î”‚Ì’á )
-
-	DX_ANDR_SHADER_FLOAT4			uToonOutLineSize ;							// ƒgƒD[ƒ“‚Ì—ÖŠsü‚Ì‘å‚«‚³
-	DX_ANDR_SHADER_FLOAT4			uDifSrc_SpeSrc_MulSpeCol ;					// x:ƒfƒBƒtƒ…[ƒYƒJƒ‰[( 0.0:ƒ}ƒeƒŠƒAƒ‹  1.0:’¸“_ )  y:ƒXƒyƒLƒ…ƒ‰ƒJƒ‰[(   0.0:ƒ}ƒeƒŠƒAƒ‹  1.0:’¸“_ )  z:ƒXƒyƒLƒ…ƒ‰ƒJƒ‰[’l‚ÉæŽZ‚·‚é’l( ƒXƒyƒLƒ…ƒ‰–³Œøˆ—‚ÅŽg—p )
-
-	DX_ANDR_SHADER_FLOAT4			uSMLVPMat[ 12 /* [ 3 ][ 4 ] */ ] ;	// ƒVƒƒƒhƒEƒ}ƒbƒv—p‚Ìƒ‰ƒCƒgƒrƒ…[s—ñ‚Æƒ‰ƒCƒgŽË‰es—ñ‚ðæŽZ‚µ‚½‚à‚Ì
-
-	DX_ANDR_SHADER_FLOAT4			uTexMat[ 6 /* [ DX_VS_CONSTF_TEXTURE_MATRIX_NUM ][ 2 ] */ ] ;	// ƒeƒNƒXƒ`ƒƒÀ•W‘€ì—ps—ñ
-	DX_ANDR_SHADER_FLOAT4			uLWMat[ 162 /* DX_VS_CONSTF_WORLD_MAT_NUM * 3 */ ] ;		// ƒ[ƒJƒ‹@¨@ƒ[ƒ‹ƒhs—ñ
+	DX_ANDR_SHADER_FLOAT3			uLightPos[ 6 /* é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã§ä½¿ç”¨ã™ã‚‹ã®ã¯ 3 */ ] ;					// åº§æ¨™( ãƒ“ãƒ¥ãƒ¼ç©ºé–“ )
+	DX_ANDR_SHADER_FLOAT3			uLightDir[ 6 /* é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã§ä½¿ç”¨ã™ã‚‹ã®ã¯ 3 */ ] ;					// æ–¹å‘( ãƒ“ãƒ¥ãƒ¼ç©ºé–“ )
+	DX_ANDR_SHADER_FLOAT4			uLightDif[ 6 /* é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã§ä½¿ç”¨ã™ã‚‹ã®ã¯ 3 */ ] ;					// ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚«ãƒ©ãƒ¼
+	DX_ANDR_SHADER_FLOAT4			uLightSpc[ 6 /* é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã§ä½¿ç”¨ã™ã‚‹ã®ã¯ 3 */ ] ;					// ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã‚«ãƒ©ãƒ¼
+	DX_ANDR_SHADER_FLOAT4			uLightAmb[ 6 /* é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã§ä½¿ç”¨ã™ã‚‹ã®ã¯ 3 */ ] ;					// ã‚¢ãƒ³ãƒ“ã‚¨ãƒ³ãƒˆã‚«ãƒ©ãƒ¼
+	DX_ANDR_SHADER_FLOAT4			uLightRange_FallOff_AT0_AT1[ 6 /* é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã§ä½¿ç”¨ã™ã‚‹ã®ã¯ 3 */ ] ;	// x:æœ‰åŠ¹è·é›¢  y:ã‚¹ãƒãƒƒãƒˆãƒ©ã‚¤ãƒˆç”¨FllOff  z:è·é›¢ã«ã‚ˆã‚‹æ¸›è¡°å‡¦ç†ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ï¼  w:è·é›¢ã«ã‚ˆã‚‹æ¸›è¡°å‡¦ç†ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ï¼‘
+	DX_ANDR_SHADER_FLOAT4			uLightAT2_SpotP0_SpotP1[ 6 /* é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã§ä½¿ç”¨ã™ã‚‹ã®ã¯ 3 */ ] ;		// x:è·é›¢ã«ã‚ˆã‚‹æ¸›è¡°å‡¦ç†ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ï¼’  y:ã‚¹ãƒãƒƒãƒˆãƒ©ã‚¤ãƒˆç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ï¼( cos( Phi / 2.0 ) )  z:ã‚¹ãƒãƒƒãƒˆãƒ©ã‚¤ãƒˆç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ï¼‘( 1.0 / ( cos( Theta / 2.0 ) - cos( Phi / 2.0 ) ) )
 
 
-	// ƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[—p
-	DX_ANDR_SHADER_FLOAT			uMulAlphaColor ;							// ƒJƒ‰[‚ÉƒAƒ‹ƒtƒ@’l‚ðæŽZ‚·‚é‚©‚Ç‚¤‚©( 0.0:æŽZ‚µ‚È‚¢  1.0:æŽZ‚·‚é )
+	// é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ç”¨
+	DX_ANDR_SHADER_FLOAT4			uAntiVPMat[ 4 ] ;							// ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆè¡Œåˆ—ã®åŠ¹æžœã‚’æ‰“ã¡æ¶ˆã™è¡Œåˆ—
+	DX_ANDR_SHADER_FLOAT4			uViewMat[ 3 ] ;								// ãƒ¯ãƒ¼ãƒ«ãƒ‰ã€€â†’ã€€ãƒ“ãƒ¥ãƒ¼è¡Œåˆ—
+	DX_ANDR_SHADER_FLOAT4			uProjMat[ 4 ] ;								// ãƒ“ãƒ¥ãƒ¼ã€€â†’ã€€ãƒ—ãƒ­ã‚¸ã‚§ã‚¯ã‚·ãƒ§ãƒ³è¡Œåˆ—
+	DX_ANDR_SHADER_FLOAT4			uFog ;										// ãƒ•ã‚©ã‚°ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿( x:end/(end - start)  y:-1/(end - start)  z:density  w:è‡ªç„¶å¯¾æ•°ã®ä½Ž )
 
-	DX_ANDR_SHADER_FLOAT			uATestRef ;									// ƒ¿ƒeƒXƒg’l
+	DX_ANDR_SHADER_FLOAT4			uToonOutLineSize ;							// ãƒˆã‚¥ãƒ¼ãƒ³ã®è¼ªéƒ­ç·šã®å¤§ãã•
+	DX_ANDR_SHADER_FLOAT4			uDifSrc_SpeSrc_MulSpeCol ;					// x:ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚«ãƒ©ãƒ¼( 0.0:ãƒžãƒ†ãƒªã‚¢ãƒ«  1.0:é ‚ç‚¹ )  y:ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã‚«ãƒ©ãƒ¼(   0.0:ãƒžãƒ†ãƒªã‚¢ãƒ«  1.0:é ‚ç‚¹ )  z:ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã‚«ãƒ©ãƒ¼å€¤ã«ä¹—ç®—ã™ã‚‹å€¤( ã‚¹ãƒšã‚­ãƒ¥ãƒ©ç„¡åŠ¹å‡¦ç†ã§ä½¿ç”¨ )
+
+	DX_ANDR_SHADER_FLOAT4			uSMLVPMat[ 12 /* [ 3 ][ 4 ] */ ] ;	// ã‚·ãƒ£ãƒ‰ã‚¦ãƒžãƒƒãƒ—ç”¨ã®ãƒ©ã‚¤ãƒˆãƒ“ãƒ¥ãƒ¼è¡Œåˆ—ã¨ãƒ©ã‚¤ãƒˆå°„å½±è¡Œåˆ—ã‚’ä¹—ç®—ã—ãŸã‚‚ã®
+
+	DX_ANDR_SHADER_FLOAT4			uTexMat[ 6 /* [ DX_VS_CONSTF_TEXTURE_MATRIX_NUM ][ 2 ] */ ] ;	// ãƒ†ã‚¯ã‚¹ãƒãƒ£åº§æ¨™æ“ä½œç”¨è¡Œåˆ—
+	DX_ANDR_SHADER_FLOAT4			uLWMat[ 162 /* DX_VS_CONSTF_WORLD_MAT_NUM * 3 */ ] ;		// ãƒ­ãƒ¼ã‚«ãƒ«ã€€â†’ã€€ãƒ¯ãƒ¼ãƒ«ãƒ‰è¡Œåˆ—
+
+
+	// ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ç”¨
+	DX_ANDR_SHADER_FLOAT			uMulAlphaColor ;							// ã‚«ãƒ©ãƒ¼ã«ã‚¢ãƒ«ãƒ•ã‚¡å€¤ã‚’ä¹—ç®—ã™ã‚‹ã‹ã©ã†ã‹( 0.0:ä¹—ç®—ã—ãªã„  1.0:ä¹—ç®—ã™ã‚‹ )
+
+	DX_ANDR_SHADER_FLOAT			uATestRef ;									// Î±ãƒ†ã‚¹ãƒˆå€¤
 	DX_ANDR_SHADER_INT				uATestCmpMode ;
 
-	DX_ANDR_SHADER_FLOAT4			uFogColor ;									// ƒtƒHƒOƒJƒ‰[
-	DX_ANDR_SHADER_FLOAT4			uFactorColor ;								// ƒtƒ@ƒNƒ^[ƒJƒ‰[
-	DX_ANDR_SHADER_FLOAT4			uIgnoreTextureColor ;						// ƒeƒNƒXƒ`ƒƒƒJƒ‰[–³Ž‹ˆ——pƒJƒ‰[
-	DX_ANDR_SHADER_FLOAT4			uAddColor ;									// ‰ÁŽZ‚·‚éF
+	DX_ANDR_SHADER_FLOAT4			uFogColor ;									// ãƒ•ã‚©ã‚°ã‚«ãƒ©ãƒ¼
+	DX_ANDR_SHADER_FLOAT4			uFactorColor ;								// ãƒ•ã‚¡ã‚¯ã‚¿ãƒ¼ã‚«ãƒ©ãƒ¼
+	DX_ANDR_SHADER_FLOAT4			uIgnoreTextureColor ;						// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚«ãƒ©ãƒ¼ç„¡è¦–å‡¦ç†ç”¨ã‚«ãƒ©ãƒ¼
+	DX_ANDR_SHADER_FLOAT4			uAddColor ;									// åŠ ç®—ã™ã‚‹è‰²
 
-	DX_ANDR_SHADER_FLOAT4			uShadowMapLightEnable[ 6 ] ;				// ƒVƒƒƒhƒEƒ}ƒbƒv‚OE‚PE‚Q‚Ìƒ‰ƒCƒg—LŒøî•ñ( x:ƒVƒƒƒhƒEƒ}ƒbƒv‚O‚Åƒ‰ƒCƒgn‚ª—LŒø‚©  y:ƒVƒƒƒhƒEƒ}ƒbƒv‚P‚Åƒ‰ƒCƒgn‚ª—LŒø‚©  z:ƒVƒƒƒhƒEƒ}ƒbƒv‚Q‚Åƒ‰ƒCƒgn‚ª—LŒø‚© )
-	DX_ANDR_SHADER_FLOAT2			uShadowMap_DAdj_Grad[ 3 ] ;					// ƒVƒƒƒhƒEƒ}ƒbƒv‚Ìî•ñ( x:è‡’l[“x•â³’l  y:ƒOƒ‰ƒf[ƒVƒ‡ƒ“”ÍˆÍ  )
+	DX_ANDR_SHADER_FLOAT4			uShadowMapLightEnable[ 6 ] ;				// ã‚·ãƒ£ãƒ‰ã‚¦ãƒžãƒƒãƒ—ï¼ãƒ»ï¼‘ãƒ»ï¼’ã®ãƒ©ã‚¤ãƒˆæœ‰åŠ¹æƒ…å ±( x:ã‚·ãƒ£ãƒ‰ã‚¦ãƒžãƒƒãƒ—ï¼ã§ãƒ©ã‚¤ãƒˆnãŒæœ‰åŠ¹ã‹  y:ã‚·ãƒ£ãƒ‰ã‚¦ãƒžãƒƒãƒ—ï¼‘ã§ãƒ©ã‚¤ãƒˆnãŒæœ‰åŠ¹ã‹  z:ã‚·ãƒ£ãƒ‰ã‚¦ãƒžãƒƒãƒ—ï¼’ã§ãƒ©ã‚¤ãƒˆnãŒæœ‰åŠ¹ã‹ )
+	DX_ANDR_SHADER_FLOAT2			uShadowMap_DAdj_Grad[ 3 ] ;					// ã‚·ãƒ£ãƒ‰ã‚¦ãƒžãƒƒãƒ—ã®æƒ…å ±( x:é–¾å€¤æ·±åº¦è£œæ­£å€¤  y:ã‚°ãƒ©ãƒ‡ãƒ¼ã‚·ãƒ§ãƒ³ç¯„å›²  )
 
-	int								UpdateCount ;								// ’è”‚Ì“à—e‚ª•ÏX‚³‚ê‚½‰ñ”
+	int								UpdateCount ;								// å®šæ•°ã®å†…å®¹ãŒå¤‰æ›´ã•ã‚ŒãŸå›žæ•°
 
-	int								SetNormalMaterial ;							// ’è”ƒoƒbƒtƒ@‚É•W€•`‰æ—p‚Ìƒ}ƒeƒŠƒAƒ‹ƒpƒ‰ƒ[ƒ^‚ªÝ’è‚³‚ê‚Ä‚¢‚é‚©‚Ç‚¤‚©( TRUE:Ý’è‚³‚ê‚Ä‚¢‚é  FALSE:Ý’è‚³‚ê‚Ä‚¢‚È‚¢ )
-	int								SetNormalColorSource ;						// ’è”ƒoƒbƒtƒ@‚É•W€•`‰æ—p‚ÌuƒfƒBƒtƒ…[ƒYƒJƒ‰[EƒXƒyƒLƒ…ƒ‰ƒJƒ‰[‚ðƒ}ƒeƒŠƒAƒ‹‚ðŽg—p‚·‚é‚©A’¸“_ƒf[ƒ^‚ðŽg—p‚·‚é‚©v‚ÌÝ’è‚ª‚³‚ê‚Ä‚¢‚é‚©‚Ç‚¤‚©( TRUE:Ý’è‚³‚ê‚Ä‚¢‚é  FALSE:Ý’è‚³‚ê‚Ä‚¢‚È‚¢ )
-	int								SetNormalTextureAddressTransformMatrix ;	// ’è”ƒoƒbƒtƒ@‚É•W€•`‰æ—p‚ÌƒeƒNƒXƒ`ƒƒÀ•W—ps—ñ‚ªÝ’è‚³‚ê‚Ä‚¢‚é‚©‚Ç‚¤‚©( TRUE:Ý’è‚³‚ê‚Ä‚¢‚é  FALSE:Ý’è‚³‚ê‚Ä‚¢‚È‚¢ )
+	int								SetNormalMaterial ;							// å®šæ•°ãƒãƒƒãƒ•ã‚¡ã«æ¨™æº–æç”»ç”¨ã®ãƒžãƒ†ãƒªã‚¢ãƒ«ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãŒè¨­å®šã•ã‚Œã¦ã„ã‚‹ã‹ã©ã†ã‹( TRUE:è¨­å®šã•ã‚Œã¦ã„ã‚‹  FALSE:è¨­å®šã•ã‚Œã¦ã„ãªã„ )
+	int								SetNormalColorSource ;						// å®šæ•°ãƒãƒƒãƒ•ã‚¡ã«æ¨™æº–æç”»ç”¨ã®ã€Œãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚«ãƒ©ãƒ¼ãƒ»ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã‚«ãƒ©ãƒ¼ã‚’ãƒžãƒ†ãƒªã‚¢ãƒ«ã‚’ä½¿ç”¨ã™ã‚‹ã‹ã€é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ã‚’ä½¿ç”¨ã™ã‚‹ã‹ã€ã®è¨­å®šãŒã•ã‚Œã¦ã„ã‚‹ã‹ã©ã†ã‹( TRUE:è¨­å®šã•ã‚Œã¦ã„ã‚‹  FALSE:è¨­å®šã•ã‚Œã¦ã„ãªã„ )
+	int								SetNormalTextureAddressTransformMatrix ;	// å®šæ•°ãƒãƒƒãƒ•ã‚¡ã«æ¨™æº–æç”»ç”¨ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£åº§æ¨™ç”¨è¡Œåˆ—ãŒè¨­å®šã•ã‚Œã¦ã„ã‚‹ã‹ã©ã†ã‹( TRUE:è¨­å®šã•ã‚Œã¦ã„ã‚‹  FALSE:è¨­å®šã•ã‚Œã¦ã„ãªã„ )
 } ;
 
-// ƒVƒF[ƒ_[î•ñƒŠƒXƒg\‘¢‘Ì
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼æƒ…å ±ãƒªã‚¹ãƒˆæ§‹é€ ä½“
 struct GRAPHICS_ANDROID_SHADER_LIST
 {
-	int								UseNum ;									// Shaders ‚ÅŽg—p‚µ‚Ä‚¢‚é”z—ñ‚Ì”
-	GRAPHICS_ANDROID_SHADER			Shaders[ SHADERS_LIST_DATA_NUM ] ;			// ƒVƒF[ƒ_[î•ñ
-	GRAPHICS_ANDROID_SHADER_LIST	*Next ;										// ŽŸ‚ÌƒVƒF[ƒ_[ƒŠƒXƒg
+	int								UseNum ;									// Shaders ã§ä½¿ç”¨ã—ã¦ã„ã‚‹é…åˆ—ã®æ•°
+	GRAPHICS_ANDROID_SHADER			Shaders[ SHADERS_LIST_DATA_NUM ] ;			// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼æƒ…å ±
+	GRAPHICS_ANDROID_SHADER_LIST	*Next ;										// æ¬¡ã®ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒªã‚¹ãƒˆ
 } ;
 
-// Android ‚ÌƒVƒF[ƒ_[î•ñ‚ð“Z‚ß‚½\‘¢‘Ì
+// Android ã®ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼æƒ…å ±ã‚’çºã‚ãŸæ§‹é€ ä½“
 struct GRAPHICS_HARDWARE_ANDROID_SHADER
 {
-	GRAPHICS_HARDWARE_ANDROID_CONSTANT				Constant ;						// ’è”î•ñ‚ð“Z‚ß‚½\‘¢‘Ì
+	GRAPHICS_HARDWARE_ANDROID_CONSTANT				Constant ;						// å®šæ•°æƒ…å ±ã‚’çºã‚ãŸæ§‹é€ ä½“
 
-	GRAPHICS_ANDROID_SHADER_LIST					*ShadersListFirst ;				// ƒVƒF[ƒ_[î•ñƒŠƒXƒg(æ’[)
-	GRAPHICS_ANDROID_SHADER_LIST					*ShadersListLast ;				// ƒVƒF[ƒ_[î•ñƒŠƒXƒg(––’[)
+	GRAPHICS_ANDROID_SHADER_LIST					*ShadersListFirst ;				// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼æƒ…å ±ãƒªã‚¹ãƒˆ(å…ˆç«¯)
+	GRAPHICS_ANDROID_SHADER_LIST					*ShadersListLast ;				// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼æƒ…å ±ãƒªã‚¹ãƒˆ(æœ«ç«¯)
 
-	GRAPHICS_HARDWARE_ANDROID_SHADER_BASE			Base ;							// •W€•`‰æˆ——p‚ÌƒVƒF[ƒ_[‚ð“Z‚ß‚½\‘¢‘Ì
-	GRAPHICS_HARDWARE_ANDROID_SHADER_BASE3D			Base3D ;						// •W€‚R‚c•`‰æˆ——p‚ÌƒVƒF[ƒ_[‚ð“Z‚ß‚½\‘¢‘Ì
+	GRAPHICS_HARDWARE_ANDROID_SHADER_BASE			Base ;							// æ¨™æº–æç”»å‡¦ç†ç”¨ã®ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’çºã‚ãŸæ§‹é€ ä½“
+	GRAPHICS_HARDWARE_ANDROID_SHADER_BASE3D			Base3D ;						// æ¨™æº–ï¼“ï¼¤æç”»å‡¦ç†ç”¨ã®ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’çºã‚ãŸæ§‹é€ ä½“
 
 #ifndef DX_NON_MODEL
-	GRAPHICS_HARDWARE_ANDROID_SHADER_MODEL			Model ;							// ƒ‚ƒfƒ‹•`‰æˆ——p‚ÌƒVƒF[ƒ_[‚ð“Z‚ß‚½\‘¢‘Ì
+	GRAPHICS_HARDWARE_ANDROID_SHADER_MODEL			Model ;							// ãƒ¢ãƒ‡ãƒ«æç”»å‡¦ç†ç”¨ã®ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’çºã‚ãŸæ§‹é€ ä½“
 #endif // DX_NON_MODEL
 } ;
 
@@ -804,178 +804,178 @@ struct GRAPHICS_HARDWARE_ANDROID_SHADER
 
 
 
-// AndroidDevice ‚ÉÝ’è‚µ‚Ä‚¢‚é’l‚ð“Z‚ß‚½\‘¢‘Ì
+// AndroidDevice ã«è¨­å®šã—ã¦ã„ã‚‹å€¤ã‚’çºã‚ãŸæ§‹é€ ä½“
 struct GRAPHICS_HARDDATA_ANDROID_DEVICE_STATE
 {
-	int								FogEnable ;										// ƒtƒHƒO‚ª—LŒø‚©‚Ç‚¤‚©( TRUE:—LŒø  FALSE:–³Œø )
-	int								FogMode ;										// ƒtƒHƒOƒ‚[ƒh
-	DWORD							FogColor ;										// ƒtƒHƒOƒJƒ‰[
-	float							FogStart ;										// ƒtƒHƒOŠJŽn‹——£
-	float							FogEnd ;										// ƒtƒHƒOI—¹‹——£
-	float							FogDensity ;									// ƒtƒHƒO–§“x
+	int								FogEnable ;										// ãƒ•ã‚©ã‚°ãŒæœ‰åŠ¹ã‹ã©ã†ã‹( TRUE:æœ‰åŠ¹  FALSE:ç„¡åŠ¹ )
+	int								FogMode ;										// ãƒ•ã‚©ã‚°ãƒ¢ãƒ¼ãƒ‰
+	DWORD							FogColor ;										// ãƒ•ã‚©ã‚°ã‚«ãƒ©ãƒ¼
+	float							FogStart ;										// ãƒ•ã‚©ã‚°é–‹å§‹è·é›¢
+	float							FogEnd ;										// ãƒ•ã‚©ã‚°çµ‚äº†è·é›¢
+	float							FogDensity ;									// ãƒ•ã‚©ã‚°å¯†åº¦
 
-	COLOR_U8						BackgroundColor ;								// ”wŒiF
+	COLOR_U8						BackgroundColor ;								// èƒŒæ™¯è‰²
 
-	COLOR_F							GlobalAmbientLightColor ;						// ƒOƒ[ƒoƒ‹ƒAƒ“ƒrƒGƒ“ƒgƒ‰ƒCƒgƒJƒ‰[
-	int								LightEnableMaxIndex ;							// —LŒø‚Èƒ‰ƒCƒg‚ÌÅ‘åƒCƒ“ƒfƒbƒNƒX
-	int								LightEnableFlag[ DX_ANDR_COMMON_CONST_LIGHT_NUM ] ;// ƒ‰ƒCƒg‚ª—LŒø‚©‚Ç‚¤‚©ƒtƒ‰ƒO( TRUE:—LŒø  FALSE:–³Œø )
-	LIGHTPARAM						LightParam[ DX_ANDR_COMMON_CONST_LIGHT_NUM ] ;	// ƒ‰ƒCƒg‚Ìƒpƒ‰ƒ[ƒ^
-	int								Lighting ;										// ƒ‰ƒCƒeƒBƒ“ƒO‚ðs‚¤‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO( TRUE:ƒ‰ƒCƒeƒBƒ“ƒO‚ðs‚¤  FALSE:ƒ‰ƒCƒeƒBƒ“ƒO‚È‚µ )
+	COLOR_F							GlobalAmbientLightColor ;						// ã‚°ãƒ­ãƒ¼ãƒãƒ«ã‚¢ãƒ³ãƒ“ã‚¨ãƒ³ãƒˆãƒ©ã‚¤ãƒˆã‚«ãƒ©ãƒ¼
+	int								LightEnableMaxIndex ;							// æœ‰åŠ¹ãªãƒ©ã‚¤ãƒˆã®æœ€å¤§ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+	int								LightEnableFlag[ DX_ANDR_COMMON_CONST_LIGHT_NUM ] ;// ãƒ©ã‚¤ãƒˆãŒæœ‰åŠ¹ã‹ã©ã†ã‹ãƒ•ãƒ©ã‚°( TRUE:æœ‰åŠ¹  FALSE:ç„¡åŠ¹ )
+	LIGHTPARAM						LightParam[ DX_ANDR_COMMON_CONST_LIGHT_NUM ] ;	// ãƒ©ã‚¤ãƒˆã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+	int								Lighting ;										// ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ã‚’è¡Œã†ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°( TRUE:ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ã‚’è¡Œã†  FALSE:ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ãªã— )
 
-	int								UseSpecular ;									// ƒXƒyƒLƒ…ƒ‰‚ðŽg—p‚·‚é‚©‚Ç‚¤‚©
-	MATERIALPARAM					Material ;										// ƒ}ƒeƒŠƒAƒ‹
-	float							MaterialTypeParam[ MATERIAL_TYPEPARAM_MAX_NUM ] ;	// ƒ}ƒeƒŠƒAƒ‹•Êƒ^ƒCƒvƒpƒ‰ƒ[ƒ^
-	int								MaterialUseVertexDiffuseColor ;					// ’¸“_‚ÌƒfƒBƒtƒ…[ƒYƒJƒ‰[‚ðƒ}ƒeƒŠƒAƒ‹‚ÌƒfƒBƒtƒ…[ƒYƒJƒ‰[‚Æ‚µ‚ÄŽg—p‚·‚é‚©‚Ç‚¤‚©
-	int								MaterialUseVertexSpecularColor ;				// ’¸“_‚ÌƒXƒyƒLƒ…ƒ‰ƒJƒ‰[‚ðƒ}ƒeƒŠƒAƒ‹‚ÌƒXƒyƒLƒ…ƒ‰ƒJƒ‰[‚Æ‚µ‚ÄŽg—p‚·‚é‚©‚Ç‚¤‚©
+	int								UseSpecular ;									// ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹
+	MATERIALPARAM					Material ;										// ãƒžãƒ†ãƒªã‚¢ãƒ«
+	float							MaterialTypeParam[ MATERIAL_TYPEPARAM_MAX_NUM ] ;	// ãƒžãƒ†ãƒªã‚¢ãƒ«åˆ¥ã‚¿ã‚¤ãƒ—ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+	int								MaterialUseVertexDiffuseColor ;					// é ‚ç‚¹ã®ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚«ãƒ©ãƒ¼ã‚’ãƒžãƒ†ãƒªã‚¢ãƒ«ã®ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚«ãƒ©ãƒ¼ã¨ã—ã¦ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹
+	int								MaterialUseVertexSpecularColor ;				// é ‚ç‚¹ã®ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã‚«ãƒ©ãƒ¼ã‚’ãƒžãƒ†ãƒªã‚¢ãƒ«ã®ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã‚«ãƒ©ãƒ¼ã¨ã—ã¦ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹
 
-	int								DrawMode ;										// •`‰æƒ‚[ƒh( DX_DRAWMODE_BILINEAR ‚È‚Ç )A•W€‚ÌƒtƒBƒ‹ƒ^ƒŠƒ“ƒOƒ‚[ƒh‚Å‚Í‚È‚¢ê‡‚Í -1
-	int								MaxAnisotropy ;									// Å‘åˆÙ•û«A‘S‚Ä‚ÌƒTƒ“ƒvƒ‰‚É‘Î‚µ‚Ä“¯‚¶Ý’è‚ªs‚í‚ê‚Ä‚¢‚È‚¢ê‡‚Í -1
-	int								MaxAnisotropyDim[ USE_TEXTURESTAGE_NUM ] ;		// ŠeƒTƒ“ƒvƒ‰‚ÌÅ‘åˆÙ•û«
-	GLint							TexMagFilter[ USE_TEXTURESTAGE_NUM ] ;			// Šg‘åƒtƒBƒ‹ƒ^[( GL_TEXTURE_MAG_FILTER ‚Ìƒpƒ‰ƒ[ƒ^A GL_NEAREST ‚È‚Ç )
-	GLint							TexMinFilter[ USE_TEXTURESTAGE_NUM ] ;			// k¬ƒtƒBƒ‹ƒ^[( GL_TEXTURE_MIN_FILTER ‚Ìƒpƒ‰ƒ[ƒ^A GL_NEAREST ‚È‚Ç )
-	GLint							TexAddressModeU[ USE_TEXTURESTAGE_NUM ] ;		// ƒeƒNƒXƒ`ƒƒƒAƒhƒŒƒXƒ‚[ƒh‚t( GL_TEXTURE_WRAP_S ‚Ìƒpƒ‰ƒ[ƒ^A GL_REPEAT ‚È‚Ç )
-	GLint							TexAddressModeV[ USE_TEXTURESTAGE_NUM ] ;		// ƒeƒNƒXƒ`ƒƒƒAƒhƒŒƒXƒ‚[ƒh‚u( GL_TEXTURE_WRAP_T ‚Ìƒpƒ‰ƒ[ƒ^A GL_REPEAT ‚È‚Ç )
-	GLint							TexAddressModeW[ USE_TEXTURESTAGE_NUM ] ;		// ƒeƒNƒXƒ`ƒƒƒAƒhƒŒƒXƒ‚[ƒh‚v( GL_TEXTURE_WRAP_R ‚Ìƒpƒ‰ƒ[ƒ^A GL_REPEAT ‚È‚Ç )
+	int								DrawMode ;										// æç”»ãƒ¢ãƒ¼ãƒ‰( DX_DRAWMODE_BILINEAR ãªã© )ã€æ¨™æº–ã®ãƒ•ã‚£ãƒ«ã‚¿ãƒªãƒ³ã‚°ãƒ¢ãƒ¼ãƒ‰ã§ã¯ãªã„å ´åˆã¯ -1
+	int								MaxAnisotropy ;									// æœ€å¤§ç•°æ–¹æ€§ã€å…¨ã¦ã®ã‚µãƒ³ãƒ—ãƒ©ã«å¯¾ã—ã¦åŒã˜è¨­å®šãŒè¡Œã‚ã‚Œã¦ã„ãªã„å ´åˆã¯ -1
+	int								MaxAnisotropyDim[ USE_TEXTURESTAGE_NUM ] ;		// å„ã‚µãƒ³ãƒ—ãƒ©ã®æœ€å¤§ç•°æ–¹æ€§
+	GLint							TexMagFilter[ USE_TEXTURESTAGE_NUM ] ;			// æ‹¡å¤§ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼( GL_TEXTURE_MAG_FILTER ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã€ GL_NEAREST ãªã© )
+	GLint							TexMinFilter[ USE_TEXTURESTAGE_NUM ] ;			// ç¸®å°ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼( GL_TEXTURE_MIN_FILTER ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã€ GL_NEAREST ãªã© )
+	GLint							TexAddressModeU[ USE_TEXTURESTAGE_NUM ] ;		// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¢ãƒ‰ãƒ¬ã‚¹ãƒ¢ãƒ¼ãƒ‰ï¼µ( GL_TEXTURE_WRAP_S ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã€ GL_REPEAT ãªã© )
+	GLint							TexAddressModeV[ USE_TEXTURESTAGE_NUM ] ;		// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¢ãƒ‰ãƒ¬ã‚¹ãƒ¢ãƒ¼ãƒ‰ï¼¶( GL_TEXTURE_WRAP_T ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã€ GL_REPEAT ãªã© )
+	GLint							TexAddressModeW[ USE_TEXTURESTAGE_NUM ] ;		// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¢ãƒ‰ãƒ¬ã‚¹ãƒ¢ãƒ¼ãƒ‰ï¼·( GL_TEXTURE_WRAP_R ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã€ GL_REPEAT ãªã© )
 
-	RECT							ViewportRect ;									// ƒrƒ…[ƒ|[ƒg‚Ì‹éŒ`
+	RECT							ViewportRect ;									// ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆã®çŸ©å½¢
 
-	int								CullEnable ;									// ƒJƒŠƒ“ƒO‚ðs‚¤‚©‚Ç‚¤‚©
-	GLenum							CullFace ;										// ƒJƒŠƒ“ƒO–Ê( GL_BACK ‚È‚Ç )
-	int								DepthBias ;										// [“x’lƒoƒCƒAƒX
+	int								CullEnable ;									// ã‚«ãƒªãƒ³ã‚°ã‚’è¡Œã†ã‹ã©ã†ã‹
+	GLenum							CullFace ;										// ã‚«ãƒªãƒ³ã‚°é¢( GL_BACK ãªã© )
+	int								DepthBias ;										// æ·±åº¦å€¤ãƒã‚¤ã‚¢ã‚¹
 
-	int								DepthEnable ;									// [“xƒoƒbƒtƒ@‚Ì—LŒøƒtƒ‰ƒO( [“xƒoƒbƒtƒ@—LŒøA–³Œø‚Í glEnable( GL_DEPTH_TEST ), glDisable( GL_DEPTH_TEST ) ‚Ås‚¤ )
-	int								DepthWriteEnable ;								// [“xƒoƒbƒtƒ@‚Ö‚Ì‘‚«ž‚Ý‚ª—LŒø‚©‚Ç‚¤‚©( ‘‚«ž‚Ý‚ðs‚¤‚©‚Ç‚¤‚©‚ÌÝ’è‚Í glDepthMask ‚Ås‚¤ )
-	GLenum							DepthFunc ;										// [“x’l‚Ì”äŠrƒ‚[ƒh( GL_LEQUAL ‚È‚Ç )
+	int								DepthEnable ;									// æ·±åº¦ãƒãƒƒãƒ•ã‚¡ã®æœ‰åŠ¹ãƒ•ãƒ©ã‚°( æ·±åº¦ãƒãƒƒãƒ•ã‚¡æœ‰åŠ¹ã€ç„¡åŠ¹ã¯ glEnable( GL_DEPTH_TEST ), glDisable( GL_DEPTH_TEST ) ã§è¡Œã† )
+	int								DepthWriteEnable ;								// æ·±åº¦ãƒãƒƒãƒ•ã‚¡ã¸ã®æ›¸ãè¾¼ã¿ãŒæœ‰åŠ¹ã‹ã©ã†ã‹( æ›¸ãè¾¼ã¿ã‚’è¡Œã†ã‹ã©ã†ã‹ã®è¨­å®šã¯ glDepthMask ã§è¡Œã† )
+	GLenum							DepthFunc ;										// æ·±åº¦å€¤ã®æ¯”è¼ƒãƒ¢ãƒ¼ãƒ‰( GL_LEQUAL ãªã© )
 
-	int								BlendMode ;										// Œ»ÝƒfƒoƒCƒX‚ÉÝ’è‚³‚ê‚Ä‚¢‚éƒuƒŒƒ“ƒhƒ‚[ƒhAƒvƒŠƒZƒbƒg‚ÌƒuƒŒƒ“ƒhƒ‚[ƒhˆÈŠO‚Ìê‡‚Í -1 ‚ª“ü‚é
-	int								BlendEnable ;									// ƒuƒŒƒ“ƒhˆ—‚ðs‚¤‚©‚Ç‚¤‚©( DX_BLENDMODE_CUSTOM —p )
-	int								BlendRGBSrc ;									// RGB‚Ìƒ\[ƒXƒuƒŒƒ“ƒh( DX_BLENDMODE_CUSTOM —p )
-	int								BlendRGBDest ;									// RGB‚ÌƒfƒXƒgƒuƒŒƒ“ƒh( DX_BLENDMODE_CUSTOM —p )
-	int								BlendRGBOp ;									// RGB‚ÌƒuƒŒƒ“ƒhˆ—( DX_BLENDMODE_CUSTOM —p )
-	int								BlendASrc ;										// A‚Ìƒ\[ƒXƒuƒŒƒ“ƒh( DX_BLENDMODE_CUSTOM —p )
-	int								BlendADest ;									// A‚ÌƒfƒXƒgƒuƒŒƒ“ƒh( DX_BLENDMODE_CUSTOM —p )
-	int								BlendAOp ;										// A‚ÌƒuƒŒƒ“ƒhˆ—( DX_BLENDMODE_CUSTOM —p )
-	int								NotWriteAlphaChannelFlag ;						// ƒAƒ‹ƒtƒ@ƒ`ƒƒƒ“ƒlƒ‹‚Ì“à—e‚ð‘‚«Š·‚¦‚È‚¢‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO
+	int								BlendMode ;										// ç¾åœ¨ãƒ‡ãƒã‚¤ã‚¹ã«è¨­å®šã•ã‚Œã¦ã„ã‚‹ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã€ãƒ—ãƒªã‚»ãƒƒãƒˆã®ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ä»¥å¤–ã®å ´åˆã¯ -1 ãŒå…¥ã‚‹
+	int								BlendEnable ;									// ãƒ–ãƒ¬ãƒ³ãƒ‰å‡¦ç†ã‚’è¡Œã†ã‹ã©ã†ã‹( DX_BLENDMODE_CUSTOM ç”¨ )
+	int								BlendRGBSrc ;									// RGBã®ã‚½ãƒ¼ã‚¹ãƒ–ãƒ¬ãƒ³ãƒ‰( DX_BLENDMODE_CUSTOM ç”¨ )
+	int								BlendRGBDest ;									// RGBã®ãƒ‡ã‚¹ãƒˆãƒ–ãƒ¬ãƒ³ãƒ‰( DX_BLENDMODE_CUSTOM ç”¨ )
+	int								BlendRGBOp ;									// RGBã®ãƒ–ãƒ¬ãƒ³ãƒ‰å‡¦ç†( DX_BLENDMODE_CUSTOM ç”¨ )
+	int								BlendASrc ;										// Aã®ã‚½ãƒ¼ã‚¹ãƒ–ãƒ¬ãƒ³ãƒ‰( DX_BLENDMODE_CUSTOM ç”¨ )
+	int								BlendADest ;									// Aã®ãƒ‡ã‚¹ãƒˆãƒ–ãƒ¬ãƒ³ãƒ‰( DX_BLENDMODE_CUSTOM ç”¨ )
+	int								BlendAOp ;										// Aã®ãƒ–ãƒ¬ãƒ³ãƒ‰å‡¦ç†( DX_BLENDMODE_CUSTOM ç”¨ )
+	int								NotWriteAlphaChannelFlag ;						// ã‚¢ãƒ«ãƒ•ã‚¡ãƒãƒ£ãƒ³ãƒãƒ«ã®å†…å®¹ã‚’æ›¸ãæ›ãˆãªã„ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°
 
-	GRAPHICS_ANDROID_TEXTURE		*SetTexture[ USE_TEXTURESTAGE_NUM ] ;			// •`‰æŽž‚ÉŽg—p‚·‚éƒeƒNƒXƒ`ƒƒ
+	GRAPHICS_ANDROID_TEXTURE		*SetTexture[ USE_TEXTURESTAGE_NUM ] ;			// æç”»æ™‚ã«ä½¿ç”¨ã™ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£
 
-	RECT							ScissorRect ;									// ƒVƒU[‹éŒ`
-	int								AlphaTestEnable ;								// ƒAƒ‹ƒtƒ@ƒeƒXƒg‚ðŽg—p‚·‚é‚©‚Ç‚¤‚©
-	int								AlphaTestCmpMode ;								// ƒAƒ‹ƒtƒ@ƒeƒXƒg‚ÅŽg—p‚·‚é”äŠrƒ‚[ƒh( DX_CMP_NEVER ‚È‚Ç )
-	int								AlphaTestRef ;									// ƒAƒ‹ƒtƒ@ƒeƒXƒg‚ÅŽg—p‚·‚éŽQÆ’l
-	int								AlphaTestModeShaderIndex ;						// ƒAƒ‹ƒtƒ@ƒeƒXƒg‚ÌÝ’è’l‚É‘Î‰ž‚·‚éƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[‚ÌƒAƒ‹ƒtƒ@ƒeƒXƒgƒ‚[ƒh( ANDROID_FS_ALPHATEST_CMP_GREATER ‚È‚Ç )
+	RECT							ScissorRect ;									// ã‚·ã‚¶ãƒ¼çŸ©å½¢
+	int								AlphaTestEnable ;								// ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹
+	int								AlphaTestCmpMode ;								// ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆã§ä½¿ç”¨ã™ã‚‹æ¯”è¼ƒãƒ¢ãƒ¼ãƒ‰( DX_CMP_NEVER ãªã© )
+	int								AlphaTestRef ;									// ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆã§ä½¿ç”¨ã™ã‚‹å‚ç…§å€¤
+	int								AlphaTestModeShaderIndex ;						// ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆã®è¨­å®šå€¤ã«å¯¾å¿œã™ã‚‹ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆãƒ¢ãƒ¼ãƒ‰( ANDROID_FS_ALPHATEST_CMP_GREATER ãªã© )
 
-	int								SetNormalShader ;								// ’Êí•`‰æ—pƒVƒF[ƒ_[‚ªƒZƒbƒg‚³‚ê‚Ä‚¢‚é‚©‚Ç‚¤‚©
-	GRAPHICS_ANDROID_SHADER	*		SetShader ;										// Œ»ÝƒZƒbƒg‚µ‚Ä‚ ‚éƒVƒF[ƒ_[
-	GRAPHICS_ANDROID_SHADER	*		SetShader_Force ;								// NULL ˆÈŠO‚Ìê‡—Dæ“I‚ÉŽg—p‚·‚éƒVƒF[ƒ_[( “ÁŽêˆ——p )
+	int								SetNormalShader ;								// é€šå¸¸æç”»ç”¨ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãŒã‚»ãƒƒãƒˆã•ã‚Œã¦ã„ã‚‹ã‹ã©ã†ã‹
+	GRAPHICS_ANDROID_SHADER	*		SetShader ;										// ç¾åœ¨ã‚»ãƒƒãƒˆã—ã¦ã‚ã‚‹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼
+	GRAPHICS_ANDROID_SHADER	*		SetShader_Force ;								// NULL ä»¥å¤–ã®å ´åˆå„ªå…ˆçš„ã«ä½¿ç”¨ã™ã‚‹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼( ç‰¹æ®Šå‡¦ç†ç”¨ )
 
-	GLuint							SetVertexBuffer ;								// Œ»ÝƒZƒbƒg‚µ‚Ä‚ ‚é’¸“_ƒoƒbƒtƒ@
-	int								VertexAttrEnable[ ANDROID_VERTEX_ATTR_NUM ] ;	// —LŒø‚É‚È‚Á‚Ä‚¢‚é’¸“_ƒf[ƒ^
+	GLuint							SetVertexBuffer ;								// ç¾åœ¨ã‚»ãƒƒãƒˆã—ã¦ã‚ã‚‹é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡
+	int								VertexAttrEnable[ ANDROID_VERTEX_ATTR_NUM ] ;	// æœ‰åŠ¹ã«ãªã£ã¦ã„ã‚‹é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿
 
-	GLuint							TargetFrameBuffer ;								// •`‰æ‘ÎÛ‚ÌƒtƒŒ[ƒ€ƒoƒbƒtƒ@
-	GLuint							TargetFrameBufferWidth ;						// •`‰æ‘ÎÛ‚ÌƒtƒŒ[ƒ€ƒoƒbƒtƒ@‚Ì•
-	GLuint							TargetFrameBufferHeight ;						// •`‰æ‘ÎÛ‚ÌƒtƒŒ[ƒ€ƒoƒbƒtƒ@‚Ì‚‚³
+	GLuint							TargetFrameBuffer ;								// æç”»å¯¾è±¡ã®ãƒ•ãƒ¬ãƒ¼ãƒ ãƒãƒƒãƒ•ã‚¡
+	GLuint							TargetFrameBufferWidth ;						// æç”»å¯¾è±¡ã®ãƒ•ãƒ¬ãƒ¼ãƒ ãƒãƒƒãƒ•ã‚¡ã®å¹…
+	GLuint							TargetFrameBufferHeight ;						// æç”»å¯¾è±¡ã®ãƒ•ãƒ¬ãƒ¼ãƒ ãƒãƒƒãƒ•ã‚¡ã®é«˜ã•
 
-	int								TextureAddressTransformMatrixUse ;				// ƒeƒNƒXƒ`ƒƒÀ•W•ÏŠ·s—ñ‚ðŽg—p‚·‚é‚©‚Ç‚¤‚©( TRUE:Žg—p‚·‚é  FALSE:Žg—p‚µ‚È‚¢ )
-	MATRIX							TextureAddressTransformMatrix ;					// ƒeƒNƒXƒ`ƒƒÀ•W•ÏŠ·s—ñ
+	int								TextureAddressTransformMatrixUse ;				// ãƒ†ã‚¯ã‚¹ãƒãƒ£åº§æ¨™å¤‰æ›è¡Œåˆ—ã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹( TRUE:ä½¿ç”¨ã™ã‚‹  FALSE:ä½¿ç”¨ã—ãªã„ )
+	MATRIX							TextureAddressTransformMatrix ;					// ãƒ†ã‚¯ã‚¹ãƒãƒ£åº§æ¨™å¤‰æ›è¡Œåˆ—
 } ;
 
 
-// AndroidDevice ‚Ì•`‰æˆ—‚ÉŠÖ‚í‚éî•ñ‚Ì\‘¢‘Ì
+// AndroidDevice ã®æç”»å‡¦ç†ã«é–¢ã‚ã‚‹æƒ…å ±ã®æ§‹é€ ä½“
 struct GRAPHICS_HARDDATA_ANDROID_DRAWINFO
 {
-	BYTE *						VertexBufferNextAddr ;						// ŽŸ‚Ìƒf[ƒ^‚ðŠi”[‚·‚×‚«’¸“_ƒoƒbƒtƒ@“à‚ÌƒAƒhƒŒƒX
-	BYTE						VertexBuffer[ DX_GLES2_VERTBUFFERSIZE ] ;	// ’¸“_ƒoƒbƒtƒ@
-	int							Use3DVertex ;							// ‚R‚c’¸“_‚ðŽg—p‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©( 1:Žg—p‚µ‚Ä‚¢‚é  0:Žg—p‚µ‚Ä‚¢‚È‚¢ )
-	int							VertexNum ; 							// ’¸“_ƒoƒbƒtƒ@‚ÉŠi”[‚³‚ê‚Ä‚¢‚é’¸“_‚Ì”
-	int							VertexType ;							// ’¸“_ƒoƒbƒtƒ@‚ÉŠi”[‚³‚ê‚Ä‚¢‚é’¸“_ƒf[ƒ^( VERTEXTYPE_TEX ‚È‚Ç )
-	GLenum						PrimitiveType ;							// ’¸“_ƒoƒbƒtƒ@‚ÉŠi”[‚³‚ê‚Ä‚¢‚é’¸“_ƒf[ƒ^‚ÌƒvƒŠƒ~ƒeƒBƒuƒ^ƒCƒv
+	BYTE *						VertexBufferNextAddr ;						// æ¬¡ã®ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã¹ãé ‚ç‚¹ãƒãƒƒãƒ•ã‚¡å†…ã®ã‚¢ãƒ‰ãƒ¬ã‚¹
+	BYTE						VertexBuffer[ DX_GLES2_VERTBUFFERSIZE ] ;	// é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡
+	int							Use3DVertex ;							// ï¼“ï¼¤é ‚ç‚¹ã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹ã‹ã©ã†ã‹( 1:ä½¿ç”¨ã—ã¦ã„ã‚‹  0:ä½¿ç”¨ã—ã¦ã„ãªã„ )
+	int							VertexNum ; 							// é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã«æ ¼ç´ã•ã‚Œã¦ã„ã‚‹é ‚ç‚¹ã®æ•°
+	int							VertexType ;							// é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã«æ ¼ç´ã•ã‚Œã¦ã„ã‚‹é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿( VERTEXTYPE_TEX ãªã© )
+	GLenum						PrimitiveType ;							// é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã«æ ¼ç´ã•ã‚Œã¦ã„ã‚‹é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ã®ãƒ—ãƒªãƒŸãƒ†ã‚£ãƒ–ã‚¿ã‚¤ãƒ—
 
-	DWORD						DiffuseColor ;							// ƒfƒBƒtƒ…[ƒYƒJƒ‰[
+	DWORD						DiffuseColor ;							// ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚«ãƒ©ãƒ¼
 
-	int							BeginSceneFlag ;						// Graphics_Android_BeginScene ‚ðŽÀs‚µ‚Ä‚ ‚é‚©‚Ç‚¤‚©
-	int							BlendMaxNotDrawFlag ;					// ƒuƒŒƒ“ƒh’l‚ªÅ‘å‚Å‚ ‚é‚±‚Æ‚É‚æ‚è•`‰æ‚ðs‚í‚È‚¢‚©‚Ç‚¤‚©Aƒtƒ‰ƒO
+	int							BeginSceneFlag ;						// Graphics_Android_BeginScene ã‚’å®Ÿè¡Œã—ã¦ã‚ã‚‹ã‹ã©ã†ã‹
+	int							BlendMaxNotDrawFlag ;					// ãƒ–ãƒ¬ãƒ³ãƒ‰å€¤ãŒæœ€å¤§ã§ã‚ã‚‹ã“ã¨ã«ã‚ˆã‚Šæç”»ã‚’è¡Œã‚ãªã„ã‹ã©ã†ã‹ã€ãƒ•ãƒ©ã‚°
 } ;
 
-// AndroidDevice ‚Ì‰æ–ÊŠÖŒW‚Ìî•ñ‚Ì\‘¢‘Ì
+// AndroidDevice ã®ç”»é¢é–¢ä¿‚ã®æƒ…å ±ã®æ§‹é€ ä½“
 struct GRAPHICS_HARDDATA_ANDROID_SCREENINFO
 {
-	EGLDisplay					Display ;								// o—Íæ‚Ì EGLDisplay
-	EGLSurface					Surface ;								// o—Íæ‚ÌƒfƒBƒXƒvƒŒƒC‚Ì EGLSurface
-	EGLContext					Context ;								// o—Íæ‚ÌƒfƒBƒXƒvƒŒƒC‚Ì EGLContext
-	EGLint						Width ;									// o—ÍæƒT[ƒtƒFƒX‚Ì•
-	EGLint						Height ;								// o—ÍæƒT[ƒtƒFƒX‚Ì‚‚³
+	EGLDisplay					Display ;								// å‡ºåŠ›å…ˆã® EGLDisplay
+	EGLSurface					Surface ;								// å‡ºåŠ›å…ˆã®ãƒ‡ã‚£ã‚¹ãƒ—ãƒ¬ã‚¤ã® EGLSurface
+	EGLContext					Context ;								// å‡ºåŠ›å…ˆã®ãƒ‡ã‚£ã‚¹ãƒ—ãƒ¬ã‚¤ã® EGLContext
+	EGLint						Width ;									// å‡ºåŠ›å…ˆã‚µãƒ¼ãƒ•ã‚§ã‚¹ã®å¹…
+	EGLint						Height ;								// å‡ºåŠ›å…ˆã‚µãƒ¼ãƒ•ã‚§ã‚¹ã®é«˜ã•
 
-	int							FrontScreenCopyTime ;					// •\‰æ–Ê‚ð•`‰ææ‚Æ‚µ‚Ä‚¢‚éê‡‚És‚¤ ScreenCopy ‚ðs‚Á‚½ŽžŠÔ
+	int							FrontScreenCopyTime ;					// è¡¨ç”»é¢ã‚’æç”»å…ˆã¨ã—ã¦ã„ã‚‹å ´åˆã«è¡Œã† ScreenCopy ã‚’è¡Œã£ãŸæ™‚é–“
 
-	int							SubBackBufferTextureSizeX ;				// ƒTƒuƒoƒbƒNƒoƒbƒtƒ@ƒeƒNƒXƒ`ƒƒ‚Ì‰¡•
-	int							SubBackBufferTextureSizeY ;				// ƒTƒuƒoƒbƒNƒoƒbƒtƒ@ƒeƒNƒXƒ`ƒƒ‚Ìc•
-	GLuint						SubBackBufferTextureInternalFormat ;	// ƒTƒuƒoƒbƒNƒoƒbƒtƒ@ƒeƒNƒXƒ`ƒƒ‚Ì“à•”ƒtƒH[ƒ}ƒbƒg
-	GLenum						SubBackBufferTexturePixelFormat ;		// ƒTƒuƒoƒbƒNƒoƒbƒtƒ@ƒeƒNƒXƒ`ƒƒ‚ÌƒsƒNƒZƒ‹ƒtƒH[ƒ}ƒbƒg
-	GLuint						SubBackBufferTexturePixelType ;			// ƒTƒuƒoƒbƒNƒoƒbƒtƒ@ƒeƒNƒXƒ`ƒƒ‚ÌƒsƒNƒZƒ‹ƒ^ƒCƒv
-	void *						SubBackBufferTextureTempBuffer ;		// ƒTƒuƒoƒbƒNƒoƒbƒtƒ@ƒeƒNƒXƒ`ƒƒ‚ÉƒCƒ[ƒW‚ð“]‘—‚·‚éÛ‚ÉŽg—p‚·‚éƒoƒbƒtƒ@
-	GLuint						SubBackBufferFrameBuffer ;				// ScreenCopy ‚â GetDrawScreen ‚ðŽÀŒ»‚·‚é‚½‚ß‚ÉŽg—p‚·‚éƒtƒŒ[ƒ€ƒoƒbƒtƒ@
-	GLuint						SubBackBufferTexture ;					// ScreenCopy ‚â GetDrawScreen ‚ðŽÀŒ»‚·‚é‚½‚ß‚ÉŽg—p‚·‚éƒeƒNƒXƒ`ƒƒƒoƒbƒtƒ@
-	GLuint						SubBackBufferDepthBuffer ;				// ScreenCopy ‚â GetDrawScreen ‚ðŽÀŒ»‚·‚é‚½‚ß‚ÉŽg—p‚·‚é[“xƒoƒbƒtƒ@
+	int							SubBackBufferTextureSizeX ;				// ã‚µãƒ–ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®æ¨ªå¹…
+	int							SubBackBufferTextureSizeY ;				// ã‚µãƒ–ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ç¸¦å¹…
+	GLuint						SubBackBufferTextureInternalFormat ;	// ã‚µãƒ–ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®å†…éƒ¨ãƒ•ã‚©ãƒ¼ãƒžãƒƒãƒˆ
+	GLenum						SubBackBufferTexturePixelFormat ;		// ã‚µãƒ–ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ãƒ”ã‚¯ã‚»ãƒ«ãƒ•ã‚©ãƒ¼ãƒžãƒƒãƒˆ
+	GLuint						SubBackBufferTexturePixelType ;			// ã‚µãƒ–ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ãƒ”ã‚¯ã‚»ãƒ«ã‚¿ã‚¤ãƒ—
+	void *						SubBackBufferTextureTempBuffer ;		// ã‚µãƒ–ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ãƒ†ã‚¯ã‚¹ãƒãƒ£ã«ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’è»¢é€ã™ã‚‹éš›ã«ä½¿ç”¨ã™ã‚‹ãƒãƒƒãƒ•ã‚¡
+	GLuint						SubBackBufferFrameBuffer ;				// ScreenCopy ã‚„ GetDrawScreen ã‚’å®Ÿç¾ã™ã‚‹ãŸã‚ã«ä½¿ç”¨ã™ã‚‹ãƒ•ãƒ¬ãƒ¼ãƒ ãƒãƒƒãƒ•ã‚¡
+	GLuint						SubBackBufferTexture ;					// ScreenCopy ã‚„ GetDrawScreen ã‚’å®Ÿç¾ã™ã‚‹ãŸã‚ã«ä½¿ç”¨ã™ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒãƒƒãƒ•ã‚¡
+	GLuint						SubBackBufferDepthBuffer ;				// ScreenCopy ã‚„ GetDrawScreen ã‚’å®Ÿç¾ã™ã‚‹ãŸã‚ã«ä½¿ç”¨ã™ã‚‹æ·±åº¦ãƒãƒƒãƒ•ã‚¡
 
-	void *						DrawScreenLockImage ;					// •`‰ææ‚ÌƒƒbƒNŽž‚Éì¬‚·‚éƒeƒ“ƒ|ƒ‰ƒŠƒCƒ[ƒW
-	GLuint						DrawScreenLockImagePitch ;				// ƒƒbƒNƒCƒ[ƒW‚Ìƒsƒbƒ`
+	void *						DrawScreenLockImage ;					// æç”»å…ˆã®ãƒ­ãƒƒã‚¯æ™‚ã«ä½œæˆã™ã‚‹ãƒ†ãƒ³ãƒãƒ©ãƒªã‚¤ãƒ¡ãƒ¼ã‚¸
+	GLuint						DrawScreenLockImagePitch ;				// ãƒ­ãƒƒã‚¯ã‚¤ãƒ¡ãƒ¼ã‚¸ã®ãƒ”ãƒƒãƒ
 } ;
 
 
-// AndroidDevice ‚Ì•`‰æÝ’è‚ÉŠÖ‚í‚éî•ñ‚Ì\‘¢‘Ì
+// AndroidDevice ã®æç”»è¨­å®šã«é–¢ã‚ã‚‹æƒ…å ±ã®æ§‹é€ ä½“
 struct GRAPHICS_HARDDATA_ANDROID_DRAWSETTING
 {
-	int								DrawPrepParamFlag ;						// ‘O‰ñ Graphics_Android_DrawPreparation ‚É“ü‚Á‚½‚Æ‚«‚Ì ParamFlag ƒpƒ‰ƒ[ƒ^
-	int								DrawPrepAlwaysFlag ;					// •K‚¸ Graphics_Android_DrawPreparation ‚ðs‚¤‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO
+	int								DrawPrepParamFlag ;						// å‰å›ž Graphics_Android_DrawPreparation ã«å…¥ã£ãŸã¨ãã® ParamFlag ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+	int								DrawPrepAlwaysFlag ;					// å¿…ãš Graphics_Android_DrawPreparation ã‚’è¡Œã†ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°
 
-	int								AlphaChannelValidFlag ;					// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹—LŒøƒtƒ‰ƒO
-	int								AlphaTestValidFlag ;					// ƒ¿ƒeƒXƒg—LŒøƒtƒ‰ƒO( Func ‚Í•K‚¸ D_D3DCMP_GREATEREQUAL )
-	int								AlphaTestMode ;							// ƒAƒ‹ƒtƒ@ƒeƒXƒgƒ‚[ƒh
-	int								AlphaTestParam ;						// ƒAƒ‹ƒtƒ@ƒeƒXƒgƒpƒ‰ƒ[ƒ^
-	int								BlendMode ;								// ƒuƒŒƒ“ƒhƒ‚[ƒh
-	int								BlendEnable ;							// ƒuƒŒƒ“ƒhˆ—‚ðs‚¤‚©‚Ç‚¤‚©( DX_BLENDMODE_CUSTOM —p )
-	int								BlendRGBSrc ;							// RGB‚Ìƒ\[ƒXƒuƒŒƒ“ƒh( DX_BLENDMODE_CUSTOM —p )
-	int								BlendRGBDest ;							// RGB‚ÌƒfƒXƒgƒuƒŒƒ“ƒh( DX_BLENDMODE_CUSTOM —p )
-	int								BlendRGBOp ;							// RGB‚ÌƒuƒŒƒ“ƒhˆ—( DX_BLENDMODE_CUSTOM —p )
-	int								BlendASrc ;								// A‚Ìƒ\[ƒXƒuƒŒƒ“ƒh( DX_BLENDMODE_CUSTOM —p )
-	int								BlendADest ;							// A‚ÌƒfƒXƒgƒuƒŒƒ“ƒh( DX_BLENDMODE_CUSTOM —p )
-	int								BlendAOp ;								// A‚ÌƒuƒŒƒ“ƒhˆ—( DX_BLENDMODE_CUSTOM —p )
-	int								ChangeBlendParamFlag ;					// ƒuƒŒƒ“ƒhÝ’è‚ÉŠÖ‚í‚é•”•ª‚Ì•ÏX‚ª‚ ‚Á‚½‚©Aƒtƒ‰ƒO
-	int								ChangeTextureFlag ;						// ƒeƒNƒXƒ`ƒƒ‚ª•ÏX‚³‚ê‚½‚©Aƒtƒ‰ƒO
-	int								NotWriteAlphaChannelFlag ;				// ƒAƒ‹ƒtƒ@ƒ`ƒƒƒ“ƒlƒ‹‚Ì“à—e‚ð‘‚«Š·‚¦‚È‚¢‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO
-	int								IgnoreGraphColorFlag ;					// •`‰æ‚·‚é‰æ‘œ‚Ì‚q‚f‚a¬•ª‚ð–³Ž‹‚·‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO
-	int								IgnoreGraphAlphaFlag ;					// •`‰æ‚·‚é‰æ‘œ‚Ì‚`¬•ª‚ð–³Ž‹‚·‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO
-//	int								UseDiffuseRGBColor ;					// ƒfƒBƒtƒ…[ƒYƒJƒ‰[‚Ì‚q‚f‚a’l‚ðŽg—p‚·‚é‚©Aƒtƒ‰ƒO
-//	int								UseDiffuseAlphaColor ;					// ƒfƒBƒtƒ…[ƒYƒJƒ‰[‚Ìƒ¿’l‚ðŽg—p‚·‚é‚©Aƒtƒ‰ƒO
-	int								BlendGraphType ;						// ƒuƒŒƒ“ƒh‰æ‘œƒ^ƒCƒv
-	int								BlendGraphFadeRatio ;					// ƒuƒŒƒ“ƒh‰æ‘œ‚ÌƒtƒF[ƒhƒpƒ‰ƒ[ƒ^
-	int								BlendGraphBorderParam ;					// ƒuƒŒƒ“ƒh‰æ‘œ‚Ì‹«ŠEƒpƒ‰ƒ[ƒ^(‚O(ƒuƒŒƒ“ƒh‰æ‘œ‚Ì‰e‹¿‚O)@©@(ƒuƒŒƒ“ƒh‰æ‘œ‚Ì‰e‹¿­‚È‚¢)@©@‚P‚Q‚W(ƒuƒŒƒ“ƒh‰æ‘œ‚Ì‰e‹¿‚P‚O‚O“)@¨@(ƒuƒŒƒ“ƒh‰æ‘œ‚Ì‰e‹¿‚ð’´‚¦‚Ä”ñ•`‰æ•”•ª‚ª‘‚¦‚é)@¨‚Q‚T‚T(‘S‚­•`‰æ‚³‚ê‚È‚¢) )
-	int								BlendGraphBorderRange ;					// ƒuƒŒƒ“ƒh‰æ‘œ‚Ì‹«ŠE•(‚O`‚Q‚T‚T@‹·‚¢`L‚¢@‚µ‚©‚µ‚S’iŠK)
-	float							BlendTextureWidth ;						// ƒuƒŒƒ“ƒhƒeƒNƒXƒ`ƒƒ‚Ì•
-	float							BlendTextureHeight ;					// ƒuƒŒƒ“ƒhƒeƒNƒXƒ`ƒƒ‚Ì‚‚³
-	float							InvBlendTextureWidth ;					// ƒuƒŒƒ“ƒhƒeƒNƒXƒ`ƒƒ‚Ì•‚Ì‹t”
-	float							InvBlendTextureHeight ;					// ƒuƒŒƒ“ƒhƒeƒNƒXƒ`ƒƒ‚Ì‚‚³‚Ì‹t”
+	int								AlphaChannelValidFlag ;					// Î±ãƒãƒ£ãƒ³ãƒãƒ«æœ‰åŠ¹ãƒ•ãƒ©ã‚°
+	int								AlphaTestValidFlag ;					// Î±ãƒ†ã‚¹ãƒˆæœ‰åŠ¹ãƒ•ãƒ©ã‚°( Func ã¯å¿…ãš D_D3DCMP_GREATEREQUAL )
+	int								AlphaTestMode ;							// ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆãƒ¢ãƒ¼ãƒ‰
+	int								AlphaTestParam ;						// ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+	int								BlendMode ;								// ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰
+	int								BlendEnable ;							// ãƒ–ãƒ¬ãƒ³ãƒ‰å‡¦ç†ã‚’è¡Œã†ã‹ã©ã†ã‹( DX_BLENDMODE_CUSTOM ç”¨ )
+	int								BlendRGBSrc ;							// RGBã®ã‚½ãƒ¼ã‚¹ãƒ–ãƒ¬ãƒ³ãƒ‰( DX_BLENDMODE_CUSTOM ç”¨ )
+	int								BlendRGBDest ;							// RGBã®ãƒ‡ã‚¹ãƒˆãƒ–ãƒ¬ãƒ³ãƒ‰( DX_BLENDMODE_CUSTOM ç”¨ )
+	int								BlendRGBOp ;							// RGBã®ãƒ–ãƒ¬ãƒ³ãƒ‰å‡¦ç†( DX_BLENDMODE_CUSTOM ç”¨ )
+	int								BlendASrc ;								// Aã®ã‚½ãƒ¼ã‚¹ãƒ–ãƒ¬ãƒ³ãƒ‰( DX_BLENDMODE_CUSTOM ç”¨ )
+	int								BlendADest ;							// Aã®ãƒ‡ã‚¹ãƒˆãƒ–ãƒ¬ãƒ³ãƒ‰( DX_BLENDMODE_CUSTOM ç”¨ )
+	int								BlendAOp ;								// Aã®ãƒ–ãƒ¬ãƒ³ãƒ‰å‡¦ç†( DX_BLENDMODE_CUSTOM ç”¨ )
+	int								ChangeBlendParamFlag ;					// ãƒ–ãƒ¬ãƒ³ãƒ‰è¨­å®šã«é–¢ã‚ã‚‹éƒ¨åˆ†ã®å¤‰æ›´ãŒã‚ã£ãŸã‹ã€ãƒ•ãƒ©ã‚°
+	int								ChangeTextureFlag ;						// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãŒå¤‰æ›´ã•ã‚ŒãŸã‹ã€ãƒ•ãƒ©ã‚°
+	int								NotWriteAlphaChannelFlag ;				// ã‚¢ãƒ«ãƒ•ã‚¡ãƒãƒ£ãƒ³ãƒãƒ«ã®å†…å®¹ã‚’æ›¸ãæ›ãˆãªã„ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°
+	int								IgnoreGraphColorFlag ;					// æç”»ã™ã‚‹ç”»åƒã®ï¼²ï¼§ï¼¢æˆåˆ†ã‚’ç„¡è¦–ã™ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°
+	int								IgnoreGraphAlphaFlag ;					// æç”»ã™ã‚‹ç”»åƒã®ï¼¡æˆåˆ†ã‚’ç„¡è¦–ã™ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°
+//	int								UseDiffuseRGBColor ;					// ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚«ãƒ©ãƒ¼ã®ï¼²ï¼§ï¼¢å€¤ã‚’ä½¿ç”¨ã™ã‚‹ã‹ã€ãƒ•ãƒ©ã‚°
+//	int								UseDiffuseAlphaColor ;					// ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚«ãƒ©ãƒ¼ã®Î±å€¤ã‚’ä½¿ç”¨ã™ã‚‹ã‹ã€ãƒ•ãƒ©ã‚°
+	int								BlendGraphType ;						// ãƒ–ãƒ¬ãƒ³ãƒ‰ç”»åƒã‚¿ã‚¤ãƒ—
+	int								BlendGraphFadeRatio ;					// ãƒ–ãƒ¬ãƒ³ãƒ‰ç”»åƒã®ãƒ•ã‚§ãƒ¼ãƒ‰ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+	int								BlendGraphBorderParam ;					// ãƒ–ãƒ¬ãƒ³ãƒ‰ç”»åƒã®å¢ƒç•Œãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿(ï¼(ãƒ–ãƒ¬ãƒ³ãƒ‰ç”»åƒã®å½±éŸ¿ï¼)ã€€â†ã€€(ãƒ–ãƒ¬ãƒ³ãƒ‰ç”»åƒã®å½±éŸ¿å°‘ãªã„)ã€€â†ã€€ï¼‘ï¼’ï¼˜(ãƒ–ãƒ¬ãƒ³ãƒ‰ç”»åƒã®å½±éŸ¿ï¼‘ï¼ï¼ï¼…)ã€€â†’ã€€(ãƒ–ãƒ¬ãƒ³ãƒ‰ç”»åƒã®å½±éŸ¿ã‚’è¶…ãˆã¦éžæç”»éƒ¨åˆ†ãŒå¢—ãˆã‚‹)ã€€â†’ï¼’ï¼•ï¼•(å…¨ãæç”»ã•ã‚Œãªã„) )
+	int								BlendGraphBorderRange ;					// ãƒ–ãƒ¬ãƒ³ãƒ‰ç”»åƒã®å¢ƒç•Œå¹…(ï¼ï½žï¼’ï¼•ï¼•ã€€ç‹­ã„ï½žåºƒã„ã€€ã—ã‹ã—ï¼”æ®µéšŽ)
+	float							BlendTextureWidth ;						// ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®å¹…
+	float							BlendTextureHeight ;					// ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®é«˜ã•
+	float							InvBlendTextureWidth ;					// ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®å¹…ã®é€†æ•°
+	float							InvBlendTextureHeight ;					// ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®é«˜ã•ã®é€†æ•°
 
-	GRAPHICS_ANDROID_TEXTURE		*RenderTexture ;						// •`‰æŽž‚ÉŽg—p‚·‚éƒeƒNƒXƒ`ƒƒ[
-	GRAPHICS_ANDROID_TEXTURE		*BlendTexture ;							// •`‰æŽž‚É•`‰æƒeƒNƒXƒ`ƒƒ[‚ÆƒuƒŒƒ“ƒh‚·‚éƒ¿ƒ`ƒƒƒ“ƒlƒ‹ƒeƒNƒXƒ`ƒƒ[
+	GRAPHICS_ANDROID_TEXTURE		*RenderTexture ;						// æç”»æ™‚ã«ä½¿ç”¨ã™ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼
+	GRAPHICS_ANDROID_TEXTURE		*BlendTexture ;							// æç”»æ™‚ã«æç”»ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã¨ãƒ–ãƒ¬ãƒ³ãƒ‰ã™ã‚‹Î±ãƒãƒ£ãƒ³ãƒãƒ«ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼
 
-	int								CancelSettingEqualCheck ;				// ‚±‚Ìƒtƒ‰ƒO‚ª—§‚Á‚Ä‚¢‚éê‡‚ÍŒ»Ý‚ÌÝ’è‚Æ•ÏXŒã‚ÌÝ’è‚ª“¯‚¶‚©‚Ç‚¤‚©‚ÉŠÖ‚í‚ç‚¸A•K‚¸•ÏXˆ—‚ðŽÀs‚·‚é
+	int								CancelSettingEqualCheck ;				// ã“ã®ãƒ•ãƒ©ã‚°ãŒç«‹ã£ã¦ã„ã‚‹å ´åˆã¯ç¾åœ¨ã®è¨­å®šã¨å¤‰æ›´å¾Œã®è¨­å®šãŒåŒã˜ã‹ã©ã†ã‹ã«é–¢ã‚ã‚‰ãšã€å¿…ãšå¤‰æ›´å‡¦ç†ã‚’å®Ÿè¡Œã™ã‚‹
 } ;
 
 
-// AndroidDevice ŠÖŒW‚ÌÝ’èî•ñ‚Ì\‘¢‘Ì
+// AndroidDevice é–¢ä¿‚ã®è¨­å®šæƒ…å ±ã®æ§‹é€ ä½“
 struct GRAPHICS_HARDDATA_ANDROID_DEVICE_SETTING
 {
-	void					( *DeviceRestoreCallbackFunction)( void *Data ) ;	// ƒfƒoƒCƒXƒƒXƒg‚©‚ç•œ‹A‚µ‚½‚Æ‚«‚ÉŒÄ‚ÔŠÖ”
-	void					  *DeviceRestoreCallbackData ;						// ƒfƒoƒCƒXƒƒXƒg‚©‚ç•œ‹A‚µ‚½‚Æ‚«‚ÉŒÄ‚ÔŠÖ”‚É“n‚·ƒ|ƒCƒ“ƒ^
+	void					( *DeviceRestoreCallbackFunction)( void *Data ) ;	// ãƒ‡ãƒã‚¤ã‚¹ãƒ­ã‚¹ãƒˆã‹ã‚‰å¾©å¸°ã—ãŸã¨ãã«å‘¼ã¶é–¢æ•°
+	void					  *DeviceRestoreCallbackData ;						// ãƒ‡ãƒã‚¤ã‚¹ãƒ­ã‚¹ãƒˆã‹ã‚‰å¾©å¸°ã—ãŸã¨ãã«å‘¼ã¶é–¢æ•°ã«æ¸¡ã™ãƒã‚¤ãƒ³ã‚¿
 
-	void					( *DeviceLostCallbackFunction)( void *Data ) ;		// ƒfƒoƒCƒXƒƒXƒg‚©‚ç•œ‹A‚·‚é‘O‚ÉŒÄ‚ÔŠÖ”
-	void					  *DeviceLostCallbackData ;							// ƒfƒoƒCƒXƒƒXƒg‚©‚ç•œ‹A‚·‚é‘O‚ÉŒÄ‚ÔŠÖ”‚É“n‚·ƒ|ƒCƒ“ƒ^
+	void					( *DeviceLostCallbackFunction)( void *Data ) ;		// ãƒ‡ãƒã‚¤ã‚¹ãƒ­ã‚¹ãƒˆã‹ã‚‰å¾©å¸°ã™ã‚‹å‰ã«å‘¼ã¶é–¢æ•°
+	void					  *DeviceLostCallbackData ;							// ãƒ‡ãƒã‚¤ã‚¹ãƒ­ã‚¹ãƒˆã‹ã‚‰å¾©å¸°ã™ã‚‹å‰ã«å‘¼ã¶é–¢æ•°ã«æ¸¡ã™ãƒã‚¤ãƒ³ã‚¿
 } ;
 
 
-// AndroidDevice ‚Ì”\—Íî•ñ\‘¢‘Ì
+// AndroidDevice ã®èƒ½åŠ›æƒ…å ±æ§‹é€ ä½“
 struct GRAPHICS_HARDDATA_ANDROID_DEVICE_CAPS
 {
 	TCHAR *						Version ;
@@ -983,8 +983,8 @@ struct GRAPHICS_HARDDATA_ANDROID_DEVICE_CAPS
 	TCHAR *						Vendor ;
 
 	unsigned char				Extensions[ ANDROID_GL_EXTENSION_NUM ] ;			// Extensions
-	int							ExtensionNum ;										// Extension ‚Ì”
-	TCHAR **					ExtensionNames ;									// Extension –¼‚Ì”z—ñ
+	int							ExtensionNum ;										// Extension ã®æ•°
+	TCHAR **					ExtensionNames ;									// Extension åã®é…åˆ—
 
 	TCHAR *						Shading_Language_Version ;
 
@@ -996,32 +996,32 @@ struct GRAPHICS_HARDDATA_ANDROID_DEVICE_CAPS
 	GLint						Shader_Max_Texture_Image_Units ;					// GL_MAX_TEXTURE_IMAGE_UNITS
 	GLint						Shader_Max_Fragment_Uniform_Vectors ;				// GL_MAX_FRAGMENT_UNIFORM_VECTORS
 
-	int							ScreenFormat ;										// ‰æ–ÊƒJƒ‰[ƒtƒH[ƒ}ƒbƒg
-	int							TextureFormat[ DX_GRAPHICSIMAGE_FORMAT_3D_NUM ] ;	// ƒeƒNƒXƒ`ƒƒƒtƒH[ƒ}ƒbƒg
-	int							MaskAlphaFormat ;									// ƒ}ƒXƒNƒAƒ‹ƒtƒ@ƒ`ƒƒƒ“ƒlƒ‹—pƒtƒH[ƒ}ƒbƒg
-	GLenum						DepthBufferFormat[ ZBUFFER_FORMAT_NUM ] ;			// [“xƒoƒbƒtƒ@ƒtƒH[ƒ}ƒbƒg
+	int							ScreenFormat ;										// ç”»é¢ã‚«ãƒ©ãƒ¼ãƒ•ã‚©ãƒ¼ãƒžãƒƒãƒˆ
+	int							TextureFormat[ DX_GRAPHICSIMAGE_FORMAT_3D_NUM ] ;	// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ•ã‚©ãƒ¼ãƒžãƒƒãƒˆ
+	int							MaskAlphaFormat ;									// ãƒžã‚¹ã‚¯ã‚¢ãƒ«ãƒ•ã‚¡ãƒãƒ£ãƒ³ãƒãƒ«ç”¨ãƒ•ã‚©ãƒ¼ãƒžãƒƒãƒˆ
+	GLenum						DepthBufferFormat[ ZBUFFER_FORMAT_NUM ] ;			// æ·±åº¦ãƒãƒƒãƒ•ã‚¡ãƒ•ã‚©ãƒ¼ãƒžãƒƒãƒˆ
 } ;
 
 
-// Android ‚ðŽg‚Á‚½•`‰æˆ—‚ÅŽg—p‚·‚éƒf[ƒ^‚Ì“à‚Ì AndroidDevice ‚ÌƒŠƒZƒbƒg‚Å
-// î•ñ‚ð‰Šú‰»‚·‚é•K—v‚ª‚ ‚éAAndroidDevice ‚É–§Ú‚ÉŠÖ‚í‚Á‚½î•ñ‚ð“Z‚ß‚½\‘¢‘Ì
+// Android ã‚’ä½¿ã£ãŸæç”»å‡¦ç†ã§ä½¿ç”¨ã™ã‚‹ãƒ‡ãƒ¼ã‚¿ã®å†…ã® AndroidDevice ã®ãƒªã‚»ãƒƒãƒˆã§
+// æƒ…å ±ã‚’åˆæœŸåŒ–ã™ã‚‹å¿…è¦ãŒã‚ã‚‹ã€AndroidDevice ã«å¯†æŽ¥ã«é–¢ã‚ã£ãŸæƒ…å ±ã‚’çºã‚ãŸæ§‹é€ ä½“
 struct GRAPHICS_HARDDATA_ANDROID_DEVICE
 {
-	GRAPHICS_HARDDATA_ANDROID_DEVICE_CAPS			Caps ;					// ƒfƒoƒCƒX”\—Íî•ñ\‘¢‘Ì		
+	GRAPHICS_HARDDATA_ANDROID_DEVICE_CAPS			Caps ;					// ãƒ‡ãƒã‚¤ã‚¹èƒ½åŠ›æƒ…å ±æ§‹é€ ä½“		
 
-	GRAPHICS_HARDDATA_ANDROID_DEVICE_SETTING		Setting ;				// ƒfƒoƒCƒXŠÖŒW‚ÌÝ’èî•ñ‚ð“Z‚ß‚½\‘¢‘Ì
+	GRAPHICS_HARDDATA_ANDROID_DEVICE_SETTING		Setting ;				// ãƒ‡ãƒã‚¤ã‚¹é–¢ä¿‚ã®è¨­å®šæƒ…å ±ã‚’çºã‚ãŸæ§‹é€ ä½“
 
-	GRAPHICS_HARDDATA_ANDROID_SCREENINFO			Screen ;				// ‰æ–ÊŠÖŒW‚Ìî•ñ\‘¢‘Ì
+	GRAPHICS_HARDDATA_ANDROID_SCREENINFO			Screen ;				// ç”»é¢é–¢ä¿‚ã®æƒ…å ±æ§‹é€ ä½“
 
-	GRAPHICS_HARDWARE_ANDROID_SHADER				Shader ;				// ƒVƒF[ƒ_[‚ð“Z‚ß‚½\‘¢‘Ì
+	GRAPHICS_HARDWARE_ANDROID_SHADER				Shader ;				// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’çºã‚ãŸæ§‹é€ ä½“
 
-//	GRAPHICS_HARDWARE_ANDROID_INPUTLAYOUT			InputLayout ;			// “ü—ÍƒŒƒCƒAƒEƒg‚ð“Z‚ß‚½\‘¢‘Ì
+//	GRAPHICS_HARDWARE_ANDROID_INPUTLAYOUT			InputLayout ;			// å…¥åŠ›ãƒ¬ã‚¤ã‚¢ã‚¦ãƒˆã‚’çºã‚ãŸæ§‹é€ ä½“
 
-	GRAPHICS_HARDDATA_ANDROID_DRAWSETTING			DrawSetting ;			// •`‰æÝ’è‚ÉŠÖ‚í‚éî•ñ‚ð“Z‚ß‚½\‘¢‘Ì
+	GRAPHICS_HARDDATA_ANDROID_DRAWSETTING			DrawSetting ;			// æç”»è¨­å®šã«é–¢ã‚ã‚‹æƒ…å ±ã‚’çºã‚ãŸæ§‹é€ ä½“
 
-	GRAPHICS_HARDDATA_ANDROID_DRAWINFO				DrawInfo ;				// •`‰æˆ—‚ÉŠÖ‚í‚éî•ñ‚ð“Z‚ß‚½\‘¢‘Ì
+	GRAPHICS_HARDDATA_ANDROID_DRAWINFO				DrawInfo ;				// æç”»å‡¦ç†ã«é–¢ã‚ã‚‹æƒ…å ±ã‚’çºã‚ãŸæ§‹é€ ä½“
 
-	GRAPHICS_HARDDATA_ANDROID_DEVICE_STATE			State ;					// AndroidDevice ‚ÉÝ’è‚µ‚Ä‚¢‚é’l‚ð“Z‚ß‚½\‘¢‘Ì
+	GRAPHICS_HARDDATA_ANDROID_DEVICE_STATE			State ;					// AndroidDevice ã«è¨­å®šã—ã¦ã„ã‚‹å€¤ã‚’çºã‚ãŸæ§‹é€ ä½“
 } ;
 
 
@@ -1036,176 +1036,176 @@ struct GRAPHICS_HARDDATA_ANDROID_DEVICE
 
 
 
-// ƒVƒF[ƒ_[ƒR[ƒhˆê‚Â‚Ìî•ñ\‘¢‘Ì
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚³ãƒ¼ãƒ‰ä¸€ã¤ã®æƒ…å ±æ§‹é€ ä½“
 struct GRAPHICS_HARDWARE_ANDROID_SHADERCODE_INFO
 {
-	void					*Binary ;								// ƒVƒF[ƒ_[ƒR[ƒhƒoƒCƒiƒŠ‚ÌƒAƒhƒŒƒX
-	int						Size ;									// ƒVƒF[ƒ_[ƒR[ƒhƒoƒCƒiƒŠ‚Ìƒf[ƒ^ƒTƒCƒY
+	void					*Binary ;								// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚³ãƒ¼ãƒ‰ãƒã‚¤ãƒŠãƒªã®ã‚¢ãƒ‰ãƒ¬ã‚¹
+	int						Size ;									// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚³ãƒ¼ãƒ‰ãƒã‚¤ãƒŠãƒªã®ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
 } ;
 
 
-// Android ‚Ì •W€•`‰æ—p‚ÌƒVƒF[ƒ_[ƒR[ƒh‚ÌŒ³ƒf[ƒ^‚ð“Z‚ß‚½\‘¢‘Ì
+// Android ã® æ¨™æº–æç”»ç”¨ã®ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚³ãƒ¼ãƒ‰ã®å…ƒãƒ‡ãƒ¼ã‚¿ã‚’çºã‚ãŸæ§‹é€ ä½“
 struct GRAPHICS_HARDWARE_ANDROID_SHADERCODE_BASE
 {
-	int						BaseShaderInitializeFlag ;				// ƒVƒF[ƒ_[ƒoƒCƒiƒŠ‚ÌƒZƒbƒgƒAƒbƒv‚ªŠ®—¹‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO( TRUE:Š®—¹‚µ‚Ä‚¢‚é  FALSE:Š®—¹‚µ‚Ä‚¢‚È‚¢ )
+	int						BaseShaderInitializeFlag ;				// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒã‚¤ãƒŠãƒªã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ãŒå®Œäº†ã—ã¦ã„ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°( TRUE:å®Œäº†ã—ã¦ã„ã‚‹  FALSE:å®Œäº†ã—ã¦ã„ãªã„ )
 
-	// ƒ‰ƒCƒgƒCƒ“ƒfƒbƒNƒXƒŠƒXƒg
+	// ãƒ©ã‚¤ãƒˆã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒªã‚¹ãƒˆ
 	short					LightIndexList84[ 4 ][ 4 ][ 4 ][ 4 ][ 4 ][ 4 ] ;
 	short					LightIndexList20[ 4 ][ 4 ][ 4 ] ;
 	short					LightIndexList10[ 3 ][ 3 ][ 3 ] ;
 
-	void					*Base2DShaderPackageImage ;				// •W€‚Q‚c•`‰æ—pƒVƒF[ƒ_[ƒpƒbƒP[ƒWƒoƒCƒiƒŠƒCƒ[ƒW
+	void					*Base2DShaderPackageImage ;				// æ¨™æº–ï¼’ï¼¤æç”»ç”¨ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ãƒã‚¤ãƒŠãƒªã‚¤ãƒ¡ãƒ¼ã‚¸
 
-	// •W€•`‰æ—p‚Ì•¡ŽG‚Èˆ—‚ðs‚í‚È‚¢’¸“_ƒVƒF[ƒ_[
+	// æ¨™æº–æç”»ç”¨ã®è¤‡é›‘ãªå‡¦ç†ã‚’è¡Œã‚ãªã„é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼
 	GRAPHICS_HARDWARE_ANDROID_SHADERCODE_INFO BaseSimple_VS_Code[ ANDROID_VERTEX_INPUTLAYOUT_NUM ] ;
 
-	// ŒÅ’è‹@”\ƒpƒCƒvƒ‰ƒCƒ“ŒÝŠ·‚Ìƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[( ƒeƒNƒXƒ`ƒƒ‚È‚µ )
-	// [ “ÁŽêŒø‰Ê( 0:’Êí•`‰æ  1:æŽZ•`‰æ  2:RGB”½“]  3:•`‰æ‹P“x‚S”{  4:æŽZÏ‚Ýƒ¿ƒuƒŒƒ“ƒhƒ‚[ƒh‚Ì’Êí•`‰æ  5:æŽZÏ‚Ýƒ¿ƒuƒŒƒ“ƒhƒ‚[ƒh‚ÌRGB”½“]  6:æŽZÏ‚Ýƒ¿ƒuƒŒƒ“ƒhƒ‚[ƒh‚Ì•`‰æ‹P“x4”{ ) ]
-	// [ ƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[‚ÌƒAƒ‹ƒtƒ@ƒeƒXƒgƒ‚[ƒh ]
+	// å›ºå®šæ©Ÿèƒ½ãƒ‘ã‚¤ãƒ—ãƒ©ã‚¤ãƒ³äº’æ›ã®ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼( ãƒ†ã‚¯ã‚¹ãƒãƒ£ãªã— )
+	// [ ç‰¹æ®ŠåŠ¹æžœ( 0:é€šå¸¸æç”»  1:ä¹—ç®—æç”»  2:RGBåè»¢  3:æç”»è¼åº¦ï¼”å€  4:ä¹—ç®—æ¸ˆã¿Î±ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã®é€šå¸¸æç”»  5:ä¹—ç®—æ¸ˆã¿Î±ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã®RGBåè»¢  6:ä¹—ç®—æ¸ˆã¿Î±ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã®æç”»è¼åº¦4å€ ) ]
+	// [ ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆãƒ¢ãƒ¼ãƒ‰ ]
 	GRAPHICS_HARDWARE_ANDROID_SHADERCODE_INFO BaseNoneTex_FS_Code[ ANDROID_RENDER_TYPE_NUM ][ ANDROID_FS_ALPHATEST_NUM ] ;
 
-	// ŒÅ’è‹@”\ƒpƒCƒvƒ‰ƒCƒ“ŒÝŠ·‚Ìƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[( ƒeƒNƒXƒ`ƒƒ‚ ‚è )
-	// [ ƒuƒŒƒ“ƒh‰æ‘œ‚Æ‚ÌƒuƒŒƒ“ƒhƒ^ƒCƒv( 0:‚È‚µ  1:DX_BLENDGRAPHTYPE_NORMAL  2:DX_BLENDGRAPHTYPE_WIPE  3:DX_BLENDGRAPHTYPE_ALPHA ) ]
-	// [ “ÁŽêŒø‰Ê( 0:’Êí•`‰æ  1:æŽZ•`‰æ  2:RGB”½“]  3:•`‰æ‹P“x‚S”{  4:æŽZÏ‚Ýƒ¿ƒuƒŒƒ“ƒhƒ‚[ƒh‚Ì’Êí•`‰æ  5:æŽZÏ‚Ýƒ¿ƒuƒŒƒ“ƒhƒ‚[ƒh‚ÌRGB”½“]  6:æŽZÏ‚Ýƒ¿ƒuƒŒƒ“ƒhƒ‚[ƒh‚Ì•`‰æ‹P“x4”{ ) ]
-	// [ ƒeƒNƒXƒ`ƒƒRGB–³Ž‹( 0:–³Ž‹‚µ‚È‚¢  1:–³Ž‹‚·‚é ) ]
-	// [ ƒeƒNƒXƒ`ƒƒAlpha–³Ž‹( 0:–³Ž‹‚µ‚È‚¢  1:–³Ž‹‚·‚é ) ]
-	// [ ƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[‚ÌƒAƒ‹ƒtƒ@ƒeƒXƒgƒ‚[ƒh ]
+	// å›ºå®šæ©Ÿèƒ½ãƒ‘ã‚¤ãƒ—ãƒ©ã‚¤ãƒ³äº’æ›ã®ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼( ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚ã‚Š )
+	// [ ãƒ–ãƒ¬ãƒ³ãƒ‰ç”»åƒã¨ã®ãƒ–ãƒ¬ãƒ³ãƒ‰ã‚¿ã‚¤ãƒ—( 0:ãªã—  1:DX_BLENDGRAPHTYPE_NORMAL  2:DX_BLENDGRAPHTYPE_WIPE  3:DX_BLENDGRAPHTYPE_ALPHA ) ]
+	// [ ç‰¹æ®ŠåŠ¹æžœ( 0:é€šå¸¸æç”»  1:ä¹—ç®—æç”»  2:RGBåè»¢  3:æç”»è¼åº¦ï¼”å€  4:ä¹—ç®—æ¸ˆã¿Î±ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã®é€šå¸¸æç”»  5:ä¹—ç®—æ¸ˆã¿Î±ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã®RGBåè»¢  6:ä¹—ç®—æ¸ˆã¿Î±ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã®æç”»è¼åº¦4å€ ) ]
+	// [ ãƒ†ã‚¯ã‚¹ãƒãƒ£RGBç„¡è¦–( 0:ç„¡è¦–ã—ãªã„  1:ç„¡è¦–ã™ã‚‹ ) ]
+	// [ ãƒ†ã‚¯ã‚¹ãƒãƒ£Alphaç„¡è¦–( 0:ç„¡è¦–ã—ãªã„  1:ç„¡è¦–ã™ã‚‹ ) ]
+	// [ ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆãƒ¢ãƒ¼ãƒ‰ ]
 	GRAPHICS_HARDWARE_ANDROID_SHADERCODE_INFO BaseUseTex_FS_Code[ 4 ][ ANDROID_RENDER_TYPE_NUM ][ 2 ][ 2 ][ ANDROID_FS_ALPHATEST_NUM ] ;
 
-	// ƒ}ƒXƒNˆ——pƒVƒF[ƒ_[
+	// ãƒžã‚¹ã‚¯å‡¦ç†ç”¨ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼
 	GRAPHICS_HARDWARE_ANDROID_SHADERCODE_INFO MaskEffect_VS_Code ;
 	GRAPHICS_HARDWARE_ANDROID_SHADERCODE_INFO MaskEffect_FS_Code ;
 	GRAPHICS_HARDWARE_ANDROID_SHADERCODE_INFO MaskEffect_ReverseEffect_FS_Code ;
 	GRAPHICS_HARDWARE_ANDROID_SHADERCODE_INFO MaskEffect_UseGraphHandle_FS_Code[ 4 ] ;
 	GRAPHICS_HARDWARE_ANDROID_SHADERCODE_INFO MaskEffect_UseGraphHandle_ReverseEffect_FS_Code[ 4 ] ;
 
-	// ’Pƒ“]‘——pƒVƒF[ƒ_[
+	// å˜ç´”è»¢é€ç”¨ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼
 	GRAPHICS_HARDWARE_ANDROID_SHADERCODE_INFO StretchRect_VS_Code ;
 	GRAPHICS_HARDWARE_ANDROID_SHADERCODE_INFO StretchRectTex2_VS_Code ;
 	GRAPHICS_HARDWARE_ANDROID_SHADERCODE_INFO StretchRectTex8_VS_Code ;
 	GRAPHICS_HARDWARE_ANDROID_SHADERCODE_INFO StretchRect_FS_Code ;
 
-	// ƒNƒŠƒAˆ——pƒVƒF[ƒ_[
+	// ã‚¯ãƒªã‚¢å‡¦ç†ç”¨ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼
 	GRAPHICS_HARDWARE_ANDROID_SHADERCODE_INFO ClearRT_VS_Code ;
 	GRAPHICS_HARDWARE_ANDROID_SHADERCODE_INFO ClearRT_FS_Code ;
 
 #ifndef DX_NON_FILTER
-	DXARC					FilterShaderBinDxa ;					// ƒtƒBƒ‹ƒ^[ƒVƒF[ƒ_[ƒIƒuƒWƒFƒNƒgƒtƒ@ƒCƒ‹‚c‚w‚`\‘¢‘Ì
-	void					*FilterShaderBinDxaImage ;				// ƒtƒBƒ‹ƒ^[ƒVƒF[ƒ_[ƒIƒuƒWƒFƒNƒgƒtƒ@ƒCƒ‹‚c‚w‚`‚ÌƒoƒCƒiƒŠƒCƒ[ƒW
+	DXARC					FilterShaderBinDxa ;					// ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ•ã‚¡ã‚¤ãƒ«ï¼¤ï¼¸ï¼¡æ§‹é€ ä½“
+	void					*FilterShaderBinDxaImage ;				// ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ•ã‚¡ã‚¤ãƒ«ï¼¤ï¼¸ï¼¡ã®ãƒã‚¤ãƒŠãƒªã‚¤ãƒ¡ãƒ¼ã‚¸
 
-	void					*RGBAMixS_ShaderPackImage ;				// RGBAMix ‚Ì S ‚¾‚¯‚Ì‘g‚Ý‡‚í‚¹‚Q‚T‚UŒÂ‚ÌƒVƒF[ƒ_[ƒpƒbƒP[ƒWƒoƒCƒiƒŠƒCƒ[ƒW
+	void					*RGBAMixS_ShaderPackImage ;				// RGBAMix ã® S ã ã‘ã®çµ„ã¿åˆã‚ã›ï¼’ï¼•ï¼–å€‹ã®ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ãƒã‚¤ãƒŠãƒªã‚¤ãƒ¡ãƒ¼ã‚¸
 
-	// RGBAMix ‚Ì S ‚¾‚¯‚Ì‘g‚Ý‡‚í‚¹‚Q‚T‚UŒÂ‚ÌƒVƒF[ƒ_[[ R ][ G ][ B ][ A ][ 0:’Êí—p  1:æŽZÏ‚ÝƒAƒ‹ƒtƒ@—p ]
+	// RGBAMix ã® S ã ã‘ã®çµ„ã¿åˆã‚ã›ï¼’ï¼•ï¼–å€‹ã®ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼[ R ][ G ][ B ][ A ][ 0:é€šå¸¸ç”¨  1:ä¹—ç®—æ¸ˆã¿ã‚¢ãƒ«ãƒ•ã‚¡ç”¨ ]
 	GRAPHICS_HARDWARE_ANDROID_SHADERCODE_INFO RGBAMixS_FS_Code[ 4 ][ 4 ][ 4 ][ 4 ][ 2 ] ;
 #endif // DX_NON_FILTER
 } ;
 
-// Android ‚Ì •W€‚R‚c•`‰æ—p‚ÌƒVƒF[ƒ_[ƒR[ƒh‚ÌŒ³ƒf[ƒ^‚ð“Z‚ß‚½\‘¢‘Ì
+// Android ã® æ¨™æº–ï¼“ï¼¤æç”»ç”¨ã®ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚³ãƒ¼ãƒ‰ã®å…ƒãƒ‡ãƒ¼ã‚¿ã‚’çºã‚ãŸæ§‹é€ ä½“
 struct GRAPHICS_HARDWARE_ANDROID_SHADERCODE_BASE3D
 {
-	volatile int			Base3DShaderInitializeFlag ;			// ƒVƒF[ƒ_[ƒoƒCƒiƒŠ‚ÌƒZƒbƒgƒAƒbƒv‚ªŠ®—¹‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO( TRUE:Š®—¹‚µ‚Ä‚¢‚é  FALSE:Š®—¹‚µ‚Ä‚¢‚È‚¢ )
+	volatile int			Base3DShaderInitializeFlag ;			// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒã‚¤ãƒŠãƒªã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ãŒå®Œäº†ã—ã¦ã„ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°( TRUE:å®Œäº†ã—ã¦ã„ã‚‹  FALSE:å®Œäº†ã—ã¦ã„ãªã„ )
 
-	void					*Base3DShaderPackageImage ;				// •W€‚R‚c•`‰æ—pƒVƒF[ƒ_[ƒpƒbƒP[ƒWƒoƒCƒiƒŠƒCƒ[ƒW
+	void					*Base3DShaderPackageImage ;				// æ¨™æº–ï¼“ï¼¤æç”»ç”¨ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ãƒã‚¤ãƒŠãƒªã‚¤ãƒ¡ãƒ¼ã‚¸
 
-	// •W€‚R‚c•`‰æ—pƒsƒNƒZƒ‹’PˆÊƒ‰ƒCƒeƒBƒ“ƒOƒ^ƒCƒv‚Ì’¸“_ƒVƒF[ƒ_[( ƒŠƒXƒg‚Í”z—ñ‚Ì¶‚©‚ç )
-	// [ ƒVƒƒƒhƒEƒ}ƒbƒv‚Ì—L–³( 0:–³‚µ 1:—L‚è ) ]
-	// /* [ ƒƒbƒVƒ…ƒ^ƒCƒv( 0:„‘ÌƒƒbƒVƒ… 1:4ƒ{[ƒ““àƒXƒLƒjƒ“ƒOƒƒbƒVƒ… 2:8ƒ{[ƒ““àƒXƒLƒjƒ“ƒOƒƒbƒVƒ… ) ] */
-	// /* [ ƒoƒ“ƒvƒ}ƒbƒv‚Ì—L–³( 0:–³‚µ 1:—L‚è ) ] */
-	// [ ƒtƒHƒOƒ^ƒCƒv ]
+	// æ¨™æº–ï¼“ï¼¤æç”»ç”¨ãƒ”ã‚¯ã‚»ãƒ«å˜ä½ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ã‚¿ã‚¤ãƒ—ã®é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼( ãƒªã‚¹ãƒˆã¯é…åˆ—ã®å·¦ã‹ã‚‰ )
+	// [ ã‚·ãƒ£ãƒ‰ã‚¦ãƒžãƒƒãƒ—ã®æœ‰ç„¡( 0:ç„¡ã— 1:æœ‰ã‚Š ) ]
+	// /* [ ãƒ¡ãƒƒã‚·ãƒ¥ã‚¿ã‚¤ãƒ—( 0:å‰›ä½“ãƒ¡ãƒƒã‚·ãƒ¥ 1:4ãƒœãƒ¼ãƒ³å†…ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥ 2:8ãƒœãƒ¼ãƒ³å†…ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥ ) ] */
+	// /* [ ãƒãƒ³ãƒ—ãƒžãƒƒãƒ—ã®æœ‰ç„¡( 0:ç„¡ã— 1:æœ‰ã‚Š ) ] */
+	// [ ãƒ•ã‚©ã‚°ã‚¿ã‚¤ãƒ— ]
 	GRAPHICS_HARDWARE_ANDROID_SHADERCODE_INFO Base3D_PixelLighting_VS_Code[ 2 ]/*[ 3 ]*//*[ 2 ]*/[ 4 ] ;
 
-	// •W€‚R‚c•`‰æ—pƒsƒNƒZƒ‹’PˆÊƒ‰ƒCƒeƒBƒ“ƒOƒ^ƒCƒv‚Ìƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[( ƒŠƒXƒg‚Í”z—ñ‚Ì¶‚©‚ç )
-	// [ ƒVƒƒƒhƒEƒ}ƒbƒv‚Ì—L–³( 0:–³‚µ 1:—L‚è ) ]
-	// /*[ ƒ}ƒ‹ƒ`ƒeƒNƒXƒ`ƒƒ‚ÌƒuƒŒƒ“ƒhƒ‚[ƒhAMV1_LAYERBLEND_TYPE_TRANSLUCENT ‚È‚Ç‚É +1 ‚µ‚½‚à‚Ì ( 0:ƒ}ƒ‹ƒ`ƒeƒNƒXƒ`ƒƒ–³‚µ  1:ƒ¿ƒuƒŒƒ“ƒh  2:‰ÁŽZƒuƒŒƒ“ƒh  3:æŽZƒuƒŒƒ“ƒh  4:æŽZƒuƒŒƒ“ƒh~2 ) ]*/
-	// /*[ ƒXƒyƒLƒ…ƒ‰ƒ}ƒbƒv ( 0:–³‚¢ 1:‚ ‚é ) ]*/
-	// /*[ ƒoƒ“ƒvƒ}ƒbƒv ( 0:‚È‚µ 1:‚ ‚è ) ]*/
-	// [ ƒ‰ƒCƒgƒCƒ“ƒfƒbƒNƒX ]
-	// /*[ ƒXƒyƒLƒ…ƒ‰‚Ì—L–³( 0:–³‚µ 1:—L‚è ) ]*/
-	// [ “ÁŽêŒø‰Ê( 0:’Êí•`‰æ  1:æŽZ•`‰æ  2:RGB”½“]  3:•`‰æ‹P“x‚S”{  4:æŽZÏ‚Ýƒ¿ƒuƒŒƒ“ƒhƒ‚[ƒh‚Ì’Êí•`‰æ  5:æŽZÏ‚Ýƒ¿ƒuƒŒƒ“ƒhƒ‚[ƒh‚ÌRGB”½“]  6:æŽZÏ‚Ýƒ¿ƒuƒŒƒ“ƒhƒ‚[ƒh‚Ì•`‰æ‹P“x4”{ ) ]
-	// [ ƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[‚ÌƒAƒ‹ƒtƒ@ƒeƒXƒgƒ‚[ƒh ]
+	// æ¨™æº–ï¼“ï¼¤æç”»ç”¨ãƒ”ã‚¯ã‚»ãƒ«å˜ä½ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ã‚¿ã‚¤ãƒ—ã®ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼( ãƒªã‚¹ãƒˆã¯é…åˆ—ã®å·¦ã‹ã‚‰ )
+	// [ ã‚·ãƒ£ãƒ‰ã‚¦ãƒžãƒƒãƒ—ã®æœ‰ç„¡( 0:ç„¡ã— 1:æœ‰ã‚Š ) ]
+	// /*[ ãƒžãƒ«ãƒãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã€MV1_LAYERBLEND_TYPE_TRANSLUCENT ãªã©ã« +1 ã—ãŸã‚‚ã® ( 0:ãƒžãƒ«ãƒãƒ†ã‚¯ã‚¹ãƒãƒ£ç„¡ã—  1:Î±ãƒ–ãƒ¬ãƒ³ãƒ‰  2:åŠ ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰  3:ä¹—ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰  4:ä¹—ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰Ã—2 ) ]*/
+	// /*[ ã‚¹ãƒšã‚­ãƒ¥ãƒ©ãƒžãƒƒãƒ— ( 0:ç„¡ã„ 1:ã‚ã‚‹ ) ]*/
+	// /*[ ãƒãƒ³ãƒ—ãƒžãƒƒãƒ— ( 0:ãªã— 1:ã‚ã‚Š ) ]*/
+	// [ ãƒ©ã‚¤ãƒˆã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ ]
+	// /*[ ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã®æœ‰ç„¡( 0:ç„¡ã— 1:æœ‰ã‚Š ) ]*/
+	// [ ç‰¹æ®ŠåŠ¹æžœ( 0:é€šå¸¸æç”»  1:ä¹—ç®—æç”»  2:RGBåè»¢  3:æç”»è¼åº¦ï¼”å€  4:ä¹—ç®—æ¸ˆã¿Î±ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã®é€šå¸¸æç”»  5:ä¹—ç®—æ¸ˆã¿Î±ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã®RGBåè»¢  6:ä¹—ç®—æ¸ˆã¿Î±ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã®æç”»è¼åº¦4å€ ) ]
+	// [ ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆãƒ¢ãƒ¼ãƒ‰ ]
 	GRAPHICS_HARDWARE_ANDROID_SHADERCODE_INFO Base3D_PixelLighting_Normal_FS_Code[ 2 ]/*[ 5 ]*//*[ 2 ]*//*[ 2 ]*/[ 84 ]/*[ 2 ]*/[ ANDROID_RENDER_TYPE_NUM ][ ANDROID_FS_ALPHATEST_NUM ] ;
 
 
 
-	// •W€‚R‚c•`‰æ—p‚ÌƒVƒƒƒhƒEƒ}ƒbƒv‚Ö‚ÌƒŒƒ“ƒ_ƒŠƒ“ƒO—p’¸“_ƒVƒF[ƒ_[
-	// /*[ ƒƒbƒVƒ…ƒ^ƒCƒv( 0:„‘ÌƒƒbƒVƒ… 1:4ƒ{[ƒ““àƒXƒLƒjƒ“ƒOƒƒbƒVƒ…  2:8ƒ{[ƒ““àƒXƒLƒjƒ“ƒOƒƒbƒVƒ… ) ]*/
-	// [ ƒoƒ“ƒvƒ}ƒbƒv‚Ì—L–³( 0:–³‚µ 1:—L‚è ) ]
+	// æ¨™æº–ï¼“ï¼¤æç”»ç”¨ã®ã‚·ãƒ£ãƒ‰ã‚¦ãƒžãƒƒãƒ—ã¸ã®ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ç”¨é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼
+	// /*[ ãƒ¡ãƒƒã‚·ãƒ¥ã‚¿ã‚¤ãƒ—( 0:å‰›ä½“ãƒ¡ãƒƒã‚·ãƒ¥ 1:4ãƒœãƒ¼ãƒ³å†…ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥  2:8ãƒœãƒ¼ãƒ³å†…ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥ ) ]*/
+	// [ ãƒãƒ³ãƒ—ãƒžãƒƒãƒ—ã®æœ‰ç„¡( 0:ç„¡ã— 1:æœ‰ã‚Š ) ]
 	GRAPHICS_HARDWARE_ANDROID_SHADERCODE_INFO Base3D_ShadowMap_VS_Code/*[ 3 ]*/[ 2 ] ;
 
-	// •W€‚R‚c•`‰æ—p‚Ìƒ‰ƒCƒeƒBƒ“ƒO‚È‚µ’¸“_ƒVƒF[ƒ_[
-	// /*[ ƒƒbƒVƒ…ƒ^ƒCƒv( 0:„‘ÌƒƒbƒVƒ… 1:4ƒ{[ƒ““àƒXƒLƒjƒ“ƒOƒƒbƒVƒ…  2:8ƒ{[ƒ““àƒXƒLƒjƒ“ƒOƒƒbƒVƒ… ) ]*/
-	// [ ƒtƒHƒOƒ^ƒCƒv ]
+	// æ¨™æº–ï¼“ï¼¤æç”»ç”¨ã®ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ãªã—é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼
+	// /*[ ãƒ¡ãƒƒã‚·ãƒ¥ã‚¿ã‚¤ãƒ—( 0:å‰›ä½“ãƒ¡ãƒƒã‚·ãƒ¥ 1:4ãƒœãƒ¼ãƒ³å†…ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥  2:8ãƒœãƒ¼ãƒ³å†…ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥ ) ]*/
+	// [ ãƒ•ã‚©ã‚°ã‚¿ã‚¤ãƒ— ]
 	GRAPHICS_HARDWARE_ANDROID_SHADERCODE_INFO Base3D_NoLighting_VS_Code/*[ 3 ]*/[ 4 ] ;
 
-	// •W€‚R‚c•`‰æ—p‚Ì’¸“_’PˆÊƒ‰ƒCƒeƒBƒ“ƒO’¸“_ƒVƒF[ƒ_[
-	// [ ƒVƒƒƒhƒEƒ}ƒbƒv‚Ì—L–³( 0:–³‚µ 1:—L‚è ) ]
-	// /*[ ƒƒbƒVƒ…ƒ^ƒCƒv( 0:„‘ÌƒƒbƒVƒ… 1:4ƒ{[ƒ““àƒXƒLƒjƒ“ƒOƒƒbƒVƒ…  2:8ƒ{[ƒ““àƒXƒLƒjƒ“ƒOƒƒbƒVƒ… ) ]*/
-	// /*[ ƒoƒ“ƒvƒ}ƒbƒv‚Ì—L–³( 0:–³‚µ 1:—L‚è ) ]*/
-	// [ ƒtƒHƒOƒ^ƒCƒv ]
-	// [ ƒ‰ƒCƒgƒCƒ“ƒfƒbƒNƒX ]
-	// /*[ ƒXƒyƒLƒ…ƒ‰‚Ì—L–³( 0:–³‚µ 1:—L‚è ) ]*/
+	// æ¨™æº–ï¼“ï¼¤æç”»ç”¨ã®é ‚ç‚¹å˜ä½ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼
+	// [ ã‚·ãƒ£ãƒ‰ã‚¦ãƒžãƒƒãƒ—ã®æœ‰ç„¡( 0:ç„¡ã— 1:æœ‰ã‚Š ) ]
+	// /*[ ãƒ¡ãƒƒã‚·ãƒ¥ã‚¿ã‚¤ãƒ—( 0:å‰›ä½“ãƒ¡ãƒƒã‚·ãƒ¥ 1:4ãƒœãƒ¼ãƒ³å†…ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥  2:8ãƒœãƒ¼ãƒ³å†…ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥ ) ]*/
+	// /*[ ãƒãƒ³ãƒ—ãƒžãƒƒãƒ—ã®æœ‰ç„¡( 0:ç„¡ã— 1:æœ‰ã‚Š ) ]*/
+	// [ ãƒ•ã‚©ã‚°ã‚¿ã‚¤ãƒ— ]
+	// [ ãƒ©ã‚¤ãƒˆã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ ]
+	// /*[ ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã®æœ‰ç„¡( 0:ç„¡ã— 1:æœ‰ã‚Š ) ]*/
 	GRAPHICS_HARDWARE_ANDROID_SHADERCODE_INFO Base3D_VertexLighting_VS_Code[ 2 ]/*[ 3 ]*//*[ 2 ]*/[ 4 ][ 20 ]/*[ 2 ]*/ ;
 
-	// •W€‚R‚c•`‰æ—p‚ÌƒVƒƒƒhƒEƒ}ƒbƒv‚Ö‚ÌƒŒƒ“ƒ_ƒŠƒ“ƒO—pƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[
-	// [ ƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[‚ÌƒAƒ‹ƒtƒ@ƒeƒXƒgƒ‚[ƒh ]
+	// æ¨™æº–ï¼“ï¼¤æç”»ç”¨ã®ã‚·ãƒ£ãƒ‰ã‚¦ãƒžãƒƒãƒ—ã¸ã®ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ç”¨ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼
+	// [ ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆãƒ¢ãƒ¼ãƒ‰ ]
 	GRAPHICS_HARDWARE_ANDROID_SHADERCODE_INFO Base3D_ShadowMap_Normal_FS_Code[ ANDROID_FS_ALPHATEST_NUM ] ;
 
-	// •W€‚R‚c•`‰æ—p‚Ìƒ‰ƒCƒeƒBƒ“ƒO‚È‚µƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[
-	// /*[ ƒ}ƒ‹ƒ`ƒeƒNƒXƒ`ƒƒ‚ÌƒuƒŒƒ“ƒhƒ‚[ƒhAMV1_LAYERBLEND_TYPE_TRANSLUCENT ‚È‚Ç‚É +1 ‚µ‚½‚à‚Ì ( 0:ƒ}ƒ‹ƒ`ƒeƒNƒXƒ`ƒƒ–³‚µ  1:ƒ¿ƒuƒŒƒ“ƒh  2:‰ÁŽZƒuƒŒƒ“ƒh  3:æŽZƒuƒŒƒ“ƒh  4:æŽZƒuƒŒƒ“ƒh~2 ) ]*/
-	// [ “ÁŽêŒø‰Ê( 0:’Êí•`‰æ  1:æŽZ•`‰æ  2:RGB”½“]  3:•`‰æ‹P“x‚S”{  4:æŽZÏ‚Ýƒ¿ƒuƒŒƒ“ƒhƒ‚[ƒh‚Ì’Êí•`‰æ  5:æŽZÏ‚Ýƒ¿ƒuƒŒƒ“ƒhƒ‚[ƒh‚ÌRGB”½“]  6:æŽZÏ‚Ýƒ¿ƒuƒŒƒ“ƒhƒ‚[ƒh‚Ì•`‰æ‹P“x4”{ ) ]
-	// [ ƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[‚ÌƒAƒ‹ƒtƒ@ƒeƒXƒgƒ‚[ƒh ]
+	// æ¨™æº–ï¼“ï¼¤æç”»ç”¨ã®ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ãªã—ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼
+	// /*[ ãƒžãƒ«ãƒãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã€MV1_LAYERBLEND_TYPE_TRANSLUCENT ãªã©ã« +1 ã—ãŸã‚‚ã® ( 0:ãƒžãƒ«ãƒãƒ†ã‚¯ã‚¹ãƒãƒ£ç„¡ã—  1:Î±ãƒ–ãƒ¬ãƒ³ãƒ‰  2:åŠ ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰  3:ä¹—ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰  4:ä¹—ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰Ã—2 ) ]*/
+	// [ ç‰¹æ®ŠåŠ¹æžœ( 0:é€šå¸¸æç”»  1:ä¹—ç®—æç”»  2:RGBåè»¢  3:æç”»è¼åº¦ï¼”å€  4:ä¹—ç®—æ¸ˆã¿Î±ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã®é€šå¸¸æç”»  5:ä¹—ç®—æ¸ˆã¿Î±ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã®RGBåè»¢  6:ä¹—ç®—æ¸ˆã¿Î±ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã®æç”»è¼åº¦4å€ ) ]
+	// [ ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆãƒ¢ãƒ¼ãƒ‰ ]
 	GRAPHICS_HARDWARE_ANDROID_SHADERCODE_INFO Base3D_NoLighting_Normal_FS_Code/*[ 5 ]*/[ ANDROID_RENDER_TYPE_NUM ][ ANDROID_FS_ALPHATEST_NUM ] ;
 
-	// •W€‚R‚c•`‰æ—p‚Ì’¸“_’PˆÊƒ‰ƒCƒeƒBƒ“ƒOƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[
-	// [ ƒVƒƒƒhƒEƒ}ƒbƒv‚Ì—L–³( 0:–³‚µ 1:—L‚è ) ]
-	// /* [ ƒ}ƒ‹ƒ`ƒeƒNƒXƒ`ƒƒ‚ÌƒuƒŒƒ“ƒhƒ‚[ƒhAMV1_LAYERBLEND_TYPE_TRANSLUCENT ‚È‚Ç‚É +1 ‚µ‚½‚à‚Ì ( 0:ƒ}ƒ‹ƒ`ƒeƒNƒXƒ`ƒƒ–³‚µ  1:ƒ¿ƒuƒŒƒ“ƒh  2:‰ÁŽZƒuƒŒƒ“ƒh  3:æŽZƒuƒŒƒ“ƒh  4:æŽZƒuƒŒƒ“ƒh~2 ) ] */
-	// /* [ ƒXƒyƒLƒ…ƒ‰ƒ}ƒbƒv ( 0:–³‚¢ 1:‚ ‚é ) ] */
-	// /* [ ƒoƒ“ƒvƒ}ƒbƒv ( 0:‚È‚µ 1:‚ ‚è ) ] */
-	// [ ƒ‰ƒCƒgƒCƒ“ƒfƒbƒNƒX ]
-	// /*[ ƒXƒyƒLƒ…ƒ‰‚Ì—L–³( 0:–³‚µ 1:—L‚è ) ]*/
-	// [ “ÁŽêŒø‰Ê( 0:’Êí•`‰æ  1:æŽZ•`‰æ  2:RGB”½“]  3:•`‰æ‹P“x‚S”{  4:æŽZÏ‚Ýƒ¿ƒuƒŒƒ“ƒhƒ‚[ƒh‚Ì’Êí•`‰æ  5:æŽZÏ‚Ýƒ¿ƒuƒŒƒ“ƒhƒ‚[ƒh‚ÌRGB”½“]  6:æŽZÏ‚Ýƒ¿ƒuƒŒƒ“ƒhƒ‚[ƒh‚Ì•`‰æ‹P“x4”{ ) ]
-	// [ ƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[‚ÌƒAƒ‹ƒtƒ@ƒeƒXƒgƒ‚[ƒh ]
+	// æ¨™æº–ï¼“ï¼¤æç”»ç”¨ã®é ‚ç‚¹å˜ä½ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼
+	// [ ã‚·ãƒ£ãƒ‰ã‚¦ãƒžãƒƒãƒ—ã®æœ‰ç„¡( 0:ç„¡ã— 1:æœ‰ã‚Š ) ]
+	// /* [ ãƒžãƒ«ãƒãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã€MV1_LAYERBLEND_TYPE_TRANSLUCENT ãªã©ã« +1 ã—ãŸã‚‚ã® ( 0:ãƒžãƒ«ãƒãƒ†ã‚¯ã‚¹ãƒãƒ£ç„¡ã—  1:Î±ãƒ–ãƒ¬ãƒ³ãƒ‰  2:åŠ ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰  3:ä¹—ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰  4:ä¹—ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰Ã—2 ) ] */
+	// /* [ ã‚¹ãƒšã‚­ãƒ¥ãƒ©ãƒžãƒƒãƒ— ( 0:ç„¡ã„ 1:ã‚ã‚‹ ) ] */
+	// /* [ ãƒãƒ³ãƒ—ãƒžãƒƒãƒ— ( 0:ãªã— 1:ã‚ã‚Š ) ] */
+	// [ ãƒ©ã‚¤ãƒˆã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ ]
+	// /*[ ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã®æœ‰ç„¡( 0:ç„¡ã— 1:æœ‰ã‚Š ) ]*/
+	// [ ç‰¹æ®ŠåŠ¹æžœ( 0:é€šå¸¸æç”»  1:ä¹—ç®—æç”»  2:RGBåè»¢  3:æç”»è¼åº¦ï¼”å€  4:ä¹—ç®—æ¸ˆã¿Î±ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã®é€šå¸¸æç”»  5:ä¹—ç®—æ¸ˆã¿Î±ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã®RGBåè»¢  6:ä¹—ç®—æ¸ˆã¿Î±ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã®æç”»è¼åº¦4å€ ) ]
+	// [ ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆãƒ¢ãƒ¼ãƒ‰ ]
 	GRAPHICS_HARDWARE_ANDROID_SHADERCODE_INFO Base3D_VertexLighting_Normal_FS_Code[ 2 ]/*[ 5 ]*//*[ 2 ]*//*[ 2 ]*/[ 10 ]/*[ 2 ]*/[ ANDROID_RENDER_TYPE_NUM ][ ANDROID_FS_ALPHATEST_NUM ] ;
 } ;
 
 #ifndef DX_NON_MODEL
 
-// Android ‚Ì ƒ‚ƒfƒ‹•`‰æ—p‚ÌƒVƒF[ƒ_[ƒR[ƒh‚ÌŒ³ƒf[ƒ^‚ð“Z‚ß‚½\‘¢‘Ì
+// Android ã® ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ã®ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚³ãƒ¼ãƒ‰ã®å…ƒãƒ‡ãƒ¼ã‚¿ã‚’çºã‚ãŸæ§‹é€ ä½“
 struct GRAPHICS_HARDWARE_ANDROID_SHADERCODE_MODEL
 {
-	volatile int			ModelShaderInitializeFlag ;				// ƒ‚ƒfƒ‹—p‚ÌƒVƒF[ƒ_[ƒoƒCƒiƒŠ‚ÌƒZƒbƒgƒAƒbƒv‚ªŠ®—¹‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO( TRUE:Š®—¹‚µ‚Ä‚¢‚é  FALSE:Š®—¹‚µ‚Ä‚¢‚È‚¢ )
+	volatile int			ModelShaderInitializeFlag ;				// ãƒ¢ãƒ‡ãƒ«ç”¨ã®ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒã‚¤ãƒŠãƒªã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ãŒå®Œäº†ã—ã¦ã„ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°( TRUE:å®Œäº†ã—ã¦ã„ã‚‹  FALSE:å®Œäº†ã—ã¦ã„ãªã„ )
 
-	void					*ModelShaderPackImage ;					// ‚R‚cƒ‚ƒfƒ‹—pƒVƒF[ƒ_[ƒpƒbƒP[ƒWƒoƒCƒiƒŠƒCƒ[ƒW
+	void					*ModelShaderPackImage ;					// ï¼“ï¼¤ãƒ¢ãƒ‡ãƒ«ç”¨ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ãƒã‚¤ãƒŠãƒªã‚¤ãƒ¡ãƒ¼ã‚¸
 
-	// ƒ‚ƒfƒ‹•`‰æ—pƒsƒNƒZƒ‹’PˆÊƒ‰ƒCƒeƒBƒ“ƒOƒ^ƒCƒv‚Ì’¸“_ƒVƒF[ƒ_[( ƒŠƒXƒg‚Í”z—ñ‚Ì¶‚©‚ç )
-	// [ ƒVƒƒƒhƒEƒ}ƒbƒv‚Ì—L–³( 0:–³‚µ 1:—L‚è ) ]
-	// [ ƒƒbƒVƒ…ƒ^ƒCƒv( 0:„‘ÌƒƒbƒVƒ… 1:4ƒ{[ƒ““àƒXƒLƒjƒ“ƒOƒƒbƒVƒ… 2:8ƒ{[ƒ““àƒXƒLƒjƒ“ƒOƒƒbƒVƒ… ) ]
-	// [ ƒoƒ“ƒvƒ}ƒbƒv‚Ì—L–³( 0:–³‚µ 1:—L‚è ) ]
-	// [ ƒtƒHƒOƒ^ƒCƒv ]
+	// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ãƒ”ã‚¯ã‚»ãƒ«å˜ä½ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ã‚¿ã‚¤ãƒ—ã®é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼( ãƒªã‚¹ãƒˆã¯é…åˆ—ã®å·¦ã‹ã‚‰ )
+	// [ ã‚·ãƒ£ãƒ‰ã‚¦ãƒžãƒƒãƒ—ã®æœ‰ç„¡( 0:ç„¡ã— 1:æœ‰ã‚Š ) ]
+	// [ ãƒ¡ãƒƒã‚·ãƒ¥ã‚¿ã‚¤ãƒ—( 0:å‰›ä½“ãƒ¡ãƒƒã‚·ãƒ¥ 1:4ãƒœãƒ¼ãƒ³å†…ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥ 2:8ãƒœãƒ¼ãƒ³å†…ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥ ) ]
+	// [ ãƒãƒ³ãƒ—ãƒžãƒƒãƒ—ã®æœ‰ç„¡( 0:ç„¡ã— 1:æœ‰ã‚Š ) ]
+	// [ ãƒ•ã‚©ã‚°ã‚¿ã‚¤ãƒ— ]
 	GRAPHICS_HARDWARE_ANDROID_SHADERCODE_INFO MV1_PixelLighting_VS_Code[ 2 ][ 3 ][ 2 ][ 4 ] ;
 
-	// ƒ‚ƒfƒ‹•`‰æ—pƒsƒNƒZƒ‹’PˆÊƒ‰ƒCƒeƒBƒ“ƒOƒ^ƒCƒv‚ÌƒgƒD[ƒ“ƒ^ƒCƒv‚P—pƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[( ƒŠƒXƒg‚Í”z—ñ‚Ì¶‚©‚ç )
-	// [ ƒVƒƒƒhƒEƒ}ƒbƒv‚Ì—L–³( 0:–³‚µ 1:—L‚è ) ]
-	// [ ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚ÌƒfƒBƒtƒ…[ƒYƒOƒ‰ƒf[ƒVƒ‡ƒ“‚ÌƒuƒŒƒ“ƒhƒ^ƒCƒv( 0:MV1_LAYERBLEND_TYPE_TRANSLUCENT  1:MV1_LAYERBLEND_TYPE_MODULATE ) ]
-	// [ ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚ÌƒXƒyƒLƒ…ƒ‰ƒOƒ‰ƒf[ƒVƒ‡ƒ“‚ÌƒuƒŒƒ“ƒhƒ^ƒCƒv( 0:MV1_LAYERBLEND_TYPE_TRANSLUCENT  1:MV1_LAYERBLEND_TYPE_ADDITIVE ) ]
-	// [ ƒoƒ“ƒvƒ}ƒbƒv ( 0:‚È‚µ 1:‚ ‚è ) ]
-	// [ —LŒø‚Èƒ‰ƒCƒg‚Ì” - 1 ]
-	// [ ƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[‚ÌƒAƒ‹ƒtƒ@ƒeƒXƒgƒ‚[ƒh ]
+	// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ãƒ”ã‚¯ã‚»ãƒ«å˜ä½ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ã‚¿ã‚¤ãƒ—ã®ãƒˆã‚¥ãƒ¼ãƒ³ã‚¿ã‚¤ãƒ—ï¼‘ç”¨ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼( ãƒªã‚¹ãƒˆã¯é…åˆ—ã®å·¦ã‹ã‚‰ )
+	// [ ã‚·ãƒ£ãƒ‰ã‚¦ãƒžãƒƒãƒ—ã®æœ‰ç„¡( 0:ç„¡ã— 1:æœ‰ã‚Š ) ]
+	// [ ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã®ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚°ãƒ©ãƒ‡ãƒ¼ã‚·ãƒ§ãƒ³ã®ãƒ–ãƒ¬ãƒ³ãƒ‰ã‚¿ã‚¤ãƒ—( 0:MV1_LAYERBLEND_TYPE_TRANSLUCENT  1:MV1_LAYERBLEND_TYPE_MODULATE ) ]
+	// [ ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã®ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã‚°ãƒ©ãƒ‡ãƒ¼ã‚·ãƒ§ãƒ³ã®ãƒ–ãƒ¬ãƒ³ãƒ‰ã‚¿ã‚¤ãƒ—( 0:MV1_LAYERBLEND_TYPE_TRANSLUCENT  1:MV1_LAYERBLEND_TYPE_ADDITIVE ) ]
+	// [ ãƒãƒ³ãƒ—ãƒžãƒƒãƒ— ( 0:ãªã— 1:ã‚ã‚Š ) ]
+	// [ æœ‰åŠ¹ãªãƒ©ã‚¤ãƒˆã®æ•° - 1 ]
+	// [ ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆãƒ¢ãƒ¼ãƒ‰ ]
 	GRAPHICS_HARDWARE_ANDROID_SHADERCODE_INFO MV1_PixelLighting_ToonType1_FS_Code[ 2 ][ 2 ][ 2 ][ 2 ][ DX_ANDR_COMMON_CONST_LIGHT_NUM ][ ANDROID_FS_ALPHATEST_NUM ] ;
 
-	// ƒ‚ƒfƒ‹•`‰æ—pƒsƒNƒZƒ‹’PˆÊƒ‰ƒCƒeƒBƒ“ƒOƒ^ƒCƒv‚ÌƒgƒD[ƒ“ƒ^ƒCƒv‚Q—pƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[( ƒŠƒXƒg‚Í”z—ñ‚Ì¶‚©‚ç )
-	// [ ƒVƒƒƒhƒEƒ}ƒbƒv‚Ì—L–³( 0:–³‚µ 1:—L‚è ) ]
-	// [ ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚ÌƒXƒtƒBƒAƒ}ƒbƒv‚Ì—L–³‚ÆƒuƒŒƒ“ƒhƒ^ƒCƒv( 0:ƒXƒtƒBƒAƒ}ƒbƒv‚Í–³‚¢   1:MV1_LAYERBLEND_TYPE_MODULATE  2:MV1_LAYERBLEND_TYPE_ADDITIVE ) ]
-	// [ —LŒø‚Èƒ‰ƒCƒg‚Ì” - 1 ]
-	// [ ƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[‚ÌƒAƒ‹ƒtƒ@ƒeƒXƒgƒ‚[ƒh ]
+	// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ãƒ”ã‚¯ã‚»ãƒ«å˜ä½ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ã‚¿ã‚¤ãƒ—ã®ãƒˆã‚¥ãƒ¼ãƒ³ã‚¿ã‚¤ãƒ—ï¼’ç”¨ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼( ãƒªã‚¹ãƒˆã¯é…åˆ—ã®å·¦ã‹ã‚‰ )
+	// [ ã‚·ãƒ£ãƒ‰ã‚¦ãƒžãƒƒãƒ—ã®æœ‰ç„¡( 0:ç„¡ã— 1:æœ‰ã‚Š ) ]
+	// [ ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã®ã‚¹ãƒ•ã‚£ã‚¢ãƒžãƒƒãƒ—ã®æœ‰ç„¡ã¨ãƒ–ãƒ¬ãƒ³ãƒ‰ã‚¿ã‚¤ãƒ—( 0:ã‚¹ãƒ•ã‚£ã‚¢ãƒžãƒƒãƒ—ã¯ç„¡ã„   1:MV1_LAYERBLEND_TYPE_MODULATE  2:MV1_LAYERBLEND_TYPE_ADDITIVE ) ]
+	// [ æœ‰åŠ¹ãªãƒ©ã‚¤ãƒˆã®æ•° - 1 ]
+	// [ ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆãƒ¢ãƒ¼ãƒ‰ ]
 	GRAPHICS_HARDWARE_ANDROID_SHADERCODE_INFO MV1_PixelLighting_ToonType2_FS_Code[ 2 ][ 3 ][ DX_ANDR_COMMON_CONST_LIGHT_NUM ][ ANDROID_FS_ALPHATEST_NUM ] ;
 
-	// ƒ‚ƒfƒ‹•`‰æ—pƒsƒNƒZƒ‹’PˆÊƒ‰ƒCƒeƒBƒ“ƒOƒ^ƒCƒv‚Ìƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[( ƒŠƒXƒg‚Í”z—ñ‚Ì¶‚©‚ç )
-	// [ ƒVƒƒƒhƒEƒ}ƒbƒv‚Ì—L–³( 0:–³‚µ 1:—L‚è ) ]
-	// [ ƒ}ƒ‹ƒ`ƒeƒNƒXƒ`ƒƒ‚ÌƒuƒŒƒ“ƒhƒ‚[ƒhAMV1_LAYERBLEND_TYPE_TRANSLUCENT ‚È‚Ç‚É +1 ‚µ‚½‚à‚Ì ( 0:ƒ}ƒ‹ƒ`ƒeƒNƒXƒ`ƒƒ–³‚µ  1:ƒ¿ƒuƒŒƒ“ƒh  2:‰ÁŽZƒuƒŒƒ“ƒh  3:æŽZƒuƒŒƒ“ƒh  4:æŽZƒuƒŒƒ“ƒh~2 ) ]
-	// [ ƒoƒ“ƒvƒ}ƒbƒv ( 0:‚È‚µ 1:‚ ‚è ) ]
-	// [ —LŒø‚Èƒ‰ƒCƒg‚Ì” - 1 ]
-	// [ ƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[‚ÌƒAƒ‹ƒtƒ@ƒeƒXƒgƒ‚[ƒh ]
+	// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ãƒ”ã‚¯ã‚»ãƒ«å˜ä½ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ã‚¿ã‚¤ãƒ—ã®ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼( ãƒªã‚¹ãƒˆã¯é…åˆ—ã®å·¦ã‹ã‚‰ )
+	// [ ã‚·ãƒ£ãƒ‰ã‚¦ãƒžãƒƒãƒ—ã®æœ‰ç„¡( 0:ç„¡ã— 1:æœ‰ã‚Š ) ]
+	// [ ãƒžãƒ«ãƒãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã€MV1_LAYERBLEND_TYPE_TRANSLUCENT ãªã©ã« +1 ã—ãŸã‚‚ã® ( 0:ãƒžãƒ«ãƒãƒ†ã‚¯ã‚¹ãƒãƒ£ç„¡ã—  1:Î±ãƒ–ãƒ¬ãƒ³ãƒ‰  2:åŠ ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰  3:ä¹—ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰  4:ä¹—ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰Ã—2 ) ]
+	// [ ãƒãƒ³ãƒ—ãƒžãƒƒãƒ— ( 0:ãªã— 1:ã‚ã‚Š ) ]
+	// [ æœ‰åŠ¹ãªãƒ©ã‚¤ãƒˆã®æ•° - 1 ]
+	// [ ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆãƒ¢ãƒ¼ãƒ‰ ]
 	GRAPHICS_HARDWARE_ANDROID_SHADERCODE_INFO MV1_PixelLighting_Normal_FS_Code[ 2 ][ 5 ][ 2 ][ DX_ANDR_COMMON_CONST_LIGHT_NUM ][ ANDROID_FS_ALPHATEST_NUM ] ;
 
 
@@ -1213,9 +1213,9 @@ struct GRAPHICS_HARDWARE_ANDROID_SHADERCODE_MODEL
 
 
 
-	// ƒ‚ƒfƒ‹•`‰æ—p‚Ìƒ}ƒeƒŠƒAƒ‹—v‘f•`‰æ—pƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[
-	// [ ƒ}ƒeƒŠƒAƒ‹ƒ^ƒCƒv( DX_MATERIAL_TYPE_MAT_SPEC_LUMINANCE_UNORM ‚È‚Ç ) ]
-	// [ ƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[‚ÌƒAƒ‹ƒtƒ@ƒeƒXƒgƒ‚[ƒh ]
+	// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ã®ãƒžãƒ†ãƒªã‚¢ãƒ«è¦ç´ æç”»ç”¨ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼
+	// [ ãƒžãƒ†ãƒªã‚¢ãƒ«ã‚¿ã‚¤ãƒ—( DX_MATERIAL_TYPE_MAT_SPEC_LUMINANCE_UNORM ãªã© ) ]
+	// [ ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆãƒ¢ãƒ¼ãƒ‰ ]
 	GRAPHICS_HARDWARE_ANDROID_SHADERCODE_INFO MV1_MaterialType_FS_Code[ DX_MATERIAL_TYPE_NUM ][ ANDROID_FS_ALPHATEST_NUM ] ;
 
 
@@ -1223,129 +1223,129 @@ struct GRAPHICS_HARDWARE_ANDROID_SHADERCODE_MODEL
 
 
 
-	// ƒ‚ƒfƒ‹•`‰æ—p‚ÌƒVƒƒƒhƒEƒ}ƒbƒv‚Ö‚ÌƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO—ÖŠsü•`‰æ—p’¸“_ƒVƒF[ƒ_[
-	// [ ƒƒbƒVƒ…ƒ^ƒCƒv( 0:„‘ÌƒƒbƒVƒ… 1:4ƒ{[ƒ““àƒXƒLƒjƒ“ƒOƒƒbƒVƒ…  2:8ƒ{[ƒ““àƒXƒLƒjƒ“ƒOƒƒbƒVƒ… ) ]
-	// [ ƒoƒ“ƒvƒ}ƒbƒv‚Ì—L–³( 0:–³‚µ 1:—L‚è ) ]
+	// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ã®ã‚·ãƒ£ãƒ‰ã‚¦ãƒžãƒƒãƒ—ã¸ã®ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°è¼ªéƒ­ç·šæç”»ç”¨é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼
+	// [ ãƒ¡ãƒƒã‚·ãƒ¥ã‚¿ã‚¤ãƒ—( 0:å‰›ä½“ãƒ¡ãƒƒã‚·ãƒ¥ 1:4ãƒœãƒ¼ãƒ³å†…ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥  2:8ãƒœãƒ¼ãƒ³å†…ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥ ) ]
+	// [ ãƒãƒ³ãƒ—ãƒžãƒƒãƒ—ã®æœ‰ç„¡( 0:ç„¡ã— 1:æœ‰ã‚Š ) ]
 	GRAPHICS_HARDWARE_ANDROID_SHADERCODE_INFO MV1_ToonOutLine_ShadowMap_VS_Code[ 3 ][ 2 ] ;
 
-	// ƒ‚ƒfƒ‹•`‰æ—p‚ÌƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚Ì—ÖŠsü•`‰æ—p’¸“_ƒVƒF[ƒ_[
-	// [ ƒƒbƒVƒ…ƒ^ƒCƒv( 0:„‘ÌƒƒbƒVƒ… 1:4ƒ{[ƒ““àƒXƒLƒjƒ“ƒOƒƒbƒVƒ…  2:8ƒ{[ƒ““àƒXƒLƒjƒ“ƒOƒƒbƒVƒ… ) ]
-	// [ ƒoƒ“ƒvƒ}ƒbƒv‚Ì—L–³( 0:–³‚µ 1:—L‚è ) ]
-	// [ ƒtƒHƒOƒ^ƒCƒv ]
+	// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ã®ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã®è¼ªéƒ­ç·šæç”»ç”¨é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼
+	// [ ãƒ¡ãƒƒã‚·ãƒ¥ã‚¿ã‚¤ãƒ—( 0:å‰›ä½“ãƒ¡ãƒƒã‚·ãƒ¥ 1:4ãƒœãƒ¼ãƒ³å†…ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥  2:8ãƒœãƒ¼ãƒ³å†…ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥ ) ]
+	// [ ãƒãƒ³ãƒ—ãƒžãƒƒãƒ—ã®æœ‰ç„¡( 0:ç„¡ã— 1:æœ‰ã‚Š ) ]
+	// [ ãƒ•ã‚©ã‚°ã‚¿ã‚¤ãƒ— ]
 	GRAPHICS_HARDWARE_ANDROID_SHADERCODE_INFO MV1_ToonOutLine_VS_Code[ 3 ][ 2 ][ 4 ] ;
 
-	// ƒ‚ƒfƒ‹•`‰æ—p‚ÌƒVƒƒƒhƒEƒ}ƒbƒv‚Ö‚ÌƒŒƒ“ƒ_ƒŠƒ“ƒO—p’¸“_ƒVƒF[ƒ_[
-	// [ ƒƒbƒVƒ…ƒ^ƒCƒv( 0:„‘ÌƒƒbƒVƒ… 1:4ƒ{[ƒ““àƒXƒLƒjƒ“ƒOƒƒbƒVƒ…  2:8ƒ{[ƒ““àƒXƒLƒjƒ“ƒOƒƒbƒVƒ… ) ]
-	// [ ƒoƒ“ƒvƒ}ƒbƒv‚Ì—L–³( 0:–³‚µ 1:—L‚è ) ]
+	// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ã®ã‚·ãƒ£ãƒ‰ã‚¦ãƒžãƒƒãƒ—ã¸ã®ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ç”¨é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼
+	// [ ãƒ¡ãƒƒã‚·ãƒ¥ã‚¿ã‚¤ãƒ—( 0:å‰›ä½“ãƒ¡ãƒƒã‚·ãƒ¥ 1:4ãƒœãƒ¼ãƒ³å†…ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥  2:8ãƒœãƒ¼ãƒ³å†…ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥ ) ]
+	// [ ãƒãƒ³ãƒ—ãƒžãƒƒãƒ—ã®æœ‰ç„¡( 0:ç„¡ã— 1:æœ‰ã‚Š ) ]
 	GRAPHICS_HARDWARE_ANDROID_SHADERCODE_INFO MV1_ShadowMap_VS_Code[ 3 ][ 2 ] ;
 
-	// ƒ‚ƒfƒ‹•`‰æ—p‚Ìƒ‰ƒCƒeƒBƒ“ƒO‚È‚µ’¸“_ƒVƒF[ƒ_[
-	// [ ƒƒbƒVƒ…ƒ^ƒCƒv( 0:„‘ÌƒƒbƒVƒ… 1:4ƒ{[ƒ““àƒXƒLƒjƒ“ƒOƒƒbƒVƒ…  2:8ƒ{[ƒ““àƒXƒLƒjƒ“ƒOƒƒbƒVƒ… ) ]
-	// [ ƒoƒ“ƒvƒ}ƒbƒv‚Ì—L–³( 0:–³‚µ 1:—L‚è ) ]
-	// [ ƒtƒHƒOƒ^ƒCƒv ]
+	// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ã®ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ãªã—é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼
+	// [ ãƒ¡ãƒƒã‚·ãƒ¥ã‚¿ã‚¤ãƒ—( 0:å‰›ä½“ãƒ¡ãƒƒã‚·ãƒ¥ 1:4ãƒœãƒ¼ãƒ³å†…ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥  2:8ãƒœãƒ¼ãƒ³å†…ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥ ) ]
+	// [ ãƒãƒ³ãƒ—ãƒžãƒƒãƒ—ã®æœ‰ç„¡( 0:ç„¡ã— 1:æœ‰ã‚Š ) ]
+	// [ ãƒ•ã‚©ã‚°ã‚¿ã‚¤ãƒ— ]
 	GRAPHICS_HARDWARE_ANDROID_SHADERCODE_INFO MV1_NoLighting_VS_Code[ 3 ][ 2 ][ 4 ] ;
 
-	// ƒ‚ƒfƒ‹•`‰æ—p‚Ì’¸“_’PˆÊƒ‰ƒCƒeƒBƒ“ƒO‚ ‚è’¸“_ƒVƒF[ƒ_[
-	// [ ƒVƒƒƒhƒEƒ}ƒbƒv‚Ì—L–³( 0:–³‚µ 1:—L‚è ) ]
-	// [ ƒƒbƒVƒ…ƒ^ƒCƒv( 0:„‘ÌƒƒbƒVƒ… 1:4ƒ{[ƒ““àƒXƒLƒjƒ“ƒOƒƒbƒVƒ…  2:8ƒ{[ƒ““àƒXƒLƒjƒ“ƒOƒƒbƒVƒ… ) ]
-	// [ ƒoƒ“ƒvƒ}ƒbƒv‚Ì—L–³( 0:–³‚µ 1:—L‚è ) ]
-	// [ ƒtƒHƒOƒ^ƒCƒv ]
-	// [ ƒ‰ƒCƒgƒCƒ“ƒfƒbƒNƒX ]
+	// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ã®é ‚ç‚¹å˜ä½ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ã‚ã‚Šé ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼
+	// [ ã‚·ãƒ£ãƒ‰ã‚¦ãƒžãƒƒãƒ—ã®æœ‰ç„¡( 0:ç„¡ã— 1:æœ‰ã‚Š ) ]
+	// [ ãƒ¡ãƒƒã‚·ãƒ¥ã‚¿ã‚¤ãƒ—( 0:å‰›ä½“ãƒ¡ãƒƒã‚·ãƒ¥ 1:4ãƒœãƒ¼ãƒ³å†…ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥  2:8ãƒœãƒ¼ãƒ³å†…ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥ ) ]
+	// [ ãƒãƒ³ãƒ—ãƒžãƒƒãƒ—ã®æœ‰ç„¡( 0:ç„¡ã— 1:æœ‰ã‚Š ) ]
+	// [ ãƒ•ã‚©ã‚°ã‚¿ã‚¤ãƒ— ]
+	// [ ãƒ©ã‚¤ãƒˆã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ ]
 	GRAPHICS_HARDWARE_ANDROID_SHADERCODE_INFO MV1_VertexLighting_VS_Code[ 2 ][ 3 ][ 2 ][ 4 ][ 20 ] ;
 
-	// ƒ‚ƒfƒ‹•`‰æ—p‚ÌƒVƒƒƒhƒEƒ}ƒbƒv‚Ö‚ÌƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO—pƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[
-	// [ ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒOƒ^ƒCƒv( 0:ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO type 1   1:ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO type 2 ) ]
-	// [ ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚ÌƒXƒtƒBƒAƒ}ƒbƒv‚Ì—L–³‚ÆƒuƒŒƒ“ƒhƒ^ƒCƒv( 0:ƒXƒtƒBƒAƒ}ƒbƒv‚Í–³‚¢   1:MV1_LAYERBLEND_TYPE_MODULATE  2:MV1_LAYERBLEND_TYPE_ADDITIVE ) ]
-	// [ ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚ÌƒfƒBƒtƒ…[ƒYƒOƒ‰ƒf[ƒVƒ‡ƒ“‚ÌƒuƒŒƒ“ƒhƒ^ƒCƒv( 0:MV1_LAYERBLEND_TYPE_TRANSLUCENT  1:MV1_LAYERBLEND_TYPE_MODULATE ) ]
-	// [ ƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[‚ÌƒAƒ‹ƒtƒ@ƒeƒXƒgƒ‚[ƒh ]
+	// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ã®ã‚·ãƒ£ãƒ‰ã‚¦ãƒžãƒƒãƒ—ã¸ã®ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ç”¨ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼
+	// [ ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã‚¿ã‚¤ãƒ—( 0:ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚° type 1   1:ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚° type 2 ) ]
+	// [ ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã®ã‚¹ãƒ•ã‚£ã‚¢ãƒžãƒƒãƒ—ã®æœ‰ç„¡ã¨ãƒ–ãƒ¬ãƒ³ãƒ‰ã‚¿ã‚¤ãƒ—( 0:ã‚¹ãƒ•ã‚£ã‚¢ãƒžãƒƒãƒ—ã¯ç„¡ã„   1:MV1_LAYERBLEND_TYPE_MODULATE  2:MV1_LAYERBLEND_TYPE_ADDITIVE ) ]
+	// [ ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã®ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚°ãƒ©ãƒ‡ãƒ¼ã‚·ãƒ§ãƒ³ã®ãƒ–ãƒ¬ãƒ³ãƒ‰ã‚¿ã‚¤ãƒ—( 0:MV1_LAYERBLEND_TYPE_TRANSLUCENT  1:MV1_LAYERBLEND_TYPE_MODULATE ) ]
+	// [ ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆãƒ¢ãƒ¼ãƒ‰ ]
 	GRAPHICS_HARDWARE_ANDROID_SHADERCODE_INFO MV1_ShadowMap_Toon_FS_Code[ 2 ][ 3 ][ 2 ][ ANDROID_FS_ALPHATEST_NUM ] ;
 
-	// ƒ‚ƒfƒ‹•`‰æ—p‚ÌƒVƒƒƒhƒEƒ}ƒbƒv‚Ö‚ÌƒŒƒ“ƒ_ƒŠƒ“ƒO—pƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[
-	// [ ƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[‚ÌƒAƒ‹ƒtƒ@ƒeƒXƒgƒ‚[ƒh ]
+	// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ã®ã‚·ãƒ£ãƒ‰ã‚¦ãƒžãƒƒãƒ—ã¸ã®ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ç”¨ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼
+	// [ ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆãƒ¢ãƒ¼ãƒ‰ ]
 	GRAPHICS_HARDWARE_ANDROID_SHADERCODE_INFO MV1_ShadowMap_Normal_FS_Code[ ANDROID_FS_ALPHATEST_NUM ] ;
 
-	// ƒ‚ƒfƒ‹•`‰æ—p‚Ìƒ‰ƒCƒeƒBƒ“ƒO‚È‚µƒgƒD[ƒ“—pƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[( ƒŠƒXƒg‚Í”z—ñ‚Ì¶‚©‚ç )
-	// [ ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒOƒ^ƒCƒv( 0:ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO type 1   1:ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO type 2 ) ]
-	// [ ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚ÌƒfƒBƒtƒ…[ƒYƒOƒ‰ƒf[ƒVƒ‡ƒ“‚ÌƒuƒŒƒ“ƒhƒ^ƒCƒv( 0:MV1_LAYERBLEND_TYPE_TRANSLUCENT or ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚Å‚Í‚È‚¢  1:MV1_LAYERBLEND_TYPE_MODULATE ) ]
-	// [ ƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[‚ÌƒAƒ‹ƒtƒ@ƒeƒXƒgƒ‚[ƒh ]
+	// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ã®ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ãªã—ãƒˆã‚¥ãƒ¼ãƒ³ç”¨ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼( ãƒªã‚¹ãƒˆã¯é…åˆ—ã®å·¦ã‹ã‚‰ )
+	// [ ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã‚¿ã‚¤ãƒ—( 0:ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚° type 1   1:ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚° type 2 ) ]
+	// [ ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã®ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚°ãƒ©ãƒ‡ãƒ¼ã‚·ãƒ§ãƒ³ã®ãƒ–ãƒ¬ãƒ³ãƒ‰ã‚¿ã‚¤ãƒ—( 0:MV1_LAYERBLEND_TYPE_TRANSLUCENT or ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã§ã¯ãªã„  1:MV1_LAYERBLEND_TYPE_MODULATE ) ]
+	// [ ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆãƒ¢ãƒ¼ãƒ‰ ]
 	GRAPHICS_HARDWARE_ANDROID_SHADERCODE_INFO MV1_NoLighting_Toon_FS_Code[ 2 ][ 2 ][ ANDROID_FS_ALPHATEST_NUM ] ;
 
-	// ƒ‚ƒfƒ‹•`‰æ—p‚Ìƒ‰ƒCƒeƒBƒ“ƒO‚È‚µƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[
-	// [ ƒ}ƒ‹ƒ`ƒeƒNƒXƒ`ƒƒ‚ÌƒuƒŒƒ“ƒhƒ‚[ƒhAMV1_LAYERBLEND_TYPE_TRANSLUCENT ‚È‚Ç‚É +1 ‚µ‚½‚à‚Ì ( 0:ƒ}ƒ‹ƒ`ƒeƒNƒXƒ`ƒƒ–³‚µ  1:ƒ¿ƒuƒŒƒ“ƒh  2:‰ÁŽZƒuƒŒƒ“ƒh  3:æŽZƒuƒŒƒ“ƒh  4:æŽZƒuƒŒƒ“ƒh~2 ) ]
-	// [ ƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[‚ÌƒAƒ‹ƒtƒ@ƒeƒXƒgƒ‚[ƒh ]
+	// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ã®ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ãªã—ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼
+	// [ ãƒžãƒ«ãƒãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã€MV1_LAYERBLEND_TYPE_TRANSLUCENT ãªã©ã« +1 ã—ãŸã‚‚ã® ( 0:ãƒžãƒ«ãƒãƒ†ã‚¯ã‚¹ãƒãƒ£ç„¡ã—  1:Î±ãƒ–ãƒ¬ãƒ³ãƒ‰  2:åŠ ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰  3:ä¹—ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰  4:ä¹—ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰Ã—2 ) ]
+	// [ ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆãƒ¢ãƒ¼ãƒ‰ ]
 	GRAPHICS_HARDWARE_ANDROID_SHADERCODE_INFO MV1_NoLighting_Normal_FS_Code[ 5 ][ ANDROID_FS_ALPHATEST_NUM ] ;
 
-	// ƒ‚ƒfƒ‹•`‰æ—p‚Ì’¸“_’PˆÊƒ‰ƒCƒeƒBƒ“ƒO‚ ‚èƒgƒD[ƒ“ƒ^ƒCƒv‚P—pƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[
-	// [ ƒVƒƒƒhƒEƒ}ƒbƒv‚Ì—L–³( 0:–³‚µ 1:—L‚è ) ]
-	// [ ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚ÌƒfƒBƒtƒ…[ƒYƒOƒ‰ƒf[ƒVƒ‡ƒ“‚ÌƒuƒŒƒ“ƒhƒ^ƒCƒv( 0:MV1_LAYERBLEND_TYPE_TRANSLUCENT  1:MV1_LAYERBLEND_TYPE_MODULATE ) ]
-	// [ ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚ÌƒXƒyƒLƒ…ƒ‰ƒOƒ‰ƒf[ƒVƒ‡ƒ“‚ÌƒuƒŒƒ“ƒhƒ^ƒCƒv( 0:MV1_LAYERBLEND_TYPE_TRANSLUCENT  1:MV1_LAYERBLEND_TYPE_ADDITIVE ) ]
-	// [ ƒoƒ“ƒvƒ}ƒbƒv ( 0:‚È‚µ 1:‚ ‚è ) ]
-	// [ ƒ‰ƒCƒgƒCƒ“ƒfƒbƒNƒX ]
-	// [ ƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[‚ÌƒAƒ‹ƒtƒ@ƒeƒXƒgƒ‚[ƒh ]
+	// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ã®é ‚ç‚¹å˜ä½ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ã‚ã‚Šãƒˆã‚¥ãƒ¼ãƒ³ã‚¿ã‚¤ãƒ—ï¼‘ç”¨ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼
+	// [ ã‚·ãƒ£ãƒ‰ã‚¦ãƒžãƒƒãƒ—ã®æœ‰ç„¡( 0:ç„¡ã— 1:æœ‰ã‚Š ) ]
+	// [ ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã®ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚°ãƒ©ãƒ‡ãƒ¼ã‚·ãƒ§ãƒ³ã®ãƒ–ãƒ¬ãƒ³ãƒ‰ã‚¿ã‚¤ãƒ—( 0:MV1_LAYERBLEND_TYPE_TRANSLUCENT  1:MV1_LAYERBLEND_TYPE_MODULATE ) ]
+	// [ ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã®ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã‚°ãƒ©ãƒ‡ãƒ¼ã‚·ãƒ§ãƒ³ã®ãƒ–ãƒ¬ãƒ³ãƒ‰ã‚¿ã‚¤ãƒ—( 0:MV1_LAYERBLEND_TYPE_TRANSLUCENT  1:MV1_LAYERBLEND_TYPE_ADDITIVE ) ]
+	// [ ãƒãƒ³ãƒ—ãƒžãƒƒãƒ— ( 0:ãªã— 1:ã‚ã‚Š ) ]
+	// [ ãƒ©ã‚¤ãƒˆã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ ]
+	// [ ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆãƒ¢ãƒ¼ãƒ‰ ]
 	GRAPHICS_HARDWARE_ANDROID_SHADERCODE_INFO MV1_VertexLighting_ToonType1_FS_Code[ 2 ][ 2 ][ 2 ][ 2 ][ 10 ][ ANDROID_FS_ALPHATEST_NUM ] ;
 
-	// ƒ‚ƒfƒ‹•`‰æ—p‚Ì’¸“_’PˆÊƒ‰ƒCƒeƒBƒ“ƒO‚ ‚èƒgƒD[ƒ“ƒ^ƒCƒv‚Q—pƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[
-	// [ ƒVƒƒƒhƒEƒ}ƒbƒv‚Ì—L–³( 0:–³‚µ 1:—L‚è ) ]
-	// [ ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚ÌƒXƒtƒBƒAƒ}ƒbƒv‚Ì—L–³‚ÆƒuƒŒƒ“ƒhƒ^ƒCƒv( 0:ƒXƒtƒBƒAƒ}ƒbƒv‚Í–³‚¢   1:MV1_LAYERBLEND_TYPE_MODULATE  2:MV1_LAYERBLEND_TYPE_ADDITIVE ) ]
-	// [ ƒ‰ƒCƒgƒCƒ“ƒfƒbƒNƒX ]
-	// [ ƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[‚ÌƒAƒ‹ƒtƒ@ƒeƒXƒgƒ‚[ƒh ]
+	// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ã®é ‚ç‚¹å˜ä½ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ã‚ã‚Šãƒˆã‚¥ãƒ¼ãƒ³ã‚¿ã‚¤ãƒ—ï¼’ç”¨ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼
+	// [ ã‚·ãƒ£ãƒ‰ã‚¦ãƒžãƒƒãƒ—ã®æœ‰ç„¡( 0:ç„¡ã— 1:æœ‰ã‚Š ) ]
+	// [ ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã®ã‚¹ãƒ•ã‚£ã‚¢ãƒžãƒƒãƒ—ã®æœ‰ç„¡ã¨ãƒ–ãƒ¬ãƒ³ãƒ‰ã‚¿ã‚¤ãƒ—( 0:ã‚¹ãƒ•ã‚£ã‚¢ãƒžãƒƒãƒ—ã¯ç„¡ã„   1:MV1_LAYERBLEND_TYPE_MODULATE  2:MV1_LAYERBLEND_TYPE_ADDITIVE ) ]
+	// [ ãƒ©ã‚¤ãƒˆã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ ]
+	// [ ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆãƒ¢ãƒ¼ãƒ‰ ]
 	GRAPHICS_HARDWARE_ANDROID_SHADERCODE_INFO MV1_VertexLighting_ToonType2_FS_Code[ 2 ][ 3 ][ 10 ][ ANDROID_FS_ALPHATEST_NUM ] ;
 
-	// ƒ‚ƒfƒ‹•`‰æ—p‚Ì’¸“_’PˆÊƒ‰ƒCƒeƒBƒ“ƒO‚ ‚èƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[
-	// [ ƒVƒƒƒhƒEƒ}ƒbƒv‚Ì—L–³( 0:–³‚µ 1:—L‚è ) ]
-	// [ ƒ}ƒ‹ƒ`ƒeƒNƒXƒ`ƒƒ‚ÌƒuƒŒƒ“ƒhƒ‚[ƒhAMV1_LAYERBLEND_TYPE_TRANSLUCENT ‚È‚Ç‚É +1 ‚µ‚½‚à‚Ì ( 0:ƒ}ƒ‹ƒ`ƒeƒNƒXƒ`ƒƒ–³‚µ  1:ƒ¿ƒuƒŒƒ“ƒh  2:‰ÁŽZƒuƒŒƒ“ƒh  3:æŽZƒuƒŒƒ“ƒh  4:æŽZƒuƒŒƒ“ƒh~2 ) ]
-	// [ ƒoƒ“ƒvƒ}ƒbƒv ( 0:‚È‚µ 1:‚ ‚è ) ]
-	// [ ƒ‰ƒCƒgƒCƒ“ƒfƒbƒNƒX ]
-	// [ ƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[‚ÌƒAƒ‹ƒtƒ@ƒeƒXƒgƒ‚[ƒh ]
+	// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ã®é ‚ç‚¹å˜ä½ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ã‚ã‚Šãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼
+	// [ ã‚·ãƒ£ãƒ‰ã‚¦ãƒžãƒƒãƒ—ã®æœ‰ç„¡( 0:ç„¡ã— 1:æœ‰ã‚Š ) ]
+	// [ ãƒžãƒ«ãƒãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã€MV1_LAYERBLEND_TYPE_TRANSLUCENT ãªã©ã« +1 ã—ãŸã‚‚ã® ( 0:ãƒžãƒ«ãƒãƒ†ã‚¯ã‚¹ãƒãƒ£ç„¡ã—  1:Î±ãƒ–ãƒ¬ãƒ³ãƒ‰  2:åŠ ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰  3:ä¹—ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰  4:ä¹—ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰Ã—2 ) ]
+	// [ ãƒãƒ³ãƒ—ãƒžãƒƒãƒ— ( 0:ãªã— 1:ã‚ã‚Š ) ]
+	// [ ãƒ©ã‚¤ãƒˆã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ ]
+	// [ ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆãƒ¢ãƒ¼ãƒ‰ ]
 	GRAPHICS_HARDWARE_ANDROID_SHADERCODE_INFO MV1_VertexLighting_Normal_FS_Code[ 2 ][ 5 ][ 2 ][ 10 ][ ANDROID_FS_ALPHATEST_NUM ] ;
 } ;
 
 #endif // DX_NON_MODEL
 
 
-// ƒVƒF[ƒ_[ƒR[ƒh‚ÌŒ³ƒf[ƒ^‚ð“Z‚ß‚½\‘¢‘Ì
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚³ãƒ¼ãƒ‰ã®å…ƒãƒ‡ãƒ¼ã‚¿ã‚’çºã‚ãŸæ§‹é€ ä½“
 struct GRAPHICS_HARDWARE_ANDROID_SHADERCODE
 {
-	GRAPHICS_HARDWARE_ANDROID_SHADERCODE_BASE	Base ;				// •W€•`‰æˆ——p‚ÌƒVƒF[ƒ_[ƒR[ƒh‚ð“Z‚ß‚½\‘¢‘Ì
-	GRAPHICS_HARDWARE_ANDROID_SHADERCODE_BASE3D	Base3D ;			// •W€‚R‚c•`‰æˆ——p‚ÌƒVƒF[ƒ_[ƒR[ƒh‚ð“Z‚ß‚½\‘¢‘Ì
+	GRAPHICS_HARDWARE_ANDROID_SHADERCODE_BASE	Base ;				// æ¨™æº–æç”»å‡¦ç†ç”¨ã®ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚³ãƒ¼ãƒ‰ã‚’çºã‚ãŸæ§‹é€ ä½“
+	GRAPHICS_HARDWARE_ANDROID_SHADERCODE_BASE3D	Base3D ;			// æ¨™æº–ï¼“ï¼¤æç”»å‡¦ç†ç”¨ã®ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚³ãƒ¼ãƒ‰ã‚’çºã‚ãŸæ§‹é€ ä½“
 
 #ifndef DX_NON_MODEL
-	GRAPHICS_HARDWARE_ANDROID_SHADERCODE_MODEL	Model ;				// ƒ‚ƒfƒ‹•`‰æˆ——p‚ÌƒVƒF[ƒ_[ƒR[ƒh‚ð“Z‚ß‚½\‘¢‘Ì
+	GRAPHICS_HARDWARE_ANDROID_SHADERCODE_MODEL	Model ;				// ãƒ¢ãƒ‡ãƒ«æç”»å‡¦ç†ç”¨ã®ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚³ãƒ¼ãƒ‰ã‚’çºã‚ãŸæ§‹é€ ä½“
 #endif // DX_NON_MODEL
 } ;
 
 
-// Android ŠÖŒW‚ÌÝ’èî•ñ‚Ì\‘¢‘Ì
+// Android é–¢ä¿‚ã®è¨­å®šæƒ…å ±ã®æ§‹é€ ä½“
 struct GRAPHICS_HARDDATA_ANDROID_SETTING
 {
-	int								UseMinFeatureLevelAndroid ;				// Android ‚ÅŽg—p‚·‚éÅ’á‹@”\ƒŒƒxƒ‹
-	int								UserDepthBufferSizeSet ;					// ŠO•”‚©‚ç[“xƒoƒbƒtƒ@ƒTƒCƒY‚ÌŽw’è‚ª‚ ‚Á‚½‚©‚Ç‚¤‚©
-	int								UserDepthBufferBitDepthSet ;				// ŠO•”‚©‚ç[“xƒoƒbƒtƒ@‚Ìƒrƒbƒg[“xŽw’è‚ª‚ ‚Á‚½‚©‚Ç‚¤‚©
+	int								UseMinFeatureLevelAndroid ;				// Android ã§ä½¿ç”¨ã™ã‚‹æœ€ä½Žæ©Ÿèƒ½ãƒ¬ãƒ™ãƒ«
+	int								UserDepthBufferSizeSet ;					// å¤–éƒ¨ã‹ã‚‰æ·±åº¦ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚ºã®æŒ‡å®šãŒã‚ã£ãŸã‹ã©ã†ã‹
+	int								UserDepthBufferBitDepthSet ;				// å¤–éƒ¨ã‹ã‚‰æ·±åº¦ãƒãƒƒãƒ•ã‚¡ã®ãƒ“ãƒƒãƒˆæ·±åº¦æŒ‡å®šãŒã‚ã£ãŸã‹ã©ã†ã‹
 
-	int								UseOldDrawModiGraphCodeFlag ;				// ˆÈ‘O‚Ì DrawModiGraph ŠÖ”ƒR[ƒh‚ðŽg—p‚·‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO
+	int								UseOldDrawModiGraphCodeFlag ;				// ä»¥å‰ã® DrawModiGraph é–¢æ•°ã‚³ãƒ¼ãƒ‰ã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°
 } ;
 
 
 
-// Android ‚ÌƒeƒNƒXƒ`ƒƒˆ——pî•ñ‚Ì\‘¢‘Ì
+// Android ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£å‡¦ç†ç”¨æƒ…å ±ã®æ§‹é€ ä½“
 struct GRAPHICS_HARDDATA_ANDROID_TEXTURE
 {
-	void *											CommonBuffer ;					// ƒeƒNƒXƒ`ƒƒ‰æ‘œ“]‘——p‚Ì‹¤—Lƒƒ‚ƒŠ
-	unsigned int									CommonBufferSize ;				// ƒeƒNƒXƒ`ƒƒ‰æ‘œ“]‘——p‚Ì‹¤—Lƒƒ‚ƒŠ‚ÌƒTƒCƒY
+	void *											CommonBuffer ;					// ãƒ†ã‚¯ã‚¹ãƒãƒ£ç”»åƒè»¢é€ç”¨ã®å…±æœ‰ãƒ¡ãƒ¢ãƒª
+	unsigned int									CommonBufferSize ;				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ç”»åƒè»¢é€ç”¨ã®å…±æœ‰ãƒ¡ãƒ¢ãƒªã®ã‚µã‚¤ã‚º
 } ;
 
-// Android ‚ðŽg‚Á‚½ƒOƒ‰ƒtƒBƒbƒNƒXˆ—î•ñ‚Ì\‘¢‘Ì
+// Android ã‚’ä½¿ã£ãŸã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¹å‡¦ç†æƒ…å ±ã®æ§‹é€ ä½“
 struct GRAPHICS_HARDDATA_ANDR
 {
-	int												UsePixelLightingShader ;	// ƒsƒNƒZƒ‹’PˆÊ‚Åƒ‰ƒCƒeƒBƒ“ƒO‚ðs‚¤ƒ^ƒCƒv‚ÌƒVƒF[ƒ_[‚ðŽg—p‚·‚é‚©‚Ç‚¤‚©( TRUE:Žg—p‚·‚é  FALSE:Žg—p‚µ‚È‚¢ )
+	int												UsePixelLightingShader ;	// ãƒ”ã‚¯ã‚»ãƒ«å˜ä½ã§ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ã‚’è¡Œã†ã‚¿ã‚¤ãƒ—ã®ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹( TRUE:ä½¿ç”¨ã™ã‚‹  FALSE:ä½¿ç”¨ã—ãªã„ )
 
-	GRAPHICS_HARDDATA_ANDROID_SETTING				Setting ;					// Android ŠÖŒW‚ÌÝ’èî•ñ
+	GRAPHICS_HARDDATA_ANDROID_SETTING				Setting ;					// Android é–¢ä¿‚ã®è¨­å®šæƒ…å ±
 
-	GRAPHICS_HARDDATA_ANDROID_DEVICE				Device ;					// AndroidDevice ‚É–§Ú‚ÉŠÖ˜A‚µ‚½î•ñ
+	GRAPHICS_HARDDATA_ANDROID_DEVICE				Device ;					// AndroidDevice ã«å¯†æŽ¥ã«é–¢é€£ã—ãŸæƒ…å ±
 
-	GRAPHICS_HARDWARE_ANDROID_SHADERCODE			ShaderCode ;				// FragmentShader ‚â VertexShader ‚ÌŒ³‚Æ‚È‚éƒVƒF[ƒ_[ƒR[ƒhƒf[ƒ^‚ð“Z‚ß‚½\‘¢‘Ì
+	GRAPHICS_HARDWARE_ANDROID_SHADERCODE			ShaderCode ;				// FragmentShader ã‚„ VertexShader ã®å…ƒã¨ãªã‚‹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚³ãƒ¼ãƒ‰ãƒ‡ãƒ¼ã‚¿ã‚’çºã‚ãŸæ§‹é€ ä½“
 
-	GRAPHICS_HARDDATA_ANDROID_TEXTURE				Texture ;					// Android ‚ÌƒeƒNƒXƒ`ƒƒˆ——pî•ñ‚Ì\‘¢‘Ì
+	GRAPHICS_HARDDATA_ANDROID_TEXTURE				Texture ;					// Android ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£å‡¦ç†ç”¨æƒ…å ±ã®æ§‹é€ ä½“
 } ;
 
 struct DX_ANDROID_RENDER_BLEND_INFO
@@ -1361,23 +1361,21 @@ struct DX_ANDROID_RENDER_BLEND_INFO
 	int									AlphaZeroNotDrawFlag ;
 } ;
 
-// “à•”‘åˆæ•Ï”éŒ¾ --------------------------------------------------------------
+// å†…éƒ¨å¤§åŸŸå¤‰æ•°å®£è¨€ --------------------------------------------------------------
 
 extern GLenum g_DXCmpModeToGLES2CompareFunc[ 9 ] ;
 extern DX_ANDROID_RENDER_BLEND_INFO g_DefaultBlendDescArray[ DX_BLENDMODE_NUM ] ;
 extern PIXELFORMAT_INFO_ANDR g_AndroidPixelFormat[ ANDROID_PIXEL_FORMAT_NUM ] ;
 extern GRAPHICS_HARDDATA_ANDR GraphicsHardDataAndroid ;
 
-// ŠÖ”ƒvƒƒgƒ^ƒCƒvéŒ¾-----------------------------------------------------------
+// é–¢æ•°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€-----------------------------------------------------------
 
-// Android ‚Ì‰Šú‰»ŠÖŒW
-extern	int		Graphics_Android_Initialize( void ) ;								// Android ‚ðŽg—p‚µ‚½ƒOƒ‰ƒtƒBƒbƒNƒXˆ—‚Ì‰Šú‰»‚ðs‚¤( 0:¬Œ÷ -1:Ž¸”s )
-extern	int		Graphics_Android_Terminate( void ) ;								// Android ‚ðŽg—p‚µ‚½ƒOƒ‰ƒtƒBƒbƒNƒXˆ—‚ÌŒãŽn––‚ðs‚¤
+// Android ã®åˆæœŸåŒ–é–¢ä¿‚
+extern	int		Graphics_Android_Initialize( void ) ;								// Android ã‚’ä½¿ç”¨ã—ãŸã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¹å‡¦ç†ã®åˆæœŸåŒ–ã‚’è¡Œã†( 0:æˆåŠŸ -1:å¤±æ•— )
+extern	int		Graphics_Android_Terminate( void ) ;								// Android ã‚’ä½¿ç”¨ã—ãŸã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¹å‡¦ç†ã®å¾Œå§‹æœ«ã‚’è¡Œã†
 
-extern	int		Graphics_Android_ReleaseObjectAll( void ) ;							// ‚·‚×‚Ä‚Ì OpenGL ES ŒnƒIƒuƒWƒFƒNƒg‚ð‰ð•ú‚·‚é
-extern	int		Graphics_Android_CreateObjectAll( void ) ;							// ‚·‚×‚Ä‚Ì OpenGL ES ŒnƒIƒuƒWƒFƒNƒg‚ðì¬‚·‚é
-
-
+extern	int		Graphics_Android_ReleaseObjectAll( void ) ;							// ã™ã¹ã¦ã® OpenGL ES ç³»ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’è§£æ”¾ã™ã‚‹
+extern	int		Graphics_Android_CreateObjectAll( void ) ;							// ã™ã¹ã¦ã® OpenGL ES ç³»ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ä½œæˆã™ã‚‹
 
 
 
@@ -1394,48 +1392,39 @@ extern	int		Graphics_Android_CreateObjectAll( void ) ;							// ‚·‚×‚Ä‚Ì OpenGL 
 
 
 
-// ƒVƒF[ƒ_[ƒR[ƒhŠÖŒW
-extern	int		Graphics_Android_ShaderCode_Base_Initialize( void ) ;				// Android ‚Ì•W€•`‰æ—p‚ÌƒVƒF[ƒ_[ƒR[ƒh‚Ì‰Šú‰»‚ðs‚¤
-extern	int		Graphics_Android_ShaderCode_Base_Terminate( void ) ;				// Android ‚Ì•W€•`‰æ—p‚ÌƒVƒF[ƒ_[ƒR[ƒh‚ÌŒãŽn––‚ðs‚¤
 
-extern	int		Graphics_Android_ShaderCode_Base3D_Initialize( void ) ;			// Android ‚Ì•W€‚R‚c•`‰æ—p‚ÌƒVƒF[ƒ_[ƒR[ƒh‚Ì‰Šú‰»‚ðs‚¤
-extern	int		Graphics_Android_ShaderCode_Base3D_Terminate( void ) ;			// Android ‚Ì•W€‚R‚c•`‰æ—p‚ÌƒVƒF[ƒ_[ƒR[ƒh‚ÌŒãŽn––‚ðs‚¤
+
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚³ãƒ¼ãƒ‰é–¢ä¿‚
+extern	int		Graphics_Android_ShaderCode_Base_Initialize( void ) ;				// Android ã®æ¨™æº–æç”»ç”¨ã®ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚³ãƒ¼ãƒ‰ã®åˆæœŸåŒ–ã‚’è¡Œã†
+extern	int		Graphics_Android_ShaderCode_Base_Terminate( void ) ;				// Android ã®æ¨™æº–æç”»ç”¨ã®ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚³ãƒ¼ãƒ‰ã®å¾Œå§‹æœ«ã‚’è¡Œã†
+
+extern	int		Graphics_Android_ShaderCode_Base3D_Initialize( void ) ;			// Android ã®æ¨™æº–ï¼“ï¼¤æç”»ç”¨ã®ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚³ãƒ¼ãƒ‰ã®åˆæœŸåŒ–ã‚’è¡Œã†
+extern	int		Graphics_Android_ShaderCode_Base3D_Terminate( void ) ;			// Android ã®æ¨™æº–ï¼“ï¼¤æç”»ç”¨ã®ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚³ãƒ¼ãƒ‰ã®å¾Œå§‹æœ«ã‚’è¡Œã†
 
 #ifndef DX_NON_MODEL
 
-extern	int		Graphics_Android_ShaderCode_Model_Initialize( void ) ;			// Android ‚Ìƒ‚ƒfƒ‹•`‰æ—p‚ÌƒVƒF[ƒ_[ƒR[ƒh‚Ì‰Šú‰»‚ðs‚¤
-extern	int		Graphics_Android_ShaderCode_Model_Terminate( void ) ;			// Android ‚Ìƒ‚ƒfƒ‹•`‰æ—p‚ÌƒVƒF[ƒ_[ƒR[ƒh‚ÌŒãŽn––‚ðs‚¤
+extern	int		Graphics_Android_ShaderCode_Model_Initialize( void ) ;			// Android ã®ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ã®ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚³ãƒ¼ãƒ‰ã®åˆæœŸåŒ–ã‚’è¡Œã†
+extern	int		Graphics_Android_ShaderCode_Model_Terminate( void ) ;			// Android ã®ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ã®ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚³ãƒ¼ãƒ‰ã®å¾Œå§‹æœ«ã‚’è¡Œã†
 
 #endif // DX_NON_MODEL
 
-extern	int		Graphics_Android_Shader_Initialize( void ) ;					// Android ‚ÌƒVƒF[ƒ_[‚Ì‰Šú‰»‚ðs‚¤
-extern	int		Graphics_Android_Shader_Terminate( void ) ;						// Android ‚ÌƒVƒF[ƒ_[‚ÌŒãŽn––‚ð‚·‚é
+extern	int		Graphics_Android_Shader_Initialize( void ) ;					// Android ã®ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®åˆæœŸåŒ–ã‚’è¡Œã†
+extern	int		Graphics_Android_Shader_Terminate( void ) ;						// Android ã®ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®å¾Œå§‹æœ«ã‚’ã™ã‚‹
 
-extern	GRAPHICS_ANDROID_SHADER *Graphics_Android_GetShaderStruct( void ) ;		// V‚µ‚¢ƒVƒF[ƒ_[\‘¢‘Ì‚ðŽæ“¾‚·‚é
-extern	int		Graphics_Android_ShaderList_Terminate( void ) ;					// ƒVƒF[ƒ_[î•ñƒŠƒXƒg‚ÌŒãŽn––‚ðs‚¤
+extern	GRAPHICS_ANDROID_SHADER *Graphics_Android_GetShaderStruct( void ) ;		// æ–°ã—ã„ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼æ§‹é€ ä½“ã‚’å–å¾—ã™ã‚‹
+extern	int		Graphics_Android_ShaderList_Terminate( void ) ;					// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼æƒ…å ±ãƒªã‚¹ãƒˆã®å¾Œå§‹æœ«ã‚’è¡Œã†
 
-extern	int		Graphics_Android_VertexShader_Create(			GRAPHICS_HARDWARE_ANDROID_SHADERCODE_INFO	*Code, GLuint *pDestShader, int Num ) ;		// ƒVƒF[ƒ_[ƒR[ƒh‚©‚ç’¸“_ƒVƒF[ƒ_[‚ðì¬‚·‚é
-extern	void	Graphics_Android_VertexShaderArray_Release(		GLuint										*pObject,					int Num ) ;		// ’¸“_ƒVƒF[ƒ_[”z—ñ‚ð‰ð•ú‚·‚é
-extern	int		Graphics_Android_FragmentShader_Create(			GRAPHICS_HARDWARE_ANDROID_SHADERCODE_INFO	*Code, GLuint *pDestShader, int Num ) ;		// ƒVƒF[ƒ_[ƒR[ƒh‚©‚çƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[‚ðì¬‚·‚é
-extern	void	Graphics_Android_FragmentShaderArray_Release(	GLuint										*pObject,					int Num ) ;		// ƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[”z—ñ‚ð‰ð•ú‚·‚é
+extern	int		Graphics_Android_VertexShader_Create(			GRAPHICS_HARDWARE_ANDROID_SHADERCODE_INFO	*Code, GLuint *pDestShader, int Num ) ;		// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚³ãƒ¼ãƒ‰ã‹ã‚‰é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ä½œæˆã™ã‚‹
+extern	void	Graphics_Android_VertexShaderArray_Release(		GLuint										*pObject,					int Num ) ;		// é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼é…åˆ—ã‚’è§£æ”¾ã™ã‚‹
+extern	int		Graphics_Android_FragmentShader_Create(			GRAPHICS_HARDWARE_ANDROID_SHADERCODE_INFO	*Code, GLuint *pDestShader, int Num ) ;		// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚³ãƒ¼ãƒ‰ã‹ã‚‰ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ä½œæˆã™ã‚‹
+extern	void	Graphics_Android_FragmentShaderArray_Release(	GLuint										*pObject,					int Num ) ;		// ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼é…åˆ—ã‚’è§£æ”¾ã™ã‚‹
 
-extern	GLuint	Graphics_Android_Shader_GetUniformIndex(		GRAPHICS_ANDROID_SHADER *ShaderInfo, const GLchar *UniformName ) ;						// ƒVƒF[ƒ_[‚Ì Uniform ”Ô†‚ðŽæ“¾‚·‚é
-extern	int		Graphics_Android_Shader_Create(					GRAPHICS_ANDROID_SHADER *ShaderInfo, GLuint VertexShader, GLuint FragmentShader ) ;		// ’¸“_ƒVƒF[ƒ_[‚Æƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[‚©‚çƒVƒF[ƒ_[î•ñ‚ðƒZƒbƒgƒAƒbƒv‚·‚é
-extern	void	Graphics_Android_ShaderArray_Release(			GRAPHICS_ANDROID_SHADER *pShaderInfo,	int Num ) ;										// ƒVƒF[ƒ_[”z—ñ‚ð‰ð•ú‚·‚é
+extern	GLuint	Graphics_Android_Shader_GetUniformIndex(		GRAPHICS_ANDROID_SHADER *ShaderInfo, const GLchar *UniformName ) ;						// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã® Uniform ç•ªå·ã‚’å–å¾—ã™ã‚‹
+extern	int		Graphics_Android_Shader_Create(					GRAPHICS_ANDROID_SHADER *ShaderInfo, GLuint VertexShader, GLuint FragmentShader ) ;		// é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã¨ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‹ã‚‰ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼æƒ…å ±ã‚’ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã™ã‚‹
+extern	void	Graphics_Android_ShaderArray_Release(			GRAPHICS_ANDROID_SHADER *pShaderInfo,	int Num ) ;										// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼é…åˆ—ã‚’è§£æ”¾ã™ã‚‹
 
-extern	int		Graphics_Android_Shader_Normal3DDraw_Setup( void ) ;				// ‚R‚c•W€•`‰æ‚ÌŽw’è‚Ì’¸“_—p‚Ì•`‰æ—pƒVƒF[ƒ_[‚ðƒZƒbƒgƒAƒbƒv‚·‚é
-extern	int		Graphics_Android_Shader_GetAlphaTestModeIndex( int AlphaTestEnable, int AlphaTestMode /* DX_CMP_NEVER “™ */ ) ;	// ƒAƒ‹ƒtƒ@ƒeƒXƒg‚Ì”äŠrƒ‚[ƒh‚©‚çƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[‚ÌƒAƒ‹ƒtƒ@ƒeƒXƒgƒ‚[ƒh( ANDROID_FS_ALPHATEST_CMP_GREATER “™ )‚ðŽæ“¾‚·‚é
-
-
-
-
-
-
-
-
-
-
-// ’¸“_ƒoƒbƒtƒ@EƒCƒ“ƒfƒbƒNƒXƒoƒbƒtƒ@ŠÖŒW
+extern	int		Graphics_Android_Shader_Normal3DDraw_Setup( void ) ;				// ï¼“ï¼¤æ¨™æº–æç”»ã®æŒ‡å®šã®é ‚ç‚¹ç”¨ã®æç”»ç”¨ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã™ã‚‹
+extern	int		Graphics_Android_Shader_GetAlphaTestModeIndex( int AlphaTestEnable, int AlphaTestMode /* DX_CMP_NEVER ç­‰ */ ) ;	// ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆã®æ¯”è¼ƒãƒ¢ãƒ¼ãƒ‰ã‹ã‚‰ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆãƒ¢ãƒ¼ãƒ‰( ANDROID_FS_ALPHATEST_CMP_GREATER ç­‰ )ã‚’å–å¾—ã™ã‚‹
 
 
 
@@ -1446,12 +1435,21 @@ extern	int		Graphics_Android_Shader_GetAlphaTestModeIndex( int AlphaTestEnable, 
 
 
 
-// Android ‚Ì‰æ–ÊŠÖŒW
-extern	int		Graphics_Android_SetupSubBackBuffer( void ) ;															// ƒTƒuƒoƒbƒNƒoƒbƒtƒ@‚ðŽg—p‚·‚é€”õ‚ðs‚¤( 0:¬Œ÷  -1:Ž¸”s )
-extern	int		Graphics_Android_TerminateSubBackBuffer( void ) ;														// ƒTƒuƒoƒbƒNƒoƒbƒtƒ@‚ÌŒãŽn––‚ðs‚¤( 0:¬Œ÷  -1:Ž¸”s )
-extern	int		Graphics_Android_FrontScreenProcess( void ) ;															// •\‰æ–Ê‚ª•`‰ææ‚ÌÛ‚Ì’èŠúˆ—
+// é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ãƒ»ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒãƒƒãƒ•ã‚¡é–¢ä¿‚
 
 
+
+
+
+
+
+
+
+
+// Android ã®ç”»é¢é–¢ä¿‚
+extern	int		Graphics_Android_SetupSubBackBuffer( void ) ;															// ã‚µãƒ–ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã‚’ä½¿ç”¨ã™ã‚‹æº–å‚™ã‚’è¡Œã†( 0:æˆåŠŸ  -1:å¤±æ•— )
+extern	int		Graphics_Android_TerminateSubBackBuffer( void ) ;														// ã‚µãƒ–ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã®å¾Œå§‹æœ«ã‚’è¡Œã†( 0:æˆåŠŸ  -1:å¤±æ•— )
+extern	int		Graphics_Android_FrontScreenProcess( void ) ;															// è¡¨ç”»é¢ãŒæç”»å…ˆã®éš›ã®å®šæœŸå‡¦ç†
 
 
 
@@ -1465,41 +1463,43 @@ extern	int		Graphics_Android_FrontScreenProcess( void ) ;															// •\‰æ–
 
 
 
-// Android ‚Ì‰æ‘œŠÖŒW
-extern COLORDATA *Graphics_Android_GetDataFormatColorData( int PixelFormat ) ;									// ANDROID_PIXEL_FORMAT_R8G8B8A8 ‚È‚Ç‚ÌƒtƒH[ƒ}ƒbƒg‚É‡‚í‚¹‚½ƒJƒ‰[ƒtƒH[ƒ}ƒbƒgî•ñ‚ðŽæ“¾‚·‚é
 
-// •`‰ææ—pƒeƒNƒXƒ`ƒƒ‚Æ•`‰æ—pƒeƒNƒXƒ`ƒƒ‚ª•ª‚©‚ê‚Ä‚¢‚éê‡‚ÉA•`‰æ—pƒeƒNƒXƒ`ƒƒ‚É•`‰ææ—pƒeƒNƒXƒ`ƒƒ‚Ì“à—e‚ð”½‰f‚·‚é
+
+// Android ã®ç”»åƒé–¢ä¿‚
+extern COLORDATA *Graphics_Android_GetDataFormatColorData( int PixelFormat ) ;									// ANDROID_PIXEL_FORMAT_R8G8B8A8 ãªã©ã®ãƒ•ã‚©ãƒ¼ãƒžãƒƒãƒˆã«åˆã‚ã›ãŸã‚«ãƒ©ãƒ¼ãƒ•ã‚©ãƒ¼ãƒžãƒƒãƒˆæƒ…å ±ã‚’å–å¾—ã™ã‚‹
+
+// æç”»å…ˆç”¨ãƒ†ã‚¯ã‚¹ãƒãƒ£ã¨æç”»ç”¨ãƒ†ã‚¯ã‚¹ãƒãƒ£ãŒåˆ†ã‹ã‚Œã¦ã„ã‚‹å ´åˆã«ã€æç”»ç”¨ãƒ†ã‚¯ã‚¹ãƒãƒ£ã«æç”»å…ˆç”¨ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®å†…å®¹ã‚’åæ˜ ã™ã‚‹
 //extern	int		Graphics_Android_UpdateDrawTexture( IMAGEDATA_ORIG_HARD_TEX *OrigTex, int TargetSurface, D_DXGI_FORMAT Format ) ;
 
-extern	int		Graphics_Android_Texture_SetupCommonBuffer( unsigned int Size ) ;		// ƒeƒNƒXƒ`ƒƒ‰æ‘œ“]‘——p‚Ì‹¤—Lƒƒ‚ƒŠ‚ÌƒZƒbƒgƒAƒbƒv‚ðs‚¤
-extern	int		Graphics_Android_Texture_TerminateCommonBuffer( void ) ;				// ƒeƒNƒXƒ`ƒƒ‰æ‘œ“]‘——p‚Ì‹¤—Lƒƒ‚ƒŠ‚ÌŒãŽn––‚ðs‚¤
+extern	int		Graphics_Android_Texture_SetupCommonBuffer( unsigned int Size ) ;		// ãƒ†ã‚¯ã‚¹ãƒãƒ£ç”»åƒè»¢é€ç”¨ã®å…±æœ‰ãƒ¡ãƒ¢ãƒªã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã‚’è¡Œã†
+extern	int		Graphics_Android_Texture_TerminateCommonBuffer( void ) ;				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ç”»åƒè»¢é€ç”¨ã®å…±æœ‰ãƒ¡ãƒ¢ãƒªã®å¾Œå§‹æœ«ã‚’è¡Œã†
 
-// ƒtƒŒ[ƒ€ƒoƒbƒtƒ@‚ÉƒeƒNƒXƒ`ƒƒ‚Ì’Pƒ“]‘—‚ðs‚¤
+// ãƒ•ãƒ¬ãƒ¼ãƒ ãƒãƒƒãƒ•ã‚¡ã«ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®å˜ç´”è»¢é€ã‚’è¡Œã†
 extern	int		Graphics_Android_StretchRect(
-	GLuint					SrcTexture,				uint32_t SrcTextureWidth,       uint32_t SrcTextureHeight,       const RECT *SrcRect,			// NULL ‚Å‘S‘Ì
-	GLuint					FrameBuffer,			uint32_t FrameBufferWidth,      uint32_t FrameBufferHeight,      const RECT *DestRect,			// NULL ‚Å‘S‘Ì
+	GLuint					SrcTexture,				uint32_t SrcTextureWidth,       uint32_t SrcTextureHeight,       const RECT *SrcRect,			// NULL ã§å…¨ä½“
+	GLuint					FrameBuffer,			uint32_t FrameBufferWidth,      uint32_t FrameBufferHeight,      const RECT *DestRect,			// NULL ã§å…¨ä½“
 	GLenum					FilterType = GL_NEAREST,
 	int						AlphaBlend = FALSE,
 	GRAPHICS_ANDROID_SHADER	*Shader = NULL,
-	GLuint					BlendTexture = 0,		uint32_t BlendTextureWidth = 0, uint32_t BlendTextureHeight = 0, const RECT *BlendRect = NULL,	// NULL ‚Å‘S‘Ì
+	GLuint					BlendTexture = 0,		uint32_t BlendTextureWidth = 0, uint32_t BlendTextureHeight = 0, const RECT *BlendRect = NULL,	// NULL ã§å…¨ä½“
 	VERTEX_TEX8_2D *		Texcoord8Vertex = NULL
 ) ;
 
-// Žw’è‚ÌƒeƒNƒXƒ`ƒƒ‚Ì“à—e‚É“Ç‚Ýž‚ÝƒAƒNƒZƒX‚Å‚«‚é‚æ‚¤‚É‚·‚é
+// æŒ‡å®šã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®å†…å®¹ã«èª­ã¿è¾¼ã¿ã‚¢ã‚¯ã‚»ã‚¹ã§ãã‚‹ã‚ˆã†ã«ã™ã‚‹
 extern	int		Graphics_Android_Texture_Map(
 	GLuint				TargetTexture,
 	GLuint				TargetFrameBuffer/* = 0 */,
 	GLuint				TargetWidth,
 	GLuint				TargetHeight,
-	const RECT *		MapRect /* NULL ‚Å‘S‘Ì */,
+	const RECT *		MapRect /* NULL ã§å…¨ä½“ */,
 	BASEIMAGE *			MapBaseImage,
 	void **				MapTempImage
 ) ;
 
-// Žw’è‚ÌƒeƒNƒXƒ`ƒƒ‚Ì“à—e‚Ö‚Ì“Ç‚Ýž‚ÝƒAƒNƒZƒX‚ðI—¹‚·‚é
+// æŒ‡å®šã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®å†…å®¹ã¸ã®èª­ã¿è¾¼ã¿ã‚¢ã‚¯ã‚»ã‚¹ã‚’çµ‚äº†ã™ã‚‹
 extern	int		Graphics_Android_Texture_Unmap( void * MapTempImage ) ;
 
-// ƒeƒNƒXƒ`ƒƒ‚ÉƒCƒ[ƒWƒf[ƒ^‚ð“]‘—‚·‚é
+// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã«ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ã‚’è»¢é€ã™ã‚‹
 extern int Graphics_Android_BltBmpOrBaseImageToGraph3_NoMipMapBlt(
 	const RECT				*SrcRect,
 	const RECT				*DestRect,
@@ -1521,87 +1521,11 @@ extern int Graphics_Android_BltBmpOrBaseImageToGraph3_NoMipMapBlt(
 
 
 
-// AndroidDevice ‚Ì‰Šú‰»ŠÖŒW
-extern	int		Graphics_Android_Device_Create( void ) ;																// Direct3DDevice11 ƒIƒuƒWƒFƒNƒg‚Ìì¬( 0:¬Œ÷  -1:Ž¸”s )
-extern	int		Graphics_Android_Device_Delete( void ) ;																// ƒfƒoƒCƒX‚Ì”jŠü‚É‘Š“–‚·‚éˆ—‚ðs‚¤
+// AndroidDevice ã®åˆæœŸåŒ–é–¢ä¿‚
+extern	int		Graphics_Android_Device_Create( void ) ;																// Direct3DDevice11 ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ä½œæˆ( 0:æˆåŠŸ  -1:å¤±æ•— )
+extern	int		Graphics_Android_Device_Delete( void ) ;																// ãƒ‡ãƒã‚¤ã‚¹ã®ç ´æ£„ã«ç›¸å½“ã™ã‚‹å‡¦ç†ã‚’è¡Œã†
 
-extern	int		Graphics_Android_Device_Initialize( void ) ;															// Direct3DDevice11 ŠÖŒW‚Ì‰Šú‰»
-
-
-
-
-
-
-
-
-
-// AndroidDevice ƒXƒe[ƒ^ƒXŠÖŒW
-extern	void	Graphics_Android_DeviceState_RefreshRenderState( void ) ;												// •`‰æÝ’è‚ðƒŠƒtƒŒƒbƒVƒ…
-extern	int		Graphics_Android_DeviceState_SetBaseState( void ) ;														// Direct3DDevice11 ‚ÌŠî–{Ý’è‚ðs‚¤
-extern	int		Graphics_Android_DeviceState_SetSampleFilterMode( GLenum Filter, int Sampler = -1 ) ;		// ƒTƒ“ƒvƒ‰[‚ÌƒeƒNƒXƒ`ƒƒƒtƒBƒ‹ƒ^ƒŠƒ“ƒOƒ‚[ƒh‚ðÝ’è‚·‚é
-extern	int		Graphics_Android_DeviceState_SetDepthEnable( BOOL DepthEnable )  ;									// [“xƒoƒbƒtƒ@‚Ì—LŒø–³Œø‚ÌƒZƒbƒg
-extern	int		Graphics_Android_DeviceState_SetDepthWriteEnable( int Flag ) ;										// [“xƒoƒbƒtƒ@‚Ì‘‚«ž‚Ý‚Ì—L–³‚ðƒZƒbƒg
-extern	int		Graphics_Android_DeviceState_SetDepthFunc( GLenum DepthFunc ) ;						// [“x’l‚Ì”äŠrƒ^ƒCƒv‚ðƒZƒbƒg
-extern	int		Graphics_Android_DeviceState_SetDepthBias( int DepthBias ) ;										// [“x’l‚ÌƒoƒCƒAƒX‚ðƒZƒbƒg
-extern	int		Graphics_Android_DeviceState_SetWorldMatrix( const MATRIX *Matrix ) ;								// ƒ[ƒ‹ƒh•ÏŠ·—ps—ñ‚ðƒZƒbƒg‚·‚é
-extern	int		Graphics_Android_DeviceState_SetViewMatrix( const MATRIX *Matrix ) ;								// ƒrƒ…[•ÏŠ·—ps—ñ‚ðƒZƒbƒg‚·‚é
-extern	int		Graphics_Android_DeviceState_SetProjectionMatrix( const MATRIX *Matrix ) ;							// “Š‰e•ÏŠ·—ps—ñ‚ðƒZƒbƒg‚·‚é
-extern	int		Graphics_Android_DeviceState_SetAntiViewportMatrix( const MATRIX *Matrix ) ;							// ƒAƒ“ƒ`ƒrƒ…[ƒ|[ƒgs—ñ‚ðƒZƒbƒg‚·‚é
-extern	int		Graphics_Android_DeviceState_SetLightState( int LightNumber, LIGHTPARAM *Light ) ;					// ƒ‰ƒCƒg‚ÌƒZƒbƒg
-extern	int		Graphics_Android_DeviceState_SetLightEnable( int LightNumber, int EnableState ) ;						// ƒ‰ƒCƒg‚Ì—LŒøA–³Œø‚ð•ÏX
-extern	int		Graphics_Android_DeviceState_SetMaterial( MATERIALPARAM *Material ) ;									// ƒ}ƒeƒŠƒAƒ‹‚ÌƒZƒbƒg
-extern	int		Graphics_Android_DeviceState_SetSpecularEnable( int UseFlag ) ;										// ƒXƒyƒLƒ…ƒ‰‚ðŽg—p‚·‚é‚©‚Ç‚¤‚©‚ðƒZƒbƒg
-extern	int		Graphics_Android_DeviceState_SetUseVertexDiffuseColor( int UseFlag ) ;								// ’¸“_‚ÌƒfƒBƒtƒ…[ƒYƒJƒ‰[‚ðƒ}ƒeƒŠƒAƒ‹‚ÌƒfƒBƒtƒ…[ƒYƒJƒ‰[‚Æ‚µ‚ÄŽg—p‚·‚é‚©‚Ç‚¤‚©‚ðÝ’è‚·‚é
-extern	int		Graphics_Android_DeviceState_SetUseVertexSpecularColor( int UseFlag ) ;								// ’¸“_‚ÌƒXƒyƒLƒ…ƒ‰ƒJƒ‰[‚ðƒ}ƒeƒŠƒAƒ‹‚ÌƒXƒyƒLƒ…ƒ‰ƒJƒ‰[‚Æ‚µ‚ÄŽg—p‚·‚é‚©‚Ç‚¤‚©‚ðÝ’è‚·‚é
-extern	int		Graphics_Android_DeviceState_SetCullMode( int State ) ;												// ƒJƒŠƒ“ƒO‚Ì—L–³‚ðƒZƒbƒg 
-extern	int		Graphics_Android_DeviceState_SetAmbient( COLOR_F *Color ) ;											// ƒAƒ“ƒrƒGƒ“ƒgƒJƒ‰[‚ÌƒZƒbƒg
-extern	int		Graphics_Android_DeviceState_SetTextureAddress( int AddressMode, int Sampler = -1 ) ;				// ƒeƒNƒXƒ`ƒƒ[‚ÌƒAƒhƒŒƒbƒVƒ“ƒOƒ‚[ƒh‚ðƒZƒbƒg‚·‚é
-extern	int		Graphics_Android_DeviceState_SetTextureAddressU( int AddressMode, int Sampler = -1 ) ;				// ƒeƒNƒXƒ`ƒƒ[‚ÌƒAƒhƒŒƒbƒVƒ“ƒOƒ‚[ƒh‚ðƒZƒbƒg‚·‚é
-extern	int		Graphics_Android_DeviceState_SetTextureAddressV( int AddressMode, int Sampler = -1 ) ;				// ƒeƒNƒXƒ`ƒƒ[‚ÌƒAƒhƒŒƒbƒVƒ“ƒOƒ‚[ƒh‚ðƒZƒbƒg‚·‚é
-extern	int		Graphics_Android_DeviceState_SetTextureAddressW( int AddressMode, int Sampler = -1 ) ;				// ƒeƒNƒXƒ`ƒƒ[‚ÌƒAƒhƒŒƒbƒVƒ“ƒOƒ‚[ƒh‚ðƒZƒbƒg‚·‚é
-extern	int		Graphics_Android_DeviceState_SetTextureAddressUVW( int AddressModeU, int AddressModeV, int AddressModeW, int Sampler = -1 ) ;		// ƒeƒNƒXƒ`ƒƒ[‚ÌƒAƒhƒŒƒbƒVƒ“ƒOƒ‚[ƒh‚ðƒZƒbƒg‚·‚é
-extern	int		Graphics_Android_DeviceState_SetTextureAddressTransformMatrix( int Use, MATRIX *Matrix ) ;			// ƒeƒNƒXƒ`ƒƒÀ•W•ÏŠ·s—ñ‚ðƒZƒbƒg‚·‚é
-extern	int		Graphics_Android_DeviceState_SetFogEnable( int Flag ) ;												// ƒtƒHƒO‚ð—LŒø‚É‚·‚é‚©‚Ç‚¤‚©‚ðÝ’è‚·‚é( TRUE:—LŒø  FALSE:–³Œø )
-extern	int		Graphics_Android_DeviceState_SetFogVertexMode( int Mode /* DX_FOGMODE_NONE “™ */ ) ;				// ƒtƒHƒOƒ‚[ƒh‚ðÝ’è‚·‚é
-extern	int		Graphics_Android_DeviceState_SetFogColor( unsigned int Color ) ;									// ƒtƒHƒOƒJƒ‰[‚ð•ÏX‚·‚é
-extern	int		Graphics_Android_DeviceState_SetFogStartEnd( float Start, float End ) ;								// ƒtƒHƒO‚ªŽn‚Ü‚é‹——£‚ÆI—¹‚·‚é‹——£‚ðÝ’è‚·‚é( 0.0f ` 1.0f )
-extern	int		Graphics_Android_DeviceState_SetFogDensity( float Density ) ;										// ƒtƒHƒO‚Ì–§“x‚ðÝ’è‚·‚é( 0.0f ` 1.0f )
-extern	int		Graphics_Android_DeviceState_SetLighting( int UseFlag ) ;											// ƒ‰ƒCƒeƒBƒ“ƒO‚Ì—L–³ƒtƒ‰ƒO‚ðƒZƒbƒg‚·‚é
-extern	int		Graphics_Android_DeviceState_SetMaxAnisotropy( int MaxAnisotropy, int Sampler = -1 ) ;				// Å‘åˆÙ•û«‚ðƒZƒbƒg‚·‚é
-extern	int		Graphics_Android_DeviceState_SetViewport( RECT *Viewport ) ;										// ƒrƒ…[ƒ|[ƒg‚ðƒZƒbƒg‚·‚é
-extern	int		Graphics_Android_DeviceState_SetViewportEasy( int x1, int y1, int x2, int y2 ) ;					// ƒrƒ…[ƒ|[ƒg‚ðƒZƒbƒg‚·‚é( ŠÈˆÕ”Å )
-extern	int		Graphics_Android_DeviceState_SetDrawMode( int DrawMode ) ;											// •`‰æƒ‚[ƒh‚ÌƒZƒbƒg
-extern	int		Graphics_Android_DeviceState_SetAlphaTestCmpMode( int AlphaTestCmpMode /* DX_CMP_NEVER ‚È‚Ç */ ) ;	// ƒAƒ‹ƒtƒ@ƒeƒXƒg‚ÅŽg—p‚·‚é”äŠrƒ‚[ƒh‚ðÝ’è‚·‚é
-extern	int		Graphics_Android_DeviceState_SetAlphaTestRef( int AlphaTestRef ) ;									// ƒAƒ‹ƒtƒ@ƒeƒXƒg‚ÅŽg—p‚·‚éŽQÆ’l‚ðÝ’è‚·‚é
-extern	int		Graphics_Android_DeviceState_SetMulAlphaColor( int UseMulAlphaColor ) ;								// ƒJƒ‰[‚ÉƒAƒ‹ƒtƒ@’l‚ðæŽZ‚·‚é‚©‚Ç‚¤‚©‚ðÝ’è‚·‚é
-extern	int		Graphics_Android_DeviceState_SetBackgroundColor( int Red, int Green, int Blue, int Alpha ) ;		// ”wŒiF‚ðÝ’è‚·‚é
-extern	int		Graphics_Android_DeviceState_SetFactorColor( const DX_ANDR_SHADER_FLOAT4 *FactorColor ) ;			// Factor Color ‚ðÝ’è‚·‚é
-extern	int		Graphics_Android_DeviceState_SetToonOutLineSize( float Size ) ;										// ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚Ì—ÖŠsü‚Ì‘¾‚³‚ðÝ’è‚·‚é
-extern	int		Graphics_Android_DeviceState_SetBlendMode( int BlendMode, int BlendEnable, int BlendRGBSrc, int BlendRGBDest, int BlendRGBOp, int BlendASrc, int BlendADest, int BlendAOp, int NotWriteAlphaChannelFlag ) ;			// •`‰æƒuƒŒƒ“ƒhƒ‚[ƒh‚ÌƒZƒbƒg
-extern	int		Graphics_Android_DeviceState_SetRenderTarget( GLuint TargetFrameBuffer, GLuint TargetFrameBufferWidth, GLuint TargetFrameBufferHeight ) ;	// •`‰æ‘ÎÛ‚Ì•ÏX
-extern	int		Graphics_Android_DeviceState_SetShader( GRAPHICS_ANDROID_SHADER *Shader, int NormalVertexShader = FALSE ) ;			// Žg—p‚·‚éƒVƒF[ƒ_[‚ð•ÏX‚·‚é
-extern	int		Graphics_Android_DeviceState_ResetShader( int SetNormalShaderCancel = FALSE ) ;						// ƒVƒF[ƒ_[‚ÌŽg—p‚ðŽ~‚ß‚é
-extern	int		Graphics_Android_DeviceState_UpdateShaderUniform( GRAPHICS_ANDROID_SHADER *Shader, int LightNum, int UseLocalWorldMatrixUniformNum = 3 ) ;	// ƒVƒF[ƒ_[‚Ì Uniform ‚ðXV‚·‚é
-extern	int		Graphics_Android_DeviceState_SetupShaderVertexData( GRAPHICS_ANDROID_SHADER *Shader, VERTEXBUFFER_INPUT_INFO_ANDR *VertexInputInfo, const void *VertexData, GLuint VertexBuffer = 0 ) ;	// Žw’è‚ÌƒVƒF[ƒ_[‚Ì’¸“_ƒtƒH[ƒ}ƒbƒg‚Ì’¸“_ƒf[ƒ^‚Ì•`‰æ€”õ‚ðs‚¤
-extern	int		Graphics_Android_DeviceState_SetVertexBuffer( GLuint VertexBuffer ) ;								// Žg—p‚·‚é’¸“_ƒoƒbƒtƒ@‚ð•ÏX‚·‚é
-extern	int		Graphics_Android_DeviceState_SetTexture( int SlotIndex, GRAPHICS_ANDROID_TEXTURE *Texture ) ;		// ƒVƒF[ƒ_[‚ÅŽg—p‚·‚éƒeƒNƒXƒ`ƒƒ‚ð•ÏX‚·‚é
-extern	int		Graphics_Android_DeviceState_NormalDrawSetup( void ) ;												// •W€•`‰æ‚Ì€”õ‚ðs‚¤
-//extern	int		Graphics_Android_DeviceState_SetupStateAndConstantBuffer( void ) ;								// Œ»Ý‚ÌÝ’è‚ÉŠî‚Ã‚¢‚Ä ANDRSamplerAANDRPrimitiveSetupAANDRDepthStencilControlAANDRBlendControl ‚ÌƒZƒbƒgƒAƒbƒv‚ÆA’è”ƒoƒbƒtƒ@‚ÌƒAƒbƒvƒf[ƒg‚ðs‚¤
-
-
-
-
-
-
-// •`‰æÝ’èŠÖŒWŠÖ”
-extern	int		Graphics_Android_DrawSetting_SetDrawBlendMode( int BlendMode, int BlendEnable, int BlendRGBSrc, int BlendRGBDest, int BlendRGBOp, int BlendASrc, int BlendADest, int BlendAOp, int AlphaTestValidFlag, int AlphaChannelValidFlag ) ;	// •`‰æƒuƒŒƒ“ƒhƒ‚[ƒh‚ÌÝ’è
-extern	int		Graphics_Android_DrawSetting_SetIgnoreDrawGraphColor( int EnableFlag ) ;							// •`‰æŽž‚Ì‰æ‘œ‚Ì‚q‚f‚a‚ð–³Ž‹‚·‚é‚©‚Ç‚¤‚©‚ðÝ’è‚·‚é
-extern	int		Graphics_Android_DrawSetting_SetIgnoreDrawGraphAlpha( int EnableFlag ) ;							// •`‰æŽž‚Ì‰æ‘œ‚Ì‚`‚ð–³Ž‹‚·‚é‚©‚Ç‚¤‚©‚ðÝ’è‚·‚é
-extern	int		Graphics_Android_DrawSetting_SetWriteAlphaChannelFlag( int NotFlag ) ;								// •`‰ææ‚ÌƒAƒ‹ƒtƒ@ƒ`ƒƒƒ“ƒlƒ‹‚Ì“à—e‚ð‘‚«Š·‚¦‚é‚©‚ðÝ’è‚·‚é
-extern	int		Graphics_Android_DrawSetting_SetDrawAlphaTest( int TestMode, int TestParam ) ;						// ƒAƒ‹ƒtƒ@ƒeƒXƒg‚ÌÝ’è
-extern	int		Graphics_Android_DrawSetting_SetBlendTextureParam( int BlendType, int *Param ) ;					// ƒuƒŒƒ“ƒh‚·‚éƒeƒNƒXƒ`ƒƒ‚Ìƒpƒ‰ƒ[ƒ^‚ðƒZƒbƒg‚·‚é
-extern	int		Graphics_Android_DrawSetting_SetTexture(      GRAPHICS_ANDROID_TEXTURE *RenderTexture ) ;			// ƒeƒNƒXƒ`ƒƒ‚ðƒZƒbƒg‚·‚é 
-extern	int		Graphics_Android_DrawSetting_SetBlendTexture( GRAPHICS_ANDROID_TEXTURE *BlendTexture ) ;			// ƒuƒŒƒ“ƒh‚·‚éƒeƒNƒXƒ`ƒƒ‚ðƒZƒbƒg‚·‚é 
+extern	int		Graphics_Android_Device_Initialize( void ) ;															// Direct3DDevice11 é–¢ä¿‚ã®åˆæœŸåŒ–
 
 
 
@@ -1611,14 +1535,73 @@ extern	int		Graphics_Android_DrawSetting_SetBlendTexture( GRAPHICS_ANDROID_TEXTU
 
 
 
+// AndroidDevice ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹é–¢ä¿‚
+extern	void	Graphics_Android_DeviceState_RefreshRenderState( void ) ;												// æç”»è¨­å®šã‚’ãƒªãƒ•ãƒ¬ãƒƒã‚·ãƒ¥
+extern	int		Graphics_Android_DeviceState_SetBaseState( void ) ;														// Direct3DDevice11 ã®åŸºæœ¬è¨­å®šã‚’è¡Œã†
+extern	int		Graphics_Android_DeviceState_SetSampleFilterMode( GLenum Filter, int Sampler = -1 ) ;		// ã‚µãƒ³ãƒ—ãƒ©ãƒ¼ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ•ã‚£ãƒ«ã‚¿ãƒªãƒ³ã‚°ãƒ¢ãƒ¼ãƒ‰ã‚’è¨­å®šã™ã‚‹
+extern	int		Graphics_Android_DeviceState_SetDepthEnable( BOOL DepthEnable )  ;									// æ·±åº¦ãƒãƒƒãƒ•ã‚¡ã®æœ‰åŠ¹ç„¡åŠ¹ã®ã‚»ãƒƒãƒˆ
+extern	int		Graphics_Android_DeviceState_SetDepthWriteEnable( int Flag ) ;										// æ·±åº¦ãƒãƒƒãƒ•ã‚¡ã®æ›¸ãè¾¼ã¿ã®æœ‰ç„¡ã‚’ã‚»ãƒƒãƒˆ
+extern	int		Graphics_Android_DeviceState_SetDepthFunc( GLenum DepthFunc ) ;						// æ·±åº¦å€¤ã®æ¯”è¼ƒã‚¿ã‚¤ãƒ—ã‚’ã‚»ãƒƒãƒˆ
+extern	int		Graphics_Android_DeviceState_SetDepthBias( int DepthBias ) ;										// æ·±åº¦å€¤ã®ãƒã‚¤ã‚¢ã‚¹ã‚’ã‚»ãƒƒãƒˆ
+extern	int		Graphics_Android_DeviceState_SetWorldMatrix( const MATRIX *Matrix ) ;								// ãƒ¯ãƒ¼ãƒ«ãƒ‰å¤‰æ›ç”¨è¡Œåˆ—ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
+extern	int		Graphics_Android_DeviceState_SetViewMatrix( const MATRIX *Matrix ) ;								// ãƒ“ãƒ¥ãƒ¼å¤‰æ›ç”¨è¡Œåˆ—ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
+extern	int		Graphics_Android_DeviceState_SetProjectionMatrix( const MATRIX *Matrix ) ;							// æŠ•å½±å¤‰æ›ç”¨è¡Œåˆ—ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
+extern	int		Graphics_Android_DeviceState_SetAntiViewportMatrix( const MATRIX *Matrix ) ;							// ã‚¢ãƒ³ãƒãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆè¡Œåˆ—ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
+extern	int		Graphics_Android_DeviceState_SetLightState( int LightNumber, LIGHTPARAM *Light ) ;					// ãƒ©ã‚¤ãƒˆã®ã‚»ãƒƒãƒˆ
+extern	int		Graphics_Android_DeviceState_SetLightEnable( int LightNumber, int EnableState ) ;						// ãƒ©ã‚¤ãƒˆã®æœ‰åŠ¹ã€ç„¡åŠ¹ã‚’å¤‰æ›´
+extern	int		Graphics_Android_DeviceState_SetMaterial( MATERIALPARAM *Material ) ;									// ãƒžãƒ†ãƒªã‚¢ãƒ«ã®ã‚»ãƒƒãƒˆ
+extern	int		Graphics_Android_DeviceState_SetSpecularEnable( int UseFlag ) ;										// ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã‚’ã‚»ãƒƒãƒˆ
+extern	int		Graphics_Android_DeviceState_SetUseVertexDiffuseColor( int UseFlag ) ;								// é ‚ç‚¹ã®ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚«ãƒ©ãƒ¼ã‚’ãƒžãƒ†ãƒªã‚¢ãƒ«ã®ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚«ãƒ©ãƒ¼ã¨ã—ã¦ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹
+extern	int		Graphics_Android_DeviceState_SetUseVertexSpecularColor( int UseFlag ) ;								// é ‚ç‚¹ã®ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã‚«ãƒ©ãƒ¼ã‚’ãƒžãƒ†ãƒªã‚¢ãƒ«ã®ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã‚«ãƒ©ãƒ¼ã¨ã—ã¦ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹
+extern	int		Graphics_Android_DeviceState_SetCullMode( int State ) ;												// ã‚«ãƒªãƒ³ã‚°ã®æœ‰ç„¡ã‚’ã‚»ãƒƒãƒˆ 
+extern	int		Graphics_Android_DeviceState_SetAmbient( COLOR_F *Color ) ;											// ã‚¢ãƒ³ãƒ“ã‚¨ãƒ³ãƒˆã‚«ãƒ©ãƒ¼ã®ã‚»ãƒƒãƒˆ
+extern	int		Graphics_Android_DeviceState_SetTextureAddress( int AddressMode, int Sampler = -1 ) ;				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã®ã‚¢ãƒ‰ãƒ¬ãƒƒã‚·ãƒ³ã‚°ãƒ¢ãƒ¼ãƒ‰ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
+extern	int		Graphics_Android_DeviceState_SetTextureAddressU( int AddressMode, int Sampler = -1 ) ;				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã®ã‚¢ãƒ‰ãƒ¬ãƒƒã‚·ãƒ³ã‚°ãƒ¢ãƒ¼ãƒ‰ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
+extern	int		Graphics_Android_DeviceState_SetTextureAddressV( int AddressMode, int Sampler = -1 ) ;				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã®ã‚¢ãƒ‰ãƒ¬ãƒƒã‚·ãƒ³ã‚°ãƒ¢ãƒ¼ãƒ‰ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
+extern	int		Graphics_Android_DeviceState_SetTextureAddressW( int AddressMode, int Sampler = -1 ) ;				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã®ã‚¢ãƒ‰ãƒ¬ãƒƒã‚·ãƒ³ã‚°ãƒ¢ãƒ¼ãƒ‰ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
+extern	int		Graphics_Android_DeviceState_SetTextureAddressUVW( int AddressModeU, int AddressModeV, int AddressModeW, int Sampler = -1 ) ;		// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã®ã‚¢ãƒ‰ãƒ¬ãƒƒã‚·ãƒ³ã‚°ãƒ¢ãƒ¼ãƒ‰ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
+extern	int		Graphics_Android_DeviceState_SetTextureAddressTransformMatrix( int Use, MATRIX *Matrix ) ;			// ãƒ†ã‚¯ã‚¹ãƒãƒ£åº§æ¨™å¤‰æ›è¡Œåˆ—ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
+extern	int		Graphics_Android_DeviceState_SetFogEnable( int Flag ) ;												// ãƒ•ã‚©ã‚°ã‚’æœ‰åŠ¹ã«ã™ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹( TRUE:æœ‰åŠ¹  FALSE:ç„¡åŠ¹ )
+extern	int		Graphics_Android_DeviceState_SetFogVertexMode( int Mode /* DX_FOGMODE_NONE ç­‰ */ ) ;				// ãƒ•ã‚©ã‚°ãƒ¢ãƒ¼ãƒ‰ã‚’è¨­å®šã™ã‚‹
+extern	int		Graphics_Android_DeviceState_SetFogColor( unsigned int Color ) ;									// ãƒ•ã‚©ã‚°ã‚«ãƒ©ãƒ¼ã‚’å¤‰æ›´ã™ã‚‹
+extern	int		Graphics_Android_DeviceState_SetFogStartEnd( float Start, float End ) ;								// ãƒ•ã‚©ã‚°ãŒå§‹ã¾ã‚‹è·é›¢ã¨çµ‚äº†ã™ã‚‹è·é›¢ã‚’è¨­å®šã™ã‚‹( 0.0f ï½ž 1.0f )
+extern	int		Graphics_Android_DeviceState_SetFogDensity( float Density ) ;										// ãƒ•ã‚©ã‚°ã®å¯†åº¦ã‚’è¨­å®šã™ã‚‹( 0.0f ï½ž 1.0f )
+extern	int		Graphics_Android_DeviceState_SetLighting( int UseFlag ) ;											// ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ã®æœ‰ç„¡ãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
+extern	int		Graphics_Android_DeviceState_SetMaxAnisotropy( int MaxAnisotropy, int Sampler = -1 ) ;				// æœ€å¤§ç•°æ–¹æ€§ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
+extern	int		Graphics_Android_DeviceState_SetViewport( RECT *Viewport ) ;										// ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆã‚’ã‚»ãƒƒãƒˆã™ã‚‹
+extern	int		Graphics_Android_DeviceState_SetViewportEasy( int x1, int y1, int x2, int y2 ) ;					// ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆã‚’ã‚»ãƒƒãƒˆã™ã‚‹( ç°¡æ˜“ç‰ˆ )
+extern	int		Graphics_Android_DeviceState_SetDrawMode( int DrawMode ) ;											// æç”»ãƒ¢ãƒ¼ãƒ‰ã®ã‚»ãƒƒãƒˆ
+extern	int		Graphics_Android_DeviceState_SetAlphaTestCmpMode( int AlphaTestCmpMode /* DX_CMP_NEVER ãªã© */ ) ;	// ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆã§ä½¿ç”¨ã™ã‚‹æ¯”è¼ƒãƒ¢ãƒ¼ãƒ‰ã‚’è¨­å®šã™ã‚‹
+extern	int		Graphics_Android_DeviceState_SetAlphaTestRef( int AlphaTestRef ) ;									// ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆã§ä½¿ç”¨ã™ã‚‹å‚ç…§å€¤ã‚’è¨­å®šã™ã‚‹
+extern	int		Graphics_Android_DeviceState_SetMulAlphaColor( int UseMulAlphaColor ) ;								// ã‚«ãƒ©ãƒ¼ã«ã‚¢ãƒ«ãƒ•ã‚¡å€¤ã‚’ä¹—ç®—ã™ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹
+extern	int		Graphics_Android_DeviceState_SetBackgroundColor( int Red, int Green, int Blue, int Alpha ) ;		// èƒŒæ™¯è‰²ã‚’è¨­å®šã™ã‚‹
+extern	int		Graphics_Android_DeviceState_SetFactorColor( const DX_ANDR_SHADER_FLOAT4 *FactorColor ) ;			// Factor Color ã‚’è¨­å®šã™ã‚‹
+extern	int		Graphics_Android_DeviceState_SetToonOutLineSize( float Size ) ;										// ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã®è¼ªéƒ­ç·šã®å¤ªã•ã‚’è¨­å®šã™ã‚‹
+extern	int		Graphics_Android_DeviceState_SetBlendMode( int BlendMode, int BlendEnable, int BlendRGBSrc, int BlendRGBDest, int BlendRGBOp, int BlendASrc, int BlendADest, int BlendAOp, int NotWriteAlphaChannelFlag ) ;			// æç”»ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã®ã‚»ãƒƒãƒˆ
+extern	int		Graphics_Android_DeviceState_SetRenderTarget( GLuint TargetFrameBuffer, GLuint TargetFrameBufferWidth, GLuint TargetFrameBufferHeight ) ;	// æç”»å¯¾è±¡ã®å¤‰æ›´
+extern	int		Graphics_Android_DeviceState_SetShader( GRAPHICS_ANDROID_SHADER *Shader, int NormalVertexShader = FALSE ) ;			// ä½¿ç”¨ã™ã‚‹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’å¤‰æ›´ã™ã‚‹
+extern	int		Graphics_Android_DeviceState_ResetShader( int SetNormalShaderCancel = FALSE ) ;						// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ä½¿ç”¨ã‚’æ­¢ã‚ã‚‹
+extern	int		Graphics_Android_DeviceState_UpdateShaderUniform( GRAPHICS_ANDROID_SHADER *Shader, int LightNum, int UseLocalWorldMatrixUniformNum = 3 ) ;	// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã® Uniform ã‚’æ›´æ–°ã™ã‚‹
+extern	int		Graphics_Android_DeviceState_SetupShaderVertexData( GRAPHICS_ANDROID_SHADER *Shader, VERTEXBUFFER_INPUT_INFO_ANDR *VertexInputInfo, const void *VertexData, GLuint VertexBuffer = 0 ) ;	// æŒ‡å®šã®ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®é ‚ç‚¹ãƒ•ã‚©ãƒ¼ãƒžãƒƒãƒˆã®é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ã®æç”»æº–å‚™ã‚’è¡Œã†
+extern	int		Graphics_Android_DeviceState_SetVertexBuffer( GLuint VertexBuffer ) ;								// ä½¿ç”¨ã™ã‚‹é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã‚’å¤‰æ›´ã™ã‚‹
+extern	int		Graphics_Android_DeviceState_SetTexture( int SlotIndex, GRAPHICS_ANDROID_TEXTURE *Texture ) ;		// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã§ä½¿ç”¨ã™ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’å¤‰æ›´ã™ã‚‹
+extern	int		Graphics_Android_DeviceState_NormalDrawSetup( void ) ;												// æ¨™æº–æç”»ã®æº–å‚™ã‚’è¡Œã†
+//extern	int		Graphics_Android_DeviceState_SetupStateAndConstantBuffer( void ) ;								// ç¾åœ¨ã®è¨­å®šã«åŸºã¥ã„ã¦ ANDRSamplerã€ANDRPrimitiveSetupã€ANDRDepthStencilControlã€ANDRBlendControl ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã¨ã€å®šæ•°ãƒãƒƒãƒ•ã‚¡ã®ã‚¢ãƒƒãƒ—ãƒ‡ãƒ¼ãƒˆã‚’è¡Œã†
 
 
 
-// Android ‚Ì•`‰æˆ—€”õŠÖŒW
-extern	int		Graphics_Android_RenderVertex( int NextUse3DVertex = -1, int ASyncThread = FALSE ) ;	// ’¸“_ƒoƒbƒtƒ@‚É—­‚Ü‚Á‚½’¸“_ƒf[ƒ^‚ðƒŒƒ“ƒ_ƒŠƒ“ƒO‚·‚é
-extern	void	FASTCALL Graphics_Android_DrawPreparation( int ParamFlag = 0 ) ;						// •`‰æ€”õ‚ðs‚¤
-extern	void	Graphics_Android_RenderBegin( void ) ;													// •`‰æƒRƒ}ƒ“ƒh‚ðŠJŽn‚·‚é
-extern	void	Graphics_Android_RenderEnd( void ) ;													// •`‰æƒRƒ}ƒ“ƒh‚ðI—¹‚·‚é
+
+
+
+// æç”»è¨­å®šé–¢ä¿‚é–¢æ•°
+extern	int		Graphics_Android_DrawSetting_SetDrawBlendMode( int BlendMode, int BlendEnable, int BlendRGBSrc, int BlendRGBDest, int BlendRGBOp, int BlendASrc, int BlendADest, int BlendAOp, int AlphaTestValidFlag, int AlphaChannelValidFlag ) ;	// æç”»ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã®è¨­å®š
+extern	int		Graphics_Android_DrawSetting_SetIgnoreDrawGraphColor( int EnableFlag ) ;							// æç”»æ™‚ã®ç”»åƒã®ï¼²ï¼§ï¼¢ã‚’ç„¡è¦–ã™ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹
+extern	int		Graphics_Android_DrawSetting_SetIgnoreDrawGraphAlpha( int EnableFlag ) ;							// æç”»æ™‚ã®ç”»åƒã®ï¼¡ã‚’ç„¡è¦–ã™ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹
+extern	int		Graphics_Android_DrawSetting_SetWriteAlphaChannelFlag( int NotFlag ) ;								// æç”»å…ˆã®ã‚¢ãƒ«ãƒ•ã‚¡ãƒãƒ£ãƒ³ãƒãƒ«ã®å†…å®¹ã‚’æ›¸ãæ›ãˆã‚‹ã‹ã‚’è¨­å®šã™ã‚‹
+extern	int		Graphics_Android_DrawSetting_SetDrawAlphaTest( int TestMode, int TestParam ) ;						// ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆã®è¨­å®š
+extern	int		Graphics_Android_DrawSetting_SetBlendTextureParam( int BlendType, int *Param ) ;					// ãƒ–ãƒ¬ãƒ³ãƒ‰ã™ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
+extern	int		Graphics_Android_DrawSetting_SetTexture(      GRAPHICS_ANDROID_TEXTURE *RenderTexture ) ;			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ã‚»ãƒƒãƒˆã™ã‚‹ 
+extern	int		Graphics_Android_DrawSetting_SetBlendTexture( GRAPHICS_ANDROID_TEXTURE *BlendTexture ) ;			// ãƒ–ãƒ¬ãƒ³ãƒ‰ã™ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ã‚»ãƒƒãƒˆã™ã‚‹ 
 
 
 
@@ -1631,9 +1614,26 @@ extern	void	Graphics_Android_RenderEnd( void ) ;													// •`‰æƒRƒ}ƒ“ƒh‚ðI
 
 
 
-// Android ‚ðŽg‚Á‚½•`‰æŠÖŒW
-extern	void	Graphics_Android_DrawModiTex( float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4, IMAGEDATA_HARD_DRAW *DrawTex, bool SimpleDrawFlag ) ;								// ƒeƒNƒXƒ`ƒƒ‚ð•ÏŒ`‚µ‚Ä•`‰æ‚·‚é
-extern	void	Graphics_Android_DrawPreparationToShader( int ParamFlag, int Is2D ) ;											// ƒVƒF[ƒ_[•`‰æ—p•`‰æ‘OƒZƒbƒgƒAƒbƒvŠÖ”
+// Android ã®æç”»å‡¦ç†æº–å‚™é–¢ä¿‚
+extern	int		Graphics_Android_RenderVertex( int NextUse3DVertex = -1, int ASyncThread = FALSE ) ;	// é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã«æºœã¾ã£ãŸé ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ã‚’ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã™ã‚‹
+extern	void	FASTCALL Graphics_Android_DrawPreparation( int ParamFlag = 0 ) ;						// æç”»æº–å‚™ã‚’è¡Œã†
+extern	void	Graphics_Android_RenderBegin( void ) ;													// æç”»ã‚³ãƒžãƒ³ãƒ‰ã‚’é–‹å§‹ã™ã‚‹
+extern	void	Graphics_Android_RenderEnd( void ) ;													// æç”»ã‚³ãƒžãƒ³ãƒ‰ã‚’çµ‚äº†ã™ã‚‹
+
+
+
+
+
+
+
+
+
+
+
+
+// Android ã‚’ä½¿ã£ãŸæç”»é–¢ä¿‚
+extern	void	Graphics_Android_DrawModiTex( float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4, IMAGEDATA_HARD_DRAW *DrawTex, bool SimpleDrawFlag ) ;								// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’å¤‰å½¢ã—ã¦æç”»ã™ã‚‹
+extern	void	Graphics_Android_DrawPreparationToShader( int ParamFlag, int Is2D ) ;											// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼æç”»ç”¨æç”»å‰ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—é–¢æ•°
 
 
 

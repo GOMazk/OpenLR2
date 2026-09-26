@@ -1,6 +1,6 @@
 // -------------------------------------------------------------------------------
 // 
-// 		‚c‚wƒ‰ƒCƒuƒ‰ƒŠ		ƒ}ƒXƒNˆ—ƒwƒbƒ_ƒtƒ@ƒCƒ‹
+// 		ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒª		ãƒã‚¹ã‚¯å‡¦ç†ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«
 // 
 // 				Ver 3.25a
 // 
@@ -13,7 +13,7 @@
 
 #ifndef DX_NON_MASK
 
-// ƒCƒ“ƒNƒ‹[ƒh ------------------------------------------------------------------
+// ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ ------------------------------------------------------------------
 #include "DxLib.h"
 #include "DxStatic.h"
 #include "DxMemImg.h"
@@ -27,93 +27,93 @@ namespace DxLib
 
 #endif // DX_NON_NAMESPACE
 
-// ƒ}ƒNƒ’è‹` --------------------------------------------------------------------
+// ãƒã‚¯ãƒ­å®šç¾© --------------------------------------------------------------------
 
-// \‘¢‘Ì’è‹` --------------------------------------------------------------------
+// æ§‹é€ ä½“å®šç¾© --------------------------------------------------------------------
 
-// ƒ}ƒXƒNƒf[ƒ^—p\‘¢‘Ì
+// ãƒã‚¹ã‚¯ãƒ‡ãƒ¼ã‚¿ç”¨æ§‹é€ ä½“
 struct MASKDATA
 {
-	HANDLEINFO				HandleInfo ;							// ƒnƒ“ƒhƒ‹‹¤’Êî•ñ
+	HANDLEINFO				HandleInfo ;							// ãƒãƒ³ãƒ‰ãƒ«å…±é€šæƒ…å ±
 
-	BYTE					*SrcData ;								// ƒ}ƒXƒNƒ\[ƒXƒf[ƒ^
-	int						SrcDataPitch ;							// ƒ\[ƒXƒf[ƒ^ƒsƒbƒ`
-	int						MaskWidth, MaskHeight ;					// ƒ}ƒXƒN‚Ì•‚Æ‚‚³
-	int						ValidFlag ;								// —LŒøƒtƒ‰ƒO
-	int						TransMode ;								// “§‰ßFˆ—ƒ‚[ƒh
+	BYTE					*SrcData ;								// ãƒã‚¹ã‚¯ã‚½ãƒ¼ã‚¹ãƒ‡ãƒ¼ã‚¿
+	int						SrcDataPitch ;							// ã‚½ãƒ¼ã‚¹ãƒ‡ãƒ¼ã‚¿ãƒ”ãƒƒãƒ
+	int						MaskWidth, MaskHeight ;					// ãƒã‚¹ã‚¯ã®å¹…ã¨é«˜ã•
+	int						ValidFlag ;								// æœ‰åŠ¹ãƒ•ãƒ©ã‚°
+	int						TransMode ;								// é€éè‰²å‡¦ç†ãƒ¢ãƒ¼ãƒ‰
 } ;
 
-// ƒ}ƒXƒNƒf[ƒ^ŠÇ——p\‘¢‘Ì
+// ãƒã‚¹ã‚¯ãƒ‡ãƒ¼ã‚¿ç®¡ç†ç”¨æ§‹é€ ä½“
 struct MASKMANAGEDATA
 {
-	int						InitializeFlag ;						// ‰Šú‰»ƒtƒ‰ƒO
+	int						InitializeFlag ;						// åˆæœŸåŒ–ãƒ•ãƒ©ã‚°
 
-	int						MaskBufferSizeX, MaskBufferSizeY ;		// ƒ}ƒXƒNƒf[ƒ^ƒoƒbƒtƒ@‚ÌƒTƒCƒY
-	BYTE					*MaskBuffer ;							// ƒ}ƒXƒNƒf[ƒ^ƒoƒbƒtƒ@
-	int						MaskBufferPitch ;						// ƒ}ƒXƒNƒf[ƒ^ƒoƒbƒtƒ@‚Ìƒsƒbƒ`
+	int						MaskBufferSizeX, MaskBufferSizeY ;		// ãƒã‚¹ã‚¯ãƒ‡ãƒ¼ã‚¿ãƒãƒƒãƒ•ã‚¡ã®ã‚µã‚¤ã‚º
+	BYTE					*MaskBuffer ;							// ãƒã‚¹ã‚¯ãƒ‡ãƒ¼ã‚¿ãƒãƒƒãƒ•ã‚¡
+	int						MaskBufferPitch ;						// ãƒã‚¹ã‚¯ãƒ‡ãƒ¼ã‚¿ãƒãƒƒãƒ•ã‚¡ã®ãƒ”ãƒƒãƒ
 
-	int						MaskScreenGraphHandle ;					// ƒ}ƒXƒN‰æ–Ê‚Æ‚µ‚Äg—p‚·‚éƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹A –³Œø‚Ìê‡‚Í 0 ( ƒAƒ‹ƒtƒ@ƒ`ƒƒƒ“ƒlƒ‹‚ªƒ}ƒXƒN‚Æ‚µ‚Äg—p‚³‚ê‚é )
-	int						MaskScreenGraphHandleUseChannel ;		// ƒ}ƒXƒN‰æ–Ê‚Æ‚µ‚Äg—p‚·‚éƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ÅAƒ}ƒXƒN‚Æ‚µ‚Äg—p‚·‚éƒ`ƒƒƒ“ƒlƒ‹( DX_MASKGRAPH_CH_A “™ )
+	int						MaskScreenGraphHandle ;					// ãƒã‚¹ã‚¯ç”»é¢ã¨ã—ã¦ä½¿ç”¨ã™ã‚‹ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã€ ç„¡åŠ¹ã®å ´åˆã¯ 0 ( ã‚¢ãƒ«ãƒ•ã‚¡ãƒãƒ£ãƒ³ãƒãƒ«ãŒãƒã‚¹ã‚¯ã¨ã—ã¦ä½¿ç”¨ã•ã‚Œã‚‹ )
+	int						MaskScreenGraphHandleUseChannel ;		// ãƒã‚¹ã‚¯ç”»é¢ã¨ã—ã¦ä½¿ç”¨ã™ã‚‹ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã§ã€ãƒã‚¹ã‚¯ã¨ã—ã¦ä½¿ç”¨ã™ã‚‹ãƒãƒ£ãƒ³ãƒãƒ«( DX_MASKGRAPH_CH_A ç­‰ )
 
-	int						MaskReverseEffectFlag ;					// ƒ}ƒXƒN‚Ì”’l‚É‘Î‚·‚éŒø‰Ê‚ğ‹t“]‚³‚¹‚é
-	int						FullScreenMaskUpdateFlag ;				// ‘S‰æ–Êƒ}ƒXƒNXV‚ğs‚Á‚Ä‚¢‚é‚©‚Ìƒtƒ‰ƒO
-	int						CreateMaskFlag ;						// ƒ}ƒXƒNƒT[ƒtƒFƒX‚ªì¬‚³‚ê‚Ä‚¢‚é‚©A‚Ìƒtƒ‰ƒO
-	int						MaskUseFlag ;							// ƒ}ƒXƒN‚ğg—p‚·‚é‚©Aƒtƒ‰ƒO
-	int						MaskValidFlag ;							// MaskUseFlag ‚Æ CreateMaskFlag ‚ğ & ‚µ‚½‚à‚Ì
+	int						MaskReverseEffectFlag ;					// ãƒã‚¹ã‚¯ã®æ•°å€¤ã«å¯¾ã™ã‚‹åŠ¹æœã‚’é€†è»¢ã•ã›ã‚‹
+	int						FullScreenMaskUpdateFlag ;				// å…¨ç”»é¢ãƒã‚¹ã‚¯æ›´æ–°ã‚’è¡Œã£ã¦ã„ã‚‹ã‹ã®ãƒ•ãƒ©ã‚°
+	int						CreateMaskFlag ;						// ãƒã‚¹ã‚¯ã‚µãƒ¼ãƒ•ã‚§ã‚¹ãŒä½œæˆã•ã‚Œã¦ã„ã‚‹ã‹ã€ã®ãƒ•ãƒ©ã‚°
+	int						MaskUseFlag ;							// ãƒã‚¹ã‚¯ã‚’ä½¿ç”¨ã™ã‚‹ã‹ã€ãƒ•ãƒ©ã‚°
+	int						MaskValidFlag ;							// MaskUseFlag ã¨ CreateMaskFlag ã‚’ & ã—ãŸã‚‚ã®
 
-	int						MaskBeginFunctionCount ;				// ƒ}ƒXƒN‚ğg—p‚µ‚½•`‰æ‚Ì‘O‚ÉŒÄ‚ÔŠÖ”‚ªŒÄ‚Î‚ê‚½‰ñ”
+	int						MaskBeginFunctionCount ;				// ãƒã‚¹ã‚¯ã‚’ä½¿ç”¨ã—ãŸæç”»ã®å‰ã«å‘¼ã¶é–¢æ•°ãŒå‘¼ã°ã‚ŒãŸå›æ•°
 
-	int						ValidMaskDrawMemImg ;					// MaskDrawMemImg ‚ª—LŒø‚©‚Ç‚¤‚©A‚Ìƒtƒ‰ƒO
-	MEMIMG					MaskDrawMemImg ;						// ƒ}ƒXƒNg—p‚Ì•`‰ææƒT[ƒtƒFƒX‚Ì‘ã‚í‚è‚Ì MEMIMG
+	int						ValidMaskDrawMemImg ;					// MaskDrawMemImg ãŒæœ‰åŠ¹ã‹ã©ã†ã‹ã€ã®ãƒ•ãƒ©ã‚°
+	MEMIMG					MaskDrawMemImg ;						// ãƒã‚¹ã‚¯ä½¿ç”¨æ™‚ã®æç”»å…ˆã‚µãƒ¼ãƒ•ã‚§ã‚¹ã®ä»£ã‚ã‚Šã® MEMIMG
 } ;
 
-// ƒe[ƒuƒ‹-----------------------------------------------------------------------
+// ãƒ†ãƒ¼ãƒ–ãƒ«-----------------------------------------------------------------------
 
-// “à•”‘åˆæ•Ï”éŒ¾ --------------------------------------------------------------
+// å†…éƒ¨å¤§åŸŸå¤‰æ•°å®£è¨€ --------------------------------------------------------------
 
-// ƒ}ƒXƒNŠÖŒW‚Ìî•ñ
+// ãƒã‚¹ã‚¯é–¢ä¿‚ã®æƒ…å ±
 extern MASKMANAGEDATA MaskManageData ;
 
 
-// ŠÖ”ƒvƒƒgƒ^ƒCƒvéŒ¾-----------------------------------------------------------
+// é–¢æ•°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€-----------------------------------------------------------
 
-extern	int			Mask_Initialize( void ) ;																				// ƒ}ƒXƒNˆ—‚Ì‰Šú‰»
-extern	int			Mask_Terminate( void ) ;																				// ƒ}ƒXƒNˆ—‚ÌŒãn––
+extern	int			Mask_Initialize( void ) ;																				// ãƒã‚¹ã‚¯å‡¦ç†ã®åˆæœŸåŒ–
+extern	int			Mask_Terminate( void ) ;																				// ãƒã‚¹ã‚¯å‡¦ç†ã®å¾Œå§‹æœ«
 
-extern	int			Mask_ReleaseSurface( void ) ;																			// ƒ}ƒXƒNƒXƒNƒŠ[ƒ“‚ğˆêíœ‚·‚é
-extern	int			Mask_ReCreateSurface( void ) ;																			// ƒ}ƒXƒNƒXƒNƒŠ[ƒ“‚ğ•œ‹Œ‚³‚¹‚é
-extern	int			Mask_CreateScreenFunction( int MaskSurfaceFlag, int Width, int Height ) ;								// ƒ}ƒXƒNƒXƒNƒŠ[ƒ“‚ğì¬‚·‚éŠÖ”
-extern	int			Mask_CreateSurface( BYTE **MaskBuffer, int *BufferPitch, int Width, int Height, int *TransModeP ) ;		// ƒ}ƒXƒNƒT[ƒtƒFƒX‚Ìì¬
+extern	int			Mask_ReleaseSurface( void ) ;																			// ãƒã‚¹ã‚¯ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚’ä¸€æ™‚å‰Šé™¤ã™ã‚‹
+extern	int			Mask_ReCreateSurface( void ) ;																			// ãƒã‚¹ã‚¯ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚’å¾©æ—§ã•ã›ã‚‹
+extern	int			Mask_CreateScreenFunction( int MaskSurfaceFlag, int Width, int Height ) ;								// ãƒã‚¹ã‚¯ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚’ä½œæˆã™ã‚‹é–¢æ•°
+extern	int			Mask_CreateSurface( BYTE **MaskBuffer, int *BufferPitch, int Width, int Height, int *TransModeP ) ;		// ãƒã‚¹ã‚¯ã‚µãƒ¼ãƒ•ã‚§ã‚¹ã®ä½œæˆ
 
-extern	int			Mask_DrawBeginFunction( RECT Rect ) ;																	// ƒ}ƒXƒN‚ğg—p‚µ‚½•`‰æ‚Ì‘O‚ÉŒÄ‚ÔŠÖ”
-extern	int			Mask_DrawAfterFunction( RECT Rect ) ;																	// ƒ}ƒXƒN‚ğg—p‚µ‚½•`‰æ‚ÌŒã‚ÉŒÄ‚ÔŠÖ”
+extern	int			Mask_DrawBeginFunction( RECT Rect ) ;																	// ãƒã‚¹ã‚¯ã‚’ä½¿ç”¨ã—ãŸæç”»ã®å‰ã«å‘¼ã¶é–¢æ•°
+extern	int			Mask_DrawAfterFunction( RECT Rect ) ;																	// ãƒã‚¹ã‚¯ã‚’ä½¿ç”¨ã—ãŸæç”»ã®å¾Œã«å‘¼ã¶é–¢æ•°
 
-extern	int			Mask_InitializeHandle( HANDLEINFO *HandleInfo ) ;														// ƒ}ƒXƒNƒnƒ“ƒhƒ‹‚Ì‰Šú‰»
-extern	int			Mask_TerminateHandle( HANDLEINFO *HandleInfo ) ;															// ƒ}ƒXƒNƒnƒ“ƒhƒ‹‚ÌŒãn––
+extern	int			Mask_InitializeHandle( HANDLEINFO *HandleInfo ) ;														// ãƒã‚¹ã‚¯ãƒãƒ³ãƒ‰ãƒ«ã®åˆæœŸåŒ–
+extern	int			Mask_TerminateHandle( HANDLEINFO *HandleInfo ) ;															// ãƒã‚¹ã‚¯ãƒãƒ³ãƒ‰ãƒ«ã®å¾Œå§‹æœ«
 
-extern	int			Mask_MakeMask_UseGParam( int Width, int Height, int ASyncLoadFlag = FALSE ) ;								// ƒ}ƒXƒNƒf[ƒ^‚Ì’Ç‰Á
-extern	int			Mask_LoadMask_UseGParam(             const wchar_t *FileName,                                                                                        int ASyncLoadFlag = FALSE ) ;	// ƒ}ƒXƒNƒf[ƒ^‚ğ‰æ‘œƒtƒ@ƒCƒ‹‚©‚ç“Ç‚İ‚Ş
-extern	int			Mask_LoadDivMask_UseGParam(          const wchar_t *FileName,                  int AllNum, int XNum, int YNum, int XSize, int YSize, int *HandleArray, int ASyncLoadFlag = FALSE ) ;	// ƒ}ƒXƒN‚ğ‰æ‘œƒtƒ@ƒCƒ‹‚©‚ç•ªŠ„“Ç‚İ‚±‚İ
-extern	int			Mask_CreateMaskFromMem_UseGParam(    const void *FileImage, int FileImageSize,                                                                       int ASyncLoadFlag = FALSE ) ;	// ƒ}ƒXƒNƒf[ƒ^‚ğƒƒ‚ƒŠã‚Ì‰æ‘œƒtƒ@ƒCƒ‹ƒCƒ[ƒW‚©‚ç“Ç‚İ‚Ş
-extern	int			Mask_CreateDivMaskFromMem_UseGParam( const void *FileImage, int FileImageSize, int AllNum, int XNum, int YNum, int XSize, int YSize, int *HandleArray, int ASyncLoadFlag = FALSE ) ;	// ƒ}ƒXƒN‚ğƒƒ‚ƒŠã‚Ì‰æ‘œƒtƒ@ƒCƒ‹ƒCƒ[ƒW‚©‚ç•ªŠ„“Ç‚İ‚±‚İ
-
-
-
-// ŠÂ‹«ˆË‘¶ŠÖ”
-extern	int			Mask_CreateScreenFunction_Timing0_PF( void ) ;															// ƒ}ƒXƒNƒXƒNƒŠ[ƒ“‚ğì¬‚·‚éŠÖ”
-extern	int			Mask_CreateScreenFunction_Timing1_PF( int Width, int Height ) ;											// ƒ}ƒXƒNƒXƒNƒŠ[ƒ“‚ğì¬‚·‚éŠÖ”
-extern	int			Mask_CreateScreenFunction_Timing2_PF( int MaskBufferSizeXOld, int MaskBufferSizeYOld ) ;				// ƒ}ƒXƒNƒXƒNƒŠ[ƒ“‚ğì¬‚·‚éŠÖ”
-extern	int			Mask_ReleaseSurface_PF( void ) ;																		// ƒ}ƒXƒNƒXƒNƒŠ[ƒ“‚ğˆêíœ‚·‚é
-extern	int			Mask_SetUseMaskScreenFlag_PF( void ) ;																	// ƒ}ƒXƒNg—pƒ‚[ƒh‚ğ•ÏX
-extern	int			Mask_DrawBeginFunction_PF( RECT *Rect ) ;																// ƒ}ƒXƒN‚ğg—p‚µ‚½•`‰æ‚Ì‘O‚ÉŒÄ‚ÔŠÖ”( ‚Â‚¢‚Å‚ÉƒTƒuƒoƒbƒtƒ@‚ğg—p‚µ‚½•`‰æƒGƒŠƒA‹@”\‚ğg—p‚µ‚Ä‚¢‚éê‡‚Ìˆ—‚à‚¢‚ê‚Ä‚µ‚Ü‚Á‚Ä‚¢‚é‚æ )
-extern	int			Mask_DrawAfterFunction_PF( RECT *Rect ) ;																// ƒ}ƒXƒN‚ğg—p‚µ‚½•`‰æ‚ÌŒã‚ÉŒÄ‚ÔŠÖ”( ‚Â‚¢‚Å‚ÉƒTƒuƒoƒbƒtƒ@‚ğg—p‚µ‚½•`‰æƒGƒŠƒA‹@”\‚ğg—p‚µ‚Ä‚¢‚éê‡‚Ìˆ—‚à‚¢‚ê‚Ä‚µ‚Ü‚Á‚Ä‚¢‚é‚æ )
-extern	int			Mask_FillMaskScreen_PF( int Flag ) ;																	// ƒ}ƒXƒNƒXƒNƒŠ[ƒ“‚ğw’è‚ÌF‚Å“h‚è‚Â‚Ô‚·
-extern	int			Mask_UpdateMaskImageTexture_PF( RECT *Rect ) ;															// w’è—Ìˆæ‚Ìƒ}ƒXƒNƒCƒ[ƒWƒeƒNƒXƒ`ƒƒ‚ğXV‚·‚é
+extern	int			Mask_MakeMask_UseGParam( int Width, int Height, int ASyncLoadFlag = FALSE ) ;								// ãƒã‚¹ã‚¯ãƒ‡ãƒ¼ã‚¿ã®è¿½åŠ 
+extern	int			Mask_LoadMask_UseGParam(             const wchar_t *FileName,                                                                                        int ASyncLoadFlag = FALSE ) ;	// ãƒã‚¹ã‚¯ãƒ‡ãƒ¼ã‚¿ã‚’ç”»åƒãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰èª­ã¿è¾¼ã‚€
+extern	int			Mask_LoadDivMask_UseGParam(          const wchar_t *FileName,                  int AllNum, int XNum, int YNum, int XSize, int YSize, int *HandleArray, int ASyncLoadFlag = FALSE ) ;	// ãƒã‚¹ã‚¯ã‚’ç”»åƒãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰åˆ†å‰²èª­ã¿ã“ã¿
+extern	int			Mask_CreateMaskFromMem_UseGParam(    const void *FileImage, int FileImageSize,                                                                       int ASyncLoadFlag = FALSE ) ;	// ãƒã‚¹ã‚¯ãƒ‡ãƒ¼ã‚¿ã‚’ãƒ¡ãƒ¢ãƒªä¸Šã®ç”»åƒãƒ•ã‚¡ã‚¤ãƒ«ã‚¤ãƒ¡ãƒ¼ã‚¸ã‹ã‚‰èª­ã¿è¾¼ã‚€
+extern	int			Mask_CreateDivMaskFromMem_UseGParam( const void *FileImage, int FileImageSize, int AllNum, int XNum, int YNum, int XSize, int YSize, int *HandleArray, int ASyncLoadFlag = FALSE ) ;	// ãƒã‚¹ã‚¯ã‚’ãƒ¡ãƒ¢ãƒªä¸Šã®ç”»åƒãƒ•ã‚¡ã‚¤ãƒ«ã‚¤ãƒ¡ãƒ¼ã‚¸ã‹ã‚‰åˆ†å‰²èª­ã¿ã“ã¿
 
 
 
+// ç’°å¢ƒä¾å­˜é–¢æ•°
+extern	int			Mask_CreateScreenFunction_Timing0_PF( void ) ;															// ãƒã‚¹ã‚¯ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚’ä½œæˆã™ã‚‹é–¢æ•°
+extern	int			Mask_CreateScreenFunction_Timing1_PF( int Width, int Height ) ;											// ãƒã‚¹ã‚¯ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚’ä½œæˆã™ã‚‹é–¢æ•°
+extern	int			Mask_CreateScreenFunction_Timing2_PF( int MaskBufferSizeXOld, int MaskBufferSizeYOld ) ;				// ãƒã‚¹ã‚¯ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚’ä½œæˆã™ã‚‹é–¢æ•°
+extern	int			Mask_ReleaseSurface_PF( void ) ;																		// ãƒã‚¹ã‚¯ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚’ä¸€æ™‚å‰Šé™¤ã™ã‚‹
+extern	int			Mask_SetUseMaskScreenFlag_PF( void ) ;																	// ãƒã‚¹ã‚¯ä½¿ç”¨ãƒ¢ãƒ¼ãƒ‰ã‚’å¤‰æ›´
+extern	int			Mask_DrawBeginFunction_PF( RECT *Rect ) ;																// ãƒã‚¹ã‚¯ã‚’ä½¿ç”¨ã—ãŸæç”»ã®å‰ã«å‘¼ã¶é–¢æ•°( ã¤ã„ã§ã«ã‚µãƒ–ãƒãƒƒãƒ•ã‚¡ã‚’ä½¿ç”¨ã—ãŸæç”»ã‚¨ãƒªã‚¢æ©Ÿèƒ½ã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹å ´åˆã®å‡¦ç†ã‚‚ã„ã‚Œã¦ã—ã¾ã£ã¦ã„ã‚‹ã‚ˆ )
+extern	int			Mask_DrawAfterFunction_PF( RECT *Rect ) ;																// ãƒã‚¹ã‚¯ã‚’ä½¿ç”¨ã—ãŸæç”»ã®å¾Œã«å‘¼ã¶é–¢æ•°( ã¤ã„ã§ã«ã‚µãƒ–ãƒãƒƒãƒ•ã‚¡ã‚’ä½¿ç”¨ã—ãŸæç”»ã‚¨ãƒªã‚¢æ©Ÿèƒ½ã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹å ´åˆã®å‡¦ç†ã‚‚ã„ã‚Œã¦ã—ã¾ã£ã¦ã„ã‚‹ã‚ˆ )
+extern	int			Mask_FillMaskScreen_PF( int Flag ) ;																	// ãƒã‚¹ã‚¯ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚’æŒ‡å®šã®è‰²ã§å¡—ã‚Šã¤ã¶ã™
+extern	int			Mask_UpdateMaskImageTexture_PF( RECT *Rect ) ;															// æŒ‡å®šé ˜åŸŸã®ãƒã‚¹ã‚¯ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’æ›´æ–°ã™ã‚‹
 
-// wchar_t”ÅŠÖ”
+
+
+
+// wchar_tç‰ˆé–¢æ•°
 extern	int			LoadMask_WCHAR_T(						const wchar_t *FileName ) ;
 extern	int			LoadDivMask_WCHAR_T(					const wchar_t *FileName, int AllNum, int XNum, int YNum, int XSize, int YSize, int *HandleArray ) ;
 #ifndef DX_NON_FONT
@@ -123,10 +123,10 @@ extern	int			DrawStringMask_WCHAR_T(					int x, int y, int Flag,                
 extern	int			DrawStringMaskToHandle_WCHAR_T(			int x, int y, int Flag, int FontHandle, const wchar_t *String, int StrLen ) ;
 #endif // DX_NON_FONT
 
-// va_list ŠÖ”
+// va_list é–¢æ•°
 #ifndef DX_NON_FONT
-extern	int			DrawFormatStringMask_VaList(			int x, int y, int Flag,                 const TCHAR *FormatString, va_list VaList ) ;						// ‘®w’è‚ ‚è‚Ì•¶š—ñ‚ğƒ}ƒXƒNƒXƒNƒŠ[ƒ“‚É•`‰æ‚·‚é
-extern	int			DrawFormatStringMaskToHandle_VaList(	int x, int y, int Flag, int FontHandle, const TCHAR *FormatString, va_list VaList ) ;						// ‘®w’è‚ ‚è‚Ì•¶š—ñ‚ğƒ}ƒXƒNƒXƒNƒŠ[ƒ“‚É•`‰æ‚·‚é( ƒtƒHƒ“ƒgƒnƒ“ƒhƒ‹w’è”Å )( SetFontCacheToTextureFlag( FALSE ) ; ‚É‚µ‚Äì¬‚µ‚½ƒtƒHƒ“ƒgƒnƒ“ƒhƒ‹‚Ì‚İg—p‰Â”\ )
+extern	int			DrawFormatStringMask_VaList(			int x, int y, int Flag,                 const TCHAR *FormatString, va_list VaList ) ;						// æ›¸å¼æŒ‡å®šã‚ã‚Šã®æ–‡å­—åˆ—ã‚’ãƒã‚¹ã‚¯ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã«æç”»ã™ã‚‹
+extern	int			DrawFormatStringMaskToHandle_VaList(	int x, int y, int Flag, int FontHandle, const TCHAR *FormatString, va_list VaList ) ;						// æ›¸å¼æŒ‡å®šã‚ã‚Šã®æ–‡å­—åˆ—ã‚’ãƒã‚¹ã‚¯ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã«æç”»ã™ã‚‹( ãƒ•ã‚©ãƒ³ãƒˆãƒãƒ³ãƒ‰ãƒ«æŒ‡å®šç‰ˆ )( SetFontCacheToTextureFlag( FALSE ) ; ã«ã—ã¦ä½œæˆã—ãŸãƒ•ã‚©ãƒ³ãƒˆãƒãƒ³ãƒ‰ãƒ«ã®ã¿ä½¿ç”¨å¯èƒ½ )
 #endif // DX_NON_FONT
 
 

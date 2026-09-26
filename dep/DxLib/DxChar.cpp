@@ -1,15 +1,15 @@
 // ----------------------------------------------------------------------------
 // 
-// 		‚c‚wƒ‰ƒCƒuƒ‰ƒŠ		•¶šƒR[ƒhŠÖŒWƒvƒƒOƒ‰ƒ€
+// 		ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒª		æ–‡å­—ã‚³ãƒ¼ãƒ‰é–¢ä¿‚ãƒ—ãƒ­ã‚°ãƒ©ãƒ 
 // 
 // 				Ver 3.25a
 // 
 // ----------------------------------------------------------------------------
 
-// ‚c‚wƒ‰ƒCƒuƒ‰ƒŠì¬—p’è‹`
+// ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªä½œæˆæ™‚ç”¨å®šç¾©
 #define DX_MAKE
 
-// ƒCƒ“ƒNƒ‹[ƒh----------------------------------------------------------------
+// ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰----------------------------------------------------------------
 #include "DxMemory.h"
 #include "DxBaseFunc.h"
 #include "DxFile.h"
@@ -33,9 +33,9 @@ namespace DxLib
 
 #endif // DX_NON_NAMESPACE
 
-// ƒ}ƒNƒ’è‹`------------------------------------------------------------------
+// ãƒã‚¯ãƒ­å®šç¾©------------------------------------------------------------------
 
-// ‘®•¶š—ñ‚ÌƒTƒCƒYw’èƒvƒŒƒtƒBƒbƒNƒX
+// æ›¸å¼æ–‡å­—åˆ—ã®ã‚µã‚¤ã‚ºæŒ‡å®šãƒ—ãƒ¬ãƒ•ã‚£ãƒƒã‚¯ã‚¹
 #define PRINTF_SIZE_PREFIX_h		(0)
 #define PRINTF_SIZE_PREFIX_l		(1)
 #define PRINTF_SIZE_PREFIX_ll		(2)
@@ -44,7 +44,7 @@ namespace DxLib
 #define PRINTF_SIZE_PREFIX_I32		(5)
 #define PRINTF_SIZE_PREFIX_I64		(6)
 
-// ‘®•¶š—ñ‚ÌŒ^w’è
+// æ›¸å¼æ–‡å­—åˆ—ã®å‹æŒ‡å®š
 #define PRINTF_TYPE_c				(0)
 #define PRINTF_TYPE_C				(1)
 #define PRINTF_TYPE_d				(2)
@@ -67,7 +67,7 @@ namespace DxLib
 #define PRINTF_TYPE_Z				(19)
 #define PRINTF_TYPE_NUM				(20)
 
-// ‰Šú‰»ƒ`ƒFƒbƒN
+// åˆæœŸåŒ–ãƒã‚§ãƒƒã‚¯
 #ifndef WINDOWS_DESKTOP_OS
 #define CHARCODETABLE_INITCHECK( CharCodeFormat )
 #else // WINDOWS_DESKTOP_OS
@@ -118,27 +118,27 @@ namespace DxLib
 	}
 #endif
 
-// \‘¢‘ÌéŒ¾------------------------------------------------------------------
+// æ§‹é€ ä½“å®£è¨€------------------------------------------------------------------
 
-// ŠÖ”éŒ¾--------------------------------------------------------------------
+// é–¢æ•°å®£è¨€--------------------------------------------------------------------
 
 #ifndef WINDOWS_DESKTOP_OS
 
-// UTF-16‚ÆŠe•¶šƒR[ƒh‚Ì‘Î‰•\‚ÌƒZƒbƒgƒAƒbƒv‚ğs‚¤
+// UTF-16ã¨å„æ–‡å­—ã‚³ãƒ¼ãƒ‰ã®å¯¾å¿œè¡¨ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã‚’è¡Œã†
 static void SetupCharCodeTableInfo( CHARCODETABLEINFO *TableInfo, BYTE *PressTable, int *ConvertFlag, int IsSingleCharType = FALSE ) ;
 
 #else // WINDOWS_DESKTOP_OS
 
-static void SetupCharCodeCP932TableInfo( void ) ;				// UTF-16‚ÆShift-JIS‚Ì‘Î‰•\‚ÌƒZƒbƒgƒAƒbƒv‚ğs‚¤
-static void SetupCharCodeCP936TableInfo( void ) ;				// UTF-16‚ÆGB2312‚Ì‘Î‰•\‚ÌƒZƒbƒgƒAƒbƒv‚ğs‚¤
-static void SetupCharCodeCP949TableInfo( void ) ;				// UTF-16‚ÆUHC‚Ì‘Î‰•\‚ÌƒZƒbƒgƒAƒbƒv‚ğs‚¤
-static void SetupCharCodeCP950TableInfo( void ) ;				// UTF-16‚ÆBIG5‚Ì‘Î‰•\‚ÌƒZƒbƒgƒAƒbƒv‚ğs‚¤
-static void SetupCharCodeCP1252TableInfo( void ) ;				// UTF-16‚Æ‰¢•¶(ƒ‰ƒeƒ“•¶š‚Ì•¶šƒR[ƒh)‚Ì‘Î‰•\‚ÌƒZƒbƒgƒAƒbƒv‚ğs‚¤
-static void SetupCharCodeISO_IEC_8859_15TableInfo( void ) ;		// UTF-16‚Æ‰¢•¶(ƒ‰ƒeƒ“•¶š‚Ì•¶šƒR[ƒh)‚Ì‘Î‰•\‚ÌƒZƒbƒgƒAƒbƒv‚ğs‚¤
+static void SetupCharCodeCP932TableInfo( void ) ;				// UTF-16ã¨Shift-JISã®å¯¾å¿œè¡¨ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã‚’è¡Œã†
+static void SetupCharCodeCP936TableInfo( void ) ;				// UTF-16ã¨GB2312ã®å¯¾å¿œè¡¨ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã‚’è¡Œã†
+static void SetupCharCodeCP949TableInfo( void ) ;				// UTF-16ã¨UHCã®å¯¾å¿œè¡¨ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã‚’è¡Œã†
+static void SetupCharCodeCP950TableInfo( void ) ;				// UTF-16ã¨BIG5ã®å¯¾å¿œè¡¨ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã‚’è¡Œã†
+static void SetupCharCodeCP1252TableInfo( void ) ;				// UTF-16ã¨æ¬§æ–‡(ãƒ©ãƒ†ãƒ³æ–‡å­—ã®æ–‡å­—ã‚³ãƒ¼ãƒ‰)ã®å¯¾å¿œè¡¨ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã‚’è¡Œã†
+static void SetupCharCodeISO_IEC_8859_15TableInfo( void ) ;		// UTF-16ã¨æ¬§æ–‡(ãƒ©ãƒ†ãƒ³æ–‡å­—ã®æ–‡å­—ã‚³ãƒ¼ãƒ‰)ã®å¯¾å¿œè¡¨ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã‚’è¡Œã†
 
 #endif // WINDOWS_DESKTOP_OS
 
-// ƒf[ƒ^éŒ¾------------------------------------------------------------------
+// ãƒ‡ãƒ¼ã‚¿å®£è¨€------------------------------------------------------------------
 
 static BYTE NumberToCharTable[ 2 ][ 16 ] =
 {
@@ -203,11 +203,11 @@ extern BYTE ISO_IEC_8859_15ToUTF16Table[] ;
 
 CHARCODESYSTEM g_CharCodeSystem ;
 
-// ƒvƒƒOƒ‰ƒ€ƒR[ƒh------------------------------------------------------------
+// ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã‚³ãƒ¼ãƒ‰------------------------------------------------------------
 
 #ifndef WINDOWS_DESKTOP_OS
 
-// UTF-16‚ÆŠe•¶šƒR[ƒh‚Ì‘Î‰•\‚ÌƒZƒbƒgƒAƒbƒv‚ğs‚¤
+// UTF-16ã¨å„æ–‡å­—ã‚³ãƒ¼ãƒ‰ã®å¯¾å¿œè¡¨ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã‚’è¡Œã†
 static void SetupCharCodeTableInfo( CHARCODETABLEINFO *TableInfo, BYTE *PressTable, int *ConvertFlag, int IsSingleCharType )
 {
 	DWORD i ;
@@ -237,7 +237,7 @@ static void SetupCharCodeTableInfo( CHARCODETABLEINFO *TableInfo, BYTE *PressTab
 
 #else // WINDOWS_DESKTOP_OS
 
-// UTF-16‚ÆShift-JIS‚Ì‘Î‰•\‚ÌƒZƒbƒgƒAƒbƒv‚ğs‚¤
+// UTF-16ã¨Shift-JISã®å¯¾å¿œè¡¨ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã‚’è¡Œã†
 static void SetupCharCodeCP932TableInfo( void )
 {
 	wchar_t Dest[ 8 ] ;
@@ -285,7 +285,7 @@ static void SetupCharCodeCP932TableInfo( void )
 	g_CharCodeSystem.InitializeCharCodeCP932InfoFlag = TRUE ;
 }
 
-// UTF-16‚ÆGB2312‚Ì‘Î‰•\‚ÌƒZƒbƒgƒAƒbƒv‚ğs‚¤
+// UTF-16ã¨GB2312ã®å¯¾å¿œè¡¨ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã‚’è¡Œã†
 static void SetupCharCodeCP936TableInfo( void )
 {
 	wchar_t Dest[ 8 ] ;
@@ -333,7 +333,7 @@ static void SetupCharCodeCP936TableInfo( void )
 	g_CharCodeSystem.InitializeCharCodeCP936InfoFlag = TRUE ;
 }
 
-// UTF-16‚ÆUHC‚Ì‘Î‰•\‚ÌƒZƒbƒgƒAƒbƒv‚ğs‚¤
+// UTF-16ã¨UHCã®å¯¾å¿œè¡¨ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã‚’è¡Œã†
 static void SetupCharCodeCP949TableInfo( void )
 {
 	wchar_t Dest[ 8 ] ;
@@ -381,7 +381,7 @@ static void SetupCharCodeCP949TableInfo( void )
 	g_CharCodeSystem.InitializeCharCodeCP949InfoFlag = TRUE ;
 }
 
-// UTF-16‚ÆBIG5‚Ì‘Î‰•\‚ÌƒZƒbƒgƒAƒbƒv‚ğs‚¤
+// UTF-16ã¨BIG5ã®å¯¾å¿œè¡¨ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã‚’è¡Œã†
 static void SetupCharCodeCP950TableInfo( void )
 {
 	wchar_t Dest[ 8 ] ;
@@ -429,7 +429,7 @@ static void SetupCharCodeCP950TableInfo( void )
 	g_CharCodeSystem.InitializeCharCodeCP950InfoFlag = TRUE ;
 }
 
-// UTF-16‚Æ‰¢•¶(ƒ‰ƒeƒ“•¶š‚Ì•¶šƒR[ƒh)‚Ì‘Î‰•\‚ÌƒZƒbƒgƒAƒbƒv‚ğs‚¤
+// UTF-16ã¨æ¬§æ–‡(ãƒ©ãƒ†ãƒ³æ–‡å­—ã®æ–‡å­—ã‚³ãƒ¼ãƒ‰)ã®å¯¾å¿œè¡¨ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã‚’è¡Œã†
 static void SetupCharCodeCP1252TableInfo( void )
 {
 	wchar_t Dest[ 8 ] ;
@@ -464,7 +464,7 @@ static void SetupCharCodeCP1252TableInfo( void )
 	g_CharCodeSystem.InitializeCharCodeCP1252InfoFlag = TRUE ;
 }
 
-// UTF-16‚Æ‰¢•¶(ƒ‰ƒeƒ“•¶š‚Ì•¶šƒR[ƒh)‚Ì‘Î‰•\‚ÌƒZƒbƒgƒAƒbƒv‚ğs‚¤
+// UTF-16ã¨æ¬§æ–‡(ãƒ©ãƒ†ãƒ³æ–‡å­—ã®æ–‡å­—ã‚³ãƒ¼ãƒ‰)ã®å¯¾å¿œè¡¨ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã‚’è¡Œã†
 static void SetupCharCodeISO_IEC_8859_15TableInfo( void )
 {
 	wchar_t Dest[ 8 ] ;
@@ -526,14 +526,14 @@ static void SetupCharCodeISO_IEC_8859_15TableInfo( void )
 
 extern int InitCharCode( void )
 {
-	// Šù‚É‰Šú‰»Ï‚İ‚Ìê‡‚Í‰½‚à‚¹‚¸I—¹
+	// æ—¢ã«åˆæœŸåŒ–æ¸ˆã¿ã®å ´åˆã¯ä½•ã‚‚ã›ãšçµ‚äº†
 	if( g_CharCodeSystem.InitializeFlag )
 	{
 		return 0 ;
 	}
 
 #ifndef WINDOWS_DESKTOP_OS
-	// ƒLƒƒƒ‰ƒNƒ^ƒR[ƒh‘Î‰•\ƒZƒbƒgƒAƒbƒv
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã‚³ãƒ¼ãƒ‰å¯¾å¿œè¡¨ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 	SetupCharCodeTableInfo( &g_CharCodeSystem.CharCodeCP932Info,           CP932ToUTF16Table,			&CP932ToUTF16TableConvert ) ;
 	SetupCharCodeTableInfo( &g_CharCodeSystem.CharCodeCP936Info,           CP936ToUTF16Table,			&CP936ToUTF16TableConvert ) ;
 	SetupCharCodeTableInfo( &g_CharCodeSystem.CharCodeCP949Info,           CP949ToUTF16Table,			&CP949ToUTF16TableConvert ) ;
@@ -542,19 +542,19 @@ extern int InitCharCode( void )
 	SetupCharCodeTableInfo( &g_CharCodeSystem.CharCodeISO_IEC_8859_15Info, ISO_IEC_8859_15ToUTF16Table, &ISO_IEC_8859_15ToUTF16TableConvert, TRUE ) ;
 #endif // WINDOWS_DESKTOP_OS
 
-	// ‰Šú‰»ƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// åˆæœŸåŒ–ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	g_CharCodeSystem.InitializeFlag = TRUE ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
 
 
-// w’è‚Ì•¶šƒR[ƒhŒ`®‚Ìî•ñÅ­ƒTƒCƒY‚ğæ“¾‚·‚é( –ß‚è’lFƒoƒCƒg” )
+// æŒ‡å®šã®æ–‡å­—ã‚³ãƒ¼ãƒ‰å½¢å¼ã®æƒ…å ±æœ€å°‘ã‚µã‚¤ã‚ºã‚’å–å¾—ã™ã‚‹( æˆ»ã‚Šå€¤ï¼šãƒã‚¤ãƒˆæ•° )
 __inline int GetCharCodeFormatUnitSize_inline( int CharCodeFormat )
 {
-	// ‘Î‰‚µ‚Ä‚¢‚È‚¢•¶šƒR[ƒhŒ`®‚Ìê‡‚Í‰½‚à‚¹‚¸I—¹
+	// å¯¾å¿œã—ã¦ã„ãªã„æ–‡å­—ã‚³ãƒ¼ãƒ‰å½¢å¼ã®å ´åˆã¯ä½•ã‚‚ã›ãšçµ‚äº†
 	switch( CharCodeFormat )
 	{
 	case DX_CHARCODEFORMAT_SHIFTJIS :
@@ -582,13 +582,13 @@ __inline int GetCharCodeFormatUnitSize_inline( int CharCodeFormat )
 	}
 }
 
-// w’è‚Ì•¶šƒR[ƒhŒ`®‚Ìî•ñÅ­ƒTƒCƒY‚ğæ“¾‚·‚é( –ß‚è’lFƒoƒCƒg” )
+// æŒ‡å®šã®æ–‡å­—ã‚³ãƒ¼ãƒ‰å½¢å¼ã®æƒ…å ±æœ€å°‘ã‚µã‚¤ã‚ºã‚’å–å¾—ã™ã‚‹( æˆ»ã‚Šå€¤ï¼šãƒã‚¤ãƒˆæ•° )
 extern int GetCharCodeFormatUnitSize( int CharCodeFormat )
 {
 	return GetCharCodeFormatUnitSize_inline( CharCodeFormat ) ;
 }
 
-// ‚P•¶š‚ÌƒoƒCƒg”‚ğæ“¾‚·‚é( –ß‚è’lF‚P•¶š‚ÌƒoƒCƒg” )
+// ï¼‘æ–‡å­—ã®ãƒã‚¤ãƒˆæ•°ã‚’å–å¾—ã™ã‚‹( æˆ»ã‚Šå€¤ï¼šï¼‘æ–‡å­—ã®ãƒã‚¤ãƒˆæ•° )
 __inline int GetCharBytes_inline( const char *CharCode, int CharCodeFormat )
 {
 	switch( CharCodeFormat )
@@ -653,13 +653,13 @@ __inline int GetCharBytes_inline( const char *CharCode, int CharCodeFormat )
 	return -1 ;
 }
 
-// ‚P•¶š‚ÌƒoƒCƒg”‚ğæ“¾‚·‚é( –ß‚è’lF‚P•¶š‚ÌƒoƒCƒg” )
+// ï¼‘æ–‡å­—ã®ãƒã‚¤ãƒˆæ•°ã‚’å–å¾—ã™ã‚‹( æˆ»ã‚Šå€¤ï¼šï¼‘æ–‡å­—ã®ãƒã‚¤ãƒˆæ•° )
 extern int GetCharBytes_( const char *CharCode, int CharCodeFormat )
 {
 	return GetCharBytes_inline( CharCode, CharCodeFormat ) ;
 }
 
-// ‚P•¶š‚Ì•¶šƒR[ƒh‚Æ•¶š‚ÌƒoƒCƒg”‚ğæ“¾‚·‚é
+// ï¼‘æ–‡å­—ã®æ–‡å­—ã‚³ãƒ¼ãƒ‰ã¨æ–‡å­—ã®ãƒã‚¤ãƒˆæ•°ã‚’å–å¾—ã™ã‚‹
 __inline DWORD GetCharCode_inline( const char *CharCode, int CharCodeFormat, int *CharBytes, size_t &i )
 {
 	int UseSrcSize ;
@@ -830,14 +830,14 @@ __inline DWORD GetCharCode_inline( const char *CharCode, int CharCodeFormat, int
 	return DestCode ;
 }
 
-// ‚P•¶š‚Ì•¶šƒR[ƒh‚Æ•¶š‚ÌƒoƒCƒg”‚ğæ“¾‚·‚é
+// ï¼‘æ–‡å­—ã®æ–‡å­—ã‚³ãƒ¼ãƒ‰ã¨æ–‡å­—ã®ãƒã‚¤ãƒˆæ•°ã‚’å–å¾—ã™ã‚‹
 extern DWORD GetCharCode( const char *CharCode, int CharCodeFormat, int *CharBytes )
 {
 	size_t i = 0 ;
 	return GetCharCode_inline( CharCode, CharCodeFormat, CharBytes, i ) ;
 }
 
-// •¶šƒR[ƒh‚ğ’Êí‚Ì•¶š—ñ‚É•ÏŠ·‚·‚éAI’[‚Éƒkƒ‹•¶š‚Í‘‚«‚Ü‚È‚¢( –ß‚è’lF‘‚«‚ñ‚¾ƒoƒCƒg” )
+// æ–‡å­—ã‚³ãƒ¼ãƒ‰ã‚’é€šå¸¸ã®æ–‡å­—åˆ—ã«å¤‰æ›ã™ã‚‹ã€çµ‚ç«¯ã«ãƒŒãƒ«æ–‡å­—ã¯æ›¸ãè¾¼ã¾ãªã„( æˆ»ã‚Šå€¤ï¼šæ›¸ãè¾¼ã‚“ã ãƒã‚¤ãƒˆæ•° )
 __inline int PutCharCode_inline( DWORD CharCode, int CharCodeFormat, char *Dest )
 {
 	switch( CharCodeFormat )
@@ -880,7 +880,7 @@ __inline int PutCharCode_inline( DWORD CharCode, int CharCodeFormat, char *Dest 
 			DWORD DestCode2 ;
 			DWORD DestSize ;
 
-			// UTF-16 ‚Å•\Œ»‚Å‚«‚È‚¢’l‚Ìê‡‚ÍƒLƒƒƒ“ƒZƒ‹
+			// UTF-16 ã§è¡¨ç¾ã§ããªã„å€¤ã®å ´åˆã¯ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 			if( CharCode > 0x10ffff )
 			{
 				return 0 ;
@@ -1035,7 +1035,7 @@ __inline int PutCharCode_inline( DWORD CharCode, int CharCodeFormat, char *Dest 
 	}
 }
 
-// •¶šƒR[ƒh‚ğ’Êí‚Ì•¶š—ñ‚É•ÏŠ·‚·‚é( ƒoƒbƒtƒ@[ƒTƒCƒYw’è•t‚« )AI’[‚Éƒkƒ‹•¶š‚Í‘‚«‚Ü‚È‚¢( –ß‚è’lF‘‚«‚ñ‚¾ƒoƒCƒg” )
+// æ–‡å­—ã‚³ãƒ¼ãƒ‰ã‚’é€šå¸¸ã®æ–‡å­—åˆ—ã«å¤‰æ›ã™ã‚‹( ãƒãƒƒãƒ•ã‚¡ãƒ¼ã‚µã‚¤ã‚ºæŒ‡å®šä»˜ã )ã€çµ‚ç«¯ã«ãƒŒãƒ«æ–‡å­—ã¯æ›¸ãè¾¼ã¾ãªã„( æˆ»ã‚Šå€¤ï¼šæ›¸ãè¾¼ã‚“ã ãƒã‚¤ãƒˆæ•° )
 __inline size_t PutCharCode_BufferBytes_inline( DWORD CharCode, int CharCodeFormat, char *Dest, size_t DestBufferBytes )
 {
 	switch( CharCodeFormat )
@@ -1099,7 +1099,7 @@ __inline size_t PutCharCode_BufferBytes_inline( DWORD CharCode, int CharCodeForm
 			DWORD DestCode2 ;
 			size_t DestSize ;
 
-			// UTF-16 ‚Å•\Œ»‚Å‚«‚È‚¢’l‚Ìê‡‚ÍƒLƒƒƒ“ƒZƒ‹
+			// UTF-16 ã§è¡¨ç¾ã§ããªã„å€¤ã®å ´åˆã¯ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 			if( CharCode > 0x10ffff )
 			{
 				return 0 ;
@@ -1317,16 +1317,16 @@ __inline size_t PutCharCode_BufferBytes_inline( DWORD CharCode, int CharCodeForm
 	}
 }
 
-// •¶šƒR[ƒh‚ğ’Êí‚Ì•¶š—ñ‚É•ÏŠ·‚·‚éAI’[‚Éƒkƒ‹•¶š‚Í‘‚«‚Ü‚È‚¢( –ß‚è’lF‘‚«‚ñ‚¾ƒoƒCƒg” )
+// æ–‡å­—ã‚³ãƒ¼ãƒ‰ã‚’é€šå¸¸ã®æ–‡å­—åˆ—ã«å¤‰æ›ã™ã‚‹ã€çµ‚ç«¯ã«ãƒŒãƒ«æ–‡å­—ã¯æ›¸ãè¾¼ã¾ãªã„( æˆ»ã‚Šå€¤ï¼šæ›¸ãè¾¼ã‚“ã ãƒã‚¤ãƒˆæ•° )
 extern int PutCharCode( DWORD CharCode, int CharCodeFormat, char *Dest, size_t BufferBytes )
 {
 	return ( int )PutCharCode_BufferBytes_inline( CharCode, CharCodeFormat, Dest, BufferBytes ) ;
 }
 
-// •¶šƒR[ƒh‚ğw’è‚Ì•¶šƒR[ƒhŒ`®‚Ì•¶š‚É•ÏŠ·‚·‚é
+// æ–‡å­—ã‚³ãƒ¼ãƒ‰ã‚’æŒ‡å®šã®æ–‡å­—ã‚³ãƒ¼ãƒ‰å½¢å¼ã®æ–‡å­—ã«å¤‰æ›ã™ã‚‹
 __inline DWORD ConvCharCode_inline( DWORD SrcCharCode, int SrcCharCodeFormat, int DestCharCodeFormat )
 {
-	// ƒLƒƒƒ‰ƒNƒ^[ƒR[ƒhƒe[ƒuƒ‹‚ª‰Šú‰»‚³‚ê‚Ä‚¢‚È‚©‚Á‚½‚ç‰Šú‰»
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã‚³ãƒ¼ãƒ‰ãƒ†ãƒ¼ãƒ–ãƒ«ãŒåˆæœŸåŒ–ã•ã‚Œã¦ã„ãªã‹ã£ãŸã‚‰åˆæœŸåŒ–
 	if( g_CharCodeSystem.InitializeFlag == FALSE )
 	{
 		InitCharCode() ;
@@ -1494,7 +1494,7 @@ __inline DWORD ConvCharCode_inline( DWORD SrcCharCode, int SrcCharCodeFormat, in
 	}
 }
 
-// •¶šƒR[ƒh‚ğw’è‚Ì•¶šƒR[ƒhŒ`®‚Ì•¶š‚É•ÏŠ·‚·‚é
+// æ–‡å­—ã‚³ãƒ¼ãƒ‰ã‚’æŒ‡å®šã®æ–‡å­—ã‚³ãƒ¼ãƒ‰å½¢å¼ã®æ–‡å­—ã«å¤‰æ›ã™ã‚‹
 extern DWORD ConvCharCode( DWORD SrcCharCode, int SrcCharCodeFormat, int DestCharCodeFormat )
 {
 	CHARCODETABLE_INITCHECK( SrcCharCodeFormat )
@@ -1502,7 +1502,7 @@ extern DWORD ConvCharCode( DWORD SrcCharCode, int SrcCharCodeFormat, int DestCha
 	return ConvCharCode_inline( SrcCharCode, SrcCharCodeFormat, DestCharCodeFormat ) ;
 }
 
-// ‚P•¶š‚SƒoƒCƒg‚Ì”z—ñ‚ğA•Ê•¶šƒR[ƒhŒ`®‚Ì‚P•¶š‚SƒoƒCƒg‚Ì”z—ñ‚É•ÏŠ·‚·‚é( –ß‚è’lF•ÏŠ·Œã‚ÌƒTƒCƒYAƒkƒ‹•¶šŠÜ‚Ş( ’PˆÊFƒoƒCƒg ) )
+// ï¼‘æ–‡å­—ï¼”ãƒã‚¤ãƒˆã®é…åˆ—ã‚’ã€åˆ¥æ–‡å­—ã‚³ãƒ¼ãƒ‰å½¢å¼ã®ï¼‘æ–‡å­—ï¼”ãƒã‚¤ãƒˆã®é…åˆ—ã«å¤‰æ›ã™ã‚‹( æˆ»ã‚Šå€¤ï¼šå¤‰æ›å¾Œã®ã‚µã‚¤ã‚ºã€ãƒŒãƒ«æ–‡å­—å«ã‚€( å˜ä½ï¼šãƒã‚¤ãƒˆ ) )
 extern int ConvCharCodeString( const DWORD *Src, int SrcCharCodeFormat, DWORD *Dest, size_t BufferBytes, int DestCharCodeFormat )
 {
 	size_t DestSize ;
@@ -1554,7 +1554,7 @@ extern int ConvCharCodeString( const DWORD *Src, int SrcCharCodeFormat, DWORD *D
 	return ( int )DestSize ;
 }
 
-// •¶š—ñ‚ğ‚P•¶š‚SƒoƒCƒg‚Ì”z—ñ‚É•ÏŠ·‚·‚é( –ß‚è’lF•ÏŠ·Œã‚ÌƒTƒCƒYAƒkƒ‹•¶šŠÜ‚Ş( ’PˆÊFƒoƒCƒg ) )
+// æ–‡å­—åˆ—ã‚’ï¼‘æ–‡å­—ï¼”ãƒã‚¤ãƒˆã®é…åˆ—ã«å¤‰æ›ã™ã‚‹( æˆ»ã‚Šå€¤ï¼šå¤‰æ›å¾Œã®ã‚µã‚¤ã‚ºã€ãƒŒãƒ«æ–‡å­—å«ã‚€( å˜ä½ï¼šãƒã‚¤ãƒˆ ) )
 __inline int StringToCharCodeString_inline( const char *Src, int SrcCharCodeFormat, DWORD *Dest )
 {
 	int DestSize ;
@@ -1592,7 +1592,7 @@ __inline int StringToCharCodeString_inline( const char *Src, int SrcCharCodeForm
 	return DestSize ;
 }
 
-// •¶š—ñ‚ğ‚P•¶š‚SƒoƒCƒg‚Ì”z—ñ‚É•ÏŠ·‚·‚é( –ß‚è’lF•ÏŠ·Œã‚ÌƒTƒCƒYAƒkƒ‹•¶šŠÜ‚Ş( ’PˆÊFƒoƒCƒg ) )
+// æ–‡å­—åˆ—ã‚’ï¼‘æ–‡å­—ï¼”ãƒã‚¤ãƒˆã®é…åˆ—ã«å¤‰æ›ã™ã‚‹( æˆ»ã‚Šå€¤ï¼šå¤‰æ›å¾Œã®ã‚µã‚¤ã‚ºã€ãƒŒãƒ«æ–‡å­—å«ã‚€( å˜ä½ï¼šãƒã‚¤ãƒˆ ) )
 __inline int StringToCharCodeString_BufferBytes_inline( const char *Src, int SrcCharCodeFormat, DWORD *Dest, size_t BufferBytes )
 {
 	size_t DestSize ;
@@ -1640,13 +1640,13 @@ __inline int StringToCharCodeString_BufferBytes_inline( const char *Src, int Src
 	return ( int )DestSize ;
 }
 
-// •¶š—ñ‚ğ‚P•¶š‚SƒoƒCƒg‚Ì”z—ñ‚É•ÏŠ·‚·‚é( –ß‚è’lF•ÏŠ·Œã‚ÌƒTƒCƒYAƒkƒ‹•¶šŠÜ‚Ş( ’PˆÊFƒoƒCƒg ) )
+// æ–‡å­—åˆ—ã‚’ï¼‘æ–‡å­—ï¼”ãƒã‚¤ãƒˆã®é…åˆ—ã«å¤‰æ›ã™ã‚‹( æˆ»ã‚Šå€¤ï¼šå¤‰æ›å¾Œã®ã‚µã‚¤ã‚ºã€ãƒŒãƒ«æ–‡å­—å«ã‚€( å˜ä½ï¼šãƒã‚¤ãƒˆ ) )
 extern int StringToCharCodeString( const char *Src, int SrcCharCodeFormat, DWORD *Dest, size_t BufferBytes )
 {
 	return StringToCharCodeString_BufferBytes_inline( Src, SrcCharCodeFormat, Dest, BufferBytes ) ;
 }
 
-// ‚P•¶š‚SƒoƒCƒg‚Ì”z—ñ‚ğ•¶š—ñ‚É•ÏŠ·‚·‚é( –ß‚è’lF•ÏŠ·Œã‚ÌƒTƒCƒYAƒkƒ‹•¶šŠÜ‚Ş( ’PˆÊFƒoƒCƒg ) )
+// ï¼‘æ–‡å­—ï¼”ãƒã‚¤ãƒˆã®é…åˆ—ã‚’æ–‡å­—åˆ—ã«å¤‰æ›ã™ã‚‹( æˆ»ã‚Šå€¤ï¼šå¤‰æ›å¾Œã®ã‚µã‚¤ã‚ºã€ãƒŒãƒ«æ–‡å­—å«ã‚€( å˜ä½ï¼šãƒã‚¤ãƒˆ ) )
 extern int CharCodeStringToString( const DWORD *Src, char *Dest, size_t BufferBytes, int DestCharCodeFormat )
 {
 	size_t DestSize ;
@@ -1687,7 +1687,7 @@ extern int CharCodeStringToString( const DWORD *Src, char *Dest, size_t BufferBy
 		}
 	}
 
-	// I’[•¶š‚ğƒZƒbƒg
+	// çµ‚ç«¯æ–‡å­—ã‚’ã‚»ãƒƒãƒˆ
 	DestSize += PutCharCode_BufferBytes_inline( 0, DestCharCodeFormat, ( char * )DestStr, BufferBytes - DestSize ) ;
 
 	return ( int )DestSize ;
@@ -1698,7 +1698,7 @@ extern int CharCodeStringToString( const DWORD *Src, char *Dest, size_t BufferBy
 
 
 
-// ConvString ‚Ì–`“ª•”•ª‚Ìƒ}ƒNƒ
+// ConvString ã®å†’é ­éƒ¨åˆ†ã®ãƒã‚¯ãƒ­
 #define CONVSTRING_BEGIN				\
 	size_t			DestSize = 0 ;		\
 	DWORD			Unicode ;			\
@@ -1710,7 +1710,7 @@ extern int CharCodeStringToString( const DWORD *Src, char *Dest, size_t BufferBy
 	DestStr  = ( BYTE * )Dest ;
 
 
-// ConvString ‚Ì ShiftJIS‚©‚çUnicode‚ğæ“¾‚·‚é‚Ü‚Å‚Ìˆ—
+// ConvString ã® ShiftJISã‹ã‚‰Unicodeã‚’å–å¾—ã™ã‚‹ã¾ã§ã®å‡¦ç†
 __inline bool ConvString_SrcCode_SHIFTJIS( const BYTE *( &SrcStr ), DWORD &Unicode, size_t &i )
 {
 	DWORD SrcCode ;
@@ -1737,7 +1737,7 @@ __inline bool ConvString_SrcCode_SHIFTJIS( const BYTE *( &SrcStr ), DWORD &Unico
 	return true;
 }
 
-// ConvString ‚Ì UTF16LE‚©‚çUnicode‚ğæ“¾‚·‚é‚Ü‚Å‚Ìˆ—
+// ConvString ã® UTF16LEã‹ã‚‰Unicodeã‚’å–å¾—ã™ã‚‹ã¾ã§ã®å‡¦ç†
 __inline bool ConvString_SrcCode_UTF16LE( const BYTE *( &SrcStr ), DWORD &Unicode, size_t &i )
 {
 	if( ( ( ( ( BYTE * )SrcStr )[ 0 ] | ( ( ( BYTE * )SrcStr )[ 1 ] << 8 ) ) & 0xfc00 ) == 0xd800 )
@@ -1766,7 +1766,7 @@ __inline bool ConvString_SrcCode_UTF16LE( const BYTE *( &SrcStr ), DWORD &Unicod
 	return true ;
 }
 
-// ConvString ‚Ì UTF16BE‚©‚çUnicode‚ğæ“¾‚·‚é‚Ü‚Å‚Ìˆ—
+// ConvString ã® UTF16BEã‹ã‚‰Unicodeã‚’å–å¾—ã™ã‚‹ã¾ã§ã®å‡¦ç†
 __inline bool ConvString_SrcCode_UTF16BE( const BYTE *( &SrcStr ), DWORD &Unicode, size_t &i )
 {
 	if( ( ( ( ( ( BYTE * )SrcStr )[ 0 ] << 8 ) | ( ( BYTE * )SrcStr )[ 1 ] ) & 0xfc00 ) == 0xd800 )
@@ -1795,7 +1795,7 @@ __inline bool ConvString_SrcCode_UTF16BE( const BYTE *( &SrcStr ), DWORD &Unicod
 	return true ;
 }
 
-// ConvString ‚Ì UTF8‚©‚çUnicode‚ğæ“¾‚·‚é‚Ü‚Å‚Ìˆ—
+// ConvString ã® UTF8ã‹ã‚‰Unicodeã‚’å–å¾—ã™ã‚‹ã¾ã§ã®å‡¦ç†
 __inline bool ConvString_SrcCode_UTF8( const BYTE *( &SrcStr ), DWORD &Unicode, size_t &i )
 {
 	if( ( ( ( BYTE * )SrcStr )[ 0 ] & 0x80 ) == 0x00 )
@@ -1851,7 +1851,7 @@ __inline bool ConvString_SrcCode_UTF8( const BYTE *( &SrcStr ), DWORD &Unicode, 
 	return true ;
 }
 
-// ConvString ‚Ì UTF32LE‚©‚çUnicode‚ğæ“¾‚·‚é‚Ü‚Å‚Ìˆ—
+// ConvString ã® UTF32LEã‹ã‚‰Unicodeã‚’å–å¾—ã™ã‚‹ã¾ã§ã®å‡¦ç†
 __inline bool ConvString_SrcCode_UTF32LE( const BYTE *( &SrcStr ), DWORD &Unicode, size_t &i )
 {
 	Unicode = ( ( BYTE * )SrcStr )[ 0 ] | ( ( ( BYTE * )SrcStr )[ 1 ] << 8 ) | ( ( ( BYTE * )SrcStr )[ 2 ] << 16 ) | ( ( ( BYTE * )SrcStr )[ 3 ] << 24 ) ;
@@ -1860,7 +1860,7 @@ __inline bool ConvString_SrcCode_UTF32LE( const BYTE *( &SrcStr ), DWORD &Unicod
 	return Unicode != 0 ;
 }
 
-// ConvString ‚Ì UTF32BE‚©‚çUnicode‚ğæ“¾‚·‚é‚Ü‚Å‚Ìˆ—
+// ConvString ã® UTF32BEã‹ã‚‰Unicodeã‚’å–å¾—ã™ã‚‹ã¾ã§ã®å‡¦ç†
 __inline bool ConvString_SrcCode_UTF32BE( const BYTE *( &SrcStr ), DWORD &Unicode, size_t &i )
 {
 	Unicode = ( ( ( BYTE * )SrcStr )[ 0 ] << 24 ) | ( ( ( BYTE * )SrcStr )[ 1 ] << 16 ) | ( ( ( BYTE * )SrcStr )[ 2 ] << 8 ) | ( ( BYTE * )SrcStr )[ 3 ] ;
@@ -1869,12 +1869,12 @@ __inline bool ConvString_SrcCode_UTF32BE( const BYTE *( &SrcStr ), DWORD &Unicod
 	return Unicode != 0 ;
 }
 
-// ConvString ‚Ì Unicode‚©‚ç ASCII‚Æ‚µ‚Ä‘‚«‚Ş‚Ü‚Å‚Ìˆ—
+// ConvString ã® Unicodeã‹ã‚‰ ASCIIã¨ã—ã¦æ›¸ãè¾¼ã‚€ã¾ã§ã®å‡¦ç†
 __inline void ConvString_DestCode_ASCII( BYTE *&DestStr, DWORD &DestCode, size_t &DestSize, size_t BufferBytes )
 {
 	DWORD CharCode ;
 
-	// ‚PƒoƒCƒg‚Å•\Œ»‚Å‚«‚È‚¢’l‚Ìê‡‚ÍƒLƒƒƒ“ƒZƒ‹
+	// ï¼‘ãƒã‚¤ãƒˆã§è¡¨ç¾ã§ããªã„å€¤ã®å ´åˆã¯ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 	if( DestCode > 0xff )
 	{
 		return ;
@@ -1884,7 +1884,7 @@ __inline void ConvString_DestCode_ASCII( BYTE *&DestStr, DWORD &DestCode, size_t
 
 	if( DestStr != NULL )
 	{
-		// 1•¶š + ƒkƒ‹•¶š‚ğ‘‚«‚Şƒoƒbƒtƒ@ƒTƒCƒY‚ª‚È‚¢ê‡‚ÍƒLƒƒƒ“ƒZƒ‹
+		// 1æ–‡å­— + ãƒŒãƒ«æ–‡å­—ã‚’æ›¸ãè¾¼ã‚€ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚ºãŒãªã„å ´åˆã¯ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 		if( BufferBytes - DestSize < 1 + 1 )
 		{
 			return ;
@@ -1896,12 +1896,12 @@ __inline void ConvString_DestCode_ASCII( BYTE *&DestStr, DWORD &DestCode, size_t
 	DestSize += 1 ;
 }
 
-// ConvString ‚Ì Unicode‚©‚ç ShiftJIS‚Æ‚µ‚Ä‘‚«‚Ş‚Ü‚Å‚Ìˆ—
+// ConvString ã® Unicodeã‹ã‚‰ ShiftJISã¨ã—ã¦æ›¸ãè¾¼ã‚€ã¾ã§ã®å‡¦ç†
 __inline void ConvString_DestCode_SHIFTJIS( BYTE *&DestStr, DWORD &DestCode, size_t &DestSize, size_t BufferBytes )
 {
 	DWORD CharCode ;
 
-	// ƒe[ƒuƒ‹’l ‚Å•\Œ»‚Å‚«‚È‚¢’l‚Ìê‡‚ÍƒLƒƒƒ“ƒZƒ‹
+	// ãƒ†ãƒ¼ãƒ–ãƒ«å€¤ ã§è¡¨ç¾ã§ããªã„å€¤ã®å ´åˆã¯ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 	if( DestCode > 0xffff )
 	{
 		return ;
@@ -1913,7 +1913,7 @@ __inline void ConvString_DestCode_SHIFTJIS( BYTE *&DestStr, DWORD &DestCode, siz
 	{
 		if( DestStr != NULL )
 		{
-			// 1•¶š + ƒkƒ‹•¶š‚ğ‘‚«‚Şƒoƒbƒtƒ@ƒTƒCƒY‚ª‚È‚¢ê‡‚ÍƒLƒƒƒ“ƒZƒ‹
+			// 1æ–‡å­— + ãƒŒãƒ«æ–‡å­—ã‚’æ›¸ãè¾¼ã‚€ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚ºãŒãªã„å ´åˆã¯ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 			if( BufferBytes - DestSize < 2 + 1 )
 			{
 				return ;
@@ -1928,13 +1928,13 @@ __inline void ConvString_DestCode_SHIFTJIS( BYTE *&DestStr, DWORD &DestCode, siz
 	else
 	if( CharCode == 0 && DestCode != 0 )
 	{
-		// •ÏŠ·Œ³‚Ì•¶šƒR[ƒh‚ª•ÏŠ·æ‚Ì•¶šƒtƒH[ƒ}ƒbƒg‚É‘¶İ‚µ‚È‚©‚Á‚½ê‡‚Í‰½‚à‚µ‚È‚¢
+		// å¤‰æ›å…ƒã®æ–‡å­—ã‚³ãƒ¼ãƒ‰ãŒå¤‰æ›å…ˆã®æ–‡å­—ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã«å­˜åœ¨ã—ãªã‹ã£ãŸå ´åˆã¯ä½•ã‚‚ã—ãªã„
 	}
 	else
 	{
 		if( DestStr != NULL )
 		{
-			// 1•¶š + ƒkƒ‹•¶š‚ğ‘‚«‚Şƒoƒbƒtƒ@ƒTƒCƒY‚ª‚È‚¢ê‡‚ÍƒLƒƒƒ“ƒZƒ‹
+			// 1æ–‡å­— + ãƒŒãƒ«æ–‡å­—ã‚’æ›¸ãè¾¼ã‚€ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚ºãŒãªã„å ´åˆã¯ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 			if( BufferBytes - DestSize < 1 + 1 )
 			{
 				return ;
@@ -1947,10 +1947,10 @@ __inline void ConvString_DestCode_SHIFTJIS( BYTE *&DestStr, DWORD &DestCode, siz
 	}
 }
 
-// ConvString ‚Ì Unicode‚©‚çUTF16LE‚Æ‚µ‚Ä‘‚«‚Ş‚Ü‚Å‚Ìˆ—
+// ConvString ã® Unicodeã‹ã‚‰UTF16LEã¨ã—ã¦æ›¸ãè¾¼ã‚€ã¾ã§ã®å‡¦ç†
 __inline void ConvString_DestCode_UTF16LE( BYTE *&DestStr, DWORD &DestCode, size_t &DestSize, size_t BufferBytes )
 {
-	// UTF-16 ‚Å•\Œ»‚Å‚«‚È‚¢’l‚Ìê‡‚ÍƒLƒƒƒ“ƒZƒ‹
+	// UTF-16 ã§è¡¨ç¾ã§ããªã„å€¤ã®å ´åˆã¯ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 	if( DestCode > 0x10ffff )
 	{
 		return ;
@@ -1963,7 +1963,7 @@ __inline void ConvString_DestCode_UTF16LE( BYTE *&DestStr, DWORD &DestCode, size
 			DWORD DestCode1 ;
 			DWORD DestCode2 ;
 
-			// 1•¶š + ƒkƒ‹•¶š‚ğ‘‚«‚Şƒoƒbƒtƒ@ƒTƒCƒY‚ª‚È‚¢ê‡‚ÍƒLƒƒƒ“ƒZƒ‹
+			// 1æ–‡å­— + ãƒŒãƒ«æ–‡å­—ã‚’æ›¸ãè¾¼ã‚€ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚ºãŒãªã„å ´åˆã¯ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 			if( BufferBytes - DestSize < 4 + 2 )
 			{
 				return ;
@@ -1987,7 +1987,7 @@ __inline void ConvString_DestCode_UTF16LE( BYTE *&DestStr, DWORD &DestCode, size
 	{
 		if( DestStr != NULL )
 		{
-			// 1•¶š + ƒkƒ‹•¶š‚ğ‘‚«‚Şƒoƒbƒtƒ@ƒTƒCƒY‚ª‚È‚¢ê‡‚ÍƒLƒƒƒ“ƒZƒ‹
+			// 1æ–‡å­— + ãƒŒãƒ«æ–‡å­—ã‚’æ›¸ãè¾¼ã‚€ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚ºãŒãªã„å ´åˆã¯ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 			if( BufferBytes - DestSize < 2 + 2 )
 			{
 				return ;
@@ -2003,10 +2003,10 @@ __inline void ConvString_DestCode_UTF16LE( BYTE *&DestStr, DWORD &DestCode, size
 	}
 }
 
-// ConvString ‚Ì Unicode‚©‚çUTF16BE‚Æ‚µ‚Ä‘‚«‚Ş‚Ü‚Å‚Ìˆ—
+// ConvString ã® Unicodeã‹ã‚‰UTF16BEã¨ã—ã¦æ›¸ãè¾¼ã‚€ã¾ã§ã®å‡¦ç†
 __inline void ConvString_DestCode_UTF16BE( BYTE *&DestStr, DWORD &DestCode, size_t &DestSize, size_t BufferBytes )
 {
-	// UTF-16 ‚Å•\Œ»‚Å‚«‚È‚¢’l‚Ìê‡‚ÍƒLƒƒƒ“ƒZƒ‹
+	// UTF-16 ã§è¡¨ç¾ã§ããªã„å€¤ã®å ´åˆã¯ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 	if( DestCode > 0x10ffff )
 	{
 		return ;
@@ -2019,7 +2019,7 @@ __inline void ConvString_DestCode_UTF16BE( BYTE *&DestStr, DWORD &DestCode, size
 			DWORD DestCode1 ;
 			DWORD DestCode2 ;
 
-			// 1•¶š + ƒkƒ‹•¶š‚ğ‘‚«‚Şƒoƒbƒtƒ@ƒTƒCƒY‚ª‚È‚¢ê‡‚ÍƒLƒƒƒ“ƒZƒ‹
+			// 1æ–‡å­— + ãƒŒãƒ«æ–‡å­—ã‚’æ›¸ãè¾¼ã‚€ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚ºãŒãªã„å ´åˆã¯ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 			if( BufferBytes - DestSize < 4 + 2 )
 			{
 				return ;
@@ -2043,7 +2043,7 @@ __inline void ConvString_DestCode_UTF16BE( BYTE *&DestStr, DWORD &DestCode, size
 	{
 		if( DestStr != NULL )
 		{
-			// 1•¶š + ƒkƒ‹•¶š‚ğ‘‚«‚Şƒoƒbƒtƒ@ƒTƒCƒY‚ª‚È‚¢ê‡‚ÍƒLƒƒƒ“ƒZƒ‹
+			// 1æ–‡å­— + ãƒŒãƒ«æ–‡å­—ã‚’æ›¸ãè¾¼ã‚€ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚ºãŒãªã„å ´åˆã¯ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 			if( BufferBytes - DestSize < 2 + 2 )
 			{
 				return ;
@@ -2059,14 +2059,14 @@ __inline void ConvString_DestCode_UTF16BE( BYTE *&DestStr, DWORD &DestCode, size
 	}
 }
 
-// ConvString ‚Ì Unicode‚©‚çUTF8‚Æ‚µ‚Ä‘‚«‚Ş‚Ü‚Å‚Ìˆ—
+// ConvString ã® Unicodeã‹ã‚‰UTF8ã¨ã—ã¦æ›¸ãè¾¼ã‚€ã¾ã§ã®å‡¦ç†
 __inline void ConvString_DestCode_UTF8( BYTE *&DestStr, DWORD &DestCode, size_t &DestSize, size_t BufferBytes )
 {
 	if( DestCode <= 0x7f )
 	{
 		if( DestStr != NULL )
 		{
-			// 1•¶š + ƒkƒ‹•¶š‚ğ‘‚«‚Şƒoƒbƒtƒ@ƒTƒCƒY‚ª‚È‚¢ê‡‚ÍƒLƒƒƒ“ƒZƒ‹
+			// 1æ–‡å­— + ãƒŒãƒ«æ–‡å­—ã‚’æ›¸ãè¾¼ã‚€ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚ºãŒãªã„å ´åˆã¯ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 			if( BufferBytes - DestSize < 1 + 1 )
 			{
 				return ;
@@ -2083,7 +2083,7 @@ __inline void ConvString_DestCode_UTF8( BYTE *&DestStr, DWORD &DestCode, size_t 
 	{
 		if( DestStr != NULL )
 		{
-			// 1•¶š + ƒkƒ‹•¶š‚ğ‘‚«‚Şƒoƒbƒtƒ@ƒTƒCƒY‚ª‚È‚¢ê‡‚ÍƒLƒƒƒ“ƒZƒ‹
+			// 1æ–‡å­— + ãƒŒãƒ«æ–‡å­—ã‚’æ›¸ãè¾¼ã‚€ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚ºãŒãªã„å ´åˆã¯ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 			if( BufferBytes - DestSize < 2 + 1 )
 			{
 				return ;
@@ -2101,7 +2101,7 @@ __inline void ConvString_DestCode_UTF8( BYTE *&DestStr, DWORD &DestCode, size_t 
 	{
 		if( DestStr != NULL )
 		{
-			// 1•¶š + ƒkƒ‹•¶š‚ğ‘‚«‚Şƒoƒbƒtƒ@ƒTƒCƒY‚ª‚È‚¢ê‡‚ÍƒLƒƒƒ“ƒZƒ‹
+			// 1æ–‡å­— + ãƒŒãƒ«æ–‡å­—ã‚’æ›¸ãè¾¼ã‚€ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚ºãŒãªã„å ´åˆã¯ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 			if( BufferBytes - DestSize < 3 + 1 )
 			{
 				return ;
@@ -2120,7 +2120,7 @@ __inline void ConvString_DestCode_UTF8( BYTE *&DestStr, DWORD &DestCode, size_t 
 	{
 		if( DestStr != NULL )
 		{
-			// 1•¶š + ƒkƒ‹•¶š‚ğ‘‚«‚Şƒoƒbƒtƒ@ƒTƒCƒY‚ª‚È‚¢ê‡‚ÍƒLƒƒƒ“ƒZƒ‹
+			// 1æ–‡å­— + ãƒŒãƒ«æ–‡å­—ã‚’æ›¸ãè¾¼ã‚€ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚ºãŒãªã„å ´åˆã¯ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 			if( BufferBytes - DestSize < 4 + 1 )
 			{
 				return ;
@@ -2140,7 +2140,7 @@ __inline void ConvString_DestCode_UTF8( BYTE *&DestStr, DWORD &DestCode, size_t 
 	{
 		if( DestStr != NULL )
 		{
-			// 1•¶š + ƒkƒ‹•¶š‚ğ‘‚«‚Şƒoƒbƒtƒ@ƒTƒCƒY‚ª‚È‚¢ê‡‚ÍƒLƒƒƒ“ƒZƒ‹
+			// 1æ–‡å­— + ãƒŒãƒ«æ–‡å­—ã‚’æ›¸ãè¾¼ã‚€ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚ºãŒãªã„å ´åˆã¯ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 			if( BufferBytes - DestSize < 5 + 1 )
 			{
 				return ;
@@ -2161,7 +2161,7 @@ __inline void ConvString_DestCode_UTF8( BYTE *&DestStr, DWORD &DestCode, size_t 
 	{
 		if( DestStr != NULL )
 		{
-			// 1•¶š + ƒkƒ‹•¶š‚ğ‘‚«‚Şƒoƒbƒtƒ@ƒTƒCƒY‚ª‚È‚¢ê‡‚ÍƒLƒƒƒ“ƒZƒ‹
+			// 1æ–‡å­— + ãƒŒãƒ«æ–‡å­—ã‚’æ›¸ãè¾¼ã‚€ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚ºãŒãªã„å ´åˆã¯ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 			if( BufferBytes - DestSize < 6 + 1 )
 			{
 				return ;
@@ -2184,12 +2184,12 @@ __inline void ConvString_DestCode_UTF8( BYTE *&DestStr, DWORD &DestCode, size_t 
 	}
 }
 
-// ConvString ‚Ì Unicode‚©‚çUTF32LE‚Æ‚µ‚Ä‘‚«‚Ş‚Ü‚Å‚Ìˆ—
+// ConvString ã® Unicodeã‹ã‚‰UTF32LEã¨ã—ã¦æ›¸ãè¾¼ã‚€ã¾ã§ã®å‡¦ç†
 __inline void ConvString_DestCode_UTF32LE( BYTE *&DestStr, DWORD &DestCode, size_t &DestSize, size_t BufferBytes )
 {
 	if( DestStr != NULL )
 	{
-		// 1•¶š + ƒkƒ‹•¶š‚ğ‘‚«‚Şƒoƒbƒtƒ@ƒTƒCƒY‚ª‚È‚¢ê‡‚ÍƒLƒƒƒ“ƒZƒ‹
+		// 1æ–‡å­— + ãƒŒãƒ«æ–‡å­—ã‚’æ›¸ãè¾¼ã‚€ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚ºãŒãªã„å ´åˆã¯ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 		if( BufferBytes - DestSize < 4 + 4 )
 		{
 			return ;
@@ -2205,12 +2205,12 @@ __inline void ConvString_DestCode_UTF32LE( BYTE *&DestStr, DWORD &DestCode, size
 	DestSize += 4 ;
 }
 
-// ConvString ‚Ì Unicode‚©‚çUTF32BE‚Æ‚µ‚Ä‘‚«‚Ş‚Ü‚Å‚Ìˆ—
+// ConvString ã® Unicodeã‹ã‚‰UTF32BEã¨ã—ã¦æ›¸ãè¾¼ã‚€ã¾ã§ã®å‡¦ç†
 __inline void ConvString_DestCode_UTF32BE( BYTE *&DestStr, DWORD &DestCode, size_t &DestSize, size_t BufferBytes )
 {
 	if( DestStr != NULL )
 	{
-		// 1•¶š + ƒkƒ‹•¶š‚ğ‘‚«‚Şƒoƒbƒtƒ@ƒTƒCƒY‚ª‚È‚¢ê‡‚ÍƒLƒƒƒ“ƒZƒ‹
+		// 1æ–‡å­— + ãƒŒãƒ«æ–‡å­—ã‚’æ›¸ãè¾¼ã‚€ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚ºãŒãªã„å ´åˆã¯ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 		if( BufferBytes - DestSize < 4 + 4 )
 		{
 			return ;
@@ -2226,7 +2226,7 @@ __inline void ConvString_DestCode_UTF32BE( BYTE *&DestStr, DWORD &DestCode, size
 	DestSize += 4 ;
 }
 
-// ConvString ‚Ì 1ƒoƒCƒg’PˆÊƒR[ƒh‚ÌI’[•¶š‚ğ‘‚«‚Şˆ—
+// ConvString ã® 1ãƒã‚¤ãƒˆå˜ä½ã‚³ãƒ¼ãƒ‰ã®çµ‚ç«¯æ–‡å­—ã‚’æ›¸ãè¾¼ã‚€å‡¦ç†
 __inline void ConvString_1BYTE_NULL_CHAR( BYTE *&DestStr, size_t &DestSize )
 {
 	if( DestStr != NULL )
@@ -2237,7 +2237,7 @@ __inline void ConvString_1BYTE_NULL_CHAR( BYTE *&DestStr, size_t &DestSize )
 	DestSize += 1 ;
 }
 
-// ConvString ‚Ì 2ƒoƒCƒg’PˆÊƒR[ƒh‚ÌI’[•¶š‚ğ‘‚«‚Şˆ—
+// ConvString ã® 2ãƒã‚¤ãƒˆå˜ä½ã‚³ãƒ¼ãƒ‰ã®çµ‚ç«¯æ–‡å­—ã‚’æ›¸ãè¾¼ã‚€å‡¦ç†
 __inline void ConvString_2BYTE_NULL_CHAR( BYTE *&DestStr, size_t &DestSize )
 {
 	if( DestStr != NULL )
@@ -2248,7 +2248,7 @@ __inline void ConvString_2BYTE_NULL_CHAR( BYTE *&DestStr, size_t &DestSize )
 	DestSize += 2 ;
 }
 
-// ConvString ‚Ì 4ƒoƒCƒg’PˆÊƒR[ƒh‚ÌI’[•¶š‚ğ‘‚«‚Şˆ—
+// ConvString ã® 4ãƒã‚¤ãƒˆå˜ä½ã‚³ãƒ¼ãƒ‰ã®çµ‚ç«¯æ–‡å­—ã‚’æ›¸ãè¾¼ã‚€å‡¦ç†
 __inline void ConvString_4BYTE_NULL_CHAR( BYTE *&DestStr, size_t &DestSize )
 {
 	if( DestStr != NULL )
@@ -2260,7 +2260,7 @@ __inline void ConvString_4BYTE_NULL_CHAR( BYTE *&DestStr, size_t &DestSize )
 }
 
 
-// ConvString ‚Ì UTF16LE ¨ UTF16BE ‚‘¬ˆ——p
+// ConvString ã® UTF16LE â†’ UTF16BE é«˜é€Ÿå‡¦ç†ç”¨
 __inline int ConvString_UTF16LE_TO_UTF16BE( const char *Src, int SrcStrLength, char *Dest, size_t BufferBytes )
 {
 	CONVSTRING_BEGIN
@@ -2280,7 +2280,7 @@ __inline int ConvString_UTF16LE_TO_UTF16BE( const char *Src, int SrcStrLength, c
 	return ( int )DestSize ;
 }
 
-// ConvString ‚Ì UTF16LE ¨ UTF8 ‚‘¬ˆ——p
+// ConvString ã® UTF16LE â†’ UTF8 é«˜é€Ÿå‡¦ç†ç”¨
 __inline int ConvString_UTF16LE_TO_UTF8( const char *Src, int SrcStrLength, char *Dest, size_t BufferBytes )
 {
 	CONVSTRING_BEGIN
@@ -2300,7 +2300,7 @@ __inline int ConvString_UTF16LE_TO_UTF8( const char *Src, int SrcStrLength, char
 	return ( int )DestSize ;
 }
 
-// ConvString ‚Ì UTF16LE ¨ UTF32LE ‚‘¬ˆ——p
+// ConvString ã® UTF16LE â†’ UTF32LE é«˜é€Ÿå‡¦ç†ç”¨
 __inline int ConvString_UTF16LE_TO_UTF32LE( const char *Src, int SrcStrLength, char *Dest, size_t BufferBytes )
 {
 	CONVSTRING_BEGIN
@@ -2320,7 +2320,7 @@ __inline int ConvString_UTF16LE_TO_UTF32LE( const char *Src, int SrcStrLength, c
 	return ( int )DestSize ;
 }
 
-// ConvString ‚Ì UTF16LE ¨ UTF32BE ‚‘¬ˆ——p
+// ConvString ã® UTF16LE â†’ UTF32BE é«˜é€Ÿå‡¦ç†ç”¨
 __inline int ConvString_UTF16LE_TO_UTF32BE( const char *Src, int SrcStrLength, char *Dest, size_t BufferBytes )
 {
 	CONVSTRING_BEGIN
@@ -2341,7 +2341,7 @@ __inline int ConvString_UTF16LE_TO_UTF32BE( const char *Src, int SrcStrLength, c
 }
 
 
-// ConvString ‚Ì UTF16BE ¨ UTF16LE ‚‘¬ˆ——p
+// ConvString ã® UTF16BE â†’ UTF16LE é«˜é€Ÿå‡¦ç†ç”¨
 __inline int ConvString_UTF16BE_TO_UTF16LE( const char *Src, int SrcStrLength, char *Dest, size_t BufferBytes )
 {
 	CONVSTRING_BEGIN
@@ -2361,7 +2361,7 @@ __inline int ConvString_UTF16BE_TO_UTF16LE( const char *Src, int SrcStrLength, c
 	return ( int )DestSize ;
 }
 
-// ConvString ‚Ì UTF16BE ¨ UTF8 ‚‘¬ˆ——p
+// ConvString ã® UTF16BE â†’ UTF8 é«˜é€Ÿå‡¦ç†ç”¨
 __inline int ConvString_UTF16BE_TO_UTF8( const char *Src, int SrcStrLength, char *Dest, size_t BufferBytes )
 {
 	CONVSTRING_BEGIN
@@ -2381,7 +2381,7 @@ __inline int ConvString_UTF16BE_TO_UTF8( const char *Src, int SrcStrLength, char
 	return ( int )DestSize ;
 }
 
-// ConvString ‚Ì UTF16BE ¨ UTF32LE ‚‘¬ˆ——p
+// ConvString ã® UTF16BE â†’ UTF32LE é«˜é€Ÿå‡¦ç†ç”¨
 __inline int ConvString_UTF16BE_TO_UTF32LE( const char *Src, int SrcStrLength, char *Dest, size_t BufferBytes )
 {
 	CONVSTRING_BEGIN
@@ -2401,7 +2401,7 @@ __inline int ConvString_UTF16BE_TO_UTF32LE( const char *Src, int SrcStrLength, c
 	return ( int )DestSize ;
 }
 
-// ConvString ‚Ì UTF16BE ¨ UTF32BE ‚‘¬ˆ——p
+// ConvString ã® UTF16BE â†’ UTF32BE é«˜é€Ÿå‡¦ç†ç”¨
 __inline int ConvString_UTF16BE_TO_UTF32BE( const char *Src, int SrcStrLength, char *Dest, size_t BufferBytes )
 {
 	CONVSTRING_BEGIN
@@ -2422,7 +2422,7 @@ __inline int ConvString_UTF16BE_TO_UTF32BE( const char *Src, int SrcStrLength, c
 }
 
 
-// ConvString ‚Ì UTF8 ¨ UTF16LE ‚‘¬ˆ——p
+// ConvString ã® UTF8 â†’ UTF16LE é«˜é€Ÿå‡¦ç†ç”¨
 __inline int ConvString_UTF8_TO_UTF16LE( const char *Src, int SrcStrLength, char *Dest, size_t BufferBytes )
 {
 	CONVSTRING_BEGIN
@@ -2442,7 +2442,7 @@ __inline int ConvString_UTF8_TO_UTF16LE( const char *Src, int SrcStrLength, char
 	return ( int )DestSize ;
 }
 
-// ConvString ‚Ì UTF8 ¨ UTF16BE ‚‘¬ˆ——p
+// ConvString ã® UTF8 â†’ UTF16BE é«˜é€Ÿå‡¦ç†ç”¨
 __inline int ConvString_UTF8_TO_UTF16BE( const char *Src, int SrcStrLength, char *Dest, size_t BufferBytes )
 {
 	CONVSTRING_BEGIN
@@ -2462,7 +2462,7 @@ __inline int ConvString_UTF8_TO_UTF16BE( const char *Src, int SrcStrLength, char
 	return ( int )DestSize ;
 }
 
-// ConvString ‚Ì UTF8 ¨ UTF32LE ‚‘¬ˆ——p
+// ConvString ã® UTF8 â†’ UTF32LE é«˜é€Ÿå‡¦ç†ç”¨
 __inline int ConvString_UTF8_TO_UTF32LE( const char *Src, int SrcStrLength, char *Dest, size_t BufferBytes )
 {
 	CONVSTRING_BEGIN
@@ -2482,7 +2482,7 @@ __inline int ConvString_UTF8_TO_UTF32LE( const char *Src, int SrcStrLength, char
 	return ( int )DestSize ;
 }
 
-// ConvString ‚Ì UTF8 ¨ UTF32BE ‚‘¬ˆ——p
+// ConvString ã® UTF8 â†’ UTF32BE é«˜é€Ÿå‡¦ç†ç”¨
 __inline int ConvString_UTF8_TO_UTF32BE( const char *Src, int SrcStrLength, char *Dest, size_t BufferBytes )
 {
 	CONVSTRING_BEGIN
@@ -2503,7 +2503,7 @@ __inline int ConvString_UTF8_TO_UTF32BE( const char *Src, int SrcStrLength, char
 }
 
 
-// ConvString ‚Ì UTF32LE ¨ UTF16LE ‚‘¬ˆ——p
+// ConvString ã® UTF32LE â†’ UTF16LE é«˜é€Ÿå‡¦ç†ç”¨
 __inline int ConvString_UTF32LE_TO_UTF16LE( const char *Src, int SrcStrLength, char *Dest, size_t BufferBytes )
 {
 	CONVSTRING_BEGIN
@@ -2523,7 +2523,7 @@ __inline int ConvString_UTF32LE_TO_UTF16LE( const char *Src, int SrcStrLength, c
 	return ( int )DestSize ;
 }
 
-// ConvString ‚Ì UTF32LE ¨ UTF16BE ‚‘¬ˆ——p
+// ConvString ã® UTF32LE â†’ UTF16BE é«˜é€Ÿå‡¦ç†ç”¨
 __inline int ConvString_UTF32LE_TO_UTF16BE( const char *Src, int SrcStrLength, char *Dest, size_t BufferBytes )
 {
 	CONVSTRING_BEGIN
@@ -2543,7 +2543,7 @@ __inline int ConvString_UTF32LE_TO_UTF16BE( const char *Src, int SrcStrLength, c
 	return ( int )DestSize ;
 }
 
-// ConvString ‚Ì UTF32LE ¨ UTF8 ‚‘¬ˆ——p
+// ConvString ã® UTF32LE â†’ UTF8 é«˜é€Ÿå‡¦ç†ç”¨
 __inline int ConvString_UTF32LE_TO_UTF8( const char *Src, int SrcStrLength, char *Dest, size_t BufferBytes )
 {
 	CONVSTRING_BEGIN
@@ -2563,7 +2563,7 @@ __inline int ConvString_UTF32LE_TO_UTF8( const char *Src, int SrcStrLength, char
 	return ( int )DestSize ;
 }
 
-// ConvString ‚Ì UTF32LE ¨ UTF32BE ‚‘¬ˆ——p
+// ConvString ã® UTF32LE â†’ UTF32BE é«˜é€Ÿå‡¦ç†ç”¨
 __inline int ConvString_UTF32LE_TO_UTF32BE( const char *Src, int SrcStrLength, char *Dest, size_t BufferBytes )
 {
 	CONVSTRING_BEGIN
@@ -2584,7 +2584,7 @@ __inline int ConvString_UTF32LE_TO_UTF32BE( const char *Src, int SrcStrLength, c
 }
 
 
-// ConvString ‚Ì UTF32BE ¨ UTF16LE ‚‘¬ˆ——p
+// ConvString ã® UTF32BE â†’ UTF16LE é«˜é€Ÿå‡¦ç†ç”¨
 __inline int ConvString_UTF32BE_TO_UTF16LE( const char *Src, int SrcStrLength, char *Dest, size_t BufferBytes )
 {
 	CONVSTRING_BEGIN
@@ -2604,7 +2604,7 @@ __inline int ConvString_UTF32BE_TO_UTF16LE( const char *Src, int SrcStrLength, c
 	return ( int )DestSize ;
 }
 
-// ConvString ‚Ì UTF32BE ¨ UTF16BE ‚‘¬ˆ——p
+// ConvString ã® UTF32BE â†’ UTF16BE é«˜é€Ÿå‡¦ç†ç”¨
 __inline int ConvString_UTF32BE_TO_UTF16BE( const char *Src, int SrcStrLength, char *Dest, size_t BufferBytes )
 {
 	CONVSTRING_BEGIN
@@ -2624,7 +2624,7 @@ __inline int ConvString_UTF32BE_TO_UTF16BE( const char *Src, int SrcStrLength, c
 	return ( int )DestSize ;
 }
 
-// ConvString ‚Ì UTF32BE ¨ UTF8 ‚‘¬ˆ——p
+// ConvString ã® UTF32BE â†’ UTF8 é«˜é€Ÿå‡¦ç†ç”¨
 __inline int ConvString_UTF32BE_TO_UTF8( const char *Src, int SrcStrLength, char *Dest, size_t BufferBytes )
 {
 	CONVSTRING_BEGIN
@@ -2644,7 +2644,7 @@ __inline int ConvString_UTF32BE_TO_UTF8( const char *Src, int SrcStrLength, char
 	return ( int )DestSize ;
 }
 
-// ConvString ‚Ì UTF32BE ¨ UTF32LE ‚‘¬ˆ——p
+// ConvString ã® UTF32BE â†’ UTF32LE é«˜é€Ÿå‡¦ç†ç”¨
 __inline int ConvString_UTF32BE_TO_UTF32LE( const char *Src, int SrcStrLength, char *Dest, size_t BufferBytes )
 {
 	CONVSTRING_BEGIN
@@ -2666,7 +2666,7 @@ __inline int ConvString_UTF32BE_TO_UTF32LE( const char *Src, int SrcStrLength, c
 
 
 
-// ConvString ‚Ì ShiftJIS ¨ ASCII ‚‘¬ˆ——p
+// ConvString ã® ShiftJIS â†’ ASCII é«˜é€Ÿå‡¦ç†ç”¨
 __inline int ConvString_SHIFTJIS_TO_ASCII( const char *Src, int SrcStrLength, char *Dest, size_t BufferBytes )
 {
 	CONVSTRING_BEGIN
@@ -2686,7 +2686,7 @@ __inline int ConvString_SHIFTJIS_TO_ASCII( const char *Src, int SrcStrLength, ch
 	return ( int )DestSize ;
 }
 
-// ConvString ‚Ì ShiftJIS ¨ UTF16LE ‚‘¬ˆ——p
+// ConvString ã® ShiftJIS â†’ UTF16LE é«˜é€Ÿå‡¦ç†ç”¨
 __inline int ConvString_SHIFTJIS_TO_UTF16LE( const char *Src, int SrcStrLength, char *Dest, size_t BufferBytes )
 {
 	CONVSTRING_BEGIN
@@ -2706,7 +2706,7 @@ __inline int ConvString_SHIFTJIS_TO_UTF16LE( const char *Src, int SrcStrLength, 
 	return ( int )DestSize ;
 }
 
-// ConvString ‚Ì ShiftJIS ¨ UTF16BE ‚‘¬ˆ——p
+// ConvString ã® ShiftJIS â†’ UTF16BE é«˜é€Ÿå‡¦ç†ç”¨
 __inline int ConvString_SHIFTJIS_TO_UTF16BE( const char *Src, int SrcStrLength, char *Dest, size_t BufferBytes )
 {
 	CONVSTRING_BEGIN
@@ -2726,7 +2726,7 @@ __inline int ConvString_SHIFTJIS_TO_UTF16BE( const char *Src, int SrcStrLength, 
 	return ( int )DestSize ;
 }
 
-// ConvString ‚Ì ShiftJIS ¨ UTF8 ‚‘¬ˆ——p
+// ConvString ã® ShiftJIS â†’ UTF8 é«˜é€Ÿå‡¦ç†ç”¨
 __inline int ConvString_SHIFTJIS_TO_UTF8( const char *Src, int SrcStrLength, char *Dest, size_t BufferBytes )
 {
 	CONVSTRING_BEGIN
@@ -2746,7 +2746,7 @@ __inline int ConvString_SHIFTJIS_TO_UTF8( const char *Src, int SrcStrLength, cha
 	return ( int )DestSize ;
 }
 
-// ConvString ‚Ì ShiftJIS ¨ UTF32LE ‚‘¬ˆ——p
+// ConvString ã® ShiftJIS â†’ UTF32LE é«˜é€Ÿå‡¦ç†ç”¨
 __inline int ConvString_SHIFTJIS_TO_UTF32LE( const char *Src, int SrcStrLength, char *Dest, size_t BufferBytes )
 {
 	CONVSTRING_BEGIN
@@ -2766,7 +2766,7 @@ __inline int ConvString_SHIFTJIS_TO_UTF32LE( const char *Src, int SrcStrLength, 
 	return ( int )DestSize ;
 }
 
-// ConvString ‚Ì ShiftJIS ¨ UTF32BE ‚‘¬ˆ——p
+// ConvString ã® ShiftJIS â†’ UTF32BE é«˜é€Ÿå‡¦ç†ç”¨
 __inline int ConvString_SHIFTJIS_TO_UTF32BE( const char *Src, int SrcStrLength, char *Dest, size_t BufferBytes )
 {
 	CONVSTRING_BEGIN
@@ -2787,7 +2787,7 @@ __inline int ConvString_SHIFTJIS_TO_UTF32BE( const char *Src, int SrcStrLength, 
 }
 
 
-// ConvString ‚Ì UTF16LE ¨ ASCII ‚‘¬ˆ——p
+// ConvString ã® UTF16LE â†’ ASCII é«˜é€Ÿå‡¦ç†ç”¨
 __inline int ConvString_UTF16LE_TO_ASCII( const char *Src, int SrcStrLength, char *Dest, size_t BufferBytes )
 {
 	CONVSTRING_BEGIN
@@ -2807,7 +2807,7 @@ __inline int ConvString_UTF16LE_TO_ASCII( const char *Src, int SrcStrLength, cha
 	return ( int )DestSize ;
 }
 
-// ConvString ‚Ì UTF16LE ¨ ShiftJIS ‚‘¬ˆ——p
+// ConvString ã® UTF16LE â†’ ShiftJIS é«˜é€Ÿå‡¦ç†ç”¨
 __inline int ConvString_UTF16LE_TO_SHIFTJIS( const char *Src, int SrcStrLength, char *Dest, size_t BufferBytes )
 {
 	CONVSTRING_BEGIN
@@ -2827,7 +2827,7 @@ __inline int ConvString_UTF16LE_TO_SHIFTJIS( const char *Src, int SrcStrLength, 
 	return ( int )DestSize ;
 }
 
-// ConvString ‚Ì UTF16BE ¨ ASCII ‚‘¬ˆ——p
+// ConvString ã® UTF16BE â†’ ASCII é«˜é€Ÿå‡¦ç†ç”¨
 __inline int ConvString_UTF16BE_TO_ASCII( const char *Src, int SrcStrLength, char *Dest, size_t BufferBytes )
 {
 	CONVSTRING_BEGIN
@@ -2847,7 +2847,7 @@ __inline int ConvString_UTF16BE_TO_ASCII( const char *Src, int SrcStrLength, cha
 	return ( int )DestSize ;
 }
 
-// ConvString ‚Ì UTF16BE ¨ ShiftJIS ‚‘¬ˆ——p
+// ConvString ã® UTF16BE â†’ ShiftJIS é«˜é€Ÿå‡¦ç†ç”¨
 __inline int ConvString_UTF16BE_TO_SHIFTJIS( const char *Src, int SrcStrLength, char *Dest, size_t BufferBytes )
 {
 	CONVSTRING_BEGIN
@@ -2867,7 +2867,7 @@ __inline int ConvString_UTF16BE_TO_SHIFTJIS( const char *Src, int SrcStrLength, 
 	return ( int )DestSize ;
 }
 
-// ConvString ‚Ì UTF8 ¨ ASCII ‚‘¬ˆ——p
+// ConvString ã® UTF8 â†’ ASCII é«˜é€Ÿå‡¦ç†ç”¨
 __inline int ConvString_UTF8_TO_ASCII( const char *Src, int SrcStrLength, char *Dest, size_t BufferBytes )
 {
 	CONVSTRING_BEGIN
@@ -2887,7 +2887,7 @@ __inline int ConvString_UTF8_TO_ASCII( const char *Src, int SrcStrLength, char *
 	return ( int )DestSize ;
 }
 
-// ConvString ‚Ì UTF8 ¨ ShiftJIS ‚‘¬ˆ——p
+// ConvString ã® UTF8 â†’ ShiftJIS é«˜é€Ÿå‡¦ç†ç”¨
 __inline int ConvString_UTF8_TO_SHIFTJIS( const char *Src, int SrcStrLength, char *Dest, size_t BufferBytes )
 {
 	CONVSTRING_BEGIN
@@ -2907,7 +2907,7 @@ __inline int ConvString_UTF8_TO_SHIFTJIS( const char *Src, int SrcStrLength, cha
 	return ( int )DestSize ;
 }
 
-// ConvString ‚Ì UTF32LE ¨ ASCII ‚‘¬ˆ——p
+// ConvString ã® UTF32LE â†’ ASCII é«˜é€Ÿå‡¦ç†ç”¨
 __inline int ConvString_UTF32LE_TO_ASCII( const char *Src, int SrcStrLength, char *Dest, size_t BufferBytes )
 {
 	CONVSTRING_BEGIN
@@ -2927,7 +2927,7 @@ __inline int ConvString_UTF32LE_TO_ASCII( const char *Src, int SrcStrLength, cha
 	return ( int )DestSize ;
 }
 
-// ConvString ‚Ì UTF32LE ¨ ShiftJIS ‚‘¬ˆ——p
+// ConvString ã® UTF32LE â†’ ShiftJIS é«˜é€Ÿå‡¦ç†ç”¨
 __inline int ConvString_UTF32LE_TO_SHIFTJIS( const char *Src, int SrcStrLength, char *Dest, size_t BufferBytes )
 {
 	CONVSTRING_BEGIN
@@ -2947,7 +2947,7 @@ __inline int ConvString_UTF32LE_TO_SHIFTJIS( const char *Src, int SrcStrLength, 
 	return ( int )DestSize ;
 }
 
-// ConvString ‚Ì UTF32BE ¨ ASCII ‚‘¬ˆ——p
+// ConvString ã® UTF32BE â†’ ASCII é«˜é€Ÿå‡¦ç†ç”¨
 __inline int ConvString_UTF32BE_TO_ASCII( const char *Src, int SrcStrLength, char *Dest, size_t BufferBytes )
 {
 	CONVSTRING_BEGIN
@@ -2967,7 +2967,7 @@ __inline int ConvString_UTF32BE_TO_ASCII( const char *Src, int SrcStrLength, cha
 	return ( int )DestSize ;
 }
 
-// ConvString ‚Ì UTF32BE ¨ ShiftJIS ‚‘¬ˆ——p
+// ConvString ã® UTF32BE â†’ ShiftJIS é«˜é€Ÿå‡¦ç†ç”¨
 __inline int ConvString_UTF32BE_TO_SHIFTJIS( const char *Src, int SrcStrLength, char *Dest, size_t BufferBytes )
 {
 	CONVSTRING_BEGIN
@@ -2987,10 +2987,10 @@ __inline int ConvString_UTF32BE_TO_SHIFTJIS( const char *Src, int SrcStrLength, 
 	return ( int )DestSize ;
 }
 
-// •¶š—ñ‚ğw’è‚Ì•¶šƒR[ƒhŒ`®‚Ì•¶š—ñ‚É•ÏŠ·‚·‚é( –ß‚è’lF•ÏŠ·Œã‚ÌƒTƒCƒYAƒkƒ‹•¶šŠÜ‚Ş( ’PˆÊFƒoƒCƒg ) )
+// æ–‡å­—åˆ—ã‚’æŒ‡å®šã®æ–‡å­—ã‚³ãƒ¼ãƒ‰å½¢å¼ã®æ–‡å­—åˆ—ã«å¤‰æ›ã™ã‚‹( æˆ»ã‚Šå€¤ï¼šå¤‰æ›å¾Œã®ã‚µã‚¤ã‚ºã€ãƒŒãƒ«æ–‡å­—å«ã‚€( å˜ä½ï¼šãƒã‚¤ãƒˆ ) )
 extern int ConvString( const char *Src, int SrcStrLength, int SrcCharCodeFormat, char *Dest, size_t BufferBytes, int DestCharCodeFormat )
 {
-	// ƒLƒƒƒ‰ƒNƒ^[ƒR[ƒhƒe[ƒuƒ‹‚ª‰Šú‰»‚³‚ê‚Ä‚¢‚È‚©‚Á‚½‚ç‰Šú‰»
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã‚³ãƒ¼ãƒ‰ãƒ†ãƒ¼ãƒ–ãƒ«ãŒåˆæœŸåŒ–ã•ã‚Œã¦ã„ãªã‹ã£ãŸã‚‰åˆæœŸåŒ–
 	if( g_CharCodeSystem.InitializeFlag == FALSE )
 	{
 		InitCharCode() ;
@@ -2999,7 +2999,7 @@ extern int ConvString( const char *Src, int SrcStrLength, int SrcCharCodeFormat,
 	CHARCODETABLE_INITCHECK( SrcCharCodeFormat )
 	CHARCODETABLE_INITCHECK( DestCharCodeFormat )
 
-	// •ÏŠ·Œ³‚Æ•ÏŠ·æ‚Ì•¶šƒR[ƒh‚ªˆê’v‚µ‚Ä‚¢‚éê‡‚Í’Pƒ‚È•¶š—ñƒRƒs[‚ğs‚¤
+	// å¤‰æ›å…ƒã¨å¤‰æ›å…ˆã®æ–‡å­—ã‚³ãƒ¼ãƒ‰ãŒä¸€è‡´ã—ã¦ã„ã‚‹å ´åˆã¯å˜ç´”ãªæ–‡å­—åˆ—ã‚³ãƒ”ãƒ¼ã‚’è¡Œã†
 	if( SrcCharCodeFormat == DestCharCodeFormat )
 	{
 		size_t i ;
@@ -3066,7 +3066,7 @@ extern int ConvString( const char *Src, int SrcStrLength, int SrcCharCodeFormat,
 		return -1 ;
 	}
 
-	// ‚‘¬ˆ——p‚ÌŠÖ”‚ª‚ ‚éê‡‚Í‚»‚¿‚ç‚ğg—p‚·‚é
+	// é«˜é€Ÿå‡¦ç†ç”¨ã®é–¢æ•°ãŒã‚ã‚‹å ´åˆã¯ãã¡ã‚‰ã‚’ä½¿ç”¨ã™ã‚‹
 	switch( SrcCharCodeFormat )
 	{
 	case DX_CHARCODEFORMAT_SHIFTJIS :
@@ -3142,7 +3142,7 @@ extern int ConvString( const char *Src, int SrcStrLength, int SrcCharCodeFormat,
 		break ;
 	}
 
-	// –³‚©‚Á‚½ê‡‚Í‹¤’Ê‚Ìˆ—‚ğs‚¤
+	// ç„¡ã‹ã£ãŸå ´åˆã¯å…±é€šã®å‡¦ç†ã‚’è¡Œã†
 	{
 		size_t DestSize ;
 		DWORD SrcCode ;
@@ -3158,7 +3158,7 @@ extern int ConvString( const char *Src, int SrcStrLength, int SrcCharCodeFormat,
 		DestStr = ( BYTE * )Dest ;
 		DestSize = 0 ;
 
-		// Å‰‚Éƒkƒ‹•¶š‚ğ‘‚«‚Ş
+		// æœ€åˆã«ãƒŒãƒ«æ–‡å­—ã‚’æ›¸ãè¾¼ã‚€
 		NulWriteBytes = PutCharCode_BufferBytes_inline( 0x00, DestCharCodeFormat, ( char * )DestStr, BufferBytes - DestSize ) ;
 		if( NulWriteBytes == 0 )
 		{
@@ -3176,7 +3176,7 @@ extern int ConvString( const char *Src, int SrcStrLength, int SrcCharCodeFormat,
 
 			DestCode = ConvCharCode_inline( SrcCode, SrcCharCodeFormat, DestCharCodeFormat ) ;
 
-			// •ÏŠ·Œ³‚Ì•¶šƒR[ƒh‚ª•ÏŠ·æ‚Ì•¶šƒtƒH[ƒ}ƒbƒg‚É‘¶İ‚µ‚È‚©‚Á‚½ê‡‚Í‰½‚à‚¹‚¸Ÿ‚Ìƒ‹[ƒv‚ÉˆÚs
+			// å¤‰æ›å…ƒã®æ–‡å­—ã‚³ãƒ¼ãƒ‰ãŒå¤‰æ›å…ˆã®æ–‡å­—ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã«å­˜åœ¨ã—ãªã‹ã£ãŸå ´åˆã¯ä½•ã‚‚ã›ãšæ¬¡ã®ãƒ«ãƒ¼ãƒ—ã«ç§»è¡Œ
 			if( DestCode == 0 && SrcCode != 0 )
 			{
 				continue ;
@@ -3200,14 +3200,14 @@ extern int ConvString( const char *Src, int SrcStrLength, int SrcCharCodeFormat,
 
 END :
 
-		// I’[•¶š‚ğƒZƒbƒg
+		// çµ‚ç«¯æ–‡å­—ã‚’ã‚»ãƒƒãƒˆ
 		DestSize += PutCharCode_BufferBytes_inline( 0, DestCharCodeFormat, ( char * )DestStr, BufferBytes - DestSize ) ;
 
 		return ( int )DestSize ;
 	}
 }
 
-// •¶š—ñ‚ÉŠÜ‚Ü‚ê‚é•¶š”‚ğæ“¾‚·‚é
+// æ–‡å­—åˆ—ã«å«ã¾ã‚Œã‚‹æ–‡å­—æ•°ã‚’å–å¾—ã™ã‚‹
 extern int GetStringCharNum( const char *String, int CharCodeFormat )
 {
 	DWORD CharCode ;
@@ -3233,7 +3233,7 @@ extern int GetStringCharNum( const char *String, int CharCodeFormat )
 	return Count ;
 }
 
-// w’è”Ô†‚Ì•¶š‚ÌƒAƒhƒŒƒX‚ğæ“¾‚·‚é
+// æŒ‡å®šç•ªå·ã®æ–‡å­—ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å–å¾—ã™ã‚‹
 extern const char *GetStringCharAddress( const char *String, int CharCodeFormat, int Index )
 {
 	DWORD CharCode ;
@@ -3264,7 +3264,7 @@ extern const char *GetStringCharAddress( const char *String, int CharCodeFormat,
 	return NULL ;
 }
 
-// w’è”Ô†‚Ì•¶š‚ÌƒR[ƒh‚ğæ“¾‚·‚é
+// æŒ‡å®šç•ªå·ã®æ–‡å­—ã®ã‚³ãƒ¼ãƒ‰ã‚’å–å¾—ã™ã‚‹
 extern DWORD GetStringCharCode( const char *String, int CharCodeFormat, int Index )
 {
 	DWORD CharCode ;
@@ -3290,7 +3290,7 @@ extern DWORD GetStringCharCode( const char *String, int CharCodeFormat, int Inde
 	return CharCode ;
 }
 
-// w’è‚Ì•¶šƒR[ƒh‚É“K‡‚·‚é•¶š‚Ì”‚ğæ“¾‚·‚é
+// æŒ‡å®šã®æ–‡å­—ã‚³ãƒ¼ãƒ‰ã«é©åˆã™ã‚‹æ–‡å­—ã®æ•°ã‚’å–å¾—ã™ã‚‹
 extern DWORD CheckCharCodeFormat( const char *String, int CharCodeFormat, int *IsAllSuccess )
 {
 	size_t i ;
@@ -5122,7 +5122,7 @@ static DWORD CL_vsnprintf_help_getnumber( const DWORD *CharCode, int *UseCharNum
 	return Result ;
 }
 
-// w’è‚Ì•¶š‚ğw’è”‘‚«‚ŞA–ß‚è’l‚Í‘‚«‚ñ‚¾ƒoƒCƒg”
+// æŒ‡å®šã®æ–‡å­—ã‚’æŒ‡å®šæ•°æ›¸ãè¾¼ã‚€ã€æˆ»ã‚Šå€¤ã¯æ›¸ãè¾¼ã‚“ã ãƒã‚¤ãƒˆæ•°
 static size_t CL_vsnprintf_help_set_char( ULONGLONG Num, DWORD CharCode, char *Dest, size_t BufferBytes, int DestCharCodeFormat )
 {
 	DWORD i ;
@@ -5157,7 +5157,7 @@ END :
 	return DestSize ;
 }
 
-// f ƒ^ƒCƒv—p‚Ì NaN •¶š—ñ‰»‚ğs‚¤A–ß‚è’l‚Í•¶š”
+// f ã‚¿ã‚¤ãƒ—ç”¨ã® NaN æ–‡å­—åˆ—åŒ–ã‚’è¡Œã†ã€æˆ»ã‚Šå€¤ã¯æ–‡å­—æ•°
 static int CL_vsnprintf_help_ftoa_NaN_f(
 	int FPClass,
 	int Flag_Sharp,
@@ -5168,14 +5168,14 @@ static int CL_vsnprintf_help_ftoa_NaN_f(
 {
 	int DestSize ;
 
-	// ¸“x‚ªƒ}ƒCƒiƒX‚Ìê‡‚ÍŠù’è’l‚ğƒZƒbƒg
+	// ç²¾åº¦ãŒãƒã‚¤ãƒŠã‚¹ã®å ´åˆã¯æ—¢å®šå€¤ã‚’ã‚»ãƒƒãƒˆ
 	if( Precision < 0 )
 	{
 		Precision = 6 ;
 	}
 
 	DestSize = 0 ;
-	// ¸“x‚ª 0 ‚Ìê‡‚Í Flag_Sharp ‚ª‚ ‚ê‚Î . ‚ğ•t‚¯‚é
+	// ç²¾åº¦ãŒ 0 ã®å ´åˆã¯ Flag_Sharp ãŒã‚ã‚Œã° . ã‚’ä»˜ã‘ã‚‹
 	if( Precision == 0 )
 	{
 		NumberStrBuffer[ DestSize ] = '1' ;
@@ -5196,7 +5196,7 @@ static int CL_vsnprintf_help_ftoa_NaN_f(
 		BYTE ( *Table )[ 7 ] = NULL ;
 		int MaxLength = 0 ;
 
-		// g—p‚·‚éƒe[ƒuƒ‹‚ÆÅ‘åg—p¸“x’·‚ğƒZƒbƒg
+		// ä½¿ç”¨ã™ã‚‹ãƒ†ãƒ¼ãƒ–ãƒ«ã¨æœ€å¤§ä½¿ç”¨ç²¾åº¦é•·ã‚’ã‚»ãƒƒãƒˆ
 		switch( FPClass )
 		{
 		case _FPCLASS_SNAN :
@@ -5212,28 +5212,28 @@ static int CL_vsnprintf_help_ftoa_NaN_f(
 			break ;
 		}
 
-		// ¸“x‚ª•¶š—ñ‚ÌÅ‘å’·ˆÈã‚Ìê‡‚Í•¶š—ñ‚ğ‘S‚Ä“]‘—
+		// ç²¾åº¦ãŒæ–‡å­—åˆ—ã®æœ€å¤§é•·ä»¥ä¸Šã®å ´åˆã¯æ–‡å­—åˆ—ã‚’å…¨ã¦è»¢é€
 		if( Precision >= MaxLength )
 		{
 			SetNum = MaxLength + 2 ;
 		}
 		else
-		// ‚»‚êˆÈŠO‚Ìê‡‚Í¸“x + 2 ‚Ì•ª‚¾‚¯“]‘—
+		// ãã‚Œä»¥å¤–ã®å ´åˆã¯ç²¾åº¦ + 2 ã®åˆ†ã ã‘è»¢é€
 		{
 			SetNum = Precision + 2 ;
 		}
 
-		// ‘‚«‚İ
+		// æ›¸ãè¾¼ã¿
 		for( i = 0 ; i < SetNum ; i ++ )
 		{
 			NumberStrBuffer[ DestSize ] = Table[ SetNum - 1 ][ i ] ;
 			DestSize ++ ;
 		}
 
-		// g—p‚µ‚½•ª‚Ì¸“x‚ğˆø‚­
+		// ä½¿ç”¨ã—ãŸåˆ†ã®ç²¾åº¦ã‚’å¼•ã
 		Precision -= SetNum - 2 ;
 
-		// ¸“x‚Éc‚è‚ª‚ ‚Á‚½‚ç 0 ‚Å–„‚ß‚é
+		// ç²¾åº¦ã«æ®‹ã‚ŠãŒã‚ã£ãŸã‚‰ 0 ã§åŸ‹ã‚ã‚‹
 		if( ZeroAdd )
 		{
 			for( i = 0 ; i < Precision ; i ++ )
@@ -5247,7 +5247,7 @@ static int CL_vsnprintf_help_ftoa_NaN_f(
 	return DestSize ;
 }
 
-// e ƒ^ƒCƒv—p‚Ì NaN •¶š—ñ‰»‚ğs‚¤A–ß‚è’l‚Í•¶š”
+// e ã‚¿ã‚¤ãƒ—ç”¨ã® NaN æ–‡å­—åˆ—åŒ–ã‚’è¡Œã†ã€æˆ»ã‚Šå€¤ã¯æ–‡å­—æ•°
 static int CL_vsnprintf_help_ftoa_NaN_e(
 	int FPClass,
 	int Flag_Sharp,
@@ -5258,10 +5258,10 @@ static int CL_vsnprintf_help_ftoa_NaN_e(
 {
 	int DestSize ;
 
-	// Œã‚É e+000 ‚ª•t‚­ˆÈŠO‚Í CL_vsnprintf_help_ftoa_NaN_f ‚Æˆ—‚Í“¯‚¶
+	// å¾Œã« e+000 ãŒä»˜ãä»¥å¤–ã¯ CL_vsnprintf_help_ftoa_NaN_f ã¨å‡¦ç†ã¯åŒã˜
 	DestSize = CL_vsnprintf_help_ftoa_NaN_f( FPClass, Flag_Sharp, 1, Precision, NumberStrBuffer ) ;
 
-	// Œã‚Ée+000 ‚ğ•t‚¯‚é
+	// å¾Œã«e+000 ã‚’ä»˜ã‘ã‚‹
 	NumberStrBuffer[ DestSize + 0 ] = Big ? 'E' : 'e' ;
 	NumberStrBuffer[ DestSize + 1 ] = '+' ;
 	NumberStrBuffer[ DestSize + 2 ] = '0' ;
@@ -5272,7 +5272,7 @@ static int CL_vsnprintf_help_ftoa_NaN_e(
 	return DestSize ;
 }
 
-// g ƒ^ƒCƒv—p‚Ì NaN •¶š—ñ‰»‚ğs‚¤A–ß‚è’l‚Í•¶š”
+// g ã‚¿ã‚¤ãƒ—ç”¨ã® NaN æ–‡å­—åˆ—åŒ–ã‚’è¡Œã†ã€æˆ»ã‚Šå€¤ã¯æ–‡å­—æ•°
 static int CL_vsnprintf_help_ftoa_NaN_g(
 	int FPClass,
 	int Flag_Sharp,
@@ -5280,23 +5280,23 @@ static int CL_vsnprintf_help_ftoa_NaN_g(
 	BYTE *NumberStrBuffer
 )
 {
-	// ¸“x‚ªƒ}ƒCƒiƒX‚Ìê‡‚ÍŠù’è’l‚Ì 6 ‚ğƒZƒbƒg
+	// ç²¾åº¦ãŒãƒã‚¤ãƒŠã‚¹ã®å ´åˆã¯æ—¢å®šå€¤ã® 6 ã‚’ã‚»ãƒƒãƒˆ
 	if( Precision < 0 )
 	{
 		Precision = 6 ;
 	}
 
-	// f Œ`®‚Ìˆµ‚¢‚Å‚Í Precision ‚ª 1 ­‚È‚¢ó‘Ô‚É‚È‚é
+	// f å½¢å¼ã®æ‰±ã„ã§ã¯ Precision ãŒ 1 å°‘ãªã„çŠ¶æ…‹ã«ãªã‚‹
 	if( Precision > 0 )
 	{
 		Precision -- ;
 	}
 
-	// ¸“x‚Ì”’l‚Ìˆµ‚¢‚ª 1 ­‚È‚¢‚Ì‚ÆA¸“x‚ª—]•ª‚É‚ ‚Á‚Ä‚à 0 ‚ª•t‚©‚È‚¢ˆÈŠO‚Í CL_vsnprintf_help_ftoa_NaN_f ‚Æˆ—‚Í“¯‚¶
+	// ç²¾åº¦ã®æ•°å€¤ã®æ‰±ã„ãŒ 1 å°‘ãªã„ã®ã¨ã€ç²¾åº¦ãŒä½™åˆ†ã«ã‚ã£ã¦ã‚‚ 0 ãŒä»˜ã‹ãªã„ä»¥å¤–ã¯ CL_vsnprintf_help_ftoa_NaN_f ã¨å‡¦ç†ã¯åŒã˜
 	return CL_vsnprintf_help_ftoa_NaN_f( FPClass, Flag_Sharp, 0, Precision, NumberStrBuffer ) ;
 }
 
-// a ƒ^ƒCƒv—p‚Ì NaN •¶š—ñ‰»‚ğs‚¤A–ß‚è’l‚Í•¶š”
+// a ã‚¿ã‚¤ãƒ—ç”¨ã® NaN æ–‡å­—åˆ—åŒ–ã‚’è¡Œã†ã€æˆ»ã‚Šå€¤ã¯æ–‡å­—æ•°
 static int CL_vsnprintf_help_ftoa_NaN_a(
 	int FPClass,
 	int Flag_Sharp,
@@ -5307,7 +5307,7 @@ static int CL_vsnprintf_help_ftoa_NaN_a(
 {
 	int DestSize = 0 ;
 
-	// æ“ª‚É 0xAŒã‚É p+0 ‚ª•t‚­ˆÈŠO‚Í CL_vsnprintf_help_ftoa_NaN_f ‚Æˆ—‚Í“¯‚¶
+	// å…ˆé ­ã« 0xã€å¾Œã« p+0 ãŒä»˜ãä»¥å¤–ã¯ CL_vsnprintf_help_ftoa_NaN_f ã¨å‡¦ç†ã¯åŒã˜
 	NumberStrBuffer[ DestSize + 0 ] = '0' ;
 	NumberStrBuffer[ DestSize + 1 ] = '0' ;
 	DestSize += 2 ;
@@ -5322,7 +5322,7 @@ static int CL_vsnprintf_help_ftoa_NaN_a(
 	return DestSize ;
 }
 
-// a ƒ^ƒCƒv‚Ì•‚“®¬”“_’l‚Ì•¶š—ñ‰»‚ğs‚¤A–ß‚è’l‚Í‘‚«‚ñ‚¾ƒoƒCƒg”
+// a ã‚¿ã‚¤ãƒ—ã®æµ®å‹•å°æ•°ç‚¹å€¤ã®æ–‡å­—åˆ—åŒ–ã‚’è¡Œã†ã€æˆ»ã‚Šå€¤ã¯æ›¸ãè¾¼ã‚“ã ãƒã‚¤ãƒˆæ•°
 static int CL_vsnprintf_help_ftoa_a(
 	double Number,
 	int Flag_Sharp,
@@ -5346,12 +5346,12 @@ static int CL_vsnprintf_help_ftoa_a(
 	BYTE *AllocNumberStrTempBuffer = NULL ;
 	BYTE *UseNumberStrTempBuffer ;
 
-	// ƒfƒtƒHƒ‹ƒg‚ÌƒTƒCƒY‚ğ’´‚¦‚éê‡‚Íˆêƒoƒbƒtƒ@‚ğŠm•Û‚·‚é
+	// ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®ã‚µã‚¤ã‚ºã‚’è¶…ãˆã‚‹å ´åˆã¯ä¸€æ™‚ãƒãƒƒãƒ•ã‚¡ã‚’ç¢ºä¿ã™ã‚‹
 	if( Precision >= 0 && sizeof( NumberStrTemp ) - 32 <= ( size_t )Precision )
 	{
 		AllocNumberStrTempBuffer = ( BYTE * )DXALLOC( Precision + 32 ) ;
 
-		// ƒoƒbƒtƒ@‚ªŠm•Û‚Å‚«‚È‚©‚Á‚½ê‡‚Í•¶š—ñ‰»‚·‚éŒ…”‚ğ 1024 ‚É•ÏX‚·‚é
+		// ãƒãƒƒãƒ•ã‚¡ãŒç¢ºä¿ã§ããªã‹ã£ãŸå ´åˆã¯æ–‡å­—åˆ—åŒ–ã™ã‚‹æ¡æ•°ã‚’ 1024 ã«å¤‰æ›´ã™ã‚‹
 		if( AllocNumberStrTempBuffer == NULL )
 		{
 			Precision = 1024 ;
@@ -5367,33 +5367,33 @@ static int CL_vsnprintf_help_ftoa_a(
 		UseNumberStrTempBuffer = NumberStrTemp ;
 	}
 
-	// ¸“x‚ªŒˆ‚Ü‚Á‚Ä‚¢‚È‚¢ê‡‚ÍŠù’è’l‚Ì 6 ‚ğƒZƒbƒg
+	// ç²¾åº¦ãŒæ±ºã¾ã£ã¦ã„ãªã„å ´åˆã¯æ—¢å®šå€¤ã® 6 ã‚’ã‚»ãƒƒãƒˆ
 	if( Precision < 0 )
 	{
 		Precision = 6 ;
 	}
 
-	// ƒ}ƒCƒiƒX’l‚Ìê‡‚Íƒvƒ‰ƒX’l‚É‚·‚é
+	// ãƒã‚¤ãƒŠã‚¹å€¤ã®å ´åˆã¯ãƒ—ãƒ©ã‚¹å€¤ã«ã™ã‚‹
 	if( Number < 0.0 )
 	{
 		Number = -Number ;
 	}
 
-	// ƒ‹[ƒv‚µ‚½‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğ“|‚·
+	// ãƒ«ãƒ¼ãƒ—ã—ãŸã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 	LoopFlag = 0 ;
 
-	// •¶š—ñ‰»‚â‚è’¼‚µ‚ğ‚·‚éê‡‚É”ò‚ÔˆÊ’u
+	// æ–‡å­—åˆ—åŒ–ã‚„ã‚Šç›´ã—ã‚’ã™ã‚‹å ´åˆã«é£›ã¶ä½ç½®
 LOOPLABEL :
 	DestSize = 0 ;
 
-	// 16i”‚ğ•\‚· 0x ‚ğo—Í‚·‚é
+	// 16é€²æ•°ã‚’è¡¨ã™ 0x ã‚’å‡ºåŠ›ã™ã‚‹
 	NumberStrBuffer[ DestSize + 0 ] = '0' ;
 	NumberStrBuffer[ DestSize + 1 ] = 'x' ;
 	DestSize += 2 ;
 
-	// ÅãˆÊ‚ÌŒ…‚ğ’T‚·
+	// æœ€ä¸Šä½ã®æ¡ã‚’æ¢ã™
 
-	// 0 ‚Ìê‡‚Í“Á•Êˆ—
+	// 0 ã®å ´åˆã¯ç‰¹åˆ¥å‡¦ç†
 	TempNumber = Number ;
 	TargetFigureOne = 1.0 ;
 	if( Number == 0.0 )
@@ -5411,12 +5411,12 @@ LOOPLABEL :
 	}
 	TopFigureNumber = TempNumber ;
 
-	// ÅãˆÊŒ…‚Ìo—Í
+	// æœ€ä¸Šä½æ¡ã®å‡ºåŠ›
 	NumberCharTemp = ( BYTE )TempNumber ;
 	NumberStrBuffer[ DestSize ] = '0' + NumberCharTemp ;
 	DestSize ++ ;
 
-	// ¬”•”‚ğ—ñ‹“‚·‚é
+	// å°æ•°éƒ¨ã‚’åˆ—æŒ™ã™ã‚‹
 	TempNumber = fmod( TopFigureNumber, 1.0 ) ;
 	FloatNumberNum = 0 ;
 	for( i = 0 ; i < Precision ; i ++ )
@@ -5428,7 +5428,7 @@ LOOPLABEL :
 		FloatNumberNum++ ;
 	}
 
-	// Ÿ‚ÌŒ…‚Ì’l‚ª 0.8 ‚ğ’´‚¦‚éê‡‚ÍÅŒã‚ÌŒ…‚Ì’l‚É‚P‚ğ‘«‚µ‚Ä•¶š—ñ‰»ˆ—‚ğÅ‰‚©‚ç‚â‚è’¼‚·
+	// æ¬¡ã®æ¡ã®å€¤ãŒ 0.8 ã‚’è¶…ãˆã‚‹å ´åˆã¯æœ€å¾Œã®æ¡ã®å€¤ã«ï¼‘ã‚’è¶³ã—ã¦æ–‡å­—åˆ—åŒ–å‡¦ç†ã‚’æœ€åˆã‹ã‚‰ã‚„ã‚Šç›´ã™
 	if( LoopFlag == 0 )
 	{
 		TempNumber *= 16.0 ;
@@ -5440,25 +5440,25 @@ LOOPLABEL :
 		}
 	}
 
-	// ¸“x‚ª 0 ‚Å‚à Flag_Sharp ‚ª—LŒø‚Èê‡‚Í . ‚ğƒZƒbƒg‚·‚é
+	// ç²¾åº¦ãŒ 0 ã§ã‚‚ Flag_Sharp ãŒæœ‰åŠ¹ãªå ´åˆã¯ . ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 	if( Precision > 0 || Flag_Sharp )
 	{
 		NumberStrBuffer[ DestSize ] = '.' ;
 		DestSize ++ ;
 	}
 
-	// ÅãˆÊŒ…ˆÈ‰º‚ğo—Í‚·‚é
+	// æœ€ä¸Šä½æ¡ä»¥ä¸‹ã‚’å‡ºåŠ›ã™ã‚‹
 	for( i = 0 ; i < Precision ; i ++ )
 	{
 		NumberStrBuffer[ DestSize ] = NumberToCharTable[ Big ][ UseNumberStrTempBuffer[ i ] ] ;
 		DestSize ++ ;
 	}
 
-	// w”•”‚Ì p –”‚Í P ‚ğƒZƒbƒg‚·‚é
+	// æŒ‡æ•°éƒ¨ã® p åˆã¯ P ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 	NumberStrBuffer[ DestSize ] = Big ? 'P' : 'p' ;
 	DestSize ++ ;
 
-	// w”•”‚Ì + –”‚Í - ‚ğƒZƒbƒg‚·‚é
+	// æŒ‡æ•°éƒ¨ã® + åˆã¯ - ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 	if( TopFigure < 0 )
 	{
 		TopFigure = -TopFigure ;
@@ -5470,7 +5470,7 @@ LOOPLABEL :
 	}
 	DestSize ++ ;
 
-	// w”•”‚Ì”’l‚ğ—ñ‹“‚·‚é
+	// æŒ‡æ•°éƒ¨ã®æ•°å€¤ã‚’åˆ—æŒ™ã™ã‚‹
 	if( TopFigure == 0 )
 	{
 		IntNumberNum = 1 ;
@@ -5485,25 +5485,25 @@ LOOPLABEL :
 		}
 	}
 
-	// w”•”‚Ìo—Í
+	// æŒ‡æ•°éƒ¨ã®å‡ºåŠ›
 	for( i = IntNumberNum - 1 ; i >= 0 ; i -- )
 	{
 		NumberStrBuffer[ DestSize ] = '0' + UseNumberStrTempBuffer[ i ] ;
 		DestSize ++ ;
 	}
 
-	// ƒƒ‚ƒŠ‚ğŠm•Û‚µ‚Ä‚¢‚½‚ç‰ğ•ú‚·‚é
+	// ãƒ¡ãƒ¢ãƒªã‚’ç¢ºä¿ã—ã¦ã„ãŸã‚‰è§£æ”¾ã™ã‚‹
 	if( AllocNumberStrTempBuffer != NULL )
 	{
 		DXFREE( AllocNumberStrTempBuffer ) ;
 		AllocNumberStrTempBuffer = NULL ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return DestSize ;
 }
 
-// e ƒ^ƒCƒv‚Ì•‚“®¬”“_’l‚Ì•¶š—ñ‰»‚ğs‚¤A–ß‚è’l‚Í•¶š”
+// e ã‚¿ã‚¤ãƒ—ã®æµ®å‹•å°æ•°ç‚¹å€¤ã®æ–‡å­—åˆ—åŒ–ã‚’è¡Œã†ã€æˆ»ã‚Šå€¤ã¯æ–‡å­—æ•°
 static int CL_vsnprintf_help_ftoa_e(
 	double Number,
 	int Flag_Sharp,
@@ -5525,12 +5525,12 @@ static int CL_vsnprintf_help_ftoa_e(
 	BYTE *AllocNumberStrTempBuffer = NULL ;
 	BYTE *UseNumberStrTempBuffer ;
 
-	// ƒfƒtƒHƒ‹ƒg‚ÌƒTƒCƒY‚ğ’´‚¦‚éê‡‚Íˆêƒoƒbƒtƒ@‚ğŠm•Û‚·‚é
+	// ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®ã‚µã‚¤ã‚ºã‚’è¶…ãˆã‚‹å ´åˆã¯ä¸€æ™‚ãƒãƒƒãƒ•ã‚¡ã‚’ç¢ºä¿ã™ã‚‹
 	if( Precision >= 0 && sizeof( NumberStrTemp ) - 32 <= ( size_t )Precision )
 	{
 		AllocNumberStrTempBuffer = ( BYTE * )DXALLOC( Precision + 32 ) ;
 
-		// ƒoƒbƒtƒ@‚ªŠm•Û‚Å‚«‚È‚©‚Á‚½ê‡‚Í•¶š—ñ‰»‚·‚éŒ…”‚ğ 1024 ‚É•ÏX‚·‚é
+		// ãƒãƒƒãƒ•ã‚¡ãŒç¢ºä¿ã§ããªã‹ã£ãŸå ´åˆã¯æ–‡å­—åˆ—åŒ–ã™ã‚‹æ¡æ•°ã‚’ 1024 ã«å¤‰æ›´ã™ã‚‹
 		if( AllocNumberStrTempBuffer == NULL )
 		{
 			Precision = 1024 ;
@@ -5546,28 +5546,28 @@ static int CL_vsnprintf_help_ftoa_e(
 		UseNumberStrTempBuffer = NumberStrTemp ;
 	}
 
-	// ¸“x‚ªŒˆ‚Ü‚Á‚Ä‚¢‚È‚¢ê‡‚ÍŠù’è’l‚Ì 6 ‚ğƒZƒbƒg
+	// ç²¾åº¦ãŒæ±ºã¾ã£ã¦ã„ãªã„å ´åˆã¯æ—¢å®šå€¤ã® 6 ã‚’ã‚»ãƒƒãƒˆ
 	if( Precision < 0 )
 	{
 		Precision = 6 ;
 	}
 
-	// ƒ}ƒCƒiƒX’l‚Ìê‡‚Íƒvƒ‰ƒX’l‚É‚·‚é
+	// ãƒã‚¤ãƒŠã‚¹å€¤ã®å ´åˆã¯ãƒ—ãƒ©ã‚¹å€¤ã«ã™ã‚‹
 	if( Number < 0.0 )
 	{
 		Number = -Number ;
 	}
 
-	// ƒ‹[ƒv‚µ‚½‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğ“|‚·
+	// ãƒ«ãƒ¼ãƒ—ã—ãŸã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 	LoopFlag = 0 ;
 
-	// •¶š—ñ‰»‚â‚è’¼‚µ‚ğ‚·‚éê‡‚É”ò‚ÔˆÊ’u
+	// æ–‡å­—åˆ—åŒ–ã‚„ã‚Šç›´ã—ã‚’ã™ã‚‹å ´åˆã«é£›ã¶ä½ç½®
 LOOPLABEL :
 	DestSize = 0 ;
 
-	// ÅãˆÊ‚ÌŒ…‚ğ’T‚·
+	// æœ€ä¸Šä½ã®æ¡ã‚’æ¢ã™
 
-	// 0 ‚Ìê‡‚Í“Á•Êˆ—
+	// 0 ã®å ´åˆã¯ç‰¹åˆ¥å‡¦ç†
 	TempNumber = Number ;
 	TargetFigureOne = 1.0 ;
 	if( Number == 0.0 )
@@ -5585,7 +5585,7 @@ LOOPLABEL :
 	}
 	TopFigureNumber = TempNumber ;
 
-	// ¬”•”‚ğ—ñ‹“‚·‚é
+	// å°æ•°éƒ¨ã‚’åˆ—æŒ™ã™ã‚‹
 	TempNumber = fmod( TopFigureNumber, 1.0 ) ;
 	FloatNumberNum = 0 ;
 	for( i = 0 ; i < Precision ; i ++ )
@@ -5597,7 +5597,7 @@ LOOPLABEL :
 		FloatNumberNum++ ;
 	}
 
-	// Ÿ‚ÌŒ…‚Ì’l‚ª 0.5 ‚ğ’´‚¦‚éê‡‚ÍÅŒã‚ÌŒ…‚Ì’l‚É‚P‚ğ‘«‚µ‚Ä•¶š—ñ‰»ˆ—‚ğÅ‰‚©‚ç‚â‚è’¼‚·
+	// æ¬¡ã®æ¡ã®å€¤ãŒ 0.5 ã‚’è¶…ãˆã‚‹å ´åˆã¯æœ€å¾Œã®æ¡ã®å€¤ã«ï¼‘ã‚’è¶³ã—ã¦æ–‡å­—åˆ—åŒ–å‡¦ç†ã‚’æœ€åˆã‹ã‚‰ã‚„ã‚Šç›´ã™
 	if( LoopFlag == 0 )
 	{
 		TempNumber *= 10.0 ;
@@ -5609,30 +5609,30 @@ LOOPLABEL :
 		}
 	}
 
-	// ÅãˆÊŒ…‚Ìo—Í
+	// æœ€ä¸Šä½æ¡ã®å‡ºåŠ›
 	NumberCharTemp = ( BYTE )TopFigureNumber ;
 	NumberStrBuffer[ DestSize ] = '0' + NumberCharTemp ;
 	DestSize ++ ;
 
-	// ¸“x‚ª 0 ‚Å‚à Flag_Sharp ‚ª—LŒø‚Èê‡‚Í . ‚ğƒZƒbƒg‚·‚é
+	// ç²¾åº¦ãŒ 0 ã§ã‚‚ Flag_Sharp ãŒæœ‰åŠ¹ãªå ´åˆã¯ . ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 	if( Precision > 0 || Flag_Sharp )
 	{
 		NumberStrBuffer[ DestSize ] = '.' ;
 		DestSize ++ ;
 	}
 
-	// ÅãˆÊŒ…ˆÈ‰º‚ğo—Í‚·‚é
+	// æœ€ä¸Šä½æ¡ä»¥ä¸‹ã‚’å‡ºåŠ›ã™ã‚‹
 	for( i = 0 ; i < Precision ; i ++ )
 	{
 		NumberStrBuffer[ DestSize ] = '0' + UseNumberStrTempBuffer[ i ] ;
 		DestSize ++ ;
 	}
 
-	// w”•”‚Ì e –”‚Í E ‚ğƒZƒbƒg‚·‚é
+	// æŒ‡æ•°éƒ¨ã® e åˆã¯ E ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 	NumberStrBuffer[ DestSize ] = Big ? 'E' : 'e' ;
 	DestSize ++ ;
 
-	// w”•”‚Ì + –”‚Í - ‚ğƒZƒbƒg‚·‚é
+	// æŒ‡æ•°éƒ¨ã® + åˆã¯ - ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 	if( TopFigure < 0 )
 	{
 		TopFigure = -TopFigure ;
@@ -5644,24 +5644,24 @@ LOOPLABEL :
 	}
 	DestSize ++ ;
 
-	// w”•”‚Ì‚RŒ…‚ğo—Í
+	// æŒ‡æ•°éƒ¨ã®ï¼“æ¡ã‚’å‡ºåŠ›
 	NumberStrBuffer[ DestSize + 0 ] = '0' + ( TopFigure / 100 ) % 10 ;
 	NumberStrBuffer[ DestSize + 1 ] = '0' + ( TopFigure /  10 ) % 10 ;
 	NumberStrBuffer[ DestSize + 2 ] = '0' +   TopFigure         % 10 ;
 	DestSize += 3 ;
 
-	// ƒƒ‚ƒŠ‚ğŠm•Û‚µ‚Ä‚¢‚½‚ç‰ğ•ú‚·‚é
+	// ãƒ¡ãƒ¢ãƒªã‚’ç¢ºä¿ã—ã¦ã„ãŸã‚‰è§£æ”¾ã™ã‚‹
 	if( AllocNumberStrTempBuffer != NULL )
 	{
 		DXFREE( AllocNumberStrTempBuffer ) ;
 		AllocNumberStrTempBuffer = NULL ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return DestSize ;
 }
 
-// f ƒ^ƒCƒv‚Ì•‚“®¬”“_’l‚Ì•¶š—ñ‰»‚ğs‚¤A–ß‚è’l‚Í•¶š”
+// f ã‚¿ã‚¤ãƒ—ã®æµ®å‹•å°æ•°ç‚¹å€¤ã®æ–‡å­—åˆ—åŒ–ã‚’è¡Œã†ã€æˆ»ã‚Šå€¤ã¯æ–‡å­—æ•°
 static int CL_vsnprintf_help_ftoa_f(
 	double Number,
 	int Flag_Sharp,
@@ -5680,18 +5680,18 @@ static int CL_vsnprintf_help_ftoa_f(
 	BYTE *AllocNumberStrTempBuffer = NULL ;
 	BYTE *UseNumberStrTempBuffer ;
 
-	// ¸“x‚ªŒˆ‚Ü‚Á‚Ä‚¢‚È‚¢ê‡‚ÍŠù’è’l‚Ì 6 ‚ğƒZƒbƒg
+	// ç²¾åº¦ãŒæ±ºã¾ã£ã¦ã„ãªã„å ´åˆã¯æ—¢å®šå€¤ã® 6 ã‚’ã‚»ãƒƒãƒˆ
 	if( Precision < 0 )
 	{
 		Precision = 6 ;
 	}
 
-	// ƒfƒtƒHƒ‹ƒg‚ÌƒTƒCƒY‚ğ’´‚¦‚éê‡‚Íˆêƒoƒbƒtƒ@‚ğŠm•Û‚·‚é
+	// ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®ã‚µã‚¤ã‚ºã‚’è¶…ãˆã‚‹å ´åˆã¯ä¸€æ™‚ãƒãƒƒãƒ•ã‚¡ã‚’ç¢ºä¿ã™ã‚‹
 	if( Precision >= 0 && sizeof( NumberStrTemp ) - 32 <= ( size_t )Precision )
 	{
 		AllocNumberStrTempBuffer = ( BYTE * )DXALLOC( Precision + 32 ) ;
 
-		// ƒoƒbƒtƒ@‚ªŠm•Û‚Å‚«‚È‚©‚Á‚½ê‡‚Í•¶š—ñ‰»‚·‚éŒ…”‚ğ 1024 ‚É•ÏX‚·‚é
+		// ãƒãƒƒãƒ•ã‚¡ãŒç¢ºä¿ã§ããªã‹ã£ãŸå ´åˆã¯æ–‡å­—åˆ—åŒ–ã™ã‚‹æ¡æ•°ã‚’ 1024 ã«å¤‰æ›´ã™ã‚‹
 		if( AllocNumberStrTempBuffer == NULL )
 		{
 			Precision = 1024 ;
@@ -5707,16 +5707,16 @@ static int CL_vsnprintf_help_ftoa_f(
 		UseNumberStrTempBuffer = NumberStrTemp ;
 	}
 
-	// ƒ}ƒCƒiƒX’l‚Ìê‡‚Íƒvƒ‰ƒX’l‚É‚·‚é
+	// ãƒã‚¤ãƒŠã‚¹å€¤ã®å ´åˆã¯ãƒ—ãƒ©ã‚¹å€¤ã«ã™ã‚‹
 	if( Number < 0.0 )
 	{
 		Number = -Number ;
 	}
 
-	// ƒ‹[ƒv‚µ‚½‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğ“|‚·
+	// ãƒ«ãƒ¼ãƒ—ã—ãŸã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 	LoopFlag = 0 ;
 
-	// •¶š—ñ‰»‚â‚è’¼‚µ‚ğ‚·‚éê‡‚É”ò‚ÔˆÊ’u
+	// æ–‡å­—åˆ—åŒ–ã‚„ã‚Šç›´ã—ã‚’ã™ã‚‹å ´åˆã«é£›ã¶ä½ç½®
 LOOPLABEL :
 	DestSize = 0 ;
 
@@ -5724,14 +5724,14 @@ LOOPLABEL :
 	TempNumber = Number - fmod( Number, 1.0 ) ;
 	if( Number < 1.0 )
 	{
-		// ƒ[ƒˆÈ‰º‚Ìê‡‚Í®”•”‚Ì”’l‚Í 0 ‚Ì‚İo—Í
+		// ã‚¼ãƒ­ä»¥ä¸‹ã®å ´åˆã¯æ•´æ•°éƒ¨ã®æ•°å€¤ã¯ 0 ã®ã¿å‡ºåŠ›
 		NumberStrBuffer[ DestSize ] = '0' ;
 		DestSize ++ ;
 		IntNumberNum ++ ;
 	}
 	else
 	{
-		// ®”•”‚Ì”’l‚ğ—ñ‹“‚·‚é
+		// æ•´æ•°éƒ¨ã®æ•°å€¤ã‚’åˆ—æŒ™ã™ã‚‹
 		do
 		{
 			UseNumberStrTempBuffer[ IntNumberNum ] = ( BYTE )fmod( TempNumber, 10.0 ) ; 
@@ -5740,7 +5740,7 @@ LOOPLABEL :
 			TempNumber /= 10.0 ;
 		}while( TempNumber >= 1.0 ) ;
 
-		// ®”•”‚Ì”’l‚ğƒZƒbƒg‚·‚é
+		// æ•´æ•°éƒ¨ã®æ•°å€¤ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 		for( i = IntNumberNum - 1 ; i >= 0 ; i -- )
 		{
 			NumberStrBuffer[ DestSize ] = '0' + UseNumberStrTempBuffer[ i ] ;
@@ -5748,7 +5748,7 @@ LOOPLABEL :
 		}
 	}
 
-	// ¬”•”‚ğ—ñ‹“‚·‚é
+	// å°æ•°éƒ¨ã‚’åˆ—æŒ™ã™ã‚‹
 	TempNumber = fmod( Number, 1.0 ) ;
 	FloatNumberNum = 0 ;
 	TargetFigureOne = 1.0 ;
@@ -5761,7 +5761,7 @@ LOOPLABEL :
 		FloatNumberNum++ ;
 	}
 
-	// Ÿ‚ÌŒ…‚Ì’l‚ª 0.5 ‚ğ’´‚¦‚éê‡‚ÍÅŒã‚ÌŒ…‚Ì’l‚É‚P‚ğ‘«‚µ‚Ä•¶š—ñ‰»ˆ—‚ğÅ‰‚©‚ç‚â‚è’¼‚·
+	// æ¬¡ã®æ¡ã®å€¤ãŒ 0.5 ã‚’è¶…ãˆã‚‹å ´åˆã¯æœ€å¾Œã®æ¡ã®å€¤ã«ï¼‘ã‚’è¶³ã—ã¦æ–‡å­—åˆ—åŒ–å‡¦ç†ã‚’æœ€åˆã‹ã‚‰ã‚„ã‚Šç›´ã™
 	if( LoopFlag == 0 )
 	{
 		TempNumber *= 10.0 ;
@@ -5773,17 +5773,17 @@ LOOPLABEL :
 		}
 	}
 
-	// ¸“x‚ª 0 ‚Å # ‚à‚È‚¢ê‡‚Í‚±‚±‚ÅI—¹
+	// ç²¾åº¦ãŒ 0 ã§ # ã‚‚ãªã„å ´åˆã¯ã“ã“ã§çµ‚äº†
 	if( Precision == 0 && Flag_Sharp == 0 )
 	{
 		goto END ;
 	}
 
-	// . ‚ğƒZƒbƒg
+	// . ã‚’ã‚»ãƒƒãƒˆ
 	NumberStrBuffer[ DestSize ] = '.' ;
 	DestSize ++ ;
 
-	// ¬”•”‚ğo—Í
+	// å°æ•°éƒ¨ã‚’å‡ºåŠ›
 	for( i = 0 ; i < FloatNumberNum ; i ++ )
 	{
 		NumberStrBuffer[ DestSize ] = '0' + UseNumberStrTempBuffer[ i ] ;
@@ -5792,18 +5792,18 @@ LOOPLABEL :
 
 END :
 
-	// ƒƒ‚ƒŠ‚ğŠm•Û‚µ‚Ä‚¢‚½‚ç‰ğ•ú‚·‚é
+	// ãƒ¡ãƒ¢ãƒªã‚’ç¢ºä¿ã—ã¦ã„ãŸã‚‰è§£æ”¾ã™ã‚‹
 	if( AllocNumberStrTempBuffer != NULL )
 	{
 		DXFREE( AllocNumberStrTempBuffer ) ;
 		AllocNumberStrTempBuffer = NULL ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return DestSize ;
 }
 
-// g ƒ^ƒCƒv‚Ì•‚“®¬”“_’l‚Ì•¶š—ñ‰»‚ğs‚¤A–ß‚è’l‚Í•¶š”
+// g ã‚¿ã‚¤ãƒ—ã®æµ®å‹•å°æ•°ç‚¹å€¤ã®æ–‡å­—åˆ—åŒ–ã‚’è¡Œã†ã€æˆ»ã‚Šå€¤ã¯æ–‡å­—æ•°
 static int CL_vsnprintf_help_ftoa_g(
 	double Number,
 	int Flag_Sharp,
@@ -5827,12 +5827,12 @@ static int CL_vsnprintf_help_ftoa_g(
 	BYTE *AllocNumberStrTempBuffer = NULL ;
 	BYTE *UseNumberStrTempBuffer ;
 
-	// ƒfƒtƒHƒ‹ƒg‚ÌƒTƒCƒY‚ğ’´‚¦‚éê‡‚Íˆêƒoƒbƒtƒ@‚ğŠm•Û‚·‚é
+	// ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®ã‚µã‚¤ã‚ºã‚’è¶…ãˆã‚‹å ´åˆã¯ä¸€æ™‚ãƒãƒƒãƒ•ã‚¡ã‚’ç¢ºä¿ã™ã‚‹
 	if( Precision >= 0 && sizeof( NumberStrTemp ) - 32 <= ( size_t )Precision )
 	{
 		AllocNumberStrTempBuffer = ( BYTE * )DXALLOC( Precision + 32 ) ;
 
-		// ƒoƒbƒtƒ@‚ªŠm•Û‚Å‚«‚È‚©‚Á‚½ê‡‚Í•¶š—ñ‰»‚·‚éŒ…”‚ğ 1024 ‚É•ÏX‚·‚é
+		// ãƒãƒƒãƒ•ã‚¡ãŒç¢ºä¿ã§ããªã‹ã£ãŸå ´åˆã¯æ–‡å­—åˆ—åŒ–ã™ã‚‹æ¡æ•°ã‚’ 1024 ã«å¤‰æ›´ã™ã‚‹
 		if( AllocNumberStrTempBuffer == NULL )
 		{
 			Precision = 1024 ;
@@ -5848,34 +5848,34 @@ static int CL_vsnprintf_help_ftoa_g(
 		UseNumberStrTempBuffer = NumberStrTemp ;
 	}
 
-	// ¸“x‚ªŒˆ‚Ü‚Á‚Ä‚¢‚È‚¢ê‡‚ÍŠù’è’l‚Ì 6 ‚ğƒZƒbƒg
+	// ç²¾åº¦ãŒæ±ºã¾ã£ã¦ã„ãªã„å ´åˆã¯æ—¢å®šå€¤ã® 6 ã‚’ã‚»ãƒƒãƒˆ
 	if( Precision < 0 )
 	{
 		Precision = 6 ;
 	}
 	else
-	// g ‚Å‚Í Precision ‚ª 0 ‚Æ‚¢‚¤ˆµ‚¢‚Í–³‚¢‚Ì‚ÅA0 ‚Ìê‡‚Í 1 ‚É‚·‚é
+	// g ã§ã¯ Precision ãŒ 0 ã¨ã„ã†æ‰±ã„ã¯ç„¡ã„ã®ã§ã€0 ã®å ´åˆã¯ 1 ã«ã™ã‚‹
 	if( Precision == 0 )
 	{
 		Precision = 1 ;
 	}
 
-	// ƒ}ƒCƒiƒX’l‚Ìê‡‚Íƒvƒ‰ƒX’l‚É‚·‚é
+	// ãƒã‚¤ãƒŠã‚¹å€¤ã®å ´åˆã¯ãƒ—ãƒ©ã‚¹å€¤ã«ã™ã‚‹
 	if( Number < 0.0 )
 	{
 		Number = -Number ;
 	}
 
-	// ƒ‹[ƒv‚µ‚½‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğ“|‚·
+	// ãƒ«ãƒ¼ãƒ—ã—ãŸã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 	LoopFlag = 0 ;
 
-	// •¶š—ñ‰»‚â‚è’¼‚µ‚ğ‚·‚éê‡‚É”ò‚ÔˆÊ’u
+	// æ–‡å­—åˆ—åŒ–ã‚„ã‚Šç›´ã—ã‚’ã™ã‚‹å ´åˆã«é£›ã¶ä½ç½®
 LOOPLABEL :
 	DestSize = 0 ;
 
-	// ÅãˆÊ‚ÌŒ…‚ğ’T‚·
+	// æœ€ä¸Šä½ã®æ¡ã‚’æ¢ã™
 
-	// 0 ‚Ìê‡‚Í“Á•Êˆ—
+	// 0 ã®å ´åˆã¯ç‰¹åˆ¥å‡¦ç†
 	TempNumber = Number ;
 	TargetFigureOne = 1.0 ;
 	if( Number == 0.0 )
@@ -5893,7 +5893,7 @@ LOOPLABEL :
 	}
 	TopFigureNumber = TempNumber ;
 
-	// ¬”•”‚ğ—ñ‹“‚·‚é
+	// å°æ•°éƒ¨ã‚’åˆ—æŒ™ã™ã‚‹
 	LastNonZeroFigure = -1 ;
 	TempNumber = fmod( TopFigureNumber, 1.0 ) ;
 	FloatNumberNum = 0 ;
@@ -5904,7 +5904,7 @@ LOOPLABEL :
 		UseNumberStrTempBuffer[ FloatNumberNum ] = ( BYTE )fmod( TempNumber, 10.0 ) ;
 		TempNumber -= ( double )UseNumberStrTempBuffer[ FloatNumberNum ] ;
 
-		// 0 ‚Å‚Í‚È‚©‚Á‚½‚çAu0‚Å‚Í–³‚¢Œ…‚ÌˆÊ’uv‚ğ•Û‘¶
+		// 0 ã§ã¯ãªã‹ã£ãŸã‚‰ã€ã€Œ0ã§ã¯ç„¡ã„æ¡ã®ä½ç½®ã€ã‚’ä¿å­˜
 		if( UseNumberStrTempBuffer[ FloatNumberNum ] != 0 )
 		{
 			LastNonZeroFigure = FloatNumberNum ;
@@ -5913,7 +5913,7 @@ LOOPLABEL :
 		FloatNumberNum++ ;
 	}
 
-	// Ÿ‚ÌŒ…‚Ì’l‚ª 0.5 ‚ğ’´‚¦‚éê‡‚ÍÅŒã‚ÌŒ…‚Ì’l‚É‚P‚ğ‘«‚µ‚Ä•¶š—ñ‰»ˆ—‚ğÅ‰‚©‚ç‚â‚è’¼‚·
+	// æ¬¡ã®æ¡ã®å€¤ãŒ 0.5 ã‚’è¶…ãˆã‚‹å ´åˆã¯æœ€å¾Œã®æ¡ã®å€¤ã«ï¼‘ã‚’è¶³ã—ã¦æ–‡å­—åˆ—åŒ–å‡¦ç†ã‚’æœ€åˆã‹ã‚‰ã‚„ã‚Šç›´ã™
 	if( LoopFlag == 0 )
 	{
 		TempNumber *= 10.0 ;
@@ -5925,15 +5925,15 @@ LOOPLABEL :
 		}
 	}
 
-	// w”•”‚Ì•\¦‚ª•s—v‚©‚Ç‚¤‚©‚ğ”»’è
+	// æŒ‡æ•°éƒ¨ã®è¡¨ç¤ºãŒä¸è¦ã‹ã©ã†ã‹ã‚’åˆ¤å®š
 	if( TopFigure >= 0 )
 	{
-		// ÅãˆÊŒ…‚ª®”‚Ìê‡‚Í¸“x–¢–‚Ìê‡‚Íw”•”‚Ì•\¦‚ğs‚í‚È‚¢
+		// æœ€ä¸Šä½æ¡ãŒæ•´æ•°ã®å ´åˆã¯ç²¾åº¦æœªæº€ã®å ´åˆã¯æŒ‡æ•°éƒ¨ã®è¡¨ç¤ºã‚’è¡Œã‚ãªã„
 		if( TopFigure < Precision )
 		{
-			// w”•”‚Ì•\¦‚ğs‚í‚È‚¢ê‡‚Í f —p‚ÌŠÖ”‚ğg—p‚·‚é
+			// æŒ‡æ•°éƒ¨ã®è¡¨ç¤ºã‚’è¡Œã‚ãªã„å ´åˆã¯ f ç”¨ã®é–¢æ•°ã‚’ä½¿ç”¨ã™ã‚‹
 
-			// ¬”“_ˆÈ‰º‰½Œ…‚Ü‚Åo—Í‚·‚é‚©‚ğŒˆ’èAFlag_Sharp ‚Ìw’è‚ª–³‚¢ê‡‚Í¸“x”ÍˆÍ“à‚Å‚à•s—v‚È 0 ‚Ío—Í‚µ‚È‚¢
+			// å°æ•°ç‚¹ä»¥ä¸‹ä½•æ¡ã¾ã§å‡ºåŠ›ã™ã‚‹ã‹ã‚’æ±ºå®šã€Flag_Sharp ã®æŒ‡å®šãŒç„¡ã„å ´åˆã¯ç²¾åº¦ç¯„å›²å†…ã§ã‚‚ä¸è¦ãª 0 ã¯å‡ºåŠ›ã—ãªã„
 			if( Flag_Sharp == 0 )
 			{
 				PrecisionF = -( TopFigure - ( LastNonZeroFigure + 1 ) ) ;
@@ -5952,15 +5952,15 @@ LOOPLABEL :
 	}
 	else
 	{
-		// ÅãˆÊŒ…‚ª¬”‚Ìê‡‚ÍÅãˆÊŒ…‚ª 0.0001 ‚æ‚è‘å‚«‚¢ê‡‚Íw”•”‚Ì•\¦‚ğs‚í‚È‚¢
+		// æœ€ä¸Šä½æ¡ãŒå°æ•°ã®å ´åˆã¯æœ€ä¸Šä½æ¡ãŒ 0.0001 ã‚ˆã‚Šå¤§ãã„å ´åˆã¯æŒ‡æ•°éƒ¨ã®è¡¨ç¤ºã‚’è¡Œã‚ãªã„
 		if( TopFigure >= -4 )
 		{
-			// w”•”‚Ì•\¦‚ğs‚í‚È‚¢ê‡‚Í f —p‚ÌŠÖ”‚ğg—p‚·‚é
+			// æŒ‡æ•°éƒ¨ã®è¡¨ç¤ºã‚’è¡Œã‚ãªã„å ´åˆã¯ f ç”¨ã®é–¢æ•°ã‚’ä½¿ç”¨ã™ã‚‹
 
-			// ¬”“_ˆÈ‰º‰½Œ…‚Ü‚Åo—Í‚·‚é‚©‚ğŒˆ’è
+			// å°æ•°ç‚¹ä»¥ä¸‹ä½•æ¡ã¾ã§å‡ºåŠ›ã™ã‚‹ã‹ã‚’æ±ºå®š
 			PrecisionF = -TopFigure + Precision - 1 ;
 
-			// Flag_Sharp ‚Ìw’è‚ª–³‚¢ê‡‚ÍA¸“x”ÍˆÍ“à‚Å‚à•s—v‚È 0 ‚Ío—Í‚µ‚È‚¢
+			// Flag_Sharp ã®æŒ‡å®šãŒç„¡ã„å ´åˆã¯ã€ç²¾åº¦ç¯„å›²å†…ã§ã‚‚ä¸è¦ãª 0 ã¯å‡ºåŠ›ã—ãªã„
 			if( Flag_Sharp == 0 )
 			{
 				if( PrecisionF > -TopFigure + LastNonZeroFigure + 1 )
@@ -5974,36 +5974,36 @@ LOOPLABEL :
 		}
 	}
 
-	// ÅãˆÊŒ…‚Ìo—Í
+	// æœ€ä¸Šä½æ¡ã®å‡ºåŠ›
 	NumberCharTemp = ( BYTE )TopFigureNumber ;
 	NumberStrBuffer[ DestSize ] = '0' + NumberCharTemp ;
 	DestSize ++ ;
 
-	// Flag_Sharp ‚Ìw’è‚ª–³‚¢ê‡‚Í Precision ˆÈ“à‚Å‚à¬”“_ˆÈ‰º‚Å––’[‚©‚ç‘±‚­ 0 ‚Ío—Í‚µ‚È‚¢
+	// Flag_Sharp ã®æŒ‡å®šãŒç„¡ã„å ´åˆã¯ Precision ä»¥å†…ã§ã‚‚å°æ•°ç‚¹ä»¥ä¸‹ã§æœ«ç«¯ã‹ã‚‰ç¶šã 0 ã¯å‡ºåŠ›ã—ãªã„
 	if( Flag_Sharp == 0 )
 	{
 		Precision = LastNonZeroFigure + 2 ;
 	}
 
-	// ¸“x‚ª 1 ‚Å‚à Flag_Sharp ‚ª—LŒø‚Èê‡‚Í . ‚ğƒZƒbƒg‚·‚é
+	// ç²¾åº¦ãŒ 1 ã§ã‚‚ Flag_Sharp ãŒæœ‰åŠ¹ãªå ´åˆã¯ . ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 	if( Precision > 1 || Flag_Sharp )
 	{
 		NumberStrBuffer[ DestSize ] = '.' ;
 		DestSize ++ ;
 	}
 
-	// ÅãˆÊŒ…ˆÈ‰º‚ğo—Í‚·‚é
+	// æœ€ä¸Šä½æ¡ä»¥ä¸‹ã‚’å‡ºåŠ›ã™ã‚‹
 	for( i = 0 ; i < Precision - 1 ; i ++ )
 	{
 		NumberStrBuffer[ DestSize ] = '0' + UseNumberStrTempBuffer[ i ] ;
 		DestSize ++ ;
 	}
 
-	// w”•”‚Ì e –”‚Í E ‚ğƒZƒbƒg‚·‚é
+	// æŒ‡æ•°éƒ¨ã® e åˆã¯ E ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 	NumberStrBuffer[ DestSize ] = Big ? 'E' : 'e' ;
 	DestSize ++ ;
 
-	// w”•”‚Ì + ‚ğƒZƒbƒg‚·‚é
+	// æŒ‡æ•°éƒ¨ã® + ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 	if( TopFigure < 0 )
 	{
 		TopFigure = -TopFigure ;
@@ -6015,7 +6015,7 @@ LOOPLABEL :
 	}
 	DestSize ++ ;
 
-	// w”•”‚Ì‚RŒ…‚ğo—Í
+	// æŒ‡æ•°éƒ¨ã®ï¼“æ¡ã‚’å‡ºåŠ›
 	NumberStrBuffer[ DestSize + 0 ] = '0' + ( TopFigure / 100 ) % 10 ;
 	NumberStrBuffer[ DestSize + 1 ] = '0' + ( TopFigure /  10 ) % 10 ;
 	NumberStrBuffer[ DestSize + 2 ] = '0' +   TopFigure         % 10 ;
@@ -6023,18 +6023,18 @@ LOOPLABEL :
 
 END :
 
-	// ƒƒ‚ƒŠ‚ğŠm•Û‚µ‚Ä‚¢‚½‚ç‰ğ•ú‚·‚é
+	// ãƒ¡ãƒ¢ãƒªã‚’ç¢ºä¿ã—ã¦ã„ãŸã‚‰è§£æ”¾ã™ã‚‹
 	if( AllocNumberStrTempBuffer != NULL )
 	{
 		DXFREE( AllocNumberStrTempBuffer ) ;
 		AllocNumberStrTempBuffer = NULL ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return DestSize ;
 }
 
-// •‚“®¬”“_’l‚ğ•¶š—ñ‰»‚·‚éŠÖ”A–ß‚è’l‚Í‘‚«‚ñ‚¾ƒoƒCƒg”
+// æµ®å‹•å°æ•°ç‚¹å€¤ã‚’æ–‡å­—åˆ—åŒ–ã™ã‚‹é–¢æ•°ã€æˆ»ã‚Šå€¤ã¯æ›¸ãè¾¼ã‚“ã ãƒã‚¤ãƒˆæ•°
 static size_t CL_vsnprintf_help_ftoa(
 	double Number,
 	int Type,
@@ -6063,12 +6063,12 @@ static size_t CL_vsnprintf_help_ftoa(
 	BYTE *AllocNumberStrTempBuffer = NULL ;
 	BYTE *UseNumberStrTempBuffer ;
 
-	// ƒfƒtƒHƒ‹ƒg‚ÌƒTƒCƒY‚ğ’´‚¦‚éê‡‚Íˆêƒoƒbƒtƒ@‚ğŠm•Û‚·‚é
+	// ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®ã‚µã‚¤ã‚ºã‚’è¶…ãˆã‚‹å ´åˆã¯ä¸€æ™‚ãƒãƒƒãƒ•ã‚¡ã‚’ç¢ºä¿ã™ã‚‹
 	if( Precision >= 0 && sizeof( NumberStrTemp ) - 32 <= ( size_t )Precision )
 	{
 		AllocNumberStrTempBuffer = ( BYTE * )DXALLOC( Precision + 32 ) ;
 
-		// ƒoƒbƒtƒ@‚ªŠm•Û‚Å‚«‚È‚©‚Á‚½ê‡‚Í•¶š—ñ‰»‚·‚éŒ…”‚ğ 1024 ‚É•ÏX‚·‚é
+		// ãƒãƒƒãƒ•ã‚¡ãŒç¢ºä¿ã§ããªã‹ã£ãŸå ´åˆã¯æ–‡å­—åˆ—åŒ–ã™ã‚‹æ¡æ•°ã‚’ 1024 ã«å¤‰æ›´ã™ã‚‹
 		if( AllocNumberStrTempBuffer == NULL )
 		{
 			Precision = 1024 ;
@@ -6086,14 +6086,14 @@ static size_t CL_vsnprintf_help_ftoa(
 
 	DestSize = 0 ;
 
-	// Å‰‚Éƒkƒ‹•¶š‚ğ‘‚«‚Ş
+	// æœ€åˆã«ãƒŒãƒ«æ–‡å­—ã‚’æ›¸ãè¾¼ã‚€
 	NulWriteBytes = PutCharCode_BufferBytes_inline( 0x00, DestCharCodeFormat, ( char * )&( ( BYTE * )Dest )[ DestSize ], BufferBytes - DestSize ) ;
 	if( NulWriteBytes == 0 )
 	{
 		goto END ;
 	}
 
-	// NaNƒ`ƒFƒbƒN
+	// NaNãƒã‚§ãƒƒã‚¯
 	FPClass = _FPCLASS( Number ) ;
 	NaN = 0 ;
 	if( FPClass == _FPCLASS_SNAN ||
@@ -6103,7 +6103,7 @@ static size_t CL_vsnprintf_help_ftoa(
 	{
 		NaN = 1 ;
 
-		// NaN‚Ì’l‚Íƒvƒ‰ƒXˆµ‚¢
+		// NaNã®å€¤ã¯ãƒ—ãƒ©ã‚¹æ‰±ã„
 		if( FPClass == _FPCLASS_SNAN ||
 			FPClass == _FPCLASS_QNAN )
 		{
@@ -6111,15 +6111,15 @@ static size_t CL_vsnprintf_help_ftoa(
 		}
 		else
 		{
-			// ‚»‚êˆÈŠO‚Í•‰‚Ì–³ŒÀ‘å‚Ìê‡‚Ì‚İƒ}ƒCƒiƒXˆµ‚¢
+			// ãã‚Œä»¥å¤–ã¯è² ã®ç„¡é™å¤§ã®å ´åˆã®ã¿ãƒã‚¤ãƒŠã‚¹æ‰±ã„
 			NumberMinus = FPClass == _FPCLASS_NINF ? 1 : 0 ;
 		}
 	}
 	else
 	{
-		// ’Êí‚Ì’l‚Ìê‡‚Ìˆ—
+		// é€šå¸¸ã®å€¤ã®å ´åˆã®å‡¦ç†
 
-		// ƒ}ƒCƒiƒX‚Ì’l‚Íƒvƒ‰ƒX‚É‚·‚é
+		// ãƒã‚¤ãƒŠã‚¹ã®å€¤ã¯ãƒ—ãƒ©ã‚¹ã«ã™ã‚‹
 		NumberMinus = 0 ;
 		if( Number < 0.0 )
 		{
@@ -6128,35 +6128,35 @@ static size_t CL_vsnprintf_help_ftoa(
 		}
 	}
 
-	// •‚Ìw’è‚ª–³‚¢ê‡‚Í‰¼‚Å 0 ‚ğƒZƒbƒg
+	// å¹…ã®æŒ‡å®šãŒç„¡ã„å ´åˆã¯ä»®ã§ 0 ã‚’ã‚»ãƒƒãƒˆ
 	if( Width < 0 )
 	{
 		Width = 0 ;
 	}
 
-	// ¶‹l‚ßw’è‚³‚ê‚Ä‚¢‚éê‡‚Í Flag_Zero ‚Í–³Œø
+	// å·¦è©°ã‚æŒ‡å®šã•ã‚Œã¦ã„ã‚‹å ´åˆã¯ Flag_Zero ã¯ç„¡åŠ¹
 	if( Flag_Minus )
 	{
 		Flag_Zero = 0 ;
 	}
 
-	// Flag_Plus ‚ª‚ ‚éê‡AFlag_Space ‚ÍˆÓ–¡‚ğ¬‚³‚È‚¢
+	// Flag_Plus ãŒã‚ã‚‹å ´åˆã€Flag_Space ã¯æ„å‘³ã‚’æˆã•ãªã„
 	if( Flag_Plus )
 	{
 		Flag_Space = 0 ;
 	}
 
-	// ’l‚ªƒ}ƒCƒiƒX’l‚Ìê‡AFlag_Plus, Flag_Space ‚ÍˆÓ–¡‚ğ¬‚³‚È‚¢
+	// å€¤ãŒãƒã‚¤ãƒŠã‚¹å€¤ã®å ´åˆã€Flag_Plus, Flag_Space ã¯æ„å‘³ã‚’æˆã•ãªã„
 	if( NumberMinus )
 	{
 		Flag_Space = 0 ;
 		Flag_Plus  = 0 ;
 	}
 
-	// ”’l‚ğ•¶š—ñ‰»‚Æ•¶š”‚ÌZo
+	// æ•°å€¤ã‚’æ–‡å­—åˆ—åŒ–ã¨æ–‡å­—æ•°ã®ç®—å‡º
 	if( NaN )
 	{
-		// NaN ‚Ìê‡
+		// NaN ã®å ´åˆ
 
 		switch( Type )
 		{
@@ -6182,7 +6182,7 @@ static size_t CL_vsnprintf_help_ftoa(
 	}
 	else
 	{
-		// ’Êí”’l‚Ìê‡
+		// é€šå¸¸æ•°å€¤ã®å ´åˆ
 
 		switch( Type )
 		{
@@ -6207,7 +6207,7 @@ static size_t CL_vsnprintf_help_ftoa(
 		}
 	}
 
-	// •„†‚âƒXƒy[ƒX‚Ì•¶š”‚ğZo
+	// ç¬¦å·ã‚„ã‚¹ãƒšãƒ¼ã‚¹ã®æ–‡å­—æ•°ã‚’ç®—å‡º
 	if( Flag_Space || Flag_Plus || NumberMinus )
 	{
 		SignedCharNum = 1 ;
@@ -6217,15 +6217,15 @@ static size_t CL_vsnprintf_help_ftoa(
 		SignedCharNum = 0 ;
 	}
 
-	// •‚©‚ç”š‚Ì•¶š”A•„†•¶šAi”•t‘®•¶š‚ğˆø‚­
+	// å¹…ã‹ã‚‰æ•°å­—ã®æ–‡å­—æ•°ã€ç¬¦å·æ–‡å­—ã€é€²æ•°ä»˜å±æ–‡å­—ã‚’å¼•ã
 	Width -= NumberNum + SignedCharNum ;
 
-	// ¶‹l‚ßw’è‚ª‚ ‚é‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+	// å·¦è©°ã‚æŒ‡å®šãŒã‚ã‚‹ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 	if( Flag_Minus )
 	{
-		// ¶‹l‚ßw’è‚ª‚ ‚éê‡
+		// å·¦è©°ã‚æŒ‡å®šãŒã‚ã‚‹å ´åˆ
 
-		// •„†Œn•¶š‚ª‚ ‚éê‡‚ÍƒZƒbƒg‚·‚é
+		// ç¬¦å·ç³»æ–‡å­—ãŒã‚ã‚‹å ´åˆã¯ã‚»ãƒƒãƒˆã™ã‚‹
 		if( NumberMinus || Flag_Plus || Flag_Space )
 		{
 			WriteBytes = PutCharCode_BufferBytes_inline( NumberMinus ? '-' : ( Flag_Plus ? '+' : ' ' ), DestCharCodeFormat, ( char * )&( ( BYTE * )Dest )[ DestSize ], BufferBytes - DestSize ) ;
@@ -6240,7 +6240,7 @@ static size_t CL_vsnprintf_help_ftoa(
 			}
 		}
 
-		// ”’l‚ğƒZƒbƒg‚·‚é
+		// æ•°å€¤ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 		for( i = 0 ; i < ( int )NumberNum ; i++ )
 		{
 			WriteBytes = PutCharCode_BufferBytes_inline( UseNumberStrTempBuffer[ i ], DestCharCodeFormat, ( char * )&( ( BYTE * )Dest )[ DestSize ], BufferBytes - DestSize ) ;
@@ -6255,7 +6255,7 @@ static size_t CL_vsnprintf_help_ftoa(
 			}
 		}
 
-		// —]è•‚ª‚ ‚éê‡‚ÍAƒXƒy[ƒX‚ğƒZƒbƒg‚·‚é
+		// ä½™å‰°å¹…ãŒã‚ã‚‹å ´åˆã¯ã€ã‚¹ãƒšãƒ¼ã‚¹ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 		if( Width > 0 )
 		{
 			DestSize += CL_vsnprintf_help_set_char( Width, ' ', ( char * )&( ( BYTE * )Dest )[ DestSize ], BufferBytes - DestSize, DestCharCodeFormat ) ;
@@ -6267,10 +6267,10 @@ static size_t CL_vsnprintf_help_ftoa(
 	}
 	else
 	{
-		// 0‹l‚ßw’è‚ª‚ ‚é‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+		// 0è©°ã‚æŒ‡å®šãŒã‚ã‚‹ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 		if( Flag_Zero )
 		{
-			// •„†Œn•¶š‚ª‚ ‚éê‡‚ÍƒZƒbƒg‚·‚é
+			// ç¬¦å·ç³»æ–‡å­—ãŒã‚ã‚‹å ´åˆã¯ã‚»ãƒƒãƒˆã™ã‚‹
 			if( NumberMinus || Flag_Plus || Flag_Space )
 			{
 				WriteBytes = PutCharCode_BufferBytes_inline( NumberMinus ? '-' : ( Flag_Plus ? '+' : ' ' ), DestCharCodeFormat, ( char * )&( ( BYTE * )Dest )[ DestSize ], BufferBytes - DestSize ) ;
@@ -6285,7 +6285,7 @@ static size_t CL_vsnprintf_help_ftoa(
 				}
 			}
 
-			// —]è•‚ª‚ ‚éê‡‚ÍA0‚ğƒZƒbƒg‚·‚é
+			// ä½™å‰°å¹…ãŒã‚ã‚‹å ´åˆã¯ã€0ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 			if( Width > 0 )
 			{
 				DestSize += CL_vsnprintf_help_set_char( Width, '0', ( char * )&( ( BYTE * )Dest )[ DestSize ], BufferBytes - DestSize, DestCharCodeFormat ) ;
@@ -6297,7 +6297,7 @@ static size_t CL_vsnprintf_help_ftoa(
 		}
 		else
 		{
-			// —]è•‚ª‚ ‚éê‡‚ÍAƒXƒy[ƒX‚ğƒZƒbƒg‚·‚é
+			// ä½™å‰°å¹…ãŒã‚ã‚‹å ´åˆã¯ã€ã‚¹ãƒšãƒ¼ã‚¹ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 			if( Width > 0 )
 			{
 				DestSize += CL_vsnprintf_help_set_char( Width, ' ', ( char * )&( ( BYTE * )Dest )[ DestSize ], BufferBytes - DestSize, DestCharCodeFormat ) ;
@@ -6307,7 +6307,7 @@ static size_t CL_vsnprintf_help_ftoa(
 				}
 			}
 
-			// •„†Œn•¶š‚ª‚ ‚éê‡‚ÍƒZƒbƒg‚·‚é
+			// ç¬¦å·ç³»æ–‡å­—ãŒã‚ã‚‹å ´åˆã¯ã‚»ãƒƒãƒˆã™ã‚‹
 			if( NumberMinus || Flag_Plus || Flag_Space )
 			{
 				WriteBytes = PutCharCode_BufferBytes_inline( NumberMinus ? '-' : ( Flag_Plus ? '+' : ' ' ), DestCharCodeFormat, ( char * )&( ( BYTE * )Dest )[ DestSize ], BufferBytes - DestSize ) ;
@@ -6323,7 +6323,7 @@ static size_t CL_vsnprintf_help_ftoa(
 			}
 		}
 
-		// ”’l‚ğƒZƒbƒg‚·‚é
+		// æ•°å€¤ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 		for( i = 0 ; i < ( int )NumberNum ; i++ )
 		{
 			WriteBytes = PutCharCode_BufferBytes_inline( UseNumberStrTempBuffer[ i ], DestCharCodeFormat, ( char * )&( ( BYTE * )Dest )[ DestSize ], BufferBytes - DestSize ) ;
@@ -6341,7 +6341,7 @@ static size_t CL_vsnprintf_help_ftoa(
 
 END :
 
-	// ƒƒ‚ƒŠ‚ğŠm•Û‚µ‚Ä‚¢‚½‚ç‰ğ•ú‚·‚é
+	// ãƒ¡ãƒ¢ãƒªã‚’ç¢ºä¿ã—ã¦ã„ãŸã‚‰è§£æ”¾ã™ã‚‹
 	if( AllocNumberStrTempBuffer != NULL )
 	{
 		DXFREE( AllocNumberStrTempBuffer ) ;
@@ -6351,7 +6351,7 @@ END :
 	return DestSize ;
 }
 
-// ®”’l‚ğ•¶š—ñ‰»‚·‚éŠÖ”A–ß‚è’l‚Í‘‚«‚ñ‚¾ƒoƒCƒg”
+// æ•´æ•°å€¤ã‚’æ–‡å­—åˆ—åŒ–ã™ã‚‹é–¢æ•°ã€æˆ»ã‚Šå€¤ã¯æ›¸ãè¾¼ã‚“ã ãƒã‚¤ãƒˆæ•°
 static size_t CL_vsnprintf_help_itoa(
 	ULONGLONG Number,
 	int NumberMinus,
@@ -6384,12 +6384,12 @@ static size_t CL_vsnprintf_help_itoa(
 	BYTE *AllocNumberStrTempBuffer = NULL ;
 	BYTE *UseNumberStrTempBuffer ;
 
-	// ƒfƒtƒHƒ‹ƒg‚ÌƒTƒCƒY‚ğ’´‚¦‚éê‡‚Íˆêƒoƒbƒtƒ@‚ğŠm•Û‚·‚é
+	// ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®ã‚µã‚¤ã‚ºã‚’è¶…ãˆã‚‹å ´åˆã¯ä¸€æ™‚ãƒãƒƒãƒ•ã‚¡ã‚’ç¢ºä¿ã™ã‚‹
 	if( Precision >= 0 && sizeof( NumberStrTemp ) - 32 <= ( size_t )Precision )
 	{
 		AllocNumberStrTempBuffer = ( BYTE * )DXALLOC( Precision + 32 ) ;
 
-		// ƒoƒbƒtƒ@‚ªŠm•Û‚Å‚«‚È‚©‚Á‚½ê‡‚Í•¶š—ñ‰»‚·‚éŒ…”‚ğ 1024 ‚É•ÏX‚·‚é
+		// ãƒãƒƒãƒ•ã‚¡ãŒç¢ºä¿ã§ããªã‹ã£ãŸå ´åˆã¯æ–‡å­—åˆ—åŒ–ã™ã‚‹æ¡æ•°ã‚’ 1024 ã«å¤‰æ›´ã™ã‚‹
 		if( AllocNumberStrTempBuffer == NULL )
 		{
 			Precision = 1024 ;
@@ -6407,20 +6407,20 @@ static size_t CL_vsnprintf_help_itoa(
 
 	DestSize = 0 ;
 
-	// Å‰‚Éƒkƒ‹•¶š‚ğ‘‚«‚Ş
+	// æœ€åˆã«ãƒŒãƒ«æ–‡å­—ã‚’æ›¸ãè¾¼ã‚€
 	NulWriteBytes = PutCharCode_BufferBytes_inline( 0x00, DestCharCodeFormat, ( char * )&( ( BYTE * )Dest )[ DestSize ], BufferBytes - DestSize ) ;
 	if( NulWriteBytes == 0 )
 	{
 		goto END ;
 	}
 
-	// •‚Ìw’è‚ª–³‚¢ê‡‚Í‰¼‚Å 0 ‚ğƒZƒbƒg
+	// å¹…ã®æŒ‡å®šãŒç„¡ã„å ´åˆã¯ä»®ã§ 0 ã‚’ã‚»ãƒƒãƒˆ
 	if( Width < 0 )
 	{
 		Width = 0 ;
 	}
 
-	// ¸“x‚Ìw’è‚ª–³‚¢ê‡‚ÍŠù’è‚Ì 1 ‚ğƒZƒbƒg
+	// ç²¾åº¦ã®æŒ‡å®šãŒç„¡ã„å ´åˆã¯æ—¢å®šã® 1 ã‚’ã‚»ãƒƒãƒˆ
 	if( Precision < 0 )
 	{
 		Precision = 1 ;
@@ -6431,19 +6431,19 @@ static size_t CL_vsnprintf_help_itoa(
 		Flag_Precision = 1 ;
 	}
 
-	// 10i”ˆÈŠO‚Í•„†–³‚µ
+	// 10é€²æ•°ä»¥å¤–ã¯ç¬¦å·ç„¡ã—
 	if( Decimal != 10 )
 	{
 		Signed = 0 ;
 	}
 
-	// ¶‹l‚ßw’è‚³‚ê‚Ä‚¢‚é‚©A¸“xw’è‚ª‚ ‚éê‡‚Í Flag_Zero ‚Í–³Œø
+	// å·¦è©°ã‚æŒ‡å®šã•ã‚Œã¦ã„ã‚‹ã‹ã€ç²¾åº¦æŒ‡å®šãŒã‚ã‚‹å ´åˆã¯ Flag_Zero ã¯ç„¡åŠ¹
 	if( Flag_Minus || Flag_Precision )
 	{
 		Flag_Zero = 0 ;
 	}
 
-	// •„†‚ª–³‚¢ê‡‚Í ƒ}ƒCƒiƒX’lAFlag_Plus, Flag_Space ‚ÍˆÓ–¡‚ğ¬‚³‚È‚¢
+	// ç¬¦å·ãŒç„¡ã„å ´åˆã¯ ãƒã‚¤ãƒŠã‚¹å€¤ã€Flag_Plus, Flag_Space ã¯æ„å‘³ã‚’æˆã•ãªã„
 	if( Signed == 0 )
 	{
 		NumberMinus = 0 ;
@@ -6452,16 +6452,16 @@ static size_t CL_vsnprintf_help_itoa(
 	}
 	else
 	{
-		// •„†‚ª‚ ‚éê‡‚Í # ‚ÍˆÓ–¡‚ğ¬‚³‚È‚¢
+		// ç¬¦å·ãŒã‚ã‚‹å ´åˆã¯ # ã¯æ„å‘³ã‚’æˆã•ãªã„
 		Flag_Sharp = 0 ;
 
-		// Flag_Plus ‚ª‚ ‚éê‡AFlag_Space ‚ÍˆÓ–¡‚ğ¬‚³‚È‚¢
+		// Flag_Plus ãŒã‚ã‚‹å ´åˆã€Flag_Space ã¯æ„å‘³ã‚’æˆã•ãªã„
 		if( Flag_Plus )
 		{
 			Flag_Space = 0 ;
 		}
 
-		// ’l‚ªƒ}ƒCƒiƒX’l‚Ìê‡AFlag_Plus, Flag_Space ‚ÍˆÓ–¡‚ğ¬‚³‚È‚¢
+		// å€¤ãŒãƒã‚¤ãƒŠã‚¹å€¤ã®å ´åˆã€Flag_Plus, Flag_Space ã¯æ„å‘³ã‚’æˆã•ãªã„
 		if( NumberMinus )
 		{
 			Flag_Space = 0 ;
@@ -6469,11 +6469,11 @@ static size_t CL_vsnprintf_help_itoa(
 		}
 	}
 
-	// ”’l‚ğ•¶š—ñ‰»‚Æ•¶š”‚ÌZo
+	// æ•°å€¤ã‚’æ–‡å­—åˆ—åŒ–ã¨æ–‡å­—æ•°ã®ç®—å‡º
 	NumberNum = 0 ;
 	if( Number == 0 )
 	{
-		// ”’l‚ª 0 ‚Å‚à¸“x‚ª 0 ‚Å‚Í‚È‚¯‚ê‚Î 0 ‚Ì‚P•¶š‚ğo—Í‚·‚é
+		// æ•°å€¤ãŒ 0 ã§ã‚‚ç²¾åº¦ãŒ 0 ã§ã¯ãªã‘ã‚Œã° 0 ã®ï¼‘æ–‡å­—ã‚’å‡ºåŠ›ã™ã‚‹
 		if( Precision == 0 )
 		{
 			UseNumberStrTempBuffer[ NumberNum ] = '0' ;
@@ -6490,7 +6490,7 @@ static size_t CL_vsnprintf_help_itoa(
 		}
 	}
 
-	// ¸“x‚É‚æ‚é•¶š”‚ğZo
+	// ç²¾åº¦ã«ã‚ˆã‚‹æ–‡å­—æ•°ã‚’ç®—å‡º
 	if( NumberNum < ( DWORD )Precision )
 	{
 		PrecisionCharNum = Precision - NumberNum ;
@@ -6500,7 +6500,7 @@ static size_t CL_vsnprintf_help_itoa(
 		PrecisionCharNum = 0 ;
 	}
 
-	// # ‚ª‚ ‚éê‡‚Ì•¶š”‚ğZo
+	// # ãŒã‚ã‚‹å ´åˆã®æ–‡å­—æ•°ã‚’ç®—å‡º
 	SharpCharNum = 0 ;
 	if( Flag_Sharp )
 	{
@@ -6516,7 +6516,7 @@ static size_t CL_vsnprintf_help_itoa(
 		}
 	}
 
-	// •„†‚âƒXƒy[ƒX‚Ì•¶š”‚ğZo
+	// ç¬¦å·ã‚„ã‚¹ãƒšãƒ¼ã‚¹ã®æ–‡å­—æ•°ã‚’ç®—å‡º
 	if( Flag_Space || Flag_Plus || NumberMinus )
 	{
 		SignedCharNum = 1 ;
@@ -6526,15 +6526,15 @@ static size_t CL_vsnprintf_help_itoa(
 		SignedCharNum = 0 ;
 	}
 
-	// •‚©‚ç”š‚Ì•¶š”A•„†•¶šAi”•t‘®•¶š‚ğˆø‚­
+	// å¹…ã‹ã‚‰æ•°å­—ã®æ–‡å­—æ•°ã€ç¬¦å·æ–‡å­—ã€é€²æ•°ä»˜å±æ–‡å­—ã‚’å¼•ã
 	Width -= NumberNum + PrecisionCharNum + SignedCharNum + SharpCharNum ;
 
-	// ¶‹l‚ßw’è‚ª‚ ‚é‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+	// å·¦è©°ã‚æŒ‡å®šãŒã‚ã‚‹ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 	if( Flag_Minus )
 	{
-		// ¶‹l‚ßw’è‚ª‚ ‚éê‡
+		// å·¦è©°ã‚æŒ‡å®šãŒã‚ã‚‹å ´åˆ
 
-		// •„†Œn•¶š‚ª‚ ‚éê‡‚ÍƒZƒbƒg‚·‚é
+		// ç¬¦å·ç³»æ–‡å­—ãŒã‚ã‚‹å ´åˆã¯ã‚»ãƒƒãƒˆã™ã‚‹
 		if( NumberMinus || Flag_Plus || Flag_Space )
 		{
 			WriteBytes = PutCharCode_BufferBytes_inline( NumberMinus ? '-' : ( Flag_Plus ? '+' : ' ' ), DestCharCodeFormat, ( char * )&( ( BYTE * )Dest )[ DestSize ], BufferBytes - DestSize ) ;
@@ -6549,7 +6549,7 @@ static size_t CL_vsnprintf_help_itoa(
 			}
 		}
 
-		// i”•t‘®•¶š‚ª‚ ‚éê‡‚Í‹L†‚ğƒZƒbƒg‚·‚é
+		// é€²æ•°ä»˜å±æ–‡å­—ãŒã‚ã‚‹å ´åˆã¯è¨˜å·ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 		if( Flag_Sharp )
 		{
 			if( Decimal == 8 )
@@ -6591,7 +6591,7 @@ static size_t CL_vsnprintf_help_itoa(
 			}
 		}
 
-		// ¸“x‚É‘«‚è‚È‚¢•ª‚Ì 0 ‚ğƒZƒbƒg‚·‚é
+		// ç²¾åº¦ã«è¶³ã‚Šãªã„åˆ†ã® 0 ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 		if( PrecisionCharNum > 0 )
 		{
 			DestSize += CL_vsnprintf_help_set_char( PrecisionCharNum, '0', ( char * )&( ( BYTE * )Dest )[ DestSize ], BufferBytes - DestSize, DestCharCodeFormat ) ;
@@ -6601,7 +6601,7 @@ static size_t CL_vsnprintf_help_itoa(
 			}
 		}
 
-		// ”’l‚ğƒZƒbƒg‚·‚é
+		// æ•°å€¤ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 		for( i = NumberNum - 1 ; i >= 0 ; i-- )
 		{
 			WriteBytes = PutCharCode_BufferBytes_inline( UseNumberStrTempBuffer[ i ], DestCharCodeFormat, ( char * )&( ( BYTE * )Dest )[ DestSize ], BufferBytes - DestSize ) ;
@@ -6616,7 +6616,7 @@ static size_t CL_vsnprintf_help_itoa(
 			}
 		}
 
-		// —]è•‚ª‚ ‚éê‡‚ÍAƒXƒy[ƒX‚ğƒZƒbƒg‚·‚é
+		// ä½™å‰°å¹…ãŒã‚ã‚‹å ´åˆã¯ã€ã‚¹ãƒšãƒ¼ã‚¹ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 		if( Width > 0 )
 		{
 			DestSize += CL_vsnprintf_help_set_char( Width, ' ', ( char * )&( ( BYTE * )Dest )[ DestSize ], BufferBytes - DestSize, DestCharCodeFormat ) ;
@@ -6628,10 +6628,10 @@ static size_t CL_vsnprintf_help_itoa(
 	}
 	else
 	{
-		// 0‹l‚ßw’è‚ª‚ ‚é‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+		// 0è©°ã‚æŒ‡å®šãŒã‚ã‚‹ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 		if( Flag_Zero )
 		{
-			// •„†Œn•¶š‚ª‚ ‚éê‡‚ÍƒZƒbƒg‚·‚é
+			// ç¬¦å·ç³»æ–‡å­—ãŒã‚ã‚‹å ´åˆã¯ã‚»ãƒƒãƒˆã™ã‚‹
 			if( NumberMinus || Flag_Plus || Flag_Space )
 			{
 				WriteBytes = PutCharCode_BufferBytes_inline( NumberMinus ? '-' : ( Flag_Plus ? '+' : ' ' ), DestCharCodeFormat, ( char * )&( ( BYTE * )Dest )[ DestSize ], BufferBytes - DestSize ) ;
@@ -6646,7 +6646,7 @@ static size_t CL_vsnprintf_help_itoa(
 				}
 			}
 
-			// i”•t‘®•¶š‚ª‚ ‚éê‡‚Í‹L†‚ğƒZƒbƒg‚·‚é
+			// é€²æ•°ä»˜å±æ–‡å­—ãŒã‚ã‚‹å ´åˆã¯è¨˜å·ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 			if( Flag_Sharp )
 			{
 				if( Decimal == 8 )
@@ -6688,7 +6688,7 @@ static size_t CL_vsnprintf_help_itoa(
 				}
 			}
 
-			// —]è•‚ª‚ ‚éê‡‚ÍA0‚ğƒZƒbƒg‚·‚é
+			// ä½™å‰°å¹…ãŒã‚ã‚‹å ´åˆã¯ã€0ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 			if( Width > 0 )
 			{
 				DestSize += CL_vsnprintf_help_set_char( Width, '0', ( char * )&( ( BYTE * )Dest )[ DestSize ], BufferBytes - DestSize, DestCharCodeFormat ) ;
@@ -6700,7 +6700,7 @@ static size_t CL_vsnprintf_help_itoa(
 		}
 		else
 		{
-			// —]è•‚ª‚ ‚éê‡‚ÍAƒXƒy[ƒX‚ğƒZƒbƒg‚·‚é
+			// ä½™å‰°å¹…ãŒã‚ã‚‹å ´åˆã¯ã€ã‚¹ãƒšãƒ¼ã‚¹ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 			if( Width > 0 )
 			{
 				DestSize += CL_vsnprintf_help_set_char( Width, ' ', ( char * )&( ( BYTE * )Dest )[ DestSize ], BufferBytes - DestSize, DestCharCodeFormat ) ;
@@ -6710,7 +6710,7 @@ static size_t CL_vsnprintf_help_itoa(
 				}
 			}
 
-			// •„†Œn•¶š‚ª‚ ‚éê‡‚ÍƒZƒbƒg‚·‚é
+			// ç¬¦å·ç³»æ–‡å­—ãŒã‚ã‚‹å ´åˆã¯ã‚»ãƒƒãƒˆã™ã‚‹
 			if( NumberMinus || Flag_Plus || Flag_Space )
 			{
 				WriteBytes = PutCharCode_BufferBytes_inline( NumberMinus ? '-' : ( Flag_Plus ? '+' : ' ' ), DestCharCodeFormat, ( char * )&( ( BYTE * )Dest )[ DestSize ], BufferBytes - DestSize ) ;
@@ -6725,7 +6725,7 @@ static size_t CL_vsnprintf_help_itoa(
 				}
 			}
 
-			// i”•t‘®•¶š‚ª‚ ‚éê‡‚Í‹L†‚ğƒZƒbƒg‚·‚é
+			// é€²æ•°ä»˜å±æ–‡å­—ãŒã‚ã‚‹å ´åˆã¯è¨˜å·ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 			if( Flag_Sharp )
 			{
 				if( Decimal == 8 )
@@ -6768,7 +6768,7 @@ static size_t CL_vsnprintf_help_itoa(
 			}
 		}
 
-		// ¸“x‚É‘«‚è‚È‚¢•ª‚Ì 0 ‚ğƒZƒbƒg‚·‚é
+		// ç²¾åº¦ã«è¶³ã‚Šãªã„åˆ†ã® 0 ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 		if( PrecisionCharNum > 0 )
 		{
 			DestSize += CL_vsnprintf_help_set_char( PrecisionCharNum, '0', ( char * )&( ( BYTE * )Dest )[ DestSize ], BufferBytes - DestSize, DestCharCodeFormat ) ;
@@ -6778,7 +6778,7 @@ static size_t CL_vsnprintf_help_itoa(
 			}
 		}
 
-		// ”’l‚ğƒZƒbƒg‚·‚é
+		// æ•°å€¤ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 		for( i = NumberNum - 1 ; i >= 0 ; i-- )
 		{
 			WriteBytes = PutCharCode_BufferBytes_inline( UseNumberStrTempBuffer[ i ], DestCharCodeFormat, ( char * )&( ( BYTE * )Dest )[ DestSize ], BufferBytes - DestSize ) ;
@@ -6796,7 +6796,7 @@ static size_t CL_vsnprintf_help_itoa(
 
 END :
 
-	// ƒƒ‚ƒŠ‚ğŠm•Û‚µ‚Ä‚¢‚½‚ç‰ğ•ú‚·‚é
+	// ãƒ¡ãƒ¢ãƒªã‚’ç¢ºä¿ã—ã¦ã„ãŸã‚‰è§£æ”¾ã™ã‚‹
 	if( AllocNumberStrTempBuffer != NULL )
 	{
 		DXFREE( AllocNumberStrTempBuffer ) ;
@@ -6806,7 +6806,7 @@ END :
 	return DestSize ;
 }
 
-// s ‚Æ S ‚ğˆ—‚·‚éŠÖ”A–ß‚è’l‚Í‘‚«‚ñ‚¾ƒoƒCƒg”
+// s ã¨ S ã‚’å‡¦ç†ã™ã‚‹é–¢æ•°ã€æˆ»ã‚Šå€¤ã¯æ›¸ãè¾¼ã‚“ã ãƒã‚¤ãƒˆæ•°
 static size_t CL_vsnprintf_help_s(
 	char *String,
 	int Flag_Zero,
@@ -6826,14 +6826,14 @@ static size_t CL_vsnprintf_help_s(
 
 	DestSize = 0 ;
 
-	// Å‰‚Éƒkƒ‹•¶š‚ğ‘‚«‚Ş
+	// æœ€åˆã«ãƒŒãƒ«æ–‡å­—ã‚’æ›¸ãè¾¼ã‚€
 	NulWriteBytes = PutCharCode_BufferBytes_inline( 0x00, DestCharCodeFormat, ( char * )&( ( BYTE * )Dest )[ DestSize ], BufferBytes - DestSize ) ;
 	if( NulWriteBytes == 0 )
 	{
 		return 0 ;
 	}
 
-	// NULL ‚Ìê‡‚Í(null)‚ğƒZƒbƒg
+	// NULL ã®å ´åˆã¯(null)ã‚’ã‚»ãƒƒãƒˆ
 	if( String == NULL )
 	{
 		int TempAddr = 0 ;
@@ -6848,45 +6848,45 @@ static size_t CL_vsnprintf_help_s(
 		String = ( char * )NullBuffer ;
 	}
 
-	// •¶š—ñ‚Ì’·‚³‚ğæ“¾
+	// æ–‡å­—åˆ—ã®é•·ã•ã‚’å–å¾—
 	StrLength = ( int )CL_strlen( DestCharCodeFormat, String ) ;
 
-	// •‚Ìw’è‚ª–³‚¢ê‡‚Í‰¼‚Å 0 ‚ğƒZƒbƒg
+	// å¹…ã®æŒ‡å®šãŒç„¡ã„å ´åˆã¯ä»®ã§ 0 ã‚’ã‚»ãƒƒãƒˆ
 	if( Width < 0 )
 	{
 		Width = 0 ;
 	}
 
-	// ¸“x‚Ìw’è‚ª–³‚¢ê‡‚Í•¶š—ñ‚Ì’·‚³‚ğƒZƒbƒg
+	// ç²¾åº¦ã®æŒ‡å®šãŒç„¡ã„å ´åˆã¯æ–‡å­—åˆ—ã®é•·ã•ã‚’ã‚»ãƒƒãƒˆ
 	if( Precision < 0 )
 	{
 		Precision = StrLength ;
 	}
 	else
 	{
-		// ¸“x‚ª•¶š—ñ’·ˆÈ‰º‚Ìê‡‚Í¸“x‚ğ•¶š—ñ’·‚É‚·‚é
+		// ç²¾åº¦ãŒæ–‡å­—åˆ—é•·ä»¥ä¸‹ã®å ´åˆã¯ç²¾åº¦ã‚’æ–‡å­—åˆ—é•·ã«ã™ã‚‹
 		if( Precision > StrLength )
 		{
 			Precision = StrLength ;
 		}
 	}
 
-	// ¶‹l‚ßw’è‚³‚ê‚Ä‚¢‚éê‡‚Í Flag_Zero ‚Í–³Œø
+	// å·¦è©°ã‚æŒ‡å®šã•ã‚Œã¦ã„ã‚‹å ´åˆã¯ Flag_Zero ã¯ç„¡åŠ¹
 	if( Flag_Minus )
 	{
 		Flag_Zero = 0 ;
 	}
 
-	// •‚©‚ç¸“x‚ğˆø‚­
+	// å¹…ã‹ã‚‰ç²¾åº¦ã‚’å¼•ã
 	Width -= Precision ;
 
-	// ¶‹l‚ßw’è‚ª‚ ‚é‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+	// å·¦è©°ã‚æŒ‡å®šãŒã‚ã‚‹ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 	UnitSize = ( size_t )GetCharCodeFormatUnitSize_inline( DestCharCodeFormat ) ;
 	if( Flag_Minus )
 	{
-		// ¶‹l‚ßw’è‚ª‚ ‚éê‡
+		// å·¦è©°ã‚æŒ‡å®šãŒã‚ã‚‹å ´åˆ
 
-		// •¶š—ñ‚ğƒRƒs[‚·‚é
+		// æ–‡å­—åˆ—ã‚’ã‚³ãƒ”ãƒ¼ã™ã‚‹
 		if( BufferBytes - DestSize < UnitSize * Precision + NulWriteBytes )
 		{
 			Precision = ( int )( ( BufferBytes - DestSize - NulWriteBytes ) / UnitSize ) ;
@@ -6898,7 +6898,7 @@ static size_t CL_vsnprintf_help_s(
 			goto END ;
 		}
 
-		// —]è•‚ª‚ ‚éê‡‚ÍAƒXƒy[ƒX‚ğƒZƒbƒg‚·‚é
+		// ä½™å‰°å¹…ãŒã‚ã‚‹å ´åˆã¯ã€ã‚¹ãƒšãƒ¼ã‚¹ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 		if( Width > 0 )
 		{
 			DestSize += CL_vsnprintf_help_set_char( Width, ' ', ( char * )&( ( BYTE * )Dest )[ DestSize ], BufferBytes - DestSize, DestCharCodeFormat ) ;
@@ -6910,10 +6910,10 @@ static size_t CL_vsnprintf_help_s(
 	}
 	else
 	{
-		// 0‹l‚ßw’è‚ª‚ ‚é‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+		// 0è©°ã‚æŒ‡å®šãŒã‚ã‚‹ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 		if( Flag_Zero )
 		{
-			// —]è•‚ª‚ ‚éê‡‚ÍA0‚ğƒZƒbƒg‚·‚é
+			// ä½™å‰°å¹…ãŒã‚ã‚‹å ´åˆã¯ã€0ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 			if( Width > 0 )
 			{
 				DestSize += CL_vsnprintf_help_set_char( Width, '0', ( char * )&( ( BYTE * )Dest )[ DestSize ], BufferBytes - DestSize, DestCharCodeFormat ) ;
@@ -6925,7 +6925,7 @@ static size_t CL_vsnprintf_help_s(
 		}
 		else
 		{
-			// —]è•‚ª‚ ‚éê‡‚ÍAƒXƒy[ƒX‚ğƒZƒbƒg‚·‚é
+			// ä½™å‰°å¹…ãŒã‚ã‚‹å ´åˆã¯ã€ã‚¹ãƒšãƒ¼ã‚¹ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 			if( Width > 0 )
 			{
 				DestSize += CL_vsnprintf_help_set_char( Width, ' ', ( char * )&( ( BYTE * )Dest )[ DestSize ], BufferBytes - DestSize, DestCharCodeFormat ) ;
@@ -6936,7 +6936,7 @@ static size_t CL_vsnprintf_help_s(
 			}
 		}
 
-		// •¶š—ñ‚ğƒRƒs[‚·‚é
+		// æ–‡å­—åˆ—ã‚’ã‚³ãƒ”ãƒ¼ã™ã‚‹
 		if( BufferBytes - DestSize < UnitSize * Precision + NulWriteBytes )
 		{
 			Precision = ( int )( ( BufferBytes - DestSize - NulWriteBytes ) / UnitSize ) ;
@@ -6954,7 +6954,7 @@ END :
 	return DestSize ;
 }
 
-// c ‚Æ C ‚ğˆ—‚·‚éŠÖ”A–ß‚è’l‚Í‘‚«‚ñ‚¾ƒoƒCƒg”
+// c ã¨ C ã‚’å‡¦ç†ã™ã‚‹é–¢æ•°ã€æˆ»ã‚Šå€¤ã¯æ›¸ãè¾¼ã‚“ã ãƒã‚¤ãƒˆæ•°
 static size_t CL_vsnprintf_help_c(
 	DWORD CharCode,
 	int Flag_Zero,
@@ -6971,34 +6971,34 @@ static size_t CL_vsnprintf_help_c(
 
 	DestSize = 0 ;
 
-	// Å‰‚Éƒkƒ‹•¶š‚ğ‘‚«‚Ş
+	// æœ€åˆã«ãƒŒãƒ«æ–‡å­—ã‚’æ›¸ãè¾¼ã‚€
 	NulWriteBytes = PutCharCode_BufferBytes_inline( 0x00, DestCharCodeFormat, ( char * )&( ( BYTE * )Dest )[ DestSize ], BufferBytes - DestSize ) ;
 	if( NulWriteBytes == 0 )
 	{
 		return 0 ;
 	}
 
-	// •‚Ìw’è‚ª–³‚¢ê‡‚Í‰¼‚Å 1 ‚ğƒZƒbƒg
+	// å¹…ã®æŒ‡å®šãŒç„¡ã„å ´åˆã¯ä»®ã§ 1 ã‚’ã‚»ãƒƒãƒˆ
 	if( Width < 0 )
 	{
 		Width = 1 ;
 	}
 
-	// ¶‹l‚ßw’è‚³‚ê‚Ä‚¢‚éê‡‚Í Flag_Zero ‚Í–³Œø
+	// å·¦è©°ã‚æŒ‡å®šã•ã‚Œã¦ã„ã‚‹å ´åˆã¯ Flag_Zero ã¯ç„¡åŠ¹
 	if( Flag_Minus )
 	{
 		Flag_Zero = 0 ;
 	}
 
-	// •‚©‚ç‚P•¶š‚ğˆø‚­
+	// å¹…ã‹ã‚‰ï¼‘æ–‡å­—ã‚’å¼•ã
 	Width -= 1 ;
 
-	// ¶‹l‚ßw’è‚ª‚ ‚é‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+	// å·¦è©°ã‚æŒ‡å®šãŒã‚ã‚‹ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 	if( Flag_Minus )
 	{
-		// ¶‹l‚ßw’è‚ª‚ ‚éê‡
+		// å·¦è©°ã‚æŒ‡å®šãŒã‚ã‚‹å ´åˆ
 
-		// •¶š‚ğƒZƒbƒg‚·‚é
+		// æ–‡å­—ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 		WriteBytes = PutCharCode_BufferBytes_inline( CharCode, DestCharCodeFormat, ( char * )&( ( BYTE * )Dest )[ DestSize ], BufferBytes - DestSize ) ;
 		if( WriteBytes == 0 || BufferBytes - DestSize < WriteBytes + NulWriteBytes )
 		{
@@ -7010,7 +7010,7 @@ static size_t CL_vsnprintf_help_c(
 			goto END ;
 		}
 
-		// —]è•‚ª‚ ‚éê‡‚ÍAƒXƒy[ƒX‚ğƒZƒbƒg‚·‚é
+		// ä½™å‰°å¹…ãŒã‚ã‚‹å ´åˆã¯ã€ã‚¹ãƒšãƒ¼ã‚¹ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 		if( Width > 0 )
 		{
 			DestSize += CL_vsnprintf_help_set_char( Width, ' ', ( char * )&( ( BYTE * )Dest )[ DestSize ], BufferBytes - DestSize, DestCharCodeFormat ) ;
@@ -7018,10 +7018,10 @@ static size_t CL_vsnprintf_help_c(
 	}
 	else
 	{
-		// 0‹l‚ßw’è‚ª‚ ‚é‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+		// 0è©°ã‚æŒ‡å®šãŒã‚ã‚‹ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 		if( Flag_Zero )
 		{
-			// —]è•‚ª‚ ‚éê‡‚ÍA0‚ğƒZƒbƒg‚·‚é
+			// ä½™å‰°å¹…ãŒã‚ã‚‹å ´åˆã¯ã€0ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 			if( Width > 0 )
 			{
 				DestSize += CL_vsnprintf_help_set_char( Width, '0', ( char * )&( ( BYTE * )Dest )[ DestSize ], BufferBytes - DestSize, DestCharCodeFormat ) ;
@@ -7029,7 +7029,7 @@ static size_t CL_vsnprintf_help_c(
 		}
 		else
 		{
-			// —]è•‚ª‚ ‚éê‡‚ÍAƒXƒy[ƒX‚ğƒZƒbƒg‚·‚é
+			// ä½™å‰°å¹…ãŒã‚ã‚‹å ´åˆã¯ã€ã‚¹ãƒšãƒ¼ã‚¹ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 			if( Width > 0 )
 			{
 				DestSize += CL_vsnprintf_help_set_char( Width, ' ', ( char * )&( ( BYTE * )Dest )[ DestSize ], BufferBytes - DestSize, DestCharCodeFormat ) ;
@@ -7040,7 +7040,7 @@ static size_t CL_vsnprintf_help_c(
 			goto END ;
 		}
 
-		// •¶š‚ğƒZƒbƒg‚·‚é
+		// æ–‡å­—ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 		DestSize += PutCharCode_BufferBytes_inline( CharCode, DestCharCodeFormat, ( char * )&( ( BYTE * )Dest )[ DestSize ], BufferBytes - DestSize ) ;
 	}
 
@@ -7067,7 +7067,7 @@ extern int CL_vsnprintf( int CharCodeFormat, int IsWChar, int CharCharCodeFormat
 	DWORD *FCode ;
 	int FormatStringSize ;
 
-	// ‚P•¶š‚SƒoƒCƒgŒ`®‚É•ÏŠ·‚·‚é
+	// ï¼‘æ–‡å­—ï¼”ãƒã‚¤ãƒˆå½¢å¼ã«å¤‰æ›ã™ã‚‹
 	FormatStringSize = StringToCharCodeString_inline( FormatString, CharCodeFormat, NULL ) ;
 	if( FormatStringSize + sizeof( DWORD ) * 16 > sizeof( BaseBuffer ) )
 	{
@@ -7157,7 +7157,7 @@ extern int CL_vsnprintf( int CharCodeFormat, int IsWChar, int CharCharCodeFormat
 				case '-':
 				case '+':
 				case ' ':
-					// ƒtƒ‰ƒOƒfƒBƒŒƒNƒeƒBƒu‚ÍAƒtƒ‰ƒOƒfƒBƒŒƒNƒeƒBƒu‚ğw’è‚Å‚«‚é”ÍˆÍ‚©‚çŠO‚ê‚Ä‚¢‚½‚çƒGƒ‰[‚Æ‚È‚é
+					// ãƒ•ãƒ©ã‚°ãƒ‡ã‚£ãƒ¬ã‚¯ãƒ†ã‚£ãƒ–ã¯ã€ãƒ•ãƒ©ã‚°ãƒ‡ã‚£ãƒ¬ã‚¯ãƒ†ã‚£ãƒ–ã‚’æŒ‡å®šã§ãã‚‹ç¯„å›²ã‹ã‚‰å¤–ã‚Œã¦ã„ãŸã‚‰ã‚¨ãƒ©ãƒ¼ã¨ãªã‚‹
 					if( FlagEnd )
 					{
 						LoopEnd = 1 ;
@@ -7176,14 +7176,14 @@ extern int CL_vsnprintf( int CharCodeFormat, int IsWChar, int CharCharCodeFormat
 					break ;
 
 				case '.':
-					// Šù‚É . ‚ª‚ ‚Á‚½ê‡A“ñ‚ÂˆÈã‚Ì . ‚ÍƒGƒ‰[‚Æ‚È‚é
+					// æ—¢ã« . ãŒã‚ã£ãŸå ´åˆã€äºŒã¤ä»¥ä¸Šã® . ã¯ã‚¨ãƒ©ãƒ¼ã¨ãªã‚‹
 					if( Dot )
 					{
 						LoopEnd = 1 ;
 					}
 					else
 					{
-						// . ‚Í¸“xw’è‚ÌŠJn‚Æ‹¤‚ÉAƒtƒ‰ƒOƒfƒBƒŒƒNƒeƒBƒu‚Æ•¶š•w’è‚Å‚«‚é”ÍˆÍ‚ÌI—¹‚Å‚à‚ ‚é
+						// . ã¯ç²¾åº¦æŒ‡å®šã®é–‹å§‹ã¨å…±ã«ã€ãƒ•ãƒ©ã‚°ãƒ‡ã‚£ãƒ¬ã‚¯ãƒ†ã‚£ãƒ–ã¨æ–‡å­—å¹…æŒ‡å®šã§ãã‚‹ç¯„å›²ã®çµ‚äº†ã§ã‚‚ã‚ã‚‹
 						FlagEnd   = 1 ;
 						Dot       = 1 ;
 						Precision = 0 ;
@@ -7191,16 +7191,16 @@ extern int CL_vsnprintf( int CharCodeFormat, int IsWChar, int CharCharCodeFormat
 					}
 					break ;
 
-					// * ‚Í . ‚Ì‘O‚©Œã‚©‚Åˆ—‚ª•ª‚©‚ê‚é
+					// * ã¯ . ã®å‰ã‹å¾Œã‹ã§å‡¦ç†ãŒåˆ†ã‹ã‚Œã‚‹
 				case '*':
-					// ¸“xw’è‚Ì”ÍˆÍŠO‚Å”’l‚ª‚ ‚Á‚½‚çƒGƒ‰[‚Æ‚È‚é
+					// ç²¾åº¦æŒ‡å®šã®ç¯„å›²å¤–ã§æ•°å€¤ãŒã‚ã£ãŸã‚‰ã‚¨ãƒ©ãƒ¼ã¨ãªã‚‹
 					if( PrecisionEnd )
 					{
 						LoopEnd = 1 ;
 					}
 					else
 					{
-						// . ‚ÌŒã‚Ìê‡‚Í¸“xA‘O‚Ìê‡‚Í•¶š•w’è
+						// . ã®å¾Œã®å ´åˆã¯ç²¾åº¦ã€å‰ã®å ´åˆã¯æ–‡å­—å¹…æŒ‡å®š
 						if( Dot )
 						{
 							Precision = va_arg( Arg, int ) ;
@@ -7214,7 +7214,7 @@ extern int CL_vsnprintf( int CharCodeFormat, int IsWChar, int CharCharCodeFormat
 					}
 					break ;
 
-					// ”š‚Í . ‚Ì‘O‚©Œã‚©‚Åˆ—‚ª•ª‚©‚ê‚é
+					// æ•°å­—ã¯ . ã®å‰ã‹å¾Œã‹ã§å‡¦ç†ãŒåˆ†ã‹ã‚Œã‚‹
 				case '0':
 				case '1':
 				case '2':
@@ -7225,14 +7225,14 @@ extern int CL_vsnprintf( int CharCodeFormat, int IsWChar, int CharCharCodeFormat
 				case '7':
 				case '8':
 				case '9':
-					// ¸“xw’è‚Ì”ÍˆÍŠO‚Å”’l‚ª‚ ‚Á‚½‚çƒGƒ‰[‚Æ‚È‚é
+					// ç²¾åº¦æŒ‡å®šã®ç¯„å›²å¤–ã§æ•°å€¤ãŒã‚ã£ãŸã‚‰ã‚¨ãƒ©ãƒ¼ã¨ãªã‚‹
 					if( PrecisionEnd )
 					{
 						LoopEnd = 1 ;
 					}
 					else
 					{
-						// . ‚ÌŒã‚Ìê‡‚Í¸“xA‘O‚Ìê‡‚Í•¶š•w’è
+						// . ã®å¾Œã®å ´åˆã¯ç²¾åº¦ã€å‰ã®å ´åˆã¯æ–‡å­—å¹…æŒ‡å®š
 						if( Dot )
 						{
 							Precision = ( int )CL_vsnprintf_help_getnumber( &FCode[ i ], &UseCharNum ) ;
@@ -7240,7 +7240,7 @@ extern int CL_vsnprintf( int CharCodeFormat, int IsWChar, int CharCharCodeFormat
 						}
 						else
 						{
-							// . ‚Ì‘O‚Åƒtƒ‰ƒOƒfƒBƒŒƒNƒeƒBƒuw’è‚Å‚«‚é”ÍˆÍ‚Å '0' ‚Å‚ ‚Á‚½ê‡‚Íƒtƒ‰ƒOƒfƒBƒŒƒNƒeƒBƒu‚Æ‚µ‚Ä‚Ì '0' ‚Æ”»’f‚·‚é
+							// . ã®å‰ã§ãƒ•ãƒ©ã‚°ãƒ‡ã‚£ãƒ¬ã‚¯ãƒ†ã‚£ãƒ–æŒ‡å®šã§ãã‚‹ç¯„å›²ã§ '0' ã§ã‚ã£ãŸå ´åˆã¯ãƒ•ãƒ©ã‚°ãƒ‡ã‚£ãƒ¬ã‚¯ãƒ†ã‚£ãƒ–ã¨ã—ã¦ã® '0' ã¨åˆ¤æ–­ã™ã‚‹
 							if( FlagEnd == 0 && FCode[ i ] == '0' )
 							{
 								Flag_Zero = 1 ;
@@ -7248,7 +7248,7 @@ extern int CL_vsnprintf( int CharCodeFormat, int IsWChar, int CharCharCodeFormat
 							}
 							else
 							{
-								// ‚»‚êˆÈŠO‚Ìê‡‚Í•¶š•w’èA•¶š•w’è‚Íƒtƒ‰ƒOƒfƒBƒŒƒNƒeƒBƒu”ÍˆÍ‚ÌI—¹‚Å‚à‚ ‚é
+								// ãã‚Œä»¥å¤–ã®å ´åˆã¯æ–‡å­—å¹…æŒ‡å®šã€æ–‡å­—å¹…æŒ‡å®šã¯ãƒ•ãƒ©ã‚°ãƒ‡ã‚£ãƒ¬ã‚¯ãƒ†ã‚£ãƒ–ç¯„å›²ã®çµ‚äº†ã§ã‚‚ã‚ã‚‹
 								FlagEnd = 1 ;
 								Width = ( int )CL_vsnprintf_help_getnumber( &FCode[ i ], &UseCharNum ) ;
 								i += UseCharNum ;
@@ -7261,7 +7261,7 @@ extern int CL_vsnprintf( int CharCodeFormat, int IsWChar, int CharCharCodeFormat
 				case 'w':
 				case 'l':
 				case 'I':
-					// ƒvƒŒƒtƒBƒbƒNƒXw’è‚Íƒtƒ‰ƒOƒfƒBƒŒƒNƒeƒBƒuA•¶š•w’èAƒhƒbƒgA¸“xw’è”ÍˆÍ‚ÌI—¹‚Å‚à‚ ‚é
+					// ãƒ—ãƒ¬ãƒ•ã‚£ãƒƒã‚¯ã‚¹æŒ‡å®šã¯ãƒ•ãƒ©ã‚°ãƒ‡ã‚£ãƒ¬ã‚¯ãƒ†ã‚£ãƒ–ã€æ–‡å­—å¹…æŒ‡å®šã€ãƒ‰ãƒƒãƒˆã€ç²¾åº¦æŒ‡å®šç¯„å›²ã®çµ‚äº†ã§ã‚‚ã‚ã‚‹
 					FlagEnd      = 1 ;
 					Dot          = 1 ;
 					PrecisionEnd = 1 ;
@@ -7303,7 +7303,7 @@ extern int CL_vsnprintf( int CharCodeFormat, int IsWChar, int CharCharCodeFormat
 					}
 					break ;
 
-					// Œ^w’è‚ÍAŒ^w’è‚Å‚ ‚é‚Æ‹¤‚É‘®w’è\•¶‚ÌI—¹‚Å‚à‚ ‚é
+					// å‹æŒ‡å®šã¯ã€å‹æŒ‡å®šã§ã‚ã‚‹ã¨å…±ã«æ›¸å¼æŒ‡å®šæ§‹æ–‡ã®çµ‚äº†ã§ã‚‚ã‚ã‚‹
 				case 'c':	Type = PRINTF_TYPE_c ;	i ++ ;	LoopEnd = 1 ;	break ;
 				case 'C':	Type = PRINTF_TYPE_C ;	i ++ ;	LoopEnd = 1 ;	break ;
 				case 'd':	Type = PRINTF_TYPE_d ;	i ++ ;	LoopEnd = 1 ;	break ;
@@ -7327,7 +7327,7 @@ extern int CL_vsnprintf( int CharCodeFormat, int IsWChar, int CharCharCodeFormat
 				}
 			}while( LoopEnd == 0 ) ;
 
-			// Œ^w’è‚ª–³‚¢ê‡‚ÍƒGƒ‰[‚È‚Ì‚Å‚È‚É‚àˆ—‚µ‚È‚¢
+			// å‹æŒ‡å®šãŒç„¡ã„å ´åˆã¯ã‚¨ãƒ©ãƒ¼ãªã®ã§ãªã«ã‚‚å‡¦ç†ã—ãªã„
 			if( Type != -1 )
 			{
 				switch( Type )
@@ -7542,14 +7542,14 @@ extern int CL_vsnprintf( int CharCodeFormat, int IsWChar, int CharCharCodeFormat
 					break ;
 
 				case PRINTF_TYPE_n :
-					// ”ñ‘Î‰
+					// éå¯¾å¿œ
 					break ;
 
 				case PRINTF_TYPE_p :
 					{
 						void *ParamP ;
 
-						// ¸“x‚Í‹­§•ÏX
+						// ç²¾åº¦ã¯å¼·åˆ¶å¤‰æ›´
 						ParamP = va_arg( Arg, void * ) ;
 						if( sizeof( void * ) > 4 )
 						{
@@ -7663,7 +7663,7 @@ extern int CL_vsnprintf( int CharCodeFormat, int IsWChar, int CharCharCodeFormat
 					break ;
 
 				case PRINTF_TYPE_Z :
-					// ”ñ‘Î‰
+					// éå¯¾å¿œ
 					break ;
 				}
 			}
@@ -7672,7 +7672,7 @@ extern int CL_vsnprintf( int CharCodeFormat, int IsWChar, int CharCharCodeFormat
 
 END:
 
-	// I’[•¶š‚ğƒZƒbƒg
+	// çµ‚ç«¯æ–‡å­—ã‚’ã‚»ãƒƒãƒˆ
 	/* DestSize += */ PutCharCode_BufferBytes_inline( 0, CharCodeFormat, ( char * )&( ( BYTE * )Buffer )[ DestSize ], BufferBytes - DestSize ) ;
 
 	if( TempBuffer != NULL )
@@ -7721,34 +7721,34 @@ extern char *CL_itoa( int CharCodeFormat, int Value, char *Buffer, int Radix )
 
 	DestSize = 0 ;
 
-	// ”’l‚ª 0 ‚Ìê‡‚Í 0 ‚Ì‚İƒZƒbƒg
+	// æ•°å€¤ãŒ 0 ã®å ´åˆã¯ 0 ã®ã¿ã‚»ãƒƒãƒˆ
 	if( Value == 0 )
 	{
 		DestSize += PutCharCode_inline( '0', CharCodeFormat, ( char * )&( ( BYTE * )Buffer )[ DestSize ] ) ;
 	}
 	else
 	{
-		// ”’l‚ªƒ}ƒCƒiƒX‚Ìê‡‚Í - ‹L†‚ğ’Ç‰Á‚µ‚½ã‚Å’l‚ğƒvƒ‰ƒX‚É‚·‚é
+		// æ•°å€¤ãŒãƒã‚¤ãƒŠã‚¹ã®å ´åˆã¯ - è¨˜å·ã‚’è¿½åŠ ã—ãŸä¸Šã§å€¤ã‚’ãƒ—ãƒ©ã‚¹ã«ã™ã‚‹
 		if( Value < 0 )
 		{
 			DestSize += PutCharCode_inline( '-', CharCodeFormat, ( char * )&( ( BYTE * )Buffer )[ DestSize ] ) ;
 			Value = -Value ;
 		}
 
-		// ŠeŒ…‚Ì”’l‚É•ÏŠ·
+		// å„æ¡ã®æ•°å€¤ã«å¤‰æ›
 		for( NumberNum = 0 ; Value != 0 ; NumberNum ++, Value /= Radix )
 		{
 			Number[ NumberNum ] = ( BYTE )( Value % Radix ) ;
 		}
 
-		// ”’l‚ğ•¶š—ñ‰»
+		// æ•°å€¤ã‚’æ–‡å­—åˆ—åŒ–
 		for( i = NumberNum - 1 ; i >= 0 ; i -- )
 		{
 			DestSize += PutCharCode_inline( Number[ i ] <= 9 ? '0' + Number[ i ] : 'a' + Number[ i ] - 10, CharCodeFormat, ( char * )&( ( BYTE * )Buffer )[ DestSize ] ) ;
 		}
 	}
 
-	// I’[•¶š‚ğƒZƒbƒg
+	// çµ‚ç«¯æ–‡å­—ã‚’ã‚»ãƒƒãƒˆ
 	DestSize += PutCharCode_inline( 0, CharCodeFormat, ( char * )&( ( BYTE * )Buffer )[ DestSize ] ) ;
 	
 	return Buffer ;
@@ -7771,7 +7771,7 @@ extern char *CL_itoa_s( int CharCodeFormat, int Value, char *Buffer, size_t Buff
 		return 0 ;
 	}
 
-	// ”’l‚ª 0 ‚Ìê‡‚Í 0 ‚Ì‚İƒZƒbƒg
+	// æ•°å€¤ãŒ 0 ã®å ´åˆã¯ 0 ã®ã¿ã‚»ãƒƒãƒˆ
 	if( Value == 0 )
 	{
 		WriteBytes = PutCharCode_BufferBytes_inline( '0', CharCodeFormat, ( char * )&( ( BYTE * )Buffer )[ DestSize ], BufferBytes - DestSize ) ;
@@ -7787,7 +7787,7 @@ extern char *CL_itoa_s( int CharCodeFormat, int Value, char *Buffer, size_t Buff
 	}
 	else
 	{
-		// ”’l‚ªƒ}ƒCƒiƒX‚Ìê‡‚Í - ‹L†‚ğ’Ç‰Á‚µ‚½ã‚Å’l‚ğƒvƒ‰ƒX‚É‚·‚é
+		// æ•°å€¤ãŒãƒã‚¤ãƒŠã‚¹ã®å ´åˆã¯ - è¨˜å·ã‚’è¿½åŠ ã—ãŸä¸Šã§å€¤ã‚’ãƒ—ãƒ©ã‚¹ã«ã™ã‚‹
 		if( Value < 0 )
 		{
 			WriteBytes = PutCharCode_BufferBytes_inline( '-', CharCodeFormat, ( char * )&( ( BYTE * )Buffer )[ DestSize ], BufferBytes - DestSize ) ;
@@ -7803,13 +7803,13 @@ extern char *CL_itoa_s( int CharCodeFormat, int Value, char *Buffer, size_t Buff
 			Value = -Value ;
 		}
 
-		// ŠeŒ…‚Ì”’l‚É•ÏŠ·
+		// å„æ¡ã®æ•°å€¤ã«å¤‰æ›
 		for( NumberNum = 0 ; Value != 0 ; NumberNum ++, Value /= Radix )
 		{
 			Number[ NumberNum ] = ( BYTE )( Value % Radix ) ;
 		}
 
-		// ”’l‚ğ•¶š—ñ‰»
+		// æ•°å€¤ã‚’æ–‡å­—åˆ—åŒ–
 		for( i = NumberNum - 1 ; i >= 0 ; i -- )
 		{
 			WriteBytes = PutCharCode_BufferBytes_inline( Number[ i ] <= 9 ? '0' + Number[ i ] : 'a' + Number[ i ] - 10, CharCodeFormat, ( char * )&( ( BYTE * )Buffer )[ DestSize ], BufferBytes - DestSize ) ;
@@ -7827,7 +7827,7 @@ extern char *CL_itoa_s( int CharCodeFormat, int Value, char *Buffer, size_t Buff
 
 END :
 
-	// I’[•¶š‚ğƒZƒbƒg
+	// çµ‚ç«¯æ–‡å­—ã‚’ã‚»ãƒƒãƒˆ
 	DestSize += PutCharCode_BufferBytes_inline( 0, CharCodeFormat, ( char * )&( ( BYTE * )Buffer )[ DestSize ], BufferBytes - DestSize ) ;
 	
 	return Buffer ;
@@ -7849,13 +7849,13 @@ extern int CL_atoi( int CharCodeFormat, const char *Str )
 	DWORD *FCodeBackup ;
 	int StringSize ;
 
-	// NULL ‚ÌƒAƒhƒŒƒX‚ª“n‚³‚ê‚½‚ç 0 ‚ğ•Ô‚·
+	// NULL ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ãŒæ¸¡ã•ã‚ŒãŸã‚‰ 0 ã‚’è¿”ã™
 	if( Str == NULL )
 	{
 		return 0 ;
 	}
 
-	// ‚P•¶š‚SƒoƒCƒgŒ`®‚É•ÏŠ·‚·‚é
+	// ï¼‘æ–‡å­—ï¼”ãƒã‚¤ãƒˆå½¢å¼ã«å¤‰æ›ã™ã‚‹
 	StringSize = StringToCharCodeString_inline( Str, CharCodeFormat, NULL ) ;
 	if( StringSize + sizeof( DWORD ) * 16 > sizeof( BaseBuffer ) )
 	{
@@ -7875,45 +7875,45 @@ extern int CL_atoi( int CharCodeFormat, const char *Str )
 	_MEMSET( FCode, 0, StringSize + sizeof( DWORD ) * 16 ) ;
 	StringToCharCodeString_inline( Str, CharCodeFormat, FCode ) ;
 
-	// ƒXƒy[ƒX‚â‰üs•¶š‚ÍƒXƒLƒbƒv
+	// ã‚¹ãƒšãƒ¼ã‚¹ã‚„æ”¹è¡Œæ–‡å­—ã¯ã‚¹ã‚­ãƒƒãƒ—
 	while( *FCode != '\0' && ( *FCode == ' ' || *FCode == '\n' || *FCode == '\r' || *FCode == '\t' || *FCode == '\v' || *FCode == '\f' ) )
 	{
 		FCode++ ;
 	}
 
-	// ˆê•¶š–Ú‚ª - ‚â + ‚â”š‚Å‚Í‚È‚©‚Á‚½‚ç 0 ‚ğ•Ô‚·
+	// ä¸€æ–‡å­—ç›®ãŒ - ã‚„ + ã‚„æ•°å­—ã§ã¯ãªã‹ã£ãŸã‚‰ 0 ã‚’è¿”ã™
 	if( *FCode != '-' && *FCode != '+' && ( *FCode < '0' || *FCode > '9' ) )
 	{
 		goto END ;
 	}
 
-	// Å‰‚Ì•¶š‚ªƒ}ƒCƒiƒX‹L†‚Ìê‡‚Íƒ}ƒCƒiƒXƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// æœ€åˆã®æ–‡å­—ãŒãƒã‚¤ãƒŠã‚¹è¨˜å·ã®å ´åˆã¯ãƒã‚¤ãƒŠã‚¹ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	if( *FCode == '-' )
 	{
 		Minus = 1 ;
 		FCode ++ ;
 
-		// Ÿ‚Ì•¶š‚ª”š‚Å‚Í‚È‚¢ê‡‚Í 0 ‚ğ•Ô‚·
+		// æ¬¡ã®æ–‡å­—ãŒæ•°å­—ã§ã¯ãªã„å ´åˆã¯ 0 ã‚’è¿”ã™
 		if( *FCode < '0' && *FCode > '9' )
 		{
 			goto END ;
 		}
 	}
 	else
-	// Å‰‚Ì•¶š‚ªƒvƒ‰ƒX‹L†‚Ìê‡‚Í–³‹‚·‚é
+	// æœ€åˆã®æ–‡å­—ãŒãƒ—ãƒ©ã‚¹è¨˜å·ã®å ´åˆã¯ç„¡è¦–ã™ã‚‹
 	if( *FCode == '+' )
 	{
 		Minus = 0 ;
 		FCode ++ ;
 
-		// Ÿ‚Ì•¶š‚ª”š‚Å‚Í‚È‚¢ê‡‚Í 0 ‚ğ•Ô‚·
+		// æ¬¡ã®æ–‡å­—ãŒæ•°å­—ã§ã¯ãªã„å ´åˆã¯ 0 ã‚’è¿”ã™
 		if( *FCode < '0' && *FCode > '9' )
 		{
 			goto END ;
 		}
 	}
 	
-	// ”š‚ğæ“¾
+	// æ•°å­—ã‚’å–å¾—
 	FCodeBackup = FCode ;
 	for( NumCharNum = 0 ; *FCode != '\0' && ( *FCode >= '0' && *FCode <= '9' ) ; NumCharNum ++, FCode ++ ){}
 	if( NumCharNum > sizeof( BaseNumber ) / sizeof( int ) )
@@ -7937,14 +7937,14 @@ extern int CL_atoi( int CharCodeFormat, const char *Str )
 		Number[ NumCharNum ] = *FCode - '0' ;
 	}
 	
-	// ”’l‚É•ÏŠ·
+	// æ•°å€¤ã«å¤‰æ›
 	if( Minus == 1 )
 	{
 		AddNum = -1 ;
 		Total  = 0 ;
 		for( i = NumCharNum - 1 ; i >= 0 ; i --, AddNum *= 10 )
 		{
-			// AddNum ‚ª intŒ^‚ÌÅ¬’l‚ğ‰z‚¦‚½‚çA•¶š—ñ‚ÌI’[‚Ü‚Å‚É 1 ˆÈã‚Ì”’l‚ª‚ ‚Á‚½‚ç INT_MIN ‚ğ•Ô‚·
+			// AddNum ãŒ intå‹ã®æœ€å°å€¤ã‚’è¶ŠãˆãŸã‚‰ã€æ–‡å­—åˆ—ã®çµ‚ç«¯ã¾ã§ã« 1 ä»¥ä¸Šã®æ•°å€¤ãŒã‚ã£ãŸã‚‰ INT_MIN ã‚’è¿”ã™
 			if( AddNum <= INT_MIN )
 			{
 				for( ; i >= 0 ; i -- )
@@ -7961,7 +7961,7 @@ extern int CL_atoi( int CharCodeFormat, const char *Str )
 
 			Total += Number[ i ] * AddNum ;
 
-			// intŒ^‚ÌÅ¬’l‚ğ‰z‚¦‚½‚çŠÖ”‚ğ”²‚¯‚é
+			// intå‹ã®æœ€å°å€¤ã‚’è¶ŠãˆãŸã‚‰é–¢æ•°ã‚’æŠœã‘ã‚‹
 			if( Total <= INT_MIN )
 			{
 				Total = INT_MIN ;
@@ -7975,7 +7975,7 @@ extern int CL_atoi( int CharCodeFormat, const char *Str )
 		Total  = 0 ;
 		for( i = NumCharNum - 1 ; i >= 0 ; i --, AddNum *= 10 )
 		{
-			// AddNum ‚ª intŒ^‚ÌÅ‘å’l‚ğ‰z‚¦‚½‚çA•¶š—ñ‚ÌI’[‚Ü‚Å‚É 1 ˆÈã‚Ì”’l‚ª‚ ‚Á‚½‚ç INT_MAX ‚ğ•Ô‚·
+			// AddNum ãŒ intå‹ã®æœ€å¤§å€¤ã‚’è¶ŠãˆãŸã‚‰ã€æ–‡å­—åˆ—ã®çµ‚ç«¯ã¾ã§ã« 1 ä»¥ä¸Šã®æ•°å€¤ãŒã‚ã£ãŸã‚‰ INT_MAX ã‚’è¿”ã™
 			if( AddNum >= INT_MAX )
 			{
 				for( ; i >= 0 ; i -- )
@@ -7992,7 +7992,7 @@ extern int CL_atoi( int CharCodeFormat, const char *Str )
 
 			Total += Number[ i ] * AddNum ;
 
-			// intŒ^‚ÌÅ‘å’l‚ğ‰z‚¦‚½‚çŠÖ”‚ğ”²‚¯‚é
+			// intå‹ã®æœ€å¤§å€¤ã‚’è¶ŠãˆãŸã‚‰é–¢æ•°ã‚’æŠœã‘ã‚‹
 			if( Total >= INT_MAX )
 			{
 				Total = INT_MAX ;
@@ -8015,7 +8015,7 @@ END :
 		TempNumber = NULL ;
 	}
 
-	// ”’l‚ğ•Ô‚·
+	// æ•°å€¤ã‚’è¿”ã™
 	return ( int )Total ;
 }
 
@@ -8033,13 +8033,13 @@ extern LONGLONG CL_atoi64( int CharCodeFormat, const char *Str )
 	DWORD *FCodeBackup ;
 	int StringSize ;
 
-	// NULL ‚ÌƒAƒhƒŒƒX‚ª“n‚³‚ê‚½‚ç 0 ‚ğ•Ô‚·
+	// NULL ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ãŒæ¸¡ã•ã‚ŒãŸã‚‰ 0 ã‚’è¿”ã™
 	if( Str == NULL )
 	{
 		return 0 ;
 	}
 
-	// ‚P•¶š‚SƒoƒCƒgŒ`®‚É•ÏŠ·‚·‚é
+	// ï¼‘æ–‡å­—ï¼”ãƒã‚¤ãƒˆå½¢å¼ã«å¤‰æ›ã™ã‚‹
 	StringSize = StringToCharCodeString_inline( Str, CharCodeFormat, NULL ) ;
 	if( StringSize + sizeof( DWORD ) * 16 > sizeof( BaseBuffer ) )
 	{
@@ -8058,45 +8058,45 @@ extern LONGLONG CL_atoi64( int CharCodeFormat, const char *Str )
 	_MEMSET( FCode, 0, StringSize + sizeof( DWORD ) * 16 ) ;
 	StringToCharCodeString_inline( Str, CharCodeFormat, FCode ) ;
 
-	// ƒXƒy[ƒX‚â‰üs•¶š‚ÍƒXƒLƒbƒv
+	// ã‚¹ãƒšãƒ¼ã‚¹ã‚„æ”¹è¡Œæ–‡å­—ã¯ã‚¹ã‚­ãƒƒãƒ—
 	while( *FCode != '\0' && ( *FCode == ' ' || *FCode == '\n' || *FCode == '\r' || *FCode == '\t' || *FCode == '\v' || *FCode == '\f' ) )
 	{
 		FCode++ ;
 	}
 
-	// ˆê•¶š–Ú‚ª - ‚â + ‚â”š‚Å‚Í‚È‚©‚Á‚½‚ç 0 ‚ğ•Ô‚·
+	// ä¸€æ–‡å­—ç›®ãŒ - ã‚„ + ã‚„æ•°å­—ã§ã¯ãªã‹ã£ãŸã‚‰ 0 ã‚’è¿”ã™
 	if( *FCode != '-' && *FCode != '+' && ( *FCode < '0' || *FCode > '9' ) )
 	{
 		goto END ;
 	}
 
-	// Å‰‚Ì•¶š‚ªƒ}ƒCƒiƒX‹L†‚Ìê‡‚Íƒ}ƒCƒiƒXƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// æœ€åˆã®æ–‡å­—ãŒãƒã‚¤ãƒŠã‚¹è¨˜å·ã®å ´åˆã¯ãƒã‚¤ãƒŠã‚¹ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	if( *FCode == '-' )
 	{
 		Minus = 1 ;
 		FCode ++ ;
 
-		// Ÿ‚Ì•¶š‚ª”š‚Å‚Í‚È‚¢ê‡‚Í 0 ‚ğ•Ô‚·
+		// æ¬¡ã®æ–‡å­—ãŒæ•°å­—ã§ã¯ãªã„å ´åˆã¯ 0 ã‚’è¿”ã™
 		if( *FCode < '0' && *FCode > '9' )
 		{
 			goto END ;
 		}
 	}
 	else
-	// Å‰‚Ì•¶š‚ªƒvƒ‰ƒX‹L†‚Ìê‡‚Í–³‹‚·‚é
+	// æœ€åˆã®æ–‡å­—ãŒãƒ—ãƒ©ã‚¹è¨˜å·ã®å ´åˆã¯ç„¡è¦–ã™ã‚‹
 	if( *FCode == '+' )
 	{
 		Minus = 0 ;
 		FCode ++ ;
 
-		// Ÿ‚Ì•¶š‚ª”š‚Å‚Í‚È‚¢ê‡‚Í 0 ‚ğ•Ô‚·
+		// æ¬¡ã®æ–‡å­—ãŒæ•°å­—ã§ã¯ãªã„å ´åˆã¯ 0 ã‚’è¿”ã™
 		if( *FCode < '0' && *FCode > '9' )
 		{
 			goto END ;
 		}
 	}
 
-	// ”š‚Ì”‚ª 256ŒÂ‚ğ‰z‚¦‚éê‡‚ÍƒGƒ‰[
+	// æ•°å­—ã®æ•°ãŒ 256å€‹ã‚’è¶Šãˆã‚‹å ´åˆã¯ã‚¨ãƒ©ãƒ¼
 	FCodeBackup = FCode ;
 	for( NumCharNum = 0 ; *FCode != '\0' && ( *FCode >= '0' && *FCode <= '9' ) ; NumCharNum ++, FCode ++ ){}
 	FCode = FCodeBackup ;
@@ -8106,13 +8106,13 @@ extern LONGLONG CL_atoi64( int CharCodeFormat, const char *Str )
 		goto END ;
 	}
 	
-	// ”š‚ğæ“¾
+	// æ•°å­—ã‚’å–å¾—
 	for( NumCharNum = 0 ; *FCode != '\0' && ( *FCode >= '0' && *FCode <= '9' ) ; NumCharNum ++, FCode ++ )
 	{
 		Number[ NumCharNum ] = *FCode - '0' ;
 	}
 	
-	// ”’l‚É•ÏŠ·
+	// æ•°å€¤ã«å¤‰æ›
 	AddNum = 1 ;
 	Total  = 0 ;
 	for( i = NumCharNum - 1 ; i >= 0 ; i --, AddNum *= 10 )
@@ -8120,7 +8120,7 @@ extern LONGLONG CL_atoi64( int CharCodeFormat, const char *Str )
 		Total += Number[ i ] * AddNum ;
 	}
 
-	// ƒ}ƒCƒiƒXƒtƒ‰ƒO‚ª—§‚Á‚Ä‚¢‚½‚çƒ}ƒCƒiƒX’l‚É‚·‚é
+	// ãƒã‚¤ãƒŠã‚¹ãƒ•ãƒ©ã‚°ãŒç«‹ã£ã¦ã„ãŸã‚‰ãƒã‚¤ãƒŠã‚¹å€¤ã«ã™ã‚‹
 	if( Minus == 1 )
 	{
 		Total = -Total ;
@@ -8134,7 +8134,7 @@ END :
 		TempBuffer = NULL ;
 	}
 
-	// ”’l‚ğ•Ô‚·
+	// æ•°å€¤ã‚’è¿”ã™
 	return Total ;
 }
 
@@ -8167,13 +8167,13 @@ extern double CL_atof( int CharCodeFormat, const char *Str )
 	IndexFlag      = 0 ;
 	IndexMinusFlag = 0 ;
 
-	// NULL ‚ÌƒAƒhƒŒƒX‚ª“n‚³‚ê‚½‚ç 0.0 ‚ğ•Ô‚·
+	// NULL ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ãŒæ¸¡ã•ã‚ŒãŸã‚‰ 0.0 ã‚’è¿”ã™
 	if( Str == NULL )
 	{
 		return 0.0 ;
 	}
 
-	// ‚P•¶š‚SƒoƒCƒgŒ`®‚É•ÏŠ·‚·‚é
+	// ï¼‘æ–‡å­—ï¼”ãƒã‚¤ãƒˆå½¢å¼ã«å¤‰æ›ã™ã‚‹
 	StringSize = StringToCharCodeString_inline( Str, CharCodeFormat, NULL ) ;
 	if( StringSize + sizeof( DWORD ) * 16 > sizeof( BaseBuffer ) )
 	{
@@ -8192,24 +8192,24 @@ extern double CL_atof( int CharCodeFormat, const char *Str )
 	_MEMSET( FCode, 0, StringSize + sizeof( DWORD ) * 16 ) ;
 	StringToCharCodeString_inline( Str, CharCodeFormat, FCode ) ;
 
-	// ƒXƒy[ƒX‚â‰üs•¶š‚ÍƒXƒLƒbƒv
+	// ã‚¹ãƒšãƒ¼ã‚¹ã‚„æ”¹è¡Œæ–‡å­—ã¯ã‚¹ã‚­ãƒƒãƒ—
 	while( *FCode != '\0' && ( *FCode == ' ' || *FCode == '\n' || *FCode == '\r' || *FCode == '\t' || *FCode == '\v' || *FCode == '\f' ) )
 	{
 		FCode++ ;
 	}
 
-	// ‚¢‚«‚È‚èI’[•¶š‚Ìê‡‚Í 0.0 ‚ğ•Ô‚·
+	// ã„ããªã‚Šçµ‚ç«¯æ–‡å­—ã®å ´åˆã¯ 0.0 ã‚’è¿”ã™
 	if( *FCode == '\0' )
 	{
 		goto END ;
 	}
 
-	// ƒ}ƒCƒiƒX‹L†‚ªÅ‰‚É‚ ‚Á‚½‚çƒ}ƒCƒiƒXƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// ãƒã‚¤ãƒŠã‚¹è¨˜å·ãŒæœ€åˆã«ã‚ã£ãŸã‚‰ãƒã‚¤ãƒŠã‚¹ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	if( *FCode == '-' )
 	{
 		FCode ++ ;
 
-		// ƒ}ƒCƒiƒX‹L†‚Ì’¼Œã‚ÉI’[•¶š‚Ìê‡‚Í 0.0 ‚ğ•Ô‚·
+		// ãƒã‚¤ãƒŠã‚¹è¨˜å·ã®ç›´å¾Œã«çµ‚ç«¯æ–‡å­—ã®å ´åˆã¯ 0.0 ã‚’è¿”ã™
 		if( *FCode == '\0' )
 		{
 			goto END ;
@@ -8217,12 +8217,12 @@ extern double CL_atof( int CharCodeFormat, const char *Str )
 		MinusFlag = 1 ;
 	}
 	else
-	// ƒvƒ‰ƒX‹L†‚ªÅ‰‚É‚ ‚Á‚½‚ç–³‹‚·‚é
+	// ãƒ—ãƒ©ã‚¹è¨˜å·ãŒæœ€åˆã«ã‚ã£ãŸã‚‰ç„¡è¦–ã™ã‚‹
 	if( *FCode == '+' )
 	{
 		FCode ++ ;
 
-		// ƒvƒ‰ƒX‹L†‚Ì’¼Œã‚ÉI’[•¶š‚Ìê‡‚Í 0.0 ‚ğ•Ô‚·
+		// ãƒ—ãƒ©ã‚¹è¨˜å·ã®ç›´å¾Œã«çµ‚ç«¯æ–‡å­—ã®å ´åˆã¯ 0.0 ã‚’è¿”ã™
 		if( *FCode == '\0' )
 		{
 			goto END ;
@@ -8234,56 +8234,56 @@ extern double CL_atof( int CharCodeFormat, const char *Str )
 	IndexNumberNum = 0 ;
 	for( ; *FCode != '\0' ; FCode ++ )
 	{
-		// ¬”“_‚Ìˆ—
+		// å°æ•°ç‚¹ã®å‡¦ç†
 		if( *FCode == '.' )
 		{
-			// Šù‚É¬”“_‚ª‚ ‚Á‚½‚çƒGƒ‰[‚È‚Ì‚Å 0.0 ‚ğ•Ô‚·
+			// æ—¢ã«å°æ•°ç‚¹ãŒã‚ã£ãŸã‚‰ã‚¨ãƒ©ãƒ¼ãªã®ã§ 0.0 ã‚’è¿”ã™
 			if( DotFlag )
 			{
 				goto END ;
 			}
 
-			// “_ƒtƒ‰ƒO‚ğ—§‚Ä‚é
+			// ç‚¹ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 			DotFlag = 1 ;
 		}
 		else
-		// w”’lw’è•¶š”»’è
+		// æŒ‡æ•°å€¤æŒ‡å®šæ–‡å­—åˆ¤å®š
 		if( *FCode == 'e' || *FCode == 'E' )
 		{
-			// Šù‚Éw”’lw’è‚ª‚ ‚Á‚½‚çƒGƒ‰[‚È‚Ì‚Å 0.0 ‚ğ•Ô‚·
+			// æ—¢ã«æŒ‡æ•°å€¤æŒ‡å®šãŒã‚ã£ãŸã‚‰ã‚¨ãƒ©ãƒ¼ãªã®ã§ 0.0 ã‚’è¿”ã™
 			if( IndexFlag )
 			{
 				goto END ;
 			}
 
-			// w”’lw’èƒtƒ‰ƒO‚ğ—§‚Ä‚é
+			// æŒ‡æ•°å€¤æŒ‡å®šãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 			IndexFlag = 1 ;
 		}
 		else
-		// w”’lw’è—p‚Ìƒ}ƒCƒiƒX‹L†–”‚Íƒvƒ‰ƒX‹L†‚Ìˆ—
+		// æŒ‡æ•°å€¤æŒ‡å®šç”¨ã®ãƒã‚¤ãƒŠã‚¹è¨˜å·åˆã¯ãƒ—ãƒ©ã‚¹è¨˜å·ã®å‡¦ç†
 		if( *FCode == '-' || *FCode == '+' )
 		{
-			// w”’lw’è‚ª–³‚­‚¢‚«‚È‚è - ‚â + ‚ª‚ ‚Á‚½ê‡‚âA
-			// e ‚â E ‚Ì•¶š‚Ì’¼Œã‚É - ‚â + ‚ª–³‚©‚Á‚½ê‡‚ÍƒGƒ‰[‚È‚Ì‚Å 0.0 ‚ğ•Ô‚·
+			// æŒ‡æ•°å€¤æŒ‡å®šãŒç„¡ãã„ããªã‚Š - ã‚„ + ãŒã‚ã£ãŸå ´åˆã‚„ã€
+			// e ã‚„ E ã®æ–‡å­—ã®ç›´å¾Œã« - ã‚„ + ãŒç„¡ã‹ã£ãŸå ´åˆã¯ã‚¨ãƒ©ãƒ¼ãªã®ã§ 0.0 ã‚’è¿”ã™
 			if( IndexFlag == 0 || IndexNumberNum != 0 )
 			{
 				goto END ;
 			}
 
-			// ƒ}ƒCƒiƒX‹L†‚Ìê‡‚Íw”’l‚ªƒ}ƒCƒiƒX‚Ìƒtƒ‰ƒO‚ğ—§‚Ä‚é
+			// ãƒã‚¤ãƒŠã‚¹è¨˜å·ã®å ´åˆã¯æŒ‡æ•°å€¤ãŒãƒã‚¤ãƒŠã‚¹ã®ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 			if( *FCode == '-' )
 			{
 				IndexMinusFlag = 1 ;
 			}
 		}
 		else
-		// ”š‚Ìˆ—
+		// æ•°å­—ã®å‡¦ç†
 		if( *FCode >= '0' && *FCode <= '9' )
 		{
-			// w”’lw’è‚ÌŒã‚Ìê‡‚Íw”’l
+			// æŒ‡æ•°å€¤æŒ‡å®šã®å¾Œã®å ´åˆã¯æŒ‡æ•°å€¤
 			if( IndexFlag )
 			{
-				// 256 •¶šˆÈãw”’l‚Ì•¶š—ñ‚ª‘±‚¢‚½‚çƒGƒ‰[‚È‚Ì‚Å 0 ‚ğ•Ô‚·
+				// 256 æ–‡å­—ä»¥ä¸ŠæŒ‡æ•°å€¤ã®æ–‡å­—åˆ—ãŒç¶šã„ãŸã‚‰ã‚¨ãƒ©ãƒ¼ãªã®ã§ 0 ã‚’è¿”ã™
 				if( IndexNumberNum >= 255 )
 				{
 					goto END ;
@@ -8294,7 +8294,7 @@ extern double CL_atof( int CharCodeFormat, const char *Str )
 			else
 			if( DotFlag )
 			{
-				// 256 •¶šˆÈã¬”“_ˆÈ‰º‚Ì’l‚ª‘±‚¢‚½‚çƒGƒ‰[‚È‚Ì‚Å 0 ‚ğ•Ô‚·
+				// 256 æ–‡å­—ä»¥ä¸Šå°æ•°ç‚¹ä»¥ä¸‹ã®å€¤ãŒç¶šã„ãŸã‚‰ã‚¨ãƒ©ãƒ¼ãªã®ã§ 0 ã‚’è¿”ã™
 				if( FloatNumberNum >= 255 )
 				{
 					goto END ;
@@ -8304,7 +8304,7 @@ extern double CL_atof( int CharCodeFormat, const char *Str )
 			}
 			else
 			{
-				// 256 •¶šˆÈã®”’l‚Ì•¶š—ñ‚ª‘±‚¢‚½‚çƒGƒ‰[‚È‚Ì‚Å 0 ‚ğ•Ô‚·
+				// 256 æ–‡å­—ä»¥ä¸Šæ•´æ•°å€¤ã®æ–‡å­—åˆ—ãŒç¶šã„ãŸã‚‰ã‚¨ãƒ©ãƒ¼ãªã®ã§ 0 ã‚’è¿”ã™
 				if( IntNumberNum >= 255 )
 				{
 					goto END ;
@@ -8314,19 +8314,19 @@ extern double CL_atof( int CharCodeFormat, const char *Str )
 			}
 		}
 		else
-		// ã‹LˆÈŠO‚Ì•¶š‚¾‚Á‚½ê‡‚Íƒ‹[ƒv‚ğ”²‚¯‚é
+		// ä¸Šè¨˜ä»¥å¤–ã®æ–‡å­—ã ã£ãŸå ´åˆã¯ãƒ«ãƒ¼ãƒ—ã‚’æŠœã‘ã‚‹
 		{
 			break ;
 		}
 	}
 
-	// ®”•”‚à¬”•”‚à•¶š—ñ‚Ì’·‚³‚O‚¾‚Á‚½ê‡‚ÍƒGƒ‰[‚È‚Ì‚Å 0.0 ‚ğ•Ô‚·
+	// æ•´æ•°éƒ¨ã‚‚å°æ•°éƒ¨ã‚‚æ–‡å­—åˆ—ã®é•·ã•ï¼ã ã£ãŸå ´åˆã¯ã‚¨ãƒ©ãƒ¼ãªã®ã§ 0.0 ã‚’è¿”ã™
 	if( IntNumberNum == 0 && FloatNumberNum == 0 )
 	{
 		goto END ;
 	}
 
-	// ®”’l‚ğZo
+	// æ•´æ•°å€¤ã‚’ç®—å‡º
 	AddNum = 1.0 ;
 	IntNum = 0 ;
 	for( i = IntNumberNum - 1 ; i >= 0; i --, AddNum *= 10.0 )
@@ -8341,7 +8341,7 @@ extern double CL_atof( int CharCodeFormat, const char *Str )
 		IntNum = -IntNum ;
 	}
 
-	// ¬”’l‚ğZo
+	// å°æ•°å€¤ã‚’ç®—å‡º
 	AddNum   = 0.1 ;
 	FloatNum = 0 ;
 	for( i = 0 ; i < FloatNumberNum ; i ++, AddNum /= 10.0 )
@@ -8356,7 +8356,7 @@ extern double CL_atof( int CharCodeFormat, const char *Str )
 		FloatNum = -FloatNum ;
 	}
 
-	// w”’l•¶š—ñ‚ğ”’l‰»
+	// æŒ‡æ•°å€¤æ–‡å­—åˆ—ã‚’æ•°å€¤åŒ–
 	int64Count = 1 ;
 	int64Num   = 0 ;
 	for( i = IndexNumberNum - 1; i >= 0; i --, int64Count *= 10 )
@@ -8368,7 +8368,7 @@ extern double CL_atof( int CharCodeFormat, const char *Str )
 		int64Num = -int64Num ;
 	}
 
-	// w”’l‚É]‚Á‚ÄæZ’l‚ğ€”õ
+	// æŒ‡æ•°å€¤ã«å¾“ã£ã¦ä¹—ç®—å€¤ã‚’æº–å‚™
 	IndexNum = 1.0 ;
 	if( int64Num != 0 )
 	{
@@ -8389,7 +8389,7 @@ extern double CL_atof( int CharCodeFormat, const char *Str )
 		}
 	}
 
-	// –ß‚è’l‚ğZo
+	// æˆ»ã‚Šå€¤ã‚’ç®—å‡º
 	Result = ( IntNum + FloatNum ) * IndexNum ;
 
 END :
@@ -8451,7 +8451,7 @@ extern int CL_vsscanf( int CharCodeFormat, int IsWChar, int CharCharCodeFormat, 
 	int StringSize ;
 	DWORD *SCode ;
 
-	// ‚P•¶š‚SƒoƒCƒgŒ`®‚É•ÏŠ·‚·‚é
+	// ï¼‘æ–‡å­—ï¼”ãƒã‚¤ãƒˆå½¢å¼ã«å¤‰æ›ã™ã‚‹
 	{
 		StringSize = StringToCharCodeString_inline( String, CharCodeFormat, NULL ) ;
 		if( StringSize + sizeof( DWORD ) * 16 > sizeof( StringBaseBuffer ) )
@@ -8496,7 +8496,7 @@ extern int CL_vsscanf( int CharCodeFormat, int IsWChar, int CharCharCodeFormat, 
 		StringToCharCodeString_inline( FormatString, CharCodeFormat, FCode ) ;
 	}
 
-	// ‚¢‚«‚È‚èI’[•¶š‚Ìê‡‚Í 0 ‚ğ•Ô‚·
+	// ã„ããªã‚Šçµ‚ç«¯æ–‡å­—ã®å ´åˆã¯ 0 ã‚’è¿”ã™
 	if( *FCode == '\0' )
 	{
 		goto END ;
@@ -8506,7 +8506,7 @@ extern int CL_vsscanf( int CharCodeFormat, int IsWChar, int CharCharCodeFormat, 
 	Eof = FALSE ;
 	while( *FCode != '\0' )
 	{
-		// % ‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+		// % ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 		if( FCode[ 0 ] == '%' && FCode[ 1 ] != '%' )
 		{
 			Width    = -1;
@@ -9249,9 +9249,9 @@ STR_8INT:
 					SCode ++ ;
 				}
 
-				i = 0 ;	// ©‘R”
-				j = 0 ;	// ¬”
-				k = 0 ;	// w”
+				i = 0 ;	// è‡ªç„¶æ•°
+				j = 0 ;	// å°æ•°
+				k = 0 ;	// æŒ‡æ•°
 				for(;;)
 				{
 					if( c == '.' )

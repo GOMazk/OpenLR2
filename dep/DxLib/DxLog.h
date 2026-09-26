@@ -1,6 +1,6 @@
 // -------------------------------------------------------------------------------
 // 
-// 		‚c‚wƒ‰ƒCƒuƒ‰ƒŠ		ƒƒOƒvƒƒOƒ‰ƒ€ƒwƒbƒ_ƒtƒ@ƒCƒ‹
+// 		ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒª		ãƒ­ã‚°ãƒ—ãƒ­ã‚°ãƒ©ãƒ ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«
 // 
 // 				Ver 3.25a
 // 
@@ -9,7 +9,7 @@
 #ifndef DX_LOG_H
 #define DX_LOG_H
 
-// ƒCƒ“ƒNƒ‹[ƒh ------------------------------------------------------------------
+// ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ ------------------------------------------------------------------
 
 #include "DxCompileConfig.h"
 #include "DxFile.h"
@@ -42,9 +42,9 @@ namespace DxLib
 
 #endif // DX_NON_NAMESPACE
 
-// ƒ}ƒNƒ’è‹` --------------------------------------------------------------------
+// ãƒã‚¯ãƒ­å®šç¾© --------------------------------------------------------------------
 
-//‚c‚wƒ‰ƒCƒuƒ‰ƒŠ“à‚ÌƒŠƒeƒ‰ƒ‹•¶š—ñ‚ğ‹É—ÍŒ¸‚ç‚·‚©‚Ç‚¤‚©‚Ì’è‹`‚ğ”½‰f‚·‚éˆ×‚Ìƒ}ƒNƒ
+//ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªå†…ã®ãƒªãƒ†ãƒ©ãƒ«æ–‡å­—åˆ—ã‚’æ¥µåŠ›æ¸›ã‚‰ã™ã‹ã©ã†ã‹ã®å®šç¾©ã‚’åæ˜ ã™ã‚‹ç‚ºã®ãƒã‚¯ãƒ­
 #if !defined( DX_NON_LITERAL_STRING ) && !defined( DX_NON_LOG )
 	#define DXSTRING( x )									x
 	#define DXST_LOGFILE_ADDA( x )							LogFileAddA( x )
@@ -86,111 +86,111 @@ namespace DxLib
 
 #ifndef DX_NON_LOG
 
-#define LOG_MAXHEIGHT				(80)				// ‚P‰æ–Ê‚É“ü‚éƒƒO‚ÌÅ‘ås
-#define LOG_MAXLENGTH				(255)				// ‚Ps‚ÌƒƒO‚Ég‚¦‚é•¶š—ñ‚Ì’·‚³
+#define LOG_MAXHEIGHT				(80)				// ï¼‘ç”»é¢ã«å…¥ã‚‹ãƒ­ã‚°ã®æœ€å¤§è¡Œ
+#define LOG_MAXLENGTH				(255)				// ï¼‘è¡Œã®ãƒ­ã‚°ã«ä½¿ãˆã‚‹æ–‡å­—åˆ—ã®é•·ã•
 
-// ƒƒOˆ——p’è‹`
-#define LOG_FONTSIZE				(16)				// ƒƒO‚Ég‚¤ƒtƒHƒ“ƒg‚ÌƒTƒCƒY
-#define LOG_FONTTICK				(4)					// ƒƒO•\¦‚Ég‚¤ƒtƒHƒ“ƒg‚Ì‘¾‚³
-#define LOG_TABWIDTH				(4)					// ƒ^ƒuˆê‚Â•ª‚Ì•
+// ãƒ­ã‚°å‡¦ç†ç”¨å®šç¾©
+#define LOG_FONTSIZE				(16)				// ãƒ­ã‚°ã«ä½¿ã†ãƒ•ã‚©ãƒ³ãƒˆã®ã‚µã‚¤ã‚º
+#define LOG_FONTTICK				(4)					// ãƒ­ã‚°è¡¨ç¤ºã«ä½¿ã†ãƒ•ã‚©ãƒ³ãƒˆã®å¤ªã•
+#define LOG_TABWIDTH				(4)					// ã‚¿ãƒ–ä¸€ã¤åˆ†ã®å¹…
 
-// \‘¢‘Ì’è‹` --------------------------------------------------------------------
+// æ§‹é€ ä½“å®šç¾© --------------------------------------------------------------------
 
-// ƒƒOˆ—ƒf[ƒ^\‘¢‘Ì
+// ãƒ­ã‚°å‡¦ç†ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
 struct LOGDATA
 {
-	int						InitializeFlag ;					// ‰Šú‰»Š®—¹ƒtƒ‰ƒO
+	int						InitializeFlag ;					// åˆæœŸåŒ–å®Œäº†ãƒ•ãƒ©ã‚°
 
-	int						NonUseTimeStampFlag ;				// ƒ^ƒCƒ€ƒXƒ^ƒ“ƒv‚ğo—Í‚µ‚È‚¢‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO
-	int						NotLogOutFlag ;						// ƒƒOo—Í‚ğs‚¤‚©ƒtƒ‰ƒO(TRUE‚Ås‚í‚È‚¢)
-	int						NotSystemLogOutFlag ;				// ‚c‚wƒ‰ƒCƒuƒ‰ƒŠ“à•”‚ÌƒƒOo—Í‚ğs‚¤‚©ƒtƒ‰ƒO(TRUE‚Ås‚í‚È‚¢)
-	int						LogStartTime ;						// ‹N“®‚Ìƒ^ƒCƒ€ƒXƒ^ƒ“ƒv
-	wchar_t					UserLogFileName[ 256 ] ;			// SetApplicationLogFileName ‚Åİ’è‚³‚ê‚½ƒƒOƒtƒ@ƒCƒ‹–¼
-	wchar_t					LogOutDirectory[ FILEPATH_MAX ] ;	// ƒƒOo—Í‚ğs‚¤ƒtƒ@ƒCƒ‹‚ğ•Û‘¶‚·‚éƒfƒBƒŒƒNƒgƒŠ
-	int						UseLogDateName ;					// ƒƒOo—Í‚ğs‚¤ƒtƒ@ƒCƒ‹‚É“ú•t‚ğ‚Â‚¯‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO
-	wchar_t					LogFileName[256] ;					// ƒƒOo—Í‚ğs‚¤ƒtƒ@ƒCƒ‹‚Ì–¼‘O
-	int						LogFileTabNum ;						// ƒƒOo—Í‚Ìƒ^ƒu‚Ì”
-	int						LogFileTabStop ;					// ƒƒOo—Í‚Ìƒ^ƒuo—ÍƒXƒgƒbƒvƒtƒ‰ƒO
-	DX_CRITICAL_SECTION		CriticalSection ;					// ƒf[ƒ^ƒAƒNƒZƒX—pƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“
+	int						NonUseTimeStampFlag ;				// ã‚¿ã‚¤ãƒ ã‚¹ã‚¿ãƒ³ãƒ—ã‚’å‡ºåŠ›ã—ãªã„ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°
+	int						NotLogOutFlag ;						// ãƒ­ã‚°å‡ºåŠ›ã‚’è¡Œã†ã‹ãƒ•ãƒ©ã‚°(TRUEã§è¡Œã‚ãªã„)
+	int						NotSystemLogOutFlag ;				// ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªå†…éƒ¨ã®ãƒ­ã‚°å‡ºåŠ›ã‚’è¡Œã†ã‹ãƒ•ãƒ©ã‚°(TRUEã§è¡Œã‚ãªã„)
+	int						LogStartTime ;						// èµ·å‹•æ™‚ã®ã‚¿ã‚¤ãƒ ã‚¹ã‚¿ãƒ³ãƒ—
+	wchar_t					UserLogFileName[ 256 ] ;			// SetApplicationLogFileName ã§è¨­å®šã•ã‚ŒãŸãƒ­ã‚°ãƒ•ã‚¡ã‚¤ãƒ«å
+	wchar_t					LogOutDirectory[ FILEPATH_MAX ] ;	// ãƒ­ã‚°å‡ºåŠ›ã‚’è¡Œã†ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ä¿å­˜ã™ã‚‹ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒª
+	int						UseLogDateName ;					// ãƒ­ã‚°å‡ºåŠ›ã‚’è¡Œã†ãƒ•ã‚¡ã‚¤ãƒ«ã«æ—¥ä»˜ã‚’ã¤ã‘ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°
+	wchar_t					LogFileName[256] ;					// ãƒ­ã‚°å‡ºåŠ›ã‚’è¡Œã†ãƒ•ã‚¡ã‚¤ãƒ«ã®åå‰
+	int						LogFileTabNum ;						// ãƒ­ã‚°å‡ºåŠ›æ™‚ã®ã‚¿ãƒ–ã®æ•°
+	int						LogFileTabStop ;					// ãƒ­ã‚°å‡ºåŠ›æ™‚ã®ã‚¿ãƒ–å‡ºåŠ›ã‚¹ãƒˆãƒƒãƒ—ãƒ•ãƒ©ã‚°
+	DX_CRITICAL_SECTION		CriticalSection ;					// ãƒ‡ãƒ¼ã‚¿ã‚¢ã‚¯ã‚»ã‚¹æ™‚ç”¨ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³
 
 #ifndef DX_NON_PRINTF_DX
-	int						LogInitializeFlag ;					// ƒƒOƒf[ƒ^‚ª‰Šú‰»‚³‚ê‚Ä‚¢‚é‚©ƒtƒ‰ƒO
-	int						LogUserFontHandle ;					// ƒ†[ƒU[w’è‚ÌƒƒO•`‰æ—pƒtƒHƒ“ƒgƒnƒ“ƒhƒ‹
-	int						LogFontHandle ;						// ƒƒO•`‰æ—pƒtƒHƒ“ƒgƒnƒ“ƒhƒ‹
-	int						LogFontHandleLostFlag ;				// ƒtƒHƒ“ƒgƒnƒ“ƒhƒ‹‚ªíœ‚³‚ê‚½Û‚É—§‚Âƒtƒ‰ƒO
-	int						LogX ,LogY ;						// Œ»İ‚ÌƒƒO‚ÌƒJ[ƒ\ƒ‹ˆÊ’u
-	wchar_t					LogString[LOG_MAXHEIGHT][LOG_MAXLENGTH] ; // ƒƒO•¶š—ñ
-	int						LogStringColor[LOG_MAXHEIGHT][LOG_MAXLENGTH][2] ;	// ƒƒO•¶š—ñ‚ÌF( 0:–{‘ÌF  1;‰‚ÌF )
-	int						LogCharColorEnable ;				// LogCharColor ‚ª—LŒø‚©‚Ç‚¤‚©
-	int						LogCharColor[2] ;					// ƒƒO•¶š—ñ‚É•t‚¯‚éF( 0:–{‘ÌF  1;‰‚ÌF )
-	int						LogDrawFlag ;						// ƒƒO‚ğ‰æ–Êã‚É•\¦‚·‚é‚©Aƒtƒ‰ƒO
-	int						LogFontSize ;						// ƒƒOƒtƒHƒ“ƒg‚ÌƒTƒCƒY
-	int						LogTabWidth ;						// ƒƒO‚Ìƒ^ƒu‚Ì•
-	int						LogDrawWidth ;						// Œ»İƒJ[ƒ\ƒ‹‚ª‚¢‚és‚Ì•`‰æ•
-	int						LogFileOutFlag ;					// ƒƒO‚ğƒtƒ@ƒCƒ‹o—Í‚·‚é‚©Aƒtƒ‰ƒO
-	RECT					LogDrawArea ;						// ƒƒO‚ğ•`‰æ‚·‚é—Ìˆæ
+	int						LogInitializeFlag ;					// ãƒ­ã‚°ãƒ‡ãƒ¼ã‚¿ãŒåˆæœŸåŒ–ã•ã‚Œã¦ã„ã‚‹ã‹ãƒ•ãƒ©ã‚°
+	int						LogUserFontHandle ;					// ãƒ¦ãƒ¼ã‚¶ãƒ¼æŒ‡å®šã®ãƒ­ã‚°æç”»ç”¨ãƒ•ã‚©ãƒ³ãƒˆãƒãƒ³ãƒ‰ãƒ«
+	int						LogFontHandle ;						// ãƒ­ã‚°æç”»ç”¨ãƒ•ã‚©ãƒ³ãƒˆãƒãƒ³ãƒ‰ãƒ«
+	int						LogFontHandleLostFlag ;				// ãƒ•ã‚©ãƒ³ãƒˆãƒãƒ³ãƒ‰ãƒ«ãŒå‰Šé™¤ã•ã‚ŒãŸéš›ã«ç«‹ã¤ãƒ•ãƒ©ã‚°
+	int						LogX ,LogY ;						// ç¾åœ¨ã®ãƒ­ã‚°ã®ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®
+	wchar_t					LogString[LOG_MAXHEIGHT][LOG_MAXLENGTH] ; // ãƒ­ã‚°æ–‡å­—åˆ—
+	int						LogStringColor[LOG_MAXHEIGHT][LOG_MAXLENGTH][2] ;	// ãƒ­ã‚°æ–‡å­—åˆ—ã®è‰²( 0:æœ¬ä½“è‰²  1;ç¸ã®è‰² )
+	int						LogCharColorEnable ;				// LogCharColor ãŒæœ‰åŠ¹ã‹ã©ã†ã‹
+	int						LogCharColor[2] ;					// ãƒ­ã‚°æ–‡å­—åˆ—ã«ä»˜ã‘ã‚‹è‰²( 0:æœ¬ä½“è‰²  1;ç¸ã®è‰² )
+	int						LogDrawFlag ;						// ãƒ­ã‚°ã‚’ç”»é¢ä¸Šã«è¡¨ç¤ºã™ã‚‹ã‹ã€ãƒ•ãƒ©ã‚°
+	int						LogFontSize ;						// ãƒ­ã‚°ãƒ•ã‚©ãƒ³ãƒˆã®ã‚µã‚¤ã‚º
+	int						LogTabWidth ;						// ãƒ­ã‚°ã®ã‚¿ãƒ–ã®å¹…
+	int						LogDrawWidth ;						// ç¾åœ¨ã‚«ãƒ¼ã‚½ãƒ«ãŒã„ã‚‹è¡Œã®æç”»å¹…
+	int						LogFileOutFlag ;					// ãƒ­ã‚°ã‚’ãƒ•ã‚¡ã‚¤ãƒ«å‡ºåŠ›ã™ã‚‹ã‹ã€ãƒ•ãƒ©ã‚°
+	RECT					LogDrawArea ;						// ãƒ­ã‚°ã‚’æç”»ã™ã‚‹é ˜åŸŸ
 #endif // DX_NON_PRINTF_DX
 
 
-	LOGDATA_PF				PF ;								// ŠÂ‹«ˆË‘¶î•ñ
+	LOGDATA_PF				PF ;								// ç’°å¢ƒä¾å­˜æƒ…å ±
 } ;
 
-// “à•”‘åˆæ•Ï”éŒ¾ --------------------------------------------------------------
+// å†…éƒ¨å¤§åŸŸå¤‰æ•°å®£è¨€ --------------------------------------------------------------
 
 extern LOGDATA LogData ;
 
-// ŠÖ”ƒvƒƒgƒ^ƒCƒvéŒ¾-----------------------------------------------------------
+// é–¢æ•°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€-----------------------------------------------------------
 
-// ƒƒOo—Í‹@”\ŠÖ”
-extern	int			LogFileInitialize(		void ) ;										// ƒƒOƒtƒ@ƒCƒ‹‚ğ‰Šú‰»‚·‚é
-extern	int			LogFileTerminate(		void ) ;										// ƒƒOƒtƒ@ƒCƒ‹‚ÌŒãn––
+// ãƒ­ã‚°å‡ºåŠ›æ©Ÿèƒ½é–¢æ•°
+extern	int			LogFileInitialize(		void ) ;										// ãƒ­ã‚°ãƒ•ã‚¡ã‚¤ãƒ«ã‚’åˆæœŸåŒ–ã™ã‚‹
+extern	int			LogFileTerminate(		void ) ;										// ãƒ­ã‚°ãƒ•ã‚¡ã‚¤ãƒ«ã®å¾Œå§‹æœ«
 
-extern	int			LogFileAddA(			const char    *String ) ;						// ƒƒOƒtƒ@ƒCƒ‹‚É•¶š—ñ‚ğ‘‚«o‚·( char”Å )
-extern	int			LogFileAddW(			const wchar_t *String ) ;						// ƒƒOƒtƒ@ƒCƒ‹‚É•¶š—ñ‚ğ‘‚«o‚·( wchar_t”Å )
-extern	int			LogFileAddUTF16LE(		const char    *String ) ;						// ƒƒOƒtƒ@ƒCƒ‹‚É•¶š—ñ‚ğ‘‚«o‚·( UTF16LE”Å )
-extern 	int			LogFileFmtAddA(			const char    *FormatString , ... ) ;			// ƒƒOƒtƒ@ƒCƒ‹‚É‘®•t‚«•¶š—ñ‚ğ‘‚«o‚·( char”Å )
-extern 	int			LogFileFmtAddW(			const wchar_t *FormatString , ... ) ;			// ƒƒOƒtƒ@ƒCƒ‹‚É‘®•t‚«•¶š—ñ‚ğ‘‚«o‚·( wchar_t”Å )
-extern 	int			LogFileFmtAddUTF16LE(	const char    *FormatString , ... ) ;			// ƒƒOƒtƒ@ƒCƒ‹‚É‘®•t‚«•¶š—ñ‚ğ‘‚«o‚·( UTF16LE”Å )
+extern	int			LogFileAddA(			const char    *String ) ;						// ãƒ­ã‚°ãƒ•ã‚¡ã‚¤ãƒ«ã«æ–‡å­—åˆ—ã‚’æ›¸ãå‡ºã™( charç‰ˆ )
+extern	int			LogFileAddW(			const wchar_t *String ) ;						// ãƒ­ã‚°ãƒ•ã‚¡ã‚¤ãƒ«ã«æ–‡å­—åˆ—ã‚’æ›¸ãå‡ºã™( wchar_tç‰ˆ )
+extern	int			LogFileAddUTF16LE(		const char    *String ) ;						// ãƒ­ã‚°ãƒ•ã‚¡ã‚¤ãƒ«ã«æ–‡å­—åˆ—ã‚’æ›¸ãå‡ºã™( UTF16LEç‰ˆ )
+extern 	int			LogFileFmtAddA(			const char    *FormatString , ... ) ;			// ãƒ­ã‚°ãƒ•ã‚¡ã‚¤ãƒ«ã«æ›¸å¼ä»˜ãæ–‡å­—åˆ—ã‚’æ›¸ãå‡ºã™( charç‰ˆ )
+extern 	int			LogFileFmtAddW(			const wchar_t *FormatString , ... ) ;			// ãƒ­ã‚°ãƒ•ã‚¡ã‚¤ãƒ«ã«æ›¸å¼ä»˜ãæ–‡å­—åˆ—ã‚’æ›¸ãå‡ºã™( wchar_tç‰ˆ )
+extern 	int			LogFileFmtAddUTF16LE(	const char    *FormatString , ... ) ;			// ãƒ­ã‚°ãƒ•ã‚¡ã‚¤ãƒ«ã«æ›¸å¼ä»˜ãæ–‡å­—åˆ—ã‚’æ›¸ãå‡ºã™( UTF16LEç‰ˆ )
 
-extern	int			LogFileAddWithErrorCode_A(			int ErrorCode/* DX_ERRORCODE_WIN_24BIT_COLOR ‚È‚Ç*/, const char    *ErrorStr ) ;					// ƒƒOƒtƒ@ƒCƒ‹‚É•¶š—ñ‚ğ‘‚«o‚·AƒGƒ‰[ƒR[ƒhİ’è‚Â‚«( char”Å )
-extern	int			LogFileAddWithErrorCode_W(			int ErrorCode/* DX_ERRORCODE_WIN_24BIT_COLOR ‚È‚Ç*/, const wchar_t *ErrorStr ) ;					// ƒƒOƒtƒ@ƒCƒ‹‚É•¶š—ñ‚ğ‘‚«o‚·AƒGƒ‰[ƒR[ƒhİ’è‚Â‚«( wchar_t”Å )
-extern	int			LogFileAddWithErrorCode_UTF16LE(	int ErrorCode/* DX_ERRORCODE_WIN_24BIT_COLOR ‚È‚Ç*/, const char    *ErrorStr ) ;					// ƒƒOƒtƒ@ƒCƒ‹‚É•¶š—ñ‚ğ‘‚«o‚·AƒGƒ‰[ƒR[ƒhİ’è‚Â‚«( UTF16LE”Å )
-extern 	int			LogFileFmtAddWithErrorCode_A(		int ErrorCode/* DX_ERRORCODE_WIN_24BIT_COLOR ‚È‚Ç*/, const char	   *FormatString , ... ) ;			// ƒƒOƒtƒ@ƒCƒ‹‚É‘®•t‚«•¶š—ñ‚ğ‘‚«o‚·AƒGƒ‰[ƒR[ƒhİ’è‚Â‚«( char”Å )
-extern 	int			LogFileFmtAddWithErrorCode_W(		int ErrorCode/* DX_ERRORCODE_WIN_24BIT_COLOR ‚È‚Ç*/, const wchar_t *FormatString , ... ) ;			// ƒƒOƒtƒ@ƒCƒ‹‚É‘®•t‚«•¶š—ñ‚ğ‘‚«o‚·AƒGƒ‰[ƒR[ƒhİ’è‚Â‚«( wchar_t”Å )
-extern 	int			LogFileFmtAddWithErrorCode_UTF16LE(	int ErrorCode/* DX_ERRORCODE_WIN_24BIT_COLOR ‚È‚Ç*/, const char    *FormatString , ... ) ;			// ƒƒOƒtƒ@ƒCƒ‹‚É‘®•t‚«•¶š—ñ‚ğ‘‚«o‚·AƒGƒ‰[ƒR[ƒhİ’è‚Â‚«( UTF16LE”Å )
+extern	int			LogFileAddWithErrorCode_A(			int ErrorCode/* DX_ERRORCODE_WIN_24BIT_COLOR ãªã©*/, const char    *ErrorStr ) ;					// ãƒ­ã‚°ãƒ•ã‚¡ã‚¤ãƒ«ã«æ–‡å­—åˆ—ã‚’æ›¸ãå‡ºã™ã€ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰è¨­å®šã¤ã( charç‰ˆ )
+extern	int			LogFileAddWithErrorCode_W(			int ErrorCode/* DX_ERRORCODE_WIN_24BIT_COLOR ãªã©*/, const wchar_t *ErrorStr ) ;					// ãƒ­ã‚°ãƒ•ã‚¡ã‚¤ãƒ«ã«æ–‡å­—åˆ—ã‚’æ›¸ãå‡ºã™ã€ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰è¨­å®šã¤ã( wchar_tç‰ˆ )
+extern	int			LogFileAddWithErrorCode_UTF16LE(	int ErrorCode/* DX_ERRORCODE_WIN_24BIT_COLOR ãªã©*/, const char    *ErrorStr ) ;					// ãƒ­ã‚°ãƒ•ã‚¡ã‚¤ãƒ«ã«æ–‡å­—åˆ—ã‚’æ›¸ãå‡ºã™ã€ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰è¨­å®šã¤ã( UTF16LEç‰ˆ )
+extern 	int			LogFileFmtAddWithErrorCode_A(		int ErrorCode/* DX_ERRORCODE_WIN_24BIT_COLOR ãªã©*/, const char	   *FormatString , ... ) ;			// ãƒ­ã‚°ãƒ•ã‚¡ã‚¤ãƒ«ã«æ›¸å¼ä»˜ãæ–‡å­—åˆ—ã‚’æ›¸ãå‡ºã™ã€ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰è¨­å®šã¤ã( charç‰ˆ )
+extern 	int			LogFileFmtAddWithErrorCode_W(		int ErrorCode/* DX_ERRORCODE_WIN_24BIT_COLOR ãªã©*/, const wchar_t *FormatString , ... ) ;			// ãƒ­ã‚°ãƒ•ã‚¡ã‚¤ãƒ«ã«æ›¸å¼ä»˜ãæ–‡å­—åˆ—ã‚’æ›¸ãå‡ºã™ã€ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰è¨­å®šã¤ã( wchar_tç‰ˆ )
+extern 	int			LogFileFmtAddWithErrorCode_UTF16LE(	int ErrorCode/* DX_ERRORCODE_WIN_24BIT_COLOR ãªã©*/, const char    *FormatString , ... ) ;			// ãƒ­ã‚°ãƒ•ã‚¡ã‚¤ãƒ«ã«æ›¸å¼ä»˜ãæ–‡å­—åˆ—ã‚’æ›¸ãå‡ºã™ã€ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰è¨­å®šã¤ã( UTF16LEç‰ˆ )
 
-// wchar_t”ÅŠÖ”
-extern	int			LogFileAdd_WCHAR_T(		int IsSystem, int ErrorCode/* DX_ERRORCODE_WIN_24BIT_COLOR ‚È‚Ç*/, const wchar_t *ErrorStr ) ;					// ƒƒOƒtƒ@ƒCƒ‹( Log.txt ) ‚É•¶š—ñ‚ğo—Í‚·‚é
-extern 	int			LogFileFmtAdd_WCHAR_T(	int IsSystem, int ErrorCode/* DX_ERRORCODE_WIN_24BIT_COLOR ‚È‚Ç*/, const wchar_t *FormatString , ... ) ;			// ‘®•t‚«‚Å ƒƒOƒtƒ@ƒCƒ‹( Log.txt ) ‚É•¶š—ñ‚ğo—Í‚·‚é( ‘®‚Í printf ‚Æ“¯‚¶ )
+// wchar_tç‰ˆé–¢æ•°
+extern	int			LogFileAdd_WCHAR_T(		int IsSystem, int ErrorCode/* DX_ERRORCODE_WIN_24BIT_COLOR ãªã©*/, const wchar_t *ErrorStr ) ;					// ãƒ­ã‚°ãƒ•ã‚¡ã‚¤ãƒ«( Log.txt ) ã«æ–‡å­—åˆ—ã‚’å‡ºåŠ›ã™ã‚‹
+extern 	int			LogFileFmtAdd_WCHAR_T(	int IsSystem, int ErrorCode/* DX_ERRORCODE_WIN_24BIT_COLOR ãªã©*/, const wchar_t *FormatString , ... ) ;			// æ›¸å¼ä»˜ãã§ ãƒ­ã‚°ãƒ•ã‚¡ã‚¤ãƒ«( Log.txt ) ã«æ–‡å­—åˆ—ã‚’å‡ºåŠ›ã™ã‚‹( æ›¸å¼ã¯ printf ã¨åŒã˜ )
 
-extern	int			SetApplicationLogSaveDirectory_WCHAR_T(	const wchar_t *DirectoryPath );	// ƒƒOƒtƒ@ƒCƒ‹( Log.txt ) ‚ğ•Û‘¶‚·‚éƒfƒBƒŒƒNƒgƒŠƒpƒX‚ğİ’è‚·‚é
-extern	int			SetApplicationLogFileName_WCHAR_T(      const wchar_t *FileName ) ;		// ƒƒOƒtƒ@ƒCƒ‹‚Ì–¼‘O‚ğİ’è‚·‚é( Log.txt ˆÈŠO‚É‚µ‚½‚¢ê‡‚Ég—p )
+extern	int			SetApplicationLogSaveDirectory_WCHAR_T(	const wchar_t *DirectoryPath );	// ãƒ­ã‚°ãƒ•ã‚¡ã‚¤ãƒ«( Log.txt ) ã‚’ä¿å­˜ã™ã‚‹ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªãƒ‘ã‚¹ã‚’è¨­å®šã™ã‚‹
+extern	int			SetApplicationLogFileName_WCHAR_T(      const wchar_t *FileName ) ;		// ãƒ­ã‚°ãƒ•ã‚¡ã‚¤ãƒ«ã®åå‰ã‚’è¨­å®šã™ã‚‹( Log.txt ä»¥å¤–ã«ã—ãŸã„å ´åˆã«ä½¿ç”¨ )
 
-// va_list ŠÖ”
-extern 	int			LogFileFmtAdd_VaList(	const TCHAR *FormatString, va_list VaList ) ;	// ‘®•t‚«‚Å ƒƒOƒtƒ@ƒCƒ‹( Log.txt ) ‚É•¶š—ñ‚ğo—Í‚·‚é( ‘®‚Í printf ‚Æ“¯‚¶ )
-extern 	int			ErrorLogFmtAdd_VaList(	const TCHAR *FormatString, va_list VaList ) ;	// LogFileFmtAdd ‚Ì‹Œ–¼ÌŠÖ”
-extern 	int			AppLogAdd_VaList(		const TCHAR *String, va_list VaList ) ;			// LogFileFmtAdd ‚Æ“¯‚¶‹@”\‚ÌŠÖ”
-extern 	int			printfDx_VaList(		const TCHAR *FormatString , va_list VaList ) ;	// printf ‚Æ“¯‚¶ˆø”‚Å‰æ–Ê‚É•¶š—ñ‚ğ•\¦‚·‚é‚½‚ß‚ÌŠÖ”
+// va_list é–¢æ•°
+extern 	int			LogFileFmtAdd_VaList(	const TCHAR *FormatString, va_list VaList ) ;	// æ›¸å¼ä»˜ãã§ ãƒ­ã‚°ãƒ•ã‚¡ã‚¤ãƒ«( Log.txt ) ã«æ–‡å­—åˆ—ã‚’å‡ºåŠ›ã™ã‚‹( æ›¸å¼ã¯ printf ã¨åŒã˜ )
+extern 	int			ErrorLogFmtAdd_VaList(	const TCHAR *FormatString, va_list VaList ) ;	// LogFileFmtAdd ã®æ—§åç§°é–¢æ•°
+extern 	int			AppLogAdd_VaList(		const TCHAR *String, va_list VaList ) ;			// LogFileFmtAdd ã¨åŒã˜æ©Ÿèƒ½ã®é–¢æ•°
+extern 	int			printfDx_VaList(		const TCHAR *FormatString , va_list VaList ) ;	// printf ã¨åŒã˜å¼•æ•°ã§ç”»é¢ã«æ–‡å­—åˆ—ã‚’è¡¨ç¤ºã™ã‚‹ãŸã‚ã®é–¢æ•°
 
-// ŠÂ‹«ˆË‘¶ŠÖ”
-extern	int			LogFileInitialize_PF( const wchar_t *LogFilePath ) ;					// ƒƒOƒtƒ@ƒCƒ‹‚ğ‰Šú‰»‚·‚éˆ—‚ÌŠÂ‹«ˆË‘¶•”•ª
-extern	int			LogFileTerminate_PF( void ) ;											// ƒƒOƒtƒ@ƒCƒ‹‚ÌŒãn––‚ÌŠÂ‹«ˆË‘¶•”•ª
-extern	int			LogFileAdd_WCHAR_T_PF( const wchar_t *LogFilePath, const wchar_t *ErrorStr ) ;	// ƒƒOƒtƒ@ƒCƒ‹‚Ö•¶š—ñ‚ğ‘‚«o‚·ˆ—‚ÌŠÂ‹«ˆË‘¶•”•ª
+// ç’°å¢ƒä¾å­˜é–¢æ•°
+extern	int			LogFileInitialize_PF( const wchar_t *LogFilePath ) ;					// ãƒ­ã‚°ãƒ•ã‚¡ã‚¤ãƒ«ã‚’åˆæœŸåŒ–ã™ã‚‹å‡¦ç†ã®ç’°å¢ƒä¾å­˜éƒ¨åˆ†
+extern	int			LogFileTerminate_PF( void ) ;											// ãƒ­ã‚°ãƒ•ã‚¡ã‚¤ãƒ«ã®å¾Œå§‹æœ«ã®ç’°å¢ƒä¾å­˜éƒ¨åˆ†
+extern	int			LogFileAdd_WCHAR_T_PF( const wchar_t *LogFilePath, const wchar_t *ErrorStr ) ;	// ãƒ­ã‚°ãƒ•ã‚¡ã‚¤ãƒ«ã¸æ–‡å­—åˆ—ã‚’æ›¸ãå‡ºã™å‡¦ç†ã®ç’°å¢ƒä¾å­˜éƒ¨åˆ†
 
 
 
 #ifndef DX_NON_PRINTF_DX
 
-extern	int			IsInitializeLog( void ) ;												// ƒƒO‹@”\‚Ì‰Šú‰»‚ğs‚¤‚©‚Ç‚¤‚©‚ğæ“¾‚·‚é
-extern	int			InitializeLog( void ) ;													// ƒƒO‹@”\‚Ì‰Šú‰»
-extern	int			TerminateLog( void ) ;													// ƒƒOˆ—‚ÌŒãn––‚ğs‚¤
-extern	int			DrawLog( void ) ;														// ƒƒO‚ğ•`‰æ‚·‚é
-extern 	int			printfDxBase( const TCHAR *String ) ;									// printfDx ‚Ì‘®•¶š—ñ‚Å‚Í‚È‚¢•¶š—ñ‚ğˆø”‚Æ‚·‚éƒo[ƒWƒ‡ƒ“
+extern	int			IsInitializeLog( void ) ;												// ãƒ­ã‚°æ©Ÿèƒ½ã®åˆæœŸåŒ–ã‚’è¡Œã†ã‹ã©ã†ã‹ã‚’å–å¾—ã™ã‚‹
+extern	int			InitializeLog( void ) ;													// ãƒ­ã‚°æ©Ÿèƒ½ã®åˆæœŸåŒ–
+extern	int			TerminateLog( void ) ;													// ãƒ­ã‚°å‡¦ç†ã®å¾Œå§‹æœ«ã‚’è¡Œã†
+extern	int			DrawLog( void ) ;														// ãƒ­ã‚°ã‚’æç”»ã™ã‚‹
+extern 	int			printfDxBase( const TCHAR *String ) ;									// printfDx ã®æ›¸å¼æ–‡å­—åˆ—ã§ã¯ãªã„æ–‡å­—åˆ—ã‚’å¼•æ•°ã¨ã™ã‚‹ãƒãƒ¼ã‚¸ãƒ§ãƒ³
 
-// wchar_t”ÅŠÖ”
-extern 	int			printfDx_WCHAR_T(		 const wchar_t *FormatString , ... ) ;				// printf ‚Æ“¯‚¶ˆø”‚Å‰æ–Ê‚É•¶š—ñ‚ğ•\¦‚·‚é‚½‚ß‚ÌŠÖ”
-extern 	int			printfDxBase_WCHAR_T(	 const wchar_t *String ) ;							// printfDx_WCHAR_T ‚Ì‘®•¶š—ñ‚Å‚Í‚È‚¢•¶š—ñ‚ğˆø”‚Æ‚·‚éƒo[ƒWƒ‡ƒ“
-extern 	int			putsDx_WCHAR_T(			 const wchar_t *String , int NewLine ) ;			// puts ‚Æ“¯‚¶ˆø”‚Å‰æ–Ê‚É•¶š—ñ‚ğ•\¦‚·‚é‚½‚ß‚ÌŠÖ”
+// wchar_tç‰ˆé–¢æ•°
+extern 	int			printfDx_WCHAR_T(		 const wchar_t *FormatString , ... ) ;				// printf ã¨åŒã˜å¼•æ•°ã§ç”»é¢ã«æ–‡å­—åˆ—ã‚’è¡¨ç¤ºã™ã‚‹ãŸã‚ã®é–¢æ•°
+extern 	int			printfDxBase_WCHAR_T(	 const wchar_t *String ) ;							// printfDx_WCHAR_T ã®æ›¸å¼æ–‡å­—åˆ—ã§ã¯ãªã„æ–‡å­—åˆ—ã‚’å¼•æ•°ã¨ã™ã‚‹ãƒãƒ¼ã‚¸ãƒ§ãƒ³
+extern 	int			putsDx_WCHAR_T(			 const wchar_t *String , int NewLine ) ;			// puts ã¨åŒã˜å¼•æ•°ã§ç”»é¢ã«æ–‡å­—åˆ—ã‚’è¡¨ç¤ºã™ã‚‹ãŸã‚ã®é–¢æ•°
 
 #endif // DX_NON_PRINTF_DX
 

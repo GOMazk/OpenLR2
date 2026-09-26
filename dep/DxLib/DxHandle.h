@@ -1,6 +1,6 @@
 // -------------------------------------------------------------------------------
 // 
-// 		�c�w���C�u����		�n���h���Ǘ��v���O�����w�b�_�t�@�C��
+// 		ＤＸライブラリ		ハンドル管理プログラムヘッダファイル
 // 
 // 				Ver 3.25a
 // 
@@ -9,7 +9,7 @@
 #ifndef DX_HANDLE_H
 #define DX_HANDLE_H
 
-// �C���N���[�h ------------------------------------------------------------------
+// インクルード ------------------------------------------------------------------
 #include "DxCompileConfig.h"
 #include "DxThread.h"
 
@@ -24,44 +24,44 @@ namespace DxLib
 
 #endif // DX_NON_NAMESPACE
 
-// �}�N����` --------------------------------------------------------------------
+// マクロ定義 --------------------------------------------------------------------
 
-// �n���h���̓���
-#define DX_HANDLEINDEX_MASK							(0x0003ffff)		// �n���h���z��C���f�b�N�X�}�X�N
-#define DX_HANDLEINDEX_MAX							(0x40000)			// �n���h���z��C���f�b�N�X�̍ő吔
+// ハンドルの内訳
+#define DX_HANDLEINDEX_MASK							(0x0003ffff)		// ハンドル配列インデックスマスク
+#define DX_HANDLEINDEX_MAX							(0x40000)			// ハンドル配列インデックスの最大数
 
-#define DX_HANDLECHECK_MASK							(0x03fc0000)		// �n���h���̐������`�F�b�N�p�}�X�N
-#define DX_HANDLECHECK_ADDRESS						(18)				// �n���h���̐������`�F�b�N�p�}�X�N�̊J�n�A�h���X
-#define DX_HANDLECHECK_MAX							(256)				// �n���h���̐������`�F�b�N�l�̍ő吔
+#define DX_HANDLECHECK_MASK							(0x03fc0000)		// ハンドルの正当性チェック用マスク
+#define DX_HANDLECHECK_ADDRESS						(18)				// ハンドルの正当性チェック用マスクの開始アドレス
+#define DX_HANDLECHECK_MAX							(256)				// ハンドルの正当性チェック値の最大数
 
-#define DX_HANDLETYPE_MASK							(0x7c000000)		// �n���h���^�C�v�}�X�N
-#define DX_HANDLETYPE_ADDRESS						(26)				// �n���h���^�C�v�}�X�N�̊J�n�A�h���X
-#define DX_HANDLETYPE_MAX							(32)				// �n���h���^�C�v�̍ő吔
+#define DX_HANDLETYPE_MASK							(0x7c000000)		// ハンドルタイプマスク
+#define DX_HANDLETYPE_ADDRESS						(26)				// ハンドルタイプマスクの開始アドレス
+#define DX_HANDLETYPE_MAX							(32)				// ハンドルタイプの最大数
 
-#define DX_HANDLEERROR_MASK							(0x80000000)		// �G���[�`�F�b�N�}�X�N( �O�ł͂Ȃ�������G���[ )
+#define DX_HANDLEERROR_MASK							(0x80000000)		// エラーチェックマスク( ０ではなかったらエラー )
 
-#define DX_HANDLETYPE_MASK_GRAPH					(DX_HANDLETYPE_GRAPH                  << DX_HANDLETYPE_ADDRESS)		// �O���t�B�b�N�n���h��
-#define DX_HANDLETYPE_MASK_SOFTIMAGE				(DX_HANDLETYPE_SOFTIMAGE              << DX_HANDLETYPE_ADDRESS)		// �\�t�g�E�G�A�ň����C���[�W�n���h��
-#define DX_HANDLETYPE_MASK_SOUND					(DX_HANDLETYPE_SOUND                  << DX_HANDLETYPE_ADDRESS)		// �T�E���h�n���h��
-#define DX_HANDLETYPE_MASK_SOFTSOUND				(DX_HANDLETYPE_SOFTSOUND              << DX_HANDLETYPE_ADDRESS)		// �\�t�g�T�E���h�n���h��
-#define DX_HANDLETYPE_MASK_MUSIC					(DX_HANDLETYPE_MUSIC                  << DX_HANDLETYPE_ADDRESS)		// �~���[�W�b�N�n���h��
-#define DX_HANDLETYPE_MASK_MOVIE					(DX_HANDLETYPE_MOVIE                  << DX_HANDLETYPE_ADDRESS)		// ���[�r�[�n���h��
-#define DX_HANDLETYPE_MASK_GMASK					(DX_HANDLETYPE_GMASK                  << DX_HANDLETYPE_ADDRESS)		// �}�X�N�n���h��
-#define DX_HANDLETYPE_MASK_FONT						(DX_HANDLETYPE_FONT                   << DX_HANDLETYPE_ADDRESS)		// �t�H���g�n���h��
-#define DX_HANDLETYPE_MASK_KEYINPUT					(DX_HANDLETYPE_KEYINPUT               << DX_HANDLETYPE_ADDRESS)		// ��������̓n���h��
-#define DX_HANDLETYPE_MASK_NETWORK					(DX_HANDLETYPE_NETWORK                << DX_HANDLETYPE_ADDRESS)		// �l�b�g���[�N�n���h��
-#define DX_HANDLETYPE_MASK_LIGHT					(DX_HANDLETYPE_LIGHT                  << DX_HANDLETYPE_ADDRESS)		// ���C�g
-#define DX_HANDLETYPE_MASK_SHADER					(DX_HANDLETYPE_SHADER                 << DX_HANDLETYPE_ADDRESS)		// �V�F�[�_�[�n���h��
-#define DX_HANDLETYPE_MASK_MODEL_BASE				(DX_HANDLETYPE_MODEL_BASE             << DX_HANDLETYPE_ADDRESS)		// �R�c���f����{�f�[�^
-#define DX_HANDLETYPE_MASK_MODEL					(DX_HANDLETYPE_MODEL                  << DX_HANDLETYPE_ADDRESS)		// �R�c���f��
-#define DX_HANDLETYPE_MASK_VERTEX_BUFFER			(DX_HANDLETYPE_VERTEX_BUFFER          << DX_HANDLETYPE_ADDRESS)		// ���_�o�b�t�@�n���h��
-#define DX_HANDLETYPE_MASK_INDEX_BUFFER				(DX_HANDLETYPE_INDEX_BUFFER           << DX_HANDLETYPE_ADDRESS)		// �C���f�b�N�X�o�b�t�@�n���h��
-#define DX_HANDLETYPE_MASK_FILE						(DX_HANDLETYPE_FILE                   << DX_HANDLETYPE_ADDRESS)		// �t�@�C���n���h��
-#define DX_HANDLETYPE_MASK_SHADOWMAP				(DX_HANDLETYPE_SHADOWMAP              << DX_HANDLETYPE_ADDRESS)		// �V���h�E�}�b�v�n���h��
-#define DX_HANDLETYPE_MASK_SHADER_CONSTANT_BUFFER	(DX_HANDLETYPE_SHADER_CONSTANT_BUFFER << DX_HANDLETYPE_ADDRESS)		// �V�F�[�_�[�p�萔�o�b�t�@�n���h��
-#define DX_HANDLETYPE_MASK_LIVE2D_CUBISM3_MODEL		(DX_HANDLETYPE_LIVE2D_CUBISM4_MODEL	  << DX_HANDLETYPE_ADDRESS)		// Live2D Cubism 4 ���f���n���h��
+#define DX_HANDLETYPE_MASK_GRAPH					(DX_HANDLETYPE_GRAPH                  << DX_HANDLETYPE_ADDRESS)		// グラフィックハンドル
+#define DX_HANDLETYPE_MASK_SOFTIMAGE				(DX_HANDLETYPE_SOFTIMAGE              << DX_HANDLETYPE_ADDRESS)		// ソフトウエアで扱うイメージハンドル
+#define DX_HANDLETYPE_MASK_SOUND					(DX_HANDLETYPE_SOUND                  << DX_HANDLETYPE_ADDRESS)		// サウンドハンドル
+#define DX_HANDLETYPE_MASK_SOFTSOUND				(DX_HANDLETYPE_SOFTSOUND              << DX_HANDLETYPE_ADDRESS)		// ソフトサウンドハンドル
+#define DX_HANDLETYPE_MASK_MUSIC					(DX_HANDLETYPE_MUSIC                  << DX_HANDLETYPE_ADDRESS)		// ミュージックハンドル
+#define DX_HANDLETYPE_MASK_MOVIE					(DX_HANDLETYPE_MOVIE                  << DX_HANDLETYPE_ADDRESS)		// ムービーハンドル
+#define DX_HANDLETYPE_MASK_GMASK					(DX_HANDLETYPE_GMASK                  << DX_HANDLETYPE_ADDRESS)		// マスクハンドル
+#define DX_HANDLETYPE_MASK_FONT						(DX_HANDLETYPE_FONT                   << DX_HANDLETYPE_ADDRESS)		// フォントハンドル
+#define DX_HANDLETYPE_MASK_KEYINPUT					(DX_HANDLETYPE_KEYINPUT               << DX_HANDLETYPE_ADDRESS)		// 文字列入力ハンドル
+#define DX_HANDLETYPE_MASK_NETWORK					(DX_HANDLETYPE_NETWORK                << DX_HANDLETYPE_ADDRESS)		// ネットワークハンドル
+#define DX_HANDLETYPE_MASK_LIGHT					(DX_HANDLETYPE_LIGHT                  << DX_HANDLETYPE_ADDRESS)		// ライト
+#define DX_HANDLETYPE_MASK_SHADER					(DX_HANDLETYPE_SHADER                 << DX_HANDLETYPE_ADDRESS)		// シェーダーハンドル
+#define DX_HANDLETYPE_MASK_MODEL_BASE				(DX_HANDLETYPE_MODEL_BASE             << DX_HANDLETYPE_ADDRESS)		// ３Ｄモデル基本データ
+#define DX_HANDLETYPE_MASK_MODEL					(DX_HANDLETYPE_MODEL                  << DX_HANDLETYPE_ADDRESS)		// ３Ｄモデル
+#define DX_HANDLETYPE_MASK_VERTEX_BUFFER			(DX_HANDLETYPE_VERTEX_BUFFER          << DX_HANDLETYPE_ADDRESS)		// 頂点バッファハンドル
+#define DX_HANDLETYPE_MASK_INDEX_BUFFER				(DX_HANDLETYPE_INDEX_BUFFER           << DX_HANDLETYPE_ADDRESS)		// インデックスバッファハンドル
+#define DX_HANDLETYPE_MASK_FILE						(DX_HANDLETYPE_FILE                   << DX_HANDLETYPE_ADDRESS)		// ファイルハンドル
+#define DX_HANDLETYPE_MASK_SHADOWMAP				(DX_HANDLETYPE_SHADOWMAP              << DX_HANDLETYPE_ADDRESS)		// シャドウマップハンドル
+#define DX_HANDLETYPE_MASK_SHADER_CONSTANT_BUFFER	(DX_HANDLETYPE_SHADER_CONSTANT_BUFFER << DX_HANDLETYPE_ADDRESS)		// シェーダー用定数バッファハンドル
+#define DX_HANDLETYPE_MASK_LIVE2D_CUBISM3_MODEL		(DX_HANDLETYPE_LIVE2D_CUBISM4_MODEL	  << DX_HANDLETYPE_ADDRESS)		// Live2D Cubism 4 モデルハンドル
 
-// �n���h���̗L���`�F�b�N
+// ハンドルの有効チェック
 
 #define HANDLECHKFULL_ASYNC( TYPE, HANDLE, INFO )																\
 	  ( ( HandleManageArray[ (TYPE) ].InitializeFlag == FALSE ) ||												\
@@ -114,104 +114,104 @@ namespace DxLib
 
 #endif // DX_NON_HANDLE_ERROR_CHECK
 
-// �\���̒�` --------------------------------------------------------------------
+// 構造体定義 --------------------------------------------------------------------
 
-// �V���v�����X�g�\����
+// シンプルリスト構造体
 struct SIMPLELIST
 {
-	void					*Data ;								// �f�[�^�ւ̃|�C���^
-	struct SIMPLELIST		*Prev, *Next ;						// ���X�g�̈�O�Ǝ��̗v�f�ւ̃|�C���^
+	void					*Data ;								// データへのポインタ
+	struct SIMPLELIST		*Prev, *Next ;						// リストの一つ前と次の要素へのポインタ
 } ;
 
-// �n���h�����X�g�\����
+// ハンドルリスト構造体
 struct HANDLELIST
 {
-	int						Handle ;							// �n���h��
-	void					*Data ;								// �f�[�^�ւ̃|�C���^
-	struct HANDLELIST		*Prev, *Next ;						// ���X�g�̈�O�Ǝ��̗v�f�ւ̃|�C���^
+	int						Handle ;							// ハンドル
+	void					*Data ;								// データへのポインタ
+	struct HANDLELIST		*Prev, *Next ;						// リストの一つ前と次の要素へのポインタ
 } ;
 
-// �n���h���̋��ʃf�[�^
+// ハンドルの共通データ
 struct HANDLEINFO
 {
-	int						ID ;								// �G���[�`�F�b�N�p�h�c
-	int						Handle ;							// ���g�̃n���h���l
-	int						AllocSize ;							// �������̊m�ۃT�C�Y
-	int						*DeleteFlag ;						// �n���h���폜���Ɂ|�P�ɂ���ϐ��ւ̃|�C���^
+	int						ID ;								// エラーチェック用ＩＤ
+	int						Handle ;							// 自身のハンドル値
+	int						AllocSize ;							// メモリの確保サイズ
+	int						*DeleteFlag ;						// ハンドル削除時に－１にする変数へのポインタ
 #ifndef DX_NON_ASYNCLOAD
-	int						ASyncLoadCount ;					// �񓯊��ǂݍ��ݏ����̑ΏۂƂȂ��Ă��鐔
-	int						ASyncLoadResult ;					// �񓯊��ǂݍ��ݏ����̌���
-	int						ASyncDataNumber ;					// �񓯊��ǂݍ��ݏ����ԍ�
-	volatile int			ASyncLoadFinishDeleteRequestFlag ;	// �񓯊��ǂݍ��݂�����������n���h�����폜����t���O
-	volatile void			( *ASyncLoadFinishCallback )( int Handle, void *Data ) ;	// �񓯊��ǂݍ��݂�����������Ă΂��R�[���o�b�N�֐�
-	void					*ASyncLoadFinishCallbackData ;		// �񓯊��ǂݍ��݂�����������Ă΂��R�[���o�b�N�֐��ɓn������
+	int						ASyncLoadCount ;					// 非同期読み込み処理の対象となっている数
+	int						ASyncLoadResult ;					// 非同期読み込み処理の結果
+	int						ASyncDataNumber ;					// 非同期読み込み処理番号
+	volatile int			ASyncLoadFinishDeleteRequestFlag ;	// 非同期読み込みが完了したらハンドルを削除するフラグ
+	volatile void			( *ASyncLoadFinishCallback )( int Handle, void *Data ) ;	// 非同期読み込みが完了したら呼ばれるコールバック関数
+	void					*ASyncLoadFinishCallbackData ;		// 非同期読み込みが完了したら呼ばれるコールバック関数に渡す引数
 #endif
-	HANDLELIST				List ;								// �n���h�����X�g�̈�O�Ǝ��̗v�f�ւ̃|�C���^
-	int						DeleteRequestFlag ;					// �폜���N�G�X�g������Ă��邩( TRUE:�폜���N�G�X�g����Ă���  FALSE:�폜���N�G�X�g����Ă��Ȃ� )
-	HANDLELIST				DeleteRequestList ;					// �폜���N�G�X�g�̃n���h�����X�g�̈�O�Ǝ��̗v�f�ւ̃|�C���^
+	HANDLELIST				List ;								// ハンドルリストの一つ前と次の要素へのポインタ
+	int						DeleteRequestFlag ;					// 削除リクエストがされているか( TRUE:削除リクエストされている  FALSE:削除リクエストされていない )
+	HANDLELIST				DeleteRequestList ;					// 削除リクエストのハンドルリストの一つ前と次の要素へのポインタ
 } ;
 
-// �n���h���Ǘ��̋��ʃf�[�^
+// ハンドル管理の共通データ
 struct HANDLEMANAGE
 {
-	int						InitializeFlag ;					// �������t���O
-	HANDLEINFO				**Handle ;							// �n���h���ւ̃|�C���^�z��
-	HANDLELIST				ListFirst ;							// �n���h�����X�g�̐擪
-	HANDLELIST				ListLast ;							// �n���h�����X�g�̖��[
-	int						HandleTypeMask ;					// �n���h���^�C�v�}�X�N
-	int						OneSize ;							// �n���h����ӂ�̑傫��
-	int						MaxNum ;							// �n���h���̍ő�T�C�Y
-	int						Num ;								// �n���h���̐�
-	int						AreaMin ;							// �n���h�����z�G���A�ŏ��l
-	int						AreaMax ;							// �n���h�����z�G���A�ő�l
-	int						NextID ;							// ���̃n���h���Ɋ��蓖�Ă�h�c
-	DX_CRITICAL_SECTION		CriticalSection ;					// �f�[�^�A�N�Z�X���p�N���e�B�J���Z�N�V����
-	int						( *InitializeFunction )( HANDLEINFO *HandleInfo ) ;	// �n���h���̏�����������֐��ւ̃|�C���^
-	int						( *TerminateFunction )( HANDLEINFO *HandleInfo ) ;	// �n���h���̌�n��������֐��ւ̃|�C���^
-	int						( *DumpInfoFunction )( HANDLEINFO *HandleInfo ) ;	// �n���h���̏����o�͂���֐��ւ̃|�C���^
-	const wchar_t			*Name ;								// �n���h����
-	char					NameUTF16LE[ 128 ] ;				// �n���h����( UTF16LE )
-	int						DeleteRequestHandleNum ;			// �폜���N�G�X�g�̃n���h���̐�
-	HANDLELIST				DeleteRequestListFirst ;			// �폜���N�G�X�g�̃n���h�����X�g�̐擪
-	HANDLELIST				DeleteRequestListLast ;				// �폜���N�G�X�g�̃n���h�����X�g�̖��[
+	int						InitializeFlag ;					// 初期化フラグ
+	HANDLEINFO				**Handle ;							// ハンドルへのポインタ配列
+	HANDLELIST				ListFirst ;							// ハンドルリストの先頭
+	HANDLELIST				ListLast ;							// ハンドルリストの末端
+	int						HandleTypeMask ;					// ハンドルタイプマスク
+	int						OneSize ;							// ハンドル一つ辺りの大きさ
+	int						MaxNum ;							// ハンドルの最大サイズ
+	int						Num ;								// ハンドルの数
+	int						AreaMin ;							// ハンドル分布エリア最小値
+	int						AreaMax ;							// ハンドル分布エリア最大値
+	int						NextID ;							// 次のハンドルに割り当てるＩＤ
+	DX_CRITICAL_SECTION		CriticalSection ;					// データアクセス時用クリティカルセクション
+	int						( *InitializeFunction )( HANDLEINFO *HandleInfo ) ;	// ハンドルの初期化をする関数へのポインタ
+	int						( *TerminateFunction )( HANDLEINFO *HandleInfo ) ;	// ハンドルの後始末をする関数へのポインタ
+	int						( *DumpInfoFunction )( HANDLEINFO *HandleInfo ) ;	// ハンドルの情報を出力する関数へのポインタ
+	const wchar_t			*Name ;								// ハンドル名
+	char					NameUTF16LE[ 128 ] ;				// ハンドル名( UTF16LE )
+	int						DeleteRequestHandleNum ;			// 削除リクエストのハンドルの数
+	HANDLELIST				DeleteRequestListFirst ;			// 削除リクエストのハンドルリストの先頭
+	HANDLELIST				DeleteRequestListLast ;				// 削除リクエストのハンドルリストの末端
 } ;
 
-// �������ϐ��錾 --------------------------------------------------------------
+// 内部大域変数宣言 --------------------------------------------------------------
 
 extern HANDLEMANAGE HandleManageArray[ DX_HANDLETYPE_MAX ] ;
 
-// �֐��v���g�^�C�v�錾-----------------------------------------------------------
+// 関数プロトタイプ宣言-----------------------------------------------------------
 
-// �n���h�����ʊ֌W
-extern	int		InitializeHandleManage( int HandleType, int OneSize, int MaxNum, int ( *InitializeFunction )( HANDLEINFO *HandleInfo ), int ( *TerminateFunction )( HANDLEINFO *HandleInfo ), int ( *DumpInfoFunction )( HANDLEINFO *HandleInfo ), const wchar_t *Name ) ;	// �n���h���Ǘ���������������( InitializeFlag �ɂ� FALSE �������Ă���K�v������ )
-extern	int		TerminateHandleManage( int HandleType ) ;																		// �n���h���Ǘ����̌�n�����s��
+// ハンドル共通関係
+extern	int		InitializeHandleManage( int HandleType, int OneSize, int MaxNum, int ( *InitializeFunction )( HANDLEINFO *HandleInfo ), int ( *TerminateFunction )( HANDLEINFO *HandleInfo ), int ( *DumpInfoFunction )( HANDLEINFO *HandleInfo ), const wchar_t *Name ) ;	// ハンドル管理情報を初期化する( InitializeFlag には FALSE が入っている必要がある )
+extern	int		TerminateHandleManage( int HandleType ) ;																		// ハンドル管理情報の後始末を行う
 
-extern	int		AddHandle( int HandleType, int ASyncThread, int Handle /* = -1 */ ) ;				// �n���h����ǉ�����
-extern	int		SubHandle( int Handle, int ASyncLoadFlag, int ASyncThread ) ;						// �n���h�����폜����
-extern	int		ReallocHandle( int Handle, size_t NewSize ) ;										// �n���h���̏����i�[���郁�����̈�̃T�C�Y��ύX����A�񓯊��ǂݍ��ݒ��łȂ����Ƃ��O��
-extern	HANDLEINFO *GetHandleInfo( int Handle ) ;													// �n���h���̏����擾����
-extern	int		AllHandleSub( int HandleType, int (*DeleteCancelCheckFunction)( HANDLEINFO *HandleInfo ) = NULL ) ;	// �n���h���Ǘ����ɓo�^����Ă��邷�ׂẴn���h�����폜
+extern	int		AddHandle( int HandleType, int ASyncThread, int Handle /* = -1 */ ) ;				// ハンドルを追加する
+extern	int		SubHandle( int Handle, int ASyncLoadFlag, int ASyncThread ) ;						// ハンドルを削除する
+extern	int		ReallocHandle( int Handle, size_t NewSize ) ;										// ハンドルの情報を格納するメモリ領域のサイズを変更する、非同期読み込み中でないことが前提
+extern	HANDLEINFO *GetHandleInfo( int Handle ) ;													// ハンドルの情報を取得する
+extern	int		AllHandleSub( int HandleType, int (*DeleteCancelCheckFunction)( HANDLEINFO *HandleInfo ) = NULL ) ;	// ハンドル管理情報に登録されているすべてのハンドルを削除
 #ifndef DX_NON_ASYNCLOAD
-extern	int		IncASyncLoadCount( int Handle, int ASyncDataNumber ) ;								// �n���h���̔񓯊��ǂݍ��ݒ��J�E���g���C���N�������g����
-extern	int		DecASyncLoadCount( int Handle ) ;													// �n���h���̔񓯊��ǂݍ��ݒ��J�E���g���f�N�������g����
-extern	int		GetASyncLoadFinishDeleteFlag( int Handle ) ;										// �n���h���̔񓯊��ǂݍ��݊�����ɍ폜���邩�ǂ����̃t���O���擾����
-extern	int		WaitASyncLoad( int Handle ) ;														// �n���h�����񓯊��ǂݍ��ݒ��������ꍇ�A�񓯊��ǂݍ��݂���������܂ő҂�
-extern	int		DeleteRequestHandleDelete( int AllDelete ) ;										// �폜���N�G�X�g�����Ă���n���h�����폜����
+extern	int		IncASyncLoadCount( int Handle, int ASyncDataNumber ) ;								// ハンドルの非同期読み込み中カウントをインクリメントする
+extern	int		DecASyncLoadCount( int Handle ) ;													// ハンドルの非同期読み込み中カウントをデクリメントする
+extern	int		GetASyncLoadFinishDeleteFlag( int Handle ) ;										// ハンドルの非同期読み込み完了後に削除するかどうかのフラグを取得する
+extern	int		WaitASyncLoad( int Handle ) ;														// ハンドルが非同期読み込み中だった場合、非同期読み込みが完了するまで待つ
+extern	int		DeleteRequestHandleDelete( int AllDelete ) ;										// 削除リクエストが来ているハンドルを削除する
 #endif // DX_NON_ASYNCLOAD
 
 
-// �n���h�����X�g
-extern	int		InitializeHandleList( HANDLELIST *First, HANDLELIST *Last ) ;					// ���X�g�̏�����
-extern	int		AddHandleList( HANDLELIST *First, HANDLELIST *List, int Handle, void *Data ) ;	// ���X�g�֗v�f��ǉ�
-extern	int		SubHandleList( HANDLELIST *List ) ;												// ���X�g����v�f���O��
-extern	int		NewMemoryHandleList( HANDLELIST *List, void *Data ) ;							// ���X�g�����݂��郁�������ύX���ꂽ�ꍇ�Ƀ��X�g�̑O����X�V����
+// ハンドルリスト
+extern	int		InitializeHandleList( HANDLELIST *First, HANDLELIST *Last ) ;					// リストの初期化
+extern	int		AddHandleList( HANDLELIST *First, HANDLELIST *List, int Handle, void *Data ) ;	// リストへ要素を追加
+extern	int		SubHandleList( HANDLELIST *List ) ;												// リストから要素を外す
+extern	int		NewMemoryHandleList( HANDLELIST *List, void *Data ) ;							// リストが存在するメモリが変更された場合にリストの前後を更新する
 
 
-// �V���v�����X�g
-extern	int		InitializeSimpleList( SIMPLELIST *First, SIMPLELIST *Last ) ;					// �V���v�����X�g�̏�����
-extern	int		AddSimpleList( SIMPLELIST *First, SIMPLELIST *List, void *Data ) ;				// �V���v�����X�g�֗v�f��ǉ�
-extern	int		SubSimpleList( SIMPLELIST *List ) ;												// �V���v�����X�g����v�f���O��
-extern	int		NewMemorySimpleList( SIMPLELIST *List, void *Data ) ;							// �V���v�����X�g�����݂��郁�������ύX���ꂽ�ꍇ�Ƀ��X�g�̑O����X�V����
+// シンプルリスト
+extern	int		InitializeSimpleList( SIMPLELIST *First, SIMPLELIST *Last ) ;					// シンプルリストの初期化
+extern	int		AddSimpleList( SIMPLELIST *First, SIMPLELIST *List, void *Data ) ;				// シンプルリストへ要素を追加
+extern	int		SubSimpleList( SIMPLELIST *List ) ;												// シンプルリストから要素を外す
+extern	int		NewMemorySimpleList( SIMPLELIST *List, void *Data ) ;							// シンプルリストが存在するメモリが変更された場合にリストの前後を更新する
 
 
 #ifndef DX_NON_NAMESPACE

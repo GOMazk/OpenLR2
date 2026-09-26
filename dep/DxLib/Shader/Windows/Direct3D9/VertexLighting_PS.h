@@ -1,119 +1,119 @@
 // -------------------------------------------------------------------------------
 // 
-// 		‚c‚wƒ‰ƒCƒuƒ‰ƒŠ		ƒsƒNƒZƒ‹ƒVƒF[ƒ_[’è‹`ƒR[ƒh
+// 		ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒª		ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼å®šç¾©ã‚³ãƒ¼ãƒ‰
 // 
 // 				Ver 3.17 
 // 
 // -------------------------------------------------------------------------------
 
-// ‹¤’Ê•”•ª
+// å…±é€šéƒ¨åˆ†
 
-// ƒsƒNƒZƒ‹ƒVƒF[ƒ_[‚Ì“ü—Í
+// ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®å…¥åŠ›
 struct PS_INPUT
 {
-	float4 Diffuse         : COLOR0 ;		// ƒfƒBƒtƒ…[ƒYƒJƒ‰[
+	float4 Diffuse         : COLOR0 ;		// ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚«ãƒ©ãƒ¼
 #if USE_SPE
-	float4 Specular        : COLOR1 ;		// ƒXƒyƒLƒ…ƒ‰ƒJƒ‰[
+	float4 Specular        : COLOR1 ;		// ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã‚«ãƒ©ãƒ¼
 #endif
-	float4 TexCoords0_1    : TEXCOORD0 ;	// ƒeƒNƒXƒ`ƒƒÀ•W‚ÆƒTƒuƒeƒNƒXƒ`ƒƒÀ•W( x:ƒeƒNƒXƒ`ƒƒÀ•Wx  y:ƒeƒNƒXƒ`ƒƒÀ•Wy  z:ƒTƒuƒeƒNƒXƒ`ƒƒÀ•Wx  w:ƒTƒuƒeƒNƒXƒ`ƒƒÀ•Wy )
+	float4 TexCoords0_1    : TEXCOORD0 ;	// ãƒ†ã‚¯ã‚¹ãƒãƒ£åº§æ¨™ã¨ã‚µãƒ–ãƒ†ã‚¯ã‚¹ãƒãƒ£åº§æ¨™( x:ãƒ†ã‚¯ã‚¹ãƒãƒ£åº§æ¨™x  y:ãƒ†ã‚¯ã‚¹ãƒãƒ£åº§æ¨™y  z:ã‚µãƒ–ãƒ†ã‚¯ã‚¹ãƒãƒ£åº§æ¨™x  w:ã‚µãƒ–ãƒ†ã‚¯ã‚¹ãƒãƒ£åº§æ¨™y )
 #if ( ( BUMPMAP || PHONG ) && USE_SPE ) || SHADOWMAP
-	float4 V_to_Eye_ShadowMap3PosZ : TEXCOORD1 ;	// ’¸“_À•W‚©‚ç‹ü‚Ö‚ÌƒxƒNƒgƒ‹( ƒrƒ…[‹óŠÔ )‚ÆƒVƒƒƒhƒEƒ}ƒbƒv‚R‚Ìƒ‰ƒCƒgZÀ•W( w )
+	float4 V_to_Eye_ShadowMap3PosZ : TEXCOORD1 ;	// é ‚ç‚¹åº§æ¨™ã‹ã‚‰è¦–ç·šã¸ã®ãƒ™ã‚¯ãƒˆãƒ«( ãƒ“ãƒ¥ãƒ¼ç©ºé–“ )ã¨ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ï¼“ã®ãƒ©ã‚¤ãƒˆZåº§æ¨™( w )
 #endif
 #if ( PHONG == 1 && BUMPMAP == 0 ) || SM_3
-	float4 Normal_Fog      : TEXCOORD2 ;	// x.y.z:–@ü( ƒrƒ…[‹óŠÔ )  w:SM3.0—p‚ÌƒtƒHƒOƒpƒ‰ƒ[ƒ^
+	float4 Normal_Fog      : TEXCOORD2 ;	// x.y.z:æ³•ç·š( ãƒ“ãƒ¥ãƒ¼ç©ºé–“ )  w:SM3.0ç”¨ã®ãƒ•ã‚©ã‚°ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 #endif
 #if LG0_USE
-	float4 Light0_Dir_Gen  : TEXCOORD3 ;	// xyz:ƒ‰ƒCƒg‚O‚Ì‹tƒxƒNƒgƒ‹( ƒrƒ…[‹óŠÔ ) w:ƒ‰ƒCƒg‚OŒ¸Šî•ñ
+	float4 Light0_Dir_Gen  : TEXCOORD3 ;	// xyz:ãƒ©ã‚¤ãƒˆï¼ã®é€†ãƒ™ã‚¯ãƒˆãƒ«( ãƒ“ãƒ¥ãƒ¼ç©ºé–“ ) w:ãƒ©ã‚¤ãƒˆï¼æ¸›è¡°æƒ…å ±
 #endif
 #if LG1_USE
-	float4 Light1_Dir_Gen  : TEXCOORD4 ;	// xyz:ƒ‰ƒCƒg‚P‚Ì‹tƒxƒNƒgƒ‹( ƒrƒ…[‹óŠÔ ) w:ƒ‰ƒCƒg‚PŒ¸Šî•ñ
+	float4 Light1_Dir_Gen  : TEXCOORD4 ;	// xyz:ãƒ©ã‚¤ãƒˆï¼‘ã®é€†ãƒ™ã‚¯ãƒˆãƒ«( ãƒ“ãƒ¥ãƒ¼ç©ºé–“ ) w:ãƒ©ã‚¤ãƒˆï¼‘æ¸›è¡°æƒ…å ±
 #endif
 #if LG2_USE
-	float4 Light2_Dir_Gen  : TEXCOORD5 ;	// xyz:ƒ‰ƒCƒg‚Q‚Ì‹tƒxƒNƒgƒ‹( ƒrƒ…[‹óŠÔ ) w:ƒ‰ƒCƒg‚QŒ¸Šî•ñ
+	float4 Light2_Dir_Gen  : TEXCOORD5 ;	// xyz:ãƒ©ã‚¤ãƒˆï¼’ã®é€†ãƒ™ã‚¯ãƒˆãƒ«( ãƒ“ãƒ¥ãƒ¼ç©ºé–“ ) w:ãƒ©ã‚¤ãƒˆï¼’æ¸›è¡°æƒ…å ±
 #endif
 
 #if SHADOWMAP || SHADOWMAP_DRAW
-	float4 ShadowMap1Pos_ShadowMap3PosX   : TEXCOORD6 ;	// ƒVƒƒƒhƒEƒ}ƒbƒv‚P‚Ìƒ‰ƒCƒgÀ•W( x, y, z )‚ÆƒVƒƒƒhƒEƒ}ƒbƒv‚R‚Ìƒ‰ƒCƒgXÀ•W( w )
+	float4 ShadowMap1Pos_ShadowMap3PosX   : TEXCOORD6 ;	// ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ï¼‘ã®ãƒ©ã‚¤ãƒˆåº§æ¨™( x, y, z )ã¨ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ï¼“ã®ãƒ©ã‚¤ãƒˆXåº§æ¨™( w )
 #endif
 #if SHADOWMAP
-	float4 ShadowMap2Pos_ShadowMap3PosY   : TEXCOORD7 ;	// ƒVƒƒƒhƒEƒ}ƒbƒv‚Q‚Ìƒ‰ƒCƒgÀ•W( x, y, z )‚ÆƒVƒƒƒhƒEƒ}ƒbƒv‚R‚Ìƒ‰ƒCƒgYÀ•W( w )
+	float4 ShadowMap2Pos_ShadowMap3PosY   : TEXCOORD7 ;	// ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ï¼’ã®ãƒ©ã‚¤ãƒˆåº§æ¨™( x, y, z )ã¨ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ï¼“ã®ãƒ©ã‚¤ãƒˆYåº§æ¨™( w )
 #endif
 } ;
 
-// ƒsƒNƒZƒ‹ƒVƒF[ƒ_[‚Ìo—Í
+// ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®å‡ºåŠ›
 struct PS_OUTPUT
 {
-	float4 Color0          : COLOR0 ;	// F
+	float4 Color0          : COLOR0 ;	// è‰²
 } ;
 
-// ƒ}ƒeƒŠƒAƒ‹ƒpƒ‰ƒ[ƒ^
+// ãƒãƒ†ãƒªã‚¢ãƒ«ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 struct MATERIAL
 {
-	float4 Diffuse ;      // ƒfƒBƒtƒ…[ƒYƒJƒ‰[
-	float4 Specular ;     // ƒXƒyƒLƒ…ƒ‰ƒJƒ‰[
-	float4 Power ;        // ƒXƒyƒLƒ…ƒ‰‚Ì‹­‚³
+	float4 Diffuse ;      // ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚«ãƒ©ãƒ¼
+	float4 Specular ;     // ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã‚«ãƒ©ãƒ¼
+	float4 Power ;        // ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã®å¼·ã•
 } ;
 
-// ƒ‰ƒCƒgƒpƒ‰ƒ[ƒ^
+// ãƒ©ã‚¤ãƒˆãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 struct LIGHT
 {
-	float4 Diffuse ;      // ƒfƒBƒtƒ…[ƒYƒJƒ‰[
-	float4 Specular ;     // ƒXƒyƒLƒ…ƒ‰ƒJƒ‰[
-	float4 Ambient ;      // ƒAƒ“ƒrƒGƒ“ƒgƒJƒ‰[
+	float4 Diffuse ;      // ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚«ãƒ©ãƒ¼
+	float4 Specular ;     // ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã‚«ãƒ©ãƒ¼
+	float4 Ambient ;      // ã‚¢ãƒ³ãƒ“ã‚¨ãƒ³ãƒˆã‚«ãƒ©ãƒ¼
 } ;
 
 
 
-// C++ ‘¤‚Åİ’è‚·‚é’è”‚Ì’è‹`
-sampler  DiffuseMapTexture              : register( s0 ) ;		// ƒfƒBƒtƒ…[ƒYƒ}ƒbƒvƒeƒNƒXƒ`ƒƒ
+// C++ å´ã§è¨­å®šã™ã‚‹å®šæ•°ã®å®šç¾©
+sampler  DiffuseMapTexture              : register( s0 ) ;		// ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºãƒãƒƒãƒ—ãƒ†ã‚¯ã‚¹ãƒãƒ£
 
 #if BUMPMAP
-sampler  NormalMapTexture               : register( s1 ) ;		// –@üƒ}ƒbƒvƒeƒNƒXƒ`ƒƒ
+sampler  NormalMapTexture               : register( s1 ) ;		// æ³•ç·šãƒãƒƒãƒ—ãƒ†ã‚¯ã‚¹ãƒãƒ£
 #endif // BUMPMAP
 
 #if USE_SPETEX
-sampler  SpecularMapTexture             : register( s2 ) ;		// ƒXƒyƒLƒ…ƒ‰ƒ}ƒbƒvƒeƒNƒXƒ`ƒƒ
+sampler  SpecularMapTexture             : register( s2 ) ;		// ã‚¹ãƒšã‚­ãƒ¥ãƒ©ãƒãƒƒãƒ—ãƒ†ã‚¯ã‚¹ãƒãƒ£
 #endif // USE_SPETEX
 
 #if TOON
-sampler  ToonDiffuseGradTexture         : register( s3 ) ;		// ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO—pƒfƒBƒtƒ…[ƒYƒJƒ‰[ƒOƒ‰ƒf[ƒVƒ‡ƒ“ƒeƒNƒXƒ`ƒƒ
-sampler  ToonSpecularGradTexture        : register( s4 ) ;		// ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO—pƒXƒyƒLƒ…ƒ‰ƒJƒ‰[ƒOƒ‰ƒf[ƒVƒ‡ƒ“ƒeƒNƒXƒ`ƒƒ
+sampler  ToonDiffuseGradTexture         : register( s3 ) ;		// ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ç”¨ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚«ãƒ©ãƒ¼ã‚°ãƒ©ãƒ‡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ†ã‚¯ã‚¹ãƒãƒ£
+sampler  ToonSpecularGradTexture        : register( s4 ) ;		// ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ç”¨ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã‚«ãƒ©ãƒ¼ã‚°ãƒ©ãƒ‡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ†ã‚¯ã‚¹ãƒãƒ£
 #if TOON_SPHEREOP_MUL || TOON_SPHEREOP_ADD
-sampler  ToonSphereMapTexture           : register( s5 ) ;		// ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO—pƒXƒtƒBƒAƒ}ƒbƒvƒeƒNƒXƒ`ƒƒ
+sampler  ToonSphereMapTexture           : register( s5 ) ;		// ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ç”¨ã‚¹ãƒ•ã‚£ã‚¢ãƒãƒƒãƒ—ãƒ†ã‚¯ã‚¹ãƒãƒ£
 #endif // TOON_SPHEREOP_MUL || TOON_SPHEREOP_ADD
-sampler  ToonRGBtoVMaxRGBVolumeTexture  : register( s6 ) ;		// ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO—pRGB‹P“x–O˜aˆ——pƒ{ƒŠƒ…[ƒ€ƒeƒNƒXƒ`ƒƒ
+sampler  ToonRGBtoVMaxRGBVolumeTexture  : register( s6 ) ;		// ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ç”¨RGBè¼åº¦é£½å’Œå‡¦ç†ç”¨ãƒœãƒªãƒ¥ãƒ¼ãƒ ãƒ†ã‚¯ã‚¹ãƒãƒ£
 #endif // TOON
 
 #if SUBTEXTUREMODE != 0
-sampler  SubTexture                     : register( s7 ) ;		// ƒTƒuƒeƒNƒXƒ`ƒƒ
+sampler  SubTexture                     : register( s7 ) ;		// ã‚µãƒ–ãƒ†ã‚¯ã‚¹ãƒãƒ£
 #endif // SUBTEXTUREMODE != 0
 
 #if SHADOWMAP
-sampler  ShadowMap1Texture              : register( s8  ) ;		// ƒVƒƒƒhƒEƒ}ƒbƒv‚PƒeƒNƒXƒ`ƒƒ
-sampler  ShadowMap2Texture              : register( s9  ) ;		// ƒVƒƒƒhƒEƒ}ƒbƒv‚QƒeƒNƒXƒ`ƒƒ
-sampler  ShadowMap3Texture              : register( s10 ) ;		// ƒVƒƒƒhƒEƒ}ƒbƒv‚RƒeƒNƒXƒ`ƒƒ
+sampler  ShadowMap1Texture              : register( s8  ) ;		// ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ï¼‘ãƒ†ã‚¯ã‚¹ãƒãƒ£
+sampler  ShadowMap2Texture              : register( s9  ) ;		// ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ï¼’ãƒ†ã‚¯ã‚¹ãƒãƒ£
+sampler  ShadowMap3Texture              : register( s10 ) ;		// ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ï¼“ãƒ†ã‚¯ã‚¹ãƒãƒ£
 #endif
 
 
 float4   cfZeroHalfOneTwo               : register( c0 /* DX_PS_CONSTF_ZERO_HALF_ONE_TWO          */ ) ;		// x=0.0f, y=0.5f, z=1.0f, w=2.0f
-float4   cfAmbient_Emissive             : register( c1 /* DX_PS_CONSTF_AMBIENT_EMISSIVE           */ ) ;		// ƒGƒ~ƒbƒVƒuƒJƒ‰[ + ƒ}ƒeƒŠƒAƒ‹ƒAƒ“ƒrƒGƒ“ƒgƒJƒ‰[ * ƒOƒ[ƒoƒ‹ƒAƒ“ƒrƒGƒ“ƒgƒJƒ‰[
+float4   cfAmbient_Emissive             : register( c1 /* DX_PS_CONSTF_AMBIENT_EMISSIVE           */ ) ;		// ã‚¨ãƒŸãƒƒã‚·ãƒ–ã‚«ãƒ©ãƒ¼ + ãƒãƒ†ãƒªã‚¢ãƒ«ã‚¢ãƒ³ãƒ“ã‚¨ãƒ³ãƒˆã‚«ãƒ©ãƒ¼ * ã‚°ãƒ­ãƒ¼ãƒãƒ«ã‚¢ãƒ³ãƒ“ã‚¨ãƒ³ãƒˆã‚«ãƒ©ãƒ¼
 
-MATERIAL cfMaterial                     : register( c2 /* DX_PS_CONSTF_MATERIAL_START             */ ) ;		// ƒ}ƒeƒŠƒAƒ‹ƒpƒ‰ƒ[ƒ^
+MATERIAL cfMaterial                     : register( c2 /* DX_PS_CONSTF_MATERIAL_START             */ ) ;		// ãƒãƒ†ãƒªã‚¢ãƒ«ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 
-float4   cfFactorColor                  : register( c5 /* DX_PS_CONSTF_FACTORCOLOR                */ ) ;		// ƒAƒ‹ƒtƒ@’l“™
-float4   cfToonOutLineColor             : register( c6 /* DX_PS_CONSTF_TOON_OUTLINE_COLOR         */ ) ;		// ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚Ì—ÖŠsü‚ÌF
-float4   cfToonOutLineWidth             : register( c7 /* DX_PS_CONSTF_TOON_OUTLINE_WIDTH         */ ) ;		// ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚Ì—ÖŠsü‚Ì‘¾‚³
-float4   cfFogColor                     : register( c8 /* DX_PS_CONSTF_FOG_COLOR                  */ ) ;		// ƒtƒHƒOƒJƒ‰[
+float4   cfFactorColor                  : register( c5 /* DX_PS_CONSTF_FACTORCOLOR                */ ) ;		// ã‚¢ãƒ«ãƒ•ã‚¡å€¤ç­‰
+float4   cfToonOutLineColor             : register( c6 /* DX_PS_CONSTF_TOON_OUTLINE_COLOR         */ ) ;		// ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã®è¼ªéƒ­ç·šã®è‰²
+float4   cfToonOutLineWidth             : register( c7 /* DX_PS_CONSTF_TOON_OUTLINE_WIDTH         */ ) ;		// ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã®è¼ªéƒ­ç·šã®å¤ªã•
+float4   cfFogColor                     : register( c8 /* DX_PS_CONSTF_FOG_COLOR                  */ ) ;		// ãƒ•ã‚©ã‚°ã‚«ãƒ©ãƒ¼
 
-LIGHT    cfLight[ 4 ]                   : register( c9 /* DX_PS_CONSTF_LIGHT_START                */ ) ;		// ƒ‰ƒCƒgƒpƒ‰ƒ[ƒ^
+LIGHT    cfLight[ 4 ]                   : register( c9 /* DX_PS_CONSTF_LIGHT_START                */ ) ;		// ãƒ©ã‚¤ãƒˆãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 
-float4   cfShadowMap1_DAdj_Grad_Enbl0_1               : register( c18 /* DX_PS_CONSTF_SHADOW1_DADJ_GRAD_ENBL0_1             */ ) ;		// ƒVƒƒƒhƒEƒ}ƒbƒv‚P—p‚Ìî•ñ( x:è‡’l[“x•â³’l  y:ƒOƒ‰ƒf[ƒVƒ‡ƒ“”ÍˆÍ  zw:ƒ‰ƒCƒg‚OE‚P‚Ö‚Ì“K—pî•ñ)
-float4   cfShadowMap1_Enb2_ShadowMap2_DAdj_Grad_Enbl0 : register( c19 /* DX_PS_CONSTF_SHADOW1_ENBL2_SHADOW2_DADJ_GRAD_ENBL0 */ ) ;		// ƒVƒƒƒhƒEƒ}ƒbƒv‚P—p‚Ìî•ñ( x:ƒ‰ƒCƒg‚Q‚Ö‚Ì“K—pî•ñ )AƒVƒƒƒhƒEƒ}ƒbƒv‚Q—p‚Ìî•ñ( y:è‡’l[“x•â³’l  z:ƒOƒ‰ƒf[ƒVƒ‡ƒ“”ÍˆÍ  w:ƒ‰ƒCƒg‚O‚Ö‚Ì“K—pî•ñ )
-float4   cfShadowMap2_Enbl1_2_ShadowMap3_DAdj_Grad    : register( c20 /* DX_PS_CONSTF_SHADOW2_ENBL1_2_SHADOW3_DADJ_GRAD     */ ) ;		// ƒVƒƒƒhƒEƒ}ƒbƒv‚Q—p‚Ìî•ñ( xy:ƒ‰ƒCƒg‚PE‚Q‚Ö‚Ì“K—pî•ñ)AƒVƒƒƒhƒEƒ}ƒbƒv‚R—p‚Ìî•ñ( z:è‡’l[“x•â³’l  w:ƒOƒ‰ƒf[ƒVƒ‡ƒ“”ÍˆÍ )
-float4   cfShadowMap3_Enbl0_1_2_LgtNoGen              : register( c21 /* DX_PS_CONSTF_SHADOW3_ENBL0_1_2_LGT_NO_GEN          */ ) ;		// ƒVƒƒƒhƒEƒ}ƒbƒv‚R—p‚Ìî•ñ( xyz:ƒ‰ƒCƒg‚O`‚Q‚Ö‚Ì“K—pî•ñ )
-float4   cfMulAlphaColorAddColor                      : register( c22 /* DX_PS_CONSTF_MUL_ALPHA_COLOR_ADD_COLOR             */ ) ;		// ƒJƒ‰[‚ÉƒAƒ‹ƒtƒ@’l‚ğæZ‚·‚é‚©‚Ç‚¤‚©( x( 0.0f:æZ‚µ‚È‚¢  1.0f:æZ‚·‚é ) ), ‰ÁZ‚·‚éF( RGB=yzw )
-float4   cfIgnoreTextureColor                         : register( c23 /* DX_PS_CONSTF_IGNORE_TEX_COLOR                      */ ) ;		// ƒeƒNƒXƒ`ƒƒƒJƒ‰[–³‹ˆ——pƒJƒ‰[
-float4   cfHalfLambert                                : register( c24 /* DX_PS_CONSTF_USE_HALFLAMBERT                       */ ) ;		// ƒeƒNƒXƒ`ƒƒƒJƒ‰[–³‹ˆ——pƒJƒ‰[
+float4   cfShadowMap1_DAdj_Grad_Enbl0_1               : register( c18 /* DX_PS_CONSTF_SHADOW1_DADJ_GRAD_ENBL0_1             */ ) ;		// ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ï¼‘ç”¨ã®æƒ…å ±( x:é–¾å€¤æ·±åº¦è£œæ­£å€¤  y:ã‚°ãƒ©ãƒ‡ãƒ¼ã‚·ãƒ§ãƒ³ç¯„å›²  zw:ãƒ©ã‚¤ãƒˆï¼ãƒ»ï¼‘ã¸ã®é©ç”¨æƒ…å ±)
+float4   cfShadowMap1_Enb2_ShadowMap2_DAdj_Grad_Enbl0 : register( c19 /* DX_PS_CONSTF_SHADOW1_ENBL2_SHADOW2_DADJ_GRAD_ENBL0 */ ) ;		// ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ï¼‘ç”¨ã®æƒ…å ±( x:ãƒ©ã‚¤ãƒˆï¼’ã¸ã®é©ç”¨æƒ…å ± )ã€ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ï¼’ç”¨ã®æƒ…å ±( y:é–¾å€¤æ·±åº¦è£œæ­£å€¤  z:ã‚°ãƒ©ãƒ‡ãƒ¼ã‚·ãƒ§ãƒ³ç¯„å›²  w:ãƒ©ã‚¤ãƒˆï¼ã¸ã®é©ç”¨æƒ…å ± )
+float4   cfShadowMap2_Enbl1_2_ShadowMap3_DAdj_Grad    : register( c20 /* DX_PS_CONSTF_SHADOW2_ENBL1_2_SHADOW3_DADJ_GRAD     */ ) ;		// ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ï¼’ç”¨ã®æƒ…å ±( xy:ãƒ©ã‚¤ãƒˆï¼‘ãƒ»ï¼’ã¸ã®é©ç”¨æƒ…å ±)ã€ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ï¼“ç”¨ã®æƒ…å ±( z:é–¾å€¤æ·±åº¦è£œæ­£å€¤  w:ã‚°ãƒ©ãƒ‡ãƒ¼ã‚·ãƒ§ãƒ³ç¯„å›² )
+float4   cfShadowMap3_Enbl0_1_2_LgtNoGen              : register( c21 /* DX_PS_CONSTF_SHADOW3_ENBL0_1_2_LGT_NO_GEN          */ ) ;		// ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ï¼“ç”¨ã®æƒ…å ±( xyz:ãƒ©ã‚¤ãƒˆï¼ï½ï¼’ã¸ã®é©ç”¨æƒ…å ± )
+float4   cfMulAlphaColorAddColor                      : register( c22 /* DX_PS_CONSTF_MUL_ALPHA_COLOR_ADD_COLOR             */ ) ;		// ã‚«ãƒ©ãƒ¼ã«ã‚¢ãƒ«ãƒ•ã‚¡å€¤ã‚’ä¹—ç®—ã™ã‚‹ã‹ã©ã†ã‹( x( 0.0f:ä¹—ç®—ã—ãªã„  1.0f:ä¹—ç®—ã™ã‚‹ ) ), åŠ ç®—ã™ã‚‹è‰²( RGB=yzw )
+float4   cfIgnoreTextureColor                         : register( c23 /* DX_PS_CONSTF_IGNORE_TEX_COLOR                      */ ) ;		// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚«ãƒ©ãƒ¼ç„¡è¦–å‡¦ç†ç”¨ã‚«ãƒ©ãƒ¼
+float4   cfHalfLambert                                : register( c24 /* DX_PS_CONSTF_USE_HALFLAMBERT                       */ ) ;		// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚«ãƒ©ãƒ¼ç„¡è¦–å‡¦ç†ç”¨ã‚«ãƒ©ãƒ¼
 
 #define SHADOWMAP1_ENABLE_LGT0 cfShadowMap1_DAdj_Grad_Enbl0_1.z
 #define SHADOWMAP1_ENABLE_LGT1 cfShadowMap1_DAdj_Grad_Enbl0_1.w

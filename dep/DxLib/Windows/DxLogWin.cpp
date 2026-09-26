@@ -1,17 +1,17 @@
 //-----------------------------------------------------------------------------
 // 
-// 		‚c‚wƒ‰ƒCƒuƒ‰ƒŠ		Windows—pƒƒOƒvƒƒOƒ‰ƒ€
+// 		ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒª		Windowsç”¨ãƒ­ã‚°ãƒ—ãƒ­ã‚°ãƒ©ãƒ 
 // 
 //  	Ver 3.25a
 // 
 //-----------------------------------------------------------------------------
 
-// ‚c‚wƒ‰ƒCƒuƒ‰ƒŠì¬—p’è‹`
+// ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªä½œæˆæ™‚ç”¨å®šç¾©
 #define DX_MAKE
 
 #include "../DxCompileConfig.h"
 
-// ƒCƒ“ƒNƒ‹[ƒh ---------------------------------------------------------------
+// ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ ---------------------------------------------------------------
 #include "DxLogWin.h"
 
 #ifndef DX_NON_LOG
@@ -33,34 +33,34 @@ namespace DxLib
 
 #endif // DX_NON_NAMESPACE
 
-// ƒ}ƒNƒ’è‹` -----------------------------------------------------------------
+// ãƒã‚¯ãƒ­å®šç¾© -----------------------------------------------------------------
 
-// \‘¢‘ÌéŒ¾ -----------------------------------------------------------------
+// æ§‹é€ ä½“å®£è¨€ -----------------------------------------------------------------
 
-// ƒf[ƒ^’è‹` -----------------------------------------------------------------
+// ãƒ‡ãƒ¼ã‚¿å®šç¾© -----------------------------------------------------------------
 
-// ŠÖ”éŒ¾ -------------------------------------------------------------------
+// é–¢æ•°å®£è¨€ -------------------------------------------------------------------
 
-// ƒvƒƒOƒ‰ƒ€ -----------------------------------------------------------------
+// ãƒ—ãƒ­ã‚°ãƒ©ãƒ  -----------------------------------------------------------------
 
-// ƒƒOƒtƒ@ƒCƒ‹‚ğ‰Šú‰»‚·‚éˆ—‚ÌŠÂ‹«ˆË‘¶•”•ª
+// ãƒ­ã‚°ãƒ•ã‚¡ã‚¤ãƒ«ã‚’åˆæœŸåŒ–ã™ã‚‹å‡¦ç†ã®ç’°å¢ƒä¾å­˜éƒ¨åˆ†
 extern int LogFileInitialize_PF( const wchar_t *LogFilePath )
 {
 	HANDLE fp ;
 
 	SETUP_WIN_API
 
-//	// g—p‚·‚éƒLƒƒƒ‰ƒNƒ^[ƒR[ƒh‚ª UTF8Œ`®‚Ìê‡‚Ì‚İo—Í‚·‚éƒtƒ@ƒCƒ‹‚à UTF8Œ`®‚É‚·‚é
+//	// ä½¿ç”¨ã™ã‚‹ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã‚³ãƒ¼ãƒ‰ãŒ UTF8å½¢å¼ã®å ´åˆã®ã¿å‡ºåŠ›ã™ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«ã‚‚ UTF8å½¢å¼ã«ã™ã‚‹
 //	LogData.PF.UTF8Mode = _GET_CHAR_CHARCODEFORMAT() == DX_CHARCODEFORMAT_UTF8 ? TRUE : FALSE ;
 
-	// UTF8Œ`®‚Åo—Í‚·‚é
+	// UTF8å½¢å¼ã§å‡ºåŠ›ã™ã‚‹
 	LogData.PF.UTF8Mode = TRUE ;
 
-	// ƒGƒ‰[ƒƒOƒtƒ@ƒCƒ‹‚ğÄì¬‚·‚é
+	// ã‚¨ãƒ©ãƒ¼ãƒ­ã‚°ãƒ•ã‚¡ã‚¤ãƒ«ã‚’å†ä½œæˆã™ã‚‹
 	DeleteFileWFunc( LogFilePath ) ;
 	fp = CreateFileWFunc( LogFilePath, GENERIC_WRITE, 0, NULL, CREATE_NEW, FILE_ATTRIBUTE_NORMAL, NULL ) ;
 
-	// UTF8Œ`®‚Æ UnicodeŒ`®‚Å BOM ‚ªˆÙ‚È‚é
+	// UTF8å½¢å¼ã¨ Unicodeå½¢å¼ã§ BOM ãŒç•°ãªã‚‹
 	if( LogData.PF.UTF8Mode )
 	{
 		BYTE BOM_UTF8[ 3 ] = { 0xef, 0xbb, 0xbf } ;
@@ -79,17 +79,17 @@ extern int LogFileInitialize_PF( const wchar_t *LogFilePath )
 		WinAPIData.Win32Func.CloseHandleFunc( fp ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒƒOƒtƒ@ƒCƒ‹‚ÌŒãn––‚ÌŠÂ‹«ˆË‘¶•”•ª
+// ãƒ­ã‚°ãƒ•ã‚¡ã‚¤ãƒ«ã®å¾Œå§‹æœ«ã®ç’°å¢ƒä¾å­˜éƒ¨åˆ†
 extern int LogFileTerminate_PF( void )
 {
 	return 0 ;
 }
 
-// ƒƒOƒtƒ@ƒCƒ‹‚Ö•¶š—ñ‚ğ‘‚«o‚·ˆ—‚ÌŠÂ‹«ˆË‘¶•”•ª
+// ãƒ­ã‚°ãƒ•ã‚¡ã‚¤ãƒ«ã¸æ–‡å­—åˆ—ã‚’æ›¸ãå‡ºã™å‡¦ç†ã®ç’°å¢ƒä¾å­˜éƒ¨åˆ†
 extern int LogFileAdd_WCHAR_T_PF( const wchar_t *LogFilePath, const wchar_t *ErrorStr )
 {
 	HANDLE	fp ;
@@ -102,17 +102,17 @@ extern int LogFileAdd_WCHAR_T_PF( const wchar_t *LogFilePath, const wchar_t *Err
 		return -1 ;
 	}
 
-	// ƒGƒ‰[ƒƒOƒtƒ@ƒCƒ‹‚ğŠJ‚­
+	// ã‚¨ãƒ©ãƒ¼ãƒ­ã‚°ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‹ã
 	fp = CreateFileWFunc( LogFilePath, GENERIC_WRITE, 0, NULL, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL ) ;
 	if( fp != NULL )
 	{
-		// ƒtƒ@ƒCƒ‹ƒAƒNƒZƒXˆÊ’u‚ğƒtƒ@ƒCƒ‹‚Ì––’[‚ÉˆÚ“®
+		// ãƒ•ã‚¡ã‚¤ãƒ«ã‚¢ã‚¯ã‚»ã‚¹ä½ç½®ã‚’ãƒ•ã‚¡ã‚¤ãƒ«ã®æœ«ç«¯ã«ç§»å‹•
 		WinAPIData.Win32Func.SetFilePointerFunc( fp, 0, NULL, FILE_END ) ;
 
-		// ƒGƒ‰[ƒƒOƒtƒ@ƒCƒ‹‚É‘‚«o‚·
+		// ã‚¨ãƒ©ãƒ¼ãƒ­ã‚°ãƒ•ã‚¡ã‚¤ãƒ«ã«æ›¸ãå‡ºã™
 		if( LogData.PF.UTF8Mode )
 		{
-			// UTF8 ‚É•ÏŠ·‚µ‚½•¶š—ñ‚ğŠi”[‚·‚é‚½‚ß‚Ìƒƒ‚ƒŠ—Ìˆæ‚ğŠm•Û
+			// UTF8 ã«å¤‰æ›ã—ãŸæ–‡å­—åˆ—ã‚’æ ¼ç´ã™ã‚‹ãŸã‚ã®ãƒ¡ãƒ¢ãƒªé ˜åŸŸã‚’ç¢ºä¿
 			static char DefaultBuffer[ 1024 ] ;
 			size_t UTF8StringBufferBytes = ( _WCSLEN( ErrorStr ) + 1 ) * 8 ;
 			char *UTF8StringBuffer ;
@@ -130,16 +130,16 @@ extern int LogFileAdd_WCHAR_T_PF( const wchar_t *LogFilePath, const wchar_t *Err
 				UTF8StringBuffer = DefaultBuffer ;
 			}
 
-			// •¶š—ñ‚ğ UTF8 Œ`®‚É•ÏŠ·
+			// æ–‡å­—åˆ—ã‚’ UTF8 å½¢å¼ã«å¤‰æ›
 			int UTF8Bytes = ConvString( ( char * )ErrorStr, -1, WCHAR_T_CHARCODEFORMAT, UTF8StringBuffer, UTF8StringBufferBytes, DX_CHARCODEFORMAT_UTF8 ) ;
 
-			// ƒtƒ@ƒCƒ‹‚É‘‚«o‚µ
+			// ãƒ•ã‚¡ã‚¤ãƒ«ã«æ›¸ãå‡ºã—
 			if( UTF8Bytes > 1 )
 			{
 				WinAPIData.Win32Func.WriteFileFunc( fp, UTF8StringBuffer, ( DWORD )UTF8Bytes - 1, &WriteSize, NULL ) ;
 			}
 
-			// ƒƒ‚ƒŠ‚Ì‰ğ•ú
+			// ãƒ¡ãƒ¢ãƒªã®è§£æ”¾
 			if( UTF8StringBuffer != DefaultBuffer )
 			{
 				DXFREE( UTF8StringBuffer ) ;
@@ -152,18 +152,18 @@ extern int LogFileAdd_WCHAR_T_PF( const wchar_t *LogFilePath, const wchar_t *Err
 			WinAPIData.Win32Func.WriteFileFunc( fp, ErrorStr, ( DWORD )( _WCSLEN( ErrorStr ) * sizeof( wchar_t ) ), &WriteSize, NULL ) ;
 		}
 
-		// ƒGƒ‰[ƒƒO‚ğƒAƒEƒgƒvƒbƒg‚É‘‚«o‚·
+		// ã‚¨ãƒ©ãƒ¼ãƒ­ã‚°ã‚’ã‚¢ã‚¦ãƒˆãƒ—ãƒƒãƒˆã«æ›¸ãå‡ºã™
 		OutputDebugStringWFunc( ErrorStr ) ;
 
-		// ƒtƒ@ƒCƒ‹‚ğ•Â‚¶‚é
+		// ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‰ã˜ã‚‹
 		WinAPIData.Win32Func.CloseHandleFunc( fp ) ;
 	}
 	
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒƒO‹@”\‚Ì‰Šú‰»‚ğs‚¤‚©‚Ç‚¤‚©‚ğæ“¾‚·‚é
+// ãƒ­ã‚°æ©Ÿèƒ½ã®åˆæœŸåŒ–ã‚’è¡Œã†ã‹ã©ã†ã‹ã‚’å–å¾—ã™ã‚‹
 extern int IsInitializeLog( void )
 {
 	if( WinData.MainWindow == NULL )
@@ -172,7 +172,7 @@ extern int IsInitializeLog( void )
 	}
 
 #ifndef DX_NON_GRAPHICS
-	// ƒn[ƒhƒEƒGƒA‹@”\‚ğg‚Á‚Ä‚¢‚é‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+	// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢æ©Ÿèƒ½ã‚’ä½¿ã£ã¦ã„ã‚‹ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 	if( GSYS.Setting.ValidHardware )
 	{
 		switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -193,11 +193,11 @@ extern int IsInitializeLog( void )
 	}
 	else
 	{
-		// ‚c‚wƒ‰ƒCƒuƒ‰ƒŠ‚ªI—¹ó‘Ô‚É“ü‚Á‚Ä‚¢‚½‚ç‰Šú‰»‚µ‚È‚¢
+		// ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªãŒçµ‚äº†çŠ¶æ…‹ã«å…¥ã£ã¦ã„ãŸã‚‰åˆæœŸåŒ–ã—ãªã„
 		return NS_GetUseDDrawObj() == NULL || WinData.MainWindow == NULL ? FALSE : TRUE ;
 	}
 #else // DX_NON_GRAPHICS
-	// ‚c‚wƒ‰ƒCƒuƒ‰ƒŠ‚ªI—¹ó‘Ô‚É“ü‚Á‚Ä‚¢‚½‚ç‰Šú‰»‚µ‚È‚¢
+	// ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªãŒçµ‚äº†çŠ¶æ…‹ã«å…¥ã£ã¦ã„ãŸã‚‰åˆæœŸåŒ–ã—ãªã„
 	return WinData.MainWindow == NULL ? FALSE : TRUE ;
 #endif // DX_NON_GRAPHICS
 }

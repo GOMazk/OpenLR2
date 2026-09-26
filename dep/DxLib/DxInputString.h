@@ -1,6 +1,6 @@
 // -------------------------------------------------------------------------------
 // 
-// 		�c�w���C�u����		��������̓v���O�����w�b�_�t�@�C��
+// 		ＤＸライブラリ		文字列入力プログラムヘッダファイル
 // 
 // 				Ver 3.25a
 // 
@@ -11,7 +11,7 @@
 
 #include "DxCompileConfig.h"
 
-// �C���N���[�h ------------------------------------------------------------------
+// インクルード ------------------------------------------------------------------
 #include "DxLib.h"
 
 #ifndef DX_NON_INPUTSTRING
@@ -31,19 +31,19 @@ namespace DxLib
 
 #endif // DX_NON_NAMESPACE
 
-// �}�N����` --------------------------------------------------------------------
+// マクロ定義 --------------------------------------------------------------------
 
-#define CHARBUFFER_SIZE				(1024)				// �����R�[�h�o�b�t�@�e��
+#define CHARBUFFER_SIZE				(1024)				// 文字コードバッファ容量
 
-// �\���̒�` --------------------------------------------------------------------
+// 構造体定義 --------------------------------------------------------------------
 
 #ifndef DX_NON_INPUTSTRING
 
 #ifndef DX_NON_KEYEX
 
-// �N���X��` --------------------------------------------------------------------
+// クラス定義 --------------------------------------------------------------------
 
-// TSF�����p�N���X
+// TSF処理用クラス
 //class DX_UIElementSink : public D_ITfUIElementSink, public D_ITfInputProcessorProfileActivationSink, public D_ITfCompartmentEventSink
 class DX_UIElementSink : public D_ITfUIElementSink
 {
@@ -74,119 +74,119 @@ private:
 	LONG RefCount ;
 } ;
 
-// ��������͒��f�[�^�\����
+// 文字列入力中データ構造体
 struct INPUTDATA
 {
-	int						UseFlag ;							// �g�p�����t���O
+	int						UseFlag ;							// 使用中かフラグ
 
-	int						ID ;								// �G���[�`�F�b�N�Ɏg�p����h�c
+	int						ID ;								// エラーチェックに使用するＩＤ
 
-	int						EndFlag ;							// ���͂��I�����Ă��邩�t���O
-	int						CancellFlag ;						// ���͂��L�����Z�����ꂽ���̃t���O
+	int						EndFlag ;							// 入力が終了しているかフラグ
+	int						CancellFlag ;						// 入力がキャンセルされたかのフラグ
 
-//	RECT					DrawRect ;							// �`��̈�
+//	RECT					DrawRect ;							// 描画領域
 
-	int						StrLength ;							// ���͒�������̒���
-	int						MaxStrLength ;						// ������̍ő咷( Unicode�ł̏ꍇ�� wchar_t �̐��A�}���`�o�C�g������ł̏ꍇ�� char �̐� )
-	int						SelectStart ;						// �I��͈͊J�n�ʒu
-	int						SelectEnd ;							// �I��͈͏I���ʒu
-	int						DrawStartPos ;						// �`����J�n����ʒu
-	int						Point ;								// �J�[�\���̈ʒu
-	wchar_t *				Buffer ;							// ���s���ɕҏW���镶����o�b�t�@
-	char *					TempBuffer ;						// Buffer ���}���`�o�C�g������ɂ������̂��i�[���邽�߂̃o�b�t�@
-	size_t					TempBufferBytes ;					// TempBuffer �̃T�C�Y
-//	char					*DestBuffer ;						// ���͏I�����ɓ]�����镶����o�b�t�@�ւ̃|�C���^
+	int						StrLength ;							// 入力中文字列の長さ
+	int						MaxStrLength ;						// 文字列の最大長( Unicode版の場合は wchar_t の数、マルチバイト文字列版の場合は char の数 )
+	int						SelectStart ;						// 選択範囲開始位置
+	int						SelectEnd ;							// 選択範囲終了位置
+	int						DrawStartPos ;						// 描画を開始する位置
+	int						Point ;								// カーソルの位置
+	wchar_t *				Buffer ;							// 実行中に編集する文字列バッファ
+	char *					TempBuffer ;						// Buffer をマルチバイト文字列にしたものを格納するためのバッファ
+	size_t					TempBufferBytes ;					// TempBuffer のサイズ
+//	char					*DestBuffer ;						// 入力終了時に転送する文字列バッファへのポインタ
 
-	int						CancelValidFlag ;					// �L�����Z���L���t���O
-	int						SingleCharOnlyFlag ;				// �_�u���o�C�g�����͈���Ȃ����t���O
-	int						NumCharOnlyFlag ;					// ���p�p���������g��Ȃ����t���O
-	int						DoubleCharOnlyFlag ;				// �_�u���o�C�g������������Ȃ����t���O
-	int						EnableNewLineFlag ;					// ���s�������邩�t���O
+	int						CancelValidFlag ;					// キャンセル有効フラグ
+	int						SingleCharOnlyFlag ;				// ダブルバイト文字は扱わないかフラグ
+	int						NumCharOnlyFlag ;					// 半角英数字しか使わないかフラグ
+	int						DoubleCharOnlyFlag ;				// ダブルバイト文字しか扱わないかフラグ
+	int						EnableNewLineFlag ;					// 改行を許可するかフラグ
 
-	int						DrawAreaValidFlag ;					// �`��\�͈͂��L�����ǂ����̃t���O
-	RECT					DrawArea ;							// �`��\�͈�
+	int						DrawAreaValidFlag ;					// 描画可能範囲が有効かどうかのフラグ
+	RECT					DrawArea ;							// 描画可能範囲
 } ;
 
 #endif // DX_NON_KEYEX
 
-// �����R�[�h�o�b�t�@�\����
+// 文字コードバッファ構造体
 struct CHARBUFFER
 {
 #ifndef UNICODE
-	char					TempStock[ 16 ] ;					// �Q�o�C�g������ StockInputChar �ɓn���ꂽ�ꍇ�ɂP�o�C�g�ڂ����ł� wchar_t �ɕϊ��ł��Ȃ��̂ŁA�Q�o�C�g�ڂ��n�����܂ł̈ꎞ�ۑ��p�ϐ�
-	int						TempStockNum ;						// TempStock �ɑ������Ă���L���ȃo�C�g��
+	char					TempStock[ 16 ] ;					// ２バイト文字が StockInputChar に渡された場合に１バイト目だけでは wchar_t に変換できないので、２バイト目が渡されるまでの一時保存用変数
+	int						TempStockNum ;						// TempStock に代入されている有効なバイト数
 
-	char					TempGetStock[ 16 ] ;				// �Q�o�C�g������ GetInputChar �Ŏ擾�����Ƃ��� wchar_t ���� char �ɕϊ�������A��x�� GetInputChar �ł͖߂�l�Ƃ��ēn���Ȃ��̂ŁAwchar_t ���� char �ɕϊ�������������ꎞ�I�ɕۑ����邽�߂̕ϐ�
-	int						TempGetStockNum ;					// TempGetStock �ɑ������Ă���L���ȃo�C�g��
+	char					TempGetStock[ 16 ] ;				// ２バイト文字が GetInputChar で取得されるときに wchar_t から char に変換した後、一度の GetInputChar では戻り値として渡せないので、wchar_t から char に変換した文字列を一時的に保存するための変数
+	int						TempGetStockNum ;					// TempGetStock に代入されている有効なバイト数
 #endif // UNICODE
 
-	wchar_t					CharBuffer[ CHARBUFFER_SIZE + 1 ] ;	// ���͂��ꂽ������
-	int						StPoint , EdPoint ;					// �����O�o�b�t�@�p�|�C���^
+	wchar_t					CharBuffer[ CHARBUFFER_SIZE + 1 ] ;	// 入力された文字列
+	int						StPoint , EdPoint ;					// リングバッファ用ポインタ
 
 	wchar_t					SecondString[CHARBUFFER_SIZE + 1 ] ;
-	int						IMEInputFlag ;						// ���͏��������A�t���O
-	int						InputPoint ;						// ���͒��̕ҏW�������̈ʒu
-	wchar_t					InputString[ CHARBUFFER_SIZE + 1 ] ;// �h�l�d�ɂ����͒��̕�����
-	wchar_t					InputTempString[ CHARBUFFER_SIZE + 1 ] ;// �h�l�d�ɂ����͒��̕�����̃e���|�����o�b�t�@
-	PCANDIDATELIST			CandidateList ;						// �ϊ����̃��X�g�f�[�^
-	int						CandidateListSize ;					// �ϊ����̃��X�g�f�[�^�ɕK�v�ȃf�[�^�e��
-	int						IMEUseFlag ;						// �h�l�d�̎g�p���
-	int						IMEUseFlag_System ;					// �h�l�d�̎g�p���( �c�w���C�u���������p )
-	int						IMEUseFlag_OSSet ;					// �n�r�ɑ΂��Đݒ肵�Ă���h�l�d�̎g�p���
-	HIMC					IMEContext ;						// �h�l�d�̓��̓R���e�L�X�g
-	int						IMESwitch ;							// �h�l�d�̋N�����
-	int						IMEInputStringMaxLengthIMESync ;	// �h�l�d�œ��͂ł���ő啶������ MakeKeyInput �̍ő吔�ɓ��������邩�ǂ���( TRUE:����������  FALSE:�����Ȃ� )
-	int						IMEInputMaxLength ;					// �h�l�d�ň�x�ɓ��͂ł��镶����( 0:���ɐ����Ȃ�  1�ȏ�:���������� )
-	int						IMERefreshStep ;					// �h�l�d�̓��͕����񃊃t���b�V���p�X�e�b�v�ϐ�
-	IMEINPUTDATA			*IMEInputData ;						// �h�l�d�̓��͒��̏��( ���[�U�[�p )
-	int						TSFNotUseFlag ;						// �h�l�d�̕ϊ����\���� TSF ���g�p���Ȃ����ǂ����̃t���O
+	int						IMEInputFlag ;						// 入力処理中か、フラグ
+	int						InputPoint ;						// 入力中の編集文字列上の位置
+	wchar_t					InputString[ CHARBUFFER_SIZE + 1 ] ;// ＩＭＥによる入力中の文字列
+	wchar_t					InputTempString[ CHARBUFFER_SIZE + 1 ] ;// ＩＭＥによる入力中の文字列のテンポラリバッファ
+	PCANDIDATELIST			CandidateList ;						// 変換候補のリストデータ
+	int						CandidateListSize ;					// 変換候補のリストデータに必要なデータ容量
+	int						IMEUseFlag ;						// ＩＭＥの使用状態
+	int						IMEUseFlag_System ;					// ＩＭＥの使用状態( ＤＸライブラリ内部用 )
+	int						IMEUseFlag_OSSet ;					// ＯＳに対して設定しているＩＭＥの使用状態
+	HIMC					IMEContext ;						// ＩＭＥの入力コンテキスト
+	int						IMESwitch ;							// ＩＭＥの起動状態
+	int						IMEInputStringMaxLengthIMESync ;	// ＩＭＥで入力できる最大文字数を MakeKeyInput の最大数に同期させるかどうか( TRUE:同期させる  FALSE:させない )
+	int						IMEInputMaxLength ;					// ＩＭＥで一度に入力できる文字数( 0:特に制限なし  1以上:文字数制限 )
+	int						IMERefreshStep ;					// ＩＭＥの入力文字列リフレッシュ用ステップ変数
+	IMEINPUTDATA			*IMEInputData ;						// ＩＭＥの入力中の情報( ユーザー用 )
+	int						TSFNotUseFlag ;						// ＩＭＥの変換候補表示に TSF を使用しないかどうかのフラグ
 
-	int						IMEProcessNum ;						// �h�l�d�̕����擾�v���Z�X�ԍ�
-	int						ClauseData[ 1024 ] ;				// ���߃f�[�^
-	int						ClauseNum ;							// ���ߐ�
-	BYTE					CharAttr[ 1024 ] ;					// �e�����̑������
-	int						CharAttrNum ;						// �e�����̑������̗v�f��
-	int						ChangeFlag ;						// �h�l�d���͂ɕω������������t���O
+	int						IMEProcessNum ;						// ＩＭＥの文字取得プロセス番号
+	int						ClauseData[ 1024 ] ;				// 文節データ
+	int						ClauseNum ;							// 文節数
+	BYTE					CharAttr[ 1024 ] ;					// 各文字の属性情報
+	int						CharAttrNum ;						// 各文字の属性情報の要素数
+	int						ChangeFlag ;						// ＩＭＥ入力に変化があったかフラグ
 
-	DWORD					NormalStrColor ;					// ���͕�����̐F
-	DWORD					NormalStrEdgeColor ;				// ���͕�����̉��̐F
-	DWORD					NormalCursorColor ;					// �h�l�d���g�p���̃J�[�\���̐F
-	DWORD					SelectStrColor ;					// �I�����ꂽ���͕�����̐F
-	DWORD					SelectStrEdgeColor ;				// �I�����ꂽ���͕�����̉��̐F
-	DWORD					SelectStrBackColor ;				// �I�����ꂽ���͕�����̔w�i�̐F
-	DWORD					IMEStrColor ;						// �h�l�d�g�p���̓��͕�����̐F
-	DWORD					IMEStrEdgeColorEnable ;				// IMEStrEdgeColor ���L�����ǂ���( TRUE:�L��  FALSE:���� )
-	DWORD					IMEStrEdgeColor ;					// �h�l�d�g�p���̓��͕�����̉��̐F
-	DWORD					IMEStrBackColor ;					// �h�l�d�g�p���̓��͕�����̎���̐F
-	DWORD					IMECursorColor ;					// �h�l�d�g�p���̃J�[�\���̐F
-	DWORD					IMELineColor ;						// �h�l�d�g�p���̕ϊ�������̉���
-	DWORD					IMESelectStrColor ;					// �h�l�d�g�p���̑I��Ώۂ̕ϊ���╶����̐F
-	DWORD					IMESelectStrEdgeColorEnable ;		// IMESelectStrEdgeColor ���L�����ǂ���( TRUE:�L��  FALSE:���� )
-	DWORD					IMESelectStrEdgeColor ;				// �h�l�d�g�p���̑I��Ώۂ̕ϊ���╶����̉��̐F
-	DWORD					IMESelectStrBackColor ;				// �h�l�d�g�p���̑I��Ώۂ̕ϊ���╶����̎���̐F
-	DWORD					IMEConvWinStrColor ;				// �h�l�d�g�p���̕ϊ����E�C���h�E���̕�����̐F
-	DWORD					IMEConvWinStrEdgeColor ;			// �h�l�d�g�p���̕ϊ����E�C���h�E���̕�����̉��̐F
-	DWORD					IMEConvWinSelectStrColor ;			// �h�l�d�g�p���̕ϊ����E�C���h�E���őI�����Ă��镶����̐F
-	DWORD					IMEConvWinSelectStrEdgeColor ;		// �h�l�d�g�p���̕ϊ����E�C���h�E���őI�����Ă��镶����̉��̐F
-	DWORD					IMEConvWinSelectStrBackColorEnable ;// IMEConvWinSelectStrBackColor ���L�����ǂ���( TRUE:�L��  FALSE:���� )
-	DWORD					IMEConvWinSelectStrBackColor ;		// �h�l�d�g�p���̕ϊ����E�C���h�E���őI�����Ă��镶����̎���̐F
-	DWORD					IMEConvWinEdgeColor ;				// �h�l�d�g�p���̕ϊ����E�C���h�E�̉��̐F
-	DWORD					IMEConvWinBackColor ;				// �h�l�d�g�p���̕ϊ����E�C���h�E�̉��n�̐F
-	DWORD					IMEModeStrColor ;					// �h�l�d�g�p���̓��̓��[�h������̐F(�u�S�p�Ђ炪�ȁv��)
-	DWORD					IMEModeStrEdgeColor ;				// �h�l�d�g�p���̓��̓��[�h������̉��̐F
+	DWORD					NormalStrColor ;					// 入力文字列の色
+	DWORD					NormalStrEdgeColor ;				// 入力文字列の縁の色
+	DWORD					NormalCursorColor ;					// ＩＭＥ未使用時のカーソルの色
+	DWORD					SelectStrColor ;					// 選択された入力文字列の色
+	DWORD					SelectStrEdgeColor ;				// 選択された入力文字列の縁の色
+	DWORD					SelectStrBackColor ;				// 選択された入力文字列の背景の色
+	DWORD					IMEStrColor ;						// ＩＭＥ使用時の入力文字列の色
+	DWORD					IMEStrEdgeColorEnable ;				// IMEStrEdgeColor が有効かどうか( TRUE:有効  FALSE:無効 )
+	DWORD					IMEStrEdgeColor ;					// ＩＭＥ使用時の入力文字列の縁の色
+	DWORD					IMEStrBackColor ;					// ＩＭＥ使用時の入力文字列の周りの色
+	DWORD					IMECursorColor ;					// ＩＭＥ使用時のカーソルの色
+	DWORD					IMELineColor ;						// ＩＭＥ使用時の変換文字列の下線
+	DWORD					IMESelectStrColor ;					// ＩＭＥ使用時の選択対象の変換候補文字列の色
+	DWORD					IMESelectStrEdgeColorEnable ;		// IMESelectStrEdgeColor が有効かどうか( TRUE:有効  FALSE:無効 )
+	DWORD					IMESelectStrEdgeColor ;				// ＩＭＥ使用時の選択対象の変換候補文字列の縁の色
+	DWORD					IMESelectStrBackColor ;				// ＩＭＥ使用時の選択対象の変換候補文字列の周りの色
+	DWORD					IMEConvWinStrColor ;				// ＩＭＥ使用時の変換候補ウインドウ内の文字列の色
+	DWORD					IMEConvWinStrEdgeColor ;			// ＩＭＥ使用時の変換候補ウインドウ内の文字列の縁の色
+	DWORD					IMEConvWinSelectStrColor ;			// ＩＭＥ使用時の変換候補ウインドウ内で選択している文字列の色
+	DWORD					IMEConvWinSelectStrEdgeColor ;		// ＩＭＥ使用時の変換候補ウインドウ内で選択している文字列の縁の色
+	DWORD					IMEConvWinSelectStrBackColorEnable ;// IMEConvWinSelectStrBackColor が有効かどうか( TRUE:有効  FALSE:無効 )
+	DWORD					IMEConvWinSelectStrBackColor ;		// ＩＭＥ使用時の変換候補ウインドウ内で選択している文字列の周りの色
+	DWORD					IMEConvWinEdgeColor ;				// ＩＭＥ使用時の変換候補ウインドウの縁の色
+	DWORD					IMEConvWinBackColor ;				// ＩＭＥ使用時の変換候補ウインドウの下地の色
+	DWORD					IMEModeStrColor ;					// ＩＭＥ使用時の入力モード文字列の色(「全角ひらがな」等)
+	DWORD					IMEModeStrEdgeColor ;				// ＩＭＥ使用時の入力モード文字列の縁の色
 
-	int						EndCharaMode ;						// ��������͏����̓��͕����������E�ɒB���Ă����ԂŁA������̖��[�����œ��͂��s��ꂽ�ꍇ�̏������[�h( DX_KEYINPSTR_ENDCHARAMODE_OVERWRITE �� )
+	int						EndCharaMode ;						// 文字列入力処理の入力文字数が限界に達している状態で、文字列の末端部分で入力が行われた場合の処理モード( DX_KEYINPSTR_ENDCHARAMODE_OVERWRITE 等 )
 	
-	int						CBrinkFlag ;						// �J�[�\����_�ł����邩�A�t���O
-	int						CBrinkCount ;						// �J�[�\����_�ł�����ꍇ�̃J�E���^
-	int						CBrinkWait ;						// �J�[�\���̓_�ł̑��x
-	int						CBrinkDrawFlag ;					// �J�[�\����`�悷�邩�ǂ����̃t���O
+	int						CBrinkFlag ;						// カーソルを点滅させるか、フラグ
+	int						CBrinkCount ;						// カーソルを点滅させる場合のカウンタ
+	int						CBrinkWait ;						// カーソルの点滅の速度
+	int						CBrinkDrawFlag ;					// カーソルを描画するかどうかのフラグ
 
-	int						ActiveInputHandle ;					// ���͂��A�N�e�B�u�ɂȂ��Ă�����̓n���h��
-	int						UseFontHandle ;						// ������`��Ɏg�p����t�H���g�̃n���h��(-1�Ńf�t�H���g�̃n���h��)
+	int						ActiveInputHandle ;					// 入力がアクティブになっている入力ハンドル
+	int						UseFontHandle ;						// 文字列描画に使用するフォントのハンドル(-1でデフォルトのハンドル)
 #ifndef DX_NON_KEYEX
-	INPUTDATA				InputData[ MAX_INPUT_NUM ] ;		// �C���v�b�g�f�[�^
-	int						HandleID ;							// �n���h���Ɋ��蓖�Ă�h�c
+	INPUTDATA				InputData[ MAX_INPUT_NUM ] ;		// インプットデータ
+	int						HandleID ;							// ハンドルに割り当てるＩＤ
 
 	D_ITfThreadMgrEx		*ITfThreadMgrEx ;
 	DX_UIElementSink		*TsfSink ;
@@ -195,35 +195,35 @@ struct CHARBUFFER
 #endif
 } ;
 
-// ���̓��[�h�\����
+// 入力モード構造体
 struct INPUTMODE
 {
-	DWORD					InputState ;						// ���̓��[�h�l
-	wchar_t					InputName[ 16 ] ;					// ���̓��[�h�l�[��
+	DWORD					InputState ;						// 入力モード値
+	wchar_t					InputName[ 16 ] ;					// 入力モードネーム
 } ;
 
-// �e�[�u��-----------------------------------------------------------------------
+// テーブル-----------------------------------------------------------------------
 
-// ���z�L�[�R�[�h���R���g���[�������R�[�h�ɕϊ����邽�߂̃e�[�u��
+// 仮想キーコードをコントロール文字コードに変換するためのテーブル
 extern char CtrlCode[ 10 ][ 2 ] ;
 
-// �������ϐ��錾 --------------------------------------------------------------
+// 内部大域変数宣言 --------------------------------------------------------------
 
-// ��������̓f�[�^
+// 文字列入力データ
 extern CHARBUFFER CharBuf ;
 
-// �֐��v���g�^�C�v�錾-----------------------------------------------------------
+// 関数プロトタイプ宣言-----------------------------------------------------------
 
-// �����R�[�h�o�b�t�@����֌W
-extern	int			InitializeInputCharBuf( void ) ;										// �����R�[�h�o�b�t�@�֌W�̏�����
-extern	int			TerminateInputCharBuf( void ) ;											// �����R�[�h�o�b�t�@�֌W�̌�n��
+// 文字コードバッファ操作関係
+extern	int			InitializeInputCharBuf( void ) ;										// 文字コードバッファ関係の初期化
+extern	int			TerminateInputCharBuf( void ) ;											// 文字コードバッファ関係の後始末
 #ifndef DX_NON_KEYEX
-extern	LRESULT		IMEProc( HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam ) ;			// �h�l�d���b�Z�[�W�̃R�[���o�b�N�֐�
-extern	void		RefreshIMEFlag( int Always = FALSE ) ;										// �h�l�d���g�p���邩�ǂ����̏�Ԃ��X�V����
+extern	LRESULT		IMEProc( HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam ) ;			// ＩＭＥメッセージのコールバック関数
+extern	void		RefreshIMEFlag( int Always = FALSE ) ;										// ＩＭＥを使用するかどうかの状態を更新する
 #endif
 
 
-// wchar_t�Ŋ֐�
+// wchar_t版関数
 extern	int			StockInputChar_WCHAR_T(		wchar_t CharCode ) ;
 extern	wchar_t		GetInputChar_WCHAR_T(		int DeleteFlag ) ;
 extern	wchar_t		GetInputCharWait_WCHAR_T(	int DeleteFlag ) ;

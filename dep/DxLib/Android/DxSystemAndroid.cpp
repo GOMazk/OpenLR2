@@ -1,17 +1,17 @@
 // -------------------------------------------------------------------------------
 // 
-// 		‚c‚wƒ‰ƒCƒuƒ‰ƒŠ		Android—pƒVƒXƒeƒ€ƒvƒƒOƒ‰ƒ€
+// 		ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒª		Androidç”¨ã‚·ã‚¹ãƒ†ãƒ ãƒ—ãƒ­ã‚°ãƒ©ãƒ 
 // 
 // 				Ver 3.25a
 // 
 // -------------------------------------------------------------------------------
 
-// ‚c‚wƒ‰ƒCƒuƒ‰ƒŠì¬—p’è‹`
+// ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªä½œæˆæ™‚ç”¨å®šç¾©
 #define DX_MAKE
 
 #include "DxSystemAndroid.h"
 
-// ƒCƒ“ƒNƒ‹[ƒh ------------------------------------------------------------------
+// ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ ------------------------------------------------------------------
 #include "DxGraphicsAndroid.h"
 #include "DxGraphicsFilterAndroid.h"
 #include "DxLogAndroid.h"
@@ -60,7 +60,7 @@ namespace DxLib
 
 #endif // DX_NON_NAMESPACE
 
-// ƒ}ƒNƒ’è‹` --------------------------------------------------------------------
+// ãƒã‚¯ãƒ­å®šç¾© --------------------------------------------------------------------
 
 #define LOGI(...) ((void)__android_log_print(ANDROID_LOG_INFO, "AndroidProject1.NativeActivity", __VA_ARGS__))
 #define LOGW(...) ((void)__android_log_print(ANDROID_LOG_WARN, "AndroidProject1.NativeActivity", __VA_ARGS__))
@@ -74,44 +74,44 @@ namespace DxLib
 
 #define TIME_DISTANCE( now, time )			( (now) < (time) ? 0x7fffffff - (time) + (now) : (now) - (time) )
 
-// \‘¢‘Ì’è‹` --------------------------------------------------------------------
+// æ§‹é€ ä½“å®šç¾© --------------------------------------------------------------------
 
-// ŠeƒZƒ“ƒT[‚ÌŒÅ’èî•ñ
+// å„ã‚»ãƒ³ã‚µãƒ¼ã®å›ºå®šæƒ…å ±
 struct ANDROID_SENSOR_BASE_INFO
 {
-	int TypeID ;				// ƒ^ƒCƒvID ( ASENSOR_TYPE_ACCELEROMETER ‚È‚Ç )
-	int LooperEventID ;			// Looper ‚ÌƒCƒxƒ“ƒgID( DX_LOOPER_ID_SENSOR_ACCELEROMETER ‚È‚Ç )
+	int TypeID ;				// ã‚¿ã‚¤ãƒ—ID ( ASENSOR_TYPE_ACCELEROMETER ãªã© )
+	int LooperEventID ;			// Looper ã®ã‚¤ãƒ™ãƒ³ãƒˆID( DX_LOOPER_ID_SENSOR_ACCELEROMETER ãªã© )
 } ;
 
-// ƒe[ƒuƒ‹-----------------------------------------------------------------------
+// ãƒ†ãƒ¼ãƒ–ãƒ«-----------------------------------------------------------------------
 
 static ANDROID_SENSOR_BASE_INFO g_AndroidSensorBaseInfos[ DX_ANDROID_SENSOR_NUM ] =
 {
-	{ ASENSOR_TYPE_ACCELEROMETER,				DX_LOOPER_ID_SENSOR_ACCELEROMETER			},				// ‰Á‘¬“xƒZƒ“ƒT[
-	{ ASENSOR_TYPE_MAGNETIC_FIELD,				DX_LOOPER_ID_SENSOR_MAGNETIC_FIELD			},				// ¥ŠEƒZƒ“ƒT[
-	{ ASENSOR_TYPE_GYROSCOPE,					DX_LOOPER_ID_SENSOR_GYROSCOPE				},				// ƒWƒƒƒCƒƒXƒR[ƒvƒZƒ“ƒT[
-	{ ASENSOR_TYPE_LIGHT,						DX_LOOPER_ID_SENSOR_LIGHT					},				// Æ“xƒZƒ“ƒT[
-	{ ASENSOR_TYPE_PROXIMITY,					DX_LOOPER_ID_SENSOR_PROXIMITY				},				// ‹ßÚƒZƒ“ƒT[
-	{ 6/*ASENSOR_TYPE_PRESSURE*/,				DX_LOOPER_ID_SENSOR_PRESSURE				},				// ‰Áˆ³ƒZƒ“ƒT[
-	{ 13/*ASENSOR_TYPE_AMBIENT_TEMPERATURE*/,	DX_LOOPER_ID_SENSOR_AMBIENT_TEMPERATURE		},				// ‰·“xƒZƒ“ƒT[
+	{ ASENSOR_TYPE_ACCELEROMETER,				DX_LOOPER_ID_SENSOR_ACCELEROMETER			},				// åŠ é€Ÿåº¦ã‚»ãƒ³ã‚µãƒ¼
+	{ ASENSOR_TYPE_MAGNETIC_FIELD,				DX_LOOPER_ID_SENSOR_MAGNETIC_FIELD			},				// ç£ç•Œã‚»ãƒ³ã‚µãƒ¼
+	{ ASENSOR_TYPE_GYROSCOPE,					DX_LOOPER_ID_SENSOR_GYROSCOPE				},				// ã‚¸ãƒ£ã‚¤ãƒ­ã‚¹ã‚³ãƒ¼ãƒ—ã‚»ãƒ³ã‚µãƒ¼
+	{ ASENSOR_TYPE_LIGHT,						DX_LOOPER_ID_SENSOR_LIGHT					},				// ç…§åº¦ã‚»ãƒ³ã‚µãƒ¼
+	{ ASENSOR_TYPE_PROXIMITY,					DX_LOOPER_ID_SENSOR_PROXIMITY				},				// è¿‘æ¥ã‚»ãƒ³ã‚µãƒ¼
+	{ 6/*ASENSOR_TYPE_PRESSURE*/,				DX_LOOPER_ID_SENSOR_PRESSURE				},				// åŠ åœ§ã‚»ãƒ³ã‚µãƒ¼
+	{ 13/*ASENSOR_TYPE_AMBIENT_TEMPERATURE*/,	DX_LOOPER_ID_SENSOR_AMBIENT_TEMPERATURE		},				// æ¸©åº¦ã‚»ãƒ³ã‚µãƒ¼
 } ;
 
-// “à•”‘åˆæ•Ï”éŒ¾ --------------------------------------------------------------
+// å†…éƒ¨å¤§åŸŸå¤‰æ•°å®£è¨€ --------------------------------------------------------------
 
 DXLIB_ANDROID_SYSTEMINFO g_AndroidSys ;
 int g_AndroidRunFlag ;
 
-// ŠÖ”ƒvƒƒgƒ^ƒCƒvéŒ¾-----------------------------------------------------------
+// é–¢æ•°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€-----------------------------------------------------------
 
-// •¶š—ñ“ü—Íƒ_ƒCƒAƒƒO‚ğ•\¦‚·‚é
+// æ–‡å­—åˆ—å…¥åŠ›ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã‚’è¡¨ç¤ºã™ã‚‹
 static int StartInputStringDialogStatic( JNIEnv *env, const TCHAR *Title ) ;
 
-// GetAndroidMetaData_String ‚â GetAndroidMetaData_Boolean ‚Ìƒ~ƒ…[ƒeƒbƒNƒX‚ÌƒƒbƒN‚Æ JavaVM ‚ÆƒXƒŒƒbƒh‚ÌŠÖ˜A•t‚¯ˆÈŠO‚ğ”²‚«o‚µ‚½ŠÖ”
+// GetAndroidMetaData_String ã‚„ GetAndroidMetaData_Boolean ã®ãƒŸãƒ¥ãƒ¼ãƒ†ãƒƒã‚¯ã‚¹ã®ãƒ­ãƒƒã‚¯ã¨ JavaVM ã¨ã‚¹ãƒ¬ãƒƒãƒ‰ã®é–¢é€£ä»˜ã‘ä»¥å¤–ã‚’æŠœãå‡ºã—ãŸé–¢æ•°
 static int GetAndroidMetaData_Base( JNIEnv *env, const TCHAR *ValueName, TCHAR *StringBuffer, int StringBufferBytes, int *Boolean ) ;
 
-// ƒvƒƒOƒ‰ƒ€ --------------------------------------------------------------------
+// ãƒ—ãƒ­ã‚°ãƒ©ãƒ  --------------------------------------------------------------------
 
-// UTF16LE ‚Ì‘®•¶š—ñ‚Æ UTF8 ‚Ìƒpƒ‰ƒ[ƒ^•¶š—ñ‚ğƒƒOo—Í‚·‚é
+// UTF16LE ã®æ›¸å¼æ–‡å­—åˆ—ã¨ UTF8 ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ–‡å­—åˆ—ã‚’ãƒ­ã‚°å‡ºåŠ›ã™ã‚‹
 static void OutputAndroidOSInfo_LogAddUTF8( const char *UTF16LEFormatStr, const char *UTF8Str )
 {
 	char TempStr[ 1024 ] ;
@@ -120,10 +120,10 @@ static void OutputAndroidOSInfo_LogAddUTF8( const char *UTF16LEFormatStr, const 
 	DXST_LOGFILEFMT_ADDUTF16LE(( UTF16LEFormatStr, TempStr )) ;
 }
 
-// ‚n‚rî•ñ‚ğo—Í‚·‚é
+// ï¼¯ï¼³æƒ…å ±ã‚’å‡ºåŠ›ã™ã‚‹
 extern int OutputAndroidOSInfo( JNIEnv *env )
 {
-	// –ß‚è’l‚Ì‰Šú’l‚Í -1
+	// æˆ»ã‚Šå€¤ã®åˆæœŸå€¤ã¯ -1
 	int res = -1 ;
 
 	if( env == NULL )
@@ -261,30 +261,30 @@ extern int OutputAndroidOSInfo( JNIEnv *env )
 					charp_UNKNOWN		!= NULL &&
 					charp_USER			!= NULL )
 				{
-					DXST_LOGFILE_ADDUTF16LE(( "\x4f\x00\x53\x00\xc5\x60\x31\x58\xfa\x51\x9b\x52\x0a\x00\x00"/*@ L"OSî•ño—Í\n" @*/ )) ;
+					DXST_LOGFILE_ADDUTF16LE(( "\x4f\x00\x53\x00\xc5\x60\x31\x58\xfa\x51\x9b\x52\x0a\x00\x00"/*@ L"OSæƒ…å ±å‡ºåŠ›\n" @*/ )) ;
 					NS_LogFileTabAdd() ;
 
-					DXST_LOGFILEFMT_ADDUTF16LE((   "\x41\x00\x50\x00\x49\x00\x20\x00\x4c\x00\x65\x00\x76\x00\x65\x00\x6c\x00\x1a\xff\x25\x00\x64\x00\x00"/*@ L"API LevelF%d" @*/, intfield_SDK_INT )) ;
-					OutputAndroidOSInfo_LogAddUTF8( "\xdc\x30\xfc\x30\xc9\x30\x1a\xff\x25\x00\x73\x00\x00"/*@ L"ƒ{[ƒhF%s" @*/,				charp_BOARD			) ;
-					OutputAndroidOSInfo_LogAddUTF8( "\xd6\x30\xfc\x30\xc8\x30\xed\x30\xfc\x30\xc0\x30\x1a\xff\x25\x00\x73\x00\x00"/*@ L"ƒu[ƒgƒ[ƒ_F%s" @*/,		charp_BOOTLOADER	) ;
-					OutputAndroidOSInfo_LogAddUTF8( "\xd6\x30\xe9\x30\xf3\x30\xc9\x30\x1a\xff\x25\x00\x73\x00\x00"/*@ L"ƒuƒ‰ƒ“ƒhF%s" @*/,			charp_BRAND			) ;
-					OutputAndroidOSInfo_LogAddUTF8( "\x7d\x54\xe4\x4e\xbb\x30\xc3\x30\xc8\x30\x11\xff\x1a\xff\x25\x00\x73\x00\x00"/*@ L"–½—ßƒZƒbƒg‚PF%s" @*/,		charp_CPU_ABI		) ;
-					OutputAndroidOSInfo_LogAddUTF8( "\x7d\x54\xe4\x4e\xbb\x30\xc3\x30\xc8\x30\x12\xff\x1a\xff\x25\x00\x73\x00\x00"/*@ L"–½—ßƒZƒbƒg‚QF%s" @*/,		charp_CPU_ABI2		) ;
-					OutputAndroidOSInfo_LogAddUTF8( "\xc7\x30\xd0\x30\xa4\x30\xb9\x30\x1a\xff\x25\x00\x73\x00\x00"/*@ L"ƒfƒoƒCƒXF%s" @*/,			charp_DEVICE		) ;
-					OutputAndroidOSInfo_LogAddUTF8( "\xc7\x30\xa3\x30\xb9\x30\xd7\x30\xec\x30\xa4\x30\x1a\xff\x25\x00\x73\x00\x00"/*@ L"ƒfƒBƒXƒvƒŒƒCF%s" @*/,		charp_DISPLAY		) ;
-	//				OutputAndroidOSInfo_LogAddUTF8( "\x58\x8b\x25\x52\x50\x5b\x1a\xff\x25\x00\x73\x00\x00"/*@ L"¯•ÊqF%s" @*/,				charp_FINGERPRINT	) ;
-					OutputAndroidOSInfo_LogAddUTF8( "\xcf\x30\xfc\x30\xc9\x30\xa6\x30\xa7\x30\xa2\x30\x1a\xff\x25\x00\x73\x00\x00"/*@ L"ƒn[ƒhƒEƒFƒAF%s" @*/,		charp_HARDWARE		) ;
-					OutputAndroidOSInfo_LogAddUTF8( "\xdb\x30\xb9\x30\xc8\x30\x1a\xff\x25\x00\x73\x00\x00"/*@ L"ƒzƒXƒgF%s" @*/,				charp_HOST			) ;
-					OutputAndroidOSInfo_LogAddUTF8( "\x29\xff\x24\xff\x1a\xff\x25\x00\x73\x00\x00"/*@ L"‚h‚cF%s" @*/,				charp_ID			) ;
-					OutputAndroidOSInfo_LogAddUTF8( "\xfd\x88\x20\x90\x05\x80\x0d\x54\x1a\xff\x25\x00\x73\x00\x00"/*@ L"»‘¢Ò–¼F%s" @*/,			charp_MANUFACTURER	) ;
-					OutputAndroidOSInfo_LogAddUTF8( "\xe2\x30\xc7\x30\xeb\x30\x1a\xff\x25\x00\x73\x00\x00"/*@ L"ƒ‚ƒfƒ‹F%s" @*/,				charp_MODEL			) ;
-					OutputAndroidOSInfo_LogAddUTF8( "\xfd\x88\xc1\x54\x0d\x54\x1a\xff\x25\x00\x73\x00\x00"/*@ L"»•i–¼F%s" @*/,				charp_PRODUCT		) ;
-					OutputAndroidOSInfo_LogAddUTF8( "\x21\x71\xda\x7d\xd5\x30\xa1\x30\xfc\x30\xe0\x30\xa6\x30\xa7\x30\xa2\x30\x1a\xff\x25\x00\x73\x00\x00"/*@ L"–³üƒtƒ@[ƒ€ƒEƒFƒAF%s" @*/,	charp_RADIO			) ;
-					OutputAndroidOSInfo_LogAddUTF8( "\xd3\x30\xeb\x30\xc9\x30\xbf\x30\xb0\x30\x1a\xff\x25\x00\x73\x00\x00"/*@ L"ƒrƒ‹ƒhƒ^ƒOF%s" @*/,			charp_TAGS			) ;
-	//				DXST_LOGFILEFMT_ADDUTF16LE((   "\xbf\x30\xa4\x30\xe0\x30\x1a\xff\x25\x00\x64\x00\x00"/*@ L"ƒ^ƒCƒ€F%d" @*/,              ( int )longfield_TIME )) ;
-					OutputAndroidOSInfo_LogAddUTF8( "\xd3\x30\xeb\x30\xc9\x30\xbf\x30\xa4\x30\xd7\x30\x1a\xff\x25\x00\x73\x00\x00"/*@ L"ƒrƒ‹ƒhƒ^ƒCƒvF%s" @*/,		charp_TYPE			) ;
-					OutputAndroidOSInfo_LogAddUTF8( "\xc5\x60\x31\x58\x0d\x4e\x0e\x66\x42\x66\x6e\x30\x58\x8b\x25\x52\x50\x5b\x1a\xff\x25\x00\x73\x00\x00"/*@ L"î•ñ•s–¾‚Ì¯•ÊqF%s" @*/,	charp_UNKNOWN		) ;
-					OutputAndroidOSInfo_LogAddUTF8( "\xe6\x30\xfc\x30\xb6\x30\xc5\x60\x31\x58\x1a\xff\x25\x00\x73\x00\x00"/*@ L"ƒ†[ƒUî•ñF%s" @*/,			charp_USER			) ;
+					DXST_LOGFILEFMT_ADDUTF16LE((   "\x41\x00\x50\x00\x49\x00\x20\x00\x4c\x00\x65\x00\x76\x00\x65\x00\x6c\x00\x1a\xff\x25\x00\x64\x00\x00"/*@ L"API Levelï¼š%d" @*/, intfield_SDK_INT )) ;
+					OutputAndroidOSInfo_LogAddUTF8( "\xdc\x30\xfc\x30\xc9\x30\x1a\xff\x25\x00\x73\x00\x00"/*@ L"ãƒœãƒ¼ãƒ‰ï¼š%s" @*/,				charp_BOARD			) ;
+					OutputAndroidOSInfo_LogAddUTF8( "\xd6\x30\xfc\x30\xc8\x30\xed\x30\xfc\x30\xc0\x30\x1a\xff\x25\x00\x73\x00\x00"/*@ L"ãƒ–ãƒ¼ãƒˆãƒ­ãƒ¼ãƒ€ï¼š%s" @*/,		charp_BOOTLOADER	) ;
+					OutputAndroidOSInfo_LogAddUTF8( "\xd6\x30\xe9\x30\xf3\x30\xc9\x30\x1a\xff\x25\x00\x73\x00\x00"/*@ L"ãƒ–ãƒ©ãƒ³ãƒ‰ï¼š%s" @*/,			charp_BRAND			) ;
+					OutputAndroidOSInfo_LogAddUTF8( "\x7d\x54\xe4\x4e\xbb\x30\xc3\x30\xc8\x30\x11\xff\x1a\xff\x25\x00\x73\x00\x00"/*@ L"å‘½ä»¤ã‚»ãƒƒãƒˆï¼‘ï¼š%s" @*/,		charp_CPU_ABI		) ;
+					OutputAndroidOSInfo_LogAddUTF8( "\x7d\x54\xe4\x4e\xbb\x30\xc3\x30\xc8\x30\x12\xff\x1a\xff\x25\x00\x73\x00\x00"/*@ L"å‘½ä»¤ã‚»ãƒƒãƒˆï¼’ï¼š%s" @*/,		charp_CPU_ABI2		) ;
+					OutputAndroidOSInfo_LogAddUTF8( "\xc7\x30\xd0\x30\xa4\x30\xb9\x30\x1a\xff\x25\x00\x73\x00\x00"/*@ L"ãƒ‡ãƒã‚¤ã‚¹ï¼š%s" @*/,			charp_DEVICE		) ;
+					OutputAndroidOSInfo_LogAddUTF8( "\xc7\x30\xa3\x30\xb9\x30\xd7\x30\xec\x30\xa4\x30\x1a\xff\x25\x00\x73\x00\x00"/*@ L"ãƒ‡ã‚£ã‚¹ãƒ—ãƒ¬ã‚¤ï¼š%s" @*/,		charp_DISPLAY		) ;
+	//				OutputAndroidOSInfo_LogAddUTF8( "\x58\x8b\x25\x52\x50\x5b\x1a\xff\x25\x00\x73\x00\x00"/*@ L"è­˜åˆ¥å­ï¼š%s" @*/,				charp_FINGERPRINT	) ;
+					OutputAndroidOSInfo_LogAddUTF8( "\xcf\x30\xfc\x30\xc9\x30\xa6\x30\xa7\x30\xa2\x30\x1a\xff\x25\x00\x73\x00\x00"/*@ L"ãƒãƒ¼ãƒ‰ã‚¦ã‚§ã‚¢ï¼š%s" @*/,		charp_HARDWARE		) ;
+					OutputAndroidOSInfo_LogAddUTF8( "\xdb\x30\xb9\x30\xc8\x30\x1a\xff\x25\x00\x73\x00\x00"/*@ L"ãƒ›ã‚¹ãƒˆï¼š%s" @*/,				charp_HOST			) ;
+					OutputAndroidOSInfo_LogAddUTF8( "\x29\xff\x24\xff\x1a\xff\x25\x00\x73\x00\x00"/*@ L"ï¼©ï¼¤ï¼š%s" @*/,				charp_ID			) ;
+					OutputAndroidOSInfo_LogAddUTF8( "\xfd\x88\x20\x90\x05\x80\x0d\x54\x1a\xff\x25\x00\x73\x00\x00"/*@ L"è£½é€ è€…åï¼š%s" @*/,			charp_MANUFACTURER	) ;
+					OutputAndroidOSInfo_LogAddUTF8( "\xe2\x30\xc7\x30\xeb\x30\x1a\xff\x25\x00\x73\x00\x00"/*@ L"ãƒ¢ãƒ‡ãƒ«ï¼š%s" @*/,				charp_MODEL			) ;
+					OutputAndroidOSInfo_LogAddUTF8( "\xfd\x88\xc1\x54\x0d\x54\x1a\xff\x25\x00\x73\x00\x00"/*@ L"è£½å“åï¼š%s" @*/,				charp_PRODUCT		) ;
+					OutputAndroidOSInfo_LogAddUTF8( "\x21\x71\xda\x7d\xd5\x30\xa1\x30\xfc\x30\xe0\x30\xa6\x30\xa7\x30\xa2\x30\x1a\xff\x25\x00\x73\x00\x00"/*@ L"ç„¡ç·šãƒ•ã‚¡ãƒ¼ãƒ ã‚¦ã‚§ã‚¢ï¼š%s" @*/,	charp_RADIO			) ;
+					OutputAndroidOSInfo_LogAddUTF8( "\xd3\x30\xeb\x30\xc9\x30\xbf\x30\xb0\x30\x1a\xff\x25\x00\x73\x00\x00"/*@ L"ãƒ“ãƒ«ãƒ‰ã‚¿ã‚°ï¼š%s" @*/,			charp_TAGS			) ;
+	//				DXST_LOGFILEFMT_ADDUTF16LE((   "\xbf\x30\xa4\x30\xe0\x30\x1a\xff\x25\x00\x64\x00\x00"/*@ L"ã‚¿ã‚¤ãƒ ï¼š%d" @*/,              ( int )longfield_TIME )) ;
+					OutputAndroidOSInfo_LogAddUTF8( "\xd3\x30\xeb\x30\xc9\x30\xbf\x30\xa4\x30\xd7\x30\x1a\xff\x25\x00\x73\x00\x00"/*@ L"ãƒ“ãƒ«ãƒ‰ã‚¿ã‚¤ãƒ—ï¼š%s" @*/,		charp_TYPE			) ;
+					OutputAndroidOSInfo_LogAddUTF8( "\xc5\x60\x31\x58\x0d\x4e\x0e\x66\x42\x66\x6e\x30\x58\x8b\x25\x52\x50\x5b\x1a\xff\x25\x00\x73\x00\x00"/*@ L"æƒ…å ±ä¸æ˜æ™‚ã®è­˜åˆ¥å­ï¼š%s" @*/,	charp_UNKNOWN		) ;
+					OutputAndroidOSInfo_LogAddUTF8( "\xe6\x30\xfc\x30\xb6\x30\xc5\x60\x31\x58\x1a\xff\x25\x00\x73\x00\x00"/*@ L"ãƒ¦ãƒ¼ã‚¶æƒ…å ±ï¼š%s" @*/,			charp_USER			) ;
 
 					NS_LogFileTabSub() ;
 
@@ -337,38 +337,38 @@ extern int OutputAndroidOSInfo( JNIEnv *env )
 	if( class_Build        != NULL ){ env->DeleteLocalRef( class_Build        ) ; }
 	if( class_BuildVERSION != NULL ){ env->DeleteLocalRef( class_BuildVERSION ) ; }
 
-	// –ß‚è’l‚ğ•Ô‚·
+	// æˆ»ã‚Šå€¤ã‚’è¿”ã™
 	return res ;
 }
 
-// ƒ‰ƒCƒuƒ‰ƒŠ‰Šú‰»ŠÖ”
+// ãƒ©ã‚¤ãƒ–ãƒ©ãƒªåˆæœŸåŒ–é–¢æ•°
 extern int NS_DxLib_Init( void )
 {
-	// Šù‚É‰Šú‰»Ï‚İ‚Ìê‡‚Í‰½‚à‚¹‚¸I—¹
+	// æ—¢ã«åˆæœŸåŒ–æ¸ˆã¿ã®å ´åˆã¯ä½•ã‚‚ã›ãšçµ‚äº†
 	if( DxSysData.DxLib_InitializeFlag == TRUE )
 	{
 		return 0 ;
 	}
 
-	DXST_LOGFILEFMT_ADDUTF16LE(( "\x24\xff\x38\xff\xe9\x30\xa4\x30\xd6\x30\xe9\x30\xea\x30\x6e\x30\x1d\x52\x1f\x67\x16\x53\xe6\x51\x06\x74\x8b\x95\xcb\x59\x00"/*@ L"‚c‚wƒ‰ƒCƒuƒ‰ƒŠ‚Ì‰Šú‰»ˆ—ŠJn" @*/ )) ;
+	DXST_LOGFILEFMT_ADDUTF16LE(( "\x24\xff\x38\xff\xe9\x30\xa4\x30\xd6\x30\xe9\x30\xea\x30\x6e\x30\x1d\x52\x1f\x67\x16\x53\xe6\x51\x06\x74\x8b\x95\xcb\x59\x00"/*@ L"ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®åˆæœŸåŒ–å‡¦ç†é–‹å§‹" @*/ )) ;
 	DXST_LOGFILE_TABADD ;
 
-	// ‰Šú‰»’†ƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// åˆæœŸåŒ–ä¸­ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	DxSysData.DxLib_RunInitializeFlag = TRUE ;
 
 #ifndef DX_NON_LITERAL_STRING
-	// ‚c‚wƒ‰ƒCƒuƒ‰ƒŠ‚Ìƒo[ƒWƒ‡ƒ“‚ğo—Í‚·‚é
+	// ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã‚’å‡ºåŠ›ã™ã‚‹
 	{
 		char UTF16LE_Buffer[ 128 ] ;
 		char DestBuffer[ 128 ] ;
 		ConvString( ( const char * )DXLIB_VERSION_STR_W, -1, WCHAR_T_CHARCODEFORMAT, UTF16LE_Buffer, sizeof( UTF16LE_Buffer ), DX_CHARCODEFORMAT_UTF16LE ) ;
-		CL_snprintf( DX_CHARCODEFORMAT_UTF16LE, TRUE, DX_CHARCODEFORMAT_SHIFTJIS, DX_CHARCODEFORMAT_UTF16LE, DestBuffer, sizeof( DestBuffer ) / 2, "\x24\xff\x38\xff\xe9\x30\xa4\x30\xd6\x30\xe9\x30\xea\x30\x20\x00\x56\x00\x65\x00\x72\x00\x25\x00\x73\x00\x0a\x00\x00"/*@ L"‚c‚wƒ‰ƒCƒuƒ‰ƒŠ Ver%s\n" @*/, UTF16LE_Buffer ) ;
+		CL_snprintf( DX_CHARCODEFORMAT_UTF16LE, TRUE, DX_CHARCODEFORMAT_SHIFTJIS, DX_CHARCODEFORMAT_UTF16LE, DestBuffer, sizeof( DestBuffer ) / 2, "\x24\xff\x38\xff\xe9\x30\xa4\x30\xd6\x30\xe9\x30\xea\x30\x20\x00\x56\x00\x65\x00\x72\x00\x25\x00\x73\x00\x0a\x00\x00"/*@ L"ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒª Ver%s\n" @*/, UTF16LE_Buffer ) ;
 
 		DXST_LOGFILE_ADDUTF16LE( DestBuffer ) ;
 	}
 #endif
 
-	// OSî•ño—Í
+	// OSæƒ…å ±å‡ºåŠ›
 	{
 		pthread_mutex_lock( &g_AndroidSys.NativeActivityMutex ) ;
 
@@ -378,7 +378,7 @@ extern int NS_DxLib_Init( void )
 			return -1 ;
 		}
 
-		// JavaVM ‚Æƒ\ƒtƒgÀs—pƒXƒŒƒbƒh‚ğŠÖ˜A•t‚¯
+		// JavaVM ã¨ã‚½ãƒ•ãƒˆå®Ÿè¡Œç”¨ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’é–¢é€£ä»˜ã‘
 		JNIEnv *env ;
 		if( g_AndroidSys.NativeActivity->vm->AttachCurrentThreadAsDaemon( &env, NULL ) != JNI_OK )
 		{
@@ -388,71 +388,71 @@ extern int NS_DxLib_Init( void )
 
 		OutputAndroidOSInfo( env ) ;
 
-		// JavaVM ‚Æ‚±‚ÌƒXƒŒƒbƒh‚ÌŠÖ˜A•t‚¯I—¹
+		// JavaVM ã¨ã“ã®ã‚¹ãƒ¬ãƒƒãƒ‰ã®é–¢é€£ä»˜ã‘çµ‚äº†
 		g_AndroidSys.NativeActivity->vm->DetachCurrentThread() ;
 
 		pthread_mutex_unlock( &g_AndroidSys.NativeActivityMutex ) ;
 	}
 
-	// DxSysData ‚Ì‹¤’Ê‰Šú‰»ˆ—
+	// DxSysData ã®å…±é€šåˆæœŸåŒ–å‡¦ç†
 	DxLib_SysInit() ;
 
-	// DxBaseFunc ‚Ì‰Šú‰»
+	// DxBaseFunc ã®åˆæœŸåŒ–
 	_INIT_BASEFUNC() ;
 
-	// ƒLƒƒƒ‰ƒNƒ^[ƒR[ƒhŠÖŒW‚Ì‰Šú‰»‚ğs‚¤
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã‚³ãƒ¼ãƒ‰é–¢ä¿‚ã®åˆæœŸåŒ–ã‚’è¡Œã†
 	InitCharCode() ;
 
-	// g—p‚·‚é•¶šƒZƒbƒg‚ğƒZƒbƒg
+	// ä½¿ç”¨ã™ã‚‹æ–‡å­—ã‚»ãƒƒãƒˆã‚’ã‚»ãƒƒãƒˆ
 	_SET_DEFAULT_CHARCODEFORMAT() ;
 
 #ifndef DX_NON_ASYNCLOAD
-	// ”ñ“¯Šú“Ç‚İ‚İˆ—‚Ì‰Šú‰»
+	// éåŒæœŸèª­ã¿è¾¼ã¿å‡¦ç†ã®åˆæœŸåŒ–
 	InitializeASyncLoad( Thread_GetCurrentId() ) ;
 #endif // DX_NON_ASYNCLOAD
 
-	// ƒtƒ@ƒCƒ‹ƒAƒNƒZƒXˆ—‚Ì‰Šú‰»
+	// ãƒ•ã‚¡ã‚¤ãƒ«ã‚¢ã‚¯ã‚»ã‚¹å‡¦ç†ã®åˆæœŸåŒ–
 	InitializeFile() ;
 
 #ifndef DX_NON_OGGTHEORA
-	// Theora —p‚Ì‰Šú‰»
+	// Theora ç”¨ã®åˆæœŸåŒ–
 	TheoraDecode_GrobalInitialize() ;
 #endif
 
-	// ƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹ƒAƒNƒZƒX—p‚Ìƒf[ƒ^‚ğ‰Šú‰»
+	// ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ã‚¢ã‚¯ã‚»ã‚¹ç”¨ã®ãƒ‡ãƒ¼ã‚¿ã‚’åˆæœŸåŒ–
 #ifndef DX_NON_DXA
 	DXA_DIR_Initialize() ;
 #endif
 
-	// ƒXƒgƒŠ[ƒ€ƒf[ƒ^“Ç‚İ‚İ§Œä—pƒ|ƒCƒ“ƒ^\‘¢‘Ì‚ÌƒfƒtƒHƒ‹ƒg’l‚ğƒZƒbƒg
+	// ã‚¹ãƒˆãƒªãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿åˆ¶å¾¡ç”¨ãƒã‚¤ãƒ³ã‚¿æ§‹é€ ä½“ã®ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå€¤ã‚’ã‚»ãƒƒãƒˆ
 	NS_ChangeStreamFunction( NULL ) ;
 
 #ifndef DX_NON_LOG
-	// ƒƒOƒtƒ@ƒCƒ‹‚Ì‰Šú‰»
+	// ãƒ­ã‚°ãƒ•ã‚¡ã‚¤ãƒ«ã®åˆæœŸåŒ–
 	LogFileInitialize() ;
 #endif
 
-	// ƒVƒXƒeƒ€ƒƒO‚ğo—Í
+	// ã‚·ã‚¹ãƒ†ãƒ ãƒ­ã‚°ã‚’å‡ºåŠ›
 //	OutSystemInfo() ;
 
 #ifndef DX_NON_GRAPHICS
-	// ƒfƒtƒHƒ‹ƒg‚ÌƒOƒ‰ƒtƒBƒbƒN•œŒ³ŠÖ”‚ğ“o˜^
+	// ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯å¾©å…ƒé–¢æ•°ã‚’ç™»éŒ²
 	NS_SetRestoreGraphCallback( NULL ) ;
 #endif // DX_NON_GRAPHICS
 
-	// Šeˆ—Œn‚Ì‰Šú‰»
+	// å„å‡¦ç†ç³»ã®åˆæœŸåŒ–
 	if( DxSysData.NotInputFlag == FALSE )
 	{
 #ifndef DX_NON_INPUT
-		if( InitializeInputSystem() == -1 ) goto ERROR_DX ;			// “ü—ÍƒVƒXƒeƒ€‚Ì‰Šú‰»
+		if( InitializeInputSystem() == -1 ) goto ERROR_DX ;			// å…¥åŠ›ã‚·ã‚¹ãƒ†ãƒ ã®åˆæœŸåŒ–
 #endif // DX_NON_INPUT
 	}
 
 	if( DxSysData.NotSoundFlag == FALSE )
 	{
 #ifndef DX_NON_SOUND
-		InitializeSoundConvert() ;									// ƒTƒEƒ“ƒh•ÏŠ·ˆ—‚Ì‰Šú‰»
-		InitializeSoundSystem() ;									// ƒTƒEƒ“ƒhƒVƒXƒeƒ€‚Ì‚Ì‰Šú‰»
+		InitializeSoundConvert() ;									// ã‚µã‚¦ãƒ³ãƒ‰å¤‰æ›å‡¦ç†ã®åˆæœŸåŒ–
+		InitializeSoundSystem() ;									// ã‚µã‚¦ãƒ³ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ã®ã®åˆæœŸåŒ–
 #endif // DX_NON_SOUND
 	}
 	if( DxSysData.NotDrawFlag == FALSE )
@@ -470,22 +470,22 @@ extern int NS_DxLib_Init( void )
 #endif // DX_NON_GRAPHICS
 	}
 #ifndef DX_NON_INPUTSTRING
-	InitializeInputCharBuf() ;									// •¶šƒR[ƒhƒoƒbƒtƒ@‚Ì‰Šú‰»
+	InitializeInputCharBuf() ;									// æ–‡å­—ã‚³ãƒ¼ãƒ‰ãƒãƒƒãƒ•ã‚¡ã®åˆæœŸåŒ–
 #endif // DX_NON_INPUTSTRING
 
-	// ‚c‚wƒ‰ƒCƒuƒ‰ƒŠ‰Šú‰»Š®—¹ƒtƒ‰ƒO‚ğ‚½‚Ä‚é
+	// ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªåˆæœŸåŒ–å®Œäº†ãƒ•ãƒ©ã‚°ã‚’ãŸã¦ã‚‹
 	DxSysData.DxLib_InitializeFlag = TRUE ;
 
-	// ‚u‚r‚x‚m‚b‘Ò‚¿‚ğ‚·‚é
+	// ï¼¶ï¼³ï¼¹ï¼®ï¼£å¾…ã¡ã‚’ã™ã‚‹
 //	NS_SetWaitVSyncFlag( TRUE ) ;
 
 #if !defined( DX_NON_LOG ) && !defined( DX_NON_PRINTF_DX )
-	// ƒƒOo—Íˆ—‚Ì‰Šú‰»‚ğs‚¤
+	// ãƒ­ã‚°å‡ºåŠ›å‡¦ç†ã®åˆæœŸåŒ–ã‚’è¡Œã†
 	InitializeLog() ;
 #endif
 
 #ifndef DX_NON_GRAPHICS
-	// •`‰ææ‚Ì•ÏX
+	// æç”»å…ˆã®å¤‰æ›´
 	NS_SetDrawScreen( DX_SCREEN_BACK ) ;
 	NS_SetDrawScreen( DX_SCREEN_FRONT ) ;
 #endif // DX_NON_GRAPHICS
@@ -493,7 +493,7 @@ extern int NS_DxLib_Init( void )
 	if( DxSysData.NotDrawFlag == FALSE )
 	{
 #ifndef DX_NON_MODEL
-		// ƒ‚ƒfƒ‹ƒo[ƒWƒ‡ƒ“‚P‚Ì‰Šú‰»
+		// ãƒ¢ãƒ‡ãƒ«ãƒãƒ¼ã‚¸ãƒ§ãƒ³ï¼‘ã®åˆæœŸåŒ–
 		if( MV1Initialize() < 0 )
 		{
 			goto ERROR_DX ;
@@ -501,94 +501,94 @@ extern int NS_DxLib_Init( void )
 #endif
 
 #ifndef DX_NON_LIVE2D_CUBISM4
-		// Live2D Cubism4 ŠÖ˜A‚Ì‰Šú‰»
+		// Live2D Cubism4 é–¢é€£ã®åˆæœŸåŒ–
 		Live2DCubism4_Initialize() ;
 #endif // DX_NON_LIVE2D_CUBISM4
 	}
 
 #ifndef DX_NON_ASYNCLOAD
-	// ”ñ“¯Šú“Ç‚İ‚İˆ—‚ğs‚¤ƒXƒŒƒbƒh‚ğ—§‚Ä‚é
+	// éåŒæœŸèª­ã¿è¾¼ã¿å‡¦ç†ã‚’è¡Œã†ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’ç«‹ã¦ã‚‹
 	if( SetupASyncLoadThread( 3 ) < 0 )
 	{
-		DXST_LOGFILE_ADDUTF16LE( "\x5e\x97\x0c\x54\x1f\x67\xad\x8a\x7f\x30\xbc\x8f\x7f\x30\xe6\x51\x06\x74\x92\x30\x4c\x88\x46\x30\xb9\x30\xec\x30\xc3\x30\xc9\x30\x6e\x30\xcb\x7a\x61\x30\x0a\x4e\x52\x30\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"”ñ“¯Šú“Ç‚İ‚İˆ—‚ğs‚¤ƒXƒŒƒbƒh‚Ì—§‚¿ã‚°‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+		DXST_LOGFILE_ADDUTF16LE( "\x5e\x97\x0c\x54\x1f\x67\xad\x8a\x7f\x30\xbc\x8f\x7f\x30\xe6\x51\x06\x74\x92\x30\x4c\x88\x46\x30\xb9\x30\xec\x30\xc3\x30\xc9\x30\x6e\x30\xcb\x7a\x61\x30\x0a\x4e\x52\x30\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"éåŒæœŸèª­ã¿è¾¼ã¿å‡¦ç†ã‚’è¡Œã†ã‚¹ãƒ¬ãƒƒãƒ‰ã®ç«‹ã¡ä¸Šã’ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 		goto ERROR_DX ;
 	}
 #endif // DX_NON_ASYNCLOAD
 
-	// ‰Šú‰»’†ƒtƒ‰ƒO‚ğ“|‚·
+	// åˆæœŸåŒ–ä¸­ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 	DxSysData.DxLib_RunInitializeFlag = FALSE ;
 
 	DXST_LOGFILE_TABSUB ;
-	DXST_LOGFILEFMT_ADDUTF16LE(( "\x24\xff\x38\xff\xe9\x30\xa4\x30\xd6\x30\xe9\x30\xea\x30\x6e\x30\x1d\x52\x1f\x67\x16\x53\xe6\x51\x06\x74\x42\x7d\x86\x4e\x00"/*@ L"‚c‚wƒ‰ƒCƒuƒ‰ƒŠ‚Ì‰Šú‰»ˆ—I—¹" @*/ ) ) ;
+	DXST_LOGFILEFMT_ADDUTF16LE(( "\x24\xff\x38\xff\xe9\x30\xa4\x30\xd6\x30\xe9\x30\xea\x30\x6e\x30\x1d\x52\x1f\x67\x16\x53\xe6\x51\x06\x74\x42\x7d\x86\x4e\x00"/*@ L"ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®åˆæœŸåŒ–å‡¦ç†çµ‚äº†" @*/ ) ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 
 ERROR_DX:
 	NS_DxLib_End() ;
 
 	DXST_LOGFILE_TABSUB ;
-	DXST_LOGFILEFMT_ADDUTF16LE(( "\x24\xff\x38\xff\xe9\x30\xa4\x30\xd6\x30\xe9\x30\xea\x30\x6e\x30\x1d\x52\x1f\x67\x16\x53\xe6\x51\x06\x74\x31\x59\x57\x65\x00"/*@ L"‚c‚wƒ‰ƒCƒuƒ‰ƒŠ‚Ì‰Šú‰»ˆ—¸”s" @*/ ) ) ;
+	DXST_LOGFILEFMT_ADDUTF16LE(( "\x24\xff\x38\xff\xe9\x30\xa4\x30\xd6\x30\xe9\x30\xea\x30\x6e\x30\x1d\x52\x1f\x67\x16\x53\xe6\x51\x06\x74\x31\x59\x57\x65\x00"/*@ L"ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®åˆæœŸåŒ–å‡¦ç†å¤±æ•—" @*/ ) ) ;
 
-	// ‰Šú‰»’†ƒtƒ‰ƒO‚ğ“|‚·
+	// åˆæœŸåŒ–ä¸­ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 	DxSysData.DxLib_RunInitializeFlag = FALSE ;
 
 	return -1 ;
 } 
 
-// ƒ‰ƒCƒuƒ‰ƒŠg—p‚ÌI—¹ŠÖ”
+// ãƒ©ã‚¤ãƒ–ãƒ©ãƒªä½¿ç”¨ã®çµ‚äº†é–¢æ•°
 extern int NS_DxLib_End( void )
 {
-	// Šù‚ÉI—¹ˆ—‚ªs‚í‚ê‚Ä‚¢‚é‚©A‚»‚à‚»‚à‰Šú‰»‚³‚ê‚Ä‚¢‚È‚¢ê‡‚Í‰½‚à‚µ‚È‚¢
+	// æ—¢ã«çµ‚äº†å‡¦ç†ãŒè¡Œã‚ã‚Œã¦ã„ã‚‹ã‹ã€ãã‚‚ãã‚‚åˆæœŸåŒ–ã•ã‚Œã¦ã„ãªã„å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( DxSysData.DxLib_InitializeFlag == FALSE )
 	{
 		return 0 ;
 	}
 
 #ifndef DX_NON_ASYNCLOAD
-	// ”ñ“¯Šú“Ç‚İ‚İ‚ğ‚µ‚È‚¢
+	// éåŒæœŸèª­ã¿è¾¼ã¿ã‚’ã—ãªã„
 	NS_SetUseASyncLoadFlag( FALSE ) ;
 
-	// ‘S‚Ä‚Ì”ñ“¯Šú“Ç‚İ‚İ‚ÌI—¹‘Ò‚¿
+	// å…¨ã¦ã®éåŒæœŸèª­ã¿è¾¼ã¿ã®çµ‚äº†å¾…ã¡
 	while( NS_GetASyncLoadNum() > 0 )
 	{
-		// íœƒŠƒNƒGƒXƒg‚ª—ˆ‚Ä‚¢‚éƒnƒ“ƒhƒ‹‚ğíœ‚·‚é
+		// å‰Šé™¤ãƒªã‚¯ã‚¨ã‚¹ãƒˆãŒæ¥ã¦ã„ã‚‹ãƒãƒ³ãƒ‰ãƒ«ã‚’å‰Šé™¤ã™ã‚‹
 		DeleteRequestHandleDelete( FALSE ) ;
 
-		// ƒƒCƒ“ƒXƒŒƒbƒh‚ªˆ—‚·‚é”ñ“¯Šú“Ç‚İ‚İ‚Ìˆ—‚ğs‚¤
+		// ãƒ¡ã‚¤ãƒ³ã‚¹ãƒ¬ãƒƒãƒ‰ãŒå‡¦ç†ã™ã‚‹éåŒæœŸèª­ã¿è¾¼ã¿ã®å‡¦ç†ã‚’è¡Œã†
 		ProcessASyncLoadRequestMainThread() ;
 		Thread_Sleep( 1 ) ;
 	}
 
-	// íœƒŠƒNƒGƒXƒg‚ª—ˆ‚Ä‚¢‚éƒnƒ“ƒhƒ‹‚ğ‘S‚Äíœ‚·‚é
+	// å‰Šé™¤ãƒªã‚¯ã‚¨ã‚¹ãƒˆãŒæ¥ã¦ã„ã‚‹ãƒãƒ³ãƒ‰ãƒ«ã‚’å…¨ã¦å‰Šé™¤ã™ã‚‹
 	DeleteRequestHandleDelete( TRUE ) ;
 #endif // DX_NON_ASYNCLOAD
 
 #ifndef DX_NON_SOFTIMAGE
-	// “o˜^‚µ‚½‘S‚Ä‚Ìƒ\ƒtƒgƒCƒ[ƒW‚ğíœ
+	// ç™»éŒ²ã—ãŸå…¨ã¦ã®ã‚½ãƒ•ãƒˆã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’å‰Šé™¤
 	InitSoftImage() ;
 #endif // DX_NON_SOFTIMAGE
 
-	// Šeˆ—Œn‚ÌI—¹
+	// å„å‡¦ç†ç³»ã®çµ‚äº†
 #if !defined( DX_NON_LOG ) && !defined( DX_NON_PRINTF_DX )
-	TerminateLog() ;			// ƒƒOˆ—‚ÌŒãn––
+	TerminateLog() ;			// ãƒ­ã‚°å‡¦ç†ã®å¾Œå§‹æœ«
 #endif
 
 #ifndef DX_NON_NETWORK
-	TerminateNetWork() ;		// ‚v‚‰‚‚r‚‚ƒ‚‹‚…‚”‚“ŠÖŒW‚ÌI—¹
+	TerminateNetWork() ;		// ï¼·ï½‰ï½ï¼³ï½ï½ƒï½‹ï½…ï½”ï½“é–¢ä¿‚ã®çµ‚äº†
 #endif
 
 #ifndef DX_NON_LIVE2D_CUBISM4
-	// Live2D Cubism4 ŠÖ˜A‚ÌŒãn––
+	// Live2D Cubism4 é–¢é€£ã®å¾Œå§‹æœ«
 	Live2DCubism4_Terminate() ;
 #endif // DX_NON_LIVE2D_CUBISM4
 
 #ifndef DX_NON_SOUND
-	NS_StopMusic() ;			// ‚l‚h‚c‚h‚ª‰‰‘t‚³‚ê‚Ä‚¢‚éó‘Ô‚Ìê‡‚»‚ê‚ğ~‚ß‚é
+	NS_StopMusic() ;			// ï¼­ï¼©ï¼¤ï¼©ãŒæ¼”å¥ã•ã‚Œã¦ã„ã‚‹çŠ¶æ…‹ã®å ´åˆãã‚Œã‚’æ­¢ã‚ã‚‹
 #endif // DX_NON_SOUND
 
 #ifndef DX_NON_MODEL
-	MV1Terminate() ;			// ƒ‚ƒfƒ‹ƒo[ƒWƒ‡ƒ“‚P‚ÌŒãn––
+	MV1Terminate() ;			// ãƒ¢ãƒ‡ãƒ«ãƒãƒ¼ã‚¸ãƒ§ãƒ³ï¼‘ã®å¾Œå§‹æœ«
 #endif
 
 #ifndef DX_NON_GRAPHICS
@@ -606,53 +606,53 @@ extern int NS_DxLib_End( void )
 #endif
 
 #ifndef DX_NON_INPUT
-	TerminateInputSystem() ;	// “ü—ÍƒVƒXƒeƒ€‚ÌI—¹
+	TerminateInputSystem() ;	// å…¥åŠ›ã‚·ã‚¹ãƒ†ãƒ ã®çµ‚äº†
 #endif // DX_NON_INPUT
 
 #ifndef DX_NON_SOUND
-	TerminateSoundSystem() ;	// ƒTƒEƒ“ƒhƒVƒXƒeƒ€‚ÌŒãn––
-	TerminateSoundConvert() ;	// ƒTƒEƒ“ƒh•ÏŠ·ˆ—‚ÌI—¹
+	TerminateSoundSystem() ;	// ã‚µã‚¦ãƒ³ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ã®å¾Œå§‹æœ«
+	TerminateSoundConvert() ;	// ã‚µã‚¦ãƒ³ãƒ‰å¤‰æ›å‡¦ç†ã®çµ‚äº†
 #endif // DX_NON_SOUND
 
-	// ‚c‚wƒ‰ƒCƒuƒ‰ƒŠ‰Šú‰»Š®—¹ƒtƒ‰ƒO‚ğ“|‚·
+	// ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªåˆæœŸåŒ–å®Œäº†ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 	DxSysData.DxLib_InitializeFlag = FALSE ;
 
-	// ƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹ƒAƒNƒZƒX—p‚Ìƒf[ƒ^‚ÌŒãn––
+	// ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ã‚¢ã‚¯ã‚»ã‚¹ç”¨ã®ãƒ‡ãƒ¼ã‚¿ã®å¾Œå§‹æœ«
 #ifndef DX_NON_DXA
 	DXA_DIR_Terminate() ;
 #endif
 
 #ifndef DX_NON_ASYNCLOAD
-	// ”ñ“¯Šú“Ç‚İ‚İˆ——p‚ÌƒXƒŒƒbƒh‚ğ•Â‚¶‚é
+	// éåŒæœŸèª­ã¿è¾¼ã¿å‡¦ç†ç”¨ã®ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’é–‰ã˜ã‚‹
 	CloseASyncLoadThread() ;
 #endif // DX_NON_ASYNCLOAD
 
-	// ƒtƒ@ƒCƒ‹ƒAƒNƒZƒXˆ—‚ÌŒãn––
+	// ãƒ•ã‚¡ã‚¤ãƒ«ã‚¢ã‚¯ã‚»ã‚¹å‡¦ç†ã®å¾Œå§‹æœ«
 	TerminateFile() ;
 
 #ifndef DX_NON_ASYNCLOAD
-	// ”ñ“¯Šú“Ç‚İ‚İˆ—‚ÌŒãn––
+	// éåŒæœŸèª­ã¿è¾¼ã¿å‡¦ç†ã®å¾Œå§‹æœ«
 	TerminateASyncLoad() ;
 #endif // DX_NON_ASYNCLOAD
 
 #ifdef DX_USE_DXLIB_MEM_DUMP
-	// ƒƒ‚ƒŠƒ_ƒ“ƒv‚ğs‚¤
+	// ãƒ¡ãƒ¢ãƒªãƒ€ãƒ³ãƒ—ã‚’è¡Œã†
 	NS_DxDumpAlloc() ;
 #endif
 
 #ifndef DX_NON_LOG
-	// ƒƒOƒtƒ@ƒCƒ‹‚ÌŒãn––
+	// ãƒ­ã‚°ãƒ•ã‚¡ã‚¤ãƒ«ã®å¾Œå§‹æœ«
 	LogFileTerminate() ;
 #endif
 
-	// ƒƒ‚ƒŠ‚ÌŒãn––‚ğs‚¤
+	// ãƒ¡ãƒ¢ãƒªã®å¾Œå§‹æœ«ã‚’è¡Œã†
 	MemoryTerminate() ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒ‰ƒCƒuƒ‰ƒŠ‚Ì“à•”‚Åg—p‚µ‚Ä‚¢‚é\‘¢‘Ì‚ğƒ[ƒ‰Šú‰»‚µ‚ÄADxLib_Init ‚Ì‘O‚És‚Á‚½İ’è‚ğ–³Œø‰»‚·‚é( DxLib_Init ‚Ì‘O‚Å‚Ì‚İ—LŒø )
+// ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®å†…éƒ¨ã§ä½¿ç”¨ã—ã¦ã„ã‚‹æ§‹é€ ä½“ã‚’ã‚¼ãƒ­åˆæœŸåŒ–ã—ã¦ã€DxLib_Init ã®å‰ã«è¡Œã£ãŸè¨­å®šã‚’ç„¡åŠ¹åŒ–ã™ã‚‹( DxLib_Init ã®å‰ã§ã®ã¿æœ‰åŠ¹ )
 extern int NS_DxLib_GlobalStructInitialize( void )
 {
 //	_MEMSET( &GRA2, 0, sizeof( GRA2 ) ) ;
@@ -679,16 +679,16 @@ extern int NS_DxLib_GlobalStructInitialize( void )
 
 
 
-// ƒGƒ‰[ˆ—ŠÖ”
+// ã‚¨ãƒ©ãƒ¼å‡¦ç†é–¢æ•°
 
-// ƒGƒ‰[ˆ—
+// ã‚¨ãƒ©ãƒ¼å‡¦ç†
 extern int DxLib_Error( const wchar_t *ErrorStr )
 {
-	// ƒGƒ‰[ƒƒO‚Ì”ro
+	// ã‚¨ãƒ©ãƒ¼ãƒ­ã‚°ã®æ’å‡º
 	DXST_LOGFILE_ADDW( ErrorStr ) ;
 	DXST_LOGFILE_ADDW( L"\n" ) ;
 
-	// Šeˆ—Œn‚ÌI—¹
+	// å„å‡¦ç†ç³»ã®çµ‚äº†
 	NS_DxLib_End() ;
 
 	exit( -1 ) ;
@@ -696,7 +696,7 @@ extern int DxLib_Error( const wchar_t *ErrorStr )
 	return -1 ;
 }
 
-// ƒ‰ƒCƒuƒ‰ƒŠ‚ÌƒGƒ‰[ˆ—‚ğs‚¤( UTF16LE”Å )
+// ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®ã‚¨ãƒ©ãƒ¼å‡¦ç†ã‚’è¡Œã†( UTF16LEç‰ˆ )
 extern int DxLib_ErrorUTF16LE( const char *ErrorStr )
 {
 	int Result ;
@@ -737,9 +737,9 @@ extern int DxLib_ErrorUTF16LE( const char *ErrorStr )
 
 
 
-// ƒJƒEƒ“ƒ^‹y‚Ñæ“¾ŒnŠÖ”
+// ã‚«ã‚¦ãƒ³ã‚¿åŠã³æ™‚åˆ»å–å¾—ç³»é–¢æ•°
 
-// ƒ~ƒŠ•b’PˆÊ‚Ì¸“x‚ğ‚ÂƒJƒEƒ“ƒ^‚ÌŒ»İ’l‚ğ“¾‚é
+// ãƒŸãƒªç§’å˜ä½ã®ç²¾åº¦ã‚’æŒã¤ã‚«ã‚¦ãƒ³ã‚¿ã®ç¾åœ¨å€¤ã‚’å¾—ã‚‹
 extern int NS_GetNowCount( int /*UseRDTSCFlag*/ )
 {
 	LONGLONG ResultLL ;
@@ -752,7 +752,7 @@ extern int NS_GetNowCount( int /*UseRDTSCFlag*/ )
 	return Result ;
 }
 
-// GetNowTime‚Ì‚¸“xƒo[ƒWƒ‡ƒ“
+// GetNowTimeã®é«˜ç²¾åº¦ãƒãƒ¼ã‚¸ãƒ§ãƒ³
 extern LONGLONG NS_GetNowHiPerformanceCount( int /*UseRDTSCFlag*/ )
 {
 	LONGLONG NowTime ;
@@ -765,67 +765,67 @@ extern LONGLONG NS_GetNowHiPerformanceCount( int /*UseRDTSCFlag*/ )
 	return NowTime ;
 }
 
-// OS‚ª’ñ‹Ÿ‚·‚é‚¸“xƒJƒEƒ“ƒ^‚ÌŒ»İ‚Ì’l‚ğ“¾‚é
+// OSãŒæä¾›ã™ã‚‹é«˜ç²¾åº¦ã‚«ã‚¦ãƒ³ã‚¿ã®ç¾åœ¨ã®å€¤ã‚’å¾—ã‚‹
 extern ULONGLONG NS_GetNowSysPerformanceCount( void )
 {
 	return ( ULONGLONG )NS_GetNowHiPerformanceCount( FALSE ) ;
 }
 
-// OS‚ª’ñ‹Ÿ‚·‚é‚¸“xƒJƒEƒ“ƒ^‚Ìü”g”( 1•b•Ó‚è‚ÌƒJƒEƒ“ƒg” )‚ğ“¾‚é
+// OSãŒæä¾›ã™ã‚‹é«˜ç²¾åº¦ã‚«ã‚¦ãƒ³ã‚¿ã®å‘¨æ³¢æ•°( 1ç§’è¾ºã‚Šã®ã‚«ã‚¦ãƒ³ãƒˆæ•° )ã‚’å¾—ã‚‹
 extern ULONGLONG NS_GetSysPerformanceFrequency( void )
 {
 	return 1000000 ;
 }
 
-// OS‚ª’ñ‹Ÿ‚·‚é‚¸“xƒJƒEƒ“ƒ^‚Ì’l‚ğ•b‚Ì’l‚É•ÏŠ·‚·‚é
+// OSãŒæä¾›ã™ã‚‹é«˜ç²¾åº¦ã‚«ã‚¦ãƒ³ã‚¿ã®å€¤ã‚’ç§’ã®å€¤ã«å¤‰æ›ã™ã‚‹
 extern ULONGLONG NS_ConvSysPerformanceCountToSeconds( ULONGLONG Count )
 {
 	return Count / 1000000 ;
 }
 
-// OS‚ª’ñ‹Ÿ‚·‚é‚¸“xƒJƒEƒ“ƒ^‚Ì’l‚ğƒ~ƒŠ•b‚Ì’l‚É•ÏŠ·‚·‚é
+// OSãŒæä¾›ã™ã‚‹é«˜ç²¾åº¦ã‚«ã‚¦ãƒ³ã‚¿ã®å€¤ã‚’ãƒŸãƒªç§’ã®å€¤ã«å¤‰æ›ã™ã‚‹
 extern ULONGLONG NS_ConvSysPerformanceCountToMilliSeconds( ULONGLONG Count )
 {
 	return Count / 1000 ;
 }
 
-// OS‚ª’ñ‹Ÿ‚·‚é‚¸“xƒJƒEƒ“ƒ^‚Ì’l‚ğƒ}ƒCƒNƒ•b‚Ì’l‚É•ÏŠ·‚·‚é
+// OSãŒæä¾›ã™ã‚‹é«˜ç²¾åº¦ã‚«ã‚¦ãƒ³ã‚¿ã®å€¤ã‚’ãƒã‚¤ã‚¯ãƒ­ç§’ã®å€¤ã«å¤‰æ›ã™ã‚‹
 extern ULONGLONG NS_ConvSysPerformanceCountToMicroSeconds( ULONGLONG Count )
 {
 	return Count ;
 }
 
-// OS‚ª’ñ‹Ÿ‚·‚é‚¸“xƒJƒEƒ“ƒ^‚Ì’l‚ğƒiƒm•b‚Ì’l‚É•ÏŠ·‚·‚é
+// OSãŒæä¾›ã™ã‚‹é«˜ç²¾åº¦ã‚«ã‚¦ãƒ³ã‚¿ã®å€¤ã‚’ãƒŠãƒç§’ã®å€¤ã«å¤‰æ›ã™ã‚‹
 extern ULONGLONG NS_ConvSysPerformanceCountToNanoSeconds( ULONGLONG Count )
 {
 	return Count * 1000 ;
 }
 
-// •b‚Ì’l‚ğOS‚ª’ñ‹Ÿ‚·‚é‚¸“xƒJƒEƒ“ƒ^‚Ì’l‚É•ÏŠ·‚·‚é
+// ç§’ã®å€¤ã‚’OSãŒæä¾›ã™ã‚‹é«˜ç²¾åº¦ã‚«ã‚¦ãƒ³ã‚¿ã®å€¤ã«å¤‰æ›ã™ã‚‹
 extern ULONGLONG NS_ConvSecondsToSysPerformanceCount( ULONGLONG Seconds )
 {
 	return Seconds * 1000000 ;
 }
 
-// ƒ~ƒŠ•b‚Ì’l‚ğOS‚ª’ñ‹Ÿ‚·‚é‚¸“xƒJƒEƒ“ƒ^‚Ì’l‚É•ÏŠ·‚·‚é
+// ãƒŸãƒªç§’ã®å€¤ã‚’OSãŒæä¾›ã™ã‚‹é«˜ç²¾åº¦ã‚«ã‚¦ãƒ³ã‚¿ã®å€¤ã«å¤‰æ›ã™ã‚‹
 extern ULONGLONG NS_ConvMilliSecondsToSysPerformanceCount( ULONGLONG MilliSeconds )
 {
 	return MilliSeconds * 1000 ;
 }
 
-// ƒ}ƒCƒNƒ•b‚Ì’l‚ğOS‚ª’ñ‹Ÿ‚·‚é‚¸“xƒJƒEƒ“ƒ^‚Ì’l‚É•ÏŠ·‚·‚é
+// ãƒã‚¤ã‚¯ãƒ­ç§’ã®å€¤ã‚’OSãŒæä¾›ã™ã‚‹é«˜ç²¾åº¦ã‚«ã‚¦ãƒ³ã‚¿ã®å€¤ã«å¤‰æ›ã™ã‚‹
 extern ULONGLONG NS_ConvMicroSecondsToSysPerformanceCount( ULONGLONG MicroSeconds )
 {
 	return MicroSeconds ;
 }
 
-// ƒiƒm•b‚Ì’l‚ğOS‚ª’ñ‹Ÿ‚·‚é‚¸“xƒJƒEƒ“ƒ^‚Ì’l‚É•ÏŠ·‚·‚é
+// ãƒŠãƒç§’ã®å€¤ã‚’OSãŒæä¾›ã™ã‚‹é«˜ç²¾åº¦ã‚«ã‚¦ãƒ³ã‚¿ã®å€¤ã«å¤‰æ›ã™ã‚‹
 extern ULONGLONG NS_ConvNanoSecondsToSysPerformanceCount( ULONGLONG NanoSeconds )
 {
 	return NanoSeconds / 1000 ;
 }
 
-// Œ»İ‚ğæ“¾‚·‚é
+// ç¾åœ¨æ™‚åˆ»ã‚’å–å¾—ã™ã‚‹
 extern int NS_GetDateTime( DATEDATA *DateBuf )
 {
 	time_t nowtime ;
@@ -835,7 +835,7 @@ extern int NS_GetDateTime( DATEDATA *DateBuf )
 
 	datetime = localtime( &nowtime ) ;
 
-	// ƒ[ƒJƒ‹ƒf[ƒ^‚ğŒ³‚Éê—p‚Ìƒf[ƒ^Œ^ƒf[ƒ^‚É‚ğ”É‰h‚³‚¹‚é
+	// ãƒ­ãƒ¼ã‚«ãƒ«æ™‚åˆ»ãƒ‡ãƒ¼ã‚¿ã‚’å…ƒã«å°‚ç”¨ã®ãƒ‡ãƒ¼ã‚¿å‹ãƒ‡ãƒ¼ã‚¿ã«æ™‚åˆ»ã‚’ç¹æ „ã•ã›ã‚‹
 	DateBuf->Year	= datetime->tm_year + 1900 ;
 	DateBuf->Mon	= datetime->tm_mon + 1 ;
 	DateBuf->Day	= datetime->tm_mday ;
@@ -843,7 +843,7 @@ extern int NS_GetDateTime( DATEDATA *DateBuf )
 	DateBuf->Min	= datetime->tm_min ;
 	DateBuf->Sec	= datetime->tm_sec ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
@@ -884,7 +884,7 @@ extern int NS_GetDateTime( DATEDATA *DateBuf )
 
 
 
-// ƒƒ^ƒf[ƒ^( fullscreen )‚ğæ“¾‚·‚é
+// ãƒ¡ã‚¿ãƒ‡ãƒ¼ã‚¿( fullscreen )ã‚’å–å¾—ã™ã‚‹
 extern int GetAndroidMetaDataFullScreen( JNIEnv *env )
 {
 	TCHAR *StringBuffer = NULL ;
@@ -893,24 +893,24 @@ extern int GetAndroidMetaDataFullScreen( JNIEnv *env )
 	StringBufferBytes = GetAndroidMetaData_Base( env, "fullscreen", NULL, 0, NULL ) ;
 	if( StringBufferBytes < 0 )
 	{
-		// API Level ‚Ì’è”‚ğ‚ÂƒNƒ‰ƒX‚Ìæ“¾
+		// API Level ã®å®šæ•°ã‚’æŒã¤ã‚¯ãƒ©ã‚¹ã®å–å¾—
 		jclass class_BuildVERSION = env->FindClass( "android/os/Build$VERSION" ) ;
 		if( class_BuildVERSION == NULL )
 		{
 			return -1 ;
 		}
 
-		// API Level ‚Ì’è”‚ÌID‚ğæ“¾
+		// API Level ã®å®šæ•°ã®IDã‚’å–å¾—
 		jfieldID field_SDK_INT = env->GetStaticFieldID( class_BuildVERSION, "SDK_INT", "I" ) ;
 		if( field_SDK_INT == NULL )
 		{
 			return -1 ;
 		}
 
-		// API Level ‚Ì’l‚ğæ“¾
+		// API Level ã®å€¤ã‚’å–å¾—
 		jint intfield_SDK_INT = env->GetStaticIntField( class_BuildVERSION, field_SDK_INT ) ;
 
-		// ‚à‚µ API Level ‚ª 19 –¢–‚Ìê‡‚Íƒtƒ‹ƒXƒNƒŠ[ƒ“ƒ‚[ƒh‚É‚µ‚È‚¢
+		// ã‚‚ã— API Level ãŒ 19 æœªæº€ã®å ´åˆã¯ãƒ•ãƒ«ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ¢ãƒ¼ãƒ‰ã«ã—ãªã„
 		g_AndroidSys.IsFullScreen = intfield_SDK_INT >= 19 ? TRUE : FALSE ;
 	}
 	else
@@ -934,10 +934,10 @@ extern int GetAndroidMetaDataFullScreen( JNIEnv *env )
 }
 
 
-// ƒXƒe[ƒ^ƒXƒo[‚ÆƒiƒrƒQ[ƒVƒ‡ƒ“ƒo[‚ğ”ñ•\¦‚É‚·‚é
+// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒãƒ¼ã¨ãƒŠãƒ“ã‚²ãƒ¼ã‚·ãƒ§ãƒ³ãƒãƒ¼ã‚’éè¡¨ç¤ºã«ã™ã‚‹
 extern int SetAndroidWindowStyle( JNIEnv *env )
 {
-	// –ß‚è’l‚Ì‰Šú’l‚Í -1
+	// æˆ»ã‚Šå€¤ã®åˆæœŸå€¤ã¯ -1
 	int res = -1 ;
 
 	if( env == NULL )
@@ -945,52 +945,52 @@ extern int SetAndroidWindowStyle( JNIEnv *env )
 		return res ;
 	}
 
-	// API Level ‚Ì’è”‚ğ‚ÂƒNƒ‰ƒX‚Ìæ“¾
+	// API Level ã®å®šæ•°ã‚’æŒã¤ã‚¯ãƒ©ã‚¹ã®å–å¾—
 	jclass class_BuildVERSION = env->FindClass( "android/os/Build$VERSION" ) ;
 	if( class_BuildVERSION == NULL )
 	{
 		return res ;
 	}
 
-	// API Level ‚Ì’è”‚ÌID‚ğæ“¾
+	// API Level ã®å®šæ•°ã®IDã‚’å–å¾—
 	jfieldID field_SDK_INT = env->GetStaticFieldID( class_BuildVERSION, "SDK_INT", "I" ) ;
 	if( field_SDK_INT == NULL )
 	{
 		return res ;
 	}
 
-	// API Level ‚Ì’l‚ğæ“¾
+	// API Level ã®å€¤ã‚’å–å¾—
 	jint intfield_SDK_INT = env->GetStaticIntField( class_BuildVERSION, field_SDK_INT ) ;
 
-	// setSystemUiVisibility ŒÄ‚Ño‚µ‚É•K—v‚ÈƒNƒ‰ƒX‚ğæ“¾
+	// setSystemUiVisibility å‘¼ã³å‡ºã—ã«å¿…è¦ãªã‚¯ãƒ©ã‚¹ã‚’å–å¾—
 	jclass class_NativeActivity = env->GetObjectClass( g_AndroidSys.NativeActivity->clazz ) ;
 	jclass class_Window         = env->FindClass( "android/view/Window" ) ;
 	jclass class_View           = env->FindClass( "android/view/View"   ) ;
 
-	// ƒNƒ‰ƒX‚Ìæ“¾‚ª‚Å‚«‚½ê‡‚Ì‚İ if •¶‚Ì’†‚É“ü‚é
+	// ã‚¯ãƒ©ã‚¹ã®å–å¾—ãŒã§ããŸå ´åˆã®ã¿ if æ–‡ã®ä¸­ã«å…¥ã‚‹
 	if( class_NativeActivity != NULL &&
 		class_Window         != NULL &&
 		class_View           != NULL )
 	{
-		// setSystemUiVisibility ŒÄ‚Ño‚µ‚É•K—v‚ÈŠÖ”‚ğæ“¾‚·‚é
+		// setSystemUiVisibility å‘¼ã³å‡ºã—ã«å¿…è¦ãªé–¢æ•°ã‚’å–å¾—ã™ã‚‹
 		jmethodID methodID_getWindow             = env->GetMethodID( class_NativeActivity, "getWindow",             "()Landroid/view/Window;" ) ;
 		jmethodID methodID_getDecorView          = env->GetMethodID( class_Window,         "getDecorView",          "()Landroid/view/View;"   ) ;
 		jmethodID methodID_setSystemUiVisibility = env->GetMethodID( class_View,           "setSystemUiVisibility", "(I)V"                    ) ;
 
-		// ŠÖ”‚Ìæ“¾‚ª‚Å‚«‚½ê‡‚Ì‚İ if •¶‚Ì’†‚É“ü‚é
+		// é–¢æ•°ã®å–å¾—ãŒã§ããŸå ´åˆã®ã¿ if æ–‡ã®ä¸­ã«å…¥ã‚‹
 		if( methodID_getWindow             != NULL &&
 			methodID_getDecorView          != NULL && 
 			methodID_setSystemUiVisibility != NULL )
 		{
-			// ƒ\ƒtƒg‚Ì window ‚Ìæ“¾
+			// ã‚½ãƒ•ãƒˆã® window ã®å–å¾—
 			jobject object_Window = env->CallObjectMethod( g_AndroidSys.NativeActivity->clazz, methodID_getWindow ) ;
 			if( object_Window != NULL )
 			{
-				// ƒ\ƒtƒg‚Ì DecorView ‚ğæ“¾
+				// ã‚½ãƒ•ãƒˆã® DecorView ã‚’å–å¾—
 				jobject object_DecorView = env->CallObjectMethod( object_Window, methodID_getDecorView ) ;
 				if( object_DecorView != NULL )
 				{
-					// API Level ‚É‰‚¶‚Ä setSystemUiVisibility ‚É“n‚·ƒtƒ‰ƒO‚ğ•ÏX‚·‚é
+					// API Level ã«å¿œã˜ã¦ setSystemUiVisibility ã«æ¸¡ã™ãƒ•ãƒ©ã‚°ã‚’å¤‰æ›´ã™ã‚‹
 					jint flags = 0 ;
 
 					// API Level 14
@@ -1034,25 +1034,25 @@ extern int SetAndroidWindowStyle( JNIEnv *env )
 						}
 					}
 
-					// setSystemUiVisibility ‚ÌŒÄ‚Ño‚µ
+					// setSystemUiVisibility ã®å‘¼ã³å‡ºã—
 					env->CallVoidMethod( object_DecorView, methodID_setSystemUiVisibility, flags ) ;
 
-					// ‚±‚±‚Ü‚Å‚±‚ê‚½ê‡‚Ì‚İ–ß‚è’l‚ğ 0 ‚É‚·‚é
+					// ã“ã“ã¾ã§ã“ã‚ŒãŸå ´åˆã®ã¿æˆ»ã‚Šå€¤ã‚’ 0 ã«ã™ã‚‹
 					res = 0 ;
 
-					// æ“¾‚µ‚½QÆ‚ÌŒãn––
+					// å–å¾—ã—ãŸå‚ç…§ã®å¾Œå§‹æœ«
 					env->DeleteLocalRef( object_DecorView ) ;
 					object_DecorView = NULL ;
 				}
 
-				// æ“¾‚µ‚½QÆ‚ÌŒãn––
+				// å–å¾—ã—ãŸå‚ç…§ã®å¾Œå§‹æœ«
 				env->DeleteLocalRef( object_Window ) ;
 				object_Window = NULL ;
 			}
 		}
 	}
 
-	// æ“¾‚µ‚½QÆ‚ÌŒãn––
+	// å–å¾—ã—ãŸå‚ç…§ã®å¾Œå§‹æœ«
 	if( class_BuildVERSION != NULL )
 	{
 		env->DeleteLocalRef( class_BuildVERSION ) ;
@@ -1077,11 +1077,11 @@ extern int SetAndroidWindowStyle( JNIEnv *env )
 		class_View = NULL ;
 	}
 
-	// –ß‚è’l‚ğ•Ô‚·
+	// æˆ»ã‚Šå€¤ã‚’è¿”ã™
 	return res ;
 }
 
-// android_main ŠÖ”
+// android_main é–¢æ•°
 #ifdef DX_COMPILE_TYPE_C_LANGUAGE
 extern "C" 
 {
@@ -1091,33 +1091,33 @@ extern "C"
 extern int android_main( void ) ;
 #endif // DX_COMPILE_TYPE_C_LANGUAGE
 
-// ƒ\ƒtƒg—pƒXƒŒƒbƒh‚ÌƒGƒ“ƒgƒŠ[ƒ|ƒCƒ“ƒg
+// ã‚½ãƒ•ãƒˆç”¨ã‚¹ãƒ¬ãƒƒãƒ‰ã®ã‚¨ãƒ³ãƒˆãƒªãƒ¼ãƒã‚¤ãƒ³ãƒˆ
 static void* android_app_entry( void * )
 {
-	// ‚c‚wƒ‰ƒCƒuƒ‰ƒŠ‚Ìƒtƒ@ƒCƒ‹ƒVƒXƒeƒ€‚ÉƒAƒZƒbƒgƒ}ƒl[ƒWƒƒ[‚ğ“o˜^
+	// ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®ãƒ•ã‚¡ã‚¤ãƒ«ã‚·ã‚¹ãƒ†ãƒ ã«ã‚¢ã‚»ãƒƒãƒˆãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã‚’ç™»éŒ²
 	SetAssetManager( g_AndroidSys.NativeActivity->assetManager ) ;
 
-	// ‚c‚wƒ‰ƒCƒuƒ‰ƒŠ‚Ìƒtƒ@ƒCƒ‹ƒVƒXƒeƒ€‚É InternalDataPath ‚Æ ExternalDataPath ‚ğ“o˜^
+	// ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®ãƒ•ã‚¡ã‚¤ãƒ«ã‚·ã‚¹ãƒ†ãƒ ã« InternalDataPath ã¨ ExternalDataPath ã‚’ç™»éŒ²
 	SetInternalAndExternalDataPath(
 		g_AndroidSys.NativeActivity->internalDataPath,
 		g_AndroidSys.NativeActivity->externalDataPath
 	) ;
 
 #ifndef DX_NON_FONT
-	// ƒtƒHƒ“ƒgƒ^ƒCƒv‚ÍƒAƒ“ƒ`ƒGƒCƒŠƒAƒXƒ^ƒCƒv‚ÉŒÅ’è
+	// ãƒ•ã‚©ãƒ³ãƒˆã‚¿ã‚¤ãƒ—ã¯ã‚¢ãƒ³ãƒã‚¨ã‚¤ãƒªã‚¢ã‚¹ã‚¿ã‚¤ãƒ—ã«å›ºå®š
 	SetAntialiasingFontOnlyFlag( TRUE ) ;
 #endif // DX_NON_FONT
 
 
 #ifndef DX_NON_DXA
-	// ‚c‚wƒA[ƒJƒCƒu‚ÌƒpƒX‚ğ‘å•¶š‚É‚µ‚È‚¢‚æ‚¤‚É‚·‚é
+	// ï¼¤ï¼¸ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã®ãƒ‘ã‚¹ã‚’å¤§æ–‡å­—ã«ã—ãªã„ã‚ˆã†ã«ã™ã‚‹
 	DXA_DIR_SetNotArchivePathCharUp( TRUE ) ;
 #endif // DX_NON_DXA
 
-	// ƒR[ƒ‹ƒoƒbƒN–³‚µ Looper ‚Ìæ“¾
+	// ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ç„¡ã— Looper ã®å–å¾—
     g_AndroidSys.Looper = ALooper_prepare( ALOOPER_PREPARE_ALLOW_NON_CALLBACKS ) ;
 
-	// ƒƒCƒ“ƒXƒŒƒbƒh‚©‚ç‚ÌƒƒbƒZ[ƒWó‚¯æ‚è“o˜^
+	// ãƒ¡ã‚¤ãƒ³ã‚¹ãƒ¬ãƒƒãƒ‰ã‹ã‚‰ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å—ã‘å–ã‚Šç™»éŒ²
     ALooper_addFd(
 		g_AndroidSys.Looper,
 		g_AndroidSys.MessageRead,
@@ -1127,7 +1127,7 @@ static void* android_app_entry( void * )
 		NULL
 	) ;
 
-	// ƒZƒ“ƒT[‚Ì‰Šú‰»
+	// ã‚»ãƒ³ã‚µãƒ¼ã®åˆæœŸåŒ–
 	{
 		int i ;
 
@@ -1139,7 +1139,7 @@ static void* android_app_entry( void * )
 		}
 	}
 
-	// ƒ\ƒtƒg—pƒXƒŒƒbƒhŠJn‚µ‚½‚©ƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// ã‚½ãƒ•ãƒˆç”¨ã‚¹ãƒ¬ãƒƒãƒ‰é–‹å§‹ã—ãŸã‹ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
     pthread_mutex_lock( &g_AndroidSys.Mutex ) ;
 	g_AndroidSys.MutexLockIndex = 1 << 7 ;
     g_AndroidSys.SoftThreadRunning = 1 ;
@@ -1147,49 +1147,49 @@ static void* android_app_entry( void * )
 	g_AndroidSys.MutexLockIndex &= ~( 1 << 7 ) ;
     pthread_mutex_unlock( &g_AndroidSys.Mutex ) ;
 
-	// ƒ\ƒtƒg—pƒXƒŒƒbƒh‚ª‘Ò‚¿ó‘Ô‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğ“|‚·
+	// ã‚½ãƒ•ãƒˆç”¨ã‚¹ãƒ¬ãƒƒãƒ‰ãŒå¾…ã¡çŠ¶æ…‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 	g_AndroidSys.SoftThreadWait = 0 ;
 
-	// ƒXƒe[ƒ^ƒXƒo[‚ÆƒiƒrƒQ[ƒVƒ‡ƒ“ƒo[‚ğ”ñ•\¦‚É‚·‚é
+	// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒãƒ¼ã¨ãƒŠãƒ“ã‚²ãƒ¼ã‚·ãƒ§ãƒ³ãƒãƒ¼ã‚’éè¡¨ç¤ºã«ã™ã‚‹
 	{
 		JNIEnv *env ;
 		int res = -1 ;
 
-		// JavaVM ‚Æƒ\ƒtƒgÀs—pƒXƒŒƒbƒh‚ğŠÖ˜A•t‚¯
+		// JavaVM ã¨ã‚½ãƒ•ãƒˆå®Ÿè¡Œç”¨ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’é–¢é€£ä»˜ã‘
 		if( g_AndroidSys.NativeActivity->vm->AttachCurrentThreadAsDaemon( &env, NULL ) == JNI_OK )
 		{
-			// ƒtƒ‹ƒXƒNƒŠ[ƒ“‚É‚·‚é‚©‚Ç‚¤‚©‚Ìƒƒ^ƒf[ƒ^‚Ìæ“¾
+			// ãƒ•ãƒ«ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã«ã™ã‚‹ã‹ã©ã†ã‹ã®ãƒ¡ã‚¿ãƒ‡ãƒ¼ã‚¿ã®å–å¾—
 			GetAndroidMetaDataFullScreen( env ) ;
 
-			// ƒtƒ‹ƒXƒNƒŠ[ƒ“‚Ìê‡‚ÍƒXƒe[ƒ^ƒXƒo[‚ÆƒiƒrƒQ[ƒVƒ‡ƒ“ƒo[‚ğ”ñ•\¦‚É‚·‚éŠÖ”ŒÄ‚Ño‚µ
+			// ãƒ•ãƒ«ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã®å ´åˆã¯ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒãƒ¼ã¨ãƒŠãƒ“ã‚²ãƒ¼ã‚·ãƒ§ãƒ³ãƒãƒ¼ã‚’éè¡¨ç¤ºã«ã™ã‚‹é–¢æ•°å‘¼ã³å‡ºã—
 			if( g_AndroidSys.IsFullScreen )
 			{
 				res = SetAndroidWindowStyle( env ) ;
 			}
 
-			// JavaVM ‚Æ‚±‚ÌƒXƒŒƒbƒh‚ÌŠÖ˜A•t‚¯I—¹
+			// JavaVM ã¨ã“ã®ã‚¹ãƒ¬ãƒƒãƒ‰ã®é–¢é€£ä»˜ã‘çµ‚äº†
 			g_AndroidSys.NativeActivity->vm->DetachCurrentThread() ;
 		}
 
-		// ƒtƒ‹ƒXƒNƒŠ[ƒ“‚Ìê‡‚ÅAƒXƒe[ƒ^ƒXƒo[‚ÆƒiƒrƒQ[ƒVƒ‡ƒ“ƒo[‚Ì”ñ•\¦ˆ—‚É¸”s‚µ‚½‚çA‹Œƒo[ƒWƒ‡ƒ“—p‚Ìƒtƒ‹ƒXƒNƒŠ[ƒ“‰»ˆ—‚ğÀs‚·‚é
+		// ãƒ•ãƒ«ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã®å ´åˆã§ã€ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒãƒ¼ã¨ãƒŠãƒ“ã‚²ãƒ¼ã‚·ãƒ§ãƒ³ãƒãƒ¼ã®éè¡¨ç¤ºå‡¦ç†ã«å¤±æ•—ã—ãŸã‚‰ã€æ—§ãƒãƒ¼ã‚¸ãƒ§ãƒ³ç”¨ã®ãƒ•ãƒ«ã‚¹ã‚¯ãƒªãƒ¼ãƒ³åŒ–å‡¦ç†ã‚’å®Ÿè¡Œã™ã‚‹
 		if( g_AndroidSys.IsFullScreen && res < 0 )
 		{
 			ANativeActivity_setWindowFlags( g_AndroidSys.NativeActivity, AWINDOW_FLAG_FULLSCREEN, AWINDOW_FLAG_FULLSCREEN ) ;
 		}
 	}
 
-	// android_main ‚ÌŒÄ‚Ño‚µ
+	// android_main ã®å‘¼ã³å‡ºã—
 	android_main() ;
 
-	// onDestroy ‚ª”­¶‚µ‚Ä‚¢‚È‚¢ê‡‚Í finish ‚ğŒÄ‚Ño‚µ‚Ä onDestroy ‚ª”­¶‚·‚é‚Ü‚Å‘Ò‚Â
+	// onDestroy ãŒç™ºç”Ÿã—ã¦ã„ãªã„å ´åˆã¯ finish ã‚’å‘¼ã³å‡ºã—ã¦ onDestroy ãŒç™ºç”Ÿã™ã‚‹ã¾ã§å¾…ã¤
 	if( g_AndroidSys.DestroyRequested == 0 )
 	{
-		// Š®‘SI—¹‚·‚éw’è‚ª‚ ‚éê‡‚Í killProcess ‚ğŒÄ‚Ô
+		// å®Œå…¨çµ‚äº†ã™ã‚‹æŒ‡å®šãŒã‚ã‚‹å ´åˆã¯ killProcess ã‚’å‘¼ã¶
 		if( g_AndroidSys.AppKillProcessFlag /* && JAVAANDR.fieldint_Build_VERSION_SDK_INT >= 21 */ )
 		{
 			JNIEnv *env ;
 
-			// JavaVM ‚Æƒ\ƒtƒgÀs—pƒXƒŒƒbƒh‚ğŠÖ˜A•t‚¯
+			// JavaVM ã¨ã‚½ãƒ•ãƒˆå®Ÿè¡Œç”¨ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’é–¢é€£ä»˜ã‘
 			if( g_AndroidSys.NativeActivity->vm->AttachCurrentThreadAsDaemon( &env, NULL ) == JNI_OK )
 			{
 //				env->CallVoidMethod( g_AndroidSys.NativeActivity->clazz, JAVAANDR.methodID_Activity_finishAndRemoveTask );
@@ -1197,7 +1197,7 @@ static void* android_app_entry( void * )
 				int MyPID = env->CallStaticIntMethod( JAVAANDR.class_Process, JAVAANDR.methodID_Process_myPid ) ;
 				env->CallStaticVoidMethod( JAVAANDR.class_Process, JAVAANDR.methodID_Process_killProcess, MyPID ) ;
 
-				// JavaVM ‚Æ‚±‚ÌƒXƒŒƒbƒh‚ÌŠÖ˜A•t‚¯I—¹
+				// JavaVM ã¨ã“ã®ã‚¹ãƒ¬ãƒƒãƒ‰ã®é–¢é€£ä»˜ã‘çµ‚äº†
 				g_AndroidSys.NativeActivity->vm->DetachCurrentThread() ;
 			}
 			else
@@ -1215,7 +1215,7 @@ static void* android_app_entry( void * )
 		}
 	}
 
-	// “ü—ÍƒCƒxƒ“ƒgƒLƒ…[‚ÌŒãn––
+	// å…¥åŠ›ã‚¤ãƒ™ãƒ³ãƒˆã‚­ãƒ¥ãƒ¼ã®å¾Œå§‹æœ«
     pthread_mutex_lock( &g_AndroidSys.Mutex ) ;
 	g_AndroidSys.MutexLockIndex = 1 << 8 ;
     if( g_AndroidSys.InputQueue != NULL )
@@ -1224,7 +1224,7 @@ static void* android_app_entry( void * )
 		g_AndroidSys.InputQueue = NULL ;
     }
 	
-	// ƒZƒ“ƒT[ƒCƒxƒ“ƒgƒLƒ…[‚ÌŒãn––
+	// ã‚»ãƒ³ã‚µãƒ¼ã‚¤ãƒ™ãƒ³ãƒˆã‚­ãƒ¥ãƒ¼ã®å¾Œå§‹æœ«
 	{
 		int i ;
 
@@ -1242,13 +1242,13 @@ static void* android_app_entry( void * )
 	g_AndroidSys.MutexLockIndex &= ~( 1 << 8 ) ;
     pthread_mutex_unlock( &g_AndroidSys.Mutex ) ;
 
-	// onDestroy ‚ªI—¹‚·‚é‚Ì‚ğ‘Ò‚Â
+	// onDestroy ãŒçµ‚äº†ã™ã‚‹ã®ã‚’å¾…ã¤
 	while( g_AndroidSys.onDestroyEnd == 0 )
 	{
 		Thread_Sleep( 10 ) ;
 	}
 
-	// ƒ\ƒtƒgÀs—pƒXƒŒƒbƒh‚Æ‚Ì’ÊM—p‚ÌƒpƒCƒv‚ğ•Â‚¶‚é
+	// ã‚½ãƒ•ãƒˆå®Ÿè¡Œç”¨ã‚¹ãƒ¬ãƒƒãƒ‰ã¨ã®é€šä¿¡ç”¨ã®ãƒ‘ã‚¤ãƒ—ã‚’é–‰ã˜ã‚‹
 	if( g_AndroidSys.MessageRead != 0 )
 	{
 		close( g_AndroidSys.MessageRead ) ;
@@ -1260,37 +1260,37 @@ static void* android_app_entry( void * )
 		g_AndroidSys.MessageWrite = 0 ;
 	}
 
-//	// Java ‚ÌQÆ‚È‚Ç‚à‰ğ•ú
+//	// Java ã®å‚ç…§ãªã©ã‚‚è§£æ”¾
 //	TerminateJavaAndroidInfo( g_AndroidSys.NativeActivity->env ) ;
 
-	// ƒ~ƒ…[ƒeƒbƒNƒX‚ÆğŒ•Ï”‚Ìg—p‚àI—¹
+	// ãƒŸãƒ¥ãƒ¼ãƒ†ãƒƒã‚¯ã‚¹ã¨æ¡ä»¶å¤‰æ•°ã®ä½¿ç”¨ã‚‚çµ‚äº†
 	pthread_cond_destroy( &g_AndroidSys.Cond ) ;
 	g_AndroidSys.MutexLockIndex &= ~( 1 << 20 ) ;
 	pthread_mutex_destroy( &g_AndroidSys.Mutex ) ;
 	pthread_mutex_destroy( &g_AndroidSys.NativeActivityMutex ) ;
 
-	// ƒ\ƒtƒgÀs—pƒXƒŒƒbƒh‚ªI—¹‚µ‚½‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// ã‚½ãƒ•ãƒˆå®Ÿè¡Œç”¨ã‚¹ãƒ¬ãƒƒãƒ‰ãŒçµ‚äº†ã—ãŸã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
     g_AndroidSys.SoftThreadDestroyed = 1 ;
 
     return NULL ;
 }
 
-// ƒ\ƒtƒgÀs—pƒXƒŒƒbƒh‚ÉƒRƒ}ƒ“ƒh‚ğ‘—M‚·‚é
+// ã‚½ãƒ•ãƒˆå®Ÿè¡Œç”¨ã‚¹ãƒ¬ãƒƒãƒ‰ã«ã‚³ãƒãƒ³ãƒ‰ã‚’é€ä¿¡ã™ã‚‹
 static void AndroidWriteCommand( int8_t cmd )
 {
 	write( g_AndroidSys.MessageWrite, &cmd, sizeof( cmd ) ) ;
 }
 
-// ƒ\ƒtƒgÀs—pƒXƒŒƒbƒh‚É ActiveState ‚ğ•ÏX‚·‚éƒRƒ}ƒ“ƒh‚ğ‘—M‚·‚é
+// ã‚½ãƒ•ãƒˆå®Ÿè¡Œç”¨ã‚¹ãƒ¬ãƒƒãƒ‰ã« ActiveState ã‚’å¤‰æ›´ã™ã‚‹ã‚³ãƒãƒ³ãƒ‰ã‚’é€ä¿¡ã™ã‚‹
 static void AndroidSetActivityState( int8_t cmd )
 {
 	pthread_mutex_lock( &g_AndroidSys.Mutex ) ;
 	g_AndroidSys.MutexLockIndex = 1 << 1 ;
 
-	// ƒ\ƒtƒgÀs—pƒXƒŒƒbƒh‚ÉV‚µ‚¢ ActivityState ‚Æ‚µ‚ÄƒRƒ}ƒ“ƒh‚ğ‚»‚Ì‚Ü‚Ü‘—M
+	// ã‚½ãƒ•ãƒˆå®Ÿè¡Œç”¨ã‚¹ãƒ¬ãƒƒãƒ‰ã«æ–°ã—ã„ ActivityState ã¨ã—ã¦ã‚³ãƒãƒ³ãƒ‰ã‚’ãã®ã¾ã¾é€ä¿¡
     AndroidWriteCommand( cmd ) ;
 
-	// ActivityState ‚ªXV‚³‚ê‚é‚Ü‚Å‘Ò‚Â
+	// ActivityState ãŒæ›´æ–°ã•ã‚Œã‚‹ã¾ã§å¾…ã¤
     while( g_AndroidSys.ActivityState != cmd )
 	{
         pthread_cond_wait( &g_AndroidSys.Cond, &g_AndroidSys.Mutex ) ;
@@ -1299,7 +1299,7 @@ static void AndroidSetActivityState( int8_t cmd )
     pthread_mutex_unlock( &g_AndroidSys.Mutex ) ;
 }
 
-// onDestroy ‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+// onDestroy ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 static void onDestroy( ANativeActivity* NativeActivity )
 {
 	int i ;
@@ -1307,7 +1307,7 @@ static void onDestroy( ANativeActivity* NativeActivity )
 	pthread_mutex_lock( &g_AndroidSys.Mutex ) ;
 	g_AndroidSys.MutexLockIndex = 1 << 9 ;
 
-	// ƒŠƒXƒg‚©‚çŠO‚·
+	// ãƒªã‚¹ãƒˆã‹ã‚‰å¤–ã™
 	for( i = 0; i < g_AndroidSys.NativeActivityNum; i++ )
 	{
 		if( g_AndroidSys.NativeActivityBuffer[ i ] == NativeActivity )
@@ -1323,16 +1323,16 @@ static void onDestroy( ANativeActivity* NativeActivity )
 
 	if( g_AndroidSys.NativeActivity == NativeActivity )
 	{
-		// onDestroy ‚ªŒÄ‚Î‚ê‚½ƒRƒ}ƒ“ƒh‚ğƒ\ƒtƒgÀs—pƒXƒŒƒbƒh‚É‘—M
+		// onDestroy ãŒå‘¼ã°ã‚ŒãŸã‚³ãƒãƒ³ãƒ‰ã‚’ã‚½ãƒ•ãƒˆå®Ÿè¡Œç”¨ã‚¹ãƒ¬ãƒƒãƒ‰ã«é€ä¿¡
 		AndroidWriteCommand( DX_ANDR_CMD_DESTROY ) ;
 
-		// ƒƒbƒZ[ƒW‚ª“Í‚­‚Ü‚Å‘Ò‚Â
+		// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãŒå±Šãã¾ã§å¾…ã¤
 		while( g_AndroidSys.DestroyRequested == 0 )
 		{
 			pthread_cond_wait( &g_AndroidSys.Cond, &g_AndroidSys.Mutex ) ;
 		}
 
-		// ƒ\ƒtƒgÀs—pƒXƒŒƒbƒh‚ªI—¹‚·‚é‚Ü‚Å‘Ò‚Â
+		// ã‚½ãƒ•ãƒˆå®Ÿè¡Œç”¨ã‚¹ãƒ¬ãƒƒãƒ‰ãŒçµ‚äº†ã™ã‚‹ã¾ã§å¾…ã¤
 	//	while( g_AndroidSys.SoftThreadDestroyed == 0 )
 	//	{
 	//		pthread_cond_wait( &g_AndroidSys.Cond, &g_AndroidSys.Mutex ) ;
@@ -1343,7 +1343,7 @@ static void onDestroy( ANativeActivity* NativeActivity )
 		g_AndroidSys.MutexLockIndex &= ~( 1 << 9 ) ;
 		pthread_mutex_unlock( &g_AndroidSys.Mutex ) ;
 
-	//	// ƒ\ƒtƒgÀs—pƒXƒŒƒbƒh‚Æ‚Ì’ÊM—p‚ÌƒpƒCƒv‚ğ•Â‚¶‚é
+	//	// ã‚½ãƒ•ãƒˆå®Ÿè¡Œç”¨ã‚¹ãƒ¬ãƒƒãƒ‰ã¨ã®é€šä¿¡ç”¨ã®ãƒ‘ã‚¤ãƒ—ã‚’é–‰ã˜ã‚‹
 	//	if( g_AndroidSys.MessageRead != 0 )
 	//	{
 	//		close( g_AndroidSys.MessageRead ) ;
@@ -1355,14 +1355,14 @@ static void onDestroy( ANativeActivity* NativeActivity )
 	//		g_AndroidSys.MessageWrite = 0 ;
 	//	}
 	//
-	//	// ƒ~ƒ…[ƒeƒbƒNƒX‚ÆğŒ•Ï”‚Ìg—p‚àI—¹
+	//	// ãƒŸãƒ¥ãƒ¼ãƒ†ãƒƒã‚¯ã‚¹ã¨æ¡ä»¶å¤‰æ•°ã®ä½¿ç”¨ã‚‚çµ‚äº†
 	//	pthread_cond_destroy( &g_AndroidSys.Cond ) ;
 	//	g_AndroidSys.MutexLockIndex &= ~( 1 << 20 ) ;
 	//	pthread_mutex_destroy( &g_AndroidSys.Mutex ) ;
 
 		pthread_mutex_lock( &g_AndroidSys.NativeActivityMutex ) ;
 
-		// Java ‚ÌQÆ‚È‚Ç‚à‰ğ•ú
+		// Java ã®å‚ç…§ãªã©ã‚‚è§£æ”¾
 		TerminateJavaAndroidInfo( NativeActivity->env ) ;
 
 		g_AndroidSys.NativeActivity = NULL ;
@@ -1378,28 +1378,28 @@ static void onDestroy( ANativeActivity* NativeActivity )
 	}
 }
 
-// onStart ‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+// onStart ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 static void onStart( ANativeActivity *NativeActivity )
 {
-	// ƒ\ƒtƒgÀs—pƒXƒŒƒbƒh‚Ì ActivityState ‚ğ DX_ANDR_CMD_START ‚É‚·‚é
+	// ã‚½ãƒ•ãƒˆå®Ÿè¡Œç”¨ã‚¹ãƒ¬ãƒƒãƒ‰ã® ActivityState ã‚’ DX_ANDR_CMD_START ã«ã™ã‚‹
 	AndroidSetActivityState( DX_ANDR_CMD_START ) ;
 }
 
-// onResume ‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+// onResume ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 static void onResume( ANativeActivity *NativeActivity )
 {
-	// ƒ\ƒtƒgÀs—pƒXƒŒƒbƒh‚Ì ActivityState ‚ğ DX_ANDR_CMD_RESUME ‚É‚·‚é
+	// ã‚½ãƒ•ãƒˆå®Ÿè¡Œç”¨ã‚¹ãƒ¬ãƒƒãƒ‰ã® ActivityState ã‚’ DX_ANDR_CMD_RESUME ã«ã™ã‚‹
     AndroidSetActivityState( DX_ANDR_CMD_RESUME ) ;
 
-	// ƒtƒ‹ƒXƒNƒŠ[ƒ“‚É‚·‚é‚©‚Ç‚¤‚©‚Ìƒƒ^ƒf[ƒ^‚Ìæ“¾
+	// ãƒ•ãƒ«ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã«ã™ã‚‹ã‹ã©ã†ã‹ã®ãƒ¡ã‚¿ãƒ‡ãƒ¼ã‚¿ã®å–å¾—
 	GetAndroidMetaDataFullScreen( NativeActivity->env ) ;
 
-	// ƒtƒ‹ƒXƒNƒŠ[ƒ“‚Ìê‡‚ÍƒXƒe[ƒ^ƒXƒo[‚ÆƒiƒrƒQ[ƒVƒ‡ƒ“ƒo[‚ğ”ñ•\¦‚É‚·‚é
+	// ãƒ•ãƒ«ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã®å ´åˆã¯ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒãƒ¼ã¨ãƒŠãƒ“ã‚²ãƒ¼ã‚·ãƒ§ãƒ³ãƒãƒ¼ã‚’éè¡¨ç¤ºã«ã™ã‚‹
 	if( g_AndroidSys.IsFullScreen )
 	{
 		if( SetAndroidWindowStyle( NativeActivity->env ) < 0 )
 		{
-			// ¸”s‚µ‚½‚ç‹Œƒo[ƒWƒ‡ƒ“—p‚Ìƒtƒ‹ƒXƒNƒŠ[ƒ“‰»ˆ—‚ğÀs‚·‚é
+			// å¤±æ•—ã—ãŸã‚‰æ—§ãƒãƒ¼ã‚¸ãƒ§ãƒ³ç”¨ã®ãƒ•ãƒ«ã‚¹ã‚¯ãƒªãƒ¼ãƒ³åŒ–å‡¦ç†ã‚’å®Ÿè¡Œã™ã‚‹
 			ANativeActivity_setWindowFlags( NativeActivity, AWINDOW_FLAG_FULLSCREEN, AWINDOW_FLAG_FULLSCREEN ) ;
 		}
 	}
@@ -1409,46 +1409,46 @@ static void onResume( ANativeActivity *NativeActivity )
 //	StartInputStringDialogStatic( NativeActivity->env, "test" ) ;
 }
 
-// onPause ‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+// onPause ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 static void onPause( ANativeActivity *NativeActivity )
 {
-	// ƒ\ƒtƒgÀs—pƒXƒŒƒbƒh‚Ì ActivityState ‚ğ DX_ANDR_CMD_PAUSE ‚É‚·‚é
+	// ã‚½ãƒ•ãƒˆå®Ÿè¡Œç”¨ã‚¹ãƒ¬ãƒƒãƒ‰ã® ActivityState ã‚’ DX_ANDR_CMD_PAUSE ã«ã™ã‚‹
 	if( g_AndroidSys.NativeActivity == NativeActivity )
 	{
 		AndroidSetActivityState( DX_ANDR_CMD_PAUSE ) ;
 	}
 }
 
-// onStop ‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+// onStop ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 static void onStop( ANativeActivity *NativeActivity )
 {
-	// ƒ\ƒtƒgÀs—pƒXƒŒƒbƒh‚Ì ActivityState ‚ğ DX_ANDR_CMD_STOP ‚É‚·‚é
+	// ã‚½ãƒ•ãƒˆå®Ÿè¡Œç”¨ã‚¹ãƒ¬ãƒƒãƒ‰ã® ActivityState ã‚’ DX_ANDR_CMD_STOP ã«ã™ã‚‹
 	if( g_AndroidSys.NativeActivity == NativeActivity )
 	{
 		AndroidSetActivityState( DX_ANDR_CMD_STOP ) ;
 	}
 }
 
-// onWindowFocusChanged ‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+// onWindowFocusChanged ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 static void onWindowFocusChanged( ANativeActivity *NativeActivity, int focused )
 {
-	// focused ‚É‚æ‚Á‚Äƒ\ƒtƒgÀs—pƒXƒŒƒbƒh‚É‘—M‚·‚éƒRƒ}ƒ“ƒh‚ğ•ª‚¯‚é
+	// focused ã«ã‚ˆã£ã¦ã‚½ãƒ•ãƒˆå®Ÿè¡Œç”¨ã‚¹ãƒ¬ãƒƒãƒ‰ã«é€ä¿¡ã™ã‚‹ã‚³ãƒãƒ³ãƒ‰ã‚’åˆ†ã‘ã‚‹
     AndroidWriteCommand( focused ? DX_ANDR_CMD_GAINED_FOCUS : DX_ANDR_CMD_LOST_FOCUS ) ;
 }
 
-// onNativeWindowCreated ‚â onNativeWindowDestroyed ‚Ìˆ—‚ğs‚¤ŠÖ”
+// onNativeWindowCreated ã‚„ onNativeWindowDestroyed ã®å‡¦ç†ã‚’è¡Œã†é–¢æ•°
 static void onNativeWindowBase( ANativeWindow *NativeWindow )
 {
     pthread_mutex_lock( &g_AndroidSys.Mutex ) ;
 	g_AndroidSys.MutexLockIndex = 1 << 10 ;
 
-	// V‚µ‚¢ƒEƒCƒ“ƒhƒE‚ÌƒAƒhƒŒƒX‚ğƒZƒbƒg
+	// æ–°ã—ã„ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ã‚»ãƒƒãƒˆ
     g_AndroidSys.NewNativeWindow = NativeWindow ;
 
-	// ƒ\ƒtƒgÀs—pƒXƒŒƒbƒh‚ÉƒEƒCƒ“ƒhƒE‚Ì•ÏXƒRƒ}ƒ“ƒh‚ğ‘—M
+	// ã‚½ãƒ•ãƒˆå®Ÿè¡Œç”¨ã‚¹ãƒ¬ãƒƒãƒ‰ã«ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®å¤‰æ›´ã‚³ãƒãƒ³ãƒ‰ã‚’é€ä¿¡
 	AndroidWriteCommand( DX_ANDR_CMD_WINDOW_CHANGED ) ;
 
-	// ƒEƒCƒ“ƒhƒE‚Ì•ÏX‚ª”½‰f‚³‚ê‚é‚Ü‚Å‘Ò‚Â
+	// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®å¤‰æ›´ãŒåæ˜ ã•ã‚Œã‚‹ã¾ã§å¾…ã¤
     while( g_AndroidSys.NativeWindow != g_AndroidSys.NewNativeWindow )
 	{
         pthread_cond_wait( &g_AndroidSys.Cond, &g_AndroidSys.Mutex ) ;
@@ -1457,36 +1457,36 @@ static void onNativeWindowBase( ANativeWindow *NativeWindow )
     pthread_mutex_unlock( &g_AndroidSys.Mutex ) ;
 }
 
-// onNativeWindowCreated ‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+// onNativeWindowCreated ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 static void onNativeWindowCreated( ANativeActivity *NativeActivity, ANativeWindow* NativeWindow )
 {
-	// onNativeWindowBase ŠÖ”‚Åˆ—‚·‚é
+	// onNativeWindowBase é–¢æ•°ã§å‡¦ç†ã™ã‚‹
 	onNativeWindowBase( NativeWindow ) ;
 }
 
-// onNativeWindowDestroyed ‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+// onNativeWindowDestroyed ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 static void onNativeWindowDestroyed( ANativeActivity *NativeActivity, ANativeWindow* NativeWindow )
 {
-	// onNativeWindowBase ŠÖ”‚Åˆ—‚·‚é
+	// onNativeWindowBase é–¢æ•°ã§å‡¦ç†ã™ã‚‹
 	if( g_AndroidSys.NativeActivity == NativeActivity )
 	{
 		onNativeWindowBase( NULL ) ;
 	}
 }
 
-// onInputQueueCreated ‚â onInputQueueDestroyed ‚Ìˆ—‚ğs‚¤ŠÖ”
+// onInputQueueCreated ã‚„ onInputQueueDestroyed ã®å‡¦ç†ã‚’è¡Œã†é–¢æ•°
 static void onInputQueueBase( AInputQueue *InputQueue )
 {
     pthread_mutex_lock( &g_AndroidSys.Mutex ) ;
 	g_AndroidSys.MutexLockIndex = 1 << 2 ;
 
-	// V‚µ‚¢“ü—ÍƒCƒxƒ“ƒg‚ğó‚¯æ‚é‚½‚ß‚ÌƒLƒ…[‚ÌƒAƒhƒŒƒX‚ğƒZƒbƒg
+	// æ–°ã—ã„å…¥åŠ›ã‚¤ãƒ™ãƒ³ãƒˆã‚’å—ã‘å–ã‚‹ãŸã‚ã®ã‚­ãƒ¥ãƒ¼ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ã‚»ãƒƒãƒˆ
     g_AndroidSys.NewInputQueue = InputQueue ;
 
-	// ƒ\ƒtƒgÀs—pƒXƒŒƒbƒh‚É“ü—ÍƒCƒxƒ“ƒg‚ğó‚¯æ‚é‚½‚ß‚ÌƒLƒ…[‚Ì•ÏXƒRƒ}ƒ“ƒh‚ğ‘—M
+	// ã‚½ãƒ•ãƒˆå®Ÿè¡Œç”¨ã‚¹ãƒ¬ãƒƒãƒ‰ã«å…¥åŠ›ã‚¤ãƒ™ãƒ³ãƒˆã‚’å—ã‘å–ã‚‹ãŸã‚ã®ã‚­ãƒ¥ãƒ¼ã®å¤‰æ›´ã‚³ãƒãƒ³ãƒ‰ã‚’é€ä¿¡
     AndroidWriteCommand( DX_ANDR_CMD_INPUT_CHANGED ) ;
 
-	// “ü—ÍƒCƒxƒ“ƒg‚ğó‚¯æ‚é‚½‚ß‚ÌƒLƒ…[‚Ì•ÏX‚ª”½‰f‚³‚ê‚é‚Ü‚Å‘Ò‚Â
+	// å…¥åŠ›ã‚¤ãƒ™ãƒ³ãƒˆã‚’å—ã‘å–ã‚‹ãŸã‚ã®ã‚­ãƒ¥ãƒ¼ã®å¤‰æ›´ãŒåæ˜ ã•ã‚Œã‚‹ã¾ã§å¾…ã¤
     while( g_AndroidSys.InputQueue != g_AndroidSys.NewInputQueue )
 	{
         pthread_cond_wait( &g_AndroidSys.Cond, &g_AndroidSys.Mutex ) ;
@@ -1495,29 +1495,29 @@ static void onInputQueueBase( AInputQueue *InputQueue )
     pthread_mutex_unlock( &g_AndroidSys.Mutex ) ;
 }
 
-// onInputQueueCreated ‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+// onInputQueueCreated ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 static void onInputQueueCreated( ANativeActivity *NativeActivity, AInputQueue *queue )
 {
-	// onInputQueueBase ‚Åˆ—‚·‚é
+	// onInputQueueBase ã§å‡¦ç†ã™ã‚‹
 	onInputQueueBase( queue ) ;
 }
 
-// onInputQueueDestroyed ‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+// onInputQueueDestroyed ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 static void onInputQueueDestroyed( ANativeActivity *NativeActivity, AInputQueue *queue )
 {
-	// onInputQueueBase ‚Åˆ—‚·‚é
+	// onInputQueueBase ã§å‡¦ç†ã™ã‚‹
 	if( g_AndroidSys.NativeActivity == NativeActivity )
 	{
 		onInputQueueBase( NULL ) ;
 	}
 }
 
-// ƒOƒ[ƒoƒ‹•Ï”‚ğƒ[ƒ‰Šú‰»‚·‚é
+// ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°ã‚’ã‚¼ãƒ­åˆæœŸåŒ–ã™ã‚‹
 static void InitializeGlobalData( void )
 {
 	static int Flag = 0 ;
 
-	// ‰‰ñ‚ÍÀs‚µ‚È‚¢
+	// åˆå›ã¯å®Ÿè¡Œã—ãªã„
 	if( Flag == 0 )
 	{
 		Flag = 1 ;
@@ -1637,7 +1637,7 @@ static void InitializeGlobalData( void )
 //	size_t GRAPHICS_HARDWARE_ANDROID_SHADER_BASESize = sizeof( GRAPHICS_HARDWARE_ANDROID_SHADER_BASE ) ;
 }
 
-// ƒ\ƒtƒg‚ÌV‚µ‚¢ Activity ‚ªì¬‚³‚ê‚½‚Æ‚«‚ÉŒÄ‚Î‚ê‚éŠÖ”AÀ¿‚ÌƒGƒ“ƒgƒŠ[ƒ|ƒCƒ“ƒg
+// ã‚½ãƒ•ãƒˆã®æ–°ã—ã„ Activity ãŒä½œæˆã•ã‚ŒãŸã¨ãã«å‘¼ã°ã‚Œã‚‹é–¢æ•°ã€å®Ÿè³ªã®ã‚¨ãƒ³ãƒˆãƒªãƒ¼ãƒã‚¤ãƒ³ãƒˆ
 void ANativeActivity_onCreate( ANativeActivity *NativeActivity, void *savedState, size_t savedStateSize )
 {
 	int lDoubleStartFlag = g_AndroidRunFlag ;
@@ -1646,7 +1646,7 @@ void ANativeActivity_onCreate( ANativeActivity *NativeActivity, void *savedState
 
 	if( lDoubleStartFlag )
 	{
-		// ƒƒCƒ“ƒXƒŒƒbƒh‚ÌI—¹ˆ—‚ªŠJn‚³‚ê‚Ä‚¢‚½‚çI—¹‚·‚é‚Ì‚ğ‘Ò‚Â
+		// ãƒ¡ã‚¤ãƒ³ã‚¹ãƒ¬ãƒƒãƒ‰ã®çµ‚äº†å‡¦ç†ãŒé–‹å§‹ã•ã‚Œã¦ã„ãŸã‚‰çµ‚äº†ã™ã‚‹ã®ã‚’å¾…ã¤
 		if( g_AndroidSys.SoftThreadDestroyedStart != 0 ||
 			g_AndroidSys.SoftThreadDestroyed != 0 )
 		{
@@ -1659,13 +1659,13 @@ void ANativeActivity_onCreate( ANativeActivity *NativeActivity, void *savedState
 		}
 	}
 
-	// ƒOƒ[ƒoƒ‹•Ï”‚Ì‰Šú‰»
+	// ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°ã®åˆæœŸåŒ–
 	if( lDoubleStartFlag == FALSE )
 	{
 		InitializeGlobalData() ;
 	}
 
-	// ƒR[ƒ‹ƒoƒbƒN‚Ì“o˜^
+	// ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã®ç™»éŒ²
     NativeActivity->callbacks->onStart					= onStart ;
     NativeActivity->callbacks->onResume					= onResume ;
     NativeActivity->callbacks->onPause					= onPause ;
@@ -1677,26 +1677,26 @@ void ANativeActivity_onCreate( ANativeActivity *NativeActivity, void *savedState
     NativeActivity->callbacks->onInputQueueCreated		= onInputQueueCreated ;
     NativeActivity->callbacks->onInputQueueDestroyed	= onInputQueueDestroyed ;
 
-	// ƒVƒ“ƒOƒ‹ƒCƒ“ƒXƒ^ƒ“ƒX‚Ì‚İ‘Î‰‚È‚Ì‚ÅAinstance ‚É‚Í NULL ‚ğ‘ã“ü
+	// ã‚·ãƒ³ã‚°ãƒ«ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã®ã¿å¯¾å¿œãªã®ã§ã€instance ã«ã¯ NULL ã‚’ä»£å…¥
 	NativeActivity->instance = NULL ;
 
 	if( lDoubleStartFlag )
 	{
 		pthread_mutex_lock( &g_AndroidSys.Mutex ) ;
 
-		// NativeActivity ‚ÌƒAƒhƒŒƒX‚ğ•Û‘¶
+		// NativeActivity ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ä¿å­˜
 		pthread_mutex_lock( &g_AndroidSys.NativeActivityMutex ) ;
 
 		g_AndroidSys.NativeActivity = NativeActivity ;
 
-		// Javaî•ñ‚ğ‰Šú‰»
+		// Javaæƒ…å ±ã‚’åˆæœŸåŒ–
 		SetupJavaAndroidInfo( NativeActivity->env ) ;
 
 		pthread_mutex_unlock( &g_AndroidSys.NativeActivityMutex ) ;
 
 		g_AndroidSys.DestroyRequested = 0 ;
 
-		// NativeActivity ƒAƒhƒŒƒX‚ğ’Ç‰Á
+		// NativeActivity ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’è¿½åŠ 
 		if( g_AndroidSys.NativeActivityNum >= g_AndroidSys.NativeActivityBufferLength )
 		{
 			ANativeActivity **NewNativeActivityBuffer ;
@@ -1712,15 +1712,15 @@ void ANativeActivity_onCreate( ANativeActivity *NativeActivity, void *savedState
 		g_AndroidSys.NativeActivityBuffer[ g_AndroidSys.NativeActivityNum ] = NativeActivity ;
 		g_AndroidSys.NativeActivityNum ++ ;
 
-		// ƒtƒ‹ƒXƒNƒŠ[ƒ“‚É‚·‚é‚©‚Ç‚¤‚©‚Ìƒƒ^ƒf[ƒ^‚Ìæ“¾
+		// ãƒ•ãƒ«ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã«ã™ã‚‹ã‹ã©ã†ã‹ã®ãƒ¡ã‚¿ãƒ‡ãƒ¼ã‚¿ã®å–å¾—
 		GetAndroidMetaDataFullScreen( NativeActivity->env ) ;
 
-		// ƒtƒ‹ƒXƒNƒŠ[ƒ“‚Ìê‡‚ÍƒXƒe[ƒ^ƒXƒo[‚ÆƒiƒrƒQ[ƒVƒ‡ƒ“ƒo[‚ğ”ñ•\¦‚É‚·‚é
+		// ãƒ•ãƒ«ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã®å ´åˆã¯ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒãƒ¼ã¨ãƒŠãƒ“ã‚²ãƒ¼ã‚·ãƒ§ãƒ³ãƒãƒ¼ã‚’éè¡¨ç¤ºã«ã™ã‚‹
 		if( g_AndroidSys.IsFullScreen )
 		{
 			if( SetAndroidWindowStyle( NativeActivity->env ) < 0 )
 			{
-				// ¸”s‚µ‚½‚ç‹Œƒo[ƒWƒ‡ƒ“—p‚Ìƒtƒ‹ƒXƒNƒŠ[ƒ“‰»ˆ—‚ğÀs‚·‚é
+				// å¤±æ•—ã—ãŸã‚‰æ—§ãƒãƒ¼ã‚¸ãƒ§ãƒ³ç”¨ã®ãƒ•ãƒ«ã‚¹ã‚¯ãƒªãƒ¼ãƒ³åŒ–å‡¦ç†ã‚’å®Ÿè¡Œã™ã‚‹
 				ANativeActivity_setWindowFlags( NativeActivity, AWINDOW_FLAG_FULLSCREEN, AWINDOW_FLAG_FULLSCREEN ) ;
 			}
 		}
@@ -1729,49 +1729,49 @@ void ANativeActivity_onCreate( ANativeActivity *NativeActivity, void *savedState
 	}
 	else
 	{
-		// NativeActivity ‚ÌƒAƒhƒŒƒX‚ğ•Û‘¶
+		// NativeActivity ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ä¿å­˜
 		g_AndroidSys.NativeActivity = NativeActivity ;
 
-		// NativeActivity ƒAƒhƒŒƒXŠi”[—pƒoƒbƒtƒ@‚ÌŠm•Û
+		// NativeActivity ã‚¢ãƒ‰ãƒ¬ã‚¹æ ¼ç´ç”¨ãƒãƒƒãƒ•ã‚¡ã®ç¢ºä¿
 		g_AndroidSys.NativeActivityBufferLength = 16 ;
 		g_AndroidSys.NativeActivityBuffer = ( ANativeActivity ** )malloc( sizeof( ANativeActivity * ) * g_AndroidSys.NativeActivityBufferLength ) ;
 		g_AndroidSys.NativeActivityBuffer[ 0 ] = NativeActivity ;
 		g_AndroidSys.NativeActivityNum = 1 ;
 
-		// Javaî•ñ‚ğ‰Šú‰»
+		// Javaæƒ…å ±ã‚’åˆæœŸåŒ–
 		SetupJavaAndroidInfo( NativeActivity->env ) ;
 
-		// ƒ‰ƒ“ƒ_ƒ€ŒW”‚ğ‰Šú‰»
+		// ãƒ©ãƒ³ãƒ€ãƒ ä¿‚æ•°ã‚’åˆæœŸåŒ–
 #ifndef DX_NON_MERSENNE_TWISTER
 		srandMT( ( unsigned int )NS_GetNowCount( FALSE ) ) ;
 #else
 		srand( NS_GetNowCount( FALSE ) ) ;
 #endif
 
-		// ƒ~ƒ…[ƒeƒbƒNƒXƒgğŒ•Ï”‚ğ‰Šú‰»
+		// ãƒŸãƒ¥ãƒ¼ãƒ†ãƒƒã‚¯ã‚¹ãƒˆæ¡ä»¶å¤‰æ•°ã‚’åˆæœŸåŒ–
 	    pthread_mutex_init( &g_AndroidSys.Mutex, NULL ) ;
 		pthread_cond_init(  &g_AndroidSys.Cond,  NULL ) ;
 		pthread_mutex_init( &g_AndroidSys.NativeActivityMutex, NULL ) ;
 
-		// ƒ\ƒtƒgÀs—pƒXƒŒƒbƒh‚Æ‚Ì’ÊM—p‚ÌƒpƒCƒv¶¬
+		// ã‚½ãƒ•ãƒˆå®Ÿè¡Œç”¨ã‚¹ãƒ¬ãƒƒãƒ‰ã¨ã®é€šä¿¡ç”¨ã®ãƒ‘ã‚¤ãƒ—ç”Ÿæˆ
 		int msgpipe[ 2 ] ;
 		if( pipe( msgpipe ) )
 		{
-			// ƒpƒCƒv¶¬¸”s
+			// ãƒ‘ã‚¤ãƒ—ç”Ÿæˆå¤±æ•—
 //			LOGE( "could not create pipe: %s", strerror( errno ) ) ;
 			return ;
 		}
 		g_AndroidSys.MessageRead  = msgpipe[ 0 ] ;
 		g_AndroidSys.MessageWrite = msgpipe[ 1 ] ;
 
-		// ƒ\ƒtƒgÀs—pƒXƒŒƒbƒh¶¬
+		// ã‚½ãƒ•ãƒˆå®Ÿè¡Œç”¨ã‚¹ãƒ¬ãƒƒãƒ‰ç”Ÿæˆ
 		pthread_attr_t attr ;
 		pthread_attr_init( &attr ) ;
 		pthread_attr_setdetachstate( &attr, PTHREAD_CREATE_DETACHED ) ;
-		pthread_attr_setstacksize( &attr, 4 * 1024 * 1024 ) ;	// ƒXƒ^ƒbƒNƒTƒCƒY‚Í 4MB
+		pthread_attr_setstacksize( &attr, 4 * 1024 * 1024 ) ;	// ã‚¹ã‚¿ãƒƒã‚¯ã‚µã‚¤ã‚ºã¯ 4MB
 		pthread_create( &g_AndroidSys.SoftThread, &attr, android_app_entry, NULL ) ;
 
-		// ƒXƒŒƒbƒh‚ÌŠJn‚ğ‘Ò‹@
+		// ã‚¹ãƒ¬ãƒƒãƒ‰ã®é–‹å§‹ã‚’å¾…æ©Ÿ
 		pthread_mutex_lock( &g_AndroidSys.Mutex ) ;
 		g_AndroidSys.MutexLockIndex = 1 << 3 ;
 		while( g_AndroidSys.SoftThreadRunning == 0 )
@@ -1801,23 +1801,23 @@ namespace DxLib
 
 #endif // DX_NON_NAMESPACE
 
-// ƒEƒCƒ“ƒhƒEƒY‚ÌƒƒbƒZ[ƒWƒ‹[ƒv‚É‘ã‚í‚éˆ—‚ğs‚¤
+// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚ºã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ«ãƒ¼ãƒ—ã«ä»£ã‚ã‚‹å‡¦ç†ã‚’è¡Œã†
 extern int NS_ProcessMessage( void )
 {
 	static int EndFlag = FALSE ;
 
-	// ‚à‚µƒtƒ‰ƒO‚ª‚½‚Á‚Ä‚¢‚½‚ç‚È‚É‚à‚¹‚¸I—¹
+	// ã‚‚ã—ãƒ•ãƒ©ã‚°ãŒãŸã£ã¦ã„ãŸã‚‰ãªã«ã‚‚ã›ãšçµ‚äº†
 	if( EndFlag )
 	{
 		return 0 ;
 	}
 
-	// ƒtƒ@ƒCƒ‹ˆ—‚ÌüŠú“Iˆ—‚ğs‚¤
+	// ãƒ•ã‚¡ã‚¤ãƒ«å‡¦ç†ã®å‘¨æœŸçš„å‡¦ç†ã‚’è¡Œã†
 //	ReadOnlyFileAccessProcessAll() ;
 
 #ifndef DX_NON_SOUND
 	{
-		// ƒTƒEƒ“ƒh‚ÌüŠú“Iˆ—‚ğs‚¤
+		// ã‚µã‚¦ãƒ³ãƒ‰ã®å‘¨æœŸçš„å‡¦ç†ã‚’è¡Œã†
 //		NS_ProcessStreamSoundMemAll() ;
 //		ST_SoftSoundPlayerProcessAll() ;
 		ProcessPlayFinishDeleteSoundMemAll() ;
@@ -1827,99 +1827,99 @@ extern int NS_ProcessMessage( void )
 #endif // DX_NON_SOUND
 
 #ifndef DX_NON_ASYNCLOAD
-	// íœƒŠƒNƒGƒXƒg‚ª—ˆ‚Ä‚¢‚éƒnƒ“ƒhƒ‹‚ğíœ‚·‚é
+	// å‰Šé™¤ãƒªã‚¯ã‚¨ã‚¹ãƒˆãŒæ¥ã¦ã„ã‚‹ãƒãƒ³ãƒ‰ãƒ«ã‚’å‰Šé™¤ã™ã‚‹
 	DeleteRequestHandleDelete( FALSE ) ;
 
-	// ƒƒCƒ“ƒXƒŒƒbƒh‚ªˆ—‚·‚é”ñ“¯Šú“Ç‚İ‚İ‚Ìˆ—‚ğs‚¤
+	// ãƒ¡ã‚¤ãƒ³ã‚¹ãƒ¬ãƒƒãƒ‰ãŒå‡¦ç†ã™ã‚‹éåŒæœŸèª­ã¿è¾¼ã¿ã®å‡¦ç†ã‚’è¡Œã†
 	ProcessASyncLoadRequestMainThread() ;
 #endif // DX_NON_ASYNCLOAD
 
-	// ‰‰‘t‚ÌüŠú“Iˆ—‚ğs‚¤
+	// æ¼”å¥ã®å‘¨æœŸçš„å‡¦ç†ã‚’è¡Œã†
 #ifndef DX_NON_SOUND
 	NS_ProcessMusicMem() ;
 #endif // DX_NON_SOUND
 
 #ifndef DX_NON_INPUT
-	// ƒL[ƒ{[ƒh“ü—Í‚ÌXVˆ—‚ğs‚¤
+	// ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰å…¥åŠ›ã®æ›´æ–°å‡¦ç†ã‚’è¡Œã†
 	UpdateKeyboardInputState( FALSE ) ;
 
-	// ƒpƒbƒh‚ÌüŠú“Iˆ—‚ğs‚¤
+	// ãƒ‘ãƒƒãƒ‰ã®å‘¨æœŸçš„å‡¦ç†ã‚’è¡Œã†
 	JoypadEffectProcess() ;
 #endif // DX_NON_INPUT
 
 #ifndef DX_NON_NETWORK
-	// ’ÊMŠÖŒW‚ÌƒƒbƒZ[ƒWˆ—‚ğs‚¤
+	// é€šä¿¡é–¢ä¿‚ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å‡¦ç†ã‚’è¡Œã†
 	NS_ProcessNetMessage( TRUE ) ;
 #endif
 
-	// ƒƒ‚ƒŠŠÖŒW‚ÌüŠú“Iˆ—‚ğs‚¤
+	// ãƒ¡ãƒ¢ãƒªé–¢ä¿‚ã®å‘¨æœŸçš„å‡¦ç†ã‚’è¡Œã†
 	MemoryProcess() ;
 
 #ifndef DX_NON_SOUND
-	// ƒTƒEƒ“ƒhŠÖŒW‚ÌüŠú“Iˆ—‚ğs‚¤
+	// ã‚µã‚¦ãƒ³ãƒ‰é–¢ä¿‚ã®å‘¨æœŸçš„å‡¦ç†ã‚’è¡Œã†
 	ProcessSoundSystem() ;
 #endif // DX_NON_SOUND
 
 #ifndef DX_NON_GRAPHICS
-	// ‰æ–ÊŠÖŒW‚ÌüŠúˆ—‚ğs‚¤
+	// ç”»é¢é–¢ä¿‚ã®å‘¨æœŸå‡¦ç†ã‚’è¡Œã†
 	Graphics_Android_FrontScreenProcess() ;
 #endif // DX_NON_GRAPHICS
 
 #ifndef DX_NON_KEYEX
-	// ƒL[“ü—Íˆ—‚ğs‚¤
+	// ã‚­ãƒ¼å…¥åŠ›å‡¦ç†ã‚’è¡Œã†
 	{
-		// ƒtƒ‰ƒO‚ğ‚½‚Ä‚é
+		// ãƒ•ãƒ©ã‚°ã‚’ãŸã¦ã‚‹
 		EndFlag = TRUE ;
 
 		NS_ProcessActKeyInput() ;
 
-		// ƒtƒ‰ƒO‚ğ“|‚·
+		// ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 		EndFlag = FALSE ;
 	}
 #endif
 
-	// ƒCƒxƒ“ƒgˆ—ƒ‹[ƒv
+	// ã‚¤ãƒ™ãƒ³ãƒˆå‡¦ç†ãƒ«ãƒ¼ãƒ—
 	for(;;)
 	{
 		int   events ;
 		void *source ;
 
-		// ƒCƒxƒ“ƒg‚Ìæ“¾Aƒ\ƒtƒgÀs—pƒXƒŒƒbƒh‚ª‘Ò‚¿ó‘Ô‚Ìê‡‚ÍƒCƒxƒ“ƒg‚ª—ˆ‚é‚Ü‚Å‰„X‚Æ‘Ò‚Â
+		// ã‚¤ãƒ™ãƒ³ãƒˆã®å–å¾—ã€ã‚½ãƒ•ãƒˆå®Ÿè¡Œç”¨ã‚¹ãƒ¬ãƒƒãƒ‰ãŒå¾…ã¡çŠ¶æ…‹ã®å ´åˆã¯ã‚¤ãƒ™ãƒ³ãƒˆãŒæ¥ã‚‹ã¾ã§å»¶ã€…ã¨å¾…ã¤
 		int ident = ALooper_pollOnce( ( g_AndroidSys.SoftThreadWait && g_AndroidSys.NonActiveRunFlag == FALSE ) ? -1 : 0, NULL, &events, &source ) ;
 		if( ident < 0 ) 
 		{
 			break ;
 		}
 
-		// ƒCƒxƒ“ƒgID –ˆ‚Éˆ—‚ğ•ªŠò
+		// ã‚¤ãƒ™ãƒ³ãƒˆID æ¯ã«å‡¦ç†ã‚’åˆ†å²
 		switch( ident )
 		{
-		// ƒƒCƒ“ƒXƒŒƒbƒh‚©‚ç‘—‚ç‚ê‚Ä‚«‚½ƒRƒ}ƒ“ƒh‚Ìê‡
+		// ãƒ¡ã‚¤ãƒ³ã‚¹ãƒ¬ãƒƒãƒ‰ã‹ã‚‰é€ã‚‰ã‚Œã¦ããŸã‚³ãƒãƒ³ãƒ‰ã®å ´åˆ
 		case DX_LOOPER_ID_MAIN :
 			{
 				int8_t cmd ;
 
-				// ƒƒCƒ“ƒXƒŒƒbƒh‚©‚ç‘—‚ç‚ê‚Ä‚«‚½ƒRƒ}ƒ“ƒh‚ğæ“¾
+				// ãƒ¡ã‚¤ãƒ³ã‚¹ãƒ¬ãƒƒãƒ‰ã‹ã‚‰é€ã‚‰ã‚Œã¦ããŸã‚³ãƒãƒ³ãƒ‰ã‚’å–å¾—
 				if( read( g_AndroidSys.MessageRead, &cmd, sizeof( cmd ) ) == sizeof( cmd ) )
 				{
-					// ƒRƒ}ƒ“ƒh‚Ìí—Ş‚É‚æ‚Á‚Äˆ—‚ğ•ªŠò
+					// ã‚³ãƒãƒ³ãƒ‰ã®ç¨®é¡ã«ã‚ˆã£ã¦å‡¦ç†ã‚’åˆ†å²
 					switch( cmd ) 
 					{
-					// “ü—ÍƒCƒxƒ“ƒg‚ğó‚¯æ‚éƒLƒ…[‚Ì•ÏX
+					// å…¥åŠ›ã‚¤ãƒ™ãƒ³ãƒˆã‚’å—ã‘å–ã‚‹ã‚­ãƒ¥ãƒ¼ã®å¤‰æ›´
 					case DX_ANDR_CMD_INPUT_CHANGED :
 						pthread_mutex_lock( &g_AndroidSys.Mutex ) ;
 						g_AndroidSys.MutexLockIndex = 1 << 4 ;
 
-						// ¡‚Ü‚Å‚Ì“ü—ÍƒCƒxƒ“ƒgó‚¯æ‚èƒLƒ…[‚ğ Looper ‚©‚çƒfƒ^ƒbƒ`
+						// ä»Šã¾ã§ã®å…¥åŠ›ã‚¤ãƒ™ãƒ³ãƒˆå—ã‘å–ã‚Šã‚­ãƒ¥ãƒ¼ã‚’ Looper ã‹ã‚‰ãƒ‡ã‚¿ãƒƒãƒ
 						if( g_AndroidSys.InputQueue != NULL )
 						{
 							AInputQueue_detachLooper( ( AInputQueue * )g_AndroidSys.InputQueue ) ;
 						}
 
-						// V‚µ‚¢“ü—ÍƒCƒxƒ“ƒgó‚¯æ‚èƒLƒ…[‚ÌƒAƒhƒŒƒX‚ğ•Û‘¶
+						// æ–°ã—ã„å…¥åŠ›ã‚¤ãƒ™ãƒ³ãƒˆå—ã‘å–ã‚Šã‚­ãƒ¥ãƒ¼ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ä¿å­˜
 						g_AndroidSys.InputQueue = g_AndroidSys.NewInputQueue ;
 
-						// V‚µ‚¢“ü—ÍƒCƒxƒ“ƒgó‚¯æ‚èƒLƒ…[‚ğ Looper ‚É“o˜^
+						// æ–°ã—ã„å…¥åŠ›ã‚¤ãƒ™ãƒ³ãƒˆå—ã‘å–ã‚Šã‚­ãƒ¥ãƒ¼ã‚’ Looper ã«ç™»éŒ²
 						if( g_AndroidSys.InputQueue != NULL )
 						{
 							AInputQueue_attachLooper(
@@ -1936,7 +1936,7 @@ extern int NS_ProcessMessage( void )
 						pthread_mutex_unlock( &g_AndroidSys.Mutex ) ;
 						break;
 
-					// ActivityState ‚ğ•ÏX‚·‚é‚¾‚¯‚ÌƒRƒ}ƒ“ƒh
+					// ActivityState ã‚’å¤‰æ›´ã™ã‚‹ã ã‘ã®ã‚³ãƒãƒ³ãƒ‰
 					case DX_ANDR_CMD_RESUME :
 					case DX_ANDR_CMD_START :
 					case DX_ANDR_CMD_PAUSE :
@@ -1945,7 +1945,7 @@ extern int NS_ProcessMessage( void )
 						g_AndroidSys.MutexLockIndex = 1 << 5 ;
 
 			#ifndef DX_NON_INPUT
-						// ‰½‚àƒ^ƒbƒ`‚µ‚Ä‚¢‚È‚¢‚±‚Æ‚É‚·‚é
+						// ä½•ã‚‚ã‚¿ãƒƒãƒã—ã¦ã„ãªã„ã“ã¨ã«ã™ã‚‹
 						{
 							TOUCHINPUTDATA TouchInputData ;
 
@@ -1956,7 +1956,7 @@ extern int NS_ProcessMessage( void )
 						}
 			#endif // DX_NON_INPUT
 
-						// V‚µ‚¢ ActivityState ‚ğ•Û‘¶
+						// æ–°ã—ã„ ActivityState ã‚’ä¿å­˜
 						g_AndroidSys.ActivityState = cmd ;
 
 						if( cmd == DX_ANDR_CMD_RESUME ||
@@ -1967,12 +1967,12 @@ extern int NS_ProcessMessage( void )
 								g_AndroidSys.SoundAndMoviePause = FALSE ;
 
 					#ifndef DX_NON_MOVIE
-								// ƒ€[ƒr[ƒOƒ‰ƒtƒBƒbƒN‚ÌÄ¶ó‘Ô‚ğ–ß‚·
+								// ãƒ ãƒ¼ãƒ“ãƒ¼ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®å†ç”ŸçŠ¶æ…‹ã‚’æˆ»ã™
 								PlayMovieAll() ;
 					#endif
 
 					#ifndef DX_NON_SOUND
-								// ƒTƒEƒ“ƒh‚ÌÄ¶‚ğÄŠJ‚·‚é
+								// ã‚µã‚¦ãƒ³ãƒ‰ã®å†ç”Ÿã‚’å†é–‹ã™ã‚‹
 								PauseSoundMemAll( FALSE ) ;
 								PauseSoftSoundAll( FALSE ) ;
 					#endif // DX_NON_SOUND
@@ -1985,12 +1985,12 @@ extern int NS_ProcessMessage( void )
 								g_AndroidSys.SoundAndMoviePause = TRUE ;
 
 					#ifndef DX_NON_MOVIE
-								// ƒ€[ƒr[ƒOƒ‰ƒtƒBƒbƒN‚ÌÄ¶ó‘Ô‚ğ‚Æ‚ß‚é
+								// ãƒ ãƒ¼ãƒ“ãƒ¼ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®å†ç”ŸçŠ¶æ…‹ã‚’ã¨ã‚ã‚‹
 								PauseMovieAll() ;
 					#endif
 
 					#ifndef DX_NON_SOUND
-								// ƒTƒEƒ“ƒh‚ÌÄ¶‚ğ~‚ß‚é
+								// ã‚µã‚¦ãƒ³ãƒ‰ã®å†ç”Ÿã‚’æ­¢ã‚ã‚‹
 								PauseSoundMemAll( TRUE ) ;
 								PauseSoftSoundAll( TRUE ) ;
 					#endif // DX_NON_SOUND
@@ -2002,24 +2002,24 @@ extern int NS_ProcessMessage( void )
 						pthread_mutex_unlock( &g_AndroidSys.Mutex ) ;
 						break;
 
-					// onDestroy ‚ªŒÄ‚Î‚ê‚½
+					// onDestroy ãŒå‘¼ã°ã‚ŒãŸ
 					case DX_ANDR_CMD_DESTROY :
-						// onDestroy ‚ªŒÄ‚Î‚ê‚½ƒtƒ‰ƒO‚ğ—§‚Ä‚é
+						// onDestroy ãŒå‘¼ã°ã‚ŒãŸãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 						pthread_mutex_lock( &g_AndroidSys.Mutex ) ;
 						g_AndroidSys.DestroyRequested = 1 ;
 						pthread_cond_broadcast( &g_AndroidSys.Cond ) ;
 						pthread_mutex_unlock( &g_AndroidSys.Mutex ) ;
 
-						// onDestroy ‚ªŒÄ‚Î‚ê‚½‚ğ‹L˜^
+						// onDestroy ãŒå‘¼ã°ã‚ŒãŸæ™‚åˆ»ã‚’è¨˜éŒ²
 						g_AndroidSys.DestroyRequestedTime = NS_GetNowCount( FALSE ) ;
 						break ;
 
-					// ƒEƒCƒ“ƒhƒE‚Ì•ÏX
+					// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®å¤‰æ›´
 					case DX_ANDR_CMD_WINDOW_CHANGED :
 						pthread_mutex_lock( &g_AndroidSys.Mutex ) ;
 						g_AndroidSys.MutexLockIndex = 1 << 6 ;
 
-						// Šù‘¶‚ÌƒEƒCƒ“ƒhƒE‚ª‚ ‚éê‡‚ÍƒEƒCƒ“ƒhƒE‚ÌŒãn––‚ğs‚¤
+						// æ—¢å­˜ã®ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãŒã‚ã‚‹å ´åˆã¯ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®å¾Œå§‹æœ«ã‚’è¡Œã†
 						if( g_AndroidSys.NativeWindow != NULL )
 						{
 							pthread_cond_broadcast( &g_AndroidSys.Cond ) ;
@@ -2028,13 +2028,13 @@ extern int NS_ProcessMessage( void )
 							if( DxSysData.NotDrawFlag == FALSE )
 							{
 					#ifndef DX_NON_MASK
-								// ƒ}ƒXƒNƒT[ƒtƒFƒX‚ğˆêíœ
+								// ãƒã‚¹ã‚¯ã‚µãƒ¼ãƒ•ã‚§ã‚¹ã‚’ä¸€æ™‚å‰Šé™¤
 								Mask_ReleaseSurface() ;
 					#endif // DX_NON_MASK
-								// ƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ª‚Â OpenGL ES ƒIƒuƒWƒFƒNƒg‚Ì‰ğ•ú
+								// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ãŒæŒã¤ OpenGL ES ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®è§£æ”¾
 								Graphics_Android_ReleaseObjectAll() ;
 
-								// ƒVƒXƒeƒ€‚ª‚Â OpenGL ES ƒIƒuƒWƒFƒNƒg‚Ì‰ğ•ú
+								// ã‚·ã‚¹ãƒ†ãƒ ãŒæŒã¤ OpenGL ES ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®è§£æ”¾
 								Graphics_Android_Terminate() ;
 							}
 					#endif // DX_NON_GRAPHICS
@@ -2042,7 +2042,7 @@ extern int NS_ProcessMessage( void )
 							g_AndroidSys.NativeWindow = NULL ;
 						}
 
-						// V‚µ‚¢ƒEƒCƒ“ƒhƒE‚ª‚ ‚éê‡‚ÍƒEƒCƒ“ƒhƒE‚Ì‰Šú‰»‚ğs‚¤
+						// æ–°ã—ã„ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãŒã‚ã‚‹å ´åˆã¯ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®åˆæœŸåŒ–ã‚’è¡Œã†
 						if( g_AndroidSys.NewNativeWindow != NULL )
 						{
 							g_AndroidSys.NativeWindow = g_AndroidSys.NewNativeWindow ;
@@ -2050,7 +2050,7 @@ extern int NS_ProcessMessage( void )
 				#ifndef DX_NON_GRAPHICS
 							if( DxSysData.DxLib_InitializeFlag )
 							{
-								// ƒOƒ‰ƒtƒBƒbƒNƒVƒXƒeƒ€‚Ì•œ‹Aˆ—
+								// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚·ã‚¹ãƒ†ãƒ ã®å¾©å¸°å‡¦ç†
 								NS_RestoreGraphSystem() ;
 
 //								if( g_AndroidSys.SoundAndMoviePause == TRUE )
@@ -2058,24 +2058,24 @@ extern int NS_ProcessMessage( void )
 //									g_AndroidSys.SoundAndMoviePause = FALSE ;
 //
 //					#ifndef DX_NON_MOVIE
-//									// ƒ€[ƒr[ƒOƒ‰ƒtƒBƒbƒN‚ÌÄ¶ó‘Ô‚ğ–ß‚·
+//									// ãƒ ãƒ¼ãƒ“ãƒ¼ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®å†ç”ŸçŠ¶æ…‹ã‚’æˆ»ã™
 //									PlayMovieAll() ;
 //					#endif
 //
 //					#ifndef DX_NON_SOUND
-//									// ƒTƒEƒ“ƒh‚ÌÄ¶‚ğÄŠJ‚·‚é
+//									// ã‚µã‚¦ãƒ³ãƒ‰ã®å†ç”Ÿã‚’å†é–‹ã™ã‚‹
 //									PauseSoundMemAll( FALSE ) ;
 //									PauseSoftSoundAll( FALSE ) ;
 //					#endif // DX_NON_SOUND
 //
-//									// ƒR[ƒ‹ƒoƒbƒNŠÖ”‚ª“o˜^‚³‚ê‚Ä‚¢‚éê‡‚ÍŒÄ‚Ô
+//									// ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ãŒç™»éŒ²ã•ã‚Œã¦ã„ã‚‹å ´åˆã¯å‘¼ã¶
 //									if( g_AndroidSys.GainedFocusCallbackFunction != NULL )
 //									{
 //										g_AndroidSys.GainedFocusCallbackFunction( ( void * )g_AndroidSys.GainedFocusCallbackFunctionData ) ;
 //									}
 //								}
 
-								// ƒ\ƒtƒgÀs—pƒXƒŒƒbƒh‚ğ‘Ò‚¿ó‘Ô‚©‚ç‰ğœ
+								// ã‚½ãƒ•ãƒˆå®Ÿè¡Œç”¨ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’å¾…ã¡çŠ¶æ…‹ã‹ã‚‰è§£é™¤
 								g_AndroidSys.SoftThreadWait = 0 ;
 							}
 				#endif // DX_NON_GRAPHICS
@@ -2086,9 +2086,9 @@ extern int NS_ProcessMessage( void )
 						pthread_mutex_unlock( &g_AndroidSys.Mutex ) ;
 						break ;
 
-					// ƒEƒCƒ“ƒhƒE‚ªƒAƒNƒeƒBƒu‚É‚È‚Á‚½
+					// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãŒã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ãªã£ãŸ
 					case DX_ANDR_CMD_GAINED_FOCUS :
-						// ƒZƒ“ƒT[‚ğ—LŒø‚É‚·‚é
+						// ã‚»ãƒ³ã‚µãƒ¼ã‚’æœ‰åŠ¹ã«ã™ã‚‹
 						for( int i = 0 ; i < DX_ANDROID_SENSOR_NUM ; i ++ )
 						{
 							if( g_AndroidSys.SensorInfos[ i ].Sensor           != NULL &&
@@ -2112,30 +2112,30 @@ extern int NS_ProcessMessage( void )
 //							g_AndroidSys.SoundAndMoviePause = FALSE ;
 //
 //			#ifndef DX_NON_MOVIE
-//							// ƒ€[ƒr[ƒOƒ‰ƒtƒBƒbƒN‚ÌÄ¶ó‘Ô‚ğ–ß‚·
+//							// ãƒ ãƒ¼ãƒ“ãƒ¼ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®å†ç”ŸçŠ¶æ…‹ã‚’æˆ»ã™
 //							PlayMovieAll() ;
 //			#endif
 //
 //			#ifndef DX_NON_SOUND
-//							// ƒTƒEƒ“ƒh‚ÌÄ¶‚ğÄŠJ‚·‚é
+//							// ã‚µã‚¦ãƒ³ãƒ‰ã®å†ç”Ÿã‚’å†é–‹ã™ã‚‹
 //							PauseSoundMemAll( FALSE ) ;
 //							PauseSoftSoundAll( FALSE ) ;
 //			#endif // DX_NON_SOUND
 //
-							// ƒR[ƒ‹ƒoƒbƒNŠÖ”‚ª“o˜^‚³‚ê‚Ä‚¢‚éê‡‚ÍŒÄ‚Ô
+							// ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ãŒç™»éŒ²ã•ã‚Œã¦ã„ã‚‹å ´åˆã¯å‘¼ã¶
 							if( g_AndroidSys.GainedFocusCallbackFunction != NULL )
 							{
 								g_AndroidSys.GainedFocusCallbackFunction( ( void * )g_AndroidSys.GainedFocusCallbackFunctionData ) ;
 							}
 //						}
 
-						// ƒ\ƒtƒgÀs—pƒXƒŒƒbƒh‚ğ‘Ò‚¿ó‘Ô‚©‚ç‰ğœ
+						// ã‚½ãƒ•ãƒˆå®Ÿè¡Œç”¨ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’å¾…ã¡çŠ¶æ…‹ã‹ã‚‰è§£é™¤
 						g_AndroidSys.SoftThreadWait = 0 ;
 						break ;
 
-					// ƒEƒCƒ“ƒhƒE‚ª”ñƒAƒNƒeƒBƒu‚É‚È‚Á‚½
+					// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãŒéã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ãªã£ãŸ
 					case DX_ANDR_CMD_LOST_FOCUS :
-						// ƒZƒ“ƒT[‚ğ–³Œø‚É‚·‚é
+						// ã‚»ãƒ³ã‚µãƒ¼ã‚’ç„¡åŠ¹ã«ã™ã‚‹
 						for( int i = 0 ; i < DX_ANDROID_SENSOR_NUM ; i ++ )
 						{
 							if( g_AndroidSys.SensorInfos[ i ].Sensor           != NULL &&
@@ -2153,24 +2153,24 @@ extern int NS_ProcessMessage( void )
 //							g_AndroidSys.SoundAndMoviePause = TRUE ;
 //
 //				#ifndef DX_NON_MOVIE
-//							// ƒ€[ƒr[ƒOƒ‰ƒtƒBƒbƒN‚ÌÄ¶ó‘Ô‚ğ‚Æ‚ß‚é
+//							// ãƒ ãƒ¼ãƒ“ãƒ¼ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®å†ç”ŸçŠ¶æ…‹ã‚’ã¨ã‚ã‚‹
 //							PauseMovieAll() ;
 //				#endif
 //
 //				#ifndef DX_NON_SOUND
-//							// ƒTƒEƒ“ƒh‚ÌÄ¶‚ğ~‚ß‚é
+//							// ã‚µã‚¦ãƒ³ãƒ‰ã®å†ç”Ÿã‚’æ­¢ã‚ã‚‹
 //							PauseSoundMemAll( TRUE ) ;
 //							PauseSoftSoundAll( TRUE ) ;
 //				#endif // DX_NON_SOUND
 //
-							// ƒR[ƒ‹ƒoƒbƒNŠÖ”‚ª“o˜^‚³‚ê‚Ä‚¢‚éê‡‚ÍŒÄ‚Ô
+							// ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ãŒç™»éŒ²ã•ã‚Œã¦ã„ã‚‹å ´åˆã¯å‘¼ã¶
 							if( g_AndroidSys.LostFocusCallbackFunction != NULL )
 							{
 								g_AndroidSys.LostFocusCallbackFunction( ( void * )g_AndroidSys.LostFocusCallbackFunctionData ) ;
 							}
 //						}
 
-						// ƒ\ƒtƒgÀs—pƒXƒŒƒbƒh‚ğ‘Ò‚¿ó‘Ô‚É‚·‚é
+						// ã‚½ãƒ•ãƒˆå®Ÿè¡Œç”¨ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’å¾…ã¡çŠ¶æ…‹ã«ã™ã‚‹
 						g_AndroidSys.SoftThreadWait = 1 ;
 						break ;
 					}
@@ -2178,15 +2178,15 @@ extern int NS_ProcessMessage( void )
 			}
 			break ;
 
-		// “ü—ÍƒCƒxƒ“ƒg‚Ìê‡
+		// å…¥åŠ›ã‚¤ãƒ™ãƒ³ãƒˆã®å ´åˆ
 		case DX_LOOPER_ID_INPUT :
 			{
 				AInputEvent *event = NULL ;
 
-				// “ü—ÍƒCƒxƒ“ƒg‚ª‚ ‚éê‡‚Íƒ‹[ƒv
+				// å…¥åŠ›ã‚¤ãƒ™ãƒ³ãƒˆãŒã‚ã‚‹å ´åˆã¯ãƒ«ãƒ¼ãƒ—
 				while( AInputQueue_getEvent( ( AInputQueue * )g_AndroidSys.InputQueue, &event ) >= 0 )
 				{
-					// “ü—ÍƒCƒxƒ“ƒg‚ğƒfƒBƒXƒpƒbƒ`
+					// å…¥åŠ›ã‚¤ãƒ™ãƒ³ãƒˆã‚’ãƒ‡ã‚£ã‚¹ãƒ‘ãƒƒãƒ
 					if( AInputQueue_preDispatchEvent( ( AInputQueue * )g_AndroidSys.InputQueue, event ) )
 					{
 						continue ;
@@ -2199,20 +2199,20 @@ extern int NS_ProcessMessage( void )
 					}
 
 			#ifndef DX_NON_INPUT
-					// “ü—ÍƒCƒxƒ“ƒg‚ğˆ—
+					// å…¥åŠ›ã‚¤ãƒ™ãƒ³ãƒˆã‚’å‡¦ç†
 					if( handled == 0 )
 					{
 						handled = ProcessInputEvent( event ) ;
 					}
 			#endif // DX_NON_INPUT
 
-					// “ü—ÍƒCƒxƒ“ƒg‚ğŠ®—¹ó‘Ô‚É‚·‚é
+					// å…¥åŠ›ã‚¤ãƒ™ãƒ³ãƒˆã‚’å®Œäº†çŠ¶æ…‹ã«ã™ã‚‹
 					AInputQueue_finishEvent( ( AInputQueue * )g_AndroidSys.InputQueue, event, handled ) ;
 				}
 			}
 			break ;
 
-		// ƒZƒ“ƒT[ƒCƒxƒ“ƒg‚Ìê‡
+		// ã‚»ãƒ³ã‚µãƒ¼ã‚¤ãƒ™ãƒ³ãƒˆã®å ´åˆ
 		case DX_LOOPER_ID_SENSOR_ACCELEROMETER :
 		case DX_LOOPER_ID_SENSOR_MAGNETIC_FIELD :
 		case DX_LOOPER_ID_SENSOR_GYROSCOPE :
@@ -2226,14 +2226,14 @@ extern int NS_ProcessMessage( void )
 				if( g_AndroidSys.SensorInfos[ SensorType ].Sensor != NULL &&
 					g_AndroidSys.SensorInfos[ SensorType ].SensorEventQueue != NULL )
 				{
-					// ƒCƒxƒ“ƒgî•ñ‚ğæ“¾
+					// ã‚¤ãƒ™ãƒ³ãƒˆæƒ…å ±ã‚’å–å¾—
 					while( ASensorEventQueue_getEvents( g_AndroidSys.SensorInfos[ SensorType ].SensorEventQueue, &g_AndroidSys.SensorInfos[ SensorType ].SensorEvent, 1 ) > 0 ){}
 				}
 			}
 			break ;
 		}
 
-		// onDestroy ‚ªŒÄ‚Î‚ê‚Ä‚¢‚é‚©Ag_AndroidSys.SoftThreadDestroyedStart ‚ª 1 ‚Ìê‡‚Íƒ‹[ƒv‚ğ”²‚¯‚é
+		// onDestroy ãŒå‘¼ã°ã‚Œã¦ã„ã‚‹ã‹ã€g_AndroidSys.SoftThreadDestroyedStart ãŒ 1 ã®å ´åˆã¯ãƒ«ãƒ¼ãƒ—ã‚’æŠœã‘ã‚‹
 		if( g_AndroidSys.DestroyRequested != 0 ||
 			g_AndroidSys.SoftThreadDestroyedStart != 0 )
 		{
@@ -2241,13 +2241,13 @@ extern int NS_ProcessMessage( void )
 		}
 	}
 
-	// g_AndroidSys.SoftThreadDestroyedStart ‚ª 1 ‚¾‚Á‚½‚ç -1 ‚ğ•Ô‚·
+	// g_AndroidSys.SoftThreadDestroyedStart ãŒ 1 ã ã£ãŸã‚‰ -1 ã‚’è¿”ã™
 	if( g_AndroidSys.SoftThreadDestroyedStart != 0 )
 	{
 		return -1 ;
 	}
 	else
-	// onDestroy ‚ªŒÄ‚Î‚ê‚ÄŸ‚Ì NativeActivity ‚ªÀs‚³‚ê‚¸AŠ‚Â 0.5•bˆÈãŒo‰ß‚µ‚½ê‡‚Í -1 ‚ğ•Ô‚·
+	// onDestroy ãŒå‘¼ã°ã‚Œã¦æ¬¡ã® NativeActivity ãŒå®Ÿè¡Œã•ã‚Œãšã€ä¸”ã¤ 0.5ç§’ä»¥ä¸ŠçµŒéã—ãŸå ´åˆã¯ -1 ã‚’è¿”ã™
 	if( g_AndroidSys.DestroyRequested != 0 )
 	{
 		int ActivityNum = 0 ;
@@ -2260,7 +2260,7 @@ extern int NS_ProcessMessage( void )
 			int NowTime = NS_GetNowCount( FALSE ) ;
 			if( TIME_DISTANCE( NowTime, g_AndroidSys.DestroyRequestedTime ) > 500 )
 			{
-				// I—¹ŠJnƒtƒ‰ƒO‚ğ—§‚Ä‚é
+				// çµ‚äº†é–‹å§‹ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 				g_AndroidSys.SoftThreadDestroyedStart = 1 ;
 
 				pthread_mutex_unlock( &g_AndroidSys.Mutex ) ;
@@ -2275,27 +2275,27 @@ extern int NS_ProcessMessage( void )
 		pthread_mutex_unlock( &g_AndroidSys.Mutex ) ;
 	}
 
-	// ’ÊíI—¹
+	// é€šå¸¸çµ‚äº†
 	return 0 ;
 }
 
-// ƒAƒvƒŠ‚ªƒAƒNƒeƒBƒu‚Å‚Í‚È‚¢ó‘Ô‚Å‚àˆ—‚ğ‘±s‚·‚é‚©Aƒtƒ‰ƒO‚ğƒZƒbƒg‚·‚é
+// ã‚¢ãƒ—ãƒªãŒã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã§ã¯ãªã„çŠ¶æ…‹ã§ã‚‚å‡¦ç†ã‚’ç¶šè¡Œã™ã‚‹ã‹ã€ãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern int NS_SetAlwaysRunFlag( int Flag )
 {
-	// ƒtƒ‰ƒO‚ğƒZƒbƒg
+	// ãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆ
 	g_AndroidSys.NonActiveRunFlag = Flag ;
 	
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// Android ‚Ì APIƒŒƒxƒ‹‚ğæ“¾‚·‚é
+// Android ã® APIãƒ¬ãƒ™ãƒ«ã‚’å–å¾—ã™ã‚‹
 extern int GetAndroidAPILevel( void )
 {
 	return JAVAANDR.fieldint_Build_VERSION_SDK_INT ;
 }
 
-// ƒ\ƒtƒg‚Ìƒf[ƒ^•Û‘¶—p‚ÌƒfƒBƒŒƒNƒgƒŠƒpƒX‚ğæ“¾‚·‚é
+// ã‚½ãƒ•ãƒˆã®ãƒ‡ãƒ¼ã‚¿ä¿å­˜ç”¨ã®ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªãƒ‘ã‚¹ã‚’å–å¾—ã™ã‚‹
 extern int GetInternalDataPath( TCHAR *PathBuffer, int PathBufferBytes )
 {
 	TCHAR *TempBuffer ;
@@ -2328,15 +2328,15 @@ extern int GetInternalDataPath( TCHAR *PathBuffer, int PathBufferBytes )
 		Result = ConvString( g_AndroidSys.NativeActivity->internalDataPath, -1, DX_CHARCODEFORMAT_UTF8, PathBuffer, PathBufferBytes, _TCHARCODEFORMAT ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return Result ;
 }
 
-// ƒ\ƒtƒg‚ÌŠO•”ƒf[ƒ^•Û‘¶—p‚ÌƒfƒBƒŒƒNƒgƒŠƒpƒX‚ğæ“¾‚·‚é
-// PathBuffer : ƒpƒX‚ğ•Û‘¶‚·‚éƒoƒbƒtƒ@
-// PathBufferBytes : ƒpƒX‚ğ•Û‘¶‚·‚éƒoƒbƒtƒ@‚ÌƒTƒCƒY( ’PˆÊFƒoƒCƒg )
-// PathIndex : ŠO•”ƒf[ƒ^•Û‘¶—p‚ÌƒfƒBƒŒƒNƒgƒŠƒpƒX‚Ì”Ô†( •¡”ŒÂ‚ ‚éê‡‚ª‚ ‚é‚Ì‚Å )
-// IsRemovableFlag : PathIndex ‚Åw’è‚µ‚½ƒpƒX‚ªæ‚èŠO‚µ‰Â”\‚ÈƒfƒoƒCƒX‚©‚Ç‚¤‚©‚ğ•Û‘¶‚·‚é intŒ^•Ï”‚ÌƒAƒhƒŒƒX( Ši”[‚³‚ê‚½’l@TRUE:æ‚èŠO‚µ‰Â”\( SDƒJ[ƒh“™ )  FALSE:æ‚èŠO‚µ•s‰Â”\( “à‘ ƒXƒgƒŒ[ƒW“™ ) )
+// ã‚½ãƒ•ãƒˆã®å¤–éƒ¨ãƒ‡ãƒ¼ã‚¿ä¿å­˜ç”¨ã®ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªãƒ‘ã‚¹ã‚’å–å¾—ã™ã‚‹
+// PathBuffer : ãƒ‘ã‚¹ã‚’ä¿å­˜ã™ã‚‹ãƒãƒƒãƒ•ã‚¡
+// PathBufferBytes : ãƒ‘ã‚¹ã‚’ä¿å­˜ã™ã‚‹ãƒãƒƒãƒ•ã‚¡ã®ã‚µã‚¤ã‚º( å˜ä½ï¼šãƒã‚¤ãƒˆ )
+// PathIndex : å¤–éƒ¨ãƒ‡ãƒ¼ã‚¿ä¿å­˜ç”¨ã®ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªãƒ‘ã‚¹ã®ç•ªå·( è¤‡æ•°å€‹ã‚ã‚‹å ´åˆãŒã‚ã‚‹ã®ã§ )
+// IsRemovableFlag : PathIndex ã§æŒ‡å®šã—ãŸãƒ‘ã‚¹ãŒå–ã‚Šå¤–ã—å¯èƒ½ãªãƒ‡ãƒã‚¤ã‚¹ã‹ã©ã†ã‹ã‚’ä¿å­˜ã™ã‚‹ intå‹å¤‰æ•°ã®ã‚¢ãƒ‰ãƒ¬ã‚¹( æ ¼ç´ã•ã‚ŒãŸå€¤ã€€TRUE:å–ã‚Šå¤–ã—å¯èƒ½( SDã‚«ãƒ¼ãƒ‰ç­‰ )  FALSE:å–ã‚Šå¤–ã—ä¸å¯èƒ½( å†…è”µã‚¹ãƒˆãƒ¬ãƒ¼ã‚¸ç­‰ ) )
 extern int GetExternalDataPath( TCHAR *PathBuffer, int PathBufferBytes, int PathIndex, int *IsRemovableFlag )
 {
 	if( PathIndex == 0 && IsRemovableFlag == NULL )
@@ -2371,7 +2371,7 @@ extern int GetExternalDataPath( TCHAR *PathBuffer, int PathBufferBytes, int Path
 			Result = ConvString( g_AndroidSys.NativeActivity->externalDataPath, -1, DX_CHARCODEFORMAT_UTF8, PathBuffer, PathBufferBytes, _TCHARCODEFORMAT ) ;
 		}
 
-		// I—¹
+		// çµ‚äº†
 		return Result ;
 	}
 	else
@@ -2397,54 +2397,54 @@ extern int GetExternalDataPath( TCHAR *PathBuffer, int PathBufferBytes, int Path
 			return -1 ;
 		}
 
-		// JavaVM ‚Æƒ\ƒtƒgÀs—pƒXƒŒƒbƒh‚ğŠÖ˜A•t‚¯
+		// JavaVM ã¨ã‚½ãƒ•ãƒˆå®Ÿè¡Œç”¨ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’é–¢é€£ä»˜ã‘
 		if( g_AndroidSys.NativeActivity->vm->AttachCurrentThreadAsDaemon( &env, NULL ) != JNI_OK )
 		{
 			pthread_mutex_unlock( &g_AndroidSys.NativeActivityMutex ) ;
 			return -1 ;
 		}
 
-		// getExternalFilesDirs ‚ªg—p‚Å‚«‚È‚¢ê‡‚ÍƒGƒ‰[
+		// getExternalFilesDirs ãŒä½¿ç”¨ã§ããªã„å ´åˆã¯ã‚¨ãƒ©ãƒ¼
 		if( JAVAANDR.methodID_Context_getExternalFilesDirs == NULL )
 		{
 			goto END ;
 		}
 
-		// ƒfƒBƒŒƒNƒgƒŠƒŠƒXƒg‚ğæ“¾
+		// ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªãƒªã‚¹ãƒˆã‚’å–å¾—
 		objectArray_File = ( jobjectArray )env->CallObjectMethod( g_AndroidSys.NativeActivity->clazz, JAVAANDR.methodID_Context_getExternalFilesDirs, NULL ) ;
 		if( objectArray_File == NULL )
 		{
 			goto END ;
 		}
 
-		// ƒfƒBƒŒƒNƒgƒŠ‚Ì”‚ğæ“¾
+		// ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã®æ•°ã‚’å–å¾—
 		dirNum = env->GetArrayLength( objectArray_File ) ;
 		if( dirNum <= PathIndex )
 		{
 			goto END ;
 		}
 
-		// w’è‚Ì—v‘f‚Ìæ‚èo‚µ
+		// æŒ‡å®šã®è¦ç´ ã®å–ã‚Šå‡ºã—
 		object_File = env->GetObjectArrayElement( objectArray_File, PathIndex ) ;
 		if( object_File == NULL )
 		{
 			goto END ;
 		}
 
-		// æ‚èŠO‚µ‰Â”\‚©‚Ç‚¤‚©‚ğæ“¾‚·‚é
+		// å–ã‚Šå¤–ã—å¯èƒ½ã‹ã©ã†ã‹ã‚’å–å¾—ã™ã‚‹
 		if( IsRemovableFlag != NULL && JAVAANDR.methodID_Environment_isExternalStorageRemovable != NULL )
 		{
 			*IsRemovableFlag = env->CallStaticBooleanMethod( JAVAANDR.class_Environment, JAVAANDR.methodID_Environment_isExternalStorageRemovable, object_File ) == JNI_TRUE ? TRUE : FALSE ;
 		}
 
-		// ƒfƒBƒŒƒNƒgƒŠƒpƒX‚Ìæ“¾
+		// ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªãƒ‘ã‚¹ã®å–å¾—
 		string_DirPath = ( jstring )env->CallObjectMethod( object_File, JAVAANDR.methodID_File_getAbsolutePath ) ;
 		if( string_DirPath == NULL )
 		{
 			goto END ;
 		}
 
-		// TCHAR ‚Ì•¶š—ñ‚É•ÏŠ·
+		// TCHAR ã®æ–‡å­—åˆ—ã«å¤‰æ›
 		if( Java_Create_TCHAR_string_From_jstring( env, string_DirPath, &DirPathTemp ) < 0 )
 		{
 			goto END ;
@@ -2481,7 +2481,7 @@ END :
 			string_DirPath = NULL ;
 		}
 
-		// JavaVM ‚Æ‚±‚ÌƒXƒŒƒbƒh‚ÌŠÖ˜A•t‚¯I—¹
+		// JavaVM ã¨ã“ã®ã‚¹ãƒ¬ãƒƒãƒ‰ã®é–¢é€£ä»˜ã‘çµ‚äº†
 		g_AndroidSys.NativeActivity->vm->DetachCurrentThread() ;
 
 		pthread_mutex_unlock( &g_AndroidSys.NativeActivityMutex ) ;
@@ -2490,7 +2490,7 @@ END :
 	}
 }
 
-// ƒ\ƒtƒg‚ÌŠO•”ƒf[ƒ^•Û‘¶—p‚ÌƒfƒBƒŒƒNƒgƒŠƒpƒX‚Ì”‚ğæ“¾‚·‚é
+// ã‚½ãƒ•ãƒˆã®å¤–éƒ¨ãƒ‡ãƒ¼ã‚¿ä¿å­˜ç”¨ã®ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªãƒ‘ã‚¹ã®æ•°ã‚’å–å¾—ã™ã‚‹
 extern int GetExternalDataPathNum( void )
 {
 	JNIEnv *env ;
@@ -2505,27 +2505,27 @@ extern int GetExternalDataPathNum( void )
 		return -1 ;
 	}
 
-	// JavaVM ‚Æƒ\ƒtƒgÀs—pƒXƒŒƒbƒh‚ğŠÖ˜A•t‚¯
+	// JavaVM ã¨ã‚½ãƒ•ãƒˆå®Ÿè¡Œç”¨ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’é–¢é€£ä»˜ã‘
 	if( g_AndroidSys.NativeActivity->vm->AttachCurrentThreadAsDaemon( &env, NULL ) != JNI_OK )
 	{
 		pthread_mutex_unlock( &g_AndroidSys.NativeActivityMutex ) ;
 		return -1 ;
 	}
 
-	// getExternalFilesDirs ‚ªg—p‚Å‚«‚È‚¢ê‡‚ÍƒGƒ‰[
+	// getExternalFilesDirs ãŒä½¿ç”¨ã§ããªã„å ´åˆã¯ã‚¨ãƒ©ãƒ¼
 	if( JAVAANDR.methodID_Context_getExternalFilesDirs == NULL )
 	{
 		goto END ;
 	}
 
-	// ƒfƒBƒŒƒNƒgƒŠƒŠƒXƒg‚ğæ“¾
+	// ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªãƒªã‚¹ãƒˆã‚’å–å¾—
 	objectArray_File = ( jobjectArray )env->CallObjectMethod( g_AndroidSys.NativeActivity->clazz, JAVAANDR.methodID_Context_getExternalFilesDirs, NULL ) ;
 	if( objectArray_File == NULL )
 	{
 		goto END ;
 	}
 
-	// ƒfƒBƒŒƒNƒgƒŠ‚Ì”‚ğæ“¾
+	// ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã®æ•°ã‚’å–å¾—
 	Result = env->GetArrayLength( objectArray_File ) ;
 
 END :
@@ -2535,7 +2535,7 @@ END :
 		objectArray_File = NULL ;
 	}
 
-	// JavaVM ‚Æ‚±‚ÌƒXƒŒƒbƒh‚ÌŠÖ˜A•t‚¯I—¹
+	// JavaVM ã¨ã“ã®ã‚¹ãƒ¬ãƒƒãƒ‰ã®é–¢é€£ä»˜ã‘çµ‚äº†
 	g_AndroidSys.NativeActivity->vm->DetachCurrentThread() ;
 
 	pthread_mutex_unlock( &g_AndroidSys.NativeActivityMutex ) ;
@@ -2543,7 +2543,7 @@ END :
 	return Result ;
 }
 
-// ’[––‚Éİ’è‚³‚ê‚Ä‚¢‚éŒ¾Œê‚ğæ“¾‚·‚é
+// ç«¯æœ«ã«è¨­å®šã•ã‚Œã¦ã„ã‚‹è¨€èªã‚’å–å¾—ã™ã‚‹
 extern int GetLanguage( TCHAR *StringBuffer, int StringBufferSize )
 {
 	JNIEnv *env ;
@@ -2560,34 +2560,34 @@ extern int GetLanguage( TCHAR *StringBuffer, int StringBufferSize )
 		return -1 ;
 	}
 
-	// JavaVM ‚Æƒ\ƒtƒgÀs—pƒXƒŒƒbƒh‚ğŠÖ˜A•t‚¯
+	// JavaVM ã¨ã‚½ãƒ•ãƒˆå®Ÿè¡Œç”¨ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’é–¢é€£ä»˜ã‘
 	if( g_AndroidSys.NativeActivity->vm->AttachCurrentThreadAsDaemon( &env, NULL ) != JNI_OK )
 	{
 		pthread_mutex_unlock( &g_AndroidSys.NativeActivityMutex ) ;
 		return -1 ;
 	}
 
-	// ƒƒP[ƒ‹‚Ìæ“¾
+	// ãƒ­ã‚±ãƒ¼ãƒ«ã®å–å¾—
 	object_Locale = env->CallStaticObjectMethod( JAVAANDR.class_Locale, JAVAANDR.methodID_Locale_getDefault ) ;
 	if( object_Locale == NULL )
 	{
 		goto END ;
 	}
 
-	// Œ¾Œê‚Ìæ“¾
+	// è¨€èªã®å–å¾—
 	jstring_Language = ( jstring )env->CallObjectMethod( object_Locale, JAVAANDR.methodID_Locale_getLanguage );
 	if( jstring_Language == NULL )
 	{
 		goto END ;
 	}
 
-	// TCHAR •¶š—ñ‚É•ÏŠ·
+	// TCHAR æ–‡å­—åˆ—ã«å¤‰æ›
 	if( Java_Create_TCHAR_string_From_jstring( env, jstring_Language, &LanguageName ) < 0 )
 	{
 		goto END ;
 	}
 
-	// ƒoƒbƒtƒ@‚ÉƒRƒs[‚·‚é
+	// ãƒãƒƒãƒ•ã‚¡ã«ã‚³ãƒ”ãƒ¼ã™ã‚‹
 	if( StringBuffer != NULL )
 	{
 		CL_strcpy_s( _TCHARCODEFORMAT, StringBuffer, StringBufferSize, LanguageName ) ;  
@@ -2615,7 +2615,7 @@ END :
 		jstring_Language = NULL ;
 	}
 
-	// JavaVM ‚Æ‚±‚ÌƒXƒŒƒbƒh‚ÌŠÖ˜A•t‚¯I—¹
+	// JavaVM ã¨ã“ã®ã‚¹ãƒ¬ãƒƒãƒ‰ã®é–¢é€£ä»˜ã‘çµ‚äº†
 	g_AndroidSys.NativeActivity->vm->DetachCurrentThread() ;
 
 	pthread_mutex_unlock( &g_AndroidSys.NativeActivityMutex ) ;
@@ -2623,7 +2623,7 @@ END :
 	return res ;
 }
 
-// ’[––‚Éİ’è‚³‚ê‚Ä‚¢‚é‘‚ğæ“¾‚·‚é( –ß‚è’l@-1FƒGƒ‰[@0ˆÈãF‘–¼•¶š—ñ‚ÌŠi”[‚É•K—v‚ÈƒoƒCƒg” )
+// ç«¯æœ«ã«è¨­å®šã•ã‚Œã¦ã„ã‚‹å›½ã‚’å–å¾—ã™ã‚‹( æˆ»ã‚Šå€¤ã€€-1ï¼šã‚¨ãƒ©ãƒ¼ã€€0ä»¥ä¸Šï¼šå›½åæ–‡å­—åˆ—ã®æ ¼ç´ã«å¿…è¦ãªãƒã‚¤ãƒˆæ•° )
 extern int GetCountry( TCHAR *StringBuffer, int StringBufferSize )
 {
 	JNIEnv *env ;
@@ -2640,34 +2640,34 @@ extern int GetCountry( TCHAR *StringBuffer, int StringBufferSize )
 		return -1 ;
 	}
 
-	// JavaVM ‚Æƒ\ƒtƒgÀs—pƒXƒŒƒbƒh‚ğŠÖ˜A•t‚¯
+	// JavaVM ã¨ã‚½ãƒ•ãƒˆå®Ÿè¡Œç”¨ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’é–¢é€£ä»˜ã‘
 	if( g_AndroidSys.NativeActivity->vm->AttachCurrentThreadAsDaemon( &env, NULL ) != JNI_OK )
 	{
 		pthread_mutex_unlock( &g_AndroidSys.NativeActivityMutex ) ;
 		return -1 ;
 	}
 
-	// ƒƒP[ƒ‹‚Ìæ“¾
+	// ãƒ­ã‚±ãƒ¼ãƒ«ã®å–å¾—
 	object_Locale = env->CallStaticObjectMethod( JAVAANDR.class_Locale, JAVAANDR.methodID_Locale_getDefault ) ;
 	if( object_Locale == NULL )
 	{
 		goto END ;
 	}
 
-	// Œ¾Œê‚Ìæ“¾
+	// è¨€èªã®å–å¾—
 	jstring_Country = ( jstring )env->CallObjectMethod( object_Locale, JAVAANDR.methodID_Locale_getCountry );
 	if( jstring_Country == NULL )
 	{
 		goto END ;
 	}
 
-	// TCHAR •¶š—ñ‚É•ÏŠ·
+	// TCHAR æ–‡å­—åˆ—ã«å¤‰æ›
 	if( Java_Create_TCHAR_string_From_jstring( env, jstring_Country, &CountryName ) < 0 )
 	{
 		goto END ;
 	}
 
-	// ƒoƒbƒtƒ@‚ÉƒRƒs[‚·‚é
+	// ãƒãƒƒãƒ•ã‚¡ã«ã‚³ãƒ”ãƒ¼ã™ã‚‹
 	if( StringBuffer != NULL )
 	{
 		CL_strcpy_s( _TCHARCODEFORMAT, StringBuffer, StringBufferSize, CountryName ) ;  
@@ -2695,7 +2695,7 @@ END :
 		jstring_Country = NULL ;
 	}
 
-	// JavaVM ‚Æ‚±‚ÌƒXƒŒƒbƒh‚ÌŠÖ˜A•t‚¯I—¹
+	// JavaVM ã¨ã“ã®ã‚¹ãƒ¬ãƒƒãƒ‰ã®é–¢é€£ä»˜ã‘çµ‚äº†
 	g_AndroidSys.NativeActivity->vm->DetachCurrentThread() ;
 
 	pthread_mutex_unlock( &g_AndroidSys.NativeActivityMutex ) ;
@@ -2703,10 +2703,10 @@ END :
 	return res ;
 }
 
-// ƒƒ‚ƒŠî•ñ‚ğæ“¾‚·‚é
-// TotalMemory : ‘ƒƒ‚ƒŠ—e—Ê‚ğ‘ã“ü‚·‚é•Ï”( ’PˆÊFbyte )A( î•ñ‚Ìæ“¾‚ª•s—v‚Èê‡‚Í NULL ‚ğ“n‚· )
-// FreeMrmoyy : ‹ó‚«ƒƒ‚ƒŠ—e—Ê‚ğ‘ã“ü‚·‚é•Ï”( ’PˆÊFbyte )A( î•ñ‚Ìæ“¾‚ª•s—v‚Èê‡‚Í NULL ‚ğ“n‚· )
-// UseMemory : ƒAƒvƒŠ‚ªg—p‚µ‚Ä‚¢‚éƒƒ‚ƒŠ—e—Ê‚ğ‘ã“ü‚·‚é•Ï”( ’PˆÊ:byte )A( î•ñ‚Ìæ“¾‚ª•s—v‚Èê‡‚Í NULL ‚ğ“n‚· )A( g—pƒƒ‚ƒŠ—Ê‚Ìæ“¾‚Í”ñí‚Éˆ—•‰‰×‚ª‚‚¢‚Ì‚ÅA•s—v‚Èê‡‚Í•K‚¸ NULL ‚ğ“n‚·‚æ‚¤‚É‚µ‚Ä‚­‚¾‚³‚¢ )
+// ãƒ¡ãƒ¢ãƒªæƒ…å ±ã‚’å–å¾—ã™ã‚‹
+// TotalMemory : ç·ãƒ¡ãƒ¢ãƒªå®¹é‡ã‚’ä»£å…¥ã™ã‚‹å¤‰æ•°( å˜ä½ï¼šbyte )ã€( æƒ…å ±ã®å–å¾—ãŒä¸è¦ãªå ´åˆã¯ NULL ã‚’æ¸¡ã™ )
+// FreeMrmoyy : ç©ºããƒ¡ãƒ¢ãƒªå®¹é‡ã‚’ä»£å…¥ã™ã‚‹å¤‰æ•°( å˜ä½ï¼šbyte )ã€( æƒ…å ±ã®å–å¾—ãŒä¸è¦ãªå ´åˆã¯ NULL ã‚’æ¸¡ã™ )
+// UseMemory : ã‚¢ãƒ—ãƒªãŒä½¿ç”¨ã—ã¦ã„ã‚‹ãƒ¡ãƒ¢ãƒªå®¹é‡ã‚’ä»£å…¥ã™ã‚‹å¤‰æ•°( å˜ä½:byte )ã€( æƒ…å ±ã®å–å¾—ãŒä¸è¦ãªå ´åˆã¯ NULL ã‚’æ¸¡ã™ )ã€( ä½¿ç”¨ãƒ¡ãƒ¢ãƒªé‡ã®å–å¾—ã¯éå¸¸ã«å‡¦ç†è² è·ãŒé«˜ã„ã®ã§ã€ä¸è¦ãªå ´åˆã¯å¿…ãš NULL ã‚’æ¸¡ã™ã‚ˆã†ã«ã—ã¦ãã ã•ã„ )
 extern int GetAndroidMemoryInfo( LONGLONG *TotalMemory, LONGLONG *FreeMemory, LONGLONG *UseMemory )
 {
 	JNIEnv *env ;
@@ -2734,31 +2734,31 @@ extern int GetAndroidMemoryInfo( LONGLONG *TotalMemory, LONGLONG *FreeMemory, LO
 		return -1 ;
 	}
 
-	// JavaVM ‚Æƒ\ƒtƒgÀs—pƒXƒŒƒbƒh‚ğŠÖ˜A•t‚¯
+	// JavaVM ã¨ã‚½ãƒ•ãƒˆå®Ÿè¡Œç”¨ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’é–¢é€£ä»˜ã‘
 	if( g_AndroidSys.NativeActivity->vm->AttachCurrentThreadAsDaemon( &env, NULL ) != JNI_OK )
 	{
 		pthread_mutex_unlock( &g_AndroidSys.NativeActivityMutex ) ;
 		return -1 ;
 	}
 
-	// ActivityManager‚Ìæ“¾
+	// ActivityManagerã®å–å¾—
 	object_ActivityManager = env->CallObjectMethod( g_AndroidSys.NativeActivity->clazz, JAVAANDR.methodID_Context_getSystemService, JAVAANDR.fieldobject_Context_ACTIVITY_SERVICE ) ;
 	if( object_ActivityManager == NULL )
 	{
 		goto END ;
 	}
 
-	// g—pƒƒ‚ƒŠ—Ê‚Ìæ“¾
+	// ä½¿ç”¨ãƒ¡ãƒ¢ãƒªé‡ã®å–å¾—
 	if( UseMemory != NULL )
 	{
-		// PID‚ğ‘ã“ü‚·‚é’·‚³‚P‚ÌintŒ^”z—ñ‚ğì¬‚·‚é
+		// PIDã‚’ä»£å…¥ã™ã‚‹é•·ã•ï¼‘ã®intå‹é…åˆ—ã‚’ä½œæˆã™ã‚‹
 		intArray_pids = env->NewIntArray( 1 ) ;
 		if( intArray_pids == NULL )
 		{
 			goto END ;
 		}
 
-		// PID ‚ğ‘ã“ü
+		// PID ã‚’ä»£å…¥
 		intArray_Element = env->GetIntArrayElements( intArray_pids, NULL ) ;
 		if( intArray_Element == NULL )
 		{
@@ -2767,14 +2767,14 @@ extern int GetAndroidMemoryInfo( LONGLONG *TotalMemory, LONGLONG *FreeMemory, LO
 		intArray_Element[ 0 ] = env->CallStaticIntMethod( JAVAANDR.class_Process, JAVAANDR.methodID_Process_myPid ) ;
 		env->ReleaseIntArrayElements( intArray_pids, intArray_Element, 0 ) ;
 
-		// ƒAƒvƒŠ‚Ìƒƒ‚ƒŠî•ñ‚ğæ“¾
+		// ã‚¢ãƒ—ãƒªã®ãƒ¡ãƒ¢ãƒªæƒ…å ±ã‚’å–å¾—
 		object_Debug_MemoryInfos = ( jobjectArray )env->CallObjectMethod( object_ActivityManager, JAVAANDR.methodID_ActivityManager_getProcessMemoryInfo, intArray_pids ) ;
 		if( object_Debug_MemoryInfos == NULL )
 		{
 			goto END ;
 		}
 
-		// ƒAƒvƒŠ‚Ìg—pƒƒ‚ƒŠ—Ê‚ğæ“¾
+		// ã‚¢ãƒ—ãƒªã®ä½¿ç”¨ãƒ¡ãƒ¢ãƒªé‡ã‚’å–å¾—
 		if( env->GetArrayLength( object_Debug_MemoryInfos ) < 1 )
 		{
 			goto END ;
@@ -2787,17 +2787,17 @@ extern int GetAndroidMemoryInfo( LONGLONG *TotalMemory, LONGLONG *FreeMemory, LO
 		int_TotalPss = env->CallIntMethod( object_Debug_MemoryInfo, JAVAANDR.methodID_Debug_MemoryInfo_getTotalPss ) ;
 	}
 
-	// MemoryInfo ‚Ìì¬
+	// MemoryInfo ã®ä½œæˆ
 	object_MemoryInfo = env->NewObject( JAVAANDR.class_ActivityManager_MemoryInfo, JAVAANDR.methodID_ActivityManager_MemoryInfo_newActivityManager_MemoryInfo ) ;
 	if( object_MemoryInfo == NULL )
 	{
 		goto END ;
 	}
 
-	// MemoryInfo ‚Ìæ“¾
+	// MemoryInfo ã®å–å¾—
 	env->CallVoidMethod( object_ActivityManager, JAVAANDR.methodID_ActivityManager_getMemoryInfo, object_MemoryInfo ) ;
 
-	// ƒƒ‚ƒŠî•ñ‚Ìæ“¾
+	// ãƒ¡ãƒ¢ãƒªæƒ…å ±ã®å–å¾—
 	long_MemoryInfo_availMem = env->GetLongField( object_MemoryInfo, JAVAANDR.fieldID_ActivityManager_MemoryInfo_availMem ) ;
 //	boolean_MemoryInfo_lowMemory = env->GetBooleanField( object_MemoryInfo, JAVAANDR.fieldID_ActivityManager_MemoryInfo_lowMemory ) ;
 //	long_MemoryInfo_threshold = env->GetLongField( object_MemoryInfo, JAVAANDR.fieldID_ActivityManager_MemoryInfo_threshold ) ;
@@ -2810,20 +2810,20 @@ extern int GetAndroidMemoryInfo( LONGLONG *TotalMemory, LONGLONG *FreeMemory, LO
 		long_MemoryInfo_totalMem = long_MemoryInfo_availMem ;
 	}
 
-//	// RuntimeƒIƒuƒWƒFƒNƒg‚ğæ“¾
+//	// Runtimeã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å–å¾—
 //	object_Runtime = env->CallStaticObjectMethod( JAVAANDR.class_Runtime, JAVAANDR.methodID_Runtime_getRuntime ) ;
 //	if( object_Runtime == NULL )
 //	{
 //		goto END ;
 //	}
 //
-//	// ‘ƒƒ‚ƒŠ—e—Ê‚Ìæ“¾
+//	// ç·ãƒ¡ãƒ¢ãƒªå®¹é‡ã®å–å¾—
 //	long_TotalMemory = env->CallLongMethod( object_Runtime, JAVAANDR.methodID_Runtime_totalMemory ) ;
 //
-//	// ‹ó‚«ƒƒ‚ƒŠ—e—Ê‚Ìæ“¾
+//	// ç©ºããƒ¡ãƒ¢ãƒªå®¹é‡ã®å–å¾—
 //	long_FreeMemory = env->CallLongMethod( object_Runtime, JAVAANDR.methodID_Runtime_freeMemory ) ;
 
-	// ’l‚ğ‘ã“ü
+	// å€¤ã‚’ä»£å…¥
 	if( TotalMemory != NULL )
 	{
 		*TotalMemory = long_MemoryInfo_totalMem ;
@@ -2877,7 +2877,7 @@ END :
 		intArray_pids = NULL ;
 	}
 
-	// JavaVM ‚Æ‚±‚ÌƒXƒŒƒbƒh‚ÌŠÖ˜A•t‚¯I—¹
+	// JavaVM ã¨ã“ã®ã‚¹ãƒ¬ãƒƒãƒ‰ã®é–¢é€£ä»˜ã‘çµ‚äº†
 	g_AndroidSys.NativeActivity->vm->DetachCurrentThread() ;
 
 	pthread_mutex_unlock( &g_AndroidSys.NativeActivityMutex ) ;
@@ -2885,12 +2885,12 @@ END :
 	return res ;
 }
 
-// •¶š—ñ“ü—Íƒ_ƒCƒAƒƒO‚ğ•\¦‚·‚é
+// æ–‡å­—åˆ—å…¥åŠ›ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã‚’è¡¨ç¤ºã™ã‚‹
 static int StartInputStringDialogStatic( JNIEnv *env, const TCHAR *Title )
 {
 	int res = -1 ;
 
-	// EditText ‚Ìì¬
+	// EditText ã®ä½œæˆ
 	{
 		jobject object_EditText = env->NewObject(
 			g_JavaAndroidInfo.class_EditText,
@@ -2905,12 +2905,12 @@ static int StartInputStringDialogStatic( JNIEnv *env, const TCHAR *Title )
 		}
 		if( g_AndroidSys.object_EditText == NULL )
 		{
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\x45\x00\x64\x00\x69\x00\x74\x00\x54\x00\x65\x00\x78\x00\x74\x00\x20\x00\x6e\x30\x20\x00\x6e\x00\x65\x00\x77\x00\x20\x00\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"EditText ‚Ì new ‚É¸”s‚µ‚Ü‚µ‚½" @*/ )) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\x45\x00\x64\x00\x69\x00\x74\x00\x54\x00\x65\x00\x78\x00\x74\x00\x20\x00\x6e\x30\x20\x00\x6e\x00\x65\x00\x77\x00\x20\x00\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"EditText ã® new ã«å¤±æ•—ã—ã¾ã—ãŸ" @*/ )) ;
 			goto END ;
 		}
 	}
 
-	// AlertDialog.Builder ‚Ìì¬
+	// AlertDialog.Builder ã®ä½œæˆ
 	{
 		jobject object_AlertDialog_Builder = env->NewObject(
 			g_JavaAndroidInfo.class_AlertDialog_Builder,
@@ -2925,16 +2925,16 @@ static int StartInputStringDialogStatic( JNIEnv *env, const TCHAR *Title )
 		}
 		if( g_AndroidSys.object_AlertDialog_Builder == NULL )
 		{
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\x41\x00\x6c\x00\x65\x00\x72\x00\x74\x00\x44\x00\x69\x00\x61\x00\x6c\x00\x6f\x00\x67\x00\x2e\x00\x42\x00\x75\x00\x69\x00\x6c\x00\x64\x00\x65\x00\x72\x00\x20\x00\x6e\x30\x20\x00\x6e\x00\x65\x00\x77\x00\x20\x00\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"AlertDialog.Builder ‚Ì new ‚É¸”s‚µ‚Ü‚µ‚½" @*/ )) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\x41\x00\x6c\x00\x65\x00\x72\x00\x74\x00\x44\x00\x69\x00\x61\x00\x6c\x00\x6f\x00\x67\x00\x2e\x00\x42\x00\x75\x00\x69\x00\x6c\x00\x64\x00\x65\x00\x72\x00\x20\x00\x6e\x30\x20\x00\x6e\x00\x65\x00\x77\x00\x20\x00\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"AlertDialog.Builder ã® new ã«å¤±æ•—ã—ã¾ã—ãŸ" @*/ )) ;
 			goto END ;
 		}
 	}
 
-	// AlertDialog.Builder ‚Ìİ’è
+	// AlertDialog.Builder ã®è¨­å®š
 	{
 		jobject object_AlertDialog_Builder ;
 
-		// ƒ^ƒCƒgƒ‹‚Ìİ’è
+		// ã‚¿ã‚¤ãƒˆãƒ«ã®è¨­å®š
 		{
 			char UTF16LE_Title[ 256 * 4 ] ;
 			int UTF16LE_TitleLength ;
@@ -2963,7 +2963,7 @@ static int StartInputStringDialogStatic( JNIEnv *env, const TCHAR *Title )
 			}
 		}
 
-		// ƒrƒ…[‚Ìİ’è
+		// ãƒ“ãƒ¥ãƒ¼ã®è¨­å®š
 		object_AlertDialog_Builder = env->CallObjectMethod(
 			g_AndroidSys.object_AlertDialog_Builder,
 			g_JavaAndroidInfo.methodID_AlertDialog_Builder_setView,
@@ -2975,7 +2975,7 @@ static int StartInputStringDialogStatic( JNIEnv *env, const TCHAR *Title )
 			object_AlertDialog_Builder = NULL ;
 		}
 
-		// OKƒ{ƒ^ƒ“‚Ìİ’è
+		// OKãƒœã‚¿ãƒ³ã®è¨­å®š
 		{
 			jstring jstring_OK = env->NewStringUTF( "OK" ) ;
 			if( jstring_OK != NULL )
@@ -2998,7 +2998,7 @@ static int StartInputStringDialogStatic( JNIEnv *env, const TCHAR *Title )
 		}
 	}
 
-	// ƒ_ƒCƒAƒƒO‚ğ•\¦
+	// ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã‚’è¡¨ç¤º
 	{
 		jobject object_Dialog = env->CallObjectMethod(
 			g_AndroidSys.object_AlertDialog_Builder,
@@ -3012,7 +3012,7 @@ static int StartInputStringDialogStatic( JNIEnv *env, const TCHAR *Title )
 		}
 		if( g_AndroidSys.object_Dialog == NULL )
 		{
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\x41\x00\x6c\x00\x65\x00\x72\x00\x74\x00\x44\x00\x69\x00\x61\x00\x6c\x00\x6f\x00\x67\x00\x2e\x00\x42\x00\x75\x00\x69\x00\x6c\x00\x64\x00\x65\x00\x72\x00\x20\x00\x6e\x30\x20\x00\x73\x00\x68\x00\x6f\x00\x77\x00\x20\x00\x4c\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"AlertDialog.Builder ‚Ì show ‚ª¸”s‚µ‚Ü‚µ‚½" @*/ )) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\x41\x00\x6c\x00\x65\x00\x72\x00\x74\x00\x44\x00\x69\x00\x61\x00\x6c\x00\x6f\x00\x67\x00\x2e\x00\x42\x00\x75\x00\x69\x00\x6c\x00\x64\x00\x65\x00\x72\x00\x20\x00\x6e\x30\x20\x00\x73\x00\x68\x00\x6f\x00\x77\x00\x20\x00\x4c\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"AlertDialog.Builder ã® show ãŒå¤±æ•—ã—ã¾ã—ãŸ" @*/ )) ;
 			goto END ;
 		}
 	}
@@ -3045,13 +3045,13 @@ END :
 	return res ;
 }
 
-// •¶š—ñ“ü—Íƒ_ƒCƒAƒƒO‚ğ•\¦‚·‚é
+// æ–‡å­—åˆ—å…¥åŠ›ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã‚’è¡¨ç¤ºã™ã‚‹
 extern int StartInputStringDialog( const TCHAR *Title )
 {
 	JNIEnv *env ;
 	int res = -1 ;
 
-	// JavaVM ‚Æƒ\ƒtƒgÀs—pƒXƒŒƒbƒh‚ğŠÖ˜A•t‚¯
+	// JavaVM ã¨ã‚½ãƒ•ãƒˆå®Ÿè¡Œç”¨ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’é–¢é€£ä»˜ã‘
 	if( g_AndroidSys.NativeActivity->vm->AttachCurrentThreadAsDaemon( &env, NULL ) != JNI_OK )
 	{
 		return res ;
@@ -3066,44 +3066,44 @@ extern int StartInputStringDialog( const TCHAR *Title )
 //
 //	env->DeleteLocalRef( class_AppNativeActivityClass ) ;
 
-	// JavaVM ‚Æ‚±‚ÌƒXƒŒƒbƒh‚ÌŠÖ˜A•t‚¯I—¹
+	// JavaVM ã¨ã“ã®ã‚¹ãƒ¬ãƒƒãƒ‰ã®é–¢é€£ä»˜ã‘çµ‚äº†
 	g_AndroidSys.NativeActivity->vm->DetachCurrentThread() ;
 
 	return res ;
 }
 
-// ƒAƒvƒŠ‚Åg—p‚µ‚Ä‚¢‚é NativeActivity ‚ğæ“¾‚·‚é
+// ã‚¢ãƒ—ãƒªã§ä½¿ç”¨ã—ã¦ã„ã‚‹ NativeActivity ã‚’å–å¾—ã™ã‚‹
 extern const ANativeActivity *GetNativeActivity( void )
 {
 	return g_AndroidSys.NativeActivity ;
 }
 
-// ƒAƒvƒŠ‚Ì ANativeWindow ‚ğæ“¾‚·‚é
+// ã‚¢ãƒ—ãƒªã® ANativeWindow ã‚’å–å¾—ã™ã‚‹
 extern const ANativeWindow *GetNativeWindow( void )
 {
 	return ( const ANativeWindow * )g_AndroidSys.NativeWindow ;
 }
 
-// ƒAƒvƒŠ‚Ì“ü—ÍƒCƒxƒ“ƒg‚ğƒtƒbƒN‚·‚éƒR[ƒ‹ƒoƒbƒNŠÖ”‚ğ“o˜^‚·‚é 
-// CallbackFunction : “ü—ÍƒCƒxƒ“ƒg”­¶‚ÉŒÄ‚Î‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”ANULL ‚ğ“n‚·‚Æİ’è‰ğœ( ƒR[ƒ‹ƒoƒbƒNŠÖ”‚Ì–ß‚è’l( 1:‚c‚wƒ‰ƒCƒuƒ‰ƒŠ‚Ì“ü—ÍƒCƒxƒ“ƒgˆ—‚às‚¤@0:‚c‚wƒ‰ƒCƒuƒ‰ƒŠ‚Ì“ü—ÍƒCƒxƒ“ƒgƒŠˆ—‚Ís‚í‚È‚¢ ) )
-// InputEvent : ”­¶‚µ‚½“ü—ÍƒCƒxƒ“ƒg‚Ì AInputEvent
-// Data : ƒR[ƒ‹ƒoƒbƒNŠÖ”‚É“n‚·ƒAƒhƒŒƒXA•s—v‚Èê‡‚Í NULL
+// ã‚¢ãƒ—ãƒªã®å…¥åŠ›ã‚¤ãƒ™ãƒ³ãƒˆã‚’ãƒ•ãƒƒã‚¯ã™ã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã‚’ç™»éŒ²ã™ã‚‹ 
+// CallbackFunction : å…¥åŠ›ã‚¤ãƒ™ãƒ³ãƒˆç™ºç”Ÿæ™‚ã«å‘¼ã°ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã€NULL ã‚’æ¸¡ã™ã¨è¨­å®šè§£é™¤( ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã®æˆ»ã‚Šå€¤( 1:ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®å…¥åŠ›ã‚¤ãƒ™ãƒ³ãƒˆå‡¦ç†ã‚‚è¡Œã†ã€€0:ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®å…¥åŠ›ã‚¤ãƒ™ãƒ³ãƒˆãƒªå‡¦ç†ã¯è¡Œã‚ãªã„ ) )
+// InputEvent : ç™ºç”Ÿã—ãŸå…¥åŠ›ã‚¤ãƒ™ãƒ³ãƒˆã® AInputEvent
+// Data : ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã«æ¸¡ã™ã‚¢ãƒ‰ãƒ¬ã‚¹ã€ä¸è¦ãªå ´åˆã¯ NULL
 extern int SetAndroidInputEventFookFunction( int32_t ( *CallbackFunction )( AInputEvent *InputEvent, void *Data ), void *Data )
 {
-	// ’l‚ğ•Û‘¶
+	// å€¤ã‚’ä¿å­˜
 	g_AndroidSys.UserInputEventCallbackFunction = CallbackFunction ;
 	g_AndroidSys.UserInputEventCallbackFunctionData = Data ;
 
 	return 0 ;
 }
 
-// ƒfƒBƒXƒvƒŒƒC‚Éİ’è‚³‚ê‚Ä‚¢‚é‰ğ‘œ“x‚ğæ“¾‚·‚é
+// ãƒ‡ã‚£ã‚¹ãƒ—ãƒ¬ã‚¤ã«è¨­å®šã•ã‚Œã¦ã„ã‚‹è§£åƒåº¦ã‚’å–å¾—ã™ã‚‹
 extern int GetAndroidDisplayResolution( int *SizeX, int *SizeY )
 {
 #ifdef DX_NON_GRAPHICS
 	return -1 ;
 #else // DX_NON_GRAPHICS
-	// ƒTƒCƒYæ“¾‘O‚Ìê‡‚ÍƒGƒ‰[
+	// ã‚µã‚¤ã‚ºå–å¾—å‰ã®å ´åˆã¯ã‚¨ãƒ©ãƒ¼
 	if( GANDR.Device.Screen.Width  == 0 ||
 		GANDR.Device.Screen.Height == 0 )
 	{
@@ -3117,16 +3117,16 @@ extern int GetAndroidDisplayResolution( int *SizeX, int *SizeY )
 #endif // DX_NON_GRAPHICS
 }
 
-// ƒfƒBƒXƒvƒŒƒC‚ğƒXƒŠ[ƒvó‘Ô‚É‚³‚¹‚È‚¢‚©‚Ç‚¤‚©‚ğİ’è‚·‚é( Flag  TRUE = ƒXƒŠ[ƒvó‘Ô‚É‚³‚¹‚È‚¢  FALSE = ƒXƒŠ[ƒvó‘Ô‚ğ‹–‰Â‚·‚é( ƒfƒtƒHƒ‹ƒg ) )
+// ãƒ‡ã‚£ã‚¹ãƒ—ãƒ¬ã‚¤ã‚’ã‚¹ãƒªãƒ¼ãƒ—çŠ¶æ…‹ã«ã•ã›ãªã„ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹( Flag  TRUE = ã‚¹ãƒªãƒ¼ãƒ—çŠ¶æ…‹ã«ã•ã›ãªã„  FALSE = ã‚¹ãƒªãƒ¼ãƒ—çŠ¶æ…‹ã‚’è¨±å¯ã™ã‚‹( ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ ) )
 extern int SetKeepScreenOnFlag( int Flag )
 {
 	ANativeActivity_setWindowFlags( g_AndroidSys.NativeActivity, Flag != 0 ? AWINDOW_FLAG_KEEP_SCREEN_ON : 0, AWINDOW_FLAG_KEEP_SCREEN_ON ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒfƒBƒXƒvƒŒƒCƒJƒbƒgƒAƒEƒg—Ìˆæ‚Ì”‚ğæ“¾‚·‚é
+// ãƒ‡ã‚£ã‚¹ãƒ—ãƒ¬ã‚¤ã‚«ãƒƒãƒˆã‚¢ã‚¦ãƒˆé ˜åŸŸã®æ•°ã‚’å–å¾—ã™ã‚‹
 extern int GetDisplayCutoutRectCount( void )
 {
 	JNIEnv *env ;
@@ -3150,35 +3150,35 @@ extern int GetDisplayCutoutRectCount( void )
 		return -1 ;
 	}
 
-	// JavaVM ‚Æƒ\ƒtƒgÀs—pƒXƒŒƒbƒh‚ğŠÖ˜A•t‚¯
+	// JavaVM ã¨ã‚½ãƒ•ãƒˆå®Ÿè¡Œç”¨ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’é–¢é€£ä»˜ã‘
 	if( g_AndroidSys.NativeActivity->vm->AttachCurrentThreadAsDaemon( &env, NULL ) != JNI_OK )
 	{
 		pthread_mutex_unlock( &g_AndroidSys.NativeActivityMutex ) ;
 		return -1 ;
 	}
 
-	// Window‚ğæ“¾‚·‚é
+	// Windowã‚’å–å¾—ã™ã‚‹
 	object_Window = env->CallObjectMethod( g_AndroidSys.NativeActivity->clazz, JAVAANDR.methodID_Activity_getWindow ) ;
 	if( object_Window == NULL )
 	{
 		goto END ;
 	}
 
-	// View‚ğæ“¾‚·‚é
+	// Viewã‚’å–å¾—ã™ã‚‹
 	object_View = env->CallObjectMethod( object_Window, JAVAANDR.methodID_Window_getDecorView ) ;
 	if( object_View == NULL )
 	{
 		goto END ;
 	}
 
-	// WindowInsets ‚ğæ“¾‚·‚é
+	// WindowInsets ã‚’å–å¾—ã™ã‚‹
 	object_WindowInsets = env->CallObjectMethod( object_View, JAVAANDR.methodID_View_getRootWindowInsets ) ;
 	if( object_WindowInsets == NULL )
 	{
 		goto END ;
 	}
 
-	// DisplayCutout ‚ğæ“¾‚·‚é
+	// DisplayCutout ã‚’å–å¾—ã™ã‚‹
 	object_DisplayCutout = env->CallObjectMethod( object_WindowInsets, JAVAANDR.methodID_WindowInsets_getDisplayCutout ) ;
 	if( object_DisplayCutout == NULL )
 	{
@@ -3186,14 +3186,14 @@ extern int GetDisplayCutoutRectCount( void )
 		goto END ;
 	}
 
-	// ‹éŒ`ƒŠƒXƒg‚ğæ“¾‚·‚é
+	// çŸ©å½¢ãƒªã‚¹ãƒˆã‚’å–å¾—ã™ã‚‹
 	object_List = env->CallObjectMethod( object_DisplayCutout, JAVAANDR.methodID_DisplayCutout_getBoundingRects ) ;
 	if( object_List == NULL )
 	{
 		goto END ;
 	}
 
-	// ‹éŒ`‚Ì”‚ğæ“¾‚·‚é
+	// çŸ©å½¢ã®æ•°ã‚’å–å¾—ã™ã‚‹
 	Result = env->CallIntMethod( object_List, JAVAANDR.methodID_List_size ) ;
 
 END :
@@ -3228,7 +3228,7 @@ END :
 		object_List = NULL ;
 	}
 
-	// JavaVM ‚Æ‚±‚ÌƒXƒŒƒbƒh‚ÌŠÖ˜A•t‚¯I—¹
+	// JavaVM ã¨ã“ã®ã‚¹ãƒ¬ãƒƒãƒ‰ã®é–¢é€£ä»˜ã‘çµ‚äº†
 	g_AndroidSys.NativeActivity->vm->DetachCurrentThread() ;
 
 	pthread_mutex_unlock( &g_AndroidSys.NativeActivityMutex ) ;
@@ -3236,7 +3236,7 @@ END :
 	return Result ;
 }
 
-// ƒfƒBƒXƒvƒŒƒCƒJƒbƒgƒAƒEƒg—Ìˆæ‚Ì‹éŒ`‚ğæ“¾‚·‚é( ˆø”‚Ì No ‚ÍƒJƒbƒgƒAƒEƒg—Ìˆæ‚Ì”Ô† )
+// ãƒ‡ã‚£ã‚¹ãƒ—ãƒ¬ã‚¤ã‚«ãƒƒãƒˆã‚¢ã‚¦ãƒˆé ˜åŸŸã®çŸ©å½¢ã‚’å–å¾—ã™ã‚‹( å¼•æ•°ã® No ã¯ã‚«ãƒƒãƒˆã‚¢ã‚¦ãƒˆé ˜åŸŸã®ç•ªå· )
 extern RECT GetDisplayCutoutRect( int No )
 {
 	JNIEnv *env ;
@@ -3262,63 +3262,63 @@ extern RECT GetDisplayCutoutRect( int No )
 		return Result ;
 	}
 
-	// JavaVM ‚Æƒ\ƒtƒgÀs—pƒXƒŒƒbƒh‚ğŠÖ˜A•t‚¯ 
+	// JavaVM ã¨ã‚½ãƒ•ãƒˆå®Ÿè¡Œç”¨ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’é–¢é€£ä»˜ã‘ 
 	if( g_AndroidSys.NativeActivity->vm->AttachCurrentThreadAsDaemon( &env, NULL ) != JNI_OK )
 	{
 		pthread_mutex_unlock( &g_AndroidSys.NativeActivityMutex ) ;
 		return Result ;
 	}
 
-	// Window‚ğæ“¾‚·‚é
+	// Windowã‚’å–å¾—ã™ã‚‹
 	object_Window = env->CallObjectMethod( g_AndroidSys.NativeActivity->clazz, JAVAANDR.methodID_Activity_getWindow ) ;
 	if( object_Window == NULL )
 	{
 		goto END ;
 	}
 
-	// View‚ğæ“¾‚·‚é 
+	// Viewã‚’å–å¾—ã™ã‚‹ 
 	object_View = env->CallObjectMethod( object_Window, JAVAANDR.methodID_Window_getDecorView ) ;
 	if( object_View == NULL )
 	{
 		goto END ;
 	}
 
-	// WindowInsets ‚ğæ“¾‚·‚é 
+	// WindowInsets ã‚’å–å¾—ã™ã‚‹ 
 	object_WindowInsets = env->CallObjectMethod( object_View, JAVAANDR.methodID_View_getRootWindowInsets ) ;
 	if( object_WindowInsets == NULL )
 	{
 		goto END ;
 	}
 
-	// DisplayCutout ‚ğæ“¾‚·‚é 
+	// DisplayCutout ã‚’å–å¾—ã™ã‚‹ 
 	object_DisplayCutout = env->CallObjectMethod( object_WindowInsets, JAVAANDR.methodID_WindowInsets_getDisplayCutout ) ;
 	if( object_DisplayCutout == NULL )
 	{
 		goto END ;
 	}
 
-	// ‹éŒ`ƒŠƒXƒg‚ğæ“¾‚·‚é 
+	// çŸ©å½¢ãƒªã‚¹ãƒˆã‚’å–å¾—ã™ã‚‹ 
 	object_List = env->CallObjectMethod( object_DisplayCutout, JAVAANDR.methodID_DisplayCutout_getBoundingRects ) ;
 	if( object_List == NULL )
 	{
 		goto END ;
 	}
 
-	// ‹éŒ`‚Ì”‚ğæ“¾‚·‚é 
+	// çŸ©å½¢ã®æ•°ã‚’å–å¾—ã™ã‚‹ 
 	RectNum = env->CallIntMethod( object_List, JAVAANDR.methodID_List_size ) ;
 	if( No < 0 || No >= RectNum )
 	{
 		goto END ;
 	}
 
-	// ‹éŒ`‚ğæ“¾‚·‚é 
+	// çŸ©å½¢ã‚’å–å¾—ã™ã‚‹ 
 	object_Rect = env->CallObjectMethod( object_List, JAVAANDR.methodID_List_get, No ) ;
 	if( object_Rect == NULL )
 	{
 		goto END ;
 	}
 
-	// ‹éŒ`‚Ì—v‘f‚ğæ“¾‚·‚é 
+	// çŸ©å½¢ã®è¦ç´ ã‚’å–å¾—ã™ã‚‹ 
 	Result.bottom = env->GetIntField( object_Rect, JAVAANDR.fieldID_Rect_bottom ) ;
 	Result.left   = env->GetIntField( object_Rect, JAVAANDR.fieldID_Rect_left ) ;
 	Result.right  = env->GetIntField( object_Rect, JAVAANDR.fieldID_Rect_right ) ;
@@ -3362,7 +3362,7 @@ END :
 		object_Rect = NULL ;
 	}
 
-	// JavaVM ‚Æ‚±‚ÌƒXƒŒƒbƒh‚ÌŠÖ˜A•t‚¯I—¹
+	// JavaVM ã¨ã“ã®ã‚¹ãƒ¬ãƒƒãƒ‰ã®é–¢é€£ä»˜ã‘çµ‚äº†
 	g_AndroidSys.NativeActivity->vm->DetachCurrentThread() ;
 
 	pthread_mutex_unlock( &g_AndroidSys.NativeActivityMutex ) ;
@@ -3370,7 +3370,7 @@ END :
 	return Result ;
 }
 
-// ‰Á‘¬“xƒZƒ“ƒT[‚ÌƒxƒNƒgƒ‹’l‚ğæ“¾‚·‚é
+// åŠ é€Ÿåº¦ã‚»ãƒ³ã‚µãƒ¼ã®ãƒ™ã‚¯ãƒˆãƒ«å€¤ã‚’å–å¾—ã™ã‚‹
 extern VECTOR GetAccelerometerVector( void )
 {
 	VECTOR Result ;
@@ -3392,8 +3392,8 @@ extern VECTOR GetAccelerometerVector( void )
 	return Result ;
 }
 
-// ƒZƒ“ƒT[‚ÌƒxƒNƒgƒ‹’l‚ğæ“¾‚·‚é
-extern VECTOR GetAndroidSensorVector( int SensorType /* DX_ANDROID_SENSOR_ACCELEROMETER ‚È‚Ç */ )
+// ã‚»ãƒ³ã‚µãƒ¼ã®ãƒ™ã‚¯ãƒˆãƒ«å€¤ã‚’å–å¾—ã™ã‚‹
+extern VECTOR GetAndroidSensorVector( int SensorType /* DX_ANDROID_SENSOR_ACCELEROMETER ãªã© */ )
 {
 	VECTOR Result = { -1.0f, -1.0f, -1.0f } ;
 
@@ -3419,8 +3419,8 @@ extern VECTOR GetAndroidSensorVector( int SensorType /* DX_ANDROID_SENSOR_ACCELE
 	return Result ;
 }
 
-// ƒZƒ“ƒT[‚ª—LŒø‚©‚Ç‚¤‚©‚ğæ“¾‚·‚é( –ß‚è’l@TRUEF—LŒø@FALSEF–³Œø )
-extern int CheckAndroidSensor( int SensorType /* DX_ANDROID_SENSOR_ACCELEROMETER ‚È‚Ç */ )
+// ã‚»ãƒ³ã‚µãƒ¼ãŒæœ‰åŠ¹ã‹ã©ã†ã‹ã‚’å–å¾—ã™ã‚‹( æˆ»ã‚Šå€¤ã€€TRUEï¼šæœ‰åŠ¹ã€€FALSEï¼šç„¡åŠ¹ )
+extern int CheckAndroidSensor( int SensorType /* DX_ANDROID_SENSOR_ACCELEROMETER ãªã© */ )
 {
 	if( SensorType < 0 || SensorType >= DX_ANDROID_SENSOR_NUM )
 	{
@@ -3439,7 +3439,7 @@ extern int CheckAndroidSensor( int SensorType /* DX_ANDROID_SENSOR_ACCELEROMETER
 }
 
 
-// U“®‹@”\‚ª‚ ‚é‚©æ“¾‚·‚é( –ß‚è’l@TRUE : U“®‹@”\‚ ‚è  FALSE : U“®‹@”\‚È‚µ )
+// æŒ¯å‹•æ©Ÿèƒ½ãŒã‚ã‚‹ã‹å–å¾—ã™ã‚‹( æˆ»ã‚Šå€¤ã€€TRUE : æŒ¯å‹•æ©Ÿèƒ½ã‚ã‚Š  FALSE : æŒ¯å‹•æ©Ÿèƒ½ãªã— )
 extern int Vibrator_hasVibrator( void )
 {
 	JNIEnv *env ;
@@ -3454,21 +3454,21 @@ extern int Vibrator_hasVibrator( void )
 		return -1 ;
 	}
 
-	// JavaVM ‚Æƒ\ƒtƒgÀs—pƒXƒŒƒbƒh‚ğŠÖ˜A•t‚¯
+	// JavaVM ã¨ã‚½ãƒ•ãƒˆå®Ÿè¡Œç”¨ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’é–¢é€£ä»˜ã‘
 	if( g_AndroidSys.NativeActivity->vm->AttachCurrentThreadAsDaemon( &env, NULL ) != JNI_OK )
 	{
 		pthread_mutex_unlock( &g_AndroidSys.NativeActivityMutex ) ;
 		return -1 ;
 	}
 
-	// Vibrator‚Ìæ“¾
+	// Vibratorã®å–å¾—
 	object_Vibrator = env->CallObjectMethod( g_AndroidSys.NativeActivity->clazz, JAVAANDR.methodID_Context_getSystemService, JAVAANDR.fieldobject_Context_VIBRATOR_SERVICE ) ;
 	if( object_Vibrator == NULL )
 	{
 		goto END ;
 	}
 
-	// U“®‹@”\‚ªg—p‚Å‚«‚é‚©’²‚×‚é
+	// æŒ¯å‹•æ©Ÿèƒ½ãŒä½¿ç”¨ã§ãã‚‹ã‹èª¿ã¹ã‚‹
 	Result = env->CallBooleanMethod( object_Vibrator, JAVAANDR.methodID_Vibrator_hasVibrator ) == JNI_TRUE ? TRUE : FALSE ;
 
 END :
@@ -3479,7 +3479,7 @@ END :
 		object_Vibrator = NULL ;
 	}
 
-	// JavaVM ‚Æ‚±‚ÌƒXƒŒƒbƒh‚ÌŠÖ˜A•t‚¯I—¹
+	// JavaVM ã¨ã“ã®ã‚¹ãƒ¬ãƒƒãƒ‰ã®é–¢é€£ä»˜ã‘çµ‚äº†
 	g_AndroidSys.NativeActivity->vm->DetachCurrentThread() ;
 
 	pthread_mutex_unlock( &g_AndroidSys.NativeActivityMutex ) ;
@@ -3487,14 +3487,14 @@ END :
 	return Result ;
 }
 
-// U“®‹@”\‚ÉU•§Œä( U“®‚Ì‹­‚³§Œä )‹@”\‚ª‚ ‚é‚©‚Ç‚¤‚©‚ğæ“¾‚·‚é( –ß‚è’l@TRUE : U•§Œä‚ª‚Å‚«‚é  FALSE : U•§Œä‚Í‚Å‚«‚È‚¢ )
+// æŒ¯å‹•æ©Ÿèƒ½ã«æŒ¯å¹…åˆ¶å¾¡( æŒ¯å‹•ã®å¼·ã•åˆ¶å¾¡ )æ©Ÿèƒ½ãŒã‚ã‚‹ã‹ã©ã†ã‹ã‚’å–å¾—ã™ã‚‹( æˆ»ã‚Šå€¤ã€€TRUE : æŒ¯å¹…åˆ¶å¾¡ãŒã§ãã‚‹  FALSE : æŒ¯å¹…åˆ¶å¾¡ã¯ã§ããªã„ )
 extern int Vibrator_hasAmplitudeControl( void )
 {
 	JNIEnv *env ;
 	jobject object_Vibrator = NULL ;
 	int Result = -1 ;
 
-	// ŠÖ”‚ª–³‚¢ê‡‚ÍU•§Œä‚ª‚Å‚«‚È‚¢‚Æ‚¢‚¤‚±‚Æ
+	// é–¢æ•°ãŒç„¡ã„å ´åˆã¯æŒ¯å¹…åˆ¶å¾¡ãŒã§ããªã„ã¨ã„ã†ã“ã¨
 	if( JAVAANDR.methodID_Vibrator_hasAmplitudeControl == NULL )
 	{
 		return FALSE ;
@@ -3508,21 +3508,21 @@ extern int Vibrator_hasAmplitudeControl( void )
 		return -1 ;
 	}
 
-	// JavaVM ‚Æƒ\ƒtƒgÀs—pƒXƒŒƒbƒh‚ğŠÖ˜A•t‚¯
+	// JavaVM ã¨ã‚½ãƒ•ãƒˆå®Ÿè¡Œç”¨ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’é–¢é€£ä»˜ã‘
 	if( g_AndroidSys.NativeActivity->vm->AttachCurrentThreadAsDaemon( &env, NULL ) != JNI_OK )
 	{
 		pthread_mutex_unlock( &g_AndroidSys.NativeActivityMutex ) ;
 		return -1 ;
 	}
 
-	// Vibrator‚Ìæ“¾
+	// Vibratorã®å–å¾—
 	object_Vibrator = env->CallObjectMethod( g_AndroidSys.NativeActivity->clazz, JAVAANDR.methodID_Context_getSystemService, JAVAANDR.fieldobject_Context_VIBRATOR_SERVICE ) ;
 	if( object_Vibrator == NULL )
 	{
 		goto END ;
 	}
 
-	// U•§Œä‚ª‚Å‚«‚é‚©’²‚×‚é
+	// æŒ¯å¹…åˆ¶å¾¡ãŒã§ãã‚‹ã‹èª¿ã¹ã‚‹
 	Result = env->CallBooleanMethod( object_Vibrator, JAVAANDR.methodID_Vibrator_hasAmplitudeControl ) == JNI_TRUE ? TRUE : FALSE ;
 
 END :
@@ -3533,7 +3533,7 @@ END :
 		object_Vibrator = NULL ;
 	}
 
-	// JavaVM ‚Æ‚±‚ÌƒXƒŒƒbƒh‚ÌŠÖ˜A•t‚¯I—¹
+	// JavaVM ã¨ã“ã®ã‚¹ãƒ¬ãƒƒãƒ‰ã®é–¢é€£ä»˜ã‘çµ‚äº†
 	g_AndroidSys.NativeActivity->vm->DetachCurrentThread() ;
 
 	pthread_mutex_unlock( &g_AndroidSys.NativeActivityMutex ) ;
@@ -3541,9 +3541,9 @@ END :
 	return Result ;
 }
 
-// U“®‚ğŠJn‚·‚é
-// Milliseconds : U“®‚³‚¹‚éŠÔ( ’PˆÊFƒ~ƒŠ•b )
-// Amplitude : U“®‚Ì‹­‚³( 0( U“®‚È‚µ ) ` 255( Å‘åU• ) )AU“®‚Ì‹­‚³‚Ì§Œä‚É‘Î‰‚µ‚Ä‚¢‚È‚¢ê‡‚Í–³‹‚³‚ê‚Ü‚·
+// æŒ¯å‹•ã‚’é–‹å§‹ã™ã‚‹
+// Milliseconds : æŒ¯å‹•ã•ã›ã‚‹æ™‚é–“( å˜ä½ï¼šãƒŸãƒªç§’ )
+// Amplitude : æŒ¯å‹•ã®å¼·ã•( 0( æŒ¯å‹•ãªã— ) ï½ 255( æœ€å¤§æŒ¯å¹… ) )ã€æŒ¯å‹•ã®å¼·ã•ã®åˆ¶å¾¡ã«å¯¾å¿œã—ã¦ã„ãªã„å ´åˆã¯ç„¡è¦–ã•ã‚Œã¾ã™
 extern int Vibrator_vibrate( int Milliseconds, int Amplitude )
 {
 	JNIEnv *env ;
@@ -3559,38 +3559,38 @@ extern int Vibrator_vibrate( int Milliseconds, int Amplitude )
 		return -1 ;
 	}
 
-	// JavaVM ‚Æƒ\ƒtƒgÀs—pƒXƒŒƒbƒh‚ğŠÖ˜A•t‚¯
+	// JavaVM ã¨ã‚½ãƒ•ãƒˆå®Ÿè¡Œç”¨ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’é–¢é€£ä»˜ã‘
 	if( g_AndroidSys.NativeActivity->vm->AttachCurrentThreadAsDaemon( &env, NULL ) != JNI_OK )
 	{
 		pthread_mutex_unlock( &g_AndroidSys.NativeActivityMutex ) ;
 		return -1 ;
 	}
 
-	// Vibrator‚Ìæ“¾
+	// Vibratorã®å–å¾—
 	object_Vibrator = env->CallObjectMethod( g_AndroidSys.NativeActivity->clazz, JAVAANDR.methodID_Context_getSystemService, JAVAANDR.fieldobject_Context_VIBRATOR_SERVICE ) ;
 	if( object_Vibrator == NULL )
 	{
 		goto END ;
 	}
 
-	// U•§Œä‚ª‚Å‚«‚éê‡‚Æ‚Å‚«‚È‚¢ê‡‚Åˆ—‚ğ•ªŠò
+	// æŒ¯å¹…åˆ¶å¾¡ãŒã§ãã‚‹å ´åˆã¨ã§ããªã„å ´åˆã§å‡¦ç†ã‚’åˆ†å²
 	if( JAVAANDR.methodID_Vibrator_hasAmplitudeControl != NULL &&
 		JAVAANDR.methodID_VibrationEffect_createOneShot != NULL &&
 		env->CallBooleanMethod( object_Vibrator, JAVAANDR.methodID_Vibrator_hasAmplitudeControl ) == JNI_TRUE )
 	{
-		// U“®ƒIƒuƒWƒFƒNƒg‚Ìì¬
+		// æŒ¯å‹•ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ä½œæˆ
 		object_VibrationEffect = env->CallStaticObjectMethod( JAVAANDR.class_VibrationEffect, JAVAANDR.methodID_VibrationEffect_createOneShot, ( jlong )Milliseconds, ( jint )Amplitude ) ;
 		if( object_VibrationEffect == NULL )
 		{
 			goto END ;
 		}
 
-		// U“®ŠJn
+		// æŒ¯å‹•é–‹å§‹
 		env->CallVoidMethod( object_Vibrator, JAVAANDR.methodID_Vibrator_vibrate_vibEffect, object_VibrationEffect ) ;
 	}
 	else
 	{
-		// U“®ŠJn
+		// æŒ¯å‹•é–‹å§‹
 		env->CallVoidMethod( object_Vibrator, JAVAANDR.methodID_Vibrator_vibrate_long, ( jlong )Milliseconds ) ;
 	}
 
@@ -3610,7 +3610,7 @@ END :
 		object_Vibrator = NULL ;
 	}
 
-	// JavaVM ‚Æ‚±‚ÌƒXƒŒƒbƒh‚ÌŠÖ˜A•t‚¯I—¹
+	// JavaVM ã¨ã“ã®ã‚¹ãƒ¬ãƒƒãƒ‰ã®é–¢é€£ä»˜ã‘çµ‚äº†
 	g_AndroidSys.NativeActivity->vm->DetachCurrentThread() ;
 
 	pthread_mutex_unlock( &g_AndroidSys.NativeActivityMutex ) ;
@@ -3618,10 +3618,10 @@ END :
 	return Result ;
 }
 
-// U“®ƒpƒ^[ƒ“•t‚«‚ÌU“®‚ğŠJn‚·‚é
-// Timings : U“®ƒpƒ^[ƒ“‚ğ’è‹`‚·‚éŠÔ( ’PˆÊFƒ~ƒŠ•b )‚Ì”z—ñ( Timings[0]:U“®‚ğŠJn‚·‚é‚Ü‚Å‚Ì‘Ò‚¿ŠÔATimings[1]:U“®‚µ‘±‚¯‚éŠÔATimings[2]:U“®‚ğ’â~‚µ‚Ä‚¢‚éŠÔATimings[3]:U“®‚µ‘±‚¯‚éŠÔATimings[4]:U“®‚ğ’â~‚µ‚Ä‚¢‚éŠÔ@@ˆÈ‰ºŒJ‚è•Ô‚µ )
-// TimingsLength : Timings ‚Ì”z—ñ‚Ì’·‚³
-// Repeat : U“®ƒpƒ^[ƒ“‚ğŒJ‚è•Ô‚·‰ñ”A-1 ‚ÅŒJ‚è•Ô‚µ–³‚µ
+// æŒ¯å‹•ãƒ‘ã‚¿ãƒ¼ãƒ³ä»˜ãã®æŒ¯å‹•ã‚’é–‹å§‹ã™ã‚‹
+// Timings : æŒ¯å‹•ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚’å®šç¾©ã™ã‚‹æ™‚é–“( å˜ä½ï¼šãƒŸãƒªç§’ )ã®é…åˆ—( Timings[0]:æŒ¯å‹•ã‚’é–‹å§‹ã™ã‚‹ã¾ã§ã®å¾…ã¡æ™‚é–“ã€Timings[1]:æŒ¯å‹•ã—ç¶šã‘ã‚‹æ™‚é–“ã€Timings[2]:æŒ¯å‹•ã‚’åœæ­¢ã—ã¦ã„ã‚‹æ™‚é–“ã€Timings[3]:æŒ¯å‹•ã—ç¶šã‘ã‚‹æ™‚é–“ã€Timings[4]:æŒ¯å‹•ã‚’åœæ­¢ã—ã¦ã„ã‚‹æ™‚é–“ã€€ã€€ä»¥ä¸‹ç¹°ã‚Šè¿”ã— )
+// TimingsLength : Timings ã®é…åˆ—ã®é•·ã•
+// Repeat : æŒ¯å‹•ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚’ç¹°ã‚Šè¿”ã™å›æ•°ã€-1 ã§ç¹°ã‚Šè¿”ã—ç„¡ã—
 extern int Vibrator_vibrate_with_OnOffTimings( int *Timings, int TimingsLength, int Repeat )
 {
 	JNIEnv *env ;
@@ -3638,45 +3638,45 @@ extern int Vibrator_vibrate_with_OnOffTimings( int *Timings, int TimingsLength, 
 		return -1 ;
 	}
 
-	// JavaVM ‚Æƒ\ƒtƒgÀs—pƒXƒŒƒbƒh‚ğŠÖ˜A•t‚¯
+	// JavaVM ã¨ã‚½ãƒ•ãƒˆå®Ÿè¡Œç”¨ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’é–¢é€£ä»˜ã‘
 	if( g_AndroidSys.NativeActivity->vm->AttachCurrentThreadAsDaemon( &env, NULL ) != JNI_OK )
 	{
 		pthread_mutex_unlock( &g_AndroidSys.NativeActivityMutex ) ;
 		return -1 ;
 	}
 
-	// Vibrator‚Ìæ“¾
+	// Vibratorã®å–å¾—
 	object_Vibrator = env->CallObjectMethod( g_AndroidSys.NativeActivity->clazz, JAVAANDR.methodID_Context_getSystemService, JAVAANDR.fieldobject_Context_VIBRATOR_SERVICE ) ;
 	if( object_Vibrator == NULL )
 	{
 		goto END ;
 	}
 
-	// ƒ^ƒCƒ~ƒ“ƒO‚Ìlong”z—ñ‚ğì¬‚·‚é
+	// ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã®longé…åˆ—ã‚’ä½œæˆã™ã‚‹
 	longArray_Timings = Java_Create_longArray_From_intArray( env, Timings, TimingsLength ) ;
 	if( longArray_Timings == NULL )
 	{
 		goto END ;
 	}
 
-	// U•§Œä‚ª‚Å‚«‚éê‡‚Æ‚Å‚«‚È‚¢ê‡‚Åˆ—‚ğ•ªŠò
+	// æŒ¯å¹…åˆ¶å¾¡ãŒã§ãã‚‹å ´åˆã¨ã§ããªã„å ´åˆã§å‡¦ç†ã‚’åˆ†å²
 	if( JAVAANDR.methodID_Vibrator_hasAmplitudeControl != NULL &&
 		JAVAANDR.methodID_VibrationEffect_createWaveform_withTimings != NULL &&
 		env->CallBooleanMethod( object_Vibrator, JAVAANDR.methodID_Vibrator_hasAmplitudeControl ) == JNI_TRUE )
 	{
-		// U“®ƒIƒuƒWƒFƒNƒg‚Ìì¬
+		// æŒ¯å‹•ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ä½œæˆ
 		object_VibrationEffect = env->CallStaticObjectMethod( JAVAANDR.class_VibrationEffect, JAVAANDR.methodID_VibrationEffect_createWaveform_withTimings, longArray_Timings, ( jint )Repeat ) ;
 		if( object_VibrationEffect == NULL )
 		{
 			goto END ;
 		}
 
-		// U“®ŠJn
+		// æŒ¯å‹•é–‹å§‹
 		env->CallVoidMethod( object_Vibrator, JAVAANDR.methodID_Vibrator_vibrate_vibEffect, object_VibrationEffect ) ;
 	}
 	else
 	{
-		// U“®ŠJn
+		// æŒ¯å‹•é–‹å§‹
 		env->CallVoidMethod( object_Vibrator, JAVAANDR.methodID_Vibrator_vibrate_longArray_int, longArray_Timings, ( jint )Repeat ) ;
 	}
 
@@ -3702,7 +3702,7 @@ END :
 		object_Vibrator = NULL ;
 	}
 
-	// JavaVM ‚Æ‚±‚ÌƒXƒŒƒbƒh‚ÌŠÖ˜A•t‚¯I—¹
+	// JavaVM ã¨ã“ã®ã‚¹ãƒ¬ãƒƒãƒ‰ã®é–¢é€£ä»˜ã‘çµ‚äº†
 	g_AndroidSys.NativeActivity->vm->DetachCurrentThread() ;
 
 	pthread_mutex_unlock( &g_AndroidSys.NativeActivityMutex ) ;
@@ -3710,11 +3710,11 @@ END :
 	return Result ;
 }
 
-// U•§Œä•t‚«( U“®‚Ì‹­‚³w’è•t‚« )U“®‚ğŠJn‚·‚é( Vibrator_hasAmplitudeControl ‚Ì–ß‚è’l‚ª TRUE ‚Ìê‡‚Ì‚İg—p‰Â”\ )
-// Timings : U“®‚Ì‹­‚³‚ğ•ÏX‚·‚éƒ^ƒCƒ~ƒ“ƒO( ’PˆÊFƒ~ƒŠ•b )‚Ì”z—ñ
-// Amplitudes : U“®‚Ì‹­‚³( 0( U“®‚È‚µ ) ` 255( Å‘åU• ) )‚Ì”z—ñ
-// ArrayLength : Timings ‚Æ Amplitudes ‚Ì”z—ñ‚Ì’·‚³( ”z—ñ‚Ì’·‚³‚Í‚Ç‚¿‚ç‚à“¯‚¶‚Å‚ ‚é•K—v‚ª‚ ‚è‚Ü‚· )
-// Repeat : Timings ‚Æ Amplitudes ‚Å¦‚³‚ê‚éU“®ƒpƒ^[ƒ“‚ğŒJ‚è•Ô‚·‰ñ”A-1 ‚ÅŒJ‚è•Ô‚µ–³‚µ
+// æŒ¯å¹…åˆ¶å¾¡ä»˜ã( æŒ¯å‹•ã®å¼·ã•æŒ‡å®šä»˜ã )æŒ¯å‹•ã‚’é–‹å§‹ã™ã‚‹( Vibrator_hasAmplitudeControl ã®æˆ»ã‚Šå€¤ãŒ TRUE ã®å ´åˆã®ã¿ä½¿ç”¨å¯èƒ½ )
+// Timings : æŒ¯å‹•ã®å¼·ã•ã‚’å¤‰æ›´ã™ã‚‹ã‚¿ã‚¤ãƒŸãƒ³ã‚°( å˜ä½ï¼šãƒŸãƒªç§’ )ã®é…åˆ—
+// Amplitudes : æŒ¯å‹•ã®å¼·ã•( 0( æŒ¯å‹•ãªã— ) ï½ 255( æœ€å¤§æŒ¯å¹… ) )ã®é…åˆ—
+// ArrayLength : Timings ã¨ Amplitudes ã®é…åˆ—ã®é•·ã•( é…åˆ—ã®é•·ã•ã¯ã©ã¡ã‚‰ã‚‚åŒã˜ã§ã‚ã‚‹å¿…è¦ãŒã‚ã‚Šã¾ã™ )
+// Repeat : Timings ã¨ Amplitudes ã§ç¤ºã•ã‚Œã‚‹æŒ¯å‹•ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚’ç¹°ã‚Šè¿”ã™å›æ•°ã€-1 ã§ç¹°ã‚Šè¿”ã—ç„¡ã—
 extern int Vibrator_vibrate_with_Amplitudes( int *Timings, int *Amplitudes, int ArrayLength, int Repeat )
 {
 	JNIEnv *env ;
@@ -3724,7 +3724,7 @@ extern int Vibrator_vibrate_with_Amplitudes( int *Timings, int *Amplitudes, int 
 	jobject object_VibrationEffect = NULL ;
 	int Result = -1 ;
 
-	// U•§Œä‚ÌAPI‚ªg—p‚Å‚«‚È‚¢ê‡‚Í‰½‚à‚¹‚¸I—¹
+	// æŒ¯å¹…åˆ¶å¾¡ã®APIãŒä½¿ç”¨ã§ããªã„å ´åˆã¯ä½•ã‚‚ã›ãšçµ‚äº†
 	if( JAVAANDR.methodID_Vibrator_hasAmplitudeControl == NULL )
 	{
 		return -1 ;
@@ -3738,48 +3738,48 @@ extern int Vibrator_vibrate_with_Amplitudes( int *Timings, int *Amplitudes, int 
 		return -1 ;
 	}
 
-	// JavaVM ‚Æƒ\ƒtƒgÀs—pƒXƒŒƒbƒh‚ğŠÖ˜A•t‚¯
+	// JavaVM ã¨ã‚½ãƒ•ãƒˆå®Ÿè¡Œç”¨ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’é–¢é€£ä»˜ã‘
 	if( g_AndroidSys.NativeActivity->vm->AttachCurrentThreadAsDaemon( &env, NULL ) != JNI_OK )
 	{
 		pthread_mutex_unlock( &g_AndroidSys.NativeActivityMutex ) ;
 		return -1 ;
 	}
 
-	// Vibrator‚Ìæ“¾
+	// Vibratorã®å–å¾—
 	object_Vibrator = env->CallObjectMethod( g_AndroidSys.NativeActivity->clazz, JAVAANDR.methodID_Context_getSystemService, JAVAANDR.fieldobject_Context_VIBRATOR_SERVICE ) ;
 	if( object_Vibrator == NULL )
 	{
 		goto END ;
 	}
 
-	// ƒ^ƒCƒ~ƒ“ƒO‚Ìlong”z—ñ‚ğì¬‚·‚é
+	// ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã®longé…åˆ—ã‚’ä½œæˆã™ã‚‹
 	longArray_Timings = Java_Create_longArray_From_intArray( env, Timings, ArrayLength ) ;
 	if( longArray_Timings == NULL )
 	{
 		goto END ;
 	}
 
-	// U•‚Ìint”z—ñ‚ğì¬‚·‚é
+	// æŒ¯å¹…ã®inté…åˆ—ã‚’ä½œæˆã™ã‚‹
 	intArray_Amplitudes = Java_Create_intArray_From_intArray( env, Amplitudes, ArrayLength ) ;
 	if( intArray_Amplitudes == NULL )
 	{
 		goto END ;
 	}
 
-	// U“®§Œä‚ª‚Å‚«‚È‚¢ê‡‚à‰½‚à‚¹‚¸I—¹
+	// æŒ¯å‹•åˆ¶å¾¡ãŒã§ããªã„å ´åˆã‚‚ä½•ã‚‚ã›ãšçµ‚äº†
 	if( env->CallBooleanMethod( object_Vibrator, JAVAANDR.methodID_Vibrator_hasAmplitudeControl ) == JNI_FALSE )
 	{
 		goto END ;
 	}
 
-	// U“®ƒIƒuƒWƒFƒNƒg‚Ìì¬
+	// æŒ¯å‹•ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ä½œæˆ
 	object_VibrationEffect = env->CallStaticObjectMethod( JAVAANDR.class_VibrationEffect, JAVAANDR.methodID_VibrationEffect_createWaveform_withAmplitudes, longArray_Timings, intArray_Amplitudes, ( jint )Repeat ) ;
 	if( object_VibrationEffect == NULL )
 	{
 		goto END ;
 	}
 
-	// U“®ŠJn
+	// æŒ¯å‹•é–‹å§‹
 	env->CallVoidMethod( object_Vibrator, JAVAANDR.methodID_Vibrator_vibrate_vibEffect, object_VibrationEffect ) ;
 
 	Result = 0 ;
@@ -3810,7 +3810,7 @@ END :
 		object_Vibrator = NULL ;
 	}
 
-	// JavaVM ‚Æ‚±‚ÌƒXƒŒƒbƒh‚ÌŠÖ˜A•t‚¯I—¹
+	// JavaVM ã¨ã“ã®ã‚¹ãƒ¬ãƒƒãƒ‰ã®é–¢é€£ä»˜ã‘çµ‚äº†
 	g_AndroidSys.NativeActivity->vm->DetachCurrentThread() ;
 
 	pthread_mutex_unlock( &g_AndroidSys.NativeActivityMutex ) ;
@@ -3818,7 +3818,7 @@ END :
 	return Result ;
 }
 
-// U“®‚ğ’†’f‚·‚é
+// æŒ¯å‹•ã‚’ä¸­æ–­ã™ã‚‹
 extern int Vibrator_cancel( void )
 {
 	JNIEnv *env ;
@@ -3833,21 +3833,21 @@ extern int Vibrator_cancel( void )
 		return -1 ;
 	}
 
-	// JavaVM ‚Æƒ\ƒtƒgÀs—pƒXƒŒƒbƒh‚ğŠÖ˜A•t‚¯
+	// JavaVM ã¨ã‚½ãƒ•ãƒˆå®Ÿè¡Œç”¨ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’é–¢é€£ä»˜ã‘
 	if( g_AndroidSys.NativeActivity->vm->AttachCurrentThreadAsDaemon( &env, NULL ) != JNI_OK )
 	{
 		pthread_mutex_unlock( &g_AndroidSys.NativeActivityMutex ) ;
 		return -1 ;
 	}
 
-	// Vibrator‚Ìæ“¾
+	// Vibratorã®å–å¾—
 	object_Vibrator = env->CallObjectMethod( g_AndroidSys.NativeActivity->clazz, JAVAANDR.methodID_Context_getSystemService, JAVAANDR.fieldobject_Context_VIBRATOR_SERVICE ) ;
 	if( object_Vibrator == NULL )
 	{
 		goto END ;
 	}
 
-	// U“®‚ğ’â~‚·‚é
+	// æŒ¯å‹•ã‚’åœæ­¢ã™ã‚‹
 	env->CallVoidMethod( object_Vibrator, JAVAANDR.methodID_Vibrator_cancel ) ;
 
 	Result = 0 ;
@@ -3860,7 +3860,7 @@ END :
 		object_Vibrator = NULL ;
 	}
 
-	// JavaVM ‚Æ‚±‚ÌƒXƒŒƒbƒh‚ÌŠÖ˜A•t‚¯I—¹
+	// JavaVM ã¨ã“ã®ã‚¹ãƒ¬ãƒƒãƒ‰ã®é–¢é€£ä»˜ã‘çµ‚äº†
 	g_AndroidSys.NativeActivity->vm->DetachCurrentThread() ;
 
 	pthread_mutex_unlock( &g_AndroidSys.NativeActivityMutex ) ;
@@ -3868,10 +3868,10 @@ END :
 	return Result ;
 }
 
-// —j“ú‚âT‚ÉŠÖ‚·‚éî•ñ‚ğæ“¾‚·‚é
-// DayOfWeek : —j“ú( 1:“ú—j“ú 2:Œ—j“ú 3:‰Î—j“ú 4:…—j“ú 5:–Ø—j“ú 6:‹à—j“ú 7:“y—j“ú )
-// WeekOfMonth : ¡“ú‚ª¡Œ‚Ì‰½T–Ú‚È‚Ì‚©‚Ì’l( 1:‚PT–Ú  2:‚QT–Ú  3:‚RT–Ú  4:‚ST–Ú  5:‚TT–Ú )
-// DayOfWeekInMonth : ¡“ú‚Ì—j“ú‚ª¡Œ‰½‰ñ–Ú‚É“–‚½‚é‚©A‚Ì’l( 1:‚P‰ñ–Ú  2:‚Q‰ñ–Ú  3:‚R‰ñ–Ú  4:‚S‰ñ–Ú ... )
+// æ›œæ—¥ã‚„é€±ã«é–¢ã™ã‚‹æƒ…å ±ã‚’å–å¾—ã™ã‚‹
+// DayOfWeek : æ›œæ—¥( 1:æ—¥æ›œæ—¥ 2:æœˆæ›œæ—¥ 3:ç«æ›œæ—¥ 4:æ°´æ›œæ—¥ 5:æœ¨æ›œæ—¥ 6:é‡‘æ›œæ—¥ 7:åœŸæ›œæ—¥ )
+// WeekOfMonth : ä»Šæ—¥ãŒä»Šæœˆã®ä½•é€±ç›®ãªã®ã‹ã®å€¤( 1:ï¼‘é€±ç›®  2:ï¼’é€±ç›®  3:ï¼“é€±ç›®  4:ï¼”é€±ç›®  5:ï¼•é€±ç›® )
+// DayOfWeekInMonth : ä»Šæ—¥ã®æ›œæ—¥ãŒä»Šæœˆä½•å›ç›®ã«å½“ãŸã‚‹ã‹ã€ã®å€¤( 1:ï¼‘å›ç›®  2:ï¼’å›ç›®  3:ï¼“å›ç›®  4:ï¼”å›ç›® ... )
 extern int GetAndroidWeekInfo( int *DayOfWeek, int *WeekOfMonth, int *DayOfWeekInMonth )
 {
 	int Result = -1 ;
@@ -3885,7 +3885,7 @@ extern int GetAndroidWeekInfo( int *DayOfWeek, int *WeekOfMonth, int *DayOfWeekI
 		return Result ;
 	}
 
-	// JavaVM ‚Æƒ\ƒtƒgÀs—pƒXƒŒƒbƒh‚ğŠÖ˜A•t‚¯
+	// JavaVM ã¨ã‚½ãƒ•ãƒˆå®Ÿè¡Œç”¨ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’é–¢é€£ä»˜ã‘
 	JNIEnv *env ;
 	if( g_AndroidSys.NativeActivity->vm->AttachCurrentThreadAsDaemon( &env, NULL ) != JNI_OK )
 	{
@@ -3893,7 +3893,7 @@ extern int GetAndroidWeekInfo( int *DayOfWeek, int *WeekOfMonth, int *DayOfWeekI
 		return Result ;
 	}
 
-	// Calendar Instance ‚Ìæ“¾
+	// Calendar Instance ã®å–å¾—
 	jobject_Calendar = env->CallStaticObjectMethod( JAVAANDR.class_Calendar, JAVAANDR.methodID_Calendar_getInstance );
 	if( jobject_Calendar == NULL )
 	{
@@ -3922,22 +3922,22 @@ extern int GetAndroidWeekInfo( int *DayOfWeek, int *WeekOfMonth, int *DayOfWeekI
 		jobject_Calendar = NULL ;
 	}
 
-	// JavaVM ‚Æ‚±‚ÌƒXƒŒƒbƒh‚ÌŠÖ˜A•t‚¯I—¹
+	// JavaVM ã¨ã“ã®ã‚¹ãƒ¬ãƒƒãƒ‰ã®é–¢é€£ä»˜ã‘çµ‚äº†
 	g_AndroidSys.NativeActivity->vm->DetachCurrentThread() ;
 
 	pthread_mutex_unlock( &g_AndroidSys.NativeActivityMutex ) ;
 
 	Result = 0 ;
 
-	// –ß‚è’l‚ğ•Ô‚·
+	// æˆ»ã‚Šå€¤ã‚’è¿”ã™
 	return Result ;
 }
 
-// res/values/strings.xml ‚Ì string ƒŠƒ\[ƒX‚ğæ“¾‚·‚é
-// ValueNameFstring î•ñ–¼
-// StringBufferFValueName ‚ª¦‚·•¶š—ñ‚ğŠi”[‚·‚éƒoƒbƒtƒ@‚Ìæ“ªƒAƒhƒŒƒX
-// StringBufferBytesFStringBuffer ‚ÌƒTƒCƒY( ’PˆÊFƒoƒCƒg )
-// –ß‚è’l@@-1Fw’è‚Ì string î•ñ‚Í–³‚©‚Á‚½@@-1ˆÈŠOFStringBuffer ‚É•K—v‚Èƒoƒbƒtƒ@‚ÌƒTƒCƒY
+// res/values/strings.xml ã® string ãƒªã‚½ãƒ¼ã‚¹ã‚’å–å¾—ã™ã‚‹
+// ValueNameï¼šstring æƒ…å ±å
+// StringBufferï¼šValueName ãŒç¤ºã™æ–‡å­—åˆ—ã‚’æ ¼ç´ã™ã‚‹ãƒãƒƒãƒ•ã‚¡ã®å…ˆé ­ã‚¢ãƒ‰ãƒ¬ã‚¹
+// StringBufferBytesï¼šStringBuffer ã®ã‚µã‚¤ã‚º( å˜ä½ï¼šãƒã‚¤ãƒˆ )
+// æˆ»ã‚Šå€¤ã€€ã€€-1ï¼šæŒ‡å®šã® string æƒ…å ±ã¯ç„¡ã‹ã£ãŸã€€ã€€-1ä»¥å¤–ï¼šStringBuffer ã«å¿…è¦ãªãƒãƒƒãƒ•ã‚¡ã®ã‚µã‚¤ã‚º
 extern int GetAndroidResource_Strings_String( const TCHAR *ValueName, TCHAR *StringBuffer, int StringBufferBytes )
 {
 	int Result = -1 ;
@@ -3959,7 +3959,7 @@ extern int GetAndroidResource_Strings_String( const TCHAR *ValueName, TCHAR *Str
 		return -1 ;
 	}
 
-	// JavaVM ‚Æƒ\ƒtƒgÀs—pƒXƒŒƒbƒh‚ğŠÖ˜A•t‚¯
+	// JavaVM ã¨ã‚½ãƒ•ãƒˆå®Ÿè¡Œç”¨ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’é–¢é€£ä»˜ã‘
 	JNIEnv *env ;
 	if( g_AndroidSys.NativeActivity->vm->AttachCurrentThreadAsDaemon( &env, NULL ) != JNI_OK )
 	{
@@ -3967,21 +3967,21 @@ extern int GetAndroidResource_Strings_String( const TCHAR *ValueName, TCHAR *Str
 		return -1 ;
 	}
 
-	// ƒŠƒ\[ƒX‚Ìæ“¾
+	// ãƒªã‚½ãƒ¼ã‚¹ã®å–å¾—
 	object_Resources = env->CallObjectMethod( g_AndroidSys.NativeActivity->clazz, JAVAANDR.methodID_Context_getResources ) ;
 	if( object_Resources == NULL )
 	{
 		goto END ;
 	}
 
-	// ƒpƒbƒP[ƒW–¼‚Ìæ“¾
+	// ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸åã®å–å¾—
 	string_PackageName = ( jstring )env->CallObjectMethod( g_AndroidSys.NativeActivity->clazz, JAVAANDR.methodID_Context_getPackageName ) ;
 	if( string_PackageName == NULL )
 	{
 		goto END ;
 	}
 
-	// ID‚Ìæ“¾
+	// IDã®å–å¾—
 	string_string = Java_Create_jstring_From_wchar_t( env, L"string" ) ;
 	if( string_string == NULL )
 	{
@@ -3998,23 +3998,23 @@ extern int GetAndroidResource_Strings_String( const TCHAR *ValueName, TCHAR *Str
 		goto END ;
 	}
 
-	// •¶š—ñƒŠƒ\[ƒX‚Ìæ“¾
+	// æ–‡å­—åˆ—ãƒªã‚½ãƒ¼ã‚¹ã®å–å¾—
 	string_ResourceString = ( jstring )env->CallObjectMethod( object_Resources, JAVAANDR.methodID_Resources_getString, stringID ) ;
 	if( string_ResourceString == NULL )
 	{
 		goto END ;
 	}
 
-	// •¶š—ñƒŠƒ\[ƒX‚ğ TCHAR •¶š—ñ‚É•ÏŠ·
+	// æ–‡å­—åˆ—ãƒªã‚½ãƒ¼ã‚¹ã‚’ TCHAR æ–‡å­—åˆ—ã«å¤‰æ›
 	if( Java_Create_TCHAR_string_From_jstring( env, string_ResourceString, &ResourceString ) < 0 )
 	{
 		goto END ;
 	}
 
-	// •¶š—ñ‚ÌŠi”[‚É•K—v‚Èƒoƒbƒtƒ@‚ÌƒTƒCƒY‚ğæ“¾
+	// æ–‡å­—åˆ—ã®æ ¼ç´ã«å¿…è¦ãªãƒãƒƒãƒ•ã‚¡ã®ã‚µã‚¤ã‚ºã‚’å–å¾—
 	Result = ( CL_strlen( _TCHARCODEFORMAT, ResourceString ) + 1 ) * GetCharCodeFormatUnitSize( _TCHARCODEFORMAT ) ;
 
-	// ƒoƒbƒtƒ@‚ÌƒAƒhƒŒƒX‚ª NULL ‚Å‚Í–³‚¢ê‡‚ÍƒRƒs[
+	// ãƒãƒƒãƒ•ã‚¡ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ãŒ NULL ã§ã¯ç„¡ã„å ´åˆã¯ã‚³ãƒ”ãƒ¼
 	if( StringBuffer != NULL )
 	{
 		CL_strncpy_s( _TCHARCODEFORMAT, StringBuffer, StringBufferBytes, ResourceString, StringBufferBytes / GetCharCodeFormatUnitSize( _TCHARCODEFORMAT ) - 1 ) ;
@@ -4058,7 +4058,7 @@ END :
 		ResourceString = NULL ;
 	}
 
-	// JavaVM ‚Æ‚±‚ÌƒXƒŒƒbƒh‚ÌŠÖ˜A•t‚¯I—¹
+	// JavaVM ã¨ã“ã®ã‚¹ãƒ¬ãƒƒãƒ‰ã®é–¢é€£ä»˜ã‘çµ‚äº†
 	g_AndroidSys.NativeActivity->vm->DetachCurrentThread() ;
 
 	pthread_mutex_unlock( &g_AndroidSys.NativeActivityMutex ) ;
@@ -4075,7 +4075,7 @@ extern int GetAndroidResource_Strings_StringWithStrLen( const TCHAR *ValueName, 
 	return Result ;
 }
 
-// GetAndroidMetaData_String ‚â GetAndroidMetaData_Boolean ‚Ìƒ~ƒ…[ƒeƒbƒNƒX‚ÌƒƒbƒN‚Æ JavaVM ‚ÆƒXƒŒƒbƒh‚ÌŠÖ˜A•t‚¯ˆÈŠO‚ğ”²‚«o‚µ‚½ŠÖ”
+// GetAndroidMetaData_String ã‚„ GetAndroidMetaData_Boolean ã®ãƒŸãƒ¥ãƒ¼ãƒ†ãƒƒã‚¯ã‚¹ã®ãƒ­ãƒƒã‚¯ã¨ JavaVM ã¨ã‚¹ãƒ¬ãƒƒãƒ‰ã®é–¢é€£ä»˜ã‘ä»¥å¤–ã‚’æŠœãå‡ºã—ãŸé–¢æ•°
 static int GetAndroidMetaData_Base( JNIEnv *env, const TCHAR *ValueName, TCHAR *StringBuffer, int StringBufferBytes, int *Boolean )
 {
 	int Result = -1 ;
@@ -4089,42 +4089,42 @@ static int GetAndroidMetaData_Base( JNIEnv *env, const TCHAR *ValueName, TCHAR *
 //	int StrLength ;
 //	int i ;
 
-	// ƒpƒbƒP[ƒWƒ}ƒl[ƒWƒƒ[‚Ìæ“¾
+	// ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã®å–å¾—
 	object_PackageManager = env->CallObjectMethod( g_AndroidSys.NativeActivity->clazz, JAVAANDR.methodID_Context_getPackageManager ) ;
 	if( object_PackageManager == NULL )
 	{
 		goto END ;
 	}
 
-	// ƒpƒbƒP[ƒW–¼‚Ìæ“¾
+	// ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸åã®å–å¾—
 	string_PackageName = ( jstring )env->CallObjectMethod( g_AndroidSys.NativeActivity->clazz, JAVAANDR.methodID_Context_getPackageName ) ;
 	if( string_PackageName == NULL )
 	{
 		goto END ;
 	}
 
-	// ƒAƒvƒŠƒP[ƒVƒ‡ƒ“î•ñ‚Ìæ“¾
+	// ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³æƒ…å ±ã®å–å¾—
 	object_ApplicationInfo = env->CallObjectMethod( object_PackageManager, JAVAANDR.methodID_PackageManager_getApplicationInfo, string_PackageName, JAVAANDR.fieldint_PackageManager_GET_META_DATA ) ;
 	if( object_ApplicationInfo == NULL )
 	{
 		goto END ;
 	}
 
-	// ƒƒ^ƒf[ƒ^‚Ìæ“¾
+	// ãƒ¡ã‚¿ãƒ‡ãƒ¼ã‚¿ã®å–å¾—
 	object_metaData = env->GetObjectField( object_ApplicationInfo, JAVAANDR.fieldID_PackageItemInfo_metaData ) ;
 	if( object_metaData == NULL )
 	{
 		goto END ;
 	}
 
-	// ƒƒ^ƒf[ƒ^–¼‚Ì jstring ‚ğì¬
+	// ãƒ¡ã‚¿ãƒ‡ãƒ¼ã‚¿åã® jstring ã‚’ä½œæˆ
 	data_name = Java_Create_jstring_From_TCHAR( env, ValueName ) ;
 	if( data_name == NULL )
 	{
 		goto END ;
 	}
 
-	// •¶š—ñ‚Ü‚½‚Í Boolean’l‚Ìæ“¾
+	// æ–‡å­—åˆ—ã¾ãŸã¯ Booleanå€¤ã®å–å¾—
 	if( Boolean != NULL )
 	{
 		if( JAVAANDR.fieldint_Build_VERSION_SDK_INT >= 21 )
@@ -4151,16 +4151,16 @@ static int GetAndroidMetaData_Base( JNIEnv *env, const TCHAR *ValueName, TCHAR *
 			goto END ;
 		}
 
-		// •¶š—ñ‚ğ TCHAR •¶š—ñ‚É•ÏŠ·
+		// æ–‡å­—åˆ—ã‚’ TCHAR æ–‡å­—åˆ—ã«å¤‰æ›
 		if( Java_Create_TCHAR_string_From_jstring( env, string_string, &String ) < 0 )
 		{
 			goto END ;
 		}
 
-		// •¶š—ñ‚ÌŠi”[‚É•K—v‚Èƒoƒbƒtƒ@‚ÌƒTƒCƒY‚ğæ“¾
+		// æ–‡å­—åˆ—ã®æ ¼ç´ã«å¿…è¦ãªãƒãƒƒãƒ•ã‚¡ã®ã‚µã‚¤ã‚ºã‚’å–å¾—
 		Result = ( CL_strlen( _TCHARCODEFORMAT, String ) + 1 ) * GetCharCodeFormatUnitSize( _TCHARCODEFORMAT ) ;
 
-		// ƒoƒbƒtƒ@‚ÌƒAƒhƒŒƒX‚ª NULL ‚Å‚Í–³‚¢ê‡‚ÍƒRƒs[
+		// ãƒãƒƒãƒ•ã‚¡ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ãŒ NULL ã§ã¯ç„¡ã„å ´åˆã¯ã‚³ãƒ”ãƒ¼
 		if( StringBuffer != NULL )
 		{
 			CL_strncpy_s( _TCHARCODEFORMAT, StringBuffer, StringBufferBytes, String, StringBufferBytes / GetCharCodeFormatUnitSize( _TCHARCODEFORMAT ) - 1 ) ;
@@ -4214,11 +4214,11 @@ END :
 	return Result ;
 }
 
-// AndroidManifest.xml ‚É‘‚©‚ê‚½ <meta-data android:name="test0" android:value="abcde" /> ‚È‚Ç‚Ìƒƒ^ƒf[ƒ^‚Ì•¶š—ñ‚ğæ“¾‚·‚é
-// ValueNameFƒƒ^ƒf[ƒ^–¼
-// StringBufferFValueName ‚ª¦‚·•¶š—ñ‚ğŠi”[‚·‚éƒoƒbƒtƒ@‚Ìæ“ªƒAƒhƒŒƒX
-// StringBufferBytesFStringBuffer ‚ÌƒTƒCƒY( ’PˆÊFƒoƒCƒg )
-// –ß‚è’l@@-1Fw’è‚Ìƒƒ^ƒf[ƒ^‚Í–³‚©‚Á‚½@@-1ˆÈŠOFStringBuffer ‚É•K—v‚Èƒoƒbƒtƒ@‚ÌƒTƒCƒY( ’PˆÊFƒoƒCƒg )
+// AndroidManifest.xml ã«æ›¸ã‹ã‚ŒãŸ <meta-data android:name="test0" android:value="abcde" /> ãªã©ã®ãƒ¡ã‚¿ãƒ‡ãƒ¼ã‚¿ã®æ–‡å­—åˆ—ã‚’å–å¾—ã™ã‚‹
+// ValueNameï¼šãƒ¡ã‚¿ãƒ‡ãƒ¼ã‚¿å
+// StringBufferï¼šValueName ãŒç¤ºã™æ–‡å­—åˆ—ã‚’æ ¼ç´ã™ã‚‹ãƒãƒƒãƒ•ã‚¡ã®å…ˆé ­ã‚¢ãƒ‰ãƒ¬ã‚¹
+// StringBufferBytesï¼šStringBuffer ã®ã‚µã‚¤ã‚º( å˜ä½ï¼šãƒã‚¤ãƒˆ )
+// æˆ»ã‚Šå€¤ã€€ã€€-1ï¼šæŒ‡å®šã®ãƒ¡ã‚¿ãƒ‡ãƒ¼ã‚¿ã¯ç„¡ã‹ã£ãŸã€€ã€€-1ä»¥å¤–ï¼šStringBuffer ã«å¿…è¦ãªãƒãƒƒãƒ•ã‚¡ã®ã‚µã‚¤ã‚º( å˜ä½ï¼šãƒã‚¤ãƒˆ )
 extern int GetAndroidMetaData_String( const TCHAR *ValueName, TCHAR *StringBuffer, int StringBufferBytes )
 {
 	int Result = -1 ;
@@ -4231,7 +4231,7 @@ extern int GetAndroidMetaData_String( const TCHAR *ValueName, TCHAR *StringBuffe
 		return -1 ;
 	}
 
-	// JavaVM ‚Æƒ\ƒtƒgÀs—pƒXƒŒƒbƒh‚ğŠÖ˜A•t‚¯
+	// JavaVM ã¨ã‚½ãƒ•ãƒˆå®Ÿè¡Œç”¨ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’é–¢é€£ä»˜ã‘
 	JNIEnv *env ;
 	if( g_AndroidSys.NativeActivity->vm->AttachCurrentThreadAsDaemon( &env, NULL ) != JNI_OK )
 	{
@@ -4241,7 +4241,7 @@ extern int GetAndroidMetaData_String( const TCHAR *ValueName, TCHAR *StringBuffe
 
 	Result = GetAndroidMetaData_Base( env, ValueName, StringBuffer, StringBufferBytes, NULL ) ;
 
-	// JavaVM ‚Æ‚±‚ÌƒXƒŒƒbƒh‚ÌŠÖ˜A•t‚¯I—¹
+	// JavaVM ã¨ã“ã®ã‚¹ãƒ¬ãƒƒãƒ‰ã®é–¢é€£ä»˜ã‘çµ‚äº†
 	g_AndroidSys.NativeActivity->vm->DetachCurrentThread() ;
 
 	pthread_mutex_unlock( &g_AndroidSys.NativeActivityMutex ) ;
@@ -4258,9 +4258,9 @@ extern int GetAndroidMetaData_StringWithStrLen( const TCHAR *ValueName, size_t V
 	return Result ;
 }
 
-// AndroidManifest.xml ‚É‘‚©‚ê‚½ <meta-data android:name="bool0" android:value="true" /> ‚È‚Ç‚Ì BooleanŒ^‚Ìƒƒ^ƒf[ƒ^‚ğæ“¾‚·‚é
-// ValueNameFƒƒ^ƒf[ƒ^–¼
-// –ß‚è’l@@-1Fw’è‚Ìƒƒ^ƒf[ƒ^‚Í–³‚©‚Á‚½@@-1ˆÈŠOFStringBuffer ‚É•K—v‚Èƒoƒbƒtƒ@‚ÌƒTƒCƒY( ’PˆÊFƒoƒCƒg )
+// AndroidManifest.xml ã«æ›¸ã‹ã‚ŒãŸ <meta-data android:name="bool0" android:value="true" /> ãªã©ã® Booleanå‹ã®ãƒ¡ã‚¿ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—ã™ã‚‹
+// ValueNameï¼šãƒ¡ã‚¿ãƒ‡ãƒ¼ã‚¿å
+// æˆ»ã‚Šå€¤ã€€ã€€-1ï¼šæŒ‡å®šã®ãƒ¡ã‚¿ãƒ‡ãƒ¼ã‚¿ã¯ç„¡ã‹ã£ãŸã€€ã€€-1ä»¥å¤–ï¼šStringBuffer ã«å¿…è¦ãªãƒãƒƒãƒ•ã‚¡ã®ã‚µã‚¤ã‚º( å˜ä½ï¼šãƒã‚¤ãƒˆ )
 extern int GetAndroidMetaData_Boolean(           const TCHAR *ValueName                        )
 {
 	int Result = -1 ;
@@ -4274,7 +4274,7 @@ extern int GetAndroidMetaData_Boolean(           const TCHAR *ValueName         
 		return -1 ;
 	}
 
-	// JavaVM ‚Æƒ\ƒtƒgÀs—pƒXƒŒƒbƒh‚ğŠÖ˜A•t‚¯
+	// JavaVM ã¨ã‚½ãƒ•ãƒˆå®Ÿè¡Œç”¨ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’é–¢é€£ä»˜ã‘
 	JNIEnv *env ;
 	if( g_AndroidSys.NativeActivity->vm->AttachCurrentThreadAsDaemon( &env, NULL ) != JNI_OK )
 	{
@@ -4284,7 +4284,7 @@ extern int GetAndroidMetaData_Boolean(           const TCHAR *ValueName         
 
 	Result = GetAndroidMetaData_Base( env, ValueName, NULL, 0, &Boolean ) ;
 
-	// JavaVM ‚Æ‚±‚ÌƒXƒŒƒbƒh‚ÌŠÖ˜A•t‚¯I—¹
+	// JavaVM ã¨ã“ã®ã‚¹ãƒ¬ãƒƒãƒ‰ã®é–¢é€£ä»˜ã‘çµ‚äº†
 	g_AndroidSys.NativeActivity->vm->DetachCurrentThread() ;
 
 	pthread_mutex_unlock( &g_AndroidSys.NativeActivityMutex ) ;
@@ -4301,7 +4301,7 @@ extern int GetAndroidMetaData_BooleanWithStrLen( const TCHAR *ValueName, size_t 
 	return Result ;
 }
 
-// ƒZƒ“ƒT[‚©‚ç“¾‚ç‚ê‚é•ûŠp‚ğæ“¾‚·‚é
+// ã‚»ãƒ³ã‚µãƒ¼ã‹ã‚‰å¾—ã‚‰ã‚Œã‚‹æ–¹è§’ã‚’å–å¾—ã™ã‚‹
 extern VECTOR GetOrientationVector( void )
 {
 	VECTOR Result = { -1.0f, -1.0f, -1.0f } ;
@@ -4329,7 +4329,7 @@ extern VECTOR GetOrientationVector( void )
 		return Result ;
 	}
 
-	// JavaVM ‚Æƒ\ƒtƒgÀs—pƒXƒŒƒbƒh‚ğŠÖ˜A•t‚¯
+	// JavaVM ã¨ã‚½ãƒ•ãƒˆå®Ÿè¡Œç”¨ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’é–¢é€£ä»˜ã‘
 	JNIEnv *env ;
 	if( g_AndroidSys.NativeActivity->vm->AttachCurrentThreadAsDaemon( &env, NULL ) != JNI_OK )
 	{
@@ -4337,7 +4337,7 @@ extern VECTOR GetOrientationVector( void )
 		return Result ;
 	}
 
-	// ‰Á‘¬“xƒZƒ“ƒT[‚Ì’l‚ğ€”õ
+	// åŠ é€Ÿåº¦ã‚»ãƒ³ã‚µãƒ¼ã®å€¤ã‚’æº–å‚™
 	{
 		VECTOR TempVector ;
 
@@ -4352,7 +4352,7 @@ extern VECTOR GetOrientationVector( void )
 		}
 	}
 
-	// ¥ŠEƒZƒ“ƒT[‚Ì’l‚ğ€”õ
+	// ç£ç•Œã‚»ãƒ³ã‚µãƒ¼ã®å€¤ã‚’æº–å‚™
 	{
 		VECTOR TempVector ;
 
@@ -4367,7 +4367,7 @@ extern VECTOR GetOrientationVector( void )
 		}
 	}
 
-	// ‰‰Z—p‚Ì”z—ñ‚ğ€”õ
+	// æ¼”ç®—ç”¨ã®é…åˆ—ã‚’æº–å‚™
 	{
 		floatArray_rotationMatrix    = env->NewFloatArray( 16 ) ;
 		floatArray_inclinationMatrix = env->NewFloatArray( 16 ) ;
@@ -4382,7 +4382,7 @@ extern VECTOR GetOrientationVector( void )
 		}
 	}
 
-	// ‰Á‘¬“xƒZƒ“ƒT[‚Ì’l‚Æ¥‹CƒZƒ“ƒT[‚Ì’l‚©‚ç‰ñ“]s—ñ‚ğæ“¾
+	// åŠ é€Ÿåº¦ã‚»ãƒ³ã‚µãƒ¼ã®å€¤ã¨ç£æ°—ã‚»ãƒ³ã‚µãƒ¼ã®å€¤ã‹ã‚‰å›è»¢è¡Œåˆ—ã‚’å–å¾—
 	env->CallStaticBooleanMethod(
 		JAVAANDR.class_SensorManager,
 		JAVAANDR.methodID_SensorManager_getRotationMatrix,
@@ -4392,7 +4392,7 @@ extern VECTOR GetOrientationVector( void )
 		floatArray_MagneticFieldValues
 	) ;
 
-	// ‰ñ“]s—ñ‚©‚ç•ûŠpî•ñ‚ğæ“¾‚·‚é
+	// å›è»¢è¡Œåˆ—ã‹ã‚‰æ–¹è§’æƒ…å ±ã‚’å–å¾—ã™ã‚‹
 	env->CallStaticBooleanMethod(
 		JAVAANDR.class_SensorManager,
 		JAVAANDR.methodID_SensorManager_remapCoordinateSystem,
@@ -4408,7 +4408,7 @@ extern VECTOR GetOrientationVector( void )
 		floatArray_orientationValues
 	) ;
 
-	// float Array ‚©‚ç’l‚ğæ“¾
+	// float Array ã‹ã‚‰å€¤ã‚’å–å¾—
 	if( Java_Get_VECTOR_From_floatArray( env, floatArray_orientationValues, &Result ) < 0 )
 	{
 		goto END ;
@@ -4416,7 +4416,7 @@ extern VECTOR GetOrientationVector( void )
 
 END :
 
-	// æ“¾‚µ‚½QÆ‚ÌŒãn––
+	// å–å¾—ã—ãŸå‚ç…§ã®å¾Œå§‹æœ«
 	if( object_Temp != NULL )
 	{
 		env->DeleteLocalRef( object_Temp ) ;
@@ -4460,16 +4460,16 @@ END :
 	}
 
 
-	// JavaVM ‚Æ‚±‚ÌƒXƒŒƒbƒh‚ÌŠÖ˜A•t‚¯I—¹
+	// JavaVM ã¨ã“ã®ã‚¹ãƒ¬ãƒƒãƒ‰ã®é–¢é€£ä»˜ã‘çµ‚äº†
 	g_AndroidSys.NativeActivity->vm->DetachCurrentThread() ;
 
 	pthread_mutex_unlock( &g_AndroidSys.NativeActivityMutex ) ;
 
-	// –ß‚è’l‚ğ•Ô‚·
+	// æˆ»ã‚Šå€¤ã‚’è¿”ã™
 	return Result ;
 }
 
-// ’Ê’m‚ğ”­s‚·‚é
+// é€šçŸ¥ã‚’ç™ºè¡Œã™ã‚‹
 static int AndroidNotification_WCHAR_T(
 	const wchar_t *Title, const wchar_t *SubTitle, int Icon, int ShowWhen,
 	int AutoCancel, int NotifyId, int *Vibrate, int VibrateLength,
@@ -4506,7 +4506,7 @@ static int AndroidNotification_WCHAR_T(
 		return -1 ;
 	}
 
-	// JavaVM ‚Æƒ\ƒtƒgÀs—pƒXƒŒƒbƒh‚ğŠÖ˜A•t‚¯
+	// JavaVM ã¨ã‚½ãƒ•ãƒˆå®Ÿè¡Œç”¨ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’é–¢é€£ä»˜ã‘
 	JNIEnv *env ;
 	if( g_AndroidSys.NativeActivity->vm->AttachCurrentThreadAsDaemon( &env, NULL ) != JNI_OK )
 	{
@@ -4514,7 +4514,7 @@ static int AndroidNotification_WCHAR_T(
 		return -1 ;
 	}
 
-	// ƒAƒCƒRƒ“‚Ì’l‚ğ€”õ
+	// ã‚¢ã‚¤ã‚³ãƒ³ã®å€¤ã‚’æº–å‚™
 	if( Icon >= 0 )
 	{
 		int_Icon = Icon ;
@@ -4524,26 +4524,26 @@ static int AndroidNotification_WCHAR_T(
 		int_Icon = JAVAANDR.fieldint_R_mipmap_sym_def_app_icon ;
 	}
 
-	// Title ‚Æ SubTitle ‚ğ CharSequence ‚É•ÏŠ·
+	// Title ã¨ SubTitle ã‚’ CharSequence ã«å¤‰æ›
 	object_TitleCharSeq      = Java_Create_CharSequence_From_wchar_t( env, Title ) ;
 	object_SubTitleCharSeq   = Java_Create_CharSequence_From_wchar_t( env, SubTitle ) ;
 	object_TickerTextCharSeq = Java_Create_CharSequence_From_wchar_t( env, L"" ) ;
 
-	// ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒRƒ“ƒeƒLƒXƒg‚Ìæ“¾
+	// ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã®å–å¾—
 	object_ApplicationContext = env->CallObjectMethod( g_AndroidSys.NativeActivity->clazz, JAVAANDR.methodID_Context_getApplicationContext ) ;
 	if( object_ApplicationContext == NULL )
 	{
 		goto END ;
 	}
 
-	// Native Activity ‚ÌƒNƒ‰ƒXƒIƒuƒWƒFƒNƒg‚ğæ“¾
+	// Native Activity ã®ã‚¯ãƒ©ã‚¹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å–å¾—
 	class_NativeActivity = env->GetObjectClass( g_AndroidSys.NativeActivity->clazz ) ;
 	if( class_NativeActivity == NULL )
 	{
 		goto END ;
 	}
 
-	// U“®—p‚Ì long”z—ñ‚Ì€”õ
+	// æŒ¯å‹•ç”¨ã® longé…åˆ—ã®æº–å‚™
 	if( Vibrate != NULL && VibrateLength > 0 )
 	{
 		longArray_Vibrate = Java_Create_longArray_From_intArray( env, Vibrate, VibrateLength ) ;
@@ -4553,7 +4553,7 @@ static int AndroidNotification_WCHAR_T(
 		}
 	}
 
-	// ƒ‰ƒCƒgƒpƒ‰ƒ[ƒ^‚Ì€”õ
+	// ãƒ©ã‚¤ãƒˆãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®æº–å‚™
 	{
 		NS_GetColor2( LightColor, &LightColorR, &LightColorG, &LightColorB ) ;
 		LightColorARGB = 0xff000000 | ( LightColorR << 16 ) | ( LightColorG << 8 ) | LightColorB ;
@@ -4574,7 +4574,7 @@ static int AndroidNotification_WCHAR_T(
 //		goto END ;
 //	}
 
-	// Intent ‚Ìì¬
+	// Intent ã®ä½œæˆ
 	object_Intent = env->NewObject( JAVAANDR.class_Intent, JAVAANDR.methodID_Intent_newIntent, /*g_AndroidSys.NativeActivity->clazz*/object_ApplicationContext, class_NativeActivity ) ;
 	if( object_Intent == NULL )
 	{
@@ -4593,7 +4593,7 @@ static int AndroidNotification_WCHAR_T(
 //	object_Intent = env->GetObjectArrayElement( objectArray_Intent, 0 );
 //	object_Intent2 = env->GetObjectArrayElement( objectArray_Intent, 1 );
 
-	// Intent ‚Ìƒtƒ‰ƒO‚ğƒZƒbƒg
+	// Intent ã®ãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆ
 	object_Temp = env->CallObjectMethod( object_Intent, JAVAANDR.methodID_Intent_setFlags, JAVAANDR.fieldint_Intent_FLAG_ACTIVITY_NEW_TASK | JAVAANDR.fieldint_Intent_FLAG_ACTIVITY_CLEAR_TASK | JAVAANDR.fieldint_Intent_FLAG_ACTIVITY_NO_ANIMATION ) ;
 //	object_Temp = env->CallObjectMethod( object_Intent, JAVAANDR.methodID_Intent_setFlags, JAVAANDR.fieldint_Intent_FLAG_ACTIVITY_NEW_TASK /* | JAVAANDR.fieldint_Intent_FLAG_ACTIVITY_CLEAR_TOP */ ) ;
 //	object_Temp = env->CallObjectMethod( object_Intent, JAVAANDR.methodID_Intent_setFlags, JAVAANDR.fieldID_Intent_FLAG_ACTIVITY_NO_HISTORY ) ;
@@ -4603,7 +4603,7 @@ static int AndroidNotification_WCHAR_T(
 		object_Temp = NULL ;
 	}
 
-	// PendingIntent ‚Ìì¬
+	// PendingIntent ã®ä½œæˆ
 	object_PendingIntent = env->CallStaticObjectMethod( JAVAANDR.class_PendingIntent, JAVAANDR.methodID_PendingIntent_getActivity, g_AndroidSys.NativeActivity->clazz, 0, object_Intent, JAVAANDR.fieldint_PendingIntent_FLAG_UPDATE_CURRENT ) ;
 //	object_PendingIntent = env->CallStaticObjectMethod( JAVAANDR.class_PendingIntent, JAVAANDR.methodID_PendingIntent_getActivities, g_AndroidSys.NativeActivity->clazz, 0, objectArray_Intent, JAVAANDR.fieldint_PendingIntent_FLAG_UPDATE_CURRENT ) ;
 	if( object_PendingIntent == NULL )
@@ -4611,29 +4611,29 @@ static int AndroidNotification_WCHAR_T(
 		goto END ;
 	}
 
-	// API ƒŒƒxƒ‹‚É‚æ‚Á‚Ä•ªŠò
+	// API ãƒ¬ãƒ™ãƒ«ã«ã‚ˆã£ã¦åˆ†å²
 	if( JAVAANDR.fieldint_Build_VERSION_SDK_INT < 11 )
 	{
-		// Notification ‚Ìì¬
+		// Notification ã®ä½œæˆ
 		object_Notification = env->NewObject( JAVAANDR.class_Notification, JAVAANDR.methodID_Notification_newNotification ) ;
 		if( object_Notification == NULL )
 		{
 			goto END ;
 		}
 
-		// ƒAƒCƒRƒ“‚Ìİ’è
+		// ã‚¢ã‚¤ã‚³ãƒ³ã®è¨­å®š
 		env->SetIntField( object_Notification, JAVAANDR.fieldID_Notification_icon, int_Icon ) ;
 
-		// tickerText‚Ìİ’è
+		// tickerTextã®è¨­å®š
 		env->SetObjectField( object_Notification, JAVAANDR.fieldID_Notification_tickerText, object_TickerTextCharSeq ) ;
 
-		// U“®‚Ìİ’è
+		// æŒ¯å‹•ã®è¨­å®š
 		if( Vibrate != NULL && VibrateLength > 0 )
 		{
 			env->SetObjectField( object_Notification, JAVAANDR.fieldID_Notification_vibrate, longArray_Vibrate ) ;
 		}
 
-		// ƒ‰ƒCƒg‚Ìİ’è
+		// ãƒ©ã‚¤ãƒˆã®è¨­å®š
 		if( LightOnTime > 0 && LightOffTime > 0 )
 		{
 			env->SetIntField( object_Notification, JAVAANDR.fieldID_Notification_ledARGB, LightColorARGB ) ;
@@ -4641,19 +4641,19 @@ static int AndroidNotification_WCHAR_T(
 			env->SetIntField( object_Notification, JAVAANDR.fieldID_Notification_ledOffMS, LightOffTime ) ;
 		}
 
-		// ƒ^ƒCƒgƒ‹ƒeƒLƒXƒg‚Ìİ’è
+		// ã‚¿ã‚¤ãƒˆãƒ«ãƒ†ã‚­ã‚¹ãƒˆã®è¨­å®š
 		env->CallVoidMethod( object_Notification, JAVAANDR.methodID_Notification_setLatestEventInfo, object_ApplicationContext, object_TitleCharSeq, object_SubTitleCharSeq, object_PendingIntent ) ;
 	}
 	else
 	{
-		// Notification.Builder ‚ğì¬
+		// Notification.Builder ã‚’ä½œæˆ
 		object_Notification_Builder = env->NewObject( JAVAANDR.class_Notification_Builder, JAVAANDR.methodID_Notification_Builder_newNotification_Builder, g_AndroidSys.NativeActivity->clazz ) ;
 		if( object_Notification_Builder == NULL )
 		{
 			goto END ;
 		}
 
-		// AutoCancel ‚ğƒZƒbƒg
+		// AutoCancel ã‚’ã‚»ãƒƒãƒˆ
 		if( AutoCancel )
 		{
 			object_Temp = env->CallObjectMethod( object_Notification_Builder, JAVAANDR.methodID_Notification_Builder_setAutoCancel, JNI_TRUE ) ;
@@ -4664,7 +4664,7 @@ static int AndroidNotification_WCHAR_T(
 			}
 		}
 
-		// ƒ^ƒCƒgƒ‹‚ğƒZƒbƒg
+		// ã‚¿ã‚¤ãƒˆãƒ«ã‚’ã‚»ãƒƒãƒˆ
 		object_Temp = env->CallObjectMethod( object_Notification_Builder, JAVAANDR.methodID_Notification_Builder_setContentTitle, object_TitleCharSeq ) ;
 		if( object_Temp != NULL )
 		{
@@ -4672,7 +4672,7 @@ static int AndroidNotification_WCHAR_T(
 			object_Temp = NULL ;
 		}
 
-		// ƒTƒuƒ^ƒCƒgƒ‹‚ğƒZƒbƒg
+		// ã‚µãƒ–ã‚¿ã‚¤ãƒˆãƒ«ã‚’ã‚»ãƒƒãƒˆ
 		object_Temp = env->CallObjectMethod( object_Notification_Builder, JAVAANDR.methodID_Notification_Builder_setContentText, object_SubTitleCharSeq ) ;
 		if( object_Temp != NULL )
 		{
@@ -4680,7 +4680,7 @@ static int AndroidNotification_WCHAR_T(
 			object_Temp = NULL ;
 		}
 
-		// tickerText‚ğƒZƒbƒg
+		// tickerTextã‚’ã‚»ãƒƒãƒˆ
 		object_Temp = env->CallObjectMethod( object_Notification_Builder, JAVAANDR.methodID_Notification_Builder_setTicker, object_TickerTextCharSeq ) ;
 		if( object_Temp != NULL )
 		{
@@ -4688,7 +4688,7 @@ static int AndroidNotification_WCHAR_T(
 			object_Temp = NULL ;
 		}
 
-		// ƒAƒCƒRƒ“‚ğƒZƒbƒg
+		// ã‚¢ã‚¤ã‚³ãƒ³ã‚’ã‚»ãƒƒãƒˆ
 		object_Temp = env->CallObjectMethod( object_Notification_Builder, JAVAANDR.methodID_Notification_Builder_setSmallIcon, int_Icon ) ;
 		if( object_Temp != NULL )
 		{
@@ -4696,7 +4696,7 @@ static int AndroidNotification_WCHAR_T(
 			object_Temp = NULL ;
 		}
 
-		// •\¦‚Ìw’è
+		// æ™‚åˆ»è¡¨ç¤ºã®æŒ‡å®š
 		if( ShowWhen == FALSE && JAVAANDR.fieldint_Build_VERSION_SDK_INT >= 19 )
 		{
 			object_Temp = env->CallObjectMethod( object_Notification_Builder, JAVAANDR.methodID_Notification_Builder_setShowWhen, JNI_FALSE ) ;
@@ -4707,7 +4707,7 @@ static int AndroidNotification_WCHAR_T(
 			}
 		}
 
-		// U“®‚Ìİ’è
+		// æŒ¯å‹•ã®è¨­å®š
 		if( Vibrate != NULL && VibrateLength > 0 )
 		{
 			object_Temp = env->CallObjectMethod( object_Notification_Builder, JAVAANDR.methodID_Notification_Builder_setVibrate, longArray_Vibrate ) ;
@@ -4718,7 +4718,7 @@ static int AndroidNotification_WCHAR_T(
 			}
 		}
 
-		// ƒ‰ƒCƒg‚Ìİ’è
+		// ãƒ©ã‚¤ãƒˆã®è¨­å®š
 		if( LightOnTime > 0 && LightOffTime > 0 )
 		{
 			object_Temp = env->CallObjectMethod( object_Notification_Builder, JAVAANDR.methodID_Notification_Builder_setLights, LightColorARGB, LightOnTime, LightOffTime ) ;
@@ -4729,7 +4729,7 @@ static int AndroidNotification_WCHAR_T(
 			}
 		}
 
-		// PendingIntent ƒZƒbƒg
+		// PendingIntent ã‚»ãƒƒãƒˆ
 		object_Temp = env->CallObjectMethod( object_Notification_Builder, JAVAANDR.methodID_Notification_Builder_setContentIntent, object_PendingIntent ) ;
 		if( object_Temp != NULL )
 		{
@@ -4737,7 +4737,7 @@ static int AndroidNotification_WCHAR_T(
 			object_Temp = NULL ;
 		}
 
-		// SDK‚Ìƒo[ƒWƒ‡ƒ“‚É‚æ‚Á‚Äˆ—‚ğ•ªŠò
+		// SDKã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã«ã‚ˆã£ã¦å‡¦ç†ã‚’åˆ†å²
 		if( JAVAANDR.fieldint_Build_VERSION_SDK_INT >= 16 )
 		{
 			object_Notification = env->CallObjectMethod( object_Notification_Builder, JAVAANDR.methodID_Notification_Builder_build ) ;
@@ -4748,21 +4748,21 @@ static int AndroidNotification_WCHAR_T(
 		}
 	}
 
-	// NotificationManager ‚Ìæ“¾
+	// NotificationManager ã®å–å¾—
 	object_NotificationManager = env->CallObjectMethod( g_AndroidSys.NativeActivity->clazz, JAVAANDR.methodID_Context_getSystemService, JAVAANDR.fieldobject_Context_NOTIFICATION_SERVICE ) ;
 	if( object_NotificationManager == NULL )
 	{
 		goto END ;
 	}
 
-	// Notification ‚ğ’Ê’m
+	// Notification ã‚’é€šçŸ¥
 	env->CallVoidMethod( object_NotificationManager, JAVAANDR.methodID_NotificationManager_notify, NotifyId, object_Notification ) ;
 
 	Result = 0 ;
 
 END :
 
-	// æ“¾‚µ‚½QÆ‚ÌŒãn––
+	// å–å¾—ã—ãŸå‚ç…§ã®å¾Œå§‹æœ«
 	if( longArray_Vibrate != NULL )
 	{
 		env->DeleteLocalRef( longArray_Vibrate ) ;
@@ -4866,12 +4866,12 @@ END :
 	}
 
 
-	// JavaVM ‚Æ‚±‚ÌƒXƒŒƒbƒh‚ÌŠÖ˜A•t‚¯I—¹
+	// JavaVM ã¨ã“ã®ã‚¹ãƒ¬ãƒƒãƒ‰ã®é–¢é€£ä»˜ã‘çµ‚äº†
 	g_AndroidSys.NativeActivity->vm->DetachCurrentThread() ;
 
 	pthread_mutex_unlock( &g_AndroidSys.NativeActivityMutex ) ;
 
-	// –ß‚è’l‚ğ•Ô‚·
+	// æˆ»ã‚Šå€¤ã‚’è¿”ã™
 	return Result ;
 }
 
@@ -4923,8 +4923,8 @@ END :
 #endif
 }
 
-// ’Ê’m‚ğƒLƒƒƒ“ƒZƒ‹‚·‚é
-// NotifyID : ’Ê’mID
+// é€šçŸ¥ã‚’ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã™ã‚‹
+// NotifyID : é€šçŸ¥ID
 extern int AndroidNotificationCancel( int NotifyId )
 {
 	jobject object_NotificationManager = NULL ;
@@ -4937,7 +4937,7 @@ extern int AndroidNotificationCancel( int NotifyId )
 		return -1 ;
 	}
 
-	// JavaVM ‚Æƒ\ƒtƒgÀs—pƒXƒŒƒbƒh‚ğŠÖ˜A•t‚¯
+	// JavaVM ã¨ã‚½ãƒ•ãƒˆå®Ÿè¡Œç”¨ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’é–¢é€£ä»˜ã‘
 	JNIEnv *env ;
 	if( g_AndroidSys.NativeActivity->vm->AttachCurrentThreadAsDaemon( &env, NULL ) != JNI_OK )
 	{
@@ -4945,14 +4945,14 @@ extern int AndroidNotificationCancel( int NotifyId )
 		return -1 ;
 	}
 
-	// NotificationManager ‚Ìæ“¾
+	// NotificationManager ã®å–å¾—
 	object_NotificationManager = env->CallObjectMethod( g_AndroidSys.NativeActivity->clazz, JAVAANDR.methodID_Context_getSystemService, JAVAANDR.fieldobject_Context_NOTIFICATION_SERVICE ) ;
 	if( object_NotificationManager == NULL )
 	{
 		goto END ;
 	}
 
-	// ’Ê’m‚ğƒLƒƒƒ“ƒZƒ‹
+	// é€šçŸ¥ã‚’ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 	env->CallVoidMethod( object_NotificationManager, JAVAANDR.methodID_NotificationManager_cancel, NotifyId ) ;
 
 END :
@@ -4963,16 +4963,16 @@ END :
 		object_NotificationManager = NULL ;
 	}
 
-	// JavaVM ‚Æ‚±‚ÌƒXƒŒƒbƒh‚ÌŠÖ˜A•t‚¯I—¹
+	// JavaVM ã¨ã“ã®ã‚¹ãƒ¬ãƒƒãƒ‰ã®é–¢é€£ä»˜ã‘çµ‚äº†
 	g_AndroidSys.NativeActivity->vm->DetachCurrentThread() ;
 
 	pthread_mutex_unlock( &g_AndroidSys.NativeActivityMutex ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ‘S‚Ä‚Ì’Ê’m‚ğƒLƒƒƒ“ƒZƒ‹‚·‚é
+// å…¨ã¦ã®é€šçŸ¥ã‚’ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã™ã‚‹
 extern int AndroidNotificationCancelAll( void )
 {
 	jobject object_NotificationManager = NULL ;
@@ -4985,7 +4985,7 @@ extern int AndroidNotificationCancelAll( void )
 		return -1 ;
 	}
 
-	// JavaVM ‚Æƒ\ƒtƒgÀs—pƒXƒŒƒbƒh‚ğŠÖ˜A•t‚¯
+	// JavaVM ã¨ã‚½ãƒ•ãƒˆå®Ÿè¡Œç”¨ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’é–¢é€£ä»˜ã‘
 	JNIEnv *env ;
 	if( g_AndroidSys.NativeActivity->vm->AttachCurrentThreadAsDaemon( &env, NULL ) != JNI_OK )
 	{
@@ -4993,14 +4993,14 @@ extern int AndroidNotificationCancelAll( void )
 		return -1 ;
 	}
 
-	// NotificationManager ‚Ìæ“¾
+	// NotificationManager ã®å–å¾—
 	object_NotificationManager = env->CallObjectMethod( g_AndroidSys.NativeActivity->clazz, JAVAANDR.methodID_Context_getSystemService, JAVAANDR.fieldobject_Context_NOTIFICATION_SERVICE ) ;
 	if( object_NotificationManager == NULL )
 	{
 		goto END ;
 	}
 
-	// ’Ê’m‚ğ‘S‚ÄƒLƒƒƒ“ƒZƒ‹
+	// é€šçŸ¥ã‚’å…¨ã¦ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 	env->CallVoidMethod( object_NotificationManager, JAVAANDR.methodID_NotificationManager_cancelAll ) ;
 
 END :
@@ -5011,20 +5011,20 @@ END :
 		object_NotificationManager = NULL ;
 	}
 
-	// JavaVM ‚Æ‚±‚ÌƒXƒŒƒbƒh‚ÌŠÖ˜A•t‚¯I—¹
+	// JavaVM ã¨ã“ã®ã‚¹ãƒ¬ãƒƒãƒ‰ã®é–¢é€£ä»˜ã‘çµ‚äº†
 	g_AndroidSys.NativeActivity->vm->DetachCurrentThread() ;
 
 	pthread_mutex_unlock( &g_AndroidSys.NativeActivityMutex ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
 
-// w’è‚Ì URL ‚ğƒuƒ‰ƒEƒU‚ÅŠJ‚­( BrowserAppPackageName ‚© BrowserAppClassName ‚ª NULL ‚Ìê‡‚Í•W€ƒuƒ‰ƒEƒU‚ÅŠJ‚­ )
-// URL                   : ŠJ‚­URL
-// BrowserAppPackageName : ƒuƒ‰ƒEƒU‚ÌƒpƒbƒP[ƒW–¼( NULL ‚Å•W€ƒuƒ‰ƒEƒU )
-// BrowserAppClassName   : ƒuƒ‰ƒEƒU‚ÌƒNƒ‰ƒX–¼( NULL ‚Å•W€ƒuƒ‰ƒEƒU )
+// æŒ‡å®šã® URL ã‚’ãƒ–ãƒ©ã‚¦ã‚¶ã§é–‹ã( BrowserAppPackageName ã‹ BrowserAppClassName ãŒ NULL ã®å ´åˆã¯æ¨™æº–ãƒ–ãƒ©ã‚¦ã‚¶ã§é–‹ã )
+// URL                   : é–‹ãURL
+// BrowserAppPackageName : ãƒ–ãƒ©ã‚¦ã‚¶ã®ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸å( NULL ã§æ¨™æº–ãƒ–ãƒ©ã‚¦ã‚¶ )
+// BrowserAppClassName   : ãƒ–ãƒ©ã‚¦ã‚¶ã®ã‚¯ãƒ©ã‚¹å( NULL ã§æ¨™æº–ãƒ–ãƒ©ã‚¦ã‚¶ )
 static int AndroidJumpURL_WCHAR_T( const wchar_t *URL, const wchar_t *BrowserAppPackageName, const wchar_t *BrowserAppClassName )
 {
 	jstring string_URL = NULL ;
@@ -5043,7 +5043,7 @@ static int AndroidJumpURL_WCHAR_T( const wchar_t *URL, const wchar_t *BrowserApp
 		return -1 ;
 	}
 
-	// JavaVM ‚Æƒ\ƒtƒgÀs—pƒXƒŒƒbƒh‚ğŠÖ˜A•t‚¯
+	// JavaVM ã¨ã‚½ãƒ•ãƒˆå®Ÿè¡Œç”¨ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’é–¢é€£ä»˜ã‘
 	JNIEnv *env ;
 	if( g_AndroidSys.NativeActivity->vm->AttachCurrentThreadAsDaemon( &env, NULL ) != JNI_OK )
 	{
@@ -5051,26 +5051,26 @@ static int AndroidJumpURL_WCHAR_T( const wchar_t *URL, const wchar_t *BrowserApp
 		return -1 ;
 	}
 
-	// jstring ‚Ì€”õ
+	// jstring ã®æº–å‚™
 	string_URL                   = Java_Create_jstring_From_wchar_t( env, URL ) ;
 	string_BrowserAppPackageName = Java_Create_jstring_From_wchar_t( env, BrowserAppPackageName ) ;
 	string_BrowserAppClassName   = Java_Create_jstring_From_wchar_t( env, BrowserAppClassName ) ;
 
-	// Uri ‚Ìì¬
+	// Uri ã®ä½œæˆ
 	object_Uri = env->CallStaticObjectMethod( JAVAANDR.class_Uri, JAVAANDR.methodID_Uri_parse, string_URL ) ;
 	if( object_Uri == NULL )
 	{
 		goto END ;
 	}
 
-	// Intent ‚Ìì¬
+	// Intent ã®ä½œæˆ
 	object_Intent = env->NewObject( JAVAANDR.class_Intent, JAVAANDR.methodID_Intent_newIntent_Uri, JAVAANDR.fieldstring_Intent_ACTION_VIEW, object_Uri ) ;
 	if( object_Intent == NULL )
 	{
 		goto END ;
 	}
 
-	// ƒNƒ‰ƒX–¼‚Ìİ’è
+	// ã‚¯ãƒ©ã‚¹åã®è¨­å®š
 	if( BrowserAppPackageName != NULL && BrowserAppClassName != NULL )
 	{
 		object_Temp = env->CallObjectMethod( object_Intent, JAVAANDR.methodID_Intent_setClassName, string_BrowserAppPackageName, string_BrowserAppClassName ) ;
@@ -5081,14 +5081,14 @@ static int AndroidJumpURL_WCHAR_T( const wchar_t *URL, const wchar_t *BrowserApp
 		}
 	}
 
-	// Intent ‚ÌŠJn
+	// Intent ã®é–‹å§‹
 	env->CallVoidMethod( g_AndroidSys.NativeActivity->clazz, JAVAANDR.methodID_Activity_startActivity, object_Intent ) ;
 
 	Result = 0 ;
 
 END :
 
-	// æ“¾‚µ‚½QÆ‚ÌŒãn––
+	// å–å¾—ã—ãŸå‚ç…§ã®å¾Œå§‹æœ«
 	if( object_Intent != NULL )
 	{
 		env->DeleteLocalRef( object_Intent ) ;
@@ -5119,12 +5119,12 @@ END :
 		string_BrowserAppClassName = NULL ;
 	}
 
-	// JavaVM ‚Æ‚±‚ÌƒXƒŒƒbƒh‚ÌŠÖ˜A•t‚¯I—¹
+	// JavaVM ã¨ã“ã®ã‚¹ãƒ¬ãƒƒãƒ‰ã®é–¢é€£ä»˜ã‘çµ‚äº†
 	g_AndroidSys.NativeActivity->vm->DetachCurrentThread() ;
 
 	pthread_mutex_unlock( &g_AndroidSys.NativeActivityMutex ) ;
 
-	// –ß‚è’l‚ğ•Ô‚·
+	// æˆ»ã‚Šå€¤ã‚’è¿”ã™
 	return Result ;
 }
 extern int AndroidJumpURL( const TCHAR *URL, const TCHAR *BrowserAppPackageName, const TCHAR *BrowserAppClassName )
@@ -5184,12 +5184,12 @@ ERR :
 
 
 
-// ƒ[ƒ‹ƒAƒvƒŠ‚ğ‘—Mƒ[ƒ‹•ÒWó‘Ô‚Å‹N“®‚·‚é
-// MailAddr    : ˆ¶æ( NULL ‚Å–³Œø )Aƒ[ƒ‹ƒAƒhƒŒƒX‚ª•¡”‚ ‚éê‡‚ÍƒJƒ“ƒ}w,x‚Å‹æØ‚Á‚Ä‚­‚¾‚³‚¢
-// MainCCAddr  : CC ‚Ìˆ¶æ( NULL ‚Å–³Œø )Aƒ[ƒ‹ƒAƒhƒŒƒX‚ª•¡”‚ ‚éê‡‚ÍƒJƒ“ƒ}w,x‚Å‹æØ‚Á‚Ä‚­‚¾‚³‚¢
-// MainBCCAddr : BCC ‚Ìˆ¶æ( NULL ‚Å–³Œø )Aƒ[ƒ‹ƒAƒhƒŒƒX‚ª•¡”‚ ‚éê‡‚ÍƒJƒ“ƒ}w,x‚Å‹æØ‚Á‚Ä‚­‚¾‚³‚¢
-// Subject     : ƒ^ƒCƒgƒ‹( NULL ‚Å–³Œø )Aƒ[ƒ‹ƒAƒhƒŒƒX‚ª•¡”‚ ‚éê‡‚ÍƒJƒ“ƒ}w,x‚Å‹æØ‚Á‚Ä‚­‚¾‚³‚¢
-// Text        : –{•¶( NULL ‚Å–³Œø )Aƒ[ƒ‹ƒAƒhƒŒƒX‚ª•¡”‚ ‚éê‡‚ÍƒJƒ“ƒ}w,x‚Å‹æØ‚Á‚Ä‚­‚¾‚³‚¢
+// ãƒ¡ãƒ¼ãƒ«ã‚¢ãƒ—ãƒªã‚’é€ä¿¡ãƒ¡ãƒ¼ãƒ«ç·¨é›†çŠ¶æ…‹ã§èµ·å‹•ã™ã‚‹
+// MailAddr    : å®›å…ˆ( NULL ã§ç„¡åŠ¹ )ã€ãƒ¡ãƒ¼ãƒ«ã‚¢ãƒ‰ãƒ¬ã‚¹ãŒè¤‡æ•°ã‚ã‚‹å ´åˆã¯ã‚«ãƒ³ãƒã€,ã€ã§åŒºåˆ‡ã£ã¦ãã ã•ã„
+// MainCCAddr  : CC ã®å®›å…ˆ( NULL ã§ç„¡åŠ¹ )ã€ãƒ¡ãƒ¼ãƒ«ã‚¢ãƒ‰ãƒ¬ã‚¹ãŒè¤‡æ•°ã‚ã‚‹å ´åˆã¯ã‚«ãƒ³ãƒã€,ã€ã§åŒºåˆ‡ã£ã¦ãã ã•ã„
+// MainBCCAddr : BCC ã®å®›å…ˆ( NULL ã§ç„¡åŠ¹ )ã€ãƒ¡ãƒ¼ãƒ«ã‚¢ãƒ‰ãƒ¬ã‚¹ãŒè¤‡æ•°ã‚ã‚‹å ´åˆã¯ã‚«ãƒ³ãƒã€,ã€ã§åŒºåˆ‡ã£ã¦ãã ã•ã„
+// Subject     : ã‚¿ã‚¤ãƒˆãƒ«( NULL ã§ç„¡åŠ¹ )ã€ãƒ¡ãƒ¼ãƒ«ã‚¢ãƒ‰ãƒ¬ã‚¹ãŒè¤‡æ•°ã‚ã‚‹å ´åˆã¯ã‚«ãƒ³ãƒã€,ã€ã§åŒºåˆ‡ã£ã¦ãã ã•ã„
+// Text        : æœ¬æ–‡( NULL ã§ç„¡åŠ¹ )ã€ãƒ¡ãƒ¼ãƒ«ã‚¢ãƒ‰ãƒ¬ã‚¹ãŒè¤‡æ•°ã‚ã‚‹å ´åˆã¯ã‚«ãƒ³ãƒã€,ã€ã§åŒºåˆ‡ã£ã¦ãã ã•ã„
 extern int MailApp_Send_WCHAR_T_PF( const wchar_t *MailAddr, const wchar_t *MailCCAddr, const wchar_t *MailBCCAddr, const wchar_t *Subject, const wchar_t *Text )
 {
 	jstring string_MailAddr = NULL ;
@@ -5213,7 +5213,7 @@ extern int MailApp_Send_WCHAR_T_PF( const wchar_t *MailAddr, const wchar_t *Mail
 		return -1 ;
 	}
 
-	// JavaVM ‚Æƒ\ƒtƒgÀs—pƒXƒŒƒbƒh‚ğŠÖ˜A•t‚¯
+	// JavaVM ã¨ã‚½ãƒ•ãƒˆå®Ÿè¡Œç”¨ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’é–¢é€£ä»˜ã‘
 	JNIEnv *env ;
 	if( g_AndroidSys.NativeActivity->vm->AttachCurrentThreadAsDaemon( &env, NULL ) != JNI_OK )
 	{
@@ -5221,7 +5221,7 @@ extern int MailApp_Send_WCHAR_T_PF( const wchar_t *MailAddr, const wchar_t *Mail
 		return -1 ;
 	}
 
-	// ƒ[ƒ‹ƒAƒhƒŒƒX‚Ì€”õ
+	// ãƒ¡ãƒ¼ãƒ«ã‚¢ãƒ‰ãƒ¬ã‚¹ã®æº–å‚™
 	if( MailAddr != NULL )
 	{
 		size_t length = CL_strlen( WCHAR_T_CHARCODEFORMAT, ( const char * )MailAddr ) ;
@@ -5234,7 +5234,7 @@ extern int MailApp_Send_WCHAR_T_PF( const wchar_t *MailAddr, const wchar_t *Mail
 		_MEMCPY( FixMailAddrBuffer + 7, MailAddr, ( length + 1 ) * sizeof( wchar_t ) ) ;
 	}
 
-	// jstring ‚Ì€”õ
+	// jstring ã®æº–å‚™
 	if( FixMailAddrBuffer != NULL )
 	{
 		string_MailAddr = Java_Create_jstring_From_wchar_t( env, FixMailAddrBuffer ) ;
@@ -5257,21 +5257,21 @@ extern int MailApp_Send_WCHAR_T_PF( const wchar_t *MailAddr, const wchar_t *Mail
 		string_MailBCCAddr = Java_Create_jstring_From_wchar_t( env, MailBCCAddr ) ;
 	}
 
-	// CC ‚Ì•¶š—ñ”z—ñ‚Ì€”õ
+	// CC ã®æ–‡å­—åˆ—é…åˆ—ã®æº–å‚™
 	if( string_MailCCAddr != NULL )
 	{
 		objectArray_MailCCAddr = env->NewObjectArray( 1, JAVAANDR.class_String, NULL ) ;
 		env->SetObjectArrayElement( objectArray_MailCCAddr, 0, string_MailCCAddr ) ;
 	}
 
-	// BCC ‚Ì•¶š—ñ”z—ñ‚Ì€”õ
+	// BCC ã®æ–‡å­—åˆ—é…åˆ—ã®æº–å‚™
 	if( string_MailBCCAddr != NULL )
 	{
 		objectArray_MailBCCAddr = env->NewObjectArray( 1, JAVAANDR.class_String, NULL ) ;
 		env->SetObjectArrayElement( objectArray_MailBCCAddr, 0, string_MailBCCAddr ) ;
 	}
 
-	// Uri ‚Ìì¬
+	// Uri ã®ä½œæˆ
 	if( string_MailAddr != NULL )
 	{
 		object_Uri = env->CallStaticObjectMethod( JAVAANDR.class_Uri, JAVAANDR.methodID_Uri_parse, string_MailAddr ) ;
@@ -5281,57 +5281,57 @@ extern int MailApp_Send_WCHAR_T_PF( const wchar_t *MailAddr, const wchar_t *Mail
 		}
 	}
 
-	// Intent ‚Ìì¬
+	// Intent ã®ä½œæˆ
 	object_Intent = env->NewObject( JAVAANDR.class_Intent, JAVAANDR.methodID_Intent_newIntent_NoParam ) ;
 	if( object_Intent == NULL )
 	{
 		goto END ;
 	}
 
-	// ƒAƒNƒVƒ‡ƒ“‚ğİ’è
+	// ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ã‚’è¨­å®š
 	env->CallObjectMethod( object_Intent, JAVAANDR.methodID_Intent_setAction, JAVAANDR.fieldstring_Intent_ACTION_SENDTO ) ;
 
-	// ƒeƒLƒXƒgƒ^ƒCƒv‚ğİ’è
+	// ãƒ†ã‚­ã‚¹ãƒˆã‚¿ã‚¤ãƒ—ã‚’è¨­å®š
 	env->CallObjectMethod( object_Intent, JAVAANDR.methodID_Intent_setType, string_text_plane ) ;
 
-	// ˆ¶æ‚ğİ’è
+	// å®›å…ˆã‚’è¨­å®š
 	if( object_Uri != NULL )
 	{
 		env->CallObjectMethod( object_Intent, JAVAANDR.methodID_Intent_setData, object_Uri ) ;
 	}
 
-	// ƒ^ƒCƒgƒ‹‚ğƒZƒbƒg
+	// ã‚¿ã‚¤ãƒˆãƒ«ã‚’ã‚»ãƒƒãƒˆ
 	if( string_Subject != NULL )
 	{
 		env->CallObjectMethod( object_Intent, JAVAANDR.methodID_Intent_putExtra_string, JAVAANDR.fieldstring_Intent_EXTRA_SUBJECT, string_Subject ) ;
 	}
 
-	// –{•¶‚ğƒZƒbƒg
+	// æœ¬æ–‡ã‚’ã‚»ãƒƒãƒˆ
 	if( string_Text != NULL )
 	{
 		env->CallObjectMethod( object_Intent, JAVAANDR.methodID_Intent_putExtra_string, JAVAANDR.fieldstring_Intent_EXTRA_TEXT, string_Text ) ;
 	}
 
-	// CC‚ğƒZƒbƒg
+	// CCã‚’ã‚»ãƒƒãƒˆ
 	if( objectArray_MailCCAddr != NULL )
 	{
 		env->CallObjectMethod( object_Intent, JAVAANDR.methodID_Intent_putExtra_stringArray, JAVAANDR.fieldstring_Intent_EXTRA_CC, objectArray_MailCCAddr ) ;
 	}
 
-	// BCC‚ğƒZƒbƒg
+	// BCCã‚’ã‚»ãƒƒãƒˆ
 	if( objectArray_MailBCCAddr != NULL )
 	{
 		env->CallObjectMethod( object_Intent, JAVAANDR.methodID_Intent_putExtra_stringArray, JAVAANDR.fieldstring_Intent_EXTRA_BCC, objectArray_MailBCCAddr ) ;
 	}
 
-	// Intent ‚ÌŠJn
+	// Intent ã®é–‹å§‹
 	env->CallVoidMethod( g_AndroidSys.NativeActivity->clazz, JAVAANDR.methodID_Activity_startActivity, object_Intent ) ;
 
 	Result = 0 ;
 
 END :
 
-	// æ“¾‚µ‚½QÆ‚ÌŒãn––
+	// å–å¾—ã—ãŸå‚ç…§ã®å¾Œå§‹æœ«
 	if( object_Intent != NULL )
 	{
 		env->DeleteLocalRef( object_Intent ) ;
@@ -5392,7 +5392,7 @@ END :
 		objectArray_MailBCCAddr = NULL ;
 	}
 
-	// JavaVM ‚Æ‚±‚ÌƒXƒŒƒbƒh‚ÌŠÖ˜A•t‚¯I—¹
+	// JavaVM ã¨ã“ã®ã‚¹ãƒ¬ãƒƒãƒ‰ã®é–¢é€£ä»˜ã‘çµ‚äº†
 	g_AndroidSys.NativeActivity->vm->DetachCurrentThread() ;
 
 	if( FixMailAddrBuffer != NULL )
@@ -5403,14 +5403,14 @@ END :
 
 	pthread_mutex_unlock( &g_AndroidSys.NativeActivityMutex ) ;
 
-	// –ß‚è’l‚ğ•Ô‚·
+	// æˆ»ã‚Šå€¤ã‚’è¿”ã™
 	return Result ;
 }
 
 
 
 
-// Wifi ‚Ì“d”g‹­“x‚ğæ“¾‚·‚é( –ß‚è’lF“d”g‚Ì‹­“x 0 ` 100 )
+// Wifi ã®é›»æ³¢å¼·åº¦ã‚’å–å¾—ã™ã‚‹( æˆ»ã‚Šå€¤ï¼šé›»æ³¢ã®å¼·åº¦ 0 ï½ 100 )
 extern int GetWifiSignalLevel( void )
 {
 	jobject object_WifiManager = NULL ;
@@ -5427,7 +5427,7 @@ extern int GetWifiSignalLevel( void )
 		return -1 ;
 	}
 
-	// JavaVM ‚Æƒ\ƒtƒgÀs—pƒXƒŒƒbƒh‚ğŠÖ˜A•t‚¯
+	// JavaVM ã¨ã‚½ãƒ•ãƒˆå®Ÿè¡Œç”¨ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’é–¢é€£ä»˜ã‘
 	JNIEnv *env ;
 	if( g_AndroidSys.NativeActivity->vm->AttachCurrentThreadAsDaemon( &env, NULL ) != JNI_OK )
 	{
@@ -5435,24 +5435,24 @@ extern int GetWifiSignalLevel( void )
 		return -1 ;
 	}
 
-	// WifiManager‚Ìæ“¾
+	// WifiManagerã®å–å¾—
 	object_WifiManager = env->CallObjectMethod( g_AndroidSys.NativeActivity->clazz, JAVAANDR.methodID_Context_getSystemService, JAVAANDR.fieldobject_Context_WIFI_SERVICE ) ;
 	if( object_WifiManager == NULL )
 	{
 		goto END ;
 	}
 
-	// WifiInfo ‚Ìæ“¾
+	// WifiInfo ã®å–å¾—
 	object_WifiInfo = env->CallObjectMethod( object_WifiManager, JAVAANDR.methodID_WifiManager_getConnectionInfo ) ;
 	if( object_WifiInfo == NULL )
 	{
 		goto END ;
 	}
 
-	// M†‹­“x‚Ìæ“¾
+	// ä¿¡å·å¼·åº¦ã®å–å¾—
 	int_Rssi = env->CallIntMethod( object_WifiInfo, JAVAANDR.methodID_WifiInfo_getRssi ) ;
 
-	// M†‹­“x‚Ì‰ğÍ
+	// ä¿¡å·å¼·åº¦ã®è§£æ
 	int_Result = env->CallStaticIntMethod( JAVAANDR.class_WifiManager, JAVAANDR.methodID_WifiManager_calculateSignalLevel, int_Rssi, 101 ) ;
 
 END :
@@ -5469,18 +5469,18 @@ END :
 		object_WifiInfo = NULL ;
 	}
 
-	// JavaVM ‚Æ‚±‚ÌƒXƒŒƒbƒh‚ÌŠÖ˜A•t‚¯I—¹
+	// JavaVM ã¨ã“ã®ã‚¹ãƒ¬ãƒƒãƒ‰ã®é–¢é€£ä»˜ã‘çµ‚äº†
 	g_AndroidSys.NativeActivity->vm->DetachCurrentThread() ;
 
 	pthread_mutex_unlock( &g_AndroidSys.NativeActivityMutex ) ;
 
-	// –ß‚è’l‚ğ•Ô‚·
+	// æˆ»ã‚Šå€¤ã‚’è¿”ã™
 	return int_Result ;
 }
 
-// ƒoƒbƒeƒŠ[ŠÖ˜A
+// ãƒãƒƒãƒ†ãƒªãƒ¼é–¢é€£
 
-// “d’r‚Ìc—Ê‚ğ % ‚Åæ“¾‚·‚é( –ß‚è’lF 100=ƒtƒ‹[“dó‘Ô  0=[“dc—Ê–³‚µ )
+// é›»æ± ã®æ®‹é‡ã‚’ % ã§å–å¾—ã™ã‚‹( æˆ»ã‚Šå€¤ï¼š 100=ãƒ•ãƒ«å……é›»çŠ¶æ…‹  0=å……é›»æ®‹é‡ç„¡ã— )
 extern int NS_GetBatteryLifePercent( void )
 {
 	jobject object_IntentFilter = NULL ;
@@ -5497,7 +5497,7 @@ extern int NS_GetBatteryLifePercent( void )
 		return -1 ;
 	}
 
-	// JavaVM ‚Æƒ\ƒtƒgÀs—pƒXƒŒƒbƒh‚ğŠÖ˜A•t‚¯
+	// JavaVM ã¨ã‚½ãƒ•ãƒˆå®Ÿè¡Œç”¨ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’é–¢é€£ä»˜ã‘
 	JNIEnv *env ;
 	if( g_AndroidSys.NativeActivity->vm->AttachCurrentThreadAsDaemon( &env, NULL ) != JNI_OK )
 	{
@@ -5536,12 +5536,12 @@ END :
 		object_BatteryStatus = NULL ;
 	}
 
-	// JavaVM ‚Æ‚±‚ÌƒXƒŒƒbƒh‚ÌŠÖ˜A•t‚¯I—¹
+	// JavaVM ã¨ã“ã®ã‚¹ãƒ¬ãƒƒãƒ‰ã®é–¢é€£ä»˜ã‘çµ‚äº†
 	g_AndroidSys.NativeActivity->vm->DetachCurrentThread() ;
 
 	pthread_mutex_unlock( &g_AndroidSys.NativeActivityMutex ) ;
 
-	// –ß‚è’l‚ğ•Ô‚·
+	// æˆ»ã‚Šå€¤ã‚’è¿”ã™
 	return Result ;
 }
 
@@ -5551,12 +5551,12 @@ END :
 
 
 
-// ƒNƒŠƒbƒvƒ{[ƒhŠÖŒW
+// ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰é–¢ä¿‚
 
-// ƒNƒŠƒbƒvƒ{[ƒh‚ÉŠi”[‚³‚ê‚Ä‚¢‚éƒeƒLƒXƒgƒf[ƒ^‚ğ“Ç‚İo‚·A-1 ‚Ìê‡‚ÍƒNƒŠƒbƒvƒ{[ƒh‚ÉƒeƒLƒXƒgƒf[ƒ^‚Í–³‚¢‚Æ‚¢‚¤‚±‚Æ( DestBuffer ‚É NULL ‚ğ“n‚·‚ÆŠi”[‚É•K—v‚Èƒf[ƒ^ƒTƒCƒY‚ª•Ô‚Á‚Ä‚­‚é )
+// ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ã«æ ¼ç´ã•ã‚Œã¦ã„ã‚‹ãƒ†ã‚­ã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿å‡ºã™ã€-1 ã®å ´åˆã¯ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ã«ãƒ†ã‚­ã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿ã¯ç„¡ã„ã¨ã„ã†ã“ã¨( DestBuffer ã« NULL ã‚’æ¸¡ã™ã¨æ ¼ç´ã«å¿…è¦ãªãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºãŒè¿”ã£ã¦ãã‚‹ )
 extern int GetClipboardText_PF( TCHAR *DestBuffer, int DestBufferBytes )
 {
-	// –¢À‘•
+	// æœªå®Ÿè£…
 	return -1 ;
 
 //	jobject object_ClipboardManager = NULL ;
@@ -5573,7 +5573,7 @@ extern int GetClipboardText_PF( TCHAR *DestBuffer, int DestBufferBytes )
 //		return -1 ;
 //	}
 //
-//	// JavaVM ‚Æƒ\ƒtƒgÀs—pƒXƒŒƒbƒh‚ğŠÖ˜A•t‚¯
+//	// JavaVM ã¨ã‚½ãƒ•ãƒˆå®Ÿè¡Œç”¨ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’é–¢é€£ä»˜ã‘
 //	JNIEnv *env ;
 //	if( g_AndroidSys.NativeActivity->vm->AttachCurrentThreadAsDaemon( &env, NULL ) != JNI_OK )
 //	{
@@ -5581,45 +5581,45 @@ extern int GetClipboardText_PF( TCHAR *DestBuffer, int DestBufferBytes )
 //		return -1 ;
 //	}
 //
-//	// ClipboardManager‚Ìæ“¾
+//	// ClipboardManagerã®å–å¾—
 //	object_ClipboardManager = env->CallObjectMethod( g_AndroidSys.NativeActivity->clazz, JAVAANDR.methodID_Context_getSystemService, JAVAANDR.fieldobject_Context_CLIPBOARD_SERVICE ) ;
 //	if( object_ClipboardManager == NULL )
 //	{
 //		goto END ;
 //	}
 //
-//	// ClipData ‚Ìæ“¾
+//	// ClipData ã®å–å¾—
 //	object_ClipData = env->CallObjectMethod( object_ClipboardManager, JAVAANDR.methodID_ClipboardManager_getPrimaryClip ) ;
 //	if( object_ClipData == NULL )
 //	{
 //		goto END ;
 //	}
 //
-//	// •¶š—ñ‚Ìæ“¾
+//	// æ–‡å­—åˆ—ã®å–å¾—
 //	object_ClipString = ( jstring )env->CallObjectMethod( object_ClipData, JAVAANDR.methodID_ClipData_toString ) ;
 //	if( object_ClipString == NULL )
 //	{
 //		goto END ;
 //	}
 //
-//	// •¶š—ñ‚ğ TCHAR •¶š—ñ‚É•ÏŠ·
+//	// æ–‡å­—åˆ—ã‚’ TCHAR æ–‡å­—åˆ—ã«å¤‰æ›
 //	if( Java_Create_TCHAR_string_From_jstring( env, object_ClipString, &ClipStringP ) < 0 )
 //	{
 //		goto END ;
 //	}
 //
-//	// o—Íƒoƒbƒtƒ@‚ª NULL ‚Ìê‡‚ÍƒeƒLƒXƒgƒf[ƒ^‚ÌƒTƒCƒY‚ğ•Ô‚·
+//	// å‡ºåŠ›ãƒãƒƒãƒ•ã‚¡ãŒ NULL ã®å ´åˆã¯ãƒ†ã‚­ã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿ã®ã‚µã‚¤ã‚ºã‚’è¿”ã™
 //	if( DestBuffer == NULL )
 //	{
-//		// •¶š—ñ‚ÌŠi”[‚É•K—v‚Èƒoƒbƒtƒ@‚ÌƒTƒCƒY‚ğæ“¾
+//		// æ–‡å­—åˆ—ã®æ ¼ç´ã«å¿…è¦ãªãƒãƒƒãƒ•ã‚¡ã®ã‚µã‚¤ã‚ºã‚’å–å¾—
 //		Result = ( CL_strlen( _TCHARCODEFORMAT, ClipStringP ) + 1 ) * GetCharCodeFormatUnitSize( _TCHARCODEFORMAT ) ;
 //	}
 //	else
 //	{
-//		// ƒoƒbƒtƒ@‚ªw’è‚µ‚Ä‚ ‚éê‡‚ÍƒRƒs[
+//		// ãƒãƒƒãƒ•ã‚¡ãŒæŒ‡å®šã—ã¦ã‚ã‚‹å ´åˆã¯ã‚³ãƒ”ãƒ¼
 //		CL_strcpy( _TCHARCODEFORMAT, DestBuffer, ClipStringP ) ;
 //
-//		// ³íI—¹
+//		// æ­£å¸¸çµ‚äº†
 //		Result = 0 ;
 //	}
 //
@@ -5649,19 +5649,19 @@ extern int GetClipboardText_PF( TCHAR *DestBuffer, int DestBufferBytes )
 //		ClipStringP = NULL ;
 //	}
 //
-//	// JavaVM ‚Æ‚±‚ÌƒXƒŒƒbƒh‚ÌŠÖ˜A•t‚¯I—¹
+//	// JavaVM ã¨ã“ã®ã‚¹ãƒ¬ãƒƒãƒ‰ã®é–¢é€£ä»˜ã‘çµ‚äº†
 //	g_AndroidSys.NativeActivity->vm->DetachCurrentThread() ;
 //
 //	pthread_mutex_unlock( &g_AndroidSys.NativeActivityMutex ) ;
 //
-//	// I—¹
+//	// çµ‚äº†
 //	return Result ;
 }
 
-// ƒNƒŠƒbƒvƒ{[ƒh‚ÉŠi”[‚³‚ê‚Ä‚¢‚éƒeƒLƒXƒgƒf[ƒ^‚ğ“Ç‚İo‚·A-1 ‚Ìê‡‚ÍƒNƒŠƒbƒvƒ{[ƒh‚ÉƒeƒLƒXƒgƒf[ƒ^‚Í–³‚¢‚Æ‚¢‚¤‚±‚Æ( DestBuffer ‚É NULL ‚ğ“n‚·‚ÆŠi”[‚É•K—v‚Èƒf[ƒ^ƒTƒCƒY‚ª•Ô‚Á‚Ä‚­‚é )
+// ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ã«æ ¼ç´ã•ã‚Œã¦ã„ã‚‹ãƒ†ã‚­ã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿å‡ºã™ã€-1 ã®å ´åˆã¯ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ã«ãƒ†ã‚­ã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿ã¯ç„¡ã„ã¨ã„ã†ã“ã¨( DestBuffer ã« NULL ã‚’æ¸¡ã™ã¨æ ¼ç´ã«å¿…è¦ãªãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºãŒè¿”ã£ã¦ãã‚‹ )
 extern int GetClipboardText_WCHAR_T_PF( wchar_t *DestBuffer, int DestBufferBytes )
 {
-	// –¢À‘•
+	// æœªå®Ÿè£…
 	return -1 ;
 
 //	jobject object_ClipboardManager = NULL ;
@@ -5678,7 +5678,7 @@ extern int GetClipboardText_WCHAR_T_PF( wchar_t *DestBuffer, int DestBufferBytes
 //		return -1 ;
 //	}
 //
-//	// JavaVM ‚Æƒ\ƒtƒgÀs—pƒXƒŒƒbƒh‚ğŠÖ˜A•t‚¯
+//	// JavaVM ã¨ã‚½ãƒ•ãƒˆå®Ÿè¡Œç”¨ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’é–¢é€£ä»˜ã‘
 //	JNIEnv *env ;
 //	if( g_AndroidSys.NativeActivity->vm->AttachCurrentThreadAsDaemon( &env, NULL ) != JNI_OK )
 //	{
@@ -5686,45 +5686,45 @@ extern int GetClipboardText_WCHAR_T_PF( wchar_t *DestBuffer, int DestBufferBytes
 //		return -1 ;
 //	}
 //
-//	// ClipboardManager‚Ìæ“¾
+//	// ClipboardManagerã®å–å¾—
 //	object_ClipboardManager = env->CallObjectMethod( g_AndroidSys.NativeActivity->clazz, JAVAANDR.methodID_Context_getSystemService, JAVAANDR.fieldobject_Context_CLIPBOARD_SERVICE ) ;
 //	if( object_ClipboardManager == NULL )
 //	{
 //		goto END ;
 //	}
 //
-//	// ClipData ‚Ìæ“¾
+//	// ClipData ã®å–å¾—
 //	object_ClipData = env->CallObjectMethod( object_ClipboardManager, JAVAANDR.methodID_ClipboardManager_getPrimaryClip ) ;
 //	if( object_ClipData == NULL )
 //	{
 //		goto END ;
 //	}
 //
-//	// •¶š—ñ‚Ìæ“¾
+//	// æ–‡å­—åˆ—ã®å–å¾—
 //	object_ClipString = ( jstring )env->CallObjectMethod( object_ClipData, JAVAANDR.methodID_ClipData_toString ) ;
 //	if( object_ClipString == NULL )
 //	{
 //		goto END ;
 //	}
 //
-//	// •¶š—ñ‚ğ wchar_t •¶š—ñ‚É•ÏŠ·
+//	// æ–‡å­—åˆ—ã‚’ wchar_t æ–‡å­—åˆ—ã«å¤‰æ›
 //	if( Java_Create_wchar_t_string_From_jstring( env, object_ClipString, &ClipStringP ) < 0 )
 //	{
 //		goto END ;
 //	}
 //
-//	// o—Íƒoƒbƒtƒ@‚ª NULL ‚Ìê‡‚ÍƒeƒLƒXƒgƒf[ƒ^‚ÌƒTƒCƒY‚ğ•Ô‚·
+//	// å‡ºåŠ›ãƒãƒƒãƒ•ã‚¡ãŒ NULL ã®å ´åˆã¯ãƒ†ã‚­ã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿ã®ã‚µã‚¤ã‚ºã‚’è¿”ã™
 //	if( DestBuffer == NULL )
 //	{
-//		// •¶š—ñ‚ÌŠi”[‚É•K—v‚Èƒoƒbƒtƒ@‚ÌƒTƒCƒY‚ğæ“¾
+//		// æ–‡å­—åˆ—ã®æ ¼ç´ã«å¿…è¦ãªãƒãƒƒãƒ•ã‚¡ã®ã‚µã‚¤ã‚ºã‚’å–å¾—
 //		Result = ( CL_strlen( WCHAR_T_CHARCODEFORMAT, ( char * )ClipStringP ) + 1 ) * GetCharCodeFormatUnitSize( WCHAR_T_CHARCODEFORMAT ) ;
 //	}
 //	else
 //	{
-//		// ƒoƒbƒtƒ@‚ªw’è‚µ‚Ä‚ ‚éê‡‚ÍƒRƒs[
+//		// ãƒãƒƒãƒ•ã‚¡ãŒæŒ‡å®šã—ã¦ã‚ã‚‹å ´åˆã¯ã‚³ãƒ”ãƒ¼
 //		CL_strcpy( WCHAR_T_CHARCODEFORMAT, ( char * )DestBuffer, ( char * )ClipStringP ) ;
 //
-//		// ³íI—¹
+//		// æ­£å¸¸çµ‚äº†
 //		Result = 0 ;
 //	}
 //
@@ -5754,19 +5754,19 @@ extern int GetClipboardText_WCHAR_T_PF( wchar_t *DestBuffer, int DestBufferBytes
 //		ClipStringP = NULL ;
 //	}
 //
-//	// JavaVM ‚Æ‚±‚ÌƒXƒŒƒbƒh‚ÌŠÖ˜A•t‚¯I—¹
+//	// JavaVM ã¨ã“ã®ã‚¹ãƒ¬ãƒƒãƒ‰ã®é–¢é€£ä»˜ã‘çµ‚äº†
 //	g_AndroidSys.NativeActivity->vm->DetachCurrentThread() ;
 //
 //	pthread_mutex_unlock( &g_AndroidSys.NativeActivityMutex ) ;
 //
-//	// I—¹
+//	// çµ‚äº†
 //	return Result ;
 }
 
-// ƒNƒŠƒbƒvƒ{[ƒh‚ÉƒeƒLƒXƒgƒf[ƒ^‚ğŠi”[‚·‚é
+// ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ã«ãƒ†ã‚­ã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹
 extern int SetClipboardText_WCHAR_T_PF( const wchar_t *Text )
 {
-	// –¢À‘•
+	// æœªå®Ÿè£…
 	return -1 ;
 
 //	jobject object_ClipboardManager = NULL ;
@@ -5783,7 +5783,7 @@ extern int SetClipboardText_WCHAR_T_PF( const wchar_t *Text )
 //		return -1 ;
 //	}
 //
-//	// JavaVM ‚Æƒ\ƒtƒgÀs—pƒXƒŒƒbƒh‚ğŠÖ˜A•t‚¯
+//	// JavaVM ã¨ã‚½ãƒ•ãƒˆå®Ÿè¡Œç”¨ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’é–¢é€£ä»˜ã‘
 //	JNIEnv *env ;
 //	if( g_AndroidSys.NativeActivity->vm->AttachCurrentThreadAsDaemon( &env, NULL ) != JNI_OK )
 //	{
@@ -5791,38 +5791,38 @@ extern int SetClipboardText_WCHAR_T_PF( const wchar_t *Text )
 //		return -1 ;
 //	}
 //
-//	// Text ‚ğ CharSequence ‚É•ÏŠ·
+//	// Text ã‚’ CharSequence ã«å¤‰æ›
 //	object_TextCharSequence = Java_Create_CharSequence_From_wchar_t( env, Text ) ;
 //	if( object_TextCharSequence == NULL )
 //	{
 //		goto END ;
 //	}
 //
-//	// ƒ‰ƒxƒ‹‚ğ CharSequence ‚É•ÏŠ·
+//	// ãƒ©ãƒ™ãƒ«ã‚’ CharSequence ã«å¤‰æ›
 //	object_LabelCharSequence = Java_Create_CharSequence_From_wchar_t( env, L"" ) ;
 //	if( object_TextCharSequence == NULL )
 //	{
 //		goto END ;
 //	}
 //
-//	// ClipData ‚ğì¬
+//	// ClipData ã‚’ä½œæˆ
 //	object_ClipData = env->CallStaticObjectMethod( JAVAANDR.class_ClipData, JAVAANDR.methodID_ClipData_newPlainText, object_LabelCharSequence, object_TextCharSequence ) ;
 //	if( object_ClipData == NULL )
 //	{
 //		goto END ;
 //	}
 //
-//	// ClipboardManager‚Ìæ“¾
+//	// ClipboardManagerã®å–å¾—
 //	object_ClipboardManager = env->CallObjectMethod( g_AndroidSys.NativeActivity->clazz, JAVAANDR.methodID_Context_getSystemService, JAVAANDR.fieldobject_Context_CLIPBOARD_SERVICE ) ;
 //	if( object_ClipboardManager == NULL )
 //	{
 //		goto END ;
 //	}
 //
-//	// ClipData ‚Ìİ’è
+//	// ClipData ã®è¨­å®š
 //	env->CallVoidMethod( object_ClipboardManager, JAVAANDR.methodID_ClipboardManager_setPrimaryClip, object_ClipData ) ;
 //
-//	// ³íI—¹
+//	// æ­£å¸¸çµ‚äº†
 //	Result = 0 ;
 //
 //END :
@@ -5851,12 +5851,12 @@ extern int SetClipboardText_WCHAR_T_PF( const wchar_t *Text )
 //		object_LabelCharSequence = NULL ;
 //	}
 //
-//	// JavaVM ‚Æ‚±‚ÌƒXƒŒƒbƒh‚ÌŠÖ˜A•t‚¯I—¹
+//	// JavaVM ã¨ã“ã®ã‚¹ãƒ¬ãƒƒãƒ‰ã®é–¢é€£ä»˜ã‘çµ‚äº†
 //	g_AndroidSys.NativeActivity->vm->DetachCurrentThread() ;
 //
 //	pthread_mutex_unlock( &g_AndroidSys.NativeActivityMutex ) ;
 //
-//	// I—¹
+//	// çµ‚äº†
 //	return Result ;
 }
 
@@ -5866,7 +5866,7 @@ extern int SetClipboardText_WCHAR_T_PF( const wchar_t *Text )
 
 
 
-// ƒ\ƒtƒg‚ª”ñƒAƒNƒeƒBƒu‚É‚È‚Á‚½Û‚ÉŒÄ‚Î‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”‚ğ“o˜^‚·‚é
+// ã‚½ãƒ•ãƒˆãŒéã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ãªã£ãŸéš›ã«å‘¼ã°ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã‚’ç™»éŒ²ã™ã‚‹
 extern int SetAndroidLostFocusCallbackFunction( void (* Callback )( void *Data ), void *CallbackData )
 {
 	g_AndroidSys.LostFocusCallbackFunction     = ( volatile void ( * )( void * ) )Callback ;
@@ -5875,7 +5875,7 @@ extern int SetAndroidLostFocusCallbackFunction( void (* Callback )( void *Data )
 	return 0 ;
 }
 
-// ƒ\ƒtƒg‚ªƒAƒNƒeƒBƒu‚É‚È‚Á‚½Û‚ÉŒÄ‚Î‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”‚ğ“o˜^‚·‚é
+// ã‚½ãƒ•ãƒˆãŒã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ãªã£ãŸéš›ã«å‘¼ã°ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã‚’ç™»éŒ²ã™ã‚‹
 extern int SetAndroidGainedFocusCallbackFunction( void (* Callback )( void *Data ), void *CallbackData )
 {
 	g_AndroidSys.GainedFocusCallbackFunction     = ( volatile void ( * )( void * ) )Callback ;
@@ -5884,7 +5884,7 @@ extern int SetAndroidGainedFocusCallbackFunction( void (* Callback )( void *Data
 	return 0 ;
 }
 
-// ƒAƒvƒŠ‚ğI—¹‚µ‚½Û‚ÉAƒvƒƒZƒX‚ğŠ®‘S‚ÉI—¹‚·‚é‚©‚ğİ’è‚·‚é( KillProcessFlag  TRUE : ƒAƒvƒŠ‚ğI—¹‚µ‚½‚çAƒvƒƒZƒX‚ğŠ®‘S‚ÉI—¹‚·‚é  FALSE : ƒAƒvƒŠ‚ğI—¹‚µ‚Ä‚àAƒvƒƒZƒX‚ÍŠ®‘S‚É‚ÍI—¹‚³‚ê‚È‚¢( ƒfƒtƒHƒ‹ƒg ) )
+// ã‚¢ãƒ—ãƒªã‚’çµ‚äº†ã—ãŸéš›ã«ã€ãƒ—ãƒ­ã‚»ã‚¹ã‚’å®Œå…¨ã«çµ‚äº†ã™ã‚‹ã‹ã‚’è¨­å®šã™ã‚‹( KillProcessFlag  TRUE : ã‚¢ãƒ—ãƒªã‚’çµ‚äº†ã—ãŸã‚‰ã€ãƒ—ãƒ­ã‚»ã‚¹ã‚’å®Œå…¨ã«çµ‚äº†ã™ã‚‹  FALSE : ã‚¢ãƒ—ãƒªã‚’çµ‚äº†ã—ã¦ã‚‚ã€ãƒ—ãƒ­ã‚»ã‚¹ã¯å®Œå…¨ã«ã¯çµ‚äº†ã•ã‚Œãªã„( ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ ) )
 extern int SetUseAndroidKillProcessFlag( int KillProcessFlag )
 {
 	g_AndroidSys.AppKillProcessFlag = KillProcessFlag ;
@@ -5892,7 +5892,7 @@ extern int SetUseAndroidKillProcessFlag( int KillProcessFlag )
 	return 0 ;
 }
 
-// ƒXƒNƒŠ[ƒ“À•W‚ğ‚c‚wƒ‰ƒCƒuƒ‰ƒŠ‰æ–ÊÀ•W‚É•ÏŠ·‚·‚é
+// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³åº§æ¨™ã‚’ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªç”»é¢åº§æ¨™ã«å¤‰æ›ã™ã‚‹
 extern int ConvScreenPositionToDxScreenPosition( int ScreenX, int ScreenY, int *DxScreenX, int *DxScreenY )
 {
 #ifdef DX_NON_GRAPHICS
@@ -5944,11 +5944,11 @@ extern int ConvScreenPositionToDxScreenPosition( int ScreenX, int ScreenY, int *
 
 #endif // DX_NON_GRAPHICS
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒAƒNƒeƒBƒu‚É‚È‚é‚Ü‚Å‰½‚à‚µ‚È‚¢
+// ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ãªã‚‹ã¾ã§ä½•ã‚‚ã—ãªã„
 extern void DxActiveWait_Android( void )
 {
 	while(

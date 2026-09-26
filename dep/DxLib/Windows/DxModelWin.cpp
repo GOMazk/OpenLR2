@@ -1,19 +1,19 @@
 //-----------------------------------------------------------------------------
 // 
-// 		‚c‚wƒ‰ƒCƒuƒ‰ƒŠ		WindowsOS—pƒ‚ƒfƒ‹ƒf[ƒ^§ŒäƒvƒƒOƒ‰ƒ€
+// 		ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒª		WindowsOSç”¨ãƒ¢ãƒ‡ãƒ«ãƒ‡ãƒ¼ã‚¿åˆ¶å¾¡ãƒ—ãƒ­ã‚°ãƒ©ãƒ 
 // 
 //  	Ver 3.25a
 // 
 //-----------------------------------------------------------------------------
 
-// ‚c‚wƒ‰ƒCƒuƒ‰ƒŠì¬—p’è‹`
+// ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªä½œæˆæ™‚ç”¨å®šç¾©
 #define DX_MAKE
 
 #include "DxModelWin.h"
 
 #ifndef DX_NON_MODEL
 
-// ƒCƒ“ƒNƒ‹[ƒh ---------------------------------------------------------------
+// ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ ---------------------------------------------------------------
 #include "DxGraphicsWin.h"
 #include "DxGraphicsD3D9.h"
 #include "DxGraphicsD3D11.h"
@@ -30,18 +30,18 @@ namespace DxLib
 
 #endif // DX_NON_NAMESPACE
 
-// ƒ}ƒNƒ’è‹` -----------------------------------------------------------------
+// ãƒã‚¯ãƒ­å®šç¾© -----------------------------------------------------------------
 
-// \‘¢‘ÌéŒ¾ -----------------------------------------------------------------
+// æ§‹é€ ä½“å®£è¨€ -----------------------------------------------------------------
 
-// ƒf[ƒ^’è‹` -----------------------------------------------------------------
+// ãƒ‡ãƒ¼ã‚¿å®šç¾© -----------------------------------------------------------------
 
-// ŠÖ”éŒ¾ -------------------------------------------------------------------
+// é–¢æ•°å®£è¨€ -------------------------------------------------------------------
 
 
-// ƒvƒƒOƒ‰ƒ€ -----------------------------------------------------------------
+// ãƒ—ãƒ­ã‚°ãƒ©ãƒ  -----------------------------------------------------------------
 
-// ƒ‚ƒfƒ‹‹@”\‚ÌŒãn––
+// ãƒ¢ãƒ‡ãƒ«æ©Ÿèƒ½ã®å¾Œå§‹æœ«
 extern int MV1_Terminate_PF( void )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -61,7 +61,7 @@ extern int MV1_Terminate_PF( void )
 	}
 }
 
-// ƒ‚ƒfƒ‹ƒf[ƒ^ƒnƒ“ƒhƒ‹‚ÌŒãn––
+// ãƒ¢ãƒ‡ãƒ«ãƒ‡ãƒ¼ã‚¿ãƒãƒ³ãƒ‰ãƒ«ã®å¾Œå§‹æœ«
 extern int 	MV1_TerminateModelBaseHandle_PF( MV1_MODEL_BASE *ModelBase )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -81,7 +81,7 @@ extern int 	MV1_TerminateModelBaseHandle_PF( MV1_MODEL_BASE *ModelBase )
 	}
 }
 
-// ƒgƒ‰ƒCƒAƒ“ƒOƒ‹ƒŠƒXƒg‚Ìˆêˆ——p‚Ìƒoƒbƒtƒ@‚ğŠJ•ú‚·‚é
+// ãƒˆãƒ©ã‚¤ã‚¢ãƒ³ã‚°ãƒ«ãƒªã‚¹ãƒˆã®ä¸€æ™‚å‡¦ç†ç”¨ã®ãƒãƒƒãƒ•ã‚¡ã‚’é–‹æ”¾ã™ã‚‹
 extern int MV1_TerminateTriangleListBaseTempBuffer_PF( MV1_TRIANGLE_LIST_BASE *MBTList )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -101,7 +101,7 @@ extern int MV1_TerminateTriangleListBaseTempBuffer_PF( MV1_TRIANGLE_LIST_BASE *M
 	}
 }
 
-// “¯•¡”•`‰æŠÖŒW‚Ìî•ñ‚ğƒZƒbƒgƒAƒbƒv‚·‚é
+// åŒæ™‚è¤‡æ•°æç”»é–¢ä¿‚ã®æƒ…å ±ã‚’ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã™ã‚‹
 extern void MV1_SetupPackDrawInfo_PF( MV1_MODEL_BASE *ModelBase )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -123,7 +123,7 @@ extern void MV1_SetupPackDrawInfo_PF( MV1_MODEL_BASE *ModelBase )
 	}
 }
 
-// ’¸“_ƒoƒbƒtƒ@‚ÌƒZƒbƒgƒAƒbƒv‚ğ‚·‚é( -1:ƒGƒ‰[ )
+// é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã‚’ã™ã‚‹( -1:ã‚¨ãƒ©ãƒ¼ )
 extern int MV1_SetupVertexBufferBase_PF( int MV1ModelBaseHandle, int DuplicateNum, int ASyncThread )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -143,7 +143,7 @@ extern int MV1_SetupVertexBufferBase_PF( int MV1ModelBaseHandle, int DuplicateNu
 	}
 }
 
-// ƒ‚ƒfƒ‹ƒf[ƒ^‚Ì’¸“_ƒoƒbƒtƒ@‚ÌƒZƒbƒgƒAƒbƒv‚ğ‚·‚é( -1:ƒGƒ‰[ )
+// ãƒ¢ãƒ‡ãƒ«ãƒ‡ãƒ¼ã‚¿ã®é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã‚’ã™ã‚‹( -1:ã‚¨ãƒ©ãƒ¼ )
 extern int MV1_SetupVertexBuffer_PF( int MHandle, int ASyncThread )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -163,7 +163,7 @@ extern int MV1_SetupVertexBuffer_PF( int MHandle, int ASyncThread )
 	}
 }
 
-// ’¸“_ƒoƒbƒtƒ@‚ÌŒãn––‚ğ‚·‚é( -1:ƒGƒ‰[ )
+// é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã®å¾Œå§‹æœ«ã‚’ã™ã‚‹( -1:ã‚¨ãƒ©ãƒ¼ )
 extern int MV1_TerminateVertexBufferBase_PF( int MV1ModelBaseHandle )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -183,7 +183,7 @@ extern int MV1_TerminateVertexBufferBase_PF( int MV1ModelBaseHandle )
 	}
 }
 
-// ’¸“_ƒoƒbƒtƒ@‚ÌŒãn––‚ğ‚·‚é( -1:ƒGƒ‰[ )
+// é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã®å¾Œå§‹æœ«ã‚’ã™ã‚‹( -1:ã‚¨ãƒ©ãƒ¼ )
 extern int MV1_TerminateVertexBuffer_PF( int MV1ModelHandle )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -203,7 +203,7 @@ extern int MV1_TerminateVertexBuffer_PF( int MV1ModelHandle )
 	}
 }
 
-// ƒVƒFƒCƒvƒf[ƒ^‚ÌƒZƒbƒgƒAƒbƒv‚ğ‚·‚é
+// ã‚·ã‚§ã‚¤ãƒ—ãƒ‡ãƒ¼ã‚¿ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã‚’ã™ã‚‹
 extern int MV1_SetupShapeVertex_PF( int MHandle )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -223,7 +223,7 @@ extern int MV1_SetupShapeVertex_PF( int MHandle )
 	}
 }
 
-// ‚R‚cƒ‚ƒfƒ‹‚ÌƒŒƒ“ƒ_ƒŠƒ“ƒO‚Ì€”õ‚ğs‚¤
+// ï¼“ï¼¤ãƒ¢ãƒ‡ãƒ«ã®ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã®æº–å‚™ã‚’è¡Œã†
 extern int MV1_BeginRender_PF( MV1_MODEL *Model )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -243,7 +243,7 @@ extern int MV1_BeginRender_PF( MV1_MODEL *Model )
 	}
 }
 
-// ‚R‚cƒ‚ƒfƒ‹‚ÌƒŒƒ“ƒ_ƒŠƒ“ƒO‚ÌŒãn––‚ğs‚¤
+// ï¼“ï¼¤ãƒ¢ãƒ‡ãƒ«ã®ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã®å¾Œå§‹æœ«ã‚’è¡Œã†
 extern int MV1_EndRender_PF( void )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -263,7 +263,7 @@ extern int MV1_EndRender_PF( void )
 	}
 }
 
-// ƒƒbƒVƒ…•`‰æ•”•ª‚ğ”²‚«o‚µ‚½‚à‚Ì
+// ãƒ¡ãƒƒã‚·ãƒ¥æç”»éƒ¨åˆ†ã‚’æŠœãå‡ºã—ãŸã‚‚ã®
 extern void MV1_DrawMesh_PF( MV1_MESH *Mesh, int TriangleListIndex )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )

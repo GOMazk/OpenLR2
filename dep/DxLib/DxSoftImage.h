@@ -1,6 +1,6 @@
 // -------------------------------------------------------------------------------
 // 
-// 		‚c‚wƒ‰ƒCƒuƒ‰ƒŠ		ƒ\ƒtƒgƒEƒFƒA‚Åˆµ‚¤‰æ‘œƒvƒƒOƒ‰ƒ€ƒwƒbƒ_ƒtƒ@ƒCƒ‹
+// 		ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒª		ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã§æ‰±ã†ç”»åƒãƒ—ãƒ­ã‚°ãƒ©ãƒ ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«
 // 
 // 				Ver 3.25a
 // 
@@ -9,7 +9,7 @@
 #ifndef DX_SOFTIMAGE_H
 #define DX_SOFTIMAGE_H
 
-// ƒCƒ“ƒNƒ‹[ƒh ------------------------------------------------------------------
+// ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ ------------------------------------------------------------------
 #include "DxCompileConfig.h"
 
 #ifndef DX_NON_SOFTIMAGE
@@ -23,55 +23,55 @@ namespace DxLib
 
 #endif // DX_NON_NAMESPACE
 
-// ƒ}ƒNƒ’è‹` --------------------------------------------------------------------
+// ãƒã‚¯ãƒ­å®šç¾© --------------------------------------------------------------------
 
-// ƒ\ƒtƒgƒCƒ[ƒWƒnƒ“ƒhƒ‹‚Ì—LŒø«ƒ`ƒFƒbƒN
+// ã‚½ãƒ•ãƒˆã‚¤ãƒ¡ãƒ¼ã‚¸ãƒãƒ³ãƒ‰ãƒ«ã®æœ‰åŠ¹æ€§ãƒã‚§ãƒƒã‚¯
 #define SFTIMGCHK( HAND, SPOINT )			HANDLECHK(       DX_HANDLETYPE_SOFTIMAGE, HAND, *( ( HANDLEINFO ** )&SPOINT ) )
 #define SFTIMGCHK_ASYNC( HAND, SPOINT )		HANDLECHK_ASYNC( DX_HANDLETYPE_SOFTIMAGE, HAND, *( ( HANDLEINFO ** )&SPOINT ) )
 
-// \‘¢‘Ì’è‹` --------------------------------------------------------------------
+// æ§‹é€ ä½“å®šç¾© --------------------------------------------------------------------
 
-// ƒ\ƒtƒgƒCƒ[ƒW‚Ìî•ñ\‘¢‘Ì
+// ã‚½ãƒ•ãƒˆã‚¤ãƒ¡ãƒ¼ã‚¸ã®æƒ…å ±æ§‹é€ ä½“
 struct SOFTIMAGE
 {
-	HANDLEINFO				HandleInfo ;			// ƒnƒ“ƒhƒ‹‹¤’Êƒf[ƒ^
-	BASEIMAGE				BaseImage ;				// Šî–{ƒCƒ[ƒW\‘¢‘Ì
+	HANDLEINFO				HandleInfo ;			// ãƒãƒ³ãƒ‰ãƒ«å…±é€šãƒ‡ãƒ¼ã‚¿
+	BASEIMAGE				BaseImage ;				// åŸºæœ¬ã‚¤ãƒ¡ãƒ¼ã‚¸æ§‹é€ ä½“
 } ;
 
-// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤‰æ‘œ‚Ìî•ñ\‘¢‘Ì
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†ç”»åƒã®æƒ…å ±æ§‹é€ ä½“
 struct SOFTIMAGEMANAGE
 {
-	int						InitializeFlag ;			// ‰Šú‰»ƒtƒ‰ƒO
+	int						InitializeFlag ;			// åˆæœŸåŒ–ãƒ•ãƒ©ã‚°
 } ;
 
-// “à•”‘åˆæ•Ï”éŒ¾ --------------------------------------------------------------
+// å†…éƒ¨å¤§åŸŸå¤‰æ•°å®£è¨€ --------------------------------------------------------------
 
 extern SOFTIMAGEMANAGE SoftImageManage ;
 
-// ŠÖ”ƒvƒƒgƒ^ƒCƒvéŒ¾-----------------------------------------------------------
+// é–¢æ•°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€-----------------------------------------------------------
 
-// ‰Šú‰»AŒãn––
-extern	int		InitializeSoftImageManage( void ) ;										// ƒ\ƒtƒgƒCƒ[ƒWŠÇ—î•ñ‚Ì‰Šú‰»
-extern	int		TerminateSoftImageManage( void ) ;										// ƒ\ƒtƒgƒCƒ[ƒWŠÇ—î•ñ‚ÌŒãn––
+// åˆæœŸåŒ–ã€å¾Œå§‹æœ«
+extern	int		InitializeSoftImageManage( void ) ;										// ã‚½ãƒ•ãƒˆã‚¤ãƒ¡ãƒ¼ã‚¸ç®¡ç†æƒ…å ±ã®åˆæœŸåŒ–
+extern	int		TerminateSoftImageManage( void ) ;										// ã‚½ãƒ•ãƒˆã‚¤ãƒ¡ãƒ¼ã‚¸ç®¡ç†æƒ…å ±ã®å¾Œå§‹æœ«
 
-// “Ç‚İ‚İŠÖ˜A
-extern	int		InitializeSoftImageHandle( HANDLEINFO *HandleInfo ) ;															// ƒ\ƒtƒgƒEƒGƒAƒCƒ[ƒWƒnƒ“ƒhƒ‹‚Ì‰Šú‰»
-extern	int		TerminateSoftImageHandle( HANDLEINFO *HandleInfo ) ;															// ƒ\ƒtƒgƒEƒGƒAƒCƒ[ƒWƒnƒ“ƒhƒ‹‚ÌŒãn––
-extern	int		LoadSoftImage_UseGParam( const wchar_t *FileName, int ASyncLoadFlag = FALSE ) ;									// LoadSoftImage ‚ÌƒOƒ[ƒoƒ‹•Ï”‚ÉƒAƒNƒZƒX‚µ‚È‚¢ƒo[ƒWƒ‡ƒ“
-extern	int		LoadARGB8ColorSoftImage_UseGParam( const wchar_t *FileName, int ASyncLoadFlag = FALSE ) ;						// LoadARGB8ColorSoftImage ‚ÌƒOƒ[ƒoƒ‹•Ï”‚ÉƒAƒNƒZƒX‚µ‚È‚¢ƒo[ƒWƒ‡ƒ“
-extern	int		LoadXRGB8ColorSoftImage_UseGParam( const wchar_t *FileName, int ASyncLoadFlag = FALSE ) ;						// LoadXRGB8ColorSoftImage ‚ÌƒOƒ[ƒoƒ‹•Ï”‚ÉƒAƒNƒZƒX‚µ‚È‚¢ƒo[ƒWƒ‡ƒ“
-extern	int		LoadSoftImageToMem_UseGParam( void *FileImage, int FileImageSize, int ASyncLoadFlag = FALSE ) ;					// LoadSoftImageToMem ‚ÌƒOƒ[ƒoƒ‹•Ï”‚ÉƒAƒNƒZƒX‚µ‚È‚¢ƒo[ƒWƒ‡ƒ“
-extern	int		LoadARGB8ColorSoftImageToMem_UseGParam( void *FileImage, int FileImageSize, int ASyncLoadFlag = FALSE ) ;		// LoadARGB8ColorSoftImageToMem ‚ÌƒOƒ[ƒoƒ‹•Ï”‚ÉƒAƒNƒZƒX‚µ‚È‚¢ƒo[ƒWƒ‡ƒ“
-extern	int		LoadXRGB8ColorSoftImageToMem_UseGParam( void *FileImage, int FileImageSize, int ASyncLoadFlag = FALSE ) ;		// LoadXRGB8ColorSoftImageToMem ‚ÌƒOƒ[ƒoƒ‹•Ï”‚ÉƒAƒNƒZƒX‚µ‚È‚¢ƒo[ƒWƒ‡ƒ“
+// èª­ã¿è¾¼ã¿é–¢é€£
+extern	int		InitializeSoftImageHandle( HANDLEINFO *HandleInfo ) ;															// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒãƒ³ãƒ‰ãƒ«ã®åˆæœŸåŒ–
+extern	int		TerminateSoftImageHandle( HANDLEINFO *HandleInfo ) ;															// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒãƒ³ãƒ‰ãƒ«ã®å¾Œå§‹æœ«
+extern	int		LoadSoftImage_UseGParam( const wchar_t *FileName, int ASyncLoadFlag = FALSE ) ;									// LoadSoftImage ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°ã«ã‚¢ã‚¯ã‚»ã‚¹ã—ãªã„ãƒãƒ¼ã‚¸ãƒ§ãƒ³
+extern	int		LoadARGB8ColorSoftImage_UseGParam( const wchar_t *FileName, int ASyncLoadFlag = FALSE ) ;						// LoadARGB8ColorSoftImage ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°ã«ã‚¢ã‚¯ã‚»ã‚¹ã—ãªã„ãƒãƒ¼ã‚¸ãƒ§ãƒ³
+extern	int		LoadXRGB8ColorSoftImage_UseGParam( const wchar_t *FileName, int ASyncLoadFlag = FALSE ) ;						// LoadXRGB8ColorSoftImage ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°ã«ã‚¢ã‚¯ã‚»ã‚¹ã—ãªã„ãƒãƒ¼ã‚¸ãƒ§ãƒ³
+extern	int		LoadSoftImageToMem_UseGParam( void *FileImage, int FileImageSize, int ASyncLoadFlag = FALSE ) ;					// LoadSoftImageToMem ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°ã«ã‚¢ã‚¯ã‚»ã‚¹ã—ãªã„ãƒãƒ¼ã‚¸ãƒ§ãƒ³
+extern	int		LoadARGB8ColorSoftImageToMem_UseGParam( void *FileImage, int FileImageSize, int ASyncLoadFlag = FALSE ) ;		// LoadARGB8ColorSoftImageToMem ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°ã«ã‚¢ã‚¯ã‚»ã‚¹ã—ãªã„ãƒãƒ¼ã‚¸ãƒ§ãƒ³
+extern	int		LoadXRGB8ColorSoftImageToMem_UseGParam( void *FileImage, int FileImageSize, int ASyncLoadFlag = FALSE ) ;		// LoadXRGB8ColorSoftImageToMem ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°ã«ã‚¢ã‚¯ã‚»ã‚¹ã—ãªã„ãƒãƒ¼ã‚¸ãƒ§ãƒ³
 
 
-// wchar_t”ÅŠÖ”
+// wchar_tç‰ˆé–¢æ•°
 extern	int		LoadSoftImage_WCHAR_T(              const wchar_t *FileName ) ;
 extern	int		LoadARGB8ColorSoftImage_WCHAR_T(    const wchar_t *FileName ) ;
 extern	int		LoadXRGB8ColorSoftImage_WCHAR_T(    const wchar_t *FileName ) ;
 #ifndef DX_NON_FONT
 extern	int		BltStringSoftImage_WCHAR_T(         int x, int y, const wchar_t *StrData, int DestSIHandle, int DestEdgeSIHandle = -1 ,                                        int VerticalFlag = FALSE ) ;
-extern	int		BltStringSoftImageToHandle_WCHAR_T(	int x, int y, const wchar_t *StrData, int DestSIHandle, int DestEdgeSIHandle /* ‰‚ª•K—v‚È‚¢ê‡‚Í -1 */ , int FontHandle, int VerticalFlag = FALSE ) ;
+extern	int		BltStringSoftImageToHandle_WCHAR_T(	int x, int y, const wchar_t *StrData, int DestSIHandle, int DestEdgeSIHandle /* ç¸ãŒå¿…è¦ãªã„å ´åˆã¯ -1 */ , int FontHandle, int VerticalFlag = FALSE ) ;
 #endif // DX_NON_FONT
 
 #ifndef DX_NON_SAVEFUNCTION

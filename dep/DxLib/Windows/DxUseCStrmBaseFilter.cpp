@@ -1,6 +1,6 @@
 // -------------------------------------------------------------------------------
 // 
-// 		‚c‚wƒ‰ƒCƒuƒ‰ƒŠ		•W€‚bƒ‰ƒCƒuƒ‰ƒŠŽg—pƒR[ƒh		DirectShow BaseClasses
+// 		ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒª		æ¨™æº–ï¼£ãƒ©ã‚¤ãƒ–ãƒ©ãƒªä½¿ç”¨ã‚³ãƒ¼ãƒ‰		DirectShow BaseClasses
 // 
 // 				Ver 3.25a
 //
@@ -20,7 +20,7 @@ using namespace DxLib ;
 #endif // DX_NON_USING_NAMESPACE_DXLIB
 #endif // DX_NON_NAMESPACE
 
-// ƒCƒ“ƒNƒ‹[ƒh ---------------------------------
+// ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ ---------------------------------
 #include "DxUseCStrmBaseFilter.h"
 #include "DxDirectX.h"
 #include "DxWindow.h"
@@ -8523,7 +8523,7 @@ void D_CBaseList::Reverse()
 
 
 
-//ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+//ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 D_CMovieRender::D_CMovieRender( D_IUnknown * pUnk, HRESULT *phr ) :
 	D_CBaseVideoRenderer( CLSID_MovieRenderer, NAME("Movie Renderer"), pUnk, phr),
 	SetMediaTypeFlag( 0 ),
@@ -8543,7 +8543,7 @@ D_CMovieRender::D_CMovieRender( D_IUnknown * pUnk, HRESULT *phr ) :
 	}
 }
 
-//ƒfƒXƒgƒ‰ƒNƒ^
+//ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 D_CMovieRender::~D_CMovieRender()
 {
 	if( ImageBuffer )
@@ -8869,9 +8869,9 @@ HRESULT D_CMovieRender::DoRenderSample( D_IMediaSample * pSample )
 	pSample->GetPointer( &Src );
 
 	if( ImageBuffer &&
-		( AlwaysBaseImage == 1 ||				// ŠO•”‚©‚ç BASEIMAGE ‚Ì\’z‚ðˆË—Š‚³‚ê‚Ä‚¢‚é‚©
-		  YImageBuffer == NULL ||				// ƒVƒF[ƒ_[‚ªŽg—p‚Å‚«‚È‚¢‚©
-		  UseTempBaseImageFirstFrame == 0 ) )	// Å‰‚ÌƒtƒŒ[ƒ€‚¾‚Á‚½‚ç BASEIMAGE ‚ð\’z‚·‚é
+		( AlwaysBaseImage == 1 ||				// å¤–éƒ¨ã‹ã‚‰ BASEIMAGE ã®æ§‹ç¯‰ã‚’ä¾é ¼ã•ã‚Œã¦ã„ã‚‹ã‹
+		  YImageBuffer == NULL ||				// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãŒä½¿ç”¨ã§ããªã„ã‹
+		  UseTempBaseImageFirstFrame == 0 ) )	// æœ€åˆã®ãƒ•ãƒ¬ãƒ¼ãƒ ã ã£ãŸã‚‰ BASEIMAGE ã‚’æ§‹ç¯‰ã™ã‚‹
 	{
 		BYTE *UseSrc = Src ;
 
@@ -14817,7 +14817,7 @@ void D_CMemStream::Unlock()
 
 #ifndef DX_NON_MEDIA_FOUNDATION
 
-// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 D_SoundConvertMFByteStream::D_SoundConvertMFByteStream( STREAMDATA *_Stream, ULONGLONG _StreamSize )
     :
 	ReferenceCount( 0 ),
@@ -14839,7 +14839,7 @@ D_SoundConvertMFByteStream::D_SoundConvertMFByteStream( STREAMDATA *_Stream, ULO
 	WinAPIData.Win32Func.MFCreateAttributesFunc( &pMFAttributes, 0 ) ;
 }
 
-// ƒfƒXƒgƒ‰ƒNƒ^
+// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 D_SoundConvertMFByteStream::~D_SoundConvertMFByteStream()
 {
     Close() ;
@@ -14929,10 +14929,10 @@ HRESULT __stdcall D_SoundConvertMFByteStream::SetLength(ULONGLONG /*qwLength*/)
 
 HRESULT __stdcall D_SoundConvertMFByteStream::GetCurrentPosition(ULONGLONG *pqwPosition)
 {
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚ÌŽæ“¾
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 	CRITICALSECTION_LOCK( &ASyncReadCriticalSection ) ;
 
-	// ”ñ“¯Šú“Ç‚Ýž‚Ý’†‚¾‚Á‚½‚ç•ªŠò
+	// éžåŒæœŸèª­ã¿è¾¼ã¿ä¸­ã ã£ãŸã‚‰åˆ†å²
 //	if( ASyncReadRequest )
 //	{
 //		LONGLONG ResultPos = 0 ;
@@ -14957,7 +14957,7 @@ HRESULT __stdcall D_SoundConvertMFByteStream::GetCurrentPosition(ULONGLONG *pqwP
 	    *pqwPosition = Stream->ReadShred.Tell( Stream->DataPoint ) ;
 	}
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ð•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 	CriticalSection_Unlock( &ASyncReadCriticalSection ) ;
 
     return S_OK ;
@@ -14972,10 +14972,10 @@ HRESULT __stdcall D_SoundConvertMFByteStream::IsEndOfStream(BOOL *pfEndOfStream)
 {
 	ULONGLONG Pos ;
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚ÌŽæ“¾
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 	CRITICALSECTION_LOCK( &ASyncReadCriticalSection ) ;
 
-	// ”ñ“¯Šú“Ç‚Ýž‚Ý’†‚¾‚Á‚½‚ç•ªŠò
+	// éžåŒæœŸèª­ã¿è¾¼ã¿ä¸­ã ã£ãŸã‚‰åˆ†å²
 //	if( ASyncReadRequest )
 //	{
 //		if( SeekRequest )
@@ -14998,7 +14998,7 @@ HRESULT __stdcall D_SoundConvertMFByteStream::IsEndOfStream(BOOL *pfEndOfStream)
 
 	*pfEndOfStream = Pos >= StreamSize ? TRUE : FALSE ;
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ð•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 	CriticalSection_Unlock( &ASyncReadCriticalSection ) ;
 
     return S_OK ;
@@ -15008,18 +15008,18 @@ HRESULT __stdcall D_SoundConvertMFByteStream::Read(BYTE *pb,ULONG cb,ULONG *pcbR
 {
 	size_t ReadSize ;
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚ÌŽæ“¾
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 	CRITICALSECTION_LOCK( &ASyncReadCriticalSection ) ;
 
-	// ”ñ“¯Šú“Ç‚Ýž‚Ý’†‚¾‚Á‚½‚çƒGƒ‰[
+	// éžåŒæœŸèª­ã¿è¾¼ã¿ä¸­ã ã£ãŸã‚‰ã‚¨ãƒ©ãƒ¼
 	if( ASyncReadRequest )
 	{
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ð•ú
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 		CriticalSection_Unlock( &ASyncReadCriticalSection ) ;
 		return E_FAIL ;
 	}
 
-	// ƒV[ƒNƒŠƒNƒGƒXƒg‚ª‚ ‚Á‚½‚çƒV[ƒN
+	// ã‚·ãƒ¼ã‚¯ãƒªã‚¯ã‚¨ã‚¹ãƒˆãŒã‚ã£ãŸã‚‰ã‚·ãƒ¼ã‚¯
 //	if( SeekRequest )
 //	{
 //		Stream->ReadShred.Seek( Stream->DataPoint, SeekRequestPoint, SEEK_SET ) ;
@@ -15028,7 +15028,7 @@ HRESULT __stdcall D_SoundConvertMFByteStream::Read(BYTE *pb,ULONG cb,ULONG *pcbR
 
 	ReadSize = Stream->ReadShred.Read( pb, 1, cb, Stream->DataPoint ) ;
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ð•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 	CriticalSection_Unlock( &ASyncReadCriticalSection ) ;
 
 	if( pcbRead != NULL )
@@ -15045,18 +15045,18 @@ HRESULT __stdcall D_SoundConvertMFByteStream::BeginRead( BYTE *pb,ULONG cb,D_IMF
 
 	SETUP_WIN_API
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚ÌŽæ“¾
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 	CRITICALSECTION_LOCK( &ASyncReadCriticalSection ) ;
 
-	// ”ñ“¯Šú“Ç‚Ýž‚Ý’†‚¾‚Á‚½‚çƒGƒ‰[
+	// éžåŒæœŸèª­ã¿è¾¼ã¿ä¸­ã ã£ãŸã‚‰ã‚¨ãƒ©ãƒ¼
 	if( ASyncReadRequest )
 	{
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ð•ú
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 		CriticalSection_Unlock( &ASyncReadCriticalSection ) ;
 		return E_FAIL ;
 	}
 
-	// ƒV[ƒNƒŠƒNƒGƒXƒg‚ª‚ ‚Á‚½‚çƒV[ƒN
+	// ã‚·ãƒ¼ã‚¯ãƒªã‚¯ã‚¨ã‚¹ãƒˆãŒã‚ã£ãŸã‚‰ã‚·ãƒ¼ã‚¯
 //	if( SeekRequest )
 //	{
 //		Stream->ReadShred.Seek( Stream->DataPoint, SeekRequestPoint, SEEK_SET ) ;
@@ -15074,7 +15074,7 @@ HRESULT __stdcall D_SoundConvertMFByteStream::BeginRead( BYTE *pb,ULONG cb,D_IMF
 		return hr ;
 	}
 
-	// ”ñ“¯Šú“Ç‚Ýž‚Ý’†ƒtƒ‰ƒO‚ð—§‚Ä‚é
+	// éžåŒæœŸèª­ã¿è¾¼ã¿ä¸­ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	ASyncReadRequest = TRUE ;
 
 	pASyncReadBuffer = pb ;
@@ -15084,7 +15084,7 @@ HRESULT __stdcall D_SoundConvertMFByteStream::BeginRead( BYTE *pb,ULONG cb,D_IMF
 
 	WinAPIData.Win32Func.SetEventFunc( ASyncThreadEvent ) ;
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ð•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 	CriticalSection_Unlock( &ASyncReadCriticalSection ) ;
 
     return S_OK ;
@@ -15092,34 +15092,34 @@ HRESULT __stdcall D_SoundConvertMFByteStream::BeginRead( BYTE *pb,ULONG cb,D_IMF
 
 HRESULT __stdcall D_SoundConvertMFByteStream::EndRead( D_IMFAsyncResult *pResult, LONG *pcbRead )
 {
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚ÌŽæ“¾
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 	CRITICALSECTION_LOCK( &ASyncReadCriticalSection ) ;
 
-	// ”ñ“¯Šú“Ç‚Ýž‚Ý’†‚Å‚Í‚È‚©‚Á‚½‚çƒGƒ‰[
+	// éžåŒæœŸèª­ã¿è¾¼ã¿ä¸­ã§ã¯ãªã‹ã£ãŸã‚‰ã‚¨ãƒ©ãƒ¼
 	if( ASyncReadRequest == FALSE )
 	{
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ð•ú
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 		CriticalSection_Unlock( &ASyncReadCriticalSection ) ;
 		return E_FAIL ;
 	}
 
 	if( pMFASyncResult != pResult )
 	{
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ð•ú
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 		CriticalSection_Unlock( &ASyncReadCriticalSection ) ;
 		return E_FAIL ;
 	}
 
-	// Œ‹‰Ê‚ð‘ã“ü
+	// çµæžœã‚’ä»£å…¥
 	*pcbRead = ASyncReadResultSize ;
 
 	pMFASyncResult->Release() ;
 	pMFASyncResult = NULL ;
 
-	// ”ñ“¯Šú“Ç‚Ýž‚Ý’†ƒtƒ‰ƒO‚ð“|‚·
+	// éžåŒæœŸèª­ã¿è¾¼ã¿ä¸­ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 	ASyncReadRequest = FALSE ;
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ð•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 	CriticalSection_Unlock( &ASyncReadCriticalSection ) ;
 
 	return S_OK ;
@@ -15144,7 +15144,7 @@ HRESULT __stdcall D_SoundConvertMFByteStream::Seek( D_MFBYTESTREAM_SEEK_ORIGIN S
 {
 	int SeekMode ;
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚ÌŽæ“¾
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 	CRITICALSECTION_LOCK( &ASyncReadCriticalSection ) ;
 
 	switch( SeekOrigin )
@@ -15153,12 +15153,12 @@ HRESULT __stdcall D_SoundConvertMFByteStream::Seek( D_MFBYTESTREAM_SEEK_ORIGIN S
 	case D_msoCurrent : SeekMode = SEEK_CUR ; break ;
 
 	default :
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ð•ú
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 		CriticalSection_Unlock( &ASyncReadCriticalSection ) ;
 		return E_INVALIDARG ;
 	}
 
-	// ”ñ“¯Šú“Ç‚Ýž‚Ý’†‚¾‚Á‚½‚çŽŸ‚Ì“Ç‚Ýž‚Ýæ‚Æ‚µ‚Ä•Û‘¶
+	// éžåŒæœŸèª­ã¿è¾¼ã¿ä¸­ã ã£ãŸã‚‰æ¬¡ã®èª­ã¿è¾¼ã¿å…ˆã¨ã—ã¦ä¿å­˜
 	if( ASyncReadRequest )
 	{
 //		SeekRequest = TRUE ;
@@ -15189,7 +15189,7 @@ HRESULT __stdcall D_SoundConvertMFByteStream::Seek( D_MFBYTESTREAM_SEEK_ORIGIN S
 //			*pqwCurrentPosition = SeekRequestPoint ;
 //		}
 
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ð•ú
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 		CriticalSection_Unlock( &ASyncReadCriticalSection ) ;
 		return S_OK ;
 	}
@@ -15201,7 +15201,7 @@ HRESULT __stdcall D_SoundConvertMFByteStream::Seek( D_MFBYTESTREAM_SEEK_ORIGIN S
 		*pqwCurrentPosition = Stream->ReadShred.Tell( Stream->DataPoint ) ;
 	}
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ð•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 	CriticalSection_Unlock( &ASyncReadCriticalSection ) ;
 
 	return S_OK ;
@@ -15216,40 +15216,40 @@ HRESULT __stdcall D_SoundConvertMFByteStream::Close( void )
 {
 	SETUP_WIN_API
 
-//	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚ÌŽæ“¾
+//	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 //	CRITICALSECTION_LOCK( &ASyncReadCriticalSection ) ;
 //
-//	// ”ñ“¯Šú“Ç‚Ýž‚Ý’†‚¾‚Á‚½‚ç“Ç‚Ýž‚ÝŠ®—¹‚Ü‚Å‘Ò‚Â
+//	// éžåŒæœŸèª­ã¿è¾¼ã¿ä¸­ã ã£ãŸã‚‰èª­ã¿è¾¼ã¿å®Œäº†ã¾ã§å¾…ã¤
 //	if( ASyncReadRequest )
 //	{
 //		int Flag = ASyncReadRequest ;
 //
 //		while( Flag )
 //		{
-//			// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ð•ú
+//			// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 //			CriticalSection_Unlock( &ASyncReadCriticalSection ) ;
 //
 //			WinAPIData.Win32Func.SleepFunc( 1 ) ;
 //
-//			// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚ÌŽæ“¾
+//			// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 //			CRITICALSECTION_LOCK( &ASyncReadCriticalSection ) ;
 //			
 //			Flag = ASyncReadRequest ;
 //		}
 //	}
 //
-//	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ð•ú
+//	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 //	CriticalSection_Unlock( &ASyncReadCriticalSection ) ;
 
 	if( ASyncThread != NULL )
 	{
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚ÌŽæ“¾
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 		CRITICALSECTION_LOCK( &ASyncReadCriticalSection ) ;
 
-		// I—¹ƒŠƒNƒGƒXƒg‚ð‚·‚é
+		// çµ‚äº†ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚’ã™ã‚‹
 		ASyncThreadEndRequestFlag = 1 ;
 
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ð•ú
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 		CriticalSection_Unlock( &ASyncReadCriticalSection ) ;
 
 //		WinAPIData.Win32Func.SetEventFunc( ASyncThreadEvent ) ;
@@ -15318,19 +15318,19 @@ DWORD WINAPI D_SoundConvertMFByteStream::AsyncThread( void *pContext )
 			}
 		}
 
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚ÌŽæ“¾
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 		CRITICALSECTION_LOCK( &pThis->ASyncReadCriticalSection ) ;
 		if( Result != WAIT_OBJECT_0 || pThis->ASyncThreadEndRequestFlag || pThis->ASyncReadRequest == FALSE )
 		{
-			// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ð•ú
+			// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 			CriticalSection_Unlock( &pThis->ASyncReadCriticalSection ) ;
 			break ;
 		}
 
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ð•ú
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 		CriticalSection_Unlock( &pThis->ASyncReadCriticalSection ) ;
 
-		// “Ç‚Ýž‚Ý
+		// èª­ã¿è¾¼ã¿
 		pThis->ASyncReadResultSize = ( LONG )pThis->Stream->ReadShred.Read(
 			( void * )pThis->pASyncReadBuffer, 1, pThis->ASyncReadSize, pThis->Stream->DataPoint ) ;
 

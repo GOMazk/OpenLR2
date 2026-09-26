@@ -1,6 +1,6 @@
 // -------------------------------------------------------------------------------
 // 
-// 		‚c‚wƒ‰ƒCƒuƒ‰ƒŠ		‚e‚a‚wƒ‚ƒfƒ‹ƒf[ƒ^“Ç‚İ‚İƒvƒƒOƒ‰ƒ€
+// 		ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒª		ï¼¦ï¼¢ï¼¸ãƒ¢ãƒ‡ãƒ«ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿ãƒ—ãƒ­ã‚°ãƒ©ãƒ 
 // 
 // 				Ver 3.25a
 // 
@@ -13,7 +13,7 @@
 #ifndef DX_NON_MODEL
 #ifdef DX_LOAD_FBX_MODEL
 
-// ƒCƒ“ƒNƒ‹[ƒh ---------------------------------
+// ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ ---------------------------------
 #include "DxLog.h"
 
 #include "fbxsdk.h"
@@ -25,11 +25,11 @@ namespace DxLib
 
 #endif // DX_NON_NAMESPACE
 
-// ƒ}ƒNƒ’è‹` -----------------------------------
+// ãƒã‚¯ãƒ­å®šç¾© -----------------------------------
 
-// ƒf[ƒ^éŒ¾ -----------------------------------
+// ãƒ‡ãƒ¼ã‚¿å®£è¨€ -----------------------------------
 
-// ‚e‚a‚wƒf[ƒ^\‘¢‘Ì
+// ï¼¦ï¼¢ï¼¸ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
 struct FBX_MODEL
 {
 	FbxManager					*pManager ;
@@ -39,16 +39,16 @@ struct FBX_MODEL
 	FbxNode						*pNode ;
 } ;
 
-// ŠÖ”éŒ¾ -------------------------------------
+// é–¢æ•°å®£è¨€ -------------------------------------
 
-static int AnalyseFbx( MV1_MODEL_R *RModel, FBX_MODEL *Model ) ;														// FBXƒtƒ@ƒCƒ‹‚Ì‰ğÍ( 0:¬Œ÷  -1:¸”s )
-static int AnalyseFbxNode( MV1_MODEL_R *RModel, FBX_MODEL *Model, MV1_FRAME_R *ParentFrame, FbxNode *pFbxNode ) ;		// ƒm[ƒh‚Ì‰ğÍ( -1:ƒGƒ‰[ )
-static int GetFbxAnimInfo( MV1_MODEL_R *RModel, FBX_MODEL *Model, MV1_FRAME_R *Frame, MV1_ANIMSET_R *AnimSet, MV1_ANIM_R **Anim, int DataType, FbxAnimCurve *FbxCurve, float TimeScale, bool Reverse = false, bool DeggToRad = false ) ;	// ‚e‚a‚wƒJ[ƒu‚©‚çƒAƒjƒ[ƒVƒ‡ƒ“î•ñ‚ğæ“¾‚·‚é( -1:ƒGƒ‰[ )
-static MV1_TEXTURE_R *FbxAddTexture( MV1_MODEL_R *RModel, FbxTexture *_FbxTexture, int BumpMapFlag = FALSE ) ;				// ‚e‚a‚wƒeƒNƒXƒ`ƒƒ‚ğ’Ç‰Á‚·‚é
+static int AnalyseFbx( MV1_MODEL_R *RModel, FBX_MODEL *Model ) ;														// FBXãƒ•ã‚¡ã‚¤ãƒ«ã®è§£æ( 0:æˆåŠŸ  -1:å¤±æ•— )
+static int AnalyseFbxNode( MV1_MODEL_R *RModel, FBX_MODEL *Model, MV1_FRAME_R *ParentFrame, FbxNode *pFbxNode ) ;		// ãƒãƒ¼ãƒ‰ã®è§£æ( -1:ã‚¨ãƒ©ãƒ¼ )
+static int GetFbxAnimInfo( MV1_MODEL_R *RModel, FBX_MODEL *Model, MV1_FRAME_R *Frame, MV1_ANIMSET_R *AnimSet, MV1_ANIM_R **Anim, int DataType, FbxAnimCurve *FbxCurve, float TimeScale, bool Reverse = false, bool DeggToRad = false ) ;	// ï¼¦ï¼¢ï¼¸ã‚«ãƒ¼ãƒ–ã‹ã‚‰ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³æƒ…å ±ã‚’å–å¾—ã™ã‚‹( -1:ã‚¨ãƒ©ãƒ¼ )
+static MV1_TEXTURE_R *FbxAddTexture( MV1_MODEL_R *RModel, FbxTexture *_FbxTexture, int BumpMapFlag = FALSE ) ;				// ï¼¦ï¼¢ï¼¸ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’è¿½åŠ ã™ã‚‹
 
-// ƒvƒƒOƒ‰ƒ€ -----------------------------------
+// ãƒ—ãƒ­ã‚°ãƒ©ãƒ  -----------------------------------
 
-// ‚e‚a‚wƒeƒNƒXƒ`ƒƒ‚ğ’Ç‰Á‚·‚é
+// ï¼¦ï¼¢ï¼¸ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’è¿½åŠ ã™ã‚‹
 static MV1_TEXTURE_R *FbxAddTexture( MV1_MODEL_R *RModel, FbxTexture *_FbxTexture, int BumpMapFlag )
 {
 	MV1_TEXTURE_R *Texture ;
@@ -62,33 +62,33 @@ static MV1_TEXTURE_R *FbxAddTexture( MV1_MODEL_R *RModel, FbxTexture *_FbxTextur
 	pFbxFileTexture = FbxCast< FbxFileTexture >( _FbxTexture ) ;
 	pProceduralTexture = FbxCast< FbxProceduralTexture >( _FbxTexture ) ;
 
-	// ƒtƒ@ƒCƒ‹ƒeƒNƒXƒ`ƒƒ‚Å‚Í‚È‚¢ê‡‚ÍƒGƒ‰[
+	// ãƒ•ã‚¡ã‚¤ãƒ«ãƒ†ã‚¯ã‚¹ãƒãƒ£ã§ã¯ãªã„å ´åˆã¯ã‚¨ãƒ©ãƒ¼
 	if( pFbxFileTexture == NULL )
 		return NULL ;
 
-	// ƒ‚ƒfƒ‹ã‚ÉŠù‚É‚±‚ÌƒeƒNƒXƒ`ƒƒ‚Ìî•ñ‚ª‚ ‚éê‡‚ÍƒAƒhƒŒƒX‚¾‚¯•Û‘¶‚·‚é
+	// ãƒ¢ãƒ‡ãƒ«ä¸Šã«æ—¢ã«ã“ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®æƒ…å ±ãŒã‚ã‚‹å ´åˆã¯ã‚¢ãƒ‰ãƒ¬ã‚¹ã ã‘ä¿å­˜ã™ã‚‹
 	Texture = RModel->TextureFirst ;
 	for( i = 0 ; i < ( int )RModel->TextureNum && Texture->UserData != _FbxTexture ; i ++, Texture = Texture->DataNext ){}
 	if( i != RModel->TextureNum )
 		return Texture ;
 
-	// ƒeƒNƒXƒ`ƒƒ‚Ì’Ç‰Á
+	// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®è¿½åŠ 
 	{
-		// ƒeƒNƒXƒ`ƒƒƒpƒX‚Ìì¬
+		// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ã‚¹ã®ä½œæˆ
 		RelativeFileName = pFbxFileTexture->GetRelativeFileName() ;
 
-		// UTF8 ‚Ì•¶š—ñ‚È‚Ì‚© ShiftJIS ‚Ì•¶š—ñ‚È‚Ì‚©‚ğ”»’è
+		// UTF8 ã®æ–‡å­—åˆ—ãªã®ã‹ ShiftJIS ã®æ–‡å­—åˆ—ãªã®ã‹ã‚’åˆ¤å®š
 		UTF8Length     = GetStringCharNum( ( const char * )RelativeFileName, DX_CHARCODEFORMAT_UTF8 ) ;
 		ShiftJISLength = GetStringCharNum( ( const char * )RelativeFileName, DX_CHARCODEFORMAT_SHIFTJIS ) ;
 
-		// ’·‚³–³‚µ‚Ìê‡‚Í“Á•Êˆ—
+		// é•·ã•ç„¡ã—ã®å ´åˆã¯ç‰¹åˆ¥å‡¦ç†
 		if( UTF8Length == 0 && ShiftJISLength == 0 )
 		{
 			Texture = MV1RAddTexture( RModel, "NoName", "", NULL, BumpMapFlag, 0.1f, false ) ;
 		}
 		else
 		{
-			// UTF8 ‚Ìê‡‚Í‚»‚Ì‚Ü‚Ü“n‚·
+			// UTF8 ã®å ´åˆã¯ãã®ã¾ã¾æ¸¡ã™
 			if( UTF8Length > ShiftJISLength )
 			{
 				Texture = MV1RAddTexture( RModel, _FbxTexture->GetName(), RelativeFileName, NULL, BumpMapFlag, 0.1f, false ) ;
@@ -97,7 +97,7 @@ static MV1_TEXTURE_R *FbxAddTexture( MV1_MODEL_R *RModel, FbxTexture *_FbxTextur
 			{
 				char *FilePathUTF8 ;
 
-				// ShiftJIS ‚Ìê‡‚Í UTF8 ‚É•ÏŠ·‚·‚é
+				// ShiftJIS ã®å ´åˆã¯ UTF8 ã«å¤‰æ›ã™ã‚‹
 				FilePathUTF8 = ( char * )DXALLOC( ShiftJISLength * 16 ) ;
 				if( FilePathUTF8 == NULL )
 				{
@@ -105,7 +105,7 @@ static MV1_TEXTURE_R *FbxAddTexture( MV1_MODEL_R *RModel, FbxTexture *_FbxTextur
 				}
 				ConvString( ( const char * )RelativeFileName, -1, DX_CHARCODEFORMAT_SHIFTJIS, FilePathUTF8, ShiftJISLength * 16, DX_CHARCODEFORMAT_UTF8 ) ;
 
-				// •¶š”‚ª’Z‚­‚È‚Á‚Ä‚µ‚Ü‚Á‚½ê‡‚Í UTF8 ‚Æ‚µ‚Äˆ—‚·‚é
+				// æ–‡å­—æ•°ãŒçŸ­ããªã£ã¦ã—ã¾ã£ãŸå ´åˆã¯ UTF8 ã¨ã—ã¦å‡¦ç†ã™ã‚‹
 				UTF8Length = GetStringCharNum( FilePathUTF8, DX_CHARCODEFORMAT_UTF8 ) ;
 				if( UTF8Length < ShiftJISLength )
 				{
@@ -115,12 +115,12 @@ static MV1_TEXTURE_R *FbxAddTexture( MV1_MODEL_R *RModel, FbxTexture *_FbxTextur
 				{
 					Texture = MV1RAddTexture( RModel, _FbxTexture->GetName(), FilePathUTF8, NULL, BumpMapFlag, 0.1f, false, false, true, true ) ;
 
-					// ShiftJIS ‚Æ‚µ‚Ä‚Ì“Ç‚İ‚İ‚É¸”s‚µ‚½‚ç UTF8 ‚Æ‚µ‚Ä“Ç‚İ‚ñ‚Å‚İ‚é
+					// ShiftJIS ã¨ã—ã¦ã®èª­ã¿è¾¼ã¿ã«å¤±æ•—ã—ãŸã‚‰ UTF8 ã¨ã—ã¦èª­ã¿è¾¼ã‚“ã§ã¿ã‚‹
 					if( Texture == NULL )
 					{
 						Texture = MV1RAddTexture( RModel, _FbxTexture->GetName(), RelativeFileName, NULL, BumpMapFlag, 0.1f, false, false, true, true ) ;
 
-						// UTF8 ‚Æ‚µ‚Ä‚à¸”s‚µ‚½ê‡‚Í‰ü‚ß‚Ä ShiftJIS ‚Æ‚µ‚Ä“Ç‚İ‚Ş
+						// UTF8 ã¨ã—ã¦ã‚‚å¤±æ•—ã—ãŸå ´åˆã¯æ”¹ã‚ã¦ ShiftJIS ã¨ã—ã¦èª­ã¿è¾¼ã‚€
 						if( Texture == NULL )
 						{
 							Texture = MV1RAddTexture( RModel, _FbxTexture->GetName(), FilePathUTF8, NULL, BumpMapFlag, 0.1f, false ) ;
@@ -138,22 +138,22 @@ static MV1_TEXTURE_R *FbxAddTexture( MV1_MODEL_R *RModel, FbxTexture *_FbxTextur
 		}
 	}
 
-	// ‚e‚a‚w‚ÌƒAƒhƒŒƒX‚ğ•Û‘¶
+	// ï¼¦ï¼¢ï¼¸ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ä¿å­˜
 	Texture->UserData = _FbxTexture ;
 
-	// ƒ‰ƒbƒvƒ‚[ƒh‚ğ•Û‘¶
+	// ãƒ©ãƒƒãƒ—ãƒ¢ãƒ¼ãƒ‰ã‚’ä¿å­˜
 	Texture->AddressModeU = _FbxTexture->GetWrapModeU() == FbxTexture::eRepeat ? DX_TEXADDRESS_WRAP : DX_TEXADDRESS_CLAMP ;
 	Texture->AddressModeV = _FbxTexture->GetWrapModeV() == FbxTexture::eRepeat ? DX_TEXADDRESS_WRAP : DX_TEXADDRESS_CLAMP ;
 
-	// ‚t‚uƒXƒP[ƒ‹‚ğ•Û‘¶
+	// ï¼µï¼¶ã‚¹ã‚±ãƒ¼ãƒ«ã‚’ä¿å­˜
 	Texture->ScaleU = ( float )_FbxTexture->GetScaleU() ;
 	Texture->ScaleV = ( float )_FbxTexture->GetScaleV() ;
 
-	// ƒAƒhƒŒƒX‚ğ•Ô‚·
+	// ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’è¿”ã™
 	return Texture ;
 }
 
-// ‚e‚a‚wƒJ[ƒu‚©‚çƒAƒjƒ[ƒVƒ‡ƒ“î•ñ‚ğæ“¾‚·‚é( -1:ƒGƒ‰[ )
+// ï¼¦ï¼¢ï¼¸ã‚«ãƒ¼ãƒ–ã‹ã‚‰ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³æƒ…å ±ã‚’å–å¾—ã™ã‚‹( -1:ã‚¨ãƒ©ãƒ¼ )
 static int GetFbxAnimInfo(
 	MV1_MODEL_R *RModel,
 	FBX_MODEL *Model,
@@ -175,77 +175,77 @@ static int GetFbxAnimInfo(
 	bool AllFirstValue ;
 	int i, KeyNum ;
 
-	// ƒJ[ƒu‚ª NULL ‚¾‚Á‚½‚ç‰½‚à‚µ‚È‚¢
+	// ã‚«ãƒ¼ãƒ–ãŒ NULL ã ã£ãŸã‚‰ä½•ã‚‚ã—ãªã„
 	if( pFbxCurve == NULL ) return 0 ;
 
-	// ƒL[‚ª–³‚©‚Á‚½‚ç‰½‚à‚µ‚È‚¢
+	// ã‚­ãƒ¼ãŒç„¡ã‹ã£ãŸã‚‰ä½•ã‚‚ã—ãªã„
 	KeyNum = pFbxCurve->KeyGetCount() ;
 	if( KeyNum == 0 )
 		return 0 ;
 
-	// ƒAƒjƒ[ƒVƒ‡ƒ“‚ª‚Ü‚¾’Ç‰Á‚³‚ê‚Ä‚¢‚È‚¢ê‡‚Í’Ç‰Á
+	// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãŒã¾ã è¿½åŠ ã•ã‚Œã¦ã„ãªã„å ´åˆã¯è¿½åŠ 
 	if( *AnimP == NULL )
 	{
 		*AnimP = MV1RAddAnim( RModel, AnimSet ) ;
 		if( *AnimP == NULL )
 		{
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\xa2\x30\xcb\x30\xe1\x30\xfc\x30\xb7\x30\xe7\x30\xf3\x30\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x6e\x30\xfd\x8f\xa0\x52\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : ƒAƒjƒ[ƒVƒ‡ƒ“ƒIƒuƒWƒFƒNƒg‚Ì’Ç‰Á‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ )) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\xa2\x30\xcb\x30\xe1\x30\xfc\x30\xb7\x30\xe7\x30\xf3\x30\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x6e\x30\xfd\x8f\xa0\x52\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®è¿½åŠ ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ )) ;
 			return -1 ;
 		}
 	}
 	Anim = *AnimP ;
 
-	// ƒL[ƒZƒbƒg‚Ì’Ç‰Á
+	// ã‚­ãƒ¼ã‚»ãƒƒãƒˆã®è¿½åŠ 
 	KeySet = MV1RAddAnimKeySet( RModel, Anim ) ;
 	if( KeySet == NULL )
 	{
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\xa2\x30\xcb\x30\xe1\x30\xfc\x30\xb7\x30\xe7\x30\xf3\x30\xad\x30\xfc\x30\xbb\x30\xc3\x30\xc8\x30\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x6e\x30\xfd\x8f\xa0\x52\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : ƒAƒjƒ[ƒVƒ‡ƒ“ƒL[ƒZƒbƒgƒIƒuƒWƒFƒNƒg‚Ì’Ç‰Á‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\xa2\x30\xcb\x30\xe1\x30\xfc\x30\xb7\x30\xe7\x30\xf3\x30\xad\x30\xfc\x30\xbb\x30\xc3\x30\xc8\x30\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x6e\x30\xfd\x8f\xa0\x52\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚­ãƒ¼ã‚»ãƒƒãƒˆã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®è¿½åŠ ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ )) ;
 		return -1 ;
 	}
 
-	// ƒf[ƒ^ƒ^ƒCƒv‚ğƒZƒbƒg
+	// ãƒ‡ãƒ¼ã‚¿ã‚¿ã‚¤ãƒ—ã‚’ã‚»ãƒƒãƒˆ
 	KeySet->DataType = DataType ;
 
-	// ƒL[ƒ^ƒCƒv‚Í‚Æ‚è‚ ‚¦‚¸üŒ`•âŠÔ
+	// ã‚­ãƒ¼ã‚¿ã‚¤ãƒ—ã¯ã¨ã‚Šã‚ãˆãšç·šå½¢è£œé–“
 	KeySet->Type = MV1_ANIMKEY_TYPE_LINEAR ;
 
-	// ƒL[‚ğŠi”[‚·‚é‚½‚ß‚Ìƒƒ‚ƒŠ—Ìˆæ‚ğŠm•Û
+	// ã‚­ãƒ¼ã‚’æ ¼ç´ã™ã‚‹ãŸã‚ã®ãƒ¡ãƒ¢ãƒªé ˜åŸŸã‚’ç¢ºä¿
 	KeySet->KeyLinear = ( float * )ADDMEMAREA( ( sizeof( float ) + sizeof( float ) ) * KeyNum, &RModel->Mem ) ;
 	if( KeySet->KeyLinear == NULL )
 	{
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\xa2\x30\xcb\x30\xe1\x30\xfc\x30\xb7\x30\xe7\x30\xf3\x30\xad\x30\xfc\x30\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\x5f\x30\x81\x30\x6e\x30\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : ƒAƒjƒ[ƒVƒ‡ƒ“ƒL[‚ğŠi”[‚·‚é‚½‚ß‚Ìƒƒ‚ƒŠ‚ÌŠm•Û‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\xa2\x30\xcb\x30\xe1\x30\xfc\x30\xb7\x30\xe7\x30\xf3\x30\xad\x30\xfc\x30\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\x5f\x30\x81\x30\x6e\x30\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚­ãƒ¼ã‚’æ ¼ç´ã™ã‚‹ãŸã‚ã®ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ )) ;
 		return -1 ;
 	}
 	KeySet->KeyTime = ( float * )( KeySet->KeyLinear + KeyNum ) ;
 
-	// Å‰‚ÌƒL[‚Ì’l‚ğæ“¾
+	// æœ€åˆã®ã‚­ãƒ¼ã®å€¤ã‚’å–å¾—
 	AllFirstValue = true ;
 	FirstValue = static_cast< float >( pFbxCurve->KeyGetValue( 0 ) ) ;
 	if( Reverse   ) FirstValue = -FirstValue ;
 	if( DeggToRad ) FirstValue =  FirstValue * DX_PI_F / 180.0f ;
 
-	// ƒL[‚Ì”‚¾‚¯ŒJ‚è•Ô‚µ
+	// ã‚­ãƒ¼ã®æ•°ã ã‘ç¹°ã‚Šè¿”ã—
 	KeyLinear = KeySet->KeyLinear ;
 	KeyTime = KeySet->KeyTime ;
 	KeySet->TotalTime = 0.0f ;
 	for( i = 0 ; i < KeyNum ; i ++ )
 	{
-		// ŠÔ‚Ìæ“¾
+		// æ™‚é–“ã®å–å¾—
 		*KeyTime = ( float )pFbxCurve->KeyGetTime( i ).GetFrameCountPrecise() * TimeScale ;
 		if( KeySet->TotalTime < *KeyTime ) KeySet->TotalTime = *KeyTime ;
 		if( *KeyTime < AnimSet->StartTime ) AnimSet->StartTime = *KeyTime ;
 		if( *KeyTime > AnimSet->EndTime   ) AnimSet->EndTime   = *KeyTime ;
 
-		// ’l‚Ìæ“¾
+		// å€¤ã®å–å¾—
 		*KeyLinear = static_cast< float >( pFbxCurve->KeyGetValue( i ) ) ;
 		if( Reverse ) *KeyLinear = -*KeyLinear ;
 		if( DeggToRad ) *KeyLinear = *KeyLinear * DX_PI_F / 180.0f ;
 
-		// Å‰‚Ìƒpƒ‰ƒ[ƒ^‚Æ“¯‚¶‚©”äŠr‚·‚é
+		// æœ€åˆã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¨åŒã˜ã‹æ¯”è¼ƒã™ã‚‹
 		if( AllFirstValue && FirstValue != *KeyLinear )
 			AllFirstValue = false ;
 
-		// “ñŒÂˆÈã“¯‚¶ƒL[‚ª‘±‚¢‚Ä‚¢‚éê‡‚Í“‡‚·‚é
+		// äºŒå€‹ä»¥ä¸ŠåŒã˜ã‚­ãƒ¼ãŒç¶šã„ã¦ã„ã‚‹å ´åˆã¯çµ±åˆã™ã‚‹
 		if( KeySet->Num >= 2 &&
 			KeyLinear[ -2 ] == KeyLinear[ -1 ] &&
 			KeyLinear[ -1 ] == KeyLinear[  0 ] )
@@ -254,27 +254,27 @@ static int GetFbxAnimInfo(
 		}
 		else
 		{
-			// ƒL[‚Ì”‚ğ‰ÁZ‚·‚é
+			// ã‚­ãƒ¼ã®æ•°ã‚’åŠ ç®—ã™ã‚‹
 			KeySet->Num ++ ;
 			KeyLinear ++ ;
 			KeyTime ++ ;
 		}
 	}
 
-	// Å‰‚ÌƒL[‚Æ‘S•”“¯‚¶ê‡‚ÍƒL[‚Ì”‚ğ‚PŒÂ‚É‚·‚é
+	// æœ€åˆã®ã‚­ãƒ¼ã¨å…¨éƒ¨åŒã˜å ´åˆã¯ã‚­ãƒ¼ã®æ•°ã‚’ï¼‘å€‹ã«ã™ã‚‹
 	if( AllFirstValue )
 	{
 		KeySet->Num = 1 ;
 	}
 
-	// ƒL[ƒf[ƒ^‚ÌƒTƒCƒY‚ğ‰ÁZ‚·‚é
+	// ã‚­ãƒ¼ãƒ‡ãƒ¼ã‚¿ã®ã‚µã‚¤ã‚ºã‚’åŠ ç®—ã™ã‚‹
 	RModel->AnimKeyDataSize += ( sizeof( float ) + sizeof( float ) ) * KeySet->Num ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒm[ƒh‚Ì‰ğÍ( -1:ƒGƒ‰[ )
+// ãƒãƒ¼ãƒ‰ã®è§£æ( -1:ã‚¨ãƒ©ãƒ¼ )
 static int AnalyseFbxNode( MV1_MODEL_R *RModel, FBX_MODEL *Model, MV1_FRAME_R *ParentFrame, FbxNode *pFbxNode )
 {
 	FbxNode *pFbxChildNode ;
@@ -316,7 +316,7 @@ static int AnalyseFbxNode( MV1_MODEL_R *RModel, FBX_MODEL *Model, MV1_FRAME_R *P
 	int TangentNum, TangentIndexNum ;
 	char UTF16LE_Buffer[ 1024 ] ;
 
-	// FbxNode ‚ª NULL ‚¾‚Á‚½‚çƒgƒbƒvƒm[ƒh‚ğƒZƒbƒgƒAƒbƒv‚·‚é
+	// FbxNode ãŒ NULL ã ã£ãŸã‚‰ãƒˆãƒƒãƒ—ãƒãƒ¼ãƒ‰ã‚’ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã™ã‚‹
 	if( pFbxNode == NULL )
 	{
 		pFbxNode = Model->pScene->GetRootNode() ;
@@ -324,22 +324,22 @@ static int AnalyseFbxNode( MV1_MODEL_R *RModel, FBX_MODEL *Model, MV1_FRAME_R *P
 	}
 	else
 	{
-		// ƒtƒŒ[ƒ€‚ğ’Ç‰Á
+		// ãƒ•ãƒ¬ãƒ¼ãƒ ã‚’è¿½åŠ 
 		Frame = MV1RAddFrame( RModel, pFbxNode->GetName(), ParentFrame ) ;
 		if( Frame == NULL )
 		{
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\xd5\x30\xec\x30\xfc\x30\xe0\x30\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x6e\x30\xfd\x8f\xa0\x52\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : ƒtƒŒ[ƒ€ƒIƒuƒWƒFƒNƒg‚Ì’Ç‰Á‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ )) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\xd5\x30\xec\x30\xfc\x30\xe0\x30\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x6e\x30\xfd\x8f\xa0\x52\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : ãƒ•ãƒ¬ãƒ¼ãƒ ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®è¿½åŠ ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ )) ;
 			return -1 ;
 		}
 
-		// ‰EèÀ•WŒn‚©‚ç¶èÀ•WŒn‚É•ÏŠ·‚·‚é‚½‚ß‚Ìs—ñ‚Ì€”õ
+		// å³æ‰‹åº§æ¨™ç³»ã‹ã‚‰å·¦æ‰‹åº§æ¨™ç³»ã«å¤‰æ›ã™ã‚‹ãŸã‚ã®è¡Œåˆ—ã®æº–å‚™
 		CreateIdentityMatrix( &ReverseMat ) ;
 		ReverseMat.m[ 2 ][ 2 ] = -1.0f ;
 
-		// FBXƒm[ƒh‚ÌƒAƒhƒŒƒX‚ğ•Û‘¶
+		// FBXãƒãƒ¼ãƒ‰ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ä¿å­˜
 		Frame->UserData = pFbxNode ;
 
-		// À•W•ÏŠ·’l‚Ìƒpƒ‰ƒ[ƒ^‚ğæ“¾‚·‚é
+		// åº§æ¨™å¤‰æ›å€¤ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’å–å¾—ã™ã‚‹
 		{
 			FbxVector4 lTmpVector;
 
@@ -386,60 +386,60 @@ static int AnalyseFbxNode( MV1_MODEL_R *RModel, FBX_MODEL *Model, MV1_FRAME_R *P
 			}
 		}
 
-		// ƒAƒgƒŠƒrƒ…[ƒg‚ğæ“¾
+		// ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆã‚’å–å¾—
 		FbxAttr = pFbxNode->GetNodeAttribute() ;
 		if( FbxAttr )
 		{
-			// ƒƒbƒVƒ…ƒm[ƒh‚Ìê‡‚ÍƒƒbƒVƒ…‚ğæ“¾‚·‚é
+			// ãƒ¡ãƒƒã‚·ãƒ¥ãƒãƒ¼ãƒ‰ã®å ´åˆã¯ãƒ¡ãƒƒã‚·ãƒ¥ã‚’å–å¾—ã™ã‚‹
 			if( FbxAttr->GetAttributeType() == FbxNodeAttribute::eMesh )
 			{
-				// ƒƒbƒVƒ…‚ÌƒAƒhƒŒƒX‚ğæ“¾
+				// ãƒ¡ãƒƒã‚·ãƒ¥ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å–å¾—
 				_FbxMesh = ( FbxMesh * )FbxAttr ;
 
-				// ƒ|ƒŠƒSƒ“‚ª‚P‚Â‚à‚È‚¢ê‡‚Í‰½‚à‚µ‚È‚¢
+				// ãƒãƒªã‚´ãƒ³ãŒï¼‘ã¤ã‚‚ãªã„å ´åˆã¯ä½•ã‚‚ã—ãªã„
 				if( _FbxMesh->GetPolygonCount() > 0 )
 				{
-					// ƒƒbƒVƒ…‚ğ’Ç‰Á
+					// ãƒ¡ãƒƒã‚·ãƒ¥ã‚’è¿½åŠ 
 					Mesh = MV1RAddMesh( RModel, Frame ) ;
 					if( Mesh == NULL )
 					{
-						DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\xe1\x30\xc3\x30\xb7\x30\xe5\x30\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x6e\x30\xfd\x8f\xa0\x52\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : ƒƒbƒVƒ…ƒIƒuƒWƒFƒNƒg‚Ì’Ç‰Á‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ )) ;
+						DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\xe1\x30\xc3\x30\xb7\x30\xe5\x30\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x6e\x30\xfd\x8f\xa0\x52\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : ãƒ¡ãƒƒã‚·ãƒ¥ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®è¿½åŠ ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ )) ;
 						return -1 ;
 					}
 
-					// ƒŒƒCƒ„[‚Ì”‚ğæ“¾
+					// ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®æ•°ã‚’å–å¾—
 					LayerNum = _FbxMesh->GetLayerCount() ;
 
-					// –Ê‚Ìî•ñ‚ğæ“¾
+					// é¢ã®æƒ…å ±ã‚’å–å¾—
 					{
-						// –Êî•ñ‚ğŠi”[‚·‚éƒƒ‚ƒŠ—Ìˆæ‚ÌŠm•Û
+						// é¢æƒ…å ±ã‚’æ ¼ç´ã™ã‚‹ãƒ¡ãƒ¢ãƒªé ˜åŸŸã®ç¢ºä¿
 						if( MV1RSetupMeshFaceBuffer( RModel, Mesh, _FbxMesh->GetPolygonCount(), 4 ) < 0 )
 						{
-							DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x62\x97\xc5\x60\x31\x58\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : –Êî•ñ‚ğŠi”[‚·‚éƒƒ‚ƒŠ‚ÌŠm•Û‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ )) ;
+							DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x62\x97\xc5\x60\x31\x58\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : é¢æƒ…å ±ã‚’æ ¼ç´ã™ã‚‹ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ )) ;
 							return -1 ;
 						}
 
-						// –Ê‚Ìî•ñ‚ğæ“¾
+						// é¢ã®æƒ…å ±ã‚’å–å¾—
 						MeshFace = Mesh->Faces ;
 						IndexNum = 0 ;
 						for( i = 0 ; i < ( int )Mesh->FaceNum ; i ++, MeshFace ++ )
 						{
-							// ƒCƒ“ƒfƒbƒNƒX‚Ì”‚ğæ“¾
+							// ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã®æ•°ã‚’å–å¾—
 							MeshFace->IndexNum = _FbxMesh->GetPolygonSize( i ) ;
 							if( Mesh->FaceUnitMaxIndexNum < MeshFace->IndexNum )
 							{
 								if( MV1RSetupMeshFaceBuffer( RModel, Mesh, Mesh->FaceNum, MeshFace->IndexNum ) < 0 )
 								{
-									DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x62\x97\xc5\x60\x31\x58\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x6e\x30\x8d\x51\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : –Êî•ñ‚ğŠi”[‚·‚éƒƒ‚ƒŠ‚ÌÄŠm•Û‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ )) ;
+									DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x62\x97\xc5\x60\x31\x58\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x6e\x30\x8d\x51\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : é¢æƒ…å ±ã‚’æ ¼ç´ã™ã‚‹ãƒ¡ãƒ¢ãƒªã®å†ç¢ºä¿ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ )) ;
 									return -1 ;
 								}
 								MeshFace = Mesh->Faces + i ;
 							}
 
-							// ƒCƒ“ƒfƒbƒNƒX‚Ì”‚ğ‰ÁZ
+							// ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã®æ•°ã‚’åŠ ç®—
 							IndexNum += MeshFace->IndexNum ;
 
-							// ƒCƒ“ƒfƒbƒNƒX‚ğæ“¾
+							// ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’å–å¾—
 							for( j = 0 ; j < ( int )MeshFace->IndexNum ; j ++ )
 							{
 								MeshFace->VertexIndex[ j ] = _FbxMesh->GetPolygonVertex( i, j ) ;
@@ -447,20 +447,20 @@ static int AnalyseFbxNode( MV1_MODEL_R *RModel, FBX_MODEL *Model, MV1_FRAME_R *P
 						}
 					}
 
-					// ’¸“_À•W‚Ìî•ñ‚ğæ“¾
+					// é ‚ç‚¹åº§æ¨™ã®æƒ…å ±ã‚’å–å¾—
 					{
-						// À•Wî•ñ‚Ì”‚ğæ“¾
+						// åº§æ¨™æƒ…å ±ã®æ•°ã‚’å–å¾—
 						Mesh->PositionNum = _FbxMesh->GetControlPointsCount() ;
 
-						// À•Wî•ñ‚ğŠi”[‚·‚éƒƒ‚ƒŠ—Ìˆæ‚ÌŠm•Û
+						// åº§æ¨™æƒ…å ±ã‚’æ ¼ç´ã™ã‚‹ãƒ¡ãƒ¢ãƒªé ˜åŸŸã®ç¢ºä¿
 						Mesh->Positions = ( VECTOR * )ADDMEMAREA( sizeof( VECTOR ) * Mesh->PositionNum, &RModel->Mem ) ;
 						if( Mesh->Positions == NULL )
 						{
-							DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x02\x98\xb9\x70\xa7\x5e\x19\x6a\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : ’¸“_À•W‚ğŠi”[‚·‚éƒƒ‚ƒŠ‚ÌŠm•Û‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ )) ;
+							DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x02\x98\xb9\x70\xa7\x5e\x19\x6a\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : é ‚ç‚¹åº§æ¨™ã‚’æ ¼ç´ã™ã‚‹ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ )) ;
 							return -1 ;
 						}
 
-						// À•W‚Ìî•ñ‚ğæ“¾
+						// åº§æ¨™ã®æƒ…å ±ã‚’å–å¾—
 						MeshPos = Mesh->Positions ;
 						FbxVec = _FbxMesh->GetControlPoints() ;
 						for( i = 0 ; i < ( int )Mesh->PositionNum ; i ++, FbxVec ++, MeshPos ++ )
@@ -471,36 +471,36 @@ static int AnalyseFbxNode( MV1_MODEL_R *RModel, FBX_MODEL *Model, MV1_FRAME_R *P
 						}
 					}
 
-					// –@ü‚Ìî•ñ‚ğæ“¾
+					// æ³•ç·šã®æƒ…å ±ã‚’å–å¾—
 					{
 
-						// –@üƒGƒŒƒƒ“ƒg‚Ì”‚¾‚¯ŒJ‚è•Ô‚µ
+						// æ³•ç·šã‚¨ãƒ¬ãƒ¡ãƒ³ãƒˆã®æ•°ã ã‘ç¹°ã‚Šè¿”ã—
 						for( i = 0 ; i < _FbxMesh->GetElementNormalCount() ; i ++ )
 						{
 							FbxNormalElem = _FbxMesh->GetElementNormal( i ) ;
 
-							// ƒ‚[ƒh‚Ìæ“¾
+							// ãƒ¢ãƒ¼ãƒ‰ã®å–å¾—
 							FbxRefMode     = FbxNormalElem->GetReferenceMode() ;
 							FbxMappingMode = FbxNormalElem->GetMappingMode() ;
 
-							// –@üî•ñ‚Ì”‚ğƒZƒbƒg
+							// æ³•ç·šæƒ…å ±ã®æ•°ã‚’ã‚»ãƒƒãƒˆ
 							Mesh->NormalNum = IndexNum ;
 
-							// –@üî•ñ‚ğŠi”[‚·‚éƒƒ‚ƒŠ—Ìˆæ‚ÌŠm•Û
+							// æ³•ç·šæƒ…å ±ã‚’æ ¼ç´ã™ã‚‹ãƒ¡ãƒ¢ãƒªé ˜åŸŸã®ç¢ºä¿
 							Mesh->Normals = ( VECTOR * )ADDMEMAREA( sizeof( VECTOR ) * IndexNum, &RModel->Mem ) ;
 							if( Mesh->Normals == NULL )
 							{
-								DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\xd5\x6c\xda\x7d\xc5\x60\x31\x58\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : –@üî•ñ‚ğŠi”[‚·‚éƒƒ‚ƒŠ‚ÌŠm•Û‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ )) ;
+								DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\xd5\x6c\xda\x7d\xc5\x60\x31\x58\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : æ³•ç·šæƒ…å ±ã‚’æ ¼ç´ã™ã‚‹ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ )) ;
 								return -1 ;
 							}
 
-							// –@üî•ñ‚Ì”‚ğæ“¾
+							// æ³•ç·šæƒ…å ±ã®æ•°ã‚’å–å¾—
 							NormalNum = FbxNormalElem->GetDirectArray().GetCount() ;
 
-							// ƒCƒ“ƒfƒbƒNƒX‚Ì”‚ğæ“¾
+							// ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã®æ•°ã‚’å–å¾—
 							NormalIndexNum = FbxNormalElem->GetIndexArray().GetCount() ;
 
-							// –@ü‚ÌƒCƒ“ƒfƒbƒNƒX‚ğƒZƒbƒg
+							// æ³•ç·šã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’ã‚»ãƒƒãƒˆ
 							MeshFace = Mesh->Faces ;
 							k = 0 ;
 							for( j = 0 ; ( DWORD )j < Mesh->FaceNum ; j ++, MeshFace ++ )
@@ -514,7 +514,7 @@ static int AnalyseFbxNode( MV1_MODEL_R *RModel, FBX_MODEL *Model, MV1_FRAME_R *P
 							switch( FbxRefMode )
 							{
 							case FbxGeometryElement::eDirect :
-//								// ’¼Úƒ‚[ƒh‚Ìê‡‚Í‚»‚Ì‚Ü‚Ü‘ã“ü
+//								// ç›´æ¥ãƒ¢ãƒ¼ãƒ‰ã®å ´åˆã¯ãã®ã¾ã¾ä»£å…¥
 //								for( j = 0 ; ( DWORD )j < Mesh->NormalNum ; j ++ )
 //								{
 //									Mesh->Normals[ j ].x = ( float ) FbxNormalElem->GetDirectArray().GetAt( j )[ 0 ] ;
@@ -522,11 +522,11 @@ static int AnalyseFbxNode( MV1_MODEL_R *RModel, FBX_MODEL *Model, MV1_FRAME_R *P
 //									Mesh->Normals[ j ].z = ( float )-FbxNormalElem->GetDirectArray().GetAt( j )[ 2 ] ;
 //								}
 
-								// –Ê‚ÌŠe’¸“_‚É‘Î‰‚·‚é–@ü‚Ìî•ñ‚ğæ“¾
+								// é¢ã®å„é ‚ç‚¹ã«å¯¾å¿œã™ã‚‹æ³•ç·šã®æƒ…å ±ã‚’å–å¾—
 								switch( FbxMappingMode )
 								{
 								case FbxGeometryElement::eByControlPoint :
-									// –@üƒCƒ“ƒfƒbƒNƒX‚Í’¸“_ƒCƒ“ƒfƒbƒNƒX‚Æ“™‚µ‚­‚È‚é
+									// æ³•ç·šã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã¯é ‚ç‚¹ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã¨ç­‰ã—ããªã‚‹
 									MeshFace = Mesh->Faces ;
 									k = 0 ;
 									for( j = 0 ; ( DWORD )j < Mesh->FaceNum ; j ++, MeshFace ++ )
@@ -545,7 +545,7 @@ static int AnalyseFbxNode( MV1_MODEL_R *RModel, FBX_MODEL *Model, MV1_FRAME_R *P
 									break ;
 
 								case FbxGeometryElement::eByPolygonVertex :
-									// –@üƒCƒ“ƒfƒbƒNƒX‚Í•ÊŒÂ‚Å‘¶İ‚·‚é
+									// æ³•ç·šã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã¯åˆ¥å€‹ã§å­˜åœ¨ã™ã‚‹
 									MeshFace = Mesh->Faces ;
 									k = 0 ;
 									for( j = 0 ; ( DWORD )j < Mesh->FaceNum ; j ++, MeshFace ++ )
@@ -563,21 +563,21 @@ static int AnalyseFbxNode( MV1_MODEL_R *RModel, FBX_MODEL *Model, MV1_FRAME_R *P
 									break ;
 
 								default :
-									DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x5e\x97\xfe\x5b\xdc\x5f\x6e\x30\xd5\x6c\xda\x7d\xde\x30\xc3\x30\xd4\x30\xf3\x30\xb0\x30\xe2\x30\xfc\x30\xc9\x30\x4c\x30\x7f\x4f\x28\x75\x55\x30\x8c\x30\x66\x30\x44\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : ”ñ‘Î‰‚Ì–@üƒ}ƒbƒsƒ“ƒOƒ‚[ƒh‚ªg—p‚³‚ê‚Ä‚¢‚Ü‚µ‚½\n" @*/ )) ;
+									DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x5e\x97\xfe\x5b\xdc\x5f\x6e\x30\xd5\x6c\xda\x7d\xde\x30\xc3\x30\xd4\x30\xf3\x30\xb0\x30\xe2\x30\xfc\x30\xc9\x30\x4c\x30\x7f\x4f\x28\x75\x55\x30\x8c\x30\x66\x30\x44\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : éå¯¾å¿œã®æ³•ç·šãƒãƒƒãƒ”ãƒ³ã‚°ãƒ¢ãƒ¼ãƒ‰ãŒä½¿ç”¨ã•ã‚Œã¦ã„ã¾ã—ãŸ\n" @*/ )) ;
 									return -1 ;
 								}
 								break ;
 
 							case FbxGeometryElement::eIndexToDirect :
-								// ƒCƒ“ƒfƒbƒNƒXƒ‚[ƒh‚Ìê‡‚Í–@üƒe[ƒuƒ‹‚ğì¬‚·‚é
+								// ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒ¢ãƒ¼ãƒ‰ã®å ´åˆã¯æ³•ç·šãƒ†ãƒ¼ãƒ–ãƒ«ã‚’ä½œæˆã™ã‚‹
 								WorkNormals = ( VECTOR * )ADDMEMAREA( sizeof( VECTOR ) * NormalIndexNum, &RModel->Mem ) ;
 								if( WorkNormals == NULL )
 								{
-									DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x5c\x4f\x6d\x69\x28\x75\x6e\x30\xd5\x6c\xda\x7d\xc5\x60\x31\x58\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : ì‹Æ—p‚Ì–@üî•ñ‚ğŠi”[‚·‚éƒƒ‚ƒŠ‚ÌŠm•Û‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ )) ;
+									DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x5c\x4f\x6d\x69\x28\x75\x6e\x30\xd5\x6c\xda\x7d\xc5\x60\x31\x58\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : ä½œæ¥­ç”¨ã®æ³•ç·šæƒ…å ±ã‚’æ ¼ç´ã™ã‚‹ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ )) ;
 									return -1 ;
 								}
 
-								// –@üƒe[ƒuƒ‹‚Ìì¬
+								// æ³•ç·šãƒ†ãƒ¼ãƒ–ãƒ«ã®ä½œæˆ
 								for( j = 0 ; j < NormalIndexNum ; j ++ )
 								{
 									Index = FbxNormalElem->GetIndexArray().GetAt( j ) ;
@@ -586,11 +586,11 @@ static int AnalyseFbxNode( MV1_MODEL_R *RModel, FBX_MODEL *Model, MV1_FRAME_R *P
 									WorkNormals[ j ].z = ( float )-FbxNormalElem->GetDirectArray().GetAt( Index )[ 2 ] ;
 								}
 
-								// –Ê‚ÌŠe’¸“_‚É‘Î‰‚·‚é–@ü‚Ìî•ñ‚ğæ“¾
+								// é¢ã®å„é ‚ç‚¹ã«å¯¾å¿œã™ã‚‹æ³•ç·šã®æƒ…å ±ã‚’å–å¾—
 								switch( FbxMappingMode )
 								{
 								case FbxGeometryElement::eByControlPoint :
-									// –@üƒCƒ“ƒfƒbƒNƒX‚Í’¸“_ƒCƒ“ƒfƒbƒNƒX‚Æ“™‚µ‚­‚È‚é
+									// æ³•ç·šã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã¯é ‚ç‚¹ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã¨ç­‰ã—ããªã‚‹
 									MeshFace = Mesh->Faces ;
 									k = 0 ;
 									for( j = 0 ; ( DWORD )j < Mesh->FaceNum ; j ++, MeshFace ++ )
@@ -609,7 +609,7 @@ static int AnalyseFbxNode( MV1_MODEL_R *RModel, FBX_MODEL *Model, MV1_FRAME_R *P
 									break ;
 
 								case FbxGeometryElement::eByPolygonVertex :
-									// –@üƒCƒ“ƒfƒbƒNƒX‚Í•ÊŒÂ‚Å‘¶İ‚·‚é
+									// æ³•ç·šã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã¯åˆ¥å€‹ã§å­˜åœ¨ã™ã‚‹
 									MeshFace = Mesh->Faces ;
 									k = 0 ;
 									for( j = 0 ; ( DWORD )j < Mesh->FaceNum ; j ++, MeshFace ++ )
@@ -627,21 +627,21 @@ static int AnalyseFbxNode( MV1_MODEL_R *RModel, FBX_MODEL *Model, MV1_FRAME_R *P
 									break ;
 
 								default :
-									DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x5e\x97\xfe\x5b\xdc\x5f\x6e\x30\xd5\x6c\xda\x7d\xde\x30\xc3\x30\xd4\x30\xf3\x30\xb0\x30\xe2\x30\xfc\x30\xc9\x30\x4c\x30\x7f\x4f\x28\x75\x55\x30\x8c\x30\x66\x30\x44\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : ”ñ‘Î‰‚Ì–@üƒ}ƒbƒsƒ“ƒOƒ‚[ƒh‚ªg—p‚³‚ê‚Ä‚¢‚Ü‚µ‚½\n" @*/ )) ;
+									DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x5e\x97\xfe\x5b\xdc\x5f\x6e\x30\xd5\x6c\xda\x7d\xde\x30\xc3\x30\xd4\x30\xf3\x30\xb0\x30\xe2\x30\xfc\x30\xc9\x30\x4c\x30\x7f\x4f\x28\x75\x55\x30\x8c\x30\x66\x30\x44\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : éå¯¾å¿œã®æ³•ç·šãƒãƒƒãƒ”ãƒ³ã‚°ãƒ¢ãƒ¼ãƒ‰ãŒä½¿ç”¨ã•ã‚Œã¦ã„ã¾ã—ãŸ\n" @*/ )) ;
 									return -1 ;
 								}
 								break ;
 
 							default :
-								DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x5e\x97\xfe\x5b\xdc\x5f\x6e\x30\xd5\x6c\xda\x7d\xea\x30\xd5\x30\xa1\x30\xec\x30\xf3\x30\xb9\x30\xe2\x30\xfc\x30\xc9\x30\x4c\x30\x7f\x4f\x28\x75\x55\x30\x8c\x30\x66\x30\x44\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : ”ñ‘Î‰‚Ì–@üƒŠƒtƒ@ƒŒƒ“ƒXƒ‚[ƒh‚ªg—p‚³‚ê‚Ä‚¢‚Ü‚µ‚½\n" @*/ )) ;
+								DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x5e\x97\xfe\x5b\xdc\x5f\x6e\x30\xd5\x6c\xda\x7d\xea\x30\xd5\x30\xa1\x30\xec\x30\xf3\x30\xb9\x30\xe2\x30\xfc\x30\xc9\x30\x4c\x30\x7f\x4f\x28\x75\x55\x30\x8c\x30\x66\x30\x44\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : éå¯¾å¿œã®æ³•ç·šãƒªãƒ•ã‚¡ãƒ¬ãƒ³ã‚¹ãƒ¢ãƒ¼ãƒ‰ãŒä½¿ç”¨ã•ã‚Œã¦ã„ã¾ã—ãŸ\n" @*/ )) ;
 								return -1 ;
 							}
 
-//							// –Ê‚ÌŠe’¸“_‚É‘Î‰‚·‚é–@ü‚Ìî•ñ‚ğæ“¾
+//							// é¢ã®å„é ‚ç‚¹ã«å¯¾å¿œã™ã‚‹æ³•ç·šã®æƒ…å ±ã‚’å–å¾—
 //							switch( FbxMappingMode )
 //							{
 //							case FbxGeometryElement::eByControlPoint :
-//								// –@üƒCƒ“ƒfƒbƒNƒX‚Í’¸“_ƒCƒ“ƒfƒbƒNƒX‚Æ“™‚µ‚­‚È‚é
+//								// æ³•ç·šã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã¯é ‚ç‚¹ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã¨ç­‰ã—ããªã‚‹
 //								MeshFace = Mesh->Faces ;
 //								for( j = 0 ; ( DWORD )j < Mesh->FaceNum ; j ++, MeshFace ++ )
 //								{
@@ -653,7 +653,7 @@ static int AnalyseFbxNode( MV1_MODEL_R *RModel, FBX_MODEL *Model, MV1_FRAME_R *P
 //								break ;
 //
 //							case FbxGeometryElement::eByPolygonVertex :
-//								// –@üƒCƒ“ƒfƒbƒNƒX‚Í•ÊŒÂ‚Å‘¶İ‚·‚é
+//								// æ³•ç·šã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã¯åˆ¥å€‹ã§å­˜åœ¨ã™ã‚‹
 //								MeshFace = Mesh->Faces ;
 //								k = 0 ;
 //								for( j = 0 ; ( DWORD )j < Mesh->FaceNum ; j ++, MeshFace ++ )
@@ -663,7 +663,7 @@ static int AnalyseFbxNode( MV1_MODEL_R *RModel, FBX_MODEL *Model, MV1_FRAME_R *P
 //										MeshFace->NormalIndex[ l ] = k ;
 //										k ++ ;
 //
-//										// –@ò‚Ì”‚ª‘«‚è‚È‚¢ƒoƒOƒf[ƒ^‚Ì‘Î‰
+//										// æ³•æ³‰ã®æ•°ãŒè¶³ã‚Šãªã„ãƒã‚°ãƒ‡ãƒ¼ã‚¿ã®å¯¾å¿œ
 //										if( k == Mesh->NormalNum )
 //										{
 //											k = 0 ;
@@ -673,38 +673,38 @@ static int AnalyseFbxNode( MV1_MODEL_R *RModel, FBX_MODEL *Model, MV1_FRAME_R *P
 //								break ;
 //
 //							default :
-//								DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x5e\x97\xfe\x5b\xdc\x5f\x6e\x30\xd5\x6c\xda\x7d\xde\x30\xc3\x30\xd4\x30\xf3\x30\xb0\x30\xe2\x30\xfc\x30\xc9\x30\x4c\x30\x7f\x4f\x28\x75\x55\x30\x8c\x30\x66\x30\x44\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : ”ñ‘Î‰‚Ì–@üƒ}ƒbƒsƒ“ƒOƒ‚[ƒh‚ªg—p‚³‚ê‚Ä‚¢‚Ü‚µ‚½\n" @*/ )) ;
+//								DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x5e\x97\xfe\x5b\xdc\x5f\x6e\x30\xd5\x6c\xda\x7d\xde\x30\xc3\x30\xd4\x30\xf3\x30\xb0\x30\xe2\x30\xfc\x30\xc9\x30\x4c\x30\x7f\x4f\x28\x75\x55\x30\x8c\x30\x66\x30\x44\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : éå¯¾å¿œã®æ³•ç·šãƒãƒƒãƒ”ãƒ³ã‚°ãƒ¢ãƒ¼ãƒ‰ãŒä½¿ç”¨ã•ã‚Œã¦ã„ã¾ã—ãŸ\n" @*/ )) ;
 //								return -1 ;
 //							}
 						}
 
-						// ]–@üƒGƒŒƒƒ“ƒg‚Ì”‚¾‚¯ŒJ‚è•Ô‚µ
+						// å¾“æ³•ç·šã‚¨ãƒ¬ãƒ¡ãƒ³ãƒˆã®æ•°ã ã‘ç¹°ã‚Šè¿”ã—
 						for( i = 0 ; i < _FbxMesh->GetElementBinormalCount() ; i ++ )
 						{
 							FbxBinormalElem = _FbxMesh->GetElementBinormal( i ) ;
 
-							// ƒ‚[ƒh‚Ìæ“¾
+							// ãƒ¢ãƒ¼ãƒ‰ã®å–å¾—
 							FbxRefMode     = FbxBinormalElem->GetReferenceMode() ;
 							FbxMappingMode = FbxBinormalElem->GetMappingMode() ;
 
-							// ]–@üî•ñ‚ğŠi”[‚·‚éƒƒ‚ƒŠ—Ìˆæ‚ÌŠm•Û
+							// å¾“æ³•ç·šæƒ…å ±ã‚’æ ¼ç´ã™ã‚‹ãƒ¡ãƒ¢ãƒªé ˜åŸŸã®ç¢ºä¿
 							Mesh->Binormals = ( VECTOR * )ADDMEMAREA( sizeof( VECTOR ) * IndexNum, &RModel->Mem ) ;
 							if( Mesh->Binormals == NULL )
 							{
-								DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x93\x5f\xd5\x6c\xda\x7d\xc5\x60\x31\x58\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : ]–@üî•ñ‚ğŠi”[‚·‚éƒƒ‚ƒŠ‚ÌŠm•Û‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ )) ;
+								DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x93\x5f\xd5\x6c\xda\x7d\xc5\x60\x31\x58\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : å¾“æ³•ç·šæƒ…å ±ã‚’æ ¼ç´ã™ã‚‹ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ )) ;
 								return -1 ;
 							}
 
-							// ]–@üî•ñ‚Ì”‚ğæ“¾
+							// å¾“æ³•ç·šæƒ…å ±ã®æ•°ã‚’å–å¾—
 							BinormalNum = FbxBinormalElem->GetDirectArray().GetCount() ;
 
-							// ]–@üƒCƒ“ƒfƒbƒNƒX‚Ì”‚ğæ“¾
+							// å¾“æ³•ç·šã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã®æ•°ã‚’å–å¾—
 							BinormalIndexNum = FbxBinormalElem->GetIndexArray().GetCount() ;
 
 							switch( FbxRefMode )
 							{
 							case FbxGeometryElement::eDirect :
-//								// ’¼Úƒ‚[ƒh‚Ìê‡‚Í‚»‚Ì‚Ü‚Ü‘ã“ü
+//								// ç›´æ¥ãƒ¢ãƒ¼ãƒ‰ã®å ´åˆã¯ãã®ã¾ã¾ä»£å…¥
 //								for( j = 0 ; ( DWORD )j < Mesh->NormalNum ; j ++ )
 //								{
 //									Mesh->Binormals[ j ].x = ( float ) FbxBinormalElem->GetDirectArray().GetAt( j )[ 0 ] ;
@@ -712,11 +712,11 @@ static int AnalyseFbxNode( MV1_MODEL_R *RModel, FBX_MODEL *Model, MV1_FRAME_R *P
 //									Mesh->Binormals[ j ].z = ( float )-FbxBinormalElem->GetDirectArray().GetAt( j )[ 2 ] ;
 //								}
 
-								// –Ê‚ÌŠe’¸“_‚É‘Î‰‚·‚é]–@ü‚Ìî•ñ‚ğæ“¾
+								// é¢ã®å„é ‚ç‚¹ã«å¯¾å¿œã™ã‚‹å¾“æ³•ç·šã®æƒ…å ±ã‚’å–å¾—
 								switch( FbxMappingMode )
 								{
 								case FbxGeometryElement::eByControlPoint :
-									// ]–@üƒCƒ“ƒfƒbƒNƒX‚Í’¸“_ƒCƒ“ƒfƒbƒNƒX‚Æ“™‚µ‚­‚È‚é
+									// å¾“æ³•ç·šã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã¯é ‚ç‚¹ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã¨ç­‰ã—ããªã‚‹
 									MeshFace = Mesh->Faces ;
 									k = 0 ;
 									for( j = 0 ; ( DWORD )j < Mesh->FaceNum ; j ++, MeshFace ++ )
@@ -735,7 +735,7 @@ static int AnalyseFbxNode( MV1_MODEL_R *RModel, FBX_MODEL *Model, MV1_FRAME_R *P
 									break ;
 
 								case FbxGeometryElement::eByPolygonVertex :
-									// ]–@üƒCƒ“ƒfƒbƒNƒX‚Í•ÊŒÂ‚Å‘¶İ‚·‚é
+									// å¾“æ³•ç·šã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã¯åˆ¥å€‹ã§å­˜åœ¨ã™ã‚‹
 									MeshFace = Mesh->Faces ;
 									k = 0 ;
 									for( j = 0 ; ( DWORD )j < Mesh->FaceNum ; j ++, MeshFace ++ )
@@ -753,13 +753,13 @@ static int AnalyseFbxNode( MV1_MODEL_R *RModel, FBX_MODEL *Model, MV1_FRAME_R *P
 									break ;
 
 								default :
-									DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x5e\x97\xfe\x5b\xdc\x5f\x6e\x30\x93\x5f\xd5\x6c\xda\x7d\xde\x30\xc3\x30\xd4\x30\xf3\x30\xb0\x30\xe2\x30\xfc\x30\xc9\x30\x4c\x30\x7f\x4f\x28\x75\x55\x30\x8c\x30\x66\x30\x44\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : ”ñ‘Î‰‚Ì]–@üƒ}ƒbƒsƒ“ƒOƒ‚[ƒh‚ªg—p‚³‚ê‚Ä‚¢‚Ü‚µ‚½\n" @*/ )) ;
+									DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x5e\x97\xfe\x5b\xdc\x5f\x6e\x30\x93\x5f\xd5\x6c\xda\x7d\xde\x30\xc3\x30\xd4\x30\xf3\x30\xb0\x30\xe2\x30\xfc\x30\xc9\x30\x4c\x30\x7f\x4f\x28\x75\x55\x30\x8c\x30\x66\x30\x44\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : éå¯¾å¿œã®å¾“æ³•ç·šãƒãƒƒãƒ”ãƒ³ã‚°ãƒ¢ãƒ¼ãƒ‰ãŒä½¿ç”¨ã•ã‚Œã¦ã„ã¾ã—ãŸ\n" @*/ )) ;
 									return -1 ;
 								}
 								break ;
 
 							case FbxGeometryElement::eIndexToDirect :
-//								// ƒCƒ“ƒfƒbƒNƒXƒ‚[ƒh‚Ìê‡‚ÍŠÔÚQÆ‘ã“ü
+//								// ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒ¢ãƒ¼ãƒ‰ã®å ´åˆã¯é–“æ¥å‚ç…§ä»£å…¥
 //								for( j = 0 ; ( DWORD )j < Mesh->NormalNum ; j ++ )
 //								{
 //									Index = FbxBinormalElem->GetIndexArray().GetAt( j ) ;
@@ -768,15 +768,15 @@ static int AnalyseFbxNode( MV1_MODEL_R *RModel, FBX_MODEL *Model, MV1_FRAME_R *P
 //									Mesh->Binormals[ j ].z = ( float )-FbxBinormalElem->GetDirectArray().GetAt( Index )[ 2 ] ;
 //								}
 
-								// ƒCƒ“ƒfƒbƒNƒXƒ‚[ƒh‚Ìê‡‚Í]–@üƒe[ƒuƒ‹‚ğì¬‚·‚é
+								// ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒ¢ãƒ¼ãƒ‰ã®å ´åˆã¯å¾“æ³•ç·šãƒ†ãƒ¼ãƒ–ãƒ«ã‚’ä½œæˆã™ã‚‹
 								WorkBinormals = ( VECTOR * )ADDMEMAREA( sizeof( VECTOR ) * BinormalIndexNum, &RModel->Mem ) ;
 								if( WorkBinormals == NULL )
 								{
-									DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x5c\x4f\x6d\x69\x28\x75\x6e\x30\x93\x5f\xd5\x6c\xda\x7d\xc5\x60\x31\x58\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : ì‹Æ—p‚Ì]–@üî•ñ‚ğŠi”[‚·‚éƒƒ‚ƒŠ‚ÌŠm•Û‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ )) ;
+									DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x5c\x4f\x6d\x69\x28\x75\x6e\x30\x93\x5f\xd5\x6c\xda\x7d\xc5\x60\x31\x58\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : ä½œæ¥­ç”¨ã®å¾“æ³•ç·šæƒ…å ±ã‚’æ ¼ç´ã™ã‚‹ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ )) ;
 									return -1 ;
 								}
 
-								// ]–@üƒe[ƒuƒ‹‚Ìì¬
+								// å¾“æ³•ç·šãƒ†ãƒ¼ãƒ–ãƒ«ã®ä½œæˆ
 								for( j = 0 ; j < BinormalIndexNum ; j ++ )
 								{
 									Index = FbxBinormalElem->GetIndexArray().GetAt( j ) ;
@@ -785,11 +785,11 @@ static int AnalyseFbxNode( MV1_MODEL_R *RModel, FBX_MODEL *Model, MV1_FRAME_R *P
 									WorkBinormals[ j ].z = ( float )-FbxBinormalElem->GetDirectArray().GetAt( Index )[ 2 ] ;
 								}
 
-								// –Ê‚ÌŠe’¸“_‚É‘Î‰‚·‚é–@ü‚Ìî•ñ‚ğæ“¾
+								// é¢ã®å„é ‚ç‚¹ã«å¯¾å¿œã™ã‚‹æ³•ç·šã®æƒ…å ±ã‚’å–å¾—
 								switch( FbxMappingMode )
 								{
 								case FbxGeometryElement::eByControlPoint :
-									// ]–@üƒCƒ“ƒfƒbƒNƒX‚Í’¸“_ƒCƒ“ƒfƒbƒNƒX‚Æ“™‚µ‚­‚È‚é
+									// å¾“æ³•ç·šã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã¯é ‚ç‚¹ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã¨ç­‰ã—ããªã‚‹
 									MeshFace = Mesh->Faces ;
 									k = 0 ;
 									for( j = 0 ; ( DWORD )j < Mesh->FaceNum ; j ++, MeshFace ++ )
@@ -808,7 +808,7 @@ static int AnalyseFbxNode( MV1_MODEL_R *RModel, FBX_MODEL *Model, MV1_FRAME_R *P
 									break ;
 
 								case FbxGeometryElement::eByPolygonVertex :
-									// ]–@üƒCƒ“ƒfƒbƒNƒX‚Í•ÊŒÂ‚Å‘¶İ‚·‚é
+									// å¾“æ³•ç·šã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã¯åˆ¥å€‹ã§å­˜åœ¨ã™ã‚‹
 									MeshFace = Mesh->Faces ;
 									k = 0 ;
 									for( j = 0 ; ( DWORD )j < Mesh->FaceNum ; j ++, MeshFace ++ )
@@ -826,44 +826,44 @@ static int AnalyseFbxNode( MV1_MODEL_R *RModel, FBX_MODEL *Model, MV1_FRAME_R *P
 									break ;
 
 								default :
-									DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x5e\x97\xfe\x5b\xdc\x5f\x6e\x30\x93\x5f\xd5\x6c\xda\x7d\xde\x30\xc3\x30\xd4\x30\xf3\x30\xb0\x30\xe2\x30\xfc\x30\xc9\x30\x4c\x30\x7f\x4f\x28\x75\x55\x30\x8c\x30\x66\x30\x44\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : ”ñ‘Î‰‚Ì]–@üƒ}ƒbƒsƒ“ƒOƒ‚[ƒh‚ªg—p‚³‚ê‚Ä‚¢‚Ü‚µ‚½\n" @*/ )) ;
+									DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x5e\x97\xfe\x5b\xdc\x5f\x6e\x30\x93\x5f\xd5\x6c\xda\x7d\xde\x30\xc3\x30\xd4\x30\xf3\x30\xb0\x30\xe2\x30\xfc\x30\xc9\x30\x4c\x30\x7f\x4f\x28\x75\x55\x30\x8c\x30\x66\x30\x44\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : éå¯¾å¿œã®å¾“æ³•ç·šãƒãƒƒãƒ”ãƒ³ã‚°ãƒ¢ãƒ¼ãƒ‰ãŒä½¿ç”¨ã•ã‚Œã¦ã„ã¾ã—ãŸ\n" @*/ )) ;
 									return -1 ;
 								}
 								break ;
 
 							default :
-								DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x5e\x97\xfe\x5b\xdc\x5f\x6e\x30\x93\x5f\xd5\x6c\xda\x7d\xea\x30\xd5\x30\xa1\x30\xec\x30\xf3\x30\xb9\x30\xe2\x30\xfc\x30\xc9\x30\x4c\x30\x7f\x4f\x28\x75\x55\x30\x8c\x30\x66\x30\x44\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : ”ñ‘Î‰‚Ì]–@üƒŠƒtƒ@ƒŒƒ“ƒXƒ‚[ƒh‚ªg—p‚³‚ê‚Ä‚¢‚Ü‚µ‚½\n" @*/ )) ;
+								DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x5e\x97\xfe\x5b\xdc\x5f\x6e\x30\x93\x5f\xd5\x6c\xda\x7d\xea\x30\xd5\x30\xa1\x30\xec\x30\xf3\x30\xb9\x30\xe2\x30\xfc\x30\xc9\x30\x4c\x30\x7f\x4f\x28\x75\x55\x30\x8c\x30\x66\x30\x44\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : éå¯¾å¿œã®å¾“æ³•ç·šãƒªãƒ•ã‚¡ãƒ¬ãƒ³ã‚¹ãƒ¢ãƒ¼ãƒ‰ãŒä½¿ç”¨ã•ã‚Œã¦ã„ã¾ã—ãŸ\n" @*/ )) ;
 								return -1 ;
 							}
 						}
 
-						// ÚüƒGƒŒƒƒ“ƒg‚Ì”‚¾‚¯ŒJ‚è•Ô‚µ
+						// æ¥ç·šã‚¨ãƒ¬ãƒ¡ãƒ³ãƒˆã®æ•°ã ã‘ç¹°ã‚Šè¿”ã—
 						for( i = 0 ; i < _FbxMesh->GetElementTangentCount() ; i ++ )
 						{
 							FbxTangentElem = _FbxMesh->GetElementTangent( i ) ;
 
-							// ƒ‚[ƒh‚Ìæ“¾
+							// ãƒ¢ãƒ¼ãƒ‰ã®å–å¾—
 							FbxRefMode     = FbxTangentElem->GetReferenceMode() ;
 							FbxMappingMode = FbxTangentElem->GetMappingMode() ;
 
-							// Úüî•ñ‚ğŠi”[‚·‚éƒƒ‚ƒŠ—Ìˆæ‚ÌŠm•Û
+							// æ¥ç·šæƒ…å ±ã‚’æ ¼ç´ã™ã‚‹ãƒ¡ãƒ¢ãƒªé ˜åŸŸã®ç¢ºä¿
 							Mesh->Tangents = ( VECTOR * )ADDMEMAREA( sizeof( VECTOR ) * IndexNum, &RModel->Mem ) ;
 							if( Mesh->Tangents == NULL )
 							{
-								DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\xa5\x63\xda\x7d\xc5\x60\x31\x58\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : Úüî•ñ‚ğŠi”[‚·‚éƒƒ‚ƒŠ‚ÌŠm•Û‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ )) ;
+								DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\xa5\x63\xda\x7d\xc5\x60\x31\x58\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : æ¥ç·šæƒ…å ±ã‚’æ ¼ç´ã™ã‚‹ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ )) ;
 								return -1 ;
 							}
 
-							// Úüî•ñ‚Ì”‚ğæ“¾
+							// æ¥ç·šæƒ…å ±ã®æ•°ã‚’å–å¾—
 							TangentNum = FbxTangentElem->GetDirectArray().GetCount() ;
 
-							// ÚüƒCƒ“ƒfƒbƒNƒX‚Ì”‚ğæ“¾
+							// æ¥ç·šã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã®æ•°ã‚’å–å¾—
 							TangentIndexNum = FbxTangentElem->GetIndexArray().GetCount() ;
 
 							switch( FbxRefMode )
 							{
 							case FbxGeometryElement::eDirect :
-//								// ’¼Úƒ‚[ƒh‚Ìê‡‚Í‚»‚Ì‚Ü‚Ü‘ã“ü
+//								// ç›´æ¥ãƒ¢ãƒ¼ãƒ‰ã®å ´åˆã¯ãã®ã¾ã¾ä»£å…¥
 //								for( j = 0 ; ( DWORD )j < Mesh->NormalNum ; j ++ )
 //								{
 //									Mesh->Tangents[ j ].x = ( float ) FbxTangentElem->GetDirectArray().GetAt( j )[ 0 ] ;
@@ -871,11 +871,11 @@ static int AnalyseFbxNode( MV1_MODEL_R *RModel, FBX_MODEL *Model, MV1_FRAME_R *P
 //									Mesh->Tangents[ j ].z = ( float )-FbxTangentElem->GetDirectArray().GetAt( j )[ 2 ] ;
 //								}
 
-								// –Ê‚ÌŠe’¸“_‚É‘Î‰‚·‚éÚü‚Ìî•ñ‚ğæ“¾
+								// é¢ã®å„é ‚ç‚¹ã«å¯¾å¿œã™ã‚‹æ¥ç·šã®æƒ…å ±ã‚’å–å¾—
 								switch( FbxMappingMode )
 								{
 								case FbxGeometryElement::eByControlPoint :
-									// ÚüƒCƒ“ƒfƒbƒNƒX‚Í’¸“_ƒCƒ“ƒfƒbƒNƒX‚Æ“™‚µ‚­‚È‚é
+									// æ¥ç·šã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã¯é ‚ç‚¹ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã¨ç­‰ã—ããªã‚‹
 									MeshFace = Mesh->Faces ;
 									k = 0 ;
 									for( j = 0 ; ( DWORD )j < Mesh->FaceNum ; j ++, MeshFace ++ )
@@ -894,7 +894,7 @@ static int AnalyseFbxNode( MV1_MODEL_R *RModel, FBX_MODEL *Model, MV1_FRAME_R *P
 									break ;
 
 								case FbxGeometryElement::eByPolygonVertex :
-									// ÚüƒCƒ“ƒfƒbƒNƒX‚Í•ÊŒÂ‚Å‘¶İ‚·‚é
+									// æ¥ç·šã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã¯åˆ¥å€‹ã§å­˜åœ¨ã™ã‚‹
 									MeshFace = Mesh->Faces ;
 									k = 0 ;
 									for( j = 0 ; ( DWORD )j < Mesh->FaceNum ; j ++, MeshFace ++ )
@@ -912,13 +912,13 @@ static int AnalyseFbxNode( MV1_MODEL_R *RModel, FBX_MODEL *Model, MV1_FRAME_R *P
 									break ;
 
 								default :
-									DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x5e\x97\xfe\x5b\xdc\x5f\x6e\x30\xa5\x63\xda\x7d\xde\x30\xc3\x30\xd4\x30\xf3\x30\xb0\x30\xe2\x30\xfc\x30\xc9\x30\x4c\x30\x7f\x4f\x28\x75\x55\x30\x8c\x30\x66\x30\x44\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : ”ñ‘Î‰‚ÌÚüƒ}ƒbƒsƒ“ƒOƒ‚[ƒh‚ªg—p‚³‚ê‚Ä‚¢‚Ü‚µ‚½\n" @*/ )) ;
+									DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x5e\x97\xfe\x5b\xdc\x5f\x6e\x30\xa5\x63\xda\x7d\xde\x30\xc3\x30\xd4\x30\xf3\x30\xb0\x30\xe2\x30\xfc\x30\xc9\x30\x4c\x30\x7f\x4f\x28\x75\x55\x30\x8c\x30\x66\x30\x44\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : éå¯¾å¿œã®æ¥ç·šãƒãƒƒãƒ”ãƒ³ã‚°ãƒ¢ãƒ¼ãƒ‰ãŒä½¿ç”¨ã•ã‚Œã¦ã„ã¾ã—ãŸ\n" @*/ )) ;
 									return -1 ;
 								}
 								break ;
 
 							case FbxGeometryElement::eIndexToDirect :
-//								// ƒCƒ“ƒfƒbƒNƒXƒ‚[ƒh‚Ìê‡‚ÍŠÔÚQÆ‘ã“ü
+//								// ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒ¢ãƒ¼ãƒ‰ã®å ´åˆã¯é–“æ¥å‚ç…§ä»£å…¥
 //								for( j = 0 ; ( DWORD )j < Mesh->NormalNum ; j ++ )
 //								{
 //									Index = FbxTangentElem->GetIndexArray().GetAt( j ) ;
@@ -927,15 +927,15 @@ static int AnalyseFbxNode( MV1_MODEL_R *RModel, FBX_MODEL *Model, MV1_FRAME_R *P
 //									Mesh->Tangents[ j ].z = ( float )-FbxTangentElem->GetDirectArray().GetAt( Index )[ 2 ] ;
 //								}
 
-								// ƒCƒ“ƒfƒbƒNƒXƒ‚[ƒh‚Ìê‡‚ÍÚüƒe[ƒuƒ‹‚ğì¬‚·‚é
+								// ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒ¢ãƒ¼ãƒ‰ã®å ´åˆã¯æ¥ç·šãƒ†ãƒ¼ãƒ–ãƒ«ã‚’ä½œæˆã™ã‚‹
 								WorkTangents = ( VECTOR * )ADDMEMAREA( sizeof( VECTOR ) * TangentIndexNum, &RModel->Mem ) ;
 								if( WorkTangents == NULL )
 								{
-									DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x5c\x4f\x6d\x69\x28\x75\x6e\x30\xa5\x63\xda\x7d\xc5\x60\x31\x58\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : ì‹Æ—p‚ÌÚüî•ñ‚ğŠi”[‚·‚éƒƒ‚ƒŠ‚ÌŠm•Û‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ )) ;
+									DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x5c\x4f\x6d\x69\x28\x75\x6e\x30\xa5\x63\xda\x7d\xc5\x60\x31\x58\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : ä½œæ¥­ç”¨ã®æ¥ç·šæƒ…å ±ã‚’æ ¼ç´ã™ã‚‹ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ )) ;
 									return -1 ;
 								}
 
-								// Úüƒe[ƒuƒ‹‚Ìì¬
+								// æ¥ç·šãƒ†ãƒ¼ãƒ–ãƒ«ã®ä½œæˆ
 								for( j = 0 ; j < TangentIndexNum ; j ++ )
 								{
 									Index = FbxTangentElem->GetIndexArray().GetAt( j ) ;
@@ -944,11 +944,11 @@ static int AnalyseFbxNode( MV1_MODEL_R *RModel, FBX_MODEL *Model, MV1_FRAME_R *P
 									WorkTangents[ j ].z = ( float )-FbxTangentElem->GetDirectArray().GetAt( Index )[ 2 ] ;
 								}
 
-								// –Ê‚ÌŠe’¸“_‚É‘Î‰‚·‚é–@ü‚Ìî•ñ‚ğæ“¾
+								// é¢ã®å„é ‚ç‚¹ã«å¯¾å¿œã™ã‚‹æ³•ç·šã®æƒ…å ±ã‚’å–å¾—
 								switch( FbxMappingMode )
 								{
 								case FbxGeometryElement::eByControlPoint :
-									// ÚüƒCƒ“ƒfƒbƒNƒX‚Í’¸“_ƒCƒ“ƒfƒbƒNƒX‚Æ“™‚µ‚­‚È‚é
+									// æ¥ç·šã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã¯é ‚ç‚¹ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã¨ç­‰ã—ããªã‚‹
 									MeshFace = Mesh->Faces ;
 									k = 0 ;
 									for( j = 0 ; ( DWORD )j < Mesh->FaceNum ; j ++, MeshFace ++ )
@@ -967,7 +967,7 @@ static int AnalyseFbxNode( MV1_MODEL_R *RModel, FBX_MODEL *Model, MV1_FRAME_R *P
 									break ;
 
 								case FbxGeometryElement::eByPolygonVertex :
-									// ÚüƒCƒ“ƒfƒbƒNƒX‚Í•ÊŒÂ‚Å‘¶İ‚·‚é
+									// æ¥ç·šã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã¯åˆ¥å€‹ã§å­˜åœ¨ã™ã‚‹
 									MeshFace = Mesh->Faces ;
 									k = 0 ;
 									for( j = 0 ; ( DWORD )j < Mesh->FaceNum ; j ++, MeshFace ++ )
@@ -985,45 +985,45 @@ static int AnalyseFbxNode( MV1_MODEL_R *RModel, FBX_MODEL *Model, MV1_FRAME_R *P
 									break ;
 
 								default :
-									DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x5e\x97\xfe\x5b\xdc\x5f\x6e\x30\xa5\x63\xda\x7d\xde\x30\xc3\x30\xd4\x30\xf3\x30\xb0\x30\xe2\x30\xfc\x30\xc9\x30\x4c\x30\x7f\x4f\x28\x75\x55\x30\x8c\x30\x66\x30\x44\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : ”ñ‘Î‰‚ÌÚüƒ}ƒbƒsƒ“ƒOƒ‚[ƒh‚ªg—p‚³‚ê‚Ä‚¢‚Ü‚µ‚½\n" @*/ )) ;
+									DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x5e\x97\xfe\x5b\xdc\x5f\x6e\x30\xa5\x63\xda\x7d\xde\x30\xc3\x30\xd4\x30\xf3\x30\xb0\x30\xe2\x30\xfc\x30\xc9\x30\x4c\x30\x7f\x4f\x28\x75\x55\x30\x8c\x30\x66\x30\x44\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : éå¯¾å¿œã®æ¥ç·šãƒãƒƒãƒ”ãƒ³ã‚°ãƒ¢ãƒ¼ãƒ‰ãŒä½¿ç”¨ã•ã‚Œã¦ã„ã¾ã—ãŸ\n" @*/ )) ;
 									return -1 ;
 								}
 								break ;
 
 							default :
-								DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x5e\x97\xfe\x5b\xdc\x5f\x6e\x30\xa5\x63\xda\x7d\xea\x30\xd5\x30\xa1\x30\xec\x30\xf3\x30\xb9\x30\xe2\x30\xfc\x30\xc9\x30\x4c\x30\x7f\x4f\x28\x75\x55\x30\x8c\x30\x66\x30\x44\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : ”ñ‘Î‰‚ÌÚüƒŠƒtƒ@ƒŒƒ“ƒXƒ‚[ƒh‚ªg—p‚³‚ê‚Ä‚¢‚Ü‚µ‚½\n" @*/ )) ;
+								DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x5e\x97\xfe\x5b\xdc\x5f\x6e\x30\xa5\x63\xda\x7d\xea\x30\xd5\x30\xa1\x30\xec\x30\xf3\x30\xb9\x30\xe2\x30\xfc\x30\xc9\x30\x4c\x30\x7f\x4f\x28\x75\x55\x30\x8c\x30\x66\x30\x44\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : éå¯¾å¿œã®æ¥ç·šãƒªãƒ•ã‚¡ãƒ¬ãƒ³ã‚¹ãƒ¢ãƒ¼ãƒ‰ãŒä½¿ç”¨ã•ã‚Œã¦ã„ã¾ã—ãŸ\n" @*/ )) ;
 								return -1 ;
 							}
 						}
 					}
 
-					// ’¸“_ƒJƒ‰[‚Ìî•ñ‚ğæ“¾
+					// é ‚ç‚¹ã‚«ãƒ©ãƒ¼ã®æƒ…å ±ã‚’å–å¾—
 					{
-						// ’¸“_ƒJƒ‰[ƒGƒŒƒƒ“ƒg‚Ì”‚¾‚¯ŒJ‚è•Ô‚µ
+						// é ‚ç‚¹ã‚«ãƒ©ãƒ¼ã‚¨ãƒ¬ãƒ¡ãƒ³ãƒˆã®æ•°ã ã‘ç¹°ã‚Šè¿”ã—
 						for( i = 0 ; i < _FbxMesh->GetElementVertexColorCount() ; i ++ )
 						{
 							FbxVertexColorElem = _FbxMesh->GetElementVertexColor( i ) ;
 
-							// ƒ‚[ƒh‚Ìæ“¾
+							// ãƒ¢ãƒ¼ãƒ‰ã®å–å¾—
 							FbxMappingMode = FbxVertexColorElem->GetMappingMode() ;
 							FbxRefMode = FbxVertexColorElem->GetReferenceMode() ;
 
-							// ’¸“_ƒJƒ‰[î•ñ‚Ìæ“¾
+							// é ‚ç‚¹ã‚«ãƒ©ãƒ¼æƒ…å ±ã®å–å¾—
 							switch( FbxRefMode )
 							{
 							case FbxGeometryElement::eDirect :
-								// ’¸“_ƒJƒ‰[î•ñ‚Ì”‚ğæ“¾
+								// é ‚ç‚¹ã‚«ãƒ©ãƒ¼æƒ…å ±ã®æ•°ã‚’å–å¾—
 								Mesh->VertexColorNum = FbxVertexColorElem->GetDirectArray().GetCount() ;
 
-								// ’¸“_ƒJƒ‰[î•ñ‚ğŠi”[‚·‚éƒƒ‚ƒŠ—Ìˆæ‚ÌŠm•Û
+								// é ‚ç‚¹ã‚«ãƒ©ãƒ¼æƒ…å ±ã‚’æ ¼ç´ã™ã‚‹ãƒ¡ãƒ¢ãƒªé ˜åŸŸã®ç¢ºä¿
 								Mesh->VertexColors = ( COLOR_F * )ADDMEMAREA( sizeof( COLOR_F ) * Mesh->VertexColorNum, &RModel->Mem ) ;
 								if( Mesh->VertexColors == NULL )
 								{
-									DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x02\x98\xb9\x70\xab\x30\xe9\x30\xfc\x30\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : ’¸“_ƒJƒ‰[‚ğŠi”[‚·‚éƒƒ‚ƒŠ‚ÌŠm•Û‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ )) ;
+									DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x02\x98\xb9\x70\xab\x30\xe9\x30\xfc\x30\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : é ‚ç‚¹ã‚«ãƒ©ãƒ¼ã‚’æ ¼ç´ã™ã‚‹ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ )) ;
 									return -1 ;
 								}
 
-								// ’¼Úƒ‚[ƒh‚Ìê‡‚Í‚»‚Ì‚Ü‚Ü‘ã“ü
+								// ç›´æ¥ãƒ¢ãƒ¼ãƒ‰ã®å ´åˆã¯ãã®ã¾ã¾ä»£å…¥
 								for( j = 0 ; ( DWORD )j < Mesh->VertexColorNum ; j ++ )
 								{
 									Mesh->VertexColors[ j ].r = ( float )FbxVertexColorElem->GetDirectArray().GetAt( j ).mRed ;
@@ -1034,18 +1034,18 @@ static int AnalyseFbxNode( MV1_MODEL_R *RModel, FBX_MODEL *Model, MV1_FRAME_R *P
 								break ;
 
 							case FbxGeometryElement::eIndexToDirect :
-								// ƒCƒ“ƒfƒbƒNƒX‚Ì”‚ğæ“¾
+								// ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã®æ•°ã‚’å–å¾—
 								Mesh->VertexColorNum = FbxVertexColorElem->GetIndexArray().GetCount() ;
 
-								// ’¸“_ƒJƒ‰[î•ñ‚ğŠi”[‚·‚éƒƒ‚ƒŠ—Ìˆæ‚ÌŠm•Û
+								// é ‚ç‚¹ã‚«ãƒ©ãƒ¼æƒ…å ±ã‚’æ ¼ç´ã™ã‚‹ãƒ¡ãƒ¢ãƒªé ˜åŸŸã®ç¢ºä¿
 								Mesh->VertexColors = ( COLOR_F * )ADDMEMAREA( sizeof( COLOR_F ) * Mesh->VertexColorNum, &RModel->Mem ) ;
 								if( Mesh->VertexColors == NULL )
 								{
-									DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x02\x98\xb9\x70\xab\x30\xe9\x30\xfc\x30\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : ’¸“_ƒJƒ‰[‚ğŠi”[‚·‚éƒƒ‚ƒŠ‚ÌŠm•Û‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ )) ;
+									DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x02\x98\xb9\x70\xab\x30\xe9\x30\xfc\x30\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : é ‚ç‚¹ã‚«ãƒ©ãƒ¼ã‚’æ ¼ç´ã™ã‚‹ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ )) ;
 									return -1 ;
 								}
 
-								// ƒCƒ“ƒfƒbƒNƒXƒ‚[ƒh‚Ìê‡‚ÍŠÔÚQÆ‘ã“ü
+								// ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒ¢ãƒ¼ãƒ‰ã®å ´åˆã¯é–“æ¥å‚ç…§ä»£å…¥
 								for( j = 0 ; ( DWORD )j < Mesh->VertexColorNum ; j ++ )
 								{
 									Index = FbxVertexColorElem->GetIndexArray().GetAt( j ) ;
@@ -1057,15 +1057,15 @@ static int AnalyseFbxNode( MV1_MODEL_R *RModel, FBX_MODEL *Model, MV1_FRAME_R *P
 								break ;
 
 							default :
-								DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x5e\x97\xfe\x5b\xdc\x5f\x6e\x30\x02\x98\xb9\x70\xab\x30\xe9\x30\xfc\x30\xea\x30\xd5\x30\xa1\x30\xec\x30\xf3\x30\xb9\x30\xe2\x30\xfc\x30\xc9\x30\x4c\x30\x7f\x4f\x28\x75\x55\x30\x8c\x30\x66\x30\x44\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : ”ñ‘Î‰‚Ì’¸“_ƒJƒ‰[ƒŠƒtƒ@ƒŒƒ“ƒXƒ‚[ƒh‚ªg—p‚³‚ê‚Ä‚¢‚Ü‚µ‚½\n" @*/ )) ;
+								DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x5e\x97\xfe\x5b\xdc\x5f\x6e\x30\x02\x98\xb9\x70\xab\x30\xe9\x30\xfc\x30\xea\x30\xd5\x30\xa1\x30\xec\x30\xf3\x30\xb9\x30\xe2\x30\xfc\x30\xc9\x30\x4c\x30\x7f\x4f\x28\x75\x55\x30\x8c\x30\x66\x30\x44\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : éå¯¾å¿œã®é ‚ç‚¹ã‚«ãƒ©ãƒ¼ãƒªãƒ•ã‚¡ãƒ¬ãƒ³ã‚¹ãƒ¢ãƒ¼ãƒ‰ãŒä½¿ç”¨ã•ã‚Œã¦ã„ã¾ã—ãŸ\n" @*/ )) ;
 								return -1 ;
 							}
 
-							// –Ê‚ÌŠe’¸“_‚É‘Î‰‚·‚é’¸“_ƒJƒ‰[‚Ìî•ñ‚ğæ“¾
+							// é¢ã®å„é ‚ç‚¹ã«å¯¾å¿œã™ã‚‹é ‚ç‚¹ã‚«ãƒ©ãƒ¼ã®æƒ…å ±ã‚’å–å¾—
 							switch( FbxMappingMode )
 							{
 							case FbxGeometryElement::eByControlPoint :
-								// ’¸“_ƒJƒ‰[ƒCƒ“ƒfƒbƒNƒX‚Í’¸“_ƒCƒ“ƒfƒbƒNƒX‚Æ“™‚µ‚­‚È‚é
+								// é ‚ç‚¹ã‚«ãƒ©ãƒ¼ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã¯é ‚ç‚¹ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã¨ç­‰ã—ããªã‚‹
 								MeshFace = Mesh->Faces ;
 								for( j = 0 ; ( DWORD )j < Mesh->FaceNum ; j ++, MeshFace ++ )
 								{
@@ -1077,7 +1077,7 @@ static int AnalyseFbxNode( MV1_MODEL_R *RModel, FBX_MODEL *Model, MV1_FRAME_R *P
 								break ;
 
 							case FbxGeometryElement::eByPolygonVertex :
-								// ’¸“_ƒJƒ‰[ƒCƒ“ƒfƒbƒNƒX‚Í•ÊŒÂ‚Å‘¶İ‚·‚é
+								// é ‚ç‚¹ã‚«ãƒ©ãƒ¼ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã¯åˆ¥å€‹ã§å­˜åœ¨ã™ã‚‹
 								MeshFace = Mesh->Faces ;
 								k = 0 ;
 								for( j = 0 ; ( DWORD )j < Mesh->FaceNum ; j ++, MeshFace ++ )
@@ -1088,15 +1088,15 @@ static int AnalyseFbxNode( MV1_MODEL_R *RModel, FBX_MODEL *Model, MV1_FRAME_R *P
 								break ;
 
 							default :
-								DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x5e\x97\xfe\x5b\xdc\x5f\x6e\x30\x02\x98\xb9\x70\xab\x30\xe9\x30\xfc\x30\xde\x30\xc3\x30\xd4\x30\xf3\x30\xb0\x30\xe2\x30\xfc\x30\xc9\x30\x4c\x30\x7f\x4f\x28\x75\x55\x30\x8c\x30\x66\x30\x44\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : ”ñ‘Î‰‚Ì’¸“_ƒJƒ‰[ƒ}ƒbƒsƒ“ƒOƒ‚[ƒh‚ªg—p‚³‚ê‚Ä‚¢‚Ü‚µ‚½\n" @*/ )) ;
+								DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x5e\x97\xfe\x5b\xdc\x5f\x6e\x30\x02\x98\xb9\x70\xab\x30\xe9\x30\xfc\x30\xde\x30\xc3\x30\xd4\x30\xf3\x30\xb0\x30\xe2\x30\xfc\x30\xc9\x30\x4c\x30\x7f\x4f\x28\x75\x55\x30\x8c\x30\x66\x30\x44\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : éå¯¾å¿œã®é ‚ç‚¹ã‚«ãƒ©ãƒ¼ãƒãƒƒãƒ”ãƒ³ã‚°ãƒ¢ãƒ¼ãƒ‰ãŒä½¿ç”¨ã•ã‚Œã¦ã„ã¾ã—ãŸ\n" @*/ )) ;
 								return -1 ;
 							}
 						}
 					}
 
-					// ‚t‚u‚Ìî•ñ‚ğæ“¾
+					// ï¼µï¼¶ã®æƒ…å ±ã‚’å–å¾—
 					{
-						// ‚t‚uƒGƒŒƒƒ“ƒg‚Ì”‚¾‚¯ŒJ‚è•Ô‚µ
+						// ï¼µï¼¶ã‚¨ãƒ¬ãƒ¡ãƒ³ãƒˆã®æ•°ã ã‘ç¹°ã‚Šè¿”ã—
 						int lUVCount = _FbxMesh->GetElementUVCount() ;
 						if( lUVCount > MV1_READ_MAX_UV_NUM )
 						{
@@ -1106,26 +1106,26 @@ static int AnalyseFbxNode( MV1_MODEL_R *RModel, FBX_MODEL *Model, MV1_FRAME_R *P
 						{
 							FbxUVElem = _FbxMesh->GetElementUV( i ) ;
 
-							// ƒ‚[ƒh‚Ìæ“¾
+							// ãƒ¢ãƒ¼ãƒ‰ã®å–å¾—
 							FbxMappingMode = FbxUVElem->GetMappingMode() ;
 							FbxRefMode = FbxUVElem->GetReferenceMode() ;
 
-							// ‚t‚uî•ñ‚Ìæ“¾
+							// ï¼µï¼¶æƒ…å ±ã®å–å¾—
 							switch( FbxRefMode )
 							{
 							case FbxGeometryElement::eDirect :
-								// ‚t‚uî•ñ‚Ì”‚ğæ“¾
+								// ï¼µï¼¶æƒ…å ±ã®æ•°ã‚’å–å¾—
 								Mesh->UVNum[ i ] = FbxUVElem->GetDirectArray().GetCount() ;
 
-								// ‚t‚uî•ñ‚ğŠi”[‚·‚éƒƒ‚ƒŠ—Ìˆæ‚ÌŠm•Û
+								// ï¼µï¼¶æƒ…å ±ã‚’æ ¼ç´ã™ã‚‹ãƒ¡ãƒ¢ãƒªé ˜åŸŸã®ç¢ºä¿
 								Mesh->UVs[ i ] = ( FLOAT4 * )ADDMEMAREA( sizeof( FLOAT4 ) * Mesh->UVNum[ i ], &RModel->Mem ) ;
 								if( Mesh->UVs[ i ] == NULL )
 								{
-									DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x55\x00\x56\x00\xa7\x5e\x19\x6a\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : UVÀ•W‚ğŠi”[‚·‚éƒƒ‚ƒŠ‚ÌŠm•Û‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ )) ;
+									DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x55\x00\x56\x00\xa7\x5e\x19\x6a\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : UVåº§æ¨™ã‚’æ ¼ç´ã™ã‚‹ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ )) ;
 									return -1 ;
 								}
 
-								// ’¼Úƒ‚[ƒh‚Ìê‡‚Í‚»‚Ì‚Ü‚Ü‘ã“ü
+								// ç›´æ¥ãƒ¢ãƒ¼ãƒ‰ã®å ´åˆã¯ãã®ã¾ã¾ä»£å…¥
 								for( j = 0 ; ( DWORD )j < Mesh->UVNum[ i ] ; j ++ )
 								{
 									Mesh->UVs[ i ][ j ].x = ( float )FbxUVElem->GetDirectArray().GetAt( j )[ 0 ] ;
@@ -1134,18 +1134,18 @@ static int AnalyseFbxNode( MV1_MODEL_R *RModel, FBX_MODEL *Model, MV1_FRAME_R *P
 								break ;
 
 							case FbxGeometryElement::eIndexToDirect :
-								// ƒCƒ“ƒfƒbƒNƒX‚Ì”‚ğæ“¾
+								// ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã®æ•°ã‚’å–å¾—
 								Mesh->UVNum[ i ] = FbxUVElem->GetIndexArray().GetCount() ;
 
-								// ‚t‚uî•ñ‚ğŠi”[‚·‚éƒƒ‚ƒŠ—Ìˆæ‚ÌŠm•Û
+								// ï¼µï¼¶æƒ…å ±ã‚’æ ¼ç´ã™ã‚‹ãƒ¡ãƒ¢ãƒªé ˜åŸŸã®ç¢ºä¿
 								Mesh->UVs[ i ] = ( FLOAT4 * )ADDMEMAREA( sizeof( FLOAT4 ) * Mesh->UVNum[ i ], &RModel->Mem ) ;
 								if( Mesh->UVs[ i ] == NULL )
 								{
-									DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x55\x00\x56\x00\xa7\x5e\x19\x6a\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : UVÀ•W‚ğŠi”[‚·‚éƒƒ‚ƒŠ‚ÌŠm•Û‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ )) ;
+									DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x55\x00\x56\x00\xa7\x5e\x19\x6a\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : UVåº§æ¨™ã‚’æ ¼ç´ã™ã‚‹ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ )) ;
 									return -1 ;
 								}
 
-								// ƒCƒ“ƒfƒbƒNƒXƒ‚[ƒh‚Ìê‡‚ÍŠÔÚQÆ‘ã“ü
+								// ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒ¢ãƒ¼ãƒ‰ã®å ´åˆã¯é–“æ¥å‚ç…§ä»£å…¥
 								for( j = 0 ; ( DWORD )j < Mesh->UVNum[ i ] ; j ++ )
 								{
 									Index = FbxUVElem->GetIndexArray().GetAt( j ) ;
@@ -1155,15 +1155,15 @@ static int AnalyseFbxNode( MV1_MODEL_R *RModel, FBX_MODEL *Model, MV1_FRAME_R *P
 								break ;
 
 							default :
-								DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x5e\x97\xfe\x5b\xdc\x5f\x6e\x30\x35\xff\x36\xff\xea\x30\xd5\x30\xa1\x30\xec\x30\xf3\x30\xb9\x30\xe2\x30\xfc\x30\xc9\x30\x4c\x30\x7f\x4f\x28\x75\x55\x30\x8c\x30\x66\x30\x44\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : ”ñ‘Î‰‚Ì‚t‚uƒŠƒtƒ@ƒŒƒ“ƒXƒ‚[ƒh‚ªg—p‚³‚ê‚Ä‚¢‚Ü‚µ‚½\n" @*/ )) ;
+								DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x5e\x97\xfe\x5b\xdc\x5f\x6e\x30\x35\xff\x36\xff\xea\x30\xd5\x30\xa1\x30\xec\x30\xf3\x30\xb9\x30\xe2\x30\xfc\x30\xc9\x30\x4c\x30\x7f\x4f\x28\x75\x55\x30\x8c\x30\x66\x30\x44\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : éå¯¾å¿œã®ï¼µï¼¶ãƒªãƒ•ã‚¡ãƒ¬ãƒ³ã‚¹ãƒ¢ãƒ¼ãƒ‰ãŒä½¿ç”¨ã•ã‚Œã¦ã„ã¾ã—ãŸ\n" @*/ )) ;
 								return -1 ;
 							}
 
-							// –Ê‚ÌŠe’¸“_‚É‘Î‰‚·‚é‚t‚u‚Ìî•ñ‚ğæ“¾
+							// é¢ã®å„é ‚ç‚¹ã«å¯¾å¿œã™ã‚‹ï¼µï¼¶ã®æƒ…å ±ã‚’å–å¾—
 							switch( FbxMappingMode )
 							{
 							case FbxGeometryElement::eByControlPoint :
-								// ‚t‚uƒCƒ“ƒfƒbƒNƒX‚Í’¸“_ƒCƒ“ƒfƒbƒNƒX‚Æ“™‚µ‚­‚È‚é
+								// ï¼µï¼¶ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã¯é ‚ç‚¹ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã¨ç­‰ã—ããªã‚‹
 								MeshFace = Mesh->Faces ;
 								for( j = 0 ; ( DWORD )j < Mesh->FaceNum ; j ++, MeshFace ++ )
 								{
@@ -1175,7 +1175,7 @@ static int AnalyseFbxNode( MV1_MODEL_R *RModel, FBX_MODEL *Model, MV1_FRAME_R *P
 								break ;
 
 							case FbxGeometryElement::eByPolygonVertex :
-								// ‚t‚uƒCƒ“ƒfƒbƒNƒX‚Í•ÊŒÂ‚Å‘¶İ‚·‚é
+								// ï¼µï¼¶ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã¯åˆ¥å€‹ã§å­˜åœ¨ã™ã‚‹
 								MeshFace = Mesh->Faces ;
 								k = 0 ;
 								for( j = 0 ; ( DWORD )j < Mesh->FaceNum ; j ++, MeshFace ++ )
@@ -1186,27 +1186,27 @@ static int AnalyseFbxNode( MV1_MODEL_R *RModel, FBX_MODEL *Model, MV1_FRAME_R *P
 								break ;
 
 							default :
-								DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x5e\x97\xfe\x5b\xdc\x5f\x6e\x30\x35\xff\x36\xff\xde\x30\xc3\x30\xd4\x30\xf3\x30\xb0\x30\xe2\x30\xfc\x30\xc9\x30\x4c\x30\x7f\x4f\x28\x75\x55\x30\x8c\x30\x66\x30\x44\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : ”ñ‘Î‰‚Ì‚t‚uƒ}ƒbƒsƒ“ƒOƒ‚[ƒh‚ªg—p‚³‚ê‚Ä‚¢‚Ü‚µ‚½\n" @*/ )) ;
+								DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x5e\x97\xfe\x5b\xdc\x5f\x6e\x30\x35\xff\x36\xff\xde\x30\xc3\x30\xd4\x30\xf3\x30\xb0\x30\xe2\x30\xfc\x30\xc9\x30\x4c\x30\x7f\x4f\x28\x75\x55\x30\x8c\x30\x66\x30\x44\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : éå¯¾å¿œã®ï¼µï¼¶ãƒãƒƒãƒ”ãƒ³ã‚°ãƒ¢ãƒ¼ãƒ‰ãŒä½¿ç”¨ã•ã‚Œã¦ã„ã¾ã—ãŸ\n" @*/ )) ;
 								return -1 ;
 							}
 						}
 					}
 
-					// ƒ}ƒeƒŠƒAƒ‹‚Ìî•ñ‚ğæ“¾
+					// ãƒãƒ†ãƒªã‚¢ãƒ«ã®æƒ…å ±ã‚’å–å¾—
 					{
-						// ƒ}ƒeƒŠƒAƒ‹‚Ì”‚ğæ“¾
+						// ãƒãƒ†ãƒªã‚¢ãƒ«ã®æ•°ã‚’å–å¾—
 						Mesh->MaterialNum = pFbxNode->GetMaterialCount() ;
 
-						// ƒ}ƒeƒŠƒAƒ‹‚ª‚ ‚éê‡‚Ì‚İˆ—
+						// ãƒãƒ†ãƒªã‚¢ãƒ«ãŒã‚ã‚‹å ´åˆã®ã¿å‡¦ç†
 						if( Mesh->MaterialNum != 0 )
 						{
-							// ƒ}ƒeƒŠƒAƒ‹‚Ì”‚¾‚¯ŒJ‚è•Ô‚µ
+							// ãƒãƒ†ãƒªã‚¢ãƒ«ã®æ•°ã ã‘ç¹°ã‚Šè¿”ã—
 							for( i = 0 ; ( DWORD )i < Mesh->MaterialNum ; i ++ )
 							{
-								// ƒ}ƒeƒŠƒAƒ‹‚ÌƒAƒhƒŒƒX‚ğæ“¾
+								// ãƒãƒ†ãƒªã‚¢ãƒ«ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å–å¾—
 								FbxMaterial = pFbxNode->GetMaterial( i ) ;
 
-								// ƒ‚ƒfƒ‹ã‚ÉŠù‚É‚±‚Ìƒ}ƒeƒŠƒAƒ‹‚Ìî•ñ‚ª‚ ‚éê‡‚ÍƒAƒhƒŒƒX‚¾‚¯•Û‘¶‚·‚é
+								// ãƒ¢ãƒ‡ãƒ«ä¸Šã«æ—¢ã«ã“ã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®æƒ…å ±ãŒã‚ã‚‹å ´åˆã¯ã‚¢ãƒ‰ãƒ¬ã‚¹ã ã‘ä¿å­˜ã™ã‚‹
 								Material = RModel->MaterialFirst ;
 								for( j = 0 ; ( DWORD )j < RModel->MaterialNum && Material->UserData != FbxMaterial ; j ++, Material = Material->DataNext ){}
 								if( j != RModel->MaterialNum )
@@ -1215,66 +1215,66 @@ static int AnalyseFbxNode( MV1_MODEL_R *RModel, FBX_MODEL *Model, MV1_FRAME_R *P
 								}
 								else
 								{
-									// ƒ}ƒeƒŠƒAƒ‹‚Ì’Ç‰Á
+									// ãƒãƒ†ãƒªã‚¢ãƒ«ã®è¿½åŠ 
 	//								FbxUTF8ToAnsi( FbxMaterial->GetName(), ANSIBuffer, &ANSISize ) ;
 									Material = MV1RAddMaterial( RModel, FbxMaterial->GetName() ) ;
 									if( Material == NULL )
 									{
-										DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\xde\x30\xc6\x30\xea\x30\xa2\x30\xeb\x30\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x6e\x30\xfd\x8f\xa0\x52\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : ƒ}ƒeƒŠƒAƒ‹ƒIƒuƒWƒFƒNƒg‚Ì’Ç‰Á‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ )) ;
+										DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\xde\x30\xc6\x30\xea\x30\xa2\x30\xeb\x30\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x6e\x30\xfd\x8f\xa0\x52\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : ãƒãƒ†ãƒªã‚¢ãƒ«ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®è¿½åŠ ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ )) ;
 										return -1 ;
 									}
 									Material->SubName = FbxMaterial->GetName() ;
 
 									Mesh->Materials[ i ] = Material ;
 
-									// ‚e‚a‚w‚ÌƒAƒhƒŒƒX‚ğ•Û‘¶
+									// ï¼¦ï¼¢ï¼¸ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ä¿å­˜
 									Material->UserData = FbxMaterial ;
 
-									// ƒ}ƒeƒŠƒAƒ‹‚Ìƒ^ƒCƒv‚ªƒ‰ƒ“ƒo[ƒg‚Å‚àƒtƒHƒ“‚Å‚à–³‚¢ê‡‚Í•ªŠò
+									// ãƒãƒ†ãƒªã‚¢ãƒ«ã®ã‚¿ã‚¤ãƒ—ãŒãƒ©ãƒ³ãƒãƒ¼ãƒˆã§ã‚‚ãƒ•ã‚©ãƒ³ã§ã‚‚ç„¡ã„å ´åˆã¯åˆ†å²
 									if( FbxMaterial->GetClassId().Is( FbxSurfaceLambert::ClassId ) ||
 										FbxMaterial->GetClassId().Is( FbxSurfacePhong::ClassId ) )
 									{
-										// ƒ‰ƒ“ƒo[ƒg‚Ìî•ñ‚ğæ“¾‚·‚é
+										// ãƒ©ãƒ³ãƒãƒ¼ãƒˆã®æƒ…å ±ã‚’å–å¾—ã™ã‚‹
 										FbxLambert = ( FbxSurfaceLambert * )FbxMaterial ;
 
-										// Šî–{“I‚Èî•ñ‚ğæ“¾
+										// åŸºæœ¬çš„ãªæƒ…å ±ã‚’å–å¾—
 
-										// ƒAƒ“ƒrƒGƒ“ƒgƒJƒ‰[
+										// ã‚¢ãƒ³ãƒ“ã‚¨ãƒ³ãƒˆã‚«ãƒ©ãƒ¼
 										Material->Ambient.r = ( float )( FbxLambert->Ambient.Get()[ 0 ] * FbxLambert->AmbientFactor.Get() ) ;
 										Material->Ambient.g = ( float )( FbxLambert->Ambient.Get()[ 1 ] * FbxLambert->AmbientFactor.Get() ) ;
 										Material->Ambient.b = ( float )( FbxLambert->Ambient.Get()[ 2 ] * FbxLambert->AmbientFactor.Get() ) ;
 										Material->Ambient.a = 0.0f ;
 
-										// ƒfƒBƒtƒ…[ƒYƒJƒ‰[
+										// ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚«ãƒ©ãƒ¼
 										Material->Diffuse.r = ( float )( FbxLambert->Diffuse.Get()[ 0 ] * FbxLambert->DiffuseFactor.Get() ) ;
 										Material->Diffuse.g = ( float )( FbxLambert->Diffuse.Get()[ 1 ] * FbxLambert->DiffuseFactor.Get() ) ;
 										Material->Diffuse.b = ( float )( FbxLambert->Diffuse.Get()[ 2 ] * FbxLambert->DiffuseFactor.Get() ) ;
 										Material->Diffuse.a = 1.0f ;
 
-										// ƒGƒ~ƒbƒVƒuƒJƒ‰[
+										// ã‚¨ãƒŸãƒƒã‚·ãƒ–ã‚«ãƒ©ãƒ¼
 										Material->Emissive.r = ( float )( FbxLambert->Emissive.Get()[ 0 ] * FbxLambert->EmissiveFactor.Get() ) ;
 										Material->Emissive.g = ( float )( FbxLambert->Emissive.Get()[ 1 ] * FbxLambert->EmissiveFactor.Get() ) ;
 										Material->Emissive.b = ( float )( FbxLambert->Emissive.Get()[ 2 ] * FbxLambert->EmissiveFactor.Get() ) ;
 										Material->Emissive.a = 0.0f ;
 
-										// ƒAƒ‹ƒtƒ@’l‚ğ•Û‘¶
+										// ã‚¢ãƒ«ãƒ•ã‚¡å€¤ã‚’ä¿å­˜
 		//								Material->Diffuse.a = 1.0f - FbxLambert->TransparencyFactor.Get() ;
 
-										// ƒtƒHƒ“ƒ}ƒeƒŠƒAƒ‹‚Ìê‡‚ÍƒtƒHƒ“ƒ}ƒeƒŠƒAƒ‹‚Ìî•ñ‚àæ“¾‚·‚é
+										// ãƒ•ã‚©ãƒ³ãƒãƒ†ãƒªã‚¢ãƒ«ã®å ´åˆã¯ãƒ•ã‚©ãƒ³ãƒãƒ†ãƒªã‚¢ãƒ«ã®æƒ…å ±ã‚‚å–å¾—ã™ã‚‹
 										if( FbxMaterial->GetClassId().Is( FbxSurfacePhong::ClassId ) )
 										{
 											FbxPhong = ( FbxSurfacePhong * )FbxMaterial ;
 
-											// ƒXƒyƒLƒ…ƒ‰ƒJƒ‰[
+											// ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã‚«ãƒ©ãƒ¼
 											Material->Specular.r = ( float )( FbxPhong->Specular.Get()[ 0 ] * FbxPhong->SpecularFactor.Get() ) ;
 											Material->Specular.g = ( float )( FbxPhong->Specular.Get()[ 1 ] * FbxPhong->SpecularFactor.Get() ) ;
 											Material->Specular.b = ( float )( FbxPhong->Specular.Get()[ 2 ] * FbxPhong->SpecularFactor.Get() ) ;
 											Material->Specular.a = 0.0f ;
 
-											// Œõ‘ò
+											// å…‰æ²¢
 		//									Material->Shininess = FbxPhong->Shininess.Get() ;
 
-											// ”½Ë
+											// åå°„
 		//									Material->Reflection = FbxPhong->ReflectionFactor.Get() ;
 											//Material->Power = ( float )FbxPhong->ReflectionFactor.Get() ;
 											Material->Power = ( float )FbxPhong->Shininess.Get() ;
@@ -1282,73 +1282,73 @@ static int AnalyseFbxNode( MV1_MODEL_R *RModel, FBX_MODEL *Model, MV1_FRAME_R *P
 									}
 									else
 									{
-										// ƒAƒ“ƒrƒGƒ“ƒgƒJƒ‰[
+										// ã‚¢ãƒ³ãƒ“ã‚¨ãƒ³ãƒˆã‚«ãƒ©ãƒ¼
 										Material->Ambient.r = 0.25f ;
 										Material->Ambient.g = 0.25f ;
 										Material->Ambient.b = 0.25f ;
 										Material->Ambient.a = 0.0f ;
 
-										// ƒfƒBƒtƒ…[ƒYƒJƒ‰[
+										// ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚«ãƒ©ãƒ¼
 										Material->Diffuse.r = 1.0f ;
 										Material->Diffuse.g = 1.0f ;
 										Material->Diffuse.b = 1.0f ;
 										Material->Diffuse.a = 1.0f ;
 
-										// ƒGƒ~ƒbƒVƒuƒJƒ‰[
+										// ã‚¨ãƒŸãƒƒã‚·ãƒ–ã‚«ãƒ©ãƒ¼
 										Material->Emissive.r = 0.0f ;
 										Material->Emissive.g = 0.0f ;
 										Material->Emissive.b = 0.0f ;
 										Material->Emissive.a = 0.0f ;
 
-	//									DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x5e\x97\xfe\x5b\xdc\x5f\x6e\x30\xde\x30\xc6\x30\xea\x30\xa2\x30\xeb\x30\xe2\x30\xfc\x30\xc9\x30\x4c\x30\x7f\x4f\x28\x75\x55\x30\x8c\x30\x66\x30\x44\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : ”ñ‘Î‰‚Ìƒ}ƒeƒŠƒAƒ‹ƒ‚[ƒh‚ªg—p‚³‚ê‚Ä‚¢‚Ü‚µ‚½\n" @*/ )) ;
+	//									DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x5e\x97\xfe\x5b\xdc\x5f\x6e\x30\xde\x30\xc6\x30\xea\x30\xa2\x30\xeb\x30\xe2\x30\xfc\x30\xc9\x30\x4c\x30\x7f\x4f\x28\x75\x55\x30\x8c\x30\x66\x30\x44\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : éå¯¾å¿œã®ãƒãƒ†ãƒªã‚¢ãƒ«ãƒ¢ãƒ¼ãƒ‰ãŒä½¿ç”¨ã•ã‚Œã¦ã„ã¾ã—ãŸ\n" @*/ )) ;
 	//									return -1 ;
 									}
 
-									// g—p‚µ‚Ä‚¢‚éƒeƒNƒXƒ`ƒƒ‚Ìî•ñ‚ğæ“¾‚·‚é
+									// ä½¿ç”¨ã—ã¦ã„ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®æƒ…å ±ã‚’å–å¾—ã™ã‚‹
 									{
 										FbxProperty _FbxProperty ;
 										FbxLayeredTexture::EBlendMode BlendMode ;
 										int LayeredTexNum, NormalTexNum ;
 
-										// ƒfƒBƒtƒ…[ƒYƒ}ƒeƒŠƒAƒ‹ƒvƒƒpƒeƒB‚Ìæ“¾
+										// ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºãƒãƒ†ãƒªã‚¢ãƒ«ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã®å–å¾—
 										{
 											_FbxProperty = FbxMaterial->FindProperty( FbxSurfaceMaterial::sDiffuse ) ;
 
-											// ƒŒƒCƒ„[ƒhƒeƒNƒXƒ`ƒƒ‚Ìê‡‚Æ‚»‚êˆÈŠO‚Åˆ—‚ğ•ªŠò
+											// ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒ‰ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®å ´åˆã¨ãã‚Œä»¥å¤–ã§å‡¦ç†ã‚’åˆ†å²
 											if( _FbxProperty.GetSrcObject< FbxLayeredTexture >( 0 ) != NULL )
 											{
-												// ‚QŒÂˆÈã‚ÌƒŒƒCƒ„[‚É‚Í‘Î‰‚µ‚Ä‚¢‚È‚¢
+												// ï¼’å€‹ä»¥ä¸Šã®ãƒ¬ã‚¤ãƒ¤ãƒ¼ã«ã¯å¯¾å¿œã—ã¦ã„ãªã„
 												if( _FbxProperty.GetSrcObject< FbxLayeredTexture >( 1 ) != NULL )
 												{
-													DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x44\x00\x69\x00\x66\x00\x66\x00\x75\x00\x73\x00\x65\x00\x20\x00\xde\x30\xc6\x30\xea\x30\xa2\x30\xeb\x30\x6f\x30\x11\xff\xec\x30\xa4\x30\xe4\x30\xfc\x30\xe5\x4e\x0a\x4e\x6b\x30\x6f\x30\xfe\x5b\xdc\x5f\x57\x30\x66\x30\x44\x30\x7e\x30\x5b\x30\x93\x30\x0a\x00\x00"/*@ L"Fbx Load : Diffuse ƒ}ƒeƒŠƒAƒ‹‚Í‚PƒŒƒCƒ„[ˆÈã‚É‚Í‘Î‰‚µ‚Ä‚¢‚Ü‚¹‚ñ\n" @*/ )) ;
+													DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x44\x00\x69\x00\x66\x00\x66\x00\x75\x00\x73\x00\x65\x00\x20\x00\xde\x30\xc6\x30\xea\x30\xa2\x30\xeb\x30\x6f\x30\x11\xff\xec\x30\xa4\x30\xe4\x30\xfc\x30\xe5\x4e\x0a\x4e\x6b\x30\x6f\x30\xfe\x5b\xdc\x5f\x57\x30\x66\x30\x44\x30\x7e\x30\x5b\x30\x93\x30\x0a\x00\x00"/*@ L"Fbx Load : Diffuse ãƒãƒ†ãƒªã‚¢ãƒ«ã¯ï¼‘ãƒ¬ã‚¤ãƒ¤ãƒ¼ä»¥ä¸Šã«ã¯å¯¾å¿œã—ã¦ã„ã¾ã›ã‚“\n" @*/ )) ;
 													return -1 ;
 												}
 
-												// ƒeƒNƒXƒ`ƒƒ‚Ì”‚¾‚¯ŒJ‚è•Ô‚µ
+												// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®æ•°ã ã‘ç¹°ã‚Šè¿”ã—
 												LayeredTexNum = 1 ;
 												for( j = 0 ; j < LayeredTexNum ; j ++ )
 												{
-													// ƒeƒNƒXƒ`ƒƒ‚ÌƒAƒhƒŒƒX‚ğæ“¾
+													// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å–å¾—
 													_FbxLayeredTexture = _FbxProperty.GetSrcObject< FbxLayeredTexture >( j ) ;
 
-													// ƒŒƒCƒ„[‚Ì’†‚ÉŠÜ‚Ü‚ê‚Ä‚¢‚éƒeƒNƒXƒ`ƒƒ‚Ì”‚ğæ“¾‚·‚é
+													// ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ä¸­ã«å«ã¾ã‚Œã¦ã„ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®æ•°ã‚’å–å¾—ã™ã‚‹
 													NormalTexNum = _FbxLayeredTexture->GetSrcObjectCount< FbxTexture >() ;
 
-													// ƒeƒNƒXƒ`ƒƒ‚Ì”‚¾‚¯ŒJ‚è•Ô‚µ
+													// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®æ•°ã ã‘ç¹°ã‚Šè¿”ã—
 													for( k = 0 ; k < NormalTexNum ; k ++ )
 													{
 														_FbxTexture = _FbxLayeredTexture->GetSrcObject< FbxTexture >( k ) ;
 														if( _FbxTexture == NULL ) continue ;
 
-														// ƒ‚ƒfƒ‹‚É’Ç‰Á
+														// ãƒ¢ãƒ‡ãƒ«ã«è¿½åŠ 
 														Material->DiffuseTexs[ Material->DiffuseTexNum ] = FbxAddTexture( RModel, _FbxTexture ) ;
 														if( Material->DiffuseTexs[ Material->DiffuseTexNum ] == NULL ) 
 														{
-															DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x44\x00\x69\x00\x66\x00\x66\x00\x75\x00\x73\x00\x65\x00\x20\x00\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x6e\x30\xfd\x8f\xa0\x52\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : Diffuse ƒeƒNƒXƒ`ƒƒƒIƒuƒWƒFƒNƒg‚Ì’Ç‰Á‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ )) ;
+															DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x44\x00\x69\x00\x66\x00\x66\x00\x75\x00\x73\x00\x65\x00\x20\x00\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x6e\x30\xfd\x8f\xa0\x52\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : Diffuse ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®è¿½åŠ ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ )) ;
 															return -1 ;
 														}
 
-														// ‡¬•û–@‚ğæ“¾‚·‚é
+														// åˆæˆæ–¹æ³•ã‚’å–å¾—ã™ã‚‹
 														_FbxLayeredTexture->GetTextureBlendMode( k, BlendMode ) ;
 														switch( BlendMode )
 														{
@@ -1358,30 +1358,30 @@ static int AnalyseFbxNode( MV1_MODEL_R *RModel, FBX_MODEL *Model, MV1_FRAME_R *P
 														case FbxLayeredTexture::eModulate2 :   Material->DiffuseTexs[ Material->DiffuseTexNum ]->BlendType = MV1_LAYERBLEND_TYPE_MODULATE2 ;   break ;
 														}
 
-														// ƒeƒNƒXƒ`ƒƒ‚Ì”‚ğƒCƒ“ƒNƒŠƒƒ“ƒg
+														// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®æ•°ã‚’ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆ
 														Material->DiffuseTexNum ++ ;
 													}
 												}
 											}
 											else
 											{
-												// ’Êí‚ÌƒeƒNƒXƒ`ƒƒ‚Ì”‚ğæ“¾
+												// é€šå¸¸ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®æ•°ã‚’å–å¾—
 												Material->DiffuseTexNum = _FbxProperty.GetSrcObjectCount< FbxTexture >() ;
 
-												// g—p‚µ‚Ä‚¢‚éê‡‚Íˆ—
+												// ä½¿ç”¨ã—ã¦ã„ã‚‹å ´åˆã¯å‡¦ç†
 												if( Material->DiffuseTexNum != 0 )
 												{
-													// ƒeƒNƒXƒ`ƒƒ‚Ì”‚¾‚¯ŒJ‚è•Ô‚µ
+													// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®æ•°ã ã‘ç¹°ã‚Šè¿”ã—
 													for( j = 0 ; j < Material->DiffuseTexNum ; j ++ )
 													{
-														// ƒeƒNƒXƒ`ƒƒ‚ÌƒAƒhƒŒƒX‚ğæ“¾
+														// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å–å¾—
 														_FbxTexture = _FbxProperty.GetSrcObject< FbxTexture >( j ) ;
 
-														// ƒ‚ƒfƒ‹‚É’Ç‰Á
+														// ãƒ¢ãƒ‡ãƒ«ã«è¿½åŠ 
 														Material->DiffuseTexs[ j ] = FbxAddTexture( RModel, _FbxTexture ) ;
 														if( Material->DiffuseTexs[ j ] == NULL ) 
 														{
-															DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x44\x00\x69\x00\x66\x00\x66\x00\x75\x00\x73\x00\x65\x00\x20\x00\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x6e\x30\xfd\x8f\xa0\x52\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : Diffuse ƒeƒNƒXƒ`ƒƒƒIƒuƒWƒFƒNƒg‚Ì’Ç‰Á‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ )) ;
+															DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x44\x00\x69\x00\x66\x00\x66\x00\x75\x00\x73\x00\x65\x00\x20\x00\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x6e\x30\xfd\x8f\xa0\x52\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : Diffuse ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®è¿½åŠ ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ )) ;
 															return -1 ;
 														}
 													}
@@ -1389,45 +1389,45 @@ static int AnalyseFbxNode( MV1_MODEL_R *RModel, FBX_MODEL *Model, MV1_FRAME_R *P
 											}
 										}
 
-										// ƒXƒyƒLƒ…ƒ‰ƒ}ƒeƒŠƒAƒ‹ƒvƒƒpƒeƒB‚Ìæ“¾
+										// ã‚¹ãƒšã‚­ãƒ¥ãƒ©ãƒãƒ†ãƒªã‚¢ãƒ«ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã®å–å¾—
 										{
 											_FbxProperty = FbxMaterial->FindProperty( FbxSurfaceMaterial::sSpecular ) ;
 
-											// ƒŒƒCƒ„[ƒhƒeƒNƒXƒ`ƒƒ‚Ìê‡‚Æ‚»‚êˆÈŠO‚Åˆ—‚ğ•ªŠò
+											// ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒ‰ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®å ´åˆã¨ãã‚Œä»¥å¤–ã§å‡¦ç†ã‚’åˆ†å²
 											LayeredTexNum = _FbxProperty.GetSrcObjectCount< FbxLayeredTexture >() ;
 											if( LayeredTexNum )
 											{
-												// ‚QŒÂˆÈã‚ÌƒŒƒCƒ„[‚É‚Í‘Î‰‚µ‚Ä‚¢‚È‚¢
+												// ï¼’å€‹ä»¥ä¸Šã®ãƒ¬ã‚¤ãƒ¤ãƒ¼ã«ã¯å¯¾å¿œã—ã¦ã„ãªã„
 												if( LayeredTexNum > 1 )
 												{
-													DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x53\x00\x70\x00\x65\x00\x63\x00\x75\x00\x6c\x00\x61\x00\x72\x00\x20\x00\xde\x30\xc6\x30\xea\x30\xa2\x30\xeb\x30\x6f\x30\x11\xff\xec\x30\xa4\x30\xe4\x30\xfc\x30\xe5\x4e\x0a\x4e\x6b\x30\x6f\x30\xfe\x5b\xdc\x5f\x57\x30\x66\x30\x44\x30\x7e\x30\x5b\x30\x93\x30\x0a\x00\x00"/*@ L"Fbx Load : Specular ƒ}ƒeƒŠƒAƒ‹‚Í‚PƒŒƒCƒ„[ˆÈã‚É‚Í‘Î‰‚µ‚Ä‚¢‚Ü‚¹‚ñ\n" @*/ )) ;
+													DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x53\x00\x70\x00\x65\x00\x63\x00\x75\x00\x6c\x00\x61\x00\x72\x00\x20\x00\xde\x30\xc6\x30\xea\x30\xa2\x30\xeb\x30\x6f\x30\x11\xff\xec\x30\xa4\x30\xe4\x30\xfc\x30\xe5\x4e\x0a\x4e\x6b\x30\x6f\x30\xfe\x5b\xdc\x5f\x57\x30\x66\x30\x44\x30\x7e\x30\x5b\x30\x93\x30\x0a\x00\x00"/*@ L"Fbx Load : Specular ãƒãƒ†ãƒªã‚¢ãƒ«ã¯ï¼‘ãƒ¬ã‚¤ãƒ¤ãƒ¼ä»¥ä¸Šã«ã¯å¯¾å¿œã—ã¦ã„ã¾ã›ã‚“\n" @*/ )) ;
 													return -1 ;
 												}
 
-												// ƒeƒNƒXƒ`ƒƒ‚Ì”‚¾‚¯ŒJ‚è•Ô‚µ
+												// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®æ•°ã ã‘ç¹°ã‚Šè¿”ã—
 												for( j = 0 ; j < LayeredTexNum ; j ++ )
 												{
-													// ƒeƒNƒXƒ`ƒƒ‚ÌƒAƒhƒŒƒX‚ğæ“¾
+													// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å–å¾—
 													_FbxLayeredTexture = _FbxProperty.GetSrcObject< FbxLayeredTexture >( j ) ;
 
-													// ƒŒƒCƒ„[‚Ì’†‚ÉŠÜ‚Ü‚ê‚Ä‚¢‚éƒeƒNƒXƒ`ƒƒ‚Ì”‚ğæ“¾‚·‚é
+													// ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ä¸­ã«å«ã¾ã‚Œã¦ã„ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®æ•°ã‚’å–å¾—ã™ã‚‹
 													NormalTexNum = _FbxLayeredTexture->GetSrcObjectCount< FbxTexture >() ;
 
-													// ƒeƒNƒXƒ`ƒƒ‚Ì”‚¾‚¯ŒJ‚è•Ô‚µ
+													// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®æ•°ã ã‘ç¹°ã‚Šè¿”ã—
 													for( k = 0 ; k < NormalTexNum ; k ++ )
 													{
 														_FbxTexture = _FbxLayeredTexture->GetSrcObject< FbxTexture >( k ) ;
 														if( _FbxTexture == NULL ) continue ;
 
-														// ƒ‚ƒfƒ‹‚É’Ç‰Á
+														// ãƒ¢ãƒ‡ãƒ«ã«è¿½åŠ 
 														Material->SpecularTexs[ Material->SpecularTexNum ] = FbxAddTexture( RModel, _FbxTexture ) ;
 														if( Material->SpecularTexs[ Material->SpecularTexNum ] == NULL ) 
 														{
-															DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x53\x00\x70\x00\x65\x00\x63\x00\x75\x00\x6c\x00\x61\x00\x72\x00\x20\x00\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x6e\x30\xfd\x8f\xa0\x52\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : Specular ƒeƒNƒXƒ`ƒƒƒIƒuƒWƒFƒNƒg‚Ì’Ç‰Á‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ )) ;
+															DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x53\x00\x70\x00\x65\x00\x63\x00\x75\x00\x6c\x00\x61\x00\x72\x00\x20\x00\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x6e\x30\xfd\x8f\xa0\x52\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : Specular ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®è¿½åŠ ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ )) ;
 															return -1 ;
 														}
 
-														// ‡¬•û–@‚ğæ“¾‚·‚é
+														// åˆæˆæ–¹æ³•ã‚’å–å¾—ã™ã‚‹
 														_FbxLayeredTexture->GetTextureBlendMode( k, BlendMode ) ;
 														switch( BlendMode )
 														{
@@ -1437,30 +1437,30 @@ static int AnalyseFbxNode( MV1_MODEL_R *RModel, FBX_MODEL *Model, MV1_FRAME_R *P
 														case FbxLayeredTexture::eModulate2 :   Material->SpecularTexs[ Material->SpecularTexNum ]->BlendType = MV1_LAYERBLEND_TYPE_MODULATE2 ;   break ;
 														}
 
-														// ƒeƒNƒXƒ`ƒƒ‚Ì”‚ğƒCƒ“ƒNƒŠƒƒ“ƒg
+														// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®æ•°ã‚’ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆ
 														Material->SpecularTexNum ++ ;
 													}
 												}
 											}
 											else
 											{
-												// ’Êí‚ÌƒeƒNƒXƒ`ƒƒ‚Ì”‚ğæ“¾
+												// é€šå¸¸ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®æ•°ã‚’å–å¾—
 												Material->SpecularTexNum = _FbxProperty.GetSrcObjectCount< FbxTexture >() ;
 
-												// g—p‚µ‚Ä‚¢‚éê‡‚Íˆ—
+												// ä½¿ç”¨ã—ã¦ã„ã‚‹å ´åˆã¯å‡¦ç†
 												if( Material->SpecularTexNum != 0 )
 												{
-													// ƒeƒNƒXƒ`ƒƒ‚Ì”‚¾‚¯ŒJ‚è•Ô‚µ
+													// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®æ•°ã ã‘ç¹°ã‚Šè¿”ã—
 													for( j = 0 ; j < Material->SpecularTexNum ; j ++ )
 													{
-														// ƒeƒNƒXƒ`ƒƒ‚ÌƒAƒhƒŒƒX‚ğæ“¾
+														// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å–å¾—
 														_FbxTexture = _FbxProperty.GetSrcObject< FbxTexture >( j ) ;
 
-														// ƒ‚ƒfƒ‹‚É’Ç‰Á
+														// ãƒ¢ãƒ‡ãƒ«ã«è¿½åŠ 
 														Material->SpecularTexs[ j ] = FbxAddTexture( RModel, _FbxTexture ) ;
 														if( Material->SpecularTexs[ j ] == NULL ) 
 														{
-															DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x53\x00\x70\x00\x65\x00\x63\x00\x75\x00\x6c\x00\x61\x00\x72\x00\x20\x00\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x6e\x30\xfd\x8f\xa0\x52\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : Specular ƒeƒNƒXƒ`ƒƒƒIƒuƒWƒFƒNƒg‚Ì’Ç‰Á‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ )) ;
+															DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x53\x00\x70\x00\x65\x00\x63\x00\x75\x00\x6c\x00\x61\x00\x72\x00\x20\x00\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x6e\x30\xfd\x8f\xa0\x52\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : Specular ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®è¿½åŠ ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ )) ;
 															return -1 ;
 														}
 													}
@@ -1468,45 +1468,45 @@ static int AnalyseFbxNode( MV1_MODEL_R *RModel, FBX_MODEL *Model, MV1_FRAME_R *P
 											}
 										}
 
-										// ƒoƒ“ƒvƒ}ƒbƒvƒ}ƒeƒŠƒAƒ‹ƒvƒƒpƒeƒB‚Ìæ“¾
+										// ãƒãƒ³ãƒ—ãƒãƒƒãƒ—ãƒãƒ†ãƒªã‚¢ãƒ«ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã®å–å¾—
 										{
 											_FbxProperty = FbxMaterial->FindProperty( FbxSurfaceMaterial::sBump ) ;
 
-											// ƒŒƒCƒ„[ƒhƒeƒNƒXƒ`ƒƒ‚Ìê‡‚Æ‚»‚êˆÈŠO‚Åˆ—‚ğ•ªŠò
+											// ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒ‰ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®å ´åˆã¨ãã‚Œä»¥å¤–ã§å‡¦ç†ã‚’åˆ†å²
 											LayeredTexNum = _FbxProperty.GetSrcObjectCount< FbxLayeredTexture >() ;
 											if( LayeredTexNum )
 											{
-												// ‚QŒÂˆÈã‚ÌƒŒƒCƒ„[‚É‚Í‘Î‰‚µ‚Ä‚¢‚È‚¢
+												// ï¼’å€‹ä»¥ä¸Šã®ãƒ¬ã‚¤ãƒ¤ãƒ¼ã«ã¯å¯¾å¿œã—ã¦ã„ãªã„
 												if( LayeredTexNum > 1 )
 												{
-													DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x42\x00\x75\x00\x6d\x00\x70\x00\x20\x00\xde\x30\xc6\x30\xea\x30\xa2\x30\xeb\x30\x6f\x30\x11\xff\xec\x30\xa4\x30\xe4\x30\xfc\x30\xe5\x4e\x0a\x4e\x6b\x30\x6f\x30\xfe\x5b\xdc\x5f\x57\x30\x66\x30\x44\x30\x7e\x30\x5b\x30\x93\x30\x0a\x00\x00"/*@ L"Fbx Load : Bump ƒ}ƒeƒŠƒAƒ‹‚Í‚PƒŒƒCƒ„[ˆÈã‚É‚Í‘Î‰‚µ‚Ä‚¢‚Ü‚¹‚ñ\n" @*/ )) ;
+													DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x42\x00\x75\x00\x6d\x00\x70\x00\x20\x00\xde\x30\xc6\x30\xea\x30\xa2\x30\xeb\x30\x6f\x30\x11\xff\xec\x30\xa4\x30\xe4\x30\xfc\x30\xe5\x4e\x0a\x4e\x6b\x30\x6f\x30\xfe\x5b\xdc\x5f\x57\x30\x66\x30\x44\x30\x7e\x30\x5b\x30\x93\x30\x0a\x00\x00"/*@ L"Fbx Load : Bump ãƒãƒ†ãƒªã‚¢ãƒ«ã¯ï¼‘ãƒ¬ã‚¤ãƒ¤ãƒ¼ä»¥ä¸Šã«ã¯å¯¾å¿œã—ã¦ã„ã¾ã›ã‚“\n" @*/ )) ;
 													return -1 ;
 												}
 
-												// ƒeƒNƒXƒ`ƒƒ‚Ì”‚¾‚¯ŒJ‚è•Ô‚µ
+												// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®æ•°ã ã‘ç¹°ã‚Šè¿”ã—
 												for( j = 0 ; j < LayeredTexNum ; j ++ )
 												{
-													// ƒeƒNƒXƒ`ƒƒ‚ÌƒAƒhƒŒƒX‚ğæ“¾
+													// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å–å¾—
 													_FbxLayeredTexture = _FbxProperty.GetSrcObject< FbxLayeredTexture >( j ) ;
 
-													// ƒŒƒCƒ„[‚Ì’†‚ÉŠÜ‚Ü‚ê‚Ä‚¢‚éƒeƒNƒXƒ`ƒƒ‚Ì”‚ğæ“¾‚·‚é
+													// ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ä¸­ã«å«ã¾ã‚Œã¦ã„ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®æ•°ã‚’å–å¾—ã™ã‚‹
 													NormalTexNum = _FbxLayeredTexture->GetSrcObjectCount< FbxTexture >() ;
 
-													// ƒeƒNƒXƒ`ƒƒ‚Ì”‚¾‚¯ŒJ‚è•Ô‚µ
+													// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®æ•°ã ã‘ç¹°ã‚Šè¿”ã—
 													for( k = 0 ; k < NormalTexNum ; k ++ )
 													{
 														_FbxTexture = _FbxLayeredTexture->GetSrcObject< FbxTexture >( k ) ;
 														if( _FbxTexture == NULL ) continue ;
 
-														// ƒ‚ƒfƒ‹‚É’Ç‰Á
+														// ãƒ¢ãƒ‡ãƒ«ã«è¿½åŠ 
 														Material->NormalTexs[ Material->NormalTexNum ] = FbxAddTexture( RModel, _FbxTexture, TRUE ) ;
 														if( Material->NormalTexs[ Material->NormalTexNum ] == NULL ) 
 														{
-															DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x42\x00\x75\x00\x6d\x00\x70\x00\x20\x00\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x6e\x30\xfd\x8f\xa0\x52\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : Bump ƒeƒNƒXƒ`ƒƒƒIƒuƒWƒFƒNƒg‚Ì’Ç‰Á‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ )) ;
+															DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x42\x00\x75\x00\x6d\x00\x70\x00\x20\x00\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x6e\x30\xfd\x8f\xa0\x52\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : Bump ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®è¿½åŠ ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ )) ;
 															return -1 ;
 														}
 
-														// ‡¬•û–@‚ğæ“¾‚·‚é
+														// åˆæˆæ–¹æ³•ã‚’å–å¾—ã™ã‚‹
 														_FbxLayeredTexture->GetTextureBlendMode( k, BlendMode ) ;
 														switch( BlendMode )
 														{
@@ -1516,30 +1516,30 @@ static int AnalyseFbxNode( MV1_MODEL_R *RModel, FBX_MODEL *Model, MV1_FRAME_R *P
 														case FbxLayeredTexture::eModulate2 :   Material->NormalTexs[ Material->NormalTexNum ]->BlendType = MV1_LAYERBLEND_TYPE_MODULATE2 ;   break ;
 														}
 
-														// ƒeƒNƒXƒ`ƒƒ‚Ì”‚ğƒCƒ“ƒNƒŠƒƒ“ƒg
+														// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®æ•°ã‚’ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆ
 														Material->NormalTexNum ++ ;
 													}
 												}
 											}
 											else
 											{
-												// ’Êí‚ÌƒeƒNƒXƒ`ƒƒ‚Ì”‚ğæ“¾
+												// é€šå¸¸ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®æ•°ã‚’å–å¾—
 												Material->NormalTexNum = _FbxProperty.GetSrcObjectCount< FbxTexture >() ;
 
-												// g—p‚µ‚Ä‚¢‚éê‡‚Íˆ—
+												// ä½¿ç”¨ã—ã¦ã„ã‚‹å ´åˆã¯å‡¦ç†
 												if( Material->NormalTexNum != 0 )
 												{
-													// ƒeƒNƒXƒ`ƒƒ‚Ì”‚¾‚¯ŒJ‚è•Ô‚µ
+													// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®æ•°ã ã‘ç¹°ã‚Šè¿”ã—
 													for( j = 0 ; j < Material->NormalTexNum ; j ++ )
 													{
-														// ƒeƒNƒXƒ`ƒƒ‚ÌƒAƒhƒŒƒX‚ğæ“¾
+														// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å–å¾—
 														_FbxTexture = _FbxProperty.GetSrcObject< FbxTexture >( j ) ;
 
-														// ƒ‚ƒfƒ‹‚É’Ç‰Á
+														// ãƒ¢ãƒ‡ãƒ«ã«è¿½åŠ 
 														Material->NormalTexs[ j ] = FbxAddTexture( RModel, _FbxTexture, TRUE ) ;
 														if( Material->NormalTexs[ j ] == NULL ) 
 														{
-															DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x42\x00\x75\x00\x6d\x00\x70\x00\x20\x00\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x6e\x30\xfd\x8f\xa0\x52\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : Bump ƒeƒNƒXƒ`ƒƒƒIƒuƒWƒFƒNƒg‚Ì’Ç‰Á‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ )) ;
+															DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x42\x00\x75\x00\x6d\x00\x70\x00\x20\x00\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x6e\x30\xfd\x8f\xa0\x52\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : Bump ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®è¿½åŠ ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ )) ;
 															return -1 ;
 														}
 													}
@@ -1547,46 +1547,46 @@ static int AnalyseFbxNode( MV1_MODEL_R *RModel, FBX_MODEL *Model, MV1_FRAME_R *P
 											}
 										}
 
-										// –@üƒ}ƒbƒvƒ}ƒeƒŠƒAƒ‹ƒvƒƒpƒeƒB‚Ìæ“¾
+										// æ³•ç·šãƒãƒƒãƒ—ãƒãƒ†ãƒªã‚¢ãƒ«ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã®å–å¾—
 										if( Material->NormalTexNum == 0 )
 										{
 											_FbxProperty = FbxMaterial->FindProperty( FbxSurfaceMaterial::sNormalMap ) ;
 
-											// ƒŒƒCƒ„[ƒhƒeƒNƒXƒ`ƒƒ‚Ìê‡‚Æ‚»‚êˆÈŠO‚Åˆ—‚ğ•ªŠò
+											// ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒ‰ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®å ´åˆã¨ãã‚Œä»¥å¤–ã§å‡¦ç†ã‚’åˆ†å²
 											LayeredTexNum = _FbxProperty.GetSrcObjectCount< FbxLayeredTexture >() ;
 											if( LayeredTexNum )
 											{
-												// ‚QŒÂˆÈã‚ÌƒŒƒCƒ„[‚É‚Í‘Î‰‚µ‚Ä‚¢‚È‚¢
+												// ï¼’å€‹ä»¥ä¸Šã®ãƒ¬ã‚¤ãƒ¤ãƒ¼ã«ã¯å¯¾å¿œã—ã¦ã„ãªã„
 												if( LayeredTexNum > 1 )
 												{
-													DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x4e\x00\x6f\x00\x72\x00\x6d\x00\x61\x00\x6c\x00\x4d\x00\x61\x00\x70\x00\x20\x00\xde\x30\xc6\x30\xea\x30\xa2\x30\xeb\x30\x6f\x30\x11\xff\xec\x30\xa4\x30\xe4\x30\xfc\x30\xe5\x4e\x0a\x4e\x6b\x30\x6f\x30\xfe\x5b\xdc\x5f\x57\x30\x66\x30\x44\x30\x7e\x30\x5b\x30\x93\x30\x0a\x00\x00"/*@ L"Fbx Load : NormalMap ƒ}ƒeƒŠƒAƒ‹‚Í‚PƒŒƒCƒ„[ˆÈã‚É‚Í‘Î‰‚µ‚Ä‚¢‚Ü‚¹‚ñ\n" @*/ )) ;
+													DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x4e\x00\x6f\x00\x72\x00\x6d\x00\x61\x00\x6c\x00\x4d\x00\x61\x00\x70\x00\x20\x00\xde\x30\xc6\x30\xea\x30\xa2\x30\xeb\x30\x6f\x30\x11\xff\xec\x30\xa4\x30\xe4\x30\xfc\x30\xe5\x4e\x0a\x4e\x6b\x30\x6f\x30\xfe\x5b\xdc\x5f\x57\x30\x66\x30\x44\x30\x7e\x30\x5b\x30\x93\x30\x0a\x00\x00"/*@ L"Fbx Load : NormalMap ãƒãƒ†ãƒªã‚¢ãƒ«ã¯ï¼‘ãƒ¬ã‚¤ãƒ¤ãƒ¼ä»¥ä¸Šã«ã¯å¯¾å¿œã—ã¦ã„ã¾ã›ã‚“\n" @*/ )) ;
 													return -1 ;
 												}
 
-												// ƒeƒNƒXƒ`ƒƒ‚Ì”‚¾‚¯ŒJ‚è•Ô‚µ
+												// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®æ•°ã ã‘ç¹°ã‚Šè¿”ã—
 												for( j = 0 ; j < LayeredTexNum ; j ++ )
 												{
-													// ƒeƒNƒXƒ`ƒƒ‚ÌƒAƒhƒŒƒX‚ğæ“¾
+													// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å–å¾—
 													_FbxLayeredTexture = _FbxProperty.GetSrcObject< FbxLayeredTexture >( j ) ;
 
-													// ƒŒƒCƒ„[‚Ì’†‚ÉŠÜ‚Ü‚ê‚Ä‚¢‚éƒeƒNƒXƒ`ƒƒ‚Ì”‚ğæ“¾‚·‚é
+													// ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ä¸­ã«å«ã¾ã‚Œã¦ã„ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®æ•°ã‚’å–å¾—ã™ã‚‹
 													NormalTexNum = _FbxLayeredTexture->GetSrcObjectCount< FbxTexture >() ;
 
-													// ƒeƒNƒXƒ`ƒƒ‚Ì”‚¾‚¯ŒJ‚è•Ô‚µ
+													// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®æ•°ã ã‘ç¹°ã‚Šè¿”ã—
 													for( k = 0 ; k < NormalTexNum ; k ++ )
 													{
 														_FbxTexture = _FbxLayeredTexture->GetSrcObject< FbxTexture >( k ) ;
 														if( _FbxTexture == NULL ) continue ;
 
-														// ƒ‚ƒfƒ‹‚É’Ç‰Á
+														// ãƒ¢ãƒ‡ãƒ«ã«è¿½åŠ 
 														Material->NormalTexs[ Material->NormalTexNum ] = FbxAddTexture( RModel, _FbxTexture ) ;
 														if( Material->NormalTexs[ Material->NormalTexNum ] == NULL ) 
 														{
-															DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x42\x00\x75\x00\x6d\x00\x70\x00\x20\x00\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x6e\x30\xfd\x8f\xa0\x52\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : Bump ƒeƒNƒXƒ`ƒƒƒIƒuƒWƒFƒNƒg‚Ì’Ç‰Á‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ )) ;
+															DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x42\x00\x75\x00\x6d\x00\x70\x00\x20\x00\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x6e\x30\xfd\x8f\xa0\x52\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : Bump ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®è¿½åŠ ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ )) ;
 															return -1 ;
 														}
 
-														// ‡¬•û–@‚ğæ“¾‚·‚é
+														// åˆæˆæ–¹æ³•ã‚’å–å¾—ã™ã‚‹
 														_FbxLayeredTexture->GetTextureBlendMode( k, BlendMode ) ;
 														switch( BlendMode )
 														{
@@ -1596,30 +1596,30 @@ static int AnalyseFbxNode( MV1_MODEL_R *RModel, FBX_MODEL *Model, MV1_FRAME_R *P
 														case FbxLayeredTexture::eModulate2 :   Material->NormalTexs[ Material->NormalTexNum ]->BlendType = MV1_LAYERBLEND_TYPE_MODULATE2 ;   break ;
 														}
 
-														// ƒeƒNƒXƒ`ƒƒ‚Ì”‚ğƒCƒ“ƒNƒŠƒƒ“ƒg
+														// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®æ•°ã‚’ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆ
 														Material->NormalTexNum ++ ;
 													}
 												}
 											}
 											else
 											{
-												// ’Êí‚ÌƒeƒNƒXƒ`ƒƒ‚Ì”‚ğæ“¾
+												// é€šå¸¸ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®æ•°ã‚’å–å¾—
 												Material->NormalTexNum = _FbxProperty.GetSrcObjectCount< FbxTexture >() ;
 
-												// g—p‚µ‚Ä‚¢‚éê‡‚Íˆ—
+												// ä½¿ç”¨ã—ã¦ã„ã‚‹å ´åˆã¯å‡¦ç†
 												if( Material->NormalTexNum != 0 )
 												{
-													// ƒeƒNƒXƒ`ƒƒ‚Ì”‚¾‚¯ŒJ‚è•Ô‚µ
+													// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®æ•°ã ã‘ç¹°ã‚Šè¿”ã—
 													for( j = 0 ; j < Material->NormalTexNum ; j ++ )
 													{
-														// ƒeƒNƒXƒ`ƒƒ‚ÌƒAƒhƒŒƒX‚ğæ“¾
+														// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å–å¾—
 														_FbxTexture = _FbxProperty.GetSrcObject< FbxTexture >( j ) ;
 
-														// ƒ‚ƒfƒ‹‚É’Ç‰Á
+														// ãƒ¢ãƒ‡ãƒ«ã«è¿½åŠ 
 														Material->NormalTexs[ j ] = FbxAddTexture( RModel, _FbxTexture ) ;
 														if( Material->NormalTexs[ j ] == NULL ) 
 														{
-															DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x42\x00\x75\x00\x6d\x00\x70\x00\x20\x00\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x6e\x30\xfd\x8f\xa0\x52\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : Bump ƒeƒNƒXƒ`ƒƒƒIƒuƒWƒFƒNƒg‚Ì’Ç‰Á‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ )) ;
+															DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x42\x00\x75\x00\x6d\x00\x70\x00\x20\x00\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x6e\x30\xfd\x8f\xa0\x52\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : Bump ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®è¿½åŠ ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ )) ;
 															return -1 ;
 														}
 													}
@@ -1627,45 +1627,45 @@ static int AnalyseFbxNode( MV1_MODEL_R *RModel, FBX_MODEL *Model, MV1_FRAME_R *P
 											}
 										}
 
-										// ©ŒÈ”­Œõƒ}ƒeƒŠƒAƒ‹ƒvƒƒpƒeƒB‚Ìæ“¾
+										// è‡ªå·±ç™ºå…‰ãƒãƒ†ãƒªã‚¢ãƒ«ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã®å–å¾—
 										{
 											_FbxProperty = FbxMaterial->FindProperty( FbxSurfaceMaterial::sEmissive ) ;
 
-											// ƒŒƒCƒ„[ƒhƒeƒNƒXƒ`ƒƒ‚Ìê‡‚Æ‚»‚êˆÈŠO‚Åˆ—‚ğ•ªŠò
+											// ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒ‰ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®å ´åˆã¨ãã‚Œä»¥å¤–ã§å‡¦ç†ã‚’åˆ†å²
 											if( _FbxProperty.GetSrcObject< FbxLayeredTexture >( 0 ) != NULL )
 											{
-												// ‚QŒÂˆÈã‚ÌƒŒƒCƒ„[‚É‚Í‘Î‰‚µ‚Ä‚¢‚È‚¢
+												// ï¼’å€‹ä»¥ä¸Šã®ãƒ¬ã‚¤ãƒ¤ãƒ¼ã«ã¯å¯¾å¿œã—ã¦ã„ãªã„
 												if( _FbxProperty.GetSrcObject< FbxLayeredTexture >( 1 ) != NULL )
 												{
-													DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x45\x00\x6d\x00\x69\x00\x73\x00\x73\x00\x69\x00\x76\x00\x65\x00\x20\x00\xde\x30\xc6\x30\xea\x30\xa2\x30\xeb\x30\x6f\x30\x11\xff\xec\x30\xa4\x30\xe4\x30\xfc\x30\xe5\x4e\x0a\x4e\x6b\x30\x6f\x30\xfe\x5b\xdc\x5f\x57\x30\x66\x30\x44\x30\x7e\x30\x5b\x30\x93\x30\x0a\x00\x00"/*@ L"Fbx Load : Emissive ƒ}ƒeƒŠƒAƒ‹‚Í‚PƒŒƒCƒ„[ˆÈã‚É‚Í‘Î‰‚µ‚Ä‚¢‚Ü‚¹‚ñ\n" @*/ )) ;
+													DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x45\x00\x6d\x00\x69\x00\x73\x00\x73\x00\x69\x00\x76\x00\x65\x00\x20\x00\xde\x30\xc6\x30\xea\x30\xa2\x30\xeb\x30\x6f\x30\x11\xff\xec\x30\xa4\x30\xe4\x30\xfc\x30\xe5\x4e\x0a\x4e\x6b\x30\x6f\x30\xfe\x5b\xdc\x5f\x57\x30\x66\x30\x44\x30\x7e\x30\x5b\x30\x93\x30\x0a\x00\x00"/*@ L"Fbx Load : Emissive ãƒãƒ†ãƒªã‚¢ãƒ«ã¯ï¼‘ãƒ¬ã‚¤ãƒ¤ãƒ¼ä»¥ä¸Šã«ã¯å¯¾å¿œã—ã¦ã„ã¾ã›ã‚“\n" @*/ )) ;
 													return -1 ;
 												}
 
-												// ƒeƒNƒXƒ`ƒƒ‚Ì”‚¾‚¯ŒJ‚è•Ô‚µ
+												// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®æ•°ã ã‘ç¹°ã‚Šè¿”ã—
 												LayeredTexNum = 1 ;
 												for( j = 0 ; j < LayeredTexNum ; j ++ )
 												{
-													// ƒeƒNƒXƒ`ƒƒ‚ÌƒAƒhƒŒƒX‚ğæ“¾
+													// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å–å¾—
 													_FbxLayeredTexture = _FbxProperty.GetSrcObject< FbxLayeredTexture >( j ) ;
 
-													// ƒŒƒCƒ„[‚Ì’†‚ÉŠÜ‚Ü‚ê‚Ä‚¢‚éƒeƒNƒXƒ`ƒƒ‚Ì”‚ğæ“¾‚·‚é
+													// ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ä¸­ã«å«ã¾ã‚Œã¦ã„ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®æ•°ã‚’å–å¾—ã™ã‚‹
 													NormalTexNum = _FbxLayeredTexture->GetSrcObjectCount< FbxTexture >() ;
 
-													// ƒeƒNƒXƒ`ƒƒ‚Ì”‚¾‚¯ŒJ‚è•Ô‚µ
+													// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®æ•°ã ã‘ç¹°ã‚Šè¿”ã—
 													for( k = 0 ; k < NormalTexNum ; k ++ )
 													{
 														_FbxTexture = _FbxLayeredTexture->GetSrcObject< FbxTexture >( k ) ;
 														if( _FbxTexture == NULL ) continue ;
 
-														// ƒ‚ƒfƒ‹‚É’Ç‰Á
+														// ãƒ¢ãƒ‡ãƒ«ã«è¿½åŠ 
 														Material->EmissiveTexs[ Material->EmissiveTexNum ] = FbxAddTexture( RModel, _FbxTexture ) ;
 														if( Material->EmissiveTexs[ Material->EmissiveTexNum ] == NULL ) 
 														{
-															DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x45\x00\x6d\x00\x69\x00\x73\x00\x73\x00\x69\x00\x76\x00\x65\x00\x20\x00\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x6e\x30\xfd\x8f\xa0\x52\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : Emissive ƒeƒNƒXƒ`ƒƒƒIƒuƒWƒFƒNƒg‚Ì’Ç‰Á‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ )) ;
+															DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x45\x00\x6d\x00\x69\x00\x73\x00\x73\x00\x69\x00\x76\x00\x65\x00\x20\x00\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x6e\x30\xfd\x8f\xa0\x52\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : Emissive ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®è¿½åŠ ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ )) ;
 															return -1 ;
 														}
 
-														// ‡¬•û–@‚ğæ“¾‚·‚é
+														// åˆæˆæ–¹æ³•ã‚’å–å¾—ã™ã‚‹
 														_FbxLayeredTexture->GetTextureBlendMode( k, BlendMode ) ;
 														switch( BlendMode )
 														{
@@ -1675,30 +1675,30 @@ static int AnalyseFbxNode( MV1_MODEL_R *RModel, FBX_MODEL *Model, MV1_FRAME_R *P
 														case FbxLayeredTexture::eModulate2 :   Material->EmissiveTexs[ Material->EmissiveTexNum ]->BlendType = MV1_LAYERBLEND_TYPE_MODULATE2 ;   break ;
 														}
 
-														// ƒeƒNƒXƒ`ƒƒ‚Ì”‚ğƒCƒ“ƒNƒŠƒƒ“ƒg
+														// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®æ•°ã‚’ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆ
 														Material->EmissiveTexNum ++ ;
 													}
 												}
 											}
 											else
 											{
-												// ’Êí‚ÌƒeƒNƒXƒ`ƒƒ‚Ì”‚ğæ“¾
+												// é€šå¸¸ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®æ•°ã‚’å–å¾—
 												Material->EmissiveTexNum = _FbxProperty.GetSrcObjectCount< FbxTexture >() ;
 
-												// g—p‚µ‚Ä‚¢‚éê‡‚Íˆ—
+												// ä½¿ç”¨ã—ã¦ã„ã‚‹å ´åˆã¯å‡¦ç†
 												if( Material->EmissiveTexNum != 0 )
 												{
-													// ƒeƒNƒXƒ`ƒƒ‚Ì”‚¾‚¯ŒJ‚è•Ô‚µ
+													// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®æ•°ã ã‘ç¹°ã‚Šè¿”ã—
 													for( j = 0 ; j < Material->EmissiveTexNum ; j ++ )
 													{
-														// ƒeƒNƒXƒ`ƒƒ‚ÌƒAƒhƒŒƒX‚ğæ“¾
+														// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å–å¾—
 														_FbxTexture = _FbxProperty.GetSrcObject< FbxTexture >( j ) ;
 
-														// ƒ‚ƒfƒ‹‚É’Ç‰Á
+														// ãƒ¢ãƒ‡ãƒ«ã«è¿½åŠ 
 														Material->EmissiveTexs[ j ] = FbxAddTexture( RModel, _FbxTexture ) ;
 														if( Material->EmissiveTexs[ j ] == NULL ) 
 														{
-															DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x45\x00\x6d\x00\x69\x00\x73\x00\x73\x00\x69\x00\x76\x00\x65\x00\x20\x00\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x6e\x30\xfd\x8f\xa0\x52\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : Emissive ƒeƒNƒXƒ`ƒƒƒIƒuƒWƒFƒNƒg‚Ì’Ç‰Á‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ )) ;
+															DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x45\x00\x6d\x00\x69\x00\x73\x00\x73\x00\x69\x00\x76\x00\x65\x00\x20\x00\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x6e\x30\xfd\x8f\xa0\x52\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : Emissive ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®è¿½åŠ ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ )) ;
 															return -1 ;
 														}
 													}
@@ -1706,45 +1706,45 @@ static int AnalyseFbxNode( MV1_MODEL_R *RModel, FBX_MODEL *Model, MV1_FRAME_R *P
 											}
 										}
 
-										// ƒ‰ƒtƒlƒXƒ}ƒeƒŠƒAƒ‹ƒvƒƒpƒeƒB‚Ìæ“¾
+										// ãƒ©ãƒ•ãƒã‚¹ãƒãƒ†ãƒªã‚¢ãƒ«ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã®å–å¾—
 										{
 											_FbxProperty = FbxMaterial->FindProperty( FbxSurfaceMaterial::sShininess ) ;
 
-											// ƒŒƒCƒ„[ƒhƒeƒNƒXƒ`ƒƒ‚Ìê‡‚Æ‚»‚êˆÈŠO‚Åˆ—‚ğ•ªŠò
+											// ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒ‰ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®å ´åˆã¨ãã‚Œä»¥å¤–ã§å‡¦ç†ã‚’åˆ†å²
 											if( _FbxProperty.GetSrcObject< FbxLayeredTexture >( 0 ) != NULL )
 											{
-												// ‚QŒÂˆÈã‚ÌƒŒƒCƒ„[‚É‚Í‘Î‰‚µ‚Ä‚¢‚È‚¢
+												// ï¼’å€‹ä»¥ä¸Šã®ãƒ¬ã‚¤ãƒ¤ãƒ¼ã«ã¯å¯¾å¿œã—ã¦ã„ãªã„
 												if( _FbxProperty.GetSrcObject< FbxLayeredTexture >( 1 ) != NULL )
 												{
-													DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x53\x00\x68\x00\x69\x00\x6e\x00\x69\x00\x6e\x00\x65\x00\x73\x00\x73\x00\x20\x00\xde\x30\xc6\x30\xea\x30\xa2\x30\xeb\x30\x6f\x30\x11\xff\xec\x30\xa4\x30\xe4\x30\xfc\x30\xe5\x4e\x0a\x4e\x6b\x30\x6f\x30\xfe\x5b\xdc\x5f\x57\x30\x66\x30\x44\x30\x7e\x30\x5b\x30\x93\x30\x0a\x00\x00"/*@ L"Fbx Load : Shininess ƒ}ƒeƒŠƒAƒ‹‚Í‚PƒŒƒCƒ„[ˆÈã‚É‚Í‘Î‰‚µ‚Ä‚¢‚Ü‚¹‚ñ\n" @*/ )) ;
+													DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x53\x00\x68\x00\x69\x00\x6e\x00\x69\x00\x6e\x00\x65\x00\x73\x00\x73\x00\x20\x00\xde\x30\xc6\x30\xea\x30\xa2\x30\xeb\x30\x6f\x30\x11\xff\xec\x30\xa4\x30\xe4\x30\xfc\x30\xe5\x4e\x0a\x4e\x6b\x30\x6f\x30\xfe\x5b\xdc\x5f\x57\x30\x66\x30\x44\x30\x7e\x30\x5b\x30\x93\x30\x0a\x00\x00"/*@ L"Fbx Load : Shininess ãƒãƒ†ãƒªã‚¢ãƒ«ã¯ï¼‘ãƒ¬ã‚¤ãƒ¤ãƒ¼ä»¥ä¸Šã«ã¯å¯¾å¿œã—ã¦ã„ã¾ã›ã‚“\n" @*/ )) ;
 													return -1 ;
 												}
 
-												// ƒeƒNƒXƒ`ƒƒ‚Ì”‚¾‚¯ŒJ‚è•Ô‚µ
+												// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®æ•°ã ã‘ç¹°ã‚Šè¿”ã—
 												LayeredTexNum = 1 ;
 												for( j = 0 ; j < LayeredTexNum ; j ++ )
 												{
-													// ƒeƒNƒXƒ`ƒƒ‚ÌƒAƒhƒŒƒX‚ğæ“¾
+													// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å–å¾—
 													_FbxLayeredTexture = _FbxProperty.GetSrcObject< FbxLayeredTexture >( j ) ;
 
-													// ƒŒƒCƒ„[‚Ì’†‚ÉŠÜ‚Ü‚ê‚Ä‚¢‚éƒeƒNƒXƒ`ƒƒ‚Ì”‚ğæ“¾‚·‚é
+													// ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ä¸­ã«å«ã¾ã‚Œã¦ã„ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®æ•°ã‚’å–å¾—ã™ã‚‹
 													NormalTexNum = _FbxLayeredTexture->GetSrcObjectCount< FbxTexture >() ;
 
-													// ƒeƒNƒXƒ`ƒƒ‚Ì”‚¾‚¯ŒJ‚è•Ô‚µ
+													// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®æ•°ã ã‘ç¹°ã‚Šè¿”ã—
 													for( k = 0 ; k < NormalTexNum ; k ++ )
 													{
 														_FbxTexture = _FbxLayeredTexture->GetSrcObject< FbxTexture >( k ) ;
 														if( _FbxTexture == NULL ) continue ;
 
-														// ƒ‚ƒfƒ‹‚É’Ç‰Á
+														// ãƒ¢ãƒ‡ãƒ«ã«è¿½åŠ 
 														Material->ShininessTexs[ Material->ShininessTexNum ] = FbxAddTexture( RModel, _FbxTexture ) ;
 														if( Material->ShininessTexs[ Material->ShininessTexNum ] == NULL ) 
 														{
-															DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x53\x00\x68\x00\x69\x00\x6e\x00\x69\x00\x6e\x00\x65\x00\x73\x00\x73\x00\x20\x00\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x6e\x30\xfd\x8f\xa0\x52\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : Shininess ƒeƒNƒXƒ`ƒƒƒIƒuƒWƒFƒNƒg‚Ì’Ç‰Á‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ )) ;
+															DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x53\x00\x68\x00\x69\x00\x6e\x00\x69\x00\x6e\x00\x65\x00\x73\x00\x73\x00\x20\x00\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x6e\x30\xfd\x8f\xa0\x52\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : Shininess ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®è¿½åŠ ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ )) ;
 															return -1 ;
 														}
 
-														// ‡¬•û–@‚ğæ“¾‚·‚é
+														// åˆæˆæ–¹æ³•ã‚’å–å¾—ã™ã‚‹
 														_FbxLayeredTexture->GetTextureBlendMode( k, BlendMode ) ;
 														switch( BlendMode )
 														{
@@ -1754,30 +1754,30 @@ static int AnalyseFbxNode( MV1_MODEL_R *RModel, FBX_MODEL *Model, MV1_FRAME_R *P
 														case FbxLayeredTexture::eModulate2 :   Material->ShininessTexs[ Material->ShininessTexNum ]->BlendType = MV1_LAYERBLEND_TYPE_MODULATE2 ;   break ;
 														}
 
-														// ƒeƒNƒXƒ`ƒƒ‚Ì”‚ğƒCƒ“ƒNƒŠƒƒ“ƒg
+														// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®æ•°ã‚’ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆ
 														Material->ShininessTexNum ++ ;
 													}
 												}
 											}
 											else
 											{
-												// ’Êí‚ÌƒeƒNƒXƒ`ƒƒ‚Ì”‚ğæ“¾
+												// é€šå¸¸ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®æ•°ã‚’å–å¾—
 												Material->ShininessTexNum = _FbxProperty.GetSrcObjectCount< FbxTexture >() ;
 
-												// g—p‚µ‚Ä‚¢‚éê‡‚Íˆ—
+												// ä½¿ç”¨ã—ã¦ã„ã‚‹å ´åˆã¯å‡¦ç†
 												if( Material->ShininessTexNum != 0 )
 												{
-													// ƒeƒNƒXƒ`ƒƒ‚Ì”‚¾‚¯ŒJ‚è•Ô‚µ
+													// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®æ•°ã ã‘ç¹°ã‚Šè¿”ã—
 													for( j = 0 ; j < Material->ShininessTexNum ; j ++ )
 													{
-														// ƒeƒNƒXƒ`ƒƒ‚ÌƒAƒhƒŒƒX‚ğæ“¾
+														// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å–å¾—
 														_FbxTexture = _FbxProperty.GetSrcObject< FbxTexture >( j ) ;
 
-														// ƒ‚ƒfƒ‹‚É’Ç‰Á
+														// ãƒ¢ãƒ‡ãƒ«ã«è¿½åŠ 
 														Material->ShininessTexs[ j ] = FbxAddTexture( RModel, _FbxTexture ) ;
 														if( Material->ShininessTexs[ j ] == NULL ) 
 														{
-															DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x53\x00\x68\x00\x69\x00\x6e\x00\x69\x00\x6e\x00\x65\x00\x73\x00\x73\x00\x20\x00\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x6e\x30\xfd\x8f\xa0\x52\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : Shininess ƒeƒNƒXƒ`ƒƒƒIƒuƒWƒFƒNƒg‚Ì’Ç‰Á‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ )) ;
+															DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x53\x00\x68\x00\x69\x00\x6e\x00\x69\x00\x6e\x00\x65\x00\x73\x00\x73\x00\x20\x00\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x6e\x30\xfd\x8f\xa0\x52\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : Shininess ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®è¿½åŠ ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ )) ;
 															return -1 ;
 														}
 													}
@@ -1786,45 +1786,45 @@ static int AnalyseFbxNode( MV1_MODEL_R *RModel, FBX_MODEL *Model, MV1_FRAME_R *P
 										}
 
 
-										// ƒƒ^ƒŠƒbƒNƒ}ƒeƒŠƒAƒ‹ƒvƒƒpƒeƒB‚Ìæ“¾
+										// ãƒ¡ã‚¿ãƒªãƒƒã‚¯ãƒãƒ†ãƒªã‚¢ãƒ«ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã®å–å¾—
 										{
 											_FbxProperty = FbxMaterial->FindProperty( FbxSurfaceMaterial::sReflectionFactor ) ;
 
-											// ƒŒƒCƒ„[ƒhƒeƒNƒXƒ`ƒƒ‚Ìê‡‚Æ‚»‚êˆÈŠO‚Åˆ—‚ğ•ªŠò
+											// ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒ‰ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®å ´åˆã¨ãã‚Œä»¥å¤–ã§å‡¦ç†ã‚’åˆ†å²
 											if( _FbxProperty.GetSrcObject< FbxLayeredTexture >( 0 ) != NULL )
 											{
-												// ‚QŒÂˆÈã‚ÌƒŒƒCƒ„[‚É‚Í‘Î‰‚µ‚Ä‚¢‚È‚¢
+												// ï¼’å€‹ä»¥ä¸Šã®ãƒ¬ã‚¤ãƒ¤ãƒ¼ã«ã¯å¯¾å¿œã—ã¦ã„ãªã„
 												if( _FbxProperty.GetSrcObject< FbxLayeredTexture >( 1 ) != NULL )
 												{
-													DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x52\x00\x65\x00\x66\x00\x6c\x00\x65\x00\x63\x00\x74\x00\x69\x00\x6f\x00\x6e\x00\x46\x00\x61\x00\x63\x00\x74\x00\x6f\x00\x72\x00\x20\x00\xde\x30\xc6\x30\xea\x30\xa2\x30\xeb\x30\x6f\x30\x11\xff\xec\x30\xa4\x30\xe4\x30\xfc\x30\xe5\x4e\x0a\x4e\x6b\x30\x6f\x30\xfe\x5b\xdc\x5f\x57\x30\x66\x30\x44\x30\x7e\x30\x5b\x30\x93\x30\x0a\x00\x00"/*@ L"Fbx Load : ReflectionFactor ƒ}ƒeƒŠƒAƒ‹‚Í‚PƒŒƒCƒ„[ˆÈã‚É‚Í‘Î‰‚µ‚Ä‚¢‚Ü‚¹‚ñ\n" @*/ )) ;
+													DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x52\x00\x65\x00\x66\x00\x6c\x00\x65\x00\x63\x00\x74\x00\x69\x00\x6f\x00\x6e\x00\x46\x00\x61\x00\x63\x00\x74\x00\x6f\x00\x72\x00\x20\x00\xde\x30\xc6\x30\xea\x30\xa2\x30\xeb\x30\x6f\x30\x11\xff\xec\x30\xa4\x30\xe4\x30\xfc\x30\xe5\x4e\x0a\x4e\x6b\x30\x6f\x30\xfe\x5b\xdc\x5f\x57\x30\x66\x30\x44\x30\x7e\x30\x5b\x30\x93\x30\x0a\x00\x00"/*@ L"Fbx Load : ReflectionFactor ãƒãƒ†ãƒªã‚¢ãƒ«ã¯ï¼‘ãƒ¬ã‚¤ãƒ¤ãƒ¼ä»¥ä¸Šã«ã¯å¯¾å¿œã—ã¦ã„ã¾ã›ã‚“\n" @*/ )) ;
 													return -1 ;
 												}
 
-												// ƒeƒNƒXƒ`ƒƒ‚Ì”‚¾‚¯ŒJ‚è•Ô‚µ
+												// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®æ•°ã ã‘ç¹°ã‚Šè¿”ã—
 												LayeredTexNum = 1 ;
 												for( j = 0 ; j < LayeredTexNum ; j ++ )
 												{
-													// ƒeƒNƒXƒ`ƒƒ‚ÌƒAƒhƒŒƒX‚ğæ“¾
+													// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å–å¾—
 													_FbxLayeredTexture = _FbxProperty.GetSrcObject< FbxLayeredTexture >( j ) ;
 
-													// ƒŒƒCƒ„[‚Ì’†‚ÉŠÜ‚Ü‚ê‚Ä‚¢‚éƒeƒNƒXƒ`ƒƒ‚Ì”‚ğæ“¾‚·‚é
+													// ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ä¸­ã«å«ã¾ã‚Œã¦ã„ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®æ•°ã‚’å–å¾—ã™ã‚‹
 													NormalTexNum = _FbxLayeredTexture->GetSrcObjectCount< FbxTexture >() ;
 
-													// ƒeƒNƒXƒ`ƒƒ‚Ì”‚¾‚¯ŒJ‚è•Ô‚µ
+													// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®æ•°ã ã‘ç¹°ã‚Šè¿”ã—
 													for( k = 0 ; k < NormalTexNum ; k ++ )
 													{
 														_FbxTexture = _FbxLayeredTexture->GetSrcObject< FbxTexture >( k ) ;
 														if( _FbxTexture == NULL ) continue ;
 
-														// ƒ‚ƒfƒ‹‚É’Ç‰Á
+														// ãƒ¢ãƒ‡ãƒ«ã«è¿½åŠ 
 														Material->ReflectionFactorTexs[ Material->ReflectionFactorTexNum ] = FbxAddTexture( RModel, _FbxTexture ) ;
 														if( Material->ReflectionFactorTexs[ Material->ReflectionFactorTexNum ] == NULL ) 
 														{
-															DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x52\x00\x65\x00\x66\x00\x6c\x00\x65\x00\x63\x00\x74\x00\x69\x00\x6f\x00\x6e\x00\x46\x00\x61\x00\x63\x00\x74\x00\x6f\x00\x72\x00\x20\x00\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x6e\x30\xfd\x8f\xa0\x52\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : ReflectionFactor ƒeƒNƒXƒ`ƒƒƒIƒuƒWƒFƒNƒg‚Ì’Ç‰Á‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ )) ;
+															DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x52\x00\x65\x00\x66\x00\x6c\x00\x65\x00\x63\x00\x74\x00\x69\x00\x6f\x00\x6e\x00\x46\x00\x61\x00\x63\x00\x74\x00\x6f\x00\x72\x00\x20\x00\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x6e\x30\xfd\x8f\xa0\x52\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : ReflectionFactor ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®è¿½åŠ ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ )) ;
 															return -1 ;
 														}
 
-														// ‡¬•û–@‚ğæ“¾‚·‚é
+														// åˆæˆæ–¹æ³•ã‚’å–å¾—ã™ã‚‹
 														_FbxLayeredTexture->GetTextureBlendMode( k, BlendMode ) ;
 														switch( BlendMode )
 														{
@@ -1834,30 +1834,30 @@ static int AnalyseFbxNode( MV1_MODEL_R *RModel, FBX_MODEL *Model, MV1_FRAME_R *P
 														case FbxLayeredTexture::eModulate2 :   Material->ReflectionFactorTexs[ Material->ReflectionFactorTexNum ]->BlendType = MV1_LAYERBLEND_TYPE_MODULATE2 ;   break ;
 														}
 
-														// ƒeƒNƒXƒ`ƒƒ‚Ì”‚ğƒCƒ“ƒNƒŠƒƒ“ƒg
+														// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®æ•°ã‚’ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆ
 														Material->ReflectionFactorTexNum ++ ;
 													}
 												}
 											}
 											else
 											{
-												// ’Êí‚ÌƒeƒNƒXƒ`ƒƒ‚Ì”‚ğæ“¾
+												// é€šå¸¸ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®æ•°ã‚’å–å¾—
 												Material->ReflectionFactorTexNum = _FbxProperty.GetSrcObjectCount< FbxTexture >() ;
 
-												// g—p‚µ‚Ä‚¢‚éê‡‚Íˆ—
+												// ä½¿ç”¨ã—ã¦ã„ã‚‹å ´åˆã¯å‡¦ç†
 												if( Material->ReflectionFactorTexNum != 0 )
 												{
-													// ƒeƒNƒXƒ`ƒƒ‚Ì”‚¾‚¯ŒJ‚è•Ô‚µ
+													// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®æ•°ã ã‘ç¹°ã‚Šè¿”ã—
 													for( j = 0 ; j < Material->ReflectionFactorTexNum ; j ++ )
 													{
-														// ƒeƒNƒXƒ`ƒƒ‚ÌƒAƒhƒŒƒX‚ğæ“¾
+														// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å–å¾—
 														_FbxTexture = _FbxProperty.GetSrcObject< FbxTexture >( j ) ;
 
-														// ƒ‚ƒfƒ‹‚É’Ç‰Á
+														// ãƒ¢ãƒ‡ãƒ«ã«è¿½åŠ 
 														Material->ReflectionFactorTexs[ j ] = FbxAddTexture( RModel, _FbxTexture ) ;
 														if( Material->ReflectionFactorTexs[ j ] == NULL ) 
 														{
-															DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x52\x00\x65\x00\x66\x00\x6c\x00\x65\x00\x63\x00\x74\x00\x69\x00\x6f\x00\x6e\x00\x46\x00\x61\x00\x63\x00\x74\x00\x6f\x00\x72\x00\x20\x00\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x6e\x30\xfd\x8f\xa0\x52\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : ReflectionFactor ƒeƒNƒXƒ`ƒƒƒIƒuƒWƒFƒNƒg‚Ì’Ç‰Á‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ )) ;
+															DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x52\x00\x65\x00\x66\x00\x6c\x00\x65\x00\x63\x00\x74\x00\x69\x00\x6f\x00\x6e\x00\x46\x00\x61\x00\x63\x00\x74\x00\x6f\x00\x72\x00\x20\x00\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x6e\x30\xfd\x8f\xa0\x52\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : ReflectionFactor ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®è¿½åŠ ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ )) ;
 															return -1 ;
 														}
 													}
@@ -1868,33 +1868,33 @@ static int AnalyseFbxNode( MV1_MODEL_R *RModel, FBX_MODEL *Model, MV1_FRAME_R *P
 								}
 							}
 
-							// Še–Ê‚É‘Î‰‚·‚éƒ}ƒeƒŠƒAƒ‹‚Ìî•ñ‚ğæ“¾‚·‚é
+							// å„é¢ã«å¯¾å¿œã™ã‚‹ãƒãƒ†ãƒªã‚¢ãƒ«ã®æƒ…å ±ã‚’å–å¾—ã™ã‚‹
 							{
-								// ƒ}ƒeƒŠƒAƒ‹ƒGƒŒƒƒ“ƒg‚Ì”‚¾‚¯ŒJ‚è•Ô‚µ
+								// ãƒãƒ†ãƒªã‚¢ãƒ«ã‚¨ãƒ¬ãƒ¡ãƒ³ãƒˆã®æ•°ã ã‘ç¹°ã‚Šè¿”ã—
 								for( i = 0 ; i < _FbxMesh->GetElementMaterialCount() ; i ++ )
 								{
 									FbxMaterialElem = _FbxMesh->GetElementMaterial( i ) ;
 
-									// ƒ‚[ƒh‚Ìæ“¾
+									// ãƒ¢ãƒ¼ãƒ‰ã®å–å¾—
 									FbxMappingMode = FbxMaterialElem->GetMappingMode() ;
 									FbxRefMode = FbxMaterialElem->GetReferenceMode() ;
 
-									// ƒ}ƒeƒŠƒAƒ‹î•ñ‚Ìæ“¾
+									// ãƒãƒ†ãƒªã‚¢ãƒ«æƒ…å ±ã®å–å¾—
 									switch( FbxRefMode )
 									{
 									case FbxGeometryElement::eDirect :
-										// ƒ}ƒeƒŠƒAƒ‹î•ñ‚Ì”‚ğæ“¾
+										// ãƒãƒ†ãƒªã‚¢ãƒ«æƒ…å ±ã®æ•°ã‚’å–å¾—
 										MaterialNum = pFbxNode->GetMaterialCount() ;
 
-										// ƒ}ƒeƒŠƒAƒ‹î•ñ‚ğŠi”[‚·‚éƒƒ‚ƒŠ—Ìˆæ‚ÌŠm•Û
+										// ãƒãƒ†ãƒªã‚¢ãƒ«æƒ…å ±ã‚’æ ¼ç´ã™ã‚‹ãƒ¡ãƒ¢ãƒªé ˜åŸŸã®ç¢ºä¿
 										FbxMaterialDim = ( FbxSurfaceMaterial ** )DXCALLOC( sizeof( FbxSurfaceMaterial * ) * MaterialNum ) ;
 										if( FbxMaterialDim == NULL ) 
 										{
-											DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\xde\x30\xc6\x30\xea\x30\xa2\x30\xeb\x30\xea\x30\xb9\x30\xc8\x30\x92\x30\x00\x4e\x42\x66\xdd\x4f\x58\x5b\x59\x30\x8b\x30\xd0\x30\xc3\x30\xd5\x30\xa1\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : ƒ}ƒeƒŠƒAƒ‹ƒŠƒXƒg‚ğˆê•Û‘¶‚·‚éƒoƒbƒtƒ@‚ÌŠm•Û‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ )) ;
+											DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\xde\x30\xc6\x30\xea\x30\xa2\x30\xeb\x30\xea\x30\xb9\x30\xc8\x30\x92\x30\x00\x4e\x42\x66\xdd\x4f\x58\x5b\x59\x30\x8b\x30\xd0\x30\xc3\x30\xd5\x30\xa1\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : ãƒãƒ†ãƒªã‚¢ãƒ«ãƒªã‚¹ãƒˆã‚’ä¸€æ™‚ä¿å­˜ã™ã‚‹ãƒãƒƒãƒ•ã‚¡ã®ç¢ºä¿ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ )) ;
 											return -1 ;
 										}
 
-										// ’¼Úƒ‚[ƒh‚Ìê‡‚Í‚»‚Ì‚Ü‚Ü‘ã“ü
+										// ç›´æ¥ãƒ¢ãƒ¼ãƒ‰ã®å ´åˆã¯ãã®ã¾ã¾ä»£å…¥
 										for( j = 0 ; j < MaterialNum ; j ++ )
 										{
 											FbxMaterialDim[ j ] = pFbxNode->GetMaterial( j ) ;
@@ -1902,18 +1902,18 @@ static int AnalyseFbxNode( MV1_MODEL_R *RModel, FBX_MODEL *Model, MV1_FRAME_R *P
 										break ;
 
 									case FbxGeometryElement::eIndexToDirect :
-										// ƒCƒ“ƒfƒbƒNƒX‚Ì”‚ğæ“¾
+										// ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã®æ•°ã‚’å–å¾—
 										MaterialNum = FbxMaterialElem->GetIndexArray().GetCount() ;
 
-										// ƒ}ƒeƒŠƒAƒ‹î•ñ‚ğŠi”[‚·‚éƒƒ‚ƒŠ—Ìˆæ‚ÌŠm•Û
+										// ãƒãƒ†ãƒªã‚¢ãƒ«æƒ…å ±ã‚’æ ¼ç´ã™ã‚‹ãƒ¡ãƒ¢ãƒªé ˜åŸŸã®ç¢ºä¿
 										FbxMaterialDim = ( FbxSurfaceMaterial ** )DXCALLOC( sizeof( FbxSurfaceMaterial * ) * MaterialNum ) ;
 										if( FbxMaterialDim == NULL ) 
 										{
-											DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\xde\x30\xc6\x30\xea\x30\xa2\x30\xeb\x30\xea\x30\xb9\x30\xc8\x30\x92\x30\x00\x4e\x42\x66\xdd\x4f\x58\x5b\x59\x30\x8b\x30\xd0\x30\xc3\x30\xd5\x30\xa1\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : ƒ}ƒeƒŠƒAƒ‹ƒŠƒXƒg‚ğˆê•Û‘¶‚·‚éƒoƒbƒtƒ@‚ÌŠm•Û‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ )) ;
+											DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\xde\x30\xc6\x30\xea\x30\xa2\x30\xeb\x30\xea\x30\xb9\x30\xc8\x30\x92\x30\x00\x4e\x42\x66\xdd\x4f\x58\x5b\x59\x30\x8b\x30\xd0\x30\xc3\x30\xd5\x30\xa1\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : ãƒãƒ†ãƒªã‚¢ãƒ«ãƒªã‚¹ãƒˆã‚’ä¸€æ™‚ä¿å­˜ã™ã‚‹ãƒãƒƒãƒ•ã‚¡ã®ç¢ºä¿ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ )) ;
 											return -1 ;
 										}
 
-										// ƒCƒ“ƒfƒbƒNƒXƒ‚[ƒh‚Ìê‡‚ÍŠÔÚQÆ‘ã“ü
+										// ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒ¢ãƒ¼ãƒ‰ã®å ´åˆã¯é–“æ¥å‚ç…§ä»£å…¥
 										for( j = 0 ; j < MaterialNum ; j ++ )
 										{
 											Index = FbxMaterialElem->GetIndexArray().GetAt( j ) ;
@@ -1922,58 +1922,58 @@ static int AnalyseFbxNode( MV1_MODEL_R *RModel, FBX_MODEL *Model, MV1_FRAME_R *P
 										break ;
 
 									default :
-										DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x5e\x97\xfe\x5b\xdc\x5f\x6e\x30\xde\x30\xc6\x30\xea\x30\xa2\x30\xeb\x30\xea\x30\xd5\x30\xa1\x30\xec\x30\xf3\x30\xb9\x30\xe2\x30\xfc\x30\xc9\x30\x4c\x30\x7f\x4f\x28\x75\x55\x30\x8c\x30\x66\x30\x44\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : ”ñ‘Î‰‚Ìƒ}ƒeƒŠƒAƒ‹ƒŠƒtƒ@ƒŒƒ“ƒXƒ‚[ƒh‚ªg—p‚³‚ê‚Ä‚¢‚Ü‚µ‚½\n" @*/ )) ;
+										DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x5e\x97\xfe\x5b\xdc\x5f\x6e\x30\xde\x30\xc6\x30\xea\x30\xa2\x30\xeb\x30\xea\x30\xd5\x30\xa1\x30\xec\x30\xf3\x30\xb9\x30\xe2\x30\xfc\x30\xc9\x30\x4c\x30\x7f\x4f\x28\x75\x55\x30\x8c\x30\x66\x30\x44\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : éå¯¾å¿œã®ãƒãƒ†ãƒªã‚¢ãƒ«ãƒªãƒ•ã‚¡ãƒ¬ãƒ³ã‚¹ãƒ¢ãƒ¼ãƒ‰ãŒä½¿ç”¨ã•ã‚Œã¦ã„ã¾ã—ãŸ\n" @*/ )) ;
 										return -1 ;
 									}
 
-									// –Ê‚ÌŠe’¸“_‚É‘Î‰‚·‚éƒ}ƒeƒŠƒAƒ‹‚Ìî•ñ‚ğæ“¾
+									// é¢ã®å„é ‚ç‚¹ã«å¯¾å¿œã™ã‚‹ãƒãƒ†ãƒªã‚¢ãƒ«ã®æƒ…å ±ã‚’å–å¾—
 									switch( FbxMappingMode )
 									{
 									case FbxGeometryElement::eByPolygon :
-										// ‚Pƒ|ƒŠƒSƒ“‚É‚Pƒ}ƒeƒŠƒAƒ‹
+										// ï¼‘ãƒãƒªã‚´ãƒ³ã«ï¼‘ãƒãƒ†ãƒªã‚¢ãƒ«
 										MeshFace = Mesh->Faces ;
 										for( j = 0 ; ( DWORD )j < Mesh->FaceNum ; j ++, MeshFace ++ )
 										{
-											// Š„‚è“–‚Ä‚ç‚ê‚Ä‚¢‚éƒ}ƒeƒŠƒAƒ‹‚ªƒ‚ƒfƒ‹’†‚Ì‚Ç‚Ìƒ}ƒeƒŠƒAƒ‹‚É“–‚½‚é‚Ì‚©‚ğ’²‚×‚é
+											// å‰²ã‚Šå½“ã¦ã‚‰ã‚Œã¦ã„ã‚‹ãƒãƒ†ãƒªã‚¢ãƒ«ãŒãƒ¢ãƒ‡ãƒ«ä¸­ã®ã©ã®ãƒãƒ†ãƒªã‚¢ãƒ«ã«å½“ãŸã‚‹ã®ã‹ã‚’èª¿ã¹ã‚‹
 											for( k = 0 ; ( DWORD )k < Mesh->MaterialNum && _STRCMP( Mesh->Materials[ k ]->SubName, FbxMaterialDim[ j ]->GetName() ) != 0 ; k ++ ){}
 											if( k == Mesh->MaterialNum )
 											{
 	//											FbxUTF8ToAnsi( FbxMaterialDim[ j ]->GetName(), ANSIBuffer, &ANSISize ) ;
 												ConvString( FbxMaterialDim[ j ]->GetName(), -1, DX_CHARCODEFORMAT_UTF8, ( char * )UTF16LE_Buffer, sizeof( UTF16LE_Buffer ), DX_CHARCODEFORMAT_UTF16LE ) ; 
-												DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\xce\x30\xfc\x30\xc9\x30\x85\x51\x6b\x30\x00\x4e\xf4\x81\x59\x30\x8b\x30\xde\x30\xc6\x30\xea\x30\xa2\x30\xeb\x30\x4c\x30\x8b\x89\x64\x30\x4b\x30\x8a\x30\x7e\x30\x5b\x30\x93\x30\x67\x30\x57\x30\x5f\x30\x20\x00\x65\x00\x42\x00\x59\x00\x5f\x00\x43\x00\x4f\x00\x4e\x00\x54\x00\x52\x00\x4f\x00\x4c\x00\x5f\x00\x50\x00\x4f\x00\x49\x00\x4e\x00\x54\x00\x20\x00\x2c\x00\x20\x00\x25\x00\x73\x00\x20\x00\x0a\x00\x00"/*@ L"Fbx Load : ƒm[ƒh“à‚Éˆê’v‚·‚éƒ}ƒeƒŠƒAƒ‹‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñ‚Å‚µ‚½ eBY_CONTROL_POINT , %s \n" @*/, UTF16LE_Buffer )) ;
+												DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\xce\x30\xfc\x30\xc9\x30\x85\x51\x6b\x30\x00\x4e\xf4\x81\x59\x30\x8b\x30\xde\x30\xc6\x30\xea\x30\xa2\x30\xeb\x30\x4c\x30\x8b\x89\x64\x30\x4b\x30\x8a\x30\x7e\x30\x5b\x30\x93\x30\x67\x30\x57\x30\x5f\x30\x20\x00\x65\x00\x42\x00\x59\x00\x5f\x00\x43\x00\x4f\x00\x4e\x00\x54\x00\x52\x00\x4f\x00\x4c\x00\x5f\x00\x50\x00\x4f\x00\x49\x00\x4e\x00\x54\x00\x20\x00\x2c\x00\x20\x00\x25\x00\x73\x00\x20\x00\x0a\x00\x00"/*@ L"Fbx Load : ãƒãƒ¼ãƒ‰å†…ã«ä¸€è‡´ã™ã‚‹ãƒãƒ†ãƒªã‚¢ãƒ«ãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“ã§ã—ãŸ eBY_CONTROL_POINT , %s \n" @*/, UTF16LE_Buffer )) ;
 												DXFREE( FbxMaterialDim ) ;
 												return -1 ;
 											}
 
-											// ƒCƒ“ƒfƒbƒNƒX‚ğ•Û‘¶
+											// ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’ä¿å­˜
 											MeshFace->MaterialIndex = k ;
 										}
 										break ;
 
 									case FbxGeometryElement::eAllSame :
-										// ƒƒbƒVƒ…‘S‘Ì‚Å‚Pƒ}ƒeƒŠƒAƒ‹
+										// ãƒ¡ãƒƒã‚·ãƒ¥å…¨ä½“ã§ï¼‘ãƒãƒ†ãƒªã‚¢ãƒ«
 
-										// Š„‚è“–‚Ä‚ç‚ê‚Ä‚¢‚éƒ}ƒeƒŠƒAƒ‹‚ªƒ‚ƒfƒ‹’†‚Ì‚Ç‚Ìƒ}ƒeƒŠƒAƒ‹‚É“–‚½‚é‚Ì‚©‚ğ’²‚×‚é
+										// å‰²ã‚Šå½“ã¦ã‚‰ã‚Œã¦ã„ã‚‹ãƒãƒ†ãƒªã‚¢ãƒ«ãŒãƒ¢ãƒ‡ãƒ«ä¸­ã®ã©ã®ãƒãƒ†ãƒªã‚¢ãƒ«ã«å½“ãŸã‚‹ã®ã‹ã‚’èª¿ã¹ã‚‹
 										for( k = 0 ; ( DWORD )k < Mesh->MaterialNum && _STRCMP( Mesh->Materials[ k ]->SubName, FbxMaterialDim[ 0 ]->GetName() ) != 0 ; k ++ ){}
 										if( k == Mesh->MaterialNum )
 										{
 											DXFREE( FbxMaterialDim ) ;
-											DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\xce\x30\xfc\x30\xc9\x30\x85\x51\x6b\x30\x00\x4e\xf4\x81\x59\x30\x8b\x30\xde\x30\xc6\x30\xea\x30\xa2\x30\xeb\x30\x4c\x30\x8b\x89\x64\x30\x4b\x30\x8a\x30\x7e\x30\x5b\x30\x93\x30\x67\x30\x57\x30\x5f\x30\x20\x00\x65\x00\x41\x00\x4c\x00\x4c\x00\x5f\x00\x53\x00\x41\x00\x4d\x00\x45\x00\x0a\x00\x00"/*@ L"Fbx Load : ƒm[ƒh“à‚Éˆê’v‚·‚éƒ}ƒeƒŠƒAƒ‹‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñ‚Å‚µ‚½ eALL_SAME\n" @*/ )) ;
+											DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\xce\x30\xfc\x30\xc9\x30\x85\x51\x6b\x30\x00\x4e\xf4\x81\x59\x30\x8b\x30\xde\x30\xc6\x30\xea\x30\xa2\x30\xeb\x30\x4c\x30\x8b\x89\x64\x30\x4b\x30\x8a\x30\x7e\x30\x5b\x30\x93\x30\x67\x30\x57\x30\x5f\x30\x20\x00\x65\x00\x41\x00\x4c\x00\x4c\x00\x5f\x00\x53\x00\x41\x00\x4d\x00\x45\x00\x0a\x00\x00"/*@ L"Fbx Load : ãƒãƒ¼ãƒ‰å†…ã«ä¸€è‡´ã™ã‚‹ãƒãƒ†ãƒªã‚¢ãƒ«ãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“ã§ã—ãŸ eALL_SAME\n" @*/ )) ;
 											return -1 ;
 										}
 
-										// ‚·‚×‚Ä‚ÌƒƒbƒVƒ…‚ÉŒ©‚Â‚¯‚½ƒCƒ“ƒfƒbƒNƒX‚ğƒZƒbƒg
+										// ã™ã¹ã¦ã®ãƒ¡ãƒƒã‚·ãƒ¥ã«è¦‹ã¤ã‘ãŸã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’ã‚»ãƒƒãƒˆ
 										MeshFace = Mesh->Faces ;
 										for( j = 0 ; ( DWORD )j < Mesh->FaceNum ; j ++, MeshFace ++ )
 										{
-											// ƒCƒ“ƒfƒbƒNƒX‚ğ•Û‘¶
+											// ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’ä¿å­˜
 											MeshFace->MaterialIndex = k ;
 										}
 										break ;
 
 									default :
 										DXFREE( FbxMaterialDim ) ;
-										DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x5e\x97\xfe\x5b\xdc\x5f\x6e\x30\xde\x30\xc6\x30\xea\x30\xa2\x30\xeb\x30\xde\x30\xc3\x30\xd4\x30\xf3\x30\xb0\x30\xe2\x30\xfc\x30\xc9\x30\x4c\x30\x7f\x4f\x28\x75\x55\x30\x8c\x30\x66\x30\x44\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : ”ñ‘Î‰‚Ìƒ}ƒeƒŠƒAƒ‹ƒ}ƒbƒsƒ“ƒOƒ‚[ƒh‚ªg—p‚³‚ê‚Ä‚¢‚Ü‚µ‚½\n" @*/ )) ;
+										DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x5e\x97\xfe\x5b\xdc\x5f\x6e\x30\xde\x30\xc6\x30\xea\x30\xa2\x30\xeb\x30\xde\x30\xc3\x30\xd4\x30\xf3\x30\xb0\x30\xe2\x30\xfc\x30\xc9\x30\x4c\x30\x7f\x4f\x28\x75\x55\x30\x8c\x30\x66\x30\x44\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : éå¯¾å¿œã®ãƒãƒ†ãƒªã‚¢ãƒ«ãƒãƒƒãƒ”ãƒ³ã‚°ãƒ¢ãƒ¼ãƒ‰ãŒä½¿ç”¨ã•ã‚Œã¦ã„ã¾ã—ãŸ\n" @*/ )) ;
 										return -1 ;
 									}
 
@@ -1983,7 +1983,7 @@ static int AnalyseFbxNode( MV1_MODEL_R *RModel, FBX_MODEL *Model, MV1_FRAME_R *P
 						}
 					}
 
-					// ƒXƒLƒ“ƒƒbƒVƒ…‚Ìî•ñ‚ğæ“¾
+					// ã‚¹ã‚­ãƒ³ãƒ¡ãƒƒã‚·ãƒ¥ã®æƒ…å ±ã‚’å–å¾—
 					if( _FbxMesh->GetDeformerCount( FbxDeformer::eSkin ) )
 					{
 						int PointNum, ClusterCount ;
@@ -1993,29 +1993,29 @@ static int AnalyseFbxNode( MV1_MODEL_R *RModel, FBX_MODEL *Model, MV1_FRAME_R *P
 						MATRIX InvMatrix ;
 						BYTE *PositionFillFlag ;
 
-						// ‚QŒÂˆÈã‚ÌƒXƒLƒ“‚É‚Í–¢‘Î‰
+						// ï¼’å€‹ä»¥ä¸Šã®ã‚¹ã‚­ãƒ³ã«ã¯æœªå¯¾å¿œ
 						if( _FbxMesh->GetDeformerCount( FbxDeformer::eSkin ) > 1 )
 						{
-							DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x11\xff\xe1\x30\xc3\x30\xb7\x30\xe5\x30\x6b\x30\x07\x89\x70\x65\x6e\x30\xb9\x30\xad\x30\xf3\x30\xe1\x30\xc3\x30\xb7\x30\xe5\x30\x6b\x30\x6f\x30\xfe\x5b\xdc\x5f\x57\x30\x66\x30\x44\x30\x7e\x30\x5b\x30\x93\x30\x0a\x00\x00"/*@ L"Fbx Load : ‚PƒƒbƒVƒ…‚É•¡”‚ÌƒXƒLƒ“ƒƒbƒVƒ…‚É‚Í‘Î‰‚µ‚Ä‚¢‚Ü‚¹‚ñ\n" @*/ )) ;
+							DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x11\xff\xe1\x30\xc3\x30\xb7\x30\xe5\x30\x6b\x30\x07\x89\x70\x65\x6e\x30\xb9\x30\xad\x30\xf3\x30\xe1\x30\xc3\x30\xb7\x30\xe5\x30\x6b\x30\x6f\x30\xfe\x5b\xdc\x5f\x57\x30\x66\x30\x44\x30\x7e\x30\x5b\x30\x93\x30\x0a\x00\x00"/*@ L"Fbx Load : ï¼‘ãƒ¡ãƒƒã‚·ãƒ¥ã«è¤‡æ•°ã®ã‚¹ã‚­ãƒ³ãƒ¡ãƒƒã‚·ãƒ¥ã«ã¯å¯¾å¿œã—ã¦ã„ã¾ã›ã‚“\n" @*/ )) ;
 							return -1 ;
 						}
 
-						// ƒXƒLƒ“ƒƒbƒVƒ…î•ñ‚Ìæ“¾
+						// ã‚¹ã‚­ãƒ³ãƒ¡ãƒƒã‚·ãƒ¥æƒ…å ±ã®å–å¾—
 						_FbxSkin = ( FbxSkin * )_FbxMesh->GetDeformer( 0, FbxDeformer::eSkin ) ;
 
-						// ƒNƒ‰ƒXƒ^‚Ì”‚ğæ“¾
+						// ã‚¯ãƒ©ã‚¹ã‚¿ã®æ•°ã‚’å–å¾—
 						ClusterCount = _FbxSkin->GetClusterCount() ;
 
-						// Še’¸“_‚ÉƒEƒGƒCƒg’l‚ªİ’è‚³‚ê‚½‚©‚Ç‚¤‚©‚ğŠm”F‚·‚é‚½‚ß‚Ìƒtƒ‰ƒO‚ğŠi”[‚·‚é‚½‚ß‚Ìƒƒ‚ƒŠ—Ìˆæ‚ğŠm•Û‚·‚é
+						// å„é ‚ç‚¹ã«ã‚¦ã‚¨ã‚¤ãƒˆå€¤ãŒè¨­å®šã•ã‚ŒãŸã‹ã©ã†ã‹ã‚’ç¢ºèªã™ã‚‹ãŸã‚ã®ãƒ•ãƒ©ã‚°ã‚’æ ¼ç´ã™ã‚‹ãŸã‚ã®ãƒ¡ãƒ¢ãƒªé ˜åŸŸã‚’ç¢ºä¿ã™ã‚‹
 						PositionFillFlag = ( BYTE * )ADDMEMAREA( ( Mesh->PositionNum + 31 ) / 32 * 4, &RModel->Mem ) ;
 						if( PositionFillFlag == NULL )
 						{
-							DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\xa7\x5e\x19\x6a\x6b\x30\xfe\x5b\x59\x30\x8b\x30\xb9\x30\xad\x30\xf3\x30\xa6\x30\xa8\x30\xa4\x30\xc8\x30\x4c\x30\x58\x5b\x28\x57\x59\x30\x8b\x30\x4b\x30\x69\x30\x46\x30\x4b\x30\x92\x30\xba\x78\x8d\x8a\x59\x30\x8b\x30\x5f\x30\x81\x30\x6e\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : À•W‚É‘Î‚·‚éƒXƒLƒ“ƒEƒGƒCƒg‚ª‘¶İ‚·‚é‚©‚Ç‚¤‚©‚ğŠm”F‚·‚é‚½‚ß‚Ìƒƒ‚ƒŠ—Ìˆæ‚ÌŠm•Û‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ )) ;
+							DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\xa7\x5e\x19\x6a\x6b\x30\xfe\x5b\x59\x30\x8b\x30\xb9\x30\xad\x30\xf3\x30\xa6\x30\xa8\x30\xa4\x30\xc8\x30\x4c\x30\x58\x5b\x28\x57\x59\x30\x8b\x30\x4b\x30\x69\x30\x46\x30\x4b\x30\x92\x30\xba\x78\x8d\x8a\x59\x30\x8b\x30\x5f\x30\x81\x30\x6e\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : åº§æ¨™ã«å¯¾ã™ã‚‹ã‚¹ã‚­ãƒ³ã‚¦ã‚¨ã‚¤ãƒˆãŒå­˜åœ¨ã™ã‚‹ã‹ã©ã†ã‹ã‚’ç¢ºèªã™ã‚‹ãŸã‚ã®ãƒ¡ãƒ¢ãƒªé ˜åŸŸã®ç¢ºä¿ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ )) ;
 							return -1 ;
 						}
 						_MEMSET( PositionFillFlag, 0, ( Mesh->PositionNum + 31 ) / 32 * 4 ) ;
 
-						// —LŒø‚Èî•ñ‚ª‚ ‚éƒNƒ‰ƒXƒ^‚ğæ“¾‚·‚é
+						// æœ‰åŠ¹ãªæƒ…å ±ãŒã‚ã‚‹ã‚¯ãƒ©ã‚¹ã‚¿ã‚’å–å¾—ã™ã‚‹
 						for( i = 0 ; i < ClusterCount ; i ++ )
 						{
 							FbxAMatrix FbxTransMatrix ;
@@ -2024,22 +2024,22 @@ static int AnalyseFbxNode( MV1_MODEL_R *RModel, FBX_MODEL *Model, MV1_FRAME_R *P
 							_FbxCluster = _FbxSkin->GetCluster( i ) ;
 							if( _FbxCluster->GetControlPointIndicesCount() == 0 ) continue ;
 
-							// ƒXƒLƒ“ƒEƒGƒCƒgî•ñ‚Ì’Ç‰Á
+							// ã‚¹ã‚­ãƒ³ã‚¦ã‚¨ã‚¤ãƒˆæƒ…å ±ã®è¿½åŠ 
 							SkinWeight = MV1RAddSkinWeight( RModel ) ;
 							Mesh->SkinWeights[ Mesh->SkinWeightsNum ] = SkinWeight ;
 							Mesh->SkinWeights[ Mesh->SkinWeightsNum ]->UserData = _FbxCluster ;
 							Mesh->SkinWeightsNum ++ ;
 
-							// Še’¸“_‚Ö‚Ì‰e‹¿î•ñ‚ğŠi”[‚·‚é‚½‚ß‚Ìƒƒ‚ƒŠ‚ÌŠm•Û
+							// å„é ‚ç‚¹ã¸ã®å½±éŸ¿æƒ…å ±ã‚’æ ¼ç´ã™ã‚‹ãŸã‚ã®ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿
 							SkinWeight->DataNum = _FbxCluster->GetControlPointIndicesCount() ;
 							SkinWeight->Data = ( MV1_SKIN_WEIGHT_ONE_R * )ADDMEMAREA( sizeof( MV1_SKIN_WEIGHT_ONE_R ) * SkinWeight->DataNum, &RModel->Mem ) ;
 							if( SkinWeight->Data == NULL )
 							{
-								DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\xb9\x30\xad\x30\xf3\x30\xa6\x30\xa8\x30\xa4\x30\xc8\x30\xc5\x60\x31\x58\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : ƒXƒLƒ“ƒEƒGƒCƒgî•ñ‚ğŠi”[‚·‚éƒƒ‚ƒŠ‚ÌŠm•Û‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ )) ;
+								DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\xb9\x30\xad\x30\xf3\x30\xa6\x30\xa8\x30\xa4\x30\xc8\x30\xc5\x60\x31\x58\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : ã‚¹ã‚­ãƒ³ã‚¦ã‚¨ã‚¤ãƒˆæƒ…å ±ã‚’æ ¼ç´ã™ã‚‹ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ )) ;
 								return -1 ;
 							}
 
-							// ‰e‹¿î•ñ‚ğæ“¾‚·‚é
+							// å½±éŸ¿æƒ…å ±ã‚’å–å¾—ã™ã‚‹
 							PointNum = _FbxCluster->GetControlPointIndicesCount() ;
 							Point = _FbxCluster->GetControlPointIndices() ;
 							Weight = _FbxCluster->GetControlPointWeights() ;
@@ -2050,7 +2050,7 @@ static int AnalyseFbxNode( MV1_MODEL_R *RModel, FBX_MODEL *Model, MV1_FRAME_R *P
 								PositionFillFlag[ Point[ j ] / 8 ] |= 1 << ( Point[ j ] & 7 ) ;
 							}
 
-							// ƒ{[ƒ“‚Ìƒ[ƒJƒ‹À•W‚É—‚Æ‚µ‚Ş‚½‚ß‚Ìs—ñ‚Ìæ“¾
+							// ãƒœãƒ¼ãƒ³ã®ãƒ­ãƒ¼ã‚«ãƒ«åº§æ¨™ã«è½ã¨ã—è¾¼ã‚€ãŸã‚ã®è¡Œåˆ—ã®å–å¾—
 							_FbxCluster->GetTransformLinkMatrix( _FbxMatrix ) ;
 							_FbxCluster->GetTransformMatrix( FbxTransMatrix ) ;
 							InvMatrix.m[ 0 ][ 0 ] = ( float )_FbxMatrix.Double44()[ 0 ][ 0 ] ;
@@ -2102,12 +2102,12 @@ static int AnalyseFbxNode( MV1_MODEL_R *RModel, FBX_MODEL *Model, MV1_FRAME_R *P
 							CreateInverseMatrix( &SkinWeight->ModelLocalMatrix, &InvMatrix ) ;
 						}
 
-						// ƒEƒGƒCƒg’l‚ªŠ„‚è“–‚Ä‚ç‚ê‚Ä‚¢‚È‚¢’¸“_‚ª‚ ‚Á‚½‚ç‚±‚Ìƒ{[ƒ“‚ÌŠ‘®‚É‚·‚é
+						// ã‚¦ã‚¨ã‚¤ãƒˆå€¤ãŒå‰²ã‚Šå½“ã¦ã‚‰ã‚Œã¦ã„ãªã„é ‚ç‚¹ãŒã‚ã£ãŸã‚‰ã“ã®ãƒœãƒ¼ãƒ³ã®æ‰€å±ã«ã™ã‚‹
 						{
 							int i, j, k, CheckNum ;
 							int Result ;
 
-							// ƒEƒGƒCƒg’l‚Ì–³‚¢’¸“_‚ª‚ ‚é‚©ƒ`ƒFƒbƒN
+							// ã‚¦ã‚¨ã‚¤ãƒˆå€¤ã®ç„¡ã„é ‚ç‚¹ãŒã‚ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 							CheckNum = Mesh->PositionNum / 32 ;
 							for( i = 0 ; i < CheckNum && ( ( DWORD * )PositionFillFlag )[ i ] == 0xffffffff ; i ++ ){}
 							Result  = i != CheckNum ? 1 : 0 ;
@@ -2116,14 +2116,14 @@ static int AnalyseFbxNode( MV1_MODEL_R *RModel, FBX_MODEL *Model, MV1_FRAME_R *P
 							for( j = 0 ; j < CheckNum && ( ( ( BYTE * )( &( ( DWORD * )PositionFillFlag )[ i ] ) )[ j / 8 ] & ( 1 << ( j % 8 ) ) ) != 0 ; j ++ ){}
 							Result |= j != CheckNum ? 1 : 0 ;
 
-							// –³‚©‚Á‚½‚ç‚±‚ÌƒtƒŒ[ƒ€‚ÌŠ‘®‚Æ‚µ‚Ä‚ÌƒEƒGƒCƒgî•ñ‚ğ’Ç‰Á
+							// ç„¡ã‹ã£ãŸã‚‰ã“ã®ãƒ•ãƒ¬ãƒ¼ãƒ ã®æ‰€å±ã¨ã—ã¦ã®ã‚¦ã‚¨ã‚¤ãƒˆæƒ…å ±ã‚’è¿½åŠ 
 							if( Result == 1 )
 							{
 								int WeightNoneNum ;
 								DWORD CheckData ;
 								BYTE CheckDataByte ;
 
-								// ‰ü‚ß‚ÄƒEƒGƒCƒg’l‚Ì–³‚¢’¸“_‚Ì”‚ğ”‚¦‚é
+								// æ”¹ã‚ã¦ã‚¦ã‚¨ã‚¤ãƒˆå€¤ã®ç„¡ã„é ‚ç‚¹ã®æ•°ã‚’æ•°ãˆã‚‹
 								WeightNoneNum = 0 ;
 								CheckNum = Mesh->PositionNum / 32 ;
 								for( i = 0 ; i < CheckNum ; i ++ )
@@ -2147,23 +2147,23 @@ static int AnalyseFbxNode( MV1_MODEL_R *RModel, FBX_MODEL *Model, MV1_FRAME_R *P
 									}
 								}
 
-								// ƒEƒGƒCƒgî•ñ‚Ì’Ç‰Á
+								// ã‚¦ã‚¨ã‚¤ãƒˆæƒ…å ±ã®è¿½åŠ 
 								SkinWeight = MV1RAddSkinWeight( RModel ) ;
 								Mesh->SkinWeights[ Mesh->SkinWeightsNum ] = SkinWeight ;
 								Mesh->SkinWeights[ Mesh->SkinWeightsNum ]->UserData = NULL ;
 								Mesh->SkinWeightsNum ++ ;
 								CreateIdentityMatrix( &SkinWeight->ModelLocalMatrix ) ;
 
-								// Še’¸“_‚Ö‚Ì‰e‹¿î•ñ‚ğŠi”[‚·‚é‚½‚ß‚Ìƒƒ‚ƒŠ‚ÌŠm•Û
+								// å„é ‚ç‚¹ã¸ã®å½±éŸ¿æƒ…å ±ã‚’æ ¼ç´ã™ã‚‹ãŸã‚ã®ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿
 								SkinWeight->DataNum = WeightNoneNum ;
 								SkinWeight->Data = ( MV1_SKIN_WEIGHT_ONE_R * )ADDMEMAREA( sizeof( MV1_SKIN_WEIGHT_ONE_R ) * SkinWeight->DataNum, &RModel->Mem ) ;
 								if( SkinWeight->Data == NULL )
 								{
-									DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\xb9\x30\xad\x30\xf3\x30\xa6\x30\xa8\x30\xa4\x30\xc8\x30\xc5\x60\x31\x58\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x20\x00\x32\x00\x0a\x00\x00"/*@ L"Fbx Load : ƒXƒLƒ“ƒEƒGƒCƒgî•ñ‚ğŠi”[‚·‚éƒƒ‚ƒŠ‚ÌŠm•Û‚É¸”s‚µ‚Ü‚µ‚½ 2\n" @*/ )) ;
+									DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\xb9\x30\xad\x30\xf3\x30\xa6\x30\xa8\x30\xa4\x30\xc8\x30\xc5\x60\x31\x58\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x20\x00\x32\x00\x0a\x00\x00"/*@ L"Fbx Load : ã‚¹ã‚­ãƒ³ã‚¦ã‚¨ã‚¤ãƒˆæƒ…å ±ã‚’æ ¼ç´ã™ã‚‹ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿ã«å¤±æ•—ã—ã¾ã—ãŸ 2\n" @*/ )) ;
 									return -1 ;
 								}
 
-								// ‰e‹¿î•ñ‚ğƒZƒbƒg‚·‚é
+								// å½±éŸ¿æƒ…å ±ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 								WeightNoneNum = 0 ;
 								CheckNum = Mesh->PositionNum / 8 ;
 								k = 0 ;
@@ -2195,15 +2195,15 @@ static int AnalyseFbxNode( MV1_MODEL_R *RModel, FBX_MODEL *Model, MV1_FRAME_R *P
 						}
 					}
 
-					// ƒVƒFƒCƒv‚Ìî•ñ‚ğæ“¾
+					// ã‚·ã‚§ã‚¤ãƒ—ã®æƒ…å ±ã‚’å–å¾—
 					if( _FbxMesh->GetDeformerCount( FbxDeformer::eBlendShape ) > 0 )
 					{
 						int ChannelCount ;
 
-						// ‚QŒÂˆÈã‚ÌƒVƒFƒCƒv‚É‚Í–¢‘Î‰
+						// ï¼’å€‹ä»¥ä¸Šã®ã‚·ã‚§ã‚¤ãƒ—ã«ã¯æœªå¯¾å¿œ
 						if( _FbxMesh->GetDeformerCount( FbxDeformer::eBlendShape ) > 1 )
 						{
-							DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x11\xff\xe1\x30\xc3\x30\xb7\x30\xe5\x30\x6b\x30\x07\x89\x70\x65\x6e\x30\xd6\x30\xec\x30\xf3\x30\xc9\x30\xb7\x30\xa7\x30\xa4\x30\xd7\x30\x6b\x30\x6f\x30\xfe\x5b\xdc\x5f\x57\x30\x66\x30\x44\x30\x7e\x30\x5b\x30\x93\x30\x0a\x00\x00"/*@ L"Fbx Load : ‚PƒƒbƒVƒ…‚É•¡”‚ÌƒuƒŒƒ“ƒhƒVƒFƒCƒv‚É‚Í‘Î‰‚µ‚Ä‚¢‚Ü‚¹‚ñ\n" @*/ )) ;
+							DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x11\xff\xe1\x30\xc3\x30\xb7\x30\xe5\x30\x6b\x30\x07\x89\x70\x65\x6e\x30\xd6\x30\xec\x30\xf3\x30\xc9\x30\xb7\x30\xa7\x30\xa4\x30\xd7\x30\x6b\x30\x6f\x30\xfe\x5b\xdc\x5f\x57\x30\x66\x30\x44\x30\x7e\x30\x5b\x30\x93\x30\x0a\x00\x00"/*@ L"Fbx Load : ï¼‘ãƒ¡ãƒƒã‚·ãƒ¥ã«è¤‡æ•°ã®ãƒ–ãƒ¬ãƒ³ãƒ‰ã‚·ã‚§ã‚¤ãƒ—ã«ã¯å¯¾å¿œã—ã¦ã„ã¾ã›ã‚“\n" @*/ )) ;
 							return -1 ;
 						}
 
@@ -2225,28 +2225,28 @@ static int AnalyseFbxNode( MV1_MODEL_R *RModel, FBX_MODEL *Model, MV1_FRAME_R *P
 								continue ;
 							}
 
-							// ƒVƒFƒCƒvî•ñ‚Ì’Ç‰Á
+							// ã‚·ã‚§ã‚¤ãƒ—æƒ…å ±ã®è¿½åŠ 
 	//						FbxUTF8ToAnsi( _FbxShape->GetName(), ANSIBuffer, &ANSISize ) ;
 							Shape = MV1RAddShape( RModel, _FbxShape->GetName(), Frame ) ; 
 
-							// ‘ÎÛƒƒbƒVƒ…‚ÌƒZƒbƒg
+							// å¯¾è±¡ãƒ¡ãƒƒã‚·ãƒ¥ã®ã‚»ãƒƒãƒˆ
 							Shape->TargetMesh = Mesh ;
 
-							// –@ü‚Í–³‚µ
+							// æ³•ç·šã¯ç„¡ã—
 							Shape->ValidVertexNormal = FALSE ;
 
-							// ’¸“_‚Ì”‚ğ•Û‘¶
+							// é ‚ç‚¹ã®æ•°ã‚’ä¿å­˜
 							Shape->VertexNum = _FbxShape->GetControlPointsCount() ;
 
-							// ’¸“_ƒf[ƒ^‚ğŠi”[‚·‚éƒƒ‚ƒŠ—Ìˆæ‚ÌŠm•Û
+							// é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹ãƒ¡ãƒ¢ãƒªé ˜åŸŸã®ç¢ºä¿
 							Shape->Vertex = ( MV1_SHAPE_VERTEX_R * )ADDMEMAREA( sizeof( MV1_SHAPE_VERTEX_R ) * Shape->VertexNum, &RModel->Mem ) ;
 							if( Shape->Vertex == NULL )
 							{
-								DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\xb7\x30\xa7\x30\xa4\x30\xd7\x30\x02\x98\xb9\x70\xc7\x30\xfc\x30\xbf\x30\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : ƒVƒFƒCƒv’¸“_ƒf[ƒ^‚ğŠi”[‚·‚éƒƒ‚ƒŠ—Ìˆæ‚ÌŠm•Û‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ )) ;
+								DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\xb7\x30\xa7\x30\xa4\x30\xd7\x30\x02\x98\xb9\x70\xc7\x30\xfc\x30\xbf\x30\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : ã‚·ã‚§ã‚¤ãƒ—é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹ãƒ¡ãƒ¢ãƒªé ˜åŸŸã®ç¢ºä¿ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ )) ;
 								return -1 ;
 							}
 
-							// ’¸“_ƒf[ƒ^‚ğ–„‚ß‚é
+							// é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ã‚’åŸ‹ã‚ã‚‹
 							ShapeVert = Shape->Vertex ;
 							FbxShapeVec = _FbxShape->GetControlPoints() ;
 							FbxVec = _FbxMesh->GetControlPoints() ;
@@ -2265,23 +2265,23 @@ static int AnalyseFbxNode( MV1_MODEL_R *RModel, FBX_MODEL *Model, MV1_FRAME_R *P
 				}
 			}
 			else
-			// ƒ‰ƒCƒgƒm[ƒh‚Ìê‡‚Íƒ‰ƒCƒg‚ğæ“¾‚·‚é
+			// ãƒ©ã‚¤ãƒˆãƒãƒ¼ãƒ‰ã®å ´åˆã¯ãƒ©ã‚¤ãƒˆã‚’å–å¾—ã™ã‚‹
 			if( FbxAttr->GetAttributeType() == FbxNodeAttribute::eLight )
 			{
 				FbxLight *_FbxLight ;
 
 				_FbxLight = ( FbxLight * )FbxAttr ;
 
-				// ƒ‰ƒCƒg‚Ì’Ç‰Á
+				// ãƒ©ã‚¤ãƒˆã®è¿½åŠ 
 //				FbxUTF8ToAnsi( pFbxNode->GetName(), ANSIBuffer, &ANSISize ) ;
 				Frame->Light = MV1RAddLight( RModel, pFbxNode->GetName() ) ;
 				if( Frame->Light == NULL )
 				{
-					DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\xe9\x30\xa4\x30\xc8\x30\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x6e\x30\xfd\x8f\xa0\x52\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : ƒ‰ƒCƒgƒIƒuƒWƒFƒNƒg‚Ì’Ç‰Á‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ )) ;
+					DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\xe9\x30\xa4\x30\xc8\x30\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x6e\x30\xfd\x8f\xa0\x52\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : ãƒ©ã‚¤ãƒˆã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®è¿½åŠ ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ )) ;
 					return -1 ;
 				}
 
-				// ƒ‰ƒCƒg‚Ìî•ñ‚ğæ“¾‚·‚é
+				// ãƒ©ã‚¤ãƒˆã®æƒ…å ±ã‚’å–å¾—ã™ã‚‹
 				switch( _FbxLight->LightType.Get() )
 				{
 				case FbxLight::ePoint :
@@ -2311,7 +2311,7 @@ static int AnalyseFbxNode( MV1_MODEL_R *RModel, FBX_MODEL *Model, MV1_FRAME_R *P
 		}
 	}
 
-	// q‚Ìƒm[ƒh‚à‰ğÍ‚·‚é
+	// å­ã®ãƒãƒ¼ãƒ‰ã‚‚è§£æã™ã‚‹
 	Num = pFbxNode->GetChildCount() ;
 	for( i = 0 ; i < Num ; i ++ )
 	{
@@ -2320,11 +2320,11 @@ static int AnalyseFbxNode( MV1_MODEL_R *RModel, FBX_MODEL *Model, MV1_FRAME_R *P
 			return -1 ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// FBXƒtƒ@ƒCƒ‹‚Ì‰ğÍ( 0:¬Œ÷  -1:¸”s )
+// FBXãƒ•ã‚¡ã‚¤ãƒ«ã®è§£æ( 0:æˆåŠŸ  -1:å¤±æ•— )
 static int AnalyseFbx( MV1_MODEL_R *RModel, FBX_MODEL *Model )
 {
 	int i, j, k ;
@@ -2335,25 +2335,25 @@ static int AnalyseFbx( MV1_MODEL_R *RModel, FBX_MODEL *Model )
 //	char *ANSIBuffer ;
 //	size_t ANSISize ;
 
-	// ƒm[ƒh‚Ì‰ğÍ
+	// ãƒãƒ¼ãƒ‰ã®è§£æ
 	if( AnalyseFbxNode( RModel, Model, NULL, NULL ) == -1 )
 	{
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\xce\x30\xfc\x30\xc9\x30\x6e\x30\xe3\x89\x90\x67\x67\x30\xa8\x30\xe9\x30\xfc\x30\x4c\x30\x7a\x76\x1f\x75\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : ƒm[ƒh‚Ì‰ğÍ‚ÅƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½\n" @*/ )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\xce\x30\xfc\x30\xc9\x30\x6e\x30\xe3\x89\x90\x67\x67\x30\xa8\x30\xe9\x30\xfc\x30\x4c\x30\x7a\x76\x1f\x75\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : ãƒãƒ¼ãƒ‰ã®è§£æã§ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¾ã—ãŸ\n" @*/ )) ;
 		return -1 ;
 	}
 
-	// ƒXƒLƒ“ƒEƒGƒCƒgî•ñ‚ÉŠÖ˜A‚·‚éƒtƒŒ[ƒ€‚ğŠ„‚èo‚µ‚Ä‚¨‚­
+	// ã‚¹ã‚­ãƒ³ã‚¦ã‚¨ã‚¤ãƒˆæƒ…å ±ã«é–¢é€£ã™ã‚‹ãƒ•ãƒ¬ãƒ¼ãƒ ã‚’å‰²ã‚Šå‡ºã—ã¦ãŠã
 	{
-		// ƒƒbƒVƒ…‚Ì”‚¾‚¯ŒJ‚è•Ô‚µ
+		// ãƒ¡ãƒƒã‚·ãƒ¥ã®æ•°ã ã‘ç¹°ã‚Šè¿”ã—
 		Mesh = RModel->MeshFirst ;
 		for( i = 0 ; ( DWORD )i < RModel->MeshNum ; i ++, Mesh = Mesh->DataNext )
 		{
-			// ƒXƒLƒ“ƒEƒGƒCƒg‚Ì”‚¾‚¯ŒJ‚è•Ô‚µ
+			// ã‚¹ã‚­ãƒ³ã‚¦ã‚¨ã‚¤ãƒˆã®æ•°ã ã‘ç¹°ã‚Šè¿”ã—
 			for( j = 0 ; ( DWORD )j < Mesh->SkinWeightsNum ; j ++ )
 			{
 				SkinWeight = Mesh->SkinWeights[ j ] ;
 
-				// UserData ‚ª NULL ‚Ìê‡‚ÍƒƒbƒVƒ…‚ªŠ‘®‚µ‚Ä‚¢‚éƒtƒŒ[ƒ€‚ª‘ÎÛƒtƒŒ[ƒ€
+				// UserData ãŒ NULL ã®å ´åˆã¯ãƒ¡ãƒƒã‚·ãƒ¥ãŒæ‰€å±ã—ã¦ã„ã‚‹ãƒ•ãƒ¬ãƒ¼ãƒ ãŒå¯¾è±¡ãƒ•ãƒ¬ãƒ¼ãƒ 
 				if( SkinWeight->UserData == NULL )
 				{
 					TargetFrame = Mesh->Container ;
@@ -2361,7 +2361,7 @@ static int AnalyseFbx( MV1_MODEL_R *RModel, FBX_MODEL *Model )
 				}
 				else
 				{
-					// ˆê’v‚·‚éƒtƒŒ[ƒ€‚ğŒŸõ‚·‚é
+					// ä¸€è‡´ã™ã‚‹ãƒ•ãƒ¬ãƒ¼ãƒ ã‚’æ¤œç´¢ã™ã‚‹
 					Node = ( ( FbxCluster * )SkinWeight->UserData )->GetLink() ;
 					TargetFrame = RModel->FrameFirst ;
 					for( k = 0 ; ( DWORD )k < RModel->FrameNum && TargetFrame->UserData != Node ; k ++, TargetFrame = TargetFrame->DataNext ){}
@@ -2371,7 +2371,7 @@ static int AnalyseFbx( MV1_MODEL_R *RModel, FBX_MODEL *Model )
 		}
 	}
 
-	// ƒAƒjƒ[ƒVƒ‡ƒ“‚Ì‰ğÍ
+	// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®è§£æ
 	{
 		int TakeNum ;
 		MV1_ANIMSET_R *AnimSet ;
@@ -2381,10 +2381,10 @@ static int AnalyseFbx( MV1_MODEL_R *RModel, FBX_MODEL *Model )
 		FbxTime::EMode TimeMode ;
 		float TimeScale = 1.0f ;
 
-		// ƒAƒjƒ[ƒVƒ‡ƒ“ƒZƒbƒg‚Ì”‚ğæ“¾
+		// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚»ãƒƒãƒˆã®æ•°ã‚’å–å¾—
 		TakeNum = Model->pScene->GetSrcObjectCount< FbxAnimStack >() ;
 
-		// ŠÔƒXƒP[ƒ‹‚ğæ“¾‚·‚é
+		// æ™‚é–“ã‚¹ã‚±ãƒ¼ãƒ«ã‚’å–å¾—ã™ã‚‹
 		TimeMode = Model->pScene->GetGlobalSettings().GetTimeMode();
 		if( TimeMode == FbxTime::eCustom )
 		{
@@ -2395,40 +2395,40 @@ static int AnalyseFbx( MV1_MODEL_R *RModel, FBX_MODEL *Model )
 			TimeScale = ( float )FbxTime::GetFrameRate( TimeMode ) / 30.0f ;
 		}
 
-		// ƒAƒjƒ[ƒVƒ‡ƒ“‚Ì”‚¾‚¯ŒJ‚è•Ô‚µ
+		// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®æ•°ã ã‘ç¹°ã‚Šè¿”ã—
 		for( i = 0 ; i < TakeNum ; i ++ )
 		{
-			// ƒeƒCƒNî•ñ‚ğæ“¾‚·‚é
+			// ãƒ†ã‚¤ã‚¯æƒ…å ±ã‚’å–å¾—ã™ã‚‹
 			lFbxAnimStack = Model->pScene->GetSrcObject< FbxAnimStack >( i ) ;
 
-			// ƒAƒjƒ[ƒVƒ‡ƒ“î•ñ‚ª–³‚©‚Á‚½‚ç‚±‚±‚ÅI—¹
+			// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³æƒ…å ±ãŒç„¡ã‹ã£ãŸã‚‰ã“ã“ã§çµ‚äº†
 			if( lFbxAnimStack == NULL ) continue ;
 			if( lFbxAnimStack->GetMemberCount< FbxAnimLayer >() == 0 ) continue ;
 
-			// ƒAƒjƒ[ƒVƒ‡ƒ“ƒZƒbƒg‚ğ’Ç‰Á
+			// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚»ãƒƒãƒˆã‚’è¿½åŠ 
 //			FbxUTF8ToAnsi( lFbxAnimStack->GetName(), ANSIBuffer, &ANSISize ) ;
 			AnimSet = MV1RAddAnimSet( RModel, lFbxAnimStack->GetName() ) ;
 			if( AnimSet == NULL )
 			{
 //				DeleteAndClear( FbxTakeName ) ;
-				DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\xa2\x30\xcb\x30\xe1\x30\xfc\x30\xb7\x30\xe7\x30\xf3\x30\xbb\x30\xc3\x30\xc8\x30\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x6e\x30\xfd\x8f\xa0\x52\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : ƒAƒjƒ[ƒVƒ‡ƒ“ƒZƒbƒgƒIƒuƒWƒFƒNƒg‚Ì’Ç‰Á‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ )) ;
+				DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\xa2\x30\xcb\x30\xe1\x30\xfc\x30\xb7\x30\xe7\x30\xf3\x30\xbb\x30\xc3\x30\xc8\x30\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x6e\x30\xfd\x8f\xa0\x52\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚»ãƒƒãƒˆã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®è¿½åŠ ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ )) ;
 				return -1 ;
 			}
 
-			// ŠJn‚ÆI—¹‚Ì‰Šú‰»
+			// é–‹å§‹æ™‚åˆ»ã¨çµ‚äº†æ™‚åˆ»ã®åˆæœŸåŒ–
 			AnimSet->StartTime =  1000000000.0f ;
 			AnimSet->EndTime   = -1000000000.0f ;
 
 			FbxAnimLayer *pFbxAnimLayer = lFbxAnimStack->GetMember< FbxAnimLayer >( 0 ) ;
 
-			// ƒAƒjƒ[ƒVƒ‡ƒ“‚Ìî•ñ‚ğæ“¾‚·‚é
+			// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®æƒ…å ±ã‚’å–å¾—ã™ã‚‹
 			Frame = RModel->FrameFirst ;
 			for( j = 0 ; ( DWORD )j < RModel->FrameNum ; j ++, Frame = Frame->DataNext )
 			{
-				// ƒeƒCƒNƒm[ƒh‚Ìæ“¾
+				// ãƒ†ã‚¤ã‚¯ãƒãƒ¼ãƒ‰ã®å–å¾—
 				FbxNode *pFbxNode = ( FbxNode * )Frame->UserData ;
 
-				// ƒJ[ƒuƒf[ƒ^‚ª‘¶İ‚·‚é—v‘f‚ÌƒAƒjƒ[ƒVƒ‡ƒ“î•ñ‚ğæ“¾‚·‚é
+				// ã‚«ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ãŒå­˜åœ¨ã™ã‚‹è¦ç´ ã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³æƒ…å ±ã‚’å–å¾—ã™ã‚‹
 				Anim = NULL ;
 				if( GetFbxAnimInfo( RModel, Model, Frame, AnimSet, &Anim, MV1_ANIMKEY_DATATYPE_TRANSLATE_X, pFbxNode->LclTranslation.GetCurve( pFbxAnimLayer, FBXSDK_CURVENODE_COMPONENT_X ), TimeScale              ) == -1 ) return -1 ;
 				if( GetFbxAnimInfo( RModel, Model, Frame, AnimSet, &Anim, MV1_ANIMKEY_DATATYPE_TRANSLATE_Y, pFbxNode->LclTranslation.GetCurve( pFbxAnimLayer, FBXSDK_CURVENODE_COMPONENT_Y ), TimeScale              ) == -1 ) return -1 ;
@@ -2440,23 +2440,23 @@ static int AnalyseFbx( MV1_MODEL_R *RModel, FBX_MODEL *Model )
 				if( GetFbxAnimInfo( RModel, Model, Frame, AnimSet, &Anim, MV1_ANIMKEY_DATATYPE_ROTATE_Y,    pFbxNode->LclRotation.GetCurve(    pFbxAnimLayer, FBXSDK_CURVENODE_COMPONENT_Y ), TimeScale, true,  true ) == -1 ) return -1 ;
 				if( GetFbxAnimInfo( RModel, Model, Frame, AnimSet, &Anim, MV1_ANIMKEY_DATATYPE_ROTATE_Z,    pFbxNode->LclRotation.GetCurve(    pFbxAnimLayer, FBXSDK_CURVENODE_COMPONENT_Z ), TimeScale, false, true ) == -1 ) return -1 ;
 
-				// ƒL[ƒZƒbƒg‚ªˆê‚Â‚à–³‚©‚Á‚½‚ç‚±‚Ìƒm[ƒh‚É‚ÍƒAƒjƒ[ƒVƒ‡ƒ“‚ª–³‚¢‚Æ‚¢‚¤‚±‚Æ
+				// ã‚­ãƒ¼ã‚»ãƒƒãƒˆãŒä¸€ã¤ã‚‚ç„¡ã‹ã£ãŸã‚‰ã“ã®ãƒãƒ¼ãƒ‰ã«ã¯ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãŒç„¡ã„ã¨ã„ã†ã“ã¨
 				if( Anim == NULL )
 					continue ;
 
-				// ŠÔ‚ÌƒZƒbƒg
+				// æ™‚é–“ã®ã‚»ãƒƒãƒˆ
 				Anim->MaxTime = AnimSet->EndTime ;
 
-				// ƒm[ƒh‚Ì–¼‘O‚ğ•Û‘¶
+				// ãƒãƒ¼ãƒ‰ã®åå‰ã‚’ä¿å­˜
 				Anim->TargetFrameIndex = Frame->Index ;
 
-				// ‰ñ“]ƒI[ƒ_[‚ÌƒZƒbƒg
+				// å›è»¢ã‚ªãƒ¼ãƒ€ãƒ¼ã®ã‚»ãƒƒãƒˆ
 				Anim->RotateOrder = Frame->RotateOrder ;
 			}
 		}
 	}
 
-	// ¬Œ÷
+	// æˆåŠŸ
 	return 0 ;
 }
 
@@ -2470,77 +2470,77 @@ extern int MV1LoadModelToFBX( const MV1_MODEL_LOAD_PARAM *LoadParam, int ASyncTh
 	int Major, Minor, Revision ;
 	char UTF8Buffer[ 512 * 3 + 16 ] ;
 
-	// “Ç‚İ‚İ‚æ‚¤ƒf[ƒ^‚Ì‰Šú‰»
+	// èª­ã¿è¾¼ã¿ã‚ˆã†ãƒ‡ãƒ¼ã‚¿ã®åˆæœŸåŒ–
 	MV1InitReadModel( &RModel ) ;
 	RModel.MeshFaceRightHand = TRUE ;
 
-	// ƒ‚ƒfƒ‹–¼‚Æƒtƒ@ƒCƒ‹–¼‚Æ•¶šƒR[ƒhŒ`®‚ğƒZƒbƒg
+	// ãƒ¢ãƒ‡ãƒ«åã¨ãƒ•ã‚¡ã‚¤ãƒ«åã¨æ–‡å­—ã‚³ãƒ¼ãƒ‰å½¢å¼ã‚’ã‚»ãƒƒãƒˆ
 	RModel.CharCodeFormat = DX_CHARCODEFORMAT_UTF8 ;
 	RModel.FilePath = ( wchar_t * )DXALLOC( ( _WCSLEN( LoadParam->FilePath ) + 1 ) * sizeof( wchar_t ) ) ;
 	RModel.Name     = ( wchar_t * )DXALLOC( ( _WCSLEN( LoadParam->Name     ) + 1 ) * sizeof( wchar_t ) ) ;
 	_WCSCPY( RModel.FilePath, LoadParam->FilePath ) ;
 	_WCSCPY( RModel.Name,     LoadParam->Name ) ;
 
-	// FBXƒ‚ƒfƒ‹ƒf[ƒ^‚ğ‚O‰Šú‰»
+	// FBXãƒ¢ãƒ‡ãƒ«ãƒ‡ãƒ¼ã‚¿ã‚’ï¼åˆæœŸåŒ–
 	_MEMSET( &FbxModel, 0, sizeof( FbxModel ) ) ;
 
-	// SDKƒ}ƒl[ƒWƒƒ¶¬
+	// SDKãƒãƒãƒ¼ã‚¸ãƒ£ç”Ÿæˆ
 	FbxModel.pManager = FbxManager::Create();
 	if( FbxModel.pManager == NULL )
 	{
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x46\x00\x42\x00\x58\x00\x20\x00\x4d\x00\x61\x00\x6e\x00\x61\x00\x67\x00\x65\x00\x72\x00\x20\x00\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : FBX Manager ‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x46\x00\x42\x00\x58\x00\x20\x00\x4d\x00\x61\x00\x6e\x00\x61\x00\x67\x00\x65\x00\x72\x00\x20\x00\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : FBX Manager ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ )) ;
 		goto FUNCTIONEND ;
 	}
 	
-	// IOSettings ƒNƒ‰ƒX‚Ìì¬
+	// IOSettings ã‚¯ãƒ©ã‚¹ã®ä½œæˆ
 	FbxModel.pIOSettings = FbxIOSettings::Create( FbxModel.pManager, IOSROOT ) ;
 	FbxModel.pManager->SetIOSettings( FbxModel.pIOSettings ) ;
 
-	// ƒvƒ‰ƒOƒCƒ“ƒpƒX‚Ìİ’è
+	// ãƒ—ãƒ©ã‚°ã‚¤ãƒ³ãƒ‘ã‚¹ã®è¨­å®š
 	{
 		FbxString lPath = FbxGetApplicationDirectory() ;
 		FbxModel.pManager->LoadPluginsDirectory( lPath.Buffer() ) ;
 	}
 
-	// ƒV[ƒ“‚Ìì¬
+	// ã‚·ãƒ¼ãƒ³ã®ä½œæˆ
 	FbxModel.pScene = FbxScene::Create( FbxModel.pManager, "Scene" ) ;
 	if( FbxModel.pScene == NULL )
 	{
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x46\x00\x42\x00\x58\x00\x20\x00\x53\x00\x63\x00\x65\x00\x6e\x00\x65\x00\x20\x00\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : FBX Scene ‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x46\x00\x42\x00\x58\x00\x20\x00\x53\x00\x63\x00\x65\x00\x6e\x00\x65\x00\x20\x00\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : FBX Scene ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ )) ;
 		goto FUNCTIONEND ;
 	}
 
-	// ƒCƒ“ƒ|[ƒ^[‚Ìì¬
+	// ã‚¤ãƒ³ãƒãƒ¼ã‚¿ãƒ¼ã®ä½œæˆ
 	FbxModel.pImporter = FbxImporter::Create( FbxModel.pManager, "" ) ;
 	if( FbxModel.pImporter == NULL )
 	{
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\xa4\x30\xf3\x30\xdd\x30\xfc\x30\xbf\x30\xfc\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : ƒCƒ“ƒ|[ƒ^[‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\xa4\x30\xf3\x30\xdd\x30\xfc\x30\xbf\x30\xfc\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : ã‚¤ãƒ³ãƒãƒ¼ã‚¿ãƒ¼ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ )) ;
 		goto FUNCTIONEND ;
 	}
 
-	// FBXƒtƒH[ƒ}ƒbƒg‚Ìƒ`ƒFƒbƒN
+	// FBXãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®ãƒã‚§ãƒƒã‚¯
 	ConvString( ( const char * )LoadParam->FilePath, -1, WCHAR_T_CHARCODEFORMAT, ( char * )UTF8Buffer, sizeof( UTF8Buffer ), DX_CHARCODEFORMAT_UTF8 ) ;
 	if( FbxModel.pManager->GetIOPluginRegistry()->DetectReaderFileFormat( UTF8Buffer, iFileFormat ) == false )
 	{
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x46\x00\x42\x00\x58\x00\xd5\x30\xa9\x30\xfc\x30\xde\x30\xc3\x30\xc8\x30\x6e\x30\xc1\x30\xa7\x30\xc3\x30\xaf\x30\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : FBXƒtƒH[ƒ}ƒbƒg‚Ìƒ`ƒFƒbƒN‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x46\x00\x42\x00\x58\x00\xd5\x30\xa9\x30\xfc\x30\xde\x30\xc3\x30\xc8\x30\x6e\x30\xc1\x30\xa7\x30\xc3\x30\xaf\x30\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : FBXãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®ãƒã‚§ãƒƒã‚¯ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ )) ;
 		goto FUNCTIONEND ;
 	}
 
-	// “Ç‚İ‚İ
+	// èª­ã¿è¾¼ã¿
 	if( FbxModel.pImporter->Initialize( UTF8Buffer, iFileFormat, FbxModel.pIOSettings ) == false )
 	{
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x46\x00\x42\x00\x58\x00\x20\x00\x49\x00\x6d\x00\x70\x00\x6f\x00\x72\x00\x74\x00\x65\x00\x72\x00\x20\x00\x6e\x30\x20\x00\x49\x00\x6e\x00\x69\x00\x74\x00\x69\x00\x61\x00\x6c\x00\x69\x00\x7a\x00\x65\x00\x20\x00\x4c\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : FBX Importer ‚Ì Initialize ‚ª¸”s‚µ‚Ü‚µ‚½\n" @*/ )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x46\x00\x42\x00\x58\x00\x20\x00\x49\x00\x6d\x00\x70\x00\x6f\x00\x72\x00\x74\x00\x65\x00\x72\x00\x20\x00\x6e\x30\x20\x00\x49\x00\x6e\x00\x69\x00\x74\x00\x69\x00\x61\x00\x6c\x00\x69\x00\x7a\x00\x65\x00\x20\x00\x4c\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : FBX Importer ã® Initialize ãŒå¤±æ•—ã—ã¾ã—ãŸ\n" @*/ )) ;
 		goto FUNCTIONEND ;
 	}
 
-	// ‚e‚a‚w‚©ƒ`ƒFƒbƒN
+	// ï¼¦ï¼¢ï¼¸ã‹ãƒã‚§ãƒƒã‚¯
 	if( FbxModel.pImporter->IsFBX() == false )
 	{
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x46\x00\x42\x00\x58\x00\x20\x00\x49\x00\x6d\x00\x70\x00\x6f\x00\x72\x00\x74\x00\x65\x00\x72\x00\x20\x00\x6e\x30\x20\x00\x49\x00\x73\x00\x46\x00\x42\x00\x58\x00\x20\x00\x67\x30\x0e\x30\x46\x00\x42\x00\x58\x00\x20\x00\xd5\x30\xa1\x30\xa4\x30\xeb\x30\x67\x30\x6f\x30\x6a\x30\x44\x30\x0f\x30\x68\x30\x24\x52\x9a\x5b\x55\x30\x8c\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : FBX Importer ‚Ì IsFBX ‚ÅwFBX ƒtƒ@ƒCƒ‹‚Å‚Í‚È‚¢x‚Æ”»’è‚³‚ê‚Ü‚µ‚½\n" @*/ )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x46\x00\x42\x00\x58\x00\x20\x00\x49\x00\x6d\x00\x70\x00\x6f\x00\x72\x00\x74\x00\x65\x00\x72\x00\x20\x00\x6e\x30\x20\x00\x49\x00\x73\x00\x46\x00\x42\x00\x58\x00\x20\x00\x67\x30\x0e\x30\x46\x00\x42\x00\x58\x00\x20\x00\xd5\x30\xa1\x30\xa4\x30\xeb\x30\x67\x30\x6f\x30\x6a\x30\x44\x30\x0f\x30\x68\x30\x24\x52\x9a\x5b\x55\x30\x8c\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : FBX Importer ã® IsFBX ã§ã€FBX ãƒ•ã‚¡ã‚¤ãƒ«ã§ã¯ãªã„ã€ã¨åˆ¤å®šã•ã‚Œã¾ã—ãŸ\n" @*/ )) ;
 		goto FUNCTIONEND ;
 	}
 
-	// “Ç‚İæ‚èî•ñ‚Ìİ’è
+	// èª­ã¿å–ã‚Šæƒ…å ±ã®è¨­å®š
 	FbxModel.pIOSettings->SetBoolProp( IMP_FBX_MATERIAL,		true ) ;
 	FbxModel.pIOSettings->SetBoolProp( IMP_FBX_TEXTURE,			true ) ;
 	FbxModel.pIOSettings->SetBoolProp( IMP_FBX_LINK,			true ) ;
@@ -2549,48 +2549,48 @@ extern int MV1LoadModelToFBX( const MV1_MODEL_LOAD_PARAM *LoadParam, int ASyncTh
 	FbxModel.pIOSettings->SetBoolProp( IMP_FBX_ANIMATION,		true ) ;
 	FbxModel.pIOSettings->SetBoolProp( IMP_FBX_GLOBAL_SETTINGS, true ) ;
 
-	// ƒCƒ“ƒ|[ƒg
+	// ã‚¤ãƒ³ãƒãƒ¼ãƒˆ
 	if( FbxModel.pImporter->Import( FbxModel.pScene ) == false )
 	{
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\xb7\x30\xfc\x30\xf3\x30\x6e\x30\xa4\x30\xf3\x30\xdd\x30\xfc\x30\xc8\x30\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : ƒV[ƒ“‚ÌƒCƒ“ƒ|[ƒg‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\xb7\x30\xfc\x30\xf3\x30\x6e\x30\xa4\x30\xf3\x30\xdd\x30\xfc\x30\xc8\x30\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : ã‚·ãƒ¼ãƒ³ã®ã‚¤ãƒ³ãƒãƒ¼ãƒˆã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ )) ;
 		goto FUNCTIONEND ;
 	}
 
-	// ƒo[ƒWƒ‡ƒ“‚ğæ“¾
+	// ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã‚’å–å¾—
 	FbxModel.pImporter->GetFileVersion( Major, Minor, Revision ) ;
 
-	// ƒCƒ“ƒ|[ƒ^‚Ìíœ
+	// ã‚¤ãƒ³ãƒãƒ¼ã‚¿ã®å‰Šé™¤
 	FbxModel.pImporter->Destroy() ;
 	FbxModel.pImporter = NULL ;
 
-	// ƒm[ƒh‚ğèŒJ‚é
+	// ãƒãƒ¼ãƒ‰ã‚’æ‰‹ç¹°ã‚‹
 	if( AnalyseFbx( &RModel, &FbxModel ) == -1 )
 	{
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x41\x00\x6e\x00\x61\x00\x6c\x00\x79\x00\x73\x00\x65\x00\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : AnalyseFbx ‚ª¸”s‚µ‚Ü‚µ‚½\n" @*/ )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x41\x00\x6e\x00\x61\x00\x6c\x00\x79\x00\x73\x00\x65\x00\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : AnalyseFbx ãŒå¤±æ•—ã—ã¾ã—ãŸ\n" @*/ )) ;
 		goto FUNCTIONEND ;
 	}
 
-	// ƒ‚ƒfƒ‹Šîƒf[ƒ^ƒnƒ“ƒhƒ‹‚Ìì¬
+	// ãƒ¢ãƒ‡ãƒ«åŸºãƒ‡ãƒ¼ã‚¿ãƒãƒ³ãƒ‰ãƒ«ã®ä½œæˆ
 	NewHandle = MV1LoadModelToReadModel( &LoadParam->GParam, &RModel, LoadParam->CurrentDir, LoadParam->FileReadFunc, ASyncThread ) ;
 	if( NewHandle < 0 )
 	{
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x4d\x00\x56\x00\x31\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x4d\x00\x6f\x00\x64\x00\x65\x00\x6c\x00\x54\x00\x6f\x00\x52\x00\x65\x00\x61\x00\x64\x00\x4d\x00\x6f\x00\x64\x00\x65\x00\x6c\x00\x20\x00\x4c\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : MV1LoadModelToReadModel ‚ª¸”s‚µ‚Ü‚µ‚½\n" @*/ )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\x46\x00\x62\x00\x78\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x3a\x00\x20\x00\x4d\x00\x56\x00\x31\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x4d\x00\x6f\x00\x64\x00\x65\x00\x6c\x00\x54\x00\x6f\x00\x52\x00\x65\x00\x61\x00\x64\x00\x4d\x00\x6f\x00\x64\x00\x65\x00\x6c\x00\x20\x00\x4c\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Fbx Load : MV1LoadModelToReadModel ãŒå¤±æ•—ã—ã¾ã—ãŸ\n" @*/ )) ;
 		goto FUNCTIONEND ;
 	}
 
-	// ƒGƒ‰[ƒtƒ‰ƒO‚ğ“|‚·
+	// ã‚¨ãƒ©ãƒ¼ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 	ErrorFlag = 0 ;
 
 FUNCTIONEND :
 
-	// ƒGƒ‰[ƒtƒ‰ƒO‚ª—§‚Á‚Ä‚¢‚½‚çƒ‚ƒfƒ‹ƒnƒ“ƒhƒ‹‚ğ‰ğ•ú
+	// ã‚¨ãƒ©ãƒ¼ãƒ•ãƒ©ã‚°ãŒç«‹ã£ã¦ã„ãŸã‚‰ãƒ¢ãƒ‡ãƒ«ãƒãƒ³ãƒ‰ãƒ«ã‚’è§£æ”¾
 	if( ErrorFlag == 1 && NewHandle != -1 )
 	{
 		MV1SubModelBase( NewHandle ) ;
 		NewHandle = -1 ;
 	}
 
-	// ƒCƒ“ƒ|[ƒ^[‚Ì‰ğ•ú
+	// ã‚¤ãƒ³ãƒãƒ¼ã‚¿ãƒ¼ã®è§£æ”¾
 	if( FbxModel.pImporter )
 	{
 		FbxModel.pImporter->Destroy() ;
@@ -2603,24 +2603,24 @@ FUNCTIONEND :
 		FbxModel.pIOSettings = NULL ;
 	}
 
-	// ƒV[ƒ“‚Ì‰ğ•ú
+	// ã‚·ãƒ¼ãƒ³ã®è§£æ”¾
 	if( FbxModel.pScene )
 	{
 		FbxModel.pScene->Destroy() ;
 		FbxModel.pScene = NULL ;
 	}
 
-	// SDKƒ}ƒl[ƒWƒƒ‚Ì‰ğ•ú
+	// SDKãƒãƒãƒ¼ã‚¸ãƒ£ã®è§£æ”¾
 	if( FbxModel.pManager )
 	{
 		FbxModel.pManager->Destroy() ;
 		FbxModel.pManager = NULL ;
 	}
 
-	// “Ç‚İ‚İƒ‚ƒfƒ‹‚ÌŒãn––
+	// èª­ã¿è¾¼ã¿ãƒ¢ãƒ‡ãƒ«ã®å¾Œå§‹æœ«
 	MV1TermReadModel( &RModel ) ;
 
-	// ƒnƒ“ƒhƒ‹‚ğ•Ô‚·
+	// ãƒãƒ³ãƒ‰ãƒ«ã‚’è¿”ã™
 	return NewHandle ;
 }
 

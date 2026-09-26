@@ -1,140 +1,140 @@
 // -------------------------------------------------------------------------------
 // 
-// 		‚c‚wƒ‰ƒCƒuƒ‰ƒŠ		’¸“_ƒVƒF[ƒ_[’è‹`ƒR[ƒh
+// 		ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒª		é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼å®šç¾©ã‚³ãƒ¼ãƒ‰
 // 
 // 				Ver 3.17 
 // 
 // -------------------------------------------------------------------------------
 
-// ‹¤’Ê•”•ª
+// å…±é€šéƒ¨åˆ†
 
 #include "../../../Main/Windows/DxShader_VS_D3D9.h"
 
-// ’¸“_ƒVƒF[ƒ_[‚Ì“ü—Í
+// é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®å…¥åŠ›
 struct VS_INPUT
 {
-	float4 Position        : POSITION ;			// À•W( ƒ[ƒJƒ‹‹óŠÔ )
-	float3 Normal          : NORMAL0 ;			// –@ü( ƒ[ƒJƒ‹‹óŠÔ )
-	float4 Diffuse         : COLOR0 ;			// ƒfƒBƒtƒ…[ƒYƒJƒ‰[
-	float4 Specular        : COLOR1 ;			// ƒXƒyƒLƒ…ƒ‰ƒJƒ‰[
-	float4 TexCoords0      : TEXCOORD0 ;		// ƒeƒNƒXƒ`ƒƒÀ•W
-	float4 TexCoords1      : TEXCOORD1 ;		// ƒTƒuƒeƒNƒXƒ`ƒƒÀ•W
+	float4 Position        : POSITION ;			// åº§æ¨™( ãƒ­ãƒ¼ã‚«ãƒ«ç©ºé–“ )
+	float3 Normal          : NORMAL0 ;			// æ³•ç·š( ãƒ­ãƒ¼ã‚«ãƒ«ç©ºé–“ )
+	float4 Diffuse         : COLOR0 ;			// ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚«ãƒ©ãƒ¼
+	float4 Specular        : COLOR1 ;			// ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã‚«ãƒ©ãƒ¼
+	float4 TexCoords0      : TEXCOORD0 ;		// ãƒ†ã‚¯ã‚¹ãƒãƒ£åº§æ¨™
+	float4 TexCoords1      : TEXCOORD1 ;		// ã‚µãƒ–ãƒ†ã‚¯ã‚¹ãƒãƒ£åº§æ¨™
 
 #ifdef BUMPMAP
-	// ƒoƒ“ƒvƒ}ƒbƒv
-	float3 Tan             : TANGENT0 ;			// Úü( ƒ[ƒJƒ‹‹óŠÔ )
-	float3 Bin             : BINORMAL0 ;		// ]–@ü( ƒ[ƒJƒ‹‹óŠÔ )
+	// ãƒãƒ³ãƒ—ãƒžãƒƒãƒ—
+	float3 Tan             : TANGENT0 ;			// æŽ¥ç·š( ãƒ­ãƒ¼ã‚«ãƒ«ç©ºé–“ )
+	float3 Bin             : BINORMAL0 ;		// å¾“æ³•ç·š( ãƒ­ãƒ¼ã‚«ãƒ«ç©ºé–“ )
 #endif // BUMPMAP
 
 #ifdef SKINMESH
-	// ƒXƒLƒjƒ“ƒOƒƒbƒVƒ…
-	int4   BlendIndices0   : BLENDINDICES0 ;	// ƒ{[ƒ“ˆ——p FloatŒ^’è””z—ñƒCƒ“ƒfƒbƒNƒX‚O
-	float4 BlendWeight0    : BLENDWEIGHT0 ;		// ƒ{[ƒ“ˆ——pƒEƒGƒCƒg’l‚O
+	// ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥
+	int4   BlendIndices0   : BLENDINDICES0 ;	// ãƒœãƒ¼ãƒ³å‡¦ç†ç”¨ Floatåž‹å®šæ•°é…åˆ—ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ï¼
+	float4 BlendWeight0    : BLENDWEIGHT0 ;		// ãƒœãƒ¼ãƒ³å‡¦ç†ç”¨ã‚¦ã‚¨ã‚¤ãƒˆå€¤ï¼
 
 	#ifdef BONE8
 
-		int4   BlendIndices1   : BLENDINDICES1 ;	// ƒ{[ƒ“ˆ——p FloatŒ^’è””z—ñƒCƒ“ƒfƒbƒNƒX‚P
-		float4 BlendWeight1    : BLENDWEIGHT1 ;		// ƒ{[ƒ“ˆ——pƒEƒGƒCƒg’l‚P
+		int4   BlendIndices1   : BLENDINDICES1 ;	// ãƒœãƒ¼ãƒ³å‡¦ç†ç”¨ Floatåž‹å®šæ•°é…åˆ—ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ï¼‘
+		float4 BlendWeight1    : BLENDWEIGHT1 ;		// ãƒœãƒ¼ãƒ³å‡¦ç†ç”¨ã‚¦ã‚¨ã‚¤ãƒˆå€¤ï¼‘
 
 	#endif // BONE8
 
 #endif // SKINMESH
 } ;
 
-// ’¸“_ƒVƒF[ƒ_[‚Ìo—Í
+// é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®å‡ºåŠ›
 struct VS_OUTPUT
 {
-	float4 Position        : POSITION ;		// À•W( ƒvƒƒWƒFƒNƒVƒ‡ƒ“‹óŠÔ )
-	float4 Diffuse         : COLOR0 ;		// ƒfƒBƒtƒ…[ƒYƒJƒ‰[
+	float4 Position        : POSITION ;		// åº§æ¨™( ãƒ—ãƒ­ã‚¸ã‚§ã‚¯ã‚·ãƒ§ãƒ³ç©ºé–“ )
+	float4 Diffuse         : COLOR0 ;		// ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚«ãƒ©ãƒ¼
 #if USE_SPE
-	float4 Specular        : COLOR1 ;		// ƒXƒyƒLƒ…ƒ‰ƒJƒ‰[
+	float4 Specular        : COLOR1 ;		// ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã‚«ãƒ©ãƒ¼
 #endif
-	float4 TexCoords0_1    : TEXCOORD0 ;	// ƒeƒNƒXƒ`ƒƒÀ•W‚ÆƒTƒuƒeƒNƒXƒ`ƒƒÀ•W( x:ƒeƒNƒXƒ`ƒƒÀ•Wx  y:ƒeƒNƒXƒ`ƒƒÀ•Wy  z:ƒTƒuƒeƒNƒXƒ`ƒƒÀ•Wx  w:ƒTƒuƒeƒNƒXƒ`ƒƒÀ•Wy )
+	float4 TexCoords0_1    : TEXCOORD0 ;	// ãƒ†ã‚¯ã‚¹ãƒãƒ£åº§æ¨™ã¨ã‚µãƒ–ãƒ†ã‚¯ã‚¹ãƒãƒ£åº§æ¨™( x:ãƒ†ã‚¯ã‚¹ãƒãƒ£åº§æ¨™x  y:ãƒ†ã‚¯ã‚¹ãƒãƒ£åº§æ¨™y  z:ã‚µãƒ–ãƒ†ã‚¯ã‚¹ãƒãƒ£åº§æ¨™x  w:ã‚µãƒ–ãƒ†ã‚¯ã‚¹ãƒãƒ£åº§æ¨™y )
 #if ( ( BUMPMAP || PHONG ) && USE_SPE ) || SHADOWMAP
-	float4 V_to_Eye_ShadowMap3PosZ : TEXCOORD1 ;	// ’¸“_À•W‚©‚çŽ‹ü‚Ö‚ÌƒxƒNƒgƒ‹( ƒrƒ…[‹óŠÔ )‚ÆƒVƒƒƒhƒEƒ}ƒbƒv‚R‚Ìƒ‰ƒCƒgZÀ•W( w )
+	float4 V_to_Eye_ShadowMap3PosZ : TEXCOORD1 ;	// é ‚ç‚¹åº§æ¨™ã‹ã‚‰è¦–ç·šã¸ã®ãƒ™ã‚¯ãƒˆãƒ«( ãƒ“ãƒ¥ãƒ¼ç©ºé–“ )ã¨ã‚·ãƒ£ãƒ‰ã‚¦ãƒžãƒƒãƒ—ï¼“ã®ãƒ©ã‚¤ãƒˆZåº§æ¨™( w )
 #endif
 #if ( BUMPMAP == 0 && PHONG ) || SM_3
-	float4 Normal_Fog      : TEXCOORD2 ;	// x.y.z:–@ü( ƒrƒ…[‹óŠÔ )  w:SM3.0—p‚ÌƒtƒHƒOƒpƒ‰ƒ[ƒ^
+	float4 Normal_Fog      : TEXCOORD2 ;	// x.y.z:æ³•ç·š( ãƒ“ãƒ¥ãƒ¼ç©ºé–“ )  w:SM3.0ç”¨ã®ãƒ•ã‚©ã‚°ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 #endif
 #if LG0_USE && ( BUMPMAP || PHONG )
-	float4 Light0_Dir_Gen  : TEXCOORD3 ;	// xyz:ƒ‰ƒCƒg‚O‚Ì‹tƒxƒNƒgƒ‹( ƒrƒ…[‹óŠÔ ) w:ƒ‰ƒCƒg‚OŒ¸Šî•ñ
+	float4 Light0_Dir_Gen  : TEXCOORD3 ;	// xyz:ãƒ©ã‚¤ãƒˆï¼ã®é€†ãƒ™ã‚¯ãƒˆãƒ«( ãƒ“ãƒ¥ãƒ¼ç©ºé–“ ) w:ãƒ©ã‚¤ãƒˆï¼æ¸›è¡°æƒ…å ±
 #endif
 #if LG1_USE && ( BUMPMAP || PHONG )
-	float4 Light1_Dir_Gen  : TEXCOORD4 ;	// xyz:ƒ‰ƒCƒg‚P‚Ì‹tƒxƒNƒgƒ‹( ƒrƒ…[‹óŠÔ ) w:ƒ‰ƒCƒg‚PŒ¸Šî•ñ
+	float4 Light1_Dir_Gen  : TEXCOORD4 ;	// xyz:ãƒ©ã‚¤ãƒˆï¼‘ã®é€†ãƒ™ã‚¯ãƒˆãƒ«( ãƒ“ãƒ¥ãƒ¼ç©ºé–“ ) w:ãƒ©ã‚¤ãƒˆï¼‘æ¸›è¡°æƒ…å ±
 #endif
 #if LG2_USE && ( BUMPMAP || PHONG )
-	float4 Light2_Dir_Gen  : TEXCOORD5 ;	// xyz:ƒ‰ƒCƒg‚Q‚Ì‹tƒxƒNƒgƒ‹( ƒrƒ…[‹óŠÔ ) w:ƒ‰ƒCƒg‚QŒ¸Šî•ñ
+	float4 Light2_Dir_Gen  : TEXCOORD5 ;	// xyz:ãƒ©ã‚¤ãƒˆï¼’ã®é€†ãƒ™ã‚¯ãƒˆãƒ«( ãƒ“ãƒ¥ãƒ¼ç©ºé–“ ) w:ãƒ©ã‚¤ãƒˆï¼’æ¸›è¡°æƒ…å ±
 #endif
 
 #if SHADOWMAP || SHADOWMAP_DRAW
-	float4 ShadowMap1Pos_ShadowMap3PosX   : TEXCOORD6 ;	// ƒVƒƒƒhƒEƒ}ƒbƒv‚P‚Ìƒ‰ƒCƒgÀ•W( x, y, z )‚ÆƒVƒƒƒhƒEƒ}ƒbƒv‚R‚Ìƒ‰ƒCƒgXÀ•W( w )
+	float4 ShadowMap1Pos_ShadowMap3PosX   : TEXCOORD6 ;	// ã‚·ãƒ£ãƒ‰ã‚¦ãƒžãƒƒãƒ—ï¼‘ã®ãƒ©ã‚¤ãƒˆåº§æ¨™( x, y, z )ã¨ã‚·ãƒ£ãƒ‰ã‚¦ãƒžãƒƒãƒ—ï¼“ã®ãƒ©ã‚¤ãƒˆXåº§æ¨™( w )
 #endif
 #if SHADOWMAP
-	float4 ShadowMap2Pos_ShadowMap3PosY   : TEXCOORD7 ;	// ƒVƒƒƒhƒEƒ}ƒbƒv‚Q‚Ìƒ‰ƒCƒgÀ•W( x, y, z )‚ÆƒVƒƒƒhƒEƒ}ƒbƒv‚R‚Ìƒ‰ƒCƒgYÀ•W( w )
+	float4 ShadowMap2Pos_ShadowMap3PosY   : TEXCOORD7 ;	// ã‚·ãƒ£ãƒ‰ã‚¦ãƒžãƒƒãƒ—ï¼’ã®ãƒ©ã‚¤ãƒˆåº§æ¨™( x, y, z )ã¨ã‚·ãƒ£ãƒ‰ã‚¦ãƒžãƒƒãƒ—ï¼“ã®ãƒ©ã‚¤ãƒˆYåº§æ¨™( w )
 #endif
 
 #if SM_3 == 0 && ( FOG_LINEAR || FOG_EXP || FOG_EXP2 )
-	float  Fog             : FOG ;			// ƒtƒHƒO
+	float  Fog             : FOG ;			// ãƒ•ã‚©ã‚°
 #endif
 } ;
 
-// ’¸“_ƒVƒF[ƒ_[‚Ìƒ}ƒeƒŠƒAƒ‹ƒpƒ‰ƒ[ƒ^
+// é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ãƒžãƒ†ãƒªã‚¢ãƒ«ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 struct VS_CONST_MATERIAL
 {
-	float4 Diffuse ;				// ƒfƒBƒtƒ…[ƒYƒJƒ‰[
-	float4 Specular ;				// ƒXƒyƒLƒ…ƒ‰ƒJƒ‰[
-	float4 Power ;					// ƒXƒyƒLƒ…ƒ‰‚Ì‹­‚³
+	float4 Diffuse ;				// ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚«ãƒ©ãƒ¼
+	float4 Specular ;				// ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã‚«ãƒ©ãƒ¼
+	float4 Power ;					// ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã®å¼·ã•
 } ;
 
-// ’¸“_ƒVƒF[ƒ_[‚Ìƒ‰ƒCƒgƒpƒ‰ƒ[ƒ^
+// é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ãƒ©ã‚¤ãƒˆãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 struct VS_CONST_LIGHT
 {
-	float4 Position ;				// À•W( ƒrƒ…[‹óŠÔ )
-	float3 Direction ;				// •ûŒü( ƒrƒ…[‹óŠÔ )
-	float4 Diffuse ;				// ƒfƒBƒtƒ…[ƒYƒJƒ‰[
-	float4 Specular ;				// ƒXƒyƒLƒ…ƒ‰ƒJƒ‰[
-	float4 Ambient ;				// ƒAƒ“ƒrƒGƒ“ƒgƒJƒ‰[
-	float4 Range_FallOff_AT0_AT1 ;	// x:—LŒø‹——£  y:ƒXƒ|ƒbƒgƒ‰ƒCƒg—pFllOff  z:‹——£‚É‚æ‚éŒ¸Šˆ——pƒpƒ‰ƒ[ƒ^‚O  w:‹——£‚É‚æ‚éŒ¸Šˆ——pƒpƒ‰ƒ[ƒ^‚P
-	float4 AT2_SpotP0_SpotP1 ;		// x:‹——£‚É‚æ‚éŒ¸Šˆ——pƒpƒ‰ƒ[ƒ^‚Q  y:ƒXƒ|ƒbƒgƒ‰ƒCƒg—pƒpƒ‰ƒ[ƒ^‚O( cos( Phi / 2.0f ) )  z:ƒXƒ|ƒbƒgƒ‰ƒCƒg—pƒpƒ‰ƒ[ƒ^‚P( 1.0f / ( cos( Theta / 2.0f ) - cos( Phi / 2.0f ) ) )
+	float4 Position ;				// åº§æ¨™( ãƒ“ãƒ¥ãƒ¼ç©ºé–“ )
+	float3 Direction ;				// æ–¹å‘( ãƒ“ãƒ¥ãƒ¼ç©ºé–“ )
+	float4 Diffuse ;				// ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚«ãƒ©ãƒ¼
+	float4 Specular ;				// ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã‚«ãƒ©ãƒ¼
+	float4 Ambient ;				// ã‚¢ãƒ³ãƒ“ã‚¨ãƒ³ãƒˆã‚«ãƒ©ãƒ¼
+	float4 Range_FallOff_AT0_AT1 ;	// x:æœ‰åŠ¹è·é›¢  y:ã‚¹ãƒãƒƒãƒˆãƒ©ã‚¤ãƒˆç”¨FllOff  z:è·é›¢ã«ã‚ˆã‚‹æ¸›è¡°å‡¦ç†ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ï¼  w:è·é›¢ã«ã‚ˆã‚‹æ¸›è¡°å‡¦ç†ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ï¼‘
+	float4 AT2_SpotP0_SpotP1 ;		// x:è·é›¢ã«ã‚ˆã‚‹æ¸›è¡°å‡¦ç†ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ï¼’  y:ã‚¹ãƒãƒƒãƒˆãƒ©ã‚¤ãƒˆç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ï¼( cos( Phi / 2.0f ) )  z:ã‚¹ãƒãƒƒãƒˆãƒ©ã‚¤ãƒˆç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ï¼‘( 1.0f / ( cos( Theta / 2.0f ) - cos( Phi / 2.0f ) ) )
 } ;
 
-// ’¸“_ƒVƒF[ƒ_[‚Ìƒ‰ƒCƒgˆ—•ªŠò—pƒpƒ‰ƒ[ƒ^
+// é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ãƒ©ã‚¤ãƒˆå‡¦ç†åˆ†å²ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 struct VS_CONST_LIGHT_BOOL
 {
-	bool Use ;						// Žg—p‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©
-	bool Point_Or_Spot ;			// ƒ|ƒCƒ“ƒgƒ‰ƒCƒgŽá‚µ‚­‚ÍƒXƒ|ƒbƒgƒ‰ƒCƒg‚©
-	bool Spot ;						// ƒXƒ|ƒbƒgƒ‰ƒCƒg‚©
+	bool Use ;						// ä½¿ç”¨ã—ã¦ã„ã‚‹ã‹ã©ã†ã‹
+	bool Point_Or_Spot ;			// ãƒã‚¤ãƒ³ãƒˆãƒ©ã‚¤ãƒˆè‹¥ã—ãã¯ã‚¹ãƒãƒƒãƒˆãƒ©ã‚¤ãƒˆã‹
+	bool Spot ;						// ã‚¹ãƒãƒƒãƒˆãƒ©ã‚¤ãƒˆã‹
 } ;
 
 
 
-// C++ ‘¤‚ÅÝ’è‚·‚é’è”‚Ì’è‹`
-float4              cfZeroOne                                                  : register( c0  /* DX_VS_CONSTF_ZERO_ONE                        */ ) ;	// ‚O‚Æ‚P‚Ì’è”( x:0.0f  y:1.0f )
-float4              cfAmbient_Emissive                                         : register( c1  /* DX_VS_CONSTF_AMBIENT_EMISSIVE                */ ) ;	// ƒGƒ~ƒbƒVƒuƒJƒ‰[{ƒAƒ“ƒrƒGƒ“ƒgƒJƒ‰[( ƒGƒ~ƒbƒVƒuƒJƒ‰[ + ƒ}ƒeƒŠƒAƒ‹ƒAƒ“ƒrƒGƒ“ƒgƒJƒ‰[ * ƒOƒ[ƒoƒ‹ƒAƒ“ƒrƒGƒ“ƒgƒJƒ‰[ )
-float4              cfProjectionMatrix[ 4 ]                                    : register( c2  /* DX_VS_CONSTF_PROJECTION_MAT                  */ ) ;	// ƒrƒ…[@¨@ƒvƒƒWƒFƒNƒVƒ‡ƒ“s—ñ
-float4              cfViewMatrix[ 3 ]                                          : register( c6  /* DX_VS_CONSTF_VIEW_MAT                        */ ) ;	// ƒ[ƒ‹ƒh@¨@ƒrƒ…[s—ñ
-float4              cfFog                                                      : register( c10 /* DX_VS_CONSTF_FOG                             */ ) ;	// ƒtƒHƒO—pƒpƒ‰ƒ[ƒ^( x:end/(end - start)  y:-1/(end - start)  z:density  w:Ž©‘R‘Î”‚Ì’á )
+// C++ å´ã§è¨­å®šã™ã‚‹å®šæ•°ã®å®šç¾©
+float4              cfZeroOne                                                  : register( c0  /* DX_VS_CONSTF_ZERO_ONE                        */ ) ;	// ï¼ã¨ï¼‘ã®å®šæ•°( x:0.0f  y:1.0f )
+float4              cfAmbient_Emissive                                         : register( c1  /* DX_VS_CONSTF_AMBIENT_EMISSIVE                */ ) ;	// ã‚¨ãƒŸãƒƒã‚·ãƒ–ã‚«ãƒ©ãƒ¼ï¼‹ã‚¢ãƒ³ãƒ“ã‚¨ãƒ³ãƒˆã‚«ãƒ©ãƒ¼( ã‚¨ãƒŸãƒƒã‚·ãƒ–ã‚«ãƒ©ãƒ¼ + ãƒžãƒ†ãƒªã‚¢ãƒ«ã‚¢ãƒ³ãƒ“ã‚¨ãƒ³ãƒˆã‚«ãƒ©ãƒ¼ * ã‚°ãƒ­ãƒ¼ãƒãƒ«ã‚¢ãƒ³ãƒ“ã‚¨ãƒ³ãƒˆã‚«ãƒ©ãƒ¼ )
+float4              cfProjectionMatrix[ 4 ]                                    : register( c2  /* DX_VS_CONSTF_PROJECTION_MAT                  */ ) ;	// ãƒ“ãƒ¥ãƒ¼ã€€â†’ã€€ãƒ—ãƒ­ã‚¸ã‚§ã‚¯ã‚·ãƒ§ãƒ³è¡Œåˆ—
+float4              cfViewMatrix[ 3 ]                                          : register( c6  /* DX_VS_CONSTF_VIEW_MAT                        */ ) ;	// ãƒ¯ãƒ¼ãƒ«ãƒ‰ã€€â†’ã€€ãƒ“ãƒ¥ãƒ¼è¡Œåˆ—
+float4              cfFog                                                      : register( c10 /* DX_VS_CONSTF_FOG                             */ ) ;	// ãƒ•ã‚©ã‚°ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿( x:end/(end - start)  y:-1/(end - start)  z:density  w:è‡ªç„¶å¯¾æ•°ã®ä½Ž )
 
-VS_CONST_MATERIAL   cfMaterial                                                 : register( c11 /* DX_VS_CONSTF_MATERIAL_START                  */ ) ;	// ƒ}ƒeƒŠƒAƒ‹ƒpƒ‰ƒ[ƒ^
-VS_CONST_LIGHT      cfLight[ DX_VS_CONSTF_LIGHT_NUM ]                          : register( c14 /* DX_VS_CONSTF_LIGHT_START                     */ ) ;	// ƒ‰ƒCƒgƒpƒ‰ƒ[ƒ^
-float4              cfToonOutLineSize                                          : register( c42 /* DX_VS_CONSTF_TOON_OUTLINE_SIZE               */ ) ;	// ƒgƒD[ƒ“‚Ì—ÖŠsü‚Ì‘å‚«‚³
-float4              cfDifSpeSource                                             : register( c43 /* DX_VS_CONSTF_DIF_SPE_SOURCE                  */ ) ;	// x:ƒfƒBƒtƒ…[ƒYƒJƒ‰[( 0.0f:ƒ}ƒeƒŠƒAƒ‹  1.0f:’¸“_ )  y:ƒXƒyƒLƒ…ƒ‰ƒJƒ‰[( 0.0f:ƒ}ƒeƒŠƒAƒ‹  1.0f:’¸“_ )
+VS_CONST_MATERIAL   cfMaterial                                                 : register( c11 /* DX_VS_CONSTF_MATERIAL_START                  */ ) ;	// ãƒžãƒ†ãƒªã‚¢ãƒ«ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+VS_CONST_LIGHT      cfLight[ DX_VS_CONSTF_LIGHT_NUM ]                          : register( c14 /* DX_VS_CONSTF_LIGHT_START                     */ ) ;	// ãƒ©ã‚¤ãƒˆãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+float4              cfToonOutLineSize                                          : register( c42 /* DX_VS_CONSTF_TOON_OUTLINE_SIZE               */ ) ;	// ãƒˆã‚¥ãƒ¼ãƒ³ã®è¼ªéƒ­ç·šã®å¤§ãã•
+float4              cfDifSpeSource                                             : register( c43 /* DX_VS_CONSTF_DIF_SPE_SOURCE                  */ ) ;	// x:ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚«ãƒ©ãƒ¼( 0.0f:ãƒžãƒ†ãƒªã‚¢ãƒ«  1.0f:é ‚ç‚¹ )  y:ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã‚«ãƒ©ãƒ¼( 0.0f:ãƒžãƒ†ãƒªã‚¢ãƒ«  1.0f:é ‚ç‚¹ )
 
-float4              cfShadowMap1LightViewProjectionMatrix[ 4 ]                 : register( c44 /* DX_VS_CONSTF_SHADOWMAP1_LIGHT_VIEW_PROJECTION_MAT */ ) ;	// ƒVƒƒƒhƒEƒ}ƒbƒv‚P—p‚Ìƒ‰ƒCƒgƒrƒ…[s—ñ‚Æƒ‰ƒCƒgŽË‰es—ñ‚ðæŽZ‚µ‚½‚à‚Ì
-float4              cfShadowMap2LightViewProjectionMatrix[ 4 ]                 : register( c48 /* DX_VS_CONSTF_SHADOWMAP2_LIGHT_VIEW_PROJECTION_MAT */ ) ;	// ƒVƒƒƒhƒEƒ}ƒbƒv‚Q—p‚Ìƒ‰ƒCƒgƒrƒ…[s—ñ‚Æƒ‰ƒCƒgŽË‰es—ñ‚ðæŽZ‚µ‚½‚à‚Ì
-float4              cfShadowMap3LightViewProjectionMatrix[ 4 ]                 : register( c52 /* DX_VS_CONSTF_SHADOWMAP3_LIGHT_VIEW_PROJECTION_MAT */ ) ;	// ƒVƒƒƒhƒEƒ}ƒbƒv‚R—p‚Ìƒ‰ƒCƒgƒrƒ…[s—ñ‚Æƒ‰ƒCƒgŽË‰es—ñ‚ðæŽZ‚µ‚½‚à‚Ì
+float4              cfShadowMap1LightViewProjectionMatrix[ 4 ]                 : register( c44 /* DX_VS_CONSTF_SHADOWMAP1_LIGHT_VIEW_PROJECTION_MAT */ ) ;	// ã‚·ãƒ£ãƒ‰ã‚¦ãƒžãƒƒãƒ—ï¼‘ç”¨ã®ãƒ©ã‚¤ãƒˆãƒ“ãƒ¥ãƒ¼è¡Œåˆ—ã¨ãƒ©ã‚¤ãƒˆå°„å½±è¡Œåˆ—ã‚’ä¹—ç®—ã—ãŸã‚‚ã®
+float4              cfShadowMap2LightViewProjectionMatrix[ 4 ]                 : register( c48 /* DX_VS_CONSTF_SHADOWMAP2_LIGHT_VIEW_PROJECTION_MAT */ ) ;	// ã‚·ãƒ£ãƒ‰ã‚¦ãƒžãƒƒãƒ—ï¼’ç”¨ã®ãƒ©ã‚¤ãƒˆãƒ“ãƒ¥ãƒ¼è¡Œåˆ—ã¨ãƒ©ã‚¤ãƒˆå°„å½±è¡Œåˆ—ã‚’ä¹—ç®—ã—ãŸã‚‚ã®
+float4              cfShadowMap3LightViewProjectionMatrix[ 4 ]                 : register( c52 /* DX_VS_CONSTF_SHADOWMAP3_LIGHT_VIEW_PROJECTION_MAT */ ) ;	// ã‚·ãƒ£ãƒ‰ã‚¦ãƒžãƒƒãƒ—ï¼“ç”¨ã®ãƒ©ã‚¤ãƒˆãƒ“ãƒ¥ãƒ¼è¡Œåˆ—ã¨ãƒ©ã‚¤ãƒˆå°„å½±è¡Œåˆ—ã‚’ä¹—ç®—ã—ãŸã‚‚ã®
 
-float4              cfVerticalFog                                              : register( c56 /* DX_VS_CONSTF_VERTICAL_FOG                    */ ) ;	// ‚‚³ƒtƒHƒO—pƒpƒ‰ƒ[ƒ^‚ðŠi”[‚·‚éƒAƒhƒŒƒX( x:end/(end - start)  y:-1/(end - start)  z:density  w:density start )
-float4              cfVerticalFogMode                                          : register( c57 /* DX_VS_CONSTF_VERTICAL_FOG_MODE               */ ) ;	// ‚‚³ƒtƒHƒO—pƒpƒ‰ƒ[ƒ^‚ðŠi”[‚·‚éƒAƒhƒŒƒX( x:ƒtƒHƒOƒ‚[ƒh )
+float4              cfVerticalFog                                              : register( c56 /* DX_VS_CONSTF_VERTICAL_FOG                    */ ) ;	// é«˜ã•ãƒ•ã‚©ã‚°ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹ã‚¢ãƒ‰ãƒ¬ã‚¹( x:end/(end - start)  y:-1/(end - start)  z:density  w:density start )
+float4              cfVerticalFogMode                                          : register( c57 /* DX_VS_CONSTF_VERTICAL_FOG_MODE               */ ) ;	// é«˜ã•ãƒ•ã‚©ã‚°ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹ã‚¢ãƒ‰ãƒ¬ã‚¹( x:ãƒ•ã‚©ã‚°ãƒ¢ãƒ¼ãƒ‰ )
 
-float4              cfTextureMatrix[ DX_VS_CONSTF_TEXTURE_MATRIX_NUM ][ 2 ]    : register( c88 /* DX_VS_CONSTF_TEXTURE_MATRIX_START            */ ) ;	// ƒeƒNƒXƒ`ƒƒÀ•W‘€ì—ps—ñ
-float4              cfLocalWorldMatrix[ DX_VS_CONSTF_WORLD_MAT_NUM * 3 ]       : register( c94 /* DX_VS_CONSTF_WORLD_MAT_START                 */ ) ;	// ƒ[ƒJƒ‹@¨@ƒ[ƒ‹ƒhs—ñ
+float4              cfTextureMatrix[ DX_VS_CONSTF_TEXTURE_MATRIX_NUM ][ 2 ]    : register( c88 /* DX_VS_CONSTF_TEXTURE_MATRIX_START            */ ) ;	// ãƒ†ã‚¯ã‚¹ãƒãƒ£åº§æ¨™æ“ä½œç”¨è¡Œåˆ—
+float4              cfLocalWorldMatrix[ DX_VS_CONSTF_WORLD_MAT_NUM * 3 ]       : register( c94 /* DX_VS_CONSTF_WORLD_MAT_START                 */ ) ;	// ãƒ­ãƒ¼ã‚«ãƒ«ã€€â†’ã€€ãƒ¯ãƒ¼ãƒ«ãƒ‰è¡Œåˆ—
 
-bool                cbFogLinear                                                : register( b0  /* DX_VS_CONSTB_FOG_LINEAR                      */ ) ;	// üŒ`ƒtƒHƒO‚ðŠ|‚¯‚é‚©‚Ç‚¤‚©
-bool                cbFogExp                                                   : register( b1  /* DX_VS_CONSTB_FOG_EXP                         */ ) ;	// Žw”ŠÖ”ƒtƒHƒO‚ðŠ|‚¯‚é‚©‚Ç‚¤‚©
-bool                cbFogExp2                                                  : register( b2  /* DX_VS_CONSTB_FOG_EXP2                        */ ) ;	// Žw”ŠÖ”ƒtƒHƒO‚Q‚ðŠ|‚¯‚é‚©‚Ç‚¤‚©
-bool                cbFogUse                                                   : register( b3  /* DX_VS_CONSTB_FOG_USE                         */ ) ;	// ƒtƒHƒO‚ðŠ|‚¯‚é‚©‚Ç‚¤‚©
-VS_CONST_LIGHT_BOOL cbLightBool[ DX_VS_CONSTB_LIGHT_NUM ]                      : register( b4  /* DX_VS_CONSTB_LIGHT_START                     */ ) ;	// ƒ‰ƒCƒgˆ—•ªŠò—pƒpƒ‰ƒ[ƒ^
+bool                cbFogLinear                                                : register( b0  /* DX_VS_CONSTB_FOG_LINEAR                      */ ) ;	// ç·šå½¢ãƒ•ã‚©ã‚°ã‚’æŽ›ã‘ã‚‹ã‹ã©ã†ã‹
+bool                cbFogExp                                                   : register( b1  /* DX_VS_CONSTB_FOG_EXP                         */ ) ;	// æŒ‡æ•°é–¢æ•°ãƒ•ã‚©ã‚°ã‚’æŽ›ã‘ã‚‹ã‹ã©ã†ã‹
+bool                cbFogExp2                                                  : register( b2  /* DX_VS_CONSTB_FOG_EXP2                        */ ) ;	// æŒ‡æ•°é–¢æ•°ãƒ•ã‚©ã‚°ï¼’ã‚’æŽ›ã‘ã‚‹ã‹ã©ã†ã‹
+bool                cbFogUse                                                   : register( b3  /* DX_VS_CONSTB_FOG_USE                         */ ) ;	// ãƒ•ã‚©ã‚°ã‚’æŽ›ã‘ã‚‹ã‹ã©ã†ã‹
+VS_CONST_LIGHT_BOOL cbLightBool[ DX_VS_CONSTB_LIGHT_NUM ]                      : register( b4  /* DX_VS_CONSTB_LIGHT_START                     */ ) ;	// ãƒ©ã‚¤ãƒˆå‡¦ç†åˆ†å²ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 
 
 

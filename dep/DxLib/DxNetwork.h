@@ -1,6 +1,6 @@
 // -------------------------------------------------------------------------------
 // 
-// 		‚c‚wƒ‰ƒCƒuƒ‰ƒŠ		’ÊMƒvƒƒOƒ‰ƒ€ƒwƒbƒ_ƒtƒ@ƒCƒ‹
+// 		ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒª		é€šä¿¡ãƒ—ãƒ­ã‚°ãƒ©ãƒ ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«
 // 
 // 				Ver 3.25a
 // 
@@ -13,7 +13,7 @@
 
 #ifndef DX_NON_NETWORK
 
-// ƒCƒ“ƒNƒ‹[ƒh ------------------------------------------------------------------
+// ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ ------------------------------------------------------------------
 #include "DxLib.h"
 #include "DxHandle.h"
 #include "DxRingBuffer.h"
@@ -27,65 +27,65 @@ namespace DxLib
 
 #endif // DX_NON_NAMESPACE
 
-// ƒ}ƒNƒ’è‹` --------------------------------------------------------------------
+// ãƒžã‚¯ãƒ­å®šç¾© --------------------------------------------------------------------
 
-#define MAX_HTTPHANDLE_NUM			(100)				// “¯Žž‚ÉŽg—p‚Å‚«‚é HTTP ƒnƒ“ƒhƒ‹‚Ì”
+#define MAX_HTTPHANDLE_NUM			(100)				// åŒæ™‚ã«ä½¿ç”¨ã§ãã‚‹ HTTP ãƒãƒ³ãƒ‰ãƒ«ã®æ•°
 
-// HTTP ‚Ìó‘Ôˆê——
+// HTTP ã®çŠ¶æ…‹ä¸€è¦§
 enum HTTP_STATE
 {
-	HTTP_ST_CONNECT = 0,				// Ú‘±’†
-	HTTP_ST_GET = 1,					// GET ‚Åƒtƒ@ƒCƒ‹ŽóM’†
-	HTTP_ST_HEAD = 2,					// HEAD ‚Åƒwƒbƒ_‚ðŽóM’†
-	HTTP_ST_POST = 3,					// POST ‚ÅŽå‚É‚b‚f‚h‚È‚Ç‚©‚ço—ÍŽóM’†
+	HTTP_ST_CONNECT = 0,				// æŽ¥ç¶šä¸­
+	HTTP_ST_GET = 1,					// GET ã§ãƒ•ã‚¡ã‚¤ãƒ«å—ä¿¡ä¸­
+	HTTP_ST_HEAD = 2,					// HEAD ã§ãƒ˜ãƒƒãƒ€ã‚’å—ä¿¡ä¸­
+	HTTP_ST_POST = 3,					// POST ã§ä¸»ã«ï¼£ï¼§ï¼©ãªã©ã‹ã‚‰å‡ºåŠ›å—ä¿¡ä¸­
 } ;
 
-// HTTP ‚Ìˆ—ˆê——
+// HTTP ã®å‡¦ç†ä¸€è¦§
 enum HTTP_PROC
 {
-	HTTP_PR_GET,						// GET ‚Åƒtƒ@ƒCƒ‹Žæ“¾
-	HTTP_PR_POST,						// POST ‚Åƒtƒ@ƒCƒ‹Žæ“¾
-	HTTP_PR_HEAD,						// HEAD ‚Åƒwƒbƒ_Žæ“¾
+	HTTP_PR_GET,						// GET ã§ãƒ•ã‚¡ã‚¤ãƒ«å–å¾—
+	HTTP_PR_POST,						// POST ã§ãƒ•ã‚¡ã‚¤ãƒ«å–å¾—
+	HTTP_PR_HEAD,						// HEAD ã§ãƒ˜ãƒƒãƒ€å–å¾—
 } ;
 
-// •Û‘¶æˆê——
+// ä¿å­˜å…ˆä¸€è¦§
 enum HTTP_SAVEPLACE
 {
-	HTTP_SV_FILE = 0,					// •Û‘¶æ‚Íƒtƒ@ƒCƒ‹
-	HTTP_SV_MEM = 1,					// •Û‘¶æ‚Íƒƒ‚ƒŠ
+	HTTP_SV_FILE = 0,					// ä¿å­˜å…ˆã¯ãƒ•ã‚¡ã‚¤ãƒ«
+	HTTP_SV_MEM = 1,					// ä¿å­˜å…ˆã¯ãƒ¡ãƒ¢ãƒª
 } ;
 
-// FTP ‚Ìó‘Ôˆê——
+// FTP ã®çŠ¶æ…‹ä¸€è¦§
 enum FTP_STATE
 {
-	FTP_ST_CONNECT = 0,					// Ú‘±’†
-	FTP_ST_LOGIN_NAME = 1,				// ƒƒOƒCƒ“’†(ƒ†[ƒU[ƒl[ƒ€“ü—Í’†)
-	FTP_ST_LOGIN_PASS = 2,				// ƒƒOƒCƒ“’†(ƒpƒXƒ[ƒh“ü—Í’†)
-	FTP_ST_TYPE_A = 3,					// TYPE A ‘—M’†
-	FTP_ST_TYPE_B = 4,					// TYPE B ‘—M’†
-	FTP_ST_SIZE = 5,					// ƒTƒCƒYŽæ“¾’†
-	FTP_ST_QUIT = 6,					// I—¹’†
-	FTP_ST_PASV = 7,					// Passive ƒ‚[ƒhˆÈ~’†
-	FTP_ST_RETR = 8,					// Žæ“¾‚µ‚½‚¢ƒtƒ@ƒCƒ‹–¼‚ð‘—M’†
-	FTP_ST_STOR = 9,					// ‘—M‚µ‚½‚¢ƒtƒ@ƒCƒ‹–¼‚ð‘—M’†
-	FTP_ST_DATA_GET = 10,				// ƒf[ƒ^ŽóM’†
-	FTP_ST_DATA_SET = 11,				// ƒf[ƒ^‘—M’†
-	FTP_ST_CWD = 12,					// ƒfƒBƒŒƒNƒgƒŠ•ÏX’†
+	FTP_ST_CONNECT = 0,					// æŽ¥ç¶šä¸­
+	FTP_ST_LOGIN_NAME = 1,				// ãƒ­ã‚°ã‚¤ãƒ³ä¸­(ãƒ¦ãƒ¼ã‚¶ãƒ¼ãƒãƒ¼ãƒ å…¥åŠ›ä¸­)
+	FTP_ST_LOGIN_PASS = 2,				// ãƒ­ã‚°ã‚¤ãƒ³ä¸­(ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰å…¥åŠ›ä¸­)
+	FTP_ST_TYPE_A = 3,					// TYPE A é€ä¿¡ä¸­
+	FTP_ST_TYPE_B = 4,					// TYPE B é€ä¿¡ä¸­
+	FTP_ST_SIZE = 5,					// ã‚µã‚¤ã‚ºå–å¾—ä¸­
+	FTP_ST_QUIT = 6,					// çµ‚äº†ä¸­
+	FTP_ST_PASV = 7,					// Passive ãƒ¢ãƒ¼ãƒ‰ä»¥é™ä¸­
+	FTP_ST_RETR = 8,					// å–å¾—ã—ãŸã„ãƒ•ã‚¡ã‚¤ãƒ«åã‚’é€ä¿¡ä¸­
+	FTP_ST_STOR = 9,					// é€ä¿¡ã—ãŸã„ãƒ•ã‚¡ã‚¤ãƒ«åã‚’é€ä¿¡ä¸­
+	FTP_ST_DATA_GET = 10,				// ãƒ‡ãƒ¼ã‚¿å—ä¿¡ä¸­
+	FTP_ST_DATA_SET = 11,				// ãƒ‡ãƒ¼ã‚¿é€ä¿¡ä¸­
+	FTP_ST_CWD = 12,					// ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªå¤‰æ›´ä¸­
 } ;
 
-// FTP ‚Ìˆ—ˆê——
+// FTP ã®å‡¦ç†ä¸€è¦§
 enum FTP_PROC
 {
-	FTP_PR_LOGIN = 0,					// ƒƒOƒCƒ“
-	FTP_PR_IDLE = 1,					// ‘Ò‹@ó‘Ô
-	FTP_PR_CHDIR = 2,					// ƒfƒBƒŒƒNƒgƒŠ•ÏX
-	FTP_PR_FILE_SET = 3,				// ƒtƒ@ƒCƒ‹‘—M
-	FTP_PR_FILE_GET = 4,				// ƒtƒ@ƒCƒ‹Žæ“¾
+	FTP_PR_LOGIN = 0,					// ãƒ­ã‚°ã‚¤ãƒ³
+	FTP_PR_IDLE = 1,					// å¾…æ©ŸçŠ¶æ…‹
+	FTP_PR_CHDIR = 2,					// ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªå¤‰æ›´
+	FTP_PR_FILE_SET = 3,				// ãƒ•ã‚¡ã‚¤ãƒ«é€ä¿¡
+	FTP_PR_FILE_GET = 4,				// ãƒ•ã‚¡ã‚¤ãƒ«å–å¾—
 } ;
 
-// \‘¢‘Ì’è‹` --------------------------------------------------------------------
+// æ§‹é€ ä½“å®šç¾© --------------------------------------------------------------------
 
-// WinSock2.0 ‚ÅŽg—p‚·‚é’è‹`‚Æ\‘¢‘Ì
+// WinSock2.0 ã§ä½¿ç”¨ã™ã‚‹å®šç¾©ã¨æ§‹é€ ä½“
 
 struct _addrinfo
 {
@@ -108,171 +108,171 @@ struct _sockaddr_in6
 //	unsigned long			sin6_scope_id ;						// set of interfaces for a scope
 } ;
 
-// ConnectNetWorkBase ‚ÅŽg—p‚·‚éƒOƒ[ƒoƒ‹ƒf[ƒ^‚ð“Z‚ß‚½‚à‚Ì
+// ConnectNetWorkBase ã§ä½¿ç”¨ã™ã‚‹ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿ã‚’çºã‚ãŸã‚‚ã®
 struct CONNECTNETWORK_GPARAM
 {
-	int						NonUseDXProtocolFlag ;				// ‚c‚wƒ‰ƒCƒuƒ‰ƒŠ‚ÌƒvƒƒgƒRƒ‹‚ðŽg—p‚µ‚È‚¢‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO
-	int						NonCloseAfterLostFlag ;				// Ú‘±‚ªØ‚ê‚½Žž‚ÉŽ©“®“I‚Éƒnƒ“ƒhƒ‹‚ð‰ð•ú‚µ‚È‚¢‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO( TRUE:’¼Œã‚É‰ð•ú‚Í‚µ‚È‚¢  FALSE:’¼Œã‚É‰ð•ú‚·‚é )
+	int						NonUseDXProtocolFlag ;				// ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®ãƒ—ãƒ­ãƒˆã‚³ãƒ«ã‚’ä½¿ç”¨ã—ãªã„ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°
+	int						NonCloseAfterLostFlag ;				// æŽ¥ç¶šãŒåˆ‡ã‚ŒãŸæ™‚ã«è‡ªå‹•çš„ã«ãƒãƒ³ãƒ‰ãƒ«ã‚’è§£æ”¾ã—ãªã„ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°( TRUE:ç›´å¾Œã«è§£æ”¾ã¯ã—ãªã„  FALSE:ç›´å¾Œã«è§£æ”¾ã™ã‚‹ )
 } ;
 
-// ƒ\ƒPƒbƒg’P‘Ìƒf[ƒ^\‘¢‘Ì
+// ã‚½ã‚±ãƒƒãƒˆå˜ä½“ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
 struct SOCKETDATA
 {
-	HANDLEINFO				HandleInfo ;						// ƒnƒ“ƒhƒ‹‹¤’Êƒf[ƒ^
+	HANDLEINFO				HandleInfo ;						// ãƒãƒ³ãƒ‰ãƒ«å…±é€šãƒ‡ãƒ¼ã‚¿
 
-	int						IsUDP ;								// ‚t‚c‚oÚ‘±‚©‚Ç‚¤‚©
-	int						IsUDPBroadCast ;					// ‚t‚c‚oÚ‘±‚©‚Âƒuƒ[ƒhƒLƒƒƒXƒgÝ’è‚©‚Ç‚¤‚©
-	int						UseFlag ;							// ƒf[ƒ^‚ðŽg—p’†‚©Aƒtƒ‰ƒO
-	int						IsIPv6 ;							// IPv6‚ðŽg—p‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©
+	int						IsUDP ;								// ï¼µï¼¤ï¼°æŽ¥ç¶šã‹ã©ã†ã‹
+	int						IsUDPBroadCast ;					// ï¼µï¼¤ï¼°æŽ¥ç¶šã‹ã¤ãƒ–ãƒ­ãƒ¼ãƒ‰ã‚­ãƒ£ã‚¹ãƒˆè¨­å®šã‹ã©ã†ã‹
+	int						UseFlag ;							// ãƒ‡ãƒ¼ã‚¿ã‚’ä½¿ç”¨ä¸­ã‹ã€ãƒ•ãƒ©ã‚°
+	int						IsIPv6 ;							// IPv6ã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹ã‹ã©ã†ã‹
 
-	int						ErrorFlag ;							// d‘å‚ÈƒGƒ‰[‚ª”­¶‚µ‚½‚©ƒtƒ‰ƒO( TRUE:”­¶‚µ‚½  FALSE:‚µ‚Ä‚¢‚È‚¢ )
-	int						PreConnectionFlag ;					// Ú‘±‘Oƒtƒ‰ƒO( TRUE:Ú‘±‘O  FALSE:Ú‘±Œã )
-	int						ConnectionFlag ;					// Ú‘±‚µ‚Ä‚¢‚é‚©ƒtƒ‰ƒO( TRUE:‚µ‚Ä‚¢‚é  FALSE:‚µ‚Ä‚¢‚È‚¢ )
-	int						ConnectionLostFlag ;				// ƒ‰ƒCƒuƒ‰ƒŠƒ†[ƒU[‚ªØ’f‚ðŠm”F‚µ‚½‚©ƒtƒ‰ƒOAAcceptedFlag‚ª FALSE ‚ÌŽž‚Ì‚Ý—LŒø( TRUE:‚µ‚½  FALSE:‚µ‚Ä‚¢‚È‚¢ )
-	int						AccepteConfirFlag ;					// ƒ‰ƒCƒuƒ‰ƒŠƒ†[ƒU[‚ªÚ‘±‚ðŠm”F‚µ‚½‚©ƒtƒ‰ƒO( TRUE:‚µ‚½  FALSE:‚µ‚Ä‚¢‚È‚¢ )
-	int						AcceptFlag ;						// Ú‘±‚³‚ê‚½‚Ì‚©A‚µ‚½‚Ì‚©Aƒtƒ‰ƒO( TRUE:‚³‚ê‚½  FALSE:‚µ‚½ )
+	int						ErrorFlag ;							// é‡å¤§ãªã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ãŸã‹ãƒ•ãƒ©ã‚°( TRUE:ç™ºç”Ÿã—ãŸ  FALSE:ã—ã¦ã„ãªã„ )
+	int						PreConnectionFlag ;					// æŽ¥ç¶šå‰ãƒ•ãƒ©ã‚°( TRUE:æŽ¥ç¶šå‰  FALSE:æŽ¥ç¶šå¾Œ )
+	int						ConnectionFlag ;					// æŽ¥ç¶šã—ã¦ã„ã‚‹ã‹ãƒ•ãƒ©ã‚°( TRUE:ã—ã¦ã„ã‚‹  FALSE:ã—ã¦ã„ãªã„ )
+	int						ConnectionLostFlag ;				// ãƒ©ã‚¤ãƒ–ãƒ©ãƒªãƒ¦ãƒ¼ã‚¶ãƒ¼ãŒåˆ‡æ–­ã‚’ç¢ºèªã—ãŸã‹ãƒ•ãƒ©ã‚°ã€AcceptedFlagãŒ FALSE ã®æ™‚ã®ã¿æœ‰åŠ¹( TRUE:ã—ãŸ  FALSE:ã—ã¦ã„ãªã„ )
+	int						AccepteConfirFlag ;					// ãƒ©ã‚¤ãƒ–ãƒ©ãƒªãƒ¦ãƒ¼ã‚¶ãƒ¼ãŒæŽ¥ç¶šã‚’ç¢ºèªã—ãŸã‹ãƒ•ãƒ©ã‚°( TRUE:ã—ãŸ  FALSE:ã—ã¦ã„ãªã„ )
+	int						AcceptFlag ;						// æŽ¥ç¶šã•ã‚ŒãŸã®ã‹ã€ã—ãŸã®ã‹ã€ãƒ•ãƒ©ã‚°( TRUE:ã•ã‚ŒãŸ  FALSE:ã—ãŸ )
 
-	int						DXProtocolFlag  ;					// ‚c‚wƒ‰ƒCƒuƒ‰ƒŠ‚ÌƒvƒƒgƒRƒ‹‚Å’ÊM‚·‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO( TRUE:ƒTƒCƒYƒwƒbƒ_‚ð•t‚¯‚é FALSE:WinSock‚ð‚»‚Ì‚Ü‚ÜŽg‚¤ )
-	int						CloseAfterLostFlag ;				// Ø’f’¼Œã‚Éƒnƒ“ƒhƒ‹‚ð‰ð•ú‚·‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO( TRUE:’¼Œã‚É‰ð•ú  FALSE:ƒ†[ƒU[‚©‚ç CloseNetWork ‚³‚ê‚é‚Ü‚Å‰ð•ú‚µ‚È‚¢ )
+	int						DXProtocolFlag  ;					// ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®ãƒ—ãƒ­ãƒˆã‚³ãƒ«ã§é€šä¿¡ã™ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°( TRUE:ã‚µã‚¤ã‚ºãƒ˜ãƒƒãƒ€ã‚’ä»˜ã‘ã‚‹ FALSE:WinSockã‚’ãã®ã¾ã¾ä½¿ã† )
+	int						CloseAfterLostFlag ;				// åˆ‡æ–­ç›´å¾Œã«ãƒãƒ³ãƒ‰ãƒ«ã‚’è§£æ”¾ã™ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°( TRUE:ç›´å¾Œã«è§£æ”¾  FALSE:ãƒ¦ãƒ¼ã‚¶ãƒ¼ã‹ã‚‰ CloseNetWork ã•ã‚Œã‚‹ã¾ã§è§£æ”¾ã—ãªã„ )
 
-//	int						ID ;								// ƒGƒ‰[ƒ`ƒFƒbƒN—p‚h‚c
-	SOCKET					Socket ;							// ƒ\ƒPƒbƒgŽ¯•Ê”Ô†
+//	int						ID ;								// ã‚¨ãƒ©ãƒ¼ãƒã‚§ãƒƒã‚¯ç”¨ï¼©ï¼¤
+	SOCKET					Socket ;							// ã‚½ã‚±ãƒƒãƒˆè­˜åˆ¥ç•ªå·
 
-	int						RecvComDataVol ;					// “à•”ƒoƒbƒtƒ@‚É‚v‚‰‚Ž‚r‚‚ƒ‚‹ƒoƒbƒtƒ@‚Ì“à—e‚ª‚·‚×‚Ä“ü‚ç‚È‚¢ê‡A“Ç‚Ü‚È‚­‚Ä‚Í‚È‚ç‚È‚¢Žc‚è—e—Ê
-	RINGBUF					RecvBufferToUserR ;					// ƒ‰ƒCƒuƒ‰ƒŠ—˜—pŽÒ‚ÉŒöŠJ‚·‚éŽóMƒf[ƒ^‚ÌƒŠƒ“ƒOƒoƒbƒtƒ@
-	int						RecvComDataOriginalVol ;			// ˆê“x‚ÌŽóM‚Å‘—M‚³‚ê‚Ä‚«‚½ƒf[ƒ^—e—ÊARecvComDataVol ‚ª 0 ‚É‚È‚Á‚½Žž‚É RecvBufferToUserOpenSize ‚É‰ÁŽZ‚³‚ê‚é
-	int						RecvBufferToUserOpenSize ;			// ƒ‰ƒCƒuƒ‰ƒŠ—˜—pŽÒ‚ÉŒöŠJ‚·‚éŽóMƒf[ƒ^‚ÌƒTƒCƒY
+	int						RecvComDataVol ;					// å†…éƒ¨ãƒãƒƒãƒ•ã‚¡ã«ï¼·ï½‰ï½Žï¼³ï½ï½ƒï½‹ãƒãƒƒãƒ•ã‚¡ã®å†…å®¹ãŒã™ã¹ã¦å…¥ã‚‰ãªã„å ´åˆã€èª­ã¾ãªãã¦ã¯ãªã‚‰ãªã„æ®‹ã‚Šå®¹é‡
+	RINGBUF					RecvBufferToUserR ;					// ãƒ©ã‚¤ãƒ–ãƒ©ãƒªåˆ©ç”¨è€…ã«å…¬é–‹ã™ã‚‹å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã®ãƒªãƒ³ã‚°ãƒãƒƒãƒ•ã‚¡
+	int						RecvComDataOriginalVol ;			// ä¸€åº¦ã®å—ä¿¡ã§é€ä¿¡ã•ã‚Œã¦ããŸãƒ‡ãƒ¼ã‚¿å®¹é‡ã€RecvComDataVol ãŒ 0 ã«ãªã£ãŸæ™‚ã« RecvBufferToUserOpenSize ã«åŠ ç®—ã•ã‚Œã‚‹
+	int						RecvBufferToUserOpenSize ;			// ãƒ©ã‚¤ãƒ–ãƒ©ãƒªåˆ©ç”¨è€…ã«å…¬é–‹ã™ã‚‹å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã®ã‚µã‚¤ã‚º
 
-	RINGBUF					SendBufferR ;						// ‘—Mƒoƒbƒtƒ@—pƒŠƒ“ƒOƒf[ƒ^
-	int						SendComDataVol ;					// ˆê“x‚É‘—M‚Å‚«‚È‚©‚Á‚½ê‡‚ÌŽc‚èƒf[ƒ^—Ê
-	int						SendComDataComVol ;					// ˆê“x‚É‘—M‚·‚éƒf[ƒ^—Ê‚Ì‘—M‚ªˆê“x‚É‘—M‚Å‚«‚È‚©‚Á‚½ê‡‚ÌŽc‚è—e—Ê
+	RINGBUF					SendBufferR ;						// é€ä¿¡ãƒãƒƒãƒ•ã‚¡ç”¨ãƒªãƒ³ã‚°ãƒ‡ãƒ¼ã‚¿
+	int						SendComDataVol ;					// ä¸€åº¦ã«é€ä¿¡ã§ããªã‹ã£ãŸå ´åˆã®æ®‹ã‚Šãƒ‡ãƒ¼ã‚¿é‡
+	int						SendComDataComVol ;					// ä¸€åº¦ã«é€ä¿¡ã™ã‚‹ãƒ‡ãƒ¼ã‚¿é‡ã®é€ä¿¡ãŒä¸€åº¦ã«é€ä¿¡ã§ããªã‹ã£ãŸå ´åˆã®æ®‹ã‚Šå®¹é‡
 
-	IPDATA					AcceptedIP ;						// Ú‘±æ‚Ì‚h‚o(Ø’fŒã‚à—LŒø)
-	IPDATA_IPv6				AcceptedIP_IPv6 ;					// Ú‘±æ‚Ì‚h‚o(Ø’fŒã‚à—LŒø)
-	unsigned int			Port ;								// Ú‘±æ‚Ìƒ|[ƒg
+	IPDATA					AcceptedIP ;						// æŽ¥ç¶šå…ˆã®ï¼©ï¼°(åˆ‡æ–­å¾Œã‚‚æœ‰åŠ¹)
+	IPDATA_IPv6				AcceptedIP_IPv6 ;					// æŽ¥ç¶šå…ˆã®ï¼©ï¼°(åˆ‡æ–­å¾Œã‚‚æœ‰åŠ¹)
+	unsigned int			Port ;								// æŽ¥ç¶šå…ˆã®ãƒãƒ¼ãƒˆ
 
-	int						UDPReadFlag ;						// ŽóMƒf[ƒ^‚ª‘¶Ý‚·‚é‚©Aƒtƒ‰ƒO( TRUE:‘¶Ý‚·‚é  FALSE:‚µ‚È‚¢ )
-	int						UDPWriteFlag ;						// ƒf[ƒ^‘—M‚ª‰Â”\‚Èó‘Ô‚©Aƒtƒ‰ƒO( TRUE:‰Â”\  FALSE:•s‰Â”\ )
+	int						UDPReadFlag ;						// å—ä¿¡ãƒ‡ãƒ¼ã‚¿ãŒå­˜åœ¨ã™ã‚‹ã‹ã€ãƒ•ãƒ©ã‚°( TRUE:å­˜åœ¨ã™ã‚‹  FALSE:ã—ãªã„ )
+	int						UDPWriteFlag ;						// ãƒ‡ãƒ¼ã‚¿é€ä¿¡ãŒå¯èƒ½ãªçŠ¶æ…‹ã‹ã€ãƒ•ãƒ©ã‚°( TRUE:å¯èƒ½  FALSE:ä¸å¯èƒ½ )
 
-//	HANDLELIST				List ;								// ƒŠƒXƒgˆ——pƒf[ƒ^
+//	HANDLELIST				List ;								// ãƒªã‚¹ãƒˆå‡¦ç†ç”¨ãƒ‡ãƒ¼ã‚¿
 } ;
 
-// WinsocketsŠÖŒW\‘¢‘Ì
+// Winsocketsé–¢ä¿‚æ§‹é€ ä½“
 struct WINSOCKDATA
 {
-	int						ListenHandle ;						// Ú‘±‘Ò‚¿ˆ——pƒnƒ“ƒhƒ‹
+	int						ListenHandle ;						// æŽ¥ç¶šå¾…ã¡å‡¦ç†ç”¨ãƒãƒ³ãƒ‰ãƒ«
 /*
-	SOCKETDATA				*CSocket[ MAX_SOCKET_NUM + 1 ] ;	// ƒRƒlƒNƒg—pƒ\ƒPƒbƒgƒf[ƒ^
-	HANDLELIST				SocketListFirst ;					// ƒ\ƒPƒbƒgƒŠƒXƒg‚Ìæ“ª
-	HANDLELIST				SocketListLast ;					// ƒ\ƒPƒbƒgƒŠƒXƒg‚ÌI’[
+	SOCKETDATA				*CSocket[ MAX_SOCKET_NUM + 1 ] ;	// ã‚³ãƒã‚¯ãƒˆç”¨ã‚½ã‚±ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿
+	HANDLELIST				SocketListFirst ;					// ã‚½ã‚±ãƒƒãƒˆãƒªã‚¹ãƒˆã®å…ˆé ­
+	HANDLELIST				SocketListLast ;					// ã‚½ã‚±ãƒƒãƒˆãƒªã‚¹ãƒˆã®çµ‚ç«¯
 */
-//	int						SocketNum ;							// ƒ\ƒPƒbƒg‚Ì”
-//	int						HandleID ;							// ƒnƒ“ƒhƒ‹‚ÉŠ„‚è“–‚Ä‚é‚h‚c
-	int						InitializeFlag ;					// ‰Šú‰»ƒtƒ‰ƒO
-//	int						MaxSockets ;						// Å‘åÚ‘±”
-	int						MyIPv4Num ;							// Ž©•ª‚ÌIPv4ƒAƒhƒŒƒX‚Ì”
-	IPDATA					*MyIPv4 ;							// Ž©•ª‚ÌIPv4ƒAƒhƒŒƒX
-	int						MyIPv6Num ;							// Ž©•ª‚ÌIPv6ƒAƒhƒŒƒX‚Ì”
-	IPDATA_IPv6				*MyIPv6 ;							// Ž©•ª‚ÌIPv6ƒAƒhƒŒƒX
-	int						TimeOutWait ;						// ƒ^ƒCƒ€ƒAƒEƒg‚·‚é‚Ü‚Å‚ÌŽžŠÔ(ƒ~ƒŠ•b’PˆÊ)
-	HWND					ParentWindow ;						// eƒEƒCƒ“ƒhƒE
-	HWND					MessageWindow ;						// ƒEƒCƒ“ƒhƒEƒnƒ“ƒhƒ‹
-	int						NonUseDXProtocolFlag ;				// ‚c‚wƒ‰ƒCƒuƒ‰ƒŠ‚ÌƒvƒƒgƒRƒ‹‚ðŽg—p‚µ‚È‚¢‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO
-	int						NonCloseAfterLostFlag ;				// Ú‘±‚ªØ‚ê‚½Žž‚ÉŽ©“®“I‚Éƒnƒ“ƒhƒ‹‚ð‰ð•ú‚µ‚È‚¢‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO( TRUE:’¼Œã‚É‰ð•ú‚Í‚µ‚È‚¢  FALSE:’¼Œã‚É‰ð•ú‚·‚é )
-	int						DestroyFlag ;						// ƒƒbƒZ[ƒWƒEƒCƒ“ƒhƒE‚ª WM_DESTROY ‚ðŽó‚¯‚½‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO
+//	int						SocketNum ;							// ã‚½ã‚±ãƒƒãƒˆã®æ•°
+//	int						HandleID ;							// ãƒãƒ³ãƒ‰ãƒ«ã«å‰²ã‚Šå½“ã¦ã‚‹ï¼©ï¼¤
+	int						InitializeFlag ;					// åˆæœŸåŒ–ãƒ•ãƒ©ã‚°
+//	int						MaxSockets ;						// æœ€å¤§æŽ¥ç¶šæ•°
+	int						MyIPv4Num ;							// è‡ªåˆ†ã®IPv4ã‚¢ãƒ‰ãƒ¬ã‚¹ã®æ•°
+	IPDATA					*MyIPv4 ;							// è‡ªåˆ†ã®IPv4ã‚¢ãƒ‰ãƒ¬ã‚¹
+	int						MyIPv6Num ;							// è‡ªåˆ†ã®IPv6ã‚¢ãƒ‰ãƒ¬ã‚¹ã®æ•°
+	IPDATA_IPv6				*MyIPv6 ;							// è‡ªåˆ†ã®IPv6ã‚¢ãƒ‰ãƒ¬ã‚¹
+	int						TimeOutWait ;						// ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆã™ã‚‹ã¾ã§ã®æ™‚é–“(ãƒŸãƒªç§’å˜ä½)
+	HWND					ParentWindow ;						// è¦ªã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦
+	HWND					MessageWindow ;						// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒãƒ³ãƒ‰ãƒ«
+	int						NonUseDXProtocolFlag ;				// ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®ãƒ—ãƒ­ãƒˆã‚³ãƒ«ã‚’ä½¿ç”¨ã—ãªã„ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°
+	int						NonCloseAfterLostFlag ;				// æŽ¥ç¶šãŒåˆ‡ã‚ŒãŸæ™‚ã«è‡ªå‹•çš„ã«ãƒãƒ³ãƒ‰ãƒ«ã‚’è§£æ”¾ã—ãªã„ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°( TRUE:ç›´å¾Œã«è§£æ”¾ã¯ã—ãªã„  FALSE:ç›´å¾Œã«è§£æ”¾ã™ã‚‹ )
+	int						DestroyFlag ;						// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãŒ WM_DESTROY ã‚’å—ã‘ãŸã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°
 
-//	DX_CRITICAL_SECTION		CriticalSection ;					// ƒf[ƒ^ƒAƒNƒZƒXŽž—pƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“
+//	DX_CRITICAL_SECTION		CriticalSection ;					// ãƒ‡ãƒ¼ã‚¿ã‚¢ã‚¯ã‚»ã‚¹æ™‚ç”¨ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³
 
-	HANDLE					ProcessNetMessageThreadHandle ;		// ProcessNetMessage ‚ð‚Ð‚½‚·‚çŒÄ‚Ñ‚Â‚Ã‚¯‚éƒvƒƒZƒX‚Ìƒnƒ“ƒhƒ‹
-	DWORD					ProcessNetMessageThreadID ;			// ProcessNetMessage ‚ð‚Ð‚½‚·‚çŒÄ‚Ñ‚Â‚Ã‚¯‚éƒvƒƒZƒX‚Ì‚h‚c
-	DWORD					ProcessNetMessageThreadExitFlag ;	// ProcessNetMessage ‚ð‚Ð‚½‚·‚çŒÄ‚Ñ‚Â‚Ã‚¯‚éƒvƒƒZƒX‚ªI—¹Žž‚É—§‚Ä‚éƒtƒ‰ƒO
-	DWORD					ProcessNetMessageThreadEndRequest ;	// ProcessNetMessage ‚ð‚Ð‚½‚·‚çŒÄ‚Ñ‚Â‚Ã‚¯‚éƒvƒƒZƒX‚ÌI—¹ƒŠƒNƒGƒXƒgƒtƒ‰ƒO
+	HANDLE					ProcessNetMessageThreadHandle ;		// ProcessNetMessage ã‚’ã²ãŸã™ã‚‰å‘¼ã³ã¤ã¥ã‘ã‚‹ãƒ—ãƒ­ã‚»ã‚¹ã®ãƒãƒ³ãƒ‰ãƒ«
+	DWORD					ProcessNetMessageThreadID ;			// ProcessNetMessage ã‚’ã²ãŸã™ã‚‰å‘¼ã³ã¤ã¥ã‘ã‚‹ãƒ—ãƒ­ã‚»ã‚¹ã®ï¼©ï¼¤
+	DWORD					ProcessNetMessageThreadExitFlag ;	// ProcessNetMessage ã‚’ã²ãŸã™ã‚‰å‘¼ã³ã¤ã¥ã‘ã‚‹ãƒ—ãƒ­ã‚»ã‚¹ãŒçµ‚äº†æ™‚ã«ç«‹ã¦ã‚‹ãƒ•ãƒ©ã‚°
+	DWORD					ProcessNetMessageThreadEndRequest ;	// ProcessNetMessage ã‚’ã²ãŸã™ã‚‰å‘¼ã³ã¤ã¥ã‘ã‚‹ãƒ—ãƒ­ã‚»ã‚¹ã®çµ‚äº†ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ•ãƒ©ã‚°
 } ;
 
-// HTTP’ÊMŠÖŒW\‘¢‘Ì
+// HTTPé€šä¿¡é–¢ä¿‚æ§‹é€ ä½“
 struct HTTPDATA
 {
-	HTTP_PROC				Process ;							// ˆ—
-	HTTP_STATE				State ;								// ó‘Ô
-	int						Step ;								// „ˆÚó‘Ô
-	int 					Counter ;							// ”Ä—pƒJƒEƒ“ƒ^
-	int						Result ;							// ˆ—Œ‹‰Ê
-	int						Error ;								// ƒGƒ‰[‚Ìê‡‚ÌƒGƒ‰[“à—e
+	HTTP_PROC				Process ;							// å‡¦ç†
+	HTTP_STATE				State ;								// çŠ¶æ…‹
+	int						Step ;								// æŽ¨ç§»çŠ¶æ…‹
+	int 					Counter ;							// æ±Žç”¨ã‚«ã‚¦ãƒ³ã‚¿
+	int						Result ;							// å‡¦ç†çµæžœ
+	int						Error ;								// ã‚¨ãƒ©ãƒ¼ã®å ´åˆã®ã‚¨ãƒ©ãƒ¼å†…å®¹
 
-	int						NetHandle ;							// HTTPƒT[ƒo‚Æ‚Ì’ÊM‚ÉŽg—p‚·‚éƒlƒbƒgƒ[ƒNƒnƒ“ƒhƒ‹
+	int						NetHandle ;							// HTTPã‚µãƒ¼ãƒã¨ã®é€šä¿¡ã«ä½¿ç”¨ã™ã‚‹ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ãƒãƒ³ãƒ‰ãƒ«
 
-	HTTP_SAVEPLACE			SavePlace ;							// •Û‘¶êŠ
-	HANDLE					FilePoint ;							// ŽóMæ‚ªƒtƒ@ƒCƒ‹‚ÌŽž‚ÉŽg—p‚·‚éƒtƒ@ƒCƒ‹ƒ|ƒCƒ“ƒ^
-	void					**BufferPoint ;						// ŽóMæ‚ªƒƒ‚ƒŠ‚ÌŽž‚ÉŽg—p‚·‚éƒ|ƒCƒ“ƒ^‚Ìƒ|ƒCƒ“ƒ^
+	HTTP_SAVEPLACE			SavePlace ;							// ä¿å­˜å ´æ‰€
+	HANDLE					FilePoint ;							// å—ä¿¡å…ˆãŒãƒ•ã‚¡ã‚¤ãƒ«ã®æ™‚ã«ä½¿ç”¨ã™ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«ãƒã‚¤ãƒ³ã‚¿
+	void					**BufferPoint ;						// å—ä¿¡å…ˆãŒãƒ¡ãƒ¢ãƒªã®æ™‚ã«ä½¿ç”¨ã™ã‚‹ãƒã‚¤ãƒ³ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿
 
-	int						FileSize ;							// ƒtƒ@ƒCƒ‹ƒTƒCƒY
-	int						RecvFileSize ;						// ŽóM‚µ‚½ƒf[ƒ^‚ÌƒTƒCƒY
-	char					FileName[128] ;						// ŽóM‚·‚éƒtƒ@ƒCƒ‹–¼
+	int						FileSize ;							// ãƒ•ã‚¡ã‚¤ãƒ«ã‚µã‚¤ã‚º
+	int						RecvFileSize ;						// å—ä¿¡ã—ãŸãƒ‡ãƒ¼ã‚¿ã®ã‚µã‚¤ã‚º
+	char					FileName[128] ;						// å—ä¿¡ã™ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«å
 	
-	char					Host[128] ;							// Ú‘±æ‚ÌƒzƒXƒg–¼
-	char 					Path[256] ;							// ŽóM‚·‚éƒtƒ@ƒCƒ‹‚ÌƒzƒXƒgã‚ÌƒpƒX
-	char					*Param ;							// POST ƒƒ\ƒbƒh‚Å’·‚¢ƒpƒ‰ƒ[ƒ^‚ð“n‚·Û‚Ì•¶Žš—ñ‚ªŠi”[‚³‚ê‚Ä‚¢‚éƒ|ƒCƒ“ƒ^
-	int						ParamLength ;						// ƒpƒ‰ƒ[ƒ^•¶Žš—ñ‚Ì’·‚³
-	IPDATA					HostIP ;							// Ú‘±æƒzƒXƒg‚Ì‚h‚o
-	int						Port ;								// Ú‘±æƒ|[ƒg
+	char					Host[128] ;							// æŽ¥ç¶šå…ˆã®ãƒ›ã‚¹ãƒˆå
+	char 					Path[256] ;							// å—ä¿¡ã™ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ›ã‚¹ãƒˆä¸Šã®ãƒ‘ã‚¹
+	char					*Param ;							// POST ãƒ¡ã‚½ãƒƒãƒ‰ã§é•·ã„ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’æ¸¡ã™éš›ã®æ–‡å­—åˆ—ãŒæ ¼ç´ã•ã‚Œã¦ã„ã‚‹ãƒã‚¤ãƒ³ã‚¿
+	int						ParamLength ;						// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ–‡å­—åˆ—ã®é•·ã•
+	IPDATA					HostIP ;							// æŽ¥ç¶šå…ˆãƒ›ã‚¹ãƒˆã®ï¼©ï¼°
+	int						Port ;								// æŽ¥ç¶šå…ˆãƒãƒ¼ãƒˆ
 } ;
 
-// HTTP ŠÖŒWŠÇ—ƒf[ƒ^
+// HTTP é–¢ä¿‚ç®¡ç†ãƒ‡ãƒ¼ã‚¿
 struct HTTPSYS
 {
-	HTTPDATA				*Data[MAX_HTTPHANDLE_NUM] ;			// ˆ——pƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^‚Ì”z—ñ
-	int						Num ;								// ˆ——pƒf[ƒ^‚Ì”
+	HTTPDATA				*Data[MAX_HTTPHANDLE_NUM] ;			// å‡¦ç†ç”¨ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã®é…åˆ—
+	int						Num ;								// å‡¦ç†ç”¨ãƒ‡ãƒ¼ã‚¿ã®æ•°
 
-	int						UseProxy ;							// ƒvƒƒLƒV‚ðŽg—p‚·‚é‚©‚Ç‚¤‚©
-	char					ProxyHost[256] ;					// ƒvƒƒLƒV‚ÌƒzƒXƒg–¼
-	int						ProxyPort ;							// ƒvƒƒLƒV‚Ìƒ|[ƒg
-//	int						NonUseIEProxy ;						// ‚h‚d‚ÌƒvƒƒLƒVƒT[ƒo[Ý’è‚ðŽg—p‚µ‚È‚¢‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO
+	int						UseProxy ;							// ãƒ—ãƒ­ã‚­ã‚·ã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹
+	char					ProxyHost[256] ;					// ãƒ—ãƒ­ã‚­ã‚·ã®ãƒ›ã‚¹ãƒˆå
+	int						ProxyPort ;							// ãƒ—ãƒ­ã‚­ã‚·ã®ãƒãƒ¼ãƒˆ
+//	int						NonUseIEProxy ;						// ï¼©ï¼¥ã®ãƒ—ãƒ­ã‚­ã‚·ã‚µãƒ¼ãƒãƒ¼è¨­å®šã‚’ä½¿ç”¨ã—ãªã„ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°
 } ;
 
-// FTP’ÊMŠÖŒW\‘¢‘Ì
+// FTPé€šä¿¡é–¢ä¿‚æ§‹é€ ä½“
 struct FTPDATA
 {
-	int						UseFlag ;							// Žg—p’†ƒtƒ‰ƒO
+	int						UseFlag ;							// ä½¿ç”¨ä¸­ãƒ•ãƒ©ã‚°
 	
-	FTP_PROC				Process ;							// ˆ—
-	FTP_STATE				State ;								// ó‘Ô
+	FTP_PROC				Process ;							// å‡¦ç†
+	FTP_STATE				State ;								// çŠ¶æ…‹
 
-	int						ComNetHandle ;						// ƒRƒ}ƒ“ƒh‚Ì‘—ŽóM‚ÉŽg—p‚·‚éƒlƒbƒgƒ[ƒNƒnƒ“ƒhƒ‹
-	int						DatNetHandle ;						// ƒf[ƒ^‚Ì‘—ŽóM‚ÉŽg—p‚·‚éƒlƒbƒgƒ[ƒNƒnƒ“ƒhƒ‹
+	int						ComNetHandle ;						// ã‚³ãƒžãƒ³ãƒ‰ã®é€å—ä¿¡ã«ä½¿ç”¨ã™ã‚‹ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ãƒãƒ³ãƒ‰ãƒ«
+	int						DatNetHandle ;						// ãƒ‡ãƒ¼ã‚¿ã®é€å—ä¿¡ã«ä½¿ç”¨ã™ã‚‹ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ãƒãƒ³ãƒ‰ãƒ«
 
-	DWORD					Fp ;								// ‘—ŽóM‚ÉŽg—p‚·‚éƒtƒ@ƒCƒ‹ƒ|ƒCƒ“ƒ^
-	int						FileSize ;							// ƒtƒ@ƒCƒ‹ƒTƒCƒY
-	int						FilePoint ;							// ‘—ŽóM‚µ‚½ƒtƒ@ƒCƒ‹‚ÌƒTƒCƒY
-	char					FileName[FILEPATH_MAX] ;			// ‘—ŽóM‚·‚éƒtƒ@ƒCƒ‹–¼
-	char					FileDir[FILEPATH_MAX] ;				// ‘—ŽóM‚·‚éƒtƒ@ƒCƒ‹‚ª‘¶Ý‚·‚éƒpƒX
+	DWORD					Fp ;								// é€å—ä¿¡ã«ä½¿ç”¨ã™ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«ãƒã‚¤ãƒ³ã‚¿
+	int						FileSize ;							// ãƒ•ã‚¡ã‚¤ãƒ«ã‚µã‚¤ã‚º
+	int						FilePoint ;							// é€å—ä¿¡ã—ãŸãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚µã‚¤ã‚º
+	char					FileName[FILEPATH_MAX] ;			// é€å—ä¿¡ã™ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«å
+	char					FileDir[FILEPATH_MAX] ;				// é€å—ä¿¡ã™ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«ãŒå­˜åœ¨ã™ã‚‹ãƒ‘ã‚¹
 } ;
 
-// ƒe[ƒuƒ‹-----------------------------------------------------------------------
+// ãƒ†ãƒ¼ãƒ–ãƒ«-----------------------------------------------------------------------
 
-// “à•”‘åˆæ•Ï”éŒ¾ --------------------------------------------------------------
+// å†…éƒ¨å¤§åŸŸå¤‰æ•°å®£è¨€ --------------------------------------------------------------
 
-extern WINSOCKDATA SockData ;									// ‚v‚‰‚Ž‚r‚‚ƒ‚‹‚…‚”‚“ƒf[ƒ^
-extern HTTPSYS HttpData ;										// HTTP ŠÖŒWˆ——pƒf[ƒ^
+extern WINSOCKDATA SockData ;									// ï¼·ï½‰ï½Žï¼³ï½ï½ƒï½‹ï½…ï½”ï½“ãƒ‡ãƒ¼ã‚¿
+extern HTTPSYS HttpData ;										// HTTP é–¢ä¿‚å‡¦ç†ç”¨ãƒ‡ãƒ¼ã‚¿
 
-// ŠÖ”ƒvƒƒgƒ^ƒCƒvéŒ¾-----------------------------------------------------------
+// é–¢æ•°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€-----------------------------------------------------------
 
-extern 	int			InitializeNetWork( HWND WindowHandle = NULL ) ;							// ’ÊM‹@”\‚ð‰Šú‰»‚·‚é
-extern 	int			TerminateNetWork( void ) ;												// ’ÊM‹@”\‚ðI—¹‚·‚é
+extern 	int			InitializeNetWork( HWND WindowHandle = NULL ) ;							// é€šä¿¡æ©Ÿèƒ½ã‚’åˆæœŸåŒ–ã™ã‚‹
+extern 	int			TerminateNetWork( void ) ;												// é€šä¿¡æ©Ÿèƒ½ã‚’çµ‚äº†ã™ã‚‹
 
-extern	int			WinSockProc( HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam ) ;	// ‚v‚‰‚Ž‚r‚‚ƒ‚‹ƒƒbƒZ[ƒW‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+extern	int			WinSockProc( HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam ) ;	// ï¼·ï½‰ï½Žï¼³ï½ï½ƒï½‹ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 
-extern	int			AcceptNetWork( void ) ;													// ƒAƒNƒZƒvƒg‚·‚é
+extern	int			AcceptNetWork( void ) ;													// ã‚¢ã‚¯ã‚»ãƒ—ãƒˆã™ã‚‹
 
-extern	int			InitializeNetworkHandle( HANDLEINFO *HandleInfo ) ;						// ƒlƒbƒgƒ[ƒNƒnƒ“ƒhƒ‹‚ð‰Šú‰»‚·‚é
-extern	int			TerminateNetworkHandle( HANDLEINFO *HandleInfo ) ;						// ƒlƒbƒgƒ[ƒNƒnƒ“ƒhƒ‹‚ÌŒãŽn––‚ðs‚¤
+extern	int			InitializeNetworkHandle( HANDLEINFO *HandleInfo ) ;						// ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ãƒãƒ³ãƒ‰ãƒ«ã‚’åˆæœŸåŒ–ã™ã‚‹
+extern	int			TerminateNetworkHandle( HANDLEINFO *HandleInfo ) ;						// ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ãƒãƒ³ãƒ‰ãƒ«ã®å¾Œå§‹æœ«ã‚’è¡Œã†
 
-extern	void		InitConnectNetWorkBaseGParam( CONNECTNETWORK_GPARAM *GParam ) ;			// CONNECTNETWORK_GPARAM ‚ð‰Šú‰»‚·‚é
-extern	int			ConnectNetWorkBase_UseGParam( CONNECTNETWORK_GPARAM *GParam, IPDATA *IPData_IPv4, IPDATA_IPv6 *IPData_IPv6, int Port, int ASync, int ASyncLoadFlag = FALSE ) ;		// ConnectNetWorkBase ‚ÌƒOƒ[ƒoƒ‹ƒf[ƒ^‚ÉƒAƒNƒZƒX‚µ‚È‚¢”Å
-extern	int			NetWorkRecv_UseGParam( int NetHandle,       void *Buffer, int Length, int Peek, int ASyncLoadFlag = FALSE ) ;		// NetWorkRecv ‚ÌƒOƒ[ƒoƒ‹ƒf[ƒ^‚ÉƒAƒNƒZƒX‚µ‚È‚¢ƒo[ƒWƒ‡ƒ“
-extern	int			NetWorkSend_UseGParam( int NetHandle, const void *Buffer, int Length, int ASyncLoadFlag = FALSE ) ;					// NetWorkSend ‚ÌƒOƒ[ƒoƒ‹ƒf[ƒ^‚ÉƒAƒNƒZƒX‚µ‚È‚¢ƒo[ƒWƒ‡ƒ“
-extern	int			MakeUDPSocketBase_UseGParam( int IsIPv6, int RecvPort, int ASyncLoadFlag = FALSE ) ;								// MakeUDPSocketBase ‚ÌƒOƒ[ƒoƒ‹ƒf[ƒ^‚ÉƒAƒNƒZƒX‚µ‚È‚¢ƒo[ƒWƒ‡ƒ“
-extern	int			NetWorkSendUDP_UseGParam( int NetUDPHandle, IPDATA SendIP_IPv4, IPDATA_IPv6 SendIP_IPv6, int SendPort, const void *Buffer, int Length, int ASyncLoadFlag = FALSE ) ;	// NetWorkSendUDP ‚ÌƒOƒ[ƒoƒ‹ƒf[ƒ^‚ÉƒAƒNƒZƒX‚µ‚È‚¢ƒo[ƒWƒ‡ƒ“
-extern	int			NetWorkRecvUDP_UseGParam( int NetUDPHandle, void *RecvIP, int *RecvPort, void *Buffer, int Length, int Peek, int ASyncLoadFlag = FALSE ) ;						// NetWorkRecvUDP ‚ÌƒOƒ[ƒoƒ‹ƒf[ƒ^‚ÉƒAƒNƒZƒX‚µ‚È‚¢ƒo[ƒWƒ‡ƒ“
+extern	void		InitConnectNetWorkBaseGParam( CONNECTNETWORK_GPARAM *GParam ) ;			// CONNECTNETWORK_GPARAM ã‚’åˆæœŸåŒ–ã™ã‚‹
+extern	int			ConnectNetWorkBase_UseGParam( CONNECTNETWORK_GPARAM *GParam, IPDATA *IPData_IPv4, IPDATA_IPv6 *IPData_IPv6, int Port, int ASync, int ASyncLoadFlag = FALSE ) ;		// ConnectNetWorkBase ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿ã«ã‚¢ã‚¯ã‚»ã‚¹ã—ãªã„ç‰ˆ
+extern	int			NetWorkRecv_UseGParam( int NetHandle,       void *Buffer, int Length, int Peek, int ASyncLoadFlag = FALSE ) ;		// NetWorkRecv ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿ã«ã‚¢ã‚¯ã‚»ã‚¹ã—ãªã„ãƒãƒ¼ã‚¸ãƒ§ãƒ³
+extern	int			NetWorkSend_UseGParam( int NetHandle, const void *Buffer, int Length, int ASyncLoadFlag = FALSE ) ;					// NetWorkSend ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿ã«ã‚¢ã‚¯ã‚»ã‚¹ã—ãªã„ãƒãƒ¼ã‚¸ãƒ§ãƒ³
+extern	int			MakeUDPSocketBase_UseGParam( int IsIPv6, int RecvPort, int ASyncLoadFlag = FALSE ) ;								// MakeUDPSocketBase ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿ã«ã‚¢ã‚¯ã‚»ã‚¹ã—ãªã„ãƒãƒ¼ã‚¸ãƒ§ãƒ³
+extern	int			NetWorkSendUDP_UseGParam( int NetUDPHandle, IPDATA SendIP_IPv4, IPDATA_IPv6 SendIP_IPv6, int SendPort, const void *Buffer, int Length, int ASyncLoadFlag = FALSE ) ;	// NetWorkSendUDP ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿ã«ã‚¢ã‚¯ã‚»ã‚¹ã—ãªã„ãƒãƒ¼ã‚¸ãƒ§ãƒ³
+extern	int			NetWorkRecvUDP_UseGParam( int NetUDPHandle, void *RecvIP, int *RecvPort, void *Buffer, int Length, int Peek, int ASyncLoadFlag = FALSE ) ;						// NetWorkRecvUDP ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿ã«ã‚¢ã‚¯ã‚»ã‚¹ã—ãªã„ãƒãƒ¼ã‚¸ãƒ§ãƒ³
 
 #ifndef DX_NON_NAMESPACE
 

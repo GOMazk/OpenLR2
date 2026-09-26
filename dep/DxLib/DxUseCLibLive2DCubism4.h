@@ -1,6 +1,6 @@
 // -------------------------------------------------------------------------------
 // 
-// 		‚c‚wƒ‰ƒCƒuƒ‰ƒŠ		•W€‚bƒ‰ƒCƒuƒ‰ƒŠg—pƒR[ƒh@Live2D Cubism4 ŠÖŒWƒwƒbƒ_ƒtƒ@ƒCƒ‹
+// 		ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒª		æ¨™æº–ï¼£ãƒ©ã‚¤ãƒ–ãƒ©ãƒªä½¿ç”¨ã‚³ãƒ¼ãƒ‰ã€€Live2D Cubism4 é–¢ä¿‚ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«
 // 
 // 				Ver 3.25a
 // 
@@ -8,18 +8,18 @@
 
 /*
 
-	DxUseCLibLive2DCubism4.cpp ‚Í Live2D Cubism 4 SDK for Native ‚Ì Cubism Native Framework ‹y‚Ñ
-	Cubism Native Samples ‚ªƒx[ƒX‚Æ‚È‚Á‚Ä‚¢‚ÄALive2D Open Software License ‚ª“K—p‚³‚ê‚Ü‚·B
-@@@- Live2D Open Software License 
-@@@[“ú–{Œê](http://www.live2d.com/eula/live2d-open-software-license-agreement_jp.html)
-@@@[English](http://www.live2d.com/eula/live2d-open-software-license-agreement_en.html)
+	DxUseCLibLive2DCubism4.cpp ã¯ Live2D Cubism 4 SDK for Native ã® Cubism Native Framework åŠã³
+	Cubism Native Samples ãŒãƒ™ãƒ¼ã‚¹ã¨ãªã£ã¦ã„ã¦ã€Live2D Open Software License ãŒé©ç”¨ã•ã‚Œã¾ã™ã€‚
+ã€€ã€€ã€€- Live2D Open Software License 
+ã€€ã€€ã€€[æ—¥æœ¬èª](http://www.live2d.com/eula/live2d-open-software-license-agreement_jp.html)
+ã€€ã€€ã€€[English](http://www.live2d.com/eula/live2d-open-software-license-agreement_en.html)
 
 */
 
 #ifndef DX_USECLIB_LIVE2DCUBISM4_H
 #define DX_USECLIB_LIVE2DCUBISM4_H
 
-// ƒCƒ“ƒNƒ‹[ƒh ------------------------------------------------------------------
+// ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ ------------------------------------------------------------------
 #include "DxCompileConfig.h"
 
 #ifndef DX_NON_LIVE2D_CUBISM4
@@ -30,9 +30,9 @@
 #include "DxBaseFunc.h"
 #include "DxStatic.h"
 
-// ƒ}ƒNƒ’è‹` --------------------------------------------------------------------
+// ãƒã‚¯ãƒ­å®šç¾© --------------------------------------------------------------------
 
-// ƒNƒ‰ƒXE\‘¢‘ÌE—ñ‹“Œ^’è‹` ----------------------------------------------------
+// ã‚¯ãƒ©ã‚¹ãƒ»æ§‹é€ ä½“ãƒ»åˆ—æŒ™å‹å®šç¾© ----------------------------------------------------
 
 class D_CubismMotionQueueManager ;
 class D_csmString ;
@@ -41,37 +41,37 @@ typedef void ( * csmLogFunctionP )( const char* message ) ;
 
 typedef void( *D_CubismMotionEventFunction )( const D_CubismMotionQueueManager* caller, const D_csmString& eventValue, void* customData ) ;
 typedef void* D_CubismMotionQueueEntryHandle ;
-extern const D_CubismMotionQueueEntryHandle InvalidMotionQueueEntryHandleValue ;	// –³Œø‚Èƒ‚[ƒVƒ‡ƒ“‚Ì¯•Ê”Ô†‚Ì’è‹`
+extern const D_CubismMotionQueueEntryHandle InvalidMotionQueueEntryHandleValue ;	// ç„¡åŠ¹ãªãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ã®è­˜åˆ¥ç•ªå·ã®å®šç¾©
 
-// ƒ‚[ƒVƒ‡ƒ“‚Ì—Dæ“x’è”
+// ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ã®å„ªå…ˆåº¦å®šæ•°
 const int D_CubismMotion_PriorityNone = 0;
 const int D_CubismMotion_PriorityIdle = 1;
 const int D_CubismMotion_PriorityNormal = 2;
 const int D_CubismMotion_PriorityForce = 3;
 
-// ƒJƒ‰[ƒuƒŒƒ“ƒfƒBƒ“ƒO‚Ìƒ‚[ƒh
+// ã‚«ãƒ©ãƒ¼ãƒ–ãƒ¬ãƒ³ãƒ‡ã‚£ãƒ³ã‚°ã®ãƒ¢ãƒ¼ãƒ‰
 enum D_CubismBlendMode
 {
-	D_CubismBlendMode_Normal					= 0,		// ’Êí
-	D_CubismBlendMode_Additive					= 1,		// ‰ÁZ
-	D_CubismBlendMode_Multiplicative			= 2,		// æZ
+	D_CubismBlendMode_Normal					= 0,		// é€šå¸¸
+	D_CubismBlendMode_Additive					= 1,		// åŠ ç®—
+	D_CubismBlendMode_Multiplicative			= 2,		// ä¹—ç®—
 } ;
 
-// ƒ‚[ƒVƒ‡ƒ“ƒJ[ƒu‚Ìí—Ş
+// ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ã‚«ãƒ¼ãƒ–ã®ç¨®é¡
 enum D_CubismMotionCurveTarget
 {
-	D_CubismMotionCurveTarget_Model,						// ƒ‚ƒfƒ‹‚É‘Î‚µ‚Ä
-	D_CubismMotionCurveTarget_Parameter,					// ƒpƒ‰ƒ[ƒ^‚É‘Î‚µ‚Ä
-	D_CubismMotionCurveTarget_PartOpacity					// ƒp[ƒc‚Ì•s“§–¾“x‚É‘Î‚µ‚Ä
+	D_CubismMotionCurveTarget_Model,						// ãƒ¢ãƒ‡ãƒ«ã«å¯¾ã—ã¦
+	D_CubismMotionCurveTarget_Parameter,					// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã«å¯¾ã—ã¦
+	D_CubismMotionCurveTarget_PartOpacity					// ãƒ‘ãƒ¼ãƒ„ã®ä¸é€æ˜åº¦ã«å¯¾ã—ã¦
 } ;
 
-// ƒ‚[ƒVƒ‡ƒ“ƒJ[ƒu‚ÌƒZƒOƒƒ“ƒg‚Ìí—Ş
+// ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ã‚«ãƒ¼ãƒ–ã®ã‚»ã‚°ãƒ¡ãƒ³ãƒˆã®ç¨®é¡
 enum D_CubismMotionSegmentType
 {
-	D_CubismMotionSegmentType_Linear			= 0,		// ƒŠƒjƒA
-	D_CubismMotionSegmentType_Bezier			= 1,		// ƒxƒWƒF‹Èü
-	D_CubismMotionSegmentType_Stepped			= 2,		// ƒXƒeƒbƒv
-	D_CubismMotionSegmentType_InverseStepped	= 3			// ƒCƒ“ƒo[ƒXƒXƒeƒbƒv
+	D_CubismMotionSegmentType_Linear			= 0,		// ãƒªãƒ‹ã‚¢
+	D_CubismMotionSegmentType_Bezier			= 1,		// ãƒ™ã‚¸ã‚§æ›²ç·š
+	D_CubismMotionSegmentType_Stepped			= 2,		// ã‚¹ãƒ†ãƒƒãƒ—
+	D_CubismMotionSegmentType_InverseStepped	= 3			// ã‚¤ãƒ³ãƒãƒ¼ã‚¹ã‚¹ãƒ†ãƒƒãƒ—
 } ;
 
 // Alignment constraints.
@@ -119,10 +119,10 @@ enum
 	D_csmParameterType_BlendShape				= 1			// Parameter for blend shape
 } ;
 
-// ƒxƒWƒFƒJ[ƒu‚Ì‰ğß•û–@‚Ìƒtƒ‰ƒOƒ^ƒCƒv
+// ãƒ™ã‚¸ã‚§ã‚«ãƒ¼ãƒ–ã®è§£é‡ˆæ–¹æ³•ã®ãƒ•ãƒ©ã‚°ã‚¿ã‚¤ãƒ—
 enum D_EvaluationOptionFlag
 {
-	D_EvaluationOptionFlag_AreBeziersRistricted	= 0,		// ƒxƒWƒFƒnƒ“ƒhƒ‹‚Ì‹K§ó‘Ô
+	D_EvaluationOptionFlag_AreBeziersRistricted	= 0,		// ãƒ™ã‚¸ã‚§ãƒãƒ³ãƒ‰ãƒ«ã®è¦åˆ¶çŠ¶æ…‹
 } ;
 
 typedef int D_csmParameterType ;
@@ -132,60 +132,60 @@ typedef int D_csmParameterType ;
 #define CSM_IDMANAGER_MAX_ID_NUM				65536
 
 
-// ‹éŒ`Œ`ó(À•WE’·‚³‚Ífloat’l)‚ğ’è‹`‚·‚éƒNƒ‰ƒX
+// çŸ©å½¢å½¢çŠ¶(åº§æ¨™ãƒ»é•·ã•ã¯floatå€¤)ã‚’å®šç¾©ã™ã‚‹ã‚¯ãƒ©ã‚¹
 class D_csmRectF
 {
 public:
-	D_csmRectF() ;																			// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-	D_csmRectF( float x, float y, float w, float h ) ;										// ˆø”•t‚«ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-	virtual ~D_csmRectF() ;																	// ƒfƒXƒgƒ‰ƒNƒ^
-	float						GetCenterX() const { return X + 0.5f * Width; }				// ‹éŒ`’†‰›‚ÌXÀ•W‚ğæ“¾‚·‚é
-	float						GetCenterY() const { return Y + 0.5f * Height; }			// ‹éŒ`’†‰›‚ÌYÀ•W‚ğæ“¾‚·‚é
-	float						GetRight() const { return X + Width; }						// ‰E’[‚ÌXÀ•W‚ğæ“¾‚·‚é
-	float						GetBottom() const { return Y + Height; }					// ‰º’[‚ÌYÀ•W‚ğæ“¾‚·‚é
-	void						SetRect( D_csmRectF* r ) ;									// ‹éŒ`‚É’l‚ğƒZƒbƒg‚·‚é
-	void						Expand( float w, float h ) ;								// ‹éŒ`’†‰›‚ğ²‚É‚µ‚Äc‰¡‚ğŠgk‚·‚é
+	D_csmRectF() ;																			// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	D_csmRectF( float x, float y, float w, float h ) ;										// å¼•æ•°ä»˜ãã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	virtual ~D_csmRectF() ;																	// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	float						GetCenterX() const { return X + 0.5f * Width; }				// çŸ©å½¢ä¸­å¤®ã®Xåº§æ¨™ã‚’å–å¾—ã™ã‚‹
+	float						GetCenterY() const { return Y + 0.5f * Height; }			// çŸ©å½¢ä¸­å¤®ã®Yåº§æ¨™ã‚’å–å¾—ã™ã‚‹
+	float						GetRight() const { return X + Width; }						// å³ç«¯ã®Xåº§æ¨™ã‚’å–å¾—ã™ã‚‹
+	float						GetBottom() const { return Y + Height; }					// ä¸‹ç«¯ã®Yåº§æ¨™ã‚’å–å¾—ã™ã‚‹
+	void						SetRect( D_csmRectF* r ) ;									// çŸ©å½¢ã«å€¤ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
+	void						Expand( float w, float h ) ;								// çŸ©å½¢ä¸­å¤®ã‚’è»¸ã«ã—ã¦ç¸¦æ¨ªã‚’æ‹¡ç¸®ã™ã‚‹
 
-	float						X ;							// ¶’[XÀ•W
-	float						Y ;							// ã’[YÀ•W
-	float						Width ;						// •
-	float						Height ;					// ‚‚³
+	float						X ;							// å·¦ç«¯Xåº§æ¨™
+	float						Y ;							// ä¸Šç«¯Yåº§æ¨™
+	float						Width ;						// å¹…
+	float						Height ;					// é«˜ã•
 } ;
 
-// 2ŸŒ³ƒxƒNƒgƒ‹Œ^
+// 2æ¬¡å…ƒãƒ™ã‚¯ãƒˆãƒ«å‹
 struct D_CubismVector2
 {
-	float X ;          // X²‚Ì’l
-	float Y ;          // Y²‚Ì’l
+	float X ;          // Xè»¸ã®å€¤
+	float Y ;          // Yè»¸ã®å€¤
 
-	D_CubismVector2() : X( 0.0f ), Y( 0.0f ){}														// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-	D_CubismVector2( float x, float y ) : X( x ), Y( y ){}											// ƒfƒXƒgƒ‰ƒNƒ^
-	friend D_CubismVector2		operator+( const D_CubismVector2& a, const D_CubismVector2& b ) ;	// ƒxƒNƒgƒ‹‚Ì‰ÁZ
-	friend D_CubismVector2		operator-( const D_CubismVector2& a, const D_CubismVector2& b ) ;	// ƒxƒNƒgƒ‹‚ÌŒ¸Z
-	friend D_CubismVector2		operator*( const D_CubismVector2& vector, const float scalar ) ;	// ƒxƒNƒgƒ‹‚ÌæZiƒxƒNƒgƒ‹’l‚ÆƒXƒJƒ‰[’lj
-	friend D_CubismVector2		operator*( const float scalar, const D_CubismVector2& vector ) ;	// ƒxƒNƒgƒ‹‚ÌæZiƒXƒJƒ‰[’l‚ÆƒxƒNƒgƒ‹’lj
-	friend D_CubismVector2		operator/( const D_CubismVector2& vector, const float scalar ) ;	// ƒxƒNƒgƒ‹‚ÌœZiƒxƒNƒgƒ‹’l‚ÆƒXƒJƒ‰[’lj
-	const D_CubismVector2&		operator+=( const D_CubismVector2& rhs ) ;							// ‰ÁZ
-	const D_CubismVector2&		operator-=( const D_CubismVector2& rhs ) ;							// Œ¸Z
-	const D_CubismVector2&		operator*=( const D_CubismVector2& rhs ) ;							// æZiƒxƒNƒgƒ‹’lj
-	const D_CubismVector2&		operator/=( const D_CubismVector2& rhs ) ;							// œZiƒxƒNƒgƒ‹’lj
-	const D_CubismVector2&		operator*=( const float scalar ) ;									// æZiƒXƒJƒ‰[’lj
-	const D_CubismVector2&		operator/=( const float scalar ) ;									// œZiƒXƒJƒ‰[’lj
-	bool						operator==( const D_CubismVector2& rhs ) const ;					// “™‚µ‚³‚ÌŠm”Fi“™‚µ‚¢‚©Hj
-	bool						operator!=( const D_CubismVector2& rhs ) const ;					// “™‚µ‚³‚ÌŠm”Fi“™‚µ‚­‚È‚¢‚©Hj
-	void						Normalize() ;														// ³‹K‰»‚Ì“K—p
-	float						GetLength() const ;													// ƒxƒNƒgƒ‹‚Ì’·‚³‚Ìæ“¾
-	float						GetDistanceWith( D_CubismVector2 a ) const ;						// ƒxƒNƒgƒ‹‚Ì‹——£‚Ìæ“¾
-	float						Dot( const D_CubismVector2& a ) const ;								// ƒhƒbƒgÏ‚ÌŒvZ
+	D_CubismVector2() : X( 0.0f ), Y( 0.0f ){}														// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	D_CubismVector2( float x, float y ) : X( x ), Y( y ){}											// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	friend D_CubismVector2		operator+( const D_CubismVector2& a, const D_CubismVector2& b ) ;	// ãƒ™ã‚¯ãƒˆãƒ«ã®åŠ ç®—
+	friend D_CubismVector2		operator-( const D_CubismVector2& a, const D_CubismVector2& b ) ;	// ãƒ™ã‚¯ãƒˆãƒ«ã®æ¸›ç®—
+	friend D_CubismVector2		operator*( const D_CubismVector2& vector, const float scalar ) ;	// ãƒ™ã‚¯ãƒˆãƒ«ã®ä¹—ç®—ï¼ˆãƒ™ã‚¯ãƒˆãƒ«å€¤ã¨ã‚¹ã‚«ãƒ©ãƒ¼å€¤ï¼‰
+	friend D_CubismVector2		operator*( const float scalar, const D_CubismVector2& vector ) ;	// ãƒ™ã‚¯ãƒˆãƒ«ã®ä¹—ç®—ï¼ˆã‚¹ã‚«ãƒ©ãƒ¼å€¤ã¨ãƒ™ã‚¯ãƒˆãƒ«å€¤ï¼‰
+	friend D_CubismVector2		operator/( const D_CubismVector2& vector, const float scalar ) ;	// ãƒ™ã‚¯ãƒˆãƒ«ã®é™¤ç®—ï¼ˆãƒ™ã‚¯ãƒˆãƒ«å€¤ã¨ã‚¹ã‚«ãƒ©ãƒ¼å€¤ï¼‰
+	const D_CubismVector2&		operator+=( const D_CubismVector2& rhs ) ;							// åŠ ç®—
+	const D_CubismVector2&		operator-=( const D_CubismVector2& rhs ) ;							// æ¸›ç®—
+	const D_CubismVector2&		operator*=( const D_CubismVector2& rhs ) ;							// ä¹—ç®—ï¼ˆãƒ™ã‚¯ãƒˆãƒ«å€¤ï¼‰
+	const D_CubismVector2&		operator/=( const D_CubismVector2& rhs ) ;							// é™¤ç®—ï¼ˆãƒ™ã‚¯ãƒˆãƒ«å€¤ï¼‰
+	const D_CubismVector2&		operator*=( const float scalar ) ;									// ä¹—ç®—ï¼ˆã‚¹ã‚«ãƒ©ãƒ¼å€¤ï¼‰
+	const D_CubismVector2&		operator/=( const float scalar ) ;									// é™¤ç®—ï¼ˆã‚¹ã‚«ãƒ©ãƒ¼å€¤ï¼‰
+	bool						operator==( const D_CubismVector2& rhs ) const ;					// ç­‰ã—ã•ã®ç¢ºèªï¼ˆç­‰ã—ã„ã‹ï¼Ÿï¼‰
+	bool						operator!=( const D_CubismVector2& rhs ) const ;					// ç­‰ã—ã•ã®ç¢ºèªï¼ˆç­‰ã—ããªã„ã‹ï¼Ÿï¼‰
+	void						Normalize() ;														// æ­£è¦åŒ–ã®é©ç”¨
+	float						GetLength() const ;													// ãƒ™ã‚¯ãƒˆãƒ«ã®é•·ã•ã®å–å¾—
+	float						GetDistanceWith( D_CubismVector2 a ) const ;						// ãƒ™ã‚¯ãƒˆãƒ«ã®è·é›¢ã®å–å¾—
+	float						Dot( const D_CubismVector2& a ) const ;								// ãƒ‰ãƒƒãƒˆç©ã®è¨ˆç®—
 } ;
 
-// 4ŸŒ³ƒxƒNƒgƒ‹Œ^
+// 4æ¬¡å…ƒãƒ™ã‚¯ãƒˆãƒ«å‹
 struct D_CubismVector4
 {
-	float X ;          // X²‚Ì’l
-	float Y ;          // Y²‚Ì’l
-	float Z ;          // Z²‚Ì’l
-	float W ;          // W²‚Ì’l
+	float X ;          // Xè»¸ã®å€¤
+	float Y ;          // Yè»¸ã®å€¤
+	float Z ;          // Zè»¸ã®å€¤
+	float W ;          // Wè»¸ã®å€¤
 } ;
 
 // Utility functions for csmVector2.
@@ -195,238 +195,238 @@ D_CubismVector2					operator*( const D_CubismVector2& vector, const float scalar
 D_CubismVector2					operator*( const float scalar, const D_CubismVector2& vector ) ;
 D_CubismVector2					operator/( const D_CubismVector2& vector, const float scalar ) ;
 
-// ”’lŒvZ‚È‚Ç‚Ég—p‚·‚éƒ†[ƒeƒBƒŠƒeƒBƒNƒ‰ƒX
+// æ•°å€¤è¨ˆç®—ãªã©ã«ä½¿ç”¨ã™ã‚‹ãƒ¦ãƒ¼ãƒ†ã‚£ãƒªãƒ†ã‚£ã‚¯ãƒ©ã‚¹
 class D_CubismMath
 {
 public:
 	static const float Pi;
-	static float RangeF( float value, float min, float max ) ;								// ‘æˆêˆø”‚Ì’l‚ğÅ¬’l‚ÆÅ‘å’l‚Ì”ÍˆÍ‚Éû‚ß‚½’l‚ğ•Ô‚·
+	static float RangeF( float value, float min, float max ) ;								// ç¬¬ä¸€å¼•æ•°ã®å€¤ã‚’æœ€å°å€¤ã¨æœ€å¤§å€¤ã®ç¯„å›²ã«åã‚ãŸå€¤ã‚’è¿”ã™
 #ifndef DX_NON_NAMESPACE
-	static float SinF( float x ){ float Sin, Cos ; DxLib::_SINCOS( x, &Sin, &Cos ) ; return Sin ; }// ƒTƒCƒ“ŠÖ”‚Ì’l‚ğ‹‚ß‚é
-	static float CosF( float x ){ float Sin, Cos ; DxLib::_SINCOS( x, &Sin, &Cos ) ; return Cos ; }// ƒRƒTƒCƒ“ŠÖ”‚Ì’l‚ğ‹‚ß‚é
-	static float SqrtF( float x ){ return DxLib::_SQRT( x ) ; }									// •½•ûª(ƒ‹[ƒg)‚ğ‹‚ß‚é
+	static float SinF( float x ){ float Sin, Cos ; DxLib::_SINCOS( x, &Sin, &Cos ) ; return Sin ; }// ã‚µã‚¤ãƒ³é–¢æ•°ã®å€¤ã‚’æ±‚ã‚ã‚‹
+	static float CosF( float x ){ float Sin, Cos ; DxLib::_SINCOS( x, &Sin, &Cos ) ; return Cos ; }// ã‚³ã‚µã‚¤ãƒ³é–¢æ•°ã®å€¤ã‚’æ±‚ã‚ã‚‹
+	static float SqrtF( float x ){ return DxLib::_SQRT( x ) ; }									// å¹³æ–¹æ ¹(ãƒ«ãƒ¼ãƒˆ)ã‚’æ±‚ã‚ã‚‹
 #else // DX_NON_NAMESPACE
-	static float SinF( float x ){ float Sin, Cos ; _SINCOS( x, &Sin, &Cos ) ; return Sin ; }// ƒTƒCƒ“ŠÖ”‚Ì’l‚ğ‹‚ß‚é
-	static float CosF( float x ){ float Sin, Cos ; _SINCOS( x, &Sin, &Cos ) ; return Cos ; }// ƒRƒTƒCƒ“ŠÖ”‚Ì’l‚ğ‹‚ß‚é
-	static float SqrtF( float x ){ return _SQRT( x ) ; }									// •½•ûª(ƒ‹[ƒg)‚ğ‹‚ß‚é
+	static float SinF( float x ){ float Sin, Cos ; _SINCOS( x, &Sin, &Cos ) ; return Sin ; }// ã‚µã‚¤ãƒ³é–¢æ•°ã®å€¤ã‚’æ±‚ã‚ã‚‹
+	static float CosF( float x ){ float Sin, Cos ; _SINCOS( x, &Sin, &Cos ) ; return Cos ; }// ã‚³ã‚µã‚¤ãƒ³é–¢æ•°ã®å€¤ã‚’æ±‚ã‚ã‚‹
+	static float SqrtF( float x ){ return _SQRT( x ) ; }									// å¹³æ–¹æ ¹(ãƒ«ãƒ¼ãƒˆ)ã‚’æ±‚ã‚ã‚‹
 #endif // DX_NON_NAMESPACE
-	static float AbsF( float x ){ return x < 0.0f ? -x : x ; }								// â‘Î’l‚Ì’l‚ğ‹‚ß‚é
-	static float GetEasingSine( float value ) ;												// ƒC[ƒWƒ“ƒOˆ—‚³‚ê‚½ƒTƒCƒ“‚ğ‹‚ß‚é	
-	static float Max( float l, float r ){ return ( l > r ) ? l : r ; }						// ‘å‚«‚¢•û‚Ì’l‚ğ•Ô‚·
-	static float Min( float l, float r ){ return ( l > r ) ? r : l ; }						// ¬‚³‚¢•û‚Ì’l‚ğ•Ô‚·B
-	static float DegreesToRadian( float degrees ) ;											// Šp“x’l‚ğƒ‰ƒWƒAƒ“’l‚É•ÏŠ·‚µ‚Ü‚·B
-	static float RadianToDegrees( float radian ) ;											// ƒ‰ƒWƒAƒ“’l‚ğŠp“x’l‚É•ÏŠ·‚µ‚Ü‚·B
-	static float DirectionToRadian( D_CubismVector2 from, D_CubismVector2 to ) ;			// 2‚Â‚ÌƒxƒNƒgƒ‹‚©‚çƒ‰ƒWƒAƒ“’l‚ğ‹‚ß‚Ü‚·B
-	static float DirectionToDegrees( D_CubismVector2 from, D_CubismVector2 to ) ;			// 2‚Â‚ÌƒxƒNƒgƒ‹‚©‚çŠp“x’l‚ğ‹‚ß‚Ü‚·B
-	static D_CubismVector2 RadianToDirection( float totalAngle ) ;							// ƒ‰ƒWƒAƒ“’l‚ğ•ûŒüƒxƒNƒgƒ‹‚É•ÏŠ·‚µ‚Ü‚·B
+	static float AbsF( float x ){ return x < 0.0f ? -x : x ; }								// çµ¶å¯¾å€¤ã®å€¤ã‚’æ±‚ã‚ã‚‹
+	static float GetEasingSine( float value ) ;												// ã‚¤ãƒ¼ã‚¸ãƒ³ã‚°å‡¦ç†ã•ã‚ŒãŸã‚µã‚¤ãƒ³ã‚’æ±‚ã‚ã‚‹	
+	static float Max( float l, float r ){ return ( l > r ) ? l : r ; }						// å¤§ãã„æ–¹ã®å€¤ã‚’è¿”ã™
+	static float Min( float l, float r ){ return ( l > r ) ? r : l ; }						// å°ã•ã„æ–¹ã®å€¤ã‚’è¿”ã™ã€‚
+	static float DegreesToRadian( float degrees ) ;											// è§’åº¦å€¤ã‚’ãƒ©ã‚¸ã‚¢ãƒ³å€¤ã«å¤‰æ›ã—ã¾ã™ã€‚
+	static float RadianToDegrees( float radian ) ;											// ãƒ©ã‚¸ã‚¢ãƒ³å€¤ã‚’è§’åº¦å€¤ã«å¤‰æ›ã—ã¾ã™ã€‚
+	static float DirectionToRadian( D_CubismVector2 from, D_CubismVector2 to ) ;			// 2ã¤ã®ãƒ™ã‚¯ãƒˆãƒ«ã‹ã‚‰ãƒ©ã‚¸ã‚¢ãƒ³å€¤ã‚’æ±‚ã‚ã¾ã™ã€‚
+	static float DirectionToDegrees( D_CubismVector2 from, D_CubismVector2 to ) ;			// 2ã¤ã®ãƒ™ã‚¯ãƒˆãƒ«ã‹ã‚‰è§’åº¦å€¤ã‚’æ±‚ã‚ã¾ã™ã€‚
+	static D_CubismVector2 RadianToDirection( float totalAngle ) ;							// ãƒ©ã‚¸ã‚¢ãƒ³å€¤ã‚’æ–¹å‘ãƒ™ã‚¯ãƒˆãƒ«ã«å¤‰æ›ã—ã¾ã™ã€‚
 
 private:
-	// privateƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	// privateã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	D_CubismMath() ;
 } ;
 
-// •¶š—ñƒNƒ‰ƒX
+// æ–‡å­—åˆ—ã‚¯ãƒ©ã‚¹
 class D_csmString
 {
 public:
-	D_csmString() ;																			// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-	D_csmString( const D_csmString& s ) ;													// ˆø”•t‚«ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-	D_csmString( const BYTE/*wchar_t*/ * c ) ;												// ˆø”•t‚«ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-	D_csmString( const char * c ) ;															// ˆø”•t‚«ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-	D_csmString( const char * c, int length ) ;												// ˆø”•t‚«ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-	D_csmString( const char * c, int length, bool usePtr ) ;								// ˆø”•t‚«ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-	virtual ~D_csmString() ;																// ƒfƒXƒgƒ‰ƒNƒ^
-	D_csmString&				operator=( const char* c ) ;								// =‰‰Zq‚ÌƒI[ƒo[ƒ[ƒh( D_csmStringŒ^ )
-	bool						operator==( const D_csmString& s ) const ;					// ==‰‰Zq‚ÌƒI[ƒo[ƒ[ƒh( D_csmStringŒ^ )
-	bool						operator==( const char* c ) const ;							// ==‰‰Zq‚ÌƒI[ƒo[ƒ[ƒh( charŒ^ )
-	D_csmString					operator+( const D_csmString& s ) const ;					// +‰‰Zq‚ÌƒI[ƒo[ƒ[ƒh(D_csmStringŒ^)
-	D_csmString					operator+( const char* c ) const ;							// +‰‰Zq‚ÌƒI[ƒo[ƒ[ƒh(charŒ^)
-	D_csmString&				operator+=( const D_csmString& s ) ;						// +=‰‰Zq‚ÌƒI[ƒo[ƒ[ƒh(D_csmStringŒ^)
-	D_csmString&				operator+=( const char* c ) ;								// +=‰‰Zq‚ÌƒI[ƒo[ƒ[ƒh(charŒ^)
-	D_csmString&				Append( const char* c, int length ) ;						// •¶š—ñ‚ğŒã•û‚É’Ç‰Á‚·‚é
-	D_csmString&				Append( int length, const char v ) ;						// •¶šƒTƒCƒY‚ğŠg’£‚µ‚Ä•¶š‚ğ–„‚ß‚é
-	const char *				GetRawString() const ;										// CŒ¾Œê•¶š—ñ‚Æ‚µ‚Ä‚Ìƒ|ƒCƒ“ƒ^‚ğæ“¾‚·‚é
-	const char *				GetRawStringA() ;											// CŒ¾Œê•¶š—ñ‚Æ‚µ‚Ä‚Ìƒ|ƒCƒ“ƒ^‚ğæ“¾‚·‚é( ‚c‚wƒ‰ƒCƒuƒ‰ƒŠ‚Ì–ß‚è’l—p )
-	const BYTE/*wchar_t*/ *		GetRawStringW() ;											// CŒ¾Œê•¶š—ñ‚Æ‚µ‚Ä‚Ìƒ|ƒCƒ“ƒ^‚ğæ“¾‚·‚é( wchar_t—p )
+	D_csmString() ;																			// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	D_csmString( const D_csmString& s ) ;													// å¼•æ•°ä»˜ãã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	D_csmString( const BYTE/*wchar_t*/ * c ) ;												// å¼•æ•°ä»˜ãã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	D_csmString( const char * c ) ;															// å¼•æ•°ä»˜ãã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	D_csmString( const char * c, int length ) ;												// å¼•æ•°ä»˜ãã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	D_csmString( const char * c, int length, bool usePtr ) ;								// å¼•æ•°ä»˜ãã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	virtual ~D_csmString() ;																// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	D_csmString&				operator=( const char* c ) ;								// =æ¼”ç®—å­ã®ã‚ªãƒ¼ãƒãƒ¼ãƒ­ãƒ¼ãƒ‰( D_csmStringå‹ )
+	bool						operator==( const D_csmString& s ) const ;					// ==æ¼”ç®—å­ã®ã‚ªãƒ¼ãƒãƒ¼ãƒ­ãƒ¼ãƒ‰( D_csmStringå‹ )
+	bool						operator==( const char* c ) const ;							// ==æ¼”ç®—å­ã®ã‚ªãƒ¼ãƒãƒ¼ãƒ­ãƒ¼ãƒ‰( charå‹ )
+	D_csmString					operator+( const D_csmString& s ) const ;					// +æ¼”ç®—å­ã®ã‚ªãƒ¼ãƒãƒ¼ãƒ­ãƒ¼ãƒ‰(D_csmStringå‹)
+	D_csmString					operator+( const char* c ) const ;							// +æ¼”ç®—å­ã®ã‚ªãƒ¼ãƒãƒ¼ãƒ­ãƒ¼ãƒ‰(charå‹)
+	D_csmString&				operator+=( const D_csmString& s ) ;						// +=æ¼”ç®—å­ã®ã‚ªãƒ¼ãƒãƒ¼ãƒ­ãƒ¼ãƒ‰(D_csmStringå‹)
+	D_csmString&				operator+=( const char* c ) ;								// +=æ¼”ç®—å­ã®ã‚ªãƒ¼ãƒãƒ¼ãƒ­ãƒ¼ãƒ‰(charå‹)
+	D_csmString&				Append( const char* c, int length ) ;						// æ–‡å­—åˆ—ã‚’å¾Œæ–¹ã«è¿½åŠ ã™ã‚‹
+	D_csmString&				Append( int length, const char v ) ;						// æ–‡å­—ã‚µã‚¤ã‚ºã‚’æ‹¡å¼µã—ã¦æ–‡å­—ã‚’åŸ‹ã‚ã‚‹
+	const char *				GetRawString() const ;										// Cè¨€èªæ–‡å­—åˆ—ã¨ã—ã¦ã®ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—ã™ã‚‹
+	const char *				GetRawStringA() ;											// Cè¨€èªæ–‡å­—åˆ—ã¨ã—ã¦ã®ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—ã™ã‚‹( ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®æˆ»ã‚Šå€¤ç”¨ )
+	const BYTE/*wchar_t*/ *		GetRawStringW() ;											// Cè¨€èªæ–‡å­—åˆ—ã¨ã—ã¦ã®ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—ã™ã‚‹( wchar_tç”¨ )
 
 protected:
-	void						Initialize( const char* c, int length, bool usePtr ) ;		// D_csmStringƒCƒ“ƒXƒ^ƒ“ƒX‚Ì‰Šú‰»ŠÖ”B•¶š—ñ‚ÌƒZƒbƒg‚ÆƒnƒbƒVƒ…ƒR[ƒh‚ÌZo‚ğs‚¤B
-	int							Copy( const BYTE/*wchar_t*/ * c, int length ) ;				// •¶š—ñ‚ğƒRƒs[‚·‚é. I’[‚É\0‚ğ’Ç‰Á‚·‚é
-	int							Copy( const char* c, int length ) ;							// •¶š—ñ‚ğƒRƒs[‚·‚é. I’[‚É\0‚ğ’Ç‰Á‚·‚é
-	int							CalcHashcode( const char* c, int length ) ;					// •¶š—ñ‚©‚çƒnƒbƒVƒ…’l‚ğ¶¬‚µ‚Ä•Ô‚·
-	void						Clear() ;													// ƒ|ƒCƒ“ƒ^‚ğ‰ğ•ú‚·‚é
+	void						Initialize( const char* c, int length, bool usePtr ) ;		// D_csmStringã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã®åˆæœŸåŒ–é–¢æ•°ã€‚æ–‡å­—åˆ—ã®ã‚»ãƒƒãƒˆã¨ãƒãƒƒã‚·ãƒ¥ã‚³ãƒ¼ãƒ‰ã®ç®—å‡ºã‚’è¡Œã†ã€‚
+	int							Copy( const BYTE/*wchar_t*/ * c, int length ) ;				// æ–‡å­—åˆ—ã‚’ã‚³ãƒ”ãƒ¼ã™ã‚‹. çµ‚ç«¯ã«\0ã‚’è¿½åŠ ã™ã‚‹
+	int							Copy( const char* c, int length ) ;							// æ–‡å­—åˆ—ã‚’ã‚³ãƒ”ãƒ¼ã™ã‚‹. çµ‚ç«¯ã«\0ã‚’è¿½åŠ ã™ã‚‹
+	int							CalcHashcode( const char* c, int length ) ;					// æ–‡å­—åˆ—ã‹ã‚‰ãƒãƒƒã‚·ãƒ¥å€¤ã‚’ç”Ÿæˆã—ã¦è¿”ã™
+	void						Clear() ;													// ãƒã‚¤ãƒ³ã‚¿ã‚’è§£æ”¾ã™ã‚‹
 
 private:
-	bool						IsEmpty() const ;											// •¶š—ñ‚ª‹ó‚©‚Ç‚¤‚©H
-	void						SetEmpty() ;												// •¶š—ñ‚ğ‹ó‚Éİ’è
-	char *						WritePointer() ;											// CŒ¾Œê•¶š—ñ‚Æ‚µ‚Ä‚Ìƒ|ƒCƒ“ƒ^‚ğæ“¾‚·‚é
+	bool						IsEmpty() const ;											// æ–‡å­—åˆ—ãŒç©ºã‹ã©ã†ã‹ï¼Ÿ
+	void						SetEmpty() ;												// æ–‡å­—åˆ—ã‚’ç©ºã«è¨­å®š
+	char *						WritePointer() ;											// Cè¨€èªæ–‡å­—åˆ—ã¨ã—ã¦ã®ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—ã™ã‚‹
 
-	char *						_ptr ;						// •¶šŒ^”z—ñ‚Ìƒ|ƒCƒ“ƒ^
-	int							_length ;					// ”¼Šp•¶š”iƒƒ‚ƒŠŠm•Û‚ÍÅŒã‚É0‚ª“ü‚é‚½‚ß_length+1j
-	int							_hashcode ;					// ƒCƒ“ƒXƒ^ƒ“ƒX‚É“–‚Ä‚ç‚ê‚½ƒnƒbƒVƒ…’l
-	char						_small[ 64 ] ;				// •¶š—ñ‚Ì’·‚³‚ª64-1–¢–‚Ìê‡‚Í‚±‚¿‚ç‚ğg—p
+	char *						_ptr ;						// æ–‡å­—å‹é…åˆ—ã®ãƒã‚¤ãƒ³ã‚¿
+	int							_length ;					// åŠè§’æ–‡å­—æ•°ï¼ˆãƒ¡ãƒ¢ãƒªç¢ºä¿ã¯æœ€å¾Œã«0ãŒå…¥ã‚‹ãŸã‚_length+1ï¼‰
+	int							_hashcode ;					// ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã«å½“ã¦ã‚‰ã‚ŒãŸãƒãƒƒã‚·ãƒ¥å€¤
+	char						_small[ 64 ] ;				// æ–‡å­—åˆ—ã®é•·ã•ãŒ64-1æœªæº€ã®å ´åˆã¯ã“ã¡ã‚‰ã‚’ä½¿ç”¨
 
-	bool						_enableA ;					// ‚c‚wƒ‰ƒCƒuƒ‰ƒŠ‚Ì–ß‚è’l—p‚Ìƒf[ƒ^‚ª—LŒø‚©‚Ç‚¤‚©
-	char *						_ptrA ;						// •¶šŒ^”z—ñ‚Ìƒ|ƒCƒ“ƒ^( ‚c‚wƒ‰ƒCƒuƒ‰ƒŠ‚Ì–ß‚è’l—p )
-	int							_lengthA ;					// ”¼Šp•¶š”iƒƒ‚ƒŠŠm•Û‚ÍÅŒã‚É0‚ª“ü‚é‚½‚ß_length+1j( ‚c‚wƒ‰ƒCƒuƒ‰ƒŠ‚Ì–ß‚è’l—p )
-	char						_smallA[ 64 ] ;				// •¶š—ñ‚Ì’·‚³‚ª64-1–¢–‚Ìê‡‚Í‚±‚¿‚ç‚ğg—p( ‚c‚wƒ‰ƒCƒuƒ‰ƒŠ‚Ì–ß‚è’l—p )
+	bool						_enableA ;					// ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®æˆ»ã‚Šå€¤ç”¨ã®ãƒ‡ãƒ¼ã‚¿ãŒæœ‰åŠ¹ã‹ã©ã†ã‹
+	char *						_ptrA ;						// æ–‡å­—å‹é…åˆ—ã®ãƒã‚¤ãƒ³ã‚¿( ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®æˆ»ã‚Šå€¤ç”¨ )
+	int							_lengthA ;					// åŠè§’æ–‡å­—æ•°ï¼ˆãƒ¡ãƒ¢ãƒªç¢ºä¿ã¯æœ€å¾Œã«0ãŒå…¥ã‚‹ãŸã‚_length+1ï¼‰( ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®æˆ»ã‚Šå€¤ç”¨ )
+	char						_smallA[ 64 ] ;				// æ–‡å­—åˆ—ã®é•·ã•ãŒ64-1æœªæº€ã®å ´åˆã¯ã“ã¡ã‚‰ã‚’ä½¿ç”¨( ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®æˆ»ã‚Šå€¤ç”¨ )
 
-	bool						_enableW ;					// wchar_t —p‚Ìƒf[ƒ^‚ª—LŒø‚©‚Ç‚¤‚©
-	BYTE/*wchar_t*/ *			_ptrW ;						// •¶šŒ^”z—ñ‚Ìƒ|ƒCƒ“ƒ^( wchar_t—p )
-	int							_lengthW ;					// ”¼Šp•¶š”iƒƒ‚ƒŠŠm•Û‚ÍÅŒã‚É0‚ª“ü‚é‚½‚ß_length+1j( wchar_t—p )
-	DWORD/*wchar_t*/			_smallW[ 64 ] ;				// •¶š—ñ‚Ì’·‚³‚ª64-1–¢–‚Ìê‡‚Í‚±‚¿‚ç‚ğg—p( wchar_t—p )
+	bool						_enableW ;					// wchar_t ç”¨ã®ãƒ‡ãƒ¼ã‚¿ãŒæœ‰åŠ¹ã‹ã©ã†ã‹
+	BYTE/*wchar_t*/ *			_ptrW ;						// æ–‡å­—å‹é…åˆ—ã®ãƒã‚¤ãƒ³ã‚¿( wchar_tç”¨ )
+	int							_lengthW ;					// åŠè§’æ–‡å­—æ•°ï¼ˆãƒ¡ãƒ¢ãƒªç¢ºä¿ã¯æœ€å¾Œã«0ãŒå…¥ã‚‹ãŸã‚_length+1ï¼‰( wchar_tç”¨ )
+	DWORD/*wchar_t*/			_smallW[ 64 ] ;				// æ–‡å­—åˆ—ã®é•·ã•ãŒ64-1æœªæº€ã®å ´åˆã¯ã“ã¡ã‚‰ã‚’ä½¿ç”¨( wchar_tç”¨ )
 } ;
 
-// •¶š—ñƒNƒ‰ƒX( wchar_t”Å )
+// æ–‡å­—åˆ—ã‚¯ãƒ©ã‚¹( wchar_tç‰ˆ )
 class D_csmStringW
 {
 public:
-	D_csmStringW() ;																		// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-	D_csmStringW( const BYTE/*wchar_t*/ * c ) ;												// ˆø”•t‚«ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-	D_csmStringW( const char* c ) ;															// ˆø”•t‚«ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-	D_csmStringW( const BYTE/*wchar_t*/ * c, int length ) ;									// ˆø”•t‚«ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-	D_csmStringW( const D_csmStringW& s ) ;													// ˆø”•t‚«ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-	D_csmStringW( const BYTE/*wchar_t*/ * c, int length, bool usePtr ) ;						// ˆø”•t‚«ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-	virtual ~D_csmStringW() ;																// ƒfƒXƒgƒ‰ƒNƒ^
-	D_csmStringW&				operator=( const D_csmStringW& s ) ;						// =‰‰Zq‚ÌƒI[ƒo[ƒ[ƒh(D_csmStringWŒ^)
-	D_csmStringW&				operator=( const BYTE/*wchar_t*/ * c ) ;					// =‰‰Zq‚ÌƒI[ƒo[ƒ[ƒh(wchar_tŒ^)
-	bool						operator==( const D_csmStringW& s ) const ;					// ==‰‰Zq‚ÌƒI[ƒo[ƒ[ƒh(D_csmStringWŒ^)
-	bool						operator==( const BYTE/*wchar_t*/ * c ) const ;				// ==‰‰Zq‚ÌƒI[ƒo[ƒ[ƒh(wchar_tŒ^)
-	bool						operator<( const D_csmStringW& s ) const ;					// <‰‰Zq‚ÌƒI[ƒo[ƒ[ƒh(D_csmStringWŒ^)
-	bool						operator<( const BYTE/*wchar_t*/ * c ) const ;				// <‰‰Zq‚ÌƒI[ƒo[ƒ[ƒh(wchar_tŒ^)
-	bool						operator>( const D_csmStringW& s ) const ;					// >‰‰Zq‚ÌƒI[ƒo[ƒ[ƒh(D_csmStringWŒ^)
-	bool						operator>( const BYTE/*wchar_t*/ * c ) const ;				// >‰‰Zq‚ÌƒI[ƒo[ƒ[ƒh(wchar_tŒ^)
-	D_csmStringW				operator+( const D_csmStringW& s ) const ;					// +‰‰Zq‚ÌƒI[ƒo[ƒ[ƒh(D_csmStringWŒ^)
-	D_csmStringW				operator+( const BYTE/*wchar_t*/ * c ) const ;				// +‰‰Zq‚ÌƒI[ƒo[ƒ[ƒh(wchar_tŒ^)
-	D_csmStringW&				operator+=( const D_csmStringW& s ) ;						// +=‰‰Zq‚ÌƒI[ƒo[ƒ[ƒh(D_csmStringWŒ^)
-	D_csmStringW&				operator+=( const BYTE/*wchar_t*/ * c ) ;					// +=‰‰Zq‚ÌƒI[ƒo[ƒ[ƒh(wchar_tŒ^)
-	D_csmStringW&				Append( const BYTE/*wchar_t*/ * c, int length ) ;			//  •¶š—ñ‚ğŒã•û‚É’Ç‰Á‚·‚é
-	D_csmStringW&				Append( int length, const DWORD/*wchar_t*/ v ) ;			// •¶šƒTƒCƒY‚ğŠg’£‚µ‚Ä•¶š‚ğ–„‚ß‚é
-	int							GetLength() const { return _length; }						// •¶š—ñ‚Ì’·‚³‚ğ•Ô‚·
-	const BYTE/*wchar_t*/ *		GetRawString() const ;										// CŒ¾Œê•¶š—ñ‚Æ‚µ‚Ä‚Ìƒ|ƒCƒ“ƒ^‚ğæ“¾‚·‚é
-	void						Clear() ;													// ƒ|ƒCƒ“ƒ^‚ğ‰ğ•ú‚·‚é
-	int							GetHashcode() ;												// ƒnƒbƒVƒ…ƒR[ƒh‚ğæ“¾‚·‚é
+	D_csmStringW() ;																		// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	D_csmStringW( const BYTE/*wchar_t*/ * c ) ;												// å¼•æ•°ä»˜ãã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	D_csmStringW( const char* c ) ;															// å¼•æ•°ä»˜ãã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	D_csmStringW( const BYTE/*wchar_t*/ * c, int length ) ;									// å¼•æ•°ä»˜ãã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	D_csmStringW( const D_csmStringW& s ) ;													// å¼•æ•°ä»˜ãã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	D_csmStringW( const BYTE/*wchar_t*/ * c, int length, bool usePtr ) ;						// å¼•æ•°ä»˜ãã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	virtual ~D_csmStringW() ;																// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	D_csmStringW&				operator=( const D_csmStringW& s ) ;						// =æ¼”ç®—å­ã®ã‚ªãƒ¼ãƒãƒ¼ãƒ­ãƒ¼ãƒ‰(D_csmStringWå‹)
+	D_csmStringW&				operator=( const BYTE/*wchar_t*/ * c ) ;					// =æ¼”ç®—å­ã®ã‚ªãƒ¼ãƒãƒ¼ãƒ­ãƒ¼ãƒ‰(wchar_tå‹)
+	bool						operator==( const D_csmStringW& s ) const ;					// ==æ¼”ç®—å­ã®ã‚ªãƒ¼ãƒãƒ¼ãƒ­ãƒ¼ãƒ‰(D_csmStringWå‹)
+	bool						operator==( const BYTE/*wchar_t*/ * c ) const ;				// ==æ¼”ç®—å­ã®ã‚ªãƒ¼ãƒãƒ¼ãƒ­ãƒ¼ãƒ‰(wchar_tå‹)
+	bool						operator<( const D_csmStringW& s ) const ;					// <æ¼”ç®—å­ã®ã‚ªãƒ¼ãƒãƒ¼ãƒ­ãƒ¼ãƒ‰(D_csmStringWå‹)
+	bool						operator<( const BYTE/*wchar_t*/ * c ) const ;				// <æ¼”ç®—å­ã®ã‚ªãƒ¼ãƒãƒ¼ãƒ­ãƒ¼ãƒ‰(wchar_tå‹)
+	bool						operator>( const D_csmStringW& s ) const ;					// >æ¼”ç®—å­ã®ã‚ªãƒ¼ãƒãƒ¼ãƒ­ãƒ¼ãƒ‰(D_csmStringWå‹)
+	bool						operator>( const BYTE/*wchar_t*/ * c ) const ;				// >æ¼”ç®—å­ã®ã‚ªãƒ¼ãƒãƒ¼ãƒ­ãƒ¼ãƒ‰(wchar_tå‹)
+	D_csmStringW				operator+( const D_csmStringW& s ) const ;					// +æ¼”ç®—å­ã®ã‚ªãƒ¼ãƒãƒ¼ãƒ­ãƒ¼ãƒ‰(D_csmStringWå‹)
+	D_csmStringW				operator+( const BYTE/*wchar_t*/ * c ) const ;				// +æ¼”ç®—å­ã®ã‚ªãƒ¼ãƒãƒ¼ãƒ­ãƒ¼ãƒ‰(wchar_tå‹)
+	D_csmStringW&				operator+=( const D_csmStringW& s ) ;						// +=æ¼”ç®—å­ã®ã‚ªãƒ¼ãƒãƒ¼ãƒ­ãƒ¼ãƒ‰(D_csmStringWå‹)
+	D_csmStringW&				operator+=( const BYTE/*wchar_t*/ * c ) ;					// +=æ¼”ç®—å­ã®ã‚ªãƒ¼ãƒãƒ¼ãƒ­ãƒ¼ãƒ‰(wchar_tå‹)
+	D_csmStringW&				Append( const BYTE/*wchar_t*/ * c, int length ) ;			//  æ–‡å­—åˆ—ã‚’å¾Œæ–¹ã«è¿½åŠ ã™ã‚‹
+	D_csmStringW&				Append( int length, const DWORD/*wchar_t*/ v ) ;			// æ–‡å­—ã‚µã‚¤ã‚ºã‚’æ‹¡å¼µã—ã¦æ–‡å­—ã‚’åŸ‹ã‚ã‚‹
+	int							GetLength() const { return _length; }						// æ–‡å­—åˆ—ã®é•·ã•ã‚’è¿”ã™
+	const BYTE/*wchar_t*/ *		GetRawString() const ;										// Cè¨€èªæ–‡å­—åˆ—ã¨ã—ã¦ã®ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—ã™ã‚‹
+	void						Clear() ;													// ãƒã‚¤ãƒ³ã‚¿ã‚’è§£æ”¾ã™ã‚‹
+	int							GetHashcode() ;												// ãƒãƒƒã‚·ãƒ¥ã‚³ãƒ¼ãƒ‰ã‚’å–å¾—ã™ã‚‹
 
 protected:
-	void						Copy( const BYTE/*wchar_t*/ * c, int length ) ;				// •¶š—ñ‚ğƒRƒs[‚·‚é. I’[‚É\0‚ğ’Ç‰Á‚·‚é
-	void						Copy( const char* c, int length ) ;							// •¶š—ñ‚ğƒRƒs[‚·‚é. I’[‚É\0‚ğ’Ç‰Á‚·‚é
-	void						Initialize( const BYTE/*wchar_t*/ * c, int length, bool usePtr ) ;	// D_csmStringWƒCƒ“ƒXƒ^ƒ“ƒX‚Ì‰Šú‰»ŠÖ”B•¶š—ñ‚ÌƒZƒbƒg‚ÆƒnƒbƒVƒ…ƒR[ƒh‚ÌZo‚ğs‚¤B
-	int							CalcHashcode( const BYTE/*wchar_t*/ * c, int length ) ;				// •¶š—ñ‚©‚çƒnƒbƒVƒ…’l‚ğ¶¬‚µ‚Ä•Ô‚·
+	void						Copy( const BYTE/*wchar_t*/ * c, int length ) ;				// æ–‡å­—åˆ—ã‚’ã‚³ãƒ”ãƒ¼ã™ã‚‹. çµ‚ç«¯ã«\0ã‚’è¿½åŠ ã™ã‚‹
+	void						Copy( const char* c, int length ) ;							// æ–‡å­—åˆ—ã‚’ã‚³ãƒ”ãƒ¼ã™ã‚‹. çµ‚ç«¯ã«\0ã‚’è¿½åŠ ã™ã‚‹
+	void						Initialize( const BYTE/*wchar_t*/ * c, int length, bool usePtr ) ;	// D_csmStringWã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã®åˆæœŸåŒ–é–¢æ•°ã€‚æ–‡å­—åˆ—ã®ã‚»ãƒƒãƒˆã¨ãƒãƒƒã‚·ãƒ¥ã‚³ãƒ¼ãƒ‰ã®ç®—å‡ºã‚’è¡Œã†ã€‚
+	int							CalcHashcode( const BYTE/*wchar_t*/ * c, int length ) ;				// æ–‡å­—åˆ—ã‹ã‚‰ãƒãƒƒã‚·ãƒ¥å€¤ã‚’ç”Ÿæˆã—ã¦è¿”ã™
 
 private:
-	static int					s_totalInstanceNo ;			// ’ÊZ‚ÌƒCƒ“ƒXƒ^ƒ“ƒX”Ô†
-	BYTE/*wchar_t*/ *			_ptr ;						// •¶šŒ^”z—ñ‚Ìƒ|ƒCƒ“ƒ^
-	int							_length ;					// ”¼Šp•¶š”iƒƒ‚ƒŠŠm•Û‚ÍÅŒã‚É0‚ª“ü‚é‚½‚ß_length+1j
-	int							_hashcode ;					// ƒCƒ“ƒXƒ^ƒ“ƒX‚É“–‚Ä‚ç‚ê‚½ƒnƒbƒVƒ…’l
-	int							_instanceNo ;				// ƒCƒ“ƒXƒ^ƒ“ƒX‚ÉŠ„‚è“–‚Ä‚ç‚ê‚½”Ô†
-	DWORD/*wchar_t*/ 			_small[ CSM_STRING_SMALL_LENGTH ] ;	// •¶š—ñ‚Ì’·‚³‚ªCSM_STRING_SMALL_LENGTH-1–¢–‚Ìê‡‚Í‚±‚¿‚ç‚ğg—p 
+	static int					s_totalInstanceNo ;			// é€šç®—ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ç•ªå·
+	BYTE/*wchar_t*/ *			_ptr ;						// æ–‡å­—å‹é…åˆ—ã®ãƒã‚¤ãƒ³ã‚¿
+	int							_length ;					// åŠè§’æ–‡å­—æ•°ï¼ˆãƒ¡ãƒ¢ãƒªç¢ºä¿ã¯æœ€å¾Œã«0ãŒå…¥ã‚‹ãŸã‚_length+1ï¼‰
+	int							_hashcode ;					// ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã«å½“ã¦ã‚‰ã‚ŒãŸãƒãƒƒã‚·ãƒ¥å€¤
+	int							_instanceNo ;				// ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã«å‰²ã‚Šå½“ã¦ã‚‰ã‚ŒãŸç•ªå·
+	DWORD/*wchar_t*/ 			_small[ CSM_STRING_SMALL_LENGTH ] ;	// æ–‡å­—åˆ—ã®é•·ã•ãŒCSM_STRING_SMALL_LENGTH-1æœªæº€ã®å ´åˆã¯ã“ã¡ã‚‰ã‚’ä½¿ç”¨ 
 
-	bool						IsEmpty() const ;											// •¶š—ñ‚ª‹ó‚©‚Ç‚¤‚©H
-	void						SetEmpty() ;												// •¶š—ñ‚ğ‹ó‚Éİ’è
-	BYTE/*wchar_t*/ *			WritePointer() ;											// CŒ¾Œê•¶š—ñ‚Æ‚µ‚Ä‚Ìƒ|ƒCƒ“ƒ^‚ğæ“¾‚·‚é
+	bool						IsEmpty() const ;											// æ–‡å­—åˆ—ãŒç©ºã‹ã©ã†ã‹ï¼Ÿ
+	void						SetEmpty() ;												// æ–‡å­—åˆ—ã‚’ç©ºã«è¨­å®š
+	BYTE/*wchar_t*/ *			WritePointer() ;											// Cè¨€èªæ–‡å­—åˆ—ã¨ã—ã¦ã®ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—ã™ã‚‹
 } ;
 
 class D_CubismIdManager ;
 
-// ƒpƒ‰ƒ[ƒ^–¼Eƒp[ƒc–¼EDrawable–¼‚ğ•Û
+// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿åãƒ»ãƒ‘ãƒ¼ãƒ„åãƒ»Drawableåã‚’ä¿æŒ
 struct D_CubismId
 {
 	friend class D_CubismIdManager ;
 
-	D_csmString&				GetString() { return _id ; }								// ID–¼‚ğæ“¾
+	D_csmString&				GetString() { return _id ; }								// IDåã‚’å–å¾—
 
 private:
-	D_CubismId(){}																			// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-	D_CubismId( const char* id ){ _id = id ; }												// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	D_CubismId(){}																			// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	D_CubismId( const char* id ){ _id = id ; }												// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	D_CubismId( const D_CubismId& c ) : _id( c._id ) {}
-	~D_CubismId(){}																			// ƒfƒXƒgƒ‰ƒNƒ^
+	~D_CubismId(){}																			// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	D_CubismId&					operator=( const D_CubismId& c ){ if( this != &c ){ _id = c._id ; } return *this ; }
 	bool						operator==( const D_CubismId& c ) const { return ( _id == c._id ) ; }
 	bool						operator!=( const D_CubismId& c ) const { return !( _id == c._id ) ; }
 
-	D_csmString					_id ;														// ID–¼
+	D_csmString					_id ;														// IDå
 } ;
 
 typedef D_CubismId * D_CubismIdHandle ;
 
-// ƒxƒNƒ^[Œ^i‰Â•Ï”z—ñŒ^j
+// ãƒ™ã‚¯ã‚¿ãƒ¼å‹ï¼ˆå¯å¤‰é…åˆ—å‹ï¼‰
 template< class T >
 class D_csmVector
 {
 public :
-	D_csmVector() ;																			// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-	D_csmVector( int initialCapacity, bool zeroClear = false ) ;							// ˆø”•t‚«ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-	D_csmVector( const D_csmVector& c ){ Copy( c ) ; }										// ƒRƒs[ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-	virtual ~D_csmVector() ;																	// ƒfƒXƒgƒ‰ƒNƒ^
+	D_csmVector() ;																			// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	D_csmVector( int initialCapacity, bool zeroClear = false ) ;							// å¼•æ•°ä»˜ãã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	D_csmVector( const D_csmVector& c ){ Copy( c ) ; }										// ã‚³ãƒ”ãƒ¼ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	virtual ~D_csmVector() ;																	// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 
-	T*							GetPtr(){ return _ptr ; }									// ƒRƒ“ƒeƒi‚Ìæ“ªƒAƒhƒŒƒX‚ğ•Ô‚·
-	T&							operator[]( int index ){ return _ptr[ index ]; }			// []‰‰Zq‚ÌƒI[ƒo[ƒ[ƒh
-	const T&					operator[]( int index ) const { return _ptr[ index ]; }		// []‰‰Zq‚ÌƒI[ƒo[ƒ[ƒh( const)
-	T&							At( int index ){ return _ptr[ index ] ;	}					// ƒCƒ“ƒfƒbƒNƒX‚Åw’è‚µ‚½—v‘f‚ğ•Ô‚·
-	void						PushBack( const T& value, bool callPlacementNew = true ) ;	// PushBackˆ—.ƒRƒ“ƒeƒi‚ÉV‚½‚È—v‘f‚ğ’Ç‰Á‚·‚éB
-	void						Clear() ;													// ƒRƒ“ƒeƒi‚Ì‘S—v‘f‚ğ‰ğ•ú‚·‚é
-	unsigned int				GetSize() const { return _size ; }							// ƒRƒ“ƒeƒi‚Ì—v‘f”‚ğ•Ô‚·
-	void						Resize( int size, T value = T() ){ UpdateSize( size, value, true ) ; }	// vector#resize()‚É‘Š“–‚·‚éƒTƒCƒY•ÏX
-	void						UpdateSize( int size, T value = T(), bool callPlacementNew = true ) ;	// vector#resize()‚É‘Š“–‚·‚éƒTƒCƒY•ÏX
-	void						PrepareCapacity( int newSize ) ;							// ƒRƒ“ƒeƒi‚ÌƒLƒƒƒpƒVƒeƒB‚ğŠm•Û‚·‚é
+	T*							GetPtr(){ return _ptr ; }									// ã‚³ãƒ³ãƒ†ãƒŠã®å…ˆé ­ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’è¿”ã™
+	T&							operator[]( int index ){ return _ptr[ index ]; }			// []æ¼”ç®—å­ã®ã‚ªãƒ¼ãƒãƒ¼ãƒ­ãƒ¼ãƒ‰
+	const T&					operator[]( int index ) const { return _ptr[ index ]; }		// []æ¼”ç®—å­ã®ã‚ªãƒ¼ãƒãƒ¼ãƒ­ãƒ¼ãƒ‰( const)
+	T&							At( int index ){ return _ptr[ index ] ;	}					// ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã§æŒ‡å®šã—ãŸè¦ç´ ã‚’è¿”ã™
+	void						PushBack( const T& value, bool callPlacementNew = true ) ;	// PushBackå‡¦ç†.ã‚³ãƒ³ãƒ†ãƒŠã«æ–°ãŸãªè¦ç´ ã‚’è¿½åŠ ã™ã‚‹ã€‚
+	void						Clear() ;													// ã‚³ãƒ³ãƒ†ãƒŠã®å…¨è¦ç´ ã‚’è§£æ”¾ã™ã‚‹
+	unsigned int				GetSize() const { return _size ; }							// ã‚³ãƒ³ãƒ†ãƒŠã®è¦ç´ æ•°ã‚’è¿”ã™
+	void						Resize( int size, T value = T() ){ UpdateSize( size, value, true ) ; }	// vector#resize()ã«ç›¸å½“ã™ã‚‹ã‚µã‚¤ã‚ºå¤‰æ›´
+	void						UpdateSize( int size, T value = T(), bool callPlacementNew = true ) ;	// vector#resize()ã«ç›¸å½“ã™ã‚‹ã‚µã‚¤ã‚ºå¤‰æ›´
+	void						PrepareCapacity( int newSize ) ;							// ã‚³ãƒ³ãƒ†ãƒŠã®ã‚­ãƒ£ãƒ‘ã‚·ãƒ†ã‚£ã‚’ç¢ºä¿ã™ã‚‹
 
-	class iterator ;			// D_csmVector<T>‚ÌƒCƒeƒŒ[ƒ^‚Ì‘O•ûéŒ¾
+	class iterator ;			// D_csmVector<T>ã®ã‚¤ãƒ†ãƒ¬ãƒ¼ã‚¿ã®å‰æ–¹å®£è¨€
 
-	void						Insert( iterator position, iterator begin, iterator end, bool callPlacementNew = true ) ;		// ƒRƒ“ƒeƒi‚ÉƒRƒ“ƒeƒi—v‘f‚ğ‘}“ü‚·‚é
-	void						Assign( int newSize, T value = T(), bool callPlacementNew = true ) ;							// ƒRƒ“ƒeƒi‚Ì‘S—v‘f‚É‘Î‚µ‚Ä‘ã“üˆ—‚ğs‚¤B
-	bool						Remove( int index ) ;										// ƒRƒ“ƒeƒi‚©‚çƒCƒ“ƒfƒbƒNƒX‚Åw’è‚µ‚½—v‘f‚ğíœ‚·‚é
+	void						Insert( iterator position, iterator begin, iterator end, bool callPlacementNew = true ) ;		// ã‚³ãƒ³ãƒ†ãƒŠã«ã‚³ãƒ³ãƒ†ãƒŠè¦ç´ ã‚’æŒ¿å…¥ã™ã‚‹
+	void						Assign( int newSize, T value = T(), bool callPlacementNew = true ) ;							// ã‚³ãƒ³ãƒ†ãƒŠã®å…¨è¦ç´ ã«å¯¾ã—ã¦ä»£å…¥å‡¦ç†ã‚’è¡Œã†ã€‚
+	bool						Remove( int index ) ;										// ã‚³ãƒ³ãƒ†ãƒŠã‹ã‚‰ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã§æŒ‡å®šã—ãŸè¦ç´ ã‚’å‰Šé™¤ã™ã‚‹
 
-	// D_csmVector<T>‚ÌƒCƒeƒŒ[ƒ^
+	// D_csmVector<T>ã®ã‚¤ãƒ†ãƒ¬ãƒ¼ã‚¿
 	class iterator
 	{
-		// D_csmVector<T>‚ğƒtƒŒƒ“ƒhƒNƒ‰ƒX‚Æ‚·‚é
+		// D_csmVector<T>ã‚’ãƒ•ãƒ¬ãƒ³ãƒ‰ã‚¯ãƒ©ã‚¹ã¨ã™ã‚‹
 		friend class D_csmVector ;
 
 	public :
-		iterator() : _index( 0 ) , _vector( NULL ){}										// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-		iterator( D_csmVector< T > *v ) : _index( 0 ), _vector( v ){}						// ˆø”•t‚«ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-		iterator( D_csmVector< T > *v, int idx ) : _index( idx ), _vector( v ){}			// ˆø”•t‚«ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-		iterator&				operator=( const iterator& ite ){ _index = ite._index ; _vector = ite._vector ; return *this ; }	// =‰‰Zq‚ÌƒI[ƒo[ƒ[ƒh
-		iterator&				operator++(){ ++_index ; return *this ; }					// ‘O’u++‰‰Zq‚ÌƒI[ƒo[ƒ[ƒh
-		iterator&				operator--(){ --_index ; return *this ; }					// ‘O’u--‰‰Zq‚ÌƒI[ƒo[ƒ[ƒh
-		iterator				operator++( int ){ iterator iteold( _vector, _index++ ) ; return iteold ; }	// Œã’u++‰‰Zq‚ÌƒI[ƒo[ƒ[ƒh( int‚ÍŒã’u—p‚Ìƒ_ƒ~[ˆø”)
-		iterator				operator--( int ){ iterator iteold( _vector, _index-- ) ; return iteold ; }	// Œã’u--‰‰Zq‚ÌƒI[ƒo[ƒ[ƒh( int‚ÍŒã’u—p‚Ìƒ_ƒ~[ˆø”)
-		T&						operator*() const{ return _vector->_ptr[ _index ] ; }		// *‰‰Zq‚ÌƒI[ƒo[ƒ[ƒh
-		bool					operator!=( const iterator& ite ) const { return ( _index != ite._index ) || ( _vector != ite._vector ) ; }	// !=‰‰Zq‚ÌƒI[ƒo[ƒ[ƒh
+		iterator() : _index( 0 ) , _vector( NULL ){}										// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+		iterator( D_csmVector< T > *v ) : _index( 0 ), _vector( v ){}						// å¼•æ•°ä»˜ãã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+		iterator( D_csmVector< T > *v, int idx ) : _index( idx ), _vector( v ){}			// å¼•æ•°ä»˜ãã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+		iterator&				operator=( const iterator& ite ){ _index = ite._index ; _vector = ite._vector ; return *this ; }	// =æ¼”ç®—å­ã®ã‚ªãƒ¼ãƒãƒ¼ãƒ­ãƒ¼ãƒ‰
+		iterator&				operator++(){ ++_index ; return *this ; }					// å‰ç½®++æ¼”ç®—å­ã®ã‚ªãƒ¼ãƒãƒ¼ãƒ­ãƒ¼ãƒ‰
+		iterator&				operator--(){ --_index ; return *this ; }					// å‰ç½®--æ¼”ç®—å­ã®ã‚ªãƒ¼ãƒãƒ¼ãƒ­ãƒ¼ãƒ‰
+		iterator				operator++( int ){ iterator iteold( _vector, _index++ ) ; return iteold ; }	// å¾Œç½®++æ¼”ç®—å­ã®ã‚ªãƒ¼ãƒãƒ¼ãƒ­ãƒ¼ãƒ‰( intã¯å¾Œç½®ç”¨ã®ãƒ€ãƒŸãƒ¼å¼•æ•°)
+		iterator				operator--( int ){ iterator iteold( _vector, _index-- ) ; return iteold ; }	// å¾Œç½®--æ¼”ç®—å­ã®ã‚ªãƒ¼ãƒãƒ¼ãƒ­ãƒ¼ãƒ‰( intã¯å¾Œç½®ç”¨ã®ãƒ€ãƒŸãƒ¼å¼•æ•°)
+		T&						operator*() const{ return _vector->_ptr[ _index ] ; }		// *æ¼”ç®—å­ã®ã‚ªãƒ¼ãƒãƒ¼ãƒ­ãƒ¼ãƒ‰
+		bool					operator!=( const iterator& ite ) const { return ( _index != ite._index ) || ( _vector != ite._vector ) ; }	// !=æ¼”ç®—å­ã®ã‚ªãƒ¼ãƒãƒ¼ãƒ­ãƒ¼ãƒ‰
 
 	public :
-		int						_index ;					// ƒRƒ“ƒeƒi‚ÌƒCƒ“ƒfƒbƒNƒX’l
-		D_csmVector< T >		*_vector ;					// ƒRƒ“ƒeƒi‚ÌQÆ
+		int						_index ;					// ã‚³ãƒ³ãƒ†ãƒŠã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹å€¤
+		D_csmVector< T >		*_vector ;					// ã‚³ãƒ³ãƒ†ãƒŠã®å‚ç…§
 	} ;
 
-	//D_csmVector<T>‚ÌƒCƒeƒŒ[ƒ^iconstj
+	//D_csmVector<T>ã®ã‚¤ãƒ†ãƒ¬ãƒ¼ã‚¿ï¼ˆconstï¼‰
 	class const_iterator
 	{
-		// D_csmVector<T>‚ğƒtƒŒƒ“ƒhƒNƒ‰ƒX‚Æ‚·‚é
+		// D_csmVector<T>ã‚’ãƒ•ãƒ¬ãƒ³ãƒ‰ã‚¯ãƒ©ã‚¹ã¨ã™ã‚‹
 		friend class D_csmVector ;
 
 	public :
-		const_iterator() : _index( 0 ), _vector( NULL ){}									// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-		const_iterator( const D_csmVector< T >* v ) : _index( 0 ), _vector( v ){}			// ˆø”•t‚«ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-		const_iterator( const D_csmVector< T >* v, int idx ) : _index( idx ), _vector( v ){}	// ˆø”•t‚«ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-		const_iterator&			operator=( const const_iterator& ite ){ _index = ite._index ; _vector = ite._vector ; return *this ; }	// =‰‰Zq‚ÌƒI[ƒo[ƒ[ƒh
-		const_iterator&			operator++(){ ++_index ; return *this ; }					// ‘O’u++‰‰Zq‚ÌƒI[ƒo[ƒ[ƒh
-		const_iterator&			operator--(){ --_index ; return *this ;	}					// ‘O’u--‰‰Zq‚ÌƒI[ƒo[ƒ[ƒh
-		const_iterator			operator++( int ){ const_iterator iteold( _vector, _index++ ) ; return iteold ; }	// Œã’u++‰‰Zq‚ÌƒI[ƒo[ƒ[ƒh( int‚ÍŒã’u—p‚Ìƒ_ƒ~[ˆø”)
-		const_iterator			operator--( int ){ const_iterator iteold( _vector, _index-- ) ; return iteold ; }	// Œã’u--‰‰Zq‚ÌƒI[ƒo[ƒ[ƒh( int‚ÍŒã’u—p‚Ìƒ_ƒ~[ˆø”)
-		T&						operator*() const { return _vector->_ptr[ _index] ; }		// *‰‰Zq‚ÌƒI[ƒo[ƒ[ƒh
-		bool					operator!=( const const_iterator& ite ) const { return ( _index != ite._index ) || ( _vector != ite._vector ) ; }	// !=‰‰Zq‚ÌƒI[ƒo[ƒ[ƒh
+		const_iterator() : _index( 0 ), _vector( NULL ){}									// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+		const_iterator( const D_csmVector< T >* v ) : _index( 0 ), _vector( v ){}			// å¼•æ•°ä»˜ãã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+		const_iterator( const D_csmVector< T >* v, int idx ) : _index( idx ), _vector( v ){}	// å¼•æ•°ä»˜ãã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+		const_iterator&			operator=( const const_iterator& ite ){ _index = ite._index ; _vector = ite._vector ; return *this ; }	// =æ¼”ç®—å­ã®ã‚ªãƒ¼ãƒãƒ¼ãƒ­ãƒ¼ãƒ‰
+		const_iterator&			operator++(){ ++_index ; return *this ; }					// å‰ç½®++æ¼”ç®—å­ã®ã‚ªãƒ¼ãƒãƒ¼ãƒ­ãƒ¼ãƒ‰
+		const_iterator&			operator--(){ --_index ; return *this ;	}					// å‰ç½®--æ¼”ç®—å­ã®ã‚ªãƒ¼ãƒãƒ¼ãƒ­ãƒ¼ãƒ‰
+		const_iterator			operator++( int ){ const_iterator iteold( _vector, _index++ ) ; return iteold ; }	// å¾Œç½®++æ¼”ç®—å­ã®ã‚ªãƒ¼ãƒãƒ¼ãƒ­ãƒ¼ãƒ‰( intã¯å¾Œç½®ç”¨ã®ãƒ€ãƒŸãƒ¼å¼•æ•°)
+		const_iterator			operator--( int ){ const_iterator iteold( _vector, _index-- ) ; return iteold ; }	// å¾Œç½®--æ¼”ç®—å­ã®ã‚ªãƒ¼ãƒãƒ¼ãƒ­ãƒ¼ãƒ‰( intã¯å¾Œç½®ç”¨ã®ãƒ€ãƒŸãƒ¼å¼•æ•°)
+		T&						operator*() const { return _vector->_ptr[ _index] ; }		// *æ¼”ç®—å­ã®ã‚ªãƒ¼ãƒãƒ¼ãƒ­ãƒ¼ãƒ‰
+		bool					operator!=( const const_iterator& ite ) const { return ( _index != ite._index ) || ( _vector != ite._vector ) ; }	// !=æ¼”ç®—å­ã®ã‚ªãƒ¼ãƒãƒ¼ãƒ­ãƒ¼ãƒ‰
 
 	public:
-		int						_index ;					// ƒRƒ“ƒeƒi‚ÌƒCƒ“ƒfƒbƒNƒX’l
-		const D_csmVector< T >	*_vector ;					// ƒRƒ“ƒeƒi‚Ìƒ|ƒCƒ“ƒ^
+		int						_index ;					// ã‚³ãƒ³ãƒ†ãƒŠã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹å€¤
+		const D_csmVector< T >	*_vector ;					// ã‚³ãƒ³ãƒ†ãƒŠã®ãƒã‚¤ãƒ³ã‚¿
 	} ;
 
-	const iterator				Begin(){ iterator ite( this, 0 ) ; return ite ; }			// ƒRƒ“ƒeƒi‚Ìæ“ª—v‘f‚ğ•Ô‚·
-	const iterator				End(){ iterator ite( this, _size ) ; return ite ; }			// ƒRƒ“ƒeƒi‚ÌI’[—v‘f‚ğ•Ô‚·
-	const const_iterator		Begin() const { const_iterator ite( this, 0 ) ; return ite ; }	// ƒRƒ“ƒeƒi‚Ìæ“ª—v‘f‚ğ•Ô‚·
-	const const_iterator		End() const { const_iterator ite( this, _size ) ; return ite ; }	// ƒRƒ“ƒeƒi‚ÌI’[—v‘f‚ğ•Ô‚·
-	const iterator				Erase( const iterator& ite )								// ƒRƒ“ƒeƒi‚©‚ç—v‘f‚ğíœ‚µ‚Ä‘¼‚Ì—v‘f‚ğƒVƒtƒg‚·‚é
+	const iterator				Begin(){ iterator ite( this, 0 ) ; return ite ; }			// ã‚³ãƒ³ãƒ†ãƒŠã®å…ˆé ­è¦ç´ ã‚’è¿”ã™
+	const iterator				End(){ iterator ite( this, _size ) ; return ite ; }			// ã‚³ãƒ³ãƒ†ãƒŠã®çµ‚ç«¯è¦ç´ ã‚’è¿”ã™
+	const const_iterator		Begin() const { const_iterator ite( this, 0 ) ; return ite ; }	// ã‚³ãƒ³ãƒ†ãƒŠã®å…ˆé ­è¦ç´ ã‚’è¿”ã™
+	const const_iterator		End() const { const_iterator ite( this, _size ) ; return ite ; }	// ã‚³ãƒ³ãƒ†ãƒŠã®çµ‚ç«¯è¦ç´ ã‚’è¿”ã™
+	const iterator				Erase( const iterator& ite )								// ã‚³ãƒ³ãƒ†ãƒŠã‹ã‚‰è¦ç´ ã‚’å‰Šé™¤ã—ã¦ä»–ã®è¦ç´ ã‚’ã‚·ãƒ•ãƒˆã™ã‚‹
 	{
 		int index = ite._index ;
 		if( index < 0 || _size <= index ) return ite ;
@@ -435,7 +435,7 @@ public :
 		iterator ite2( this, index ) ;
 		return ite2 ;
 	}
-	const const_iterator		Erase( const const_iterator& ite )							// ƒRƒ“ƒeƒi‚©‚ç—v‘f‚ğíœ‚µ‚Ä‘¼‚Ì—v‘f‚ğƒVƒtƒg‚·‚é
+	const const_iterator		Erase( const const_iterator& ite )							// ã‚³ãƒ³ãƒ†ãƒŠã‹ã‚‰è¦ç´ ã‚’å‰Šé™¤ã—ã¦ä»–ã®è¦ç´ ã‚’ã‚·ãƒ•ãƒˆã™ã‚‹
 	{
 		int index = ite._index ;
 		if( index < 0 || _size <= index ) return ite ;
@@ -445,96 +445,96 @@ public :
 		return ite2 ;
 	}
 
-	D_csmVector&				operator=( const D_csmVector& c ){ if( this != &c ){ Clear() ; Copy( c ) ; } return *this ; }	// ƒRƒs[ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	D_csmVector&				operator=( const D_csmVector& c ){ if( this != &c ){ Clear() ; Copy( c ) ; } return *this ; }	// ã‚³ãƒ”ãƒ¼ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 
 public:
-	void						Copy( const D_csmVector& c ) ;	// D_csmVector<T>‚ÌƒRƒs[ŠÖ”
+	void						Copy( const D_csmVector& c ) ;	// D_csmVector<T>ã®ã‚³ãƒ”ãƒ¼é–¢æ•°
 
-	T*							_ptr ;						// ƒRƒ“ƒeƒi‚Ìæ“ªƒAƒhƒŒƒXiƒ|ƒCƒ“ƒ^j
-	int							_size ;						// ƒRƒ“ƒeƒi‚Ì—v‘f”iƒTƒCƒYj
-	int							_capacity ;					// ƒRƒ“ƒeƒi‚ÌƒLƒƒƒpƒVƒeƒB
+	T*							_ptr ;						// ã‚³ãƒ³ãƒ†ãƒŠã®å…ˆé ­ã‚¢ãƒ‰ãƒ¬ã‚¹ï¼ˆãƒã‚¤ãƒ³ã‚¿ï¼‰
+	int							_size ;						// ã‚³ãƒ³ãƒ†ãƒŠã®è¦ç´ æ•°ï¼ˆã‚µã‚¤ã‚ºï¼‰
+	int							_capacity ;					// ã‚³ãƒ³ãƒ†ãƒŠã®ã‚­ãƒ£ãƒ‘ã‚·ãƒ†ã‚£
 } ;
 
-// Key-D_JsonValue‚ÌƒyƒA‚ğ’è‹`‚·‚éƒNƒ‰ƒX
+// Key-D_JsonValueã®ãƒšã‚¢ã‚’å®šç¾©ã™ã‚‹ã‚¯ãƒ©ã‚¹
 template< class _KeyT, class _ValT >
 class D_csmPair
 {
 public:
-	D_csmPair() : First(), Second() {}														// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-	D_csmPair( const _KeyT& key ) : First( key ), Second() {}								// ˆø”•t‚«ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-	D_csmPair( const _KeyT& key, const _ValT& value ) : First( key ), Second( value ) {}	// ˆø”•t‚«ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-	virtual ~D_csmPair() {}																	// ƒfƒXƒgƒ‰ƒNƒ^
+	D_csmPair() : First(), Second() {}														// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	D_csmPair( const _KeyT& key ) : First( key ), Second() {}								// å¼•æ•°ä»˜ãã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	D_csmPair( const _KeyT& key, const _ValT& value ) : First( key ), Second( value ) {}	// å¼•æ•°ä»˜ãã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	virtual ~D_csmPair() {}																	// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 
-	_KeyT						First ;						// Key‚Æ‚µ‚Ä—p‚¢‚é•Ï”
-	_ValT						Second ;					// D_JsonValue‚Æ‚µ‚Ä—p‚¢‚é•Ï”
+	_KeyT						First ;						// Keyã¨ã—ã¦ç”¨ã„ã‚‹å¤‰æ•°
+	_ValT						Second ;					// D_JsonValueã¨ã—ã¦ç”¨ã„ã‚‹å¤‰æ•°
 } ;
 
-// ƒ}ƒbƒvŒ^
+// ãƒãƒƒãƒ—å‹
 template< class _KeyT, class _ValT >
 class D_csmMap
 {
 public:
-	D_csmMap() ;																			// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-	D_csmMap( int size ) ;																	// ˆø”•t‚«ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-	virtual ~D_csmMap() ;																	// ƒfƒXƒgƒ‰ƒNƒ^
-	void						AppendKey( _KeyT& key ) ;									// ƒL[‚ğ’Ç‰Á‚·‚é
-	_ValT&						operator[]( _KeyT key ) ;									// “Yš‰‰Zq[key]‚ÌƒI[ƒo[ƒ[ƒh
-	const _ValT&				operator[]( _KeyT key ) const ;								// “Yš‰‰Zq[key]‚ÌƒI[ƒo[ƒ[ƒh( const)
-	bool						IsExist( _KeyT key ) ;										// ˆø”‚Å“n‚µ‚½Key‚ğ‚Â—v‘f‚ª‘¶İ‚·‚é‚©
-	void						Clear() ;													// Key-D_JsonValue‚Ìƒ|ƒCƒ“ƒ^‚ğ‘S‚Ä‰ğ•ú‚·‚é
-	int							GetSize() const { return _size ; }							// ƒRƒ“ƒeƒi‚ÌƒTƒCƒY‚ğæ“¾‚·‚é
-	void						PrepareCapacity( int newSize, bool fitToSize ) ;			// ƒRƒ“ƒeƒi‚ÌƒLƒƒƒpƒVƒeƒB‚ğŠm•Û‚·‚é
+	D_csmMap() ;																			// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	D_csmMap( int size ) ;																	// å¼•æ•°ä»˜ãã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	virtual ~D_csmMap() ;																	// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	void						AppendKey( _KeyT& key ) ;									// ã‚­ãƒ¼ã‚’è¿½åŠ ã™ã‚‹
+	_ValT&						operator[]( _KeyT key ) ;									// æ·»å­—æ¼”ç®—å­[key]ã®ã‚ªãƒ¼ãƒãƒ¼ãƒ­ãƒ¼ãƒ‰
+	const _ValT&				operator[]( _KeyT key ) const ;								// æ·»å­—æ¼”ç®—å­[key]ã®ã‚ªãƒ¼ãƒãƒ¼ãƒ­ãƒ¼ãƒ‰( const)
+	bool						IsExist( _KeyT key ) ;										// å¼•æ•°ã§æ¸¡ã—ãŸKeyã‚’æŒã¤è¦ç´ ãŒå­˜åœ¨ã™ã‚‹ã‹
+	void						Clear() ;													// Key-D_JsonValueã®ãƒã‚¤ãƒ³ã‚¿ã‚’å…¨ã¦è§£æ”¾ã™ã‚‹
+	int							GetSize() const { return _size ; }							// ã‚³ãƒ³ãƒ†ãƒŠã®ã‚µã‚¤ã‚ºã‚’å–å¾—ã™ã‚‹
+	void						PrepareCapacity( int newSize, bool fitToSize ) ;			// ã‚³ãƒ³ãƒ†ãƒŠã®ã‚­ãƒ£ãƒ‘ã‚·ãƒ†ã‚£ã‚’ç¢ºä¿ã™ã‚‹
 
-	// D_csmMap<T>‚ÌƒCƒeƒŒ[ƒ^
+	// D_csmMap<T>ã®ã‚¤ãƒ†ãƒ¬ãƒ¼ã‚¿
 	class iterator
 	{
-		// D_csmMap<T>‚ğƒtƒŒƒ“ƒhƒNƒ‰ƒX‚Æ‚·‚é
+		// D_csmMap<T>ã‚’ãƒ•ãƒ¬ãƒ³ãƒ‰ã‚¯ãƒ©ã‚¹ã¨ã™ã‚‹
 		friend class D_csmMap;
 
 	public:
-		iterator() : _index( 0 ), _map( NULL ){}											// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-		iterator( D_csmMap< _KeyT, _ValT >* v ) : _index( 0 ), _map( v ){}					// ˆø”•t‚«ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-		iterator( D_csmMap< _KeyT, _ValT >* v, int idx ) : _index( idx ), _map( v ) {}		// ˆø”•t‚«ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-		iterator&				operator=( const iterator& ite ){ _index = ite._index ; _map = ite._map ; return *this ; }	// =‰‰Zq‚ÌƒI[ƒo[ƒ[ƒh
-		iterator&				operator++(){ _index++ ; return *this ; }					// ‘O’u++‰‰Zq‚ÌƒI[ƒo[ƒ[ƒh
-		iterator&				operator--(){ _index-- ; return *this ; }					// ‘O’u--‰‰Zq‚ÌƒI[ƒo[ƒ[ƒh
-		iterator				operator++( int ){ iterator iteold( _map, _index++ ) ; return iteold ; }	// Œã’u++‰‰Zq‚ÌƒI[ƒo[ƒ[ƒh( int‚ÍŒã’u—p‚Ìƒ_ƒ~[ˆø”)
-		iterator				operator--( int ){ iterator iteold( _map, _index-- ) ; return iteold ; }	// Œã’u--‰‰Zq‚ÌƒI[ƒo[ƒ[ƒh( int‚ÍŒã’u—p‚Ìƒ_ƒ~[ˆø”)
-		D_csmPair< _KeyT, _ValT >& operator*() const { return _map->_keyValues[ _index ] ; }	// *‰‰Zq‚ÌƒI[ƒo[ƒ[ƒh
-		bool					operator!=( const iterator& ite ) const { return ( _index != ite._index ) || ( _map != ite._map ) ;	}	// !=‰‰Zq‚ÌƒI[ƒo[ƒ[ƒh
+		iterator() : _index( 0 ), _map( NULL ){}											// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+		iterator( D_csmMap< _KeyT, _ValT >* v ) : _index( 0 ), _map( v ){}					// å¼•æ•°ä»˜ãã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+		iterator( D_csmMap< _KeyT, _ValT >* v, int idx ) : _index( idx ), _map( v ) {}		// å¼•æ•°ä»˜ãã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+		iterator&				operator=( const iterator& ite ){ _index = ite._index ; _map = ite._map ; return *this ; }	// =æ¼”ç®—å­ã®ã‚ªãƒ¼ãƒãƒ¼ãƒ­ãƒ¼ãƒ‰
+		iterator&				operator++(){ _index++ ; return *this ; }					// å‰ç½®++æ¼”ç®—å­ã®ã‚ªãƒ¼ãƒãƒ¼ãƒ­ãƒ¼ãƒ‰
+		iterator&				operator--(){ _index-- ; return *this ; }					// å‰ç½®--æ¼”ç®—å­ã®ã‚ªãƒ¼ãƒãƒ¼ãƒ­ãƒ¼ãƒ‰
+		iterator				operator++( int ){ iterator iteold( _map, _index++ ) ; return iteold ; }	// å¾Œç½®++æ¼”ç®—å­ã®ã‚ªãƒ¼ãƒãƒ¼ãƒ­ãƒ¼ãƒ‰( intã¯å¾Œç½®ç”¨ã®ãƒ€ãƒŸãƒ¼å¼•æ•°)
+		iterator				operator--( int ){ iterator iteold( _map, _index-- ) ; return iteold ; }	// å¾Œç½®--æ¼”ç®—å­ã®ã‚ªãƒ¼ãƒãƒ¼ãƒ­ãƒ¼ãƒ‰( intã¯å¾Œç½®ç”¨ã®ãƒ€ãƒŸãƒ¼å¼•æ•°)
+		D_csmPair< _KeyT, _ValT >& operator*() const { return _map->_keyValues[ _index ] ; }	// *æ¼”ç®—å­ã®ã‚ªãƒ¼ãƒãƒ¼ãƒ­ãƒ¼ãƒ‰
+		bool					operator!=( const iterator& ite ) const { return ( _index != ite._index ) || ( _map != ite._map ) ;	}	// !=æ¼”ç®—å­ã®ã‚ªãƒ¼ãƒãƒ¼ãƒ­ãƒ¼ãƒ‰
 
 	private:
-		int						_index ;					// ƒRƒ“ƒeƒi‚ÌƒCƒ“ƒfƒbƒNƒX’l
-		D_csmMap< _KeyT, _ValT >* _map ;					// ƒRƒ“ƒeƒi‚Ìƒ|ƒCƒ“ƒ^
+		int						_index ;					// ã‚³ãƒ³ãƒ†ãƒŠã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹å€¤
+		D_csmMap< _KeyT, _ValT >* _map ;					// ã‚³ãƒ³ãƒ†ãƒŠã®ãƒã‚¤ãƒ³ã‚¿
 	} ;
 
-	// D_csmMap<T>‚ÌƒCƒeƒŒ[ƒ^( const)
+	// D_csmMap<T>ã®ã‚¤ãƒ†ãƒ¬ãƒ¼ã‚¿( const)
 	class const_iterator
 	{
-		// D_csmMap<T>‚ğƒtƒŒƒ“ƒhƒNƒ‰ƒX‚Æ‚·‚é
+		// D_csmMap<T>ã‚’ãƒ•ãƒ¬ãƒ³ãƒ‰ã‚¯ãƒ©ã‚¹ã¨ã™ã‚‹
 		friend class D_csmMap;
 
 	public:
-		const_iterator() : _index( 0 ), _map( NULL ) {}										// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-		const_iterator( const D_csmMap< _KeyT, _ValT >* v ) : _index( 0 ), _map( v ) {}		// ˆø”•t‚«ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-		const_iterator( const D_csmMap< _KeyT, _ValT >* v, int idx ) : _index( idx ), _map( v ) {}	// ˆø”•t‚«ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-		const_iterator&			operator=( const const_iterator& ite ){ _index = ite._index ; _map = ite._map ; return *this ; }	// =‰‰Zq‚ÌƒI[ƒo[ƒ[ƒh
-		const_iterator&			operator++(){ ++_index ; return *this ; }					// ‘O’u++‰‰Zq‚ÌƒI[ƒo[ƒ[ƒh
-		const_iterator&			operator--(){ --_index ; return *this ; }					// ‘O’u--‰‰Zq‚ÌƒI[ƒo[ƒ[ƒh
-		const_iterator			operator++( int ){ const_iterator iteold( _map, _index++ ) ; return iteold ; }	// Œã’u++‰‰Zq‚ÌƒI[ƒo[ƒ[ƒh( int‚ÍŒã’u—p‚Ìƒ_ƒ~[ˆø”)
-		const_iterator			operator--( int ){ const_iterator iteold( _map, _index-- ) ; return iteold ; }	// Œã’u--‰‰Zq‚ÌƒI[ƒo[ƒ[ƒh( int‚ÍŒã’u—p‚Ìƒ_ƒ~[ˆø”)
-		D_csmPair< _KeyT, _ValT >* operator->() const { return &_map->_keyValues[ _index ] ; }	// ->‰‰Zq‚ÌƒI[ƒo[ƒ[ƒh
-		D_csmPair< _KeyT, _ValT >& operator*() const { return _map->_keyValues[ _index ] ; }	// *‰‰Zq‚ÌƒI[ƒo[ƒ[ƒh
-		bool					operator!=( const const_iterator& ite ) const { return ( _index != ite._index ) || ( _map != ite._map ) ; }	// !=‰‰Zq‚ÌƒI[ƒo[ƒ[ƒh
+		const_iterator() : _index( 0 ), _map( NULL ) {}										// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+		const_iterator( const D_csmMap< _KeyT, _ValT >* v ) : _index( 0 ), _map( v ) {}		// å¼•æ•°ä»˜ãã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+		const_iterator( const D_csmMap< _KeyT, _ValT >* v, int idx ) : _index( idx ), _map( v ) {}	// å¼•æ•°ä»˜ãã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+		const_iterator&			operator=( const const_iterator& ite ){ _index = ite._index ; _map = ite._map ; return *this ; }	// =æ¼”ç®—å­ã®ã‚ªãƒ¼ãƒãƒ¼ãƒ­ãƒ¼ãƒ‰
+		const_iterator&			operator++(){ ++_index ; return *this ; }					// å‰ç½®++æ¼”ç®—å­ã®ã‚ªãƒ¼ãƒãƒ¼ãƒ­ãƒ¼ãƒ‰
+		const_iterator&			operator--(){ --_index ; return *this ; }					// å‰ç½®--æ¼”ç®—å­ã®ã‚ªãƒ¼ãƒãƒ¼ãƒ­ãƒ¼ãƒ‰
+		const_iterator			operator++( int ){ const_iterator iteold( _map, _index++ ) ; return iteold ; }	// å¾Œç½®++æ¼”ç®—å­ã®ã‚ªãƒ¼ãƒãƒ¼ãƒ­ãƒ¼ãƒ‰( intã¯å¾Œç½®ç”¨ã®ãƒ€ãƒŸãƒ¼å¼•æ•°)
+		const_iterator			operator--( int ){ const_iterator iteold( _map, _index-- ) ; return iteold ; }	// å¾Œç½®--æ¼”ç®—å­ã®ã‚ªãƒ¼ãƒãƒ¼ãƒ­ãƒ¼ãƒ‰( intã¯å¾Œç½®ç”¨ã®ãƒ€ãƒŸãƒ¼å¼•æ•°)
+		D_csmPair< _KeyT, _ValT >* operator->() const { return &_map->_keyValues[ _index ] ; }	// ->æ¼”ç®—å­ã®ã‚ªãƒ¼ãƒãƒ¼ãƒ­ãƒ¼ãƒ‰
+		D_csmPair< _KeyT, _ValT >& operator*() const { return _map->_keyValues[ _index ] ; }	// *æ¼”ç®—å­ã®ã‚ªãƒ¼ãƒãƒ¼ãƒ­ãƒ¼ãƒ‰
+		bool					operator!=( const const_iterator& ite ) const { return ( _index != ite._index ) || ( _map != ite._map ) ; }	// !=æ¼”ç®—å­ã®ã‚ªãƒ¼ãƒãƒ¼ãƒ­ãƒ¼ãƒ‰
 
 	private:
-		int						_index ;					// ƒRƒ“ƒeƒi‚ÌƒCƒ“ƒfƒbƒNƒX’l
-		const D_csmMap< _KeyT, _ValT >* _map ;				// ƒRƒ“ƒeƒi‚Ìƒ|ƒCƒ“ƒ^( const)
+		int						_index ;					// ã‚³ãƒ³ãƒ†ãƒŠã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹å€¤
+		const D_csmMap< _KeyT, _ValT >* _map ;				// ã‚³ãƒ³ãƒ†ãƒŠã®ãƒã‚¤ãƒ³ã‚¿( const)
 	} ;
 
-	const const_iterator		Begin() const { const_iterator ite( this, 0 ) ; return ite ; }	// ƒRƒ“ƒeƒi‚Ìæ“ª—v‘f‚ğ•Ô‚·
-	const const_iterator		End() const { const_iterator ite( this, _size ) ; return ite ; }	// ƒRƒ“ƒeƒi‚ÌI’[—v‘f‚ğ•Ô‚·
-	const iterator				Erase( const iterator& ite )								// ƒRƒ“ƒeƒi‚©‚ç—v‘f‚ğíœ‚·‚é
+	const const_iterator		Begin() const { const_iterator ite( this, 0 ) ; return ite ; }	// ã‚³ãƒ³ãƒ†ãƒŠã®å…ˆé ­è¦ç´ ã‚’è¿”ã™
+	const const_iterator		End() const { const_iterator ite( this, _size ) ; return ite ; }	// ã‚³ãƒ³ãƒ†ãƒŠã®çµ‚ç«¯è¦ç´ ã‚’è¿”ã™
+	const iterator				Erase( const iterator& ite )								// ã‚³ãƒ³ãƒ†ãƒŠã‹ã‚‰è¦ç´ ã‚’å‰Šé™¤ã™ã‚‹
 	{
 		int index = ite._index ;
 		if( index < 0 || _size <= index ) return ite ;
@@ -544,7 +544,7 @@ public:
 		iterator ite2( this, index ) ;
 		return ite2 ;
 	}
-	const const_iterator		Erase( const const_iterator& ite )							// ƒRƒ“ƒeƒi‚©‚ç—v‘f‚ğíœ‚·‚é
+	const const_iterator		Erase( const const_iterator& ite )							// ã‚³ãƒ³ãƒ†ãƒŠã‹ã‚‰è¦ç´ ã‚’å‰Šé™¤ã™ã‚‹
 	{
 		int index = ite._index ;
 		if( index < 0 || _size <= index ) return ite ;
@@ -556,40 +556,40 @@ public:
 	}
 
 public:
-	D_csmPair< _KeyT, _ValT > *	_keyValues ;				// Key-D_JsonValueƒyƒA‚Ì”z—ñ
-	_ValT *						_dummyValuePtr ;			// ‹ó‚Ì’l‚ğ•Ô‚·‚½‚ß‚Ìƒ_ƒ~[(static‚Ìtemplte‚ğ‰ñ”ğ‚·‚é‚½‚ßƒƒ“ƒo‚Æ‚·‚éj
-	int							_size ;						// ƒRƒ“ƒeƒi‚Ì—v‘f”iƒTƒCƒYj
-	int							_capacity ;					// ƒRƒ“ƒeƒi‚ÌƒLƒƒƒpƒVƒeƒB
+	D_csmPair< _KeyT, _ValT > *	_keyValues ;				// Key-D_JsonValueãƒšã‚¢ã®é…åˆ—
+	_ValT *						_dummyValuePtr ;			// ç©ºã®å€¤ã‚’è¿”ã™ãŸã‚ã®ãƒ€ãƒŸãƒ¼(staticã®templteã‚’å›é¿ã™ã‚‹ãŸã‚ãƒ¡ãƒ³ãƒã¨ã™ã‚‹ï¼‰
+	int							_size ;						// ã‚³ãƒ³ãƒ†ãƒŠã®è¦ç´ æ•°ï¼ˆã‚µã‚¤ã‚ºï¼‰
+	int							_capacity ;					// ã‚³ãƒ³ãƒ†ãƒŠã®ã‚­ãƒ£ãƒ‘ã‚·ãƒ†ã‚£
 } ;
 
-// ID–¼‚ÌŠÇ—
+// IDåã®ç®¡ç†
 class D_CubismIdManager
 {
 	friend struct D_CubismId ;
 
 public:
-	D_CubismIdManager() ;																	// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-	~D_CubismIdManager() ;																	// ƒfƒXƒgƒ‰ƒNƒ^
-	void						RegisterIds( const char** ids, int count ) ;				// ID–¼‚ğƒŠƒXƒg‚©‚ç“o˜^
-	void						RegisterIds( const D_csmVector< D_csmString >& ids ) ;		// ID–¼‚ğƒŠƒXƒg‚©‚ç“o˜^
-	D_CubismId *				RegisterId( const char* id ) ;								// ID–¼‚ğ“o˜^
-	D_CubismId *				RegisterId( const D_csmString& id ) ;						// ID–¼‚ğ“o˜^
-	D_CubismId *				GetId( const D_csmString& id ) ;							// ID–¼‚©‚çID‚ğæ“¾‚·‚é
-	D_CubismId *				GetId( const char* id ) ;									// ID–¼‚©‚çID‚ğæ“¾‚·‚é
-	D_CubismId *				FindId( const char* id ) const ;							// ID–¼‚©‚çID‚ğŒŸõ
-	bool						IsExist( const D_csmString& id ) const ;					// ID–¼‚©‚çID‚ÌŠm”F
-	bool						IsExist( const char* id ) const ;							// ID–¼‚©‚çID‚ÌŠm”F
+	D_CubismIdManager() ;																	// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	~D_CubismIdManager() ;																	// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	void						RegisterIds( const char** ids, int count ) ;				// IDåã‚’ãƒªã‚¹ãƒˆã‹ã‚‰ç™»éŒ²
+	void						RegisterIds( const D_csmVector< D_csmString >& ids ) ;		// IDåã‚’ãƒªã‚¹ãƒˆã‹ã‚‰ç™»éŒ²
+	D_CubismId *				RegisterId( const char* id ) ;								// IDåã‚’ç™»éŒ²
+	D_CubismId *				RegisterId( const D_csmString& id ) ;						// IDåã‚’ç™»éŒ²
+	D_CubismId *				GetId( const D_csmString& id ) ;							// IDåã‹ã‚‰IDã‚’å–å¾—ã™ã‚‹
+	D_CubismId *				GetId( const char* id ) ;									// IDåã‹ã‚‰IDã‚’å–å¾—ã™ã‚‹
+	D_CubismId *				FindId( const char* id ) const ;							// IDåã‹ã‚‰IDã‚’æ¤œç´¢
+	bool						IsExist( const D_csmString& id ) const ;					// IDåã‹ã‚‰IDã®ç¢ºèª
+	bool						IsExist( const char* id ) const ;							// IDåã‹ã‚‰IDã®ç¢ºèª
 
 private:
 	D_CubismIdManager( const D_CubismIdManager& ) ;
 	D_CubismIdManager& operator=( const D_CubismIdManager& ) ;
 
-	D_CubismId *				_ids[ CSM_IDMANAGER_MAX_ID_NUM ] ;							// “o˜^‚³‚ê‚Ä‚¢‚éID‚ÌƒŠƒXƒg
-	volatile int				_idNum ;													// “o˜^‚³‚ê‚Ä‚¢‚éID‚Ì”
+	D_CubismId *				_ids[ CSM_IDMANAGER_MAX_ID_NUM ] ;							// ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹IDã®ãƒªã‚¹ãƒˆ
+	volatile int				_idNum ;													// ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹IDã®æ•°
 #ifndef DX_NON_NAMESPACE
-	DxLib::DX_CRITICAL_SECTION	_criticalSection ;											// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“
+	DxLib::DX_CRITICAL_SECTION	_criticalSection ;											// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³
 #else // DX_NON_NAMESPACE
-	DX_CRITICAL_SECTION			_criticalSection ;											// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“
+	DX_CRITICAL_SECTION			_criticalSection ;											// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³
 #endif // DX_NON_NAMESPACE
 } ;
 
@@ -600,102 +600,102 @@ class D_JsonNullValue ;
 #define D_CSM_JSON_ERROR_TYPE_MISMATCH            "D_JsonError:type mismatch"
 #define D_CSM_JSON_ERROR_INDEX_OUT_OF_BOUNDS      "D_JsonError:index out of bounds"
 
-// ƒp[ƒX‚µ‚½JSONƒGƒŒƒƒ“ƒg‚Ì—v‘f‚ÌŠî’êƒNƒ‰ƒX
+// ãƒ‘ãƒ¼ã‚¹ã—ãŸJSONã‚¨ãƒ¬ãƒ¡ãƒ³ãƒˆã®è¦ç´ ã®åŸºåº•ã‚¯ãƒ©ã‚¹
 class D_JsonValue
 {
 	friend class D_JsonArray ;
 
 public:
-	static D_JsonValue*			ErrorValue ;				// ˆê“I‚È•Ô‚è’l‚Æ‚µ‚Ä•Ô‚·ƒGƒ‰[BCubismFramework::Dispose()‚·‚é‚Ü‚Å‚ÍCSM_DELETE‚µ‚È‚¢B
-	static D_JsonValue*			NullValue ;					// ˆê“I‚È•Ô‚è’l‚Æ‚µ‚Ä•Ô‚·NULLBCubismFramework::Dispose()‚·‚é‚Ü‚Å‚ÍCSM_DELETE‚µ‚È‚¢B
-	D_JsonValue() {}																		// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-	virtual ~D_JsonValue() {}																// ƒfƒXƒgƒ‰ƒNƒ^
-	virtual D_csmString&		GetString( const D_csmString& defaultValue = "", const D_csmString& indent = "" ) = 0 ;// —v‘f‚ğ•¶š—ñ‚Å•Ô‚·(D_csmStringŒ^)
-	virtual const char*			GetRawString( const D_csmString& defaultValue = "", const D_csmString& indent = "" ) ;// —v‘f‚ğ•¶š—ñ‚Å•Ô‚·(char*)
-	virtual const char*			GetRawStringA( const D_csmString& defaultValue = "", const D_csmString& indent = "" ) ;// —v‘f‚ğ•¶š—ñ‚Å•Ô‚·(‚c‚wƒ‰ƒCƒuƒ‰ƒŠ—p)
-	virtual const BYTE/*wchar_t*/ *	GetRawStringW( const D_csmString& defaultValue = "", const D_csmString& indent = "" ) ;// —v‘f‚ğ•¶š—ñ‚Å•Ô‚·(wchar_t*)
-	virtual int					ToInt( int defaultValue = 0 ) { return defaultValue ; }			// —v‘f‚ğ”’lŒ^‚Å•Ô‚·( int)
-	virtual float				ToFloat( float defaultValue = 0.0f ) { return defaultValue ; }	// —v‘f‚ğ”’lŒ^‚Å•Ô‚·(float)
-	virtual bool				ToBoolean( bool defaultValue = false ) { return defaultValue ; }	// —v‘f‚ğ^‹U’l‚Å•Ô‚·( bool)
-	virtual int					GetSize() { return 0; }											// —v‘f‚ğ^‹U’l‚Å•Ô‚·( bool)
-	virtual D_csmVector<D_JsonValue*>*				GetVector( D_csmVector<D_JsonValue*>* defaultValue = NULL ) { return defaultValue ; }		// —v‘f‚ğƒRƒ“ƒeƒi‚Å•Ô‚·(D_csmVector<D_JsonValue*>)
-	virtual D_csmMap<D_csmString, D_JsonValue*>*	GetMap( D_csmMap<D_csmString, D_JsonValue*>* defaultValue = NULL ) { return defaultValue ; }	// —v‘f‚ğƒ}ƒbƒv‚Å•Ô‚·(D_csmMap<D_csmString, D_JsonValue*>)
-	virtual D_csmVector<D_csmString>&				GetKeys(){ return *s_dummyKeys ; }															// ƒ}ƒbƒv‚ÌƒL[ˆê——‚ğƒRƒ“ƒeƒi‚Å•Ô‚·
-	virtual D_JsonValue&		operator[]( int index )	;									// “Yš‰‰Zq[int]
-	virtual D_JsonValue&		operator[]( const D_csmString& string )	;					// “Yš‰‰Zq[D_csmString]
-	virtual D_JsonValue&		operator[]( const char* s )	;								// “Yš‰‰Zq[char*]
-	virtual bool				IsError() { return false ; }								// D_JsonValue‚Ìí—Ş‚ªƒGƒ‰[’l‚È‚çtrueB
-	virtual bool				IsNull() { return false ; }									// D_JsonValue‚Ìí—Ş‚ªNULL’l‚È‚çtrueB
-	virtual bool				IsBool() { return false ; }									// D_JsonValue‚Ìí—Ş‚ª^‹U’l‚È‚çtrueB
-	virtual bool				IsFloat() { return false ; }								// D_JsonValue‚Ìí—Ş‚ª”’lŒ^‚È‚çtrueB
-	virtual bool				IsString() { return false ; }								// D_JsonValue‚Ìí—Ş‚ª•¶š—ñ‚È‚çtrueB
-	virtual bool				IsArray() { return false ; }								// D_JsonValue‚Ìí—Ş‚ª”z—ñ‚È‚çtrueB
-	virtual bool				IsMap() { return false ; }									// D_JsonValue‚Ìí—Ş‚ªƒ}ƒbƒvŒ^‚È‚çtrueB
-	virtual bool				Equals( const D_csmString& /*value*/ ) { return false ; }	// ˆø”‚Ì’l‚Æ“™‚µ‚¯‚ê‚ÎtrueB
-	virtual bool				Equals( const char* /*value*/ ) { return false ; }			// ˆø”‚Ì’l‚Æ“™‚µ‚¯‚ê‚ÎtrueB
-	virtual bool				Equals( int /*value*/ ) { return false ; }					// ˆø”‚Ì’l‚Æ“™‚µ‚¯‚ê‚ÎtrueB
-	virtual bool				Equals( float /*value*/ ) { return false ; }				// ˆø”‚Ì’l‚Æ“™‚µ‚¯‚ê‚ÎtrueB
-	virtual bool				Equals( bool /*value*/ ) { return false ; }					// ˆø”‚Ì’l‚Æ“™‚µ‚¯‚ê‚ÎtrueB
-	virtual bool				IsStatic() { return false ; }								// D_JsonValue‚Ì’l‚ªÃ“I‚È‚çtrue. Ã“I‚È‚ç‰ğ•ú‚µ‚È‚¢
-	virtual D_JsonValue*		SetErrorNotForClientCall( const char* /*errorStr*/ ) { return ErrorValue ; }// D_JsonValue‚ÉƒGƒ‰[’l‚ğƒZƒbƒg‚·‚é
+	static D_JsonValue*			ErrorValue ;				// ä¸€æ™‚çš„ãªè¿”ã‚Šå€¤ã¨ã—ã¦è¿”ã™ã‚¨ãƒ©ãƒ¼ã€‚CubismFramework::Dispose()ã™ã‚‹ã¾ã§ã¯CSM_DELETEã—ãªã„ã€‚
+	static D_JsonValue*			NullValue ;					// ä¸€æ™‚çš„ãªè¿”ã‚Šå€¤ã¨ã—ã¦è¿”ã™NULLã€‚CubismFramework::Dispose()ã™ã‚‹ã¾ã§ã¯CSM_DELETEã—ãªã„ã€‚
+	D_JsonValue() {}																		// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	virtual ~D_JsonValue() {}																// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	virtual D_csmString&		GetString( const D_csmString& defaultValue = "", const D_csmString& indent = "" ) = 0 ;// è¦ç´ ã‚’æ–‡å­—åˆ—ã§è¿”ã™(D_csmStringå‹)
+	virtual const char*			GetRawString( const D_csmString& defaultValue = "", const D_csmString& indent = "" ) ;// è¦ç´ ã‚’æ–‡å­—åˆ—ã§è¿”ã™(char*)
+	virtual const char*			GetRawStringA( const D_csmString& defaultValue = "", const D_csmString& indent = "" ) ;// è¦ç´ ã‚’æ–‡å­—åˆ—ã§è¿”ã™(ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªç”¨)
+	virtual const BYTE/*wchar_t*/ *	GetRawStringW( const D_csmString& defaultValue = "", const D_csmString& indent = "" ) ;// è¦ç´ ã‚’æ–‡å­—åˆ—ã§è¿”ã™(wchar_t*)
+	virtual int					ToInt( int defaultValue = 0 ) { return defaultValue ; }			// è¦ç´ ã‚’æ•°å€¤å‹ã§è¿”ã™( int)
+	virtual float				ToFloat( float defaultValue = 0.0f ) { return defaultValue ; }	// è¦ç´ ã‚’æ•°å€¤å‹ã§è¿”ã™(float)
+	virtual bool				ToBoolean( bool defaultValue = false ) { return defaultValue ; }	// è¦ç´ ã‚’çœŸå½å€¤ã§è¿”ã™( bool)
+	virtual int					GetSize() { return 0; }											// è¦ç´ ã‚’çœŸå½å€¤ã§è¿”ã™( bool)
+	virtual D_csmVector<D_JsonValue*>*				GetVector( D_csmVector<D_JsonValue*>* defaultValue = NULL ) { return defaultValue ; }		// è¦ç´ ã‚’ã‚³ãƒ³ãƒ†ãƒŠã§è¿”ã™(D_csmVector<D_JsonValue*>)
+	virtual D_csmMap<D_csmString, D_JsonValue*>*	GetMap( D_csmMap<D_csmString, D_JsonValue*>* defaultValue = NULL ) { return defaultValue ; }	// è¦ç´ ã‚’ãƒãƒƒãƒ—ã§è¿”ã™(D_csmMap<D_csmString, D_JsonValue*>)
+	virtual D_csmVector<D_csmString>&				GetKeys(){ return *s_dummyKeys ; }															// ãƒãƒƒãƒ—ã®ã‚­ãƒ¼ä¸€è¦§ã‚’ã‚³ãƒ³ãƒ†ãƒŠã§è¿”ã™
+	virtual D_JsonValue&		operator[]( int index )	;									// æ·»å­—æ¼”ç®—å­[int]
+	virtual D_JsonValue&		operator[]( const D_csmString& string )	;					// æ·»å­—æ¼”ç®—å­[D_csmString]
+	virtual D_JsonValue&		operator[]( const char* s )	;								// æ·»å­—æ¼”ç®—å­[char*]
+	virtual bool				IsError() { return false ; }								// D_JsonValueã®ç¨®é¡ãŒã‚¨ãƒ©ãƒ¼å€¤ãªã‚‰trueã€‚
+	virtual bool				IsNull() { return false ; }									// D_JsonValueã®ç¨®é¡ãŒNULLå€¤ãªã‚‰trueã€‚
+	virtual bool				IsBool() { return false ; }									// D_JsonValueã®ç¨®é¡ãŒçœŸå½å€¤ãªã‚‰trueã€‚
+	virtual bool				IsFloat() { return false ; }								// D_JsonValueã®ç¨®é¡ãŒæ•°å€¤å‹ãªã‚‰trueã€‚
+	virtual bool				IsString() { return false ; }								// D_JsonValueã®ç¨®é¡ãŒæ–‡å­—åˆ—ãªã‚‰trueã€‚
+	virtual bool				IsArray() { return false ; }								// D_JsonValueã®ç¨®é¡ãŒé…åˆ—ãªã‚‰trueã€‚
+	virtual bool				IsMap() { return false ; }									// D_JsonValueã®ç¨®é¡ãŒãƒãƒƒãƒ—å‹ãªã‚‰trueã€‚
+	virtual bool				Equals( const D_csmString& /*value*/ ) { return false ; }	// å¼•æ•°ã®å€¤ã¨ç­‰ã—ã‘ã‚Œã°trueã€‚
+	virtual bool				Equals( const char* /*value*/ ) { return false ; }			// å¼•æ•°ã®å€¤ã¨ç­‰ã—ã‘ã‚Œã°trueã€‚
+	virtual bool				Equals( int /*value*/ ) { return false ; }					// å¼•æ•°ã®å€¤ã¨ç­‰ã—ã‘ã‚Œã°trueã€‚
+	virtual bool				Equals( float /*value*/ ) { return false ; }				// å¼•æ•°ã®å€¤ã¨ç­‰ã—ã‘ã‚Œã°trueã€‚
+	virtual bool				Equals( bool /*value*/ ) { return false ; }					// å¼•æ•°ã®å€¤ã¨ç­‰ã—ã‘ã‚Œã°trueã€‚
+	virtual bool				IsStatic() { return false ; }								// D_JsonValueã®å€¤ãŒé™çš„ãªã‚‰true. é™çš„ãªã‚‰è§£æ”¾ã—ãªã„
+	virtual D_JsonValue*		SetErrorNotForClientCall( const char* /*errorStr*/ ) { return ErrorValue ; }// D_JsonValueã«ã‚¨ãƒ©ãƒ¼å€¤ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 
-	static void					StaticInitializeNotForClientCall() ;							//  ‰Šú‰»—pƒƒ\ƒbƒh
-	static void					StaticReleaseNotForClientCall() ;							// ƒŠƒŠ[ƒX—pƒƒ\ƒbƒh
+	static void					StaticInitializeNotForClientCall() ;							//  åˆæœŸåŒ–ç”¨ãƒ¡ã‚½ãƒƒãƒ‰
+	static void					StaticReleaseNotForClientCall() ;							// ãƒªãƒªãƒ¼ã‚¹ç”¨ãƒ¡ã‚½ãƒƒãƒ‰
 protected:
-	D_csmString					_stringBuffer ;				// •¶š—ñƒoƒbƒtƒ@
+	D_csmString					_stringBuffer ;				// æ–‡å­—åˆ—ãƒãƒƒãƒ•ã‚¡
 
 private:
-	static D_csmVector<D_csmString>* s_dummyKeys ;			// ƒ_ƒ~[ƒL[
+	static D_csmVector<D_csmString>* s_dummyKeys ;			// ãƒ€ãƒŸãƒ¼ã‚­ãƒ¼
 } ;
 
-// Ascii•¶š‚Ì‚İ‘Î‰‚µ‚½Å¬ŒÀ‚ÌŒy—ÊJSONƒp[ƒTB
+// Asciiæ–‡å­—ã®ã¿å¯¾å¿œã—ãŸæœ€å°é™ã®è»½é‡JSONãƒ‘ãƒ¼ã‚µã€‚
 class D_CubismJson
 {
 public:
-	static D_CubismJson*		Create( const BYTE* buffer, size_t size ) ;					// ƒoƒCƒgƒf[ƒ^‚©‚ç’¼Úƒ[ƒh‚µ‚Äƒp[ƒX‚·‚é
-	static void					Delete( D_CubismJson* instance ) ;							// ƒp[ƒX‚µ‚½JSONƒIƒuƒWƒFƒNƒg‚Ì‰ğ•úˆ—
-	D_JsonValue&				GetRoot() const ;											// ƒp[ƒX‚µ‚½JSON‚Ìƒ‹[ƒg—v‘f‚Ìƒ|ƒCƒ“ƒ^‚ğ•Ô‚·
-	const char*					GetParseError() const { return _error ; }					// ƒp[ƒX‚ÌƒGƒ‰[’l‚ğ•Ô‚·
-	bool						CheckEndOfFile() const { return ( *_root )[ 1 ].Equals( "EOF" ) ; }// ƒ‹[ƒg—v‘f‚ÌŸ‚Ì—v‘f‚ªƒtƒ@ƒCƒ‹‚ÌI’[‚¾‚Á‚½‚çtrue‚ğ•Ô‚·
+	static D_CubismJson*		Create( const BYTE* buffer, size_t size ) ;					// ãƒã‚¤ãƒˆãƒ‡ãƒ¼ã‚¿ã‹ã‚‰ç›´æ¥ãƒ­ãƒ¼ãƒ‰ã—ã¦ãƒ‘ãƒ¼ã‚¹ã™ã‚‹
+	static void					Delete( D_CubismJson* instance ) ;							// ãƒ‘ãƒ¼ã‚¹ã—ãŸJSONã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®è§£æ”¾å‡¦ç†
+	D_JsonValue&				GetRoot() const ;											// ãƒ‘ãƒ¼ã‚¹ã—ãŸJSONã®ãƒ«ãƒ¼ãƒˆè¦ç´ ã®ãƒã‚¤ãƒ³ã‚¿ã‚’è¿”ã™
+	const char*					GetParseError() const { return _error ; }					// ãƒ‘ãƒ¼ã‚¹æ™‚ã®ã‚¨ãƒ©ãƒ¼å€¤ã‚’è¿”ã™
+	bool						CheckEndOfFile() const { return ( *_root )[ 1 ].Equals( "EOF" ) ; }// ãƒ«ãƒ¼ãƒˆè¦ç´ ã®æ¬¡ã®è¦ç´ ãŒãƒ•ã‚¡ã‚¤ãƒ«ã®çµ‚ç«¯ã ã£ãŸã‚‰trueã‚’è¿”ã™
 
 protected:
-	bool ParseBytes( const BYTE* buffer, int size ) ;// JSON‚Ìƒp[ƒX‚ğÀs‚·‚é
-	D_csmString ParseString( const char* string, int length, int begin, int* outEndPos ) ;	// Ÿ‚Ìu"v‚Ü‚Å‚Ì•¶š—ñ‚ğƒp[ƒX‚·‚éB•¶š—ñ‚ÍŠO•”‚Å‰ğ•ú‚·‚é•K—v‚ª‚ ‚éB
-	D_JsonValue* ParseObject( const char* buffer, int length, int begin, int* outEndPos ) ;	// JSON‚ÌƒIƒuƒWƒFƒNƒgƒGƒŒƒƒ“ƒg‚ğƒp[ƒX‚µ‚ÄD_JsonValueƒIƒuƒWƒFƒNƒg‚ğ•Ô‚·
-	D_JsonValue* ParseArray( const char* buffer, int length, int begin, int* outEndPos ) ;	// JSON‚Ì”z—ñƒGƒŒƒƒ“ƒg‚ğƒp[ƒX‚µ‚ÄD_JsonValueƒIƒuƒWƒFƒNƒg‚ğ•Ô‚·
-	D_JsonValue* ParseValue( const char* buffer, int length, int begin, int* outEndPos ) ;	// JSONƒGƒŒƒƒ“ƒg‚©‚çD_JsonValue(float,D_JsonString,D_JsonValue*,D_JsonArray,null,true,false)‚ğƒp[ƒX‚·‚éƒGƒŒƒƒ“ƒg‚Ì‘®‚É‰‚¶‚Ä“à•”‚ÅParseString(), ParseObject(), ParseArray()‚ğŒÄ‚Ô
+	bool ParseBytes( const BYTE* buffer, int size ) ;// JSONã®ãƒ‘ãƒ¼ã‚¹ã‚’å®Ÿè¡Œã™ã‚‹
+	D_csmString ParseString( const char* string, int length, int begin, int* outEndPos ) ;	// æ¬¡ã®ã€Œ"ã€ã¾ã§ã®æ–‡å­—åˆ—ã‚’ãƒ‘ãƒ¼ã‚¹ã™ã‚‹ã€‚æ–‡å­—åˆ—ã¯å¤–éƒ¨ã§è§£æ”¾ã™ã‚‹å¿…è¦ãŒã‚ã‚‹ã€‚
+	D_JsonValue* ParseObject( const char* buffer, int length, int begin, int* outEndPos ) ;	// JSONã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚¨ãƒ¬ãƒ¡ãƒ³ãƒˆã‚’ãƒ‘ãƒ¼ã‚¹ã—ã¦D_JsonValueã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’è¿”ã™
+	D_JsonValue* ParseArray( const char* buffer, int length, int begin, int* outEndPos ) ;	// JSONã®é…åˆ—ã‚¨ãƒ¬ãƒ¡ãƒ³ãƒˆã‚’ãƒ‘ãƒ¼ã‚¹ã—ã¦D_JsonValueã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’è¿”ã™
+	D_JsonValue* ParseValue( const char* buffer, int length, int begin, int* outEndPos ) ;	// JSONã‚¨ãƒ¬ãƒ¡ãƒ³ãƒˆã‹ã‚‰D_JsonValue(float,D_JsonString,D_JsonValue*,D_JsonArray,null,true,false)ã‚’ãƒ‘ãƒ¼ã‚¹ã™ã‚‹ã‚¨ãƒ¬ãƒ¡ãƒ³ãƒˆã®æ›¸å¼ã«å¿œã˜ã¦å†…éƒ¨ã§ParseString(), ParseObject(), ParseArray()ã‚’å‘¼ã¶
 
 private:
-	D_CubismJson() ;																			// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-	D_CubismJson( const BYTE* buffer, int length ) ;											// ˆø”•t‚«ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-	virtual ~D_CubismJson() ;																// ƒfƒXƒgƒ‰ƒNƒ^
+	D_CubismJson() ;																			// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	D_CubismJson( const BYTE* buffer, int length ) ;											// å¼•æ•°ä»˜ãã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	virtual ~D_CubismJson() ;																// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 
-	const char*					_error ;						// ƒp[ƒX‚ÌƒGƒ‰[
-	int							_lineCount ;					// ƒGƒ‰[•ñ‚É—p‚¢‚és”ƒJƒEƒ“ƒg
-	D_JsonValue*				_root ;						// ƒp[ƒX‚³‚ê‚½ƒ‹[ƒg—v‘f
+	const char*					_error ;						// ãƒ‘ãƒ¼ã‚¹æ™‚ã®ã‚¨ãƒ©ãƒ¼
+	int							_lineCount ;					// ã‚¨ãƒ©ãƒ¼å ±å‘Šã«ç”¨ã„ã‚‹è¡Œæ•°ã‚«ã‚¦ãƒ³ãƒˆ
+	D_JsonValue*				_root ;						// ãƒ‘ãƒ¼ã‚¹ã•ã‚ŒãŸãƒ«ãƒ¼ãƒˆè¦ç´ 
 } ;
 
-// ƒp[ƒX‚µ‚½JSON‚Ì—v‘f‚ğDouble’l‚Æ‚µ‚Äˆµ‚¤
+// ãƒ‘ãƒ¼ã‚¹ã—ãŸJSONã®è¦ç´ ã‚’Doubleå€¤ã¨ã—ã¦æ‰±ã†
 class D_JsonFloat : public D_JsonValue
 {
 public:
-	D_JsonFloat( float v ) : D_JsonValue() { this->_value = v; }							// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-	virtual ~D_JsonFloat() {}																// ƒfƒXƒgƒ‰ƒNƒ^
-	virtual bool				IsFloat() { return true ; }									// D_JsonValue‚Ìí—Ş‚ª”’lŒ^‚È‚çtrueB
-	virtual D_csmString&		GetString( const D_csmString& defaultValue = "", const D_csmString& indent = "" ) ;	// —v‘f‚ğ•¶š—ñ‚Å•Ô‚·(D_csmStringŒ^)
-	virtual int					ToInt( int /*defaultValue*/ = 0 ) { return static_cast< int >( this->_value ) ; }	// —v‘f‚ğ”’lŒ^‚Å•Ô‚·( int)
-	virtual float				ToFloat( float /*defaultValue*/ = 0 ) { return this->_value ; }						// —v‘f‚ğ”’lŒ^‚Å•Ô‚·(float)
-	virtual bool				Equals( float v ) { return v == this->_value ; }			// ˆø”‚Ì’l‚Æ“™‚µ‚¯‚ê‚Îtrue
-	virtual bool				Equals( const D_csmString& /*v*/ ) { return false ; }		// ˆø”‚Ì’l‚Æ“™‚µ‚¯‚ê‚Îtrue
-	virtual bool				Equals( const char* /*v*/ ) { return false ; }				// ˆø”‚Ì’l‚Æ“™‚µ‚¯‚ê‚Îtrue
-	virtual bool				Equals( int /*v*/ ) { return false ; }						// ˆø”‚Ì’l‚Æ“™‚µ‚¯‚ê‚Îtrue
-	virtual bool				Equals( bool /*v*/ ) { return false ; }						// ˆø”‚Ì’l‚Æ“™‚µ‚¯‚ê‚Îtrue
+	D_JsonFloat( float v ) : D_JsonValue() { this->_value = v; }							// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	virtual ~D_JsonFloat() {}																// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	virtual bool				IsFloat() { return true ; }									// D_JsonValueã®ç¨®é¡ãŒæ•°å€¤å‹ãªã‚‰trueã€‚
+	virtual D_csmString&		GetString( const D_csmString& defaultValue = "", const D_csmString& indent = "" ) ;	// è¦ç´ ã‚’æ–‡å­—åˆ—ã§è¿”ã™(D_csmStringå‹)
+	virtual int					ToInt( int /*defaultValue*/ = 0 ) { return static_cast< int >( this->_value ) ; }	// è¦ç´ ã‚’æ•°å€¤å‹ã§è¿”ã™( int)
+	virtual float				ToFloat( float /*defaultValue*/ = 0 ) { return this->_value ; }						// è¦ç´ ã‚’æ•°å€¤å‹ã§è¿”ã™(float)
+	virtual bool				Equals( float v ) { return v == this->_value ; }			// å¼•æ•°ã®å€¤ã¨ç­‰ã—ã‘ã‚Œã°true
+	virtual bool				Equals( const D_csmString& /*v*/ ) { return false ; }		// å¼•æ•°ã®å€¤ã¨ç­‰ã—ã‘ã‚Œã°true
+	virtual bool				Equals( const char* /*v*/ ) { return false ; }				// å¼•æ•°ã®å€¤ã¨ç­‰ã—ã‘ã‚Œã°true
+	virtual bool				Equals( int /*v*/ ) { return false ; }						// å¼•æ•°ã®å€¤ã¨ç­‰ã—ã‘ã‚Œã°true
+	virtual bool				Equals( bool /*v*/ ) { return false ; }						// å¼•æ•°ã®å€¤ã¨ç­‰ã—ã‘ã‚Œã°true
 
 private:
-	float						_value ;						// JSON—v‘f‚Ì’l
+	float						_value ;						// JSONè¦ç´ ã®å€¤
 } ;
 
-// ƒp[ƒX‚µ‚½JSON‚Ì—v‘f‚ğ^‹U’l‚Æ‚µ‚Äˆµ‚¤
+// ãƒ‘ãƒ¼ã‚¹ã—ãŸJSONã®è¦ç´ ã‚’çœŸå½å€¤ã¨ã—ã¦æ‰±ã†
 class D_JsonBoolean : public D_JsonValue
 {
 	friend class D_JsonValue ;
@@ -703,39 +703,39 @@ class D_JsonBoolean : public D_JsonValue
 public:
 	static D_JsonBoolean*		TrueValue ; // true
 	static D_JsonBoolean*		FalseValue ;// false
-	virtual ~D_JsonBoolean() {}																// ƒfƒXƒgƒ‰ƒNƒ^
-	virtual bool				IsBool() { return true ; }									// D_JsonValue‚Ìí—Ş‚ª^‹U’l‚È‚çtrueB
-	virtual bool				ToBoolean( bool /*defaultValue = false*/ ) { return _boolValue ; }// —v‘f‚ğ^‹U’l‚Å•Ô‚·( bool)
-	virtual D_csmString&		GetString( const D_csmString& defaultValue = "", const D_csmString& indent = "" ) ;// —v‘f‚ğ•¶š—ñ‚Å•Ô‚·(D_csmStringŒ^)
-	virtual bool				Equals( bool v ) { return v == _boolValue ; }				// ˆø”‚Ì’l‚Æ“™‚µ‚¯‚ê‚ÎtrueB
-	virtual bool				Equals( const D_csmString& /*v*/ ) { return false ; }		// ˆø”‚Ì’l‚Æ“™‚µ‚¯‚ê‚ÎtrueB
-	virtual bool				Equals( const char* /*v*/ ) { return false ; }				// ˆø”‚Ì’l‚Æ“™‚µ‚¯‚ê‚ÎtrueB
-	virtual bool				Equals( int /*v*/ ) { return false ; }						// ˆø”‚Ì’l‚Æ“™‚µ‚¯‚ê‚ÎtrueB
-	virtual bool				Equals( float /*v*/ ) { return false ; }					// ˆø”‚Ì’l‚Æ“™‚µ‚¯‚ê‚ÎtrueB
-	virtual bool				IsStatic() { return true ; }								// D_JsonValue‚Ì’l‚ªÃ“I‚È‚çtrue. Ã“I‚È‚ç‰ğ•ú‚µ‚È‚¢
+	virtual ~D_JsonBoolean() {}																// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	virtual bool				IsBool() { return true ; }									// D_JsonValueã®ç¨®é¡ãŒçœŸå½å€¤ãªã‚‰trueã€‚
+	virtual bool				ToBoolean( bool /*defaultValue = false*/ ) { return _boolValue ; }// è¦ç´ ã‚’çœŸå½å€¤ã§è¿”ã™( bool)
+	virtual D_csmString&		GetString( const D_csmString& defaultValue = "", const D_csmString& indent = "" ) ;// è¦ç´ ã‚’æ–‡å­—åˆ—ã§è¿”ã™(D_csmStringå‹)
+	virtual bool				Equals( bool v ) { return v == _boolValue ; }				// å¼•æ•°ã®å€¤ã¨ç­‰ã—ã‘ã‚Œã°trueã€‚
+	virtual bool				Equals( const D_csmString& /*v*/ ) { return false ; }		// å¼•æ•°ã®å€¤ã¨ç­‰ã—ã‘ã‚Œã°trueã€‚
+	virtual bool				Equals( const char* /*v*/ ) { return false ; }				// å¼•æ•°ã®å€¤ã¨ç­‰ã—ã‘ã‚Œã°trueã€‚
+	virtual bool				Equals( int /*v*/ ) { return false ; }						// å¼•æ•°ã®å€¤ã¨ç­‰ã—ã‘ã‚Œã°trueã€‚
+	virtual bool				Equals( float /*v*/ ) { return false ; }					// å¼•æ•°ã®å€¤ã¨ç­‰ã—ã‘ã‚Œã°trueã€‚
+	virtual bool				IsStatic() { return true ; }								// D_JsonValueã®å€¤ãŒé™çš„ãªã‚‰true. é™çš„ãªã‚‰è§£æ”¾ã—ãªã„
 
 private:
-	D_JsonBoolean( bool v ) : D_JsonValue() { this->_boolValue = v; }						// ˆø”•t‚«ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-	bool						_boolValue ;					// JSON—v‘f‚Ì’l
+	D_JsonBoolean( bool v ) : D_JsonValue() { this->_boolValue = v; }						// å¼•æ•°ä»˜ãã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	bool						_boolValue ;					// JSONè¦ç´ ã®å€¤
 } ;
 
-// ƒp[ƒX‚µ‚½JSON‚Ì—v‘f‚ğ•¶š—ñ‚Æ‚µ‚Äˆµ‚¤
+// ãƒ‘ãƒ¼ã‚¹ã—ãŸJSONã®è¦ç´ ã‚’æ–‡å­—åˆ—ã¨ã—ã¦æ‰±ã†
 class D_JsonString : public D_JsonValue
 {
 public:
-	D_JsonString( const D_csmString& s ) : D_JsonValue() { this->_stringBuffer = s ; }		// ˆø”•t‚«ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-	D_JsonString( const char* s ) : D_JsonValue() { this->_stringBuffer = s ; }				// ˆø”•t‚«ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-	virtual ~D_JsonString() {}																// ƒfƒXƒgƒ‰ƒNƒ^
-	virtual bool				IsString() { return true ; }									// D_JsonValue‚Ìí—Ş‚ª•¶š—ñ‚È‚çtrueB
-	virtual D_csmString&		GetString( const D_csmString& defaultValue = "", const D_csmString& indent = "" ) ;// —v‘f‚ğ•¶š—ñ‚Å•Ô‚·(D_csmStringŒ^)
-	virtual bool				Equals( const D_csmString& v ) { return ( _stringBuffer == v ) ; }// ˆø”‚Ì’l‚Æ“™‚µ‚¯‚ê‚ÎtrueB
-	virtual bool				Equals( const char* v ) { return ( _stringBuffer == v ) ; }	// ˆø”‚Ì’l‚Æ“™‚µ‚¯‚ê‚ÎtrueB
-	virtual bool				Equals( int /*v*/ ) { return false ; }						// ˆø”‚Ì’l‚Æ“™‚µ‚¯‚ê‚ÎtrueB
-	virtual bool				Equals( float /*v*/ ) { return false ; }					// ˆø”‚Ì’l‚Æ“™‚µ‚¯‚ê‚ÎtrueB
-	virtual bool				Equals( bool /*v*/ ) { return false ; }						// ˆø”‚Ì’l‚Æ“™‚µ‚¯‚ê‚ÎtrueB
+	D_JsonString( const D_csmString& s ) : D_JsonValue() { this->_stringBuffer = s ; }		// å¼•æ•°ä»˜ãã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	D_JsonString( const char* s ) : D_JsonValue() { this->_stringBuffer = s ; }				// å¼•æ•°ä»˜ãã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	virtual ~D_JsonString() {}																// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	virtual bool				IsString() { return true ; }									// D_JsonValueã®ç¨®é¡ãŒæ–‡å­—åˆ—ãªã‚‰trueã€‚
+	virtual D_csmString&		GetString( const D_csmString& defaultValue = "", const D_csmString& indent = "" ) ;// è¦ç´ ã‚’æ–‡å­—åˆ—ã§è¿”ã™(D_csmStringå‹)
+	virtual bool				Equals( const D_csmString& v ) { return ( _stringBuffer == v ) ; }// å¼•æ•°ã®å€¤ã¨ç­‰ã—ã‘ã‚Œã°trueã€‚
+	virtual bool				Equals( const char* v ) { return ( _stringBuffer == v ) ; }	// å¼•æ•°ã®å€¤ã¨ç­‰ã—ã‘ã‚Œã°trueã€‚
+	virtual bool				Equals( int /*v*/ ) { return false ; }						// å¼•æ•°ã®å€¤ã¨ç­‰ã—ã‘ã‚Œã°trueã€‚
+	virtual bool				Equals( float /*v*/ ) { return false ; }					// å¼•æ•°ã®å€¤ã¨ç­‰ã—ã‘ã‚Œã°trueã€‚
+	virtual bool				Equals( bool /*v*/ ) { return false ; }						// å¼•æ•°ã®å€¤ã¨ç­‰ã—ã‘ã‚Œã°trueã€‚
 } ;
 
-// JSONƒp[ƒX‚ÌƒGƒ‰[Œ‹‰ÊB•¶š—ñŒ^‚Ì‚æ‚¤‚ÉU‚é•‘‚¤
+// JSONãƒ‘ãƒ¼ã‚¹æ™‚ã®ã‚¨ãƒ©ãƒ¼çµæœã€‚æ–‡å­—åˆ—å‹ã®ã‚ˆã†ã«æŒ¯ã‚‹èˆã†
 class D_JsonError : public D_JsonString
 {
 	friend class D_JsonValue ; //
@@ -743,102 +743,102 @@ class D_JsonError : public D_JsonString
 	friend class D_CubismJson ; //
 
 public:
-	virtual bool				IsStatic() { return _isStatic ; }							// D_JsonValue‚Ì’l‚ªÃ“I‚È‚çtrue. Ã“I‚È‚ç‰ğ•ú‚µ‚È‚¢
-	virtual D_JsonValue*		SetErrorNotForClientCall( const char* s ){ _stringBuffer = s ; return this ; }	//  ƒGƒ‰[î•ñ‚ğƒZƒbƒg‚·‚é
+	virtual bool				IsStatic() { return _isStatic ; }							// D_JsonValueã®å€¤ãŒé™çš„ãªã‚‰true. é™çš„ãªã‚‰è§£æ”¾ã—ãªã„
+	virtual D_JsonValue*		SetErrorNotForClientCall( const char* s ){ _stringBuffer = s ; return this ; }	//  ã‚¨ãƒ©ãƒ¼æƒ…å ±ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 
 protected:
-	D_JsonError( const D_csmString& s, bool isStatic ) : D_JsonString( s ), _isStatic( isStatic ) {}// ˆø”•t‚«ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-	virtual ~D_JsonError() {}																// ƒfƒXƒgƒ‰ƒNƒ^
-	virtual bool				IsError() { return true ; }									// D_JsonValue‚Ìí—Ş‚ªƒGƒ‰[’l‚È‚çtrueB
+	D_JsonError( const D_csmString& s, bool isStatic ) : D_JsonString( s ), _isStatic( isStatic ) {}// å¼•æ•°ä»˜ãã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	virtual ~D_JsonError() {}																// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	virtual bool				IsError() { return true ; }									// D_JsonValueã®ç¨®é¡ãŒã‚¨ãƒ©ãƒ¼å€¤ãªã‚‰trueã€‚
 
-	bool						_isStatic ;					// Ã“I‚ÈD_JsonValue‚©‚Ç‚¤‚©
+	bool						_isStatic ;					// é™çš„ãªD_JsonValueã‹ã©ã†ã‹
 } ;
 
-// ƒp[ƒX‚µ‚½JSON‚Ì—v‘f‚ğNull’l‚Æ‚µ‚Ä‚Â
+// ãƒ‘ãƒ¼ã‚¹ã—ãŸJSONã®è¦ç´ ã‚’Nullå€¤ã¨ã—ã¦æŒã¤
 class D_JsonNullValue : public D_JsonValue
 {
 	friend class D_JsonValue ; //
 	friend class D_CubismJson ; //
 
 public:
-	virtual ~D_JsonNullValue() {}															// ƒfƒXƒgƒ‰ƒNƒ^
-	virtual bool IsNull() { return true ; }													// D_JsonValue‚Ìí—Ş‚ªNULL’l‚È‚çtrueB
-	virtual D_csmString& GetString( const D_csmString& /*defaultValue = ""*/, const D_csmString& /*indent = ""*/ ){ return _stringBuffer ; }	// —v‘f‚ğ•¶š—ñ‚Å•Ô‚·(D_csmStringŒ^)
-	virtual bool IsStatic() { return true ; }												// D_JsonValue‚Ì’l‚ªÃ“I‚È‚çtrue. Ã“I‚È‚ç‰ğ•ú‚µ‚È‚¢
+	virtual ~D_JsonNullValue() {}															// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	virtual bool IsNull() { return true ; }													// D_JsonValueã®ç¨®é¡ãŒNULLå€¤ãªã‚‰trueã€‚
+	virtual D_csmString& GetString( const D_csmString& /*defaultValue = ""*/, const D_csmString& /*indent = ""*/ ){ return _stringBuffer ; }	// è¦ç´ ã‚’æ–‡å­—åˆ—ã§è¿”ã™(D_csmStringå‹)
+	virtual bool IsStatic() { return true ; }												// D_JsonValueã®å€¤ãŒé™çš„ãªã‚‰true. é™çš„ãªã‚‰è§£æ”¾ã—ãªã„
 
 private:
-	D_JsonNullValue() : D_JsonValue() { _stringBuffer = "D_JsonNullValue"; }				//  ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	D_JsonNullValue() : D_JsonValue() { _stringBuffer = "D_JsonNullValue"; }				//  ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 } ;
 
-// ƒp[ƒX‚µ‚½JSON‚Ì—v‘f‚ğ”z—ñ‚Æ‚µ‚Ä‚Â
+// ãƒ‘ãƒ¼ã‚¹ã—ãŸJSONã®è¦ç´ ã‚’é…åˆ—ã¨ã—ã¦æŒã¤
 class D_JsonArray : public D_JsonValue
 {
 public:
-	D_JsonArray() : D_JsonValue(), _array() {}												//  ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-	virtual ~D_JsonArray() ;																// ƒfƒXƒgƒ‰ƒNƒ^
-	virtual bool				IsArray() { return true ; }									// D_JsonValue‚Ìí—Ş‚ª”z—ñ‚È‚çtrueB
-	virtual D_JsonValue&		operator[]( int index ) ;									// “Yš‰‰Zq[int]
-	virtual D_JsonValue&		operator[]( const D_csmString& string ) ;					// “Yš‰‰Zq[D_csmString]
-	virtual D_JsonValue&		operator[]( const char* s ) ;								// “Yš‰‰Zq[char*]
-	virtual D_csmString&		GetString( const D_csmString& defaultValue = "", const D_csmString& indent = "" ) ;// —v‘f‚ğ•¶š—ñ‚Å•Ô‚·(D_csmStringŒ^)
-	void						Add( D_JsonValue* v ) { _array.PushBack( v, false ) ; }		// ”z—ñ—v‘f‚ğ’Ç‰Á‚·‚é
-	virtual D_csmVector<D_JsonValue*>* GetVector( D_csmVector<D_JsonValue*>* /*defaultValue = NULL*/ ) { return &_array ; }// —v‘f‚ğƒRƒ“ƒeƒi‚Å•Ô‚·(D_csmVector<D_JsonValue*>)
-	virtual int					GetSize() { return static_cast< int >( _array.GetSize() ) ; }// —v‘f‚Ì”‚ğ•Ô‚·
+	D_JsonArray() : D_JsonValue(), _array() {}												//  ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	virtual ~D_JsonArray() ;																// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	virtual bool				IsArray() { return true ; }									// D_JsonValueã®ç¨®é¡ãŒé…åˆ—ãªã‚‰trueã€‚
+	virtual D_JsonValue&		operator[]( int index ) ;									// æ·»å­—æ¼”ç®—å­[int]
+	virtual D_JsonValue&		operator[]( const D_csmString& string ) ;					// æ·»å­—æ¼”ç®—å­[D_csmString]
+	virtual D_JsonValue&		operator[]( const char* s ) ;								// æ·»å­—æ¼”ç®—å­[char*]
+	virtual D_csmString&		GetString( const D_csmString& defaultValue = "", const D_csmString& indent = "" ) ;// è¦ç´ ã‚’æ–‡å­—åˆ—ã§è¿”ã™(D_csmStringå‹)
+	void						Add( D_JsonValue* v ) { _array.PushBack( v, false ) ; }		// é…åˆ—è¦ç´ ã‚’è¿½åŠ ã™ã‚‹
+	virtual D_csmVector<D_JsonValue*>* GetVector( D_csmVector<D_JsonValue*>* /*defaultValue = NULL*/ ) { return &_array ; }// è¦ç´ ã‚’ã‚³ãƒ³ãƒ†ãƒŠã§è¿”ã™(D_csmVector<D_JsonValue*>)
+	virtual int					GetSize() { return static_cast< int >( _array.GetSize() ) ; }// è¦ç´ ã®æ•°ã‚’è¿”ã™
 
 private:
-	D_csmVector<D_JsonValue*>	_array ;						// JSON—v‘f‚Ì’l
+	D_csmVector<D_JsonValue*>	_array ;						// JSONè¦ç´ ã®å€¤
 } ;
 
-// ƒp[ƒX‚µ‚½JSON‚Ì—v‘f‚ğƒ}ƒbƒv‚Æ‚µ‚Ä‚Â
+// ãƒ‘ãƒ¼ã‚¹ã—ãŸJSONã®è¦ç´ ã‚’ãƒãƒƒãƒ—ã¨ã—ã¦æŒã¤
 class D_JsonMap : public D_JsonValue
 {
 public:
-	D_JsonMap() : D_JsonValue(), _keys( NULL ) {}											//  ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-	virtual ~D_JsonMap() ;																	//  ƒfƒXƒgƒ‰ƒNƒ^
-	virtual bool				IsMap() { return true ; }									//  D_JsonValue‚Ì’l‚ªD_JsonMapŒ^‚È‚çtrue
-	virtual D_JsonValue&		operator[]( const D_csmString& s ) ;						// “Yš‰‰Zq[D_csmString]
-	virtual D_JsonValue&		operator[]( const char* s ) ;								// “Yš‰‰Zq[char*]
-	virtual D_JsonValue&		operator[]( int index ) ;									// “Yš‰‰Zq[int]
+	D_JsonMap() : D_JsonValue(), _keys( NULL ) {}											//  ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	virtual ~D_JsonMap() ;																	//  ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	virtual bool				IsMap() { return true ; }									//  D_JsonValueã®å€¤ãŒD_JsonMapå‹ãªã‚‰true
+	virtual D_JsonValue&		operator[]( const D_csmString& s ) ;						// æ·»å­—æ¼”ç®—å­[D_csmString]
+	virtual D_JsonValue&		operator[]( const char* s ) ;								// æ·»å­—æ¼”ç®—å­[char*]
+	virtual D_JsonValue&		operator[]( int index ) ;									// æ·»å­—æ¼”ç®—å­[int]
 	virtual D_csmString&		GetString( const D_csmString& defaultValue = "", const D_csmString& indent = "" ) ;
-	void						Put( D_csmString& key, D_JsonValue* v ) ;					// D_JsonMap‚É—v‘f‚ğ’Ç‰Á‚·‚é
-	virtual int					GetSize() { return static_cast< int >( _keys->GetSize() ) ; }// D_JsonMap‚Ì—v‘f”‚ğæ“¾‚·‚é
-	virtual D_csmMap<D_csmString, D_JsonValue*>* GetMap( D_csmMap<D_csmString, D_JsonValue*>* defaultValue = NULL ) ;//  —v‘f‚ğD_JsonMapŒ^‚Å•Ô‚·
-	virtual D_csmVector<D_csmString>& GetKeys() ;											//  D_JsonMap‚©‚çƒL[‚ÌƒŠƒXƒg‚ğæ“¾‚·‚é
+	void						Put( D_csmString& key, D_JsonValue* v ) ;					// D_JsonMapã«è¦ç´ ã‚’è¿½åŠ ã™ã‚‹
+	virtual int					GetSize() { return static_cast< int >( _keys->GetSize() ) ; }// D_JsonMapã®è¦ç´ æ•°ã‚’å–å¾—ã™ã‚‹
+	virtual D_csmMap<D_csmString, D_JsonValue*>* GetMap( D_csmMap<D_csmString, D_JsonValue*>* defaultValue = NULL ) ;//  è¦ç´ ã‚’D_JsonMapå‹ã§è¿”ã™
+	virtual D_csmVector<D_csmString>& GetKeys() ;											//  D_JsonMapã‹ã‚‰ã‚­ãƒ¼ã®ãƒªã‚¹ãƒˆã‚’å–å¾—ã™ã‚‹
 
 private:
-	D_csmMap<D_csmString, D_JsonValue*>	_map;		// JSON—v‘f‚Ì’l
-	D_csmVector<D_csmString>*			_keys ;		// JSON—v‘f‚Ì’l
+	D_csmMap<D_csmString, D_JsonValue*>	_map;		// JSONè¦ç´ ã®å€¤
+	D_csmVector<D_csmString>*			_keys ;		// JSONè¦ç´ ã®å€¤
 } ;
 
-// motion3.json‚ÌƒRƒ“ƒeƒiB
+// motion3.jsonã®ã‚³ãƒ³ãƒ†ãƒŠã€‚
 class D_CubismMotionJson
 {
 public:
-	D_CubismMotionJson( const BYTE* buffer, size_t size ) ;									// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-	virtual ~D_CubismMotionJson() ;															// ƒfƒXƒgƒ‰ƒNƒ^
-	float						GetMotionDuration() const ;									// ƒ‚[ƒVƒ‡ƒ“‚Ì’·‚³‚Ìæ“¾
-	bool						IsMotionLoop() const ;										// ƒ‚[ƒVƒ‡ƒ“‚Ìƒ‹[ƒvî•ñ‚Ìæ“¾
-	bool						GetEvaluationOptionFlag( int flagType ) const ;				// ƒ‚[ƒVƒ‡ƒ“‚ÌƒxƒWƒFƒJ[ƒu‚Ì‰ğß•û®‚Ìƒtƒ‰ƒOæ“¾
-	int							GetMotionCurveCount() const ;								// ƒ‚[ƒVƒ‡ƒ“ƒJ[ƒu‚ÌŒÂ”‚Ìæ“¾
-	float						GetMotionFps() const ;										// ƒ‚[ƒVƒ‡ƒ“‚ÌƒtƒŒ[ƒ€ƒŒ[ƒg‚Ìæ“¾
-	int							GetMotionTotalSegmentCount() const ;						// ƒ‚[ƒVƒ‡ƒ“‚ÌƒZƒOƒƒ“ƒg‚Ì‘‡Œv‚Ìæ“¾
-	int							GetMotionTotalPointCount() const ;							// ƒ‚[ƒVƒ‡ƒ“‚ÌƒJ[ƒu‚Ì§Œä“_‚Ì‘‡Œv‚Ìæ“¾
-	bool						IsExistMotionFadeInTime() const ;							// ƒ‚[ƒVƒ‡ƒ“‚ÌƒtƒF[ƒhƒCƒ“ŠÔ‚Ì‘¶İ
-	bool						IsExistMotionFadeOutTime() const ;							// ƒ‚[ƒVƒ‡ƒ“‚ÌƒtƒF[ƒhƒAƒEƒgŠÔ‚Ì‘¶İ
-	float						GetMotionFadeInTime() const ;								// ƒ‚[ƒVƒ‡ƒ“‚ÌƒtƒF[ƒhƒCƒ“ŠÔ‚Ìæ“¾
-	float						GetMotionFadeOutTime() const ;								// ƒ‚[ƒVƒ‡ƒ“‚ÌƒtƒF[ƒhƒAƒEƒgŠÔ‚Ìæ“¾
-	const char*					GetMotionCurveTarget( int curveIndex ) const ;				// ƒ‚[ƒVƒ‡ƒ“‚ÌƒJ[ƒu‚Ìí—Ş‚Ìæ“¾
-	D_CubismIdHandle			GetMotionCurveId( int curveIndex ) ;						// ƒ‚[ƒVƒ‡ƒ“‚ÌƒJ[ƒu‚ÌID‚Ìæ“¾
-	bool						IsExistMotionCurveFadeInTime( int curveIndex ) const ;		// ƒ‚[ƒVƒ‡ƒ“‚ÌƒJ[ƒu‚ÌƒtƒF[ƒhƒCƒ“ŠÔ‚Ì‘¶İ
-	bool						IsExistMotionCurveFadeOutTime( int curveIndex ) const ;		// ƒ‚[ƒVƒ‡ƒ“‚ÌƒJ[ƒu‚ÌƒtƒF[ƒhƒAƒEƒgŠÔ‚Ì‘¶İ
-	float						GetMotionCurveFadeInTime( int curveIndex ) const ;			// ƒ‚[ƒVƒ‡ƒ“‚ÌƒJ[ƒu‚ÌƒtƒF[ƒhƒCƒ“ŠÔ‚Ìæ“¾
-	float						GetMotionCurveFadeOutTime( int curveIndex ) const ;			// ƒ‚[ƒVƒ‡ƒ“‚ÌƒJ[ƒu‚ÌƒtƒF[ƒhƒAƒEƒgŠÔ‚Ìæ“¾
-	int							GetMotionCurveSegmentCount( int curveIndex ) const ;		// ƒ‚[ƒVƒ‡ƒ“‚ÌƒJ[ƒu‚ÌƒZƒOƒƒ“ƒg‚ÌŒÂ”‚Ìæ“¾
-	float						GetMotionCurveSegment( int curveIndex, int segmentIndex ) const ;// ƒ‚[ƒVƒ‡ƒ“‚ÌƒJ[ƒu‚ÌƒZƒOƒƒ“ƒg‚Ì’l‚Ìæ“¾
-	int							GetEventCount() const ;										// ƒCƒxƒ“ƒg‚ÌŒÂ”‚Ìæ“¾
-	int							GetTotalEventValueSize() const ;							// ƒCƒxƒ“ƒg‚Ì‘•¶š”‚Ìæ“¾
-	float						GetEventTime( int userDataIndex ) const ;					// ƒCƒxƒ“ƒg‚ÌŠÔ‚Ìæ“¾
-	const char*					GetEventValue( int userDataIndex ) const ;					// ƒCƒxƒ“ƒg‚Ìæ“¾
+	D_CubismMotionJson( const BYTE* buffer, size_t size ) ;									// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	virtual ~D_CubismMotionJson() ;															// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	float						GetMotionDuration() const ;									// ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ã®é•·ã•ã®å–å¾—
+	bool						IsMotionLoop() const ;										// ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ã®ãƒ«ãƒ¼ãƒ—æƒ…å ±ã®å–å¾—
+	bool						GetEvaluationOptionFlag( int flagType ) const ;				// ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ã®ãƒ™ã‚¸ã‚§ã‚«ãƒ¼ãƒ–ã®è§£é‡ˆæ–¹å¼ã®ãƒ•ãƒ©ã‚°å–å¾—
+	int							GetMotionCurveCount() const ;								// ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ã‚«ãƒ¼ãƒ–ã®å€‹æ•°ã®å–å¾—
+	float						GetMotionFps() const ;										// ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ã®ãƒ•ãƒ¬ãƒ¼ãƒ ãƒ¬ãƒ¼ãƒˆã®å–å¾—
+	int							GetMotionTotalSegmentCount() const ;						// ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ã®ã‚»ã‚°ãƒ¡ãƒ³ãƒˆã®ç·åˆè¨ˆã®å–å¾—
+	int							GetMotionTotalPointCount() const ;							// ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ã®ã‚«ãƒ¼ãƒ–ã®åˆ¶å¾¡ç‚¹ã®ç·åˆè¨ˆã®å–å¾—
+	bool						IsExistMotionFadeInTime() const ;							// ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ã®ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³æ™‚é–“ã®å­˜åœ¨
+	bool						IsExistMotionFadeOutTime() const ;							// ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ã®ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆæ™‚é–“ã®å­˜åœ¨
+	float						GetMotionFadeInTime() const ;								// ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ã®ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³æ™‚é–“ã®å–å¾—
+	float						GetMotionFadeOutTime() const ;								// ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ã®ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆæ™‚é–“ã®å–å¾—
+	const char*					GetMotionCurveTarget( int curveIndex ) const ;				// ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ã®ã‚«ãƒ¼ãƒ–ã®ç¨®é¡ã®å–å¾—
+	D_CubismIdHandle			GetMotionCurveId( int curveIndex ) ;						// ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ã®ã‚«ãƒ¼ãƒ–ã®IDã®å–å¾—
+	bool						IsExistMotionCurveFadeInTime( int curveIndex ) const ;		// ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ã®ã‚«ãƒ¼ãƒ–ã®ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³æ™‚é–“ã®å­˜åœ¨
+	bool						IsExistMotionCurveFadeOutTime( int curveIndex ) const ;		// ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ã®ã‚«ãƒ¼ãƒ–ã®ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆæ™‚é–“ã®å­˜åœ¨
+	float						GetMotionCurveFadeInTime( int curveIndex ) const ;			// ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ã®ã‚«ãƒ¼ãƒ–ã®ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³æ™‚é–“ã®å–å¾—
+	float						GetMotionCurveFadeOutTime( int curveIndex ) const ;			// ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ã®ã‚«ãƒ¼ãƒ–ã®ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆæ™‚é–“ã®å–å¾—
+	int							GetMotionCurveSegmentCount( int curveIndex ) const ;		// ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ã®ã‚«ãƒ¼ãƒ–ã®ã‚»ã‚°ãƒ¡ãƒ³ãƒˆã®å€‹æ•°ã®å–å¾—
+	float						GetMotionCurveSegment( int curveIndex, int segmentIndex ) const ;// ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ã®ã‚«ãƒ¼ãƒ–ã®ã‚»ã‚°ãƒ¡ãƒ³ãƒˆã®å€¤ã®å–å¾—
+	int							GetEventCount() const ;										// ã‚¤ãƒ™ãƒ³ãƒˆã®å€‹æ•°ã®å–å¾—
+	int							GetTotalEventValueSize() const ;							// ã‚¤ãƒ™ãƒ³ãƒˆã®ç·æ–‡å­—æ•°ã®å–å¾—
+	float						GetEventTime( int userDataIndex ) const ;					// ã‚¤ãƒ™ãƒ³ãƒˆã®æ™‚é–“ã®å–å¾—
+	const char*					GetEventValue( int userDataIndex ) const ;					// ã‚¤ãƒ™ãƒ³ãƒˆã®å–å¾—
 
 private:
 	static const char*			Meta ;
@@ -860,355 +860,355 @@ private:
 	static const char*			TotalUserDataSize ;
 	static const char*			Time ;
 	static const char*			Value ;
-	D_CubismJson*				_json ;      // motion3.jsonƒf[ƒ^
+	D_CubismJson*				_json ;      // motion3.jsonãƒ‡ãƒ¼ã‚¿
 } ;
 
-// ƒ‚[ƒVƒ‡ƒ“ƒJ[ƒu‚Ì§Œä“_
+// ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ã‚«ãƒ¼ãƒ–ã®åˆ¶å¾¡ç‚¹
 struct D_CubismMotionPoint
 {
-	float						Time ;						// ŠÔ[•b]
-	float						Value ;						// ’l
+	float						Time ;						// æ™‚é–“[ç§’]
+	float						Value ;						// å€¤
 } ;
 
-// ƒ‚[ƒVƒ‡ƒ“ƒJ[ƒu‚ÌƒZƒOƒƒ“ƒg
+// ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ã‚«ãƒ¼ãƒ–ã®ã‚»ã‚°ãƒ¡ãƒ³ãƒˆ
 struct D_CubismMotionSegment
 {
-    float						( *Evaluate )( const D_CubismMotionPoint *points, float time ) ;	// g—p‚·‚é•]‰¿ŠÖ”
-	int							BasePointIndex ;			// Å‰‚ÌƒZƒOƒƒ“ƒg‚Ö‚ÌƒCƒ“ƒfƒbƒNƒX
-	int							SegmentType ;				// ƒZƒOƒƒ“ƒg‚Ìí—Ş
+    float						( *Evaluate )( const D_CubismMotionPoint *points, float time ) ;	// ä½¿ç”¨ã™ã‚‹è©•ä¾¡é–¢æ•°
+	int							BasePointIndex ;			// æœ€åˆã®ã‚»ã‚°ãƒ¡ãƒ³ãƒˆã¸ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+	int							SegmentType ;				// ã‚»ã‚°ãƒ¡ãƒ³ãƒˆã®ç¨®é¡
 } ;
 
-// ƒ‚[ƒVƒ‡ƒ“ƒJ[ƒuB
+// ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ã‚«ãƒ¼ãƒ–ã€‚
 struct D_CubismMotionCurve
 {
-	D_CubismMotionCurveTarget	Type ;						// ƒJ[ƒu‚Ìí—Ş
-	D_CubismIdHandle			Id ;						// ƒJ[ƒu‚ÌID
-	int							SegmentCount ;				// ƒZƒOƒƒ“ƒg‚ÌŒÂ”
-	int							BaseSegmentIndex ;			// Å‰‚ÌƒZƒOƒƒ“ƒg‚ÌƒCƒ“ƒfƒbƒNƒX
-	float						FadeInTime ;				// ƒtƒF[ƒhƒCƒ“‚É‚©‚©‚éŠÔ[•b]
-	float						FadeOutTime ;				// ƒtƒF[ƒhƒAƒEƒg‚É‚©‚©‚éŠÔ[•b]
+	D_CubismMotionCurveTarget	Type ;						// ã‚«ãƒ¼ãƒ–ã®ç¨®é¡
+	D_CubismIdHandle			Id ;						// ã‚«ãƒ¼ãƒ–ã®ID
+	int							SegmentCount ;				// ã‚»ã‚°ãƒ¡ãƒ³ãƒˆã®å€‹æ•°
+	int							BaseSegmentIndex ;			// æœ€åˆã®ã‚»ã‚°ãƒ¡ãƒ³ãƒˆã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+	float						FadeInTime ;				// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ã«ã‹ã‹ã‚‹æ™‚é–“[ç§’]
+	float						FadeOutTime ;				// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆã«ã‹ã‹ã‚‹æ™‚é–“[ç§’]
 } ;
 
-// ƒCƒxƒ“ƒgB
+// ã‚¤ãƒ™ãƒ³ãƒˆã€‚
 struct D_CubismMotionEvent
 {
 	float						FireTime ;
 	D_csmString					Value ;
 } ;
 
-// ƒ‚[ƒVƒ‡ƒ“ƒf[ƒ^B
+// ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ã€‚
 struct D_CubismMotionData
 {
-	float						Duration ;					// ƒ‚[ƒVƒ‡ƒ“‚Ì’·‚³[•b]
-	short						Loop ;						// ƒ‹[ƒv‚·‚é‚©‚Ç‚¤‚©
-	short						CurveCount ;				// ƒJ[ƒu‚ÌŒÂ”
-	int							EventCount ;				// UserData‚ÌŒÂ”
-	float						Fps ;						// ƒtƒŒ[ƒ€ƒŒ[ƒg
+	float						Duration ;					// ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ã®é•·ã•[ç§’]
+	short						Loop ;						// ãƒ«ãƒ¼ãƒ—ã™ã‚‹ã‹ã©ã†ã‹
+	short						CurveCount ;				// ã‚«ãƒ¼ãƒ–ã®å€‹æ•°
+	int							EventCount ;				// UserDataã®å€‹æ•°
+	float						Fps ;						// ãƒ•ãƒ¬ãƒ¼ãƒ ãƒ¬ãƒ¼ãƒˆ
 
-	D_csmVector< D_CubismMotionCurve >		Curves ;		// ƒJ[ƒu‚ÌƒŠƒXƒg
-	D_csmVector< D_CubismMotionSegment >	Segments ;		// ƒZƒOƒƒ“ƒg‚ÌƒŠƒXƒg
-	D_csmVector< D_CubismMotionPoint >		Points ;		// ƒ|ƒCƒ“ƒg‚ÌƒŠƒXƒg
-	D_csmVector< D_CubismMotionEvent >		Events ;		// ƒCƒxƒ“ƒg‚ÌƒŠƒXƒg
+	D_csmVector< D_CubismMotionCurve >		Curves ;		// ã‚«ãƒ¼ãƒ–ã®ãƒªã‚¹ãƒˆ
+	D_csmVector< D_CubismMotionSegment >	Segments ;		// ã‚»ã‚°ãƒ¡ãƒ³ãƒˆã®ãƒªã‚¹ãƒˆ
+	D_csmVector< D_CubismMotionPoint >		Points ;		// ãƒã‚¤ãƒ³ãƒˆã®ãƒªã‚¹ãƒˆ
+	D_csmVector< D_CubismMotionEvent >		Events ;		// ã‚¤ãƒ™ãƒ³ãƒˆã®ãƒªã‚¹ãƒˆ
 } ;
 
 class D_CubismModel ;
 
-// Mocƒf[ƒ^‚ÌŠÇ—
+// Mocãƒ‡ãƒ¼ã‚¿ã®ç®¡ç†
 class D_CubismMoc
 {
 	friend class D_CubismModel ;
 public:
-	static D_CubismMoc*			Create( const BYTE* mocBytes, size_t size ) ;				// ƒoƒbƒtƒ@‚©‚çMocƒf[ƒ^‚Ìì¬
-	static void					Delete( D_CubismMoc* moc ) ;								// Mocƒf[ƒ^‚ğíœ
-	D_CubismModel*				CreateModel() ;												// ƒ‚ƒfƒ‹‚ğì¬
-	void						DeleteModel( D_CubismModel* model ) ;						// ƒ‚ƒfƒ‹‚ğíœ
+	static D_CubismMoc*			Create( const BYTE* mocBytes, size_t size ) ;				// ãƒãƒƒãƒ•ã‚¡ã‹ã‚‰Mocãƒ‡ãƒ¼ã‚¿ã®ä½œæˆ
+	static void					Delete( D_CubismMoc* moc ) ;								// Mocãƒ‡ãƒ¼ã‚¿ã‚’å‰Šé™¤
+	D_CubismModel*				CreateModel() ;												// ãƒ¢ãƒ‡ãƒ«ã‚’ä½œæˆ
+	void						DeleteModel( D_CubismModel* model ) ;						// ãƒ¢ãƒ‡ãƒ«ã‚’å‰Šé™¤
 
 private:
-	D_CubismMoc( void* moc ) ;																// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-	virtual ~D_CubismMoc() ;																// ƒfƒXƒgƒ‰ƒNƒ^
+	D_CubismMoc( void* moc ) ;																// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	virtual ~D_CubismMoc() ;																// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 
-	void *						_moc ;						// Mocƒf[ƒ^
-	int							_modelCount ;				// Mocƒf[ƒ^‚©‚çì‚ç‚ê‚½ƒ‚ƒfƒ‹‚ÌŒÂ”
+	void *						_moc ;						// Mocãƒ‡ãƒ¼ã‚¿
+	int							_modelCount ;				// Mocãƒ‡ãƒ¼ã‚¿ã‹ã‚‰ä½œã‚‰ã‚ŒãŸãƒ¢ãƒ‡ãƒ«ã®å€‹æ•°
 } ;
 
-//  ‘O•ûéŒ¾
+//  å‰æ–¹å®£è¨€
 class D_CubismModel ;
 
-// 4x4‚Ìs—ñ
+// 4x4ã®è¡Œåˆ—
 class D_CubismMatrix44
 {
 public:
-	D_CubismMatrix44() ;																	// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-	virtual ~D_CubismMatrix44() ;															// ƒfƒXƒgƒ‰ƒNƒ^
-	static void					Multiply( float* a, float* b, float* dst ) ;				// æZ
-	void						LoadIdentity() ;											// ’PˆÊs—ñ‚É‰Šú‰»
-	float*						GetArray() ;												// s—ñ‚ğ•‚“®¬”“_”‚Ì”z—ñ‚Åæ“¾
-	void						SetMatrix( float* tr ) ;									// s—ñ‚ğİ’è
-	float						GetScaleX() const ;											// X²‚ÌŠg‘å—¦‚ğæ“¾
-	float						GetScaleY() const ;											// Y²‚ÌŠg‘å—¦‚ğæ“¾
-	float						GetTranslateX() const ;										// X²‚ÌˆÚ“®—Ê‚ğæ“¾
-	float						GetTranslateY() const ;										// Y²‚ÌˆÚ“®—Ê‚ğæ“¾
-	float						TransformX( float src ) ;									// X²‚Ì’l‚ğŒ»İ‚Ìs—ñ‚ÅŒvZ
-	float						TransformY( float src ) ;									// Y²‚Ì’l‚ğŒ»İ‚Ìs—ñ‚ÅŒvZ
-	float						InvertTransformX( float src ) ;								// X²‚Ì’l‚ğŒ»İ‚Ìs—ñ‚Å‹tŒvZ
-	float						InvertTransformY( float src ) ;								// Y²‚Ì’l‚ğŒ»İ‚Ìs—ñ‚Å‹tŒvZ
-	void						TranslateRelative( float x, float y ) ;						// Œ»İ‚Ìs—ñ‚ÌˆÊ’u‚ğ‹N“_‚É‚µ‚ÄˆÚ“®
-	void						Translate( float x, float y ) ;								// Œ»İ‚Ìs—ñ‚ÌˆÊ’u‚ğˆÚ“®
-	void						TranslateX( float x ) ;										// Œ»İ‚Ìs—ñ‚ÌX²‚ÌˆÊ’u‚ğˆÚ“®
-	void						TranslateY( float y ) ;										// Œ»İ‚Ìs—ñ‚ÌY²‚ÌˆÊ’u‚ğˆÚ“®
-	void						ScaleRelative( float x, float y ) ;							// Œ»İ‚Ìs—ñ‚ÌŠg‘å—¦‚ğ‘Š‘Î“I‚Éİ’è
-	void						Scale( float x, float y ) ;									// Œ»İ‚Ìs—ñ‚ÌŠg‘å—¦‚ğİ’è
-	void						RotateRelative( float angle ) ;								// Œ»İ‚Ìs—ñ‚Ì‰ñ“]( ƒ‰ƒWƒAƒ“ )‚ğ‘Š‘Î“I‚Éİ’è
-	void						MultiplyByMatrix( D_CubismMatrix44* m ) ;					// Œ»İ‚Ìs—ñ‚És—ñ‚ğæZ
+	D_CubismMatrix44() ;																	// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	virtual ~D_CubismMatrix44() ;															// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	static void					Multiply( float* a, float* b, float* dst ) ;				// ä¹—ç®—
+	void						LoadIdentity() ;											// å˜ä½è¡Œåˆ—ã«åˆæœŸåŒ–
+	float*						GetArray() ;												// è¡Œåˆ—ã‚’æµ®å‹•å°æ•°ç‚¹æ•°ã®é…åˆ—ã§å–å¾—
+	void						SetMatrix( float* tr ) ;									// è¡Œåˆ—ã‚’è¨­å®š
+	float						GetScaleX() const ;											// Xè»¸ã®æ‹¡å¤§ç‡ã‚’å–å¾—
+	float						GetScaleY() const ;											// Yè»¸ã®æ‹¡å¤§ç‡ã‚’å–å¾—
+	float						GetTranslateX() const ;										// Xè»¸ã®ç§»å‹•é‡ã‚’å–å¾—
+	float						GetTranslateY() const ;										// Yè»¸ã®ç§»å‹•é‡ã‚’å–å¾—
+	float						TransformX( float src ) ;									// Xè»¸ã®å€¤ã‚’ç¾åœ¨ã®è¡Œåˆ—ã§è¨ˆç®—
+	float						TransformY( float src ) ;									// Yè»¸ã®å€¤ã‚’ç¾åœ¨ã®è¡Œåˆ—ã§è¨ˆç®—
+	float						InvertTransformX( float src ) ;								// Xè»¸ã®å€¤ã‚’ç¾åœ¨ã®è¡Œåˆ—ã§é€†è¨ˆç®—
+	float						InvertTransformY( float src ) ;								// Yè»¸ã®å€¤ã‚’ç¾åœ¨ã®è¡Œåˆ—ã§é€†è¨ˆç®—
+	void						TranslateRelative( float x, float y ) ;						// ç¾åœ¨ã®è¡Œåˆ—ã®ä½ç½®ã‚’èµ·ç‚¹ã«ã—ã¦ç§»å‹•
+	void						Translate( float x, float y ) ;								// ç¾åœ¨ã®è¡Œåˆ—ã®ä½ç½®ã‚’ç§»å‹•
+	void						TranslateX( float x ) ;										// ç¾åœ¨ã®è¡Œåˆ—ã®Xè»¸ã®ä½ç½®ã‚’ç§»å‹•
+	void						TranslateY( float y ) ;										// ç¾åœ¨ã®è¡Œåˆ—ã®Yè»¸ã®ä½ç½®ã‚’ç§»å‹•
+	void						ScaleRelative( float x, float y ) ;							// ç¾åœ¨ã®è¡Œåˆ—ã®æ‹¡å¤§ç‡ã‚’ç›¸å¯¾çš„ã«è¨­å®š
+	void						Scale( float x, float y ) ;									// ç¾åœ¨ã®è¡Œåˆ—ã®æ‹¡å¤§ç‡ã‚’è¨­å®š
+	void						RotateRelative( float angle ) ;								// ç¾åœ¨ã®è¡Œåˆ—ã®å›è»¢( ãƒ©ã‚¸ã‚¢ãƒ³ )ã‚’ç›¸å¯¾çš„ã«è¨­å®š
+	void						MultiplyByMatrix( D_CubismMatrix44* m ) ;					// ç¾åœ¨ã®è¡Œåˆ—ã«è¡Œåˆ—ã‚’ä¹—ç®—
 
 protected:
-	float						_tr[ 16 ] ;					// 4x4s—ñƒf[ƒ^
+	float						_tr[ 16 ] ;					// 4x4è¡Œåˆ—ãƒ‡ãƒ¼ã‚¿
 } ;
 
-// ƒ‚ƒfƒ‹•`‰æ‚ğˆ—‚·‚éƒŒƒ“ƒ_ƒ‰
+// ãƒ¢ãƒ‡ãƒ«æç”»ã‚’å‡¦ç†ã™ã‚‹ãƒ¬ãƒ³ãƒ€ãƒ©
 class D_CubismRenderer
 {
 public:
-	// ƒeƒNƒXƒ`ƒƒ‚ÌF‚ğRGBA‚Åˆµ‚¤‚½‚ß‚Ì\‘¢‘Ì
+	// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®è‰²ã‚’RGBAã§æ‰±ã†ãŸã‚ã®æ§‹é€ ä½“
 	struct CubismTextureColor
 	{
-		CubismTextureColor() : R( 1.0f ), G( 1.0f ), B( 1.0f ), A( 1.0f ) {} ;				// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-		CubismTextureColor( float r, float g, float b, float a )							// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+		CubismTextureColor() : R( 1.0f ), G( 1.0f ), B( 1.0f ), A( 1.0f ) {} ;				// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+		CubismTextureColor( float r, float g, float b, float a )							// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 		: R( r )
 		, G( g )
 		, B( b )
 		, A( a ) {};
 
-		virtual ~CubismTextureColor() {} ;													// ƒfƒXƒgƒ‰ƒNƒ^
+		virtual ~CubismTextureColor() {} ;													// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 
-		float					R ;							// Ôƒ`ƒƒƒ“ƒlƒ‹
-		float					G ;							// —Îƒ`ƒƒƒ“ƒlƒ‹
-		float					B ;							// Âƒ`ƒƒƒ“ƒlƒ‹
-		float					A ;							// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹
+		float					R ;							// èµ¤ãƒãƒ£ãƒ³ãƒãƒ«
+		float					G ;							// ç·‘ãƒãƒ£ãƒ³ãƒãƒ«
+		float					B ;							// é’ãƒãƒ£ãƒ³ãƒãƒ«
+		float					A ;							// Î±ãƒãƒ£ãƒ³ãƒãƒ«
 	} ; // CubismTextureColor
-	static D_CubismRenderer*	Create() ;													// ƒŒƒ“ƒ_ƒ‰‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ¶¬‚µ‚Äæ“¾‚·‚é
-	static void					Delete( D_CubismRenderer* renderer ) ;						// ƒŒƒ“ƒ_ƒ‰‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ‰ğ•ú‚·‚é
-	static void					StaticRelease() ;											// ƒŒƒ“ƒ_ƒ‰‚ª•Û‚·‚éÃ“I‚ÈƒŠƒ\[ƒX‚ğ‰ğ•ú‚·‚é
-	virtual void				Initialize( D_CubismModel* model, int ASyncThread ) ;		// ƒŒƒ“ƒ_ƒ‰‚Ì‰Šú‰»ˆ—‚ğÀs‚·‚é
-	void						DrawModel() ;												// ƒ‚ƒfƒ‹‚ğ•`‰æ‚·‚é
-	void						SetMvpMatrix( D_CubismMatrix44* matrix4x4 ) ;				// Model-View-Projection s—ñ‚ğƒZƒbƒg‚·‚é
-	D_CubismMatrix44			GetMvpMatrix() const ;										// Model-View-Projection s—ñ‚ğæ“¾‚·‚é
-	void						SetModelColor( float red, float green, float blue, float alpha ) ;	// ƒ‚ƒfƒ‹‚ÌF‚ğƒZƒbƒg‚·‚éB
-	CubismTextureColor			GetModelColor() const ;										// ƒ‚ƒfƒ‹‚ÌF‚ğæ“¾‚·‚éB
-	void						IsPremultipliedAlpha( bool enable ) ;						//  æZÏ‚İƒ¿‚Ì—LŒøE–³Œø‚ğƒZƒbƒg‚·‚éB
-	bool						IsPremultipliedAlpha() const ;								//  æZÏ‚İƒ¿‚Ì—LŒøE–³Œø‚ğæ“¾‚·‚éB
-	void						IsCulling( bool culling ) ;									//  ƒJƒŠƒ“ƒOi•Ğ–Ê•`‰æj‚Ì—LŒøE–³Œø‚ğƒZƒbƒg‚·‚éB
-	bool						IsCulling() const ;											//  ƒJƒŠƒ“ƒOi•Ğ–Ê•`‰æj‚Ì—LŒøE–³Œø‚ğæ“¾‚·‚éB
-	void						SetAnisotropy( float anisotropy ) ;							// ƒeƒNƒXƒ`ƒƒ‚ÌˆÙ•û«ƒtƒBƒ‹ƒ^ƒŠƒ“ƒO‚Ìƒpƒ‰ƒ[ƒ^‚ğƒZƒbƒg‚·‚é
-	float						GetAnisotropy() const ;										// ƒeƒNƒXƒ`ƒƒ‚ÌˆÙ•û«ƒtƒBƒ‹ƒ^ƒŠƒ“ƒO‚Ìƒpƒ‰ƒ[ƒ^‚ğƒZƒbƒg‚·‚é
-	D_CubismModel*				GetModel() const ;											// ƒŒƒ“ƒ_ƒŠƒ“ƒO‚·‚éƒ‚ƒfƒ‹‚ğæ“¾‚·‚éB
-	void						UseHighPrecisionMask( bool high ) ;							// ƒ}ƒXƒN•`‰æ‚Ì•û®‚ğ•ÏX‚·‚éB
-	bool						IsUsingHighPrecisionMask() ;								// ƒ}ƒXƒN•`‰æ‚Ì•û®‚ğæ“¾‚·‚éB
+	static D_CubismRenderer*	Create() ;													// ãƒ¬ãƒ³ãƒ€ãƒ©ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’ç”Ÿæˆã—ã¦å–å¾—ã™ã‚‹
+	static void					Delete( D_CubismRenderer* renderer ) ;						// ãƒ¬ãƒ³ãƒ€ãƒ©ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’è§£æ”¾ã™ã‚‹
+	static void					StaticRelease() ;											// ãƒ¬ãƒ³ãƒ€ãƒ©ãŒä¿æŒã™ã‚‹é™çš„ãªãƒªã‚½ãƒ¼ã‚¹ã‚’è§£æ”¾ã™ã‚‹
+	virtual void				Initialize( D_CubismModel* model, int ASyncThread ) ;		// ãƒ¬ãƒ³ãƒ€ãƒ©ã®åˆæœŸåŒ–å‡¦ç†ã‚’å®Ÿè¡Œã™ã‚‹
+	void						DrawModel() ;												// ãƒ¢ãƒ‡ãƒ«ã‚’æç”»ã™ã‚‹
+	void						SetMvpMatrix( D_CubismMatrix44* matrix4x4 ) ;				// Model-View-Projection è¡Œåˆ—ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
+	D_CubismMatrix44			GetMvpMatrix() const ;										// Model-View-Projection è¡Œåˆ—ã‚’å–å¾—ã™ã‚‹
+	void						SetModelColor( float red, float green, float blue, float alpha ) ;	// ãƒ¢ãƒ‡ãƒ«ã®è‰²ã‚’ã‚»ãƒƒãƒˆã™ã‚‹ã€‚
+	CubismTextureColor			GetModelColor() const ;										// ãƒ¢ãƒ‡ãƒ«ã®è‰²ã‚’å–å¾—ã™ã‚‹ã€‚
+	void						IsPremultipliedAlpha( bool enable ) ;						//  ä¹—ç®—æ¸ˆã¿Î±ã®æœ‰åŠ¹ãƒ»ç„¡åŠ¹ã‚’ã‚»ãƒƒãƒˆã™ã‚‹ã€‚
+	bool						IsPremultipliedAlpha() const ;								//  ä¹—ç®—æ¸ˆã¿Î±ã®æœ‰åŠ¹ãƒ»ç„¡åŠ¹ã‚’å–å¾—ã™ã‚‹ã€‚
+	void						IsCulling( bool culling ) ;									//  ã‚«ãƒªãƒ³ã‚°ï¼ˆç‰‡é¢æç”»ï¼‰ã®æœ‰åŠ¹ãƒ»ç„¡åŠ¹ã‚’ã‚»ãƒƒãƒˆã™ã‚‹ã€‚
+	bool						IsCulling() const ;											//  ã‚«ãƒªãƒ³ã‚°ï¼ˆç‰‡é¢æç”»ï¼‰ã®æœ‰åŠ¹ãƒ»ç„¡åŠ¹ã‚’å–å¾—ã™ã‚‹ã€‚
+	void						SetAnisotropy( float anisotropy ) ;							// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ç•°æ–¹æ€§ãƒ•ã‚£ãƒ«ã‚¿ãƒªãƒ³ã‚°ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
+	float						GetAnisotropy() const ;										// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ç•°æ–¹æ€§ãƒ•ã‚£ãƒ«ã‚¿ãƒªãƒ³ã‚°ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
+	D_CubismModel*				GetModel() const ;											// ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã™ã‚‹ãƒ¢ãƒ‡ãƒ«ã‚’å–å¾—ã™ã‚‹ã€‚
+	void						UseHighPrecisionMask( bool high ) ;							// ãƒã‚¹ã‚¯æç”»ã®æ–¹å¼ã‚’å¤‰æ›´ã™ã‚‹ã€‚
+	bool						IsUsingHighPrecisionMask() ;								// ãƒã‚¹ã‚¯æç”»ã®æ–¹å¼ã‚’å–å¾—ã™ã‚‹ã€‚
 
 protected:
-	D_CubismRenderer() ;																	// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-	virtual ~D_CubismRenderer() ;															// ƒfƒXƒgƒ‰ƒNƒ^
-	virtual void				DoDrawModel() = 0 ;											// ƒ‚ƒfƒ‹•`‰æ‚ÌÀ‘•
-	virtual void				DrawMesh( int textureNo, int indexCount, int vertexCount, WORD* indexArray, float* vertexArray, float* uvArray, float opacity, D_CubismBlendMode colorBlendMode, bool invertedMask ) = 0 ;	// •`‰æƒIƒuƒWƒFƒNƒgiƒA[ƒgƒƒbƒVƒ…j‚ğ•`‰æ‚·‚éB
-	virtual void				SaveProfile() = 0 ;											// ƒ‚ƒfƒ‹•`‰æ’¼‘O‚ÌƒŒƒ“ƒ_ƒ‰‚ÌƒXƒe[ƒg‚ğ•Û‚·‚é
-	virtual void				RestoreProfile() = 0 ;										// ƒ‚ƒfƒ‹•`‰æ’¼‘O‚ÌƒŒƒ“ƒ_ƒ‰‚ÌƒXƒe[ƒg‚ğ•œ‹A‚³‚¹‚é
+	D_CubismRenderer() ;																	// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	virtual ~D_CubismRenderer() ;															// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	virtual void				DoDrawModel() = 0 ;											// ãƒ¢ãƒ‡ãƒ«æç”»ã®å®Ÿè£…
+	virtual void				DrawMesh( int textureNo, int indexCount, int vertexCount, WORD* indexArray, float* vertexArray, float* uvArray, float opacity, D_CubismBlendMode colorBlendMode, bool invertedMask ) = 0 ;	// æç”»ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆï¼ˆã‚¢ãƒ¼ãƒˆãƒ¡ãƒƒã‚·ãƒ¥ï¼‰ã‚’æç”»ã™ã‚‹ã€‚
+	virtual void				SaveProfile() = 0 ;											// ãƒ¢ãƒ‡ãƒ«æç”»ç›´å‰ã®ãƒ¬ãƒ³ãƒ€ãƒ©ã®ã‚¹ãƒ†ãƒ¼ãƒˆã‚’ä¿æŒã™ã‚‹
+	virtual void				RestoreProfile() = 0 ;										// ãƒ¢ãƒ‡ãƒ«æç”»ç›´å‰ã®ãƒ¬ãƒ³ãƒ€ãƒ©ã®ã‚¹ãƒ†ãƒ¼ãƒˆã‚’å¾©å¸°ã•ã›ã‚‹
 
 private:
-	// ƒRƒs[ƒRƒ“ƒXƒgƒ‰ƒNƒ^‚ğ‰B‚·
+	// ã‚³ãƒ”ãƒ¼ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã‚’éš ã™
 	D_CubismRenderer( const D_CubismRenderer& ) ;
 	D_CubismRenderer&			operator=( const D_CubismRenderer& ) ;
 
-	D_CubismMatrix44			_mvpMatrix4x4 ;				// Model-View-Projection s—ñ
-	CubismTextureColor			_modelColor ;				// ƒ‚ƒfƒ‹©‘Ì‚ÌƒJƒ‰[(RGBA)
-	bool						_isCulling ;				// ƒJƒŠƒ“ƒO‚ª—LŒø‚È‚çtrue
-	bool						_isPremultipliedAlpha ;		// æZÏ‚İƒ¿‚È‚çtrue
-	float						_anisotropy ;				// ƒeƒNƒXƒ`ƒƒ‚ÌˆÙ•û«ƒtƒBƒ‹ƒ^ƒŠƒ“ƒO‚Ìƒpƒ‰ƒ[ƒ^
-	D_CubismModel*				_model ;					// ƒŒƒ“ƒ_ƒŠƒ“ƒO‘ÎÛ‚Ìƒ‚ƒfƒ‹
-	bool						_useHighPrecisionMask ;		// false‚Ìê‡Aƒ}ƒXƒN‚ğ“Z‚ß‚Ä•`‰æ‚·‚é true‚Ìê‡Aƒ}ƒXƒN‚Íƒp[ƒc•`‰æ‚²‚Æ‚É‘‚«’¼‚· 
+	D_CubismMatrix44			_mvpMatrix4x4 ;				// Model-View-Projection è¡Œåˆ—
+	CubismTextureColor			_modelColor ;				// ãƒ¢ãƒ‡ãƒ«è‡ªä½“ã®ã‚«ãƒ©ãƒ¼(RGBA)
+	bool						_isCulling ;				// ã‚«ãƒªãƒ³ã‚°ãŒæœ‰åŠ¹ãªã‚‰true
+	bool						_isPremultipliedAlpha ;		// ä¹—ç®—æ¸ˆã¿Î±ãªã‚‰true
+	float						_anisotropy ;				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ç•°æ–¹æ€§ãƒ•ã‚£ãƒ«ã‚¿ãƒªãƒ³ã‚°ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+	D_CubismModel*				_model ;					// ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°å¯¾è±¡ã®ãƒ¢ãƒ‡ãƒ«
+	bool						_useHighPrecisionMask ;		// falseã®å ´åˆã€ãƒã‚¹ã‚¯ã‚’çºã‚ã¦æç”»ã™ã‚‹ trueã®å ´åˆã€ãƒã‚¹ã‚¯ã¯ãƒ‘ãƒ¼ãƒ„æç”»ã”ã¨ã«æ›¸ãç›´ã™ 
 } ;
 
-// ƒ‚ƒfƒ‹
+// ãƒ¢ãƒ‡ãƒ«
 class D_CubismModel
 {
 	friend class D_CubismMoc ;
 public:
 
-	// ƒeƒNƒXƒ`ƒƒ‚ÌF‚ğRGBA‚Åˆµ‚¤‚½‚ß‚Ì\‘¢‘Ì
+	// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®è‰²ã‚’RGBAã§æ‰±ã†ãŸã‚ã®æ§‹é€ ä½“
 	struct DrawableColorData
 	{
-		DrawableColorData() : IsOverwritten( false ) , Color() {};		// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-		DrawableColorData( bool isOverwritten, D_CubismRenderer::CubismTextureColor color ) : IsOverwritten( isOverwritten ), Color( color ) {};	// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-		virtual ~DrawableColorData() {};								// ƒfƒXƒgƒ‰ƒNƒ^
+		DrawableColorData() : IsOverwritten( false ) , Color() {};		// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+		DrawableColorData( bool isOverwritten, D_CubismRenderer::CubismTextureColor color ) : IsOverwritten( isOverwritten ), Color( color ) {};	// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+		virtual ~DrawableColorData() {};								// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 
 		bool IsOverwritten ;
 		D_CubismRenderer::CubismTextureColor Color ;
 	} ;
 
-	// ƒeƒNƒXƒ`ƒƒ‚ÌƒJƒŠƒ“ƒOİ’è‚ğŠÇ—‚·‚é‚½‚ß‚Ì\‘¢‘Ì
+	// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ã‚«ãƒªãƒ³ã‚°è¨­å®šã‚’ç®¡ç†ã™ã‚‹ãŸã‚ã®æ§‹é€ ä½“
 	struct DrawableCullingData
 	{
-		DrawableCullingData() : IsOverwritten( false ), IsCulling( 0 ) {} ;	// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-		DrawableCullingData( bool isOverwritten, int isCulling ) : IsOverwritten( isOverwritten ), IsCulling( isCulling ) {} ;	// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-		virtual ~DrawableCullingData() {} ;								// ƒfƒXƒgƒ‰ƒNƒ^
+		DrawableCullingData() : IsOverwritten( false ), IsCulling( 0 ) {} ;	// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+		DrawableCullingData( bool isOverwritten, int isCulling ) : IsOverwritten( isOverwritten ), IsCulling( isCulling ) {} ;	// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+		virtual ~DrawableCullingData() {} ;								// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 
 		bool IsOverwritten ;
 		int IsCulling ;
 	} ;
 
-	// ƒeƒNƒXƒ`ƒƒ‚ÌF‚ğRGBA‚Åˆµ‚¤‚½‚ß‚Ì\‘¢‘Ì
+	// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®è‰²ã‚’RGBAã§æ‰±ã†ãŸã‚ã®æ§‹é€ ä½“
 	struct PartColorData
 	{
-		PartColorData()	: IsOverwritten( false ) , Color() {} ;			// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-		PartColorData( bool isOverwritten, D_CubismRenderer::CubismTextureColor color )	: IsOverwritten( isOverwritten ) , Color( color ) {} ;	// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-		virtual ~PartColorData() {} ;									// ƒfƒXƒgƒ‰ƒNƒ^
+		PartColorData()	: IsOverwritten( false ) , Color() {} ;			// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+		PartColorData( bool isOverwritten, D_CubismRenderer::CubismTextureColor color )	: IsOverwritten( isOverwritten ) , Color( color ) {} ;	// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+		virtual ~PartColorData() {} ;									// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 
 		bool IsOverwritten ;
 		D_CubismRenderer::CubismTextureColor Color ;
 	} ;
 
-	void						Update() const ;											// ƒ‚ƒfƒ‹‚Ìƒpƒ‰ƒ[ƒ^‚ÌXV
-	float						GetCanvasWidthPixel() const ;								// ƒLƒƒƒ“ƒoƒX‚Ì•‚ğæ“¾
-	float						GetCanvasHeightPixel() const ;								// ƒLƒƒƒ“ƒoƒX‚Ì‚‚³‚ğæ“¾
-	float						GetPixelsPerUnit() const ;									// PixelsPerUnit‚ğæ“¾
-	float						GetCanvasWidth() const ;									// ƒLƒƒƒ“ƒoƒX‚Ì•‚Ìæ“¾
-	float						GetCanvasHeight() const ;									// ƒLƒƒƒ“ƒoƒX‚Ì‚‚³‚Ìæ“¾
-	void						GetCanvasInfo( D_CubismVector2 *SizeInPixels, D_CubismVector2 *OriginInPixels, float *PixelsPerUnit ) ;		// ƒLƒƒƒ“ƒoƒX‚Ìî•ñ‚ğæ“¾‚·‚é
-	int							GetPartIndex( D_CubismIdHandle partId ) ;					// ƒp[ƒc‚ÌƒCƒ“ƒfƒbƒNƒX‚Ìæ“¾
-	D_CubismIdHandle			GetPartId( int partIndex ) ;								// ƒp[ƒc‚ÌID‚ğæ“¾
-	int							GetPartCount() const ;										// ƒp[ƒc‚ÌŒÂ”‚Ìæ“¾
-	void						SetPartOpacity( D_CubismIdHandle partId, float opacity ) ;	// ƒp[ƒc‚Ì•s“§–¾“x‚Ìİ’è
-	void						SetPartOpacity( int partIndex, float opacity ) ;			// ƒp[ƒc‚Ì•s“§–¾“x‚Ìİ’è
-	float						GetPartOpacity( D_CubismIdHandle partId ) ;					// ƒp[ƒc‚Ì•s“§–¾“x‚Ìæ“¾
-	float						GetPartOpacity( int partIndex ) ;							// ƒp[ƒc‚Ì•s“§–¾“x‚Ìæ“¾
-	int							GetParameterIndex( D_CubismIdHandle parameterId ) ;			// ƒpƒ‰ƒ[ƒ^‚ÌƒCƒ“ƒfƒbƒNƒX‚Ìæ“¾
-	int							GetParameterCount() const ;									// ƒpƒ‰ƒ[ƒ^‚ÌŒÂ”‚Ìæ“¾
-	D_CubismIdHandle			GetParameterId( int parameterIndex ) ;						// ƒpƒ‰ƒ[ƒ^‚ÌID‚Ìæ“¾
-	D_csmParameterType			GetParameterType( DWORD parameterIndex ) const ;				// ƒpƒ‰ƒ[ƒ^‚Ìí—Ş‚Ìæ“¾
-	float						GetParameterMaximumValue( DWORD parameterIndex ) const ;	// ƒpƒ‰ƒ[ƒ^‚ÌÅ‘å’l‚Ìæ“¾
-	float						GetParameterMinimumValue( DWORD parameterIndex ) const ;	// ƒpƒ‰ƒ[ƒ^‚ÌÅ¬’l‚Ìæ“¾
-	float						GetParameterDefaultValue( DWORD parameterIndex ) const ;	// ƒpƒ‰ƒ[ƒ^‚ÌƒfƒtƒHƒ‹ƒg’l‚Ìæ“¾
-	float						GetParameterValue( D_CubismIdHandle parameterId ) ;			// ƒpƒ‰ƒ[ƒ^‚Ì’l‚Ìæ“¾
-	float						GetParameterValue( int parameterIndex ) ;					// ƒpƒ‰ƒ[ƒ^‚Ì’l‚Ìæ“¾
-	void						SetParameterValue( D_CubismIdHandle parameterId, float value, float weight = 1.0f, bool force = false ) ;	// ƒpƒ‰ƒ[ƒ^‚Ì’l‚Ìİ’è
-	void						SetParameterValue( int parameterIndex, float value, float weight = 1.0f, bool force = false ) ;				// ƒpƒ‰ƒ[ƒ^‚Ì’l‚Ìİ’è
-	void						SetDisableChangeParameter( D_CubismIdHandle parameterId, bool isDisable ) ;	// ƒpƒ‰ƒ[ƒ^‚Ì’l‚Ì•ÏX‚ğ–³Œø‰»‚·‚é‚©‚Ç‚¤‚©‚ğİ’è‚·‚é
-	void						SetDisableChangeParameter( int parameterIndex, bool isDisable ) ;			// ƒpƒ‰ƒ[ƒ^‚Ì’l‚Ì•ÏX‚ğ–³Œø‰»‚·‚é‚©‚Ç‚¤‚©‚ğİ’è‚·‚é
-	void						AddParameterValue( D_CubismIdHandle parameterId, float value, float weight = 1.0f ) ;	// ƒpƒ‰ƒ[ƒ^‚Ì’l‚Ì‰ÁZ
-	void						AddParameterValue( int parameterIndex, float value, float weight = 1.0f ) ;				// ƒpƒ‰ƒ[ƒ^‚Ì’l‚Ì‰ÁZ
-	void						MultiplyParameterValue( D_CubismIdHandle parameterId, float value, float weight = 1.0f ) ;	// ƒpƒ‰ƒ[ƒ^‚Ì’l‚ÌæZ
-	void						MultiplyParameterValue( int parameterIndex, float value, float weight = 1.0f ) ;		// ƒpƒ‰ƒ[ƒ^‚Ì’l‚ÌæZ
-	int							GetDrawableIndex( D_CubismIdHandle drawableId ) const ;		// Drawable‚ÌƒCƒ“ƒfƒbƒNƒX‚Ìæ“¾
-	int							GetDrawableCount() const ;									// Drawable‚ÌŒÂ”‚Ìæ“¾
-	D_CubismIdHandle			GetDrawableId( int drawableIndex ) const ;					// Drawable‚ÌID‚Ìæ“¾
-	const int *					GetDrawableRenderOrders() const ;							// Drawable‚Ì•`‰æ‡ƒŠƒXƒg‚Ìæ“¾
-	int							GetDrawableTextureIndex( int drawableIndex ) const ;		// Drawable‚ÌƒeƒNƒXƒ`ƒƒƒCƒ“ƒfƒbƒNƒX‚Ìæ“¾
-	int							GetDrawableVertexIndexCount( int drawableIndex ) const ;	// Drawable‚Ì’¸“_ƒCƒ“ƒfƒbƒNƒX‚ÌŒÂ”‚Ìæ“¾
-	int							GetDrawableVertexCount( int drawableIndex ) const ;			// Drawable‚Ì’¸“_‚ÌŒÂ”‚Ìæ“¾
-	const float *				GetDrawableVertices( int drawableIndex ) const ;			// Drawable‚Ì’¸“_ƒŠƒXƒg‚Ìæ“¾
-	const WORD *				GetDrawableVertexIndices( int drawableIndex ) const ;		// Drawable‚Ì’¸“_ƒCƒ“ƒfƒbƒNƒXƒŠƒXƒg‚Ìæ“¾
-	const D_CubismVector2 *		GetDrawableVertexPositions( int drawableIndex ) const ;		// Drawable‚Ì’¸“_ƒŠƒXƒg‚Ìæ“¾
-	const D_CubismVector2 *		GetDrawableVertexUvs( int drawableIndex ) const ;			// Drawable‚Ì’¸“_‚ÌUVƒŠƒXƒg‚Ìæ“¾
-	float						GetDrawableOpacity( int drawableIndex ) const ;				// Drawable‚Ì•s“§–¾“x‚Ìæ“¾
-	D_CubismVector4				GetDrawableMultiplyColor( int drawableIndex ) const ;		// Drawable‚ÌæZF‚Ìæ“¾
-	D_CubismVector4				GetDrawableScreenColor( int drawableIndex ) const ;			// Drawable‚ÌƒXƒNƒŠ[ƒ“F‚Ìæ“¾
-	int							GetDrawableParentPartIndex( DWORD drawableIndex ) const ;	// Drawable‚Ìeƒp[ƒc‚ÌƒCƒ“ƒfƒbƒNƒX‚Ìæ“¾
-	D_CubismBlendMode			GetDrawableBlendMode( int drawableIndex ) const ;			// Drawable‚ÌƒuƒŒƒ“ƒhƒ‚[ƒh‚Ìæ“¾
-	bool						GetDrawableInvertedMask( int drawableIndex ) const ;		// Drawable‚Ìƒ}ƒXƒN‚Ì”½“]g—p‚Ìæ“¾
-	bool						GetDrawableDynamicFlagIsVisible( int drawableIndex ) const ;	// Drawable‚Ì•\¦î•ñ‚Ìæ“¾
-	bool						GetDrawableDynamicFlagVisibilityDidChange( int drawableIndex ) const ;	// Drawable‚Ì•\¦ó‘Ô‚Ì•Ï‰»‚Ìæ“¾
-	bool						GetDrawableDynamicFlagOpacityDidChange( int drawableIndex ) const ;	// Drawable‚Ì•s“§–¾“x‚Ì•Ï‰»î•ñ‚Ìæ“¾
-	bool						GetDrawableDynamicFlagDrawOrderDidChange( int drawableIndex ) const ;	// Drawable‚ÌDrawOrder‚Ì•Ï‰»î•ñ‚Ìæ“¾
-	bool						GetDrawableDynamicFlagRenderOrderDidChange( int drawableIndex ) const ;	// Drawable‚Ì•`‰æ‡˜‚Ì•Ï‰»î•ñ‚Ìæ“¾
-	bool						GetDrawableDynamicFlagVertexPositionsDidChange( int drawableIndex ) const ;	// Drawable‚ÌVertexPositions‚Ì•Ï‰»î•ñ‚Ìæ“¾
-	bool						GetDrawableDynamicFlagBlendColorDidChange( int drawableIndex ) const ;	// Drawable‚ÌæZFEƒXƒNƒŠ[ƒ“F‚Ì•Ï‰»î•ñ‚Ìæ“¾
-	const int**					GetDrawableMasks() const ;									// Drawable‚ÌƒNƒŠƒbƒsƒ“ƒOƒ}ƒXƒNƒŠƒXƒg‚Ìæ“¾
-	const int*					GetDrawableMaskCounts() const ;								// Drawable‚ÌƒNƒŠƒbƒsƒ“ƒOƒ}ƒXƒN‚ÌŒÂ”ƒŠƒXƒg‚Ìæ“¾
-	bool						IsUsingMasking() const ;									// ƒNƒŠƒbƒsƒ“ƒOƒ}ƒXƒN‚Ìg—pó‘Ô
-	void						LoadParameters() ;											// •Û‘¶‚³‚ê‚½ƒpƒ‰ƒ[ƒ^‚Ì“Ç‚İ‚İ
-	void						SaveParameters() ;											// ƒpƒ‰ƒ[ƒ^‚Ì•Û‘¶
-	D_CubismRenderer::CubismTextureColor GetMultiplyColor( int drawableIndex ) const ;		// drawable‚ÌæZF‚ğæ“¾‚·‚é
-	D_CubismRenderer::CubismTextureColor GetScreenColor( int drawableIndex ) const ;		// drawable‚ÌƒXƒNƒŠ[ƒ“F‚ğæ“¾‚·‚é
-	void						SetMultiplyColor( int drawableIndex, const D_CubismRenderer::CubismTextureColor& color ) ;	// drawable‚ÌæZF‚ğİ’è‚·‚é
-	void						SetMultiplyColor( int drawableIndex, float r, float g, float b, float a = 1.0f ) ;			// drawable‚ÌæZF‚ğİ’è‚·‚é
-	void						SetScreenColor( int drawableIndex, const D_CubismRenderer::CubismTextureColor& color ) ;	// drawable‚ÌƒXƒNƒŠ[ƒ“F‚ğİ’è‚·‚é
-	void						SetScreenColor( int drawableIndex, float r, float g, float b, float a = 1.0f ) ;			// drawable‚ÌƒXƒNƒŠ[ƒ“F‚ğİ’è‚·‚é
-	D_CubismRenderer::CubismTextureColor GetPartMultiplyColor( int partIndex ) const ;		// part‚ÌæZF‚ğæ“¾‚·‚é
-	D_CubismRenderer::CubismTextureColor GetPartScreenColor( int partIndex ) const ;		// part‚ÌæZF‚ğæ“¾‚·‚é
-	void						SetPartMultiplyColor( int partIndex, const D_CubismRenderer::CubismTextureColor& color ) ;	// part‚ÌƒXƒNƒŠ[ƒ“F‚ğİ’è‚·‚é
-	void						SetPartMultiplyColor( int partIndex, float r, float g, float b, float a = 1.0f ) ;			// part‚ÌæZF‚ğİ’è‚·‚é
-	void						SetPartScreenColor( int partIndex, const D_CubismRenderer::CubismTextureColor& color ) ;	// part‚ÌƒXƒNƒŠ[ƒ“F‚ğİ’è‚·‚é
-	void						SetPartScreenColor( int partIndex, float r, float g, float b, float a = 1.0f ) ;			// part‚ÌƒXƒNƒŠ[ƒ“F‚ğİ’è‚·‚é
-	bool						GetOverwriteFlagForModelMultiplyColors() const ;								// SDK‚©‚çƒ‚ƒfƒ‹‘S‘Ì‚ÌæZF‚ğã‘‚«‚·‚é‚©B
-	bool						GetOverwriteFlagForModelScreenColors() const ;									// SDK‚©‚çƒ‚ƒfƒ‹‘S‘Ì‚ÌƒXƒNƒŠ[ƒ“F‚ğã‘‚«‚·‚é‚©B
-	void						SetOverwriteFlagForModelMultiplyColors( bool value ) ;							// SDK‚©‚çƒ‚ƒfƒ‹‘S‘Ì‚ÌæZF‚ğã‘‚«‚·‚é‚©‚ğƒZƒbƒg‚·‚é
-	void						SetOverwriteFlagForModelScreenColors( bool value ) ;							// SDK‚©‚çƒ‚ƒfƒ‹‘S‘Ì‚ÌƒXƒNƒŠ[ƒ“F‚ğã‘‚«‚·‚é‚©‚ğƒZƒbƒg‚·‚é  SDKã‚ÌFî•ñ‚ğg‚¤‚È‚çtrueAƒ‚ƒfƒ‹‚ÌFî•ñ‚ğg‚¤‚È‚çfalse
-	bool						GetOverwriteFlagForDrawableMultiplyColors( int drawableIndex ) const ;			// SDK‚©‚çdrawable‚ÌæZF‚ğã‘‚«‚·‚é‚©B
-	bool						GetOverwriteFlagForDrawableScreenColors( int drawableIndex ) const ;			// SDK‚©‚çdrawable‚ÌƒXƒNƒŠ[ƒ“F‚ğã‘‚«‚·‚é‚©B
-	void						SetOverwriteFlagForDrawableMultiplyColors( DWORD drawableIndex, bool value ) ;	// SDK‚©‚çdrawable‚ÌæZF‚ğã‘‚«‚·‚é‚©‚ğƒZƒbƒg‚·‚é
-	void						SetOverwriteFlagForDrawableScreenColors( DWORD drawableIndex, bool value ) ;	// SDK‚©‚çdrawable‚ÌƒXƒNƒŠ[ƒ“F‚ğã‘‚«‚·‚é‚©‚ğƒZƒbƒg‚·‚é
-	bool						GetOverwriteColorForPartMultiplyColors( int partIndex ) const ;					// SDK‚©‚çpart‚ÌæZF‚ğã‘‚«‚·‚é‚©B
-	bool						GetOverwriteColorForPartScreenColors( int partIndex ) const ;					// SDK‚©‚çpart‚ÌƒXƒNƒŠ[ƒ“F‚ğã‘‚«‚·‚é‚©B
-	void						SetOverwriteColorForPartMultiplyColors( DWORD partIndex, bool value ) ;			// SDK‚©‚çpart‚ÌæZF‚ğã‘‚«‚·‚é‚©‚ğƒZƒbƒg‚·‚é     SDKã‚ÌFî•ñ‚ğg‚¤‚È‚çtrueAƒ‚ƒfƒ‹‚ÌFî•ñ‚ğg‚¤‚È‚çfalse
-	void						SetOverwriteColorForPartScreenColors( DWORD partIndex, bool value ) ;			// SDK‚©‚çpart‚ÌƒXƒNƒŠ[ƒ“F‚ğã‘‚«‚·‚é‚©‚ğƒZƒbƒg‚·‚é      SDKã‚ÌFî•ñ‚ğg‚¤‚È‚çtrueAƒ‚ƒfƒ‹‚ÌFî•ñ‚ğg‚¤‚È‚çfalse
-	int							GetDrawableCulling( int drawableIndex ) const ;									// Drawable‚ÌƒJƒŠƒ“ƒOî•ñ‚Ìæ“¾
-	void						SetDrawableCulling( int drawableIndex, int isCulling ) ;						// Drawable‚ÌƒJƒŠƒ“ƒOî•ñ‚ğİ’è‚·‚é
-	bool						GetOverwriteFlagForModelCullings() const ;										// SDK‚©‚çƒ‚ƒfƒ‹‘S‘Ì‚ÌƒJƒŠƒ“ƒOİ’è‚ğã‘‚«‚·‚é‚©B
-	void						SetOverwriteFlagForModelCullings( bool value ) ;								// SDK‚©‚çƒ‚ƒfƒ‹‘S‘Ì‚ÌƒJƒŠƒ“ƒOİ’è‚ğã‘‚«‚·‚é‚©‚ğƒZƒbƒg‚·‚é  SDKã‚ÌƒJƒŠƒ“ƒOİ’è‚ğg‚¤‚È‚çtrueAƒ‚ƒfƒ‹‚ÌƒJƒŠƒ“ƒOİ’è‚ğg‚¤‚È‚çfalse
-	bool						GetOverwriteFlagForDrawableCullings( int drawableIndex ) const ;				// SDK‚©‚çdrawable‚ÌƒJƒŠƒ“ƒOİ’è‚ğã‘‚«‚·‚é‚©B
-	void						SetOverwriteFlagForDrawableCullings( DWORD drawableIndex, bool value ) ;		// SDK‚©‚çdrawable‚ÌƒJƒŠƒ“ƒOİ’è‚ğã‘‚«‚·‚é‚©‚ğƒZƒbƒg‚·‚é  SDKã‚ÌƒJƒŠƒ“ƒOİ’è‚ğg‚¤‚È‚çtrueAƒ‚ƒfƒ‹‚ÌƒJƒŠƒ“ƒOİ’è‚ğg‚¤‚È‚çfalse
-	float						GetModelOpacity() ;																// ƒ‚ƒfƒ‹‚Ì•s“§–¾“x‚ğæ“¾‚·‚é
-	void						SetModelOpacity( float value ) ;												// ƒ‚ƒfƒ‹‚Ì•s“§–¾“x‚ğİ’è‚·‚é
+	void						Update() const ;											// ãƒ¢ãƒ‡ãƒ«ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®æ›´æ–°
+	float						GetCanvasWidthPixel() const ;								// ã‚­ãƒ£ãƒ³ãƒã‚¹ã®å¹…ã‚’å–å¾—
+	float						GetCanvasHeightPixel() const ;								// ã‚­ãƒ£ãƒ³ãƒã‚¹ã®é«˜ã•ã‚’å–å¾—
+	float						GetPixelsPerUnit() const ;									// PixelsPerUnitã‚’å–å¾—
+	float						GetCanvasWidth() const ;									// ã‚­ãƒ£ãƒ³ãƒã‚¹ã®å¹…ã®å–å¾—
+	float						GetCanvasHeight() const ;									// ã‚­ãƒ£ãƒ³ãƒã‚¹ã®é«˜ã•ã®å–å¾—
+	void						GetCanvasInfo( D_CubismVector2 *SizeInPixels, D_CubismVector2 *OriginInPixels, float *PixelsPerUnit ) ;		// ã‚­ãƒ£ãƒ³ãƒã‚¹ã®æƒ…å ±ã‚’å–å¾—ã™ã‚‹
+	int							GetPartIndex( D_CubismIdHandle partId ) ;					// ãƒ‘ãƒ¼ãƒ„ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã®å–å¾—
+	D_CubismIdHandle			GetPartId( int partIndex ) ;								// ãƒ‘ãƒ¼ãƒ„ã®IDã‚’å–å¾—
+	int							GetPartCount() const ;										// ãƒ‘ãƒ¼ãƒ„ã®å€‹æ•°ã®å–å¾—
+	void						SetPartOpacity( D_CubismIdHandle partId, float opacity ) ;	// ãƒ‘ãƒ¼ãƒ„ã®ä¸é€æ˜åº¦ã®è¨­å®š
+	void						SetPartOpacity( int partIndex, float opacity ) ;			// ãƒ‘ãƒ¼ãƒ„ã®ä¸é€æ˜åº¦ã®è¨­å®š
+	float						GetPartOpacity( D_CubismIdHandle partId ) ;					// ãƒ‘ãƒ¼ãƒ„ã®ä¸é€æ˜åº¦ã®å–å¾—
+	float						GetPartOpacity( int partIndex ) ;							// ãƒ‘ãƒ¼ãƒ„ã®ä¸é€æ˜åº¦ã®å–å¾—
+	int							GetParameterIndex( D_CubismIdHandle parameterId ) ;			// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã®å–å¾—
+	int							GetParameterCount() const ;									// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®å€‹æ•°ã®å–å¾—
+	D_CubismIdHandle			GetParameterId( int parameterIndex ) ;						// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®IDã®å–å¾—
+	D_csmParameterType			GetParameterType( DWORD parameterIndex ) const ;				// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®ç¨®é¡ã®å–å¾—
+	float						GetParameterMaximumValue( DWORD parameterIndex ) const ;	// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®æœ€å¤§å€¤ã®å–å¾—
+	float						GetParameterMinimumValue( DWORD parameterIndex ) const ;	// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®æœ€å°å€¤ã®å–å¾—
+	float						GetParameterDefaultValue( DWORD parameterIndex ) const ;	// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå€¤ã®å–å¾—
+	float						GetParameterValue( D_CubismIdHandle parameterId ) ;			// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®å€¤ã®å–å¾—
+	float						GetParameterValue( int parameterIndex ) ;					// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®å€¤ã®å–å¾—
+	void						SetParameterValue( D_CubismIdHandle parameterId, float value, float weight = 1.0f, bool force = false ) ;	// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®å€¤ã®è¨­å®š
+	void						SetParameterValue( int parameterIndex, float value, float weight = 1.0f, bool force = false ) ;				// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®å€¤ã®è¨­å®š
+	void						SetDisableChangeParameter( D_CubismIdHandle parameterId, bool isDisable ) ;	// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®å€¤ã®å¤‰æ›´ã‚’ç„¡åŠ¹åŒ–ã™ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹
+	void						SetDisableChangeParameter( int parameterIndex, bool isDisable ) ;			// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®å€¤ã®å¤‰æ›´ã‚’ç„¡åŠ¹åŒ–ã™ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹
+	void						AddParameterValue( D_CubismIdHandle parameterId, float value, float weight = 1.0f ) ;	// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®å€¤ã®åŠ ç®—
+	void						AddParameterValue( int parameterIndex, float value, float weight = 1.0f ) ;				// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®å€¤ã®åŠ ç®—
+	void						MultiplyParameterValue( D_CubismIdHandle parameterId, float value, float weight = 1.0f ) ;	// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®å€¤ã®ä¹—ç®—
+	void						MultiplyParameterValue( int parameterIndex, float value, float weight = 1.0f ) ;		// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®å€¤ã®ä¹—ç®—
+	int							GetDrawableIndex( D_CubismIdHandle drawableId ) const ;		// Drawableã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã®å–å¾—
+	int							GetDrawableCount() const ;									// Drawableã®å€‹æ•°ã®å–å¾—
+	D_CubismIdHandle			GetDrawableId( int drawableIndex ) const ;					// Drawableã®IDã®å–å¾—
+	const int *					GetDrawableRenderOrders() const ;							// Drawableã®æç”»é †ãƒªã‚¹ãƒˆã®å–å¾—
+	int							GetDrawableTextureIndex( int drawableIndex ) const ;		// Drawableã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã®å–å¾—
+	int							GetDrawableVertexIndexCount( int drawableIndex ) const ;	// Drawableã®é ‚ç‚¹ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã®å€‹æ•°ã®å–å¾—
+	int							GetDrawableVertexCount( int drawableIndex ) const ;			// Drawableã®é ‚ç‚¹ã®å€‹æ•°ã®å–å¾—
+	const float *				GetDrawableVertices( int drawableIndex ) const ;			// Drawableã®é ‚ç‚¹ãƒªã‚¹ãƒˆã®å–å¾—
+	const WORD *				GetDrawableVertexIndices( int drawableIndex ) const ;		// Drawableã®é ‚ç‚¹ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒªã‚¹ãƒˆã®å–å¾—
+	const D_CubismVector2 *		GetDrawableVertexPositions( int drawableIndex ) const ;		// Drawableã®é ‚ç‚¹ãƒªã‚¹ãƒˆã®å–å¾—
+	const D_CubismVector2 *		GetDrawableVertexUvs( int drawableIndex ) const ;			// Drawableã®é ‚ç‚¹ã®UVãƒªã‚¹ãƒˆã®å–å¾—
+	float						GetDrawableOpacity( int drawableIndex ) const ;				// Drawableã®ä¸é€æ˜åº¦ã®å–å¾—
+	D_CubismVector4				GetDrawableMultiplyColor( int drawableIndex ) const ;		// Drawableã®ä¹—ç®—è‰²ã®å–å¾—
+	D_CubismVector4				GetDrawableScreenColor( int drawableIndex ) const ;			// Drawableã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³è‰²ã®å–å¾—
+	int							GetDrawableParentPartIndex( DWORD drawableIndex ) const ;	// Drawableã®è¦ªãƒ‘ãƒ¼ãƒ„ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã®å–å¾—
+	D_CubismBlendMode			GetDrawableBlendMode( int drawableIndex ) const ;			// Drawableã®ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã®å–å¾—
+	bool						GetDrawableInvertedMask( int drawableIndex ) const ;		// Drawableã®ãƒã‚¹ã‚¯ã®åè»¢ä½¿ç”¨ã®å–å¾—
+	bool						GetDrawableDynamicFlagIsVisible( int drawableIndex ) const ;	// Drawableã®è¡¨ç¤ºæƒ…å ±ã®å–å¾—
+	bool						GetDrawableDynamicFlagVisibilityDidChange( int drawableIndex ) const ;	// Drawableã®è¡¨ç¤ºçŠ¶æ…‹ã®å¤‰åŒ–ã®å–å¾—
+	bool						GetDrawableDynamicFlagOpacityDidChange( int drawableIndex ) const ;	// Drawableã®ä¸é€æ˜åº¦ã®å¤‰åŒ–æƒ…å ±ã®å–å¾—
+	bool						GetDrawableDynamicFlagDrawOrderDidChange( int drawableIndex ) const ;	// Drawableã®DrawOrderã®å¤‰åŒ–æƒ…å ±ã®å–å¾—
+	bool						GetDrawableDynamicFlagRenderOrderDidChange( int drawableIndex ) const ;	// Drawableã®æç”»é †åºã®å¤‰åŒ–æƒ…å ±ã®å–å¾—
+	bool						GetDrawableDynamicFlagVertexPositionsDidChange( int drawableIndex ) const ;	// Drawableã®VertexPositionsã®å¤‰åŒ–æƒ…å ±ã®å–å¾—
+	bool						GetDrawableDynamicFlagBlendColorDidChange( int drawableIndex ) const ;	// Drawableã®ä¹—ç®—è‰²ãƒ»ã‚¹ã‚¯ãƒªãƒ¼ãƒ³è‰²ã®å¤‰åŒ–æƒ…å ±ã®å–å¾—
+	const int**					GetDrawableMasks() const ;									// Drawableã®ã‚¯ãƒªãƒƒãƒ”ãƒ³ã‚°ãƒã‚¹ã‚¯ãƒªã‚¹ãƒˆã®å–å¾—
+	const int*					GetDrawableMaskCounts() const ;								// Drawableã®ã‚¯ãƒªãƒƒãƒ”ãƒ³ã‚°ãƒã‚¹ã‚¯ã®å€‹æ•°ãƒªã‚¹ãƒˆã®å–å¾—
+	bool						IsUsingMasking() const ;									// ã‚¯ãƒªãƒƒãƒ”ãƒ³ã‚°ãƒã‚¹ã‚¯ã®ä½¿ç”¨çŠ¶æ…‹
+	void						LoadParameters() ;											// ä¿å­˜ã•ã‚ŒãŸãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®èª­ã¿è¾¼ã¿
+	void						SaveParameters() ;											// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®ä¿å­˜
+	D_CubismRenderer::CubismTextureColor GetMultiplyColor( int drawableIndex ) const ;		// drawableã®ä¹—ç®—è‰²ã‚’å–å¾—ã™ã‚‹
+	D_CubismRenderer::CubismTextureColor GetScreenColor( int drawableIndex ) const ;		// drawableã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³è‰²ã‚’å–å¾—ã™ã‚‹
+	void						SetMultiplyColor( int drawableIndex, const D_CubismRenderer::CubismTextureColor& color ) ;	// drawableã®ä¹—ç®—è‰²ã‚’è¨­å®šã™ã‚‹
+	void						SetMultiplyColor( int drawableIndex, float r, float g, float b, float a = 1.0f ) ;			// drawableã®ä¹—ç®—è‰²ã‚’è¨­å®šã™ã‚‹
+	void						SetScreenColor( int drawableIndex, const D_CubismRenderer::CubismTextureColor& color ) ;	// drawableã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³è‰²ã‚’è¨­å®šã™ã‚‹
+	void						SetScreenColor( int drawableIndex, float r, float g, float b, float a = 1.0f ) ;			// drawableã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³è‰²ã‚’è¨­å®šã™ã‚‹
+	D_CubismRenderer::CubismTextureColor GetPartMultiplyColor( int partIndex ) const ;		// partã®ä¹—ç®—è‰²ã‚’å–å¾—ã™ã‚‹
+	D_CubismRenderer::CubismTextureColor GetPartScreenColor( int partIndex ) const ;		// partã®ä¹—ç®—è‰²ã‚’å–å¾—ã™ã‚‹
+	void						SetPartMultiplyColor( int partIndex, const D_CubismRenderer::CubismTextureColor& color ) ;	// partã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³è‰²ã‚’è¨­å®šã™ã‚‹
+	void						SetPartMultiplyColor( int partIndex, float r, float g, float b, float a = 1.0f ) ;			// partã®ä¹—ç®—è‰²ã‚’è¨­å®šã™ã‚‹
+	void						SetPartScreenColor( int partIndex, const D_CubismRenderer::CubismTextureColor& color ) ;	// partã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³è‰²ã‚’è¨­å®šã™ã‚‹
+	void						SetPartScreenColor( int partIndex, float r, float g, float b, float a = 1.0f ) ;			// partã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³è‰²ã‚’è¨­å®šã™ã‚‹
+	bool						GetOverwriteFlagForModelMultiplyColors() const ;								// SDKã‹ã‚‰ãƒ¢ãƒ‡ãƒ«å…¨ä½“ã®ä¹—ç®—è‰²ã‚’ä¸Šæ›¸ãã™ã‚‹ã‹ã€‚
+	bool						GetOverwriteFlagForModelScreenColors() const ;									// SDKã‹ã‚‰ãƒ¢ãƒ‡ãƒ«å…¨ä½“ã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³è‰²ã‚’ä¸Šæ›¸ãã™ã‚‹ã‹ã€‚
+	void						SetOverwriteFlagForModelMultiplyColors( bool value ) ;							// SDKã‹ã‚‰ãƒ¢ãƒ‡ãƒ«å…¨ä½“ã®ä¹—ç®—è‰²ã‚’ä¸Šæ›¸ãã™ã‚‹ã‹ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
+	void						SetOverwriteFlagForModelScreenColors( bool value ) ;							// SDKã‹ã‚‰ãƒ¢ãƒ‡ãƒ«å…¨ä½“ã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³è‰²ã‚’ä¸Šæ›¸ãã™ã‚‹ã‹ã‚’ã‚»ãƒƒãƒˆã™ã‚‹  SDKä¸Šã®è‰²æƒ…å ±ã‚’ä½¿ã†ãªã‚‰trueã€ãƒ¢ãƒ‡ãƒ«ã®è‰²æƒ…å ±ã‚’ä½¿ã†ãªã‚‰false
+	bool						GetOverwriteFlagForDrawableMultiplyColors( int drawableIndex ) const ;			// SDKã‹ã‚‰drawableã®ä¹—ç®—è‰²ã‚’ä¸Šæ›¸ãã™ã‚‹ã‹ã€‚
+	bool						GetOverwriteFlagForDrawableScreenColors( int drawableIndex ) const ;			// SDKã‹ã‚‰drawableã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³è‰²ã‚’ä¸Šæ›¸ãã™ã‚‹ã‹ã€‚
+	void						SetOverwriteFlagForDrawableMultiplyColors( DWORD drawableIndex, bool value ) ;	// SDKã‹ã‚‰drawableã®ä¹—ç®—è‰²ã‚’ä¸Šæ›¸ãã™ã‚‹ã‹ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
+	void						SetOverwriteFlagForDrawableScreenColors( DWORD drawableIndex, bool value ) ;	// SDKã‹ã‚‰drawableã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³è‰²ã‚’ä¸Šæ›¸ãã™ã‚‹ã‹ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
+	bool						GetOverwriteColorForPartMultiplyColors( int partIndex ) const ;					// SDKã‹ã‚‰partã®ä¹—ç®—è‰²ã‚’ä¸Šæ›¸ãã™ã‚‹ã‹ã€‚
+	bool						GetOverwriteColorForPartScreenColors( int partIndex ) const ;					// SDKã‹ã‚‰partã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³è‰²ã‚’ä¸Šæ›¸ãã™ã‚‹ã‹ã€‚
+	void						SetOverwriteColorForPartMultiplyColors( DWORD partIndex, bool value ) ;			// SDKã‹ã‚‰partã®ä¹—ç®—è‰²ã‚’ä¸Šæ›¸ãã™ã‚‹ã‹ã‚’ã‚»ãƒƒãƒˆã™ã‚‹     SDKä¸Šã®è‰²æƒ…å ±ã‚’ä½¿ã†ãªã‚‰trueã€ãƒ¢ãƒ‡ãƒ«ã®è‰²æƒ…å ±ã‚’ä½¿ã†ãªã‚‰false
+	void						SetOverwriteColorForPartScreenColors( DWORD partIndex, bool value ) ;			// SDKã‹ã‚‰partã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³è‰²ã‚’ä¸Šæ›¸ãã™ã‚‹ã‹ã‚’ã‚»ãƒƒãƒˆã™ã‚‹      SDKä¸Šã®è‰²æƒ…å ±ã‚’ä½¿ã†ãªã‚‰trueã€ãƒ¢ãƒ‡ãƒ«ã®è‰²æƒ…å ±ã‚’ä½¿ã†ãªã‚‰false
+	int							GetDrawableCulling( int drawableIndex ) const ;									// Drawableã®ã‚«ãƒªãƒ³ã‚°æƒ…å ±ã®å–å¾—
+	void						SetDrawableCulling( int drawableIndex, int isCulling ) ;						// Drawableã®ã‚«ãƒªãƒ³ã‚°æƒ…å ±ã‚’è¨­å®šã™ã‚‹
+	bool						GetOverwriteFlagForModelCullings() const ;										// SDKã‹ã‚‰ãƒ¢ãƒ‡ãƒ«å…¨ä½“ã®ã‚«ãƒªãƒ³ã‚°è¨­å®šã‚’ä¸Šæ›¸ãã™ã‚‹ã‹ã€‚
+	void						SetOverwriteFlagForModelCullings( bool value ) ;								// SDKã‹ã‚‰ãƒ¢ãƒ‡ãƒ«å…¨ä½“ã®ã‚«ãƒªãƒ³ã‚°è¨­å®šã‚’ä¸Šæ›¸ãã™ã‚‹ã‹ã‚’ã‚»ãƒƒãƒˆã™ã‚‹  SDKä¸Šã®ã‚«ãƒªãƒ³ã‚°è¨­å®šã‚’ä½¿ã†ãªã‚‰trueã€ãƒ¢ãƒ‡ãƒ«ã®ã‚«ãƒªãƒ³ã‚°è¨­å®šã‚’ä½¿ã†ãªã‚‰false
+	bool						GetOverwriteFlagForDrawableCullings( int drawableIndex ) const ;				// SDKã‹ã‚‰drawableã®ã‚«ãƒªãƒ³ã‚°è¨­å®šã‚’ä¸Šæ›¸ãã™ã‚‹ã‹ã€‚
+	void						SetOverwriteFlagForDrawableCullings( DWORD drawableIndex, bool value ) ;		// SDKã‹ã‚‰drawableã®ã‚«ãƒªãƒ³ã‚°è¨­å®šã‚’ä¸Šæ›¸ãã™ã‚‹ã‹ã‚’ã‚»ãƒƒãƒˆã™ã‚‹  SDKä¸Šã®ã‚«ãƒªãƒ³ã‚°è¨­å®šã‚’ä½¿ã†ãªã‚‰trueã€ãƒ¢ãƒ‡ãƒ«ã®ã‚«ãƒªãƒ³ã‚°è¨­å®šã‚’ä½¿ã†ãªã‚‰false
+	float						GetModelOpacity() ;																// ãƒ¢ãƒ‡ãƒ«ã®ä¸é€æ˜åº¦ã‚’å–å¾—ã™ã‚‹
+	void						SetModelOpacity( float value ) ;												// ãƒ¢ãƒ‡ãƒ«ã®ä¸é€æ˜åº¦ã‚’è¨­å®šã™ã‚‹
 	void*						GetModel() const ;
 
 private:
-	D_CubismModel( void* model ) ;															// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-	virtual ~D_CubismModel() ;																// ƒfƒXƒgƒ‰ƒNƒ^
+	D_CubismModel( void* model ) ;															// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	virtual ~D_CubismModel() ;																// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	D_CubismModel( const D_CubismModel& ) ;
 
 	D_CubismModel&				operator=( const D_CubismModel& ) ;
-	void						Initialize() ;												// ‰Šú‰»
+	void						Initialize() ;												// åˆæœŸåŒ–
 
-	// part‚ÌOverwriteColor SetŠÖ”
+	// partã®OverwriteColor Seté–¢æ•°
 	void SetPartColor(
 		DWORD partIndex,
 		float r, float g, float b, float a,
 		D_csmVector< PartColorData >& partColors,
 		D_csmVector< DrawableColorData >& drawableColors ) ;
 
-	// part‚ÌOverwriteFlag SetŠÖ”
+	// partã®OverwriteFlag Seté–¢æ•°
 	void SetOverwriteColorForPartColors(
 		DWORD partIndex,
 		bool value,
 		D_csmVector< PartColorData >& partColors,
 		D_csmVector< DrawableColorData >& drawableColors ) ;
 
-	D_csmMap< int, float >				_notExistPartOpacities ;	// ‘¶İ‚µ‚Ä‚¢‚È‚¢ƒp[ƒc‚Ì•s“§–¾“x‚ÌƒŠƒXƒg
-	D_csmMap< D_CubismIdHandle, int >	_notExistPartId ;			// ‘¶İ‚µ‚Ä‚¢‚È‚¢ƒp[ƒcID‚ÌƒŠƒXƒg
-	D_csmMap< int, float >				_notExistParameterValues ;	// ‘¶İ‚µ‚Ä‚¢‚È‚¢ƒpƒ‰ƒ[ƒ^‚Ì’l‚ÌƒŠƒXƒg
-	D_csmMap< D_CubismIdHandle, int >	_notExistParameterId ;		// ‘¶İ‚µ‚Ä‚¢‚È‚¢ƒpƒ‰ƒ[ƒ^ID‚ÌƒŠƒXƒg
-	D_csmVector< int >					_disableChangeParameterIndices ;	// ’Êí‚Ì•ÏX‚Í‹‘”Û‚³‚ê‚éƒpƒ‰ƒ[ƒ^”Ô†
-	D_csmVector< float >				_savedParameters ;			// •Û‘¶‚³‚ê‚½ƒpƒ‰ƒ[ƒ^
-	void *								_model ;					// ƒ‚ƒfƒ‹
-	float *								_parameterValues ;			// ƒpƒ‰ƒ[ƒ^‚Ì’l‚ÌƒŠƒXƒg
-	const float *						_parameterMaximumValues ;	// ƒpƒ‰ƒ[ƒ^‚ÌÅ‘å’l‚ÌƒŠƒXƒg
-	const float *						_parameterMinimumValues ;	// ƒpƒ‰ƒ[ƒ^‚ÌÅ¬’l‚ÌƒŠƒXƒg
-	float *								_partOpacities ;			// ƒp[ƒc‚Ì•s“§–¾“x‚ÌƒŠƒXƒg
-    float								_modelOpacity ;				// ƒ‚ƒfƒ‹‚Ì•s“§–¾“x
+	D_csmMap< int, float >				_notExistPartOpacities ;	// å­˜åœ¨ã—ã¦ã„ãªã„ãƒ‘ãƒ¼ãƒ„ã®ä¸é€æ˜åº¦ã®ãƒªã‚¹ãƒˆ
+	D_csmMap< D_CubismIdHandle, int >	_notExistPartId ;			// å­˜åœ¨ã—ã¦ã„ãªã„ãƒ‘ãƒ¼ãƒ„IDã®ãƒªã‚¹ãƒˆ
+	D_csmMap< int, float >				_notExistParameterValues ;	// å­˜åœ¨ã—ã¦ã„ãªã„ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®å€¤ã®ãƒªã‚¹ãƒˆ
+	D_csmMap< D_CubismIdHandle, int >	_notExistParameterId ;		// å­˜åœ¨ã—ã¦ã„ãªã„ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿IDã®ãƒªã‚¹ãƒˆ
+	D_csmVector< int >					_disableChangeParameterIndices ;	// é€šå¸¸ã®å¤‰æ›´ã¯æ‹’å¦ã•ã‚Œã‚‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ç•ªå·
+	D_csmVector< float >				_savedParameters ;			// ä¿å­˜ã•ã‚ŒãŸãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+	void *								_model ;					// ãƒ¢ãƒ‡ãƒ«
+	float *								_parameterValues ;			// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®å€¤ã®ãƒªã‚¹ãƒˆ
+	const float *						_parameterMaximumValues ;	// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®æœ€å¤§å€¤ã®ãƒªã‚¹ãƒˆ
+	const float *						_parameterMinimumValues ;	// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®æœ€å°å€¤ã®ãƒªã‚¹ãƒˆ
+	float *								_partOpacities ;			// ãƒ‘ãƒ¼ãƒ„ã®ä¸é€æ˜åº¦ã®ãƒªã‚¹ãƒˆ
+    float								_modelOpacity ;				// ãƒ¢ãƒ‡ãƒ«ã®ä¸é€æ˜åº¦
 	D_csmVector< D_CubismIdHandle >		_parameterIds ;
 	D_csmVector< D_CubismIdHandle >		_partIds ;
 	D_csmVector< D_CubismIdHandle >		_drawableIds ;
-	D_csmVector< DrawableColorData >	_userScreenColors;			// Drawable æZF‚Ì”z—ñ
-	D_csmVector< DrawableColorData >	_userMultiplyColors;		// Drawable ƒXƒNƒŠ[ƒ“F‚Ì”z—ñ
-	D_csmVector< DrawableCullingData >	_userCullings;				// ƒJƒŠƒ“ƒOİ’è‚Ì”z—ñ
-	D_csmVector< PartColorData >		_userPartScreenColors;		// Part æZF‚Ì”z—ñ
-	D_csmVector< PartColorData >		_userPartMultiplyColors;	// Part ƒXƒNƒŠ[ƒ“F‚Ì”z—ñ
-	D_csmVector< D_csmVector< DWORD > >	_partChildDrawables;		// Part‚ÌqDrawableIndex‚Ì”z—ñ
-	bool								_isOverwrittenModelMultiplyColors; // æZF‚ğ‘S‚Äã‘‚«‚·‚é‚©H
-	bool								_isOverwrittenModelScreenColors; // ƒXƒNƒŠ[ƒ“F‚ğ‘S‚Äã‘‚«‚·‚é‚©H
-	bool								_isOverwrittenCullings;		// ƒ‚ƒfƒ‹‚ÌƒJƒŠƒ“ƒOİ’è‚ğ‚·‚×‚Äã‘‚«‚·‚é‚©H
+	D_csmVector< DrawableColorData >	_userScreenColors;			// Drawable ä¹—ç®—è‰²ã®é…åˆ—
+	D_csmVector< DrawableColorData >	_userMultiplyColors;		// Drawable ã‚¹ã‚¯ãƒªãƒ¼ãƒ³è‰²ã®é…åˆ—
+	D_csmVector< DrawableCullingData >	_userCullings;				// ã‚«ãƒªãƒ³ã‚°è¨­å®šã®é…åˆ—
+	D_csmVector< PartColorData >		_userPartScreenColors;		// Part ä¹—ç®—è‰²ã®é…åˆ—
+	D_csmVector< PartColorData >		_userPartMultiplyColors;	// Part ã‚¹ã‚¯ãƒªãƒ¼ãƒ³è‰²ã®é…åˆ—
+	D_csmVector< D_csmVector< DWORD > >	_partChildDrawables;		// Partã®å­DrawableIndexã®é…åˆ—
+	bool								_isOverwrittenModelMultiplyColors; // ä¹—ç®—è‰²ã‚’å…¨ã¦ä¸Šæ›¸ãã™ã‚‹ã‹ï¼Ÿ
+	bool								_isOverwrittenModelScreenColors; // ã‚¹ã‚¯ãƒªãƒ¼ãƒ³è‰²ã‚’å…¨ã¦ä¸Šæ›¸ãã™ã‚‹ã‹ï¼Ÿ
+	bool								_isOverwrittenCullings;		// ãƒ¢ãƒ‡ãƒ«ã®ã‚«ãƒªãƒ³ã‚°è¨­å®šã‚’ã™ã¹ã¦ä¸Šæ›¸ãã™ã‚‹ã‹ï¼Ÿ
 } ;
 
-// D_CubismMotionQueueManager‚ÅÄ¶‚µ‚Ä‚¢‚éŠeƒ‚[ƒVƒ‡ƒ“‚ÌŠÇ—
+// D_CubismMotionQueueManagerã§å†ç”Ÿã—ã¦ã„ã‚‹å„ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ã®ç®¡ç†
 class D_CubismMotionQueueEntry
 {
 	friend class D_CubismMotionQueueManager ;
@@ -1216,85 +1216,85 @@ class D_CubismMotionQueueEntry
 	friend class D_CubismMotion ;
 
 public:
-	D_CubismMotionQueueEntry() ;															// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-	virtual ~D_CubismMotionQueueEntry() ;// ƒfƒXƒgƒ‰ƒNƒ^
-	void						StartFadeout( float fadeOutSeconds, float userTimeSeconds ) ;	// ƒtƒF[ƒhƒAƒEƒg‚ÌŠJn
-	bool						IsFinished() const ;										// ƒ‚[ƒVƒ‡ƒ“‚ÌI—¹‚ÌŠm”F
-	bool						IsStarted() const ;											// ƒ‚[ƒVƒ‡ƒ“‚ÌŠJn‚ÌŠm”F
-	float						GetStartTime() const ;										// ƒ‚[ƒVƒ‡ƒ“‚ÌŠJn‚Ìæ“¾
-	float						GetFadeInStartTime() const ;								// ƒtƒF[ƒhƒCƒ“‚ÌŠJn‚Ìæ“¾
-	float						GetEndTime() const ;										// ƒtƒF[ƒhƒCƒ“‚ÌI—¹‚Ìæ“¾
-	void						SetStartTime( float startTime ) ;							// ƒ‚[ƒVƒ‡ƒ“‚ÌŠJn‚Ìİ’è
-	void						SetFadeInStartTime( float startTime ) ;						// ƒtƒF[ƒhƒCƒ“‚ÌŠJn‚Ìİ’è
-	void						SetEndTime( float endTime )	;								// ƒtƒF[ƒhƒCƒ“‚ÌI—¹‚Ìİ’è
-	void						IsFinished( bool f ) ;										// ƒ‚[ƒVƒ‡ƒ“‚ÌI—¹‚Ìİ’è
-	void						IsStarted( bool f ) ;										// ƒ‚[ƒVƒ‡ƒ“‚ÌŠJn‚Ìİ’è
-	bool						IsAvailable() const ;										// ƒ‚[ƒVƒ‡ƒ“‚Ì—LŒø«‚ÌŠm”F
-	void						IsAvailable( bool v ) ;										// ƒ‚[ƒVƒ‡ƒ“‚Ì—LŒø«‚Ìİ’è
-	void						SetState( float timeSeconds, float weight ) ;				// ƒ‚[ƒVƒ‡ƒ“‚Ìó‘Ô‚Ìİ’è
-	float						GetStateTime() const ;										// ƒ‚[ƒVƒ‡ƒ“‚ÌŒ»İ‚Ìæ“¾
-	float						GetStateWeight() const ;									// ƒ‚[ƒVƒ‡ƒ“‚Ìd‚İ‚Ìæ“¾
-	float						GetLastCheckEventTime() const ;								// ÅŒã‚ÉƒCƒxƒ“ƒg‚Ì”­‰Î‚ğƒ`ƒFƒbƒN‚µ‚½ŠÔ‚ğæ“¾
-	void						SetLastCheckEventTime( float checkTime ) ;					// ÅŒã‚ÉƒCƒxƒ“ƒg‚ğƒ`ƒFƒbƒN‚µ‚½ŠÔ‚ğİ’è
+	D_CubismMotionQueueEntry() ;															// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	virtual ~D_CubismMotionQueueEntry() ;// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	void						StartFadeout( float fadeOutSeconds, float userTimeSeconds ) ;	// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆã®é–‹å§‹
+	bool						IsFinished() const ;										// ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ã®çµ‚äº†ã®ç¢ºèª
+	bool						IsStarted() const ;											// ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ã®é–‹å§‹ã®ç¢ºèª
+	float						GetStartTime() const ;										// ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ã®é–‹å§‹æ™‚åˆ»ã®å–å¾—
+	float						GetFadeInStartTime() const ;								// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ã®é–‹å§‹æ™‚åˆ»ã®å–å¾—
+	float						GetEndTime() const ;										// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ã®çµ‚äº†æ™‚åˆ»ã®å–å¾—
+	void						SetStartTime( float startTime ) ;							// ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ã®é–‹å§‹æ™‚åˆ»ã®è¨­å®š
+	void						SetFadeInStartTime( float startTime ) ;						// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ã®é–‹å§‹æ™‚åˆ»ã®è¨­å®š
+	void						SetEndTime( float endTime )	;								// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ã®çµ‚äº†æ™‚åˆ»ã®è¨­å®š
+	void						IsFinished( bool f ) ;										// ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ã®çµ‚äº†ã®è¨­å®š
+	void						IsStarted( bool f ) ;										// ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ã®é–‹å§‹ã®è¨­å®š
+	bool						IsAvailable() const ;										// ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ã®æœ‰åŠ¹æ€§ã®ç¢ºèª
+	void						IsAvailable( bool v ) ;										// ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ã®æœ‰åŠ¹æ€§ã®è¨­å®š
+	void						SetState( float timeSeconds, float weight ) ;				// ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ã®çŠ¶æ…‹ã®è¨­å®š
+	float						GetStateTime() const ;										// ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ã®ç¾åœ¨æ™‚åˆ»ã®å–å¾—
+	float						GetStateWeight() const ;									// ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ã®é‡ã¿ã®å–å¾—
+	float						GetLastCheckEventTime() const ;								// æœ€å¾Œã«ã‚¤ãƒ™ãƒ³ãƒˆã®ç™ºç«ã‚’ãƒã‚§ãƒƒã‚¯ã—ãŸæ™‚é–“ã‚’å–å¾—
+	void						SetLastCheckEventTime( float checkTime ) ;					// æœ€å¾Œã«ã‚¤ãƒ™ãƒ³ãƒˆã‚’ãƒã‚§ãƒƒã‚¯ã—ãŸæ™‚é–“ã‚’è¨­å®š
 
 private:
-	bool						_autoDelete ;					// ©“®íœ
-	class D_ACubismMotion*		_motion ;						// ƒ‚[ƒVƒ‡ƒ“
-	bool						_available ;					// —LŒø‰»ƒtƒ‰ƒO
-	bool						_finished ;						// I—¹ƒtƒ‰ƒO
-	bool						_started ;						// ŠJnƒtƒ‰ƒOi0.9.00ˆÈ~j
-	float						_startTimeSeconds ;				//  ƒ‚[ƒVƒ‡ƒ“Ä¶ŠJn[•b]
-	float						_fadeInStartTimeSeconds ;		//  ƒtƒF[ƒhƒCƒ“ŠJniƒ‹[ƒv‚Ì‚Í‰‰ñ‚Ì‚İj[•b]
-	float						_endTimeSeconds ;				// I—¹—\’è[•b]
-	float						_stateTimeSeconds ;				//  ‚Ìó‘Ô[•b]
-	float						_stateWeight ;					//  d‚İ‚Ìó‘Ô
-	float						_lastEventCheckSeconds ;		//   ÅI‚ÌMotion‘¤‚Ìƒ`ƒFƒbƒN‚µ‚½ŠÔ
-	D_CubismMotionQueueEntryHandle  _motionQueueEntryHandle	;	// ƒCƒ“ƒXƒ^ƒ“ƒX‚²‚Æ‚ÉˆêˆÓ‚Ì’l‚ğ‚Â¯•Ê”Ô†
+	bool						_autoDelete ;					// è‡ªå‹•å‰Šé™¤
+	class D_ACubismMotion*		_motion ;						// ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³
+	bool						_available ;					// æœ‰åŠ¹åŒ–ãƒ•ãƒ©ã‚°
+	bool						_finished ;						// çµ‚äº†ãƒ•ãƒ©ã‚°
+	bool						_started ;						// é–‹å§‹ãƒ•ãƒ©ã‚°ï¼ˆ0.9.00ä»¥é™ï¼‰
+	float						_startTimeSeconds ;				//  ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³å†ç”Ÿé–‹å§‹æ™‚åˆ»[ç§’]
+	float						_fadeInStartTimeSeconds ;		//  ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³é–‹å§‹æ™‚åˆ»ï¼ˆãƒ«ãƒ¼ãƒ—ã®æ™‚ã¯åˆå›ã®ã¿ï¼‰[ç§’]
+	float						_endTimeSeconds ;				// çµ‚äº†äºˆå®šæ™‚åˆ»[ç§’]
+	float						_stateTimeSeconds ;				//  æ™‚åˆ»ã®çŠ¶æ…‹[ç§’]
+	float						_stateWeight ;					//  é‡ã¿ã®çŠ¶æ…‹
+	float						_lastEventCheckSeconds ;		//   æœ€çµ‚ã®Motionå´ã®ãƒã‚§ãƒƒã‚¯ã—ãŸæ™‚é–“
+	D_CubismMotionQueueEntryHandle  _motionQueueEntryHandle	;	// ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã”ã¨ã«ä¸€æ„ã®å€¤ã‚’æŒã¤è­˜åˆ¥ç•ªå·
 } ;
 
-// ƒ‚[ƒVƒ‡ƒ“Ä¶‚ÌŠÇ—
+// ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³å†ç”Ÿã®ç®¡ç†
 class D_CubismMotionQueueManager
 {
 public:
-	D_CubismMotionQueueManager() ;															// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-	virtual ~D_CubismMotionQueueManager() ;													// ƒfƒXƒgƒ‰ƒNƒ^
-	D_CubismMotionQueueEntryHandle StartMotion( D_ACubismMotion* motion, bool autoDelete, float userTimeSeconds ) ;		// w’è‚µ‚½ƒ‚[ƒVƒ‡ƒ“‚ÌŠJn
-	bool						IsFinished() ;																			// ‚·‚×‚Ä‚Ìƒ‚[ƒVƒ‡ƒ“‚ÌI—¹‚ÌŠm”F
-	bool						IsFinished( D_CubismMotionQueueEntryHandle motionQueueEntryNumber ) ;					// w’è‚µ‚½ƒ‚[ƒVƒ‡ƒ“‚ÌI—¹‚ÌŠm”F
-	void						StopAllMotions() ;																		// ‚·‚×‚Ä‚Ìƒ‚[ƒVƒ‡ƒ“‚Ì’â~
-	D_CubismMotionQueueEntry *	GetCubismMotionQueueEntry( D_CubismMotionQueueEntryHandle motionQueueEntryNumber ) ;	// w’è‚µ‚½D_CubismMotionQueueEntry‚Ìæ“¾
-	void						SetEventCallback( D_CubismMotionEventFunction callback, void* customData = NULL ) ;		// ƒCƒxƒ“ƒg‚ğó‚¯æ‚éCallback‚Ì“o˜^
+	D_CubismMotionQueueManager() ;															// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	virtual ~D_CubismMotionQueueManager() ;													// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	D_CubismMotionQueueEntryHandle StartMotion( D_ACubismMotion* motion, bool autoDelete, float userTimeSeconds ) ;		// æŒ‡å®šã—ãŸãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ã®é–‹å§‹
+	bool						IsFinished() ;																			// ã™ã¹ã¦ã®ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ã®çµ‚äº†ã®ç¢ºèª
+	bool						IsFinished( D_CubismMotionQueueEntryHandle motionQueueEntryNumber ) ;					// æŒ‡å®šã—ãŸãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ã®çµ‚äº†ã®ç¢ºèª
+	void						StopAllMotions() ;																		// ã™ã¹ã¦ã®ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ã®åœæ­¢
+	D_CubismMotionQueueEntry *	GetCubismMotionQueueEntry( D_CubismMotionQueueEntryHandle motionQueueEntryNumber ) ;	// æŒ‡å®šã—ãŸD_CubismMotionQueueEntryã®å–å¾—
+	void						SetEventCallback( D_CubismMotionEventFunction callback, void* customData = NULL ) ;		// ã‚¤ãƒ™ãƒ³ãƒˆã‚’å—ã‘å–ã‚‹Callbackã®ç™»éŒ²
 	float						GetMotionPlayTime(){ return _motionPlayTime; }
 
 protected:
-	virtual bool				DoUpdateMotion( D_CubismModel* model, float userTimeSeconds ) ;							// ƒ‚[ƒVƒ‡ƒ“‚ÌXV
+	virtual bool				DoUpdateMotion( D_CubismModel* model, float userTimeSeconds ) ;							// ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ã®æ›´æ–°
 
-	float										_userTimeSeconds ;	// ƒfƒ‹ƒ^ŠÔ‚ÌÏZ’l[•b]
-	float										_motionPlayTime ;	// ƒ‚[ƒVƒ‡ƒ“Ä¶ŠÔ
+	float										_userTimeSeconds ;	// ãƒ‡ãƒ«ã‚¿æ™‚é–“ã®ç©ç®—å€¤[ç§’]
+	float										_motionPlayTime ;	// ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³å†ç”Ÿæ™‚é–“
 
 private:
-	D_csmVector< D_CubismMotionQueueEntry * >   _motions ;			// ƒ‚[ƒVƒ‡ƒ“
-	D_CubismMotionEventFunction					_eventCallback ;	// ƒR[ƒ‹ƒoƒbƒNŠÖ”ƒ|ƒCƒ“ƒ^
-	void*										_eventCustomData ;	// ƒR[ƒ‹ƒoƒbƒN‚É–ß‚³‚ê‚éƒf[ƒ^
+	D_csmVector< D_CubismMotionQueueEntry * >   _motions ;			// ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³
+	D_CubismMotionEventFunction					_eventCallback ;	// ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ãƒã‚¤ãƒ³ã‚¿
+	void*										_eventCustomData ;	// ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã«æˆ»ã•ã‚Œã‚‹ãƒ‡ãƒ¼ã‚¿
 } ;
 
-// ƒ‚[ƒVƒ‡ƒ“‚Ì’ŠÛŠî’êƒNƒ‰ƒX
+// ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ã®æŠ½è±¡åŸºåº•ã‚¯ãƒ©ã‚¹
 class D_ACubismMotion
 {
 public:
-	static void					Delete( D_ACubismMotion* motion ) ;							// ƒCƒ“ƒXƒ^ƒ“ƒX‚Ì”jŠü
-	D_ACubismMotion() ;																		// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-	void						UpdateParameters( D_CubismModel* model, D_CubismMotionQueueEntry* motionQueueEntry, float userTimeSeconds ) ;	// ƒ‚ƒfƒ‹‚Ìƒpƒ‰ƒ[ƒ^XV
-	void						SetFadeInTime( float fadeInSeconds ) ;						// ƒtƒF[ƒhƒCƒ“
-	void						SetFadeOutTime( float fadeOutSeconds ) ;					// ƒtƒF[ƒhƒAƒEƒg
-	float						GetFadeOutTime() const ;									// ƒtƒF[ƒhƒAƒEƒg‚É‚©‚©‚éŠÔ‚Ìæ“¾
-	float						GetFadeInTime() const ;										// ƒtƒF[ƒhƒCƒ“‚É‚©‚©‚éŠÔ‚Ìæ“¾
-	void						SetWeight( float weight ) ;									// ƒ‚[ƒVƒ‡ƒ““K—p‚Ìd‚İ‚Ìİ’è
-	float						GetWeight() const ;											// ƒ‚[ƒVƒ‡ƒ““K—p‚Ìd‚İ‚Ìæ“¾
-	virtual float				GetDuration() ;												// ƒ‚[ƒVƒ‡ƒ“‚Ì’·‚³‚Ìæ“¾
-	virtual float				GetLoopDuration() ;											// ƒ‚[ƒVƒ‡ƒ“‚Ìƒ‹[ƒv1‰ñ•ª‚Ì’·‚³‚Ìæ“¾
-	void						SetOffsetTime( float offsetSeconds ) ;						// ƒ‚[ƒVƒ‡ƒ“Ä¶‚ÌŠJn‚Ìİ’è
-	virtual const D_csmVector< const D_csmString * >& GetFiredEvent( float beforeCheckTimeSeconds, float motionTimeSeconds ) ;	// ƒ‚ƒfƒ‹‚Ìƒpƒ‰ƒ[ƒ^XV
+	static void					Delete( D_ACubismMotion* motion ) ;							// ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã®ç ´æ£„
+	D_ACubismMotion() ;																		// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	void						UpdateParameters( D_CubismModel* model, D_CubismMotionQueueEntry* motionQueueEntry, float userTimeSeconds ) ;	// ãƒ¢ãƒ‡ãƒ«ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ›´æ–°
+	void						SetFadeInTime( float fadeInSeconds ) ;						// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³
+	void						SetFadeOutTime( float fadeOutSeconds ) ;					// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ
+	float						GetFadeOutTime() const ;									// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆã«ã‹ã‹ã‚‹æ™‚é–“ã®å–å¾—
+	float						GetFadeInTime() const ;										// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ã«ã‹ã‹ã‚‹æ™‚é–“ã®å–å¾—
+	void						SetWeight( float weight ) ;									// ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³é©ç”¨ã®é‡ã¿ã®è¨­å®š
+	float						GetWeight() const ;											// ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³é©ç”¨ã®é‡ã¿ã®å–å¾—
+	virtual float				GetDuration() ;												// ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ã®é•·ã•ã®å–å¾—
+	virtual float				GetLoopDuration() ;											// ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ã®ãƒ«ãƒ¼ãƒ—1å›åˆ†ã®é•·ã•ã®å–å¾—
+	void						SetOffsetTime( float offsetSeconds ) ;						// ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³å†ç”Ÿã®é–‹å§‹æ™‚åˆ»ã®è¨­å®š
+	virtual const D_csmVector< const D_csmString * >& GetFiredEvent( float beforeCheckTimeSeconds, float motionTimeSeconds ) ;	// ãƒ¢ãƒ‡ãƒ«ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ›´æ–°
 
 private:
 	// Prevention of copy Constructor
@@ -1302,191 +1302,191 @@ private:
 	D_ACubismMotion& operator=( const D_ACubismMotion& ) ;
 
 protected:
-	virtual ~D_ACubismMotion() ;															// ƒfƒXƒgƒ‰ƒNƒ^
-	virtual void				DoUpdateParameters( D_CubismModel* model, float userTimeSeconds, float weight, D_CubismMotionQueueEntry* motionQueueEntry ) = 0 ;// ƒ‚ƒfƒ‹‚Ìƒpƒ‰ƒ[ƒ^‚ÌXV‚ÌÀs
+	virtual ~D_ACubismMotion() ;															// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	virtual void				DoUpdateParameters( D_CubismModel* model, float userTimeSeconds, float weight, D_CubismMotionQueueEntry* motionQueueEntry ) = 0 ;// ãƒ¢ãƒ‡ãƒ«ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®æ›´æ–°ã®å®Ÿè¡Œ
 
-	float						_fadeInSeconds ;			// ƒtƒF[ƒhƒCƒ“‚É‚©‚©‚éŠÔ[•b]
-	float						_fadeOutSeconds ;			// ƒtƒF[ƒhƒAƒEƒg‚É‚©‚©‚éŠÔ[•b]
-	float						_weight ;					// ƒ‚[ƒVƒ‡ƒ“‚Ìd‚İ
-	float						_offsetSeconds ;			// ƒ‚[ƒVƒ‡ƒ“Ä¶‚ÌŠJn[•b]
+	float						_fadeInSeconds ;			// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ã«ã‹ã‹ã‚‹æ™‚é–“[ç§’]
+	float						_fadeOutSeconds ;			// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆã«ã‹ã‹ã‚‹æ™‚é–“[ç§’]
+	float						_weight ;					// ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ã®é‡ã¿
+	float						_offsetSeconds ;			// ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³å†ç”Ÿã®é–‹å§‹æ™‚åˆ»[ç§’]
 	D_csmVector< const D_csmString * >	_firedEventValues ;
 } ;
 
-// •\î‚Ìƒ‚[ƒVƒ‡ƒ“
+// è¡¨æƒ…ã®ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³
 class D_CubismExpressionMotion : public D_ACubismMotion
 {
 private:
-	// •\îƒpƒ‰ƒ[ƒ^’l‚ÌŒvZ•û®
+	// è¡¨æƒ…ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿å€¤ã®è¨ˆç®—æ–¹å¼
 	enum ExpressionBlendType
 	{
-		ExpressionBlendType_Add					= 0,		// ‰ÁZ
-		ExpressionBlendType_Multiply			= 1,		// æZ
-		ExpressionBlendType_Overwrite			= 2			// ã‘‚«
+		ExpressionBlendType_Add					= 0,		// åŠ ç®—
+		ExpressionBlendType_Multiply			= 1,		// ä¹—ç®—
+		ExpressionBlendType_Overwrite			= 2			// ä¸Šæ›¸ã
 	} ;
 
 public:
-	// •\î‚Ìƒpƒ‰ƒ[ƒ^î•ñ
+	// è¡¨æƒ…ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æƒ…å ±
 	struct D_ExpressionParameter
 	{
-		D_CubismIdHandle		ParameterId ;	// ƒpƒ‰ƒ[ƒ^ID
-		ExpressionBlendType		BlendType ;		// ƒpƒ‰ƒ[ƒ^‚Ì‰‰Zí—Ş
-		float					Value ;			// ’l
+		D_CubismIdHandle		ParameterId ;	// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ID
+		ExpressionBlendType		BlendType ;		// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®æ¼”ç®—ç¨®é¡
+		float					Value ;			// å€¤
 	} ;
-	static D_CubismExpressionMotion*	Create( const BYTE* buf, size_t size ) ;				// ƒCƒ“ƒXƒ^ƒ“ƒX‚Ìì¬
-	virtual void						DoUpdateParameters( D_CubismModel* model, float userTimeSeconds, float weight, D_CubismMotionQueueEntry* motionQueueEntry ) ;	// ƒ‚ƒfƒ‹‚Ìƒpƒ‰ƒ[ƒ^‚ÌXV‚ÌÀs
+	static D_CubismExpressionMotion*	Create( const BYTE* buf, size_t size ) ;				// ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã®ä½œæˆ
+	virtual void						DoUpdateParameters( D_CubismModel* model, float userTimeSeconds, float weight, D_CubismMotionQueueEntry* motionQueueEntry ) ;	// ãƒ¢ãƒ‡ãƒ«ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®æ›´æ–°ã®å®Ÿè¡Œ
 
 private:
 	D_CubismExpressionMotion() ;
 	virtual ~D_CubismExpressionMotion() ;
 
-	D_csmVector<D_ExpressionParameter> _parameters ;		// •\î‚Ìƒpƒ‰ƒ[ƒ^î•ñƒŠƒXƒg
+	D_csmVector<D_ExpressionParameter> _parameters ;		// è¡¨æƒ…ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æƒ…å ±ãƒªã‚¹ãƒˆ
 } ;
 
-// ƒ‚[ƒVƒ‡ƒ“ƒNƒ‰ƒX
+// ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ã‚¯ãƒ©ã‚¹
 class D_CubismMotion : public D_ACubismMotion
 {
 public:
-	static D_CubismMotion*		Create( const BYTE* buffer, size_t size ) ;									// ƒCƒ“ƒXƒ^ƒ“ƒX‚Ì¶¬
-	virtual void				DoUpdateParameters( D_CubismModel* model, float userTimeSeconds, float fadeWeight, D_CubismMotionQueueEntry* motionQueueEntry ) ;	// ƒ‚ƒfƒ‹‚Ìƒpƒ‰ƒ[ƒ^‚ÌXV‚ÌÀs
-	void						IsLoop( bool loop ) ;														// ƒ‹[ƒvî•ñ‚Ìİ’è
-	bool						IsLoop() const ;															// ƒ‹[ƒvî•ñ‚Ìæ“¾
-	void						IsLoopFadeIn( bool loopFadeIn ) ;											// ƒ‹[ƒv‚ÌƒtƒF[ƒhƒCƒ“î•ñ‚Ìİ’è
-	bool						IsLoopFadeIn() const ;														// ƒ‹[ƒv‚ÌƒtƒF[ƒhƒCƒ“î•ñ‚Ìæ“¾
-	virtual float				GetDuration() ;																// ƒ‚[ƒVƒ‡ƒ“‚Ì’·‚³‚Ìæ“¾
-	virtual float				GetLoopDuration() ;															// ƒ‚[ƒVƒ‡ƒ“‚Ìƒ‹[ƒv‚Ì’·‚³‚Ìæ“¾
-	void						SetParameterFadeInTime( D_CubismIdHandle parameterId, float value ) ;		// ƒpƒ‰ƒ[ƒ^‚É‘Î‚·‚éƒtƒF[ƒhƒCƒ“‚ÌŠÔ‚Ìİ’è
-	void						SetParameterFadeOutTime( D_CubismIdHandle parameterId, float value ) ;		// ƒpƒ‰ƒ[ƒ^‚É‘Î‚·‚éƒtƒF[ƒhƒAƒEƒg‚ÌŠÔ‚Ìİ’è
-	float						GetParameterFadeInTime( D_CubismIdHandle parameterId ) const ;				// ƒpƒ‰ƒ[ƒ^‚É‘Î‚·‚éƒtƒF[ƒhƒCƒ“‚ÌŠÔ‚Ìæ“¾
-	float						GetParameterFadeOutTime( D_CubismIdHandle parameterId ) const ;				// ƒpƒ‰ƒ[ƒ^‚É‘Î‚·‚éƒtƒF[ƒhƒAƒEƒg‚ÌŠÔ‚Ìæ“¾
-	void						SetEffectIds( const D_csmVector<D_CubismIdHandle>& eyeBlinkParameterIds, const D_csmVector<D_CubismIdHandle>& lipSyncParameterIds ) ;	// ©“®ƒGƒtƒFƒNƒg‚ª‚©‚©‚Á‚Ä‚¢‚éƒpƒ‰ƒ[ƒ^IDƒŠƒXƒg‚Ìİ’è
-	virtual const D_csmVector< const D_csmString * >& GetFiredEvent( float beforeCheckTimeSeconds, float motionTimeSeconds ) ;	// ƒ‚ƒfƒ‹‚Ìƒpƒ‰ƒ[ƒ^XV
+	static D_CubismMotion*		Create( const BYTE* buffer, size_t size ) ;									// ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã®ç”Ÿæˆ
+	virtual void				DoUpdateParameters( D_CubismModel* model, float userTimeSeconds, float fadeWeight, D_CubismMotionQueueEntry* motionQueueEntry ) ;	// ãƒ¢ãƒ‡ãƒ«ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®æ›´æ–°ã®å®Ÿè¡Œ
+	void						IsLoop( bool loop ) ;														// ãƒ«ãƒ¼ãƒ—æƒ…å ±ã®è¨­å®š
+	bool						IsLoop() const ;															// ãƒ«ãƒ¼ãƒ—æƒ…å ±ã®å–å¾—
+	void						IsLoopFadeIn( bool loopFadeIn ) ;											// ãƒ«ãƒ¼ãƒ—æ™‚ã®ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³æƒ…å ±ã®è¨­å®š
+	bool						IsLoopFadeIn() const ;														// ãƒ«ãƒ¼ãƒ—æ™‚ã®ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³æƒ…å ±ã®å–å¾—
+	virtual float				GetDuration() ;																// ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ã®é•·ã•ã®å–å¾—
+	virtual float				GetLoopDuration() ;															// ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ã®ãƒ«ãƒ¼ãƒ—æ™‚ã®é•·ã•ã®å–å¾—
+	void						SetParameterFadeInTime( D_CubismIdHandle parameterId, float value ) ;		// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã«å¯¾ã™ã‚‹ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ã®æ™‚é–“ã®è¨­å®š
+	void						SetParameterFadeOutTime( D_CubismIdHandle parameterId, float value ) ;		// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã«å¯¾ã™ã‚‹ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆã®æ™‚é–“ã®è¨­å®š
+	float						GetParameterFadeInTime( D_CubismIdHandle parameterId ) const ;				// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã«å¯¾ã™ã‚‹ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ã®æ™‚é–“ã®å–å¾—
+	float						GetParameterFadeOutTime( D_CubismIdHandle parameterId ) const ;				// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã«å¯¾ã™ã‚‹ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆã®æ™‚é–“ã®å–å¾—
+	void						SetEffectIds( const D_csmVector<D_CubismIdHandle>& eyeBlinkParameterIds, const D_csmVector<D_CubismIdHandle>& lipSyncParameterIds ) ;	// è‡ªå‹•ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãŒã‹ã‹ã£ã¦ã„ã‚‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿IDãƒªã‚¹ãƒˆã®è¨­å®š
+	virtual const D_csmVector< const D_csmString * >& GetFiredEvent( float beforeCheckTimeSeconds, float motionTimeSeconds ) ;	// ãƒ¢ãƒ‡ãƒ«ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ›´æ–°
 
 private:
-	D_CubismMotion() ;																		// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-	virtual ~D_CubismMotion() ;																// ƒfƒXƒgƒ‰ƒNƒ^
+	D_CubismMotion() ;																		// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	virtual ~D_CubismMotion() ;																// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	D_CubismMotion( const D_CubismMotion& ) ;												// Prevention of copy Constructor
 	D_CubismMotion& operator=( const D_CubismMotion& ) ;
-	void Parse( const BYTE* motionJson, const size_t size ) ;								// motion3.json‚Ìƒp[ƒX
+	void Parse( const BYTE* motionJson, const size_t size ) ;								// motion3.jsonã®ãƒ‘ãƒ¼ã‚¹
 
-	float						_sourceFrameRate ;			// ƒ[ƒh‚µ‚½ƒtƒ@ƒCƒ‹‚ÌFPSB‹Lq‚ª–³‚¯‚ê‚ÎƒfƒtƒHƒ‹ƒg’l15fps‚Æ‚È‚é
-	float						_loopDurationSeconds ;		// mtnƒtƒ@ƒCƒ‹‚Å’è‹`‚³‚ê‚éˆê˜A‚Ìƒ‚[ƒVƒ‡ƒ“‚Ì’·‚³
-	bool						_isLoop ;					// ƒ‹[ƒv‚·‚é‚©?
-	bool						_isLoopFadeIn ;				// ƒ‹[ƒv‚ÉƒtƒF[ƒhƒCƒ“‚ª—LŒø‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒOB‰Šú’l‚Å‚Í—LŒøB
-	float						_lastWeight ;				// ÅŒã‚Éİ’è‚³‚ê‚½d‚İ
-	D_CubismMotionData*			_motionData ;				// ÀÛ‚Ìƒ‚[ƒVƒ‡ƒ“ƒf[ƒ^–{‘Ì
-	D_csmVector< D_CubismIdHandle >	_eyeBlinkParameterIds ;	// ©“®‚Ü‚Î‚½‚«‚ğ“K—p‚·‚éƒpƒ‰ƒ[ƒ^IDƒnƒ“ƒhƒ‹‚ÌƒŠƒXƒgB  ƒ‚ƒfƒ‹iƒ‚ƒfƒ‹ƒZƒbƒeƒBƒ“ƒOj‚Æƒpƒ‰ƒ[ƒ^‚ğ‘Î‰•t‚¯‚éB
-	D_csmVector< D_CubismIdHandle >	_lipSyncParameterIds ;	// ƒŠƒbƒvƒVƒ“ƒN‚ğ“K—p‚·‚éƒpƒ‰ƒ[ƒ^IDƒnƒ“ƒhƒ‹‚ÌƒŠƒXƒgB  ƒ‚ƒfƒ‹iƒ‚ƒfƒ‹ƒZƒbƒeƒBƒ“ƒOj‚Æƒpƒ‰ƒ[ƒ^‚ğ‘Î‰•t‚¯‚éB
-	D_CubismIdHandle			_modelCurveIdEyeBlink ;		// ƒ‚ƒfƒ‹‚ª‚Â©“®‚Ü‚Î‚½‚«—pƒpƒ‰ƒ[ƒ^ID‚Ìƒnƒ“ƒhƒ‹B  ƒ‚ƒfƒ‹‚Æƒ‚[ƒVƒ‡ƒ“‚ğ‘Î‰•t‚¯‚éB
-	D_CubismIdHandle			_modelCurveIdLipSync ;		// ƒ‚ƒfƒ‹‚ª‚ÂƒŠƒbƒvƒVƒ“ƒN—pƒpƒ‰ƒ[ƒ^ID‚Ìƒnƒ“ƒhƒ‹B  ƒ‚ƒfƒ‹‚Æƒ‚[ƒVƒ‡ƒ“‚ğ‘Î‰•t‚¯‚éB
+	float						_sourceFrameRate ;			// ãƒ­ãƒ¼ãƒ‰ã—ãŸãƒ•ã‚¡ã‚¤ãƒ«ã®FPSã€‚è¨˜è¿°ãŒç„¡ã‘ã‚Œã°ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå€¤15fpsã¨ãªã‚‹
+	float						_loopDurationSeconds ;		// mtnãƒ•ã‚¡ã‚¤ãƒ«ã§å®šç¾©ã•ã‚Œã‚‹ä¸€é€£ã®ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ã®é•·ã•
+	bool						_isLoop ;					// ãƒ«ãƒ¼ãƒ—ã™ã‚‹ã‹?
+	bool						_isLoopFadeIn ;				// ãƒ«ãƒ¼ãƒ—æ™‚ã«ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ãŒæœ‰åŠ¹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã€‚åˆæœŸå€¤ã§ã¯æœ‰åŠ¹ã€‚
+	float						_lastWeight ;				// æœ€å¾Œã«è¨­å®šã•ã‚ŒãŸé‡ã¿
+	D_CubismMotionData*			_motionData ;				// å®Ÿéš›ã®ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿æœ¬ä½“
+	D_csmVector< D_CubismIdHandle >	_eyeBlinkParameterIds ;	// è‡ªå‹•ã¾ã°ãŸãã‚’é©ç”¨ã™ã‚‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿IDãƒãƒ³ãƒ‰ãƒ«ã®ãƒªã‚¹ãƒˆã€‚  ãƒ¢ãƒ‡ãƒ«ï¼ˆãƒ¢ãƒ‡ãƒ«ã‚»ãƒƒãƒ†ã‚£ãƒ³ã‚°ï¼‰ã¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’å¯¾å¿œä»˜ã‘ã‚‹ã€‚
+	D_csmVector< D_CubismIdHandle >	_lipSyncParameterIds ;	// ãƒªãƒƒãƒ—ã‚·ãƒ³ã‚¯ã‚’é©ç”¨ã™ã‚‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿IDãƒãƒ³ãƒ‰ãƒ«ã®ãƒªã‚¹ãƒˆã€‚  ãƒ¢ãƒ‡ãƒ«ï¼ˆãƒ¢ãƒ‡ãƒ«ã‚»ãƒƒãƒ†ã‚£ãƒ³ã‚°ï¼‰ã¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’å¯¾å¿œä»˜ã‘ã‚‹ã€‚
+	D_CubismIdHandle			_modelCurveIdEyeBlink ;		// ãƒ¢ãƒ‡ãƒ«ãŒæŒã¤è‡ªå‹•ã¾ã°ãŸãç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿IDã®ãƒãƒ³ãƒ‰ãƒ«ã€‚  ãƒ¢ãƒ‡ãƒ«ã¨ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ã‚’å¯¾å¿œä»˜ã‘ã‚‹ã€‚
+	D_CubismIdHandle			_modelCurveIdLipSync ;		// ãƒ¢ãƒ‡ãƒ«ãŒæŒã¤ãƒªãƒƒãƒ—ã‚·ãƒ³ã‚¯ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿IDã®ãƒãƒ³ãƒ‰ãƒ«ã€‚  ãƒ¢ãƒ‡ãƒ«ã¨ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ã‚’å¯¾å¿œä»˜ã‘ã‚‹ã€‚
 } ;
 
-// ƒ‚ƒfƒ‹À•Wİ’è—p‚Ì4x4s—ñ
+// ãƒ¢ãƒ‡ãƒ«åº§æ¨™è¨­å®šç”¨ã®4x4è¡Œåˆ—
 class D_CubismModelMatrix : public D_CubismMatrix44
 {
 public:
-	D_CubismModelMatrix() ;																	// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-	D_CubismModelMatrix( float w, float h ) ;												// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-	virtual ~D_CubismModelMatrix() ;														// ƒfƒXƒgƒ‰ƒNƒ^
-	void						SetWidth( float w ) ;										// ‰¡•‚ğİ’è
-	void						SetHeight( float h ) ;										// c•‚ğİ’è
-	void						SetPosition( float x, float y ) ;							// ˆÊ’u‚ğİ’è
-	void						SetCenterPosition( float x, float y ) ;						// ’†SˆÊ’u‚ğİ’è
-	void						Top( float y ) ;											// ã•Ó‚ÌˆÊ’u‚ğİ’è
-	void						Bottom( float y ) ;											// ‰º•Ó‚ÌˆÊ’u‚ğİ’è
-	void						Left( float x ) ;											// ¶•Ó‚ÌˆÊ’u‚ğİ’è
-	void						Right( float x ) ;											// ‰E•Ó‚ÌˆÊ’u‚ğİ’è
-	void						CenterX( float x ) ;										// X²‚Ì’†SˆÊ’u‚ğİ’è
-	void						SetX( float x ) ;											// X²‚ÌˆÊ’u‚ğİ’è
-	void						CenterY( float y ) ;										// Y²‚Ì’†SˆÊ’u‚ğİ’è
-	void						SetY( float y ) ;											// Y²‚ÌˆÊ’u‚ğİ’è
-	void						SetupFromLayout( D_csmMap<D_csmString, float>& layout ) ;	// ƒŒƒCƒAƒEƒgî•ñ‚©‚çˆÊ’u‚ğİ’è
+	D_CubismModelMatrix() ;																	// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	D_CubismModelMatrix( float w, float h ) ;												// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	virtual ~D_CubismModelMatrix() ;														// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	void						SetWidth( float w ) ;										// æ¨ªå¹…ã‚’è¨­å®š
+	void						SetHeight( float h ) ;										// ç¸¦å¹…ã‚’è¨­å®š
+	void						SetPosition( float x, float y ) ;							// ä½ç½®ã‚’è¨­å®š
+	void						SetCenterPosition( float x, float y ) ;						// ä¸­å¿ƒä½ç½®ã‚’è¨­å®š
+	void						Top( float y ) ;											// ä¸Šè¾ºã®ä½ç½®ã‚’è¨­å®š
+	void						Bottom( float y ) ;											// ä¸‹è¾ºã®ä½ç½®ã‚’è¨­å®š
+	void						Left( float x ) ;											// å·¦è¾ºã®ä½ç½®ã‚’è¨­å®š
+	void						Right( float x ) ;											// å³è¾ºã®ä½ç½®ã‚’è¨­å®š
+	void						CenterX( float x ) ;										// Xè»¸ã®ä¸­å¿ƒä½ç½®ã‚’è¨­å®š
+	void						SetX( float x ) ;											// Xè»¸ã®ä½ç½®ã‚’è¨­å®š
+	void						CenterY( float y ) ;										// Yè»¸ã®ä¸­å¿ƒä½ç½®ã‚’è¨­å®š
+	void						SetY( float y ) ;											// Yè»¸ã®ä½ç½®ã‚’è¨­å®š
+	void						SetupFromLayout( D_csmMap<D_csmString, float>& layout ) ;	// ãƒ¬ã‚¤ã‚¢ã‚¦ãƒˆæƒ…å ±ã‹ã‚‰ä½ç½®ã‚’è¨­å®š
 
 private:
-	float						_width ;					// ‰¡•
-	float						_height ;					// c•
+	float						_width ;					// æ¨ªå¹…
+	float						_height ;					// ç¸¦å¹…
 } ;
 
-// ƒ‚[ƒVƒ‡ƒ“‚ÌŠÇ—
+// ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ã®ç®¡ç†
 class D_CubismMotionManager : public D_CubismMotionQueueManager
 {
 public:
-	D_CubismMotionManager() ;																// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-	virtual ~D_CubismMotionManager() ;														// ƒfƒXƒgƒ‰ƒNƒ^
-	int							GetCurrentPriority() const ;								// Ä¶’†‚Ìƒ‚[ƒVƒ‡ƒ“‚Ì—Dæ“x‚Ìæ“¾
-	int							GetReservePriority() const ;								// —\–ñ’†‚Ìƒ‚[ƒVƒ‡ƒ“‚Ì—Dæ“x‚Ìæ“¾
-	void						SetReservePriority( int val ) ;								// —\–ñ’†‚Ìƒ‚[ƒVƒ‡ƒ“‚Ì—Dæ“x‚Ìİ’è
-	D_CubismMotionQueueEntryHandle StartMotionPriority( D_ACubismMotion* motion, bool autoDelete, int priority ) ;// —Dæ“x‚ğİ’è‚µ‚Äƒ‚[ƒVƒ‡ƒ“‚ÌŠJn
-	bool						UpdateMotion( D_CubismModel* model, float deltaTimeSeconds ) ;	// ƒ‚[ƒVƒ‡ƒ“‚ÌXV
-	bool						ReserveMotion( int priority ) ;								// ƒ‚[ƒVƒ‡ƒ“‚Ì—\–ñ
+	D_CubismMotionManager() ;																// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	virtual ~D_CubismMotionManager() ;														// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	int							GetCurrentPriority() const ;								// å†ç”Ÿä¸­ã®ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ã®å„ªå…ˆåº¦ã®å–å¾—
+	int							GetReservePriority() const ;								// äºˆç´„ä¸­ã®ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ã®å„ªå…ˆåº¦ã®å–å¾—
+	void						SetReservePriority( int val ) ;								// äºˆç´„ä¸­ã®ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ã®å„ªå…ˆåº¦ã®è¨­å®š
+	D_CubismMotionQueueEntryHandle StartMotionPriority( D_ACubismMotion* motion, bool autoDelete, int priority ) ;// å„ªå…ˆåº¦ã‚’è¨­å®šã—ã¦ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ã®é–‹å§‹
+	bool						UpdateMotion( D_CubismModel* model, float deltaTimeSeconds ) ;	// ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ã®æ›´æ–°
+	bool						ReserveMotion( int priority ) ;								// ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ã®äºˆç´„
 
 private:
-	int							_currentPriority ;                 // Œ»İÄ¶’†‚Ìƒ‚[ƒVƒ‡ƒ“‚Ì—Dæ“x
-	int							_reservePriority ;                 // Ä¶—\’è‚Ìƒ‚[ƒVƒ‡ƒ“‚Ì—Dæ“xBÄ¶’†‚Í0‚É‚È‚éBƒ‚[ƒVƒ‡ƒ“ƒtƒ@ƒCƒ‹‚ğ•ÊƒXƒŒƒbƒh‚Å“Ç‚İ‚Ş‚Æ‚«‚Ìˆ—
+	int							_currentPriority ;                 // ç¾åœ¨å†ç”Ÿä¸­ã®ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ã®å„ªå…ˆåº¦
+	int							_reservePriority ;                 // å†ç”Ÿäºˆå®šã®ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ã®å„ªå…ˆåº¦ã€‚å†ç”Ÿä¸­ã¯0ã«ãªã‚‹ã€‚ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ãƒ•ã‚¡ã‚¤ãƒ«ã‚’åˆ¥ã‚¹ãƒ¬ãƒƒãƒ‰ã§èª­ã¿è¾¼ã‚€ã¨ãã®å‡¦ç†
 } ;
 
-// ƒ‚ƒfƒ‹İ’èî•ñ‚ğæ‚èˆµ‚¤ŠÖ”‚ğéŒ¾‚µ‚½ƒˆ‰¼‘zƒNƒ‰ƒXB
+// ãƒ¢ãƒ‡ãƒ«è¨­å®šæƒ…å ±ã‚’å–ã‚Šæ‰±ã†é–¢æ•°ã‚’å®£è¨€ã—ãŸç´”ç²‹ä»®æƒ³ã‚¯ãƒ©ã‚¹ã€‚
 class D_ICubismModelSetting
 {
 public:
-	virtual ~D_ICubismModelSetting() {}																// ƒfƒXƒgƒ‰ƒNƒ^
-	virtual const char*					GetModelFileName() = 0 ;											// Mocƒtƒ@ƒCƒ‹‚Ì–¼‘O‚ğæ“¾‚·‚é
-	virtual const char*					GetModelFileNameA() = 0 ;											// Mocƒtƒ@ƒCƒ‹‚Ì–¼‘O‚ğæ“¾‚·‚é
-	virtual const BYTE/*wchar_t*/ *		GetModelFileNameW() = 0 ;											// Mocƒtƒ@ƒCƒ‹‚Ì–¼‘O‚ğæ“¾‚·‚é
-	virtual int							GetTextureCount() = 0 ;												// ƒ‚ƒfƒ‹‚ªg—p‚·‚éƒeƒNƒXƒ`ƒƒ‚Ì”‚ğæ“¾‚·‚é
-	virtual const char*					GetTextureDirectory() = 0 ;											// ƒeƒNƒXƒ`ƒƒ‚ª”z’u‚³‚ê‚½ƒfƒBƒŒƒNƒgƒŠ‚Ì–¼‘O‚ğæ“¾‚·‚é
-	virtual const char*					GetTextureDirectoryA() = 0 ;										// ƒeƒNƒXƒ`ƒƒ‚ª”z’u‚³‚ê‚½ƒfƒBƒŒƒNƒgƒŠ‚Ì–¼‘O‚ğæ“¾‚·‚é
-	virtual const BYTE/*wchar_t*/ *		GetTextureDirectoryW() = 0 ;										// ƒeƒNƒXƒ`ƒƒ‚ª”z’u‚³‚ê‚½ƒfƒBƒŒƒNƒgƒŠ‚Ì–¼‘O‚ğæ“¾‚·‚é
-	virtual const char*					GetTextureFileName( int index ) = 0 ;								// ƒ‚ƒfƒ‹‚ªg—p‚·‚éƒeƒNƒXƒ`ƒƒ‚Ì–¼‘O‚ğæ“¾‚·‚é
-	virtual const char*					GetTextureFileNameA( int index ) = 0 ;								// ƒ‚ƒfƒ‹‚ªg—p‚·‚éƒeƒNƒXƒ`ƒƒ‚Ì–¼‘O‚ğæ“¾‚·‚é
-	virtual const BYTE/*wchar_t*/ *		GetTextureFileNameW( int index ) = 0 ;								// ƒ‚ƒfƒ‹‚ªg—p‚·‚éƒeƒNƒXƒ`ƒƒ‚Ì–¼‘O‚ğæ“¾‚·‚é
-	virtual int							GetHitAreasCount() = 0 ;											// ƒ‚ƒfƒ‹‚Éİ’è‚³‚ê‚½“–‚½‚è”»’è‚Ì”‚ğæ“¾‚·‚é
-	virtual D_CubismIdHandle			GetHitAreaId( int index ) = 0 ;										// “–‚½‚è”»’è‚Éİ’è‚³‚ê‚½ID‚ğæ“¾‚·‚é
-	virtual const char*					GetHitAreaName( int index ) = 0 ;									// “–‚½‚è”»’è‚Éİ’è‚³‚ê‚½–¼‘O‚ğæ“¾‚·‚é
-	virtual const char*					GetHitAreaNameA( int index ) = 0 ;									// “–‚½‚è”»’è‚Éİ’è‚³‚ê‚½–¼‘O‚ğæ“¾‚·‚é
-	virtual const BYTE/*wchar_t*/ *		GetHitAreaNameW( int index ) = 0 ;									// “–‚½‚è”»’è‚Éİ’è‚³‚ê‚½–¼‘O‚ğæ“¾‚·‚é
-	virtual const char*					GetPhysicsFileName() = 0 ;											// •¨—‰‰Zİ’èƒtƒ@ƒCƒ‹‚Ì–¼‘O‚ğæ“¾‚·‚é
-	virtual const char*					GetPhysicsFileNameA() = 0 ;											// •¨—‰‰Zİ’èƒtƒ@ƒCƒ‹‚Ì–¼‘O‚ğæ“¾‚·‚é
-	virtual const BYTE/*wchar_t*/ *		GetPhysicsFileNameW() = 0 ;											// •¨—‰‰Zİ’èƒtƒ@ƒCƒ‹‚Ì–¼‘O‚ğæ“¾‚·‚é
-	virtual const char*					GetPoseFileName() = 0 ;												// ƒp[ƒcØ‚è‘Ö‚¦İ’èƒtƒ@ƒCƒ‹‚Ì–¼‘O‚ğæ“¾‚·‚é
-	virtual const char*					GetPoseFileNameA() = 0 ;											// ƒp[ƒcØ‚è‘Ö‚¦İ’èƒtƒ@ƒCƒ‹‚Ì–¼‘O‚ğæ“¾‚·‚é
-	virtual const BYTE/*wchar_t*/ *		GetPoseFileNameW() = 0 ;											// ƒp[ƒcØ‚è‘Ö‚¦İ’èƒtƒ@ƒCƒ‹‚Ì–¼‘O‚ğæ“¾‚·‚é
-	virtual int							GetExpressionCount() = 0 ;											// •\îİ’èƒtƒ@ƒCƒ‹‚Ì”‚ğæ“¾‚·‚é
-	virtual const char*					GetExpressionName( int index ) = 0 ;								// •\îİ’èƒtƒ@ƒCƒ‹‚ğ¯•Ê‚·‚é–¼‘Oi•Ê–¼j‚ğæ“¾‚·‚é
-	virtual const char*					GetExpressionNameA( int index ) = 0 ;								// •\îİ’èƒtƒ@ƒCƒ‹‚ğ¯•Ê‚·‚é–¼‘Oi•Ê–¼j‚ğæ“¾‚·‚é
-	virtual const BYTE/*wchar_t*/ *		GetExpressionNameW( int index ) = 0 ;								// •\îİ’èƒtƒ@ƒCƒ‹‚ğ¯•Ê‚·‚é–¼‘Oi•Ê–¼j‚ğæ“¾‚·‚é
-	virtual const char*					GetExpressionFileName( int index ) = 0 ;							// •\îİ’èƒtƒ@ƒCƒ‹‚Ì–¼‘O‚ğæ“¾‚·‚é
-	virtual const char*					GetExpressionFileNameA( int index ) = 0 ;							// •\îİ’èƒtƒ@ƒCƒ‹‚Ì–¼‘O‚ğæ“¾‚·‚é
-	virtual const BYTE/*wchar_t*/ *		GetExpressionFileNameW( int index ) = 0 ;							// •\îİ’èƒtƒ@ƒCƒ‹‚Ì–¼‘O‚ğæ“¾‚·‚é
-	virtual int							GetMotionGroupCount() = 0 ;											// ƒ‚[ƒVƒ‡ƒ“ƒOƒ‹[ƒv‚Ì”‚ğæ“¾‚·‚é
-	virtual const char*					GetMotionGroupName( int index ) = 0 ;								// ƒ‚[ƒVƒ‡ƒ“ƒOƒ‹[ƒv‚Ì–¼‘O‚ğæ“¾‚·‚é
-	virtual const char*					GetMotionGroupNameA( int index ) = 0 ;								// ƒ‚[ƒVƒ‡ƒ“ƒOƒ‹[ƒv‚Ì–¼‘O‚ğæ“¾‚·‚é
-	virtual const BYTE/*wchar_t*/ *		GetMotionGroupNameW( int index ) = 0 ;								// ƒ‚[ƒVƒ‡ƒ“ƒOƒ‹[ƒv‚Ì–¼‘O‚ğæ“¾‚·‚é
-	virtual int							GetMotionCount( const char* groupName ) = 0 ;						// ƒ‚[ƒVƒ‡ƒ“ƒOƒ‹[ƒv‚ÉŠÜ‚Ü‚ê‚éƒ‚[ƒVƒ‡ƒ“‚Ì”‚ğæ“¾‚·‚é
-	virtual const char*					GetMotionFileName( const char* groupName, int index ) = 0 ;			// ƒOƒ‹[ƒv–¼‚ÆƒCƒ“ƒfƒbƒNƒX’l‚©‚çƒ‚[ƒVƒ‡ƒ“ƒtƒ@ƒCƒ‹‚Ì–¼‘O‚ğæ“¾‚·‚é
-	virtual const char*					GetMotionFileNameA( const char* groupName, int index ) = 0 ;		// ƒOƒ‹[ƒv–¼‚ÆƒCƒ“ƒfƒbƒNƒX’l‚©‚çƒ‚[ƒVƒ‡ƒ“ƒtƒ@ƒCƒ‹‚Ì–¼‘O‚ğæ“¾‚·‚é
-	virtual const BYTE/*wchar_t*/ *		GetMotionFileNameW( const char* groupName, int index ) = 0 ;		// ƒOƒ‹[ƒv–¼‚ÆƒCƒ“ƒfƒbƒNƒX’l‚©‚çƒ‚[ƒVƒ‡ƒ“ƒtƒ@ƒCƒ‹‚Ì–¼‘O‚ğæ“¾‚·‚é
-	virtual const char*					GetMotionSoundFileName( const char* groupName, int index ) = 0 ;	// ƒ‚[ƒVƒ‡ƒ“‚É‘Î‰‚·‚éƒTƒEƒ“ƒhƒtƒ@ƒCƒ‹‚Ì–¼‘O‚ğæ“¾‚·‚é
-	virtual const char*					GetMotionSoundFileNameA( const char* groupName, int index ) = 0 ;	// ƒ‚[ƒVƒ‡ƒ“‚É‘Î‰‚·‚éƒTƒEƒ“ƒhƒtƒ@ƒCƒ‹‚Ì–¼‘O‚ğæ“¾‚·‚é
-	virtual const BYTE/*wchar_t*/ *		GetMotionSoundFileNameW( const char* groupName, int index ) = 0 ;	// ƒ‚[ƒVƒ‡ƒ“‚É‘Î‰‚·‚éƒTƒEƒ“ƒhƒtƒ@ƒCƒ‹‚Ì–¼‘O‚ğæ“¾‚·‚é
-	virtual float						GetMotionFadeInTimeValue( const char* groupName, int index ) = 0 ;	// ƒ‚[ƒVƒ‡ƒ“ŠJn‚ÌƒtƒF[ƒhƒCƒ“ˆ—ŠÔ‚ğæ“¾‚·‚é
-	virtual float						GetMotionFadeOutTimeValue( const char* groupName, int index ) = 0 ;	// ƒ‚[ƒVƒ‡ƒ“I—¹‚ÌƒtƒF[ƒhƒAƒEƒgˆ—ŠÔ‚ğæ“¾‚·‚é
-	virtual const char*					GetUserDataFile() = 0 ;												// ƒ†[ƒUƒf[ƒ^‚Ìƒtƒ@ƒCƒ‹–¼‚ğæ“¾‚·‚é
-	virtual const char*					GetUserDataFileA() = 0 ;											// ƒ†[ƒUƒf[ƒ^‚Ìƒtƒ@ƒCƒ‹–¼‚ğæ“¾‚·‚é
-	virtual const BYTE/*wchar_t*/ *		GetUserDataFileW() = 0 ;											// ƒ†[ƒUƒf[ƒ^‚Ìƒtƒ@ƒCƒ‹–¼‚ğæ“¾‚·‚é
-	virtual bool						GetLayoutMap( D_csmMap<D_csmString, float>& outLayoutMap ) = 0 ;	// ƒŒƒCƒAƒEƒgî•ñ‚ğæ“¾‚·‚é
-	virtual int							GetEyeBlinkParameterCount() = 0 ;									// –Úƒpƒ`‚ÉŠÖ˜A•t‚¯‚ç‚ê‚½ƒpƒ‰ƒ[ƒ^‚Ì”‚ğæ“¾‚·‚é
-	virtual D_CubismIdHandle			GetEyeBlinkParameterId( int index ) = 0 ;							// –Úƒpƒ`‚ÉŠÖ˜A•t‚¯‚ç‚ê‚½ƒpƒ‰ƒ[ƒ^‚ÌID‚ğæ“¾‚·‚é
-	virtual int							GetLipSyncParameterCount() = 0 ;									// ƒŠƒbƒvƒVƒ“ƒN‚ÉŠÖ˜A•t‚¯‚ç‚ê‚½ƒpƒ‰ƒ[ƒ^‚Ì”‚ğæ“¾‚·‚é
-	virtual D_CubismIdHandle			GetLipSyncParameterId( int index ) = 0 ;							// ƒŠƒbƒvƒVƒ“ƒN‚ÉŠÖ˜A•t‚¯‚ç‚ê‚½ƒpƒ‰ƒ[ƒ^‚ÌID‚ğæ“¾‚·‚é
+	virtual ~D_ICubismModelSetting() {}																// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	virtual const char*					GetModelFileName() = 0 ;											// Mocãƒ•ã‚¡ã‚¤ãƒ«ã®åå‰ã‚’å–å¾—ã™ã‚‹
+	virtual const char*					GetModelFileNameA() = 0 ;											// Mocãƒ•ã‚¡ã‚¤ãƒ«ã®åå‰ã‚’å–å¾—ã™ã‚‹
+	virtual const BYTE/*wchar_t*/ *		GetModelFileNameW() = 0 ;											// Mocãƒ•ã‚¡ã‚¤ãƒ«ã®åå‰ã‚’å–å¾—ã™ã‚‹
+	virtual int							GetTextureCount() = 0 ;												// ãƒ¢ãƒ‡ãƒ«ãŒä½¿ç”¨ã™ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®æ•°ã‚’å–å¾—ã™ã‚‹
+	virtual const char*					GetTextureDirectory() = 0 ;											// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãŒé…ç½®ã•ã‚ŒãŸãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã®åå‰ã‚’å–å¾—ã™ã‚‹
+	virtual const char*					GetTextureDirectoryA() = 0 ;										// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãŒé…ç½®ã•ã‚ŒãŸãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã®åå‰ã‚’å–å¾—ã™ã‚‹
+	virtual const BYTE/*wchar_t*/ *		GetTextureDirectoryW() = 0 ;										// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãŒé…ç½®ã•ã‚ŒãŸãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã®åå‰ã‚’å–å¾—ã™ã‚‹
+	virtual const char*					GetTextureFileName( int index ) = 0 ;								// ãƒ¢ãƒ‡ãƒ«ãŒä½¿ç”¨ã™ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®åå‰ã‚’å–å¾—ã™ã‚‹
+	virtual const char*					GetTextureFileNameA( int index ) = 0 ;								// ãƒ¢ãƒ‡ãƒ«ãŒä½¿ç”¨ã™ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®åå‰ã‚’å–å¾—ã™ã‚‹
+	virtual const BYTE/*wchar_t*/ *		GetTextureFileNameW( int index ) = 0 ;								// ãƒ¢ãƒ‡ãƒ«ãŒä½¿ç”¨ã™ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®åå‰ã‚’å–å¾—ã™ã‚‹
+	virtual int							GetHitAreasCount() = 0 ;											// ãƒ¢ãƒ‡ãƒ«ã«è¨­å®šã•ã‚ŒãŸå½“ãŸã‚Šåˆ¤å®šã®æ•°ã‚’å–å¾—ã™ã‚‹
+	virtual D_CubismIdHandle			GetHitAreaId( int index ) = 0 ;										// å½“ãŸã‚Šåˆ¤å®šã«è¨­å®šã•ã‚ŒãŸIDã‚’å–å¾—ã™ã‚‹
+	virtual const char*					GetHitAreaName( int index ) = 0 ;									// å½“ãŸã‚Šåˆ¤å®šã«è¨­å®šã•ã‚ŒãŸåå‰ã‚’å–å¾—ã™ã‚‹
+	virtual const char*					GetHitAreaNameA( int index ) = 0 ;									// å½“ãŸã‚Šåˆ¤å®šã«è¨­å®šã•ã‚ŒãŸåå‰ã‚’å–å¾—ã™ã‚‹
+	virtual const BYTE/*wchar_t*/ *		GetHitAreaNameW( int index ) = 0 ;									// å½“ãŸã‚Šåˆ¤å®šã«è¨­å®šã•ã‚ŒãŸåå‰ã‚’å–å¾—ã™ã‚‹
+	virtual const char*					GetPhysicsFileName() = 0 ;											// ç‰©ç†æ¼”ç®—è¨­å®šãƒ•ã‚¡ã‚¤ãƒ«ã®åå‰ã‚’å–å¾—ã™ã‚‹
+	virtual const char*					GetPhysicsFileNameA() = 0 ;											// ç‰©ç†æ¼”ç®—è¨­å®šãƒ•ã‚¡ã‚¤ãƒ«ã®åå‰ã‚’å–å¾—ã™ã‚‹
+	virtual const BYTE/*wchar_t*/ *		GetPhysicsFileNameW() = 0 ;											// ç‰©ç†æ¼”ç®—è¨­å®šãƒ•ã‚¡ã‚¤ãƒ«ã®åå‰ã‚’å–å¾—ã™ã‚‹
+	virtual const char*					GetPoseFileName() = 0 ;												// ãƒ‘ãƒ¼ãƒ„åˆ‡ã‚Šæ›¿ãˆè¨­å®šãƒ•ã‚¡ã‚¤ãƒ«ã®åå‰ã‚’å–å¾—ã™ã‚‹
+	virtual const char*					GetPoseFileNameA() = 0 ;											// ãƒ‘ãƒ¼ãƒ„åˆ‡ã‚Šæ›¿ãˆè¨­å®šãƒ•ã‚¡ã‚¤ãƒ«ã®åå‰ã‚’å–å¾—ã™ã‚‹
+	virtual const BYTE/*wchar_t*/ *		GetPoseFileNameW() = 0 ;											// ãƒ‘ãƒ¼ãƒ„åˆ‡ã‚Šæ›¿ãˆè¨­å®šãƒ•ã‚¡ã‚¤ãƒ«ã®åå‰ã‚’å–å¾—ã™ã‚‹
+	virtual int							GetExpressionCount() = 0 ;											// è¡¨æƒ…è¨­å®šãƒ•ã‚¡ã‚¤ãƒ«ã®æ•°ã‚’å–å¾—ã™ã‚‹
+	virtual const char*					GetExpressionName( int index ) = 0 ;								// è¡¨æƒ…è¨­å®šãƒ•ã‚¡ã‚¤ãƒ«ã‚’è­˜åˆ¥ã™ã‚‹åå‰ï¼ˆåˆ¥åï¼‰ã‚’å–å¾—ã™ã‚‹
+	virtual const char*					GetExpressionNameA( int index ) = 0 ;								// è¡¨æƒ…è¨­å®šãƒ•ã‚¡ã‚¤ãƒ«ã‚’è­˜åˆ¥ã™ã‚‹åå‰ï¼ˆåˆ¥åï¼‰ã‚’å–å¾—ã™ã‚‹
+	virtual const BYTE/*wchar_t*/ *		GetExpressionNameW( int index ) = 0 ;								// è¡¨æƒ…è¨­å®šãƒ•ã‚¡ã‚¤ãƒ«ã‚’è­˜åˆ¥ã™ã‚‹åå‰ï¼ˆåˆ¥åï¼‰ã‚’å–å¾—ã™ã‚‹
+	virtual const char*					GetExpressionFileName( int index ) = 0 ;							// è¡¨æƒ…è¨­å®šãƒ•ã‚¡ã‚¤ãƒ«ã®åå‰ã‚’å–å¾—ã™ã‚‹
+	virtual const char*					GetExpressionFileNameA( int index ) = 0 ;							// è¡¨æƒ…è¨­å®šãƒ•ã‚¡ã‚¤ãƒ«ã®åå‰ã‚’å–å¾—ã™ã‚‹
+	virtual const BYTE/*wchar_t*/ *		GetExpressionFileNameW( int index ) = 0 ;							// è¡¨æƒ…è¨­å®šãƒ•ã‚¡ã‚¤ãƒ«ã®åå‰ã‚’å–å¾—ã™ã‚‹
+	virtual int							GetMotionGroupCount() = 0 ;											// ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ã‚°ãƒ«ãƒ¼ãƒ—ã®æ•°ã‚’å–å¾—ã™ã‚‹
+	virtual const char*					GetMotionGroupName( int index ) = 0 ;								// ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ã‚°ãƒ«ãƒ¼ãƒ—ã®åå‰ã‚’å–å¾—ã™ã‚‹
+	virtual const char*					GetMotionGroupNameA( int index ) = 0 ;								// ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ã‚°ãƒ«ãƒ¼ãƒ—ã®åå‰ã‚’å–å¾—ã™ã‚‹
+	virtual const BYTE/*wchar_t*/ *		GetMotionGroupNameW( int index ) = 0 ;								// ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ã‚°ãƒ«ãƒ¼ãƒ—ã®åå‰ã‚’å–å¾—ã™ã‚‹
+	virtual int							GetMotionCount( const char* groupName ) = 0 ;						// ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ã‚°ãƒ«ãƒ¼ãƒ—ã«å«ã¾ã‚Œã‚‹ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ã®æ•°ã‚’å–å¾—ã™ã‚‹
+	virtual const char*					GetMotionFileName( const char* groupName, int index ) = 0 ;			// ã‚°ãƒ«ãƒ¼ãƒ—åã¨ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹å€¤ã‹ã‚‰ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ãƒ•ã‚¡ã‚¤ãƒ«ã®åå‰ã‚’å–å¾—ã™ã‚‹
+	virtual const char*					GetMotionFileNameA( const char* groupName, int index ) = 0 ;		// ã‚°ãƒ«ãƒ¼ãƒ—åã¨ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹å€¤ã‹ã‚‰ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ãƒ•ã‚¡ã‚¤ãƒ«ã®åå‰ã‚’å–å¾—ã™ã‚‹
+	virtual const BYTE/*wchar_t*/ *		GetMotionFileNameW( const char* groupName, int index ) = 0 ;		// ã‚°ãƒ«ãƒ¼ãƒ—åã¨ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹å€¤ã‹ã‚‰ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ãƒ•ã‚¡ã‚¤ãƒ«ã®åå‰ã‚’å–å¾—ã™ã‚‹
+	virtual const char*					GetMotionSoundFileName( const char* groupName, int index ) = 0 ;	// ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ã«å¯¾å¿œã™ã‚‹ã‚µã‚¦ãƒ³ãƒ‰ãƒ•ã‚¡ã‚¤ãƒ«ã®åå‰ã‚’å–å¾—ã™ã‚‹
+	virtual const char*					GetMotionSoundFileNameA( const char* groupName, int index ) = 0 ;	// ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ã«å¯¾å¿œã™ã‚‹ã‚µã‚¦ãƒ³ãƒ‰ãƒ•ã‚¡ã‚¤ãƒ«ã®åå‰ã‚’å–å¾—ã™ã‚‹
+	virtual const BYTE/*wchar_t*/ *		GetMotionSoundFileNameW( const char* groupName, int index ) = 0 ;	// ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ã«å¯¾å¿œã™ã‚‹ã‚µã‚¦ãƒ³ãƒ‰ãƒ•ã‚¡ã‚¤ãƒ«ã®åå‰ã‚’å–å¾—ã™ã‚‹
+	virtual float						GetMotionFadeInTimeValue( const char* groupName, int index ) = 0 ;	// ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³é–‹å§‹æ™‚ã®ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³å‡¦ç†æ™‚é–“ã‚’å–å¾—ã™ã‚‹
+	virtual float						GetMotionFadeOutTimeValue( const char* groupName, int index ) = 0 ;	// ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³çµ‚äº†æ™‚ã®ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆå‡¦ç†æ™‚é–“ã‚’å–å¾—ã™ã‚‹
+	virtual const char*					GetUserDataFile() = 0 ;												// ãƒ¦ãƒ¼ã‚¶ãƒ‡ãƒ¼ã‚¿ã®ãƒ•ã‚¡ã‚¤ãƒ«åã‚’å–å¾—ã™ã‚‹
+	virtual const char*					GetUserDataFileA() = 0 ;											// ãƒ¦ãƒ¼ã‚¶ãƒ‡ãƒ¼ã‚¿ã®ãƒ•ã‚¡ã‚¤ãƒ«åã‚’å–å¾—ã™ã‚‹
+	virtual const BYTE/*wchar_t*/ *		GetUserDataFileW() = 0 ;											// ãƒ¦ãƒ¼ã‚¶ãƒ‡ãƒ¼ã‚¿ã®ãƒ•ã‚¡ã‚¤ãƒ«åã‚’å–å¾—ã™ã‚‹
+	virtual bool						GetLayoutMap( D_csmMap<D_csmString, float>& outLayoutMap ) = 0 ;	// ãƒ¬ã‚¤ã‚¢ã‚¦ãƒˆæƒ…å ±ã‚’å–å¾—ã™ã‚‹
+	virtual int							GetEyeBlinkParameterCount() = 0 ;									// ç›®ãƒ‘ãƒã«é–¢é€£ä»˜ã‘ã‚‰ã‚ŒãŸãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®æ•°ã‚’å–å¾—ã™ã‚‹
+	virtual D_CubismIdHandle			GetEyeBlinkParameterId( int index ) = 0 ;							// ç›®ãƒ‘ãƒã«é–¢é€£ä»˜ã‘ã‚‰ã‚ŒãŸãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®IDã‚’å–å¾—ã™ã‚‹
+	virtual int							GetLipSyncParameterCount() = 0 ;									// ãƒªãƒƒãƒ—ã‚·ãƒ³ã‚¯ã«é–¢é€£ä»˜ã‘ã‚‰ã‚ŒãŸãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®æ•°ã‚’å–å¾—ã™ã‚‹
+	virtual D_CubismIdHandle			GetLipSyncParameterId( int index ) = 0 ;							// ãƒªãƒƒãƒ—ã‚·ãƒ³ã‚¯ã«é–¢é€£ä»˜ã‘ã‚‰ã‚ŒãŸãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®IDã‚’å–å¾—ã™ã‚‹
 } ;
 
-// Model3Jsonƒp[ƒT[.
+// Model3Jsonãƒ‘ãƒ¼ã‚µãƒ¼.
 class D_CubismModelSettingJson : public D_ICubismModelSetting
 {
 public:
-	D_CubismModelSettingJson( const BYTE* buffer, size_t size ) ;								// ˆø”•t‚«ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-	virtual ~D_CubismModelSettingJson() ;													// ƒfƒXƒgƒ‰ƒNƒ^
-	D_CubismJson*				GetJsonPointer() const ;									// CubismJsonƒIƒuƒWƒFƒNƒg‚Ìƒ|ƒCƒ“ƒ^‚ğæ“¾‚·‚é
+	D_CubismModelSettingJson( const BYTE* buffer, size_t size ) ;								// å¼•æ•°ä»˜ãã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	virtual ~D_CubismModelSettingJson() ;													// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	D_CubismJson*				GetJsonPointer() const ;									// CubismJsonã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—ã™ã‚‹
 	const char*					GetModelFileName() ;
 	const char*					GetModelFileNameA() ;
 	const BYTE/*wchar_t*/ *		GetModelFileNameW() ;
@@ -1550,221 +1550,221 @@ private:
 		FrequentNode_HitAreas,		// GetRoot()[HitAreas] 
 	} ;
 
-	bool						IsExistModelFile() const ;											// ƒ‚ƒfƒ‹ƒtƒ@ƒCƒ‹‚ÌƒL[‚ª‘¶İ‚·‚é‚©‚Ç‚¤‚©‚ğŠm”F‚·‚é
-	bool						IsExistTextureFiles() const ;										// ƒeƒNƒXƒ`ƒƒƒtƒ@ƒCƒ‹‚ÌƒL[‚ª‘¶İ‚·‚é‚©‚Ç‚¤‚©‚ğŠm”F‚·‚é
-	bool						IsExistHitAreas() const ;											// “–‚½‚è”»’è‚ÌƒL[‚ª‘¶İ‚·‚é‚©‚Ç‚¤‚©‚ğŠm”F‚·‚é
-	bool						IsExistPhysicsFile() const ;										// •¨—‰‰Zƒtƒ@ƒCƒ‹‚ÌƒL[‚ª‘¶İ‚·‚é‚©‚Ç‚¤‚©‚ğŠm”F‚·‚é
-	bool						IsExistPoseFile() const ;											// ƒ|[ƒYİ’èƒtƒ@ƒCƒ‹‚ÌƒL[‚ª‘¶İ‚·‚é‚©‚Ç‚¤‚©‚ğŠm”F‚·‚é
-	bool						IsExistExpressionFile() const ;										// •\îİ’èƒtƒ@ƒCƒ‹‚ÌƒL[‚ª‘¶İ‚·‚é‚©‚Ç‚¤‚©‚ğŠm”F‚·‚é
-	bool						IsExistMotionGroups() const ;										// ƒ‚[ƒVƒ‡ƒ“ƒOƒ‹[ƒv‚ÌƒL[‚ª‘¶İ‚·‚é‚©‚Ç‚¤‚©‚ğŠm”F‚·‚é
-	bool						IsExistMotionGroupName( const char* groupName ) const ;				// ˆø”‚Åw’è‚µ‚½ƒ‚[ƒVƒ‡ƒ“ƒOƒ‹[ƒv‚ÌƒL[‚ª‘¶İ‚·‚é‚©‚Ç‚¤‚©‚ğŠm”F‚·‚é
-	bool						IsExistMotionSoundFile( const char* groupName, int index ) const ;	// ˆø”‚Åw’è‚µ‚½ƒ‚[ƒVƒ‡ƒ“‚É‘Î‰‚·‚éƒTƒEƒ“ƒhƒtƒ@ƒCƒ‹‚ÌƒL[‚ª‘¶İ‚·‚é‚©‚Ç‚¤‚©‚ğŠm”F‚·‚é
-	bool						IsExistMotionFadeIn( const char* groupName, int index ) const ;		// ˆø”‚Åw’è‚µ‚½ƒ‚[ƒVƒ‡ƒ“‚É‘Î‰‚·‚éƒtƒF[ƒhƒCƒ“ŠÔ‚ÌƒL[‚ª‘¶İ‚·‚é‚©‚Ç‚¤‚©‚ğŠm”F‚·‚é
-	bool						IsExistMotionFadeOut( const char* groupName, int index ) const ;	// ˆø”‚Åw’è‚µ‚½ƒ‚[ƒVƒ‡ƒ“‚É‘Î‰‚·‚éƒtƒF[ƒhƒAƒEƒgŠÔ‚ÌƒL[‚ª‘¶İ‚·‚é‚©‚Ç‚¤‚©‚ğŠm”F‚·‚é
-	bool						IsExistUserDataFile() const ;										// UserData‚Ìƒtƒ@ƒCƒ‹–¼‚ª‘¶İ‚·‚é‚©Šm”F
-	bool						IsExistEyeBlinkParameters() const ;									// –Úƒpƒ`‚É‘Î‰•t‚¯‚ç‚ê‚½ƒpƒ‰ƒ[ƒ^‚ª‘¶İ‚·‚é‚©‚Ç‚¤‚©‚ğŠm”F‚·‚é
-	bool						IsExistLipSyncParameters() const ;									// ƒŠƒbƒvƒVƒ“ƒN‚É‘Î‰•t‚¯‚ç‚ê‚½ƒpƒ‰ƒ[ƒ^‚ª‘¶İ‚·‚é‚©‚Ç‚¤‚©‚ğŠm”F‚·‚é
+	bool						IsExistModelFile() const ;											// ãƒ¢ãƒ‡ãƒ«ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚­ãƒ¼ãŒå­˜åœ¨ã™ã‚‹ã‹ã©ã†ã‹ã‚’ç¢ºèªã™ã‚‹
+	bool						IsExistTextureFiles() const ;										// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚­ãƒ¼ãŒå­˜åœ¨ã™ã‚‹ã‹ã©ã†ã‹ã‚’ç¢ºèªã™ã‚‹
+	bool						IsExistHitAreas() const ;											// å½“ãŸã‚Šåˆ¤å®šã®ã‚­ãƒ¼ãŒå­˜åœ¨ã™ã‚‹ã‹ã©ã†ã‹ã‚’ç¢ºèªã™ã‚‹
+	bool						IsExistPhysicsFile() const ;										// ç‰©ç†æ¼”ç®—ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚­ãƒ¼ãŒå­˜åœ¨ã™ã‚‹ã‹ã©ã†ã‹ã‚’ç¢ºèªã™ã‚‹
+	bool						IsExistPoseFile() const ;											// ãƒãƒ¼ã‚ºè¨­å®šãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚­ãƒ¼ãŒå­˜åœ¨ã™ã‚‹ã‹ã©ã†ã‹ã‚’ç¢ºèªã™ã‚‹
+	bool						IsExistExpressionFile() const ;										// è¡¨æƒ…è¨­å®šãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚­ãƒ¼ãŒå­˜åœ¨ã™ã‚‹ã‹ã©ã†ã‹ã‚’ç¢ºèªã™ã‚‹
+	bool						IsExistMotionGroups() const ;										// ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ã‚°ãƒ«ãƒ¼ãƒ—ã®ã‚­ãƒ¼ãŒå­˜åœ¨ã™ã‚‹ã‹ã©ã†ã‹ã‚’ç¢ºèªã™ã‚‹
+	bool						IsExistMotionGroupName( const char* groupName ) const ;				// å¼•æ•°ã§æŒ‡å®šã—ãŸãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ã‚°ãƒ«ãƒ¼ãƒ—ã®ã‚­ãƒ¼ãŒå­˜åœ¨ã™ã‚‹ã‹ã©ã†ã‹ã‚’ç¢ºèªã™ã‚‹
+	bool						IsExistMotionSoundFile( const char* groupName, int index ) const ;	// å¼•æ•°ã§æŒ‡å®šã—ãŸãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ã«å¯¾å¿œã™ã‚‹ã‚µã‚¦ãƒ³ãƒ‰ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚­ãƒ¼ãŒå­˜åœ¨ã™ã‚‹ã‹ã©ã†ã‹ã‚’ç¢ºèªã™ã‚‹
+	bool						IsExistMotionFadeIn( const char* groupName, int index ) const ;		// å¼•æ•°ã§æŒ‡å®šã—ãŸãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ã«å¯¾å¿œã™ã‚‹ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³æ™‚é–“ã®ã‚­ãƒ¼ãŒå­˜åœ¨ã™ã‚‹ã‹ã©ã†ã‹ã‚’ç¢ºèªã™ã‚‹
+	bool						IsExistMotionFadeOut( const char* groupName, int index ) const ;	// å¼•æ•°ã§æŒ‡å®šã—ãŸãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ã«å¯¾å¿œã™ã‚‹ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆæ™‚é–“ã®ã‚­ãƒ¼ãŒå­˜åœ¨ã™ã‚‹ã‹ã©ã†ã‹ã‚’ç¢ºèªã™ã‚‹
+	bool						IsExistUserDataFile() const ;										// UserDataã®ãƒ•ã‚¡ã‚¤ãƒ«åãŒå­˜åœ¨ã™ã‚‹ã‹ç¢ºèª
+	bool						IsExistEyeBlinkParameters() const ;									// ç›®ãƒ‘ãƒã«å¯¾å¿œä»˜ã‘ã‚‰ã‚ŒãŸãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãŒå­˜åœ¨ã™ã‚‹ã‹ã©ã†ã‹ã‚’ç¢ºèªã™ã‚‹
+	bool						IsExistLipSyncParameters() const ;									// ãƒªãƒƒãƒ—ã‚·ãƒ³ã‚¯ã«å¯¾å¿œä»˜ã‘ã‚‰ã‚ŒãŸãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãŒå­˜åœ¨ã™ã‚‹ã‹ã©ã†ã‹ã‚’ç¢ºèªã™ã‚‹
 
-	D_CubismJson*				_json ;      // ƒ‚ƒfƒ‹ƒf[ƒ^json 
-	D_csmVector<D_JsonValue*>	_jsonValue ; // ãjson‚Ì•poƒm[ƒh 
+	D_CubismJson*				_json ;      // ãƒ¢ãƒ‡ãƒ«ãƒ‡ãƒ¼ã‚¿json 
+	D_csmVector<D_JsonValue*>	_jsonValue ; // ä¸Šjsonã®é »å‡ºãƒãƒ¼ãƒ‰ 
 } ;
 
-// ©“®‚Ü‚Î‚½‚«ˆ—
+// è‡ªå‹•ã¾ã°ãŸãå‡¦ç†
 class D_CubismEyeBlink
 {
 public:
-	// ‚Ü‚Î‚½‚«‚Ìó‘Ô
+	// ã¾ã°ãŸãã®çŠ¶æ…‹
 	enum EyeState
 	{
-		EyeState_First							= 0,		// ‰Šúó‘Ô
-		EyeState_Interval						= 1,		// ‚Ü‚Î‚½‚«‚µ‚Ä‚¢‚È‚¢ó‘Ô
-		EyeState_Closing						= 2,		// ‚Ü‚Ô‚½‚ª•Â‚¶‚Ä‚¢‚­“r’†‚Ìó‘Ô
-		EyeState_Closed							= 3,		// ‚Ü‚Ô‚½‚ª•Â‚¶‚Ä‚¢‚éó‘Ô
-		EyeState_Opening						= 4			// ‚Ü‚Ô‚½‚ªŠJ‚¢‚Ä‚¢‚­“r’†‚Ìó‘Ô
+		EyeState_First							= 0,		// åˆæœŸçŠ¶æ…‹
+		EyeState_Interval						= 1,		// ã¾ã°ãŸãã—ã¦ã„ãªã„çŠ¶æ…‹
+		EyeState_Closing						= 2,		// ã¾ã¶ãŸãŒé–‰ã˜ã¦ã„ãé€”ä¸­ã®çŠ¶æ…‹
+		EyeState_Closed							= 3,		// ã¾ã¶ãŸãŒé–‰ã˜ã¦ã„ã‚‹çŠ¶æ…‹
+		EyeState_Opening						= 4			// ã¾ã¶ãŸãŒé–‹ã„ã¦ã„ãé€”ä¸­ã®çŠ¶æ…‹
 	} ;
 
-	static D_CubismEyeBlink*	Create( D_ICubismModelSetting* modelSetting = NULL ) ;				// ƒCƒ“ƒXƒ^ƒ“ƒX‚Ìì¬
-	static void					Delete( D_CubismEyeBlink* eyeBlink ) ;								// ƒCƒ“ƒXƒ^ƒ“ƒX‚Ì”jŠü
-	void						SetBlinkingInterval( float blinkigInterval ) ;						// ‚Ü‚Î‚½‚«‚ÌŠÔŠu‚Ìİ’è
-	void						SetBlinkingSettings( float closing, float closed, float opening ) ;	// ‚Ü‚½‚Î‚«‚Ìƒ‚[ƒVƒ‡ƒ“‚ÌÚ×İ’è
-	void						SetParameterIds( const D_csmVector<D_CubismIdHandle>& parameterIds ) ;// ‚Ü‚Î‚½‚«‚³‚¹‚éƒpƒ‰ƒ[ƒ^ID‚ÌƒŠƒXƒg‚Ìİ’è
-	const D_csmVector<D_CubismIdHandle>&     GetParameterIds() const ;								// ‚Ü‚Î‚½‚«‚³‚¹‚éƒpƒ‰ƒ[ƒ^ID‚ÌƒŠƒXƒg‚Ìæ“¾
-	void						UpdateParameters( D_CubismModel* model, float deltaTimeSeconds ) ;	// ƒ‚ƒfƒ‹‚Ìƒpƒ‰ƒ[ƒ^‚ÌXV
+	static D_CubismEyeBlink*	Create( D_ICubismModelSetting* modelSetting = NULL ) ;				// ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã®ä½œæˆ
+	static void					Delete( D_CubismEyeBlink* eyeBlink ) ;								// ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã®ç ´æ£„
+	void						SetBlinkingInterval( float blinkigInterval ) ;						// ã¾ã°ãŸãã®é–“éš”ã®è¨­å®š
+	void						SetBlinkingSettings( float closing, float closed, float opening ) ;	// ã¾ãŸã°ãã®ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ã®è©³ç´°è¨­å®š
+	void						SetParameterIds( const D_csmVector<D_CubismIdHandle>& parameterIds ) ;// ã¾ã°ãŸãã•ã›ã‚‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿IDã®ãƒªã‚¹ãƒˆã®è¨­å®š
+	const D_csmVector<D_CubismIdHandle>&     GetParameterIds() const ;								// ã¾ã°ãŸãã•ã›ã‚‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿IDã®ãƒªã‚¹ãƒˆã®å–å¾—
+	void						UpdateParameters( D_CubismModel* model, float deltaTimeSeconds ) ;	// ãƒ¢ãƒ‡ãƒ«ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®æ›´æ–°
 
 public:
-	D_CubismEyeBlink( D_ICubismModelSetting* modelSetting ) ;								// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-	virtual ~D_CubismEyeBlink() ;															// ƒfƒXƒgƒ‰ƒNƒ^
-	float						DeterminNextBlinkingTiming() const ;						// Ÿ‚Ì‚Ü‚Î‚½‚«‚Ìƒ^ƒCƒ~ƒ“ƒO‚ÌŒˆ’è
+	D_CubismEyeBlink( D_ICubismModelSetting* modelSetting ) ;								// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	virtual ~D_CubismEyeBlink() ;															// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	float						DeterminNextBlinkingTiming() const ;						// æ¬¡ã®ã¾ã°ãŸãã®ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã®æ±ºå®š
 
-	int							_blinkingState ;			// Œ»İ‚Ìó‘Ô
-	D_csmVector<D_CubismIdHandle>   _parameterIds ;			// ‘€ì‘ÎÛ‚Ìƒpƒ‰ƒ[ƒ^‚ÌID‚ÌƒŠƒXƒg
-	float						_nextBlinkingTime ;			// Ÿ‚Ì‚Ü‚Î‚½‚«‚Ì[•b]
-	float						_stateStartTimeSeconds ;	// Œ»İ‚Ìó‘Ô‚ªŠJn‚µ‚½[•b]
-	float						_blinkingIntervalSeconds ;	// ‚Ü‚Î‚½‚«‚ÌŠÔŠu[•b]
-	float						_closingSeconds ;			// ‚Ü‚Ô‚½‚ğ•Â‚¶‚é“®ì‚ÌŠ—vŠÔ[•b]
-	float						_closedSeconds ;			// ‚Ü‚Ô‚½‚ğ•Â‚¶‚Ä‚¢‚é“®ì‚ÌŠ—vŠÔ[•b]
-	float						_openingSeconds ;			// ‚Ü‚Ô‚½‚ğŠJ‚­“®ì‚ÌŠ—vŠÔ[•b]
-	float						_userTimeSeconds ;			// ƒfƒ‹ƒ^ŠÔ‚ÌÏZ’l[•b]
+	int							_blinkingState ;			// ç¾åœ¨ã®çŠ¶æ…‹
+	D_csmVector<D_CubismIdHandle>   _parameterIds ;			// æ“ä½œå¯¾è±¡ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®IDã®ãƒªã‚¹ãƒˆ
+	float						_nextBlinkingTime ;			// æ¬¡ã®ã¾ã°ãŸãã®æ™‚åˆ»[ç§’]
+	float						_stateStartTimeSeconds ;	// ç¾åœ¨ã®çŠ¶æ…‹ãŒé–‹å§‹ã—ãŸæ™‚åˆ»[ç§’]
+	float						_blinkingIntervalSeconds ;	// ã¾ã°ãŸãã®é–“éš”[ç§’]
+	float						_closingSeconds ;			// ã¾ã¶ãŸã‚’é–‰ã˜ã‚‹å‹•ä½œã®æ‰€è¦æ™‚é–“[ç§’]
+	float						_closedSeconds ;			// ã¾ã¶ãŸã‚’é–‰ã˜ã¦ã„ã‚‹å‹•ä½œã®æ‰€è¦æ™‚é–“[ç§’]
+	float						_openingSeconds ;			// ã¾ã¶ãŸã‚’é–‹ãå‹•ä½œã®æ‰€è¦æ™‚é–“[ç§’]
+	float						_userTimeSeconds ;			// ãƒ‡ãƒ«ã‚¿æ™‚é–“ã®ç©ç®—å€¤[ç§’]
 
 } ;
 
-// ŒÄ‹zˆ—
+// å‘¼å¸å‡¦ç†
 class D_CubismBreath
 {
 public:
-	// ŒÄ‹z‚Ìƒpƒ‰ƒ[ƒ^î•ñ
+	// å‘¼å¸ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æƒ…å ±
 	struct BreathParameterData
 	{
-		BreathParameterData() : ParameterId( NULL ), Offset( 0.0f ), Peak( 0.0f ), Cycle( 0.0f ), Weight( 0.0f ) { }	// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-		BreathParameterData( D_CubismIdHandle parameterId, float offset, float peak, float cycle, float weight )		// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+		BreathParameterData() : ParameterId( NULL ), Offset( 0.0f ), Peak( 0.0f ), Cycle( 0.0f ), Weight( 0.0f ) { }	// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+		BreathParameterData( D_CubismIdHandle parameterId, float offset, float peak, float cycle, float weight )		// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 			: ParameterId( parameterId )
 			, Offset( offset )
 			, Peak( peak )
 			, Cycle( cycle )
 			, Weight( weight )
 		{ }
-		D_CubismIdHandle		ParameterId ;				// ŒÄ‹z‚ğ‚Ğ‚à‚Ã‚¯‚éƒpƒ‰ƒ[ƒ^ID
-		float					Offset ;					// ŒÄ‹z‚ğ³Œ·”g‚Æ‚µ‚½‚Æ‚«‚ÌA”g‚ÌƒIƒtƒZƒbƒg
-		float					Peak ;						// ŒÄ‹z‚ğ³Œ·”g‚Æ‚µ‚½‚Æ‚«‚ÌA”g‚Ì‚‚³
-		float					Cycle ;						// ŒÄ‹z‚ğ³Œ·”g‚Æ‚µ‚½‚Æ‚«‚ÌA”g‚ÌüŠú
-		float					Weight ;					// ƒpƒ‰ƒ[ƒ^‚Ö‚Ìd‚İ
+		D_CubismIdHandle		ParameterId ;				// å‘¼å¸ã‚’ã²ã‚‚ã¥ã‘ã‚‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ID
+		float					Offset ;					// å‘¼å¸ã‚’æ­£å¼¦æ³¢ã¨ã—ãŸã¨ãã®ã€æ³¢ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+		float					Peak ;						// å‘¼å¸ã‚’æ­£å¼¦æ³¢ã¨ã—ãŸã¨ãã®ã€æ³¢ã®é«˜ã•
+		float					Cycle ;						// å‘¼å¸ã‚’æ­£å¼¦æ³¢ã¨ã—ãŸã¨ãã®ã€æ³¢ã®å‘¨æœŸ
+		float					Weight ;					// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¸ã®é‡ã¿
 	} ;
-	static D_CubismBreath*		Create() ;																	// ƒCƒ“ƒXƒ^ƒ“ƒX‚Ìì¬
-	static void					Delete( D_CubismBreath* instance ) ;										// ƒCƒ“ƒXƒ^ƒ“ƒX‚Ì”jŠü
-	void						SetParameters( D_csmVector<BreathParameterData>& breathParameters ) ;		// ŒÄ‹z‚Ìƒpƒ‰ƒ[ƒ^‚Ì‚Ğ‚à‚Ã‚¯
-	D_csmVector<BreathParameterData>& GetParameters() ;														// ŒÄ‹z‚É‚Ğ‚à‚Ã‚¢‚Ä‚¢‚éƒpƒ‰ƒ[ƒ^‚Ìæ“¾
-	void						UpdateParameters( D_CubismModel* model, float deltaTimeSeconds ) ;			// ƒ‚ƒfƒ‹‚Ìƒpƒ‰ƒ[ƒ^‚ÌXV
+	static D_CubismBreath*		Create() ;																	// ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã®ä½œæˆ
+	static void					Delete( D_CubismBreath* instance ) ;										// ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã®ç ´æ£„
+	void						SetParameters( D_csmVector<BreathParameterData>& breathParameters ) ;		// å‘¼å¸ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®ã²ã‚‚ã¥ã‘
+	D_csmVector<BreathParameterData>& GetParameters() ;														// å‘¼å¸ã«ã²ã‚‚ã¥ã„ã¦ã„ã‚‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®å–å¾—
+	void						UpdateParameters( D_CubismModel* model, float deltaTimeSeconds ) ;			// ãƒ¢ãƒ‡ãƒ«ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®æ›´æ–°
 
 private:
-	D_CubismBreath() ;																		// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-	virtual ~D_CubismBreath() ;																// ƒfƒXƒgƒ‰ƒNƒ^
+	D_CubismBreath() ;																		// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	virtual ~D_CubismBreath() ;																// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 
-	D_csmVector<BreathParameterData> _breathParameters ;	// ŒÄ‹z‚É‚Ğ‚à‚Ã‚¢‚Ä‚¢‚éƒpƒ‰ƒ[ƒ^‚ÌƒŠƒXƒg
-	float						_currentTime ;				// ÏZŠÔ[•b]
+	D_csmVector<BreathParameterData> _breathParameters ;	// å‘¼å¸ã«ã²ã‚‚ã¥ã„ã¦ã„ã‚‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®ãƒªã‚¹ãƒˆ
+	float						_currentTime ;				// ç©ç®—æ™‚é–“[ç§’]
 } ;
 
-// ƒp[ƒc‚Ì•s“§–¾“x‚Ìİ’è
+// ãƒ‘ãƒ¼ãƒ„ã®ä¸é€æ˜åº¦ã®è¨­å®š
 class D_CubismPose
 {
 public:
-	// ƒp[ƒc‚É‚Ü‚Â‚í‚éƒf[ƒ^‚ğŠÇ—
+	// ãƒ‘ãƒ¼ãƒ„ã«ã¾ã¤ã‚ã‚‹ãƒ‡ãƒ¼ã‚¿ã‚’ç®¡ç†
 	struct PartData
 	{
-		PartData() ;																		// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-		PartData( const PartData& v ) ;														// ƒRƒs[ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-		virtual ~PartData() ;																// ƒfƒXƒgƒ‰ƒNƒ^
-		PartData&				operator=( const PartData& v ) ;							// ‘ã“ü‚ÌƒI[ƒo[ƒ[ƒh
-		void					Initialize( D_CubismModel* model ) ;						// ‰Šú‰»
+		PartData() ;																		// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+		PartData( const PartData& v ) ;														// ã‚³ãƒ”ãƒ¼ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+		virtual ~PartData() ;																// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+		PartData&				operator=( const PartData& v ) ;							// ä»£å…¥ã®ã‚ªãƒ¼ãƒãƒ¼ãƒ­ãƒ¼ãƒ‰
+		void					Initialize( D_CubismModel* model ) ;						// åˆæœŸåŒ–
 
-		D_CubismIdHandle		PartId ;					// ƒp[ƒcID
-		int						ParameterIndex ;			// ƒpƒ‰ƒ[ƒ^‚ÌƒCƒ“ƒfƒbƒNƒX
-		int						PartIndex ;					// ƒp[ƒc‚ÌƒCƒ“ƒfƒbƒNƒX
-		D_csmVector<PartData>	Link ;						// ˜A“®‚·‚éƒpƒ‰ƒ[ƒ^
+		D_CubismIdHandle		PartId ;					// ãƒ‘ãƒ¼ãƒ„ID
+		int						ParameterIndex ;			// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+		int						PartIndex ;					// ãƒ‘ãƒ¼ãƒ„ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+		D_csmVector<PartData>	Link ;						// é€£å‹•ã™ã‚‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 	} ;
-	static D_CubismPose*		Create( const BYTE* pose3json, size_t size ) ;// ƒCƒ“ƒXƒ^ƒ“ƒX‚Ìì¬
-	static void					Delete( D_CubismPose* pose ) ;// ƒCƒ“ƒXƒ^ƒ“ƒX‚Ì”jŠü
-	void						UpdateParameters( D_CubismModel* model, float deltaTimeSeconds ) ;// ƒ‚ƒfƒ‹‚Ìƒpƒ‰ƒ[ƒ^‚ÌXV
+	static D_CubismPose*		Create( const BYTE* pose3json, size_t size ) ;// ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã®ä½œæˆ
+	static void					Delete( D_CubismPose* pose ) ;// ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã®ç ´æ£„
+	void						UpdateParameters( D_CubismModel* model, float deltaTimeSeconds ) ;// ãƒ¢ãƒ‡ãƒ«ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®æ›´æ–°
 
 private:
-	D_CubismPose() ;																		// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-	virtual ~D_CubismPose() ;																// ƒfƒXƒgƒ‰ƒNƒ^
-	void						Reset( D_CubismModel* model ) ;								// •\¦‚ğ‰Šú‰»
-	void						CopyPartOpacities( D_CubismModel* model ) ;					// ƒp[ƒc‚Ì•s“§–¾“x‚ğƒRƒs[
-	void						DoFade( D_CubismModel* model, float deltaTimeSeconds, int beginIndex, int partGroupCount ) ;// ƒp[ƒc‚ÌƒtƒF[ƒh‘€ì‚ğÀs
+	D_CubismPose() ;																		// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	virtual ~D_CubismPose() ;																// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	void						Reset( D_CubismModel* model ) ;								// è¡¨ç¤ºã‚’åˆæœŸåŒ–
+	void						CopyPartOpacities( D_CubismModel* model ) ;					// ãƒ‘ãƒ¼ãƒ„ã®ä¸é€æ˜åº¦ã‚’ã‚³ãƒ”ãƒ¼
+	void						DoFade( D_CubismModel* model, float deltaTimeSeconds, int beginIndex, int partGroupCount ) ;// ãƒ‘ãƒ¼ãƒ„ã®ãƒ•ã‚§ãƒ¼ãƒ‰æ“ä½œã‚’å®Ÿè¡Œ
 
-	D_csmVector<PartData>		_partGroups ;				// ƒp[ƒcƒOƒ‹[ƒv
-	D_csmVector<int>			_partGroupCounts ;			// ‚»‚ê‚¼‚ê‚Ìƒp[ƒcƒOƒ‹[ƒv‚ÌŒÂ”
-	float						_fadeTimeSeconds ;			// ƒtƒF[ƒhŠÔ[•b]
-	D_CubismModel*				_lastModel ;				// ‘O‰ñ‘€ì‚µ‚½ƒ‚ƒfƒ‹
+	D_csmVector<PartData>		_partGroups ;				// ãƒ‘ãƒ¼ãƒ„ã‚°ãƒ«ãƒ¼ãƒ—
+	D_csmVector<int>			_partGroupCounts ;			// ãã‚Œãã‚Œã®ãƒ‘ãƒ¼ãƒ„ã‚°ãƒ«ãƒ¼ãƒ—ã®å€‹æ•°
+	float						_fadeTimeSeconds ;			// ãƒ•ã‚§ãƒ¼ãƒ‰æ™‚é–“[ç§’]
+	D_CubismModel*				_lastModel ;				// å‰å›æ“ä½œã—ãŸãƒ¢ãƒ‡ãƒ«
 } ;
 
-// Šç‚ÌŒü‚«‚Ì§Œäˆ—
+// é¡”ã®å‘ãã®åˆ¶å¾¡å‡¦ç†
 class D_CubismTargetPoint
 {
 public:
-	D_CubismTargetPoint() ;																	// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-	virtual ~D_CubismTargetPoint() ;														// ƒfƒXƒgƒ‰ƒNƒ^
-	void						Update( float deltaTimeSeconds ) ;							// XVˆ—
-	float						GetX() const ;												// X²‚ÌŠç‚ÌŒü‚«‚Ì’l‚ğæ“¾
-	float						GetY() const ;												// Y²‚ÌŠç‚ÌŒü‚«‚Ì’l‚ğæ“¾
-	void						Set( float x, float y ) ;									// Šç‚ÌŒü‚«‚Ì–Ú•W’l‚ğİ’è
+	D_CubismTargetPoint() ;																	// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	virtual ~D_CubismTargetPoint() ;														// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	void						Update( float deltaTimeSeconds ) ;							// æ›´æ–°å‡¦ç†
+	float						GetX() const ;												// Xè»¸ã®é¡”ã®å‘ãã®å€¤ã‚’å–å¾—
+	float						GetY() const ;												// Yè»¸ã®é¡”ã®å‘ãã®å€¤ã‚’å–å¾—
+	void						Set( float x, float y ) ;									// é¡”ã®å‘ãã®ç›®æ¨™å€¤ã‚’è¨­å®š
 
 private:
-	float						_faceTargetX ;				// Šç‚ÌŒü‚«‚ÌX–Ú•W’l(‚±‚Ì’l‚É‹ß‚Ã‚¢‚Ä‚¢‚­)
-	float						_faceTargetY ;				// Šç‚ÌŒü‚«‚ÌY–Ú•W’l(‚±‚Ì’l‚É‹ß‚Ã‚¢‚Ä‚¢‚­)
-	float						_faceX ;					// Šç‚ÌŒü‚«X(-1.0 - 1.0)
-	float						_faceY ;					// Šç‚ÌŒü‚«Y(-1.0 - 1.0)
-	float						_faceVX ;					// Šç‚ÌŒü‚«‚Ì•Ï‰»‘¬“xX
-	float						_faceVY ;					// Šç‚ÌŒü‚«‚Ì•Ï‰»‘¬“xY
-	float						_lastTimeSeconds ;			// ÅŒã‚ÌÀsŠÔ[•b]
-	float						_userTimeSeconds ;			// ƒfƒ‹ƒ^ŠÔ‚ÌÏZ’l[•b]
+	float						_faceTargetX ;				// é¡”ã®å‘ãã®Xç›®æ¨™å€¤(ã“ã®å€¤ã«è¿‘ã¥ã„ã¦ã„ã)
+	float						_faceTargetY ;				// é¡”ã®å‘ãã®Yç›®æ¨™å€¤(ã“ã®å€¤ã«è¿‘ã¥ã„ã¦ã„ã)
+	float						_faceX ;					// é¡”ã®å‘ãX(-1.0 - 1.0)
+	float						_faceY ;					// é¡”ã®å‘ãY(-1.0 - 1.0)
+	float						_faceVX ;					// é¡”ã®å‘ãã®å¤‰åŒ–é€Ÿåº¦X
+	float						_faceVY ;					// é¡”ã®å‘ãã®å¤‰åŒ–é€Ÿåº¦Y
+	float						_lastTimeSeconds ;			// æœ€å¾Œã®å®Ÿè¡Œæ™‚é–“[ç§’]
+	float						_userTimeSeconds ;			// ãƒ‡ãƒ«ã‚¿æ™‚é–“ã®ç©ç®—å€¤[ç§’]
 } ;
 
-// •¨—‰‰Z‚Ì“K—pæ‚Ìí—Ş
+// ç‰©ç†æ¼”ç®—ã®é©ç”¨å…ˆã®ç¨®é¡
 enum D_CubismPhysicsTargetType
 {
-    D_CubismPhysicsTargetType_Parameter			= 0,		// ƒpƒ‰ƒ[ƒ^‚É‘Î‚µ‚Ä“K—p
+    D_CubismPhysicsTargetType_Parameter			= 0,		// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã«å¯¾ã—ã¦é©ç”¨
 } ;
 
-// •¨—‰‰Z‚Ì“ü—Í‚Ìí—Ş
+// ç‰©ç†æ¼”ç®—ã®å…¥åŠ›ã®ç¨®é¡
 enum D_CubismPhysicsSource
 {
-    D_CubismPhysicsSource_X						= 0,		// X²‚ÌˆÊ’u‚©‚ç
-    D_CubismPhysicsSource_Y						= 1,		// Y²‚ÌˆÊ’u‚©‚ç
-    D_CubismPhysicsSource_Angle					= 2,		// Šp“x‚©‚ç
+    D_CubismPhysicsSource_X						= 0,		// Xè»¸ã®ä½ç½®ã‹ã‚‰
+    D_CubismPhysicsSource_Y						= 1,		// Yè»¸ã®ä½ç½®ã‹ã‚‰
+    D_CubismPhysicsSource_Angle					= 2,		// è§’åº¦ã‹ã‚‰
 } ;
 
-// •¨—‰‰Z‚Åg—p‚·‚éŠO•”‚Ì—Í
+// ç‰©ç†æ¼”ç®—ã§ä½¿ç”¨ã™ã‚‹å¤–éƒ¨ã®åŠ›
 struct D_PhysicsJsonEffectiveForces
 {
-    D_CubismVector2				Gravity ;					// d—Í
-    D_CubismVector2				Wind ;						// •—
+    D_CubismVector2				Gravity ;					// é‡åŠ›
+    D_CubismVector2				Wind ;						// é¢¨
 } ;
 
-// •¨—‰‰Z‚Ìƒpƒ‰ƒ[ƒ^î•ñ
+// ç‰©ç†æ¼”ç®—ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æƒ…å ±
 struct D_CubismPhysicsParameter
 {
-    D_CubismIdHandle			Id ;						// ƒpƒ‰ƒ[ƒ^ID
-    D_CubismPhysicsTargetType	TargetType ;				// “K—pæ‚Ìí—Ş
+    D_CubismIdHandle			Id ;						// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ID
+    D_CubismPhysicsTargetType	TargetType ;				// é©ç”¨å…ˆã®ç¨®é¡
 } ;
 
-// •¨—‰‰Z‚Ì³‹K‰»î•ñ
+// ç‰©ç†æ¼”ç®—ã®æ­£è¦åŒ–æƒ…å ±
 struct D_CubismPhysicsNormalization
 {
-    float						Minimum ;					// Å‘å’l
-    float						Maximum ;					// Å¬’l
-    float						Default ;					// ƒfƒtƒHƒ‹ƒg’l
+    float						Minimum ;					// æœ€å¤§å€¤
+    float						Maximum ;					// æœ€å°å€¤
+    float						Default ;					// ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå€¤
 } ;
 
-// •¨—‰‰Z‚Ì‰‰Z‚Ég—p‚·‚é•¨—“_‚Ìî•ñ
+// ç‰©ç†æ¼”ç®—ã®æ¼”ç®—ã«ä½¿ç”¨ã™ã‚‹ç‰©ç†ç‚¹ã®æƒ…å ±
 struct D_CubismPhysicsParticle
 {
-    D_CubismVector2				InitialPosition ;			// ‰ŠúˆÊ’u
-    float						Mobility ;					// “®‚«‚â‚·‚³
-    float						Delay ;						// ’x‚ê
-    float						Acceleration ;				// ‰Á‘¬“x
-    float						Radius ;					// ‹——£
-    D_CubismVector2				Position ;					// Œ»İ‚ÌˆÊ’u
-    D_CubismVector2				LastPosition ;				// ÅŒã‚ÌˆÊ’u
-    D_CubismVector2				LastGravity ;				// ÅŒã‚Ìd—Í
-    D_CubismVector2				Force ;						// Œ»İ‚©‚©‚Á‚Ä‚¢‚é—Í
-    D_CubismVector2				Velocity ;					// Œ»İ‚Ì‘¬“x
+    D_CubismVector2				InitialPosition ;			// åˆæœŸä½ç½®
+    float						Mobility ;					// å‹•ãã‚„ã™ã•
+    float						Delay ;						// é…ã‚Œ
+    float						Acceleration ;				// åŠ é€Ÿåº¦
+    float						Radius ;					// è·é›¢
+    D_CubismVector2				Position ;					// ç¾åœ¨ã®ä½ç½®
+    D_CubismVector2				LastPosition ;				// æœ€å¾Œã®ä½ç½®
+    D_CubismVector2				LastGravity ;				// æœ€å¾Œã®é‡åŠ›
+    D_CubismVector2				Force ;						// ç¾åœ¨ã‹ã‹ã£ã¦ã„ã‚‹åŠ›
+    D_CubismVector2				Velocity ;					// ç¾åœ¨ã®é€Ÿåº¦
 } ;
 
-// •¨—‰‰Z‚Ì•¨—“_‚ÌŠÇ—
+// ç‰©ç†æ¼”ç®—ã®ç‰©ç†ç‚¹ã®ç®¡ç†
 struct D_CubismPhysicsSubRig
 {
-    int							InputCount ;				// “ü—Í‚ÌŒÂ”
-    int							OutputCount ;				// o—Í‚ÌŒÂ”
-    int							ParticleCount ;				// •¨—“_‚ÌŒÂ”
-    int							BaseInputIndex ;			// “ü—Í‚ÌÅ‰‚ÌƒCƒ“ƒfƒbƒNƒX
-    int							BaseOutputIndex ;			// o—Í‚ÌÅ‰‚ÌƒCƒ“ƒfƒbƒNƒX
-    int							BaseParticleIndex ;			// •¨—“_‚ÌÅ‰‚ÌƒCƒ“ƒfƒbƒNƒX
-    D_CubismPhysicsNormalization NormalizationPosition ;	// ³‹K‰»‚³‚ê‚½ˆÊ’u
-    D_CubismPhysicsNormalization NormalizationAngle ;		// ³‹K‰»‚³‚ê‚½Šp“x
+    int							InputCount ;				// å…¥åŠ›ã®å€‹æ•°
+    int							OutputCount ;				// å‡ºåŠ›ã®å€‹æ•°
+    int							ParticleCount ;				// ç‰©ç†ç‚¹ã®å€‹æ•°
+    int							BaseInputIndex ;			// å…¥åŠ›ã®æœ€åˆã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+    int							BaseOutputIndex ;			// å‡ºåŠ›ã®æœ€åˆã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+    int							BaseParticleIndex ;			// ç‰©ç†ç‚¹ã®æœ€åˆã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+    D_CubismPhysicsNormalization NormalizationPosition ;	// æ­£è¦åŒ–ã•ã‚ŒãŸä½ç½®
+    D_CubismPhysicsNormalization NormalizationAngle ;		// æ­£è¦åŒ–ã•ã‚ŒãŸè§’åº¦
 } ;
 
-// ³‹K‰»‚³‚ê‚½ƒpƒ‰ƒ[ƒ^‚Ìæ“¾ŠÖ”‚ÌéŒ¾
+// æ­£è¦åŒ–ã•ã‚ŒãŸãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®å–å¾—é–¢æ•°ã®å®£è¨€
 typedef void ( *D_NormalizedPhysicsParameterValueGetter )(
     D_CubismVector2*			targetTranslation,
     float*						targetAngle,
@@ -1778,7 +1778,7 @@ typedef void ( *D_NormalizedPhysicsParameterValueGetter )(
     float						weight
 ) ;
 
-// •¨—‰‰Z‚Ì’l‚Ìæ“¾ŠÖ”‚ÌéŒ¾
+// ç‰©ç†æ¼”ç®—ã®å€¤ã®å–å¾—é–¢æ•°ã®å®£è¨€
 typedef float ( *D_PhysicsValueGetter )(
     D_CubismVector2				translation,
     D_CubismPhysicsParticle*	particles,
@@ -1787,225 +1787,225 @@ typedef float ( *D_PhysicsValueGetter )(
     D_CubismVector2				parentGravity
 ) ;
 
-// •¨—‰‰Z‚ÌƒXƒP[ƒ‹‚Ìæ“¾ŠÖ”‚ÌéŒ¾
+// ç‰©ç†æ¼”ç®—ã®ã‚¹ã‚±ãƒ¼ãƒ«ã®å–å¾—é–¢æ•°ã®å®£è¨€
 typedef float ( *D_PhysicsScaleGetter )( D_CubismVector2 translationScale, float angleScale ) ;
 
-// •¨—‰‰Z‚Ì“ü—Íî•ñ
+// ç‰©ç†æ¼”ç®—ã®å…¥åŠ›æƒ…å ±
 struct D_CubismPhysicsInput
 {
-    D_CubismPhysicsParameter	Source ;					// “ü—ÍŒ³‚Ìƒpƒ‰ƒ[ƒ^
-    int							SourceParameterIndex ;		// “ü—ÍŒ³‚Ìƒpƒ‰ƒ[ƒ^‚ÌƒCƒ“ƒfƒbƒNƒX
-    float						Weight ;					// d‚İ
-    short						Type ;						// “ü—Í‚Ìí—Ş
-    short						Reflect ;					// ’l‚ª”½“]‚³‚ê‚Ä‚¢‚é‚©‚Ç‚¤‚©
-    D_NormalizedPhysicsParameterValueGetter GetNormalizedParameterValue ;	// ³‹K‰»‚³‚ê‚½ƒpƒ‰ƒ[ƒ^’l‚Ìæ“¾ŠÖ”
+    D_CubismPhysicsParameter	Source ;					// å…¥åŠ›å…ƒã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+    int							SourceParameterIndex ;		// å…¥åŠ›å…ƒã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+    float						Weight ;					// é‡ã¿
+    short						Type ;						// å…¥åŠ›ã®ç¨®é¡
+    short						Reflect ;					// å€¤ãŒåè»¢ã•ã‚Œã¦ã„ã‚‹ã‹ã©ã†ã‹
+    D_NormalizedPhysicsParameterValueGetter GetNormalizedParameterValue ;	// æ­£è¦åŒ–ã•ã‚ŒãŸãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿å€¤ã®å–å¾—é–¢æ•°
 } ;
 
-// •¨—‰‰Z‚Ìo—Íî•ñ
+// ç‰©ç†æ¼”ç®—ã®å‡ºåŠ›æƒ…å ±
 struct D_CubismPhysicsOutput
 {
-    D_CubismPhysicsParameter	Destination ;				// o—Íæ‚Ìƒpƒ‰ƒ[ƒ^
-    int							DestinationParameterIndex ;	// o—Íæ‚Ìƒpƒ‰ƒ[ƒ^‚ÌƒCƒ“ƒfƒbƒNƒX
-    int							VertexIndex ;				// U‚èq‚ÌƒCƒ“ƒfƒbƒNƒX
-    D_CubismVector2				TranslationScale ;			// ˆÚ“®’l‚ÌƒXƒP[ƒ‹
-    float						AngleScale ;				// Šp“x‚ÌƒXƒP[ƒ‹
-    float						Weight ;					// d‚İ
-    D_CubismPhysicsSource		Type ;						// o—Í‚Ìí—Ş
-    short						Reflect ;					// ’l‚ª”½“]‚³‚ê‚Ä‚¢‚é‚©‚Ç‚¤‚©
-    float						ValueBelowMinimum ;			// Å¬’l‚ğ‰º‰ñ‚Á‚½‚Ì’l
-    float						ValueExceededMaximum ;		// Å‘å’l‚ğ‚±‚¦‚½‚Ì’l
-    D_PhysicsValueGetter		GetValue ;					// •¨—‰‰Z‚Ì’l‚Ìæ“¾ŠÖ”
-    D_PhysicsScaleGetter		GetScale ;					// •¨—‰‰Z‚ÌƒXƒP[ƒ‹’l‚Ìæ“¾ŠÖ”
+    D_CubismPhysicsParameter	Destination ;				// å‡ºåŠ›å…ˆã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+    int							DestinationParameterIndex ;	// å‡ºåŠ›å…ˆã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+    int							VertexIndex ;				// æŒ¯ã‚Šå­ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+    D_CubismVector2				TranslationScale ;			// ç§»å‹•å€¤ã®ã‚¹ã‚±ãƒ¼ãƒ«
+    float						AngleScale ;				// è§’åº¦ã®ã‚¹ã‚±ãƒ¼ãƒ«
+    float						Weight ;					// é‡ã¿
+    D_CubismPhysicsSource		Type ;						// å‡ºåŠ›ã®ç¨®é¡
+    short						Reflect ;					// å€¤ãŒåè»¢ã•ã‚Œã¦ã„ã‚‹ã‹ã©ã†ã‹
+    float						ValueBelowMinimum ;			// æœ€å°å€¤ã‚’ä¸‹å›ã£ãŸæ™‚ã®å€¤
+    float						ValueExceededMaximum ;		// æœ€å¤§å€¤ã‚’ã“ãˆãŸæ™‚ã®å€¤
+    D_PhysicsValueGetter		GetValue ;					// ç‰©ç†æ¼”ç®—ã®å€¤ã®å–å¾—é–¢æ•°
+    D_PhysicsScaleGetter		GetScale ;					// ç‰©ç†æ¼”ç®—ã®ã‚¹ã‚±ãƒ¼ãƒ«å€¤ã®å–å¾—é–¢æ•°
 } ;
 
-// •¨—‰‰Z‚Ìƒf[ƒ^
+// ç‰©ç†æ¼”ç®—ã®ãƒ‡ãƒ¼ã‚¿
 struct D_CubismPhysicsRig
 {
-    int							SubRigCount ;				// •¨—‰‰Z‚Ì•¨—“_‚ÌŒÂ”
-    D_csmVector<D_CubismPhysicsSubRig> Settings ;			// •¨—‰‰Z‚Ì•¨—“_‚ÌŠÇ—‚ÌƒŠƒXƒg
-    D_csmVector<D_CubismPhysicsInput> Inputs ;				// •¨—‰‰Z‚Ì“ü—Í‚ÌƒŠƒXƒg
-    D_csmVector<D_CubismPhysicsOutput> Outputs ;			// •¨—‰‰Z‚Ìo—Í‚ÌƒŠƒXƒg
-    D_csmVector<D_CubismPhysicsParticle> Particles ;		// •¨—‰‰Z‚Ì•¨—“_‚ÌƒŠƒXƒg
-    D_CubismVector2				Gravity ;					// d—Í
-    D_CubismVector2				Wind ;						// •—
+    int							SubRigCount ;				// ç‰©ç†æ¼”ç®—ã®ç‰©ç†ç‚¹ã®å€‹æ•°
+    D_csmVector<D_CubismPhysicsSubRig> Settings ;			// ç‰©ç†æ¼”ç®—ã®ç‰©ç†ç‚¹ã®ç®¡ç†ã®ãƒªã‚¹ãƒˆ
+    D_csmVector<D_CubismPhysicsInput> Inputs ;				// ç‰©ç†æ¼”ç®—ã®å…¥åŠ›ã®ãƒªã‚¹ãƒˆ
+    D_csmVector<D_CubismPhysicsOutput> Outputs ;			// ç‰©ç†æ¼”ç®—ã®å‡ºåŠ›ã®ãƒªã‚¹ãƒˆ
+    D_csmVector<D_CubismPhysicsParticle> Particles ;		// ç‰©ç†æ¼”ç®—ã®ç‰©ç†ç‚¹ã®ãƒªã‚¹ãƒˆ
+    D_CubismVector2				Gravity ;					// é‡åŠ›
+    D_CubismVector2				Wind ;						// é¢¨
 } ;
 
-// physics3.json‚ÌƒRƒ“ƒeƒi
+// physics3.jsonã®ã‚³ãƒ³ãƒ†ãƒŠ
 class D_CubismPhysicsJson
 {
 public:
-	D_CubismPhysicsJson( const BYTE* buffer, size_t size ) ;													// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-	virtual ~D_CubismPhysicsJson() ;																			// ƒfƒXƒgƒ‰ƒNƒ^
-	D_CubismVector2				GetGravity() const ;														// d—Í‚Ìæ“¾
-	D_CubismVector2				GetWind() const ;															// •—‚Ìæ“¾
-	int							GetSubRigCount() const ;													// •¨—“_‚ÌŠÇ—‚ÌŒÂ”‚Ìæ“¾
-	int							GetTotalInputCount() const ;												// “ü—Í‚Ì‘‡Œv‚Ìæ“¾
-	int							GetTotalOutputCount() const ;												// o—Í‚Ì‘‡Œv‚Ìæ“¾
-	int							GetVertexCount() const ;													// •¨—“_‚ÌŒÂ”‚Ìæ“¾
-	float						GetNormalizationPositionMinimumValue( int physicsSettingIndex ) const ;		// ³‹K‰»‚³‚ê‚½ˆÊ’u‚ÌÅ¬’l‚Ìæ“¾
-	float						GetNormalizationPositionMaximumValue( int physicsSettingIndex ) const ;		// ³‹K‰»‚³‚ê‚½ˆÊ’u‚ÌÅ‘å’l‚Ìæ“¾
-	float						GetNormalizationPositionDefaultValue( int physicsSettingIndex ) const ;		// ³‹K‰»‚³‚ê‚½ˆÊ’u‚ÌƒfƒtƒHƒ‹ƒg’l‚Ìæ“¾
-	float						GetNormalizationAngleMinimumValue( int physicsSettingIndex ) const ;		// ³‹K‰»‚³‚ê‚½Šp“x‚ÌÅ¬’l‚Ìæ“¾
-	float						GetNormalizationAngleMaximumValue( int physicsSettingIndex ) const ;		// ³‹K‰»‚³‚ê‚½Šp“x‚ÌÅ‘å’l‚Ìæ“¾
-	float						GetNormalizationAngleDefaultValue( int physicsSettingIndex ) const ;		// ³‹K‰»‚³‚ê‚½Šp“x‚ÌƒfƒtƒHƒ‹ƒg’l‚Ìæ“¾
-	int							GetInputCount( int physicsSettingIndex ) const ;							// “ü—Í‚ÌŒÂ”‚Ìæ“¾
-	float						GetInputWeight( int physicsSettingIndex, int inputIndex ) const ;			// “ü—Í‚Ìd‚İ‚Ìæ“¾
-	bool						GetInputReflect( int physicsSettingIndex, int inputIndex ) const ;			// “ü—Í‚Ì”½“]‚Ìæ“¾
-	const char*					GetInputType( int physicsSettingIndex, int inputIndex ) const ;				// “ü—Í‚Ìí—Ş‚Ìæ“¾
-	D_CubismIdHandle			GetInputSourceId( int physicsSettingIndex, int inputIndex ) const ;			// “ü—ÍŒ³‚ÌID‚Ìæ“¾
-	int							GetOutputCount( int physicsSettingIndex ) const ;							// o—Í‚ÌŒÂ”‚Ìæ“¾
-	int							GetOutputVertexIndex( int physicsSettingIndex, int outputIndex ) const ;	// o—Í‚Ì•¨—“_‚ÌƒCƒ“ƒfƒbƒNƒX‚Ìæ“¾
-	float						GetOutputAngleScale( int physicsSettingIndex, int outputIndex ) const ;		// o—Í‚ÌŠp“x‚ÌƒXƒP[ƒ‹‚Ìæ“¾
-	float						GetOutputWeight( int physicsSettingIndex, int outputIndex ) const ;			// o—Í‚Ìd‚İ‚Ìæ“¾
-	D_CubismIdHandle			GetOutputsDestinationId( int physicsSettingIndex, int outputIndex ) const ;	// o—Íæ‚ÌID‚Ìæ“¾
-	const char*					GetOutputType( int physicsSettingIndex, int outputIndex ) const ;			// o—Í‚Ìí—Ş‚Ìæ“¾
-	bool						GetOutputReflect( int physicsSettingIndex, int outputIndex ) const ;		// o—Í‚Ì”½“]‚Ìæ“¾
-	int							GetParticleCount( int physicsSettingIndex ) const ;							// •¨—“_‚ÌŒÂ”‚Ìæ“¾
-	float						GetParticleMobility( int physicsSettingIndex, int vertexIndex ) const ;		// •¨—“_‚Ì“®‚«‚â‚·‚³‚Ìæ“¾
-	float						GetParticleDelay( int physicsSettingIndex, int vertexIndex ) const ;		// •¨—“_‚Ì’x‚ê‚Ìæ“¾
-	float						GetParticleAcceleration( int physicsSettingIndex, int vertexIndex ) const ;	// •¨—“_‚Ì‰Á‘¬“x‚Ìæ“¾
-	float						GetParticleRadius( int physicsSettingIndex, int vertexIndex ) const ;		// •¨—“_‚Ì‹——£‚Ìæ“¾
-	D_CubismVector2				GetParticlePosition( int physicsSettingIndex, int vertexIndex ) const ;		// •¨—“_‚ÌˆÊ’u‚Ìæ“¾
+	D_CubismPhysicsJson( const BYTE* buffer, size_t size ) ;													// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	virtual ~D_CubismPhysicsJson() ;																			// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	D_CubismVector2				GetGravity() const ;														// é‡åŠ›ã®å–å¾—
+	D_CubismVector2				GetWind() const ;															// é¢¨ã®å–å¾—
+	int							GetSubRigCount() const ;													// ç‰©ç†ç‚¹ã®ç®¡ç†ã®å€‹æ•°ã®å–å¾—
+	int							GetTotalInputCount() const ;												// å…¥åŠ›ã®ç·åˆè¨ˆã®å–å¾—
+	int							GetTotalOutputCount() const ;												// å‡ºåŠ›ã®ç·åˆè¨ˆã®å–å¾—
+	int							GetVertexCount() const ;													// ç‰©ç†ç‚¹ã®å€‹æ•°ã®å–å¾—
+	float						GetNormalizationPositionMinimumValue( int physicsSettingIndex ) const ;		// æ­£è¦åŒ–ã•ã‚ŒãŸä½ç½®ã®æœ€å°å€¤ã®å–å¾—
+	float						GetNormalizationPositionMaximumValue( int physicsSettingIndex ) const ;		// æ­£è¦åŒ–ã•ã‚ŒãŸä½ç½®ã®æœ€å¤§å€¤ã®å–å¾—
+	float						GetNormalizationPositionDefaultValue( int physicsSettingIndex ) const ;		// æ­£è¦åŒ–ã•ã‚ŒãŸä½ç½®ã®ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå€¤ã®å–å¾—
+	float						GetNormalizationAngleMinimumValue( int physicsSettingIndex ) const ;		// æ­£è¦åŒ–ã•ã‚ŒãŸè§’åº¦ã®æœ€å°å€¤ã®å–å¾—
+	float						GetNormalizationAngleMaximumValue( int physicsSettingIndex ) const ;		// æ­£è¦åŒ–ã•ã‚ŒãŸè§’åº¦ã®æœ€å¤§å€¤ã®å–å¾—
+	float						GetNormalizationAngleDefaultValue( int physicsSettingIndex ) const ;		// æ­£è¦åŒ–ã•ã‚ŒãŸè§’åº¦ã®ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå€¤ã®å–å¾—
+	int							GetInputCount( int physicsSettingIndex ) const ;							// å…¥åŠ›ã®å€‹æ•°ã®å–å¾—
+	float						GetInputWeight( int physicsSettingIndex, int inputIndex ) const ;			// å…¥åŠ›ã®é‡ã¿ã®å–å¾—
+	bool						GetInputReflect( int physicsSettingIndex, int inputIndex ) const ;			// å…¥åŠ›ã®åè»¢ã®å–å¾—
+	const char*					GetInputType( int physicsSettingIndex, int inputIndex ) const ;				// å…¥åŠ›ã®ç¨®é¡ã®å–å¾—
+	D_CubismIdHandle			GetInputSourceId( int physicsSettingIndex, int inputIndex ) const ;			// å…¥åŠ›å…ƒã®IDã®å–å¾—
+	int							GetOutputCount( int physicsSettingIndex ) const ;							// å‡ºåŠ›ã®å€‹æ•°ã®å–å¾—
+	int							GetOutputVertexIndex( int physicsSettingIndex, int outputIndex ) const ;	// å‡ºåŠ›ã®ç‰©ç†ç‚¹ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã®å–å¾—
+	float						GetOutputAngleScale( int physicsSettingIndex, int outputIndex ) const ;		// å‡ºåŠ›ã®è§’åº¦ã®ã‚¹ã‚±ãƒ¼ãƒ«ã®å–å¾—
+	float						GetOutputWeight( int physicsSettingIndex, int outputIndex ) const ;			// å‡ºåŠ›ã®é‡ã¿ã®å–å¾—
+	D_CubismIdHandle			GetOutputsDestinationId( int physicsSettingIndex, int outputIndex ) const ;	// å‡ºåŠ›å…ˆã®IDã®å–å¾—
+	const char*					GetOutputType( int physicsSettingIndex, int outputIndex ) const ;			// å‡ºåŠ›ã®ç¨®é¡ã®å–å¾—
+	bool						GetOutputReflect( int physicsSettingIndex, int outputIndex ) const ;		// å‡ºåŠ›ã®åè»¢ã®å–å¾—
+	int							GetParticleCount( int physicsSettingIndex ) const ;							// ç‰©ç†ç‚¹ã®å€‹æ•°ã®å–å¾—
+	float						GetParticleMobility( int physicsSettingIndex, int vertexIndex ) const ;		// ç‰©ç†ç‚¹ã®å‹•ãã‚„ã™ã•ã®å–å¾—
+	float						GetParticleDelay( int physicsSettingIndex, int vertexIndex ) const ;		// ç‰©ç†ç‚¹ã®é…ã‚Œã®å–å¾—
+	float						GetParticleAcceleration( int physicsSettingIndex, int vertexIndex ) const ;	// ç‰©ç†ç‚¹ã®åŠ é€Ÿåº¦ã®å–å¾—
+	float						GetParticleRadius( int physicsSettingIndex, int vertexIndex ) const ;		// ç‰©ç†ç‚¹ã®è·é›¢ã®å–å¾—
+	D_CubismVector2				GetParticlePosition( int physicsSettingIndex, int vertexIndex ) const ;		// ç‰©ç†ç‚¹ã®ä½ç½®ã®å–å¾—
 
 private:
-	D_CubismJson* _json ;          // physics3.jsonƒf[ƒ^
+	D_CubismJson* _json ;          // physics3.jsonãƒ‡ãƒ¼ã‚¿
 } ;
 
-// •¨—‰‰ZƒNƒ‰ƒX
+// ç‰©ç†æ¼”ç®—ã‚¯ãƒ©ã‚¹
 class D_CubismPhysics
 {
 public:
-	// ƒIƒvƒVƒ‡ƒ“
+	// ã‚ªãƒ—ã‚·ãƒ§ãƒ³
 	struct Options
 	{
-		D_CubismVector2			Gravity ;					// d—Í•ûŒü
-		D_CubismVector2			Wind ;						// •—‚Ì•ûŒü
+		D_CubismVector2			Gravity ;					// é‡åŠ›æ–¹å‘
+		D_CubismVector2			Wind ;						// é¢¨ã®æ–¹å‘
 	} ;
-	static D_CubismPhysics*		Create( const BYTE* buffer, size_t size ) ;					// ƒCƒ“ƒXƒ^ƒ“ƒX‚Ìì¬
-	static void					Delete( D_CubismPhysics* physics ) ;						// ƒCƒ“ƒXƒ^ƒ“ƒX‚Ì”jŠü
-	void						Evaluate( D_CubismModel* model, float deltaTimeSeconds ) ;	// •¨—‰‰Z‚Ì•]‰¿
-	void						SetOptions( const Options& options ) ;						// ƒIƒvƒVƒ‡ƒ“‚Ìİ’è
-	const Options&				GetOptions() const ;										// ƒIƒvƒVƒ‡ƒ“‚Ìæ“¾
+	static D_CubismPhysics*		Create( const BYTE* buffer, size_t size ) ;					// ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã®ä½œæˆ
+	static void					Delete( D_CubismPhysics* physics ) ;						// ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã®ç ´æ£„
+	void						Evaluate( D_CubismModel* model, float deltaTimeSeconds ) ;	// ç‰©ç†æ¼”ç®—ã®è©•ä¾¡
+	void						SetOptions( const Options& options ) ;						// ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã®è¨­å®š
+	const Options&				GetOptions() const ;										// ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã®å–å¾—
 
 private:
-	D_CubismPhysics() ;																		// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-	virtual ~D_CubismPhysics() ;															// ƒfƒXƒgƒ‰ƒNƒ^
+	D_CubismPhysics() ;																		// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	virtual ~D_CubismPhysics() ;															// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	D_CubismPhysics( const D_CubismPhysics& ) ;
 	D_CubismPhysics&			operator=( const D_CubismPhysics& ) ;
-	void						Parse( const BYTE* physicsJson, size_t size ) ;				// physics3.json‚Ìƒp[ƒX
-	void						Initialize() ;												// ‰Šú‰»
+	void						Parse( const BYTE* physicsJson, size_t size ) ;				// physics3.jsonã®ãƒ‘ãƒ¼ã‚¹
+	void						Initialize() ;												// åˆæœŸåŒ–
 
-	D_CubismPhysicsRig*			_physicsRig ;				// •¨—‰‰Z‚Ìƒf[ƒ^
-	Options						_options ;					// ƒIƒvƒVƒ‡ƒ“
+	D_CubismPhysicsRig*			_physicsRig ;				// ç‰©ç†æ¼”ç®—ã®ãƒ‡ãƒ¼ã‚¿
+	Options						_options ;					// ã‚ªãƒ—ã‚·ãƒ§ãƒ³
 } ;
 
 class D_CubismModelUserDataJson
 {
 public:
-	D_CubismModelUserDataJson( const BYTE* buffer, size_t size ) ;							// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-	virtual ~D_CubismModelUserDataJson() ;													// ƒfƒXƒgƒ‰ƒNƒ^
-	int							GetUserDataCount() const ;									// ƒ†[ƒUƒf[ƒ^ŒÂ”‚Ìæ“¾
-	int							GetTotalUserDataSize() const ;								// ƒ†[ƒUƒf[ƒ^‘•¶š—ñ”‚Ìæ“¾
-	D_csmString					GetUserDataTargetType( int i ) const ;						// ƒ†[ƒUƒf[ƒ^‚Ìƒ^ƒCƒv‚Ìæ“¾
-	D_CubismIdHandle			GetUserDataId( int i ) const ;								// ƒ†[ƒUƒf[ƒ^‚Ìƒ^[ƒQƒbƒgID‚Ìæ“¾
-	const char*					GetUserDataValue( int i ) const ;							// ƒ†[ƒUƒf[ƒ^‚Ì•¶š—ñ‚Ìæ“¾
+	D_CubismModelUserDataJson( const BYTE* buffer, size_t size ) ;							// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	virtual ~D_CubismModelUserDataJson() ;													// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	int							GetUserDataCount() const ;									// ãƒ¦ãƒ¼ã‚¶ãƒ‡ãƒ¼ã‚¿å€‹æ•°ã®å–å¾—
+	int							GetTotalUserDataSize() const ;								// ãƒ¦ãƒ¼ã‚¶ãƒ‡ãƒ¼ã‚¿ç·æ–‡å­—åˆ—æ•°ã®å–å¾—
+	D_csmString					GetUserDataTargetType( int i ) const ;						// ãƒ¦ãƒ¼ã‚¶ãƒ‡ãƒ¼ã‚¿ã®ã‚¿ã‚¤ãƒ—ã®å–å¾—
+	D_CubismIdHandle			GetUserDataId( int i ) const ;								// ãƒ¦ãƒ¼ã‚¶ãƒ‡ãƒ¼ã‚¿ã®ã‚¿ãƒ¼ã‚²ãƒƒãƒˆIDã®å–å¾—
+	const char*					GetUserDataValue( int i ) const ;							// ãƒ¦ãƒ¼ã‚¶ãƒ‡ãƒ¼ã‚¿ã®æ–‡å­—åˆ—ã®å–å¾—
 
 private:
 	D_CubismJson*				_json ;
 } ;
 
-// ƒ†[ƒUƒf[ƒ^‚ÌŠÇ—ƒNƒ‰ƒX
+// ãƒ¦ãƒ¼ã‚¶ãƒ‡ãƒ¼ã‚¿ã®ç®¡ç†ã‚¯ãƒ©ã‚¹
 class D_CubismModelUserData
 {
 public:
-	// ƒ†[ƒUƒf[ƒ^\‘¢‘Ì
+	// ãƒ¦ãƒ¼ã‚¶ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
 	struct CubismModelUserDataNode
 	{
-		D_CubismIdHandle		TargetType ;				// ƒ†[ƒUƒf[ƒ^ƒ^[ƒQƒbƒgƒ^ƒCƒv
-		D_CubismIdHandle		TargetId ;					// ƒ†[ƒUƒf[ƒ^ƒ^[ƒQƒbƒg‚ÌID
-		D_csmString				Value ;						// ƒ†[ƒUƒf[ƒ^
+		D_CubismIdHandle		TargetType ;				// ãƒ¦ãƒ¼ã‚¶ãƒ‡ãƒ¼ã‚¿ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã‚¿ã‚¤ãƒ—
+		D_CubismIdHandle		TargetId ;					// ãƒ¦ãƒ¼ã‚¶ãƒ‡ãƒ¼ã‚¿ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã®ID
+		D_csmString				Value ;						// ãƒ¦ãƒ¼ã‚¶ãƒ‡ãƒ¼ã‚¿
 	} ;
-	static D_CubismModelUserData* Create( const BYTE* buffer, size_t size ) ;				// ƒCƒ“ƒXƒ^ƒ“ƒX‚Ìì¬
-	static void					Delete( D_CubismModelUserData* modelUserData ) ;			// ƒCƒ“ƒXƒ^ƒ“ƒX‚Ì”jŠü
-	virtual ~D_CubismModelUserData() ;														// ƒfƒXƒgƒ‰ƒNƒ^
-	const D_csmVector<const CubismModelUserDataNode*>& GetArtMeshUserDatas() const ;		// ArtMesh‚Ìƒ†[ƒUƒf[ƒ^‚ÌƒŠƒXƒg‚Ìæ“¾
+	static D_CubismModelUserData* Create( const BYTE* buffer, size_t size ) ;				// ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã®ä½œæˆ
+	static void					Delete( D_CubismModelUserData* modelUserData ) ;			// ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã®ç ´æ£„
+	virtual ~D_CubismModelUserData() ;														// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	const D_csmVector<const CubismModelUserDataNode*>& GetArtMeshUserDatas() const ;		// ArtMeshã®ãƒ¦ãƒ¼ã‚¶ãƒ‡ãƒ¼ã‚¿ã®ãƒªã‚¹ãƒˆã®å–å¾—
 
 private:
-	void ParseUserData( const BYTE* buffer, size_t size ) ;									// userdata3.json‚Ìƒp[ƒX
+	void ParseUserData( const BYTE* buffer, size_t size ) ;									// userdata3.jsonã®ãƒ‘ãƒ¼ã‚¹
 
-	D_csmVector<const CubismModelUserDataNode*> _userDataNodes ;		// ƒ†[ƒUƒf[ƒ^\‘¢‘Ì”z—ñ
-	D_csmVector<const CubismModelUserDataNode*> _artMeshUserDataNodes ;	// ‰{——ƒŠƒXƒg•Û
+	D_csmVector<const CubismModelUserDataNode*> _userDataNodes ;		// ãƒ¦ãƒ¼ã‚¶ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“é…åˆ—
+	D_csmVector<const CubismModelUserDataNode*> _artMeshUserDataNodes ;	// é–²è¦§ãƒªã‚¹ãƒˆä¿æŒ
 } ;
 
-//  ‘O•ûéŒ¾
+//  å‰æ–¹å®£è¨€
 class D_CubismRenderer_DxLib ;
 class D_CubismShader_DxLib ;
 class D_CubismClippingContext ;
 
-//  ƒIƒtƒXƒNƒŠ[ƒ“•`‰æ—p\‘¢‘Ì
+//  ã‚ªãƒ•ã‚¹ã‚¯ãƒªãƒ¼ãƒ³æç”»ç”¨æ§‹é€ ä½“
 class D_CubismOffscreenFrame_DxLib
 {
 public:
 	D_CubismOffscreenFrame_DxLib() ;
-	void						BeginDraw() ;												// w’è‚Ì•`‰æƒ^[ƒQƒbƒg‚ÉŒü‚¯‚Ä•`‰æŠJn
-	void						EndDraw() ;													// •`‰æI—¹
-	void						Clear( float r, float g, float b, float a ) ;				// ƒŒƒ“ƒ_ƒŠƒ“ƒOƒ^[ƒQƒbƒg‚ÌƒNƒŠƒA
-	bool						CreateOffscreenFrame( DWORD displayBufferWidth, DWORD displayBufferHeight ) ;// CubismOffscreenFrameì¬
-	void						DestroyOffscreenFrame() ;									// CubismOffscreenFrame‚Ìíœ
-	void						SetClearColor( float r, float g, float b, float a ) ;		// ƒNƒŠƒAƒJƒ‰[‚Ìã‘‚«
-	int							GetTextureView() const ;									// ƒeƒNƒXƒ`ƒƒƒrƒ…[‚Ö‚ÌƒAƒNƒZƒbƒT
-	DWORD						GetBufferWidth() const ;									// ƒoƒbƒtƒ@•æ“¾
-	DWORD						GetBufferHeight() const ;									// ƒoƒbƒtƒ@‚‚³æ“¾
-	bool						IsValid() const ;											// Œ»İ—LŒø‚©‚Ç‚¤‚©
+	void						BeginDraw() ;												// æŒ‡å®šã®æç”»ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã«å‘ã‘ã¦æç”»é–‹å§‹
+	void						EndDraw() ;													// æç”»çµ‚äº†
+	void						Clear( float r, float g, float b, float a ) ;				// ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã®ã‚¯ãƒªã‚¢
+	bool						CreateOffscreenFrame( DWORD displayBufferWidth, DWORD displayBufferHeight ) ;// CubismOffscreenFrameä½œæˆ
+	void						DestroyOffscreenFrame() ;									// CubismOffscreenFrameã®å‰Šé™¤
+	void						SetClearColor( float r, float g, float b, float a ) ;		// ã‚¯ãƒªã‚¢ã‚«ãƒ©ãƒ¼ã®ä¸Šæ›¸ã
+	int							GetTextureView() const ;									// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ“ãƒ¥ãƒ¼ã¸ã®ã‚¢ã‚¯ã‚»ãƒƒã‚µ
+	DWORD						GetBufferWidth() const ;									// ãƒãƒƒãƒ•ã‚¡å¹…å–å¾—
+	DWORD						GetBufferHeight() const ;									// ãƒãƒƒãƒ•ã‚¡é«˜ã•å–å¾—
+	bool						IsValid() const ;											// ç¾åœ¨æœ‰åŠ¹ã‹ã©ã†ã‹
 
 private:
-	int							_GraphHandle ;				// ¶¬ƒeƒNƒXƒ`ƒƒ 
+	int							_GraphHandle ;				// ç”Ÿæˆãƒ†ã‚¯ã‚¹ãƒãƒ£ 
 	int							_BackupDrawScreen ;
-	DWORD						_bufferWidth ;				// Create‚Éw’è‚³‚ê‚½ƒTƒCƒY 
-	DWORD						_bufferHeight ;				// Create‚Éw’è‚³‚ê‚½ƒTƒCƒY 
+	DWORD						_bufferWidth ;				// Createæ™‚ã«æŒ‡å®šã•ã‚ŒãŸã‚µã‚¤ã‚º 
+	DWORD						_bufferHeight ;				// Createæ™‚ã«æŒ‡å®šã•ã‚ŒãŸã‚µã‚¤ã‚º 
 
 } ;
 
-// DirectX::XMMATRIX‚É•ÏŠ·
+// DirectX::XMMATRIXã«å¤‰æ›
 #ifndef DX_NON_NAMESPACE
 DxLib::MATRIX D_ConvertToD3DX( D_CubismMatrix44& mtx ) ;
 #else // DX_NON_NAMESPACE
 MATRIX D_ConvertToD3DX( D_CubismMatrix44& mtx ) ;
 #endif // DX_NON_NAMESPACE
 
-//  ƒNƒŠƒbƒsƒ“ƒOƒ}ƒXƒN‚Ìˆ—‚ğÀs‚·‚éƒNƒ‰ƒX
+//  ã‚¯ãƒªãƒƒãƒ”ãƒ³ã‚°ãƒã‚¹ã‚¯ã®å‡¦ç†ã‚’å®Ÿè¡Œã™ã‚‹ã‚¯ãƒ©ã‚¹
 class D_CubismClippingManager_DxLib
 {
 	friend class D_CubismShader_DxLib ;
 	friend class D_CubismRenderer_DxLib ;
 
 private:
-	D_CubismClippingManager_DxLib() ;														//  ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-	virtual ~D_CubismClippingManager_DxLib() ;												//  ƒfƒXƒgƒ‰ƒNƒ^
-	D_CubismRenderer::CubismTextureColor* GetChannelFlagAsColor( int channelNo ) ;			// ƒJƒ‰[ƒ`ƒƒƒ“ƒlƒ‹(RGBA)‚Ìƒtƒ‰ƒO‚ğæ“¾‚·‚é
-	void						CalcClippedDrawTotalBounds( D_CubismModel& model, D_CubismClippingContext* clippingContext ) ;// ƒ}ƒXƒN‚³‚ê‚é•`‰æƒIƒuƒWƒFƒNƒgŒQ‘S‘Ì‚ğˆÍ‚Ş‹éŒ`(ƒ‚ƒfƒ‹À•WŒn)‚ğŒvZ‚·‚é
-	void						Initialize( D_CubismModel& model, int drawableCount, const int** drawableMasks, const int* drawableMaskCounts ) ;//  ƒ}ƒl[ƒWƒƒ‚Ì‰Šú‰»ˆ—
-	void						SetupClippingContext( D_CubismModel& model, D_CubismRenderer_DxLib* renderer, D_CubismOffscreenFrame_DxLib& useTarget ) ;// ƒNƒŠƒbƒsƒ“ƒOƒRƒ“ƒeƒLƒXƒg‚ğì¬‚·‚éBƒ‚ƒfƒ‹•`‰æ‚ÉÀs‚·‚éB
-	D_CubismClippingContext*	FindSameClip( const int* drawableMasks, int drawableMaskCounts ) const ;// Šù‚Éƒ}ƒXƒN‚ğì‚Á‚Ä‚¢‚é‚©‚ğŠm”FB
-	void						SetupLayoutBounds( int usingClipCount ) const ;				// ƒNƒŠƒbƒsƒ“ƒOƒRƒ“ƒeƒLƒXƒg‚ğ”z’u‚·‚éƒŒƒCƒAƒEƒgB
-	D_CubismOffscreenFrame_DxLib* GetColorBuffer() const ;									// ƒJƒ‰[ƒoƒbƒtƒ@‚ÌƒAƒhƒŒƒX‚ğæ“¾‚·‚é
-	D_csmVector<D_CubismClippingContext*>* GetClippingContextListForDraw() ;				// ‰æ–Ê•`‰æ‚Ég—p‚·‚éƒNƒŠƒbƒsƒ“ƒOƒ}ƒXƒN‚ÌƒŠƒXƒg‚ğæ“¾‚·‚é
-	void						SetClippingMaskBufferSize( int size ) ;						// ƒNƒŠƒbƒsƒ“ƒOƒ}ƒXƒNƒoƒbƒtƒ@‚ÌƒTƒCƒY‚ğİ’è‚·‚é
-	int							GetClippingMaskBufferSize() const ;							// ƒNƒŠƒbƒsƒ“ƒOƒ}ƒXƒNƒoƒbƒtƒ@‚ÌƒTƒCƒY‚ğæ“¾‚·‚é
+	D_CubismClippingManager_DxLib() ;														//  ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	virtual ~D_CubismClippingManager_DxLib() ;												//  ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	D_CubismRenderer::CubismTextureColor* GetChannelFlagAsColor( int channelNo ) ;			// ã‚«ãƒ©ãƒ¼ãƒãƒ£ãƒ³ãƒãƒ«(RGBA)ã®ãƒ•ãƒ©ã‚°ã‚’å–å¾—ã™ã‚‹
+	void						CalcClippedDrawTotalBounds( D_CubismModel& model, D_CubismClippingContext* clippingContext ) ;// ãƒã‚¹ã‚¯ã•ã‚Œã‚‹æç”»ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç¾¤å…¨ä½“ã‚’å›²ã‚€çŸ©å½¢(ãƒ¢ãƒ‡ãƒ«åº§æ¨™ç³»)ã‚’è¨ˆç®—ã™ã‚‹
+	void						Initialize( D_CubismModel& model, int drawableCount, const int** drawableMasks, const int* drawableMaskCounts ) ;//  ãƒãƒãƒ¼ã‚¸ãƒ£ã®åˆæœŸåŒ–å‡¦ç†
+	void						SetupClippingContext( D_CubismModel& model, D_CubismRenderer_DxLib* renderer, D_CubismOffscreenFrame_DxLib& useTarget ) ;// ã‚¯ãƒªãƒƒãƒ”ãƒ³ã‚°ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã‚’ä½œæˆã™ã‚‹ã€‚ãƒ¢ãƒ‡ãƒ«æç”»æ™‚ã«å®Ÿè¡Œã™ã‚‹ã€‚
+	D_CubismClippingContext*	FindSameClip( const int* drawableMasks, int drawableMaskCounts ) const ;// æ—¢ã«ãƒã‚¹ã‚¯ã‚’ä½œã£ã¦ã„ã‚‹ã‹ã‚’ç¢ºèªã€‚
+	void						SetupLayoutBounds( int usingClipCount ) const ;				// ã‚¯ãƒªãƒƒãƒ”ãƒ³ã‚°ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã‚’é…ç½®ã™ã‚‹ãƒ¬ã‚¤ã‚¢ã‚¦ãƒˆã€‚
+	D_CubismOffscreenFrame_DxLib* GetColorBuffer() const ;									// ã‚«ãƒ©ãƒ¼ãƒãƒƒãƒ•ã‚¡ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å–å¾—ã™ã‚‹
+	D_csmVector<D_CubismClippingContext*>* GetClippingContextListForDraw() ;				// ç”»é¢æç”»ã«ä½¿ç”¨ã™ã‚‹ã‚¯ãƒªãƒƒãƒ”ãƒ³ã‚°ãƒã‚¹ã‚¯ã®ãƒªã‚¹ãƒˆã‚’å–å¾—ã™ã‚‹
+	void						SetClippingMaskBufferSize( int size ) ;						// ã‚¯ãƒªãƒƒãƒ”ãƒ³ã‚°ãƒã‚¹ã‚¯ãƒãƒƒãƒ•ã‚¡ã®ã‚µã‚¤ã‚ºã‚’è¨­å®šã™ã‚‹
+	int							GetClippingMaskBufferSize() const ;							// ã‚¯ãƒªãƒƒãƒ”ãƒ³ã‚°ãƒã‚¹ã‚¯ãƒãƒƒãƒ•ã‚¡ã®ã‚µã‚¤ã‚ºã‚’å–å¾—ã™ã‚‹
 
-	D_CubismOffscreenFrame_DxLib*						_colorBuffer ;						// ƒ}ƒXƒN—pƒJƒ‰[ƒoƒbƒtƒ@[‚ÌƒAƒhƒŒƒX
-	int													_currentFrameNo ;					// ƒ}ƒXƒNƒeƒNƒXƒ`ƒƒ‚É—^‚¦‚éƒtƒŒ[ƒ€”Ô†
+	D_CubismOffscreenFrame_DxLib*						_colorBuffer ;						// ãƒã‚¹ã‚¯ç”¨ã‚«ãƒ©ãƒ¼ãƒãƒƒãƒ•ã‚¡ãƒ¼ã®ã‚¢ãƒ‰ãƒ¬ã‚¹
+	int													_currentFrameNo ;					// ãƒã‚¹ã‚¯ãƒ†ã‚¯ã‚¹ãƒãƒ£ã«ä¸ãˆã‚‹ãƒ•ãƒ¬ãƒ¼ãƒ ç•ªå·
 	D_csmVector<D_CubismRenderer::CubismTextureColor*>	_channelColors ;
-	D_csmVector<D_CubismClippingContext*>				_clippingContextListForMask ;		// ƒ}ƒXƒN—pƒNƒŠƒbƒsƒ“ƒOƒRƒ“ƒeƒLƒXƒg‚ÌƒŠƒXƒg
-	D_csmVector<D_CubismClippingContext*>				_clippingContextListForDraw ;		// •`‰æ—pƒNƒŠƒbƒsƒ“ƒOƒRƒ“ƒeƒLƒXƒg‚ÌƒŠƒXƒg
-	int													_clippingMaskBufferSize ;			// ƒNƒŠƒbƒsƒ“ƒOƒ}ƒXƒN‚Ìƒoƒbƒtƒ@ƒTƒCƒYi‰Šú’l:256j
-	D_CubismMatrix44									_tmpMatrix ;						// ƒ}ƒXƒNŒvZ—p‚Ìs—ñ
-	D_CubismMatrix44									_tmpMatrixForMask ;					// ƒ}ƒXƒNŒvZ—p‚Ìs—ñ
-	D_CubismMatrix44									_tmpMatrixForDraw ;					// ƒ}ƒXƒNŒvZ—p‚Ìs—ñ
-	D_csmRectF											_tmpBoundsOnModel ;					// ƒ}ƒXƒN”z’uŒvZ—p‚Ì‹éŒ`
+	D_csmVector<D_CubismClippingContext*>				_clippingContextListForMask ;		// ãƒã‚¹ã‚¯ç”¨ã‚¯ãƒªãƒƒãƒ”ãƒ³ã‚°ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã®ãƒªã‚¹ãƒˆ
+	D_csmVector<D_CubismClippingContext*>				_clippingContextListForDraw ;		// æç”»ç”¨ã‚¯ãƒªãƒƒãƒ”ãƒ³ã‚°ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã®ãƒªã‚¹ãƒˆ
+	int													_clippingMaskBufferSize ;			// ã‚¯ãƒªãƒƒãƒ”ãƒ³ã‚°ãƒã‚¹ã‚¯ã®ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚ºï¼ˆåˆæœŸå€¤:256ï¼‰
+	D_CubismMatrix44									_tmpMatrix ;						// ãƒã‚¹ã‚¯è¨ˆç®—ç”¨ã®è¡Œåˆ—
+	D_CubismMatrix44									_tmpMatrixForMask ;					// ãƒã‚¹ã‚¯è¨ˆç®—ç”¨ã®è¡Œåˆ—
+	D_CubismMatrix44									_tmpMatrixForDraw ;					// ãƒã‚¹ã‚¯è¨ˆç®—ç”¨ã®è¡Œåˆ—
+	D_csmRectF											_tmpBoundsOnModel ;					// ãƒã‚¹ã‚¯é…ç½®è¨ˆç®—ç”¨ã®çŸ©å½¢
 } ;
 
-// ƒNƒŠƒbƒsƒ“ƒOƒ}ƒXƒN‚ÌƒRƒ“ƒeƒLƒXƒg
+// ã‚¯ãƒªãƒƒãƒ”ãƒ³ã‚°ãƒã‚¹ã‚¯ã®ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆ
 class D_CubismClippingContext
 {
 	friend class D_CubismClippingManager_DxLib;
@@ -2013,26 +2013,26 @@ class D_CubismClippingContext
 	friend class D_CubismRenderer_DxLib;
 
 public:
-	D_CubismClippingContext( D_CubismClippingManager_DxLib* manager, const int* clippingDrawableIndices, int clipCount ) ;// ˆø”•t‚«ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-	virtual ~D_CubismClippingContext() ;													// ƒfƒXƒgƒ‰ƒNƒ^
-	void						AddClippedDrawable( int drawableIndex ) ;					// ‚±‚Ìƒ}ƒXƒN‚ÉƒNƒŠƒbƒv‚³‚ê‚é•`‰æƒIƒuƒWƒFƒNƒg‚ğ’Ç‰Á‚·‚é
-	D_CubismClippingManager_DxLib*	GetClippingManager() ;									// ‚±‚Ìƒ}ƒXƒN‚ğŠÇ—‚·‚éƒ}ƒl[ƒWƒƒ‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğæ“¾‚·‚éB
+	D_CubismClippingContext( D_CubismClippingManager_DxLib* manager, const int* clippingDrawableIndices, int clipCount ) ;// å¼•æ•°ä»˜ãã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	virtual ~D_CubismClippingContext() ;													// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	void						AddClippedDrawable( int drawableIndex ) ;					// ã“ã®ãƒã‚¹ã‚¯ã«ã‚¯ãƒªãƒƒãƒ—ã•ã‚Œã‚‹æç”»ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’è¿½åŠ ã™ã‚‹
+	D_CubismClippingManager_DxLib*	GetClippingManager() ;									// ã“ã®ãƒã‚¹ã‚¯ã‚’ç®¡ç†ã™ã‚‹ãƒãƒãƒ¼ã‚¸ãƒ£ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’å–å¾—ã™ã‚‹ã€‚
 
-	bool						_isUsing ;					// Œ»İ‚Ì•`‰æó‘Ô‚Åƒ}ƒXƒN‚Ì€”õ‚ª•K—v‚È‚çtrue
-	const int*					_clippingIdList ;			// ƒNƒŠƒbƒsƒ“ƒOƒ}ƒXƒN‚ÌIDƒŠƒXƒg
-	int							_clippingIdCount ;			// ƒNƒŠƒbƒsƒ“ƒOƒ}ƒXƒN‚Ì”
-	int							_layoutChannelNo ;			// RGBA‚Ì‚¢‚¸‚ê‚Ìƒ`ƒƒƒ“ƒlƒ‹‚É‚±‚ÌƒNƒŠƒbƒv‚ğ”z’u‚·‚é‚©(0:R , 1:G , 2:B , 3:A)
-	D_csmRectF*					_layoutBounds ;				// ƒ}ƒXƒN—pƒ`ƒƒƒ“ƒlƒ‹‚Ì‚Ç‚Ì—Ìˆæ‚Éƒ}ƒXƒN‚ğ“ü‚ê‚é‚©(ViewÀ•W-1..1, UV‚Í0..1‚É’¼‚·)
-	D_csmRectF*					_allClippedDrawRect ;		// ‚±‚ÌƒNƒŠƒbƒsƒ“ƒO‚ÅAƒNƒŠƒbƒsƒ“ƒO‚³‚ê‚é‘S‚Ä‚Ì•`‰æƒIƒuƒWƒFƒNƒg‚ÌˆÍ‚İ‹éŒ`i–ˆ‰ñXVj
-	D_CubismMatrix44			_matrixForMask ;			// ƒ}ƒXƒN‚ÌˆÊ’uŒvZŒ‹‰Ê‚ğ•Û‚·‚és—ñ
-	D_CubismMatrix44			_matrixForDraw ;			// •`‰æƒIƒuƒWƒFƒNƒg‚ÌˆÊ’uŒvZŒ‹‰Ê‚ğ•Û‚·‚és—ñ
-	D_csmVector<int>*			_clippedDrawableIndexList ;	// ‚±‚Ìƒ}ƒXƒN‚ÉƒNƒŠƒbƒv‚³‚ê‚é•`‰æƒIƒuƒWƒFƒNƒg‚ÌƒŠƒXƒg
-	D_CubismClippingManager_DxLib* _owner;					// ‚±‚Ìƒ}ƒXƒN‚ğŠÇ—‚µ‚Ä‚¢‚éƒ}ƒl[ƒWƒƒ‚ÌƒCƒ“ƒXƒ^ƒ“ƒX
+	bool						_isUsing ;					// ç¾åœ¨ã®æç”»çŠ¶æ…‹ã§ãƒã‚¹ã‚¯ã®æº–å‚™ãŒå¿…è¦ãªã‚‰true
+	const int*					_clippingIdList ;			// ã‚¯ãƒªãƒƒãƒ”ãƒ³ã‚°ãƒã‚¹ã‚¯ã®IDãƒªã‚¹ãƒˆ
+	int							_clippingIdCount ;			// ã‚¯ãƒªãƒƒãƒ”ãƒ³ã‚°ãƒã‚¹ã‚¯ã®æ•°
+	int							_layoutChannelNo ;			// RGBAã®ã„ãšã‚Œã®ãƒãƒ£ãƒ³ãƒãƒ«ã«ã“ã®ã‚¯ãƒªãƒƒãƒ—ã‚’é…ç½®ã™ã‚‹ã‹(0:R , 1:G , 2:B , 3:A)
+	D_csmRectF*					_layoutBounds ;				// ãƒã‚¹ã‚¯ç”¨ãƒãƒ£ãƒ³ãƒãƒ«ã®ã©ã®é ˜åŸŸã«ãƒã‚¹ã‚¯ã‚’å…¥ã‚Œã‚‹ã‹(Viewåº§æ¨™-1..1, UVã¯0..1ã«ç›´ã™)
+	D_csmRectF*					_allClippedDrawRect ;		// ã“ã®ã‚¯ãƒªãƒƒãƒ”ãƒ³ã‚°ã§ã€ã‚¯ãƒªãƒƒãƒ”ãƒ³ã‚°ã•ã‚Œã‚‹å…¨ã¦ã®æç”»ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®å›²ã¿çŸ©å½¢ï¼ˆæ¯å›æ›´æ–°ï¼‰
+	D_CubismMatrix44			_matrixForMask ;			// ãƒã‚¹ã‚¯ã®ä½ç½®è¨ˆç®—çµæœã‚’ä¿æŒã™ã‚‹è¡Œåˆ—
+	D_CubismMatrix44			_matrixForDraw ;			// æç”»ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ä½ç½®è¨ˆç®—çµæœã‚’ä¿æŒã™ã‚‹è¡Œåˆ—
+	D_csmVector<int>*			_clippedDrawableIndexList ;	// ã“ã®ãƒã‚¹ã‚¯ã«ã‚¯ãƒªãƒƒãƒ—ã•ã‚Œã‚‹æç”»ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ãƒªã‚¹ãƒˆ
+	D_CubismClippingManager_DxLib* _owner;					// ã“ã®ãƒã‚¹ã‚¯ã‚’ç®¡ç†ã—ã¦ã„ã‚‹ãƒãƒãƒ¼ã‚¸ãƒ£ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹
 } ;
 
 class D_CubismRenderer_DxLib ;
 
-//  CubismDX11“à•”‚Åİ’è‚·‚éƒXƒe[ƒg‚Ì‚¤‚¿A“r’†‚Å•ÏX‚·‚é‰Â”\«‚Ì‚ ‚é‚à‚Ì‚ğŠÇ—BD_CubismRenderer_DxLib‚ªƒVƒ“ƒOƒ‹ƒgƒ“‚Æ‚µ‚ÄŠÇ—B
+//  CubismDX11å†…éƒ¨ã§è¨­å®šã™ã‚‹ã‚¹ãƒ†ãƒ¼ãƒˆã®ã†ã¡ã€é€”ä¸­ã§å¤‰æ›´ã™ã‚‹å¯èƒ½æ€§ã®ã‚ã‚‹ã‚‚ã®ã‚’ç®¡ç†ã€‚D_CubismRenderer_DxLibãŒã‚·ãƒ³ã‚°ãƒ«ãƒˆãƒ³ã¨ã—ã¦ç®¡ç†ã€‚
 class D_CubismRenderState_DxLib
 {
 	friend class D_CubismRenderer_DxLib;
@@ -2040,14 +2040,14 @@ public:
 	enum
 	{
 		State_None								= 0,
-		State_Blend								= 1,		// ƒuƒŒƒ“ƒhƒ‚[ƒh 
-		State_Viewport							= 2,		// ƒrƒ…[ƒ|[ƒg 
-		State_ZEnable							= 3,		// Z—LŒø–³Œø 
-		State_CullMode							= 4,		// ƒJƒŠƒ“ƒOƒ‚[ƒh 
-		State_Sampler							= 5,		// ƒeƒNƒXƒ`ƒƒƒtƒBƒ‹ƒ^[ 
+		State_Blend								= 1,		// ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ 
+		State_Viewport							= 2,		// ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆ 
+		State_ZEnable							= 3,		// Zæœ‰åŠ¹ç„¡åŠ¹ 
+		State_CullMode							= 4,		// ã‚«ãƒªãƒ³ã‚°ãƒ¢ãƒ¼ãƒ‰ 
+		State_Sampler							= 5,		// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ 
 		State_Max								= 6,
 	} ;
-	// ƒuƒŒƒ“ƒhƒXƒe[ƒg D3D11‚Å‚ÍƒIƒuƒWƒFƒNƒg’PˆÊ‚Å‚ÌŠÇ— 
+	// ãƒ–ãƒ¬ãƒ³ãƒ‰ã‚¹ãƒ†ãƒ¼ãƒˆ D3D11ã§ã¯ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆå˜ä½ã§ã®ç®¡ç† 
 	enum Blend
 	{
 		Blend_Origin							= 0,
@@ -2058,31 +2058,31 @@ public:
 		Blend_Mask								= 5,
 		Blend_Max								= 6,
 	} ;
-	// ƒJƒŠƒ“ƒO D3D11‚Å‚ÍƒIƒuƒWƒFƒNƒg’PˆÊ‚Å‚ÌŠÇ— 
+	// ã‚«ãƒªãƒ³ã‚° D3D11ã§ã¯ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆå˜ä½ã§ã®ç®¡ç† 
 	enum Cull
 	{
-		Cull_Origin								= 0,		// Œ³X‚Ìİ’è 
-		Cull_None								= 1,		// ƒJƒŠƒ“ƒO–³‚µ 
-		Cull_Ccw								= 2,		// CCW•\¦ 
+		Cull_Origin								= 0,		// å…ƒã€…ã®è¨­å®š 
+		Cull_None								= 1,		// ã‚«ãƒªãƒ³ã‚°ç„¡ã— 
+		Cull_Ccw								= 2,		// CCWè¡¨ç¤º 
 		Cull_Max								= 3,
 	} ;
-	// Z D3D11‚Å‚ÍƒIƒuƒWƒFƒNƒg’PˆÊ‚Å‚ÌŠÇ— 
+	// Z D3D11ã§ã¯ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆå˜ä½ã§ã®ç®¡ç† 
 	enum Depth
 	{
-		Depth_Origin							= 0,		// Œ³X‚Ìİ’è 
+		Depth_Origin							= 0,		// å…ƒã€…ã®è¨­å®š 
 		Depth_Disable							= 1,		// Zoff 
 		Depth_Enable							= 2,		// Zon 
 		Depth_Max								= 3,
 	} ;
-	// ƒTƒ“ƒvƒ‰[ƒXƒe[ƒg D3D11‚Å‚ÍƒIƒuƒWƒFƒNƒg’PˆÊ‚Å‚ÌŠÇ— 
+	// ã‚µãƒ³ãƒ—ãƒ©ãƒ¼ã‚¹ãƒ†ãƒ¼ãƒˆ D3D11ã§ã¯ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆå˜ä½ã§ã®ç®¡ç† 
 	enum Sampler
 	{
-		Sampler_Origin							= 0,		// Œ³X‚Ìİ’è 
-		Sampler_Normal							= 1,		// g—pƒXƒe[ƒg 
+		Sampler_Origin							= 0,		// å…ƒã€…ã®è¨­å®š 
+		Sampler_Normal							= 1,		// ä½¿ç”¨ã‚¹ãƒ†ãƒ¼ãƒˆ 
 		Sampler_Max								= 3,
 	} ;
 
-	// ƒfƒtƒHƒ‹ƒg‚Ì=‚ÅƒRƒs[‚µ‚Ü‚·
+	// ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®=ã§ã‚³ãƒ”ãƒ¼ã—ã¾ã™
 	struct Stored
 	{
 		Stored()
@@ -2103,7 +2103,7 @@ public:
 			_viewportMinZ = 0.0f;
 			_viewportMaxZ = 0.0f;
 			_sampler = Sampler_Normal;
-		// DirectX::XMMATRIX‚É•ÏŠ·
+		// DirectX::XMMATRIXã«å¤‰æ›
 		#ifndef DX_NON_NAMESPACE
 			DxLib::_MEMSET( _valid, 0, sizeof( _valid ) ) ;
 		#else // DX_NON_NAMESPACE
@@ -2131,26 +2131,26 @@ public:
 		DWORD					_depthRef ;
 		// State_Sampler 
 		Sampler					_sampler ;
-		bool					_valid[ State_Max ] ;   // İ’è‚µ‚½‚©‚Ç‚¤‚©BŒ»İ‚ÍStartFrame‚Åˆê’Ê‚è‚ÍŒÄ‚ñ‚Å‚¢‚é 
+		bool					_valid[ State_Max ] ;   // è¨­å®šã—ãŸã‹ã©ã†ã‹ã€‚ç¾åœ¨ã¯StartFrameã§ä¸€é€šã‚Šã¯å‘¼ã‚“ã§ã„ã‚‹ 
 	} ;
 
-	void						StartFrame() ;												// ƒtƒŒ[ƒ€æ“ª‚ÅŒÄ‚Ño‚·ˆ—
-	void						Save() ;													// ŠÇ—’†‚ÌƒXƒe[ƒg‚ğPush
-	void						Restore() ;													// Push‰ºƒXƒe[ƒg‚ğPopASave‚ÌÛ‚ÉD_CubismRenderState_DxLib‚Åİ’è‚µ‚Ä‚¢‚È‚©‚Á‚½€–Ú‚Í–ß‚¹‚È‚¢‚±‚Æ‚É’ˆÓ
-	void						SetBlend( Blend blendState, float blendFactor_r, float blendFactor_g, float blendFactor_b, float blendFactor_a, DWORD mask, bool force=false ) ;// ƒuƒŒƒ“ƒhƒ‚[ƒhƒZƒbƒg
-	void						SetCullMode( Cull cullFace, bool force = false ) ;			// ƒJƒŠƒ“ƒOƒ‚[ƒhƒZƒbƒg
-	void						SetViewport( float left, float top, float width, float height, float zMin, float zMax, bool force = false ) ;// ƒrƒ…[ƒ|[ƒgƒZƒbƒg
-	void						SetZEnable( Depth enable, DWORD stelcilRef, bool force = false ) ;// Z—LŒø–³ŒøƒZƒbƒg
-	void						SetSampler( Sampler sample, bool force = false ) ;			//  ƒTƒ“ƒvƒ‰[ƒXƒe[ƒgƒZƒbƒg
+	void						StartFrame() ;												// ãƒ•ãƒ¬ãƒ¼ãƒ å…ˆé ­ã§å‘¼ã³å‡ºã™å‡¦ç†
+	void						Save() ;													// ç®¡ç†ä¸­ã®ã‚¹ãƒ†ãƒ¼ãƒˆã‚’Push
+	void						Restore() ;													// Pushä¸‹ã‚¹ãƒ†ãƒ¼ãƒˆã‚’Popã€Saveã®éš›ã«D_CubismRenderState_DxLibã§è¨­å®šã—ã¦ã„ãªã‹ã£ãŸé …ç›®ã¯æˆ»ã›ãªã„ã“ã¨ã«æ³¨æ„
+	void						SetBlend( Blend blendState, float blendFactor_r, float blendFactor_g, float blendFactor_b, float blendFactor_a, DWORD mask, bool force=false ) ;// ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆ
+	void						SetCullMode( Cull cullFace, bool force = false ) ;			// ã‚«ãƒªãƒ³ã‚°ãƒ¢ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆ
+	void						SetViewport( float left, float top, float width, float height, float zMin, float zMax, bool force = false ) ;// ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆã‚»ãƒƒãƒˆ
+	void						SetZEnable( Depth enable, DWORD stelcilRef, bool force = false ) ;// Zæœ‰åŠ¹ç„¡åŠ¹ã‚»ãƒƒãƒˆ
+	void						SetSampler( Sampler sample, bool force = false ) ;			//  ã‚µãƒ³ãƒ—ãƒ©ãƒ¼ã‚¹ãƒ†ãƒ¼ãƒˆã‚»ãƒƒãƒˆ
 
 private:
 	D_CubismRenderState_DxLib() ;
 	~D_CubismRenderState_DxLib() ;
-	void						Create() ;													// ŠeíƒIƒuƒWƒFƒNƒg‚ğì¬‚·‚é
-	void						SaveCurrentNativeState() ;									// D3DDevice‚©‚çACubism‚ÉŠÖŒW‚·‚é’l‚ğæ“¾‚µ‚½‚¤‚¦‚ÅD_CubismRenderState_DxLib‚É”½‰f‚µSave‚ğŒÄ‚Ño‚µA_pushed‚Í”jŠüACubismƒtƒŒ[ƒ€ˆ—‚ÌÅ‰AStartFrame‚ÌŒã‚ÅŒÄ‚ñ‚Å‚¢‚é
-	void						RestoreNativeState() ;										// Å‰‚ÉPush‚µ‚½ƒXƒe[ƒg‚Ü‚Å–ß‚·
+	void						Create() ;													// å„ç¨®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ä½œæˆã™ã‚‹
+	void						SaveCurrentNativeState() ;									// D3DDeviceã‹ã‚‰ã€Cubismã«é–¢ä¿‚ã™ã‚‹å€¤ã‚’å–å¾—ã—ãŸã†ãˆã§D_CubismRenderState_DxLibã«åæ˜ ã—Saveã‚’å‘¼ã³å‡ºã—ã€_pushedã¯ç ´æ£„ã€Cubismãƒ•ãƒ¬ãƒ¼ãƒ å‡¦ç†ã®æœ€åˆã€StartFrameã®å¾Œã§å‘¼ã‚“ã§ã„ã‚‹
+	void						RestoreNativeState() ;										// æœ€åˆã«Pushã—ãŸã‚¹ãƒ†ãƒ¼ãƒˆã¾ã§æˆ»ã™
 
-	Stored						_stored ;					// ƒXƒgƒA‚³‚ê‚½Šeíİ’è 
+	Stored						_stored ;					// ã‚¹ãƒˆã‚¢ã•ã‚ŒãŸå„ç¨®è¨­å®š 
 	D_csmVector<Stored>			_pushed ;
 	int							backupBlendMode ;
 	int							backupBlendParam ;
@@ -2198,32 +2198,32 @@ enum D_ShaderNames
 	D_ShaderNames_Max										= 19,
 } ;
 
-//  ‘O•ûéŒ¾
+//  å‰æ–¹å®£è¨€
 class D_CubismRenderer_DxLib ;
 class D_CubismClippingContext ;
 
-// Cubism‚Åg—p‚·‚éƒVƒF[ƒ_ŠÇ—ƒNƒ‰ƒXAD_CubismRenderer_DxLib‚Ìstatic•Ï”‚Æ‚µ‚Äˆê‚Â‚¾‚¯À‘Ì‰»‚³‚ê‚é
+// Cubismã§ä½¿ç”¨ã™ã‚‹ã‚·ã‚§ãƒ¼ãƒ€ç®¡ç†ã‚¯ãƒ©ã‚¹ã€D_CubismRenderer_DxLibã®staticå¤‰æ•°ã¨ã—ã¦ä¸€ã¤ã ã‘å®Ÿä½“åŒ–ã•ã‚Œã‚‹
 class D_CubismShader_DxLib
 {
 	friend class D_CubismRenderer_DxLib;
 
 public:
-	D_CubismShader_DxLib() ;																// private‚ÈƒRƒ“ƒXƒgƒ‰ƒNƒ^
-	virtual ~D_CubismShader_DxLib() ;														// private‚ÈƒfƒXƒgƒ‰ƒNƒ^
-	void						ReleaseShaderProgram() ;									// ƒVƒF[ƒ_ƒvƒƒOƒ‰ƒ€‚ğ‰ğ•ú‚·‚é
-	int							GetVertexShader( DWORD assign ) ;							// ’¸“_ƒVƒF[ƒ_‚Ìæ“¾
-	int							GetPixelShader( DWORD assign ) ;							// ƒsƒNƒZƒ‹ƒVƒF[ƒ_‚Ìæ“¾
-	void						SetupShader() ;												// ’¸“_éŒ¾‚ÌƒfƒoƒCƒX‚Ö‚Ìİ’èAƒVƒF[ƒ_‚ª‚Ü‚¾–¢İ’è‚È‚çƒ[ƒh
+	D_CubismShader_DxLib() ;																// privateãªã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	virtual ~D_CubismShader_DxLib() ;														// privateãªãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	void						ReleaseShaderProgram() ;									// ã‚·ã‚§ãƒ¼ãƒ€ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã‚’è§£æ”¾ã™ã‚‹
+	int							GetVertexShader( DWORD assign ) ;							// é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ã®å–å¾—
+	int							GetPixelShader( DWORD assign ) ;							// ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ã®å–å¾—
+	void						SetupShader() ;												// é ‚ç‚¹å®£è¨€ã®ãƒ‡ãƒã‚¤ã‚¹ã¸ã®è¨­å®šã€ã‚·ã‚§ãƒ¼ãƒ€ãŒã¾ã æœªè¨­å®šãªã‚‰ãƒ­ãƒ¼ãƒ‰
 
 private:
-	void						GenerateShaders() ;											// ƒVƒF[ƒ_ƒvƒƒOƒ‰ƒ€‚ğ‰Šú‰»‚·‚é
-	bool						LoadShaderProgram( bool isPs, int assign, const char* entryPoint ) ;// ƒVƒF[ƒ_ƒvƒƒOƒ‰ƒ€‚ğƒ[ƒh
+	void						GenerateShaders() ;											// ã‚·ã‚§ãƒ¼ãƒ€ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã‚’åˆæœŸåŒ–ã™ã‚‹
+	bool						LoadShaderProgram( bool isPs, int assign, const char* entryPoint ) ;// ã‚·ã‚§ãƒ¼ãƒ€ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã‚’ãƒ­ãƒ¼ãƒ‰
 
-	int							_shaderSetsVS[ D_ShaderNames_Max ] ;	// ƒ[ƒh‚µ‚½ƒVƒF[ƒ_ƒvƒƒOƒ‰ƒ€‚ğ•Û‚·‚é•Ï”(VS) 
-	int							_shaderSetsPS[ D_ShaderNames_Max ] ;	// ƒ[ƒh‚µ‚½ƒVƒF[ƒ_ƒvƒƒOƒ‰ƒ€‚ğ•Û‚·‚é•Ï”(PS) 
+	int							_shaderSetsVS[ D_ShaderNames_Max ] ;	// ãƒ­ãƒ¼ãƒ‰ã—ãŸã‚·ã‚§ãƒ¼ãƒ€ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã‚’ä¿æŒã™ã‚‹å¤‰æ•°(VS) 
+	int							_shaderSetsPS[ D_ShaderNames_Max ] ;	// ãƒ­ãƒ¼ãƒ‰ã—ãŸã‚·ã‚§ãƒ¼ãƒ€ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã‚’ä¿æŒã™ã‚‹å¤‰æ•°(PS) 
 } ;
 
-// ƒVƒF[ƒ_[ƒRƒ“ƒXƒ^ƒ“ƒgƒoƒbƒtƒ@
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚³ãƒ³ã‚¹ã‚¿ãƒ³ãƒˆãƒãƒƒãƒ•ã‚¡
 struct D_CubismConstantBufferDxLib
 {
 #ifndef DX_NON_NAMESPACE
@@ -2243,7 +2243,7 @@ struct D_CubismConstantBufferDxLib
 #endif // DX_NON_NAMESPACE
 } ;
 
-// DirectX11—p‚Ì•`‰æ–½—ß‚ğÀ‘•‚µ‚½ƒNƒ‰ƒX
+// DirectX11ç”¨ã®æç”»å‘½ä»¤ã‚’å®Ÿè£…ã—ãŸã‚¯ãƒ©ã‚¹
 class D_CubismRenderer_DxLib : public D_CubismRenderer
 {
 	friend class D_CubismRenderer;
@@ -2251,125 +2251,125 @@ class D_CubismRenderer_DxLib : public D_CubismRenderer
 	friend class D_CubismShader_DxLib;
 
 public:
-	static void					InitializeConstantSettings( DWORD bufferSetNum ) ;			// ƒŒƒ“ƒ_ƒ‰‚ğì¬‚·‚é‚½‚ß‚ÌŠeíİ’è
-	static void					SetDefaultRenderState() ;									// CubismRenderState‚ÉƒfƒtƒHƒ‹ƒg‚Ìİ’è‚ğƒZƒbƒg‚·‚é
-	static void					StartFrame( DWORD viewportWidth, DWORD viewportHeight ) ;	// Cubism•`‰æŠÖ˜A‚Ìæ“ª‚Ås‚¤ˆ—BŠeƒtƒŒ[ƒ€‚Å‚ÌCubismˆ—‘O‚É‚±‚ê‚ğŒÄ‚ñ‚Å‚à‚ç‚¤
-	static void					EndFrame() ;												// Cubism•`‰æŠÖ˜A‚ÌI—¹s‚¤ˆ—BŠeƒtƒŒ[ƒ€‚Å‚ÌCubismˆ—‘O‚É‚±‚ê‚ğŒÄ‚ñ‚Å‚à‚ç‚¤
-	static D_CubismRenderState_DxLib* GetRenderStateManager() ;								// D_CubismRenderer_DxLib‚Åg—p‚·‚éƒŒƒ“ƒ_[ƒXƒe[ƒgŠÇ—ƒ}ƒl[ƒWƒƒæ“¾
-	static void					DeleteRenderStateManager() ;								// ƒŒƒ“ƒ_[ƒXƒe[ƒgŠÇ—ƒ}ƒl[ƒWƒƒíœ
-	static D_CubismShader_DxLib* GetShaderManager() ;										// ƒVƒF[ƒ_ŠÇ—‹@\‚Ìæ“¾
-	static void					DeleteShaderManager() ;										// ƒVƒF[ƒ_ŠÇ—‹@\‚Ìíœ
-	static void					OnDeviceLost() ;											// ƒfƒoƒCƒXƒƒXƒgEƒfƒoƒCƒXÄì¬ƒR[ƒ‹‚·‚é
-	static void					GenerateShader() ;											// g—pƒVƒF[ƒ_[ì¬
-	virtual void				Initialize( D_CubismModel* model, int ASyncThread ) ;		// ƒŒƒ“ƒ_ƒ‰‚Ì‰Šú‰»ˆ—‚ğÀs‚·‚éAˆø”‚É“n‚µ‚½ƒ‚ƒfƒ‹‚©‚çƒŒƒ“ƒ_ƒ‰‚Ì‰Šú‰»ˆ—‚É•K—v‚Èî•ñ‚ğæ‚èo‚·‚±‚Æ‚ª‚Å‚«‚é
-	void						BindTexture( DWORD modelTextureAssign, int textureView ) ;	// OpenGLƒeƒNƒXƒ`ƒƒ‚ÌƒoƒCƒ“ƒhˆ—AD_CubismRenderer‚ÉƒeƒNƒXƒ`ƒƒ‚ğİ’è‚µAD_CubismRenderer’†‚Å‚»‚Ì‰æ‘œ‚ğQÆ‚·‚é‚½‚ß‚ÌIndex’l‚ğ–ß‚è’l‚Æ‚·‚é
-	const D_csmMap<int, int>&	GetBindedTextures() const ;									// OpenGL‚ÉƒoƒCƒ“ƒh‚³‚ê‚½ƒeƒNƒXƒ`ƒƒ‚ÌƒŠƒXƒg‚ğæ“¾‚·‚é
-	void						SetClippingMaskBufferSize( int size ) ;						//  ƒNƒŠƒbƒsƒ“ƒOƒ}ƒXƒNƒoƒbƒtƒ@‚ÌƒTƒCƒY‚ğİ’è‚·‚éAƒ}ƒXƒN—p‚ÌFrameBuffer‚ğ”jŠüEÄì¬‚·‚é‚½‚ßˆ—ƒRƒXƒg‚Í‚‚¢B
-	int							GetClippingMaskBufferSize() const ;							//  ƒNƒŠƒbƒsƒ“ƒOƒ}ƒXƒNƒoƒbƒtƒ@‚ÌƒTƒCƒY‚ğæ“¾‚·‚é
-	void						ExecuteDraw( int vertexBuffer, int indexBuffer, int constantBuffer, const int indexCount, const int textureNo, CubismTextureColor& modelColorRGBA, const CubismTextureColor& multiplyColor, const CubismTextureColor& screenColor, D_CubismBlendMode colorBlendMode, bool invertedMask ) ;	//  g—p‚·‚éƒVƒF[ƒ_‚Ìİ’èEƒRƒ“ƒXƒ^ƒ“ƒgƒoƒbƒtƒ@‚Ìİ’è‚È‚Ç‚ğs‚¢A•`‰æ‚ğÀs
+	static void					InitializeConstantSettings( DWORD bufferSetNum ) ;			// ãƒ¬ãƒ³ãƒ€ãƒ©ã‚’ä½œæˆã™ã‚‹ãŸã‚ã®å„ç¨®è¨­å®š
+	static void					SetDefaultRenderState() ;									// CubismRenderStateã«ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®è¨­å®šã‚’ã‚»ãƒƒãƒˆã™ã‚‹
+	static void					StartFrame( DWORD viewportWidth, DWORD viewportHeight ) ;	// Cubismæç”»é–¢é€£ã®å…ˆé ­ã§è¡Œã†å‡¦ç†ã€‚å„ãƒ•ãƒ¬ãƒ¼ãƒ ã§ã®Cubismå‡¦ç†å‰ã«ã“ã‚Œã‚’å‘¼ã‚“ã§ã‚‚ã‚‰ã†
+	static void					EndFrame() ;												// Cubismæç”»é–¢é€£ã®çµ‚äº†æ™‚è¡Œã†å‡¦ç†ã€‚å„ãƒ•ãƒ¬ãƒ¼ãƒ ã§ã®Cubismå‡¦ç†å‰ã«ã“ã‚Œã‚’å‘¼ã‚“ã§ã‚‚ã‚‰ã†
+	static D_CubismRenderState_DxLib* GetRenderStateManager() ;								// D_CubismRenderer_DxLibã§ä½¿ç”¨ã™ã‚‹ãƒ¬ãƒ³ãƒ€ãƒ¼ã‚¹ãƒ†ãƒ¼ãƒˆç®¡ç†ãƒãƒãƒ¼ã‚¸ãƒ£å–å¾—
+	static void					DeleteRenderStateManager() ;								// ãƒ¬ãƒ³ãƒ€ãƒ¼ã‚¹ãƒ†ãƒ¼ãƒˆç®¡ç†ãƒãƒãƒ¼ã‚¸ãƒ£å‰Šé™¤
+	static D_CubismShader_DxLib* GetShaderManager() ;										// ã‚·ã‚§ãƒ¼ãƒ€ç®¡ç†æ©Ÿæ§‹ã®å–å¾—
+	static void					DeleteShaderManager() ;										// ã‚·ã‚§ãƒ¼ãƒ€ç®¡ç†æ©Ÿæ§‹ã®å‰Šé™¤
+	static void					OnDeviceLost() ;											// ãƒ‡ãƒã‚¤ã‚¹ãƒ­ã‚¹ãƒˆãƒ»ãƒ‡ãƒã‚¤ã‚¹å†ä½œæˆæ™‚ã‚³ãƒ¼ãƒ«ã™ã‚‹
+	static void					GenerateShader() ;											// ä½¿ç”¨ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ä½œæˆ
+	virtual void				Initialize( D_CubismModel* model, int ASyncThread ) ;		// ãƒ¬ãƒ³ãƒ€ãƒ©ã®åˆæœŸåŒ–å‡¦ç†ã‚’å®Ÿè¡Œã™ã‚‹ã€å¼•æ•°ã«æ¸¡ã—ãŸãƒ¢ãƒ‡ãƒ«ã‹ã‚‰ãƒ¬ãƒ³ãƒ€ãƒ©ã®åˆæœŸåŒ–å‡¦ç†ã«å¿…è¦ãªæƒ…å ±ã‚’å–ã‚Šå‡ºã™ã“ã¨ãŒã§ãã‚‹
+	void						BindTexture( DWORD modelTextureAssign, int textureView ) ;	// OpenGLãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ãƒã‚¤ãƒ³ãƒ‰å‡¦ç†ã€D_CubismRendererã«ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’è¨­å®šã—ã€D_CubismRendererä¸­ã§ãã®ç”»åƒã‚’å‚ç…§ã™ã‚‹ãŸã‚ã®Indexå€¤ã‚’æˆ»ã‚Šå€¤ã¨ã™ã‚‹
+	const D_csmMap<int, int>&	GetBindedTextures() const ;									// OpenGLã«ãƒã‚¤ãƒ³ãƒ‰ã•ã‚ŒãŸãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ãƒªã‚¹ãƒˆã‚’å–å¾—ã™ã‚‹
+	void						SetClippingMaskBufferSize( int size ) ;						//  ã‚¯ãƒªãƒƒãƒ”ãƒ³ã‚°ãƒã‚¹ã‚¯ãƒãƒƒãƒ•ã‚¡ã®ã‚µã‚¤ã‚ºã‚’è¨­å®šã™ã‚‹ã€ãƒã‚¹ã‚¯ç”¨ã®FrameBufferã‚’ç ´æ£„ãƒ»å†ä½œæˆã™ã‚‹ãŸã‚å‡¦ç†ã‚³ã‚¹ãƒˆã¯é«˜ã„ã€‚
+	int							GetClippingMaskBufferSize() const ;							//  ã‚¯ãƒªãƒƒãƒ”ãƒ³ã‚°ãƒã‚¹ã‚¯ãƒãƒƒãƒ•ã‚¡ã®ã‚µã‚¤ã‚ºã‚’å–å¾—ã™ã‚‹
+	void						ExecuteDraw( int vertexBuffer, int indexBuffer, int constantBuffer, const int indexCount, const int textureNo, CubismTextureColor& modelColorRGBA, const CubismTextureColor& multiplyColor, const CubismTextureColor& screenColor, D_CubismBlendMode colorBlendMode, bool invertedMask ) ;	//  ä½¿ç”¨ã™ã‚‹ã‚·ã‚§ãƒ¼ãƒ€ã®è¨­å®šãƒ»ã‚³ãƒ³ã‚¹ã‚¿ãƒ³ãƒˆãƒãƒƒãƒ•ã‚¡ã®è¨­å®šãªã©ã‚’è¡Œã„ã€æç”»ã‚’å®Ÿè¡Œ
 
 protected:
-	D_CubismRenderer_DxLib() ;																// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-	virtual ~D_CubismRenderer_DxLib() ;														// ƒfƒXƒgƒ‰ƒNƒ^
-	virtual void				DoDrawModel() ;												// ƒ‚ƒfƒ‹‚ğ•`‰æ‚·‚éÀÛ‚Ìˆ—
+	D_CubismRenderer_DxLib() ;																// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	virtual ~D_CubismRenderer_DxLib() ;														// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	virtual void				DoDrawModel() ;												// ãƒ¢ãƒ‡ãƒ«ã‚’æç”»ã™ã‚‹å®Ÿéš›ã®å‡¦ç†
 	void						DrawMesh( int textureNo, int indexCount, int vertexCount, WORD* indexArray, float* vertexArray, float* uvArray, float opacity, D_CubismBlendMode colorBlendMode, bool invertedMask ) ;
-	void						DrawMeshDX11( int drawableIndex, int textureNo, int indexCount, int vertexCount, WORD* indexArray, float* vertexArray, float* uvArray, const CubismTextureColor& multiplyColor, const CubismTextureColor& screenColor, float opacity, D_CubismBlendMode colorBlendMode, bool invertedMask ) ;// •`‰æƒIƒuƒWƒFƒNƒgiƒA[ƒgƒƒbƒVƒ…j‚ğ•`‰æ‚·‚éBƒ|ƒŠƒSƒ“ƒƒbƒVƒ…‚ÆƒeƒNƒXƒ`ƒƒ”Ô†‚ğƒZƒbƒg‚Å“n‚·B
+	void						DrawMeshDX11( int drawableIndex, int textureNo, int indexCount, int vertexCount, WORD* indexArray, float* vertexArray, float* uvArray, const CubismTextureColor& multiplyColor, const CubismTextureColor& screenColor, float opacity, D_CubismBlendMode colorBlendMode, bool invertedMask ) ;// æç”»ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆï¼ˆã‚¢ãƒ¼ãƒˆãƒ¡ãƒƒã‚·ãƒ¥ï¼‰ã‚’æç”»ã™ã‚‹ã€‚ãƒãƒªã‚´ãƒ³ãƒ¡ãƒƒã‚·ãƒ¥ã¨ãƒ†ã‚¯ã‚¹ãƒãƒ£ç•ªå·ã‚’ã‚»ãƒƒãƒˆã§æ¸¡ã™ã€‚
 
 private:
-	static void					DoStaticRelease() ;											// ƒŒƒ“ƒ_ƒ‰‚ª•Û‚·‚éÃ“I‚ÈƒŠƒ\[ƒX‚ğ‰ğ•ú‚·‚é
-	static void					ReleaseShader() ;											// g—pƒVƒF[ƒ_[‚Æ’¸“_’è‹`‚Ìíœ
+	static void					DoStaticRelease() ;											// ãƒ¬ãƒ³ãƒ€ãƒ©ãŒä¿æŒã™ã‚‹é™çš„ãªãƒªã‚½ãƒ¼ã‚¹ã‚’è§£æ”¾ã™ã‚‹
+	static void					ReleaseShader() ;											// ä½¿ç”¨ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã¨é ‚ç‚¹å®šç¾©ã®å‰Šé™¤
 	D_CubismRenderer_DxLib( const D_CubismRenderer_DxLib& ) ;								// Prevention of copy Constructor
 	D_CubismRenderer_DxLib&		operator=( const D_CubismRenderer_DxLib& ) ;
-	void						PreDraw() ;													// •`‰æŠJn‚Ì’Ç‰Áˆ—Bƒ‚ƒfƒ‹‚ğ•`‰æ‚·‚é‘O‚ÉƒNƒŠƒbƒsƒ“ƒOƒ}ƒXƒN‚É•K—v‚Èˆ—‚ğÀ‘•‚µ‚Ä‚¢‚éB
-	void						PostDraw() ;												// •`‰æŠ®—¹Œã‚Ì’Ç‰Áˆ—B
-	virtual void				SaveProfile() ;												// ƒ‚ƒfƒ‹•`‰æ’¼‘O‚ÌƒXƒe[ƒg‚ğ•Û‚·‚é
-	virtual void				RestoreProfile() ;											// ƒ‚ƒfƒ‹•`‰æ’¼‘O‚ÌƒXƒe[ƒg‚ğ•Û‚·‚é
-	void						SetClippingContextBufferForMask( D_CubismClippingContext* clip ) ;// ƒ}ƒXƒNƒeƒNƒXƒ`ƒƒ‚É•`‰æ‚·‚éƒNƒŠƒbƒsƒ“ƒOƒRƒ“ƒeƒLƒXƒg‚ğƒZƒbƒg‚·‚éB
-	D_CubismClippingContext*	GetClippingContextBufferForMask() const ;					// ƒ}ƒXƒNƒeƒNƒXƒ`ƒƒ‚É•`‰æ‚·‚éƒNƒŠƒbƒsƒ“ƒOƒRƒ“ƒeƒLƒXƒg‚ğæ“¾‚·‚éB
-	void						SetClippingContextBufferForDraw( D_CubismClippingContext* clip ) ;// ‰æ–Êã‚É•`‰æ‚·‚éƒNƒŠƒbƒsƒ“ƒOƒRƒ“ƒeƒLƒXƒg‚ğƒZƒbƒg‚·‚éB
-	D_CubismClippingContext*	GetClippingContextBufferForDraw() const ;					// ‰æ–Êã‚É•`‰æ‚·‚éƒNƒŠƒbƒsƒ“ƒOƒRƒ“ƒeƒLƒXƒg‚ğæ“¾‚·‚éB
-	void						CopyToBuffer( int drawAssign, const int vcount, const float* varray, const float* uvarray ) ;// GetDrawableVertices,GetDrawableVertexUvs‚Ì“à—e‚ğƒoƒbƒtƒ@‚ÖƒRƒs[
+	void						PreDraw() ;													// æç”»é–‹å§‹æ™‚ã®è¿½åŠ å‡¦ç†ã€‚ãƒ¢ãƒ‡ãƒ«ã‚’æç”»ã™ã‚‹å‰ã«ã‚¯ãƒªãƒƒãƒ”ãƒ³ã‚°ãƒã‚¹ã‚¯ã«å¿…è¦ãªå‡¦ç†ã‚’å®Ÿè£…ã—ã¦ã„ã‚‹ã€‚
+	void						PostDraw() ;												// æç”»å®Œäº†å¾Œã®è¿½åŠ å‡¦ç†ã€‚
+	virtual void				SaveProfile() ;												// ãƒ¢ãƒ‡ãƒ«æç”»ç›´å‰ã®ã‚¹ãƒ†ãƒ¼ãƒˆã‚’ä¿æŒã™ã‚‹
+	virtual void				RestoreProfile() ;											// ãƒ¢ãƒ‡ãƒ«æç”»ç›´å‰ã®ã‚¹ãƒ†ãƒ¼ãƒˆã‚’ä¿æŒã™ã‚‹
+	void						SetClippingContextBufferForMask( D_CubismClippingContext* clip ) ;// ãƒã‚¹ã‚¯ãƒ†ã‚¯ã‚¹ãƒãƒ£ã«æç”»ã™ã‚‹ã‚¯ãƒªãƒƒãƒ”ãƒ³ã‚°ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã‚’ã‚»ãƒƒãƒˆã™ã‚‹ã€‚
+	D_CubismClippingContext*	GetClippingContextBufferForMask() const ;					// ãƒã‚¹ã‚¯ãƒ†ã‚¯ã‚¹ãƒãƒ£ã«æç”»ã™ã‚‹ã‚¯ãƒªãƒƒãƒ”ãƒ³ã‚°ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã‚’å–å¾—ã™ã‚‹ã€‚
+	void						SetClippingContextBufferForDraw( D_CubismClippingContext* clip ) ;// ç”»é¢ä¸Šã«æç”»ã™ã‚‹ã‚¯ãƒªãƒƒãƒ”ãƒ³ã‚°ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã‚’ã‚»ãƒƒãƒˆã™ã‚‹ã€‚
+	D_CubismClippingContext*	GetClippingContextBufferForDraw() const ;					// ç”»é¢ä¸Šã«æç”»ã™ã‚‹ã‚¯ãƒªãƒƒãƒ”ãƒ³ã‚°ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã‚’å–å¾—ã™ã‚‹ã€‚
+	void						CopyToBuffer( int drawAssign, const int vcount, const float* varray, const float* uvarray ) ;// GetDrawableVertices,GetDrawableVertexUvsã®å†…å®¹ã‚’ãƒãƒƒãƒ•ã‚¡ã¸ã‚³ãƒ”ãƒ¼
 
-	int**						_vertexBuffers ;			// ’¸“_‚Ìƒoƒbƒtƒ@ 
-	int**						_indexBuffers ;				// ƒCƒ“ƒfƒbƒNƒX‚Ìƒoƒbƒtƒ@ 
-	int**						_constantBuffers ;			// ’è”‚Ìƒoƒbƒtƒ@
-	DWORD						_drawableNum ;				// _vertexBuffers, _indexBuffers‚ÌŠm•Û” 
+	int**						_vertexBuffers ;			// é ‚ç‚¹ã®ãƒãƒƒãƒ•ã‚¡ 
+	int**						_indexBuffers ;				// ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã®ãƒãƒƒãƒ•ã‚¡ 
+	int**						_constantBuffers ;			// å®šæ•°ã®ãƒãƒƒãƒ•ã‚¡
+	DWORD						_drawableNum ;				// _vertexBuffers, _indexBuffersã®ç¢ºä¿æ•° 
 	int							_commandBufferNum ;
 	int							_commandBufferCurrent ;
-	D_csmVector<int>			_sortedDrawableIndexList ;	// •`‰æƒIƒuƒWƒFƒNƒg‚ÌƒCƒ“ƒfƒbƒNƒX‚ğ•`‰æ‡‚É•À‚×‚½ƒŠƒXƒg
-	D_csmMap<int, int>			_textures ;					// ƒ‚ƒfƒ‹‚ªQÆ‚·‚éƒeƒNƒXƒ`ƒƒ‚ÆƒŒƒ“ƒ_ƒ‰‚ÅƒoƒCƒ“ƒh‚µ‚Ä‚¢‚éƒeƒNƒXƒ`ƒƒ‚Æ‚Ìƒ}ƒbƒv
-	D_csmVector<D_CubismOffscreenFrame_DxLib>	_offscreenFrameBuffer ;			// ƒ}ƒXƒN•`‰æ—p‚ÌƒtƒŒ[ƒ€ƒoƒbƒtƒ@ 
-	D_CubismClippingManager_DxLib*				_clippingManager ;				// ƒNƒŠƒbƒsƒ“ƒOƒ}ƒXƒNŠÇ—ƒIƒuƒWƒFƒNƒg
-	D_CubismClippingContext*					_clippingContextBufferForMask ;	// ƒ}ƒXƒNƒeƒNƒXƒ`ƒƒ‚É•`‰æ‚·‚é‚½‚ß‚ÌƒNƒŠƒbƒsƒ“ƒOƒRƒ“ƒeƒLƒXƒg
-	D_CubismClippingContext*					_clippingContextBufferForDraw ;	// ‰æ–Êã•`‰æ‚·‚é‚½‚ß‚ÌƒNƒŠƒbƒsƒ“ƒOƒRƒ“ƒeƒLƒXƒg
+	D_csmVector<int>			_sortedDrawableIndexList ;	// æç”»ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’æç”»é †ã«ä¸¦ã¹ãŸãƒªã‚¹ãƒˆ
+	D_csmMap<int, int>			_textures ;					// ãƒ¢ãƒ‡ãƒ«ãŒå‚ç…§ã™ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ã¨ãƒ¬ãƒ³ãƒ€ãƒ©ã§ãƒã‚¤ãƒ³ãƒ‰ã—ã¦ã„ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ã¨ã®ãƒãƒƒãƒ—
+	D_csmVector<D_CubismOffscreenFrame_DxLib>	_offscreenFrameBuffer ;			// ãƒã‚¹ã‚¯æç”»ç”¨ã®ãƒ•ãƒ¬ãƒ¼ãƒ ãƒãƒƒãƒ•ã‚¡ 
+	D_CubismClippingManager_DxLib*				_clippingManager ;				// ã‚¯ãƒªãƒƒãƒ”ãƒ³ã‚°ãƒã‚¹ã‚¯ç®¡ç†ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+	D_CubismClippingContext*					_clippingContextBufferForMask ;	// ãƒã‚¹ã‚¯ãƒ†ã‚¯ã‚¹ãƒãƒ£ã«æç”»ã™ã‚‹ãŸã‚ã®ã‚¯ãƒªãƒƒãƒ”ãƒ³ã‚°ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆ
+	D_CubismClippingContext*					_clippingContextBufferForDraw ;	// ç”»é¢ä¸Šæç”»ã™ã‚‹ãŸã‚ã®ã‚¯ãƒªãƒƒãƒ”ãƒ³ã‚°ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆ
 } ;
 
-// ƒ†[ƒU[‚ªÀÛ‚Ég—p‚·‚éƒ‚ƒfƒ‹
+// ãƒ¦ãƒ¼ã‚¶ãƒ¼ãŒå®Ÿéš›ã«ä½¿ç”¨ã™ã‚‹ãƒ¢ãƒ‡ãƒ«
 class D_CubismUserModel
 {
 public:
-	D_CubismUserModel() ;																	// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-	virtual ~D_CubismUserModel() ;															// ƒfƒXƒgƒ‰ƒNƒ^
-	virtual bool				IsInitialized() ;											// ‰Šú‰»ó‘Ô‚Ìæ“¾
-	virtual void				IsInitialized( bool v ) ;									// ‰Šú‰»ó‘Ô‚Ìİ’è
-	virtual bool				IsUpdating() ;												// XVó‘Ô‚Ìæ“¾
-	virtual void				IsUpdating( bool v ) ;										// XVó‘Ô‚Ìİ’è
-	virtual void				SetDragging( float x, float y )	;							// ƒ}ƒEƒXƒhƒ‰ƒbƒOî•ñ‚Ìİ’è
-	virtual void				SetAcceleration( float x, float y, float z ) ;				// ‰Á‘¬“xî•ñ‚Ìİ’è
-	D_CubismModelMatrix*		GetModelMatrix() const ;									// ƒ‚ƒfƒ‹s—ñ‚Ìæ“¾
-	virtual void				SetOpacity( float a ) ;										// •s“§–¾“x‚Ìİ’è
-	virtual float				GetOpacity() ;												// •s“§–¾“x‚Ìæ“¾
-	virtual void				LoadModel( const BYTE* buffer, size_t size ) ;				// ƒ‚ƒfƒ‹ƒf[ƒ^‚Ì“Ç‚İ‚İ
-	virtual D_ACubismMotion*	LoadMotion( const BYTE* buffer, size_t size, const BYTE/*wchar_t*/ * name ) ;// ƒ‚[ƒVƒ‡ƒ“ƒf[ƒ^‚Ì“Ç‚İ‚İ
-	virtual D_ACubismMotion*	LoadExpression( const BYTE* buffer, size_t size, const BYTE/*wchar_t*/ * name ) ;// •\îƒf[ƒ^‚Ì“Ç‚İ‚İ
-	virtual void				LoadPose( const BYTE* buffer, size_t size ) ;				// ƒ|[ƒYƒf[ƒ^‚Ì“Ç‚İ‚İ
-	virtual void				LoadPhysics( const BYTE* buffer, size_t size ) ;			// •¨—‰‰Zƒf[ƒ^‚Ì“Ç‚İ‚İ
-	virtual void				LoadUserData( const BYTE* buffer, size_t size ) ;			// ƒ‚ƒfƒ‹‚É•t‘®‚·‚éƒ†[ƒU[ƒf[ƒ^‚ğ“Ç‚İ‚Ş
-	virtual bool				IsHit( D_CubismIdHandle drawableId, float pointX, float pointY ) ;// ‚ ‚½‚è”»’è‚Ìæ“¾
-	D_CubismModel*				GetModel() const ;											// ƒ‚ƒfƒ‹‚Ìæ“¾
-	D_CubismRenderer*			GetRenderer() { return _renderer ; }						// ƒŒƒ“ƒ_ƒ‰‚Ìæ“¾
-	void						CreateRenderer( int ASyncThread ) ;							// ƒŒƒ“ƒ_ƒ‰‚Ì¶¬
-	void						DeleteRenderer() ;											// ƒŒƒ“ƒ_ƒ‰‚Ì‰ğ•ú
-	virtual void				MotionEventFired( const D_csmString& eventValue ) ;			//  ƒCƒxƒ“ƒg”­‰Î‚Ì•W€ˆ—
-	static void					CubismDefaultMotionEventCallback( const D_CubismMotionQueueManager* caller, const D_csmString& eventValue, void* customData ) ;//  ƒCƒxƒ“ƒg—p‚ÌCallback
+	D_CubismUserModel() ;																	// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	virtual ~D_CubismUserModel() ;															// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	virtual bool				IsInitialized() ;											// åˆæœŸåŒ–çŠ¶æ…‹ã®å–å¾—
+	virtual void				IsInitialized( bool v ) ;									// åˆæœŸåŒ–çŠ¶æ…‹ã®è¨­å®š
+	virtual bool				IsUpdating() ;												// æ›´æ–°çŠ¶æ…‹ã®å–å¾—
+	virtual void				IsUpdating( bool v ) ;										// æ›´æ–°çŠ¶æ…‹ã®è¨­å®š
+	virtual void				SetDragging( float x, float y )	;							// ãƒã‚¦ã‚¹ãƒ‰ãƒ©ãƒƒã‚°æƒ…å ±ã®è¨­å®š
+	virtual void				SetAcceleration( float x, float y, float z ) ;				// åŠ é€Ÿåº¦æƒ…å ±ã®è¨­å®š
+	D_CubismModelMatrix*		GetModelMatrix() const ;									// ãƒ¢ãƒ‡ãƒ«è¡Œåˆ—ã®å–å¾—
+	virtual void				SetOpacity( float a ) ;										// ä¸é€æ˜åº¦ã®è¨­å®š
+	virtual float				GetOpacity() ;												// ä¸é€æ˜åº¦ã®å–å¾—
+	virtual void				LoadModel( const BYTE* buffer, size_t size ) ;				// ãƒ¢ãƒ‡ãƒ«ãƒ‡ãƒ¼ã‚¿ã®èª­ã¿è¾¼ã¿
+	virtual D_ACubismMotion*	LoadMotion( const BYTE* buffer, size_t size, const BYTE/*wchar_t*/ * name ) ;// ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ã®èª­ã¿è¾¼ã¿
+	virtual D_ACubismMotion*	LoadExpression( const BYTE* buffer, size_t size, const BYTE/*wchar_t*/ * name ) ;// è¡¨æƒ…ãƒ‡ãƒ¼ã‚¿ã®èª­ã¿è¾¼ã¿
+	virtual void				LoadPose( const BYTE* buffer, size_t size ) ;				// ãƒãƒ¼ã‚ºãƒ‡ãƒ¼ã‚¿ã®èª­ã¿è¾¼ã¿
+	virtual void				LoadPhysics( const BYTE* buffer, size_t size ) ;			// ç‰©ç†æ¼”ç®—ãƒ‡ãƒ¼ã‚¿ã®èª­ã¿è¾¼ã¿
+	virtual void				LoadUserData( const BYTE* buffer, size_t size ) ;			// ãƒ¢ãƒ‡ãƒ«ã«ä»˜å±ã™ã‚‹ãƒ¦ãƒ¼ã‚¶ãƒ¼ãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿è¾¼ã‚€
+	virtual bool				IsHit( D_CubismIdHandle drawableId, float pointX, float pointY ) ;// ã‚ãŸã‚Šåˆ¤å®šã®å–å¾—
+	D_CubismModel*				GetModel() const ;											// ãƒ¢ãƒ‡ãƒ«ã®å–å¾—
+	D_CubismRenderer*			GetRenderer() { return _renderer ; }						// ãƒ¬ãƒ³ãƒ€ãƒ©ã®å–å¾—
+	void						CreateRenderer( int ASyncThread ) ;							// ãƒ¬ãƒ³ãƒ€ãƒ©ã®ç”Ÿæˆ
+	void						DeleteRenderer() ;											// ãƒ¬ãƒ³ãƒ€ãƒ©ã®è§£æ”¾
+	virtual void				MotionEventFired( const D_csmString& eventValue ) ;			//  ã‚¤ãƒ™ãƒ³ãƒˆç™ºç«æ™‚ã®æ¨™æº–å‡¦ç†
+	static void					CubismDefaultMotionEventCallback( const D_CubismMotionQueueManager* caller, const D_csmString& eventValue, void* customData ) ;//  ã‚¤ãƒ™ãƒ³ãƒˆç”¨ã®Callback
 
 public:
-	D_CubismMoc*				_moc ;						// Mocƒf[ƒ^
-	D_CubismModel*				_model ;					// ModelƒCƒ“ƒXƒ^ƒ“ƒX
-	D_CubismMotionManager*		_motionManager ;			// ƒ‚[ƒVƒ‡ƒ“ŠÇ—
-	D_CubismMotionManager*		_expressionManager ;		// •\îŠÇ—
-	D_CubismEyeBlink*			_eyeBlink ;					// ©“®‚Ü‚Î‚½‚«
-	D_CubismBreath*				_breath ;					// ŒÄ‹z
-	D_CubismModelMatrix*		_modelMatrix ;				// ƒ‚ƒfƒ‹s—ñ
-	D_CubismPose*				_pose ;						// ƒ|[ƒYŠÇ—
-	D_CubismTargetPoint*		_dragManager ;				// ƒ}ƒEƒXƒhƒ‰ƒbƒO
-	D_CubismPhysics*			_physics ;					// •¨—‰‰Z
-	D_CubismModelUserData*		_modelUserData ;			// ƒ†[ƒUƒf[ƒ^
-	bool						_initialized ;				// ‰Šú‰»‚³‚ê‚½‚©‚Ç‚¤‚©
-	bool						_updating ;					// XV‚³‚ê‚½‚©‚Ç‚¤‚©
-	float						_opacity ;					// •s“§–¾“x
-	bool						_lipSync ;					// ƒŠƒbƒvƒVƒ“ƒN‚·‚é‚©‚Ç‚¤‚©
-	float						_lastLipSyncValue ;			// ÅŒã‚ÌƒŠƒbƒvƒVƒ“ƒN‚Ì§Œä’l
-	float						_dragX ;					// ƒ}ƒEƒXƒhƒ‰ƒbƒO‚ÌXˆÊ’u
-	float						_dragY ;					// ƒ}ƒEƒXƒhƒ‰ƒbƒO‚ÌYˆÊ’u
-	float						_accelerationX ;			// X²•ûŒü‚Ì‰Á‘¬“x
-	float						_accelerationY ;			// Y²•ûŒü‚Ì‰Á‘¬“x
-	float						_accelerationZ ;			// Z²•ûŒü‚Ì‰Á‘¬“x
-	bool						_debugMode ;				// ƒfƒoƒbƒOƒ‚[ƒh‚©‚Ç‚¤‚©
+	D_CubismMoc*				_moc ;						// Mocãƒ‡ãƒ¼ã‚¿
+	D_CubismModel*				_model ;					// Modelã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹
+	D_CubismMotionManager*		_motionManager ;			// ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ç®¡ç†
+	D_CubismMotionManager*		_expressionManager ;		// è¡¨æƒ…ç®¡ç†
+	D_CubismEyeBlink*			_eyeBlink ;					// è‡ªå‹•ã¾ã°ãŸã
+	D_CubismBreath*				_breath ;					// å‘¼å¸
+	D_CubismModelMatrix*		_modelMatrix ;				// ãƒ¢ãƒ‡ãƒ«è¡Œåˆ—
+	D_CubismPose*				_pose ;						// ãƒãƒ¼ã‚ºç®¡ç†
+	D_CubismTargetPoint*		_dragManager ;				// ãƒã‚¦ã‚¹ãƒ‰ãƒ©ãƒƒã‚°
+	D_CubismPhysics*			_physics ;					// ç‰©ç†æ¼”ç®—
+	D_CubismModelUserData*		_modelUserData ;			// ãƒ¦ãƒ¼ã‚¶ãƒ‡ãƒ¼ã‚¿
+	bool						_initialized ;				// åˆæœŸåŒ–ã•ã‚ŒãŸã‹ã©ã†ã‹
+	bool						_updating ;					// æ›´æ–°ã•ã‚ŒãŸã‹ã©ã†ã‹
+	float						_opacity ;					// ä¸é€æ˜åº¦
+	bool						_lipSync ;					// ãƒªãƒƒãƒ—ã‚·ãƒ³ã‚¯ã™ã‚‹ã‹ã©ã†ã‹
+	float						_lastLipSyncValue ;			// æœ€å¾Œã®ãƒªãƒƒãƒ—ã‚·ãƒ³ã‚¯ã®åˆ¶å¾¡å€¤
+	float						_dragX ;					// ãƒã‚¦ã‚¹ãƒ‰ãƒ©ãƒƒã‚°ã®Xä½ç½®
+	float						_dragY ;					// ãƒã‚¦ã‚¹ãƒ‰ãƒ©ãƒƒã‚°ã®Yä½ç½®
+	float						_accelerationX ;			// Xè»¸æ–¹å‘ã®åŠ é€Ÿåº¦
+	float						_accelerationY ;			// Yè»¸æ–¹å‘ã®åŠ é€Ÿåº¦
+	float						_accelerationZ ;			// Zè»¸æ–¹å‘ã®åŠ é€Ÿåº¦
+	bool						_debugMode ;				// ãƒ‡ãƒãƒƒã‚°ãƒ¢ãƒ¼ãƒ‰ã‹ã©ã†ã‹
 
 private:
-	D_CubismRenderer*			_renderer ;      // ƒŒƒ“ƒ_ƒ‰
+	D_CubismRenderer*			_renderer ;      // ãƒ¬ãƒ³ãƒ€ãƒ©
 } ;
 
 class D_CubismString
 {
 public:
-	static D_csmString			GetFormatedString( const char* format, ... ) ;						// •W€o—Í‚Ì‘®‚ğ“K—p‚µ‚½•¶š—ñ‚ğæ“¾‚·‚éB
-	static bool					IsStartsWith( const char* text, const char* startWord ) ;			// text‚ªstartWord‚Ån‚Ü‚Á‚Ä‚¢‚é‚©‚Ç‚¤‚©‚ğ•Ô‚·
-	static float				StringToFloat( const char* string, int length, int position, int* outEndPos ) ;// positionˆÊ’u‚Ì•¶š‚©‚ç”š‚ğ‰ğÍ‚·‚éB
+	static D_csmString			GetFormatedString( const char* format, ... ) ;						// æ¨™æº–å‡ºåŠ›ã®æ›¸å¼ã‚’é©ç”¨ã—ãŸæ–‡å­—åˆ—ã‚’å–å¾—ã™ã‚‹ã€‚
+	static bool					IsStartsWith( const char* text, const char* startWord ) ;			// textãŒstartWordã§å§‹ã¾ã£ã¦ã„ã‚‹ã‹ã©ã†ã‹ã‚’è¿”ã™
+	static float				StringToFloat( const char* string, int length, int position, int* outEndPos ) ;// positionä½ç½®ã®æ–‡å­—ã‹ã‚‰æ•°å­—ã‚’è§£æã™ã‚‹ã€‚
 
 private:
-	// ƒRƒ“ƒXƒgƒ‰ƒNƒ^EƒfƒXƒgƒ‰ƒNƒ^ŒÄ‚Ño‚µ•s‰Â‚ÈÃ“IƒNƒ‰ƒX‚É‚·‚é
+	// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ãƒ»ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿å‘¼ã³å‡ºã—ä¸å¯ãªé™çš„ã‚¯ãƒ©ã‚¹ã«ã™ã‚‹
 	D_CubismString() ;
 } ;
 
@@ -2379,66 +2379,66 @@ struct D_LAppModelParameter
 	float						parameterValue ;
 } ;
 
-// ƒ†[ƒU[‚ªÀÛ‚Ég—p‚·‚éƒ‚ƒfƒ‹‚ÌÀ‘•ƒNƒ‰ƒXƒ‚ƒfƒ‹¶¬Aˆ—ƒRƒ“ƒ|[ƒlƒ“ƒg¶¬AXVˆ—‚ÆƒŒƒ“ƒ_ƒŠƒ“ƒO‚ÌŒÄ‚Ño‚µ‚ğs‚¤B
+// ãƒ¦ãƒ¼ã‚¶ãƒ¼ãŒå®Ÿéš›ã«ä½¿ç”¨ã™ã‚‹ãƒ¢ãƒ‡ãƒ«ã®å®Ÿè£…ã‚¯ãƒ©ã‚¹ãƒ¢ãƒ‡ãƒ«ç”Ÿæˆã€å‡¦ç†ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆç”Ÿæˆã€æ›´æ–°å‡¦ç†ã¨ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã®å‘¼ã³å‡ºã—ã‚’è¡Œã†ã€‚
 class D_LAppModel : public D_CubismUserModel
 {
 public:
-	D_LAppModel() ;																			// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-	virtual ~D_LAppModel() ;																// ƒfƒXƒgƒ‰ƒNƒ^
-	bool						LoadAssets( const BYTE/*wchar_t*/ * dir, const BYTE/*wchar_t*/ * fileName, int ASyncThread ) ;	// model3.json‚ª’u‚©‚ê‚½ƒfƒBƒŒƒNƒgƒŠ‚Æƒtƒ@ƒCƒ‹ƒpƒX‚©‚çƒ‚ƒfƒ‹‚ğ¶¬‚·‚é
-	void						ReloadRenderer( int ASyncThread ) ;							// ƒŒƒ“ƒ_ƒ‰‚ğÄ\’z‚·‚é
-	void						Update( float deltaTimeSeconds ) ;							// ƒ‚ƒfƒ‹‚ÌXVˆ—Bƒ‚ƒfƒ‹‚Ìƒpƒ‰ƒ[ƒ^‚©‚ç•`‰æó‘Ô‚ğŒˆ’è‚·‚éB
-	void						Draw( D_CubismMatrix44& matrix, bool isMultModelMatrix ) ;	// ƒ‚ƒfƒ‹‚ğ•`‰æ‚·‚éˆ—Bƒ‚ƒfƒ‹‚ğ•`‰æ‚·‚é‹óŠÔ‚ÌView-Projections—ñ‚ğ“n‚·B
-	D_CubismMotionQueueEntryHandle StartMotion( const char* group, int no, int priority, float fadeInSeconds, float fadeOutSeconds, bool isLoopFadeIn = true, bool isLoop = false ) ;	// ˆø”‚Åw’è‚µ‚½ƒ‚[ƒVƒ‡ƒ“‚ÌÄ¶‚ğŠJn‚·‚éB
-	D_CubismMotionQueueEntryHandle StartRandomMotion( const char* group, int priority ) ;	// ƒ‰ƒ“ƒ_ƒ€‚É‘I‚Î‚ê‚½ƒ‚[ƒVƒ‡ƒ“‚ÌÄ¶‚ğŠJn‚·‚éB
-	void						SetExpression( const BYTE/*wchar_t*/ * expressionID ) ;		// ˆø”‚Åw’è‚µ‚½•\îƒ‚[ƒVƒ‡ƒ“‚ğƒZƒbƒg‚·‚é
-	void						SetRandomExpression() ;										// ƒ‰ƒ“ƒ_ƒ€‚É‘I‚Î‚ê‚½•\îƒ‚[ƒVƒ‡ƒ“‚ğƒZƒbƒg‚·‚é
-	virtual void				MotionEventFired( const D_csmString& eventValue ) ;			// ƒCƒxƒ“ƒg‚Ì”­‰Î‚ğó‚¯æ‚é
-	virtual bool				HitTest( const char* hitAreaName, float x, float y ) ;		//  “–‚½‚è”»’èƒeƒXƒgB
-	void						DeleteMark() { _deleteModel = true ; }						// ƒ‚ƒfƒ‹‚Éíœƒ}[ƒN‚ğ•t‚¯‚é
-	D_CubismOffscreenFrame_DxLib& GetRenderBuffer() ;										// •Êƒ^[ƒQƒbƒg‚É•`‰æ‚·‚éÛ‚Ég—p‚·‚éƒoƒbƒtƒ@‚Ìæ“¾
-	void						SetUserParameter( int parameterIndex, float parameterValue ) ;	// ƒ†[ƒU[İ’è‚Ìƒpƒ‰ƒ[ƒ^‚ğİ’è‚·‚é
+	D_LAppModel() ;																			// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	virtual ~D_LAppModel() ;																// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	bool						LoadAssets( const BYTE/*wchar_t*/ * dir, const BYTE/*wchar_t*/ * fileName, int ASyncThread ) ;	// model3.jsonãŒç½®ã‹ã‚ŒãŸãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã¨ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹ã‹ã‚‰ãƒ¢ãƒ‡ãƒ«ã‚’ç”Ÿæˆã™ã‚‹
+	void						ReloadRenderer( int ASyncThread ) ;							// ãƒ¬ãƒ³ãƒ€ãƒ©ã‚’å†æ§‹ç¯‰ã™ã‚‹
+	void						Update( float deltaTimeSeconds ) ;							// ãƒ¢ãƒ‡ãƒ«ã®æ›´æ–°å‡¦ç†ã€‚ãƒ¢ãƒ‡ãƒ«ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‹ã‚‰æç”»çŠ¶æ…‹ã‚’æ±ºå®šã™ã‚‹ã€‚
+	void						Draw( D_CubismMatrix44& matrix, bool isMultModelMatrix ) ;	// ãƒ¢ãƒ‡ãƒ«ã‚’æç”»ã™ã‚‹å‡¦ç†ã€‚ãƒ¢ãƒ‡ãƒ«ã‚’æç”»ã™ã‚‹ç©ºé–“ã®View-Projectionè¡Œåˆ—ã‚’æ¸¡ã™ã€‚
+	D_CubismMotionQueueEntryHandle StartMotion( const char* group, int no, int priority, float fadeInSeconds, float fadeOutSeconds, bool isLoopFadeIn = true, bool isLoop = false ) ;	// å¼•æ•°ã§æŒ‡å®šã—ãŸãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ã®å†ç”Ÿã‚’é–‹å§‹ã™ã‚‹ã€‚
+	D_CubismMotionQueueEntryHandle StartRandomMotion( const char* group, int priority ) ;	// ãƒ©ãƒ³ãƒ€ãƒ ã«é¸ã°ã‚ŒãŸãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ã®å†ç”Ÿã‚’é–‹å§‹ã™ã‚‹ã€‚
+	void						SetExpression( const BYTE/*wchar_t*/ * expressionID ) ;		// å¼•æ•°ã§æŒ‡å®šã—ãŸè¡¨æƒ…ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
+	void						SetRandomExpression() ;										// ãƒ©ãƒ³ãƒ€ãƒ ã«é¸ã°ã‚ŒãŸè¡¨æƒ…ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
+	virtual void				MotionEventFired( const D_csmString& eventValue ) ;			// ã‚¤ãƒ™ãƒ³ãƒˆã®ç™ºç«ã‚’å—ã‘å–ã‚‹
+	virtual bool				HitTest( const char* hitAreaName, float x, float y ) ;		//  å½“ãŸã‚Šåˆ¤å®šãƒ†ã‚¹ãƒˆã€‚
+	void						DeleteMark() { _deleteModel = true ; }						// ãƒ¢ãƒ‡ãƒ«ã«å‰Šé™¤ãƒãƒ¼ã‚¯ã‚’ä»˜ã‘ã‚‹
+	D_CubismOffscreenFrame_DxLib& GetRenderBuffer() ;										// åˆ¥ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã«æç”»ã™ã‚‹éš›ã«ä½¿ç”¨ã™ã‚‹ãƒãƒƒãƒ•ã‚¡ã®å–å¾—
+	void						SetUserParameter( int parameterIndex, float parameterValue ) ;	// ãƒ¦ãƒ¼ã‚¶ãƒ¼è¨­å®šã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’è¨­å®šã™ã‚‹
 
 protected:
-	void						DoDraw() ;													// ƒ‚ƒfƒ‹‚ğ•`‰æ‚·‚éˆ—Bƒ‚ƒfƒ‹‚ğ•`‰æ‚·‚é‹óŠÔ‚ÌView-Projections—ñ‚ğ“n‚·B
+	void						DoDraw() ;													// ãƒ¢ãƒ‡ãƒ«ã‚’æç”»ã™ã‚‹å‡¦ç†ã€‚ãƒ¢ãƒ‡ãƒ«ã‚’æç”»ã™ã‚‹ç©ºé–“ã®View-Projectionè¡Œåˆ—ã‚’æ¸¡ã™ã€‚
 
 public:
-	bool						SetupModel( D_ICubismModelSetting* setting ) ;				// model3.json‚©‚çƒ‚ƒfƒ‹‚ğ¶¬‚·‚éBmodel3.json‚Ì‹Lq‚É]‚Á‚Äƒ‚ƒfƒ‹¶¬Aƒ‚[ƒVƒ‡ƒ“A•¨—‰‰Z‚È‚Ç‚ÌƒRƒ“ƒ|[ƒlƒ“ƒg¶¬‚ğs‚¤B
-	void						SetupTextures( int ASyncThread ) ;							// ƒeƒNƒXƒ`ƒƒ‚ğƒ[ƒh‚·‚é
-	void						PreloadMotionGroup( const char* group ) ;					// ƒ‚[ƒVƒ‡ƒ“ƒf[ƒ^‚ğƒOƒ‹[ƒv–¼‚©‚çˆêŠ‡‚Åƒ[ƒh‚·‚éBƒ‚[ƒVƒ‡ƒ“ƒf[ƒ^‚Ì–¼‘O‚Í“à•”‚ÅModelSetting‚©‚çæ“¾‚·‚éB
-	void						ReleaseMotionGroup( const char* group ) const ;				// ƒ‚[ƒVƒ‡ƒ“ƒf[ƒ^‚ğƒOƒ‹[ƒv–¼‚©‚çˆêŠ‡‚Å‰ğ•ú‚·‚éBƒ‚[ƒVƒ‡ƒ“ƒf[ƒ^‚Ì–¼‘O‚Í“à•”‚ÅModelSetting‚©‚çæ“¾‚·‚éB
-	void						ReleaseMotions() ;											// ‚·‚×‚Ä‚Ìƒ‚[ƒVƒ‡ƒ“ƒf[ƒ^‚Ì‰ğ•ú
-	void						ReleaseExpressions() ;										// ‚·‚×‚Ä‚Ì•\îƒf[ƒ^‚Ì‰ğ•ú
+	bool						SetupModel( D_ICubismModelSetting* setting ) ;				// model3.jsonã‹ã‚‰ãƒ¢ãƒ‡ãƒ«ã‚’ç”Ÿæˆã™ã‚‹ã€‚model3.jsonã®è¨˜è¿°ã«å¾“ã£ã¦ãƒ¢ãƒ‡ãƒ«ç”Ÿæˆã€ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ã€ç‰©ç†æ¼”ç®—ãªã©ã®ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆç”Ÿæˆã‚’è¡Œã†ã€‚
+	void						SetupTextures( int ASyncThread ) ;							// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ãƒ­ãƒ¼ãƒ‰ã™ã‚‹
+	void						PreloadMotionGroup( const char* group ) ;					// ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚’ã‚°ãƒ«ãƒ¼ãƒ—åã‹ã‚‰ä¸€æ‹¬ã§ãƒ­ãƒ¼ãƒ‰ã™ã‚‹ã€‚ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ã®åå‰ã¯å†…éƒ¨ã§ModelSettingã‹ã‚‰å–å¾—ã™ã‚‹ã€‚
+	void						ReleaseMotionGroup( const char* group ) const ;				// ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚’ã‚°ãƒ«ãƒ¼ãƒ—åã‹ã‚‰ä¸€æ‹¬ã§è§£æ”¾ã™ã‚‹ã€‚ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ã®åå‰ã¯å†…éƒ¨ã§ModelSettingã‹ã‚‰å–å¾—ã™ã‚‹ã€‚
+	void						ReleaseMotions() ;											// ã™ã¹ã¦ã®ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ã®è§£æ”¾
+	void						ReleaseExpressions() ;										// ã™ã¹ã¦ã®è¡¨æƒ…ãƒ‡ãƒ¼ã‚¿ã®è§£æ”¾
 
-	D_ICubismModelSetting*		_modelSetting ;				// ƒ‚ƒfƒ‹ƒZƒbƒeƒBƒ“ƒOî•ñ
-	D_csmStringW				_modelHomeDir ;				// ƒ‚ƒfƒ‹ƒZƒbƒeƒBƒ“ƒO‚ª’u‚©‚ê‚½ƒfƒBƒŒƒNƒgƒŠ
-	float						_userTimeSeconds ;			// ƒfƒ‹ƒ^ŠÔ‚ÌÏZ’l[•b]
-	D_csmVector<D_CubismIdHandle> _eyeBlinkIds ;			// ƒ‚ƒfƒ‹‚Éİ’è‚³‚ê‚½‚Ü‚Î‚½‚«ˆ——pƒpƒ‰ƒ[ƒ^ID
-	D_csmVector<D_CubismIdHandle> _lipSyncIds ;				// ƒ‚ƒfƒ‹‚Éİ’è‚³‚ê‚½ƒŠƒbƒvƒVƒ“ƒNˆ——pƒpƒ‰ƒ[ƒ^ID
-	D_csmMap<D_csmStringW, D_ACubismMotion*> _motions ;		// “Ç‚İ‚Ü‚ê‚Ä‚¢‚éƒ‚[ƒVƒ‡ƒ“‚ÌƒŠƒXƒg
-	D_csmMap<D_csmStringW, D_ACubismMotion*> _expressions ;	// “Ç‚İ‚Ü‚ê‚Ä‚¢‚é•\î‚ÌƒŠƒXƒg
+	D_ICubismModelSetting*		_modelSetting ;				// ãƒ¢ãƒ‡ãƒ«ã‚»ãƒƒãƒ†ã‚£ãƒ³ã‚°æƒ…å ±
+	D_csmStringW				_modelHomeDir ;				// ãƒ¢ãƒ‡ãƒ«ã‚»ãƒƒãƒ†ã‚£ãƒ³ã‚°ãŒç½®ã‹ã‚ŒãŸãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒª
+	float						_userTimeSeconds ;			// ãƒ‡ãƒ«ã‚¿æ™‚é–“ã®ç©ç®—å€¤[ç§’]
+	D_csmVector<D_CubismIdHandle> _eyeBlinkIds ;			// ãƒ¢ãƒ‡ãƒ«ã«è¨­å®šã•ã‚ŒãŸã¾ã°ãŸãå‡¦ç†ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ID
+	D_csmVector<D_CubismIdHandle> _lipSyncIds ;				// ãƒ¢ãƒ‡ãƒ«ã«è¨­å®šã•ã‚ŒãŸãƒªãƒƒãƒ—ã‚·ãƒ³ã‚¯å‡¦ç†ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ID
+	D_csmMap<D_csmStringW, D_ACubismMotion*> _motions ;		// èª­ã¿è¾¼ã¾ã‚Œã¦ã„ã‚‹ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ã®ãƒªã‚¹ãƒˆ
+	D_csmMap<D_csmStringW, D_ACubismMotion*> _expressions ;	// èª­ã¿è¾¼ã¾ã‚Œã¦ã„ã‚‹è¡¨æƒ…ã®ãƒªã‚¹ãƒˆ
 	D_csmVector<D_csmRectF>		_hitArea ;
 	D_csmVector<D_csmRectF>		_userArea ;
-	D_CubismId*					_idParamAngleX ;			// ƒpƒ‰ƒ[ƒ^ID: ParamAngleX
-	D_CubismId*					_idParamAngleY ;			// ƒpƒ‰ƒ[ƒ^ID: ParamAngleX
-	D_CubismId*					_idParamAngleZ ;			// ƒpƒ‰ƒ[ƒ^ID: ParamAngleX
-	D_CubismId*					_idParamBodyAngleX ;		// ƒpƒ‰ƒ[ƒ^ID: ParamBodyAngleX
-	D_CubismId*					_idParamEyeBallX ;			// ƒpƒ‰ƒ[ƒ^ID: ParamEyeBallX
-	D_CubismId*					_idParamEyeBallY ;			// ƒpƒ‰ƒ[ƒ^ID: ParamEyeBallXY
-	D_csmVector<int>			_bindTextureId ;			// ƒeƒNƒXƒ`ƒƒID 
-	D_csmVector<D_LAppModelParameter>	_userParameters ;	// ƒ†[ƒU[İ’è‚Ìƒpƒ‰ƒ[ƒ^
-	bool						_deleteModel ;				// À‘ÌÁ–Å—\’èƒtƒ‰ƒO Draw‚ğŒÄ‚Î‚È‚¢ 
-	D_CubismOffscreenFrame_DxLib _renderBuffer ;			// ƒtƒŒ[ƒ€ƒoƒbƒtƒ@ˆÈŠO‚Ì•`‰ææ 
+	D_CubismId*					_idParamAngleX ;			// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ID: ParamAngleX
+	D_CubismId*					_idParamAngleY ;			// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ID: ParamAngleX
+	D_CubismId*					_idParamAngleZ ;			// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ID: ParamAngleX
+	D_CubismId*					_idParamBodyAngleX ;		// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ID: ParamBodyAngleX
+	D_CubismId*					_idParamEyeBallX ;			// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ID: ParamEyeBallX
+	D_CubismId*					_idParamEyeBallY ;			// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ID: ParamEyeBallXY
+	D_csmVector<int>			_bindTextureId ;			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ID 
+	D_csmVector<D_LAppModelParameter>	_userParameters ;	// ãƒ¦ãƒ¼ã‚¶ãƒ¼è¨­å®šã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+	bool						_deleteModel ;				// å®Ÿä½“æ¶ˆæ»…äºˆå®šãƒ•ãƒ©ã‚° Drawã‚’å‘¼ã°ãªã„ 
+	D_CubismOffscreenFrame_DxLib _renderBuffer ;			// ãƒ•ãƒ¬ãƒ¼ãƒ ãƒãƒƒãƒ•ã‚¡ä»¥å¤–ã®æç”»å…ˆ 
 } ;
 
-// ƒe[ƒuƒ‹-----------------------------------------------------------------------
+// ãƒ†ãƒ¼ãƒ–ãƒ«-----------------------------------------------------------------------
 
 extern int Live2D_VertexShaderToDxLibShader_Table[ 7 ] ;
 extern int Live2D_PixelShaderToDxLibShader_Table[ 7 ] ;
 
-// “à•”‘åˆæ•Ï”éŒ¾ --------------------------------------------------------------
+// å†…éƒ¨å¤§åŸŸå¤‰æ•°å®£è¨€ --------------------------------------------------------------
 
-// ŠÖ”ƒvƒƒgƒ^ƒCƒvéŒ¾-----------------------------------------------------------
+// é–¢æ•°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€-----------------------------------------------------------
 
 extern D_CubismIdManager *	new_D_CubismIdManager( void ) ;
 extern void					delete_D_CubismIdManager( D_CubismIdManager *obj ) ;

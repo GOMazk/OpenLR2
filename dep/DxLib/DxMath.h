@@ -1,6 +1,6 @@
 // -------------------------------------------------------------------------------
 // 
-// 		‚c‚wƒ‰ƒCƒuƒ‰ƒŠ		‰‰ŽZƒvƒƒOƒ‰ƒ€ƒwƒbƒ_ƒtƒ@ƒCƒ‹
+// 		ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒª		æ¼”ç®—ãƒ—ãƒ­ã‚°ãƒ©ãƒ ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«
 // 
 // 				Ver 3.25a
 // 
@@ -9,7 +9,7 @@
 #ifndef DX_MATH_H
 #define DX_MATH_H
 
-// ƒCƒ“ƒNƒ‹[ƒh ------------------------------------------------------------------
+// ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ ------------------------------------------------------------------
 #include "DxCompileConfig.h"
 #include "DxLib.h"
 
@@ -20,39 +20,39 @@ namespace DxLib
 
 #endif // DX_NON_NAMESPACE
 
-// ƒ}ƒNƒ’è‹` --------------------------------------------------------------------
+// ãƒžã‚¯ãƒ­å®šç¾© --------------------------------------------------------------------
 
-// \‘¢‘Ì’è‹` --------------------------------------------------------------------
+// æ§‹é€ ä½“å®šç¾© --------------------------------------------------------------------
 
-// ƒe[ƒuƒ‹-----------------------------------------------------------------------
+// ãƒ†ãƒ¼ãƒ–ãƒ«-----------------------------------------------------------------------
 
-// “à•”‘åˆæ•Ï”éŒ¾ --------------------------------------------------------------
+// å†…éƒ¨å¤§åŸŸå¤‰æ•°å®£è¨€ --------------------------------------------------------------
 
-// ŠÖ”ƒvƒƒgƒ^ƒCƒvéŒ¾-----------------------------------------------------------
+// é–¢æ•°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€-----------------------------------------------------------
 
-extern	void	HitCheck_Line_Triangle_Base(  HITRESULT_LINE *Result,   VECTOR   LinePos1, VECTOR   LinePos2, VECTOR   TrianglePos1, VECTOR   TrianglePos2, VECTOR   TrianglePos3, float  *TrianglePos1Weight, float  *TrianglePos2Weight, float  *TrianglePos3Weight, int IsSimpleCheck ) ;		// ŽOŠpŒ`‚Æü‚Ì“–‚½‚è”»’è
-extern	void	HitCheck_Line_TriangleD_Base( HITRESULT_LINE_D *Result, VECTOR_D LinePos1, VECTOR_D LinePos2, VECTOR_D TrianglePos1, VECTOR_D TrianglePos2, VECTOR_D TrianglePos3, double *TrianglePos1Weight, double *TrianglePos2Weight, double *TrianglePos3Weight, int IsSimpleCheck ) ;		// ŽOŠpŒ`‚Æü‚Ì“–‚½‚è”»’è
+extern	void	HitCheck_Line_Triangle_Base(  HITRESULT_LINE *Result,   VECTOR   LinePos1, VECTOR   LinePos2, VECTOR   TrianglePos1, VECTOR   TrianglePos2, VECTOR   TrianglePos3, float  *TrianglePos1Weight, float  *TrianglePos2Weight, float  *TrianglePos3Weight, int IsSimpleCheck ) ;		// ä¸‰è§’å½¢ã¨ç·šã®å½“ãŸã‚Šåˆ¤å®š
+extern	void	HitCheck_Line_TriangleD_Base( HITRESULT_LINE_D *Result, VECTOR_D LinePos1, VECTOR_D LinePos2, VECTOR_D TrianglePos1, VECTOR_D TrianglePos2, VECTOR_D TrianglePos3, double *TrianglePos1Weight, double *TrianglePos2Weight, double *TrianglePos3Weight, int IsSimpleCheck ) ;		// ä¸‰è§’å½¢ã¨ç·šã®å½“ãŸã‚Šåˆ¤å®š
 
-extern	void	TriangleBarycenter_Base(  const VECTOR   *TrianglePos1, const VECTOR   *TrianglePos2, const VECTOR   *TrianglePos3, const VECTOR   *Position, float  *TrianglePos1Weight, float  *TrianglePos2Weight, float  *TrianglePos3Weight ) ;	// Žw’è‚ÌÀ•W‚©‚çŽOŠpŒ`‚ÌdS‚ð‹‚ß‚é
-extern	void	TriangleBarycenter_BaseD( const VECTOR_D *TrianglePos1, const VECTOR_D *TrianglePos2, const VECTOR_D *TrianglePos3, const VECTOR_D *Position, double *TrianglePos1Weight, double *TrianglePos2Weight, double *TrianglePos3Weight ) ;	// Žw’è‚ÌÀ•W‚©‚çŽOŠpŒ`‚ÌdS‚ð‹‚ß‚é
+extern	void	TriangleBarycenter_Base(  const VECTOR   *TrianglePos1, const VECTOR   *TrianglePos2, const VECTOR   *TrianglePos3, const VECTOR   *Position, float  *TrianglePos1Weight, float  *TrianglePos2Weight, float  *TrianglePos3Weight ) ;	// æŒ‡å®šã®åº§æ¨™ã‹ã‚‰ä¸‰è§’å½¢ã®é‡å¿ƒã‚’æ±‚ã‚ã‚‹
+extern	void	TriangleBarycenter_BaseD( const VECTOR_D *TrianglePos1, const VECTOR_D *TrianglePos2, const VECTOR_D *TrianglePos3, const VECTOR_D *Position, double *TrianglePos1Weight, double *TrianglePos2Weight, double *TrianglePos3Weight ) ;	// æŒ‡å®šã®åº§æ¨™ã‹ã‚‰ä¸‰è§’å½¢ã®é‡å¿ƒã‚’æ±‚ã‚ã‚‹
 
-extern	float	Segment_Triangle_MinLength_Square_Base(  VECTOR   SegmentPos1, VECTOR   SegmentPos2, VECTOR   TrianglePos1, VECTOR   TrianglePos2, VECTOR   TrianglePos3, int *IsZeroLength ) ;		// ü•ª‚ÆŽOŠpŒ`‚ÌÅ‹ß“_ŠÔ‚Ì‹——£‚Ì“ñæ‚ð“¾‚é
-extern	double	Segment_Triangle_MinLength_SquareD_Base( VECTOR_D SegmentPos1, VECTOR_D SegmentPos2, VECTOR_D TrianglePos1, VECTOR_D TrianglePos2, VECTOR_D TrianglePos3, int *IsZeroLength ) ;		// ü•ª‚ÆŽOŠpŒ`‚ÌÅ‹ß“_ŠÔ‚Ì‹——£‚Ì“ñæ‚ð“¾‚é
+extern	float	Segment_Triangle_MinLength_Square_Base(  VECTOR   SegmentPos1, VECTOR   SegmentPos2, VECTOR   TrianglePos1, VECTOR   TrianglePos2, VECTOR   TrianglePos3, int *IsZeroLength ) ;		// ç·šåˆ†ã¨ä¸‰è§’å½¢ã®æœ€è¿‘ç‚¹é–“ã®è·é›¢ã®äºŒä¹—ã‚’å¾—ã‚‹
+extern	double	Segment_Triangle_MinLength_SquareD_Base( VECTOR_D SegmentPos1, VECTOR_D SegmentPos2, VECTOR_D TrianglePos1, VECTOR_D TrianglePos2, VECTOR_D TrianglePos3, int *IsZeroLength ) ;		// ç·šåˆ†ã¨ä¸‰è§’å½¢ã®æœ€è¿‘ç‚¹é–“ã®è·é›¢ã®äºŒä¹—ã‚’å¾—ã‚‹
 
-extern VECTOR	Get_Triangle_Point_MinPosition(  VECTOR   Point, VECTOR   TrianglePos1, VECTOR   TrianglePos2, VECTOR   TrianglePos3 ) ;			// “_‚Éˆê”Ô‹ß‚¢ŽOŠpŒ`ã‚ÌÀ•W‚ð“¾‚é
-extern VECTOR_D	Get_Triangle_Point_MinPositionD( VECTOR_D Point, VECTOR_D TrianglePos1, VECTOR_D TrianglePos2, VECTOR_D TrianglePos3 ) ;			// “_‚Éˆê”Ô‹ß‚¢ŽOŠpŒ`ã‚ÌÀ•W‚ð“¾‚é
-extern VECTOR	Get_Line_Point_MinPosition(  VECTOR   Point, VECTOR   LinePos1, VECTOR   LinePos2, float *pT = NULL ) ;								// “_‚Éˆê”Ô‹ß‚¢üã‚ÌÀ•W‚ð“¾‚é
-extern VECTOR_D	Get_Line_Point_MinPositionD( VECTOR_D Point, VECTOR_D LinePos1, VECTOR_D LinePos2, double *pT = NULL ) ;							// “_‚Éˆê”Ô‹ß‚¢üã‚ÌÀ•W‚ð“¾‚é
-extern int		Get_TwoPlane_Line(  VECTOR   Normal1, float  Dist1, VECTOR   Normal2, float  Dist2, VECTOR   *OutDir, VECTOR   *OutPos ) ;			// “ñ‚Â‚Ì•½–Ê‚ªŒð·‚·‚éü‚ð“¾‚é( –ß‚è’l‚ª -1 ‚Ìê‡‚ÍA“ñ‚Â‚Ì–Ê‚Í•½s )
-extern int		Get_TwoPlane_LineD( VECTOR_D Normal1, double Dist1, VECTOR_D Normal2, double Dist2, VECTOR_D *OutDir, VECTOR_D *OutPos ) ;			// “ñ‚Â‚Ì•½–Ê‚ªŒð·‚·‚éü‚ð“¾‚é( –ß‚è’l‚ª -1 ‚Ìê‡‚ÍA“ñ‚Â‚Ì–Ê‚Í•½s )
-extern int		Get_TwoLine_MinLength_Rate(  VECTOR   Direction1, VECTOR   Position1, float  *OutRate1, VECTOR   Direction2, VECTOR   Position2, float  *OutRate2 ) ;		// “ñ‚Â‚Ìü‚ÌÅ‹ß“_‚Ì‚»‚ê‚¼‚ê‚Ì•ûŒüƒxƒNƒgƒ‹‚ÌŠg‘å’l‚ð“¾‚é
-extern int		Get_TwoLine_MinLength_RateD( VECTOR_D Direction1, VECTOR_D Position1, double *OutRate1, VECTOR_D Direction2, VECTOR_D Position2, double *OutRate2 ) ;		// “ñ‚Â‚Ìü‚ÌÅ‹ß“_‚Ì‚»‚ê‚¼‚ê‚Ì•ûŒüƒxƒNƒgƒ‹‚ÌŠg‘å’l‚ð“¾‚é
+extern VECTOR	Get_Triangle_Point_MinPosition(  VECTOR   Point, VECTOR   TrianglePos1, VECTOR   TrianglePos2, VECTOR   TrianglePos3 ) ;			// ç‚¹ã«ä¸€ç•ªè¿‘ã„ä¸‰è§’å½¢ä¸Šã®åº§æ¨™ã‚’å¾—ã‚‹
+extern VECTOR_D	Get_Triangle_Point_MinPositionD( VECTOR_D Point, VECTOR_D TrianglePos1, VECTOR_D TrianglePos2, VECTOR_D TrianglePos3 ) ;			// ç‚¹ã«ä¸€ç•ªè¿‘ã„ä¸‰è§’å½¢ä¸Šã®åº§æ¨™ã‚’å¾—ã‚‹
+extern VECTOR	Get_Line_Point_MinPosition(  VECTOR   Point, VECTOR   LinePos1, VECTOR   LinePos2, float *pT = NULL ) ;								// ç‚¹ã«ä¸€ç•ªè¿‘ã„ç·šä¸Šã®åº§æ¨™ã‚’å¾—ã‚‹
+extern VECTOR_D	Get_Line_Point_MinPositionD( VECTOR_D Point, VECTOR_D LinePos1, VECTOR_D LinePos2, double *pT = NULL ) ;							// ç‚¹ã«ä¸€ç•ªè¿‘ã„ç·šä¸Šã®åº§æ¨™ã‚’å¾—ã‚‹
+extern int		Get_TwoPlane_Line(  VECTOR   Normal1, float  Dist1, VECTOR   Normal2, float  Dist2, VECTOR   *OutDir, VECTOR   *OutPos ) ;			// äºŒã¤ã®å¹³é¢ãŒäº¤å·®ã™ã‚‹ç·šã‚’å¾—ã‚‹( æˆ»ã‚Šå€¤ãŒ -1 ã®å ´åˆã¯ã€äºŒã¤ã®é¢ã¯å¹³è¡Œ )
+extern int		Get_TwoPlane_LineD( VECTOR_D Normal1, double Dist1, VECTOR_D Normal2, double Dist2, VECTOR_D *OutDir, VECTOR_D *OutPos ) ;			// äºŒã¤ã®å¹³é¢ãŒäº¤å·®ã™ã‚‹ç·šã‚’å¾—ã‚‹( æˆ»ã‚Šå€¤ãŒ -1 ã®å ´åˆã¯ã€äºŒã¤ã®é¢ã¯å¹³è¡Œ )
+extern int		Get_TwoLine_MinLength_Rate(  VECTOR   Direction1, VECTOR   Position1, float  *OutRate1, VECTOR   Direction2, VECTOR   Position2, float  *OutRate2 ) ;		// äºŒã¤ã®ç·šã®æœ€è¿‘ç‚¹ã®ãã‚Œãžã‚Œã®æ–¹å‘ãƒ™ã‚¯ãƒˆãƒ«ã®æ‹¡å¤§å€¤ã‚’å¾—ã‚‹
+extern int		Get_TwoLine_MinLength_RateD( VECTOR_D Direction1, VECTOR_D Position1, double *OutRate1, VECTOR_D Direction2, VECTOR_D Position2, double *OutRate2 ) ;		// äºŒã¤ã®ç·šã®æœ€è¿‘ç‚¹ã®ãã‚Œãžã‚Œã®æ–¹å‘ãƒ™ã‚¯ãƒˆãƒ«ã®æ‹¡å¤§å€¤ã‚’å¾—ã‚‹
 
-extern void		CreateNormalizePlane(  FLOAT4  *Plane, VECTOR   *Position, VECTOR   *Normal ) ;												// •½–Êã‚Ì“_‚Æ•½–Ê‚Ì–@ü‚©‚ç³‹K‰»‚³‚ê‚½•½–Êƒpƒ‰ƒ[ƒ^‚ðŽZo‚·‚é
-extern void		CreateNormalizePlaneD( DOUBLE4 *Plane, VECTOR_D *Position, VECTOR_D *Normal ) ;												// •½–Êã‚Ì“_‚Æ•½–Ê‚Ì–@ü‚©‚ç³‹K‰»‚³‚ê‚½•½–Êƒpƒ‰ƒ[ƒ^‚ðŽZo‚·‚é
-extern void		SetMathScreenSize( int SizeX, int SizeY ) ;																				// DxMath.cpp ‚ÅŽg—p‚·‚é‰æ–Ê‚ÌƒTƒCƒY‚ðÝ’è‚·‚é
+extern void		CreateNormalizePlane(  FLOAT4  *Plane, VECTOR   *Position, VECTOR   *Normal ) ;												// å¹³é¢ä¸Šã®ç‚¹ã¨å¹³é¢ã®æ³•ç·šã‹ã‚‰æ­£è¦åŒ–ã•ã‚ŒãŸå¹³é¢ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ç®—å‡ºã™ã‚‹
+extern void		CreateNormalizePlaneD( DOUBLE4 *Plane, VECTOR_D *Position, VECTOR_D *Normal ) ;												// å¹³é¢ä¸Šã®ç‚¹ã¨å¹³é¢ã®æ³•ç·šã‹ã‚‰æ­£è¦åŒ–ã•ã‚ŒãŸå¹³é¢ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ç®—å‡ºã™ã‚‹
+extern void		SetMathScreenSize( int SizeX, int SizeY ) ;																				// DxMath.cpp ã§ä½¿ç”¨ã™ã‚‹ç”»é¢ã®ã‚µã‚¤ã‚ºã‚’è¨­å®šã™ã‚‹
 
-// ‹éŒ`‚ÌƒNƒŠƒbƒsƒ“ƒO
+// çŸ©å½¢ã®ã‚¯ãƒªãƒƒãƒ”ãƒ³ã‚°
 __inline int RectClipping_Inline( RECT *Rect, const RECT *ClippuRect )
 {
 	     if( Rect->left   > Rect->right        ) Rect->right  = Rect->left ;

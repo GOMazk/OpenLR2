@@ -1,6 +1,6 @@
 // -------------------------------------------------------------------------------
 // 
-// 		‚c‚wƒ‰ƒCƒuƒ‰ƒŠ		•`‰æˆ—ƒvƒƒOƒ‰ƒ€( Direct3D9 )ƒwƒbƒ_ƒtƒ@ƒCƒ‹
+// 		ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒª		æç”»å‡¦ç†ãƒ—ãƒ­ã‚°ãƒ©ãƒ ( Direct3D9 )ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«
 // 
 // 				Ver 3.25a
 // 
@@ -15,7 +15,7 @@
 
 #ifndef DX_NON_DIRECT3D9
 
-// ƒCƒ“ƒNƒ‹[ƒh ------------------------------------------------------------------
+// ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ ------------------------------------------------------------------
 #include "../DxLib.h"
 #include "../DxGraphics.h"
 #include "../DxArchive_.h"
@@ -28,14 +28,14 @@ namespace DxLib
 
 #endif // DX_NON_NAMESPACE
 
-// ƒ}ƒNƒ’è‹` --------------------------------------------------------------------
+// ãƒã‚¯ãƒ­å®šç¾© --------------------------------------------------------------------
 
 #define GD3D9								GraphicsHardDataDirect3D9
 
-// ƒfƒoƒCƒX—ñ‹“‚ÌÅ‘å”
+// ãƒ‡ãƒã‚¤ã‚¹åˆ—æŒ™ã®æœ€å¤§æ•°
 #define DX_D3D9_MAX_DEVICE_LISTUP			(32)
 
-// Graphics_D3D9_DrawPreparation ŠÖ”‚É“n‚·ƒtƒ‰ƒO
+// Graphics_D3D9_DrawPreparation é–¢æ•°ã«æ¸¡ã™ãƒ•ãƒ©ã‚°
 #define DX_D3D9_DRAWPREP_TRANS				(0x00001)
 #define DX_D3D9_DRAWPREP_VECTORINT			(0x00002)
 #define DX_D3D9_DRAWPREP_GOURAUDSHADE		(0x00008)
@@ -55,29 +55,29 @@ namespace DxLib
 #define DX_D3D9_DRAWPREP_TEXALPHATEST		(0x20000)
 //#define DX_D3D9_DRAWPREP_EDGEFONT			(0x40000)
 
-// ƒVƒF[ƒ_[’è”ƒZƒbƒgƒ}ƒXƒN
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼å®šæ•°ã‚»ãƒƒãƒˆãƒã‚¹ã‚¯
 #define DX_SHADERCONSTANTSET_MASK_LIB		0x0001
 #define DX_SHADERCONSTANTSET_MASK_LIB_SUB	0x0002
 #define DX_SHADERCONSTANTSET_MASK_MV1		0x0004
 #define DX_SHADERCONSTANTSET_MASK_USER		0x0008
 
-// ƒsƒNƒZƒ‹’PˆÊƒ‰ƒCƒeƒBƒ“ƒOƒ^ƒCƒv‚Ì’¸“_ƒVƒF[ƒ_[¯•ÊƒR[ƒhì¬—pƒ}ƒNƒ
+// ãƒ”ã‚¯ã‚»ãƒ«å˜ä½ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ã‚¿ã‚¤ãƒ—ã®é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼è­˜åˆ¥ã‚³ãƒ¼ãƒ‰ä½œæˆç”¨ãƒã‚¯ãƒ­
 #define D3D9_PIXELLIGHTING_VERTEXSHADER_SHADOWMAP( use )		( ( use )  * 3 * 2 * 4 )
 #define D3D9_PIXELLIGHTING_VERTEXSHADER_SKINMESH( use )			( ( use )  * 2 * 4 )
 #define D3D9_PIXELLIGHTING_VERTEXSHADER_BUMPMAP( use )			( ( use )  * 4 )
 #define D3D9_PIXELLIGHTING_VERTEXSHADER_FOGMODE( mode )			( ( mode ) )
 
-// ƒsƒNƒZƒ‹’PˆÊƒ‰ƒCƒeƒBƒ“ƒOƒ^ƒCƒv‚Ì’¸“_ƒVƒF[ƒ_[¯•ÊƒR[ƒh‚©‚çŠe—v‘f‚ğæ“¾‚·‚é‚½‚ß‚Ìƒ}ƒNƒ
+// ãƒ”ã‚¯ã‚»ãƒ«å˜ä½ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ã‚¿ã‚¤ãƒ—ã®é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼è­˜åˆ¥ã‚³ãƒ¼ãƒ‰ã‹ã‚‰å„è¦ç´ ã‚’å–å¾—ã™ã‚‹ãŸã‚ã®ãƒã‚¯ãƒ­
 #define D3D9_PIXELLIGHTING_VERTEXSHADER_GET_SHADOWMAP( index )	( ( index ) / ( 3 * 2 * 4 ) % 2 )
 #define D3D9_PIXELLIGHTING_VERTEXSHADER_GET_SKINMESH( index )	( ( index ) / ( 2 * 4 ) % 3 )
 #define D3D9_PIXELLIGHTING_VERTEXSHADER_GET_BUMPMAP( index )	( ( index ) / ( 4 ) % 2 )
 #define D3D9_PIXELLIGHTING_VERTEXSHADER_GET_FOGMODE( index )	( ( index ) % 4 )
 
-// ƒsƒNƒZƒ‹’PˆÊƒ‰ƒCƒeƒBƒ“ƒOƒ^ƒCƒv‚ÌƒsƒNƒZƒ‹ƒVƒF[ƒ_[ƒ^ƒCƒv
+// ãƒ”ã‚¯ã‚»ãƒ«å˜ä½ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ã‚¿ã‚¤ãƒ—ã®ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚¿ã‚¤ãƒ—
 #define D3D9_PIXELLIGHTING_PIXELSHADER_TYPE_NORMAL				0	
 #define D3D9_PIXELLIGHTING_PIXELSHADER_TYPE_TOON				1
 
-// ƒsƒNƒZƒ‹’PˆÊƒ‰ƒCƒeƒBƒ“ƒOƒ^ƒCƒv‚ÌƒsƒNƒZƒ‹ƒVƒF[ƒ_[¯•ÊƒR[ƒhì¬—pƒ}ƒNƒ
+// ãƒ”ã‚¯ã‚»ãƒ«å˜ä½ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ã‚¿ã‚¤ãƒ—ã®ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼è­˜åˆ¥ã‚³ãƒ¼ãƒ‰ä½œæˆç”¨ãƒã‚¯ãƒ­
 #define D3D9_PIXELLIGHTING_PIXELSHADER_TYPE( type )				( ( type  ) * 2 * 5 * 2 * 3 * 2 * 2 * 2 * 2 * 84 * 2 )
 #define D3D9_PIXELLIGHTING_PIXELSHADER_SHADOWMAP( use )			( ( use   ) * 5 * 2 * 3 * 2 * 2 * 2 * 2 * 84 * 2 )
 #define D3D9_PIXELLIGHTING_PIXELSHADER_MULTITEX( type )			( ( type  ) * 2 * 3 * 2 * 2 * 2 * 2 * 84 * 2 )
@@ -90,7 +90,7 @@ namespace DxLib
 #define D3D9_PIXELLIGHTING_PIXELSHADER_LIGHTINDEX( index )		( ( index ) * 2 )
 #define D3D9_PIXELLIGHTING_PIXELSHADER_SPECULAR( use )			( ( use   ) )
 
-// ƒsƒNƒZƒ‹’PˆÊƒ‰ƒCƒeƒBƒ“ƒOƒ^ƒCƒv‚ÌƒsƒNƒZƒ‹ƒVƒF[ƒ_[¯•ÊƒR[ƒh‚©‚çŠe—v‘f‚ğæ“¾‚·‚é‚½‚ß‚Ìƒ}ƒNƒ
+// ãƒ”ã‚¯ã‚»ãƒ«å˜ä½ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ã‚¿ã‚¤ãƒ—ã®ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼è­˜åˆ¥ã‚³ãƒ¼ãƒ‰ã‹ã‚‰å„è¦ç´ ã‚’å–å¾—ã™ã‚‹ãŸã‚ã®ãƒã‚¯ãƒ­
 #define D3D9_PIXELLIGHTING_PIXELSHADER_GET_TYPE( index )			( ( index ) / ( 2 * 5 * 2 * 3 * 2 * 2 * 2 * 2 * 84 * 2 ) % 2 )
 #define D3D9_PIXELLIGHTING_PIXELSHADER_GET_SHADOWMAP( index )		( ( index ) / ( 5 * 2 * 3 * 2 * 2 * 2 * 2 * 84 * 2 ) % 2 )
 #define D3D9_PIXELLIGHTING_PIXELSHADER_GET_MULTITEX( index )		( ( index ) / ( 2 * 3 * 2 * 2 * 2 * 2 * 84 * 2 ) % 5 )
@@ -103,12 +103,12 @@ namespace DxLib
 #define D3D9_PIXELLIGHTING_PIXELSHADER_GET_LIGHTINDEX( index )		( ( index ) / ( 2 ) % 84 )
 #define D3D9_PIXELLIGHTING_PIXELSHADER_GET_SPECULAR( index )		( ( index ) % 2 )
 
-	// ’¸“_ƒVƒF[ƒ_[ƒ^ƒCƒv
+	// é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚¿ã‚¤ãƒ—
 #define D3D9_VERTEXSHADER_TYPE_NORMAL					0
 #define D3D9_VERTEXSHADER_TYPE_DRAW_SHADOWMAP			1
 #define D3D9_VERTEXSHADER_TYPE_TOON_OUTLINE				2
 
-// ’¸“_ƒVƒF[ƒ_[¯•ÊƒR[ƒhì¬—pƒ}ƒNƒ
+// é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼è­˜åˆ¥ã‚³ãƒ¼ãƒ‰ä½œæˆç”¨ãƒã‚¯ãƒ­
 #define D3D9_VERTEXSHADER_TYPE( type )					( ( type  ) * 2 * 2 * 3 * 2 * 4 * 20 * 2 )
 #define D3D9_VERTEXSHADER_SHADERMODEL( ver )			( ( ver   ) * 2 * 3 * 2 * 4 * 20 * 2 )
 #define D3D9_VERTEXSHADER_SHADOWMAP( use )				( ( use   ) * 3 * 2 * 4 * 20 * 2 )
@@ -118,7 +118,7 @@ namespace DxLib
 #define D3D9_VERTEXSHADER_LIGHTINDEX( index )			( ( index ) * 2 )
 #define D3D9_VERTEXSHADER_SPECULAR( use )				( ( use   ) )
 
-// ’¸“_ƒVƒF[ƒ_[¯•ÊƒR[ƒh‚©‚çŠe—v‘f‚ğæ“¾‚·‚é‚½‚ß‚Ìƒ}ƒNƒ
+// é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼è­˜åˆ¥ã‚³ãƒ¼ãƒ‰ã‹ã‚‰å„è¦ç´ ã‚’å–å¾—ã™ã‚‹ãŸã‚ã®ãƒã‚¯ãƒ­
 #define D3D9_VERTEXSHADER_GET_TYPE( index )				( ( index ) / ( 2 * 2 * 3 * 2 * 4 * 20 * 2 ) % 3 )
 #define D3D9_VERTEXSHADER_GET_SHADERMODEL( index )		( ( index ) / ( 2 * 3 * 2 * 4 * 20 * 2 ) % 2 )
 #define D3D9_VERTEXSHADER_GET_SHADOWMAP( index )		( ( index ) / ( 3 * 2 * 4 * 20 * 2 ) % 2 )
@@ -128,12 +128,12 @@ namespace DxLib
 #define D3D9_VERTEXSHADER_GET_LIGHTINDEX( index )		( ( index ) / ( 2 ) % 20 )
 #define D3D9_VERTEXSHADER_GET_SPECULAR( index )			( ( index ) % 2 )
 
-// ƒsƒNƒZƒ‹ƒVƒF[ƒ_[ƒ^ƒCƒv
+// ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚¿ã‚¤ãƒ—
 #define D3D9_PIXELSHADER_TYPE_NORMAL					0
 #define D3D9_PIXELSHADER_TYPE_DRAW_SHADOWMAP			1
 #define D3D9_PIXELSHADER_TYPE_TOON_OUTLINE				2
 
-// ƒsƒNƒZƒ‹ƒVƒF[ƒ_[¯•ÊƒR[ƒhì¬—pƒ}ƒNƒ
+// ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼è­˜åˆ¥ã‚³ãƒ¼ãƒ‰ä½œæˆç”¨ãƒã‚¯ãƒ­
 #define D3D9_PIXELSHADER_MATERIALTYPE( type )			( ( type  ) * 3 * 2 * 2 * 5 * 2 * 2 * 3 * 2 * 2 * 2 * 2 * 10 * 2 )
 #define D3D9_PIXELSHADER_TYPE( type )					( ( type  ) * 2 * 2 * 5 * 2 * 2 * 3 * 2 * 2 * 2 * 2 * 10 * 2 )
 #define D3D9_PIXELSHADER_SHADERMODEL( ver )				( ( ver   ) * 2 * 5 * 2 * 2 * 3 * 2 * 2 * 2 * 2 * 10 * 2 )
@@ -149,7 +149,7 @@ namespace DxLib
 #define D3D9_PIXELSHADER_LIGHTINDEX( index )			( ( index ) * 2 )
 #define D3D9_PIXELSHADER_SPECULAR( use )				( ( use ) )
 
-// ƒsƒNƒZƒ‹ƒVƒF[ƒ_[¯•ÊƒR[ƒh‚©‚çŠe—v‘f‚ğæ“¾‚·‚é‚½‚ß‚Ìƒ}ƒNƒ
+// ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼è­˜åˆ¥ã‚³ãƒ¼ãƒ‰ã‹ã‚‰å„è¦ç´ ã‚’å–å¾—ã™ã‚‹ãŸã‚ã®ãƒã‚¯ãƒ­
 #define D3D9_PIXELSHADER_GET_MATERIALTYPE( index )		( ( index ) / ( 3 * 2 * 2 * 5 * 2 * 2 * 3 * 2 * 2 * 2 * 2 * 10 * 2 ) % DX_MATERIAL_TYPE_NUM )
 #define D3D9_PIXELSHADER_GET_TYPE( index )				( ( index ) / ( 2 * 2 * 5 * 2 * 2 * 3 * 2 * 2 * 2 * 2 * 10 * 2 ) % 3 )
 #define D3D9_PIXELSHADER_GET_SHADERMODEL( index )		( ( index ) / ( 2 * 5 * 2 * 2 * 3 * 2 * 2 * 2 * 2 * 10 * 2 ) % 2 )
@@ -165,31 +165,31 @@ namespace DxLib
 #define D3D9_PIXELSHADER_GET_LIGHTINDEX( index )		( ( index ) / ( 2 ) % 10 )
 #define D3D9_PIXELSHADER_GET_SPECULAR( index )			( ( index ) % 2 )
 
-// ’¸“_ƒtƒH[ƒ}ƒbƒg
-#define VERTEXFVF_2D_USER					( D_D3DFVF_XYZRHW | D_D3DFVF_DIFFUSE | D_D3DFVF_TEX1 )										// ƒgƒ‰ƒ“ƒXƒtƒH[ƒ€Ï‚İ’¸“_ƒtƒH[ƒ}ƒbƒg
-#define VERTEXFVF_NOTEX_2D					( D_D3DFVF_XYZRHW | D_D3DFVF_DIFFUSE )														// ƒ‰ƒCƒ“Aƒ{ƒbƒNƒX•`‰æ—p’¸“_ƒtƒH[ƒ}ƒbƒg
-#define VERTEXFVF_2D						( D_D3DFVF_XYZRHW | D_D3DFVF_DIFFUSE | D_D3DFVF_TEX1 )										// ƒgƒ‰ƒ“ƒXƒtƒH[ƒ€Ï‚İ’¸“_ƒtƒH[ƒ}ƒbƒg
-#define VERTEXFVF_BLENDTEX_2D				( D_D3DFVF_XYZRHW | D_D3DFVF_DIFFUSE | D_D3DFVF_SPECULAR | D_D3DFVF_TEX2 )					// ƒ¿ƒuƒŒƒ“ƒhƒeƒNƒXƒ`ƒƒ•t‚«ƒgƒ‰ƒ“ƒXƒtƒH[ƒ€Ï‚İ’¸“_ƒtƒH[ƒ}ƒbƒg
-#define VERTEXFVF_SHADER_2D					( D_D3DFVF_XYZRHW | D_D3DFVF_DIFFUSE | D_D3DFVF_SPECULAR | D_D3DFVF_TEX2 )					// ƒVƒF[ƒ_[•`‰æ—p’¸“_ƒtƒH[ƒ}ƒbƒg
-#define VERTEXFVF_NOTEX_3D					( D_D3DFVF_XYZ | D_D3DFVF_DIFFUSE /*| D_D3DFVF_SPECULAR*/ )									// ƒ‰ƒCƒ“Aƒ{ƒbƒNƒX•`‰æ—p’¸“_ƒtƒH[ƒ}ƒbƒgA‚R‚c—p( ‹Œƒo[ƒWƒ‡ƒ“—p )
-#define VERTEXFVF_3D						( D_D3DFVF_XYZ | D_D3DFVF_DIFFUSE /*| D_D3DFVF_SPECULAR*/ | D_D3DFVF_TEX1 )					// ƒOƒ‰ƒtƒBƒbƒNƒX•`‰æ—p’¸“_ƒtƒH[ƒ}ƒbƒgA‚R‚c—p( ‹Œƒo[ƒWƒ‡ƒ“—p )
-#define VERTEXFVF_3D_LIGHT					( D_D3DFVF_XYZ | D_D3DFVF_NORMAL | D_D3DFVF_DIFFUSE | D_D3DFVF_SPECULAR | D_D3DFVF_TEX2 )	// ƒOƒ‰ƒtƒBƒbƒNƒX•`‰æ—p’¸“_ƒtƒH[ƒ}ƒbƒg
-#define VERTEXFVF_SHADER_3D					( D_D3DFVF_XYZ | D_D3DFVF_NORMAL | D_D3DFVF_DIFFUSE | D_D3DFVF_SPECULAR | D_D3DFVF_TEX2 )	// ƒVƒF[ƒ_[•`‰æ—p’¸“_ƒtƒH[ƒ}ƒbƒg
-#define VERTEXFVF_TEX8_2D					( D_D3DFVF_XYZRHW | D_D3DFVF_DIFFUSE | D_D3DFVF_TEX8 )										// ƒgƒ‰ƒ“ƒXƒtƒH[ƒ€Ï‚İ’¸“_ƒtƒH[ƒ}ƒbƒg
+// é ‚ç‚¹ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆ
+#define VERTEXFVF_2D_USER					( D_D3DFVF_XYZRHW | D_D3DFVF_DIFFUSE | D_D3DFVF_TEX1 )										// ãƒˆãƒ©ãƒ³ã‚¹ãƒ•ã‚©ãƒ¼ãƒ æ¸ˆã¿é ‚ç‚¹ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆ
+#define VERTEXFVF_NOTEX_2D					( D_D3DFVF_XYZRHW | D_D3DFVF_DIFFUSE )														// ãƒ©ã‚¤ãƒ³ã€ãƒœãƒƒã‚¯ã‚¹æç”»ç”¨é ‚ç‚¹ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆ
+#define VERTEXFVF_2D						( D_D3DFVF_XYZRHW | D_D3DFVF_DIFFUSE | D_D3DFVF_TEX1 )										// ãƒˆãƒ©ãƒ³ã‚¹ãƒ•ã‚©ãƒ¼ãƒ æ¸ˆã¿é ‚ç‚¹ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆ
+#define VERTEXFVF_BLENDTEX_2D				( D_D3DFVF_XYZRHW | D_D3DFVF_DIFFUSE | D_D3DFVF_SPECULAR | D_D3DFVF_TEX2 )					// Î±ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ†ã‚¯ã‚¹ãƒãƒ£ä»˜ããƒˆãƒ©ãƒ³ã‚¹ãƒ•ã‚©ãƒ¼ãƒ æ¸ˆã¿é ‚ç‚¹ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆ
+#define VERTEXFVF_SHADER_2D					( D_D3DFVF_XYZRHW | D_D3DFVF_DIFFUSE | D_D3DFVF_SPECULAR | D_D3DFVF_TEX2 )					// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼æç”»ç”¨é ‚ç‚¹ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆ
+#define VERTEXFVF_NOTEX_3D					( D_D3DFVF_XYZ | D_D3DFVF_DIFFUSE /*| D_D3DFVF_SPECULAR*/ )									// ãƒ©ã‚¤ãƒ³ã€ãƒœãƒƒã‚¯ã‚¹æç”»ç”¨é ‚ç‚¹ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã€ï¼“ï¼¤ç”¨( æ—§ãƒãƒ¼ã‚¸ãƒ§ãƒ³ç”¨ )
+#define VERTEXFVF_3D						( D_D3DFVF_XYZ | D_D3DFVF_DIFFUSE /*| D_D3DFVF_SPECULAR*/ | D_D3DFVF_TEX1 )					// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¹æç”»ç”¨é ‚ç‚¹ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã€ï¼“ï¼¤ç”¨( æ—§ãƒãƒ¼ã‚¸ãƒ§ãƒ³ç”¨ )
+#define VERTEXFVF_3D_LIGHT					( D_D3DFVF_XYZ | D_D3DFVF_NORMAL | D_D3DFVF_DIFFUSE | D_D3DFVF_SPECULAR | D_D3DFVF_TEX2 )	// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¹æç”»ç”¨é ‚ç‚¹ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆ
+#define VERTEXFVF_SHADER_3D					( D_D3DFVF_XYZ | D_D3DFVF_NORMAL | D_D3DFVF_DIFFUSE | D_D3DFVF_SPECULAR | D_D3DFVF_TEX2 )	// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼æç”»ç”¨é ‚ç‚¹ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆ
+#define VERTEXFVF_TEX8_2D					( D_D3DFVF_XYZRHW | D_D3DFVF_DIFFUSE | D_D3DFVF_TEX8 )										// ãƒˆãƒ©ãƒ³ã‚¹ãƒ•ã‚©ãƒ¼ãƒ æ¸ˆã¿é ‚ç‚¹ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆ
 
-#define VERTEXFVF_DECL_2D_USER				(0)			// ƒgƒ‰ƒ“ƒXƒtƒH[ƒ€Ï‚İ’¸“_ƒtƒH[ƒ}ƒbƒg
-#define VERTEXFVF_DECL_NOTEX_2D				(1)			// ƒ‰ƒCƒ“Aƒ{ƒbƒNƒX•`‰æ—p’¸“_ƒtƒH[ƒ}ƒbƒg
-#define VERTEXFVF_DECL_2D					(2)			// ƒgƒ‰ƒ“ƒXƒtƒH[ƒ€Ï‚İ’¸“_ƒtƒH[ƒ}ƒbƒg
-#define VERTEXFVF_DECL_BLENDTEX_2D			(3)			// ƒ¿ƒuƒŒƒ“ƒhƒeƒNƒXƒ`ƒƒ•t‚«ƒgƒ‰ƒ“ƒXƒtƒH[ƒ€Ï‚İ’¸“_ƒtƒH[ƒ}ƒbƒg
-#define VERTEXFVF_DECL_SHADER_2D			(4)			// ƒVƒF[ƒ_[•`‰æ—p’¸“_ƒtƒH[ƒ}ƒbƒg
-#define VERTEXFVF_DECL_NOTEX_3D				(5)			// ƒ‰ƒCƒ“Aƒ{ƒbƒNƒX•`‰æ—p’¸“_ƒtƒH[ƒ}ƒbƒgA‚R‚c—p( ‹Œƒo[ƒWƒ‡ƒ“—p )
-#define VERTEXFVF_DECL_3D					(6)			// ƒOƒ‰ƒtƒBƒbƒNƒX•`‰æ—p’¸“_ƒtƒH[ƒ}ƒbƒgA‚R‚c—p( ‹Œƒo[ƒWƒ‡ƒ“—p )
-#define VERTEXFVF_DECL_3D_LIGHT				(7)			// ƒOƒ‰ƒtƒBƒbƒNƒX•`‰æ—p’¸“_ƒtƒH[ƒ}ƒbƒg
-#define VERTEXFVF_DECL_SHADER_3D			(8)			// ƒVƒF[ƒ_[•`‰æ—p’¸“_ƒtƒH[ƒ}ƒbƒg
-#define VERTEXFVF_DECL_TEX8_2D				(9)			// ƒoƒCƒLƒ…[ƒrƒbƒN•âŠÔ—p’¸“_ƒtƒH[ƒ}ƒbƒg
+#define VERTEXFVF_DECL_2D_USER				(0)			// ãƒˆãƒ©ãƒ³ã‚¹ãƒ•ã‚©ãƒ¼ãƒ æ¸ˆã¿é ‚ç‚¹ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆ
+#define VERTEXFVF_DECL_NOTEX_2D				(1)			// ãƒ©ã‚¤ãƒ³ã€ãƒœãƒƒã‚¯ã‚¹æç”»ç”¨é ‚ç‚¹ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆ
+#define VERTEXFVF_DECL_2D					(2)			// ãƒˆãƒ©ãƒ³ã‚¹ãƒ•ã‚©ãƒ¼ãƒ æ¸ˆã¿é ‚ç‚¹ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆ
+#define VERTEXFVF_DECL_BLENDTEX_2D			(3)			// Î±ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ†ã‚¯ã‚¹ãƒãƒ£ä»˜ããƒˆãƒ©ãƒ³ã‚¹ãƒ•ã‚©ãƒ¼ãƒ æ¸ˆã¿é ‚ç‚¹ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆ
+#define VERTEXFVF_DECL_SHADER_2D			(4)			// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼æç”»ç”¨é ‚ç‚¹ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆ
+#define VERTEXFVF_DECL_NOTEX_3D				(5)			// ãƒ©ã‚¤ãƒ³ã€ãƒœãƒƒã‚¯ã‚¹æç”»ç”¨é ‚ç‚¹ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã€ï¼“ï¼¤ç”¨( æ—§ãƒãƒ¼ã‚¸ãƒ§ãƒ³ç”¨ )
+#define VERTEXFVF_DECL_3D					(6)			// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¹æç”»ç”¨é ‚ç‚¹ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã€ï¼“ï¼¤ç”¨( æ—§ãƒãƒ¼ã‚¸ãƒ§ãƒ³ç”¨ )
+#define VERTEXFVF_DECL_3D_LIGHT				(7)			// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¹æç”»ç”¨é ‚ç‚¹ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆ
+#define VERTEXFVF_DECL_SHADER_3D			(8)			// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼æç”»ç”¨é ‚ç‚¹ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆ
+#define VERTEXFVF_DECL_TEX8_2D				(9)			// ãƒã‚¤ã‚­ãƒ¥ãƒ¼ãƒ“ãƒƒã‚¯è£œé–“ç”¨é ‚ç‚¹ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆ
 #define VERTEXFVF_DECL_NUM					(10)
 
-// ’¸“_ƒoƒbƒtƒ@‚ÌƒTƒCƒY
+// é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã®ã‚µã‚¤ã‚º
 #define D3DDEV_NOTEX_VERTBUFFERSIZE			(63 * 1024)		// 63KB
 #define D3DDEV_TEX_VERTBUFFERSIZE			(64 * 1024)		// 64KB
 #define D3DDEV_BLENDTEX_VERTBUFFERSIZE		(64 * 1024)		// 64KB
@@ -201,7 +201,7 @@ namespace DxLib
 #define D3DDEV_NOTEX_3D_VERTMAXNUM			(D3DDEV_NOTEX_3D_VERTBUFFERSIZE  / sizeof( VERTEX_NOTEX_3D    ))
 #define D3DDEV_TEX_3D_VERTMAXNUM			(D3DDEV_TEX_3D_VERTBUFFERSIZE    / sizeof( VERTEX_3D          ))
 
-// ƒvƒŠƒ~ƒeƒBƒu‚Ì”‚ğZo
+// ãƒ—ãƒªãƒŸãƒ†ã‚£ãƒ–ã®æ•°ã‚’ç®—å‡º
 #define GETPRIMNUM( primtype, vertnum )	\
 	( DWORD )( \
 	( ( (primtype) == D_D3DPT_TRIANGLELIST  ) ? (vertnum) / 3 :\
@@ -212,160 +212,160 @@ namespace DxLib
 	( ( (primtype) == D_D3DPT_POINTLIST     ) ? (vertnum)     : 0 ) ) ) ) ) ) )
 
 
-// ”ñŠÇ—ƒeƒNƒXƒ`ƒƒ‚Ö‚Ìƒf[ƒ^“]‘——pƒVƒXƒeƒ€ƒƒ‚ƒŠ”z’uƒeƒNƒXƒ`ƒƒ‚Ì”
+// éç®¡ç†ãƒ†ã‚¯ã‚¹ãƒãƒ£ã¸ã®ãƒ‡ãƒ¼ã‚¿è»¢é€ç”¨ã‚·ã‚¹ãƒ†ãƒ ãƒ¡ãƒ¢ãƒªé…ç½®ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®æ•°
 #define DIRECT3D9_SYSMEMTEXTURE_NUM					(2048)
 
-// ”ñŠÇ—ƒeƒNƒXƒ`ƒƒ‚Ö‚Ìƒf[ƒ^“]‘——pƒVƒXƒeƒ€ƒƒ‚ƒŠ”z’uƒT[ƒtƒFƒX‚Ì”
+// éç®¡ç†ãƒ†ã‚¯ã‚¹ãƒãƒ£ã¸ã®ãƒ‡ãƒ¼ã‚¿è»¢é€ç”¨ã‚·ã‚¹ãƒ†ãƒ ãƒ¡ãƒ¢ãƒªé…ç½®ã‚µãƒ¼ãƒ•ã‚§ã‚¹ã®æ•°
 #define DIRECT3D9_SYSMEMSURFACE_NUM					(2048)
 
 
-// \‘¢‘Ì’è‹` --------------------------------------------------------------------
+// æ§‹é€ ä½“å®šç¾© --------------------------------------------------------------------
 
-// Direct3D9—p ƒn[ƒhƒEƒGƒAƒŒƒ“ƒ_ƒŠƒ“ƒO—pƒIƒŠƒWƒiƒ‹‰æ‘œƒeƒNƒXƒ`ƒƒî•ñ
+// Direct3D9ç”¨ ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ç”¨ã‚ªãƒªã‚¸ãƒŠãƒ«ç”»åƒãƒ†ã‚¯ã‚¹ãƒãƒ£æƒ…å ±
 struct IMAGEDATA_ORIG_HARD_TEX_DIRECT3D9
 {
 	union
 	{
-		D_IDirect3DCubeTexture9	*	CubeTexture ;							// ƒLƒ…[ƒuƒeƒNƒXƒ`ƒƒ
-		D_IDirect3DTexture9		*	Texture ;								// ƒeƒNƒXƒ`ƒƒ
+		D_IDirect3DCubeTexture9	*	CubeTexture ;							// ã‚­ãƒ¥ãƒ¼ãƒ–ãƒ†ã‚¯ã‚¹ãƒãƒ£
+		D_IDirect3DTexture9		*	Texture ;								// ãƒ†ã‚¯ã‚¹ãƒãƒ£
 	} ;
-//	D_IDirect3DTexture9	*			MemTexture ;							// D3DPOOL_MANAGED ‚ªg—p‚Å‚«‚È‚¢‰æ‘œ—pƒƒ‚ƒŠƒeƒNƒXƒ`ƒƒ
-	D_IDirect3DSurface9	*			Surface[ CUBEMAP_SURFACE_NUM ] ;		// ƒT[ƒtƒFƒX
-	D_IDirect3DSurface9	*			RenderTargetSurface ;					// ƒŒƒ“ƒ_ƒŠƒ“ƒOƒ^[ƒQƒbƒgƒT[ƒtƒFƒX
-	D_IDirect3DSurface9	*			ZBuffer ;								// ‚yƒoƒbƒtƒ@
+//	D_IDirect3DTexture9	*			MemTexture ;							// D3DPOOL_MANAGED ãŒä½¿ç”¨ã§ããªã„ç”»åƒç”¨ãƒ¡ãƒ¢ãƒªãƒ†ã‚¯ã‚¹ãƒãƒ£
+	D_IDirect3DSurface9	*			Surface[ CUBEMAP_SURFACE_NUM ] ;		// ã‚µãƒ¼ãƒ•ã‚§ã‚¹
+	D_IDirect3DSurface9	*			RenderTargetSurface ;					// ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã‚µãƒ¼ãƒ•ã‚§ã‚¹
+	D_IDirect3DSurface9	*			ZBuffer ;								// ï¼ºãƒãƒƒãƒ•ã‚¡
 } ;
 
-// Direct3D9—p ƒVƒƒƒhƒEƒ}ƒbƒvî•ñ
+// Direct3D9ç”¨ ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—æƒ…å ±
 struct SHADOWMAPDATA_DIRECT3D9
 {
-	D_IDirect3DTexture9		*Texture ;										// ƒeƒNƒXƒ`ƒƒ
+	D_IDirect3DTexture9		*Texture ;										// ãƒ†ã‚¯ã‚¹ãƒãƒ£
 
-	D_IDirect3DSurface9		*Surface ;										// ƒT[ƒtƒFƒX
-	D_IDirect3DSurface9		*ZBufferSurface ;								// ‚yƒoƒbƒtƒ@ƒT[ƒtƒFƒX
+	D_IDirect3DSurface9		*Surface ;										// ã‚µãƒ¼ãƒ•ã‚§ã‚¹
+	D_IDirect3DSurface9		*ZBufferSurface ;								// ï¼ºãƒãƒƒãƒ•ã‚¡ã‚µãƒ¼ãƒ•ã‚§ã‚¹
 } ;
 
-// Direct3D9—p ’¸“_ƒoƒbƒtƒ@ƒnƒ“ƒhƒ‹î•ñ
+// Direct3D9ç”¨ é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ãƒãƒ³ãƒ‰ãƒ«æƒ…å ±
 struct VERTEXBUFFERHANDLEDATA_DIRECT3D9
 {
-	D_IDirect3DVertexBuffer9	*VertexBuffer ;								// IDirect3DVertexBuffer9 ‚Ìƒ|ƒCƒ“ƒ^
+	D_IDirect3DVertexBuffer9	*VertexBuffer ;								// IDirect3DVertexBuffer9 ã®ãƒã‚¤ãƒ³ã‚¿
 } ;
 
-// Direct3D9—p ƒCƒ“ƒfƒbƒNƒXƒoƒbƒtƒ@ƒnƒ“ƒhƒ‹î•ñ
+// Direct3D9ç”¨ ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒãƒƒãƒ•ã‚¡ãƒãƒ³ãƒ‰ãƒ«æƒ…å ±
 struct INDEXBUFFERHANDLEDATA_DIRECT3D9
 {
-	D_IDirect3DIndexBuffer9		*IndexBuffer ;								// IDirect3DIndexBuffer9 ‚Ìƒ|ƒCƒ“ƒ^
+	D_IDirect3DIndexBuffer9		*IndexBuffer ;								// IDirect3DIndexBuffer9 ã®ãƒã‚¤ãƒ³ã‚¿
 } ;
 
-// Direct3D9—p ƒVƒF[ƒ_[ƒnƒ“ƒhƒ‹î•ñ
+// Direct3D9ç”¨ ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒãƒ³ãƒ‰ãƒ«æƒ…å ±
 struct SHADERHANDLEDATA_DIRECT3D9
 {
 	union
 	{
-		D_IDirect3DPixelShader9			*PixelShader ;						// IDirect3DPixelShader9 ‚Ìƒ|ƒCƒ“ƒ^
-		D_IDirect3DVertexShader9		*VertexShader ;						// IDirect3DVertexShader9 ‚Ìƒ|ƒCƒ“ƒ^
+		D_IDirect3DPixelShader9			*PixelShader ;						// IDirect3DPixelShader9 ã®ãƒã‚¤ãƒ³ã‚¿
+		D_IDirect3DVertexShader9		*VertexShader ;						// IDirect3DVertexShader9 ã®ãƒã‚¤ãƒ³ã‚¿
 	} ;
 
-	int									ConstantNum ;						// ’è”‚Ì”
-	D_D3DXSHADER_CONSTANTINFO			*ConstantInfo ;						// ’è”î•ñ”z—ñ‚Ìæ“ªƒAƒhƒŒƒX
+	int									ConstantNum ;						// å®šæ•°ã®æ•°
+	D_D3DXSHADER_CONSTANTINFO			*ConstantInfo ;						// å®šæ•°æƒ…å ±é…åˆ—ã®å…ˆé ­ã‚¢ãƒ‰ãƒ¬ã‚¹
 } ;
 
-// Direct3D9—p ƒVƒF[ƒ_[—p’è”ƒoƒbƒtƒ@ƒnƒ“ƒhƒ‹î•ñ
+// Direct3D9ç”¨ ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ç”¨å®šæ•°ãƒãƒƒãƒ•ã‚¡ãƒãƒ³ãƒ‰ãƒ«æƒ…å ±
 struct SHADERCONSTANTBUFFERHANDLEDATA_DIRECT3D9
 {
 	int			Dummy ;
 } ;
 
-// ƒVƒF[ƒ_[’è”‚Ìˆê‚Â‚Ìg—p—Ìˆæî•ñ\‘¢‘Ì
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼å®šæ•°ã®ä¸€ã¤ã®ä½¿ç”¨é ˜åŸŸæƒ…å ±æ§‹é€ ä½“
 struct DIRECT3D9_SHADERCONST_ONE_USEAREA
 {
-	WORD								Start ;								// g—p—Ìˆæ‚ÌŠJn”Ô†
-	WORD								EndPlusOne ;						// g—p—Ìˆæ‚ÌI—¹”Ô†{‚P
+	WORD								Start ;								// ä½¿ç”¨é ˜åŸŸã®é–‹å§‹ç•ªå·
+	WORD								EndPlusOne ;						// ä½¿ç”¨é ˜åŸŸã®çµ‚äº†ç•ªå·ï¼‹ï¼‘
 } ;
 
-// ƒVƒF[ƒ_[’è”g—p—Ìˆæî•ñ\‘¢‘Ì
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼å®šæ•°ä½¿ç”¨é ˜åŸŸæƒ…å ±æ§‹é€ ä½“
 struct DIRECT3D9_SHADERCONSTANT_USEAREA
 {
-	DIRECT3D9_SHADERCONST_ONE_USEAREA	AreaInfo[ 256 ] ;					// g—p—Ìˆæî•ñ
-	int									AreaInfoNum ;						// g—p—Ìˆæî•ñ‚Ì”
-	int									TotalSize ;							// ŠÇ—‚·‚é—Ìˆæ‚ÌƒTƒCƒY
+	DIRECT3D9_SHADERCONST_ONE_USEAREA	AreaInfo[ 256 ] ;					// ä½¿ç”¨é ˜åŸŸæƒ…å ±
+	int									AreaInfoNum ;						// ä½¿ç”¨é ˜åŸŸæƒ…å ±ã®æ•°
+	int									TotalSize ;							// ç®¡ç†ã™ã‚‹é ˜åŸŸã®ã‚µã‚¤ã‚º
 } ;
 
-// ƒVƒF[ƒ_[’è”î•ñ\‘¢‘Ì
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼å®šæ•°æƒ…å ±æ§‹é€ ä½“
 struct DIRECT3D9_SHADERCONSTANTINFO
 {
-	DIRECT3D9_SHADERCONSTANT_USEAREA	UseArea ;							// ƒ†[ƒU[—p’¸“_ƒVƒF[ƒ_[’è”‚Ìg—p—Ìˆæî•ñ
-	int									UnitSize ;							// ƒf[ƒ^ˆê‚Â‚ ‚½‚è‚ÌƒTƒCƒY
+	DIRECT3D9_SHADERCONSTANT_USEAREA	UseArea ;							// ãƒ¦ãƒ¼ã‚¶ãƒ¼ç”¨é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼å®šæ•°ã®ä½¿ç”¨é ˜åŸŸæƒ…å ±
+	int									UnitSize ;							// ãƒ‡ãƒ¼ã‚¿ä¸€ã¤ã‚ãŸã‚Šã®ã‚µã‚¤ã‚º
 
 	union
 	{
-		BYTE							Data[ 256 * 16 ] ;					// ƒTƒCƒY•ÛØ—pƒf[ƒ^
+		BYTE							Data[ 256 * 16 ] ;					// ã‚µã‚¤ã‚ºä¿è¨¼ç”¨ãƒ‡ãƒ¼ã‚¿
 
-		FLOAT4							Float4[ 256 ] ;						// ƒ†[ƒU[—p’¸“_ƒVƒF[ƒ_[ float Œ^’è”
-		INT4							Int4[ 16 ] ;						// ƒ†[ƒU[—p’¸“_ƒVƒF[ƒ_[ int Œ^’è”
-		BOOL							Bool[ 16 ] ;						// ƒ†[ƒU[—p’¸“_ƒVƒF[ƒ_[ BOOL Œ^’è”
+		FLOAT4							Float4[ 256 ] ;						// ãƒ¦ãƒ¼ã‚¶ãƒ¼ç”¨é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ float å‹å®šæ•°
+		INT4							Int4[ 16 ] ;						// ãƒ¦ãƒ¼ã‚¶ãƒ¼ç”¨é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ int å‹å®šæ•°
+		BOOL							Bool[ 16 ] ;						// ãƒ¦ãƒ¼ã‚¶ãƒ¼ç”¨é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ BOOL å‹å®šæ•°
 	} ;
 } ;
 
-// ƒVƒF[ƒ_[’è”î•ñƒZƒbƒg\‘¢‘Ì
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼å®šæ•°æƒ…å ±ã‚»ãƒƒãƒˆæ§‹é€ ä½“
 struct DIRECT3D9_SHADERCONSTANTINFOSET
 {
-	int									IsApply[ DX_SHADERCONSTANTSET_NUM ] ;			// ’è”î•ñ‚ğ“K—p‚·‚é‚©‚Ç‚¤‚©( TRUE:“K—p‚·‚é  FALSE:“K—p‚µ‚È‚¢ )
-	int									ApplyMask ;										// “K—pƒ}ƒXƒN( DX_SHADERCONSTANTSET_MASK_LIB | DX_SHADERCONSTANTSET_MASK_LIB_SUB “™ )
-	DIRECT3D9_SHADERCONSTANTINFO		Info[ DX_SHADERCONSTANTTYPE_NUM ][ DX_SHADERCONSTANTSET_NUM ] ;				// ’è”î•ñÀ‘Ì
-	BYTE								UseMap[ DX_SHADERCONSTANTTYPE_NUM ][ DX_SHADERCONSTANTSET_NUM ][ 256 ] ;	// ’è”g—pƒ}ƒbƒv
+	int									IsApply[ DX_SHADERCONSTANTSET_NUM ] ;			// å®šæ•°æƒ…å ±ã‚’é©ç”¨ã™ã‚‹ã‹ã©ã†ã‹( TRUE:é©ç”¨ã™ã‚‹  FALSE:é©ç”¨ã—ãªã„ )
+	int									ApplyMask ;										// é©ç”¨ãƒã‚¹ã‚¯( DX_SHADERCONSTANTSET_MASK_LIB | DX_SHADERCONSTANTSET_MASK_LIB_SUB ç­‰ )
+	DIRECT3D9_SHADERCONSTANTINFO		Info[ DX_SHADERCONSTANTTYPE_NUM ][ DX_SHADERCONSTANTSET_NUM ] ;				// å®šæ•°æƒ…å ±å®Ÿä½“
+	BYTE								UseMap[ DX_SHADERCONSTANTTYPE_NUM ][ DX_SHADERCONSTANTSET_NUM ][ 256 ] ;	// å®šæ•°ä½¿ç”¨ãƒãƒƒãƒ—
 
-	DIRECT3D9_SHADERCONSTANTINFO		FixInfo[ DX_SHADERCONSTANTTYPE_NUM ] ;			// ÀÛ‚ÉƒVƒF[ƒ_[‚É“K—p‚³‚ê‚Ä‚¢‚é’è”î•ñ
+	DIRECT3D9_SHADERCONSTANTINFO		FixInfo[ DX_SHADERCONSTANTTYPE_NUM ] ;			// å®Ÿéš›ã«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã«é©ç”¨ã•ã‚Œã¦ã„ã‚‹å®šæ•°æƒ…å ±
 
-	BYTE								SetMap[ DX_SHADERCONSTANTTYPE_NUM ][ 256 ] ;	// ƒVƒF[ƒ_[’è”‚Ìg—p’†ƒZƒbƒgƒ}ƒbƒv( DX_SHADERCONSTANTSET_LIB “™A0xff –¢g—p )
+	BYTE								SetMap[ DX_SHADERCONSTANTTYPE_NUM ][ 256 ] ;	// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼å®šæ•°ã®ä½¿ç”¨ä¸­ã‚»ãƒƒãƒˆãƒãƒƒãƒ—( DX_SHADERCONSTANTSET_LIB ç­‰ã€0xff æœªä½¿ç”¨ )
 } ;
 
 
-// Direct3D9 ‚Ì•W€•`‰æ—p‚ÌƒVƒF[ƒ_[‚ğ“Z‚ß‚½\‘¢‘Ì
+// Direct3D9 ã®æ¨™æº–æç”»ç”¨ã®ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’çºã‚ãŸæ§‹é€ ä½“
 struct GRAPHICS_HARDWARE_DIRECT3D9_SHADER_BASE
 {
 #ifndef DX_NON_NORMAL_DRAW_SHADER
-	// ŒÅ’è‹@”\ƒpƒCƒvƒ‰ƒCƒ“ŒİŠ·—p‚Ì’¸“_ƒVƒF[ƒ_[
+	// å›ºå®šæ©Ÿèƒ½ãƒ‘ã‚¤ãƒ—ãƒ©ã‚¤ãƒ³äº’æ›ç”¨ã®é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼
 	D_IDirect3DVertexShader9				*Base2DVertexShader ;
 //	D_IDirect3DVertexShader9				*Base3DVertexShader ;
 
-	// ŒÅ’è‹@”\ƒpƒCƒvƒ‰ƒCƒ“ŒİŠ·‚ÌƒVƒF[ƒ_[( ƒeƒNƒXƒ`ƒƒ‚È‚µ )
-	// [ “ÁêŒø‰Ê( 0:’Êí•`‰æ  1:æZ•`‰æ  2:RGB”½“]  3:•`‰æ‹P“x‚S”{  4:æZÏ‚İƒ¿ƒuƒŒƒ“ƒhƒ‚[ƒh‚Ì’Êí•`‰æ  5:æZÏ‚İƒ¿ƒuƒŒƒ“ƒhƒ‚[ƒh‚ÌRGB”½“]  6:æZÏ‚İƒ¿ƒuƒŒƒ“ƒhƒ‚[ƒh‚Ì•`‰æ‹P“x4”{ ) ]
-	// [ ƒ¿ƒ`ƒƒƒ“ƒlƒ‹l—¶”Å‚©‚Ç‚¤‚©( 0:l—¶‚µ‚È‚¢  1:l—¶‚·‚é ) ]
+	// å›ºå®šæ©Ÿèƒ½ãƒ‘ã‚¤ãƒ—ãƒ©ã‚¤ãƒ³äº’æ›ã®ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼( ãƒ†ã‚¯ã‚¹ãƒãƒ£ãªã— )
+	// [ ç‰¹æ®ŠåŠ¹æœ( 0:é€šå¸¸æç”»  1:ä¹—ç®—æç”»  2:RGBåè»¢  3:æç”»è¼åº¦ï¼”å€  4:ä¹—ç®—æ¸ˆã¿Î±ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã®é€šå¸¸æç”»  5:ä¹—ç®—æ¸ˆã¿Î±ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã®RGBåè»¢  6:ä¹—ç®—æ¸ˆã¿Î±ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã®æç”»è¼åº¦4å€ ) ]
+	// [ Î±ãƒãƒ£ãƒ³ãƒãƒ«è€ƒæ…®ç‰ˆã‹ã©ã†ã‹( 0:è€ƒæ…®ã—ãªã„  1:è€ƒæ…®ã™ã‚‹ ) ]
 	D_IDirect3DPixelShader9					*BaseNoneTexPixelShader[ 7 ][ 2 ] ;
 
-	// ŒÅ’è‹@”\ƒpƒCƒvƒ‰ƒCƒ“ŒİŠ·‚ÌƒVƒF[ƒ_[( ƒeƒNƒXƒ`ƒƒ‚ ‚è )
-	// [ ƒuƒŒƒ“ƒh‰æ‘œ‚Æ‚ÌƒuƒŒƒ“ƒhƒ^ƒCƒv( 0:‚È‚µ  1:DX_BLENDGRAPHTYPE_NORMAL  2:DX_BLENDGRAPHTYPE_WIPE  3:DX_BLENDGRAPHTYPE_ALPHA ) ]
-	// [ “ÁêŒø‰Ê( 0:’Êí•`‰æ  1:æZ•`‰æ  2:RGB”½“]  3:•`‰æ‹P“x‚S”{  4:æZÏ‚İƒ¿ƒuƒŒƒ“ƒhƒ‚[ƒh‚Ì’Êí•`‰æ  5:æZÏ‚İƒ¿ƒuƒŒƒ“ƒhƒ‚[ƒh‚ÌRGB”½“]  6:æZÏ‚İƒ¿ƒuƒŒƒ“ƒhƒ‚[ƒh‚Ì•`‰æ‹P“x4”{ ) ]
-	// [ ƒeƒNƒXƒ`ƒƒRGB–³‹( 0:–³‹‚µ‚È‚¢  1:–³‹‚·‚é ) ]
-	// [ ƒeƒNƒXƒ`ƒƒAlpha–³‹( 0:–³‹‚µ‚È‚¢  1:–³‹‚·‚é ) ]
-	// [ ƒ¿ƒ`ƒƒƒ“ƒlƒ‹l—¶”Å‚©‚Ç‚¤‚©( 0:l—¶‚µ‚È‚¢  1:l—¶‚·‚é ) ]
+	// å›ºå®šæ©Ÿèƒ½ãƒ‘ã‚¤ãƒ—ãƒ©ã‚¤ãƒ³äº’æ›ã®ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼( ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚ã‚Š )
+	// [ ãƒ–ãƒ¬ãƒ³ãƒ‰ç”»åƒã¨ã®ãƒ–ãƒ¬ãƒ³ãƒ‰ã‚¿ã‚¤ãƒ—( 0:ãªã—  1:DX_BLENDGRAPHTYPE_NORMAL  2:DX_BLENDGRAPHTYPE_WIPE  3:DX_BLENDGRAPHTYPE_ALPHA ) ]
+	// [ ç‰¹æ®ŠåŠ¹æœ( 0:é€šå¸¸æç”»  1:ä¹—ç®—æç”»  2:RGBåè»¢  3:æç”»è¼åº¦ï¼”å€  4:ä¹—ç®—æ¸ˆã¿Î±ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã®é€šå¸¸æç”»  5:ä¹—ç®—æ¸ˆã¿Î±ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã®RGBåè»¢  6:ä¹—ç®—æ¸ˆã¿Î±ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã®æç”»è¼åº¦4å€ ) ]
+	// [ ãƒ†ã‚¯ã‚¹ãƒãƒ£RGBç„¡è¦–( 0:ç„¡è¦–ã—ãªã„  1:ç„¡è¦–ã™ã‚‹ ) ]
+	// [ ãƒ†ã‚¯ã‚¹ãƒãƒ£Alphaç„¡è¦–( 0:ç„¡è¦–ã—ãªã„  1:ç„¡è¦–ã™ã‚‹ ) ]
+	// [ Î±ãƒãƒ£ãƒ³ãƒãƒ«è€ƒæ…®ç‰ˆã‹ã©ã†ã‹( 0:è€ƒæ…®ã—ãªã„  1:è€ƒæ…®ã™ã‚‹ ) ]
 	D_IDirect3DPixelShader9					*BaseUseTexPixelShader[ 4 ][ 7 ][ 2 ][ 2 ][ 2 ] ;
 
-	// ƒ}ƒXƒNˆ——p‚ÌƒVƒF[ƒ_[
+	// ãƒã‚¹ã‚¯å‡¦ç†ç”¨ã®ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼
 	D_IDirect3DPixelShader9					*MaskEffectPixelShader ;
 	D_IDirect3DPixelShader9					*MaskEffect_UseGraphHandle_PixelShader[ 4 ] ;
 	D_IDirect3DPixelShader9					*MaskEffect_UseGraphHandle_ReverseEffect_PixelShader[ 4 ] ;
 #endif // DX_NON_NORMAL_DRAW_SHADER
 } ;
 
-// Direct3D9 ‚Ì•W€‚R‚c•`‰æ—p‚ÌƒVƒF[ƒ_[‚ğ“Z‚ß‚½\‘¢‘Ì
+// Direct3D9 ã®æ¨™æº–ï¼“ï¼¤æç”»ç”¨ã®ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’çºã‚ãŸæ§‹é€ ä½“
 struct GRAPHICS_HARDWARE_DIRECT3D9_SHADER_BASE3D
 {
-	// ƒ‚ƒfƒ‹•`‰æ—pƒsƒNƒZƒ‹’PˆÊƒ‰ƒCƒeƒBƒ“ƒOƒ^ƒCƒv‚Ì’¸“_ƒVƒF[ƒ_[( ƒŠƒXƒg‚Í”z—ñ‚Ì¶‚©‚ç )
-	// [ ƒVƒƒƒhƒEƒ}ƒbƒv‚Ì—L–³( 0:–³‚µ 1:—L‚è ) ]
-	// /* [ ƒƒbƒVƒ…ƒ^ƒCƒv( 0:„‘ÌƒƒbƒVƒ… 1:4ƒ{[ƒ““àƒXƒLƒjƒ“ƒOƒƒbƒVƒ… 2:8ƒ{[ƒ““àƒXƒLƒjƒ“ƒOƒƒbƒVƒ… ) ] */
-	// /* [ ƒoƒ“ƒvƒ}ƒbƒv‚Ì—L–³( 0:–³‚µ 1:—L‚è ) ] */
-	// [ ƒtƒHƒOƒ^ƒCƒv ]
+	// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ãƒ”ã‚¯ã‚»ãƒ«å˜ä½ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ã‚¿ã‚¤ãƒ—ã®é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼( ãƒªã‚¹ãƒˆã¯é…åˆ—ã®å·¦ã‹ã‚‰ )
+	// [ ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ã®æœ‰ç„¡( 0:ç„¡ã— 1:æœ‰ã‚Š ) ]
+	// /* [ ãƒ¡ãƒƒã‚·ãƒ¥ã‚¿ã‚¤ãƒ—( 0:å‰›ä½“ãƒ¡ãƒƒã‚·ãƒ¥ 1:4ãƒœãƒ¼ãƒ³å†…ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥ 2:8ãƒœãƒ¼ãƒ³å†…ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥ ) ] */
+	// /* [ ãƒãƒ³ãƒ—ãƒãƒƒãƒ—ã®æœ‰ç„¡( 0:ç„¡ã— 1:æœ‰ã‚Š ) ] */
+	// [ ãƒ•ã‚©ã‚°ã‚¿ã‚¤ãƒ— ]
 	D_IDirect3DVertexShader9				*Base3D_PixelLighting_VS[ 2 ]/*[ 3 ]*//*[ 2 ]*/[ 4 ] ;
 
-	// ƒ‚ƒfƒ‹•`‰æ—pƒsƒNƒZƒ‹’PˆÊƒ‰ƒCƒeƒBƒ“ƒOƒ^ƒCƒv‚ÌƒsƒNƒZƒ‹ƒVƒF[ƒ_[( ƒŠƒXƒg‚Í”z—ñ‚Ì¶‚©‚ç )
-	// [ ƒVƒƒƒhƒEƒ}ƒbƒv‚Ì—L–³( 0:–³‚µ 1:—L‚è ) ]
-	// /*[ ƒ}ƒ‹ƒ`ƒeƒNƒXƒ`ƒƒ‚ÌƒuƒŒƒ“ƒhƒ‚[ƒhAMV1_LAYERBLEND_TYPE_TRANSLUCENT ‚È‚Ç‚É +1 ‚µ‚½‚à‚Ì ( 0:ƒ}ƒ‹ƒ`ƒeƒNƒXƒ`ƒƒ–³‚µ  1:ƒ¿ƒuƒŒƒ“ƒh  2:‰ÁZƒuƒŒƒ“ƒh  3:æZƒuƒŒƒ“ƒh  4:æZƒuƒŒƒ“ƒh~2 ) ]*/
-	// /*[ ƒXƒyƒLƒ…ƒ‰ƒ}ƒbƒv ( 0:–³‚¢ 1:‚ ‚é ) ]*/
-	// /*[ ƒoƒ“ƒvƒ}ƒbƒv ( 0:‚È‚µ 1:‚ ‚è ) ]*/
-	// [ ƒ‰ƒCƒgƒCƒ“ƒfƒbƒNƒX ]
-	// [ ƒXƒyƒLƒ…ƒ‰‚Ì—L–³( 0:–³‚µ 1:—L‚è ) ]
-	// [ “ÁêŒø‰Ê( 0:’Êí•`‰æ  1:æZ•`‰æ  2:RGB”½“]  3:•`‰æ‹P“x‚S”{  4:æZÏ‚İƒ¿ƒuƒŒƒ“ƒhƒ‚[ƒh‚Ì’Êí•`‰æ  5:æZÏ‚İƒ¿ƒuƒŒƒ“ƒhƒ‚[ƒh‚ÌRGB”½“]  6:æZÏ‚İƒ¿ƒuƒŒƒ“ƒhƒ‚[ƒh‚Ì•`‰æ‹P“x4”{ ) ]
+	// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ãƒ”ã‚¯ã‚»ãƒ«å˜ä½ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ã‚¿ã‚¤ãƒ—ã®ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼( ãƒªã‚¹ãƒˆã¯é…åˆ—ã®å·¦ã‹ã‚‰ )
+	// [ ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ã®æœ‰ç„¡( 0:ç„¡ã— 1:æœ‰ã‚Š ) ]
+	// /*[ ãƒãƒ«ãƒãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã€MV1_LAYERBLEND_TYPE_TRANSLUCENT ãªã©ã« +1 ã—ãŸã‚‚ã® ( 0:ãƒãƒ«ãƒãƒ†ã‚¯ã‚¹ãƒãƒ£ç„¡ã—  1:Î±ãƒ–ãƒ¬ãƒ³ãƒ‰  2:åŠ ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰  3:ä¹—ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰  4:ä¹—ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰Ã—2 ) ]*/
+	// /*[ ã‚¹ãƒšã‚­ãƒ¥ãƒ©ãƒãƒƒãƒ— ( 0:ç„¡ã„ 1:ã‚ã‚‹ ) ]*/
+	// /*[ ãƒãƒ³ãƒ—ãƒãƒƒãƒ— ( 0:ãªã— 1:ã‚ã‚Š ) ]*/
+	// [ ãƒ©ã‚¤ãƒˆã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ ]
+	// [ ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã®æœ‰ç„¡( 0:ç„¡ã— 1:æœ‰ã‚Š ) ]
+	// [ ç‰¹æ®ŠåŠ¹æœ( 0:é€šå¸¸æç”»  1:ä¹—ç®—æç”»  2:RGBåè»¢  3:æç”»è¼åº¦ï¼”å€  4:ä¹—ç®—æ¸ˆã¿Î±ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã®é€šå¸¸æç”»  5:ä¹—ç®—æ¸ˆã¿Î±ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã®RGBåè»¢  6:ä¹—ç®—æ¸ˆã¿Î±ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã®æç”»è¼åº¦4å€ ) ]
 	D_IDirect3DPixelShader9					*Base3D_PixelLighting_Normal_PS[ 2 ]/*[ 5 ]*//*[ 2 ]*//*[ 2 ]*/[ 84 ][ 2 ][ 7 ] ;
 
 
@@ -373,453 +373,453 @@ struct GRAPHICS_HARDWARE_DIRECT3D9_SHADER_BASE3D
 
 
 
-	// ƒ‚ƒfƒ‹•`‰æ—p‚ÌƒVƒƒƒhƒEƒ}ƒbƒv‚Ö‚ÌƒŒƒ“ƒ_ƒŠƒ“ƒO—p’¸“_ƒVƒF[ƒ_[
-	// /*[ ƒƒbƒVƒ…ƒ^ƒCƒv( 0:„‘ÌƒƒbƒVƒ… 1:4ƒ{[ƒ““àƒXƒLƒjƒ“ƒOƒƒbƒVƒ…  2:8ƒ{[ƒ““àƒXƒLƒjƒ“ƒOƒƒbƒVƒ… ) ]*/
-	// [ ƒoƒ“ƒvƒ}ƒbƒv‚Ì—L–³( 0:–³‚µ 1:—L‚è ) ]
+	// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ã®ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ã¸ã®ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ç”¨é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼
+	// /*[ ãƒ¡ãƒƒã‚·ãƒ¥ã‚¿ã‚¤ãƒ—( 0:å‰›ä½“ãƒ¡ãƒƒã‚·ãƒ¥ 1:4ãƒœãƒ¼ãƒ³å†…ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥  2:8ãƒœãƒ¼ãƒ³å†…ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥ ) ]*/
+	// [ ãƒãƒ³ãƒ—ãƒãƒƒãƒ—ã®æœ‰ç„¡( 0:ç„¡ã— 1:æœ‰ã‚Š ) ]
 	D_IDirect3DVertexShader9				*Base3D_ShadowMap_VS/*[ 3 ]*/[ 2 ] ;
 
-	// ƒ‚ƒfƒ‹•`‰æ—p‚Ìƒ‰ƒCƒeƒBƒ“ƒO‚È‚µ’¸“_ƒVƒF[ƒ_[
-	// /*[ ƒƒbƒVƒ…ƒ^ƒCƒv( 0:„‘ÌƒƒbƒVƒ… 1:4ƒ{[ƒ““àƒXƒLƒjƒ“ƒOƒƒbƒVƒ…  2:8ƒ{[ƒ““àƒXƒLƒjƒ“ƒOƒƒbƒVƒ… ) ]*/
-	// [ ƒtƒHƒOƒ^ƒCƒv ]
+	// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ã®ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ãªã—é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼
+	// /*[ ãƒ¡ãƒƒã‚·ãƒ¥ã‚¿ã‚¤ãƒ—( 0:å‰›ä½“ãƒ¡ãƒƒã‚·ãƒ¥ 1:4ãƒœãƒ¼ãƒ³å†…ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥  2:8ãƒœãƒ¼ãƒ³å†…ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥ ) ]*/
+	// [ ãƒ•ã‚©ã‚°ã‚¿ã‚¤ãƒ— ]
 	D_IDirect3DVertexShader9				*Base3D_NoLighting_VS/*[ 3 ]*/[ 4 ] ;
 
-	// ƒ‚ƒfƒ‹•`‰æ—p‚Ìƒ‰ƒCƒeƒBƒ“ƒO‚ ‚è’¸“_ƒVƒF[ƒ_[
-	// [ ƒVƒF[ƒ_[ƒ‚ƒfƒ‹( 0:SM2  1:SM3 )
-	// [ ƒVƒƒƒhƒEƒ}ƒbƒv‚Ì—L–³( 0:–³‚µ 1:—L‚è ) ]
-	// /*[ ƒƒbƒVƒ…ƒ^ƒCƒv( 0:„‘ÌƒƒbƒVƒ… 1:4ƒ{[ƒ““àƒXƒLƒjƒ“ƒOƒƒbƒVƒ…  2:8ƒ{[ƒ““àƒXƒLƒjƒ“ƒOƒƒbƒVƒ… ) ]*/
-	// /*[ ƒoƒ“ƒvƒ}ƒbƒv‚Ì—L–³( 0:–³‚µ 1:—L‚è ) ]*/
-	// [ ƒtƒHƒOƒ^ƒCƒv ]
-	// [ ƒ‰ƒCƒgƒCƒ“ƒfƒbƒNƒX ]
-	// [ ƒXƒyƒLƒ…ƒ‰‚Ì—L–³( 0:–³‚µ 1:—L‚è ) ]
+	// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ã®ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ã‚ã‚Šé ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼
+	// [ ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒ¢ãƒ‡ãƒ«( 0:SM2  1:SM3 )
+	// [ ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ã®æœ‰ç„¡( 0:ç„¡ã— 1:æœ‰ã‚Š ) ]
+	// /*[ ãƒ¡ãƒƒã‚·ãƒ¥ã‚¿ã‚¤ãƒ—( 0:å‰›ä½“ãƒ¡ãƒƒã‚·ãƒ¥ 1:4ãƒœãƒ¼ãƒ³å†…ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥  2:8ãƒœãƒ¼ãƒ³å†…ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥ ) ]*/
+	// /*[ ãƒãƒ³ãƒ—ãƒãƒƒãƒ—ã®æœ‰ç„¡( 0:ç„¡ã— 1:æœ‰ã‚Š ) ]*/
+	// [ ãƒ•ã‚©ã‚°ã‚¿ã‚¤ãƒ— ]
+	// [ ãƒ©ã‚¤ãƒˆã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ ]
+	// [ ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã®æœ‰ç„¡( 0:ç„¡ã— 1:æœ‰ã‚Š ) ]
 	D_IDirect3DVertexShader9				*Base3D_VertexLighting_VS[ 2 ][ 2 ]/*[ 3 ]*//*[ 2 ]*/[ 4 ][ 20 ][ 2 ] ;
 
 
-	// ƒ‚ƒfƒ‹•`‰æ—p‚ÌƒVƒƒƒhƒEƒ}ƒbƒv‚Ö‚ÌƒŒƒ“ƒ_ƒŠƒ“ƒO—pƒsƒNƒZƒ‹ƒVƒF[ƒ_[
+	// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ã®ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ã¸ã®ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ç”¨ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼
 	D_IDirect3DPixelShader9					*Base3D_ShadowMap_Normal_PS ;
 
-	// ƒ‚ƒfƒ‹•`‰æ—p‚Ìƒ‰ƒCƒeƒBƒ“ƒO‚È‚µƒsƒNƒZƒ‹ƒVƒF[ƒ_[
-	// /*[ ƒ}ƒ‹ƒ`ƒeƒNƒXƒ`ƒƒ‚ÌƒuƒŒƒ“ƒhƒ‚[ƒhAMV1_LAYERBLEND_TYPE_TRANSLUCENT ‚È‚Ç‚É +1 ‚µ‚½‚à‚Ì ( 0:ƒ}ƒ‹ƒ`ƒeƒNƒXƒ`ƒƒ–³‚µ  1:ƒ¿ƒuƒŒƒ“ƒh  2:‰ÁZƒuƒŒƒ“ƒh  3:æZƒuƒŒƒ“ƒh  4:æZƒuƒŒƒ“ƒh~2 ) ]*/
-	// [ “ÁêŒø‰Ê( 0:’Êí•`‰æ  1:æZ•`‰æ  2:RGB”½“]  3:•`‰æ‹P“x‚S”{  4:æZÏ‚İƒ¿ƒuƒŒƒ“ƒhƒ‚[ƒh‚Ì’Êí•`‰æ  5:æZÏ‚İƒ¿ƒuƒŒƒ“ƒhƒ‚[ƒh‚ÌRGB”½“]  6:æZÏ‚İƒ¿ƒuƒŒƒ“ƒhƒ‚[ƒh‚Ì•`‰æ‹P“x4”{ ) ]
+	// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ã®ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ãªã—ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼
+	// /*[ ãƒãƒ«ãƒãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã€MV1_LAYERBLEND_TYPE_TRANSLUCENT ãªã©ã« +1 ã—ãŸã‚‚ã® ( 0:ãƒãƒ«ãƒãƒ†ã‚¯ã‚¹ãƒãƒ£ç„¡ã—  1:Î±ãƒ–ãƒ¬ãƒ³ãƒ‰  2:åŠ ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰  3:ä¹—ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰  4:ä¹—ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰Ã—2 ) ]*/
+	// [ ç‰¹æ®ŠåŠ¹æœ( 0:é€šå¸¸æç”»  1:ä¹—ç®—æç”»  2:RGBåè»¢  3:æç”»è¼åº¦ï¼”å€  4:ä¹—ç®—æ¸ˆã¿Î±ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã®é€šå¸¸æç”»  5:ä¹—ç®—æ¸ˆã¿Î±ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã®RGBåè»¢  6:ä¹—ç®—æ¸ˆã¿Î±ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã®æç”»è¼åº¦4å€ ) ]
 	D_IDirect3DPixelShader9					*Base3D_NoLighting_Normal_PS/*[ 5 ]*/[ 7 ] ;
 
-	// ƒ‚ƒfƒ‹•`‰æ—p‚Ìƒ‰ƒCƒeƒBƒ“ƒO‚ ‚èƒsƒNƒZƒ‹ƒVƒF[ƒ_[
-	// [ ƒVƒF[ƒ_[ƒ‚ƒfƒ‹( 0:SM2  1:SM3 )
-	// [ ƒVƒƒƒhƒEƒ}ƒbƒv‚Ì—L–³( 0:–³‚µ 1:—L‚è ) ]
-	// /* [ ƒ}ƒ‹ƒ`ƒeƒNƒXƒ`ƒƒ‚ÌƒuƒŒƒ“ƒhƒ‚[ƒhAMV1_LAYERBLEND_TYPE_TRANSLUCENT ‚È‚Ç‚É +1 ‚µ‚½‚à‚Ì ( 0:ƒ}ƒ‹ƒ`ƒeƒNƒXƒ`ƒƒ–³‚µ  1:ƒ¿ƒuƒŒƒ“ƒh  2:‰ÁZƒuƒŒƒ“ƒh  3:æZƒuƒŒƒ“ƒh  4:æZƒuƒŒƒ“ƒh~2 ) ] */
-	// /* [ ƒXƒyƒLƒ…ƒ‰ƒ}ƒbƒv ( 0:–³‚¢ 1:‚ ‚é ) ] */
-	// /* [ ƒoƒ“ƒvƒ}ƒbƒv ( 0:‚È‚µ 1:‚ ‚è ) ] */
-	// [ ƒ‰ƒCƒgƒCƒ“ƒfƒbƒNƒX ]
-	// [ ƒXƒyƒLƒ…ƒ‰‚Ì—L–³( 0:–³‚µ 1:—L‚è ) ]
-	// [ “ÁêŒø‰Ê( 0:’Êí•`‰æ  1:æZ•`‰æ  2:RGB”½“]  3:•`‰æ‹P“x‚S”{  4:æZÏ‚İƒ¿ƒuƒŒƒ“ƒhƒ‚[ƒh‚Ì’Êí•`‰æ  5:æZÏ‚İƒ¿ƒuƒŒƒ“ƒhƒ‚[ƒh‚ÌRGB”½“]  6:æZÏ‚İƒ¿ƒuƒŒƒ“ƒhƒ‚[ƒh‚Ì•`‰æ‹P“x4”{ ) ]
+	// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ã®ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ã‚ã‚Šãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼
+	// [ ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒ¢ãƒ‡ãƒ«( 0:SM2  1:SM3 )
+	// [ ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ã®æœ‰ç„¡( 0:ç„¡ã— 1:æœ‰ã‚Š ) ]
+	// /* [ ãƒãƒ«ãƒãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã€MV1_LAYERBLEND_TYPE_TRANSLUCENT ãªã©ã« +1 ã—ãŸã‚‚ã® ( 0:ãƒãƒ«ãƒãƒ†ã‚¯ã‚¹ãƒãƒ£ç„¡ã—  1:Î±ãƒ–ãƒ¬ãƒ³ãƒ‰  2:åŠ ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰  3:ä¹—ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰  4:ä¹—ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰Ã—2 ) ] */
+	// /* [ ã‚¹ãƒšã‚­ãƒ¥ãƒ©ãƒãƒƒãƒ— ( 0:ç„¡ã„ 1:ã‚ã‚‹ ) ] */
+	// /* [ ãƒãƒ³ãƒ—ãƒãƒƒãƒ— ( 0:ãªã— 1:ã‚ã‚Š ) ] */
+	// [ ãƒ©ã‚¤ãƒˆã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ ]
+	// [ ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã®æœ‰ç„¡( 0:ç„¡ã— 1:æœ‰ã‚Š ) ]
+	// [ ç‰¹æ®ŠåŠ¹æœ( 0:é€šå¸¸æç”»  1:ä¹—ç®—æç”»  2:RGBåè»¢  3:æç”»è¼åº¦ï¼”å€  4:ä¹—ç®—æ¸ˆã¿Î±ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã®é€šå¸¸æç”»  5:ä¹—ç®—æ¸ˆã¿Î±ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã®RGBåè»¢  6:ä¹—ç®—æ¸ˆã¿Î±ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã®æç”»è¼åº¦4å€ ) ]
 	D_IDirect3DPixelShader9					*Base3D_VertexLighting_Normal_PS[ 2 ][ 2 ]/*[ 5 ]*//*[ 2 ]*//*[ 2 ]*/[ 10 ][ 2 ][ 7 ] ;
 } ;
 
 #ifndef DX_NON_MODEL
 
-// Direct3D9 ‚Ìƒ‚ƒfƒ‹•`‰æ—p‚ÌƒVƒF[ƒ_[‚ğ“Z‚ß‚½\‘¢‘Ì
+// Direct3D9 ã®ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ã®ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’çºã‚ãŸæ§‹é€ ä½“
 struct GRAPHICS_HARDWARE_DIRECT3D9_SHADER_MODEL
 {
-	// ƒ‚ƒfƒ‹•`‰æ—pƒsƒNƒZƒ‹’PˆÊƒ‰ƒCƒeƒBƒ“ƒOƒ^ƒCƒv‚Ì’¸“_ƒVƒF[ƒ_[( ƒŠƒXƒg‚Í”z—ñ‚Ì¶‚©‚ç )
-	// [ ƒVƒƒƒhƒEƒ}ƒbƒv‚Ì—L–³( 0:–³‚µ 1:—L‚è ) ]
-	// [ ƒƒbƒVƒ…ƒ^ƒCƒv( 0:„‘ÌƒƒbƒVƒ… 1:4ƒ{[ƒ““àƒXƒLƒjƒ“ƒOƒƒbƒVƒ… 2:8ƒ{[ƒ““àƒXƒLƒjƒ“ƒOƒƒbƒVƒ… ) ]
-	// [ ƒoƒ“ƒvƒ}ƒbƒv‚Ì—L–³( 0:–³‚µ 1:—L‚è ) ]
-	// [ ƒtƒHƒOƒ^ƒCƒv ]
+	// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ãƒ”ã‚¯ã‚»ãƒ«å˜ä½ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ã‚¿ã‚¤ãƒ—ã®é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼( ãƒªã‚¹ãƒˆã¯é…åˆ—ã®å·¦ã‹ã‚‰ )
+	// [ ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ã®æœ‰ç„¡( 0:ç„¡ã— 1:æœ‰ã‚Š ) ]
+	// [ ãƒ¡ãƒƒã‚·ãƒ¥ã‚¿ã‚¤ãƒ—( 0:å‰›ä½“ãƒ¡ãƒƒã‚·ãƒ¥ 1:4ãƒœãƒ¼ãƒ³å†…ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥ 2:8ãƒœãƒ¼ãƒ³å†…ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥ ) ]
+	// [ ãƒãƒ³ãƒ—ãƒãƒƒãƒ—ã®æœ‰ç„¡( 0:ç„¡ã— 1:æœ‰ã‚Š ) ]
+	// [ ãƒ•ã‚©ã‚°ã‚¿ã‚¤ãƒ— ]
 	D_IDirect3DVertexShader9				*MV1_PixelLighting_VS[ 2 ][ 3 ][ 2 ][ 4 ] ;
 
-	// ƒ‚ƒfƒ‹•`‰æ—pƒsƒNƒZƒ‹’PˆÊƒ‰ƒCƒeƒBƒ“ƒOƒ^ƒCƒv‚ÌƒgƒD[ƒ“—pƒsƒNƒZƒ‹ƒVƒF[ƒ_[( ƒŠƒXƒg‚Í”z—ñ‚Ì¶‚©‚ç )
-	// [ ƒVƒƒƒhƒEƒ}ƒbƒv‚Ì—L–³( 0:–³‚µ 1:—L‚è ) ]
-	// [ ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒOƒ^ƒCƒv( 0:ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO type 1   1:ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO Type 2 ) ]
-	// [ ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚ÌƒXƒtƒBƒAƒ}ƒbƒv‚Ì—L–³‚ÆƒuƒŒƒ“ƒhƒ^ƒCƒv( 0:ƒXƒtƒBƒAƒ}ƒbƒv‚Í–³‚¢   1:MV1_LAYERBLEND_TYPE_MODULATE  2:MV1_LAYERBLEND_TYPE_ADDITIVE ) ]
-	// [ ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚ÌƒfƒBƒtƒ…[ƒYƒOƒ‰ƒf[ƒVƒ‡ƒ“‚ÌƒuƒŒƒ“ƒhƒ^ƒCƒv( 0:MV1_LAYERBLEND_TYPE_TRANSLUCENT  1:MV1_LAYERBLEND_TYPE_MODULATE ) ]
-	// [ ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚ÌƒXƒyƒLƒ…ƒ‰ƒOƒ‰ƒf[ƒVƒ‡ƒ“‚ÌƒuƒŒƒ“ƒhƒ^ƒCƒv( 0:MV1_LAYERBLEND_TYPE_TRANSLUCENT  1:MV1_LAYERBLEND_TYPE_ADDITIVE ) ]
-	// [ ƒXƒyƒLƒ…ƒ‰ƒ}ƒbƒv ( 0:–³‚¢ 1:‚ ‚é ) ]
-	// [ ƒoƒ“ƒvƒ}ƒbƒv ( 0:‚È‚µ 1:‚ ‚è ) ]
-	// [ ƒ‰ƒCƒgƒCƒ“ƒfƒbƒNƒX ]
-	// [ ƒXƒyƒLƒ…ƒ‰‚Ì—L–³( 0:–³‚µ 1:—L‚è ) ]
+	// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ãƒ”ã‚¯ã‚»ãƒ«å˜ä½ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ã‚¿ã‚¤ãƒ—ã®ãƒˆã‚¥ãƒ¼ãƒ³ç”¨ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼( ãƒªã‚¹ãƒˆã¯é…åˆ—ã®å·¦ã‹ã‚‰ )
+	// [ ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ã®æœ‰ç„¡( 0:ç„¡ã— 1:æœ‰ã‚Š ) ]
+	// [ ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã‚¿ã‚¤ãƒ—( 0:ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚° type 1   1:ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚° Type 2 ) ]
+	// [ ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã®ã‚¹ãƒ•ã‚£ã‚¢ãƒãƒƒãƒ—ã®æœ‰ç„¡ã¨ãƒ–ãƒ¬ãƒ³ãƒ‰ã‚¿ã‚¤ãƒ—( 0:ã‚¹ãƒ•ã‚£ã‚¢ãƒãƒƒãƒ—ã¯ç„¡ã„   1:MV1_LAYERBLEND_TYPE_MODULATE  2:MV1_LAYERBLEND_TYPE_ADDITIVE ) ]
+	// [ ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã®ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚°ãƒ©ãƒ‡ãƒ¼ã‚·ãƒ§ãƒ³ã®ãƒ–ãƒ¬ãƒ³ãƒ‰ã‚¿ã‚¤ãƒ—( 0:MV1_LAYERBLEND_TYPE_TRANSLUCENT  1:MV1_LAYERBLEND_TYPE_MODULATE ) ]
+	// [ ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã®ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã‚°ãƒ©ãƒ‡ãƒ¼ã‚·ãƒ§ãƒ³ã®ãƒ–ãƒ¬ãƒ³ãƒ‰ã‚¿ã‚¤ãƒ—( 0:MV1_LAYERBLEND_TYPE_TRANSLUCENT  1:MV1_LAYERBLEND_TYPE_ADDITIVE ) ]
+	// [ ã‚¹ãƒšã‚­ãƒ¥ãƒ©ãƒãƒƒãƒ— ( 0:ç„¡ã„ 1:ã‚ã‚‹ ) ]
+	// [ ãƒãƒ³ãƒ—ãƒãƒƒãƒ— ( 0:ãªã— 1:ã‚ã‚Š ) ]
+	// [ ãƒ©ã‚¤ãƒˆã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ ]
+	// [ ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã®æœ‰ç„¡( 0:ç„¡ã— 1:æœ‰ã‚Š ) ]
 	D_IDirect3DPixelShader9					*MV1_PixelLighting_Toon_PS[ 2 ][ 2 ][ 3 ][ 2 ][ 2 ][ 2 ][ 2 ][ 84 ][ 2 ] ;
 
-	// ƒ‚ƒfƒ‹•`‰æ—pƒsƒNƒZƒ‹’PˆÊƒ‰ƒCƒeƒBƒ“ƒOƒ^ƒCƒv‚ÌƒsƒNƒZƒ‹ƒVƒF[ƒ_[( ƒŠƒXƒg‚Í”z—ñ‚Ì¶‚©‚ç )
-	// [ ƒVƒƒƒhƒEƒ}ƒbƒv‚Ì—L–³( 0:–³‚µ 1:—L‚è ) ]
-	// [ ƒ}ƒ‹ƒ`ƒeƒNƒXƒ`ƒƒ‚ÌƒuƒŒƒ“ƒhƒ‚[ƒhAMV1_LAYERBLEND_TYPE_TRANSLUCENT ‚È‚Ç‚É +1 ‚µ‚½‚à‚Ì ( 0:ƒ}ƒ‹ƒ`ƒeƒNƒXƒ`ƒƒ–³‚µ  1:ƒ¿ƒuƒŒƒ“ƒh  2:‰ÁZƒuƒŒƒ“ƒh  3:æZƒuƒŒƒ“ƒh  4:æZƒuƒŒƒ“ƒh~2 ) ]
-	// [ ƒXƒyƒLƒ…ƒ‰ƒ}ƒbƒv ( 0:–³‚¢ 1:‚ ‚é ) ]
-	// [ ƒoƒ“ƒvƒ}ƒbƒv ( 0:‚È‚µ 1:‚ ‚è ) ]
-	// [ ƒ‰ƒCƒgƒCƒ“ƒfƒbƒNƒX ]
-	// [ ƒXƒyƒLƒ…ƒ‰‚Ì—L–³( 0:–³‚µ 1:—L‚è ) ]
+	// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ãƒ”ã‚¯ã‚»ãƒ«å˜ä½ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ã‚¿ã‚¤ãƒ—ã®ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼( ãƒªã‚¹ãƒˆã¯é…åˆ—ã®å·¦ã‹ã‚‰ )
+	// [ ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ã®æœ‰ç„¡( 0:ç„¡ã— 1:æœ‰ã‚Š ) ]
+	// [ ãƒãƒ«ãƒãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã€MV1_LAYERBLEND_TYPE_TRANSLUCENT ãªã©ã« +1 ã—ãŸã‚‚ã® ( 0:ãƒãƒ«ãƒãƒ†ã‚¯ã‚¹ãƒãƒ£ç„¡ã—  1:Î±ãƒ–ãƒ¬ãƒ³ãƒ‰  2:åŠ ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰  3:ä¹—ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰  4:ä¹—ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰Ã—2 ) ]
+	// [ ã‚¹ãƒšã‚­ãƒ¥ãƒ©ãƒãƒƒãƒ— ( 0:ç„¡ã„ 1:ã‚ã‚‹ ) ]
+	// [ ãƒãƒ³ãƒ—ãƒãƒƒãƒ— ( 0:ãªã— 1:ã‚ã‚Š ) ]
+	// [ ãƒ©ã‚¤ãƒˆã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ ]
+	// [ ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã®æœ‰ç„¡( 0:ç„¡ã— 1:æœ‰ã‚Š ) ]
 	D_IDirect3DPixelShader9					*MV1_PixelLighting_Normal_PS[ 2 ][ 5 ][ 2 ][ 2 ][ 84 ][ 2 ] ;
 
 
 
 
 
-	// ƒ‚ƒfƒ‹•`‰æ—p‚Ìƒ}ƒeƒŠƒAƒ‹—v‘f•`‰æ—pƒsƒNƒZƒ‹ƒVƒF[ƒ_[
-	// [ ƒ}ƒeƒŠƒAƒ‹ƒ^ƒCƒv( DX_MATERIAL_TYPE_MAT_SPEC_LUMINANCE_UNORM ‚È‚Ç ) ]
+	// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ã®ãƒãƒ†ãƒªã‚¢ãƒ«è¦ç´ æç”»ç”¨ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼
+	// [ ãƒãƒ†ãƒªã‚¢ãƒ«ã‚¿ã‚¤ãƒ—( DX_MATERIAL_TYPE_MAT_SPEC_LUMINANCE_UNORM ãªã© ) ]
 	D_IDirect3DPixelShader9					*MV1_MaterialType_PS[ DX_MATERIAL_TYPE_NUM ] ;
 
 
 
 
 
-	// ƒ‚ƒfƒ‹•`‰æ—p‚ÌƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚Ì—ÖŠsü•`‰æ—p’¸“_ƒVƒF[ƒ_[
-	// [ ƒƒbƒVƒ…ƒ^ƒCƒv( 0:„‘ÌƒƒbƒVƒ… 1:4ƒ{[ƒ““àƒXƒLƒjƒ“ƒOƒƒbƒVƒ…  2:8ƒ{[ƒ““àƒXƒLƒjƒ“ƒOƒƒbƒVƒ… ) ]
-	// [ ƒtƒHƒOƒ^ƒCƒv ]
+	// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ã®ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã®è¼ªéƒ­ç·šæç”»ç”¨é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼
+	// [ ãƒ¡ãƒƒã‚·ãƒ¥ã‚¿ã‚¤ãƒ—( 0:å‰›ä½“ãƒ¡ãƒƒã‚·ãƒ¥ 1:4ãƒœãƒ¼ãƒ³å†…ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥  2:8ãƒœãƒ¼ãƒ³å†…ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥ ) ]
+	// [ ãƒ•ã‚©ã‚°ã‚¿ã‚¤ãƒ— ]
 	D_IDirect3DVertexShader9				*MV1_ToonOutLine_VS[ 3 ][ 4 ] ;
 
-	// ƒ‚ƒfƒ‹•`‰æ—p‚ÌƒVƒƒƒhƒEƒ}ƒbƒv‚Ö‚ÌƒŒƒ“ƒ_ƒŠƒ“ƒO—p’¸“_ƒVƒF[ƒ_[
-	// [ ƒƒbƒVƒ…ƒ^ƒCƒv( 0:„‘ÌƒƒbƒVƒ… 1:4ƒ{[ƒ““àƒXƒLƒjƒ“ƒOƒƒbƒVƒ…  2:8ƒ{[ƒ““àƒXƒLƒjƒ“ƒOƒƒbƒVƒ… ) ]
+	// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ã®ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ã¸ã®ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ç”¨é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼
+	// [ ãƒ¡ãƒƒã‚·ãƒ¥ã‚¿ã‚¤ãƒ—( 0:å‰›ä½“ãƒ¡ãƒƒã‚·ãƒ¥ 1:4ãƒœãƒ¼ãƒ³å†…ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥  2:8ãƒœãƒ¼ãƒ³å†…ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥ ) ]
 	D_IDirect3DVertexShader9				*MV1_ShadowMap_VS[ 3 ] ;
 
-	// ƒ‚ƒfƒ‹•`‰æ—p‚Ìƒ‰ƒCƒeƒBƒ“ƒO‚È‚µ’¸“_ƒVƒF[ƒ_[
-	// [ ƒƒbƒVƒ…ƒ^ƒCƒv( 0:„‘ÌƒƒbƒVƒ… 1:4ƒ{[ƒ““àƒXƒLƒjƒ“ƒOƒƒbƒVƒ…  2:8ƒ{[ƒ““àƒXƒLƒjƒ“ƒOƒƒbƒVƒ… ) ]
-	// [ ƒtƒHƒOƒ^ƒCƒv ]
+	// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ã®ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ãªã—é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼
+	// [ ãƒ¡ãƒƒã‚·ãƒ¥ã‚¿ã‚¤ãƒ—( 0:å‰›ä½“ãƒ¡ãƒƒã‚·ãƒ¥ 1:4ãƒœãƒ¼ãƒ³å†…ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥  2:8ãƒœãƒ¼ãƒ³å†…ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥ ) ]
+	// [ ãƒ•ã‚©ã‚°ã‚¿ã‚¤ãƒ— ]
 	D_IDirect3DVertexShader9				*MV1_NoLighting_VS[ 3 ][ 4 ] ;
 
-	// ƒ‚ƒfƒ‹•`‰æ—p‚Ìƒ‰ƒCƒeƒBƒ“ƒO‚ ‚è’¸“_ƒVƒF[ƒ_[
-	// [ ƒVƒF[ƒ_[ƒ‚ƒfƒ‹( 0:SM2  1:SM3 )
-	// [ ƒVƒƒƒhƒEƒ}ƒbƒv‚Ì—L–³( 0:–³‚µ 1:—L‚è ) ]
-	// [ ƒƒbƒVƒ…ƒ^ƒCƒv( 0:„‘ÌƒƒbƒVƒ… 1:4ƒ{[ƒ““àƒXƒLƒjƒ“ƒOƒƒbƒVƒ…  2:8ƒ{[ƒ““àƒXƒLƒjƒ“ƒOƒƒbƒVƒ… ) ]
-	// [ ƒoƒ“ƒvƒ}ƒbƒv‚Ì—L–³( 0:–³‚µ 1:—L‚è ) ]
-	// [ ƒtƒHƒOƒ^ƒCƒv ]
-	// [ ƒ‰ƒCƒgƒCƒ“ƒfƒbƒNƒX ]
-	// [ ƒXƒyƒLƒ…ƒ‰‚Ì—L–³( 0:–³‚µ 1:—L‚è ) ]
+	// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ã®ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ã‚ã‚Šé ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼
+	// [ ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒ¢ãƒ‡ãƒ«( 0:SM2  1:SM3 )
+	// [ ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ã®æœ‰ç„¡( 0:ç„¡ã— 1:æœ‰ã‚Š ) ]
+	// [ ãƒ¡ãƒƒã‚·ãƒ¥ã‚¿ã‚¤ãƒ—( 0:å‰›ä½“ãƒ¡ãƒƒã‚·ãƒ¥ 1:4ãƒœãƒ¼ãƒ³å†…ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥  2:8ãƒœãƒ¼ãƒ³å†…ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥ ) ]
+	// [ ãƒãƒ³ãƒ—ãƒãƒƒãƒ—ã®æœ‰ç„¡( 0:ç„¡ã— 1:æœ‰ã‚Š ) ]
+	// [ ãƒ•ã‚©ã‚°ã‚¿ã‚¤ãƒ— ]
+	// [ ãƒ©ã‚¤ãƒˆã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ ]
+	// [ ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã®æœ‰ç„¡( 0:ç„¡ã— 1:æœ‰ã‚Š ) ]
 	D_IDirect3DVertexShader9				*MV1_VertexLighting_VS[ 2 ][ 2 ][ 3 ][ 2 ][ 4 ][ 20 ][ 2 ] ;
 
 
-	// ƒ‚ƒfƒ‹•`‰æ—p‚ÌƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚Ì—ÖŠsü•`‰æ—pƒsƒNƒZƒ‹ƒVƒF[ƒ_[
+	// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ã®ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã®è¼ªéƒ­ç·šæç”»ç”¨ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼
 	D_IDirect3DPixelShader9					*MV1_ToonOutLine_PS ;
 
-	// ƒ‚ƒfƒ‹•`‰æ—p‚ÌƒVƒƒƒhƒEƒ}ƒbƒv‚Ö‚ÌƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO—pƒsƒNƒZƒ‹ƒVƒF[ƒ_[
-	// [ ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒOƒ^ƒCƒv( 0:ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO type 1   1:ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO type 2 ) ]
-	// [ ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚ÌƒXƒtƒBƒAƒ}ƒbƒv‚Ì—L–³‚ÆƒuƒŒƒ“ƒhƒ^ƒCƒv( 0:ƒXƒtƒBƒAƒ}ƒbƒv‚Í–³‚¢   1:MV1_LAYERBLEND_TYPE_MODULATE  2:MV1_LAYERBLEND_TYPE_ADDITIVE ) ]
-	// [ ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚ÌƒfƒBƒtƒ…[ƒYƒOƒ‰ƒf[ƒVƒ‡ƒ“‚ÌƒuƒŒƒ“ƒhƒ^ƒCƒv( 0:MV1_LAYERBLEND_TYPE_TRANSLUCENT  1:MV1_LAYERBLEND_TYPE_MODULATE ) ]
+	// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ã®ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ã¸ã®ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ç”¨ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼
+	// [ ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã‚¿ã‚¤ãƒ—( 0:ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚° type 1   1:ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚° type 2 ) ]
+	// [ ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã®ã‚¹ãƒ•ã‚£ã‚¢ãƒãƒƒãƒ—ã®æœ‰ç„¡ã¨ãƒ–ãƒ¬ãƒ³ãƒ‰ã‚¿ã‚¤ãƒ—( 0:ã‚¹ãƒ•ã‚£ã‚¢ãƒãƒƒãƒ—ã¯ç„¡ã„   1:MV1_LAYERBLEND_TYPE_MODULATE  2:MV1_LAYERBLEND_TYPE_ADDITIVE ) ]
+	// [ ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã®ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚°ãƒ©ãƒ‡ãƒ¼ã‚·ãƒ§ãƒ³ã®ãƒ–ãƒ¬ãƒ³ãƒ‰ã‚¿ã‚¤ãƒ—( 0:MV1_LAYERBLEND_TYPE_TRANSLUCENT  1:MV1_LAYERBLEND_TYPE_MODULATE ) ]
 	D_IDirect3DPixelShader9					*MV1_ShadowMap_Toon_PS[ 2 ][ 3 ][ 2 ] ;
 
-	// ƒ‚ƒfƒ‹•`‰æ—p‚ÌƒVƒƒƒhƒEƒ}ƒbƒv‚Ö‚ÌƒŒƒ“ƒ_ƒŠƒ“ƒO—pƒsƒNƒZƒ‹ƒVƒF[ƒ_[
+	// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ã®ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ã¸ã®ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ç”¨ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼
 	D_IDirect3DPixelShader9					*MV1_ShadowMap_Normal_PS ;
 
-	// ƒ‚ƒfƒ‹•`‰æ—p‚Ìƒ‰ƒCƒeƒBƒ“ƒO‚È‚µƒgƒD[ƒ“—pƒsƒNƒZƒ‹ƒVƒF[ƒ_[( ƒŠƒXƒg‚Í”z—ñ‚Ì¶‚©‚ç )
-	// [ ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒOƒ^ƒCƒv( 0:ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO type 1   1:ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO type 2 ) ]
-	// [ ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚ÌƒfƒBƒtƒ…[ƒYƒOƒ‰ƒf[ƒVƒ‡ƒ“‚ÌƒuƒŒƒ“ƒhƒ^ƒCƒv( 0:MV1_LAYERBLEND_TYPE_TRANSLUCENT  1:MV1_LAYERBLEND_TYPE_MODULATE ) ]
+	// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ã®ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ãªã—ãƒˆã‚¥ãƒ¼ãƒ³ç”¨ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼( ãƒªã‚¹ãƒˆã¯é…åˆ—ã®å·¦ã‹ã‚‰ )
+	// [ ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã‚¿ã‚¤ãƒ—( 0:ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚° type 1   1:ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚° type 2 ) ]
+	// [ ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã®ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚°ãƒ©ãƒ‡ãƒ¼ã‚·ãƒ§ãƒ³ã®ãƒ–ãƒ¬ãƒ³ãƒ‰ã‚¿ã‚¤ãƒ—( 0:MV1_LAYERBLEND_TYPE_TRANSLUCENT  1:MV1_LAYERBLEND_TYPE_MODULATE ) ]
 	D_IDirect3DPixelShader9					*MV1_NoLighting_Toon_PS[ 2 ][ 2 ] ;
 
-	// ƒ‚ƒfƒ‹•`‰æ—p‚Ìƒ‰ƒCƒeƒBƒ“ƒO‚È‚µƒsƒNƒZƒ‹ƒVƒF[ƒ_[
-	// [ ƒ}ƒ‹ƒ`ƒeƒNƒXƒ`ƒƒ‚ÌƒuƒŒƒ“ƒhƒ‚[ƒhAMV1_LAYERBLEND_TYPE_TRANSLUCENT ‚È‚Ç‚É +1 ‚µ‚½‚à‚Ì ( 0:ƒ}ƒ‹ƒ`ƒeƒNƒXƒ`ƒƒ–³‚µ  1:ƒ¿ƒuƒŒƒ“ƒh  2:‰ÁZƒuƒŒƒ“ƒh  3:æZƒuƒŒƒ“ƒh  4:æZƒuƒŒƒ“ƒh~2 ) ]
+	// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ã®ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ãªã—ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼
+	// [ ãƒãƒ«ãƒãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã€MV1_LAYERBLEND_TYPE_TRANSLUCENT ãªã©ã« +1 ã—ãŸã‚‚ã® ( 0:ãƒãƒ«ãƒãƒ†ã‚¯ã‚¹ãƒãƒ£ç„¡ã—  1:Î±ãƒ–ãƒ¬ãƒ³ãƒ‰  2:åŠ ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰  3:ä¹—ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰  4:ä¹—ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰Ã—2 ) ]
 	D_IDirect3DPixelShader9					*MV1_NoLighting_Normal_PS[ 5 ] ;
 
-	// ƒ‚ƒfƒ‹•`‰æ—p‚Ìƒ‰ƒCƒeƒBƒ“ƒO‚ ‚èƒgƒD[ƒ“—pƒsƒNƒZƒ‹ƒVƒF[ƒ_[
-	// [ ƒVƒF[ƒ_[ƒ‚ƒfƒ‹( 0:SM2  1:SM3 )
-	// [ ƒVƒƒƒhƒEƒ}ƒbƒv‚Ì—L–³( 0:–³‚µ 1:—L‚è ) ]
-	// [ ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒOƒ^ƒCƒv( 0:ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO type 1   1:ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO type 2 ) ]
-	// [ ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚ÌƒXƒtƒBƒAƒ}ƒbƒv‚Ì—L–³‚ÆƒuƒŒƒ“ƒhƒ^ƒCƒv( 0:ƒXƒtƒBƒAƒ}ƒbƒv‚Í–³‚¢   1:MV1_LAYERBLEND_TYPE_MODULATE  2:MV1_LAYERBLEND_TYPE_ADDITIVE ) ]
-	// [ ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚ÌƒfƒBƒtƒ…[ƒYƒOƒ‰ƒf[ƒVƒ‡ƒ“‚ÌƒuƒŒƒ“ƒhƒ^ƒCƒv( 0:MV1_LAYERBLEND_TYPE_TRANSLUCENT  1:MV1_LAYERBLEND_TYPE_MODULATE ) ]
-	// [ ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚ÌƒXƒyƒLƒ…ƒ‰ƒOƒ‰ƒf[ƒVƒ‡ƒ“‚ÌƒuƒŒƒ“ƒhƒ^ƒCƒv( 0:MV1_LAYERBLEND_TYPE_TRANSLUCENT  1:MV1_LAYERBLEND_TYPE_ADDITIVE ) ]
-	// [ ƒXƒyƒLƒ…ƒ‰ƒ}ƒbƒv ( 0:–³‚¢ 1:‚ ‚é ) ]
-	// [ ƒoƒ“ƒvƒ}ƒbƒv ( 0:‚È‚µ 1:‚ ‚è ) ]
-	// [ ƒ‰ƒCƒgƒCƒ“ƒfƒbƒNƒX ]
-	// [ ƒXƒyƒLƒ…ƒ‰‚Ì—L–³( 0:–³‚µ 1:—L‚è ) ]
+	// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ã®ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ã‚ã‚Šãƒˆã‚¥ãƒ¼ãƒ³ç”¨ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼
+	// [ ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒ¢ãƒ‡ãƒ«( 0:SM2  1:SM3 )
+	// [ ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ã®æœ‰ç„¡( 0:ç„¡ã— 1:æœ‰ã‚Š ) ]
+	// [ ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã‚¿ã‚¤ãƒ—( 0:ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚° type 1   1:ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚° type 2 ) ]
+	// [ ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã®ã‚¹ãƒ•ã‚£ã‚¢ãƒãƒƒãƒ—ã®æœ‰ç„¡ã¨ãƒ–ãƒ¬ãƒ³ãƒ‰ã‚¿ã‚¤ãƒ—( 0:ã‚¹ãƒ•ã‚£ã‚¢ãƒãƒƒãƒ—ã¯ç„¡ã„   1:MV1_LAYERBLEND_TYPE_MODULATE  2:MV1_LAYERBLEND_TYPE_ADDITIVE ) ]
+	// [ ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã®ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚°ãƒ©ãƒ‡ãƒ¼ã‚·ãƒ§ãƒ³ã®ãƒ–ãƒ¬ãƒ³ãƒ‰ã‚¿ã‚¤ãƒ—( 0:MV1_LAYERBLEND_TYPE_TRANSLUCENT  1:MV1_LAYERBLEND_TYPE_MODULATE ) ]
+	// [ ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã®ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã‚°ãƒ©ãƒ‡ãƒ¼ã‚·ãƒ§ãƒ³ã®ãƒ–ãƒ¬ãƒ³ãƒ‰ã‚¿ã‚¤ãƒ—( 0:MV1_LAYERBLEND_TYPE_TRANSLUCENT  1:MV1_LAYERBLEND_TYPE_ADDITIVE ) ]
+	// [ ã‚¹ãƒšã‚­ãƒ¥ãƒ©ãƒãƒƒãƒ— ( 0:ç„¡ã„ 1:ã‚ã‚‹ ) ]
+	// [ ãƒãƒ³ãƒ—ãƒãƒƒãƒ— ( 0:ãªã— 1:ã‚ã‚Š ) ]
+	// [ ãƒ©ã‚¤ãƒˆã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ ]
+	// [ ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã®æœ‰ç„¡( 0:ç„¡ã— 1:æœ‰ã‚Š ) ]
 	D_IDirect3DPixelShader9					*MV1_VertexLighting_Toon_PS[ 2 ][ 2 ][ 2 ][ 3 ][ 2 ][ 2 ][ 2 ][ 2 ][ 10 ][ 2 ] ;
 
-	// ƒ‚ƒfƒ‹•`‰æ—p‚Ìƒ‰ƒCƒeƒBƒ“ƒO‚ ‚èƒsƒNƒZƒ‹ƒVƒF[ƒ_[
-	// [ ƒVƒF[ƒ_[ƒ‚ƒfƒ‹( 0:SM2  1:SM3 )
-	// [ ƒVƒƒƒhƒEƒ}ƒbƒv‚Ì—L–³( 0:–³‚µ 1:—L‚è ) ]
-	// [ ƒ}ƒ‹ƒ`ƒeƒNƒXƒ`ƒƒ‚ÌƒuƒŒƒ“ƒhƒ‚[ƒhAMV1_LAYERBLEND_TYPE_TRANSLUCENT ‚È‚Ç‚É +1 ‚µ‚½‚à‚Ì ( 0:ƒ}ƒ‹ƒ`ƒeƒNƒXƒ`ƒƒ–³‚µ  1:ƒ¿ƒuƒŒƒ“ƒh  2:‰ÁZƒuƒŒƒ“ƒh  3:æZƒuƒŒƒ“ƒh  4:æZƒuƒŒƒ“ƒh~2 ) ]
-	// [ ƒXƒyƒLƒ…ƒ‰ƒ}ƒbƒv ( 0:–³‚¢ 1:‚ ‚é ) ]
-	// [ ƒoƒ“ƒvƒ}ƒbƒv ( 0:‚È‚µ 1:‚ ‚è ) ]
-	// [ ƒ‰ƒCƒgƒCƒ“ƒfƒbƒNƒX ]
-	// [ ƒXƒyƒLƒ…ƒ‰‚Ì—L–³( 0:–³‚µ 1:—L‚è ) ]
+	// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ã®ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ã‚ã‚Šãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼
+	// [ ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒ¢ãƒ‡ãƒ«( 0:SM2  1:SM3 )
+	// [ ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ã®æœ‰ç„¡( 0:ç„¡ã— 1:æœ‰ã‚Š ) ]
+	// [ ãƒãƒ«ãƒãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã€MV1_LAYERBLEND_TYPE_TRANSLUCENT ãªã©ã« +1 ã—ãŸã‚‚ã® ( 0:ãƒãƒ«ãƒãƒ†ã‚¯ã‚¹ãƒãƒ£ç„¡ã—  1:Î±ãƒ–ãƒ¬ãƒ³ãƒ‰  2:åŠ ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰  3:ä¹—ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰  4:ä¹—ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰Ã—2 ) ]
+	// [ ã‚¹ãƒšã‚­ãƒ¥ãƒ©ãƒãƒƒãƒ— ( 0:ç„¡ã„ 1:ã‚ã‚‹ ) ]
+	// [ ãƒãƒ³ãƒ—ãƒãƒƒãƒ— ( 0:ãªã— 1:ã‚ã‚Š ) ]
+	// [ ãƒ©ã‚¤ãƒˆã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ ]
+	// [ ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã®æœ‰ç„¡( 0:ç„¡ã— 1:æœ‰ã‚Š ) ]
 	D_IDirect3DPixelShader9					*MV1_VertexLighting_Normal_PS[ 2 ][ 2 ][ 5 ][ 2 ][ 2 ][ 10 ][ 2 ] ;
 } ;
 #endif // DX_NON_MODEL
 
 
-// Direct3D9 ‚ÌƒVƒF[ƒ_[î•ñ‚ğ“Z‚ß‚½\‘¢‘Ì
+// Direct3D9 ã®ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼æƒ…å ±ã‚’çºã‚ãŸæ§‹é€ ä½“
 struct GRAPHICS_HARDWARE_DIRECT3D9_SHADER
 {
-//	int											UseShader ;						// ƒvƒƒOƒ‰ƒ}ƒuƒ‹ƒVƒF[ƒ_[‚ğg—p‚·‚é‚©‚Ç‚¤‚©( TRUE:g—p‚·‚é  FALSE:g—p‚µ‚È‚¢ )
+//	int											UseShader ;						// ãƒ—ãƒ­ã‚°ãƒ©ãƒãƒ–ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹( TRUE:ä½¿ç”¨ã™ã‚‹  FALSE:ä½¿ç”¨ã—ãªã„ )
 
-	DWORD										NativeVertexShaderVersion ;		// ƒGƒ~ƒ…ƒŒ[ƒVƒ‡ƒ“–³‚µ‚Ì’¸“_ƒVƒF[ƒ_[‚Ìƒo[ƒWƒ‡ƒ“
+	DWORD										NativeVertexShaderVersion ;		// ã‚¨ãƒŸãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ç„¡ã—ã®é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³
 
-	int											ValidVertexShader ;				// ’¸“_ƒVƒF[ƒ_[‚ªg—p‰Â”\‚©‚Ç‚¤‚©( TRUE:g—p‰Â”\  FALSE:•s‰Â”\ )
-	int											ValidPixelShader ;				// ƒsƒNƒZƒ‹ƒVƒF[ƒ_[‚ªg—p‰Â”\‚©‚Ç‚¤‚©( TRUE:g—p‰Â”\  FALSE:•s‰Â”\ )
-	int											ValidVertexShader_SM3 ;			// Shader Model 3.0 ‚Ì’¸“_ƒVƒF[ƒ_[‚ªg—p‰Â”\‚©‚Ç‚¤‚©( TRUE:g—p‰Â”\  FALSE:•s‰Â”\ )
-	int											ValidPixelShader_SM3 ;			// Shader Model 3.0 ‚ÌƒsƒNƒZƒ‹ƒVƒF[ƒ_[‚ªg—p‰Â”\‚©‚Ç‚¤‚©( TRUE:g—p‰Â”\  FALSE:•s‰Â”\ )
+	int											ValidVertexShader ;				// é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãŒä½¿ç”¨å¯èƒ½ã‹ã©ã†ã‹( TRUE:ä½¿ç”¨å¯èƒ½  FALSE:ä¸å¯èƒ½ )
+	int											ValidPixelShader ;				// ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãŒä½¿ç”¨å¯èƒ½ã‹ã©ã†ã‹( TRUE:ä½¿ç”¨å¯èƒ½  FALSE:ä¸å¯èƒ½ )
+	int											ValidVertexShader_SM3 ;			// Shader Model 3.0 ã®é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãŒä½¿ç”¨å¯èƒ½ã‹ã©ã†ã‹( TRUE:ä½¿ç”¨å¯èƒ½  FALSE:ä¸å¯èƒ½ )
+	int											ValidPixelShader_SM3 ;			// Shader Model 3.0 ã®ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãŒä½¿ç”¨å¯èƒ½ã‹ã©ã†ã‹( TRUE:ä½¿ç”¨å¯èƒ½  FALSE:ä¸å¯èƒ½ )
 
-	DIRECT3D9_SHADERCONSTANTINFOSET				ShaderConstantInfo ;			// ƒVƒF[ƒ_[‚Ì’è”î•ñ
+	DIRECT3D9_SHADERCONSTANTINFOSET				ShaderConstantInfo ;			// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®å®šæ•°æƒ…å ±
 
-	GRAPHICS_HARDWARE_DIRECT3D9_SHADER_BASE		Base ;							// •W€•`‰æˆ——p‚ÌƒVƒF[ƒ_[‚ğ“Z‚ß‚½\‘¢‘Ì
-	GRAPHICS_HARDWARE_DIRECT3D9_SHADER_BASE3D	Base3D ;						// •W€‚R‚c•`‰æˆ——p‚ÌƒVƒF[ƒ_[‚ğ“Z‚ß‚½\‘¢‘Ì
+	GRAPHICS_HARDWARE_DIRECT3D9_SHADER_BASE		Base ;							// æ¨™æº–æç”»å‡¦ç†ç”¨ã®ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’çºã‚ãŸæ§‹é€ ä½“
+	GRAPHICS_HARDWARE_DIRECT3D9_SHADER_BASE3D	Base3D ;						// æ¨™æº–ï¼“ï¼¤æç”»å‡¦ç†ç”¨ã®ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’çºã‚ãŸæ§‹é€ ä½“
 
 #ifndef DX_NON_MODEL
-	int											UseBaseVertexShaderIndex ;		// g—p‚·‚é’¸“_ƒVƒF[ƒ_[‚Ìƒ‰ƒCƒgEƒtƒHƒOEƒtƒHƒ“ƒVƒF[ƒfƒBƒ“ƒO‚Ì—L–³‚Ì‚İİ’è‚µ‚½’l
-	int											UseBasePixelShaderIndex ;		// g—p‚·‚éƒsƒNƒZƒ‹ƒVƒF[ƒ_[‚Ìƒ‰ƒCƒgEƒtƒHƒ“ƒVƒF[ƒfƒBƒ“ƒO‚Ì—L–³‚Ì‚İİ’è‚µ‚½’l
-	int											UseBaseVertexShaderIndex_PL ;	// ƒsƒNƒZƒ‹’PˆÊƒ‰ƒCƒeƒBƒ“ƒOƒ^ƒCƒv‚Åg—p‚·‚é’¸“_ƒVƒF[ƒ_[‚Ìƒ‰ƒCƒgEƒtƒHƒOEƒtƒHƒ“ƒVƒF[ƒfƒBƒ“ƒO‚Ì—L–³‚Ì‚İİ’è‚µ‚½’l
-	int											UseBasePixelShaderIndex_PL ;	// ƒsƒNƒZƒ‹’PˆÊƒ‰ƒCƒeƒBƒ“ƒOƒ^ƒCƒv‚Åg—p‚·‚éƒsƒNƒZƒ‹ƒVƒF[ƒ_[‚Ìƒ‰ƒCƒgEƒtƒHƒ“ƒVƒF[ƒfƒBƒ“ƒO‚Ì—L–³‚Ì‚İİ’è‚µ‚½’l
-	int											UseOnlyPixelLightingTypeCode ;	// ƒsƒNƒZƒ‹’PˆÊƒ‰ƒCƒeƒBƒ“ƒOƒ^ƒCƒv‚ÌƒVƒF[ƒ_[ƒR[ƒh‚ğg—p‚·‚éw’è‚É‚È‚Á‚Ä‚¢‚é‚©‚Ç‚¤‚©
+	int											UseBaseVertexShaderIndex ;		// ä½¿ç”¨ã™ã‚‹é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ãƒ©ã‚¤ãƒˆãƒ»ãƒ•ã‚©ã‚°ãƒ»ãƒ•ã‚©ãƒ³ã‚·ã‚§ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°ã®æœ‰ç„¡ã®ã¿è¨­å®šã—ãŸå€¤
+	int											UseBasePixelShaderIndex ;		// ä½¿ç”¨ã™ã‚‹ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ãƒ©ã‚¤ãƒˆãƒ»ãƒ•ã‚©ãƒ³ã‚·ã‚§ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°ã®æœ‰ç„¡ã®ã¿è¨­å®šã—ãŸå€¤
+	int											UseBaseVertexShaderIndex_PL ;	// ãƒ”ã‚¯ã‚»ãƒ«å˜ä½ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ã‚¿ã‚¤ãƒ—ã§ä½¿ç”¨ã™ã‚‹é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ãƒ©ã‚¤ãƒˆãƒ»ãƒ•ã‚©ã‚°ãƒ»ãƒ•ã‚©ãƒ³ã‚·ã‚§ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°ã®æœ‰ç„¡ã®ã¿è¨­å®šã—ãŸå€¤
+	int											UseBasePixelShaderIndex_PL ;	// ãƒ”ã‚¯ã‚»ãƒ«å˜ä½ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ã‚¿ã‚¤ãƒ—ã§ä½¿ç”¨ã™ã‚‹ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ãƒ©ã‚¤ãƒˆãƒ»ãƒ•ã‚©ãƒ³ã‚·ã‚§ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°ã®æœ‰ç„¡ã®ã¿è¨­å®šã—ãŸå€¤
+	int											UseOnlyPixelLightingTypeCode ;	// ãƒ”ã‚¯ã‚»ãƒ«å˜ä½ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ã‚¿ã‚¤ãƒ—ã®ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚³ãƒ¼ãƒ‰ã‚’ä½¿ç”¨ã™ã‚‹æŒ‡å®šã«ãªã£ã¦ã„ã‚‹ã‹ã©ã†ã‹
 
-	GRAPHICS_HARDWARE_DIRECT3D9_SHADER_MODEL	Model ;							// ƒ‚ƒfƒ‹•`‰æˆ——p‚ÌƒVƒF[ƒ_[‚ğ“Z‚ß‚½\‘¢‘Ì
+	GRAPHICS_HARDWARE_DIRECT3D9_SHADER_MODEL	Model ;							// ãƒ¢ãƒ‡ãƒ«æç”»å‡¦ç†ç”¨ã®ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’çºã‚ãŸæ§‹é€ ä½“
 #endif // DX_NON_MODEL
 } ;
 
 
 
-// Direct3D9 ‚Ì’¸“_ƒVƒF[ƒ_éŒ¾‚ğ“Z‚ß‚½\‘¢‘Ì
+// Direct3D9 ã®é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€å®£è¨€ã‚’çºã‚ãŸæ§‹é€ ä½“
 struct GRAPHICS_HARDWARE_DIRECT3D9_VERTEXDECLARATION
 {
-	// ŒÅ’èƒpƒCƒvƒ‰ƒCƒ“ŒİŠ·ƒVƒF[ƒ_[‚Åg—p‚·‚é’¸“_ƒf[ƒ^ƒtƒH[ƒ}ƒbƒg
+	// å›ºå®šãƒ‘ã‚¤ãƒ—ãƒ©ã‚¤ãƒ³äº’æ›ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã§ä½¿ç”¨ã™ã‚‹é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆ
 	D_IDirect3DVertexDeclaration9 *				Base2DDeclaration[ VERTEXFVF_DECL_NUM ] ;
 
-	// ƒ†[ƒU[ƒVƒF[ƒ_ƒ‚[ƒh‚Åg—p‚·‚é’¸“_ƒf[ƒ^ƒtƒH[ƒ}ƒbƒg
+	// ãƒ¦ãƒ¼ã‚¶ãƒ¼ã‚·ã‚§ãƒ¼ãƒ€ãƒ¢ãƒ¼ãƒ‰ã§ä½¿ç”¨ã™ã‚‹é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆ
 	D_IDirect3DVertexDeclaration9 *				UserShaderDeclaration[ DX_VERTEX_TYPE_NUM ] ;
 
 #ifndef DX_NON_MODEL
-	// ’¸“_ƒVƒF[ƒ_éŒ¾( ƒŠƒXƒg‚Í”z—ñ‚Ì¶‚©‚ç )
-	// [ ƒoƒ“ƒvƒ}ƒbƒvî•ñ•t‚«‚©‚Ç‚¤‚©( 1:ƒoƒ“ƒvƒ}ƒbƒv•t‚« 0:•t‚¢‚Ä‚È‚¢ ) ]
-	// [ ƒXƒLƒjƒ“ƒOƒƒbƒVƒ…‚©‚Ç‚¤‚©( 0:„‘ÌƒƒbƒVƒ… 1:4ƒ{[ƒ““àƒXƒLƒjƒ“ƒOƒƒbƒVƒ… 2:8ƒ{[ƒ““àƒXƒLƒjƒ“ƒOƒƒbƒVƒ… ) ]
-	// [ UV‚Ì” ]
+	// é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€å®£è¨€( ãƒªã‚¹ãƒˆã¯é…åˆ—ã®å·¦ã‹ã‚‰ )
+	// [ ãƒãƒ³ãƒ—ãƒãƒƒãƒ—æƒ…å ±ä»˜ãã‹ã©ã†ã‹( 1:ãƒãƒ³ãƒ—ãƒãƒƒãƒ—ä»˜ã 0:ä»˜ã„ã¦ãªã„ ) ]
+	// [ ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥ã‹ã©ã†ã‹( 0:å‰›ä½“ãƒ¡ãƒƒã‚·ãƒ¥ 1:4ãƒœãƒ¼ãƒ³å†…ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥ 2:8ãƒœãƒ¼ãƒ³å†…ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥ ) ]
+	// [ UVã®æ•° ]
 	D_IDirect3DVertexDeclaration9 *				MV1_VertexDeclaration[ 2 ][ 3 ][ 9 ] ;
 #endif // DX_NON_MODEL
 } ;
 
 
 
-// ƒeƒNƒXƒ`ƒƒƒXƒe[ƒW‚Ìî•ñ
+// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¹ãƒ†ãƒ¼ã‚¸ã®æƒ…å ±
 struct GRAPHICS_HARDDATA_DIRECT3D9_TEXTURESTAGEINFO
 {
-	void *						Texture ;							// ƒXƒe[ƒW‚ÉƒZƒbƒg‚³‚ê‚Ä‚¢‚éƒeƒNƒXƒ`ƒƒƒT[ƒtƒFƒX
-	int							TextureCoordIndex ;					// g—p‚·‚éƒeƒNƒXƒ`ƒƒÀ•WƒCƒ“ƒfƒbƒNƒX
-	int							ResultTempARG ;						// o—ÍæƒŒƒWƒXƒ^‚ğƒeƒ“ƒ|ƒ‰ƒŠ‚É‚·‚é‚©‚Ç‚¤‚©
-	short						AlphaARG1, AlphaARG2, AlphaOP ;		// Direct3DDevice ‚Ì D3DTSS_ALPHAOP ‚Æ D3DTSS_ALPHAARG1 ‚Æ D3DTSS_ALPHAARG2 ‚Ìİ’è’l
-	short						ColorARG1, ColorARG2, ColorOP ;		// Direct3DDevice ‚Ì D3DTSS_COLOROP ‚Æ D3DTSS_COLORARG1 ‚Æ D3DTSS_COLORARG2 ‚Ìİ’è’l
+	void *						Texture ;							// ã‚¹ãƒ†ãƒ¼ã‚¸ã«ã‚»ãƒƒãƒˆã•ã‚Œã¦ã„ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚µãƒ¼ãƒ•ã‚§ã‚¹
+	int							TextureCoordIndex ;					// ä½¿ç”¨ã™ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£åº§æ¨™ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+	int							ResultTempARG ;						// å‡ºåŠ›å…ˆãƒ¬ã‚¸ã‚¹ã‚¿ã‚’ãƒ†ãƒ³ãƒãƒ©ãƒªã«ã™ã‚‹ã‹ã©ã†ã‹
+	short						AlphaARG1, AlphaARG2, AlphaOP ;		// Direct3DDevice ã® D3DTSS_ALPHAOP ã¨ D3DTSS_ALPHAARG1 ã¨ D3DTSS_ALPHAARG2 ã®è¨­å®šå€¤
+	short						ColorARG1, ColorARG2, ColorOP ;		// Direct3DDevice ã® D3DTSS_COLOROP ã¨ D3DTSS_COLORARG1 ã¨ D3DTSS_COLORARG2 ã®è¨­å®šå€¤
 } ;
 
-// ‚c‚‰‚’‚…‚ƒ‚”‚R‚c ‚ÌƒuƒŒƒ“ƒhİ’è‚ÉŠÖ‚éİ’è‚Ìî•ñ
+// ï¼¤ï½‰ï½’ï½…ï½ƒï½”ï¼“ï¼¤ ã®ãƒ–ãƒ¬ãƒ³ãƒ‰è¨­å®šã«é–¢ã‚‹è¨­å®šã®æƒ…å ±
 struct GRAPHICS_HARDDATA_DIRECT3D9_BLENDINFO
 {
-	int							AlphaTestEnable ;							// Direct3DDevice9 ‚Ì D3DRS_ALPHATESTENABLE ‚Ìİ’è’l
-	int							AlphaRef ;									// Direct3DDevice9 ‚Ì D3DRS_ALPHAREF ‚Ìİ’è’l
-	int							AlphaFunc ;									// Direct3DDevice9 ‚Ì D3DRS_ALPHAFUNC ‚Ìİ’è’l
-	int							AlphaBlendEnable ;							// Direct3DDevice9 ‚Ì D3DRS_ALPHABLENDENABLE ‚Ìİ’è’l
-	int							SeparateAlphaBlendEnable ;					// Direct3DDevice9 ‚Ì D3DRS_SEPARATEALPHABLENDENABLE ‚Ìİ’è’l
+	int							AlphaTestEnable ;							// Direct3DDevice9 ã® D3DRS_ALPHATESTENABLE ã®è¨­å®šå€¤
+	int							AlphaRef ;									// Direct3DDevice9 ã® D3DRS_ALPHAREF ã®è¨­å®šå€¤
+	int							AlphaFunc ;									// Direct3DDevice9 ã® D3DRS_ALPHAFUNC ã®è¨­å®šå€¤
+	int							AlphaBlendEnable ;							// Direct3DDevice9 ã® D3DRS_ALPHABLENDENABLE ã®è¨­å®šå€¤
+	int							SeparateAlphaBlendEnable ;					// Direct3DDevice9 ã® D3DRS_SEPARATEALPHABLENDENABLE ã®è¨­å®šå€¤
 
-	DWORD						FactorColor ;								// Direct3DDevice9 ‚Ì D3DRS_TEXTUREFACTOR ‚Ìİ’è’l
-	int							SrcBlend, DestBlend ;						// Direct3DDevice9 ‚Ì D3DRS_DESTBLEND ‚Æ D3DRS_SRCBLEND ‚Ìİ’è’l
-	int							BlendOp ;									// Direct3DDevice9 ‚Ì D3DRS_BLENDOP ‚Ìİ’è’l
-	int							SrcBlendAlpha, DestBlendAlpha ;				// Direct3DDevice9 ‚Ì D3DRS_DESTBLENDALPHA ‚Æ D3DRS_SRCBLENDALPHA ‚Ìİ’è’l
-	int							BlendOpAlpha ;								// Direct3DDevice9 ‚Ì D3DRS_BLENDOPALPHA ‚Ìİ’è’l
-	int							UseTextureStageNum ;						// g—p‚µ‚Ä‚¢‚éƒeƒNƒXƒ`ƒƒƒXƒe[ƒW‚Ì”
-	GRAPHICS_HARDDATA_DIRECT3D9_TEXTURESTAGEINFO TextureStageInfo[ USE_TEXTURESTAGE_NUM] ;	// Direct3DDevice ‚ÌƒeƒNƒXƒ`ƒƒƒXƒe[ƒWİ’è’l( Direct3DDevice ‚É‚±‚ê‚©‚ç“K‰‚·‚é—\’è‚Ìİ’è’l )
+	DWORD						FactorColor ;								// Direct3DDevice9 ã® D3DRS_TEXTUREFACTOR ã®è¨­å®šå€¤
+	int							SrcBlend, DestBlend ;						// Direct3DDevice9 ã® D3DRS_DESTBLEND ã¨ D3DRS_SRCBLEND ã®è¨­å®šå€¤
+	int							BlendOp ;									// Direct3DDevice9 ã® D3DRS_BLENDOP ã®è¨­å®šå€¤
+	int							SrcBlendAlpha, DestBlendAlpha ;				// Direct3DDevice9 ã® D3DRS_DESTBLENDALPHA ã¨ D3DRS_SRCBLENDALPHA ã®è¨­å®šå€¤
+	int							BlendOpAlpha ;								// Direct3DDevice9 ã® D3DRS_BLENDOPALPHA ã®è¨­å®šå€¤
+	int							UseTextureStageNum ;						// ä½¿ç”¨ã—ã¦ã„ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¹ãƒ†ãƒ¼ã‚¸ã®æ•°
+	GRAPHICS_HARDDATA_DIRECT3D9_TEXTURESTAGEINFO TextureStageInfo[ USE_TEXTURESTAGE_NUM] ;	// Direct3DDevice ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¹ãƒ†ãƒ¼ã‚¸è¨­å®šå€¤( Direct3DDevice ã«ã“ã‚Œã‹ã‚‰é©å¿œã™ã‚‹äºˆå®šã®è¨­å®šå€¤ )
 } ;
 
-// Direct3D9Device ‚Éİ’è‚µ‚Ä‚¢‚é’l‚ğ“Z‚ß‚½\‘¢‘Ì
+// Direct3D9Device ã«è¨­å®šã—ã¦ã„ã‚‹å€¤ã‚’çºã‚ãŸæ§‹é€ ä½“
 struct GRAPHICS_HARDDATA_DIRECT3D9_DEVICE_STATE
 {
-	GRAPHICS_HARDDATA_DIRECT3D9_BLENDINFO	BlendInfo ;										// ƒuƒŒƒ“ƒhŠÖŒW‚Ìİ’èî•ñ
-	int										CullMode ;										// ƒJƒŠƒ“ƒOƒ‚[ƒh
-	int										DepthBias ;										// [“x’lƒoƒCƒAƒX
-	int										DrawMode ;										// •`‰æƒ‚[ƒh
-	float									FactorColorPSConstantF[ 4 ] ;					// ƒsƒNƒZƒ‹ƒVƒF[ƒ_[‚ğg‚Á‚½‚c‚wƒ‰ƒCƒuƒ‰ƒŠ•W€ˆ——p‚Ì FactorColor ‚Ì’l
-	float									IgnoreColorPSConstantF[ 4 ] ;					// ƒeƒNƒXƒ`ƒƒƒJƒ‰[–³‹ˆ——pƒJƒ‰[‚Ì’l
-	int										FillMode ;										// ƒtƒBƒ‹ƒ‚[ƒh
-	int										FogEnable ;										// ƒtƒHƒO‚ª—LŒø‚©‚Ç‚¤‚©( TRUE:—LŒø  FALSE:–³Œø )
-	int										FogMode ;										// ƒtƒHƒOƒ‚[ƒh
-	DWORD									FogColor ;										// ƒtƒHƒOƒJƒ‰[
-	float									FogStart ;										// ƒtƒHƒOŠJn‹——£
-	float									FogEnd ;										// ƒtƒHƒOI—¹‹——£
-	float									FogDensity ;									// ƒtƒHƒO–§“x
-	int										VerticalFogEnable ;								// ‚‚³ƒtƒHƒO‚ª—LŒø‚©‚Ç‚¤‚©( TRUE:—LŒø  FALSE:–³Œø )
-	int										VerticalFogMode ;								// ‚‚³ƒtƒHƒOƒ‚[ƒh
-	DWORD									VerticalFogColor ;								// ‚‚³ƒtƒHƒOƒJƒ‰[
-	float									VerticalFogStart ;								// ‚‚³ƒtƒHƒOŠJn‹——£
-	float									VerticalFogEnd ;								// ‚‚³ƒtƒHƒOI—¹‹——£
-	float									VerticalFogDensity ;							// ‚‚³ƒtƒHƒO–§“x
-	float									VerticalFogDensityStart ;						// ‚‚³ƒtƒHƒO–§“xŠJn‹——£
-	COLOR_F									GlobalAmbientLightColor ;						// ƒOƒ[ƒoƒ‹ƒAƒ“ƒrƒGƒ“ƒgƒ‰ƒCƒgƒJƒ‰[
-	int										LightEnableMaxIndex ;							// —LŒø‚Èƒ‰ƒCƒg‚ÌÅ‘åƒCƒ“ƒfƒbƒNƒX
-	int										LightEnableFlag[ 256 ] ;						// ƒ‰ƒCƒg‚ª—LŒø‚©‚Ç‚¤‚©ƒtƒ‰ƒO( TRUE:—LŒø  FALSE:–³Œø )
-	D_D3DLIGHT9								LightParam[ 256 ] ;								// ƒ‰ƒCƒg‚Ìƒpƒ‰ƒ[ƒ^
-	int										Lighting ;										// ƒ‰ƒCƒg‚ğg—p‚·‚é‚©ƒtƒ‰ƒO
-	D_D3DMATERIAL9							Material ;										// ƒ}ƒeƒŠƒAƒ‹
-	float									MaterialTypeParam[ MATERIAL_TYPEPARAM_MAX_NUM ] ;	// ƒ}ƒeƒŠƒAƒ‹•Êƒ^ƒCƒvƒpƒ‰ƒ[ƒ^
-	int										MaterialUseVertexDiffuseColor ;					// ’¸“_‚ÌƒfƒBƒtƒ…[ƒYƒJƒ‰[‚ğƒ}ƒeƒŠƒAƒ‹‚ÌƒfƒBƒtƒ…[ƒYƒJƒ‰[‚Æ‚µ‚Äg—p‚·‚é‚©‚Ç‚¤‚©
-	int										MaterialUseVertexSpecularColor ;				// ’¸“_‚ÌƒXƒyƒLƒ…ƒ‰ƒJƒ‰[‚ğƒ}ƒeƒŠƒAƒ‹‚ÌƒXƒyƒLƒ…ƒ‰ƒJƒ‰[‚Æ‚µ‚Äg—p‚·‚é‚©‚Ç‚¤‚©
-	int										MaxAnisotropy ;									// Å‘åˆÙ•û«
-	int										MaxAnisotropyDim[ USE_TEXTURESTAGE_NUM ] ;		// ŠeƒTƒ“ƒvƒ‰‚ÌÅ‘åˆÙ•û«
-	D_D3DTEXTUREFILTERTYPE					MagFilter[ USE_TEXTURESTAGE_NUM ] ;				// ŠeƒTƒ“ƒvƒ‰‚ÌŠg‘åƒtƒBƒ‹ƒ^
-	D_D3DTEXTUREFILTERTYPE					MinFilter[ USE_TEXTURESTAGE_NUM ] ;				// ŠeƒTƒ“ƒvƒ‰‚Ìk¬ƒtƒBƒ‹ƒ^
-	D_D3DTEXTUREFILTERTYPE					MipFilter[ USE_TEXTURESTAGE_NUM ] ;				// ŠeƒTƒ“ƒvƒ‰‚Ìƒ~ƒbƒvƒ}ƒbƒvƒtƒBƒ‹ƒ^
-	RECT									ScissorRect ;									// ƒVƒU[‹éŒ`
-	DWORD									SetFVF ;										// Œ»İ Direct3DDevice9 ‚ÉƒZƒbƒg‚µ‚Ä‚ ‚é FVF ƒR[ƒh
-	D_IDirect3DIndexBuffer9 *				SetIndexBuffer ;								// Œ»İ Direct3DDevice9 ‚ÉƒZƒbƒg‚µ‚Ä‚ ‚éƒCƒ“ƒfƒbƒNƒXƒoƒbƒtƒ@
-	int										SetNormalVertexShader ;							// ’Êí•`‰æ—p’¸“_ƒVƒF[ƒ_[‚ªƒZƒbƒg‚³‚ê‚Ä‚¢‚é‚©‚Ç‚¤‚©
-	int										SetNormalPixelShader ;							// ’Êí•`‰æ—pƒsƒNƒZƒ‹ƒVƒF[ƒ_[‚ªƒZƒbƒg‚³‚ê‚Ä‚¢‚é‚©‚Ç‚¤‚©
-	D_IDirect3DPixelShader9 *				SetPixelShader ;								// Œ»İ Direct3DDevice9 ‚ÉƒZƒbƒg‚µ‚Ä‚ ‚éƒsƒNƒZƒ‹ƒVƒF[ƒ_[
-	D_IDirect3DVertexDeclaration9 *			SetVertexDeclaration ;							// Œ»İ Direct3DDevice9 ‚ÉƒZƒbƒg‚µ‚Ä‚ ‚é’¸“_ƒVƒF[ƒ_éŒ¾
-	D_IDirect3DVertexShader9 *				SetVertexShader ;								// Œ»İ Direct3DDevice9 ‚ÉƒZƒbƒg‚µ‚Ä‚ ‚é’¸“_ƒVƒF[ƒ_[
-	D_IDirect3DVertexBuffer9 *				SetVertexBuffer ;								// Œ»İ Direct3DDevice9 ‚ÉƒZƒbƒg‚µ‚Ä‚ ‚é’¸“_ƒoƒbƒtƒ@
-	int										SetVertexBufferStride ;							// Œ»İ Direct3DDevice9 ‚ÉƒZƒbƒg‚µ‚Ä‚ ‚é’¸“_ƒoƒbƒtƒ@‚ÌƒXƒgƒ‰ƒCƒh
-	int										ShadeMode ;										// ƒVƒF[ƒfƒBƒ“ƒOƒ‚[ƒh
-	D_IDirect3DSurface9	*					TargetSurface[DX_RENDERTARGET_COUNT] ;			// •`‰æ‘ÎÛ‚ÌƒT[ƒtƒFƒX
-	int										TexAddressModeU[ USE_TEXTURESTAGE_NUM ] ;		// ƒeƒNƒXƒ`ƒƒƒAƒhƒŒƒXƒ‚[ƒh‚t
-	int										TexAddressModeV[ USE_TEXTURESTAGE_NUM ] ;		// ƒeƒNƒXƒ`ƒƒƒAƒhƒŒƒXƒ‚[ƒh‚u
-	int										TexAddressModeW[ USE_TEXTURESTAGE_NUM ] ;		// ƒeƒNƒXƒ`ƒƒƒAƒhƒŒƒXƒ‚[ƒh‚v
-	int										TextureTransformUse[ USE_TEXTURESTAGE_NUM ] ;	// ƒeƒNƒXƒ`ƒƒÀ•W•ÏŠ·s—ñ‚ğg—p‚·‚é‚©‚Ç‚¤‚©( TRUE:g—p‚·‚é  FALSE:g—p‚µ‚È‚¢ )
-	MATRIX									TextureTransformMatrix[ USE_TEXTURESTAGE_NUM ] ;// ƒeƒNƒXƒ`ƒƒÀ•W•ÏŠ·s—ñ
-	int										UseSpecular ;									// ƒXƒyƒLƒ…ƒ‰‚ğg—p‚·‚é‚©‚Ç‚¤‚©
-	D_D3DVIEWPORT9							Viewport ;										// ƒrƒ…[ƒ|[ƒgî•ñ
-	int										ZEnable ;										// ‚yƒoƒbƒtƒ@‚Ì—LŒøƒtƒ‰ƒO
-	int										ZFunc ;											// ‚y’l‚Ì”äŠrƒ‚[ƒh
-	int										ZWriteEnable ;									// ‚yƒoƒbƒtƒ@‚Ö‚Ì‘‚«‚İ‚ğs‚¤‚©Aƒtƒ‰ƒO
+	GRAPHICS_HARDDATA_DIRECT3D9_BLENDINFO	BlendInfo ;										// ãƒ–ãƒ¬ãƒ³ãƒ‰é–¢ä¿‚ã®è¨­å®šæƒ…å ±
+	int										CullMode ;										// ã‚«ãƒªãƒ³ã‚°ãƒ¢ãƒ¼ãƒ‰
+	int										DepthBias ;										// æ·±åº¦å€¤ãƒã‚¤ã‚¢ã‚¹
+	int										DrawMode ;										// æç”»ãƒ¢ãƒ¼ãƒ‰
+	float									FactorColorPSConstantF[ 4 ] ;					// ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ä½¿ã£ãŸï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªæ¨™æº–å‡¦ç†ç”¨ã® FactorColor ã®å€¤
+	float									IgnoreColorPSConstantF[ 4 ] ;					// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚«ãƒ©ãƒ¼ç„¡è¦–å‡¦ç†ç”¨ã‚«ãƒ©ãƒ¼ã®å€¤
+	int										FillMode ;										// ãƒ•ã‚£ãƒ«ãƒ¢ãƒ¼ãƒ‰
+	int										FogEnable ;										// ãƒ•ã‚©ã‚°ãŒæœ‰åŠ¹ã‹ã©ã†ã‹( TRUE:æœ‰åŠ¹  FALSE:ç„¡åŠ¹ )
+	int										FogMode ;										// ãƒ•ã‚©ã‚°ãƒ¢ãƒ¼ãƒ‰
+	DWORD									FogColor ;										// ãƒ•ã‚©ã‚°ã‚«ãƒ©ãƒ¼
+	float									FogStart ;										// ãƒ•ã‚©ã‚°é–‹å§‹è·é›¢
+	float									FogEnd ;										// ãƒ•ã‚©ã‚°çµ‚äº†è·é›¢
+	float									FogDensity ;									// ãƒ•ã‚©ã‚°å¯†åº¦
+	int										VerticalFogEnable ;								// é«˜ã•ãƒ•ã‚©ã‚°ãŒæœ‰åŠ¹ã‹ã©ã†ã‹( TRUE:æœ‰åŠ¹  FALSE:ç„¡åŠ¹ )
+	int										VerticalFogMode ;								// é«˜ã•ãƒ•ã‚©ã‚°ãƒ¢ãƒ¼ãƒ‰
+	DWORD									VerticalFogColor ;								// é«˜ã•ãƒ•ã‚©ã‚°ã‚«ãƒ©ãƒ¼
+	float									VerticalFogStart ;								// é«˜ã•ãƒ•ã‚©ã‚°é–‹å§‹è·é›¢
+	float									VerticalFogEnd ;								// é«˜ã•ãƒ•ã‚©ã‚°çµ‚äº†è·é›¢
+	float									VerticalFogDensity ;							// é«˜ã•ãƒ•ã‚©ã‚°å¯†åº¦
+	float									VerticalFogDensityStart ;						// é«˜ã•ãƒ•ã‚©ã‚°å¯†åº¦é–‹å§‹è·é›¢
+	COLOR_F									GlobalAmbientLightColor ;						// ã‚°ãƒ­ãƒ¼ãƒãƒ«ã‚¢ãƒ³ãƒ“ã‚¨ãƒ³ãƒˆãƒ©ã‚¤ãƒˆã‚«ãƒ©ãƒ¼
+	int										LightEnableMaxIndex ;							// æœ‰åŠ¹ãªãƒ©ã‚¤ãƒˆã®æœ€å¤§ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+	int										LightEnableFlag[ 256 ] ;						// ãƒ©ã‚¤ãƒˆãŒæœ‰åŠ¹ã‹ã©ã†ã‹ãƒ•ãƒ©ã‚°( TRUE:æœ‰åŠ¹  FALSE:ç„¡åŠ¹ )
+	D_D3DLIGHT9								LightParam[ 256 ] ;								// ãƒ©ã‚¤ãƒˆã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+	int										Lighting ;										// ãƒ©ã‚¤ãƒˆã‚’ä½¿ç”¨ã™ã‚‹ã‹ãƒ•ãƒ©ã‚°
+	D_D3DMATERIAL9							Material ;										// ãƒãƒ†ãƒªã‚¢ãƒ«
+	float									MaterialTypeParam[ MATERIAL_TYPEPARAM_MAX_NUM ] ;	// ãƒãƒ†ãƒªã‚¢ãƒ«åˆ¥ã‚¿ã‚¤ãƒ—ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+	int										MaterialUseVertexDiffuseColor ;					// é ‚ç‚¹ã®ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚«ãƒ©ãƒ¼ã‚’ãƒãƒ†ãƒªã‚¢ãƒ«ã®ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚«ãƒ©ãƒ¼ã¨ã—ã¦ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹
+	int										MaterialUseVertexSpecularColor ;				// é ‚ç‚¹ã®ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã‚«ãƒ©ãƒ¼ã‚’ãƒãƒ†ãƒªã‚¢ãƒ«ã®ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã‚«ãƒ©ãƒ¼ã¨ã—ã¦ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹
+	int										MaxAnisotropy ;									// æœ€å¤§ç•°æ–¹æ€§
+	int										MaxAnisotropyDim[ USE_TEXTURESTAGE_NUM ] ;		// å„ã‚µãƒ³ãƒ—ãƒ©ã®æœ€å¤§ç•°æ–¹æ€§
+	D_D3DTEXTUREFILTERTYPE					MagFilter[ USE_TEXTURESTAGE_NUM ] ;				// å„ã‚µãƒ³ãƒ—ãƒ©ã®æ‹¡å¤§ãƒ•ã‚£ãƒ«ã‚¿
+	D_D3DTEXTUREFILTERTYPE					MinFilter[ USE_TEXTURESTAGE_NUM ] ;				// å„ã‚µãƒ³ãƒ—ãƒ©ã®ç¸®å°ãƒ•ã‚£ãƒ«ã‚¿
+	D_D3DTEXTUREFILTERTYPE					MipFilter[ USE_TEXTURESTAGE_NUM ] ;				// å„ã‚µãƒ³ãƒ—ãƒ©ã®ãƒŸãƒƒãƒ—ãƒãƒƒãƒ—ãƒ•ã‚£ãƒ«ã‚¿
+	RECT									ScissorRect ;									// ã‚·ã‚¶ãƒ¼çŸ©å½¢
+	DWORD									SetFVF ;										// ç¾åœ¨ Direct3DDevice9 ã«ã‚»ãƒƒãƒˆã—ã¦ã‚ã‚‹ FVF ã‚³ãƒ¼ãƒ‰
+	D_IDirect3DIndexBuffer9 *				SetIndexBuffer ;								// ç¾åœ¨ Direct3DDevice9 ã«ã‚»ãƒƒãƒˆã—ã¦ã‚ã‚‹ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒãƒƒãƒ•ã‚¡
+	int										SetNormalVertexShader ;							// é€šå¸¸æç”»ç”¨é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãŒã‚»ãƒƒãƒˆã•ã‚Œã¦ã„ã‚‹ã‹ã©ã†ã‹
+	int										SetNormalPixelShader ;							// é€šå¸¸æç”»ç”¨ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãŒã‚»ãƒƒãƒˆã•ã‚Œã¦ã„ã‚‹ã‹ã©ã†ã‹
+	D_IDirect3DPixelShader9 *				SetPixelShader ;								// ç¾åœ¨ Direct3DDevice9 ã«ã‚»ãƒƒãƒˆã—ã¦ã‚ã‚‹ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼
+	D_IDirect3DVertexDeclaration9 *			SetVertexDeclaration ;							// ç¾åœ¨ Direct3DDevice9 ã«ã‚»ãƒƒãƒˆã—ã¦ã‚ã‚‹é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€å®£è¨€
+	D_IDirect3DVertexShader9 *				SetVertexShader ;								// ç¾åœ¨ Direct3DDevice9 ã«ã‚»ãƒƒãƒˆã—ã¦ã‚ã‚‹é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼
+	D_IDirect3DVertexBuffer9 *				SetVertexBuffer ;								// ç¾åœ¨ Direct3DDevice9 ã«ã‚»ãƒƒãƒˆã—ã¦ã‚ã‚‹é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡
+	int										SetVertexBufferStride ;							// ç¾åœ¨ Direct3DDevice9 ã«ã‚»ãƒƒãƒˆã—ã¦ã‚ã‚‹é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã®ã‚¹ãƒˆãƒ©ã‚¤ãƒ‰
+	int										ShadeMode ;										// ã‚·ã‚§ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°ãƒ¢ãƒ¼ãƒ‰
+	D_IDirect3DSurface9	*					TargetSurface[DX_RENDERTARGET_COUNT] ;			// æç”»å¯¾è±¡ã®ã‚µãƒ¼ãƒ•ã‚§ã‚¹
+	int										TexAddressModeU[ USE_TEXTURESTAGE_NUM ] ;		// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¢ãƒ‰ãƒ¬ã‚¹ãƒ¢ãƒ¼ãƒ‰ï¼µ
+	int										TexAddressModeV[ USE_TEXTURESTAGE_NUM ] ;		// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¢ãƒ‰ãƒ¬ã‚¹ãƒ¢ãƒ¼ãƒ‰ï¼¶
+	int										TexAddressModeW[ USE_TEXTURESTAGE_NUM ] ;		// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¢ãƒ‰ãƒ¬ã‚¹ãƒ¢ãƒ¼ãƒ‰ï¼·
+	int										TextureTransformUse[ USE_TEXTURESTAGE_NUM ] ;	// ãƒ†ã‚¯ã‚¹ãƒãƒ£åº§æ¨™å¤‰æ›è¡Œåˆ—ã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹( TRUE:ä½¿ç”¨ã™ã‚‹  FALSE:ä½¿ç”¨ã—ãªã„ )
+	MATRIX									TextureTransformMatrix[ USE_TEXTURESTAGE_NUM ] ;// ãƒ†ã‚¯ã‚¹ãƒãƒ£åº§æ¨™å¤‰æ›è¡Œåˆ—
+	int										UseSpecular ;									// ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹
+	D_D3DVIEWPORT9							Viewport ;										// ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆæƒ…å ±
+	int										ZEnable ;										// ï¼ºãƒãƒƒãƒ•ã‚¡ã®æœ‰åŠ¹ãƒ•ãƒ©ã‚°
+	int										ZFunc ;											// ï¼ºå€¤ã®æ¯”è¼ƒãƒ¢ãƒ¼ãƒ‰
+	int										ZWriteEnable ;									// ï¼ºãƒãƒƒãƒ•ã‚¡ã¸ã®æ›¸ãè¾¼ã¿ã‚’è¡Œã†ã‹ã€ãƒ•ãƒ©ã‚°
 } ;
 
 
-// Direct3DDevice9 ‚Ì•`‰æˆ—‚ÉŠÖ‚í‚éî•ñ‚Ì\‘¢‘Ì
+// Direct3DDevice9 ã®æç”»å‡¦ç†ã«é–¢ã‚ã‚‹æƒ…å ±ã®æ§‹é€ ä½“
 struct GRAPHICS_HARDDATA_DIRECT3D9_DRAWINFO
 {
-	BYTE *					VertexBufferNextAddr ;					// Ÿ‚Ìƒf[ƒ^‚ğŠi”[‚·‚×‚«’¸“_ƒoƒbƒtƒ@“à‚ÌƒAƒhƒŒƒX
-	BYTE *					VertexBufferAddr[ 2 ][ 3 ] ;			// Še’¸“_ƒoƒbƒtƒ@‚Ö‚Ìƒ|ƒCƒ“ƒ^( [ ‚R‚c’¸“_‚©‚Ç‚¤‚© ][ ’¸“_ƒ^ƒCƒv ] )
-	BYTE					VertexBuffer_NoTex[     D3DDEV_NOTEX_VERTBUFFERSIZE     ] ;	// ƒeƒNƒXƒ`ƒƒ‚ğg—p‚µ‚È‚¢’¸“_ƒoƒbƒtƒ@
-	BYTE					VertexBuffer_Tex[       D3DDEV_TEX_VERTBUFFERSIZE       ] ;	// ƒeƒNƒXƒ`ƒƒ‚ğg—p‚·‚é’¸“_ƒoƒbƒtƒ@
-	BYTE					VertexBuffer_BlendTex[  D3DDEV_BLENDTEX_VERTBUFFERSIZE  ] ;	// ƒuƒŒƒ“ƒhƒeƒNƒXƒ`ƒƒ‚ğg—p‚·‚é’¸“_ƒoƒbƒtƒ@
-	BYTE					VertexBuffer_3D[        D3DDEV_NOTEX_3D_VERTBUFFERSIZE  ] ;	// ‚R‚c—p’¸“_ƒoƒbƒtƒ@
-	int						Use3DVertex ;							// ‚R‚c’¸“_‚ğg—p‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©( 1:g—p‚µ‚Ä‚¢‚é  0:g—p‚µ‚Ä‚¢‚È‚¢ )
-	int						VertexNum ; 							// ’¸“_ƒoƒbƒtƒ@‚ÉŠi”[‚³‚ê‚Ä‚¢‚é’¸“_‚Ì”
-	int						VertexType ;							// ’¸“_ƒoƒbƒtƒ@‚ÉŠi”[‚³‚ê‚Ä‚¢‚é’¸“_ƒf[ƒ^( 0:ƒeƒNƒXƒ`ƒƒ‚È‚µ  1:ƒeƒNƒXƒ`ƒƒ‚ ‚è  2:ƒuƒŒƒ“ƒhƒeƒNƒXƒ`ƒƒ‚ ‚è )
-	D_D3DPRIMITIVETYPE		PrimitiveType ;							// ’¸“_ƒoƒbƒtƒ@‚ÉŠi”[‚³‚ê‚Ä‚¢‚é’¸“_ƒf[ƒ^‚ÌƒvƒŠƒ~ƒeƒBƒuƒ^ƒCƒv
+	BYTE *					VertexBufferNextAddr ;					// æ¬¡ã®ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã¹ãé ‚ç‚¹ãƒãƒƒãƒ•ã‚¡å†…ã®ã‚¢ãƒ‰ãƒ¬ã‚¹
+	BYTE *					VertexBufferAddr[ 2 ][ 3 ] ;			// å„é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã¸ã®ãƒã‚¤ãƒ³ã‚¿( [ ï¼“ï¼¤é ‚ç‚¹ã‹ã©ã†ã‹ ][ é ‚ç‚¹ã‚¿ã‚¤ãƒ— ] )
+	BYTE					VertexBuffer_NoTex[     D3DDEV_NOTEX_VERTBUFFERSIZE     ] ;	// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ä½¿ç”¨ã—ãªã„é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡
+	BYTE					VertexBuffer_Tex[       D3DDEV_TEX_VERTBUFFERSIZE       ] ;	// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ä½¿ç”¨ã™ã‚‹é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡
+	BYTE					VertexBuffer_BlendTex[  D3DDEV_BLENDTEX_VERTBUFFERSIZE  ] ;	// ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ä½¿ç”¨ã™ã‚‹é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡
+	BYTE					VertexBuffer_3D[        D3DDEV_NOTEX_3D_VERTBUFFERSIZE  ] ;	// ï¼“ï¼¤ç”¨é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡
+	int						Use3DVertex ;							// ï¼“ï¼¤é ‚ç‚¹ã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹ã‹ã©ã†ã‹( 1:ä½¿ç”¨ã—ã¦ã„ã‚‹  0:ä½¿ç”¨ã—ã¦ã„ãªã„ )
+	int						VertexNum ; 							// é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã«æ ¼ç´ã•ã‚Œã¦ã„ã‚‹é ‚ç‚¹ã®æ•°
+	int						VertexType ;							// é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã«æ ¼ç´ã•ã‚Œã¦ã„ã‚‹é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿( 0:ãƒ†ã‚¯ã‚¹ãƒãƒ£ãªã—  1:ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚ã‚Š  2:ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚ã‚Š )
+	D_D3DPRIMITIVETYPE		PrimitiveType ;							// é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã«æ ¼ç´ã•ã‚Œã¦ã„ã‚‹é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ã®ãƒ—ãƒªãƒŸãƒ†ã‚£ãƒ–ã‚¿ã‚¤ãƒ—
 
-	DWORD					DiffuseColor ;							// ƒfƒBƒtƒ…[ƒYƒJƒ‰[
+	DWORD					DiffuseColor ;							// ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚«ãƒ©ãƒ¼
 
-//	RECT					DrawRect ;								// •`‰æ”ÍˆÍ
-	int						BeginSceneFlag ;						// Graphics_D3D9_BeginScene ‚ğÀs‚µ‚Ä‚ ‚é‚©‚Ç‚¤‚©
-	int						BlendMaxNotDrawFlag ;					// ƒuƒŒƒ“ƒh’l‚ªÅ‘å‚Å‚ ‚é‚±‚Æ‚É‚æ‚è•`‰æ‚ğs‚í‚È‚¢‚©‚Ç‚¤‚©Aƒtƒ‰ƒO
+//	RECT					DrawRect ;								// æç”»ç¯„å›²
+	int						BeginSceneFlag ;						// Graphics_D3D9_BeginScene ã‚’å®Ÿè¡Œã—ã¦ã‚ã‚‹ã‹ã©ã†ã‹
+	int						BlendMaxNotDrawFlag ;					// ãƒ–ãƒ¬ãƒ³ãƒ‰å€¤ãŒæœ€å¤§ã§ã‚ã‚‹ã“ã¨ã«ã‚ˆã‚Šæç”»ã‚’è¡Œã‚ãªã„ã‹ã©ã†ã‹ã€ãƒ•ãƒ©ã‚°
 } ;
 
 
-// Direct3DDevice9 ‚Ì‰æ–ÊŠÖŒW‚Ìî•ñ‚Ì\‘¢‘Ì
+// Direct3DDevice9 ã®ç”»é¢é–¢ä¿‚ã®æƒ…å ±ã®æ§‹é€ ä½“
 struct GRAPHICS_HARDDATA_DIRECT3D9_SCREENINFO
 {
-	D_IDirect3DSurface9 *	BackBufferSurface ;						// ƒfƒoƒCƒX‚ª‚ÂƒoƒbƒNƒoƒbƒtƒ@ƒT[ƒtƒFƒX
-	int						SubBackBufferTextureSizeX ;				// ƒTƒuƒoƒbƒNƒoƒbƒtƒ@ƒeƒNƒXƒ`ƒƒ‚Ì‰¡•
-	int						SubBackBufferTextureSizeY ;				// ƒTƒuƒoƒbƒNƒoƒbƒtƒ@ƒeƒNƒXƒ`ƒƒ‚Ìc•
-	D_IDirect3DTexture9 *	SubBackBufferTexture ;					// ScreenCopy ‚â GetDrawScreen ‚ğÀŒ»‚·‚é‚½‚ß‚Ég—p‚·‚é•`‰æ‰Â”\ƒeƒNƒXƒ`ƒƒ
-	D_IDirect3DSurface9 *	SubBackBufferSurface ;					// ScreenCopy ‚â GetDrawScreen ‚ğÀŒ»‚·‚é‚½‚ß‚Ég—p‚·‚é•`‰æ‰Â”\ƒT[ƒtƒFƒX
-	D_D3DFORMAT				SubBackBufferTexturePixelFormat ;		// ƒTƒuƒoƒbƒNƒoƒbƒtƒ@ƒeƒNƒXƒ`ƒƒ‚ÌƒsƒNƒZƒ‹ƒtƒH[ƒ}ƒbƒg
+	D_IDirect3DSurface9 *	BackBufferSurface ;						// ãƒ‡ãƒã‚¤ã‚¹ãŒæŒã¤ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã‚µãƒ¼ãƒ•ã‚§ã‚¹
+	int						SubBackBufferTextureSizeX ;				// ã‚µãƒ–ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®æ¨ªå¹…
+	int						SubBackBufferTextureSizeY ;				// ã‚µãƒ–ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ç¸¦å¹…
+	D_IDirect3DTexture9 *	SubBackBufferTexture ;					// ScreenCopy ã‚„ GetDrawScreen ã‚’å®Ÿç¾ã™ã‚‹ãŸã‚ã«ä½¿ç”¨ã™ã‚‹æç”»å¯èƒ½ãƒ†ã‚¯ã‚¹ãƒãƒ£
+	D_IDirect3DSurface9 *	SubBackBufferSurface ;					// ScreenCopy ã‚„ GetDrawScreen ã‚’å®Ÿç¾ã™ã‚‹ãŸã‚ã«ä½¿ç”¨ã™ã‚‹æç”»å¯èƒ½ã‚µãƒ¼ãƒ•ã‚§ã‚¹
+	D_D3DFORMAT				SubBackBufferTexturePixelFormat ;		// ã‚µãƒ–ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ãƒ”ã‚¯ã‚»ãƒ«ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆ
 
-	D_IDirect3DSurface9 *	ZBufferSurface ;						// ƒƒCƒ“‚Åg—p‚·‚é‚yƒoƒbƒtƒ@
-	int						ZBufferSizeX ;							// ‚yƒoƒbƒtƒ@ƒT[ƒtƒFƒX‚Ì•
-	int						ZBufferSizeY ;							// ‚yƒoƒbƒtƒ@ƒT[ƒtƒFƒX‚Ì‚‚³
-	int						ZBufferBitDepth ;						// ‚yƒoƒbƒtƒ@ƒT[ƒtƒFƒX‚Ìƒrƒbƒg[“x
+	D_IDirect3DSurface9 *	ZBufferSurface ;						// ãƒ¡ã‚¤ãƒ³ã§ä½¿ç”¨ã™ã‚‹ï¼ºãƒãƒƒãƒ•ã‚¡
+	int						ZBufferSizeX ;							// ï¼ºãƒãƒƒãƒ•ã‚¡ã‚µãƒ¼ãƒ•ã‚§ã‚¹ã®å¹…
+	int						ZBufferSizeY ;							// ï¼ºãƒãƒƒãƒ•ã‚¡ã‚µãƒ¼ãƒ•ã‚§ã‚¹ã®é«˜ã•
+	int						ZBufferBitDepth ;						// ï¼ºãƒãƒƒãƒ•ã‚¡ã‚µãƒ¼ãƒ•ã‚§ã‚¹ã®ãƒ“ãƒƒãƒˆæ·±åº¦
 
-	D_IDirect3DSurface9 *	DrawScreenBufferLockSMSurface ;			// ƒoƒbƒNƒoƒbƒtƒ@‚ğƒƒbƒN‚µ‚½Û‚É’¼ÚƒƒbƒN‚Å‚«‚È‚¢ê‡‚Ég—p‚·‚éƒT[ƒtƒFƒX‚Ìƒ|ƒCƒ“ƒ^
-	int						DrawScreenBufferLockSMSurfaceIndex ;	// ƒoƒbƒNƒoƒbƒtƒ@‚ğƒƒbƒN‚µ‚½Û‚É’¼ÚƒƒbƒN‚Å‚«‚È‚¢ê‡‚Ég—p‚·‚éƒT[ƒtƒFƒXƒLƒƒƒbƒVƒ…‚ÌƒCƒ“ƒfƒbƒNƒX
-	D_IDirect3DSurface9 *	DrawScreenBufferLockSurface ;			// ƒƒbƒN‚µ‚½ƒoƒbƒNƒoƒbƒtƒ@
+	D_IDirect3DSurface9 *	DrawScreenBufferLockSMSurface ;			// ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã‚’ãƒ­ãƒƒã‚¯ã—ãŸéš›ã«ç›´æ¥ãƒ­ãƒƒã‚¯ã§ããªã„å ´åˆã«ä½¿ç”¨ã™ã‚‹ã‚µãƒ¼ãƒ•ã‚§ã‚¹ã®ãƒã‚¤ãƒ³ã‚¿
+	int						DrawScreenBufferLockSMSurfaceIndex ;	// ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã‚’ãƒ­ãƒƒã‚¯ã—ãŸéš›ã«ç›´æ¥ãƒ­ãƒƒã‚¯ã§ããªã„å ´åˆã«ä½¿ç”¨ã™ã‚‹ã‚µãƒ¼ãƒ•ã‚§ã‚¹ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+	D_IDirect3DSurface9 *	DrawScreenBufferLockSurface ;			// ãƒ­ãƒƒã‚¯ã—ãŸãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡
 
-	D_IDirect3DSurface9 *   SaveDrawScreen_SMSurface ;				// SaveDrawScreen ‚Åg—p‚·‚éƒVƒXƒeƒ€ƒƒ‚ƒŠƒT[ƒtƒFƒX
+	D_IDirect3DSurface9 *   SaveDrawScreen_SMSurface ;				// SaveDrawScreen ã§ä½¿ç”¨ã™ã‚‹ã‚·ã‚¹ãƒ†ãƒ ãƒ¡ãƒ¢ãƒªã‚µãƒ¼ãƒ•ã‚§ã‚¹
 
-	int						WM_PAINTDrawCounter ;					// WM_PAINT ‚ª—ˆ‚½Œã‰½‰ñ‚© Direct3D 9 ŠÇŠŠO‚ÌƒNƒ‰ƒCƒAƒ“ƒg—Ìˆæ‚ğˆ—‚·‚é‚½‚ß‚ÌƒJƒEƒ“ƒ^
+	int						WM_PAINTDrawCounter ;					// WM_PAINT ãŒæ¥ãŸå¾Œä½•å›ã‹ Direct3D 9 ç®¡è½„å¤–ã®ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆé ˜åŸŸã‚’å‡¦ç†ã™ã‚‹ãŸã‚ã®ã‚«ã‚¦ãƒ³ã‚¿
 } ;
 
 
-// Direct3DDevice9 ‚Ì•`‰æİ’è‚ÉŠÖ‚í‚éî•ñ‚Ì\‘¢‘Ì
+// Direct3DDevice9 ã®æç”»è¨­å®šã«é–¢ã‚ã‚‹æƒ…å ±ã®æ§‹é€ ä½“
 struct GRAPHICS_HARDDATA_DIRECT3D9_DRAWSETTING
 {
-	int						DrawPrepParamFlag ;						// ‘O‰ñ Graphics_D3D9_DrawPreparation ‚É“ü‚Á‚½‚Æ‚«‚Ì ParamFlag ƒpƒ‰ƒ[ƒ^
-	int						DrawPrepAlwaysFlag ;					// •K‚¸ Graphics_D3D9_DrawPreparation ‚ğs‚¤‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO
+	int						DrawPrepParamFlag ;						// å‰å› Graphics_D3D9_DrawPreparation ã«å…¥ã£ãŸã¨ãã® ParamFlag ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+	int						DrawPrepAlwaysFlag ;					// å¿…ãš Graphics_D3D9_DrawPreparation ã‚’è¡Œã†ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°
 
-	int						AlphaChannelValidFlag ;					// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹—LŒøƒtƒ‰ƒO
-	int						AlphaTestValidFlag ;					// ƒ¿ƒeƒXƒg—LŒøƒtƒ‰ƒO( Func ‚Í•K‚¸ D_D3DCMP_GREATEREQUAL )
-	int						AlphaTestMode ;							// ƒAƒ‹ƒtƒ@ƒeƒXƒgƒ‚[ƒh
-	int						AlphaTestParam ;						// ƒAƒ‹ƒtƒ@ƒeƒXƒgƒpƒ‰ƒ[ƒ^
-	int						BlendMode ;								// ƒuƒŒƒ“ƒhƒ‚[ƒh
-	int						BlendEnable ;							// ƒuƒŒƒ“ƒhˆ—‚ğs‚¤‚©‚Ç‚¤‚©( DX_BLENDMODE_CUSTOM —p )
-	int						BlendRGBSrc ;							// RGB‚Ìƒ\[ƒXƒuƒŒƒ“ƒh( DX_BLENDMODE_CUSTOM —p )
-	int						BlendRGBDest ;							// RGB‚ÌƒfƒXƒgƒuƒŒƒ“ƒh( DX_BLENDMODE_CUSTOM —p )
-	int						BlendRGBOp ;							// RGB‚ÌƒuƒŒƒ“ƒhˆ—( DX_BLENDMODE_CUSTOM —p )
-	int						BlendASrc ;								// A‚Ìƒ\[ƒXƒuƒŒƒ“ƒh( DX_BLENDMODE_CUSTOM —p )
-	int						BlendADest ;							// A‚ÌƒfƒXƒgƒuƒŒƒ“ƒh( DX_BLENDMODE_CUSTOM —p )
-	int						BlendAOp ;								// A‚ÌƒuƒŒƒ“ƒhˆ—( DX_BLENDMODE_CUSTOM —p )
-	int						ChangeBlendParamFlag ;					// ƒuƒŒƒ“ƒhİ’è‚ÉŠÖ‚í‚é•”•ª‚Ì•ÏX‚ª‚ ‚Á‚½‚©Aƒtƒ‰ƒO
-	int						ChangeTextureFlag ;						// ƒeƒNƒXƒ`ƒƒ‚ª•ÏX‚³‚ê‚½‚©Aƒtƒ‰ƒO
-	int						NotWriteAlphaChannelFlag ;				// ƒAƒ‹ƒtƒ@ƒ`ƒƒƒ“ƒlƒ‹‚Ì“à—e‚ğ‘‚«Š·‚¦‚È‚¢‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO
-	int						IgnoreGraphColorFlag ;					// •`‰æ‚·‚é‰æ‘œ‚Ì‚q‚f‚a¬•ª‚ğ–³‹‚·‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO
-	int						UseDiffuseRGBColor ;					// ƒfƒBƒtƒ…[ƒYƒJƒ‰[‚Ì‚q‚f‚a’l‚ğg—p‚·‚é‚©Aƒtƒ‰ƒO
-	int						UseDiffuseAlphaColor ;					// ƒfƒBƒtƒ…[ƒYƒJƒ‰[‚Ìƒ¿’l‚ğg—p‚·‚é‚©Aƒtƒ‰ƒO
-	int						NoLightAngleAttenuation ;				// ƒ‰ƒCƒgŒvZ‚ÅŠp“xŒ¸Š‚ğs‚í‚È‚¢‚©‚Ç‚¤‚©
-	int						UseHalfLambert ;						// ƒn[ƒtƒ‰ƒ“ƒo[ƒg‚ğg—p‚·‚é‚©( 0:g—p‚µ‚È‚¢  1:g—p‚·‚é )
-	int						BlendGraphType ;						// ƒuƒŒƒ“ƒh‰æ‘œƒ^ƒCƒv
-	int						BlendGraphFadeRatio ;					// ƒuƒŒƒ“ƒh‰æ‘œ‚ÌƒtƒF[ƒhƒpƒ‰ƒ[ƒ^
-	int						BlendGraphBorderParam ;					// ƒuƒŒƒ“ƒh‰æ‘œ‚Ì‹«ŠEƒpƒ‰ƒ[ƒ^(‚O(ƒuƒŒƒ“ƒh‰æ‘œ‚Ì‰e‹¿‚O)@©@(ƒuƒŒƒ“ƒh‰æ‘œ‚Ì‰e‹¿­‚È‚¢)@©@‚P‚Q‚W(ƒuƒŒƒ“ƒh‰æ‘œ‚Ì‰e‹¿‚P‚O‚O“)@¨@(ƒuƒŒƒ“ƒh‰æ‘œ‚Ì‰e‹¿‚ğ’´‚¦‚Ä”ñ•`‰æ•”•ª‚ª‘‚¦‚é)@¨‚Q‚T‚T(‘S‚­•`‰æ‚³‚ê‚È‚¢) )
-	int						BlendGraphBorderRange ;					// ƒuƒŒƒ“ƒh‰æ‘œ‚Ì‹«ŠE•(‚O`‚Q‚T‚T@‹·‚¢`L‚¢@‚µ‚©‚µ‚S’iŠK)
-	float					BlendTextureWidth ;						// ƒuƒŒƒ“ƒhƒeƒNƒXƒ`ƒƒ‚Ì•
-	float					BlendTextureHeight ;					// ƒuƒŒƒ“ƒhƒeƒNƒXƒ`ƒƒ‚Ì‚‚³
-	float					InvBlendTextureWidth ;					// ƒuƒŒƒ“ƒhƒeƒNƒXƒ`ƒƒ‚Ì•‚Ì‹t”
-	float					InvBlendTextureHeight ;					// ƒuƒŒƒ“ƒhƒeƒNƒXƒ`ƒƒ‚Ì‚‚³‚Ì‹t”
+	int						AlphaChannelValidFlag ;					// Î±ãƒãƒ£ãƒ³ãƒãƒ«æœ‰åŠ¹ãƒ•ãƒ©ã‚°
+	int						AlphaTestValidFlag ;					// Î±ãƒ†ã‚¹ãƒˆæœ‰åŠ¹ãƒ•ãƒ©ã‚°( Func ã¯å¿…ãš D_D3DCMP_GREATEREQUAL )
+	int						AlphaTestMode ;							// ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆãƒ¢ãƒ¼ãƒ‰
+	int						AlphaTestParam ;						// ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+	int						BlendMode ;								// ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰
+	int						BlendEnable ;							// ãƒ–ãƒ¬ãƒ³ãƒ‰å‡¦ç†ã‚’è¡Œã†ã‹ã©ã†ã‹( DX_BLENDMODE_CUSTOM ç”¨ )
+	int						BlendRGBSrc ;							// RGBã®ã‚½ãƒ¼ã‚¹ãƒ–ãƒ¬ãƒ³ãƒ‰( DX_BLENDMODE_CUSTOM ç”¨ )
+	int						BlendRGBDest ;							// RGBã®ãƒ‡ã‚¹ãƒˆãƒ–ãƒ¬ãƒ³ãƒ‰( DX_BLENDMODE_CUSTOM ç”¨ )
+	int						BlendRGBOp ;							// RGBã®ãƒ–ãƒ¬ãƒ³ãƒ‰å‡¦ç†( DX_BLENDMODE_CUSTOM ç”¨ )
+	int						BlendASrc ;								// Aã®ã‚½ãƒ¼ã‚¹ãƒ–ãƒ¬ãƒ³ãƒ‰( DX_BLENDMODE_CUSTOM ç”¨ )
+	int						BlendADest ;							// Aã®ãƒ‡ã‚¹ãƒˆãƒ–ãƒ¬ãƒ³ãƒ‰( DX_BLENDMODE_CUSTOM ç”¨ )
+	int						BlendAOp ;								// Aã®ãƒ–ãƒ¬ãƒ³ãƒ‰å‡¦ç†( DX_BLENDMODE_CUSTOM ç”¨ )
+	int						ChangeBlendParamFlag ;					// ãƒ–ãƒ¬ãƒ³ãƒ‰è¨­å®šã«é–¢ã‚ã‚‹éƒ¨åˆ†ã®å¤‰æ›´ãŒã‚ã£ãŸã‹ã€ãƒ•ãƒ©ã‚°
+	int						ChangeTextureFlag ;						// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãŒå¤‰æ›´ã•ã‚ŒãŸã‹ã€ãƒ•ãƒ©ã‚°
+	int						NotWriteAlphaChannelFlag ;				// ã‚¢ãƒ«ãƒ•ã‚¡ãƒãƒ£ãƒ³ãƒãƒ«ã®å†…å®¹ã‚’æ›¸ãæ›ãˆãªã„ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°
+	int						IgnoreGraphColorFlag ;					// æç”»ã™ã‚‹ç”»åƒã®ï¼²ï¼§ï¼¢æˆåˆ†ã‚’ç„¡è¦–ã™ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°
+	int						UseDiffuseRGBColor ;					// ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚«ãƒ©ãƒ¼ã®ï¼²ï¼§ï¼¢å€¤ã‚’ä½¿ç”¨ã™ã‚‹ã‹ã€ãƒ•ãƒ©ã‚°
+	int						UseDiffuseAlphaColor ;					// ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚«ãƒ©ãƒ¼ã®Î±å€¤ã‚’ä½¿ç”¨ã™ã‚‹ã‹ã€ãƒ•ãƒ©ã‚°
+	int						NoLightAngleAttenuation ;				// ãƒ©ã‚¤ãƒˆè¨ˆç®—ã§è§’åº¦æ¸›è¡°ã‚’è¡Œã‚ãªã„ã‹ã©ã†ã‹
+	int						UseHalfLambert ;						// ãƒãƒ¼ãƒ•ãƒ©ãƒ³ãƒãƒ¼ãƒˆã‚’ä½¿ç”¨ã™ã‚‹ã‹( 0:ä½¿ç”¨ã—ãªã„  1:ä½¿ç”¨ã™ã‚‹ )
+	int						BlendGraphType ;						// ãƒ–ãƒ¬ãƒ³ãƒ‰ç”»åƒã‚¿ã‚¤ãƒ—
+	int						BlendGraphFadeRatio ;					// ãƒ–ãƒ¬ãƒ³ãƒ‰ç”»åƒã®ãƒ•ã‚§ãƒ¼ãƒ‰ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+	int						BlendGraphBorderParam ;					// ãƒ–ãƒ¬ãƒ³ãƒ‰ç”»åƒã®å¢ƒç•Œãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿(ï¼(ãƒ–ãƒ¬ãƒ³ãƒ‰ç”»åƒã®å½±éŸ¿ï¼)ã€€â†ã€€(ãƒ–ãƒ¬ãƒ³ãƒ‰ç”»åƒã®å½±éŸ¿å°‘ãªã„)ã€€â†ã€€ï¼‘ï¼’ï¼˜(ãƒ–ãƒ¬ãƒ³ãƒ‰ç”»åƒã®å½±éŸ¿ï¼‘ï¼ï¼ï¼…)ã€€â†’ã€€(ãƒ–ãƒ¬ãƒ³ãƒ‰ç”»åƒã®å½±éŸ¿ã‚’è¶…ãˆã¦éæç”»éƒ¨åˆ†ãŒå¢—ãˆã‚‹)ã€€â†’ï¼’ï¼•ï¼•(å…¨ãæç”»ã•ã‚Œãªã„) )
+	int						BlendGraphBorderRange ;					// ãƒ–ãƒ¬ãƒ³ãƒ‰ç”»åƒã®å¢ƒç•Œå¹…(ï¼ï½ï¼’ï¼•ï¼•ã€€ç‹­ã„ï½åºƒã„ã€€ã—ã‹ã—ï¼”æ®µéš)
+	float					BlendTextureWidth ;						// ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®å¹…
+	float					BlendTextureHeight ;					// ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®é«˜ã•
+	float					InvBlendTextureWidth ;					// ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®å¹…ã®é€†æ•°
+	float					InvBlendTextureHeight ;					// ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®é«˜ã•ã®é€†æ•°
 
-	D_IDirect3DTexture9		*RenderTexture ;						// •`‰æ‚Ég—p‚·‚éƒeƒNƒXƒ`ƒƒ[
-	D_IDirect3DTexture9		*BlendTexture ;							// •`‰æ‚É•`‰æƒeƒNƒXƒ`ƒƒ[‚ÆƒuƒŒƒ“ƒh‚·‚éƒ¿ƒ`ƒƒƒ“ƒlƒ‹ƒeƒNƒXƒ`ƒƒ[
+	D_IDirect3DTexture9		*RenderTexture ;						// æç”»æ™‚ã«ä½¿ç”¨ã™ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼
+	D_IDirect3DTexture9		*BlendTexture ;							// æç”»æ™‚ã«æç”»ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã¨ãƒ–ãƒ¬ãƒ³ãƒ‰ã™ã‚‹Î±ãƒãƒ£ãƒ³ãƒãƒ«ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼
 
-	int						CancelSettingEqualCheck ;				// ‚±‚Ìƒtƒ‰ƒO‚ª—§‚Á‚Ä‚¢‚éê‡‚ÍŒ»İ‚Ìİ’è‚Æ•ÏXŒã‚Ìİ’è‚ª“¯‚¶‚©‚Ç‚¤‚©‚ÉŠÖ‚í‚ç‚¸A•K‚¸•ÏXˆ—‚ğÀs‚·‚é
+	int						CancelSettingEqualCheck ;				// ã“ã®ãƒ•ãƒ©ã‚°ãŒç«‹ã£ã¦ã„ã‚‹å ´åˆã¯ç¾åœ¨ã®è¨­å®šã¨å¤‰æ›´å¾Œã®è¨­å®šãŒåŒã˜ã‹ã©ã†ã‹ã«é–¢ã‚ã‚‰ãšã€å¿…ãšå¤‰æ›´å‡¦ç†ã‚’å®Ÿè¡Œã™ã‚‹
 } ;
 
 
-// Direct3DDevice9 ŠÖŒW‚Ìİ’èî•ñ‚Ì\‘¢‘Ì
+// Direct3DDevice9 é–¢ä¿‚ã®è¨­å®šæƒ…å ±ã®æ§‹é€ ä½“
 struct GRAPHICS_HARDDATA_DIRECT3D9_DEVICE_SETTING
 {
-	void					( *DeviceRestoreCallbackFunction)( void *Data ) ;	// ƒfƒoƒCƒXƒƒXƒg‚©‚ç•œ‹A‚µ‚½‚Æ‚«‚ÉŒÄ‚ÔŠÖ”
-	void					  *DeviceRestoreCallbackData ;						// ƒfƒoƒCƒXƒƒXƒg‚©‚ç•œ‹A‚µ‚½‚Æ‚«‚ÉŒÄ‚ÔŠÖ”‚É“n‚·ƒ|ƒCƒ“ƒ^
+	void					( *DeviceRestoreCallbackFunction)( void *Data ) ;	// ãƒ‡ãƒã‚¤ã‚¹ãƒ­ã‚¹ãƒˆã‹ã‚‰å¾©å¸°ã—ãŸã¨ãã«å‘¼ã¶é–¢æ•°
+	void					  *DeviceRestoreCallbackData ;						// ãƒ‡ãƒã‚¤ã‚¹ãƒ­ã‚¹ãƒˆã‹ã‚‰å¾©å¸°ã—ãŸã¨ãã«å‘¼ã¶é–¢æ•°ã«æ¸¡ã™ãƒã‚¤ãƒ³ã‚¿
 
-	void					( *DeviceLostCallbackFunction)( void *Data ) ;		// ƒfƒoƒCƒXƒƒXƒg‚©‚ç•œ‹A‚·‚é‘O‚ÉŒÄ‚ÔŠÖ”
-	void					  *DeviceLostCallbackData ;							// ƒfƒoƒCƒXƒƒXƒg‚©‚ç•œ‹A‚·‚é‘O‚ÉŒÄ‚ÔŠÖ”‚É“n‚·ƒ|ƒCƒ“ƒ^
+	void					( *DeviceLostCallbackFunction)( void *Data ) ;		// ãƒ‡ãƒã‚¤ã‚¹ãƒ­ã‚¹ãƒˆã‹ã‚‰å¾©å¸°ã™ã‚‹å‰ã«å‘¼ã¶é–¢æ•°
+	void					  *DeviceLostCallbackData ;							// ãƒ‡ãƒã‚¤ã‚¹ãƒ­ã‚¹ãƒˆã‹ã‚‰å¾©å¸°ã™ã‚‹å‰ã«å‘¼ã¶é–¢æ•°ã«æ¸¡ã™ãƒã‚¤ãƒ³ã‚¿
 } ;
 
 
-// Direct3DDevice9 ‚Ì”\—Íî•ñ\‘¢‘Ì
+// Direct3DDevice9 ã®èƒ½åŠ›æƒ…å ±æ§‹é€ ä½“
 struct GRAPHICS_HARDDATA_DIRECT3D9_DEVICE_CAPS
 {
-	D_D3DCAPS9				DeviceCaps ;										// ƒfƒoƒCƒXî•ñ
+	D_D3DCAPS9				DeviceCaps ;										// ãƒ‡ãƒã‚¤ã‚¹æƒ…å ±
 
-	int						VertexHardwareProcess ;								// ’¸“_‰‰Z‚ğƒn[ƒhƒEƒGƒA‚Åˆ—‚·‚é‚©‚Ç‚¤‚©( TRUE:ˆ—‚·‚é  FALSE:ˆ—‚µ‚È‚¢ )
-//	int						TextureSizePow2 ;									// ƒeƒNƒXƒ`ƒƒ‚ÌƒTƒCƒY‚ª‚Q‚Ì‚æ‚Å‚ ‚é•K—v‚ª‚ ‚é‚©‚Ç‚¤‚©
-//	int						TextureSizeNonPow2Conditional ;						// ğŒ•t‚ÅƒeƒNƒXƒ`ƒƒ‚ÌƒTƒCƒY‚ª‚Q‚Ì‚æ‚Å‚È‚­‚Ä‚à‘åä•v‚©‚Ç‚¤‚©
-//	int						MaxTextureSize ;									// Å‘åƒeƒNƒXƒ`ƒƒƒTƒCƒY
-	int						MaxTextureBlendStages ;								// ŒÅ’è‹@”\ƒpƒCƒvƒ‰ƒCƒ“‚Åg—p‚Å‚«‚éÅ‘åƒeƒNƒXƒ`ƒƒƒXƒe[ƒW”
-	int						ValidTexTempRegFlag ;								// ƒeƒNƒXƒ`ƒƒƒXƒe[ƒW‚Ìƒeƒ“ƒ|ƒ‰ƒŠƒŒƒWƒXƒ^‚ªg—p‚Å‚«‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO
-	int						ValidDestBlendOp ;									// D3DBLENDOP_ADD ˆÈŠO‚ªg—p‰Â”\‚©‚Ç‚¤‚©( TRUE:g—p‰Â”\  FALSE:g—p•s‰Â”\ )
-//	int						RenderTargetNum ;									// “¯‚Éİ’è‚Å‚«‚éƒŒƒ“ƒ_ƒŠƒ“ƒOƒ^[ƒQƒbƒg‚Ì”
-//	int						MaxPrimitiveCount ;									// ˆê“x‚É•`‰æ‚Å‚«‚éƒvƒŠƒ~ƒeƒBƒu‚ÌÅ‘å”
-	int						UseRenderTargetLock ;								// •`‰ææƒT[ƒtƒFƒX‚ÌƒƒbƒN‚ğs‚¤‚©‚Ç‚¤‚©( TRUE:s‚¤  FALSE:s‚í‚È‚¢ )
-	float					DrawFillCircleLeftVertAddX ;						// ’†‚ğ“h‚è‚Â‚Ô‚·‰~‚Ì•`‰æ‚ÌÛ‚É¶’[À•W‚Ì x À•W‚É‘«‚·’l
-	float					DrawFillCircleRightVertAddX ;						// ’†‚ğ“h‚è‚Â‚Ô‚·‰~‚Ì•`‰æ‚ÌÛ‚É‰E’[À•W‚Ì x À•W‚É‘«‚·’l
+	int						VertexHardwareProcess ;								// é ‚ç‚¹æ¼”ç®—ã‚’ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã§å‡¦ç†ã™ã‚‹ã‹ã©ã†ã‹( TRUE:å‡¦ç†ã™ã‚‹  FALSE:å‡¦ç†ã—ãªã„ )
+//	int						TextureSizePow2 ;									// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ã‚µã‚¤ã‚ºãŒï¼’ã®ï½ä¹—ã§ã‚ã‚‹å¿…è¦ãŒã‚ã‚‹ã‹ã©ã†ã‹
+//	int						TextureSizeNonPow2Conditional ;						// æ¡ä»¶ä»˜ã§ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ã‚µã‚¤ã‚ºãŒï¼’ã®ï½ä¹—ã§ãªãã¦ã‚‚å¤§ä¸ˆå¤«ã‹ã©ã†ã‹
+//	int						MaxTextureSize ;									// æœ€å¤§ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚µã‚¤ã‚º
+	int						MaxTextureBlendStages ;								// å›ºå®šæ©Ÿèƒ½ãƒ‘ã‚¤ãƒ—ãƒ©ã‚¤ãƒ³ã§ä½¿ç”¨ã§ãã‚‹æœ€å¤§ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¹ãƒ†ãƒ¼ã‚¸æ•°
+	int						ValidTexTempRegFlag ;								// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¹ãƒ†ãƒ¼ã‚¸ã®ãƒ†ãƒ³ãƒãƒ©ãƒªãƒ¬ã‚¸ã‚¹ã‚¿ãŒä½¿ç”¨ã§ãã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°
+	int						ValidDestBlendOp ;									// D3DBLENDOP_ADD ä»¥å¤–ãŒä½¿ç”¨å¯èƒ½ã‹ã©ã†ã‹( TRUE:ä½¿ç”¨å¯èƒ½  FALSE:ä½¿ç”¨ä¸å¯èƒ½ )
+//	int						RenderTargetNum ;									// åŒæ™‚ã«è¨­å®šã§ãã‚‹ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã®æ•°
+//	int						MaxPrimitiveCount ;									// ä¸€åº¦ã«æç”»ã§ãã‚‹ãƒ—ãƒªãƒŸãƒ†ã‚£ãƒ–ã®æœ€å¤§æ•°
+	int						UseRenderTargetLock ;								// æç”»å…ˆã‚µãƒ¼ãƒ•ã‚§ã‚¹ã®ãƒ­ãƒƒã‚¯ã‚’è¡Œã†ã‹ã©ã†ã‹( TRUE:è¡Œã†  FALSE:è¡Œã‚ãªã„ )
+	float					DrawFillCircleLeftVertAddX ;						// ä¸­ã‚’å¡—ã‚Šã¤ã¶ã™å††ã®æç”»ã®éš›ã«å·¦ç«¯åº§æ¨™ã® x åº§æ¨™ã«è¶³ã™å€¤
+	float					DrawFillCircleRightVertAddX ;						// ä¸­ã‚’å¡—ã‚Šã¤ã¶ã™å††ã®æç”»ã®éš›ã«å³ç«¯åº§æ¨™ã® x åº§æ¨™ã«è¶³ã™å€¤
 
 #ifndef DX_NON_FILTER
-	int						ValidRenderTargetInputTexture ;						// •`‰ææ‚ğ“ü—ÍƒeƒNƒXƒ`ƒƒ‚Æ‚µ‚Äg—p‚Å‚«‚é‚©‚Ç‚¤‚©( TRUE:g—p‚Å‚«‚é  FALSE:g—p‚Å‚«‚È‚¢ )
+	int						ValidRenderTargetInputTexture ;						// æç”»å…ˆã‚’å…¥åŠ›ãƒ†ã‚¯ã‚¹ãƒãƒ£ã¨ã—ã¦ä½¿ç”¨ã§ãã‚‹ã‹ã©ã†ã‹( TRUE:ä½¿ç”¨ã§ãã‚‹  FALSE:ä½¿ç”¨ã§ããªã„ )
 #endif // DX_NON_FILTER
 
-	D_D3DFORMAT				ScreenFormat ;										// ‰æ–ÊƒJƒ‰[ƒtƒH[ƒ}ƒbƒg
-	D_D3DFORMAT				TextureFormat[ DX_GRAPHICSIMAGE_FORMAT_3D_NUM ] ;	// ƒeƒNƒXƒ`ƒƒƒtƒH[ƒ}ƒbƒg
-	D_D3DFORMAT				MaskColorFormat ;									// ƒ}ƒXƒNƒJƒ‰[ƒoƒbƒtƒ@—pƒtƒH[ƒ}ƒbƒg
-	D_D3DFORMAT				MaskAlphaFormat ;									// ƒ}ƒXƒNƒAƒ‹ƒtƒ@ƒ`ƒƒƒ“ƒlƒ‹—pƒtƒH[ƒ}ƒbƒg
-	D_D3DFORMAT				ZBufferFormat[ ZBUFFER_FORMAT_NUM ] ;				// ‚yƒoƒbƒtƒ@ƒtƒH[ƒ}ƒbƒg
+	D_D3DFORMAT				ScreenFormat ;										// ç”»é¢ã‚«ãƒ©ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆ
+	D_D3DFORMAT				TextureFormat[ DX_GRAPHICSIMAGE_FORMAT_3D_NUM ] ;	// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆ
+	D_D3DFORMAT				MaskColorFormat ;									// ãƒã‚¹ã‚¯ã‚«ãƒ©ãƒ¼ãƒãƒƒãƒ•ã‚¡ç”¨ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆ
+	D_D3DFORMAT				MaskAlphaFormat ;									// ãƒã‚¹ã‚¯ã‚¢ãƒ«ãƒ•ã‚¡ãƒãƒ£ãƒ³ãƒãƒ«ç”¨ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆ
+	D_D3DFORMAT				ZBufferFormat[ ZBUFFER_FORMAT_NUM ] ;				// ï¼ºãƒãƒƒãƒ•ã‚¡ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆ
 } ;
 
 
-// Direct3D9 ‚ğg‚Á‚½•`‰æˆ—‚Åg—p‚·‚éƒf[ƒ^‚Ì“à‚Ì Direct3D9Device ‚ÌƒŠƒZƒbƒg‚Å
-// î•ñ‚ğ‰Šú‰»‚·‚é•K—v‚ª‚ ‚éADirect3D9Device ‚É–§Ú‚ÉŠÖ‚í‚Á‚½î•ñ‚ğ“Z‚ß‚½\‘¢‘Ì
+// Direct3D9 ã‚’ä½¿ã£ãŸæç”»å‡¦ç†ã§ä½¿ç”¨ã™ã‚‹ãƒ‡ãƒ¼ã‚¿ã®å†…ã® Direct3D9Device ã®ãƒªã‚»ãƒƒãƒˆã§
+// æƒ…å ±ã‚’åˆæœŸåŒ–ã™ã‚‹å¿…è¦ãŒã‚ã‚‹ã€Direct3D9Device ã«å¯†æ¥ã«é–¢ã‚ã£ãŸæƒ…å ±ã‚’çºã‚ãŸæ§‹é€ ä½“
 struct GRAPHICS_HARDDATA_DIRECT3D9_DEVICE
 {
-	GRAPHICS_HARDDATA_DIRECT3D9_DEVICE_CAPS			Caps ;					// ƒfƒoƒCƒX”\—Íî•ñ\‘¢‘Ì		
+	GRAPHICS_HARDDATA_DIRECT3D9_DEVICE_CAPS			Caps ;					// ãƒ‡ãƒã‚¤ã‚¹èƒ½åŠ›æƒ…å ±æ§‹é€ ä½“		
 
-	GRAPHICS_HARDDATA_DIRECT3D9_DEVICE_SETTING		Setting ;				// ƒfƒoƒCƒXŠÖŒW‚Ìİ’èî•ñ‚ğ“Z‚ß‚½\‘¢‘Ì
+	GRAPHICS_HARDDATA_DIRECT3D9_DEVICE_SETTING		Setting ;				// ãƒ‡ãƒã‚¤ã‚¹é–¢ä¿‚ã®è¨­å®šæƒ…å ±ã‚’çºã‚ãŸæ§‹é€ ä½“
 
-	GRAPHICS_HARDDATA_DIRECT3D9_SCREENINFO			Screen ;				// ‰æ–ÊŠÖŒW‚Ìî•ñ\‘¢‘Ì
+	GRAPHICS_HARDDATA_DIRECT3D9_SCREENINFO			Screen ;				// ç”»é¢é–¢ä¿‚ã®æƒ…å ±æ§‹é€ ä½“
 
-	GRAPHICS_HARDWARE_DIRECT3D9_SHADER				Shader ;				// ƒVƒF[ƒ_[‚ğ“Z‚ß‚½\‘¢‘Ì
+	GRAPHICS_HARDWARE_DIRECT3D9_SHADER				Shader ;				// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’çºã‚ãŸæ§‹é€ ä½“
 
-	GRAPHICS_HARDWARE_DIRECT3D9_VERTEXDECLARATION	VertexDeclaration ;		// ’¸“_ƒVƒF[ƒ_éŒ¾‚ğ“Z‚ß‚½\‘¢‘Ì
+	GRAPHICS_HARDWARE_DIRECT3D9_VERTEXDECLARATION	VertexDeclaration ;		// é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€å®£è¨€ã‚’çºã‚ãŸæ§‹é€ ä½“
 
-	GRAPHICS_HARDDATA_DIRECT3D9_DRAWSETTING			DrawSetting ;			// •`‰æİ’è‚ÉŠÖ‚í‚éî•ñ‚ğ“Z‚ß‚½\‘¢‘Ì
+	GRAPHICS_HARDDATA_DIRECT3D9_DRAWSETTING			DrawSetting ;			// æç”»è¨­å®šã«é–¢ã‚ã‚‹æƒ…å ±ã‚’çºã‚ãŸæ§‹é€ ä½“
 
-	GRAPHICS_HARDDATA_DIRECT3D9_DRAWINFO			DrawInfo ;				// •`‰æˆ—‚ÉŠÖ‚í‚éî•ñ‚ğ“Z‚ß‚½\‘¢‘Ì
+	GRAPHICS_HARDDATA_DIRECT3D9_DRAWINFO			DrawInfo ;				// æç”»å‡¦ç†ã«é–¢ã‚ã‚‹æƒ…å ±ã‚’çºã‚ãŸæ§‹é€ ä½“
 
-	GRAPHICS_HARDDATA_DIRECT3D9_DEVICE_STATE		State ;					// Direct3D9Device ‚Éİ’è‚µ‚Ä‚¢‚é’l‚ğ“Z‚ß‚½\‘¢‘Ì
+	GRAPHICS_HARDDATA_DIRECT3D9_DEVICE_STATE		State ;					// Direct3D9Device ã«è¨­å®šã—ã¦ã„ã‚‹å€¤ã‚’çºã‚ãŸæ§‹é€ ä½“
 } ;
 
 
@@ -835,7 +835,7 @@ struct GRAPHICS_HARDDATA_DIRECT3D9_DEVICE
 
 #ifdef DX_NON_SHADERCODE_BINARY
 
-// ƒVƒF[ƒ_[ƒRƒ“ƒpƒCƒ‰ƒCƒ“ƒNƒ‹[ƒhˆ——pƒNƒ‰ƒX
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚³ãƒ³ãƒ‘ã‚¤ãƒ©ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰å‡¦ç†ç”¨ã‚¯ãƒ©ã‚¹
 class Graphics_D3D9_ShaderCompilerIncludeClass : public D_ID3DInclude
 {
 public:
@@ -845,12 +845,12 @@ public:
 
 #endif // DX_NON_SHADERCODE_BINARY
 
-// Direct3D9 ‚Ì •W€•`‰æ—p‚ÌƒVƒF[ƒ_[ƒR[ƒh‚ÌŒ³ƒf[ƒ^‚ğ“Z‚ß‚½\‘¢‘Ì
+// Direct3D9 ã® æ¨™æº–æç”»ç”¨ã®ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚³ãƒ¼ãƒ‰ã®å…ƒãƒ‡ãƒ¼ã‚¿ã‚’çºã‚ãŸæ§‹é€ ä½“
 struct GRAPHICS_HARDWARE_DIRECT3D9_SHADERCODE_BASE
 {
-	int						BaseShaderInitializeFlag ;				// ƒVƒF[ƒ_[ƒoƒCƒiƒŠ‚ÌƒZƒbƒgƒAƒbƒv‚ªŠ®—¹‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO( TRUE:Š®—¹‚µ‚Ä‚¢‚é  FALSE:Š®—¹‚µ‚Ä‚¢‚È‚¢ )
+	int						BaseShaderInitializeFlag ;				// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒã‚¤ãƒŠãƒªã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ãŒå®Œäº†ã—ã¦ã„ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°( TRUE:å®Œäº†ã—ã¦ã„ã‚‹  FALSE:å®Œäº†ã—ã¦ã„ãªã„ )
 
-	// ƒ‰ƒCƒgƒCƒ“ƒfƒbƒNƒXƒŠƒXƒg
+	// ãƒ©ã‚¤ãƒˆã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒªã‚¹ãƒˆ
 	short					LightIndexList84[ 4 ][ 4 ][ 4 ][ 4 ][ 4 ][ 4 ] ;
 	short					LightIndexList20[ 4 ][ 4 ][ 4 ] ;
 	short					LightIndexList10[ 3 ][ 3 ][ 3 ] ;
@@ -861,25 +861,25 @@ struct GRAPHICS_HARDWARE_DIRECT3D9_SHADERCODE_BASE
 
 #ifndef DX_NON_NORMAL_DRAW_SHADER
 #ifndef DX_NON_SHADERCODE_BINARY
-	DXARC					BaseShaderBinDxa ;						// Šî–{ƒVƒF[ƒ_[ƒIƒuƒWƒFƒNƒgƒtƒ@ƒCƒ‹‚c‚w‚`\‘¢‘Ì
-	void					*BaseShaderBinDxaImage ;				// Šî–{ƒVƒF[ƒ_[ƒIƒuƒWƒFƒNƒgƒtƒ@ƒCƒ‹‚c‚w‚`‚ÌƒoƒCƒiƒŠƒCƒ[ƒW
+	DXARC					BaseShaderBinDxa ;						// åŸºæœ¬ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ•ã‚¡ã‚¤ãƒ«ï¼¤ï¼¸ï¼¡æ§‹é€ ä½“
+	void					*BaseShaderBinDxaImage ;				// åŸºæœ¬ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ•ã‚¡ã‚¤ãƒ«ï¼¤ï¼¸ï¼¡ã®ãƒã‚¤ãƒŠãƒªã‚¤ãƒ¡ãƒ¼ã‚¸
 #endif // DX_NON_SHADERCODE_BINARY
 #endif // DX_NON_NORMAL_DRAW_SHADER
 
 #ifdef DX_NON_SHADERCODE_BINARY
-	Graphics_D3D9_ShaderCompilerIncludeClass *ShaderCompilerIncludeClass ;	// ƒVƒF[ƒ_[ƒRƒ“ƒpƒCƒ‰‚ÌƒCƒ“ƒNƒ‹[ƒhˆ——pƒNƒ‰ƒX
+	Graphics_D3D9_ShaderCompilerIncludeClass *ShaderCompilerIncludeClass ;	// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚³ãƒ³ãƒ‘ã‚¤ãƒ©ã®ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰å‡¦ç†ç”¨ã‚¯ãƒ©ã‚¹
 
-	DXARC					ShaderTxtDxa ;							// ƒVƒF[ƒ_[ƒR[ƒhƒtƒ@ƒCƒ‹‚c‚w‚`\‘¢‘Ì
-	void					*ShaderTxtDxaImage ;					// ƒVƒF[ƒ_[ƒR[ƒhƒtƒ@ƒCƒ‹‚c‚w‚`‚ÌƒoƒCƒiƒŠƒCƒ[ƒW
+	DXARC					ShaderTxtDxa ;							// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚³ãƒ¼ãƒ‰ãƒ•ã‚¡ã‚¤ãƒ«ï¼¤ï¼¸ï¼¡æ§‹é€ ä½“
+	void					*ShaderTxtDxaImage ;					// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚³ãƒ¼ãƒ‰ãƒ•ã‚¡ã‚¤ãƒ«ï¼¤ï¼¸ï¼¡ã®ãƒã‚¤ãƒŠãƒªã‚¤ãƒ¡ãƒ¼ã‚¸
 #endif // DX_NON_SHADERCODE_BINARY
 
 #ifndef DX_NON_FILTER
-	DXARC					FilterShaderBinDxa ;					// ƒtƒBƒ‹ƒ^[ƒVƒF[ƒ_[ƒIƒuƒWƒFƒNƒgƒtƒ@ƒCƒ‹‚c‚w‚`\‘¢‘Ì
-	void					*FilterShaderBinDxaImage ;				// ƒtƒBƒ‹ƒ^[ƒVƒF[ƒ_[ƒIƒuƒWƒFƒNƒgƒtƒ@ƒCƒ‹‚c‚w‚`‚ÌƒoƒCƒiƒŠƒCƒ[ƒW
+	DXARC					FilterShaderBinDxa ;					// ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ•ã‚¡ã‚¤ãƒ«ï¼¤ï¼¸ï¼¡æ§‹é€ ä½“
+	void					*FilterShaderBinDxaImage ;				// ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ•ã‚¡ã‚¤ãƒ«ï¼¤ï¼¸ï¼¡ã®ãƒã‚¤ãƒŠãƒªã‚¤ãƒ¡ãƒ¼ã‚¸
 
-	void					*RGBAMixS_ShaderPackImage ;				// RGBAMix ‚Ì S ‚¾‚¯‚Ì‘g‚İ‡‚í‚¹‚Q‚T‚UŒÂ‚ÌƒVƒF[ƒ_[ƒpƒbƒP[ƒWƒoƒCƒiƒŠƒCƒ[ƒW
+	void					*RGBAMixS_ShaderPackImage ;				// RGBAMix ã® S ã ã‘ã®çµ„ã¿åˆã‚ã›ï¼’ï¼•ï¼–å€‹ã®ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ãƒã‚¤ãƒŠãƒªã‚¤ãƒ¡ãƒ¼ã‚¸
 
-	// RGBAMix ‚Ì S ‚¾‚¯‚Ì‘g‚İ‡‚í‚¹‚Q‚T‚UŒÂ~‚Q‚ÌƒVƒF[ƒ_[[ R ][ G ][ B ][ A ][ 0:’Êí—p  1:æZÏ‚İƒAƒ‹ƒtƒ@—p ]
+	// RGBAMix ã® S ã ã‘ã®çµ„ã¿åˆã‚ã›ï¼’ï¼•ï¼–å€‹Ã—ï¼’ã®ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼[ R ][ G ][ B ][ A ][ 0:é€šå¸¸ç”¨  1:ä¹—ç®—æ¸ˆã¿ã‚¢ãƒ«ãƒ•ã‚¡ç”¨ ]
 	void					*RGBAMixS_ShaderAddress[ 4 ][ 4 ][ 4 ][ 4 ][ 2 ] ;
 	short					RGBAMixS_ShaderSize[ 4 ][ 4 ][ 4 ][ 4 ][ 2 ] ;
 #endif // DX_NON_FILTER
@@ -887,28 +887,28 @@ struct GRAPHICS_HARDWARE_DIRECT3D9_SHADERCODE_BASE
 
 #ifndef DX_NON_SHADERCODE_BINARY
 
-// Direct3D9 ‚Ì •W€‚R‚c•`‰æ—p‚ÌƒVƒF[ƒ_[ƒR[ƒh‚ÌŒ³ƒf[ƒ^‚ğ“Z‚ß‚½\‘¢‘Ì
+// Direct3D9 ã® æ¨™æº–ï¼“ï¼¤æç”»ç”¨ã®ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚³ãƒ¼ãƒ‰ã®å…ƒãƒ‡ãƒ¼ã‚¿ã‚’çºã‚ãŸæ§‹é€ ä½“
 struct GRAPHICS_HARDWARE_DIRECT3D9_SHADERCODE_BASE3D
 {
-	volatile int			Base3DShaderInitializeFlag ;			// ƒVƒF[ƒ_[ƒoƒCƒiƒŠ‚ÌƒZƒbƒgƒAƒbƒv‚ªŠ®—¹‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO( TRUE:Š®—¹‚µ‚Ä‚¢‚é  FALSE:Š®—¹‚µ‚Ä‚¢‚È‚¢ )
+	volatile int			Base3DShaderInitializeFlag ;			// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒã‚¤ãƒŠãƒªã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ãŒå®Œäº†ã—ã¦ã„ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°( TRUE:å®Œäº†ã—ã¦ã„ã‚‹  FALSE:å®Œäº†ã—ã¦ã„ãªã„ )
 
-	void					*Base3DShaderPackageImage ;				// •W€‚R‚c•`‰æ—pƒVƒF[ƒ_[ƒpƒbƒP[ƒWƒoƒCƒiƒŠƒCƒ[ƒW
+	void					*Base3DShaderPackageImage ;				// æ¨™æº–ï¼“ï¼¤æç”»ç”¨ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ãƒã‚¤ãƒŠãƒªã‚¤ãƒ¡ãƒ¼ã‚¸
 
-	// ƒ‚ƒfƒ‹•`‰æ—pƒsƒNƒZƒ‹’PˆÊƒ‰ƒCƒeƒBƒ“ƒOƒ^ƒCƒv‚Ì’¸“_ƒVƒF[ƒ_[( ƒŠƒXƒg‚Í”z—ñ‚Ì¶‚©‚ç )
-	// [ ƒVƒƒƒhƒEƒ}ƒbƒv‚Ì—L–³( 0:–³‚µ 1:—L‚è ) ]
-	// /* [ ƒƒbƒVƒ…ƒ^ƒCƒv( 0:„‘ÌƒƒbƒVƒ… 1:4ƒ{[ƒ““àƒXƒLƒjƒ“ƒOƒƒbƒVƒ… 2:8ƒ{[ƒ““àƒXƒLƒjƒ“ƒOƒƒbƒVƒ… ) ] */
-	// /* [ ƒoƒ“ƒvƒ}ƒbƒv‚Ì—L–³( 0:–³‚µ 1:—L‚è ) ] */
-	// [ ƒtƒHƒOƒ^ƒCƒv ]
+	// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ãƒ”ã‚¯ã‚»ãƒ«å˜ä½ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ã‚¿ã‚¤ãƒ—ã®é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼( ãƒªã‚¹ãƒˆã¯é…åˆ—ã®å·¦ã‹ã‚‰ )
+	// [ ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ã®æœ‰ç„¡( 0:ç„¡ã— 1:æœ‰ã‚Š ) ]
+	// /* [ ãƒ¡ãƒƒã‚·ãƒ¥ã‚¿ã‚¤ãƒ—( 0:å‰›ä½“ãƒ¡ãƒƒã‚·ãƒ¥ 1:4ãƒœãƒ¼ãƒ³å†…ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥ 2:8ãƒœãƒ¼ãƒ³å†…ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥ ) ] */
+	// /* [ ãƒãƒ³ãƒ—ãƒãƒƒãƒ—ã®æœ‰ç„¡( 0:ç„¡ã— 1:æœ‰ã‚Š ) ] */
+	// [ ãƒ•ã‚©ã‚°ã‚¿ã‚¤ãƒ— ]
 	void					*Base3D_PixelLighting_VSAddress[ 2 ]/*[ 3 ]*//*[ 2 ]*/[ 4 ] ;
 
-	// ƒ‚ƒfƒ‹•`‰æ—pƒsƒNƒZƒ‹’PˆÊƒ‰ƒCƒeƒBƒ“ƒOƒ^ƒCƒv‚ÌƒsƒNƒZƒ‹ƒVƒF[ƒ_[( ƒŠƒXƒg‚Í”z—ñ‚Ì¶‚©‚ç )
-	// [ ƒVƒƒƒhƒEƒ}ƒbƒv‚Ì—L–³( 0:–³‚µ 1:—L‚è ) ]
-	// /*[ ƒ}ƒ‹ƒ`ƒeƒNƒXƒ`ƒƒ‚ÌƒuƒŒƒ“ƒhƒ‚[ƒhAMV1_LAYERBLEND_TYPE_TRANSLUCENT ‚È‚Ç‚É +1 ‚µ‚½‚à‚Ì ( 0:ƒ}ƒ‹ƒ`ƒeƒNƒXƒ`ƒƒ–³‚µ  1:ƒ¿ƒuƒŒƒ“ƒh  2:‰ÁZƒuƒŒƒ“ƒh  3:æZƒuƒŒƒ“ƒh  4:æZƒuƒŒƒ“ƒh~2 ) ]*/
-	// /*[ ƒXƒyƒLƒ…ƒ‰ƒ}ƒbƒv ( 0:–³‚¢ 1:‚ ‚é ) ]*/
-	// /*[ ƒoƒ“ƒvƒ}ƒbƒv ( 0:‚È‚µ 1:‚ ‚è ) ]*/
-	// [ ƒ‰ƒCƒgƒCƒ“ƒfƒbƒNƒX ]
-	// [ ƒXƒyƒLƒ…ƒ‰‚Ì—L–³( 0:–³‚µ 1:—L‚è ) ]
-	// [ “ÁêŒø‰Ê( 0:’Êí•`‰æ  1:æZ•`‰æ  2:RGB”½“]  3:•`‰æ‹P“x‚S”{  4:æZÏ‚İƒ¿ƒuƒŒƒ“ƒhƒ‚[ƒh‚Ì’Êí•`‰æ  5:æZÏ‚İƒ¿ƒuƒŒƒ“ƒhƒ‚[ƒh‚ÌRGB”½“]  6:æZÏ‚İƒ¿ƒuƒŒƒ“ƒhƒ‚[ƒh‚Ì•`‰æ‹P“x4”{ ) ]
+	// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ãƒ”ã‚¯ã‚»ãƒ«å˜ä½ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ã‚¿ã‚¤ãƒ—ã®ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼( ãƒªã‚¹ãƒˆã¯é…åˆ—ã®å·¦ã‹ã‚‰ )
+	// [ ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ã®æœ‰ç„¡( 0:ç„¡ã— 1:æœ‰ã‚Š ) ]
+	// /*[ ãƒãƒ«ãƒãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã€MV1_LAYERBLEND_TYPE_TRANSLUCENT ãªã©ã« +1 ã—ãŸã‚‚ã® ( 0:ãƒãƒ«ãƒãƒ†ã‚¯ã‚¹ãƒãƒ£ç„¡ã—  1:Î±ãƒ–ãƒ¬ãƒ³ãƒ‰  2:åŠ ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰  3:ä¹—ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰  4:ä¹—ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰Ã—2 ) ]*/
+	// /*[ ã‚¹ãƒšã‚­ãƒ¥ãƒ©ãƒãƒƒãƒ— ( 0:ç„¡ã„ 1:ã‚ã‚‹ ) ]*/
+	// /*[ ãƒãƒ³ãƒ—ãƒãƒƒãƒ— ( 0:ãªã— 1:ã‚ã‚Š ) ]*/
+	// [ ãƒ©ã‚¤ãƒˆã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ ]
+	// [ ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã®æœ‰ç„¡( 0:ç„¡ã— 1:æœ‰ã‚Š ) ]
+	// [ ç‰¹æ®ŠåŠ¹æœ( 0:é€šå¸¸æç”»  1:ä¹—ç®—æç”»  2:RGBåè»¢  3:æç”»è¼åº¦ï¼”å€  4:ä¹—ç®—æ¸ˆã¿Î±ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã®é€šå¸¸æç”»  5:ä¹—ç®—æ¸ˆã¿Î±ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã®RGBåè»¢  6:ä¹—ç®—æ¸ˆã¿Î±ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã®æç”»è¼åº¦4å€ ) ]
 	void					*Base3D_PixelLighting_Normal_PSAddress[ 2 ]/*[ 5 ]*//*[ 2 ]*//*[ 2 ]*/[ 84 ][ 2 ][ 7 ] ;
 
 
@@ -916,90 +916,90 @@ struct GRAPHICS_HARDWARE_DIRECT3D9_SHADERCODE_BASE3D
 
 
 
-	// ƒ‚ƒfƒ‹•`‰æ—p‚ÌƒVƒƒƒhƒEƒ}ƒbƒv‚Ö‚ÌƒŒƒ“ƒ_ƒŠƒ“ƒO—p’¸“_ƒVƒF[ƒ_[
-	// /*[ ƒƒbƒVƒ…ƒ^ƒCƒv( 0:„‘ÌƒƒbƒVƒ… 1:4ƒ{[ƒ““àƒXƒLƒjƒ“ƒOƒƒbƒVƒ…  2:8ƒ{[ƒ““àƒXƒLƒjƒ“ƒOƒƒbƒVƒ… ) ]*/
-	// [ ƒoƒ“ƒvƒ}ƒbƒv‚Ì—L–³( 0:–³‚µ 1:—L‚è ) ]
+	// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ã®ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ã¸ã®ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ç”¨é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼
+	// /*[ ãƒ¡ãƒƒã‚·ãƒ¥ã‚¿ã‚¤ãƒ—( 0:å‰›ä½“ãƒ¡ãƒƒã‚·ãƒ¥ 1:4ãƒœãƒ¼ãƒ³å†…ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥  2:8ãƒœãƒ¼ãƒ³å†…ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥ ) ]*/
+	// [ ãƒãƒ³ãƒ—ãƒãƒƒãƒ—ã®æœ‰ç„¡( 0:ç„¡ã— 1:æœ‰ã‚Š ) ]
 	void					*Base3D_ShadowMap_VSAddress/*[ 3 ]*/[ 2 ] ;
 
-	// ƒ‚ƒfƒ‹•`‰æ—p‚Ìƒ‰ƒCƒeƒBƒ“ƒO‚È‚µ’¸“_ƒVƒF[ƒ_[
-	// /*[ ƒƒbƒVƒ…ƒ^ƒCƒv( 0:„‘ÌƒƒbƒVƒ… 1:4ƒ{[ƒ““àƒXƒLƒjƒ“ƒOƒƒbƒVƒ…  2:8ƒ{[ƒ““àƒXƒLƒjƒ“ƒOƒƒbƒVƒ… ) ]*/
-	// [ ƒtƒHƒOƒ^ƒCƒv ]
+	// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ã®ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ãªã—é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼
+	// /*[ ãƒ¡ãƒƒã‚·ãƒ¥ã‚¿ã‚¤ãƒ—( 0:å‰›ä½“ãƒ¡ãƒƒã‚·ãƒ¥ 1:4ãƒœãƒ¼ãƒ³å†…ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥  2:8ãƒœãƒ¼ãƒ³å†…ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥ ) ]*/
+	// [ ãƒ•ã‚©ã‚°ã‚¿ã‚¤ãƒ— ]
 	void					*Base3D_NoLighting_VSAddress/*[ 3 ]*/[ 4 ] ;
 
-	// ƒ‚ƒfƒ‹•`‰æ—p‚Ìƒ‰ƒCƒeƒBƒ“ƒO‚ ‚è’¸“_ƒVƒF[ƒ_[
-	// [ ƒVƒF[ƒ_[ƒ‚ƒfƒ‹( 0:SM2  1:SM3 )
-	// [ ƒVƒƒƒhƒEƒ}ƒbƒv‚Ì—L–³( 0:–³‚µ 1:—L‚è ) ]
-	// /*[ ƒƒbƒVƒ…ƒ^ƒCƒv( 0:„‘ÌƒƒbƒVƒ… 1:4ƒ{[ƒ““àƒXƒLƒjƒ“ƒOƒƒbƒVƒ…  2:8ƒ{[ƒ““àƒXƒLƒjƒ“ƒOƒƒbƒVƒ… ) ]*/
-	// /*[ ƒoƒ“ƒvƒ}ƒbƒv‚Ì—L–³( 0:–³‚µ 1:—L‚è ) ]*/
-	// [ ƒtƒHƒOƒ^ƒCƒv ]
-	// [ ƒ‰ƒCƒgƒCƒ“ƒfƒbƒNƒX ]
-	// [ ƒXƒyƒLƒ…ƒ‰‚Ì—L–³( 0:–³‚µ 1:—L‚è ) ]
+	// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ã®ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ã‚ã‚Šé ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼
+	// [ ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒ¢ãƒ‡ãƒ«( 0:SM2  1:SM3 )
+	// [ ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ã®æœ‰ç„¡( 0:ç„¡ã— 1:æœ‰ã‚Š ) ]
+	// /*[ ãƒ¡ãƒƒã‚·ãƒ¥ã‚¿ã‚¤ãƒ—( 0:å‰›ä½“ãƒ¡ãƒƒã‚·ãƒ¥ 1:4ãƒœãƒ¼ãƒ³å†…ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥  2:8ãƒœãƒ¼ãƒ³å†…ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥ ) ]*/
+	// /*[ ãƒãƒ³ãƒ—ãƒãƒƒãƒ—ã®æœ‰ç„¡( 0:ç„¡ã— 1:æœ‰ã‚Š ) ]*/
+	// [ ãƒ•ã‚©ã‚°ã‚¿ã‚¤ãƒ— ]
+	// [ ãƒ©ã‚¤ãƒˆã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ ]
+	// [ ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã®æœ‰ç„¡( 0:ç„¡ã— 1:æœ‰ã‚Š ) ]
 	void					*Base3D_VertexLighting_VSAddress[ 2 ][ 2 ]/*[ 3 ]*//*[ 2 ]*/[ 4 ][ 20 ][ 2 ] ;
 
 
-	// ƒ‚ƒfƒ‹•`‰æ—p‚ÌƒVƒƒƒhƒEƒ}ƒbƒv‚Ö‚ÌƒŒƒ“ƒ_ƒŠƒ“ƒO—pƒsƒNƒZƒ‹ƒVƒF[ƒ_[
+	// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ã®ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ã¸ã®ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ç”¨ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼
 	void					*Base3D_ShadowMap_Normal_PSAddress ;
 
-	// ƒ‚ƒfƒ‹•`‰æ—p‚Ìƒ‰ƒCƒeƒBƒ“ƒO‚È‚µƒsƒNƒZƒ‹ƒVƒF[ƒ_[
-	// /*[ ƒ}ƒ‹ƒ`ƒeƒNƒXƒ`ƒƒ‚ÌƒuƒŒƒ“ƒhƒ‚[ƒhAMV1_LAYERBLEND_TYPE_TRANSLUCENT ‚È‚Ç‚É +1 ‚µ‚½‚à‚Ì ( 0:ƒ}ƒ‹ƒ`ƒeƒNƒXƒ`ƒƒ–³‚µ  1:ƒ¿ƒuƒŒƒ“ƒh  2:‰ÁZƒuƒŒƒ“ƒh  3:æZƒuƒŒƒ“ƒh  4:æZƒuƒŒƒ“ƒh~2 ) ]*/
-	// [ “ÁêŒø‰Ê( 0:’Êí•`‰æ  1:æZ•`‰æ  2:RGB”½“]  3:•`‰æ‹P“x‚S”{  4:æZÏ‚İƒ¿ƒuƒŒƒ“ƒhƒ‚[ƒh‚Ì’Êí•`‰æ  5:æZÏ‚İƒ¿ƒuƒŒƒ“ƒhƒ‚[ƒh‚ÌRGB”½“]  6:æZÏ‚İƒ¿ƒuƒŒƒ“ƒhƒ‚[ƒh‚Ì•`‰æ‹P“x4”{ ) ]
+	// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ã®ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ãªã—ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼
+	// /*[ ãƒãƒ«ãƒãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã€MV1_LAYERBLEND_TYPE_TRANSLUCENT ãªã©ã« +1 ã—ãŸã‚‚ã® ( 0:ãƒãƒ«ãƒãƒ†ã‚¯ã‚¹ãƒãƒ£ç„¡ã—  1:Î±ãƒ–ãƒ¬ãƒ³ãƒ‰  2:åŠ ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰  3:ä¹—ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰  4:ä¹—ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰Ã—2 ) ]*/
+	// [ ç‰¹æ®ŠåŠ¹æœ( 0:é€šå¸¸æç”»  1:ä¹—ç®—æç”»  2:RGBåè»¢  3:æç”»è¼åº¦ï¼”å€  4:ä¹—ç®—æ¸ˆã¿Î±ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã®é€šå¸¸æç”»  5:ä¹—ç®—æ¸ˆã¿Î±ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã®RGBåè»¢  6:ä¹—ç®—æ¸ˆã¿Î±ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã®æç”»è¼åº¦4å€ ) ]
 	void					*Base3D_NoLighting_Normal_PSAddress/*[ 5 ]*/[ 7 ] ;
 
-	// ƒ‚ƒfƒ‹•`‰æ—p‚Ìƒ‰ƒCƒeƒBƒ“ƒO‚ ‚èƒsƒNƒZƒ‹ƒVƒF[ƒ_[
-	// [ ƒVƒF[ƒ_[ƒ‚ƒfƒ‹( 0:SM2  1:SM3 )
-	// [ ƒVƒƒƒhƒEƒ}ƒbƒv‚Ì—L–³( 0:–³‚µ 1:—L‚è ) ]
-	// /* [ ƒ}ƒ‹ƒ`ƒeƒNƒXƒ`ƒƒ‚ÌƒuƒŒƒ“ƒhƒ‚[ƒhAMV1_LAYERBLEND_TYPE_TRANSLUCENT ‚È‚Ç‚É +1 ‚µ‚½‚à‚Ì ( 0:ƒ}ƒ‹ƒ`ƒeƒNƒXƒ`ƒƒ–³‚µ  1:ƒ¿ƒuƒŒƒ“ƒh  2:‰ÁZƒuƒŒƒ“ƒh  3:æZƒuƒŒƒ“ƒh  4:æZƒuƒŒƒ“ƒh~2 ) ] */
-	// /* [ ƒXƒyƒLƒ…ƒ‰ƒ}ƒbƒv ( 0:–³‚¢ 1:‚ ‚é ) ] */
-	// /* [ ƒoƒ“ƒvƒ}ƒbƒv ( 0:‚È‚µ 1:‚ ‚è ) ] */
-	// [ ƒ‰ƒCƒgƒCƒ“ƒfƒbƒNƒX ]
-	// [ ƒXƒyƒLƒ…ƒ‰‚Ì—L–³( 0:–³‚µ 1:—L‚è ) ]
-	// [ “ÁêŒø‰Ê( 0:’Êí•`‰æ  1:æZ•`‰æ  2:RGB”½“]  3:•`‰æ‹P“x‚S”{  4:æZÏ‚İƒ¿ƒuƒŒƒ“ƒhƒ‚[ƒh‚Ì’Êí•`‰æ  5:æZÏ‚İƒ¿ƒuƒŒƒ“ƒhƒ‚[ƒh‚ÌRGB”½“]  6:æZÏ‚İƒ¿ƒuƒŒƒ“ƒhƒ‚[ƒh‚Ì•`‰æ‹P“x4”{ ) ]
+	// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ã®ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ã‚ã‚Šãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼
+	// [ ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒ¢ãƒ‡ãƒ«( 0:SM2  1:SM3 )
+	// [ ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ã®æœ‰ç„¡( 0:ç„¡ã— 1:æœ‰ã‚Š ) ]
+	// /* [ ãƒãƒ«ãƒãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã€MV1_LAYERBLEND_TYPE_TRANSLUCENT ãªã©ã« +1 ã—ãŸã‚‚ã® ( 0:ãƒãƒ«ãƒãƒ†ã‚¯ã‚¹ãƒãƒ£ç„¡ã—  1:Î±ãƒ–ãƒ¬ãƒ³ãƒ‰  2:åŠ ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰  3:ä¹—ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰  4:ä¹—ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰Ã—2 ) ] */
+	// /* [ ã‚¹ãƒšã‚­ãƒ¥ãƒ©ãƒãƒƒãƒ— ( 0:ç„¡ã„ 1:ã‚ã‚‹ ) ] */
+	// /* [ ãƒãƒ³ãƒ—ãƒãƒƒãƒ— ( 0:ãªã— 1:ã‚ã‚Š ) ] */
+	// [ ãƒ©ã‚¤ãƒˆã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ ]
+	// [ ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã®æœ‰ç„¡( 0:ç„¡ã— 1:æœ‰ã‚Š ) ]
+	// [ ç‰¹æ®ŠåŠ¹æœ( 0:é€šå¸¸æç”»  1:ä¹—ç®—æç”»  2:RGBåè»¢  3:æç”»è¼åº¦ï¼”å€  4:ä¹—ç®—æ¸ˆã¿Î±ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã®é€šå¸¸æç”»  5:ä¹—ç®—æ¸ˆã¿Î±ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã®RGBåè»¢  6:ä¹—ç®—æ¸ˆã¿Î±ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã®æç”»è¼åº¦4å€ ) ]
 	void					*Base3D_VertexLighting_Normal_PSAddress[ 2 ][ 2 ]/*[ 5 ]*//*[ 2 ]*//*[ 2 ]*/[ 10 ][ 2 ][ 7 ] ;
 } ;
 
 #ifndef DX_NON_MODEL
 
-// Direct3D9 ‚Ì ƒ‚ƒfƒ‹•`‰æ—p‚ÌƒVƒF[ƒ_[ƒR[ƒh‚ÌŒ³ƒf[ƒ^‚ğ“Z‚ß‚½\‘¢‘Ì
+// Direct3D9 ã® ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ã®ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚³ãƒ¼ãƒ‰ã®å…ƒãƒ‡ãƒ¼ã‚¿ã‚’çºã‚ãŸæ§‹é€ ä½“
 struct GRAPHICS_HARDWARE_DIRECT3D9_SHADERCODE_MODEL
 {
-	volatile int			ModelShaderInitializeFlag ;				// ƒ‚ƒfƒ‹—p‚ÌƒVƒF[ƒ_[ƒoƒCƒiƒŠ‚ÌƒZƒbƒgƒAƒbƒv‚ªŠ®—¹‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO( TRUE:Š®—¹‚µ‚Ä‚¢‚é  FALSE:Š®—¹‚µ‚Ä‚¢‚È‚¢ )
+	volatile int			ModelShaderInitializeFlag ;				// ãƒ¢ãƒ‡ãƒ«ç”¨ã®ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒã‚¤ãƒŠãƒªã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ãŒå®Œäº†ã—ã¦ã„ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°( TRUE:å®Œäº†ã—ã¦ã„ã‚‹  FALSE:å®Œäº†ã—ã¦ã„ãªã„ )
 
-	void					*ModelShaderPackImage ;					// ‚R‚cƒ‚ƒfƒ‹—pƒVƒF[ƒ_[ƒpƒbƒP[ƒWƒoƒCƒiƒŠƒCƒ[ƒW
+	void					*ModelShaderPackImage ;					// ï¼“ï¼¤ãƒ¢ãƒ‡ãƒ«ç”¨ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ãƒã‚¤ãƒŠãƒªã‚¤ãƒ¡ãƒ¼ã‚¸
 
-	// ƒ‚ƒfƒ‹•`‰æ—pƒsƒNƒZƒ‹’PˆÊƒ‰ƒCƒeƒBƒ“ƒOƒ^ƒCƒv‚Ì’¸“_ƒVƒF[ƒ_[( ƒŠƒXƒg‚Í”z—ñ‚Ì¶‚©‚ç )
-	// [ ƒVƒƒƒhƒEƒ}ƒbƒv‚Ì—L–³( 0:–³‚µ 1:—L‚è ) ]
-	// [ ƒƒbƒVƒ…ƒ^ƒCƒv( 0:„‘ÌƒƒbƒVƒ… 1:4ƒ{[ƒ““àƒXƒLƒjƒ“ƒOƒƒbƒVƒ… 2:8ƒ{[ƒ““àƒXƒLƒjƒ“ƒOƒƒbƒVƒ… ) ]
-	// [ ƒoƒ“ƒvƒ}ƒbƒv‚Ì—L–³( 0:–³‚µ 1:—L‚è ) ]
-	// [ ƒtƒHƒOƒ^ƒCƒv ]
+	// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ãƒ”ã‚¯ã‚»ãƒ«å˜ä½ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ã‚¿ã‚¤ãƒ—ã®é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼( ãƒªã‚¹ãƒˆã¯é…åˆ—ã®å·¦ã‹ã‚‰ )
+	// [ ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ã®æœ‰ç„¡( 0:ç„¡ã— 1:æœ‰ã‚Š ) ]
+	// [ ãƒ¡ãƒƒã‚·ãƒ¥ã‚¿ã‚¤ãƒ—( 0:å‰›ä½“ãƒ¡ãƒƒã‚·ãƒ¥ 1:4ãƒœãƒ¼ãƒ³å†…ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥ 2:8ãƒœãƒ¼ãƒ³å†…ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥ ) ]
+	// [ ãƒãƒ³ãƒ—ãƒãƒƒãƒ—ã®æœ‰ç„¡( 0:ç„¡ã— 1:æœ‰ã‚Š ) ]
+	// [ ãƒ•ã‚©ã‚°ã‚¿ã‚¤ãƒ— ]
 	void					*MV1_PixelLighting_VSAddress[ 2 ][ 3 ][ 2 ][ 4 ] ;
 
-	// ƒ‚ƒfƒ‹•`‰æ—pƒsƒNƒZƒ‹’PˆÊƒ‰ƒCƒeƒBƒ“ƒOƒ^ƒCƒv‚ÌƒgƒD[ƒ“—pƒsƒNƒZƒ‹ƒVƒF[ƒ_[( ƒŠƒXƒg‚Í”z—ñ‚Ì¶‚©‚ç )
-	// [ ƒVƒƒƒhƒEƒ}ƒbƒv‚Ì—L–³( 0:–³‚µ 1:—L‚è ) ]
-	// [ ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚©‚Ç‚¤‚©( 0:ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO type 1   1:ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO Type 2 ) ]
-	// [ ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚ÌƒXƒtƒBƒAƒ}ƒbƒv‚Ì—L–³‚ÆƒuƒŒƒ“ƒhƒ^ƒCƒv( 0:ƒXƒtƒBƒAƒ}ƒbƒv‚Í–³‚¢   1:MV1_LAYERBLEND_TYPE_MODULATE  2:MV1_LAYERBLEND_TYPE_ADDITIVE ) ]
-	// [ ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚ÌƒfƒBƒtƒ…[ƒYƒOƒ‰ƒf[ƒVƒ‡ƒ“‚ÌƒuƒŒƒ“ƒhƒ^ƒCƒv( 0:MV1_LAYERBLEND_TYPE_TRANSLUCENT  1:MV1_LAYERBLEND_TYPE_MODULATE ) ]
-	// [ ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚ÌƒXƒyƒLƒ…ƒ‰ƒOƒ‰ƒf[ƒVƒ‡ƒ“‚ÌƒuƒŒƒ“ƒhƒ^ƒCƒv( 0:MV1_LAYERBLEND_TYPE_TRANSLUCENT  1:MV1_LAYERBLEND_TYPE_ADDITIVE ) ]
-	// [ ƒXƒyƒLƒ…ƒ‰ƒ}ƒbƒv ( 0:–³‚¢ 1:‚ ‚é ) ]
-	// [ ƒoƒ“ƒvƒ}ƒbƒv ( 0:‚È‚µ 1:‚ ‚è ) ]
-	// [ ƒ‰ƒCƒgƒCƒ“ƒfƒbƒNƒX ]
-	// [ ƒXƒyƒLƒ…ƒ‰‚Ì—L–³( 0:–³‚µ 1:—L‚è ) ]
+	// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ãƒ”ã‚¯ã‚»ãƒ«å˜ä½ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ã‚¿ã‚¤ãƒ—ã®ãƒˆã‚¥ãƒ¼ãƒ³ç”¨ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼( ãƒªã‚¹ãƒˆã¯é…åˆ—ã®å·¦ã‹ã‚‰ )
+	// [ ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ã®æœ‰ç„¡( 0:ç„¡ã— 1:æœ‰ã‚Š ) ]
+	// [ ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã‹ã©ã†ã‹( 0:ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚° type 1   1:ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚° Type 2 ) ]
+	// [ ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã®ã‚¹ãƒ•ã‚£ã‚¢ãƒãƒƒãƒ—ã®æœ‰ç„¡ã¨ãƒ–ãƒ¬ãƒ³ãƒ‰ã‚¿ã‚¤ãƒ—( 0:ã‚¹ãƒ•ã‚£ã‚¢ãƒãƒƒãƒ—ã¯ç„¡ã„   1:MV1_LAYERBLEND_TYPE_MODULATE  2:MV1_LAYERBLEND_TYPE_ADDITIVE ) ]
+	// [ ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã®ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚°ãƒ©ãƒ‡ãƒ¼ã‚·ãƒ§ãƒ³ã®ãƒ–ãƒ¬ãƒ³ãƒ‰ã‚¿ã‚¤ãƒ—( 0:MV1_LAYERBLEND_TYPE_TRANSLUCENT  1:MV1_LAYERBLEND_TYPE_MODULATE ) ]
+	// [ ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã®ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã‚°ãƒ©ãƒ‡ãƒ¼ã‚·ãƒ§ãƒ³ã®ãƒ–ãƒ¬ãƒ³ãƒ‰ã‚¿ã‚¤ãƒ—( 0:MV1_LAYERBLEND_TYPE_TRANSLUCENT  1:MV1_LAYERBLEND_TYPE_ADDITIVE ) ]
+	// [ ã‚¹ãƒšã‚­ãƒ¥ãƒ©ãƒãƒƒãƒ— ( 0:ç„¡ã„ 1:ã‚ã‚‹ ) ]
+	// [ ãƒãƒ³ãƒ—ãƒãƒƒãƒ— ( 0:ãªã— 1:ã‚ã‚Š ) ]
+	// [ ãƒ©ã‚¤ãƒˆã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ ]
+	// [ ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã®æœ‰ç„¡( 0:ç„¡ã— 1:æœ‰ã‚Š ) ]
 	void					*MV1_PixelLighting_Toon_PSAddress[ 2 ][ 2 ][ 3 ][ 2 ][ 2 ][ 2 ][ 2 ][ 84 ][ 2 ] ;
 
-	// ƒ‚ƒfƒ‹•`‰æ—pƒsƒNƒZƒ‹’PˆÊƒ‰ƒCƒeƒBƒ“ƒOƒ^ƒCƒv‚ÌƒsƒNƒZƒ‹ƒVƒF[ƒ_[( ƒŠƒXƒg‚Í”z—ñ‚Ì¶‚©‚ç )
-	// [ ƒVƒƒƒhƒEƒ}ƒbƒv‚Ì—L–³( 0:–³‚µ 1:—L‚è ) ]
-	// [ ƒ}ƒ‹ƒ`ƒeƒNƒXƒ`ƒƒ‚ÌƒuƒŒƒ“ƒhƒ‚[ƒhAMV1_LAYERBLEND_TYPE_TRANSLUCENT ‚È‚Ç‚É +1 ‚µ‚½‚à‚Ì ( 0:ƒ}ƒ‹ƒ`ƒeƒNƒXƒ`ƒƒ–³‚µ  1:ƒ¿ƒuƒŒƒ“ƒh  2:‰ÁZƒuƒŒƒ“ƒh  3:æZƒuƒŒƒ“ƒh  4:æZƒuƒŒƒ“ƒh~2 ) ]
-	// [ ƒXƒyƒLƒ…ƒ‰ƒ}ƒbƒv ( 0:–³‚¢ 1:‚ ‚é ) ]
-	// [ ƒoƒ“ƒvƒ}ƒbƒv ( 0:‚È‚µ 1:‚ ‚è ) ]
-	// [ ƒ‰ƒCƒgƒCƒ“ƒfƒbƒNƒX ]
-	// [ ƒXƒyƒLƒ…ƒ‰‚Ì—L–³( 0:–³‚µ 1:—L‚è ) ]
+	// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ãƒ”ã‚¯ã‚»ãƒ«å˜ä½ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ã‚¿ã‚¤ãƒ—ã®ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼( ãƒªã‚¹ãƒˆã¯é…åˆ—ã®å·¦ã‹ã‚‰ )
+	// [ ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ã®æœ‰ç„¡( 0:ç„¡ã— 1:æœ‰ã‚Š ) ]
+	// [ ãƒãƒ«ãƒãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã€MV1_LAYERBLEND_TYPE_TRANSLUCENT ãªã©ã« +1 ã—ãŸã‚‚ã® ( 0:ãƒãƒ«ãƒãƒ†ã‚¯ã‚¹ãƒãƒ£ç„¡ã—  1:Î±ãƒ–ãƒ¬ãƒ³ãƒ‰  2:åŠ ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰  3:ä¹—ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰  4:ä¹—ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰Ã—2 ) ]
+	// [ ã‚¹ãƒšã‚­ãƒ¥ãƒ©ãƒãƒƒãƒ— ( 0:ç„¡ã„ 1:ã‚ã‚‹ ) ]
+	// [ ãƒãƒ³ãƒ—ãƒãƒƒãƒ— ( 0:ãªã— 1:ã‚ã‚Š ) ]
+	// [ ãƒ©ã‚¤ãƒˆã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ ]
+	// [ ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã®æœ‰ç„¡( 0:ç„¡ã— 1:æœ‰ã‚Š ) ]
 	void					*MV1_PixelLighting_Normal_PSAddress[ 2 ][ 5 ][ 2 ][ 2 ][ 84 ][ 2 ] ;
 
 
 
 
 
-	// ƒ‚ƒfƒ‹•`‰æ—p‚Ìƒ}ƒeƒŠƒAƒ‹—v‘f•`‰æ—pƒsƒNƒZƒ‹ƒVƒF[ƒ_[
-	// [ ƒ}ƒeƒŠƒAƒ‹ƒ^ƒCƒv( DX_MATERIAL_TYPE_MAT_SPEC_LUMINANCE_UNORM ‚È‚Ç ) ]
+	// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ã®ãƒãƒ†ãƒªã‚¢ãƒ«è¦ç´ æç”»ç”¨ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼
+	// [ ãƒãƒ†ãƒªã‚¢ãƒ«ã‚¿ã‚¤ãƒ—( DX_MATERIAL_TYPE_MAT_SPEC_LUMINANCE_UNORM ãªã© ) ]
 	void					*MV1_MaterialType_PSAddress[ DX_MATERIAL_TYPE_NUM ] ;
 
 
@@ -1007,73 +1007,73 @@ struct GRAPHICS_HARDWARE_DIRECT3D9_SHADERCODE_MODEL
 
 
 
-	// ƒ‚ƒfƒ‹•`‰æ—p‚ÌƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚Ì—ÖŠsü•`‰æ—p’¸“_ƒVƒF[ƒ_[
-	// [ ƒƒbƒVƒ…ƒ^ƒCƒv( 0:„‘ÌƒƒbƒVƒ… 1:4ƒ{[ƒ““àƒXƒLƒjƒ“ƒOƒƒbƒVƒ…  2:8ƒ{[ƒ““àƒXƒLƒjƒ“ƒOƒƒbƒVƒ… ) ]
-	// [ ƒtƒHƒOƒ^ƒCƒv ]
+	// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ã®ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã®è¼ªéƒ­ç·šæç”»ç”¨é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼
+	// [ ãƒ¡ãƒƒã‚·ãƒ¥ã‚¿ã‚¤ãƒ—( 0:å‰›ä½“ãƒ¡ãƒƒã‚·ãƒ¥ 1:4ãƒœãƒ¼ãƒ³å†…ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥  2:8ãƒœãƒ¼ãƒ³å†…ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥ ) ]
+	// [ ãƒ•ã‚©ã‚°ã‚¿ã‚¤ãƒ— ]
 	void					*MV1_ToonOutLine_VSAddress[ 3 ][ 4 ] ;
 
-	// ƒ‚ƒfƒ‹•`‰æ—p‚ÌƒVƒƒƒhƒEƒ}ƒbƒv‚Ö‚ÌƒŒƒ“ƒ_ƒŠƒ“ƒO—p’¸“_ƒVƒF[ƒ_[
-	// [ ƒƒbƒVƒ…ƒ^ƒCƒv( 0:„‘ÌƒƒbƒVƒ… 1:4ƒ{[ƒ““àƒXƒLƒjƒ“ƒOƒƒbƒVƒ…  2:8ƒ{[ƒ““àƒXƒLƒjƒ“ƒOƒƒbƒVƒ… ) ]
+	// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ã®ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ã¸ã®ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ç”¨é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼
+	// [ ãƒ¡ãƒƒã‚·ãƒ¥ã‚¿ã‚¤ãƒ—( 0:å‰›ä½“ãƒ¡ãƒƒã‚·ãƒ¥ 1:4ãƒœãƒ¼ãƒ³å†…ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥  2:8ãƒœãƒ¼ãƒ³å†…ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥ ) ]
 	void					*MV1_ShadowMap_VSAddress[ 3 ] ;
 
-	// ƒ‚ƒfƒ‹•`‰æ—p‚Ìƒ‰ƒCƒeƒBƒ“ƒO‚È‚µ’¸“_ƒVƒF[ƒ_[
-	// [ ƒƒbƒVƒ…ƒ^ƒCƒv( 0:„‘ÌƒƒbƒVƒ… 1:4ƒ{[ƒ““àƒXƒLƒjƒ“ƒOƒƒbƒVƒ…  2:8ƒ{[ƒ““àƒXƒLƒjƒ“ƒOƒƒbƒVƒ… ) ]
-	// [ ƒtƒHƒOƒ^ƒCƒv ]
+	// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ã®ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ãªã—é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼
+	// [ ãƒ¡ãƒƒã‚·ãƒ¥ã‚¿ã‚¤ãƒ—( 0:å‰›ä½“ãƒ¡ãƒƒã‚·ãƒ¥ 1:4ãƒœãƒ¼ãƒ³å†…ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥  2:8ãƒœãƒ¼ãƒ³å†…ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥ ) ]
+	// [ ãƒ•ã‚©ã‚°ã‚¿ã‚¤ãƒ— ]
 	void					*MV1_NoLighting_VSAddress[ 3 ][ 4 ] ;
 
-	// ƒ‚ƒfƒ‹•`‰æ—p‚Ìƒ‰ƒCƒeƒBƒ“ƒO‚ ‚è’¸“_ƒVƒF[ƒ_[
-	// [ ƒVƒF[ƒ_[ƒ‚ƒfƒ‹( 0:SM2  1:SM3 )
-	// [ ƒVƒƒƒhƒEƒ}ƒbƒv‚Ì—L–³( 0:–³‚µ 1:—L‚è ) ]
-	// [ ƒƒbƒVƒ…ƒ^ƒCƒv( 0:„‘ÌƒƒbƒVƒ… 1:4ƒ{[ƒ““àƒXƒLƒjƒ“ƒOƒƒbƒVƒ…  2:8ƒ{[ƒ““àƒXƒLƒjƒ“ƒOƒƒbƒVƒ… ) ]
-	// [ ƒoƒ“ƒvƒ}ƒbƒv‚Ì—L–³( 0:–³‚µ 1:—L‚è ) ]
-	// [ ƒtƒHƒOƒ^ƒCƒv ]
-	// [ ƒ‰ƒCƒgƒCƒ“ƒfƒbƒNƒX ]
-	// [ ƒXƒyƒLƒ…ƒ‰‚Ì—L–³( 0:–³‚µ 1:—L‚è ) ]
+	// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ã®ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ã‚ã‚Šé ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼
+	// [ ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒ¢ãƒ‡ãƒ«( 0:SM2  1:SM3 )
+	// [ ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ã®æœ‰ç„¡( 0:ç„¡ã— 1:æœ‰ã‚Š ) ]
+	// [ ãƒ¡ãƒƒã‚·ãƒ¥ã‚¿ã‚¤ãƒ—( 0:å‰›ä½“ãƒ¡ãƒƒã‚·ãƒ¥ 1:4ãƒœãƒ¼ãƒ³å†…ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥  2:8ãƒœãƒ¼ãƒ³å†…ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥ ) ]
+	// [ ãƒãƒ³ãƒ—ãƒãƒƒãƒ—ã®æœ‰ç„¡( 0:ç„¡ã— 1:æœ‰ã‚Š ) ]
+	// [ ãƒ•ã‚©ã‚°ã‚¿ã‚¤ãƒ— ]
+	// [ ãƒ©ã‚¤ãƒˆã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ ]
+	// [ ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã®æœ‰ç„¡( 0:ç„¡ã— 1:æœ‰ã‚Š ) ]
 	void					*MV1_VertexLighting_VSAddress[ 2 ][ 2 ][ 3 ][ 2 ][ 4 ][ 20 ][ 2 ] ;
 
 
-	// ƒ‚ƒfƒ‹•`‰æ—p‚ÌƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚Ì—ÖŠsü•`‰æ—pƒsƒNƒZƒ‹ƒVƒF[ƒ_[
+	// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ã®ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã®è¼ªéƒ­ç·šæç”»ç”¨ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼
 	void					*MV1_ToonOutLine_PSAddress ;
 
-	// ƒ‚ƒfƒ‹•`‰æ—p‚ÌƒVƒƒƒhƒEƒ}ƒbƒv‚Ö‚ÌƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO—pƒsƒNƒZƒ‹ƒVƒF[ƒ_[
-	// [ ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒOƒ^ƒCƒv( 0:ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO type 1   1:ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO type 2 ) ]
-	// [ ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚ÌƒXƒtƒBƒAƒ}ƒbƒv‚Ì—L–³‚ÆƒuƒŒƒ“ƒhƒ^ƒCƒv( 0:ƒXƒtƒBƒAƒ}ƒbƒv‚Í–³‚¢   1:MV1_LAYERBLEND_TYPE_MODULATE  2:MV1_LAYERBLEND_TYPE_ADDITIVE ) ]
-	// [ ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚ÌƒfƒBƒtƒ…[ƒYƒOƒ‰ƒf[ƒVƒ‡ƒ“‚ÌƒuƒŒƒ“ƒhƒ^ƒCƒv( 0:MV1_LAYERBLEND_TYPE_TRANSLUCENT  1:MV1_LAYERBLEND_TYPE_MODULATE ) ]
+	// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ã®ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ã¸ã®ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ç”¨ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼
+	// [ ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã‚¿ã‚¤ãƒ—( 0:ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚° type 1   1:ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚° type 2 ) ]
+	// [ ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã®ã‚¹ãƒ•ã‚£ã‚¢ãƒãƒƒãƒ—ã®æœ‰ç„¡ã¨ãƒ–ãƒ¬ãƒ³ãƒ‰ã‚¿ã‚¤ãƒ—( 0:ã‚¹ãƒ•ã‚£ã‚¢ãƒãƒƒãƒ—ã¯ç„¡ã„   1:MV1_LAYERBLEND_TYPE_MODULATE  2:MV1_LAYERBLEND_TYPE_ADDITIVE ) ]
+	// [ ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã®ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚°ãƒ©ãƒ‡ãƒ¼ã‚·ãƒ§ãƒ³ã®ãƒ–ãƒ¬ãƒ³ãƒ‰ã‚¿ã‚¤ãƒ—( 0:MV1_LAYERBLEND_TYPE_TRANSLUCENT  1:MV1_LAYERBLEND_TYPE_MODULATE ) ]
 	void					*MV1_ShadowMap_Toon_PSAddress[ 2 ][ 3 ][ 2 ] ;
 
-	// ƒ‚ƒfƒ‹•`‰æ—p‚ÌƒVƒƒƒhƒEƒ}ƒbƒv‚Ö‚ÌƒŒƒ“ƒ_ƒŠƒ“ƒO—pƒsƒNƒZƒ‹ƒVƒF[ƒ_[
+	// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ã®ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ã¸ã®ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ç”¨ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼
 	void					*MV1_ShadowMap_Normal_PSAddress ;
 
-	// ƒ‚ƒfƒ‹•`‰æ—p‚Ìƒ‰ƒCƒeƒBƒ“ƒO‚È‚µƒgƒD[ƒ“—pƒsƒNƒZƒ‹ƒVƒF[ƒ_[( ƒŠƒXƒg‚Í”z—ñ‚Ì¶‚©‚ç )
-	// [ ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒOƒ^ƒCƒv( 0:ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO type 1   1:ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO type 2 ) ]
-	// [ ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚ÌƒfƒBƒtƒ…[ƒYƒOƒ‰ƒf[ƒVƒ‡ƒ“‚ÌƒuƒŒƒ“ƒhƒ^ƒCƒv( 0:MV1_LAYERBLEND_TYPE_TRANSLUCENT or ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚Å‚Í‚È‚¢  1:MV1_LAYERBLEND_TYPE_MODULATE ) ]
+	// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ã®ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ãªã—ãƒˆã‚¥ãƒ¼ãƒ³ç”¨ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼( ãƒªã‚¹ãƒˆã¯é…åˆ—ã®å·¦ã‹ã‚‰ )
+	// [ ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã‚¿ã‚¤ãƒ—( 0:ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚° type 1   1:ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚° type 2 ) ]
+	// [ ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã®ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚°ãƒ©ãƒ‡ãƒ¼ã‚·ãƒ§ãƒ³ã®ãƒ–ãƒ¬ãƒ³ãƒ‰ã‚¿ã‚¤ãƒ—( 0:MV1_LAYERBLEND_TYPE_TRANSLUCENT or ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã§ã¯ãªã„  1:MV1_LAYERBLEND_TYPE_MODULATE ) ]
 	void					*MV1_NoLighting_Toon_PSAddress[ 2 ][ 2 ] ;
 
-	// ƒ‚ƒfƒ‹•`‰æ—p‚Ìƒ‰ƒCƒeƒBƒ“ƒO‚È‚µƒsƒNƒZƒ‹ƒVƒF[ƒ_[
-	// [ ƒ}ƒ‹ƒ`ƒeƒNƒXƒ`ƒƒ‚ÌƒuƒŒƒ“ƒhƒ‚[ƒhAMV1_LAYERBLEND_TYPE_TRANSLUCENT ‚È‚Ç‚É +1 ‚µ‚½‚à‚Ì ( 0:ƒ}ƒ‹ƒ`ƒeƒNƒXƒ`ƒƒ–³‚µ  1:ƒ¿ƒuƒŒƒ“ƒh  2:‰ÁZƒuƒŒƒ“ƒh  3:æZƒuƒŒƒ“ƒh  4:æZƒuƒŒƒ“ƒh~2 ) ]
+	// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ã®ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ãªã—ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼
+	// [ ãƒãƒ«ãƒãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã€MV1_LAYERBLEND_TYPE_TRANSLUCENT ãªã©ã« +1 ã—ãŸã‚‚ã® ( 0:ãƒãƒ«ãƒãƒ†ã‚¯ã‚¹ãƒãƒ£ç„¡ã—  1:Î±ãƒ–ãƒ¬ãƒ³ãƒ‰  2:åŠ ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰  3:ä¹—ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰  4:ä¹—ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰Ã—2 ) ]
 	void					*MV1_NoLighting_Normal_PSAddress[ 5 ] ;
 
-	// ƒ‚ƒfƒ‹•`‰æ—p‚Ìƒ‰ƒCƒeƒBƒ“ƒO‚ ‚èƒgƒD[ƒ“—pƒsƒNƒZƒ‹ƒVƒF[ƒ_[
-	// [ ƒVƒF[ƒ_[ƒ‚ƒfƒ‹( 0:SM2  1:SM3 )
-	// [ ƒVƒƒƒhƒEƒ}ƒbƒv‚Ì—L–³( 0:–³‚µ 1:—L‚è ) ]
-	// [ ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒOƒ^ƒCƒv( 0:ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO type 1   1:ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO type 2 ) ]
-	// [ ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚ÌƒXƒtƒBƒAƒ}ƒbƒv‚Ì—L–³‚ÆƒuƒŒƒ“ƒhƒ^ƒCƒv( 0:ƒXƒtƒBƒAƒ}ƒbƒv‚Í–³‚¢   1:MV1_LAYERBLEND_TYPE_MODULATE  2:MV1_LAYERBLEND_TYPE_ADDITIVE ) ]
-	// [ ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚ÌƒfƒBƒtƒ…[ƒYƒOƒ‰ƒf[ƒVƒ‡ƒ“‚ÌƒuƒŒƒ“ƒhƒ^ƒCƒv( 0:MV1_LAYERBLEND_TYPE_TRANSLUCENT  1:MV1_LAYERBLEND_TYPE_MODULATE ) ]
-	// [ ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚ÌƒXƒyƒLƒ…ƒ‰ƒOƒ‰ƒf[ƒVƒ‡ƒ“‚ÌƒuƒŒƒ“ƒhƒ^ƒCƒv( 0:MV1_LAYERBLEND_TYPE_TRANSLUCENT  1:MV1_LAYERBLEND_TYPE_ADDITIVE ) ]
-	// [ ƒXƒyƒLƒ…ƒ‰ƒ}ƒbƒv ( 0:–³‚¢ 1:‚ ‚é ) ]
-	// [ ƒoƒ“ƒvƒ}ƒbƒv ( 0:‚È‚µ 1:‚ ‚è ) ]
-	// [ ƒ‰ƒCƒgƒCƒ“ƒfƒbƒNƒX ]
-	// [ ƒXƒyƒLƒ…ƒ‰‚Ì—L–³( 0:–³‚µ 1:—L‚è ) ]
+	// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ã®ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ã‚ã‚Šãƒˆã‚¥ãƒ¼ãƒ³ç”¨ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼
+	// [ ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒ¢ãƒ‡ãƒ«( 0:SM2  1:SM3 )
+	// [ ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ã®æœ‰ç„¡( 0:ç„¡ã— 1:æœ‰ã‚Š ) ]
+	// [ ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã‚¿ã‚¤ãƒ—( 0:ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚° type 1   1:ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚° type 2 ) ]
+	// [ ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã®ã‚¹ãƒ•ã‚£ã‚¢ãƒãƒƒãƒ—ã®æœ‰ç„¡ã¨ãƒ–ãƒ¬ãƒ³ãƒ‰ã‚¿ã‚¤ãƒ—( 0:ã‚¹ãƒ•ã‚£ã‚¢ãƒãƒƒãƒ—ã¯ç„¡ã„   1:MV1_LAYERBLEND_TYPE_MODULATE  2:MV1_LAYERBLEND_TYPE_ADDITIVE ) ]
+	// [ ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã®ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚°ãƒ©ãƒ‡ãƒ¼ã‚·ãƒ§ãƒ³ã®ãƒ–ãƒ¬ãƒ³ãƒ‰ã‚¿ã‚¤ãƒ—( 0:MV1_LAYERBLEND_TYPE_TRANSLUCENT  1:MV1_LAYERBLEND_TYPE_MODULATE ) ]
+	// [ ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã®ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã‚°ãƒ©ãƒ‡ãƒ¼ã‚·ãƒ§ãƒ³ã®ãƒ–ãƒ¬ãƒ³ãƒ‰ã‚¿ã‚¤ãƒ—( 0:MV1_LAYERBLEND_TYPE_TRANSLUCENT  1:MV1_LAYERBLEND_TYPE_ADDITIVE ) ]
+	// [ ã‚¹ãƒšã‚­ãƒ¥ãƒ©ãƒãƒƒãƒ— ( 0:ç„¡ã„ 1:ã‚ã‚‹ ) ]
+	// [ ãƒãƒ³ãƒ—ãƒãƒƒãƒ— ( 0:ãªã— 1:ã‚ã‚Š ) ]
+	// [ ãƒ©ã‚¤ãƒˆã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ ]
+	// [ ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã®æœ‰ç„¡( 0:ç„¡ã— 1:æœ‰ã‚Š ) ]
 	void					*MV1_VertexLighting_Toon_PSAddress[ 2 ][ 2 ][ 2 ][ 3 ][ 2 ][ 2 ][ 2 ][ 2 ][ 10 ][ 2 ] ;
 
-	// ƒ‚ƒfƒ‹•`‰æ—p‚Ìƒ‰ƒCƒeƒBƒ“ƒO‚ ‚èƒsƒNƒZƒ‹ƒVƒF[ƒ_[
-	// [ ƒVƒF[ƒ_[ƒ‚ƒfƒ‹( 0:SM2  1:SM3 )
-	// [ ƒVƒƒƒhƒEƒ}ƒbƒv‚Ì—L–³( 0:–³‚µ 1:—L‚è ) ]
-	// [ ƒ}ƒ‹ƒ`ƒeƒNƒXƒ`ƒƒ‚ÌƒuƒŒƒ“ƒhƒ‚[ƒhAMV1_LAYERBLEND_TYPE_TRANSLUCENT ‚È‚Ç‚É +1 ‚µ‚½‚à‚Ì ( 0:ƒ}ƒ‹ƒ`ƒeƒNƒXƒ`ƒƒ–³‚µ  1:ƒ¿ƒuƒŒƒ“ƒh  2:‰ÁZƒuƒŒƒ“ƒh  3:æZƒuƒŒƒ“ƒh  4:æZƒuƒŒƒ“ƒh~2 ) ]
-	// [ ƒXƒyƒLƒ…ƒ‰ƒ}ƒbƒv ( 0:–³‚¢ 1:‚ ‚é ) ]
-	// [ ƒoƒ“ƒvƒ}ƒbƒv ( 0:‚È‚µ 1:‚ ‚è ) ]
-	// [ ƒ‰ƒCƒgƒCƒ“ƒfƒbƒNƒX ]
-	// [ ƒXƒyƒLƒ…ƒ‰‚Ì—L–³( 0:–³‚µ 1:—L‚è ) ]
+	// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ã®ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ã‚ã‚Šãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼
+	// [ ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒ¢ãƒ‡ãƒ«( 0:SM2  1:SM3 )
+	// [ ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ã®æœ‰ç„¡( 0:ç„¡ã— 1:æœ‰ã‚Š ) ]
+	// [ ãƒãƒ«ãƒãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã€MV1_LAYERBLEND_TYPE_TRANSLUCENT ãªã©ã« +1 ã—ãŸã‚‚ã® ( 0:ãƒãƒ«ãƒãƒ†ã‚¯ã‚¹ãƒãƒ£ç„¡ã—  1:Î±ãƒ–ãƒ¬ãƒ³ãƒ‰  2:åŠ ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰  3:ä¹—ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰  4:ä¹—ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰Ã—2 ) ]
+	// [ ã‚¹ãƒšã‚­ãƒ¥ãƒ©ãƒãƒƒãƒ— ( 0:ç„¡ã„ 1:ã‚ã‚‹ ) ]
+	// [ ãƒãƒ³ãƒ—ãƒãƒƒãƒ— ( 0:ãªã— 1:ã‚ã‚Š ) ]
+	// [ ãƒ©ã‚¤ãƒˆã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ ]
+	// [ ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã®æœ‰ç„¡( 0:ç„¡ã— 1:æœ‰ã‚Š ) ]
 	void					*MV1_VertexLighting_Normal_PSAddress[ 2 ][ 2 ][ 5 ][ 2 ][ 2 ][ 10 ][ 2 ] ;
 } ;
 
@@ -1081,151 +1081,151 @@ struct GRAPHICS_HARDWARE_DIRECT3D9_SHADERCODE_MODEL
 
 #endif // DX_NON_SHADERCODE_BINARY
 
-// ƒVƒF[ƒ_[ƒR[ƒh‚ÌŒ³ƒf[ƒ^‚ğ“Z‚ß‚½\‘¢‘Ì
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚³ãƒ¼ãƒ‰ã®å…ƒãƒ‡ãƒ¼ã‚¿ã‚’çºã‚ãŸæ§‹é€ ä½“
 struct GRAPHICS_HARDWARE_DIRECT3D9_SHADERCODE
 {
-	GRAPHICS_HARDWARE_DIRECT3D9_SHADERCODE_BASE		Base ;				// •W€•`‰æˆ——p‚ÌƒVƒF[ƒ_[ƒR[ƒh‚ğ“Z‚ß‚½\‘¢‘Ì
+	GRAPHICS_HARDWARE_DIRECT3D9_SHADERCODE_BASE		Base ;				// æ¨™æº–æç”»å‡¦ç†ç”¨ã®ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚³ãƒ¼ãƒ‰ã‚’çºã‚ãŸæ§‹é€ ä½“
 
 #ifndef DX_NON_SHADERCODE_BINARY
-	GRAPHICS_HARDWARE_DIRECT3D9_SHADERCODE_BASE3D	Base3D ;			// •W€‚R‚c•`‰æˆ——p‚ÌƒVƒF[ƒ_[ƒR[ƒh‚ğ“Z‚ß‚½\‘¢‘Ì
+	GRAPHICS_HARDWARE_DIRECT3D9_SHADERCODE_BASE3D	Base3D ;			// æ¨™æº–ï¼“ï¼¤æç”»å‡¦ç†ç”¨ã®ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚³ãƒ¼ãƒ‰ã‚’çºã‚ãŸæ§‹é€ ä½“
 #endif // DX_NON_SHADERCODE_BINARY
 
 
 #ifndef DX_NON_MODEL
 #ifndef DX_NON_SHADERCODE_BINARY
-	GRAPHICS_HARDWARE_DIRECT3D9_SHADERCODE_MODEL	Model ;				// ƒ‚ƒfƒ‹•`‰æˆ——p‚ÌƒVƒF[ƒ_[ƒR[ƒh‚ğ“Z‚ß‚½\‘¢‘Ì
+	GRAPHICS_HARDWARE_DIRECT3D9_SHADERCODE_MODEL	Model ;				// ãƒ¢ãƒ‡ãƒ«æç”»å‡¦ç†ç”¨ã®ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚³ãƒ¼ãƒ‰ã‚’çºã‚ãŸæ§‹é€ ä½“
 #endif // DX_NON_SHADERCODE_BINARY
 #endif // DX_NON_MODEL
 } ;
 
 
-// ƒAƒ_ƒvƒ^[ŠÖŒWî•ñ\‘¢‘Ì
+// ã‚¢ãƒ€ãƒ—ã‚¿ãƒ¼é–¢ä¿‚æƒ…å ±æ§‹é€ ä½“
 struct GRAPHICS_HARDWARE_DIRECT3D9_ADAPTER
 {
-	int												ValidInfo ;					// ƒAƒ_ƒvƒ^‚Ìî•ñ‚ª—LŒø‚©‚Ç‚¤‚©( TRUE:—LŒø  FALSE:–³Œø )
-	int												InfoNum ;					// ƒAƒ_ƒvƒ^î•ñ‚Ì”
-	D_D3DADAPTER_IDENTIFIER9						Info[ DX_D3D9_MAX_DEVICE_LISTUP ] ;	// ƒAƒ_ƒvƒ^‚Ìî•ñ
+	int												ValidInfo ;					// ã‚¢ãƒ€ãƒ—ã‚¿ã®æƒ…å ±ãŒæœ‰åŠ¹ã‹ã©ã†ã‹( TRUE:æœ‰åŠ¹  FALSE:ç„¡åŠ¹ )
+	int												InfoNum ;					// ã‚¢ãƒ€ãƒ—ã‚¿æƒ…å ±ã®æ•°
+	D_D3DADAPTER_IDENTIFIER9						Info[ DX_D3D9_MAX_DEVICE_LISTUP ] ;	// ã‚¢ãƒ€ãƒ—ã‚¿ã®æƒ…å ±
 
-//	int												ValidUseAdapterNumber ;		// UseAdapterNumber ‚ª—LŒø‚©‚Ç‚¤‚©( TRUE:—LŒø  FALSE:–³Œø )
-//	int												UseAdapterNumber ;			// g—p‚·‚éƒfƒoƒCƒXƒAƒ_ƒvƒ^”Ô†
+//	int												ValidUseAdapterNumber ;		// UseAdapterNumber ãŒæœ‰åŠ¹ã‹ã©ã†ã‹( TRUE:æœ‰åŠ¹  FALSE:ç„¡åŠ¹ )
+//	int												UseAdapterNumber ;			// ä½¿ç”¨ã™ã‚‹ãƒ‡ãƒã‚¤ã‚¹ã‚¢ãƒ€ãƒ—ã‚¿ç•ªå·
 } ;
 
 
-// Direct3D9 ŠÖŒW‚Ìİ’èî•ñ‚Ì\‘¢‘Ì
+// Direct3D9 é–¢ä¿‚ã®è¨­å®šæƒ…å ±ã®æ§‹é€ ä½“
 struct GRAPHICS_HARDDATA_DIRECT3D9_SETTING
 {
-	int						NotUseDirect3D9Ex ;						// Direct3D9Ex ‚ğg—p‚µ‚È‚¢‚©‚Ç‚¤‚©
-	int						NonUseVertexHardwareProcess ;			// ‹­§“I‚É’¸“_‰‰Z‚ğƒn[ƒhƒEƒGƒA‚Åˆ—‚µ‚È‚¢‚©‚Ç‚¤‚©( TRUE:ˆ—‚µ‚È‚¢  FALSE:ˆ—‚·‚é )
-//	int						DisableAeroFlag ;						// Aero ‚ğ–³Œø‚É‚·‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO( TRUE:–³Œø‚É‚·‚é  FALSE:–³Œø‚É‚µ‚È‚¢ )
-//	D_D3DMULTISAMPLE_TYPE	FSAAMultiSampleType ;					// FSAA—pƒ}ƒ‹ƒ`ƒTƒ“ƒvƒŠƒ“ƒOƒ^ƒCƒv
-//	int						FSAAMultiSampleQuality ;				// FSAA—pƒ}ƒ‹ƒ`ƒTƒ“ƒvƒŠƒ“ƒOƒNƒIƒŠƒeƒB
-	int						UseOldDrawModiGraphCodeFlag ;			// ˆÈ‘O‚Ì DrawModiGraph ŠÖ”ƒR[ƒh‚ğg—p‚·‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO
-	int						UserZBufferSizeSet ;					// ŠO•”‚©‚ç‚yƒoƒbƒtƒ@ƒTƒCƒY‚Ìw’è‚ª‚ ‚Á‚½‚©‚Ç‚¤‚©
-	int						UserZBufferBitDepthSet ;				// ŠO•”‚©‚ç‚yƒoƒbƒtƒ@‚Ìƒrƒbƒg[“xw’è‚ª‚ ‚Á‚½‚©‚Ç‚¤‚©
+	int						NotUseDirect3D9Ex ;						// Direct3D9Ex ã‚’ä½¿ç”¨ã—ãªã„ã‹ã©ã†ã‹
+	int						NonUseVertexHardwareProcess ;			// å¼·åˆ¶çš„ã«é ‚ç‚¹æ¼”ç®—ã‚’ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã§å‡¦ç†ã—ãªã„ã‹ã©ã†ã‹( TRUE:å‡¦ç†ã—ãªã„  FALSE:å‡¦ç†ã™ã‚‹ )
+//	int						DisableAeroFlag ;						// Aero ã‚’ç„¡åŠ¹ã«ã™ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°( TRUE:ç„¡åŠ¹ã«ã™ã‚‹  FALSE:ç„¡åŠ¹ã«ã—ãªã„ )
+//	D_D3DMULTISAMPLE_TYPE	FSAAMultiSampleType ;					// FSAAç”¨ãƒãƒ«ãƒã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ã‚¿ã‚¤ãƒ—
+//	int						FSAAMultiSampleQuality ;				// FSAAç”¨ãƒãƒ«ãƒã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ã‚¯ã‚ªãƒªãƒ†ã‚£
+	int						UseOldDrawModiGraphCodeFlag ;			// ä»¥å‰ã® DrawModiGraph é–¢æ•°ã‚³ãƒ¼ãƒ‰ã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°
+	int						UserZBufferSizeSet ;					// å¤–éƒ¨ã‹ã‚‰ï¼ºãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚ºã®æŒ‡å®šãŒã‚ã£ãŸã‹ã©ã†ã‹
+	int						UserZBufferBitDepthSet ;				// å¤–éƒ¨ã‹ã‚‰ï¼ºãƒãƒƒãƒ•ã‚¡ã®ãƒ“ãƒƒãƒˆæ·±åº¦æŒ‡å®šãŒã‚ã£ãŸã‹ã©ã†ã‹
 } ;
 
 
-// ”ñŠÇ—ƒeƒNƒXƒ`ƒƒ‚Ö‚Ìƒf[ƒ^“]‘——pƒVƒXƒeƒ€ƒƒ‚ƒŠ”z’uƒeƒNƒXƒ`ƒƒ‚Ìî•ñ
+// éç®¡ç†ãƒ†ã‚¯ã‚¹ãƒãƒ£ã¸ã®ãƒ‡ãƒ¼ã‚¿è»¢é€ç”¨ã‚·ã‚¹ãƒ†ãƒ ãƒ¡ãƒ¢ãƒªé…ç½®ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®æƒ…å ±
 struct GRAPHICS_HARDDATA_DIRECT3D9_SYSMEMTEXTURE
 {
-	unsigned char					InitializeFlag ;						// g—p‰Â”\‚Èó‘Ô‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO
-	unsigned char					UseFlag ;								// g—p’†‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO
-	unsigned char					CubeMap ;								// ƒLƒ…[ƒuƒ}ƒbƒv‚©‚Ç‚¤‚©( 1:ƒLƒ…[ƒuƒ}ƒbƒvƒeƒNƒXƒ`ƒƒ  0:’ÊíƒeƒNƒXƒ`ƒƒ )
-	unsigned char					MipMapCount ;							// ƒ~ƒbƒvƒ}ƒbƒv‚Ì”
-	short							Width ;									// •
-	short							Height ;								// ‚‚³
-	D_D3DFORMAT						Format ;								// ƒtƒH[ƒ}ƒbƒg
-	unsigned int					UseCount ;								// g—p‰ñ”
-	int								UseTime ;								// ÅŒã‚Ég—p‚µ‚½ŠÔ
-	D_IDirect3DBaseTexture9	*		MemTexture ;							// ƒVƒXƒeƒ€ƒƒ‚ƒŠƒeƒNƒXƒ`ƒƒ
+	unsigned char					InitializeFlag ;						// ä½¿ç”¨å¯èƒ½ãªçŠ¶æ…‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°
+	unsigned char					UseFlag ;								// ä½¿ç”¨ä¸­ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°
+	unsigned char					CubeMap ;								// ã‚­ãƒ¥ãƒ¼ãƒ–ãƒãƒƒãƒ—ã‹ã©ã†ã‹( 1:ã‚­ãƒ¥ãƒ¼ãƒ–ãƒãƒƒãƒ—ãƒ†ã‚¯ã‚¹ãƒãƒ£  0:é€šå¸¸ãƒ†ã‚¯ã‚¹ãƒãƒ£ )
+	unsigned char					MipMapCount ;							// ãƒŸãƒƒãƒ—ãƒãƒƒãƒ—ã®æ•°
+	short							Width ;									// å¹…
+	short							Height ;								// é«˜ã•
+	D_D3DFORMAT						Format ;								// ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆ
+	unsigned int					UseCount ;								// ä½¿ç”¨å›æ•°
+	int								UseTime ;								// æœ€å¾Œã«ä½¿ç”¨ã—ãŸæ™‚é–“
+	D_IDirect3DBaseTexture9	*		MemTexture ;							// ã‚·ã‚¹ãƒ†ãƒ ãƒ¡ãƒ¢ãƒªãƒ†ã‚¯ã‚¹ãƒãƒ£
 } ;
 
 
-// ”ñŠÇ—ƒeƒNƒXƒ`ƒƒ‚Ö‚Ìƒf[ƒ^“]‘——pƒVƒXƒeƒ€ƒƒ‚ƒŠ”z’uƒT[ƒtƒFƒX‚Ìî•ñ
+// éç®¡ç†ãƒ†ã‚¯ã‚¹ãƒãƒ£ã¸ã®ãƒ‡ãƒ¼ã‚¿è»¢é€ç”¨ã‚·ã‚¹ãƒ†ãƒ ãƒ¡ãƒ¢ãƒªé…ç½®ã‚µãƒ¼ãƒ•ã‚§ã‚¹ã®æƒ…å ±
 struct GRAPHICS_HARDDATA_DIRECT3D9_SYSMEMSURFACE
 {
-	unsigned char					InitializeFlag ;						// g—p‰Â”\‚Èó‘Ô‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO
-	unsigned char					UseFlag ;								// g—p’†‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO
-	short							Width ;									// •
-	short							Height ;								// ‚‚³
-	D_D3DFORMAT						Format ;								// ƒtƒH[ƒ}ƒbƒg
-	unsigned int					UseCount ;								// g—p‰ñ”
-	int								UseTime ;								// ÅŒã‚Ég—p‚µ‚½ŠÔ
-	D_IDirect3DSurface9	*			MemSurface ;							// ƒVƒXƒeƒ€ƒƒ‚ƒŠƒT[ƒtƒFƒX
+	unsigned char					InitializeFlag ;						// ä½¿ç”¨å¯èƒ½ãªçŠ¶æ…‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°
+	unsigned char					UseFlag ;								// ä½¿ç”¨ä¸­ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°
+	short							Width ;									// å¹…
+	short							Height ;								// é«˜ã•
+	D_D3DFORMAT						Format ;								// ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆ
+	unsigned int					UseCount ;								// ä½¿ç”¨å›æ•°
+	int								UseTime ;								// æœ€å¾Œã«ä½¿ç”¨ã—ãŸæ™‚é–“
+	D_IDirect3DSurface9	*			MemSurface ;							// ã‚·ã‚¹ãƒ†ãƒ ãƒ¡ãƒ¢ãƒªã‚µãƒ¼ãƒ•ã‚§ã‚¹
 } ;
 
 
-// Direct3D9 ‚ÌƒVƒXƒeƒ€ƒƒ‚ƒŠƒeƒNƒXƒ`ƒƒEƒT[ƒtƒFƒXî•ñ‚Ì\‘¢‘Ì
+// Direct3D9 ã®ã‚·ã‚¹ãƒ†ãƒ ãƒ¡ãƒ¢ãƒªãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ»ã‚µãƒ¼ãƒ•ã‚§ã‚¹æƒ…å ±ã®æ§‹é€ ä½“
 struct GRAPHICS_HARDDATA_DIRECT3D9_SYSMEM_TEX_SURF
 {
-	GRAPHICS_HARDDATA_DIRECT3D9_SYSMEMTEXTURE		Texture[ DIRECT3D9_SYSMEMTEXTURE_NUM ] ;	// ”ñŠÇ—ƒeƒNƒXƒ`ƒƒ‚Ö‚Ìƒf[ƒ^“]‘——pƒVƒXƒeƒ€ƒƒ‚ƒŠ”z’uƒeƒNƒXƒ`ƒƒ
-	int												TextureInitNum ;				// ‰Šú‰»Ï‚İ‚ÌƒVƒXƒeƒ€ƒƒ‚ƒŠƒeƒNƒXƒ`ƒƒ‚Ì”
+	GRAPHICS_HARDDATA_DIRECT3D9_SYSMEMTEXTURE		Texture[ DIRECT3D9_SYSMEMTEXTURE_NUM ] ;	// éç®¡ç†ãƒ†ã‚¯ã‚¹ãƒãƒ£ã¸ã®ãƒ‡ãƒ¼ã‚¿è»¢é€ç”¨ã‚·ã‚¹ãƒ†ãƒ ãƒ¡ãƒ¢ãƒªé…ç½®ãƒ†ã‚¯ã‚¹ãƒãƒ£
+	int												TextureInitNum ;				// åˆæœŸåŒ–æ¸ˆã¿ã®ã‚·ã‚¹ãƒ†ãƒ ãƒ¡ãƒ¢ãƒªãƒ†ã‚¯ã‚¹ãƒãƒ£ã®æ•°
 
-	GRAPHICS_HARDDATA_DIRECT3D9_SYSMEMSURFACE		Surface[ DIRECT3D9_SYSMEMSURFACE_NUM ] ;	// ”ñŠÇ—ƒeƒNƒXƒ`ƒƒ‚Ö‚Ìƒf[ƒ^“]‘——pƒVƒXƒeƒ€ƒƒ‚ƒŠ”z’uƒT[ƒtƒFƒX
-	int												SurfaceInitNum ;				// ‰Šú‰»Ï‚İ‚ÌƒVƒXƒeƒ€ƒƒ‚ƒŠƒT[ƒtƒFƒX‚Ì”
+	GRAPHICS_HARDDATA_DIRECT3D9_SYSMEMSURFACE		Surface[ DIRECT3D9_SYSMEMSURFACE_NUM ] ;	// éç®¡ç†ãƒ†ã‚¯ã‚¹ãƒãƒ£ã¸ã®ãƒ‡ãƒ¼ã‚¿è»¢é€ç”¨ã‚·ã‚¹ãƒ†ãƒ ãƒ¡ãƒ¢ãƒªé…ç½®ã‚µãƒ¼ãƒ•ã‚§ã‚¹
+	int												SurfaceInitNum ;				// åˆæœŸåŒ–æ¸ˆã¿ã®ã‚·ã‚¹ãƒ†ãƒ ãƒ¡ãƒ¢ãƒªã‚µãƒ¼ãƒ•ã‚§ã‚¹ã®æ•°
 } ;
 
 
-// Direct3D9 ‚ğg‚Á‚½ƒOƒ‰ƒtƒBƒbƒNƒXˆ—î•ñ‚Ì\‘¢‘Ì
+// Direct3D9 ã‚’ä½¿ã£ãŸã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¹å‡¦ç†æƒ…å ±ã®æ§‹é€ ä½“
 struct GRAPHICS_HARDDATA_DIRECT3D9
 {
-//	int												NormalDraw_UseVertexShader ;	// ’Êí•`‰æ‚É’¸“_ƒVƒF[ƒ_[‚ğg—p‚·‚é‚©‚Ç‚¤‚©( TRUE:g—p‚·‚é  FALSE:g—p‚µ‚È‚¢ )
-	int												NormalDraw_NotUsePixelShader ;	// ’Êí•`‰æ‚ÉƒsƒNƒZƒ‹ƒVƒF[ƒ_[‚ğg—p‚µ‚È‚¢‚©‚Ç‚¤‚©( TRUE:g—p‚µ‚È‚¢  FALSE:g—p‚·‚é )
-	int												UsePixelLightingShader ;	// ƒsƒNƒZƒ‹’PˆÊ‚Åƒ‰ƒCƒeƒBƒ“ƒO‚ğs‚¤ƒ^ƒCƒv‚ÌƒVƒF[ƒ_[‚ğg—p‚·‚é‚©‚Ç‚¤‚©( TRUE:g—p‚·‚é  FALSE:g—p‚µ‚È‚¢ )
+//	int												NormalDraw_UseVertexShader ;	// é€šå¸¸æç”»ã«é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹( TRUE:ä½¿ç”¨ã™ã‚‹  FALSE:ä½¿ç”¨ã—ãªã„ )
+	int												NormalDraw_NotUsePixelShader ;	// é€šå¸¸æç”»ã«ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ä½¿ç”¨ã—ãªã„ã‹ã©ã†ã‹( TRUE:ä½¿ç”¨ã—ãªã„  FALSE:ä½¿ç”¨ã™ã‚‹ )
+	int												UsePixelLightingShader ;	// ãƒ”ã‚¯ã‚»ãƒ«å˜ä½ã§ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ã‚’è¡Œã†ã‚¿ã‚¤ãƒ—ã®ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹( TRUE:ä½¿ç”¨ã™ã‚‹  FALSE:ä½¿ç”¨ã—ãªã„ )
 
 #ifndef DX_NON_MODEL
-	D_IDirect3DVolumeTexture9 *						RGBtoVMaxRGBVolumeTexture ;	// RGBƒJƒ‰[‚ğ‹P“x‚ğÅ‘å‚É‚µ‚½RGB’l‚É•ÏŠ·‚·‚é‚½‚ß‚Ìƒ{ƒŠƒ…[ƒ€ƒeƒNƒXƒ`ƒƒ
+	D_IDirect3DVolumeTexture9 *						RGBtoVMaxRGBVolumeTexture ;	// RGBã‚«ãƒ©ãƒ¼ã‚’è¼åº¦ã‚’æœ€å¤§ã«ã—ãŸRGBå€¤ã«å¤‰æ›ã™ã‚‹ãŸã‚ã®ãƒœãƒªãƒ¥ãƒ¼ãƒ ãƒ†ã‚¯ã‚¹ãƒãƒ£
 #endif // DX_NON_MODEL
 
-	GRAPHICS_HARDDATA_DIRECT3D9_SETTING				Setting ;					// Direct3D9 ŠÖŒW‚Ìİ’èî•ñ
+	GRAPHICS_HARDDATA_DIRECT3D9_SETTING				Setting ;					// Direct3D9 é–¢ä¿‚ã®è¨­å®šæƒ…å ±
 
-	GRAPHICS_HARDDATA_DIRECT3D9_DEVICE				Device ;					// Direct3D9Device ‚É–§Ú‚ÉŠÖ˜A‚µ‚½î•ñ
+	GRAPHICS_HARDDATA_DIRECT3D9_DEVICE				Device ;					// Direct3D9Device ã«å¯†æ¥ã«é–¢é€£ã—ãŸæƒ…å ±
 
-	GRAPHICS_HARDWARE_DIRECT3D9_ADAPTER				Adapter ;					// ƒAƒ_ƒvƒ^[ŠÖŒWî•ñ
+	GRAPHICS_HARDWARE_DIRECT3D9_ADAPTER				Adapter ;					// ã‚¢ãƒ€ãƒ—ã‚¿ãƒ¼é–¢ä¿‚æƒ…å ±
 
-	GRAPHICS_HARDWARE_DIRECT3D9_SHADERCODE			ShaderCode ;				// D_IDirect3DPixelShader9 ‚â D_IDirect3DVertexShader9 ‚ÌŒ³‚Æ‚È‚éƒVƒF[ƒ_[ƒR[ƒhƒf[ƒ^‚ğ“Z‚ß‚½\‘¢‘Ì
+	GRAPHICS_HARDWARE_DIRECT3D9_SHADERCODE			ShaderCode ;				// D_IDirect3DPixelShader9 ã‚„ D_IDirect3DVertexShader9 ã®å…ƒã¨ãªã‚‹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚³ãƒ¼ãƒ‰ãƒ‡ãƒ¼ã‚¿ã‚’çºã‚ãŸæ§‹é€ ä½“
 
-	GRAPHICS_HARDDATA_DIRECT3D9_SYSMEM_TEX_SURF		SysMemTexSurf ;				// ƒVƒXƒeƒ€ƒƒ‚ƒŠƒeƒNƒXƒ`ƒƒEƒT[ƒtƒFƒXî•ñ
+	GRAPHICS_HARDDATA_DIRECT3D9_SYSMEM_TEX_SURF		SysMemTexSurf ;				// ã‚·ã‚¹ãƒ†ãƒ ãƒ¡ãƒ¢ãƒªãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ»ã‚µãƒ¼ãƒ•ã‚§ã‚¹æƒ…å ±
 } ;
 
 
-// “à•”‘åˆæ•Ï”éŒ¾ --------------------------------------------------------------
+// å†…éƒ¨å¤§åŸŸå¤‰æ•°å®£è¨€ --------------------------------------------------------------
 
 extern GRAPHICS_HARDDATA_DIRECT3D9 GraphicsHardDataDirect3D9 ;
 
-// ŠÖ”ƒvƒƒgƒ^ƒCƒvéŒ¾-----------------------------------------------------------
+// é–¢æ•°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€-----------------------------------------------------------
 
 
-// Direct3D9 ‚Ì‰Šú‰»ŠÖŒW
-extern	int		Graphics_D3D9_Initialize( void ) ;								// Direct3D9 ‚ğg—p‚µ‚½ƒOƒ‰ƒtƒBƒbƒNƒXˆ—‚Ì‰Šú‰»‚ğs‚¤( 0:¬Œ÷ -1:¸”s )
-extern	int		Graphics_D3D9_Terminate( void ) ;								// Direct3D9 ‚ğg—p‚µ‚½ƒOƒ‰ƒtƒBƒbƒNƒXˆ—‚ÌŒãn––‚ğs‚¤
+// Direct3D9 ã®åˆæœŸåŒ–é–¢ä¿‚
+extern	int		Graphics_D3D9_Initialize( void ) ;								// Direct3D9 ã‚’ä½¿ç”¨ã—ãŸã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¹å‡¦ç†ã®åˆæœŸåŒ–ã‚’è¡Œã†( 0:æˆåŠŸ -1:å¤±æ•— )
+extern	int		Graphics_D3D9_Terminate( void ) ;								// Direct3D9 ã‚’ä½¿ç”¨ã—ãŸã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¹å‡¦ç†ã®å¾Œå§‹æœ«ã‚’è¡Œã†
 
-extern	int		Graphics_D3D9_ReleaseObjectAll( void ) ;						// ‚·‚×‚Ä‚Ì Direct3D9 ŒnƒIƒuƒWƒFƒNƒg‚ğ‰ğ•ú‚·‚é
-extern	int		Graphics_D3D9_CreateObjectAll( void ) ;							// ‚·‚×‚Ä‚Ì Direct3D9 ŒnƒIƒuƒWƒFƒNƒg‚ğì¬‚·‚é
+extern	int		Graphics_D3D9_ReleaseObjectAll( void ) ;						// ã™ã¹ã¦ã® Direct3D9 ç³»ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’è§£æ”¾ã™ã‚‹
+extern	int		Graphics_D3D9_CreateObjectAll( void ) ;							// ã™ã¹ã¦ã® Direct3D9 ç³»ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ä½œæˆã™ã‚‹
 
-extern	int		Graphics_D3D9_SetupRenderTargetInputTextureFlag( void ) ;		// ƒsƒNƒZƒ‹ƒVƒF[ƒ_[‚ğg—p‚·‚éê‡‚Ío—Íæ‚ğƒeƒNƒXƒ`ƒƒ‚Æ‚µ‚Äg—p‚Å‚«‚é‚©‚Ç‚¤‚©‚Ìƒ`ƒFƒbƒN‚ğs‚¤
-
-
-
+extern	int		Graphics_D3D9_SetupRenderTargetInputTextureFlag( void ) ;		// ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ä½¿ç”¨ã™ã‚‹å ´åˆã¯å‡ºåŠ›å…ˆã‚’ãƒ†ã‚¯ã‚¹ãƒãƒ£ã¨ã—ã¦ä½¿ç”¨ã§ãã‚‹ã‹ã©ã†ã‹ã®ãƒã‚§ãƒƒã‚¯ã‚’è¡Œã†
 
 
 
 
 
-// ƒVƒF[ƒ_[ƒR[ƒhŠÖŒW
-extern	int		Graphics_D3D9_ShaderCode_Base_Initialize( void ) ;				// Direct3D9 ‚Ì•W€•`‰æ—p‚ÌƒVƒF[ƒ_[ƒR[ƒh‚Ì‰Šú‰»‚ğs‚¤
-extern	int		Graphics_D3D9_ShaderCode_Base_Terminate( void ) ;				// Direct3D9 ‚Ì•W€•`‰æ—p‚ÌƒVƒF[ƒ_[ƒR[ƒh‚ÌŒãn––‚ğs‚¤
+
+
+
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚³ãƒ¼ãƒ‰é–¢ä¿‚
+extern	int		Graphics_D3D9_ShaderCode_Base_Initialize( void ) ;				// Direct3D9 ã®æ¨™æº–æç”»ç”¨ã®ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚³ãƒ¼ãƒ‰ã®åˆæœŸåŒ–ã‚’è¡Œã†
+extern	int		Graphics_D3D9_ShaderCode_Base_Terminate( void ) ;				// Direct3D9 ã®æ¨™æº–æç”»ç”¨ã®ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚³ãƒ¼ãƒ‰ã®å¾Œå§‹æœ«ã‚’è¡Œã†
 
 #ifndef DX_NON_SHADERCODE_BINARY
 
-extern	int		Graphics_D3D9_ShaderCode_Base3D_Initialize( void ) ;			// Direct3D9 ‚Ì•W€‚R‚c•`‰æ—p‚ÌƒVƒF[ƒ_[ƒR[ƒh‚Ì‰Šú‰»‚ğs‚¤
-extern	int		Graphics_D3D9_ShaderCode_Base3D_Terminate( void ) ;				// Direct3D9 ‚Ì•W€‚R‚c•`‰æ—p‚ÌƒVƒF[ƒ_[ƒR[ƒh‚ÌŒãn––‚ğs‚¤
+extern	int		Graphics_D3D9_ShaderCode_Base3D_Initialize( void ) ;			// Direct3D9 ã®æ¨™æº–ï¼“ï¼¤æç”»ç”¨ã®ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚³ãƒ¼ãƒ‰ã®åˆæœŸåŒ–ã‚’è¡Œã†
+extern	int		Graphics_D3D9_ShaderCode_Base3D_Terminate( void ) ;				// Direct3D9 ã®æ¨™æº–ï¼“ï¼¤æç”»ç”¨ã®ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚³ãƒ¼ãƒ‰ã®å¾Œå§‹æœ«ã‚’è¡Œã†
 
 #else // DX_NON_SHADERCODE_BINARY
 
-extern	int		Graphics_D3D9_CompileShader( const char *FileName, const char *EntryPoint, const char *Profile, const char *SubProfile, const D_D3DXMACRO *MacroTable, D_ID3DXBuffer **ppShader ) ;										// Direct3D9 ‚ÌƒVƒF[ƒ_[ƒ\[ƒX‚ğƒRƒ“ƒpƒCƒ‹‚·‚é
-extern	int		Graphics_D3D9_CompileVertexShader( const char *FileName, const char *EntryPoint, const D_D3DXMACRO *MacroTable, D_IDirect3DVertexShader9 **VertexShader, int ShaderModel3Only = FALSE, int ShaderModel2Only = FALSE ) ;	// Direct3D9 ‚ÌƒVƒF[ƒ_[ƒ\[ƒX‚ğƒRƒ“ƒpƒCƒ‹‚µ‚Ä’¸“_ƒVƒF[ƒ_[‚ğì¬‚·‚é
-extern	int		Graphics_D3D9_CompilePixelShader( const char *FileName, const char *EntryPoint, const D_D3DXMACRO *MacroTable, D_IDirect3DPixelShader9 **PixelShader, int ShaderModel3Only = FALSE, int ShaderModel2Only = FALSE ) ;	// Direct3D9 ‚ÌƒVƒF[ƒ_[ƒ\[ƒX‚ğƒRƒ“ƒpƒCƒ‹‚µ‚ÄƒsƒNƒZƒ‹ƒVƒF[ƒ_[‚ğì¬‚·‚é
+extern	int		Graphics_D3D9_CompileShader( const char *FileName, const char *EntryPoint, const char *Profile, const char *SubProfile, const D_D3DXMACRO *MacroTable, D_ID3DXBuffer **ppShader ) ;										// Direct3D9 ã®ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚½ãƒ¼ã‚¹ã‚’ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ã™ã‚‹
+extern	int		Graphics_D3D9_CompileVertexShader( const char *FileName, const char *EntryPoint, const D_D3DXMACRO *MacroTable, D_IDirect3DVertexShader9 **VertexShader, int ShaderModel3Only = FALSE, int ShaderModel2Only = FALSE ) ;	// Direct3D9 ã®ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚½ãƒ¼ã‚¹ã‚’ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ã—ã¦é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ä½œæˆã™ã‚‹
+extern	int		Graphics_D3D9_CompilePixelShader( const char *FileName, const char *EntryPoint, const D_D3DXMACRO *MacroTable, D_IDirect3DPixelShader9 **PixelShader, int ShaderModel3Only = FALSE, int ShaderModel2Only = FALSE ) ;	// Direct3D9 ã®ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚½ãƒ¼ã‚¹ã‚’ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ã—ã¦ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ä½œæˆã™ã‚‹
 
 #endif // DX_NON_SHADERCODE_BINARY
 
@@ -1233,35 +1233,22 @@ extern	int		Graphics_D3D9_CompilePixelShader( const char *FileName, const char *
 
 #ifndef DX_NON_SHADERCODE_BINARY
 
-extern	int		Graphics_D3D9_ShaderCode_Model_Initialize( void ) ;				// Direct3D9 ‚Ìƒ‚ƒfƒ‹•`‰æ—p‚ÌƒVƒF[ƒ_[ƒR[ƒh‚Ì‰Šú‰»‚ğs‚¤
-extern	int		Graphics_D3D9_ShaderCode_Model_Terminate( void ) ;				// Direct3D9 ‚Ìƒ‚ƒfƒ‹•`‰æ—p‚ÌƒVƒF[ƒ_[ƒR[ƒh‚ÌŒãn––‚ğs‚¤
+extern	int		Graphics_D3D9_ShaderCode_Model_Initialize( void ) ;				// Direct3D9 ã®ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ã®ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚³ãƒ¼ãƒ‰ã®åˆæœŸåŒ–ã‚’è¡Œã†
+extern	int		Graphics_D3D9_ShaderCode_Model_Terminate( void ) ;				// Direct3D9 ã®ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ã®ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚³ãƒ¼ãƒ‰ã®å¾Œå§‹æœ«ã‚’è¡Œã†
 
 #endif // DX_NON_SHADERCODE_BINARY
 
-extern	int		Graphics_D3D9_Shader_Normal3DDraw_Setup( void ) ;				// ‚R‚c•W€•`‰æ‚Ìw’è‚Ì’¸“_—p‚Ì•`‰æ—pƒVƒF[ƒ_[‚ğƒZƒbƒgƒAƒbƒv‚·‚é
-extern	int		Graphics_D3D9_Shader_Model_Setup( int VertexShaderIndex, int VertexShaderIndex_PL, int PixelShaderIndex, int PixelShaderIndex_PL ) ;		// w’è‚Ìƒ‚ƒfƒ‹•`‰æ—pƒVƒF[ƒ_[‚ğƒZƒbƒgƒAƒbƒv‚·‚é( TRUE:¬Œ÷  FALSE:¸”s )
+extern	int		Graphics_D3D9_Shader_Normal3DDraw_Setup( void ) ;				// ï¼“ï¼¤æ¨™æº–æç”»ã®æŒ‡å®šã®é ‚ç‚¹ç”¨ã®æç”»ç”¨ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã™ã‚‹
+extern	int		Graphics_D3D9_Shader_Model_Setup( int VertexShaderIndex, int VertexShaderIndex_PL, int PixelShaderIndex, int PixelShaderIndex_PL ) ;		// æŒ‡å®šã®ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã™ã‚‹( TRUE:æˆåŠŸ  FALSE:å¤±æ•— )
 
 #endif // DX_NON_MODEL
 
-extern	int		Graphics_D3D9_Shader_Initialize( void ) ;						// Direct3D9 ‚ÌƒVƒF[ƒ_[‚Ì‰Šú‰»‚ğs‚¤
-extern	int		Graphics_D3D9_Shader_Terminate( void ) ;						// Direct3D9 ‚ÌƒVƒF[ƒ_[‚ÌŒãn––‚ğ‚·‚é
+extern	int		Graphics_D3D9_Shader_Initialize( void ) ;						// Direct3D9 ã®ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®åˆæœŸåŒ–ã‚’è¡Œã†
+extern	int		Graphics_D3D9_Shader_Terminate( void ) ;						// Direct3D9 ã®ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®å¾Œå§‹æœ«ã‚’ã™ã‚‹
 
-extern	void	Graphics_D3D9_Shader_RefreshUseIndex( void ) ;					// g—p‚·‚éƒVƒF[ƒ_[‚ÌƒCƒ“ƒfƒbƒNƒX‚Ì’l‚ğXV‚·‚é
+extern	void	Graphics_D3D9_Shader_RefreshUseIndex( void ) ;					// ä½¿ç”¨ã™ã‚‹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã®å€¤ã‚’æ›´æ–°ã™ã‚‹
 
-extern	D_D3DXSHADER_CONSTANTINFO *Graphics_D3D9_GetShaderConstInfo( SHADERHANDLEDATA *Shader, const wchar_t *ConstantName ) ;				// ƒVƒF[ƒ_[‚Ì’è”î•ñ‚ğ“¾‚é
-
-
-
-
-
-
-
-
-// ’¸“_ƒoƒbƒtƒ@EƒCƒ“ƒfƒbƒNƒXƒoƒbƒtƒ@ŠÖŒW
-extern	int		Graphics_D3D9_VertexBuffer_CreateObject(  VERTEXBUFFERHANDLEDATA *VertexBuffer, int Restore ) ;	// ’¸“_ƒoƒbƒtƒ@ƒnƒ“ƒhƒ‹—p‚Ì Direct3DVertexBuffer9 ƒIƒuƒWƒFƒNƒg‚ğì¬‚·‚é
-extern	int		Graphics_D3D9_VertexBuffer_ReleaseObject( VERTEXBUFFERHANDLEDATA *VertexBuffer ) ;				// ’¸“_ƒoƒbƒtƒ@ƒnƒ“ƒhƒ‹—p‚Ì Direct3DVertexBuffer9 ƒIƒuƒWƒFƒNƒg‚ğ‰ğ•ú‚·‚é
-extern	int		Graphics_D3D9_IndexBuffer_CreateObject(   INDEXBUFFERHANDLEDATA *IndexBuffer,   int Restore ) ;	// ƒCƒ“ƒfƒbƒNƒXƒoƒbƒtƒ@ƒnƒ“ƒhƒ‹—p‚Ì Direct3DIndexBuffer9 ƒIƒuƒWƒFƒNƒg‚ğì¬‚·‚é
-extern	int		Graphics_D3D9_IndexBuffer_ReleaseObject(  INDEXBUFFERHANDLEDATA *IndexBuffer ) ;				// ƒCƒ“ƒfƒbƒNƒXƒoƒbƒtƒ@ƒnƒ“ƒhƒ‹—p‚Ì Direct3DIndexBuffer9 ƒIƒuƒWƒFƒNƒg‚ğ‰ğ•ú‚·‚é
+extern	D_D3DXSHADER_CONSTANTINFO *Graphics_D3D9_GetShaderConstInfo( SHADERHANDLEDATA *Shader, const wchar_t *ConstantName ) ;				// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®å®šæ•°æƒ…å ±ã‚’å¾—ã‚‹
 
 
 
@@ -1270,9 +1257,11 @@ extern	int		Graphics_D3D9_IndexBuffer_ReleaseObject(  INDEXBUFFERHANDLEDATA *Ind
 
 
 
-// Direct3D9 ‚Ì‰æ–ÊŠÖŒW
-extern	int		Graphics_D3D9_SetupSubBackBuffer( void ) ;						// ƒTƒuƒoƒbƒNƒoƒbƒtƒ@‚ğg—p‚·‚é€”õ‚ğs‚¤( 0:¬Œ÷  -1:¸”s )
-extern	int		Graphics_D3D9_CreateZBuffer( void ) ;							// ‚yƒoƒbƒtƒ@ƒIƒuƒWƒFƒNƒg‚Ìì¬( 0:¬Œ÷  -1:¸”s )
+// é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ãƒ»ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒãƒƒãƒ•ã‚¡é–¢ä¿‚
+extern	int		Graphics_D3D9_VertexBuffer_CreateObject(  VERTEXBUFFERHANDLEDATA *VertexBuffer, int Restore ) ;	// é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ãƒãƒ³ãƒ‰ãƒ«ç”¨ã® Direct3DVertexBuffer9 ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ä½œæˆã™ã‚‹
+extern	int		Graphics_D3D9_VertexBuffer_ReleaseObject( VERTEXBUFFERHANDLEDATA *VertexBuffer ) ;				// é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ãƒãƒ³ãƒ‰ãƒ«ç”¨ã® Direct3DVertexBuffer9 ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’è§£æ”¾ã™ã‚‹
+extern	int		Graphics_D3D9_IndexBuffer_CreateObject(   INDEXBUFFERHANDLEDATA *IndexBuffer,   int Restore ) ;	// ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒãƒƒãƒ•ã‚¡ãƒãƒ³ãƒ‰ãƒ«ç”¨ã® Direct3DIndexBuffer9 ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ä½œæˆã™ã‚‹
+extern	int		Graphics_D3D9_IndexBuffer_ReleaseObject(  INDEXBUFFERHANDLEDATA *IndexBuffer ) ;				// ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒãƒƒãƒ•ã‚¡ãƒãƒ³ãƒ‰ãƒ«ç”¨ã® Direct3DIndexBuffer9 ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’è§£æ”¾ã™ã‚‹
 
 
 
@@ -1281,12 +1270,23 @@ extern	int		Graphics_D3D9_CreateZBuffer( void ) ;							// ‚yƒoƒbƒtƒ@ƒIƒuƒWƒFƒNƒ
 
 
 
-// Direct3D9 ‚Ì‰æ‘œŠÖŒW
-extern COLORDATA *Graphics_D3D9_GetD3DFormatColorData( D_D3DFORMAT Format ) ;									// D3DFORMAT ‚ÌƒtƒH[ƒ}ƒbƒg‚É‡‚í‚¹‚½ƒJƒ‰[ƒtƒH[ƒ}ƒbƒgî•ñ‚ğæ“¾‚·‚é
-extern	int		Graphics_D3D9_UpdateDrawTexture( IMAGEDATA_ORIG_HARD_TEX *OrigTex, int TargetSurface ) ;		// •`‰ææ—pƒeƒNƒXƒ`ƒƒ‚Æ•`‰æ—pƒeƒNƒXƒ`ƒƒ‚ª•ª‚©‚ê‚Ä‚¢‚éê‡‚ÉA•`‰æ—pƒeƒNƒXƒ`ƒƒ‚É•`‰ææ—pƒeƒNƒXƒ`ƒƒ‚Ì“à—e‚ğ”½‰f‚·‚é
+// Direct3D9 ã®ç”»é¢é–¢ä¿‚
+extern	int		Graphics_D3D9_SetupSubBackBuffer( void ) ;						// ã‚µãƒ–ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã‚’ä½¿ç”¨ã™ã‚‹æº–å‚™ã‚’è¡Œã†( 0:æˆåŠŸ  -1:å¤±æ•— )
+extern	int		Graphics_D3D9_CreateZBuffer( void ) ;							// ï¼ºãƒãƒƒãƒ•ã‚¡ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ä½œæˆ( 0:æˆåŠŸ  -1:å¤±æ•— )
 
-// Šî–{ƒCƒ[ƒW‚ÌƒtƒH[ƒ}ƒbƒg‚ğ DX_BASEIMAGE_FORMAT_NORMAL ‚É•ÏŠ·‚·‚é•K—v‚ª‚ ‚é‚©‚Ç‚¤‚©‚ğƒ`ƒFƒbƒN‚·‚é
-// ( RequiredRgbBaseImageConvFlag ‚Æ RequiredAlphaBaseImageConvFlag ‚É“ü‚é’l  TRUE:•ÏŠ·‚·‚é•K—v‚ª‚ ‚é  FALSE:•ÏŠ·‚·‚é•K—v‚Í–³‚¢ )
+
+
+
+
+
+
+
+// Direct3D9 ã®ç”»åƒé–¢ä¿‚
+extern COLORDATA *Graphics_D3D9_GetD3DFormatColorData( D_D3DFORMAT Format ) ;									// D3DFORMAT ã®ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã«åˆã‚ã›ãŸã‚«ãƒ©ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆæƒ…å ±ã‚’å–å¾—ã™ã‚‹
+extern	int		Graphics_D3D9_UpdateDrawTexture( IMAGEDATA_ORIG_HARD_TEX *OrigTex, int TargetSurface ) ;		// æç”»å…ˆç”¨ãƒ†ã‚¯ã‚¹ãƒãƒ£ã¨æç”»ç”¨ãƒ†ã‚¯ã‚¹ãƒãƒ£ãŒåˆ†ã‹ã‚Œã¦ã„ã‚‹å ´åˆã«ã€æç”»ç”¨ãƒ†ã‚¯ã‚¹ãƒãƒ£ã«æç”»å…ˆç”¨ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®å†…å®¹ã‚’åæ˜ ã™ã‚‹
+
+// åŸºæœ¬ã‚¤ãƒ¡ãƒ¼ã‚¸ã®ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã‚’ DX_BASEIMAGE_FORMAT_NORMAL ã«å¤‰æ›ã™ã‚‹å¿…è¦ãŒã‚ã‚‹ã‹ã©ã†ã‹ã‚’ãƒã‚§ãƒƒã‚¯ã™ã‚‹
+// ( RequiredRgbBaseImageConvFlag ã¨ RequiredAlphaBaseImageConvFlag ã«å…¥ã‚‹å€¤  TRUE:å¤‰æ›ã™ã‚‹å¿…è¦ãŒã‚ã‚‹  FALSE:å¤‰æ›ã™ã‚‹å¿…è¦ã¯ç„¡ã„ )
 extern	int		Graphics_D3D9_CheckRequiredNormalImageConv_BaseImageFormat_PF(
 	IMAGEDATA_ORIG *Orig,
 	int             RgbBaseImageFormat,
@@ -1302,80 +1302,80 @@ extern	int		Graphics_D3D9_CheckRequiredNormalImageConv_BaseImageFormat_PF(
 
 
 
-// Direct3DDevice ‚Ì‰Šú‰»ŠÖŒW
-extern	int		Graphics_D3D9_Device_Create( void ) ;																// Direct3DDevice9 ƒIƒuƒWƒFƒNƒg‚Ìì¬( 0:¬Œ÷  -1:¸”s )
+// Direct3DDevice ã®åˆæœŸåŒ–é–¢ä¿‚
+extern	int		Graphics_D3D9_Device_Create( void ) ;																// Direct3DDevice9 ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ä½œæˆ( 0:æˆåŠŸ  -1:å¤±æ•— )
 
-extern	int		Graphics_D3D9_Device_Initialize( void ) ;															// Direct3DDevice9 ŠÖŒW‚Ì‰Šú‰»
-extern	int		Graphics_D3D9_Device_ReInitialize( void ) ;															// ˆê“I‚É Direct3DDevice9 ‚ğ”jŠü‚µ‚½Û‚ÉA”jŠü‘O‚Ìó‘Ô‚ğì‚èo‚·‚½‚ß‚ÌŠÖ”
-
-
+extern	int		Graphics_D3D9_Device_Initialize( void ) ;															// Direct3DDevice9 é–¢ä¿‚ã®åˆæœŸåŒ–
+extern	int		Graphics_D3D9_Device_ReInitialize( void ) ;															// ä¸€æ™‚çš„ã« Direct3DDevice9 ã‚’ç ´æ£„ã—ãŸéš›ã«ã€ç ´æ£„å‰ã®çŠ¶æ…‹ã‚’ä½œã‚Šå‡ºã™ãŸã‚ã®é–¢æ•°
 
 
 
 
 
 
-// Direct3DDevice9 ƒXƒe[ƒ^ƒXŠÖŒW
-extern	void	Graphics_D3D9_DeviceState_RefreshRenderState( void ) ;												// •`‰æİ’è‚ğƒŠƒtƒŒƒbƒVƒ…
-extern	int		Graphics_D3D9_DeviceState_SetBaseState( void ) ;													// Direct3DDevice9 ‚ÌŠî–{İ’è‚ğs‚¤
-extern	int		Graphics_D3D9_DeviceState_SetSampleFilterMode( int Sampler, int SetTarget, D_D3DTEXTUREFILTERTYPE FilterType ) ;		// ƒTƒ“ƒvƒ‰[‚ÌƒeƒNƒXƒ`ƒƒƒtƒBƒ‹ƒ^ƒŠƒ“ƒOƒ‚[ƒh‚ğİ’è‚·‚é
-extern	int		Graphics_D3D9_DeviceState_SetZEnable( int Flag )  ;													// ‚yƒoƒbƒtƒ@‚Ì—LŒø–³Œø‚ÌƒZƒbƒg
-extern	int		Graphics_D3D9_DeviceState_SetZWriteEnable( int Flag ) ;												// ‚yƒoƒbƒtƒ@‚Ì‘‚«‚İ‚Ì—L–³‚ğƒZƒbƒg
-extern	int		Graphics_D3D9_DeviceState_SetZFunc( int CmpType ) ;													// [“x’l‚Ì”äŠrƒ^ƒCƒv‚ğƒZƒbƒg
-extern	int		Graphics_D3D9_DeviceState_SetDepthBias( int Bias ) ;												// [“x’l‚ÌƒoƒCƒAƒX‚ğƒZƒbƒg
-extern	int		Graphics_D3D9_DeviceState_SetFillMode( int FillMode ) ;												// ƒtƒBƒ‹ƒ‚[ƒh‚ğƒZƒbƒg
-extern	int		Graphics_D3D9_DeviceState_SetWorldMatrix( const MATRIX *Matrix ) ;									// ƒ[ƒ‹ƒh•ÏŠ·—ps—ñ‚ğƒZƒbƒg‚·‚é
-extern	int		Graphics_D3D9_DeviceState_SetViewMatrix( const MATRIX *Matrix ) ;									// ƒrƒ…[•ÏŠ·—ps—ñ‚ğƒZƒbƒg‚·‚é
-extern	int		Graphics_D3D9_DeviceState_SetProjectionMatrix( const MATRIX *Matrix ) ;								// “Š‰e•ÏŠ·—ps—ñ‚ğƒZƒbƒg‚·‚é
-extern	int		Graphics_D3D9_DeviceState_SetLightState( int LightNumber, D_D3DLIGHT9 *Light ) ;					// ƒ‰ƒCƒg‚ÌƒZƒbƒg
-extern	int		Graphics_D3D9_DeviceState_SetLightEnable( int LightNumber, int EnableState ) ;						// ƒ‰ƒCƒg‚Ì—LŒøA–³Œø‚ğ•ÏX
-extern	int		Graphics_D3D9_DeviceState_SetMaterial( D_D3DMATERIAL9 *Material ) ;									// ƒ}ƒeƒŠƒAƒ‹‚ÌƒZƒbƒg
-extern	int		Graphics_D3D9_DeviceState_SetSpecularEnable( int UseFlag ) ;										// ƒXƒyƒLƒ…ƒ‰‚ğg—p‚·‚é‚©‚Ç‚¤‚©‚ğƒZƒbƒg
-extern	int		Graphics_D3D9_DeviceState_SetDiffuseMaterialSource( int UseFlag ) ;									// ’¸“_‚ÌƒfƒBƒtƒ…[ƒYƒJƒ‰[‚ğƒ}ƒeƒŠƒAƒ‹‚ÌƒfƒBƒtƒ…[ƒYƒJƒ‰[‚Æ‚µ‚Äg—p‚·‚é‚©‚Ç‚¤‚©‚ğİ’è‚·‚é
-extern	int		Graphics_D3D9_DeviceState_SetSpecularMaterialSource( int UseFlag ) ;								// ’¸“_‚ÌƒXƒyƒLƒ…ƒ‰ƒJƒ‰[‚ğƒ}ƒeƒŠƒAƒ‹‚ÌƒXƒyƒLƒ…ƒ‰ƒJƒ‰[‚Æ‚µ‚Äg—p‚·‚é‚©‚Ç‚¤‚©‚ğİ’è‚·‚é
-extern	int		Graphics_D3D9_DeviceState_SetCullMode( int State ) ;												// ƒJƒŠƒ“ƒO‚Ì—L–³‚ğƒZƒbƒg 
-extern	int		Graphics_D3D9_DeviceState_SetAmbient( unsigned int Color ) ;										// ƒAƒ“ƒrƒGƒ“ƒgƒJƒ‰[‚ÌƒZƒbƒg
-extern	int		Graphics_D3D9_DeviceState_SetShadeMode( int ShadeMode ) ;											// ƒVƒF[ƒfƒBƒ“ƒOƒ‚[ƒh‚ÌƒZƒbƒg
-extern	int		Graphics_D3D9_DeviceState_SetTextureAddress( int AddressMode, int Sampler = -1 ) ;					// ƒeƒNƒXƒ`ƒƒ[‚ÌƒAƒhƒŒƒbƒVƒ“ƒOƒ‚[ƒh‚ğƒZƒbƒg‚·‚é
-extern	int		Graphics_D3D9_DeviceState_SetTextureAddressU( int AddressMode, int Sampler = -1 ) ;					// ƒeƒNƒXƒ`ƒƒ[‚ÌƒAƒhƒŒƒbƒVƒ“ƒOƒ‚[ƒh‚ğƒZƒbƒg‚·‚é
-extern	int		Graphics_D3D9_DeviceState_SetTextureAddressV( int AddressMode, int Sampler = -1 ) ;					// ƒeƒNƒXƒ`ƒƒ[‚ÌƒAƒhƒŒƒbƒVƒ“ƒOƒ‚[ƒh‚ğƒZƒbƒg‚·‚é
-extern	int		Graphics_D3D9_DeviceState_SetTextureAddressW( int AddressMode, int Sampler = -1 ) ;					// ƒeƒNƒXƒ`ƒƒ[‚ÌƒAƒhƒŒƒbƒVƒ“ƒOƒ‚[ƒh‚ğƒZƒbƒg‚·‚é
-extern	int		Graphics_D3D9_DeviceState_SetTextureAddressUVW( int AddressModeU, int AddressModeV, int AddressModeW, int Sampler = -1 ) ;		// ƒeƒNƒXƒ`ƒƒ[‚ÌƒAƒhƒŒƒbƒVƒ“ƒOƒ‚[ƒh‚ğƒZƒbƒg‚·‚é
-extern	int		Graphics_D3D9_DeviceState_SetTextureAddressTransformMatrix( int Use, MATRIX *Matrix, int Samplar = -1 ) ;	// ƒeƒNƒXƒ`ƒƒÀ•W•ÏŠ·s—ñ‚ğƒZƒbƒg‚·‚é
-extern	int		Graphics_D3D9_DeviceState_SetFogEnable( int Flag ) ;												// ƒtƒHƒO‚ğ—LŒø‚É‚·‚é‚©‚Ç‚¤‚©‚ğİ’è‚·‚é( TRUE:—LŒø  FALSE:–³Œø )
-extern	int		Graphics_D3D9_DeviceState_SetFogVertexMode( int Mode /* DX_FOGMODE_NONE “™ */ ) ;					// ƒtƒHƒOƒ‚[ƒh‚ğİ’è‚·‚é
-extern	int		Graphics_D3D9_DeviceState_SetFogColor( unsigned int Color ) ;										// ƒtƒHƒOƒJƒ‰[‚ğ•ÏX‚·‚é
-extern	int		Graphics_D3D9_DeviceState_SetFogStartEnd( float Start, float End ) ;								// ƒtƒHƒO‚ªn‚Ü‚é‹——£‚ÆI—¹‚·‚é‹——£‚ğİ’è‚·‚é( 0.0f ` 1.0f )
-extern	int		Graphics_D3D9_DeviceState_SetFogDensity( float Density ) ;											// ƒtƒHƒO‚Ì–§“x‚ğİ’è‚·‚é( 0.0f ` 1.0f )
-extern	int		Graphics_D3D9_DeviceState_SetVerticalFogEnable( int Flag ) ;										// ‚‚³ƒtƒHƒO‚ğ—LŒø‚É‚·‚é‚©‚Ç‚¤‚©‚ğİ’è‚·‚é( TRUE:—LŒø  FALSE:–³Œø )
-extern	int		Graphics_D3D9_DeviceState_SetVerticalFogVertexMode( int Mode /* DX_FOGMODE_NONE “™ */ ) ;			// ‚‚³ƒtƒHƒOƒ‚[ƒh‚ğİ’è‚·‚é
-extern	int		Graphics_D3D9_DeviceState_SetVerticalFogColor( unsigned int Color ) ;								// ‚‚³ƒtƒHƒOƒJƒ‰[‚ğ•ÏX‚·‚é
-extern	int		Graphics_D3D9_DeviceState_SetVerticalFogStartEnd( float Start, float End ) ;						// ‚‚³ƒtƒHƒO‚ªn‚Ü‚é‹——£‚ÆI—¹‚·‚é‹——£‚ğİ’è‚·‚é( 0.0f ` 1.0f )
-extern	int		Graphics_D3D9_DeviceState_SetVerticalFogDensity( float start, float Density ) ;						// ‚‚³ƒtƒHƒO‚Ì–§“x‚ğİ’è‚·‚é( 0.0f ` 1.0f )
-extern	int		Graphics_D3D9_DeviceState_SetLighting( int Flag ) ;													// ƒ‰ƒCƒg‚Ì—L–³ƒtƒ‰ƒO‚ğƒZƒbƒg‚·‚é
-extern	int		Graphics_D3D9_DeviceState_SetMaxAnisotropy( int MaxAnisotropy, int Sampler = -1 ) ;					// Å‘åˆÙ•û«‚ğƒZƒbƒg‚·‚é
-extern	int		Graphics_D3D9_DeviceState_SetViewport( D_D3DVIEWPORT9 *Viewport ) ;									// ƒrƒ…[ƒ|[ƒg‚ğƒZƒbƒg‚·‚é
-extern	int		Graphics_D3D9_DeviceState_SetViewportEasy( int x1, int y1, int x2, int y2 ) ;						// ƒrƒ…[ƒ|[ƒg‚ğƒZƒbƒg‚·‚é( ŠÈˆÕ”Å )
-extern	int		Graphics_D3D9_DeviceState_SetScissorRect( RECT *Rect ) ;											// ƒVƒU[‹éŒ`‚ğİ’è‚·‚é
-extern	int		Graphics_D3D9_DeviceState_SetDrawMode( int DrawMode ) ;												// •`‰æƒ‚[ƒh‚ÌƒZƒbƒg
-extern	int		Graphics_D3D9_DeviceState_SetRenderTarget( D_IDirect3DSurface9 *TargetSurface, int TargetIndex = 0 ) ;	// •`‰æ‘ÎÛ‚Ì•ÏX
-extern	int		Graphics_D3D9_DeviceState_SetFVF( int FVF ) ;														// g—p‚·‚éFVF‚ğ•ÏX‚·‚é
-extern	int		Graphics_D3D9_DeviceState_SetVertexDeclaration( D_IDirect3DVertexDeclaration9 *VertexDeclaration ) ;	// g—p‚·‚é’¸“_ƒVƒF[ƒ_éŒ¾‚ğ•ÏX‚·‚é
+
+
+// Direct3DDevice9 ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹é–¢ä¿‚
+extern	void	Graphics_D3D9_DeviceState_RefreshRenderState( void ) ;												// æç”»è¨­å®šã‚’ãƒªãƒ•ãƒ¬ãƒƒã‚·ãƒ¥
+extern	int		Graphics_D3D9_DeviceState_SetBaseState( void ) ;													// Direct3DDevice9 ã®åŸºæœ¬è¨­å®šã‚’è¡Œã†
+extern	int		Graphics_D3D9_DeviceState_SetSampleFilterMode( int Sampler, int SetTarget, D_D3DTEXTUREFILTERTYPE FilterType ) ;		// ã‚µãƒ³ãƒ—ãƒ©ãƒ¼ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ•ã‚£ãƒ«ã‚¿ãƒªãƒ³ã‚°ãƒ¢ãƒ¼ãƒ‰ã‚’è¨­å®šã™ã‚‹
+extern	int		Graphics_D3D9_DeviceState_SetZEnable( int Flag )  ;													// ï¼ºãƒãƒƒãƒ•ã‚¡ã®æœ‰åŠ¹ç„¡åŠ¹ã®ã‚»ãƒƒãƒˆ
+extern	int		Graphics_D3D9_DeviceState_SetZWriteEnable( int Flag ) ;												// ï¼ºãƒãƒƒãƒ•ã‚¡ã®æ›¸ãè¾¼ã¿ã®æœ‰ç„¡ã‚’ã‚»ãƒƒãƒˆ
+extern	int		Graphics_D3D9_DeviceState_SetZFunc( int CmpType ) ;													// æ·±åº¦å€¤ã®æ¯”è¼ƒã‚¿ã‚¤ãƒ—ã‚’ã‚»ãƒƒãƒˆ
+extern	int		Graphics_D3D9_DeviceState_SetDepthBias( int Bias ) ;												// æ·±åº¦å€¤ã®ãƒã‚¤ã‚¢ã‚¹ã‚’ã‚»ãƒƒãƒˆ
+extern	int		Graphics_D3D9_DeviceState_SetFillMode( int FillMode ) ;												// ãƒ•ã‚£ãƒ«ãƒ¢ãƒ¼ãƒ‰ã‚’ã‚»ãƒƒãƒˆ
+extern	int		Graphics_D3D9_DeviceState_SetWorldMatrix( const MATRIX *Matrix ) ;									// ãƒ¯ãƒ¼ãƒ«ãƒ‰å¤‰æ›ç”¨è¡Œåˆ—ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
+extern	int		Graphics_D3D9_DeviceState_SetViewMatrix( const MATRIX *Matrix ) ;									// ãƒ“ãƒ¥ãƒ¼å¤‰æ›ç”¨è¡Œåˆ—ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
+extern	int		Graphics_D3D9_DeviceState_SetProjectionMatrix( const MATRIX *Matrix ) ;								// æŠ•å½±å¤‰æ›ç”¨è¡Œåˆ—ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
+extern	int		Graphics_D3D9_DeviceState_SetLightState( int LightNumber, D_D3DLIGHT9 *Light ) ;					// ãƒ©ã‚¤ãƒˆã®ã‚»ãƒƒãƒˆ
+extern	int		Graphics_D3D9_DeviceState_SetLightEnable( int LightNumber, int EnableState ) ;						// ãƒ©ã‚¤ãƒˆã®æœ‰åŠ¹ã€ç„¡åŠ¹ã‚’å¤‰æ›´
+extern	int		Graphics_D3D9_DeviceState_SetMaterial( D_D3DMATERIAL9 *Material ) ;									// ãƒãƒ†ãƒªã‚¢ãƒ«ã®ã‚»ãƒƒãƒˆ
+extern	int		Graphics_D3D9_DeviceState_SetSpecularEnable( int UseFlag ) ;										// ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã‚’ã‚»ãƒƒãƒˆ
+extern	int		Graphics_D3D9_DeviceState_SetDiffuseMaterialSource( int UseFlag ) ;									// é ‚ç‚¹ã®ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚«ãƒ©ãƒ¼ã‚’ãƒãƒ†ãƒªã‚¢ãƒ«ã®ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚«ãƒ©ãƒ¼ã¨ã—ã¦ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹
+extern	int		Graphics_D3D9_DeviceState_SetSpecularMaterialSource( int UseFlag ) ;								// é ‚ç‚¹ã®ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã‚«ãƒ©ãƒ¼ã‚’ãƒãƒ†ãƒªã‚¢ãƒ«ã®ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã‚«ãƒ©ãƒ¼ã¨ã—ã¦ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹
+extern	int		Graphics_D3D9_DeviceState_SetCullMode( int State ) ;												// ã‚«ãƒªãƒ³ã‚°ã®æœ‰ç„¡ã‚’ã‚»ãƒƒãƒˆ 
+extern	int		Graphics_D3D9_DeviceState_SetAmbient( unsigned int Color ) ;										// ã‚¢ãƒ³ãƒ“ã‚¨ãƒ³ãƒˆã‚«ãƒ©ãƒ¼ã®ã‚»ãƒƒãƒˆ
+extern	int		Graphics_D3D9_DeviceState_SetShadeMode( int ShadeMode ) ;											// ã‚·ã‚§ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°ãƒ¢ãƒ¼ãƒ‰ã®ã‚»ãƒƒãƒˆ
+extern	int		Graphics_D3D9_DeviceState_SetTextureAddress( int AddressMode, int Sampler = -1 ) ;					// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã®ã‚¢ãƒ‰ãƒ¬ãƒƒã‚·ãƒ³ã‚°ãƒ¢ãƒ¼ãƒ‰ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
+extern	int		Graphics_D3D9_DeviceState_SetTextureAddressU( int AddressMode, int Sampler = -1 ) ;					// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã®ã‚¢ãƒ‰ãƒ¬ãƒƒã‚·ãƒ³ã‚°ãƒ¢ãƒ¼ãƒ‰ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
+extern	int		Graphics_D3D9_DeviceState_SetTextureAddressV( int AddressMode, int Sampler = -1 ) ;					// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã®ã‚¢ãƒ‰ãƒ¬ãƒƒã‚·ãƒ³ã‚°ãƒ¢ãƒ¼ãƒ‰ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
+extern	int		Graphics_D3D9_DeviceState_SetTextureAddressW( int AddressMode, int Sampler = -1 ) ;					// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã®ã‚¢ãƒ‰ãƒ¬ãƒƒã‚·ãƒ³ã‚°ãƒ¢ãƒ¼ãƒ‰ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
+extern	int		Graphics_D3D9_DeviceState_SetTextureAddressUVW( int AddressModeU, int AddressModeV, int AddressModeW, int Sampler = -1 ) ;		// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã®ã‚¢ãƒ‰ãƒ¬ãƒƒã‚·ãƒ³ã‚°ãƒ¢ãƒ¼ãƒ‰ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
+extern	int		Graphics_D3D9_DeviceState_SetTextureAddressTransformMatrix( int Use, MATRIX *Matrix, int Samplar = -1 ) ;	// ãƒ†ã‚¯ã‚¹ãƒãƒ£åº§æ¨™å¤‰æ›è¡Œåˆ—ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
+extern	int		Graphics_D3D9_DeviceState_SetFogEnable( int Flag ) ;												// ãƒ•ã‚©ã‚°ã‚’æœ‰åŠ¹ã«ã™ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹( TRUE:æœ‰åŠ¹  FALSE:ç„¡åŠ¹ )
+extern	int		Graphics_D3D9_DeviceState_SetFogVertexMode( int Mode /* DX_FOGMODE_NONE ç­‰ */ ) ;					// ãƒ•ã‚©ã‚°ãƒ¢ãƒ¼ãƒ‰ã‚’è¨­å®šã™ã‚‹
+extern	int		Graphics_D3D9_DeviceState_SetFogColor( unsigned int Color ) ;										// ãƒ•ã‚©ã‚°ã‚«ãƒ©ãƒ¼ã‚’å¤‰æ›´ã™ã‚‹
+extern	int		Graphics_D3D9_DeviceState_SetFogStartEnd( float Start, float End ) ;								// ãƒ•ã‚©ã‚°ãŒå§‹ã¾ã‚‹è·é›¢ã¨çµ‚äº†ã™ã‚‹è·é›¢ã‚’è¨­å®šã™ã‚‹( 0.0f ï½ 1.0f )
+extern	int		Graphics_D3D9_DeviceState_SetFogDensity( float Density ) ;											// ãƒ•ã‚©ã‚°ã®å¯†åº¦ã‚’è¨­å®šã™ã‚‹( 0.0f ï½ 1.0f )
+extern	int		Graphics_D3D9_DeviceState_SetVerticalFogEnable( int Flag ) ;										// é«˜ã•ãƒ•ã‚©ã‚°ã‚’æœ‰åŠ¹ã«ã™ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹( TRUE:æœ‰åŠ¹  FALSE:ç„¡åŠ¹ )
+extern	int		Graphics_D3D9_DeviceState_SetVerticalFogVertexMode( int Mode /* DX_FOGMODE_NONE ç­‰ */ ) ;			// é«˜ã•ãƒ•ã‚©ã‚°ãƒ¢ãƒ¼ãƒ‰ã‚’è¨­å®šã™ã‚‹
+extern	int		Graphics_D3D9_DeviceState_SetVerticalFogColor( unsigned int Color ) ;								// é«˜ã•ãƒ•ã‚©ã‚°ã‚«ãƒ©ãƒ¼ã‚’å¤‰æ›´ã™ã‚‹
+extern	int		Graphics_D3D9_DeviceState_SetVerticalFogStartEnd( float Start, float End ) ;						// é«˜ã•ãƒ•ã‚©ã‚°ãŒå§‹ã¾ã‚‹è·é›¢ã¨çµ‚äº†ã™ã‚‹è·é›¢ã‚’è¨­å®šã™ã‚‹( 0.0f ï½ 1.0f )
+extern	int		Graphics_D3D9_DeviceState_SetVerticalFogDensity( float start, float Density ) ;						// é«˜ã•ãƒ•ã‚©ã‚°ã®å¯†åº¦ã‚’è¨­å®šã™ã‚‹( 0.0f ï½ 1.0f )
+extern	int		Graphics_D3D9_DeviceState_SetLighting( int Flag ) ;													// ãƒ©ã‚¤ãƒˆã®æœ‰ç„¡ãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
+extern	int		Graphics_D3D9_DeviceState_SetMaxAnisotropy( int MaxAnisotropy, int Sampler = -1 ) ;					// æœ€å¤§ç•°æ–¹æ€§ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
+extern	int		Graphics_D3D9_DeviceState_SetViewport( D_D3DVIEWPORT9 *Viewport ) ;									// ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆã‚’ã‚»ãƒƒãƒˆã™ã‚‹
+extern	int		Graphics_D3D9_DeviceState_SetViewportEasy( int x1, int y1, int x2, int y2 ) ;						// ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆã‚’ã‚»ãƒƒãƒˆã™ã‚‹( ç°¡æ˜“ç‰ˆ )
+extern	int		Graphics_D3D9_DeviceState_SetScissorRect( RECT *Rect ) ;											// ã‚·ã‚¶ãƒ¼çŸ©å½¢ã‚’è¨­å®šã™ã‚‹
+extern	int		Graphics_D3D9_DeviceState_SetDrawMode( int DrawMode ) ;												// æç”»ãƒ¢ãƒ¼ãƒ‰ã®ã‚»ãƒƒãƒˆ
+extern	int		Graphics_D3D9_DeviceState_SetRenderTarget( D_IDirect3DSurface9 *TargetSurface, int TargetIndex = 0 ) ;	// æç”»å¯¾è±¡ã®å¤‰æ›´
+extern	int		Graphics_D3D9_DeviceState_SetFVF( int FVF ) ;														// ä½¿ç”¨ã™ã‚‹FVFã‚’å¤‰æ›´ã™ã‚‹
+extern	int		Graphics_D3D9_DeviceState_SetVertexDeclaration( D_IDirect3DVertexDeclaration9 *VertexDeclaration ) ;	// ä½¿ç”¨ã™ã‚‹é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€å®£è¨€ã‚’å¤‰æ›´ã™ã‚‹
 #ifndef DX_NON_MODEL
-extern	int		Graphics_D3D9_DeviceState_SetMV1VertexDeclaration( int BumpMap, int SkinMesh, int UVNum ) ;			// w’è‚Ìƒ‚ƒfƒ‹—p‚Ì’¸“_ƒVƒF[ƒ_éŒ¾‚ğƒZƒbƒg‚·‚é
+extern	int		Graphics_D3D9_DeviceState_SetMV1VertexDeclaration( int BumpMap, int SkinMesh, int UVNum ) ;			// æŒ‡å®šã®ãƒ¢ãƒ‡ãƒ«ç”¨ã®é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€å®£è¨€ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 #endif // DX_NON_MODEL
-extern	int		Graphics_D3D9_DeviceState_SetVertexShaderToHandle( int ShaderHandle ) ;								// w’è‚Ì’¸“_ƒVƒF[ƒ_[‚ğƒfƒoƒCƒX‚ÉƒZƒbƒg‚·‚é
-extern	int		Graphics_D3D9_DeviceState_SetVertexShader( D_IDirect3DVertexShader9 *VertexShader, int NormalVertexShader = FALSE ) ;	// g—p‚·‚é’¸“_ƒVƒF[ƒ_[‚ğ•ÏX‚·‚é
-extern	int		Graphics_D3D9_DeviceState_ResetVertexShader( int SetNormalVertexShaderCancel = FALSE ) ;			// ’¸“_ƒVƒF[ƒ_[‚Ìg—p‚ğ~‚ß‚é( ŒÅ’è‹@”\ƒpƒCƒvƒ‰ƒCƒ“‚ğg—p‚·‚éó‘Ô‚É‚·‚é )
-extern	int		Graphics_D3D9_DeviceState_SetPixelShaderToHandle( int ShaderHandle ) ;								// w’è‚ÌƒsƒNƒZƒ‹ƒVƒF[ƒ_[‚ğƒfƒoƒCƒX‚ÉƒZƒbƒg‚·‚é
-extern	int		Graphics_D3D9_DeviceState_SetPixelShader( D_IDirect3DPixelShader9 *PixelShader, int NormalPixelShader = FALSE ) ;	// g—p‚·‚éƒsƒNƒZƒ‹ƒVƒF[ƒ_[‚ğ•ÏX‚·‚é
-extern	int		Graphics_D3D9_DeviceState_ResetPixelShader( int SetNormalPixelShaderCancel = FALSE ) ;				// ƒsƒNƒZƒ‹ƒVƒF[ƒ_[‚Ìg—p‚ğ~‚ß‚é( ŒÅ’è‹@”\ƒpƒCƒvƒ‰ƒCƒ“‚ğg—p‚·‚éó‘Ô‚É‚·‚é )
-extern	int		Graphics_D3D9_DeviceState_SetVertexBuffer( D_IDirect3DVertexBuffer9 *VertexBuffer, int VertexStride = 0 ) ;	// g—p‚·‚é’¸“_ƒoƒbƒtƒ@‚ğ•ÏX‚·‚é
-extern	int		Graphics_D3D9_DeviceState_SetIndexBuffer( D_IDirect3DIndexBuffer9 *IndexBuffer ) ;					// g—p‚·‚éƒCƒ“ƒfƒbƒNƒXƒoƒbƒtƒ@‚ğ•ÏX‚·‚é
-extern	int		Graphics_D3D9_DeviceState_ResetTextureCoord( void ) ;												// ŠeƒXƒe[ƒW‚ªg—p‚·‚éƒeƒNƒXƒ`ƒƒƒAƒhƒŒƒX‚ğƒXƒe[ƒW”Ô†‚Æ“¯‚¶‚É‚·‚é
-extern	int		Graphics_D3D9_DeviceState_SetUserBlendInfo(  GRAPHICS_HARDDATA_DIRECT3D9_BLENDINFO *BlendInfo, int TextureStageIsTextureAndTextureCoordOnlyFlag, int TextureIsGraphHandleFlag = TRUE, int UseShader = TRUE ) ;					// ƒ†[ƒU[‚ÌƒuƒŒƒ“ƒhƒCƒ“ƒtƒH‚ğ“K‰‚·‚é
-extern	int		Graphics_D3D9_DeviceState_RefreshBlendState( GRAPHICS_HARDDATA_DIRECT3D9_BLENDINFO *pUserInfo = NULL, int TextureStageIsTextureAndTextureCoordOnlyFlag = FALSE, int TextureIsGraphHandleFlag = TRUE, int UseShader = TRUE ) ;	// ƒuƒŒƒ“ƒhİ’è‚ğXV(Direct3D ‚É”½‰f)‚·‚é
-extern	void	Graphics_D3D9_DeviceState_RefreshAmbientAndEmissiveParam( void ) ;									// ƒAƒ“ƒrƒGƒ“ƒgƒ‰ƒCƒg‚ÆƒGƒ~ƒbƒVƒuƒJƒ‰[‚ğŠ|‚¯‡‚í‚¹‚½ƒpƒ‰ƒ[ƒ^‚ğXV‚·‚é
+extern	int		Graphics_D3D9_DeviceState_SetVertexShaderToHandle( int ShaderHandle ) ;								// æŒ‡å®šã®é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ãƒ‡ãƒã‚¤ã‚¹ã«ã‚»ãƒƒãƒˆã™ã‚‹
+extern	int		Graphics_D3D9_DeviceState_SetVertexShader( D_IDirect3DVertexShader9 *VertexShader, int NormalVertexShader = FALSE ) ;	// ä½¿ç”¨ã™ã‚‹é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’å¤‰æ›´ã™ã‚‹
+extern	int		Graphics_D3D9_DeviceState_ResetVertexShader( int SetNormalVertexShaderCancel = FALSE ) ;			// é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ä½¿ç”¨ã‚’æ­¢ã‚ã‚‹( å›ºå®šæ©Ÿèƒ½ãƒ‘ã‚¤ãƒ—ãƒ©ã‚¤ãƒ³ã‚’ä½¿ç”¨ã™ã‚‹çŠ¶æ…‹ã«ã™ã‚‹ )
+extern	int		Graphics_D3D9_DeviceState_SetPixelShaderToHandle( int ShaderHandle ) ;								// æŒ‡å®šã®ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ãƒ‡ãƒã‚¤ã‚¹ã«ã‚»ãƒƒãƒˆã™ã‚‹
+extern	int		Graphics_D3D9_DeviceState_SetPixelShader( D_IDirect3DPixelShader9 *PixelShader, int NormalPixelShader = FALSE ) ;	// ä½¿ç”¨ã™ã‚‹ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’å¤‰æ›´ã™ã‚‹
+extern	int		Graphics_D3D9_DeviceState_ResetPixelShader( int SetNormalPixelShaderCancel = FALSE ) ;				// ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ä½¿ç”¨ã‚’æ­¢ã‚ã‚‹( å›ºå®šæ©Ÿèƒ½ãƒ‘ã‚¤ãƒ—ãƒ©ã‚¤ãƒ³ã‚’ä½¿ç”¨ã™ã‚‹çŠ¶æ…‹ã«ã™ã‚‹ )
+extern	int		Graphics_D3D9_DeviceState_SetVertexBuffer( D_IDirect3DVertexBuffer9 *VertexBuffer, int VertexStride = 0 ) ;	// ä½¿ç”¨ã™ã‚‹é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã‚’å¤‰æ›´ã™ã‚‹
+extern	int		Graphics_D3D9_DeviceState_SetIndexBuffer( D_IDirect3DIndexBuffer9 *IndexBuffer ) ;					// ä½¿ç”¨ã™ã‚‹ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒãƒƒãƒ•ã‚¡ã‚’å¤‰æ›´ã™ã‚‹
+extern	int		Graphics_D3D9_DeviceState_ResetTextureCoord( void ) ;												// å„ã‚¹ãƒ†ãƒ¼ã‚¸ãŒä½¿ç”¨ã™ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ã‚¹ãƒ†ãƒ¼ã‚¸ç•ªå·ã¨åŒã˜ã«ã™ã‚‹
+extern	int		Graphics_D3D9_DeviceState_SetUserBlendInfo(  GRAPHICS_HARDDATA_DIRECT3D9_BLENDINFO *BlendInfo, int TextureStageIsTextureAndTextureCoordOnlyFlag, int TextureIsGraphHandleFlag = TRUE, int UseShader = TRUE ) ;					// ãƒ¦ãƒ¼ã‚¶ãƒ¼ã®ãƒ–ãƒ¬ãƒ³ãƒ‰ã‚¤ãƒ³ãƒ•ã‚©ã‚’é©å¿œã™ã‚‹
+extern	int		Graphics_D3D9_DeviceState_RefreshBlendState( GRAPHICS_HARDDATA_DIRECT3D9_BLENDINFO *pUserInfo = NULL, int TextureStageIsTextureAndTextureCoordOnlyFlag = FALSE, int TextureIsGraphHandleFlag = TRUE, int UseShader = TRUE ) ;	// ãƒ–ãƒ¬ãƒ³ãƒ‰è¨­å®šã‚’æ›´æ–°(Direct3D ã«åæ˜ )ã™ã‚‹
+extern	void	Graphics_D3D9_DeviceState_RefreshAmbientAndEmissiveParam( void ) ;									// ã‚¢ãƒ³ãƒ“ã‚¨ãƒ³ãƒˆãƒ©ã‚¤ãƒˆã¨ã‚¨ãƒŸãƒƒã‚·ãƒ–ã‚«ãƒ©ãƒ¼ã‚’æ›ã‘åˆã‚ã›ãŸãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’æ›´æ–°ã™ã‚‹
 
 
 
@@ -1384,18 +1384,18 @@ extern	void	Graphics_D3D9_DeviceState_RefreshAmbientAndEmissiveParam( void ) ;		
 
 
 
-// •`‰æİ’èŠÖŒWŠÖ”
-extern	int		Graphics_D3D9_DrawSetting_SetDrawBlendMode( int BlendMode, int BlendEnable, int BlendRGBSrc, int BlendRGBDest, int BlendRGBOp, int BlendASrc, int BlendADest, int BlendAOp, int AlphaTestValidFlag, int AlphaChannelValidFlag ) ;	// •`‰æƒuƒŒƒ“ƒhƒ‚[ƒh‚Ìİ’è
-extern	int		Graphics_D3D9_DrawSetting_SetIgnoreDrawGraphColor( int EnableFlag ) ;							// •`‰æ‚Ì‰æ‘œ‚Ì‚q‚f‚a‚ğ–³‹‚·‚é‚©‚Ç‚¤‚©‚ğİ’è‚·‚é
-extern	int		Graphics_D3D9_DrawSetting_SetWriteAlphaChannelFlag(	int NotFlag ) ;								// •`‰ææ‚ÌƒAƒ‹ƒtƒ@ƒ`ƒƒƒ“ƒlƒ‹‚Ì“à—e‚ğ‘‚«Š·‚¦‚é‚©‚ğİ’è‚·‚é
-extern	int		Graphics_D3D9_DrawSetting_SetDrawAlphaTest( int TestMode, int TestParam ) ;						// ƒAƒ‹ƒtƒ@ƒeƒXƒg‚Ìİ’è
-extern	int		Graphics_D3D9_DrawSetting_SetUseDiffuseAlphaColorFlag( int UseFlag ) ;							// ƒfƒBƒtƒ…[ƒYƒJƒ‰[‚Ìƒ¿’l‚ğg—p‚·‚é‚©‚Ç‚¤‚©ƒtƒ‰ƒO‚ğƒZƒbƒg‚·‚é
-extern	int		Graphics_D3D9_DrawSetting_SetUseDiffuseRGBColorFlag( int UseFlag ) ;							// ƒfƒBƒtƒ…[ƒYƒJƒ‰[‚Ì‚q‚f‚a’l‚ğg—p‚·‚é‚©‚Ç‚¤‚©ƒtƒ‰ƒO‚ğƒZƒbƒg‚·‚é
-extern	int		Graphics_D3D9_DrawSetting_SetBlendTextureParam( int BlendType, int *Param ) ;					// ƒuƒŒƒ“ƒh‚·‚éƒeƒNƒXƒ`ƒƒ‚Ìƒpƒ‰ƒ[ƒ^‚ğƒZƒbƒg‚·‚é
-extern	int		Graphics_D3D9_DrawSetting_SetTexture( D_IDirect3DTexture9 *RenderTexture ) ;					// ƒeƒNƒXƒ`ƒƒ‚ğƒZƒbƒg‚·‚é 
-extern	int		Graphics_D3D9_DrawSetting_SetBlendTexture( D_IDirect3DTexture9 *BlendTexture, int TexWidth = -1, int TexHeight = -1 ) ;	// ƒuƒŒƒ“ƒh‚·‚éƒeƒNƒXƒ`ƒƒ‚ğƒZƒbƒg‚·‚é 
-extern	int		Graphics_D3D9_DrawSetting_SetLightNoAngleAttenuation( int NoAngleAttenuation ) ;				// ƒ‰ƒCƒeƒBƒ“ƒOŒvZ‚ÌŠp“xŒ¸Š‚ğs‚í‚È‚¢‚©‚ğİ’è‚·‚é
-extern	int		Graphics_D3D9_DrawSetting_SetLightUseHalfLambert( int UseHalfLambert ) ;						// ƒ‰ƒCƒeƒBƒ“ƒOŒvZ‚Åƒn[ƒtƒ‰ƒ“ƒo[ƒg‚ğg—p‚·‚é‚©‚Ç‚¤‚©‚ğİ’è‚·‚é
+// æç”»è¨­å®šé–¢ä¿‚é–¢æ•°
+extern	int		Graphics_D3D9_DrawSetting_SetDrawBlendMode( int BlendMode, int BlendEnable, int BlendRGBSrc, int BlendRGBDest, int BlendRGBOp, int BlendASrc, int BlendADest, int BlendAOp, int AlphaTestValidFlag, int AlphaChannelValidFlag ) ;	// æç”»ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã®è¨­å®š
+extern	int		Graphics_D3D9_DrawSetting_SetIgnoreDrawGraphColor( int EnableFlag ) ;							// æç”»æ™‚ã®ç”»åƒã®ï¼²ï¼§ï¼¢ã‚’ç„¡è¦–ã™ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹
+extern	int		Graphics_D3D9_DrawSetting_SetWriteAlphaChannelFlag(	int NotFlag ) ;								// æç”»å…ˆã®ã‚¢ãƒ«ãƒ•ã‚¡ãƒãƒ£ãƒ³ãƒãƒ«ã®å†…å®¹ã‚’æ›¸ãæ›ãˆã‚‹ã‹ã‚’è¨­å®šã™ã‚‹
+extern	int		Graphics_D3D9_DrawSetting_SetDrawAlphaTest( int TestMode, int TestParam ) ;						// ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆã®è¨­å®š
+extern	int		Graphics_D3D9_DrawSetting_SetUseDiffuseAlphaColorFlag( int UseFlag ) ;							// ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚«ãƒ©ãƒ¼ã®Î±å€¤ã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
+extern	int		Graphics_D3D9_DrawSetting_SetUseDiffuseRGBColorFlag( int UseFlag ) ;							// ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚«ãƒ©ãƒ¼ã®ï¼²ï¼§ï¼¢å€¤ã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
+extern	int		Graphics_D3D9_DrawSetting_SetBlendTextureParam( int BlendType, int *Param ) ;					// ãƒ–ãƒ¬ãƒ³ãƒ‰ã™ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
+extern	int		Graphics_D3D9_DrawSetting_SetTexture( D_IDirect3DTexture9 *RenderTexture ) ;					// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ã‚»ãƒƒãƒˆã™ã‚‹ 
+extern	int		Graphics_D3D9_DrawSetting_SetBlendTexture( D_IDirect3DTexture9 *BlendTexture, int TexWidth = -1, int TexHeight = -1 ) ;	// ãƒ–ãƒ¬ãƒ³ãƒ‰ã™ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ã‚»ãƒƒãƒˆã™ã‚‹ 
+extern	int		Graphics_D3D9_DrawSetting_SetLightNoAngleAttenuation( int NoAngleAttenuation ) ;				// ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°è¨ˆç®—ã®è§’åº¦æ¸›è¡°ã‚’è¡Œã‚ãªã„ã‹ã‚’è¨­å®šã™ã‚‹
+extern	int		Graphics_D3D9_DrawSetting_SetLightUseHalfLambert( int UseHalfLambert ) ;						// ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°è¨ˆç®—ã§ãƒãƒ¼ãƒ•ãƒ©ãƒ³ãƒãƒ¼ãƒˆã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹
 
 
 
@@ -1404,26 +1404,15 @@ extern	int		Graphics_D3D9_DrawSetting_SetLightUseHalfLambert( int UseHalfLambert
 
 
 
-// ƒVƒF[ƒ_[’è”ŠÇ—\‘¢‘Ìˆ—ŠÖ”
-extern	int		Graphics_D3D9_ShaderConstant_UseArea_Initialize(  DIRECT3D9_SHADERCONSTANT_USEAREA *UseArea, int TotalSize ) ;															// ƒVƒF[ƒ_[’è”g—p—Ìˆæî•ñ‚ğ‰Šú‰»‚·‚é
-extern	int		Graphics_D3D9_ShaderConstant_UseArea_Set(         DIRECT3D9_SHADERCONSTANT_USEAREA *UseArea, int IsUse, int Index, int Num ) ;											// ƒVƒF[ƒ_[’è”g—p—Ìˆæî•ñ‚ğ•ÏX‚·‚é
-extern	int		Graphics_D3D9_ShaderConstant_UseArea_Create(      DIRECT3D9_SHADERCONSTANT_USEAREA *UseArea, BYTE *Map, BYTE SetNumber ) ;												// ƒVƒF[ƒ_[’è”g—p—Ìˆæî•ñ‚©‚çg—pƒ}ƒbƒv‚ğì¬‚·‚é
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼å®šæ•°ç®¡ç†æ§‹é€ ä½“å‡¦ç†é–¢æ•°
+extern	int		Graphics_D3D9_ShaderConstant_UseArea_Initialize(  DIRECT3D9_SHADERCONSTANT_USEAREA *UseArea, int TotalSize ) ;															// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼å®šæ•°ä½¿ç”¨é ˜åŸŸæƒ…å ±ã‚’åˆæœŸåŒ–ã™ã‚‹
+extern	int		Graphics_D3D9_ShaderConstant_UseArea_Set(         DIRECT3D9_SHADERCONSTANT_USEAREA *UseArea, int IsUse, int Index, int Num ) ;											// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼å®šæ•°ä½¿ç”¨é ˜åŸŸæƒ…å ±ã‚’å¤‰æ›´ã™ã‚‹
+extern	int		Graphics_D3D9_ShaderConstant_UseArea_Create(      DIRECT3D9_SHADERCONSTANT_USEAREA *UseArea, BYTE *Map, BYTE SetNumber ) ;												// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼å®šæ•°ä½¿ç”¨é ˜åŸŸæƒ…å ±ã‹ã‚‰ä½¿ç”¨ãƒãƒƒãƒ—ã‚’ä½œæˆã™ã‚‹
 
-extern	int		Graphics_D3D9_ShaderConstant_InfoSet_Initialize(  DIRECT3D9_SHADERCONSTANTINFOSET *ConstInfoSet ) ;																		// ƒVƒF[ƒ_[’è”î•ñ‚Ì‰Šú‰»
-extern	int		Graphics_D3D9_ShaderConstant_InfoSet_SetUseState( DIRECT3D9_SHADERCONSTANTINFOSET *ConstInfoSet, int ApplyMask ) ;														// w’è‚ÌƒVƒF[ƒ_[’è”ƒZƒbƒg‚ğ“K—p‚·‚é‚©‚Ç‚¤‚©‚ğİ’è‚·‚é DX_SHADERCONSTANTSET_MASK_LIB | DX_SHADERCONSTANTSET_MASK_LIB_SUB “™
-extern	int		Graphics_D3D9_ShaderConstant_InfoSet_SetParam(    DIRECT3D9_SHADERCONSTANTINFOSET *ConstInfoSet, int TypeIndex, int SetIndex, int ConstantIndex, const void *Param, int ParamNum, int UpdateUseArea ) ;	// ƒVƒF[ƒ_[’è”î•ñ‚ğİ’è‚·‚é
-extern	int		Graphics_D3D9_ShaderConstant_InfoSet_ResetParam(  DIRECT3D9_SHADERCONSTANTINFOSET *ConstInfoSet, int TypeIndex, int SetIndex, int ConstantIndex, int ParamNum ) ;										// w’è—Ìˆæ‚ÌƒVƒF[ƒ_[’è”î•ñ‚ğƒŠƒZƒbƒg‚·‚é
-
-
-
-
-
-
-
-
-// ’¸“_ƒVƒF[ƒ_éŒ¾ŠÖŒWŠÖ”
-extern	int		Graphics_D3D9_VertexDeclaration_Create( void ) ;		// Direct3DVertexDeclaration9 ƒIƒuƒWƒFƒNƒg‚Ìì¬( 0:¬Œ÷  -1:¸”s )
-extern	int		Graphics_D3D9_VertexDeclaration_Terminate( void ) ;		// Direct3DVertexDeclaration9 ƒIƒuƒWƒFƒNƒg‚Ìíœ( 0:¬Œ÷  -1:¸”s )
+extern	int		Graphics_D3D9_ShaderConstant_InfoSet_Initialize(  DIRECT3D9_SHADERCONSTANTINFOSET *ConstInfoSet ) ;																		// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼å®šæ•°æƒ…å ±ã®åˆæœŸåŒ–
+extern	int		Graphics_D3D9_ShaderConstant_InfoSet_SetUseState( DIRECT3D9_SHADERCONSTANTINFOSET *ConstInfoSet, int ApplyMask ) ;														// æŒ‡å®šã®ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼å®šæ•°ã‚»ãƒƒãƒˆã‚’é©ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹ DX_SHADERCONSTANTSET_MASK_LIB | DX_SHADERCONSTANTSET_MASK_LIB_SUB ç­‰
+extern	int		Graphics_D3D9_ShaderConstant_InfoSet_SetParam(    DIRECT3D9_SHADERCONSTANTINFOSET *ConstInfoSet, int TypeIndex, int SetIndex, int ConstantIndex, const void *Param, int ParamNum, int UpdateUseArea ) ;	// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼å®šæ•°æƒ…å ±ã‚’è¨­å®šã™ã‚‹
+extern	int		Graphics_D3D9_ShaderConstant_InfoSet_ResetParam(  DIRECT3D9_SHADERCONSTANTINFOSET *ConstInfoSet, int TypeIndex, int SetIndex, int ConstantIndex, int ParamNum ) ;										// æŒ‡å®šé ˜åŸŸã®ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼å®šæ•°æƒ…å ±ã‚’ãƒªã‚»ãƒƒãƒˆã™ã‚‹
 
 
 
@@ -1432,19 +1421,9 @@ extern	int		Graphics_D3D9_VertexDeclaration_Terminate( void ) ;		// Direct3DVert
 
 
 
-// ƒVƒXƒeƒ€ƒeƒNƒXƒ`ƒƒEƒT[ƒtƒFƒXŠÖŒWŠÖ”
-extern	int		Graphics_D3D9_GetSysMemTextureFromOrig( struct IMAGEDATA_ORIG *Orig, struct IMAGEDATA_ORIG_HARD_TEX *OrigTex, int ASyncThread = FALSE ) ;		// IMAGEDATA_ORIG ‚Æ IMAGEDATA_ORIG_HARD_TEX ‚Ìî•ñ‚ğŒ³‚É Graphics_D3D9_GetSysMemTexture ‚ğg—p‚·‚é
-extern	int		Graphics_D3D9_GetSysMemTexture( int CubeMap, int Width, int Height, int MipMapCount, D_D3DFORMAT Format, int ASyncThread ) ;		// ŠÇ—ƒeƒNƒXƒ`ƒƒ‚Ö‚Ì“]‘——p‚ÌƒVƒXƒeƒ€ƒƒ‚ƒŠƒeƒNƒXƒ`ƒƒ‚ğæ“¾‚·‚é
-extern	int		Graphics_D3D9_GetSysMemSurface( int Width, int Height, D_D3DFORMAT Format, int ASyncThread ) ;										// ŠÇ—ƒeƒNƒXƒ`ƒƒ‚Ö‚Ì“]‘——p‚ÌƒVƒXƒeƒ€ƒƒ‚ƒŠƒT[ƒtƒFƒX‚ğæ“¾‚·‚é
-extern	int		Graphics_D3D9_CreateSysMemTextureDirect3D9Texture( GRAPHICS_HARDDATA_DIRECT3D9_SYSMEMTEXTURE *MemTex ) ;							// \‘¢‘Ì‚Ìƒf[ƒ^‚ğŒ³‚É“]‘——p‚ÌƒVƒXƒeƒ€ƒƒ‚ƒŠƒeƒNƒXƒ`ƒƒ‚ğì¬‚·‚é
-extern	int		Graphics_D3D9_CreateSysMemSurfaceDirect3D9Surface( GRAPHICS_HARDDATA_DIRECT3D9_SYSMEMSURFACE *MemSurface ) ;						// \‘¢‘Ì‚Ìƒf[ƒ^‚ğŒ³‚É“]‘——p‚ÌƒVƒXƒeƒ€ƒƒ‚ƒŠƒT[ƒtƒFƒX‚ğì¬‚·‚é
-extern	int		Graphics_D3D9_ReleaseSysMemTexture( int Index, int ASyncThread = FALSE ) ;															// ŠÇ—ƒeƒNƒXƒ`ƒƒ‚Ö‚Ì“]‘——p‚ÌƒVƒXƒeƒ€ƒƒ‚ƒŠƒeƒNƒXƒ`ƒƒ‚ğ‰ğ•ú‚·‚é
-extern	int		Graphics_D3D9_ReleaseSysMemSurface( int Index, int ASyncThread = FALSE ) ;															// ŠÇ—ƒeƒNƒXƒ`ƒƒ‚Ö‚Ì“]‘——p‚ÌƒVƒXƒeƒ€ƒƒ‚ƒŠƒT[ƒtƒFƒX‚ğ‰ğ•ú‚·‚é
-extern	int		Graphics_D3D9_ReleaseSysMemTextureAll( int IsNotUseOnly = FALSE ) ;																	// ŠÇ—ƒeƒNƒXƒ`ƒƒ‚Ö‚Ì“]‘——p‚ÌƒVƒXƒeƒ€ƒƒ‚ƒŠƒeƒNƒXƒ`ƒƒ‚ğ‚·‚×‚Ä‰ğ•ú‚·‚é
-extern	int		Graphics_D3D9_ReleaseSysMemSurfaceAll( int IsNotUseOnly = FALSE ) ;																	// ŠÇ—ƒeƒNƒXƒ`ƒƒ‚Ö‚Ì“]‘——p‚ÌƒVƒXƒeƒ€ƒƒ‚ƒŠƒT[ƒtƒFƒX‚ğ‚·‚×‚Ä‰ğ•ú‚·‚é
-
-extern	int		Graphics_D3D9_SysMemTextureProcess( void ) ;																						// ŠÇ—ƒeƒNƒXƒ`ƒƒ‚Ö‚Ì“]‘——p‚ÌƒVƒXƒeƒ€ƒƒ‚ƒŠƒeƒNƒXƒ`ƒƒ‚Ì’èŠúˆ—‚ğs‚¤
-extern	int		Graphics_D3D9_SysMemSurfaceProcess( void ) ;																						// ŠÇ—ƒeƒNƒXƒ`ƒƒ‚Ö‚Ì“]‘——p‚ÌƒVƒXƒeƒ€ƒƒ‚ƒŠƒT[ƒtƒFƒX‚Ì’èŠúˆ—‚ğs‚¤
+// é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€å®£è¨€é–¢ä¿‚é–¢æ•°
+extern	int		Graphics_D3D9_VertexDeclaration_Create( void ) ;		// Direct3DVertexDeclaration9 ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ä½œæˆ( 0:æˆåŠŸ  -1:å¤±æ•— )
+extern	int		Graphics_D3D9_VertexDeclaration_Terminate( void ) ;		// Direct3DVertexDeclaration9 ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®å‰Šé™¤( 0:æˆåŠŸ  -1:å¤±æ•— )
 
 
 
@@ -1453,11 +1432,19 @@ extern	int		Graphics_D3D9_SysMemSurfaceProcess( void ) ;																						//
 
 
 
-// Direct3D9 ‚Ì•`‰æˆ—€”õŠÖŒW
-extern	int		Graphics_D3D9_RenderVertex( int ASyncThread = FALSE ) ;							// ’¸“_ƒoƒbƒtƒ@‚É—­‚Ü‚Á‚½’¸“_ƒf[ƒ^‚ğƒŒƒ“ƒ_ƒŠƒ“ƒO‚·‚é
-extern	void	FASTCALL Graphics_D3D9_DrawPreparation( int ParamFlag = 0 ) ;					// •`‰æ€”õ‚ğs‚¤
-extern	void	Graphics_D3D9_BeginScene( void ) ;												// ƒrƒMƒ“ƒV[ƒ“‚ğs‚¤
-extern	void	Graphics_D3D9_EndScene( void ) ;												// ƒGƒ“ƒhƒV[ƒ“‚ğs‚¤	
+// ã‚·ã‚¹ãƒ†ãƒ ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ»ã‚µãƒ¼ãƒ•ã‚§ã‚¹é–¢ä¿‚é–¢æ•°
+extern	int		Graphics_D3D9_GetSysMemTextureFromOrig( struct IMAGEDATA_ORIG *Orig, struct IMAGEDATA_ORIG_HARD_TEX *OrigTex, int ASyncThread = FALSE ) ;		// IMAGEDATA_ORIG ã¨ IMAGEDATA_ORIG_HARD_TEX ã®æƒ…å ±ã‚’å…ƒã« Graphics_D3D9_GetSysMemTexture ã‚’ä½¿ç”¨ã™ã‚‹
+extern	int		Graphics_D3D9_GetSysMemTexture( int CubeMap, int Width, int Height, int MipMapCount, D_D3DFORMAT Format, int ASyncThread ) ;		// ç®¡ç†ãƒ†ã‚¯ã‚¹ãƒãƒ£ã¸ã®è»¢é€ç”¨ã®ã‚·ã‚¹ãƒ†ãƒ ãƒ¡ãƒ¢ãƒªãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’å–å¾—ã™ã‚‹
+extern	int		Graphics_D3D9_GetSysMemSurface( int Width, int Height, D_D3DFORMAT Format, int ASyncThread ) ;										// ç®¡ç†ãƒ†ã‚¯ã‚¹ãƒãƒ£ã¸ã®è»¢é€ç”¨ã®ã‚·ã‚¹ãƒ†ãƒ ãƒ¡ãƒ¢ãƒªã‚µãƒ¼ãƒ•ã‚§ã‚¹ã‚’å–å¾—ã™ã‚‹
+extern	int		Graphics_D3D9_CreateSysMemTextureDirect3D9Texture( GRAPHICS_HARDDATA_DIRECT3D9_SYSMEMTEXTURE *MemTex ) ;							// æ§‹é€ ä½“ã®ãƒ‡ãƒ¼ã‚¿ã‚’å…ƒã«è»¢é€ç”¨ã®ã‚·ã‚¹ãƒ†ãƒ ãƒ¡ãƒ¢ãƒªãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ä½œæˆã™ã‚‹
+extern	int		Graphics_D3D9_CreateSysMemSurfaceDirect3D9Surface( GRAPHICS_HARDDATA_DIRECT3D9_SYSMEMSURFACE *MemSurface ) ;						// æ§‹é€ ä½“ã®ãƒ‡ãƒ¼ã‚¿ã‚’å…ƒã«è»¢é€ç”¨ã®ã‚·ã‚¹ãƒ†ãƒ ãƒ¡ãƒ¢ãƒªã‚µãƒ¼ãƒ•ã‚§ã‚¹ã‚’ä½œæˆã™ã‚‹
+extern	int		Graphics_D3D9_ReleaseSysMemTexture( int Index, int ASyncThread = FALSE ) ;															// ç®¡ç†ãƒ†ã‚¯ã‚¹ãƒãƒ£ã¸ã®è»¢é€ç”¨ã®ã‚·ã‚¹ãƒ†ãƒ ãƒ¡ãƒ¢ãƒªãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’è§£æ”¾ã™ã‚‹
+extern	int		Graphics_D3D9_ReleaseSysMemSurface( int Index, int ASyncThread = FALSE ) ;															// ç®¡ç†ãƒ†ã‚¯ã‚¹ãƒãƒ£ã¸ã®è»¢é€ç”¨ã®ã‚·ã‚¹ãƒ†ãƒ ãƒ¡ãƒ¢ãƒªã‚µãƒ¼ãƒ•ã‚§ã‚¹ã‚’è§£æ”¾ã™ã‚‹
+extern	int		Graphics_D3D9_ReleaseSysMemTextureAll( int IsNotUseOnly = FALSE ) ;																	// ç®¡ç†ãƒ†ã‚¯ã‚¹ãƒãƒ£ã¸ã®è»¢é€ç”¨ã®ã‚·ã‚¹ãƒ†ãƒ ãƒ¡ãƒ¢ãƒªãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ã™ã¹ã¦è§£æ”¾ã™ã‚‹
+extern	int		Graphics_D3D9_ReleaseSysMemSurfaceAll( int IsNotUseOnly = FALSE ) ;																	// ç®¡ç†ãƒ†ã‚¯ã‚¹ãƒãƒ£ã¸ã®è»¢é€ç”¨ã®ã‚·ã‚¹ãƒ†ãƒ ãƒ¡ãƒ¢ãƒªã‚µãƒ¼ãƒ•ã‚§ã‚¹ã‚’ã™ã¹ã¦è§£æ”¾ã™ã‚‹
+
+extern	int		Graphics_D3D9_SysMemTextureProcess( void ) ;																						// ç®¡ç†ãƒ†ã‚¯ã‚¹ãƒãƒ£ã¸ã®è»¢é€ç”¨ã®ã‚·ã‚¹ãƒ†ãƒ ãƒ¡ãƒ¢ãƒªãƒ†ã‚¯ã‚¹ãƒãƒ£ã®å®šæœŸå‡¦ç†ã‚’è¡Œã†
+extern	int		Graphics_D3D9_SysMemSurfaceProcess( void ) ;																						// ç®¡ç†ãƒ†ã‚¯ã‚¹ãƒãƒ£ã¸ã®è»¢é€ç”¨ã®ã‚·ã‚¹ãƒ†ãƒ ãƒ¡ãƒ¢ãƒªã‚µãƒ¼ãƒ•ã‚§ã‚¹ã®å®šæœŸå‡¦ç†ã‚’è¡Œã†
 
 
 
@@ -1466,36 +1453,49 @@ extern	void	Graphics_D3D9_EndScene( void ) ;												// ƒGƒ“ƒhƒV[ƒ“‚ğs‚¤
 
 
 
-// Direct3D9 ‚ğg‚Á‚½•`‰æŠÖŒW
-extern	int		Graphics_D3D9_DrawBillboard3D( VECTOR Pos, float cx, float cy, float SizeX, float SizeY, float Angle, IMAGEDATA *Image, IMAGEDATA *BlendImage, int TransFlag, int ReverseXFlag, int ReverseYFlag, int DrawFlag = TRUE, RECT *DrawArea = NULL ) ;	// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒ^g—p”Å DrawBillboard3D
-extern	int		Graphics_D3D9_DrawModiBillboard3D( VECTOR Pos, float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4, IMAGEDATA *Image, IMAGEDATA *BlendImage, int TransFlag, int DrawFlag = TRUE, RECT *DrawArea = NULL ) ;	// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒ^g—p”Å DrawModiBillboard3D
-extern	int		Graphics_D3D9_DrawGraph( int x, int y, float xf, float yf, IMAGEDATA *Image, IMAGEDATA *BlendImage, int TransFlag, int IntFlag ) ;																// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒ^g—p”Å DrawGraph
-extern	int		Graphics_D3D9_DrawExtendGraph( int x1, int y1, int x2, int y2, float x1f, float y1f, float x2f, float y2f, IMAGEDATA *Image, IMAGEDATA *BlendImage, int TransFlag, int IntFlag ) ;				// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒ^g—p”Å DrawExtendGraph
-extern	int		Graphics_D3D9_DrawRotaGraph( int x, int y, float xf, float yf, double ExRate, double Angle, IMAGEDATA *Image, IMAGEDATA *BlendImage, int TransFlag, int ReverseXFlag, int ReverseYFlag, int IntFlag ) ;				// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒ^g—p”Å DrawRotaGraph
-extern	int		Graphics_D3D9_DrawRotaGraphFast( int x, int y, float xf, float yf, float ExRate, float Angle, IMAGEDATA *Image, IMAGEDATA *BlendImage, int TransFlag, int ReverseXFlag, int ReverseYFlag, int IntFlag ) ;				// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒ^g—p”Å DrawRotaGraphFast
-extern	int		Graphics_D3D9_DrawModiGraph( int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4, IMAGEDATA *Image, IMAGEDATA *BlendImage, int TransFlag, bool SimpleDrawFlag ) ;					// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒ^g—p”Å DrawModiGraph
-extern	int		Graphics_D3D9_DrawModiGraphF( float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4, IMAGEDATA *Image, IMAGEDATA *BlendImage, int TransFlag, bool SimpleDrawFlag ) ;	// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒ^g—p”Å DrawModiGraphF
-extern	void	Graphics_D3D9_DrawModiTex( float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4, IMAGEDATA_HARD_DRAW *DrawTex, bool SimpleDrawFlag ) ;								// ƒeƒNƒXƒ`ƒƒ‚ğ•ÏŒ`‚µ‚Ä•`‰æ‚·‚é
-extern	int		Graphics_D3D9_DrawSimpleQuadrangleGraphF( const GRAPHICS_DRAW_DRAWSIMPLEQUADRANGLEGRAPHF_PARAM *Param, IMAGEDATA *Image, IMAGEDATA *BlendImage ) ;												// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒ^g—p”Å DrawSimpleQuadrangleGraphF
-extern	int		Graphics_D3D9_DrawSimpleTriangleGraphF(   const GRAPHICS_DRAW_DRAWSIMPLETRIANGLEGRAPHF_PARAM   *Param, IMAGEDATA *Image, IMAGEDATA *BlendImage ) ;												// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒ^g—p”Å DrawSimpleTriangleGraphF
+// Direct3D9 ã®æç”»å‡¦ç†æº–å‚™é–¢ä¿‚
+extern	int		Graphics_D3D9_RenderVertex( int ASyncThread = FALSE ) ;							// é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã«æºœã¾ã£ãŸé ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ã‚’ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã™ã‚‹
+extern	void	FASTCALL Graphics_D3D9_DrawPreparation( int ParamFlag = 0 ) ;					// æç”»æº–å‚™ã‚’è¡Œã†
+extern	void	Graphics_D3D9_BeginScene( void ) ;												// ãƒ“ã‚®ãƒ³ã‚·ãƒ¼ãƒ³ã‚’è¡Œã†
+extern	void	Graphics_D3D9_EndScene( void ) ;												// ã‚¨ãƒ³ãƒ‰ã‚·ãƒ¼ãƒ³ã‚’è¡Œã†	
 
-extern	int		Graphics_D3D9_DrawFillBox( int x1, int y1, int x2, int y2, unsigned int Color ) ;																		// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒ^g—p”Å DrawFillBox
-extern	int		Graphics_D3D9_DrawLineBox( int x1, int y1, int x2, int y2, unsigned int Color, int Thickness ) ;														// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒ^g—p”Å DrawLineBox
-extern	int		Graphics_D3D9_DrawLine( int x1, int y1, int x2, int y2, unsigned int Color ) ;																			// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒ^g—p”Å DrawLine
-extern	int		Graphics_D3D9_DrawLine3D( VECTOR Pos1, VECTOR Pos2, unsigned int Color, int DrawFlag = TRUE, RECT *DrawArea = NULL ) ;									// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒ^g—p”Å DrawLine3D
-extern	int		Graphics_D3D9_DrawCircle_Thickness( int x, int y, int r, unsigned int Color, int Thickness ) ;															// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒ^g—p”Å DrawCircle( ‘¾‚³w’è‚ ‚è )
-extern	int		Graphics_D3D9_DrawOval_Thickness( int x, int y, int rx, int ry, unsigned int Color, int Thickness ) ;													// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒ^g—p”Å DrawOval( ‘¾‚³w’è‚ ‚è )
-extern	int		Graphics_D3D9_DrawCircle( int x, int y, int r, unsigned int Color, int FillFlag, int Rx_One_Minus, int Ry_One_Minus ) ;									// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒ^g—p”Å DrawCircle
-extern	int		Graphics_D3D9_DrawOval( int x, int y, int rx, int ry, unsigned int Color, int FillFlag, int Rx_One_Minus, int Ry_One_Minus ) ;							// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒ^g—p”Å DrawOval
-extern	int		Graphics_D3D9_DrawTriangle( int x1, int y1, int x2, int y2, int x3, int y3, unsigned int Color, int FillFlag ) ;										// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒ^g—p”Å DrawTriangle
-extern	int		Graphics_D3D9_DrawTriangle3D( VECTOR Pos1, VECTOR Pos2, VECTOR Pos3, unsigned int Color, int FillFlag, int DrawFlag = TRUE, RECT *DrawArea = NULL ) ;	// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒ^g—p”Å DrawTriangle3D
-extern	int		Graphics_D3D9_DrawQuadrangle( int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4, unsigned int Color, int FillFlag ) ;						// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒ^g—p”Å DrawQuadrangle
-extern	int		Graphics_D3D9_DrawQuadrangleF( float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4, unsigned int Color, int FillFlag ) ;						// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒ^g—p”Å DrawQuadrangle
-extern	int		Graphics_D3D9_DrawPixel( int x, int y, unsigned int Color ) ;																							// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒ^g—p”Å DrawPixel
-extern	int		Graphics_D3D9_DrawPixel3D( VECTOR Pos, unsigned int Color, int DrawFlag = TRUE, RECT *DrawArea = NULL ) ;												// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒ^g—p”Å DrawPixel3D
-extern	int		Graphics_D3D9_DrawPixelSet( const POINTDATA *PointData, int Num ) ;																						// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒ^g—p”Å DrawPixelSet
-extern	int		Graphics_D3D9_DrawLineSet( const LINEDATA *LineData, int Num ) ;																						// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒ^g—p”Å DrawLineSet
-extern	int		Graphics_D3D9_DrawBoxSet( const RECTDATA *RectData, int Num ) ;																							// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒ^g—p”Å DrawBoxSet
+
+
+
+
+
+
+
+// Direct3D9 ã‚’ä½¿ã£ãŸæç”»é–¢ä¿‚
+extern	int		Graphics_D3D9_DrawBillboard3D( VECTOR Pos, float cx, float cy, float SizeX, float SizeY, float Angle, IMAGEDATA *Image, IMAGEDATA *BlendImage, int TransFlag, int ReverseXFlag, int ReverseYFlag, int DrawFlag = TRUE, RECT *DrawArea = NULL ) ;	// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚¿ä½¿ç”¨ç‰ˆ DrawBillboard3D
+extern	int		Graphics_D3D9_DrawModiBillboard3D( VECTOR Pos, float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4, IMAGEDATA *Image, IMAGEDATA *BlendImage, int TransFlag, int DrawFlag = TRUE, RECT *DrawArea = NULL ) ;	// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚¿ä½¿ç”¨ç‰ˆ DrawModiBillboard3D
+extern	int		Graphics_D3D9_DrawGraph( int x, int y, float xf, float yf, IMAGEDATA *Image, IMAGEDATA *BlendImage, int TransFlag, int IntFlag ) ;																// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚¿ä½¿ç”¨ç‰ˆ DrawGraph
+extern	int		Graphics_D3D9_DrawExtendGraph( int x1, int y1, int x2, int y2, float x1f, float y1f, float x2f, float y2f, IMAGEDATA *Image, IMAGEDATA *BlendImage, int TransFlag, int IntFlag ) ;				// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚¿ä½¿ç”¨ç‰ˆ DrawExtendGraph
+extern	int		Graphics_D3D9_DrawRotaGraph( int x, int y, float xf, float yf, double ExRate, double Angle, IMAGEDATA *Image, IMAGEDATA *BlendImage, int TransFlag, int ReverseXFlag, int ReverseYFlag, int IntFlag ) ;				// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚¿ä½¿ç”¨ç‰ˆ DrawRotaGraph
+extern	int		Graphics_D3D9_DrawRotaGraphFast( int x, int y, float xf, float yf, float ExRate, float Angle, IMAGEDATA *Image, IMAGEDATA *BlendImage, int TransFlag, int ReverseXFlag, int ReverseYFlag, int IntFlag ) ;				// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚¿ä½¿ç”¨ç‰ˆ DrawRotaGraphFast
+extern	int		Graphics_D3D9_DrawModiGraph( int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4, IMAGEDATA *Image, IMAGEDATA *BlendImage, int TransFlag, bool SimpleDrawFlag ) ;					// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚¿ä½¿ç”¨ç‰ˆ DrawModiGraph
+extern	int		Graphics_D3D9_DrawModiGraphF( float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4, IMAGEDATA *Image, IMAGEDATA *BlendImage, int TransFlag, bool SimpleDrawFlag ) ;	// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚¿ä½¿ç”¨ç‰ˆ DrawModiGraphF
+extern	void	Graphics_D3D9_DrawModiTex( float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4, IMAGEDATA_HARD_DRAW *DrawTex, bool SimpleDrawFlag ) ;								// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’å¤‰å½¢ã—ã¦æç”»ã™ã‚‹
+extern	int		Graphics_D3D9_DrawSimpleQuadrangleGraphF( const GRAPHICS_DRAW_DRAWSIMPLEQUADRANGLEGRAPHF_PARAM *Param, IMAGEDATA *Image, IMAGEDATA *BlendImage ) ;												// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚¿ä½¿ç”¨ç‰ˆ DrawSimpleQuadrangleGraphF
+extern	int		Graphics_D3D9_DrawSimpleTriangleGraphF(   const GRAPHICS_DRAW_DRAWSIMPLETRIANGLEGRAPHF_PARAM   *Param, IMAGEDATA *Image, IMAGEDATA *BlendImage ) ;												// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚¿ä½¿ç”¨ç‰ˆ DrawSimpleTriangleGraphF
+
+extern	int		Graphics_D3D9_DrawFillBox( int x1, int y1, int x2, int y2, unsigned int Color ) ;																		// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚¿ä½¿ç”¨ç‰ˆ DrawFillBox
+extern	int		Graphics_D3D9_DrawLineBox( int x1, int y1, int x2, int y2, unsigned int Color, int Thickness ) ;														// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚¿ä½¿ç”¨ç‰ˆ DrawLineBox
+extern	int		Graphics_D3D9_DrawLine( int x1, int y1, int x2, int y2, unsigned int Color ) ;																			// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚¿ä½¿ç”¨ç‰ˆ DrawLine
+extern	int		Graphics_D3D9_DrawLine3D( VECTOR Pos1, VECTOR Pos2, unsigned int Color, int DrawFlag = TRUE, RECT *DrawArea = NULL ) ;									// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚¿ä½¿ç”¨ç‰ˆ DrawLine3D
+extern	int		Graphics_D3D9_DrawCircle_Thickness( int x, int y, int r, unsigned int Color, int Thickness ) ;															// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚¿ä½¿ç”¨ç‰ˆ DrawCircle( å¤ªã•æŒ‡å®šã‚ã‚Š )
+extern	int		Graphics_D3D9_DrawOval_Thickness( int x, int y, int rx, int ry, unsigned int Color, int Thickness ) ;													// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚¿ä½¿ç”¨ç‰ˆ DrawOval( å¤ªã•æŒ‡å®šã‚ã‚Š )
+extern	int		Graphics_D3D9_DrawCircle( int x, int y, int r, unsigned int Color, int FillFlag, int Rx_One_Minus, int Ry_One_Minus ) ;									// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚¿ä½¿ç”¨ç‰ˆ DrawCircle
+extern	int		Graphics_D3D9_DrawOval( int x, int y, int rx, int ry, unsigned int Color, int FillFlag, int Rx_One_Minus, int Ry_One_Minus ) ;							// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚¿ä½¿ç”¨ç‰ˆ DrawOval
+extern	int		Graphics_D3D9_DrawTriangle( int x1, int y1, int x2, int y2, int x3, int y3, unsigned int Color, int FillFlag ) ;										// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚¿ä½¿ç”¨ç‰ˆ DrawTriangle
+extern	int		Graphics_D3D9_DrawTriangle3D( VECTOR Pos1, VECTOR Pos2, VECTOR Pos3, unsigned int Color, int FillFlag, int DrawFlag = TRUE, RECT *DrawArea = NULL ) ;	// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚¿ä½¿ç”¨ç‰ˆ DrawTriangle3D
+extern	int		Graphics_D3D9_DrawQuadrangle( int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4, unsigned int Color, int FillFlag ) ;						// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚¿ä½¿ç”¨ç‰ˆ DrawQuadrangle
+extern	int		Graphics_D3D9_DrawQuadrangleF( float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4, unsigned int Color, int FillFlag ) ;						// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚¿ä½¿ç”¨ç‰ˆ DrawQuadrangle
+extern	int		Graphics_D3D9_DrawPixel( int x, int y, unsigned int Color ) ;																							// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚¿ä½¿ç”¨ç‰ˆ DrawPixel
+extern	int		Graphics_D3D9_DrawPixel3D( VECTOR Pos, unsigned int Color, int DrawFlag = TRUE, RECT *DrawArea = NULL ) ;												// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚¿ä½¿ç”¨ç‰ˆ DrawPixel3D
+extern	int		Graphics_D3D9_DrawPixelSet( const POINTDATA *PointData, int Num ) ;																						// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚¿ä½¿ç”¨ç‰ˆ DrawPixelSet
+extern	int		Graphics_D3D9_DrawLineSet( const LINEDATA *LineData, int Num ) ;																						// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚¿ä½¿ç”¨ç‰ˆ DrawLineSet
+extern	int		Graphics_D3D9_DrawBoxSet( const RECTDATA *RectData, int Num ) ;																							// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚¿ä½¿ç”¨ç‰ˆ DrawBoxSet
 
 extern	int		Graphics_D3D9_DrawPrimitive(                             const VERTEX_3D *Vertex, int VertexNum,                                     int PrimitiveType, IMAGEDATA *Image, int TransFlag ) ;
 extern	int		Graphics_D3D9_DrawIndexedPrimitive(                      const VERTEX_3D *Vertex, int VertexNum, const WORD  *Indices, int IndexNum, int PrimitiveType, IMAGEDATA *Image, int TransFlag ) ;
@@ -1510,40 +1510,24 @@ extern	int		Graphics_D3D9_DrawPrimitive2DUser(                       const VERTE
 extern	int		Graphics_D3D9_DrawIndexedPrimitive2DUser(                const VERTEX2D  *Vertex, int VertexNum, const WORD  *Indices, int IndexNum, int PrimitiveType, IMAGEDATA *Image, int TransFlag ) ;
 extern	int		Graphics_D3D9_Draw32bitIndexedPrimitive2DUser(           const VERTEX2D  *Vertex, int VertexNum, const DWORD *Indices, int IndexNum, int PrimitiveType, IMAGEDATA *Image, int TransFlag ) ;
 
-extern	void	Graphics_D3D9_DrawPreparationToShader( int ParamFlag, int UseVertexShaderNo, int Is2D, int UseLibSubShaderConst, int UseNormalVertex = FALSE ) ;		// ƒVƒF[ƒ_[•`‰æ—p•`‰æ‘OƒZƒbƒgƒAƒbƒvŠÖ”
+extern	void	Graphics_D3D9_DrawPreparationToShader( int ParamFlag, int UseVertexShaderNo, int Is2D, int UseLibSubShaderConst, int UseNormalVertex = FALSE ) ;		// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼æç”»ç”¨æç”»å‰ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—é–¢æ•°
 
-extern	int		Graphics_D3D9_DrawPrimitive2DToShader(             const VERTEX2DSHADER *Vertex, int VertexNum,                                              int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST “™ */ ) ;		// ƒVƒF[ƒ_[‚ğg‚Á‚Ä‚Q‚cƒvƒŠƒ~ƒeƒBƒu‚ğ•`‰æ‚·‚é
-extern	int		Graphics_D3D9_DrawPrimitive3DToShader(             const VERTEX3DSHADER *Vertex, int VertexNum,                                              int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST “™ */ ) ;		// ƒVƒF[ƒ_[‚ğg‚Á‚Ä‚R‚cƒvƒŠƒ~ƒeƒBƒu‚ğ•`‰æ‚·‚é
-extern	int		Graphics_D3D9_DrawPrimitiveIndexed2DToShader(      const VERTEX2DSHADER *Vertex, int VertexNum, const unsigned short *Indices, int IndexNum, int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST “™ */ ) ;		// ƒVƒF[ƒ_[‚ğg‚Á‚Ä‚Q‚cƒvƒŠƒ~ƒeƒBƒu‚ğ•`‰æ‚·‚é( ’¸“_ƒCƒ“ƒfƒbƒNƒX‚ğg—p‚·‚é )
-extern	int		Graphics_D3D9_DrawPrimitive32bitIndexed2DToShader( const VERTEX2DSHADER *Vertex, int VertexNum, const unsigned int   *Indices, int IndexNum, int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST “™ */ ) ;		// ƒVƒF[ƒ_[‚ğg‚Á‚Ä‚Q‚cƒvƒŠƒ~ƒeƒBƒu‚ğ•`‰æ‚·‚é( ’¸“_ƒCƒ“ƒfƒbƒNƒX‚ğg—p‚·‚é )
-extern	int		Graphics_D3D9_DrawPrimitiveIndexed3DToShader(      const VERTEX3DSHADER *Vertex, int VertexNum, const unsigned short *Indices, int IndexNum, int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST “™ */ ) ;		// ƒVƒF[ƒ_[‚ğg‚Á‚Ä‚R‚cƒvƒŠƒ~ƒeƒBƒu‚ğ•`‰æ‚·‚é( ’¸“_ƒCƒ“ƒfƒbƒNƒX‚ğg—p‚·‚é )
-extern	int		Graphics_D3D9_DrawPrimitive32bitIndexed3DToShader( const VERTEX3DSHADER *Vertex, int VertexNum, const unsigned int   *Indices, int IndexNum, int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST “™ */ ) ;		// ƒVƒF[ƒ_[‚ğg‚Á‚Ä‚R‚cƒvƒŠƒ~ƒeƒBƒu‚ğ•`‰æ‚·‚é( ’¸“_ƒCƒ“ƒfƒbƒNƒX‚ğg—p‚·‚é )
+extern	int		Graphics_D3D9_DrawPrimitive2DToShader(             const VERTEX2DSHADER *Vertex, int VertexNum,                                              int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST ç­‰ */ ) ;		// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ä½¿ã£ã¦ï¼’ï¼¤ãƒ—ãƒªãƒŸãƒ†ã‚£ãƒ–ã‚’æç”»ã™ã‚‹
+extern	int		Graphics_D3D9_DrawPrimitive3DToShader(             const VERTEX3DSHADER *Vertex, int VertexNum,                                              int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST ç­‰ */ ) ;		// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ä½¿ã£ã¦ï¼“ï¼¤ãƒ—ãƒªãƒŸãƒ†ã‚£ãƒ–ã‚’æç”»ã™ã‚‹
+extern	int		Graphics_D3D9_DrawPrimitiveIndexed2DToShader(      const VERTEX2DSHADER *Vertex, int VertexNum, const unsigned short *Indices, int IndexNum, int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST ç­‰ */ ) ;		// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ä½¿ã£ã¦ï¼’ï¼¤ãƒ—ãƒªãƒŸãƒ†ã‚£ãƒ–ã‚’æç”»ã™ã‚‹( é ‚ç‚¹ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’ä½¿ç”¨ã™ã‚‹ )
+extern	int		Graphics_D3D9_DrawPrimitive32bitIndexed2DToShader( const VERTEX2DSHADER *Vertex, int VertexNum, const unsigned int   *Indices, int IndexNum, int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST ç­‰ */ ) ;		// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ä½¿ã£ã¦ï¼’ï¼¤ãƒ—ãƒªãƒŸãƒ†ã‚£ãƒ–ã‚’æç”»ã™ã‚‹( é ‚ç‚¹ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’ä½¿ç”¨ã™ã‚‹ )
+extern	int		Graphics_D3D9_DrawPrimitiveIndexed3DToShader(      const VERTEX3DSHADER *Vertex, int VertexNum, const unsigned short *Indices, int IndexNum, int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST ç­‰ */ ) ;		// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ä½¿ã£ã¦ï¼“ï¼¤ãƒ—ãƒªãƒŸãƒ†ã‚£ãƒ–ã‚’æç”»ã™ã‚‹( é ‚ç‚¹ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’ä½¿ç”¨ã™ã‚‹ )
+extern	int		Graphics_D3D9_DrawPrimitive32bitIndexed3DToShader( const VERTEX3DSHADER *Vertex, int VertexNum, const unsigned int   *Indices, int IndexNum, int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST ç­‰ */ ) ;		// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ä½¿ã£ã¦ï¼“ï¼¤ãƒ—ãƒªãƒŸãƒ†ã‚£ãƒ–ã‚’æç”»ã™ã‚‹( é ‚ç‚¹ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’ä½¿ç”¨ã™ã‚‹ )
 
-extern	int		Graphics_D3D9_DrawPrimitive2DToShader2(             const VERTEX2D *Vertex, int VertexNum,                                              int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST “™ */ ) ;		// ƒVƒF[ƒ_[‚ğg‚Á‚Ä‚Q‚cƒvƒŠƒ~ƒeƒBƒu‚ğ•`‰æ‚·‚é
-extern	int		Graphics_D3D9_DrawPrimitive3DToShader2(             const VERTEX3D *Vertex, int VertexNum,                                              int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST “™ */ ) ;		// ƒVƒF[ƒ_[‚ğg‚Á‚Ä‚R‚cƒvƒŠƒ~ƒeƒBƒu‚ğ•`‰æ‚·‚é
-extern	int		Graphics_D3D9_DrawPrimitiveIndexed2DToShader2(      const VERTEX2D *Vertex, int VertexNum, const unsigned short *Indices, int IndexNum, int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST “™ */ ) ;		// ƒVƒF[ƒ_[‚ğg‚Á‚Ä‚Q‚cƒvƒŠƒ~ƒeƒBƒu‚ğ•`‰æ‚·‚é( ’¸“_ƒCƒ“ƒfƒbƒNƒX‚ğg—p‚·‚é )
-extern	int		Graphics_D3D9_DrawPrimitive32bitIndexed2DToShader2( const VERTEX2D *Vertex, int VertexNum, const unsigned int   *Indices, int IndexNum, int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST “™ */ ) ;		// ƒVƒF[ƒ_[‚ğg‚Á‚Ä‚Q‚cƒvƒŠƒ~ƒeƒBƒu‚ğ•`‰æ‚·‚é( ’¸“_ƒCƒ“ƒfƒbƒNƒX‚ğg—p‚·‚é )
-extern	int		Graphics_D3D9_DrawPrimitiveIndexed3DToShader2(      const VERTEX3D *Vertex, int VertexNum, const unsigned short *Indices, int IndexNum, int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST “™ */ ) ;		// ƒVƒF[ƒ_[‚ğg‚Á‚Ä‚R‚cƒvƒŠƒ~ƒeƒBƒu‚ğ•`‰æ‚·‚é( ’¸“_ƒCƒ“ƒfƒbƒNƒX‚ğg—p‚·‚é )
-extern	int		Graphics_D3D9_DrawPrimitive32bitIndexed3DToShader2( const VERTEX3D *Vertex, int VertexNum, const unsigned int   *Indices, int IndexNum, int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST “™ */ ) ;		// ƒVƒF[ƒ_[‚ğg‚Á‚Ä‚R‚cƒvƒŠƒ~ƒeƒBƒu‚ğ•`‰æ‚·‚é( ’¸“_ƒCƒ“ƒfƒbƒNƒX‚ğg—p‚·‚é )
+extern	int		Graphics_D3D9_DrawPrimitive2DToShader2(             const VERTEX2D *Vertex, int VertexNum,                                              int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST ç­‰ */ ) ;		// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ä½¿ã£ã¦ï¼’ï¼¤ãƒ—ãƒªãƒŸãƒ†ã‚£ãƒ–ã‚’æç”»ã™ã‚‹
+extern	int		Graphics_D3D9_DrawPrimitive3DToShader2(             const VERTEX3D *Vertex, int VertexNum,                                              int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST ç­‰ */ ) ;		// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ä½¿ã£ã¦ï¼“ï¼¤ãƒ—ãƒªãƒŸãƒ†ã‚£ãƒ–ã‚’æç”»ã™ã‚‹
+extern	int		Graphics_D3D9_DrawPrimitiveIndexed2DToShader2(      const VERTEX2D *Vertex, int VertexNum, const unsigned short *Indices, int IndexNum, int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST ç­‰ */ ) ;		// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ä½¿ã£ã¦ï¼’ï¼¤ãƒ—ãƒªãƒŸãƒ†ã‚£ãƒ–ã‚’æç”»ã™ã‚‹( é ‚ç‚¹ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’ä½¿ç”¨ã™ã‚‹ )
+extern	int		Graphics_D3D9_DrawPrimitive32bitIndexed2DToShader2( const VERTEX2D *Vertex, int VertexNum, const unsigned int   *Indices, int IndexNum, int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST ç­‰ */ ) ;		// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ä½¿ã£ã¦ï¼’ï¼¤ãƒ—ãƒªãƒŸãƒ†ã‚£ãƒ–ã‚’æç”»ã™ã‚‹( é ‚ç‚¹ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’ä½¿ç”¨ã™ã‚‹ )
+extern	int		Graphics_D3D9_DrawPrimitiveIndexed3DToShader2(      const VERTEX3D *Vertex, int VertexNum, const unsigned short *Indices, int IndexNum, int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST ç­‰ */ ) ;		// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ä½¿ã£ã¦ï¼“ï¼¤ãƒ—ãƒªãƒŸãƒ†ã‚£ãƒ–ã‚’æç”»ã™ã‚‹( é ‚ç‚¹ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’ä½¿ç”¨ã™ã‚‹ )
+extern	int		Graphics_D3D9_DrawPrimitive32bitIndexed3DToShader2( const VERTEX3D *Vertex, int VertexNum, const unsigned int   *Indices, int IndexNum, int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST ç­‰ */ ) ;		// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ä½¿ã£ã¦ï¼“ï¼¤ãƒ—ãƒªãƒŸãƒ†ã‚£ãƒ–ã‚’æç”»ã™ã‚‹( é ‚ç‚¹ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’ä½¿ç”¨ã™ã‚‹ )
 
-extern	int		Graphics_D3D9_DrawPrimitive3DToShader_UseVertexBuffer2(        int VertexBufHandle,                     int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST “™ */, int StartVertex, int UseVertexNum ) ;	// ƒVƒF[ƒ_[‚ğg‚Á‚Ä‚R‚cƒvƒŠƒ~ƒeƒBƒu‚ğ•`‰æ‚·‚é( ’¸“_ƒoƒbƒtƒ@g—p”Å )
-extern	int		Graphics_D3D9_DrawPrimitiveIndexed3DToShader_UseVertexBuffer2( int VertexBufHandle, int IndexBufHandle, int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST “™ */, int BaseVertex, int StartVertex, int UseVertexNum, int StartIndex, int UseIndexNum ) ;	// ƒVƒF[ƒ_[‚ğg‚Á‚Ä‚R‚cƒvƒŠƒ~ƒeƒBƒu‚ğ•`‰æ‚·‚é( ’¸“_ƒoƒbƒtƒ@‚ÆƒCƒ“ƒfƒbƒNƒXƒoƒbƒtƒ@g—p”Å )
-
-
-
-
-
-
-
-
-// ŠÂ‹«ˆË‘¶‰Šú‰»ŠÖŒW
-extern	int		Graphics_D3D9_Initialize_Timing0_PF( void ) ;											// •`‰æˆ—‚ÌŠÂ‹«ˆË‘¶•”•ª‚Ì‰Šú‰»‚ğs‚¤ŠÖ”( Às‰ÓŠ‹æ•Ê‚O )
-extern	int		Graphics_D3D9_Initialize_Timing1_PF( void ) ;											// •`‰æˆ—‚ÌŠÂ‹«ˆË‘¶•”•ª‚Ì‰Šú‰»‚ğs‚¤ŠÖ”( Às‰ÓŠ‹æ•Ê‚Q )
-extern	int		Graphics_D3D9_Hardware_Initialize_PF( void ) ;											// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒ^‚ğg—p‚·‚éê‡‚ÌŠÂ‹«ˆË‘¶‚Ì‰Šú‰»ˆ—‚ğs‚¤
-extern	int		Graphics_D3D9_Terminate_PF( void ) ;													// •`‰æˆ—‚ÌŠÂ‹«ˆË‘¶•”•ª‚ÌŒãn––‚ğs‚¤ŠÖ”
-extern	int		Graphics_D3D9_RestoreOrChangeSetupGraphSystem_PF( int Change, int ScreenSizeX = -1, int ScreenSizeY = -1, int ColorBitDepth = -1, int RefreshRate = -1 ) ;		// ƒOƒ‰ƒtƒBƒbƒNƒXƒVƒXƒeƒ€‚Ì•œ‹AA–”‚Í•ÏX•t‚«‚ÌÄƒZƒbƒgƒAƒbƒv‚ğs‚¤
-extern	int		Graphics_D3D9_Hardware_CheckValid_PF( void ) ;											// •`‰æ—pƒfƒoƒCƒX‚ª—LŒø‚©‚Ç‚¤‚©‚ğæ“¾‚·‚é( –ß‚è’l  TRUE:—LŒø  FALSE:–³Œø )
-extern	void	Graphics_D3D9_ReleaseDirectXObject_PF( void ) ;											// DirectX ‚ÌƒIƒuƒWƒFƒNƒg‚ğ‰ğ•ú‚·‚é
+extern	int		Graphics_D3D9_DrawPrimitive3DToShader_UseVertexBuffer2(        int VertexBufHandle,                     int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST ç­‰ */, int StartVertex, int UseVertexNum ) ;	// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ä½¿ã£ã¦ï¼“ï¼¤ãƒ—ãƒªãƒŸãƒ†ã‚£ãƒ–ã‚’æç”»ã™ã‚‹( é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ä½¿ç”¨ç‰ˆ )
+extern	int		Graphics_D3D9_DrawPrimitiveIndexed3DToShader_UseVertexBuffer2( int VertexBufHandle, int IndexBufHandle, int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST ç­‰ */, int BaseVertex, int StartVertex, int UseVertexNum, int StartIndex, int UseIndexNum ) ;	// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ä½¿ã£ã¦ï¼“ï¼¤ãƒ—ãƒªãƒŸãƒ†ã‚£ãƒ–ã‚’æç”»ã™ã‚‹( é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã¨ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒãƒƒãƒ•ã‚¡ä½¿ç”¨ç‰ˆ )
 
 
 
@@ -1552,8 +1536,24 @@ extern	void	Graphics_D3D9_ReleaseDirectXObject_PF( void ) ;											// DirectX
 
 
 
-// ŠÂ‹«ˆË‘¶ƒVƒXƒeƒ€ŠÖŒW
-extern	void	Graphics_D3D9_WM_ACTIVATE_ActiveProcess_PF( void ) ;									// WM_ACTIVATE ƒƒbƒZ[ƒW‚Ìˆ—‚ÅAƒEƒCƒ“ƒhƒEƒ‚[ƒh‚ÉƒAƒNƒeƒBƒu‚É‚È‚Á‚½Û‚ÉŒÄ‚Î‚ê‚éŠÖ”
+// ç’°å¢ƒä¾å­˜åˆæœŸåŒ–é–¢ä¿‚
+extern	int		Graphics_D3D9_Initialize_Timing0_PF( void ) ;											// æç”»å‡¦ç†ã®ç’°å¢ƒä¾å­˜éƒ¨åˆ†ã®åˆæœŸåŒ–ã‚’è¡Œã†é–¢æ•°( å®Ÿè¡Œç®‡æ‰€åŒºåˆ¥ï¼ )
+extern	int		Graphics_D3D9_Initialize_Timing1_PF( void ) ;											// æç”»å‡¦ç†ã®ç’°å¢ƒä¾å­˜éƒ¨åˆ†ã®åˆæœŸåŒ–ã‚’è¡Œã†é–¢æ•°( å®Ÿè¡Œç®‡æ‰€åŒºåˆ¥ï¼’ )
+extern	int		Graphics_D3D9_Hardware_Initialize_PF( void ) ;											// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚¿ã‚’ä½¿ç”¨ã™ã‚‹å ´åˆã®ç’°å¢ƒä¾å­˜ã®åˆæœŸåŒ–å‡¦ç†ã‚’è¡Œã†
+extern	int		Graphics_D3D9_Terminate_PF( void ) ;													// æç”»å‡¦ç†ã®ç’°å¢ƒä¾å­˜éƒ¨åˆ†ã®å¾Œå§‹æœ«ã‚’è¡Œã†é–¢æ•°
+extern	int		Graphics_D3D9_RestoreOrChangeSetupGraphSystem_PF( int Change, int ScreenSizeX = -1, int ScreenSizeY = -1, int ColorBitDepth = -1, int RefreshRate = -1 ) ;		// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¹ã‚·ã‚¹ãƒ†ãƒ ã®å¾©å¸°ã€åˆã¯å¤‰æ›´ä»˜ãã®å†ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã‚’è¡Œã†
+extern	int		Graphics_D3D9_Hardware_CheckValid_PF( void ) ;											// æç”»ç”¨ãƒ‡ãƒã‚¤ã‚¹ãŒæœ‰åŠ¹ã‹ã©ã†ã‹ã‚’å–å¾—ã™ã‚‹( æˆ»ã‚Šå€¤  TRUE:æœ‰åŠ¹  FALSE:ç„¡åŠ¹ )
+extern	void	Graphics_D3D9_ReleaseDirectXObject_PF( void ) ;											// DirectX ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’è§£æ”¾ã™ã‚‹
+
+
+
+
+
+
+
+
+// ç’°å¢ƒä¾å­˜ã‚·ã‚¹ãƒ†ãƒ é–¢ä¿‚
+extern	void	Graphics_D3D9_WM_ACTIVATE_ActiveProcess_PF( void ) ;									// WM_ACTIVATE ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®å‡¦ç†ã§ã€ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ¢ãƒ¼ãƒ‰æ™‚ã«ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ãªã£ãŸéš›ã«å‘¼ã°ã‚Œã‚‹é–¢æ•°
 
 
 
@@ -1563,37 +1563,37 @@ extern	void	Graphics_D3D9_WM_ACTIVATE_ActiveProcess_PF( void ) ;									// WM_A
 
 
 
-// ŠÂ‹«ˆË‘¶•`‰æİ’èŠÖŒW
-extern	int		Graphics_Hardware_D3D9_SetRenderTargetToShader_PF( int TargetIndex, int DrawScreen, int SurfaceIndex, int MipLevel ) ;	// ƒVƒF[ƒ_[•`‰æ‚Å‚Ì•`‰ææ‚ğİ’è‚·‚é
-extern	int		Graphics_Hardware_D3D9_SetDrawBrightToOneParam_PF( DWORD Bright ) ;											// SetDrawBright ‚Ìˆø”‚ªˆê‚Â”Å
-extern	int		Graphics_Hardware_D3D9_SetDrawBlendMode_PF( int BlendMode, int BlendParam ) ;								// •`‰æƒuƒŒƒ“ƒhƒ‚[ƒh‚ğƒZƒbƒg‚·‚é
-extern	int		Graphics_Hardware_D3D9_SetDrawCustomBlendMode_PF( int BlendEnable, int SrcBlendRGB, int DestBlendRGB, int BlendOpRGB, int SrcBlendA, int DestBlendA, int BlendOpA, int BlendParam ) ; // ƒJƒXƒ^ƒ€ƒuƒŒƒ“ƒhƒ‚[ƒh‚ğİ’è‚·‚é
-extern	int		Graphics_Hardware_D3D9_SetDrawAlphaTest_PF( int TestMode, int TestParam ) ;									// •`‰æ‚ÌƒAƒ‹ƒtƒ@ƒeƒXƒg‚Ìİ’è‚ğs‚¤( TestMode:DX_CMP_GREATER“™( -1:ƒfƒtƒHƒ‹ƒg“®ì‚É–ß‚· )  TestParam:•`‰æƒAƒ‹ƒtƒ@’l‚Æ‚Ì”äŠr‚Ég—p‚·‚é’l )
-extern	int		Graphics_Hardware_D3D9_SetDrawMode_PF( int DrawMode ) ;														// •`‰æƒ‚[ƒh‚ğƒZƒbƒg‚·‚é
-extern	int		Graphics_Hardware_D3D9_SetDrawBright_PF( int RedBright, int GreenBright, int BlueBright ) ;					// •`‰æ‹P“x‚ğƒZƒbƒg
-extern	int		Graphics_Hardware_D3D9_SetDrawAddColor_PF( int Red, int Green, int Blue ) ;									// •`‰æF‚É‰ÁZ‚·‚éF‚ğƒZƒbƒg
-extern	int		Graphics_Hardware_D3D9_SetBlendGraphParamBase_PF( IMAGEDATA *BlendImage, int BlendType, int *Param ) ;		// SetBlendGraphParam ‚Ì‰Â•Ï’·ˆø”ƒpƒ‰ƒ[ƒ^•t‚«
-extern	int		Graphics_Hardware_D3D9_SetMaxAnisotropy_PF( int MaxAnisotropy ) ;											// Å‘åˆÙ•û«‚Ì’l‚ğƒZƒbƒg‚·‚é
-extern	int		Graphics_Hardware_D3D9_SetTransformToWorld_PF( const MATRIX *Matrix ) ;										// ƒ[ƒ‹ƒh•ÏŠ·—ps—ñ‚ğƒZƒbƒg‚·‚é
-extern	int		Graphics_Hardware_D3D9_SetTransformToView_PF( const MATRIX *Matrix ) ;										// ƒrƒ…[•ÏŠ·—ps—ñ‚ğƒZƒbƒg‚·‚é
-extern	int		Graphics_Hardware_D3D9_SetTransformToProjection_PF( const MATRIX *Matrix ) ;								// “Š‰e•ÏŠ·—ps—ñ‚ğƒZƒbƒg‚·‚é
-extern	int		Graphics_Hardware_D3D9_SetTransformToViewport_PF( const MATRIX *Matrix ) ;									// ƒrƒ…[ƒ|[ƒgs—ñ‚ğƒZƒbƒg‚·‚é
-extern	int		Graphics_Hardware_D3D9_SetTextureAddressMode_PF( int Mode /* DX_TEXADDRESS_WRAP “™ */, int Stage ) ;		// ƒeƒNƒXƒ`ƒƒƒAƒhƒŒƒXƒ‚[ƒh‚ğİ’è‚·‚é
-extern	int		Graphics_Hardware_D3D9_SetTextureAddressModeUV_PF( int ModeU, int ModeV, int Stage ) ;						// ƒeƒNƒXƒ`ƒƒƒAƒhƒŒƒXƒ‚[ƒh‚ğİ’è‚·‚é
-extern	int		Graphics_Hardware_D3D9_SetTextureAddressTransformMatrix_PF( int UseFlag, MATRIX *Matrix, int Sampler = -1 ) ;// ƒeƒNƒXƒ`ƒƒÀ•W•ÏŠ·s—ñ‚ğƒZƒbƒg‚·‚é
-extern	int		Graphics_Hardware_D3D9_SetFogEnable_PF( int Flag ) ;														// ƒtƒHƒO‚ğ—LŒø‚É‚·‚é‚©‚Ç‚¤‚©‚ğİ’è‚·‚é( TRUE:—LŒø  FALSE:–³Œø )
-extern	int		Graphics_Hardware_D3D9_SetFogMode_PF( int Mode /* DX_FOGMODE_NONE “™ */ ) ;									// ƒtƒHƒOƒ‚[ƒh‚ğİ’è‚·‚é
-extern	int		Graphics_Hardware_D3D9_SetFogColor_PF( DWORD FogColor ) ;													// ƒtƒHƒOƒJƒ‰[‚ğ•ÏX‚·‚é
-extern	int		Graphics_Hardware_D3D9_SetFogStartEnd_PF( float start, float end ) ;										// ƒtƒHƒO‚ªn‚Ü‚é‹——£‚ÆI—¹‚·‚é‹——£‚ğİ’è‚·‚é( 0.0f ` 1.0f )
-extern	int		Graphics_Hardware_D3D9_SetFogDensity_PF( float density ) ;													// ƒtƒHƒO‚Ì–§“x‚ğİ’è‚·‚é( 0.0f ` 1.0f )
-extern	int		Graphics_Hardware_D3D9_SetVerticalFogEnable_PF( int Flag ) ;												// ƒtƒHƒO‚ğ—LŒø‚É‚·‚é‚©‚Ç‚¤‚©‚ğİ’è‚·‚é( TRUE:—LŒø  FALSE:–³Œø )
-extern	int		Graphics_Hardware_D3D9_SetVerticalFogMode_PF( int Mode /* DX_FOGMODE_NONE “™ */ ) ;							// ƒtƒHƒOƒ‚[ƒh‚ğİ’è‚·‚é
-extern	int		Graphics_Hardware_D3D9_SetVerticalFogColor_PF( DWORD FogColor ) ;											// ƒtƒHƒOƒJƒ‰[‚ğ•ÏX‚·‚é
-extern	int		Graphics_Hardware_D3D9_SetVerticalFogStartEnd_PF( float start, float end ) ;								// ƒtƒHƒO‚ªn‚Ü‚é‹——£‚ÆI—¹‚·‚é‹——£‚ğİ’è‚·‚é( 0.0f ` 1.0f )
-extern	int		Graphics_Hardware_D3D9_SetVerticalFogDensity_PF( float start, float density ) ;								// ƒtƒHƒO‚Ì–§“x‚ğİ’è‚·‚é( 0.0f ` 1.0f )
-extern	int		Graphics_Hardware_D3D9_ApplyLigFogToHardware_PF( void ) ;													// Šî–{ƒf[ƒ^‚Éİ’è‚³‚ê‚Ä‚¢‚éƒtƒHƒOî•ñ‚ğƒn[ƒhƒEƒFƒA‚É”½‰f‚·‚é
-extern	int		Graphics_Hardware_D3D9_SetUseOldDrawModiGraphCodeFlag_PF( int Flag ) ;										// ˆÈ‘O‚Ì DrawModiGraph ŠÖ”‚ÌƒR[ƒh‚ğg—p‚·‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğƒZƒbƒg‚·‚é
-extern	int		Graphics_Hardware_D3D9_RefreshAlphaChDrawMode_PF( void ) ;													// •`‰ææ‚É³‚µ‚¢ƒ¿’l‚ğ‘‚«‚Ş‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğXV‚·‚é
+// ç’°å¢ƒä¾å­˜æç”»è¨­å®šé–¢ä¿‚
+extern	int		Graphics_Hardware_D3D9_SetRenderTargetToShader_PF( int TargetIndex, int DrawScreen, int SurfaceIndex, int MipLevel ) ;	// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼æç”»ã§ã®æç”»å…ˆã‚’è¨­å®šã™ã‚‹
+extern	int		Graphics_Hardware_D3D9_SetDrawBrightToOneParam_PF( DWORD Bright ) ;											// SetDrawBright ã®å¼•æ•°ãŒä¸€ã¤ç‰ˆ
+extern	int		Graphics_Hardware_D3D9_SetDrawBlendMode_PF( int BlendMode, int BlendParam ) ;								// æç”»ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
+extern	int		Graphics_Hardware_D3D9_SetDrawCustomBlendMode_PF( int BlendEnable, int SrcBlendRGB, int DestBlendRGB, int BlendOpRGB, int SrcBlendA, int DestBlendA, int BlendOpA, int BlendParam ) ; // ã‚«ã‚¹ã‚¿ãƒ ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã‚’è¨­å®šã™ã‚‹
+extern	int		Graphics_Hardware_D3D9_SetDrawAlphaTest_PF( int TestMode, int TestParam ) ;									// æç”»æ™‚ã®ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆã®è¨­å®šã‚’è¡Œã†( TestMode:DX_CMP_GREATERç­‰( -1:ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå‹•ä½œã«æˆ»ã™ )  TestParam:æç”»ã‚¢ãƒ«ãƒ•ã‚¡å€¤ã¨ã®æ¯”è¼ƒã«ä½¿ç”¨ã™ã‚‹å€¤ )
+extern	int		Graphics_Hardware_D3D9_SetDrawMode_PF( int DrawMode ) ;														// æç”»ãƒ¢ãƒ¼ãƒ‰ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
+extern	int		Graphics_Hardware_D3D9_SetDrawBright_PF( int RedBright, int GreenBright, int BlueBright ) ;					// æç”»è¼åº¦ã‚’ã‚»ãƒƒãƒˆ
+extern	int		Graphics_Hardware_D3D9_SetDrawAddColor_PF( int Red, int Green, int Blue ) ;									// æç”»è‰²ã«åŠ ç®—ã™ã‚‹è‰²ã‚’ã‚»ãƒƒãƒˆ
+extern	int		Graphics_Hardware_D3D9_SetBlendGraphParamBase_PF( IMAGEDATA *BlendImage, int BlendType, int *Param ) ;		// SetBlendGraphParam ã®å¯å¤‰é•·å¼•æ•°ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ä»˜ã
+extern	int		Graphics_Hardware_D3D9_SetMaxAnisotropy_PF( int MaxAnisotropy ) ;											// æœ€å¤§ç•°æ–¹æ€§ã®å€¤ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
+extern	int		Graphics_Hardware_D3D9_SetTransformToWorld_PF( const MATRIX *Matrix ) ;										// ãƒ¯ãƒ¼ãƒ«ãƒ‰å¤‰æ›ç”¨è¡Œåˆ—ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
+extern	int		Graphics_Hardware_D3D9_SetTransformToView_PF( const MATRIX *Matrix ) ;										// ãƒ“ãƒ¥ãƒ¼å¤‰æ›ç”¨è¡Œåˆ—ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
+extern	int		Graphics_Hardware_D3D9_SetTransformToProjection_PF( const MATRIX *Matrix ) ;								// æŠ•å½±å¤‰æ›ç”¨è¡Œåˆ—ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
+extern	int		Graphics_Hardware_D3D9_SetTransformToViewport_PF( const MATRIX *Matrix ) ;									// ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆè¡Œåˆ—ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
+extern	int		Graphics_Hardware_D3D9_SetTextureAddressMode_PF( int Mode /* DX_TEXADDRESS_WRAP ç­‰ */, int Stage ) ;		// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¢ãƒ‰ãƒ¬ã‚¹ãƒ¢ãƒ¼ãƒ‰ã‚’è¨­å®šã™ã‚‹
+extern	int		Graphics_Hardware_D3D9_SetTextureAddressModeUV_PF( int ModeU, int ModeV, int Stage ) ;						// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¢ãƒ‰ãƒ¬ã‚¹ãƒ¢ãƒ¼ãƒ‰ã‚’è¨­å®šã™ã‚‹
+extern	int		Graphics_Hardware_D3D9_SetTextureAddressTransformMatrix_PF( int UseFlag, MATRIX *Matrix, int Sampler = -1 ) ;// ãƒ†ã‚¯ã‚¹ãƒãƒ£åº§æ¨™å¤‰æ›è¡Œåˆ—ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
+extern	int		Graphics_Hardware_D3D9_SetFogEnable_PF( int Flag ) ;														// ãƒ•ã‚©ã‚°ã‚’æœ‰åŠ¹ã«ã™ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹( TRUE:æœ‰åŠ¹  FALSE:ç„¡åŠ¹ )
+extern	int		Graphics_Hardware_D3D9_SetFogMode_PF( int Mode /* DX_FOGMODE_NONE ç­‰ */ ) ;									// ãƒ•ã‚©ã‚°ãƒ¢ãƒ¼ãƒ‰ã‚’è¨­å®šã™ã‚‹
+extern	int		Graphics_Hardware_D3D9_SetFogColor_PF( DWORD FogColor ) ;													// ãƒ•ã‚©ã‚°ã‚«ãƒ©ãƒ¼ã‚’å¤‰æ›´ã™ã‚‹
+extern	int		Graphics_Hardware_D3D9_SetFogStartEnd_PF( float start, float end ) ;										// ãƒ•ã‚©ã‚°ãŒå§‹ã¾ã‚‹è·é›¢ã¨çµ‚äº†ã™ã‚‹è·é›¢ã‚’è¨­å®šã™ã‚‹( 0.0f ï½ 1.0f )
+extern	int		Graphics_Hardware_D3D9_SetFogDensity_PF( float density ) ;													// ãƒ•ã‚©ã‚°ã®å¯†åº¦ã‚’è¨­å®šã™ã‚‹( 0.0f ï½ 1.0f )
+extern	int		Graphics_Hardware_D3D9_SetVerticalFogEnable_PF( int Flag ) ;												// ãƒ•ã‚©ã‚°ã‚’æœ‰åŠ¹ã«ã™ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹( TRUE:æœ‰åŠ¹  FALSE:ç„¡åŠ¹ )
+extern	int		Graphics_Hardware_D3D9_SetVerticalFogMode_PF( int Mode /* DX_FOGMODE_NONE ç­‰ */ ) ;							// ãƒ•ã‚©ã‚°ãƒ¢ãƒ¼ãƒ‰ã‚’è¨­å®šã™ã‚‹
+extern	int		Graphics_Hardware_D3D9_SetVerticalFogColor_PF( DWORD FogColor ) ;											// ãƒ•ã‚©ã‚°ã‚«ãƒ©ãƒ¼ã‚’å¤‰æ›´ã™ã‚‹
+extern	int		Graphics_Hardware_D3D9_SetVerticalFogStartEnd_PF( float start, float end ) ;								// ãƒ•ã‚©ã‚°ãŒå§‹ã¾ã‚‹è·é›¢ã¨çµ‚äº†ã™ã‚‹è·é›¢ã‚’è¨­å®šã™ã‚‹( 0.0f ï½ 1.0f )
+extern	int		Graphics_Hardware_D3D9_SetVerticalFogDensity_PF( float start, float density ) ;								// ãƒ•ã‚©ã‚°ã®å¯†åº¦ã‚’è¨­å®šã™ã‚‹( 0.0f ï½ 1.0f )
+extern	int		Graphics_Hardware_D3D9_ApplyLigFogToHardware_PF( void ) ;													// åŸºæœ¬ãƒ‡ãƒ¼ã‚¿ã«è¨­å®šã•ã‚Œã¦ã„ã‚‹ãƒ•ã‚©ã‚°æƒ…å ±ã‚’ãƒãƒ¼ãƒ‰ã‚¦ã‚§ã‚¢ã«åæ˜ ã™ã‚‹
+extern	int		Graphics_Hardware_D3D9_SetUseOldDrawModiGraphCodeFlag_PF( int Flag ) ;										// ä»¥å‰ã® DrawModiGraph é–¢æ•°ã®ã‚³ãƒ¼ãƒ‰ã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
+extern	int		Graphics_Hardware_D3D9_RefreshAlphaChDrawMode_PF( void ) ;													// æç”»å…ˆã«æ­£ã—ã„Î±å€¤ã‚’æ›¸ãè¾¼ã‚€ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’æ›´æ–°ã™ã‚‹
 
 
 
@@ -1602,23 +1602,23 @@ extern	int		Graphics_Hardware_D3D9_RefreshAlphaChDrawMode_PF( void ) ;										
 
 
 
-// ŠÂ‹«ˆË‘¶İ’èŠÖŒW
-extern	int		Graphics_Hardware_D3D9_SetUseHardwareVertexProcessing_PF( int Flag ) ;						// ƒn[ƒhƒEƒGƒA‚Ì’¸“_‰‰Zˆ—‹@”\‚ğg—p‚·‚é‚©‚Ç‚¤‚©‚ğİ’è‚·‚é
-extern	int		Graphics_Hardware_D3D9_SetUsePixelLighting_PF( int Flag ) ;									// ƒsƒNƒZƒ‹’PˆÊ‚Åƒ‰ƒCƒeƒBƒ“ƒO‚ğs‚¤‚©‚Ç‚¤‚©‚ğİ’è‚·‚éA—v ShaderModel 3.0( TRUE:ƒsƒNƒZƒ‹’PˆÊ‚Ìƒ‰ƒCƒeƒBƒ“ƒO‚ğs‚¤  FALSE:’¸“_’PˆÊ‚Ìƒ‰ƒCƒeƒBƒ“ƒO‚ğs‚¤( ƒfƒtƒHƒ‹ƒg ) )
-extern	int		Graphics_Hardware_D3D9_SetGraphicsDeviceRestoreCallbackFunction_PF( void (* Callback )( void *Data ), void *CallbackData ) ;			// ƒOƒ‰ƒtƒBƒbƒNƒXƒfƒoƒCƒX‚ªƒƒXƒg‚©‚ç•œ‹A‚µ‚½Û‚ÉŒÄ‚Î‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”‚ğİ’è‚·‚é
-extern	int		Graphics_Hardware_D3D9_SetGraphicsDeviceLostCallbackFunction_PF( void (* Callback )( void *Data ), void *CallbackData ) ;			// ƒOƒ‰ƒtƒBƒbƒNƒXƒfƒoƒCƒX‚ªƒƒXƒg‚©‚ç•œ‹A‚·‚é‘O‚ÉŒÄ‚Î‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”‚ğİ’è‚·‚é
-extern	int		Graphics_Hardware_D3D9_SetUseNormalDrawShader_PF( int Flag ) ;								// ’Êí•`‰æ‚ÉƒvƒƒOƒ‰ƒ}ƒuƒ‹ƒVƒF[ƒ_[‚ğg—p‚·‚é‚©‚Ç‚¤‚©‚ğİ’è‚·‚é( TRUE:g—p‚·‚é( ƒfƒtƒHƒ‹ƒg )  FALSE:g—p‚µ‚È‚¢ )
-extern	int		Graphics_Hardware_D3D9_GetVideoMemorySize_PF( DWORD *AllSize, DWORD *FreeSize ) ;			// ƒrƒfƒIƒƒ‚ƒŠ‚Ì—e—Ê‚ğ“¾‚é
-extern	const D_IDirect3DDevice9 * Graphics_Hardware_D3D9_GetUseDirect3DDevice9_PF( void ) ;				// g—p’†‚Ì‚c‚‰‚’‚…‚ƒ‚”‚R‚c‚c‚…‚–‚‰‚ƒ‚…‚XƒIƒuƒWƒFƒNƒg‚ğ“¾‚é
-extern	const D_IDirect3DSurface9* Graphics_Hardware_D3D9_GetUseDirect3D9BackBufferSurface_PF( void ) ;		// g—p’†‚ÌƒoƒbƒNƒoƒbƒtƒ@‚ÌDirect3DSurface9ƒIƒuƒWƒFƒNƒg‚ğæ“¾‚·‚é
-extern	int		Graphics_Hardware_D3D9_RefreshDxLibDirect3DSetting_PF( void ) ;								// ‚c‚wƒ‰ƒCƒuƒ‰ƒŠ‚Ì‚c‚‰‚’‚…‚ƒ‚”‚R‚cİ’è‚ğ‚µ‚È‚¨‚·
-extern	int		Graphics_D3D9_SetDDrawUseGuid_PF( const GUID FAR *Guid ) ;									// ‚c‚‰‚’‚…‚ƒ‚”‚c‚’‚‚—‚ªg—p‚·‚é‚f‚t‚h‚c‚ğİ’è‚·‚é
-extern	const GUID *Graphics_D3D9_GetDirectDrawDeviceGUID_PF( int Number ) ;								// —LŒø‚È DirectDraw ƒfƒoƒCƒX‚Ì GUID ‚ğæ“¾‚·‚é
-extern	int		Graphics_D3D9_GetDirectDrawDeviceDescription_PF( int Number, char *StringBuffer ) ;			// —LŒø‚È DirectDraw ƒfƒoƒCƒX‚Ì–¼‘O‚ğ“¾‚é
-extern	int		Graphics_D3D9_GetDirectDrawDeviceNum_PF( void ) ;											// —LŒø‚È DirectDraw ƒfƒoƒCƒX‚Ì”‚ğæ“¾‚·‚é
-//extern	int		Graphics_D3D9_SetUseDirectDrawDeviceIndex_PF( int Index ) ;									// g—p‚·‚é DirectDraw ƒfƒoƒCƒX‚ÌƒCƒ“ƒfƒbƒNƒX‚ğİ’è‚·‚é
-extern	int		Graphics_D3D9_SetUseDirect3D9Ex_PF( int Flag ) ;											// VistaˆÈ~‚ÌŠÂ‹«‚Å Direct3D9Ex ‚ğg—p‚·‚é‚©‚Ç‚¤‚©‚ğİ’è‚·‚é( TRUE:g—p‚·‚é( ƒfƒtƒHƒ‹ƒg )  FALSE:g—p‚µ‚È‚¢ )
-extern	int		Graphics_D3D9_SetDialogBoxMode_PF( int Flag ) ;												// ƒ_ƒCƒAƒƒOƒ{ƒbƒNƒXƒ‚[ƒh‚ğ•ÏX‚·‚é
+// ç’°å¢ƒä¾å­˜è¨­å®šé–¢ä¿‚
+extern	int		Graphics_Hardware_D3D9_SetUseHardwareVertexProcessing_PF( int Flag ) ;						// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã®é ‚ç‚¹æ¼”ç®—å‡¦ç†æ©Ÿèƒ½ã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹
+extern	int		Graphics_Hardware_D3D9_SetUsePixelLighting_PF( int Flag ) ;									// ãƒ”ã‚¯ã‚»ãƒ«å˜ä½ã§ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ã‚’è¡Œã†ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹ã€è¦ ShaderModel 3.0( TRUE:ãƒ”ã‚¯ã‚»ãƒ«å˜ä½ã®ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ã‚’è¡Œã†  FALSE:é ‚ç‚¹å˜ä½ã®ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ã‚’è¡Œã†( ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ ) )
+extern	int		Graphics_Hardware_D3D9_SetGraphicsDeviceRestoreCallbackFunction_PF( void (* Callback )( void *Data ), void *CallbackData ) ;			// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¹ãƒ‡ãƒã‚¤ã‚¹ãŒãƒ­ã‚¹ãƒˆã‹ã‚‰å¾©å¸°ã—ãŸéš›ã«å‘¼ã°ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã‚’è¨­å®šã™ã‚‹
+extern	int		Graphics_Hardware_D3D9_SetGraphicsDeviceLostCallbackFunction_PF( void (* Callback )( void *Data ), void *CallbackData ) ;			// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¹ãƒ‡ãƒã‚¤ã‚¹ãŒãƒ­ã‚¹ãƒˆã‹ã‚‰å¾©å¸°ã™ã‚‹å‰ã«å‘¼ã°ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã‚’è¨­å®šã™ã‚‹
+extern	int		Graphics_Hardware_D3D9_SetUseNormalDrawShader_PF( int Flag ) ;								// é€šå¸¸æç”»ã«ãƒ—ãƒ­ã‚°ãƒ©ãƒãƒ–ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹( TRUE:ä½¿ç”¨ã™ã‚‹( ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ )  FALSE:ä½¿ç”¨ã—ãªã„ )
+extern	int		Graphics_Hardware_D3D9_GetVideoMemorySize_PF( DWORD *AllSize, DWORD *FreeSize ) ;			// ãƒ“ãƒ‡ã‚ªãƒ¡ãƒ¢ãƒªã®å®¹é‡ã‚’å¾—ã‚‹
+extern	const D_IDirect3DDevice9 * Graphics_Hardware_D3D9_GetUseDirect3DDevice9_PF( void ) ;				// ä½¿ç”¨ä¸­ã®ï¼¤ï½‰ï½’ï½…ï½ƒï½”ï¼“ï¼¤ï¼¤ï½…ï½–ï½‰ï½ƒï½…ï¼™ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å¾—ã‚‹
+extern	const D_IDirect3DSurface9* Graphics_Hardware_D3D9_GetUseDirect3D9BackBufferSurface_PF( void ) ;		// ä½¿ç”¨ä¸­ã®ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã®Direct3DSurface9ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å–å¾—ã™ã‚‹
+extern	int		Graphics_Hardware_D3D9_RefreshDxLibDirect3DSetting_PF( void ) ;								// ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®ï¼¤ï½‰ï½’ï½…ï½ƒï½”ï¼“ï¼¤è¨­å®šã‚’ã—ãªãŠã™
+extern	int		Graphics_D3D9_SetDDrawUseGuid_PF( const GUID FAR *Guid ) ;									// ï¼¤ï½‰ï½’ï½…ï½ƒï½”ï¼¤ï½’ï½ï½—ãŒä½¿ç”¨ã™ã‚‹ï¼§ï¼µï¼©ï¼¤ã‚’è¨­å®šã™ã‚‹
+extern	const GUID *Graphics_D3D9_GetDirectDrawDeviceGUID_PF( int Number ) ;								// æœ‰åŠ¹ãª DirectDraw ãƒ‡ãƒã‚¤ã‚¹ã® GUID ã‚’å–å¾—ã™ã‚‹
+extern	int		Graphics_D3D9_GetDirectDrawDeviceDescription_PF( int Number, char *StringBuffer ) ;			// æœ‰åŠ¹ãª DirectDraw ãƒ‡ãƒã‚¤ã‚¹ã®åå‰ã‚’å¾—ã‚‹
+extern	int		Graphics_D3D9_GetDirectDrawDeviceNum_PF( void ) ;											// æœ‰åŠ¹ãª DirectDraw ãƒ‡ãƒã‚¤ã‚¹ã®æ•°ã‚’å–å¾—ã™ã‚‹
+//extern	int		Graphics_D3D9_SetUseDirectDrawDeviceIndex_PF( int Index ) ;									// ä½¿ç”¨ã™ã‚‹ DirectDraw ãƒ‡ãƒã‚¤ã‚¹ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’è¨­å®šã™ã‚‹
+extern	int		Graphics_D3D9_SetUseDirect3D9Ex_PF( int Flag ) ;											// Vistaä»¥é™ã®ç’°å¢ƒã§ Direct3D9Ex ã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹( TRUE:ä½¿ç”¨ã™ã‚‹( ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ )  FALSE:ä½¿ç”¨ã—ãªã„ )
+extern	int		Graphics_D3D9_SetDialogBoxMode_PF( int Flag ) ;												// ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ãƒœãƒƒã‚¯ã‚¹ãƒ¢ãƒ¼ãƒ‰ã‚’å¤‰æ›´ã™ã‚‹
 
 
 
@@ -1627,25 +1627,25 @@ extern	int		Graphics_D3D9_SetDialogBoxMode_PF( int Flag ) ;												// ƒ_ƒCƒA
 
 
 
-// ŠÂ‹«ˆË‘¶‰æ–ÊŠÖŒW
-extern	int		Graphics_Hardware_D3D9_SetupUseZBuffer_PF( void ) ;															// İ’è‚ÉŠî‚Ã‚¢‚Äg—p‚·‚é‚yƒoƒbƒtƒ@‚ğƒZƒbƒg‚·‚é
-extern	int		Graphics_Hardware_D3D9_ClearDrawScreenZBuffer_PF( const RECT *ClearRect ) ;									// ‰æ–Ê‚Ì‚yƒoƒbƒtƒ@‚Ìó‘Ô‚ğ‰Šú‰»‚·‚é
-extern	int		Graphics_Hardware_D3D9_ClearDrawScreen_PF( const RECT *ClearRect ) ;										// ‰æ–Ê‚Ìó‘Ô‚ğ‰Šú‰»‚·‚é
-extern	int		Graphics_Hardware_D3D9_SetDrawScreen_PF( int DrawScreen, int OldScreenSurface, int OldScreenMipLevel, IMAGEDATA *NewTargetImage, IMAGEDATA *OldTargetImage, SHADOWMAPDATA *NewTargetShadowMap, SHADOWMAPDATA *OldTargetShadowMap ) ;						// •`‰ææ‰æ–Ê‚ÌƒZƒbƒg
-extern	int		Graphics_Hardware_D3D9_SetDrawScreen_Post_PF( int DrawScreen ) ;											// SetDrawScreen ‚ÌÅŒã‚ÅŒÄ‚Î‚ê‚éŠÖ”
-extern	int		Graphics_Hardware_D3D9_SetDrawArea_PF( int x1, int y1, int x2, int y2 ) ;									// •`‰æ‰Â”\—Ìˆæ‚ÌƒZƒbƒg
-extern	int		Graphics_Hardware_D3D9_LockDrawScreenBuffer_PF( RECT *LockRect, BASEIMAGE *BaseImage, int TargetScreen, IMAGEDATA *TargetImage, int TargetScreenSurface, int TargetScreenMipLevel, int ReadOnly, int TargetScreenTextureNo ) ;	// •`‰ææƒoƒbƒtƒ@‚ğƒƒbƒN‚·‚é
-extern	int		Graphics_Hardware_D3D9_UnlockDrawScreenBuffer_PF( void ) ;													// •`‰ææƒoƒbƒtƒ@‚ğƒAƒ“ƒƒbƒN‚·‚é
-extern	int		Graphics_Hardware_D3D9_ScreenCopy_PF( void ) ;																// — ‰æ–Ê‚Ì“à—e‚ğ•\‰æ–Ê‚É•`‰æ‚·‚é
-extern	int		Graphics_Hardware_D3D9_SaveDrawScreen_Begin_PF( int x1, int y1, int x2, int y2, BASEIMAGE *BaseImage ) ;	// Œ»İ•`‰æ‘ÎÛ‚É‚È‚Á‚Ä‚¢‚é‰æ–Ê‚ğ•Û‘¶‚·‚é
-extern	int		Graphics_Hardware_D3D9_SaveDrawScreen_Post_PF( void ) ;														// Œ»İ•`‰æ‘ÎÛ‚É‚È‚Á‚Ä‚¢‚é‰æ–Ê‚ğ•Û‘¶‚·‚é
-extern	int		Graphics_Hardware_D3D9_WaitVSync_PF( int SyncNum ) ;														// ‚’¼“¯ŠúM†‚ğ‘Ò‚Â
-extern	int		Graphics_Hardware_D3D9_ScreenFlipBase_PF( void ) ;															// — ‰æ–Ê‚Æ•\‰æ–Ê‚ğŒğŠ·‚·‚é
-extern	int		Graphics_Hardware_D3D9_BltRectBackScreenToWindow_PF( HWND Window, RECT BackScreenRect, RECT WindowClientRect ) ;		// — ‰æ–Ê‚Ìw’è‚Ì—Ìˆæ‚ğƒEƒCƒ“ƒhƒE‚ÌƒNƒ‰ƒCƒAƒ“ƒg—Ìˆæ‚Ìw’è‚Ì—Ìˆæ‚É“]‘—‚·‚é
-extern	int		Graphics_Hardware_D3D9_SetScreenFlipTargetWindow_PF( HWND TargetWindow, double ScaleX, double ScaleY ) ;	// ScreenFlip ‚Å‰æ‘œ‚ğ“]‘—‚·‚éæ‚ÌƒEƒCƒ“ƒhƒE‚ğİ’è‚·‚é( NULL ‚ğw’è‚·‚é‚Æİ’è‰ğœ )
-extern	int		Graphics_Hardware_D3D9_SetZBufferMode_PF( int ZBufferSizeX, int ZBufferSizeY, int ZBufferBitDepth ) ;		// ƒƒCƒ“‰æ–Ê‚Ì‚yƒoƒbƒtƒ@‚Ìİ’è‚ğ•ÏX‚·‚é
-extern	int		Graphics_Hardware_D3D9_SetDrawZBuffer_PF( int DrawScreen, IMAGEDATA *Image ) ;								// •`‰ææ‚yƒoƒbƒtƒ@‚ÌƒZƒbƒg
-extern	const void*	Graphics_Hardware_D3D9_GetGraphIDirect3DTexture9_PF( IMAGEDATA *Image ) ;								// ƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ª‚Â IDirect3DTexture9 ‚ğæ“¾‚·‚é( Direct3D9 ‚ğg—p‚µ‚Ä‚¢‚éê‡‚Ì‚İ—LŒø )( –ß‚è’l‚ğ IDirect3DTexture9 * ‚ÉƒLƒƒƒXƒg‚µ‚Ä‚­‚¾‚³‚¢ )
+// ç’°å¢ƒä¾å­˜ç”»é¢é–¢ä¿‚
+extern	int		Graphics_Hardware_D3D9_SetupUseZBuffer_PF( void ) ;															// è¨­å®šã«åŸºã¥ã„ã¦ä½¿ç”¨ã™ã‚‹ï¼ºãƒãƒƒãƒ•ã‚¡ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
+extern	int		Graphics_Hardware_D3D9_ClearDrawScreenZBuffer_PF( const RECT *ClearRect ) ;									// ç”»é¢ã®ï¼ºãƒãƒƒãƒ•ã‚¡ã®çŠ¶æ…‹ã‚’åˆæœŸåŒ–ã™ã‚‹
+extern	int		Graphics_Hardware_D3D9_ClearDrawScreen_PF( const RECT *ClearRect ) ;										// ç”»é¢ã®çŠ¶æ…‹ã‚’åˆæœŸåŒ–ã™ã‚‹
+extern	int		Graphics_Hardware_D3D9_SetDrawScreen_PF( int DrawScreen, int OldScreenSurface, int OldScreenMipLevel, IMAGEDATA *NewTargetImage, IMAGEDATA *OldTargetImage, SHADOWMAPDATA *NewTargetShadowMap, SHADOWMAPDATA *OldTargetShadowMap ) ;						// æç”»å…ˆç”»é¢ã®ã‚»ãƒƒãƒˆ
+extern	int		Graphics_Hardware_D3D9_SetDrawScreen_Post_PF( int DrawScreen ) ;											// SetDrawScreen ã®æœ€å¾Œã§å‘¼ã°ã‚Œã‚‹é–¢æ•°
+extern	int		Graphics_Hardware_D3D9_SetDrawArea_PF( int x1, int y1, int x2, int y2 ) ;									// æç”»å¯èƒ½é ˜åŸŸã®ã‚»ãƒƒãƒˆ
+extern	int		Graphics_Hardware_D3D9_LockDrawScreenBuffer_PF( RECT *LockRect, BASEIMAGE *BaseImage, int TargetScreen, IMAGEDATA *TargetImage, int TargetScreenSurface, int TargetScreenMipLevel, int ReadOnly, int TargetScreenTextureNo ) ;	// æç”»å…ˆãƒãƒƒãƒ•ã‚¡ã‚’ãƒ­ãƒƒã‚¯ã™ã‚‹
+extern	int		Graphics_Hardware_D3D9_UnlockDrawScreenBuffer_PF( void ) ;													// æç”»å…ˆãƒãƒƒãƒ•ã‚¡ã‚’ã‚¢ãƒ³ãƒ­ãƒƒã‚¯ã™ã‚‹
+extern	int		Graphics_Hardware_D3D9_ScreenCopy_PF( void ) ;																// è£ç”»é¢ã®å†…å®¹ã‚’è¡¨ç”»é¢ã«æç”»ã™ã‚‹
+extern	int		Graphics_Hardware_D3D9_SaveDrawScreen_Begin_PF( int x1, int y1, int x2, int y2, BASEIMAGE *BaseImage ) ;	// ç¾åœ¨æç”»å¯¾è±¡ã«ãªã£ã¦ã„ã‚‹ç”»é¢ã‚’ä¿å­˜ã™ã‚‹
+extern	int		Graphics_Hardware_D3D9_SaveDrawScreen_Post_PF( void ) ;														// ç¾åœ¨æç”»å¯¾è±¡ã«ãªã£ã¦ã„ã‚‹ç”»é¢ã‚’ä¿å­˜ã™ã‚‹
+extern	int		Graphics_Hardware_D3D9_WaitVSync_PF( int SyncNum ) ;														// å‚ç›´åŒæœŸä¿¡å·ã‚’å¾…ã¤
+extern	int		Graphics_Hardware_D3D9_ScreenFlipBase_PF( void ) ;															// è£ç”»é¢ã¨è¡¨ç”»é¢ã‚’äº¤æ›ã™ã‚‹
+extern	int		Graphics_Hardware_D3D9_BltRectBackScreenToWindow_PF( HWND Window, RECT BackScreenRect, RECT WindowClientRect ) ;		// è£ç”»é¢ã®æŒ‡å®šã®é ˜åŸŸã‚’ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆé ˜åŸŸã®æŒ‡å®šã®é ˜åŸŸã«è»¢é€ã™ã‚‹
+extern	int		Graphics_Hardware_D3D9_SetScreenFlipTargetWindow_PF( HWND TargetWindow, double ScaleX, double ScaleY ) ;	// ScreenFlip ã§ç”»åƒã‚’è»¢é€ã™ã‚‹å…ˆã®ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚’è¨­å®šã™ã‚‹( NULL ã‚’æŒ‡å®šã™ã‚‹ã¨è¨­å®šè§£é™¤ )
+extern	int		Graphics_Hardware_D3D9_SetZBufferMode_PF( int ZBufferSizeX, int ZBufferSizeY, int ZBufferBitDepth ) ;		// ãƒ¡ã‚¤ãƒ³ç”»é¢ã®ï¼ºãƒãƒƒãƒ•ã‚¡ã®è¨­å®šã‚’å¤‰æ›´ã™ã‚‹
+extern	int		Graphics_Hardware_D3D9_SetDrawZBuffer_PF( int DrawScreen, IMAGEDATA *Image ) ;								// æç”»å…ˆï¼ºãƒãƒƒãƒ•ã‚¡ã®ã‚»ãƒƒãƒˆ
+extern	const void*	Graphics_Hardware_D3D9_GetGraphIDirect3DTexture9_PF( IMAGEDATA *Image ) ;								// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ãŒæŒã¤ IDirect3DTexture9 ã‚’å–å¾—ã™ã‚‹( Direct3D9 ã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹å ´åˆã®ã¿æœ‰åŠ¹ )( æˆ»ã‚Šå€¤ã‚’ IDirect3DTexture9 * ã«ã‚­ãƒ£ã‚¹ãƒˆã—ã¦ãã ã•ã„ )
 
 
 
@@ -1654,11 +1654,11 @@ extern	const void*	Graphics_Hardware_D3D9_GetGraphIDirect3DTexture9_PF( IMAGEDAT
 
 
 
-// ŠÂ‹«ˆË‘¶î•ñæ“¾ŠÖŒW
-extern	const COLORDATA *	Graphics_Hardware_D3D9_GetMainColorData_PF( void ) ;				// GetColor ‚â GetColor2 ‚Åg—p‚·‚éƒJƒ‰[ƒf[ƒ^‚ğæ“¾‚·‚é
-extern	const COLORDATA *	Graphics_Hardware_D3D9_GetDispColorData_PF( void ) ;				// ƒfƒBƒXƒvƒŒ[‚ÌƒJƒ‰[ƒf[ƒ^ƒ|ƒCƒ“ƒ^‚ğ“¾‚é
-extern	DWORD				Graphics_Hardware_D3D9_GetPixel_PF( int x, int y ) ;				// w’èÀ•W‚ÌF‚ğæ“¾‚·‚é
-extern	COLOR_F				Graphics_Hardware_D3D9_GetPixelF_PF( int x, int y ) ;				// w’èÀ•W‚ÌF‚ğæ“¾‚·‚é( floatŒ^ )
+// ç’°å¢ƒä¾å­˜æƒ…å ±å–å¾—é–¢ä¿‚
+extern	const COLORDATA *	Graphics_Hardware_D3D9_GetMainColorData_PF( void ) ;				// GetColor ã‚„ GetColor2 ã§ä½¿ç”¨ã™ã‚‹ã‚«ãƒ©ãƒ¼ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—ã™ã‚‹
+extern	const COLORDATA *	Graphics_Hardware_D3D9_GetDispColorData_PF( void ) ;				// ãƒ‡ã‚£ã‚¹ãƒ—ãƒ¬ãƒ¼ã®ã‚«ãƒ©ãƒ¼ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿ã‚’å¾—ã‚‹
+extern	DWORD				Graphics_Hardware_D3D9_GetPixel_PF( int x, int y ) ;				// æŒ‡å®šåº§æ¨™ã®è‰²ã‚’å–å¾—ã™ã‚‹
+extern	COLOR_F				Graphics_Hardware_D3D9_GetPixelF_PF( int x, int y ) ;				// æŒ‡å®šåº§æ¨™ã®è‰²ã‚’å–å¾—ã™ã‚‹( floatå‹ )
 
 
 
@@ -1667,16 +1667,16 @@ extern	COLOR_F				Graphics_Hardware_D3D9_GetPixelF_PF( int x, int y ) ;				// w
 
 
 
-// ŠÂ‹«ˆË‘¶‰æ‘œŠÖŒW
-extern	int		Graphics_Hardware_D3D9_UpdateGraphMovie_TheoraYUV_PF( MOVIEGRAPH *Movie, IMAGEDATA *Image ) ;			// YUVƒT[ƒtƒFƒX‚ğg‚Á‚½ Theora “®‰æ‚Ì“à—e‚ğƒOƒ‰ƒtƒBƒbƒNƒXƒnƒ“ƒhƒ‹‚ÌƒeƒNƒXƒ`ƒƒ‚É“]‘—‚·‚é
-extern	int		Graphics_Hardware_D3D9_GraphLock_PF( IMAGEDATA *Image, COLORDATA **ColorDataP, int WriteOnly ) ;		// ƒOƒ‰ƒtƒBƒbƒNƒƒ‚ƒŠ—Ìˆæ‚ÌƒƒbƒN
-extern	int		Graphics_Hardware_D3D9_GraphUnlock_PF( IMAGEDATA *Image ) ;												// ƒOƒ‰ƒtƒBƒbƒNƒƒ‚ƒŠ—Ìˆæ‚ÌƒƒbƒN‰ğœ
-extern	int		Graphics_Hardware_D3D9_CopyGraphZBufferImage_PF( IMAGEDATA *DestImage, IMAGEDATA *SrcImage ) ;			// ƒOƒ‰ƒtƒBƒbƒN‚Ì‚yƒoƒbƒtƒ@‚Ìó‘Ô‚ğ•Ê‚ÌƒOƒ‰ƒtƒBƒbƒN‚Ì‚yƒoƒbƒtƒ@‚ÉƒRƒs[‚·‚é( DestGrHandle ‚à SrcGrHandle ‚à‚yƒoƒbƒtƒ@‚ğ‚Á‚Ä‚¢‚é•`‰æ‰Â”\‰æ‘œ‚ÅAŠ‚ÂƒAƒ“ƒ`ƒGƒCƒŠƒAƒX‰æ‘œ‚Å‚Í‚È‚¢‚±‚Æ‚ªğŒ )
-extern	int		Graphics_Hardware_D3D9_InitGraph_PF( void ) ;															// ‰æ‘œƒf[ƒ^‚Ì‰Šú‰»
-extern	int		Graphics_Hardware_D3D9_FillGraph_PF( IMAGEDATA *Image, int Red, int Green, int Blue, int Alpha, int ASyncThread ) ;			// ƒOƒ‰ƒtƒBƒbƒN‚ğ“Á’è‚ÌF‚Å“h‚è‚Â‚Ô‚·
-extern	int		Graphics_Hardware_D3D9_GetDrawScreenGraphBase_PF( IMAGEDATA *Image, IMAGEDATA *TargetImage, int TargetScreen, int TargetScreenSurface, int TargetScreenMipLevel, int TargetScreenWidth, int TargetScreenHeight, int x1, int y1, int x2, int y2, int destX, int destY ) ;		// •`‰æ‰Â”\‰æ‘œ‚âƒoƒbƒNƒoƒbƒtƒ@‚©‚çw’è—Ìˆæ‚ÌƒOƒ‰ƒtƒBƒbƒN‚ğæ“¾‚·‚é
+// ç’°å¢ƒä¾å­˜ç”»åƒé–¢ä¿‚
+extern	int		Graphics_Hardware_D3D9_UpdateGraphMovie_TheoraYUV_PF( MOVIEGRAPH *Movie, IMAGEDATA *Image ) ;			// YUVã‚µãƒ¼ãƒ•ã‚§ã‚¹ã‚’ä½¿ã£ãŸ Theora å‹•ç”»ã®å†…å®¹ã‚’ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¹ãƒãƒ³ãƒ‰ãƒ«ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ã«è»¢é€ã™ã‚‹
+extern	int		Graphics_Hardware_D3D9_GraphLock_PF( IMAGEDATA *Image, COLORDATA **ColorDataP, int WriteOnly ) ;		// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ¡ãƒ¢ãƒªé ˜åŸŸã®ãƒ­ãƒƒã‚¯
+extern	int		Graphics_Hardware_D3D9_GraphUnlock_PF( IMAGEDATA *Image ) ;												// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ¡ãƒ¢ãƒªé ˜åŸŸã®ãƒ­ãƒƒã‚¯è§£é™¤
+extern	int		Graphics_Hardware_D3D9_CopyGraphZBufferImage_PF( IMAGEDATA *DestImage, IMAGEDATA *SrcImage ) ;			// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®ï¼ºãƒãƒƒãƒ•ã‚¡ã®çŠ¶æ…‹ã‚’åˆ¥ã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®ï¼ºãƒãƒƒãƒ•ã‚¡ã«ã‚³ãƒ”ãƒ¼ã™ã‚‹( DestGrHandle ã‚‚ SrcGrHandle ã‚‚ï¼ºãƒãƒƒãƒ•ã‚¡ã‚’æŒã£ã¦ã„ã‚‹æç”»å¯èƒ½ç”»åƒã§ã€ä¸”ã¤ã‚¢ãƒ³ãƒã‚¨ã‚¤ãƒªã‚¢ã‚¹ç”»åƒã§ã¯ãªã„ã“ã¨ãŒæ¡ä»¶ )
+extern	int		Graphics_Hardware_D3D9_InitGraph_PF( void ) ;															// ç”»åƒãƒ‡ãƒ¼ã‚¿ã®åˆæœŸåŒ–
+extern	int		Graphics_Hardware_D3D9_FillGraph_PF( IMAGEDATA *Image, int Red, int Green, int Blue, int Alpha, int ASyncThread ) ;			// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚’ç‰¹å®šã®è‰²ã§å¡—ã‚Šã¤ã¶ã™
+extern	int		Graphics_Hardware_D3D9_GetDrawScreenGraphBase_PF( IMAGEDATA *Image, IMAGEDATA *TargetImage, int TargetScreen, int TargetScreenSurface, int TargetScreenMipLevel, int TargetScreenWidth, int TargetScreenHeight, int x1, int y1, int x2, int y2, int destX, int destY ) ;		// æç”»å¯èƒ½ç”»åƒã‚„ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã‹ã‚‰æŒ‡å®šé ˜åŸŸã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚’å–å¾—ã™ã‚‹
 
-// Direct3D9 ‚ÌƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚É‰æ‘œƒf[ƒ^‚ğ“]‘—‚·‚é‚½‚ß‚ÌŠÖ”
+// Direct3D9 ã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã«ç”»åƒãƒ‡ãƒ¼ã‚¿ã‚’è»¢é€ã™ã‚‹ãŸã‚ã®é–¢æ•°
 extern	int		Graphics_Hardware_D3D9_BltBmpOrBaseImageToGraph3_PF(
 	const RECT		*SrcRect,
 	      int		DestX,
@@ -1690,10 +1690,10 @@ extern	int		Graphics_Hardware_D3D9_BltBmpOrBaseImageToGraph3_PF(
 	      int		ASyncThread
 ) ;
 
-extern	int		Graphics_Hardware_D3D9_CreateOrigTexture_PF(  IMAGEDATA_ORIG *Orig, int ASyncThread = FALSE ) ;		// ƒIƒŠƒWƒiƒ‹‰æ‘œî•ñ’†‚ÌƒeƒNƒXƒ`ƒƒ‚ğì¬‚·‚é( 0:¬Œ÷  -1:¸”s )
-extern	int		Graphics_Hardware_D3D9_ReleaseOrigTexture_PF( IMAGEDATA_ORIG *Orig ) ;								// ƒIƒŠƒWƒiƒ‹‰æ‘œî•ñ’†‚ÌƒeƒNƒXƒ`ƒƒ‚ğ‰ğ•ú‚·‚é
-extern	int		Graphics_Hardware_D3D9_GetMultiSampleQuality_PF( int Samples ) ;									// w’è‚Ìƒ}ƒ‹ƒ`ƒTƒ“ƒvƒ‹”‚Åg—p‚Å‚«‚éÅ‘åƒNƒIƒŠƒeƒB’l‚ğæ“¾‚·‚é
-extern	int		Graphics_Hardware_D3D9_SetUsePlatformTextureFormat_PF( int PlatformTextureFormat ) ;				// ì¬‚·‚éƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚Åg—p‚·‚éŠÂ‹«ˆË‘¶‚ÌƒeƒNƒXƒ`ƒƒƒtƒH[ƒ}ƒbƒg‚ğw’è‚·‚é
+extern	int		Graphics_Hardware_D3D9_CreateOrigTexture_PF(  IMAGEDATA_ORIG *Orig, int ASyncThread = FALSE ) ;		// ã‚ªãƒªã‚¸ãƒŠãƒ«ç”»åƒæƒ…å ±ä¸­ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ä½œæˆã™ã‚‹( 0:æˆåŠŸ  -1:å¤±æ•— )
+extern	int		Graphics_Hardware_D3D9_ReleaseOrigTexture_PF( IMAGEDATA_ORIG *Orig ) ;								// ã‚ªãƒªã‚¸ãƒŠãƒ«ç”»åƒæƒ…å ±ä¸­ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’è§£æ”¾ã™ã‚‹
+extern	int		Graphics_Hardware_D3D9_GetMultiSampleQuality_PF( int Samples ) ;									// æŒ‡å®šã®ãƒãƒ«ãƒã‚µãƒ³ãƒ—ãƒ«æ•°ã§ä½¿ç”¨ã§ãã‚‹æœ€å¤§ã‚¯ã‚ªãƒªãƒ†ã‚£å€¤ã‚’å–å¾—ã™ã‚‹
+extern	int		Graphics_Hardware_D3D9_SetUsePlatformTextureFormat_PF( int PlatformTextureFormat ) ;				// ä½œæˆã™ã‚‹ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã§ä½¿ç”¨ã™ã‚‹ç’°å¢ƒä¾å­˜ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã‚’æŒ‡å®šã™ã‚‹
 
 
 
@@ -1702,13 +1702,13 @@ extern	int		Graphics_Hardware_D3D9_SetUsePlatformTextureFormat_PF( int PlatformT
 
 
 
-// ŠÂ‹«ˆË‘¶’¸“_ƒoƒbƒtƒ@EƒCƒ“ƒfƒbƒNƒXƒoƒbƒtƒ@ŠÖŒW
-extern	int		Graphics_Hardware_D3D9_VertexBuffer_Create_PF(    VERTEXBUFFERHANDLEDATA *VertexBuffer ) ;															// ’¸“_ƒoƒbƒtƒ@ƒnƒ“ƒhƒ‹‚Ì’¸“_ƒoƒbƒtƒ@‚ğì¬‚·‚é
-extern	int		Graphics_Hardware_D3D9_VertexBuffer_Terminate_PF( VERTEXBUFFERHANDLEDATA *VertexBuffer ) ;															// ’¸“_ƒoƒbƒtƒ@ƒnƒ“ƒhƒ‹‚ÌŒãn––
-extern	int		Graphics_Hardware_D3D9_VertexBuffer_SetData_PF(   VERTEXBUFFERHANDLEDATA *VertexBuffer, int SetIndex, const void *VertexData, int VertexNum ) ;		// ’¸“_ƒoƒbƒtƒ@‚É’¸“_ƒf[ƒ^‚ğ“]‘—‚·‚é
-extern	int		Graphics_Hardware_D3D9_IndexBuffer_Create_PF(     INDEXBUFFERHANDLEDATA *IndexBuffer ) ;															// ƒCƒ“ƒfƒbƒNƒXƒoƒbƒtƒ@ƒnƒ“ƒhƒ‹‚ÌƒZƒbƒgƒAƒbƒv‚ğs‚¤
-extern	int		Graphics_Hardware_D3D9_IndexBuffer_Terminate_PF(  INDEXBUFFERHANDLEDATA *IndexBuffer ) ;															// ƒCƒ“ƒfƒbƒNƒXƒoƒbƒtƒ@ƒnƒ“ƒhƒ‹‚ÌŒãn––
-extern	int		Graphics_Hardware_D3D9_IndexBuffer_SetData_PF(    INDEXBUFFERHANDLEDATA *IndexBuffer, int SetIndex, const void *IndexData, int IndexNum ) ;			// ƒCƒ“ƒfƒbƒNƒXƒoƒbƒtƒ@‚ÉƒCƒ“ƒfƒbƒNƒXƒf[ƒ^‚ğ“]‘—‚·‚é
+// ç’°å¢ƒä¾å­˜é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ãƒ»ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒãƒƒãƒ•ã‚¡é–¢ä¿‚
+extern	int		Graphics_Hardware_D3D9_VertexBuffer_Create_PF(    VERTEXBUFFERHANDLEDATA *VertexBuffer ) ;															// é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ãƒãƒ³ãƒ‰ãƒ«ã®é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã‚’ä½œæˆã™ã‚‹
+extern	int		Graphics_Hardware_D3D9_VertexBuffer_Terminate_PF( VERTEXBUFFERHANDLEDATA *VertexBuffer ) ;															// é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ãƒãƒ³ãƒ‰ãƒ«ã®å¾Œå§‹æœ«
+extern	int		Graphics_Hardware_D3D9_VertexBuffer_SetData_PF(   VERTEXBUFFERHANDLEDATA *VertexBuffer, int SetIndex, const void *VertexData, int VertexNum ) ;		// é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã«é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ã‚’è»¢é€ã™ã‚‹
+extern	int		Graphics_Hardware_D3D9_IndexBuffer_Create_PF(     INDEXBUFFERHANDLEDATA *IndexBuffer ) ;															// ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒãƒƒãƒ•ã‚¡ãƒãƒ³ãƒ‰ãƒ«ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã‚’è¡Œã†
+extern	int		Graphics_Hardware_D3D9_IndexBuffer_Terminate_PF(  INDEXBUFFERHANDLEDATA *IndexBuffer ) ;															// ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒãƒƒãƒ•ã‚¡ãƒãƒ³ãƒ‰ãƒ«ã®å¾Œå§‹æœ«
+extern	int		Graphics_Hardware_D3D9_IndexBuffer_SetData_PF(    INDEXBUFFERHANDLEDATA *IndexBuffer, int SetIndex, const void *IndexData, int IndexNum ) ;			// ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒãƒƒãƒ•ã‚¡ã«ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿ã‚’è»¢é€ã™ã‚‹
 
 
 
@@ -1718,13 +1718,13 @@ extern	int		Graphics_Hardware_D3D9_IndexBuffer_SetData_PF(    INDEXBUFFERHANDLED
 
 
 
-// ŠÂ‹«ˆË‘¶ƒ‰ƒCƒgŠÖŒW
-extern	int		Graphics_Hardware_D3D9_Light_SetUse_PF( int Flag ) ;															// ƒ‰ƒCƒeƒBƒ“ƒO‚ğs‚¤‚©‚Ç‚¤‚©‚ğİ’è‚·‚é
-extern	int		Graphics_Hardware_D3D9_Light_GlobalAmbient_PF( COLOR_F *Color ) ;												// ƒOƒ[ƒoƒ‹ƒAƒ“ƒrƒGƒ“ƒgƒ‰ƒCƒgƒJƒ‰[‚ğİ’è‚·‚é
-extern	int		Graphics_Hardware_D3D9_Light_SetState_PF( int LightNumber, LIGHTPARAM *LightParam ) ;							// ƒ‰ƒCƒgƒpƒ‰ƒ[ƒ^‚ğƒZƒbƒg
-extern	int		Graphics_Hardware_D3D9_Light_SetEnable_PF( int LightNumber, int EnableState ) ;									// ƒ‰ƒCƒg‚Ì—LŒøA–³Œø‚ğ•ÏX
-extern	int		Graphics_Hardware_D3D9_Light_SetNoAngleAttenuation_PF( int NoAngleAttenuation ) ;								// ƒ‰ƒCƒg‚ÌŒvZ‚ÅŠp“xŒ¸Š‚ğs‚í‚È‚¢‚æ‚¤‚É‚·‚é‚©‚Ç‚¤‚©‚ğİ’è‚·‚é
-extern	int		Graphics_Hardware_D3D9_Light_SetUseHalfLambert_PF( int UseHalfLambert ) ;										// ƒ‰ƒCƒg‚ÌŒvZ‚Åƒn[ƒtƒ‰ƒ“ƒo[ƒg‚ğg—p‚·‚é‚©‚Ç‚¤‚©‚ğİ’è‚·‚é
+// ç’°å¢ƒä¾å­˜ãƒ©ã‚¤ãƒˆé–¢ä¿‚
+extern	int		Graphics_Hardware_D3D9_Light_SetUse_PF( int Flag ) ;															// ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ã‚’è¡Œã†ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹
+extern	int		Graphics_Hardware_D3D9_Light_GlobalAmbient_PF( COLOR_F *Color ) ;												// ã‚°ãƒ­ãƒ¼ãƒãƒ«ã‚¢ãƒ³ãƒ“ã‚¨ãƒ³ãƒˆãƒ©ã‚¤ãƒˆã‚«ãƒ©ãƒ¼ã‚’è¨­å®šã™ã‚‹
+extern	int		Graphics_Hardware_D3D9_Light_SetState_PF( int LightNumber, LIGHTPARAM *LightParam ) ;							// ãƒ©ã‚¤ãƒˆãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆ
+extern	int		Graphics_Hardware_D3D9_Light_SetEnable_PF( int LightNumber, int EnableState ) ;									// ãƒ©ã‚¤ãƒˆã®æœ‰åŠ¹ã€ç„¡åŠ¹ã‚’å¤‰æ›´
+extern	int		Graphics_Hardware_D3D9_Light_SetNoAngleAttenuation_PF( int NoAngleAttenuation ) ;								// ãƒ©ã‚¤ãƒˆã®è¨ˆç®—ã§è§’åº¦æ¸›è¡°ã‚’è¡Œã‚ãªã„ã‚ˆã†ã«ã™ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹
+extern	int		Graphics_Hardware_D3D9_Light_SetUseHalfLambert_PF( int UseHalfLambert ) ;										// ãƒ©ã‚¤ãƒˆã®è¨ˆç®—ã§ãƒãƒ¼ãƒ•ãƒ©ãƒ³ãƒãƒ¼ãƒˆã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹
 
 
 
@@ -1733,14 +1733,14 @@ extern	int		Graphics_Hardware_D3D9_Light_SetUseHalfLambert_PF( int UseHalfLamber
 
 
 
-// ŠÂ‹«ˆË‘¶ƒVƒƒƒhƒEƒ}ƒbƒvŠÖŒW
-extern	int		Graphics_Hardware_D3D9_ShadowMap_CreateTexture_PF( SHADOWMAPDATA *ShadowMap, int ASyncThread = FALSE ) ;		// ƒVƒƒƒhƒEƒ}ƒbƒvƒf[ƒ^‚É•K—v‚ÈƒeƒNƒXƒ`ƒƒ‚ğì¬‚·‚é
-extern	int		Graphics_Hardware_D3D9_ShadowMap_ReleaseTexture_PF( SHADOWMAPDATA *ShadowMap ) ;								// ƒVƒƒƒhƒEƒ}ƒbƒvƒf[ƒ^‚É•K—v‚ÈƒeƒNƒXƒ`ƒƒ‚ğ‰ğ•ú‚·‚é
-extern	void	Graphics_Hardware_D3D9_ShadowMap_RefreshVSParam_PF( void ) ;													// ’¸“_ƒVƒF[ƒ_[‚Éİ’è‚·‚éƒVƒƒƒhƒEƒ}ƒbƒv‚Ìî•ñ‚ğXV‚·‚é
-extern	void	Graphics_Hardware_D3D9_ShadowMap_RefreshPSParam_PF( void ) ;													// ƒsƒNƒZƒ‹ƒVƒF[ƒ_[‚Éİ’è‚·‚éƒVƒƒƒhƒEƒ}ƒbƒv‚Ìî•ñ‚ğXV‚·‚é
-extern	int		Graphics_Hardware_D3D9_ShadowMap_DrawSetup_PF( SHADOWMAPDATA *ShadowMap ) ;										// ƒVƒƒƒhƒEƒ}ƒbƒv‚Ö‚Ì•`‰æ‚Ì€”õ‚ğs‚¤
-extern	int		Graphics_Hardware_D3D9_ShadowMap_DrawEnd_PF( SHADOWMAPDATA *ShadowMap ) ;										// ƒVƒƒƒhƒEƒ}ƒbƒv‚Ö‚Ì•`‰æ‚ğI—¹‚·‚é
-extern	int		Graphics_Hardware_D3D9_ShadowMap_SetUse_PF( int SlotIndex, SHADOWMAPDATA *ShadowMap ) ;							// •`‰æ‚Åg—p‚·‚éƒVƒƒƒhƒEƒ}ƒbƒv‚ğw’è‚·‚éAƒXƒƒbƒg‚Í‚O‚©‚P‚©‚ğw’è‰Â”\
+// ç’°å¢ƒä¾å­˜ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—é–¢ä¿‚
+extern	int		Graphics_Hardware_D3D9_ShadowMap_CreateTexture_PF( SHADOWMAPDATA *ShadowMap, int ASyncThread = FALSE ) ;		// ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ã«å¿…è¦ãªãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ä½œæˆã™ã‚‹
+extern	int		Graphics_Hardware_D3D9_ShadowMap_ReleaseTexture_PF( SHADOWMAPDATA *ShadowMap ) ;								// ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ã«å¿…è¦ãªãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’è§£æ”¾ã™ã‚‹
+extern	void	Graphics_Hardware_D3D9_ShadowMap_RefreshVSParam_PF( void ) ;													// é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã«è¨­å®šã™ã‚‹ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ã®æƒ…å ±ã‚’æ›´æ–°ã™ã‚‹
+extern	void	Graphics_Hardware_D3D9_ShadowMap_RefreshPSParam_PF( void ) ;													// ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã«è¨­å®šã™ã‚‹ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ã®æƒ…å ±ã‚’æ›´æ–°ã™ã‚‹
+extern	int		Graphics_Hardware_D3D9_ShadowMap_DrawSetup_PF( SHADOWMAPDATA *ShadowMap ) ;										// ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ã¸ã®æç”»ã®æº–å‚™ã‚’è¡Œã†
+extern	int		Graphics_Hardware_D3D9_ShadowMap_DrawEnd_PF( SHADOWMAPDATA *ShadowMap ) ;										// ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ã¸ã®æç”»ã‚’çµ‚äº†ã™ã‚‹
+extern	int		Graphics_Hardware_D3D9_ShadowMap_SetUse_PF( int SlotIndex, SHADOWMAPDATA *ShadowMap ) ;							// æç”»ã§ä½¿ç”¨ã™ã‚‹ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ã‚’æŒ‡å®šã™ã‚‹ã€ã‚¹ãƒ­ãƒƒãƒˆã¯ï¼ã‹ï¼‘ã‹ã‚’æŒ‡å®šå¯èƒ½
 
 
 
@@ -1749,16 +1749,16 @@ extern	int		Graphics_Hardware_D3D9_ShadowMap_SetUse_PF( int SlotIndex, SHADOWMAP
 
 
 
-// ŠÂ‹«ˆË‘¶ƒVƒF[ƒ_[ŠÖŒW
-extern	int		Graphics_Hardware_D3D9_Shader_Create_PF( int ShaderHandle, int ShaderType, void *Image, int ImageSize, int ImageAfterFree, int ASyncThread ) ;		// ƒVƒF[ƒ_[ƒnƒ“ƒhƒ‹‚ğ‰Šú‰»‚·‚é
-extern	int		Graphics_Hardware_D3D9_Shader_TerminateHandle_PF( SHADERHANDLEDATA *Shader ) ;																		// ƒVƒF[ƒ_[ƒnƒ“ƒhƒ‹‚ÌŒãn––
-extern	int		Graphics_Hardware_D3D9_Shader_GetValidShaderVersion_PF( void ) ;																					// g—p‚Å‚«‚éƒVƒF[ƒ_[‚Ìƒo[ƒWƒ‡ƒ“‚ğæ“¾‚·‚é( 0=g‚¦‚È‚¢  200=ƒVƒF[ƒ_[ƒ‚ƒfƒ‹‚QD‚O‚ªg—p‰Â”\  300=ƒVƒF[ƒ_[ƒ‚ƒfƒ‹‚RD‚O‚ªg—p‰Â”\ )
-extern	int		Graphics_Hardware_D3D9_Shader_GetConstIndex_PF( const wchar_t *ConstantName, SHADERHANDLEDATA *Shader ) ;											// w’è‚Ì–¼‘O‚ğ‚Â’è”‚ªg—p‚·‚éƒVƒF[ƒ_[’è”‚Ì”Ô†‚ğæ“¾‚·‚é
-extern	int		Graphics_Hardware_D3D9_Shader_GetConstCount_PF( const wchar_t *ConstantName, SHADERHANDLEDATA *Shader ) ;											// w’è‚Ì–¼‘O‚ğ‚Â’è”‚ªg—p‚·‚éƒVƒF[ƒ_[’è”‚Ì”‚ğæ“¾‚·‚é
-extern	const FLOAT4 *Graphics_Hardware_D3D9_Shader_GetConstDefaultParamF_PF( const wchar_t *ConstantName, SHADERHANDLEDATA *Shader ) ;								// w’è‚Ì–¼‘O‚ğ‚Â•‚“®¬”“_’è”‚ÌƒfƒtƒHƒ‹ƒgƒpƒ‰ƒ[ƒ^‚ªŠi”[‚³‚ê‚Ä‚¢‚éƒƒ‚ƒŠƒAƒhƒŒƒX‚ğæ“¾‚·‚é
-extern	int		Graphics_Hardware_D3D9_Shader_SetConst_PF(   int TypeIndex, int SetIndex, int ConstantIndex, const void *Param, int ParamNum, int UpdateUseArea ) ;	// ƒVƒF[ƒ_[’è”î•ñ‚ğİ’è‚·‚é
-extern	int		Graphics_Hardware_D3D9_Shader_ResetConst_PF( int TypeIndex, int SetIndex, int ConstantIndex, int ParamNum ) ;										// w’è—Ìˆæ‚ÌƒVƒF[ƒ_[’è”î•ñ‚ğƒŠƒZƒbƒg‚·‚é
-extern	int		Graphics_Hardware_D3D9_Shader_ModelCode_Init_PF( void ) ;																							// ‚R‚cƒ‚ƒfƒ‹—p‚ÌƒVƒF[ƒ_[ƒR[ƒh‚Ì‰Šú‰»‚ğs‚¤
+// ç’°å¢ƒä¾å­˜ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼é–¢ä¿‚
+extern	int		Graphics_Hardware_D3D9_Shader_Create_PF( int ShaderHandle, int ShaderType, void *Image, int ImageSize, int ImageAfterFree, int ASyncThread ) ;		// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒãƒ³ãƒ‰ãƒ«ã‚’åˆæœŸåŒ–ã™ã‚‹
+extern	int		Graphics_Hardware_D3D9_Shader_TerminateHandle_PF( SHADERHANDLEDATA *Shader ) ;																		// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒãƒ³ãƒ‰ãƒ«ã®å¾Œå§‹æœ«
+extern	int		Graphics_Hardware_D3D9_Shader_GetValidShaderVersion_PF( void ) ;																					// ä½¿ç”¨ã§ãã‚‹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã‚’å–å¾—ã™ã‚‹( 0=ä½¿ãˆãªã„  200=ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒ¢ãƒ‡ãƒ«ï¼’ï¼ï¼ãŒä½¿ç”¨å¯èƒ½  300=ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒ¢ãƒ‡ãƒ«ï¼“ï¼ï¼ãŒä½¿ç”¨å¯èƒ½ )
+extern	int		Graphics_Hardware_D3D9_Shader_GetConstIndex_PF( const wchar_t *ConstantName, SHADERHANDLEDATA *Shader ) ;											// æŒ‡å®šã®åå‰ã‚’æŒã¤å®šæ•°ãŒä½¿ç”¨ã™ã‚‹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼å®šæ•°ã®ç•ªå·ã‚’å–å¾—ã™ã‚‹
+extern	int		Graphics_Hardware_D3D9_Shader_GetConstCount_PF( const wchar_t *ConstantName, SHADERHANDLEDATA *Shader ) ;											// æŒ‡å®šã®åå‰ã‚’æŒã¤å®šæ•°ãŒä½¿ç”¨ã™ã‚‹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼å®šæ•°ã®æ•°ã‚’å–å¾—ã™ã‚‹
+extern	const FLOAT4 *Graphics_Hardware_D3D9_Shader_GetConstDefaultParamF_PF( const wchar_t *ConstantName, SHADERHANDLEDATA *Shader ) ;								// æŒ‡å®šã®åå‰ã‚’æŒã¤æµ®å‹•å°æ•°ç‚¹å®šæ•°ã®ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãŒæ ¼ç´ã•ã‚Œã¦ã„ã‚‹ãƒ¡ãƒ¢ãƒªã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å–å¾—ã™ã‚‹
+extern	int		Graphics_Hardware_D3D9_Shader_SetConst_PF(   int TypeIndex, int SetIndex, int ConstantIndex, const void *Param, int ParamNum, int UpdateUseArea ) ;	// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼å®šæ•°æƒ…å ±ã‚’è¨­å®šã™ã‚‹
+extern	int		Graphics_Hardware_D3D9_Shader_ResetConst_PF( int TypeIndex, int SetIndex, int ConstantIndex, int ParamNum ) ;										// æŒ‡å®šé ˜åŸŸã®ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼å®šæ•°æƒ…å ±ã‚’ãƒªã‚»ãƒƒãƒˆã™ã‚‹
+extern	int		Graphics_Hardware_D3D9_Shader_ModelCode_Init_PF( void ) ;																							// ï¼“ï¼¤ãƒ¢ãƒ‡ãƒ«ç”¨ã®ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚³ãƒ¼ãƒ‰ã®åˆæœŸåŒ–ã‚’è¡Œã†
 
 
 
@@ -1767,12 +1767,12 @@ extern	int		Graphics_Hardware_D3D9_Shader_ModelCode_Init_PF( void ) ;											
 
 
 
-// ŠÂ‹«ˆË‘¶ƒVƒF[ƒ_[—p’è”ƒoƒbƒtƒ@ŠÖŒW
-extern	int		Graphics_Hardware_D3D9_ShaderConstantBuffer_Create_PF( int ShaderConstantBufferHandle, int BufferSize, int ASyncThread ) ;												// ƒVƒF[ƒ_[—p’è”ƒoƒbƒtƒ@ƒnƒ“ƒhƒ‹‚ğ‰Šú‰»‚·‚é
-extern	int		Graphics_Hardware_D3D9_ShaderConstantBuffer_TerminateHandle_PF( SHADERCONSTANTBUFFERHANDLEDATA *ShaderConstantBuffer ) ;													// ƒVƒF[ƒ_[—p’è”ƒoƒbƒtƒ@ƒnƒ“ƒhƒ‹‚ÌŒãn––
-extern	void *	Graphics_Hardware_D3D9_ShaderConstantBuffer_GetBuffer_PF( SHADERCONSTANTBUFFERHANDLEDATA *ShaderConstantBuffer ) ;														// ƒVƒF[ƒ_[—p’è”ƒoƒbƒtƒ@ƒnƒ“ƒhƒ‹‚Ì’è”ƒoƒbƒtƒ@‚ÌƒAƒhƒŒƒX‚ğæ“¾‚·‚é
-extern	int		Graphics_Hardware_D3D9_ShaderConstantBuffer_Update_PF( SHADERCONSTANTBUFFERHANDLEDATA *ShaderConstantBuffer ) ;															// ƒVƒF[ƒ_[—p’è”ƒoƒbƒtƒ@ƒnƒ“ƒhƒ‹‚Ì’è”ƒoƒbƒtƒ@‚Ö‚Ì•ÏX‚ğ“K—p‚·‚é
-extern	int		Graphics_Hardware_D3D9_ShaderConstantBuffer_Set_PF( SHADERCONSTANTBUFFERHANDLEDATA *ShaderConstantBuffer, int TargetShader /* DX_SHADERTYPE_VERTEX ‚È‚Ç */, int Slot ) ;	// ƒVƒF[ƒ_[—p’è”ƒoƒbƒtƒ@ƒnƒ“ƒhƒ‹‚Ì’è”ƒoƒbƒtƒ@‚ğw’è‚ÌƒVƒF[ƒ_[‚Ìw’è‚ÌƒXƒƒbƒg‚ÉƒZƒbƒg‚·‚é
+// ç’°å¢ƒä¾å­˜ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ç”¨å®šæ•°ãƒãƒƒãƒ•ã‚¡é–¢ä¿‚
+extern	int		Graphics_Hardware_D3D9_ShaderConstantBuffer_Create_PF( int ShaderConstantBufferHandle, int BufferSize, int ASyncThread ) ;												// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ç”¨å®šæ•°ãƒãƒƒãƒ•ã‚¡ãƒãƒ³ãƒ‰ãƒ«ã‚’åˆæœŸåŒ–ã™ã‚‹
+extern	int		Graphics_Hardware_D3D9_ShaderConstantBuffer_TerminateHandle_PF( SHADERCONSTANTBUFFERHANDLEDATA *ShaderConstantBuffer ) ;													// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ç”¨å®šæ•°ãƒãƒƒãƒ•ã‚¡ãƒãƒ³ãƒ‰ãƒ«ã®å¾Œå§‹æœ«
+extern	void *	Graphics_Hardware_D3D9_ShaderConstantBuffer_GetBuffer_PF( SHADERCONSTANTBUFFERHANDLEDATA *ShaderConstantBuffer ) ;														// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ç”¨å®šæ•°ãƒãƒƒãƒ•ã‚¡ãƒãƒ³ãƒ‰ãƒ«ã®å®šæ•°ãƒãƒƒãƒ•ã‚¡ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å–å¾—ã™ã‚‹
+extern	int		Graphics_Hardware_D3D9_ShaderConstantBuffer_Update_PF( SHADERCONSTANTBUFFERHANDLEDATA *ShaderConstantBuffer ) ;															// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ç”¨å®šæ•°ãƒãƒƒãƒ•ã‚¡ãƒãƒ³ãƒ‰ãƒ«ã®å®šæ•°ãƒãƒƒãƒ•ã‚¡ã¸ã®å¤‰æ›´ã‚’é©ç”¨ã™ã‚‹
+extern	int		Graphics_Hardware_D3D9_ShaderConstantBuffer_Set_PF( SHADERCONSTANTBUFFERHANDLEDATA *ShaderConstantBuffer, int TargetShader /* DX_SHADERTYPE_VERTEX ãªã© */, int Slot ) ;	// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ç”¨å®šæ•°ãƒãƒƒãƒ•ã‚¡ãƒãƒ³ãƒ‰ãƒ«ã®å®šæ•°ãƒãƒƒãƒ•ã‚¡ã‚’æŒ‡å®šã®ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®æŒ‡å®šã®ã‚¹ãƒ­ãƒƒãƒˆã«ã‚»ãƒƒãƒˆã™ã‚‹
 
 
 
@@ -1781,8 +1781,8 @@ extern	int		Graphics_Hardware_D3D9_ShaderConstantBuffer_Set_PF( SHADERCONSTANTBU
 
 
 
-// ŠÂ‹«ˆË‘¶•`‰æŠÖŒW
-extern	int		Graphics_Hardware_D3D9_Paint_PF( int x, int y, unsigned int FillColor, ULONGLONG BoundaryColor ) ;			// w’è“_‚©‚ç‹«ŠEF‚ª‚ ‚é‚Æ‚±‚ë‚Ü‚Å“h‚è‚Â‚Ô‚·
+// ç’°å¢ƒä¾å­˜æç”»é–¢ä¿‚
+extern	int		Graphics_Hardware_D3D9_Paint_PF( int x, int y, unsigned int FillColor, ULONGLONG BoundaryColor ) ;			// æŒ‡å®šç‚¹ã‹ã‚‰å¢ƒç•Œè‰²ãŒã‚ã‚‹ã¨ã“ã‚ã¾ã§å¡—ã‚Šã¤ã¶ã™
 
 
 

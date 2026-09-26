@@ -1,15 +1,15 @@
 //-----------------------------------------------------------------------------
 // 
-// 		‚c‚wƒ‰ƒCƒuƒ‰ƒŠ		Windows—pƒXƒŒƒbƒhŠÖŒWƒvƒƒOƒ‰ƒ€
+// 		ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒª		Windowsç”¨ã‚¹ãƒ¬ãƒƒãƒ‰é–¢ä¿‚ãƒ—ãƒ­ã‚°ãƒ©ãƒ 
 // 
 //  	Ver 3.25a
 // 
 //-----------------------------------------------------------------------------
 
-// ‚c‚wƒ‰ƒCƒuƒ‰ƒŠì¬—p’è‹`
+// ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªä½œæˆæ™‚ç”¨å®šç¾©
 #define DX_MAKE
 
-// ƒCƒ“ƒNƒ‹[ƒh ---------------------------------------------------------------
+// ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ ---------------------------------------------------------------
 #include "DxThreadWin.h"
 #include "DxWinAPI.h"
 #include "../DxMemory.h"
@@ -25,25 +25,25 @@ namespace DxLib
 
 #endif // DX_NON_NAMESPACE
 
-// ƒ}ƒNƒ’è‹` -----------------------------------------------------------------
+// ãƒã‚¯ãƒ­å®šç¾© -----------------------------------------------------------------
 
-// \‘¢‘ÌéŒ¾ -----------------------------------------------------------------
+// æ§‹é€ ä½“å®£è¨€ -----------------------------------------------------------------
 
-// ƒf[ƒ^’è‹` -----------------------------------------------------------------
+// ãƒ‡ãƒ¼ã‚¿å®šç¾© -----------------------------------------------------------------
 
-// ŠÖ”éŒ¾ -------------------------------------------------------------------
+// é–¢æ•°å®£è¨€ -------------------------------------------------------------------
 
-// ƒvƒƒOƒ‰ƒ€ -----------------------------------------------------------------
+// ãƒ—ãƒ­ã‚°ãƒ©ãƒ  -----------------------------------------------------------------
 
 
-// ƒXƒŒƒbƒh‚Ìˆ—‚ğ‰Šú‰»‚·‚é
+// ã‚¹ãƒ¬ãƒƒãƒ‰ã®å‡¦ç†ã‚’åˆæœŸåŒ–ã™ã‚‹
 extern void Thread_Initialize( void )
 {
-	// Windows ‚Å‚Í“Á‚É‰½‚à‚µ‚È‚¢
+	// Windows ã§ã¯ç‰¹ã«ä½•ã‚‚ã—ãªã„
 	return ;
 }
 
-// ƒXƒŒƒbƒh‚ğÀs‚·‚éŠÖ”
+// ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’å®Ÿè¡Œã™ã‚‹é–¢æ•°
 DWORD WINAPI ThreadRunFunction( void *pParam )
 {
 	THREAD_INFO *pInfo = ( THREAD_INFO * )pParam ;
@@ -59,7 +59,7 @@ DWORD WINAPI ThreadRunFunction( void *pParam )
 	return 0 ;
 }
 
-// ƒXƒŒƒbƒh‚ğì¬‚·‚é
+// ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’ä½œæˆã™ã‚‹
 extern int Thread_Create( THREAD_INFO *pThreadInfo, void ( *pFunction )( THREAD_INFO *, void * ), void *pParam )
 {
 	SETUP_WIN_API
@@ -71,7 +71,7 @@ extern int Thread_Create( THREAD_INFO *pThreadInfo, void ( *pFunction )( THREAD_
 	return pThreadInfo->ThreadHandle == NULL ? -1 : 0 ;
 }
 
-// ƒXƒŒƒbƒh‚ÌŒãn––‚ğs‚¤
+// ã‚¹ãƒ¬ãƒƒãƒ‰ã®å¾Œå§‹æœ«ã‚’è¡Œã†
 extern void Thread_Delete( THREAD_INFO *pThreadInfo )
 {
 	SETUP_WIN_API
@@ -80,15 +80,15 @@ extern void Thread_Delete( THREAD_INFO *pThreadInfo )
 	pThreadInfo->ThreadHandle = NULL ;
 }
 
-// ƒXƒŒƒbƒh‚ª—LŒø‚©‚Ç‚¤‚©‚ğæ“¾‚·‚é( 1:—LŒø  0:–³Œø )
+// ã‚¹ãƒ¬ãƒƒãƒ‰ãŒæœ‰åŠ¹ã‹ã©ã†ã‹ã‚’å–å¾—ã™ã‚‹( 1:æœ‰åŠ¹  0:ç„¡åŠ¹ )
 extern int Thread_IsValid( THREAD_INFO *pThreadInfo )
 {
 	return pThreadInfo->ThreadHandle != NULL ? 1 : 0 ;
 }
 
 
-// ƒXƒŒƒbƒh‚ÌÀs—Dæ‡ˆÊ‚ğİ’è‚·‚é
-extern void Thread_SetPriority( THREAD_INFO *pThreadInfo, int Priority /* DX_THREAD_PRIORITY_LOWEST ‚È‚Ç */ )
+// ã‚¹ãƒ¬ãƒƒãƒ‰ã®å®Ÿè¡Œå„ªå…ˆé †ä½ã‚’è¨­å®šã™ã‚‹
+extern void Thread_SetPriority( THREAD_INFO *pThreadInfo, int Priority /* DX_THREAD_PRIORITY_LOWEST ãªã© */ )
 {
 	int winPriority = -1 ;
 
@@ -119,7 +119,7 @@ extern void Thread_SetPriority( THREAD_INFO *pThreadInfo, int Priority /* DX_THR
 	WinAPIData.Win32Func.SetThreadPriorityFunc( pThreadInfo->ThreadHandle, winPriority ) ;
 }
 
-// ƒJƒŒƒ“ƒgƒXƒŒƒbƒh‚Ì‚h‚c‚ğæ“¾‚·‚é
+// ã‚«ãƒ¬ãƒ³ãƒˆã‚¹ãƒ¬ãƒƒãƒ‰ã®ï¼©ï¼¤ã‚’å–å¾—ã™ã‚‹
 extern DWORD_PTR Thread_GetCurrentId( void )
 {
 	SETUP_WIN_API
@@ -127,13 +127,13 @@ extern DWORD_PTR Thread_GetCurrentId( void )
 	return WinAPIData.Win32Func.GetCurrentThreadIdFunc() ;
 }
 
-// ƒXƒŒƒbƒh‚Ì‚h‚c‚ğæ“¾‚·‚é
+// ã‚¹ãƒ¬ãƒƒãƒ‰ã®ï¼©ï¼¤ã‚’å–å¾—ã™ã‚‹
 extern DWORD_PTR Thread_GetId( THREAD_INFO *pThreadInfo )
 {
 	return pThreadInfo->ThreadID ;
 }
 
-// ƒXƒŒƒbƒh‚ğ‹x~ó‘Ô‚É‚·‚é
+// ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’ä¼‘æ­¢çŠ¶æ…‹ã«ã™ã‚‹
 extern void Thread_Suspend( THREAD_INFO * /*pThreadInfo*/ )
 {
 	SETUP_WIN_API
@@ -141,7 +141,7 @@ extern void Thread_Suspend( THREAD_INFO * /*pThreadInfo*/ )
 	WinAPIData.Win32Func.SuspendThreadFunc( WinAPIData.Win32Func.GetCurrentThreadFunc() ) ;
 }
 
-// ƒXƒŒƒbƒh‚Ì‹x~ó‘Ô‚ğ‰ğœ‚·‚é( 0:‹x~ó‘Ô‚¶‚á‚È‚©‚Á‚½  1:‹x~ó‘Ô‚¾‚Á‚½ )
+// ã‚¹ãƒ¬ãƒƒãƒ‰ã®ä¼‘æ­¢çŠ¶æ…‹ã‚’è§£é™¤ã™ã‚‹( 0:ä¼‘æ­¢çŠ¶æ…‹ã˜ã‚ƒãªã‹ã£ãŸ  1:ä¼‘æ­¢çŠ¶æ…‹ã ã£ãŸ )
 extern int Thread_Resume( THREAD_INFO *pThreadInfo )
 {
 	SETUP_WIN_API
@@ -151,7 +151,7 @@ extern int Thread_Resume( THREAD_INFO *pThreadInfo )
 
 
 
-// w’èŠÔƒXƒŒƒbƒh‚ğ’â~‚·‚é
+// æŒ‡å®šæ™‚é–“ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’åœæ­¢ã™ã‚‹
 extern void Thread_Sleep( DWORD MiliSecond )
 {
 	SETUP_WIN_API
@@ -163,7 +163,7 @@ extern void Thread_Sleep( DWORD MiliSecond )
 
 
 
-// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰Šú‰»
+// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®åˆæœŸåŒ–
 extern int CriticalSection_Initialize( DX_CRITICAL_SECTION *pCSection )
 {
 	SETUP_WIN_API
@@ -181,7 +181,7 @@ extern int CriticalSection_Initialize( DX_CRITICAL_SECTION *pCSection )
 	return 0 ;
 }
 
-// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìíœ
+// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å‰Šé™¤
 extern int CriticalSection_Delete( DX_CRITICAL_SECTION *pCSection )
 {
 	SETUP_WIN_API
@@ -191,7 +191,7 @@ extern int CriticalSection_Delete( DX_CRITICAL_SECTION *pCSection )
 	return 0 ;
 }
 
-// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚ÌƒƒbƒN‚Ìæ“¾
+// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®ãƒ­ãƒƒã‚¯ã®å–å¾—
 #if !defined( BC_COMPILER ) || defined( _DEBUG )
 extern int CriticalSection_Lock( DX_CRITICAL_SECTION *pCSection, const char *FilePath, int LineNo )
 #else
@@ -218,7 +218,7 @@ extern int CriticalSection_Lock( DX_CRITICAL_SECTION *pCSection )
 	return 0 ;
 }
 
-// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚ÌƒƒbƒN‚ğ‰ğ•ú‚·‚é
+// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®ãƒ­ãƒƒã‚¯ã‚’è§£æ”¾ã™ã‚‹
 extern int CriticalSection_Unlock( DX_CRITICAL_SECTION *pCSection )
 {
 	SETUP_WIN_API

@@ -1,15 +1,15 @@
 // -------------------------------------------------------------------------------
 // 
-// 		‚c‚wƒ‰ƒCƒuƒ‰ƒŠ		ƒŠƒ“ƒOƒoƒbƒtƒ@ƒvƒƒOƒ‰ƒ€
+// 		ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒª		ãƒªãƒ³ã‚°ãƒãƒƒãƒ•ã‚¡ãƒ—ãƒ­ã‚°ãƒ©ãƒ 
 // 
 // 				Ver 3.25a
 // 
 // -------------------------------------------------------------------------------
 
-// ‚c‚wƒ‰ƒCƒuƒ‰ƒŠì¬—p’è‹`
+// ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªä½œæˆæ™‚ç”¨å®šç¾©
 #define DX_MAKE
 
-// ƒCƒ“ƒNƒ‹[ƒh ------------------------------------------------------------------
+// ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ ------------------------------------------------------------------
 #include "DxRingBuffer.h"
 #include "DxStatic.h"
 #include "DxLib.h"
@@ -24,60 +24,60 @@ namespace DxLib
 
 #endif // DX_NON_NAMESPACE
 
-// ƒ}ƒNƒ’è‹` --------------------------------------------------------------------
+// ãƒã‚¯ãƒ­å®šç¾© --------------------------------------------------------------------
 
-// \‘¢‘Ì’è‹` --------------------------------------------------------------------
+// æ§‹é€ ä½“å®šç¾© --------------------------------------------------------------------
 
-// “à•”‘åˆæ•Ï”éŒ¾ --------------------------------------------------------------
+// å†…éƒ¨å¤§åŸŸå¤‰æ•°å®£è¨€ --------------------------------------------------------------
 
-// ŠÖ”ƒvƒƒgƒ^ƒCƒvéŒ¾-----------------------------------------------------------
+// é–¢æ•°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€-----------------------------------------------------------
 
-// ƒvƒƒOƒ‰ƒ€ --------------------------------------------------------------------
+// ãƒ—ãƒ­ã‚°ãƒ©ãƒ  --------------------------------------------------------------------
 
-// ƒŠƒ“ƒOƒoƒbƒtƒ@‚ğ‰Šú‰»‚·‚é
+// ãƒªãƒ³ã‚°ãƒãƒƒãƒ•ã‚¡ã‚’åˆæœŸåŒ–ã™ã‚‹
 extern int RingBufInitialize( RINGBUF * RingBuf )
 {
-	// ƒf[ƒ^‚Ì‰Šú‰»
+	// ãƒ‡ãƒ¼ã‚¿ã®åˆæœŸåŒ–
 	_MEMSET( RingBuf, 0, sizeof( RINGBUF ) ) ;
 	RingBuf->DataBuffer = NULL ;
 	RingBuf->Start = RingBuf->End = 0 ;
 	RingBuf->DataLength = 0 ;
 	RingBuf->BufferSize = 0 ;
 	
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒŠƒ“ƒOƒoƒbƒtƒ@‚ÌŒãn––‚ğ‚·‚é
+// ãƒªãƒ³ã‚°ãƒãƒƒãƒ•ã‚¡ã®å¾Œå§‹æœ«ã‚’ã™ã‚‹
 extern int RingBufTerminate( RINGBUF * RingBuf )
 {
-	// ƒf[ƒ^‚ªŠm•Û‚³‚ê‚Ä‚¢‚½‚ç‰ğ•ú‚·‚é
+	// ãƒ‡ãƒ¼ã‚¿ãŒç¢ºä¿ã•ã‚Œã¦ã„ãŸã‚‰è§£æ”¾ã™ã‚‹
 	if( RingBuf->DataBuffer != NULL ) DXFREE( RingBuf->DataBuffer ) ;
 	
-	// ƒ[ƒ‰Šú‰»
+	// ã‚¼ãƒ­åˆæœŸåŒ–
 	_MEMSET( RingBuf, 0, sizeof( RINGBUF ) ) ;
 	
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒŠƒ“ƒOƒoƒbƒtƒ@‚Éƒf[ƒ^‚ğ’Ç‰Á‚·‚é
+// ãƒªãƒ³ã‚°ãƒãƒƒãƒ•ã‚¡ã«ãƒ‡ãƒ¼ã‚¿ã‚’è¿½åŠ ã™ã‚‹
 extern int RingBufDataAdd( RINGBUF * RingBuf, const void *Data, int Len )
 {
-	// ƒAƒhƒŒƒXƒ`ƒFƒbƒN
+	// ã‚¢ãƒ‰ãƒ¬ã‚¹ãƒã‚§ãƒƒã‚¯
 	RingBufAddressCheck( RingBuf ) ;
 	
-	// ƒf[ƒ^‚ªû‚Ü‚é‚æ‚¤‚ÉƒŠƒTƒCƒY
+	// ãƒ‡ãƒ¼ã‚¿ãŒåã¾ã‚‹ã‚ˆã†ã«ãƒªã‚µã‚¤ã‚º
 	if( RingBufReSize( RingBuf, Len ) == -1 )
 	{
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\xea\x30\xf3\x30\xb0\x30\xd0\x30\xc3\x30\xd5\x30\xa1\x30\x78\x30\x6e\x30\xc7\x30\xfc\x30\xbf\x30\x6e\x30\xfd\x8f\xa0\x52\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x28\x00\xfd\x8f\xa0\x52\x59\x30\x8b\x30\x77\x95\x55\x30\x20\x00\x25\x00\x64\x00\x20\x00\x62\x00\x79\x00\x74\x00\x65\x00\x29\x00\x00"/*@ L"ƒŠƒ“ƒOƒoƒbƒtƒ@‚Ö‚Ìƒf[ƒ^‚Ì’Ç‰Á‚É¸”s‚µ‚Ü‚µ‚½(’Ç‰Á‚·‚é’·‚³ %d byte)" @*/, Len )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\xea\x30\xf3\x30\xb0\x30\xd0\x30\xc3\x30\xd5\x30\xa1\x30\x78\x30\x6e\x30\xc7\x30\xfc\x30\xbf\x30\x6e\x30\xfd\x8f\xa0\x52\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x28\x00\xfd\x8f\xa0\x52\x59\x30\x8b\x30\x77\x95\x55\x30\x20\x00\x25\x00\x64\x00\x20\x00\x62\x00\x79\x00\x74\x00\x65\x00\x29\x00\x00"/*@ L"ãƒªãƒ³ã‚°ãƒãƒƒãƒ•ã‚¡ã¸ã®ãƒ‡ãƒ¼ã‚¿ã®è¿½åŠ ã«å¤±æ•—ã—ã¾ã—ãŸ(è¿½åŠ ã™ã‚‹é•·ã• %d byte)" @*/, Len )) ;
 		return -1 ;
 	}
 
-	// ‚Q‰ñ‚É•ª‚¯‚ÄŠi”[‚µ‚È‚¯‚ê‚Î‚È‚ç‚È‚¢‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+	// ï¼’å›ã«åˆ†ã‘ã¦æ ¼ç´ã—ãªã‘ã‚Œã°ãªã‚‰ãªã„ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 	if( RingBuf->End + Len > RingBuf->BufferSize )
 	{
-		// ‚Q‰ñ‚É•Ê‚¯‚ÄŠi”[‚·‚éê‡‚Ìˆ—
+		// ï¼’å›ã«åˆ¥ã‘ã¦æ ¼ç´ã™ã‚‹å ´åˆã®å‡¦ç†
 
 		_MEMCPY( (BYTE *)RingBuf->DataBuffer + RingBuf->End, Data,                                                  ( size_t )(         RingBuf->BufferSize - RingBuf->End )   ) ;
 		_MEMCPY( RingBuf->DataBuffer,                        (BYTE *)Data + ( RingBuf->BufferSize - RingBuf->End ), ( size_t )( Len - ( RingBuf->BufferSize - RingBuf->End ) ) ) ;
@@ -86,33 +86,33 @@ extern int RingBufDataAdd( RINGBUF * RingBuf, const void *Data, int Len )
 	}
 	else
 	{
-		// ‚P‰ñ‚ÅŠi”[‚·‚éê‡‚Ìˆ—
+		// ï¼‘å›ã§æ ¼ç´ã™ã‚‹å ´åˆã®å‡¦ç†
 		
 		_MEMCPY( (BYTE *)RingBuf->DataBuffer + RingBuf->End, Data, ( size_t )Len ) ;
 		
 		RingBuf->End += Len ;
 	}
 	
-	// Ši”[‚µ‚Ä‚¢‚éƒf[ƒ^‚Ì—Ê‚ğ‘‚â‚·
+	// æ ¼ç´ã—ã¦ã„ã‚‹ãƒ‡ãƒ¼ã‚¿ã®é‡ã‚’å¢—ã‚„ã™
 	RingBuf->DataLength += Len ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒŠƒ“ƒOƒoƒbƒtƒ@‚©‚çƒf[ƒ^‚ğ“Ç‚İ‚±‚Ş
+// ãƒªãƒ³ã‚°ãƒãƒƒãƒ•ã‚¡ã‹ã‚‰ãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿ã“ã‚€
 extern int RingBufDataGet( RINGBUF * RingBuf , void *Buf , int Len , int PeekFlag )
 {
-	// ‘¶İ‚·‚éƒf[ƒ^—Ê‚æ‚è‘½‚©‚Á‚½‚çƒGƒ‰[
+	// å­˜åœ¨ã™ã‚‹ãƒ‡ãƒ¼ã‚¿é‡ã‚ˆã‚Šå¤šã‹ã£ãŸã‚‰ã‚¨ãƒ©ãƒ¼
 	if( RingBuf->DataLength < Len ) return -1 ;
 
-	// ƒAƒhƒŒƒXƒ`ƒFƒbƒN
+	// ã‚¢ãƒ‰ãƒ¬ã‚¹ãƒã‚§ãƒƒã‚¯
 	RingBufAddressCheck( RingBuf ) ;
 
-	// ‚Q‰ñ‚É•Ê‚¯‚È‚¯‚ê‚Î‚¢‚¯‚È‚¢‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+	// ï¼’å›ã«åˆ¥ã‘ãªã‘ã‚Œã°ã„ã‘ãªã„ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 	if( RingBuf->Start + Len > RingBuf->BufferSize )
 	{
-		// ‚Q‰ñ‚É•Ê‚¯‚éê‡‚Ìˆ—
+		// ï¼’å›ã«åˆ¥ã‘ã‚‹å ´åˆã®å‡¦ç†
 		_MEMCPY( Buf,                                                    (BYTE *)RingBuf->DataBuffer + RingBuf->Start, ( size_t )(         RingBuf->BufferSize - RingBuf->Start )   ) ;
 		_MEMCPY( (BYTE *)Buf + ( RingBuf->BufferSize - RingBuf->Start ), RingBuf->DataBuffer,                          ( size_t )( Len - ( RingBuf->BufferSize - RingBuf->Start ) ) ) ;
 
@@ -120,38 +120,38 @@ extern int RingBufDataGet( RINGBUF * RingBuf , void *Buf , int Len , int PeekFla
 	}
 	else
 	{
-		// ‚P‰ñ‚ÅŠi”[‚·‚éê‡‚Ìˆ—
+		// ï¼‘å›ã§æ ¼ç´ã™ã‚‹å ´åˆã®å‡¦ç†
 		_MEMCPY( Buf, (BYTE *)RingBuf->DataBuffer + RingBuf->Start, ( size_t )Len ) ;
 		
 		if( PeekFlag == FALSE )  RingBuf->Start += Len ;
 	}
 
-	// ƒf[ƒ^‚Ì—Ê‚ğŒ¸‚ç‚·
+	// ãƒ‡ãƒ¼ã‚¿ã®é‡ã‚’æ¸›ã‚‰ã™
 	if( PeekFlag == FALSE )  RingBuf->DataLength -= Len ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒŠƒ“ƒOƒoƒbƒtƒ@‚Ì—LŒøƒf[ƒ^—Ê‚Ìæ“¾ 
+// ãƒªãƒ³ã‚°ãƒãƒƒãƒ•ã‚¡ã®æœ‰åŠ¹ãƒ‡ãƒ¼ã‚¿é‡ã®å–å¾— 
 extern int RingBufGetDataLength( RINGBUF * RingBuf )
 {
 	return RingBuf->DataLength ;
 }
 
-// ƒŠƒ“ƒOƒoƒbƒtƒ@‚Ìc‚è‹ó‚«ƒf[ƒ^—Ìˆæ
+// ãƒªãƒ³ã‚°ãƒãƒƒãƒ•ã‚¡ã®æ®‹ã‚Šç©ºããƒ‡ãƒ¼ã‚¿é ˜åŸŸ
 extern int RingBufGetRestDataLength( RINGBUF * RingBuf )
 {
 	return RingBuf->BufferSize - RingBuf->DataLength ;
 }
 
-// ƒŠƒ“ƒOƒoƒbƒtƒ@‚Ì—e—Ê‚ğw’è—Ê‚Ìƒf[ƒ^‚ğ’Ç‰Á‚µ‚Ä‚àû‚Ü‚éƒTƒCƒY‚É’²®‚·‚é
+// ãƒªãƒ³ã‚°ãƒãƒƒãƒ•ã‚¡ã®å®¹é‡ã‚’æŒ‡å®šé‡ã®ãƒ‡ãƒ¼ã‚¿ã‚’è¿½åŠ ã—ã¦ã‚‚åã¾ã‚‹ã‚µã‚¤ã‚ºã«èª¿æ•´ã™ã‚‹
 extern int RingBufReSize( RINGBUF * RingBuf, int AddSize )
 {
-	// ƒAƒhƒŒƒXƒ`ƒFƒbƒN
+	// ã‚¢ãƒ‰ãƒ¬ã‚¹ãƒã‚§ãƒƒã‚¯
 	RingBufAddressCheck( RingBuf ) ;
 
-	// Ši”[‚·‚éƒf[ƒ^‚ªŒ»İ‚Ìƒoƒbƒtƒ@—e—Ê‚Å‚Í“ü‚ç‚È‚¢ê‡‚Íƒoƒbƒtƒ@‚ğÄŠm•Û‚·‚é
+	// æ ¼ç´ã™ã‚‹ãƒ‡ãƒ¼ã‚¿ãŒç¾åœ¨ã®ãƒãƒƒãƒ•ã‚¡å®¹é‡ã§ã¯å…¥ã‚‰ãªã„å ´åˆã¯ãƒãƒƒãƒ•ã‚¡ã‚’å†ç¢ºä¿ã™ã‚‹
 	if( RingBuf->BufferSize < AddSize + RingBuf->DataLength )
 	{
 		void *OldBuffer ;
@@ -160,19 +160,19 @@ extern int RingBufReSize( RINGBUF * RingBuf, int AddSize )
 		OldBuffer = RingBuf->DataBuffer ;
 		OldSize = RingBuf->BufferSize ;
 
-		// ƒTƒCƒY‚ğÄİ’èAƒoƒbƒtƒ@‚ğÄŠm•Û
+		// ã‚µã‚¤ã‚ºã‚’å†è¨­å®šã€ãƒãƒƒãƒ•ã‚¡ã‚’å†ç¢ºä¿
 		RingBuf->BufferSize = RingBuf->DataLength * 3 / 2 + AddSize + 1000 ;
 		if( ( RingBuf->DataBuffer = ( char * )DXALLOC( ( size_t )RingBuf->BufferSize ) ) == NULL )
 		{
-			// ÄŠm•Û‚É¸”s‚µ‚½‚ç‚à‚Æ‚Ìƒoƒbƒtƒ@‚à‰ğ•ú‚µ‚ÄI—¹
+			// å†ç¢ºä¿ã«å¤±æ•—ã—ãŸã‚‰ã‚‚ã¨ã®ãƒãƒƒãƒ•ã‚¡ã‚‚è§£æ”¾ã—ã¦çµ‚äº†
 			DXFREE( OldBuffer ) ;
 			_MEMSET( RingBuf, 0, sizeof( RINGBUF ) ) ;
 			
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\xea\x30\xf3\x30\xb0\x30\xd0\x30\xc3\x30\xd5\x30\xa1\x30\x6e\x30\x8d\x51\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x28\x00\xba\x78\xdd\x4f\x57\x30\x88\x30\x46\x30\x68\x30\x57\x30\x5f\x30\xb5\x30\xa4\x30\xba\x30\x20\x00\x25\x00\x64\x00\x20\x00\x62\x00\x79\x00\x74\x00\x65\x00\x29\x00\x00"/*@ L"ƒŠƒ“ƒOƒoƒbƒtƒ@‚ÌÄŠm•Û‚É¸”s‚µ‚Ü‚µ‚½(Šm•Û‚µ‚æ‚¤‚Æ‚µ‚½ƒTƒCƒY %d byte)" @*/, RingBuf->BufferSize )) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\xea\x30\xf3\x30\xb0\x30\xd0\x30\xc3\x30\xd5\x30\xa1\x30\x6e\x30\x8d\x51\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x28\x00\xba\x78\xdd\x4f\x57\x30\x88\x30\x46\x30\x68\x30\x57\x30\x5f\x30\xb5\x30\xa4\x30\xba\x30\x20\x00\x25\x00\x64\x00\x20\x00\x62\x00\x79\x00\x74\x00\x65\x00\x29\x00\x00"/*@ L"ãƒªãƒ³ã‚°ãƒãƒƒãƒ•ã‚¡ã®å†ç¢ºä¿ã«å¤±æ•—ã—ã¾ã—ãŸ(ç¢ºä¿ã—ã‚ˆã†ã¨ã—ãŸã‚µã‚¤ã‚º %d byte)" @*/, RingBuf->BufferSize )) ;
 			return -1 ;
 		}
 
-		// ÄŠm•Û‚µ‚½ƒƒ‚ƒŠ—Ìˆæ‚É¡‚Ü‚Å‚Ìƒoƒbƒtƒ@‚Ì“à—e‚ğƒRƒs[‚·‚é
+		// å†ç¢ºä¿ã—ãŸãƒ¡ãƒ¢ãƒªé ˜åŸŸã«ä»Šã¾ã§ã®ãƒãƒƒãƒ•ã‚¡ã®å†…å®¹ã‚’ã‚³ãƒ”ãƒ¼ã™ã‚‹
 		if( RingBuf->DataLength != 0 )
 		{
 			if( RingBuf->Start + RingBuf->DataLength > OldSize )
@@ -186,15 +186,15 @@ extern int RingBufReSize( RINGBUF * RingBuf, int AddSize )
 			}
 		}
 
-		// ƒAƒhƒŒƒX‚àÄİ’è
+		// ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚‚å†è¨­å®š
 		RingBuf->Start = 0 ;
 		RingBuf->End = RingBuf->DataLength ;
 
-		// Œ³Xg—p‚µ‚Ä‚¢‚½ƒƒ‚ƒŠ—Ìˆæ‚ğ‰ğ•ú
+		// å…ƒã€…ä½¿ç”¨ã—ã¦ã„ãŸãƒ¡ãƒ¢ãƒªé ˜åŸŸã‚’è§£æ”¾
 		DXFREE( OldBuffer ) ;
 	}
 	
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 

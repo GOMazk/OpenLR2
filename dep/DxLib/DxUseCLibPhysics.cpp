@@ -1,19 +1,19 @@
 // -------------------------------------------------------------------------------
 // 
-// 		ÇcÇwÉâÉCÉuÉâÉä		ï®óùââéZèàóù
+// 		Ôº§Ôº∏„É©„Ç§„Éñ„É©„É™		Áâ©ÁêÜÊºîÁÆóÂá¶ÁêÜ
 // 
 // 				Ver 3.25a
 // 
 // -------------------------------------------------------------------------------
 
-// ÇcÇwÉâÉCÉuÉâÉäçÏê¨éûópíËã`
+// Ôº§Ôº∏„É©„Ç§„Éñ„É©„É™‰ΩúÊàêÊôÇÁî®ÂÆöÁæ©
 #define DX_MAKE
 
 #include "DxCompileConfig.h"
 
 #if !defined( DX_NON_MODEL ) && !defined( DX_NON_BULLET_PHYSICS )
 
-// ÉCÉìÉNÉãÅ[Éh ------------------------------------------------------------------
+// „Ç§„É≥„ÇØ„É´„Éº„Éâ ------------------------------------------------------------------
 #include "DxUseCLib.h"
 #include "DxLib.h"
 #include "DxStatic.h"
@@ -26,66 +26,66 @@
 //namespace DxLib
 //{
 
-// É}ÉNÉçíËã` -----------------------------------
+// „Éû„ÇØ„É≠ÂÆöÁæ© -----------------------------------
 
-// ÉfÅ[É^å^êÈåæ ---------------------------------
+// „Éá„Éº„ÇøÂûãÂÆ£Ë®Ä ---------------------------------
 
-// Bullet ÇÃçÑëÃÇèâä˙âªÇ∑ÇÈç€Ç…égópÇ∑ÇÈèÓïÒ
+// Bullet „ÅÆÂâõ‰Ωì„ÇíÂàùÊúüÂåñ„Åô„ÇãÈöõ„Å´‰ΩøÁî®„Åô„ÇãÊÉÖÂ†±
 struct BULLET_RIGIDBODY_SETUP_INFO
 {
-	int					RigidBodyGroupIndex ;	// çÑëÃÉOÉãÅ[Évî‘çÜ
-	DWORD				RigidBodyGroupTarget ;	// çÑëÃÉOÉãÅ[ÉvëŒè€
-	int					ShapeType ;				// å`èÛ( 0:ãÖ  1:î†  2:ÉJÉvÉZÉã )
-	float				ShapeW ;				// ïù
-	float				ShapeH ;				// çÇÇ≥
-	float				ShapeD ;				// âúçs
-	VECTOR				Position ;				// à íu
-	VECTOR				Rotation ;				// âÒì]
-	float				RigidBodyWeight ;		// éøó 
-	float				RigidBodyPosDim ;		// à⁄ìÆå∏
-	float				RigidBodyRotDim ;		// âÒì]å∏
-	float				RigidBodyRecoil ;		// îΩî≠óÕ
-	float				RigidBodyFriction ;		// ñÄéCóÕ
-	int					RigidBodyType ;			// çÑëÃÉ^ÉCÉv( 0:Boneí«è]  1:ï®óùââéZ  2:ï®óùââéZ(Boneà íuçáÇÌÇπ) )
-	MATRIX				*InitializeMatrix ;		// çsóÒÇÃèâä˙íl
+	int					RigidBodyGroupIndex ;	// Ââõ‰Ωì„Ç∞„É´„Éº„ÉóÁï™Âè∑
+	DWORD				RigidBodyGroupTarget ;	// Ââõ‰Ωì„Ç∞„É´„Éº„ÉóÂØæË±°
+	int					ShapeType ;				// ÂΩ¢Áä∂( 0:ÁêÉ  1:ÁÆ±  2:„Ç´„Éó„Çª„É´ )
+	float				ShapeW ;				// ÂπÖ
+	float				ShapeH ;				// È´ò„Åï
+	float				ShapeD ;				// Â••Ë°å
+	VECTOR				Position ;				// ‰ΩçÁΩÆ
+	VECTOR				Rotation ;				// ÂõûËª¢
+	float				RigidBodyWeight ;		// Ë≥™Èáè
+	float				RigidBodyPosDim ;		// ÁßªÂãïÊ∏õ
+	float				RigidBodyRotDim ;		// ÂõûËª¢Ê∏õ
+	float				RigidBodyRecoil ;		// ÂèçÁô∫Âäõ
+	float				RigidBodyFriction ;		// Êë©Êì¶Âäõ
+	int					RigidBodyType ;			// Ââõ‰Ωì„Çø„Ç§„Éó( 0:BoneËøΩÂæì  1:Áâ©ÁêÜÊºîÁÆó  2:Áâ©ÁêÜÊºîÁÆó(Bone‰ΩçÁΩÆÂêà„Çè„Åõ) )
+	MATRIX				*InitializeMatrix ;		// Ë°åÂàó„ÅÆÂàùÊúüÂÄ§
 } ;
 
-// Bullet ÇÃçÑëÃÉWÉáÉCÉìÉgÇèâä˙âªÇ∑ÇÈç€Ç…égópÇ∑ÇÈèÓïÒ
+// Bullet „ÅÆÂâõ‰Ωì„Ç∏„Éß„Ç§„É≥„Éà„ÇíÂàùÊúüÂåñ„Åô„ÇãÈöõ„Å´‰ΩøÁî®„Åô„ÇãÊÉÖÂ†±
 struct BULLET_JOINT_SETUP_INFO
 {
-	D_btRigidBody		*RigidBodyA ;			// ê⁄ë±êÊçÑëÃÇ`
-	D_btRigidBody		*RigidBodyB ;			// ê⁄ë±êÊçÑëÃÇa
-	VECTOR				Position ;				// à íu
-	VECTOR				Rotation ;				// âÒì]( ÉâÉWÉAÉì )
-	VECTOR				ConstrainPosition1 ;	// à⁄ìÆêßå¿ílÇP
-	VECTOR				ConstrainPosition2 ;	// à⁄ìÆêßå¿ílÇQ
-	VECTOR				ConstrainRotation1 ;	// âÒì]êßå¿ílÇP
-	VECTOR				ConstrainRotation2 ;	// âÒì]êßå¿ílÇQ
-	VECTOR				SpringPosition ;		// ÇŒÇÀà⁄ìÆíl
-	VECTOR				SpringRotation ;		// ÇŒÇÀâÒì]íl
+	D_btRigidBody		*RigidBodyA ;			// Êé•Á∂öÂÖàÂâõ‰ΩìÔº°
+	D_btRigidBody		*RigidBodyB ;			// Êé•Á∂öÂÖàÂâõ‰ΩìÔº¢
+	VECTOR				Position ;				// ‰ΩçÁΩÆ
+	VECTOR				Rotation ;				// ÂõûËª¢( „É©„Ç∏„Ç¢„É≥ )
+	VECTOR				ConstrainPosition1 ;	// ÁßªÂãïÂà∂ÈôêÂÄ§Ôºë
+	VECTOR				ConstrainPosition2 ;	// ÁßªÂãïÂà∂ÈôêÂÄ§Ôºí
+	VECTOR				ConstrainRotation1 ;	// ÂõûËª¢Âà∂ÈôêÂÄ§Ôºë
+	VECTOR				ConstrainRotation2 ;	// ÂõûËª¢Âà∂ÈôêÂÄ§Ôºí
+	VECTOR				SpringPosition ;		// „Å∞„Å≠ÁßªÂãïÂÄ§
+	VECTOR				SpringRotation ;		// „Å∞„Å≠ÂõûËª¢ÂÄ§
 } ;
 
-// Bullet ÇÃçÑëÃèàóùÇ≈égópÇ∑ÇÈÉfÅ[É^
+// Bullet „ÅÆÂâõ‰ΩìÂá¶ÁêÜ„Åß‰ΩøÁî®„Åô„Çã„Éá„Éº„Çø
 struct BULLET_RIGIDBODY_INFO
 {
-	int					DisableFlag ;			// ñ≥å¯ÉtÉâÉO
+	int					DisableFlag ;			// ÁÑ°Âäπ„Éï„É©„Ç∞
 
-	D_btCollisionShape	*btColShape ;			// å`èÛÉfÅ[É^
-	D_btRigidBody		*btRigdBody ;			// çÑëÃÉfÅ[É^
+	D_btCollisionShape	*btColShape ;			// ÂΩ¢Áä∂„Éá„Éº„Çø
+	D_btRigidBody		*btRigdBody ;			// Ââõ‰Ωì„Éá„Éº„Çø
 
-	D_btTransform		bttrBoneOffset ;		// É{Å[ÉìÇÃÉIÉtÉZÉbÉg
-	D_btTransform		bttrInvBoneOffset ;		// É{Å[ÉìÇÃãtÉIÉtÉZÉbÉg
+	D_btTransform		bttrBoneOffset ;		// „Éú„Éº„É≥„ÅÆ„Ç™„Éï„Çª„ÉÉ„Éà
+	D_btTransform		bttrInvBoneOffset ;		// „Éú„Éº„É≥„ÅÆÈÄÜ„Ç™„Éï„Çª„ÉÉ„Éà
 	struct D_btKinematicMotionState *btMotionState ;
 } ;
 
-// Bullet ÇÃçÑëÃÉWÉáÉCÉìÉgèàóùÇ≈égópÇ∑ÇÈÉfÅ[É^
+// Bullet „ÅÆÂâõ‰Ωì„Ç∏„Éß„Ç§„É≥„ÉàÂá¶ÁêÜ„Åß‰ΩøÁî®„Åô„Çã„Éá„Éº„Çø
 struct BULLET_JOINT_INFO
 {
-	int									DisableFlag ;			// ñ≥å¯ÉtÉâÉO
+	int									DisableFlag ;			// ÁÑ°Âäπ„Éï„É©„Ç∞
 	D_btGeneric6DofSpringConstraint	*	btcConstraint ;
 } ;
 
-// Bullet ÇÃ KinematicópÉÇÅ[ÉVÉáÉìÉXÉeÅ[Ég
+// Bullet „ÅÆ KinematicÁî®„É¢„Éº„Ç∑„Éß„É≥„Çπ„ÉÜ„Éº„Éà
 struct D_btKinematicMotionState : public D_btMotionState
 {
 	D_btTransform			GraphicsWorldTrans ;
@@ -145,23 +145,23 @@ struct D_btKinematicMotionState : public D_btMotionState
 	}
 } ;
 
-// bullet physics ÇÃèàóùÇ…ïKóvÇ»ÉIÉuÉWÉFÉNÉgÇãlÇﬂÇΩç\ë¢ëÃ
+// bullet physics „ÅÆÂá¶ÁêÜ„Å´ÂøÖË¶Å„Å™„Ç™„Éñ„Ç∏„Çß„ÇØ„Éà„ÇíË©∞„ÇÅ„ÅüÊßãÈÄ†‰Ωì
 struct BULLET_PHYSICS
 {
-	D_btDefaultCollisionConfiguration		*CollisionConfig ;			// ÉRÉäÉWÉáÉìÉRÉìÉtÉBÉO
-	D_btCollisionDispatcher					*CollisionDispatcher ;		// ÉRÉäÉWÉáÉìÉfÉBÉXÉpÉbÉ`ÉÉ
-	D_btAxisSweep3							*OverlappingPairCache ;		// ÉRÉäÉWÉáÉìÉèÅ[ÉãÉhÇÃîÕàÕ
-	D_btSequentialImpulseConstraintSolver	*Solver ;					// çÇë¨åvéZÉ\ÉãÉo
-	D_btDiscreteDynamicsWorld				*World ;					// ÉèÅ[ÉãÉh
-//	D_btContinuousDynamicsWorld				*World ;					// ÉèÅ[ÉãÉh
+	D_btDefaultCollisionConfiguration		*CollisionConfig ;			// „Ç≥„É™„Ç∏„Éß„É≥„Ç≥„É≥„Éï„Ç£„Ç∞
+	D_btCollisionDispatcher					*CollisionDispatcher ;		// „Ç≥„É™„Ç∏„Éß„É≥„Éá„Ç£„Çπ„Éë„ÉÉ„ÉÅ„É£
+	D_btAxisSweep3							*OverlappingPairCache ;		// „Ç≥„É™„Ç∏„Éß„É≥„ÉØ„Éº„É´„Éâ„ÅÆÁØÑÂõ≤
+	D_btSequentialImpulseConstraintSolver	*Solver ;					// È´òÈÄüË®àÁÆó„ÇΩ„É´„Éê
+	D_btDiscreteDynamicsWorld				*World ;					// „ÉØ„Éº„É´„Éâ
+//	D_btContinuousDynamicsWorld				*World ;					// „ÉØ„Éº„É´„Éâ
 
-	D_btCollisionShape						*GroundShape ;				// è∞ÉRÉäÉWÉáÉì
+	D_btCollisionShape						*GroundShape ;				// Â∫ä„Ç≥„É™„Ç∏„Éß„É≥
 } ;
 
-// ä÷êîêÈåæ -------------------------------------
+// Èñ¢Êï∞ÂÆ£Ë®Ä -------------------------------------
 
-static int BulletPhysics_Initialize( BULLET_PHYSICS *BulletPhysicsData, VECTOR Gravity ) ;		// BulletPhysics ÇÃèâä˙âª
-static int BulletPhysics_Terminate( BULLET_PHYSICS *BulletPhysicsData ) ;						// BulletPhysics ÇÃå„énññ
+static int BulletPhysics_Initialize( BULLET_PHYSICS *BulletPhysicsData, VECTOR Gravity ) ;		// BulletPhysics „ÅÆÂàùÊúüÂåñ
+static int BulletPhysics_Terminate( BULLET_PHYSICS *BulletPhysicsData ) ;						// BulletPhysics „ÅÆÂæåÂßãÊú´
 
 static int BulletPhysics_SetupRigidBody(	BULLET_PHYSICS *BulletPhysicsData,  BULLET_RIGIDBODY_INFO *RigidBodyInfo,	BULLET_RIGIDBODY_SETUP_INFO	*SetupInfo ) ;
 static int BulletPhysics_SetupJoint(		BULLET_PHYSICS *BulletPhysicsData,  BULLET_JOINT_INFO	  *JointInfo,		BULLET_JOINT_SETUP_INFO		*SetupInfo ) ;
@@ -169,65 +169,65 @@ static int BulletPhysics_ReleaseRigidBody(	BULLET_RIGIDBODY_INFO *RigidBodyInfo 
 static int BulletPhysics_ReleaseJoint(		BULLET_JOINT_INFO	  *JointInfo ) ;
 static int BulleyPhysics_ResetRigidBody(	BULLET_RIGIDBODY_INFO *RigidBodyInfo, MATRIX *Matrix ) ;
 
-// èåèÇå¿íËÇµÇΩè≠ÇµçÇë¨Ç»ãtçsóÒåvéZ
+// Êù°‰ª∂„ÇíÈôêÂÆö„Åó„ÅüÂ∞ë„ÅóÈ´òÈÄü„Å™ÈÄÜË°åÂàóË®àÁÆó
 static void ModelLoader3_InverseMatrix( MATRIX &InMatrix, MATRIX &OutMatrix ) ;
 
-// PMDópÇÃçÑëÃÇ…É{Å[ÉìÇÃèÛë‘ÇîΩâfÇ∑ÇÈä÷êî
+// PMDÁî®„ÅÆÂâõ‰Ωì„Å´„Éú„Éº„É≥„ÅÆÁä∂ÊÖã„ÇíÂèçÊò†„Åô„ÇãÈñ¢Êï∞
 static void PMD_PhysicsMotionState_Flush( D_btKinematicMotionState *pbtMotionState, PMD_READ_PHYSICS_INFO *pPhysics ) ;
 
-// ÉÇÉfÉãÇÃçÑëÃÇ…É{Å[ÉìÇÃèÛë‘ÇîΩâfÇ∑ÇÈä÷êî
+// „É¢„Éá„É´„ÅÆÂâõ‰Ωì„Å´„Éú„Éº„É≥„ÅÆÁä∂ÊÖã„ÇíÂèçÊò†„Åô„ÇãÈñ¢Êï∞
 static void Model_PhysicsMotionState_Flush( D_btKinematicMotionState *pbtMotionState, MV1_PHYSICS_RIGIDBODY *pRigidBody ) ;
 
-// ÉvÉçÉOÉâÉÄ -----------------------------------
+// „Éó„É≠„Ç∞„É©„É† -----------------------------------
 
-// BulletPhysics ÇÃèâä˙âª
+// BulletPhysics „ÅÆÂàùÊúüÂåñ
 static int BulletPhysics_Initialize( BULLET_PHYSICS *BulletPhysicsData, VECTOR Gravity )
 {
 	D_btTransform trGroundTransform ;
 
-	// É[Éçèâä˙âª
+	// „Çº„É≠ÂàùÊúüÂåñ
 	_MEMSET( BulletPhysicsData, 0, sizeof( *BulletPhysicsData ) ) ;
 
-	// ÉRÉäÉWÉáÉìÉRÉìÉtÉBÉOÇçÏê¨Ç∑ÇÈ
+	// „Ç≥„É™„Ç∏„Éß„É≥„Ç≥„É≥„Éï„Ç£„Ç∞„Çí‰ΩúÊàê„Åô„Çã
 	BulletPhysicsData->CollisionConfig = new D_btDefaultCollisionConfiguration() ;
 
-	// ÉRÉäÉWÉáÉìÉfÉBÉXÉpÉbÉ`ÉÉÇçÏê¨Ç∑ÇÈ
+	// „Ç≥„É™„Ç∏„Éß„É≥„Éá„Ç£„Çπ„Éë„ÉÉ„ÉÅ„É£„Çí‰ΩúÊàê„Åô„Çã
 	BulletPhysicsData->CollisionDispatcher = new D_btCollisionDispatcher( BulletPhysicsData->CollisionConfig ) ;
 
-	// ÉRÉäÉWÉáÉìÉèÅ[ÉãÉhÇÃç≈ëÂÉTÉCÉYÇéwíËÇ∑ÇÈ
+	// „Ç≥„É™„Ç∏„Éß„É≥„ÉØ„Éº„É´„Éâ„ÅÆÊúÄÂ§ß„Çµ„Ç§„Ç∫„ÇíÊåáÂÆö„Åô„Çã
 	BulletPhysicsData->OverlappingPairCache = new D_btAxisSweep3( D_btVector3( -50000.0f, -50000.0f, -50000.0f ), D_btVector3(  50000.0f,  50000.0f,  50000.0f ), 2048 ) ;
 
-	// çSë©åvéZÉ\ÉãÉoÇçÏê¨Ç∑ÇÈ
+	// ÊãòÊùüË®àÁÆó„ÇΩ„É´„Éê„Çí‰ΩúÊàê„Åô„Çã
 	BulletPhysicsData->Solver = new D_btSequentialImpulseConstraintSolver() ;
 
-	// ÉèÅ[ÉãÉhÇÃçÏê¨
+	// „ÉØ„Éº„É´„Éâ„ÅÆ‰ΩúÊàê
 	BulletPhysicsData->World = new D_btDiscreteDynamicsWorld( BulletPhysicsData->CollisionDispatcher, BulletPhysicsData->OverlappingPairCache, BulletPhysicsData->Solver, BulletPhysicsData->CollisionConfig ) ;
 //	BulletPhysicsData->World = new D_btContinuousDynamicsWorld( BulletPhysicsData->CollisionDispatcher, BulletPhysicsData->OverlappingPairCache, BulletPhysicsData->Solver, BulletPhysicsData->CollisionConfig ) ;
 
-	// èdóÕê›íË
+	// ÈáçÂäõË®≠ÂÆö
 	BulletPhysicsData->World->setGravity( D_btVector3( Gravity.x, Gravity.y, Gravity.z ) ) ;
 
 	//-----------------------------------------------------
-	// è∞ópÇ∆ÇµÇƒñ≥å¿ïΩñ ÇçÏê¨
+	// Â∫äÁî®„Å®„Åó„Å¶ÁÑ°ÈôêÂπ≥Èù¢„Çí‰ΩúÊàê
 //	BulletPhysicsData->GroundShape = new D_btStaticPlaneShape( D_btVector3( 0.0f, 1.0f, 0.0f ), 0.0f ) ;
 
-	// è∞ÇÃÉgÉâÉìÉXÉtÉHÅ[ÉÄÇê›íË
+	// Â∫ä„ÅÆ„Éà„É©„É≥„Çπ„Éï„Ç©„Éº„É†„ÇíË®≠ÂÆö
 //	trGroundTransform.setIdentity() ;
 
-	// MotionStateÇçÏê¨Ç∑ÇÈÅBçÑëÃÇÃépê®êßå‰ÇÇ∑ÇÈÇ‡ÇÃ
+	// MotionState„Çí‰ΩúÊàê„Åô„Çã„ÄÇÂâõ‰Ωì„ÅÆÂßøÂã¢Âà∂Âæ°„Çí„Åô„Çã„ÇÇ„ÅÆ
 //	D_btMotionState *pMotionState = new D_btDefaultMotionState( trGroundTransform ) ;
 
-	// çÑëÃÇçÏê¨Ç∑ÇÈ
-	// éøó  0.0ÅAäµê´ÉeÉìÉ\Éã 0.0 Ç»ÇÁÇ±ÇÃçÑëÃÇÕìÆÇ©Ç»Ç¢
+	// Ââõ‰Ωì„Çí‰ΩúÊàê„Åô„Çã
+	// Ë≥™Èáè 0.0„ÄÅÊÖ£ÊÄß„ÉÜ„É≥„ÇΩ„É´ 0.0 „Å™„Çâ„Åì„ÅÆÂâõ‰Ωì„ÅØÂãï„Åã„Å™„ÅÑ
 //	D_btRigidBody::D_btRigidBodyConstructionInfo rbInfo( 0.0f, pMotionState, BulletPhysicsData->GroundShape, D_btVector3( 0.0f, 0.0f, 0.0f ) ) ;
 
-	// ï®óùÉèÅ[ÉãÉhÇ…è∞Çí«â¡
+	// Áâ©ÁêÜ„ÉØ„Éº„É´„Éâ„Å´Â∫ä„ÇíËøΩÂä†
 //	BulletPhysicsData->World->addRigidBody( new D_btRigidBody( rbInfo ) ) ;
 
 	return 0 ;
 }
 
-// BulletPhysics ÇÃå„énññ
+// BulletPhysics „ÅÆÂæåÂßãÊú´
 static int BulletPhysics_Terminate( BULLET_PHYSICS *BulletPhysicsData )
 {
 	int i ;
@@ -302,7 +302,7 @@ static int BulletPhysics_SetupRigidBody( BULLET_PHYSICS *BulletPhysicsData, BULL
 {
 	RigidBodyInfo->DisableFlag = FALSE ;
 
-	// É{Å[ÉìÉIÉtÉZÉbÉgópÉgÉâÉìÉXÉtÉHÅ[ÉÄçÏê¨
+	// „Éú„Éº„É≥„Ç™„Éï„Çª„ÉÉ„ÉàÁî®„Éà„É©„É≥„Çπ„Éï„Ç©„Éº„É†‰ΩúÊàê
 	D_btMatrix3x3	btmRotationMat ;
 	btmRotationMat.setEulerZYX( SetupInfo->Rotation.x, SetupInfo->Rotation.y, SetupInfo->Rotation.z ) ;
 	RigidBodyInfo->bttrBoneOffset.setIdentity() ;
@@ -310,48 +310,48 @@ static int BulletPhysics_SetupRigidBody( BULLET_PHYSICS *BulletPhysicsData, BULL
 	RigidBodyInfo->bttrBoneOffset.setBasis( btmRotationMat ) ;
 	RigidBodyInfo->bttrInvBoneOffset = RigidBodyInfo->bttrBoneOffset.inverse() ;
 
-	// ÉVÉFÉCÉvÇÃçÏê¨
+	// „Ç∑„Çß„Ç§„Éó„ÅÆ‰ΩúÊàê
 	switch( SetupInfo->ShapeType )
 	{
-	case 0 : RigidBodyInfo->btColShape = new D_btSphereShape( SetupInfo->ShapeW ) ; break ;														// ãÖ
-	case 1 : RigidBodyInfo->btColShape = new D_btBoxShape( D_btVector3( SetupInfo->ShapeW, SetupInfo->ShapeH, SetupInfo->ShapeD ) ) ; break ;	// î†
-	case 2 : RigidBodyInfo->btColShape = new D_btCapsuleShape( SetupInfo->ShapeW, SetupInfo->ShapeH ) ; break ;									// ÉJÉvÉZÉã
+	case 0 : RigidBodyInfo->btColShape = new D_btSphereShape( SetupInfo->ShapeW ) ; break ;														// ÁêÉ
+	case 1 : RigidBodyInfo->btColShape = new D_btBoxShape( D_btVector3( SetupInfo->ShapeW, SetupInfo->ShapeH, SetupInfo->ShapeD ) ) ; break ;	// ÁÆ±
+	case 2 : RigidBodyInfo->btColShape = new D_btCapsuleShape( SetupInfo->ShapeW, SetupInfo->ShapeH ) ; break ;									// „Ç´„Éó„Çª„É´
 	}
 
-	// éøó Ç∆äµê´ÉeÉìÉ\ÉãÇÃê›íË
+	// Ë≥™Èáè„Å®ÊÖ£ÊÄß„ÉÜ„É≥„ÇΩ„É´„ÅÆË®≠ÂÆö
 	D_btScalar	btsMass( 0.0f ) ;
 	D_btVector3	btv3LocalInertia( 0.0f, 0.0f ,0.0f ) ;
 
-	// É{Å[Éìí«è]Ç≈Ç»Ç¢èÍçáÇÕéøó Çê›íË
+	// „Éú„Éº„É≥ËøΩÂæì„Åß„Å™„ÅÑÂ†¥Âêà„ÅØË≥™Èáè„ÇíË®≠ÂÆö
 	if( SetupInfo->RigidBodyType != 0 )
 		btsMass = SetupInfo->RigidBodyWeight ;
 
-	// äµê´ÉeÉìÉ\ÉãÇÃåvéZ
+	// ÊÖ£ÊÄß„ÉÜ„É≥„ÇΩ„É´„ÅÆË®àÁÆó
 	if( SetupInfo->RigidBodyType != 0 )
 		RigidBodyInfo->btColShape->calculateLocalInertia( btsMass, btv3LocalInertia ) ;
 
-	// MotionStateÇÃçÏê¨
+	// MotionState„ÅÆ‰ΩúÊàê
 	D_btMotionState *pbtMotionState ;
 	pbtMotionState = new D_btKinematicMotionState() ;
 	RigidBodyInfo->btMotionState = ( D_btKinematicMotionState * )pbtMotionState ;
 
-	// ÉÇÅ[ÉVÉáÉìÉXÉeÅ[ÉgÇÃíÜÇÃçsóÒÇèâä˙âª
+	// „É¢„Éº„Ç∑„Éß„É≥„Çπ„ÉÜ„Éº„Éà„ÅÆ‰∏≠„ÅÆË°åÂàó„ÇíÂàùÊúüÂåñ
 	D_btTransform temp ;
 	temp.setFromOpenGLMatrix( ( D_btScalar * )SetupInfo->InitializeMatrix ) ;
 	RigidBodyInfo->btMotionState->GraphicsWorldTrans = temp * RigidBodyInfo->bttrBoneOffset ;
 
-	// çÑëÃÇÃÉpÉâÉÅÅ[É^ÇÃê›íË
+	// Ââõ‰Ωì„ÅÆ„Éë„É©„É°„Éº„Çø„ÅÆË®≠ÂÆö
 	D_btRigidBody::D_btRigidBodyConstructionInfo btRbInfo( btsMass, pbtMotionState, RigidBodyInfo->btColShape, btv3LocalInertia ) ;
-	btRbInfo.m_linearDamping  = SetupInfo->RigidBodyPosDim ;	// à⁄ìÆå∏
-	btRbInfo.m_angularDamping = SetupInfo->RigidBodyRotDim ;	// âÒì]å∏
-	btRbInfo.m_restitution    = SetupInfo->RigidBodyRecoil ;	// îΩî≠óÕ
-	btRbInfo.m_friction       = SetupInfo->RigidBodyFriction ;	// ñÄéCóÕ
+	btRbInfo.m_linearDamping  = SetupInfo->RigidBodyPosDim ;	// ÁßªÂãïÊ∏õ
+	btRbInfo.m_angularDamping = SetupInfo->RigidBodyRotDim ;	// ÂõûËª¢Ê∏õ
+	btRbInfo.m_restitution    = SetupInfo->RigidBodyRecoil ;	// ÂèçÁô∫Âäõ
+	btRbInfo.m_friction       = SetupInfo->RigidBodyFriction ;	// Êë©Êì¶Âäõ
 	btRbInfo.m_additionalDamping = true ;
 
-	// çÑëÃÇÃçÏê¨
+	// Ââõ‰Ωì„ÅÆ‰ΩúÊàê
 	RigidBodyInfo->btRigdBody = new D_btRigidBody( btRbInfo ) ;
 
-	// Kinematicê›íË
+	// KinematicË®≠ÂÆö
 	if( SetupInfo->RigidBodyType == 0 )
 	{
 		RigidBodyInfo->btRigdBody->setCollisionFlags( RigidBodyInfo->btRigdBody->getCollisionFlags() | D_btCollisionObject::D_CF_KINEMATIC_OBJECT ) ;
@@ -359,10 +359,10 @@ static int BulletPhysics_SetupRigidBody( BULLET_PHYSICS *BulletPhysicsData, BULL
 	}
 	RigidBodyInfo->btRigdBody->setSleepingThresholds( 0.0f, 0.0f ) ;
 
-	// çÑëÃÇÉVÉ~ÉÖÉåÅ[ÉVÉáÉìÉèÅ[ÉãÉhÇ…í«â¡
+	// Ââõ‰Ωì„Çí„Ç∑„Éü„É•„É¨„Éº„Ç∑„Éß„É≥„ÉØ„Éº„É´„Éâ„Å´ËøΩÂä†
 	BulletPhysicsData->World->addRigidBody( RigidBodyInfo->btRigdBody, ( short )( 0x0001 << SetupInfo->RigidBodyGroupIndex ), ( short )SetupInfo->RigidBodyGroupTarget ) ;
 
-	// èIóπ
+	// ÁµÇ‰∫Ü
 	return 0 ;
 }
 
@@ -370,24 +370,24 @@ static int BulletPhysics_SetupJoint( BULLET_PHYSICS *BulletPhysicsData,  BULLET_
 {
 	JointInfo->DisableFlag = FALSE ;
 
-	// âÒì]çsóÒçÏê¨
+	// ÂõûËª¢Ë°åÂàó‰ΩúÊàê
 	D_btMatrix3x3	btmRotationMat ;
 	btmRotationMat.setEulerZYX( SetupInfo->Rotation.x, SetupInfo->Rotation.y, SetupInfo->Rotation.z ) ;
 
-	// ÉRÉìÉXÉgÉåÉCÉìÉgÇÃÉgÉâÉìÉXÉtÉHÅ[ÉÄÇçÏê¨
+	// „Ç≥„É≥„Çπ„Éà„É¨„Ç§„É≥„Éà„ÅÆ„Éà„É©„É≥„Çπ„Éï„Ç©„Éº„É†„Çí‰ΩúÊàê
 	D_btTransform bttrTransform ;
 	bttrTransform.setIdentity() ;
 	bttrTransform.setOrigin( D_btVector3( SetupInfo->Position.x, SetupInfo->Position.y, SetupInfo->Position.z ) ) ;
 	bttrTransform.setBasis( btmRotationMat ) ;
 
-	// çÑëÃA,BÇ©ÇÁå©ÇΩÉRÉìÉXÉgÉåÉCÉìÉgÇçÏê¨ 
+	// Ââõ‰ΩìA,B„Åã„ÇâË¶ã„Åü„Ç≥„É≥„Çπ„Éà„É¨„Ç§„É≥„Éà„Çí‰ΩúÊàê 
 	JointInfo->btcConstraint = new D_btGeneric6DofSpringConstraint(
 		*SetupInfo->RigidBodyA,
 		*SetupInfo->RigidBodyB,
 		SetupInfo->RigidBodyA->getWorldTransform().inverse() * bttrTransform,
 		SetupInfo->RigidBodyB->getWorldTransform().inverse() * bttrTransform, true ) ;
 
-	// äeéÌêßå¿ÉpÉâÉÅÅ[É^ÇÃÉZÉbÉg
+	// ÂêÑÁ®ÆÂà∂Èôê„Éë„É©„É°„Éº„Çø„ÅÆ„Çª„ÉÉ„Éà
 	JointInfo->btcConstraint->setLinearLowerLimit( D_btVector3( SetupInfo->ConstrainPosition1.x, SetupInfo->ConstrainPosition1.y, SetupInfo->ConstrainPosition1.z ) ) ;
 	JointInfo->btcConstraint->setLinearUpperLimit( D_btVector3( SetupInfo->ConstrainPosition2.x, SetupInfo->ConstrainPosition2.y, SetupInfo->ConstrainPosition2.z ) ) ;
 
@@ -425,10 +425,10 @@ static int BulletPhysics_SetupJoint( BULLET_PHYSICS *BulletPhysicsData,  BULLET_
 	JointInfo->btcConstraint->calculateTransforms() ;
 	JointInfo->btcConstraint->setEquilibriumPoint() ;
 
-	// ÉVÉ~ÉÖÉåÅ[ÉVÉáÉìÉèÅ[ÉãÉhÇ…í«â¡
+	// „Ç∑„Éü„É•„É¨„Éº„Ç∑„Éß„É≥„ÉØ„Éº„É´„Éâ„Å´ËøΩÂä†
 	BulletPhysicsData->World->addConstraint( JointInfo->btcConstraint ) ;
 
-	// èIóπ
+	// ÁµÇ‰∫Ü
 	return 0 ;
 }
 
@@ -448,7 +448,7 @@ static int BulletPhysics_ReleaseRigidBody( BULLET_RIGIDBODY_INFO *RigidBodyInfo 
 	RigidBodyInfo->btMotionState = NULL ;
 	RigidBodyInfo->btRigdBody = NULL ;
 
-	// èIóπ
+	// ÁµÇ‰∫Ü
 	return 0 ;
 }
 
@@ -461,7 +461,7 @@ static int BulletPhysics_ReleaseJoint( BULLET_JOINT_INFO *JointInfo )
 
 	JointInfo->btcConstraint = NULL ;
 
-	// èIóπ
+	// ÁµÇ‰∫Ü
 	return 0 ;
 }
 
@@ -485,12 +485,12 @@ static int BulleyPhysics_ResetRigidBody( BULLET_RIGIDBODY_INFO *RigidBodyInfo, M
 	RigidBodyInfo->btRigdBody->setInterpolationAngularVelocity( D_btVector3( 0.0f, 0.0f, 0.0f ) ) ;
 	RigidBodyInfo->btRigdBody->clearForces() ;
 
-	// èIóπ
+	// ÁµÇ‰∫Ü
 	return 0 ;
 }
 
 
-// èåèÇå¿íËÇµÇΩè≠ÇµçÇë¨Ç»ãtçsóÒåvéZ
+// Êù°‰ª∂„ÇíÈôêÂÆö„Åó„ÅüÂ∞ë„ÅóÈ´òÈÄü„Å™ÈÄÜË°åÂàóË®àÁÆó
 static void ModelLoader3_InverseMatrix( MATRIX &InMatrix, MATRIX &OutMatrix )
 {
 	OutMatrix.m[ 0 ][ 0 ] = InMatrix.m[ 0 ][ 0 ] ;
@@ -512,7 +512,7 @@ static void ModelLoader3_InverseMatrix( MATRIX &InMatrix, MATRIX &OutMatrix )
 	OutMatrix.m[ 3 ][ 3 ] = 1.0f ;
 }
 
-// PMDópÇÃçÑëÃÇ…É{Å[ÉìÇÃèÛë‘ÇîΩâfÇ∑ÇÈä÷êî
+// PMDÁî®„ÅÆÂâõ‰Ωì„Å´„Éú„Éº„É≥„ÅÆÁä∂ÊÖã„ÇíÂèçÊò†„Åô„ÇãÈñ¢Êï∞
 static void PMD_PhysicsMotionState_Flush( bool Reset, D_btKinematicMotionState *pbtMotionState, PMD_READ_PHYSICS_INFO *pPhysics )
 {
 	BULLET_RIGIDBODY_INFO *BulletRigidBodyInfo = ( BULLET_RIGIDBODY_INFO * )pPhysics->BulletInfo ;
@@ -535,7 +535,7 @@ static void PMD_PhysicsMotionState_Flush( bool Reset, D_btKinematicMotionState *
 */
 }
 
-// PMXópÇÃçÑëÃÇ…É{Å[ÉìÇÃèÛë‘ÇîΩâfÇ∑ÇÈä÷êî
+// PMXÁî®„ÅÆÂâõ‰Ωì„Å´„Éú„Éº„É≥„ÅÆÁä∂ÊÖã„ÇíÂèçÊò†„Åô„ÇãÈñ¢Êï∞
 static void PMX_PhysicsMotionState_Flush( bool Reset, D_btKinematicMotionState *pbtMotionState, PMX_READ_PHYSICS_INFO *pPhysics )
 {
 	BULLET_RIGIDBODY_INFO *BulletRigidBodyInfo = ( BULLET_RIGIDBODY_INFO * )pPhysics->BulletInfo ;
@@ -558,7 +558,7 @@ static void PMX_PhysicsMotionState_Flush( bool Reset, D_btKinematicMotionState *
 */
 }
 
-// ÉÇÉfÉãÇÃçÑëÃÇ…É{Å[ÉìÇÃèÛë‘ÇîΩâfÇ∑ÇÈä÷êî
+// „É¢„Éá„É´„ÅÆÂâõ‰Ωì„Å´„Éú„Éº„É≥„ÅÆÁä∂ÊÖã„ÇíÂèçÊò†„Åô„ÇãÈñ¢Êï∞
 static void Model_PhysicsMotionState_Flush( D_btKinematicMotionState *pbtMotionState, MV1_PHYSICS_RIGIDBODY *pRigidBody )
 {
 	BULLET_RIGIDBODY_INFO *BulletRigidBodyInfo = ( BULLET_RIGIDBODY_INFO * )pRigidBody->BulletInfo ;
@@ -598,10 +598,10 @@ extern int SetupPhysicsObject_ModelPhysicsInfo( MV1_MODEL *Model )
 	BULLET_JOINT_SETUP_INFO JointSetupInfo ;
 	MATRIX InitializeMatrix ;
 
-	// BulletPhysics ÇÃèâä˙âª
+	// BulletPhysics „ÅÆÂàùÊúüÂåñ
 	BulletPhysics_Initialize( Bullet, VGet( 0.0f, Model->PhysicsGravity, 0.0f ) ) ;
 
-	// çÑëÃÉIÉuÉWÉFÉNÉgÇÃÉZÉbÉgÉAÉbÉv
+	// Ââõ‰Ωì„Ç™„Éñ„Ç∏„Çß„ÇØ„Éà„ÅÆ„Çª„ÉÉ„Éà„Ç¢„ÉÉ„Éó
 	RigidBody = Model->PhysicsRigidBody ;
 	for( i = 0 ; i < Model->BaseData->PhysicsRigidBodyNum ; i ++, RigidBody ++ )
 	{
@@ -610,7 +610,7 @@ extern int SetupPhysicsObject_ModelPhysicsInfo( MV1_MODEL *Model )
 
 		ConvertMatrix4x4cToMatrixF( &InitializeMatrix, &RigidBody->TargetFrame->LocalWorldMatrix ) ;
 
-		// çÑëÃÇÃèâä˙âª
+		// Ââõ‰Ωì„ÅÆÂàùÊúüÂåñ
 		RigidBodySetupInfo.RigidBodyGroupIndex = RigidBodyBase->RigidBodyGroupIndex ;
 		RigidBodySetupInfo.RigidBodyGroupTarget = RigidBodyBase->RigidBodyGroupTarget ;
 		RigidBodySetupInfo.ShapeType = RigidBodyBase->ShapeType ;
@@ -629,7 +629,7 @@ extern int SetupPhysicsObject_ModelPhysicsInfo( MV1_MODEL *Model )
 		BulletPhysics_SetupRigidBody( Bullet, BulletRigidBodyInfo, &RigidBodySetupInfo ) ;
 	}
 
-	// ÉWÉáÉCÉìÉgÉIÉuÉWÉFÉNÉgÇÃÉZÉbÉgÉAÉbÉv
+	// „Ç∏„Éß„Ç§„É≥„Éà„Ç™„Éñ„Ç∏„Çß„ÇØ„Éà„ÅÆ„Çª„ÉÉ„Éà„Ç¢„ÉÉ„Éó
 	Joint = Model->PhysicsJoint ;
 	for( i = 0 ; i < Model->BaseData->PhysicsJointNum ; i ++, Joint ++ )
 	{
@@ -637,7 +637,7 @@ extern int SetupPhysicsObject_ModelPhysicsInfo( MV1_MODEL *Model )
 
 		JointBase = Joint->BaseData ;
 
-		// ÉWÉáÉCÉìÉgÇÃèâä˙âª
+		// „Ç∏„Éß„Ç§„É≥„Éà„ÅÆÂàùÊúüÂåñ
 		JointSetupInfo.RigidBodyA = ( ( BULLET_RIGIDBODY_INFO * )Model->PhysicsRigidBody[ JointBase->RigidBodyA->Index ].BulletInfo )->btRigdBody ;
 		JointSetupInfo.RigidBodyB = ( ( BULLET_RIGIDBODY_INFO * )Model->PhysicsRigidBody[ JointBase->RigidBodyB->Index ].BulletInfo )->btRigdBody ;
 		JointSetupInfo.Position = JointBase->Position ;
@@ -651,7 +651,7 @@ extern int SetupPhysicsObject_ModelPhysicsInfo( MV1_MODEL *Model )
 		BulletPhysics_SetupJoint( Bullet, BulletJointInfo, &JointSetupInfo ) ;
 	}
 
-	// èIóπ
+	// ÁµÇ‰∫Ü
 	return 0 ;
 }
 
@@ -664,7 +664,7 @@ extern int ReleasePhysicsObject_ModelPhysicsInfo( MV1_MODEL *Model )
 	MV1_PHYSICS_JOINT *Joint ;
 	BULLET_PHYSICS *Bullet = ( BULLET_PHYSICS * )Model->BulletPhysicsDataBuffer ;
 
-	// çÑëÃÉIÉuÉWÉFÉNÉgÇÃå„énññ
+	// Ââõ‰Ωì„Ç™„Éñ„Ç∏„Çß„ÇØ„Éà„ÅÆÂæåÂßãÊú´
 	RigidBody = Model->PhysicsRigidBody ;
 	for( i = 0 ; i < Model->BaseData->PhysicsRigidBodyNum ; i ++, RigidBody ++ )
 	{
@@ -673,7 +673,7 @@ extern int ReleasePhysicsObject_ModelPhysicsInfo( MV1_MODEL *Model )
 		BulletPhysics_ReleaseRigidBody( BulletRigidBodyInfo ) ;
 	}
 
-	// ÉWÉáÉCÉìÉgÉIÉuÉWÉFÉNÉgÇÃå„énññ
+	// „Ç∏„Éß„Ç§„É≥„Éà„Ç™„Éñ„Ç∏„Çß„ÇØ„Éà„ÅÆÂæåÂßãÊú´
 	Joint = Model->PhysicsJoint ;
 	for( i = 0 ; i < Model->BaseData->PhysicsJointNum ; i ++, Joint ++ )
 	{
@@ -682,10 +682,10 @@ extern int ReleasePhysicsObject_ModelPhysicsInfo( MV1_MODEL *Model )
 		BulletPhysics_ReleaseJoint( BulletJointInfo ) ;
 	}
 
-	// BulletPhysics ÇÃå„énññ
+	// BulletPhysics „ÅÆÂæåÂßãÊú´
 	BulletPhysics_Terminate( Bullet ) ;
 
-	// èIóπ
+	// ÁµÇ‰∫Ü
 	return 0 ;
 }
 
@@ -716,7 +716,7 @@ extern int ResetState_ModelPhysicsInfo( MV1_MODEL *Model )
 
 	Model->PhysicsResetRequestFlag = TRUE ;
 
-	// èIóπ
+	// ÁµÇ‰∫Ü
 	return 0 ;
 }
 
@@ -729,12 +729,12 @@ extern int StepSimulation_ModelPhysicsInfo( MV1_MODEL *Model, float TimeStep )
 	int i ;
 	float FixedTimeStep ;
 
-	// ÉäÉZÉbÉgÉäÉNÉGÉXÉgÇ™Ç†ÇÈèÍçáÇÕç≈èâÇ…É{Å[ÉìÇÃà íuçáÇÌÇπ
+	// „É™„Çª„ÉÉ„Éà„É™„ÇØ„Ç®„Çπ„Éà„Åå„ÅÇ„ÇãÂ†¥Âêà„ÅØÊúÄÂàù„Å´„Éú„Éº„É≥„ÅÆ‰ΩçÁΩÆÂêà„Çè„Åõ
 	if( Model->PhysicsResetRequestFlag )
 	{
 		Model->PhysicsResetRequestFlag = FALSE ;
 
-		// É{Å[Éìà íuÇ†ÇÌÇπ
+		// „Éú„Éº„É≥‰ΩçÁΩÆ„ÅÇ„Çè„Åõ
 		PhysicsRigidBody = Model->PhysicsRigidBody ;
 		for( i = 0 ; i < Model->BaseData->PhysicsRigidBodyNum ; i ++, PhysicsRigidBody ++ )
 		{
@@ -744,11 +744,11 @@ extern int StepSimulation_ModelPhysicsInfo( MV1_MODEL *Model, float TimeStep )
 		}
 	}
 
-	// ï®óùèàóùÇé¿çsÇ∑ÇÈ
+	// Áâ©ÁêÜÂá¶ÁêÜ„ÇíÂÆüË°å„Åô„Çã
 	FixedTimeStep = TimeStep < 1.0f / 60.0f ? TimeStep : 1.0f / 60.0f ;
 	Bullet->World->stepSimulation( TimeStep, 1, FixedTimeStep ) ;
 
-	// É{Å[Éìà íuÇ†ÇÌÇπ
+	// „Éú„Éº„É≥‰ΩçÁΩÆ„ÅÇ„Çè„Åõ
 	PhysicsRigidBody = Model->PhysicsRigidBody ;
 	for( i = 0 ; i < Model->BaseData->PhysicsRigidBodyNum ; i ++, PhysicsRigidBody ++ )
 	{
@@ -757,7 +757,7 @@ extern int StepSimulation_ModelPhysicsInfo( MV1_MODEL *Model, float TimeStep )
 		Model_PhysicsMotionState_Flush( BulletRigidBodyInfo->btMotionState, PhysicsRigidBody ) ;
 	}
 
-	// åªç›ÇÃçÑëÃÇÃèÛë‘Çï\Ç∑çsóÒÇéÊìæÇ∑ÇÈ
+	// ÁèæÂú®„ÅÆÂâõ‰Ωì„ÅÆÁä∂ÊÖã„ÇíË°®„ÅôË°åÂàó„ÇíÂèñÂæó„Åô„Çã
 	PhysicsRigidBody = Model->PhysicsRigidBody ;
 	for( i = 0 ; i < Model->BaseData->PhysicsRigidBodyNum ; i ++, PhysicsRigidBody ++ )
 	{
@@ -769,7 +769,7 @@ extern int StepSimulation_ModelPhysicsInfo( MV1_MODEL *Model, float TimeStep )
 		ConvertMatrixFToMatrix4x4c( &PhysicsRigidBody->TargetFrame->LocalWorldMatrix, &tempMatrix ) ;
 	}
 
-	// èIóπ
+	// ÁµÇ‰∫Ü
 	return 0 ;
 }
 
@@ -779,7 +779,7 @@ extern int SetWorldGravity_ModelPhysiceInfo( MV1_MODEL *Model, VECTOR Gravity )
 
 	Bullet->World->setGravity( D_btVector3( Gravity.x, Gravity.y, Gravity.z ) ) ;
 
-	// èIóπ
+	// ÁµÇ‰∫Ü
 	return 0 ;
 }
 
@@ -798,25 +798,25 @@ extern int SetupPhysicsObject_PMDPhysicsInfo(
 	BULLET_RIGIDBODY_SETUP_INFO RigidBodySetupInfo ;
 	BULLET_JOINT_SETUP_INFO JointSetupInfo ;
 
-	// BulletPhysics ÇÃèâä˙âª
+	// BulletPhysics „ÅÆÂàùÊúüÂåñ
 	BulletPhysics_Initialize( Bullet, MLPhysicsInfo->Gravity ) ;
 
-	// çÑëÃÉIÉuÉWÉFÉNÉgÇÃÉZÉbÉgÉAÉbÉv
+	// Ââõ‰Ωì„Ç™„Éñ„Ç∏„Çß„ÇØ„Éà„ÅÆ„Çª„ÉÉ„Éà„Ç¢„ÉÉ„Éó
 	PhysicsInfo = MLPhysicsInfo->PmdPhysicsInfoDim ;
 	for( i = 0 ; i < MLPhysicsInfo->PmdPhysicsNum ; i ++, PhysicsInfo ++ )
 	{
 		BulletRigidBodyInfo = ( BULLET_RIGIDBODY_INFO * )PhysicsInfo->BulletInfo ;
 
-		// ñ≥å¯âªÉ`ÉFÉbÉN
+		// ÁÑ°ÂäπÂåñ„ÉÅ„Çß„ÉÉ„ÇØ
 		BulletRigidBodyInfo->DisableFlag = MV1LoadModelDisablePhysicsNameCheck_ShiftJIS( PhysicsInfo->Name, DisablePhysicsFile ) ;
 
-		// ñ≥å¯ÇÃèÍçáÇÕèâä˙âªèàóùÇçsÇÌÇ»Ç¢
+		// ÁÑ°Âäπ„ÅÆÂ†¥Âêà„ÅØÂàùÊúüÂåñÂá¶ÁêÜ„ÇíË°å„Çè„Å™„ÅÑ
 		if( BulletRigidBodyInfo->DisableFlag )
 		{
 			continue ;
 		}
 
-		// çÑëÃÇÃèâä˙âª
+		// Ââõ‰Ωì„ÅÆÂàùÊúüÂåñ
 		RigidBodySetupInfo.RigidBodyGroupIndex = ( int )PhysicsInfo->Base->Data[ 22 ] ;
 		RigidBodySetupInfo.RigidBodyGroupTarget = *( ( WORD * )&PhysicsInfo->Base->Data[ 23 ] ) ;
 		RigidBodySetupInfo.ShapeType = PhysicsInfo->ShapeType ;
@@ -839,7 +839,7 @@ extern int SetupPhysicsObject_PMDPhysicsInfo(
 		BulletPhysics_SetupRigidBody( Bullet, BulletRigidBodyInfo, &RigidBodySetupInfo ) ;
 	}
 
-	// ÉWÉáÉCÉìÉgÉIÉuÉWÉFÉNÉgÇÃÉZÉbÉgÉAÉbÉv
+	// „Ç∏„Éß„Ç§„É≥„Éà„Ç™„Éñ„Ç∏„Çß„ÇØ„Éà„ÅÆ„Çª„ÉÉ„Éà„Ç¢„ÉÉ„Éó
 	JointInfo = MLPhysicsInfo->PmdPhysicsJointInfoDim ;
 	for( i = 0 ; i < MLPhysicsInfo->PmdPhysicsJointNum ; i ++, JointInfo ++ )
 	{
@@ -850,7 +850,7 @@ extern int SetupPhysicsObject_PMDPhysicsInfo(
 
 		PmdPJoint = &JointInfo->Base ;
 
-		// Ç«ÇøÇÁÇ©ÇÃçÑëÃÇ™ñ≥å¯Ç©É`ÉFÉbÉN
+		// „Å©„Å°„Çâ„Åã„ÅÆÂâõ‰Ωì„ÅåÁÑ°Âäπ„Åã„ÉÅ„Çß„ÉÉ„ÇØ
 		BulletRigidBodyInfoA = ( BULLET_RIGIDBODY_INFO * )MLPhysicsInfo->PmdPhysicsInfoDim[ PmdPJoint->RigidBodyA ].BulletInfo ;
 		BulletRigidBodyInfoB = ( BULLET_RIGIDBODY_INFO * )MLPhysicsInfo->PmdPhysicsInfoDim[ PmdPJoint->RigidBodyB ].BulletInfo ;
 		if( BulletRigidBodyInfoA->DisableFlag ||
@@ -863,13 +863,13 @@ extern int SetupPhysicsObject_PMDPhysicsInfo(
 			BulletJointInfo->DisableFlag = FALSE ;
 		}
 
-		// ñ≥å¯ÇÃèÍçáÇÕèâä˙âªèàóùÇçsÇÌÇ»Ç¢
+		// ÁÑ°Âäπ„ÅÆÂ†¥Âêà„ÅØÂàùÊúüÂåñÂá¶ÁêÜ„ÇíË°å„Çè„Å™„ÅÑ
 		if( BulletJointInfo->DisableFlag )
 		{
 			continue ;
 		}
 
-		// ÉWÉáÉCÉìÉgÇÃèâä˙âª
+		// „Ç∏„Éß„Ç§„É≥„Éà„ÅÆÂàùÊúüÂåñ
 		JointSetupInfo.RigidBodyA = BulletRigidBodyInfoA->btRigdBody ;
 		JointSetupInfo.RigidBodyB = BulletRigidBodyInfoB->btRigdBody ;
 		JointSetupInfo.Position.x = PmdPJoint->Position[ 0 ] ;
@@ -899,7 +899,7 @@ extern int SetupPhysicsObject_PMDPhysicsInfo(
 		BulletPhysics_SetupJoint( Bullet, BulletJointInfo, &JointSetupInfo ) ;
 	}
 
-	// èIóπ
+	// ÁµÇ‰∫Ü
 	return 0 ;
 }
 
@@ -914,7 +914,7 @@ extern int ReleasePhysicsObject_PMDPhysicsInfo(
 	PMD_READ_PHYSICS_JOINT_INFO *JointInfo ;
 	BULLET_PHYSICS *Bullet = ( BULLET_PHYSICS * )MLPhysicsInfo->BulletPhysicsDataBuffer ;
 
-	// çÑëÃÉIÉuÉWÉFÉNÉgÇÃå„énññ
+	// Ââõ‰Ωì„Ç™„Éñ„Ç∏„Çß„ÇØ„Éà„ÅÆÂæåÂßãÊú´
 	PhysicsInfo = MLPhysicsInfo->PmdPhysicsInfoDim ;
 	for( i = 0 ; i < MLPhysicsInfo->PmdPhysicsNum ; i ++, PhysicsInfo ++ )
 	{
@@ -923,7 +923,7 @@ extern int ReleasePhysicsObject_PMDPhysicsInfo(
 		BulletPhysics_ReleaseRigidBody( BulletRigidBodyInfo ) ;
 	}
 
-	// ÉWÉáÉCÉìÉgÉIÉuÉWÉFÉNÉgÇÃå„énññ
+	// „Ç∏„Éß„Ç§„É≥„Éà„Ç™„Éñ„Ç∏„Çß„ÇØ„Éà„ÅÆÂæåÂßãÊú´
 	JointInfo = MLPhysicsInfo->PmdPhysicsJointInfoDim ;
 	for( i = 0 ; i < MLPhysicsInfo->PmdPhysicsJointNum ; i ++, JointInfo ++ )
 	{
@@ -932,10 +932,10 @@ extern int ReleasePhysicsObject_PMDPhysicsInfo(
 		BulletPhysics_ReleaseJoint( BulletJointInfo ) ;
 	}
 
-	// BulletPhysics ÇÃå„énññ
+	// BulletPhysics „ÅÆÂæåÂßãÊú´
 	BulletPhysics_Terminate( Bullet ) ;
 
-	// èIóπ
+	// ÁµÇ‰∫Ü
 	return 0 ;
 }
 
@@ -957,7 +957,7 @@ extern int OneFrameProcess_PMDPhysicsInfo(
 
 	UnitTime = ( 1 / 60.0f ) / ( float )TimeDivNum ;
 
-	// ç≈èâÇÃÉtÉåÅ[ÉÄÇ≈èâä˙à íuÇ…ÉZÉbÉg
+	// ÊúÄÂàù„ÅÆ„Éï„É¨„Éº„É†„ÅßÂàùÊúü‰ΩçÁΩÆ„Å´„Çª„ÉÉ„Éà
 	if( FrameNo == 0 && LoopNo == 0 )
 	{
 		PhysicsInfo = MLPhysicsInfo->PmdPhysicsInfoDim ;
@@ -975,7 +975,7 @@ extern int OneFrameProcess_PMDPhysicsInfo(
 			PMD_PhysicsMotionState_Flush( false, BulletRigidBodyInfo->btMotionState, PhysicsInfo ) ;
 		}
 
-		// ç≈èâÇÃÉtÉåÅ[ÉÄÇÕèÛë‘Ç≈óéÇøíÖÇ©ÇπÇÈÇΩÇﬂÇ…ÇRïbï™âÒÇ∑
+		// ÊúÄÂàù„ÅÆ„Éï„É¨„Éº„É†„ÅØÁä∂ÊÖã„ÅßËêΩ„Å°ÁùÄ„Åã„Åõ„Çã„Åü„ÇÅ„Å´ÔºìÁßíÂàÜÂõû„Åô
 		{
 			int   LoopNum ;
 
@@ -984,7 +984,7 @@ extern int OneFrameProcess_PMDPhysicsInfo(
 			{
 				Bullet->World->stepSimulation( UnitTime, 1, UnitTime ) ;
 
-				// É{Å[Éìà íuÇ†ÇÌÇπ
+				// „Éú„Éº„É≥‰ΩçÁΩÆ„ÅÇ„Çè„Åõ
 				PhysicsInfo = MLPhysicsInfo->PmdPhysicsInfoDim ;
 				for( k = 0 ; k < MLPhysicsInfo->PmdPhysicsNum ; k ++, PhysicsInfo ++ )
 				{
@@ -1002,10 +1002,10 @@ extern int OneFrameProcess_PMDPhysicsInfo(
 	}
 	else
 	{
-		// ï®óùèàóùÇÇPÉtÉåÅ[ÉÄï™é¿çsÇ∑ÇÈ
+		// Áâ©ÁêÜÂá¶ÁêÜ„ÇíÔºë„Éï„É¨„Éº„É†ÂàÜÂÆüË°å„Åô„Çã
 		Bullet->World->stepSimulation( UnitTime, 1, UnitTime ) ;
 
-		// É{Å[Éìà íuÇ†ÇÌÇπ
+		// „Éú„Éº„É≥‰ΩçÁΩÆ„ÅÇ„Çè„Åõ
 		PhysicsInfo = MLPhysicsInfo->PmdPhysicsInfoDim ;
 		for( j = 0 ; j < MLPhysicsInfo->PmdPhysicsNum ; j ++, PhysicsInfo ++ )
 		{
@@ -1021,7 +1021,7 @@ extern int OneFrameProcess_PMDPhysicsInfo(
 		}
 	}
 
-	// åªç›ÇÃçÑëÃÇÃèÛë‘Çï\Ç∑çsóÒÇéÊìæÇ∑ÇÈ
+	// ÁèæÂú®„ÅÆÂâõ‰Ωì„ÅÆÁä∂ÊÖã„ÇíË°®„ÅôË°åÂàó„ÇíÂèñÂæó„Åô„Çã
 	PhysicsInfo = MLPhysicsInfo->PmdPhysicsInfoDim ;
 	for( j = 0 ; j < MLPhysicsInfo->PmdPhysicsNum ; j ++, PhysicsInfo ++ )
 	{
@@ -1040,7 +1040,7 @@ extern int OneFrameProcess_PMDPhysicsInfo(
 		( BulletRigidBodyInfo->btRigdBody->getCenterOfMassTransform() * BulletRigidBodyInfo->bttrInvBoneOffset ).getOpenGLMatrix( ( float * )&PhysicsInfo->Bone->LocalWorldMatrix );
 	}
 
-	// ï®óùââéZÇçsÇ§É{Å[ÉìÇÃçsóÒÉLÅ[ÇéZèoÇ∑ÇÈ
+	// Áâ©ÁêÜÊºîÁÆó„ÇíË°å„ÅÜ„Éú„Éº„É≥„ÅÆË°åÂàó„Ç≠„Éº„ÇíÁÆóÂá∫„Åô„Çã
 	if( MLPhysicsInfo->LoopMotionFlag == FALSE || LoopNo >= 2 )
 	{
 		if( ValidNextRate == FALSE && ( FPS60 || ( FPS60 == false && FrameNo % 2 == 0 ) ) )
@@ -1074,7 +1074,7 @@ extern int OneFrameProcess_PMDPhysicsInfo(
 				{
 					MATRIX InvParentBoneLWM ;
 
-					// ï®óùââéZÇ©ÇÁìæÇÁÇÍÇÈçsóÒÇÕÉèÅ[ÉãÉhçsóÒÇ»ÇÃÇ≈ÅAÇªÇÍÇÉ{Å[ÉìÇÃÉçÅ[ÉJÉãçsóÒÇ…ïœä∑Ç∑ÇÈ
+					// Áâ©ÁêÜÊºîÁÆó„Åã„ÇâÂæó„Çâ„Çå„ÇãË°åÂàó„ÅØ„ÉØ„Éº„É´„ÉâË°åÂàó„Å™„ÅÆ„Åß„ÄÅ„Åù„Çå„Çí„Éú„Éº„É≥„ÅÆ„É≠„Éº„Ç´„É´Ë°åÂàó„Å´Â§âÊèõ„Åô„Çã
 					ModelLoader3_InverseMatrix( ( ( PMD_READ_BONE_INFO * )PhysicsInfo->Bone->Frame->Parent->UserData )->LocalWorldMatrix, InvParentBoneLWM ) ;
 					CreateMultiplyMatrix( &TempMatrix, &PhysicsInfo->Bone->LocalWorldMatrix, &InvParentBoneLWM ) ;
 				}
@@ -1083,7 +1083,7 @@ extern int OneFrameProcess_PMDPhysicsInfo(
 					TempMatrix = PhysicsInfo->Bone->LocalWorldMatrix ;
 				}
 
-				// ï®óùñ≥å¯Ç™óLå¯Ç…Ç»Ç¡ÇƒÇ¢ÇΩèÍçáÇÕí èÌÇÃåvéZçsóÒÇ∆ÉuÉåÉìÉhÇ∑ÇÈ
+				// Áâ©ÁêÜÁÑ°Âäπ„ÅåÊúâÂäπ„Å´„Å™„Å£„Å¶„ÅÑ„ÅüÂ†¥Âêà„ÅØÈÄöÂ∏∏„ÅÆË®àÁÆóË°åÂàó„Å®„Éñ„É¨„É≥„Éâ„Åô„Çã
 				if( PhysicsInfo->Bone->DisablePhysics >= 0.0001f )
 				{
 					MATRIX TempMatrix2 ;
@@ -1101,7 +1101,7 @@ extern int OneFrameProcess_PMDPhysicsInfo(
 
 						LocalWorldMatrix = PhysicsInfo->Bone->BackupLocalWorldMatrix_Valid ? &PhysicsInfo->Bone->BackupLocalWorldMatrix : &PhysicsInfo->Bone->LocalWorldMatrix ;
 
-						// ï®óùââéZÇ©ÇÁìæÇÁÇÍÇÈçsóÒÇÕÉèÅ[ÉãÉhçsóÒÇ»ÇÃÇ≈ÅAÇªÇÍÇÉ{Å[ÉìÇÃÉçÅ[ÉJÉãçsóÒÇ…ïœä∑Ç∑ÇÈ
+						// Áâ©ÁêÜÊºîÁÆó„Åã„ÇâÂæó„Çâ„Çå„ÇãË°åÂàó„ÅØ„ÉØ„Éº„É´„ÉâË°åÂàó„Å™„ÅÆ„Åß„ÄÅ„Åù„Çå„Çí„Éú„Éº„É≥„ÅÆ„É≠„Éº„Ç´„É´Ë°åÂàó„Å´Â§âÊèõ„Åô„Çã
 						ModelLoader3_InverseMatrix( *ParentLocalWorldMatrix, InvParentBoneLWM ) ;
 						CreateMultiplyMatrix( &TempMatrix2, LocalWorldMatrix, &InvParentBoneLWM ) ;
 					}
@@ -1171,7 +1171,7 @@ extern int OneFrameProcess_PMDPhysicsInfo(
 		}
 	}
 
-	// èIóπ
+	// ÁµÇ‰∫Ü
 	return 0 ;
 }
 
@@ -1210,25 +1210,25 @@ extern int SetupPhysicsObject_PMXPhysicsInfo(
 	BULLET_RIGIDBODY_SETUP_INFO RigidBodySetupInfo ;
 	BULLET_JOINT_SETUP_INFO JointSetupInfo ;
 
-	// BulletPhysics ÇÃèâä˙âª
+	// BulletPhysics „ÅÆÂàùÊúüÂåñ
 	BulletPhysics_Initialize( Bullet, MLPhysicsInfo->Gravity ) ;
 
-	// çÑëÃÉIÉuÉWÉFÉNÉgÇÃÉZÉbÉgÉAÉbÉv
+	// Ââõ‰Ωì„Ç™„Éñ„Ç∏„Çß„ÇØ„Éà„ÅÆ„Çª„ÉÉ„Éà„Ç¢„ÉÉ„Éó
 	PhysicsInfo = MLPhysicsInfo->PmxPhysicsInfoDim ;
 	for( i = 0 ; i < MLPhysicsInfo->PmxPhysicsNum ; i ++, PhysicsInfo ++ )
 	{
 		BulletRigidBodyInfo = ( BULLET_RIGIDBODY_INFO * )PhysicsInfo->BulletInfo ;
 
-		// ñ≥å¯âªÉ`ÉFÉbÉN
+		// ÁÑ°ÂäπÂåñ„ÉÅ„Çß„ÉÉ„ÇØ
 		BulletRigidBodyInfo->DisableFlag = MV1LoadModelDisablePhysicsNameCheck_WCHAR_T( ( WORD * )PhysicsInfo->Base->Name, DisablePhysicsFile ) ;
 
-		// ñ≥å¯ÇÃèÍçáÇÕèâä˙âªèàóùÇçsÇÌÇ»Ç¢
+		// ÁÑ°Âäπ„ÅÆÂ†¥Âêà„ÅØÂàùÊúüÂåñÂá¶ÁêÜ„ÇíË°å„Çè„Å™„ÅÑ
 		if( BulletRigidBodyInfo->DisableFlag )
 		{
 			continue ;
 		}
 
-		// çÑëÃÇÃèâä˙âª
+		// Ââõ‰Ωì„ÅÆÂàùÊúüÂåñ
 		RigidBodySetupInfo.RigidBodyGroupIndex = PhysicsInfo->Base->RigidBodyGroupIndex ;
 		RigidBodySetupInfo.RigidBodyGroupTarget = PhysicsInfo->Base->RigidBodyGroupTarget ;
 		RigidBodySetupInfo.ShapeType = PhysicsInfo->Base->ShapeType ;
@@ -1251,7 +1251,7 @@ extern int SetupPhysicsObject_PMXPhysicsInfo(
 		BulletPhysics_SetupRigidBody( Bullet, BulletRigidBodyInfo, &RigidBodySetupInfo ) ;
 	}
 
-	// ÉWÉáÉCÉìÉgÉIÉuÉWÉFÉNÉgÇÃÉZÉbÉgÉAÉbÉv
+	// „Ç∏„Éß„Ç§„É≥„Éà„Ç™„Éñ„Ç∏„Çß„ÇØ„Éà„ÅÆ„Çª„ÉÉ„Éà„Ç¢„ÉÉ„Éó
 	JointInfo = MLPhysicsInfo->PmxPhysicsJointInfoDim ;
 	for( i = 0 ; i < MLPhysicsInfo->PmxPhysicsJointNum ; i ++, JointInfo ++ )
 	{
@@ -1262,7 +1262,7 @@ extern int SetupPhysicsObject_PMXPhysicsInfo(
 
 		PmxPJoint = JointInfo->Base ;
 
-		// Ç«ÇøÇÁÇ©ÇÃçÑëÃÇ™ñ≥å¯Ç©É`ÉFÉbÉN
+		// „Å©„Å°„Çâ„Åã„ÅÆÂâõ‰Ωì„ÅåÁÑ°Âäπ„Åã„ÉÅ„Çß„ÉÉ„ÇØ
 		BulletRigidBodyInfoA = ( BULLET_RIGIDBODY_INFO * )MLPhysicsInfo->PmxPhysicsInfoDim[ PmxPJoint->RigidBodyAIndex ].BulletInfo ;
 		BulletRigidBodyInfoB = ( BULLET_RIGIDBODY_INFO * )MLPhysicsInfo->PmxPhysicsInfoDim[ PmxPJoint->RigidBodyBIndex ].BulletInfo ;
 		if( BulletRigidBodyInfoA->DisableFlag ||
@@ -1275,13 +1275,13 @@ extern int SetupPhysicsObject_PMXPhysicsInfo(
 			BulletJointInfo->DisableFlag = FALSE ;
 		}
 
-		// ñ≥å¯ÇÃèÍçáÇÕèâä˙âªèàóùÇçsÇÌÇ»Ç¢
+		// ÁÑ°Âäπ„ÅÆÂ†¥Âêà„ÅØÂàùÊúüÂåñÂá¶ÁêÜ„ÇíË°å„Çè„Å™„ÅÑ
 		if( BulletJointInfo->DisableFlag )
 		{
 			continue ;
 		}
 
-		// ÉWÉáÉCÉìÉgÇÃèâä˙âª
+		// „Ç∏„Éß„Ç§„É≥„Éà„ÅÆÂàùÊúüÂåñ
 		JointSetupInfo.RigidBodyA = BulletRigidBodyInfoA->btRigdBody ;
 		JointSetupInfo.RigidBodyB = BulletRigidBodyInfoB->btRigdBody ;
 		JointSetupInfo.Position.x = PmxPJoint->Position[ 0 ] ;
@@ -1311,7 +1311,7 @@ extern int SetupPhysicsObject_PMXPhysicsInfo(
 		BulletPhysics_SetupJoint( Bullet, BulletJointInfo, &JointSetupInfo ) ;
 	}
 
-	// èIóπ
+	// ÁµÇ‰∫Ü
 	return 0 ;
 }
 
@@ -1326,7 +1326,7 @@ extern int ReleasePhysicsObject_PMXPhysicsInfo(
 	PMX_READ_PHYSICS_JOINT_INFO *JointInfo ;
 	BULLET_PHYSICS *Bullet = ( BULLET_PHYSICS * )MLPhysicsInfo->BulletPhysicsDataBuffer ;
 
-	// çÑëÃÉIÉuÉWÉFÉNÉgÇÃå„énññ
+	// Ââõ‰Ωì„Ç™„Éñ„Ç∏„Çß„ÇØ„Éà„ÅÆÂæåÂßãÊú´
 	PhysicsInfo = MLPhysicsInfo->PmxPhysicsInfoDim ;
 	for( i = 0 ; i < MLPhysicsInfo->PmxPhysicsNum ; i ++, PhysicsInfo ++ )
 	{
@@ -1335,7 +1335,7 @@ extern int ReleasePhysicsObject_PMXPhysicsInfo(
 		BulletPhysics_ReleaseRigidBody( BulletRigidBodyInfo ) ;
 	}
 
-	// ÉWÉáÉCÉìÉgÉIÉuÉWÉFÉNÉgÇÃå„énññ
+	// „Ç∏„Éß„Ç§„É≥„Éà„Ç™„Éñ„Ç∏„Çß„ÇØ„Éà„ÅÆÂæåÂßãÊú´
 	JointInfo = MLPhysicsInfo->PmxPhysicsJointInfoDim ;
 	for( i = 0 ; i < MLPhysicsInfo->PmxPhysicsJointNum ; i ++, JointInfo ++ )
 	{
@@ -1344,10 +1344,10 @@ extern int ReleasePhysicsObject_PMXPhysicsInfo(
 		BulletPhysics_ReleaseJoint( BulletJointInfo ) ;
 	}
 
-	// BulletPhysics ÇÃå„énññ
+	// BulletPhysics „ÅÆÂæåÂßãÊú´
 	BulletPhysics_Terminate( Bullet ) ;
 
-	// èIóπ
+	// ÁµÇ‰∫Ü
 	return 0 ;
 }
 
@@ -1369,7 +1369,7 @@ extern int OneFrameProcess_PMXPhysicsInfo(
 
 	UnitTime = ( 1 / 60.0f ) / ( float )TimeDivNum ;
 
-	// ç≈èâÇÃÉtÉåÅ[ÉÄÇ≈èâä˙à íuÇ…ÉZÉbÉg
+	// ÊúÄÂàù„ÅÆ„Éï„É¨„Éº„É†„ÅßÂàùÊúü‰ΩçÁΩÆ„Å´„Çª„ÉÉ„Éà
 	if( FrameNo == 0 && LoopNo == 0 )
 	{
 		PhysicsInfo = MLPhysicsInfo->PmxPhysicsInfoDim ;
@@ -1387,7 +1387,7 @@ extern int OneFrameProcess_PMXPhysicsInfo(
 			PMX_PhysicsMotionState_Flush( false, BulletRigidBodyInfo->btMotionState, PhysicsInfo ) ;
 		}
 
-		// ç≈èâÇÃÉtÉåÅ[ÉÄÇÕèÛë‘Ç≈óéÇøíÖÇ©ÇπÇÈÇΩÇﬂÇ…ÇRïbï™âÒÇ∑
+		// ÊúÄÂàù„ÅÆ„Éï„É¨„Éº„É†„ÅØÁä∂ÊÖã„ÅßËêΩ„Å°ÁùÄ„Åã„Åõ„Çã„Åü„ÇÅ„Å´ÔºìÁßíÂàÜÂõû„Åô
 		{
 			int   LoopNum ;
 
@@ -1396,7 +1396,7 @@ extern int OneFrameProcess_PMXPhysicsInfo(
 			{
 				Bullet->World->stepSimulation( UnitTime, 1, UnitTime ) ;
 
-				// É{Å[Éìà íuÇ†ÇÌÇπ
+				// „Éú„Éº„É≥‰ΩçÁΩÆ„ÅÇ„Çè„Åõ
 				PhysicsInfo = MLPhysicsInfo->PmxPhysicsInfoDim ;
 				for( k = 0 ; k < MLPhysicsInfo->PmxPhysicsNum ; k ++, PhysicsInfo ++ )
 				{
@@ -1414,10 +1414,10 @@ extern int OneFrameProcess_PMXPhysicsInfo(
 	}
 	else
 	{
-		// ï®óùèàóùÇÇPÉtÉåÅ[ÉÄï™é¿çsÇ∑ÇÈ
+		// Áâ©ÁêÜÂá¶ÁêÜ„ÇíÔºë„Éï„É¨„Éº„É†ÂàÜÂÆüË°å„Åô„Çã
 		Bullet->World->stepSimulation( UnitTime, 1, UnitTime ) ;
 
-		// É{Å[Éìà íuÇ†ÇÌÇπ
+		// „Éú„Éº„É≥‰ΩçÁΩÆ„ÅÇ„Çè„Åõ
 		PhysicsInfo = MLPhysicsInfo->PmxPhysicsInfoDim ;
 		for( j = 0 ; j < MLPhysicsInfo->PmxPhysicsNum ; j ++, PhysicsInfo ++ )
 		{
@@ -1433,7 +1433,7 @@ extern int OneFrameProcess_PMXPhysicsInfo(
 		}
 	}
 
-	// åªç›ÇÃçÑëÃÇÃèÛë‘Çï\Ç∑çsóÒÇéÊìæÇ∑ÇÈ
+	// ÁèæÂú®„ÅÆÂâõ‰Ωì„ÅÆÁä∂ÊÖã„ÇíË°®„ÅôË°åÂàó„ÇíÂèñÂæó„Åô„Çã
 	PhysicsInfo = MLPhysicsInfo->PmxPhysicsInfoDim ;
 	for( j = 0 ; j < MLPhysicsInfo->PmxPhysicsNum ; j ++, PhysicsInfo ++ )
 	{
@@ -1452,7 +1452,7 @@ extern int OneFrameProcess_PMXPhysicsInfo(
 		( BulletRigidBodyInfo->btRigdBody->getCenterOfMassTransform() * BulletRigidBodyInfo->bttrInvBoneOffset ).getOpenGLMatrix( ( float * )&PhysicsInfo->Bone->LocalWorldMatrix );
 	}
 
-	// ï®óùââéZÇçsÇ§É{Å[ÉìÇÃçsóÒÉLÅ[ÇéZèoÇ∑ÇÈ
+	// Áâ©ÁêÜÊºîÁÆó„ÇíË°å„ÅÜ„Éú„Éº„É≥„ÅÆË°åÂàó„Ç≠„Éº„ÇíÁÆóÂá∫„Åô„Çã
 	if( MLPhysicsInfo->LoopMotionFlag == FALSE || LoopNo >= 2 )
 	{
 		if( ValidNextRate == FALSE && ( FPS60 || ( FPS60 == false && FrameNo % 2 == 0 ) ) )
@@ -1486,7 +1486,7 @@ extern int OneFrameProcess_PMXPhysicsInfo(
 				{
 					MATRIX InvParentBoneLWM ;
 
-					// ï®óùââéZÇ©ÇÁìæÇÁÇÍÇÈçsóÒÇÕÉèÅ[ÉãÉhçsóÒÇ»ÇÃÇ≈ÅAÇªÇÍÇÉ{Å[ÉìÇÃÉçÅ[ÉJÉãçsóÒÇ…ïœä∑Ç∑ÇÈ
+					// Áâ©ÁêÜÊºîÁÆó„Åã„ÇâÂæó„Çâ„Çå„ÇãË°åÂàó„ÅØ„ÉØ„Éº„É´„ÉâË°åÂàó„Å™„ÅÆ„Åß„ÄÅ„Åù„Çå„Çí„Éú„Éº„É≥„ÅÆ„É≠„Éº„Ç´„É´Ë°åÂàó„Å´Â§âÊèõ„Åô„Çã
 					ModelLoader3_InverseMatrix( ( ( PMX_READ_BONE_INFO * )PhysicsInfo->Bone->Frame->Parent->UserData )->LocalWorldMatrix, InvParentBoneLWM ) ;
 					CreateMultiplyMatrix( &TempMatrix, &PhysicsInfo->Bone->LocalWorldMatrix, &InvParentBoneLWM ) ;
 				}
@@ -1495,7 +1495,7 @@ extern int OneFrameProcess_PMXPhysicsInfo(
 					TempMatrix = PhysicsInfo->Bone->LocalWorldMatrix ;
 				}
 
-				// ï®óùñ≥å¯Ç™óLå¯Ç…Ç»Ç¡ÇƒÇ¢ÇΩèÍçáÇÕí èÌÇÃåvéZçsóÒÇ∆ÉuÉåÉìÉhÇ∑ÇÈ
+				// Áâ©ÁêÜÁÑ°Âäπ„ÅåÊúâÂäπ„Å´„Å™„Å£„Å¶„ÅÑ„ÅüÂ†¥Âêà„ÅØÈÄöÂ∏∏„ÅÆË®àÁÆóË°åÂàó„Å®„Éñ„É¨„É≥„Éâ„Åô„Çã
 				if( PhysicsInfo->Bone->DisablePhysics >= 0.0001f )
 				{
 					MATRIX TempMatrix2 ;
@@ -1513,7 +1513,7 @@ extern int OneFrameProcess_PMXPhysicsInfo(
 
 						LocalWorldMatrix = PhysicsInfo->Bone->BackupLocalWorldMatrix_Valid ? &PhysicsInfo->Bone->BackupLocalWorldMatrix : &PhysicsInfo->Bone->LocalWorldMatrix ;
 
-						// ï®óùââéZÇ©ÇÁìæÇÁÇÍÇÈçsóÒÇÕÉèÅ[ÉãÉhçsóÒÇ»ÇÃÇ≈ÅAÇªÇÍÇÉ{Å[ÉìÇÃÉçÅ[ÉJÉãçsóÒÇ…ïœä∑Ç∑ÇÈ
+						// Áâ©ÁêÜÊºîÁÆó„Åã„ÇâÂæó„Çâ„Çå„ÇãË°åÂàó„ÅØ„ÉØ„Éº„É´„ÉâË°åÂàó„Å™„ÅÆ„Åß„ÄÅ„Åù„Çå„Çí„Éú„Éº„É≥„ÅÆ„É≠„Éº„Ç´„É´Ë°åÂàó„Å´Â§âÊèõ„Åô„Çã
 						ModelLoader3_InverseMatrix( *ParentLocalWorldMatrix, InvParentBoneLWM ) ;
 						CreateMultiplyMatrix( &TempMatrix2, LocalWorldMatrix, &InvParentBoneLWM ) ;
 					}
@@ -1603,7 +1603,7 @@ extern int OneFrameProcess_PMXPhysicsInfo(
 				{
 					MATRIX InvParentBoneLWM ;
 
-					// ï®óùââéZÇ©ÇÁìæÇÁÇÍÇÈçsóÒÇÕÉèÅ[ÉãÉhçsóÒÇ»ÇÃÇ≈ÅAÇªÇÍÇÉ{Å[ÉìÇÃÉçÅ[ÉJÉãçsóÒÇ…ïœä∑Ç∑ÇÈ
+					// Áâ©ÁêÜÊºîÁÆó„Åã„ÇâÂæó„Çâ„Çå„ÇãË°åÂàó„ÅØ„ÉØ„Éº„É´„ÉâË°åÂàó„Å™„ÅÆ„Åß„ÄÅ„Åù„Çå„Çí„Éú„Éº„É≥„ÅÆ„É≠„Éº„Ç´„É´Ë°åÂàó„Å´Â§âÊèõ„Åô„Çã
 					ModelLoader3_InverseMatrix( ( ( PMX_READ_BONE_INFO * )PhysicsInfo->Bone->Frame->Parent->UserData )->LocalWorldMatrix, InvParentBoneLWM ) ;
 					CreateMultiplyMatrix( &PhysicsInfo->Bone->KeyMatrix[ DestIndex ], &PhysicsInfo->Bone->LocalWorldMatrix, &InvParentBoneLWM ) ;
 				}
@@ -1616,7 +1616,7 @@ extern int OneFrameProcess_PMXPhysicsInfo(
 		}
 	}
 
-	// èIóπ
+	// ÁµÇ‰∫Ü
 	return 0 ;
 }
 

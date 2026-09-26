@@ -1,12 +1,12 @@
 // -------------------------------------------------------------------------------
 // 
-// 		‚c‚wƒ‰ƒCƒuƒ‰ƒŠ		‚c‚‰‚’‚…‚ƒ‚”‚r‚‚•‚‚„§ŒäƒvƒƒOƒ‰ƒ€
+// 		ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒª		ï¼¤ï½‰ï½’ï½…ï½ƒï½”ï¼³ï½ï½•ï½ï½„åˆ¶å¾¡ãƒ—ãƒ­ã‚°ãƒ©ãƒ 
 // 
 // 				Ver 3.25a
 // 
 // -------------------------------------------------------------------------------
 
-// ‚c‚wƒ‰ƒCƒuƒ‰ƒŠì¬—p’è‹`
+// ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªä½œæˆæ™‚ç”¨å®šç¾©
 #define DX_MAKE
 
 #include "DxSound.h"
@@ -21,7 +21,7 @@ using namespace DxLib ;
 
 #ifndef DX_NON_SOUND
 
-// ƒCƒ“ƒNƒ‹[ƒh ------------------------------------------------------------------
+// ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ ------------------------------------------------------------------
 #include "DxFile.h"
 #include "DxBaseFunc.h"
 #include "DxSystem.h"
@@ -30,7 +30,7 @@ using namespace DxLib ;
 #include "DxASyncLoad.h"
 #include "DxLog.h"
 
-// ŠO•”ŠÖ”ƒvƒƒgƒ^ƒCƒvéŒ¾ ------------------------------------------------------
+// å¤–éƒ¨é–¢æ•°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€ ------------------------------------------------------
 
 #ifndef DX_NON_OGGVORBIS
 
@@ -50,105 +50,105 @@ namespace DxLib
 	#pragma warn -8072
 #endif
 
-// ƒ}ƒNƒ’è‹` -------------------------------------
+// ãƒã‚¯ãƒ­å®šç¾© -------------------------------------
 
-// ƒ\ƒtƒgƒTƒEƒ“ƒhŠÖŒW‚Ì’è‹`
-#define SSND_PLAYER_SEC_DIVNUM				(256)		// ‚P•b‚Ì•ªŠ„”
-#define SSND_PLAYER_STRM_BUFSEC				(256)		// ƒvƒŒƒCƒ„[‚ÌƒTƒEƒ“ƒhƒoƒbƒtƒ@‚ÌƒTƒCƒY( 1 / SSND_PLAYER_SEC_DIVNUM@•b )
-#define SSND_PLAYER_STRM_ONECOPYSEC			(8)			// ƒvƒŒƒCƒ„[‚ÌƒTƒEƒ“ƒhƒoƒbƒtƒ@‚ÌƒTƒCƒY( 1 / SSND_PLAYER_SEC_DIVNUM@•b )
-#define SSND_PLAYER_STRM_SAKICOPYSEC		(256 / 5)	// ƒvƒŒƒCƒ„[‚ÌÄ¶‚É‰¹ºƒf[ƒ^‚ğæs“WŠJ‚µ‚Ä‚¨‚­Å‘åŠÔ( ’PˆÊ‚Í SSND_PLAYER_SEC_DIVNUM•ª‚Ì1•b )
-#define SSND_PLAYER_STRM_MINSAKICOPYSEC		(256 / 30)	// ƒvƒŒƒCƒ„[‚ÌÄ¶‚É‰¹ºƒf[ƒ^‚ğæs“WŠJ‚µ‚Ä‚¨‚­Å¬ŠÔ( ’PˆÊ‚Í SSND_PLAYER_SEC_DIVNUM•ª‚Ì1•b )
+// ã‚½ãƒ•ãƒˆã‚µã‚¦ãƒ³ãƒ‰é–¢ä¿‚ã®å®šç¾©
+#define SSND_PLAYER_SEC_DIVNUM				(256)		// ï¼‘ç§’ã®åˆ†å‰²æ•°
+#define SSND_PLAYER_STRM_BUFSEC				(256)		// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡ã®ã‚µã‚¤ã‚º( 1 / SSND_PLAYER_SEC_DIVNUMã€€ç§’ )
+#define SSND_PLAYER_STRM_ONECOPYSEC			(8)			// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡ã®ã‚µã‚¤ã‚º( 1 / SSND_PLAYER_SEC_DIVNUMã€€ç§’ )
+#define SSND_PLAYER_STRM_SAKICOPYSEC		(256 / 5)	// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å†ç”Ÿæ™‚ã«éŸ³å£°ãƒ‡ãƒ¼ã‚¿ã‚’å…ˆè¡Œå±•é–‹ã—ã¦ãŠãæœ€å¤§æ™‚é–“( å˜ä½ã¯ SSND_PLAYER_SEC_DIVNUMåˆ†ã®1ç§’ )
+#define SSND_PLAYER_STRM_MINSAKICOPYSEC		(256 / 30)	// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å†ç”Ÿæ™‚ã«éŸ³å£°ãƒ‡ãƒ¼ã‚¿ã‚’å…ˆè¡Œå±•é–‹ã—ã¦ãŠãæœ€å°æ™‚é–“( å˜ä½ã¯ SSND_PLAYER_SEC_DIVNUMåˆ†ã®1ç§’ )
 
-// ƒXƒgƒŠ[ƒ€ŠÖŒW‚Ì’è‹`
-#define STS_DIVNUM							(256)		// ‚P•b‚Ì•ªŠ„”
-#define STS_BUFSEC							(256)		// ƒXƒgƒŠ[ƒ€•—ƒTƒEƒ“ƒhÄ¶‚ÉŠm•Û‚·‚éƒTƒEƒ“ƒhƒoƒbƒtƒ@‚ÌŠÔ( ’PˆÊ‚Í STS_DIVNUM•ª‚Ì1•b )
-#define STS_ONECOPYSEC						(8)			// ƒXƒgƒŠ[ƒ€•—ƒTƒEƒ“ƒhÄ¶‚Éˆê“x‚É“]‘—‚·‚éƒTƒEƒ“ƒhƒf[ƒ^‚Ì’·‚³( 1/STS_ONECOPYSEC •b )
-#define STS_ADVANCECOPYSEC					(192)		// ƒXƒgƒŠ[ƒ€•—ƒTƒEƒ“ƒhÄ¶‚É‰¹ºƒf[ƒ^‚ğæs“WŠJ‚µ‚Ä‚¨‚­Å‘åŠÔ( ’PˆÊ‚Í STS_DIVNUM•ª‚Ì1•b )
-#define STS_MINADVANCECOPYSEC				(96)		// ƒXƒgƒŠ[ƒ€•—ƒTƒEƒ“ƒhÄ¶‚É‰¹ºƒf[ƒ^‚ğæs“WŠJ‚µ‚Ä‚¨‚­Å¬ŠÔ( ’PˆÊ‚Í STS_DIVNUM•ª‚Ì1•b )
-#define STS_CACHEBUFFERSEC					(8)			// ƒXƒgƒŠ[ƒ€•—ƒTƒEƒ“ƒhÄ¶‚ÉAƒtƒ@ƒCƒ‹‚©‚ç‚ÌƒXƒgƒŠ[ƒ€‚Ì‚Æ‚«‚Éƒƒ‚ƒŠã‚ÉŠm•Û‚·‚éˆêƒoƒbƒtƒ@‚Ì’·‚³( 1/STS_CACHEBUFFERSEC •b )
+// ã‚¹ãƒˆãƒªãƒ¼ãƒ é–¢ä¿‚ã®å®šç¾©
+#define STS_DIVNUM							(256)		// ï¼‘ç§’ã®åˆ†å‰²æ•°
+#define STS_BUFSEC							(256)		// ã‚¹ãƒˆãƒªãƒ¼ãƒ é¢¨ã‚µã‚¦ãƒ³ãƒ‰å†ç”Ÿæ™‚ã«ç¢ºä¿ã™ã‚‹ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡ã®æ™‚é–“( å˜ä½ã¯ STS_DIVNUMåˆ†ã®1ç§’ )
+#define STS_ONECOPYSEC						(8)			// ã‚¹ãƒˆãƒªãƒ¼ãƒ é¢¨ã‚µã‚¦ãƒ³ãƒ‰å†ç”Ÿæ™‚ã«ä¸€åº¦ã«è»¢é€ã™ã‚‹ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ã®é•·ã•( 1/STS_ONECOPYSEC ç§’ )
+#define STS_ADVANCECOPYSEC					(192)		// ã‚¹ãƒˆãƒªãƒ¼ãƒ é¢¨ã‚µã‚¦ãƒ³ãƒ‰å†ç”Ÿæ™‚ã«éŸ³å£°ãƒ‡ãƒ¼ã‚¿ã‚’å…ˆè¡Œå±•é–‹ã—ã¦ãŠãæœ€å¤§æ™‚é–“( å˜ä½ã¯ STS_DIVNUMåˆ†ã®1ç§’ )
+#define STS_MINADVANCECOPYSEC				(96)		// ã‚¹ãƒˆãƒªãƒ¼ãƒ é¢¨ã‚µã‚¦ãƒ³ãƒ‰å†ç”Ÿæ™‚ã«éŸ³å£°ãƒ‡ãƒ¼ã‚¿ã‚’å…ˆè¡Œå±•é–‹ã—ã¦ãŠãæœ€å°æ™‚é–“( å˜ä½ã¯ STS_DIVNUMåˆ†ã®1ç§’ )
+#define STS_CACHEBUFFERSEC					(8)			// ã‚¹ãƒˆãƒªãƒ¼ãƒ é¢¨ã‚µã‚¦ãƒ³ãƒ‰å†ç”Ÿæ™‚ã«ã€ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰ã®ã‚¹ãƒˆãƒªãƒ¼ãƒ ã®ã¨ãã«ãƒ¡ãƒ¢ãƒªä¸Šã«ç¢ºä¿ã™ã‚‹ä¸€æ™‚ãƒãƒƒãƒ•ã‚¡ã®é•·ã•( 1/STS_CACHEBUFFERSEC ç§’ )
 
-#define DSMP3ONEFILLSEC						(8)			// DirectShow ‚ğg‚Á‚½‚l‚o‚R•ÏŠ·‚Ìƒtƒ‰ƒOˆê‚Â•Ó‚è‚ªƒJƒo[‚·‚éŠÔ( 1/DSMP3ONEFILLSEC •b )
+#define DSMP3ONEFILLSEC						(8)			// DirectShow ã‚’ä½¿ã£ãŸï¼­ï¼°ï¼“å¤‰æ›ã®ãƒ•ãƒ©ã‚°ä¸€ã¤è¾ºã‚ŠãŒã‚«ãƒãƒ¼ã™ã‚‹æ™‚é–“( 1/DSMP3ONEFILLSEC ç§’ )
 
 #define SOUNDSIZE( size, align )			( ( ( size ) + ( align - 1 ) ) / ( align ) * ( align ) )
 
-// ƒLƒƒƒvƒ`ƒƒ‚Å•Û‘¶‚·‚éƒTƒEƒ“ƒh‚ÌƒTƒ“ƒvƒŠƒ“ƒOƒŒ[ƒg
+// ã‚­ãƒ£ãƒ—ãƒãƒ£ã§ä¿å­˜ã™ã‚‹ã‚µã‚¦ãƒ³ãƒ‰ã®ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ãƒ¬ãƒ¼ãƒˆ
 #define CAPTURE_SAMPLERATE					(44100)
 
-// •W€‚v‚`‚u‚dƒtƒ@ƒCƒ‹‚Ìƒwƒbƒ_‚ÌƒTƒCƒY‚Æ•W€‚v‚`‚u‚dƒtƒ@ƒCƒ‹‚Ì WAVEFORMATEX \‘¢‘Ì‚ÌƒTƒCƒY
+// æ¨™æº–ï¼·ï¼¡ï¼¶ï¼¥ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ˜ãƒƒãƒ€ã®ã‚µã‚¤ã‚ºã¨æ¨™æº–ï¼·ï¼¡ï¼¶ï¼¥ãƒ•ã‚¡ã‚¤ãƒ«ã® WAVEFORMATEX æ§‹é€ ä½“ã®ã‚µã‚¤ã‚º
 #define NORMALWAVE_HEADERSIZE				(46)
 #define NORMALWAVE_FORMATSIZE				(18)
 
-// RF64Œ`®‚v‚`‚u‚dƒtƒ@ƒCƒ‹‚Ìƒwƒbƒ_ƒTƒCƒY
+// RF64å½¢å¼ï¼·ï¼¡ï¼¶ï¼¥ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ˜ãƒƒãƒ€ã‚µã‚¤ã‚º
 #define RF64WAVE_HEADERSIZE					(82)
 
 #define DX_DSBVOLUME_MIN					(-10000)
 #define DX_DSBVOLUME_MAX					(0)
 
-// ƒr[ƒv‰¹ŠÖŒW
-#define SOUND_BEEP_SAMPLEPERSEC				(44100)										// ƒr[ƒv‰¹—p‚ÌƒTƒEƒ“ƒhƒoƒbƒtƒ@‚ÌÄ¶ü”g”
-#define SOUND_BEEP_SAMPLEPERBYTES			(2)											// ƒr[ƒv‰¹—p‚ÌƒTƒEƒ“ƒhƒoƒbƒtƒ@‚Ì‚PƒTƒ“ƒvƒ‹‚ ‚½‚è‚ÌƒoƒCƒg”
-#define SOUND_BEEP_SOUNDBUFFER_SAMPLECOUNT	(SOUND_BEEP_SAMPLEPERSEC / 2)				// ƒr[ƒv‰¹—p‚ÌƒTƒEƒ“ƒhƒoƒbƒtƒ@‚Ì’·‚³
-#define SOUND_BEEP_ONE_WRITE_SAMPLES		(SOUND_BEEP_SOUNDBUFFER_SAMPLECOUNT / 4)	// ƒr[ƒv‰¹—p‚ÌƒTƒEƒ“ƒh‚Åˆê“x‚É‘‚«‚ŞƒTƒ“ƒvƒ‹”
-#define SOUND_DEFAULT_BEEP_FREQUENCY		(1500)										// ƒfƒtƒHƒ‹ƒg‚Ìƒr[ƒv‰¹ü”g”
-#define SOUND_BEEP_PLAY_VOLUME_DELAY		(16)										// ƒr[ƒv‰¹‚ğÄ¶‚µ‚Ä‚©‚çƒTƒEƒ“ƒhƒoƒbƒtƒ@‚Ì‰¹—Ê‚ğã‚°‚é‚Ü‚Å‚ÌŠÔ
-#define SOUND_BEEP_STOP_DELAY				(16)										// ƒr[ƒv‰¹‚ğ’â~‚µ‚Ä‚©‚çÀÛ‚ÉƒTƒEƒ“ƒhƒoƒbƒtƒ@‚ÌÄ¶‚ğ’â~‚·‚é‚Ü‚Å‚ÌŠÔ
+// ãƒ“ãƒ¼ãƒ—éŸ³é–¢ä¿‚
+#define SOUND_BEEP_SAMPLEPERSEC				(44100)										// ãƒ“ãƒ¼ãƒ—éŸ³ç”¨ã®ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡ã®å†ç”Ÿå‘¨æ³¢æ•°
+#define SOUND_BEEP_SAMPLEPERBYTES			(2)											// ãƒ“ãƒ¼ãƒ—éŸ³ç”¨ã®ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡ã®ï¼‘ã‚µãƒ³ãƒ—ãƒ«ã‚ãŸã‚Šã®ãƒã‚¤ãƒˆæ•°
+#define SOUND_BEEP_SOUNDBUFFER_SAMPLECOUNT	(SOUND_BEEP_SAMPLEPERSEC / 2)				// ãƒ“ãƒ¼ãƒ—éŸ³ç”¨ã®ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡ã®é•·ã•
+#define SOUND_BEEP_ONE_WRITE_SAMPLES		(SOUND_BEEP_SOUNDBUFFER_SAMPLECOUNT / 4)	// ãƒ“ãƒ¼ãƒ—éŸ³ç”¨ã®ã‚µã‚¦ãƒ³ãƒ‰ã§ä¸€åº¦ã«æ›¸ãè¾¼ã‚€ã‚µãƒ³ãƒ—ãƒ«æ•°
+#define SOUND_DEFAULT_BEEP_FREQUENCY		(1500)										// ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®ãƒ“ãƒ¼ãƒ—éŸ³å‘¨æ³¢æ•°
+#define SOUND_BEEP_PLAY_VOLUME_DELAY		(16)										// ãƒ“ãƒ¼ãƒ—éŸ³ã‚’å†ç”Ÿã—ã¦ã‹ã‚‰ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡ã®éŸ³é‡ã‚’ä¸Šã’ã‚‹ã¾ã§ã®æ™‚é–“
+#define SOUND_BEEP_STOP_DELAY				(16)										// ãƒ“ãƒ¼ãƒ—éŸ³ã‚’åœæ­¢ã—ã¦ã‹ã‚‰å®Ÿéš›ã«ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡ã®å†ç”Ÿã‚’åœæ­¢ã™ã‚‹ã¾ã§ã®æ™‚é–“
 
-// ©‘Oƒ~ƒLƒVƒ“ƒOŠÖŒW
-#define SELF_MIXING_ONE_OUTPUT_DELAY_DIV	(60 * 8)									// ©‘Oƒ~ƒLƒVƒ“ƒO‚Å‚P‰¹•Ó‚è‚É‚¸‚ç‚·ŠÔ
-#define SELF_MIXING_SCALING_TIME			(2)											// ©‘Oƒ~ƒLƒVƒ“ƒO‚Å‰¹Š„‚ê–h~—pƒXƒP[ƒŠƒ“ƒO‚ğŒ³‚É–ß‚·ŠÔ
+// è‡ªå‰ãƒŸã‚­ã‚·ãƒ³ã‚°é–¢ä¿‚
+#define SELF_MIXING_ONE_OUTPUT_DELAY_DIV	(60 * 8)									// è‡ªå‰ãƒŸã‚­ã‚·ãƒ³ã‚°ã§ï¼‘éŸ³è¾ºã‚Šã«ãšã‚‰ã™æ™‚é–“
+#define SELF_MIXING_SCALING_TIME			(2)											// è‡ªå‰ãƒŸã‚­ã‚·ãƒ³ã‚°ã§éŸ³å‰²ã‚Œé˜²æ­¢ç”¨ã‚¹ã‚±ãƒ¼ãƒªãƒ³ã‚°ã‚’å…ƒã«æˆ»ã™æ™‚é–“
 
-// \‘¢‘Ì’è‹` --------------------------------------------------------------------
+// æ§‹é€ ä½“å®šç¾© --------------------------------------------------------------------
 
-// “à•”‘åˆæ•Ï”éŒ¾ --------------------------------------------------------------
+// å†…éƒ¨å¤§åŸŸå¤‰æ•°å®£è¨€ --------------------------------------------------------------
 
-// ƒTƒEƒ“ƒhƒVƒXƒeƒ€ƒf[ƒ^
+// ã‚µã‚¦ãƒ³ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿
 SOUNDSYSTEMDATA SoundSysData ;
 
-// ‚l‚h‚c‚hŠÇ——pƒf[ƒ^
+// ï¼­ï¼©ï¼¤ï¼©ç®¡ç†ç”¨ãƒ‡ãƒ¼ã‚¿
 MIDISYSTEMDATA MidiSystemData ;	
 
-// ŠÖ”ƒvƒƒgƒ^ƒCƒvéŒ¾-----------------------------------------------------------
+// é–¢æ•°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€-----------------------------------------------------------
 
-static  int GetSoundBuffer( int SoundHandle, SOUND * Sound, SOUNDBUFFER **BufferP = NULL, bool BufferGet = true ) ;	// g—p‰Â”\‚ÈƒTƒEƒ“ƒhƒoƒbƒtƒ@‚ğæ“¾‚·‚é(-1:ƒTƒEƒ“ƒhƒoƒbƒtƒ@‚Ìg—pŒ ‚ğ“¾‚ç‚ê‚È‚©‚Á‚½)
+static  int GetSoundBuffer( int SoundHandle, SOUND * Sound, SOUNDBUFFER **BufferP = NULL, bool BufferGet = true ) ;	// ä½¿ç”¨å¯èƒ½ãªã‚µã‚¦ãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡ã‚’å–å¾—ã™ã‚‹(-1:ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡ã®ä½¿ç”¨æ¨©ã‚’å¾—ã‚‰ã‚Œãªã‹ã£ãŸ)
 static	int CreateSoundBuffer( WAVEFORMATEX *WaveFormat, DWORD BufferSize, 
 									 int SoundType, int BufferNum,
-									 int SoundHandle, int SrcSoundHandle = -1, int ASyncThread = FALSE ) ;			// V‚µ‚¢ƒTƒEƒ“ƒhƒoƒbƒtƒ@‚Ìì¬
+									 int SoundHandle, int SrcSoundHandle = -1, int ASyncThread = FALSE ) ;			// æ–°ã—ã„ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡ã®ä½œæˆ
 
 
 
-// •â•ŒnŠÖ”
-static	int AdjustSoundDataBlock( int Length, SOUND * Sound ) ;										// ƒTƒCƒY•â³
+// è£œåŠ©ç³»é–¢æ•°
+static	int AdjustSoundDataBlock( int Length, SOUND * Sound ) ;										// ã‚µã‚¤ã‚ºè£œæ­£
 
-// ƒ\ƒtƒgƒEƒGƒA‚Å§Œä‚·‚éƒTƒEƒ“ƒhƒf[ƒ^ƒnƒ“ƒhƒ‹ŠÖŒW
-//static int AddSoftSoundData( int IsPlayer, int Channels, int BitsPerSample, int SamplesPerSec, int SampleNum ) ;	// ƒ\ƒtƒgƒEƒGƒA‚Å§Œä‚·‚éƒTƒEƒ“ƒhƒf[ƒ^ƒnƒ“ƒhƒ‹‚Ì’Ç‰Á
-//static int SubSoftSoundData( int SoftSoundHandle, int CheckIsPlayer ) ;											// ƒ\ƒtƒgƒEƒGƒA‚Å§Œä‚·‚éƒTƒEƒ“ƒhƒf[ƒ^ƒnƒ“ƒhƒ‹‚Ìíœ
-static	int _SoftSoundPlayerProcess( SOFTSOUND *SPlayer ) ;															// ƒ\ƒtƒgƒEƒGƒA‚Å§Œä‚·‚éƒTƒEƒ“ƒhƒf[ƒ^ƒvƒŒƒCƒ„[‚Ì’èŠúˆ—
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§åˆ¶å¾¡ã™ã‚‹ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ãƒãƒ³ãƒ‰ãƒ«é–¢ä¿‚
+//static int AddSoftSoundData( int IsPlayer, int Channels, int BitsPerSample, int SamplesPerSec, int SampleNum ) ;	// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§åˆ¶å¾¡ã™ã‚‹ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ãƒãƒ³ãƒ‰ãƒ«ã®è¿½åŠ 
+//static int SubSoftSoundData( int SoftSoundHandle, int CheckIsPlayer ) ;											// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§åˆ¶å¾¡ã™ã‚‹ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ãƒãƒ³ãƒ‰ãƒ«ã®å‰Šé™¤
+static	int _SoftSoundPlayerProcess( SOFTSOUND *SPlayer ) ;															// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§åˆ¶å¾¡ã™ã‚‹ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å®šæœŸå‡¦ç†
 
-// •â•Œn
+// è£œåŠ©ç³»
 extern	int CreateWaveFileImage( 	void **DestBufferP, size_t *DestBufferSizeP,
 									const WAVEFORMATEX *Format, int FormatSize,
-									const void *WaveData, size_t WaveDataSize ) ;										// ‰¹ºƒtƒH[ƒ}ƒbƒg‚Æ”gŒ`ƒCƒ[ƒW‚©‚ç‚v‚`‚u‚dƒtƒ@ƒCƒ‹ƒCƒ[ƒW‚ğì¬‚·‚é
-static	int FileFullRead( const wchar_t *FileName, void **BufferP, size_t *SizeP, int OutputFileOpenErrorLog = TRUE ) ;	// ƒtƒ@ƒCƒ‹‚ğŠÛ‚Ü‚éƒƒ‚ƒŠ‚É“Ç‚İ‚Ş
-extern	int StreamFullRead( STREAMDATA *Stream, void **BufferP, size_t *SizeP ) ;										// ƒXƒgƒŠ[ƒ€ƒf[ƒ^‚ğŠÛ‚Ü‚éƒƒ‚ƒŠ‚É“Ç‚İ‚Ş
-static	int SoundTypeChangeToStream( int SoundHandle ) ;																// ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹‚Ìƒ^ƒCƒv‚ªƒXƒgƒŠ[ƒ€ƒnƒ“ƒhƒ‹‚Å‚Í‚È‚¢ê‡‚ÉƒXƒgƒŠ[ƒ€ƒnƒ“ƒhƒ‹‚É•ÏX‚·‚é
-static	LONGLONG MilliSecPositionToSamplePosition( int SamplesPerSec, LONGLONG MilliSecTime ) ;							// ƒ~ƒŠ•b’PˆÊ‚Ì”’l‚ğƒTƒ“ƒvƒ‹’PˆÊ‚Ì”’l‚É•ÏŠ·‚·‚é
-static	LONGLONG SamplePositionToMilliSecPosition( int SamplesPerSec, LONGLONG SampleTime ) ;							// ƒTƒ“ƒvƒ‹’PˆÊ‚Ì”’l‚ğƒ~ƒŠ•b’PˆÊ‚Ì”’l‚É•ÏŠ·‚·‚é
-static	int _PlaySetupSoundMem( SOUND * Sound, int TopPositionFlag ) ;													// ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹‚ÌÄ¶€”õ‚ğs‚¤( -1:ƒGƒ‰[ 0:³íI—¹ 1:Ä¶‚·‚é•K—v‚È‚µ )
-static	int	_PlaySetupStreamSoundMem( int SoundHandle, SOUND * Sound, int PlayType, int TopPositionFlag, SOUNDBUFFER **DestSBuffer ) ;	// ƒXƒgƒŠ[ƒ€ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹‚ÌÄ¶€”õ‚ğs‚¤( -1:ƒGƒ‰[ 0:³íI—¹ 1:Ä¶‚·‚é•K—v‚È‚µ )
-static	int _CreateSoundHandle( int Is3DSound, int NotInitSoundMemDelete, int ASyncThread ) ;									// ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹‚ğì¬‚·‚é
-static	int SetupSoundPitchRateTimeStretchRateChangeHandle( int SoundHandle, LOADSOUND_GPARAM *GParam, int SSSHandleI, int BufferNum, int ASyncThread ) ;		// ƒsƒbƒ`•ÏX‚âƒ^ƒCƒ€ƒXƒgƒŒƒbƒ`‚ÌLk•ÏXƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹‚ğƒZƒbƒgƒAƒbƒv‚·‚éƒwƒ‹ƒp[ŠÖ”
+									const void *WaveData, size_t WaveDataSize ) ;										// éŸ³å£°ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã¨æ³¢å½¢ã‚¤ãƒ¡ãƒ¼ã‚¸ã‹ã‚‰ï¼·ï¼¡ï¼¶ï¼¥ãƒ•ã‚¡ã‚¤ãƒ«ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’ä½œæˆã™ã‚‹
+static	int FileFullRead( const wchar_t *FileName, void **BufferP, size_t *SizeP, int OutputFileOpenErrorLog = TRUE ) ;	// ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ä¸¸ã¾ã‚‹ãƒ¡ãƒ¢ãƒªã«èª­ã¿è¾¼ã‚€
+extern	int StreamFullRead( STREAMDATA *Stream, void **BufferP, size_t *SizeP ) ;										// ã‚¹ãƒˆãƒªãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿ã‚’ä¸¸ã¾ã‚‹ãƒ¡ãƒ¢ãƒªã«èª­ã¿è¾¼ã‚€
+static	int SoundTypeChangeToStream( int SoundHandle ) ;																// ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ã®ã‚¿ã‚¤ãƒ—ãŒã‚¹ãƒˆãƒªãƒ¼ãƒ ãƒãƒ³ãƒ‰ãƒ«ã§ã¯ãªã„å ´åˆã«ã‚¹ãƒˆãƒªãƒ¼ãƒ ãƒãƒ³ãƒ‰ãƒ«ã«å¤‰æ›´ã™ã‚‹
+static	LONGLONG MilliSecPositionToSamplePosition( int SamplesPerSec, LONGLONG MilliSecTime ) ;							// ãƒŸãƒªç§’å˜ä½ã®æ•°å€¤ã‚’ã‚µãƒ³ãƒ—ãƒ«å˜ä½ã®æ•°å€¤ã«å¤‰æ›ã™ã‚‹
+static	LONGLONG SamplePositionToMilliSecPosition( int SamplesPerSec, LONGLONG SampleTime ) ;							// ã‚µãƒ³ãƒ—ãƒ«å˜ä½ã®æ•°å€¤ã‚’ãƒŸãƒªç§’å˜ä½ã®æ•°å€¤ã«å¤‰æ›ã™ã‚‹
+static	int _PlaySetupSoundMem( SOUND * Sound, int TopPositionFlag ) ;													// ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ã®å†ç”Ÿæº–å‚™ã‚’è¡Œã†( -1:ã‚¨ãƒ©ãƒ¼ 0:æ­£å¸¸çµ‚äº† 1:å†ç”Ÿã™ã‚‹å¿…è¦ãªã— )
+static	int	_PlaySetupStreamSoundMem( int SoundHandle, SOUND * Sound, int PlayType, int TopPositionFlag, SOUNDBUFFER **DestSBuffer ) ;	// ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ã®å†ç”Ÿæº–å‚™ã‚’è¡Œã†( -1:ã‚¨ãƒ©ãƒ¼ 0:æ­£å¸¸çµ‚äº† 1:å†ç”Ÿã™ã‚‹å¿…è¦ãªã— )
+static	int _CreateSoundHandle( int Is3DSound, int NotInitSoundMemDelete, int ASyncThread ) ;									// ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ã‚’ä½œæˆã™ã‚‹
+static	int SetupSoundPitchRateTimeStretchRateChangeHandle( int SoundHandle, LOADSOUND_GPARAM *GParam, int SSSHandleI, int BufferNum, int ASyncThread ) ;		// ãƒ”ãƒƒãƒå¤‰æ›´ã‚„ã‚¿ã‚¤ãƒ ã‚¹ãƒˆãƒ¬ãƒƒãƒæ™‚ã®ä¼¸ç¸®å¤‰æ›´ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ã‚’ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã™ã‚‹ãƒ˜ãƒ«ãƒ‘ãƒ¼é–¢æ•°
 
 #ifndef DX_NON_BEEP
 
-// BEEP‰¹ŠÖŒW
-static	int	BeepSound_Initialize( void ) ;										// BEEP‰¹ŠÖŒW‚Ì‰Šú‰»‚ğs‚¤
-static	int BeepSound_Terminate( void ) ;										// BEEP‰¹ŠÖŒW‚ÌŒãn––‚ğs‚¤
-static	int BeepSound_Process( void ) ;											// BEEP‰¹ŠÖŒW‚ÌüŠú“Iˆ—‚ğs‚¤
-static	int	BeepSound_FillSamples( int BufferIndex ) ;							// BEEP‰¹‚Ì”gŒ`ƒf[ƒ^‚ğ‘‚«‚Ş
+// BEEPéŸ³é–¢ä¿‚
+static	int	BeepSound_Initialize( void ) ;										// BEEPéŸ³é–¢ä¿‚ã®åˆæœŸåŒ–ã‚’è¡Œã†
+static	int BeepSound_Terminate( void ) ;										// BEEPéŸ³é–¢ä¿‚ã®å¾Œå§‹æœ«ã‚’è¡Œã†
+static	int BeepSound_Process( void ) ;											// BEEPéŸ³é–¢ä¿‚ã®å‘¨æœŸçš„å‡¦ç†ã‚’è¡Œã†
+static	int	BeepSound_FillSamples( int BufferIndex ) ;							// BEEPéŸ³ã®æ³¢å½¢ãƒ‡ãƒ¼ã‚¿ã‚’æ›¸ãè¾¼ã‚€
 
 #endif // DX_NON_BEEP
 
-// ƒvƒƒOƒ‰ƒ€ --------------------------------------------------------------------
+// ãƒ—ãƒ­ã‚°ãƒ©ãƒ  --------------------------------------------------------------------
 /*
 static __inline void TableSin( int Angle, float * RST Sin )
 {
@@ -169,7 +169,7 @@ static __inline void TableCos( float Angle, float * RST Sin, float * RST Cos )
 	}
 }
 */
-// ƒTƒEƒ“ƒhƒVƒXƒeƒ€‚ğ‰Šú‰»‚·‚é
+// ã‚µã‚¦ãƒ³ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ã‚’åˆæœŸåŒ–ã™ã‚‹
 extern int InitializeSoundSystem( void )
 {
 	if( SoundSysData.InitializeFlag )
@@ -177,35 +177,35 @@ extern int InitializeSoundSystem( void )
 		return -1 ;
 	}
 
-	// o—ÍƒŒ[ƒg‚ğƒZƒbƒg
+	// å‡ºåŠ›ãƒ¬ãƒ¼ãƒˆã‚’ã‚»ãƒƒãƒˆ
 	if( SoundSysData.OutputSmaplesPerSec == 0 )
 	{
 		SoundSysData.OutputSmaplesPerSec = 44100 ;
 	}
 
-	// ‚R‚cƒTƒEƒ“ƒh‚Ì‚Pƒ[ƒgƒ‹‚ğİ’è
+	// ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰ã®ï¼‘ãƒ¡ãƒ¼ãƒˆãƒ«ã‚’è¨­å®š
 	if( SoundSysData._3DSoundOneMetreEnable == FALSE )
 	{
 		SoundSysData._3DSoundOneMetre = 1.0f ;
 	}
 
-	// ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹ŠÇ—î•ñ‰Šú‰»
+	// ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ç®¡ç†æƒ…å ±åˆæœŸåŒ–
 	InitializeHandleManage( DX_HANDLETYPE_SOUND, sizeof( SOUND ), MAX_SOUND_NUM, InitializeSoundHandle, TerminateSoundHandle, DumpInfoSoundHandle, L"Sound" ) ;
 
-	// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤”gŒ`ƒf[ƒ^ƒnƒ“ƒhƒ‹ŠÇ—î•ñ‰Šú‰»
+	// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†æ³¢å½¢ãƒ‡ãƒ¼ã‚¿ãƒãƒ³ãƒ‰ãƒ«ç®¡ç†æƒ…å ±åˆæœŸåŒ–
 	InitializeHandleManage( DX_HANDLETYPE_SOFTSOUND, sizeof( SOFTSOUND ), MAX_SOFTSOUND_NUM, InitializeSoftSoundHandle, TerminateSoftSoundHandle, NULL, L"SoftSound" ) ;
 
-	// ‚l‚h‚c‚hƒnƒ“ƒhƒ‹ŠÇ—î•ñ‰Šú‰»
+	// ï¼­ï¼©ï¼¤ï¼©ãƒãƒ³ãƒ‰ãƒ«ç®¡ç†æƒ…å ±åˆæœŸåŒ–
 	InitializeHandleManage( DX_HANDLETYPE_MUSIC, sizeof( MIDIHANDLEDATA ), MAX_MUSIC_NUM, InitializeMidiHandle, TerminateMidiHandle, NULL, L"Music" ) ;
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰Šú‰»
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®åˆæœŸåŒ–
 	CriticalSection_Initialize( &SoundSysData._3DSoundListCriticalSection ) ;
 	CriticalSection_Initialize( &SoundSysData.Play3DSoundListCriticalSection ) ;
 	CriticalSection_Initialize( &SoundSysData.PlaySoundBufferListCriticalSection ) ;
 	CriticalSection_Initialize( &SoundSysData.PlaySoundListCriticalSection ) ;
 	CriticalSection_Initialize( &SoundSysData.StreamSoundListCriticalSection ) ;
 
-	// ƒnƒ“ƒhƒ‹ƒŠƒXƒg‚ğ‰Šú‰»
+	// ãƒãƒ³ãƒ‰ãƒ«ãƒªã‚¹ãƒˆã‚’åˆæœŸåŒ–
 	InitializeHandleList( &SoundSysData._3DSoundListFirst,				&SoundSysData._3DSoundListLast ) ;
 	InitializeHandleList( &SoundSysData.StreamSoundListFirst,			&SoundSysData.StreamSoundListLast ) ;
 	InitializeHandleList( &SoundSysData.SoftSoundPlayerListFirst,		&SoundSysData.SoftSoundPlayerListLast ) ;
@@ -213,10 +213,10 @@ extern int InitializeSoundSystem( void )
 	InitializeHandleList( &SoundSysData.PlaySoundListFirst,				&SoundSysData.PlaySoundListLast ) ;
 	InitializeHandleList( &SoundSysData.Play3DSoundListFirst,			&SoundSysData.Play3DSoundListLast ) ;
 
-	// ƒVƒ“ƒvƒ‹ƒŠƒXƒg‚ğ‰Šú‰»
+	// ã‚·ãƒ³ãƒ—ãƒ«ãƒªã‚¹ãƒˆã‚’åˆæœŸåŒ–
 	InitializeSimpleList( &SoundSysData.PlaySoundBufferListFirst,       &SoundSysData.PlaySoundBufferListLast ) ;
 
-	// ƒTƒCƒ“ƒe[ƒuƒ‹‚Ì‰Šú‰»
+	// ã‚µã‚¤ãƒ³ãƒ†ãƒ¼ãƒ–ãƒ«ã®åˆæœŸåŒ–
 	{
 		int i ;
 		float Sin ;
@@ -229,7 +229,7 @@ extern int InitializeSoundSystem( void )
 		}
 	}
 
-	// 8bit”gŒ`‚ğ16bit”gŒ`‚É•ÏŠ·‚·‚é‚½‚ß‚Ìƒe[ƒuƒ‹‚ğ‰Šú‰»
+	// 8bitæ³¢å½¢ã‚’16bitæ³¢å½¢ã«å¤‰æ›ã™ã‚‹ãŸã‚ã®ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’åˆæœŸåŒ–
 	{
 		int i ;
 		for( i = 0 ; i < 256 ; i ++ )
@@ -238,32 +238,32 @@ extern int InitializeSoundSystem( void )
 		}
 	}
 
-	// ©‘Oƒ~ƒLƒVƒ“ƒO‚Ì‘Ä¶ƒTƒ“ƒvƒ‹”‚ğ‰Šú‰»
+	// è‡ªå‰ãƒŸã‚­ã‚·ãƒ³ã‚°ã®ç·å†ç”Ÿã‚µãƒ³ãƒ—ãƒ«æ•°ã‚’åˆæœŸåŒ–
 	SoundSysData.SelfMixingTotalWriteSamples = 0 ;
 
-	// ŠÂ‹«ˆË‘¶ˆ—
+	// ç’°å¢ƒä¾å­˜å‡¦ç†
 	if( InitializeSoundSystem_PF_Timing0() < 0 )
 	{
 		goto ERR ;
 	}
 
-	// ì¬‚·‚é‰¹‚Ìƒf[ƒ^ƒ^ƒCƒv‚ğƒZƒbƒg
+	// ä½œæˆã™ã‚‹éŸ³ã®ãƒ‡ãƒ¼ã‚¿ã‚¿ã‚¤ãƒ—ã‚’ã‚»ãƒƒãƒˆ
 	SoundSysData.CreateSoundDataType = DX_SOUNDDATATYPE_MEMNOPRESS ;
 
-	// ì¬‚·‚é‰¹‚Ìƒsƒbƒ`ƒŒ[ƒg‚ğƒZƒbƒg
+	// ä½œæˆã™ã‚‹éŸ³ã®ãƒ”ãƒƒãƒãƒ¬ãƒ¼ãƒˆã‚’ã‚»ãƒƒãƒˆ
 	SoundSysData.CreateSoundPitchRateEnable = FALSE ;
 	SoundSysData.CreateSoundPitchRate = 1.0f ;
 
-	// ì¬‚·‚é‰¹‚Ìƒ^ƒCƒ€ƒXƒgƒŒƒbƒ`ƒŒ[ƒg‚ğƒZƒbƒg
+	// ä½œæˆã™ã‚‹éŸ³ã®ã‚¿ã‚¤ãƒ ã‚¹ãƒˆãƒ¬ãƒƒãƒãƒ¬ãƒ¼ãƒˆã‚’ã‚»ãƒƒãƒˆ
 	SoundSysData.CreateSoundTimeStretchRateEnable = FALSE ;
 	SoundSysData.CreateSoundTimeStretchRate = 1.0f ;
 
 #ifndef DX_NON_OGGVORBIS
-	// ‚n‚‡‚‡‚u‚‚’‚‚‚‰‚“‚Ì‚o‚b‚lƒfƒR[ƒh‚ÌAƒrƒbƒg[“x‚ğ‚P‚Ubit‚ÉƒZƒbƒg
+	// ï¼¯ï½‡ï½‡ï¼¶ï½ï½’ï½‚ï½‰ï½“ã®ï¼°ï¼£ï¼­ãƒ‡ã‚³ãƒ¼ãƒ‰æ™‚ã®ã€ãƒ“ãƒƒãƒˆæ·±åº¦ã‚’ï¼‘ï¼–bitã«ã‚»ãƒƒãƒˆ
 	SoundSysData.OggVorbisBitDepth = 2 ;
 #endif // DX_NON_OGGVORBIS
 
-	// ‚R‚cƒTƒEƒ“ƒhˆ——p‚ÌƒŠƒXƒi[î•ñ‚ğ‰Šú‰»
+	// ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰å‡¦ç†ç”¨ã®ãƒªã‚¹ãƒŠãƒ¼æƒ…å ±ã‚’åˆæœŸåŒ–
 	SoundSysData.ListenerInfo.Position			= VGet( 0.0f, 0.0f, 0.0f ) ;
 	SoundSysData.ListenerInfo.FrontDirection	= VGet( 0.0f, 0.0f, 1.0f ) ;
 	SoundSysData.ListenerInfo.Velocity			= VGet( 0.0f, 0.0f, 0.0f ) ;
@@ -273,84 +273,84 @@ extern int InitializeSoundSystem( void )
 	SoundSysData.ListenerInfo.OuterVolume		= 0.75f ;
 	SoundSysData.ListenerSideDirection			= VGet( 1.0f, 0.0f, 0.0f ) ;
 
-	// ‰Šú‰»ƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// åˆæœŸåŒ–ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	SoundSysData.InitializeFlag = TRUE ;
 
 	NS_InitSoundMem() ;
 	NS_InitSoftSound() ;
 	NS_InitSoftSoundPlayer() ;
 
-	// ŠÂ‹«ˆË‘¶ˆ—
+	// ç’°å¢ƒä¾å­˜å‡¦ç†
 	if( InitializeSoundSystem_PF_Timing1() < 0 )
 	{
 		goto ERR ;
 	}
 
-	// ©‘Oƒ~ƒLƒVƒ“ƒO‚Ìê‡‚Ì‰Šú‰»ˆ—
+	// è‡ªå‰ãƒŸã‚­ã‚·ãƒ³ã‚°ã®å ´åˆã®åˆæœŸåŒ–å‡¦ç†
 	if( SoundSysData.EnableSelfMixingFlag )
 	{
-		// ˆê‰ñ‚ÌÄ¶•Ó‚è‚É‰ÁZ‚·‚é’x‰„ƒTƒ“ƒvƒ‹”‚ğƒZƒbƒg
+		// ä¸€å›ã®å†ç”Ÿè¾ºã‚Šã«åŠ ç®—ã™ã‚‹é…å»¶ã‚µãƒ³ãƒ—ãƒ«æ•°ã‚’ã‚»ãƒƒãƒˆ
 		SoundSysData.SelfMixingOutputDelaySamplesUnit = SoundSysData.SelfMixingFormat.nSamplesPerSec / SELF_MIXING_ONE_OUTPUT_DELAY_DIV ;
 		SoundSysData.SelfMixingOutputDelaySamples = 0 ;
 
-		// ƒXƒP[ƒŠƒ“ƒO‚ğ‰Šú‰»
+		// ã‚¹ã‚±ãƒ¼ãƒªãƒ³ã‚°ã‚’åˆæœŸåŒ–
 		SoundSysData.SelfMixingScalingTotalSamples = SoundSysData.SelfMixingFormat.nSamplesPerSec / SELF_MIXING_SCALING_TIME ;
 	}
 
 #ifndef DX_NON_BEEP
-	// BEEP‰¹‚Ì‰Šú‰»
+	// BEEPéŸ³ã®åˆæœŸåŒ–
 	if( BeepSound_Initialize() < 0 )
 	{
 		goto ERR ;
 	}
 #endif //DX_NON_BEEP
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 
-	// ƒGƒ‰[ˆ—
+	// ã‚¨ãƒ©ãƒ¼å‡¦ç†
 ERR:
-	// ƒTƒEƒ“ƒhƒVƒXƒeƒ€‚ÌŒãn––‚ğ‚·‚é
+	// ã‚µã‚¦ãƒ³ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ã®å¾Œå§‹æœ«ã‚’ã™ã‚‹
 	TerminateSoundSystem() ;
 
 	return -1 ;
 }
 
-// ƒTƒEƒ“ƒhƒVƒXƒeƒ€‚ÌŒãn––‚ğ‚·‚é
+// ã‚µã‚¦ãƒ³ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ã®å¾Œå§‹æœ«ã‚’ã™ã‚‹
 extern int TerminateSoundSystem( void )
 {
 	int i ;
 
-	DXST_LOGFILE_ADDUTF16LE( "\xb5\x30\xa6\x30\xf3\x30\xc9\x30\xa2\x95\x23\x90\x6e\x30\x42\x7d\x86\x4e\xe6\x51\x06\x74\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"ƒTƒEƒ“ƒhŠÖ˜A‚ÌI—¹ˆ—... " @*/ ) ;
+	DXST_LOGFILE_ADDUTF16LE( "\xb5\x30\xa6\x30\xf3\x30\xc9\x30\xa2\x95\x23\x90\x6e\x30\x42\x7d\x86\x4e\xe6\x51\x06\x74\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"ã‚µã‚¦ãƒ³ãƒ‰é–¢é€£ã®çµ‚äº†å‡¦ç†... " @*/ ) ;
 
-	// ŠÂ‹«ˆË‘¶ˆ—
+	// ç’°å¢ƒä¾å­˜å‡¦ç†
 	TerminateSoundSystem_PF_Timing0() ;
 
 #ifndef DX_NON_BEEP
-	// ƒr[ƒv‰¹ŠÖŒW‚ÌŒãn––‚ğs‚¤
+	// ãƒ“ãƒ¼ãƒ—éŸ³é–¢ä¿‚ã®å¾Œå§‹æœ«ã‚’è¡Œã†
 	BeepSound_Terminate() ;
 #endif // DX_NON_BEEP
 
-	// ƒTƒEƒ“ƒhƒLƒƒƒvƒ`ƒƒˆ—‚ğI—¹‚·‚é
+	// ã‚µã‚¦ãƒ³ãƒ‰ã‚­ãƒ£ãƒ—ãƒãƒ£å‡¦ç†ã‚’çµ‚äº†ã™ã‚‹
 	EndSoundCapture() ;
 
-	// ‚·‚×‚Ä‚ÌƒTƒEƒ“ƒhƒf[ƒ^‚ğ‰ğ•ú‚·‚é
+	// ã™ã¹ã¦ã®ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ã‚’è§£æ”¾ã™ã‚‹
 	NS_InitSoundMem() ;
 
-	// ‘S‚Ä‚Ìƒ\ƒtƒgƒTƒEƒ“ƒhƒf[ƒ^‚ğ‰ğ•ú‚·‚é
+	// å…¨ã¦ã®ã‚½ãƒ•ãƒˆã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ã‚’è§£æ”¾ã™ã‚‹
 	NS_InitSoftSound() ;
 	NS_InitSoftSoundPlayer() ;
 
-	// ‚·‚×‚Ä‚Ì‚l‚h‚c‚hƒf[ƒ^‚ğ‰ğ•ú‚·‚é
+	// ã™ã¹ã¦ã®ï¼­ï¼©ï¼¤ï¼©ãƒ‡ãƒ¼ã‚¿ã‚’è§£æ”¾ã™ã‚‹
 	NS_InitMusicMem() ;
 
-	// ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹ŠÇ—î•ñ‚ÌŒãn––
+	// ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ç®¡ç†æƒ…å ±ã®å¾Œå§‹æœ«
 	TerminateHandleManage( DX_HANDLETYPE_SOUND ) ;
 
-	// ƒ\ƒtƒgƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹ŠÇ—î•ñ‚ÌŒãn––
+	// ã‚½ãƒ•ãƒˆã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ç®¡ç†æƒ…å ±ã®å¾Œå§‹æœ«
 	TerminateHandleManage( DX_HANDLETYPE_SOFTSOUND ) ;
 
-	// ‚‘¬ƒt[ƒŠƒG•ÏŠ·‚Ìì‹Æ—pƒoƒbƒtƒ@‚ÌŠJ•ú
+	// é«˜é€Ÿãƒ•ãƒ¼ãƒªã‚¨å¤‰æ›ã®ä½œæ¥­ç”¨ãƒãƒƒãƒ•ã‚¡ã®é–‹æ”¾
 	for( i = 0 ; i < SOUND_FFT_BITCOUNT_MAX ; i ++ )
 	{
 		if( SoundSysData.FFTVibrationWorkBuffer[ i ] != NULL )
@@ -360,10 +360,10 @@ extern int TerminateSoundSystem( void )
 		}
 	}
 
-	// ‚l‚h‚c‚hƒnƒ“ƒhƒ‹ŠÇ—î•ñ‚ÌŒãn––
+	// ï¼­ï¼©ï¼¤ï¼©ãƒãƒ³ãƒ‰ãƒ«ç®¡ç†æƒ…å ±ã®å¾Œå§‹æœ«
 	TerminateHandleManage( DX_HANDLETYPE_MUSIC ) ;
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìíœ
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å‰Šé™¤
 	if( SoundSysData.InitializeFlag )
 	{
 		CriticalSection_Delete( &SoundSysData._3DSoundListCriticalSection ) ;
@@ -372,25 +372,25 @@ extern int TerminateSoundSystem( void )
 		CriticalSection_Delete( &SoundSysData.StreamSoundListCriticalSection ) ;
 	}
 
-	// ŠÂ‹«ˆË‘¶ˆ—
+	// ç’°å¢ƒä¾å­˜å‡¦ç†
 	if( TerminateSoundSystem_PF_Timing1() < 0 )
 	{
 		return -1 ;
 	}
 
-	// ©‘Oƒ~ƒLƒVƒ“ƒO‚ğs‚Á‚Ä‚¢‚½ê‡‚Íì‹Æ—pƒoƒbƒtƒ@‚Ìƒƒ‚ƒŠ‚Ì‰ğ•ú
+	// è‡ªå‰ãƒŸã‚­ã‚·ãƒ³ã‚°ã‚’è¡Œã£ã¦ã„ãŸå ´åˆã¯ä½œæ¥­ç”¨ãƒãƒƒãƒ•ã‚¡ã®ãƒ¡ãƒ¢ãƒªã®è§£æ”¾
 	if( SoundSysData.SelfMixingBuffer != NULL )
 	{
 		DXFREE( SoundSysData.SelfMixingBuffer ) ;
 		SoundSysData.SelfMixingBuffer = NULL ;
 	}
 
-	// ‰Šú‰»ƒtƒ‰ƒO‚ğ“|‚·
+	// åˆæœŸåŒ–ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 	SoundSysData.InitializeFlag = FALSE ;
 
-	DXST_LOGFILE_ADDUTF16LE( "\x8c\x5b\x86\x4e\x0a\x00\x00"/*@ L"Š®—¹\n" @*/ ) ;
+	DXST_LOGFILE_ADDUTF16LE( "\x8c\x5b\x86\x4e\x0a\x00\x00"/*@ L"å®Œäº†\n" @*/ ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
@@ -403,10 +403,10 @@ extern int TerminateSoundSystem( void )
 
 
 
-// ƒTƒEƒ“ƒhƒVƒXƒeƒ€‚ÅüŠú“I‚És‚¤ˆ——p‚ÌŠÖ”
+// ã‚µã‚¦ãƒ³ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ã§å‘¨æœŸçš„ã«è¡Œã†å‡¦ç†ç”¨ã®é–¢æ•°
 extern int ProcessSoundSystem( void )
 {
-	// ŠÂ‹«ˆË‘¶‚Ìˆ—‚ğs‚¤
+	// ç’°å¢ƒä¾å­˜ã®å‡¦ç†ã‚’è¡Œã†
 	return ProcessSoundSystem_PF() ;
 }
 
@@ -417,9 +417,9 @@ extern int ProcessSoundSystem( void )
 
 
 
-// ƒTƒEƒ“ƒhƒf[ƒ^ŠÇ—ŒnŠÖ”
+// ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ç®¡ç†ç³»é–¢æ•°
 
-// InitSoundMem ‚Åƒƒ‚ƒŠ‚É“Ç‚İ‚ñ‚¾WAVEƒf[ƒ^‚ğíœ‚·‚é‚©‚Ç‚¤‚©‚ğƒ`ƒFƒbƒN‚·‚éŠÖ”
+// InitSoundMem ã§ãƒ¡ãƒ¢ãƒªã«èª­ã¿è¾¼ã‚“ã WAVEãƒ‡ãƒ¼ã‚¿ã‚’å‰Šé™¤ã™ã‚‹ã‹ã©ã†ã‹ã‚’ãƒã‚§ãƒƒã‚¯ã™ã‚‹é–¢æ•°
 static int DeleteCancelCheckInitSoundMemFunction( HANDLEINFO *HandleInfo )
 {
 	SOUND * Sound = ( SOUND * )HandleInfo ;
@@ -427,7 +427,7 @@ static int DeleteCancelCheckInitSoundMemFunction( HANDLEINFO *HandleInfo )
 	return Sound->NotInitSoundMemDelete ;
 }
 
-// ƒƒ‚ƒŠ‚É“Ç‚İ‚±‚ñ‚¾WAVEƒf[ƒ^‚ğíœ‚µA‰Šú‰»‚·‚é
+// ãƒ¡ãƒ¢ãƒªã«èª­ã¿ã“ã‚“ã WAVEãƒ‡ãƒ¼ã‚¿ã‚’å‰Šé™¤ã—ã€åˆæœŸåŒ–ã™ã‚‹
 extern int NS_InitSoundMem( void )
 {
 //	int Ret ;
@@ -435,17 +435,17 @@ extern int NS_InitSoundMem( void )
 	if( SoundSysData.InitializeFlag == FALSE )
 		return -1 ;
 
-	// ƒnƒ“ƒhƒ‹‚ğ‰Šú‰»
+	// ãƒãƒ³ãƒ‰ãƒ«ã‚’åˆæœŸåŒ–
 	/*Ret =*/ AllHandleSub( DX_HANDLETYPE_SOUND, DeleteCancelCheckInitSoundMemFunction ) ;
 
-	// PlayWav—pƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹‚à‰Šú‰»
+	// PlayWavç”¨ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ã‚‚åˆæœŸåŒ–
 	SoundSysData.PlayWavSoundHandle = -1 ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// V‚µ‚¢ƒTƒEƒ“ƒhƒf[ƒ^—Ìˆæ‚ğŠm•Û‚·‚é
+// æ–°ã—ã„ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿é ˜åŸŸã‚’ç¢ºä¿ã™ã‚‹
 extern int NS_AddSoundData( int Handle )
 {
 	int Result ;
@@ -460,13 +460,13 @@ extern int NS_AddSoundData( int Handle )
 	return Result ;
 }
 
-// ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹‚Ì‰Šú‰»
+// ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ã®åˆæœŸåŒ–
 extern int InitializeSoundHandle( HANDLEINFO *HandleInfo )
 {
 	SOUND *Sound = ( SOUND * )HandleInfo ;
 	int i ;
 
-	// ‰Šú‰»
+	// åˆæœŸåŒ–
 	Sound->PresetReverbParam = 0 ;
 	NS_Get3DPresetReverbParamSoundMem( &Sound->ReverbParam, DX_REVERB_PRESET_DEFAULT ) ;
 
@@ -483,26 +483,26 @@ extern int InitializeSoundHandle( HANDLEINFO *HandleInfo )
 	Sound->PitchRateEnable = FALSE ;
 	Sound->PitchRate = 0.0f ;
 
-	// ƒTƒEƒ“ƒh‚ÌÄ¶‚ªI—¹‚µ‚½‚çƒnƒ“ƒhƒ‹‚ğ©“®“I‚Éíœ‚·‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğ“|‚·
+	// ã‚µã‚¦ãƒ³ãƒ‰ã®å†ç”ŸãŒçµ‚äº†ã—ãŸã‚‰ãƒãƒ³ãƒ‰ãƒ«ã‚’è‡ªå‹•çš„ã«å‰Šé™¤ã™ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 	Sound->PlayFinishDeleteFlag = FALSE ;
 
-	// ƒtƒ@ƒCƒ‹‚ğg—p‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©‚ğ‰Šú‰»
+	// ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹ã‹ã©ã†ã‹ã‚’åˆæœŸåŒ–
 	Sound->Stream.FileUseFile = FALSE ;
 
-	// ƒf[ƒ^‚Ì”‚ğ‰Šú‰»
+	// ãƒ‡ãƒ¼ã‚¿ã®æ•°ã‚’åˆæœŸåŒ–
 	Sound->Stream.FileNum = 0 ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹‚ÌŒãn––
+// ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ã®å¾Œå§‹æœ«
 extern int TerminateSoundHandle( HANDLEINFO *HandleInfo )
 {
 	SOUND *Sound = ( SOUND * )HandleInfo ;
 	int i ;
 
-	// ‰¹‚ÌÄ¶‚ğ~‚ß‚é
+	// éŸ³ã®å†ç”Ÿã‚’æ­¢ã‚ã‚‹
 	if( Sound->Type == DX_SOUNDTYPE_STREAMSTYLE )
 	{
 		NS_StopStreamSoundMem( HandleInfo->Handle, FALSE ) ;
@@ -514,49 +514,49 @@ extern int TerminateSoundHandle( HANDLEINFO *HandleInfo )
 
 	if( Sound->Is3DSound != FALSE )
 	{
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 		CRITICALSECTION_LOCK( &SoundSysData._3DSoundListCriticalSection ) ;
 
-		// ‚R‚cƒTƒEƒ“ƒh‚¾‚Á‚½ê‡‚Í‚R‚cƒTƒEƒ“ƒhƒŠƒXƒg‚©‚çŠO‚·
+		// ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰ã ã£ãŸå ´åˆã¯ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰ãƒªã‚¹ãƒˆã‹ã‚‰å¤–ã™
 		SubHandleList( &Sound->_3DSoundList ) ;
 
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 		CriticalSection_Unlock( &SoundSysData._3DSoundListCriticalSection ) ;
 
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 		CRITICALSECTION_LOCK( &SoundSysData.Play3DSoundListCriticalSection ) ;
 
-		// Ä¶’†‚R‚cƒTƒEƒ“ƒhƒŠƒXƒg‚É’Ç‰Á‚³‚ê‚Ä‚¢‚½‚çŠO‚·
+		// å†ç”Ÿä¸­ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰ãƒªã‚¹ãƒˆã«è¿½åŠ ã•ã‚Œã¦ã„ãŸã‚‰å¤–ã™
 		if( Sound->AddPlay3DSoundList )
 		{
 			Sound->AddPlay3DSoundList = FALSE ;
 			SubHandleList( &Sound->Play3DSoundList ) ;
 		}
 
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 		CriticalSection_Unlock( &SoundSysData.Play3DSoundListCriticalSection ) ;
 	}
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 	CRITICALSECTION_LOCK( &SoundSysData.PlaySoundListCriticalSection ) ;
 
-	// Ä¶’†ƒTƒEƒ“ƒhƒŠƒXƒg‚É’Ç‰Á‚³‚ê‚Ä‚¢‚½‚çŠO‚·
+	// å†ç”Ÿä¸­ã‚µã‚¦ãƒ³ãƒ‰ãƒªã‚¹ãƒˆã«è¿½åŠ ã•ã‚Œã¦ã„ãŸã‚‰å¤–ã™
 	if( Sound->AddPlaySoundList )
 	{
 		Sound->AddPlaySoundList = FALSE ;
 		SubHandleList( &Sound->PlaySoundList ) ;
 	}
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 	CriticalSection_Unlock( &SoundSysData.PlaySoundListCriticalSection ) ;
 
-	// Ä¶‚ªI—¹‚µ‚½‚çíœ‚·‚éİ’è‚É‚È‚Á‚Ä‚¢‚½‚çAÄ¶‚ªI—¹‚µ‚½‚çíœ‚·‚éƒTƒEƒ“ƒh‚ÌƒŠƒXƒg‚©‚çŠO‚·
+	// å†ç”ŸãŒçµ‚äº†ã—ãŸã‚‰å‰Šé™¤ã™ã‚‹è¨­å®šã«ãªã£ã¦ã„ãŸã‚‰ã€å†ç”ŸãŒçµ‚äº†ã—ãŸã‚‰å‰Šé™¤ã™ã‚‹ã‚µã‚¦ãƒ³ãƒ‰ã®ãƒªã‚¹ãƒˆã‹ã‚‰å¤–ã™
 	if( Sound->PlayFinishDeleteFlag )
 	{
 		SubHandleList( &Sound->PlayFinishDeleteSoundList ) ;
 	}
 
-	// ƒTƒEƒ“ƒhƒ^ƒCƒv‚É‚æ‚Á‚Äˆ—‚ğ•ªŠò
+	// ã‚µã‚¦ãƒ³ãƒ‰ã‚¿ã‚¤ãƒ—ã«ã‚ˆã£ã¦å‡¦ç†ã‚’åˆ†å²
 	switch( Sound->Type )
 	{
 	case DX_SOUNDTYPE_NORMAL :
@@ -565,7 +565,7 @@ extern int TerminateSoundHandle( HANDLEINFO *HandleInfo )
 			if( Sound->Buffer[ i ].Valid ) SoundBuffer_Terminate( &Sound->Buffer[ i ] ) ;
 		}
 
-		// ƒTƒEƒ“ƒhƒf[ƒ^‚ğ‰ğ•ú‚·‚é
+		// ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ã‚’è§£æ”¾ã™ã‚‹
 		if( Sound->Normal.WaveDataUseCount )
 		{
 			*Sound->Normal.WaveDataUseCount = *Sound->Normal.WaveDataUseCount - 1 ;
@@ -587,15 +587,15 @@ extern int TerminateSoundHandle( HANDLEINFO *HandleInfo )
 			STREAMFILEDATA *PlayData ;
 			SOUND *UniSound = NULL ;
 			
-			// ƒTƒEƒ“ƒhƒoƒbƒtƒ@‚ğ‹¤—L‚µ‚Ä‚¢‚éê‡‚Íˆ—‚ğ•ªŠò
+			// ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡ã‚’å…±æœ‰ã—ã¦ã„ã‚‹å ´åˆã¯å‡¦ç†ã‚’åˆ†å²
 			if( Sound->Stream.BufferBorrowSoundHandle != -1 &&
 				SOUNDHCHK( Sound->Stream.BufferBorrowSoundHandle, UniSound ) == false )
 			{
-				// ƒTƒEƒ“ƒhƒoƒbƒtƒ@‚ğg—p‚µ‚Ä‚¢‚é‚Ì”‚ğŒ¸‚ç‚·
+				// ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡ã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹ã®æ•°ã‚’æ¸›ã‚‰ã™
 				UniSound->Stream.BufferBorrowSoundHandleCount-- ;
 				
-				// ƒJƒEƒ“ƒg‚ª‚O‚É‚È‚Á‚Ä‚¢‚ÄAŠ‚Â©•ªˆÈŠO‚ÌƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹‚ÅA
-				// íœ‘Ò‚¿‚ğ‚µ‚Ä‚¢‚½ê‡‚Ííœ‚·‚é
+				// ã‚«ã‚¦ãƒ³ãƒˆãŒï¼ã«ãªã£ã¦ã„ã¦ã€ä¸”ã¤è‡ªåˆ†ä»¥å¤–ã®ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ã§ã€
+				// å‰Šé™¤å¾…ã¡ã‚’ã—ã¦ã„ãŸå ´åˆã¯å‰Šé™¤ã™ã‚‹
 				if( Sound->Stream.BufferBorrowSoundHandle != HandleInfo->Handle &&
 					UniSound->Stream.DeleteWaitFlag == TRUE )
 				{
@@ -603,25 +603,25 @@ extern int TerminateSoundHandle( HANDLEINFO *HandleInfo )
 				}
 			}
 			
-			// ƒTƒEƒ“ƒhƒoƒbƒtƒ@‚ª‘¼‚Ìƒnƒ“ƒhƒ‹‚Åg‚í‚ê‚Ä‚¢‚½‚çíœ‘Ò‚¿ó‘Ô‚É‚·‚é
+			// ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡ãŒä»–ã®ãƒãƒ³ãƒ‰ãƒ«ã§ä½¿ã‚ã‚Œã¦ã„ãŸã‚‰å‰Šé™¤å¾…ã¡çŠ¶æ…‹ã«ã™ã‚‹
 			if( Sound->Stream.BufferBorrowSoundHandleCount != 0 )
 			{
 				Sound->Stream.DeleteWaitFlag = TRUE ;
 
-				// íœƒLƒƒƒ“ƒZƒ‹‚Ì–ß‚è’l
+				// å‰Šé™¤ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã®æˆ»ã‚Šå€¤
 				return 1 ;
 			}
 
-			// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+			// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 			CRITICALSECTION_LOCK( &SoundSysData.StreamSoundListCriticalSection ) ;
 
-			// ƒXƒgƒŠ[ƒ€ƒTƒEƒ“ƒhƒŠƒXƒg‚©‚çŠO‚·
+			// ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‚µã‚¦ãƒ³ãƒ‰ãƒªã‚¹ãƒˆã‹ã‚‰å¤–ã™
 			SubHandleList( &Sound->Stream.StreamSoundList ) ;
 
-			// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+			// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 			CriticalSection_Unlock( &SoundSysData.StreamSoundListCriticalSection ) ;
 
-			// “o˜^‚³‚ê‚Ä‚¢‚é‚·‚×‚Ä‚ÌƒTƒEƒ“ƒhƒf[ƒ^‚Ì—Ìˆæ‚ğ‰ğ•ú
+			// ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹ã™ã¹ã¦ã®ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ã®é ˜åŸŸã‚’è§£æ”¾
 			PlayData = Sound->Stream.File ;
 			for( i = 0 ; i < Sound->Stream.FileNum ; i ++, PlayData ++ )
 			{
@@ -644,11 +644,11 @@ extern int TerminateSoundHandle( HANDLEINFO *HandleInfo )
 		break ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹‚Ìî•ño—Í
+// ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ã®æƒ…å ±å‡ºåŠ›
 extern int DumpInfoSoundHandle( HANDLEINFO *HandleInfo )
 {
 	SOUND *Sound = ( SOUND * )HandleInfo ;
@@ -662,73 +662,73 @@ extern int DumpInfoSoundHandle( HANDLEINFO *HandleInfo )
 		DXST_LOGFILEFMT_ADDW(( L"Handle:0x%08x Type:Normal SamplePerSec:%d BitsPerSample:%d Channels:%d Samples:%d", HandleInfo->Handle, Sound->BufferFormat.nSamplesPerSec, Sound->BufferFormat.wBitsPerSample, Sound->BufferFormat.nChannels, Sound->Normal.WaveSize / Sound->BufferFormat.nBlockAlign )) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// g—p‰Â”\‚ÈƒTƒEƒ“ƒhƒoƒbƒtƒ@‚ğæ“¾‚·‚é(-1:ƒTƒEƒ“ƒhƒoƒbƒtƒ@‚Ìg—pŒ ‚ğ“¾‚ç‚ê‚È‚©‚Á‚½)
+// ä½¿ç”¨å¯èƒ½ãªã‚µã‚¦ãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡ã‚’å–å¾—ã™ã‚‹(-1:ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡ã®ä½¿ç”¨æ¨©ã‚’å¾—ã‚‰ã‚Œãªã‹ã£ãŸ)
 static int GetSoundBuffer( int SoundHandle, SOUND * Sound, SOUNDBUFFER **BufferP, bool BufferGet )
 {
 	SOUND * UniSound = NULL ;
 
-	// ƒXƒgƒŠ[ƒ€‚Å‚Í‚È‚©‚Á‚½‚çg—pŒ ‚Í“¾‚ç‚ê‚é
+	// ã‚¹ãƒˆãƒªãƒ¼ãƒ ã§ã¯ãªã‹ã£ãŸã‚‰ä½¿ç”¨æ¨©ã¯å¾—ã‚‰ã‚Œã‚‹
 	if( Sound->Type != DX_SOUNDTYPE_STREAMSTYLE )
 	{
 		if( BufferP ) *BufferP = &Sound->Buffer[ 0 ] ;
 		return 0 ;
 	}
 	
-	// ‹¤—Lƒoƒbƒtƒ@‚ğg—p‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©‚Å•ªŠò
+	// å…±æœ‰ãƒãƒƒãƒ•ã‚¡ã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹ã‹ã©ã†ã‹ã§åˆ†å²
 	if( BufferP ) *BufferP = &Sound->Buffer[0] ;
 	if( Sound->Stream.BufferBorrowSoundHandle == -1 )
 	{
-		// g—p‚µ‚Ä‚¢‚È‚¢ê‡‚ÍAg—p‚³‚ê‚Ä‚¢‚È‚¯‚ê‚Îg—pŒ ‚ğ“¾‚ç‚ê‚é
+		// ä½¿ç”¨ã—ã¦ã„ãªã„å ´åˆã¯ã€ä½¿ç”¨ã•ã‚Œã¦ã„ãªã‘ã‚Œã°ä½¿ç”¨æ¨©ã‚’å¾—ã‚‰ã‚Œã‚‹
 		if( Sound->Stream.BufferUseSoundHandle == -1 )
 		{
 			Sound->Stream.BufferUseSoundHandle = SoundHandle ;
 			return 0 ;
 		}
 		
-		// g—p‚³‚ê‚Ä‚¢‚éê‡‚Åg—p‚µ‚Ä‚¢‚é‚Ì‚ª©•ª‚Å‚Í‚È‚­A
-		// g—pŒ ‚ğ“¾‚éw’è‚à–³‚¢ê‡‚Íg—pŒ ‚ğ“¾‚ç‚ê‚È‚¢
+		// ä½¿ç”¨ã•ã‚Œã¦ã„ã‚‹å ´åˆã§ä½¿ç”¨ã—ã¦ã„ã‚‹ã®ãŒè‡ªåˆ†ã§ã¯ãªãã€
+		// ä½¿ç”¨æ¨©ã‚’å¾—ã‚‹æŒ‡å®šã‚‚ç„¡ã„å ´åˆã¯ä½¿ç”¨æ¨©ã‚’å¾—ã‚‰ã‚Œãªã„
 		if( SoundHandle != Sound->Stream.BufferUseSoundHandle && BufferGet == false ) return -1 ;
 		
-		// g—pŒ ‚ğ‚Á‚Ä‚¢‚é‚Ì‚ª©•ª‚Å‚Í‚È‚¢ê‡‚ÍÄ¶‚ğƒXƒgƒbƒv‚·‚é
+		// ä½¿ç”¨æ¨©ã‚’æŒã£ã¦ã„ã‚‹ã®ãŒè‡ªåˆ†ã§ã¯ãªã„å ´åˆã¯å†ç”Ÿã‚’ã‚¹ãƒˆãƒƒãƒ—ã™ã‚‹
 		if( SoundHandle != Sound->Stream.BufferUseSoundHandle )
 			NS_StopStreamSoundMem( Sound->Stream.BufferUseSoundHandle, FALSE ) ;
 
-		// g—pŒ ‚ğ“¾‚é
+		// ä½¿ç”¨æ¨©ã‚’å¾—ã‚‹
 		Sound->Stream.BufferUseSoundHandle = SoundHandle ;
 		return 0 ;
 	}
 	else
 	{
-		// Ø‚èæ‚ª–³Œø‚¾‚Á‚½‚çg—pŒ ‚ğ“¾‚ç‚ê‚È‚¢
+		// å€Ÿã‚Šå…ˆãŒç„¡åŠ¹ã ã£ãŸã‚‰ä½¿ç”¨æ¨©ã‚’å¾—ã‚‰ã‚Œãªã„
 		if( SOUNDHCHK( Sound->Stream.BufferBorrowSoundHandle, UniSound ) == true ) return -1 ;
 		if( BufferP ) *BufferP = &UniSound->Buffer[0] ;
 		
-		// ’N‚àg—p‚µ‚Ä‚¢‚È‚¢ê‡‚Íg—pŒ ‚ğ“¾‚é‚±‚Æ‚ªo—ˆ‚é
+		// èª°ã‚‚ä½¿ç”¨ã—ã¦ã„ãªã„å ´åˆã¯ä½¿ç”¨æ¨©ã‚’å¾—ã‚‹ã“ã¨ãŒå‡ºæ¥ã‚‹
 		if( UniSound->Stream.BufferUseSoundHandle == -1 )
 		{
 			UniSound->Stream.BufferUseSoundHandle = SoundHandle ;
 			return 0 ;
 		}
 		
-		// g—p‚³‚ê‚Ä‚¢‚éê‡‚Åg—p‚µ‚Ä‚¢‚é‚Ì‚ª©•ª‚Å‚Í‚È‚­A
-		// g—pŒ ‚ğ“¾‚éw’è‚à–³‚¢ê‡‚Íg—pŒ ‚ğ“¾‚ç‚ê‚È‚¢
+		// ä½¿ç”¨ã•ã‚Œã¦ã„ã‚‹å ´åˆã§ä½¿ç”¨ã—ã¦ã„ã‚‹ã®ãŒè‡ªåˆ†ã§ã¯ãªãã€
+		// ä½¿ç”¨æ¨©ã‚’å¾—ã‚‹æŒ‡å®šã‚‚ç„¡ã„å ´åˆã¯ä½¿ç”¨æ¨©ã‚’å¾—ã‚‰ã‚Œãªã„
 		if( SoundHandle != UniSound->Stream.BufferUseSoundHandle && BufferGet == false ) return -1 ;
 
-		// g—pŒ ‚ğ‚Á‚Ä‚¢‚é‚Ì‚ª©•ª‚Å‚Í‚È‚¢ê‡‚ÍÄ¶‚ğƒXƒgƒbƒv‚·‚é
+		// ä½¿ç”¨æ¨©ã‚’æŒã£ã¦ã„ã‚‹ã®ãŒè‡ªåˆ†ã§ã¯ãªã„å ´åˆã¯å†ç”Ÿã‚’ã‚¹ãƒˆãƒƒãƒ—ã™ã‚‹
 		if( SoundHandle != UniSound->Stream.BufferUseSoundHandle )
 			NS_StopStreamSoundMem( UniSound->Stream.BufferUseSoundHandle, FALSE ) ;
 
-		// g—pŒ ‚ğ“¾‚é
+		// ä½¿ç”¨æ¨©ã‚’å¾—ã‚‹
 		UniSound->Stream.BufferUseSoundHandle = SoundHandle ;
 		return 0 ;
 	}
 }
 
-// V‚µ‚¢ƒTƒEƒ“ƒhƒoƒbƒtƒ@‚Ìì¬
+// æ–°ã—ã„ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡ã®ä½œæˆ
 static int CreateSoundBuffer( WAVEFORMATEX *WaveFormat , DWORD BufferSize, int SoundType , int BufferNum , int SoundHandle, int SrcSoundHandle, int ASyncThread )
 {
 	int i ;
@@ -741,7 +741,7 @@ static int CreateSoundBuffer( WAVEFORMATEX *WaveFormat , DWORD BufferSize, int S
 		return -1 ;
 	}
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( ASyncThread )
 	{
 		if( SOUNDHCHK_ASYNC( SoundHandle, Sound ) )
@@ -753,31 +753,31 @@ static int CreateSoundBuffer( WAVEFORMATEX *WaveFormat , DWORD BufferSize, int S
 			return -1 ;
 	}
 
-	// Œ³ƒnƒ“ƒhƒ‹‚ª‚ ‚éê‡‚Ìˆ—
+	// å…ƒãƒãƒ³ãƒ‰ãƒ«ãŒã‚ã‚‹å ´åˆã®å‡¦ç†
 	if( SrcSoundHandle != -1 )
 	{
 		if( SOUNDHCHK( SrcSoundHandle, SrcSound ) )
 			return -1 ;
 
-		// ƒ^ƒCƒv‚ªƒXƒgƒŠ[ƒ€‚¾‚Á‚½‚çƒGƒ‰[
+		// ã‚¿ã‚¤ãƒ—ãŒã‚¹ãƒˆãƒªãƒ¼ãƒ ã ã£ãŸã‚‰ã‚¨ãƒ©ãƒ¼
 		if( SoundType != DX_SOUNDTYPE_NORMAL ) return -1 ;
 
-		// ƒpƒ‰ƒ[ƒ^‚ÍŒ³ƒnƒ“ƒhƒ‹‚©‚ç‚à‚Á‚Ä‚­‚é
+		// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¯å…ƒãƒãƒ³ãƒ‰ãƒ«ã‹ã‚‰ã‚‚ã£ã¦ãã‚‹
 		WaveFormat = &SrcSound->BufferFormat ;
 		BufferSize = ( DWORD )SrcSound->Normal.WaveSize ;
 	}
 
-	// ƒ^ƒCƒv‚É‚æ‚Á‚Äˆ—‚ğ•ªŠò
+	// ã‚¿ã‚¤ãƒ—ã«ã‚ˆã£ã¦å‡¦ç†ã‚’åˆ†å²
 	switch( SoundType )
 	{
-	case DX_SOUNDTYPE_NORMAL :	// ƒm[ƒ}ƒ‹ƒTƒEƒ“ƒh
+	case DX_SOUNDTYPE_NORMAL :	// ãƒãƒ¼ãƒãƒ«ã‚µã‚¦ãƒ³ãƒ‰
 		{
-			// ƒZƒJƒ“ƒ_ƒŠƒTƒEƒ“ƒhƒoƒbƒtƒ@‚ğì¬
+			// ã‚»ã‚«ãƒ³ãƒ€ãƒªã‚µã‚¦ãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡ã‚’ä½œæˆ
 
-			// ”•ªì¬
+			// æ•°åˆ†ä½œæˆ
 			for( i = 0 ; i < BufferNum ; i ++ )
 			{
-				// ƒ\[ƒXƒnƒ“ƒhƒ‹‚ª–³‚¢ê‡‚Í‚P”Ô–ÚˆÈ~‚Í“¯‚¶ƒoƒbƒtƒ@‚ğ•¡»‚·‚é
+				// ã‚½ãƒ¼ã‚¹ãƒãƒ³ãƒ‰ãƒ«ãŒç„¡ã„å ´åˆã¯ï¼‘ç•ªç›®ä»¥é™ã¯åŒã˜ãƒãƒƒãƒ•ã‚¡ã‚’è¤‡è£½ã™ã‚‹
 				if( i == 0 && SrcSound == NULL )
 				{
 NORMAL_CREATEBUFFER :
@@ -791,11 +791,11 @@ NORMAL_CREATEBUFFER :
 
 							i -- ;
 						}
-						DXST_LOGFILE_ADDUTF16LE( "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x53\x00\x6f\x00\x75\x00\x6e\x00\x64\x00\x42\x00\x75\x00\x66\x00\x66\x00\x65\x00\x72\x00\x20\x00\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ƒTƒEƒ“ƒhƒoƒbƒtƒ@‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+						DXST_LOGFILE_ADDUTF16LE( "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x53\x00\x6f\x00\x75\x00\x6e\x00\x64\x00\x42\x00\x75\x00\x66\x00\x66\x00\x65\x00\x72\x00\x20\x00\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 						return -1 ;
 					}
 					
-					// •¡»‚©‚Ç‚¤‚©ƒtƒ‰ƒO‚ğ“|‚·
+					// è¤‡è£½ã‹ã©ã†ã‹ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 					Sound->Normal.BufferDuplicateFlag[ i ] = FALSE ;
 				}
 				else
@@ -809,13 +809,13 @@ NORMAL_CREATEBUFFER :
 						hr = SoundBuffer_Duplicate( &Sound->Buffer[ i ], &Sound->Buffer[ 0 ], Sound->Is3DSound ) ;
 					}
 
-					// •¡»‚©‚Ç‚¤‚©ƒtƒ‰ƒO‚ğ‚Æ‚è‚ ‚¦‚¸“|‚µ‚Ä‚¨‚­
+					// è¤‡è£½ã‹ã©ã†ã‹ãƒ•ãƒ©ã‚°ã‚’ã¨ã‚Šã‚ãˆãšå€’ã—ã¦ãŠã
 					Sound->Normal.BufferDuplicateFlag[ i ] = FALSE ;
 
-					// •¡»‚É¸”s‚µ‚½ê‡‚Í•¡”‚ÌƒTƒEƒ“ƒhƒoƒbƒtƒ@‚ğg—p‚µ‚È‚¢
+					// è¤‡è£½ã«å¤±æ•—ã—ãŸå ´åˆã¯è¤‡æ•°ã®ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡ã‚’ä½¿ç”¨ã—ãªã„
 					if( hr != 0 )
 					{
-						// ƒ\[ƒXƒTƒEƒ“ƒh‚ª‚ ‚Á‚ÄAŠ‚Â‚O‚Å¸”s‚µ‚½‚çÀƒnƒ“ƒhƒ‹‚ğˆê‚Âì‚é
+						// ã‚½ãƒ¼ã‚¹ã‚µã‚¦ãƒ³ãƒ‰ãŒã‚ã£ã¦ã€ä¸”ã¤ï¼ã§å¤±æ•—ã—ãŸã‚‰å®Ÿãƒãƒ³ãƒ‰ãƒ«ã‚’ä¸€ã¤ä½œã‚‹
 						if( SrcSound != NULL && i == 0 )
 						{
 							goto NORMAL_CREATEBUFFER ;
@@ -829,12 +829,12 @@ NORMAL_CREATEBUFFER :
 				}
 			}
 
-			// ƒTƒEƒ“ƒhƒoƒbƒtƒ@”‚ğ•Û‘¶
+			// ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡æ•°ã‚’ä¿å­˜
 			Sound->ValidBufferNum = BufferNum ;
 		}
 		break ;
 
-	case DX_SOUNDTYPE_STREAMSTYLE :		// ƒXƒgƒŠ[ƒ€•—ƒTƒEƒ“ƒh
+	case DX_SOUNDTYPE_STREAMSTYLE :		// ã‚¹ãƒˆãƒªãƒ¼ãƒ é¢¨ã‚µã‚¦ãƒ³ãƒ‰
 		if( SoundBuffer_Initialize(
 				&Sound->Buffer[ 0 ],
 				BufferSize,
@@ -844,36 +844,36 @@ NORMAL_CREATEBUFFER :
 				TRUE,
 				Sound->Is3DSound ) != 0 )
 		{
-			DXST_LOGFILE_ADDUTF16LE( "\xb9\x30\xc8\x30\xea\x30\xfc\x30\xe0\x30\xa8\x98\xb5\x30\xa6\x30\xf3\x30\xc9\x30\xd0\x30\xc3\x30\xd5\x30\xa1\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ƒXƒgƒŠ[ƒ€•—ƒTƒEƒ“ƒhƒoƒbƒtƒ@‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+			DXST_LOGFILE_ADDUTF16LE( "\xb9\x30\xc8\x30\xea\x30\xfc\x30\xe0\x30\xa8\x98\xb5\x30\xa6\x30\xf3\x30\xc9\x30\xd0\x30\xc3\x30\xd5\x30\xa1\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ã‚¹ãƒˆãƒªãƒ¼ãƒ é¢¨ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 			return -1 ;
 		}
 
-		// ƒTƒEƒ“ƒhƒoƒbƒtƒ@”‚ğ•Û‘¶
+		// ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡æ•°ã‚’ä¿å­˜
 		Sound->ValidBufferNum = 1 ;
 		break ;
 	}
 
-	// ƒf[ƒ^‚ğ•Û‘¶
+	// ãƒ‡ãƒ¼ã‚¿ã‚’ä¿å­˜
 	Sound->Type = SoundType ;
 
-	// ƒXƒgƒŠ[ƒ€Œ`®‚Ìê‡‚ÍƒXƒgƒŠ[ƒ€ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹ƒŠƒXƒg‚É’Ç‰Á
+	// ã‚¹ãƒˆãƒªãƒ¼ãƒ å½¢å¼ã®å ´åˆã¯ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ãƒªã‚¹ãƒˆã«è¿½åŠ 
 	if( SoundType == DX_SOUNDTYPE_STREAMSTYLE )
 	{
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 		CRITICALSECTION_LOCK( &SoundSysData.StreamSoundListCriticalSection ) ;
 
 		AddHandleList( &SoundSysData.StreamSoundListFirst, &Sound->Stream.StreamSoundList, SoundHandle, Sound ) ;
 
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 		CriticalSection_Unlock( &SoundSysData.StreamSoundListCriticalSection ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
 
-// AddStreamSoundMem ‚ÌƒOƒ[ƒoƒ‹•Ï”‚ÉƒAƒNƒZƒX‚µ‚È‚¢ƒo[ƒWƒ‡ƒ“
+// AddStreamSoundMem ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°ã«ã‚¢ã‚¯ã‚»ã‚¹ã—ãªã„ãƒãƒ¼ã‚¸ãƒ§ãƒ³
 extern int AddStreamSoundMem_UseGParam(
 	LOADSOUND_GPARAM *GParam,
 	STREAMDATA *Stream,
@@ -896,7 +896,7 @@ extern int AddStreamSoundMem_UseGParam(
 		return -1 ;
 	}
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( ASyncThread )
 	{
 		if( SOUNDHCHK_ASYNC( SoundHandle, Sound ) )
@@ -908,30 +908,30 @@ extern int AddStreamSoundMem_UseGParam(
 			goto ERR ;
 	}
 
-	// ˆê‚Â‚Å‚àƒf[ƒ^‚ª‘¶İ‚·‚éê‡‚Íƒ`ƒFƒbƒNˆ—‚ğ“ü‚ê‚é
+	// ä¸€ã¤ã§ã‚‚ãƒ‡ãƒ¼ã‚¿ãŒå­˜åœ¨ã™ã‚‹å ´åˆã¯ãƒã‚§ãƒƒã‚¯å‡¦ç†ã‚’å…¥ã‚Œã‚‹
 	if( Sound->Stream.FileNum > 0 )
 	{
-		// ƒXƒgƒŠ[ƒ€•—ƒTƒEƒ“ƒh‚Å‚Í‚È‚©‚Á‚½ê‡‚ÍI—¹
+		// ã‚¹ãƒˆãƒªãƒ¼ãƒ é¢¨ã‚µã‚¦ãƒ³ãƒ‰ã§ã¯ãªã‹ã£ãŸå ´åˆã¯çµ‚äº†
 		if( Sound->Type != DX_SOUNDTYPE_STREAMSTYLE )
 		{
-			DXST_LOGFILE_ADDUTF16LE( "\xb9\x30\xc8\x30\xea\x30\xfc\x30\xe0\x30\xa8\x98\xb5\x30\xa6\x30\xf3\x30\xc9\x30\x67\x30\x6f\x30\x6a\x30\x44\x30\xb5\x30\xa6\x30\xf3\x30\xc9\x30\xc7\x30\xfc\x30\xbf\x30\x4c\x30\x21\x6e\x55\x30\x8c\x30\x7e\x30\x57\x30\x5f\x30\x20\x00\x69\x00\x6e\x00\x20\x00\x41\x00\x64\x00\x64\x00\x53\x00\x72\x00\x65\x00\x61\x00\x6d\x00\x53\x00\x6f\x00\x75\x00\x6e\x00\x64\x00\x0a\x00\x00"/*@ L"ƒXƒgƒŠ[ƒ€•—ƒTƒEƒ“ƒh‚Å‚Í‚È‚¢ƒTƒEƒ“ƒhƒf[ƒ^‚ª“n‚³‚ê‚Ü‚µ‚½ in AddSreamSound\n" @*/ ) ;
+			DXST_LOGFILE_ADDUTF16LE( "\xb9\x30\xc8\x30\xea\x30\xfc\x30\xe0\x30\xa8\x98\xb5\x30\xa6\x30\xf3\x30\xc9\x30\x67\x30\x6f\x30\x6a\x30\x44\x30\xb5\x30\xa6\x30\xf3\x30\xc9\x30\xc7\x30\xfc\x30\xbf\x30\x4c\x30\x21\x6e\x55\x30\x8c\x30\x7e\x30\x57\x30\x5f\x30\x20\x00\x69\x00\x6e\x00\x20\x00\x41\x00\x64\x00\x64\x00\x53\x00\x72\x00\x65\x00\x61\x00\x6d\x00\x53\x00\x6f\x00\x75\x00\x6e\x00\x64\x00\x0a\x00\x00"/*@ L"ã‚¹ãƒˆãƒªãƒ¼ãƒ é¢¨ã‚µã‚¦ãƒ³ãƒ‰ã§ã¯ãªã„ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ãŒæ¸¡ã•ã‚Œã¾ã—ãŸ in AddSreamSound\n" @*/ ) ;
 			goto ERR ;
 		}
 
-		// Šù‚ÉÄ¶’†‚Ìê‡‚àI—¹
+		// æ—¢ã«å†ç”Ÿä¸­ã®å ´åˆã‚‚çµ‚äº†
 		if( GetSoundBuffer( SoundHandle, Sound, &SBuffer, false ) == 0 )
 		{
 			if( SoundBuffer_CheckPlay( SBuffer ) )
 			{
-				DXST_LOGFILE_ADDUTF16LE( "\xe2\x65\x6b\x30\x8d\x51\x1f\x75\x2d\x4e\x6e\x30\xb9\x30\xc8\x30\xea\x30\xfc\x30\xe0\x30\xb5\x30\xa6\x30\xf3\x30\xc9\x30\xc7\x30\xfc\x30\xbf\x30\x6b\x30\xc7\x30\xfc\x30\xbf\x30\x92\x30\xfd\x8f\xa0\x52\x57\x30\x88\x30\x46\x30\x68\x30\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Šù‚ÉÄ¶’†‚ÌƒXƒgƒŠ[ƒ€ƒTƒEƒ“ƒhƒf[ƒ^‚Éƒf[ƒ^‚ğ’Ç‰Á‚µ‚æ‚¤‚Æ‚µ‚Ü‚µ‚½\n" @*/ ) ;
+				DXST_LOGFILE_ADDUTF16LE( "\xe2\x65\x6b\x30\x8d\x51\x1f\x75\x2d\x4e\x6e\x30\xb9\x30\xc8\x30\xea\x30\xfc\x30\xe0\x30\xb5\x30\xa6\x30\xf3\x30\xc9\x30\xc7\x30\xfc\x30\xbf\x30\x6b\x30\xc7\x30\xfc\x30\xbf\x30\x92\x30\xfd\x8f\xa0\x52\x57\x30\x88\x30\x46\x30\x68\x30\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"æ—¢ã«å†ç”Ÿä¸­ã®ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ã«ãƒ‡ãƒ¼ã‚¿ã‚’è¿½åŠ ã—ã‚ˆã†ã¨ã—ã¾ã—ãŸ\n" @*/ ) ;
 				goto ERR ;
 			}
 		}
 
-		// ‚à‚¤ƒXƒgƒŠ[ƒ€ƒTƒEƒ“ƒh§Œäƒf[ƒ^‚Ì—Ìˆæ‚É—]—T‚ª‚È‚¢ê‡‚àI—¹
+		// ã‚‚ã†ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‚µã‚¦ãƒ³ãƒ‰åˆ¶å¾¡ãƒ‡ãƒ¼ã‚¿ã®é ˜åŸŸã«ä½™è£•ãŒãªã„å ´åˆã‚‚çµ‚äº†
 		if( Sound->Stream.FileNum == STS_SETSOUNDNUM - 1 )
 		{
-			DXST_LOGFILE_ADDUTF16LE( "\xb9\x30\xc8\x30\xea\x30\xfc\x30\xe0\x30\xa8\x98\xb5\x30\xa6\x30\xf3\x30\xc9\x30\x6e\x30\x36\x52\xa1\x5f\xc7\x30\xfc\x30\xbf\x30\x18\x98\xdf\x57\x4c\x30\x44\x30\x63\x30\x71\x30\x44\x30\x67\x30\x59\x30\x0a\x00\x00"/*@ L"ƒXƒgƒŠ[ƒ€•—ƒTƒEƒ“ƒh‚Ì§Œäƒf[ƒ^—Ìˆæ‚ª‚¢‚Á‚Ï‚¢‚Å‚·\n" @*/ ) ;
+			DXST_LOGFILE_ADDUTF16LE( "\xb9\x30\xc8\x30\xea\x30\xfc\x30\xe0\x30\xa8\x98\xb5\x30\xa6\x30\xf3\x30\xc9\x30\x6e\x30\x36\x52\xa1\x5f\xc7\x30\xfc\x30\xbf\x30\x18\x98\xdf\x57\x4c\x30\x44\x30\x63\x30\x71\x30\x44\x30\x67\x30\x59\x30\x0a\x00\x00"/*@ L"ã‚¹ãƒˆãƒªãƒ¼ãƒ é¢¨ã‚µã‚¦ãƒ³ãƒ‰ã®åˆ¶å¾¡ãƒ‡ãƒ¼ã‚¿é ˜åŸŸãŒã„ã£ã±ã„ã§ã™\n" @*/ ) ;
 			goto ERR ;
 		}
 	}
@@ -939,26 +939,26 @@ extern int AddStreamSoundMem_UseGParam(
 	PlayData = &Sound->Stream.File[ Sound->Stream.FileNum ] ;
 	_MEMSET( PlayData, 0, sizeof( STREAMFILEDATA ) ) ;
 
-	// ƒf[ƒ^ƒ^ƒCƒv‚ğ•Û‘¶
+	// ãƒ‡ãƒ¼ã‚¿ã‚¿ã‚¤ãƒ—ã‚’ä¿å­˜
 	PlayData->DataType = StreamDataType ;
 
-	// ƒ‹[ƒvŠJnˆÊ’u‚Í–³Œø
+	// ãƒ«ãƒ¼ãƒ—é–‹å§‹ä½ç½®ã¯ç„¡åŠ¹
 	PlayData->LoopStartSamplePosition = -1 ;
 
-	// ƒXƒgƒŠ[ƒ€ƒ|ƒCƒ“ƒ^‚ğæ“ªˆÊ’u‚Ö
+	// ã‚¹ãƒˆãƒªãƒ¼ãƒ ãƒã‚¤ãƒ³ã‚¿ã‚’å…ˆé ­ä½ç½®ã¸
 	Stream->ReadShred.Seek( Stream->DataPoint, 0, SEEK_SET ) ;
 
-	// V‚µ‚¢‚v‚`‚u‚dƒtƒ@ƒCƒ‹‚Ìƒ[ƒhAƒf[ƒ^‚Ìƒ^ƒCƒv‚É‚æ‚Á‚Äˆ—‚ğ•ªŠò
+	// æ–°ã—ã„ï¼·ï¼¡ï¼¶ï¼¥ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ­ãƒ¼ãƒ‰ã€ãƒ‡ãƒ¼ã‚¿ã®ã‚¿ã‚¤ãƒ—ã«ã‚ˆã£ã¦å‡¦ç†ã‚’åˆ†å²
 	switch( StreamDataType )
 	{
 	case DX_SOUNDDATATYPE_MEMNOPRESS :
-		// ƒƒ‚ƒŠã‚É’¼ÚÄ¶‰Â”\‚Èƒf[ƒ^‚ğ•Û‚·‚éê‡
+		// ãƒ¡ãƒ¢ãƒªä¸Šã«ç›´æ¥å†ç”Ÿå¯èƒ½ãªãƒ‡ãƒ¼ã‚¿ã‚’ä¿æŒã™ã‚‹å ´åˆ
 		{
 			STREAMDATA MemStream ;
 			void *WaveImage ;
 			size_t WaveSize ;
 
-			// ‚o‚b‚lŒ`®‚É•ÏŠ·
+			// ï¼°ï¼£ï¼­å½¢å¼ã«å¤‰æ›
 			{
 				SOUNDCONV ConvData ;
 				int res ;
@@ -966,10 +966,10 @@ extern int AddStreamSoundMem_UseGParam(
 				size_t SrcSize ;
 				size_t DestSize ;
 				
-				// ŠÛXƒƒ‚ƒŠ‚É“Ç‚İ‚Ş
+				// ä¸¸ã€…ãƒ¡ãƒ¢ãƒªã«èª­ã¿è¾¼ã‚€
 				if( StreamFullRead( Stream, &SrcBuffer, &SrcSize ) < 0 )
 				{
-					DXST_LOGFILEFMT_ADDUTF16LE(( "\xf3\x97\xf0\x58\xc7\x30\xfc\x30\xbf\x30\x6e\x30\xad\x8a\x7f\x30\xbc\x8f\x7f\x30\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"‰¹ºƒf[ƒ^‚Ì“Ç‚İ‚İ‚É¸”s‚µ‚Ü‚µ‚½" @*/ )) ;
+					DXST_LOGFILEFMT_ADDUTF16LE(( "\xf3\x97\xf0\x58\xc7\x30\xfc\x30\xbf\x30\x6e\x30\xad\x8a\x7f\x30\xbc\x8f\x7f\x30\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"éŸ³å£°ãƒ‡ãƒ¼ã‚¿ã®èª­ã¿è¾¼ã¿ã«å¤±æ•—ã—ã¾ã—ãŸ" @*/ )) ;
 					goto ERR ;
 				}
 				
@@ -990,18 +990,18 @@ extern int AddStreamSoundMem_UseGParam(
 
 				if( res < 0 )
 				{
-					DXST_LOGFILEFMT_ADDUTF16LE(( "\xf3\x97\xf0\x58\xc7\x30\xfc\x30\xbf\x30\x6e\x30\x09\x59\xdb\x63\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"‰¹ºƒf[ƒ^‚Ì•ÏŠ·‚É¸”s‚µ‚Ü‚µ‚½" @*/ )) ;
+					DXST_LOGFILEFMT_ADDUTF16LE(( "\xf3\x97\xf0\x58\xc7\x30\xfc\x30\xbf\x30\x6e\x30\x09\x59\xdb\x63\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"éŸ³å£°ãƒ‡ãƒ¼ã‚¿ã®å¤‰æ›ã«å¤±æ•—ã—ã¾ã—ãŸ" @*/ )) ;
 					goto ERR ;
 				}
 			}
 
-			// ‚v‚`‚u‚dƒtƒ@ƒCƒ‹‚ğ‚Å‚Á‚¿ã‚°‚é
+			// ï¼·ï¼¡ï¼¶ï¼¥ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ã§ã£ã¡ä¸Šã’ã‚‹
 			if( CreateWaveFileImage( &WaveImage, &WaveSize,
 								 &Format, sizeof( WAVEFORMATEX ),
 								 PlayData->FileImage, ( size_t )PlayData->FileImageSize ) < 0 )
 				goto ERR ;
 
-			// “WŠJ‚³‚ê‚½ƒf[ƒ^‚ğƒXƒgƒŠ[ƒ€‚Æ‚µ‚ÄÄ“xŠJ‚­				
+			// å±•é–‹ã•ã‚ŒãŸãƒ‡ãƒ¼ã‚¿ã‚’ã‚¹ãƒˆãƒªãƒ¼ãƒ ã¨ã—ã¦å†åº¦é–‹ã				
 			PlayData->MemStream.DataPoint = MemStreamOpen( WaveImage, ( size_t )WaveSize ) ;
 			PlayData->MemStream.ReadShred = *GetMemStreamDataShredStruct() ;
 			SetupSoundConvert( &PlayData->ConvData, &PlayData->MemStream, GParam->DisableReadSoundFunctionMask
@@ -1010,30 +1010,30 @@ extern int AddStreamSoundMem_UseGParam(
 #endif
 			) ;
 
-			// ƒƒ‚ƒŠƒAƒhƒŒƒX‚Ì“ü‚ê‘Ö‚¦
+			// ãƒ¡ãƒ¢ãƒªã‚¢ãƒ‰ãƒ¬ã‚¹ã®å…¥ã‚Œæ›¿ãˆ
 			DXFREE( PlayData->FileImage ) ;
 			PlayData->FileImage = WaveImage ;
 			PlayData->FileImageSize = WaveSize ;
 
-			// ƒXƒgƒŠ[ƒ€‰ğ•úƒtƒ‰ƒO‚ğ—§‚Ä‚é
+			// ã‚¹ãƒˆãƒªãƒ¼ãƒ è§£æ”¾ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 			*CanStreamCloseFlag = TRUE ;
 		}
 		break ;
 
 	case DX_SOUNDDATATYPE_MEMPRESS :
-		// ƒf[ƒ^‚Íƒƒ‚ƒŠã‚É‘¶İ‚µ‚ÄAˆ³k‚³‚ê‚Ä‚¢‚éê‡
+		// ãƒ‡ãƒ¼ã‚¿ã¯ãƒ¡ãƒ¢ãƒªä¸Šã«å­˜åœ¨ã—ã¦ã€åœ§ç¸®ã•ã‚Œã¦ã„ã‚‹å ´åˆ
 		{
 			size_t FileSize ;
 
-			// ŠÛXƒƒ‚ƒŠ‚É“Ç‚İ‚Ş
+			// ä¸¸ã€…ãƒ¡ãƒ¢ãƒªã«èª­ã¿è¾¼ã‚€
 			if( StreamFullRead( Stream, &PlayData->FileImage, &FileSize ) < 0 )
 			{
-				DXST_LOGFILEFMT_ADDUTF16LE(( "\xf3\x97\xf0\x58\xc7\x30\xfc\x30\xbf\x30\x6e\x30\xad\x8a\x7f\x30\xbc\x8f\x7f\x30\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"‰¹ºƒf[ƒ^‚Ì“Ç‚İ‚İ‚É¸”s‚µ‚Ü‚µ‚½" @*/ )) ;
+				DXST_LOGFILEFMT_ADDUTF16LE(( "\xf3\x97\xf0\x58\xc7\x30\xfc\x30\xbf\x30\x6e\x30\xad\x8a\x7f\x30\xbc\x8f\x7f\x30\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"éŸ³å£°ãƒ‡ãƒ¼ã‚¿ã®èª­ã¿è¾¼ã¿ã«å¤±æ•—ã—ã¾ã—ãŸ" @*/ )) ;
 				goto ERR ;
 			}
 			PlayData->FileImageSize = ( ULONGLONG )FileSize ;
 
-			// “WŠJ‚³‚ê‚½ƒf[ƒ^‚ğƒXƒgƒŠ[ƒ€‚Æ‚µ‚ÄÄ“xŠJ‚­				
+			// å±•é–‹ã•ã‚ŒãŸãƒ‡ãƒ¼ã‚¿ã‚’ã‚¹ãƒˆãƒªãƒ¼ãƒ ã¨ã—ã¦å†åº¦é–‹ã				
 			PlayData->MemStream.DataPoint = MemStreamOpen( PlayData->FileImage, ( size_t )PlayData->FileImageSize ) ;
 			PlayData->MemStream.ReadShred = *GetMemStreamDataShredStruct() ;
 			if( SetupSoundConvert( &PlayData->ConvData, &PlayData->MemStream, GParam->DisableReadSoundFunctionMask
@@ -1046,11 +1046,11 @@ extern int AddStreamSoundMem_UseGParam(
 				DXFREE( PlayData->FileImage ) ;
 				PlayData->FileImage = NULL ;
 				
-				DXST_LOGFILEFMT_ADDUTF16LE(( "\xf3\x97\xf0\x58\xc7\x30\xfc\x30\xbf\x30\x6e\x30\xaa\x30\xfc\x30\xd7\x30\xf3\x30\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"‰¹ºƒf[ƒ^‚ÌƒI[ƒvƒ“‚É¸”s‚µ‚Ü‚µ‚½" @*/ )) ;
+				DXST_LOGFILEFMT_ADDUTF16LE(( "\xf3\x97\xf0\x58\xc7\x30\xfc\x30\xbf\x30\x6e\x30\xaa\x30\xfc\x30\xd7\x30\xf3\x30\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"éŸ³å£°ãƒ‡ãƒ¼ã‚¿ã®ã‚ªãƒ¼ãƒ—ãƒ³ã«å¤±æ•—ã—ã¾ã—ãŸ" @*/ )) ;
 				goto ERR ;
 			}
 
-			// ƒ‹[ƒvî•ñ‚ª‚ ‚éê‡‚ÍƒZƒbƒg
+			// ãƒ«ãƒ¼ãƒ—æƒ…å ±ãŒã‚ã‚‹å ´åˆã¯ã‚»ãƒƒãƒˆ
 			if( ( GParam->CreateSoundLoopStartTimePosition   == GParam->CreateSoundLoopEndTimePosition   ) &&
 				( GParam->CreateSoundLoopStartSamplePosition == GParam->CreateSoundLoopEndSamplePosition ) &&
 				GParam->CreateSoundIgnoreLoopAreaInfo == FALSE )
@@ -1063,34 +1063,34 @@ extern int AddStreamSoundMem_UseGParam(
 				}
 			}
 
-			// ƒXƒgƒŠ[ƒ€‰ğ•úƒtƒ‰ƒO‚ğ—§‚Ä‚é
+			// ã‚¹ãƒˆãƒªãƒ¼ãƒ è§£æ”¾ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 			*CanStreamCloseFlag = TRUE ;
 		}
 		break ;
 
 	case DX_SOUNDDATATYPE_FILE :
-		// ƒf[ƒ^‚ğƒtƒ@ƒCƒ‹‚©‚ç’€Ÿ“Ç‚İ‚ñ‚Å‚­‚éê‡
+		// ãƒ‡ãƒ¼ã‚¿ã‚’ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰é€æ¬¡èª­ã¿è¾¼ã‚“ã§ãã‚‹å ´åˆ
 		{
-			// ƒf[ƒ^ƒ^ƒCƒv‚ª DX_SOUNDDATATYPE_FILE ‚Ìê‡‚ÍAƒtƒ@ƒCƒ‹‚©‚ç’¼Úƒf[ƒ^‚ğ“Ç‚İ‚ñ‚Å‚¢‚éƒtƒ‰ƒO‚ğ—§‚Ä‚é
+			// ãƒ‡ãƒ¼ã‚¿ã‚¿ã‚¤ãƒ—ãŒ DX_SOUNDDATATYPE_FILE ã®å ´åˆã¯ã€ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰ç›´æ¥ãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿è¾¼ã‚“ã§ã„ã‚‹ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 			Sound->Stream.FileUseFile = TRUE ;
 
-			// g‚í‚È‚¢ƒf[ƒ^‚É NULL ‚ğƒZƒbƒg‚µ‚Ä‚¨‚­
+			// ä½¿ã‚ãªã„ãƒ‡ãƒ¼ã‚¿ã« NULL ã‚’ã‚»ãƒƒãƒˆã—ã¦ãŠã
 			PlayData->FileImage = NULL ;
 			PlayData->FileImageSize = 0 ;
 			PlayData->MemStream.DataPoint = NULL ;
 
-			// “WŠJ‚³‚ê‚½ƒf[ƒ^‚ğƒXƒgƒŠ[ƒ€‚Æ‚µ‚ÄÄ“xŠJ‚­				
+			// å±•é–‹ã•ã‚ŒãŸãƒ‡ãƒ¼ã‚¿ã‚’ã‚¹ãƒˆãƒªãƒ¼ãƒ ã¨ã—ã¦å†åº¦é–‹ã				
 			if( SetupSoundConvert( &PlayData->ConvData, Stream, GParam->DisableReadSoundFunctionMask
 #ifndef DX_NON_OGGVORBIS
 									,GParam->OggVorbisBitDepth, GParam->OggVorbisFromTheoraFile
 #endif
 								) < 0 )
 			{
-				DXST_LOGFILEFMT_ADDUTF16LE(( "\xf3\x97\xf0\x58\xc7\x30\xfc\x30\xbf\x30\x6e\x30\xaa\x30\xfc\x30\xd7\x30\xf3\x30\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"‰¹ºƒf[ƒ^‚ÌƒI[ƒvƒ“‚É¸”s‚µ‚Ü‚µ‚½" @*/ )) ;
+				DXST_LOGFILEFMT_ADDUTF16LE(( "\xf3\x97\xf0\x58\xc7\x30\xfc\x30\xbf\x30\x6e\x30\xaa\x30\xfc\x30\xd7\x30\xf3\x30\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"éŸ³å£°ãƒ‡ãƒ¼ã‚¿ã®ã‚ªãƒ¼ãƒ—ãƒ³ã«å¤±æ•—ã—ã¾ã—ãŸ" @*/ )) ;
 				goto ERR ;
 			}
 
-			// ƒ‹[ƒvî•ñ‚ª‚ ‚éê‡‚ÍƒZƒbƒg
+			// ãƒ«ãƒ¼ãƒ—æƒ…å ±ãŒã‚ã‚‹å ´åˆã¯ã‚»ãƒƒãƒˆ
 			if( ( GParam->CreateSoundLoopStartTimePosition   == GParam->CreateSoundLoopEndTimePosition   ) &&
 				( GParam->CreateSoundLoopStartSamplePosition == GParam->CreateSoundLoopEndSamplePosition ) &&
 				GParam->CreateSoundIgnoreLoopAreaInfo == FALSE )
@@ -1103,23 +1103,23 @@ extern int AddStreamSoundMem_UseGParam(
 				}
 			}
 
-			// ƒXƒgƒŠ[ƒ€‰ğ•úƒtƒ‰ƒO‚ğ“|‚·
+			// ã‚¹ãƒˆãƒªãƒ¼ãƒ è§£æ”¾ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 			*CanStreamCloseFlag = FALSE ;
 		}
 		break ;
 	}
 	
-	// ˆê”ÔÅ‰‚Ìƒf[ƒ^‚Ìê‡‚Íˆ—‚ğ•ªŠò
+	// ä¸€ç•ªæœ€åˆã®ãƒ‡ãƒ¼ã‚¿ã®å ´åˆã¯å‡¦ç†ã‚’åˆ†å²
 	if( Sound->Stream.FileNum == 0 )
 	{
-		// ƒtƒH[ƒ}ƒbƒg‚ğæ“¾
+		// ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã‚’å–å¾—
 		GetOutSoundFormatInfo( &PlayData->ConvData, &Sound->BufferFormat ) ;
 
-		// ƒTƒEƒ“ƒhƒoƒbƒtƒ@‚ğ‹¤—L‚·‚é‚©‚Ç‚¤‚©‚ğ’²‚×‚é
+		// ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡ã‚’å…±æœ‰ã™ã‚‹ã‹ã©ã†ã‹ã‚’èª¿ã¹ã‚‹
 		UniSound = NULL;
 		while( UnionHandle != -1 )
 		{
-			// –³Œø‚Èƒnƒ“ƒhƒ‹‚Ìê‡‚Í–³‹
+			// ç„¡åŠ¹ãªãƒãƒ³ãƒ‰ãƒ«ã®å ´åˆã¯ç„¡è¦–
 			if( SOUNDHCHK( UnionHandle, UniSound ) )
 			{
 				UniSound = NULL;
@@ -1127,7 +1127,7 @@ extern int AddStreamSoundMem_UseGParam(
 				break;
 			}
 
-			// ƒtƒH[ƒ}ƒbƒg‚ªˆá‚¤‚©AƒIƒŠƒWƒiƒ‹‚Ìƒoƒbƒtƒ@‚ª‚È‚¢‚©AƒXƒgƒŠ[ƒ€Œ`®‚Å‚È‚¢ê‡‚àƒAƒEƒg
+			// ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆãŒé•ã†ã‹ã€ã‚ªãƒªã‚¸ãƒŠãƒ«ã®ãƒãƒƒãƒ•ã‚¡ãŒãªã„ã‹ã€ã‚¹ãƒˆãƒªãƒ¼ãƒ å½¢å¼ã§ãªã„å ´åˆã‚‚ã‚¢ã‚¦ãƒˆ
 			if( UniSound->Type != DX_SOUNDTYPE_STREAMSTYLE ||
 				UniSound->Stream.BufferBorrowSoundHandle != -1 ||
 				_MEMCMP( &Sound->BufferFormat, &UniSound->BufferFormat, sizeof( WAVEFORMATEX ) ) != 0 )
@@ -1139,12 +1139,12 @@ extern int AddStreamSoundMem_UseGParam(
 			break;
 		}
 
-		// ƒTƒEƒ“ƒhƒoƒbƒtƒ@‚ğ‹¤—L‚·‚é‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+		// ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡ã‚’å…±æœ‰ã™ã‚‹ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 		if( UniSound == NULL )
 		{
 			DWORD BufferSec ;
 
-			// ƒTƒEƒ“ƒhƒoƒbƒtƒ@‚ğì¬
+			// ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡ã‚’ä½œæˆ
 			BufferSec = StreamDataType == DX_SOUNDDATATYPE_FILE ? STS_BUFSEC_FILE : STS_BUFSEC ;
 			CreateSoundBuffer(
 				&Sound->BufferFormat,
@@ -1156,23 +1156,23 @@ extern int AddStreamSoundMem_UseGParam(
 //			Sound->PitchRateEnable        = GParam->CreateSoundPitchRateEnable ;
 //			Sound->PitchRate              = GParam->CreateSoundPitchRate ;
 
-			// ‹¤—Lî•ñ‚ğƒZƒbƒg
+			// å…±æœ‰æƒ…å ±ã‚’ã‚»ãƒƒãƒˆ
 			Sound->Stream.BufferBorrowSoundHandle = -1 ;
 		}
 		else
 		{
-			// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+			// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 			CRITICALSECTION_LOCK( &SoundSysData.StreamSoundListCriticalSection ) ;
 
-			// ƒXƒgƒŠ[ƒ€ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹ƒŠƒXƒg‚É’Ç‰Á
+			// ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ãƒªã‚¹ãƒˆã«è¿½åŠ 
 			Sound->Type = DX_SOUNDTYPE_STREAMSTYLE ;
 			Sound->ValidBufferNum = 1 ;
 			AddHandleList( &SoundSysData.StreamSoundListFirst, &Sound->Stream.StreamSoundList, SoundHandle, Sound ) ;
 
-			// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+			// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 			CriticalSection_Unlock( &SoundSysData.StreamSoundListCriticalSection ) ;
 
-			// ‹¤—Lî•ñ‚ğƒZƒbƒg
+			// å…±æœ‰æƒ…å ±ã‚’ã‚»ãƒƒãƒˆ
 			Sound->Stream.BufferBorrowSoundHandle = UnionHandle ;
 			UniSound->Stream.BufferBorrowSoundHandleCount ++ ;
 		}
@@ -1182,7 +1182,7 @@ extern int AddStreamSoundMem_UseGParam(
 	}
 	else
 	{
-		// “ñ‚Â–ÚˆÈ~‚Ìê‡‚Íƒoƒbƒtƒ@‚ÌƒtƒH[ƒ}ƒbƒg‚Æˆê’v‚µ‚Ä‚¢‚é‚©’²‚×‚é
+		// äºŒã¤ç›®ä»¥é™ã®å ´åˆã¯ãƒãƒƒãƒ•ã‚¡ã®ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã¨ä¸€è‡´ã—ã¦ã„ã‚‹ã‹èª¿ã¹ã‚‹
 		GetOutSoundFormatInfo( &PlayData->ConvData, &Format ) ;
 		if( _MEMCMP( &Format, &Sound->BufferFormat, sizeof( WAVEFORMATEX ) ) != 0 )
 		{
@@ -1198,18 +1198,18 @@ extern int AddStreamSoundMem_UseGParam(
 				PlayData->FileImage = NULL ;
 			}
 
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\xd5\x30\xa9\x30\xfc\x30\xde\x30\xc3\x30\xc8\x30\x6e\x30\x55\x90\x46\x30\xf3\x97\xf0\x58\xc7\x30\xfc\x30\xbf\x30\x6f\x30\x0c\x54\x42\x66\x6b\x30\x7f\x4f\x46\x30\x53\x30\x68\x30\x6f\x30\xfa\x51\x65\x67\x7e\x30\x5b\x30\x93\x30\x00"/*@ L"ƒtƒH[ƒ}ƒbƒg‚Ìˆá‚¤‰¹ºƒf[ƒ^‚Í“¯‚Ég‚¤‚±‚Æ‚Ío—ˆ‚Ü‚¹‚ñ" @*/ )) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\xd5\x30\xa9\x30\xfc\x30\xde\x30\xc3\x30\xc8\x30\x6e\x30\x55\x90\x46\x30\xf3\x97\xf0\x58\xc7\x30\xfc\x30\xbf\x30\x6f\x30\x0c\x54\x42\x66\x6b\x30\x7f\x4f\x46\x30\x53\x30\x68\x30\x6f\x30\xfa\x51\x65\x67\x7e\x30\x5b\x30\x93\x30\x00"/*@ L"ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®é•ã†éŸ³å£°ãƒ‡ãƒ¼ã‚¿ã¯åŒæ™‚ã«ä½¿ã†ã“ã¨ã¯å‡ºæ¥ã¾ã›ã‚“" @*/ )) ;
 			goto ERR ;
 		}
 	}
 
-	// ƒ‹[ƒv‚Ì”‚ğ•Û‘¶
+	// ãƒ«ãƒ¼ãƒ—ã®æ•°ã‚’ä¿å­˜
 	PlayData->LoopNum = ( char )LoopNum ;
 
-	// ƒvƒŒƒCƒf[ƒ^‚Ì”‚ğ‘‚â‚·
+	// ãƒ—ãƒ¬ã‚¤ãƒ‡ãƒ¼ã‚¿ã®æ•°ã‚’å¢—ã‚„ã™
 	Sound->Stream.FileNum ++ ;
 	
-	// ƒXƒgƒŠ[ƒ€ƒf[ƒ^‚Ì‘ƒTƒ“ƒvƒ‹”‚ğXV
+	// ã‚¹ãƒˆãƒªãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿ã®ç·ã‚µãƒ³ãƒ—ãƒ«æ•°ã‚’æ›´æ–°
 	{
 		int i ;
 		Sound->Stream.TotalSample = 0 ;
@@ -1217,7 +1217,7 @@ extern int AddStreamSoundMem_UseGParam(
 			Sound->Stream.TotalSample += GetSoundConvertDestSize_Fast( &Sound->Stream.File[i].ConvData ) / Sound->BufferFormat.nBlockAlign ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 
 ERR :
@@ -1225,7 +1225,7 @@ ERR :
 	return -1 ;
 }
 
-// ƒXƒgƒŠ[ƒ€•—ƒTƒEƒ“ƒhƒf[ƒ^‚ÉƒTƒEƒ“ƒhƒf[ƒ^‚ğ’Ç‰Á‚·‚é
+// ã‚¹ãƒˆãƒªãƒ¼ãƒ é¢¨ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ã«ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ã‚’è¿½åŠ ã™ã‚‹
 extern int NS_AddStreamSoundMem( STREAMDATA *Stream, int LoopNum, int SoundHandle, int StreamDataType, int *CanStreamCloseFlag, int UnionHandle )
 {
 	LOADSOUND_GPARAM GParam ;
@@ -1235,7 +1235,7 @@ extern int NS_AddStreamSoundMem( STREAMDATA *Stream, int LoopNum, int SoundHandl
 	return AddStreamSoundMem_UseGParam( &GParam, Stream, LoopNum, SoundHandle, StreamDataType, CanStreamCloseFlag, UnionHandle, FALSE ) ;
 }
 
-// AddStreamSoundMemToFile ‚ÌƒOƒ[ƒoƒ‹•Ï”‚ÉƒAƒNƒZƒX‚µ‚È‚¢ƒo[ƒWƒ‡ƒ“
+// AddStreamSoundMemToFile ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°ã«ã‚¢ã‚¯ã‚»ã‚¹ã—ãªã„ãƒãƒ¼ã‚¸ãƒ§ãƒ³
 extern int AddStreamSoundMemToFile_UseGParam(
 	LOADSOUND_GPARAM *GParam,
 	const wchar_t *WaveFile,
@@ -1256,7 +1256,7 @@ extern int AddStreamSoundMemToFile_UseGParam(
 		return -1 ;
 	}
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( ASyncThread )
 	{
 		if( SOUNDHCHK_ASYNC( SoundHandle, Sound ) )
@@ -1268,7 +1268,7 @@ extern int AddStreamSoundMemToFile_UseGParam(
 			goto ERR ;
 	}
 
-	// ƒtƒ@ƒCƒ‹‚ğŠJ‚­
+	// ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‹ã
 	fp = DX_FOPEN( WaveFile ) ;
 	if( fp == 0 )
 	{
@@ -1276,11 +1276,11 @@ extern int AddStreamSoundMemToFile_UseGParam(
 		goto ERR ;
 	}
 
-	// ƒXƒgƒŠ[ƒ€ƒf[ƒ^î•ñ‚ğƒZƒbƒg‚·‚é
+	// ã‚¹ãƒˆãƒªãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿æƒ…å ±ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 	Stream.DataPoint = fp ;
 	Stream.ReadShred = *GetFileStreamDataShredStruct() ;
 
-	// ƒXƒgƒŠ[ƒ€ƒnƒ“ƒhƒ‹‚ğ’Ç‰Á
+	// ã‚¹ãƒˆãƒªãƒ¼ãƒ ãƒãƒ³ãƒ‰ãƒ«ã‚’è¿½åŠ 
 	if( AddStreamSoundMem_UseGParam( GParam, &Stream, LoopNum, SoundHandle, StreamDataType, &CanStreamCloseFlag, UnionHandle, ASyncThread ) == -1 )
 	{
 		DX_FCLOSE( fp ) ;
@@ -1288,25 +1288,25 @@ extern int AddStreamSoundMemToFile_UseGParam(
 		goto ERR ;
 	}
 
-	// ƒtƒ@ƒCƒ‹‚ğ•Â‚¶‚Ä‚à—Ç‚¢‚Æ‚Ì‚¨’B‚µ‚ª—ˆ‚½‚çƒtƒ@ƒCƒ‹‚ğ•Â‚¶‚é
+	// ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‰ã˜ã¦ã‚‚è‰¯ã„ã¨ã®ãŠé”ã—ãŒæ¥ãŸã‚‰ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‰ã˜ã‚‹
 	if( CanStreamCloseFlag == TRUE )
 	{
 		DX_FCLOSE( fp ) ;
 	}
 
-	// ƒ‰ƒCƒuƒ‰ƒŠ‚Åƒ[ƒh‚µ‚½Aƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã§ãƒ­ãƒ¼ãƒ‰ã—ãŸã€ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	Sound->Stream.FileLibraryLoadFlag[ Sound->Stream.FileNum - 1 ] = TRUE ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 
 ERR :
 
-	// ƒGƒ‰[I—¹
+	// ã‚¨ãƒ©ãƒ¼çµ‚äº†
 	return -1 ;
 }
 
-// AddStreamSoundMemToMem ‚ÌƒOƒ[ƒoƒ‹•Ï”‚ÉƒAƒNƒZƒX‚µ‚È‚¢ƒo[ƒWƒ‡ƒ“
+// AddStreamSoundMemToMem ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°ã«ã‚¢ã‚¯ã‚»ã‚¹ã—ãªã„ãƒãƒ¼ã‚¸ãƒ§ãƒ³
 extern int AddStreamSoundMemToMem_UseGParam(
 	LOADSOUND_GPARAM *GParam,
 	const void *FileImageBuffer,
@@ -1328,7 +1328,7 @@ extern int AddStreamSoundMemToMem_UseGParam(
 		return -1 ;
 	}
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( ASyncThread )
 	{
 		if( SOUNDHCHK_ASYNC( SoundHandle, Sound ) )
@@ -1340,38 +1340,38 @@ extern int AddStreamSoundMemToMem_UseGParam(
 			goto ERR ;
 	}
 
-	// ƒf[ƒ^ƒ^ƒCƒv‚ªƒtƒ@ƒCƒ‹‚©‚ç‚Ì’€Ÿ“Ç‚İ‚İ‚¾‚Á‚½ê‡‚Íƒƒ‚ƒŠ‚ÉƒCƒ[ƒW‚ğ’u‚­A‚É•ÏX
+	// ãƒ‡ãƒ¼ã‚¿ã‚¿ã‚¤ãƒ—ãŒãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰ã®é€æ¬¡èª­ã¿è¾¼ã¿ã ã£ãŸå ´åˆã¯ãƒ¡ãƒ¢ãƒªã«ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’ç½®ãã€ã«å¤‰æ›´
 	if( StreamDataType == DX_SOUNDDATATYPE_FILE ) StreamDataType = DX_SOUNDDATATYPE_MEMPRESS ;
 
-	// ƒƒ‚ƒŠƒCƒ[ƒWƒXƒgƒŠ[ƒ€‚ğŠJ‚­
+	// ãƒ¡ãƒ¢ãƒªã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‚’é–‹ã
 	StreamHandle = MemStreamOpen( FileImageBuffer, ( size_t )ImageSize ) ;
 	if( StreamHandle == NULL )
 	{
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\x37\xff\x21\xff\x36\xff\xd5\x30\xa1\x30\xa4\x30\xeb\x30\x6e\x30\xb9\x30\xc8\x30\xea\x30\xfc\x30\xe0\x30\xa4\x30\xe1\x30\xfc\x30\xb8\x30\xcf\x30\xf3\x30\xc9\x30\xeb\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x20\x00\x0a\x00\x00"/*@ L"‚v‚`‚uƒtƒ@ƒCƒ‹‚ÌƒXƒgƒŠ[ƒ€ƒCƒ[ƒWƒnƒ“ƒhƒ‹‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½ \n" @*/ )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\x37\xff\x21\xff\x36\xff\xd5\x30\xa1\x30\xa4\x30\xeb\x30\x6e\x30\xb9\x30\xc8\x30\xea\x30\xfc\x30\xe0\x30\xa4\x30\xe1\x30\xfc\x30\xb8\x30\xcf\x30\xf3\x30\xc9\x30\xeb\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x20\x00\x0a\x00\x00"/*@ L"ï¼·ï¼¡ï¼¶ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒãƒ³ãƒ‰ãƒ«ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ \n" @*/ )) ;
 		goto ERR ;
 	}
 
-	// ƒXƒgƒŠ[ƒ€ƒf[ƒ^î•ñ‚ğƒZƒbƒg
+	// ã‚¹ãƒˆãƒªãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿æƒ…å ±ã‚’ã‚»ãƒƒãƒˆ
 	Stream.DataPoint = StreamHandle ;
 	Stream.ReadShred = *GetMemStreamDataShredStruct() ;
 
-	// ƒXƒgƒŠ[ƒ€ƒnƒ“ƒhƒ‹‚ğ’Ç‰Á
+	// ã‚¹ãƒˆãƒªãƒ¼ãƒ ãƒãƒ³ãƒ‰ãƒ«ã‚’è¿½åŠ 
 	if( AddStreamSoundMem_UseGParam( GParam, &Stream, LoopNum, SoundHandle, StreamDataType, &CanStreamCloseFlag, UnionHandle, ASyncThread ) == -1 )
 	{
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\x37\xff\x21\xff\x36\xff\xd5\x30\xa1\x30\xa4\x30\xeb\x30\x6e\x30\xb9\x30\xc8\x30\xea\x30\xfc\x30\xe0\x30\xa4\x30\xe1\x30\xfc\x30\xb8\x30\x6e\x30\xbb\x30\xc3\x30\xc8\x30\xa2\x30\xc3\x30\xd7\x30\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x20\x00\x0a\x00\x00"/*@ L"‚v‚`‚uƒtƒ@ƒCƒ‹‚ÌƒXƒgƒŠ[ƒ€ƒCƒ[ƒW‚ÌƒZƒbƒgƒAƒbƒv‚É¸”s‚µ‚Ü‚µ‚½ \n" @*/ )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\x37\xff\x21\xff\x36\xff\xd5\x30\xa1\x30\xa4\x30\xeb\x30\x6e\x30\xb9\x30\xc8\x30\xea\x30\xfc\x30\xe0\x30\xa4\x30\xe1\x30\xfc\x30\xb8\x30\x6e\x30\xbb\x30\xc3\x30\xc8\x30\xa2\x30\xc3\x30\xd7\x30\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x20\x00\x0a\x00\x00"/*@ L"ï¼·ï¼¡ï¼¶ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‚¤ãƒ¡ãƒ¼ã‚¸ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã«å¤±æ•—ã—ã¾ã—ãŸ \n" @*/ )) ;
 		goto ERR ;
 	}
 
-	// ƒXƒgƒŠ[ƒ€‚ğ•Â‚¶‚Ä‚à—Ç‚¢‚Æ‚Ì‚¨’B‚µ‚ª—ˆ‚½‚çƒXƒgƒŠ[ƒ€‚ğ•Â‚¶‚é
+	// ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‚’é–‰ã˜ã¦ã‚‚è‰¯ã„ã¨ã®ãŠé”ã—ãŒæ¥ãŸã‚‰ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‚’é–‰ã˜ã‚‹
 	if( CanStreamCloseFlag == TRUE )
 	{
 		MemStreamClose( StreamHandle ) ;
 	}
 
-	// ƒ‰ƒCƒuƒ‰ƒŠ‚Åƒ[ƒh‚µ‚½Aƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã§ãƒ­ãƒ¼ãƒ‰ã—ãŸã€ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	Sound->Stream.FileLibraryLoadFlag[ Sound->Stream.FileNum - 1 ] = TRUE ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 
 ERR:
@@ -1379,7 +1379,7 @@ ERR:
 	return -1 ;
 }
 
-// ƒXƒgƒŠ[ƒ€•—ƒTƒEƒ“ƒhƒf[ƒ^‚ÉƒTƒEƒ“ƒhƒf[ƒ^‚ğ’Ç‰Á‚·‚é
+// ã‚¹ãƒˆãƒªãƒ¼ãƒ é¢¨ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ã«ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ã‚’è¿½åŠ ã™ã‚‹
 extern int NS_AddStreamSoundMemToFile( const TCHAR *WaveFile, int LoopNum,  int SoundHandle, int StreamDataType, int UnionHandle )
 {
 #ifdef UNICODE
@@ -1401,7 +1401,7 @@ extern int NS_AddStreamSoundMemToFile( const TCHAR *WaveFile, int LoopNum,  int 
 #endif
 }
 
-// ƒXƒgƒŠ[ƒ€Ä¶ƒ^ƒCƒv‚ÌƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹‚ÉƒTƒEƒ“ƒhƒtƒ@ƒCƒ‹‚ğÄ¶‘ÎÛ‚É’Ç‰Á‚·‚é
+// ã‚¹ãƒˆãƒªãƒ¼ãƒ å†ç”Ÿã‚¿ã‚¤ãƒ—ã®ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ã«ã‚µã‚¦ãƒ³ãƒ‰ãƒ•ã‚¡ã‚¤ãƒ«ã‚’å†ç”Ÿå¯¾è±¡ã«è¿½åŠ ã™ã‚‹
 extern int NS_AddStreamSoundMemToFileWithStrLen( const TCHAR *WaveFile, size_t WaveFileLength, int LoopNum,  int SoundHandle, int StreamDataType, int UnionHandle )
 {
 	int Result ;
@@ -1417,7 +1417,7 @@ extern int NS_AddStreamSoundMemToFileWithStrLen( const TCHAR *WaveFile, size_t W
 	return Result ;
 }
 
-// ƒXƒgƒŠ[ƒ€•—ƒTƒEƒ“ƒhƒf[ƒ^‚ÉƒTƒEƒ“ƒhƒf[ƒ^‚ğ’Ç‰Á‚·‚é
+// ã‚¹ãƒˆãƒªãƒ¼ãƒ é¢¨ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ã«ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ã‚’è¿½åŠ ã™ã‚‹
 extern int AddStreamSoundMemToFile_WCHAR_T( const wchar_t *WaveFile, int LoopNum,  int SoundHandle, int StreamDataType, int UnionHandle )
 {
 	LOADSOUND_GPARAM GParam ;
@@ -1426,7 +1426,7 @@ extern int AddStreamSoundMemToFile_WCHAR_T( const wchar_t *WaveFile, int LoopNum
 	return AddStreamSoundMemToFile_UseGParam( &GParam, WaveFile, LoopNum, SoundHandle, StreamDataType, UnionHandle, FALSE ) ;
 }
 
-// ƒXƒgƒŠ[ƒ€•—ƒTƒEƒ“ƒhƒf[ƒ^‚ÉƒTƒEƒ“ƒhƒf[ƒ^‚ğ’Ç‰Á‚·‚é
+// ã‚¹ãƒˆãƒªãƒ¼ãƒ é¢¨ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ã«ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ã‚’è¿½åŠ ã™ã‚‹
 extern int NS_AddStreamSoundMemToMem( const void *FileImageBuffer, size_t ImageSize, int LoopNum, int SoundHandle, int StreamDataType, int UnionHandle )
 {
 	LOADSOUND_GPARAM GParam ;
@@ -1437,7 +1437,7 @@ extern int NS_AddStreamSoundMemToMem( const void *FileImageBuffer, size_t ImageS
 
 
 
-// SetupStreamSoundMem ‚ÌƒOƒ[ƒoƒ‹•Ï”‚ÉƒAƒNƒZƒX‚µ‚È‚¢ƒo[ƒWƒ‡ƒ“
+// SetupStreamSoundMem ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°ã«ã‚¢ã‚¯ã‚»ã‚¹ã—ãªã„ãƒãƒ¼ã‚¸ãƒ§ãƒ³
 extern int SetupStreamSoundMem_UseGParam( int SoundHandle, int ASyncThread )
 {
 	SOUND * Sound ;
@@ -1449,7 +1449,7 @@ extern int SetupStreamSoundMem_UseGParam( int SoundHandle, int ASyncThread )
 		return -1 ;
 	}
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( ASyncThread )
 	{
 		if( SOUNDHCHK_ASYNC( SoundHandle, Sound ) )
@@ -1461,29 +1461,29 @@ extern int SetupStreamSoundMem_UseGParam( int SoundHandle, int ASyncThread )
 			goto ERR ;
 	}
 
-	// ƒXƒgƒŠ[ƒ€‚¶‚á‚È‚©‚Á‚½‚ç‰½‚à‚¹‚¸I—¹
+	// ã‚¹ãƒˆãƒªãƒ¼ãƒ ã˜ã‚ƒãªã‹ã£ãŸã‚‰ä½•ã‚‚ã›ãšçµ‚äº†
 	if( Sound->Type != DX_SOUNDTYPE_STREAMSTYLE ) goto END ;
 
-	// Ä¶’†‚¾‚Á‚½‚ç‰½‚à‚¹‚¸I—¹
+	// å†ç”Ÿä¸­ã ã£ãŸã‚‰ä½•ã‚‚ã›ãšçµ‚äº†
 	if( ASyncThread == FALSE && NS_CheckStreamSoundMem( SoundHandle ) == 1 ) goto END ;
 
-	// g—pŒ ‚ª–³‚¢ê‡‚Í‰½‚à‚¹‚¸I—¹
+	// ä½¿ç”¨æ¨©ãŒç„¡ã„å ´åˆã¯ä½•ã‚‚ã›ãšçµ‚äº†
 	if( GetSoundBuffer( SoundHandle, Sound, &SBuffer, false ) == -1 ) goto END ;
 
-	// €”õ‚ªŠ®—¹‚µ‚Ä‚¢‚½‚ç‰½‚à‚¹‚¸I—¹
+	// æº–å‚™ãŒå®Œäº†ã—ã¦ã„ãŸã‚‰ä½•ã‚‚ã›ãšçµ‚äº†
 	if( Sound->Stream.StartSetupCompFlag == TRUE ) goto END ;
 
-	// Ä¶ˆÊ’u‚ğæ“ª‚ÉƒZƒbƒg
+	// å†ç”Ÿä½ç½®ã‚’å…ˆé ­ã«ã‚»ãƒƒãƒˆ
 //	SBuffer->SetCurrentPosition( 0 ) ;
 	SoundBuffer_SetCurrentPosition( SBuffer, 0 ) ;
 
-	// ƒpƒ‰ƒ[ƒ^‚ğ‰Šú‰»
+	// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’åˆæœŸåŒ–
 	Sound->Stream.SoundBufferCompCopyOffset	 = -800 ;
 	Sound->Stream.SoundBufferCopyStartOffset = -1 ;
 	Sound->Stream.PrevCheckPlayPosition      = 0 ;
 	Sound->Stream.EndWaitFlag                = FALSE ;
 
-	// ˆ³kƒf[ƒ^‚ğ“WŠJ‚·‚é€”õ‚ğs‚¤
+	// åœ§ç¸®ãƒ‡ãƒ¼ã‚¿ã‚’å±•é–‹ã™ã‚‹æº–å‚™ã‚’è¡Œã†
 	{
 		STREAMFILEDATA *PlayData ;
 
@@ -1492,57 +1492,57 @@ extern int SetupStreamSoundMem_UseGParam( int SoundHandle, int ASyncThread )
 		SetSampleTimeSoundConvert( &PlayData->ConvData, Sound->Stream.FileCompCopyLength / Sound->BufferFormat.nBlockAlign ) ;
 	}
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 	CRITICALSECTION_LOCK( &HandleManageArray[ DX_HANDLETYPE_SOUND ].CriticalSection ) ;
 
-	// €”õŠ®—¹
+	// æº–å‚™å®Œäº†
 	Sound->Stream.StartSetupCompFlag = TRUE ;
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 	CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_SOUND ].CriticalSection ) ;
 
-	// Å‰‚ÌƒTƒEƒ“ƒhƒf[ƒ^‚ğ‘‚«‚±‚Ş
+	// æœ€åˆã®ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ã‚’æ›¸ãã“ã‚€
 	ProcessStreamSoundMem_UseGParam( SoundHandle, ASyncThread ) ;
 
 END :
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 
 ERR :
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒXƒgƒŠ[ƒ€•—ƒTƒEƒ“ƒhƒf[ƒ^‚ÌÄ¶€”õ‚ğs‚¤
+// ã‚¹ãƒˆãƒªãƒ¼ãƒ é¢¨ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ã®å†ç”Ÿæº–å‚™ã‚’è¡Œã†
 extern int NS_SetupStreamSoundMem( int SoundHandle )
 {
 	return SetupStreamSoundMem_UseGParam( SoundHandle, FALSE ) ;
 }
 
 
-// ƒXƒgƒŠ[ƒ€ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹‚ÌÄ¶€”õ‚ğs‚¤( -1:ƒGƒ‰[ 0:³íI—¹ 1:Ä¶‚·‚é•K—v‚È‚µ )
+// ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ã®å†ç”Ÿæº–å‚™ã‚’è¡Œã†( -1:ã‚¨ãƒ©ãƒ¼ 0:æ­£å¸¸çµ‚äº† 1:å†ç”Ÿã™ã‚‹å¿…è¦ãªã— )
 static	int	_PlaySetupStreamSoundMem( int SoundHandle, SOUND * Sound, int PlayType, int TopPositionFlag, SOUNDBUFFER **DestSBuffer )
 {
 	SOUNDBUFFER *SBuffer ;
 	int i ;
 
-	// g—p‚·‚éƒTƒEƒ“ƒhƒoƒbƒtƒ@‚ğæ“¾
+	// ä½¿ç”¨ã™ã‚‹ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡ã‚’å–å¾—
 	GetSoundBuffer( SoundHandle, Sound, &SBuffer );
 	if( DestSBuffer ) *DestSBuffer = SBuffer ;
 	
-	// Ä¶’†‚Å“ª‚¾‚µ‚Å‚à‚È‚¢ê‡‚ÍŸˆ‚ÅI—¹
+	// å†ç”Ÿä¸­ã§é ­ã ã—ã§ã‚‚ãªã„å ´åˆã¯æ­¤å‡¦ã§çµ‚äº†
 	if( TopPositionFlag == FALSE && NS_CheckStreamSoundMem( SoundHandle ) == 1 )
 		return 1 ;
 
-	// Ä¶’†‚Ìê‡‚Í~‚ß‚é
+	// å†ç”Ÿä¸­ã®å ´åˆã¯æ­¢ã‚ã‚‹
 	NS_StopStreamSoundMem( SoundHandle, FALSE ) ;
 
-	// Ä¶ƒ^ƒCƒv‚ªˆá‚Á‚½‚ç•ªŠò
+	// å†ç”Ÿã‚¿ã‚¤ãƒ—ãŒé•ã£ãŸã‚‰åˆ†å²
 	if( Sound->PlayType != PlayType )
 	{
-		// ê‡‚É‚æ‚Á‚Ä‚Í“ª‚¾‚µÄ¶‚É‚·‚é
+		// å ´åˆã«ã‚ˆã£ã¦ã¯é ­ã ã—å†ç”Ÿã«ã™ã‚‹
 		if( ( Sound->PlayType & DX_PLAYTYPE_LOOPBIT ) != ( PlayType & DX_PLAYTYPE_LOOPBIT ) &&
 			Sound->Stream.AllPlayFlag == TRUE )
 		{
@@ -1552,11 +1552,11 @@ static	int	_PlaySetupStreamSoundMem( int SoundHandle, SOUND * Sound, int PlayTyp
 			Sound->Stream.LoopPositionValidFlag = FALSE ;
 			Sound->Stream.FileLoopCount = 0 ;
 			Sound->Stream.FileActive = 0 ;
-			Sound->Stream.StartSetupCompFlag = FALSE ;		// €”õƒtƒ‰ƒO‚ğ“|‚·
+			Sound->Stream.StartSetupCompFlag = FALSE ;		// æº–å‚™ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 		}
 	}
 
-	// “ª‚©‚ç‚ÌÄ¶‚¾‚Á‚½ê‡‚Ìˆ—
+	// é ­ã‹ã‚‰ã®å†ç”Ÿã ã£ãŸå ´åˆã®å‡¦ç†
 	if( TopPositionFlag == TRUE )
 	{
 		Sound->Stream.AllPlayFlag = FALSE ;
@@ -1567,20 +1567,20 @@ static	int	_PlaySetupStreamSoundMem( int SoundHandle, SOUND * Sound, int PlayTyp
 			Sound->Stream.LoopPositionValidFlag = FALSE ;
 			Sound->Stream.FileLoopCount = 0 ;
 			Sound->Stream.FileActive = 0 ;
-			Sound->Stream.StartSetupCompFlag = FALSE ;		// €”õƒtƒ‰ƒO‚ğ“|‚·
+			Sound->Stream.StartSetupCompFlag = FALSE ;		// æº–å‚™ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 		}
 	}
 
-	// Ä¶ƒ^ƒCƒv‚ğ•Û‘¶
+	// å†ç”Ÿã‚¿ã‚¤ãƒ—ã‚’ä¿å­˜
 	Sound->PlayType = PlayType ;
 
-	// ƒ‹[ƒvI—¹‚É‰¹‚ÌÄ¶‚ğ~‚ß‚éƒtƒ‰ƒO‚ğ“|‚·
+	// ãƒ«ãƒ¼ãƒ—çµ‚äº†æ™‚ã«éŸ³ã®å†ç”Ÿã‚’æ­¢ã‚ã‚‹ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 	Sound->Stream.IsNextLoopEndStop = FALSE ;
 
-	// Ä¶€”õ
+	// å†ç”Ÿæº–å‚™
 	NS_SetupStreamSoundMem( SoundHandle ) ;
 
-	// ƒ{ƒŠƒ…[ƒ€‚ğƒZƒbƒg‚·‚é
+	// ãƒœãƒªãƒ¥ãƒ¼ãƒ ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 	for( i = 0 ; i < SOUNDBUFFER_MAX_CHANNEL_NUM ; i ++ )
 	{
 		if( Sound->ValidNextPlayVolume[ i ] )
@@ -1594,7 +1594,7 @@ static	int	_PlaySetupStreamSoundMem( int SoundHandle, SOUND * Sound, int PlayTyp
 		}
 	}
 
-	// ƒpƒ“‚ğƒZƒbƒg‚·‚é
+	// ãƒ‘ãƒ³ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 	if( Sound->ValidNextPlayPan )
 	{
 		SoundBuffer_SetPan( &Sound->Buffer[ 0 ], ( LONG )Sound->NextPlayPan ) ;
@@ -1605,7 +1605,7 @@ static	int	_PlaySetupStreamSoundMem( int SoundHandle, SOUND * Sound, int PlayTyp
 		SoundBuffer_SetPan( &Sound->Buffer[ 0 ], ( LONG )Sound->BasePan ) ;
 	}
 
-	// ü”g”‚ğƒZƒbƒg‚·‚é
+	// å‘¨æ³¢æ•°ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 	{
 		int Frequency ;
 
@@ -1626,7 +1626,7 @@ static	int	_PlaySetupStreamSoundMem( int SoundHandle, SOUND * Sound, int PlayTyp
 		SoundBuffer_SetFrequency( &Sound->Buffer[ 0 ], ( DWORD )Frequency ) ;
 	}
 
-	// ‚R‚cƒTƒEƒ“ƒh‚Ìê‡‚Í‚R‚cƒTƒEƒ“ƒhƒpƒ‰ƒ[ƒ^‚ÌXV‚ğs‚¤
+	// ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰ã®å ´åˆã¯ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®æ›´æ–°ã‚’è¡Œã†
 	if( Sound->Is3DSound != FALSE )
 	{
 		VECTOR *Position ;
@@ -1669,11 +1669,11 @@ static	int	_PlaySetupStreamSoundMem( int SoundHandle, SOUND * Sound, int PlayTyp
 		SoundBuffer_Refresh3DSoundParam( &Sound->Buffer[ 0 ] ) ;
 	}
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹‚ğì¬‚·‚é
+// ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ã‚’ä½œæˆã™ã‚‹
 static int _CreateSoundHandle( int Is3DSound, int NotInitSoundMemDelete, int ASyncThread )
 {
 	int SoundHandle ;
@@ -1691,20 +1691,20 @@ static int _CreateSoundHandle( int Is3DSound, int NotInitSoundMemDelete, int ASy
 
 	if( Sound->Is3DSound != FALSE )
 	{
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 		CRITICALSECTION_LOCK( &SoundSysData._3DSoundListCriticalSection ) ;
 
-		// ‚R‚cƒTƒEƒ“ƒhŒ`®‚Ìê‡‚Í‚R‚cƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹ƒŠƒXƒg‚É’Ç‰Á
+		// ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰å½¢å¼ã®å ´åˆã¯ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ãƒªã‚¹ãƒˆã«è¿½åŠ 
 		AddHandleList( &SoundSysData._3DSoundListFirst, &Sound->_3DSoundList, SoundHandle, Sound ) ;
 
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 		CriticalSection_Unlock( &SoundSysData._3DSoundListCriticalSection ) ;
 	}
 
 	return SoundHandle ;
 }
 
-// ƒXƒgƒŠ[ƒ€•—ƒTƒEƒ“ƒhƒf[ƒ^‚ÌÄ¶ŠJn
+// ã‚¹ãƒˆãƒªãƒ¼ãƒ é¢¨ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ã®å†ç”Ÿé–‹å§‹
 extern int NS_PlayStreamSoundMem( int SoundHandle , int PlayType, int TopPositionFlag )
 {
 	SOUND * Sound ;
@@ -1719,44 +1719,44 @@ extern int NS_PlayStreamSoundMem( int SoundHandle , int PlayType, int TopPositio
 		return -1 ;
 	}
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 	CRITICALSECTION_LOCK( &HandleManageArray[ DX_HANDLETYPE_SOUND ].CriticalSection ) ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( SOUNDHCHK( SoundHandle, Sound ) )
 	{
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 		CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_SOUND ].CriticalSection ) ;
 
-		// ƒGƒ‰[I—¹
+		// ã‚¨ãƒ©ãƒ¼çµ‚äº†
 		return -1 ;
 	}
 
-	// Ä¶‚Ì€”õ
+	// å†ç”Ÿã®æº–å‚™
 	if( _PlaySetupStreamSoundMem( SoundHandle, Sound, PlayType, TopPositionFlag, &SBuffer ) != 0 )
 	{
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 		CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_SOUND ].CriticalSection ) ;
 
-		// ƒGƒ‰[I—¹
+		// ã‚¨ãƒ©ãƒ¼çµ‚äº†
 		return -1 ;
 	}
 
-	// Ä¶ŠJn
+	// å†ç”Ÿé–‹å§‹
 //	SBuffer->Play( 0 , 0 , D_DSBPLAY_LOOPING ) ; 
 	if( SoundBuffer_Play( SBuffer, TRUE ) < 0 )
 	{
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 		CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_SOUND ].CriticalSection ) ;
 
-		// ƒGƒ‰[I—¹
+		// ã‚¨ãƒ©ãƒ¼çµ‚äº†
 		return -1 ;
 	}
 
-	// ‚R‚cƒTƒEƒ“ƒh‚Ìê‡‚ÍÄ¶’†‚Ì‚R‚cƒTƒEƒ“ƒhƒŠƒXƒg‚É’Ç‰Á‚·‚é
+	// ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰ã®å ´åˆã¯å†ç”Ÿä¸­ã®ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰ãƒªã‚¹ãƒˆã«è¿½åŠ ã™ã‚‹
 	if( Sound->Is3DSound != FALSE )
 	{
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 		CRITICALSECTION_LOCK( &SoundSysData.Play3DSoundListCriticalSection ) ;
 
 		if( Sound->AddPlay3DSoundList == FALSE )
@@ -1765,37 +1765,37 @@ extern int NS_PlayStreamSoundMem( int SoundHandle , int PlayType, int TopPositio
 			AddHandleList( &SoundSysData.Play3DSoundListFirst, &Sound->Play3DSoundList, SoundHandle, Sound ) ;
 		}
 
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 		CriticalSection_Unlock( &SoundSysData.Play3DSoundListCriticalSection ) ;
 	}
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 	CRITICALSECTION_LOCK( &SoundSysData.PlaySoundListCriticalSection ) ;
 
-	// Ä¶’†‚ÌƒTƒEƒ“ƒhƒŠƒXƒg‚É’Ç‰Á‚·‚é
+	// å†ç”Ÿä¸­ã®ã‚µã‚¦ãƒ³ãƒ‰ãƒªã‚¹ãƒˆã«è¿½åŠ ã™ã‚‹
 	if( Sound->AddPlaySoundList == FALSE )
 	{
 		Sound->AddPlaySoundList = TRUE ;
 		AddHandleList( &SoundSysData.PlaySoundListFirst, &Sound->PlaySoundList, SoundHandle, Sound ) ;
 	}
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 	CriticalSection_Unlock( &SoundSysData.PlaySoundListCriticalSection ) ;
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 	CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_SOUND ].CriticalSection ) ;
 
-	// Ä¶ƒXƒe[ƒ^ƒX‚É‚æ‚Á‚Ä‚ÍÄ¶I—¹‚ğ‘Ò‚Â
+	// å†ç”Ÿã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã«ã‚ˆã£ã¦ã¯å†ç”Ÿçµ‚äº†ã‚’å¾…ã¤
 	if( PlayType == DX_PLAYTYPE_NORMAL )
 	{
 		while( NS_ProcessMessage() == 0 && NS_CheckSoundMem( SoundHandle ) == 1 ){ Thread_Sleep( 1 ) ; }
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒXƒgƒŠ[ƒ€•—ƒTƒEƒ“ƒhƒf[ƒ^‚ÌÄ¶ó‘Ô‚ğ“¾‚é
+// ã‚¹ãƒˆãƒªãƒ¼ãƒ é¢¨ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ã®å†ç”ŸçŠ¶æ…‹ã‚’å¾—ã‚‹
 extern int NS_CheckStreamSoundMem( int SoundHandle )
 {
 	SOUND * Sound ;
@@ -1806,14 +1806,14 @@ extern int NS_CheckStreamSoundMem( int SoundHandle )
 		return -1 ;
 	}
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( SOUNDHCHK( SoundHandle, Sound ) )
 		return -1 ;
 
-	// ƒTƒEƒ“ƒhƒoƒbƒtƒ@‚Ìg—pŒ ‚ª–³‚¢ê‡‚Í­‚È‚­‚Æ‚àÄ¶‚Ís‚Á‚Ä‚¢‚È‚¢
+	// ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡ã®ä½¿ç”¨æ¨©ãŒç„¡ã„å ´åˆã¯å°‘ãªãã¨ã‚‚å†ç”Ÿã¯è¡Œã£ã¦ã„ãªã„
 	if( GetSoundBuffer( SoundHandle, Sound, &SBuffer, false ) == -1 ) return 0 ;
 
-	// ƒVƒXƒeƒ€‘¤‚Å~‚ß‚Ä‚¢‚éê‡‚Í~‚ß‚é‘O‚Ìó‘Ô‚ğ•Ô‚·
+	// ã‚·ã‚¹ãƒ†ãƒ å´ã§æ­¢ã‚ã¦ã„ã‚‹å ´åˆã¯æ­¢ã‚ã‚‹å‰ã®çŠ¶æ…‹ã‚’è¿”ã™
 	if( Sound->BufferPlayStateBackupFlagValid[ 0 ] )
 	{
 		return Sound->BufferPlayStateBackupFlag[ 0 ] ? 1 : 0 ;
@@ -1826,13 +1826,13 @@ extern int NS_CheckStreamSoundMem( int SoundHandle )
 		}
 	}
 
-	// ‚±‚±‚Ü‚Å‚«‚Ä‚¢‚ê‚ÎÄ¶‚Í‚³‚ê‚Ä‚¢‚È‚¢
+	// ã“ã“ã¾ã§ãã¦ã„ã‚Œã°å†ç”Ÿã¯ã•ã‚Œã¦ã„ãªã„
 	return 0 ;
 }
 
 
 
-// ƒXƒgƒŠ[ƒ€•—ƒTƒEƒ“ƒhƒf[ƒ^‚ÌÄ¶I—¹
+// ã‚¹ãƒˆãƒªãƒ¼ãƒ é¢¨ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ã®å†ç”Ÿçµ‚äº†
 extern int NS_StopStreamSoundMem( int SoundHandle, int IsNextLoopEnd )
 {
 	SOUND *Sound, *UniSound = NULL ;
@@ -1848,50 +1848,50 @@ extern int NS_StopStreamSoundMem( int SoundHandle, int IsNextLoopEnd )
 		return -1 ;
 	}
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 	CRITICALSECTION_LOCK( &HandleManageArray[ DX_HANDLETYPE_SOUND ].CriticalSection ) ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( SOUNDHCHK( SoundHandle, Sound ) )
 	{
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 		CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_SOUND ].CriticalSection ) ;
 
-		// ƒGƒ‰[I—¹
+		// ã‚¨ãƒ©ãƒ¼çµ‚äº†
 		return -1 ;
 	}
 
-	// Ä¶ŠÔ‚ğXV‚·‚é
+	// å†ç”Ÿæ™‚é–“ã‚’æ›´æ–°ã™ã‚‹
 	RefreshStreamSoundPlayCompLength( SoundHandle ) ;
 
-	// ƒnƒ“ƒhƒ‹‚Ìg—pŒ ‚ª–³‚¢ê‡‚Í­‚È‚­‚Æ‚àÄ¶’†‚Å‚Í‚È‚¢
+	// ãƒãƒ³ãƒ‰ãƒ«ã®ä½¿ç”¨æ¨©ãŒç„¡ã„å ´åˆã¯å°‘ãªãã¨ã‚‚å†ç”Ÿä¸­ã§ã¯ãªã„
 	if( GetSoundBuffer( SoundHandle, Sound, &SBuffer, false ) == -1 )
 	{
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 		CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_SOUND ].CriticalSection ) ;
 
 		return 0 ;
 	}
 
-	// Ÿ‰ñƒ‹[ƒvI—¹‚É‰¹‚ğ~‚ß‚éw’è‚Ìê‡‚ÍAƒtƒ‰ƒO‚ğ—§‚Ä‚ÄI—¹‚·‚é
+	// æ¬¡å›ãƒ«ãƒ¼ãƒ—çµ‚äº†æ™‚ã«éŸ³ã‚’æ­¢ã‚ã‚‹æŒ‡å®šã®å ´åˆã¯ã€ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã¦çµ‚äº†ã™ã‚‹
 	if( IsNextLoopEnd == TRUE )
 	{
-		// ƒtƒ‰ƒO‚ğ—§‚Ä‚é
+		// ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 		Sound->Stream.IsNextLoopEndStop = TRUE ;
 
-		// Ä¶ƒ^ƒCƒv‚ª DX_PLAYTYPE_LOOP ‚¾‚Á‚½ê‡‚Í DX_PLAYTYPE_BACK ‚É•ÏX‚·‚é
+		// å†ç”Ÿã‚¿ã‚¤ãƒ—ãŒ DX_PLAYTYPE_LOOP ã ã£ãŸå ´åˆã¯ DX_PLAYTYPE_BACK ã«å¤‰æ›´ã™ã‚‹
 		if( Sound->PlayType == DX_PLAYTYPE_LOOP )
 		{
 			Sound->PlayType = DX_PLAYTYPE_BACK ;
 		}
 
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 		CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_SOUND ].CriticalSection ) ;
 
 		return 0 ;
 	}
 	
-	// Ä¶’†‚Ìê‡‚Í~‚ß‚é
+	// å†ç”Ÿä¸­ã®å ´åˆã¯æ­¢ã‚ã‚‹
 	if( Sound->Stream.BufferBorrowSoundHandle != -1 )
 	{
 		if( SOUNDHCHK( Sound->Stream.BufferBorrowSoundHandle, UniSound ) == false )
@@ -1913,14 +1913,14 @@ extern int NS_StopStreamSoundMem( int SoundHandle, int IsNextLoopEnd )
 		Sound->BufferPlayStateBackupFlag[ 0 ] = FALSE ;
 	}
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 	CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_SOUND ].CriticalSection ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// SetStreamSoundCurrentPosition ‚ÌƒOƒ[ƒoƒ‹•Ï”‚ÉƒAƒNƒZƒX‚µ‚È‚¢ƒo[ƒWƒ‡ƒ“
+// SetStreamSoundCurrentPosition ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°ã«ã‚¢ã‚¯ã‚»ã‚¹ã—ãªã„ãƒãƒ¼ã‚¸ãƒ§ãƒ³
 extern int SetStreamSoundCurrentPosition_UseGParam( LONGLONG Byte, int SoundHandle, int ASyncThread )
 {
 	SOUND * sd ;
@@ -1933,7 +1933,7 @@ extern int SetStreamSoundCurrentPosition_UseGParam( LONGLONG Byte, int SoundHand
 
 	IsPlay = NS_CheckStreamSoundMem( SoundHandle ) ;
 
-	// Ä¶’†‚¾‚Á‚½ê‡‚Íˆê“x~‚ß‚é
+	// å†ç”Ÿä¸­ã ã£ãŸå ´åˆã¯ä¸€åº¦æ­¢ã‚ã‚‹
 	NS_StopStreamSoundMem( SoundHandle, FALSE ) ;
 
 	if( SoundSysData.InitializeFlag == FALSE )
@@ -1945,10 +1945,10 @@ extern int SetStreamSoundCurrentPosition_UseGParam( LONGLONG Byte, int SoundHand
 		return -1 ;
 	}
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 	CRITICALSECTION_LOCK( &HandleManageArray[ DX_HANDLETYPE_SOUND ].CriticalSection ) ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( ASyncThread )
 	{
 		if( SOUNDHCHK_ASYNC( SoundHandle, sd ) )
@@ -1965,13 +1965,13 @@ extern int SetStreamSoundCurrentPosition_UseGParam( LONGLONG Byte, int SoundHand
 	if( Byte / sd->BufferFormat.nBlockAlign > sd->Stream.TotalSample )
 		goto ERR ;
 
-	// ƒtƒ@ƒCƒ‹‚ª“ñ‚ÂˆÈã‚Ìê‡‚Í‚Ü‚¾–¢‘Î‰
+	// ãƒ•ã‚¡ã‚¤ãƒ«ãŒäºŒã¤ä»¥ä¸Šã®å ´åˆã¯ã¾ã æœªå¯¾å¿œ
 	if( sd->Stream.FileNum > 1 ) goto ERR ;
 
 /*
-***	ˆ³kƒf[ƒ^‚Ìê‡‚Í³í‚ÉŒvZ‚Å‚«‚È‚©‚Á‚½ ****
+***	åœ§ç¸®ãƒ‡ãƒ¼ã‚¿ã®å ´åˆã¯æ­£å¸¸ã«è¨ˆç®—ã§ããªã‹ã£ãŸ ****
 
-	// Ä¶ˆÊ’u‚ÌZo
+	// å†ç”Ÿä½ç½®ã®ç®—å‡º
 	pl = sd->Stream.File ;
 	pos = Byte ;
 	for( i = 0 ; i < sd->Stream.FileNum ; i ++, pl ++ )
@@ -1990,26 +1990,26 @@ extern int SetStreamSoundCurrentPosition_UseGParam( LONGLONG Byte, int SoundHand
 	sd->Stream.CompPlayWaveLength    = ( ULONGLONG )Byte ;
 	sd->Stream.FileCompCopyLength    = Byte ;
 
-	// €”õŠ®—¹ƒtƒ‰ƒO‚ğ“|‚·
+	// æº–å‚™å®Œäº†ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 	sd->Stream.StartSetupCompFlag = FALSE ;
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 	CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_SOUND ].CriticalSection ) ;
 
-	// Ä¶’†‚¾‚Á‚½ê‡‚ÍÄ¶‚·‚é
+	// å†ç”Ÿä¸­ã ã£ãŸå ´åˆã¯å†ç”Ÿã™ã‚‹
 	if( IsPlay )
 	{
 		NS_PlayStreamSoundMem( SoundHandle, PlayType, FALSE ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 
 ERR :
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 	CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_SOUND ].CriticalSection ) ;
 
-	// Ä¶’†‚¾‚Á‚½ê‡‚ÍÄ¶‚·‚é
+	// å†ç”Ÿä¸­ã ã£ãŸå ´åˆã¯å†ç”Ÿã™ã‚‹
 	if( IsPlay )
 	{
 		NS_PlayStreamSoundMem( SoundHandle, PlayType, FALSE ) ;
@@ -2018,13 +2018,13 @@ ERR :
 	return -1 ;
 }
 
-// ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹‚ÌÄ¶ˆÊ’u‚ğƒoƒCƒg’PˆÊ‚Å•ÏX‚·‚é(Ä¶‚ª~‚Ü‚Á‚Ä‚¢‚é‚Ì‚İ—LŒø)
+// ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ã®å†ç”Ÿä½ç½®ã‚’ãƒã‚¤ãƒˆå˜ä½ã§å¤‰æ›´ã™ã‚‹(å†ç”ŸãŒæ­¢ã¾ã£ã¦ã„ã‚‹æ™‚ã®ã¿æœ‰åŠ¹)
 extern int NS_SetStreamSoundCurrentPosition( LONGLONG Byte, int SoundHandle )
 {
 	return SetStreamSoundCurrentPosition_UseGParam( Byte, SoundHandle, FALSE ) ;
 }
 
-// ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹‚ÌÄ¶ˆÊ’u‚ğƒoƒCƒg’PˆÊ‚Åæ“¾‚·‚é
+// ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ã®å†ç”Ÿä½ç½®ã‚’ãƒã‚¤ãƒˆå˜ä½ã§å–å¾—ã™ã‚‹
 extern LONGLONG NS_GetStreamSoundCurrentPosition( int SoundHandle )
 {
 	SOUND * sd ;
@@ -2041,20 +2041,20 @@ extern LONGLONG NS_GetStreamSoundCurrentPosition( int SoundHandle )
 		return -1 ;
 	}
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 	CRITICALSECTION_LOCK( &HandleManageArray[ DX_HANDLETYPE_SOUND ].CriticalSection ) ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( SOUNDHCHK( SoundHandle, sd ) )
 	{
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 		CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_SOUND ].CriticalSection ) ;
 
-		// ƒGƒ‰[I—¹
+		// ã‚¨ãƒ©ãƒ¼çµ‚äº†
 		return -1 ;
 	}
 
-	// Ä¶ˆÊ’u‚ÌZo
+	// å†ç”Ÿä½ç½®ã®ç®—å‡º
 /*	pl = sd->Stream.File ;
 	pos = 0 ;
 	for( i = 0 ; i < sd->Stream.FileNum ; i ++, pl ++ )
@@ -2064,20 +2064,20 @@ extern LONGLONG NS_GetStreamSoundCurrentPosition( int SoundHandle )
 	}
 	pos += sd->Stream.FileCompCopyLength ;
 */
-	// Ä¶ŠÔ‚ÌXV
+	// å†ç”Ÿæ™‚é–“ã®æ›´æ–°
 	RefreshStreamSoundPlayCompLength( SoundHandle ) ;
 
-	// Ä¶ŠÔ‚Ìæ“¾
+	// å†ç”Ÿæ™‚é–“ã®å–å¾—
 	pos = ( LONGLONG )sd->Stream.CompPlayWaveLength ;
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 	CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_SOUND ].CriticalSection ) ;
 
-	// ’l‚ğ•Ô‚·
+	// å€¤ã‚’è¿”ã™
 	return pos ;
 }
 
-// ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹‚ÌÄ¶ˆÊ’u‚ğƒ~ƒŠ•b’PˆÊ‚Åİ’è‚·‚é(ˆ³kŒ`®‚Ìê‡‚Í³‚µ‚­İ’è‚³‚ê‚È‚¢ê‡‚ª‚ ‚é)
+// ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ã®å†ç”Ÿä½ç½®ã‚’ãƒŸãƒªç§’å˜ä½ã§è¨­å®šã™ã‚‹(åœ§ç¸®å½¢å¼ã®å ´åˆã¯æ­£ã—ãè¨­å®šã•ã‚Œãªã„å ´åˆãŒã‚ã‚‹)
 extern int NS_SetStreamSoundCurrentTime( LONGLONG Time, int SoundHandle )
 {
 	SOUND * sd ;
@@ -2087,15 +2087,15 @@ extern int NS_SetStreamSoundCurrentTime( LONGLONG Time, int SoundHandle )
 		return -1 ;
 	}
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( SOUNDHCHK( SoundHandle, sd ) )
 		return -1 ;
 
-	// Ä¶ˆÊ’u‚Ì•ÏX
+	// å†ç”Ÿä½ç½®ã®å¤‰æ›´
 	return NS_SetStreamSoundCurrentPosition( MilliSecPositionToSamplePosition( ( int )sd->BufferFormat.nSamplesPerSec, Time ) * sd->BufferFormat.nBlockAlign, SoundHandle ) ;
 }
 
-// ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹‚ÌÄ¶ˆÊ’u‚ğƒ~ƒŠ•b’PˆÊ‚Åæ“¾‚·‚é(ˆ³kŒ`®‚Ìê‡‚Í³‚µ‚¢’l‚ª•Ô‚Á‚Ä‚±‚È‚¢ê‡‚ª‚ ‚é)
+// ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ã®å†ç”Ÿä½ç½®ã‚’ãƒŸãƒªç§’å˜ä½ã§å–å¾—ã™ã‚‹(åœ§ç¸®å½¢å¼ã®å ´åˆã¯æ­£ã—ã„å€¤ãŒè¿”ã£ã¦ã“ãªã„å ´åˆãŒã‚ã‚‹)
 extern LONGLONG NS_GetStreamSoundCurrentTime( int SoundHandle )
 {
 	SOUND * sd ;
@@ -2113,39 +2113,39 @@ extern LONGLONG NS_GetStreamSoundCurrentTime( int SoundHandle )
 		return -1 ;
 	}
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 	CRITICALSECTION_LOCK( &HandleManageArray[ DX_HANDLETYPE_SOUND ].CriticalSection ) ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( SOUNDHCHK( SoundHandle, sd ) )
 	{
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 		CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_SOUND ].CriticalSection ) ;
 
-		// ƒGƒ‰[I—¹
+		// ã‚¨ãƒ©ãƒ¼çµ‚äº†
 		return -1 ;
 	}
 
-	// Ä¶ŠÔ‚ÌXV
+	// å†ç”Ÿæ™‚é–“ã®æ›´æ–°
 	RefreshStreamSoundPlayCompLength( SoundHandle ) ;
 
-	// Ä¶ŠÔ‚ğƒ~ƒŠ•b’PˆÊ‚É•ÏŠ·
+	// å†ç”Ÿæ™‚é–“ã‚’ãƒŸãƒªç§’å˜ä½ã«å¤‰æ›
 //	time = _DTOL( (double)sd->Stream.CompPlayWaveLength / sd->BufferFormat.nAvgBytesPerSec * 1000 ) ;
 	time = SamplePositionToMilliSecPosition( ( int )sd->BufferFormat.nSamplesPerSec, ( LONGLONG )( sd->Stream.CompPlayWaveLength / sd->BufferFormat.nBlockAlign ) ) ;
 	
-	// Ä¶ŠÔ‚ªÅ‰‚Éæ“¾‚µ‚½‰¹‚Ì’·‚³‚æ‚è‚à’·‚¢‚±‚Æ‚ª‚ ‚é‚Ì‚Å
-	// ‚à‚µÄ¶ŠÔ‚Ì•û‚ª’·‚­‚È‚Á‚Ä‚µ‚Ü‚Á‚½ê‡‚Í•â³‚·‚é
+	// å†ç”Ÿæ™‚é–“ãŒæœ€åˆã«å–å¾—ã—ãŸéŸ³ã®é•·ã•ã‚ˆã‚Šã‚‚é•·ã„ã“ã¨ãŒã‚ã‚‹ã®ã§
+	// ã‚‚ã—å†ç”Ÿæ™‚é–“ã®æ–¹ãŒé•·ããªã£ã¦ã—ã¾ã£ãŸå ´åˆã¯è£œæ­£ã™ã‚‹
 	if( time > NS_GetSoundTotalTime( SoundHandle ) )
 		time = NS_GetSoundTotalTime( SoundHandle ) ;
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 	CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_SOUND ].CriticalSection ) ;
 
-	// ’l‚ğ•Ô‚·
+	// å€¤ã‚’è¿”ã™
 	return time ;
 }
 
-// ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹‚ÌÄ¶Š®—¹ŠÔ‚ğXV‚·‚é
+// ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ã®å†ç”Ÿå®Œäº†æ™‚é–“ã‚’æ›´æ–°ã™ã‚‹
 extern int RefreshStreamSoundPlayCompLength( int SoundHandle, int CurrentPosition, int ASyncThread )
 {
 	SOUND * sd ;
@@ -2158,7 +2158,7 @@ extern int RefreshStreamSoundPlayCompLength( int SoundHandle, int CurrentPositio
 		return -1 ;
 	}
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( ASyncThread )
 	{
 		if( SOUNDHCHK_ASYNC( SoundHandle, sd ) )
@@ -2170,16 +2170,16 @@ extern int RefreshStreamSoundPlayCompLength( int SoundHandle, int CurrentPositio
 			return -1 ;
 	}
 
-	// ƒXƒgƒŠ[ƒ€Ä¶—pƒf[ƒ^‚Å‚Í‚È‚¢ê‡‚Í‰½‚à‚¹‚¸I—¹
+	// ã‚¹ãƒˆãƒªãƒ¼ãƒ å†ç”Ÿç”¨ãƒ‡ãƒ¼ã‚¿ã§ã¯ãªã„å ´åˆã¯ä½•ã‚‚ã›ãšçµ‚äº†
 	if( sd->Type != DX_SOUNDTYPE_STREAMSTYLE ) return 0 ;
 	
-	// ƒTƒEƒ“ƒhƒoƒbƒtƒ@‚Ìg—pŒ ‚ª“¾‚ç‚ê‚È‚¢ê‡‚Í­‚È‚­‚Æ‚àÄ¶’†‚Å‚Í‚È‚¢
+	// ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡ã®ä½¿ç”¨æ¨©ãŒå¾—ã‚‰ã‚Œãªã„å ´åˆã¯å°‘ãªãã¨ã‚‚å†ç”Ÿä¸­ã§ã¯ãªã„
 	if( GetSoundBuffer( SoundHandle, sd, &SBuffer, false ) == -1 ) return 0 ;
 	
-	// Ä¶€”õ‚ªŠ®—¹‚µ‚Ä‚¢‚È‚¢‚àI—¹
+	// å†ç”Ÿæº–å‚™ãŒå®Œäº†ã—ã¦ã„ãªã„æ™‚ã‚‚çµ‚äº†
 	if( sd->Stream.StartSetupCompFlag == FALSE ) return 0 ;
 
-	// Œ»İ‚ÌÄ¶ˆÊ’u‚ğæ“¾‚·‚é
+	// ç¾åœ¨ã®å†ç”Ÿä½ç½®ã‚’å–å¾—ã™ã‚‹
 	if( CurrentPosition == -1 )
 	{
 //		SBuffer->GetCurrentPosition( &CurPosition , NULL );
@@ -2190,12 +2190,12 @@ extern int RefreshStreamSoundPlayCompLength( int SoundHandle, int CurrentPositio
 		CurPosition = ( DWORD )CurrentPosition ;
 	}
 
-	// ‘O‰ñ‚ÌˆÊ’u‚Æ‚Ì·•ª‚ğ‰ÁZ‚·‚é
+	// å‰å›ã®ä½ç½®ã¨ã®å·®åˆ†ã‚’åŠ ç®—ã™ã‚‹
 	if( sd->Stream.PrevCheckPlayPosition != CurPosition )
 	{
 		UpdateFlag = 0 ;
 
-		// ƒ‹[ƒvw’è‚ª‚ ‚éê‡‚Æ–³‚¢ê‡‚Åˆ—‚ğ•ªŠò
+		// ãƒ«ãƒ¼ãƒ—æŒ‡å®šãŒã‚ã‚‹å ´åˆã¨ç„¡ã„å ´åˆã§å‡¦ç†ã‚’åˆ†å²
 		if( sd->Stream.LoopPositionValidFlag == TRUE )
 		{
 			if( sd->Stream.PrevCheckPlayPosition < CurPosition )
@@ -2239,17 +2239,17 @@ extern int RefreshStreamSoundPlayCompLength( int SoundHandle, int CurrentPositio
 			}
 		}
 		
-		// ¡‰ñæ“¾‚µ‚½ˆÊ’u‚ğƒZƒbƒg‚·‚é
+		// ä»Šå›å–å¾—ã—ãŸä½ç½®ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 		sd->Stream.PrevCheckPlayPosition = CurPosition ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
 
-// ProcessStreamSoundMem ŠÖ”‚Ì•â•ŠÖ”
-// –³‰¹ƒf[ƒ^‚ğ‘‚«‚Ş
+// ProcessStreamSoundMem é–¢æ•°ã®è£œåŠ©é–¢æ•°
+// ç„¡éŸ³ãƒ‡ãƒ¼ã‚¿ã‚’æ›¸ãè¾¼ã‚€
 void NoneSoundDataCopy( SOUND * Sound, SOUNDBUFFERLOCKDATA *LockData, DWORD MoveLength )
 {
 	DWORD MLen, MOff ;
@@ -2295,8 +2295,8 @@ void NoneSoundDataCopy( SOUND * Sound, SOUNDBUFFERLOCKDATA *LockData, DWORD Move
 }
 
 
-// ProcessStreamSoundMem ŠÖ”‚Ì•â•ŠÖ”
-// ‰¹ºƒf[ƒ^‚ğ‘‚«‚Ş
+// ProcessStreamSoundMem é–¢æ•°ã®è£œåŠ©é–¢æ•°
+// éŸ³å£°ãƒ‡ãƒ¼ã‚¿ã‚’æ›¸ãè¾¼ã‚€
 int SoundDataCopy( SOUNDBUFFERLOCKDATA *LockData, SOUNDCONV *ConvData, DWORD MoveLength )
 {
 	DWORD MLen, MAllLen ;
@@ -2339,30 +2339,30 @@ int SoundDataCopy( SOUNDBUFFERLOCKDATA *LockData, SOUNDCONV *ConvData, DWORD Mov
 	return ( int )MAllLen ;
 }
 
-// ProcessStreamSoundMemŠÖ”‚Ì•â•ŠÖ”
-// Ÿ‚Ìƒtƒ@ƒCƒ‹‚ÉˆÚ‚é‚©‚Ç‚¤‚©‚ğƒ`ƒFƒbƒN‚·‚é
+// ProcessStreamSoundMemé–¢æ•°ã®è£œåŠ©é–¢æ•°
+// æ¬¡ã®ãƒ•ã‚¡ã‚¤ãƒ«ã«ç§»ã‚‹ã‹ã©ã†ã‹ã‚’ãƒã‚§ãƒƒã‚¯ã™ã‚‹
 int StreamSoundNextData( SOUND * Sound, SOUNDBUFFERLOCKDATA *LockData, int CurrentPosition )
 {
 	STREAMFILEDATA *PlayData ;
 		
-	// ƒ‹[ƒv”‚ğ‘‚â‚·
+	// ãƒ«ãƒ¼ãƒ—æ•°ã‚’å¢—ã‚„ã™
 	Sound->Stream.FileLoopCount ++ ;
 
-	// –³ŒÀƒ‹[ƒv‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+	// ç„¡é™ãƒ«ãƒ¼ãƒ—ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 	if( Sound->Stream.IsNextLoopEndStop == FALSE && Sound->Stream.File[Sound->Stream.FileActive].LoopNum == -1 )
 	{
 		WAVEFORMATEX *wfmt = &Sound->BufferFormat ;
 
 		PlayData = &Sound->Stream.File[ Sound->Stream.FileActive ] ;
 
-		// Šù‚Éƒ‹[ƒvˆÊ’u‚ğƒZƒbƒg‚µ‚Ä‚ ‚éê‡‚Íˆê“xƒ‹[ƒv‚·‚é‚Ü‚Å‘Ò‚Â
+		// æ—¢ã«ãƒ«ãƒ¼ãƒ—ä½ç½®ã‚’ã‚»ãƒƒãƒˆã—ã¦ã‚ã‚‹å ´åˆã¯ä¸€åº¦ãƒ«ãƒ¼ãƒ—ã™ã‚‹ã¾ã§å¾…ã¤
 		if( Sound->Stream.LoopPositionValidFlag == TRUE )
 			return -1 ;
 
-		// Ä¶ˆÊ’u‚ğƒZƒbƒg‚·‚é
+		// å†ç”Ÿä½ç½®ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 		Sound->Stream.FileCompCopyLength = PlayData->LoopSamplePosition * wfmt->nBlockAlign ;
 
-		// Ä¶ƒAƒhƒŒƒXXV—pî•ñ‚ğƒZƒbƒg
+		// å†ç”Ÿã‚¢ãƒ‰ãƒ¬ã‚¹æ›´æ–°ç”¨æƒ…å ±ã‚’ã‚»ãƒƒãƒˆ
 		Sound->Stream.LoopAfterCompPlayWaveLength = ( ULONGLONG )( PlayData->LoopSamplePosition * wfmt->nBlockAlign ) ;
 		Sound->Stream.LoopPositionValidFlag       = TRUE ;
 		if( LockData->Valid == 0 )
@@ -2376,10 +2376,10 @@ int StreamSoundNextData( SOUND * Sound, SOUNDBUFFERLOCKDATA *LockData, int Curre
 	}
 	else
 	{
-		// ƒ‹[ƒv‰ñ”‚ª‹K’è’l‚É‚«‚Ä‚¢‚½‚çŸ‚Ìƒf[ƒ^‚Ö
+		// ãƒ«ãƒ¼ãƒ—å›æ•°ãŒè¦å®šå€¤ã«ãã¦ã„ãŸã‚‰æ¬¡ã®ãƒ‡ãƒ¼ã‚¿ã¸
 		if( Sound->Stream.IsNextLoopEndStop == TRUE || Sound->Stream.FileLoopCount > Sound->Stream.File[Sound->Stream.FileActive].LoopNum )
 		{
-			// ƒ‹[ƒvÄ¶w’è‚Åƒ‹[ƒv‚·‚éğŒ‚ª‘µ‚Á‚½ê‡AŠù‚Éƒ‹[ƒvˆÊ’u‚ğƒZƒbƒg‚µ‚Ä‚ ‚éê‡‚Íˆê“xƒ‹[ƒv‚·‚é‚Ü‚Å‘Ò‚Â
+			// ãƒ«ãƒ¼ãƒ—å†ç”ŸæŒ‡å®šã§ãƒ«ãƒ¼ãƒ—ã™ã‚‹æ¡ä»¶ãŒæƒã£ãŸå ´åˆã€æ—¢ã«ãƒ«ãƒ¼ãƒ—ä½ç½®ã‚’ã‚»ãƒƒãƒˆã—ã¦ã‚ã‚‹å ´åˆã¯ä¸€åº¦ãƒ«ãƒ¼ãƒ—ã™ã‚‹ã¾ã§å¾…ã¤
 			if( Sound->Stream.FileNum - 1 == Sound->Stream.FileActive &&
 				Sound->PlayType == DX_PLAYTYPE_LOOP &&
 				Sound->Stream.LoopPositionValidFlag == TRUE )
@@ -2409,10 +2409,10 @@ int StreamSoundNextData( SOUND * Sound, SOUNDBUFFERLOCKDATA *LockData, int Curre
 				}
 				else
 				{
-					// I—¹ƒtƒ‰ƒO‚ğ—§‚Ä‚é
+					// çµ‚äº†ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 					Sound->Stream.EndWaitFlag = TRUE ;
 
-					// I—¹ƒIƒtƒZƒbƒg‚ğƒZƒbƒg‚·‚é
+					// çµ‚äº†ã‚ªãƒ•ã‚»ãƒƒãƒˆã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 					if( LockData->Valid == 0 )
 					{
 						Sound->Stream.EndOffset = LockData->Length2 - LockData->Valid2 ;
@@ -2429,22 +2429,22 @@ int StreamSoundNextData( SOUND * Sound, SOUNDBUFFERLOCKDATA *LockData, int Curre
 			}
 		}
 
-		// Ä¶î•ñ‚Ì‰Šú‰»
+		// å†ç”Ÿæƒ…å ±ã®åˆæœŸåŒ–
 		Sound->Stream.FileCompCopyLength = 0 ;
 
 	}
 
-	// ˆ³kƒf[ƒ^‚ğ“WŠJ‚·‚é€”õ‚ğs‚¤
+	// åœ§ç¸®ãƒ‡ãƒ¼ã‚¿ã‚’å±•é–‹ã™ã‚‹æº–å‚™ã‚’è¡Œã†
 	PlayData = &Sound->Stream.File[ Sound->Stream.FileActive ] ;
 //	SetTimeSoundConvert( &PlayData->ConvData,  Sound->Stream.FileCompCopyLength * 1000 / Sound->BufferFormat.nAvgBytesPerSec ) ;
 	SetSampleTimeSoundConvert( &PlayData->ConvData,  Sound->Stream.FileCompCopyLength / Sound->BufferFormat.nBlockAlign ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
 
-// ProcessStreamSoundMem ‚ÌƒOƒ[ƒoƒ‹•Ï”‚ÉƒAƒNƒZƒX‚µ‚È‚¢ƒo[ƒWƒ‡ƒ“
+// ProcessStreamSoundMem ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°ã«ã‚¢ã‚¯ã‚»ã‚¹ã—ãªã„ãƒãƒ¼ã‚¸ãƒ§ãƒ³
 extern int ProcessStreamSoundMem_UseGParam( int SoundHandle, int ASyncThread )
 {
 	SOUND * Sound ;
@@ -2467,7 +2467,7 @@ extern int ProcessStreamSoundMem_UseGParam( int SoundHandle, int ASyncThread )
 		return -1 ;
 	}
 
-	// ƒGƒ‰[ƒ`ƒFƒbƒN
+	// ã‚¨ãƒ©ãƒ¼ãƒã‚§ãƒƒã‚¯
 	if( ASyncThread )
 	{
 		if( SOUNDHCHK_ASYNC( SoundHandle, Sound ) )
@@ -2479,27 +2479,27 @@ extern int ProcessStreamSoundMem_UseGParam( int SoundHandle, int ASyncThread )
 			return -1 ;
 	}
 
-	// Ä¶Œ`®‚ªƒXƒgƒŠ[ƒ€ƒ^ƒCƒv‚¶‚á‚È‚©‚Á‚½‚ç‚±‚±‚ÅI—¹
+	// å†ç”Ÿå½¢å¼ãŒã‚¹ãƒˆãƒªãƒ¼ãƒ ã‚¿ã‚¤ãƒ—ã˜ã‚ƒãªã‹ã£ãŸã‚‰ã“ã“ã§çµ‚äº†
 	if( Sound->Type != DX_SOUNDTYPE_STREAMSTYLE ) return 0 ;
 
-	// ƒTƒEƒ“ƒhƒoƒbƒtƒ@‚Ìg—pŒ ‚ª‚È‚¢ê‡‚à‚±‚±‚ÅI—¹
+	// ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡ã®ä½¿ç”¨æ¨©ãŒãªã„å ´åˆã‚‚ã“ã“ã§çµ‚äº†
 	if( GetSoundBuffer( SoundHandle, Sound, &SBuffer, false ) == -1 ) return 0 ;
 	
-	// Ä¶€”õ‚ªŠ®—¹‚µ‚Ä‚¢‚È‚©‚Á‚½‚ç‰½‚à‚¹‚¸I—¹
+	// å†ç”Ÿæº–å‚™ãŒå®Œäº†ã—ã¦ã„ãªã‹ã£ãŸã‚‰ä½•ã‚‚ã›ãšçµ‚äº†
 	if( Sound->Stream.StartSetupCompFlag == FALSE ) return 0 ;
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 	CRITICALSECTION_LOCK( &HandleManageArray[ DX_HANDLETYPE_SOUND ].CriticalSection ) ;
 
-	// Ä“xƒnƒ“ƒhƒ‹ƒ`ƒFƒbƒN
+	// å†åº¦ãƒãƒ³ãƒ‰ãƒ«ãƒã‚§ãƒƒã‚¯
 	if( ASyncThread )
 	{
 		if( SOUNDHCHK_ASYNC( SoundHandle, Sound ) )
 		{
-			// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+			// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 			CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_SOUND ].CriticalSection ) ;
 
-			// ƒGƒ‰[I—¹
+			// ã‚¨ãƒ©ãƒ¼çµ‚äº†
 			return -1 ;
 		}
 	}
@@ -2507,18 +2507,18 @@ extern int ProcessStreamSoundMem_UseGParam( int SoundHandle, int ASyncThread )
 	{
 		if( SOUNDHCHK( SoundHandle, Sound ) )
 		{
-			// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+			// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 			CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_SOUND ].CriticalSection ) ;
 
-			// ƒGƒ‰[I—¹
+			// ã‚¨ãƒ©ãƒ¼çµ‚äº†
 			return -1 ;
 		}
 	}
 
-	// Ä¶Š®—¹ŠÔ‚ÌXV
+	// å†ç”Ÿå®Œäº†æ™‚é–“ã®æ›´æ–°
 	RefreshStreamSoundPlayCompLength( SoundHandle, -1, ASyncThread ) ;
 
-	// ƒtƒ@ƒCƒ‹ƒXƒgƒŠ[ƒ€‚©‚Ç‚¤‚©‚Åæ“Ç‚İ‚·‚é•b”‚ğ•ÏX
+	// ãƒ•ã‚¡ã‚¤ãƒ«ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‹ã©ã†ã‹ã§å…ˆèª­ã¿ã™ã‚‹ç§’æ•°ã‚’å¤‰æ›´
 	if( Sound->Stream.FileUseFile )
 	{
 		Use_STS_ADVANCECOPYSEC    = STS_ADVANCECOPYSEC_FILE ;
@@ -2530,14 +2530,14 @@ extern int ProcessStreamSoundMem_UseGParam( int SoundHandle, int ASyncThread )
 		Use_STS_MINADVANCECOPYSEC = STS_MINADVANCECOPYSEC ;
 	}
 
-	// ƒGƒ“ƒhƒtƒ‰ƒO‚ª—§‚Á‚Ä‚¢‚éê‡‚ÍI—¹”»’èˆ—‚ğs‚¤
+	// ã‚¨ãƒ³ãƒ‰ãƒ•ãƒ©ã‚°ãŒç«‹ã£ã¦ã„ã‚‹å ´åˆã¯çµ‚äº†åˆ¤å®šå‡¦ç†ã‚’è¡Œã†
 	if( Sound->Stream.EndWaitFlag )
 	{
-		// Œ»İ‚ÌÄ¶ˆÊ’u‚ğ“¾‚é
+		// ç¾åœ¨ã®å†ç”Ÿä½ç½®ã‚’å¾—ã‚‹
 //		SBuffer->GetCurrentPosition( &CurPosition , NULL );
 		SoundBuffer_GetCurrentPosition( SBuffer, &CurPosition, NULL ) ;
   
-		// I—¹”»’è
+		// çµ‚äº†åˆ¤å®š
 		if(
 		    (
 			  Sound->Stream.EndStartOffset   < Sound->Stream.EndOffset &&
@@ -2553,27 +2553,27 @@ extern int ProcessStreamSoundMem_UseGParam( int SoundHandle, int ASyncThread )
 			)
 		  )
 		{
-			// Ä¶‚ğ‚Æ‚ß‚é
+			// å†ç”Ÿã‚’ã¨ã‚ã‚‹
 //			SBuffer->Stop() ;
 			SoundBuffer_Stop( SBuffer ) ;
 
-			// ƒGƒ“ƒhƒtƒ‰ƒO‚ğ“|‚·
+			// ã‚¨ãƒ³ãƒ‰ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 			Sound->Stream.EndWaitFlag = FALSE ;
 
-			// Ä¶ŠÔî•ñ‚ğ‰Šú‰»‚·‚é
+			// å†ç”Ÿæ™‚é–“æƒ…å ±ã‚’åˆæœŸåŒ–ã™ã‚‹
 			Sound->Stream.FileCompCopyLength = 0 ;
 			Sound->Stream.CompPlayWaveLength = 0 ;
 			Sound->Stream.LoopPositionValidFlag = FALSE ;
 			Sound->Stream.FileLoopCount = 0 ;
 			Sound->Stream.FileActive = 0 ;
-			Sound->Stream.StartSetupCompFlag = FALSE ;		// €”õƒtƒ‰ƒO‚ğ“|‚·
+			Sound->Stream.StartSetupCompFlag = FALSE ;		// æº–å‚™ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 		}
 		else
 		{
 			MoveByte = ( int )AdjustSoundDataBlock( ( int )( Sound->BufferFormat.nAvgBytesPerSec / STS_ONECOPYSEC ), Sound ) ;
 			MoveStartOffset = Sound->Stream.SoundBufferCompCopyOffset ;
 
-			// “]‘—‚·‚×‚«‚©‚Ç‚¤‚©‚Ì”»’è
+			// è»¢é€ã™ã¹ãã‹ã©ã†ã‹ã®åˆ¤å®š
 			{
 				DWORD C, S ;
 
@@ -2591,7 +2591,7 @@ extern int ProcessStreamSoundMem_UseGParam( int SoundHandle, int ASyncThread )
 
 			MoveB = MoveByte ;
 
-			// ƒƒbƒNˆ—
+			// ãƒ­ãƒƒã‚¯å‡¦ç†
 			{
 				LockData.StartOffst = ( DWORD )MoveStartOffset ;
 
@@ -2610,27 +2610,27 @@ extern int ProcessStreamSoundMem_UseGParam( int SoundHandle, int ASyncThread )
 				LockData.Valid2 = LockData.Length2 ;
 			}
 
-			// ƒf[ƒ^“]‘—ˆ—
+			// ãƒ‡ãƒ¼ã‚¿è»¢é€å‡¦ç†
 			while( MoveByte != 0 )
 			{
-				// g—p‚·‚éƒf[ƒ^‚ğƒZƒbƒg
+				// ä½¿ç”¨ã™ã‚‹ãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆ
 				PlayData = &Sound->Stream.File[ Sound->Stream.FileActive ] ;
 
-				// “]‘—ƒoƒCƒg‚ÌƒZƒbƒg
+				// è»¢é€ãƒã‚¤ãƒˆã®ã‚»ãƒƒãƒˆ
 				MoveByte2 = MoveByte ;
 
-				// “]‘—
+				// è»¢é€
 				NoneSoundDataCopy( Sound, &LockData, ( DWORD )MoveByte2 ) ;
 				MoveByte -= MoveByte2 ;
 			}
 
-			// ƒƒbƒN‰ğœ
+			// ãƒ­ãƒƒã‚¯è§£é™¤
 //			SBuffer->Unlock( ( void * )LockData.WriteP, LockData.Length,
 //							( void * )LockData.WriteP2, LockData.Length2 ) ; 
 			SoundBuffer_Unlock( SBuffer, ( void * )LockData.WriteP, LockData.Length,
 										( void * )LockData.WriteP2, LockData.Length2 ) ; 
 
-			// Ÿ‚É“]‘—ˆ—‚ğs‚¤ƒIƒtƒZƒbƒg‚Ì•ÏX
+			// æ¬¡ã«è»¢é€å‡¦ç†ã‚’è¡Œã†ã‚ªãƒ•ã‚»ãƒƒãƒˆã®å¤‰æ›´
 			{
 				Sound->Stream.SoundBufferCompCopyOffset += MoveB ;
 				if( Sound->Stream.SoundBufferCompCopyOffset >= ( int )Sound->Stream.SoundBufferSize )
@@ -2642,16 +2642,16 @@ extern int ProcessStreamSoundMem_UseGParam( int SoundHandle, int ASyncThread )
 			}
 		}
 
-		// I—¹
+		// çµ‚äº†
 		goto END ;
 	}
 	else
 	{
-		// “]‘—ˆ—€”õ
+		// è»¢é€å‡¦ç†æº–å‚™
 		{
-			// Œ»İ‰‰‘t‚³‚ê‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+			// ç¾åœ¨æ¼”å¥ã•ã‚Œã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 
-			// ‰Šú‰»’†‚Å‚à‚È‚­A‰‰‘t’†‚Å‚à‚È‚¢ê‡‚Í‚±‚±‚ÅI—¹
+			// åˆæœŸåŒ–ä¸­ã§ã‚‚ãªãã€æ¼”å¥ä¸­ã§ã‚‚ãªã„å ´åˆã¯ã“ã“ã§çµ‚äº†
 			if( SoundBuffer_CheckPlay( SBuffer ) == FALSE )
 			{
 				if( Sound->Stream.SoundBufferCompCopyOffset == -800 )
@@ -2670,7 +2670,7 @@ extern int ProcessStreamSoundMem_UseGParam( int SoundHandle, int ASyncThread )
 				MoveByte = AdjustSoundDataBlock( ( int )( Sound->BufferFormat.nAvgBytesPerSec / STS_ONECOPYSEC ), Sound ) ;
 				MoveStartOffset = Sound->Stream.SoundBufferCompCopyOffset ;
 
-				// “]‘—‚·‚×‚«‚©‚Ç‚¤‚©‚Ì”»’èAŒ»İ‚Ìæ“Ç‚İ‚Ì•b”‚ÌZo
+				// è»¢é€ã™ã¹ãã‹ã©ã†ã‹ã®åˆ¤å®šã€ç¾åœ¨ã®å…ˆèª­ã¿ã®ç§’æ•°ã®ç®—å‡º
 				{
 					DWORD C, S ;
 
@@ -2693,7 +2693,7 @@ extern int ProcessStreamSoundMem_UseGParam( int SoundHandle, int ASyncThread )
 					AdvanceReadingSec = ( C - CurPosition ) * 0x200 / Sound->BufferFormat.nAvgBytesPerSec ;
 				}
 
-				// æ“Ç‚İ•b”‚ª‹K’è‚ğ‰º‰ñ‚Á‚Ä‚¢‚½‚ç‹K’è‚Ì•b”‚Ü‚Åˆê‹C‚É“]‘—
+				// å…ˆèª­ã¿ç§’æ•°ãŒè¦å®šã‚’ä¸‹å›ã£ã¦ã„ãŸã‚‰è¦å®šã®ç§’æ•°ã¾ã§ä¸€æ°—ã«è»¢é€
 				if( AdvanceReadingSec < Use_STS_MINADVANCECOPYSEC * 0x200 / STS_DIVNUM )
 				{
 					MoveByte = AdjustSoundDataBlock( ( int )( Sound->BufferFormat.nAvgBytesPerSec * ( Use_STS_MINADVANCECOPYSEC * 0x200 / STS_DIVNUM - AdvanceReadingSec ) / 0x200 ), Sound ) ;
@@ -2703,7 +2703,7 @@ extern int ProcessStreamSoundMem_UseGParam( int SoundHandle, int ASyncThread )
 
 		MoveB = MoveByte ;
 
-		// ƒƒbƒNˆ—
+		// ãƒ­ãƒƒã‚¯å‡¦ç†
 		{
 			LockData.StartOffst = ( DWORD )MoveStartOffset ;
 
@@ -2722,18 +2722,18 @@ extern int ProcessStreamSoundMem_UseGParam( int SoundHandle, int ASyncThread )
 			LockData.Valid2 = LockData.Length2 ;
 		}
 
-		// ƒf[ƒ^“]‘—ˆ—
+		// ãƒ‡ãƒ¼ã‚¿è»¢é€å‡¦ç†
 		while( MoveByte != 0 && Sound->Stream.EndWaitFlag == FALSE )
 		{
 			int IsLoopStartSamplePosition = FALSE ;
 
-			// g—p‚·‚éƒf[ƒ^‚ğƒZƒbƒg
+			// ä½¿ç”¨ã™ã‚‹ãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆ
 			PlayData = &Sound->Stream.File[ Sound->Stream.FileActive ] ;
 
-			// “]‘—ƒoƒCƒg‚ÌƒZƒbƒg
+			// è»¢é€ãƒã‚¤ãƒˆã®ã‚»ãƒƒãƒˆ
 			MoveByte2 = MoveByte ;
 
-			// ƒ‹[ƒvŠJnˆÊ’u‚ªİ’è‚³‚ê‚Ä‚¢‚éê‡‚Í‚»‚ÌˆÊ’u‚æ‚èæ‚Ü‚Å‚Íƒf[ƒ^‚ğƒZƒbƒg‚µ‚È‚¢
+			// ãƒ«ãƒ¼ãƒ—é–‹å§‹ä½ç½®ãŒè¨­å®šã•ã‚Œã¦ã„ã‚‹å ´åˆã¯ãã®ä½ç½®ã‚ˆã‚Šå…ˆã¾ã§ã¯ãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆã—ãªã„
 			if( PlayData->LoopStartSamplePosition != -1 && MoveByte2 + Sound->Stream.FileCompCopyLength > PlayData->LoopStartSamplePosition * Sound->BufferFormat.nBlockAlign )
 			{
 				MoveByte2 = ( int )( PlayData->LoopStartSamplePosition * Sound->BufferFormat.nBlockAlign - Sound->Stream.FileCompCopyLength ) ;
@@ -2742,10 +2742,10 @@ extern int ProcessStreamSoundMem_UseGParam( int SoundHandle, int ASyncThread )
 				IsLoopStartSamplePosition = TRUE ;
 			}
 
-			// “]‘—
+			// è»¢é€
 			MoveByte2 = SoundDataCopy( &LockData, &PlayData->ConvData, ( DWORD )MoveByte2 ) ;
 
-			// “]‘——Ê‚ª‚OƒoƒCƒg‚Ìê‡‚ÅAŠ‚Âƒ‹[ƒvŠJnˆÊ’u‚É·‚µŠ|‚©‚Á‚Ä‚¢‚é‚©Aˆ³kƒf[ƒ^‚ÌƒfƒR[ƒh‚ªI—¹‚µ‚Ä‚¢‚éê‡‚ÍŸ‚Ìƒtƒ@ƒCƒ‹‚ÉˆÚ‚é
+			// è»¢é€é‡ãŒï¼ãƒã‚¤ãƒˆã®å ´åˆã§ã€ä¸”ã¤ãƒ«ãƒ¼ãƒ—é–‹å§‹ä½ç½®ã«å·®ã—æ›ã‹ã£ã¦ã„ã‚‹ã‹ã€åœ§ç¸®ãƒ‡ãƒ¼ã‚¿ã®ãƒ‡ã‚³ãƒ¼ãƒ‰ãŒçµ‚äº†ã—ã¦ã„ã‚‹å ´åˆã¯æ¬¡ã®ãƒ•ã‚¡ã‚¤ãƒ«ã«ç§»ã‚‹
 			BreakFlag = FALSE ;
 			if( MoveByte2 == 0 && ( GetSoundConvertEndState( &PlayData->ConvData ) || IsLoopStartSamplePosition ) )
 			{
@@ -2761,7 +2761,7 @@ extern int ProcessStreamSoundMem_UseGParam( int SoundHandle, int ASyncThread )
 				Sound->Stream.FileCompCopyLength += MoveByte2 ;
 			}
 
-			// ƒ‹[ƒv‚·‚×‚«ˆÊ’u‚É—ˆ‚Ä‚¢‚é‚Ì‚ÉŸ‚ÌÄ¶ƒf[ƒ^‚ÉˆÚs‚µ‚Ä‚¢‚È‚¢ê‡‚ÍÄ¶ƒ‹[ƒv‘Ò‚¿( Sound->Stream.LoopPositionValidFlag ‚ª TRUE )‚Ìó‘Ô‚È‚Ì‚ÅAƒ‹[ƒv‚©‚ç”²‚¯‚é
+			// ãƒ«ãƒ¼ãƒ—ã™ã¹ãä½ç½®ã«æ¥ã¦ã„ã‚‹ã®ã«æ¬¡ã®å†ç”Ÿãƒ‡ãƒ¼ã‚¿ã«ç§»è¡Œã—ã¦ã„ãªã„å ´åˆã¯å†ç”Ÿãƒ«ãƒ¼ãƒ—å¾…ã¡( Sound->Stream.LoopPositionValidFlag ãŒ TRUE )ã®çŠ¶æ…‹ãªã®ã§ã€ãƒ«ãƒ¼ãƒ—ã‹ã‚‰æŠœã‘ã‚‹
 			if( ( PlayData == &Sound->Stream.File[ Sound->Stream.FileActive ] &&
 				  PlayData->LoopStartSamplePosition != -1 &&
 				  Sound->Stream.FileCompCopyLength >= PlayData->LoopStartSamplePosition * Sound->BufferFormat.nBlockAlign ) ||
@@ -2770,13 +2770,13 @@ extern int ProcessStreamSoundMem_UseGParam( int SoundHandle, int ASyncThread )
 		}
 		MoveB -= MoveByte ;
 
-		// ƒƒbƒN‰ğœ
+		// ãƒ­ãƒƒã‚¯è§£é™¤
 //		SBuffer->Unlock( ( void * )LockData.WriteP,  LockData.Length,
 //						  ( void * )LockData.WriteP2, LockData.Length2 ) ; 
 		SoundBuffer_Unlock( SBuffer, ( void * )LockData.WriteP,  LockData.Length,
 						  			( void * )LockData.WriteP2, LockData.Length2 ) ; 
 
-		// Ÿ‚É“]‘—ˆ—‚ğs‚¤ƒIƒtƒZƒbƒg‚Ì•ÏX
+		// æ¬¡ã«è»¢é€å‡¦ç†ã‚’è¡Œã†ã‚ªãƒ•ã‚»ãƒƒãƒˆã®å¤‰æ›´
 		if( Sound->Stream.SoundBufferCompCopyOffset == -800 )
 		{
 //			Sound->Stream.SoundBufferCompCopyOffset = SOUNDSIZE( Sound->BufferFormat.nAvgBytesPerSec * Use_STS_ADVANCECOPYSEC / STS_DIVNUM, Sound->BufferFormat.nBlockAlign ) ;
@@ -2797,22 +2797,22 @@ extern int ProcessStreamSoundMem_UseGParam( int SoundHandle, int ASyncThread )
 
 END :
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 	CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_SOUND ].CriticalSection ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 
 ERR :
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 	CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_SOUND ].CriticalSection ) ;
 
-	// ƒGƒ‰[I—¹
+	// ã‚¨ãƒ©ãƒ¼çµ‚äº†
 	return -1 ;
 }
 
-// ‘S‚Ä‚Ì‰¹‚Ìˆê’â~ó‘Ô‚ğ•ÏX‚·‚é
+// å…¨ã¦ã®éŸ³ã®ä¸€æ™‚åœæ­¢çŠ¶æ…‹ã‚’å¤‰æ›´ã™ã‚‹
 extern int PauseSoundMemAll( int PauseFlag )
 {
 	HANDLELIST *List ;
@@ -2829,13 +2829,13 @@ extern int PauseSoundMemAll( int PauseFlag )
 		return -1 ;
 	}
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 	CRITICALSECTION_LOCK( &HandleManageArray[ DX_HANDLETYPE_SOUND ].CriticalSection ) ;
 
-	// ’â~‚·‚é‚©ŠJn‚·‚é‚©‚Åˆ—‚ğ•ªŠò
+	// åœæ­¢ã™ã‚‹ã‹é–‹å§‹ã™ã‚‹ã‹ã§å‡¦ç†ã‚’åˆ†å²
 	if( PauseFlag )
 	{
-		// ’â~‚·‚éê‡
+		// åœæ­¢ã™ã‚‹å ´åˆ
 
 		for( List = SoundSysData.PlaySoundListFirst.Next ; List->Next != NULL ; List = List->Next )
 		{
@@ -2846,11 +2846,11 @@ extern int PauseSoundMemAll( int PauseFlag )
 				if( Sound->Buffer[ i ].Valid == FALSE || SoundBuffer_CheckEnable( &Sound->Buffer[ i ] ) == FALSE )
 					continue ;
 
-				// Šù‚Éó‘Ô•Û‘¶Ï‚İ‚Ìê‡‚Í‰½‚à‚µ‚È‚¢
+				// æ—¢ã«çŠ¶æ…‹ä¿å­˜æ¸ˆã¿ã®å ´åˆã¯ä½•ã‚‚ã—ãªã„
 				if( Sound->BufferPlayStateBackupFlagValid[ i ] )
 					continue ;
 
-				// ƒTƒEƒ“ƒhƒoƒbƒtƒ@‚ÌÄ¶ó‘Ô‚ğ•Û‘¶
+				// ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡ã®å†ç”ŸçŠ¶æ…‹ã‚’ä¿å­˜
 				{
 					int IsPlay ;
 
@@ -2863,7 +2863,7 @@ extern int PauseSoundMemAll( int PauseFlag )
 						{
 							Sound->BufferPlayStateBackupFlag[ i ] = TRUE ;
 
-							// Ä¶‚³‚ê‚Ä‚¢‚½‚çÄ¶‚ğ~‚ß‚é
+							// å†ç”Ÿã•ã‚Œã¦ã„ãŸã‚‰å†ç”Ÿã‚’æ­¢ã‚ã‚‹
 							SoundBuffer_Stop( &Sound->Buffer[ i ], TRUE ) ;
 						}
 						else
@@ -2880,7 +2880,7 @@ extern int PauseSoundMemAll( int PauseFlag )
 		}
 
 #ifndef DX_NON_BEEP
-		// BEEP‰¹‚àÄ¶‚³‚ê‚Ä‚¢‚½‚ç’â~‚·‚é
+		// BEEPéŸ³ã‚‚å†ç”Ÿã•ã‚Œã¦ã„ãŸã‚‰åœæ­¢ã™ã‚‹
 		if( SoundSysData.BeepPlay )
 		{
 			SoundBuffer_Stop( &SoundSysData.BeepSoundBuffer[ SoundSysData.BeepSoundBufferUseIndex ].Buffer ) ;
@@ -2889,7 +2889,7 @@ extern int PauseSoundMemAll( int PauseFlag )
 	}
 	else
 	{
-		// ÄŠJ‚·‚éê‡
+		// å†é–‹ã™ã‚‹å ´åˆ
 
 		for( List = SoundSysData.PlaySoundListFirst.Next ; List->Next != NULL ; List = List->Next )
 		{
@@ -2899,7 +2899,7 @@ extern int PauseSoundMemAll( int PauseFlag )
 			{
 				if( Sound->Buffer[ i ].Valid == FALSE || SoundBuffer_CheckEnable( &Sound->Buffer[ i ] ) == FALSE ) continue ;
 
-				// ƒTƒEƒ“ƒhƒoƒbƒtƒ@‚ÌÄ¶ó‘Ô‚ª—LŒø‚ÅAŠ‚ÂÄ¶‚µ‚Ä‚¢‚½ê‡‚ÍÄ¶‚ğÄŠJ‚·‚é
+				// ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡ã®å†ç”ŸçŠ¶æ…‹ãŒæœ‰åŠ¹ã§ã€ä¸”ã¤å†ç”Ÿã—ã¦ã„ãŸå ´åˆã¯å†ç”Ÿã‚’å†é–‹ã™ã‚‹
 				if( Sound->BufferPlayStateBackupFlagValid[ i ] &&
 					Sound->BufferPlayStateBackupFlag[ i ] )
 				{
@@ -2911,7 +2911,7 @@ extern int PauseSoundMemAll( int PauseFlag )
 		}
 
 #ifndef DX_NON_BEEP
-		// BEEP‰¹‚àÄ¶ó‘Ô‚Ìê‡‚ÍÄ¶‚ğÄŠJ‚·‚é
+		// BEEPéŸ³ã‚‚å†ç”ŸçŠ¶æ…‹ã®å ´åˆã¯å†ç”Ÿã‚’å†é–‹ã™ã‚‹
 		if( SoundSysData.BeepPlay )
 		{
 			SoundBuffer_Play( &SoundSysData.BeepSoundBuffer[ SoundSysData.BeepSoundBufferUseIndex ].Buffer, TRUE ) ;
@@ -2919,20 +2919,20 @@ extern int PauseSoundMemAll( int PauseFlag )
 #endif // DX_NON_BEEP
 	}
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 	CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_SOUND ].CriticalSection ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒXƒgƒŠ[ƒ€ƒTƒEƒ“ƒh‚ÌÄ¶ˆ—ŠÖ”
+// ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‚µã‚¦ãƒ³ãƒ‰ã®å†ç”Ÿå‡¦ç†é–¢æ•°
 extern int NS_ProcessStreamSoundMem( int SoundHandle )
 {
 	return ProcessStreamSoundMem_UseGParam( SoundHandle, FALSE ) ;
 }
 
-// —LŒø‚ÈƒXƒgƒŠ[ƒ€ƒTƒEƒ“ƒh‚Ì‚·‚×‚ÄÄ¶ˆ—ŠÖ”‚É‚©‚¯‚é
+// æœ‰åŠ¹ãªã‚¹ãƒˆãƒªãƒ¼ãƒ ã‚µã‚¦ãƒ³ãƒ‰ã®ã™ã¹ã¦å†ç”Ÿå‡¦ç†é–¢æ•°ã«ã‹ã‘ã‚‹
 extern int NS_ProcessStreamSoundMemAll( void )
 {
 	HANDLELIST *List ;
@@ -2943,37 +2943,37 @@ extern int NS_ProcessStreamSoundMemAll( void )
 		return -1 ;
 	}
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 	CRITICALSECTION_LOCK( &HandleManageArray[ DX_HANDLETYPE_SOUND ].CriticalSection ) ;
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 	CRITICALSECTION_LOCK( &SoundSysData.StreamSoundListCriticalSection ) ;
 
 	for( List = SoundSysData.StreamSoundListFirst.Next ; List->Next != NULL ; List = List->Next )
 	{
-		// Ä¶€”õ‚ªŠ®—¹‚µ‚Ä‚¢‚È‚©‚Á‚½‚ç‰½‚à‚¹‚¸Ÿ‚Ö
+		// å†ç”Ÿæº–å‚™ãŒå®Œäº†ã—ã¦ã„ãªã‹ã£ãŸã‚‰ä½•ã‚‚ã›ãšæ¬¡ã¸
 		Sound = ( SOUND * )List->Data ;
 		if( Sound->Stream.StartSetupCompFlag == FALSE ) continue ;
 
 		NS_ProcessStreamSoundMem( List->Handle ) ;
 	}
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 	CriticalSection_Unlock( &SoundSysData.StreamSoundListCriticalSection ) ;
 
 #ifndef DX_NON_BEEP
-	// ‚Â‚¢‚Å‚ÉBEEP‰¹ŠÖŒW‚ÌüŠú“Iˆ—‚às‚¤
+	// ã¤ã„ã§ã«BEEPéŸ³é–¢ä¿‚ã®å‘¨æœŸçš„å‡¦ç†ã‚‚è¡Œã†
 	BeepSound_Process() ;
 #endif // DX_NON_BEEP
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 	CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_SOUND ].CriticalSection ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// Ä¶’†‚Ì‚·‚×‚Ä‚Ì‚R‚cƒTƒEƒ“ƒh‚Ìƒpƒ‰ƒ[ƒ^‚ğXV‚·‚é
+// å†ç”Ÿä¸­ã®ã™ã¹ã¦ã®ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’æ›´æ–°ã™ã‚‹
 extern int Refresh3DSoundParamAll()
 {
 	HANDLELIST *List ;
@@ -2985,20 +2985,20 @@ extern int Refresh3DSoundParamAll()
 		return -1 ;
 	}
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 	CRITICALSECTION_LOCK( &SoundSysData._3DSoundListCriticalSection ) ;
 
 	for( List = SoundSysData._3DSoundListFirst.Next ; List->Next != NULL ; List = List->Next )
 	{
 		Sound = ( SOUND * )List->Data ;
 
-		// ƒoƒbƒtƒ@[‚Ì”‚¾‚¯ŒJ‚è•Ô‚µ
+		// ãƒãƒƒãƒ•ã‚¡ãƒ¼ã®æ•°ã ã‘ç¹°ã‚Šè¿”ã—
 		for( i = 0 ; i < Sound->ValidBufferNum ; i ++ )
 		{
-			// ƒpƒ‰ƒ[ƒ^XV—\–ñ
+			// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ›´æ–°äºˆç´„
 			Sound->Buffer[ i ].EmitterDataChangeFlag = TRUE ;
 
-			// Ä¶’†‚¾‚Á‚½‚ç‘¦À‚ÉXV
+			// å†ç”Ÿä¸­ã ã£ãŸã‚‰å³åº§ã«æ›´æ–°
 			if( SoundBuffer_CheckPlay( &Sound->Buffer[ i ] ) )
 			{
 				SoundBuffer_Refresh3DSoundParam( &Sound->Buffer[ i ] ) ;
@@ -3006,14 +3006,14 @@ extern int Refresh3DSoundParamAll()
 		}
 	}
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 	CriticalSection_Unlock( &SoundSysData._3DSoundListCriticalSection ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// Ä¶‚ªI—¹‚µ‚½‚çƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹‚ğíœ‚·‚éƒTƒEƒ“ƒh‚Ìˆ—‚ğs‚¤
+// å†ç”ŸãŒçµ‚äº†ã—ãŸã‚‰ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ã‚’å‰Šé™¤ã™ã‚‹ã‚µã‚¦ãƒ³ãƒ‰ã®å‡¦ç†ã‚’è¡Œã†
 extern int ProcessPlayFinishDeleteSoundMemAll( void )
 {
 	HANDLELIST *List ;
@@ -3028,7 +3028,7 @@ LOOPSTART:
 
 	for( List = SoundSysData.PlayFinishDeleteSoundListFirst.Next ; List->Next != NULL ; List = List->Next )
 	{
-		// Ä¶’†‚Å‚Í‚È‚©‚Á‚½‚çíœ
+		// å†ç”Ÿä¸­ã§ã¯ãªã‹ã£ãŸã‚‰å‰Šé™¤
 		if( NS_CheckSoundMem( List->Handle ) == 0 )
 		{
 			SubHandle( List->Handle, FALSE, FALSE ) ;
@@ -3036,11 +3036,11 @@ LOOPSTART:
 		}
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒTƒEƒ“ƒh‚ğÄ¶‚µ‚Ä‚¢‚éƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹‚É‘Î‚·‚éˆ—‚ğs‚¤
+// ã‚µã‚¦ãƒ³ãƒ‰ã‚’å†ç”Ÿã—ã¦ã„ã‚‹ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ã«å¯¾ã™ã‚‹å‡¦ç†ã‚’è¡Œã†
 extern int ProcessPlaySoundMemAll( void )
 {
 	HANDLELIST *List ;
@@ -3051,7 +3051,7 @@ extern int ProcessPlaySoundMemAll( void )
 		return -1 ;
 	}
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 	CRITICALSECTION_LOCK( &SoundSysData.PlaySoundListCriticalSection ) ;
 
 LOOPSTART:
@@ -3067,14 +3067,14 @@ LOOPSTART:
 		}
 	}
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 	CriticalSection_Unlock( &SoundSysData.PlaySoundListCriticalSection ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ‚R‚cƒTƒEƒ“ƒh‚ğÄ¶‚µ‚Ä‚¢‚éƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹‚É‘Î‚·‚éˆ—‚ğs‚¤
+// ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰ã‚’å†ç”Ÿã—ã¦ã„ã‚‹ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ã«å¯¾ã™ã‚‹å‡¦ç†ã‚’è¡Œã†
 extern int ProcessPlay3DSoundMemAll( void )
 {
 	HANDLELIST *List ;
@@ -3087,7 +3087,7 @@ extern int ProcessPlay3DSoundMemAll( void )
 		return -1 ;
 	}
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 	CRITICALSECTION_LOCK( &SoundSysData.Play3DSoundListCriticalSection ) ;
 
 LOOPSTART:
@@ -3117,14 +3117,14 @@ LOOPSTART:
 		}
 	}
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 	CriticalSection_Unlock( &SoundSysData.Play3DSoundListCriticalSection ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// LoadSoundMem2 ‚ÌÀˆ—ŠÖ”
+// LoadSoundMem2 ã®å®Ÿå‡¦ç†é–¢æ•°
 extern int LoadSoundMem2_Static(
 	LOADSOUND_GPARAM *GParam,
 	int SoundHandle,
@@ -3136,26 +3136,26 @@ extern int LoadSoundMem2_Static(
 	if( CheckSoundSystem_Initialize_PF() == FALSE )
 		return -1 ;
 
-	// ˆê‚Â–Ú‚ÌƒTƒEƒ“ƒhƒf[ƒ^‚Ì’Ç‰Á
+	// ä¸€ã¤ç›®ã®ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ã®è¿½åŠ 
 	if( AddStreamSoundMemToFile_UseGParam( GParam, WaveName1, 0,  SoundHandle, GParam->CreateSoundDataType, -1, ASyncThread ) == -1 ) goto ERR ;
 
-	// ‚Q‚Â–Ú‚ÌƒTƒEƒ“ƒhƒf[ƒ^‚Ì’Ç‰Á
+	// ï¼’ã¤ç›®ã®ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ã®è¿½åŠ 
 	if( AddStreamSoundMemToFile_UseGParam( GParam, WaveName2, -1, SoundHandle, GParam->CreateSoundDataType, -1, ASyncThread ) == -1 ) goto ERR ;
 
-	// Ä¶€”õ
+	// å†ç”Ÿæº–å‚™
 	SetupStreamSoundMem_UseGParam( SoundHandle, ASyncThread ) ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 
 ERR :
-	// ƒGƒ‰[I—¹
+	// ã‚¨ãƒ©ãƒ¼çµ‚äº†
 	return -1 ;
 }
 
 #ifndef DX_NON_ASYNCLOAD
 
-// LoadSoundMem2 ‚Ì”ñ“¯Šú“Ç‚İ‚İƒXƒŒƒbƒh‚©‚çŒÄ‚Î‚ê‚éŠÖ”
+// LoadSoundMem2 ã®éåŒæœŸèª­ã¿è¾¼ã¿ã‚¹ãƒ¬ãƒƒãƒ‰ã‹ã‚‰å‘¼ã°ã‚Œã‚‹é–¢æ•°
 static void LoadSoundMem2_ASync( ASYNCLOADDATA_COMMON *AParam )
 {
 	LOADSOUND_GPARAM *GParam ;
@@ -3186,7 +3186,7 @@ static void LoadSoundMem2_ASync( ASYNCLOADDATA_COMMON *AParam )
 
 #endif // DX_NON_ASYNCLOAD
 
-// LoadSoundMem2 ‚ÌƒOƒ[ƒoƒ‹•Ï”‚ÉƒAƒNƒZƒX‚µ‚È‚¢ƒo[ƒWƒ‡ƒ“
+// LoadSoundMem2 ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°ã«ã‚¢ã‚¯ã‚»ã‚¹ã—ãªã„ãƒãƒ¼ã‚¸ãƒ§ãƒ³
 extern int LoadSoundMem2_UseGParam(
 	LOADSOUND_GPARAM *GParam,
 	const wchar_t *WaveName1,
@@ -3214,19 +3214,19 @@ extern int LoadSoundMem2_UseGParam(
 		ConvertFullPathW_( WaveName1, FullPath1, sizeof( FullPath1 ) ) ;
 		ConvertFullPathW_( WaveName2, FullPath2, sizeof( FullPath2 ) ) ;
 
-		// ƒpƒ‰ƒ[ƒ^‚É•K—v‚Èƒƒ‚ƒŠ‚ÌƒTƒCƒY‚ğZo
+		// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã«å¿…è¦ãªãƒ¡ãƒ¢ãƒªã®ã‚µã‚¤ã‚ºã‚’ç®—å‡º
 		Addr = 0 ;
 		AddASyncLoadParamStruct( NULL, &Addr, GParam, sizeof( *GParam ) ) ;
 		AddASyncLoadParamInt( NULL, &Addr, SoundHandle ) ;
 		AddASyncLoadParamString( NULL, &Addr, FullPath1 ) ; 
 		AddASyncLoadParamString( NULL, &Addr, FullPath2 ) ; 
 
-		// ƒƒ‚ƒŠ‚ÌŠm•Û
+		// ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿
 		AParam = AllocASyncLoadDataMemory( Addr ) ;
 		if( AParam == NULL )
 			goto ERR ;
 
-		// ˆ—‚É•K—v‚Èî•ñ‚ğƒZƒbƒg
+		// å‡¦ç†ã«å¿…è¦ãªæƒ…å ±ã‚’ã‚»ãƒƒãƒˆ
 		AParam->ProcessFunction = LoadSoundMem2_ASync ;
 		Addr = 0 ;
 		AddASyncLoadParamStruct( AParam->Data, &Addr, GParam, sizeof( *GParam ) ) ;
@@ -3234,7 +3234,7 @@ extern int LoadSoundMem2_UseGParam(
 		AddASyncLoadParamString( AParam->Data, &Addr, FullPath1 ) ; 
 		AddASyncLoadParamString( AParam->Data, &Addr, FullPath2 ) ; 
 
-		// ƒf[ƒ^‚ğ’Ç‰Á
+		// ãƒ‡ãƒ¼ã‚¿ã‚’è¿½åŠ 
 		if( AddASyncLoadData( AParam ) < 0 )
 		{
 			DXFREE( AParam ) ;
@@ -3242,7 +3242,7 @@ extern int LoadSoundMem2_UseGParam(
 			goto ERR ;
 		}
 
-		// ”ñ“¯Šú“Ç‚İ‚İƒJƒEƒ“ƒg‚ğƒCƒ“ƒNƒŠƒƒ“ƒg
+		// éåŒæœŸèª­ã¿è¾¼ã¿ã‚«ã‚¦ãƒ³ãƒˆã‚’ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆ
 		IncASyncLoadCount( SoundHandle, AParam->Index ) ;
 	}
 	else
@@ -3252,18 +3252,18 @@ extern int LoadSoundMem2_UseGParam(
 			goto ERR ;
 	}
 
-	// ƒnƒ“ƒhƒ‹‚ğ•Ô‚·
+	// ãƒãƒ³ãƒ‰ãƒ«ã‚’è¿”ã™
 	return SoundHandle ;
 
 ERR :
 	SubHandle( SoundHandle, ASyncLoadFlag, FALSE ) ;
 	SoundHandle = -1 ;
 
-	// I—¹
+	// çµ‚äº†
 	return -1 ;
 }
 
-// ‘O‘t•”‚Æƒ‹[ƒv•”‚É•ª‚©‚ê‚½ƒTƒEƒ“ƒhƒf[ƒ^‚Ìì¬
+// å‰å¥éƒ¨ã¨ãƒ«ãƒ¼ãƒ—éƒ¨ã«åˆ†ã‹ã‚ŒãŸã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ã®ä½œæˆ
 extern int NS_LoadSoundMem2( const TCHAR *WaveName1 , const TCHAR *WaveName2 )
 {
 #ifdef UNICODE
@@ -3292,7 +3292,7 @@ ERR :
 #endif
 }
 
-// ‘O‘t•”‚Æƒ‹[ƒv•”‚É•ª‚©‚ê‚½ƒTƒEƒ“ƒhƒtƒ@ƒCƒ‹‚ğ“Ç‚İ‚İƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹‚ğì¬‚·‚é
+// å‰å¥éƒ¨ã¨ãƒ«ãƒ¼ãƒ—éƒ¨ã«åˆ†ã‹ã‚ŒãŸã‚µã‚¦ãƒ³ãƒ‰ãƒ•ã‚¡ã‚¤ãƒ«ã‚’èª­ã¿è¾¼ã¿ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ã‚’ä½œæˆã™ã‚‹
 extern int NS_LoadSoundMem2WithStrLen( const TCHAR *FileName1, size_t FileName1Length, const TCHAR *FileName2, size_t FileName2Length )
 {
 	int Result = -1 ;
@@ -3318,7 +3318,7 @@ ERR :
 	return Result ;
 }
 
-// ‘O‘t•”‚Æƒ‹[ƒv•”‚É•ª‚©‚ê‚½ƒTƒEƒ“ƒhƒf[ƒ^‚Ìì¬
+// å‰å¥éƒ¨ã¨ãƒ«ãƒ¼ãƒ—éƒ¨ã«åˆ†ã‹ã‚ŒãŸã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ã®ä½œæˆ
 extern int LoadSoundMem2_WCHAR_T( const wchar_t *WaveName1 , const wchar_t *WaveName2 )
 {
 	LOADSOUND_GPARAM GParam ;
@@ -3328,7 +3328,7 @@ extern int LoadSoundMem2_WCHAR_T( const wchar_t *WaveName1 , const wchar_t *Wave
 	return LoadSoundMem2_UseGParam( &GParam, WaveName1, WaveName2, GetASyncLoadFlag() ) ;
 }
 
-// å‚É‚a‚f‚l‚ğ“Ç‚İ‚Ş‚Ì‚É“K‚µ‚½ŠÖ”
+// ä¸»ã«ï¼¢ï¼§ï¼­ã‚’èª­ã¿è¾¼ã‚€ã®ã«é©ã—ãŸé–¢æ•°
 extern int NS_LoadBGM( const TCHAR *WaveName )
 {
 #ifdef UNICODE
@@ -3350,7 +3350,7 @@ extern int NS_LoadBGM( const TCHAR *WaveName )
 #endif
 }
 
-// å‚É‚a‚f‚l‚ğ“Ç‚İ‚İƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹‚ğì¬‚·‚é‚Ì‚É“K‚µ‚½ŠÖ”
+// ä¸»ã«ï¼¢ï¼§ï¼­ã‚’èª­ã¿è¾¼ã¿ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ã‚’ä½œæˆã™ã‚‹ã®ã«é©ã—ãŸé–¢æ•°
 extern int NS_LoadBGMWithStrLen( const TCHAR *FileName, size_t FileNameLength )
 {
 	int Result ;
@@ -3366,7 +3366,7 @@ extern int NS_LoadBGMWithStrLen( const TCHAR *FileName, size_t FileNameLength )
 	return Result ;
 }
 
-// å‚É‚a‚f‚l‚ğ“Ç‚İ‚Ş‚Ì‚É“K‚µ‚½ŠÖ”
+// ä¸»ã«ï¼¢ï¼§ï¼­ã‚’èª­ã¿è¾¼ã‚€ã®ã«é©ã—ãŸé–¢æ•°
 extern int LoadBGM_WCHAR_T( const wchar_t *WaveName )
 {
 	int Type = SoundSysData.CreateSoundDataType, SoundHandle ;
@@ -3386,7 +3386,7 @@ extern int LoadBGM_WCHAR_T( const wchar_t *WaveName )
 	return SoundHandle ;
 }
 
-// LoadSoundMem2ByMemImage ‚ÌÀˆ—ŠÖ”
+// LoadSoundMem2ByMemImage ã®å®Ÿå‡¦ç†é–¢æ•°
 static int LoadSoundMem2ByMemImage_Static( 
 	LOADSOUND_GPARAM *GParam,
 	int SoundHandle,
@@ -3400,25 +3400,25 @@ static int LoadSoundMem2ByMemImage_Static(
 	if( CheckSoundSystem_Initialize_PF() == FALSE )
 		return -1 ;
 
-	// ˆê‚Â–Ú‚ÌƒTƒEƒ“ƒhƒf[ƒ^‚Ì’Ç‰Á
+	// ä¸€ã¤ç›®ã®ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ã®è¿½åŠ 
 	if( AddStreamSoundMemToMem_UseGParam( GParam, FileImageBuffer1, ImageSize1,  0, SoundHandle, GParam->CreateSoundDataType, -1, ASyncThread ) == -1 ) goto ERR ;
 
-	// ‚Q‚Â–Ú‚ÌƒTƒEƒ“ƒhƒf[ƒ^‚Ì’Ç‰Á
+	// ï¼’ã¤ç›®ã®ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ã®è¿½åŠ 
 	if( AddStreamSoundMemToMem_UseGParam( GParam, FileImageBuffer2, ImageSize2, -1, SoundHandle, GParam->CreateSoundDataType, -1, ASyncThread ) == -1 ) goto ERR ;
 
-	// Ä¶€”õ
+	// å†ç”Ÿæº–å‚™
 	SetupStreamSoundMem_UseGParam( SoundHandle, ASyncThread ) ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 
 ERR :
-	// ƒGƒ‰[I—¹
+	// ã‚¨ãƒ©ãƒ¼çµ‚äº†
 	return -1 ;
 }
 
 #ifndef DX_NON_ASYNCLOAD
-// LoadSoundMem2ByMemImage ‚Ì”ñ“¯Šú“Ç‚İ‚İƒXƒŒƒbƒh‚©‚çŒÄ‚Î‚ê‚éŠÖ”
+// LoadSoundMem2ByMemImage ã®éåŒæœŸèª­ã¿è¾¼ã¿ã‚¹ãƒ¬ãƒƒãƒ‰ã‹ã‚‰å‘¼ã°ã‚Œã‚‹é–¢æ•°
 static void LoadSoundMem2ByMemImage_ASync( ASYNCLOADDATA_COMMON *AParam )
 {
 	LOADSOUND_GPARAM *GParam ;
@@ -3452,7 +3452,7 @@ static void LoadSoundMem2ByMemImage_ASync( ASYNCLOADDATA_COMMON *AParam )
 }
 #endif // DX_NON_ASYNCLOAD
 
-// LoadSoundMem2ByMemImage ‚ÌƒOƒ[ƒoƒ‹•Ï”‚ÉƒAƒNƒZƒX‚µ‚È‚¢ƒo[ƒWƒ‡ƒ“
+// LoadSoundMem2ByMemImage ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°ã«ã‚¢ã‚¯ã‚»ã‚¹ã—ãªã„ãƒãƒ¼ã‚¸ãƒ§ãƒ³
 extern int LoadSoundMem2ByMemImage_UseGParam(
 	LOADSOUND_GPARAM *GParam,
 	const void *FileImageBuffer1,
@@ -3477,7 +3477,7 @@ extern int LoadSoundMem2ByMemImage_UseGParam(
 		ASYNCLOADDATA_COMMON *AParam = NULL ;
 		int Addr ;
 
-		// ƒpƒ‰ƒ[ƒ^‚É•K—v‚Èƒƒ‚ƒŠ‚ÌƒTƒCƒY‚ğZo
+		// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã«å¿…è¦ãªãƒ¡ãƒ¢ãƒªã®ã‚µã‚¤ã‚ºã‚’ç®—å‡º
 		Addr = 0 ;
 		AddASyncLoadParamStruct( NULL, &Addr, GParam, sizeof( *GParam ) ) ;
 		AddASyncLoadParamInt( NULL, &Addr, SoundHandle ) ;
@@ -3486,12 +3486,12 @@ extern int LoadSoundMem2ByMemImage_UseGParam(
 		AddASyncLoadParamConstVoidP( NULL, &Addr, FileImageBuffer2 ) ; 
 		AddASyncLoadParamSize_t( NULL, &Addr, ImageSize2 ) ; 
 
-		// ƒƒ‚ƒŠ‚ÌŠm•Û
+		// ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿
 		AParam = AllocASyncLoadDataMemory( Addr ) ;
 		if( AParam == NULL )
 			goto ERR ;
 
-		// ˆ—‚É•K—v‚Èî•ñ‚ğƒZƒbƒg
+		// å‡¦ç†ã«å¿…è¦ãªæƒ…å ±ã‚’ã‚»ãƒƒãƒˆ
 		AParam->ProcessFunction = LoadSoundMem2ByMemImage_ASync ;
 		Addr = 0 ;
 		AddASyncLoadParamStruct( AParam->Data, &Addr, GParam, sizeof( *GParam ) ) ;
@@ -3501,7 +3501,7 @@ extern int LoadSoundMem2ByMemImage_UseGParam(
 		AddASyncLoadParamConstVoidP( AParam->Data, &Addr, FileImageBuffer2 ) ; 
 		AddASyncLoadParamSize_t( AParam->Data, &Addr, ImageSize2 ) ; 
 
-		// ƒf[ƒ^‚ğ’Ç‰Á
+		// ãƒ‡ãƒ¼ã‚¿ã‚’è¿½åŠ 
 		if( AddASyncLoadData( AParam ) < 0 )
 		{
 			DXFREE( AParam ) ;
@@ -3509,7 +3509,7 @@ extern int LoadSoundMem2ByMemImage_UseGParam(
 			goto ERR ;
 		}
 
-		// ”ñ“¯Šú“Ç‚İ‚İƒJƒEƒ“ƒg‚ğƒCƒ“ƒNƒŠƒƒ“ƒg
+		// éåŒæœŸèª­ã¿è¾¼ã¿ã‚«ã‚¦ãƒ³ãƒˆã‚’ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆ
 		IncASyncLoadCount( SoundHandle, AParam->Index ) ;
 	}
 	else
@@ -3519,18 +3519,18 @@ extern int LoadSoundMem2ByMemImage_UseGParam(
 			goto ERR ;
 	}
 
-	// ƒnƒ“ƒhƒ‹‚ğ•Ô‚·
+	// ãƒãƒ³ãƒ‰ãƒ«ã‚’è¿”ã™
 	return SoundHandle ;
 
 ERR :
 	SubHandle( SoundHandle, ASyncLoadFlag, FALSE ) ;
 	SoundHandle = -1 ;
 
-	// I—¹
+	// çµ‚äº†
 	return -1 ;
 }
 
-// ‘O‘t•”‚Æƒ‹[ƒv•”‚É•ª‚©‚ê‚½ƒTƒEƒ“ƒhƒf[ƒ^‚Ìì¬
+// å‰å¥éƒ¨ã¨ãƒ«ãƒ¼ãƒ—éƒ¨ã«åˆ†ã‹ã‚ŒãŸã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ã®ä½œæˆ
 extern int NS_LoadSoundMem2ByMemImage( const void *FileImageBuffer1, size_t ImageSize1, const void *FileImageBuffer2, size_t ImageSize2 )
 {
 	LOADSOUND_GPARAM GParam ;
@@ -3542,23 +3542,23 @@ extern int NS_LoadSoundMem2ByMemImage( const void *FileImageBuffer1, size_t Imag
 
 
 	
-// LOADSOUND_GPARAM ‚Ìƒf[ƒ^‚ğƒZƒbƒg‚·‚é
+// LOADSOUND_GPARAM ã®ãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern void InitLoadSoundGParam( LOADSOUND_GPARAM *GParam )
 {
-	GParam->NotInitSoundMemDelete = FALSE ;																// InitSoundMem ‚Åíœ‚µ‚È‚¢‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO( TRUE:InitSoundMem‚Å‚Ííœ‚µ‚È‚¢  FALSE:InitSoundMem‚Åíœ‚·‚é )
-	GParam->Create3DSoundFlag					= SoundSysData.Create3DSoundFlag ;						// 3DƒTƒEƒ“ƒh‚ğì¬‚·‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO( TRUE:‚R‚cƒTƒEƒ“ƒh‚ğì¬‚·‚é  FALSE:‚R‚cƒTƒEƒ“ƒh‚ğì¬‚µ‚È‚¢ )
-	GParam->CreateSoundDataType					= SoundSysData.CreateSoundDataType ;					// ì¬‚·‚éƒTƒEƒ“ƒhƒf[ƒ^‚Ìƒf[ƒ^ƒ^ƒCƒv
-	GParam->CreateSoundPitchRateEnable			= SoundSysData.CreateSoundPitchRateEnable ;				// ì¬‚·‚éƒTƒEƒ“ƒhƒf[ƒ^‚Ìƒsƒbƒ`ƒŒ[ƒg‚ª—LŒø‚©‚Ç‚¤‚©
-	GParam->CreateSoundPitchRate				= SoundSysData.CreateSoundPitchRate ;					// ì¬‚·‚éƒTƒEƒ“ƒhƒf[ƒ^‚Ìƒsƒbƒ`ƒŒ[ƒg
-	GParam->CreateSoundTimeStretchRateEnable	= SoundSysData.CreateSoundTimeStretchRateEnable ;		// ì¬‚·‚éƒTƒEƒ“ƒhƒf[ƒ^‚Ìƒ^ƒCƒ€ƒXƒgƒŒƒbƒ`ƒŒ[ƒg‚ª—LŒø‚©‚Ç‚¤‚©
-	GParam->CreateSoundTimeStretchRate			= SoundSysData.CreateSoundTimeStretchRate ;				// ì¬‚·‚éƒTƒEƒ“ƒhƒf[ƒ^‚Ìƒ^ƒCƒ€ƒXƒgƒŒƒbƒ`ƒŒ[ƒg
-	GParam->CreateSoundLoopStartTimePosition	= SoundSysData.CreateSoundLoopStartTimePosition ;		// ì¬‚·‚éƒTƒEƒ“ƒhƒf[ƒ^‚Ìƒ‹[ƒv”ÍˆÍ‚Ìæ’[( ƒ~ƒŠ•b )
-	GParam->CreateSoundLoopStartSamplePosition	= SoundSysData.CreateSoundLoopStartSamplePosition ;		// ì¬‚·‚éƒTƒEƒ“ƒhƒf[ƒ^‚Ìƒ‹[ƒv”ÍˆÍ‚Ìæ’[( ƒTƒ“ƒvƒ‹ )
-	GParam->CreateSoundLoopEndTimePosition		= SoundSysData.CreateSoundLoopEndTimePosition ;			// ì¬‚·‚éƒTƒEƒ“ƒhƒf[ƒ^‚Ìƒ‹[ƒv”ÍˆÍ‚ÌI’[( ƒ~ƒŠ•b )
-	GParam->CreateSoundLoopEndSamplePosition	= SoundSysData.CreateSoundLoopEndSamplePosition ;		// ì¬‚·‚éƒTƒEƒ“ƒhƒf[ƒ^‚Ìƒ‹[ƒv”ÍˆÍ‚ÌI’[( ƒTƒ“ƒvƒ‹ )
-	GParam->CreateSoundIgnoreLoopAreaInfo		= SoundSysData.CreateSoundIgnoreLoopAreaInfo ;			// ì¬‚·‚éƒTƒEƒ“ƒhƒf[ƒ^‚Åƒ‹[ƒv”ÍˆÍî•ñ‚ğ–³‹‚·‚é‚©‚Ç‚¤‚©
+	GParam->NotInitSoundMemDelete = FALSE ;																// InitSoundMem ã§å‰Šé™¤ã—ãªã„ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°( TRUE:InitSoundMemã§ã¯å‰Šé™¤ã—ãªã„  FALSE:InitSoundMemã§å‰Šé™¤ã™ã‚‹ )
+	GParam->Create3DSoundFlag					= SoundSysData.Create3DSoundFlag ;						// 3Dã‚µã‚¦ãƒ³ãƒ‰ã‚’ä½œæˆã™ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°( TRUE:ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰ã‚’ä½œæˆã™ã‚‹  FALSE:ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰ã‚’ä½œæˆã—ãªã„ )
+	GParam->CreateSoundDataType					= SoundSysData.CreateSoundDataType ;					// ä½œæˆã™ã‚‹ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ã®ãƒ‡ãƒ¼ã‚¿ã‚¿ã‚¤ãƒ—
+	GParam->CreateSoundPitchRateEnable			= SoundSysData.CreateSoundPitchRateEnable ;				// ä½œæˆã™ã‚‹ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ã®ãƒ”ãƒƒãƒãƒ¬ãƒ¼ãƒˆãŒæœ‰åŠ¹ã‹ã©ã†ã‹
+	GParam->CreateSoundPitchRate				= SoundSysData.CreateSoundPitchRate ;					// ä½œæˆã™ã‚‹ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ã®ãƒ”ãƒƒãƒãƒ¬ãƒ¼ãƒˆ
+	GParam->CreateSoundTimeStretchRateEnable	= SoundSysData.CreateSoundTimeStretchRateEnable ;		// ä½œæˆã™ã‚‹ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ã®ã‚¿ã‚¤ãƒ ã‚¹ãƒˆãƒ¬ãƒƒãƒãƒ¬ãƒ¼ãƒˆãŒæœ‰åŠ¹ã‹ã©ã†ã‹
+	GParam->CreateSoundTimeStretchRate			= SoundSysData.CreateSoundTimeStretchRate ;				// ä½œæˆã™ã‚‹ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ã®ã‚¿ã‚¤ãƒ ã‚¹ãƒˆãƒ¬ãƒƒãƒãƒ¬ãƒ¼ãƒˆ
+	GParam->CreateSoundLoopStartTimePosition	= SoundSysData.CreateSoundLoopStartTimePosition ;		// ä½œæˆã™ã‚‹ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ã®ãƒ«ãƒ¼ãƒ—ç¯„å›²ã®å…ˆç«¯( ãƒŸãƒªç§’ )
+	GParam->CreateSoundLoopStartSamplePosition	= SoundSysData.CreateSoundLoopStartSamplePosition ;		// ä½œæˆã™ã‚‹ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ã®ãƒ«ãƒ¼ãƒ—ç¯„å›²ã®å…ˆç«¯( ã‚µãƒ³ãƒ—ãƒ« )
+	GParam->CreateSoundLoopEndTimePosition		= SoundSysData.CreateSoundLoopEndTimePosition ;			// ä½œæˆã™ã‚‹ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ã®ãƒ«ãƒ¼ãƒ—ç¯„å›²ã®çµ‚ç«¯( ãƒŸãƒªç§’ )
+	GParam->CreateSoundLoopEndSamplePosition	= SoundSysData.CreateSoundLoopEndSamplePosition ;		// ä½œæˆã™ã‚‹ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ã®ãƒ«ãƒ¼ãƒ—ç¯„å›²ã®çµ‚ç«¯( ã‚µãƒ³ãƒ—ãƒ« )
+	GParam->CreateSoundIgnoreLoopAreaInfo		= SoundSysData.CreateSoundIgnoreLoopAreaInfo ;			// ä½œæˆã™ã‚‹ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ã§ãƒ«ãƒ¼ãƒ—ç¯„å›²æƒ…å ±ã‚’ç„¡è¦–ã™ã‚‹ã‹ã©ã†ã‹
 
-	// ƒ‹[ƒvˆÊ’u‚Ìw’è‚ª‚ ‚éê‡‚ÍƒXƒgƒŠ[ƒ€ƒTƒEƒ“ƒh‚Æ‚µ‚Ä“Ç‚İ‚Ş
+	// ãƒ«ãƒ¼ãƒ—ä½ç½®ã®æŒ‡å®šãŒã‚ã‚‹å ´åˆã¯ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‚µã‚¦ãƒ³ãƒ‰ã¨ã—ã¦èª­ã¿è¾¼ã‚€
 	if( GParam->CreateSoundDataType == DX_SOUNDDATATYPE_MEMNOPRESS &&
 		( GParam->CreateSoundLoopStartTimePosition   != GParam->CreateSoundLoopEndTimePosition ||
 		  GParam->CreateSoundLoopStartSamplePosition != GParam->CreateSoundLoopEndSamplePosition ) &&
@@ -3567,14 +3567,14 @@ extern void InitLoadSoundGParam( LOADSOUND_GPARAM *GParam )
 		GParam->CreateSoundDataType = DX_SOUNDDATATYPE_MEMPRESS ;
 	}
 
-	GParam->DisableReadSoundFunctionMask = SoundSysData.DisableReadSoundFunctionMask ;		// g—p‚µ‚È‚¢“Ç‚İ‚İˆ—‚Ìƒ}ƒXƒN
+	GParam->DisableReadSoundFunctionMask = SoundSysData.DisableReadSoundFunctionMask ;		// ä½¿ç”¨ã—ãªã„èª­ã¿è¾¼ã¿å‡¦ç†ã®ãƒã‚¹ã‚¯
 #ifndef DX_NON_OGGVORBIS
-	GParam->OggVorbisBitDepth = SoundSysData.OggVorbisBitDepth ;							// ‚n‚‡‚‡‚u‚‚’‚‚‚‰‚“g—p‚Ìƒrƒbƒg[“x(1:8bit 2:16bit)
-	GParam->OggVorbisFromTheoraFile = SoundSysData.OggVorbisFromTheoraFile ;				// Ogg Theora ƒtƒ@ƒCƒ‹’†‚Ì Vorbis ƒf[ƒ^‚ğQÆ‚·‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO( TRUE:Theora ƒtƒ@ƒCƒ‹’†‚Ì Vorbis ƒf[ƒ^‚ğQÆ‚·‚é )
+	GParam->OggVorbisBitDepth = SoundSysData.OggVorbisBitDepth ;							// ï¼¯ï½‡ï½‡ï¼¶ï½ï½’ï½‚ï½‰ï½“ä½¿ç”¨æ™‚ã®ãƒ“ãƒƒãƒˆæ·±åº¦(1:8bit 2:16bit)
+	GParam->OggVorbisFromTheoraFile = SoundSysData.OggVorbisFromTheoraFile ;				// Ogg Theora ãƒ•ã‚¡ã‚¤ãƒ«ä¸­ã® Vorbis ãƒ‡ãƒ¼ã‚¿ã‚’å‚ç…§ã™ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°( TRUE:Theora ãƒ•ã‚¡ã‚¤ãƒ«ä¸­ã® Vorbis ãƒ‡ãƒ¼ã‚¿ã‚’å‚ç…§ã™ã‚‹ )
 #endif
 }
 
-// ƒsƒbƒ`•ÏX‚âƒ^ƒCƒ€ƒXƒgƒŒƒbƒ`‚ÌLk•ÏXƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹‚ğƒZƒbƒgƒAƒbƒv‚·‚éƒwƒ‹ƒp[ŠÖ”
+// ãƒ”ãƒƒãƒå¤‰æ›´ã‚„ã‚¿ã‚¤ãƒ ã‚¹ãƒˆãƒ¬ãƒƒãƒæ™‚ã®ä¼¸ç¸®å¤‰æ›´ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ã‚’ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã™ã‚‹ãƒ˜ãƒ«ãƒ‘ãƒ¼é–¢æ•°
 static int SetupSoundPitchRateTimeStretchRateChangeHandle( int SoundHandle, LOADSOUND_GPARAM *GParam, int SSSHandleI, int BufferNum, int ASyncThread )
 {
 	int SSSHandle = -1 ;
@@ -3588,7 +3588,7 @@ static int SetupSoundPitchRateTimeStretchRateChangeHandle( int SoundHandle, LOAD
 
 	SSND_MASKHCHK( SSSHandleI, SSSound ) ;
 
-	// floatŒ^‚Ìƒ\ƒtƒgƒEƒGƒAƒTƒEƒ“ƒh‚ğì¬
+	// floatå‹ã®ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã‚µã‚¦ãƒ³ãƒ‰ã‚’ä½œæˆ
 	SSSHandle = NS_MakeSoftSoundCustom( SSSound->BufferFormat.nChannels, 32, ( int )SSSound->BufferFormat.nSamplesPerSec, SSSound->Wave.BufferSampleNum, TRUE ) ;
 	if( SSSHandle < 0 )
 	{
@@ -3596,21 +3596,21 @@ static int SetupSoundPitchRateTimeStretchRateChangeHandle( int SoundHandle, LOAD
 		goto ERR ;
 	}
 
-	// Œ³‚ªfloatŒ^‚Ìƒ\ƒtƒgƒEƒGƒAƒTƒEƒ“ƒh‚Å‚Í‚È‚©‚Á‚½‚çfloatŒ^‚Ìƒ\ƒtƒgƒEƒGƒAƒTƒEƒ“ƒh‚É•ÏŠ·
+	// å…ƒãŒfloatå‹ã®ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã‚µã‚¦ãƒ³ãƒ‰ã§ã¯ãªã‹ã£ãŸã‚‰floatå‹ã®ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã‚µã‚¦ãƒ³ãƒ‰ã«å¤‰æ›
 	if( SSSound->BufferFormat.wFormatTag != WAVE_FORMAT_IEEE_FLOAT )
 	{
 		ConvertIntToFloatSoftSound( SSSHandleI, SSSHandle ) ;
 	}
 	else
 	{
-		// Œ³‚ªfloatŒ^‚Ìƒ\ƒtƒgƒEƒGƒAƒTƒEƒ“ƒh‚Ìê‡‚ÍƒRƒs[‚ğ—pˆÓ
+		// å…ƒãŒfloatå‹ã®ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã‚µã‚¦ãƒ³ãƒ‰ã®å ´åˆã¯ã‚³ãƒ”ãƒ¼ã‚’ç”¨æ„
 		CopySoftSound( SSSHandleI, SSSHandle ) ;
 	}
 
-	// ƒsƒbƒ`•ÏX‚ª‚ ‚éê‡
+	// ãƒ”ãƒƒãƒå¤‰æ›´ãŒã‚ã‚‹å ´åˆ
 	if( GParam->CreateSoundPitchRateEnable )
 	{
-		// ‚Q”{ˆÈã‚Éü”g”‚ª‚ ‚ª‚éê‡‚Í‚Q”{ˆÈ‰º‚É‚È‚é‚Ü‚Å‚Q”{’PˆÊ‚Å•ÏŠ·‚ğs‚¤
+		// ï¼’å€ä»¥ä¸Šã«å‘¨æ³¢æ•°ãŒã‚ãŒã‚‹å ´åˆã¯ï¼’å€ä»¥ä¸‹ã«ãªã‚‹ã¾ã§ï¼’å€å˜ä½ã§å¤‰æ›ã‚’è¡Œã†
 		float PitchRate = GParam->CreateSoundPitchRate ;
 
 		if( PitchRate > 2.0f )
@@ -3647,7 +3647,7 @@ static int SetupSoundPitchRateTimeStretchRateChangeHandle( int SoundHandle, LOAD
 		NS_WritePitchShiftSoftSoundData(  DSSHandle, SSSHandle ) ;
 	}
 
-	// ƒ^ƒCƒ€ƒXƒgƒŒƒbƒ`‚ª‚ ‚éê‡
+	// ã‚¿ã‚¤ãƒ ã‚¹ãƒˆãƒ¬ãƒƒãƒãŒã‚ã‚‹å ´åˆ
 	if( GParam->CreateSoundTimeStretchRateEnable )
 	{
 		int Temp ;
@@ -3673,7 +3673,7 @@ static int SetupSoundPitchRateTimeStretchRateChangeHandle( int SoundHandle, LOAD
 		goto ERR ;
 	}
 
-	// ‚v‚`‚u‚dƒtƒ@ƒCƒ‹‚ğ‚Å‚Á‚¿ã‚°‚é
+	// ï¼·ï¼¡ï¼¶ï¼¥ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ã§ã£ã¡ä¸Šã’ã‚‹
 	if( CreateWaveFileImage(
 			&WaveImage,
 			&WaveSize,
@@ -3698,7 +3698,7 @@ static int SetupSoundPitchRateTimeStretchRateChangeHandle( int SoundHandle, LOAD
 		goto ERR ;
 	}
 
-	// ƒƒ‚ƒŠ‚Ì‰ğ•ú
+	// ãƒ¡ãƒ¢ãƒªã®è§£æ”¾
 	DXFREE( WaveImage ) ;
 	WaveImage = NULL ;
 
@@ -3707,10 +3707,10 @@ static int SetupSoundPitchRateTimeStretchRateChangeHandle( int SoundHandle, LOAD
 	SSSHandle = -1 ;
 	DSSHandle = -1 ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 
-	// ƒGƒ‰[I—¹
+	// ã‚¨ãƒ©ãƒ¼çµ‚äº†
 ERR :
 	if( WaveImage != NULL )
 	{
@@ -3733,13 +3733,13 @@ ERR :
 	return ErrorPos ;
 }
 
-// BEEP‰¹ŠÖŒW
+// BEEPéŸ³é–¢ä¿‚
 #ifndef DX_NON_BEEP
 
-// BEEP‰¹ŠÖŒW‚Ì‰Šú‰»‚ğs‚¤
+// BEEPéŸ³é–¢ä¿‚ã®åˆæœŸåŒ–ã‚’è¡Œã†
 static	int	BeepSound_Initialize( void )
 {
-	// BEEP‰¹—p‚ÌƒTƒEƒ“ƒhƒoƒbƒtƒ@‚ğì¬‚·‚é
+	// BEEPéŸ³ç”¨ã®ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡ã‚’ä½œæˆã™ã‚‹
 	{
 		int i ;
 		WAVEFORMATEX wfmtx ;
@@ -3764,28 +3764,28 @@ static	int	BeepSound_Initialize( void )
 					FALSE,
 					FALSE ) != 0 )
 			{
-				DXST_LOGFILE_ADDUTF16LE( "\x42\x00\x45\x00\x45\x00\x50\x00\xf3\x97\x28\x75\x6e\x30\xb5\x30\xa6\x30\xf3\x30\xc9\x30\xd0\x30\xc3\x30\xd5\x30\xa1\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"BEEP‰¹—p‚ÌƒTƒEƒ“ƒhƒoƒbƒtƒ@‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+				DXST_LOGFILE_ADDUTF16LE( "\x42\x00\x45\x00\x45\x00\x50\x00\xf3\x97\x28\x75\x6e\x30\xb5\x30\xa6\x30\xf3\x30\xc9\x30\xd0\x30\xc3\x30\xd5\x30\xa1\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"BEEPéŸ³ç”¨ã®ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 				return -1 ;
 			}
 		}
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// BEEP‰¹ŠÖŒW‚ÌŒãn––‚ğs‚¤
+// BEEPéŸ³é–¢ä¿‚ã®å¾Œå§‹æœ«ã‚’è¡Œã†
 static	int BeepSound_Terminate( void )
 {
 	int i ;
 
-	// ƒTƒEƒ“ƒhƒoƒbƒtƒ@‚ğ‰ğ•ú
+	// ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡ã‚’è§£æ”¾
 	for( i = 0 ; i < SOUND_BEEPSOUNDBUFFER_NUM ; i ++ )
 	{
-		// ƒTƒEƒ“ƒhƒoƒbƒtƒ@‚ğ‰ğ•ú
+		// ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡ã‚’è§£æ”¾
 		SoundBuffer_Terminate( &SoundSysData.BeepSoundBuffer[ i ].Buffer ) ;
 
-		// ƒƒ‚ƒŠ‚ğŠm•Û‚µ‚Ä‚¢‚½‚ç‰ğ•ú
+		// ãƒ¡ãƒ¢ãƒªã‚’ç¢ºä¿ã—ã¦ã„ãŸã‚‰è§£æ”¾
 		if( SoundSysData.BeepSoundBuffer[ i ].OneCycleSampleBuffer != NULL )
 		{
 			DXFREE( SoundSysData.BeepSoundBuffer[ i ].OneCycleSampleBuffer ) ;
@@ -3798,16 +3798,16 @@ static	int BeepSound_Terminate( void )
 		SoundSysData.BeepSoundBuffer[ i ].StopTime = 0 ;
 	}
 
-	// î•ñ‚ğƒŠƒZƒbƒg
+	// æƒ…å ±ã‚’ãƒªã‚»ãƒƒãƒˆ
 	SoundSysData.BeepFrequency = 0 ;
 	SoundSysData.BeepSoundBufferUseIndex = 0 ;
 	SoundSysData.BeepPlay = FALSE ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// BEEP‰¹ŠÖŒW‚ÌüŠú“Iˆ—‚ğs‚¤
+// BEEPéŸ³é–¢ä¿‚ã®å‘¨æœŸçš„å‡¦ç†ã‚’è¡Œã†
 static	int BeepSound_Process( void )
 {
 	int i ;
@@ -3818,7 +3818,7 @@ static	int BeepSound_Process( void )
 	BeepBuf = SoundSysData.BeepSoundBuffer ;
 	for( i = 0 ; i < SOUND_BEEPSOUNDBUFFER_NUM ; i ++, BeepBuf ++ )
 	{
-		// ƒTƒEƒ“ƒhƒoƒbƒtƒ@‚ÌÄ¶‚ªˆê’è‚Ü‚Åi‚ñ‚Å‚¢‚½‚çŸ‚Ìƒf[ƒ^‚ğƒZƒbƒg‚·‚é
+		// ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡ã®å†ç”ŸãŒä¸€å®šã¾ã§é€²ã‚“ã§ã„ãŸã‚‰æ¬¡ã®ãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 		if( SoundBuffer_CheckPlay( &BeepBuf->Buffer ) )
 		{
 			DWORD PlayPos ;
@@ -3832,7 +3832,7 @@ static	int BeepSound_Process( void )
 			}
 		}
 
-		// BEEP‰¹—pƒTƒEƒ“ƒhƒoƒbƒtƒ@‚Ì‰¹—ÊƒAƒbƒvƒŠƒNƒGƒXƒg‚ª‚ ‚Á‚½ê‡‚Íˆê’èŠÔŒo‰ß‚µ‚Ä‚¢‚½‚ç’â~‚·‚é
+		// BEEPéŸ³ç”¨ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡ã®éŸ³é‡ã‚¢ãƒƒãƒ—ãƒªã‚¯ã‚¨ã‚¹ãƒˆãŒã‚ã£ãŸå ´åˆã¯ä¸€å®šæ™‚é–“çµŒéã—ã¦ã„ãŸã‚‰åœæ­¢ã™ã‚‹
 		if( SoundSysData.BeepSoundBuffer[ i ].VolumeUpRequest )
 		{
 			if( NowCount -  SoundSysData.BeepSoundBuffer[ i ].PlayTime >= SOUND_BEEP_PLAY_VOLUME_DELAY ||
@@ -3844,7 +3844,7 @@ static	int BeepSound_Process( void )
 			}
 		}
 
-		// BEEP‰¹—pƒTƒEƒ“ƒhƒoƒbƒtƒ@‚Ì’â~ƒŠƒNƒGƒXƒg‚ª‚ ‚Á‚½ê‡‚Íˆê’èŠÔŒo‰ß‚µ‚Ä‚¢‚½‚ç’â~‚·‚é
+		// BEEPéŸ³ç”¨ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡ã®åœæ­¢ãƒªã‚¯ã‚¨ã‚¹ãƒˆãŒã‚ã£ãŸå ´åˆã¯ä¸€å®šæ™‚é–“çµŒéã—ã¦ã„ãŸã‚‰åœæ­¢ã™ã‚‹
 		if( SoundSysData.BeepSoundBuffer[ i ].StopRequest )
 		{
 			if( NowCount -  SoundSysData.BeepSoundBuffer[ i ].StopTime >= SOUND_BEEP_STOP_DELAY ||
@@ -3857,11 +3857,11 @@ static	int BeepSound_Process( void )
 		}
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// BEEP‰¹‚Ì”gŒ`ƒf[ƒ^‚ğ‘‚«‚Ş
+// BEEPéŸ³ã®æ³¢å½¢ãƒ‡ãƒ¼ã‚¿ã‚’æ›¸ãè¾¼ã‚€
 static	int	BeepSound_FillSamples( int BufferIndex )
 {
 	SOUND_BEEP_BUFFERDATA *BeepBuf ;
@@ -3872,7 +3872,7 @@ static	int	BeepSound_FillSamples( int BufferIndex )
 
 	BeepBuf = &SoundSysData.BeepSoundBuffer[ BufferIndex ] ;
 	
-	// ƒoƒbƒtƒ@‚ÌƒƒbƒN
+	// ãƒãƒƒãƒ•ã‚¡ã®ãƒ­ãƒƒã‚¯
 	if( SoundBuffer_Lock(
 			&BeepBuf->Buffer,
 			BeepBuf->NextFillBufferPosition * SOUND_BEEP_SAMPLEPERBYTES,
@@ -3882,11 +3882,11 @@ static	int	BeepSound_FillSamples( int BufferIndex )
 			&write2,
 			&length2 ) != 0 )
 	{
-		DXST_LOGFILE_ADDUTF16LE( "\x42\x00\x45\x00\x45\x00\x50\x00\xf3\x97\x28\x75\x6e\x30\xb5\x30\xa6\x30\xf3\x30\xc9\x30\xd0\x30\xc3\x30\xd5\x30\xa1\x30\x6e\x30\xed\x30\xc3\x30\xaf\x30\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"BEEP‰¹—p‚ÌƒTƒEƒ“ƒhƒoƒbƒtƒ@‚ÌƒƒbƒN‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+		DXST_LOGFILE_ADDUTF16LE( "\x42\x00\x45\x00\x45\x00\x50\x00\xf3\x97\x28\x75\x6e\x30\xb5\x30\xa6\x30\xf3\x30\xc9\x30\xd0\x30\xc3\x30\xd5\x30\xa1\x30\x6e\x30\xed\x30\xc3\x30\xaf\x30\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"BEEPéŸ³ç”¨ã®ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡ã®ãƒ­ãƒƒã‚¯ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 		return -1 ;
 	}
 
-	// ”gŒ`ƒf[ƒ^‚Ì‘‚«‚İ
+	// æ³¢å½¢ãƒ‡ãƒ¼ã‚¿ã®æ›¸ãè¾¼ã¿
 	{
 		DWORD i ;
 		DWORD WriteSamples ;
@@ -3936,7 +3936,7 @@ static	int	BeepSound_FillSamples( int BufferIndex )
 		}
 	}
 
-	// ƒoƒbƒtƒ@‚ÌƒƒbƒN‰ğœ
+	// ãƒãƒƒãƒ•ã‚¡ã®ãƒ­ãƒƒã‚¯è§£é™¤
 	SoundBuffer_Unlock(
 		&BeepBuf->Buffer,
 		write1,
@@ -3945,13 +3945,13 @@ static	int	BeepSound_FillSamples( int BufferIndex )
 		length2
 	) ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
 #endif // DX_NON_BEEP
 
-// ƒ‹[ƒv”ÍˆÍw’è—pƒeƒLƒXƒgƒtƒ@ƒCƒ‹‚Ìƒtƒ@ƒCƒ‹ƒpƒX‚ğì¬‚·‚é
+// ãƒ«ãƒ¼ãƒ—ç¯„å›²æŒ‡å®šç”¨ãƒ†ã‚­ã‚¹ãƒˆãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹ã‚’ä½œæˆã™ã‚‹
 static int CreateSoundLoopAreaTxtFilePath( const wchar_t *Path, wchar_t *Dest, size_t BufferBytes )
 {
 	int   i, j ;
@@ -3959,7 +3959,7 @@ static int CreateSoundLoopAreaTxtFilePath( const wchar_t *Path, wchar_t *Dest, s
 	DWORD CharCode ;
 	int   CharBytes ;
 
-	// ˆê”ÔŒã‚ë‚Ì . ‚ÌˆÊ’u‚ğ’²‚×‚é
+	// ä¸€ç•ªå¾Œã‚ã® . ã®ä½ç½®ã‚’èª¿ã¹ã‚‹
 	LastPoint = -1 ;
 	i = 0 ;
 	for(;;)
@@ -3978,7 +3978,7 @@ static int CreateSoundLoopAreaTxtFilePath( const wchar_t *Path, wchar_t *Dest, s
 		i += CharBytes ;
 	}
 
-	// ƒ‹[ƒv”ÍˆÍw’è—pƒeƒLƒXƒgƒtƒ@ƒCƒ‹ƒl[ƒ€‚Ìì¬
+	// ãƒ«ãƒ¼ãƒ—ç¯„å›²æŒ‡å®šç”¨ãƒ†ã‚­ã‚¹ãƒˆãƒ•ã‚¡ã‚¤ãƒ«ãƒãƒ¼ãƒ ã®ä½œæˆ
 	i = 0 ;
 	for(;;)
 	{
@@ -4007,7 +4007,7 @@ static int CreateSoundLoopAreaTxtFilePath( const wchar_t *Path, wchar_t *Dest, s
 	return 0 ;
 }
 
-// ƒ‹[ƒv”ÍˆÍw’è—pƒeƒLƒXƒgƒtƒ@ƒCƒ‹‚ğ“Ç‚İ‚Ş
+// ãƒ«ãƒ¼ãƒ—ç¯„å›²æŒ‡å®šç”¨ãƒ†ã‚­ã‚¹ãƒˆãƒ•ã‚¡ã‚¤ãƒ«ã‚’èª­ã¿è¾¼ã‚€
 static int LoadSoundLoopAreaTxtFile( const wchar_t *LoopFilePath, int *LoopStart, int *LoopEnd )
 {
 	BYTE *FileImage ;
@@ -4019,7 +4019,7 @@ static int LoadSoundLoopAreaTxtFile( const wchar_t *LoopFilePath, int *LoopStart
 	int LoopEndPos ;
 	int IsLoopLength ;
 
-	// ƒtƒ@ƒCƒ‹‚ğŠÛ‚²‚Æ“Ç‚İ‚İ
+	// ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ä¸¸ã”ã¨èª­ã¿è¾¼ã¿
 	if( FileFullRead( LoopFilePath, ( void ** )&FileImage, &FileSize, FALSE ) < 0 )
 	{
 		return -1 ;
@@ -4028,7 +4028,7 @@ static int LoadSoundLoopAreaTxtFile( const wchar_t *LoopFilePath, int *LoopStart
 	if( FileSize < 3 )
 		goto END ;
 
-	// UTF-16LE UTF-16BE UTF-8 ‚ğ Ascii ƒR[ƒh‚É•ÏŠ·
+	// UTF-16LE UTF-16BE UTF-8 ã‚’ Ascii ã‚³ãƒ¼ãƒ‰ã«å¤‰æ›
 	{
 		size_t Count = 0 ;
 
@@ -4059,7 +4059,7 @@ static int LoadSoundLoopAreaTxtFile( const wchar_t *LoopFilePath, int *LoopStart
 		}
 	}
 
-	// LOOPSTART ‚ğ“Ç‚İ‚İ
+	// LOOPSTART ã‚’èª­ã¿è¾¼ã¿
 	{
 		for( p = WCharStr ; *p != L'\0' && *p != L'L' ; p++ ){}
 		if( CL_strncmp( WCHAR_T_CHARCODEFORMAT, ( char * )p, ( char * )L"LOOPSTART", 9 ) != 0 )
@@ -4088,7 +4088,7 @@ static int LoadSoundLoopAreaTxtFile( const wchar_t *LoopFilePath, int *LoopStart
 		LoopStartPos = CL_atoi( WCHAR_T_CHARCODEFORMAT, ( char * )p ) ;
 	}
 
-	// LOOPEND ‚Ü‚½‚Í LOOPLENGTH ‚ğ“Ç‚İ‚İ
+	// LOOPEND ã¾ãŸã¯ LOOPLENGTH ã‚’èª­ã¿è¾¼ã¿
 	{
 		for( p = p2 + 1 ; *p != L'\0' && *p != L'L' ; p++ ){}
 		if( CL_strncmp( WCHAR_T_CHARCODEFORMAT, ( char * )p, ( char * )L"LOOPEND", 7 ) == 0 )
@@ -4130,30 +4130,30 @@ static int LoadSoundLoopAreaTxtFile( const wchar_t *LoopFilePath, int *LoopStart
 		}
 	}
 
-	// ƒpƒ‰ƒ[ƒ^‚Ìƒ`ƒFƒbƒN
+	// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®ãƒã‚§ãƒƒã‚¯
 	if( LoopStartPos >= LoopEndPos )
 	{
 		goto END ;
 	}
 
-	// ’l‚Ì•Û‘¶
+	// å€¤ã®ä¿å­˜
 	if( LoopStart ) *LoopStart = LoopStartPos ;
 	if( LoopEnd   ) *LoopEnd   = LoopEndPos ;
 
-	// ³íI—¹’l‚ğƒZƒbƒg
+	// æ­£å¸¸çµ‚äº†å€¤ã‚’ã‚»ãƒƒãƒˆ
 	Result = 0 ;
 
 END :
 
-	// ƒƒ‚ƒŠ‚Ì‰ğ•ú
+	// ãƒ¡ãƒ¢ãƒªã®è§£æ”¾
 	DXFREE( FileImage ) ;
 	FileImage = NULL ;
 
-	// I—¹
+	// çµ‚äº†
 	return Result ;
 }
 
-// LoadSoundMemBase ‚ÌÀˆ—ŠÖ”
+// LoadSoundMemBase ã®å®Ÿå‡¦ç†é–¢æ•°
 static int LoadSoundMemBase_Static(
 	LOADSOUND_GPARAM *GParam,
 	int SoundHandle,
@@ -4174,7 +4174,7 @@ static int LoadSoundMemBase_Static(
 
 	if( BufferNum > MAX_SOUNDBUFFER_NUM ) BufferNum = MAX_SOUNDBUFFER_NUM ;
 	
-	// ƒ‹[ƒv”ÍˆÍî•ñƒeƒLƒXƒgƒtƒ@ƒCƒ‹‚Ì“Ç‚İ‚İ
+	// ãƒ«ãƒ¼ãƒ—ç¯„å›²æƒ…å ±ãƒ†ã‚­ã‚¹ãƒˆãƒ•ã‚¡ã‚¤ãƒ«ã®èª­ã¿è¾¼ã¿
 	if( ( GParam->CreateSoundLoopStartTimePosition   == GParam->CreateSoundLoopEndTimePosition   ) &&
 		( GParam->CreateSoundLoopStartSamplePosition == GParam->CreateSoundLoopEndSamplePosition ) &&
 		GParam->CreateSoundIgnoreLoopAreaInfo == FALSE )
@@ -4188,7 +4188,7 @@ static int LoadSoundMemBase_Static(
 			GParam->CreateSoundLoopStartSamplePosition = LoopStartPos ;
 			GParam->CreateSoundLoopEndSamplePosition   = LoopEndPos ;
 
-			// ƒ‹[ƒvˆÊ’u‚Ìw’è‚ª‚ ‚Á‚½ê‡‚ÍƒXƒgƒŠ[ƒ€ƒTƒEƒ“ƒh‚Æ‚µ‚Ä“Ç‚İ‚Ş
+			// ãƒ«ãƒ¼ãƒ—ä½ç½®ã®æŒ‡å®šãŒã‚ã£ãŸå ´åˆã¯ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‚µã‚¦ãƒ³ãƒ‰ã¨ã—ã¦èª­ã¿è¾¼ã‚€
 			if( GParam->CreateSoundDataType == DX_SOUNDDATATYPE_MEMNOPRESS )
 			{
 				GParam->CreateSoundDataType = DX_SOUNDDATATYPE_MEMPRESS ;
@@ -4196,7 +4196,7 @@ static int LoadSoundMemBase_Static(
 		}
 	}
 
-	// ƒsƒbƒ`•ÏX‚©ƒ^ƒCƒ€ƒXƒgƒŒƒbƒ`‚ª‚ ‚éê‡‚ÍLk‚µ‚Ä“Ç‚İ‚Ş
+	// ãƒ”ãƒƒãƒå¤‰æ›´ã‹ã‚¿ã‚¤ãƒ ã‚¹ãƒˆãƒ¬ãƒƒãƒãŒã‚ã‚‹å ´åˆã¯ä¼¸ç¸®ã—ã¦èª­ã¿è¾¼ã‚€
 	if( GParam->CreateSoundPitchRateEnable || GParam->CreateSoundTimeStretchRateEnable )
 	{
 		int Result ;
@@ -4220,43 +4220,43 @@ static int LoadSoundMemBase_Static(
 	}
 	else
 	{
-		// ƒf[ƒ^ƒ^ƒCƒv‚ªƒƒ‚ƒŠ‚É“WŠJ‚·‚éˆÈŠO‚Ìê‡AƒXƒgƒŠ[ƒ€ƒf[ƒ^‚Æ‚µ‚ÄƒTƒEƒ“ƒhƒf[ƒ^‚ğì¬‚·‚é
+		// ãƒ‡ãƒ¼ã‚¿ã‚¿ã‚¤ãƒ—ãŒãƒ¡ãƒ¢ãƒªã«å±•é–‹ã™ã‚‹ä»¥å¤–ã®å ´åˆã€ã‚¹ãƒˆãƒªãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿ã¨ã—ã¦ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆã™ã‚‹
 		if( GParam->CreateSoundDataType != DX_SOUNDDATATYPE_MEMNOPRESS )
 		{
-			// ƒXƒgƒŠ[ƒ€Œn‚ÌƒTƒEƒ“ƒhƒf[ƒ^‚Ì’Ç‰Á
+			// ã‚¹ãƒˆãƒªãƒ¼ãƒ ç³»ã®ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ã®è¿½åŠ 
 			if( AddStreamSoundMemToFile_UseGParam( GParam, WaveName, 0, SoundHandle, GParam->CreateSoundDataType, UnionHandle, ASyncThread ) == -1 )
 				goto ERR ;
 
-			// Ä¶€”õ
+			// å†ç”Ÿæº–å‚™
 			SetupStreamSoundMem_UseGParam( SoundHandle, ASyncThread ) ;
 		}
 		else
 		{
-			// ŠÛXƒƒ‚ƒŠ‚É“Ç‚İ‚Ş
+			// ä¸¸ã€…ãƒ¡ãƒ¢ãƒªã«èª­ã¿è¾¼ã‚€
 			if( FileFullRead( WaveName, &SrcBuffer, &SrcSize ) < 0 )
 			{
 				DXST_LOGFILEFMT_ADDW(( L"Sound File Load Error : %s", WaveName )) ;
 				goto ERR ;
 			}
 
-			// ƒƒ‚ƒŠ‚©‚ç“Ç‚İ‚ŞŠÖ”‚É“n‚·
+			// ãƒ¡ãƒ¢ãƒªã‹ã‚‰èª­ã¿è¾¼ã‚€é–¢æ•°ã«æ¸¡ã™
 			if( LoadSoundMemByMemImageBase_UseGParam( GParam, FALSE, SoundHandle, SrcBuffer, SrcSize, BufferNum, -1, FALSE, ASyncThread ) < 0 )
 			{
 				DXST_LOGFILEFMT_ADDW(( L"Sound File Setup Error : %s" , WaveName )) ;
 				goto ERR ;
 			}
 
-			// LoadSoundMemByMemImageBase_UseGParam ‚Ì’†‚Åƒ‹[ƒvˆÊ’uw’è‚ğ‚·‚é‚Ì‚ÅA
-			// LoadSoundMemByMemImageBase_UseGParam ‚ğÀs‚µ‚½ê‡‚Íƒ‹[ƒvˆÊ’uw’èˆ—‚ÍƒLƒƒƒ“ƒZƒ‹‚·‚é
+			// LoadSoundMemByMemImageBase_UseGParam ã®ä¸­ã§ãƒ«ãƒ¼ãƒ—ä½ç½®æŒ‡å®šã‚’ã™ã‚‹ã®ã§ã€
+			// LoadSoundMemByMemImageBase_UseGParam ã‚’å®Ÿè¡Œã—ãŸå ´åˆã¯ãƒ«ãƒ¼ãƒ—ä½ç½®æŒ‡å®šå‡¦ç†ã¯ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã™ã‚‹
 			SetLoopAreaCancel = TRUE ;
 
-			// ƒƒ‚ƒŠ‚Ì‰ğ•ú
+			// ãƒ¡ãƒ¢ãƒªã®è§£æ”¾
 			DXFREE( SrcBuffer ) ;
 			SrcBuffer = NULL ;
 		}
 	}
 
-	// ƒ‹[ƒvˆÊ’u‚Ìw’è‚ª‚ ‚éê‡‚Íƒ‹[ƒvˆÊ’u‚ğİ’è‚·‚é
+	// ãƒ«ãƒ¼ãƒ—ä½ç½®ã®æŒ‡å®šãŒã‚ã‚‹å ´åˆã¯ãƒ«ãƒ¼ãƒ—ä½ç½®ã‚’è¨­å®šã™ã‚‹
 	if( SetLoopAreaCancel == FALSE )
 	{
 		if( GParam->CreateSoundLoopStartTimePosition != GParam->CreateSoundLoopEndTimePosition && GParam->CreateSoundIgnoreLoopAreaInfo == FALSE )
@@ -4280,7 +4280,7 @@ static int LoadSoundMemBase_Static(
 		}
 	}
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 
 ERR :
@@ -4301,7 +4301,7 @@ ERR :
 
 
 #ifndef DX_NON_ASYNCLOAD
-// LoadSoundMemBase ‚Ì”ñ“¯Šú“Ç‚İ‚İƒXƒŒƒbƒh‚©‚çŒÄ‚Î‚ê‚éŠÖ”
+// LoadSoundMemBase ã®éåŒæœŸèª­ã¿è¾¼ã¿ã‚¹ãƒ¬ãƒƒãƒ‰ã‹ã‚‰å‘¼ã°ã‚Œã‚‹é–¢æ•°
 static void LoadSoundMemBase_ASync( ASYNCLOADDATA_COMMON *AParam )
 {
 	LOADSOUND_GPARAM *GParam ;
@@ -4333,7 +4333,7 @@ static void LoadSoundMemBase_ASync( ASYNCLOADDATA_COMMON *AParam )
 }
 #endif // DX_NON_ASYNCLOAD
 
-// LoadSoundMemBase ‚ÌƒOƒ[ƒoƒ‹•Ï”‚ÉƒAƒNƒZƒX‚µ‚È‚¢ƒo[ƒWƒ‡ƒ“
+// LoadSoundMemBase ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°ã«ã‚¢ã‚¯ã‚»ã‚¹ã—ãªã„ãƒãƒ¼ã‚¸ãƒ§ãƒ³
 extern int LoadSoundMemBase_UseGParam(
 	LOADSOUND_GPARAM *GParam,
 	const wchar_t *WaveName,
@@ -4361,7 +4361,7 @@ extern int LoadSoundMemBase_UseGParam(
 		ASYNCLOADDATA_COMMON *AParam = NULL ;
 		int Addr ;
 
-		// ƒpƒ‰ƒ[ƒ^‚É•K—v‚Èƒƒ‚ƒŠ‚ÌƒTƒCƒY‚ğZo
+		// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã«å¿…è¦ãªãƒ¡ãƒ¢ãƒªã®ã‚µã‚¤ã‚ºã‚’ç®—å‡º
 		Addr = 0 ;
 		AddASyncLoadParamStruct( NULL, &Addr, GParam, sizeof( *GParam ) ) ;
 		AddASyncLoadParamInt( NULL, &Addr, SoundHandle ) ;
@@ -4369,12 +4369,12 @@ extern int LoadSoundMemBase_UseGParam(
 		AddASyncLoadParamInt( NULL, &Addr, BufferNum ) ;
 		AddASyncLoadParamInt( NULL, &Addr, UnionHandle ) ;
 
-		// ƒƒ‚ƒŠ‚ÌŠm•Û
+		// ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿
 		AParam = AllocASyncLoadDataMemory( Addr ) ;
 		if( AParam == NULL )
 			goto ERR ;
 
-		// ˆ—‚É•K—v‚Èî•ñ‚ğƒZƒbƒg
+		// å‡¦ç†ã«å¿…è¦ãªæƒ…å ±ã‚’ã‚»ãƒƒãƒˆ
 		AParam->ProcessFunction = LoadSoundMemBase_ASync ;
 		Addr = 0 ;
 		AddASyncLoadParamStruct( AParam->Data, &Addr, GParam, sizeof( *GParam ) ) ;
@@ -4383,7 +4383,7 @@ extern int LoadSoundMemBase_UseGParam(
 		AddASyncLoadParamInt( AParam->Data, &Addr, BufferNum ) ;
 		AddASyncLoadParamInt( AParam->Data, &Addr, UnionHandle ) ;
 
-		// ƒf[ƒ^‚ğ’Ç‰Á
+		// ãƒ‡ãƒ¼ã‚¿ã‚’è¿½åŠ 
 		if( AddASyncLoadData( AParam ) < 0 )
 		{
 			DXFREE( AParam ) ;
@@ -4391,7 +4391,7 @@ extern int LoadSoundMemBase_UseGParam(
 			goto ERR ;
 		}
 
-		// ”ñ“¯Šú“Ç‚İ‚İƒJƒEƒ“ƒg‚ğƒCƒ“ƒNƒŠƒƒ“ƒg
+		// éåŒæœŸèª­ã¿è¾¼ã¿ã‚«ã‚¦ãƒ³ãƒˆã‚’ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆ
 		IncASyncLoadCount( SoundHandle, AParam->Index ) ;
 	}
 	else
@@ -4408,7 +4408,7 @@ extern int LoadSoundMemBase_UseGParam(
 	}
 #endif // DX_NON_ASYNCLOAD
 
-	// ƒnƒ“ƒhƒ‹‚ğ•Ô‚·
+	// ãƒãƒ³ãƒ‰ãƒ«ã‚’è¿”ã™
 	return SoundHandle ;
 
 ERR :
@@ -4422,11 +4422,11 @@ ERR :
 	SubHandle( SoundHandle, ASyncLoadFlag, ASyncThread ) ;
 	SoundHandle = -1 ;
 
-	// I—¹
+	// çµ‚äº†
 	return -1 ;
 }
 
-// ƒTƒEƒ“ƒhƒf[ƒ^‚ğ’Ç‰Á‚·‚é
+// ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ã‚’è¿½åŠ ã™ã‚‹
 extern int NS_LoadSoundMemBase( const TCHAR *WaveName, int BufferNum, int UnionHandle )
 {
 #ifdef UNICODE
@@ -4448,7 +4448,7 @@ extern int NS_LoadSoundMemBase( const TCHAR *WaveName, int BufferNum, int UnionH
 #endif
 }
 
-// ƒTƒEƒ“ƒhƒtƒ@ƒCƒ‹‚©‚çƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹‚ğì¬‚·‚é
+// ã‚µã‚¦ãƒ³ãƒ‰ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ã‚’ä½œæˆã™ã‚‹
 extern int NS_LoadSoundMemBaseWithStrLen( const TCHAR *FileName, size_t FileNameLength, int BufferNum, int UnionHandle )
 {
 	int Result ;
@@ -4464,7 +4464,7 @@ extern int NS_LoadSoundMemBaseWithStrLen( const TCHAR *FileName, size_t FileName
 	return Result ;
 }
 
-// ƒTƒEƒ“ƒhƒf[ƒ^‚ğ’Ç‰Á‚·‚é
+// ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ã‚’è¿½åŠ ã™ã‚‹
 extern int LoadSoundMemBase_WCHAR_T( const wchar_t *WaveName, int BufferNum, int UnionHandle )
 {
 	LOADSOUND_GPARAM GParam ;
@@ -4474,7 +4474,7 @@ extern int LoadSoundMemBase_WCHAR_T( const wchar_t *WaveName, int BufferNum, int
 	return LoadSoundMemBase_UseGParam( &GParam, WaveName, BufferNum, UnionHandle, GetASyncLoadFlag() ) ;
 }
 
-// ƒTƒEƒ“ƒhƒf[ƒ^‚ğ’Ç‰Á‚·‚é
+// ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ã‚’è¿½åŠ ã™ã‚‹
 extern int NS_LoadSoundMem( const TCHAR *WaveName, int BufferNum, int UnionHandle )
 {
 #ifdef UNICODE
@@ -4496,7 +4496,7 @@ extern int NS_LoadSoundMem( const TCHAR *WaveName, int BufferNum, int UnionHandl
 #endif
 }
 
-// LoadSoundMemBase ‚Ì•Ê–¼ŠÖ”
+// LoadSoundMemBase ã®åˆ¥åé–¢æ•°
 extern int NS_LoadSoundMemWithStrLen( const TCHAR *FileName, size_t FileNameLength, int BufferNum, int UnionHandle )
 {
 	int Result ;
@@ -4512,13 +4512,13 @@ extern int NS_LoadSoundMemWithStrLen( const TCHAR *FileName, size_t FileNameLeng
 	return Result ;
 }
 
-// ƒTƒEƒ“ƒhƒf[ƒ^‚ğ’Ç‰Á‚·‚é
+// ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ã‚’è¿½åŠ ã™ã‚‹
 extern int LoadSoundMem_WCHAR_T( const wchar_t *WaveName, int BufferNum, int UnionHandle )
 {
 	return LoadSoundMemBase_WCHAR_T( WaveName, BufferNum, UnionHandle ) ;
 }
 
-// “¯Ä¶”w’èŒ^ƒTƒEƒ“ƒh’Ç‰ÁŠÖ”
+// åŒæ™‚å†ç”Ÿæ•°æŒ‡å®šå‹ã‚µã‚¦ãƒ³ãƒ‰è¿½åŠ é–¢æ•°
 extern int NS_LoadSoundMemToBufNumSitei( const TCHAR *WaveName, int BufferNum )
 {
 #ifdef UNICODE
@@ -4540,7 +4540,7 @@ extern int NS_LoadSoundMemToBufNumSitei( const TCHAR *WaveName, int BufferNum )
 #endif
 }
 
-// LoadSoundMem ‚ğg—p‚µ‚Ä‰º‚³‚¢
+// LoadSoundMem ã‚’ä½¿ç”¨ã—ã¦ä¸‹ã•ã„
 extern int NS_LoadSoundMemToBufNumSiteiWithStrLen( const TCHAR *FileName, size_t FileNameLength, int BufferNum )
 {
 	int Result ;
@@ -4556,13 +4556,13 @@ extern int NS_LoadSoundMemToBufNumSiteiWithStrLen( const TCHAR *FileName, size_t
 	return Result ;
 }
 
-// “¯Ä¶”w’èŒ^ƒTƒEƒ“ƒh’Ç‰ÁŠÖ”
+// åŒæ™‚å†ç”Ÿæ•°æŒ‡å®šå‹ã‚µã‚¦ãƒ³ãƒ‰è¿½åŠ é–¢æ•°
 extern int LoadSoundMemToBufNumSitei_WCHAR_T( const wchar_t *WaveName, int BufferNum )
 {
 	return LoadSoundMemBase_WCHAR_T( WaveName, BufferNum, -1 ) ;
 }
 
-// “¯‚¶ƒTƒEƒ“ƒhƒf[ƒ^‚ğg—p‚·‚éƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹‚ğì¬‚·‚é
+// åŒã˜ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ã‚’ä½¿ç”¨ã™ã‚‹ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ã‚’ä½œæˆã™ã‚‹
 extern int NS_DuplicateSoundMem( int SrcSoundHandle, int BufferNum )
 {
 	int i ;
@@ -4575,17 +4575,17 @@ extern int NS_DuplicateSoundMem( int SrcSoundHandle, int BufferNum )
 	if( CheckSoundSystem_Initialize_PF() == FALSE )
 		return -1 ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( SOUNDHCHK( SrcSoundHandle, SrcSound ) )
 		goto ERR ;
 
-	// ƒTƒEƒ“ƒhƒ^ƒCƒv‚ªƒXƒgƒŠ[ƒ€•—ƒTƒEƒ“ƒh‚¾‚Á‚½ê‡‚Í•¡»‚Å‚«‚È‚¢
+	// ã‚µã‚¦ãƒ³ãƒ‰ã‚¿ã‚¤ãƒ—ãŒã‚¹ãƒˆãƒªãƒ¼ãƒ é¢¨ã‚µã‚¦ãƒ³ãƒ‰ã ã£ãŸå ´åˆã¯è¤‡è£½ã§ããªã„
 	if( SrcSound->Type == DX_SOUNDTYPE_STREAMSTYLE )
 		goto ERR ;
 
 	if( BufferNum > MAX_SOUNDBUFFER_NUM ) BufferNum = MAX_SOUNDBUFFER_NUM ;
 
-	// V‚µ‚¢ƒTƒEƒ“ƒhƒf[ƒ^‚Ì’Ç‰Á
+	// æ–°ã—ã„ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ã®è¿½åŠ 
 	Handle = _CreateSoundHandle( SrcSound->Is3DSound, SrcSound->NotInitSoundMemDelete, FALSE ) ;
 	if( Handle < 0 )
 	{
@@ -4594,25 +4594,25 @@ extern int NS_DuplicateSoundMem( int SrcSoundHandle, int BufferNum )
 
 	Sound = ( SOUND * )HandleManageArray[ DX_HANDLETYPE_SOUND ].Handle[ Handle & DX_HANDLEINDEX_MASK ] ;
 
-	// ƒtƒH[ƒ}ƒbƒg‚ğ•Û‘¶
+	// ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã‚’ä¿å­˜
 	Sound->BufferFormat = SrcSound->BufferFormat ;
 
-	// WaveData ‚Ìƒ|ƒCƒ“ƒ^‚ğ•Û‘¶
+	// WaveData ã®ãƒã‚¤ãƒ³ã‚¿ã‚’ä¿å­˜
 	Sound->Normal.WaveData = SrcSound->Normal.WaveData ;
 	Sound->Normal.WaveSize = SrcSound->Normal.WaveSize ;
 
-	// WaveData ‚ÌQÆ”‚ğ‘‚â‚·
+	// WaveData ã®å‚ç…§æ•°ã‚’å¢—ã‚„ã™
 	Sound->Normal.WaveDataUseCount = SrcSound->Normal.WaveDataUseCount ;
 	*Sound->Normal.WaveDataUseCount = *Sound->Normal.WaveDataUseCount + 1 ;
 
-	// ‚R‚cƒTƒEƒ“ƒh‚Ìê‡‚Íƒoƒbƒtƒ@”‚Í‚P
+	// ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰ã®å ´åˆã¯ãƒãƒƒãƒ•ã‚¡æ•°ã¯ï¼‘
 	if( Sound->Is3DSound )
 		BufferNum = 1 ;
 
-	// ƒTƒEƒ“ƒhƒoƒbƒtƒ@‚ğì¬
+	// ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡ã‚’ä½œæˆ
 	if( ( CreateSoundBuffer( &Sound->BufferFormat, ( DWORD )Sound->Normal.WaveSize, DX_SOUNDTYPE_NORMAL, BufferNum, Handle, SrcSoundHandle, FALSE ) ) == -1 )
 	{
-		DXST_LOGFILE_ADDUTF16LE( "\x07\x89\xfd\x88\xb5\x30\xa6\x30\xf3\x30\xc9\x30\x6e\x30\x20\x00\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x53\x00\x6f\x00\x75\x00\x6e\x00\x64\x00\x42\x00\x75\x00\x66\x00\x66\x00\x65\x00\x72\x00\x20\x00\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"•¡»ƒTƒEƒ“ƒh‚ÌƒTƒEƒ“ƒhƒoƒbƒtƒ@‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+		DXST_LOGFILE_ADDUTF16LE( "\x07\x89\xfd\x88\xb5\x30\xa6\x30\xf3\x30\xc9\x30\x6e\x30\x20\x00\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x53\x00\x6f\x00\x75\x00\x6e\x00\x64\x00\x42\x00\x75\x00\x66\x00\x66\x00\x65\x00\x72\x00\x20\x00\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"è¤‡è£½ã‚µã‚¦ãƒ³ãƒ‰ã®ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 		goto ERR ;
 	}
 	Sound->BaseFrequency   = ( int )Sound->BufferFormat.nSamplesPerSec ;
@@ -4620,11 +4620,11 @@ extern int NS_DuplicateSoundMem( int SrcSoundHandle, int BufferNum )
 	Sound->PitchRateEnable = SrcSound->PitchRateEnable ;
 	Sound->PitchRate       = SrcSound->PitchRate ;
 
-	// ƒTƒEƒ“ƒhƒf[ƒ^‚ğƒTƒEƒ“ƒhƒoƒbƒtƒ@‚ÉƒRƒs[‚·‚é
+	// ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ã‚’ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡ã«ã‚³ãƒ”ãƒ¼ã™ã‚‹
 	for( i = 0 ; i < Sound->ValidBufferNum ; i ++ )
 	{
-		// •Ê‚ÌƒTƒEƒ“ƒhƒoƒbƒtƒ@‚Ì•¡»‚¾‚Á‚½ê‡‚Í“]‘—ì‹Æ‚Ì•K—v‚ª–³‚¢‚Ì‚Å“]‘—‚µ‚È‚¢
-		// ( ³í‚É“®ì‚µ‚È‚¢ŠÂ‹«‚ª‚ ‚Á‚½‚½‚ß‚Æ‚è‚ ‚¦‚¸ƒtƒ‰ƒO‚Í–³‹ )
+		// åˆ¥ã®ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡ã®è¤‡è£½ã ã£ãŸå ´åˆã¯è»¢é€ä½œæ¥­ã®å¿…è¦ãŒç„¡ã„ã®ã§è»¢é€ã—ãªã„
+		// ( æ­£å¸¸ã«å‹•ä½œã—ãªã„ç’°å¢ƒãŒã‚ã£ãŸãŸã‚ã¨ã‚Šã‚ãˆãšãƒ•ãƒ©ã‚°ã¯ç„¡è¦– )
 //		if( Sound->Normal.BufferDuplicateFlag[ i ] == TRUE ) continue ;
 
 		hr = SoundBuffer_Lock( &Sound->Buffer[ i ], 0, ( DWORD )Sound->Normal.WaveSize,
@@ -4632,7 +4632,7 @@ extern int NS_DuplicateSoundMem( int SrcSoundHandle, int BufferNum )
 								&write2, &length2 ) ;
 		if( hr != 0 )
 		{
-			DXST_LOGFILE_ADDUTF16LE( "\xb5\x30\xa6\x30\xf3\x30\xc9\x30\xc7\x30\xfc\x30\xbf\x30\x6e\x30\xe2\x8e\x01\x90\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x5f\x00\x31\x00\x00"/*@ L"ƒTƒEƒ“ƒhƒf[ƒ^‚Ì“]‘—‚É¸”s‚µ‚Ü‚µ‚½_1" @*/ ) ;
+			DXST_LOGFILE_ADDUTF16LE( "\xb5\x30\xa6\x30\xf3\x30\xc9\x30\xc7\x30\xfc\x30\xbf\x30\x6e\x30\xe2\x8e\x01\x90\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x5f\x00\x31\x00\x00"/*@ L"ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ã®è»¢é€ã«å¤±æ•—ã—ã¾ã—ãŸ_1" @*/ ) ;
 			goto ERR ;
 		}
 
@@ -4642,12 +4642,12 @@ extern int NS_DuplicateSoundMem( int SrcSoundHandle, int BufferNum )
 		hr = SoundBuffer_Unlock( &Sound->Buffer[ i ], write1, length1, write2, length2 ) ;
 		if( hr != 0 )
 		{
-			DXST_LOGFILE_ADDUTF16LE( "\xb5\x30\xa6\x30\xf3\x30\xc9\x30\xc7\x30\xfc\x30\xbf\x30\x6e\x30\xe2\x8e\x01\x90\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x5f\x00\x32\x00\x00"/*@ L"ƒTƒEƒ“ƒhƒf[ƒ^‚Ì“]‘—‚É¸”s‚µ‚Ü‚µ‚½_2" @*/ ) ;
+			DXST_LOGFILE_ADDUTF16LE( "\xb5\x30\xa6\x30\xf3\x30\xc9\x30\xc7\x30\xfc\x30\xbf\x30\x6e\x30\xe2\x8e\x01\x90\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x5f\x00\x32\x00\x00"/*@ L"ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ã®è»¢é€ã«å¤±æ•—ã—ã¾ã—ãŸ_2" @*/ ) ;
 			goto ERR ;
 		}
 	}
 
-	// I—¹AƒTƒEƒ“ƒhƒf[ƒ^ƒnƒ“ƒhƒ‹‚ğ•Ô‚·
+	// çµ‚äº†ã€ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ãƒãƒ³ãƒ‰ãƒ«ã‚’è¿”ã™
 	return Handle ;
 
 ERR :
@@ -4659,7 +4659,7 @@ ERR :
 	return -1 ;
 }
 
-// LoadSoundMemByMemImageBase ‚ÌÀˆ—ŠÖ”
+// LoadSoundMemByMemImageBase ã®å®Ÿå‡¦ç†é–¢æ•°
 static int LoadSoundMemByMemImageBase_Static(
 	LOADSOUND_GPARAM *GParam,
 	int SoundHandle,
@@ -4692,11 +4692,11 @@ static int LoadSoundMemByMemImageBase_Static(
 
 	Sound = ( SOUND * )HandleManageArray[ DX_HANDLETYPE_SOUND ].Handle[ SoundHandle & DX_HANDLEINDEX_MASK ] ;
 
-//	// ‚R‚cƒTƒEƒ“ƒh‚Ìê‡‚Íƒoƒbƒtƒ@‚Ì”‚Íˆê‚Â‚¾‚¯
+//	// ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰ã®å ´åˆã¯ãƒãƒƒãƒ•ã‚¡ã®æ•°ã¯ä¸€ã¤ã ã‘
 //	if( Sound->Is3DSound != FALSE )
 //		BufferNum = 1 ;
 
-	// ƒsƒbƒ`•ÏX‚©ƒ^ƒCƒ€ƒXƒgƒŒƒbƒ`‚ª‚ ‚éê‡‚ÍLk‚µ‚Ä“Ç‚İ‚Ş
+	// ãƒ”ãƒƒãƒå¤‰æ›´ã‹ã‚¿ã‚¤ãƒ ã‚¹ãƒˆãƒ¬ãƒƒãƒãŒã‚ã‚‹å ´åˆã¯ä¼¸ç¸®ã—ã¦èª­ã¿è¾¼ã‚€
 	if( GParam->CreateSoundPitchRateEnable || GParam->CreateSoundTimeStretchRateEnable )
 	{
 		int Result ;
@@ -4718,11 +4718,11 @@ static int LoadSoundMemByMemImageBase_Static(
 		SubHandle( SSSHandleI, FALSE, FALSE ) ;
 		SSSHandleI = -1 ;
 
-		// ³íI—¹
+		// æ­£å¸¸çµ‚äº†
 		return 0 ;
 	}
 
-	// ƒf[ƒ^ƒ^ƒCƒv‚ªƒƒ‚ƒŠ‚É“WŠJ‚·‚éˆÈŠO‚Ìê‡AƒXƒgƒŠ[ƒ€ƒf[ƒ^‚Æ‚µ‚ÄƒTƒEƒ“ƒhƒf[ƒ^‚ğì¬‚·‚é
+	// ãƒ‡ãƒ¼ã‚¿ã‚¿ã‚¤ãƒ—ãŒãƒ¡ãƒ¢ãƒªã«å±•é–‹ã™ã‚‹ä»¥å¤–ã®å ´åˆã€ã‚¹ãƒˆãƒªãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿ã¨ã—ã¦ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆã™ã‚‹
 	if( GParam->CreateSoundDataType != DX_SOUNDDATATYPE_MEMNOPRESS )
 	{
 STREAM_TYPE :
@@ -4738,14 +4738,14 @@ STREAM_TYPE :
 			) == -1 )
 			goto ERR ;
 
-		// Ä¶€”õ
+		// å†ç”Ÿæº–å‚™
 		SetupStreamSoundMem_UseGParam( SoundHandle, ASyncThread ) ;
 	}
 	else
 	{
 		LONGLONG LoopStartPos = -1, LoopEndPos = -1 ;
 
-		// ‚o‚b‚lŒ`®‚É•ÏŠ·
+		// ï¼°ï¼£ï¼­å½¢å¼ã«å¤‰æ›
 		{
 			Stream.DataPoint = MemStreamOpen( FileImageBuffer, ( size_t )ImageSize ) ;
 			Stream.ReadShred = *GetMemStreamDataShredStruct() ;
@@ -4755,16 +4755,16 @@ STREAM_TYPE :
 #endif
 								) < 0 )
 			{
-				DXST_LOGFILEFMT_ADDUTF16LE(( "\xf3\x97\xf0\x58\xd5\x30\xa1\x30\xa4\x30\xeb\x30\x6e\x30\x30\xff\x23\xff\x2d\xff\x78\x30\x6e\x30\x09\x59\xdb\x63\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"‰¹ºƒtƒ@ƒCƒ‹‚Ì‚o‚b‚l‚Ö‚Ì•ÏŠ·‚É¸”s‚µ‚Ü‚µ‚½" @*/ )) ;
+				DXST_LOGFILEFMT_ADDUTF16LE(( "\xf3\x97\xf0\x58\xd5\x30\xa1\x30\xa4\x30\xeb\x30\x6e\x30\x30\xff\x23\xff\x2d\xff\x78\x30\x6e\x30\x09\x59\xdb\x63\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"éŸ³å£°ãƒ•ã‚¡ã‚¤ãƒ«ã®ï¼°ï¼£ï¼­ã¸ã®å¤‰æ›ã«å¤±æ•—ã—ã¾ã—ãŸ" @*/ )) ;
 				goto ERR ;
 			}
 			if( SoundConvertFast( &ConvData, &Format, &SoundBuffer, &SoundSize ) < 0 )
 			{
-				DXST_LOGFILEFMT_ADDUTF16LE(( "\xf3\x97\xf0\x58\xd5\x30\xa1\x30\xa4\x30\xeb\x30\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"‰¹ºƒtƒ@ƒCƒ‹‚ğŠi”[‚·‚éƒƒ‚ƒŠ—Ìˆæ‚ÌŠm•Û‚É¸”s‚µ‚Ü‚µ‚½" @*/ )) ;
+				DXST_LOGFILEFMT_ADDUTF16LE(( "\xf3\x97\xf0\x58\xd5\x30\xa1\x30\xa4\x30\xeb\x30\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"éŸ³å£°ãƒ•ã‚¡ã‚¤ãƒ«ã‚’æ ¼ç´ã™ã‚‹ãƒ¡ãƒ¢ãƒªé ˜åŸŸã®ç¢ºä¿ã«å¤±æ•—ã—ã¾ã—ãŸ" @*/ )) ;
 				goto ERR ;
 			}
 
-			// ƒ‹[ƒvî•ñ‚Ìæ“¾
+			// ãƒ«ãƒ¼ãƒ—æƒ…å ±ã®å–å¾—
 			if( ( GParam->CreateSoundLoopStartTimePosition   == GParam->CreateSoundLoopEndTimePosition   ) &&
 				( GParam->CreateSoundLoopStartSamplePosition == GParam->CreateSoundLoopEndSamplePosition ) &&
 				GParam->CreateSoundIgnoreLoopAreaInfo == FALSE )
@@ -4777,7 +4777,7 @@ STREAM_TYPE :
 			Stream.DataPoint = NULL ;
 		}
 
-		// ƒ‹[ƒvî•ñ‚ª‚ ‚éê‡‚ÍƒZƒbƒg‚µ‚ÄƒXƒgƒŠ[ƒ€Œ`®‚ÅÄ¶
+		// ãƒ«ãƒ¼ãƒ—æƒ…å ±ãŒã‚ã‚‹å ´åˆã¯ã‚»ãƒƒãƒˆã—ã¦ã‚¹ãƒˆãƒªãƒ¼ãƒ å½¢å¼ã§å†ç”Ÿ
 		if( LoopStartPos >= 0 && LoopEndPos >= 0 )
 		{
 			GParam->CreateSoundLoopStartSamplePosition = LoopStartPos ;
@@ -4793,7 +4793,7 @@ STREAM_TYPE :
 			goto STREAM_TYPE ;
 		}
 
-		// 3•ªˆÈã‚ÌƒTƒEƒ“ƒhƒf[ƒ^‚ÍƒXƒgƒŠ[ƒ€Œ`®‚ÅÄ¶‚·‚é
+		// 3åˆ†ä»¥ä¸Šã®ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ã¯ã‚¹ãƒˆãƒªãƒ¼ãƒ å½¢å¼ã§å†ç”Ÿã™ã‚‹
 		if( SoundSize / Format.nAvgBytesPerSec > 60 * 3 )
 		{
 			if( SoundBuffer != NULL )
@@ -4806,12 +4806,12 @@ STREAM_TYPE :
 			goto STREAM_TYPE ;
 		}
 
-		// ƒTƒEƒ“ƒhƒoƒbƒtƒ@‚ğì¬
+		// ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡ã‚’ä½œæˆ
 //		DXST_LOGFILEFMT_ADDW(( L"format:%d  channel:%d  samplespersec:%d  AvgBytes:%d  blockalign:%d  BitsPerSample:%d  cbsize:%d\n",
 //				Format.wFormatTag, Format.nChannels, Format.nSamplesPerSec, Format.nAvgBytesPerSec, Format.nBlockAlign, Format.wBitsPerSample, Format.cbSize )) ;
 		if( ( CreateSoundBuffer( &Format, ( DWORD )SoundSize, DX_SOUNDTYPE_NORMAL, BufferNum, SoundHandle, -1, ASyncThread ) ) == -1 )
 		{
-			// ƒTƒEƒ“ƒhƒoƒbƒtƒ@‚Ìì¬‚É¸”s‚µ‚½‚çƒXƒgƒŠ[ƒ€Œ`®‚ÅŠJ‚±‚¤‚Æ‚µ‚Ä‚İ‚é
+			// ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡ã®ä½œæˆã«å¤±æ•—ã—ãŸã‚‰ã‚¹ãƒˆãƒªãƒ¼ãƒ å½¢å¼ã§é–‹ã“ã†ã¨ã—ã¦ã¿ã‚‹
 			if( SoundBuffer != NULL )
 			{
 				DXFREE( SoundBuffer ) ;
@@ -4825,25 +4825,25 @@ STREAM_TYPE :
 //		Sound->PitchRateEnable = GParam->CreateSoundPitchRateEnable ;
 //		Sound->PitchRate       = GParam->CreateSoundPitchRate ;
 
-		// QÆ”‚ğ•Û‘¶‚·‚éƒƒ‚ƒŠ‚ÌŠm•Û
+		// å‚ç…§æ•°ã‚’ä¿å­˜ã™ã‚‹ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿
 		Sound->Normal.WaveDataUseCount = ( int * )DXALLOC( sizeof( int ) ) ;
 		if( Sound->Normal.WaveDataUseCount == NULL )
 		{
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\xb5\x30\xa6\x30\xf3\x30\xc9\x30\xc7\x30\xfc\x30\xbf\x30\x6e\x30\xc2\x53\x67\x71\x70\x65\x92\x30\xdd\x4f\x58\x5b\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"ƒTƒEƒ“ƒhƒf[ƒ^‚ÌQÆ”‚ğ•Û‘¶‚·‚éƒƒ‚ƒŠ—Ìˆæ‚ÌŠm•Û‚É¸”s‚µ‚Ü‚µ‚½" @*/ )) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\xb5\x30\xa6\x30\xf3\x30\xc9\x30\xc7\x30\xfc\x30\xbf\x30\x6e\x30\xc2\x53\x67\x71\x70\x65\x92\x30\xdd\x4f\x58\x5b\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ã®å‚ç…§æ•°ã‚’ä¿å­˜ã™ã‚‹ãƒ¡ãƒ¢ãƒªé ˜åŸŸã®ç¢ºä¿ã«å¤±æ•—ã—ã¾ã—ãŸ" @*/ )) ;
 			goto ERR ;
 		}
 
-		Sound->BufferFormat = Format ;				// ƒtƒH[ƒ}ƒbƒg‚ğ•Û‘¶
-		Sound->Normal.WaveData = SoundBuffer ;		// ƒf[ƒ^ƒ|ƒCƒ“ƒ^‚ğ•Û‘¶
-		Sound->Normal.WaveSize = ( int )SoundSize ;	// ƒf[ƒ^ƒTƒCƒY‚ğ•Û‘¶
+		Sound->BufferFormat = Format ;				// ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã‚’ä¿å­˜
+		Sound->Normal.WaveData = SoundBuffer ;		// ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿ã‚’ä¿å­˜
+		Sound->Normal.WaveSize = ( int )SoundSize ;	// ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºã‚’ä¿å­˜
 		*Sound->Normal.WaveDataUseCount = 1 ;
 		SoundBuffer = NULL ;
 
-		// ƒTƒEƒ“ƒhƒf[ƒ^‚ğƒTƒEƒ“ƒhƒoƒbƒtƒ@‚ÉƒRƒs[‚·‚é
+		// ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ã‚’ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡ã«ã‚³ãƒ”ãƒ¼ã™ã‚‹
 		{
 			for( i = 0 ; i < Sound->ValidBufferNum ; i ++ )
 			{
-				// •Ê‚ÌƒTƒEƒ“ƒhƒoƒbƒtƒ@‚Ì•¡»‚¾‚Á‚½ê‡‚Í“]‘—ì‹Æ‚Ì•K—v‚ª–³‚¢‚Ì‚Å“]‘—‚µ‚È‚¢
+				// åˆ¥ã®ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡ã®è¤‡è£½ã ã£ãŸå ´åˆã¯è»¢é€ä½œæ¥­ã®å¿…è¦ãŒç„¡ã„ã®ã§è»¢é€ã—ãªã„
 				if( Sound->Normal.BufferDuplicateFlag[ i ] == TRUE ) continue ;
 			
 				hr = SoundBuffer_Lock( &Sound->Buffer[ i ], 0, ( DWORD )SoundSize,
@@ -4851,7 +4851,7 @@ STREAM_TYPE :
 										&write2, &length2 ) ;
 				if( hr != 0 )
 				{
-					DXST_LOGFILE_ADDUTF16LE( "\xb5\x30\xa6\x30\xf3\x30\xc9\x30\xc7\x30\xfc\x30\xbf\x30\x6e\x30\xe2\x8e\x01\x90\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x5f\x00\x31\x00\x00"/*@ L"ƒTƒEƒ“ƒhƒf[ƒ^‚Ì“]‘—‚É¸”s‚µ‚Ü‚µ‚½_1" @*/ ) ;
+					DXST_LOGFILE_ADDUTF16LE( "\xb5\x30\xa6\x30\xf3\x30\xc9\x30\xc7\x30\xfc\x30\xbf\x30\x6e\x30\xe2\x8e\x01\x90\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x5f\x00\x31\x00\x00"/*@ L"ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ã®è»¢é€ã«å¤±æ•—ã—ã¾ã—ãŸ_1" @*/ ) ;
 					goto ERR ;
 				}
 
@@ -4861,14 +4861,14 @@ STREAM_TYPE :
 				hr = SoundBuffer_Unlock( &Sound->Buffer[ i ], write1, length1, write2, length2 ) ;
 				if( hr != 0 )
 				{
-					DXST_LOGFILE_ADDUTF16LE( "\xb5\x30\xa6\x30\xf3\x30\xc9\x30\xc7\x30\xfc\x30\xbf\x30\x6e\x30\xe2\x8e\x01\x90\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x5f\x00\x32\x00\x00"/*@ L"ƒTƒEƒ“ƒhƒf[ƒ^‚Ì“]‘—‚É¸”s‚µ‚Ü‚µ‚½_2" @*/ ) ;
+					DXST_LOGFILE_ADDUTF16LE( "\xb5\x30\xa6\x30\xf3\x30\xc9\x30\xc7\x30\xfc\x30\xbf\x30\x6e\x30\xe2\x8e\x01\x90\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x5f\x00\x32\x00\x00"/*@ L"ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ã®è»¢é€ã«å¤±æ•—ã—ã¾ã—ãŸ_2" @*/ ) ;
 					goto ERR ;
 				}
 			}
 		}
 	}
 
-	// ƒ‹[ƒvˆÊ’u‚Ìw’è‚ª‚ ‚éê‡‚Íƒ‹[ƒvˆÊ’u‚ğİ’è‚·‚é
+	// ãƒ«ãƒ¼ãƒ—ä½ç½®ã®æŒ‡å®šãŒã‚ã‚‹å ´åˆã¯ãƒ«ãƒ¼ãƒ—ä½ç½®ã‚’è¨­å®šã™ã‚‹
 	{
 		if( GParam->CreateSoundLoopStartTimePosition != GParam->CreateSoundLoopEndTimePosition && GParam->CreateSoundIgnoreLoopAreaInfo == FALSE )
 		{
@@ -4891,7 +4891,7 @@ STREAM_TYPE :
 		}
 	}
 	
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 
 ERR :
@@ -4917,7 +4917,7 @@ ERR :
 }
 
 #ifndef DX_NON_ASYNCLOAD
-// LoadSoundMemByMemImageBase ‚Ì”ñ“¯Šú“Ç‚İ‚İƒXƒŒƒbƒh‚©‚çŒÄ‚Î‚ê‚éŠÖ”
+// LoadSoundMemByMemImageBase ã®éåŒæœŸèª­ã¿è¾¼ã¿ã‚¹ãƒ¬ãƒƒãƒ‰ã‹ã‚‰å‘¼ã°ã‚Œã‚‹é–¢æ•°
 static void LoadSoundMemByMemImageBase_ASync( ASYNCLOADDATA_COMMON *AParam )
 {
 	LOADSOUND_GPARAM *GParam ;
@@ -4956,7 +4956,7 @@ static void LoadSoundMemByMemImageBase_ASync( ASYNCLOADDATA_COMMON *AParam )
 }
 #endif // DX_NON_ASYNCLOAD
 
-// LoadSoundMemByMemImageBase ‚ÌƒOƒ[ƒoƒ‹•Ï”‚ÉƒAƒNƒZƒX‚µ‚È‚¢ƒo[ƒWƒ‡ƒ“
+// LoadSoundMemByMemImageBase ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°ã«ã‚¢ã‚¯ã‚»ã‚¹ã—ãªã„ãƒãƒ¼ã‚¸ãƒ§ãƒ³
 extern int LoadSoundMemByMemImageBase_UseGParam(
 	LOADSOUND_GPARAM *GParam,
 	int CreateSoundHandle,
@@ -4996,7 +4996,7 @@ extern int LoadSoundMemByMemImageBase_UseGParam(
 		ASYNCLOADDATA_COMMON *AParam = NULL ;
 		int Addr ;
 
-		// ƒpƒ‰ƒ[ƒ^‚É•K—v‚Èƒƒ‚ƒŠ‚ÌƒTƒCƒY‚ğZo
+		// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã«å¿…è¦ãªãƒ¡ãƒ¢ãƒªã®ã‚µã‚¤ã‚ºã‚’ç®—å‡º
 		Addr = 0 ;
 		AddASyncLoadParamStruct( NULL, &Addr, GParam, sizeof( *GParam ) ) ;
 		AddASyncLoadParamInt( NULL, &Addr, CreateSoundHandle ) ;
@@ -5006,12 +5006,12 @@ extern int LoadSoundMemByMemImageBase_UseGParam(
 		AddASyncLoadParamInt( NULL, &Addr, BufferNum ) ;
 		AddASyncLoadParamInt( NULL, &Addr, UnionHandle ) ;
 
-		// ƒƒ‚ƒŠ‚ÌŠm•Û
+		// ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿
 		AParam = AllocASyncLoadDataMemory( Addr ) ;
 		if( AParam == NULL )
 			goto ERR ;
 
-		// ˆ—‚É•K—v‚Èî•ñ‚ğƒZƒbƒg
+		// å‡¦ç†ã«å¿…è¦ãªæƒ…å ±ã‚’ã‚»ãƒƒãƒˆ
 		AParam->ProcessFunction = LoadSoundMemByMemImageBase_ASync ;
 		Addr = 0 ;
 		AddASyncLoadParamStruct( AParam->Data, &Addr, GParam, sizeof( *GParam ) ) ;
@@ -5022,7 +5022,7 @@ extern int LoadSoundMemByMemImageBase_UseGParam(
 		AddASyncLoadParamInt( AParam->Data, &Addr, BufferNum ) ;
 		AddASyncLoadParamInt( AParam->Data, &Addr, UnionHandle ) ;
 
-		// ƒf[ƒ^‚ğ’Ç‰Á
+		// ãƒ‡ãƒ¼ã‚¿ã‚’è¿½åŠ 
 		if( AddASyncLoadData( AParam ) < 0 )
 		{
 			DXFREE( AParam ) ;
@@ -5030,7 +5030,7 @@ extern int LoadSoundMemByMemImageBase_UseGParam(
 			goto ERR ;
 		}
 
-		// ”ñ“¯Šú“Ç‚İ‚İƒJƒEƒ“ƒg‚ğƒCƒ“ƒNƒŠƒƒ“ƒg
+		// éåŒæœŸèª­ã¿è¾¼ã¿ã‚«ã‚¦ãƒ³ãƒˆã‚’ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆ
 		IncASyncLoadCount( SoundHandle, AParam->Index ) ;
 	}
 	else
@@ -5047,7 +5047,7 @@ extern int LoadSoundMemByMemImageBase_UseGParam(
 	}
 #endif // DX_NON_ASYNCLOAD
 
-	// ƒnƒ“ƒhƒ‹‚ğ•Ô‚·
+	// ãƒãƒ³ãƒ‰ãƒ«ã‚’è¿”ã™
 	return CreateSoundHandle ? SoundHandle : 0 ;
 
 ERR :
@@ -5064,11 +5064,11 @@ ERR :
 		SoundHandle = -1 ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return -1 ;
 }
 
-// ƒƒ‚ƒŠã‚É“WŠJ‚³‚ê‚½ƒtƒ@ƒCƒ‹ƒCƒ[ƒW‚©‚çƒnƒ“ƒhƒ‹‚ğì¬‚·‚é(ƒx[ƒXŠÖ”)
+// ãƒ¡ãƒ¢ãƒªä¸Šã«å±•é–‹ã•ã‚ŒãŸãƒ•ã‚¡ã‚¤ãƒ«ã‚¤ãƒ¡ãƒ¼ã‚¸ã‹ã‚‰ãƒãƒ³ãƒ‰ãƒ«ã‚’ä½œæˆã™ã‚‹(ãƒ™ãƒ¼ã‚¹é–¢æ•°)
 extern int NS_LoadSoundMemByMemImageBase( const void *FileImageBuffer, size_t ImageSize, int BufferNum, int UnionHandle )
 {
 	LOADSOUND_GPARAM GParam ;
@@ -5078,13 +5078,13 @@ extern int NS_LoadSoundMemByMemImageBase( const void *FileImageBuffer, size_t Im
 	return LoadSoundMemByMemImageBase_UseGParam( &GParam, TRUE, -1, FileImageBuffer, ImageSize, BufferNum, UnionHandle, GetASyncLoadFlag(), FALSE ) ;
 }
 
-// LoadSoundMemByMemImageBase ‚Ì•Ê–¼ŠÖ”
+// LoadSoundMemByMemImageBase ã®åˆ¥åé–¢æ•°
 extern int NS_LoadSoundMemByMemImage( const void *FileImageBuffer , size_t ImageSize, int BufferNum, int UnionHandle ) 
 {
 	return NS_LoadSoundMemByMemImageBase( FileImageBuffer, ImageSize, BufferNum, UnionHandle ) ;
 }
 
-// ƒƒ‚ƒŠã‚É“WŠJ‚³‚ê‚½ƒtƒ@ƒCƒ‹ƒCƒ[ƒW‚©‚çƒnƒ“ƒhƒ‹‚ğì¬‚·‚é2
+// ãƒ¡ãƒ¢ãƒªä¸Šã«å±•é–‹ã•ã‚ŒãŸãƒ•ã‚¡ã‚¤ãƒ«ã‚¤ãƒ¡ãƒ¼ã‚¸ã‹ã‚‰ãƒãƒ³ãƒ‰ãƒ«ã‚’ä½œæˆã™ã‚‹2
 extern int NS_LoadSoundMemByMemImage2( const void *UData, size_t UDataSize, const WAVEFORMATEX *UFormat, size_t UHeaderSize )
 {
 	void *WaveImage ;
@@ -5103,7 +5103,7 @@ extern int NS_LoadSoundMemByMemImage2( const void *UData, size_t UDataSize, cons
 	return Handle ;
 }
 
-// ƒƒ‚ƒŠã‚É“WŠJ‚³‚ê‚½ƒtƒ@ƒCƒ‹ƒCƒ[ƒW‚©‚çƒnƒ“ƒhƒ‹‚ğì¬‚·‚é(ƒx[ƒXŠÖ”)
+// ãƒ¡ãƒ¢ãƒªä¸Šã«å±•é–‹ã•ã‚ŒãŸãƒ•ã‚¡ã‚¤ãƒ«ã‚¤ãƒ¡ãƒ¼ã‚¸ã‹ã‚‰ãƒãƒ³ãƒ‰ãƒ«ã‚’ä½œæˆã™ã‚‹(ãƒ™ãƒ¼ã‚¹é–¢æ•°)
 extern int NS_LoadSoundMemByMemImageToBufNumSitei( const void *FileImageBuffer, size_t ImageSize, int BufferNum )
 {
 	return NS_LoadSoundMemByMemImageBase( FileImageBuffer, ImageSize, BufferNum, -1 ) ;
@@ -5115,13 +5115,13 @@ extern int NS_LoadSoundMemByMemImageToBufNumSitei( const void *FileImageBuffer, 
 
 
 
-// ƒƒ‚ƒŠ‚É“Ç‚İ‚ñ‚¾WAVEƒf[ƒ^‚ğíœ‚·‚é
+// ãƒ¡ãƒ¢ãƒªã«èª­ã¿è¾¼ã‚“ã WAVEãƒ‡ãƒ¼ã‚¿ã‚’å‰Šé™¤ã™ã‚‹
 extern int NS_DeleteSoundMem( int SoundHandle )
 {
 	return SubHandle( SoundHandle, GetASyncLoadFlag(), FALSE ) ;
 }
 
-// ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹‚ÌÄ¶€”õ‚ğs‚¤( -1:ƒGƒ‰[ 0:³íI—¹ 1:Ä¶‚·‚é•K—v‚È‚µ )
+// ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ã®å†ç”Ÿæº–å‚™ã‚’è¡Œã†( -1:ã‚¨ãƒ©ãƒ¼ 0:æ­£å¸¸çµ‚äº† 1:å†ç”Ÿã™ã‚‹å¿…è¦ãªã— )
 static	int _PlaySetupSoundMem( SOUND * Sound, int TopPositionFlag )
 {
 	ULONGLONG Position ;
@@ -5133,7 +5133,7 @@ static	int _PlaySetupSoundMem( SOUND * Sound, int TopPositionFlag )
 	LONG Pan ;
 	DWORD Frequency ;
 
-	// ‘O‰ñ‚ÌÄ¶ˆÊ’u‚ğæ“¾‚·‚é
+	// å‰å›ã®å†ç”Ÿä½ç½®ã‚’å–å¾—ã™ã‚‹
 	{
 		DWORD Temp ;
 
@@ -5142,18 +5142,18 @@ static	int _PlaySetupSoundMem( SOUND * Sound, int TopPositionFlag )
 		Position = Temp ;
 	}
 
-	// Ä¶‚·‚éƒTƒEƒ“ƒhƒoƒbƒtƒ@‚ÌƒZƒbƒg
+	// å†ç”Ÿã™ã‚‹ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡ã®ã‚»ãƒƒãƒˆ
 	i = Sound->Normal.BackPlayBufferNo ;
 
-	// ¡‰ñÄ¶‚·‚éƒTƒEƒ“ƒhƒoƒbƒtƒ@‚ÌƒZƒbƒg
+	// ä»Šå›å†ç”Ÿã™ã‚‹ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡ã®ã‚»ãƒƒãƒˆ
 	i ++ ;
 	if( i >= Sound->ValidBufferNum )
 		i = 0 ;
 
-	// ‘O‰ñ‚ÌÄ¶ˆÊ’u‚Ìî•ñ‚ğXV‚·‚é
+	// å‰å›ã®å†ç”Ÿä½ç½®ã®æƒ…å ±ã‚’æ›´æ–°ã™ã‚‹
 	Sound->Normal.BackPlayBufferNo = i ;
 
-	// Ä¶’†‚¾‚Á‚½ê‡‚Í~‚ß‚é
+	// å†ç”Ÿä¸­ã ã£ãŸå ´åˆã¯æ­¢ã‚ã‚‹
 	{
 		IsPlay = SoundBuffer_CheckPlay( &Sound->Buffer[ i ] ) ;
 		if( IsPlay == -1 )
@@ -5163,20 +5163,20 @@ static	int _PlaySetupSoundMem( SOUND * Sound, int TopPositionFlag )
 
 		if( IsPlay )
 		{
-			// æ“ª‚©‚ç‚ÌÄ¶w’è‚Å‚Í‚È‚¢ê‡‚Í‰½‚à‚¹‚¸I—¹
+			// å…ˆé ­ã‹ã‚‰ã®å†ç”ŸæŒ‡å®šã§ã¯ãªã„å ´åˆã¯ä½•ã‚‚ã›ãšçµ‚äº†
 			if( TopPositionFlag == FALSE )
 				return 1 ;
 
-			// Ä¶’â~
+			// å†ç”Ÿåœæ­¢
 			SoundBuffer_Stop( &Sound->Buffer[ i ] ) ;
 		}
 
-		// Ä¶ˆÊ’u‚ğæ“ª‚É‚·‚é
+		// å†ç”Ÿä½ç½®ã‚’å…ˆé ­ã«ã™ã‚‹
 		if( TopPositionFlag == TRUE )	SoundBuffer_SetCurrentPosition( &Sound->Buffer[i], 0 ) ;
 		else							SoundBuffer_SetCurrentPosition( &Sound->Buffer[i], ( DWORD )Position ) ;
 	}
 
-	// ƒ{ƒŠƒ…[ƒ€‚ğƒZƒbƒg‚·‚é
+	// ãƒœãƒªãƒ¥ãƒ¼ãƒ ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 	for( j = 0 ; j < SOUNDBUFFER_MAX_CHANNEL_NUM ; j ++ )
 	{
 		if( Sound->ValidNextPlayVolume[ j ] )
@@ -5191,7 +5191,7 @@ static	int _PlaySetupSoundMem( SOUND * Sound, int TopPositionFlag )
 		SoundBuffer_SetVolume( &Sound->Buffer[ i ], j, Volume[ j ] ) ;
 	}
 
-	// ƒpƒ“‚ğƒZƒbƒg‚·‚é
+	// ãƒ‘ãƒ³ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 	{
 		if( Sound->ValidNextPlayPan )
 		{
@@ -5205,7 +5205,7 @@ static	int _PlaySetupSoundMem( SOUND * Sound, int TopPositionFlag )
 		SoundBuffer_SetPan(       &Sound->Buffer[ i ], Pan ) ;
 	}
 
-	// ü”g”‚ğƒZƒbƒg‚·‚é
+	// å‘¨æ³¢æ•°ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 	{
 		if( Sound->ValidNextPlayFrequency )
 		{
@@ -5225,7 +5225,7 @@ static	int _PlaySetupSoundMem( SOUND * Sound, int TopPositionFlag )
 		SoundBuffer_SetFrequency( &Sound->Buffer[ i ], Frequency ) ;
 	}
 
-	// ‚R‚cƒTƒEƒ“ƒh‚Ìê‡‚Í‚R‚cƒTƒEƒ“ƒhƒpƒ‰ƒ[ƒ^‚ÌXV‚ğs‚¤
+	// ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰ã®å ´åˆã¯ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®æ›´æ–°ã‚’è¡Œã†
 	if( Sound->Is3DSound != FALSE )
 	{
 		VECTOR *Position3D ;
@@ -5268,11 +5268,11 @@ static	int _PlaySetupSoundMem( SOUND * Sound, int TopPositionFlag )
 		SoundBuffer_Refresh3DSoundParam( &Sound->Buffer[ i ] ) ;
 	}
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// ƒƒ‚ƒŠ‚É“Ç‚İ‚±‚ñ‚¾WAVEƒf[ƒ^‚ğÄ¶‚·‚é
+// ãƒ¡ãƒ¢ãƒªã«èª­ã¿ã“ã‚“ã WAVEãƒ‡ãƒ¼ã‚¿ã‚’å†ç”Ÿã™ã‚‹
 extern int NS_PlaySoundMem( int SoundHandle , int PlayType, int TopPositionFlag )
 {
 	SOUND * Sound ;
@@ -5282,33 +5282,33 @@ extern int NS_PlaySoundMem( int SoundHandle , int PlayType, int TopPositionFlag 
 		return -1 ;
 	}
 
-	// ƒ\ƒtƒg‚ª”ñƒAƒNƒeƒBƒu‚Ìê‡‚ÍƒAƒNƒeƒBƒu‚É‚È‚é‚Ü‚Å‘Ò‚Â
+	// ã‚½ãƒ•ãƒˆãŒéã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã®å ´åˆã¯ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ãªã‚‹ã¾ã§å¾…ã¤
 	CheckActiveState() ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( SOUNDHCHK( SoundHandle, Sound ) )
 		return -1 ;
 
-	// ƒTƒEƒ“ƒhƒ^ƒCƒv‚ªƒXƒgƒŠ[ƒ€•—ƒTƒEƒ“ƒh‚¾‚Á‚½ê‡‚Í‚»‚Á‚¿‚Éˆ—‚ğˆÚ‚·
+	// ã‚µã‚¦ãƒ³ãƒ‰ã‚¿ã‚¤ãƒ—ãŒã‚¹ãƒˆãƒªãƒ¼ãƒ é¢¨ã‚µã‚¦ãƒ³ãƒ‰ã ã£ãŸå ´åˆã¯ãã£ã¡ã«å‡¦ç†ã‚’ç§»ã™
 	if( Sound->Type == DX_SOUNDTYPE_STREAMSTYLE )
 	{
 		return NS_PlayStreamSoundMem( SoundHandle , PlayType, TopPositionFlag ) ;
 	}
 
-	// Ä¶€”õ‚ğs‚¤
+	// å†ç”Ÿæº–å‚™ã‚’è¡Œã†
 	if( _PlaySetupSoundMem( Sound, TopPositionFlag ) == 1 )
 		return 0 ;
 
-	// Ä¶
+	// å†ç”Ÿ
 	if( SoundBuffer_Play( &Sound->Buffer[ Sound->Normal.BackPlayBufferNo ], PlayType == DX_PLAYTYPE_LOOP ) != 0 )
 	{
 		return -1 ;
 	}
 
-	// ‚R‚cƒTƒEƒ“ƒh‚Ìê‡‚ÍÄ¶’†‚Ì‚R‚cƒTƒEƒ“ƒhƒŠƒXƒg‚É’Ç‰Á‚·‚é
+	// ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰ã®å ´åˆã¯å†ç”Ÿä¸­ã®ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰ãƒªã‚¹ãƒˆã«è¿½åŠ ã™ã‚‹
 	if( Sound->Is3DSound != FALSE )
 	{
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 		CRITICALSECTION_LOCK( &SoundSysData.Play3DSoundListCriticalSection ) ;
 
 		if( Sound->AddPlay3DSoundList == FALSE )
@@ -5317,35 +5317,35 @@ extern int NS_PlaySoundMem( int SoundHandle , int PlayType, int TopPositionFlag 
 			AddHandleList( &SoundSysData.Play3DSoundListFirst, &Sound->Play3DSoundList, SoundHandle, Sound ) ;
 		}
 
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 		CriticalSection_Unlock( &SoundSysData.Play3DSoundListCriticalSection ) ;
 	}
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 	CRITICALSECTION_LOCK( &SoundSysData.PlaySoundListCriticalSection ) ;
 
-	// Ä¶’†‚ÌƒTƒEƒ“ƒhƒŠƒXƒg‚É’Ç‰Á‚·‚é
+	// å†ç”Ÿä¸­ã®ã‚µã‚¦ãƒ³ãƒ‰ãƒªã‚¹ãƒˆã«è¿½åŠ ã™ã‚‹
 	if( Sound->AddPlaySoundList == FALSE )
 	{
 		Sound->AddPlaySoundList = TRUE ;
 		AddHandleList( &SoundSysData.PlaySoundListFirst, &Sound->PlaySoundList, SoundHandle, Sound ) ;
 	}
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 	CriticalSection_Unlock( &SoundSysData.PlaySoundListCriticalSection ) ;
 
-	// Ä¶ƒXƒe[ƒ^ƒX‚É‚æ‚Á‚Ä‚ÍÄ¶I—¹‚ğ‘Ò‚Â
+	// å†ç”Ÿã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã«ã‚ˆã£ã¦ã¯å†ç”Ÿçµ‚äº†ã‚’å¾…ã¤
 	if( PlayType == DX_PLAYTYPE_NORMAL )
 	{
 		while( NS_ProcessMessage() == 0 && NS_CheckSoundMem( SoundHandle ) == 1 ){ Thread_Sleep( 1 ) ; }
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
 
-// ƒƒ‚ƒŠ‚É“Ç‚İ‚ñ‚¾•¡”‚ÌWAVEƒf[ƒ^‚ğ‚È‚é‚×‚­“¯‚ÉÄ¶‚·‚é
+// ãƒ¡ãƒ¢ãƒªã«èª­ã¿è¾¼ã‚“ã è¤‡æ•°ã®WAVEãƒ‡ãƒ¼ã‚¿ã‚’ãªã‚‹ã¹ãåŒæ™‚ã«å†ç”Ÿã™ã‚‹
 extern int NS_MultiPlaySoundMem( const int *SoundHandleList, int SoundHandleNum, int PlayType, int TopPositionFlag )
 {
 	SOUND **SoundList, *SoundBuf[ 256 ], **SoundTempBuf = NULL, *Sound ;
@@ -5361,16 +5361,16 @@ extern int NS_MultiPlaySoundMem( const int *SoundHandleList, int SoundHandleNum,
 		return -1 ;
 	}
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 	CRITICALSECTION_LOCK( &HandleManageArray[ DX_HANDLETYPE_SOUND ].CriticalSection ) ;
 
-	// ƒTƒEƒ“ƒhƒ|ƒCƒ“ƒ^ƒŠƒXƒg‚ª‘«‚è‚È‚©‚Á‚½‚çƒƒ‚ƒŠ‚ğŠm•Û‚·‚é
+	// ã‚µã‚¦ãƒ³ãƒ‰ãƒã‚¤ãƒ³ã‚¿ãƒªã‚¹ãƒˆãŒè¶³ã‚Šãªã‹ã£ãŸã‚‰ãƒ¡ãƒ¢ãƒªã‚’ç¢ºä¿ã™ã‚‹
 	if( SoundHandleNum > 256 )
 	{
 		SoundTempBuf = ( SOUND ** )DXALLOC( ( sizeof( SOUND * ) + sizeof( SOUNDBUFFER * ) ) * SoundHandleNum ) ;
 		if( SoundTempBuf == NULL )
 		{
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\x25\x00\x64\x00\x20\x00\x0b\x50\x6e\x30\xb5\x30\xa6\x30\xf3\x30\xc9\x30\xc7\x30\xfc\x30\xbf\x30\x6e\x30\xdd\x30\xa4\x30\xf3\x30\xbf\x30\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"%d ŒÂ‚ÌƒTƒEƒ“ƒhƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^‚ğŠi”[‚·‚éƒƒ‚ƒŠ—Ìˆæ‚ÌŠm•Û‚É¸”s‚µ‚Ü‚µ‚½" @*/ , SoundHandleNum )) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\x25\x00\x64\x00\x20\x00\x0b\x50\x6e\x30\xb5\x30\xa6\x30\xf3\x30\xc9\x30\xc7\x30\xfc\x30\xbf\x30\x6e\x30\xdd\x30\xa4\x30\xf3\x30\xbf\x30\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"%d å€‹ã®ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿ã‚’æ ¼ç´ã™ã‚‹ãƒ¡ãƒ¢ãƒªé ˜åŸŸã®ç¢ºä¿ã«å¤±æ•—ã—ã¾ã—ãŸ" @*/ , SoundHandleNum )) ;
 			goto END ;
 		}
 		SBufferTempBuf = ( SOUNDBUFFER ** )( SoundTempBuf + SoundHandleNum ) ;
@@ -5384,13 +5384,13 @@ extern int NS_MultiPlaySoundMem( const int *SoundHandleList, int SoundHandleNum,
 		SoundList = SoundBuf ;
 	}
 
-	// ƒ‹[ƒv‚©‚Ç‚¤‚©‚ğæ“¾‚µ‚Ä‚¨‚­
+	// ãƒ«ãƒ¼ãƒ—ã‹ã©ã†ã‹ã‚’å–å¾—ã—ã¦ãŠã
 	Loop = PlayType == DX_PLAYTYPE_LOOP ;
 
-	// Ä¶‚Ì€”õ
+	// å†ç”Ÿã®æº–å‚™
 	for( i = 0 ; i < SoundHandleNum ; i ++ )
 	{
-		// ƒGƒ‰[”»’è
+		// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 		if( SOUNDHCHK( SoundHandleList[ i ], Sound ) )
 		{
 			SoundList[ i ] = NULL ;
@@ -5411,7 +5411,7 @@ extern int NS_MultiPlaySoundMem( const int *SoundHandleList, int SoundHandleNum,
 		}
 	}
 
-	// ˆêÄ‚ÉÄ¶
+	// ä¸€æ–‰ã«å†ç”Ÿ
 	if( SoundSysData.EnableSoundCaptureFlag )
 	{
 		for( i = 0 ; i < SoundHandleNum ; i ++ )
@@ -5438,7 +5438,7 @@ extern int NS_MultiPlaySoundMem( const int *SoundHandleList, int SoundHandleNum,
 		}
 	}
 
-	// Ä¶ƒXƒe[ƒ^ƒX‚É‚æ‚Á‚Ä‚ÍÄ¶I—¹‚ğ‘Ò‚Â
+	// å†ç”Ÿã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã«ã‚ˆã£ã¦ã¯å†ç”Ÿçµ‚äº†ã‚’å¾…ã¤
 	if( PlayType == DX_PLAYTYPE_NORMAL )
 	{
 		while( NS_ProcessMessage() == 0 )
@@ -5455,21 +5455,21 @@ extern int NS_MultiPlaySoundMem( const int *SoundHandleList, int SoundHandleNum,
 
 END :
 
-	// ƒƒ‚ƒŠ‚Ì‰ğ•ú
+	// ãƒ¡ãƒ¢ãƒªã®è§£æ”¾
 	if( SoundTempBuf )
 	{
 		DXFREE( SoundTempBuf ) ;
 	}
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 	CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_SOUND ].CriticalSection ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
 
-// ƒƒ‚ƒŠ‚É“Ç‚İ‚ñ‚¾WAVEƒf[ƒ^‚ÌÄ¶‚ğ~‚ß‚é
+// ãƒ¡ãƒ¢ãƒªã«èª­ã¿è¾¼ã‚“ã WAVEãƒ‡ãƒ¼ã‚¿ã®å†ç”Ÿã‚’æ­¢ã‚ã‚‹
 extern int NS_StopSoundMem( int SoundHandle, int IsNextLoopEnd )
 {
 	SOUND * Sound ;
@@ -5481,17 +5481,17 @@ extern int NS_StopSoundMem( int SoundHandle, int IsNextLoopEnd )
 		return -1 ;
 	}
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( SOUNDHCHK( SoundHandle, Sound ) )
 		return -1 ;
 
-	// ƒTƒEƒ“ƒhƒ^ƒCƒv‚ªƒXƒgƒŠ[ƒ€•—ƒTƒEƒ“ƒh‚¾‚Á‚½ê‡‚Í‚»‚Á‚¿‚Éˆ—‚ğˆÚ‚·
+	// ã‚µã‚¦ãƒ³ãƒ‰ã‚¿ã‚¤ãƒ—ãŒã‚¹ãƒˆãƒªãƒ¼ãƒ é¢¨ã‚µã‚¦ãƒ³ãƒ‰ã ã£ãŸå ´åˆã¯ãã£ã¡ã«å‡¦ç†ã‚’ç§»ã™
 	if( Sound->Type == DX_SOUNDTYPE_STREAMSTYLE )
 	{
 		return NS_StopStreamSoundMem( SoundHandle, IsNextLoopEnd ) ;
 	}
 
-	// ƒ‹[ƒvI—¹‚É~‚ß‚éw’è‚Ìê‡‚Íƒ‹[ƒvƒtƒ‰ƒO‚ğ“|‚·( ƒZƒ‹ƒtƒ~ƒLƒVƒ“ƒO‚Ìê‡‚Ì‚İ )
+	// ãƒ«ãƒ¼ãƒ—çµ‚äº†æ™‚ã«æ­¢ã‚ã‚‹æŒ‡å®šã®å ´åˆã¯ãƒ«ãƒ¼ãƒ—ãƒ•ãƒ©ã‚°ã‚’å€’ã™( ã‚»ãƒ«ãƒ•ãƒŸã‚­ã‚·ãƒ³ã‚°ã®å ´åˆã®ã¿ )
 	if( IsNextLoopEnd )
 	{
 		if( SoundSysData.EnableSoundCaptureFlag || SoundSysData.EnableSelfMixingFlag || SoundSysData.EnableChangeLoopFlag )
@@ -5530,7 +5530,7 @@ extern int NS_StopSoundMem( int SoundHandle, int IsNextLoopEnd )
 	}
 	else
 	{
-		// Ä¶’â~
+		// å†ç”Ÿåœæ­¢
 		for( i = 0 ; i < Sound->ValidBufferNum ; i ++ )
 		{
 			Sound->BufferPlayStateBackupFlagValid[ i ] = FALSE ;
@@ -5549,11 +5549,11 @@ extern int NS_StopSoundMem( int SoundHandle, int IsNextLoopEnd )
 		}
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒƒ‚ƒŠ‚É“Ç‚İ‚±‚ñ‚¾WAVEƒf[ƒ^‚ªÄ¶’†‚©’²‚×‚é
+// ãƒ¡ãƒ¢ãƒªã«èª­ã¿ã“ã‚“ã WAVEãƒ‡ãƒ¼ã‚¿ãŒå†ç”Ÿä¸­ã‹èª¿ã¹ã‚‹
 extern int NS_CheckSoundMem( int SoundHandle )
 {
 	SOUND * Sound ;
@@ -5564,20 +5564,20 @@ extern int NS_CheckSoundMem( int SoundHandle )
 		return -1 ;
 	}
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( SOUNDHCHK( SoundHandle, Sound ) )
 		return -1 ;
 
-	// ƒTƒEƒ“ƒhƒ^ƒCƒv‚ªƒXƒgƒŠ[ƒ€•—ƒTƒEƒ“ƒh‚¾‚Á‚½ê‡‚Í‚»‚Á‚¿‚Éˆ—‚ğˆÚ‚·
+	// ã‚µã‚¦ãƒ³ãƒ‰ã‚¿ã‚¤ãƒ—ãŒã‚¹ãƒˆãƒªãƒ¼ãƒ é¢¨ã‚µã‚¦ãƒ³ãƒ‰ã ã£ãŸå ´åˆã¯ãã£ã¡ã«å‡¦ç†ã‚’ç§»ã™
 	if( Sound->Type == DX_SOUNDTYPE_STREAMSTYLE )
 	{
 		return NS_CheckStreamSoundMem( SoundHandle ) ;
 	}
 	
-	// ƒXƒe[ƒ^ƒX‚ğæ“¾‚µ‚Ä’²‚×‚é
+	// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚’å–å¾—ã—ã¦èª¿ã¹ã‚‹
 	for( i = 0 ; i < Sound->ValidBufferNum ; i ++ )
 	{
-		// ƒVƒXƒeƒ€‘¤‚Å~‚ß‚Ä‚¢‚éê‡‚Í~‚ß‚é‘O‚Ìó‘Ô‚ğ•Ô‚·
+		// ã‚·ã‚¹ãƒ†ãƒ å´ã§æ­¢ã‚ã¦ã„ã‚‹å ´åˆã¯æ­¢ã‚ã‚‹å‰ã®çŠ¶æ…‹ã‚’è¿”ã™
 		if( Sound->BufferPlayStateBackupFlagValid[ i ] )
 		{
 			if( Sound->BufferPlayStateBackupFlag[ i ] )
@@ -5594,11 +5594,11 @@ extern int NS_CheckSoundMem( int SoundHandle )
 		}
 	}
 
-	// ‚±‚±‚Ü‚Å‚«‚Ä‚¢‚ê‚ÎÄ¶‚Í‚³‚ê‚Ä‚¢‚È‚¢
+	// ã“ã“ã¾ã§ãã¦ã„ã‚Œã°å†ç”Ÿã¯ã•ã‚Œã¦ã„ãªã„
 	return 0 ;
 }
 
-// ƒƒ‚ƒŠ‚É“Ç‚İ‚±‚ñ‚¾WAVEƒf[ƒ^‚ÌÄ¶‚Éƒpƒ“‚ğİ’è‚·‚é
+// ãƒ¡ãƒ¢ãƒªã«èª­ã¿ã“ã‚“ã WAVEãƒ‡ãƒ¼ã‚¿ã®å†ç”Ÿã«ãƒ‘ãƒ³ã‚’è¨­å®šã™ã‚‹
 extern int NS_SetPanSoundMem( int PanPal , int SoundHandle )
 {
 	int i ;
@@ -5609,11 +5609,11 @@ extern int NS_SetPanSoundMem( int PanPal , int SoundHandle )
 		return -1 ;
 	}
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( SOUNDHCHK( SoundHandle, Sound ) )
 		return -1 ;
 
-	// Ä¶‚ª‚³‚ê‚Ä‚¢‚È‚¢ê‡‚Í SetNextPlayPanSoundMem ‚ğŒÄ‚Ô
+	// å†ç”ŸãŒã•ã‚Œã¦ã„ãªã„å ´åˆã¯ SetNextPlayPanSoundMem ã‚’å‘¼ã¶
 //	if( NS_CheckSoundMem( SoundHandle ) == 0 )
 //	{
 //		return NS_SetNextPlayPanSoundMem( PanPal, SoundHandle ) ;
@@ -5622,7 +5622,7 @@ extern int NS_SetPanSoundMem( int PanPal , int SoundHandle )
 	if( PanPal >  10000 ) PanPal =  10000 ;
 	if( PanPal < -10000 ) PanPal = -10000 ;
 
-	// ƒpƒ“‚ğƒZƒbƒg‚·‚é
+	// ãƒ‘ãƒ³ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 	for( i = 0 ; i < Sound->ValidBufferNum ; i ++ )
 	{
 //		Sound->Buffer[ i ]->SetPan( ( LONG )PanPal ) ;
@@ -5631,11 +5631,11 @@ extern int NS_SetPanSoundMem( int PanPal , int SoundHandle )
 //	SoundBuffer_SetPan( &Sound->Buffer[ Sound->Normal.BackPlayBufferNo ], ( LONG )PanPal ) ;
 	Sound->BasePan = PanPal ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹‚Ìƒpƒ“‚ğİ’è‚·‚é( 0 ` 255 )
+// ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ã®ãƒ‘ãƒ³ã‚’è¨­å®šã™ã‚‹( 0 ï½ 255 )
 extern int NS_ChangePanSoundMem( int PanPal, int SoundHandle )
 {
 	int i ;
@@ -5647,7 +5647,7 @@ extern int NS_ChangePanSoundMem( int PanPal, int SoundHandle )
 		return -1 ;
 	}
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( SOUNDHCHK( SoundHandle, Sound ) )
 		return -1 ;
 
@@ -5706,7 +5706,7 @@ extern int NS_ChangePanSoundMem( int PanPal, int SoundHandle )
 		}
 	}
 
-	// ƒpƒ“‚ğƒZƒbƒg‚·‚é
+	// ãƒ‘ãƒ³ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 	for( i = 0 ; i < Sound->ValidBufferNum ; i ++ )
 	{
 		SoundBuffer_SetPan( &Sound->Buffer[ i ], ( LONG )pan ) ;
@@ -5714,11 +5714,11 @@ extern int NS_ChangePanSoundMem( int PanPal, int SoundHandle )
 
 	Sound->BasePan = pan ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒƒ‚ƒŠ‚É“Ç‚İ‚±‚ñ‚¾WAVEƒf[ƒ^‚Ìƒpƒ“‚ğæ“¾‚·‚é
+// ãƒ¡ãƒ¢ãƒªã«èª­ã¿ã“ã‚“ã WAVEãƒ‡ãƒ¼ã‚¿ã®ãƒ‘ãƒ³ã‚’å–å¾—ã™ã‚‹
 extern int NS_GetPanSoundMem( int SoundHandle )
 {
 	SOUND * Sound ;
@@ -5730,17 +5730,17 @@ extern int NS_GetPanSoundMem( int SoundHandle )
 		return -1 ;
 	}
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( SOUNDHCHK( SoundHandle, Sound ) )
 		return -1 ;
 
-	// ƒTƒEƒ“ƒhƒ^ƒCƒv‚ªƒXƒgƒŠ[ƒ€•—ƒTƒEƒ“ƒh‚¾‚Á‚½ê‡‚Í‚»‚Á‚¿‚Éˆ—‚ğˆÚ‚·
+	// ã‚µã‚¦ãƒ³ãƒ‰ã‚¿ã‚¤ãƒ—ãŒã‚¹ãƒˆãƒªãƒ¼ãƒ é¢¨ã‚µã‚¦ãƒ³ãƒ‰ã ã£ãŸå ´åˆã¯ãã£ã¡ã«å‡¦ç†ã‚’ç§»ã™
 	if( Sound->Type == DX_SOUNDTYPE_STREAMSTYLE )
 	{
-		// g—pŒ ‚ª–³‚¢ê‡‚ÍƒGƒ‰[
+		// ä½¿ç”¨æ¨©ãŒç„¡ã„å ´åˆã¯ã‚¨ãƒ©ãƒ¼
 		if( GetSoundBuffer( SoundHandle, Sound, &SBuffer, false ) == -1 ) return -1 ;
 	
-		// ƒpƒ“‚ğæ“¾‚·‚é
+		// ãƒ‘ãƒ³ã‚’å–å¾—ã™ã‚‹
 		SoundBuffer_GetPan( SBuffer, &Result ) ;
 	}
 	else
@@ -5748,11 +5748,11 @@ extern int NS_GetPanSoundMem( int SoundHandle )
 		SoundBuffer_GetPan( &Sound->Buffer[ Sound->Normal.BackPlayBufferNo ], &Result ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return Result ; 
 }
 
-// ƒƒ‚ƒŠ‚É“Ç‚İ‚±‚ñ‚¾WAVEƒf[ƒ^‚ÌÄ¶‚Éƒ{ƒŠƒ…[ƒ€‚ğİ’è‚·‚é
+// ãƒ¡ãƒ¢ãƒªã«èª­ã¿ã“ã‚“ã WAVEãƒ‡ãƒ¼ã‚¿ã®å†ç”Ÿã«ãƒœãƒªãƒ¥ãƒ¼ãƒ ã‚’è¨­å®šã™ã‚‹
 extern int NS_SetVolumeSoundMem( int VolumePal , int SoundHandle )
 {
 	SOUND * Sound ;
@@ -5763,11 +5763,11 @@ extern int NS_SetVolumeSoundMem( int VolumePal , int SoundHandle )
 		return -1 ;
 	}
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( SOUNDHCHK( SoundHandle, Sound ) )
 		return -1 ;
 
-	// Ä¶‚ª‚³‚ê‚Ä‚¢‚È‚¢ê‡‚Í SetNextPlayVolumeSoundMem ‚ğŒÄ‚Ô
+	// å†ç”ŸãŒã•ã‚Œã¦ã„ãªã„å ´åˆã¯ SetNextPlayVolumeSoundMem ã‚’å‘¼ã¶
 //	if( NS_CheckSoundMem( SoundHandle ) == 0 )
 //	{
 //		return NS_SetNextPlayVolumeSoundMem( VolumePal, SoundHandle ) ;
@@ -5777,7 +5777,7 @@ extern int NS_SetVolumeSoundMem( int VolumePal , int SoundHandle )
 //	if( VolumePal >  0 ) VolumePal =  0 ;
 	if( VolumePal < -10000 ) VolumePal = -10000 ;
 
-	// ƒ{ƒŠƒ…[ƒ€‚ğƒZƒbƒg‚·‚é
+	// ãƒœãƒªãƒ¥ãƒ¼ãƒ ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 	for( i = 0 ; i < Sound->ValidBufferNum ; i ++ )
 	{
 //		Sound->Buffer[ i ]->SetVolume( ( LONG )VolumePal ) ;
@@ -5804,11 +5804,11 @@ extern int NS_SetVolumeSoundMem( int VolumePal , int SoundHandle )
 		Sound->BaseVolume8bit[ i ] = Vol8bit ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒƒ‚ƒŠ‚É“Ç‚İ‚±‚ñ‚¾WAVEƒf[ƒ^‚ÌÄ¶‚Éƒ{ƒŠƒ…[ƒ€‚ğİ’è‚·‚é
+// ãƒ¡ãƒ¢ãƒªã«èª­ã¿ã“ã‚“ã WAVEãƒ‡ãƒ¼ã‚¿ã®å†ç”Ÿã«ãƒœãƒªãƒ¥ãƒ¼ãƒ ã‚’è¨­å®šã™ã‚‹
 extern int NS_ChangeVolumeSoundMem( int VolumePal, int SoundHandle )
 {
 	SOUND * Sound ;
@@ -5820,7 +5820,7 @@ extern int NS_ChangeVolumeSoundMem( int VolumePal, int SoundHandle )
 		return -1 ;
 	}
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( SOUNDHCHK( SoundHandle, Sound ) )
 		return -1 ;
 
@@ -5845,7 +5845,7 @@ extern int NS_ChangeVolumeSoundMem( int VolumePal, int SoundHandle )
 		if( vol < DX_DSBVOLUME_MIN ) vol = DX_DSBVOLUME_MIN ;
 	}
 
-	// ƒ{ƒŠƒ…[ƒ€‚ğƒZƒbƒg‚·‚é
+	// ãƒœãƒªãƒ¥ãƒ¼ãƒ ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 	for( i = 0 ; i < Sound->ValidBufferNum ; i ++ )
 	{
 //		Sound->Buffer[ i ]->SetVolume( vol ) ;
@@ -5859,24 +5859,24 @@ extern int NS_ChangeVolumeSoundMem( int VolumePal, int SoundHandle )
 		Sound->BaseVolume8bit[ i ] = VolumePal ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒƒ‚ƒŠ‚É“Ç‚İ‚±‚ñ‚¾WAVEƒf[ƒ^‚ÌÄ¶‚Ìƒ{ƒŠƒ…[ƒ€‚ğæ“¾‚·‚é( 100•ª‚Ì1ƒfƒVƒxƒ‹’PˆÊ 0 ` 10000 )
+// ãƒ¡ãƒ¢ãƒªã«èª­ã¿ã“ã‚“ã WAVEãƒ‡ãƒ¼ã‚¿ã®å†ç”Ÿã®ãƒœãƒªãƒ¥ãƒ¼ãƒ ã‚’å–å¾—ã™ã‚‹( 100åˆ†ã®1ãƒ‡ã‚·ãƒ™ãƒ«å˜ä½ 0 ï½ 10000 )
 extern int NS_GetVolumeSoundMem( int SoundHandle )
 {
 	return NS_GetChannelVolumeSoundMem( 0, SoundHandle ) ;
 }
 
 
-// ƒƒ‚ƒŠ‚É“Ç‚İ‚±‚ñ‚¾WAVEƒf[ƒ^‚ÌÄ¶‚Ìƒ{ƒŠƒ…[ƒ€‚ğæ“¾‚·‚é( 0 ` 255 )
+// ãƒ¡ãƒ¢ãƒªã«èª­ã¿ã“ã‚“ã WAVEãƒ‡ãƒ¼ã‚¿ã®å†ç”Ÿã®ãƒœãƒªãƒ¥ãƒ¼ãƒ ã‚’å–å¾—ã™ã‚‹( 0 ï½ 255 )
 extern int NS_GetVolumeSoundMem2( int SoundHandle )
 {
 	return NS_GetChannelVolumeSoundMem2( 0, SoundHandle ) ;
 }
 
-// ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹‚Ìw’è‚Ìƒ`ƒƒƒ“ƒlƒ‹‚Ìƒ{ƒŠƒ…[ƒ€‚ğİ’è‚·‚é( 100•ª‚Ì1ƒfƒVƒxƒ‹’PˆÊ 0 ` 10000 )
+// ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ã®æŒ‡å®šã®ãƒãƒ£ãƒ³ãƒãƒ«ã®ãƒœãƒªãƒ¥ãƒ¼ãƒ ã‚’è¨­å®šã™ã‚‹( 100åˆ†ã®1ãƒ‡ã‚·ãƒ™ãƒ«å˜ä½ 0 ï½ 10000 )
 extern int NS_SetChannelVolumeSoundMem( int Channel, int VolumePal, int SoundHandle )
 {
 	SOUND * Sound ;
@@ -5887,7 +5887,7 @@ extern int NS_SetChannelVolumeSoundMem( int Channel, int VolumePal, int SoundHan
 		return -1 ;
 	}
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( SOUNDHCHK( SoundHandle, Sound ) )
 		return -1 ;
 
@@ -5908,7 +5908,7 @@ extern int NS_SetChannelVolumeSoundMem( int Channel, int VolumePal, int SoundHan
 		Vol8bit = _DTOL( ( _POW( (float)10, VolumePal / 50.0f / 100.0f ) / ( Max - Min ) ) * 256 ) ;
 	}
 
-	// ƒ{ƒŠƒ…[ƒ€‚ğƒZƒbƒg‚·‚é
+	// ãƒœãƒªãƒ¥ãƒ¼ãƒ ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 	for( i = 0 ; i < Sound->ValidBufferNum ; i ++ )
 	{
 		if( SoundBuffer_SetVolume( &Sound->Buffer[ i ], Channel, ( LONG )VolumePal ) < 0 )
@@ -5919,11 +5919,11 @@ extern int NS_SetChannelVolumeSoundMem( int Channel, int VolumePal, int SoundHan
 	Sound->BaseVolume[ Channel ] = VolumePal ;
 	Sound->BaseVolume8bit[ Channel ] = Vol8bit ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹‚Ìw’è‚Ìƒ`ƒƒƒ“ƒlƒ‹‚Ìƒ{ƒŠƒ…[ƒ€‚ğİ’è‚·‚é( 0 ` 255 )
+// ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ã®æŒ‡å®šã®ãƒãƒ£ãƒ³ãƒãƒ«ã®ãƒœãƒªãƒ¥ãƒ¼ãƒ ã‚’è¨­å®šã™ã‚‹( 0 ï½ 255 )
 extern int NS_ChangeChannelVolumeSoundMem( int Channel, int VolumePal, int SoundHandle )
 {
 	SOUND * Sound ;
@@ -5935,7 +5935,7 @@ extern int NS_ChangeChannelVolumeSoundMem( int Channel, int VolumePal, int Sound
 		return -1 ;
 	}
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( SOUNDHCHK( SoundHandle, Sound ) )
 		return -1 ;
 
@@ -5960,7 +5960,7 @@ extern int NS_ChangeChannelVolumeSoundMem( int Channel, int VolumePal, int Sound
 		if( vol < DX_DSBVOLUME_MIN ) vol = DX_DSBVOLUME_MIN ;
 	}
 
-	// ƒ{ƒŠƒ…[ƒ€‚ğƒZƒbƒg‚·‚é
+	// ãƒœãƒªãƒ¥ãƒ¼ãƒ ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 	for( i = 0 ; i < Sound->ValidBufferNum ; i ++ )
 	{
 		if( SoundBuffer_SetVolume( &Sound->Buffer[ i ], Channel, vol ) < 0 )
@@ -5972,11 +5972,11 @@ extern int NS_ChangeChannelVolumeSoundMem( int Channel, int VolumePal, int Sound
 	Sound->BaseVolume[ Channel ] = vol ;
 	Sound->BaseVolume8bit[ Channel ] = VolumePal ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹‚Ìw’è‚Ìƒ`ƒƒƒ“ƒlƒ‹‚Ìƒ{ƒŠƒ…[ƒ€‚ğæ“¾‚·‚é( 100•ª‚Ì1ƒfƒVƒxƒ‹’PˆÊ 0 ` 10000 )
+// ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ã®æŒ‡å®šã®ãƒãƒ£ãƒ³ãƒãƒ«ã®ãƒœãƒªãƒ¥ãƒ¼ãƒ ã‚’å–å¾—ã™ã‚‹( 100åˆ†ã®1ãƒ‡ã‚·ãƒ™ãƒ«å˜ä½ 0 ï½ 10000 )
 extern int NS_GetChannelVolumeSoundMem( int Channel, int SoundHandle )
 {
 	SOUND * Sound ;
@@ -5988,17 +5988,17 @@ extern int NS_GetChannelVolumeSoundMem( int Channel, int SoundHandle )
 		return -1 ;
 	}
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( SOUNDHCHK( SoundHandle, Sound ) )
 		return -1 ;
 
-	// ƒTƒEƒ“ƒhƒ^ƒCƒv‚ªƒXƒgƒŠ[ƒ€•—ƒTƒEƒ“ƒh‚¾‚Á‚½ê‡‚Í‚»‚Á‚¿‚Éˆ—‚ğˆÚ‚·
+	// ã‚µã‚¦ãƒ³ãƒ‰ã‚¿ã‚¤ãƒ—ãŒã‚¹ãƒˆãƒªãƒ¼ãƒ é¢¨ã‚µã‚¦ãƒ³ãƒ‰ã ã£ãŸå ´åˆã¯ãã£ã¡ã«å‡¦ç†ã‚’ç§»ã™
 	if( Sound->Type == DX_SOUNDTYPE_STREAMSTYLE )
 	{
-		// g—pŒ ‚ª–³‚¢ê‡‚ÍƒGƒ‰[
+		// ä½¿ç”¨æ¨©ãŒç„¡ã„å ´åˆã¯ã‚¨ãƒ©ãƒ¼
 		if( GetSoundBuffer( SoundHandle, Sound, &SBuffer, false ) == -1 ) return -1 ;
 	
-		// ƒ{ƒŠƒ…[ƒ€‚ğæ“¾‚·‚é
+		// ãƒœãƒªãƒ¥ãƒ¼ãƒ ã‚’å–å¾—ã™ã‚‹
 		if( SoundBuffer_GetVolume( SBuffer, Channel, &Result ) < 0 )
 		{
 			return -1 ;
@@ -6012,11 +6012,11 @@ extern int NS_GetChannelVolumeSoundMem( int Channel, int SoundHandle )
 		}
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return Result + 10000 ; 
 }
 
-// ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹‚Ìw’è‚Ìƒ`ƒƒƒ“ƒlƒ‹‚Ìƒ{ƒŠƒ…[ƒ€‚ğæ“¾‚·‚é( 0 ` 255 )
+// ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ã®æŒ‡å®šã®ãƒãƒ£ãƒ³ãƒãƒ«ã®ãƒœãƒªãƒ¥ãƒ¼ãƒ ã‚’å–å¾—ã™ã‚‹( 0 ï½ 255 )
 extern int NS_GetChannelVolumeSoundMem2( int Channel, int SoundHandle )
 {
 	SOUND * Sound ;
@@ -6028,17 +6028,17 @@ extern int NS_GetChannelVolumeSoundMem2( int Channel, int SoundHandle )
 		return -1 ;
 	}
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( SOUNDHCHK( SoundHandle, Sound ) )
 		return -1 ;
 
-	// ƒTƒEƒ“ƒhƒ^ƒCƒv‚ªƒXƒgƒŠ[ƒ€•—ƒTƒEƒ“ƒh‚¾‚Á‚½ê‡‚Í‚»‚Á‚¿‚Éˆ—‚ğˆÚ‚·
+	// ã‚µã‚¦ãƒ³ãƒ‰ã‚¿ã‚¤ãƒ—ãŒã‚¹ãƒˆãƒªãƒ¼ãƒ é¢¨ã‚µã‚¦ãƒ³ãƒ‰ã ã£ãŸå ´åˆã¯ãã£ã¡ã«å‡¦ç†ã‚’ç§»ã™
 	if( Sound->Type == DX_SOUNDTYPE_STREAMSTYLE )
 	{
-		// g—pŒ ‚ª–³‚¢ê‡‚ÍƒGƒ‰[
+		// ä½¿ç”¨æ¨©ãŒç„¡ã„å ´åˆã¯ã‚¨ãƒ©ãƒ¼
 		if( GetSoundBuffer( SoundHandle, Sound, &SBuffer, false ) == -1 ) return -1 ;
 	
-		// ƒ{ƒŠƒ…[ƒ€‚ğæ“¾‚·‚é
+		// ãƒœãƒªãƒ¥ãƒ¼ãƒ ã‚’å–å¾—ã™ã‚‹
 		if( SoundBuffer_GetVolume( SBuffer, Channel, &Result ) < 0 )
 		{
 			return -1 ;
@@ -6065,11 +6065,11 @@ extern int NS_GetChannelVolumeSoundMem2( int Channel, int SoundHandle )
 		Vol8bit = _DTOL( ( _POW( (float)10, Result / 50.0f / 100.0f ) / ( Max - Min ) ) * 255 ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return Vol8bit ; 
 }
 
-// ƒƒ‚ƒŠ‚É“Ç‚İ‚ñ‚¾WAVEƒf[ƒ^‚ÌÄ¶ü”g”‚ğİ’è‚·‚é
+// ãƒ¡ãƒ¢ãƒªã«èª­ã¿è¾¼ã‚“ã WAVEãƒ‡ãƒ¼ã‚¿ã®å†ç”Ÿå‘¨æ³¢æ•°ã‚’è¨­å®šã™ã‚‹
 extern int NS_SetFrequencySoundMem( int FrequencyPal , int SoundHandle )
 {
 	SOUND * Sound ;
@@ -6081,7 +6081,7 @@ extern int NS_SetFrequencySoundMem( int FrequencyPal , int SoundHandle )
 		return -1 ;
 	}
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( SOUNDHCHK( SoundHandle, Sound ) )
 		return -1 ;
 
@@ -6090,7 +6090,7 @@ extern int NS_SetFrequencySoundMem( int FrequencyPal , int SoundHandle )
 		FrequencyPal = 0 ;
 	}
 
-	// ü”g”‚ğƒZƒbƒg‚·‚é
+	// å‘¨æ³¢æ•°ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 	TempFrequency = FrequencyPal ;
 	if( Sound->PitchRateEnable )
 	{
@@ -6103,11 +6103,11 @@ extern int NS_SetFrequencySoundMem( int FrequencyPal , int SoundHandle )
 
 	Sound->BaseFrequency = FrequencyPal ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒƒ‚ƒŠ‚É“Ç‚İ‚ñ‚¾WAVEƒf[ƒ^‚ÌÄ¶ü”g”‚ğæ“¾‚·‚é
+// ãƒ¡ãƒ¢ãƒªã«èª­ã¿è¾¼ã‚“ã WAVEãƒ‡ãƒ¼ã‚¿ã®å†ç”Ÿå‘¨æ³¢æ•°ã‚’å–å¾—ã™ã‚‹
 extern int NS_GetFrequencySoundMem( int SoundHandle )
 {
 	SOUND * Sound ;
@@ -6119,20 +6119,20 @@ extern int NS_GetFrequencySoundMem( int SoundHandle )
 		return -1 ;
 	}
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( SOUNDHCHK( SoundHandle, Sound ) )
 		return -1 ;
 
-	// ü”g”‚ğ•Ô‚·
+	// å‘¨æ³¢æ•°ã‚’è¿”ã™
 //	return (int)Sound->BufferFormat.nSamplesPerSec ;
 
-	// ƒTƒEƒ“ƒhƒ^ƒCƒv‚ªƒXƒgƒŠ[ƒ€•—ƒTƒEƒ“ƒh‚¾‚Á‚½ê‡‚Í‚»‚Á‚¿‚Éˆ—‚ğˆÚ‚·
+	// ã‚µã‚¦ãƒ³ãƒ‰ã‚¿ã‚¤ãƒ—ãŒã‚¹ãƒˆãƒªãƒ¼ãƒ é¢¨ã‚µã‚¦ãƒ³ãƒ‰ã ã£ãŸå ´åˆã¯ãã£ã¡ã«å‡¦ç†ã‚’ç§»ã™
 	if( Sound->Type == DX_SOUNDTYPE_STREAMSTYLE )
 	{
-		// g—pŒ ‚ª–³‚¢ê‡‚ÍƒGƒ‰[
+		// ä½¿ç”¨æ¨©ãŒç„¡ã„å ´åˆã¯ã‚¨ãƒ©ãƒ¼
 		if( GetSoundBuffer( SoundHandle, Sound, &SBuffer, false ) == -1 ) return -1 ;
 	
-		// Ä¶ü”g”‚ğæ“¾‚·‚é
+		// å†ç”Ÿå‘¨æ³¢æ•°ã‚’å–å¾—ã™ã‚‹
 		SoundBuffer_GetFrequency( SBuffer, &Result ) ;
 	}
 	else
@@ -6140,11 +6140,11 @@ extern int NS_GetFrequencySoundMem( int SoundHandle )
 		SoundBuffer_GetFrequency( &Sound->Buffer[ Sound->Normal.BackPlayBufferNo ], &Result ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return ( int )Result ; 
 }
 
-// ƒƒ‚ƒŠ‚É“Ç‚İ‚ñ‚¾WAVEƒf[ƒ^‚ÌÄ¶ü”g”‚ğ“Ç‚İ‚İ’¼Œã‚Ìó‘Ô‚É–ß‚·
+// ãƒ¡ãƒ¢ãƒªã«èª­ã¿è¾¼ã‚“ã WAVEãƒ‡ãƒ¼ã‚¿ã®å†ç”Ÿå‘¨æ³¢æ•°ã‚’èª­ã¿è¾¼ã¿ç›´å¾Œã®çŠ¶æ…‹ã«æˆ»ã™
 extern	int NS_ResetFrequencySoundMem( int SoundHandle )
 {
 	SOUND * Sound ;
@@ -6154,16 +6154,16 @@ extern	int NS_ResetFrequencySoundMem( int SoundHandle )
 		return -1 ;
 	}
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( SOUNDHCHK( SoundHandle, Sound ) )
 		return -1 ;
 
-	// ü”g”‚ğ‰Šúó‘Ô‚É–ß‚·
+	// å‘¨æ³¢æ•°ã‚’åˆæœŸçŠ¶æ…‹ã«æˆ»ã™
 	return NS_SetFrequencySoundMem( (int)Sound->BufferFormat.nSamplesPerSec, SoundHandle ) ;
 }
 
 
-// ƒƒ‚ƒŠ‚É“Ç‚İ‚±‚ñ‚¾WAVEƒf[ƒ^‚ÌÄ¶‚Éƒpƒ“‚ğİ’è‚·‚é
+// ãƒ¡ãƒ¢ãƒªã«èª­ã¿ã“ã‚“ã WAVEãƒ‡ãƒ¼ã‚¿ã®å†ç”Ÿã«ãƒ‘ãƒ³ã‚’è¨­å®šã™ã‚‹
 extern	int	NS_SetNextPlayPanSoundMem( int PanPal, int SoundHandle )
 {
 	SOUND * Sound ;
@@ -6173,7 +6173,7 @@ extern	int	NS_SetNextPlayPanSoundMem( int PanPal, int SoundHandle )
 		return -1 ;
 	}
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( SOUNDHCHK( SoundHandle, Sound ) )
 		return -1 ;
 
@@ -6183,11 +6183,11 @@ extern	int	NS_SetNextPlayPanSoundMem( int PanPal, int SoundHandle )
 	Sound->NextPlayPan = PanPal ;
 	Sound->ValidNextPlayPan = 1 ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹‚ÌŸ‚ÌÄ¶‚É‚Ì‚İg—p‚·‚éƒpƒ“‚ğİ’è‚·‚é( -255 ` 255 )
+// ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ã®æ¬¡ã®å†ç”Ÿã«ã®ã¿ä½¿ç”¨ã™ã‚‹ãƒ‘ãƒ³ã‚’è¨­å®šã™ã‚‹( -255 ï½ 255 )
 extern int NS_ChangeNextPlayPanSoundMem( int PanPal, int SoundHandle )
 {
 	SOUND * Sound ;
@@ -6198,7 +6198,7 @@ extern int NS_ChangeNextPlayPanSoundMem( int PanPal, int SoundHandle )
 		return -1 ;
 	}
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( SOUNDHCHK( SoundHandle, Sound ) )
 		return -1 ;
 
@@ -6260,11 +6260,11 @@ extern int NS_ChangeNextPlayPanSoundMem( int PanPal, int SoundHandle )
 	Sound->NextPlayPan = pan ;
 	Sound->ValidNextPlayPan = 1 ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒƒ‚ƒŠ‚É“Ç‚İ‚±‚ñ‚¾WAVEƒf[ƒ^‚ÌÄ¶‚Éƒ{ƒŠƒ…[ƒ€‚ğİ’è‚·‚é( 100•ª‚Ì1ƒfƒVƒxƒ‹’PˆÊ )
+// ãƒ¡ãƒ¢ãƒªã«èª­ã¿ã“ã‚“ã WAVEãƒ‡ãƒ¼ã‚¿ã®å†ç”Ÿã«ãƒœãƒªãƒ¥ãƒ¼ãƒ ã‚’è¨­å®šã™ã‚‹( 100åˆ†ã®1ãƒ‡ã‚·ãƒ™ãƒ«å˜ä½ )
 extern	int	NS_SetNextPlayVolumeSoundMem( int VolumePal, int SoundHandle )
 {
 	SOUND * Sound ;
@@ -6275,7 +6275,7 @@ extern	int	NS_SetNextPlayVolumeSoundMem( int VolumePal, int SoundHandle )
 		return -1 ;
 	}
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( SOUNDHCHK( SoundHandle, Sound ) )
 		return -1 ;
 
@@ -6289,11 +6289,11 @@ extern	int	NS_SetNextPlayVolumeSoundMem( int VolumePal, int SoundHandle )
 		Sound->ValidNextPlayVolume[ i ] = 1 ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒƒ‚ƒŠ‚É“Ç‚İ‚±‚ñ‚¾WAVEƒf[ƒ^‚ÌÄ¶‚Éƒ{ƒŠƒ…[ƒ€‚ğİ’è‚·‚é( ƒp[ƒZƒ“ƒgw’è )
+// ãƒ¡ãƒ¢ãƒªã«èª­ã¿ã“ã‚“ã WAVEãƒ‡ãƒ¼ã‚¿ã®å†ç”Ÿã«ãƒœãƒªãƒ¥ãƒ¼ãƒ ã‚’è¨­å®šã™ã‚‹( ãƒ‘ãƒ¼ã‚»ãƒ³ãƒˆæŒ‡å®š )
 extern	int	NS_ChangeNextPlayVolumeSoundMem( int VolumePal, int SoundHandle )
 {
 	SOUND * Sound ;
@@ -6305,7 +6305,7 @@ extern	int	NS_ChangeNextPlayVolumeSoundMem( int VolumePal, int SoundHandle )
 		return -1 ;
 	}
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( SOUNDHCHK( SoundHandle, Sound ) )
 		return -1 ;
 
@@ -6335,11 +6335,11 @@ extern	int	NS_ChangeNextPlayVolumeSoundMem( int VolumePal, int SoundHandle )
 		Sound->ValidNextPlayVolume[ i ] = 1 ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹‚ÌŸ‚ÌÄ¶‚É‚Ì‚İg—p‚·‚éƒ`ƒƒƒ“ƒlƒ‹‚Ìƒ{ƒŠƒ…[ƒ€‚ğİ’è‚·‚é( 100•ª‚Ì1ƒfƒVƒxƒ‹’PˆÊ 0 ` 10000 )
+// ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ã®æ¬¡ã®å†ç”Ÿã«ã®ã¿ä½¿ç”¨ã™ã‚‹ãƒãƒ£ãƒ³ãƒãƒ«ã®ãƒœãƒªãƒ¥ãƒ¼ãƒ ã‚’è¨­å®šã™ã‚‹( 100åˆ†ã®1ãƒ‡ã‚·ãƒ™ãƒ«å˜ä½ 0 ï½ 10000 )
 extern int NS_SetNextPlayChannelVolumeSoundMem( int Channel, int VolumePal, int SoundHandle )
 {
 	SOUND * Sound ;
@@ -6349,7 +6349,7 @@ extern int NS_SetNextPlayChannelVolumeSoundMem( int Channel, int VolumePal, int 
 		return -1 ;
 	}
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( SOUNDHCHK( SoundHandle, Sound ) )
 		return -1 ;
 
@@ -6360,11 +6360,11 @@ extern int NS_SetNextPlayChannelVolumeSoundMem( int Channel, int VolumePal, int 
 	Sound->NextPlayVolume[ Channel ] = VolumePal ;
 	Sound->ValidNextPlayVolume[ Channel ] = 1 ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹‚ÌŸ‚ÌÄ¶‚É‚Ì‚İg—p‚·‚éƒ`ƒƒƒ“ƒlƒ‹‚Ìƒ{ƒŠƒ…[ƒ€‚ğİ’è‚·‚é( 0 ` 255 )
+// ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ã®æ¬¡ã®å†ç”Ÿã«ã®ã¿ä½¿ç”¨ã™ã‚‹ãƒãƒ£ãƒ³ãƒãƒ«ã®ãƒœãƒªãƒ¥ãƒ¼ãƒ ã‚’è¨­å®šã™ã‚‹( 0 ï½ 255 )
 extern int NS_ChangeNextPlayChannelVolumeSoundMem( int Channel, int VolumePal, int SoundHandle )
 {
 	SOUND * Sound ;
@@ -6375,7 +6375,7 @@ extern int NS_ChangeNextPlayChannelVolumeSoundMem( int Channel, int VolumePal, i
 		return -1 ;
 	}
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( SOUNDHCHK( SoundHandle, Sound ) )
 		return -1 ;
 
@@ -6402,11 +6402,11 @@ extern int NS_ChangeNextPlayChannelVolumeSoundMem( int Channel, int VolumePal, i
 	Sound->NextPlayVolume[ Channel ] = vol ;
 	Sound->ValidNextPlayVolume[ Channel ] = 1 ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒƒ‚ƒŠ‚É“Ç‚İ‚ñ‚¾WAVEƒf[ƒ^‚ÌÄ¶ü”g”‚ğİ’è‚·‚é
+// ãƒ¡ãƒ¢ãƒªã«èª­ã¿è¾¼ã‚“ã WAVEãƒ‡ãƒ¼ã‚¿ã®å†ç”Ÿå‘¨æ³¢æ•°ã‚’è¨­å®šã™ã‚‹
 extern	int	NS_SetNextPlayFrequencySoundMem( int FrequencyPal, int SoundHandle )
 {
 	SOUND * Sound ;
@@ -6416,7 +6416,7 @@ extern	int	NS_SetNextPlayFrequencySoundMem( int FrequencyPal, int SoundHandle )
 		return -1 ;
 	}
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( SOUNDHCHK( SoundHandle, Sound ) )
 		return -1 ;
 
@@ -6428,12 +6428,12 @@ extern	int	NS_SetNextPlayFrequencySoundMem( int FrequencyPal, int SoundHandle )
 	Sound->NextPlayFrequency = FrequencyPal ;
 	Sound->ValidNextPlayFrequency = 1 ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
 
-// ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹‚ÌÄ¶ˆÊ’u‚ğƒTƒ“ƒvƒ‹’PˆÊ‚Å•ÏX‚·‚é(Ä¶‚ª~‚Ü‚Á‚Ä‚¢‚é‚Ì‚İ—LŒø)
+// ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ã®å†ç”Ÿä½ç½®ã‚’ã‚µãƒ³ãƒ—ãƒ«å˜ä½ã§å¤‰æ›´ã™ã‚‹(å†ç”ŸãŒæ­¢ã¾ã£ã¦ã„ã‚‹æ™‚ã®ã¿æœ‰åŠ¹)
 extern int NS_SetCurrentPositionSoundMem( LONGLONG SamplePosition, int SoundHandle )
 {
 	SOUND * sd ;
@@ -6443,15 +6443,15 @@ extern int NS_SetCurrentPositionSoundMem( LONGLONG SamplePosition, int SoundHand
 		return -1 ;
 	}
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( SOUNDHCHK( SoundHandle, sd ) )
 		return -1 ;
 
-	// •ÏX
+	// å¤‰æ›´
 	return NS_SetSoundCurrentPosition( sd->BufferFormat.nBlockAlign * SamplePosition, SoundHandle ) ;
 }
 
-// ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹‚ÌÄ¶ˆÊ’u‚ğƒTƒ“ƒvƒ‹’PˆÊ‚Åæ“¾‚·‚é
+// ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ã®å†ç”Ÿä½ç½®ã‚’ã‚µãƒ³ãƒ—ãƒ«å˜ä½ã§å–å¾—ã™ã‚‹
 extern LONGLONG NS_GetCurrentPositionSoundMem( int SoundHandle )
 {
 	SOUND * sd ;
@@ -6461,15 +6461,15 @@ extern LONGLONG NS_GetCurrentPositionSoundMem( int SoundHandle )
 		return -1 ;
 	}
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( SOUNDHCHK( SoundHandle, sd ) )
 		return -1 ;
 
-	// æ“¾
+	// å–å¾—
 	return NS_GetSoundCurrentPosition( SoundHandle ) / sd->BufferFormat.nBlockAlign ;
 }
 
-// ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹‚ÌÄ¶ˆÊ’u‚ğƒoƒCƒg’PˆÊ‚Å•ÏX‚·‚é(Ä¶‚ª~‚Ü‚Á‚Ä‚¢‚é‚Ì‚İ—LŒø)
+// ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ã®å†ç”Ÿä½ç½®ã‚’ãƒã‚¤ãƒˆå˜ä½ã§å¤‰æ›´ã™ã‚‹(å†ç”ŸãŒæ­¢ã¾ã£ã¦ã„ã‚‹æ™‚ã®ã¿æœ‰åŠ¹)
 extern int NS_SetSoundCurrentPosition( LONGLONG Byte, int SoundHandle )
 {
 	SOUND * sd ;
@@ -6481,23 +6481,23 @@ extern int NS_SetSoundCurrentPosition( LONGLONG Byte, int SoundHandle )
 		return -1 ;
 	}
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( SOUNDHCHK( SoundHandle, sd ) )
 		return -1 ;
 
-	// ƒTƒEƒ“ƒhƒ^ƒCƒv‚ªƒXƒgƒŠ[ƒ€•—ƒTƒEƒ“ƒh‚¾‚Á‚½ê‡‚Í‚»‚Á‚¿‚Éˆ—‚ğˆÚ‚·
+	// ã‚µã‚¦ãƒ³ãƒ‰ã‚¿ã‚¤ãƒ—ãŒã‚¹ãƒˆãƒªãƒ¼ãƒ é¢¨ã‚µã‚¦ãƒ³ãƒ‰ã ã£ãŸå ´åˆã¯ãã£ã¡ã«å‡¦ç†ã‚’ç§»ã™
 	if( sd->Type == DX_SOUNDTYPE_STREAMSTYLE )
 	{
 		return NS_SetStreamSoundCurrentPosition( Byte, SoundHandle ) ;
 	}
 
-	// Ä¶ˆÊ’u‚ğ•ÏX‚·‚é
+	// å†ç”Ÿä½ç½®ã‚’å¤‰æ›´ã™ã‚‹
 //	sd->Buffer[ i ]->SetCurrentPosition( Byte ) ;
 //	SoundBuffer_SetCurrentPosition( &sd->Buffer[ i ], Byte ) ;
 	return SoundBuffer_SetCurrentPosition( &sd->Buffer[ sd->Normal.BackPlayBufferNo ], ( DWORD )Byte ) ;
 }
 
-// ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹‚ÌÄ¶ˆÊ’u‚ğƒoƒCƒg’PˆÊ‚Åæ“¾‚·‚é
+// ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ã®å†ç”Ÿä½ç½®ã‚’ãƒã‚¤ãƒˆå˜ä½ã§å–å¾—ã™ã‚‹
 extern LONGLONG NS_GetSoundCurrentPosition( int SoundHandle )
 {
 	SOUND * sd ;
@@ -6508,24 +6508,24 @@ extern LONGLONG NS_GetSoundCurrentPosition( int SoundHandle )
 		return -1 ;
 	}
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( SOUNDHCHK( SoundHandle, sd ) )
 		return -1 ;
 
-	// ƒTƒEƒ“ƒhƒ^ƒCƒv‚ªƒXƒgƒŠ[ƒ€•—ƒTƒEƒ“ƒh‚¾‚Á‚½ê‡‚Í‚»‚Á‚¿‚Éˆ—‚ğˆÚ‚·
+	// ã‚µã‚¦ãƒ³ãƒ‰ã‚¿ã‚¤ãƒ—ãŒã‚¹ãƒˆãƒªãƒ¼ãƒ é¢¨ã‚µã‚¦ãƒ³ãƒ‰ã ã£ãŸå ´åˆã¯ãã£ã¡ã«å‡¦ç†ã‚’ç§»ã™
 	if( sd->Type == DX_SOUNDTYPE_STREAMSTYLE )
 	{
 		return NS_GetStreamSoundCurrentPosition( SoundHandle ) ;
 	}
 
-	// Ä¶’†‚Ìƒoƒbƒtƒ@‚ÌÄ¶ˆÊ’u‚ğ•Ô‚·
+	// å†ç”Ÿä¸­ã®ãƒãƒƒãƒ•ã‚¡ã®å†ç”Ÿä½ç½®ã‚’è¿”ã™
 //	sd->Buffer[ Sound->Normal.BackPlayBufferNo ]->GetCurrentPosition( &pos, NULL ) ;
 	SoundBuffer_GetCurrentPosition( &sd->Buffer[ sd->Normal.BackPlayBufferNo ], &pos, NULL ) ;
 
 	return ( LONGLONG )pos ;
 }
 
-// ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹‚ÌÄ¶ˆÊ’u‚ğƒ~ƒŠ•b’PˆÊ‚Åİ’è‚·‚é(ˆ³kŒ`®‚Ìê‡‚Í³‚µ‚­İ’è‚³‚ê‚È‚¢ê‡‚ª‚ ‚é)
+// ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ã®å†ç”Ÿä½ç½®ã‚’ãƒŸãƒªç§’å˜ä½ã§è¨­å®šã™ã‚‹(åœ§ç¸®å½¢å¼ã®å ´åˆã¯æ­£ã—ãè¨­å®šã•ã‚Œãªã„å ´åˆãŒã‚ã‚‹)
 extern int NS_SetSoundCurrentTime( LONGLONG Time, int SoundHandle )
 {
 	SOUND * sd ;
@@ -6537,17 +6537,17 @@ extern int NS_SetSoundCurrentTime( LONGLONG Time, int SoundHandle )
 		return -1 ;
 	}
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( SOUNDHCHK( SoundHandle, sd ) )
 		return -1 ;
 
-	// ƒTƒEƒ“ƒhƒ^ƒCƒv‚ªƒXƒgƒŠ[ƒ€•—ƒTƒEƒ“ƒh‚¾‚Á‚½ê‡‚Í‚»‚Á‚¿‚Éˆ—‚ğˆÚ‚·
+	// ã‚µã‚¦ãƒ³ãƒ‰ã‚¿ã‚¤ãƒ—ãŒã‚¹ãƒˆãƒªãƒ¼ãƒ é¢¨ã‚µã‚¦ãƒ³ãƒ‰ã ã£ãŸå ´åˆã¯ãã£ã¡ã«å‡¦ç†ã‚’ç§»ã™
 	if( sd->Type == DX_SOUNDTYPE_STREAMSTYLE )
 	{
 		return NS_SetStreamSoundCurrentTime( Time, SoundHandle ) ;
 	}
 
-	// Ä¶ˆÊ’u‚ğ•ÏX‚·‚é
+	// å†ç”Ÿä½ç½®ã‚’å¤‰æ›´ã™ã‚‹
 //	time = _DTOL( ( (double)sd->BufferFormat.nSamplesPerSec * Time / 1000 ) * sd->BufferFormat.nBlockAlign ) ;
 //	for( i = 0 ; i < sd->ValidBufferNum ; i ++ )
 	time = MilliSecPositionToSamplePosition( ( int )sd->BufferFormat.nSamplesPerSec, Time ) * sd->BufferFormat.nBlockAlign ;
@@ -6557,7 +6557,7 @@ extern int NS_SetSoundCurrentTime( LONGLONG Time, int SoundHandle )
 	return SoundBuffer_SetCurrentPosition( &sd->Buffer[ sd->Normal.BackPlayBufferNo ], ( DWORD )time ) ;
 }
 
-// GetSoundTotalSample ‚ÌƒOƒ[ƒoƒ‹•Ï”‚ÉƒAƒNƒZƒX‚µ‚È‚¢ƒo[ƒWƒ‡ƒ“
+// GetSoundTotalSample ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°ã«ã‚¢ã‚¯ã‚»ã‚¹ã—ãªã„ãƒãƒ¼ã‚¸ãƒ§ãƒ³
 extern LONGLONG GetSoundTotalSample_UseGParam( int SoundHandle, int ASyncThread )
 {
 	SOUND * sd ;
@@ -6568,7 +6568,7 @@ extern LONGLONG GetSoundTotalSample_UseGParam( int SoundHandle, int ASyncThread 
 		return -1 ;
 	}
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( ASyncThread )
 	{
 		if( SOUNDHCHK_ASYNC( SoundHandle, sd ) )
@@ -6580,29 +6580,29 @@ extern LONGLONG GetSoundTotalSample_UseGParam( int SoundHandle, int ASyncThread 
 			return -1 ;
 	}
 
-	// ƒTƒEƒ“ƒhƒ^ƒCƒv‚É‚æ‚Á‚Äˆ—‚ğ•ªŠò
+	// ã‚µã‚¦ãƒ³ãƒ‰ã‚¿ã‚¤ãƒ—ã«ã‚ˆã£ã¦å‡¦ç†ã‚’åˆ†å²
 	switch( sd->Type )
 	{
-	case DX_SOUNDTYPE_STREAMSTYLE : // ƒXƒgƒŠ[ƒ€ƒ^ƒCƒv‚Ìê‡
+	case DX_SOUNDTYPE_STREAMSTYLE : // ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‚¿ã‚¤ãƒ—ã®å ´åˆ
 		sample = sd->Stream.TotalSample ;
 		break ;
 		
-	case DX_SOUNDTYPE_NORMAL :		// ƒm[ƒ}ƒ‹ƒ^ƒCƒv‚Ìê‡
+	case DX_SOUNDTYPE_NORMAL :		// ãƒãƒ¼ãƒãƒ«ã‚¿ã‚¤ãƒ—ã®å ´åˆ
 		sample = ( LONGLONG )( sd->Normal.WaveSize / sd->BufferFormat.nBlockAlign ) ;
 		break ;
 	}
 	
-	// I—¹
+	// çµ‚äº†
 	return sample ;
 }
 
-// ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹‚Ì‰¹‚Ì‘ŠÔ‚ğæ“¾‚·‚é(’PˆÊ‚ÍƒTƒ“ƒvƒ‹)
+// ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ã®éŸ³ã®ç·æ™‚é–“ã‚’å–å¾—ã™ã‚‹(å˜ä½ã¯ã‚µãƒ³ãƒ—ãƒ«)
 extern LONGLONG NS_GetSoundTotalSample( int SoundHandle )
 {
 	return GetSoundTotalSample_UseGParam( SoundHandle, FALSE ) ;
 }
 
-// ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹‚Ì‰¹‚Ì‘ŠÔ‚ğæ“¾‚·‚é(’PˆÊ‚Íƒ~ƒŠ•b)
+// ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ã®éŸ³ã®ç·æ™‚é–“ã‚’å–å¾—ã™ã‚‹(å˜ä½ã¯ãƒŸãƒªç§’)
 extern LONGLONG NS_GetSoundTotalTime( int SoundHandle )
 {
 	SOUND * sd ;
@@ -6612,15 +6612,15 @@ extern LONGLONG NS_GetSoundTotalTime( int SoundHandle )
 		return -1 ;
 	}
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( SOUNDHCHK( SoundHandle, sd ) )
 		return -1 ;
 	
-	// ƒ~ƒŠ•b‚É•ÏŠ·‚µ‚Ä•Ô‚·
+	// ãƒŸãƒªç§’ã«å¤‰æ›ã—ã¦è¿”ã™
 	return SamplePositionToMilliSecPosition( ( int )sd->BufferFormat.nSamplesPerSec, NS_GetSoundTotalSample( SoundHandle ) ) ;
 }
 
-// ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹‚ÌÄ¶ˆÊ’u‚ğƒ~ƒŠ•b’PˆÊ‚Åæ“¾‚·‚é(ˆ³kŒ`®‚Ìê‡‚Í³‚µ‚¢’l‚ª•Ô‚Á‚Ä‚±‚È‚¢ê‡‚ª‚ ‚é)
+// ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ã®å†ç”Ÿä½ç½®ã‚’ãƒŸãƒªç§’å˜ä½ã§å–å¾—ã™ã‚‹(åœ§ç¸®å½¢å¼ã®å ´åˆã¯æ­£ã—ã„å€¤ãŒè¿”ã£ã¦ã“ãªã„å ´åˆãŒã‚ã‚‹)
 extern LONGLONG NS_GetSoundCurrentTime( int SoundHandle )
 {
 	SOUND * sd ;
@@ -6631,17 +6631,17 @@ extern LONGLONG NS_GetSoundCurrentTime( int SoundHandle )
 		return -1 ;
 	}
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( SOUNDHCHK( SoundHandle, sd ) )
 		return -1 ;
 
-	// ƒTƒEƒ“ƒhƒ^ƒCƒv‚ªƒXƒgƒŠ[ƒ€•—ƒTƒEƒ“ƒh‚¾‚Á‚½ê‡‚Í‚»‚Á‚¿‚Éˆ—‚ğˆÚ‚·
+	// ã‚µã‚¦ãƒ³ãƒ‰ã‚¿ã‚¤ãƒ—ãŒã‚¹ãƒˆãƒªãƒ¼ãƒ é¢¨ã‚µã‚¦ãƒ³ãƒ‰ã ã£ãŸå ´åˆã¯ãã£ã¡ã«å‡¦ç†ã‚’ç§»ã™
 	if( sd->Type == DX_SOUNDTYPE_STREAMSTYLE )
 	{
 		return NS_GetStreamSoundCurrentTime( SoundHandle ) ;
 	}
 
-	// ƒTƒEƒ“ƒhƒoƒbƒtƒ@‚O‚ÌÄ¶ˆÊ’u‚ğæ“¾‚·‚é
+	// ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡ï¼ã®å†ç”Ÿä½ç½®ã‚’å–å¾—ã™ã‚‹
 //	sd->Buffer[ 0 ]->GetCurrentPosition( &time, NULL ) ;
 	SoundBuffer_GetCurrentPosition( &sd->Buffer[ sd->Normal.BackPlayBufferNo ], &time, NULL ) ;
 //	return _DTOL( (double)time * 1000 / ( sd->BufferFormat.nSamplesPerSec * sd->BufferFormat.nBlockAlign ) ) ;
@@ -6649,7 +6649,7 @@ extern LONGLONG NS_GetSoundCurrentTime( int SoundHandle )
 }
 
 
-// ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹‚Éƒ‹[ƒvˆÊ’u‚ğİ’è‚·‚é
+// ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ã«ãƒ«ãƒ¼ãƒ—ä½ç½®ã‚’è¨­å®šã™ã‚‹
 extern int NS_SetLoopPosSoundMem( LONGLONG LoopTime, int SoundHandle )
 {
 	SOUND * sd ;
@@ -6659,15 +6659,15 @@ extern int NS_SetLoopPosSoundMem( LONGLONG LoopTime, int SoundHandle )
 		return -1 ;
 	}
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( SOUNDHCHK( SoundHandle, sd ) )
 		return -1 ;
 
-	// ƒ‹[ƒvƒTƒ“ƒvƒ‹ˆÊ’u‚ğƒZƒbƒg
+	// ãƒ«ãƒ¼ãƒ—ã‚µãƒ³ãƒ—ãƒ«ä½ç½®ã‚’ã‚»ãƒƒãƒˆ
 	return NS_SetLoopSamplePosSoundMem( LoopTime == -1 ? -1 : MilliSecPositionToSamplePosition( ( int )sd->BufferFormat.nSamplesPerSec, LoopTime ), SoundHandle ) ;
 }
 
-// SetLoopTimePosSoundMem ‚ÌƒOƒ[ƒoƒ‹•Ï”‚ÉƒAƒNƒZƒX‚µ‚È‚¢ƒo[ƒWƒ‡ƒ“
+// SetLoopTimePosSoundMem ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°ã«ã‚¢ã‚¯ã‚»ã‚¹ã—ãªã„ãƒãƒ¼ã‚¸ãƒ§ãƒ³
 extern int SetLoopTimePosSoundMem_UseGParam( LONGLONG LoopTime, int SoundHandle, int ASyncThread )
 {
 	SOUND * sd ;
@@ -6677,7 +6677,7 @@ extern int SetLoopTimePosSoundMem_UseGParam( LONGLONG LoopTime, int SoundHandle,
 		return -1 ;
 	}
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( ASyncThread )
 	{
 		if( SOUNDHCHK_ASYNC( SoundHandle, sd ) )
@@ -6689,20 +6689,20 @@ extern int SetLoopTimePosSoundMem_UseGParam( LONGLONG LoopTime, int SoundHandle,
 			return -1 ;
 	}
 	
-	// ƒ‹[ƒvƒTƒ“ƒvƒ‹ˆÊ’u‚ğƒZƒbƒg
+	// ãƒ«ãƒ¼ãƒ—ã‚µãƒ³ãƒ—ãƒ«ä½ç½®ã‚’ã‚»ãƒƒãƒˆ
 	return SetLoopSamplePosSoundMem_UseGParam(
 		LoopTime == -1 ? -1 : MilliSecPositionToSamplePosition( ( int )sd->BufferFormat.nSamplesPerSec, LoopTime ),
 		SoundHandle, ASyncThread
 	) ;
 }
 
-// ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹‚Éƒ‹[ƒvˆÊ’u‚ğİ’è‚·‚é
+// ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ã«ãƒ«ãƒ¼ãƒ—ä½ç½®ã‚’è¨­å®šã™ã‚‹
 extern int NS_SetLoopTimePosSoundMem( LONGLONG LoopTime, int SoundHandle )
 {
 	return SetLoopTimePosSoundMem_UseGParam( LoopTime, SoundHandle, FALSE ) ;
 }
 
-// SetLoopSamplePosSoundMem ‚ÌƒOƒ[ƒoƒ‹•Ï”‚ÉƒAƒNƒZƒX‚µ‚È‚¢ƒo[ƒWƒ‡ƒ“
+// SetLoopSamplePosSoundMem ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°ã«ã‚¢ã‚¯ã‚»ã‚¹ã—ãªã„ãƒãƒ¼ã‚¸ãƒ§ãƒ³
 extern int SetLoopSamplePosSoundMem_UseGParam( LONGLONG LoopSamplePosition, int SoundHandle, int ASyncThread )
 {
 	SOUND * sd ;
@@ -6717,10 +6717,10 @@ extern int SetLoopSamplePosSoundMem_UseGParam( LONGLONG LoopSamplePosition, int 
 		return -1 ;
 	}
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 	CRITICALSECTION_LOCK( &HandleManageArray[ DX_HANDLETYPE_SOUND ].CriticalSection ) ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( ASyncThread )
 	{
 		if( SOUNDHCHK_ASYNC( SoundHandle, sd ) )
@@ -6732,11 +6732,11 @@ extern int SetLoopSamplePosSoundMem_UseGParam( LONGLONG LoopSamplePosition, int 
 			goto ERR ;
 	}
 
-	// w’è‚ÌˆÊ’u‚ª‰¹ºƒtƒ@ƒCƒ‹‘S‘Ì‚æ‚è‚à’·‚¢ê‡‚ÍƒGƒ‰[
+	// æŒ‡å®šã®ä½ç½®ãŒéŸ³å£°ãƒ•ã‚¡ã‚¤ãƒ«å…¨ä½“ã‚ˆã‚Šã‚‚é•·ã„å ´åˆã¯ã‚¨ãƒ©ãƒ¼
 	if( GetSoundTotalSample_UseGParam( SoundHandle, ASyncThread ) <= LoopSamplePosition )
 		goto ERR ;
 
-	// ƒ‹[ƒvˆÊ’u‚ª -1 ‚¾‚Á‚½ê‡‚Íƒ‹[ƒvˆÊ’uİ’è‚ğ‰ğœ‚·‚é
+	// ãƒ«ãƒ¼ãƒ—ä½ç½®ãŒ -1 ã ã£ãŸå ´åˆã¯ãƒ«ãƒ¼ãƒ—ä½ç½®è¨­å®šã‚’è§£é™¤ã™ã‚‹
 	if( LoopSamplePosition == -1 )
 	{
 		pl = &sd->Stream.File[0] ;
@@ -6745,31 +6745,31 @@ extern int SetLoopSamplePosSoundMem_UseGParam( LONGLONG LoopSamplePosition, int 
 		goto END ;
 	}
 
-	// ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹‚ªƒXƒgƒŠ[ƒ€Ä¶‚Å‚Í‚È‚©‚Á‚½‚çƒXƒgƒŠ[ƒ€Ä¶‚Ìƒnƒ“ƒhƒ‹‚É•ÏX‚·‚é
+	// ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ãŒã‚¹ãƒˆãƒªãƒ¼ãƒ å†ç”Ÿã§ã¯ãªã‹ã£ãŸã‚‰ã‚¹ãƒˆãƒªãƒ¼ãƒ å†ç”Ÿã®ãƒãƒ³ãƒ‰ãƒ«ã«å¤‰æ›´ã™ã‚‹
 	if( sd->Type == DX_SOUNDTYPE_NORMAL )
 	{
-		// ”ñ“¯ŠúƒXƒŒƒbƒh‚Ìê‡‚ÍƒGƒ‰[
+		// éåŒæœŸã‚¹ãƒ¬ãƒƒãƒ‰ã®å ´åˆã¯ã‚¨ãƒ©ãƒ¼
 		if( ASyncThread )
 			goto ERR ;
 
 		if( SoundTypeChangeToStream( SoundHandle ) < 0 )
 			goto ERR ;
 
-		// ƒGƒ‰[”»’è
+		// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 		if( SOUNDHCHK( SoundHandle, sd ) )
 			goto ERR ;
 	}
 
-	// ¡‚ÌŠƒXƒgƒŠ[ƒ€ƒf[ƒ^‚ª‚Q‚ÂˆÈã‚ ‚Á‚½‚ç–³—
+	// ä»Šã®æ‰€ã‚¹ãƒˆãƒªãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿ãŒï¼’ã¤ä»¥ä¸Šã‚ã£ãŸã‚‰ç„¡ç†
 	if( sd->Stream.FileNum > 1 )
 	{
-		DXST_LOGFILE_ADDUTF16LE( "\x8c\x4e\x64\x30\xe5\x4e\x0a\x4e\x6e\x30\xf3\x97\xf0\x58\xd5\x30\xa1\x30\xa4\x30\xeb\x30\x4b\x30\x89\x30\x5c\x4f\x10\x62\x55\x30\x8c\x30\x5f\x30\xb5\x30\xa6\x30\xf3\x30\xc9\x30\xcf\x30\xf3\x30\xc9\x30\xeb\x30\x6b\x30\xeb\x30\xfc\x30\xd7\x30\xdd\x30\xa4\x30\xf3\x30\xc8\x30\x92\x30\x07\x63\x9a\x5b\x59\x30\x8b\x30\x8b\x4e\x6f\x30\xfa\x51\x65\x67\x7e\x30\x5b\x30\x93\x30\x0a\x00\x00"/*@ L"“ñ‚ÂˆÈã‚Ì‰¹ºƒtƒ@ƒCƒ‹‚©‚çì¬‚³‚ê‚½ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹‚Éƒ‹[ƒvƒ|ƒCƒ“ƒg‚ğw’è‚·‚é–‚Ío—ˆ‚Ü‚¹‚ñ\n" @*/ ) ;
+		DXST_LOGFILE_ADDUTF16LE( "\x8c\x4e\x64\x30\xe5\x4e\x0a\x4e\x6e\x30\xf3\x97\xf0\x58\xd5\x30\xa1\x30\xa4\x30\xeb\x30\x4b\x30\x89\x30\x5c\x4f\x10\x62\x55\x30\x8c\x30\x5f\x30\xb5\x30\xa6\x30\xf3\x30\xc9\x30\xcf\x30\xf3\x30\xc9\x30\xeb\x30\x6b\x30\xeb\x30\xfc\x30\xd7\x30\xdd\x30\xa4\x30\xf3\x30\xc8\x30\x92\x30\x07\x63\x9a\x5b\x59\x30\x8b\x30\x8b\x4e\x6f\x30\xfa\x51\x65\x67\x7e\x30\x5b\x30\x93\x30\x0a\x00\x00"/*@ L"äºŒã¤ä»¥ä¸Šã®éŸ³å£°ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰ä½œæˆã•ã‚ŒãŸã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ã«ãƒ«ãƒ¼ãƒ—ãƒã‚¤ãƒ³ãƒˆã‚’æŒ‡å®šã™ã‚‹äº‹ã¯å‡ºæ¥ã¾ã›ã‚“\n" @*/ ) ;
 		goto ERR ;
 	}
 
 	pl = &sd->Stream.File[0] ;
 
-/*	// –³ˆ³k wave ‚© OGG ˆÈŠO‚Í–³—
+/*	// ç„¡åœ§ç¸® wave ã‹ OGG ä»¥å¤–ã¯ç„¡ç†
 	if( pl->DataType != DX_SOUNDDATATYPE_MEMNOPRESS &&
 #ifndef DX_NON_OGGVORBIS
 		pl->OggFlag == FALSE && 
@@ -6777,44 +6777,44 @@ extern int SetLoopSamplePosSoundMem_UseGParam( LONGLONG LoopSamplePosition, int 
 		( pl->DataType == DX_SOUNDDATATYPE_MEMPRESS ||
 			( pl->DataType == DX_SOUNDDATATYPE_FILE && pl->FileData.FormatMatchFlag == FALSE ) ) )
 	{
-		DXST_LOGFILE_ADDUTF16LE( L"–³ˆ³k‚v‚`‚u‚dƒtƒ@ƒCƒ‹á‚µ‚­‚Í‚n‚f‚fƒtƒ@ƒCƒ‹ˆÈŠO‚Íƒ‹[ƒvƒ|ƒCƒ“ƒg‚ğw’è‚·‚é–‚Ío—ˆ‚Ü‚¹‚ñ\n" ) ;
+		DXST_LOGFILE_ADDUTF16LE( L"ç„¡åœ§ç¸®ï¼·ï¼¡ï¼¶ï¼¥ãƒ•ã‚¡ã‚¤ãƒ«è‹¥ã—ãã¯ï¼¯ï¼§ï¼§ãƒ•ã‚¡ã‚¤ãƒ«ä»¥å¤–ã¯ãƒ«ãƒ¼ãƒ—ãƒã‚¤ãƒ³ãƒˆã‚’æŒ‡å®šã™ã‚‹äº‹ã¯å‡ºæ¥ã¾ã›ã‚“\n" ) ;
 
 		
 		
 		return -1 ;
 	}
 */
-	// ƒ‹[ƒvˆÊ’u‚ğİ’è
+	// ãƒ«ãƒ¼ãƒ—ä½ç½®ã‚’è¨­å®š
 	pl->LoopSamplePosition = LoopSamplePosition ;
 	SetupSeekPosSoundConvert( &pl->ConvData, LoopSamplePosition ) ;
 
-	// –³ŒÀƒ‹[ƒv‚Éİ’è
+	// ç„¡é™ãƒ«ãƒ¼ãƒ—ã«è¨­å®š
 	pl->LoopNum = -1 ;
 
 END :
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 	CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_SOUND ].CriticalSection ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 
 ERR :
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 	CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_SOUND ].CriticalSection ) ;
 
-	// ƒGƒ‰[I—¹
+	// ã‚¨ãƒ©ãƒ¼çµ‚äº†
 	return -1 ;
 }
 
-// ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹‚Éƒ‹[ƒvˆÊ’u‚ğİ’è‚·‚é
+// ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ã«ãƒ«ãƒ¼ãƒ—ä½ç½®ã‚’è¨­å®šã™ã‚‹
 extern int NS_SetLoopSamplePosSoundMem( LONGLONG LoopSamplePosition, int SoundHandle )
 {
 	return SetLoopSamplePosSoundMem_UseGParam( LoopSamplePosition, SoundHandle, FALSE ) ;
 }
 
-// SetLoopStartTimePosSoundMem ‚ÌƒOƒ[ƒoƒ‹•Ï”‚ÉƒAƒNƒZƒX‚µ‚È‚¢ƒo[ƒWƒ‡ƒ“
+// SetLoopStartTimePosSoundMem ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°ã«ã‚¢ã‚¯ã‚»ã‚¹ã—ãªã„ãƒãƒ¼ã‚¸ãƒ§ãƒ³
 extern int SetLoopStartTimePosSoundMem_UseGParam( LONGLONG LoopStartTime, int SoundHandle, int ASyncThread )
 {
 	SOUND * sd ;
@@ -6824,7 +6824,7 @@ extern int SetLoopStartTimePosSoundMem_UseGParam( LONGLONG LoopStartTime, int So
 		return -1 ;
 	}
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( ASyncThread )
 	{
 		if( SOUNDHCHK_ASYNC( SoundHandle, sd ) )
@@ -6836,20 +6836,20 @@ extern int SetLoopStartTimePosSoundMem_UseGParam( LONGLONG LoopStartTime, int So
 			return -1 ;
 	}
 
-	// ƒ‹[ƒvƒTƒ“ƒvƒ‹ˆÊ’u‚ğƒZƒbƒg
+	// ãƒ«ãƒ¼ãƒ—ã‚µãƒ³ãƒ—ãƒ«ä½ç½®ã‚’ã‚»ãƒƒãƒˆ
 	return SetLoopStartSamplePosSoundMem_UseGParam(
 		LoopStartTime == -1 ? -1 : MilliSecPositionToSamplePosition( ( int )sd->BufferFormat.nSamplesPerSec, LoopStartTime ),
 		SoundHandle, ASyncThread
 	) ;
 }
 
-// ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹‚Éƒ‹[ƒvŠJnˆÊ’u‚ğİ’è‚·‚é
+// ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ã«ãƒ«ãƒ¼ãƒ—é–‹å§‹ä½ç½®ã‚’è¨­å®šã™ã‚‹
 extern int NS_SetLoopStartTimePosSoundMem( LONGLONG LoopStartTime, int SoundHandle )
 {
 	return SetLoopStartTimePosSoundMem_UseGParam( LoopStartTime, SoundHandle, FALSE ) ;
 }
 
-// SetLoopStartTimePosSoundMem ‚ÌƒOƒ[ƒoƒ‹•Ï”‚ÉƒAƒNƒZƒX‚µ‚È‚¢ƒo[ƒWƒ‡ƒ“
+// SetLoopStartTimePosSoundMem ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°ã«ã‚¢ã‚¯ã‚»ã‚¹ã—ãªã„ãƒãƒ¼ã‚¸ãƒ§ãƒ³
 extern int SetLoopStartSamplePosSoundMem_UseGParam( LONGLONG LoopStartSamplePosition, int SoundHandle, int ASyncThread )
 {
 	SOUND * sd ;
@@ -6864,10 +6864,10 @@ extern int SetLoopStartSamplePosSoundMem_UseGParam( LONGLONG LoopStartSamplePosi
 		return -1 ;
 	}
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 	CRITICALSECTION_LOCK( &HandleManageArray[ DX_HANDLETYPE_SOUND ].CriticalSection ) ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( ASyncThread )
 	{
 		if( SOUNDHCHK_ASYNC( SoundHandle, sd ) )
@@ -6879,11 +6879,11 @@ extern int SetLoopStartSamplePosSoundMem_UseGParam( LONGLONG LoopStartSamplePosi
 			goto ERR ;
 	}
 
-	// w’è‚ÌˆÊ’u‚ª‰¹ºƒtƒ@ƒCƒ‹‘S‘Ì‚æ‚è‚à’·‚¢ê‡‚ÍƒGƒ‰[
+	// æŒ‡å®šã®ä½ç½®ãŒéŸ³å£°ãƒ•ã‚¡ã‚¤ãƒ«å…¨ä½“ã‚ˆã‚Šã‚‚é•·ã„å ´åˆã¯ã‚¨ãƒ©ãƒ¼
 	if( GetSoundTotalSample_UseGParam( SoundHandle, ASyncThread ) <= LoopStartSamplePosition )
 		goto ERR ;
 
-	// ƒ‹[ƒvˆÊ’u‚ª -1 ‚¾‚Á‚½ê‡‚Íƒ‹[ƒvˆÊ’uİ’è‚ğ‰ğœ‚·‚é
+	// ãƒ«ãƒ¼ãƒ—ä½ç½®ãŒ -1 ã ã£ãŸå ´åˆã¯ãƒ«ãƒ¼ãƒ—ä½ç½®è¨­å®šã‚’è§£é™¤ã™ã‚‹
 	if( LoopStartSamplePosition == -1 )
 	{
 		pl = &sd->Stream.File[0] ;
@@ -6891,34 +6891,34 @@ extern int SetLoopStartSamplePosSoundMem_UseGParam( LONGLONG LoopStartSamplePosi
 		goto END ;
 	}
 
-	// ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹‚ªƒXƒgƒŠ[ƒ€Ä¶‚Å‚Í‚È‚©‚Á‚½‚çƒXƒgƒŠ[ƒ€Ä¶‚Ìƒnƒ“ƒhƒ‹‚É•ÏX‚·‚é
+	// ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ãŒã‚¹ãƒˆãƒªãƒ¼ãƒ å†ç”Ÿã§ã¯ãªã‹ã£ãŸã‚‰ã‚¹ãƒˆãƒªãƒ¼ãƒ å†ç”Ÿã®ãƒãƒ³ãƒ‰ãƒ«ã«å¤‰æ›´ã™ã‚‹
 	if( sd->Type == DX_SOUNDTYPE_NORMAL )
 	{
-		// ”ñ“¯ŠúƒXƒŒƒbƒh‚Ìê‡‚ÍƒGƒ‰[
+		// éåŒæœŸã‚¹ãƒ¬ãƒƒãƒ‰ã®å ´åˆã¯ã‚¨ãƒ©ãƒ¼
 		if( ASyncThread )
 			goto ERR ;
 
 		if( SoundTypeChangeToStream( SoundHandle ) < 0 )
 			goto ERR ;
 
-		// ƒGƒ‰[”»’è
+		// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 		if( SOUNDHCHK( SoundHandle, sd ) )
 			goto ERR ;
 	}
 
-	// ¡‚ÌŠƒXƒgƒŠ[ƒ€ƒf[ƒ^‚ª‚Q‚ÂˆÈã‚ ‚Á‚½‚ç–³—
+	// ä»Šã®æ‰€ã‚¹ãƒˆãƒªãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿ãŒï¼’ã¤ä»¥ä¸Šã‚ã£ãŸã‚‰ç„¡ç†
 	if( sd->Stream.FileNum > 1 )
 	{
-		DXST_LOGFILE_ADDUTF16LE( "\x8c\x4e\x64\x30\xe5\x4e\x0a\x4e\x6e\x30\xf3\x97\xf0\x58\xd5\x30\xa1\x30\xa4\x30\xeb\x30\x4b\x30\x89\x30\x5c\x4f\x10\x62\x55\x30\x8c\x30\x5f\x30\xb5\x30\xa6\x30\xf3\x30\xc9\x30\xcf\x30\xf3\x30\xc9\x30\xeb\x30\x6b\x30\xeb\x30\xfc\x30\xd7\x30\x8b\x95\xcb\x59\x4d\x4f\x6e\x7f\x92\x30\x07\x63\x9a\x5b\x59\x30\x8b\x30\x8b\x4e\x6f\x30\xfa\x51\x65\x67\x7e\x30\x5b\x30\x93\x30\x0a\x00\x00"/*@ L"“ñ‚ÂˆÈã‚Ì‰¹ºƒtƒ@ƒCƒ‹‚©‚çì¬‚³‚ê‚½ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹‚Éƒ‹[ƒvŠJnˆÊ’u‚ğw’è‚·‚é–‚Ío—ˆ‚Ü‚¹‚ñ\n" @*/ ) ;
+		DXST_LOGFILE_ADDUTF16LE( "\x8c\x4e\x64\x30\xe5\x4e\x0a\x4e\x6e\x30\xf3\x97\xf0\x58\xd5\x30\xa1\x30\xa4\x30\xeb\x30\x4b\x30\x89\x30\x5c\x4f\x10\x62\x55\x30\x8c\x30\x5f\x30\xb5\x30\xa6\x30\xf3\x30\xc9\x30\xcf\x30\xf3\x30\xc9\x30\xeb\x30\x6b\x30\xeb\x30\xfc\x30\xd7\x30\x8b\x95\xcb\x59\x4d\x4f\x6e\x7f\x92\x30\x07\x63\x9a\x5b\x59\x30\x8b\x30\x8b\x4e\x6f\x30\xfa\x51\x65\x67\x7e\x30\x5b\x30\x93\x30\x0a\x00\x00"/*@ L"äºŒã¤ä»¥ä¸Šã®éŸ³å£°ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰ä½œæˆã•ã‚ŒãŸã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ã«ãƒ«ãƒ¼ãƒ—é–‹å§‹ä½ç½®ã‚’æŒ‡å®šã™ã‚‹äº‹ã¯å‡ºæ¥ã¾ã›ã‚“\n" @*/ ) ;
 		goto ERR ;
 	}
 
 	pl = &sd->Stream.File[0] ;
 
-	// ƒ‹[ƒvˆÊ’u‚ğİ’è
+	// ãƒ«ãƒ¼ãƒ—ä½ç½®ã‚’è¨­å®š
 	pl->LoopStartSamplePosition = LoopStartSamplePosition ;
 
-	// “]‘—Š®—¹ˆÊ’u‚ªŠù‚Éƒ‹[ƒvŠJnˆÊ’u‚ğ‰z‚¦‚Ä‚µ‚Ü‚Á‚Ä‚¢‚½‚çƒXƒgƒŠ[ƒ€ƒTƒEƒ“ƒhƒf[ƒ^‚ÌƒZƒbƒgƒAƒbƒv‚ğ‚â‚è’¼‚·
+	// è»¢é€å®Œäº†ä½ç½®ãŒæ—¢ã«ãƒ«ãƒ¼ãƒ—é–‹å§‹ä½ç½®ã‚’è¶Šãˆã¦ã—ã¾ã£ã¦ã„ãŸã‚‰ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã‚’ã‚„ã‚Šç›´ã™
 	if( sd->Stream.FileCompCopyLength > pl->LoopStartSamplePosition )
 	{
 		RefreshStreamSoundPlayCompLength( SoundHandle ) ;
@@ -6926,58 +6926,58 @@ extern int SetLoopStartSamplePosSoundMem_UseGParam( LONGLONG LoopStartSamplePosi
 	}
 
 END :
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 	CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_SOUND ].CriticalSection ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 
 ERR :
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 	CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_SOUND ].CriticalSection ) ;
 
-	// ƒGƒ‰[I—¹
+	// ã‚¨ãƒ©ãƒ¼çµ‚äº†
 	return -1 ;
 }
 
-// ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹‚Éƒ‹[ƒvŠJnˆÊ’u‚ğİ’è‚·‚é
+// ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ã«ãƒ«ãƒ¼ãƒ—é–‹å§‹ä½ç½®ã‚’è¨­å®šã™ã‚‹
 extern int NS_SetLoopStartSamplePosSoundMem( LONGLONG LoopStartSamplePosition, int SoundHandle )
 {
 	return SetLoopStartSamplePosSoundMem_UseGParam( LoopStartSamplePosition, SoundHandle, FALSE ) ;
 }
 
-// SetLoopAreaTimePosSoundMem ‚ÌƒOƒ[ƒoƒ‹•Ï”‚ÉƒAƒNƒZƒX‚µ‚È‚¢ƒo[ƒWƒ‡ƒ“
+// SetLoopAreaTimePosSoundMem ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°ã«ã‚¢ã‚¯ã‚»ã‚¹ã—ãªã„ãƒãƒ¼ã‚¸ãƒ§ãƒ³
 extern int SetLoopAreaTimePosSoundMem_UseGParam( LONGLONG LoopStartTime, LONGLONG LoopEndTime, int SoundHandle, int ASyncThread )
 {
-	// ƒpƒ‰ƒ[ƒ^ƒ`ƒFƒbƒN
+	// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒã‚§ãƒƒã‚¯
 	if( LoopStartTime >= LoopEndTime )
 	{
 		return -1 ;
 	}
 
-	// ƒ‹[ƒv”ÍˆÍ‚Ìæ’[‚ğƒZƒbƒg
+	// ãƒ«ãƒ¼ãƒ—ç¯„å›²ã®å…ˆç«¯ã‚’ã‚»ãƒƒãƒˆ
 	if( SetLoopTimePosSoundMem_UseGParam( LoopStartTime, SoundHandle, ASyncThread ) < 0 )
 	{
 		return -1 ;
 	}
 
-	// ƒ‹[ƒv”ÍˆÍ‚ÌI’[‚ğƒZƒbƒg
+	// ãƒ«ãƒ¼ãƒ—ç¯„å›²ã®çµ‚ç«¯ã‚’ã‚»ãƒƒãƒˆ
 	if( SetLoopStartTimePosSoundMem_UseGParam( LoopEndTime, SoundHandle, ASyncThread ) < 0 )
 	{
 		return -1 ;
 	}
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹‚Éƒ‹[ƒv”ÍˆÍ‚ğİ’è‚·‚é(ƒ~ƒŠ•b’PˆÊ)
+// ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ã«ãƒ«ãƒ¼ãƒ—ç¯„å›²ã‚’è¨­å®šã™ã‚‹(ãƒŸãƒªç§’å˜ä½)
 extern int NS_SetLoopAreaTimePosSoundMem( LONGLONG LoopStartTime, LONGLONG LoopEndTime, int SoundHandle )
 {
 	return SetLoopAreaTimePosSoundMem_UseGParam( LoopStartTime, LoopEndTime, SoundHandle, FALSE ) ;
 }
 
-// ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹‚Éƒ‹[ƒv”ÍˆÍ‚ğæ“¾‚·‚é(ƒ~ƒŠ•b’PˆÊ)
+// ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ã«ãƒ«ãƒ¼ãƒ—ç¯„å›²ã‚’å–å¾—ã™ã‚‹(ãƒŸãƒªç§’å˜ä½)
 extern int NS_GetLoopAreaTimePosSoundMem( LONGLONG *LoopStartTime, LONGLONG *LoopEndTime, int SoundHandle )
 {
 	SOUND * sd ;
@@ -6990,11 +6990,11 @@ extern int NS_GetLoopAreaTimePosSoundMem( LONGLONG *LoopStartTime, LONGLONG *Loo
 		return -1 ;
 	}
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( SOUNDHCHK( SoundHandle, sd ) )
 		return -1 ;
 	
-	// ƒ‹[ƒvƒTƒ“ƒvƒ‹ˆÊ’u‚ğæ“¾
+	// ãƒ«ãƒ¼ãƒ—ã‚µãƒ³ãƒ—ãƒ«ä½ç½®ã‚’å–å¾—
 	Result = NS_GetLoopAreaSamplePosSoundMem( &LoopStartSamplePosition, &LoopEndSamplePosition, SoundHandle ) ;
 	if( Result < 0 )
 	{
@@ -7004,42 +7004,42 @@ extern int NS_GetLoopAreaTimePosSoundMem( LONGLONG *LoopStartTime, LONGLONG *Loo
 	if( LoopStartTime != NULL ) *LoopStartTime = SamplePositionToMilliSecPosition( ( int )sd->BufferFormat.nSamplesPerSec, LoopStartSamplePosition ) ;
 	if( LoopEndTime   != NULL ) *LoopEndTime   = SamplePositionToMilliSecPosition( ( int )sd->BufferFormat.nSamplesPerSec, LoopEndSamplePosition   ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// SetLoopAreaSamplePosSoundMem ‚ÌƒOƒ[ƒoƒ‹•Ï”‚ÉƒAƒNƒZƒX‚µ‚È‚¢ƒo[ƒWƒ‡ƒ“
+// SetLoopAreaSamplePosSoundMem ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°ã«ã‚¢ã‚¯ã‚»ã‚¹ã—ãªã„ãƒãƒ¼ã‚¸ãƒ§ãƒ³
 extern int SetLoopAreaSamplePosSoundMem_UseGParam( LONGLONG LoopStartSamplePosition, LONGLONG LoopEndSamplePosition, int SoundHandle, int ASyncThread )
 {
-	// ƒpƒ‰ƒ[ƒ^ƒ`ƒFƒbƒN
+	// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒã‚§ãƒƒã‚¯
 	if( LoopStartSamplePosition >= LoopEndSamplePosition )
 	{
 		return -1 ;
 	}
 
-	// ƒ‹[ƒv”ÍˆÍ‚Ìæ’[‚ğƒZƒbƒg
+	// ãƒ«ãƒ¼ãƒ—ç¯„å›²ã®å…ˆç«¯ã‚’ã‚»ãƒƒãƒˆ
 	if( SetLoopSamplePosSoundMem_UseGParam( LoopStartSamplePosition, SoundHandle, ASyncThread ) < 0 )
 	{
 		return -1 ;
 	}
 
-	// ƒ‹[ƒv”ÍˆÍ‚ÌI’[‚ğƒZƒbƒg
+	// ãƒ«ãƒ¼ãƒ—ç¯„å›²ã®çµ‚ç«¯ã‚’ã‚»ãƒƒãƒˆ
 	if( SetLoopStartSamplePosSoundMem_UseGParam( LoopEndSamplePosition, SoundHandle, ASyncThread ) < 0 )
 	{
 		return -1 ;
 	}
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹‚Éƒ‹[ƒv”ÍˆÍ‚ğİ’è‚·‚é(ƒTƒ“ƒvƒ‹’PˆÊ)
+// ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ã«ãƒ«ãƒ¼ãƒ—ç¯„å›²ã‚’è¨­å®šã™ã‚‹(ã‚µãƒ³ãƒ—ãƒ«å˜ä½)
 extern int NS_SetLoopAreaSamplePosSoundMem( LONGLONG LoopStartSamplePosition, LONGLONG LoopEndSamplePosition, int SoundHandle )
 {
 	return SetLoopAreaSamplePosSoundMem_UseGParam( LoopStartSamplePosition, LoopEndSamplePosition, SoundHandle, FALSE ) ;
 }
 
-// ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹‚Éƒ‹[ƒv”ÍˆÍ‚ğæ“¾‚·‚é(ƒTƒ“ƒvƒ‹’PˆÊ)
+// ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ã«ãƒ«ãƒ¼ãƒ—ç¯„å›²ã‚’å–å¾—ã™ã‚‹(ã‚µãƒ³ãƒ—ãƒ«å˜ä½)
 extern int NS_GetLoopAreaSamplePosSoundMem( LONGLONG *LoopStartSamplePosition, LONGLONG *LoopEndSamplePosition, int SoundHandle )
 {
 	SOUND * sd ;
@@ -7050,7 +7050,7 @@ extern int NS_GetLoopAreaSamplePosSoundMem( LONGLONG *LoopStartSamplePosition, L
 		return -1 ;
 	}
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( SOUNDHCHK( SoundHandle, sd ) )
 		return -1 ;
 	
@@ -7059,11 +7059,11 @@ extern int NS_GetLoopAreaSamplePosSoundMem( LONGLONG *LoopStartSamplePosition, L
 	if( LoopStartSamplePosition != NULL ) *LoopStartSamplePosition = pl->LoopSamplePosition ;
 	if( LoopEndSamplePosition   != NULL ) *LoopEndSamplePosition   = pl->LoopStartSamplePosition ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹‚ÌÄ¶‚ªI—¹‚µ‚½‚ç©“®“I‚Éƒnƒ“ƒhƒ‹‚ğíœ‚·‚é‚©‚Ç‚¤‚©‚ğİ’è‚·‚é
+// ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ã®å†ç”ŸãŒçµ‚äº†ã—ãŸã‚‰è‡ªå‹•çš„ã«ãƒãƒ³ãƒ‰ãƒ«ã‚’å‰Šé™¤ã™ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹
 extern int NS_SetPlayFinishDeleteSoundMem( int DeleteFlag, int SoundHandle )
 {
 	SOUND *sd ;
@@ -7073,20 +7073,20 @@ extern int NS_SetPlayFinishDeleteSoundMem( int DeleteFlag, int SoundHandle )
 		return -1 ;
 	}
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( SOUNDHCHK( SoundHandle, sd ) )
 		return -1 ;
 
-	// ¡‚Ü‚Å‚Æƒtƒ‰ƒO‚ª“¯‚¶ê‡‚Í‰½‚à‚µ‚È‚¢
+	// ä»Šã¾ã§ã¨ãƒ•ãƒ©ã‚°ãŒåŒã˜å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( sd->PlayFinishDeleteFlag == DeleteFlag )
 	{
 		return 0 ;
 	}
 
-	// ƒtƒ‰ƒO‚ğ•Û‘¶
+	// ãƒ•ãƒ©ã‚°ã‚’ä¿å­˜
 	sd->PlayFinishDeleteFlag = DeleteFlag ;
 
-	// ƒtƒ‰ƒO‚ª—§‚Ä‚ç‚ê‚éê‡‚ÍƒŠƒXƒg‚É’Ç‰Á‚·‚éA“|‚³‚ê‚éê‡‚ÍƒŠƒXƒg‚©‚çŠO‚·
+	// ãƒ•ãƒ©ã‚°ãŒç«‹ã¦ã‚‰ã‚Œã‚‹å ´åˆã¯ãƒªã‚¹ãƒˆã«è¿½åŠ ã™ã‚‹ã€å€’ã•ã‚Œã‚‹å ´åˆã¯ãƒªã‚¹ãƒˆã‹ã‚‰å¤–ã™
 	if( DeleteFlag )
 	{
 		AddHandleList( &SoundSysData.PlayFinishDeleteSoundListFirst, &sd->PlayFinishDeleteSoundList, SoundHandle, sd ) ;
@@ -7096,11 +7096,11 @@ extern int NS_SetPlayFinishDeleteSoundMem( int DeleteFlag, int SoundHandle )
 		SubHandleList( &sd->PlayFinishDeleteSoundList ) ;
 	}
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹‚Ì‚R‚cƒTƒEƒ“ƒh—p‚ÌƒŠƒo[ƒuƒpƒ‰ƒ[ƒ^‚ğİ’è‚·‚é
+// ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ã®ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰ç”¨ã®ãƒªãƒãƒ¼ãƒ–ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’è¨­å®šã™ã‚‹
 extern int NS_Set3DReverbParamSoundMem( const SOUND3D_REVERB_PARAM *Param, int SoundHandle )
 {
 	SOUND *sd ;
@@ -7111,31 +7111,31 @@ extern int NS_Set3DReverbParamSoundMem( const SOUND3D_REVERB_PARAM *Param, int S
 		return -1 ;
 	}
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( SOUNDHCHK( SoundHandle, sd ) )
 		return -1 ;
 
-	// ‚R‚cƒTƒEƒ“ƒh‚Å‚Í‚È‚¢ê‡‚Í‰½‚à‚µ‚È‚¢
+	// ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰ã§ã¯ãªã„å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( sd->Is3DSound == FALSE )
 		return -1 ;
 
-	// ƒpƒ‰ƒ[ƒ^‚ğ•Û‘¶
+	// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ä¿å­˜
 	sd->PresetReverbParam = -1 ;
 	_MEMCPY( &sd->ReverbParam, Param, sizeof( sd->ReverbParam ) ) ;
 
-	// ƒoƒbƒtƒ@‚Ì”‚¾‚¯ŒJ‚è•Ô‚µ
+	// ãƒãƒƒãƒ•ã‚¡ã®æ•°ã ã‘ç¹°ã‚Šè¿”ã—
 	for( i = 0 ; i < sd->ValidBufferNum ; i ++ )
 	{
-		// ƒpƒ‰ƒ[ƒ^‚ÌXV
+		// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®æ›´æ–°
 		SoundBuffer_SetReverbParam( &sd->Buffer[ i ], &sd->ReverbParam ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹‚Ì‚R‚cƒTƒEƒ“ƒh—p‚ÌƒŠƒo[ƒuƒpƒ‰ƒ[ƒ^‚ğƒvƒŠƒZƒbƒg‚ğg—p‚µ‚Äİ’è‚·‚é
-extern int NS_Set3DPresetReverbParamSoundMem( int PresetNo /* DX_REVERB_PRESET_DEFAULT “™ */ , int SoundHandle )
+// ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ã®ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰ç”¨ã®ãƒªãƒãƒ¼ãƒ–ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ãƒ—ãƒªã‚»ãƒƒãƒˆã‚’ä½¿ç”¨ã—ã¦è¨­å®šã™ã‚‹
+extern int NS_Set3DPresetReverbParamSoundMem( int PresetNo /* DX_REVERB_PRESET_DEFAULT ç­‰ */ , int SoundHandle )
 {
 	SOUND *sd ;
 	int i ;
@@ -7145,31 +7145,31 @@ extern int NS_Set3DPresetReverbParamSoundMem( int PresetNo /* DX_REVERB_PRESET_D
 		return -1 ;
 	}
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( SOUNDHCHK( SoundHandle, sd ) )
 		return -1 ;
 	if( PresetNo < 0 || PresetNo >= DX_REVERB_PRESET_NUM )
 		return -1 ;
 
-	// ‚R‚cƒTƒEƒ“ƒh‚Å‚Í‚È‚¢ê‡‚Í‰½‚à‚µ‚È‚¢
+	// ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰ã§ã¯ãªã„å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( sd->Is3DSound == FALSE )
 		return -1 ;
 
-	// ƒpƒ‰ƒ[ƒ^‚ğ•Û‘¶
+	// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ä¿å­˜
 	sd->PresetReverbParam = PresetNo ;
 
-	// ƒoƒbƒtƒ@‚Ì”‚¾‚¯ŒJ‚è•Ô‚µ
+	// ãƒãƒƒãƒ•ã‚¡ã®æ•°ã ã‘ç¹°ã‚Šè¿”ã—
 	for( i = 0 ; i < sd->ValidBufferNum ; i ++ )
 	{
-		// ƒpƒ‰ƒ[ƒ^‚ÌXV
+		// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®æ›´æ–°
 		SoundBuffer_SetPresetReverbParam( &sd->Buffer[ i ], PresetNo ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ‘S‚Ä‚Ì‚R‚cƒTƒEƒ“ƒh‚ÌƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹‚ÉƒŠƒo[ƒuƒpƒ‰ƒ[ƒ^‚ğİ’è‚·‚é
+// å…¨ã¦ã®ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰ã®ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ã«ãƒªãƒãƒ¼ãƒ–ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’è¨­å®šã™ã‚‹
 extern int NS_Set3DReverbParamSoundMemAll( const SOUND3D_REVERB_PARAM *Param, int PlaySoundOnly )
 {
 	HANDLELIST *List ;
@@ -7183,14 +7183,14 @@ extern int NS_Set3DReverbParamSoundMemAll( const SOUND3D_REVERB_PARAM *Param, in
 
 	if( PlaySoundOnly )
 	{
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 		CRITICALSECTION_LOCK( &SoundSysData.Play3DSoundListCriticalSection ) ;
 
 		List = SoundSysData.Play3DSoundListFirst.Next ;
 	}
 	else
 	{
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 		CRITICALSECTION_LOCK( &HandleManageArray[ DX_HANDLETYPE_SOUND ].CriticalSection ) ;
 
 		List = SoundSysData._3DSoundListFirst.Next ;
@@ -7199,35 +7199,35 @@ extern int NS_Set3DReverbParamSoundMemAll( const SOUND3D_REVERB_PARAM *Param, in
 	{
 		Sound = ( SOUND * )List->Data ;
 
-		// ƒpƒ‰ƒ[ƒ^‚ğ•Û‘¶
+		// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ä¿å­˜
 		Sound->PresetReverbParam = -1 ;
 		_MEMCPY( &Sound->ReverbParam, Param, sizeof( Sound->ReverbParam ) ) ;
 
-		// ƒoƒbƒtƒ@‚Ì”‚¾‚¯ŒJ‚è•Ô‚µ
+		// ãƒãƒƒãƒ•ã‚¡ã®æ•°ã ã‘ç¹°ã‚Šè¿”ã—
 		for( i = 0 ; i < Sound->ValidBufferNum ; i ++ )
 		{
-			// ƒpƒ‰ƒ[ƒ^‚ÌXV
+			// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®æ›´æ–°
 			SoundBuffer_SetReverbParam( &Sound->Buffer[ i ], &Sound->ReverbParam ) ;
 		}
 	}
 
 	if( PlaySoundOnly )
 	{
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 		CriticalSection_Unlock( &SoundSysData.Play3DSoundListCriticalSection ) ;
 	}
 	else
 	{
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 		CriticalSection_Unlock( &SoundSysData._3DSoundListCriticalSection ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ‘S‚Ä‚Ì‚R‚cƒTƒEƒ“ƒh‚ÌƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹‚ÉƒŠƒo[ƒuƒpƒ‰ƒ[ƒ^‚ğƒvƒŠƒZƒbƒg‚ğg—p‚µ‚Äİ’è‚·‚é
-extern int NS_Set3DPresetReverbParamSoundMemAll( int PresetNo /* DX_REVERB_PRESET_DEFAULT “™ */, int PlaySoundOnly )
+// å…¨ã¦ã®ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰ã®ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ã«ãƒªãƒãƒ¼ãƒ–ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ãƒ—ãƒªã‚»ãƒƒãƒˆã‚’ä½¿ç”¨ã—ã¦è¨­å®šã™ã‚‹
+extern int NS_Set3DPresetReverbParamSoundMemAll( int PresetNo /* DX_REVERB_PRESET_DEFAULT ç­‰ */, int PlaySoundOnly )
 {
 	HANDLELIST *List ;
 	SOUND *Sound ;
@@ -7243,14 +7243,14 @@ extern int NS_Set3DPresetReverbParamSoundMemAll( int PresetNo /* DX_REVERB_PRESE
 
 	if( PlaySoundOnly )
 	{
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 		CRITICALSECTION_LOCK( &SoundSysData.Play3DSoundListCriticalSection ) ;
 
 		List = SoundSysData.Play3DSoundListFirst.Next ;
 	}
 	else
 	{
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 		CRITICALSECTION_LOCK( &SoundSysData._3DSoundListCriticalSection ) ;
 
 		List = SoundSysData._3DSoundListFirst.Next ;
@@ -7259,33 +7259,33 @@ extern int NS_Set3DPresetReverbParamSoundMemAll( int PresetNo /* DX_REVERB_PRESE
 	{
 		Sound = ( SOUND * )List->Data ;
 
-		// ƒpƒ‰ƒ[ƒ^‚ğ•Û‘¶
+		// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ä¿å­˜
 		Sound->PresetReverbParam = PresetNo ;
 
-		// ƒoƒbƒtƒ@‚Ì”‚¾‚¯ŒJ‚è•Ô‚µ
+		// ãƒãƒƒãƒ•ã‚¡ã®æ•°ã ã‘ç¹°ã‚Šè¿”ã—
 		for( i = 0 ; i < Sound->ValidBufferNum ; i ++ )
 		{
-			// ƒpƒ‰ƒ[ƒ^‚ÌXV
+			// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®æ›´æ–°
 			SoundBuffer_SetPresetReverbParam( &Sound->Buffer[ i ], PresetNo ) ;
 		}
 	}
 
 	if( PlaySoundOnly )
 	{
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 		CriticalSection_Unlock( &SoundSysData.Play3DSoundListCriticalSection ) ;
 	}
 	else
 	{
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 		CriticalSection_Unlock( &SoundSysData._3DSoundListCriticalSection ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹‚Éİ’è‚³‚ê‚Ä‚¢‚é‚R‚cƒTƒEƒ“ƒh—p‚ÌƒŠƒo[ƒuƒpƒ‰ƒ[ƒ^‚ğæ“¾‚·‚é
+// ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ã«è¨­å®šã•ã‚Œã¦ã„ã‚‹ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰ç”¨ã®ãƒªãƒãƒ¼ãƒ–ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’å–å¾—ã™ã‚‹
 extern int NS_Get3DReverbParamSoundMem( SOUND3D_REVERB_PARAM *ParamBuffer, int SoundHandle )
 {
 	SOUND *sd ;
@@ -7295,25 +7295,25 @@ extern int NS_Get3DReverbParamSoundMem( SOUND3D_REVERB_PARAM *ParamBuffer, int S
 		return -1 ;
 	}
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( SOUNDHCHK( SoundHandle, sd ) )
 		return -1 ;
 
-	// ‚R‚cƒTƒEƒ“ƒh‚Å‚Í‚È‚¢ê‡‚Í‰½‚à‚µ‚È‚¢
+	// ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰ã§ã¯ãªã„å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( sd->Is3DSound == FALSE )
 		return -1 ;
 
-	// ƒpƒ‰ƒ[ƒ^‚ğƒRƒs[
+	// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ã‚³ãƒ”ãƒ¼
 	if( ParamBuffer != NULL ) *ParamBuffer = sd->ReverbParam ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// ƒvƒŠƒZƒbƒg‚Ì‚R‚cƒTƒEƒ“ƒh—p‚ÌƒŠƒo[ƒuƒpƒ‰ƒ[ƒ^‚ğæ“¾‚·‚é
-extern int NS_Get3DPresetReverbParamSoundMem( SOUND3D_REVERB_PARAM *ParamBuffer, int PresetNo /* DX_REVERB_PRESET_DEFAULT “™ */ )
+// ãƒ—ãƒªã‚»ãƒƒãƒˆã®ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰ç”¨ã®ãƒªãƒãƒ¼ãƒ–ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’å–å¾—ã™ã‚‹
+extern int NS_Get3DPresetReverbParamSoundMem( SOUND3D_REVERB_PARAM *ParamBuffer, int PresetNo /* DX_REVERB_PRESET_DEFAULT ç­‰ */ )
 {
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( CheckSoundSystem_Initialize_PF() == FALSE )
 	{
 		return -1 ;
@@ -7324,17 +7324,17 @@ extern int NS_Get3DPresetReverbParamSoundMem( SOUND3D_REVERB_PARAM *ParamBuffer,
 		return -1 ;
 	}
 
-	// ŠÂ‹«ˆË‘¶ˆ—
+	// ç’°å¢ƒä¾å­˜å‡¦ç†
 	if( Get3DPresetReverbParamSoundMem_PF( ParamBuffer, PresetNo ) < 0 )
 	{
 		return -1 ;
 	}
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹‚Ì‚R‚cƒTƒEƒ“ƒh—p‚ÌÄ¶ˆÊ’u‚ğİ’è‚·‚é
+// ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ã®ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰ç”¨ã®å†ç”Ÿä½ç½®ã‚’è¨­å®šã™ã‚‹
 extern int NS_Set3DPositionSoundMem( VECTOR Position, int SoundHandle )
 {
 	SOUND *sd ;
@@ -7345,30 +7345,30 @@ extern int NS_Set3DPositionSoundMem( VECTOR Position, int SoundHandle )
 		return -1 ;
 	}
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( SOUNDHCHK( SoundHandle, sd ) )
 		return -1 ;
 
-	// ‚R‚cƒTƒEƒ“ƒh‚Å‚Í‚È‚¢ê‡‚Í‰½‚à‚µ‚È‚¢
+	// ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰ã§ã¯ãªã„å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( sd->Is3DSound == FALSE )
 		return -1 ;
 
-	// 1.0f = ‚Pƒ[ƒgƒ‹‚Ì’PˆÊ‚É•ÏŠ·‚·‚é
+	// 1.0f = ï¼‘ãƒ¡ãƒ¼ãƒˆãƒ«ã®å˜ä½ã«å¤‰æ›ã™ã‚‹
 	VectorScale( &Position, &Position, 1.0f / SoundSysData._3DSoundOneMetre ) ;
 
-	// ƒoƒbƒtƒ@‚Ì”‚¾‚¯ŒJ‚è•Ô‚µ
+	// ãƒãƒƒãƒ•ã‚¡ã®æ•°ã ã‘ç¹°ã‚Šè¿”ã—
 	for( i = 0 ; i < sd->ValidBufferNum ; i ++ )
 	{
-		// ƒpƒ‰ƒ[ƒ^‚ÌXV
+		// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®æ›´æ–°
 		SoundBuffer_Set3DPosition( &sd->Buffer[ i ], &Position ) ;
 	}
 	sd->Base3DPosition = Position ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹‚Ì‚R‚cƒTƒEƒ“ƒh—p‚Ì‰¹‚ª•·‚±‚¦‚é‹——£‚ğİ’è‚·‚é
+// ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ã®ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰ç”¨ã®éŸ³ãŒèã“ãˆã‚‹è·é›¢ã‚’è¨­å®šã™ã‚‹
 extern int NS_Set3DRadiusSoundMem( float Radius, int SoundHandle )
 {
 	SOUND *sd ;
@@ -7379,29 +7379,29 @@ extern int NS_Set3DRadiusSoundMem( float Radius, int SoundHandle )
 		return -1 ;
 	}
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( SOUNDHCHK( SoundHandle, sd ) )
 		return -1 ;
 
-	// ‚R‚cƒTƒEƒ“ƒh‚Å‚Í‚È‚¢ê‡‚Í‰½‚à‚µ‚È‚¢
+	// ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰ã§ã¯ãªã„å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( sd->Is3DSound == FALSE )
 		return -1 ;
 
 	Radius /= SoundSysData._3DSoundOneMetre ;
 
-	// ƒoƒbƒtƒ@‚Ì”‚¾‚¯ŒJ‚è•Ô‚µ
+	// ãƒãƒƒãƒ•ã‚¡ã®æ•°ã ã‘ç¹°ã‚Šè¿”ã—
 	for( i = 0 ; i < sd->ValidBufferNum ; i ++ )
 	{
-		// ƒpƒ‰ƒ[ƒ^‚ÌXV
+		// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®æ›´æ–°
 		SoundBuffer_Set3DRadius( &sd->Buffer[ i ], Radius ) ;
 	}
 	sd->Base3DRadius = Radius ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹‚Ì‚R‚cƒTƒEƒ“ƒh—p‚Ì‰¹—Ê‚P‚O‚O“‚Å•·‚±‚¦‚é‹——£‚ğİ’è‚·‚é
+// ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ã®ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰ç”¨ã®éŸ³é‡ï¼‘ï¼ï¼ï¼…ã§èã“ãˆã‚‹è·é›¢ã‚’è¨­å®šã™ã‚‹
 extern int NS_Set3DInnerRadiusSoundMem( float Radius, int SoundHandle )
 {
 	SOUND *sd ;
@@ -7412,11 +7412,11 @@ extern int NS_Set3DInnerRadiusSoundMem( float Radius, int SoundHandle )
 		return -1 ;
 	}
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( SOUNDHCHK( SoundHandle, sd ) )
 		return -1 ;
 
-	// ‚R‚cƒTƒEƒ“ƒh‚Å‚Í‚È‚¢ê‡‚Í‰½‚à‚µ‚È‚¢
+	// ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰ã§ã¯ãªã„å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( sd->Is3DSound == FALSE )
 		return -1 ;
 
@@ -7424,15 +7424,15 @@ extern int NS_Set3DInnerRadiusSoundMem( float Radius, int SoundHandle )
 
 	for( i = 0 ; i < sd->ValidBufferNum ; i ++ )
 	{
-		// ƒpƒ‰ƒ[ƒ^‚ÌXV
+		// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®æ›´æ–°
 		SoundBuffer_Set3DInnerRadius( &sd->Buffer[ i ], Radius ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹‚Ì‚R‚cƒTƒEƒ“ƒh—p‚ÌˆÚ“®‘¬“x‚ğİ’è‚·‚é
+// ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ã®ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰ç”¨ã®ç§»å‹•é€Ÿåº¦ã‚’è¨­å®šã™ã‚‹
 extern int NS_Set3DVelocitySoundMem( VECTOR Velocity, int SoundHandle )
 {
 	SOUND *sd ;
@@ -7443,30 +7443,30 @@ extern int NS_Set3DVelocitySoundMem( VECTOR Velocity, int SoundHandle )
 		return -1 ;
 	}
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( SOUNDHCHK( SoundHandle, sd ) )
 		return -1 ;
 
-	// ‚R‚cƒTƒEƒ“ƒh‚Å‚Í‚È‚¢ê‡‚Í‰½‚à‚µ‚È‚¢
+	// ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰ã§ã¯ãªã„å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( sd->Is3DSound == FALSE )
 		return -1 ;
 
-	// 1.0f = ‚Pƒ[ƒgƒ‹‚Ì’PˆÊ‚É•ÏŠ·‚·‚é
+	// 1.0f = ï¼‘ãƒ¡ãƒ¼ãƒˆãƒ«ã®å˜ä½ã«å¤‰æ›ã™ã‚‹
 	VectorScale( &Velocity, &Velocity, 1.0f / SoundSysData._3DSoundOneMetre ) ;
 
-	// ƒoƒbƒtƒ@‚Ì”‚¾‚¯ŒJ‚è•Ô‚µ
+	// ãƒãƒƒãƒ•ã‚¡ã®æ•°ã ã‘ç¹°ã‚Šè¿”ã—
 	for( i = 0 ; i < sd->ValidBufferNum ; i ++ )
 	{
-		// ƒpƒ‰ƒ[ƒ^‚ÌXV
+		// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®æ›´æ–°
 		SoundBuffer_Set3DVelocity( &sd->Buffer[ i ], &Velocity ) ;
 	}
 	sd->Base3DVelocity = Velocity ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹‚Ì‚R‚cƒTƒEƒ“ƒh—p‚Ì•ûŒü‚ğŒˆ’è‚·‚é‚½‚ß‚Ì‘O•ûÀ•W‚Æã•ûŒü‚ğİ’è‚·‚é
+// ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ã®ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰ç”¨ã®æ–¹å‘ã‚’æ±ºå®šã™ã‚‹ãŸã‚ã®å‰æ–¹åº§æ¨™ã¨ä¸Šæ–¹å‘ã‚’è¨­å®šã™ã‚‹
 extern int NS_Set3DFrontPositionSoundMem( VECTOR FrontPosition, VECTOR UpVector, int SoundHandle )
 {
 	SOUND *sd ;
@@ -7477,26 +7477,26 @@ extern int NS_Set3DFrontPositionSoundMem( VECTOR FrontPosition, VECTOR UpVector,
 		return -1 ;
 	}
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( SOUNDHCHK( SoundHandle, sd ) )
 		return -1 ;
 
-	// ‚R‚cƒTƒEƒ“ƒh‚Å‚Í‚È‚¢ê‡‚Í‰½‚à‚µ‚È‚¢
+	// ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰ã§ã¯ãªã„å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( sd->Is3DSound == FALSE )
 		return -1 ;
 
-	// ƒoƒbƒtƒ@‚Ì”‚¾‚¯ŒJ‚è•Ô‚µ
+	// ãƒãƒƒãƒ•ã‚¡ã®æ•°ã ã‘ç¹°ã‚Šè¿”ã—
 	for( i = 0 ; i < sd->ValidBufferNum ; i ++ )
 	{
-		// ƒpƒ‰ƒ[ƒ^‚ÌXV
+		// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®æ›´æ–°
 		SoundBuffer_Set3DFrontPosition( &sd->Buffer[ i ], &FrontPosition, &UpVector ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹‚Ì‚R‚cƒTƒEƒ“ƒh—p‚Ì•ûŒü‚ğŒˆ’è‚·‚é‚½‚ß‚Ì‘O•ûÀ•W‚ğİ’è‚·‚é( ã•ûŒü‚ÍY² )
+// ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ã®ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰ç”¨ã®æ–¹å‘ã‚’æ±ºå®šã™ã‚‹ãŸã‚ã®å‰æ–¹åº§æ¨™ã‚’è¨­å®šã™ã‚‹( ä¸Šæ–¹å‘ã¯Yè»¸ )
 extern int NS_Set3DFrontPosition_UpVecYSoundMem( VECTOR FrontPosition, int SoundHandle )
 {
 	VECTOR UpVec = { 0.0f, 1.0f, 0.0f } ;
@@ -7504,7 +7504,7 @@ extern int NS_Set3DFrontPosition_UpVecYSoundMem( VECTOR FrontPosition, int Sound
 	return NS_Set3DFrontPositionSoundMem( FrontPosition, UpVec, SoundHandle ) ;
 }
 
-// ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹‚Ì‚R‚cƒTƒEƒ“ƒh—p‚Ì•ûŒü‚ÌŠp“x”ÍˆÍ‚ğİ’è‚·‚é
+// ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ã®ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰ç”¨ã®æ–¹å‘ã®è§’åº¦ç¯„å›²ã‚’è¨­å®šã™ã‚‹
 extern int NS_Set3DConeAngleSoundMem( float InnerAngle, float OuterAngle, int SoundHandle )
 {
 	SOUND *sd ;
@@ -7515,11 +7515,11 @@ extern int NS_Set3DConeAngleSoundMem( float InnerAngle, float OuterAngle, int So
 		return -1 ;
 	}
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( SOUNDHCHK( SoundHandle, sd ) )
 		return -1 ;
 
-	// ‚R‚cƒTƒEƒ“ƒh‚Å‚Í‚È‚¢ê‡‚Í‰½‚à‚µ‚È‚¢
+	// ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰ã§ã¯ãªã„å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( sd->Is3DSound == FALSE )
 		return -1 ;
 
@@ -7553,15 +7553,15 @@ extern int NS_Set3DConeAngleSoundMem( float InnerAngle, float OuterAngle, int So
 
 	for( i = 0 ; i < sd->ValidBufferNum ; i ++ )
 	{
-		// ƒpƒ‰ƒ[ƒ^‚ÌXV
+		// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®æ›´æ–°
 		SoundBuffer_Set3DConeAngle( &sd->Buffer[ i ], InnerAngle, OuterAngle ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹‚Ì‚R‚cƒTƒEƒ“ƒh—p‚Ì•ûŒü‚ÌŠp“x”ÍˆÍ‚Ì‰¹—Ê”{—¦‚ğİ’è‚·‚é
+// ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ã®ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰ç”¨ã®æ–¹å‘ã®è§’åº¦ç¯„å›²ã®éŸ³é‡å€ç‡ã‚’è¨­å®šã™ã‚‹
 extern int NS_Set3DConeVolumeSoundMem( float InnerAngleVolume, float OuterAngleVolume, int SoundHandle )
 {
 	SOUND *sd ;
@@ -7572,26 +7572,26 @@ extern int NS_Set3DConeVolumeSoundMem( float InnerAngleVolume, float OuterAngleV
 		return -1 ;
 	}
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( SOUNDHCHK( SoundHandle, sd ) )
 		return -1 ;
 
-	// ‚R‚cƒTƒEƒ“ƒh‚Å‚Í‚È‚¢ê‡‚Í‰½‚à‚µ‚È‚¢
+	// ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰ã§ã¯ãªã„å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( sd->Is3DSound == FALSE )
 		return -1 ;
 
-	// ƒoƒbƒtƒ@[‚Ì”‚¾‚¯ŒJ‚è•Ô‚µ
+	// ãƒãƒƒãƒ•ã‚¡ãƒ¼ã®æ•°ã ã‘ç¹°ã‚Šè¿”ã—
 	for( i = 0 ; i < sd->ValidBufferNum ; i ++ )
 	{
-		// ƒpƒ‰ƒ[ƒ^‚ÌXV
+		// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®æ›´æ–°
 		SoundBuffer_Set3DConeVolume( &sd->Buffer[ i ], InnerAngleVolume, OuterAngleVolume ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹‚ÌŸ‚ÌÄ¶‚Ì‚İ‚Ég—p‚·‚é‚R‚cƒTƒEƒ“ƒh—p‚ÌÄ¶ˆÊ’u‚ğİ’è‚·‚é
+// ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ã®æ¬¡ã®å†ç”Ÿã®ã¿ã«ä½¿ç”¨ã™ã‚‹ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰ç”¨ã®å†ç”Ÿä½ç½®ã‚’è¨­å®šã™ã‚‹
 extern int NS_SetNextPlay3DPositionSoundMem( VECTOR Position, int SoundHandle )
 {
 	SOUND * Sound ;
@@ -7601,25 +7601,25 @@ extern int NS_SetNextPlay3DPositionSoundMem( VECTOR Position, int SoundHandle )
 		return -1 ;
 	}
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( SOUNDHCHK( SoundHandle, Sound ) )
 		return -1 ;
 
-	// ‚R‚cƒTƒEƒ“ƒh‚Å‚Í‚È‚¢ê‡‚Í‰½‚à‚µ‚È‚¢
+	// ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰ã§ã¯ãªã„å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( Sound->Is3DSound == FALSE )
 		return -1 ;
 
-	// 1.0f = ‚Pƒ[ƒgƒ‹‚Ì’PˆÊ‚É•ÏŠ·‚·‚é
+	// 1.0f = ï¼‘ãƒ¡ãƒ¼ãƒˆãƒ«ã®å˜ä½ã«å¤‰æ›ã™ã‚‹
 	VectorScale( &Position, &Position, 1.0f / SoundSysData._3DSoundOneMetre ) ;
 
 	Sound->NextPlay3DPosition = Position ;
 	Sound->ValidNextPlay3DPosition = 1 ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹‚ÌŸ‚ÌÄ¶‚Ì‚İ‚Ég—p‚·‚é‚R‚cƒTƒEƒ“ƒh—p‚Ì‰¹‚ª•·‚±‚¦‚é‹——£‚ğİ’è‚·‚é
+// ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ã®æ¬¡ã®å†ç”Ÿã®ã¿ã«ä½¿ç”¨ã™ã‚‹ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰ç”¨ã®éŸ³ãŒèã“ãˆã‚‹è·é›¢ã‚’è¨­å®šã™ã‚‹
 extern int NS_SetNextPlay3DRadiusSoundMem( float Radius, int SoundHandle )
 {
 	SOUND * Sound ;
@@ -7629,11 +7629,11 @@ extern int NS_SetNextPlay3DRadiusSoundMem( float Radius, int SoundHandle )
 		return -1 ;
 	}
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( SOUNDHCHK( SoundHandle, Sound ) )
 		return -1 ;
 
-	// ‚R‚cƒTƒEƒ“ƒh‚Å‚Í‚È‚¢ê‡‚Í‰½‚à‚µ‚È‚¢
+	// ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰ã§ã¯ãªã„å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( Sound->Is3DSound == FALSE )
 		return -1 ;
 
@@ -7642,11 +7642,11 @@ extern int NS_SetNextPlay3DRadiusSoundMem( float Radius, int SoundHandle )
 	Sound->NextPlay3DRadius = Radius ;
 	Sound->ValidNextPlay3DRadius = 1 ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹‚ÌŸ‚ÌÄ¶‚Ì‚İ‚Ég—p‚·‚é‚R‚cƒTƒEƒ“ƒh—p‚ÌˆÚ“®‘¬“x‚ğİ’è‚·‚é
+// ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ã®æ¬¡ã®å†ç”Ÿã®ã¿ã«ä½¿ç”¨ã™ã‚‹ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰ç”¨ã®ç§»å‹•é€Ÿåº¦ã‚’è¨­å®šã™ã‚‹
 extern int NS_SetNextPlay3DVelocitySoundMem( VECTOR Velocity, int SoundHandle )
 {
 	SOUND * Sound ;
@@ -7656,21 +7656,21 @@ extern int NS_SetNextPlay3DVelocitySoundMem( VECTOR Velocity, int SoundHandle )
 		return -1 ;
 	}
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( SOUNDHCHK( SoundHandle, Sound ) )
 		return -1 ;
 
-	// ‚R‚cƒTƒEƒ“ƒh‚Å‚Í‚È‚¢ê‡‚Í‰½‚à‚µ‚È‚¢
+	// ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰ã§ã¯ãªã„å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( Sound->Is3DSound == FALSE )
 		return -1 ;
 
-	// 1.0f = ‚Pƒ[ƒgƒ‹‚Ì’PˆÊ‚É•ÏŠ·‚·‚é
+	// 1.0f = ï¼‘ãƒ¡ãƒ¼ãƒˆãƒ«ã®å˜ä½ã«å¤‰æ›ã™ã‚‹
 	VectorScale( &Velocity, &Velocity, 1.0f / SoundSysData._3DSoundOneMetre ) ;
 
 	Sound->NextPlay3DVelocity = Velocity ;
 	Sound->ValidNextPlay3DVelocity = 1 ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
@@ -7692,10 +7692,10 @@ extern int NS_SetNextPlay3DVelocitySoundMem( VECTOR Velocity, int SoundHandle )
 
 
 
-// “ÁêŠÖ”
+// ç‰¹æ®Šé–¢æ•°
 
 
-// MP3ƒtƒ@ƒCƒ‹‚Ìƒ^ƒOî•ñ‚ğæ“¾‚·‚é
+// MP3ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚¿ã‚°æƒ…å ±ã‚’å–å¾—ã™ã‚‹
 extern int NS_GetMP3TagInfo( const TCHAR *FileName, TCHAR *TitleBuffer, size_t TitleBufferBytes, TCHAR *ArtistBuffer, size_t ArtistBufferBytes, TCHAR *AlbumBuffer, size_t AlbumBufferBytes, TCHAR *YearBuffer, size_t YearBufferBytes, TCHAR *CommentBuffer, size_t CommentBufferBytes, TCHAR *TrackBuffer, size_t TrackBufferBytes, TCHAR *GenreBuffer, size_t GenreBufferBytes, int *PictureGrHandle )
 {
 #ifdef UNICODE
@@ -7762,7 +7762,7 @@ static size_t ReadID3v2Text( BYTE *FrameData, TCHAR *StringBuffer, size_t String
 		}
 		break ;
 
-	case 1 :	// UTF-16 / BOM‚ ‚è
+	case 1 :	// UTF-16 / BOMã‚ã‚Š
 		if( FrameData[ DataOffset ] == 0xfe && FrameData[ DataOffset + 1 ] == 0xff )
 		{
 			Bytes = ( CL_strlen( DX_CHARCODEFORMAT_UTF16BE, ( char * )&FrameData[ DataOffset + 2 ] ) + 1 ) * 2 ;
@@ -7782,7 +7782,7 @@ static size_t ReadID3v2Text( BYTE *FrameData, TCHAR *StringBuffer, size_t String
 		Bytes += 2 ;
 		break ;
 
-	case 2 :	// UTF-16BE / BOM‚È‚µ
+	case 2 :	// UTF-16BE / BOMãªã—
 		Bytes = ( CL_strlen( DX_CHARCODEFORMAT_UTF16BE, ( char * )&FrameData[ DataOffset ] ) + 1 ) * 2 ;
 		if( StringBuffer != NULL && StringBufferBytes > 0 )
 		{
@@ -7813,7 +7813,7 @@ extern int GetMP3TagInfo_WCHAR_T( const wchar_t *FileName, TCHAR *TitleBuffer, s
 	BYTE *FrameBuffer = NULL ;
 	size_t FrameBufferSize = 0 ;
 
-	// ƒtƒ@ƒCƒ‹‚ğŠJ‚­
+	// ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‹ã
 	fp = DX_FOPEN( FileName ) ;
 	if( fp == 0 )
 	{
@@ -7825,17 +7825,17 @@ extern int GetMP3TagInfo_WCHAR_T( const wchar_t *FileName, TCHAR *TitleBuffer, s
 		*PictureGrHandle = -1 ;
 	}
 
-	// ƒtƒ@ƒCƒ‹ƒTƒCƒY‚ğ“¾‚é
+	// ãƒ•ã‚¡ã‚¤ãƒ«ã‚µã‚¤ã‚ºã‚’å¾—ã‚‹
 	DX_FSEEK( fp, 0, SEEK_END ) ;
 	FileSize = ( size_t )DX_FTELL( fp ) ;
 	DX_FSEEK( fp, 0, SEEK_SET ) ;
 
-	// ID3v1 ƒ^ƒO‚Ìƒ`ƒFƒbƒN
+	// ID3v1 ã‚¿ã‚°ã®ãƒã‚§ãƒƒã‚¯
 	if( FileSize > 128 )
 	{
 		BYTE ID3v1[ 128 ] ;
 
-		// ƒ^ƒO‚ğŠÛ‚²‚Æ“Ç‚İ‚İ
+		// ã‚¿ã‚°ã‚’ä¸¸ã”ã¨èª­ã¿è¾¼ã¿
 		DX_FSEEK( fp, -128, SEEK_END ) ;
 		DX_FREAD( ID3v1, 128, 1, fp ) ;
 		DX_FSEEK( fp, 0, SEEK_SET ) ;
@@ -7852,7 +7852,7 @@ extern int GetMP3TagInfo_WCHAR_T( const wchar_t *FileName, TCHAR *TitleBuffer, s
 
 			v1Valid = TRUE ;
 
-			// ‹È–¼‚Ìæ“¾
+			// æ›²åã®å–å¾—
 			_MEMCPY( TempStringBuffer, &ID3v1[ 3 ], 30 ) ;
 			TempStringBuffer[ 30 ] = '\0' ;
 			if( TitleBufferBytes > 0 && TitleBuffer != NULL )
@@ -7860,7 +7860,7 @@ extern int GetMP3TagInfo_WCHAR_T( const wchar_t *FileName, TCHAR *TitleBuffer, s
 				ConvString( TempStringBuffer, -1, DX_CHARCODEFORMAT_SHIFTJIS, ( char * )TitleBuffer, TitleBufferBytes, _TCHARCODEFORMAT ) ;
 			}
 
-			// ƒA[ƒeƒBƒXƒg–¼‚Ìæ“¾
+			// ã‚¢ãƒ¼ãƒ†ã‚£ã‚¹ãƒˆåã®å–å¾—
 			_MEMCPY( TempStringBuffer, &ID3v1[ 33 ], 30 ) ;
 			TempStringBuffer[ 30 ] = '\0' ;
 			if( ArtistBufferBytes > 0 && ArtistBuffer != NULL )
@@ -7868,7 +7868,7 @@ extern int GetMP3TagInfo_WCHAR_T( const wchar_t *FileName, TCHAR *TitleBuffer, s
 				ConvString( TempStringBuffer, -1, DX_CHARCODEFORMAT_SHIFTJIS, ( char * )ArtistBuffer, ArtistBufferBytes, _TCHARCODEFORMAT ) ;
 			}
 
-			// ƒAƒ‹ƒoƒ€–¼‚Ìæ“¾
+			// ã‚¢ãƒ«ãƒãƒ åã®å–å¾—
 			_MEMCPY( TempStringBuffer, &ID3v1[ 63 ], 30 ) ;
 			TempStringBuffer[ 30 ] = '\0' ;
 			if( AlbumBufferBytes > 0 && AlbumBuffer != NULL )
@@ -7876,7 +7876,7 @@ extern int GetMP3TagInfo_WCHAR_T( const wchar_t *FileName, TCHAR *TitleBuffer, s
 				ConvString( TempStringBuffer, -1, DX_CHARCODEFORMAT_SHIFTJIS, ( char * )AlbumBuffer, AlbumBufferBytes, _TCHARCODEFORMAT ) ;
 			}
 
-			// ì‹È”N‚Ìæ“¾
+			// ä½œæ›²å¹´ã®å–å¾—
 			_MEMCPY( TempStringBuffer, &ID3v1[ 93 ], 4 ) ;
 			TempStringBuffer[ 4 ] = '\0' ;
 			if( YearBufferBytes > 0 && YearBuffer != NULL )
@@ -7884,7 +7884,7 @@ extern int GetMP3TagInfo_WCHAR_T( const wchar_t *FileName, TCHAR *TitleBuffer, s
 				ConvString( TempStringBuffer, -1, DX_CHARCODEFORMAT_SHIFTJIS, ( char * )YearBuffer, CommentBufferBytes, _TCHARCODEFORMAT ) ;
 			}
 
-			// ƒRƒƒ“ƒg‚Ìæ“¾
+			// ã‚³ãƒ¡ãƒ³ãƒˆã®å–å¾—
 			_MEMCPY( TempStringBuffer, &ID3v1[ 97 ], 30 ) ;
 			TempStringBuffer[ 30 ] = '\0' ;
 			if( CommentBufferBytes > 0 && CommentBuffer != NULL )
@@ -7892,7 +7892,7 @@ extern int GetMP3TagInfo_WCHAR_T( const wchar_t *FileName, TCHAR *TitleBuffer, s
 				ConvString( TempStringBuffer, -1, DX_CHARCODEFORMAT_SHIFTJIS, ( char * )CommentBuffer, CommentBufferBytes, _TCHARCODEFORMAT ) ;
 			}
 
-			// ƒgƒ‰ƒbƒN”Ô†‚Ìæ“¾
+			// ãƒˆãƒ©ãƒƒã‚¯ç•ªå·ã®å–å¾—
 			if( ID3v1[ 125 ] == 0 )
 			{
 				TrackNo = ( int )ID3v1[ 126 ] ;
@@ -7902,12 +7902,12 @@ extern int GetMP3TagInfo_WCHAR_T( const wchar_t *FileName, TCHAR *TitleBuffer, s
 				TrackNo = -1 ;
 			}
 
-			// ƒWƒƒƒ“ƒ‹”Ô†‚Ìæ“¾
+			// ã‚¸ãƒ£ãƒ³ãƒ«ç•ªå·ã®å–å¾—
 			Genre = ( int )ID3v1[ 127 ] ;
 		}
 	}
 
-	// ID3v2 ƒ^ƒO‚Ìƒ`ƒFƒbƒN
+	// ID3v2 ã‚¿ã‚°ã®ãƒã‚§ãƒƒã‚¯
 	{
 		BYTE MainVer, SubVer, Flag, SizeData[4] ;
 		size_t TagSize ;
@@ -7925,22 +7925,22 @@ extern int GetMP3TagInfo_WCHAR_T( const wchar_t *FileName, TCHAR *TitleBuffer, s
 		{
 			v2Valid = TRUE ;
 
-			// ƒo[ƒWƒ‡ƒ“‚ğ“¾‚é
+			// ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã‚’å¾—ã‚‹
 			DX_FREAD( &MainVer, 1, 1, fp ) ;
 			DX_FREAD( &SubVer, 1, 1, fp ) ;
 			FrameHeadSize = MainVer >= 3 ? 10 : 6 ;
 
-			// ƒtƒ‰ƒO‚ğ“¾‚é
+			// ãƒ•ãƒ©ã‚°ã‚’å¾—ã‚‹
 			DX_FREAD( &Flag, 1, 1, fp ) ;
 
-			// —e—Êî•ñ‚ğ“¾‚é
+			// å®¹é‡æƒ…å ±ã‚’å¾—ã‚‹
 			DX_FREAD( SizeData, 1, 4, fp ) ;
 			TagSize = ( DWORD )( ( ( SizeData[0] & 0x7f ) << 21 ) + ( ( SizeData[1] & 0x7f ) << 14 ) + ( ( SizeData[2] & 0x7f ) << 7 ) + ( SizeData[3] & 0x7f ) + 10 ) ;
 
-			// ƒtƒbƒ^‚ª‚ ‚é‚©‚Ç‚¤‚©ƒ`ƒFƒbƒN
+			// ãƒ•ãƒƒã‚¿ãŒã‚ã‚‹ã‹ã©ã†ã‹ãƒã‚§ãƒƒã‚¯
 			ValidFooter = MainVer == 4 && ( Flag & 0x10 ) != 0 ? TRUE : FALSE ;
 
-			// Šg’£ƒwƒbƒ_‚Í–³‹
+			// æ‹¡å¼µãƒ˜ãƒƒãƒ€ã¯ç„¡è¦–
 			if( ( Flag & 0x40 ) != 0 )
 			{
 				ExHeadSize = ReadID3v2SizeData( MainVer, fp ) ;
@@ -7951,7 +7951,7 @@ extern int GetMP3TagInfo_WCHAR_T( const wchar_t *FileName, TCHAR *TitleBuffer, s
 				ReadSize = ExHeadSize ;
 			}
 
-			// ƒtƒŒ[ƒ€‰ğÍ
+			// ãƒ•ãƒ¬ãƒ¼ãƒ è§£æ
 			while( ReadSize + FrameHeadSize + 1 < TagSize )
 			{
 				char FrameName[ 5 ] ;
@@ -8189,14 +8189,14 @@ ERR :
 
 #ifndef DX_NON_OGGVORBIS
 
-// Oggƒtƒ@ƒCƒ‹‚ÌƒRƒƒ“ƒgî•ñ‚Ì”‚ğæ“¾‚·‚é
+// Oggãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚³ãƒ¡ãƒ³ãƒˆæƒ…å ±ã®æ•°ã‚’å–å¾—ã™ã‚‹
 extern int GetOggCommentNum_WCHAR_T( const wchar_t *FileName )
 {
 	DWORD_PTR fp = 0 ;
 	STREAMDATA Stream ;
 	int Comments ;
 
-	// ƒtƒ@ƒCƒ‹‚ğŠJ‚­
+	// ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‹ã
 	fp = DX_FOPEN( FileName ) ;
 	if( fp == 0 )
 	{
@@ -8204,17 +8204,17 @@ extern int GetOggCommentNum_WCHAR_T( const wchar_t *FileName )
 		return -1 ;
 	}
 
-	// ƒXƒgƒŠ[ƒ€ƒf[ƒ^î•ñ‚ğƒZƒbƒg‚·‚é
+	// ã‚¹ãƒˆãƒªãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿æƒ…å ±ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 	Stream.DataPoint = fp ;
 	Stream.ReadShred = *GetFileStreamDataShredStruct() ;
 
-	// libogg ‚ğg—p‚·‚éˆ—‚ğÀs
+	// libogg ã‚’ä½¿ç”¨ã™ã‚‹å‡¦ç†ã‚’å®Ÿè¡Œ
 	Comments = GetOggCommentNumBase( &Stream ) ;
 
-	// ƒtƒ@ƒCƒ‹‚ğ•Â‚¶‚é
+	// ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‰ã˜ã‚‹
 	DX_FCLOSE( fp ) ;
 
-	// ƒRƒƒ“ƒg‚Ì”‚ğ•Ô‚·
+	// ã‚³ãƒ¡ãƒ³ãƒˆã®æ•°ã‚’è¿”ã™
 	return Comments ;
 }
 
@@ -8254,14 +8254,14 @@ extern int NS_GetOggCommentNumWithStrLen( const TCHAR *FileName, size_t FileName
 	return Result ;
 }
 
-// Oggƒtƒ@ƒCƒ‹‚ÌƒRƒƒ“ƒgî•ñ‚ğæ“¾‚·‚é
+// Oggãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚³ãƒ¡ãƒ³ãƒˆæƒ…å ±ã‚’å–å¾—ã™ã‚‹
 extern int GetOggComment_WCHAR_T( const wchar_t *FileName, int CommentIndex, TCHAR *CommentNameBuffer, size_t CommentNameBufferBytes, TCHAR *CommentBuffer, size_t CommentBufferBytes )
 {
 	DWORD_PTR fp = 0 ;
 	STREAMDATA Stream ;
 	int Result ;
 
-	// ƒtƒ@ƒCƒ‹‚ğŠJ‚­
+	// ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‹ã
 	fp = DX_FOPEN( FileName ) ;
 	if( fp == 0 )
 	{
@@ -8269,17 +8269,17 @@ extern int GetOggComment_WCHAR_T( const wchar_t *FileName, int CommentIndex, TCH
 		return -1 ;
 	}
 
-	// ƒXƒgƒŠ[ƒ€ƒf[ƒ^î•ñ‚ğƒZƒbƒg‚·‚é
+	// ã‚¹ãƒˆãƒªãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿æƒ…å ±ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 	Stream.DataPoint = fp ;
 	Stream.ReadShred = *GetFileStreamDataShredStruct() ;
 
-	// libogg ‚ğg—p‚·‚éˆ—‚ğÀs
+	// libogg ã‚’ä½¿ç”¨ã™ã‚‹å‡¦ç†ã‚’å®Ÿè¡Œ
 	Result = GetOggCommentBase( &Stream, CommentIndex, ( char * )CommentNameBuffer, CommentNameBufferBytes, ( char * )CommentBuffer, CommentBufferBytes ) ;
 
-	// ƒtƒ@ƒCƒ‹‚ğ•Â‚¶‚é
+	// ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‰ã˜ã‚‹
 	DX_FCLOSE( fp ) ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
@@ -8344,33 +8344,33 @@ extern int NS_GetOggCommentWithStrLen( const TCHAR *FileName, size_t FileNameLen
 
 #ifndef DX_NON_BEEP
 
-// BEEP‰¹Ä¶—p–½—ß
+// BEEPéŸ³å†ç”Ÿç”¨å‘½ä»¤
 
-// ƒr[ƒv‰¹ü”g”İ’èŠÖ”
+// ãƒ“ãƒ¼ãƒ—éŸ³å‘¨æ³¢æ•°è¨­å®šé–¢æ•°
 extern int NS_SetBeepFrequency( int Freq )
 {
 	int OldUseIndex ;
 	SOUND_BEEP_BUFFERDATA *BeepBuf ;
 
-	// •s³‚Èü”g”‚Ìê‡‚Í‰½‚à‚¹‚¸I—¹
+	// ä¸æ­£ãªå‘¨æ³¢æ•°ã®å ´åˆã¯ä½•ã‚‚ã›ãšçµ‚äº†
 	if( Freq == 0 || Freq > SOUND_BEEP_SAMPLEPERSEC / 2 )
 	{
 		return -1 ;
 	}
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 	CRITICALSECTION_LOCK( &HandleManageArray[ DX_HANDLETYPE_SOUND ].CriticalSection ) ;
 
-	// ü”g”‚ª‘S‚­“¯‚¶ê‡‚Í‰½‚à‚¹‚¸‚ÉI—¹
+	// å‘¨æ³¢æ•°ãŒå…¨ãåŒã˜å ´åˆã¯ä½•ã‚‚ã›ãšã«çµ‚äº†
 	if( SoundSysData.BeepFrequency == Freq )
 	{
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 		CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_SOUND ].CriticalSection ) ;
 
 		return 0 ;
 	}
 
-	// g—p‚·‚éƒoƒbƒtƒ@‚ği‚ß‚é
+	// ä½¿ç”¨ã™ã‚‹ãƒãƒƒãƒ•ã‚¡ã‚’é€²ã‚ã‚‹
 	OldUseIndex = SoundSysData.BeepSoundBufferUseIndex ;
 	SoundSysData.BeepSoundBufferUseIndex ++ ;
 	if( SoundSysData.BeepSoundBufferUseIndex == SOUND_BEEPSOUNDBUFFER_NUM )
@@ -8379,13 +8379,13 @@ extern int NS_SetBeepFrequency( int Freq )
 	}
 	BeepBuf = &SoundSysData.BeepSoundBuffer[ SoundSysData.BeepSoundBufferUseIndex ] ;
 
-	// ƒoƒbƒtƒ@‚ªg—p’†‚Ìê‡‚Í~‚ß‚é
+	// ãƒãƒƒãƒ•ã‚¡ãŒä½¿ç”¨ä¸­ã®å ´åˆã¯æ­¢ã‚ã‚‹
 	if( SoundBuffer_CheckPlay( &BeepBuf->Buffer ) )
 	{
 		SoundBuffer_Stop( &BeepBuf->Buffer ) ;
 	}
 
-	// ó‘Ô‚ğ‰Šú‰»
+	// çŠ¶æ…‹ã‚’åˆæœŸåŒ–
 	BeepBuf->NextFillBufferPosition = 0 ;
 	BeepBuf->NextUseOneCycleSampleBufferPosition = 0 ;
 	BeepBuf->OneCycleSamples = 0 ;
@@ -8394,10 +8394,10 @@ extern int NS_SetBeepFrequency( int Freq )
 	BeepBuf->StopRequest = FALSE ;
 	BeepBuf->StopTime = 0 ;
 
-	// ƒpƒ‰ƒ[ƒ^‚ğŒˆ’è
+	// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’æ±ºå®š
 	BeepBuf->OneCycleSamples = SOUND_BEEP_SAMPLEPERSEC / Freq ;
 
-	// 1ü•ª‚Ì”gŒ`ƒf[ƒ^‚ğì¬‚·‚é
+	// 1å‘¨åˆ†ã®æ³¢å½¢ãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆã™ã‚‹
 	{
 		int i ;
 		float UnitAngle ;
@@ -8409,10 +8409,10 @@ extern int NS_SetBeepFrequency( int Freq )
 			BeepBuf->OneCycleSampleBuffer = ( short * )DXALLOC( ( size_t )BeepBuf->OneCycleSampleBufferSize ) ;
 			if( BeepBuf->OneCycleSampleBuffer == NULL )
 			{
-				// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+				// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 				CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_SOUND ].CriticalSection ) ;
 
-				DXST_LOGFILE_ADDUTF16LE( "\x42\x00\x45\x00\x45\x00\x50\x00\xf3\x97\x28\x75\x6e\x30\x5c\x4f\x6d\x69\x28\x75\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"BEEP‰¹—p‚Ìì‹Æ—pƒƒ‚ƒŠ‚ÌŠm•Û‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+				DXST_LOGFILE_ADDUTF16LE( "\x42\x00\x45\x00\x45\x00\x50\x00\xf3\x97\x28\x75\x6e\x30\x5c\x4f\x6d\x69\x28\x75\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"BEEPéŸ³ç”¨ã®ä½œæ¥­ç”¨ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 				return -1 ;
 			}
 		}
@@ -8427,21 +8427,21 @@ extern int NS_SetBeepFrequency( int Freq )
 		}
 	}
 
-	// ”gŒ`ƒf[ƒ^‚ğƒZƒbƒg‚·‚é
+	// æ³¢å½¢ãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 	if( BeepSound_FillSamples( SoundSysData.BeepSoundBufferUseIndex ) < 0 )
 	{
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 		CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_SOUND ].CriticalSection ) ;
 		return -1 ;
 	}
 
-	// ü”g”‚ğ•Û‘¶
+	// å‘¨æ³¢æ•°ã‚’ä¿å­˜
 	SoundSysData.BeepFrequency = Freq ;
 
-	// BEEP‚ğÄ¶’†‚¾‚Á‚½ê‡‚ÍˆÈ‘O‚ÌBEEP‚ÌÄ¶‚ğI—¹‚µ‚ÄAV‚½‚ÈBEEP‚ÌÄ¶‚ğŠJn‚·‚é
+	// BEEPã‚’å†ç”Ÿä¸­ã ã£ãŸå ´åˆã¯ä»¥å‰ã®BEEPã®å†ç”Ÿã‚’çµ‚äº†ã—ã¦ã€æ–°ãŸãªBEEPã®å†ç”Ÿã‚’é–‹å§‹ã™ã‚‹
 	if( SoundSysData.BeepPlay )
 	{
-		// ¡‚Ü‚ÅÄ¶‚µ‚Ä‚¢‚½ƒoƒbƒtƒ@‚ğ~‚ß‚éƒŠƒNƒGƒXƒg‚ğİ’è‚·‚é
+		// ä»Šã¾ã§å†ç”Ÿã—ã¦ã„ãŸãƒãƒƒãƒ•ã‚¡ã‚’æ­¢ã‚ã‚‹ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚’è¨­å®šã™ã‚‹
 //		SoundBuffer_Stop( &SoundSysData.BeepSoundBuffer[ OldUseIndex ] ) ;
 		SoundBuffer_SetVolume( &SoundSysData.BeepSoundBuffer[ OldUseIndex ].Buffer, 0, -10000 ) ;
 		SoundSysData.BeepSoundBuffer[ OldUseIndex ].VolumeUpRequest = FALSE ;
@@ -8460,14 +8460,14 @@ extern int NS_SetBeepFrequency( int Freq )
 		BeepBuf->StopTime        = 0 ;
 	}
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 	CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_SOUND ].CriticalSection ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒr[ƒv‰¹‚ğÄ¶‚·‚é
+// ãƒ“ãƒ¼ãƒ—éŸ³ã‚’å†ç”Ÿã™ã‚‹
 extern int NS_PlayBeep( void )
 {
 	if( CheckSoundSystem_Initialize_PF() == FALSE )
@@ -8475,29 +8475,29 @@ extern int NS_PlayBeep( void )
 		return -1 ;
 	}
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 	CRITICALSECTION_LOCK( &HandleManageArray[ DX_HANDLETYPE_SOUND ].CriticalSection ) ;
 
-	// Ä¶’†‚¾‚Á‚½ê‡‚Í‚È‚É‚à‚µ‚È‚¢‚ÅI—¹
+	// å†ç”Ÿä¸­ã ã£ãŸå ´åˆã¯ãªã«ã‚‚ã—ãªã„ã§çµ‚äº†
 	if( SoundSysData.BeepPlay )
 	{
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 		CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_SOUND ].CriticalSection ) ;
 		return 0 ;
 	}
 
-	// ü”g”‚ªİ’è‚³‚ê‚Ä‚¢‚È‚©‚Á‚½‚çƒfƒtƒHƒ‹ƒg‚Ìü”g”‚ğİ’è
+	// å‘¨æ³¢æ•°ãŒè¨­å®šã•ã‚Œã¦ã„ãªã‹ã£ãŸã‚‰ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®å‘¨æ³¢æ•°ã‚’è¨­å®š
 	if( SoundSysData.BeepFrequency == 0 )
 	{
 		if( NS_SetBeepFrequency( SOUND_DEFAULT_BEEP_FREQUENCY ) < 0 )
 		{
-			// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+			// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 			CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_SOUND ].CriticalSection ) ;
 			return -1 ;
 		}
 	}
 
-	// Ä¶
+	// å†ç”Ÿ
 	SoundBuffer_SetVolume( &SoundSysData.BeepSoundBuffer[ SoundSysData.BeepSoundBufferUseIndex ].Buffer, 0, -10000 ) ;
 //	SoundBuffer_SetVolume( &SoundSysData.BeepSoundBuffer[ SoundSysData.BeepSoundBufferUseIndex ].Buffer, 0, 0 ) ;
 	SoundBuffer_Play( &SoundSysData.BeepSoundBuffer[ SoundSysData.BeepSoundBufferUseIndex ].Buffer, TRUE ) ;
@@ -8508,17 +8508,17 @@ extern int NS_PlayBeep( void )
 	SoundSysData.BeepSoundBuffer[ SoundSysData.BeepSoundBufferUseIndex ].StopRequest     = FALSE ;
 	SoundSysData.BeepSoundBuffer[ SoundSysData.BeepSoundBufferUseIndex ].StopTime        = 0 ;
 
-	// Ä¶’†ó‘Ô‚É‚·‚é
+	// å†ç”Ÿä¸­çŠ¶æ…‹ã«ã™ã‚‹
 	SoundSysData.BeepPlay = TRUE ;
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 	CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_SOUND ].CriticalSection ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒr[ƒv‰¹‚ğ~‚ß‚é	
+// ãƒ“ãƒ¼ãƒ—éŸ³ã‚’æ­¢ã‚ã‚‹	
 extern int NS_StopBeep( void )
 {
 	if( CheckSoundSystem_Initialize_PF() == FALSE )
@@ -8526,19 +8526,19 @@ extern int NS_StopBeep( void )
 		return -1 ;
 	}
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 	CRITICALSECTION_LOCK( &HandleManageArray[ DX_HANDLETYPE_SOUND ].CriticalSection ) ;
 
-	// Ä¶’†‚Å‚Í‚È‚©‚Á‚½‚ç‰½‚à‚¹‚¸‚ÉI—¹
+	// å†ç”Ÿä¸­ã§ã¯ãªã‹ã£ãŸã‚‰ä½•ã‚‚ã›ãšã«çµ‚äº†
 	if( SoundSysData.BeepPlay == FALSE )
 	{
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 		CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_SOUND ].CriticalSection ) ;
 
 		return 0 ;
 	}
 
-	// Ä¶’â~‚Ì‘ã‚í‚è‚É‰¹—Ê‚ğ0‚É‚µ‚ÄAÄ¶I—¹‘Ò‚¿ó‘Ô‚É‚·‚é
+	// å†ç”Ÿåœæ­¢ã®ä»£ã‚ã‚Šã«éŸ³é‡ã‚’0ã«ã—ã¦ã€å†ç”Ÿçµ‚äº†å¾…ã¡çŠ¶æ…‹ã«ã™ã‚‹
 //	SoundBuffer_Stop( &SoundSysData.BeepSoundBuffer[ SoundSysData.BeepSoundBufferUseIndex ].Buffer ) ;
 	SoundBuffer_SetVolume( &SoundSysData.BeepSoundBuffer[ SoundSysData.BeepSoundBufferUseIndex ].Buffer, 0, -5000 ) ;
 	SoundSysData.BeepSoundBuffer[ SoundSysData.BeepSoundBufferUseIndex ].VolumeUpRequest = FALSE ;
@@ -8546,13 +8546,13 @@ extern int NS_StopBeep( void )
 	SoundSysData.BeepSoundBuffer[ SoundSysData.BeepSoundBufferUseIndex ].StopRequest     = TRUE ;
 	SoundSysData.BeepSoundBuffer[ SoundSysData.BeepSoundBufferUseIndex ].StopTime        = NS_GetNowCount( FALSE ) ;
 
-	// Ä¶’†ƒtƒ‰ƒO‚ğ“|‚·
+	// å†ç”Ÿä¸­ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 	SoundSysData.BeepPlay = FALSE ;
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 	CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_SOUND ].CriticalSection ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
@@ -8578,15 +8578,15 @@ extern int NS_StopBeep( void )
 
 
 
-// İ’èŠÖŒWŠÖ”
+// è¨­å®šé–¢ä¿‚é–¢æ•°
 
-// ì¬‚·‚éƒTƒEƒ“ƒh‚Ìƒf[ƒ^Œ`®‚ğİ’è‚·‚é
+// ä½œæˆã™ã‚‹ã‚µã‚¦ãƒ³ãƒ‰ã®ãƒ‡ãƒ¼ã‚¿å½¢å¼ã‚’è¨­å®šã™ã‚‹
 extern int NS_SetCreateSoundDataType( int SoundDataType )
 {
-	// ’l‚ª”ÍˆÍŠO‚Ìƒf[ƒ^Œ`®‚©‚Ç‚¤‚©’²‚×‚é
+	// å€¤ãŒç¯„å›²å¤–ã®ãƒ‡ãƒ¼ã‚¿å½¢å¼ã‹ã©ã†ã‹èª¿ã¹ã‚‹
 	if( SoundDataType >= DX_SOUNDDATATYPE_MEMNOPRESS && SoundDataType <= DX_SOUNDDATATYPE_FILE )
 	{
-		// Œ»İ DX_SOUNDDATATYPE_MEMNOPRESS_PLUS ‚Í”ñ‘Î‰
+		// ç¾åœ¨ DX_SOUNDDATATYPE_MEMNOPRESS_PLUS ã¯éå¯¾å¿œ
 		if( SoundDataType == DX_SOUNDDATATYPE_MEMNOPRESS_PLUS )
 		{
 			SoundSysData.CreateSoundDataType = DX_SOUNDDATATYPE_MEMNOPRESS ;
@@ -8601,17 +8601,17 @@ extern int NS_SetCreateSoundDataType( int SoundDataType )
 		return -1 ; 
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ì¬‚·‚éƒTƒEƒ“ƒh‚Ìƒf[ƒ^Œ`®‚ğæ“¾‚·‚é( DX_SOUNDDATATYPE_MEMNOPRESS “™ )
+// ä½œæˆã™ã‚‹ã‚µã‚¦ãƒ³ãƒ‰ã®ãƒ‡ãƒ¼ã‚¿å½¢å¼ã‚’å–å¾—ã™ã‚‹( DX_SOUNDDATATYPE_MEMNOPRESS ç­‰ )
 extern	int NS_GetCreateSoundDataType( void )
 {
 	return SoundSysData.CreateSoundDataType ;
 }
 
-// ì¬‚·‚éƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹‚Ìƒsƒbƒ`ƒŒ[ƒg‚ğİ’è‚·‚é( ’PˆÊ‚ÍƒZƒ“ƒg( 100.0f‚Å”¼‰¹A1200.0f‚Å‚PƒIƒNƒ^[ƒ” )Aƒvƒ‰ƒX‚Ì’l‚Å‰¹’ö‚ª‚‚­Aƒ}ƒCƒiƒX‚Ì’l‚Å‰¹’ö‚ª’á‚­‚È‚è‚Ü‚· )
+// ä½œæˆã™ã‚‹ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ã®ãƒ”ãƒƒãƒãƒ¬ãƒ¼ãƒˆã‚’è¨­å®šã™ã‚‹( å˜ä½ã¯ã‚»ãƒ³ãƒˆ( 100.0fã§åŠéŸ³ã€1200.0fã§ï¼‘ã‚ªã‚¯ã‚¿ãƒ¼ãƒ´ )ã€ãƒ—ãƒ©ã‚¹ã®å€¤ã§éŸ³ç¨‹ãŒé«˜ãã€ãƒã‚¤ãƒŠã‚¹ã®å€¤ã§éŸ³ç¨‹ãŒä½ããªã‚Šã¾ã™ )
 extern	int NS_SetCreateSoundPitchRate( float Cents )
 {
 //	if( PitchRate < 0.25f || PitchRate > 2.0f )
@@ -8632,17 +8632,17 @@ extern	int NS_SetCreateSoundPitchRate( float Cents )
 		SoundSysData.CreateSoundPitchRate_Cents = Cents ;
 	}
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// ì¬‚·‚éƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹‚Ìƒsƒbƒ`ƒŒ[ƒg‚ğæ“¾‚·‚é( ’PˆÊ‚ÍƒZƒ“ƒg( 100.0f‚Å”¼‰¹A1200.0f‚Å‚PƒIƒNƒ^[ƒ” )Aƒvƒ‰ƒX‚Ì’l‚Å‰¹’ö‚ª‚‚­Aƒ}ƒCƒiƒX‚Ì’l‚Å‰¹’ö‚ª’á‚­‚È‚è‚Ü‚· )
+// ä½œæˆã™ã‚‹ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ã®ãƒ”ãƒƒãƒãƒ¬ãƒ¼ãƒˆã‚’å–å¾—ã™ã‚‹( å˜ä½ã¯ã‚»ãƒ³ãƒˆ( 100.0fã§åŠéŸ³ã€1200.0fã§ï¼‘ã‚ªã‚¯ã‚¿ãƒ¼ãƒ´ )ã€ãƒ—ãƒ©ã‚¹ã®å€¤ã§éŸ³ç¨‹ãŒé«˜ãã€ãƒã‚¤ãƒŠã‚¹ã®å€¤ã§éŸ³ç¨‹ãŒä½ããªã‚Šã¾ã™ )
 extern	float NS_GetCreateSoundPitchRate( void )
 {
 	return SoundSysData.CreateSoundPitchRate_Cents ;
 }
 
-// ì¬‚·‚éƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹‚Ìƒ^ƒCƒ€ƒXƒgƒŒƒbƒ`( ‰¹’ö‚ğ•Ï‚¦‚¸‚É‰¹‚Ì’·‚³‚ğ•ÏX‚·‚é )ƒŒ[ƒg‚ğİ’è‚·‚é( ’PˆÊ‚Í”{—¦A2.0f ‚Å‰¹‚Ì’·‚³‚ª‚Q”{‚ÉA0.5f ‚Å‰¹‚Ì’·‚³‚ª”¼•ª‚É‚È‚è‚Ü‚· )
+// ä½œæˆã™ã‚‹ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ã®ã‚¿ã‚¤ãƒ ã‚¹ãƒˆãƒ¬ãƒƒãƒ( éŸ³ç¨‹ã‚’å¤‰ãˆãšã«éŸ³ã®é•·ã•ã‚’å¤‰æ›´ã™ã‚‹ )ãƒ¬ãƒ¼ãƒˆã‚’è¨­å®šã™ã‚‹( å˜ä½ã¯å€ç‡ã€2.0f ã§éŸ³ã®é•·ã•ãŒï¼’å€ã«ã€0.5f ã§éŸ³ã®é•·ã•ãŒåŠåˆ†ã«ãªã‚Šã¾ã™ )
 extern int NS_SetCreateSoundTimeStretchRate( float Rate )
 {
 	if( Rate > 0.9999999f && Rate < 1.0000001f )
@@ -8656,24 +8656,24 @@ extern int NS_SetCreateSoundTimeStretchRate( float Rate )
 		SoundSysData.CreateSoundTimeStretchRate = Rate ;
 	}
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// ì¬‚·‚éƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹‚Ìƒ^ƒCƒ€ƒXƒgƒŒƒbƒ`( ‰¹’ö‚ğ•Ï‚¦‚¸‚É‰¹‚Ì’·‚³‚ğ•ÏX‚·‚é )ƒŒ[ƒg‚ğæ“¾‚·‚é( ’PˆÊ‚Í”{—¦A2.0f ‚Å‰¹‚Ì’·‚³‚ª‚Q”{‚ÉA0.5f ‚Å‰¹‚Ì’·‚³‚ª”¼•ª‚É‚È‚è‚Ü‚· )
+// ä½œæˆã™ã‚‹ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ã®ã‚¿ã‚¤ãƒ ã‚¹ãƒˆãƒ¬ãƒƒãƒ( éŸ³ç¨‹ã‚’å¤‰ãˆãšã«éŸ³ã®é•·ã•ã‚’å¤‰æ›´ã™ã‚‹ )ãƒ¬ãƒ¼ãƒˆã‚’å–å¾—ã™ã‚‹( å˜ä½ã¯å€ç‡ã€2.0f ã§éŸ³ã®é•·ã•ãŒï¼’å€ã«ã€0.5f ã§éŸ³ã®é•·ã•ãŒåŠåˆ†ã«ãªã‚Šã¾ã™ )
 extern float NS_GetCreateSoundTimeStretchRate( void )
 {
 	return SoundSysData.CreateSoundTimeStretchRate ;
 }
 
-// ì¬‚·‚éƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹‚Ìƒ‹[ƒv”ÍˆÍ‚ğİ’è‚·‚é( ƒ~ƒŠ•b’PˆÊ )
+// ä½œæˆã™ã‚‹ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ã®ãƒ«ãƒ¼ãƒ—ç¯„å›²ã‚’è¨­å®šã™ã‚‹( ãƒŸãƒªç§’å˜ä½ )
 extern int NS_SetCreateSoundLoopAreaTimePos( LONGLONG  LoopStartTime, LONGLONG  LoopEndTime )
 {
-	// ƒTƒ“ƒvƒ‹’PˆÊ‚Ìƒpƒ‰ƒ[ƒ^‚Í–³Œø‰»
+	// ã‚µãƒ³ãƒ—ãƒ«å˜ä½ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¯ç„¡åŠ¹åŒ–
 	SoundSysData.CreateSoundLoopStartSamplePosition = 0 ;
 	SoundSysData.CreateSoundLoopEndSamplePosition   = 0 ;
 
-	// ƒXƒ^[ƒgˆÊ’u‚ÆƒGƒ“ƒhˆÊ’u‚ª“¯‚¶‚©AƒXƒ^[ƒgˆÊ’u‚Ì‚Ù‚¤‚ªƒGƒ“ƒhˆÊ’u‚æ‚è’l‚ª‘å‚«‚¢ê‡‚Íƒpƒ‰ƒ[ƒ^‚ğ–³Œø‰»
+	// ã‚¹ã‚¿ãƒ¼ãƒˆä½ç½®ã¨ã‚¨ãƒ³ãƒ‰ä½ç½®ãŒåŒã˜ã‹ã€ã‚¹ã‚¿ãƒ¼ãƒˆä½ç½®ã®ã»ã†ãŒã‚¨ãƒ³ãƒ‰ä½ç½®ã‚ˆã‚Šå€¤ãŒå¤§ãã„å ´åˆã¯ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ç„¡åŠ¹åŒ–
 	if( LoopStartTime >= LoopEndTime )
 	{
 		SoundSysData.CreateSoundLoopStartTimePosition = 0 ;
@@ -8681,33 +8681,33 @@ extern int NS_SetCreateSoundLoopAreaTimePos( LONGLONG  LoopStartTime, LONGLONG  
 	}
 	else
 	{
-		// —LŒø‚È’l‚Ìê‡‚Ì‚İ•Û‘¶
+		// æœ‰åŠ¹ãªå€¤ã®å ´åˆã®ã¿ä¿å­˜
 		SoundSysData.CreateSoundLoopStartTimePosition = LoopStartTime ;
 		SoundSysData.CreateSoundLoopEndTimePosition   = LoopEndTime ;
 	}
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// ì¬‚·‚éƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹‚Ìƒ‹[ƒv”ÍˆÍ‚ğæ“¾‚·‚é( ƒ~ƒŠ•b’PˆÊ )
+// ä½œæˆã™ã‚‹ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ã®ãƒ«ãƒ¼ãƒ—ç¯„å›²ã‚’å–å¾—ã™ã‚‹( ãƒŸãƒªç§’å˜ä½ )
 extern int NS_GetCreateSoundLoopAreaTimePos( LONGLONG *LoopStartTime, LONGLONG *LoopEndTime )
 {
 	if( LoopStartTime != NULL ) *LoopStartTime = SoundSysData.CreateSoundLoopStartTimePosition ;
 	if( LoopEndTime   != NULL ) *LoopEndTime   = SoundSysData.CreateSoundLoopEndTimePosition ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// ì¬‚·‚éƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹‚Ìƒ‹[ƒv”ÍˆÍ‚ğİ’è‚·‚é( ƒTƒ“ƒvƒ‹’PˆÊ )
+// ä½œæˆã™ã‚‹ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ã®ãƒ«ãƒ¼ãƒ—ç¯„å›²ã‚’è¨­å®šã™ã‚‹( ã‚µãƒ³ãƒ—ãƒ«å˜ä½ )
 extern int NS_SetCreateSoundLoopAreaSamplePos( LONGLONG LoopStartSamplePosition, LONGLONG LoopEndSamplePosition )
 {
-	// ƒ~ƒŠ•b’PˆÊ‚Ìƒpƒ‰ƒ[ƒ^‚Í–³Œø‰»
+	// ãƒŸãƒªç§’å˜ä½ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¯ç„¡åŠ¹åŒ–
 	SoundSysData.CreateSoundLoopStartTimePosition = 0 ;
 	SoundSysData.CreateSoundLoopEndTimePosition   = 0 ;
 
-	// ƒXƒ^[ƒgˆÊ’u‚ÆƒGƒ“ƒhˆÊ’u‚ª“¯‚¶‚©AƒXƒ^[ƒgˆÊ’u‚Ì‚Ù‚¤‚ªƒGƒ“ƒhˆÊ’u‚æ‚è’l‚ª‘å‚«‚¢ê‡‚Íƒpƒ‰ƒ[ƒ^‚ğ–³Œø‰»
+	// ã‚¹ã‚¿ãƒ¼ãƒˆä½ç½®ã¨ã‚¨ãƒ³ãƒ‰ä½ç½®ãŒåŒã˜ã‹ã€ã‚¹ã‚¿ãƒ¼ãƒˆä½ç½®ã®ã»ã†ãŒã‚¨ãƒ³ãƒ‰ä½ç½®ã‚ˆã‚Šå€¤ãŒå¤§ãã„å ´åˆã¯ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ç„¡åŠ¹åŒ–
 	if( LoopStartSamplePosition >= LoopEndSamplePosition )
 	{
 		SoundSysData.CreateSoundLoopStartSamplePosition = 0 ;
@@ -8715,109 +8715,109 @@ extern int NS_SetCreateSoundLoopAreaSamplePos( LONGLONG LoopStartSamplePosition,
 	}
 	else
 	{
-		// —LŒø‚È’l‚Ìê‡‚Ì‚İ•Û‘¶
+		// æœ‰åŠ¹ãªå€¤ã®å ´åˆã®ã¿ä¿å­˜
 		SoundSysData.CreateSoundLoopStartSamplePosition = LoopStartSamplePosition ;
 		SoundSysData.CreateSoundLoopEndSamplePosition   = LoopEndSamplePosition ;
 	}
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// ì¬‚·‚éƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹‚Ìƒ‹[ƒv”ÍˆÍ‚ğæ“¾‚·‚é( ƒTƒ“ƒvƒ‹’PˆÊ )
+// ä½œæˆã™ã‚‹ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ã®ãƒ«ãƒ¼ãƒ—ç¯„å›²ã‚’å–å¾—ã™ã‚‹( ã‚µãƒ³ãƒ—ãƒ«å˜ä½ )
 extern int NS_GetCreateSoundLoopAreaSamplePos( LONGLONG *LoopStartSamplePosition, LONGLONG *LoopEndSamplePosition )
 {
 	if( LoopStartSamplePosition != NULL ) *LoopStartSamplePosition = SoundSysData.CreateSoundLoopStartSamplePosition ;
 	if( LoopEndSamplePosition   != NULL ) *LoopEndSamplePosition   = SoundSysData.CreateSoundLoopEndSamplePosition ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// LoadSoundMem ‚È‚Ç‚Å“Ç‚İ‚ŞƒTƒEƒ“ƒhƒf[ƒ^‚Éƒ‹[ƒv”ÍˆÍî•ñ‚ª‚ ‚Á‚Ä‚à–³‹‚·‚é‚©‚Ç‚¤‚©‚ğİ’è‚·‚é( TRUE:–³‹‚·‚é  FALSE:–³‹‚µ‚È‚¢( ƒfƒtƒHƒ‹ƒg ) )
+// LoadSoundMem ãªã©ã§èª­ã¿è¾¼ã‚€ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ã«ãƒ«ãƒ¼ãƒ—ç¯„å›²æƒ…å ±ãŒã‚ã£ã¦ã‚‚ç„¡è¦–ã™ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹( TRUE:ç„¡è¦–ã™ã‚‹  FALSE:ç„¡è¦–ã—ãªã„( ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ ) )
 extern int NS_SetCreateSoundIgnoreLoopAreaInfo( int IgnoreFlag )
 {
 	SoundSysData.CreateSoundIgnoreLoopAreaInfo = IgnoreFlag ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// LoadSoundMem ‚È‚Ç‚Å“Ç‚İ‚ŞƒTƒEƒ“ƒhƒf[ƒ^‚Éƒ‹[ƒv”ÍˆÍî•ñ‚ª‚ ‚Á‚Ä‚à–³‹‚·‚é‚©‚Ç‚¤‚©‚ğæ“¾‚·‚é( TRUE:–³‹‚·‚é  FALSE:–³‹‚µ‚È‚¢( ƒfƒtƒHƒ‹ƒg ) )
+// LoadSoundMem ãªã©ã§èª­ã¿è¾¼ã‚€ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ã«ãƒ«ãƒ¼ãƒ—ç¯„å›²æƒ…å ±ãŒã‚ã£ã¦ã‚‚ç„¡è¦–ã™ã‚‹ã‹ã©ã†ã‹ã‚’å–å¾—ã™ã‚‹( TRUE:ç„¡è¦–ã™ã‚‹  FALSE:ç„¡è¦–ã—ãªã„( ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ ) )
 extern int NS_GetCreateSoundIgnoreLoopAreaInfo( void )
 {
 	return SoundSysData.CreateSoundIgnoreLoopAreaInfo ;
 }
 
-// g—p‚µ‚È‚¢ƒTƒEƒ“ƒhƒf[ƒ^“Ç‚İ‚İˆ—‚Ìƒ}ƒXƒN‚ğİ’è‚·‚é
+// ä½¿ç”¨ã—ãªã„ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿å‡¦ç†ã®ãƒã‚¹ã‚¯ã‚’è¨­å®šã™ã‚‹
 extern	int NS_SetDisableReadSoundFunctionMask( int Mask )
 {
 	SoundSysData.DisableReadSoundFunctionMask = Mask ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// g—p‚µ‚È‚¢ƒTƒEƒ“ƒhƒf[ƒ^“Ç‚İ‚İˆ—‚Ìƒ}ƒXƒN‚ğæ“¾‚·‚é
+// ä½¿ç”¨ã—ãªã„ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿å‡¦ç†ã®ãƒã‚¹ã‚¯ã‚’å–å¾—ã™ã‚‹
 extern	int	NS_GetDisableReadSoundFunctionMask( void )
 {
 	return SoundSysData.DisableReadSoundFunctionMask ;
 }
 
-// ƒTƒEƒ“ƒhƒLƒƒƒvƒ`ƒƒ‚ğ‘O’ñ‚Æ‚µ‚½“®ì‚ğ‚·‚é‚©‚Ç‚¤‚©‚ğİ’è‚·‚é
+// ã‚µã‚¦ãƒ³ãƒ‰ã‚­ãƒ£ãƒ—ãƒãƒ£ã‚’å‰æã¨ã—ãŸå‹•ä½œã‚’ã™ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹
 extern	int NS_SetEnableSoundCaptureFlag( int Flag )
 {
-	// ƒtƒ‰ƒO‚ª“¯‚¶ê‡‚Í‰½‚à‚µ‚È‚¢
+	// ãƒ•ãƒ©ã‚°ãŒåŒã˜å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( SoundSysData.EnableSoundCaptureFlag == Flag ) return 0 ;
 
-	// ‘S‚Ä‚ÌƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹‚ğíœ‚·‚é
+	// å…¨ã¦ã®ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ã‚’å‰Šé™¤ã™ã‚‹
 	NS_InitSoundMem() ;
 	
-	// ƒtƒ‰ƒO‚ğƒZƒbƒg‚·‚é
+	// ãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 	SoundSysData.EnableSoundCaptureFlag = Flag ;
 	
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ChangeVolumeSoundMem, ChangeNextPlayVolumeSoundMem, ChangeMovieVolumeToGraph ‚Ì‰¹—ÊŒvZ®‚ğ Ver3.10cˆÈ‘O‚Ì‚à‚Ì‚ğg—p‚·‚é‚©‚Ç‚¤‚©‚ğİ’è‚·‚é( TRUE:Ver3.10cˆÈ‘O‚ÌŒvZ®‚ğg—p  FALSE:3.10dˆÈ~‚ÌŒvZ®‚ğg—p( ƒfƒtƒHƒ‹ƒg ) )
+// ChangeVolumeSoundMem, ChangeNextPlayVolumeSoundMem, ChangeMovieVolumeToGraph ã®éŸ³é‡è¨ˆç®—å¼ã‚’ Ver3.10cä»¥å‰ã®ã‚‚ã®ã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹( TRUE:Ver3.10cä»¥å‰ã®è¨ˆç®—å¼ã‚’ä½¿ç”¨  FALSE:3.10dä»¥é™ã®è¨ˆç®—å¼ã‚’ä½¿ç”¨( ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ ) )
 extern int NS_SetUseOldVolumeCalcFlag( int Flag )
 {
-	// ƒtƒ‰ƒO‚ğ•Û‘¶‚·‚é
+	// ãƒ•ãƒ©ã‚°ã‚’ä¿å­˜ã™ã‚‹
 	SoundSysData.OldVolumeTypeFlag = Flag ;
 	
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// GetSoundCurrentTime ‚È‚Ç‚ğg—p‚µ‚½ê‡‚Éæ“¾‚Å‚«‚éÄ¶ŠÔ‚Ìƒ^ƒCƒv‚ğİ’è‚·‚é
-extern int NS_SetSoundCurrentTimeType( int Type /* DX_SOUNDCURRENTTIME_TYPE_LOW_LEVEL ‚È‚Ç */ )
+// GetSoundCurrentTime ãªã©ã‚’ä½¿ç”¨ã—ãŸå ´åˆã«å–å¾—ã§ãã‚‹å†ç”Ÿæ™‚é–“ã®ã‚¿ã‚¤ãƒ—ã‚’è¨­å®šã™ã‚‹
+extern int NS_SetSoundCurrentTimeType( int Type /* DX_SOUNDCURRENTTIME_TYPE_LOW_LEVEL ãªã© */ )
 {
-	// ƒ^ƒCƒv‚ğ•Û‘¶
+	// ã‚¿ã‚¤ãƒ—ã‚’ä¿å­˜
 	SoundSysData.CurrentTimeType = Type ;
 	
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// GetSoundCurrentTime ‚È‚Ç‚ğg—p‚µ‚½ê‡‚Éæ“¾‚Å‚«‚éÄ¶ŠÔ‚Ìƒ^ƒCƒv‚ğæ“¾‚·‚é
+// GetSoundCurrentTime ãªã©ã‚’ä½¿ç”¨ã—ãŸå ´åˆã«å–å¾—ã§ãã‚‹å†ç”Ÿæ™‚é–“ã®ã‚¿ã‚¤ãƒ—ã‚’å–å¾—ã™ã‚‹
 extern int NS_GetSoundCurrentTimeType( void )
 {
-	// ƒ^ƒCƒv‚ğ•Ô‚·
+	// ã‚¿ã‚¤ãƒ—ã‚’è¿”ã™
 	return SoundSysData.CurrentTimeType ;
 }
 
-// Ÿ‚Éì¬‚·‚éƒTƒEƒ“ƒh‚ğ‚R‚cƒTƒEƒ“ƒh—p‚É‚·‚é‚©‚Ç‚¤‚©‚ğİ’è‚·‚é( TRUE:‚R‚cƒTƒEƒ“ƒh—p‚É‚·‚é  FALSE:‚R‚cƒTƒEƒ“ƒh—p‚É‚µ‚È‚¢( ƒfƒtƒHƒ‹ƒg ) )
+// æ¬¡ã«ä½œæˆã™ã‚‹ã‚µã‚¦ãƒ³ãƒ‰ã‚’ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰ç”¨ã«ã™ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹( TRUE:ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰ç”¨ã«ã™ã‚‹  FALSE:ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰ç”¨ã«ã—ãªã„( ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ ) )
 extern int NS_SetCreate3DSoundFlag( int Flag )
 {
-	// ƒtƒ‰ƒO‚ğ•Û‘¶‚·‚é
+	// ãƒ•ãƒ©ã‚°ã‚’ä¿å­˜ã™ã‚‹
 	SoundSysData.Create3DSoundFlag = Flag != FALSE ? TRUE : FALSE ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ‚R‚c‹óŠÔ‚Ì‚Pƒ[ƒgƒ‹‚É“–‚é‹——£‚ğİ’è‚·‚é( ƒfƒtƒHƒ‹ƒg:1.0f )
+// ï¼“ï¼¤ç©ºé–“ã®ï¼‘ãƒ¡ãƒ¼ãƒˆãƒ«ã«å½“ã‚‹è·é›¢ã‚’è¨­å®šã™ã‚‹( ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ:1.0f )
 extern int NS_Set3DSoundOneMetre( float Distance )
 {
 	if( CheckSoundSystem_Initialize_PF() ) return -1 ;
@@ -8833,11 +8833,11 @@ extern int NS_Set3DSoundOneMetre( float Distance )
 		SoundSysData._3DSoundOneMetre = Distance ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ‚R‚cƒTƒEƒ“ƒh‚ÌƒŠƒXƒi[‚ÌˆÊ’u‚ÆƒŠƒXƒi[‚Ì‘O•ûˆÊ’u‚ğİ’è‚·‚é( ƒŠƒXƒi[‚Ìã•ûŒüˆÊ’u‚Í‚x²ŒÅ’è )
+// ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰ã®ãƒªã‚¹ãƒŠãƒ¼ã®ä½ç½®ã¨ãƒªã‚¹ãƒŠãƒ¼ã®å‰æ–¹ä½ç½®ã‚’è¨­å®šã™ã‚‹( ãƒªã‚¹ãƒŠãƒ¼ã®ä¸Šæ–¹å‘ä½ç½®ã¯ï¼¹è»¸å›ºå®š )
 extern int NS_Set3DSoundListenerPosAndFrontPos_UpVecY( VECTOR Position, VECTOR FrontPosition )
 {
 	VECTOR UpVec = { 0.0f, 1.0f, 0.0f } ;
@@ -8845,7 +8845,7 @@ extern int NS_Set3DSoundListenerPosAndFrontPos_UpVecY( VECTOR Position, VECTOR F
 	return NS_Set3DSoundListenerPosAndFrontPosAndUpVec( Position, FrontPosition, UpVec ) ;
 }
 
-// ‚R‚cƒTƒEƒ“ƒh‚ÌƒŠƒXƒi[‚ÌˆÊ’u‚ÆƒŠƒXƒi[‚Ì‘O•ûˆÊ’u‚ÆƒŠƒXƒi[‚Ìã•ûŒüˆÊ’u‚ğİ’è‚·‚é
+// ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰ã®ãƒªã‚¹ãƒŠãƒ¼ã®ä½ç½®ã¨ãƒªã‚¹ãƒŠãƒ¼ã®å‰æ–¹ä½ç½®ã¨ãƒªã‚¹ãƒŠãƒ¼ã®ä¸Šæ–¹å‘ä½ç½®ã‚’è¨­å®šã™ã‚‹
 extern int NS_Set3DSoundListenerPosAndFrontPosAndUpVec( VECTOR Position, VECTOR FrontPosition, VECTOR UpVector )
 {
 	VECTOR SideVec ;
@@ -8866,7 +8866,7 @@ extern int NS_Set3DSoundListenerPosAndFrontPosAndUpVec( VECTOR Position, VECTOR 
 	VectorNormalize( &UpVector, &UpVector ) ;
 	VectorNormalize( &SideVec, &SideVec ) ;
 
-	// ’l‚ª‚Ù‚Æ‚ñ‚Ç•Ï‰»‚µ‚È‚¢ê‡ê‡‚Í‰½‚à‚µ‚È‚¢
+	// å€¤ãŒã»ã¨ã‚“ã©å¤‰åŒ–ã—ãªã„å ´åˆå ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( _FABS( SoundSysData.ListenerInfo.Position.x       - Position.x ) < 0.001f &&
 		_FABS( SoundSysData.ListenerInfo.Position.y       - Position.y ) < 0.001f &&
 		_FABS( SoundSysData.ListenerInfo.Position.z       - Position.z ) < 0.001f &&
@@ -8883,20 +8883,20 @@ extern int NS_Set3DSoundListenerPosAndFrontPosAndUpVec( VECTOR Position, VECTOR 
 	SoundSysData.ListenerInfo.UpDirection    = UpVector ;
 	SoundSysData.ListenerSideDirection       = SideVec ;
 
-	// ŠÂ‹«ˆË‘¶ˆ—
+	// ç’°å¢ƒä¾å­˜å‡¦ç†
 	if( Set3DSoundListenerPosAndFrontPosAndUpVec_PF( Position, FrontPosition, UpVector ) < 0 )
 	{
 		return -1 ;
 	}
 
-	// Ä¶’†‚Ì‚R‚cƒTƒEƒ“ƒh‚Ìƒpƒ‰ƒ[ƒ^‚ğXV‚·‚é
+	// å†ç”Ÿä¸­ã®ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’æ›´æ–°ã™ã‚‹
 	Refresh3DSoundParamAll() ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ‚R‚cƒTƒEƒ“ƒh‚ÌƒŠƒXƒi[‚ÌˆÚ“®‘¬“x‚ğİ’è‚·‚é
+// ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰ã®ãƒªã‚¹ãƒŠãƒ¼ã®ç§»å‹•é€Ÿåº¦ã‚’è¨­å®šã™ã‚‹
 extern int NS_Set3DSoundListenerVelocity( VECTOR Velocity )
 {
 	if( CheckSoundSystem_Initialize_PF() == FALSE )
@@ -8906,7 +8906,7 @@ extern int NS_Set3DSoundListenerVelocity( VECTOR Velocity )
 
 	VectorScale( &Velocity, &Velocity, 1.0f / SoundSysData._3DSoundOneMetre ) ;
 
-	// ’l‚ª‚Ù‚Æ‚ñ‚Ç•Ï‰»‚µ‚È‚¢ê‡ê‡‚Í‰½‚à‚µ‚È‚¢
+	// å€¤ãŒã»ã¨ã‚“ã©å¤‰åŒ–ã—ãªã„å ´åˆå ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( _FABS( SoundSysData.ListenerInfo.Velocity.x - Velocity.x ) < 0.001f &&
 		_FABS( SoundSysData.ListenerInfo.Velocity.y - Velocity.y ) < 0.001f &&
 		_FABS( SoundSysData.ListenerInfo.Velocity.z - Velocity.z ) < 0.001f )
@@ -8914,7 +8914,7 @@ extern int NS_Set3DSoundListenerVelocity( VECTOR Velocity )
 		return 0 ;
 	}
 
-	// ŠÂ‹«ˆË‘¶ˆ—
+	// ç’°å¢ƒä¾å­˜å‡¦ç†
 	if( Set3DSoundListenerVelocity_PF( Velocity ) < 0 )
 	{
 		return -1 ;
@@ -8923,14 +8923,14 @@ extern int NS_Set3DSoundListenerVelocity( VECTOR Velocity )
 	SoundSysData.ListenerInfo.Velocity = Velocity ;
 
 
-	// Ä¶’†‚Ì‚R‚cƒTƒEƒ“ƒh‚Ìƒpƒ‰ƒ[ƒ^‚ğXV‚·‚é
+	// å†ç”Ÿä¸­ã®ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’æ›´æ–°ã™ã‚‹
 	Refresh3DSoundParamAll() ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ‚R‚cƒTƒEƒ“ƒh‚ÌƒŠƒXƒi[‚Ì‰Â’®Šp“x”ÍˆÍ‚ğİ’è‚·‚é
+// ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰ã®ãƒªã‚¹ãƒŠãƒ¼ã®å¯è´è§’åº¦ç¯„å›²ã‚’è¨­å®šã™ã‚‹
 extern int NS_Set3DSoundListenerConeAngle( float InnerAngle, float OuterAngle )
 {
 	if( CheckSoundSystem_Initialize_PF() == FALSE )
@@ -8966,7 +8966,7 @@ extern int NS_Set3DSoundListenerConeAngle( float InnerAngle, float OuterAngle )
 		OuterAngle = Temp ;
 	}
 
-	// ’l‚ª‚Ù‚Æ‚ñ‚Ç•Ï‰»‚µ‚È‚¢ê‡ê‡‚Í‰½‚à‚µ‚È‚¢
+	// å€¤ãŒã»ã¨ã‚“ã©å¤‰åŒ–ã—ãªã„å ´åˆå ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( _FABS( SoundSysData.ListenerInfo.InnerAngle - InnerAngle ) < 0.001f &&
 		_FABS( SoundSysData.ListenerInfo.OuterAngle - OuterAngle ) < 0.001f )
 	{
@@ -8976,20 +8976,20 @@ extern int NS_Set3DSoundListenerConeAngle( float InnerAngle, float OuterAngle )
 	SoundSysData.ListenerInfo.InnerAngle = InnerAngle ;
 	SoundSysData.ListenerInfo.OuterAngle = OuterAngle ;
 
-	// ŠÂ‹«ˆË‘¶ˆ—
+	// ç’°å¢ƒä¾å­˜å‡¦ç†
 	if( Set3DSoundListenerConeAngle_PF( InnerAngle, OuterAngle ) < 0 )
 	{
 		return -1 ;
 	}
 
-	// Ä¶’†‚Ì‚R‚cƒTƒEƒ“ƒh‚Ìƒpƒ‰ƒ[ƒ^‚ğXV‚·‚é
+	// å†ç”Ÿä¸­ã®ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’æ›´æ–°ã™ã‚‹
 	Refresh3DSoundParamAll() ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ‚R‚cƒTƒEƒ“ƒh‚ÌƒŠƒXƒi[‚Ì‰Â’®Šp“x”ÍˆÍ‚Ì‰¹—Ê”{—¦‚ğİ’è‚·‚é
+// ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰ã®ãƒªã‚¹ãƒŠãƒ¼ã®å¯è´è§’åº¦ç¯„å›²ã®éŸ³é‡å€ç‡ã‚’è¨­å®šã™ã‚‹
 extern int NS_Set3DSoundListenerConeVolume( float InnerAngleVolume, float OuterAngleVolume )
 {
 	if( CheckSoundSystem_Initialize_PF() == FALSE )
@@ -8997,7 +8997,7 @@ extern int NS_Set3DSoundListenerConeVolume( float InnerAngleVolume, float OuterA
 		return -1 ;
 	}
 
-	// ’l‚ª‚Ù‚Æ‚ñ‚Ç•Ï‰»‚µ‚È‚¢ê‡ê‡‚Í‰½‚à‚µ‚È‚¢
+	// å€¤ãŒã»ã¨ã‚“ã©å¤‰åŒ–ã—ãªã„å ´åˆå ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( _FABS( SoundSysData.ListenerInfo.InnerVolume - InnerAngleVolume ) < 0.001f &&
 		_FABS( SoundSysData.ListenerInfo.OuterVolume - OuterAngleVolume ) < 0.001f )
 	{
@@ -9007,16 +9007,16 @@ extern int NS_Set3DSoundListenerConeVolume( float InnerAngleVolume, float OuterA
 	SoundSysData.ListenerInfo.InnerVolume = InnerAngleVolume ;
 	SoundSysData.ListenerInfo.OuterVolume = OuterAngleVolume ;
 
-	// ŠÂ‹«ˆË‘¶ˆ—
+	// ç’°å¢ƒä¾å­˜å‡¦ç†
 	if( Set3DSoundListenerConeVolume_PF( InnerAngleVolume, OuterAngleVolume ) < 0 )
 	{
 		return -1 ;
 	}
 
-	// Ä¶’†‚Ì‚R‚cƒTƒEƒ“ƒh‚Ìƒpƒ‰ƒ[ƒ^‚ğXV‚·‚é
+	// å†ç”Ÿä¸­ã®ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’æ›´æ–°ã™ã‚‹
 	Refresh3DSoundParamAll() ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
@@ -9029,16 +9029,16 @@ extern int NS_Set3DSoundListenerConeVolume( float InnerAngleVolume, float OuterA
 
 
 
-// •â•ŒnŠÖ”
+// è£œåŠ©ç³»é–¢æ•°
 
-// ƒTƒCƒY•â³
+// ã‚µã‚¤ã‚ºè£œæ­£
 static	int AdjustSoundDataBlock( int Length, SOUND * Sound ) 
 {
 	return Length / Sound->BufferFormat.nBlockAlign * Sound->BufferFormat.nBlockAlign  ;
 }
 
 
-// ”gŒ`ƒf[ƒ^—p
+// æ³¢å½¢ãƒ‡ãƒ¼ã‚¿ç”¨
 extern WAVEDATA *AllocWaveData( int Size, int UseDoubleSizeBuffer )
 {
 	WAVEDATA *Data ;
@@ -9092,12 +9092,12 @@ extern WAVEDATA *DuplicateWaveData( WAVEDATA *Data )
 
 
 
-//ƒTƒEƒ“ƒhƒoƒbƒtƒ@—p
+//ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡ç”¨
 extern int SoundBuffer_Initialize( SOUNDBUFFER *Buffer, DWORD Bytes, WAVEFORMATEX *Format, SOUNDBUFFER *Src, int UseGetCurrentPosition, int IsStream, int Is3DSound )
 {
 	int i ;
 
-	// ‰Šú‰»Ï‚İ‚Ìê‡‚ÍƒGƒ‰[
+	// åˆæœŸåŒ–æ¸ˆã¿ã®å ´åˆã¯ã‚¨ãƒ©ãƒ¼
 	if( Buffer->Valid )
 	{
 		return -1 ;
@@ -9125,7 +9125,7 @@ extern int SoundBuffer_Initialize( SOUNDBUFFER *Buffer, DWORD Bytes, WAVEFORMATE
 	}
 	else
 	{
-		// ŠÂ‹«ˆË‘¶ˆ—
+		// ç’°å¢ƒä¾å­˜å‡¦ç†
 		if( SoundBuffer_Initialize_Timing0_PF( Buffer, Bytes, Format, Src, Is3DSound ) < 0 )
 		{
 			goto ERR ;
@@ -9168,22 +9168,22 @@ extern int SoundBuffer_Initialize( SOUNDBUFFER *Buffer, DWORD Bytes, WAVEFORMATE
 		Buffer->Format		= *Format ;
 	}
 
-	// ‚R‚cƒTƒEƒ“ƒh‚Ìê‡‚Í‚R‚cƒTƒEƒ“ƒhƒpƒ‰ƒ[ƒ^‚ğ‰Šú‰»
+	// ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰ã®å ´åˆã¯ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’åˆæœŸåŒ–
 	if( Is3DSound != FALSE )
 	{
-		// Å‰‚ÉƒZƒbƒgƒAƒbƒv‚ğs‚¤‚½‚ß‚É•ÏX‚µ‚½ƒtƒ‰ƒO‚ğ—§‚Ä‚é
+		// æœ€åˆã«ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã‚’è¡Œã†ãŸã‚ã«å¤‰æ›´ã—ãŸãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 		Buffer->EmitterDataChangeFlag = TRUE ;
 
 		if( SoundSysData.EnableSoundCaptureFlag == FALSE && SoundSysData.EnableSelfMixingFlag == FALSE )
 		{
-			// ŠÂ‹«ˆË‘¶ˆ—
+			// ç’°å¢ƒä¾å­˜å‡¦ç†
 			if( SoundBuffer_Initialize_Timing1_PF( Buffer, Src, Is3DSound ) < 0 )
 			{
 				goto ERR ;
 			}
 		}
 
-		// ƒGƒ~ƒbƒ^[‚ÌŠî–{“I‚Èî•ñ‚ğƒZƒbƒg‚·‚é
+		// ã‚¨ãƒŸãƒƒã‚¿ãƒ¼ã®åŸºæœ¬çš„ãªæƒ…å ±ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 		if( Src != NULL )
 		{
 			Buffer->EmitterInfo					= Src->EmitterInfo ;
@@ -9226,13 +9226,13 @@ extern int SoundBuffer_Terminate( SOUNDBUFFER *Buffer )
 		return -1 ;
 	}
 
-	// Ä¶ó‘Ô‚¾‚Á‚½ê‡‚ÍƒXƒgƒbƒv‚·‚é
+	// å†ç”ŸçŠ¶æ…‹ã ã£ãŸå ´åˆã¯ã‚¹ãƒˆãƒƒãƒ—ã™ã‚‹
 	if( Buffer->State == TRUE )
 	{
 		SoundBuffer_Stop( Buffer ) ;
 	}
 
-	// ŠÂ‹«ˆË‘¶ˆ—
+	// ç’°å¢ƒä¾å­˜å‡¦ç†
 	SoundBuffer_Terminate_PF( Buffer ) ;
 
 	if( Buffer->Wave != NULL )
@@ -9270,17 +9270,17 @@ extern int SoundBuffer_Play( SOUNDBUFFER *Buffer, int Loop )
 	Buffer->Loop = Loop ;
 	if( SoundSysData.EnableSoundCaptureFlag || SoundSysData.EnableSelfMixingFlag )
 	{
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 		CRITICALSECTION_LOCK( &SoundSysData.PlaySoundBufferListCriticalSection ) ;
 
-		// ©‘Oƒ~ƒLƒVƒ“ƒO‚ğs‚Á‚Ä‚¢‚éê‡‚ÍÄ¶’†‚ÌƒTƒEƒ“ƒhƒŠƒXƒg‚É’Ç‰Á‚·‚é
+		// è‡ªå‰ãƒŸã‚­ã‚·ãƒ³ã‚°ã‚’è¡Œã£ã¦ã„ã‚‹å ´åˆã¯å†ç”Ÿä¸­ã®ã‚µã‚¦ãƒ³ãƒ‰ãƒªã‚¹ãƒˆã«è¿½åŠ ã™ã‚‹
 		if( Buffer->AddPlaySoundBufferList == FALSE )
 		{
 			Buffer->AddPlaySoundBufferList = TRUE ;
 
 			AddSimpleList( &SoundSysData.PlaySoundBufferListFirst, ( SIMPLELIST * )&Buffer->PlaySoundBufferList, Buffer ) ;
 
-			// ƒTƒEƒ“ƒhƒf[ƒ^‚Ì’Ç‰Á‚ğn‚ß‚éƒTƒ“ƒvƒ‹ˆÊ’u‚ğZo
+			// ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ã®è¿½åŠ ã‚’å§‹ã‚ã‚‹ã‚µãƒ³ãƒ—ãƒ«ä½ç½®ã‚’ç®—å‡º
 #if defined( _MSC_VER ) && _MSC_VER == 1200
 			Buffer->TopPos_TotalWriteSamples = ( ULONGLONG )_DTOL64( ( double )( LONGLONG )SoundSysData.SelfMixingTotalWriteSamples * Buffer->Format.nSamplesPerSec / SoundSysData.SelfMixingFormat.nSamplesPerSec ) - Buffer->CompPos ;
 #else
@@ -9289,18 +9289,18 @@ extern int SoundBuffer_Play( SOUNDBUFFER *Buffer, int Loop )
 			Buffer->EnableTopPos = TRUE ;
 		}
 
-		// Ä¶’x‰„ƒTƒ“ƒvƒ‹”‚ğƒZƒbƒg
+		// å†ç”Ÿé…å»¶ã‚µãƒ³ãƒ—ãƒ«æ•°ã‚’ã‚»ãƒƒãƒˆ
 		Buffer->OutputDelaySamples = 0 /* SoundSysData.SelfMixingOutputDelaySamples */ ;
 		SoundSysData.SelfMixingOutputDelaySamples += SoundSysData.SelfMixingOutputDelaySamplesUnit ;
 
 		Buffer->State = TRUE ;
 
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 		CriticalSection_Unlock( &SoundSysData.PlaySoundBufferListCriticalSection ) ;
 	}
 	else
 	{
-		// ŠÂ‹«ˆË‘¶ˆ—
+		// ç’°å¢ƒä¾å­˜å‡¦ç†
 		if( SoundBuffer_Play_PF( Buffer, Loop ) < 0 )
 		{
 			return -1 ;
@@ -9316,10 +9316,10 @@ extern int SoundBuffer_Stop( SOUNDBUFFER *Buffer, int EffectStop )
 	
 	if( SoundSysData.EnableSoundCaptureFlag || SoundSysData.EnableSelfMixingFlag )
 	{
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 		CRITICALSECTION_LOCK( &SoundSysData.PlaySoundBufferListCriticalSection ) ;
 
-		// ©‘Oƒ~ƒLƒVƒ“ƒO‚ğs‚Á‚Ä‚¢‚éê‡‚ÍÄ¶’†‚ÌƒTƒEƒ“ƒhƒŠƒXƒg‚©‚çŠO‚·
+		// è‡ªå‰ãƒŸã‚­ã‚·ãƒ³ã‚°ã‚’è¡Œã£ã¦ã„ã‚‹å ´åˆã¯å†ç”Ÿä¸­ã®ã‚µã‚¦ãƒ³ãƒ‰ãƒªã‚¹ãƒˆã‹ã‚‰å¤–ã™
 		if( Buffer->AddPlaySoundBufferList )
 		{
 			Buffer->AddPlaySoundBufferList = FALSE ;
@@ -9329,12 +9329,12 @@ extern int SoundBuffer_Stop( SOUNDBUFFER *Buffer, int EffectStop )
 
 		Buffer->State = FALSE ;
 
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 		CriticalSection_Unlock( &SoundSysData.PlaySoundBufferListCriticalSection ) ;
 	}
 	else
 	{
-		// ŠÂ‹«ˆË‘¶ˆ—
+		// ç’°å¢ƒä¾å­˜å‡¦ç†
 		if( SoundBuffer_Stop_PF( Buffer, EffectStop ) < 0 )
 		{
 			return -1 ;
@@ -9354,7 +9354,7 @@ extern int SoundBuffer_CheckPlay( SOUNDBUFFER *Buffer )
 	}
 	else
 	{
-		// ŠÂ‹«ˆË‘¶ˆ—
+		// ç’°å¢ƒä¾å­˜å‡¦ç†
 		return SoundBuffer_CheckPlay_PF( Buffer ) ;
 	}
 }
@@ -9393,7 +9393,7 @@ DEFAULTPROCESS :
 	{
 		int Result ;
 
-		// ŠÂ‹«ˆË‘¶ˆ—
+		// ç’°å¢ƒä¾å­˜å‡¦ç†
 		Result = SoundBuffer_Lock_PF( Buffer, WritePos, WriteSize, LockPos1, LockSize1, LockPos2, LockSize2 ) ;
 		if( Result == 2 )
 		{
@@ -9414,11 +9414,11 @@ extern int SoundBuffer_Unlock( SOUNDBUFFER *Buffer, void *LockPos1, DWORD LockSi
 	
 	if( SoundSysData.EnableSoundCaptureFlag || SoundSysData.EnableSelfMixingFlag )
 	{
-		// “Á‚É‰½‚à‚µ‚È‚¢
+		// ç‰¹ã«ä½•ã‚‚ã—ãªã„
 	}
 	else
 	{
-		// ŠÂ‹«ˆË‘¶ˆ—
+		// ç’°å¢ƒä¾å­˜å‡¦ç†
 		if( SoundBuffer_Unlock_PF( Buffer, LockPos1, LockSize1, LockPos2, LockSize2 ) < 0 )
 		{
 			return -1 ;
@@ -9460,7 +9460,7 @@ extern int SoundBuffer_SetFrequency( SOUNDBUFFER *Buffer, DWORD Frequency )
 	}
 	else
 	{
-		// ŠÂ‹«ˆË‘¶ˆ—
+		// ç’°å¢ƒä¾å­˜å‡¦ç†
 		if( SoundBuffer_SetFrequency_PF( Buffer, Frequency ) < 0 )
 		{
 			return -1 ;
@@ -9699,7 +9699,7 @@ extern int SoundBuffer_RefreshVolume( SOUNDBUFFER *Buffer )
 	}
 	else
 	{
-		// ŠÂ‹«ˆË‘¶ˆ—
+		// ç’°å¢ƒä¾å­˜å‡¦ç†
 		if( SoundBuffer_RefreshVolume_PF( Buffer ) < 0 )
 		{
 			return -1 ;
@@ -9820,7 +9820,7 @@ extern int SoundBuffer_GetCurrentPosition( SOUNDBUFFER *Buffer, DWORD *PlayPos, 
 	{
 		int Result ;
 
-		// ŠÂ‹«ˆË‘¶ˆ—
+		// ç’°å¢ƒä¾å­˜å‡¦ç†
 		Result = SoundBuffer_GetCurrentPosition_PF( Buffer, PlayPos, WritePos ) ;
 		if( Result == 2 )
 		{
@@ -9841,7 +9841,7 @@ extern int SoundBuffer_SetCurrentPosition( SOUNDBUFFER *Buffer, DWORD NewPos )
 {
 	if( Buffer->Valid == FALSE ) return -1 ;
 
-	// V‚µ‚¢ˆÊ’u‚ª”ÍˆÍ‚©‚çŠO‚ê‚Ä‚¢‚½‚çƒGƒ‰[
+	// æ–°ã—ã„ä½ç½®ãŒç¯„å›²ã‹ã‚‰å¤–ã‚Œã¦ã„ãŸã‚‰ã‚¨ãƒ©ãƒ¼
 	if( NewPos / Buffer->Format.nBlockAlign >= ( DWORD )Buffer->SampleNum )
 	{
 		return -1 ;
@@ -9849,7 +9849,7 @@ extern int SoundBuffer_SetCurrentPosition( SOUNDBUFFER *Buffer, DWORD NewPos )
 
 	if( SoundSysData.EnableSoundCaptureFlag || SoundSysData.EnableSelfMixingFlag )
 	{
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 		CRITICALSECTION_LOCK( &SoundSysData.PlaySoundBufferListCriticalSection ) ;
 
 		Buffer->PlayPos  = ( int )( NewPos / Buffer->Format.nBlockAlign ) ;
@@ -9861,12 +9861,12 @@ extern int SoundBuffer_SetCurrentPosition( SOUNDBUFFER *Buffer, DWORD NewPos )
 		}
 		Buffer->EnableTopPos = FALSE ;
 
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 		CriticalSection_Unlock( &SoundSysData.PlaySoundBufferListCriticalSection ) ;
 	}
 	else
 	{
-		// ŠÂ‹«ˆË‘¶ˆ—
+		// ç’°å¢ƒä¾å­˜å‡¦ç†
 		if( SoundBuffer_SetCurrentPosition_PF( Buffer, NewPos ) < 0 )
 		{
 			return -1 ;
@@ -9884,7 +9884,7 @@ extern int SoundBuffer_CycleProcess( SOUNDBUFFER *Buffer )
 	}
 	else
 	{
-		// ŠÂ‹«ˆË‘¶ˆ—
+		// ç’°å¢ƒä¾å­˜å‡¦ç†
 		return SoundBuffer_CycleProcess_PF( Buffer ) ;
 	}
 }
@@ -10131,11 +10131,11 @@ extern int SoundBuffer_FrameProcess( SOUNDBUFFER *Buffer, int Sample, short *Des
 
 extern int SoundBuffer_Set3DPosition( SOUNDBUFFER *Buffer, VECTOR *Position )
 {
-	// ‚R‚cƒTƒEƒ“ƒh‚Å‚Í‚È‚¢ê‡‚Í‰½‚à‚µ‚È‚¢
+	// ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰ã§ã¯ãªã„å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( Buffer->Is3DSound == FALSE )
 		return -1 ;
 
-	// ’l‚ª‚Ù‚Ú•Ï‰»‚µ‚È‚¢ê‡‚Í‰½‚à‚µ‚È‚¢
+	// å€¤ãŒã»ã¼å¤‰åŒ–ã—ãªã„å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( _FABS( Buffer->EmitterInfo.Position.x - Position->x ) < 0.001f &&
 		_FABS( Buffer->EmitterInfo.Position.y - Position->y ) < 0.001f &&
 		_FABS( Buffer->EmitterInfo.Position.z - Position->z ) < 0.001f )
@@ -10143,19 +10143,19 @@ extern int SoundBuffer_Set3DPosition( SOUNDBUFFER *Buffer, VECTOR *Position )
 		return 0 ;
 	}
 
-	// ’l‚ğ•Û‘¶
+	// å€¤ã‚’ä¿å­˜
 	Buffer->EmitterInfo.Position = *Position ;
 
-	// ŠÂ‹«ˆË‘¶ˆ—
+	// ç’°å¢ƒä¾å­˜å‡¦ç†
 	if( SoundBuffer_Set3DPosition_PF( Buffer, Position ) < 0 )
 	{
 		return -1 ;
 	}
 
-	// ƒf[ƒ^‚ª•ÏX‚³‚ê‚½ƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// ãƒ‡ãƒ¼ã‚¿ãŒå¤‰æ›´ã•ã‚ŒãŸãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	Buffer->EmitterDataChangeFlag = TRUE ;
 
-	// Ä¶’†‚¾‚Á‚½ê‡‚Íƒpƒ‰ƒ[ƒ^‚ğXV
+	// å†ç”Ÿä¸­ã ã£ãŸå ´åˆã¯ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’æ›´æ–°
 	if( SoundBuffer_CheckPlay( Buffer ) )
 	{
 		SoundBuffer_Refresh3DSoundParam( Buffer ) ;
@@ -10166,29 +10166,29 @@ extern int SoundBuffer_Set3DPosition( SOUNDBUFFER *Buffer, VECTOR *Position )
 
 extern int SoundBuffer_Set3DRadius( SOUNDBUFFER *Buffer, float Radius )
 {
-	// ‚R‚cƒTƒEƒ“ƒh‚Å‚Í‚È‚¢ê‡‚Í‰½‚à‚µ‚È‚¢
+	// ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰ã§ã¯ãªã„å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( Buffer->Is3DSound == FALSE )
 		return -1 ;
 
-	// ’l‚ª‚Ù‚Ú•Ï‰»‚µ‚È‚¢ê‡‚Í‰½‚à‚µ‚È‚¢
+	// å€¤ãŒã»ã¼å¤‰åŒ–ã—ãªã„å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( _FABS( Buffer->EmitterRadius - Radius ) < 0.001f )
 	{
 		return 0 ;
 	}
 
-	// •·‚±‚¦‚é‹——£‚ğ•Û‘¶
+	// èã“ãˆã‚‹è·é›¢ã‚’ä¿å­˜
 	Buffer->EmitterRadius = Radius ;
 
-	// ŠÂ‹«ˆË‘¶ˆ—
+	// ç’°å¢ƒä¾å­˜å‡¦ç†
 	if( SoundBuffer_Set3DRadius_PF( Buffer, Radius ) < 0 )
 	{
 		return -1 ;
 	}
 
-	// ƒf[ƒ^‚ª•ÏX‚³‚ê‚½ƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// ãƒ‡ãƒ¼ã‚¿ãŒå¤‰æ›´ã•ã‚ŒãŸãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	Buffer->EmitterDataChangeFlag = TRUE ;
 
-	// Ä¶’†‚¾‚Á‚½ê‡‚Íƒpƒ‰ƒ[ƒ^‚ğXV
+	// å†ç”Ÿä¸­ã ã£ãŸå ´åˆã¯ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’æ›´æ–°
 	if( SoundBuffer_CheckPlay( Buffer ) )
 	{
 		SoundBuffer_Refresh3DSoundParam( Buffer ) ;
@@ -10199,29 +10199,29 @@ extern int SoundBuffer_Set3DRadius( SOUNDBUFFER *Buffer, float Radius )
 
 extern int SoundBuffer_Set3DInnerRadius( SOUNDBUFFER *Buffer, float Radius )
 {
-	// ‚R‚cƒTƒEƒ“ƒh‚Å‚Í‚È‚¢ê‡‚Í‰½‚à‚µ‚È‚¢
+	// ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰ã§ã¯ãªã„å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( Buffer->Is3DSound == FALSE )
 		return -1 ;
 
-	// ’l‚ª‚Ù‚Ú•Ï‰»‚µ‚È‚¢ê‡‚Í‰½‚à‚µ‚È‚¢
+	// å€¤ãŒã»ã¼å¤‰åŒ–ã—ãªã„å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( _FABS( Buffer->EmitterInnerRadius - Radius ) < 0.001f )
 	{
 		return 0 ;
 	}
 
-	// ‚P‚O‚O“‚Ì‰¹—Ê‚Å‰¹‚ª•·‚±‚¦‚é‹——£‚ğ•Û‘¶
+	// ï¼‘ï¼ï¼ï¼…ã®éŸ³é‡ã§éŸ³ãŒèã“ãˆã‚‹è·é›¢ã‚’ä¿å­˜
 	Buffer->EmitterInnerRadius = Radius ;
 
-	// ŠÂ‹«ˆË‘¶ˆ—
+	// ç’°å¢ƒä¾å­˜å‡¦ç†
 	if( SoundBuffer_Set3DInnerRadius_PF( Buffer, Radius ) < 0 )
 	{
 		return -1 ;
 	}
 
-	// ƒf[ƒ^‚ª•ÏX‚³‚ê‚½ƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// ãƒ‡ãƒ¼ã‚¿ãŒå¤‰æ›´ã•ã‚ŒãŸãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	Buffer->EmitterDataChangeFlag = TRUE ;
 
-	// Ä¶’†‚¾‚Á‚½ê‡‚Íƒpƒ‰ƒ[ƒ^‚ğXV
+	// å†ç”Ÿä¸­ã ã£ãŸå ´åˆã¯ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’æ›´æ–°
 	if( SoundBuffer_CheckPlay( Buffer ) )
 	{
 		SoundBuffer_Refresh3DSoundParam( Buffer ) ;
@@ -10232,11 +10232,11 @@ extern int SoundBuffer_Set3DInnerRadius( SOUNDBUFFER *Buffer, float Radius )
 
 extern int SoundBuffer_Set3DVelocity( SOUNDBUFFER *Buffer, VECTOR *Velocity )
 {
-	// ‚R‚cƒTƒEƒ“ƒh‚Å‚Í‚È‚¢ê‡‚Í‰½‚à‚µ‚È‚¢
+	// ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰ã§ã¯ãªã„å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( Buffer->Is3DSound == FALSE )
 		return -1 ;
 
-	// ’l‚ª‚Ù‚Æ‚ñ‚Ç•Ï‰»‚µ‚È‚¢ê‡ê‡‚Í‰½‚à‚µ‚È‚¢
+	// å€¤ãŒã»ã¨ã‚“ã©å¤‰åŒ–ã—ãªã„å ´åˆå ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( _FABS( Buffer->EmitterInfo.Velocity.x - Velocity->x ) < 0.001f &&
 		_FABS( Buffer->EmitterInfo.Velocity.y - Velocity->y ) < 0.001f &&
 		_FABS( Buffer->EmitterInfo.Velocity.z - Velocity->z ) < 0.001f )
@@ -10244,19 +10244,19 @@ extern int SoundBuffer_Set3DVelocity( SOUNDBUFFER *Buffer, VECTOR *Velocity )
 		return 0 ;
 	}
 
-	// ’l‚ğ•Û‘¶
+	// å€¤ã‚’ä¿å­˜
 	Buffer->EmitterInfo.Velocity = *Velocity ;
 
-	// ŠÂ‹«ˆË‘¶ˆ—
+	// ç’°å¢ƒä¾å­˜å‡¦ç†
 	if( SoundBuffer_Set3DVelocity_PF( Buffer, Velocity ) < 0 )
 	{
 		return -1 ;
 	}
 
-	// ƒf[ƒ^‚ª•ÏX‚³‚ê‚½ƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// ãƒ‡ãƒ¼ã‚¿ãŒå¤‰æ›´ã•ã‚ŒãŸãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	Buffer->EmitterDataChangeFlag = TRUE ;
 
-	// Ä¶’†‚¾‚Á‚½ê‡‚Íƒpƒ‰ƒ[ƒ^‚ğXV
+	// å†ç”Ÿä¸­ã ã£ãŸå ´åˆã¯ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’æ›´æ–°
 	if( SoundBuffer_CheckPlay( Buffer ) )
 	{
 		SoundBuffer_Refresh3DSoundParam( Buffer ) ;
@@ -10272,7 +10272,7 @@ extern int SoundBuffer_Set3DFrontPosition( SOUNDBUFFER *Buffer, VECTOR *FrontPos
 	VECTOR Position ;
 	VECTOR UpVectorT ;
 
-	// ‚R‚cƒTƒEƒ“ƒh‚Å‚Í‚È‚¢ê‡‚Í‰½‚à‚µ‚È‚¢
+	// ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰ã§ã¯ãªã„å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( Buffer->Is3DSound == FALSE )
 		return -1 ;
 
@@ -10287,7 +10287,7 @@ extern int SoundBuffer_Set3DFrontPosition( SOUNDBUFFER *Buffer, VECTOR *FrontPos
 	VectorOuterProduct( &UpVectorT, &SideVec, &DirVec ) ;
 	VectorNormalize( &UpVectorT, &UpVectorT ) ;
 
-	// ’l‚ª‚Ù‚Æ‚ñ‚Ç•Ï‰»‚µ‚È‚¢ê‡ê‡‚Í‰½‚à‚µ‚È‚¢
+	// å€¤ãŒã»ã¨ã‚“ã©å¤‰åŒ–ã—ãªã„å ´åˆå ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( _FABS( Buffer->EmitterInfo.FrontDirection.x - DirVec.x ) < 0.0001f &&
 		_FABS( Buffer->EmitterInfo.FrontDirection.y - DirVec.y ) < 0.0001f &&
 		_FABS( Buffer->EmitterInfo.FrontDirection.z - DirVec.z ) < 0.0001f &&
@@ -10298,20 +10298,20 @@ extern int SoundBuffer_Set3DFrontPosition( SOUNDBUFFER *Buffer, VECTOR *FrontPos
 		return 0 ;
 	}
 
-	// ’l‚ğ•Û‘¶
+	// å€¤ã‚’ä¿å­˜
 	Buffer->EmitterInfo.FrontDirection = DirVec ;
 	Buffer->EmitterInfo.UpDirection = UpVectorT ;
 
-	// ŠÂ‹«ˆË‘¶ˆ—
+	// ç’°å¢ƒä¾å­˜å‡¦ç†
 	if( SoundBuffer_Set3DFrontPosition_PF( Buffer, FrontPosition, UpVector ) < 0 )
 	{
 		return -1 ;
 	}
 
-	// ƒf[ƒ^‚ª•ÏX‚³‚ê‚½ƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// ãƒ‡ãƒ¼ã‚¿ãŒå¤‰æ›´ã•ã‚ŒãŸãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	Buffer->EmitterDataChangeFlag = TRUE ;
 
-	// Ä¶’†‚¾‚Á‚½ê‡‚Íƒpƒ‰ƒ[ƒ^‚ğXV
+	// å†ç”Ÿä¸­ã ã£ãŸå ´åˆã¯ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’æ›´æ–°
 	if( SoundBuffer_CheckPlay( Buffer ) )
 	{
 		SoundBuffer_Refresh3DSoundParam( Buffer ) ;
@@ -10322,11 +10322,11 @@ extern int SoundBuffer_Set3DFrontPosition( SOUNDBUFFER *Buffer, VECTOR *FrontPos
 
 extern int SoundBuffer_Set3DConeAngle( SOUNDBUFFER *Buffer, float InnerAngle, float OuterAngle )
 {
-	// ‚R‚cƒTƒEƒ“ƒh‚Å‚Í‚È‚¢ê‡‚Í‰½‚à‚µ‚È‚¢
+	// ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰ã§ã¯ãªã„å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( Buffer->Is3DSound == FALSE )
 		return -1 ;
 
-	// ’l‚ª‚Ù‚Ú•Ï‰»‚µ‚È‚¢ê‡‚Í‰½‚à‚µ‚È‚¢
+	// å€¤ãŒã»ã¼å¤‰åŒ–ã—ãªã„å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( _FABS( Buffer->EmitterInfo.InnerAngle - InnerAngle ) < 0.001f &&
 		_FABS( Buffer->EmitterInfo.OuterAngle - OuterAngle ) < 0.001f )
 	{
@@ -10336,16 +10336,16 @@ extern int SoundBuffer_Set3DConeAngle( SOUNDBUFFER *Buffer, float InnerAngle, fl
 	Buffer->EmitterInfo.InnerAngle = InnerAngle ;
 	Buffer->EmitterInfo.OuterAngle = OuterAngle ;
 
-	// ŠÂ‹«ˆË‘¶ˆ—
+	// ç’°å¢ƒä¾å­˜å‡¦ç†
 	if( SoundBuffer_Set3DConeAngle_PF( Buffer, InnerAngle, OuterAngle ) < 0 )
 	{
 		return -1 ;
 	}
 
-	// ƒf[ƒ^‚ª•ÏX‚³‚ê‚½ƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// ãƒ‡ãƒ¼ã‚¿ãŒå¤‰æ›´ã•ã‚ŒãŸãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	Buffer->EmitterDataChangeFlag = TRUE ;
 
-	// Ä¶’†‚¾‚Á‚½ê‡‚Íƒpƒ‰ƒ[ƒ^‚ğXV
+	// å†ç”Ÿä¸­ã ã£ãŸå ´åˆã¯ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’æ›´æ–°
 	if( SoundBuffer_CheckPlay( Buffer ) )
 	{
 		SoundBuffer_Refresh3DSoundParam( Buffer ) ;
@@ -10356,11 +10356,11 @@ extern int SoundBuffer_Set3DConeAngle( SOUNDBUFFER *Buffer, float InnerAngle, fl
 
 extern int SoundBuffer_Set3DConeVolume( SOUNDBUFFER *Buffer, float InnerAngleVolume, float OuterAngleVolume )
 {
-	// ‚R‚cƒTƒEƒ“ƒh‚Å‚Í‚È‚¢ê‡‚Í‰½‚à‚µ‚È‚¢
+	// ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰ã§ã¯ãªã„å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( Buffer->Is3DSound == FALSE )
 		return -1 ;
 
-	// ’l‚ª‚Ù‚Ú•Ï‰»‚µ‚È‚¢ê‡‚Í‰½‚à‚µ‚È‚¢
+	// å€¤ãŒã»ã¼å¤‰åŒ–ã—ãªã„å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( _FABS( Buffer->EmitterInfo.InnerVolume - InnerAngleVolume ) < 0.001f &&
 		_FABS( Buffer->EmitterInfo.OuterVolume - OuterAngleVolume ) < 0.001f )
 	{
@@ -10370,16 +10370,16 @@ extern int SoundBuffer_Set3DConeVolume( SOUNDBUFFER *Buffer, float InnerAngleVol
 	Buffer->EmitterInfo.InnerVolume = InnerAngleVolume ;
 	Buffer->EmitterInfo.OuterVolume = OuterAngleVolume ;
 
-	// ŠÂ‹«ˆË‘¶ˆ—
+	// ç’°å¢ƒä¾å­˜å‡¦ç†
 	if( SoundBuffer_Set3DConeVolume_PF( Buffer, InnerAngleVolume, OuterAngleVolume ) < 0 )
 	{
 		return -1 ;
 	}
 
-	// ƒf[ƒ^‚ª•ÏX‚³‚ê‚½ƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// ãƒ‡ãƒ¼ã‚¿ãŒå¤‰æ›´ã•ã‚ŒãŸãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	Buffer->EmitterDataChangeFlag = TRUE ;
 
-	// Ä¶’†‚¾‚Á‚½ê‡‚Íƒpƒ‰ƒ[ƒ^‚ğXV
+	// å†ç”Ÿä¸­ã ã£ãŸå ´åˆã¯ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’æ›´æ–°
 	if( SoundBuffer_CheckPlay( Buffer ) )
 	{
 		SoundBuffer_Refresh3DSoundParam( Buffer ) ;
@@ -10396,7 +10396,7 @@ extern int SoundBuffer_Refresh3DSoundParam( SOUNDBUFFER *Buffer, int AlwaysFlag 
 		return -1 ;
 	}
 
-	// •K‚¸Às‚·‚éƒtƒ‰ƒO‚ª“|‚ê‚Ä‚¢‚ÄAƒf[ƒ^‚ª•ÏX‚³‚ê‚½ƒtƒ‰ƒO‚à“|‚ê‚Ä‚¢‚½‚ç‰½‚à‚µ‚È‚¢
+	// å¿…ãšå®Ÿè¡Œã™ã‚‹ãƒ•ãƒ©ã‚°ãŒå€’ã‚Œã¦ã„ã¦ã€ãƒ‡ãƒ¼ã‚¿ãŒå¤‰æ›´ã•ã‚ŒãŸãƒ•ãƒ©ã‚°ã‚‚å€’ã‚Œã¦ã„ãŸã‚‰ä½•ã‚‚ã—ãªã„
 	if( AlwaysFlag == FALSE && Buffer->EmitterDataChangeFlag == FALSE )
 	{
 		return 0 ;
@@ -10407,17 +10407,17 @@ extern int SoundBuffer_Refresh3DSoundParam( SOUNDBUFFER *Buffer, int AlwaysFlag 
 	}
 	else
 	{
-		// ŠÂ‹«ˆË‘¶ˆ—
+		// ç’°å¢ƒä¾å­˜å‡¦ç†
 		if( SoundBuffer_Refresh3DSoundParam_PF( Buffer, AlwaysFlag ) < 0 )
 		{
 			return -1 ;
 		}
 	}
 
-	// ƒf[ƒ^‚ª•ÏX‚³‚ê‚½ƒtƒ‰ƒO‚ğ“|‚·
+	// ãƒ‡ãƒ¼ã‚¿ãŒå¤‰æ›´ã•ã‚ŒãŸãƒ•ãƒ©ã‚°ã‚’å€’ã™
 	Buffer->EmitterDataChangeFlag = FALSE ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
@@ -10430,14 +10430,14 @@ extern int SoundBuffer_SetReverbParam( SOUNDBUFFER *Buffer, SOUND3D_REVERB_PARAM
 	}
 	else
 	{
-		// ŠÂ‹«ˆË‘¶ˆ—
+		// ç’°å¢ƒä¾å­˜å‡¦ç†
 		if( SoundBuffer_SetReverbParam_PF( Buffer, Param ) < 0 )
 		{
 			return -1 ;
 		}
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
@@ -10450,14 +10450,14 @@ extern int SoundBuffer_SetPresetReverbParam( SOUNDBUFFER *Buffer, int PresetNo )
 	}
 	else
 	{
-		// ŠÂ‹«ˆË‘¶ˆ—
+		// ç’°å¢ƒä¾å­˜å‡¦ç†
 		if( SoundBuffer_SetPresetReverbParam_PF( Buffer, PresetNo ) < 0 )
 		{
 			return 0 ;
 		}
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
@@ -10999,29 +10999,29 @@ extern int SoundBuffer_ConvertFrequency( void *SrcBuffer, int SrcSamples, void *
 
 
 
-// ƒ‰ƒbƒp[ŠÖ”
+// ãƒ©ãƒƒãƒ‘ãƒ¼é–¢æ•°
 
 #ifndef DX_COMPILE_TYPE_C_LANGUAGE
-// PlaySoundFile ‚Ì‹Œ–¼Ì
+// PlaySoundFile ã®æ—§åç§°
 extern int NS_PlaySound( const TCHAR *FileName, int PlayType )
 {
 	return NS_PlaySoundDX( FileName, PlayType ) ;
 }
 
-// PlaySoundFile ‚Ì‹Œ–¼Ì
+// PlaySoundFile ã®æ—§åç§°
 extern int NS_PlaySoundWithStrLen( const TCHAR *FileName, size_t FileNameLength, int PlayType )
 {
 	return NS_PlaySoundDXWithStrLen( FileName, FileNameLength, PlayType ) ;
 }
 #endif // DX_COMPILE_TYPE_C_LANGUAGE
 
-// PlaySoundFile ‚Ì‹Œ–¼Ì
+// PlaySoundFile ã®æ—§åç§°
 extern int NS_PlaySoundDX( const TCHAR *FileName, int PlayType )
 {
 	return NS_PlaySoundFile( FileName, PlayType ) ;
 }
 
-// PlaySoundFile ‚Ì‹Œ–¼Ì
+// PlaySoundFile ã®æ—§åç§°
 extern int NS_PlaySoundDXWithStrLen( const TCHAR *FileName, size_t FileNameLength, int PlayType )
 {
 	int Result ;
@@ -11031,31 +11031,31 @@ extern int NS_PlaySoundDXWithStrLen( const TCHAR *FileName, size_t FileNameLengt
 	return Result ;
 }
 
-// PlaySoundFile ‚Ì‹Œ–¼Ì
+// PlaySoundFile ã®æ—§åç§°
 extern int PlaySound_WCHAR_T( const wchar_t *FileName, int PlayType )
 {
 	return PlaySoundFile_WCHAR_T( FileName, PlayType ) ;
 }
 
-// CheckSoundFile ‚Ì‹Œ–¼Ì
+// CheckSoundFile ã®æ—§åç§°
 extern int NS_CheckSound( void )
 {
 	return NS_CheckSoundFile() ;
 }
 
-// StopSoundFile ‚Ì‹Œ–¼Ì
+// StopSoundFile ã®æ—§åç§°
 extern int NS_StopSound( void )
 {
 	return NS_StopSoundFile() ;
 }
 
-// SetVolumeSound ‚Ì‹Œ–¼Ì
+// SetVolumeSound ã®æ—§åç§°
 extern int NS_SetVolumeSound( int VolumePal )
 {
 	return NS_SetVolumeSoundFile( VolumePal ) ;
 }
 
-// WAVEƒtƒ@ƒCƒ‹‚ğÄ¶‚·‚é
+// WAVEãƒ•ã‚¡ã‚¤ãƒ«ã‚’å†ç”Ÿã™ã‚‹
 extern int NS_PlaySoundFile( const TCHAR *FileName , int PlayType )
 {
 #ifdef UNICODE
@@ -11077,7 +11077,7 @@ extern int NS_PlaySoundFile( const TCHAR *FileName , int PlayType )
 #endif
 }
 
-// ƒTƒEƒ“ƒhƒtƒ@ƒCƒ‹‚ğÄ¶‚·‚é
+// ã‚µã‚¦ãƒ³ãƒ‰ãƒ•ã‚¡ã‚¤ãƒ«ã‚’å†ç”Ÿã™ã‚‹
 extern int NS_PlaySoundFileWithStrLen( const TCHAR *FileName, size_t FileNameLength, int PlayType )
 {
 	int Result ;
@@ -11093,7 +11093,7 @@ extern int NS_PlaySoundFileWithStrLen( const TCHAR *FileName, size_t FileNameLen
 	return Result ;
 }
 
-// WAVEƒtƒ@ƒCƒ‹‚ğÄ¶‚·‚é
+// WAVEãƒ•ã‚¡ã‚¤ãƒ«ã‚’å†ç”Ÿã™ã‚‹
 extern int PlaySoundFile_WCHAR_T( const wchar_t *FileName , int PlayType )
 {
 	LOADSOUND_GPARAM GParam ;
@@ -11103,13 +11103,13 @@ extern int PlaySoundFile_WCHAR_T( const wchar_t *FileName , int PlayType )
 		return -1 ;
 	}
 
-	// ˆÈ‘OÄ¶’†‚¾‚Á‚½ƒf[ƒ^‚ğ~‚ß‚é
+	// ä»¥å‰å†ç”Ÿä¸­ã ã£ãŸãƒ‡ãƒ¼ã‚¿ã‚’æ­¢ã‚ã‚‹
 	if( SoundSysData.PlayWavSoundHandle != -1 )
 	{
 		SubHandle( SoundSysData.PlayWavSoundHandle, FALSE, FALSE ) ;
 	}
 
-	// ƒTƒEƒ“ƒhƒf[ƒ^‚ğ“Ç‚İ‚Ş
+	// ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿è¾¼ã‚€
 	InitLoadSoundGParam( &GParam ) ;
 	SoundSysData.PlayWavSoundHandle = LoadSoundMemBase_UseGParam( &GParam, FileName, 1, -1, FALSE, FALSE ) ;
 	if( SoundSysData.PlayWavSoundHandle == -1 )
@@ -11117,14 +11117,14 @@ extern int PlaySoundFile_WCHAR_T( const wchar_t *FileName , int PlayType )
 		return -1 ;
 	}
 
-	// ƒTƒEƒ“ƒh‚ğÄ¶‚·‚é
+	// ã‚µã‚¦ãƒ³ãƒ‰ã‚’å†ç”Ÿã™ã‚‹
 	NS_PlaySoundMem( SoundSysData.PlayWavSoundHandle , PlayType, TRUE ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// WAVEƒtƒ@ƒCƒ‹‚ªÄ¶’†‚©’²‚×‚é
+// WAVEãƒ•ã‚¡ã‚¤ãƒ«ãŒå†ç”Ÿä¸­ã‹èª¿ã¹ã‚‹
 extern int NS_CheckSoundFile( void )
 {
 	int Result ;
@@ -11143,7 +11143,7 @@ extern int NS_CheckSoundFile( void )
 	return Result ;
 }
 
-// WAVEƒtƒ@ƒCƒ‹‚ÌÄ¶‚ğ~‚ß‚é
+// WAVEãƒ•ã‚¡ã‚¤ãƒ«ã®å†ç”Ÿã‚’æ­¢ã‚ã‚‹
 extern int NS_StopSoundFile( void )
 {
 	if( CheckSoundSystem_Initialize_PF() == FALSE )
@@ -11155,7 +11155,7 @@ extern int NS_StopSoundFile( void )
 	return NS_StopSoundMem( SoundSysData.PlayWavSoundHandle, FALSE ) ;
 }
 
-// WAVEƒtƒ@ƒCƒ‹‚Ì‰¹—Ê‚ğƒZƒbƒg‚·‚é
+// WAVEãƒ•ã‚¡ã‚¤ãƒ«ã®éŸ³é‡ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern int NS_SetVolumeSoundFile( int VolumePal )
 {
 	if( CheckSoundSystem_Initialize_PF() == FALSE )
@@ -11167,7 +11167,7 @@ extern int NS_SetVolumeSoundFile( int VolumePal )
 	return NS_SetVolumeSoundMem( VolumePal, SoundSysData.PlayWavSoundHandle ) ;
 }
 
-// ƒTƒEƒ“ƒhƒLƒƒƒvƒ`ƒƒ‚ÌŠJn
+// ã‚µã‚¦ãƒ³ãƒ‰ã‚­ãƒ£ãƒ—ãƒãƒ£ã®é–‹å§‹
 extern	int StartSoundCapture( const wchar_t *SaveFilePath )
 {
 #ifdef DX_NON_SAVEFUNCTION
@@ -11178,37 +11178,37 @@ extern	int StartSoundCapture( const wchar_t *SaveFilePath )
 
 	BYTE temp[NORMALWAVE_HEADERSIZE] ;
 	
-	// ƒTƒEƒ“ƒhƒLƒƒƒvƒ`ƒƒ‚ª–³Œø‚Èê‡‚Í‰½‚à‚¹‚¸I—¹
+	// ã‚µã‚¦ãƒ³ãƒ‰ã‚­ãƒ£ãƒ—ãƒãƒ£ãŒç„¡åŠ¹ãªå ´åˆã¯ä½•ã‚‚ã›ãšçµ‚äº†
 	if( SoundSysData.EnableSoundCaptureFlag == FALSE ) return -1 ;
 
-	// Šù‚ÉƒLƒƒƒvƒ`ƒƒ‚ğŠJn‚µ‚Ä‚¢‚éê‡‚Í‰½‚à‚¹‚¸I—¹
+	// æ—¢ã«ã‚­ãƒ£ãƒ—ãƒãƒ£ã‚’é–‹å§‹ã—ã¦ã„ã‚‹å ´åˆã¯ä½•ã‚‚ã›ãšçµ‚äº†
 	if( SoundSysData.SoundCaptureFlag == TRUE ) return -1 ;
 	SoundSysData.SoundCaptureFlag = TRUE;
 	
-	// •Û‘¶—p‚Ìƒtƒ@ƒCƒ‹‚ğŠJ‚­
+	// ä¿å­˜ç”¨ã®ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‹ã
 	SoundSysData.SoundCaptureFileHandle = WriteOnlyFileAccessOpen( SaveFilePath ) ;
 	if( SoundSysData.SoundCaptureFileHandle == 0 )
 	{
-		DXST_LOGFILE_ADDUTF16LE( "\xb5\x30\xa6\x30\xf3\x30\xc9\x30\xad\x30\xe3\x30\xd7\x30\xc1\x30\xe3\x30\xdd\x4f\x58\x5b\x28\x75\x6e\x30\xd5\x30\xa1\x30\xa4\x30\xeb\x30\x4c\x30\x8b\x95\x51\x30\x7e\x30\x5b\x30\x93\x30\x67\x30\x57\x30\x5f\x30\x02\x30\x00"/*@ L"ƒTƒEƒ“ƒhƒLƒƒƒvƒ`ƒƒ•Û‘¶—p‚Ìƒtƒ@ƒCƒ‹‚ªŠJ‚¯‚Ü‚¹‚ñ‚Å‚µ‚½B" @*/ ) ;
+		DXST_LOGFILE_ADDUTF16LE( "\xb5\x30\xa6\x30\xf3\x30\xc9\x30\xad\x30\xe3\x30\xd7\x30\xc1\x30\xe3\x30\xdd\x4f\x58\x5b\x28\x75\x6e\x30\xd5\x30\xa1\x30\xa4\x30\xeb\x30\x4c\x30\x8b\x95\x51\x30\x7e\x30\x5b\x30\x93\x30\x67\x30\x57\x30\x5f\x30\x02\x30\x00"/*@ L"ã‚µã‚¦ãƒ³ãƒ‰ã‚­ãƒ£ãƒ—ãƒãƒ£ä¿å­˜ç”¨ã®ãƒ•ã‚¡ã‚¤ãƒ«ãŒé–‹ã‘ã¾ã›ã‚“ã§ã—ãŸã€‚" @*/ ) ;
 		return -1 ;
 	}
 	
-	// ƒwƒbƒ_[•ª‚Ì‹óƒf[ƒ^‚ğ‘‚«o‚·
+	// ãƒ˜ãƒƒãƒ€ãƒ¼åˆ†ã®ç©ºãƒ‡ãƒ¼ã‚¿ã‚’æ›¸ãå‡ºã™
 	_MEMSET( temp, 0, sizeof( temp ) ) ;
 	WriteOnlyFileAccessWrite( SoundSysData.SoundCaptureFileHandle, temp, NORMALWAVE_HEADERSIZE ) ;
 	
-	// ƒTƒEƒ“ƒhƒLƒƒƒvƒ`ƒƒ‚Ìƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// ã‚µã‚¦ãƒ³ãƒ‰ã‚­ãƒ£ãƒ—ãƒãƒ£ã®ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	SoundSysData.SoundCaptureFlag = TRUE ;
 	
-	// ƒLƒƒƒvƒ`ƒƒ‚µ‚½ƒTƒ“ƒvƒ‹”‚ğ‚O‚É‚·‚é
+	// ã‚­ãƒ£ãƒ—ãƒãƒ£ã—ãŸã‚µãƒ³ãƒ—ãƒ«æ•°ã‚’ï¼ã«ã™ã‚‹
 	SoundSysData.SoundCaptureSample = 0 ;
 	
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 #endif // DX_NON_SAVEFUNCTION
 }
 
-// ƒTƒEƒ“ƒhƒLƒƒƒvƒ`ƒƒ‚ÌüŠú“Iˆ—
+// ã‚µã‚¦ãƒ³ãƒ‰ã‚­ãƒ£ãƒ—ãƒãƒ£ã®å‘¨æœŸçš„å‡¦ç†
 extern	int SoundCaptureProcess( int CaptureSample )
 {
 	int i, j, num, k ;
@@ -11218,7 +11218,7 @@ extern	int SoundCaptureProcess( int CaptureSample )
 	if( SoundSysData.EnableSoundCaptureFlag == FALSE ) return -1 ;
 	
 #ifndef DX_NON_SAVEFUNCTION
-	// ƒLƒƒƒvƒ`ƒƒ‚ğs‚¤ê‡‚Íƒƒ‚ƒŠ‚ÌŠm•Û
+	// ã‚­ãƒ£ãƒ—ãƒãƒ£ã‚’è¡Œã†å ´åˆã¯ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿
 	if( SoundSysData.SoundCaptureFlag == TRUE )
 	{
 		Temp = (short *)DXALLOC( ( size_t )( CaptureSample * 4 ) ) ;
@@ -11226,7 +11226,7 @@ extern	int SoundCaptureProcess( int CaptureSample )
 	}
 #endif // DX_NON_SAVEFUNCTION
 	
-	// ƒTƒEƒ“ƒhƒoƒbƒtƒ@‚Ìisˆ—‚ğs‚¤
+	// ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡ã®é€²è¡Œå‡¦ç†ã‚’è¡Œã†
 	num = HandleManageArray[ DX_HANDLETYPE_SOUND ].Num ;
 	for( i = 0, j = HandleManageArray[ DX_HANDLETYPE_SOUND ].AreaMin ; i < num ; j ++ )
 	{
@@ -11253,23 +11253,23 @@ extern	int SoundCaptureProcess( int CaptureSample )
 
 #ifndef DX_NON_SAVEFUNCTION
 	
-	// ƒLƒƒƒvƒ`ƒƒ—p‚Ìƒf[ƒ^‚ğ‘‚«o‚·
+	// ã‚­ãƒ£ãƒ—ãƒãƒ£ç”¨ã®ãƒ‡ãƒ¼ã‚¿ã‚’æ›¸ãå‡ºã™
 	if( SoundSysData.SoundCaptureFlag == TRUE )
 	{
 		WriteOnlyFileAccessWrite( SoundSysData.SoundCaptureFileHandle, Temp, ( DWORD )( CaptureSample * 4 ) ) ;
 		SoundSysData.SoundCaptureSample += CaptureSample ;
 		
-		// ƒƒ‚ƒŠ‚Ì‰ğ•ú
+		// ãƒ¡ãƒ¢ãƒªã®è§£æ”¾
 		DXFREE( Temp ) ;
 	}
 
 #endif // DX_NON_SAVEFUNCTION
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒTƒEƒ“ƒhƒLƒƒƒvƒ`ƒƒ‚ÌI—¹
+// ã‚µã‚¦ãƒ³ãƒ‰ã‚­ãƒ£ãƒ—ãƒãƒ£ã®çµ‚äº†
 extern	int EndSoundCapture( void )
 {
 #ifdef DX_NON_SAVEFUNCTION
@@ -11281,10 +11281,10 @@ extern	int EndSoundCapture( void )
 	BYTE Header[NORMALWAVE_HEADERSIZE], *p ;
 	WAVEFORMATEX *format;
 
-	// ƒTƒEƒ“ƒhƒLƒƒƒvƒ`ƒƒ‚ğÀs‚µ‚Ä‚¢‚È‚©‚Á‚½ê‡‚Í‰½‚à‚¹‚¸I—¹
+	// ã‚µã‚¦ãƒ³ãƒ‰ã‚­ãƒ£ãƒ—ãƒãƒ£ã‚’å®Ÿè¡Œã—ã¦ã„ãªã‹ã£ãŸå ´åˆã¯ä½•ã‚‚ã›ãšçµ‚äº†
 	if( SoundSysData.SoundCaptureFlag == FALSE ) return -1 ;
 	
-	// ƒtƒH[ƒ}ƒbƒg‚ğƒZƒbƒg
+	// ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã‚’ã‚»ãƒƒãƒˆ
 	format = (WAVEFORMATEX *)&Header[20]; 
 	format->wFormatTag      = WAVE_FORMAT_PCM ;
 	format->nChannels       = 2 ;
@@ -11294,7 +11294,7 @@ extern	int EndSoundCapture( void )
 	format->nAvgBytesPerSec = format->nSamplesPerSec * format->nBlockAlign ;
 	format->cbSize          = 0 ;
 	
-	// ƒwƒbƒ_‚ğ‘‚«o‚µ‚Äƒtƒ@ƒCƒ‹‚ğ•Â‚¶‚é
+	// ãƒ˜ãƒƒãƒ€ã‚’æ›¸ãå‡ºã—ã¦ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‰ã˜ã‚‹
 	p = Header;
 	_MEMCPY( (char *)p, "RIFF", 4 ) ;												p += 4 ;
 	*((DWORD *)p) = ( DWORD )( SoundSysData.SoundCaptureSample * format->nBlockAlign + NORMALWAVE_HEADERSIZE - 8 ) ;	p += 4 ;
@@ -11311,26 +11311,26 @@ extern	int EndSoundCapture( void )
 	WriteOnlyFileAccessClose( SoundSysData.SoundCaptureFileHandle ) ;
 	SoundSysData.SoundCaptureFileHandle = 0 ;
 	
-	// ƒLƒƒƒvƒ`ƒƒI—¹
+	// ã‚­ãƒ£ãƒ—ãƒãƒ£çµ‚äº†
 	SoundSysData.SoundCaptureFlag = FALSE ;
 	
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 
 #endif // DX_NON_SAVEFUNCTION
 }
 
 
-// ©‘Oƒ~ƒLƒVƒ“ƒOˆ——p‚Ìƒoƒbƒtƒ@‚ğƒZƒbƒgƒAƒbƒv‚·‚é
+// è‡ªå‰ãƒŸã‚­ã‚·ãƒ³ã‚°å‡¦ç†ç”¨ã®ãƒãƒƒãƒ•ã‚¡ã‚’ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã™ã‚‹
 extern int SetupSelfMixingWorkBuffer( int IsFloat, int Samples )
 {
-	// floatƒ^ƒCƒv‚©‚Ç‚¤‚©‚ğ•Û‘¶
+	// floatã‚¿ã‚¤ãƒ—ã‹ã©ã†ã‹ã‚’ä¿å­˜
 	SoundSysData.SelfMixingBufferIsFloat = IsFloat ;
 
-	// ƒTƒ“ƒvƒ‹”‚ğ•Û‘¶
+	// ã‚µãƒ³ãƒ—ãƒ«æ•°ã‚’ä¿å­˜
 	SoundSysData.SelfMixingBufferSamples = Samples ;
 
-	// ƒoƒbƒtƒ@‚ğŠm•Û
+	// ãƒãƒƒãƒ•ã‚¡ã‚’ç¢ºä¿
 	if( SoundSysData.SelfMixingBuffer != NULL )
 	{
 		DXFREE( SoundSysData.SelfMixingBuffer ) ;
@@ -11339,20 +11339,20 @@ extern int SetupSelfMixingWorkBuffer( int IsFloat, int Samples )
 	SoundSysData.SelfMixingBuffer = DXALLOC( Samples * sizeof( int ) * 2 ) ;
 	if( SoundSysData.SelfMixingBuffer == NULL )
 	{
-		DXST_LOGFILE_ADDUTF16LE( "\xea\x81\x4d\x52\xdf\x30\xad\x30\xb7\x30\xf3\x30\xb0\x30\xe6\x51\x06\x74\x28\x75\x6e\x30\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"©‘Oƒ~ƒLƒVƒ“ƒOˆ——p‚Ìƒƒ‚ƒŠ‚ÌŠm•Û‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+		DXST_LOGFILE_ADDUTF16LE( "\xea\x81\x4d\x52\xdf\x30\xad\x30\xb7\x30\xf3\x30\xb0\x30\xe6\x51\x06\x74\x28\x75\x6e\x30\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"è‡ªå‰ãƒŸã‚­ã‚·ãƒ³ã‚°å‡¦ç†ç”¨ã®ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 		return -1 ;
 	}
 
-	// ƒ[ƒƒNƒŠƒA
+	// ã‚¼ãƒ­ã‚¯ãƒªã‚¢
 	_MEMSET( SoundSysData.SelfMixingBuffer, 0, Samples * sizeof( int ) * 2 ) ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 	
 }
 
 
-// w’è‚Ìƒoƒbƒtƒ@‚É©‘Oƒ~ƒLƒVƒ“ƒO‚Ìƒf[ƒ^‚ğ‘‚«‚Ş
+// æŒ‡å®šã®ãƒãƒƒãƒ•ã‚¡ã«è‡ªå‰ãƒŸã‚­ã‚·ãƒ³ã‚°ã®ãƒ‡ãƒ¼ã‚¿ã‚’æ›¸ãè¾¼ã‚€
 
 #define DEST_HZ_CHANGE_CODE( SRC_PARTS0, SRC_PARTS1, DEST_ADD_INT_SCALE, DEST_ADD_INT, DEST_ADD_FLOAT )\
 	if( SoundSysData.SelfMixingBufferIsFloat )\
@@ -12319,17 +12319,17 @@ extern int WriteSelfMixingSample( BYTE *Buffer0, BYTE *Buffer1, DWORD Stride, DW
 		return -1 ;
 	}
 	
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 	CRITICALSECTION_LOCK( &SoundSysData.PlaySoundBufferListCriticalSection ) ;
 
-	// ƒoƒbƒtƒ@‚ª‘«‚è‚È‚©‚Á‚½‚çÄŠm•Û
+	// ãƒãƒƒãƒ•ã‚¡ãŒè¶³ã‚Šãªã‹ã£ãŸã‚‰å†ç¢ºä¿
 	if( SoundSysData.SelfMixingBufferSamples < ( int )SampleNum )
 	{
 		SoundSysData.SelfMixingBufferSamples = SampleNum ;
 		SoundSysData.SelfMixingBuffer = DXREALLOC( SoundSysData.SelfMixingBuffer, SoundSysData.SelfMixingBufferSamples * sizeof( int ) * 2 ) ;
 	}
 
-	// ƒoƒbƒtƒ@‚ğƒ[ƒ‰Šú‰»
+	// ãƒãƒƒãƒ•ã‚¡ã‚’ã‚¼ãƒ­åˆæœŸåŒ–
 	_MEMSET( SoundSysData.SelfMixingBuffer, 0, SoundSysData.SelfMixingBufferSamples * sizeof( int ) * 2 ) ;
 
 	for( List = SoundSysData.PlaySoundBufferListFirst.Next ; List->Next != NULL ; List = ListNext )
@@ -12357,7 +12357,7 @@ extern int WriteSelfMixingSample( BYTE *Buffer0, BYTE *Buffer1, DWORD Stride, DW
 		Volume = SoundBuf->CalcVolume ;
 		Pan = SoundBuf->CalcPan ;
 
-		// Ä¶’x‰„ƒTƒ“ƒvƒ‹‚ª‚ ‚éê‡‚Í‚»‚Ì•ªÄ¶‚ğ’x‚ç‚¹‚é
+		// å†ç”Ÿé…å»¶ã‚µãƒ³ãƒ—ãƒ«ãŒã‚ã‚‹å ´åˆã¯ãã®åˆ†å†ç”Ÿã‚’é…ã‚‰ã›ã‚‹
 		while( OutputSampleNum > 0 && SoundBuf->OutputDelaySamples > 0 )
 		{
 			DestBufF += 2 ;
@@ -12534,7 +12534,7 @@ extern int WriteSelfMixingSample( BYTE *Buffer0, BYTE *Buffer1, DWORD Stride, DW
 		}
 	}
 
-	// ‰¹Š„‚ê–h~ˆ—‚ğ‚µ‚½ŒãA–{ƒoƒbƒtƒ@‚Éo—Í
+	// éŸ³å‰²ã‚Œé˜²æ­¢å‡¦ç†ã‚’ã—ãŸå¾Œã€æœ¬ãƒãƒƒãƒ•ã‚¡ã«å‡ºåŠ›
 	{
 		int ScalingFlag = SoundSysData.SelfMixingScalingFlag ;
 		float ScalingStartParam = SoundSysData.SelfMixingScalingStartParam ;
@@ -12975,20 +12975,20 @@ extern int WriteSelfMixingSample( BYTE *Buffer0, BYTE *Buffer1, DWORD Stride, DW
 		SoundSysData.SelfMixingScalingSampleCount = ScalingSampleCount ;
 	}
 
-	// ‘Ä¶ƒTƒ“ƒvƒ‹”‚ğ‘‚â‚·
+	// ç·å†ç”Ÿã‚µãƒ³ãƒ—ãƒ«æ•°ã‚’å¢—ã‚„ã™
 	SoundSysData.SelfMixingTotalWriteSamples += SampleNum ;
  
- 	// Ä¶’x‰„ƒTƒ“ƒvƒ‹”‚ğŒ¸Z‚·‚é
+ 	// å†ç”Ÿé…å»¶ã‚µãƒ³ãƒ—ãƒ«æ•°ã‚’æ¸›ç®—ã™ã‚‹
  	SoundSysData.SelfMixingOutputDelaySamples -= SampleNum ;
  	if( SoundSysData.SelfMixingOutputDelaySamples < 0 )
  	{
  		SoundSysData.SelfMixingOutputDelaySamples = 0 ;
  	}
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 	CriticalSection_Unlock( &SoundSysData.PlaySoundBufferListCriticalSection ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
@@ -13007,9 +13007,9 @@ extern int WriteSelfMixingSample( BYTE *Buffer0, BYTE *Buffer1, DWORD Stride, DW
 
 
 
-// ƒ\ƒtƒgƒEƒGƒA§ŒäƒTƒEƒ“ƒhŒnŠÖ”
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢åˆ¶å¾¡ã‚µã‚¦ãƒ³ãƒ‰ç³»é–¢æ•°
 
-// ƒ\ƒtƒgƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹‚ğƒZƒbƒgƒAƒbƒv‚·‚é
+// ã‚½ãƒ•ãƒˆã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ã‚’ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã™ã‚‹
 extern int SetupSoftSoundHandle(
 	int SoftSoundHandle,
 	int IsPlayer,
@@ -13024,11 +13024,11 @@ extern int SetupSoftSoundHandle(
 
 	if( SoundSysData.InitializeFlag == FALSE ) return -1 ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( SSND_MASKHCHK_ASYNC( SoftSoundHandle, SSound ) )
 		return -1 ;
 
-	// ƒpƒ‰ƒ[ƒ^‚Ì‰Šú‰»
+	// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®åˆæœŸåŒ–
 	SSound->IsPlayer = IsPlayer ;
 	if( IsFloatType )
 	{
@@ -13046,22 +13046,22 @@ extern int SetupSoftSoundHandle(
 	SSound->BufferFormat.nAvgBytesPerSec = SSound->BufferFormat.nSamplesPerSec * SSound->BufferFormat.nBlockAlign ;
 	SSound->BufferFormat.cbSize = 0 ;
 
-	// ƒvƒŒƒCƒ„[‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+	// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 	if( IsPlayer )
 	{
 		DWORD BufferSize ;
 
-		// ƒvƒŒƒCƒ„[‚Ìê‡
+		// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å ´åˆ
 
-		// ƒŠƒ“ƒOƒoƒbƒtƒ@‚Ì‰Šú‰»
+		// ãƒªãƒ³ã‚°ãƒãƒƒãƒ•ã‚¡ã®åˆæœŸåŒ–
 		RingBufInitialize( &SSound->Player.StockSample ) ;
 		SSound->Player.StockSampleNum = 0 ;
 
-		// Ä¶—pƒTƒEƒ“ƒhƒoƒbƒtƒ@‚Ìì¬
+		// å†ç”Ÿç”¨ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡ã®ä½œæˆ
 		BufferSize = SOUNDSIZE( SSND_PLAYER_STRM_BUFSEC * SSound->BufferFormat.nAvgBytesPerSec / SSND_PLAYER_SEC_DIVNUM, SSound->BufferFormat.nBlockAlign ) ;
 		if( SoundBuffer_Initialize( &SSound->Player.SoundBuffer, BufferSize, &SSound->BufferFormat, NULL, TRUE, TRUE, FALSE ) != 0 )
 		{
-			DXST_LOGFILE_ADDUTF16LE( "\xbd\x30\xd5\x30\xc8\x30\xb5\x30\xa6\x30\xf3\x30\xc9\x30\xd7\x30\xec\x30\xa4\x30\xe4\x30\xfc\x30\x28\x75\xb5\x30\xa6\x30\xf3\x30\xc9\x30\xd0\x30\xc3\x30\xd5\x30\xa1\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"ƒ\ƒtƒgƒTƒEƒ“ƒhƒvƒŒƒCƒ„[—pƒTƒEƒ“ƒhƒoƒbƒtƒ@‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½" @*/ ) ;
+			DXST_LOGFILE_ADDUTF16LE( "\xbd\x30\xd5\x30\xc8\x30\xb5\x30\xa6\x30\xf3\x30\xc9\x30\xd7\x30\xec\x30\xa4\x30\xe4\x30\xfc\x30\x28\x75\xb5\x30\xa6\x30\xf3\x30\xc9\x30\xd0\x30\xc3\x30\xd5\x30\xa1\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"ã‚½ãƒ•ãƒˆã‚µã‚¦ãƒ³ãƒ‰ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ç”¨ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ" @*/ ) ;
 			return -1 ;
 		}
 		SSound->Player.SoundBufferSize   = ( int )BufferSize ;
@@ -13073,64 +13073,64 @@ extern int SetupSoftSoundHandle(
 
 		SSound->Player.IsPlayFlag = FALSE ;
 
-		// æsƒoƒbƒtƒ@ƒTƒCƒY‚ğƒZƒbƒg
+		// å…ˆè¡Œãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚ºã‚’ã‚»ãƒƒãƒˆ
 		SSound->Player.MaxDataSetSize = ( int )SOUNDSIZE( SSND_PLAYER_STRM_SAKICOPYSEC    * SSound->BufferFormat.nAvgBytesPerSec / SSND_PLAYER_SEC_DIVNUM, SSound->BufferFormat.nBlockAlign ) ;
 		SSound->Player.MinDataSetSize = ( int )SOUNDSIZE( SSND_PLAYER_STRM_MINSAKICOPYSEC * SSound->BufferFormat.nAvgBytesPerSec / SSND_PLAYER_SEC_DIVNUM, SSound->BufferFormat.nBlockAlign ) ;
 
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 		CRITICALSECTION_LOCK( &HandleManageArray[ DX_HANDLETYPE_SOFTSOUND ].CriticalSection ) ;
 
-		// ƒnƒ“ƒhƒ‹ƒŠƒXƒg‚É’Ç‰Á
+		// ãƒãƒ³ãƒ‰ãƒ«ãƒªã‚¹ãƒˆã«è¿½åŠ 
 		AddHandleList( &SoundSysData.SoftSoundPlayerListFirst, &SSound->Player.SoftSoundPlayerList, -1, SSound ) ;
 
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 		CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_SOFTSOUND ].CriticalSection ) ;
 	}
 	else
 	{
-		// ƒTƒEƒ“ƒhƒf[ƒ^‚Ìê‡
+		// ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ã®å ´åˆ
 
-		// ƒf[ƒ^‚ğŠi”[‚·‚éƒƒ‚ƒŠ—Ìˆæ‚ğŠm•Û
+		// ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹ãƒ¡ãƒ¢ãƒªé ˜åŸŸã‚’ç¢ºä¿
 		SSound->Wave.BufferSampleNum = SampleNum ;
 		SSound->Wave.Buffer          = DXALLOC( ( size_t )( SampleNum * SSound->BufferFormat.nBlockAlign ) ) ;
 		if( SSound->Wave.Buffer == NULL )
 		{
-			DXST_LOGFILE_ADDUTF16LE( "\xbd\x30\xd5\x30\xc8\x30\xcf\x30\xf3\x30\xc9\x30\xeb\x30\x6e\x30\xe2\x6c\x62\x5f\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x20\x00\x69\x00\x6e\x00\x20\x00\x41\x00\x64\x00\x64\x00\x53\x00\x6f\x00\x66\x00\x74\x00\x53\x00\x6f\x00\x75\x00\x6e\x00\x64\x00\x44\x00\x61\x00\x74\x00\x61\x00\x00"/*@ L"ƒ\ƒtƒgƒnƒ“ƒhƒ‹‚Ì”gŒ`‚ğŠi”[‚·‚éƒƒ‚ƒŠ—Ìˆæ‚ÌŠm•Û‚É¸”s‚µ‚Ü‚µ‚½ in AddSoftSoundData" @*/ ) ;
+			DXST_LOGFILE_ADDUTF16LE( "\xbd\x30\xd5\x30\xc8\x30\xcf\x30\xf3\x30\xc9\x30\xeb\x30\x6e\x30\xe2\x6c\x62\x5f\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x20\x00\x69\x00\x6e\x00\x20\x00\x41\x00\x64\x00\x64\x00\x53\x00\x6f\x00\x66\x00\x74\x00\x53\x00\x6f\x00\x75\x00\x6e\x00\x64\x00\x44\x00\x61\x00\x74\x00\x61\x00\x00"/*@ L"ã‚½ãƒ•ãƒˆãƒãƒ³ãƒ‰ãƒ«ã®æ³¢å½¢ã‚’æ ¼ç´ã™ã‚‹ãƒ¡ãƒ¢ãƒªé ˜åŸŸã®ç¢ºä¿ã«å¤±æ•—ã—ã¾ã—ãŸ in AddSoftSoundData" @*/ ) ;
 			return -1 ;
 		}
 	}
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// ƒ\ƒtƒgƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹‚Ì‰Šú‰»
+// ã‚½ãƒ•ãƒˆã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ã®åˆæœŸåŒ–
 extern int InitializeSoftSoundHandle( HANDLEINFO * )
 {
-	// “Á‚É‰½‚à‚µ‚È‚¢
+	// ç‰¹ã«ä½•ã‚‚ã—ãªã„
 	return 0 ;
 }
 
-// ƒ\ƒtƒgƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹‚ÌŒãn––
+// ã‚½ãƒ•ãƒˆã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ã®å¾Œå§‹æœ«
 extern int TerminateSoftSoundHandle( HANDLEINFO *HandleInfo )
 {
 	SOFTSOUND *SSound = ( SOFTSOUND * )HandleInfo ;
 
-	// ƒvƒŒƒCƒ„[‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+	// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 	if( SSound->IsPlayer == TRUE )
 	{
-		// ƒŠƒ“ƒOƒoƒbƒtƒ@‚Ì‰ğ•ú
+		// ãƒªãƒ³ã‚°ãƒãƒƒãƒ•ã‚¡ã®è§£æ”¾
 		RingBufTerminate( &SSound->Player.StockSample ) ;
 
-		// ƒTƒEƒ“ƒhƒoƒbƒtƒ@[‚Ì‰ğ•ú
+		// ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡ãƒ¼ã®è§£æ”¾
 		SoundBuffer_Terminate( &SSound->Player.SoundBuffer ) ;
 
-		// ƒ\ƒtƒgƒTƒEƒ“ƒhƒvƒŒƒCƒ„[ƒŠƒXƒg‚©‚çŠO‚·
+		// ã‚½ãƒ•ãƒˆã‚µã‚¦ãƒ³ãƒ‰ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒªã‚¹ãƒˆã‹ã‚‰å¤–ã™
 		SubHandleList( &SSound->Player.SoftSoundPlayerList ) ;
 	}
 	else
 	{
-		// ƒTƒEƒ“ƒhƒf[ƒ^‚ğŠi”[‚µ‚Ä‚¢‚½ƒƒ‚ƒŠ—Ìˆæ‚ğŠJ•ú
+		// ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã—ã¦ã„ãŸãƒ¡ãƒ¢ãƒªé ˜åŸŸã‚’é–‹æ”¾
 		if( SSound->Wave.Buffer )
 		{
 			DXFREE( SSound->Wave.Buffer ) ;
@@ -13138,11 +13138,11 @@ extern int TerminateSoftSoundHandle( HANDLEINFO *HandleInfo )
 		}
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒ\ƒtƒgƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹‚ğíœ‚·‚é‚©‚Ç‚¤‚©‚ğƒ`ƒFƒbƒN‚·‚éŠÖ”
+// ã‚½ãƒ•ãƒˆã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ã‚’å‰Šé™¤ã™ã‚‹ã‹ã©ã†ã‹ã‚’ãƒã‚§ãƒƒã‚¯ã™ã‚‹é–¢æ•°
 extern int DeleteCancelCheckSoftSoundFunction( HANDLEINFO *HandleInfo )
 {
 	SOFTSOUND *SSound = ( SOFTSOUND * )HandleInfo ;
@@ -13150,7 +13150,7 @@ extern int DeleteCancelCheckSoftSoundFunction( HANDLEINFO *HandleInfo )
 	return SSound->IsPlayer != FALSE ;
 }
 
-// ƒ\ƒtƒgƒTƒEƒ“ƒhƒvƒŒ[ƒ„[ƒnƒ“ƒhƒ‹‚ğíœ‚·‚é‚©‚Ç‚¤‚©‚ğƒ`ƒFƒbƒN‚·‚éŠÖ”
+// ã‚½ãƒ•ãƒˆã‚µã‚¦ãƒ³ãƒ‰ãƒ—ãƒ¬ãƒ¼ãƒ¤ãƒ¼ãƒãƒ³ãƒ‰ãƒ«ã‚’å‰Šé™¤ã™ã‚‹ã‹ã©ã†ã‹ã‚’ãƒã‚§ãƒƒã‚¯ã™ã‚‹é–¢æ•°
 extern int DeleteCancelCheckSoftSoundPlayerFunction( HANDLEINFO *HandleInfo )
 {
 	SOFTSOUND *SSound = ( SOFTSOUND * )HandleInfo ;
@@ -13159,7 +13159,7 @@ extern int DeleteCancelCheckSoftSoundPlayerFunction( HANDLEINFO *HandleInfo )
 }
 
 
-// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤”gŒ`ƒf[ƒ^‚ğ‚·‚×‚Ä‰ğ•ú‚·‚é
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†æ³¢å½¢ãƒ‡ãƒ¼ã‚¿ã‚’ã™ã¹ã¦è§£æ”¾ã™ã‚‹
 extern int NS_InitSoftSound( void )
 {
 	if( SoundSysData.InitializeFlag == FALSE )
@@ -13168,7 +13168,7 @@ extern int NS_InitSoftSound( void )
 	return AllHandleSub( DX_HANDLETYPE_SOFTSOUND, DeleteCancelCheckSoftSoundFunction );
 }
 
-// LoadSoftSoundBase ‚ÌÀˆ—ŠÖ”
+// LoadSoftSoundBase ã®å®Ÿå‡¦ç†é–¢æ•°
 static int LoadSoftSoundBase_Static(
 	LOADSOUND_GPARAM *GParam,
 	int SoftSoundHandle,
@@ -13192,22 +13192,22 @@ static int LoadSoftSoundBase_Static(
 	if( SSND_MASKHCHK_ASYNC( SoftSoundHandle, SSound ) )
 		return -1 ;
 
-	// ƒtƒ@ƒCƒ‹–¼‚ª NULL ‚Å‚Í‚È‚¢ê‡‚Íƒtƒ@ƒCƒ‹‚©‚ç“Ç‚İ‚Ş
+	// ãƒ•ã‚¡ã‚¤ãƒ«åãŒ NULL ã§ã¯ãªã„å ´åˆã¯ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰èª­ã¿è¾¼ã‚€
 	if( FileName != NULL )
 	{
-		// ƒtƒ@ƒCƒ‹‚ğŠJ‚­
+		// ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‹ã
 		Stream.DataPoint = DX_FOPEN( FileName ) ;
 		if( Stream.DataPoint == NULL ) return -1 ;
 		Stream.ReadShred = *GetFileStreamDataShredStruct() ;
 	}
 	else
-	// ‚»‚êˆÈŠO‚Ìê‡‚Íƒƒ‚ƒŠ‚©‚ç“Ç‚İ‚İ
+	// ãã‚Œä»¥å¤–ã®å ´åˆã¯ãƒ¡ãƒ¢ãƒªã‹ã‚‰èª­ã¿è¾¼ã¿
 	{
 		Stream.DataPoint = MemStreamOpen( ( void *)FileImage, ( size_t )FileImageSize ) ;
 		Stream.ReadShred = *GetMemStreamDataShredStruct() ;
 	}
 
-	// ‚o‚b‚lŒ`®‚É•ÏŠ·
+	// ï¼°ï¼£ï¼­å½¢å¼ã«å¤‰æ›
 	{
 		_MEMSET( &ConvData, 0, sizeof( ConvData ) ) ;
 		if( SetupSoundConvert( &ConvData, &Stream, GParam->DisableReadSoundFunctionMask
@@ -13216,19 +13216,19 @@ static int LoadSoftSoundBase_Static(
 #endif
 								) < 0 )
 		{
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\xbd\x30\xd5\x30\xc8\x30\xb5\x30\xa6\x30\xf3\x30\xc9\x30\x28\x75\x6e\x30\xf3\x97\xf0\x58\xd5\x30\xa1\x30\xa4\x30\xeb\x30\x6e\x30\x30\xff\x23\xff\x2d\xff\x78\x30\x6e\x30\x09\x59\xdb\x63\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"ƒ\ƒtƒgƒTƒEƒ“ƒh—p‚Ì‰¹ºƒtƒ@ƒCƒ‹‚Ì‚o‚b‚l‚Ö‚Ì•ÏŠ·‚É¸”s‚µ‚Ü‚µ‚½" @*/ )) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\xbd\x30\xd5\x30\xc8\x30\xb5\x30\xa6\x30\xf3\x30\xc9\x30\x28\x75\x6e\x30\xf3\x97\xf0\x58\xd5\x30\xa1\x30\xa4\x30\xeb\x30\x6e\x30\x30\xff\x23\xff\x2d\xff\x78\x30\x6e\x30\x09\x59\xdb\x63\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"ã‚½ãƒ•ãƒˆã‚µã‚¦ãƒ³ãƒ‰ç”¨ã®éŸ³å£°ãƒ•ã‚¡ã‚¤ãƒ«ã®ï¼°ï¼£ï¼­ã¸ã®å¤‰æ›ã«å¤±æ•—ã—ã¾ã—ãŸ" @*/ )) ;
 			goto ERR ;
 		}
 		if( SoundConvertFast( &ConvData, &Format, &SrcBuffer, &SoundSize ) < 0 )
 		{
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\xbd\x30\xd5\x30\xc8\x30\xb5\x30\xa6\x30\xf3\x30\xc9\x30\x28\x75\x6e\x30\xf3\x97\xf0\x58\xd5\x30\xa1\x30\xa4\x30\xeb\x30\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"ƒ\ƒtƒgƒTƒEƒ“ƒh—p‚Ì‰¹ºƒtƒ@ƒCƒ‹‚ğŠi”[‚·‚éƒƒ‚ƒŠ—Ìˆæ‚ÌŠm•Û‚É¸”s‚µ‚Ü‚µ‚½" @*/ )) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\xbd\x30\xd5\x30\xc8\x30\xb5\x30\xa6\x30\xf3\x30\xc9\x30\x28\x75\x6e\x30\xf3\x97\xf0\x58\xd5\x30\xa1\x30\xa4\x30\xeb\x30\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"ã‚½ãƒ•ãƒˆã‚µã‚¦ãƒ³ãƒ‰ç”¨ã®éŸ³å£°ãƒ•ã‚¡ã‚¤ãƒ«ã‚’æ ¼ç´ã™ã‚‹ãƒ¡ãƒ¢ãƒªé ˜åŸŸã®ç¢ºä¿ã«å¤±æ•—ã—ã¾ã—ãŸ" @*/ )) ;
 			goto ERR ;
 		}
 
 		TerminateSoundConvert( &ConvData ) ;
 	}
 
-	// ƒtƒ@ƒCƒ‹‚ğ•Â‚¶‚é
+	// ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‰ã˜ã‚‹
 	if( FileName != NULL )
 	{
 		DX_FCLOSE( ( DWORD_PTR )Stream.DataPoint ) ;
@@ -13239,10 +13239,10 @@ static int LoadSoftSoundBase_Static(
 	}
 	Stream.DataPoint = 0 ;
 
-	// ƒTƒ“ƒvƒ‹‚Ì”‚ğZo‚·‚é
+	// ã‚µãƒ³ãƒ—ãƒ«ã®æ•°ã‚’ç®—å‡ºã™ã‚‹
 	SampleNum = ( LONGLONG )( SoundSize / Format.nBlockAlign ) ;
 
-	// ƒnƒ“ƒhƒ‹‚ÌƒZƒbƒgƒAƒbƒv
+	// ãƒãƒ³ãƒ‰ãƒ«ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 	if( SetupSoftSoundHandle(
 			SoftSoundHandle,
 			FALSE,
@@ -13253,16 +13253,16 @@ static int LoadSoftSoundBase_Static(
 			SampleNum ) < 0 )
 		goto ERR ;
 
-	// ƒTƒEƒ“ƒhƒf[ƒ^‚ÌƒRƒs[
+	// ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ã®ã‚³ãƒ”ãƒ¼
 	_MEMCPY( SSound->Wave.Buffer, SrcBuffer, ( size_t )SoundSize ) ;
 
-	// ƒTƒEƒ“ƒhƒf[ƒ^‚Ì‰ğ•ú
+	// ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ã®è§£æ”¾
 	if( SrcBuffer )
 	{
 		DXFREE( SrcBuffer ) ;
 	}
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 
 ERR :
@@ -13283,12 +13283,12 @@ ERR :
 		DXFREE( SrcBuffer ) ;
 	}
 
-	// ƒGƒ‰[I—¹
+	// ã‚¨ãƒ©ãƒ¼çµ‚äº†
 	return -1 ;
 }
 
 #ifndef DX_NON_ASYNCLOAD
-// LoadSoftSoundBase ‚Ì”ñ“¯Šú“Ç‚İ‚İƒXƒŒƒbƒh‚©‚çŒÄ‚Î‚ê‚éŠÖ”
+// LoadSoftSoundBase ã®éåŒæœŸèª­ã¿è¾¼ã¿ã‚¹ãƒ¬ãƒƒãƒ‰ã‹ã‚‰å‘¼ã°ã‚Œã‚‹é–¢æ•°
 static void LoadSoftSoundBase_ASync( ASYNCLOADDATA_COMMON *AParam )
 {
 	LOADSOUND_GPARAM *GParam ;
@@ -13321,7 +13321,7 @@ static void LoadSoftSoundBase_ASync( ASYNCLOADDATA_COMMON *AParam )
 }
 #endif // DX_NON_ASYNCLOAD
 
-// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤”gŒ`ƒf[ƒ^‚ğƒtƒ@ƒCƒ‹‚Ü‚½‚Íƒƒ‚ƒŠã‚É“WŠJ‚³‚ê‚½ƒtƒ@ƒCƒ‹ƒCƒ[ƒW‚©‚çì¬‚·‚é
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†æ³¢å½¢ãƒ‡ãƒ¼ã‚¿ã‚’ãƒ•ã‚¡ã‚¤ãƒ«ã¾ãŸã¯ãƒ¡ãƒ¢ãƒªä¸Šã«å±•é–‹ã•ã‚ŒãŸãƒ•ã‚¡ã‚¤ãƒ«ã‚¤ãƒ¡ãƒ¼ã‚¸ã‹ã‚‰ä½œæˆã™ã‚‹
 extern int LoadSoftSoundBase_UseGParam(
 	LOADSOUND_GPARAM *GParam,
 	const wchar_t *FileName,
@@ -13335,10 +13335,10 @@ extern int LoadSoftSoundBase_UseGParam(
 	if( SoundSysData.InitializeFlag == FALSE )
 		return -1 ;
 
-	// ƒ\ƒtƒg‚ª”ñƒAƒNƒeƒBƒu‚Ìê‡‚ÍƒAƒNƒeƒBƒu‚É‚È‚é‚Ü‚Å‘Ò‚Â
+	// ã‚½ãƒ•ãƒˆãŒéã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã®å ´åˆã¯ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ãªã‚‹ã¾ã§å¾…ã¤
 	CheckActiveState() ;
 
-	// ƒnƒ“ƒhƒ‹‚Ìì¬
+	// ãƒãƒ³ãƒ‰ãƒ«ã®ä½œæˆ
 	SoftSoundHandle = AddHandle( DX_HANDLETYPE_SOFTSOUND, FALSE, -1 ) ;
 	if( SoftSoundHandle == -1 ) return -1 ;
 
@@ -13351,7 +13351,7 @@ extern int LoadSoftSoundBase_UseGParam(
 
 		ConvertFullPathW_( FileName, FullPath, sizeof( FullPath ) ) ;
 
-		// ƒpƒ‰ƒ[ƒ^‚É•K—v‚Èƒƒ‚ƒŠ‚ÌƒTƒCƒY‚ğZo
+		// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã«å¿…è¦ãªãƒ¡ãƒ¢ãƒªã®ã‚µã‚¤ã‚ºã‚’ç®—å‡º
 		Addr = 0 ;
 		AddASyncLoadParamStruct( NULL, &Addr, GParam, sizeof( *GParam ) ) ;
 		AddASyncLoadParamInt( NULL, &Addr, SoftSoundHandle ) ;
@@ -13359,12 +13359,12 @@ extern int LoadSoftSoundBase_UseGParam(
 		AddASyncLoadParamConstVoidP( NULL, &Addr, ( void * )FileImage ) ;
 		AddASyncLoadParamSize_t( NULL, &Addr, FileImageSize ) ;
 
-		// ƒƒ‚ƒŠ‚ÌŠm•Û
+		// ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿
 		AParam = AllocASyncLoadDataMemory( Addr ) ;
 		if( AParam == NULL )
 			goto ERR ;
 
-		// ˆ—‚É•K—v‚Èî•ñ‚ğƒZƒbƒg
+		// å‡¦ç†ã«å¿…è¦ãªæƒ…å ±ã‚’ã‚»ãƒƒãƒˆ
 		AParam->ProcessFunction = LoadSoftSoundBase_ASync ;
 		Addr = 0 ;
 		AddASyncLoadParamStruct( AParam->Data, &Addr, GParam, sizeof( *GParam ) ) ;
@@ -13373,7 +13373,7 @@ extern int LoadSoftSoundBase_UseGParam(
 		AddASyncLoadParamConstVoidP( AParam->Data, &Addr, ( void * )FileImage ) ;
 		AddASyncLoadParamSize_t( AParam->Data, &Addr, FileImageSize ) ;
 
-		// ƒf[ƒ^‚ğ’Ç‰Á
+		// ãƒ‡ãƒ¼ã‚¿ã‚’è¿½åŠ 
 		if( AddASyncLoadData( AParam ) < 0 )
 		{
 			DXFREE( AParam ) ;
@@ -13381,7 +13381,7 @@ extern int LoadSoftSoundBase_UseGParam(
 			goto ERR ;
 		}
 
-		// ”ñ“¯Šú“Ç‚İ‚İƒJƒEƒ“ƒg‚ğƒCƒ“ƒNƒŠƒƒ“ƒg
+		// éåŒæœŸèª­ã¿è¾¼ã¿ã‚«ã‚¦ãƒ³ãƒˆã‚’ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆ
 		IncASyncLoadCount( SoftSoundHandle, AParam->Index ) ;
 	}
 	else
@@ -13391,7 +13391,7 @@ extern int LoadSoftSoundBase_UseGParam(
 			goto ERR ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return SoftSoundHandle ;
 
 ERR :
@@ -13400,7 +13400,7 @@ ERR :
 	return -1 ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤”gŒ`ƒf[ƒ^‚ğƒtƒ@ƒCƒ‹‚©‚çì¬‚·‚é
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†æ³¢å½¢ãƒ‡ãƒ¼ã‚¿ã‚’ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰ä½œæˆã™ã‚‹
 extern	int NS_LoadSoftSound( const TCHAR *FileName )
 {
 #ifdef UNICODE
@@ -13422,7 +13422,7 @@ extern	int NS_LoadSoftSound( const TCHAR *FileName )
 #endif
 }
 
-// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤”gŒ`ƒf[ƒ^ƒnƒ“ƒhƒ‹‚ğƒTƒEƒ“ƒhƒtƒ@ƒCƒ‹‚©‚çì¬‚·‚é
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†æ³¢å½¢ãƒ‡ãƒ¼ã‚¿ãƒãƒ³ãƒ‰ãƒ«ã‚’ã‚µã‚¦ãƒ³ãƒ‰ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰ä½œæˆã™ã‚‹
 extern int NS_LoadSoftSoundWithStrLen( const TCHAR *FileName, size_t FileNameLength )
 {
 	int Result ;
@@ -13438,7 +13438,7 @@ extern int NS_LoadSoftSoundWithStrLen( const TCHAR *FileName, size_t FileNameLen
 	return Result ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤”gŒ`ƒf[ƒ^‚ğƒtƒ@ƒCƒ‹‚©‚çì¬‚·‚é
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†æ³¢å½¢ãƒ‡ãƒ¼ã‚¿ã‚’ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰ä½œæˆã™ã‚‹
 extern	int LoadSoftSound_WCHAR_T( const wchar_t *FileName )
 {
 	LOADSOUND_GPARAM GParam ;
@@ -13447,7 +13447,7 @@ extern	int LoadSoftSound_WCHAR_T( const wchar_t *FileName )
 	return LoadSoftSoundBase_UseGParam( &GParam, FileName, NULL, 0, GetASyncLoadFlag() ) ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤”gŒ`ƒf[ƒ^‚ğƒƒ‚ƒŠã‚É“WŠJ‚³‚ê‚½ƒtƒ@ƒCƒ‹ƒCƒ[ƒW‚©‚çì¬‚·‚é
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†æ³¢å½¢ãƒ‡ãƒ¼ã‚¿ã‚’ãƒ¡ãƒ¢ãƒªä¸Šã«å±•é–‹ã•ã‚ŒãŸãƒ•ã‚¡ã‚¤ãƒ«ã‚¤ãƒ¡ãƒ¼ã‚¸ã‹ã‚‰ä½œæˆã™ã‚‹
 extern	int	NS_LoadSoftSoundFromMemImage( const void *FileImageBuffer, size_t FileImageSize )
 {
 	LOADSOUND_GPARAM GParam ;
@@ -13456,7 +13456,7 @@ extern	int	NS_LoadSoftSoundFromMemImage( const void *FileImageBuffer, size_t Fil
 	return LoadSoftSoundBase_UseGParam( &GParam, NULL, FileImageBuffer, FileImageSize, GetASyncLoadFlag() ) ;
 }
 
-// MakeSoftSoundBase ‚ÌÀˆ—ŠÖ”
+// MakeSoftSoundBase ã®å®Ÿå‡¦ç†é–¢æ•°
 static int MakeSoftSoundBase_Static(
 	int SoftSoundHandle,
 	int IsPlayer,
@@ -13486,12 +13486,12 @@ static int MakeSoftSoundBase_Static(
 	if( SetupSoftSoundHandle( SoftSoundHandle, IsPlayer, Channels, BitsPerSample, SamplesPerSec, IsFloatType, SampleNum ) < 0 )
 		return -1 ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
 #ifndef DX_NON_ASYNCLOAD
-// MakeSoftSoundBase ‚Ì”ñ“¯Šú“Ç‚İ‚İƒXƒŒƒbƒh‚©‚çŒÄ‚Î‚ê‚éŠÖ”
+// MakeSoftSoundBase ã®éåŒæœŸèª­ã¿è¾¼ã¿ã‚¹ãƒ¬ãƒƒãƒ‰ã‹ã‚‰å‘¼ã°ã‚Œã‚‹é–¢æ•°
 static void MakeSoftSoundBase_ASync( ASYNCLOADDATA_COMMON *AParam )
 {
 	int SoftSoundHandle ;
@@ -13530,7 +13530,7 @@ static void MakeSoftSoundBase_ASync( ASYNCLOADDATA_COMMON *AParam )
 }
 #endif // DX_NON_ASYNCLOAD
 
-// ƒ\ƒtƒgƒEƒGƒA‚Å§Œä‚·‚éƒTƒEƒ“ƒhƒf[ƒ^ƒnƒ“ƒhƒ‹‚Ìì¬
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§åˆ¶å¾¡ã™ã‚‹ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ãƒãƒ³ãƒ‰ãƒ«ã®ä½œæˆ
 extern int MakeSoftSoundBase_UseGParam(
 	int IsPlayer,
 	int Channels,
@@ -13547,10 +13547,10 @@ extern int MakeSoftSoundBase_UseGParam(
 	if( SoundSysData.InitializeFlag == FALSE )
 		return -1 ;
 
-	// ƒ\ƒtƒg‚ª”ñƒAƒNƒeƒBƒu‚Ìê‡‚ÍƒAƒNƒeƒBƒu‚É‚È‚é‚Ü‚Å‘Ò‚Â
+	// ã‚½ãƒ•ãƒˆãŒéã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã®å ´åˆã¯ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ãªã‚‹ã¾ã§å¾…ã¤
 	CheckActiveState() ;
 
-	// ƒnƒ“ƒhƒ‹‚Ìì¬
+	// ãƒãƒ³ãƒ‰ãƒ«ã®ä½œæˆ
 	SoftSoundHandle = AddHandle( DX_HANDLETYPE_SOFTSOUND, FALSE, -1 ) ;
 	if( SoftSoundHandle == -1 ) return -1 ;
 
@@ -13560,7 +13560,7 @@ extern int MakeSoftSoundBase_UseGParam(
 		ASYNCLOADDATA_COMMON *AParam = NULL ;
 		int Addr ;
 
-		// ƒpƒ‰ƒ[ƒ^‚É•K—v‚Èƒƒ‚ƒŠ‚ÌƒTƒCƒY‚ğZo
+		// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã«å¿…è¦ãªãƒ¡ãƒ¢ãƒªã®ã‚µã‚¤ã‚ºã‚’ç®—å‡º
 		Addr = 0 ;
 		AddASyncLoadParamInt( NULL, &Addr, SoftSoundHandle ) ;
 		AddASyncLoadParamInt( NULL, &Addr, IsPlayer ) ;
@@ -13571,12 +13571,12 @@ extern int MakeSoftSoundBase_UseGParam(
 		AddASyncLoadParamInt( NULL, &Addr, IsFloatType ) ;
 		AddASyncLoadParamInt( NULL, &Addr, UseFormat_SoftSoundHandle ) ;
 
-		// ƒƒ‚ƒŠ‚ÌŠm•Û
+		// ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿
 		AParam = AllocASyncLoadDataMemory( Addr ) ;
 		if( AParam == NULL )
 			goto ERR ;
 
-		// ˆ—‚É•K—v‚Èî•ñ‚ğƒZƒbƒg
+		// å‡¦ç†ã«å¿…è¦ãªæƒ…å ±ã‚’ã‚»ãƒƒãƒˆ
 		AParam->ProcessFunction = MakeSoftSoundBase_ASync ;
 		Addr = 0 ;
 		AddASyncLoadParamInt( AParam->Data, &Addr, SoftSoundHandle ) ;
@@ -13588,7 +13588,7 @@ extern int MakeSoftSoundBase_UseGParam(
 		AddASyncLoadParamInt( AParam->Data, &Addr, IsFloatType ) ;
 		AddASyncLoadParamInt( AParam->Data, &Addr, UseFormat_SoftSoundHandle ) ;
 
-		// ƒf[ƒ^‚ğ’Ç‰Á
+		// ãƒ‡ãƒ¼ã‚¿ã‚’è¿½åŠ 
 		if( AddASyncLoadData( AParam ) < 0 )
 		{
 			DXFREE( AParam ) ;
@@ -13596,7 +13596,7 @@ extern int MakeSoftSoundBase_UseGParam(
 			goto ERR ;
 		}
 
-		// ”ñ“¯Šú“Ç‚İ‚İƒJƒEƒ“ƒg‚ğƒCƒ“ƒNƒŠƒƒ“ƒg
+		// éåŒæœŸèª­ã¿è¾¼ã¿ã‚«ã‚¦ãƒ³ãƒˆã‚’ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆ
 		IncASyncLoadCount( SoftSoundHandle, AParam->Index ) ;
 	}
 	else
@@ -13606,7 +13606,7 @@ extern int MakeSoftSoundBase_UseGParam(
 			goto ERR ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return SoftSoundHandle ;
 
 ERR :
@@ -13615,7 +13615,7 @@ ERR :
 	return -1 ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤‹ó‚Ì”gŒ`ƒf[ƒ^‚ğì¬‚·‚é( ƒtƒH[ƒ}ƒbƒg‚Íˆø”‚Ìƒ\ƒtƒgƒEƒGƒAƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹‚Æ“¯‚¶‚à‚Ì‚É‚·‚é )
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†ç©ºã®æ³¢å½¢ãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆã™ã‚‹( ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã¯å¼•æ•°ã®ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ã¨åŒã˜ã‚‚ã®ã«ã™ã‚‹ )
 extern	int NS_MakeSoftSound( int UseFormat_SoftSoundHandle, LONGLONG SampleNum )
 {
 	if( UseFormat_SoftSoundHandle < 0 )
@@ -13624,71 +13624,71 @@ extern	int NS_MakeSoftSound( int UseFormat_SoftSoundHandle, LONGLONG SampleNum )
 	return MakeSoftSoundBase_UseGParam( FALSE, 0, 0, 0, SampleNum, FALSE, UseFormat_SoftSoundHandle, GetASyncLoadFlag() ) ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤‹ó‚Ì”gŒ`ƒf[ƒ^‚ğì¬‚·‚é( ƒ`ƒƒƒ“ƒlƒ‹”:2 —Êq‰»ƒrƒbƒg”:16bit ƒTƒ“ƒvƒŠƒ“ƒOü”g”:44.1KHz )
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†ç©ºã®æ³¢å½¢ãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆã™ã‚‹( ãƒãƒ£ãƒ³ãƒãƒ«æ•°:2 é‡å­åŒ–ãƒ“ãƒƒãƒˆæ•°:16bit ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°å‘¨æ³¢æ•°:44.1KHz )
 extern	int NS_MakeSoftSound2Ch16Bit44KHz( LONGLONG SampleNum )
 {
 	return MakeSoftSoundBase_UseGParam( FALSE, 2, 16, 44100, SampleNum, FALSE, -1, GetASyncLoadFlag() ) ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤‹ó‚Ì”gŒ`ƒf[ƒ^‚ğì¬‚·‚é( ƒ`ƒƒƒ“ƒlƒ‹”:2 —Êq‰»ƒrƒbƒg”:16bit ƒTƒ“ƒvƒŠƒ“ƒOü”g”:22KHz )
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†ç©ºã®æ³¢å½¢ãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆã™ã‚‹( ãƒãƒ£ãƒ³ãƒãƒ«æ•°:2 é‡å­åŒ–ãƒ“ãƒƒãƒˆæ•°:16bit ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°å‘¨æ³¢æ•°:22KHz )
 extern	int NS_MakeSoftSound2Ch16Bit22KHz( LONGLONG SampleNum )
 {
 	return MakeSoftSoundBase_UseGParam( FALSE, 2, 16, 22050, SampleNum, FALSE, -1, GetASyncLoadFlag() ) ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤‹ó‚Ì”gŒ`ƒf[ƒ^‚ğì¬‚·‚é( ƒ`ƒƒƒ“ƒlƒ‹”:2 —Êq‰»ƒrƒbƒg”:8bit ƒTƒ“ƒvƒŠƒ“ƒOü”g”:44.1KHz )
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†ç©ºã®æ³¢å½¢ãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆã™ã‚‹( ãƒãƒ£ãƒ³ãƒãƒ«æ•°:2 é‡å­åŒ–ãƒ“ãƒƒãƒˆæ•°:8bit ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°å‘¨æ³¢æ•°:44.1KHz )
 extern	int NS_MakeSoftSound2Ch8Bit44KHz( LONGLONG SampleNum )
 {
 	return MakeSoftSoundBase_UseGParam( FALSE, 2, 8, 44100, SampleNum, FALSE, -1, GetASyncLoadFlag() ) ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤‹ó‚Ì”gŒ`ƒf[ƒ^‚ğì¬‚·‚é( ƒ`ƒƒƒ“ƒlƒ‹”:2 —Êq‰»ƒrƒbƒg”:8bit ƒTƒ“ƒvƒŠƒ“ƒOü”g”:22KHz )
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†ç©ºã®æ³¢å½¢ãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆã™ã‚‹( ãƒãƒ£ãƒ³ãƒãƒ«æ•°:2 é‡å­åŒ–ãƒ“ãƒƒãƒˆæ•°:8bit ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°å‘¨æ³¢æ•°:22KHz )
 extern	int NS_MakeSoftSound2Ch8Bit22KHz( LONGLONG SampleNum )
 {
 	return MakeSoftSoundBase_UseGParam( FALSE, 2, 8, 22050, SampleNum, FALSE, -1, GetASyncLoadFlag() ) ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤‹ó‚Ì”gŒ`ƒf[ƒ^‚ğì¬‚·‚é( ƒ`ƒƒƒ“ƒlƒ‹”:1 —Êq‰»ƒrƒbƒg”:16bit ƒTƒ“ƒvƒŠƒ“ƒOü”g”:44.1KHz )
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†ç©ºã®æ³¢å½¢ãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆã™ã‚‹( ãƒãƒ£ãƒ³ãƒãƒ«æ•°:1 é‡å­åŒ–ãƒ“ãƒƒãƒˆæ•°:16bit ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°å‘¨æ³¢æ•°:44.1KHz )
 extern	int NS_MakeSoftSound1Ch16Bit44KHz( LONGLONG SampleNum )
 {
 	return MakeSoftSoundBase_UseGParam( FALSE, 1, 16, 44100, SampleNum, FALSE, -1, GetASyncLoadFlag() ) ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤‹ó‚Ì”gŒ`ƒf[ƒ^‚ğì¬‚·‚é( ƒ`ƒƒƒ“ƒlƒ‹”:1 —Êq‰»ƒrƒbƒg”:16bit ƒTƒ“ƒvƒŠƒ“ƒOü”g”:22KHz )
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†ç©ºã®æ³¢å½¢ãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆã™ã‚‹( ãƒãƒ£ãƒ³ãƒãƒ«æ•°:1 é‡å­åŒ–ãƒ“ãƒƒãƒˆæ•°:16bit ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°å‘¨æ³¢æ•°:22KHz )
 extern	int NS_MakeSoftSound1Ch16Bit22KHz( LONGLONG SampleNum )
 {
 	return MakeSoftSoundBase_UseGParam( FALSE, 1, 16, 22050, SampleNum, FALSE, -1, GetASyncLoadFlag() ) ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤‹ó‚Ì”gŒ`ƒf[ƒ^‚ğì¬‚·‚é( ƒ`ƒƒƒ“ƒlƒ‹”:1 —Êq‰»ƒrƒbƒg”:8bit ƒTƒ“ƒvƒŠƒ“ƒOü”g”:44.1KHz )
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†ç©ºã®æ³¢å½¢ãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆã™ã‚‹( ãƒãƒ£ãƒ³ãƒãƒ«æ•°:1 é‡å­åŒ–ãƒ“ãƒƒãƒˆæ•°:8bit ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°å‘¨æ³¢æ•°:44.1KHz )
 extern	int NS_MakeSoftSound1Ch8Bit44KHz( LONGLONG SampleNum )
 {
 	return MakeSoftSoundBase_UseGParam( FALSE, 1, 8, 44100, SampleNum, FALSE, -1, GetASyncLoadFlag() ) ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤‹ó‚Ì”gŒ`ƒf[ƒ^‚ğì¬‚·‚é( ƒ`ƒƒƒ“ƒlƒ‹”:1 —Êq‰»ƒrƒbƒg”:8bit ƒTƒ“ƒvƒŠƒ“ƒOü”g”:22KHz )
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†ç©ºã®æ³¢å½¢ãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆã™ã‚‹( ãƒãƒ£ãƒ³ãƒãƒ«æ•°:1 é‡å­åŒ–ãƒ“ãƒƒãƒˆæ•°:8bit ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°å‘¨æ³¢æ•°:22KHz )
 extern	int NS_MakeSoftSound1Ch8Bit22KHz( LONGLONG SampleNum )
 {
 	return MakeSoftSoundBase_UseGParam( FALSE, 1, 8, 22050, SampleNum, FALSE, -1, GetASyncLoadFlag() ) ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤‹ó‚Ì”gŒ`ƒf[ƒ^‚ğì¬‚·‚é
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†ç©ºã®æ³¢å½¢ãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆã™ã‚‹
 extern	int NS_MakeSoftSoundCustom( int ChannelNum, int BitsPerSample, int SamplesPerSec, LONGLONG SampleNum, int IsFloatType )
 {
 	return MakeSoftSoundBase_UseGParam( FALSE, ChannelNum, BitsPerSample, SamplesPerSec, SampleNum, IsFloatType, -1, GetASyncLoadFlag() ) ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤”gŒ`ƒf[ƒ^‚ğ‰ğ•ú‚·‚é
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†æ³¢å½¢ãƒ‡ãƒ¼ã‚¿ã‚’è§£æ”¾ã™ã‚‹
 extern	int NS_DeleteSoftSound( int SoftSoundHandle )
 {
 	SOFTSOUND *SSound ;
 
 	if( SSND_MASKHCHK_ASYNC( SoftSoundHandle, SSound ) ) return -1 ;
 
-	// ƒvƒŒƒCƒ„[‚©‚Ç‚¤‚©‚Ìƒ`ƒFƒbƒN
+	// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‹ã©ã†ã‹ã®ãƒã‚§ãƒƒã‚¯
 	if( SSound->IsPlayer != FALSE )
 	{
-		// ˆá‚Á‚½‚çƒGƒ‰[
+		// é•ã£ãŸã‚‰ã‚¨ãƒ©ãƒ¼
 		return -1 ;
 	}
 
@@ -13697,7 +13697,7 @@ extern	int NS_DeleteSoftSound( int SoftSoundHandle )
 
 #ifndef DX_NON_SAVEFUNCTION
 
-// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤”gŒ`ƒf[ƒ^‚ğ–³ˆ³kWavŒ`®‚Å•Û‘¶‚·‚é
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†æ³¢å½¢ãƒ‡ãƒ¼ã‚¿ã‚’ç„¡åœ§ç¸®Wavå½¢å¼ã§ä¿å­˜ã™ã‚‹
 extern int NS_SaveSoftSound( int SoftSoundHandle, const TCHAR *FileName )
 {
 #ifdef UNICODE
@@ -13719,7 +13719,7 @@ extern int NS_SaveSoftSound( int SoftSoundHandle, const TCHAR *FileName )
 #endif
 }
 
-// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤”gŒ`ƒf[ƒ^ƒnƒ“ƒhƒ‹‚ğWAVEƒtƒ@ƒCƒ‹(PCM)Œ`®‚Å•Û‘¶‚·‚é
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†æ³¢å½¢ãƒ‡ãƒ¼ã‚¿ãƒãƒ³ãƒ‰ãƒ«ã‚’WAVEãƒ•ã‚¡ã‚¤ãƒ«(PCM)å½¢å¼ã§ä¿å­˜ã™ã‚‹
 extern int NS_SaveSoftSoundWithStrLen( int SoftSoundHandle, const TCHAR *FileName, size_t FileNameLength )
 {
 	int Result ;
@@ -13735,25 +13735,25 @@ extern int NS_SaveSoftSoundWithStrLen( int SoftSoundHandle, const TCHAR *FileNam
 	return Result ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤”gŒ`ƒf[ƒ^‚ğ–³ˆ³kWavŒ`®‚Å•Û‘¶‚·‚é
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†æ³¢å½¢ãƒ‡ãƒ¼ã‚¿ã‚’ç„¡åœ§ç¸®Wavå½¢å¼ã§ä¿å­˜ã™ã‚‹
 extern int SaveSoftSound_WCHAR_T( int SoftSoundHandle, const wchar_t *FileName )
 {
 	DWORD_PTR fp ;
 	SOFTSOUND * SSound ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( SSND_MASKHCHK( SoftSoundHandle, SSound ) ) return -1 ;
 	if( SSound->IsPlayer == 1 ) return -1 ;
 
 	fp = WriteOnlyFileAccessOpen( FileName ) ;
 
-	// ƒtƒ@ƒCƒ‹‚ª4GB‚ğ’´‚¦‚é‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+	// ãƒ•ã‚¡ã‚¤ãƒ«ãŒ4GBã‚’è¶…ãˆã‚‹ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 	if( SSound->Wave.BufferSampleNum * SSound->BufferFormat.nBlockAlign + NORMALWAVE_HEADERSIZE > 0xffffffff )
 	{
 		BYTE Header[ RF64WAVE_HEADERSIZE ], *p ;
 		WAVEFORMATEX *format;
 
-		// ƒtƒH[ƒ}ƒbƒg‚ğƒZƒbƒg
+		// ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã‚’ã‚»ãƒƒãƒˆ
 		format = ( WAVEFORMATEX * )&Header[ 56 ] ;
 		format->wFormatTag      = SSound->BufferFormat.wFormatTag ;
 		format->nChannels       = SSound->BufferFormat.nChannels ;
@@ -13763,7 +13763,7 @@ extern int SaveSoftSound_WCHAR_T( int SoftSoundHandle, const wchar_t *FileName )
 		format->nAvgBytesPerSec = format->nSamplesPerSec * format->nBlockAlign ;
 		format->cbSize          = 0 ;
 
-		// ƒwƒbƒ_‚ğ‘‚«o‚µ‚Äƒtƒ@ƒCƒ‹‚ğ•Â‚¶‚é
+		// ãƒ˜ãƒƒãƒ€ã‚’æ›¸ãå‡ºã—ã¦ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‰ã˜ã‚‹
 		p = Header;
 		_MEMCPY( ( char * )p, "RF64", 4 ) ;																							p += 4 ;
 		*( ( DWORD * )p ) = 0xffffffff ;																							p += 4 ;
@@ -13791,7 +13791,7 @@ extern int SaveSoftSound_WCHAR_T( int SoftSoundHandle, const wchar_t *FileName )
 		BYTE Header[ NORMALWAVE_HEADERSIZE ], *p ;
 		WAVEFORMATEX *format ;
 
-		// ƒtƒH[ƒ}ƒbƒg‚ğƒZƒbƒg
+		// ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã‚’ã‚»ãƒƒãƒˆ
 		format = ( WAVEFORMATEX * )&Header[ 20 ]; 
 		format->wFormatTag      = SSound->BufferFormat.wFormatTag ;
 		format->nChannels       = SSound->BufferFormat.nChannels ;
@@ -13801,7 +13801,7 @@ extern int SaveSoftSound_WCHAR_T( int SoftSoundHandle, const wchar_t *FileName )
 		format->nAvgBytesPerSec = format->nSamplesPerSec * format->nBlockAlign ;
 		format->cbSize          = 0 ;
 
-		// ƒwƒbƒ_‚ğ‘‚«o‚µ‚Äƒtƒ@ƒCƒ‹‚ğ•Â‚¶‚é
+		// ãƒ˜ãƒƒãƒ€ã‚’æ›¸ãå‡ºã—ã¦ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‰ã˜ã‚‹
 		p = Header;
 		_MEMCPY( ( char * )p, "RIFF", 4 ) ;																					p += 4 ;
 		*( ( DWORD * )p ) = ( DWORD )( SSound->Wave.BufferSampleNum * format->nBlockAlign + NORMALWAVE_HEADERSIZE - 8 ) ;	p += 4 ;
@@ -13818,63 +13818,63 @@ extern int SaveSoftSound_WCHAR_T( int SoftSoundHandle, const wchar_t *FileName )
 		WriteOnlyFileAccessClose( fp ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
 #endif // DX_NON_SAVEFUNCTION
 
-// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤”gŒ`ƒf[ƒ^‚ÌƒTƒ“ƒvƒ‹”‚ğæ“¾‚·‚é
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†æ³¢å½¢ãƒ‡ãƒ¼ã‚¿ã®ã‚µãƒ³ãƒ—ãƒ«æ•°ã‚’å–å¾—ã™ã‚‹
 extern	LONGLONG NS_GetSoftSoundSampleNum( int SoftSoundHandle )
 {
 	SOFTSOUND * SSound ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( SSND_MASKHCHK( SoftSoundHandle, SSound ) ) return -1 ;
 	if( SSound->IsPlayer == 1 ) return -1 ;
 
-	// ƒTƒ“ƒvƒ‹”‚ğ•Ô‚·
+	// ã‚µãƒ³ãƒ—ãƒ«æ•°ã‚’è¿”ã™
 	return SSound->Wave.BufferSampleNum ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤”gŒ`ƒf[ƒ^‚ÌƒtƒH[ƒ}ƒbƒg‚ğæ“¾‚·‚é
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†æ³¢å½¢ãƒ‡ãƒ¼ã‚¿ã®ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã‚’å–å¾—ã™ã‚‹
 extern	int NS_GetSoftSoundFormat( int SoftSoundHandle, int *Channels, int *BitsPerSample, int *SamplesPerSec, int *IsFloatType )
 {
 	SOFTSOUND * SSound ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( SSND_MASKHCHK( SoftSoundHandle, SSound ) ) return -1 ;
 	if( SSound->IsPlayer == 1 ) return -1 ;
 
-	// ƒf[ƒ^‚ğƒZƒbƒg
+	// ãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆ
 	if( Channels      ) *Channels      = SSound->BufferFormat.nChannels ;
 	if( BitsPerSample ) *BitsPerSample = SSound->BufferFormat.wBitsPerSample ;
 	if( SamplesPerSec ) *SamplesPerSec = ( int )SSound->BufferFormat.nSamplesPerSec ;
 	if( IsFloatType   ) *IsFloatType   = SSound->BufferFormat.wFormatTag == WAVE_FORMAT_IEEE_FLOAT ? TRUE : FALSE ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤”gŒ`ƒf[ƒ^‚ÌƒTƒ“ƒvƒ‹‚ğ“Ç‚İæ‚é
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†æ³¢å½¢ãƒ‡ãƒ¼ã‚¿ã®ã‚µãƒ³ãƒ—ãƒ«ã‚’èª­ã¿å–ã‚‹
 extern	int NS_ReadSoftSoundData( int SoftSoundHandle, LONGLONG SamplePosition, int *Channel1, int *Channel2 )
 {
 	SOFTSOUND * SSound ;
 	BYTE *Src ;
 	DWORD Sample ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( SSND_MASKHCHK( SoftSoundHandle, SSound ) ) return -1 ;
 	if( SSound->IsPlayer == 1 ) return -1 ;
 
-	// ƒTƒ“ƒvƒ‹‚Ì”ÍˆÍŠO‚¾‚Á‚½ê‡‚àƒGƒ‰[
+	// ã‚µãƒ³ãƒ—ãƒ«ã®ç¯„å›²å¤–ã ã£ãŸå ´åˆã‚‚ã‚¨ãƒ©ãƒ¼
 	if( SSound->Wave.BufferSampleNum <= SamplePosition || SamplePosition < 0 )
 		return -1 ;
 
-	// ƒTƒ“ƒvƒ‹‚ÌˆÊ’u‚ğZo
+	// ã‚µãƒ³ãƒ—ãƒ«ã®ä½ç½®ã‚’ç®—å‡º
 	Src = ( BYTE * )SSound->Wave.Buffer + SSound->BufferFormat.nBlockAlign * SamplePosition ;
 
-	// ƒTƒ“ƒvƒ‹‚ğ•Ô‚·
+	// ã‚µãƒ³ãƒ—ãƒ«ã‚’è¿”ã™
 	if( SSound->BufferFormat.wFormatTag == WAVE_FORMAT_IEEE_FLOAT )
 	{
 		switch( SSound->BufferFormat.wBitsPerSample )
@@ -13997,29 +13997,29 @@ extern	int NS_ReadSoftSoundData( int SoftSoundHandle, LONGLONG SamplePosition, i
 		}
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤”gŒ`ƒf[ƒ^ƒnƒ“ƒhƒ‹‚ÌƒTƒ“ƒvƒ‹‚ğ“Ç‚İæ‚é( floatŒ^”Å )
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†æ³¢å½¢ãƒ‡ãƒ¼ã‚¿ãƒãƒ³ãƒ‰ãƒ«ã®ã‚µãƒ³ãƒ—ãƒ«ã‚’èª­ã¿å–ã‚‹( floatå‹ç‰ˆ )
 extern	int NS_ReadSoftSoundDataF( int SoftSoundHandle, LONGLONG SamplePosition, float *Channel1, float *Channel2 )
 {
 	SOFTSOUND * SSound ;
 	BYTE *Src ;
 	DWORD Sample ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( SSND_MASKHCHK( SoftSoundHandle, SSound ) ) return -1 ;
 	if( SSound->IsPlayer == 1 ) return -1 ;
 
-	// ƒTƒ“ƒvƒ‹‚Ì”ÍˆÍŠO‚¾‚Á‚½ê‡‚àƒGƒ‰[
+	// ã‚µãƒ³ãƒ—ãƒ«ã®ç¯„å›²å¤–ã ã£ãŸå ´åˆã‚‚ã‚¨ãƒ©ãƒ¼
 	if( SSound->Wave.BufferSampleNum <= SamplePosition || SamplePosition < 0 )
 		return -1 ;
 
-	// ƒTƒ“ƒvƒ‹‚ÌˆÊ’u‚ğZo
+	// ã‚µãƒ³ãƒ—ãƒ«ã®ä½ç½®ã‚’ç®—å‡º
 	Src = ( BYTE * )SSound->Wave.Buffer + SSound->BufferFormat.nBlockAlign * SamplePosition ;
 
-	// ƒTƒ“ƒvƒ‹‚ğ•Ô‚·
+	// ã‚µãƒ³ãƒ—ãƒ«ã‚’è¿”ã™
 	if( SSound->BufferFormat.wFormatTag == WAVE_FORMAT_IEEE_FLOAT )
 	{
 		switch( SSound->BufferFormat.wBitsPerSample )
@@ -14142,29 +14142,29 @@ extern	int NS_ReadSoftSoundDataF( int SoftSoundHandle, LONGLONG SamplePosition, 
 		}
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤”gŒ`ƒf[ƒ^‚ÌƒTƒ“ƒvƒ‹‚ğ‘‚«‚Ş
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†æ³¢å½¢ãƒ‡ãƒ¼ã‚¿ã®ã‚µãƒ³ãƒ—ãƒ«ã‚’æ›¸ãè¾¼ã‚€
 extern	int NS_WriteSoftSoundData( int SoftSoundHandle, LONGLONG SamplePosition, int Channel1, int Channel2 )
 {
 	SOFTSOUND * SSound ;
 	BYTE *Dest ;
 	DWORD Sample ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( SSND_MASKHCHK( SoftSoundHandle, SSound ) ) return -1 ;
 	if( SSound->IsPlayer == 1 ) return -1 ;
 
-	// ƒTƒ“ƒvƒ‹‚Ì”ÍˆÍŠO‚¾‚Á‚½ê‡‚àƒGƒ‰[
+	// ã‚µãƒ³ãƒ—ãƒ«ã®ç¯„å›²å¤–ã ã£ãŸå ´åˆã‚‚ã‚¨ãƒ©ãƒ¼
 	if( SSound->Wave.BufferSampleNum <= SamplePosition || SamplePosition < 0 )
 		return -1 ;
 
-	// ƒTƒ“ƒvƒ‹‚ÌˆÊ’u‚ğZo
+	// ã‚µãƒ³ãƒ—ãƒ«ã®ä½ç½®ã‚’ç®—å‡º
 	Dest = ( BYTE * )SSound->Wave.Buffer + SSound->BufferFormat.nBlockAlign * SamplePosition ;
 
-	// ƒTƒ“ƒvƒ‹‚ğ‘‚«‚Ş
+	// ã‚µãƒ³ãƒ—ãƒ«ã‚’æ›¸ãè¾¼ã‚€
 	if( SSound->BufferFormat.wFormatTag == WAVE_FORMAT_IEEE_FLOAT )
 	{
 		switch( SSound->BufferFormat.wBitsPerSample )
@@ -14239,11 +14239,11 @@ extern	int NS_WriteSoftSoundData( int SoftSoundHandle, LONGLONG SamplePosition, 
 		}
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤”gŒ`ƒf[ƒ^ƒnƒ“ƒhƒ‹‚ÌƒTƒ“ƒvƒ‹‚ğ‘‚«‚Ş( floatŒ^”Å )
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†æ³¢å½¢ãƒ‡ãƒ¼ã‚¿ãƒãƒ³ãƒ‰ãƒ«ã®ã‚µãƒ³ãƒ—ãƒ«ã‚’æ›¸ãè¾¼ã‚€( floatå‹ç‰ˆ )
 extern int NS_WriteSoftSoundDataF( int SoftSoundHandle, LONGLONG SamplePosition, float Channel1, float Channel2 )
 {
 	SOFTSOUND * SSound ;
@@ -14251,18 +14251,18 @@ extern int NS_WriteSoftSoundDataF( int SoftSoundHandle, LONGLONG SamplePosition,
 	int ChannelI ;
 	DWORD Sample ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( SSND_MASKHCHK( SoftSoundHandle, SSound ) ) return -1 ;
 	if( SSound->IsPlayer == 1 ) return -1 ;
 
-	// ƒTƒ“ƒvƒ‹‚Ì”ÍˆÍŠO‚¾‚Á‚½ê‡‚àƒGƒ‰[
+	// ã‚µãƒ³ãƒ—ãƒ«ã®ç¯„å›²å¤–ã ã£ãŸå ´åˆã‚‚ã‚¨ãƒ©ãƒ¼
 	if( SSound->Wave.BufferSampleNum <= SamplePosition || SamplePosition < 0 )
 		return -1 ;
 
-	// ƒTƒ“ƒvƒ‹‚ÌˆÊ’u‚ğZo
+	// ã‚µãƒ³ãƒ—ãƒ«ã®ä½ç½®ã‚’ç®—å‡º
 	Dest = ( BYTE * )SSound->Wave.Buffer + SSound->BufferFormat.nBlockAlign * SamplePosition ;
 
-	// ƒTƒ“ƒvƒ‹‚ğ‘‚«‚Ş
+	// ã‚µãƒ³ãƒ—ãƒ«ã‚’æ›¸ãè¾¼ã‚€
 	if( SSound->BufferFormat.wFormatTag == WAVE_FORMAT_IEEE_FLOAT )
 	{
 		switch( SSound->BufferFormat.wBitsPerSample )
@@ -14343,30 +14343,30 @@ extern int NS_WriteSoftSoundDataF( int SoftSoundHandle, LONGLONG SamplePosition,
 		}
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤”gŒ`ƒf[ƒ^ƒnƒ“ƒhƒ‹‚Ì”gŒ`ƒf[ƒ^‚ğ‰¹’ö‚ğ•Ï‚¦‚¸‚Éƒf[ƒ^‚Ì’·‚³‚ğ•ÏX‚·‚é
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†æ³¢å½¢ãƒ‡ãƒ¼ã‚¿ãƒãƒ³ãƒ‰ãƒ«ã®æ³¢å½¢ãƒ‡ãƒ¼ã‚¿ã‚’éŸ³ç¨‹ã‚’å¤‰ãˆãšã«ãƒ‡ãƒ¼ã‚¿ã®é•·ã•ã‚’å¤‰æ›´ã™ã‚‹
 extern int NS_WriteTimeStretchSoftSoundData( int SrcSoftSoundHandle, int DestSoftSoundHandle )
 {
 	SOFTSOUND * SSSound ;
 	SOFTSOUND * DSSound ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( SSND_MASKHCHK_ASYNC( SrcSoftSoundHandle, SSSound ) ) return -1 ;
 	if( SSSound->IsPlayer == 1 ) return -1 ;
 
 	if( SSND_MASKHCHK_ASYNC( DestSoftSoundHandle, DSSound ) ) return -1 ;
 	if( DSSound->IsPlayer == 1 ) return -1 ;
 
-	// ƒTƒ“ƒvƒ‹”‚ª•Ï‚í‚ç‚È‚¢ê‡‚ÍƒGƒ‰[
+	// ã‚µãƒ³ãƒ—ãƒ«æ•°ãŒå¤‰ã‚ã‚‰ãªã„å ´åˆã¯ã‚¨ãƒ©ãƒ¼
 	if( SSSound->Wave.BufferSampleNum == DSSound->Wave.BufferSampleNum )
 	{
 		return -1 ;
 	}
 
-	// ƒtƒH[ƒ}ƒbƒg‚ªˆÙ‚È‚éê‡‚ÍƒGƒ‰[
+	// ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆãŒç•°ãªã‚‹å ´åˆã¯ã‚¨ãƒ©ãƒ¼
 	if( SSSound->BufferFormat.wFormatTag     != DSSound->BufferFormat.wFormatTag ||
 		SSSound->BufferFormat.nChannels      != DSSound->BufferFormat.nChannels  ||
 		SSSound->BufferFormat.nSamplesPerSec != DSSound->BufferFormat.nSamplesPerSec ||
@@ -14375,7 +14375,7 @@ extern int NS_WriteTimeStretchSoftSoundData( int SrcSoftSoundHandle, int DestSof
 		return -1 ;
 	}
 
-	// ‰¹‚ª’·‚­‚È‚é‚Ì‚©’Z‚­‚È‚é‚Ì‚©‚Åˆ—‚ğ•ªŠò
+	// éŸ³ãŒé•·ããªã‚‹ã®ã‹çŸ­ããªã‚‹ã®ã‹ã§å‡¦ç†ã‚’åˆ†å²
 	if( SSSound->Wave.BufferSampleNum < DSSound->Wave.BufferSampleNum )
 	{
 		LONGLONG offset0, offset1 ;
@@ -14386,11 +14386,11 @@ extern int NS_WriteTimeStretchSoftSoundData( int SrcSoftSoundHandle, int DestSof
 		LONGLONG SSampleNum ;
 		LONGLONG DSampleNum ;
 
-		rate = ( double )SSSound->Wave.BufferSampleNum / DSSound->Wave.BufferSampleNum ; // rate‚Ì”ÍˆÍ‚Í0.5<=rate<1.0
+		rate = ( double )SSSound->Wave.BufferSampleNum / DSSound->Wave.BufferSampleNum ; // rateã®ç¯„å›²ã¯0.5<=rate<1.0
 		rateI = _DTOL( rate * 512.0 ) ;
 		rate = rateI / 512.0 ;
 
-//		// 8”{ˆÈã‚É’·‚­‚È‚éê‡‚ÍƒGƒ‰[
+//		// 8å€ä»¥ä¸Šã«é•·ããªã‚‹å ´åˆã¯ã‚¨ãƒ©ãƒ¼
 //		if( rate < 0.125 )
 //		{
 //			return -1 ;
@@ -14438,12 +14438,12 @@ extern int NS_WriteTimeStretchSoftSoundData( int SrcSoftSoundHandle, int DestSof
 								sp2 = &SBuffer[ ( offset0 + m ) * 2 ] ;
 								for( n = 0 ; n < template_size ; n++, sp1 += 2, sp2 += 2 )
 								{
-									r += ( sp1[ 0 ] * sp2[ 0 ] ) / 32768 ; // ‘ŠŠÖŠÖ”
+									r += ( sp1[ 0 ] * sp2[ 0 ] ) / 32768 ; // ç›¸é–¢é–¢æ•°
 								}
 								if( r > max_of_r )
 								{
-									max_of_r = r ;	// ‘ŠŠÖŠÖ”‚Ìƒs[ƒN
-									p = m ;			// ‰¹ƒf[ƒ^‚ÌŠî–{üŠú
+									max_of_r = r ;	// ç›¸é–¢é–¢æ•°ã®ãƒ”ãƒ¼ã‚¯
+									p = m ;			// éŸ³ãƒ‡ãƒ¼ã‚¿ã®åŸºæœ¬å‘¨æœŸ
 								}
 							}
 
@@ -14486,8 +14486,8 @@ extern int NS_WriteTimeStretchSoftSoundData( int SrcSoftSoundHandle, int DestSof
 								}
 							}
 
-							offset0 += q ;		// offset0‚ÌXV
-							offset1 += p + q ;	// offset1‚ÌXV
+							offset0 += q ;		// offset0ã®æ›´æ–°
+							offset1 += p + q ;	// offset1ã®æ›´æ–°
 						}
 
 						while( offset1 < DSampleNum && offset0 < SSampleNum )
@@ -14509,12 +14509,12 @@ extern int NS_WriteTimeStretchSoftSoundData( int SrcSoftSoundHandle, int DestSof
 
 									sp1p = offset0     + n >= SSampleNum ? 0 : sp1[ 0 ] ;
 									sp2p = offset0 + m + n >= SSampleNum ? 0 : sp2[ 0 ] ;
-									r += ( sp1p * sp2p ) / 32768 ; // ‘ŠŠÖŠÖ”
+									r += ( sp1p * sp2p ) / 32768 ; // ç›¸é–¢é–¢æ•°
 								}
 								if( r > max_of_r )
 								{
-									max_of_r = r ;	// ‘ŠŠÖŠÖ”‚Ìƒs[ƒN
-									p = m ;			// ‰¹ƒf[ƒ^‚ÌŠî–{üŠú
+									max_of_r = r ;	// ç›¸é–¢é–¢æ•°ã®ãƒ”ãƒ¼ã‚¯
+									p = m ;			// éŸ³ãƒ‡ãƒ¼ã‚¿ã®åŸºæœ¬å‘¨æœŸ
 								}
 							}
 
@@ -14571,8 +14571,8 @@ extern int NS_WriteTimeStretchSoftSoundData( int SrcSoftSoundHandle, int DestSof
 								}
 							}
 
-							offset0 += q ;		// offset0‚ÌXV
-							offset1 += p + q ;	// offset1‚ÌXV
+							offset0 += q ;		// offset0ã®æ›´æ–°
+							offset1 += p + q ;	// offset1ã®æ›´æ–°
 						}
 						if( offset1 < DSampleNum )
 						{
@@ -14605,12 +14605,12 @@ extern int NS_WriteTimeStretchSoftSoundData( int SrcSoftSoundHandle, int DestSof
 								sp2 = &SBuffer[ ( offset0 + m ) * 2 + 1 ] ;
 								for( n = 0 ; n < template_size ; n++, sp1 += 2, sp2 += 2 )
 								{
-									r += ( sp1[ 0 ] * sp2[ 0 ] ) / 32768 ; // ‘ŠŠÖŠÖ”
+									r += ( sp1[ 0 ] * sp2[ 0 ] ) / 32768 ; // ç›¸é–¢é–¢æ•°
 								}
 								if( r > max_of_r )
 								{
-									max_of_r = r ;	// ‘ŠŠÖŠÖ”‚Ìƒs[ƒN
-									p = m ;			// ‰¹ƒf[ƒ^‚ÌŠî–{üŠú
+									max_of_r = r ;	// ç›¸é–¢é–¢æ•°ã®ãƒ”ãƒ¼ã‚¯
+									p = m ;			// éŸ³ãƒ‡ãƒ¼ã‚¿ã®åŸºæœ¬å‘¨æœŸ
 								}
 							}
 
@@ -14653,8 +14653,8 @@ extern int NS_WriteTimeStretchSoftSoundData( int SrcSoftSoundHandle, int DestSof
 								}
 							}
 
-							offset0 += q ;		// offset0‚ÌXV
-							offset1 += p + q ;	// offset1‚ÌXV
+							offset0 += q ;		// offset0ã®æ›´æ–°
+							offset1 += p + q ;	// offset1ã®æ›´æ–°
 						}
 
 						while( offset1 < DSampleNum && offset0 < SSampleNum )
@@ -14676,12 +14676,12 @@ extern int NS_WriteTimeStretchSoftSoundData( int SrcSoftSoundHandle, int DestSof
 
 									sp1p = offset0     + n >= SSampleNum ? 0 : sp1[ 0 ] ;
 									sp2p = offset0 + m + n >= SSampleNum ? 0 : sp2[ 0 ] ;
-									r += ( sp1p * sp2p ) / 32768 ; // ‘ŠŠÖŠÖ”
+									r += ( sp1p * sp2p ) / 32768 ; // ç›¸é–¢é–¢æ•°
 								}
 								if( r > max_of_r )
 								{
-									max_of_r = r ;	// ‘ŠŠÖŠÖ”‚Ìƒs[ƒN
-									p = m ;			// ‰¹ƒf[ƒ^‚ÌŠî–{üŠú
+									max_of_r = r ;	// ç›¸é–¢é–¢æ•°ã®ãƒ”ãƒ¼ã‚¯
+									p = m ;			// éŸ³ãƒ‡ãƒ¼ã‚¿ã®åŸºæœ¬å‘¨æœŸ
 								}
 							}
 
@@ -14738,8 +14738,8 @@ extern int NS_WriteTimeStretchSoftSoundData( int SrcSoftSoundHandle, int DestSof
 								}
 							}
 
-							offset0 += q ;		// offset0‚ÌXV
-							offset1 += p + q ;	// offset1‚ÌXV
+							offset0 += q ;		// offset0ã®æ›´æ–°
+							offset1 += p + q ;	// offset1ã®æ›´æ–°
 						}
 						if( offset1 < DSampleNum )
 						{
@@ -14772,12 +14772,12 @@ extern int NS_WriteTimeStretchSoftSoundData( int SrcSoftSoundHandle, int DestSof
 								sp2 = &SBuffer[ offset0 + m ] ;
 								for( n = 0 ; n < template_size ; n++, sp1 ++, sp2 ++ )
 								{
-									r += ( sp1[ 0 ] * sp2[ 0 ] ) / 32768 ; // ‘ŠŠÖŠÖ”
+									r += ( sp1[ 0 ] * sp2[ 0 ] ) / 32768 ; // ç›¸é–¢é–¢æ•°
 								}
 								if( r > max_of_r )
 								{
-									max_of_r = r ;	// ‘ŠŠÖŠÖ”‚Ìƒs[ƒN
-									p = m ;			// ‰¹ƒf[ƒ^‚ÌŠî–{üŠú
+									max_of_r = r ;	// ç›¸é–¢é–¢æ•°ã®ãƒ”ãƒ¼ã‚¯
+									p = m ;			// éŸ³ãƒ‡ãƒ¼ã‚¿ã®åŸºæœ¬å‘¨æœŸ
 								}
 							}
 
@@ -14820,8 +14820,8 @@ extern int NS_WriteTimeStretchSoftSoundData( int SrcSoftSoundHandle, int DestSof
 								}
 							}
 
-							offset0 += q ;		// offset0‚ÌXV
-							offset1 += p + q ;	// offset1‚ÌXV
+							offset0 += q ;		// offset0ã®æ›´æ–°
+							offset1 += p + q ;	// offset1ã®æ›´æ–°
 						}
 
 						while( offset1 < DSampleNum && offset0 < SSampleNum )
@@ -14843,12 +14843,12 @@ extern int NS_WriteTimeStretchSoftSoundData( int SrcSoftSoundHandle, int DestSof
 
 									sp1p = offset0     + n >= SSampleNum ? 0 : sp1[ 0 ] ;
 									sp2p = offset0 + m + n >= SSampleNum ? 0 : sp2[ 0 ] ;
-									r += ( sp1p * sp2p ) / 32768 ; // ‘ŠŠÖŠÖ”
+									r += ( sp1p * sp2p ) / 32768 ; // ç›¸é–¢é–¢æ•°
 								}
 								if( r > max_of_r )
 								{
-									max_of_r = r ;	// ‘ŠŠÖŠÖ”‚Ìƒs[ƒN
-									p = m ;			// ‰¹ƒf[ƒ^‚ÌŠî–{üŠú
+									max_of_r = r ;	// ç›¸é–¢é–¢æ•°ã®ãƒ”ãƒ¼ã‚¯
+									p = m ;			// éŸ³ãƒ‡ãƒ¼ã‚¿ã®åŸºæœ¬å‘¨æœŸ
 								}
 							}
 
@@ -14905,8 +14905,8 @@ extern int NS_WriteTimeStretchSoftSoundData( int SrcSoftSoundHandle, int DestSof
 								}
 							}
 
-							offset0 += q ;		// offset0‚ÌXV
-							offset1 += p + q ;	// offset1‚ÌXV
+							offset0 += q ;		// offset0ã®æ›´æ–°
+							offset1 += p + q ;	// offset1ã®æ›´æ–°
 						}
 						if( offset1 < DSampleNum )
 						{
@@ -14954,12 +14954,12 @@ extern int NS_WriteTimeStretchSoftSoundData( int SrcSoftSoundHandle, int DestSof
 								sp2 = &SBuffer[ ( offset0 + m ) * 2 ] ;
 								for( n = 0 ; n < template_size ; n++, sp1 += 2, sp2 += 2 )
 								{
-									r += ( ( ( int )sp1[ 0 ] - 128 ) * ( int )( sp2[ 0 ] - 128 ) ) / 128 ; // ‘ŠŠÖŠÖ”
+									r += ( ( ( int )sp1[ 0 ] - 128 ) * ( int )( sp2[ 0 ] - 128 ) ) / 128 ; // ç›¸é–¢é–¢æ•°
 								}
 								if( r > max_of_r )
 								{
-									max_of_r = r ;	// ‘ŠŠÖŠÖ”‚Ìƒs[ƒN
-									p = m ;			// ‰¹ƒf[ƒ^‚ÌŠî–{üŠú
+									max_of_r = r ;	// ç›¸é–¢é–¢æ•°ã®ãƒ”ãƒ¼ã‚¯
+									p = m ;			// éŸ³ãƒ‡ãƒ¼ã‚¿ã®åŸºæœ¬å‘¨æœŸ
 								}
 							}
 
@@ -15002,8 +15002,8 @@ extern int NS_WriteTimeStretchSoftSoundData( int SrcSoftSoundHandle, int DestSof
 								}
 							}
 
-							offset0 += q ;		// offset0‚ÌXV
-							offset1 += p + q ;	// offset1‚ÌXV
+							offset0 += q ;		// offset0ã®æ›´æ–°
+							offset1 += p + q ;	// offset1ã®æ›´æ–°
 						}
 
 						while( offset1 < DSampleNum && offset0 < SSampleNum )
@@ -15025,12 +15025,12 @@ extern int NS_WriteTimeStretchSoftSoundData( int SrcSoftSoundHandle, int DestSof
 
 									sp1p = offset0     + n >= SSampleNum ? 0 : ( int )sp1[ 0 ] - 128 ;
 									sp2p = offset0 + m + n >= SSampleNum ? 0 : ( int )sp2[ 0 ] - 128 ;
-									r += ( sp1p * sp2p ) / 128 ; // ‘ŠŠÖŠÖ”
+									r += ( sp1p * sp2p ) / 128 ; // ç›¸é–¢é–¢æ•°
 								}
 								if( r > max_of_r )
 								{
-									max_of_r = r ;	// ‘ŠŠÖŠÖ”‚Ìƒs[ƒN
-									p = m ;			// ‰¹ƒf[ƒ^‚ÌŠî–{üŠú
+									max_of_r = r ;	// ç›¸é–¢é–¢æ•°ã®ãƒ”ãƒ¼ã‚¯
+									p = m ;			// éŸ³ãƒ‡ãƒ¼ã‚¿ã®åŸºæœ¬å‘¨æœŸ
 								}
 							}
 
@@ -15087,8 +15087,8 @@ extern int NS_WriteTimeStretchSoftSoundData( int SrcSoftSoundHandle, int DestSof
 								}
 							}
 
-							offset0 += q ;		// offset0‚ÌXV
-							offset1 += p + q ;	// offset1‚ÌXV
+							offset0 += q ;		// offset0ã®æ›´æ–°
+							offset1 += p + q ;	// offset1ã®æ›´æ–°
 						}
 						if( offset1 < DSampleNum )
 						{
@@ -15121,12 +15121,12 @@ extern int NS_WriteTimeStretchSoftSoundData( int SrcSoftSoundHandle, int DestSof
 								sp2 = &SBuffer[ ( offset0 + m ) * 2 + 1 ] ;
 								for( n = 0 ; n < template_size ; n++, sp1 += 2, sp2 += 2 )
 								{
-									r += ( ( ( int )sp1[ 0 ] - 128 ) * ( int )( sp2[ 0 ] - 128 ) ) / 128 ; // ‘ŠŠÖŠÖ”
+									r += ( ( ( int )sp1[ 0 ] - 128 ) * ( int )( sp2[ 0 ] - 128 ) ) / 128 ; // ç›¸é–¢é–¢æ•°
 								}
 								if( r > max_of_r )
 								{
-									max_of_r = r ;	// ‘ŠŠÖŠÖ”‚Ìƒs[ƒN
-									p = m ;			// ‰¹ƒf[ƒ^‚ÌŠî–{üŠú
+									max_of_r = r ;	// ç›¸é–¢é–¢æ•°ã®ãƒ”ãƒ¼ã‚¯
+									p = m ;			// éŸ³ãƒ‡ãƒ¼ã‚¿ã®åŸºæœ¬å‘¨æœŸ
 								}
 							}
 
@@ -15169,8 +15169,8 @@ extern int NS_WriteTimeStretchSoftSoundData( int SrcSoftSoundHandle, int DestSof
 								}
 							}
 
-							offset0 += q ;		// offset0‚ÌXV
-							offset1 += p + q ;	// offset1‚ÌXV
+							offset0 += q ;		// offset0ã®æ›´æ–°
+							offset1 += p + q ;	// offset1ã®æ›´æ–°
 						}
 
 						while( offset1 < DSampleNum && offset0 < SSampleNum )
@@ -15192,12 +15192,12 @@ extern int NS_WriteTimeStretchSoftSoundData( int SrcSoftSoundHandle, int DestSof
 
 									sp1p = offset0     + n >= SSampleNum ? 0 : ( int )sp1[ 0 ] - 128 ;
 									sp2p = offset0 + m + n >= SSampleNum ? 0 : ( int )sp2[ 0 ] - 128 ;
-									r += ( sp1p * sp2p ) / 128 ; // ‘ŠŠÖŠÖ”
+									r += ( sp1p * sp2p ) / 128 ; // ç›¸é–¢é–¢æ•°
 								}
 								if( r > max_of_r )
 								{
-									max_of_r = r ;	// ‘ŠŠÖŠÖ”‚Ìƒs[ƒN
-									p = m ;			// ‰¹ƒf[ƒ^‚ÌŠî–{üŠú
+									max_of_r = r ;	// ç›¸é–¢é–¢æ•°ã®ãƒ”ãƒ¼ã‚¯
+									p = m ;			// éŸ³ãƒ‡ãƒ¼ã‚¿ã®åŸºæœ¬å‘¨æœŸ
 								}
 							}
 
@@ -15254,8 +15254,8 @@ extern int NS_WriteTimeStretchSoftSoundData( int SrcSoftSoundHandle, int DestSof
 								}
 							}
 
-							offset0 += q ;		// offset0‚ÌXV
-							offset1 += p + q ;	// offset1‚ÌXV
+							offset0 += q ;		// offset0ã®æ›´æ–°
+							offset1 += p + q ;	// offset1ã®æ›´æ–°
 						}
 						if( offset1 < DSampleNum )
 						{
@@ -15288,12 +15288,12 @@ extern int NS_WriteTimeStretchSoftSoundData( int SrcSoftSoundHandle, int DestSof
 								sp2 = &SBuffer[ offset0 + m ] ;
 								for( n = 0 ; n < template_size ; n++, sp1 ++, sp2 ++ )
 								{
-									r += ( ( ( int )sp1[ 0 ] - 128 ) * ( int )( sp2[ 0 ] - 128 ) ) / 128 ; // ‘ŠŠÖŠÖ”
+									r += ( ( ( int )sp1[ 0 ] - 128 ) * ( int )( sp2[ 0 ] - 128 ) ) / 128 ; // ç›¸é–¢é–¢æ•°
 								}
 								if( r > max_of_r )
 								{
-									max_of_r = r ;	// ‘ŠŠÖŠÖ”‚Ìƒs[ƒN
-									p = m ;			// ‰¹ƒf[ƒ^‚ÌŠî–{üŠú
+									max_of_r = r ;	// ç›¸é–¢é–¢æ•°ã®ãƒ”ãƒ¼ã‚¯
+									p = m ;			// éŸ³ãƒ‡ãƒ¼ã‚¿ã®åŸºæœ¬å‘¨æœŸ
 								}
 							}
 
@@ -15336,8 +15336,8 @@ extern int NS_WriteTimeStretchSoftSoundData( int SrcSoftSoundHandle, int DestSof
 								}
 							}
 
-							offset0 += q ;		// offset0‚ÌXV
-							offset1 += p + q ;	// offset1‚ÌXV
+							offset0 += q ;		// offset0ã®æ›´æ–°
+							offset1 += p + q ;	// offset1ã®æ›´æ–°
 						}
 
 						while( offset1 < DSampleNum && offset0 < SSampleNum )
@@ -15359,12 +15359,12 @@ extern int NS_WriteTimeStretchSoftSoundData( int SrcSoftSoundHandle, int DestSof
 
 									sp1p = offset0     + n >= SSampleNum ? 0 : ( int )sp1[ 0 ] - 128 ;
 									sp2p = offset0 + m + n >= SSampleNum ? 0 : ( int )sp2[ 0 ] - 128 ;
-									r += ( sp1p * sp2p ) / 128 ; // ‘ŠŠÖŠÖ”
+									r += ( sp1p * sp2p ) / 128 ; // ç›¸é–¢é–¢æ•°
 								}
 								if( r > max_of_r )
 								{
-									max_of_r = r ;	// ‘ŠŠÖŠÖ”‚Ìƒs[ƒN
-									p = m ;			// ‰¹ƒf[ƒ^‚ÌŠî–{üŠú
+									max_of_r = r ;	// ç›¸é–¢é–¢æ•°ã®ãƒ”ãƒ¼ã‚¯
+									p = m ;			// éŸ³ãƒ‡ãƒ¼ã‚¿ã®åŸºæœ¬å‘¨æœŸ
 								}
 							}
 
@@ -15421,8 +15421,8 @@ extern int NS_WriteTimeStretchSoftSoundData( int SrcSoftSoundHandle, int DestSof
 								}
 							}
 
-							offset0 += q ;		// offset0‚ÌXV
-							offset1 += p + q ;	// offset1‚ÌXV
+							offset0 += q ;		// offset0ã®æ›´æ–°
+							offset1 += p + q ;	// offset1ã®æ›´æ–°
 						}
 						if( offset1 < DSampleNum )
 						{
@@ -15472,12 +15472,12 @@ extern int NS_WriteTimeStretchSoftSoundData( int SrcSoftSoundHandle, int DestSof
 							sp2 = &SBuffer[ ( offset0 + m ) * 2 ] ;
 							for( n = 0 ; n < template_size ; n++, sp1 += 2, sp2 += 2 )
 							{
-								r += sp1[ 0 ] * sp2[ 0 ] ; // ‘ŠŠÖŠÖ”
+								r += sp1[ 0 ] * sp2[ 0 ] ; // ç›¸é–¢é–¢æ•°
 							}
 							if( r > max_of_r )
 							{
-								max_of_r = r ;	// ‘ŠŠÖŠÖ”‚Ìƒs[ƒN
-								p = m ;			// ‰¹ƒf[ƒ^‚ÌŠî–{üŠú
+								max_of_r = r ;	// ç›¸é–¢é–¢æ•°ã®ãƒ”ãƒ¼ã‚¯
+								p = m ;			// éŸ³ãƒ‡ãƒ¼ã‚¿ã®åŸºæœ¬å‘¨æœŸ
 							}
 						}
 
@@ -15520,8 +15520,8 @@ extern int NS_WriteTimeStretchSoftSoundData( int SrcSoftSoundHandle, int DestSof
 							}
 						}
 
-						offset0 += q ;		// offset0‚ÌXV
-						offset1 += p + q ;	// offset1‚ÌXV
+						offset0 += q ;		// offset0ã®æ›´æ–°
+						offset1 += p + q ;	// offset1ã®æ›´æ–°
 					}
 
 					while( offset1 < DSampleNum && offset0 < SSampleNum )
@@ -15543,12 +15543,12 @@ extern int NS_WriteTimeStretchSoftSoundData( int SrcSoftSoundHandle, int DestSof
 
 								sp1p = offset0     + n >= SSampleNum ? 0.0f : sp1[ 0 ] ;
 								sp2p = offset0 + m + n >= SSampleNum ? 0.0f : sp2[ 0 ] ;
-								r += sp1p * sp2p ; // ‘ŠŠÖŠÖ”
+								r += sp1p * sp2p ; // ç›¸é–¢é–¢æ•°
 							}
 							if( r > max_of_r )
 							{
-								max_of_r = r ;	// ‘ŠŠÖŠÖ”‚Ìƒs[ƒN
-								p = m ;			// ‰¹ƒf[ƒ^‚ÌŠî–{üŠú
+								max_of_r = r ;	// ç›¸é–¢é–¢æ•°ã®ãƒ”ãƒ¼ã‚¯
+								p = m ;			// éŸ³ãƒ‡ãƒ¼ã‚¿ã®åŸºæœ¬å‘¨æœŸ
 							}
 						}
 
@@ -15605,8 +15605,8 @@ extern int NS_WriteTimeStretchSoftSoundData( int SrcSoftSoundHandle, int DestSof
 							}
 						}
 
-						offset0 += q ;		// offset0‚ÌXV
-						offset1 += p + q ;	// offset1‚ÌXV
+						offset0 += q ;		// offset0ã®æ›´æ–°
+						offset1 += p + q ;	// offset1ã®æ›´æ–°
 					}
 					if( offset1 < DSampleNum )
 					{
@@ -15639,12 +15639,12 @@ extern int NS_WriteTimeStretchSoftSoundData( int SrcSoftSoundHandle, int DestSof
 							sp2 = &SBuffer[ ( offset0 + m ) * 2 + 1 ] ;
 							for( n = 0 ; n < template_size ; n++, sp1 += 2, sp2 += 2 )
 							{
-								r += sp1[ 0 ] * sp2[ 0 ] ; // ‘ŠŠÖŠÖ”
+								r += sp1[ 0 ] * sp2[ 0 ] ; // ç›¸é–¢é–¢æ•°
 							}
 							if( r > max_of_r )
 							{
-								max_of_r = r ;	// ‘ŠŠÖŠÖ”‚Ìƒs[ƒN
-								p = m ;			// ‰¹ƒf[ƒ^‚ÌŠî–{üŠú
+								max_of_r = r ;	// ç›¸é–¢é–¢æ•°ã®ãƒ”ãƒ¼ã‚¯
+								p = m ;			// éŸ³ãƒ‡ãƒ¼ã‚¿ã®åŸºæœ¬å‘¨æœŸ
 							}
 						}
 
@@ -15687,8 +15687,8 @@ extern int NS_WriteTimeStretchSoftSoundData( int SrcSoftSoundHandle, int DestSof
 							}
 						}
 
-						offset0 += q ;		// offset0‚ÌXV
-						offset1 += p + q ;	// offset1‚ÌXV
+						offset0 += q ;		// offset0ã®æ›´æ–°
+						offset1 += p + q ;	// offset1ã®æ›´æ–°
 					}
 
 					while( offset1 < DSampleNum && offset0 < SSampleNum )
@@ -15710,12 +15710,12 @@ extern int NS_WriteTimeStretchSoftSoundData( int SrcSoftSoundHandle, int DestSof
 
 								sp1p = offset0     + n >= SSampleNum ? 0.0f : sp1[ 0 ] ;
 								sp2p = offset0 + m + n >= SSampleNum ? 0.0f : sp2[ 0 ] ;
-								r += sp1p * sp2p ; // ‘ŠŠÖŠÖ”
+								r += sp1p * sp2p ; // ç›¸é–¢é–¢æ•°
 							}
 							if( r > max_of_r )
 							{
-								max_of_r = r ;	// ‘ŠŠÖŠÖ”‚Ìƒs[ƒN
-								p = m ;			// ‰¹ƒf[ƒ^‚ÌŠî–{üŠú
+								max_of_r = r ;	// ç›¸é–¢é–¢æ•°ã®ãƒ”ãƒ¼ã‚¯
+								p = m ;			// éŸ³ãƒ‡ãƒ¼ã‚¿ã®åŸºæœ¬å‘¨æœŸ
 							}
 						}
 
@@ -15772,8 +15772,8 @@ extern int NS_WriteTimeStretchSoftSoundData( int SrcSoftSoundHandle, int DestSof
 							}
 						}
 
-						offset0 += q ;		// offset0‚ÌXV
-						offset1 += p + q ;	// offset1‚ÌXV
+						offset0 += q ;		// offset0ã®æ›´æ–°
+						offset1 += p + q ;	// offset1ã®æ›´æ–°
 					}
 					if( offset1 < DSampleNum )
 					{
@@ -15806,12 +15806,12 @@ extern int NS_WriteTimeStretchSoftSoundData( int SrcSoftSoundHandle, int DestSof
 							sp2 = &SBuffer[ offset0 + m ] ;
 							for( n = 0 ; n < template_size ; n++, sp1 ++, sp2 ++ )
 							{
-								r += sp1[ 0 ] * sp2[ 0 ] ; // ‘ŠŠÖŠÖ”
+								r += sp1[ 0 ] * sp2[ 0 ] ; // ç›¸é–¢é–¢æ•°
 							}
 							if( r > max_of_r )
 							{
-								max_of_r = r ;	// ‘ŠŠÖŠÖ”‚Ìƒs[ƒN
-								p = m ;			// ‰¹ƒf[ƒ^‚ÌŠî–{üŠú
+								max_of_r = r ;	// ç›¸é–¢é–¢æ•°ã®ãƒ”ãƒ¼ã‚¯
+								p = m ;			// éŸ³ãƒ‡ãƒ¼ã‚¿ã®åŸºæœ¬å‘¨æœŸ
 							}
 						}
 
@@ -15854,8 +15854,8 @@ extern int NS_WriteTimeStretchSoftSoundData( int SrcSoftSoundHandle, int DestSof
 							}
 						}
 
-						offset0 += q ;		// offset0‚ÌXV
-						offset1 += p + q ;	// offset1‚ÌXV
+						offset0 += q ;		// offset0ã®æ›´æ–°
+						offset1 += p + q ;	// offset1ã®æ›´æ–°
 					}
 
 					while( offset1 < DSampleNum && offset0 < SSampleNum )
@@ -15877,12 +15877,12 @@ extern int NS_WriteTimeStretchSoftSoundData( int SrcSoftSoundHandle, int DestSof
 
 								sp1p = offset0     + n >= SSampleNum ? 0.0f : sp1[ 0 ] ;
 								sp2p = offset0 + m + n >= SSampleNum ? 0.0f : sp2[ 0 ] ;
-								r += sp1p * sp2p ; // ‘ŠŠÖŠÖ”
+								r += sp1p * sp2p ; // ç›¸é–¢é–¢æ•°
 							}
 							if( r > max_of_r )
 							{
-								max_of_r = r ;	// ‘ŠŠÖŠÖ”‚Ìƒs[ƒN
-								p = m ;			// ‰¹ƒf[ƒ^‚ÌŠî–{üŠú
+								max_of_r = r ;	// ç›¸é–¢é–¢æ•°ã®ãƒ”ãƒ¼ã‚¯
+								p = m ;			// éŸ³ãƒ‡ãƒ¼ã‚¿ã®åŸºæœ¬å‘¨æœŸ
 							}
 						}
 
@@ -15939,8 +15939,8 @@ extern int NS_WriteTimeStretchSoftSoundData( int SrcSoftSoundHandle, int DestSof
 							}
 						}
 
-						offset0 += q ;		// offset0‚ÌXV
-						offset1 += p + q ;	// offset1‚ÌXV
+						offset0 += q ;		// offset0ã®æ›´æ–°
+						offset1 += p + q ;	// offset1ã®æ›´æ–°
 					}
 					if( offset1 < DSampleNum )
 					{
@@ -15970,7 +15970,7 @@ extern int NS_WriteTimeStretchSoftSoundData( int SrcSoftSoundHandle, int DestSof
 		LONGLONG SSampleNum ;
 		LONGLONG DSampleNum ;
 
-		rate = ( double )SSSound->Wave.BufferSampleNum / DSSound->Wave.BufferSampleNum ; // rate‚Ì”ÍˆÍ‚Í0.5<=rate<1.0
+		rate = ( double )SSSound->Wave.BufferSampleNum / DSSound->Wave.BufferSampleNum ; // rateã®ç¯„å›²ã¯0.5<=rate<1.0
 		rateI = _DTOL( rate * 512.0 ) ;
 		rate = rateI / 512.0 ;
 
@@ -16016,12 +16016,12 @@ extern int NS_WriteTimeStretchSoftSoundData( int SrcSoftSoundHandle, int DestSof
 								sp2 = &SBuffer[ ( offset0 + m ) * 2 ] ;
 								for( n = 0 ; n < template_size ; n++, sp1 += 2, sp2 += 2 )
 								{
-									r += ( sp1[ 0 ] * sp2[ 0 ] ) / 32768 ; // ‘ŠŠÖŠÖ”
+									r += ( sp1[ 0 ] * sp2[ 0 ] ) / 32768 ; // ç›¸é–¢é–¢æ•°
 								}
 								if( r > max_of_r )
 								{
-									max_of_r = r ;	// ‘ŠŠÖŠÖ”‚Ìƒs[ƒN
-									p = m ;			// ‰¹ƒf[ƒ^‚ÌŠî–{üŠú
+									max_of_r = r ;	// ç›¸é–¢é–¢æ•°ã®ãƒ”ãƒ¼ã‚¯
+									p = m ;			// éŸ³ãƒ‡ãƒ¼ã‚¿ã®åŸºæœ¬å‘¨æœŸ
 								}
 							}
 
@@ -16062,8 +16062,8 @@ extern int NS_WriteTimeStretchSoftSoundData( int SrcSoftSoundHandle, int DestSof
 								}
 							}
 
-							offset0 += p + q ;		// offset0‚ÌXV
-							offset1 += q ;	// offset1‚ÌXV
+							offset0 += p + q ;		// offset0ã®æ›´æ–°
+							offset1 += q ;	// offset1ã®æ›´æ–°
 						}
 
 						while( offset1 < DSampleNum && offset0 < SSampleNum )
@@ -16085,12 +16085,12 @@ extern int NS_WriteTimeStretchSoftSoundData( int SrcSoftSoundHandle, int DestSof
 
 									sp1p = offset0     + n >= SSampleNum ? 0 : sp1[ 0 ] ;
 									sp2p = offset0 + m + n >= SSampleNum ? 0 : sp2[ 0 ] ;
-									r += ( sp1p * sp2p ) / 32768 ; // ‘ŠŠÖŠÖ”
+									r += ( sp1p * sp2p ) / 32768 ; // ç›¸é–¢é–¢æ•°
 								}
 								if( r > max_of_r )
 								{
-									max_of_r = r ;	// ‘ŠŠÖŠÖ”‚Ìƒs[ƒN
-									p = m ;			// ‰¹ƒf[ƒ^‚ÌŠî–{üŠú
+									max_of_r = r ;	// ç›¸é–¢é–¢æ•°ã®ãƒ”ãƒ¼ã‚¯
+									p = m ;			// éŸ³ãƒ‡ãƒ¼ã‚¿ã®åŸºæœ¬å‘¨æœŸ
 								}
 							}
 
@@ -16142,8 +16142,8 @@ extern int NS_WriteTimeStretchSoftSoundData( int SrcSoftSoundHandle, int DestSof
 								}
 							}
 
-							offset0 += p + q ;		// offset0‚ÌXV
-							offset1 += q ;	// offset1‚ÌXV
+							offset0 += p + q ;		// offset0ã®æ›´æ–°
+							offset1 += q ;	// offset1ã®æ›´æ–°
 						}
 						if( offset1 < DSampleNum )
 						{
@@ -16176,12 +16176,12 @@ extern int NS_WriteTimeStretchSoftSoundData( int SrcSoftSoundHandle, int DestSof
 								sp2 = &SBuffer[ ( offset0 + m ) * 2 + 1 ] ;
 								for( n = 0 ; n < template_size ; n++, sp1 += 2, sp2 += 2 )
 								{
-									r += ( sp1[ 0 ] * sp2[ 0 ] ) / 32768 ; // ‘ŠŠÖŠÖ”
+									r += ( sp1[ 0 ] * sp2[ 0 ] ) / 32768 ; // ç›¸é–¢é–¢æ•°
 								}
 								if( r > max_of_r )
 								{
-									max_of_r = r ;	// ‘ŠŠÖŠÖ”‚Ìƒs[ƒN
-									p = m ;			// ‰¹ƒf[ƒ^‚ÌŠî–{üŠú
+									max_of_r = r ;	// ç›¸é–¢é–¢æ•°ã®ãƒ”ãƒ¼ã‚¯
+									p = m ;			// éŸ³ãƒ‡ãƒ¼ã‚¿ã®åŸºæœ¬å‘¨æœŸ
 								}
 							}
 
@@ -16222,8 +16222,8 @@ extern int NS_WriteTimeStretchSoftSoundData( int SrcSoftSoundHandle, int DestSof
 								}
 							}
 
-							offset0 += p + q ;	// offset0‚ÌXV
-							offset1 += q ;		// offset1‚ÌXV
+							offset0 += p + q ;	// offset0ã®æ›´æ–°
+							offset1 += q ;		// offset1ã®æ›´æ–°
 						}
 
 						while( offset1 < DSampleNum && offset0 < SSampleNum )
@@ -16245,12 +16245,12 @@ extern int NS_WriteTimeStretchSoftSoundData( int SrcSoftSoundHandle, int DestSof
 
 									sp1p = offset0     + n >= SSampleNum ? 0 : sp1[ 0 ] ;
 									sp2p = offset0 + m + n >= SSampleNum ? 0 : sp2[ 0 ] ;
-									r += ( sp1p * sp2p ) / 32768 ; // ‘ŠŠÖŠÖ”
+									r += ( sp1p * sp2p ) / 32768 ; // ç›¸é–¢é–¢æ•°
 								}
 								if( r > max_of_r )
 								{
-									max_of_r = r ;	// ‘ŠŠÖŠÖ”‚Ìƒs[ƒN
-									p = m ;			// ‰¹ƒf[ƒ^‚ÌŠî–{üŠú
+									max_of_r = r ;	// ç›¸é–¢é–¢æ•°ã®ãƒ”ãƒ¼ã‚¯
+									p = m ;			// éŸ³ãƒ‡ãƒ¼ã‚¿ã®åŸºæœ¬å‘¨æœŸ
 								}
 							}
 
@@ -16302,8 +16302,8 @@ extern int NS_WriteTimeStretchSoftSoundData( int SrcSoftSoundHandle, int DestSof
 								}
 							}
 
-							offset0 += p + q ;	// offset0‚ÌXV
-							offset1 += q ;		// offset1‚ÌXV
+							offset0 += p + q ;	// offset0ã®æ›´æ–°
+							offset1 += q ;		// offset1ã®æ›´æ–°
 						}
 						if( offset1 < DSampleNum )
 						{
@@ -16336,12 +16336,12 @@ extern int NS_WriteTimeStretchSoftSoundData( int SrcSoftSoundHandle, int DestSof
 								sp2 = &SBuffer[ offset0 + m ] ;
 								for( n = 0 ; n < template_size ; n++, sp1 ++, sp2 ++ )
 								{
-									r += ( sp1[ 0 ] * sp2[ 0 ] ) / 32768 ; // ‘ŠŠÖŠÖ”
+									r += ( sp1[ 0 ] * sp2[ 0 ] ) / 32768 ; // ç›¸é–¢é–¢æ•°
 								}
 								if( r > max_of_r )
 								{
-									max_of_r = r ;	// ‘ŠŠÖŠÖ”‚Ìƒs[ƒN
-									p = m ;			// ‰¹ƒf[ƒ^‚ÌŠî–{üŠú
+									max_of_r = r ;	// ç›¸é–¢é–¢æ•°ã®ãƒ”ãƒ¼ã‚¯
+									p = m ;			// éŸ³ãƒ‡ãƒ¼ã‚¿ã®åŸºæœ¬å‘¨æœŸ
 								}
 							}
 
@@ -16382,8 +16382,8 @@ extern int NS_WriteTimeStretchSoftSoundData( int SrcSoftSoundHandle, int DestSof
 								}
 							}
 
-							offset0 += p + q ;	// offset0‚ÌXV
-							offset1 += q ;		// offset1‚ÌXV
+							offset0 += p + q ;	// offset0ã®æ›´æ–°
+							offset1 += q ;		// offset1ã®æ›´æ–°
 						}
 
 						while( offset1 < DSampleNum && offset0 < SSampleNum )
@@ -16405,12 +16405,12 @@ extern int NS_WriteTimeStretchSoftSoundData( int SrcSoftSoundHandle, int DestSof
 
 									sp1p = offset0     + n >= SSampleNum ? 0 : sp1[ 0 ] ;
 									sp2p = offset0 + m + n >= SSampleNum ? 0 : sp2[ 0 ] ;
-									r += ( sp1p * sp2p ) / 32768 ; // ‘ŠŠÖŠÖ”
+									r += ( sp1p * sp2p ) / 32768 ; // ç›¸é–¢é–¢æ•°
 								}
 								if( r > max_of_r )
 								{
-									max_of_r = r ;	// ‘ŠŠÖŠÖ”‚Ìƒs[ƒN
-									p = m ;			// ‰¹ƒf[ƒ^‚ÌŠî–{üŠú
+									max_of_r = r ;	// ç›¸é–¢é–¢æ•°ã®ãƒ”ãƒ¼ã‚¯
+									p = m ;			// éŸ³ãƒ‡ãƒ¼ã‚¿ã®åŸºæœ¬å‘¨æœŸ
 								}
 							}
 
@@ -16462,8 +16462,8 @@ extern int NS_WriteTimeStretchSoftSoundData( int SrcSoftSoundHandle, int DestSof
 								}
 							}
 
-							offset0 += p + q ;	// offset0‚ÌXV
-							offset1 += q ;		// offset1‚ÌXV
+							offset0 += p + q ;	// offset0ã®æ›´æ–°
+							offset1 += q ;		// offset1ã®æ›´æ–°
 						}
 						if( offset1 < DSampleNum )
 						{
@@ -16511,12 +16511,12 @@ extern int NS_WriteTimeStretchSoftSoundData( int SrcSoftSoundHandle, int DestSof
 								sp2 = &SBuffer[ ( offset0 + m ) * 2 ] ;
 								for( n = 0 ; n < template_size ; n++, sp1 += 2, sp2 += 2 )
 								{
-									r += ( ( ( int )sp1[ 0 ] - 128 ) * ( int )( sp2[ 0 ] - 128 ) ) / 128 ; // ‘ŠŠÖŠÖ”
+									r += ( ( ( int )sp1[ 0 ] - 128 ) * ( int )( sp2[ 0 ] - 128 ) ) / 128 ; // ç›¸é–¢é–¢æ•°
 								}
 								if( r > max_of_r )
 								{
-									max_of_r = r ;	// ‘ŠŠÖŠÖ”‚Ìƒs[ƒN
-									p = m ;			// ‰¹ƒf[ƒ^‚ÌŠî–{üŠú
+									max_of_r = r ;	// ç›¸é–¢é–¢æ•°ã®ãƒ”ãƒ¼ã‚¯
+									p = m ;			// éŸ³ãƒ‡ãƒ¼ã‚¿ã®åŸºæœ¬å‘¨æœŸ
 								}
 							}
 
@@ -16557,8 +16557,8 @@ extern int NS_WriteTimeStretchSoftSoundData( int SrcSoftSoundHandle, int DestSof
 								}
 							}
 
-							offset0 += p + q ;	// offset0‚ÌXV
-							offset1 += q ;		// offset1‚ÌXV
+							offset0 += p + q ;	// offset0ã®æ›´æ–°
+							offset1 += q ;		// offset1ã®æ›´æ–°
 						}
 
 						while( offset1 < DSampleNum && offset0 < SSampleNum )
@@ -16580,12 +16580,12 @@ extern int NS_WriteTimeStretchSoftSoundData( int SrcSoftSoundHandle, int DestSof
 
 									sp1p = offset0     + n >= SSampleNum ? 0 : ( int )sp1[ 0 ] - 128 ;
 									sp2p = offset0 + m + n >= SSampleNum ? 0 : ( int )sp2[ 0 ] - 128 ;
-									r += ( sp1p * sp2p ) / 128 ; // ‘ŠŠÖŠÖ”
+									r += ( sp1p * sp2p ) / 128 ; // ç›¸é–¢é–¢æ•°
 								}
 								if( r > max_of_r )
 								{
-									max_of_r = r ;	// ‘ŠŠÖŠÖ”‚Ìƒs[ƒN
-									p = m ;			// ‰¹ƒf[ƒ^‚ÌŠî–{üŠú
+									max_of_r = r ;	// ç›¸é–¢é–¢æ•°ã®ãƒ”ãƒ¼ã‚¯
+									p = m ;			// éŸ³ãƒ‡ãƒ¼ã‚¿ã®åŸºæœ¬å‘¨æœŸ
 								}
 							}
 
@@ -16637,8 +16637,8 @@ extern int NS_WriteTimeStretchSoftSoundData( int SrcSoftSoundHandle, int DestSof
 								}
 							}
 
-							offset0 += p + q ;	// offset0‚ÌXV
-							offset1 += q ;		// offset1‚ÌXV
+							offset0 += p + q ;	// offset0ã®æ›´æ–°
+							offset1 += q ;		// offset1ã®æ›´æ–°
 						}
 						if( offset1 < DSampleNum )
 						{
@@ -16671,12 +16671,12 @@ extern int NS_WriteTimeStretchSoftSoundData( int SrcSoftSoundHandle, int DestSof
 								sp2 = &SBuffer[ ( offset0 + m ) * 2 + 1 ] ;
 								for( n = 0 ; n < template_size ; n++, sp1 += 2, sp2 += 2 )
 								{
-									r += ( ( ( int )sp1[ 0 ] - 128 ) * ( int )( sp2[ 0 ] - 128 ) ) / 128 ; // ‘ŠŠÖŠÖ”
+									r += ( ( ( int )sp1[ 0 ] - 128 ) * ( int )( sp2[ 0 ] - 128 ) ) / 128 ; // ç›¸é–¢é–¢æ•°
 								}
 								if( r > max_of_r )
 								{
-									max_of_r = r ;	// ‘ŠŠÖŠÖ”‚Ìƒs[ƒN
-									p = m ;			// ‰¹ƒf[ƒ^‚ÌŠî–{üŠú
+									max_of_r = r ;	// ç›¸é–¢é–¢æ•°ã®ãƒ”ãƒ¼ã‚¯
+									p = m ;			// éŸ³ãƒ‡ãƒ¼ã‚¿ã®åŸºæœ¬å‘¨æœŸ
 								}
 							}
 
@@ -16717,8 +16717,8 @@ extern int NS_WriteTimeStretchSoftSoundData( int SrcSoftSoundHandle, int DestSof
 								}
 							}
 
-							offset0 += p + q ;	// offset0‚ÌXV
-							offset1 += q ;		// offset1‚ÌXV
+							offset0 += p + q ;	// offset0ã®æ›´æ–°
+							offset1 += q ;		// offset1ã®æ›´æ–°
 						}
 
 						while( offset1 < DSampleNum && offset0 < SSampleNum )
@@ -16740,12 +16740,12 @@ extern int NS_WriteTimeStretchSoftSoundData( int SrcSoftSoundHandle, int DestSof
 
 									sp1p = offset0     + n >= SSampleNum ? 0 : ( int )sp1[ 0 ] - 128 ;
 									sp2p = offset0 + m + n >= SSampleNum ? 0 : ( int )sp2[ 0 ] - 128 ;
-									r += ( sp1p * sp2p ) / 128 ; // ‘ŠŠÖŠÖ”
+									r += ( sp1p * sp2p ) / 128 ; // ç›¸é–¢é–¢æ•°
 								}
 								if( r > max_of_r )
 								{
-									max_of_r = r ;	// ‘ŠŠÖŠÖ”‚Ìƒs[ƒN
-									p = m ;			// ‰¹ƒf[ƒ^‚ÌŠî–{üŠú
+									max_of_r = r ;	// ç›¸é–¢é–¢æ•°ã®ãƒ”ãƒ¼ã‚¯
+									p = m ;			// éŸ³ãƒ‡ãƒ¼ã‚¿ã®åŸºæœ¬å‘¨æœŸ
 								}
 							}
 
@@ -16797,8 +16797,8 @@ extern int NS_WriteTimeStretchSoftSoundData( int SrcSoftSoundHandle, int DestSof
 								}
 							}
 
-							offset0 += p + q ;	// offset0‚ÌXV
-							offset1 += q ;		// offset1‚ÌXV
+							offset0 += p + q ;	// offset0ã®æ›´æ–°
+							offset1 += q ;		// offset1ã®æ›´æ–°
 						}
 						if( offset1 < DSampleNum )
 						{
@@ -16831,12 +16831,12 @@ extern int NS_WriteTimeStretchSoftSoundData( int SrcSoftSoundHandle, int DestSof
 								sp2 = &SBuffer[ offset0 + m ] ;
 								for( n = 0 ; n < template_size ; n++, sp1 ++, sp2 ++ )
 								{
-									r += ( ( ( int )sp1[ 0 ] - 128 ) * ( int )( sp2[ 0 ] - 128 ) ) / 128 ; // ‘ŠŠÖŠÖ”
+									r += ( ( ( int )sp1[ 0 ] - 128 ) * ( int )( sp2[ 0 ] - 128 ) ) / 128 ; // ç›¸é–¢é–¢æ•°
 								}
 								if( r > max_of_r )
 								{
-									max_of_r = r ;	// ‘ŠŠÖŠÖ”‚Ìƒs[ƒN
-									p = m ;			// ‰¹ƒf[ƒ^‚ÌŠî–{üŠú
+									max_of_r = r ;	// ç›¸é–¢é–¢æ•°ã®ãƒ”ãƒ¼ã‚¯
+									p = m ;			// éŸ³ãƒ‡ãƒ¼ã‚¿ã®åŸºæœ¬å‘¨æœŸ
 								}
 							}
 
@@ -16877,8 +16877,8 @@ extern int NS_WriteTimeStretchSoftSoundData( int SrcSoftSoundHandle, int DestSof
 								}
 							}
 
-							offset0 += p + q ;	// offset0‚ÌXV
-							offset1 += q ;		// offset1‚ÌXV
+							offset0 += p + q ;	// offset0ã®æ›´æ–°
+							offset1 += q ;		// offset1ã®æ›´æ–°
 						}
 
 						while( offset1 < DSampleNum && offset0 < SSampleNum )
@@ -16900,12 +16900,12 @@ extern int NS_WriteTimeStretchSoftSoundData( int SrcSoftSoundHandle, int DestSof
 
 									sp1p = offset0     + n >= SSampleNum ? 0 : ( int )sp1[ 0 ] - 128 ;
 									sp2p = offset0 + m + n >= SSampleNum ? 0 : ( int )sp2[ 0 ] - 128 ;
-									r += ( sp1p * sp2p ) / 128 ; // ‘ŠŠÖŠÖ”
+									r += ( sp1p * sp2p ) / 128 ; // ç›¸é–¢é–¢æ•°
 								}
 								if( r > max_of_r )
 								{
-									max_of_r = r ;	// ‘ŠŠÖŠÖ”‚Ìƒs[ƒN
-									p = m ;			// ‰¹ƒf[ƒ^‚ÌŠî–{üŠú
+									max_of_r = r ;	// ç›¸é–¢é–¢æ•°ã®ãƒ”ãƒ¼ã‚¯
+									p = m ;			// éŸ³ãƒ‡ãƒ¼ã‚¿ã®åŸºæœ¬å‘¨æœŸ
 								}
 							}
 
@@ -16957,8 +16957,8 @@ extern int NS_WriteTimeStretchSoftSoundData( int SrcSoftSoundHandle, int DestSof
 								}
 							}
 
-							offset0 += p + q ;	// offset0‚ÌXV
-							offset1 += q ;		// offset1‚ÌXV
+							offset0 += p + q ;	// offset0ã®æ›´æ–°
+							offset1 += q ;		// offset1ã®æ›´æ–°
 						}
 						if( offset1 < DSampleNum )
 						{
@@ -17008,12 +17008,12 @@ extern int NS_WriteTimeStretchSoftSoundData( int SrcSoftSoundHandle, int DestSof
 							sp2 = &SBuffer[ ( offset0 + m ) * 2 ] ;
 							for( n = 0 ; n < template_size ; n++, sp1 += 2, sp2 += 2 )
 							{
-								r += sp1[ 0 ] * sp2[ 0 ] ; // ‘ŠŠÖŠÖ”
+								r += sp1[ 0 ] * sp2[ 0 ] ; // ç›¸é–¢é–¢æ•°
 							}
 							if( r > max_of_r )
 							{
-								max_of_r = r ;	// ‘ŠŠÖŠÖ”‚Ìƒs[ƒN
-								p = m ;			// ‰¹ƒf[ƒ^‚ÌŠî–{üŠú
+								max_of_r = r ;	// ç›¸é–¢é–¢æ•°ã®ãƒ”ãƒ¼ã‚¯
+								p = m ;			// éŸ³ãƒ‡ãƒ¼ã‚¿ã®åŸºæœ¬å‘¨æœŸ
 							}
 						}
 
@@ -17054,8 +17054,8 @@ extern int NS_WriteTimeStretchSoftSoundData( int SrcSoftSoundHandle, int DestSof
 							}
 						}
 
-						offset0 += p + q ;	// offset0‚ÌXV
-						offset1 += q ;		// offset1‚ÌXV
+						offset0 += p + q ;	// offset0ã®æ›´æ–°
+						offset1 += q ;		// offset1ã®æ›´æ–°
 					}
 
 					while( offset1 < DSampleNum && offset0 < SSampleNum )
@@ -17077,12 +17077,12 @@ extern int NS_WriteTimeStretchSoftSoundData( int SrcSoftSoundHandle, int DestSof
 
 								sp1p = offset0     + n >= SSampleNum ? 0.0f : sp1[ 0 ] ;
 								sp2p = offset0 + m + n >= SSampleNum ? 0.0f : sp2[ 0 ] ;
-								r += sp1p * sp2p ; // ‘ŠŠÖŠÖ”
+								r += sp1p * sp2p ; // ç›¸é–¢é–¢æ•°
 							}
 							if( r > max_of_r )
 							{
-								max_of_r = r ;	// ‘ŠŠÖŠÖ”‚Ìƒs[ƒN
-								p = m ;			// ‰¹ƒf[ƒ^‚ÌŠî–{üŠú
+								max_of_r = r ;	// ç›¸é–¢é–¢æ•°ã®ãƒ”ãƒ¼ã‚¯
+								p = m ;			// éŸ³ãƒ‡ãƒ¼ã‚¿ã®åŸºæœ¬å‘¨æœŸ
 							}
 						}
 
@@ -17134,8 +17134,8 @@ extern int NS_WriteTimeStretchSoftSoundData( int SrcSoftSoundHandle, int DestSof
 							}
 						}
 
-						offset0 += p + q ;	// offset0‚ÌXV
-						offset1 += q ;		// offset1‚ÌXV
+						offset0 += p + q ;	// offset0ã®æ›´æ–°
+						offset1 += q ;		// offset1ã®æ›´æ–°
 					}
 					if( offset1 < DSampleNum )
 					{
@@ -17168,12 +17168,12 @@ extern int NS_WriteTimeStretchSoftSoundData( int SrcSoftSoundHandle, int DestSof
 							sp2 = &SBuffer[ ( offset0 + m ) * 2 + 1 ] ;
 							for( n = 0 ; n < template_size ; n++, sp1 += 2, sp2 += 2 )
 							{
-								r += sp1[ 0 ] * sp2[ 0 ] ; // ‘ŠŠÖŠÖ”
+								r += sp1[ 0 ] * sp2[ 0 ] ; // ç›¸é–¢é–¢æ•°
 							}
 							if( r > max_of_r )
 							{
-								max_of_r = r ;	// ‘ŠŠÖŠÖ”‚Ìƒs[ƒN
-								p = m ;			// ‰¹ƒf[ƒ^‚ÌŠî–{üŠú
+								max_of_r = r ;	// ç›¸é–¢é–¢æ•°ã®ãƒ”ãƒ¼ã‚¯
+								p = m ;			// éŸ³ãƒ‡ãƒ¼ã‚¿ã®åŸºæœ¬å‘¨æœŸ
 							}
 						}
 
@@ -17214,8 +17214,8 @@ extern int NS_WriteTimeStretchSoftSoundData( int SrcSoftSoundHandle, int DestSof
 							}
 						}
 
-						offset0 += p + q ;	// offset0‚ÌXV
-						offset1 += q ;		// offset1‚ÌXV
+						offset0 += p + q ;	// offset0ã®æ›´æ–°
+						offset1 += q ;		// offset1ã®æ›´æ–°
 					}
 
 					while( offset1 < DSampleNum && offset0 < SSampleNum )
@@ -17237,12 +17237,12 @@ extern int NS_WriteTimeStretchSoftSoundData( int SrcSoftSoundHandle, int DestSof
 
 								sp1p = offset0     + n >= SSampleNum ? 0.0f : sp1[ 0 ] ;
 								sp2p = offset0 + m + n >= SSampleNum ? 0.0f : sp2[ 0 ] ;
-								r += sp1p * sp2p ; // ‘ŠŠÖŠÖ”
+								r += sp1p * sp2p ; // ç›¸é–¢é–¢æ•°
 							}
 							if( r > max_of_r )
 							{
-								max_of_r = r ;	// ‘ŠŠÖŠÖ”‚Ìƒs[ƒN
-								p = m ;			// ‰¹ƒf[ƒ^‚ÌŠî–{üŠú
+								max_of_r = r ;	// ç›¸é–¢é–¢æ•°ã®ãƒ”ãƒ¼ã‚¯
+								p = m ;			// éŸ³ãƒ‡ãƒ¼ã‚¿ã®åŸºæœ¬å‘¨æœŸ
 							}
 						}
 
@@ -17294,8 +17294,8 @@ extern int NS_WriteTimeStretchSoftSoundData( int SrcSoftSoundHandle, int DestSof
 							}
 						}
 
-						offset0 += p + q ;	// offset0‚ÌXV
-						offset1 += q ;		// offset1‚ÌXV
+						offset0 += p + q ;	// offset0ã®æ›´æ–°
+						offset1 += q ;		// offset1ã®æ›´æ–°
 					}
 					if( offset1 < DSampleNum )
 					{
@@ -17328,12 +17328,12 @@ extern int NS_WriteTimeStretchSoftSoundData( int SrcSoftSoundHandle, int DestSof
 							sp2 = &SBuffer[ offset0 + m ] ;
 							for( n = 0 ; n < template_size ; n++, sp1 ++, sp2 ++ )
 							{
-								r += sp1[ 0 ] * sp2[ 0 ] ; // ‘ŠŠÖŠÖ”
+								r += sp1[ 0 ] * sp2[ 0 ] ; // ç›¸é–¢é–¢æ•°
 							}
 							if( r > max_of_r )
 							{
-								max_of_r = r ;	// ‘ŠŠÖŠÖ”‚Ìƒs[ƒN
-								p = m ;			// ‰¹ƒf[ƒ^‚ÌŠî–{üŠú
+								max_of_r = r ;	// ç›¸é–¢é–¢æ•°ã®ãƒ”ãƒ¼ã‚¯
+								p = m ;			// éŸ³ãƒ‡ãƒ¼ã‚¿ã®åŸºæœ¬å‘¨æœŸ
 							}
 						}
 
@@ -17374,8 +17374,8 @@ extern int NS_WriteTimeStretchSoftSoundData( int SrcSoftSoundHandle, int DestSof
 							}
 						}
 
-						offset0 += p + q ;	// offset0‚ÌXV
-						offset1 += q ;		// offset1‚ÌXV
+						offset0 += p + q ;	// offset0ã®æ›´æ–°
+						offset1 += q ;		// offset1ã®æ›´æ–°
 					}
 
 					while( offset1 < DSampleNum && offset0 < SSampleNum )
@@ -17397,12 +17397,12 @@ extern int NS_WriteTimeStretchSoftSoundData( int SrcSoftSoundHandle, int DestSof
 
 								sp1p = offset0     + n >= SSampleNum ? 0.0f : sp1[ 0 ] ;
 								sp2p = offset0 + m + n >= SSampleNum ? 0.0f : sp2[ 0 ] ;
-								r += sp1p * sp2p ; // ‘ŠŠÖŠÖ”
+								r += sp1p * sp2p ; // ç›¸é–¢é–¢æ•°
 							}
 							if( r > max_of_r )
 							{
-								max_of_r = r ;	// ‘ŠŠÖŠÖ”‚Ìƒs[ƒN
-								p = m ;			// ‰¹ƒf[ƒ^‚ÌŠî–{üŠú
+								max_of_r = r ;	// ç›¸é–¢é–¢æ•°ã®ãƒ”ãƒ¼ã‚¯
+								p = m ;			// éŸ³ãƒ‡ãƒ¼ã‚¿ã®åŸºæœ¬å‘¨æœŸ
 							}
 						}
 
@@ -17454,8 +17454,8 @@ extern int NS_WriteTimeStretchSoftSoundData( int SrcSoftSoundHandle, int DestSof
 							}
 						}
 
-						offset0 += p + q ;	// offset0‚ÌXV
-						offset1 += q ;		// offset1‚ÌXV
+						offset0 += p + q ;	// offset0ã®æ›´æ–°
+						offset1 += q ;		// offset1ã®æ›´æ–°
 					}
 					if( offset1 < DSampleNum )
 					{
@@ -17477,11 +17477,11 @@ extern int NS_WriteTimeStretchSoftSoundData( int SrcSoftSoundHandle, int DestSof
 	}
 
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤”gŒ`ƒf[ƒ^ƒnƒ“ƒhƒ‹‚Ì”gŒ`ƒf[ƒ^‚Ì’·‚³‚ğ•ÏX‚·‚é
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†æ³¢å½¢ãƒ‡ãƒ¼ã‚¿ãƒãƒ³ãƒ‰ãƒ«ã®æ³¢å½¢ãƒ‡ãƒ¼ã‚¿ã®é•·ã•ã‚’å¤‰æ›´ã™ã‚‹
 #define PITCHSHIFT_WIN_N			(128)
 #define PITCHSHIFT_ANGLE_DIV_NUM	( ( PITCHSHIFT_WIN_N * 2 + 1 ) * 128 )
 extern int NS_WritePitchShiftSoftSoundData( int SrcSoftSoundHandle, int DestSoftSoundHandle )
@@ -17498,20 +17498,20 @@ extern int NS_WritePitchShiftSoftSoundData( int SrcSoftSoundHandle, int DestSoft
 	LONGLONG mt ;
 	int AngleI, SinCI, SinCosI, CosI ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( SSND_MASKHCHK_ASYNC( SrcSoftSoundHandle, SSSound ) ) return -1 ;
 	if( SSSound->IsPlayer == 1 ) return -1 ;
 
 	if( SSND_MASKHCHK_ASYNC( DestSoftSoundHandle, DSSound ) ) return -1 ;
 	if( DSSound->IsPlayer == 1 ) return -1 ;
 
-	// ƒTƒ“ƒvƒ‹”‚ª•Ï‚í‚ç‚È‚¢ê‡‚ÍƒGƒ‰[
+	// ã‚µãƒ³ãƒ—ãƒ«æ•°ãŒå¤‰ã‚ã‚‰ãªã„å ´åˆã¯ã‚¨ãƒ©ãƒ¼
 	if( SSSound->Wave.BufferSampleNum == DSSound->Wave.BufferSampleNum )
 	{
 		return -1 ;
 	}
 
-	// ƒtƒH[ƒ}ƒbƒg‚ªˆÙ‚È‚éê‡‚ÍƒGƒ‰[
+	// ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆãŒç•°ãªã‚‹å ´åˆã¯ã‚¨ãƒ©ãƒ¼
 	if( SSSound->BufferFormat.wFormatTag     != DSSound->BufferFormat.wFormatTag ||
 		SSSound->BufferFormat.nChannels      != DSSound->BufferFormat.nChannels  ||
 		SSSound->BufferFormat.nSamplesPerSec != DSSound->BufferFormat.nSamplesPerSec ||
@@ -17531,7 +17531,7 @@ extern int NS_WritePitchShiftSoftSoundData( int SrcSoftSoundHandle, int DestSoft
 	case WAVE_FORMAT_PCM :
 #if 1
 		{
-			// Float ƒ^ƒCƒv‚É•ÏŠ·‚µ‚ÄÀs‚·‚é
+			// Float ã‚¿ã‚¤ãƒ—ã«å¤‰æ›ã—ã¦å®Ÿè¡Œã™ã‚‹
 			int TempFloatSSSHandle = -1 ;
 			int TempFloatDSSHandle = -1 ;
 
@@ -17878,30 +17878,30 @@ extern int NS_WritePitchShiftSoftSoundData( int SrcSoftSoundHandle, int DestSoft
 		break ;
 	}
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤”gŒ`ƒf[ƒ^‚Ì”gŒ`ƒCƒ[ƒW‚ªŠi”[‚³‚ê‚Ä‚¢‚éƒƒ‚ƒŠƒAƒhƒŒƒX‚ğæ“¾‚·‚é
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†æ³¢å½¢ãƒ‡ãƒ¼ã‚¿ã®æ³¢å½¢ã‚¤ãƒ¡ãƒ¼ã‚¸ãŒæ ¼ç´ã•ã‚Œã¦ã„ã‚‹ãƒ¡ãƒ¢ãƒªã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å–å¾—ã™ã‚‹
 extern	void *NS_GetSoftSoundDataImage( int SoftSoundHandle )
 {
 	SOFTSOUND * SSound ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( SSND_MASKHCHK_ASYNC( SoftSoundHandle, SSound ) ) return NULL ;
 	if( SSound->IsPlayer == 1 ) return NULL ;
 
-	// I—¹
+	// çµ‚äº†
 	return SSound->Wave.Buffer ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤”gŒ`ƒf[ƒ^ƒnƒ“ƒhƒ‹‚Ìw’è‚Ì”ÍˆÍ‚ğ‚‘¬ƒt[ƒŠƒG•ÏŠ·‚ğs‚¢AŠeü”g”ˆæ‚ÌU•‚ğæ“¾‚·‚é( SampleNum ‚Í 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32768, 65536 ‚Ì‰½‚ê‚©‚Å‚ ‚é•K—v‚ª‚ ‚è‚Ü‚·AChannel ‚ğ -1 ‚É‚·‚é‚Æ“ñ‚Â‚Ìƒ`ƒƒƒ“ƒlƒ‹‚ğ‡¬‚µ‚½Œ‹‰Ê‚É‚È‚è‚Ü‚· )
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†æ³¢å½¢ãƒ‡ãƒ¼ã‚¿ãƒãƒ³ãƒ‰ãƒ«ã®æŒ‡å®šã®ç¯„å›²ã‚’é«˜é€Ÿãƒ•ãƒ¼ãƒªã‚¨å¤‰æ›ã‚’è¡Œã„ã€å„å‘¨æ³¢æ•°åŸŸã®æŒ¯å¹…ã‚’å–å¾—ã™ã‚‹( SampleNum ã¯ 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32768, 65536 ã®ä½•ã‚Œã‹ã§ã‚ã‚‹å¿…è¦ãŒã‚ã‚Šã¾ã™ã€Channel ã‚’ -1 ã«ã™ã‚‹ã¨äºŒã¤ã®ãƒãƒ£ãƒ³ãƒãƒ«ã‚’åˆæˆã—ãŸçµæœã«ãªã‚Šã¾ã™ )
 extern int NS_GetFFTVibrationSoftSound( int SoftSoundHandle, int Channel, LONGLONG SamplePosition, int SampleNum, float *Buffer, int BufferLength )
 {
 	return NS_GetFFTVibrationSoftSoundBase( SoftSoundHandle, Channel, SamplePosition, SampleNum, Buffer, NULL, BufferLength ) ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤”gŒ`ƒf[ƒ^ƒnƒ“ƒhƒ‹‚Ìw’è‚Ì”ÍˆÍ‚ğ‚‘¬ƒt[ƒŠƒG•ÏŠ·‚ğs‚¢AŠeü”g”ˆæ‚ÌU•‚ğæ“¾‚·‚éAŒ‹‰Ê‚ÌÀ”‚Æ‹•”‚ğ•ÊX‚Éæ“¾‚·‚é‚±‚Æ‚ª‚Å‚«‚éƒo[ƒWƒ‡ƒ“( SampleNum ‚Í 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32768, 65536 ‚Ì‰½‚ê‚©‚Å‚ ‚é•K—v‚ª‚ ‚è‚Ü‚·AChannel ‚ğ -1 ‚É‚·‚é‚Æ“ñ‚Â‚Ìƒ`ƒƒƒ“ƒlƒ‹‚ğ‡¬‚µ‚½Œ‹‰Ê‚É‚È‚è‚Ü‚· )
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†æ³¢å½¢ãƒ‡ãƒ¼ã‚¿ãƒãƒ³ãƒ‰ãƒ«ã®æŒ‡å®šã®ç¯„å›²ã‚’é«˜é€Ÿãƒ•ãƒ¼ãƒªã‚¨å¤‰æ›ã‚’è¡Œã„ã€å„å‘¨æ³¢æ•°åŸŸã®æŒ¯å¹…ã‚’å–å¾—ã™ã‚‹ã€çµæœã®å®Ÿæ•°ã¨è™šæ•°ã‚’åˆ¥ã€…ã«å–å¾—ã™ã‚‹ã“ã¨ãŒã§ãã‚‹ãƒãƒ¼ã‚¸ãƒ§ãƒ³( SampleNum ã¯ 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32768, 65536 ã®ä½•ã‚Œã‹ã§ã‚ã‚‹å¿…è¦ãŒã‚ã‚Šã¾ã™ã€Channel ã‚’ -1 ã«ã™ã‚‹ã¨äºŒã¤ã®ãƒãƒ£ãƒ³ãƒãƒ«ã‚’åˆæˆã—ãŸçµæœã«ãªã‚Šã¾ã™ )
 extern int NS_GetFFTVibrationSoftSoundBase( int SoftSoundHandle, int Channel, LONGLONG SamplePosition, int SampleNum, float *RealBuffer_Array, float *ImagBuffer_Array, int BufferLength )
 {
 	SOFTSOUND * SSound ;
@@ -17910,11 +17910,11 @@ extern int NS_GetFFTVibrationSoftSoundBase( int SoftSoundHandle, int Channel, LO
 	float *TempBuffer ;
 	int i, stage, number_of_stage, *index = NULL ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( SSND_MASKHCHK_ASYNC( SoftSoundHandle, SSound ) ) return -1 ;
 	if( SSound->IsPlayer == 1 ) return -1 ;
 
-	// ”z—ñ‚ğ‰Šú‰»
+	// é…åˆ—ã‚’åˆæœŸåŒ–
 	_MEMSET( RealBuffer_Array, 0, sizeof( float ) * BufferLength ) ;
 	if( ImagBuffer_Array != NULL )
 	{
@@ -17941,7 +17941,7 @@ extern int NS_GetFFTVibrationSoftSoundBase( int SoftSoundHandle, int Channel, LO
 		}
 	}
 
-	// ˆø”ƒ`ƒFƒbƒN
+	// å¼•æ•°ãƒã‚§ãƒƒã‚¯
 	for( i = SOUND_FFT_BITCOUNT_MIN ; i <= SOUND_FFT_BITCOUNT_MAX ; i ++ )
 	{
 		if( ( 1 << i ) == SampleNum )
@@ -17964,7 +17964,7 @@ extern int NS_GetFFTVibrationSoftSoundBase( int SoftSoundHandle, int Channel, LO
 		Channel = 0 ;
 	}
 
-	// FFT‚Ì’i”Zo
+	// FFTã®æ®µæ•°ç®—å‡º
 	{
 		int x = SampleNum ;
 
@@ -17974,17 +17974,17 @@ extern int NS_GetFFTVibrationSoftSoundBase( int SoftSoundHandle, int Channel, LO
 		}
 	}
 
-	// ì‹Æ—pƒoƒbƒtƒ@‚ª‚Ü‚¾Šm•Û‚³‚ê‚Ä‚¢‚È‚©‚Á‚½‚çŠm•Û‚·‚é
+	// ä½œæ¥­ç”¨ãƒãƒƒãƒ•ã‚¡ãŒã¾ã ç¢ºä¿ã•ã‚Œã¦ã„ãªã‹ã£ãŸã‚‰ç¢ºä¿ã™ã‚‹
 	if( SoundSysData.FFTVibrationWorkBuffer[ TableIndex ] == NULL )
 	{
-		// ƒƒ‚ƒŠ‚ğŠm•Û
+		// ãƒ¡ãƒ¢ãƒªã‚’ç¢ºä¿
 		SoundSysData.FFTVibrationWorkBuffer[ TableIndex ] = DXALLOC( SampleNum * 2 * sizeof( float ) + SampleNum / 2 * sizeof( float ) + SampleNum * sizeof( int ) ) ;
 		if( SoundSysData.FFTVibrationWorkBuffer[ TableIndex ] == NULL )
 		{
 			return -1 ;
 		}
 
-		// QÆ—pƒCƒ“ƒfƒbƒNƒXƒŠƒXƒg‚Ì‰Šú‰»
+		// å‚ç…§ç”¨ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒªã‚¹ãƒˆã®åˆæœŸåŒ–
 		index = ( int * )( ( BYTE * )SoundSysData.FFTVibrationWorkBuffer[ TableIndex ] + SampleNum * 2 * sizeof( float ) + SampleNum / 2 * sizeof( float ) ) ;
 		_MEMSET( index, 0, SampleNum * sizeof( int ) ) ;
 		for( stage = 1 ; stage <= number_of_stage ; stage ++ )
@@ -18001,13 +18001,13 @@ extern int NS_GetFFTVibrationSoftSoundBase( int SoftSoundHandle, int Channel, LO
 		}
 	}
 
-	// ì‹Æ—pƒƒ‚ƒŠ‚ÌƒAƒhƒŒƒX‚ğƒZƒbƒg
+	// ä½œæ¥­ç”¨ãƒ¡ãƒ¢ãƒªã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ã‚»ãƒƒãƒˆ
 	Real_Imag = ( float (*)[ 2 ] )SoundSysData.FFTVibrationWorkBuffer[ TableIndex ] ;
 	TempBuffer = ( float * )Real_Imag + SampleNum * 2 ;
 	index = ( int * )( TempBuffer + SampleNum / 2 ) ;
 	_MEMSET( Real_Imag, 0, sizeof( float ) * SampleNum * 2 ) ;
 
-	// •ÏŠ·Œ³ƒf[ƒ^‚Ì€”õ
+	// å¤‰æ›å…ƒãƒ‡ãƒ¼ã‚¿ã®æº–å‚™
 	{
 		BYTE *Src ;
 
@@ -18052,7 +18052,7 @@ extern int NS_GetFFTVibrationSoftSoundBase( int SoftSoundHandle, int Channel, LO
 		}
 	}
 
-	// ƒoƒ^ƒtƒ‰ƒCŒvZ
+	// ãƒã‚¿ãƒ•ãƒ©ã‚¤è¨ˆç®—
 	for( stage = 1 ; stage <= number_of_stage ; stage++ )
 	{
 		int loopnum1 ;
@@ -18120,7 +18120,7 @@ extern int NS_GetFFTVibrationSoftSoundBase( int SoftSoundHandle, int Channel, LO
 		}
 	}
 
-	// U•’l‚É•ÏŠ·
+	// æŒ¯å¹…å€¤ã«å¤‰æ›
 	if( ImagBuffer_Array == NULL )
 	{
 		int loopnum ;
@@ -18137,7 +18137,7 @@ extern int NS_GetFFTVibrationSoftSoundBase( int SoftSoundHandle, int Channel, LO
 			TempBuffer[ i ] = _SQRT( RealT * RealT + ImagT * ImagT ) ;
 		}
 
-		// o—Í
+		// å‡ºåŠ›
 		if( SampleNum / 2 == BufferLength )
 		{
 			for( i = 0 ; i < BufferLength ; i ++ )
@@ -18193,7 +18193,7 @@ extern int NS_GetFFTVibrationSoftSoundBase( int SoftSoundHandle, int Channel, LO
 
 		DivNum = ( float )SampleNum / 2 ;
 
-		// o—Í
+		// å‡ºåŠ›
 		if( SampleNum / 2 == BufferLength )
 		{
 			for( i = 0 ; i < BufferLength ; i ++ )
@@ -18251,11 +18251,11 @@ extern int NS_GetFFTVibrationSoftSoundBase( int SoftSoundHandle, int Channel, LO
 		}
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤”gŒ`ƒf[ƒ^‚ÌƒvƒŒƒCƒ„[‚ğ‚·‚×‚Ä‰ğ•ú‚·‚é
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†æ³¢å½¢ãƒ‡ãƒ¼ã‚¿ã®ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’ã™ã¹ã¦è§£æ”¾ã™ã‚‹
 extern	int NS_InitSoftSoundPlayer( void )
 {
 	if( SoundSysData.InitializeFlag == FALSE )
@@ -18264,7 +18264,7 @@ extern	int NS_InitSoftSoundPlayer( void )
 	return AllHandleSub( DX_HANDLETYPE_SOFTSOUND, DeleteCancelCheckSoftSoundPlayerFunction );
 }
 
-// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤”gŒ`ƒf[ƒ^‚ÌƒvƒŒƒCƒ„[‚ğì¬‚·‚é( ƒtƒH[ƒ}ƒbƒg‚Íˆø”‚Ìƒ\ƒtƒgƒEƒGƒAƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹‚Æ“¯‚¶‚à‚Ì‚É‚·‚é )
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†æ³¢å½¢ãƒ‡ãƒ¼ã‚¿ã®ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’ä½œæˆã™ã‚‹( ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã¯å¼•æ•°ã®ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ã¨åŒã˜ã‚‚ã®ã«ã™ã‚‹ )
 extern int NS_MakeSoftSoundPlayer( int UseFormat_SoftSoundHandle )
 {
 	if( UseFormat_SoftSoundHandle < 0 )
@@ -18273,78 +18273,78 @@ extern int NS_MakeSoftSoundPlayer( int UseFormat_SoftSoundHandle )
 	return MakeSoftSoundBase_UseGParam( TRUE, 0, 0, 0, 0, FALSE, UseFormat_SoftSoundHandle, GetASyncLoadFlag() ) ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤”gŒ`ƒf[ƒ^‚ÌƒvƒŒƒCƒ„[‚ğì¬‚·‚é( ƒ`ƒƒƒ“ƒlƒ‹”:2 —Êq‰»ƒrƒbƒg”:16bit ƒTƒ“ƒvƒŠƒ“ƒOü”g”:44.1KHz )
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†æ³¢å½¢ãƒ‡ãƒ¼ã‚¿ã®ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’ä½œæˆã™ã‚‹( ãƒãƒ£ãƒ³ãƒãƒ«æ•°:2 é‡å­åŒ–ãƒ“ãƒƒãƒˆæ•°:16bit ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°å‘¨æ³¢æ•°:44.1KHz )
 extern	int NS_MakeSoftSoundPlayer2Ch16Bit44KHz( void )
 {
 	return MakeSoftSoundBase_UseGParam( TRUE, 2, 16, 44100, 0, FALSE, -1, GetASyncLoadFlag() ) ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤”gŒ`ƒf[ƒ^‚ÌƒvƒŒƒCƒ„[‚ğì¬‚·‚é( ƒ`ƒƒƒ“ƒlƒ‹”:2 —Êq‰»ƒrƒbƒg”:16bit ƒTƒ“ƒvƒŠƒ“ƒOü”g”:22KHz )
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†æ³¢å½¢ãƒ‡ãƒ¼ã‚¿ã®ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’ä½œæˆã™ã‚‹( ãƒãƒ£ãƒ³ãƒãƒ«æ•°:2 é‡å­åŒ–ãƒ“ãƒƒãƒˆæ•°:16bit ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°å‘¨æ³¢æ•°:22KHz )
 extern	int NS_MakeSoftSoundPlayer2Ch16Bit22KHz( void )
 {
 	return MakeSoftSoundBase_UseGParam( TRUE, 2, 16, 22050, 0, FALSE, -1, GetASyncLoadFlag() ) ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤”gŒ`ƒf[ƒ^‚ÌƒvƒŒƒCƒ„[‚ğì¬‚·‚é( ƒ`ƒƒƒ“ƒlƒ‹”:2 —Êq‰»ƒrƒbƒg”:8bit ƒTƒ“ƒvƒŠƒ“ƒOü”g”:44.1KHz )
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†æ³¢å½¢ãƒ‡ãƒ¼ã‚¿ã®ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’ä½œæˆã™ã‚‹( ãƒãƒ£ãƒ³ãƒãƒ«æ•°:2 é‡å­åŒ–ãƒ“ãƒƒãƒˆæ•°:8bit ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°å‘¨æ³¢æ•°:44.1KHz )
 extern	int NS_MakeSoftSoundPlayer2Ch8Bit44KHz( void )
 {
 	return MakeSoftSoundBase_UseGParam( TRUE, 2, 8, 44100, 0, FALSE, -1, GetASyncLoadFlag() ) ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤”gŒ`ƒf[ƒ^‚ÌƒvƒŒƒCƒ„[‚ğì¬‚·‚é( ƒ`ƒƒƒ“ƒlƒ‹”:2 —Êq‰»ƒrƒbƒg”:8bit ƒTƒ“ƒvƒŠƒ“ƒOü”g”:22KHz )
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†æ³¢å½¢ãƒ‡ãƒ¼ã‚¿ã®ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’ä½œæˆã™ã‚‹( ãƒãƒ£ãƒ³ãƒãƒ«æ•°:2 é‡å­åŒ–ãƒ“ãƒƒãƒˆæ•°:8bit ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°å‘¨æ³¢æ•°:22KHz )
 extern	int NS_MakeSoftSoundPlayer2Ch8Bit22KHz( void )
 {
 	return MakeSoftSoundBase_UseGParam( TRUE, 2, 8, 22050, 0, FALSE, -1, GetASyncLoadFlag() ) ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤”gŒ`ƒf[ƒ^‚ÌƒvƒŒƒCƒ„[‚ğì¬‚·‚é( ƒ`ƒƒƒ“ƒlƒ‹”:1 —Êq‰»ƒrƒbƒg”:16bit ƒTƒ“ƒvƒŠƒ“ƒOü”g”:44.1KHz )
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†æ³¢å½¢ãƒ‡ãƒ¼ã‚¿ã®ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’ä½œæˆã™ã‚‹( ãƒãƒ£ãƒ³ãƒãƒ«æ•°:1 é‡å­åŒ–ãƒ“ãƒƒãƒˆæ•°:16bit ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°å‘¨æ³¢æ•°:44.1KHz )
 extern	int NS_MakeSoftSoundPlayer1Ch16Bit44KHz( void )
 {
 	return MakeSoftSoundBase_UseGParam( TRUE, 1, 16, 44100, 0, FALSE, -1, GetASyncLoadFlag() ) ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤”gŒ`ƒf[ƒ^‚ÌƒvƒŒƒCƒ„[‚ğì¬‚·‚é( ƒ`ƒƒƒ“ƒlƒ‹”:1 —Êq‰»ƒrƒbƒg”:16bit ƒTƒ“ƒvƒŠƒ“ƒOü”g”:22KHz )
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†æ³¢å½¢ãƒ‡ãƒ¼ã‚¿ã®ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’ä½œæˆã™ã‚‹( ãƒãƒ£ãƒ³ãƒãƒ«æ•°:1 é‡å­åŒ–ãƒ“ãƒƒãƒˆæ•°:16bit ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°å‘¨æ³¢æ•°:22KHz )
 extern	int NS_MakeSoftSoundPlayer1Ch16Bit22KHz( void )
 {
 	return MakeSoftSoundBase_UseGParam( TRUE, 1, 16, 22050, 0, FALSE, -1, GetASyncLoadFlag() ) ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤”gŒ`ƒf[ƒ^‚ÌƒvƒŒƒCƒ„[‚ğì¬‚·‚é( ƒ`ƒƒƒ“ƒlƒ‹”:1 —Êq‰»ƒrƒbƒg”:8bit ƒTƒ“ƒvƒŠƒ“ƒOü”g”:44.1KHz )
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†æ³¢å½¢ãƒ‡ãƒ¼ã‚¿ã®ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’ä½œæˆã™ã‚‹( ãƒãƒ£ãƒ³ãƒãƒ«æ•°:1 é‡å­åŒ–ãƒ“ãƒƒãƒˆæ•°:8bit ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°å‘¨æ³¢æ•°:44.1KHz )
 extern	int NS_MakeSoftSoundPlayer1Ch8Bit44KHz( void )
 {
 	return MakeSoftSoundBase_UseGParam( TRUE, 1, 8, 44100, 0, FALSE, -1, GetASyncLoadFlag() ) ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤”gŒ`ƒf[ƒ^‚ÌƒvƒŒƒCƒ„[‚ğì¬‚·‚é( ƒ`ƒƒƒ“ƒlƒ‹”:1 —Êq‰»ƒrƒbƒg”:8bit ƒTƒ“ƒvƒŠƒ“ƒOü”g”:22KHz )
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†æ³¢å½¢ãƒ‡ãƒ¼ã‚¿ã®ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’ä½œæˆã™ã‚‹( ãƒãƒ£ãƒ³ãƒãƒ«æ•°:1 é‡å­åŒ–ãƒ“ãƒƒãƒˆæ•°:8bit ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°å‘¨æ³¢æ•°:22KHz )
 extern	int NS_MakeSoftSoundPlayer1Ch8Bit22KHz( void )
 {
 	return MakeSoftSoundBase_UseGParam( TRUE, 1, 8, 22050, 0, FALSE, -1, GetASyncLoadFlag() ) ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤”gŒ`ƒf[ƒ^‚ÌƒvƒŒƒCƒ„[‚ğì¬‚·‚é
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†æ³¢å½¢ãƒ‡ãƒ¼ã‚¿ã®ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’ä½œæˆã™ã‚‹
 extern	int NS_MakeSoftSoundPlayerCustom( int ChannelNum, int BitsPerSample, int SamplesPerSec )
 {
 	return MakeSoftSoundBase_UseGParam( TRUE, ChannelNum, BitsPerSample, SamplesPerSec, 0, FALSE, -1, GetASyncLoadFlag() ) ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤”gŒ`ƒf[ƒ^‚ÌƒvƒŒƒCƒ„[‚ğíœ‚·‚é
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†æ³¢å½¢ãƒ‡ãƒ¼ã‚¿ã®ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’å‰Šé™¤ã™ã‚‹
 extern	int NS_DeleteSoftSoundPlayer( int SSoundPlayerHandle )
 {
 	SOFTSOUND *SSound ;
 
 	if( SSND_MASKHCHK_ASYNC( SSoundPlayerHandle, SSound ) ) return -1 ;
 
-	// ƒvƒŒƒCƒ„[‚©‚Ç‚¤‚©‚Ìƒ`ƒFƒbƒN
+	// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‹ã©ã†ã‹ã®ãƒã‚§ãƒƒã‚¯
 	if( SSound->IsPlayer != TRUE )
 	{
-		// ˆá‚Á‚½‚çƒGƒ‰[
+		// é•ã£ãŸã‚‰ã‚¨ãƒ©ãƒ¼
 		return -1 ;
 	}
 
 	return SubHandle( SSoundPlayerHandle, GetASyncLoadFlag(), FALSE ) ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤”gŒ`ƒf[ƒ^‚ÌƒvƒŒƒCƒ„[‚É”gŒ`ƒf[ƒ^‚ğ’Ç‰Á‚·‚é( ƒtƒH[ƒ}ƒbƒg‚ª“¯‚¶‚Å‚Í‚È‚¢ê‡‚ÍƒGƒ‰[ )
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†æ³¢å½¢ãƒ‡ãƒ¼ã‚¿ã®ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã«æ³¢å½¢ãƒ‡ãƒ¼ã‚¿ã‚’è¿½åŠ ã™ã‚‹( ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆãŒåŒã˜ã§ã¯ãªã„å ´åˆã¯ã‚¨ãƒ©ãƒ¼ )
 extern	int NS_AddDataSoftSoundPlayer( int SSoundPlayerHandle, int SoftSoundHandle, LONGLONG AddSamplePosition, int AddSampleNum )
 {
 	SOFTSOUND *SPlayer, *SSound ;
@@ -18352,80 +18352,80 @@ extern	int NS_AddDataSoftSoundPlayer( int SSoundPlayerHandle, int SoftSoundHandl
 
 	if( SoundSysData.InitializeFlag == FALSE ) return -1 ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( SSND_MASKHCHK( SoftSoundHandle, SSound ) ) return -1 ;
 	if( SSound->IsPlayer == 1 ) return -1 ;
 
 	if( SSND_MASKHCHK( SSoundPlayerHandle, SPlayer ) ) return -1 ;
 	if( SPlayer->IsPlayer == 0 ) return -1 ;
 
-	// ƒtƒH[ƒ}ƒbƒg‚ªˆá‚Á‚½‚çƒGƒ‰[
+	// ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆãŒé•ã£ãŸã‚‰ã‚¨ãƒ©ãƒ¼
 	if( SSound->BufferFormat.nChannels != SPlayer->BufferFormat.nChannels ||
 		SSound->BufferFormat.wBitsPerSample != SPlayer->BufferFormat.wBitsPerSample ||
 		SSound->BufferFormat.nSamplesPerSec != SPlayer->BufferFormat.nSamplesPerSec )
 		return -1 ;
 
-	// ƒTƒ“ƒvƒ‹ˆÊ’u‚Ìw’è‚ªŠÔˆá‚Á‚Ä‚¢‚½‚çƒGƒ‰[
+	// ã‚µãƒ³ãƒ—ãƒ«ä½ç½®ã®æŒ‡å®šãŒé–“é•ã£ã¦ã„ãŸã‚‰ã‚¨ãƒ©ãƒ¼
 	if( AddSampleNum == 0 || SSound->Wave.BufferSampleNum < AddSamplePosition + AddSampleNum )
 		return -1 ; 
 
-	// “]‘—ˆÊ’u‚ÌƒAƒhƒŒƒX‚ğZo
+	// è»¢é€ä½ç½®ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ç®—å‡º
 	Src = ( BYTE * )SSound->Wave.Buffer + SSound->BufferFormat.nBlockAlign * AddSamplePosition ;
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 	CRITICALSECTION_LOCK( &HandleManageArray[ DX_HANDLETYPE_SOFTSOUND ].CriticalSection ) ;
 
-	// ƒŠƒ“ƒOƒoƒbƒtƒ@‚Éƒf[ƒ^‚ğ’Ç‰Á
+	// ãƒªãƒ³ã‚°ãƒãƒƒãƒ•ã‚¡ã«ãƒ‡ãƒ¼ã‚¿ã‚’è¿½åŠ 
 	if( RingBufDataAdd( &SPlayer->Player.StockSample, Src, AddSampleNum * SSound->BufferFormat.nBlockAlign ) < 0 )
 	{
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 		CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_SOFTSOUND ].CriticalSection ) ;
 		return -1 ;
 	}
 
-	// ’Ç‰Á‚µ‚½•ªƒTƒ“ƒvƒ‹”‚ğ‘‚â‚·
+	// è¿½åŠ ã—ãŸåˆ†ã‚µãƒ³ãƒ—ãƒ«æ•°ã‚’å¢—ã‚„ã™
 	SPlayer->Player.StockSampleNum += AddSampleNum ;
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 	CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_SOFTSOUND ].CriticalSection ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤”gŒ`ƒf[ƒ^‚ÌƒvƒŒƒCƒ„[‚ÉƒvƒŒƒCƒ„[‚ª‘Î‰‚µ‚½ƒtƒH[ƒ}ƒbƒg‚Ì¶”gŒ`ƒf[ƒ^‚ğ’Ç‰Á‚·‚é
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†æ³¢å½¢ãƒ‡ãƒ¼ã‚¿ã®ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã«ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãŒå¯¾å¿œã—ãŸãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®ç”Ÿæ³¢å½¢ãƒ‡ãƒ¼ã‚¿ã‚’è¿½åŠ ã™ã‚‹
 extern	int	NS_AddDirectDataSoftSoundPlayer( int SSoundPlayerHandle, const void *SoundData, int AddSampleNum )
 {
 	SOFTSOUND * SPlayer ;
 
 	if( SoundSysData.InitializeFlag == FALSE ) return -1 ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( SSND_MASKHCHK( SSoundPlayerHandle, SPlayer ) ) return -1 ;
 	if( SPlayer->IsPlayer == 0 ) return -1 ;
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 	CRITICALSECTION_LOCK( &HandleManageArray[ DX_HANDLETYPE_SOFTSOUND ].CriticalSection ) ;
 
-	// ƒŠƒ“ƒOƒoƒbƒtƒ@‚Éƒf[ƒ^‚ğ’Ç‰Á
+	// ãƒªãƒ³ã‚°ãƒãƒƒãƒ•ã‚¡ã«ãƒ‡ãƒ¼ã‚¿ã‚’è¿½åŠ 
 	if( RingBufDataAdd( &SPlayer->Player.StockSample, SoundData, AddSampleNum * SPlayer->BufferFormat.nBlockAlign ) < 0 )
 	{
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 		CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_SOFTSOUND ].CriticalSection ) ;
 		return -1 ;
 	}
 
-	// ’Ç‰Á‚µ‚½•ªƒTƒ“ƒvƒ‹”‚ğ‘‚â‚·
+	// è¿½åŠ ã—ãŸåˆ†ã‚µãƒ³ãƒ—ãƒ«æ•°ã‚’å¢—ã‚„ã™
 	SPlayer->Player.StockSampleNum += AddSampleNum ;
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 	CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_SOFTSOUND ].CriticalSection ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤”gŒ`ƒf[ƒ^‚ÌƒvƒŒƒCƒ„[‚É”gŒ`ƒf[ƒ^‚ğˆê‚Â’Ç‰Á‚·‚é
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†æ³¢å½¢ãƒ‡ãƒ¼ã‚¿ã®ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã«æ³¢å½¢ãƒ‡ãƒ¼ã‚¿ã‚’ä¸€ã¤è¿½åŠ ã™ã‚‹
 extern int NS_AddOneDataSoftSoundPlayer( int SSoundPlayerHandle, int Channel1, int Channel2 )
 {
 	SOFTSOUND * SPlayer ;
@@ -18433,14 +18433,14 @@ extern int NS_AddOneDataSoftSoundPlayer( int SSoundPlayerHandle, int Channel1, i
 
 	if( SoundSysData.InitializeFlag == FALSE ) return -1 ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( SSND_MASKHCHK( SSoundPlayerHandle, SPlayer ) ) return -1 ;
 	if( SPlayer->IsPlayer == 0 ) return -1 ;
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 	CRITICALSECTION_LOCK( &HandleManageArray[ DX_HANDLETYPE_SOFTSOUND ].CriticalSection ) ;
 
-	// ƒf[ƒ^‚Ì€”õ
+	// ãƒ‡ãƒ¼ã‚¿ã®æº–å‚™
 	switch( SPlayer->BufferFormat.wBitsPerSample )
 	{
 	case 8 :
@@ -18470,26 +18470,26 @@ extern int NS_AddOneDataSoftSoundPlayer( int SSoundPlayerHandle, int Channel1, i
 		break ;
 	}
 
-	// ƒŠƒ“ƒOƒoƒbƒtƒ@‚Éƒf[ƒ^‚ğ’Ç‰Á
+	// ãƒªãƒ³ã‚°ãƒãƒƒãƒ•ã‚¡ã«ãƒ‡ãƒ¼ã‚¿ã‚’è¿½åŠ 
 	if( RingBufDataAdd( &SPlayer->Player.StockSample, Dest, SPlayer->BufferFormat.nBlockAlign ) < 0 )
 	{
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 		CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_SOFTSOUND ].CriticalSection ) ;
 		return -1 ;
 	}
 
-	// ƒTƒ“ƒvƒ‹”‚ğˆê‚Â‘‚â‚·
+	// ã‚µãƒ³ãƒ—ãƒ«æ•°ã‚’ä¸€ã¤å¢—ã‚„ã™
 	SPlayer->Player.StockSampleNum ++ ;
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 	CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_SOFTSOUND ].CriticalSection ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
 
-// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤”gŒ`ƒf[ƒ^‚ÌƒvƒŒƒCƒ„[‚ÉÄ¶—pƒTƒEƒ“ƒhƒoƒbƒtƒ@‚É“]‘—‚µ‚Ä‚¢‚È‚¢”gŒ`ƒf[ƒ^‚ª–³‚­AÄ¶—pƒTƒEƒ“ƒhƒoƒbƒtƒ@‚É‚à–³‰¹ƒf[ƒ^ˆÈŠO–³‚¢‚©‚Ç‚¤‚©‚ğæ“¾‚·‚é( TRUE:–³‰¹ƒf[ƒ^ˆÈŠO–³‚¢  FALSE:—LŒøƒf[ƒ^‚ª‚ ‚é )
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†æ³¢å½¢ãƒ‡ãƒ¼ã‚¿ã®ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã«å†ç”Ÿç”¨ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡ã«è»¢é€ã—ã¦ã„ãªã„æ³¢å½¢ãƒ‡ãƒ¼ã‚¿ãŒç„¡ãã€å†ç”Ÿç”¨ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡ã«ã‚‚ç„¡éŸ³ãƒ‡ãƒ¼ã‚¿ä»¥å¤–ç„¡ã„ã‹ã©ã†ã‹ã‚’å–å¾—ã™ã‚‹( TRUE:ç„¡éŸ³ãƒ‡ãƒ¼ã‚¿ä»¥å¤–ç„¡ã„  FALSE:æœ‰åŠ¹ãƒ‡ãƒ¼ã‚¿ãŒã‚ã‚‹ )
 extern	int	NS_CheckSoftSoundPlayerNoneData( int SSoundPlayerHandle )
 {
 	SOFTSOUND * SPlayer ;
@@ -18497,32 +18497,32 @@ extern	int	NS_CheckSoftSoundPlayerNoneData( int SSoundPlayerHandle )
 
 	if( SoundSysData.InitializeFlag == FALSE ) return -1 ;
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 	CRITICALSECTION_LOCK( &HandleManageArray[ DX_HANDLETYPE_SOFTSOUND ].CriticalSection ) ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( SSND_MASKHCHK( SSoundPlayerHandle, SPlayer ) || SPlayer->IsPlayer == 0 )
 		goto END ;
 
-	// XVˆ—‚ğs‚¤
+	// æ›´æ–°å‡¦ç†ã‚’è¡Œã†
 	_SoftSoundPlayerProcess( SPlayer ) ;
 
-	// –³‰¹ƒf[ƒ^Ä¶’†‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğƒZƒbƒg
+	// ç„¡éŸ³ãƒ‡ãƒ¼ã‚¿å†ç”Ÿä¸­ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆ
 	Result = SPlayer->Player.NoneDataPlayStartFlag ;
 
-	// ‰¹ƒf[ƒ^‚ÌƒXƒgƒbƒN‚ª‚ ‚éê‡‚Í–³‰¹ƒf[ƒ^Ä¶’†‚Å‚Í‚È‚¢
+	// éŸ³ãƒ‡ãƒ¼ã‚¿ã®ã‚¹ãƒˆãƒƒã‚¯ãŒã‚ã‚‹å ´åˆã¯ç„¡éŸ³ãƒ‡ãƒ¼ã‚¿å†ç”Ÿä¸­ã§ã¯ãªã„
 	if( SPlayer->Player.StockSampleNum != 0 )
 		Result = FALSE ;
 
 END :
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 	CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_SOFTSOUND ].CriticalSection ) ;
 
-	// ó‘Ô‚ğ•Ô‚·
+	// çŠ¶æ…‹ã‚’è¿”ã™
 	return Result ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤”gŒ`ƒf[ƒ^‚ÌƒvƒŒƒCƒ„[‚É’Ç‰Á‚µ‚½”gŒ`ƒf[ƒ^‚Å‚Ü‚¾Ä¶—pƒTƒEƒ“ƒhƒoƒbƒtƒ@‚É“]‘—‚³‚ê‚Ä‚¢‚È‚¢”gŒ`ƒf[ƒ^‚ÌƒTƒ“ƒvƒ‹”‚ğæ“¾‚·‚é
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†æ³¢å½¢ãƒ‡ãƒ¼ã‚¿ã®ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã«è¿½åŠ ã—ãŸæ³¢å½¢ãƒ‡ãƒ¼ã‚¿ã§ã¾ã å†ç”Ÿç”¨ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡ã«è»¢é€ã•ã‚Œã¦ã„ãªã„æ³¢å½¢ãƒ‡ãƒ¼ã‚¿ã®ã‚µãƒ³ãƒ—ãƒ«æ•°ã‚’å–å¾—ã™ã‚‹
 extern	int	NS_GetStockDataLengthSoftSoundPlayer( int SSoundPlayerHandle, int *SoundBufferStockSamples )
 {
 	SOFTSOUND * SPlayer ;
@@ -18530,29 +18530,29 @@ extern	int	NS_GetStockDataLengthSoftSoundPlayer( int SSoundPlayerHandle, int *So
 
 	if( SoundSysData.InitializeFlag == FALSE ) return -1 ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( SSND_MASKHCHK( SSoundPlayerHandle, SPlayer ) || SPlayer->IsPlayer == 0 )
 		return -1 ;
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 	CRITICALSECTION_LOCK( &HandleManageArray[ DX_HANDLETYPE_SOFTSOUND ].CriticalSection ) ;
 
-	// XVˆ—‚ğs‚¤
+	// æ›´æ–°å‡¦ç†ã‚’è¡Œã†
 	if( _SoftSoundPlayerProcess( SPlayer ) < 0 )
 		goto END ;
 
-	// ƒŠƒ“ƒOƒoƒbƒtƒ@‚É‚ ‚é–¢“]‘—•ª‚ÌƒTƒ“ƒvƒ‹‚ğƒZƒbƒg
+	// ãƒªãƒ³ã‚°ãƒãƒƒãƒ•ã‚¡ã«ã‚ã‚‹æœªè»¢é€åˆ†ã®ã‚µãƒ³ãƒ—ãƒ«ã‚’ã‚»ãƒƒãƒˆ
 	Result = SPlayer->Player.StockSampleNum ;
 
-	// ƒTƒEƒ“ƒhƒoƒbƒtƒ@‚Ì–¢Ä¶ƒTƒCƒY‚ğæ“¾‚·‚éw’è‚ª‚ ‚Á‚½‚çÄ¶ˆÊ’u‚©‚ç–¢Ä¶ƒTƒCƒY‚ğƒZƒbƒg‚·‚é
+	// ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡ã®æœªå†ç”Ÿã‚µã‚¤ã‚ºã‚’å–å¾—ã™ã‚‹æŒ‡å®šãŒã‚ã£ãŸã‚‰å†ç”Ÿä½ç½®ã‹ã‚‰æœªå†ç”Ÿã‚µã‚¤ã‚ºã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 	if( SoundBufferStockSamples != NULL )
 	{
 		DWORD PlayPos, WritePos ;
 
-		// Ä¶ˆÊ’u‚Ìæ“¾
+		// å†ç”Ÿä½ç½®ã®å–å¾—
 		SoundBuffer_GetCurrentPosition( &SPlayer->Player.SoundBuffer, &PlayPos, &WritePos ) ;
 
-		// Ä¶ƒoƒbƒtƒ@‚ÉƒZƒbƒg‚³‚ê‚Ä‚¢‚éƒf[ƒ^—Ê‚ğƒZƒbƒg‚·‚é
+		// å†ç”Ÿãƒãƒƒãƒ•ã‚¡ã«ã‚»ãƒƒãƒˆã•ã‚Œã¦ã„ã‚‹ãƒ‡ãƒ¼ã‚¿é‡ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 		if( ( DWORD )SPlayer->Player.DataSetCompOffset > PlayPos )
 		{
 			*SoundBufferStockSamples = ( SPlayer->Player.DataSetCompOffset - PlayPos ) / SPlayer->BufferFormat.nBlockAlign;
@@ -18564,174 +18564,174 @@ extern	int	NS_GetStockDataLengthSoftSoundPlayer( int SSoundPlayerHandle, int *So
 	}
 
 END :
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 	CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_SOFTSOUND ].CriticalSection ) ;
 
-	// ó‘Ô‚ğ•Ô‚·
+	// çŠ¶æ…‹ã‚’è¿”ã™
 	return Result ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤”gŒ`ƒf[ƒ^‚ÌƒvƒŒƒCƒ„[‚ªˆµ‚¤ƒf[ƒ^ƒtƒH[ƒ}ƒbƒg‚ğæ“¾‚·‚é
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†æ³¢å½¢ãƒ‡ãƒ¼ã‚¿ã®ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãŒæ‰±ã†ãƒ‡ãƒ¼ã‚¿ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã‚’å–å¾—ã™ã‚‹
 extern	int	NS_GetSoftSoundPlayerFormat( int SSoundPlayerHandle, int *Channels, int *BitsPerSample, int *SamplesPerSec )
 {
 	SOFTSOUND * SPlayer ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( SSND_MASKHCHK( SSoundPlayerHandle, SPlayer ) ) return -1 ;
 	if( SPlayer->IsPlayer == 0 ) return -1 ;
 
-	// ƒf[ƒ^‚ğƒZƒbƒg
+	// ãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆ
 	if( Channels      ) *Channels      = SPlayer->BufferFormat.nChannels ;
 	if( BitsPerSample ) *BitsPerSample = SPlayer->BufferFormat.wBitsPerSample ;
 	if( SamplesPerSec ) *SamplesPerSec = ( int )SPlayer->BufferFormat.nSamplesPerSec ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤”gŒ`ƒf[ƒ^‚ÌƒvƒŒƒCƒ„[‚ÌÄ¶ˆ—‚ğŠJn‚·‚é
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†æ³¢å½¢ãƒ‡ãƒ¼ã‚¿ã®ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å†ç”Ÿå‡¦ç†ã‚’é–‹å§‹ã™ã‚‹
 extern	int NS_StartSoftSoundPlayer( int SSoundPlayerHandle )
 {
 	SOFTSOUND * SPlayer ;
 
 	if( SoundSysData.InitializeFlag == FALSE ) return -1 ;
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 	CRITICALSECTION_LOCK( &HandleManageArray[ DX_HANDLETYPE_SOFTSOUND ].CriticalSection ) ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( SSND_MASKHCHK( SSoundPlayerHandle, SPlayer ) || SPlayer->IsPlayer == 0 )
 	{
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 		CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_SOFTSOUND ].CriticalSection ) ;
 
 		return -1 ;
 	}
 
-	// Šù‚ÉÄ¶‚³‚ê‚Ä‚¢‚½‚ç‰½‚à‚µ‚È‚¢
+	// æ—¢ã«å†ç”Ÿã•ã‚Œã¦ã„ãŸã‚‰ä½•ã‚‚ã—ãªã„
 	if( SPlayer->Player.IsPlayFlag )
 		goto END ;
 
-	// Ä¶ó‘Ô‚É‚·‚é
+	// å†ç”ŸçŠ¶æ…‹ã«ã™ã‚‹
 	SPlayer->Player.IsPlayFlag = TRUE ;
 
-	// Ä¶—pƒf[ƒ^‚ğƒTƒEƒ“ƒhƒoƒbƒtƒ@‚ÉƒZƒbƒg‚·‚é
+	// å†ç”Ÿç”¨ãƒ‡ãƒ¼ã‚¿ã‚’ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡ã«ã‚»ãƒƒãƒˆã™ã‚‹
 	_SoftSoundPlayerProcess( SPlayer ) ;
 
-	// ƒTƒEƒ“ƒhƒoƒbƒtƒ@‚ÌÄ¶ŠJn
+	// ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡ã®å†ç”Ÿé–‹å§‹
 	if( SoundBuffer_Play( &SPlayer->Player.SoundBuffer, TRUE ) < 0 )
 	{
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 		CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_SOFTSOUND ].CriticalSection ) ;
 		return -1 ;
 	}
 
 END :
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 	CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_SOFTSOUND ].CriticalSection ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤”gŒ`ƒf[ƒ^‚ÌƒvƒŒƒCƒ„[‚ÌÄ¶ˆ—‚ªŠJn‚³‚ê‚Ä‚¢‚é‚©æ“¾‚·‚é( TRUE:ŠJn‚µ‚Ä‚¢‚é  FALSE:’â~‚µ‚Ä‚¢‚é )
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†æ³¢å½¢ãƒ‡ãƒ¼ã‚¿ã®ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å†ç”Ÿå‡¦ç†ãŒé–‹å§‹ã•ã‚Œã¦ã„ã‚‹ã‹å–å¾—ã™ã‚‹( TRUE:é–‹å§‹ã—ã¦ã„ã‚‹  FALSE:åœæ­¢ã—ã¦ã„ã‚‹ )
 extern	int	NS_CheckStartSoftSoundPlayer( int SSoundPlayerHandle )
 {
 	SOFTSOUND * SPlayer ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( SSND_MASKHCHK( SSoundPlayerHandle, SPlayer ) || SPlayer->IsPlayer == 0 )
 		return -1 ;
 
-	// Ä¶’†ƒtƒ‰ƒO‚ğ•Ô‚·
+	// å†ç”Ÿä¸­ãƒ•ãƒ©ã‚°ã‚’è¿”ã™
 	return SPlayer->Player.IsPlayFlag ;
 }
 
 
-// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤”gŒ`ƒf[ƒ^‚ÌƒvƒŒƒCƒ„[‚ÌÄ¶ˆ—‚ğ’â~‚·‚é
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†æ³¢å½¢ãƒ‡ãƒ¼ã‚¿ã®ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å†ç”Ÿå‡¦ç†ã‚’åœæ­¢ã™ã‚‹
 extern	int NS_StopSoftSoundPlayer( int SSoundPlayerHandle )
 {
 	SOFTSOUND * SPlayer ;
 
 	if( SoundSysData.InitializeFlag == FALSE ) return -1 ;
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 	CRITICALSECTION_LOCK( &HandleManageArray[ DX_HANDLETYPE_SOFTSOUND ].CriticalSection ) ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( SSND_MASKHCHK( SSoundPlayerHandle, SPlayer ) || SPlayer->IsPlayer == 0 )
 	{
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 		CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_SOFTSOUND ].CriticalSection ) ;
 
 		return -1 ;
 	}
 
-	// Ä¶‚³‚ê‚Ä‚¢‚È‚©‚Á‚½‚ç‰½‚à‚µ‚È‚¢
+	// å†ç”Ÿã•ã‚Œã¦ã„ãªã‹ã£ãŸã‚‰ä½•ã‚‚ã—ãªã„
 	if( SPlayer->Player.IsPlayFlag == FALSE )
 		goto END ;
 
-	// Ä¶‚ğ~‚ß‚é
+	// å†ç”Ÿã‚’æ­¢ã‚ã‚‹
 	SoundBuffer_Stop( &SPlayer->Player.SoundBuffer, TRUE ) ;
 
-	// Ä¶’†ƒtƒ‰ƒO‚ğ“|‚·
+	// å†ç”Ÿä¸­ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 	SPlayer->Player.IsPlayFlag = FALSE ;
 
 END :
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 	CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_SOFTSOUND ].CriticalSection ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤”gŒ`ƒf[ƒ^‚ÌƒvƒŒƒCƒ„[‚Ìó‘Ô‚ğ‰Šúó‘Ô‚É–ß‚·( ’Ç‰Á‚³‚ê‚½”gŒ`ƒf[ƒ^‚Ííœ‚³‚êAÄ¶ó‘Ô‚¾‚Á‚½ê‡‚Í’â~‚·‚é )
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†æ³¢å½¢ãƒ‡ãƒ¼ã‚¿ã®ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®çŠ¶æ…‹ã‚’åˆæœŸçŠ¶æ…‹ã«æˆ»ã™( è¿½åŠ ã•ã‚ŒãŸæ³¢å½¢ãƒ‡ãƒ¼ã‚¿ã¯å‰Šé™¤ã•ã‚Œã€å†ç”ŸçŠ¶æ…‹ã ã£ãŸå ´åˆã¯åœæ­¢ã™ã‚‹ )
 extern	int NS_ResetSoftSoundPlayer( int SSoundPlayerHandle )
 {
 	SOFTSOUND * SPlayer ;
 
 	if( SoundSysData.InitializeFlag == FALSE ) return -1 ;
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 	CRITICALSECTION_LOCK( &HandleManageArray[ DX_HANDLETYPE_SOFTSOUND ].CriticalSection ) ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( SSND_MASKHCHK( SSoundPlayerHandle, SPlayer ) || SPlayer->IsPlayer == 0 )
 	{
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 		CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_SOFTSOUND ].CriticalSection ) ;
 
 		return -1 ;
 	}
 
-	// Ä¶‚ğ~‚ß‚é
+	// å†ç”Ÿã‚’æ­¢ã‚ã‚‹
 	SoundBuffer_Stop( &SPlayer->Player.SoundBuffer, TRUE ) ;
 
-	// Ä¶ˆÊ’u‚ğæ“ª‚É–ß‚·
+	// å†ç”Ÿä½ç½®ã‚’å…ˆé ­ã«æˆ»ã™
 	SoundBuffer_SetCurrentPosition( &SPlayer->Player.SoundBuffer, 0 ) ;
 
-	// ƒŠƒ“ƒOƒoƒbƒtƒ@‚ğÄ‰Šú‰»‚·‚é
+	// ãƒªãƒ³ã‚°ãƒãƒƒãƒ•ã‚¡ã‚’å†åˆæœŸåŒ–ã™ã‚‹
 	RingBufTerminate( &SPlayer->Player.StockSample ) ;
 	RingBufInitialize( &SPlayer->Player.StockSample ) ;
 	SPlayer->Player.StockSampleNum = 0 ;
 
-	// ‚»‚Ì‘¼î•ñ‚ğ‰Šú‰»‚·‚é
+	// ãã®ä»–æƒ…å ±ã‚’åˆæœŸåŒ–ã™ã‚‹
 	SPlayer->Player.DataSetCompOffset = 0 ;
 	SPlayer->Player.NoneDataSetCompOffset = 0 ;
 	SPlayer->Player.NoneDataPlayCheckBackPlayOffset = 0 ;
 	SPlayer->Player.NoneDataPlayStartFlag = FALSE ;
 	SPlayer->Player.IsPlayFlag = FALSE ;
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 	CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_SOFTSOUND ].CriticalSection ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ‘S‚Ä‚Ìƒ\ƒtƒgƒEƒGƒAƒTƒEƒ“ƒh‚Ìˆê’â~ó‘Ô‚ğ•ÏX‚·‚é
+// å…¨ã¦ã®ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã‚µã‚¦ãƒ³ãƒ‰ã®ä¸€æ™‚åœæ­¢çŠ¶æ…‹ã‚’å¤‰æ›´ã™ã‚‹
 extern int PauseSoftSoundAll( int PauseFlag )
 {
 	HANDLELIST *List ;
@@ -18747,13 +18747,13 @@ extern int PauseSoftSoundAll( int PauseFlag )
 		return -1 ;
 	}
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 	CRITICALSECTION_LOCK( &HandleManageArray[ DX_HANDLETYPE_SOFTSOUND ].CriticalSection ) ;
 
-	// ’â~‚·‚é‚©ŠJn‚·‚é‚©‚Åˆ—‚ğ•ªŠò
+	// åœæ­¢ã™ã‚‹ã‹é–‹å§‹ã™ã‚‹ã‹ã§å‡¦ç†ã‚’åˆ†å²
 	if( PauseFlag )
 	{
-		// ’â~‚·‚éê‡
+		// åœæ­¢ã™ã‚‹å ´åˆ
 
 		for( List = SoundSysData.SoftSoundPlayerListFirst.Next ; List->Next != NULL ; List = List->Next )
 		{
@@ -18762,11 +18762,11 @@ extern int PauseSoftSoundAll( int PauseFlag )
 			if( SPlayer->Player.SoundBuffer.Valid == FALSE || SoundBuffer_CheckEnable( &SPlayer->Player.SoundBuffer ) == FALSE )
 				continue ;
 
-			// Šù‚Éó‘Ô•Û‘¶Ï‚İ‚Ìê‡‚Í‰½‚à‚µ‚È‚¢
+			// æ—¢ã«çŠ¶æ…‹ä¿å­˜æ¸ˆã¿ã®å ´åˆã¯ä½•ã‚‚ã—ãªã„
 			if( SPlayer->Player.SoundBufferPlayStateBackupFlagValid )
 				continue ;
 
-			// ƒTƒEƒ“ƒhƒoƒbƒtƒ@‚ÌÄ¶ó‘Ô‚ğ•Û‘¶
+			// ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡ã®å†ç”ŸçŠ¶æ…‹ã‚’ä¿å­˜
 			{
 				int IsPlay ;
 
@@ -18779,7 +18779,7 @@ extern int PauseSoftSoundAll( int PauseFlag )
 					{
 						SPlayer->Player.SoundBufferPlayStateBackupFlag = TRUE ;
 
-						// Ä¶‚³‚ê‚Ä‚¢‚½‚çÄ¶‚ğ~‚ß‚é
+						// å†ç”Ÿã•ã‚Œã¦ã„ãŸã‚‰å†ç”Ÿã‚’æ­¢ã‚ã‚‹
 						SoundBuffer_Stop( &SPlayer->Player.SoundBuffer, TRUE ) ;
 					}
 					else
@@ -18796,18 +18796,18 @@ extern int PauseSoftSoundAll( int PauseFlag )
 	}
 	else
 	{
-		// ÄŠJ‚·‚éê‡
+		// å†é–‹ã™ã‚‹å ´åˆ
 
 		for( List = SoundSysData.SoftSoundPlayerListFirst.Next ; List->Next != NULL ; List = List->Next )
 		{
 			SPlayer = ( SOFTSOUND * )List->Data ;
 
-			// Ä¶’†‚Å‚Í‚È‚¢ê‡‚Ì‚İˆ—
+			// å†ç”Ÿä¸­ã§ã¯ãªã„å ´åˆã®ã¿å‡¦ç†
 			if( SPlayer->Player.IsPlayFlag )
 			{
 				if( SPlayer->Player.SoundBuffer.Valid == FALSE || SoundBuffer_CheckEnable( &SPlayer->Player.SoundBuffer ) == FALSE ) continue ;
 
-				// ƒTƒEƒ“ƒhƒoƒbƒtƒ@‚ÌÄ¶ó‘Ô‚ª—LŒø‚ÅAŠ‚ÂÄ¶‚µ‚Ä‚¢‚½ê‡‚ÍÄ¶‚ğÄŠJ‚·‚é
+				// ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡ã®å†ç”ŸçŠ¶æ…‹ãŒæœ‰åŠ¹ã§ã€ä¸”ã¤å†ç”Ÿã—ã¦ã„ãŸå ´åˆã¯å†ç”Ÿã‚’å†é–‹ã™ã‚‹
 				if( SPlayer->Player.SoundBufferPlayStateBackupFlagValid &&
 					SPlayer->Player.SoundBufferPlayStateBackupFlag )
 				{
@@ -18819,27 +18819,27 @@ extern int PauseSoftSoundAll( int PauseFlag )
 		}
 	}
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 	CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_SOFTSOUND ].CriticalSection ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒTƒEƒ“ƒhƒf[ƒ^‚ğ•Ê‚ÌƒTƒEƒ“ƒhƒf[ƒ^‚ÉƒRƒs[‚·‚é
+// ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ã‚’åˆ¥ã®ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ã«ã‚³ãƒ”ãƒ¼ã™ã‚‹
 extern int CopySoftSound( int SrcSoftSoundHandle, int DestSoftSoundHandle )
 {
 	SOFTSOUND * SSSound ;
 	SOFTSOUND * DSSound ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( SSND_MASKHCHK_ASYNC( SrcSoftSoundHandle, SSSound ) ) return -1 ;
 	if( SSSound->IsPlayer == 1 ) return -1 ;
 
 	if( SSND_MASKHCHK_ASYNC( DestSoftSoundHandle, DSSound ) ) return -1 ;
 	if( DSSound->IsPlayer == 1 ) return -1 ;
 
-	// Œ³ƒf[ƒ^‚Æ“]‘—æ‚ÌƒTƒ“ƒvƒ‹”‚©ƒ`ƒƒƒ“ƒlƒ‹”‚©ƒrƒbƒg”‚ªˆÙ‚È‚éê‡‚ÍƒGƒ‰[
+	// å…ƒãƒ‡ãƒ¼ã‚¿ã¨è»¢é€å…ˆã®ã‚µãƒ³ãƒ—ãƒ«æ•°ã‹ãƒãƒ£ãƒ³ãƒãƒ«æ•°ã‹ãƒ“ãƒƒãƒˆæ•°ãŒç•°ãªã‚‹å ´åˆã¯ã‚¨ãƒ©ãƒ¼
 	if( SSSound->Wave.BufferSampleNum        != DSSound->Wave.BufferSampleNum   ||
 		SSSound->BufferFormat.nChannels      != DSSound->BufferFormat.nChannels ||
 		SSSound->BufferFormat.wBitsPerSample != DSSound->BufferFormat.wBitsPerSample )
@@ -18847,20 +18847,20 @@ extern int CopySoftSound( int SrcSoftSoundHandle, int DestSoftSoundHandle )
 		return -1 ;
 	}
 
-	// Œ³ƒf[ƒ^‚Æ“]‘—æ‚ÌƒtƒH[ƒ}ƒbƒg‚ªˆÙ‚È‚éê‡‚ÍƒGƒ‰[
+	// å…ƒãƒ‡ãƒ¼ã‚¿ã¨è»¢é€å…ˆã®ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆãŒç•°ãªã‚‹å ´åˆã¯ã‚¨ãƒ©ãƒ¼
 	if( SSSound->BufferFormat.wFormatTag != DSSound->BufferFormat.wFormatTag )
 	{
 		return -1 ;
 	}
 
-	// ƒf[ƒ^‚ğƒRƒs[
+	// ãƒ‡ãƒ¼ã‚¿ã‚’ã‚³ãƒ”ãƒ¼
 	_MEMCPY( DSSound->Wave.Buffer, SSSound->Wave.Buffer, ( size_t )( SSSound->Wave.BufferSampleNum * SSSound->BufferFormat.nBlockAlign ) ) ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// intŒ^‚ÌƒTƒEƒ“ƒhƒf[ƒ^‚©‚ç floatŒ^‚ÌƒTƒEƒ“ƒhƒf[ƒ^‚ğƒZƒbƒgƒAƒbƒv‚·‚é
+// intå‹ã®ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰ floatå‹ã®ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã™ã‚‹
 extern int ConvertIntToFloatSoftSound( int SrcSoftSoundHandle, int DestSoftSoundHandle )
 {
 	SOFTSOUND * SSSound ;
@@ -18869,27 +18869,27 @@ extern int ConvertIntToFloatSoftSound( int SrcSoftSoundHandle, int DestSoftSound
 	LONGLONG SrcSampleNum ;
 	float *Dest ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( SSND_MASKHCHK_ASYNC( SrcSoftSoundHandle, SSSound ) ) return -1 ;
 	if( SSSound->IsPlayer == 1 ) return -1 ;
 
 	if( SSND_MASKHCHK_ASYNC( DestSoftSoundHandle, DSSound ) ) return -1 ;
 	if( DSSound->IsPlayer == 1 ) return -1 ;
 
-	// Œ³ƒf[ƒ^‚Æ“]‘—æ‚ÌƒTƒ“ƒvƒ‹”‚©ƒ`ƒƒƒ“ƒlƒ‹”‚ªˆÙ‚È‚éê‡‚ÍƒGƒ‰[
+	// å…ƒãƒ‡ãƒ¼ã‚¿ã¨è»¢é€å…ˆã®ã‚µãƒ³ãƒ—ãƒ«æ•°ã‹ãƒãƒ£ãƒ³ãƒãƒ«æ•°ãŒç•°ãªã‚‹å ´åˆã¯ã‚¨ãƒ©ãƒ¼
 	if( SSSound->Wave.BufferSampleNum   != DSSound->Wave.BufferSampleNum ||
 		SSSound->BufferFormat.nChannels != DSSound->BufferFormat.nChannels )
 	{
 		return -1 ;
 	}
 
-	// Œ³ƒf[ƒ^‚ª float Œ^‚Ìê‡‚ÍƒGƒ‰[
+	// å…ƒãƒ‡ãƒ¼ã‚¿ãŒ float å‹ã®å ´åˆã¯ã‚¨ãƒ©ãƒ¼
 	if( SSSound->BufferFormat.wFormatTag == WAVE_FORMAT_IEEE_FLOAT )
 	{
 		return -1 ;
 	}
 
-	// “]‘—æ‚ª float Œ^‚Å‚Í‚È‚¢ê‡‚ÍƒGƒ‰[
+	// è»¢é€å…ˆãŒ float å‹ã§ã¯ãªã„å ´åˆã¯ã‚¨ãƒ©ãƒ¼
 	if( DSSound->BufferFormat.wFormatTag != WAVE_FORMAT_IEEE_FLOAT )
 	{
 		return -1 ;
@@ -18946,11 +18946,11 @@ extern int ConvertIntToFloatSoftSound( int SrcSoftSoundHandle, int DestSoftSound
 		break ;
 	}
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// floatŒ^‚ÌƒTƒEƒ“ƒhƒf[ƒ^‚©‚ç intŒ^‚ÌƒTƒEƒ“ƒhƒf[ƒ^‚ğƒZƒbƒgƒAƒbƒv‚·‚é
+// floatå‹ã®ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰ intå‹ã®ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã™ã‚‹
 extern int ConvertFloatToIntSoftSound( int SrcSoftSoundHandle, int DestSoftSoundHandle )
 {
 	SOFTSOUND * SSSound ;
@@ -18960,27 +18960,27 @@ extern int ConvertFloatToIntSoftSound( int SrcSoftSoundHandle, int DestSoftSound
 	float *Src ;
 	int ChannelI ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( SSND_MASKHCHK_ASYNC( SrcSoftSoundHandle, SSSound ) ) return -1 ;
 	if( SSSound->IsPlayer == 1 ) return -1 ;
 
 	if( SSND_MASKHCHK_ASYNC( DestSoftSoundHandle, DSSound ) ) return -1 ;
 	if( DSSound->IsPlayer == 1 ) return -1 ;
 
-	// Œ³ƒf[ƒ^‚Æ“]‘—æ‚ÌƒTƒ“ƒvƒ‹”‚©ƒ`ƒƒƒ“ƒlƒ‹”‚ªˆÙ‚È‚éê‡‚ÍƒGƒ‰[
+	// å…ƒãƒ‡ãƒ¼ã‚¿ã¨è»¢é€å…ˆã®ã‚µãƒ³ãƒ—ãƒ«æ•°ã‹ãƒãƒ£ãƒ³ãƒãƒ«æ•°ãŒç•°ãªã‚‹å ´åˆã¯ã‚¨ãƒ©ãƒ¼
 	if( SSSound->Wave.BufferSampleNum   != DSSound->Wave.BufferSampleNum ||
 		SSSound->BufferFormat.nChannels != DSSound->BufferFormat.nChannels )
 	{
 		return -1 ;
 	}
 
-	// Œ³ƒf[ƒ^‚ª int Œ^‚Ìê‡‚ÍƒGƒ‰[
+	// å…ƒãƒ‡ãƒ¼ã‚¿ãŒ int å‹ã®å ´åˆã¯ã‚¨ãƒ©ãƒ¼
 	if( SSSound->BufferFormat.wFormatTag == WAVE_FORMAT_PCM )
 	{
 		return -1 ;
 	}
 
-	// “]‘—æ‚ª int Œ^‚Å‚Í‚È‚¢ê‡‚ÍƒGƒ‰[
+	// è»¢é€å…ˆãŒ int å‹ã§ã¯ãªã„å ´åˆã¯ã‚¨ãƒ©ãƒ¼
 	if( DSSound->BufferFormat.wFormatTag != WAVE_FORMAT_PCM )
 	{
 		return -1 ;
@@ -19057,11 +19057,11 @@ extern int ConvertFloatToIntSoftSound( int SrcSoftSoundHandle, int DestSoftSound
 		break ;
 	}
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒA‚Å§Œä‚·‚é‘S‚Ä‚ÌƒTƒEƒ“ƒhƒf[ƒ^ƒvƒŒƒCƒ„[‚Ì’èŠúˆ—‚ğs‚¤
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§åˆ¶å¾¡ã™ã‚‹å…¨ã¦ã®ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å®šæœŸå‡¦ç†ã‚’è¡Œã†
 extern	int ST_SoftSoundPlayerProcessAll( void )
 {
 	HANDLELIST *List ;
@@ -19076,17 +19076,17 @@ extern	int ST_SoftSoundPlayerProcessAll( void )
 	{
 		SPlayer = ( SOFTSOUND * )List->Data ;
 
-		// Ä¶’†‚Å‚Í‚È‚¢ê‡‚Í‰½‚à‚¹‚¸Ÿ‚Ö
+		// å†ç”Ÿä¸­ã§ã¯ãªã„å ´åˆã¯ä½•ã‚‚ã›ãšæ¬¡ã¸
 		if( SPlayer->Player.IsPlayFlag == FALSE ) continue ;
 
 		_SoftSoundPlayerProcess( SPlayer ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒA‚Å§Œä‚·‚éƒTƒEƒ“ƒhƒf[ƒ^ƒvƒŒƒCƒ„[‚Ì’èŠúˆ—
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§åˆ¶å¾¡ã™ã‚‹ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å®šæœŸå‡¦ç†
 static int _SoftSoundPlayerProcess( SOFTSOUND * SPlayer )
 {
 	int WriteSize, NoneWriteSize, WriteStartPos ;
@@ -19099,16 +19099,16 @@ static int _SoftSoundPlayerProcess( SOFTSOUND * SPlayer )
 
 	if( SoundSysData.InitializeFlag == FALSE ) return -1 ;
 
-	// Ä¶ó‘Ô‚Å‚Í‚È‚¢ê‡‚Í‰½‚à‚µ‚È‚¢
+	// å†ç”ŸçŠ¶æ…‹ã§ã¯ãªã„å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( SPlayer->Player.IsPlayFlag == FALSE ) return 0 ;
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 	CRITICALSECTION_LOCK( &HandleManageArray[ DX_HANDLETYPE_SOFTSOUND ].CriticalSection ) ;
 
-	// Ä¶ˆÊ’u‚Ìæ“¾
+	// å†ç”Ÿä½ç½®ã®å–å¾—
 	SoundBuffer_GetCurrentPosition( &SPlayer->Player.SoundBuffer, &PlayPos, &WritePos ) ;
 
-	// –³‰¹ƒf[ƒ^Ä¶ƒ`ƒFƒbƒN
+	// ç„¡éŸ³ãƒ‡ãƒ¼ã‚¿å†ç”Ÿãƒã‚§ãƒƒã‚¯
 	if( SPlayer->Player.NoneDataSetCompOffset != -1 && SPlayer->Player.NoneDataPlayStartFlag == FALSE )
 	{
 		P = ( DWORD )SPlayer->Player.NoneDataPlayCheckBackPlayOffset ;
@@ -19124,7 +19124,7 @@ static int _SoftSoundPlayerProcess( SOFTSOUND * SPlayer )
 		}
 	}
 
-	// “]‘—‚·‚é•K—v‚ª‚ ‚é‚©‚Ç‚¤‚©‚ğ’²‚×‚é
+	// è»¢é€ã™ã‚‹å¿…è¦ãŒã‚ã‚‹ã‹ã©ã†ã‹ã‚’èª¿ã¹ã‚‹
 	WriteStartPos = ( int )SPlayer->Player.DataSetCompOffset - ( int )SPlayer->Player.MinDataSetSize ;
 	if( WriteStartPos < 0 )
 	{
@@ -19139,7 +19139,7 @@ static int _SoftSoundPlayerProcess( SOFTSOUND * SPlayer )
 		goto END ;
 	}
 
-	// “]‘—‚·‚éƒTƒCƒY‚ğZo‚·‚é
+	// è»¢é€ã™ã‚‹ã‚µã‚¤ã‚ºã‚’ç®—å‡ºã™ã‚‹
 	WriteSize = 0 ;
 	if( S > C )
 	{
@@ -19164,7 +19164,7 @@ static int _SoftSoundPlayerProcess( SOFTSOUND * SPlayer )
 		goto END ;
 	}
 
-	// ƒTƒEƒ“ƒhƒoƒbƒtƒ@‚É“]‘—‚·‚é—LŒøƒf[ƒ^‚ÌƒTƒCƒY‚Æ–³Œøƒf[ƒ^‚ÌƒTƒCƒY‚ğZo
+	// ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡ã«è»¢é€ã™ã‚‹æœ‰åŠ¹ãƒ‡ãƒ¼ã‚¿ã®ã‚µã‚¤ã‚ºã¨ç„¡åŠ¹ãƒ‡ãƒ¼ã‚¿ã®ã‚µã‚¤ã‚ºã‚’ç®—å‡º
 	NoneWriteSize = 0 ;
 	if( WriteSize > SPlayer->Player.StockSampleNum )
 	{
@@ -19179,7 +19179,7 @@ static int _SoftSoundPlayerProcess( SOFTSOUND * SPlayer )
 		}
 	}
 
-	// ƒTƒEƒ“ƒhƒoƒbƒtƒ@‚ğƒƒbƒN‚·‚é
+	// ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡ã‚’ãƒ­ãƒƒã‚¯ã™ã‚‹
 	MoveSize = ( DWORD )( ( NoneWriteSize + WriteSize ) * SPlayer->BufferFormat.nBlockAlign ) ;
 	hr = SoundBuffer_Lock(
 		&SPlayer->Player.SoundBuffer, ( DWORD )SPlayer->Player.DataSetCompOffset,
@@ -19189,7 +19189,7 @@ static int _SoftSoundPlayerProcess( SOFTSOUND * SPlayer )
 	if( hr != 0 )
 		goto END ;
 
-	// –³‰¹ƒf[ƒ^‚ğƒZƒbƒg‚·‚éê‡‚Í–³‰¹ƒf[ƒ^‚ÌƒZƒbƒg‚ğŠJn‚µ‚½ƒIƒtƒZƒbƒg‚ğ•Û‘¶‚·‚é
+	// ç„¡éŸ³ãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆã™ã‚‹å ´åˆã¯ç„¡éŸ³ãƒ‡ãƒ¼ã‚¿ã®ã‚»ãƒƒãƒˆã‚’é–‹å§‹ã—ãŸã‚ªãƒ•ã‚»ãƒƒãƒˆã‚’ä¿å­˜ã™ã‚‹
 	if( NoneWriteSize != 0 && SPlayer->Player.NoneDataSetCompOffset == -1 )
 	{
 		SPlayer->Player.NoneDataSetCompOffset = SPlayer->Player.DataSetCompOffset + WriteSize * SPlayer->BufferFormat.nBlockAlign ;
@@ -19201,7 +19201,7 @@ static int _SoftSoundPlayerProcess( SOFTSOUND * SPlayer )
 		SPlayer->Player.NoneDataPlayStartFlag           = FALSE ;
 	}
 
-	// –³‰¹ƒf[ƒ^Ä¶’†‚É—LŒøƒf[ƒ^‚ğ“]‘—‚·‚éê‡‚Í–³‰¹ƒf[ƒ^Ä¶ƒtƒ‰ƒO‚ğ“|‚·
+	// ç„¡éŸ³ãƒ‡ãƒ¼ã‚¿å†ç”Ÿä¸­ã«æœ‰åŠ¹ãƒ‡ãƒ¼ã‚¿ã‚’è»¢é€ã™ã‚‹å ´åˆã¯ç„¡éŸ³ãƒ‡ãƒ¼ã‚¿å†ç”Ÿãƒ•ãƒ©ã‚°ã‚’å€’ã™
 	if( SPlayer->Player.NoneDataPlayStartFlag && WriteSize != 0 )
 	{
 		SPlayer->Player.NoneDataPlayStartFlag = FALSE ;
@@ -19209,17 +19209,17 @@ static int _SoftSoundPlayerProcess( SOFTSOUND * SPlayer )
 		SPlayer->Player.NoneDataSetCompOffset = -1 ;
 	}
 
-	// cƒTƒ“ƒvƒ‹”‚ğŒ¸‚ç‚·
+	// æ®‹ã‚µãƒ³ãƒ—ãƒ«æ•°ã‚’æ¸›ã‚‰ã™
 	SPlayer->Player.StockSampleNum -= WriteSize ;
 
-	// ƒƒbƒNî•ñ‚ğƒZƒbƒg
+	// ãƒ­ãƒƒã‚¯æƒ…å ±ã‚’ã‚»ãƒƒãƒˆ
 	LockData.StartOffst = ( DWORD )SPlayer->Player.DataSetCompOffset ;
 	LockData.Offset     = 0 ;
 	LockData.Offset2    = 0 ;
 	LockData.Valid      = LockData.Length ;
 	LockData.Valid2     = LockData.Length2 ;
 
-	// —LŒøƒf[ƒ^‚ğ“]‘—
+	// æœ‰åŠ¹ãƒ‡ãƒ¼ã‚¿ã‚’è»¢é€
 	if( LockData.Valid != 0 && WriteSize != 0 )
 	{
 		MoveTempSize = ( DWORD )( WriteSize * SPlayer->BufferFormat.nBlockAlign ) ;
@@ -19243,7 +19243,7 @@ static int _SoftSoundPlayerProcess( SOFTSOUND * SPlayer )
 		WriteSize -= MoveTempSize / SPlayer->BufferFormat.nBlockAlign ;
 	}
 
-	// –³‰¹ƒf[ƒ^‚ğ“]‘—
+	// ç„¡éŸ³ãƒ‡ãƒ¼ã‚¿ã‚’è»¢é€
 	if( LockData.Valid != 0 && NoneWriteSize != 0 )
 	{
 		MoveTempSize = ( DWORD )( NoneWriteSize * SPlayer->BufferFormat.nBlockAlign ) ;
@@ -19277,13 +19277,13 @@ static int _SoftSoundPlayerProcess( SOFTSOUND * SPlayer )
 		NoneWriteSize -= MoveTempSize / SPlayer->BufferFormat.nBlockAlign ;
 	}
 
-	// ƒTƒEƒ“ƒhƒoƒbƒtƒ@‚ÌƒƒbƒN‚ğ‰ğœ‚·‚é
+	// ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡ã®ãƒ­ãƒƒã‚¯ã‚’è§£é™¤ã™ã‚‹
 	SoundBuffer_Unlock(
 		&SPlayer->Player.SoundBuffer,
 		LockData.WriteP,  LockData.Length,
 		LockData.WriteP2, LockData.Length2 ) ;
 
-	// ƒf[ƒ^ƒZƒbƒg‚ªŠ®—¹‚µ‚½ˆÊ’u‚ğ•ÏX‚·‚é
+	// ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆãŒå®Œäº†ã—ãŸä½ç½®ã‚’å¤‰æ›´ã™ã‚‹
 	SPlayer->Player.DataSetCompOffset += MoveSize ;
 	if( SPlayer->Player.DataSetCompOffset >= SPlayer->Player.SoundBufferSize )
 		SPlayer->Player.DataSetCompOffset -= SPlayer->Player.SoundBufferSize ;
@@ -19291,10 +19291,10 @@ static int _SoftSoundPlayerProcess( SOFTSOUND * SPlayer )
 	Result = 0 ;
 END :
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 	CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_SOFTSOUND ].CriticalSection ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return Result ;
 }
 
@@ -19334,36 +19334,36 @@ END :
 
 
 
-// ‚l‚h‚c‚h§ŒäŠÖ”
+// ï¼­ï¼©ï¼¤ï¼©åˆ¶å¾¡é–¢æ•°
 
-// ‚l‚h‚c‚hƒnƒ“ƒhƒ‹‚ğ‰Šú‰»‚ğ‚·‚éŠÖ”
+// ï¼­ï¼©ï¼¤ï¼©ãƒãƒ³ãƒ‰ãƒ«ã‚’åˆæœŸåŒ–ã‚’ã™ã‚‹é–¢æ•°
 extern int InitializeMidiHandle( HANDLEINFO *HandleInfo )
 {
 	MIDIHANDLEDATA *MusicData = ( MIDIHANDLEDATA * )HandleInfo ;
 
-	// ‰¹—Ê‚ğƒZƒbƒg
+	// éŸ³é‡ã‚’ã‚»ãƒƒãƒˆ
 	MusicData->Volume = 255 ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ‚l‚h‚c‚hƒnƒ“ƒhƒ‹‚ÌŒãn––‚ğs‚¤ŠÖ”
+// ï¼­ï¼©ï¼¤ï¼©ãƒãƒ³ãƒ‰ãƒ«ã®å¾Œå§‹æœ«ã‚’è¡Œã†é–¢æ•°
 extern int TerminateMidiHandle( HANDLEINFO *HandleInfo )
 {
 	MIDIHANDLEDATA *MusicData = ( MIDIHANDLEDATA * )HandleInfo ;
 
-	// ‰¹‚ÌÄ¶‚ğ~‚ß‚é
+	// éŸ³ã®å†ç”Ÿã‚’æ­¢ã‚ã‚‹
 	if( NS_CheckMusicMem( HandleInfo->Handle ) == TRUE )
 		NS_StopMusicMem( HandleInfo->Handle ) ;
 
-	// ŠÂ‹«ˆË‘¶ˆ—
+	// ç’°å¢ƒä¾å­˜å‡¦ç†
 	if( TerminateMidiHandle_PF( MusicData ) < 0 )
 	{
 		return -1 ;
 	}
 
-	// ‚l‚h‚c‚hƒf[ƒ^‚Ì‰ğ•ú
+	// ï¼­ï¼©ï¼¤ï¼©ãƒ‡ãƒ¼ã‚¿ã®è§£æ”¾
 	if( MusicData->DataImage != NULL )
 	{
 		_MEMSET( MusicData->DataImage, 0, ( size_t )MusicData->DataSize );
@@ -19371,11 +19371,11 @@ extern int TerminateMidiHandle( HANDLEINFO *HandleInfo )
 		MusicData->DataImage = NULL ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// V‚µ‚¢‚l‚h‚c‚hƒnƒ“ƒhƒ‹‚ğæ“¾‚·‚é
+// æ–°ã—ã„ï¼­ï¼©ï¼¤ï¼©ãƒãƒ³ãƒ‰ãƒ«ã‚’å–å¾—ã™ã‚‹
 extern int NS_AddMusicData( void )
 {
 	int NewHandle ;
@@ -19385,13 +19385,13 @@ extern int NS_AddMusicData( void )
 	return NewHandle ;
 }
 
-// ‚l‚h‚c‚hƒnƒ“ƒhƒ‹‚ğíœ‚·‚é
+// ï¼­ï¼©ï¼¤ï¼©ãƒãƒ³ãƒ‰ãƒ«ã‚’å‰Šé™¤ã™ã‚‹
 extern int NS_DeleteMusicMem( int MusicHandle )
 {
 	return SubHandle( MusicHandle, GetASyncLoadFlag(), FALSE ) ;
 }
 
-// LoadMusicMemByMemImage ‚ÌÀˆ—ŠÖ”
+// LoadMusicMemByMemImage ã®å®Ÿå‡¦ç†é–¢æ•°
 extern int LoadMusicMemByMemImage_Static(
 	int MusicHandle,
 	const void *FileImage,
@@ -19412,31 +19412,31 @@ extern int LoadMusicMemByMemImage_Static(
 			return -1 ;
 	}
 
-	// ƒCƒ[ƒW‚ÌƒRƒs[‚ğì¬
+	// ã‚¤ãƒ¡ãƒ¼ã‚¸ã®ã‚³ãƒ”ãƒ¼ã‚’ä½œæˆ
 	MusicData->DataImage = DXALLOC( FileImageSize ) ;
 	if( MusicData->DataImage == NULL )
 	{
-		DXST_LOGFILE_ADDUTF16LE( "\xdf\x30\xe5\x30\xfc\x30\xb8\x30\xc3\x30\xaf\x30\xc7\x30\xfc\x30\xbf\x30\x92\x30\x00\x4e\x42\x66\x84\x76\x6b\x30\xdd\x4f\x58\x5b\x57\x30\x66\x30\x4a\x30\x4f\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ƒ~ƒ…[ƒWƒbƒNƒf[ƒ^‚ğˆê“I‚É•Û‘¶‚µ‚Ä‚¨‚­ƒƒ‚ƒŠ—Ìˆæ‚ÌŠm•Û‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+		DXST_LOGFILE_ADDUTF16LE( "\xdf\x30\xe5\x30\xfc\x30\xb8\x30\xc3\x30\xaf\x30\xc7\x30\xfc\x30\xbf\x30\x92\x30\x00\x4e\x42\x66\x84\x76\x6b\x30\xdd\x4f\x58\x5b\x57\x30\x66\x30\x4a\x30\x4f\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ãƒŸãƒ¥ãƒ¼ã‚¸ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã‚’ä¸€æ™‚çš„ã«ä¿å­˜ã—ã¦ãŠããƒ¡ãƒ¢ãƒªé ˜åŸŸã®ç¢ºä¿ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 		return -1 ;
 	}
 	_MEMCPY( MusicData->DataImage, FileImage, FileImageSize ) ;
 	MusicData->DataSize = FileImageSize ;
 
-	// ŠÂ‹«ˆË‘¶ˆ—
+	// ç’°å¢ƒä¾å­˜å‡¦ç†
 	if( LoadMusicMemByMemImage_Static_PF( MusicData, ASyncThread ) < 0 )
 	{
 		return -1 ;
 	}
 
-	// Ä¶’†ƒtƒ‰ƒO‚ğ“|‚·
+	// å†ç”Ÿä¸­ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 	MusicData->PlayFlag = FALSE ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
 #ifndef DX_NON_ASYNCLOAD
-// LoadMusicMemByMemImage ‚Ì”ñ“¯Šú“Ç‚İ‚İƒXƒŒƒbƒh‚©‚çŒÄ‚Î‚ê‚éŠÖ”
+// LoadMusicMemByMemImage ã®éåŒæœŸèª­ã¿è¾¼ã¿ã‚¹ãƒ¬ãƒƒãƒ‰ã‹ã‚‰å‘¼ã°ã‚Œã‚‹é–¢æ•°
 static void LoadMusicMemByMemImage_ASync( ASYNCLOADDATA_COMMON *AParam )
 {
 	int MusicHandle ;
@@ -19465,7 +19465,7 @@ static void LoadMusicMemByMemImage_ASync( ASYNCLOADDATA_COMMON *AParam )
 }
 #endif // DX_NON_ASYNCLOAD
 
-// LoadMusicMemByMemImage ‚ÌƒOƒ[ƒoƒ‹•Ï”‚ÉƒAƒNƒZƒX‚µ‚È‚¢ƒo[ƒWƒ‡ƒ“
+// LoadMusicMemByMemImage ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°ã«ã‚¢ã‚¯ã‚»ã‚¹ã—ãªã„ãƒãƒ¼ã‚¸ãƒ§ãƒ³
 extern int LoadMusicMemByMemImage_UseGParam(
 	const void *FileImage,
 	size_t FileImageSize,
@@ -19477,10 +19477,10 @@ extern int LoadMusicMemByMemImage_UseGParam(
 	if( SoundSysData.InitializeFlag == FALSE )
 		return -1 ;
 
-	// ƒ\ƒtƒg‚ª”ñƒAƒNƒeƒBƒu‚Ìê‡‚ÍƒAƒNƒeƒBƒu‚É‚È‚é‚Ü‚Å‘Ò‚Â
+	// ã‚½ãƒ•ãƒˆãŒéã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã®å ´åˆã¯ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ãªã‚‹ã¾ã§å¾…ã¤
 	CheckActiveState() ;
 
-	// ƒnƒ“ƒhƒ‹‚Ìì¬
+	// ãƒãƒ³ãƒ‰ãƒ«ã®ä½œæˆ
 	MusicHandle = AddHandle( DX_HANDLETYPE_MUSIC, FALSE, -1 ) ;
 	if( MusicHandle == -1 ) return -1 ;
 
@@ -19490,25 +19490,25 @@ extern int LoadMusicMemByMemImage_UseGParam(
 		ASYNCLOADDATA_COMMON *AParam = NULL ;
 		int Addr ;
 
-		// ƒpƒ‰ƒ[ƒ^‚É•K—v‚Èƒƒ‚ƒŠ‚ÌƒTƒCƒY‚ğZo
+		// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã«å¿…è¦ãªãƒ¡ãƒ¢ãƒªã®ã‚µã‚¤ã‚ºã‚’ç®—å‡º
 		Addr = 0 ;
 		AddASyncLoadParamInt( NULL, &Addr, MusicHandle ) ;
 		AddASyncLoadParamConstVoidP( NULL, &Addr, FileImage ) ;
 		AddASyncLoadParamSize_t( NULL, &Addr, FileImageSize ) ;
 
-		// ƒƒ‚ƒŠ‚ÌŠm•Û
+		// ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿
 		AParam = AllocASyncLoadDataMemory( Addr ) ;
 		if( AParam == NULL )
 			goto ERR ;
 
-		// ˆ—‚É•K—v‚Èî•ñ‚ğƒZƒbƒg
+		// å‡¦ç†ã«å¿…è¦ãªæƒ…å ±ã‚’ã‚»ãƒƒãƒˆ
 		AParam->ProcessFunction = LoadMusicMemByMemImage_ASync ;
 		Addr = 0 ;
 		AddASyncLoadParamInt( AParam->Data, &Addr, MusicHandle ) ;
 		AddASyncLoadParamConstVoidP( AParam->Data, &Addr, FileImage ) ;
 		AddASyncLoadParamSize_t( AParam->Data, &Addr, FileImageSize ) ;
 
-		// ƒf[ƒ^‚ğ’Ç‰Á
+		// ãƒ‡ãƒ¼ã‚¿ã‚’è¿½åŠ 
 		if( AddASyncLoadData( AParam ) < 0 )
 		{
 			DXFREE( AParam ) ;
@@ -19516,7 +19516,7 @@ extern int LoadMusicMemByMemImage_UseGParam(
 			goto ERR ;
 		}
 
-		// ”ñ“¯Šú“Ç‚İ‚İƒJƒEƒ“ƒg‚ğƒCƒ“ƒNƒŠƒƒ“ƒg
+		// éåŒæœŸèª­ã¿è¾¼ã¿ã‚«ã‚¦ãƒ³ãƒˆã‚’ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆ
 		IncASyncLoadCount( MusicHandle, AParam->Index ) ;
 	}
 	else
@@ -19526,7 +19526,7 @@ extern int LoadMusicMemByMemImage_UseGParam(
 			goto ERR ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return MusicHandle ;
 
 ERR :
@@ -19535,13 +19535,13 @@ ERR :
 	return -1 ;
 }
 
-// ƒƒ‚ƒŠã‚É“WŠJ‚³‚ê‚½‚l‚h‚c‚hƒtƒ@ƒCƒ‹‚ğ“Ç‚İ‚Ş
+// ãƒ¡ãƒ¢ãƒªä¸Šã«å±•é–‹ã•ã‚ŒãŸï¼­ï¼©ï¼¤ï¼©ãƒ•ã‚¡ã‚¤ãƒ«ã‚’èª­ã¿è¾¼ã‚€
 extern int NS_LoadMusicMemByMemImage( const void *FileImageBuffer, size_t FileImageSize )
 {
 	return LoadMusicMemByMemImage_UseGParam( FileImageBuffer, FileImageSize, GetASyncLoadFlag() ) ;
 }
 
-// LoadMusicMem ‚ÌÀˆ—ŠÖ”
+// LoadMusicMem ã®å®Ÿå‡¦ç†é–¢æ•°
 static int LoadMusicMem_Static(
 	int MusicHandle,
 	const wchar_t *FileName,
@@ -19565,7 +19565,7 @@ static int LoadMusicMem_Static(
 			return -1 ;
 	}
 
-	// ƒtƒ@ƒCƒ‹‚Ì“Ç‚İ‚İ
+	// ãƒ•ã‚¡ã‚¤ãƒ«ã®èª­ã¿è¾¼ã¿
 	{
 		fp = DX_FOPEN( FileName ) ;
 		if( fp == 0 )
@@ -19587,13 +19587,13 @@ static int LoadMusicMem_Static(
 		fp = 0 ;
 	}
 
-	// ƒnƒ“ƒhƒ‹‚ÌƒZƒbƒgƒAƒbƒv
+	// ãƒãƒ³ãƒ‰ãƒ«ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 	Ret = LoadMusicMemByMemImage_Static( MusicHandle, Buffer, FileSize, ASyncThread ) ;
 
-	// ƒƒ‚ƒŠ‚Ì‰ğ•ú
+	// ãƒ¡ãƒ¢ãƒªã®è§£æ”¾
 	DXFREE( Buffer ) ;
 
-	// Œ‹‰Ê‚ğ•Ô‚·
+	// çµæœã‚’è¿”ã™
 	return Ret ;
 
 ERR :
@@ -19604,7 +19604,7 @@ ERR :
 }
 
 #ifndef DX_NON_ASYNCLOAD
-// LoadMusicMem ‚Ì”ñ“¯Šú“Ç‚İ‚İƒXƒŒƒbƒh‚©‚çŒÄ‚Î‚ê‚éŠÖ”
+// LoadMusicMem ã®éåŒæœŸèª­ã¿è¾¼ã¿ã‚¹ãƒ¬ãƒƒãƒ‰ã‹ã‚‰å‘¼ã°ã‚Œã‚‹é–¢æ•°
 static void LoadMusicMem_ASync( ASYNCLOADDATA_COMMON *AParam )
 {
 	int MusicHandle ;
@@ -19631,7 +19631,7 @@ static void LoadMusicMem_ASync( ASYNCLOADDATA_COMMON *AParam )
 }
 #endif // DX_NON_ASYNCLOAD
 
-// LoadMusicMem ‚ÌƒOƒ[ƒoƒ‹•Ï”‚ÉƒAƒNƒZƒX‚µ‚È‚¢ƒo[ƒWƒ‡ƒ“
+// LoadMusicMem ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°ã«ã‚¢ã‚¯ã‚»ã‚¹ã—ãªã„ãƒãƒ¼ã‚¸ãƒ§ãƒ³
 extern int LoadMusicMem_UseGParam(
 	const wchar_t *FileName,
 	int ASyncLoadFlag
@@ -19642,10 +19642,10 @@ extern int LoadMusicMem_UseGParam(
 	if( SoundSysData.InitializeFlag == FALSE )
 		return -1 ;
 
-	// ƒ\ƒtƒg‚ª”ñƒAƒNƒeƒBƒu‚Ìê‡‚ÍƒAƒNƒeƒBƒu‚É‚È‚é‚Ü‚Å‘Ò‚Â
+	// ã‚½ãƒ•ãƒˆãŒéã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã®å ´åˆã¯ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ãªã‚‹ã¾ã§å¾…ã¤
 	CheckActiveState() ;
 
-	// ƒnƒ“ƒhƒ‹‚Ìì¬
+	// ãƒãƒ³ãƒ‰ãƒ«ã®ä½œæˆ
 	MusicHandle = AddHandle( DX_HANDLETYPE_MUSIC, FALSE, -1 ) ;
 	if( MusicHandle == -1 ) return -1 ;
 
@@ -19658,23 +19658,23 @@ extern int LoadMusicMem_UseGParam(
 
 		ConvertFullPathW_( FileName, FullPath, sizeof( FullPath ) ) ;
 
-		// ƒpƒ‰ƒ[ƒ^‚É•K—v‚Èƒƒ‚ƒŠ‚ÌƒTƒCƒY‚ğZo
+		// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã«å¿…è¦ãªãƒ¡ãƒ¢ãƒªã®ã‚µã‚¤ã‚ºã‚’ç®—å‡º
 		Addr = 0 ;
 		AddASyncLoadParamInt( NULL, &Addr, MusicHandle ) ;
 		AddASyncLoadParamString( NULL, &Addr, FullPath ) ;
 
-		// ƒƒ‚ƒŠ‚ÌŠm•Û
+		// ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿
 		AParam = AllocASyncLoadDataMemory( Addr ) ;
 		if( AParam == NULL )
 			goto ERR ;
 
-		// ˆ—‚É•K—v‚Èî•ñ‚ğƒZƒbƒg
+		// å‡¦ç†ã«å¿…è¦ãªæƒ…å ±ã‚’ã‚»ãƒƒãƒˆ
 		AParam->ProcessFunction = LoadMusicMem_ASync ;
 		Addr = 0 ;
 		AddASyncLoadParamInt( AParam->Data, &Addr, MusicHandle ) ;
 		AddASyncLoadParamString( AParam->Data, &Addr, FullPath ) ;
 
-		// ƒf[ƒ^‚ğ’Ç‰Á
+		// ãƒ‡ãƒ¼ã‚¿ã‚’è¿½åŠ 
 		if( AddASyncLoadData( AParam ) < 0 )
 		{
 			DXFREE( AParam ) ;
@@ -19682,7 +19682,7 @@ extern int LoadMusicMem_UseGParam(
 			goto ERR ;
 		}
 
-		// ”ñ“¯Šú“Ç‚İ‚İƒJƒEƒ“ƒg‚ğƒCƒ“ƒNƒŠƒƒ“ƒg
+		// éåŒæœŸèª­ã¿è¾¼ã¿ã‚«ã‚¦ãƒ³ãƒˆã‚’ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆ
 		IncASyncLoadCount( MusicHandle, AParam->Index ) ;
 	}
 	else
@@ -19692,7 +19692,7 @@ extern int LoadMusicMem_UseGParam(
 			goto ERR ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return MusicHandle ;
 
 ERR :
@@ -19701,7 +19701,7 @@ ERR :
 	return -1 ;
 }
 
-// ‚l‚h‚c‚hƒtƒ@ƒCƒ‹‚ğ“Ç‚İ‚Ş
+// ï¼­ï¼©ï¼¤ï¼©ãƒ•ã‚¡ã‚¤ãƒ«ã‚’èª­ã¿è¾¼ã‚€
 extern int NS_LoadMusicMem( const TCHAR *FileName )
 {
 #ifdef UNICODE
@@ -19723,7 +19723,7 @@ extern int NS_LoadMusicMem( const TCHAR *FileName )
 #endif
 }
 
-// ‚l‚h‚c‚hƒtƒ@ƒCƒ‹‚ğ“Ç‚İ‚İ‚l‚h‚c‚hƒnƒ“ƒhƒ‹‚ğì¬‚·‚é
+// ï¼­ï¼©ï¼¤ï¼©ãƒ•ã‚¡ã‚¤ãƒ«ã‚’èª­ã¿è¾¼ã¿ï¼­ï¼©ï¼¤ï¼©ãƒãƒ³ãƒ‰ãƒ«ã‚’ä½œæˆã™ã‚‹
 extern int NS_LoadMusicMemWithStrLen( const TCHAR *FileName, size_t FileNameLength )
 {
 	int Result ;
@@ -19739,13 +19739,13 @@ extern int NS_LoadMusicMemWithStrLen( const TCHAR *FileName, size_t FileNameLeng
 	return Result ;
 }
 
-// ‚l‚h‚c‚hƒtƒ@ƒCƒ‹‚ğ“Ç‚İ‚Ş
+// ï¼­ï¼©ï¼¤ï¼©ãƒ•ã‚¡ã‚¤ãƒ«ã‚’èª­ã¿è¾¼ã‚€
 extern int LoadMusicMem_WCHAR_T( const wchar_t *FileName )
 {
 	return LoadMusicMem_UseGParam( FileName, GetASyncLoadFlag() ) ;
 }
 
-// “Ç‚İ‚ñ‚¾‚l‚h‚c‚hƒf[ƒ^‚Ì‰‰‘t‚ğŠJn‚·‚é
+// èª­ã¿è¾¼ã‚“ã ï¼­ï¼©ï¼¤ï¼©ãƒ‡ãƒ¼ã‚¿ã®æ¼”å¥ã‚’é–‹å§‹ã™ã‚‹
 extern int NS_PlayMusicMem( int MusicHandle, int PlayType )
 {
 	MIDIHANDLEDATA * MusicData ;
@@ -19756,28 +19756,28 @@ extern int NS_PlayMusicMem( int MusicHandle, int PlayType )
 		return -1 ;
 	}
 
-	// ƒfƒtƒHƒ‹ƒgƒnƒ“ƒhƒ‹‚©‚Ç‚¤‚©‚ğƒ`ƒFƒbƒN
+	// ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãƒãƒ³ãƒ‰ãƒ«ã‹ã©ã†ã‹ã‚’ãƒã‚§ãƒƒã‚¯
 	IsDefaultHandle = ( MusicHandle != 0 && MusicHandle == MidiSystemData.DefaultHandle ) ? TRUE : FALSE ;
 
-	// ƒ\ƒtƒg‚ª”ñƒAƒNƒeƒBƒu‚Ìê‡‚ÍƒAƒNƒeƒBƒu‚É‚È‚é‚Ü‚Å‘Ò‚Â
+	// ã‚½ãƒ•ãƒˆãŒéã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã®å ´åˆã¯ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ãªã‚‹ã¾ã§å¾…ã¤
 	CheckActiveState() ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( MIDI_MASKHCHK( MusicHandle, MusicData ) )
 		return -1 ;
 
-	// ‰‰‘t‚ğ’â~‚·‚é
+	// æ¼”å¥ã‚’åœæ­¢ã™ã‚‹
 	NS_StopMusicMem( MidiSystemData.PlayHandle ) ;
 
-	// ŠÂ‹«ˆË‘¶ˆ—
+	// ç’°å¢ƒä¾å­˜å‡¦ç†
 	if( PlayMusicMem_PF( MusicData, PlayType ) < 0 )
 	{
 		return -1 ;
 	}
 
-	MidiSystemData.PlayFlag		= TRUE ;								// ‰‰‘tƒtƒ‰ƒO‚ğ—§‚Ä‚é
-	MidiSystemData.PlayHandle	= MusicHandle ;							// ‰‰‘t‚µ‚Ä‚¢‚éƒnƒ“ƒhƒ‹‚ÌXV
-	MidiSystemData.LoopFlag		= PlayType == DX_PLAYTYPE_LOOP ;		// ƒ‹[ƒvƒtƒ‰ƒO‚ğƒZƒbƒg‚·‚é
+	MidiSystemData.PlayFlag		= TRUE ;								// æ¼”å¥ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
+	MidiSystemData.PlayHandle	= MusicHandle ;							// æ¼”å¥ã—ã¦ã„ã‚‹ãƒãƒ³ãƒ‰ãƒ«ã®æ›´æ–°
+	MidiSystemData.LoopFlag		= PlayType == DX_PLAYTYPE_LOOP ;		// ãƒ«ãƒ¼ãƒ—ãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 
 	if( MIDI_MASKHCHK( MusicHandle, MusicData ) )
 	{
@@ -19785,14 +19785,14 @@ extern int NS_PlayMusicMem( int MusicHandle, int PlayType )
 	}
 	else
 	{
-		MusicData->PlayFlag			= TRUE ;								// ó‘Ô‚ğÄ¶’†‚É‚·‚é
-		MusicData->PlayStartFlag	= FALSE ;								// ‰‰‘t‚ªŠJn‚³‚ê‚½‚©ƒtƒ‰ƒO‚ğ“|‚·
+		MusicData->PlayFlag			= TRUE ;								// çŠ¶æ…‹ã‚’å†ç”Ÿä¸­ã«ã™ã‚‹
+		MusicData->PlayStartFlag	= FALSE ;								// æ¼”å¥ãŒé–‹å§‹ã•ã‚ŒãŸã‹ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 	}
 
-	// ‰‰‘tI—¹‚Ü‚Å‘Ò‚Âw’è‚Ìê‡‚Í‚±‚±‚Å‘Ò‚Â
+	// æ¼”å¥çµ‚äº†ã¾ã§å¾…ã¤æŒ‡å®šã®å ´åˆã¯ã“ã“ã§å¾…ã¤
 	if( PlayType == DX_PLAYTYPE_NORMAL )
 	{
-		// Ä¶I—¹‚Ü‚Å‘Ò‚Â
+		// å†ç”Ÿçµ‚äº†ã¾ã§å¾…ã¤
 		while( NS_ProcessMessage() == 0 )
 		{
 			if( IsDefaultHandle )
@@ -19811,7 +19811,7 @@ extern int NS_PlayMusicMem( int MusicHandle, int PlayType )
 			}
 		}
 
-		// ’â~ˆ—‚ğs‚¤
+		// åœæ­¢å‡¦ç†ã‚’è¡Œã†
 		if( IsDefaultHandle )
 		{
 			NS_StopMusic() ;
@@ -19821,7 +19821,7 @@ extern int NS_PlayMusicMem( int MusicHandle, int PlayType )
 			NS_StopMusicMem( MusicHandle ) ;
 		}
 
-		// ƒeƒ“ƒ|ƒ‰ƒŠƒtƒ@ƒCƒ‹‚©‚çÄ¶‚³‚ê‚Ä‚¢‚½ê‡‚Ííœ‚·‚é
+		// ãƒ†ãƒ³ãƒãƒ©ãƒªãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰å†ç”Ÿã•ã‚Œã¦ã„ãŸå ´åˆã¯å‰Šé™¤ã™ã‚‹
 //		if( MidiSystemData.MemImagePlayFlag == TRUE )
 //		{
 //			DeleteFileW( MidiSystemData.FileName ) ;
@@ -19829,11 +19829,11 @@ extern int NS_PlayMusicMem( int MusicHandle, int PlayType )
 //		MidiSystemData.MemImagePlayFlag = FALSE ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ‚l‚h‚c‚hƒf[ƒ^‚Ì‰‰‘t‚ğ’â~‚·‚é
+// ï¼­ï¼©ï¼¤ï¼©ãƒ‡ãƒ¼ã‚¿ã®æ¼”å¥ã‚’åœæ­¢ã™ã‚‹
 extern int NS_StopMusicMem( int MusicHandle )
 {
 	MIDIHANDLEDATA * MusicData ;
@@ -19843,11 +19843,11 @@ extern int NS_StopMusicMem( int MusicHandle )
 		return -1 ;
 	}
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( MIDI_MASKHCHK( MusicHandle, MusicData ) )
 		return -1 ;
 
-	// ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹‚ÌÄ¶‚Ìê‡‚ÍƒTƒEƒ“ƒh‚ğ~‚ß‚é
+	// ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ã®å†ç”Ÿã®å ´åˆã¯ã‚µã‚¦ãƒ³ãƒ‰ã‚’æ­¢ã‚ã‚‹
 	if( MidiSystemData.DefaultHandle != 0 && MidiSystemData.DefaultHandleToSoundHandleFlag == TRUE )
 	{
 		NS_StopSoundMem( MidiSystemData.DefaultHandle, FALSE ) ;
@@ -19857,26 +19857,26 @@ extern int NS_StopMusicMem( int MusicHandle )
 		return 0 ;
 	}
 
-	// ƒ‹[ƒvƒtƒ‰ƒO‚ğ“|‚·
+	// ãƒ«ãƒ¼ãƒ—ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 	MidiSystemData.LoopFlag = FALSE ;
 
-	// ŠÂ‹«ˆË‘¶ˆ—
+	// ç’°å¢ƒä¾å­˜å‡¦ç†
 	if( StopMusicMem_PF( MusicData ) < 0 )
 	{
 		return -1 ;
 	}
 
-	// ó‘Ô‚ğ’â~’†‚É‚·‚é
+	// çŠ¶æ…‹ã‚’åœæ­¢ä¸­ã«ã™ã‚‹
 	MusicData->PlayFlag = FALSE ;
 
-	// ‰‰‘t‚ªŠJn‚³‚ê‚½‚©ƒtƒ‰ƒO‚ğ“|‚·
+	// æ¼”å¥ãŒé–‹å§‹ã•ã‚ŒãŸã‹ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 	MusicData->PlayStartFlag = FALSE ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ‚l‚h‚c‚hƒf[ƒ^‚ª‰‰‘t’†‚©‚Ç‚¤‚©‚ğæ“¾‚·‚é( TRUE:‰‰‘t’†  FALSE:’â~’† )
+// ï¼­ï¼©ï¼¤ï¼©ãƒ‡ãƒ¼ã‚¿ãŒæ¼”å¥ä¸­ã‹ã©ã†ã‹ã‚’å–å¾—ã™ã‚‹( TRUE:æ¼”å¥ä¸­  FALSE:åœæ­¢ä¸­ )
 extern int NS_CheckMusicMem( int MusicHandle )
 {
 	MIDIHANDLEDATA * MusicData ;
@@ -19887,23 +19887,23 @@ extern int NS_CheckMusicMem( int MusicHandle )
 		return -1 ;
 	}
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( MIDI_MASKHCHK( MusicHandle, MusicData ) )
 		return -1 ;
 
-	// ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹‚ÌÄ¶‚Ìê‡‚ÍƒTƒEƒ“ƒh‚ÌÄ¶ó‘Ô‚ğ•Ô‚·
+	// ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ã®å†ç”Ÿã®å ´åˆã¯ã‚µã‚¦ãƒ³ãƒ‰ã®å†ç”ŸçŠ¶æ…‹ã‚’è¿”ã™
 	if( MidiSystemData.DefaultHandle != 0 && MidiSystemData.DefaultHandleToSoundHandleFlag == TRUE )
 	{
 		return NS_CheckSoundMem( MidiSystemData.DefaultHandle ) ;
 	}
 
-	// ŠÂ‹«ˆË‘¶ˆ—
+	// ç’°å¢ƒä¾å­˜å‡¦ç†
 	Result = CheckMusicMem_PF( MusicData ) ;
 
 	return Result ;
 }
 
-// ‚l‚h‚c‚hƒf[ƒ^‚ÌÄ¶‰¹—Ê‚ğƒZƒbƒg‚·‚é
+// ï¼­ï¼©ï¼¤ï¼©ãƒ‡ãƒ¼ã‚¿ã®å†ç”ŸéŸ³é‡ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern int NS_SetVolumeMusicMem( int Volume, int MusicHandle )
 {
 	MIDIHANDLEDATA * MusicData ;
@@ -19913,14 +19913,14 @@ extern int NS_SetVolumeMusicMem( int Volume, int MusicHandle )
 		return -1 ;
 	}
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( MIDI_MASKHCHK( MusicHandle, MusicData ) )
 		return -1 ;
 
-	// ‰¹—Ê‚ğƒZƒbƒg
+	// éŸ³é‡ã‚’ã‚»ãƒƒãƒˆ
 	MusicData->Volume = Volume ;
 
-	// ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹‚ÌÄ¶‚Ìê‡‚ÍƒTƒEƒ“ƒh‚Ì‰¹—Ê‚ğ•ÏX‚·‚é
+	// ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ã®å†ç”Ÿã®å ´åˆã¯ã‚µã‚¦ãƒ³ãƒ‰ã®éŸ³é‡ã‚’å¤‰æ›´ã™ã‚‹
 	if( MidiSystemData.DefaultHandle != 0 && MidiSystemData.DefaultHandleToSoundHandleFlag == TRUE )
 	{
 		return NS_ChangeVolumeSoundMem( Volume, MidiSystemData.DefaultHandle );
@@ -19929,13 +19929,13 @@ extern int NS_SetVolumeMusicMem( int Volume, int MusicHandle )
 	return NS_SetVolumeMusic( Volume )  ;
 }
 
-// ‚l‚h‚c‚hƒf[ƒ^ƒnƒ“ƒhƒ‹‚ğ‚·‚×‚Äíœ‚·‚é
+// ï¼­ï¼©ï¼¤ï¼©ãƒ‡ãƒ¼ã‚¿ãƒãƒ³ãƒ‰ãƒ«ã‚’ã™ã¹ã¦å‰Šé™¤ã™ã‚‹
 extern int NS_InitMusicMem( void )
 {
 	return AllHandleSub( DX_HANDLETYPE_MUSIC ) ;
 }
 
-// ‚l‚h‚c‚hƒf[ƒ^‚ÌüŠú“Iˆ—
+// ï¼­ï¼©ï¼¤ï¼©ãƒ‡ãƒ¼ã‚¿ã®å‘¨æœŸçš„å‡¦ç†
 extern int NS_ProcessMusicMem( void )
 {
 	MIDIHANDLEDATA * MusicData ;
@@ -19960,11 +19960,11 @@ extern int NS_ProcessMusicMem( void )
 		}
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0;
 }
 
-// ‚l‚h‚c‚hƒf[ƒ^‚ÌŒ»İ‚ÌÄ¶ˆÊ’u‚ğæ“¾‚·‚é
+// ï¼­ï¼©ï¼¤ï¼©ãƒ‡ãƒ¼ã‚¿ã®ç¾åœ¨ã®å†ç”Ÿä½ç½®ã‚’å–å¾—ã™ã‚‹
 extern int NS_GetMusicMemPosition( int MusicHandle )
 {
 	MIDIHANDLEDATA * MusicData ;
@@ -19975,11 +19975,11 @@ extern int NS_GetMusicMemPosition( int MusicHandle )
 		return -1 ;
 	}
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( MIDI_MASKHCHK( MusicHandle, MusicData ) )
 		return -1 ;
 
-	// ŠÂ‹«ˆË‘¶ˆ—
+	// ç’°å¢ƒä¾å­˜å‡¦ç†
 	Result = GetMusicMemPosition_PF( MusicData ) ;
 
 	return Result ;
@@ -19987,7 +19987,7 @@ extern int NS_GetMusicMemPosition( int MusicHandle )
 
 
 
-// ‚l‚h‚c‚hƒtƒ@ƒCƒ‹‚ğÄ¶‚·‚é
+// ï¼­ï¼©ï¼¤ï¼©ãƒ•ã‚¡ã‚¤ãƒ«ã‚’å†ç”Ÿã™ã‚‹
 extern int NS_PlayMusic( const TCHAR *FileName , int PlayType )
 {
 #ifdef UNICODE
@@ -20009,7 +20009,7 @@ extern int NS_PlayMusic( const TCHAR *FileName , int PlayType )
 #endif
 }
 
-// ‚l‚h‚c‚hƒtƒ@ƒCƒ‹‚ğ‰‰‘t‚·‚é
+// ï¼­ï¼©ï¼¤ï¼©ãƒ•ã‚¡ã‚¤ãƒ«ã‚’æ¼”å¥ã™ã‚‹
 extern int NS_PlayMusicWithStrLen( const TCHAR *FileName, size_t FileNameLength, int PlayType )
 {
 	int Result ;
@@ -20026,10 +20026,10 @@ extern int NS_PlayMusicWithStrLen( const TCHAR *FileName, size_t FileNameLength,
 }
 
 
-// ‚l‚h‚c‚hƒtƒ@ƒCƒ‹‚ğÄ¶‚·‚é
+// ï¼­ï¼©ï¼¤ï¼©ãƒ•ã‚¡ã‚¤ãƒ«ã‚’å†ç”Ÿã™ã‚‹
 extern int PlayMusic_WCHAR_T( const wchar_t *FileName , int PlayType )
 {
-	// ‚à‚µ‰‰‘t’†‚¾‚Á‚½‚ç~‚ß‚é
+	// ã‚‚ã—æ¼”å¥ä¸­ã ã£ãŸã‚‰æ­¢ã‚ã‚‹
 	if( MidiSystemData.DefaultHandle != 0 )
 	{
 		if( MidiSystemData.DefaultHandleToSoundHandleFlag == TRUE )
@@ -20043,7 +20043,7 @@ extern int PlayMusic_WCHAR_T( const wchar_t *FileName , int PlayType )
 		MidiSystemData.DefaultHandle = 0 ;
 	}
 
-	// “Ç‚İ‚İ
+	// èª­ã¿è¾¼ã¿
 	MidiSystemData.DefaultHandle = LoadMusicMem_UseGParam( FileName, FALSE ) ;
 	if( MidiSystemData.DefaultHandle == -1 )
 	{
@@ -20052,12 +20052,12 @@ extern int PlayMusic_WCHAR_T( const wchar_t *FileName , int PlayType )
 	}
 	MidiSystemData.DefaultHandleToSoundHandleFlag = FALSE ;
 
-	// ‰‰‘t
+	// æ¼”å¥
 	if( NS_PlayMusicMem( MidiSystemData.DefaultHandle, PlayType ) == -1 )
 	{
 		LOADSOUND_GPARAM GParam ;
 
-		// ‰‰‘t‚É¸”s‚µ‚½‚ç•’Ê‚ÌƒTƒEƒ“ƒhƒtƒ@ƒCƒ‹‚Ì‰Â”\«‚ª‚ ‚é
+		// æ¼”å¥ã«å¤±æ•—ã—ãŸã‚‰æ™®é€šã®ã‚µã‚¦ãƒ³ãƒ‰ãƒ•ã‚¡ã‚¤ãƒ«ã®å¯èƒ½æ€§ãŒã‚ã‚‹
 		SubHandle( MidiSystemData.DefaultHandle, FALSE, FALSE ) ;
 
 		InitLoadSoundGParam( &GParam ) ;
@@ -20065,12 +20065,12 @@ extern int PlayMusic_WCHAR_T( const wchar_t *FileName , int PlayType )
 		MidiSystemData.DefaultHandle = LoadSoundMemBase_UseGParam( &GParam, FileName, 1, -1, FALSE, FALSE ) ;
 		if( MidiSystemData.DefaultHandle == -1 )
 		{
-			// ‚»‚ê‚Å‚à¸”s‚µ‚½‚çƒtƒ@ƒCƒ‹‚ª‚È‚¢‚Æ‚¢‚¤‚±‚Æ
+			// ãã‚Œã§ã‚‚å¤±æ•—ã—ãŸã‚‰ãƒ•ã‚¡ã‚¤ãƒ«ãŒãªã„ã¨ã„ã†ã“ã¨
 			MidiSystemData.DefaultHandle = 0;
 			return -1 ;
 		}
 
-		// Ä¶ŠJn
+		// å†ç”Ÿé–‹å§‹
 		NS_PlaySoundMem( MidiSystemData.DefaultHandle, PlayType, TRUE ) ;
 		MidiSystemData.DefaultHandleToSoundHandleFlag = TRUE ;
 	}
@@ -20082,10 +20082,10 @@ extern int PlayMusic_WCHAR_T( const wchar_t *FileName , int PlayType )
 
 
 
-// ƒƒ‚ƒŠã‚É“WŠJ‚³‚ê‚Ä‚¢‚é‚l‚h‚c‚hƒtƒ@ƒCƒ‹‚ğ‰‰‘t‚·‚é
+// ãƒ¡ãƒ¢ãƒªä¸Šã«å±•é–‹ã•ã‚Œã¦ã„ã‚‹ï¼­ï¼©ï¼¤ï¼©ãƒ•ã‚¡ã‚¤ãƒ«ã‚’æ¼”å¥ã™ã‚‹
 extern int NS_PlayMusicByMemImage( const void *FileImageBuffer, size_t FileImageSize, int PlayType )
 {
-	// ‚à‚µ‰‰‘t’†‚¾‚Á‚½‚ç~‚ß‚é
+	// ã‚‚ã—æ¼”å¥ä¸­ã ã£ãŸã‚‰æ­¢ã‚ã‚‹
 	if( MidiSystemData.DefaultHandle != 0 )
 	{
 		if( MidiSystemData.DefaultHandleToSoundHandleFlag == TRUE )
@@ -20099,18 +20099,18 @@ extern int NS_PlayMusicByMemImage( const void *FileImageBuffer, size_t FileImage
 		MidiSystemData.DefaultHandle = 0 ;
 	}
 
-	// “Ç‚İ‚İ
+	// èª­ã¿è¾¼ã¿
 	MidiSystemData.DefaultHandle = LoadMusicMemByMemImage_UseGParam( FileImageBuffer, FileImageSize, FALSE ) ;
 	if( MidiSystemData.DefaultHandle == -1 )
 	{
 		LOADSOUND_GPARAM GParam ;
 
-		// “Ç‚İ‚İ‚É¸”s‚µ‚½‚ç‰¹º‚Æ‚µ‚ÄÄ¶‚·‚é
+		// èª­ã¿è¾¼ã¿ã«å¤±æ•—ã—ãŸã‚‰éŸ³å£°ã¨ã—ã¦å†ç”Ÿã™ã‚‹
 		InitLoadSoundGParam( &GParam ) ;
 		MidiSystemData.DefaultHandle = LoadSoundMemByMemImageBase_UseGParam( &GParam, TRUE, -1, FileImageBuffer, FileImageSize, 1, -1, FALSE, FALSE ) ;
 		if( MidiSystemData.DefaultHandle == -1 )
 		{
-			// ‚»‚ê‚Å‚à¸”s‚µ‚½‚çƒf[ƒ^‚ª‰ó‚ê‚Ä‚¢‚é‚Æ‚¢‚¤‚±‚Æ
+			// ãã‚Œã§ã‚‚å¤±æ•—ã—ãŸã‚‰ãƒ‡ãƒ¼ã‚¿ãŒå£Šã‚Œã¦ã„ã‚‹ã¨ã„ã†ã“ã¨
 			MidiSystemData.DefaultHandle = 0;
 			return -1 ;
 		}
@@ -20121,13 +20121,13 @@ extern int NS_PlayMusicByMemImage( const void *FileImageBuffer, size_t FileImage
 		MidiSystemData.DefaultHandleToSoundHandleFlag = FALSE ;
 	}
 
-	// ‰‰‘t
+	// æ¼”å¥
 	NS_PlayMusicMem( MidiSystemData.DefaultHandle, PlayType ) ;
 
 	return 0;
 }
 
-// ‚l‚h‚c‚hƒtƒ@ƒCƒ‹‚Ì‰‰‘t’â~
+// ï¼­ï¼©ï¼¤ï¼©ãƒ•ã‚¡ã‚¤ãƒ«ã®æ¼”å¥åœæ­¢
 extern int NS_StopMusic( void )
 {
 	if( MidiSystemData.DefaultHandle == 0 ) return 0 ;
@@ -20150,7 +20150,7 @@ extern int NS_StopMusic( void )
 
 
 
-// ‚l‚h‚c‚hƒtƒ@ƒCƒ‹‚ª‰‰‘t’†‚©”Û‚©î•ñ‚ğæ“¾‚·‚é
+// ï¼­ï¼©ï¼¤ï¼©ãƒ•ã‚¡ã‚¤ãƒ«ãŒæ¼”å¥ä¸­ã‹å¦ã‹æƒ…å ±ã‚’å–å¾—ã™ã‚‹
 extern int NS_CheckMusic( void )
 {
 	if( MidiSystemData.DefaultHandle == 0 ) return 0 ;
@@ -20166,31 +20166,31 @@ extern int NS_CheckMusic( void )
 }
 
 
-// ‚l‚h‚c‚h‚ÌÄ¶Œ`®‚ğƒZƒbƒg‚·‚é
+// ï¼­ï¼©ï¼¤ï¼©ã®å†ç”Ÿå½¢å¼ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern int NS_SelectMidiMode( int Mode )
 {
-	// ’l‚Ì—LŒø«ƒ`ƒFƒbƒN
+	// å€¤ã®æœ‰åŠ¹æ€§ãƒã‚§ãƒƒã‚¯
 	if( Mode < 0 || Mode >= DX_MIDIMODE_NUM )
 	{
 		return -1 ;
 	}
 
-	// ‚à‚µƒ‚[ƒh‚ª¡‚Ü‚Å‚Æ“¯‚¶ê‡‚Í‚È‚É‚à‚¹‚¸I—¹
+	// ã‚‚ã—ãƒ¢ãƒ¼ãƒ‰ãŒä»Šã¾ã§ã¨åŒã˜å ´åˆã¯ãªã«ã‚‚ã›ãšçµ‚äº†
 	if( Mode == SoundSysData.SoundMode ) return 0 ;
 
-	// Ä¶ƒ‚[ƒh‚ğƒZƒbƒg
+	// å†ç”Ÿãƒ¢ãƒ¼ãƒ‰ã‚’ã‚»ãƒƒãƒˆ
 	SoundSysData.SoundMode = Mode ;
 
 	if( CheckSoundSystem_Initialize_PF() == FALSE ) return 0 ;
 
-	// ƒTƒEƒ“ƒhƒVƒXƒeƒ€‚ÌŒãn––
+	// ã‚µã‚¦ãƒ³ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ã®å¾Œå§‹æœ«
 	TerminateSoundSystem() ;
 
-	// ƒTƒEƒ“ƒhƒVƒXƒeƒ€‰Šú‰»
+	// ã‚µã‚¦ãƒ³ãƒ‰ã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–
 	return InitializeSoundSystem() ;
 }
 
-// ‚l‚h‚c‚h‚ÌÄ¶‰¹—Ê‚ğƒZƒbƒg‚·‚é
+// ï¼­ï¼©ï¼¤ï¼©ã®å†ç”ŸéŸ³é‡ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern int NS_SetVolumeMusic( int Volume )
 {
 	if( CheckSoundSystem_Initialize_PF() == FALSE )
@@ -20200,7 +20200,7 @@ extern int NS_SetVolumeMusic( int Volume )
 
 	if( MidiSystemData.DefaultHandleToSoundHandleFlag == FALSE )
 	{
-		// ŠÂ‹«ˆË‘¶ˆ—
+		// ç’°å¢ƒä¾å­˜å‡¦ç†
 		SetVolumeMusic_PF( Volume ) ;
 	}
 	else
@@ -20208,11 +20208,11 @@ extern int NS_SetVolumeMusic( int Volume )
 		NS_ChangeVolumeSoundMem( Volume, MidiSystemData.DefaultHandle );
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ‚l‚h‚c‚h‚ÌŒ»İ‚ÌÄ¶ˆÊ’u‚ğæ“¾‚·‚é
+// ï¼­ï¼©ï¼¤ï¼©ã®ç¾åœ¨ã®å†ç”Ÿä½ç½®ã‚’å–å¾—ã™ã‚‹
 extern int NS_GetMusicPosition( void )
 {
 	if( CheckSoundSystem_Initialize_PF() == FALSE )
@@ -20220,10 +20220,10 @@ extern int NS_GetMusicPosition( void )
 		return -1 ;
 	}
 
-	// Ä¶’†‚Å‚Í‚È‚©‚Á‚½‚ç‰½‚à‚µ‚È‚¢
+	// å†ç”Ÿä¸­ã§ã¯ãªã‹ã£ãŸã‚‰ä½•ã‚‚ã—ãªã„
 	if( NS_CheckMusic() == FALSE ) return -1 ;
 
-	// ŠÂ‹«ˆË‘¶ˆ—
+	// ç’°å¢ƒä¾å­˜å‡¦ç†
 	return GetMusicPosition_PF() ;
 }
 	
@@ -20232,34 +20232,34 @@ extern int NS_GetMusicPosition( void )
 
 
 
-// •â•Œn
+// è£œåŠ©ç³»
 
-// ‰¹ºƒtƒH[ƒ}ƒbƒg‚Æ”gŒ`ƒCƒ[ƒW‚©‚ç‚v‚`‚u‚dƒtƒ@ƒCƒ‹ƒCƒ[ƒW‚ğì¬‚·‚é
+// éŸ³å£°ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã¨æ³¢å½¢ã‚¤ãƒ¡ãƒ¼ã‚¸ã‹ã‚‰ï¼·ï¼¡ï¼¶ï¼¥ãƒ•ã‚¡ã‚¤ãƒ«ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’ä½œæˆã™ã‚‹
 extern	int CreateWaveFileImage( 	void **DestBufferP, size_t *DestBufferSizeP,
 									const WAVEFORMATEX *Format, int FormatSize,
 									const void *WaveData, size_t WaveDataSize )
 {
-	// 4GB‚ğ’´‚¦‚é‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+	// 4GBã‚’è¶…ãˆã‚‹ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 	if( WaveDataSize + FormatSize + 28 > 0xffffffff )
 	{
-		// 4GB‚ğ’´‚¦‚éê‡‚Í RF64 Œ`®
+		// 4GBã‚’è¶…ãˆã‚‹å ´åˆã¯ RF64 å½¢å¼
 		size_t BufferSize ;
 		void *Buffer ;
 		BYTE *p ;
 	
-		// ƒoƒbƒtƒ@‚ğŠm•Û
+		// ãƒãƒƒãƒ•ã‚¡ã‚’ç¢ºä¿
 		BufferSize = FormatSize + WaveDataSize
-						+ 12/*"RF64" + ƒtƒ@ƒCƒ‹ƒTƒCƒY + "WAVE"*/
-						+ 36/*"ds64" + RF64ƒ`ƒƒƒ“ƒNƒTƒCƒY + dataƒTƒCƒY + ƒTƒ“ƒvƒ‹” + ƒe[ƒuƒ‹ƒGƒ“ƒgƒŠ[ */
-						+ 8 * 2/*"fmt "ƒ`ƒƒƒ“ƒN + "data"ƒ`ƒƒƒ“ƒN*/ ;
+						+ 12/*"RF64" + ãƒ•ã‚¡ã‚¤ãƒ«ã‚µã‚¤ã‚º + "WAVE"*/
+						+ 36/*"ds64" + RF64ãƒãƒ£ãƒ³ã‚¯ã‚µã‚¤ã‚º + dataã‚µã‚¤ã‚º + ã‚µãƒ³ãƒ—ãƒ«æ•° + ãƒ†ãƒ¼ãƒ–ãƒ«ã‚¨ãƒ³ãƒˆãƒªãƒ¼ */
+						+ 8 * 2/*"fmt "ãƒãƒ£ãƒ³ã‚¯ + "data"ãƒãƒ£ãƒ³ã‚¯*/ ;
 		Buffer = DXALLOC( BufferSize ) ;
 		if( Buffer == NULL )
 		{
-			DXST_LOGFILE_ADDUTF16LE( "\xee\x4e\x57\x00\x41\x00\x56\x00\x45\x00\xd5\x30\xa1\x30\xa4\x30\xeb\x30\xa4\x30\xe1\x30\xfc\x30\xb8\x30\x28\x75\x6e\x30\xe1\x30\xe2\x30\xea\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"‰¼WAVEƒtƒ@ƒCƒ‹ƒCƒ[ƒW—p‚Ìƒƒ‚ƒŠŠm•Û‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+			DXST_LOGFILE_ADDUTF16LE( "\xee\x4e\x57\x00\x41\x00\x56\x00\x45\x00\xd5\x30\xa1\x30\xa4\x30\xeb\x30\xa4\x30\xe1\x30\xfc\x30\xb8\x30\x28\x75\x6e\x30\xe1\x30\xe2\x30\xea\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ä»®WAVEãƒ•ã‚¡ã‚¤ãƒ«ã‚¤ãƒ¡ãƒ¼ã‚¸ç”¨ã®ãƒ¡ãƒ¢ãƒªç¢ºä¿ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 			return -1 ;
 		}
 	
-		// ƒf[ƒ^‚ÌƒZƒbƒg
+		// ãƒ‡ãƒ¼ã‚¿ã®ã‚»ãƒƒãƒˆ
 		p = ( BYTE * )Buffer ;
 		_MEMCPY( p, "RF64", 4 ) ;										p += 4 ;
 		*( ( DWORD * ) p ) = 0xffffffff ;								p += 4 ;
@@ -20280,29 +20280,29 @@ extern	int CreateWaveFileImage( 	void **DestBufferP, size_t *DestBufferSizeP,
 		*( ( DWORD * ) p ) = 0xffffffff ;								p += 4 ;
 		_MEMCPY( p, WaveData, ( size_t )WaveDataSize ) ;				p += WaveDataSize ;
 
-		// î•ñ‚ğ•Û‘¶
+		// æƒ…å ±ã‚’ä¿å­˜
 		*DestBufferP = Buffer ;
 		*DestBufferSizeP = BufferSize ;
 	}
 	else
 	{
-		// 4GBˆÈ“à‚Ìê‡‚Í’Êí‚ÌRIFFŒ`®
+		// 4GBä»¥å†…ã®å ´åˆã¯é€šå¸¸ã®RIFFå½¢å¼
 		size_t BufferSize ;
 		void *Buffer ;
 		BYTE *p ;
 	
-		// ƒoƒbƒtƒ@‚ğŠm•Û
+		// ãƒãƒƒãƒ•ã‚¡ã‚’ç¢ºä¿
 		BufferSize = FormatSize + WaveDataSize
-						+ 12/*"RIFF" + ƒtƒ@ƒCƒ‹ƒTƒCƒY + "WAVE"*/
-						+ 8 * 2/*"fmt "ƒ`ƒƒƒ“ƒN + "data"ƒ`ƒƒƒ“ƒN*/ ;
+						+ 12/*"RIFF" + ãƒ•ã‚¡ã‚¤ãƒ«ã‚µã‚¤ã‚º + "WAVE"*/
+						+ 8 * 2/*"fmt "ãƒãƒ£ãƒ³ã‚¯ + "data"ãƒãƒ£ãƒ³ã‚¯*/ ;
 		Buffer = DXALLOC( BufferSize ) ;
 		if( Buffer == NULL )
 		{
-			DXST_LOGFILE_ADDUTF16LE( "\xee\x4e\x57\x00\x41\x00\x56\x00\x45\x00\xd5\x30\xa1\x30\xa4\x30\xeb\x30\xa4\x30\xe1\x30\xfc\x30\xb8\x30\x28\x75\x6e\x30\xe1\x30\xe2\x30\xea\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"‰¼WAVEƒtƒ@ƒCƒ‹ƒCƒ[ƒW—p‚Ìƒƒ‚ƒŠŠm•Û‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+			DXST_LOGFILE_ADDUTF16LE( "\xee\x4e\x57\x00\x41\x00\x56\x00\x45\x00\xd5\x30\xa1\x30\xa4\x30\xeb\x30\xa4\x30\xe1\x30\xfc\x30\xb8\x30\x28\x75\x6e\x30\xe1\x30\xe2\x30\xea\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ä»®WAVEãƒ•ã‚¡ã‚¤ãƒ«ã‚¤ãƒ¡ãƒ¼ã‚¸ç”¨ã®ãƒ¡ãƒ¢ãƒªç¢ºä¿ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 			return -1 ;
 		}
 	
-		// ƒf[ƒ^‚ÌƒZƒbƒg
+		// ãƒ‡ãƒ¼ã‚¿ã®ã‚»ãƒƒãƒˆ
 		p = ( BYTE * )Buffer ;
 		_MEMCPY( p, "RIFF", 4 ) ;							p += 4 ;
 		*( ( DWORD * ) p ) = ( DWORD )( BufferSize - 8 ) ;	p += 4 ;
@@ -20316,16 +20316,16 @@ extern	int CreateWaveFileImage( 	void **DestBufferP, size_t *DestBufferSizeP,
 		*( ( DWORD * ) p ) = ( DWORD )WaveDataSize ;		p += 4 ;
 		_MEMCPY( p, WaveData, WaveDataSize ) ;				p += WaveDataSize ;
 
-		// î•ñ‚ğ•Û‘¶
+		// æƒ…å ±ã‚’ä¿å­˜
 		*DestBufferP = Buffer ;
 		*DestBufferSizeP = BufferSize ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒtƒ@ƒCƒ‹‚ğŠÛ‚Ü‚éƒƒ‚ƒŠ‚É“Ç‚İ‚Ş
+// ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ä¸¸ã¾ã‚‹ãƒ¡ãƒ¢ãƒªã«èª­ã¿è¾¼ã‚€
 static	int FileFullRead( const wchar_t *FileName, void **BufferP, size_t *SizeP, int OutputFileOpenErrorLog )
 {
 	DWORD_PTR fp = 0 ;
@@ -20359,7 +20359,7 @@ static	int FileFullRead( const wchar_t *FileName, void **BufferP, size_t *SizeP,
 	*BufferP = Buffer ;
 	*SizeP = Size ;
 	
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 	
 ERR :
@@ -20368,7 +20368,7 @@ ERR :
 	return -1 ;
 }
 
-// ƒXƒgƒŠ[ƒ€ƒf[ƒ^‚ğŠÛ‚Ü‚éƒƒ‚ƒŠ‚É“Ç‚İ‚Ş
+// ã‚¹ãƒˆãƒªãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿ã‚’ä¸¸ã¾ã‚‹ãƒ¡ãƒ¢ãƒªã«èª­ã¿è¾¼ã‚€
 extern	int StreamFullRead( STREAMDATA *Stream, void **BufferP, size_t *SizeP )
 {
 	size_t Size ;
@@ -20381,7 +20381,7 @@ extern	int StreamFullRead( STREAMDATA *Stream, void **BufferP, size_t *SizeP )
 	Buffer = DXALLOC( Size ) ;
 	if( Buffer == NULL )
 	{
-		return DXST_LOGFILEFMT_ADDUTF16LE(( "\xb9\x30\xc8\x30\xea\x30\xfc\x30\xe0\x30\x6e\x30\xad\x8a\x7f\x30\xbc\x8f\x7f\x30\x6b\x30\xc5\x5f\x81\x89\x6a\x30\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"ƒXƒgƒŠ[ƒ€‚Ì“Ç‚İ‚İ‚É•K—v‚Èƒƒ‚ƒŠ‚ÌŠm•Û‚É¸”s‚µ‚Ü‚µ‚½" @*/ )) ;
+		return DXST_LOGFILEFMT_ADDUTF16LE(( "\xb9\x30\xc8\x30\xea\x30\xfc\x30\xe0\x30\x6e\x30\xad\x8a\x7f\x30\xbc\x8f\x7f\x30\x6b\x30\xc5\x5f\x81\x89\x6a\x30\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"ã‚¹ãƒˆãƒªãƒ¼ãƒ ã®èª­ã¿è¾¼ã¿ã«å¿…è¦ãªãƒ¡ãƒ¢ãƒªã®ç¢ºä¿ã«å¤±æ•—ã—ã¾ã—ãŸ" @*/ )) ;
 	}
 
 	Stream->ReadShred.Read( Buffer, Size, 1, Stream->DataPoint ) ;
@@ -20389,11 +20389,11 @@ extern	int StreamFullRead( STREAMDATA *Stream, void **BufferP, size_t *SizeP )
 	*BufferP = Buffer ;
 	*SizeP = Size ;
 	
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤”gŒ`ƒf[ƒ^‚©‚çƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹‚ğì¬‚·‚é
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†æ³¢å½¢ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ã‚’ä½œæˆã™ã‚‹
 extern int NS_LoadSoundMemFromSoftSound( int SoftSoundHandle, int BufferNum )
 {
 	SOFTSOUND * SSound ;
@@ -20402,17 +20402,17 @@ extern int NS_LoadSoundMemFromSoftSound( int SoftSoundHandle, int BufferNum )
 	size_t WaveSize ;
 	LOADSOUND_GPARAM GParam ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( SSND_MASKHCHK( SoftSoundHandle, SSound ) ) return -1 ;
 	if( SSound->IsPlayer == TRUE ) return -1 ;
 
-	// ‚v‚`‚u‚dƒtƒ@ƒCƒ‹‚ğ‚Å‚Á‚¿ã‚°‚é
+	// ï¼·ï¼¡ï¼¶ï¼¥ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ã§ã£ã¡ä¸Šã’ã‚‹
 	if( CreateWaveFileImage( &WaveImage, &WaveSize,
 						 &SSound->BufferFormat, sizeof( WAVEFORMATEX ),
 						 SSound->Wave.Buffer, ( size_t )( SSound->Wave.BufferSampleNum * SSound->BufferFormat.nBlockAlign ) ) < 0 )
 		 return -1 ;
 
-	// ƒnƒ“ƒhƒ‹‚Ìì¬
+	// ãƒãƒ³ãƒ‰ãƒ«ã®ä½œæˆ
 	InitLoadSoundGParam( &GParam ) ;
 	if( GParam.CreateSoundDataType == DX_SOUNDDATATYPE_FILE )
 		GParam.CreateSoundDataType = DX_SOUNDDATATYPE_MEMNOPRESS ;
@@ -20420,15 +20420,15 @@ extern int NS_LoadSoundMemFromSoftSound( int SoftSoundHandle, int BufferNum )
 
 	_MEMSET( WaveImage, 0, WaveSize ) ;
 
-	// ƒƒ‚ƒŠ‚Ì‰ğ•ú
+	// ãƒ¡ãƒ¢ãƒªã®è§£æ”¾
 	DXFREE( WaveImage ) ;
 	WaveImage = NULL ;
 
-	// I—¹
+	// çµ‚äº†
 	return NewHandle ;
 }
 
-// ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹‚Ìƒ^ƒCƒv‚ªƒXƒgƒŠ[ƒ€ƒnƒ“ƒhƒ‹‚Å‚Í‚È‚¢ê‡‚ÉƒXƒgƒŠ[ƒ€ƒnƒ“ƒhƒ‹‚É•ÏX‚·‚é
+// ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ã®ã‚¿ã‚¤ãƒ—ãŒã‚¹ãƒˆãƒªãƒ¼ãƒ ãƒãƒ³ãƒ‰ãƒ«ã§ã¯ãªã„å ´åˆã«ã‚¹ãƒˆãƒªãƒ¼ãƒ ãƒãƒ³ãƒ‰ãƒ«ã«å¤‰æ›´ã™ã‚‹
 static int SoundTypeChangeToStream( int SoundHandle )
 {
 	SOUND *Sound ;
@@ -20443,34 +20443,34 @@ static int SoundTypeChangeToStream( int SoundHandle )
 		return -1 ;
 	}
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( SOUNDHCHK( SoundHandle, Sound ) )
 		return -1 ;
 
-	// Šù‚ÉƒXƒgƒŠ[ƒ€ƒnƒ“ƒhƒ‹‚¾‚Á‚½‚ç‰½‚à‚¹‚¸‚ÉI—¹
+	// æ—¢ã«ã‚¹ãƒˆãƒªãƒ¼ãƒ ãƒãƒ³ãƒ‰ãƒ«ã ã£ãŸã‚‰ä½•ã‚‚ã›ãšã«çµ‚äº†
 	if( Sound->Type == DX_SOUNDTYPE_STREAMSTYLE )
 		return 0 ;
 
-	// ‚v‚`‚u‚dƒtƒ@ƒCƒ‹‚ğ‚Å‚Á‚¿ã‚°‚é
+	// ï¼·ï¼¡ï¼¶ï¼¥ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ã§ã£ã¡ä¸Šã’ã‚‹
 	if( CreateWaveFileImage( &WaveImage, &WaveSize,
 						 &Sound->BufferFormat, sizeof( WAVEFORMATEX ),
 						 Sound->Normal.WaveData, ( size_t )Sound->Normal.WaveSize ) < 0 )
 		return -1 ;
 
-	// Šù‘¶ƒnƒ“ƒhƒ‹‚Ìİ’è‚ğæ“¾‚µ‚Ä‚¨‚­
+	// æ—¢å­˜ãƒãƒ³ãƒ‰ãƒ«ã®è¨­å®šã‚’å–å¾—ã—ã¦ãŠã
 	Volume = NS_GetVolumeSoundMem( SoundHandle ) ;
 	Time = NS_GetSoundCurrentPosition( SoundHandle ) ;
 	Frequency = NS_GetFrequencySoundMem( SoundHandle ) ;
 	Pan = NS_GetPanSoundMem( SoundHandle ) ;
 	Is3DSound = Sound->Is3DSound ;
 
-	// Šù‘¶ƒnƒ“ƒhƒ‹‚Ìíœ
+	// æ—¢å­˜ãƒãƒ³ãƒ‰ãƒ«ã®å‰Šé™¤
 	{
-		NS_StopSoundMem( SoundHandle, FALSE ) ;				// Ä¶’†‚¾‚Á‚½‚Æ‚«‚Ì‚±‚Æ‚ğl‚¦‚Ä~‚ß‚Ä‚¨‚­
-		SubHandle( SoundHandle, FALSE, FALSE ) ;			// ƒnƒ“ƒhƒ‹‚ğíœ
+		NS_StopSoundMem( SoundHandle, FALSE ) ;				// å†ç”Ÿä¸­ã ã£ãŸã¨ãã®ã“ã¨ã‚’è€ƒãˆã¦æ­¢ã‚ã¦ãŠã
+		SubHandle( SoundHandle, FALSE, FALSE ) ;			// ãƒãƒ³ãƒ‰ãƒ«ã‚’å‰Šé™¤
 	}
 
-	// ƒXƒgƒŠ[ƒ€Ä¶Œ`®‚Ìƒnƒ“ƒhƒ‹‚Æ‚µ‚Äì‚è’¼‚·
+	// ã‚¹ãƒˆãƒªãƒ¼ãƒ å†ç”Ÿå½¢å¼ã®ãƒãƒ³ãƒ‰ãƒ«ã¨ã—ã¦ä½œã‚Šç›´ã™
 	{
 		int f, res ;
 		STREAMDATA Stream ;
@@ -20484,49 +20484,49 @@ static int SoundTypeChangeToStream( int SoundHandle )
 
 		SoundHandle = AddHandle( DX_HANDLETYPE_SOUND, FALSE, SoundHandle ) ;
 
-		// ƒGƒ‰[”»’è
+		// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 		if( SOUNDHCHK( SoundHandle, Sound ) )
 		{
-			DXST_LOGFILE_ADDUTF16LE( "\xb9\x30\xc8\x30\xea\x30\xfc\x30\xe0\x30\xb5\x30\xa6\x30\xf3\x30\xc9\x30\xcf\x30\xf3\x30\xc9\x30\xeb\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ƒXƒgƒŠ[ƒ€ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+			DXST_LOGFILE_ADDUTF16LE( "\xb9\x30\xc8\x30\xea\x30\xfc\x30\xe0\x30\xb5\x30\xa6\x30\xf3\x30\xc9\x30\xcf\x30\xf3\x30\xc9\x30\xeb\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 			return -1 ;
 		}
 		Sound->Is3DSound = Is3DSound ;
 		if( Sound->Is3DSound != FALSE )
 		{
-			// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+			// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 			CRITICALSECTION_LOCK( &SoundSysData._3DSoundListCriticalSection ) ;
 
-			// ‚R‚cƒTƒEƒ“ƒhŒ`®‚Ìê‡‚Í‚R‚cƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹ƒŠƒXƒg‚É’Ç‰Á
+			// ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰å½¢å¼ã®å ´åˆã¯ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ãƒªã‚¹ãƒˆã«è¿½åŠ 
 			AddHandleList( &SoundSysData._3DSoundListFirst, &Sound->_3DSoundList, SoundHandle, Sound ) ;
 
-			// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+			// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 			CriticalSection_Unlock( &SoundSysData._3DSoundListCriticalSection ) ;
 		}
 
 		res = AddStreamSoundMem_UseGParam( &GParam, &Stream, 0, SoundHandle, DX_SOUNDDATATYPE_MEMNOPRESS, &f, -1, FALSE ) ;
 		if( res == -1 )
 		{
-			DXST_LOGFILE_ADDUTF16LE( "\xb9\x30\xc8\x30\xea\x30\xfc\x30\xe0\x30\xb5\x30\xa6\x30\xf3\x30\xc9\x30\xcf\x30\xf3\x30\xc9\x30\xeb\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ƒXƒgƒŠ[ƒ€ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+			DXST_LOGFILE_ADDUTF16LE( "\xb9\x30\xc8\x30\xea\x30\xfc\x30\xe0\x30\xb5\x30\xa6\x30\xf3\x30\xc9\x30\xcf\x30\xf3\x30\xc9\x30\xeb\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 			return -1 ;
 		}
 
 		Stream.ReadShred.Close( Stream.DataPoint ) ;
 	}
 	
-	// ƒƒ‚ƒŠ‚Ì‰ğ•ú
+	// ãƒ¡ãƒ¢ãƒªã®è§£æ”¾
 	DXFREE( WaveImage ) ;
 
-	// Œ³‚Ìƒnƒ“ƒhƒ‹‚Ìİ’è‚ğƒZƒbƒg‚·‚é
+	// å…ƒã®ãƒãƒ³ãƒ‰ãƒ«ã®è¨­å®šã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 	NS_SetVolumeSoundMem( Volume, SoundHandle ) ;
 	NS_SetSoundCurrentPosition( Time, SoundHandle ) ;
 	NS_SetFrequencySoundMem( Frequency, SoundHandle ) ;
 	NS_SetPanSoundMem( Pan, SoundHandle ) ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// ƒ~ƒŠ•b’PˆÊ‚Ì”’l‚ğƒTƒ“ƒvƒ‹’PˆÊ‚Ì”’l‚É•ÏŠ·‚·‚é
+// ãƒŸãƒªç§’å˜ä½ã®æ•°å€¤ã‚’ã‚µãƒ³ãƒ—ãƒ«å˜ä½ã®æ•°å€¤ã«å¤‰æ›ã™ã‚‹
 static	LONGLONG MilliSecPositionToSamplePosition( int SamplesPerSec, LONGLONG MilliSecTime )
 {
 	LONGLONG TempValue ;
@@ -20539,7 +20539,7 @@ static	LONGLONG MilliSecPositionToSamplePosition( int SamplesPerSec, LONGLONG Mi
 	return TempValue ;
 }
 
-// ƒTƒ“ƒvƒ‹’PˆÊ‚Ì”’l‚ğƒ~ƒŠ•b’PˆÊ‚Ì”’l‚É•ÏŠ·‚·‚é
+// ã‚µãƒ³ãƒ—ãƒ«å˜ä½ã®æ•°å€¤ã‚’ãƒŸãƒªç§’å˜ä½ã®æ•°å€¤ã«å¤‰æ›ã™ã‚‹
 static	LONGLONG SamplePositionToMilliSecPosition( int SamplesPerSec, LONGLONG SampleTime )
 {
 	LONGLONG TempValue ;

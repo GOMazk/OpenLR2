@@ -1,6 +1,6 @@
 // -------------------------------------------------------------------------------
 // 
-// 		‚c‚wƒ‰ƒCƒuƒ‰ƒŠ		WindowsOS—p“®‰æƒvƒƒOƒ‰ƒ€ƒwƒbƒ_ƒtƒ@ƒCƒ‹
+// 		ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒª		WindowsOSç”¨å‹•ç”»ãƒ—ãƒ­ã‚°ãƒ©ãƒ ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«
 // 
 // 				Ver 3.25a
 // 
@@ -13,7 +13,7 @@
 
 #ifndef DX_NON_MOVIE
 
-// ƒCƒ“ƒNƒ‹[ƒh ------------------------------------------------------------------
+// ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ ------------------------------------------------------------------
 #include "DxUseCStrmBaseFilter.h"
 #include "DxGuid.h"
 #include "../DxLib.h"
@@ -26,91 +26,91 @@ namespace DxLib
 
 #endif // DX_NON_NAMESPACE
 
-// ƒ}ƒNƒ’è‹` --------------------------------------------------------------------
+// ãƒžã‚¯ãƒ­å®šç¾© --------------------------------------------------------------------
 
-// \‘¢‘Ì’è‹` --------------------------------------------------------------------
+// æ§‹é€ ä½“å®šç¾© --------------------------------------------------------------------
 
-// ƒ€[ƒr[ƒOƒ‰ƒtƒBƒbƒNŠÂ‹«ˆË‘¶ƒf[ƒ^Œ^
+// ãƒ ãƒ¼ãƒ“ãƒ¼ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ç’°å¢ƒä¾å­˜ãƒ‡ãƒ¼ã‚¿åž‹
 struct MOVIEGRAPH_PF
 {
 	int						Dummy ;
 
 #ifndef DX_NON_MEDIA_FOUNDATION
-	D_IMFSourceReader		*pMFReader ;					// ƒ\[ƒXƒŠ[ƒ_[
-	D_IMFMediaType			*pMFMediaTypeVideoStream ;		// •ÏŠ·‘O‚ÌƒrƒfƒIƒXƒgƒŠ[ƒ€ƒƒfƒBƒA‘®«
-	D_IMFMediaType			*pMFMediaTypeOutputVideoStream ;// •ÏŠ·Œã‚ÌƒrƒfƒIƒXƒgƒŠ[ƒ€ƒƒfƒBƒA‘®«
-	UINT32					MFFrameSizeX ;					// •
-	UINT32					MFFrameSizeY ;					// ‚‚³
-	UINT32					MFFrameRateNumerator ;			// ƒtƒŒ[ƒ€ƒŒ[ƒg( •ªŽq )
-	UINT32					MFFrameRateDenominator ;		// ƒtƒŒ[ƒ€ƒŒ[ƒg( •ª•ê )
-	UINT32					MFAspectRatioX ;				// ƒAƒXƒyƒNƒgX
-	UINT32					MFAspectRatioY ;				// ƒAƒXƒyƒNƒgY
-	LONGLONG				MFLastReadSampleTimeStamp ;		// ÅŒã‚És‚Á‚½ ReadSample ‚Ìƒ^ƒCƒ€ƒXƒ^ƒ“ƒv
-	int						MFLastReadSampleFrame ;			// ÅŒã‚És‚Á‚½ ReadSample ‚ÌƒtƒŒ[ƒ€
-	D_PROPVARIANT			MFDuration ;					// “®‰æ‚Ì’·‚³
-	int						MFTotalFrame ;					// ‘ƒtƒŒ[ƒ€”
-	void *					MFImageBuffer ;					// ƒCƒ[ƒW•Û‘¶—pƒoƒbƒtƒ@
+	D_IMFSourceReader		*pMFReader ;					// ã‚½ãƒ¼ã‚¹ãƒªãƒ¼ãƒ€ãƒ¼
+	D_IMFMediaType			*pMFMediaTypeVideoStream ;		// å¤‰æ›å‰ã®ãƒ“ãƒ‡ã‚ªã‚¹ãƒˆãƒªãƒ¼ãƒ ãƒ¡ãƒ‡ã‚£ã‚¢å±žæ€§
+	D_IMFMediaType			*pMFMediaTypeOutputVideoStream ;// å¤‰æ›å¾Œã®ãƒ“ãƒ‡ã‚ªã‚¹ãƒˆãƒªãƒ¼ãƒ ãƒ¡ãƒ‡ã‚£ã‚¢å±žæ€§
+	UINT32					MFFrameSizeX ;					// å¹…
+	UINT32					MFFrameSizeY ;					// é«˜ã•
+	UINT32					MFFrameRateNumerator ;			// ãƒ•ãƒ¬ãƒ¼ãƒ ãƒ¬ãƒ¼ãƒˆ( åˆ†å­ )
+	UINT32					MFFrameRateDenominator ;		// ãƒ•ãƒ¬ãƒ¼ãƒ ãƒ¬ãƒ¼ãƒˆ( åˆ†æ¯ )
+	UINT32					MFAspectRatioX ;				// ã‚¢ã‚¹ãƒšã‚¯ãƒˆX
+	UINT32					MFAspectRatioY ;				// ã‚¢ã‚¹ãƒšã‚¯ãƒˆY
+	LONGLONG				MFLastReadSampleTimeStamp ;		// æœ€å¾Œã«è¡Œã£ãŸ ReadSample ã®ã‚¿ã‚¤ãƒ ã‚¹ã‚¿ãƒ³ãƒ—
+	int						MFLastReadSampleFrame ;			// æœ€å¾Œã«è¡Œã£ãŸ ReadSample ã®ãƒ•ãƒ¬ãƒ¼ãƒ 
+	D_PROPVARIANT			MFDuration ;					// å‹•ç”»ã®é•·ã•
+	int						MFTotalFrame ;					// ç·ãƒ•ãƒ¬ãƒ¼ãƒ æ•°
+	void *					MFImageBuffer ;					// ã‚¤ãƒ¡ãƒ¼ã‚¸ä¿å­˜ç”¨ãƒãƒƒãƒ•ã‚¡
 
-	int						MFCurrentFrame ;				// •\Ž¦‚µ‚Ä‚¢‚éƒtƒŒ[ƒ€
-	LONGLONG				MFPrevTimeCount ;				// ‘O‰ñ‚ÌŒv‘ªŽžŠÔ
-	LONGLONG				MFPlayNowTime ;					// Ä¶ŽžŠÔ
-	int						MFLoopType ;					// ƒ‹[ƒvƒ^ƒCƒv( 0:“®‰æƒf[ƒ^‚É‡‚í‚¹‚Äƒ‹[ƒv  1:ƒTƒEƒ“ƒhƒf[ƒ^‚É‡‚í‚¹‚Äƒ‹[ƒv )
-	int						MFSetupGraphHandleImage ;		// ‰æ‘œ\’z‚ÌŒãAƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ÌƒZƒbƒgƒAƒbƒv‚ðI‚¦‚Ä‚¢‚é‚©‚Ç‚¤‚©( TRUE:I‚¦‚Ä‚¢‚é  FALSE:I‚¦‚Ä‚¢‚È‚¢ )
+	int						MFCurrentFrame ;				// è¡¨ç¤ºã—ã¦ã„ã‚‹ãƒ•ãƒ¬ãƒ¼ãƒ 
+	LONGLONG				MFPrevTimeCount ;				// å‰å›žã®è¨ˆæ¸¬æ™‚é–“
+	LONGLONG				MFPlayNowTime ;					// å†ç”Ÿæ™‚é–“
+	int						MFLoopType ;					// ãƒ«ãƒ¼ãƒ—ã‚¿ã‚¤ãƒ—( 0:å‹•ç”»ãƒ‡ãƒ¼ã‚¿ã«åˆã‚ã›ã¦ãƒ«ãƒ¼ãƒ—  1:ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ã«åˆã‚ã›ã¦ãƒ«ãƒ¼ãƒ— )
+	int						MFSetupGraphHandleImage ;		// ç”»åƒæ§‹ç¯‰ã®å¾Œã€ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã‚’çµ‚ãˆã¦ã„ã‚‹ã‹ã©ã†ã‹( TRUE:çµ‚ãˆã¦ã„ã‚‹  FALSE:çµ‚ãˆã¦ã„ãªã„ )
 #ifndef DX_NON_SOUND
-	int						MFSoundHandle ;					// ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹
-	int						MFSoundFrequency ;				// ƒTƒEƒ“ƒh‚ÌŽü”g”
-	int						MFSoundTotalTime ;				// ƒTƒEƒ“ƒhƒf[ƒ^‚ÌÄ¶‘ŽžŠÔ( ƒ~ƒŠ•b )
+	int						MFSoundHandle ;					// ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«
+	int						MFSoundFrequency ;				// ã‚µã‚¦ãƒ³ãƒ‰ã®å‘¨æ³¢æ•°
+	int						MFSoundTotalTime ;				// ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ã®å†ç”Ÿç·æ™‚é–“( ãƒŸãƒªç§’ )
 #endif // DX_NON_SOUND
-	double					MFPlaySpeedRate ;				// Ä¶‘¬“x
+	double					MFPlaySpeedRate ;				// å†ç”Ÿé€Ÿåº¦
 
-	void					*MFYBuffer ;					// ‚xƒCƒ[ƒW‚Ö‚ÌƒAƒhƒŒƒX
-	void					*MFUVBuffer ;					// ‚t‚uƒCƒ[ƒW‚Ö‚ÌƒAƒhƒŒƒX
-	UINT32					MFYWidth, MFYHeight ;			// ‚xƒCƒ[ƒW‚Ì•‚Æ‚‚³
-	UINT32					MFYStride ;						// ‚xƒoƒbƒtƒ@‚Ìƒsƒbƒ`
-	UINT32					MFUVWidth, MFUVHeight ;			// ‚t‚uƒCƒ[ƒW‚Ì•‚Æ‚‚³
-	UINT32					MFUVStride ;					// ‚t‚uƒoƒbƒtƒ@‚Ìƒsƒbƒ`
+	void					*MFYBuffer ;					// ï¼¹ã‚¤ãƒ¡ãƒ¼ã‚¸ã¸ã®ã‚¢ãƒ‰ãƒ¬ã‚¹
+	void					*MFUVBuffer ;					// ï¼µï¼¶ã‚¤ãƒ¡ãƒ¼ã‚¸ã¸ã®ã‚¢ãƒ‰ãƒ¬ã‚¹
+	UINT32					MFYWidth, MFYHeight ;			// ï¼¹ã‚¤ãƒ¡ãƒ¼ã‚¸ã®å¹…ã¨é«˜ã•
+	UINT32					MFYStride ;						// ï¼¹ãƒãƒƒãƒ•ã‚¡ã®ãƒ”ãƒƒãƒ
+	UINT32					MFUVWidth, MFUVHeight ;			// ï¼µï¼¶ã‚¤ãƒ¡ãƒ¼ã‚¸ã®å¹…ã¨é«˜ã•
+	UINT32					MFUVStride ;					// ï¼µï¼¶ãƒãƒƒãƒ•ã‚¡ã®ãƒ”ãƒƒãƒ
 
-//	BASEIMAGE				BaseImage ;						// ƒJƒŒƒ“ƒgƒtƒŒ[ƒ€‚ªŠi”[‚³‚ê‚½ƒtƒŒ[ƒ€ƒXƒ^ƒbƒN’†‚ÌƒCƒ[ƒW‚ÌƒRƒs[
-	volatile int			MFBaseImageSetup ;				// ƒJƒŒƒ“ƒgƒtƒŒ[ƒ€‚Ì RGB ƒCƒ[ƒW‚ª\’z‚³‚ê‚Ä‚¢‚é‚©‚Ç‚¤‚©( 1:‚³‚ê‚Ä‚¢‚é  0:‚³‚ê‚Ä‚¢‚È‚¢ )
+//	BASEIMAGE				BaseImage ;						// ã‚«ãƒ¬ãƒ³ãƒˆãƒ•ãƒ¬ãƒ¼ãƒ ãŒæ ¼ç´ã•ã‚ŒãŸãƒ•ãƒ¬ãƒ¼ãƒ ã‚¹ã‚¿ãƒƒã‚¯ä¸­ã®ã‚¤ãƒ¡ãƒ¼ã‚¸ã®ã‚³ãƒ”ãƒ¼
+	volatile int			MFBaseImageSetup ;				// ã‚«ãƒ¬ãƒ³ãƒˆãƒ•ãƒ¬ãƒ¼ãƒ ã® RGB ã‚¤ãƒ¡ãƒ¼ã‚¸ãŒæ§‹ç¯‰ã•ã‚Œã¦ã„ã‚‹ã‹ã©ã†ã‹( 1:ã•ã‚Œã¦ã„ã‚‹  0:ã•ã‚Œã¦ã„ãªã„ )
 #ifndef DX_NON_FILTER
-	volatile int			MFNotUseYUVGrHandle ;			// YUVƒJƒ‰[‚ÌƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ðŽg—p‚µ‚È‚¢‚©‚Ç‚¤‚©
-	volatile int			MFYUVGrHandleSetup ;			// YUVƒJƒ‰[‚ÌƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ÌƒZƒbƒgƒAƒbƒv‚ªŠ®—¹‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©( 1:Š®—¹‚µ‚Ä‚¢‚é  0:Š®—¹‚µ‚Ä‚¢‚È‚¢ )
+	volatile int			MFNotUseYUVGrHandle ;			// YUVã‚«ãƒ©ãƒ¼ã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã‚’ä½¿ç”¨ã—ãªã„ã‹ã©ã†ã‹
+	volatile int			MFYUVGrHandleSetup ;			// YUVã‚«ãƒ©ãƒ¼ã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ãŒå®Œäº†ã—ã¦ã„ã‚‹ã‹ã©ã†ã‹( 1:å®Œäº†ã—ã¦ã„ã‚‹  0:å®Œäº†ã—ã¦ã„ãªã„ )
 #endif // DX_NON_FILTER
 #endif // DX_NON_MEDIA_FOUNDATION
 
 #ifndef DX_NON_DSHOW_MOVIE
-	D_IGraphBuilder			*pGraph ;						// ƒtƒBƒ‹ƒ^ƒOƒ‰ƒtƒ}ƒl[ƒWƒƒ
-	D_IMediaControl			*pMediaControl ;				// ƒƒfƒBƒAƒRƒ“ƒgƒ[ƒ‰
-	D_IMediaSeeking			*pMediaSeeking ;				// ƒƒfƒBƒAƒV[ƒLƒ“ƒO
-	D_IBasicAudio			*pBasicAudio ;					// BasicAudio ƒCƒ“ƒ^[ƒtƒFƒCƒX
+	D_IGraphBuilder			*pGraph ;						// ãƒ•ã‚£ãƒ«ã‚¿ã‚°ãƒ©ãƒ•ãƒžãƒãƒ¼ã‚¸ãƒ£
+	D_IMediaControl			*pMediaControl ;				// ãƒ¡ãƒ‡ã‚£ã‚¢ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©
+	D_IMediaSeeking			*pMediaSeeking ;				// ãƒ¡ãƒ‡ã‚£ã‚¢ã‚·ãƒ¼ã‚­ãƒ³ã‚°
+	D_IBasicAudio			*pBasicAudio ;					// BasicAudio ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ã‚¤ã‚¹
 
-//	D_ISampleGrabber		*SampleGrabber ;				// ƒTƒ“ƒvƒ‹ƒOƒ‰ƒbƒoƒIƒuƒWƒFƒNƒg
+//	D_ISampleGrabber		*SampleGrabber ;				// ã‚µãƒ³ãƒ—ãƒ«ã‚°ãƒ©ãƒƒãƒã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
 
-	D_CMovieRender			*pMovieImage ;					// “®‰æ‚ÌƒCƒ[ƒW
+	D_CMovieRender			*pMovieImage ;					// å‹•ç”»ã®ã‚¤ãƒ¡ãƒ¼ã‚¸
 #endif // DX_NON_DSHOW_MOVIE
 
 #if !defined( DX_NON_MEDIA_FOUNDATION ) || !defined( DX_NON_DSHOW_MOVIE )
-	D_STREAM_TIME			FrameTime ;						// ‚PƒtƒŒ[ƒ€“–‚½‚è‚ÌŽžŠÔ( 100ƒiƒm•b’PˆÊ )
-	D_STREAM_TIME			TotalFrame ;					// ‘ƒtƒŒ[ƒ€”
-	int						UseTemporaryFile ;				// ƒeƒ“ƒ|ƒ‰ƒŠƒtƒ@ƒCƒ‹‚ðŽg—p‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©Aƒtƒ‰ƒO
-	wchar_t					FileName[ FILEPATH_MAX ] ;		// ƒtƒ@ƒCƒ‹ƒl[ƒ€
+	D_STREAM_TIME			FrameTime ;						// ï¼‘ãƒ•ãƒ¬ãƒ¼ãƒ å½“ãŸã‚Šã®æ™‚é–“( 100ãƒŠãƒŽç§’å˜ä½ )
+	D_STREAM_TIME			TotalFrame ;					// ç·ãƒ•ãƒ¬ãƒ¼ãƒ æ•°
+	int						UseTemporaryFile ;				// ãƒ†ãƒ³ãƒãƒ©ãƒªãƒ•ã‚¡ã‚¤ãƒ«ã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹ã‹ã©ã†ã‹ã€ãƒ•ãƒ©ã‚°
+	wchar_t					FileName[ FILEPATH_MAX ] ;		// ãƒ•ã‚¡ã‚¤ãƒ«ãƒãƒ¼ãƒ 
 #endif // !defined( DX_NON_MEDIA_FOUNDATION ) || !defined( DX_NON_DSHOW_MOVIE )
 } ;
 
-// ƒ€[ƒr[ƒf[ƒ^ŠÂ‹«ˆË‘¶ŠÇ—\‘¢‘Ì
+// ãƒ ãƒ¼ãƒ“ãƒ¼ãƒ‡ãƒ¼ã‚¿ç’°å¢ƒä¾å­˜ç®¡ç†æ§‹é€ ä½“
 struct MOVIEGRAPHMANAGE_PF
 {
 	int						Dummy ;
 
 #ifndef DX_NON_MEDIA_FOUNDATION
-	int						DisableMediaFoundation ;		// Media Foundation ‚ðŽg—p‚µ‚È‚¢‚©‚Ç‚¤‚©( TRUE:Žg—p‚µ‚È‚¢  FALSE:Žg—p‚·‚é )
-	int						MFStartupRunFlag ;				// MFStartup ‚ðŒÄ‚ñ‚Å‚¢‚é‚©( TRUE:ŒÄ‚ñ‚¾  FALSE:‚Ü‚¾ŒÄ‚ñ‚Å‚¢‚È‚¢ )
+	int						DisableMediaFoundation ;		// Media Foundation ã‚’ä½¿ç”¨ã—ãªã„ã‹ã©ã†ã‹( TRUE:ä½¿ç”¨ã—ãªã„  FALSE:ä½¿ç”¨ã™ã‚‹ )
+	int						MFStartupRunFlag ;				// MFStartup ã‚’å‘¼ã‚“ã§ã„ã‚‹ã‹( TRUE:å‘¼ã‚“ã   FALSE:ã¾ã å‘¼ã‚“ã§ã„ãªã„ )
 #endif // DX_NON_MEDIA_FOUNDATION
 } ;
 
-// “à•”‘åˆæ•Ï”éŒ¾ --------------------------------------------------------------
+// å†…éƒ¨å¤§åŸŸå¤‰æ•°å®£è¨€ --------------------------------------------------------------
 
-// ŠÖ”ƒvƒƒgƒ^ƒCƒvéŒ¾-----------------------------------------------------------
+// é–¢æ•°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€-----------------------------------------------------------
 
 #ifndef DX_NON_NAMESPACE
 

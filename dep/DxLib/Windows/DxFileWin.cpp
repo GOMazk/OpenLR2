@@ -1,15 +1,15 @@
 //-----------------------------------------------------------------------------
 // 
-// 		‚c‚wƒ‰ƒCƒuƒ‰ƒŠ		Windows—pƒtƒ@ƒCƒ‹ŠÖŒWƒvƒƒOƒ‰ƒ€
+// 		ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒª		Windowsç”¨ãƒ•ã‚¡ã‚¤ãƒ«é–¢ä¿‚ãƒ—ãƒ­ã‚°ãƒ©ãƒ 
 // 
 //  	Ver 3.25a
 // 
 //-----------------------------------------------------------------------------
 
-// ‚c‚wƒ‰ƒCƒuƒ‰ƒŠì¬—p’è‹`
+// ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªä½œæˆæ™‚ç”¨å®šç¾©
 #define DX_MAKE
 
-// ƒCƒ“ƒNƒ‹[ƒh ---------------------------------------------------------------
+// ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ ---------------------------------------------------------------
 #include "DxWindow.h"
 #include "DxWinAPI.h"
 #include "../DxFile.h"
@@ -33,26 +33,26 @@ namespace DxLib
 
 #endif // DX_NON_NAMESPACE
 
-// ƒ}ƒNƒ’è‹` -----------------------------------------------------------------
+// ãƒã‚¯ãƒ­å®šç¾© -----------------------------------------------------------------
 
-// \‘¢‘ÌéŒ¾ -----------------------------------------------------------------
+// æ§‹é€ ä½“å®£è¨€ -----------------------------------------------------------------
 
-// ƒf[ƒ^’è‹` -----------------------------------------------------------------
+// ãƒ‡ãƒ¼ã‚¿å®šç¾© -----------------------------------------------------------------
 
-// ƒpƒX‚Ìn‚Ü‚è‚ª / ‚â \\ ‚¾‚Á‚½ê‡Aƒ‹[ƒgƒfƒBƒŒƒNƒgƒŠ‚ğw’è‚µ‚½‚±‚Æ‚É‚·‚é‚©( 1:ƒ‹[ƒgƒfƒBƒŒƒNƒgƒŠ‚ğw’è‚µ‚½‚±‚Æ‚É‚·‚é  0:ƒ‹[ƒgƒfƒBƒŒƒNƒgƒŠ‚ğw’è‚µ‚½‚±‚Æ‚É‚µ‚È‚¢ )
+// ãƒ‘ã‚¹ã®å§‹ã¾ã‚ŠãŒ / ã‚„ \\ ã ã£ãŸå ´åˆã€ãƒ«ãƒ¼ãƒˆãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã‚’æŒ‡å®šã—ãŸã“ã¨ã«ã™ã‚‹ã‹( 1:ãƒ«ãƒ¼ãƒˆãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã‚’æŒ‡å®šã—ãŸã“ã¨ã«ã™ã‚‹  0:ãƒ«ãƒ¼ãƒˆãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã‚’æŒ‡å®šã—ãŸã“ã¨ã«ã—ãªã„ )
 int g_EnableRootDirName = 1 ;
 
-int g_AddDriveNameNum = 0 ;				// ’Ç‰Á‚Ìƒhƒ‰ƒCƒu–¼‚Ì”
-const char * g_AddDriveName[ 16 ] ;		// ’Ç‰Á‚Ìƒhƒ‰ƒCƒu–¼
+int g_AddDriveNameNum = 0 ;				// è¿½åŠ ã®ãƒ‰ãƒ©ã‚¤ãƒ–åã®æ•°
+const char * g_AddDriveName[ 16 ] ;		// è¿½åŠ ã®ãƒ‰ãƒ©ã‚¤ãƒ–å
 
-// ŠÖ”éŒ¾ -------------------------------------------------------------------
+// é–¢æ•°å®£è¨€ -------------------------------------------------------------------
 
-DWORD	WINAPI		FileAccessThreadFunction( void *FileAccessThreadData ) ;					// ƒtƒ@ƒCƒ‹ƒAƒNƒZƒXê—pƒXƒŒƒbƒh—pŠÖ”
-int					SetFilePointer64( HANDLE FileHandle, ULONGLONG Position ) ;					// ƒtƒ@ƒCƒ‹‚ÌƒAƒNƒZƒXˆÊ’u‚ğİ’è‚·‚é( 0:¬Œ÷  -1:¸”s )
+DWORD	WINAPI		FileAccessThreadFunction( void *FileAccessThreadData ) ;					// ãƒ•ã‚¡ã‚¤ãƒ«ã‚¢ã‚¯ã‚»ã‚¹å°‚ç”¨ã‚¹ãƒ¬ãƒƒãƒ‰ç”¨é–¢æ•°
+int					SetFilePointer64( HANDLE FileHandle, ULONGLONG Position ) ;					// ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚¢ã‚¯ã‚»ã‚¹ä½ç½®ã‚’è¨­å®šã™ã‚‹( 0:æˆåŠŸ  -1:å¤±æ•— )
 
-// ƒvƒƒOƒ‰ƒ€ -----------------------------------------------------------------
+// ãƒ—ãƒ­ã‚°ãƒ©ãƒ  -----------------------------------------------------------------
 
-// ƒtƒ@ƒCƒ‹‚ÌƒAƒNƒZƒXˆÊ’u‚ğİ’è‚·‚é
+// ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚¢ã‚¯ã‚»ã‚¹ä½ç½®ã‚’è¨­å®šã™ã‚‹
 int SetFilePointer64( HANDLE FileHandle, ULONGLONG Position )
 {
 	DWORD High, Low ;
@@ -71,7 +71,7 @@ int SetFilePointer64( HANDLE FileHandle, ULONGLONG Position )
 	return 0 ;
 }
 
-// ƒeƒ“ƒ|ƒ‰ƒŠƒtƒ@ƒCƒ‹‚ğì¬‚·‚é
+// ãƒ†ãƒ³ãƒãƒ©ãƒªãƒ•ã‚¡ã‚¤ãƒ«ã‚’ä½œæˆã™ã‚‹
 extern HANDLE CreateTemporaryFile( wchar_t *TempFileNameBuffer, size_t BufferBytes, wchar_t *ExeName )
 {
 	HANDLE FileHandle ;
@@ -84,36 +84,36 @@ extern HANDLE CreateTemporaryFile( wchar_t *TempFileNameBuffer, size_t BufferByt
 		wchar_t String1[ FILEPATH_MAX ] ;
 		wchar_t String2[ FILEPATH_MAX ] ;
 
-		// ƒeƒ“ƒ|ƒ‰ƒŠƒtƒ@ƒCƒ‹‚ÌƒfƒBƒŒƒNƒgƒŠƒpƒX‚ğæ“¾‚·‚é
+		// ãƒ†ãƒ³ãƒãƒ©ãƒªãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªãƒ‘ã‚¹ã‚’å–å¾—ã™ã‚‹
 		if( GetTempPathWFunc( sizeof( String1 ) / sizeof( wchar_t ), String1 ) == 0 )
 		{
 			return NULL ;
 		}
 
-		// •¶š—ñ‚ÌÅŒã‚Éƒ}[ƒN‚ğ‚Â‚¯‚é
+		// æ–‡å­—åˆ—ã®æœ€å¾Œã«ï¿¥ãƒãƒ¼ã‚¯ã‚’ã¤ã‘ã‚‹
 		Length = ( int )CL_strlen( WCHAR_T_CHARCODEFORMAT, ( char * )String1 ) ;
 		if( String1[ Length - 1 ] != L'\\' )
 		{
 			CL_strcat_s( WCHAR_T_CHARCODEFORMAT, ( char * )String1, sizeof( String1 ), ( const char * )L"\\" ) ;
 		}
 
-		// ƒeƒ“ƒ|ƒ‰ƒŠƒtƒ@ƒCƒ‹‚Ìƒtƒ@ƒCƒ‹–¼‚ğì¬‚·‚é
+		// ãƒ†ãƒ³ãƒãƒ©ãƒªãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ•ã‚¡ã‚¤ãƒ«åã‚’ä½œæˆã™ã‚‹
 		if( GetTempFileNameWFunc( String1, L"tmp", 0, String2 ) == 0 )
 		{
 			return NULL ;
 		}
 
-		// ƒtƒ‹ƒpƒX‚É•ÏŠ·
+		// ãƒ•ãƒ«ãƒ‘ã‚¹ã«å¤‰æ›
 		ConvertFullPathW_( String2, String1, sizeof( String1 ) ) ;
 
-		// Šg’£qw’è‚ª‚ ‚éê‡‚ÍŠg’£q‚ğ’Ç‰Á‚·‚é
+		// æ‹¡å¼µå­æŒ‡å®šãŒã‚ã‚‹å ´åˆã¯æ‹¡å¼µå­ã‚’è¿½åŠ ã™ã‚‹
 		if( ExeName != NULL )
 		{
 			CL_strcat_s( WCHAR_T_CHARCODEFORMAT, ( char * )String1, sizeof( String1 ), ( const char * )L"." ) ;
 			CL_strcat_s( WCHAR_T_CHARCODEFORMAT, ( char * )String1, sizeof( String1 ), ( const char * )ExeName ) ;
 		}
 
-		// ƒeƒ“ƒ|ƒ‰ƒŠƒtƒ@ƒCƒ‹‚ğŠJ‚­
+		// ãƒ†ãƒ³ãƒãƒ©ãƒªãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‹ã
 		DeleteFileWFunc( String1 ) ;
 		FileHandle = CreateFileWFunc( String1, GENERIC_WRITE, 0, NULL, CREATE_NEW, FILE_ATTRIBUTE_NORMAL, NULL ) ;
 		if( FileHandle == NULL )
@@ -121,7 +121,7 @@ extern HANDLE CreateTemporaryFile( wchar_t *TempFileNameBuffer, size_t BufferByt
 			return NULL ;
 		}
 
-		// ƒeƒ“ƒ|ƒ‰ƒŠƒtƒ@ƒCƒ‹–¼‚ğ•Û‘¶
+		// ãƒ†ãƒ³ãƒãƒ©ãƒªãƒ•ã‚¡ã‚¤ãƒ«åã‚’ä¿å­˜
 		if( TempFileNameBuffer != NULL )
 		{
 			CL_strcpy_s( WCHAR_T_CHARCODEFORMAT, ( char * )TempFileNameBuffer, BufferBytes, ( const char * )String1 ) ;
@@ -132,29 +132,29 @@ extern HANDLE CreateTemporaryFile( wchar_t *TempFileNameBuffer, size_t BufferByt
 		char String1[ FILEPATH_MAX ] ;
 		char String2[ FILEPATH_MAX ] ;
 
-		// ƒeƒ“ƒ|ƒ‰ƒŠƒtƒ@ƒCƒ‹‚ÌƒfƒBƒŒƒNƒgƒŠƒpƒX‚ğæ“¾‚·‚é
+		// ãƒ†ãƒ³ãƒãƒ©ãƒªãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªãƒ‘ã‚¹ã‚’å–å¾—ã™ã‚‹
 		if( WinAPIData.Win32Func.GetTempPathAFunc( sizeof( String1 ) / sizeof( char ), String1 ) == 0 )
 		{
 			return NULL ;
 		}
 
-		// •¶š—ñ‚ÌÅŒã‚Éƒ}[ƒN‚ğ‚Â‚¯‚é
+		// æ–‡å­—åˆ—ã®æœ€å¾Œã«ï¿¥ãƒãƒ¼ã‚¯ã‚’ã¤ã‘ã‚‹
 		Length = ( int )CL_strlen( CHAR_CHARCODEFORMAT, String1 ) ;
 		if( String1[ Length - 1 ] != L'\\' )
 		{
 			CL_strcat_s( CHAR_CHARCODEFORMAT, String1, sizeof( String1 ), "\\" ) ;
 		}
 
-		// ƒeƒ“ƒ|ƒ‰ƒŠƒtƒ@ƒCƒ‹‚Ìƒtƒ@ƒCƒ‹–¼‚ğì¬‚·‚é
+		// ãƒ†ãƒ³ãƒãƒ©ãƒªãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ•ã‚¡ã‚¤ãƒ«åã‚’ä½œæˆã™ã‚‹
 		if( WinAPIData.Win32Func.GetTempFileNameAFunc( String1, "tmp", 0, String2 ) == 0 )
 		{
 			return NULL ;
 		}
 
-		// ƒtƒ‹ƒpƒX‚É•ÏŠ·
+		// ãƒ•ãƒ«ãƒ‘ã‚¹ã«å¤‰æ›
 		ConvertFullPathA_( String2, String1, sizeof( String1 ) ) ;
 
-		// Šg’£qw’è‚ª‚ ‚éê‡‚ÍŠg’£q‚ğ’Ç‰Á‚·‚é
+		// æ‹¡å¼µå­æŒ‡å®šãŒã‚ã‚‹å ´åˆã¯æ‹¡å¼µå­ã‚’è¿½åŠ ã™ã‚‹
 		if( ExeName != NULL )
 		{
 			char ExeNameA[ 64 ] ;
@@ -164,7 +164,7 @@ extern HANDLE CreateTemporaryFile( wchar_t *TempFileNameBuffer, size_t BufferByt
 			CL_strcat_s( CHAR_CHARCODEFORMAT, String1, sizeof( String1 ), ExeNameA ) ;
 		}
 
-		// ƒeƒ“ƒ|ƒ‰ƒŠƒtƒ@ƒCƒ‹‚ğŠJ‚­
+		// ãƒ†ãƒ³ãƒãƒ©ãƒªãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‹ã
 		WinAPIData.Win32Func.DeleteFileAFunc( String1 ) ;
 		FileHandle = WinAPIData.Win32Func.CreateFileAFunc( String1, GENERIC_WRITE, 0, NULL, CREATE_NEW, FILE_ATTRIBUTE_NORMAL, NULL ) ;
 		if( FileHandle == NULL )
@@ -172,20 +172,20 @@ extern HANDLE CreateTemporaryFile( wchar_t *TempFileNameBuffer, size_t BufferByt
 			return NULL ;
 		}
 
-		// ƒeƒ“ƒ|ƒ‰ƒŠƒtƒ@ƒCƒ‹–¼‚ğ•Û‘¶
+		// ãƒ†ãƒ³ãƒãƒ©ãƒªãƒ•ã‚¡ã‚¤ãƒ«åã‚’ä¿å­˜
 		if( TempFileNameBuffer != NULL )
 		{
 			ConvString( String1, -1, CHAR_CHARCODEFORMAT, ( char * )TempFileNameBuffer, BufferBytes, WCHAR_T_CHARCODEFORMAT ) ;
 		}
 	}
 
-	// ƒnƒ“ƒhƒ‹‚ğ•Ô‚·
+	// ãƒãƒ³ãƒ‰ãƒ«ã‚’è¿”ã™
 	return FileHandle ;
 }
 
 
 
-// ƒtƒ@ƒCƒ‹ƒAƒNƒZƒXê—pƒXƒŒƒbƒh—pŠÖ”
+// ãƒ•ã‚¡ã‚¤ãƒ«ã‚¢ã‚¯ã‚»ã‚¹å°‚ç”¨ã‚¹ãƒ¬ãƒƒãƒ‰ç”¨é–¢æ•°
 DWORD WINAPI FileAccessThreadFunction( void *FileAccessThreadData )
 {
 	FILEACCESSTHREAD *dat = (FILEACCESSTHREAD *)FileAccessThreadData ;
@@ -197,25 +197,25 @@ DWORD WINAPI FileAccessThreadFunction( void *FileAccessThreadData )
 	{
 		for(;;)
 		{
-			// ƒLƒƒƒbƒVƒ…‚ğg—p‚·‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+			// ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã‚’ä½¿ç”¨ã™ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 			if( dat->CacheBuffer )
 			{
-				// w—ß‚ª—ˆ‚é‚Ü‚Å‚¿‚å‚Á‚Æ‘Ò‚Â
+				// æŒ‡ä»¤ãŒæ¥ã‚‹ã¾ã§ã¡ã‚‡ã£ã¨å¾…ã¤
 				res = WinAPIData.Win32Func.WaitForSingleObjectFunc( dat->FuncEvent, 100 ) ;
 
-				// w—ß‚ª—ˆ‚Ä‚¢–³‚¢ê‡‚Åƒtƒ@ƒCƒ‹‚ªŠJ‚¢‚Ä‚¢‚éê‡‚ÍƒLƒƒƒbƒVƒ“ƒOˆ—‚ğs‚¤
+				// æŒ‡ä»¤ãŒæ¥ã¦ã„ç„¡ã„å ´åˆã§ãƒ•ã‚¡ã‚¤ãƒ«ãŒé–‹ã„ã¦ã„ã‚‹å ´åˆã¯ã‚­ãƒ£ãƒƒã‚·ãƒ³ã‚°å‡¦ç†ã‚’è¡Œã†
 				if( res == WAIT_TIMEOUT && dat->Handle != NULL )
 				{
-					// ‚à‚µƒLƒƒƒbƒVƒ…‚ªˆê”t‚¾‚Á‚½‚ç‰½‚à‚µ‚È‚¢
+					// ã‚‚ã—ã‚­ãƒ£ãƒƒã‚·ãƒ¥ãŒä¸€æ¯ã ã£ãŸã‚‰ä½•ã‚‚ã—ãªã„
 					if( dat->CacheSize != FILEACCESSTHREAD_DEFAULT_CACHESIZE )
 					{
-						// “Ç‚İ‚İŠJnˆÊ’uƒZƒbƒg
+						// èª­ã¿è¾¼ã¿é–‹å§‹ä½ç½®ã‚»ãƒƒãƒˆ
 						SetFilePointer64( dat->Handle, dat->CachePosition + dat->CacheSize ) ;
 
-						// “Ç‚İ‚İ
+						// èª­ã¿è¾¼ã¿
 						WinAPIData.Win32Func.ReadFileFunc( dat->Handle, &dat->CacheBuffer[dat->CacheSize], ( DWORD )( FILEACCESSTHREAD_DEFAULT_CACHESIZE - dat->CacheSize ), &ReadSize, NULL ) ;
 						
-						// —LŒø‚ÈƒTƒCƒY‚ğ‘‚â‚·
+						// æœ‰åŠ¹ãªã‚µã‚¤ã‚ºã‚’å¢—ã‚„ã™
 						dat->CacheSize += ( LONGLONG )ReadSize ;
 					}
 				}
@@ -226,7 +226,7 @@ DWORD WINAPI FileAccessThreadFunction( void *FileAccessThreadData )
 			}
 			else
 			{
-				// w—ß‚ª—ˆ‚é‚Ü‚Å‘Ò‚Â
+				// æŒ‡ä»¤ãŒæ¥ã‚‹ã¾ã§å¾…ã¤
 				res = WinAPIData.Win32Func.WaitForSingleObjectFunc( dat->FuncEvent, INFINITE ) ;
 				if( res == WAIT_TIMEOUT && dat->Handle != NULL ) continue;
 				break;
@@ -235,11 +235,11 @@ DWORD WINAPI FileAccessThreadFunction( void *FileAccessThreadData )
 
 //		WinAPIData.Win32Func.WaitForSingleObjectFunc( dat->FuncEvent, INFINITE ) ;
 
-		// ƒCƒxƒ“ƒg‚ÌƒVƒOƒiƒ‹ó‘Ô‚ğ‰ğœ‚·‚é
+		// ã‚¤ãƒ™ãƒ³ãƒˆã®ã‚·ã‚°ãƒŠãƒ«çŠ¶æ…‹ã‚’è§£é™¤ã™ã‚‹
 		WinAPIData.Win32Func.ResetEventFunc( dat->FuncEvent ) ;
 		WinAPIData.Win32Func.ResetEventFunc( dat->CompEvent ) ;
 
-		// w—ß‚ª—ˆ‚½‚ç”»’f‚·‚é
+		// æŒ‡ä»¤ãŒæ¥ãŸã‚‰åˆ¤æ–­ã™ã‚‹
 		switch( dat->Function )
 		{
 		case FILEACCESSTHREAD_FUNCTION_OPEN :
@@ -257,36 +257,36 @@ DWORD WINAPI FileAccessThreadFunction( void *FileAccessThreadData )
 			break ;
 
 		case FILEACCESSTHREAD_FUNCTION_READ :
-			// ƒLƒƒƒbƒVƒ…‚Æ“Ç‚İ‚İˆÊ’u‚ªˆê’v‚µ‚Ä‚¢‚éê‡‚ÍƒLƒƒƒbƒVƒ…‚©‚çƒf[ƒ^‚ğ“]‘—‚·‚é
+			// ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã¨èª­ã¿è¾¼ã¿ä½ç½®ãŒä¸€è‡´ã—ã¦ã„ã‚‹å ´åˆã¯ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã‹ã‚‰ãƒ‡ãƒ¼ã‚¿ã‚’è»¢é€ã™ã‚‹
 			if( dat->CacheBuffer && dat->ReadPosition == dat->CachePosition && dat->CacheSize != 0 )
 			{
 				DWORD MoveSize ;
 
-				// “]‘—‚·‚éƒTƒCƒY‚ğ’²®
+				// è»¢é€ã™ã‚‹ã‚µã‚¤ã‚ºã‚’èª¿æ•´
 				MoveSize = dat->ReadSize ;
 				if( MoveSize > dat->CacheSize ) MoveSize = ( DWORD )dat->CacheSize ;
 
-				// “]‘—
+				// è»¢é€
 				_MEMCPY( dat->ReadBuffer, dat->CacheBuffer, MoveSize ) ;
 
-				// “Ç‚İ‚İƒTƒCƒY‚Æ“Ç‚İ‚İˆÊ’u‚ğˆÚ“®‚·‚é
+				// èª­ã¿è¾¼ã¿ã‚µã‚¤ã‚ºã¨èª­ã¿è¾¼ã¿ä½ç½®ã‚’ç§»å‹•ã™ã‚‹
 				dat->ReadBuffer = (void *)( (BYTE *)dat->ReadBuffer + MoveSize ) ;
 				dat->ReadPosition += MoveSize ;
 				dat->ReadSize -= MoveSize ;
 				
-				// ƒLƒƒƒbƒVƒ…‚Ìî•ñ‚àXV
+				// ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã®æƒ…å ±ã‚‚æ›´æ–°
 				dat->CachePosition += MoveSize ;
 				dat->CacheSize     -= MoveSize ;
 				if( dat->CacheSize != 0 ) _MEMMOVE( &dat->CacheBuffer[0], &dat->CacheBuffer[MoveSize], ( size_t )dat->CacheSize ) ;
 			}
 
-			// Šó–]‚Ìƒf[ƒ^‚ª‘S‚Ä“Ç‚ß‚Ä‚¢‚È‚¢ê‡‚ÍX‚Éƒtƒ@ƒCƒ‹‚©‚ç“Ç‚İ‚Ş
+			// å¸Œæœ›ã®ãƒ‡ãƒ¼ã‚¿ãŒå…¨ã¦èª­ã‚ã¦ã„ãªã„å ´åˆã¯æ›´ã«ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰èª­ã¿è¾¼ã‚€
 			if( dat->ReadSize != 0 )
 			{
 				SetFilePointer64( dat->Handle, dat->ReadPosition ) ;
 				WinAPIData.Win32Func.ReadFileFunc( dat->Handle, dat->ReadBuffer, dat->ReadSize, &dat->ReadSize, NULL ) ;
 
-				// ƒLƒƒƒbƒVƒ…‚ğ‰Šú‰»‚·‚é
+				// ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã‚’åˆæœŸåŒ–ã™ã‚‹
 				if( dat->CacheBuffer )
 				{
 					dat->CachePosition = dat->ReadPosition + dat->ReadSize ;
@@ -298,7 +298,7 @@ DWORD WINAPI FileAccessThreadFunction( void *FileAccessThreadData )
 		case FILEACCESSTHREAD_FUNCTION_SEEK :
 			SetFilePointer64( dat->Handle, dat->SeekPoint ) ;
 
-			// ƒLƒƒƒbƒVƒ…‚ğ‰Šú‰»‚·‚é
+			// ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã‚’åˆæœŸåŒ–ã™ã‚‹
 			if( dat->CacheBuffer )
 			{
 				dat->CachePosition = (DWORD)dat->SeekPoint ;
@@ -312,12 +312,12 @@ DWORD WINAPI FileAccessThreadFunction( void *FileAccessThreadData )
 			goto END ;
 		}
 
-		// w—ß‚ªŠ®—¹‚µ‚½‚çŠ®—¹ƒCƒxƒ“ƒg‚ğƒVƒOƒiƒ‹ó‘Ô‚É‚·‚é
+		// æŒ‡ä»¤ãŒå®Œäº†ã—ãŸã‚‰å®Œäº†ã‚¤ãƒ™ãƒ³ãƒˆã‚’ã‚·ã‚°ãƒŠãƒ«çŠ¶æ…‹ã«ã™ã‚‹
 		WinAPIData.Win32Func.SetEventFunc( dat->CompEvent ) ;
 	}
 
 END:
-	// ƒGƒ‰[‚Ìˆ×‚ÉŠ®—¹ƒCƒxƒ“ƒg‚ğƒVƒOƒiƒ‹ó‘Ô‚É‚·‚é
+	// ã‚¨ãƒ©ãƒ¼æ™‚ã®ç‚ºã«å®Œäº†ã‚¤ãƒ™ãƒ³ãƒˆã‚’ã‚·ã‚°ãƒŠãƒ«çŠ¶æ…‹ã«ã™ã‚‹
 	WinAPIData.Win32Func.SetEventFunc( dat->CompEvent ) ;
 	dat->EndFlag = TRUE ;
 	WinAPIData.Win32Func.ExitThreadFunc( 1 ) ;
@@ -327,22 +327,22 @@ END:
 
 
 
-// ƒtƒ@ƒCƒ‹ƒAƒNƒZƒXˆ—‚Ì‰Šú‰»EI—¹ŠÖ”
+// ãƒ•ã‚¡ã‚¤ãƒ«ã‚¢ã‚¯ã‚»ã‚¹å‡¦ç†ã®åˆæœŸåŒ–ãƒ»çµ‚äº†é–¢æ•°
 
-// ƒtƒ@ƒCƒ‹ƒAƒNƒZƒXˆ—‚Ì‰Šú‰»ŠÖ”‚ÌŠÂ‹«ˆË‘¶‚Ìˆ—‚ğs‚¤ŠÖ”
+// ãƒ•ã‚¡ã‚¤ãƒ«ã‚¢ã‚¯ã‚»ã‚¹å‡¦ç†ã®åˆæœŸåŒ–é–¢æ•°ã®ç’°å¢ƒä¾å­˜ã®å‡¦ç†ã‚’è¡Œã†é–¢æ•°
 extern int InitializeFile_PF( void )
 {
 	return 0 ;
 }
 
-// ƒtƒ@ƒCƒ‹ƒAƒNƒZƒXˆ—‚ÌŒãn––ŠÖ”‚ÌŠÂ‹«ˆË‘¶‚Ìˆ—‚ğs‚¤ŠÖ”
+// ãƒ•ã‚¡ã‚¤ãƒ«ã‚¢ã‚¯ã‚»ã‚¹å‡¦ç†ã®å¾Œå§‹æœ«é–¢æ•°ã®ç’°å¢ƒä¾å­˜ã®å‡¦ç†ã‚’è¡Œã†é–¢æ•°
 extern int TerminateFile_PF( void )
 {
 	return 0 ;
 }
 
 
-// ƒtƒ@ƒCƒ‹ƒAƒNƒZƒXŠÖ”
+// ãƒ•ã‚¡ã‚¤ãƒ«ã‚¢ã‚¯ã‚»ã‚¹é–¢æ•°
 extern int ReadOnlyFileAccessOpen_PF( FILEACCESS *FileAccess, const wchar_t *Path, int UseCacheFlag, int BlockReadFlag )
 {
 	DWORD Code ;
@@ -353,22 +353,22 @@ extern int ReadOnlyFileAccessOpen_PF( FILEACCESS *FileAccess, const wchar_t *Pat
 //	UseCacheFlag = UseCacheFlag ;
 	BlockReadFlag = BlockReadFlag ;
 
-//	// ƒLƒƒƒbƒVƒ…‚ğg—p‚·‚é‚©‚Ç‚¤‚©‚ğƒXƒŒƒbƒh‚ğg—p‚·‚é‚©‚Ç‚¤‚©‚É‚µ‚Ä‚µ‚Ü‚¤
+//	// ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã‚’ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã«ã—ã¦ã—ã¾ã†
 //	FileAccess->PF.UseThread = UseCacheFlag ;
 
-	// ƒLƒƒƒbƒVƒ…‚ğg—p‚·‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğƒZƒbƒg
+	// ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆ
 	FileAccess->PF.UseCacheFlag = UseCacheFlag ;
 	FileAccess->PF.ThreadData.CacheBuffer = NULL;
 
-	// ƒLƒƒƒbƒVƒ…Aá‚µ‚­‚Í”ñ“¯Šú“Ç‚İ‘‚«‚ğs‚¤ê‡‚ÍƒXƒŒƒbƒh‚ğg—p‚·‚é
+	// ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã€è‹¥ã—ãã¯éåŒæœŸèª­ã¿æ›¸ãã‚’è¡Œã†å ´åˆã¯ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’ä½¿ç”¨ã™ã‚‹
 	FileAccess->PF.UseThread = FileAccess->PF.UseCacheFlag || FileAccess->UseASyncReadFlag ;
 
-	// ƒXƒŒƒbƒh‚ğg—p‚·‚éê‡‚Æ‚µ‚È‚¢ê‡‚Åˆ—‚ğ•ªŠò
+	// ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’ä½¿ç”¨ã™ã‚‹å ´åˆã¨ã—ãªã„å ´åˆã§å‡¦ç†ã‚’åˆ†å²
 	if( FileAccess->PF.UseThread == TRUE )
 	{
-		// ƒXƒŒƒbƒh‚ğg—p‚·‚éê‡‚Íƒtƒ@ƒCƒ‹ƒAƒNƒZƒXê—pƒXƒŒƒbƒh‚ğ—§‚Ä‚é
+		// ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’ä½¿ç”¨ã™ã‚‹å ´åˆã¯ãƒ•ã‚¡ã‚¤ãƒ«ã‚¢ã‚¯ã‚»ã‚¹å°‚ç”¨ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’ç«‹ã¦ã‚‹
 
-		// Å‰‚Éƒtƒ@ƒCƒ‹‚ğŠJ‚¯‚é‚©‚Ç‚¤‚©Šm‚©‚ß‚Ä‚¨‚­
+		// æœ€åˆã«ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‹ã‘ã‚‹ã‹ã©ã†ã‹ç¢ºã‹ã‚ã¦ãŠã
 		FileAccess->PF.Handle = CreateFileWFunc( Path, GENERIC_READ, FILE_SHARE_READ, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL ) ;
 		if( FileAccess->PF.Handle == INVALID_HANDLE_VALUE )
 		{
@@ -379,19 +379,19 @@ extern int ReadOnlyFileAccessOpen_PF( FILEACCESS *FileAccess, const wchar_t *Pat
 		WinAPIData.Win32Func.CloseHandleFunc( FileAccess->PF.Handle ) ;
 		FileAccess->PF.Handle = NULL ;
 
-		// ƒLƒƒƒbƒVƒ…—pƒƒ‚ƒŠ‚ÌŠm•Û
+		// ã‚­ãƒ£ãƒƒã‚·ãƒ¥ç”¨ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿
 		if( FileAccess->PF.UseCacheFlag )
 		{
 			FileAccess->PF.ThreadData.CacheBuffer = (BYTE *)DXALLOC( FILEACCESSTHREAD_DEFAULT_CACHESIZE );
 			if( FileAccess->PF.ThreadData.CacheBuffer == NULL )
 			{
 				DXFREE( FileAccess->PF.ThreadData.CacheBuffer ) ;
-				DXST_LOGFILE_ADDUTF16LE( "\xd5\x30\xa1\x30\xa4\x30\xeb\x30\xad\x8a\x7f\x30\xbc\x8f\x7f\x30\xad\x30\xe3\x30\xc3\x30\xb7\x30\xe5\x30\x28\x75\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ƒtƒ@ƒCƒ‹“Ç‚İ‚İƒLƒƒƒbƒVƒ…—pƒƒ‚ƒŠ‚ÌŠm•Û‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+				DXST_LOGFILE_ADDUTF16LE( "\xd5\x30\xa1\x30\xa4\x30\xeb\x30\xad\x8a\x7f\x30\xbc\x8f\x7f\x30\xad\x30\xe3\x30\xc3\x30\xb7\x30\xe5\x30\x28\x75\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ãƒ•ã‚¡ã‚¤ãƒ«èª­ã¿è¾¼ã¿ã‚­ãƒ£ãƒƒã‚·ãƒ¥ç”¨ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 				return -1 ;
 			}
 		}
 
-		// ê—pƒXƒŒƒbƒhƒf[ƒ^‚ğ‰Šú‰»‚·‚é
+		// å°‚ç”¨ã‚¹ãƒ¬ãƒƒãƒ‰ãƒ‡ãƒ¼ã‚¿ã‚’åˆæœŸåŒ–ã™ã‚‹
 		FileAccess->PF.ThreadData.Handle = NULL ;
 		FileAccess->PF.ThreadData.ThreadHandle = NULL ;
 		FileAccess->PF.ThreadData.FuncEvent = WinAPIData.Win32Func.CreateEventAFunc( NULL, TRUE, FALSE, NULL ) ;
@@ -409,19 +409,19 @@ extern int ReadOnlyFileAccessOpen_PF( FILEACCESS *FileAccess, const wchar_t *Pat
 			if( FileAccess->PF.ThreadData.CacheBuffer ) DXFREE( FileAccess->PF.ThreadData.CacheBuffer ) ;
 			WinAPIData.Win32Func.CloseHandleFunc( FileAccess->PF.ThreadData.FuncEvent ) ;
 			WinAPIData.Win32Func.CloseHandleFunc( FileAccess->PF.ThreadData.CompEvent ) ;
-			DXST_LOGFILE_ADDUTF16LE( "\xd5\x30\xa1\x30\xa4\x30\xeb\x30\xa2\x30\xaf\x30\xbb\x30\xb9\x30\x02\x5c\x28\x75\xb9\x30\xec\x30\xc3\x30\xc9\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ƒtƒ@ƒCƒ‹ƒAƒNƒZƒXê—pƒXƒŒƒbƒh‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+			DXST_LOGFILE_ADDUTF16LE( "\xd5\x30\xa1\x30\xa4\x30\xeb\x30\xa2\x30\xaf\x30\xbb\x30\xb9\x30\x02\x5c\x28\x75\xb9\x30\xec\x30\xc3\x30\xc9\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ãƒ•ã‚¡ã‚¤ãƒ«ã‚¢ã‚¯ã‚»ã‚¹å°‚ç”¨ã‚¹ãƒ¬ãƒƒãƒ‰ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 			return -1 ;
 		}
 		WinAPIData.Win32Func.SetThreadPriorityFunc( FileAccess->PF.ThreadData.ThreadHandle, THREAD_PRIORITY_LOWEST ) ;
 
-		// ƒtƒ@ƒCƒ‹ƒI[ƒvƒ“w—ß‚Í‚±‚±‚ÅŠ®—¹‚µ‚Ä‚µ‚Ü‚¤
+		// ãƒ•ã‚¡ã‚¤ãƒ«ã‚ªãƒ¼ãƒ—ãƒ³æŒ‡ä»¤ã¯ã“ã“ã§å®Œäº†ã—ã¦ã—ã¾ã†
 		FileAccess->PF.ThreadData.Function = FILEACCESSTHREAD_FUNCTION_OPEN ;
 		_WCSCPY_S( FileAccess->PF.ThreadData.FilePath, sizeof( FileAccess->PF.ThreadData.FilePath ), Path ) ;
 
 		WinAPIData.Win32Func.ResetEventFunc( FileAccess->PF.ThreadData.CompEvent ) ;
 		WinAPIData.Win32Func.SetEventFunc( FileAccess->PF.ThreadData.FuncEvent ) ;
 
-		// w—ß‚ªI—¹‚·‚é‚Ü‚Å‘Ò‚Â
+		// æŒ‡ä»¤ãŒçµ‚äº†ã™ã‚‹ã¾ã§å¾…ã¤
 		WinAPIData.Win32Func.WaitForSingleObjectFunc( FileAccess->PF.ThreadData.CompEvent, INFINITE ) ;
 		if( FileAccess->PF.ThreadData.ErrorFlag == TRUE )
 		{
@@ -434,13 +434,13 @@ extern int ReadOnlyFileAccessOpen_PF( FILEACCESS *FileAccess, const wchar_t *Pat
 				WinAPIData.Win32Func.GetExitCodeThreadFunc( FileAccess->PF.ThreadData.ThreadHandle, &Code ) ;
 			}while( Code == STILL_ACTIVE ) ;
 			WinAPIData.Win32Func.CloseHandleFunc( FileAccess->PF.ThreadData.ThreadHandle ) ;
-			DXST_LOGFILE_ADDUTF16LE( "\xd5\x30\xa1\x30\xa4\x30\xeb\x30\x6e\x30\xaa\x30\xfc\x30\xd7\x30\xf3\x30\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ƒtƒ@ƒCƒ‹‚ÌƒI[ƒvƒ“‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+			DXST_LOGFILE_ADDUTF16LE( "\xd5\x30\xa1\x30\xa4\x30\xeb\x30\x6e\x30\xaa\x30\xfc\x30\xd7\x30\xf3\x30\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚ªãƒ¼ãƒ—ãƒ³ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 			return -1 ;
 		}
 	}
 	else
 	{
-		// ƒXƒŒƒbƒh‚ğg—p‚µ‚È‚¢ê‡‚Í‚±‚Ìê‚Åƒtƒ@ƒCƒ‹‚ğŠJ‚­
+		// ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’ä½¿ç”¨ã—ãªã„å ´åˆã¯ã“ã®å ´ã§ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‹ã
 		FileAccess->PF.Handle = CreateFileWFunc( Path, GENERIC_READ, FILE_SHARE_READ, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL ) ;
 		if( FileAccess->PF.Handle == INVALID_HANDLE_VALUE )
 		{
@@ -460,32 +460,32 @@ extern int ReadOnlyFileAccessClose_PF( FILEACCESS *FileAccess )
 
 	SETUP_WIN_API
 
-	// ƒXƒŒƒbƒh‚ğg—p‚·‚éê‡‚Æ‚µ‚È‚¢ê‡‚Åˆ—‚ğ•ªŠò
+	// ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’ä½¿ç”¨ã™ã‚‹å ´åˆã¨ã—ãªã„å ´åˆã§å‡¦ç†ã‚’åˆ†å²
 	if( FileAccess->PF.UseThread == TRUE )
 	{
-		// ‚±‚êˆÈ‘O‚Ìw—ß‚ªo‚Ä‚¢‚½ê‡‚Ìˆ×‚Éw—ßŠ®—¹ƒCƒxƒ“ƒg‚ªƒVƒOƒiƒ‹ó‘Ô‚É‚È‚é‚Ü‚Å‘Ò‚Â
+		// ã“ã‚Œä»¥å‰ã®æŒ‡ä»¤ãŒå‡ºã¦ã„ãŸå ´åˆã®ç‚ºã«æŒ‡ä»¤å®Œäº†ã‚¤ãƒ™ãƒ³ãƒˆãŒã‚·ã‚°ãƒŠãƒ«çŠ¶æ…‹ã«ãªã‚‹ã¾ã§å¾…ã¤
 		WinAPIData.Win32Func.WaitForSingleObjectFunc( FileAccess->PF.ThreadData.CompEvent, INFINITE ) ;
 
-		// ƒXƒŒƒbƒh‚ÉI—¹w—ß‚ğo‚·
+		// ã‚¹ãƒ¬ãƒƒãƒ‰ã«çµ‚äº†æŒ‡ä»¤ã‚’å‡ºã™
 		FileAccess->PF.ThreadData.Function = FILEACCESSTHREAD_FUNCTION_EXIT ;
 		WinAPIData.Win32Func.ResetEventFunc( FileAccess->PF.ThreadData.CompEvent ) ;
 		WinAPIData.Win32Func.SetEventFunc( FileAccess->PF.ThreadData.FuncEvent ) ;
 
-		// w—ß‚ªI—¹‚·‚é‚Ü‚Å‘Ò‚Â
+		// æŒ‡ä»¤ãŒçµ‚äº†ã™ã‚‹ã¾ã§å¾…ã¤
 		WinAPIData.Win32Func.WaitForSingleObjectFunc( FileAccess->PF.ThreadData.CompEvent, INFINITE ) ;
 
-		// ƒXƒŒƒbƒh‚ªI—¹‚·‚é‚Ì‚ğ‘Ò‚Â
+		// ã‚¹ãƒ¬ãƒƒãƒ‰ãŒçµ‚äº†ã™ã‚‹ã®ã‚’å¾…ã¤
 		do
 		{
 			WinAPIData.Win32Func.SleepFunc(1);
 			WinAPIData.Win32Func.GetExitCodeThreadFunc( FileAccess->PF.ThreadData.ThreadHandle, &Code );
 		}while( Code == STILL_ACTIVE );
 
-		// ƒLƒƒƒbƒVƒ…‚ğg—p‚µ‚Ä‚¢‚½ê‡‚ÍƒLƒƒƒbƒVƒ…—pƒƒ‚ƒŠ‚ğŠJ•ú‚·‚é
+		// ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã‚’ä½¿ç”¨ã—ã¦ã„ãŸå ´åˆã¯ã‚­ãƒ£ãƒƒã‚·ãƒ¥ç”¨ãƒ¡ãƒ¢ãƒªã‚’é–‹æ”¾ã™ã‚‹
 		if( FileAccess->PF.ThreadData.CacheBuffer )
 			DXFREE( FileAccess->PF.ThreadData.CacheBuffer ) ;
 
-		// ƒCƒxƒ“ƒg‚âƒXƒŒƒbƒh‚ğ•Â‚¶‚é
+		// ã‚¤ãƒ™ãƒ³ãƒˆã‚„ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’é–‰ã˜ã‚‹
 		WinAPIData.Win32Func.CloseHandleFunc( FileAccess->PF.ThreadData.ThreadHandle ) ;
 		WinAPIData.Win32Func.CloseHandleFunc( FileAccess->PF.ThreadData.CompEvent ) ;
 		WinAPIData.Win32Func.CloseHandleFunc( FileAccess->PF.ThreadData.FuncEvent ) ;
@@ -493,7 +493,7 @@ extern int ReadOnlyFileAccessClose_PF( FILEACCESS *FileAccess )
 	}
 	else
 	{
-		// g—p‚µ‚Ä‚¢‚È‚¢ê‡‚Í‚±‚Ìê‚Åƒnƒ“ƒhƒ‹‚ğ•Â‚¶‚ÄI—¹
+		// ä½¿ç”¨ã—ã¦ã„ãªã„å ´åˆã¯ã“ã®å ´ã§ãƒãƒ³ãƒ‰ãƒ«ã‚’é–‰ã˜ã¦çµ‚äº†
 		Result = WinAPIData.Win32Func.CloseHandleFunc( FileAccess->PF.Handle ) ;
 	}
 
@@ -504,13 +504,13 @@ extern int ReadOnlyFileAccessSeek_PF( FILEACCESS *FileAccess, LONGLONG SeekPoint
 {
 	SETUP_WIN_API
 
-	// ƒXƒŒƒbƒh‚ğg—p‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+	// ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 	if( FileAccess->PF.UseThread == TRUE )
 	{
-		// ‚±‚êˆÈ‘O‚Ìw—ß‚ªo‚Ä‚¢‚½ê‡‚Ìˆ×‚Éw—ßŠ®—¹ƒCƒxƒ“ƒg‚ªƒVƒOƒiƒ‹ó‘Ô‚É‚È‚é‚Ü‚Å‘Ò‚Â
+		// ã“ã‚Œä»¥å‰ã®æŒ‡ä»¤ãŒå‡ºã¦ã„ãŸå ´åˆã®ç‚ºã«æŒ‡ä»¤å®Œäº†ã‚¤ãƒ™ãƒ³ãƒˆãŒã‚·ã‚°ãƒŠãƒ«çŠ¶æ…‹ã«ãªã‚‹ã¾ã§å¾…ã¤
 		WinAPIData.Win32Func.WaitForSingleObjectFunc( FileAccess->PF.ThreadData.CompEvent, INFINITE ) ;
 
-		// ƒXƒŒƒbƒh‚Éƒtƒ@ƒCƒ‹ˆÊ’u•ÏXw—ß‚ğo‚·
+		// ã‚¹ãƒ¬ãƒƒãƒ‰ã«ãƒ•ã‚¡ã‚¤ãƒ«ä½ç½®å¤‰æ›´æŒ‡ä»¤ã‚’å‡ºã™
 		FileAccess->PF.ThreadData.Function = FILEACCESSTHREAD_FUNCTION_SEEK ;
 		FileAccess->PF.ThreadData.SeekPoint = ( ULONGLONG )SeekPoint ;
 		WinAPIData.Win32Func.ResetEventFunc( FileAccess->PF.ThreadData.CompEvent ) ;
@@ -518,14 +518,14 @@ extern int ReadOnlyFileAccessSeek_PF( FILEACCESS *FileAccess, LONGLONG SeekPoint
 	}
 	else
 	{
-		// ƒtƒ@ƒCƒ‹ƒAƒNƒZƒXˆÊ’u‚ğ•ÏX‚·‚é
+		// ãƒ•ã‚¡ã‚¤ãƒ«ã‚¢ã‚¯ã‚»ã‚¹ä½ç½®ã‚’å¤‰æ›´ã™ã‚‹
 		if( SetFilePointer64( FileAccess->PF.Handle, ( ULONGLONG )SeekPoint ) == -1 )
 		{
 			return -1 ;
 		}
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
@@ -535,13 +535,13 @@ extern	size_t ReadOnlyFileAccessRead_PF( void *Buffer, size_t BlockSize, size_t 
 
 	SETUP_WIN_API
 
-	// ƒXƒŒƒbƒh‚ğg—p‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+	// ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 	if( FileAccess->PF.UseThread == TRUE )
 	{
-		// ‚±‚êˆÈ‘O‚Ìw—ß‚ªo‚Ä‚¢‚½ê‡‚Ìˆ×‚Éw—ßŠ®—¹ƒCƒxƒ“ƒg‚ªƒVƒOƒiƒ‹ó‘Ô‚É‚È‚é‚Ü‚Å‘Ò‚Â
+		// ã“ã‚Œä»¥å‰ã®æŒ‡ä»¤ãŒå‡ºã¦ã„ãŸå ´åˆã®ç‚ºã«æŒ‡ä»¤å®Œäº†ã‚¤ãƒ™ãƒ³ãƒˆãŒã‚·ã‚°ãƒŠãƒ«çŠ¶æ…‹ã«ãªã‚‹ã¾ã§å¾…ã¤
 		WinAPIData.Win32Func.WaitForSingleObjectFunc( FileAccess->PF.ThreadData.CompEvent, INFINITE ) ;
 
-		// ƒXƒŒƒbƒh‚Éƒtƒ@ƒCƒ‹“Ç‚İ‚İw—ß‚ğo‚·
+		// ã‚¹ãƒ¬ãƒƒãƒ‰ã«ãƒ•ã‚¡ã‚¤ãƒ«èª­ã¿è¾¼ã¿æŒ‡ä»¤ã‚’å‡ºã™
 		FileAccess->PF.ThreadData.Function = FILEACCESSTHREAD_FUNCTION_READ ;
 		FileAccess->PF.ThreadData.ReadBuffer = Buffer ;
 		FileAccess->PF.ThreadData.ReadPosition = FileAccess->Position ;
@@ -549,10 +549,10 @@ extern	size_t ReadOnlyFileAccessRead_PF( void *Buffer, size_t BlockSize, size_t 
 		WinAPIData.Win32Func.ResetEventFunc( FileAccess->PF.ThreadData.CompEvent ) ;
 		WinAPIData.Win32Func.SetEventFunc( FileAccess->PF.ThreadData.FuncEvent ) ;
 
-		// ”ñ“¯Šú‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+		// éåŒæœŸã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 		if( FileAccess->UseASyncReadFlag == FALSE )
 		{
-			// “¯Šú“Ç‚İ‚İ‚Ìê‡‚Íw—ß‚ªŠ®—¹‚·‚é‚Ü‚Å‘Ò‚Â
+			// åŒæœŸèª­ã¿è¾¼ã¿ã®å ´åˆã¯æŒ‡ä»¤ãŒå®Œäº†ã™ã‚‹ã¾ã§å¾…ã¤
 			WinAPIData.Win32Func.WaitForSingleObjectFunc( FileAccess->PF.ThreadData.CompEvent, INFINITE ) ;
 		}
 
@@ -626,16 +626,16 @@ extern int ReadOnlyFileAccessGetDirS_PF( wchar_t *Buffer, size_t BufferBytes )
 
 static void _WIN32_FIND_DATA_To_FILEINFO( WIN32_FIND_DATAW *FindData, FILEINFOW *FileInfo )
 {
-	// ƒtƒ@ƒCƒ‹–¼‚ÌƒRƒs[
+	// ãƒ•ã‚¡ã‚¤ãƒ«åã®ã‚³ãƒ”ãƒ¼
 	_WCSCPY_S( FileInfo->Name, sizeof( FileInfo->Name ), FindData->cFileName );
 
-	// ƒfƒBƒŒƒNƒgƒŠ‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğƒZƒbƒg
+	// ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆ
 	FileInfo->DirFlag = (FindData->dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) != 0 ? TRUE : FALSE;
 
-	// ƒtƒ@ƒCƒ‹‚ÌƒTƒCƒY‚ğƒZƒbƒg
+	// ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚µã‚¤ã‚ºã‚’ã‚»ãƒƒãƒˆ
 	FileInfo->Size = ( LONGLONG )( ( ( ( ULONGLONG )FindData->nFileSizeHigh ) << 32 ) + FindData->nFileSizeLow ) ;
 
-	// ƒtƒ@ƒCƒ‹ƒ^ƒCƒ€‚ğ•Û‘¶
+	// ãƒ•ã‚¡ã‚¤ãƒ«ã‚¿ã‚¤ãƒ ã‚’ä¿å­˜
 	_FileTimeToLocalDateData( &FindData->ftCreationTime, &FileInfo->CreationTime );
 	_FileTimeToLocalDateData( &FindData->ftLastWriteTime, &FileInfo->LastWriteTime );
 }
@@ -683,7 +683,7 @@ extern int ReadOnlyFileAccessFindClose_PF( FINDINFO *FindInfo )
 {
 	SETUP_WIN_API
 
-	// ‚OˆÈŠO‚ª•Ô‚Á‚Ä‚«‚½‚ç¬Œ÷
+	// ï¼ä»¥å¤–ãŒè¿”ã£ã¦ããŸã‚‰æˆåŠŸ
 	return WinAPIData.Win32Func.FindCloseFunc( FindInfo->PF.FindHandle ) != 0 ? 0 : -1 ;
 }
 
@@ -691,7 +691,7 @@ extern int ReadOnlyFileAccessFindClose_PF( FINDINFO *FindInfo )
 
 
 
-// ‘‚«‚İê—pƒtƒ@ƒCƒ‹ƒAƒNƒZƒXŠÖ”
+// æ›¸ãè¾¼ã¿å°‚ç”¨ãƒ•ã‚¡ã‚¤ãƒ«ã‚¢ã‚¯ã‚»ã‚¹é–¢æ•°
 extern	int			WriteOnlyFileAccessDelete_PF( const wchar_t *Path )
 {
 	SETUP_WIN_API

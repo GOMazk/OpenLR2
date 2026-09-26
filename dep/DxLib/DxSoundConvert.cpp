@@ -1,19 +1,19 @@
 // -------------------------------------------------------------------------------
 // 
-// 		‚c‚wƒ‰ƒCƒuƒ‰ƒŠ		ƒTƒEƒ“ƒhƒf[ƒ^•ÏŠ·ƒvƒƒOƒ‰ƒ€
+// 		ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒª		ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿å¤‰æ›ãƒ—ãƒ­ã‚°ãƒ©ãƒ 
 // 
 // 				Ver 3.25a
 // 
 // -------------------------------------------------------------------------------
 
-// ‚c‚wƒ‰ƒCƒuƒ‰ƒŠì¬—p’è‹`
+// ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªä½œæˆæ™‚ç”¨å®šç¾©
 #define DX_MAKE
 
 #include "DxCompileConfig.h"
 
 #ifndef DX_NON_SOUND
 
-// ƒCƒ“ƒNƒ‹[ƒh ------------------------------------------------------------------
+// ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ ------------------------------------------------------------------
 #include "DxSoundConvert.h"
 #include "DxStatic.h"
 #include "DxLog.h"
@@ -29,75 +29,75 @@ namespace DxLib
 
 #endif // DX_NON_NAMESPACE
 
-// ƒ}ƒNƒ’è‹` --------------------------------------------------------------------
+// ãƒã‚¯ãƒ­å®šç¾© --------------------------------------------------------------------
 
-// \‘¢‘Ì’è‹` --------------------------------------------------------------------
+// æ§‹é€ ä½“å®šç¾© --------------------------------------------------------------------
 
-// “à•”‘åˆæ•Ï”éŒ¾ --------------------------------------------------------------
+// å†…éƒ¨å¤§åŸŸå¤‰æ•°å®£è¨€ --------------------------------------------------------------
 
-// ƒTƒEƒ“ƒh•ÏŠ·ˆ—‘S‘Ì‚Åg—p‚·‚éƒf[ƒ^
+// ã‚µã‚¦ãƒ³ãƒ‰å¤‰æ›å‡¦ç†å…¨ä½“ã§ä½¿ç”¨ã™ã‚‹ãƒ‡ãƒ¼ã‚¿
 SOUNDCONVERTDATA GSoundConvertData ;
 
-// ŠÖ”ƒvƒƒgƒ^ƒCƒvéŒ¾-----------------------------------------------------------
+// é–¢æ•°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€-----------------------------------------------------------
 
-static	int      CheckNormalWaveFormat( STREAMDATA *Stream ) ;											// ’Êí‚Ì‚o‚b‚lŒ`®‚©’²‚×‚é( TRUE:‚o‚b‚lŒ`®  FALSE:ˆá‚¤ )
+static	int      CheckNormalWaveFormat( STREAMDATA *Stream ) ;											// é€šå¸¸ã®ï¼°ï¼£ï¼­å½¢å¼ã‹èª¿ã¹ã‚‹( TRUE:ï¼°ï¼£ï¼­å½¢å¼  FALSE:é•ã† )
 
-static	int	     SetupSoundConvert_WAVE(            SOUNDCONV *SoundConv ) ;							// ‚v‚`‚u‚dƒtƒ@ƒCƒ‹‚ÌƒZƒbƒgƒAƒbƒvˆ—‚ğs‚¤( [–ß] -1:ƒGƒ‰[ )
-static	int	     TerminateSoundConvert_WAVE(        SOUNDCONV *SoundConv ) ;							// ‚v‚`‚u‚dƒtƒ@ƒCƒ‹‚ÌŒãn––ˆ—‚ğs‚¤
-static	int	     ConvertProcessSoundConvert_WAVE(   SOUNDCONV *SoundConv ) ;							// •ÏŠ·Œã‚Ìƒoƒbƒtƒ@‚Éƒf[ƒ^‚ğ•â[‚·‚é
-//static int     SetTimeSoundConvert_WAVE(      SOUNDCONV *SoundConv, int Time ) ;						// •ÏŠ·ˆ—‚ÌˆÊ’u‚ğ•ÏX‚·‚é( ƒ~ƒŠ•b’PˆÊ )
-static	int      SetSampleTimeSoundConvert_WAVE(    SOUNDCONV *SoundConv, LONGLONG SampleTime ) ;		// •ÏŠ·ˆ—‚ÌˆÊ’u‚ğ•ÏX‚·‚é( ƒTƒ“ƒvƒ‹’PˆÊ )
-static	LONGLONG GetSoundConvertDestSize_Fast_WAVE( SOUNDCONV *SoundConv ) ;							// •ÏŠ·Œã‚Ì‘å–}‚Ìƒf[ƒ^ƒTƒCƒY‚ğ“¾‚é
-static	int      GetSoundConvertLoopAreaInfo_WAVE(  SOUNDCONV *SoundConv, LONGLONG *LoopStartPos, LONGLONG *LoopEndPos ) ;	// ƒ‹[ƒvî•ñ‚ğæ“¾( [–ß] -1:ƒGƒ‰[ )
+static	int	     SetupSoundConvert_WAVE(            SOUNDCONV *SoundConv ) ;							// ï¼·ï¼¡ï¼¶ï¼¥ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—å‡¦ç†ã‚’è¡Œã†( [æˆ»] -1:ã‚¨ãƒ©ãƒ¼ )
+static	int	     TerminateSoundConvert_WAVE(        SOUNDCONV *SoundConv ) ;							// ï¼·ï¼¡ï¼¶ï¼¥ãƒ•ã‚¡ã‚¤ãƒ«ã®å¾Œå§‹æœ«å‡¦ç†ã‚’è¡Œã†
+static	int	     ConvertProcessSoundConvert_WAVE(   SOUNDCONV *SoundConv ) ;							// å¤‰æ›å¾Œã®ãƒãƒƒãƒ•ã‚¡ã«ãƒ‡ãƒ¼ã‚¿ã‚’è£œå……ã™ã‚‹
+//static int     SetTimeSoundConvert_WAVE(      SOUNDCONV *SoundConv, int Time ) ;						// å¤‰æ›å‡¦ç†ã®ä½ç½®ã‚’å¤‰æ›´ã™ã‚‹( ãƒŸãƒªç§’å˜ä½ )
+static	int      SetSampleTimeSoundConvert_WAVE(    SOUNDCONV *SoundConv, LONGLONG SampleTime ) ;		// å¤‰æ›å‡¦ç†ã®ä½ç½®ã‚’å¤‰æ›´ã™ã‚‹( ã‚µãƒ³ãƒ—ãƒ«å˜ä½ )
+static	LONGLONG GetSoundConvertDestSize_Fast_WAVE( SOUNDCONV *SoundConv ) ;							// å¤‰æ›å¾Œã®å¤§å‡¡ã®ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºã‚’å¾—ã‚‹
+static	int      GetSoundConvertLoopAreaInfo_WAVE(  SOUNDCONV *SoundConv, LONGLONG *LoopStartPos, LONGLONG *LoopEndPos ) ;	// ãƒ«ãƒ¼ãƒ—æƒ…å ±ã‚’å–å¾—( [æˆ»] -1:ã‚¨ãƒ©ãƒ¼ )
 
-// ƒvƒƒOƒ‰ƒ€ --------------------------------------------------------------------
+// ãƒ—ãƒ­ã‚°ãƒ©ãƒ  --------------------------------------------------------------------
 
-// ‰Šú‰»EI—¹ŠÖ”
+// åˆæœŸåŒ–ãƒ»çµ‚äº†é–¢æ•°
 
-// ƒTƒEƒ“ƒhƒf[ƒ^•ÏŠ·ˆ—‚Ì‰Šú‰»‚ğs‚¤
+// ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿å¤‰æ›å‡¦ç†ã®åˆæœŸåŒ–ã‚’è¡Œã†
 extern	int InitializeSoundConvert( void )
 {
-	// Šù‚É‰Šú‰»Ï‚İ‚Ìê‡‚Í‰½‚à‚µ‚È‚¢
+	// æ—¢ã«åˆæœŸåŒ–æ¸ˆã¿ã®å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( GSoundConvertData.InitializeFlag == TRUE )
 		return -1 ;
 
-	// ŠÂ‹«ˆË‘¶ˆ—
+	// ç’°å¢ƒä¾å­˜å‡¦ç†
 	if( InitializeSoundConvert_PF() < 0 )
 	{
 		return -1 ;
 	}
 
-	// ‰Šú‰»Š®—¹ƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// åˆæœŸåŒ–å®Œäº†ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	GSoundConvertData.InitializeFlag = TRUE ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// ƒTƒEƒ“ƒhƒf[ƒ^•ÏŠ·ˆ—‚ÌI—¹ˆ—‚ğs‚¤
+// ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿å¤‰æ›å‡¦ç†ã®çµ‚äº†å‡¦ç†ã‚’è¡Œã†
 extern	int TerminateSoundConvert( void )
 {
-	// Šù‚ÉŒãn––ˆ—Ï‚İ‚Ìê‡‚Í‰½‚à‚µ‚È‚¢
+	// æ—¢ã«å¾Œå§‹æœ«å‡¦ç†æ¸ˆã¿ã®å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( GSoundConvertData.InitializeFlag == FALSE )
 		return -1 ;
 
-	// ŠÂ‹«ˆË‘¶ˆ—
+	// ç’°å¢ƒä¾å­˜å‡¦ç†
 	if( TerminateSoundConvert_PF() < 0 )
 	{
 		return -1 ;
 	}
 
-	// ‰Šú‰»Š®—¹ƒtƒ‰ƒO‚ğ“|‚·
+	// åˆæœŸåŒ–å®Œäº†ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 	GSoundConvertData.InitializeFlag = FALSE ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// •ÏŠ·ˆ—‚ÌƒZƒbƒgƒAƒbƒv( [–ß] -1:ƒGƒ‰[ )
+// å¤‰æ›å‡¦ç†ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—( [æˆ»] -1:ã‚¨ãƒ©ãƒ¼ )
 extern	int SetupSoundConvert( SOUNDCONV *SoundConv, STREAMDATA *Stream, int DisableReadSoundFunctionMask, int OggVorbisBitDepth, int OggVorbisFromTheoraFile )
 {
-	// ‚·
+	// è©¦ã™
 #ifndef DX_NON_OGGVORBIS
 	SoundConv->OggVorbisBitDepth = OggVorbisBitDepth ;
 	SoundConv->OggVorbisFromTheoraFile = OggVorbisFromTheoraFile ;
@@ -131,7 +131,7 @@ extern	int SetupSoundConvert( SOUNDCONV *SoundConv, STREAMDATA *Stream, int Disa
 	return -1 ;
 	
 R1 :
-	// ‹¤’Ê‰Šú‰»ˆ—‚ğs‚¤
+	// å…±é€šåˆæœŸåŒ–å‡¦ç†ã‚’è¡Œã†
 	SoundConv->InitializeFlag = FALSE ;
 	SoundConv->EndFlag = FALSE ;
 	SoundConv->DestData = DXALLOC( ( size_t )SoundConv->DestDataSize ) ;
@@ -144,14 +144,14 @@ R1 :
 	SoundConv->DestDataCompSize = 0 ;
 	SoundConv->DestDataCompSizeAll = 0 ;
 
-	// ‰Šú‰»Š®—¹
+	// åˆæœŸåŒ–å®Œäº†
 	SoundConv->InitializeFlag = TRUE ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// •ÏŠ·ˆ—‚ÌˆÊ’u‚ğ•ÏX‚·‚é( ƒTƒ“ƒvƒ‹’PˆÊ )
+// å¤‰æ›å‡¦ç†ã®ä½ç½®ã‚’å¤‰æ›´ã™ã‚‹( ã‚µãƒ³ãƒ—ãƒ«å˜ä½ )
 extern int SetSampleTimeSoundConvert( SOUNDCONV *SoundConv, LONGLONG SampleTime )
 {
 	int res = -1 ;
@@ -175,7 +175,7 @@ extern int SetSampleTimeSoundConvert( SOUNDCONV *SoundConv, LONGLONG SampleTime 
 	return res ;
 }
 
-// ƒV[ƒN—\’è‚ÌˆÊ’u‚ğƒZƒbƒg‚µ‚Ä‚¨‚­(‚`‚b‚l‚Ìˆ×‚É)
+// ã‚·ãƒ¼ã‚¯äºˆå®šã®ä½ç½®ã‚’ã‚»ãƒƒãƒˆã—ã¦ãŠã(ï¼¡ï¼£ï¼­ã®ç‚ºã«)
 extern	int SetupSeekPosSoundConvert( SOUNDCONV *SoundConv, LONGLONG SeekPos )
 {
 	SoundConv->SeekLockPosition = SeekPos * SoundConv->OutFormat.nBlockAlign ;
@@ -184,7 +184,7 @@ extern	int SetupSeekPosSoundConvert( SOUNDCONV *SoundConv, LONGLONG SeekPos )
 }
 
 
-// w’è‚ÌƒTƒCƒY•ª‚¾‚¯‰¹º‚ğ‰ğ“€( [–ß] -1:ƒGƒ‰[  0ˆÈã:•ÏŠ·‚µ‚½ƒTƒCƒY )
+// æŒ‡å®šã®ã‚µã‚¤ã‚ºåˆ†ã ã‘éŸ³å£°ã‚’è§£å‡( [æˆ»] -1:ã‚¨ãƒ©ãƒ¼  0ä»¥ä¸Š:å¤‰æ›ã—ãŸã‚µã‚¤ã‚º )
 extern	size_t RunSoundConvert( SOUNDCONV *SoundConv, void *DestBuffer, size_t DestSize )
 {
 	size_t pos, movesize, copysize ;
@@ -257,11 +257,11 @@ extern	size_t RunSoundConvert( SOUNDCONV *SoundConv, void *DestBuffer, size_t De
 		SoundConv->EndFlag = TRUE ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return copysize ;
 }
 
-// •ÏŠ·ˆ—‚ÌŒãn––‚ğs‚¤
+// å¤‰æ›å‡¦ç†ã®å¾Œå§‹æœ«ã‚’è¡Œã†
 extern	int TerminateSoundConvert( SOUNDCONV *SoundConv )
 {
 	if( SoundConv->InitializeFlag == FALSE ) return -1 ;
@@ -286,18 +286,18 @@ extern	int TerminateSoundConvert( SOUNDCONV *SoundConv )
 
 	SoundConv->InitializeFlag = FALSE ;
 	
-	// I—¹
+	// çµ‚äº†
 	return 0 ;	
 }
 
-// •ÏŠ·Œã‚Ì‰¹ºŒ`®‚ğæ“¾( [–ß] -1:ƒGƒ‰[  0ˆÈã:•ÏŠ·Œã‚ÌƒTƒCƒY )
+// å¤‰æ›å¾Œã®éŸ³å£°å½¢å¼ã‚’å–å¾—( [æˆ»] -1:ã‚¨ãƒ©ãƒ¼  0ä»¥ä¸Š:å¤‰æ›å¾Œã®ã‚µã‚¤ã‚º )
 extern	int GetOutSoundFormatInfo( SOUNDCONV *SoundConv, WAVEFORMATEX *OutWaveFormat )
 {
 	*OutWaveFormat = SoundConv->OutFormat ;
 	return 0 ;
 }
 
-// ƒ‹[ƒvî•ñ‚ğæ“¾( [–ß] -1:ƒGƒ‰[ )
+// ãƒ«ãƒ¼ãƒ—æƒ…å ±ã‚’å–å¾—( [æˆ»] -1:ã‚¨ãƒ©ãƒ¼ )
 extern int GetSoundConvertLoopAreaInfo( SOUNDCONV *SoundConv, LONGLONG *LoopStartPos, LONGLONG *LoopEndPos )
 {
 	if( LoopStartPos != NULL ) *LoopStartPos = -1 ;
@@ -313,13 +313,13 @@ extern int GetSoundConvertLoopAreaInfo( SOUNDCONV *SoundConv, LONGLONG *LoopStar
 	return -1 ;
 }
 
-// •ÏŠ·ˆ—‚ªI—¹‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©‚ğæ“¾‚·‚é( [–ß] TRUE:I—¹‚µ‚½  FALSE:‚Ü‚¾I—¹‚µ‚Ä‚¢‚È‚¢ )
+// å¤‰æ›å‡¦ç†ãŒçµ‚äº†ã—ã¦ã„ã‚‹ã‹ã©ã†ã‹ã‚’å–å¾—ã™ã‚‹( [æˆ»] TRUE:çµ‚äº†ã—ãŸ  FALSE:ã¾ã çµ‚äº†ã—ã¦ã„ãªã„ )
 extern	int GetSoundConvertEndState( SOUNDCONV *SoundConv )
 {
 	return SoundConv->EndFlag ;
 }
 
-// •ÏŠ·Œã‚Ì‘å–}‚Ìƒf[ƒ^ƒTƒCƒY‚ğ“¾‚é
+// å¤‰æ›å¾Œã®å¤§å‡¡ã®ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºã‚’å¾—ã‚‹
 extern	LONGLONG GetSoundConvertDestSize_Fast( SOUNDCONV *SoundConv )
 {
 	switch( SoundConv->MethodType )
@@ -339,24 +339,24 @@ extern	LONGLONG GetSoundConvertDestSize_Fast( SOUNDCONV *SoundConv )
 //extern void *SoundBuf ;
 //extern int SoundSize ;
 
-// ‚‘¬‚ÈˆêŠ‡•ÏŠ·
+// é«˜é€Ÿãªä¸€æ‹¬å¤‰æ›
 extern	int SoundConvertFast( SOUNDCONV *SoundConv, 
 									WAVEFORMATEX *FormatP, void **DestBufferP, size_t *DestSizeP )
 {
 	void *Buffer ;
 	size_t BufferSize ;
 
-	// ƒoƒbƒtƒ@‚ÌŠm•Û
+	// ãƒãƒƒãƒ•ã‚¡ã®ç¢ºä¿
 	BufferSize = ( size_t )GetSoundConvertDestSize_Fast( SoundConv ) ;
 
 	Buffer = DXALLOC( ( size_t )BufferSize ) ;
 	if( Buffer == NULL ) return -1 ;
 
-	// •ÏŠ·ˆÊ’u‚ÌƒZƒbƒg
+	// å¤‰æ›ä½ç½®ã®ã‚»ãƒƒãƒˆ
 //	SetTimeSoundConvert( SoundConv, 0 ) ;
 	SetSampleTimeSoundConvert( SoundConv, 0 ) ;
 
-	// ƒf[ƒ^Œ`®‚ª–³ˆ³k‚o‚b‚l‚Ìê‡‚Ì‚İ‚»‚Ì‚Ü‚ÜƒRƒs[
+	// ãƒ‡ãƒ¼ã‚¿å½¢å¼ãŒç„¡åœ§ç¸®ï¼°ï¼£ï¼­ã®å ´åˆã®ã¿ãã®ã¾ã¾ã‚³ãƒ”ãƒ¼
 	if( SoundConv->MethodType == SOUND_METHODTYPE_NORMAL &&
 		( ( SOUNDCONV_WAVE * )SoundConv->ConvFunctionBuffer )->SrcFormat.wFormatTag == WAVE_FORMAT_PCM )
 	{
@@ -364,16 +364,16 @@ extern	int SoundConvertFast( SOUNDCONV *SoundConv,
 	}
 	else
 	{
-		// ‚»‚êˆÈŠO‚Ìê‡‚Í•’Ê‚É“WŠJ
+		// ãã‚Œä»¥å¤–ã®å ´åˆã¯æ™®é€šã«å±•é–‹
 		BufferSize = RunSoundConvert( SoundConv, Buffer, BufferSize ) ;
 	}
 
-	// î•ñ‚ğ•Û‘¶
+	// æƒ…å ±ã‚’ä¿å­˜
 	*FormatP = SoundConv->OutFormat ;
 	*DestBufferP = Buffer ;
 	*DestSizeP = BufferSize ;
 	
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
@@ -391,7 +391,7 @@ extern	int SoundConvertFast( SOUNDCONV *SoundConv,
 
 
 
-// ƒtƒH[ƒ}ƒbƒg•ÏŠ·—p
+// ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆå¤‰æ›ç”¨
 
 struct D_WAVE_SAMPLELOOP
 {
@@ -417,25 +417,25 @@ struct D_WAVE_SAMPLERCHUNK
 	D_WAVE_SAMPLELOOP	Loops[ 1 ] ;
 } ;
 
-// ’Êí‚Ì‚o‚b‚lŒ`®‚©’²‚×‚é( TRUE:‚o‚b‚lŒ`®  FALSE:ˆá‚¤ )
+// é€šå¸¸ã®ï¼°ï¼£ï¼­å½¢å¼ã‹èª¿ã¹ã‚‹( TRUE:ï¼°ï¼£ï¼­å½¢å¼  FALSE:é•ã† )
 extern	int CheckNormalWaveFormat( STREAMDATA *Stream )
 {
 	___RIFFCHUNK chunk ;
 	char type[5] ;
 	WAVEFORMAT format ;
 
-	// RIFFƒtƒ@ƒCƒ‹‚©‚Ç‚¤‚©’²‚×‚é
+	// RIFFãƒ•ã‚¡ã‚¤ãƒ«ã‹ã©ã†ã‹èª¿ã¹ã‚‹
 	Stream->ReadShred.Read( &chunk, sizeof( chunk ), 1, Stream->DataPoint ) ;
 	if( chunk.fcc != RIFFCHUNKID( 'R', 'I', 'F', 'F' ) )
 		return FALSE ;
 		
-	// WAVEƒtƒ@ƒCƒ‹‚©‚Ç‚¤‚©’²‚×‚é
+	// WAVEãƒ•ã‚¡ã‚¤ãƒ«ã‹ã©ã†ã‹èª¿ã¹ã‚‹
 	type[4] = '\0' ;
 	Stream->ReadShred.Read( type, 4, 1, Stream->DataPoint ) ;
 	if( _STRCMP( type, "WAVE" ) != 0 )
 		return FALSE ;
 		
-	// ƒm[ƒ}ƒ‹‚È‚o‚b‚lŒ`®‚©’²‚×‚é
+	// ãƒãƒ¼ãƒãƒ«ãªï¼°ï¼£ï¼­å½¢å¼ã‹èª¿ã¹ã‚‹
 	Stream->ReadShred.Read( &chunk, sizeof( chunk ), 1, Stream->DataPoint ) ;
 	if( chunk.fcc != RIFFCHUNKID( 'f', 'm', 't', ' ' ) )
 		return FALSE ;
@@ -444,11 +444,11 @@ extern	int CheckNormalWaveFormat( STREAMDATA *Stream )
 	if( format.wFormatTag != WAVE_FORMAT_PCM )
 		return FALSE ;
 		
-	// ‚±‚±‚Ü‚Å—ˆ‚½‚ç’Êí‚ÌƒtƒH[ƒ}ƒbƒg‚Æ‚¢‚¤‚±‚Æ
+	// ã“ã“ã¾ã§æ¥ãŸã‚‰é€šå¸¸ã®ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã¨ã„ã†ã“ã¨
 	return TRUE ;
 }
 
-// ‚v‚`‚u‚dƒtƒ@ƒCƒ‹‚ÌƒZƒbƒgƒAƒbƒvˆ—‚ğs‚¤( [–ß] -1:ƒGƒ‰[ )
+// ï¼·ï¼¡ï¼¶ï¼¥ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—å‡¦ç†ã‚’è¡Œã†( [æˆ»] -1:ã‚¨ãƒ©ãƒ¼ )
 static	int SetupSoundConvert_WAVE( SOUNDCONV *SoundConv )
 {
 	___RIFFCHUNK chunk ;
@@ -464,11 +464,11 @@ static	int SetupSoundConvert_WAVE( SOUNDCONV *SoundConv )
 	Wave->LoopStart = -1 ;
 	Wave->LoopEnd = -1 ;
 
-	// RIFFƒtƒ@ƒCƒ‹‚©‚Ç‚¤‚©’²‚×‚é
+	// RIFFãƒ•ã‚¡ã‚¤ãƒ«ã‹ã©ã†ã‹èª¿ã¹ã‚‹
 	Stream->ReadShred.Read( &chunk, sizeof( chunk ), 1, Stream->DataPoint ) ;
 	if( chunk.fcc != RIFFCHUNKID( 'R', 'I', 'F', 'F' ) )
 	{
-		// RF64 ‚©‚Ç‚¤‚©’²‚×‚é
+		// RF64 ã‹ã©ã†ã‹èª¿ã¹ã‚‹
 		if( chunk.fcc != RIFFCHUNKID( 'R', 'F', '6', '4' ) )
 		{
 			goto ERR ;
@@ -476,18 +476,18 @@ static	int SetupSoundConvert_WAVE( SOUNDCONV *SoundConv )
 		IsRF64 = TRUE ;
 	}
 
-	// WAVEƒtƒ@ƒCƒ‹‚©‚Ç‚¤‚©’²‚×‚é
+	// WAVEãƒ•ã‚¡ã‚¤ãƒ«ã‹ã©ã†ã‹èª¿ã¹ã‚‹
 	type[4] = '\0' ;
 	Stream->ReadShred.Read( type, 4, 1, Stream->DataPoint ) ;
 	if( _STRCMP( type, "WAVE" ) != 0 )
 		goto ERR ;
 
-	// ƒ`ƒƒƒ“ƒN‚ÌŠJnˆÊ’u‚ğæ“¾‚µ‚Ä‚¨‚­
+	// ãƒãƒ£ãƒ³ã‚¯ã®é–‹å§‹ä½ç½®ã‚’å–å¾—ã—ã¦ãŠã
 	ChunkStart = Stream->ReadShred.Tell( Stream->DataPoint ) ;
 
-	// ƒm[ƒ}ƒ‹‚È‚o‚b‚lŒ`®‚©’²‚×‚é
+	// ãƒãƒ¼ãƒãƒ«ãªï¼°ï¼£ï¼­å½¢å¼ã‹èª¿ã¹ã‚‹
 	{
-		// RF64 ‚Ìê‡‚Í ds64ƒ`ƒƒƒ“ƒN‚ª‚ ‚é‚Ü‚ÅƒXƒLƒbƒv
+		// RF64 ã®å ´åˆã¯ ds64ãƒãƒ£ãƒ³ã‚¯ãŒã‚ã‚‹ã¾ã§ã‚¹ã‚­ãƒƒãƒ—
 		if( IsRF64 )
 		{
 			while( Stream->ReadShred.Eof( Stream->DataPoint ) == 0 )
@@ -502,13 +502,13 @@ static	int SetupSoundConvert_WAVE( SOUNDCONV *SoundConv )
 			if( Stream->ReadShred.Eof( Stream->DataPoint ) != 0 )
 				goto ERR ;
 
-			// 'data'ƒ`ƒƒƒ“ƒN‚ÌƒTƒCƒY‚ğ“Ç‚İ‚İ
+			// 'data'ãƒãƒ£ãƒ³ã‚¯ã®ã‚µã‚¤ã‚ºã‚’èª­ã¿è¾¼ã¿
 			Stream->ReadShred.Seek( Stream->DataPoint, 8, SEEK_CUR ) ;
 			Stream->ReadShred.Read( &DataSizeRF64, 8, 1, Stream->DataPoint ) ;
 			Stream->ReadShred.Seek( Stream->DataPoint, 12, SEEK_CUR ) ;
 		}
 
-		// ƒtƒH[ƒ}ƒbƒgƒ`ƒƒƒ“ƒN‚ª‚ ‚é‚Ü‚ÅƒXƒLƒbƒv
+		// ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆãƒãƒ£ãƒ³ã‚¯ãŒã‚ã‚‹ã¾ã§ã‚¹ã‚­ãƒƒãƒ—
 		while( Stream->ReadShred.Eof( Stream->DataPoint ) == 0 )
 		{
 			Stream->ReadShred.Read( &chunk, sizeof( chunk ), 1, Stream->DataPoint ) ;
@@ -524,7 +524,7 @@ static	int SetupSoundConvert_WAVE( SOUNDCONV *SoundConv )
 		format = (WAVEFORMATEX *)DXALLOC( chunk.cb ) ;
 		if( format == NULL ) goto ERR ;
 
-		// ƒwƒbƒ_‚ÌˆÊ’u‚ÆƒTƒCƒY‚ğƒZƒbƒg
+		// ãƒ˜ãƒƒãƒ€ã®ä½ç½®ã¨ã‚µã‚¤ã‚ºã‚’ã‚»ãƒƒãƒˆ
 		SoundConv->HeaderPos = ( int )Stream->ReadShred.Tell( Stream->DataPoint ) ;
 		SoundConv->HeaderSize = ( int )chunk.cb ;
 
@@ -538,7 +538,7 @@ static	int SetupSoundConvert_WAVE( SOUNDCONV *SoundConv )
 		{
 		case WAVE_FORMAT_PCM :
 
-			// Œ`®‚ª WAVEFORMATEX ‚Å‚Í‚È‚©‚Á‚½ê‡‚Í•âŠ®‚·‚é
+			// å½¢å¼ãŒ WAVEFORMATEX ã§ã¯ãªã‹ã£ãŸå ´åˆã¯è£œå®Œã™ã‚‹
 			_MEMCPY( &SoundConv->OutFormat, format, sizeof( SoundConv->OutFormat ) < chunk.cb ? sizeof( SoundConv->OutFormat ) : chunk.cb ) ;
 			if( chunk.cb == 16 )
 			{
@@ -550,7 +550,7 @@ static	int SetupSoundConvert_WAVE( SOUNDCONV *SoundConv )
 
 		case WAVE_FORMAT_IEEE_FLOAT :
 
-			// o—ÍƒtƒH[ƒ}ƒbƒg‚ğƒZƒbƒg
+			// å‡ºåŠ›ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã‚’ã‚»ãƒƒãƒˆ
 			SoundConv->OutFormat.nSamplesPerSec  = format->nSamplesPerSec ;
 			SoundConv->OutFormat.nChannels       = format->nChannels ;
 			SoundConv->OutFormat.wBitsPerSample  = 16 ;
@@ -570,15 +570,15 @@ static	int SetupSoundConvert_WAVE( SOUNDCONV *SoundConv )
 			goto ERR ;
 		}
 
-		// ƒtƒH[ƒ}ƒbƒg‚ÌƒRƒs[
+		// ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®ã‚³ãƒ”ãƒ¼
 		_MEMCPY( &Wave->SrcFormat, format, sizeof( Wave->SrcFormat ) < chunk.cb ? sizeof( Wave->SrcFormat ) : chunk.cb ) ;
 
-		// ƒƒ‚ƒŠ‚Ì‰ğ•ú
+		// ãƒ¡ãƒ¢ãƒªã®è§£æ”¾
 		DXFREE( format ) ;
 		format = NULL ;
 	}
 
-	// ƒf[ƒ^ƒ`ƒƒƒ“ƒN‚ğ’T‚·
+	// ãƒ‡ãƒ¼ã‚¿ãƒãƒ£ãƒ³ã‚¯ã‚’æ¢ã™
 	while( Stream->ReadShred.Eof( Stream->DataPoint ) == 0 )
 	{
 		Stream->ReadShred.Read( &chunk , sizeof( chunk ) , 1 , Stream->DataPoint ) ;
@@ -598,10 +598,10 @@ static	int SetupSoundConvert_WAVE( SOUNDCONV *SoundConv )
 		SoundConv->DataSize = ( LONGLONG )( chunk.cb / SoundConv->OutFormat.nBlockAlign * SoundConv->OutFormat.nBlockAlign ) ;
 	}
 
-	// •ÏŠ·Œã‚Ì‚o‚b‚lƒf[ƒ^‚ğˆê“I‚É•Û‘¶‚·‚éƒƒ‚ƒŠ—Ìˆæ‚ÌƒTƒCƒY‚ğƒZƒbƒg
+	// å¤‰æ›å¾Œã®ï¼°ï¼£ï¼­ãƒ‡ãƒ¼ã‚¿ã‚’ä¸€æ™‚çš„ã«ä¿å­˜ã™ã‚‹ãƒ¡ãƒ¢ãƒªé ˜åŸŸã®ã‚µã‚¤ã‚ºã‚’ã‚»ãƒƒãƒˆ
 	SoundConv->DestDataSize = ( LONGLONG )SoundConv->OutFormat.nAvgBytesPerSec ;
 
-	// smplƒ`ƒƒƒ“ƒN‚ğ’T‚·
+	// smplãƒãƒ£ãƒ³ã‚¯ã‚’æ¢ã™
 	{
 		LONGLONG NowPosition = Stream->ReadShred.Tell( Stream->DataPoint ) ;
 		int Flag = FALSE ;
@@ -675,10 +675,10 @@ static	int SetupSoundConvert_WAVE( SOUNDCONV *SoundConv )
 	}
 
 
-	// ƒ^ƒCƒvƒZƒbƒg
+	// ã‚¿ã‚¤ãƒ—ã‚»ãƒƒãƒˆ
 	SoundConv->MethodType = SOUND_METHODTYPE_NORMAL ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 
 ERR :
@@ -700,24 +700,24 @@ ERR :
 
 
 
-// ‚v‚`‚u‚dƒtƒ@ƒCƒ‹‚ÌŒãn––ˆ—‚ğs‚¤
+// ï¼·ï¼¡ï¼¶ï¼¥ãƒ•ã‚¡ã‚¤ãƒ«ã®å¾Œå§‹æœ«å‡¦ç†ã‚’è¡Œã†
 static	int TerminateSoundConvert_WAVE( SOUNDCONV *SoundConv )
 {
 	SOUNDCONV_WAVE *Wave = ( SOUNDCONV_WAVE * )SoundConv->ConvFunctionBuffer ;
 
-	// ƒƒ‚ƒŠ‰ğ•ú
+	// ãƒ¡ãƒ¢ãƒªè§£æ”¾
 	if( Wave->SrcBuffer )
 	{
 		DXFREE( Wave->SrcBuffer ) ;
 		Wave->SrcBuffer = NULL ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
 
-// •ÏŠ·Œã‚Ìƒoƒbƒtƒ@‚Éƒf[ƒ^‚ğ•â[‚·‚é
+// å¤‰æ›å¾Œã®ãƒãƒƒãƒ•ã‚¡ã«ãƒ‡ãƒ¼ã‚¿ã‚’è£œå……ã™ã‚‹
 static	int ConvertProcessSoundConvert_WAVE( SOUNDCONV *SoundConv )
 {
 	LONGLONG readsize, pos ;
@@ -730,11 +730,11 @@ static	int ConvertProcessSoundConvert_WAVE( SOUNDCONV *SoundConv )
 		pos = Stream->ReadShred.Tell( Stream->DataPoint ) - SoundConv->DataPos ;
 		if( pos == SoundConv->DataSize ) return -1 ;
 
-		// “Ç‚İ‚Şƒf[ƒ^ƒTƒCƒY‚ğŒˆ’è‚·‚é
+		// èª­ã¿è¾¼ã‚€ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºã‚’æ±ºå®šã™ã‚‹
 		readsize = SoundConv->DataSize - pos ;
 		if( SoundConv->DestDataSize < readsize ) readsize = SoundConv->DestDataSize ;
 
-		// “Ç‚İ‚Ş
+		// èª­ã¿è¾¼ã‚€
 		Stream->ReadShred.Read( SoundConv->DestData,
 								( size_t )readsize, 1, Stream->DataPoint ) ;
 		SoundConv->DestDataValidSize = readsize ;
@@ -752,15 +752,15 @@ static	int ConvertProcessSoundConvert_WAVE( SOUNDCONV *SoundConv )
 			pos = Stream->ReadShred.Tell( Stream->DataPoint ) - SoundConv->DataPos ;
 			if( pos == SoundConv->DataSize ) return -1 ;
 
-			// “Ç‚İ‚Şƒf[ƒ^ƒTƒCƒY‚ğŒˆ’è‚·‚é
+			// èª­ã¿è¾¼ã‚€ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºã‚’æ±ºå®šã™ã‚‹
 			readsize = SoundConv->DataSize - pos ;
 			if( ( LONGLONG )Wave->SrcBufferSize < readsize ) readsize = ( LONGLONG )Wave->SrcBufferSize ;
 
-			// “Ç‚İ‚Ş
+			// èª­ã¿è¾¼ã‚€
 			Stream->ReadShred.Read( Wave->SrcBuffer,
 									( size_t )readsize, 1, Stream->DataPoint ) ;
 
-			// ®”Œ^‚É•ÏŠ·
+			// æ•´æ•°å‹ã«å¤‰æ›
 			Dest = ( short * )SoundConv->DestData ;
 			Src = ( float * )Wave->SrcBuffer ;
 			SampleNum = ( size_t )( readsize / Wave->SrcFormat.nBlockAlign ) ;
@@ -792,7 +792,7 @@ static	int ConvertProcessSoundConvert_WAVE( SOUNDCONV *SoundConv )
 	return 0 ;
 }
 
-// •ÏŠ·ˆ—‚ÌˆÊ’u‚ğ•ÏX‚·‚é( ƒTƒ“ƒvƒ‹’PˆÊ )
+// å¤‰æ›å‡¦ç†ã®ä½ç½®ã‚’å¤‰æ›´ã™ã‚‹( ã‚µãƒ³ãƒ—ãƒ«å˜ä½ )
 static int SetSampleTimeSoundConvert_WAVE( SOUNDCONV *SoundConv, LONGLONG SampleTime )
 {
 	LONGLONG BytePos ;
@@ -809,7 +809,7 @@ static int SetSampleTimeSoundConvert_WAVE( SOUNDCONV *SoundConv, LONGLONG Sample
 }
 
 
-// •ÏŠ·Œã‚Ì‘å–}‚Ìƒf[ƒ^ƒTƒCƒY‚ğ“¾‚é
+// å¤‰æ›å¾Œã®å¤§å‡¡ã®ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºã‚’å¾—ã‚‹
 static	LONGLONG GetSoundConvertDestSize_Fast_WAVE( SOUNDCONV *SoundConv )
 {
 	SOUNDCONV_WAVE *Wave = ( SOUNDCONV_WAVE * )SoundConv->ConvFunctionBuffer ;
@@ -827,12 +827,12 @@ static	LONGLONG GetSoundConvertDestSize_Fast_WAVE( SOUNDCONV *SoundConv )
 }
 
 
-// ƒ‹[ƒvî•ñ‚ğæ“¾( [–ß] -1:ƒGƒ‰[ )
+// ãƒ«ãƒ¼ãƒ—æƒ…å ±ã‚’å–å¾—( [æˆ»] -1:ã‚¨ãƒ©ãƒ¼ )
 static	int GetSoundConvertLoopAreaInfo_WAVE(  SOUNDCONV *SoundConv, LONGLONG *LoopStartPos, LONGLONG *LoopEndPos )
 {
 	SOUNDCONV_WAVE *Wave = ( SOUNDCONV_WAVE * )SoundConv->ConvFunctionBuffer ;
 
-	// ƒ‹[ƒvî•ñ‚ª‚È‚¢ê‡‚ÍƒGƒ‰[
+	// ãƒ«ãƒ¼ãƒ—æƒ…å ±ãŒãªã„å ´åˆã¯ã‚¨ãƒ©ãƒ¼
 	if( Wave->LoopStart < 0 || Wave->LoopEnd < 0 )
 	{
 		return -1 ;
@@ -841,7 +841,7 @@ static	int GetSoundConvertLoopAreaInfo_WAVE(  SOUNDCONV *SoundConv, LONGLONG *Lo
 	if( LoopStartPos != NULL ) *LoopStartPos = Wave->LoopStart ;
 	if( LoopEndPos   != NULL ) *LoopEndPos   = Wave->LoopEnd ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 

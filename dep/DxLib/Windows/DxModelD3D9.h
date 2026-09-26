@@ -1,6 +1,6 @@
 // -------------------------------------------------------------------------------
 // 
-// 		‚c‚wƒ‰ƒCƒuƒ‰ƒŠ		ƒ‚ƒfƒ‹ƒf[ƒ^§ŒäƒvƒƒOƒ‰ƒ€( Direct3D9 )ƒwƒbƒ_ƒtƒ@ƒCƒ‹
+// 		ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒª		ãƒ¢ãƒ‡ãƒ«ãƒ‡ãƒ¼ã‚¿åˆ¶å¾¡ãƒ—ãƒ­ã‚°ãƒ©ãƒ ( Direct3D9 )ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«
 // 
 // 				Ver 3.25a
 // 
@@ -13,7 +13,7 @@
 
 #ifndef DX_NON_DIRECT3D9
 
-// ƒCƒ“ƒNƒ‹[ƒh ------------------------------------------------------------------
+// ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ ------------------------------------------------------------------
 
 #ifndef DX_NON_MODEL
 
@@ -28,137 +28,137 @@ namespace DxLib
 
 #endif // DX_NON_NAMESPACE
 
-// ƒ}ƒNƒ’è‹` --------------------------------------------------------------------
+// ãƒã‚¯ãƒ­å®šç¾© --------------------------------------------------------------------
 
-// \‘¢‘Ì’è‹` --------------------------------------------------------------------
+// æ§‹é€ ä½“å®šç¾© --------------------------------------------------------------------
 
-// „‘ÌƒƒbƒVƒ…ƒ^ƒCƒv’¸“_\‘¢‘Ì
+// å‰›ä½“ãƒ¡ãƒƒã‚·ãƒ¥ã‚¿ã‚¤ãƒ—é ‚ç‚¹æ§‹é€ ä½“
 struct MV1_VERTEX_SIMPLE_D3D9
 {
-	VECTOR					Position ;							// À•W
-	VECTOR					Normal ;							// –@ü
-	COLOR_U8				DiffuseColor ;						// ƒfƒBƒtƒ…[ƒYF
-	COLOR_U8				SpecularColor ;						// ƒXƒyƒLƒ…ƒ‰[F
-	float					UVs[ 3 ][ 4 ] ;						// ƒeƒNƒXƒ`ƒƒÀ•W
+	VECTOR					Position ;							// åº§æ¨™
+	VECTOR					Normal ;							// æ³•ç·š
+	COLOR_U8				DiffuseColor ;						// ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºè‰²
+	COLOR_U8				SpecularColor ;						// ã‚¹ãƒšã‚­ãƒ¥ãƒ©ãƒ¼è‰²
+	float					UVs[ 3 ][ 4 ] ;						// ãƒ†ã‚¯ã‚¹ãƒãƒ£åº§æ¨™
 } ;
 
-// „‘ÌƒƒbƒVƒ…ƒ^ƒCƒv—ÖŠsü—p’¸“_\‘¢‘Ì
+// å‰›ä½“ãƒ¡ãƒƒã‚·ãƒ¥ã‚¿ã‚¤ãƒ—è¼ªéƒ­ç·šç”¨é ‚ç‚¹æ§‹é€ ä½“
 struct MV1_VERTEX_SIMPLE_TOL_D3D9
 {
-	VECTOR					Position ;							// À•W
-	COLOR_U8				DiffuseColor ;						// ƒfƒBƒtƒ…[ƒYF
+	VECTOR					Position ;							// åº§æ¨™
+	COLOR_U8				DiffuseColor ;						// ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºè‰²
 } ;
 
-// „‘ÌƒƒbƒVƒ…ƒ^ƒCƒvƒoƒ“ƒvƒ}ƒbƒv—p’¸“_\‘¢‘Ì
+// å‰›ä½“ãƒ¡ãƒƒã‚·ãƒ¥ã‚¿ã‚¤ãƒ—ãƒãƒ³ãƒ—ãƒãƒƒãƒ—ç”¨é ‚ç‚¹æ§‹é€ ä½“
 struct MV1_VERTEX_SIMPLE_BUMP_D3D9
 {
-	VECTOR					Position ;							// À•W
-	VECTOR					Tangent ;							// ’¸“_‚ÌÚü
-	VECTOR					Binormal ;							// ’¸“_‚Ì]–@ü
-	VECTOR					Normal ;							// –@ü
-	COLOR_U8				DiffuseColor ;						// ƒfƒBƒtƒ…[ƒYF
-	COLOR_U8				SpecularColor ;						// ƒXƒyƒLƒ…ƒ‰[F
-	float					UVs[ 1 ][ 4 ] ;						// ƒeƒNƒXƒ`ƒƒÀ•W
+	VECTOR					Position ;							// åº§æ¨™
+	VECTOR					Tangent ;							// é ‚ç‚¹ã®æ¥ç·š
+	VECTOR					Binormal ;							// é ‚ç‚¹ã®å¾“æ³•ç·š
+	VECTOR					Normal ;							// æ³•ç·š
+	COLOR_U8				DiffuseColor ;						// ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºè‰²
+	COLOR_U8				SpecularColor ;						// ã‚¹ãƒšã‚­ãƒ¥ãƒ©ãƒ¼è‰²
+	float					UVs[ 1 ][ 4 ] ;						// ãƒ†ã‚¯ã‚¹ãƒãƒ£åº§æ¨™
 } ;
 
-// ƒXƒLƒ“ƒƒbƒVƒ…ƒ^ƒCƒv’¸“_\‘¢‘Ì(ŠÖ˜Aƒ{[ƒ“‚S‚ÂˆÈ“à)
+// ã‚¹ã‚­ãƒ³ãƒ¡ãƒƒã‚·ãƒ¥ã‚¿ã‚¤ãƒ—é ‚ç‚¹æ§‹é€ ä½“(é–¢é€£ãƒœãƒ¼ãƒ³ï¼”ã¤ä»¥å†…)
 struct MV1_VERTEX_SKIN_B4_D3D9
 {
-	VECTOR					Position ;							// À•W
-	unsigned char			MatrixIndex[ 4 ] ;					// s—ñƒCƒ“ƒfƒbƒNƒX( s—ñ”Ô†~‚S )
-	float					MatrixWeight[ 4 ] ;					// s—ñƒEƒGƒCƒg
-	VECTOR					Normal ;							// –@ü
-	COLOR_U8				DiffuseColor ;						// ƒfƒBƒtƒ…[ƒYF
-	COLOR_U8				SpecularColor ;						// ƒXƒyƒLƒ…ƒ‰[F
-	float					UVs[ 1 ][ 4 ] ;						// ƒeƒNƒXƒ`ƒƒÀ•W
+	VECTOR					Position ;							// åº§æ¨™
+	unsigned char			MatrixIndex[ 4 ] ;					// è¡Œåˆ—ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹( è¡Œåˆ—ç•ªå·Ã—ï¼” )
+	float					MatrixWeight[ 4 ] ;					// è¡Œåˆ—ã‚¦ã‚¨ã‚¤ãƒˆ
+	VECTOR					Normal ;							// æ³•ç·š
+	COLOR_U8				DiffuseColor ;						// ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºè‰²
+	COLOR_U8				SpecularColor ;						// ã‚¹ãƒšã‚­ãƒ¥ãƒ©ãƒ¼è‰²
+	float					UVs[ 1 ][ 4 ] ;						// ãƒ†ã‚¯ã‚¹ãƒãƒ£åº§æ¨™
 } ;
 
-// ƒXƒLƒ“ƒƒbƒVƒ…ƒ^ƒCƒvƒoƒ“ƒvƒ}ƒbƒv—p’¸“_\‘¢‘Ì(ŠÖ˜Aƒ{[ƒ“‚S‚ÂˆÈ“à)
+// ã‚¹ã‚­ãƒ³ãƒ¡ãƒƒã‚·ãƒ¥ã‚¿ã‚¤ãƒ—ãƒãƒ³ãƒ—ãƒãƒƒãƒ—ç”¨é ‚ç‚¹æ§‹é€ ä½“(é–¢é€£ãƒœãƒ¼ãƒ³ï¼”ã¤ä»¥å†…)
 struct MV1_VERTEX_SKIN_B4_BUMP_D3D9
 {
-	VECTOR					Position ;							// À•W
-	unsigned char			MatrixIndex[ 4 ] ;					// s—ñƒCƒ“ƒfƒbƒNƒX( s—ñ”Ô†~‚S )
-	float					MatrixWeight[ 4 ] ;					// s—ñƒEƒGƒCƒg
-	VECTOR					Tangent ;							// ’¸“_‚ÌÚü
-	VECTOR					Binormal ;							// ’¸“_‚Ì]–@ü
-	VECTOR					Normal ;							// –@ü
-	COLOR_U8				DiffuseColor ;						// ƒfƒBƒtƒ…[ƒYF
-	COLOR_U8				SpecularColor ;						// ƒXƒyƒLƒ…ƒ‰[F
-	float					UVs[ 1 ][ 4 ] ;						// ƒeƒNƒXƒ`ƒƒÀ•W
+	VECTOR					Position ;							// åº§æ¨™
+	unsigned char			MatrixIndex[ 4 ] ;					// è¡Œåˆ—ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹( è¡Œåˆ—ç•ªå·Ã—ï¼” )
+	float					MatrixWeight[ 4 ] ;					// è¡Œåˆ—ã‚¦ã‚¨ã‚¤ãƒˆ
+	VECTOR					Tangent ;							// é ‚ç‚¹ã®æ¥ç·š
+	VECTOR					Binormal ;							// é ‚ç‚¹ã®å¾“æ³•ç·š
+	VECTOR					Normal ;							// æ³•ç·š
+	COLOR_U8				DiffuseColor ;						// ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºè‰²
+	COLOR_U8				SpecularColor ;						// ã‚¹ãƒšã‚­ãƒ¥ãƒ©ãƒ¼è‰²
+	float					UVs[ 1 ][ 4 ] ;						// ãƒ†ã‚¯ã‚¹ãƒãƒ£åº§æ¨™
 } ;
 
-// ƒXƒLƒ“ƒƒbƒVƒ…ƒ^ƒCƒv’¸“_\‘¢‘Ì(ŠÖ˜Aƒ{[ƒ“‚W‚ÂˆÈ“à)
+// ã‚¹ã‚­ãƒ³ãƒ¡ãƒƒã‚·ãƒ¥ã‚¿ã‚¤ãƒ—é ‚ç‚¹æ§‹é€ ä½“(é–¢é€£ãƒœãƒ¼ãƒ³ï¼˜ã¤ä»¥å†…)
 struct MV1_VERTEX_SKIN_B8_D3D9
 {
-	VECTOR					Position ;							// À•W
-	unsigned char			MatrixIndex[ 8 ] ;					// s—ñƒCƒ“ƒfƒbƒNƒX( s—ñ”Ô†~‚S )
-	float					MatrixWeight[ 8 ] ;					// s—ñƒEƒGƒCƒg
-	VECTOR					Normal ;							// –@ü
-	COLOR_U8				DiffuseColor ;						// ƒfƒBƒtƒ…[ƒYF
-	COLOR_U8				SpecularColor ;						// ƒXƒyƒLƒ…ƒ‰[F
-	float					UVs[ 1 ][ 4 ] ;						// ƒeƒNƒXƒ`ƒƒÀ•W
+	VECTOR					Position ;							// åº§æ¨™
+	unsigned char			MatrixIndex[ 8 ] ;					// è¡Œåˆ—ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹( è¡Œåˆ—ç•ªå·Ã—ï¼” )
+	float					MatrixWeight[ 8 ] ;					// è¡Œåˆ—ã‚¦ã‚¨ã‚¤ãƒˆ
+	VECTOR					Normal ;							// æ³•ç·š
+	COLOR_U8				DiffuseColor ;						// ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºè‰²
+	COLOR_U8				SpecularColor ;						// ã‚¹ãƒšã‚­ãƒ¥ãƒ©ãƒ¼è‰²
+	float					UVs[ 1 ][ 4 ] ;						// ãƒ†ã‚¯ã‚¹ãƒãƒ£åº§æ¨™
 } ;
 
-// ƒXƒLƒ“ƒƒbƒVƒ…ƒ^ƒCƒvƒoƒ“ƒvƒ}ƒbƒv—p’¸“_\‘¢‘Ì(ŠÖ˜Aƒ{[ƒ“‚W‚ÂˆÈ“à)
+// ã‚¹ã‚­ãƒ³ãƒ¡ãƒƒã‚·ãƒ¥ã‚¿ã‚¤ãƒ—ãƒãƒ³ãƒ—ãƒãƒƒãƒ—ç”¨é ‚ç‚¹æ§‹é€ ä½“(é–¢é€£ãƒœãƒ¼ãƒ³ï¼˜ã¤ä»¥å†…)
 struct MV1_VERTEX_SKIN_B8_BUMP_D3D9
 {
-	VECTOR					Position ;							// À•W
-	unsigned char			MatrixIndex[ 8 ] ;					// s—ñƒCƒ“ƒfƒbƒNƒX( s—ñ”Ô†~‚W )
-	float					MatrixWeight[ 8 ] ;					// s—ñƒEƒGƒCƒg
-	VECTOR					Tangent ;							// ’¸“_‚ÌÚü
-	VECTOR					Binormal ;							// ’¸“_‚Ì]–@ü
-	VECTOR					Normal ;							// –@ü
-	COLOR_U8				DiffuseColor ;						// ƒfƒBƒtƒ…[ƒYF
-	COLOR_U8				SpecularColor ;						// ƒXƒyƒLƒ…ƒ‰[F
-	float					UVs[ 1 ][ 4 ] ;						// ƒeƒNƒXƒ`ƒƒÀ•W
+	VECTOR					Position ;							// åº§æ¨™
+	unsigned char			MatrixIndex[ 8 ] ;					// è¡Œåˆ—ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹( è¡Œåˆ—ç•ªå·Ã—ï¼˜ )
+	float					MatrixWeight[ 8 ] ;					// è¡Œåˆ—ã‚¦ã‚¨ã‚¤ãƒˆ
+	VECTOR					Tangent ;							// é ‚ç‚¹ã®æ¥ç·š
+	VECTOR					Binormal ;							// é ‚ç‚¹ã®å¾“æ³•ç·š
+	VECTOR					Normal ;							// æ³•ç·š
+	COLOR_U8				DiffuseColor ;						// ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºè‰²
+	COLOR_U8				SpecularColor ;						// ã‚¹ãƒšã‚­ãƒ¥ãƒ©ãƒ¼è‰²
+	float					UVs[ 1 ][ 4 ] ;						// ãƒ†ã‚¯ã‚¹ãƒãƒ£åº§æ¨™
 } ;
 
-// Direct3D9—p ƒ‚ƒfƒ‹ƒf[ƒ^ŠÇ——p\‘¢‘Ì
+// Direct3D9ç”¨ ãƒ¢ãƒ‡ãƒ«ãƒ‡ãƒ¼ã‚¿ç®¡ç†ç”¨æ§‹é€ ä½“
 struct MV1_MODEL_MANAGE_DIRECT3D9
 {
 	int Dummy ;
 } ;
 
-// Direct3D9—p’¸“_ƒoƒbƒtƒ@î•ñ
+// Direct3D9ç”¨é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡æƒ…å ±
 struct MV1_VERTEXBUFFER_DIRECT3D9
 {
-	DWORD						FVF ;							// ’¸“_ƒoƒbƒtƒ@ì¬‚Ég—p‚µ‚½‚e‚u‚e
-	D_IDirect3DVertexBuffer9	*VertexBuffer ;					// ’¸“_ƒoƒbƒtƒ@
-	D_IDirect3DIndexBuffer9		*IndexBuffer ;					// ƒCƒ“ƒfƒbƒNƒXƒoƒbƒtƒ@
+	DWORD						FVF ;							// é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ä½œæˆæ™‚ã«ä½¿ç”¨ã—ãŸï¼¦ï¼¶ï¼¦
+	D_IDirect3DVertexBuffer9	*VertexBuffer ;					// é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡
+	D_IDirect3DIndexBuffer9		*IndexBuffer ;					// ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒãƒƒãƒ•ã‚¡
 } ;
 
-// Direct3D9—pƒgƒ‰ƒCƒAƒ“ƒOƒ‹ƒŠƒXƒgŠîƒf[ƒ^î•ñ
+// Direct3D9ç”¨ãƒˆãƒ©ã‚¤ã‚¢ãƒ³ã‚°ãƒ«ãƒªã‚¹ãƒˆåŸºãƒ‡ãƒ¼ã‚¿æƒ…å ±
 struct MV1_TRIANGLE_LIST_BASE_DIRECT3D9
 {
-	MV1_VERTEX_SIMPLE_D3D9		*TempSimpleVertex ;					// ƒVƒF[ƒ_[‚ğg—p‚¹‚¸‚É•`‰æ‚·‚éê‡‚Ì’¸“_ƒf[ƒ^
-	MV1_VERTEX_SIMPLE_TOL_D3D9	*TempToonOutLineSimpleVertex ;		// ƒVƒF[ƒ_[‚ğg—p‚¹‚¸‚É•`‰æ‚·‚éê‡‚ÌƒgƒD[ƒ“‚Ì—ÖŠsü•`‰æ—p’¸“_ƒf[ƒ^
+	MV1_VERTEX_SIMPLE_D3D9		*TempSimpleVertex ;					// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ä½¿ç”¨ã›ãšã«æç”»ã™ã‚‹å ´åˆã®é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿
+	MV1_VERTEX_SIMPLE_TOL_D3D9	*TempToonOutLineSimpleVertex ;		// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ä½¿ç”¨ã›ãšã«æç”»ã™ã‚‹å ´åˆã®ãƒˆã‚¥ãƒ¼ãƒ³ã®è¼ªéƒ­ç·šæç”»ç”¨é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿
 } ;
 
-// Direct3D9—pƒgƒ‰ƒCƒAƒ“ƒOƒ‹ƒŠƒXƒgî•ñ
+// Direct3D9ç”¨ãƒˆãƒ©ã‚¤ã‚¢ãƒ³ã‚°ãƒ«ãƒªã‚¹ãƒˆæƒ…å ±
 struct MV1_TRIANGLE_LIST_DIRECT3D9
 {
-	D_IDirect3DVertexBuffer9	*VertexBuffer ;					// ’¸“_ƒoƒbƒtƒ@
+	D_IDirect3DVertexBuffer9	*VertexBuffer ;					// é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡
 } ;
 
-// “à•”‘åˆæ•Ï”éŒ¾ --------------------------------------------------------------
+// å†…éƒ¨å¤§åŸŸå¤‰æ•°å®£è¨€ --------------------------------------------------------------
 
 extern MV1_MODEL_MANAGE_DIRECT3D9 MV1Man_D3D9 ;
 
-// ŠÖ”ƒvƒƒgƒ^ƒCƒvéŒ¾-----------------------------------------------------------
+// é–¢æ•°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€-----------------------------------------------------------
 
-// ŠÂ‹«ˆË‘¶ŠÖ”
-extern	int				MV1_D3D9_Terminate_PF( void ) ;																// ƒ‚ƒfƒ‹‹@”\‚ÌŒãn––
-extern	int				MV1_D3D9_TerminateModelBaseHandle_PF( MV1_MODEL_BASE *ModelBase ) ;							// ƒ‚ƒfƒ‹ƒf[ƒ^ƒnƒ“ƒhƒ‹‚ÌŒãn––
-extern	int				MV1_D3D9_TerminateTriangleListBaseTempBuffer_PF( MV1_TRIANGLE_LIST_BASE *MBTList ) ;				// ƒgƒ‰ƒCƒAƒ“ƒOƒ‹ƒŠƒXƒg‚Ìˆêˆ——p‚Ìƒoƒbƒtƒ@‚ğŠJ•ú‚·‚é
-extern	void			MV1_D3D9_SetupPackDrawInfo_PF( MV1_MODEL_BASE *ModelBase ) ;								// “¯•¡”•`‰æŠÖŒW‚Ìî•ñ‚ğƒZƒbƒgƒAƒbƒv‚·‚é
-extern	int				MV1_D3D9_SetupVertexBufferBase_PF( int MV1ModelBaseHandle, int DuplicateNum = 1, int ASyncThread = FALSE ) ;	// ƒ‚ƒfƒ‹Šîƒf[ƒ^‚Ì’¸“_ƒoƒbƒtƒ@‚ÌƒZƒbƒgƒAƒbƒv‚ğ‚·‚é( -1:ƒGƒ‰[ )
-extern	int				MV1_D3D9_SetupVertexBuffer_PF( int MHandle, int ASyncThread = FALSE ) ;						// ƒ‚ƒfƒ‹ƒf[ƒ^‚Ì’¸“_ƒoƒbƒtƒ@‚ÌƒZƒbƒgƒAƒbƒv‚ğ‚·‚é( -1:ƒGƒ‰[ )
-extern	int				MV1_D3D9_TerminateVertexBufferBase_PF( int MV1ModelBaseHandle ) ;							// ’¸“_ƒoƒbƒtƒ@‚ÌŒãn––‚ğ‚·‚é( -1:ƒGƒ‰[ )
-extern	int				MV1_D3D9_TerminateVertexBuffer_PF( int MV1ModelHandle ) ;									// ’¸“_ƒoƒbƒtƒ@‚ÌŒãn––‚ğ‚·‚é( -1:ƒGƒ‰[ )
-extern	int				MV1_D3D9_SetupShapeVertex_PF( int MHandle ) ;												// ƒVƒFƒCƒvƒf[ƒ^‚ÌƒZƒbƒgƒAƒbƒv‚ğ‚·‚é
-extern	int				MV1_D3D9_BeginRender_PF( MV1_MODEL *Model ) ;												// ‚R‚cƒ‚ƒfƒ‹‚ÌƒŒƒ“ƒ_ƒŠƒ“ƒO‚Ì€”õ‚ğs‚¤
-extern	int				MV1_D3D9_EndRender_PF( void ) ;																// ‚R‚cƒ‚ƒfƒ‹‚ÌƒŒƒ“ƒ_ƒŠƒ“ƒO‚ÌŒãn––‚ğs‚¤
-extern	void			MV1_D3D9_DrawMesh_PF( MV1_MESH *Mesh, int TriangleListIndex = -1 ) ;						// ƒƒbƒVƒ…•`‰æ•”•ª‚ğ”²‚«o‚µ‚½‚à‚Ì
+// ç’°å¢ƒä¾å­˜é–¢æ•°
+extern	int				MV1_D3D9_Terminate_PF( void ) ;																// ãƒ¢ãƒ‡ãƒ«æ©Ÿèƒ½ã®å¾Œå§‹æœ«
+extern	int				MV1_D3D9_TerminateModelBaseHandle_PF( MV1_MODEL_BASE *ModelBase ) ;							// ãƒ¢ãƒ‡ãƒ«ãƒ‡ãƒ¼ã‚¿ãƒãƒ³ãƒ‰ãƒ«ã®å¾Œå§‹æœ«
+extern	int				MV1_D3D9_TerminateTriangleListBaseTempBuffer_PF( MV1_TRIANGLE_LIST_BASE *MBTList ) ;				// ãƒˆãƒ©ã‚¤ã‚¢ãƒ³ã‚°ãƒ«ãƒªã‚¹ãƒˆã®ä¸€æ™‚å‡¦ç†ç”¨ã®ãƒãƒƒãƒ•ã‚¡ã‚’é–‹æ”¾ã™ã‚‹
+extern	void			MV1_D3D9_SetupPackDrawInfo_PF( MV1_MODEL_BASE *ModelBase ) ;								// åŒæ™‚è¤‡æ•°æç”»é–¢ä¿‚ã®æƒ…å ±ã‚’ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã™ã‚‹
+extern	int				MV1_D3D9_SetupVertexBufferBase_PF( int MV1ModelBaseHandle, int DuplicateNum = 1, int ASyncThread = FALSE ) ;	// ãƒ¢ãƒ‡ãƒ«åŸºãƒ‡ãƒ¼ã‚¿ã®é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã‚’ã™ã‚‹( -1:ã‚¨ãƒ©ãƒ¼ )
+extern	int				MV1_D3D9_SetupVertexBuffer_PF( int MHandle, int ASyncThread = FALSE ) ;						// ãƒ¢ãƒ‡ãƒ«ãƒ‡ãƒ¼ã‚¿ã®é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã‚’ã™ã‚‹( -1:ã‚¨ãƒ©ãƒ¼ )
+extern	int				MV1_D3D9_TerminateVertexBufferBase_PF( int MV1ModelBaseHandle ) ;							// é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã®å¾Œå§‹æœ«ã‚’ã™ã‚‹( -1:ã‚¨ãƒ©ãƒ¼ )
+extern	int				MV1_D3D9_TerminateVertexBuffer_PF( int MV1ModelHandle ) ;									// é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã®å¾Œå§‹æœ«ã‚’ã™ã‚‹( -1:ã‚¨ãƒ©ãƒ¼ )
+extern	int				MV1_D3D9_SetupShapeVertex_PF( int MHandle ) ;												// ã‚·ã‚§ã‚¤ãƒ—ãƒ‡ãƒ¼ã‚¿ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã‚’ã™ã‚‹
+extern	int				MV1_D3D9_BeginRender_PF( MV1_MODEL *Model ) ;												// ï¼“ï¼¤ãƒ¢ãƒ‡ãƒ«ã®ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã®æº–å‚™ã‚’è¡Œã†
+extern	int				MV1_D3D9_EndRender_PF( void ) ;																// ï¼“ï¼¤ãƒ¢ãƒ‡ãƒ«ã®ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã®å¾Œå§‹æœ«ã‚’è¡Œã†
+extern	void			MV1_D3D9_DrawMesh_PF( MV1_MESH *Mesh, int TriangleListIndex = -1 ) ;						// ãƒ¡ãƒƒã‚·ãƒ¥æç”»éƒ¨åˆ†ã‚’æŠœãå‡ºã—ãŸã‚‚ã®
 
 #ifndef DX_NON_NAMESPACE
 

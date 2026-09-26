@@ -1,19 +1,19 @@
 // -------------------------------------------------------------------------------
 // 
-// 		‚c‚wƒ‰ƒCƒuƒ‰ƒŠ		‚c‚‰‚’‚…‚ƒ‚”‚h‚‚‚•‚”§ŒäƒvƒƒOƒ‰ƒ€
+// 		ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒª		ï¼¤ï½‰ï½’ï½…ï½ƒï½”ï¼©ï½ï½ï½•ï½”åˆ¶å¾¡ãƒ—ãƒ­ã‚°ãƒ©ãƒ 
 // 
 // 				Ver 3.25a
 // 
 // -------------------------------------------------------------------------------
 
-// ‚c‚wƒ‰ƒCƒuƒ‰ƒŠì¬—p’è‹`
+// ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªä½œæˆæ™‚ç”¨å®šç¾©
 #define DX_MAKE
 
 #include "DxInput.h"
 
 #ifndef DX_NON_INPUT
 
-// ƒCƒ“ƒNƒ‹[ƒh ------------------------------------------------------------------
+// ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ ------------------------------------------------------------------
 #include "DxLib.h"
 #include "DxSystem.h"
 #include "DxLog.h"
@@ -25,38 +25,38 @@ namespace DxLib
 
 #endif // DX_NON_NAMESPACE
 
-// ƒ}ƒNƒ’è‹` -------------------------------------
+// ãƒã‚¯ãƒ­å®šç¾© -------------------------------------
 
-// \‘¢‘Ì’è‹` --------------------------------------------------------------------
+// æ§‹é€ ä½“å®šç¾© --------------------------------------------------------------------
 
-// ’è”’è‹` ----------------------------------------------------------------------
+// å®šæ•°å®šç¾© ----------------------------------------------------------------------
 
-// “à•”‘åˆæ•Ï”éŒ¾ --------------------------------------------------------------
+// å†…éƒ¨å¤§åŸŸå¤‰æ•°å®£è¨€ --------------------------------------------------------------
 
-// “ü—ÍƒVƒXƒeƒ€—pƒf[ƒ^
+// å…¥åŠ›ã‚·ã‚¹ãƒ†ãƒ ç”¨ãƒ‡ãƒ¼ã‚¿
 INPUTSYSTEMDATA InputSysData ;
 
-// ŠÖ”ƒvƒƒgƒ^ƒCƒvéŒ¾-----------------------------------------------------------
+// é–¢æ•°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€-----------------------------------------------------------
 
-static	int UpdateJoypadInputState( int padno ) ;								// ƒpƒbƒh‚Ì“ü—Íó‘Ô‚ÌXV
+static	int UpdateJoypadInputState( int padno ) ;								// ãƒ‘ãƒƒãƒ‰ã®å…¥åŠ›çŠ¶æ…‹ã®æ›´æ–°
 
-// ƒvƒƒOƒ‰ƒ€ --------------------------------------------------------------------
+// ãƒ—ãƒ­ã‚°ãƒ©ãƒ  --------------------------------------------------------------------
 
-// “ü—ÍƒVƒXƒeƒ€‚Ì‰Šú‰»AI—¹ŠÖ”
+// å…¥åŠ›ã‚·ã‚¹ãƒ†ãƒ ã®åˆæœŸåŒ–ã€çµ‚äº†é–¢æ•°
 
-// “ü—ÍƒVƒXƒeƒ€‚ğ‰Šú‰»‚·‚é
+// å…¥åŠ›ã‚·ã‚¹ãƒ†ãƒ ã‚’åˆæœŸåŒ–ã™ã‚‹
 extern int InitializeInputSystem( void )
 {
-	// Šù‚É‰Šú‰»‚³‚ê‚Ä‚¢‚½‚ç‰½‚à‚¹‚¸‚ÉI—¹
+	// æ—¢ã«åˆæœŸåŒ–ã•ã‚Œã¦ã„ãŸã‚‰ä½•ã‚‚ã›ãšã«çµ‚äº†
 	if( InputSysData.InitializeFlag )
 	{
 		return 0 ;
 	}
 
-	// ‰Šú‰»Š®—¹ƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// åˆæœŸåŒ–å®Œäº†ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	InputSysData.InitializeFlag = TRUE ;
 
-	// ƒfƒtƒHƒ‹ƒg‚Ìƒfƒbƒhƒ][ƒ“‚ªİ’è‚³‚ê‚Ä‚¢‚È‚©‚Á‚½‚çİ’è‚·‚é
+	// ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®ãƒ‡ãƒƒãƒ‰ã‚¾ãƒ¼ãƒ³ãŒè¨­å®šã•ã‚Œã¦ã„ãªã‹ã£ãŸã‚‰è¨­å®šã™ã‚‹
 	if( InputSysData.EnablePadDefaultDeadZone == FALSE )
 	{
 		InputSysData.EnablePadDefaultDeadZone = TRUE ;
@@ -64,16 +64,16 @@ extern int InitializeInputSystem( void )
 		InputSysData.PadDefaultDeadZoneD = PAD_DEFAULT_DEADZONE_D ;
 	}
 
-	// ŠÂ‹«ˆË‘¶ˆ—
+	// ç’°å¢ƒä¾å­˜å‡¦ç†
 	if( InitializeInputSystem_PF_Timing0() != 0 )
 	{
-		// ‰Šú‰»Š®—¹ƒtƒ‰ƒO‚ğ“|‚·
+		// åˆæœŸåŒ–å®Œäº†ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 		InputSysData.InitializeFlag = FALSE ;
 
 		return -1 ;
 	}
 
-	// POV ‚ğ“ü—Í–³‚µ‚Ìó‘Ô‚É‚µ‚Ä‚¨‚­
+	// POV ã‚’å…¥åŠ›ç„¡ã—ã®çŠ¶æ…‹ã«ã—ã¦ãŠã
 	{
 		int i ;
 		int j ;
@@ -87,69 +87,69 @@ extern int InitializeInputSystem( void )
 		}
 	}
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// “ü—ÍƒVƒXƒeƒ€‚Ìg—p‚ğI—¹‚·‚é
+// å…¥åŠ›ã‚·ã‚¹ãƒ†ãƒ ã®ä½¿ç”¨ã‚’çµ‚äº†ã™ã‚‹
 extern int TerminateInputSystem( void )
 {
-	// Šù‚ÉŒãn––‚ªI‚í‚Á‚Ä‚¢‚½‚ç‰½‚à‚¹‚¸‚ÉI—¹
+	// æ—¢ã«å¾Œå§‹æœ«ãŒçµ‚ã‚ã£ã¦ã„ãŸã‚‰ä½•ã‚‚ã›ãšã«çµ‚äº†
 	if( InputSysData.InitializeFlag == FALSE )
 	{
 		return 0 ;
 	}
 
-	// ŠÂ‹«ˆË‘¶ˆ—
+	// ç’°å¢ƒä¾å­˜å‡¦ç†
 	if( TerminateInputSystem_PF_Timing0() != 0 )
 	{
 		return -1 ;
 	}
 
-	// ‰Šú‰»Š®—¹ƒtƒ‰ƒO‚ğ“|‚·
+	// åˆæœŸåŒ–å®Œäº†ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 	InputSysData.InitializeFlag = FALSE ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// ƒWƒ‡ƒCƒpƒbƒh‚ÌƒZƒbƒgƒAƒbƒv‚ğs‚¤
+// ã‚¸ãƒ§ã‚¤ãƒ‘ãƒƒãƒ‰ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã‚’è¡Œã†
 extern int SetupJoypad( void )
 {
-	// ‰Šú‰»”»’è
+	// åˆæœŸåŒ–åˆ¤å®š
 	if( InputSysData.InitializeFlag == FALSE )
 	{
 		return -1 ;
 	}
 
-	// ŠÂ‹«ˆË‘¶ˆ—
+	// ç’°å¢ƒä¾å­˜å‡¦ç†
 	if( SetupJoypad_PF() != 0 )
 	{
 		return -1 ;
 	}
 
-	DXST_LOGFILE_ADDUTF16LE( "\xb8\x30\xe7\x30\xa4\x30\xd1\x30\xc3\x30\xc9\x30\x6e\x30\x1d\x52\x1f\x67\x16\x53\x6f\x30\x63\x6b\x38\x5e\x6b\x30\x42\x7d\x86\x4e\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ƒWƒ‡ƒCƒpƒbƒh‚Ì‰Šú‰»‚Í³í‚ÉI—¹‚µ‚Ü‚µ‚½\n" @*/ ) ;
+	DXST_LOGFILE_ADDUTF16LE( "\xb8\x30\xe7\x30\xa4\x30\xd1\x30\xc3\x30\xc9\x30\x6e\x30\x1d\x52\x1f\x67\x16\x53\x6f\x30\x63\x6b\x38\x5e\x6b\x30\x42\x7d\x86\x4e\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ã‚¸ãƒ§ã‚¤ãƒ‘ãƒƒãƒ‰ã®åˆæœŸåŒ–ã¯æ­£å¸¸ã«çµ‚äº†ã—ã¾ã—ãŸ\n" @*/ ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒWƒ‡ƒCƒpƒbƒh‚ÌŒãn––‚ğs‚¤
+// ã‚¸ãƒ§ã‚¤ãƒ‘ãƒƒãƒ‰ã®å¾Œå§‹æœ«ã‚’è¡Œã†
 extern int TerminateJoypad( void )
 {
-	// ‰Šú‰»”»’è
+	// åˆæœŸåŒ–åˆ¤å®š
 	if( InputSysData.InitializeFlag == FALSE )
 	{
 		return -1 ;
 	}
 
-	// ŠÂ‹«ˆË‘¶ˆ—
+	// ç’°å¢ƒä¾å­˜å‡¦ç†
 	if( TerminateJoypad_PF() != 0 )
 	{
 		return -1 ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
@@ -161,41 +161,41 @@ extern int TerminateJoypad( void )
 
 
 
-// F10 ‚ª‰Ÿ‚³‚ê‚½‚±‚Æ‚É‚·‚éƒtƒ‰ƒO‚ğ—§‚Ä‚é
+// F10 ãŒæŠ¼ã•ã‚ŒãŸã“ã¨ã«ã™ã‚‹ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 extern int SetF10Input( void )
 {
 	InputSysData.F10Flag = TRUE ;
 //	InputSysData.F10InputTime = NS_GetNowCount( FALSE ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// F10 ‚ª—£‚³‚ê‚½‚±‚Æ‚É‚·‚éƒtƒ‰ƒO‚ğ—§‚Ä‚é
+// F10 ãŒé›¢ã•ã‚ŒãŸã“ã¨ã«ã™ã‚‹ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 extern int ResetF10Input( void )
 {
 	InputSysData.F10Flag = FALSE ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// F12 ‚ª‰Ÿ‚³‚ê‚½‚±‚Æ‚É‚·‚éƒtƒ‰ƒO‚ğ—§‚Ä‚é
+// F12 ãŒæŠ¼ã•ã‚ŒãŸã“ã¨ã«ã™ã‚‹ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 extern int SetF12Input( void )
 {
 	InputSysData.F12Flag = TRUE ;
 //	InputSysData.F12InputTime = NS_GetNowCount( FALSE ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// F12 ‚ª—£‚³‚ê‚½‚±‚Æ‚É‚·‚éƒtƒ‰ƒO‚ğ—§‚Ä‚é
+// F12 ãŒé›¢ã•ã‚ŒãŸã“ã¨ã«ã™ã‚‹ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 extern int ResetF12Input( void )
 {
 	InputSysData.F12Flag = FALSE ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
@@ -209,37 +209,37 @@ extern int ResetF12Input( void )
 
 
 
-// ƒ}ƒEƒXŠÖŒW‚ÌŠÖ”
+// ãƒã‚¦ã‚¹é–¢ä¿‚ã®é–¢æ•°
 
-// ƒ}ƒEƒX‚Ì“ü—Íî•ñ‚ğ•Û‘¶‚·‚é
+// ãƒã‚¦ã‚¹ã®å…¥åŠ›æƒ…å ±ã‚’ä¿å­˜ã™ã‚‹
 extern void StockMouseInputLogData( int Button, int ClickX, int ClickY )
 {
 	MOUSEINPUTLOGDATA *MInput ;
 
-	// ƒƒO‚Ì”‚ªÅ‘å”‚É’B‚µ‚Ä‚¢‚½‚ç‰½‚à‚¹‚¸I—¹
+	// ãƒ­ã‚°ã®æ•°ãŒæœ€å¤§æ•°ã«é”ã—ã¦ã„ãŸã‚‰ä½•ã‚‚ã›ãšçµ‚äº†
 	if( InputSysData.MouseInputLogNum >= MOUSEINPUT_LOG_NUM ) return ;
 
-	// î•ñ‚ğ•Û‘¶
+	// æƒ…å ±ã‚’ä¿å­˜
 	MInput = &InputSysData.MouseInputLog[ InputSysData.MouseInputLogNum ] ;
 	MInput->ClickX = ClickX ;
 	MInput->ClickY = ClickY ;
 	MInput->Button = Button ;
 	MInput->LogType = MOUSE_INPUT_LOG_DOWN ;
 
-	// î•ñ‚Ì”‚ğ‘‚â‚·
+	// æƒ…å ±ã®æ•°ã‚’å¢—ã‚„ã™
 	InputSysData.MouseInputLogNum ++ ;
 }
 
-// ƒ}ƒEƒX‚Ì“ü—Íî•ñ‚ğ•Û‘¶‚·‚é GetMouseInputLog2 —p
+// ãƒã‚¦ã‚¹ã®å…¥åŠ›æƒ…å ±ã‚’ä¿å­˜ã™ã‚‹ GetMouseInputLog2 ç”¨
 extern void StockMouseInputLogData2( int Button, int ClickX, int ClickY, int LogType, int IsDummy )
 {
 	MOUSEINPUTLOGDATA *MInput ;
 	int Index = 0 ;
 
-	// ƒƒO‚Ì”‚ªÅ‘å”‚É’B‚µ‚Ä‚¢‚½‚ç‰½‚à‚¹‚¸I—¹
+	// ãƒ­ã‚°ã®æ•°ãŒæœ€å¤§æ•°ã«é”ã—ã¦ã„ãŸã‚‰ä½•ã‚‚ã›ãšçµ‚äº†
 	if( InputSysData.MouseInputLog2Num >= MOUSEINPUT_LOG_NUM ) return ;
 
-	// ’¼‹ß‚Ìƒ{ƒ^ƒ“ƒƒO‚É‹L˜^‚·‚é‚½‚ß‚ÌƒCƒ“ƒfƒbƒNƒX‚ğŠ„‚èo‚µ‚Ä‚¨‚­
+	// ç›´è¿‘ã®ãƒœã‚¿ãƒ³ãƒ­ã‚°ã«è¨˜éŒ²ã™ã‚‹ãŸã‚ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’å‰²ã‚Šå‡ºã—ã¦ãŠã
 	switch( Button )
 	{
 	case MOUSE_INPUT_LEFT   : Index = 0 ; break ;
@@ -247,12 +247,12 @@ extern void StockMouseInputLogData2( int Button, int ClickX, int ClickY, int Log
 	case MOUSE_INPUT_MIDDLE : Index = 2 ; break ;
 	}
 
-	// ƒ_ƒ~[î•ñ‚Å‚Í‚È‚¢ê‡‚Ì‚İ‚Ìˆ—‚ğs‚¤
+	// ãƒ€ãƒŸãƒ¼æƒ…å ±ã§ã¯ãªã„å ´åˆã®ã¿ã®å‡¦ç†ã‚’è¡Œã†
 	if( IsDummy == FALSE )
 	{
 		int i ;
 
-		// ƒ_ƒ~[‚Ìî•ñ‚Æd•¡‚·‚éî•ñ‚Å‚ ‚Á‚½ê‡‚Íƒ_ƒ~[î•ñ‚Éã‘‚«‚·‚é
+		// ãƒ€ãƒŸãƒ¼ã®æƒ…å ±ã¨é‡è¤‡ã™ã‚‹æƒ…å ±ã§ã‚ã£ãŸå ´åˆã¯ãƒ€ãƒŸãƒ¼æƒ…å ±ã«ä¸Šæ›¸ãã™ã‚‹
 		for( i = InputSysData.MouseInputLog2Num - 1 ; i >= 0 ; i -- )
 		{
 			if( InputSysData.MouseInputLog2[ i ].Button != Button ||
@@ -270,7 +270,7 @@ extern void StockMouseInputLogData2( int Button, int ClickX, int ClickY, int Log
 				MInput->LogType = LogType ;
 				MInput->IsDummy = IsDummy ;
 
-				// ’¼‹ß‚Ìƒ}ƒEƒX‚Ì“ü—Íî•ñ‚àXV
+				// ç›´è¿‘ã®ãƒã‚¦ã‚¹ã®å…¥åŠ›æƒ…å ±ã‚‚æ›´æ–°
 				InputSysData.MouseInputLog2PrevEnable[ Index ] = TRUE ;
 				InputSysData.MouseInputLog2Prev[ Index ] = *MInput ;
 
@@ -280,11 +280,11 @@ extern void StockMouseInputLogData2( int Button, int ClickX, int ClickY, int Log
 			break ;
 		}
 
-		// “¯ˆê‚Ìƒ{ƒ^ƒ“‚Å“¯‚¶ LogType ‚ª˜A‘±‚µ‚½ê‡‚Í‘Î‚Ì‘€ì‚ªƒEƒBƒ“ƒhƒEŠO‚Ås‚í‚ê‚½‚Æ”»’f‚µ‚Ä ClickX=-1, ClickY=-1 ‚ÌƒƒO‚ğ’Ç‰Á‚·‚é
+		// åŒä¸€ã®ãƒœã‚¿ãƒ³ã§åŒã˜ LogType ãŒé€£ç¶šã—ãŸå ´åˆã¯å¯¾ã®æ“ä½œãŒã‚¦ã‚£ãƒ³ãƒ‰ã‚¦å¤–ã§è¡Œã‚ã‚ŒãŸã¨åˆ¤æ–­ã—ã¦ ClickX=-1, ClickY=-1 ã®ãƒ­ã‚°ã‚’è¿½åŠ ã™ã‚‹
 		if( InputSysData.MouseInputLog2PrevEnable[ Index ] &&
 			InputSysData.MouseInputLog2Prev[ Index ].LogType == LogType )
 		{
-			// î•ñ‚ğ•Û‘¶
+			// æƒ…å ±ã‚’ä¿å­˜
 			MInput = &InputSysData.MouseInputLog2[ InputSysData.MouseInputLog2Num ] ;
 			MInput->ClickX = -100 ;
 			MInput->ClickY = -100 ;
@@ -292,14 +292,14 @@ extern void StockMouseInputLogData2( int Button, int ClickX, int ClickY, int Log
 			MInput->LogType = LogType == MOUSE_INPUT_LOG_DOWN ? MOUSE_INPUT_LOG_UP : MOUSE_INPUT_LOG_DOWN ;
 			MInput->IsDummy = TRUE ;
 
-			// ’¼‹ß‚Ìƒ}ƒEƒX‚Ì“ü—Íî•ñ‚àXV
+			// ç›´è¿‘ã®ãƒã‚¦ã‚¹ã®å…¥åŠ›æƒ…å ±ã‚‚æ›´æ–°
 			InputSysData.MouseInputLog2PrevEnable[ Index ] = TRUE ;
 			InputSysData.MouseInputLog2Prev[ Index ] = *MInput ;
 
-			// î•ñ‚Ì”‚ğ‘‚â‚·
+			// æƒ…å ±ã®æ•°ã‚’å¢—ã‚„ã™
 			InputSysData.MouseInputLog2Num ++ ;
 
-			// ƒƒO‚Ì”‚ªÅ‘å”‚É’B‚µ‚Ä‚¢‚½‚ç‚±‚±‚ÅI—¹
+			// ãƒ­ã‚°ã®æ•°ãŒæœ€å¤§æ•°ã«é”ã—ã¦ã„ãŸã‚‰ã“ã“ã§çµ‚äº†
 			if( InputSysData.MouseInputLog2Num >= MOUSEINPUT_LOG_NUM )
 			{
 				return ;
@@ -307,7 +307,7 @@ extern void StockMouseInputLogData2( int Button, int ClickX, int ClickY, int Log
 		}
 	}
 
-	// î•ñ‚ğ•Û‘¶
+	// æƒ…å ±ã‚’ä¿å­˜
 	MInput = &InputSysData.MouseInputLog2[ InputSysData.MouseInputLog2Num ] ;
 	MInput->ClickX = ClickX ;
 	MInput->ClickY = ClickY ;
@@ -315,31 +315,31 @@ extern void StockMouseInputLogData2( int Button, int ClickX, int ClickY, int Log
 	MInput->LogType = LogType ;
 	MInput->IsDummy = IsDummy ;
 
-	// î•ñ‚Ì”‚ğ‘‚â‚·
+	// æƒ…å ±ã®æ•°ã‚’å¢—ã‚„ã™
 	InputSysData.MouseInputLog2Num ++ ;
 
-	// ’¼‹ß‚Ìƒ}ƒEƒX“ü—Íî•ñ‚ğXV
+	// ç›´è¿‘ã®ãƒã‚¦ã‚¹å…¥åŠ›æƒ…å ±ã‚’æ›´æ–°
 	InputSysData.MouseInputLog2PrevEnable[ Index ] = TRUE ;
 	InputSysData.MouseInputLog2Prev[ Index ] = *MInput ;
 }
 
-// ƒ}ƒEƒX“ü—Í
+// ãƒã‚¦ã‚¹å…¥åŠ›
 
-// ƒ}ƒEƒX‚Ìƒ{ƒ^ƒ“‚ğ‰Ÿ‚µ‚½î•ñ‚ğæ“¾‚·‚é( –ß‚è’l  -1:ƒƒO‚ª–³‚©‚Á‚½ )
+// ãƒã‚¦ã‚¹ã®ãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸæƒ…å ±ã‚’å–å¾—ã™ã‚‹( æˆ»ã‚Šå€¤  -1:ãƒ­ã‚°ãŒç„¡ã‹ã£ãŸ )
 extern int NS_GetMouseInputLog( int *Button, int *ClickX, int *ClickY, int LogDelete )
 {
 	MOUSEINPUTLOGDATA *MInput ;
 
-	// ƒƒO‚ª–³‚©‚Á‚½‚ç -1 ‚ğ•Ô‚·
+	// ãƒ­ã‚°ãŒç„¡ã‹ã£ãŸã‚‰ -1 ã‚’è¿”ã™
 	if( InputSysData.MouseInputLogNum == 0 ) return -1 ;
 
-	// î•ñ‚ğ•Ô‚·
+	// æƒ…å ±ã‚’è¿”ã™
 	MInput = &InputSysData.MouseInputLog[ 0 ] ;
 	if( Button ) *Button = MInput->Button ;
 	if( ClickX ) *ClickX = MInput->ClickX ;
 	if( ClickY ) *ClickY = MInput->ClickY ;
 
-	// ƒƒO‚ğíœ‚·‚éw’è‚ª‚ ‚éê‡‚Ííœ‚·‚é
+	// ãƒ­ã‚°ã‚’å‰Šé™¤ã™ã‚‹æŒ‡å®šãŒã‚ã‚‹å ´åˆã¯å‰Šé™¤ã™ã‚‹
 	if( LogDelete )
 	{
 		InputSysData.MouseInputLogNum -- ;
@@ -347,16 +347,16 @@ extern int NS_GetMouseInputLog( int *Button, int *ClickX, int *ClickY, int LogDe
 			_MEMMOVE( InputSysData.MouseInputLog, &InputSysData.MouseInputLog[ 1 ], sizeof( MOUSEINPUTLOGDATA ) * InputSysData.MouseInputLogNum ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒ}ƒEƒX‚Ìƒ{ƒ^ƒ“‚ğ‰Ÿ‚µ‚½‚è—£‚µ‚½‚è‚µ‚½î•ñ‚ğæ“¾‚·‚é( –ß‚è’l  -1:ƒƒO‚ª–³‚©‚Á‚½ )
+// ãƒã‚¦ã‚¹ã®ãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸã‚Šé›¢ã—ãŸã‚Šã—ãŸæƒ…å ±ã‚’å–å¾—ã™ã‚‹( æˆ»ã‚Šå€¤  -1:ãƒ­ã‚°ãŒç„¡ã‹ã£ãŸ )
 extern int NS_GetMouseInputLog2( int *Button, int *ClickX, int *ClickY, int *LogType, int LogDelete )
 {
 	MOUSEINPUTLOGDATA *MInput ;
 
-	// •â•ˆ—
+	// è£œåŠ©å‡¦ç†
 	{
 		static int ButtonTable[ 3 ] = { MOUSE_INPUT_LEFT, MOUSE_INPUT_RIGHT, MOUSE_INPUT_MIDDLE } ;
 		int NowInput = NS_GetMouseInput() ;
@@ -364,7 +364,7 @@ extern int NS_GetMouseInputLog2( int *Button, int *ClickX, int *ClickY, int *Log
 
 		for( i = 0 ; i < 3 ; i ++ )
 		{
-			// ’¼‹ß‚ÌƒƒO‚ªwƒ{ƒ^ƒ“‚ğ‰Ÿ‚µ‚½x‚ÅAŠ‚ÂŒ»İƒ{ƒ^ƒ“‚ª—£‚³‚ê‚Ä‚¢‚½‚çƒ}ƒEƒX‚Ìƒ{ƒ^ƒ“‚ğ—£‚µ‚½‚Æ‚¢‚¤î•ñƒXƒgƒbƒN‚·‚é
+			// ç›´è¿‘ã®ãƒ­ã‚°ãŒã€ãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸã€ã§ã€ä¸”ã¤ç¾åœ¨ãƒœã‚¿ãƒ³ãŒé›¢ã•ã‚Œã¦ã„ãŸã‚‰ãƒã‚¦ã‚¹ã®ãƒœã‚¿ãƒ³ã‚’é›¢ã—ãŸã¨ã„ã†æƒ…å ±ã‚¹ãƒˆãƒƒã‚¯ã™ã‚‹
 			if( InputSysData.MouseInputLog2PrevEnable[ i ] &&
 				InputSysData.MouseInputLog2Prev[ i ].LogType == MOUSE_INPUT_LOG_DOWN &&
 				( NowInput & ButtonTable[ i ] ) == 0 )
@@ -374,7 +374,7 @@ extern int NS_GetMouseInputLog2( int *Button, int *ClickX, int *ClickY, int *Log
 				StockMouseInputLogData2( ButtonTable[ i ], mx, my, MOUSE_INPUT_LOG_UP ) ;
 			}
 
-			// ’¼‹ß‚ÌƒƒO‚ª–³‚¢‚©Awƒ{ƒ^ƒ“‚ğ—£‚µ‚½x‚ÅAŠ‚ÂŒ»İƒ{ƒ^ƒ“‚ª‰Ÿ‚³‚ê‚Ä‚¢‚½‚çƒ}ƒEƒX‚Ìƒ{ƒ^ƒ“‚ğ‰Ÿ‚µ‚½‚Æ‚¢‚¤î•ñƒXƒgƒbƒN‚·‚é
+			// ç›´è¿‘ã®ãƒ­ã‚°ãŒç„¡ã„ã‹ã€ã€ãƒœã‚¿ãƒ³ã‚’é›¢ã—ãŸã€ã§ã€ä¸”ã¤ç¾åœ¨ãƒœã‚¿ãƒ³ãŒæŠ¼ã•ã‚Œã¦ã„ãŸã‚‰ãƒã‚¦ã‚¹ã®ãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸã¨ã„ã†æƒ…å ±ã‚¹ãƒˆãƒƒã‚¯ã™ã‚‹
 			if( ( InputSysData.MouseInputLog2PrevEnable[ i ] == FALSE ||
 				  InputSysData.MouseInputLog2Prev[ i ].LogType == MOUSE_INPUT_LOG_UP ) &&
 				( NowInput & ButtonTable[ i ] ) != 0 )
@@ -386,20 +386,20 @@ extern int NS_GetMouseInputLog2( int *Button, int *ClickX, int *ClickY, int *Log
 		}
 	}
 
-	// ƒƒO‚ª–³‚©‚Á‚½‚çˆ—‚ğ•ªŠò
+	// ãƒ­ã‚°ãŒç„¡ã‹ã£ãŸã‚‰å‡¦ç†ã‚’åˆ†å²
 	if( InputSysData.MouseInputLog2Num == 0 )
 	{
 		return -1 ;
 	}
 
-	// î•ñ‚ğ•Ô‚·
+	// æƒ…å ±ã‚’è¿”ã™
 	MInput = &InputSysData.MouseInputLog2[ 0 ] ;
 	if( Button  ) *Button  = MInput->Button ;
 	if( ClickX  ) *ClickX  = MInput->ClickX ;
 	if( ClickY  ) *ClickY  = MInput->ClickY ;
 	if( LogType ) *LogType = MInput->LogType ;
 
-	// ƒƒO‚ğíœ‚·‚éw’è‚ª‚ ‚éê‡‚Ííœ‚·‚é
+	// ãƒ­ã‚°ã‚’å‰Šé™¤ã™ã‚‹æŒ‡å®šãŒã‚ã‚‹å ´åˆã¯å‰Šé™¤ã™ã‚‹
 	if( LogDelete )
 	{
 		InputSysData.MouseInputLog2Num -- ;
@@ -407,14 +407,14 @@ extern int NS_GetMouseInputLog2( int *Button, int *ClickX, int *ClickY, int *Log
 			_MEMMOVE( InputSysData.MouseInputLog2, &InputSysData.MouseInputLog2[ 1 ], sizeof( MOUSEINPUTLOGDATA ) * InputSysData.MouseInputLog2Num ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒ}ƒEƒX‚ÌˆÊ’u‚ğæ“¾‚·‚é
+// ãƒã‚¦ã‚¹ã®ä½ç½®ã‚’å–å¾—ã™ã‚‹
 extern int NS_GetMousePoint( int *XBuf, int *YBuf )
 {
-//	// ƒ^ƒbƒ`ƒpƒlƒ‹‚Ì“ü—Í‚ª‚ ‚éê‡‚Í‚»‚ê‚ğƒ}ƒEƒXƒ|ƒCƒ“ƒ^‚ÌˆÊ’u‚Æ‚·‚é
+//	// ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã®å…¥åŠ›ãŒã‚ã‚‹å ´åˆã¯ãã‚Œã‚’ãƒã‚¦ã‚¹ãƒã‚¤ãƒ³ã‚¿ã®ä½ç½®ã¨ã™ã‚‹
 //	if( InputSysData.Touch.NowData.PointNum > 0 && InputSysData.Touch.MouseInputID >= 0 )
 //	{
 //		if( XBuf != NULL )
@@ -429,30 +429,30 @@ extern int NS_GetMousePoint( int *XBuf, int *YBuf )
 //	}
 //	else
 	{
-		// ‚»‚êˆÈŠO‚Ìê‡‚ÍŠÂ‹«ˆË‘¶‚Ìƒ}ƒEƒXˆêæ“¾ˆ—‚ğÀs‚·‚é
+		// ãã‚Œä»¥å¤–ã®å ´åˆã¯ç’°å¢ƒä¾å­˜ã®ãƒã‚¦ã‚¹ä¸€å–å¾—å‡¦ç†ã‚’å®Ÿè¡Œã™ã‚‹
 		return GetMousePoint_PF( XBuf, YBuf ) ;
 	}
 
-//	// ³íI—¹
+//	// æ­£å¸¸çµ‚äº†
 //	return 0 ;
 }
 
-// ƒ}ƒEƒX‚ÌˆÊ’u‚ğƒZƒbƒg‚·‚é
+// ãƒã‚¦ã‚¹ã®ä½ç½®ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern int NS_SetMousePoint( int PointX , int PointY )
 {
-	// ŠÂ‹«ˆË‘¶ˆ—‚ğÀs‚·‚é
+	// ç’°å¢ƒä¾å­˜å‡¦ç†ã‚’å®Ÿè¡Œã™ã‚‹
 	return SetMousePoint_PF( PointX, PointY ) ;
 }
 
-// ƒ}ƒEƒX‚Ìƒ{ƒ^ƒ“‚Ìó‘Ô‚ğ“¾‚é 
+// ãƒã‚¦ã‚¹ã®ãƒœã‚¿ãƒ³ã®çŠ¶æ…‹ã‚’å¾—ã‚‹ 
 extern int NS_GetMouseInput( void )
 {
 	int MInput ;
 
-	// ŠÂ‹«ˆË‘¶ˆ—‚ğÀs
+	// ç’°å¢ƒä¾å­˜å‡¦ç†ã‚’å®Ÿè¡Œ
 	MInput = GetMouseInput_PF() ;
 
-//	// ƒ^ƒbƒ`ƒpƒlƒ‹‚Ì“ü—Í‚ª‚ ‚éê‡‚Í¶ƒNƒŠƒbƒN‚³‚ê‚Ä‚¢‚é‚±‚Æ‚É‚·‚é
+//	// ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã®å…¥åŠ›ãŒã‚ã‚‹å ´åˆã¯å·¦ã‚¯ãƒªãƒƒã‚¯ã•ã‚Œã¦ã„ã‚‹ã“ã¨ã«ã™ã‚‹
 //	if( InputSysData.Touch.NowData.PointNum > 0 && InputSysData.Touch.MouseInputID >= 0 )
 //	{
 //		MInput |= MOUSE_INPUT_LEFT ;
@@ -461,25 +461,25 @@ extern int NS_GetMouseInput( void )
 	return MInput ;
 }
 
-// ƒ}ƒEƒXƒzƒC[ƒ‹‚Ì‰ñ“]—Ê‚ğ“¾‚é
+// ãƒã‚¦ã‚¹ãƒ›ã‚¤ãƒ¼ãƒ«ã®å›è»¢é‡ã‚’å¾—ã‚‹
 extern int NS_GetMouseWheelRotVol( int CounterReset )
 {
 	return GetMouseWheelRotVol_PF( CounterReset ) ;
 }
 
-// …•½ƒ}ƒEƒXƒzƒC[ƒ‹‚Ì‰ñ“]—Ê‚ğ“¾‚é
+// æ°´å¹³ãƒã‚¦ã‚¹ãƒ›ã‚¤ãƒ¼ãƒ«ã®å›è»¢é‡ã‚’å¾—ã‚‹
 extern int NS_GetMouseHWheelRotVol( int CounterReset )
 {
 	return GetMouseHWheelRotVol_PF( CounterReset ) ;
 }
 
-// ƒ}ƒEƒXƒzƒC[ƒ‹‚Ì‰ñ“]—Ê‚ğ“¾‚é( –ß‚è’l‚ª float Œ^ )
+// ãƒã‚¦ã‚¹ãƒ›ã‚¤ãƒ¼ãƒ«ã®å›è»¢é‡ã‚’å¾—ã‚‹( æˆ»ã‚Šå€¤ãŒ float å‹ )
 extern float NS_GetMouseWheelRotVolF( int CounterReset )
 {
 	return GetMouseWheelRotVolF_PF( CounterReset ) ;
 }
 
-// …•½ƒ}ƒEƒXƒzƒC[ƒ‹‚Ì‰ñ“]—Ê‚ğ“¾‚é( –ß‚è’l‚ª float Œ^ )
+// æ°´å¹³ãƒã‚¦ã‚¹ãƒ›ã‚¤ãƒ¼ãƒ«ã®å›è»¢é‡ã‚’å¾—ã‚‹( æˆ»ã‚Šå€¤ãŒ float å‹ )
 extern float NS_GetMouseHWheelRotVolF( int CounterReset )
 {
 	return GetMouseHWheelRotVolF_PF( CounterReset ) ;
@@ -498,14 +498,14 @@ extern float NS_GetMouseHWheelRotVolF( int CounterReset )
 
 
 
-// ƒ^ƒbƒ`ƒpƒlƒ‹ŠÖŒW‚ÌŠÖ”
+// ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«é–¢ä¿‚ã®é–¢æ•°
 
-// ‰Ÿ‚³‚ê‚½ƒ^ƒbƒ`î•ñ‚ğ’Ç‰Á‚·‚é
+// æŠ¼ã•ã‚ŒãŸã‚¿ãƒƒãƒæƒ…å ±ã‚’è¿½åŠ ã™ã‚‹
 static void AddTouchDownInputPointLog( TOUCHINPUTPOINT *TouchPointData )
 {
 	int AddIndex ;
 
-	// î•ñ‚Ì”‚ªÅ‘å”‚ğ’´‚¦‚Ä‚¢‚½‚çæ“ªƒf[ƒ^‚ÌƒCƒ“ƒfƒbƒNƒX‚ğ‚¸‚ç‚·
+	// æƒ…å ±ã®æ•°ãŒæœ€å¤§æ•°ã‚’è¶…ãˆã¦ã„ãŸã‚‰å…ˆé ­ãƒ‡ãƒ¼ã‚¿ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’ãšã‚‰ã™
 	if( InputSysData.Touch.DownLogNum == INPUTTOUCH_LOG_NUM )
 	{
 		AddIndex = InputSysData.Touch.DownLogStartIndex ;
@@ -527,16 +527,16 @@ static void AddTouchDownInputPointLog( TOUCHINPUTPOINT *TouchPointData )
 		InputSysData.Touch.DownLogNum ++ ;
 	}
 
-	// —£‚³‚ê‚½ƒ^ƒbƒ`î•ñ‚ğƒZƒbƒg
+	// é›¢ã•ã‚ŒãŸã‚¿ãƒƒãƒæƒ…å ±ã‚’ã‚»ãƒƒãƒˆ
 	InputSysData.Touch.DownLog[ AddIndex ] = *TouchPointData ;
 }
 
-// —£‚³‚ê‚½ƒ^ƒbƒ`î•ñ‚ğ’Ç‰Á‚·‚é
+// é›¢ã•ã‚ŒãŸã‚¿ãƒƒãƒæƒ…å ±ã‚’è¿½åŠ ã™ã‚‹
 static void AddTouchUpInputPointLog( TOUCHINPUTPOINT *TouchPointData )
 {
 	int AddIndex ;
 
-	// î•ñ‚Ì”‚ªÅ‘å”‚ğ’´‚¦‚Ä‚¢‚½‚çæ“ªƒf[ƒ^‚ÌƒCƒ“ƒfƒbƒNƒX‚ğ‚¸‚ç‚·
+	// æƒ…å ±ã®æ•°ãŒæœ€å¤§æ•°ã‚’è¶…ãˆã¦ã„ãŸã‚‰å…ˆé ­ãƒ‡ãƒ¼ã‚¿ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’ãšã‚‰ã™
 	if( InputSysData.Touch.UpLogNum == INPUTTOUCH_LOG_NUM )
 	{
 		AddIndex = InputSysData.Touch.UpLogStartIndex ;
@@ -558,16 +558,16 @@ static void AddTouchUpInputPointLog( TOUCHINPUTPOINT *TouchPointData )
 		InputSysData.Touch.UpLogNum ++ ;
 	}
 
-	// —£‚³‚ê‚½ƒ^ƒbƒ`î•ñ‚ğƒZƒbƒg
+	// é›¢ã•ã‚ŒãŸã‚¿ãƒƒãƒæƒ…å ±ã‚’ã‚»ãƒƒãƒˆ
 	InputSysData.Touch.UpLog[ AddIndex ] = *TouchPointData ;
 }
 
-// ƒ^ƒbƒ`ƒpƒlƒ‹‚Ì“ü—Íî•ñ‚ğƒƒO‚É’Ç‰Á‚·‚é
+// ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã®å…¥åŠ›æƒ…å ±ã‚’ãƒ­ã‚°ã«è¿½åŠ ã™ã‚‹
 static void AddTouchInputLog( TOUCHINPUTDATA *TouchData )
 {
 	int AddIndex ;
 
-	// ƒ^ƒbƒ`î•ñ‚Ì”‚ªÅ‘å”‚ğ’´‚¦‚Ä‚¢‚½‚çæ“ªƒf[ƒ^‚ÌƒCƒ“ƒfƒbƒNƒX‚ğ‚¸‚ç‚·
+	// ã‚¿ãƒƒãƒæƒ…å ±ã®æ•°ãŒæœ€å¤§æ•°ã‚’è¶…ãˆã¦ã„ãŸã‚‰å…ˆé ­ãƒ‡ãƒ¼ã‚¿ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’ãšã‚‰ã™
 	if( InputSysData.Touch.LogNum == INPUTTOUCH_LOG_NUM )
 	{
 		AddIndex = InputSysData.Touch.LogStartIndex ;
@@ -589,17 +589,17 @@ static void AddTouchInputLog( TOUCHINPUTDATA *TouchData )
 		InputSysData.Touch.LogNum ++ ;
 	}
 
-	// ƒf[ƒ^‚ğƒZƒbƒg
+	// ãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆ
 	InputSysData.Touch.Log[ AddIndex ] = *TouchData ;
 }
 
-// ƒ^ƒbƒ`ƒpƒlƒ‹‚Ì“ü—Íî•ñ‚ğ’Ç‰Á‚·‚é
+// ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã®å…¥åŠ›æƒ…å ±ã‚’è¿½åŠ ã™ã‚‹
 extern	int AddTouchInputData( TOUCHINPUTDATA *TouchData )
 {
 	int i ;
 	int j ;
 
-	// Å‰‚Ìƒ^ƒbƒ`î•ñ‚¾‚Á‚½‚çu‰Ÿ‚³‚ê‚½vƒƒO‚É’Ç‰Á‚·‚é
+	// æœ€åˆã®ã‚¿ãƒƒãƒæƒ…å ±ã ã£ãŸã‚‰ã€ŒæŠ¼ã•ã‚ŒãŸã€ãƒ­ã‚°ã«è¿½åŠ ã™ã‚‹
 	if( InputSysData.Touch.LogNum == 0 )
 	{
 		for( i = 0 ; i < TouchData->PointNum ; i ++ )
@@ -609,7 +609,7 @@ extern	int AddTouchInputData( TOUCHINPUTDATA *TouchData )
 	}
 	else
 	{
-		// ˆê‚Â‘O‚ÌƒƒO‚Å‚Í‘¶İ‚µ‚È‚©‚Á‚½ƒ^ƒbƒ`‚ª‚ ‚Á‚½‚çƒƒO‚É’Ç‰Á‚·‚é
+		// ä¸€ã¤å‰ã®ãƒ­ã‚°ã§ã¯å­˜åœ¨ã—ãªã‹ã£ãŸã‚¿ãƒƒãƒãŒã‚ã£ãŸã‚‰ãƒ­ã‚°ã«è¿½åŠ ã™ã‚‹
 		for( i = 0 ; i < TouchData->PointNum ; i ++ )
 		{
 			for( j = 0 ; j < InputSysData.Touch.NowData.PointNum ; j ++ )
@@ -628,7 +628,7 @@ extern	int AddTouchInputData( TOUCHINPUTDATA *TouchData )
 		}
 	}
 
-	// ˆê‚Â‘O‚ÌƒƒOî•ñ‚Æ”äŠr‚µ‚ÄA—£‚³‚ê‚½ƒ^ƒbƒ`‚ª‚ ‚Á‚½‚çƒƒO‚É’Ç‰Á‚·‚é
+	// ä¸€ã¤å‰ã®ãƒ­ã‚°æƒ…å ±ã¨æ¯”è¼ƒã—ã¦ã€é›¢ã•ã‚ŒãŸã‚¿ãƒƒãƒãŒã‚ã£ãŸã‚‰ãƒ­ã‚°ã«è¿½åŠ ã™ã‚‹
 	if( InputSysData.Touch.LogNum >= 1 )
 	{
 		for( i = 0 ; i < InputSysData.Touch.NowData.PointNum ; i ++ )
@@ -649,15 +649,15 @@ extern	int AddTouchInputData( TOUCHINPUTDATA *TouchData )
 		}
 	}
 
-	// ƒƒO‚É’Ç‰Á‚·‚é
+	// ãƒ­ã‚°ã«è¿½åŠ ã™ã‚‹
 	AddTouchInputLog( TouchData ) ;
 
-	// ÅV‚Ìƒ^ƒbƒ`î•ñ‚É‚àƒZƒbƒg
+	// æœ€æ–°ã®ã‚¿ãƒƒãƒæƒ…å ±ã«ã‚‚ã‚»ãƒƒãƒˆ
 	InputSysData.Touch.NowData = *TouchData ;
 
-	// ƒ}ƒEƒX“ü—Í‚Æ‚·‚éƒ^ƒbƒ`î•ñ‚Ì‚h‚c‚ğXV
+	// ãƒã‚¦ã‚¹å…¥åŠ›ã¨ã™ã‚‹ã‚¿ãƒƒãƒæƒ…å ±ã®ï¼©ï¼¤ã‚’æ›´æ–°
 	{
-		// ˆê‚Â‚àƒ^ƒbƒ`î•ñ‚ª‚È‚¯‚ê‚Î -1 ‚ğ‘ã“ü
+		// ä¸€ã¤ã‚‚ã‚¿ãƒƒãƒæƒ…å ±ãŒãªã‘ã‚Œã° -1 ã‚’ä»£å…¥
 		if( TouchData->PointNum == 0 )
 		{
 			InputSysData.Touch.MouseInputDevice = -1 ;
@@ -666,7 +666,7 @@ extern	int AddTouchInputData( TOUCHINPUTDATA *TouchData )
 		}
 		else
 		{
-			// ¡‚Ü‚Å‚Æ“¯‚¶‚h‚c‚ª–³‚©‚Á‚½‚çXV
+			// ä»Šã¾ã§ã¨åŒã˜ï¼©ï¼¤ãŒç„¡ã‹ã£ãŸã‚‰æ›´æ–°
 			for( i = 0 ; i < TouchData->PointNum ; i ++ )
 			{
 				if( InputSysData.Touch.MouseInputDevice == ( int )TouchData->Point[ i ].Device &&
@@ -685,19 +685,19 @@ extern	int AddTouchInputData( TOUCHINPUTDATA *TouchData )
 		}
 	}
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// ƒ^ƒbƒ`ƒpƒlƒ‹“ü—ÍŠÖŒWŠÖ”
+// ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«å…¥åŠ›é–¢ä¿‚é–¢æ•°
 
-// ƒ^ƒbƒ`‚³‚ê‚Ä‚¢‚é”‚ğæ“¾‚·‚é
+// ã‚¿ãƒƒãƒã•ã‚Œã¦ã„ã‚‹æ•°ã‚’å–å¾—ã™ã‚‹
 extern int NS_GetTouchInputNum( void )
 {
 	return InputSysData.Touch.NowData.PointNum ;
 }
 
-// ƒ^ƒbƒ`‚Ìî•ñ‚ğæ“¾‚·‚é
+// ã‚¿ãƒƒãƒã®æƒ…å ±ã‚’å–å¾—ã™ã‚‹
 extern int NS_GetTouchInput( int InputNo, int *PositionX, int *PositionY, int *ID , int *Device, float *Pressure )
 {
 	if( InputNo >= InputSysData.Touch.NowData.PointNum )
@@ -733,13 +733,13 @@ extern int NS_GetTouchInput( int InputNo, int *PositionX, int *PositionY, int *I
 	return 0 ;
 }
 
-// ƒXƒgƒbƒN‚³‚ê‚Ä‚¢‚éƒ^ƒbƒ`î•ñ‚Ì”‚ğæ“¾‚·‚é
+// ã‚¹ãƒˆãƒƒã‚¯ã•ã‚Œã¦ã„ã‚‹ã‚¿ãƒƒãƒæƒ…å ±ã®æ•°ã‚’å–å¾—ã™ã‚‹
 extern int NS_GetTouchInputLogNum( void )
 {
 	return InputSysData.Touch.LogNum ;
 }
 
-// ƒXƒgƒbƒN‚³‚ê‚Ä‚¢‚éƒ^ƒbƒ`î•ñ‚ğƒNƒŠƒA‚·‚é
+// ã‚¹ãƒˆãƒƒã‚¯ã•ã‚Œã¦ã„ã‚‹ã‚¿ãƒƒãƒæƒ…å ±ã‚’ã‚¯ãƒªã‚¢ã™ã‚‹
 extern int NS_ClearTouchInputLog( void )
 {
 	InputSysData.Touch.LogNum = 0 ;
@@ -748,7 +748,7 @@ extern int NS_ClearTouchInputLog( void )
 	return 0 ;
 }
 
-// ƒXƒgƒbƒN‚³‚ê‚Ä‚¢‚éƒ^ƒbƒ`î•ñ‚©‚çˆê”ÔŒÃ‚¢î•ñ‚ğ‚Ğ‚Æ‚Âæ“¾‚·‚é
+// ã‚¹ãƒˆãƒƒã‚¯ã•ã‚Œã¦ã„ã‚‹ã‚¿ãƒƒãƒæƒ…å ±ã‹ã‚‰ä¸€ç•ªå¤ã„æƒ…å ±ã‚’ã²ã¨ã¤å–å¾—ã™ã‚‹
 extern TOUCHINPUTDATA NS_GetTouchInputLogOne( int PeekFlag )
 {
 	TOUCHINPUTDATA Return ;
@@ -776,7 +776,7 @@ extern TOUCHINPUTDATA NS_GetTouchInputLogOne( int PeekFlag )
 	return Return ;
 }
 
-// ƒXƒgƒbƒN‚³‚ê‚Ä‚¢‚éƒ^ƒbƒ`î•ñ‚©‚çŒÃ‚¢‡‚Éw’è”ƒoƒbƒtƒ@‚Éæ“¾‚·‚é( –ß‚è’l  -1:ƒGƒ‰[  0ˆÈã:æ“¾‚µ‚½î•ñ‚Ì” )
+// ã‚¹ãƒˆãƒƒã‚¯ã•ã‚Œã¦ã„ã‚‹ã‚¿ãƒƒãƒæƒ…å ±ã‹ã‚‰å¤ã„é †ã«æŒ‡å®šæ•°ãƒãƒƒãƒ•ã‚¡ã«å–å¾—ã™ã‚‹( æˆ»ã‚Šå€¤  -1:ã‚¨ãƒ©ãƒ¼  0ä»¥ä¸Š:å–å¾—ã—ãŸæƒ…å ±ã®æ•° )
 extern int NS_GetTouchInputLog( TOUCHINPUTDATA *TouchData, int GetNum, int PeekFlag )
 {
 	int i ;
@@ -819,13 +819,13 @@ extern int NS_GetTouchInputLog( TOUCHINPUTDATA *TouchData, int GetNum, int PeekF
 
 
 
-// ƒXƒgƒbƒN‚³‚ê‚Ä‚¢‚éƒ^ƒbƒ`‚³‚ên‚ß‚½î•ñ‚Ì”‚ğæ“¾‚·‚é
+// ã‚¹ãƒˆãƒƒã‚¯ã•ã‚Œã¦ã„ã‚‹ã‚¿ãƒƒãƒã•ã‚Œå§‹ã‚ãŸæƒ…å ±ã®æ•°ã‚’å–å¾—ã™ã‚‹
 extern int NS_GetTouchInputDownLogNum( void )
 {
 	return InputSysData.Touch.DownLogNum ;
 }
 
-// ƒXƒgƒbƒN‚³‚ê‚Ä‚¢‚éƒ^ƒbƒ`‚³‚ên‚ß‚½î•ñ‚ğƒNƒŠƒA‚·‚é
+// ã‚¹ãƒˆãƒƒã‚¯ã•ã‚Œã¦ã„ã‚‹ã‚¿ãƒƒãƒã•ã‚Œå§‹ã‚ãŸæƒ…å ±ã‚’ã‚¯ãƒªã‚¢ã™ã‚‹
 extern int NS_ClearTouchInputDownLog( void )
 {
 	InputSysData.Touch.DownLogNum = 0 ;
@@ -834,7 +834,7 @@ extern int NS_ClearTouchInputDownLog( void )
 	return 0 ;
 }
 
-// ƒXƒgƒbƒN‚³‚ê‚Ä‚¢‚éƒ^ƒbƒ`‚³‚ên‚ß‚½î•ñ‚©‚çˆê”ÔŒÃ‚¢î•ñ‚ğ‚Ğ‚Æ‚Âæ“¾‚·‚é
+// ã‚¹ãƒˆãƒƒã‚¯ã•ã‚Œã¦ã„ã‚‹ã‚¿ãƒƒãƒã•ã‚Œå§‹ã‚ãŸæƒ…å ±ã‹ã‚‰ä¸€ç•ªå¤ã„æƒ…å ±ã‚’ã²ã¨ã¤å–å¾—ã™ã‚‹
 extern TOUCHINPUTPOINT NS_GetTouchInputDownLogOne( int PeekFlag )
 {
 	TOUCHINPUTPOINT Return ;
@@ -862,7 +862,7 @@ extern TOUCHINPUTPOINT NS_GetTouchInputDownLogOne( int PeekFlag )
 	return Return ;
 }
 
-// ƒXƒgƒbƒN‚³‚ê‚Ä‚¢‚éƒ^ƒbƒ`‚³‚ên‚ß‚½î•ñ‚©‚çŒÃ‚¢‡‚Éw’è”ƒoƒbƒtƒ@‚Éæ“¾‚·‚é( –ß‚è’l  -1:ƒGƒ‰[  0ˆÈã:æ“¾‚µ‚½î•ñ‚Ì” )
+// ã‚¹ãƒˆãƒƒã‚¯ã•ã‚Œã¦ã„ã‚‹ã‚¿ãƒƒãƒã•ã‚Œå§‹ã‚ãŸæƒ…å ±ã‹ã‚‰å¤ã„é †ã«æŒ‡å®šæ•°ãƒãƒƒãƒ•ã‚¡ã«å–å¾—ã™ã‚‹( æˆ»ã‚Šå€¤  -1:ã‚¨ãƒ©ãƒ¼  0ä»¥ä¸Š:å–å¾—ã—ãŸæƒ…å ±ã®æ•° )
 extern int NS_GetTouchInputDownLog( TOUCHINPUTPOINT *TouchData, int GetNum, int PeekFlag )
 {
 	int i ;
@@ -909,13 +909,13 @@ extern int NS_GetTouchInputDownLog( TOUCHINPUTPOINT *TouchData, int GetNum, int 
 
 
 
-// ƒXƒgƒbƒN‚³‚ê‚Ä‚¢‚éƒ^ƒbƒ`‚ª—£‚³‚ê‚½î•ñ‚Ì”‚ğæ“¾‚·‚é
+// ã‚¹ãƒˆãƒƒã‚¯ã•ã‚Œã¦ã„ã‚‹ã‚¿ãƒƒãƒãŒé›¢ã•ã‚ŒãŸæƒ…å ±ã®æ•°ã‚’å–å¾—ã™ã‚‹
 extern int NS_GetTouchInputUpLogNum( void )
 {
 	return InputSysData.Touch.UpLogNum ;
 }
 
-// ƒXƒgƒbƒN‚³‚ê‚Ä‚¢‚éƒ^ƒbƒ`‚ª—£‚³‚ê‚½î•ñ‚ğƒNƒŠƒA‚·‚é
+// ã‚¹ãƒˆãƒƒã‚¯ã•ã‚Œã¦ã„ã‚‹ã‚¿ãƒƒãƒãŒé›¢ã•ã‚ŒãŸæƒ…å ±ã‚’ã‚¯ãƒªã‚¢ã™ã‚‹
 extern int NS_ClearTouchInputUpLog( void )
 {
 	InputSysData.Touch.UpLogNum = 0 ;
@@ -924,7 +924,7 @@ extern int NS_ClearTouchInputUpLog( void )
 	return 0 ;
 }
 
-// ƒXƒgƒbƒN‚³‚ê‚Ä‚¢‚éƒ^ƒbƒ`‚ª—£‚³‚ê‚½î•ñ‚©‚çˆê”ÔŒÃ‚¢î•ñ‚ğ‚Ğ‚Æ‚Âæ“¾‚·‚é
+// ã‚¹ãƒˆãƒƒã‚¯ã•ã‚Œã¦ã„ã‚‹ã‚¿ãƒƒãƒãŒé›¢ã•ã‚ŒãŸæƒ…å ±ã‹ã‚‰ä¸€ç•ªå¤ã„æƒ…å ±ã‚’ã²ã¨ã¤å–å¾—ã™ã‚‹
 extern TOUCHINPUTPOINT NS_GetTouchInputUpLogOne( int PeekFlag )
 {
 	TOUCHINPUTPOINT Return ;
@@ -952,7 +952,7 @@ extern TOUCHINPUTPOINT NS_GetTouchInputUpLogOne( int PeekFlag )
 	return Return ;
 }
 
-// ƒXƒgƒbƒN‚³‚ê‚Ä‚¢‚éƒ^ƒbƒ`‚ª—£‚³‚ê‚½î•ñ‚©‚çŒÃ‚¢‡‚Éw’è”ƒoƒbƒtƒ@‚Éæ“¾‚·‚é( –ß‚è’l  -1:ƒGƒ‰[  0ˆÈã:æ“¾‚µ‚½î•ñ‚Ì” )
+// ã‚¹ãƒˆãƒƒã‚¯ã•ã‚Œã¦ã„ã‚‹ã‚¿ãƒƒãƒãŒé›¢ã•ã‚ŒãŸæƒ…å ±ã‹ã‚‰å¤ã„é †ã«æŒ‡å®šæ•°ãƒãƒƒãƒ•ã‚¡ã«å–å¾—ã™ã‚‹( æˆ»ã‚Šå€¤  -1:ã‚¨ãƒ©ãƒ¼  0ä»¥ä¸Š:å–å¾—ã—ãŸæƒ…å ±ã®æ•° )
 extern int NS_GetTouchInputUpLog( TOUCHINPUTPOINT *TouchData, int GetNum, int PeekFlag )
 {
 	int i ;
@@ -1005,32 +1005,32 @@ extern int NS_GetTouchInputUpLog( TOUCHINPUTPOINT *TouchData, int GetNum, int Pe
 
 
 
-// “ü—Íó‘Ôæ“¾ŠÖ”
+// å…¥åŠ›çŠ¶æ…‹å–å¾—é–¢æ•°
 
-// ƒL[ƒ{[ƒh‚Ìó‘Ôæ“¾
+// ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ã®çŠ¶æ…‹å–å¾—
 extern int NS_CheckHitKey( int KeyCode )
 {
 	int Result ;
 
-	// ƒ\ƒtƒg‚ª”ñƒAƒNƒeƒBƒu‚Ìê‡‚ÍƒAƒNƒeƒBƒu‚É‚È‚é‚Ü‚Å‘Ò‚Â
+	// ã‚½ãƒ•ãƒˆãŒéã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã®å ´åˆã¯ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ãªã‚‹ã¾ã§å¾…ã¤
 	CheckActiveState() ;
 
-	// ‰Šú‰»‚³‚ê‚Ä‚¢‚È‚©‚Á‚½‚çğŒ•t‚«‚Å‰Šú‰»‚ğs‚¤
+	// åˆæœŸåŒ–ã•ã‚Œã¦ã„ãªã‹ã£ãŸã‚‰æ¡ä»¶ä»˜ãã§åˆæœŸåŒ–ã‚’è¡Œã†
 	if( InputSysData.InitializeFlag == FALSE )
 	{
 		return AutoInitialize_PF() ;
 	}
 
-	// ƒL[ƒ{[ƒh‚Ì“ü—Íó‘Ô‚ğXV
+	// ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ã®å…¥åŠ›çŠ¶æ…‹ã‚’æ›´æ–°
 	UpdateKeyboardInputState() ;
 
-	// w’è‚ÌƒL[‚Ìó‘Ô‚ğ•Ô‚·
+	// æŒ‡å®šã®ã‚­ãƒ¼ã®çŠ¶æ…‹ã‚’è¿”ã™
 	Result = ( InputSysData.KeyInputBuf[ KeyCode ] & 0x80 ) != 0 ;
 	
 	return Result ;
 }
 
-// ‘SƒL[‚Ì‰Ÿ‰ºó‘Ô‚ğæ“¾
+// å…¨ã‚­ãƒ¼ã®æŠ¼ä¸‹çŠ¶æ…‹ã‚’å–å¾—
 extern int NS_CheckHitKeyAll( int CheckType )
 {
 	int i ;
@@ -1041,22 +1041,22 @@ extern int NS_CheckHitKeyAll( int CheckType )
 		return -1 ;
 #endif // WINDOWS_DESKTOP_OS
 
-	// ƒ\ƒtƒg‚ª”ñƒAƒNƒeƒBƒu‚Ìê‡‚ÍƒAƒNƒeƒBƒu‚É‚È‚é‚Ü‚Å‘Ò‚Â
+	// ã‚½ãƒ•ãƒˆãŒéã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã®å ´åˆã¯ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ãªã‚‹ã¾ã§å¾…ã¤
 	CheckActiveState() ;
 
-	// ‰Šú‰»‚³‚ê‚Ä‚¢‚È‚©‚Á‚½‚çğŒ•t‚«‚Å‰Šú‰»‚ğs‚¤
+	// åˆæœŸåŒ–ã•ã‚Œã¦ã„ãªã‹ã£ãŸã‚‰æ¡ä»¶ä»˜ãã§åˆæœŸåŒ–ã‚’è¡Œã†
 	if( InputSysData.InitializeFlag == FALSE )
 	{
 		return AutoInitialize_PF() ;
 	}
 
-	// ƒL[ƒ{[ƒh‚Ìƒ`ƒFƒbƒN
+	// ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ã®ãƒã‚§ãƒƒã‚¯
 	if( CheckType & DX_CHECKINPUT_KEY )
 	{
-		// ƒL[ƒ{[ƒh‚Ì“ü—Íó‘Ô‚ğXV
+		// ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ã®å…¥åŠ›çŠ¶æ…‹ã‚’æ›´æ–°
 		UpdateKeyboardInputState() ;
 
-		// ‚Ç‚ê‚©ˆê‚Â‚Å‚àƒL[‚ª‰Ÿ‚³‚ê‚Ä‚¢‚é‚©”»’è
+		// ã©ã‚Œã‹ä¸€ã¤ã§ã‚‚ã‚­ãƒ¼ãŒæŠ¼ã•ã‚Œã¦ã„ã‚‹ã‹åˆ¤å®š
 		KeyData = InputSysData.KeyInputBuf ;
 		for( i = 0 ; i < 256 ; i ++ , KeyData ++ )
 		{
@@ -1069,7 +1069,7 @@ extern int NS_CheckHitKeyAll( int CheckType )
 		}
 	}
 
-	// ƒWƒ‡ƒCƒpƒbƒh‚Ìƒ`ƒFƒbƒN
+	// ã‚¸ãƒ§ã‚¤ãƒ‘ãƒƒãƒ‰ã®ãƒã‚§ãƒƒã‚¯
 	if( CheckType & DX_CHECKINPUT_PAD )
 	{
 		for( i = 0 ; i < InputSysData.PadNum ; i ++ )
@@ -1079,7 +1079,7 @@ extern int NS_CheckHitKeyAll( int CheckType )
 		}
 	}
 
-	// ƒ}ƒEƒXƒ{ƒ^ƒ“‚Ìƒ`ƒFƒbƒN
+	// ãƒã‚¦ã‚¹ãƒœã‚¿ãƒ³ã®ãƒã‚§ãƒƒã‚¯
 	if( CheckType & DX_CHECKINPUT_MOUSE )
 	{
 #ifdef WINDOWS_DESKTOP_OS
@@ -1100,64 +1100,64 @@ extern int NS_CheckHitKeyAll( int CheckType )
 #endif // WINDOWS_DESKTOP_OS
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ‚·‚×‚Ä‚ÌƒL[‚Ì‰Ÿ‰ºó‘Ô‚ğæ“¾‚·‚é
+// ã™ã¹ã¦ã®ã‚­ãƒ¼ã®æŠ¼ä¸‹çŠ¶æ…‹ã‚’å–å¾—ã™ã‚‹
 extern int NS_GetHitKeyStateAll( char *KeyStateBuf )
 {
 	int i ;
 
-	// ƒ\ƒtƒg‚ª”ñƒAƒNƒeƒBƒu‚Ìê‡‚ÍƒAƒNƒeƒBƒu‚É‚È‚é‚Ü‚Å‘Ò‚Â
+	// ã‚½ãƒ•ãƒˆãŒéã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã®å ´åˆã¯ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ãªã‚‹ã¾ã§å¾…ã¤
 	CheckActiveState() ;
 
-	// ‰Šú‰»‚³‚ê‚Ä‚¢‚È‚©‚Á‚½‚çğŒ•t‚«‚Å‰Šú‰»‚ğs‚¤
+	// åˆæœŸåŒ–ã•ã‚Œã¦ã„ãªã‹ã£ãŸã‚‰æ¡ä»¶ä»˜ãã§åˆæœŸåŒ–ã‚’è¡Œã†
 	if( InputSysData.InitializeFlag == FALSE )
 	{
 		return AutoInitialize_PF() ;
 	}
 
-	// ƒL[ƒ{[ƒh‚Ì“ü—Íó‘Ô‚ğXV
+	// ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ã®å…¥åŠ›çŠ¶æ…‹ã‚’æ›´æ–°
 	UpdateKeyboardInputState() ;
 
-	// ƒL[‚Ì“ü—Í’l‚ğ•ÏŠ·
+	// ã‚­ãƒ¼ã®å…¥åŠ›å€¤ã‚’å¤‰æ›
 	for( i = 0 ; i < 256 ; i ++ , KeyStateBuf ++ )
 	{
 		*KeyStateBuf = ( BYTE )( InputSysData.KeyInputBuf[i] ) >> 7 ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ‚·‚×‚Ä‚ÌƒL[‚Ì‰Ÿ‰ºó‘Ô‚ğæ“¾‚·‚é(
-// KeyStateBuf:intŒ^256ŒÂ•ª‚Ì”z—ñ‚Ìæ“ªƒAƒhƒŒƒX
-// ”z—ñ‚ÌŠe—v‘f‚Ìó‘Ô
-//   0:‰Ÿ‚³‚ê‚Ä‚¢‚È‚¢
+// ã™ã¹ã¦ã®ã‚­ãƒ¼ã®æŠ¼ä¸‹çŠ¶æ…‹ã‚’å–å¾—ã™ã‚‹(
+// KeyStateBuf:intå‹256å€‹åˆ†ã®é…åˆ—ã®å…ˆé ­ã‚¢ãƒ‰ãƒ¬ã‚¹
+// é…åˆ—ã®å„è¦ç´ ã®çŠ¶æ…‹
+//   0:æŠ¼ã•ã‚Œã¦ã„ãªã„
 //
-//    1    F‰Ÿ‚³‚ê‚½‚P‰ñ‚ß
-//    2ˆÈãF‰Ÿ‚³‚ê‘±‚¯‚Ä‚¢‚é‰ñ”
+//    1    ï¼šæŠ¼ã•ã‚ŒãŸï¼‘å›ã‚
+//    2ä»¥ä¸Šï¼šæŠ¼ã•ã‚Œç¶šã‘ã¦ã„ã‚‹å›æ•°
 //
-//   -1    F‰Ÿ‚³‚ê‚Ä—£‚³‚ê‚½‚P‰ñ‚ß
-//   -2ˆÈ‰ºF‰Ÿ‚³‚ê‚Ä—£‚³‚ê‚Ä‚©‚ç‚Ì‰ñ” )
+//   -1    ï¼šæŠ¼ã•ã‚Œã¦é›¢ã•ã‚ŒãŸï¼‘å›ã‚
+//   -2ä»¥ä¸‹ï¼šæŠ¼ã•ã‚Œã¦é›¢ã•ã‚Œã¦ã‹ã‚‰ã®å›æ•° )
 extern int NS_GetHitKeyStateAllEx( int *KeyStateArray )
 {
 	int i ;
 
-	// ƒ\ƒtƒg‚ª”ñƒAƒNƒeƒBƒu‚Ìê‡‚ÍƒAƒNƒeƒBƒu‚É‚È‚é‚Ü‚Å‘Ò‚Â
+	// ã‚½ãƒ•ãƒˆãŒéã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã®å ´åˆã¯ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ãªã‚‹ã¾ã§å¾…ã¤
 	CheckActiveState() ;
 
-	// ‰Šú‰»‚³‚ê‚Ä‚¢‚È‚©‚Á‚½‚çğŒ•t‚«‚Å‰Šú‰»‚ğs‚¤
+	// åˆæœŸåŒ–ã•ã‚Œã¦ã„ãªã‹ã£ãŸã‚‰æ¡ä»¶ä»˜ãã§åˆæœŸåŒ–ã‚’è¡Œã†
 	if( InputSysData.InitializeFlag == FALSE )
 	{
 		return AutoInitialize_PF() ;
 	}
 
-	// ƒL[ƒ{[ƒh‚Ì“ü—Íó‘Ô‚ğXV
+	// ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ã®å…¥åŠ›çŠ¶æ…‹ã‚’æ›´æ–°
 	UpdateKeyboardInputState() ;
 
-	// ƒL[‚Ì“ü—Í’l‚ğ•ÏŠ·
+	// ã‚­ãƒ¼ã®å…¥åŠ›å€¤ã‚’å¤‰æ›
 	for( i = 0 ; i < 256 ; i ++ )
 	{
 		if( ( ( BYTE )( InputSysData.KeyInputBuf[ i ] ) >> 7 ) != 0 )
@@ -1186,7 +1186,7 @@ extern int NS_GetHitKeyStateAllEx( int *KeyStateArray )
 		}
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
@@ -1194,13 +1194,13 @@ extern int NS_GetHitKeyStateAllEx( int *KeyStateArray )
 
 
 
-// ƒWƒ‡ƒCƒpƒbƒh‚ªÚ‘±‚³‚ê‚Ä‚¢‚é”‚ğæ“¾‚·‚é
+// ã‚¸ãƒ§ã‚¤ãƒ‘ãƒƒãƒ‰ãŒæ¥ç¶šã•ã‚Œã¦ã„ã‚‹æ•°ã‚’å–å¾—ã™ã‚‹
 extern int NS_GetJoypadNum( void )
 {
-	// ƒ\ƒtƒg‚ª”ñƒAƒNƒeƒBƒu‚Ìê‡‚ÍƒAƒNƒeƒBƒu‚É‚È‚é‚Ü‚Å‘Ò‚Â
+	// ã‚½ãƒ•ãƒˆãŒéã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã®å ´åˆã¯ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ãªã‚‹ã¾ã§å¾…ã¤
 	CheckActiveState() ;
 
-	// ‰Šú‰»‚³‚ê‚Ä‚¢‚È‚©‚Á‚½‚çğŒ•t‚«‚Å‰Šú‰»‚ğs‚¤
+	// åˆæœŸåŒ–ã•ã‚Œã¦ã„ãªã‹ã£ãŸã‚‰æ¡ä»¶ä»˜ãã§åˆæœŸåŒ–ã‚’è¡Œã†
 	if( InputSysData.InitializeFlag == FALSE )
 	{
 		return AutoInitialize_PF() ;
@@ -1209,16 +1209,16 @@ extern int NS_GetJoypadNum( void )
 	return InputSysData.PadNum ;
 }
 
-// ƒWƒ‡ƒCƒpƒbƒh‚Ìƒ{ƒ^ƒ“‚Ì”‚ğæ“¾‚·‚é
+// ã‚¸ãƒ§ã‚¤ãƒ‘ãƒƒãƒ‰ã®ãƒœã‚¿ãƒ³ã®æ•°ã‚’å–å¾—ã™ã‚‹
 extern int NS_GetJoypadButtonNum( int InputType )
 {
 	INPUTPADDATA *pad ;
 	int JoypadNum = ( InputType & ~DX_INPUT_KEY ) - 1 ;
 
-	// ƒ\ƒtƒg‚ª”ñƒAƒNƒeƒBƒu‚Ìê‡‚ÍƒAƒNƒeƒBƒu‚É‚È‚é‚Ü‚Å‘Ò‚Â
+	// ã‚½ãƒ•ãƒˆãŒéã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã®å ´åˆã¯ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ãªã‚‹ã¾ã§å¾…ã¤
 	CheckActiveState() ;
 
-	// ‰Šú‰»‚³‚ê‚Ä‚¢‚È‚©‚Á‚½‚çğŒ•t‚«‚Å‰Šú‰»‚ğs‚¤
+	// åˆæœŸåŒ–ã•ã‚Œã¦ã„ãªã‹ã£ãŸã‚‰æ¡ä»¶ä»˜ãã§åˆæœŸåŒ–ã‚’è¡Œã†
 	if( InputSysData.InitializeFlag == FALSE )
 	{
 		return AutoInitialize_PF() ;
@@ -1231,11 +1231,11 @@ extern int NS_GetJoypadButtonNum( int InputType )
 
 	pad = &InputSysData.Pad[ JoypadNum ] ;
 
-	// ƒ{ƒ^ƒ“‚Ì”‚ğ•Ô‚·
+	// ãƒœã‚¿ãƒ³ã®æ•°ã‚’è¿”ã™
 	return pad->Buttons ;
 }
 
-// ƒWƒ‡ƒCƒoƒbƒh‚Ì“ü—Íó‘Ôæ“¾
+// ã‚¸ãƒ§ã‚¤ãƒãƒƒãƒ‰ã®å…¥åŠ›çŠ¶æ…‹å–å¾—
 extern int NS_GetJoypadInputState( int InputType )
 {
 	int BackData = 0 ;
@@ -1243,10 +1243,10 @@ extern int NS_GetJoypadInputState( int InputType )
 	int JoypadNum = ( InputType & ~DX_INPUT_KEY ) - 1 ;
 	int iX , iY ;
 
-	// ƒ\ƒtƒg‚ª”ñƒAƒNƒeƒBƒu‚Ìê‡‚ÍƒAƒNƒeƒBƒu‚É‚È‚é‚Ü‚Å‘Ò‚Â
+	// ã‚½ãƒ•ãƒˆãŒéã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã®å ´åˆã¯ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ãªã‚‹ã¾ã§å¾…ã¤
 	CheckActiveState() ;
 
-	// ‰Šú‰»‚³‚ê‚Ä‚¢‚È‚©‚Á‚½‚çğŒ•t‚«‚Å‰Šú‰»‚ğs‚¤
+	// åˆæœŸåŒ–ã•ã‚Œã¦ã„ãªã‹ã£ãŸã‚‰æ¡ä»¶ä»˜ãã§åˆæœŸåŒ–ã‚’è¡Œã†
 	if( InputSysData.InitializeFlag == FALSE )
 	{
 		return AutoInitialize_PF() ;
@@ -1262,9 +1262,9 @@ extern int NS_GetJoypadInputState( int InputType )
 	{
 		pad = &InputSysData.Pad[ JoypadNum ] ;
 
-		// ƒpƒbƒh‚Ìî•ñ‚ğæ“¾‚·‚é
+		// ãƒ‘ãƒƒãƒ‰ã®æƒ…å ±ã‚’å–å¾—ã™ã‚‹
 		{
-			// î•ñ‚ÌXV
+			// æƒ…å ±ã®æ›´æ–°
 			UpdateJoypadInputState( JoypadNum ) ;
 			if( ( JoypadNum < -1 || JoypadNum >= InputSysData.PadNum ) && 
 				( InputSysData.PadNum != 0 && ( InputType & DX_INPUT_KEY ) == 0 ) )
@@ -1272,18 +1272,18 @@ extern int NS_GetJoypadInputState( int InputType )
 				return 0 ;
 			}
 
-			// “ü—Íó‘Ô‚ğ•Û‘¶
+			// å…¥åŠ›çŠ¶æ…‹ã‚’ä¿å­˜
 			iX = pad->State.X ;
 			iY = pad->State.Y ;
 
-			// ƒJ[ƒ\ƒ‹ƒ{ƒ^ƒ“”»’è
-			     if( iX < 0 ) BackData |= PAD_INPUT_LEFT ;			// ©“ü—Í”»’è
-			else if( iX > 0 ) BackData |= PAD_INPUT_RIGHT ;			// ¨“ü—Í”»’è
+			// ã‚«ãƒ¼ã‚½ãƒ«ãƒœã‚¿ãƒ³åˆ¤å®š
+			     if( iX < 0 ) BackData |= PAD_INPUT_LEFT ;			// â†å…¥åŠ›åˆ¤å®š
+			else if( iX > 0 ) BackData |= PAD_INPUT_RIGHT ;			// â†’å…¥åŠ›åˆ¤å®š
 
-			     if( iY < 0 ) BackData |= PAD_INPUT_UP ;			// ª“ü—Í”»’è
-			else if( iY > 0 ) BackData |= PAD_INPUT_DOWN ;			// «“ü—Í”»’è
+			     if( iY < 0 ) BackData |= PAD_INPUT_UP ;			// â†‘å…¥åŠ›åˆ¤å®š
+			else if( iY > 0 ) BackData |= PAD_INPUT_DOWN ;			// â†“å…¥åŠ›åˆ¤å®š
 
-			// ƒnƒbƒgƒXƒCƒbƒ`‚Ìó‘Ô‚à•ûŒüƒ{ƒ^ƒ“‚É”½‰f‚·‚é
+			// ãƒãƒƒãƒˆã‚¹ã‚¤ãƒƒãƒã®çŠ¶æ…‹ã‚‚æ–¹å‘ãƒœã‚¿ãƒ³ã«åæ˜ ã™ã‚‹
 			switch( pad->State.POV[ 0 ] )
 			{
 			case 0 :		BackData |= PAD_INPUT_UP						;	break ;
@@ -1296,11 +1296,11 @@ extern int NS_GetJoypadInputState( int InputType )
 			case 31500 :	BackData |= PAD_INPUT_LEFT  | PAD_INPUT_UP		;	break ;
 			}
 
-			// ƒ{ƒ^ƒ““ü—Í”»’è
+			// ãƒœã‚¿ãƒ³å…¥åŠ›åˆ¤å®š
 			{
 				int i ;
 
-				// “ü—Íó‘Ô‚ğ•Û‘¶
+				// å…¥åŠ›çŠ¶æ…‹ã‚’ä¿å­˜
 				for( i = 0 ; i < 24 ; i ++ )
 				{
 					BackData |= ( pad->State.Buttons[ i ] & 0x80 ) != 0 ? 1 << ( i + 4 ) : 0 ;
@@ -1309,7 +1309,7 @@ extern int NS_GetJoypadInputState( int InputType )
 		}
 	}
 
-	// ƒL[“ü—Íw’è‚à‚ ‚Á‚½ê‡‚ÍƒL[‚Ì“ü—Íó‘Ô‚à”½‰f‚³‚¹‚é
+	// ã‚­ãƒ¼å…¥åŠ›æŒ‡å®šã‚‚ã‚ã£ãŸå ´åˆã¯ã‚­ãƒ¼ã®å…¥åŠ›çŠ¶æ…‹ã‚‚åæ˜ ã•ã›ã‚‹
 	if( InputType & DX_INPUT_KEY )
 	{
 		BYTE *KeyBuf ;
@@ -1317,7 +1317,7 @@ extern int NS_GetJoypadInputState( int InputType )
 		int i, j ;
 		unsigned int pad_bit ;
 
-		// ƒL[ƒ{[ƒh‚Ì“ü—Íó‘Ô‚ğXV
+		// ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ã®å…¥åŠ›çŠ¶æ…‹ã‚’æ›´æ–°
 		UpdateKeyboardInputState() ;
 
 		KeyBuf = InputSysData.KeyInputBuf ;
@@ -1337,24 +1337,24 @@ extern int NS_GetJoypadInputState( int InputType )
 		}
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return BackData ;
 }
 
-// ƒWƒ‡ƒCƒpƒbƒh‚ÌƒAƒiƒƒO“I‚ÈƒXƒeƒBƒbƒN“ü—Íî•ñ‚ğ“¾‚é
+// ã‚¸ãƒ§ã‚¤ãƒ‘ãƒƒãƒ‰ã®ã‚¢ãƒŠãƒ­ã‚°çš„ãªã‚¹ãƒ†ã‚£ãƒƒã‚¯å…¥åŠ›æƒ…å ±ã‚’å¾—ã‚‹
 extern int NS_GetJoypadAnalogInput( int *XBuf , int *YBuf , int InputType )
 {
 	int BackData = 0 ;
 	INPUTPADDATA *pad ;
 	int JoypadNum = ( InputType & ~DX_INPUT_KEY ) - 1 ;
 
-	// ƒ\ƒtƒg‚ª”ñƒAƒNƒeƒBƒu‚Ìê‡‚ÍƒAƒNƒeƒBƒu‚É‚È‚é‚Ü‚Å‘Ò‚Â
+	// ã‚½ãƒ•ãƒˆãŒéã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã®å ´åˆã¯ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ãªã‚‹ã¾ã§å¾…ã¤
 	CheckActiveState() ;
 	
 	if( XBuf != NULL ) *XBuf = 0 ;
 	if( YBuf != NULL ) *YBuf = 0 ;
 
-	// ‰Šú‰»‚³‚ê‚Ä‚¢‚È‚©‚Á‚½‚çğŒ•t‚«‚Å‰Šú‰»‚ğs‚¤
+	// åˆæœŸåŒ–ã•ã‚Œã¦ã„ãªã‹ã£ãŸã‚‰æ¡ä»¶ä»˜ãã§åˆæœŸåŒ–ã‚’è¡Œã†
 	if( InputSysData.InitializeFlag == FALSE )
 	{
 		return AutoInitialize_PF() ;
@@ -1370,7 +1370,7 @@ extern int NS_GetJoypadAnalogInput( int *XBuf , int *YBuf , int InputType )
 	{
 		pad = &InputSysData.Pad[ JoypadNum ] ;
 
-		// “ü—Íó‘Ô‚ÌXV
+		// å…¥åŠ›çŠ¶æ…‹ã®æ›´æ–°
 		UpdateJoypadInputState( JoypadNum ) ;
 		if( ( JoypadNum < -1 || JoypadNum >= InputSysData.PadNum ) && 
 			( InputSysData.PadNum != 0 && ( InputType & DX_INPUT_KEY ) == 0 ) )
@@ -1378,50 +1378,50 @@ extern int NS_GetJoypadAnalogInput( int *XBuf , int *YBuf , int InputType )
 			return 0 ;
 		}
 
-		// “ü—Íó‘Ô‚ğ•Û‘¶
+		// å…¥åŠ›çŠ¶æ…‹ã‚’ä¿å­˜
 		if( XBuf ) *XBuf = pad->State.X ;
 		if( YBuf ) *YBuf = pad->State.Y ;
 	}
 
-	// ƒL[“ü—Íw’è‚à‚ ‚Á‚½ê‡‚ÍƒL[‚Ì“ü—Íó‘Ô‚à”½‰f‚³‚¹‚é
+	// ã‚­ãƒ¼å…¥åŠ›æŒ‡å®šã‚‚ã‚ã£ãŸå ´åˆã¯ã‚­ãƒ¼ã®å…¥åŠ›çŠ¶æ…‹ã‚‚åæ˜ ã•ã›ã‚‹
 	if( InputType & DX_INPUT_KEY )
 	{
 		BYTE *KeyBuf ;
 
-		// ƒL[ƒ{[ƒh‚Ì“ü—Íó‘Ô‚ğXV
+		// ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ã®å…¥åŠ›çŠ¶æ…‹ã‚’æ›´æ–°
 		UpdateKeyboardInputState() ;
 
 		KeyBuf = InputSysData.KeyInputBuf ;
 		if( XBuf )
 		{
-			if( KeyBuf[ KEY_INPUT_NUMPAD4 ] & 0x80 || KeyBuf[ KEY_INPUT_LEFT  ] & 0x80 ) *XBuf = -DIRINPUT_MAX ;		// ‚SƒL[©ƒ`ƒFƒbƒN
-			if( KeyBuf[ KEY_INPUT_NUMPAD6 ] & 0x80 || KeyBuf[ KEY_INPUT_RIGHT ] & 0x80 ) *XBuf =  DIRINPUT_MAX	;		// ‚UƒL[¨ƒL[ƒ`ƒFƒbƒN
+			if( KeyBuf[ KEY_INPUT_NUMPAD4 ] & 0x80 || KeyBuf[ KEY_INPUT_LEFT  ] & 0x80 ) *XBuf = -DIRINPUT_MAX ;		// ï¼”ã‚­ãƒ¼â†ãƒã‚§ãƒƒã‚¯
+			if( KeyBuf[ KEY_INPUT_NUMPAD6 ] & 0x80 || KeyBuf[ KEY_INPUT_RIGHT ] & 0x80 ) *XBuf =  DIRINPUT_MAX	;		// ï¼–ã‚­ãƒ¼â†’ã‚­ãƒ¼ãƒã‚§ãƒƒã‚¯
 		}
 		if( YBuf )
 		{
-			if( KeyBuf[ KEY_INPUT_NUMPAD2 ] & 0x80 || KeyBuf[ KEY_INPUT_DOWN  ] & 0x80 ) *YBuf =  DIRINPUT_MAX	;		// ‚QƒL[«ƒL[ƒ`ƒFƒbƒN
-			if( KeyBuf[ KEY_INPUT_NUMPAD8 ] & 0x80 || KeyBuf[ KEY_INPUT_UP    ] & 0x80 ) *YBuf = -DIRINPUT_MAX ;		// ‚WƒL[ªƒL[ƒ`ƒFƒbƒN
+			if( KeyBuf[ KEY_INPUT_NUMPAD2 ] & 0x80 || KeyBuf[ KEY_INPUT_DOWN  ] & 0x80 ) *YBuf =  DIRINPUT_MAX	;		// ï¼’ã‚­ãƒ¼â†“ã‚­ãƒ¼ãƒã‚§ãƒƒã‚¯
+			if( KeyBuf[ KEY_INPUT_NUMPAD8 ] & 0x80 || KeyBuf[ KEY_INPUT_UP    ] & 0x80 ) *YBuf = -DIRINPUT_MAX ;		// ï¼˜ã‚­ãƒ¼â†‘ã‚­ãƒ¼ãƒã‚§ãƒƒã‚¯
 		}
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return BackData ;
 }
 
-// ƒWƒ‡ƒCƒpƒbƒh‚ÌƒAƒiƒƒO“I‚ÈƒXƒeƒBƒbƒN“ü—Íî•ñ‚ğ“¾‚é(‰EƒXƒeƒBƒbƒN—p)
+// ã‚¸ãƒ§ã‚¤ãƒ‘ãƒƒãƒ‰ã®ã‚¢ãƒŠãƒ­ã‚°çš„ãªã‚¹ãƒ†ã‚£ãƒƒã‚¯å…¥åŠ›æƒ…å ±ã‚’å¾—ã‚‹(å³ã‚¹ãƒ†ã‚£ãƒƒã‚¯ç”¨)
 extern int NS_GetJoypadAnalogInputRight( int *XBuf, int *YBuf, int InputType )
 {
 	int BackData = 0 ;
 	INPUTPADDATA *pad ;
 	int JoypadNum = ( InputType & ~DX_INPUT_KEY ) - 1 ;
 
-	// ƒ\ƒtƒg‚ª”ñƒAƒNƒeƒBƒu‚Ìê‡‚ÍƒAƒNƒeƒBƒu‚É‚È‚é‚Ü‚Å‘Ò‚Â
+	// ã‚½ãƒ•ãƒˆãŒéã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã®å ´åˆã¯ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ãªã‚‹ã¾ã§å¾…ã¤
 	CheckActiveState() ;
 	
 	if( XBuf != NULL ) *XBuf = 0 ;
 	if( YBuf != NULL ) *YBuf = 0 ;
 
-	// ‰Šú‰»‚³‚ê‚Ä‚¢‚È‚©‚Á‚½‚çğŒ•t‚«‚Å‰Šú‰»‚ğs‚¤
+	// åˆæœŸåŒ–ã•ã‚Œã¦ã„ãªã‹ã£ãŸã‚‰æ¡ä»¶ä»˜ãã§åˆæœŸåŒ–ã‚’è¡Œã†
 	if( InputSysData.InitializeFlag == FALSE )
 	{
 		return AutoInitialize_PF() ;
@@ -1434,12 +1434,12 @@ extern int NS_GetJoypadAnalogInputRight( int *XBuf, int *YBuf, int InputType )
 	{
 		pad = &InputSysData.Pad[ JoypadNum ] ;
 
-		// “ü—Íó‘Ô‚ÌXV
+		// å…¥åŠ›çŠ¶æ…‹ã®æ›´æ–°
 		UpdateJoypadInputState( JoypadNum ) ;
 		if( JoypadNum < -1 || JoypadNum >= InputSysData.PadNum )
 			return 0 ;
 
-		// “ü—Íó‘Ô‚ğ•Û‘¶( XInput ‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò )
+		// å…¥åŠ›çŠ¶æ…‹ã‚’ä¿å­˜( XInput ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å² )
 		if( NS_CheckJoypadXInput( InputType ) )
 		{
 			if( XBuf ) *XBuf = pad->State.Rx ;
@@ -1452,20 +1452,20 @@ extern int NS_GetJoypadAnalogInputRight( int *XBuf, int *YBuf, int InputType )
 		}
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return BackData ;
 }
 
-// ƒWƒ‡ƒCƒpƒbƒh‚©‚ç DirectInput ‚©‚ç“¾‚ç‚ê‚é¶‚Ìƒf[ƒ^‚ğæ“¾‚·‚é( DX_CHECKINPUT_KEY ‚â DX_INPUT_KEY_PAD1 ‚ğˆø”‚É“n‚·‚ÆƒGƒ‰[ )
+// ã‚¸ãƒ§ã‚¤ãƒ‘ãƒƒãƒ‰ã‹ã‚‰ DirectInput ã‹ã‚‰å¾—ã‚‰ã‚Œã‚‹ç”Ÿã®ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—ã™ã‚‹( DX_CHECKINPUT_KEY ã‚„ DX_INPUT_KEY_PAD1 ã‚’å¼•æ•°ã«æ¸¡ã™ã¨ã‚¨ãƒ©ãƒ¼ )
 extern	int	NS_GetJoypadDirectInputState( int InputType, DINPUT_JOYSTATE *DInputState )
 {
 	INPUTPADDATA *pad ;
 	int JoypadNum = ( InputType & ~DX_INPUT_KEY ) - 1 ;
 
-	// ƒ\ƒtƒg‚ª”ñƒAƒNƒeƒBƒu‚Ìê‡‚ÍƒAƒNƒeƒBƒu‚É‚È‚é‚Ü‚Å‘Ò‚Â
+	// ã‚½ãƒ•ãƒˆãŒéã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã®å ´åˆã¯ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ãªã‚‹ã¾ã§å¾…ã¤
 	CheckActiveState() ;
 
-	// ‰Šú‰»‚³‚ê‚Ä‚¢‚È‚©‚Á‚½‚çğŒ•t‚«‚Å‰Šú‰»‚ğs‚¤
+	// åˆæœŸåŒ–ã•ã‚Œã¦ã„ãªã‹ã£ãŸã‚‰æ¡ä»¶ä»˜ãã§åˆæœŸåŒ–ã‚’è¡Œã†
 	if( InputSysData.InitializeFlag == FALSE )
 	{
 		return AutoInitialize_PF() ;
@@ -1483,7 +1483,7 @@ extern	int	NS_GetJoypadDirectInputState( int InputType, DINPUT_JOYSTATE *DInputS
 
 	pad = &InputSysData.Pad[ JoypadNum ] ;
 
-	// “ü—Íó‘Ô‚ÌXV
+	// å…¥åŠ›çŠ¶æ…‹ã®æ›´æ–°
 	UpdateJoypadInputState( JoypadNum ) ;
 	if( JoypadNum < 0 || JoypadNum >= InputSysData.PadNum )
 	{
@@ -1495,27 +1495,27 @@ extern	int	NS_GetJoypadDirectInputState( int InputType, DINPUT_JOYSTATE *DInputS
 		return -1 ;
 	}
 
-	// “ü—Íó‘Ô‚ğ‘ã“ü‚·‚é
+	// å…¥åŠ›çŠ¶æ…‹ã‚’ä»£å…¥ã™ã‚‹
 	if( DInputState )
 	{
 		*DInputState = pad->State ;
 	}
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// w’è‚Ì“ü—ÍƒfƒoƒCƒX‚ª XInput ‚É‘Î‰‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©‚ğæ“¾‚·‚é
-// ( –ß‚è’l  TRUE:XInput‘Î‰‚Ì“ü—ÍƒfƒoƒCƒX  FALSE:XInput”ñ‘Î‰‚Ì“ü—ÍƒfƒoƒCƒX   -1:ƒGƒ‰[ )
-// ( DX_INPUT_KEY ‚â DX_INPUT_KEY_PAD1 ‚È‚ÇAƒL[ƒ{[ƒh‚ª—‚Şƒ^ƒCƒv‚ğ InputType ‚É“n‚·‚ÆƒGƒ‰[‚Æ‚È‚è -1 ‚ğ•Ô‚· )
+// æŒ‡å®šã®å…¥åŠ›ãƒ‡ãƒã‚¤ã‚¹ãŒ XInput ã«å¯¾å¿œã—ã¦ã„ã‚‹ã‹ã©ã†ã‹ã‚’å–å¾—ã™ã‚‹
+// ( æˆ»ã‚Šå€¤  TRUE:XInputå¯¾å¿œã®å…¥åŠ›ãƒ‡ãƒã‚¤ã‚¹  FALSE:XInputéå¯¾å¿œã®å…¥åŠ›ãƒ‡ãƒã‚¤ã‚¹   -1:ã‚¨ãƒ©ãƒ¼ )
+// ( DX_INPUT_KEY ã‚„ DX_INPUT_KEY_PAD1 ãªã©ã€ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ãŒçµ¡ã‚€ã‚¿ã‚¤ãƒ—ã‚’ InputType ã«æ¸¡ã™ã¨ã‚¨ãƒ©ãƒ¼ã¨ãªã‚Š -1 ã‚’è¿”ã™ )
 extern int NS_CheckJoypadXInput( int InputType )
 {
 	int JoypadNum = ( InputType & ~DX_INPUT_KEY ) - 1 ;
 
-	// ƒ\ƒtƒg‚ª”ñƒAƒNƒeƒBƒu‚Ìê‡‚ÍƒAƒNƒeƒBƒu‚É‚È‚é‚Ü‚Å‘Ò‚Â
+	// ã‚½ãƒ•ãƒˆãŒéã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã®å ´åˆã¯ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ãªã‚‹ã¾ã§å¾…ã¤
 	CheckActiveState() ;
 
-	// ‰Šú‰»‚³‚ê‚Ä‚¢‚È‚©‚Á‚½‚çğŒ•t‚«‚Å‰Šú‰»‚ğs‚¤
+	// åˆæœŸåŒ–ã•ã‚Œã¦ã„ãªã‹ã£ãŸã‚‰æ¡ä»¶ä»˜ãã§åˆæœŸåŒ–ã‚’è¡Œã†
 	if( InputSysData.InitializeFlag == FALSE )
 	{
 		return AutoInitialize_PF() ;
@@ -1526,19 +1526,19 @@ extern int NS_CheckJoypadXInput( int InputType )
 		return -1 ;
 	}
 
-	// ŠÂ‹«ˆË‘¶ˆ—‚É”C‚¹‚é
+	// ç’°å¢ƒä¾å­˜å‡¦ç†ã«ä»»ã›ã‚‹
 	return CheckJoypadXInput_PF( InputType ) ;
 }
 
-// ƒWƒ‡ƒCƒpƒbƒh‚Ìƒ^ƒCƒv‚ğæ“¾‚·‚é( –ß‚è’l  -1:ƒGƒ‰[  0ˆÈã:ƒWƒ‡ƒCƒpƒbƒhƒ^ƒCƒv( DX_PADTYPE_XBOX_360 ‚È‚Ç ) )
+// ã‚¸ãƒ§ã‚¤ãƒ‘ãƒƒãƒ‰ã®ã‚¿ã‚¤ãƒ—ã‚’å–å¾—ã™ã‚‹( æˆ»ã‚Šå€¤  -1:ã‚¨ãƒ©ãƒ¼  0ä»¥ä¸Š:ã‚¸ãƒ§ã‚¤ãƒ‘ãƒƒãƒ‰ã‚¿ã‚¤ãƒ—( DX_PADTYPE_XBOX_360 ãªã© ) )
 extern int NS_GetJoypadType( int InputType )
 {
 	int JoypadNum = ( InputType & ~DX_INPUT_KEY ) - 1 ;
 
-	// ƒ\ƒtƒg‚ª”ñƒAƒNƒeƒBƒu‚Ìê‡‚ÍƒAƒNƒeƒBƒu‚É‚È‚é‚Ü‚Å‘Ò‚Â
+	// ã‚½ãƒ•ãƒˆãŒéã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã®å ´åˆã¯ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ãªã‚‹ã¾ã§å¾…ã¤
 	CheckActiveState() ;
 
-	// ‰Šú‰»‚³‚ê‚Ä‚¢‚È‚©‚Á‚½‚çğŒ•t‚«‚Å‰Šú‰»‚ğs‚¤
+	// åˆæœŸåŒ–ã•ã‚Œã¦ã„ãªã‹ã£ãŸã‚‰æ¡ä»¶ä»˜ãã§åˆæœŸåŒ–ã‚’è¡Œã†
 	if( InputSysData.InitializeFlag == FALSE )
 	{
 		return AutoInitialize_PF() ;
@@ -1549,20 +1549,20 @@ extern int NS_GetJoypadType( int InputType )
 		return -1 ;
 	}
 
-	// ŠÂ‹«ˆË‘¶ˆ—‚É”C‚¹‚é
+	// ç’°å¢ƒä¾å­˜å‡¦ç†ã«ä»»ã›ã‚‹
 	return GetJoypadType_PF( InputType ) ;
 }
 
-// XInput ‚©‚ç“¾‚ç‚ê‚é“ü—ÍƒfƒoƒCƒX( Xbox360ƒRƒ“ƒgƒ[ƒ‰“™ )‚Ì¶‚Ìƒf[ƒ^‚ğæ“¾‚·‚é( XInput”ñ‘Î‰‚Ìƒpƒbƒh‚Ìê‡‚ÍƒGƒ‰[‚Æ‚È‚è -1 ‚ğ•Ô‚·ADX_INPUT_KEY ‚â DX_INPUT_KEY_PAD1 ‚È‚ÇAƒL[ƒ{[ƒh‚ª—‚Şƒ^ƒCƒv‚ğ InputType ‚É“n‚·‚ÆƒGƒ‰[‚Æ‚È‚è -1 ‚ğ•Ô‚· )
+// XInput ã‹ã‚‰å¾—ã‚‰ã‚Œã‚‹å…¥åŠ›ãƒ‡ãƒã‚¤ã‚¹( Xbox360ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ç­‰ )ã®ç”Ÿã®ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—ã™ã‚‹( XInputéå¯¾å¿œã®ãƒ‘ãƒƒãƒ‰ã®å ´åˆã¯ã‚¨ãƒ©ãƒ¼ã¨ãªã‚Š -1 ã‚’è¿”ã™ã€DX_INPUT_KEY ã‚„ DX_INPUT_KEY_PAD1 ãªã©ã€ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ãŒçµ¡ã‚€ã‚¿ã‚¤ãƒ—ã‚’ InputType ã«æ¸¡ã™ã¨ã‚¨ãƒ©ãƒ¼ã¨ãªã‚Š -1 ã‚’è¿”ã™ )
 extern int NS_GetJoypadXInputState(	int InputType, XINPUT_STATE *XInputState )
 {
 	INPUTPADDATA *pad ;
 	int JoypadNum = ( InputType & ~DX_INPUT_KEY ) - 1 ;
 
-	// ƒ\ƒtƒg‚ª”ñƒAƒNƒeƒBƒu‚Ìê‡‚ÍƒAƒNƒeƒBƒu‚É‚È‚é‚Ü‚Å‘Ò‚Â
+	// ã‚½ãƒ•ãƒˆãŒéã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã®å ´åˆã¯ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ãªã‚‹ã¾ã§å¾…ã¤
 	CheckActiveState() ;
 
-	// ‰Šú‰»‚³‚ê‚Ä‚¢‚È‚©‚Á‚½‚çğŒ•t‚«‚Å‰Šú‰»‚ğs‚¤
+	// åˆæœŸåŒ–ã•ã‚Œã¦ã„ãªã‹ã£ãŸã‚‰æ¡ä»¶ä»˜ãã§åˆæœŸåŒ–ã‚’è¡Œã†
 	if( InputSysData.InitializeFlag == FALSE )
 	{
 		return AutoInitialize_PF() ;
@@ -1576,14 +1576,14 @@ extern int NS_GetJoypadXInputState(	int InputType, XINPUT_STATE *XInputState )
 
 	pad = &InputSysData.Pad[ JoypadNum ] ;
 
-	// XInput ‚É‘Î‰‚µ‚Ä‚¢‚È‚©‚Á‚½‚çƒGƒ‰[
+	// XInput ã«å¯¾å¿œã—ã¦ã„ãªã‹ã£ãŸã‚‰ã‚¨ãƒ©ãƒ¼
 	if( NS_CheckJoypadXInput( InputType ) == FALSE )
 	{
 		_MEMSET( XInputState, 0, sizeof( XINPUT_STATE ) ) ;
 		return -1 ;
 	}
 
-	// “ü—Íó‘Ô‚ÌXV
+	// å…¥åŠ›çŠ¶æ…‹ã®æ›´æ–°
 	UpdateJoypadInputState( JoypadNum ) ;
 	if( JoypadNum < 0 || JoypadNum >= InputSysData.PadNum )
 	{
@@ -1591,17 +1591,17 @@ extern int NS_GetJoypadXInputState(	int InputType, XINPUT_STATE *XInputState )
 		return -1 ;
 	}
 
-	// “ü—Íó‘Ô‚ğ‘ã“ü‚·‚é
+	// å…¥åŠ›çŠ¶æ…‹ã‚’ä»£å…¥ã™ã‚‹
 	if( XInputState )
 	{
 		*XInputState = pad->XInputState ;
 	}
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// ƒWƒ‡ƒCƒpƒbƒh‚Ì“ü—Í‚É‘Î‰‚µ‚½ƒL[ƒ{[ƒh‚Ì“ü—Í‚ğİ’è‚·‚é
+// ã‚¸ãƒ§ã‚¤ãƒ‘ãƒƒãƒ‰ã®å…¥åŠ›ã«å¯¾å¿œã—ãŸã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ã®å…¥åŠ›ã‚’è¨­å®šã™ã‚‹
 extern	int NS_SetJoypadInputToKeyInput( int InputType, int PadInput, int KeyInput1, int KeyInput2 , int KeyInput3 , int KeyInput4 )
 {
 	unsigned int Bit , i ;
@@ -1623,18 +1623,18 @@ extern	int NS_SetJoypadInputToKeyInput( int InputType, int PadInput, int KeyInpu
 		}
 	}
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// ƒWƒ‡ƒCƒpƒbƒh‚Ì–³Œøƒ][ƒ“‚Ìİ’è‚ğs‚¤
+// ã‚¸ãƒ§ã‚¤ãƒ‘ãƒƒãƒ‰ã®ç„¡åŠ¹ã‚¾ãƒ¼ãƒ³ã®è¨­å®šã‚’è¡Œã†
 extern	int NS_SetJoypadDeadZone( int InputType, double Zone )
 {
 	int JoypadNum = ( InputType & ~DX_INPUT_KEY ) - 1 ;
 	INPUTPADDATA *pad = &InputSysData.Pad[ JoypadNum ] ;
 	DWORD ZoneI ;
 
-	// ’l‚Ì•â³
+	// å€¤ã®è£œæ­£
 	if( Zone < 0.0 )
 	{
 		Zone = 0.0f ;
@@ -1645,22 +1645,22 @@ extern	int NS_SetJoypadDeadZone( int InputType, double Zone )
 		Zone = 1.0 ;
 	}
 
-	// ƒ\ƒtƒg‚ª”ñƒAƒNƒeƒBƒu‚Ìê‡‚ÍƒAƒNƒeƒBƒu‚É‚È‚é‚Ü‚Å‘Ò‚Â
+	// ã‚½ãƒ•ãƒˆãŒéã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã®å ´åˆã¯ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ãªã‚‹ã¾ã§å¾…ã¤
 	CheckActiveState() ;
 	
-	// ‰Šú‰»‚³‚ê‚Ä‚¢‚È‚©‚Á‚½‚çğŒ•t‚«‚Å‰Šú‰»‚ğs‚¤
+	// åˆæœŸåŒ–ã•ã‚Œã¦ã„ãªã‹ã£ãŸã‚‰æ¡ä»¶ä»˜ãã§åˆæœŸåŒ–ã‚’è¡Œã†
 	if( InputSysData.InitializeFlag == FALSE )
 	{
 		return AutoInitialize_PF() ;
 	}
 
-	// ƒGƒ‰[ƒ`ƒFƒbƒN
+	// ã‚¨ãƒ©ãƒ¼ãƒã‚§ãƒƒã‚¯
 	if( JoypadNum < 0 || JoypadNum >= InputSysData.PadNum )
 	{
 		return 0 ;
 	}
 
-	// ¡‚Ü‚Å‚Æ“¯‚¶ƒ][ƒ“‚Ìê‡‚Í‰½‚à‚¹‚¸I—¹
+	// ä»Šã¾ã§ã¨åŒã˜ã‚¾ãƒ¼ãƒ³ã®å ´åˆã¯ä½•ã‚‚ã›ãšçµ‚äº†
 	ZoneI = ( DWORD )_DTOL( Zone * 65536 ) ;
 	if( pad->DeadZone == ZoneI )
 	{
@@ -1668,36 +1668,36 @@ extern	int NS_SetJoypadDeadZone( int InputType, double Zone )
 		return 0 ;
 	}
 
-	// ƒ][ƒ“‚ğ•Û‘¶
+	// ã‚¾ãƒ¼ãƒ³ã‚’ä¿å­˜
 	pad->DeadZone = ZoneI ;
 	pad->DeadZoneD = Zone ;
 
-	// ƒ†[ƒU[‚ª•ÏX‚µ‚½‚±‚Æ‚ğ‹L˜^
+	// ãƒ¦ãƒ¼ã‚¶ãƒ¼ãŒå¤‰æ›´ã—ãŸã“ã¨ã‚’è¨˜éŒ²
 	pad->UserChangeDeadZone = TRUE ;
 
-	// ŠÂ‹«ˆË‘¶ˆ—
+	// ç’°å¢ƒä¾å­˜å‡¦ç†
 	SetJoypadDeadZone_PF( pad ) ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// ƒWƒ‡ƒCƒpƒbƒh‚Ì–³Œøƒ][ƒ“‚Ìİ’è‚ğæ“¾‚·‚é( InputType:İ’è‚ğ•ÏX‚·‚éƒpƒbƒh‚Ì¯•Êq( DX_INPUT_PAD1“™ )   –ß‚è’l:–³Œøƒ][ƒ“( 0.0 ` 1.0 )
+// ã‚¸ãƒ§ã‚¤ãƒ‘ãƒƒãƒ‰ã®ç„¡åŠ¹ã‚¾ãƒ¼ãƒ³ã®è¨­å®šã‚’å–å¾—ã™ã‚‹( InputType:è¨­å®šã‚’å¤‰æ›´ã™ã‚‹ãƒ‘ãƒƒãƒ‰ã®è­˜åˆ¥å­( DX_INPUT_PAD1ç­‰ )   æˆ»ã‚Šå€¤:ç„¡åŠ¹ã‚¾ãƒ¼ãƒ³( 0.0 ï½ 1.0 )
 extern	double NS_GetJoypadDeadZone( int InputType )
 {
 	INPUTPADDATA *pad ;
 	int JoypadNum = ( InputType & ~DX_INPUT_KEY ) - 1 ;
 
-	// ƒ\ƒtƒg‚ª”ñƒAƒNƒeƒBƒu‚Ìê‡‚ÍƒAƒNƒeƒBƒu‚É‚È‚é‚Ü‚Å‘Ò‚Â
+	// ã‚½ãƒ•ãƒˆãŒéã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã®å ´åˆã¯ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ãªã‚‹ã¾ã§å¾…ã¤
 	CheckActiveState() ;
 
-	// ‰Šú‰»‚³‚ê‚Ä‚¢‚È‚©‚Á‚½‚çğŒ•t‚«‚Å‰Šú‰»‚ğs‚¤
+	// åˆæœŸåŒ–ã•ã‚Œã¦ã„ãªã‹ã£ãŸã‚‰æ¡ä»¶ä»˜ãã§åˆæœŸåŒ–ã‚’è¡Œã†
 	if( InputSysData.InitializeFlag == FALSE )
 	{
 		AutoInitialize_PF() ;
 	}
 
-	// ƒGƒ‰[ƒ`ƒFƒbƒN
+	// ã‚¨ãƒ©ãƒ¼ãƒã‚§ãƒƒã‚¯
 	if( JoypadNum < 0 || JoypadNum >= InputSysData.PadNum )
 	{
 		return -1.0 ;
@@ -1705,18 +1705,18 @@ extern	double NS_GetJoypadDeadZone( int InputType )
 
 	pad = &InputSysData.Pad[ JoypadNum ] ;
 
-	// ’l‚ğ•Ô‚·
+	// å€¤ã‚’è¿”ã™
 	return pad->DeadZoneD ;
 }
 
-// ƒWƒ‡ƒCƒpƒbƒh‚ÌƒfƒtƒHƒ‹ƒg‚Ì–³Œøƒ][ƒ“‚ğİ’è‚·‚é( Zone:V‚µ‚¢–³Œøƒ][ƒ“( 0.0 ` 1.0 )AƒfƒtƒHƒ‹ƒg’l‚Í 0.35 )
+// ã‚¸ãƒ§ã‚¤ãƒ‘ãƒƒãƒ‰ã®ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®ç„¡åŠ¹ã‚¾ãƒ¼ãƒ³ã‚’è¨­å®šã™ã‚‹( Zone:æ–°ã—ã„ç„¡åŠ¹ã‚¾ãƒ¼ãƒ³( 0.0 ï½ 1.0 )ã€ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå€¤ã¯ 0.35 )
 extern	int NS_SetJoypadDefaultDeadZoneAll( double Zone )
 {
 	DWORD ZoneI ;
 	INPUTPADDATA *pad ;
 	int i ;
 
-	// ’l‚Ì•â³
+	// å€¤ã®è£œæ­£
 	if( Zone < 0.0 )
 	{
 		Zone = 0.0f ;
@@ -1727,24 +1727,24 @@ extern	int NS_SetJoypadDefaultDeadZoneAll( double Zone )
 		Zone = 1.0 ;
 	}
 
-	// ƒ\ƒtƒg‚ª”ñƒAƒNƒeƒBƒu‚Ìê‡‚ÍƒAƒNƒeƒBƒu‚É‚È‚é‚Ü‚Å‘Ò‚Â
+	// ã‚½ãƒ•ãƒˆãŒéã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã®å ´åˆã¯ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ãªã‚‹ã¾ã§å¾…ã¤
 	CheckActiveState() ;
 
-	// ¡‚Ü‚Å‚Æ“¯‚¶ƒ][ƒ“‚Ìê‡‚Í‰½‚à‚¹‚¸I—¹
+	// ä»Šã¾ã§ã¨åŒã˜ã‚¾ãƒ¼ãƒ³ã®å ´åˆã¯ä½•ã‚‚ã›ãšçµ‚äº†
 	ZoneI = ( DWORD )_DTOL( Zone * 65536 ) ;
 	if( InputSysData.EnablePadDefaultDeadZone == TRUE && InputSysData.PadDefaultDeadZone == ZoneI )
 	{
 		return 0 ;
 	}
 
-	// ƒ][ƒ“‚ğ•Û‘¶
+	// ã‚¾ãƒ¼ãƒ³ã‚’ä¿å­˜
 	InputSysData.PadDefaultDeadZone = ZoneI ;
 	InputSysData.PadDefaultDeadZoneD = Zone ;
 
-	// PadDefaultDeadZone ‚Æ PadDefaultDeadZoneD ‚ª—LŒø‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// PadDefaultDeadZone ã¨ PadDefaultDeadZoneD ãŒæœ‰åŠ¹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	InputSysData.EnablePadDefaultDeadZone = TRUE ;
 
-	// ƒ†[ƒU[‚ªƒfƒbƒhƒ][ƒ“‚ğ•ÏX‚µ‚Ä‚¢‚È‚¢ƒWƒ‡ƒCƒpƒbƒh‚É“K—p
+	// ãƒ¦ãƒ¼ã‚¶ãƒ¼ãŒãƒ‡ãƒƒãƒ‰ã‚¾ãƒ¼ãƒ³ã‚’å¤‰æ›´ã—ã¦ã„ãªã„ã‚¸ãƒ§ã‚¤ãƒ‘ãƒƒãƒ‰ã«é©ç”¨
 	pad = InputSysData.Pad ;
 	for( i = 0 ; i < InputSysData.PadNum ; i ++ , pad ++ )
 	{
@@ -1753,47 +1753,47 @@ extern	int NS_SetJoypadDefaultDeadZoneAll( double Zone )
 			continue ;
 		}
 
-		// ’l‚ğ•Û‘¶
+		// å€¤ã‚’ä¿å­˜
 		pad->DeadZone = ZoneI ;
 		pad->DeadZoneD = Zone ;
 
-		// ŠÂ‹«ˆË‘¶ˆ—
+		// ç’°å¢ƒä¾å­˜å‡¦ç†
 		SetJoypadDeadZone_PF( pad ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒWƒ‡ƒCƒpƒbƒh‚ÌƒfƒtƒHƒ‹ƒg‚Ì–³Œøƒ][ƒ“‚ğæ“¾‚·‚é( –ß‚è’l:–³Œøƒ][ƒ“( 0.0 ` 1.0 ) )
+// ã‚¸ãƒ§ã‚¤ãƒ‘ãƒƒãƒ‰ã®ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®ç„¡åŠ¹ã‚¾ãƒ¼ãƒ³ã‚’å–å¾—ã™ã‚‹( æˆ»ã‚Šå€¤:ç„¡åŠ¹ã‚¾ãƒ¼ãƒ³( 0.0 ï½ 1.0 ) )
 extern	double NS_GetJoypadDefaultDeadZoneAll( void )
 {
 	return InputSysData.PadDefaultDeadZoneD ;
 }
 
-// ƒWƒ‡ƒCƒpƒbƒh‚ÌU“®‚ğŠJn‚·‚é
+// ã‚¸ãƒ§ã‚¤ãƒ‘ãƒƒãƒ‰ã®æŒ¯å‹•ã‚’é–‹å§‹ã™ã‚‹
 extern	int NS_StartJoypadVibration( int InputType, int Power, int Time, int EffectIndex )
 {
 	int               SetPower ;
 	int JoypadNum = ( InputType & ~DX_INPUT_KEY ) - 1 ;
 	INPUTPADDATA *pad = &InputSysData.Pad[ JoypadNum ] ;
 
-	// ƒ\ƒtƒg‚ª”ñƒAƒNƒeƒBƒu‚Ìê‡‚ÍƒAƒNƒeƒBƒu‚É‚È‚é‚Ü‚Å‘Ò‚Â
+	// ã‚½ãƒ•ãƒˆãŒéã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã®å ´åˆã¯ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ãªã‚‹ã¾ã§å¾…ã¤
 	CheckActiveState() ;
 
-	// ‰Šú‰»‚³‚ê‚Ä‚¢‚È‚©‚Á‚½‚çğŒ•t‚«‚Å‰Šú‰»‚ğs‚¤
+	// åˆæœŸåŒ–ã•ã‚Œã¦ã„ãªã‹ã£ãŸã‚‰æ¡ä»¶ä»˜ãã§åˆæœŸåŒ–ã‚’è¡Œã†
 	if( InputSysData.InitializeFlag == FALSE )
 	{
 		return AutoInitialize_PF() ;
 	}
 
-	// ƒGƒ‰[ƒ`ƒFƒbƒN
+	// ã‚¨ãƒ©ãƒ¼ãƒã‚§ãƒƒã‚¯
 	if( JoypadNum < 0 || JoypadNum >= InputSysData.PadNum )
 	{
 		return -1 ;
 	}
 
-	// EffectIndex ‚ªƒ}ƒCƒiƒX‚Ìê‡‚Íˆ—‚ğ•ªŠò
+	// EffectIndex ãŒãƒã‚¤ãƒŠã‚¹ã®å ´åˆã¯å‡¦ç†ã‚’åˆ†å²
 	if( EffectIndex < 0 )
 	{
 		int Result = 0 ;
@@ -1843,7 +1843,7 @@ extern	int NS_StartJoypadVibration( int InputType, int Power, int Time, int Effe
 			}
 		}
 
-		// I—¹
+		// çµ‚äº†
 		return Result ;
 	}
 
@@ -1852,13 +1852,13 @@ extern	int NS_StartJoypadVibration( int InputType, int Power, int Time, int Effe
 		return -1 ;
 	}
 
-	// U“®‚É‘Î‰‚µ‚Ä‚¢‚È‚¯‚ê‚Î‚±‚±‚ÅI—¹
+	// æŒ¯å‹•ã«å¯¾å¿œã—ã¦ã„ãªã‘ã‚Œã°ã“ã“ã§çµ‚äº†
 	if( CheckJoypadVibrationEnable_PF( pad, EffectIndex ) == FALSE )
 	{
 		return -1 ;
 	}
 
-	// ‚ä‚ê‚Ì‘å‚«‚³‚ğ DirectInput ‚ÌŒ^‚É‡‚í‚¹‚é
+	// ã‚†ã‚Œã®å¤§ãã•ã‚’ DirectInput ã®å‹ã«åˆã‚ã›ã‚‹
 	if( Power < 0 )
 	{
 		Power = pad->Effect[ EffectIndex ].Power ;
@@ -1872,66 +1872,66 @@ extern	int NS_StartJoypadVibration( int InputType, int Power, int Time, int Effe
 		}
 	}
 
-	// —h‚ê‚Ì‘å‚«‚³‚ª‚O‚Ìê‡‚ÍU“®‚ğƒXƒgƒbƒv‚·‚é
+	// æºã‚Œã®å¤§ãã•ãŒï¼ã®å ´åˆã¯æŒ¯å‹•ã‚’ã‚¹ãƒˆãƒƒãƒ—ã™ã‚‹
 	if( Power == 0 )
 	{
 		NS_StopJoypadVibration( InputType, EffectIndex ) ;
 	}
 	else
 	{
-		// Ä¶ŠJn‚È‚Ç‚ğƒZƒbƒg
+		// å†ç”Ÿé–‹å§‹æ™‚åˆ»ãªã©ã‚’ã‚»ãƒƒãƒˆ
 		pad->Effect[ EffectIndex ].BackTime	= NS_GetNowCount( FALSE ) ;
 		pad->Effect[ EffectIndex ].Time		= Time ;
 		pad->Effect[ EffectIndex ].CompTime	= 0 ;
 		pad->Effect[ EffectIndex ].PrevSetTime = -1 ;
 
-		// Šù‚ÉÄ¶’†‚Å‚ä‚ê‚Ì‘å‚«‚³‚à“¯‚¶ê‡‚Í‰½‚à‚µ‚È‚¢
+		// æ—¢ã«å†ç”Ÿä¸­ã§ã‚†ã‚Œã®å¤§ãã•ã‚‚åŒã˜å ´åˆã¯ä½•ã‚‚ã—ãªã„
 		if( pad->Effect[ EffectIndex ].PlayFlag == TRUE && pad->Effect[ EffectIndex ].Power == Power )
 		{
 			return 0 ;
 		}
 
-		// Ä¶İ’è‚ğ•Û‘¶
+		// å†ç”Ÿè¨­å®šã‚’ä¿å­˜
 		pad->Effect[ EffectIndex ].PlayFlag	= TRUE ;
 		pad->Effect[ EffectIndex ].Power	= Power ;
 
-		// Ä¶ó‘Ô‚Ìİ’è‚ğ”½‰f
+		// å†ç”ŸçŠ¶æ…‹ã®è¨­å®šã‚’åæ˜ 
 		RefreshEffectPlayState() ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒWƒ‡ƒCƒpƒbƒh‚ÌU“®‚ğ’â~‚·‚é
+// ã‚¸ãƒ§ã‚¤ãƒ‘ãƒƒãƒ‰ã®æŒ¯å‹•ã‚’åœæ­¢ã™ã‚‹
 extern	int NS_StopJoypadVibration( int InputType, int EffectIndex )
 {
 	int JoypadNum = ( InputType & ~DX_INPUT_KEY ) - 1 ;
 	INPUTPADDATA *pad = &InputSysData.Pad[ JoypadNum ] ;
 
-	// ƒ\ƒtƒg‚ª”ñƒAƒNƒeƒBƒu‚Ìê‡‚ÍƒAƒNƒeƒBƒu‚É‚È‚é‚Ü‚Å‘Ò‚Â
+	// ã‚½ãƒ•ãƒˆãŒéã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã®å ´åˆã¯ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ãªã‚‹ã¾ã§å¾…ã¤
 	CheckActiveState() ;
 	
-	// ‰Šú‰»‚³‚ê‚Ä‚¢‚È‚©‚Á‚½‚çğŒ•t‚«‚Å‰Šú‰»‚ğs‚¤
+	// åˆæœŸåŒ–ã•ã‚Œã¦ã„ãªã‹ã£ãŸã‚‰æ¡ä»¶ä»˜ãã§åˆæœŸåŒ–ã‚’è¡Œã†
 	if( InputSysData.InitializeFlag == FALSE )
 	{
 		return AutoInitialize_PF() ;
 	}
 
-	// ƒGƒ‰[ƒ`ƒFƒbƒN
+	// ã‚¨ãƒ©ãƒ¼ãƒã‚§ãƒƒã‚¯
 	if( JoypadNum < 0 || JoypadNum >= InputSysData.PadNum )
 	{
 		return 0 ;
 	}
 
-	// EffectIndex ‚ªƒ}ƒCƒiƒX‚Ìê‡‚Íˆ—‚ğ•ªŠò
+	// EffectIndex ãŒãƒã‚¤ãƒŠã‚¹ã®å ´åˆã¯å‡¦ç†ã‚’åˆ†å²
 	if( EffectIndex < 0 )
 	{
-		// ¶‰Eƒ‚[ƒ^[‚ÌU“®‚ğ~‚ß‚é
+		// å·¦å³ãƒ¢ãƒ¼ã‚¿ãƒ¼ã®æŒ¯å‹•ã‚’æ­¢ã‚ã‚‹
 		NS_StopJoypadVibration( InputType, DINPUTPAD_MOTOR_LEFT ) ;
 		NS_StopJoypadVibration( InputType, DINPUTPAD_MOTOR_RIGHT ) ;
 
-		// I—¹
+		// çµ‚äº†
 		return 0 ;
 	}
 
@@ -1940,55 +1940,55 @@ extern	int NS_StopJoypadVibration( int InputType, int EffectIndex )
 		return 0 ;
 	}
 
-	// U“®‚É‘Î‰‚µ‚Ä‚¢‚È‚¯‚ê‚Î‚±‚±‚ÅI—¹
+	// æŒ¯å‹•ã«å¯¾å¿œã—ã¦ã„ãªã‘ã‚Œã°ã“ã“ã§çµ‚äº†
 	if( CheckJoypadVibrationEnable_PF( pad, EffectIndex ) == FALSE )
 	{
 		return 0 ;
 	}
 
-	// Šù‚ÉÄ¶‚ª’â~‚µ‚Ä‚¢‚½‚ç‰½‚à‚µ‚È‚¢
+	// æ—¢ã«å†ç”ŸãŒåœæ­¢ã—ã¦ã„ãŸã‚‰ä½•ã‚‚ã—ãªã„
 	if( pad->Effect[ EffectIndex ].PlayFlag == FALSE )
 	{
 		return 0 ;
 	}
 
-	// Ä¶ƒtƒ‰ƒO‚ğ“|‚·
+	// å†ç”Ÿãƒ•ãƒ©ã‚°ã‚’å€’ã™
 	pad->Effect[ EffectIndex ].PlayFlag = FALSE ;
 
-	// U“®‚Ì‹­‚³‚ğ‰Šú‰»
+	// æŒ¯å‹•ã®å¼·ã•ã‚’åˆæœŸåŒ–
 	pad->Effect[ EffectIndex ].Power = DX_FFNOMINALMAX ;
 
-	// Ä¶ó‘Ô‚Ìİ’è‚ğ”½‰f
+	// å†ç”ŸçŠ¶æ…‹ã®è¨­å®šã‚’åæ˜ 
 	RefreshEffectPlayState() ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒWƒ‡ƒCƒpƒbƒh‚Ì‚o‚n‚u“ü—Í‚Ìó‘Ô‚ğ“¾‚é( ’PˆÊ‚ÍŠp“x‚Ì‚P‚O‚O”{  ’†SˆÊ’u‚É‚ ‚éê‡‚Í -1 ‚ª•Ô‚é )
+// ã‚¸ãƒ§ã‚¤ãƒ‘ãƒƒãƒ‰ã®ï¼°ï¼¯ï¼¶å…¥åŠ›ã®çŠ¶æ…‹ã‚’å¾—ã‚‹( å˜ä½ã¯è§’åº¦ã®ï¼‘ï¼ï¼å€  ä¸­å¿ƒä½ç½®ã«ã‚ã‚‹å ´åˆã¯ -1 ãŒè¿”ã‚‹ )
 extern int NS_GetJoypadPOVState( int InputType, int POVNumber )
 {
 	int JoypadNum = ( InputType & ~DX_INPUT_KEY ) - 1 ;
 	INPUTPADDATA *pad = &InputSysData.Pad[ JoypadNum ] ;
 	DWORD pov;
 
-	// ƒ\ƒtƒg‚ª”ñƒAƒNƒeƒBƒu‚Ìê‡‚ÍƒAƒNƒeƒBƒu‚É‚È‚é‚Ü‚Å‘Ò‚Â
+	// ã‚½ãƒ•ãƒˆãŒéã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã®å ´åˆã¯ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ãªã‚‹ã¾ã§å¾…ã¤
 	CheckActiveState() ;
 	
-	// ‰Šú‰»‚³‚ê‚Ä‚¢‚È‚©‚Á‚½‚çğŒ•t‚«‚Å‰Šú‰»‚ğs‚¤
+	// åˆæœŸåŒ–ã•ã‚Œã¦ã„ãªã‹ã£ãŸã‚‰æ¡ä»¶ä»˜ãã§åˆæœŸåŒ–ã‚’è¡Œã†
 	if( InputSysData.InitializeFlag == FALSE )
 	{
 		AutoInitialize_PF() ;
 		return -1 ;
 	}
 
-	// ƒGƒ‰[ƒ`ƒFƒbƒN
+	// ã‚¨ãƒ©ãƒ¼ãƒã‚§ãƒƒã‚¯
 	if( JoypadNum < 0 || JoypadNum >= InputSysData.PadNum || POVNumber >= 4 )
 	{
 		return -1 ;
 	}
 
-	// î•ñ‚ÌXV
+	// æƒ…å ±ã®æ›´æ–°
 	UpdateJoypadInputState( JoypadNum ) ;
 	if( JoypadNum < 0 || JoypadNum >= InputSysData.PadNum || POVNumber >= 4 )
 	{
@@ -1997,47 +1997,47 @@ extern int NS_GetJoypadPOVState( int InputType, int POVNumber )
 
 	pov = pad->State.POV[ POVNumber ] ;
 
-	// ’†Sƒ`ƒFƒbƒN
+	// ä¸­å¿ƒãƒã‚§ãƒƒã‚¯
 	if( ( pov & 0xffff ) == 0xffff )
 	{
 		return -1 ;
 	}
 
-	// ‰½‚ç‚©‚ÌŠp“x‚ª‚ ‚éê‡‚Í‚»‚Ì‚Ü‚Ü•Ô‚·
+	// ä½•ã‚‰ã‹ã®è§’åº¦ãŒã‚ã‚‹å ´åˆã¯ãã®ã¾ã¾è¿”ã™
 	return ( int )pov ;
 }
 
-// ƒWƒ‡ƒCƒpƒbƒh‚ÌÄƒZƒbƒgƒAƒbƒv‚ğs‚¤( V‚½‚ÉÚ‘±‚³‚ê‚½ƒWƒ‡ƒCƒpƒbƒh‚ª‚ ‚éê‡‚ÉŒŸo‚³‚ê‚é )
+// ã‚¸ãƒ§ã‚¤ãƒ‘ãƒƒãƒ‰ã®å†ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã‚’è¡Œã†( æ–°ãŸã«æ¥ç¶šã•ã‚ŒãŸã‚¸ãƒ§ã‚¤ãƒ‘ãƒƒãƒ‰ãŒã‚ã‚‹å ´åˆã«æ¤œå‡ºã•ã‚Œã‚‹ )
 extern int NS_ReSetupJoypad( void )
 {
-	// ƒWƒ‡ƒCƒpƒbƒh‚ÌÄƒZƒbƒgƒAƒbƒv‚ğs‚¤
+	// ã‚¸ãƒ§ã‚¤ãƒ‘ãƒƒãƒ‰ã®å†ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã‚’è¡Œã†
 	return SetupJoypad() ;
 }
 
-// “ü—ÍƒVƒXƒeƒ€‚ÌÄƒZƒbƒgƒAƒbƒv‚ğs‚¤
+// å…¥åŠ›ã‚·ã‚¹ãƒ†ãƒ ã®å†ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã‚’è¡Œã†
 extern int NS_ReSetupInputSystem( void )
 {
-	// “ü—ÍƒVƒXƒeƒ€‚ÌI—¹ˆ—‚ğs‚¤
+	// å…¥åŠ›ã‚·ã‚¹ãƒ†ãƒ ã®çµ‚äº†å‡¦ç†ã‚’è¡Œã†
 	TerminateInputSystem() ;
 
-	// “ü—ÍƒVƒXƒeƒ€‚Ì‰Šú‰»ˆ—‚ğs‚¤
+	// å…¥åŠ›ã‚·ã‚¹ãƒ†ãƒ ã®åˆæœŸåŒ–å‡¦ç†ã‚’è¡Œã†
 	return InitializeInputSystem() ;
 }
 
-// ƒL[ƒ{[ƒh‚Ì“ü—Íó‘Ô‚ÌXV
+// ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ã®å…¥åŠ›çŠ¶æ…‹ã®æ›´æ–°
 extern int UpdateKeyboardInputState( int UseProcessMessage )
 {
 	static BOOL InFunction = FALSE ;
 	int Result ;
 
-	// –³ŒÀÄ‹A–h~
+	// ç„¡é™å†å¸°é˜²æ­¢
 	if( InFunction == TRUE )
 	{
 		return 0 ;
 	}
 	InFunction = TRUE ;
 
-	// ŠÂ‹«ˆË‘¶ˆ—
+	// ç’°å¢ƒä¾å­˜å‡¦ç†
 	Result = UpdateKeyboardInputState_PF( UseProcessMessage ) ;
 
 	InFunction = FALSE ;
@@ -2045,40 +2045,40 @@ extern int UpdateKeyboardInputState( int UseProcessMessage )
 	return Result ;
 }
 
-// ƒpƒbƒh‚Ì“ü—Íó‘Ô‚ÌXV
+// ãƒ‘ãƒƒãƒ‰ã®å…¥åŠ›çŠ¶æ…‹ã®æ›´æ–°
 static int UpdateJoypadInputState( int padno )
 {
 	int Result ;
 
-	// ƒpƒbƒh”Ô†ƒ`ƒFƒbƒN
+	// ãƒ‘ãƒƒãƒ‰ç•ªå·ãƒã‚§ãƒƒã‚¯
 	if( padno < 0 || padno >= MAX_JOYPAD_NUM )
 	{
 		return -1 ;
 	}
 
-	// ŠÂ‹«ˆË‘¶ˆ—
+	// ç’°å¢ƒä¾å­˜å‡¦ç†
 	Result = UpdateJoypadInputState_PF( padno ) ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return Result ;
 }
 
-// ƒWƒ‡ƒCƒpƒbƒh‚ÌU“®‹@”\‚ğg—p‚·‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğƒZƒbƒg‚·‚é
+// ã‚¸ãƒ§ã‚¤ãƒ‘ãƒƒãƒ‰ã®æŒ¯å‹•æ©Ÿèƒ½ã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern int NS_SetUseJoypadVibrationFlag( int Flag )
 {
 	InputSysData.NoUseVibrationFlag = !Flag ;
 
-	// İ’è‚ğ”½‰f‚·‚é
+	// è¨­å®šã‚’åæ˜ ã™ã‚‹
 	if( InputSysData.InitializeFlag )
 	{
 		RefreshEffectPlayState( TRUE ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒpƒbƒh‚ÌƒGƒtƒFƒNƒgˆ—‚ÉŠÖ‚·‚éƒtƒŒ[ƒ€ˆ—‚ğs‚¤
+// ãƒ‘ãƒƒãƒ‰ã®ã‚¨ãƒ•ã‚§ã‚¯ãƒˆå‡¦ç†ã«é–¢ã™ã‚‹ãƒ•ãƒ¬ãƒ¼ãƒ å‡¦ç†ã‚’è¡Œã†
 extern int JoypadEffectProcess( void )
 {
 	int        i ;
@@ -2087,13 +2087,13 @@ extern int JoypadEffectProcess( void )
 	int        time ;
 	INPUTPADDATA *Pad ;
 
-	// ‰Šú‰»”»’è
+	// åˆæœŸåŒ–åˆ¤å®š
 	if( InputSysData.InitializeFlag == FALSE )
 	{
 		return 0 ;
 	}
 
-	// ƒpƒbƒhƒfƒoƒCƒX‚ÌÄæ“¾
+	// ãƒ‘ãƒƒãƒ‰ãƒ‡ãƒã‚¤ã‚¹ã®å†å–å¾—
 	num = InputSysData.PadNum ;
 	Pad = InputSysData.Pad ;
 	time = NS_GetNowCount( FALSE ) ;
@@ -2111,29 +2111,29 @@ extern int JoypadEffectProcess( void )
 				continue ;
 			}
 
-			// –³ŒÀÄ¶‚Ìê‡‚Í“Á‚É‰½‚à‚µ‚È‚¢
+			// ç„¡é™å†ç”Ÿã®å ´åˆã¯ç‰¹ã«ä½•ã‚‚ã—ãªã„
 			if( Pad->Effect[ j ].Time < 0 )
 			{
 				continue ;
 			}
 
-			// ‘O‰ñ‚©‚ç‚ª•Ï‚í‚Á‚Ä‚¢‚È‚©‚Á‚½‚ç‰½‚à‚µ‚È‚¢
+			// å‰å›ã‹ã‚‰æ™‚åˆ»ãŒå¤‰ã‚ã£ã¦ã„ãªã‹ã£ãŸã‚‰ä½•ã‚‚ã—ãªã„
 			if( Pad->Effect[ j ].BackTime == time )
 			{
 				continue ;
 			}
 
-			// Œo‰ßŠÔ‚Ì‰ÁZ
+			// çµŒéæ™‚é–“ã®åŠ ç®—
 			if( time < Pad->Effect[ j ].BackTime )
 			{
 				Pad->Effect[ j ].BackTime = time ;
 			}
 			Pad->Effect[ j ].CompTime += time - Pad->Effect[ j ].BackTime ;
 
-			// ¡‰ñ‚Ì‚ğ•Û‘¶
+			// ä»Šå›ã®æ™‚åˆ»ã‚’ä¿å­˜
 			Pad->Effect[ j ].BackTime = time ;
 
-			// Ä¶’â~‚Ìƒ`ƒFƒbƒN
+			// å†ç”Ÿåœæ­¢ã®ãƒã‚§ãƒƒã‚¯
 			if( Pad->Effect[ j ].CompTime >= Pad->Effect[ j ].Time )
 			{
 				NS_StopJoypadVibration( i + 1, j ) ;
@@ -2141,26 +2141,26 @@ extern int JoypadEffectProcess( void )
 		}
 	}
 
-	// Ä¶ó‘Ô‚ÌXV
+	// å†ç”ŸçŠ¶æ…‹ã®æ›´æ–°
 	RefreshEffectPlayState() ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒpƒbƒhƒGƒtƒFƒNƒg‚ÌÄ¶ó‘Ô‚ğXV‚·‚é(ƒ\ƒtƒg‚ª”ñƒAƒNƒeƒBƒu‚É‚È‚é‚±‚Æ‚à‚ ‚é‚½‚ß)
+// ãƒ‘ãƒƒãƒ‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®å†ç”ŸçŠ¶æ…‹ã‚’æ›´æ–°ã™ã‚‹(ã‚½ãƒ•ãƒˆãŒéã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ãªã‚‹ã“ã¨ã‚‚ã‚ã‚‹ãŸã‚)
 extern int RefreshEffectPlayState( int AlwaysRunFlag )
 {
-	// ‰Šú‰»”»’è
+	// åˆæœŸåŒ–åˆ¤å®š
 	if( InputSysData.InitializeFlag == FALSE )
 	{
 		return 0 ;
 	}
 
-	// ŠÂ‹«ˆË‘¶ˆ—
+	// ç’°å¢ƒä¾å­˜å‡¦ç†
 	RefreshEffectPlayState_PF( AlwaysRunFlag ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 

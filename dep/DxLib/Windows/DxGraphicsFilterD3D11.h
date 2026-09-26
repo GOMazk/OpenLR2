@@ -1,6 +1,6 @@
 // -------------------------------------------------------------------------------
 // 
-// 		‚c‚wƒ‰ƒCƒuƒ‰ƒŠ		GraphFilterŒnƒvƒƒOƒ‰ƒ€( Direct3D11 )ƒwƒbƒ_ƒtƒ@ƒCƒ‹
+// 		ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒª		GraphFilterç³»ãƒ—ãƒ­ã‚°ãƒ©ãƒ ( Direct3D11 )ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«
 // 
 // 				Ver 3.25a
 // 
@@ -17,7 +17,7 @@
 
 #ifndef DX_NON_FILTER
 
-// ƒCƒ“ƒNƒ‹[ƒh ------------------------------------------------------------------
+// ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ ------------------------------------------------------------------
 #include "../DxLib.h"
 #include "../DxGraphicsFilter.h"
 #include "../DxArchive_.h"
@@ -30,25 +30,25 @@ namespace DxLib
 
 #endif // DX_NON_NAMESPACE
 
-// ƒ}ƒNƒ’è‹` --------------------------------------------------------------------
+// ãƒã‚¯ãƒ­å®šç¾© --------------------------------------------------------------------
 
 
-// \‘¢‘Ì’è‹` --------------------------------------------------------------------
+// æ§‹é€ ä½“å®šç¾© --------------------------------------------------------------------
 
-// ƒtƒBƒ‹ƒ^[ˆ——p‚Ìî•ñ\‘¢‘Ì
+// ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼å‡¦ç†ç”¨ã®æƒ…å ±æ§‹é€ ä½“
 struct GRAPHFILTER_SYSTEMIFNO_DIRET3D11
 {
-	int						WorkDrawValidGrHandle[ 2 ][ 18 ][ 18 ][ 2 ] ;	// ƒtƒBƒ‹ƒ^[ˆ—ì‹Æ—p•`‰æ‰Â”\ƒeƒNƒXƒ`ƒƒ[ 0:®”ƒeƒNƒXƒ`ƒƒ 1:•‚“®¬”“_ƒeƒNƒXƒ`ƒƒ ][ •( ‚Q‚Ì‚æ ) ][ ‚‚³( ‚Q‚Ì‚æ ) ][ ì‹Æ—p‚Q–‡ ]
+	int						WorkDrawValidGrHandle[ 2 ][ 18 ][ 18 ][ 2 ] ;	// ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼å‡¦ç†ä½œæ¥­ç”¨æç”»å¯èƒ½ãƒ†ã‚¯ã‚¹ãƒãƒ£[ 0:æ•´æ•°ãƒ†ã‚¯ã‚¹ãƒãƒ£ 1:æµ®å‹•å°æ•°ç‚¹ãƒ†ã‚¯ã‚¹ãƒãƒ£ ][ å¹…( ï¼’ã®ï½ä¹— ) ][ é«˜ã•( ï¼’ã®ï½ä¹— ) ][ ä½œæ¥­ç”¨ï¼’æš ]
 } ;
 
 
-// “à•”‘åˆæ•Ï”éŒ¾ --------------------------------------------------------------
+// å†…éƒ¨å¤§åŸŸå¤‰æ•°å®£è¨€ --------------------------------------------------------------
 
 extern GRAPHFILTER_SYSTEMIFNO_DIRET3D11 GraphFilterSystemInfoD3D11 ;
 
-// ŠÖ”ƒvƒƒgƒ^ƒCƒvéŒ¾-----------------------------------------------------------
+// é–¢æ•°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€-----------------------------------------------------------
 
-// ŠÂ‹«ˆË‘¶ŠÖŒW
+// ç’°å¢ƒä¾å­˜é–¢ä¿‚
 extern int	GraphFilter_D3D11_Mono_PF(            GRAPHFILTER_INFO *Info, float Cb, float Cr ) ;
 extern int	GraphFilter_D3D11_Gauss_PF(           GRAPHFILTER_INFO *Info, int PixelWidth, float Param, float *Table ) ;
 extern int	GraphFilter_D3D11_Down_Scale_PF(      GRAPHFILTER_INFO *Info, int DivNum ) ;
@@ -69,9 +69,9 @@ extern int	GraphFilter_D3D11_Lanczos3Scale_PF(   GRAPHFILTER_INFO *Info, int Des
 extern int	GraphFilter_D3D11_SSAO_PF(            GRAPHFILTER_INFO *Info, int DepthMapGrHandle, float KernelRadius, float MinDistance, float MaxDistance, float Strength, int OcclusionColor, float OcclusionPower, int ColorMapGrHandle ) ;
 extern int	GraphFilter_D3D11_FloatColorScale_PF( GRAPHFILTER_INFO *Info, COLOR_F ColorScale, COLOR_F ColorPreSub ) ;
 
-//extern int	GraphFilter_D3D11_RectBltBase_PF( int IsBlend, int SrcGrHandle, int BlendGrHandle, int DestGrHandle, int BlendRatio, int FilterOrBlendType, int SrcX1, int SrcY1, int SrcX2, int SrcY2, int BlendX, int BlendY, int BlendPosEnable, int DestX, int DestY, va_list ParamList ) ;			// ‰æ‘œ‚ÌƒtƒBƒ‹ƒ^[•t‚«“]‘—‚ğs‚¤( ‰Â•Ïˆø”î•ñ•t‚« )
+//extern int	GraphFilter_D3D11_RectBltBase_PF( int IsBlend, int SrcGrHandle, int BlendGrHandle, int DestGrHandle, int BlendRatio, int FilterOrBlendType, int SrcX1, int SrcY1, int SrcX2, int SrcY2, int BlendX, int BlendY, int BlendPosEnable, int DestX, int DestY, va_list ParamList ) ;			// ç”»åƒã®ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ä»˜ãè»¢é€ã‚’è¡Œã†( å¯å¤‰å¼•æ•°æƒ…å ±ä»˜ã )
 //extern int	GraphFilter_D3D11_RectBltBase_Timing0_PF( int SrcGrHandle, int DestGrHandle, int BlendGrHandle, int IsBlend, IMAGEDATA *TargetScreenImage ) ;
-//extern int	GraphFilter_D3D11_RectBltBase_PF(     GRAPHFILTER_INFO *Info, GRAPHFILTER_PARAM *Param ) ;			// ‰æ‘œ‚ÌƒtƒBƒ‹ƒ^[•t‚«“]‘—‚ğs‚¤( ‰Â•Ïˆø”î•ñ•t‚« )
+//extern int	GraphFilter_D3D11_RectBltBase_PF(     GRAPHFILTER_INFO *Info, GRAPHFILTER_PARAM *Param ) ;			// ç”»åƒã®ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ä»˜ãè»¢é€ã‚’è¡Œã†( å¯å¤‰å¼•æ•°æƒ…å ±ä»˜ã )
 
 extern int	GraphFilter_D3D11_RectBltBase_Timing0_PF( GRAPHFILTER_INFO *Info, GRAPHFILTER_PARAM *Param ) ;
 extern int	GraphFilter_D3D11_RectBltBase_Timing1_PF( void ) ;

@@ -1,6 +1,6 @@
 // -------------------------------------------------------------------------------
 // 
-// 		‚c‚wѓ‰ѓCѓuѓ‰ѓЉ		ѓ‚ѓfѓ‹ѓfЃ[ѓ^“З‚ЭЌћ‚ЭѓvѓЌѓOѓ‰ѓЂ
+// 		пј¤пјёгѓ©г‚¤гѓ–гѓ©гѓЄ		гѓўгѓ‡гѓ«гѓ‡гѓјг‚їиЄ­гЃїиѕјгЃїгѓ—гѓ­г‚°гѓ©гѓ 
 // 
 // 				Ver 3.25a
 // 
@@ -12,7 +12,7 @@
 
 #ifndef DX_NON_MODEL
 
-// ѓCѓ“ѓNѓ‹Ѓ[ѓh ---------------------------------
+// г‚¤гѓіг‚Їгѓ«гѓјгѓ‰ ---------------------------------
 #include "DxLib.h"
 #include "DxStatic.h"
 #include "DxFile.h"
@@ -29,9 +29,9 @@ namespace DxLib
 
 #endif // DX_NON_NAMESPACE
 
-// ѓ}ѓNѓЌ’и‹` -----------------------------------
+// гѓћг‚Їгѓ­е®љзѕ© -----------------------------------
 
-// ѓ‚ѓfѓ‹“аѓЉѓXѓg‚Й’З‰Б
+// гѓўгѓ‡гѓ«е†…гѓЄг‚№гѓ€гЃ«иїЅеЉ 
 #define MODELLIST_ADD( model, name )\
 	if( model->name##First == NULL )\
 	{\
@@ -47,7 +47,7 @@ namespace DxLib
 	name->Index = ( int )model->name##Num ;\
 	model->name##Num ++ ;
 
-// ѓIѓuѓWѓFѓNѓg“аѓЉѓXѓg‚Й’З‰Б
+// г‚Єгѓ–г‚ёг‚§г‚Їгѓ€е†…гѓЄг‚№гѓ€гЃ«иїЅеЉ 
 #define OBJLIST_ADD( obj, name )\
 	if( obj->name##First == NULL )\
 	{\
@@ -62,7 +62,7 @@ namespace DxLib
 	}\
 	obj->name##Num ++ ;
 
-// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“ѓLЃ[ѓZѓbѓg‚МѓЉѓ“ѓN‚рЉO‚·
+// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓіг‚­гѓјг‚»гѓѓгѓ€гЃ®гѓЄгѓіг‚Їг‚’е¤–гЃ™
 #define KEYSETLIST_SUB( keyset, motion, readmodel )\
 	if( keyset->Next )     keyset->Next->Prev         = keyset->Prev ;\
 	else                   motion->AnimKeySetLast     = keyset->Prev ;\
@@ -80,9 +80,9 @@ namespace DxLib
 	readmodel->AnimKeySetNum -- ;
 
 
-// ѓfЃ[ѓ^Њ^ђйЊѕ ---------------------------------
+// гѓ‡гѓјг‚їећ‹е®ЈиЁЂ ---------------------------------
 
-// ѓeѓXѓg€К’uЏо•с‚МѓEѓGѓCѓgЏо•с
+// гѓ†г‚№гѓ€дЅЌзЅ®жѓ…е ±гЃ®г‚¦г‚Ёг‚¤гѓ€жѓ…е ±
 struct MV1_TESTPOSITIONINFO_SKINWEIGHT
 {
 	MV1_SKIN_WEIGHT_R *Orig ;
@@ -91,9 +91,9 @@ struct MV1_TESTPOSITIONINFO_SKINWEIGHT
 } ;
 
 
-// ѓfЃ[ѓ^’и‹` -----------------------------------
+// гѓ‡гѓјг‚їе®љзѕ© -----------------------------------
 
-// 8x8 ‚М tgaѓeѓNѓXѓ`ѓѓ
+// 8x8 гЃ® tgaгѓ†г‚Їг‚№гѓЃгѓЈ
 BYTE Tga8x8TextureFileImage[ 84 ] = 
 {
 	0x00, 0x00, 0x0A, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x08, 0x00, 0x08, 0x00,
@@ -113,7 +113,7 @@ BYTE Tga8x8BlackTextureFileImage[ 76 ] =
 	0x53,0x49,0x4f,0x4e,0x2d,0x58,0x46,0x49,0x4c,0x45,0x2e,0x00,
 } ;
 
-// 256x8 ‚М‰јѓgѓDЃ[ѓ“ѓЊѓ“ѓ_ѓЉѓ“ѓO—p tgaѓeѓNѓXѓ`ѓѓ
+// 256x8 гЃ®д»®гѓ€г‚Ґгѓјгѓігѓ¬гѓігѓЂгѓЄгѓіг‚°з”Ё tgaгѓ†г‚Їг‚№гѓЃгѓЈ
 BYTE Tga256x8ToonTextureFileImage[ 172 ] =
 {
 	0x00,0x00,0x0a,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x01,0x08,0x00,
@@ -129,7 +129,7 @@ BYTE Tga256x8ToonTextureFileImage[ 172 ] =
 	0x53,0x49,0x4f,0x4e,0x2d,0x58,0x46,0x49,0x4c,0x45,0x2e,0x00
 } ;
 
-// ѓfѓtѓHѓ‹ѓg‚МѓfѓBѓtѓ…Ѓ[ѓYѓOѓ‰ѓfЃ[ѓVѓ‡ѓ“
+// гѓ‡гѓ•г‚©гѓ«гѓ€гЃ®гѓ‡г‚Јгѓ•гѓҐгѓјг‚єг‚°гѓ©гѓ‡гѓјг‚·гѓ§гѓі
 BYTE TgaDiffuseDefaultGradFileImage[ 172/*156*/ ] =
 {
 	0x00,0x00,0x0a,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x01,0x08,0x00,
@@ -157,7 +157,7 @@ BYTE TgaDiffuseDefaultGradFileImage[ 172/*156*/ ] =
 */
 } ;
 
-// ѓfѓtѓHѓ‹ѓg‚МѓXѓyѓLѓ…ѓ‰ѓOѓ‰ѓfЃ[ѓVѓ‡ѓ“
+// гѓ‡гѓ•г‚©гѓ«гѓ€гЃ®г‚№гѓљг‚­гѓҐгѓ©г‚°гѓ©гѓ‡гѓјг‚·гѓ§гѓі
 BYTE TgaSpecularDefaultGradFileImage[ 172/*124*/ ] =
 {
 	0x00,0x00,0x0a,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x01,0x08,0x00,
@@ -183,24 +183,24 @@ BYTE TgaSpecularDefaultGradFileImage[ 172/*124*/ ] =
 */
 } ;
 
-// ЉЦђ”ђйЊѕ -------------------------------------
+// й–ўж•°е®ЈиЁЂ -------------------------------------
 
 #ifndef UNICODE
-static char    *MV1RGetStringSpace(  MV1_MODEL_BASE *MBase, const char    *String ) ;					// ѓ‚ѓfѓ‹Љо–{ѓfЃ[ѓ^—p‚М•¶Ћљ—сѓXѓyЃ[ѓX‚рЉm•Ы‚·‚й( -1:ѓGѓ‰Ѓ[ )
+static char    *MV1RGetStringSpace(  MV1_MODEL_BASE *MBase, const char    *String ) ;					// гѓўгѓ‡гѓ«еџєжњ¬гѓ‡гѓјг‚їз”ЁгЃ®ж–‡е­—е€—г‚№гѓљгѓјг‚№г‚’зўєдїќгЃ™г‚‹( -1:г‚Ёгѓ©гѓј )
 #endif
-static wchar_t *MV1RGetStringSpaceW( MV1_MODEL_BASE *MBase, const wchar_t *String ) ;					// ѓ‚ѓfѓ‹Љо–{ѓfЃ[ѓ^—p‚М•¶Ћљ—сѓXѓyЃ[ѓX‚рЉm•Ы‚·‚й( -1:ѓGѓ‰Ѓ[ )
-static bool MV1ConvertTrianglePolygon( MV1_MODEL_R *ReadModel, MV1_MESH_R *Mesh ) ;						// ‘ЅЉpЊ`ѓ|ѓЉѓSѓ“‚рЋOЉpЊ`ѓ|ѓЉѓSѓ“‚Й•ПЉ·‚·‚й
-static bool MV1NotEqualNormalSideAddZeroAreaPolygon( MV1_MODEL_R *ReadModel, MV1_MESH_R *Mesh ) ;		// •У‚р‹¤—L‚µ‚Д‚ў‚ДЃAЉЋ‚В–@ђь‚М•ыЊь‚Є€Щ‚И‚й•У‚Й–КђП‚O‚Мѓ|ѓЉѓSѓ“‚р’З‰Б‚·‚й( ‚RЉpЊ`ѓ|ѓЉѓSѓ“‚МЏWЌ‡‚Й‚И‚Б‚Д‚ў‚й•K—v‚ ‚и )
-static bool MV1OptimizePosition( MV1_MODEL_R *ReadModel, MV1_MESH_R *Mesh ) ;							// ЌА•WЃAѓXѓLѓjѓ“ѓOѓEѓGѓCѓg’l‚Є‘S‚­“Ї€к‚М’ё“_‚р“ќЌ‡‚·‚й
-static bool MV1MakeMeshNormals( MV1_MODEL_R *ReadModel, MV1_MESH_R *Mesh ) ;							// ѓЃѓbѓVѓ…–@ђь‚МЋ©“®ЊvЋZ( ‘Sѓ|ѓЉѓSѓ“‚ЄЋOЉpЊ`ѓ|ѓЉѓSѓ“‚Е‚ ‚й•K—v‚Є‚ ‚и‚Ь‚· )
-static bool MV1MakeMeshBinormalsAndTangents( MV1_MODEL_R *ReadModel, MV1_MESH_R *Mesh ) ;				// ѓЃѓbѓVѓ…‚МЏ]–@ђь‚ЖђЪђь‚рЊvЋZ‚·‚й( ‘Sѓ|ѓЉѓSѓ“‚ЄЋOЉpЊ`ѓ|ѓЉѓSѓ“‚Е‚ ‚й•K—v‚Є‚ ‚и‚Ь‚· )
-static bool MV1OptimizeSkinBoneInfo( MV1_MODEL_BASE *Model ) ;											// ѓ‚ѓfѓ‹ѓfЃ[ѓ^‚МѓXѓLѓjѓ“ѓOѓЃѓbѓVѓ…—p‚Мѓ{Ѓ[ѓ“Џо•с‚рЌЕ“K‰»‚·‚й
-static bool MV1OptimizeAnim( MV1_MODEL_R *ReadModel ) ;													// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“ѓfЃ[ѓ^‚рЌЕ“K‰»‚·‚й
-static void MV1OptimizeKeySetTimeType( MV1_MODEL_R *ReadModel, MV1_ANIMKEYSET_R *KeySetR, bool NotKeySub = false ) ;	// ѓLЃ[ѓZѓbѓg‚МѓLЃ[‚рЌЕ“K‰»‚·‚й
+static wchar_t *MV1RGetStringSpaceW( MV1_MODEL_BASE *MBase, const wchar_t *String ) ;					// гѓўгѓ‡гѓ«еџєжњ¬гѓ‡гѓјг‚їз”ЁгЃ®ж–‡е­—е€—г‚№гѓљгѓјг‚№г‚’зўєдїќгЃ™г‚‹( -1:г‚Ёгѓ©гѓј )
+static bool MV1ConvertTrianglePolygon( MV1_MODEL_R *ReadModel, MV1_MESH_R *Mesh ) ;						// е¤љи§’еЅўгѓќгѓЄг‚ґгѓіг‚’дё‰и§’еЅўгѓќгѓЄг‚ґгѓігЃ«е¤‰жЏ›гЃ™г‚‹
+static bool MV1NotEqualNormalSideAddZeroAreaPolygon( MV1_MODEL_R *ReadModel, MV1_MESH_R *Mesh ) ;		// иѕєг‚’е…±жњ‰гЃ—гЃ¦гЃ„гЃ¦гЂЃдё”гЃ¤жі•з·љгЃ®ж–№еђ‘гЃЊз•°гЃЄг‚‹иѕєгЃ«йќўз©ЌпјђгЃ®гѓќгѓЄг‚ґгѓіг‚’иїЅеЉ гЃ™г‚‹( пј“и§’еЅўгѓќгѓЄг‚ґгѓігЃ®й›†еђ€гЃ«гЃЄгЃЈгЃ¦гЃ„г‚‹еї…и¦ЃгЃ‚г‚Љ )
+static bool MV1OptimizePosition( MV1_MODEL_R *ReadModel, MV1_MESH_R *Mesh ) ;							// еє§жЁ™гЂЃг‚№г‚­гѓ‹гѓіг‚°г‚¦г‚Ёг‚¤гѓ€еЂ¤гЃЊе…ЁгЃЏеђЊдёЂгЃ®й ‚з‚№г‚’зµ±еђ€гЃ™г‚‹
+static bool MV1MakeMeshNormals( MV1_MODEL_R *ReadModel, MV1_MESH_R *Mesh ) ;							// гѓЎгѓѓг‚·гѓҐжі•з·љгЃ®и‡Єе‹•иЁ€з®—( е…ЁгѓќгѓЄг‚ґгѓігЃЊдё‰и§’еЅўгѓќгѓЄг‚ґгѓігЃ§гЃ‚г‚‹еї…и¦ЃгЃЊгЃ‚г‚ЉгЃѕгЃ™ )
+static bool MV1MakeMeshBinormalsAndTangents( MV1_MODEL_R *ReadModel, MV1_MESH_R *Mesh ) ;				// гѓЎгѓѓг‚·гѓҐгЃ®еѕ“жі•з·љгЃЁжЋҐз·љг‚’иЁ€з®—гЃ™г‚‹( е…ЁгѓќгѓЄг‚ґгѓігЃЊдё‰и§’еЅўгѓќгѓЄг‚ґгѓігЃ§гЃ‚г‚‹еї…и¦ЃгЃЊгЃ‚г‚ЉгЃѕгЃ™ )
+static bool MV1OptimizeSkinBoneInfo( MV1_MODEL_BASE *Model ) ;											// гѓўгѓ‡гѓ«гѓ‡гѓјг‚їгЃ®г‚№г‚­гѓ‹гѓіг‚°гѓЎгѓѓг‚·гѓҐз”ЁгЃ®гѓњгѓјгѓіжѓ…е ±г‚’жњЂйЃ©еЊ–гЃ™г‚‹
+static bool MV1OptimizeAnim( MV1_MODEL_R *ReadModel ) ;													// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігѓ‡гѓјг‚їг‚’жњЂйЃ©еЊ–гЃ™г‚‹
+static void MV1OptimizeKeySetTimeType( MV1_MODEL_R *ReadModel, MV1_ANIMKEYSET_R *KeySetR, bool NotKeySub = false ) ;	// г‚­гѓјг‚»гѓѓгѓ€гЃ®г‚­гѓјг‚’жњЂйЃ©еЊ–гЃ™г‚‹
 static bool MatrixRotateCmp( MATRIX *In1, MATRIX *In2, float f ) ;
-static void MV1MultiplyRotateMatrix( MATRIX *DestBuffer, VECTOR *Rotate, int RotateOrder, bool RotateInverse ) ;			// ‰с“]Ќs—с‚рЏжЋZ‚·‚й
+static void MV1MultiplyRotateMatrix( MATRIX *DestBuffer, VECTOR *Rotate, int RotateOrder, bool RotateInverse ) ;			// е›ћи»ўиЎЊе€—г‚’д№—з®—гЃ™г‚‹
 
-// ѓvѓЌѓOѓ‰ѓЂ -----------------------------------
+// гѓ—гѓ­г‚°гѓ©гѓ  -----------------------------------
 
 static bool MatrixRotateCmp( MATRIX *In1, MATRIX *In2, float f )
 {
@@ -224,7 +224,7 @@ static bool MatrixRotateCmp( MATRIX *In1, MATRIX *In2, float f )
 			In1->m[ 2 ][ 2 ] < In2->m[ 2 ][ 2 ] + f ;
 }
 
-// ‘ЅЉpЊ`ѓ|ѓЉѓSѓ“‚рЋOЉpЊ`ѓ|ѓЉѓSѓ“‚Й•ПЉ·‚·‚й
+// е¤љи§’еЅўгѓќгѓЄг‚ґгѓіг‚’дё‰и§’еЅўгѓќгѓЄг‚ґгѓігЃ«е¤‰жЏ›гЃ™г‚‹
 static bool MV1ConvertTrianglePolygon( MV1_MODEL_R *ReadModel, MV1_MESH_R *Mesh )
 {
 	int AddFaceCount, AddNum, i, j, k, p1, p2, pt ;
@@ -232,35 +232,35 @@ static bool MV1ConvertTrianglePolygon( MV1_MODEL_R *ReadModel, MV1_MESH_R *Mesh 
 	DWORD *NewIndex, *NewIndexT ;
 	DWORD NewFaceNum ;
 
-	// ‘ќ‚в‚і‚И‚Ї‚к‚О‚И‚з‚И‚ў–КѓfЃ[ѓ^‚Мђ”‚р’І‚Ч‚й
+	// еў—г‚„гЃ•гЃЄгЃ‘г‚ЊгЃ°гЃЄг‚‰гЃЄгЃ„йќўгѓ‡гѓјг‚їгЃ®ж•°г‚’иЄїгЃ№г‚‹
 	AddFaceCount = 0 ;
 	FaceT = Mesh->Faces ;
 	for( i = 0 ; ( DWORD )i < Mesh->FaceNum ; i ++, FaceT ++ )
 	{
 		AddFaceCount += FaceT->IndexNum - 3 ;
 
-		// —ј–Кѓ|ѓЉѓSѓ“‚МЏкЌ‡‚Нѓ|ѓЉѓSѓ“ђ”‚а”{‚Й‚И‚й
+		// дёЎйќўгѓќгѓЄг‚ґгѓігЃ®е ґеђ€гЃЇгѓќгѓЄг‚ґгѓіж•°г‚‚еЂЌгЃ«гЃЄг‚‹
 		if( Mesh->Materials[ FaceT->MaterialIndex ]->TwoSide )
 		{
 			AddFaceCount += FaceT->IndexNum - 2 ;
 		}
 	}
 
-	// ‘ЅЉpЊ`–К‚Є–і‚ўЏкЌ‡‚Н‚±‚±‚ЕЏI—№
+	// е¤љи§’еЅўйќўгЃЊз„ЎгЃ„е ґеђ€гЃЇгЃ“гЃ“гЃ§зµ‚дє†
 	if( AddFaceCount == 0 )
 		return true ;
 
-	// ‘ќ‚в‚µ‚Ѕ–К‚рЉi”[‚·‚йѓЃѓ‚ѓЉ—М€ж‚МЉm•Ы
+	// еў—г‚„гЃ—гЃџйќўг‚’ж јзґЌгЃ™г‚‹гѓЎгѓўгѓЄй еџџгЃ®зўєдїќ
 	NewFaceNum = Mesh->FaceNum + AddFaceCount ;
 	NewFace = ( MV1_MESHFACE_R * )ADDMEMAREA( ( sizeof( MV1_MESHFACE_R ) + ( 3 + MV1_READ_MAX_UV_NUM ) * 3 * sizeof( DWORD ) ) * NewFaceNum, &ReadModel->Mem ) ;
 	if( NewFace == NULL )
 	{
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\x52\x00\x65\x00\x61\x00\x64\x00\x20\x00\x4d\x00\x6f\x00\x64\x00\x65\x00\x6c\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\x13\xff\xdd\x30\xea\x30\x09\x59\xdb\x63\x8c\x5f\x6e\x30\xc7\x30\xfc\x30\xbf\x30\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Read Model Error : ‚Rѓ|ѓЉ•ПЉ·Њг‚МѓfЃ[ѓ^‚рЉi”[‚·‚йѓЃѓ‚ѓЉ—М€ж‚МЉm•Ы‚ЙЋё”s‚µ‚Ь‚µ‚Ѕ\n" @*/ )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\x52\x00\x65\x00\x61\x00\x64\x00\x20\x00\x4d\x00\x6f\x00\x64\x00\x65\x00\x6c\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\x13\xff\xdd\x30\xea\x30\x09\x59\xdb\x63\x8c\x5f\x6e\x30\xc7\x30\xfc\x30\xbf\x30\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Read Model Error : пј“гѓќгѓЄе¤‰жЏ›еѕЊгЃ®гѓ‡гѓјг‚їг‚’ж јзґЌгЃ™г‚‹гѓЎгѓўгѓЄй еџџгЃ®зўєдїќгЃ«е¤±ж•—гЃ—гЃѕгЃ—гЃџ\n" @*/ )) ;
 		return false ;
 	}
 	NewIndex = ( DWORD * )( NewFace + NewFaceNum ) ;
 
-	// ѓCѓ“ѓfѓbѓNѓXѓfЃ[ѓ^‚МѓAѓhѓЊѓX‚рѓZѓbѓgѓAѓbѓv
+	// г‚¤гѓігѓ‡гѓѓг‚Їг‚№гѓ‡гѓјг‚їгЃ®г‚ўгѓ‰гѓ¬г‚№г‚’г‚»гѓѓгѓ€г‚ўгѓѓгѓ—
 	NewFaceT = NewFace ;
 	NewIndexT = NewIndex ;
 	for( i = 0 ; i < ( int )NewFaceNum ; i ++, NewFaceT ++ )
@@ -272,7 +272,7 @@ static bool MV1ConvertTrianglePolygon( MV1_MODEL_R *ReadModel, MV1_MESH_R *Mesh 
 			NewFaceT->UVIndex[ j ] = NewIndexT ;
 	}
 
-	// ЌЎ‚Ь‚Е‚М–К‚МЏо•с‚рѓRѓsЃ[
+	// д»ЉгЃѕгЃ§гЃ®йќўгЃ®жѓ…е ±г‚’г‚ігѓ”гѓј
 	FaceT = Mesh->Faces ;
 	NewFaceT2 = NewFace + Mesh->FaceNum ;
 	NewFaceT = NewFace ;
@@ -295,7 +295,7 @@ static bool MV1ConvertTrianglePolygon( MV1_MODEL_R *ReadModel, MV1_MESH_R *Mesh 
 		NewFaceT->MaterialIndex = FaceT->MaterialIndex ;
 		NewFaceT->Normal = FaceT->Normal ;
 
-		// —ј–Кѓ|ѓЉѓSѓ“‚МЏкЌ‡‚Нѓ|ѓЉѓSѓ“ђ”‚а”{‚Й‚И‚й
+		// дёЎйќўгѓќгѓЄг‚ґгѓігЃ®е ґеђ€гЃЇгѓќгѓЄг‚ґгѓіж•°г‚‚еЂЌгЃ«гЃЄг‚‹
 		if( Mesh->Materials[ FaceT->MaterialIndex ]->TwoSide )
 		{
 			NewFaceT2->IndexNum = 3 ;
@@ -320,7 +320,7 @@ static bool MV1ConvertTrianglePolygon( MV1_MODEL_R *ReadModel, MV1_MESH_R *Mesh 
 		}
 	}
 
-	// ‘ЅЉpЊ`–К‚рЋOЉpЊ`–К‚Й•ПЉ·
+	// е¤љи§’еЅўйќўг‚’дё‰и§’еЅўйќўгЃ«е¤‰жЏ›
 	FaceT = Mesh->Faces ;
 	NewFaceT = NewFace ;
 	for( i = 0 ; ( DWORD )i < Mesh->FaceNum ; i ++, NewFaceT ++, FaceT ++ )
@@ -329,7 +329,7 @@ static bool MV1ConvertTrianglePolygon( MV1_MODEL_R *ReadModel, MV1_MESH_R *Mesh 
 		{
 			VECTOR OutVec[ 3 ] ;
 
-			// ЋOЉpЊ`( 0, 2, 3 ) ‚М“а‘¤‚Й’ё“_1‚Є‚ ‚й‚©ѓ`ѓFѓbѓN
+			// дё‰и§’еЅў( 0, 2, 3 ) гЃ®е†…еЃґгЃ«й ‚з‚№1гЃЊгЃ‚г‚‹гЃ‹гѓЃг‚§гѓѓг‚Ї
 			OutVec[ 0 ] = VCross(
 				VSub( Mesh->Positions[ FaceT->VertexIndex[ 0 ] ], Mesh->Positions[ FaceT->VertexIndex[ 2 ] ] ),
 				VSub( Mesh->Positions[ FaceT->VertexIndex[ 2 ] ], Mesh->Positions[ FaceT->VertexIndex[ 1 ] ] )
@@ -345,7 +345,7 @@ static bool MV1ConvertTrianglePolygon( MV1_MODEL_R *ReadModel, MV1_MESH_R *Mesh 
 			if( VDot( OutVec[ 0 ], OutVec[ 1 ] ) > 0.0f &&
 				VDot( OutVec[ 0 ], OutVec[ 2 ] ) > 0.0f )
 			{
-				// ЋOЉpЊ`( 0, 2, 3 ) ‚М“а‘¤‚Й’ё“_1‚Є‚ ‚йЏкЌ‡‚МЏ€—ќ
+				// дё‰и§’еЅў( 0, 2, 3 ) гЃ®е†…еЃґгЃ«й ‚з‚№1гЃЊгЃ‚г‚‹е ґеђ€гЃ®е‡¦зђ†
 				NewFaceT2->IndexNum = 3 ;
 				NewFaceT2->PolygonNum = 1 ;
 				NewFaceT2->VertexIndex[ 0 ] = FaceT->VertexIndex[ 0 ] ;
@@ -382,7 +382,7 @@ static bool MV1ConvertTrianglePolygon( MV1_MODEL_R *ReadModel, MV1_MESH_R *Mesh 
 					NewFaceT->UVIndex[ k ][ 2 ] = FaceT->UVIndex[ k ][ 3 ] ;
 				}
 
-				// —ј–Кѓ|ѓЉѓSѓ“‚МЏкЌ‡‚Нѓ|ѓЉѓSѓ“ђ”‚а”{‚Й‚И‚й
+				// дёЎйќўгѓќгѓЄг‚ґгѓігЃ®е ґеђ€гЃЇгѓќгѓЄг‚ґгѓіж•°г‚‚еЂЌгЃ«гЃЄг‚‹
 				if( Mesh->Materials[ FaceT->MaterialIndex ]->TwoSide )
 				{
 					NewFaceT2->IndexNum = 3 ;
@@ -429,7 +429,7 @@ static bool MV1ConvertTrianglePolygon( MV1_MODEL_R *ReadModel, MV1_MESH_R *Mesh 
 				continue ;
 			}
 
-			// ЋOЉpЊ`( 0, 1, 2 ) ‚М“а‘¤‚Й’ё“_3‚Є‚ ‚й‚©ѓ`ѓFѓbѓN
+			// дё‰и§’еЅў( 0, 1, 2 ) гЃ®е†…еЃґгЃ«й ‚з‚№3гЃЊгЃ‚г‚‹гЃ‹гѓЃг‚§гѓѓг‚Ї
 			OutVec[ 0 ] = VCross(
 				VSub( Mesh->Positions[ FaceT->VertexIndex[ 0 ] ], Mesh->Positions[ FaceT->VertexIndex[ 1 ] ] ),
 				VSub( Mesh->Positions[ FaceT->VertexIndex[ 1 ] ], Mesh->Positions[ FaceT->VertexIndex[ 3 ] ] )
@@ -445,7 +445,7 @@ static bool MV1ConvertTrianglePolygon( MV1_MODEL_R *ReadModel, MV1_MESH_R *Mesh 
 			if( VDot( OutVec[ 0 ], OutVec[ 1 ] ) > 0.0f &&
 				VDot( OutVec[ 0 ], OutVec[ 2 ] ) > 0.0f )
 			{
-				// ЋOЉpЊ`( 0, 1, 2 ) ‚М“а‘¤‚Й’ё“_3‚Є‚ ‚йЏкЌ‡‚МЏ€—ќ
+				// дё‰и§’еЅў( 0, 1, 2 ) гЃ®е†…еЃґгЃ«й ‚з‚№3гЃЊгЃ‚г‚‹е ґеђ€гЃ®е‡¦зђ†
 				NewFaceT2->IndexNum = 3 ;
 				NewFaceT2->PolygonNum = 1 ;
 				NewFaceT2->VertexIndex[ 0 ] = FaceT->VertexIndex[ 0 ] ;
@@ -482,7 +482,7 @@ static bool MV1ConvertTrianglePolygon( MV1_MODEL_R *ReadModel, MV1_MESH_R *Mesh 
 					NewFaceT->UVIndex[ k ][ 2 ] = FaceT->UVIndex[ k ][ 3 ] ;
 				}
 
-				// —ј–Кѓ|ѓЉѓSѓ“‚МЏкЌ‡‚Нѓ|ѓЉѓSѓ“ђ”‚а”{‚Й‚И‚й
+				// дёЎйќўгѓќгѓЄг‚ґгѓігЃ®е ґеђ€гЃЇгѓќгѓЄг‚ґгѓіж•°г‚‚еЂЌгЃ«гЃЄг‚‹
 				if( Mesh->Materials[ FaceT->MaterialIndex ]->TwoSide )
 				{
 					NewFaceT2->IndexNum = 3 ;
@@ -559,7 +559,7 @@ static bool MV1ConvertTrianglePolygon( MV1_MODEL_R *ReadModel, MV1_MESH_R *Mesh 
 			NewFaceT2->MaterialIndex = FaceT->MaterialIndex ;
 			NewFaceT2 ++ ;
 
-			// —ј–Кѓ|ѓЉѓSѓ“‚МЏкЌ‡‚Нѓ|ѓЉѓSѓ“ђ”‚а”{‚Й‚И‚й
+			// дёЎйќўгѓќгѓЄг‚ґгѓігЃ®е ґеђ€гЃЇгѓќгѓЄг‚ґгѓіж•°г‚‚еЂЌгЃ«гЃЄг‚‹
 			if( Mesh->Materials[ FaceT->MaterialIndex ]->TwoSide )
 			{
 				NewFaceT2->IndexNum = 3 ;
@@ -609,7 +609,7 @@ static bool MV1ConvertTrianglePolygon( MV1_MODEL_R *ReadModel, MV1_MESH_R *Mesh 
 			NewFaceT2->MaterialIndex = FaceT->MaterialIndex ;
 			NewFaceT2 ++ ;
 
-			// —ј–Кѓ|ѓЉѓSѓ“‚МЏкЌ‡‚Нѓ|ѓЉѓSѓ“ђ”‚а”{‚Й‚И‚й
+			// дёЎйќўгѓќгѓЄг‚ґгѓігЃ®е ґеђ€гЃЇгѓќгѓЄг‚ґгѓіж•°г‚‚еЂЌгЃ«гЃЄг‚‹
 			if( Mesh->Materials[ FaceT->MaterialIndex ]->TwoSide )
 			{
 				NewFaceT2->IndexNum = 3 ;
@@ -639,19 +639,19 @@ static bool MV1ConvertTrianglePolygon( MV1_MODEL_R *ReadModel, MV1_MESH_R *Mesh 
 		}
 	}
 
-	// –К‚Мђ”‚р‘ќ‚в‚·
+	// йќўгЃ®ж•°г‚’еў—г‚„гЃ™
 	Mesh->FaceNum += AddFaceCount ;
 
-	// ѓЃѓ‚ѓЉ‚М‰р•ъ‚ЖЌ·‚µ‘Ц‚¦
+	// гѓЎгѓўгѓЄгЃ®и§Јж”ѕгЃЁе·®гЃ—ж›їгЃ€
 	SUBMEMAREA( &ReadModel->Mem, Mesh->Faces );
 	Mesh->Faces = NewFace ;
 	Mesh->FaceIndexBuffer = NewIndex ;
 
-	// ђіЏнЏI—№
+	// ж­Јеёёзµ‚дє†
 	return true ;
 }
 
-// •У‚р‹¤—L‚µ‚Д‚ў‚ДЃAЉЋ‚В–@ђь‚М•ыЊь‚Є€Щ‚И‚й•У‚Й–КђП‚O‚Мѓ|ѓЉѓSѓ“‚р’З‰Б‚·‚й( ‚RЉpЊ`ѓ|ѓЉѓSѓ“‚МЏWЌ‡‚Й‚И‚Б‚Д‚ў‚й•K—v‚ ‚и )
+// иѕєг‚’е…±жњ‰гЃ—гЃ¦гЃ„гЃ¦гЂЃдё”гЃ¤жі•з·љгЃ®ж–№еђ‘гЃЊз•°гЃЄг‚‹иѕєгЃ«йќўз©ЌпјђгЃ®гѓќгѓЄг‚ґгѓіг‚’иїЅеЉ гЃ™г‚‹( пј“и§’еЅўгѓќгѓЄг‚ґгѓігЃ®й›†еђ€гЃ«гЃЄгЃЈгЃ¦гЃ„г‚‹еї…и¦ЃгЃ‚г‚Љ )
 static bool MV1NotEqualNormalSideAddZeroAreaPolygon( MV1_MODEL_R *ReadModel, MV1_MESH_R *Mesh )
 {
 	int AddFaceCount ;
@@ -669,18 +669,18 @@ static bool MV1NotEqualNormalSideAddZeroAreaPolygon( MV1_MODEL_R *ReadModel, MV1
 	DWORD (*TargetFace1VIndex)[ 2 ] ;
 	DWORD (*TargetFace2VIndex)[ 2 ] ;
 
-	// Ќм‹Ж—p‚МѓЃѓ‚ѓЉ—М€ж‚рЉm•Ы
+	// дЅњжҐ­з”ЁгЃ®гѓЎгѓўгѓЄй еџџг‚’зўєдїќ
 	TargetFace1 = ( DWORD * )DXALLOC( ( sizeof( DWORD ) * 6 ) * Mesh->FaceNum * 3 ) ;
 	if( TargetFace1 == NULL )
 	{
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\x52\x00\x65\x00\x61\x00\x64\x00\x20\x00\x4d\x00\x6f\x00\x64\x00\x65\x00\x6c\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\x2e\x7e\x00\x90\xdd\x30\xea\x30\xb4\x30\xf3\x30\xfd\x8f\xa0\x52\x5c\x4f\x6d\x69\x28\x75\x6e\x30\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Read Model Error : Џk‘Юѓ|ѓЉѓSѓ“’З‰БЌм‹Ж—p‚МѓЃѓ‚ѓЉ‚МЉm•Ы‚ЙЋё”s‚µ‚Ь‚µ‚Ѕ\n" @*/ )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\x52\x00\x65\x00\x61\x00\x64\x00\x20\x00\x4d\x00\x6f\x00\x64\x00\x65\x00\x6c\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\x2e\x7e\x00\x90\xdd\x30\xea\x30\xb4\x30\xf3\x30\xfd\x8f\xa0\x52\x5c\x4f\x6d\x69\x28\x75\x6e\x30\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Read Model Error : зё®йЂЂгѓќгѓЄг‚ґгѓіиїЅеЉ дЅњжҐ­з”ЁгЃ®гѓЎгѓўгѓЄгЃ®зўєдїќгЃ«е¤±ж•—гЃ—гЃѕгЃ—гЃџ\n" @*/ )) ;
 		return false ;
 	}
 	TargetFace2 = TargetFace1 + Mesh->FaceNum * 3 ;
 	TargetFace1VIndex = ( DWORD (*)[ 2 ] )( TargetFace2 + Mesh->FaceNum * 3 ) ;
 	TargetFace2VIndex = TargetFace1VIndex + Mesh->FaceNum * 3 ;
 
-	// ‘ќ‚в‚і‚И‚Ї‚к‚О‚И‚з‚И‚ў–КѓfЃ[ѓ^‚Мђ”‚р’І‚Ч‚й
+	// еў—г‚„гЃ•гЃЄгЃ‘г‚ЊгЃ°гЃЄг‚‰гЃЄгЃ„йќўгѓ‡гѓјг‚їгЃ®ж•°г‚’иЄїгЃ№г‚‹
 	FaceT = Mesh->Faces ;
 	TargetSideNum = 0 ;
 	for( i = 0 ; ( DWORD )i < Mesh->FaceNum ; i ++, FaceT ++ )
@@ -688,7 +688,7 @@ static bool MV1NotEqualNormalSideAddZeroAreaPolygon( MV1_MODEL_R *ReadModel, MV1
 		FaceT2 = FaceT + 1 ;
 		for( j = i + 1 ; ( DWORD )j < Mesh->FaceNum ; j++, FaceT2 ++ )
 		{
-			// Ћg—p‚µ‚Д‚ў‚й‚Q’ё“_‚Є“™‚µ‚­ЃAЉЋ‚ВЋg—p‚µ‚Д‚ў‚й–@ђь‚Є€Щ‚И‚й•У‚Є‚ ‚Б‚Ѕ‚з–КѓfЃ[ѓ^‚р‘ќ‚в‚·
+			// дЅїз”ЁгЃ—гЃ¦гЃ„г‚‹пј’й ‚з‚№гЃЊз­‰гЃ—гЃЏгЂЃдё”гЃ¤дЅїз”ЁгЃ—гЃ¦гЃ„г‚‹жі•з·љгЃЊз•°гЃЄг‚‹иѕєгЃЊгЃ‚гЃЈгЃџг‚‰йќўгѓ‡гѓјг‚їг‚’еў—г‚„гЃ™
 			if( ( FaceT->VertexIndex[ 0 ] == FaceT2->VertexIndex[ 0 ] &&
 				  FaceT->VertexIndex[ 1 ] == FaceT2->VertexIndex[ 1 ] &&
 				  ( FaceT->NormalIndex[ 0 ] != FaceT2->NormalIndex[ 0 ] ||
@@ -980,25 +980,25 @@ static bool MV1NotEqualNormalSideAddZeroAreaPolygon( MV1_MODEL_R *ReadModel, MV1
 	}
 	AddFaceCount = TargetSideNum * 2 ;
 
-	// ’З‰Б–К‚Є–і‚ўЏкЌ‡‚Н‚±‚±‚ЕЏI—№
+	// иїЅеЉ йќўгЃЊз„ЎгЃ„е ґеђ€гЃЇгЃ“гЃ“гЃ§зµ‚дє†
 	if( TargetSideNum == 0 )
 	{
 		DXFREE( TargetFace1 ) ;
 		return true ;
 	}
 
-	// ‘ќ‚в‚µ‚Ѕ–К‚рЉi”[‚·‚йѓЃѓ‚ѓЉ—М€ж‚МЉm•Ы
+	// еў—г‚„гЃ—гЃџйќўг‚’ж јзґЌгЃ™г‚‹гѓЎгѓўгѓЄй еџџгЃ®зўєдїќ
 	NewFaceNum = Mesh->FaceNum + AddFaceCount ;
 	NewFace = ( MV1_MESHFACE_R * )ADDMEMAREA( ( sizeof( MV1_MESHFACE_R ) + ( 3 + MV1_READ_MAX_UV_NUM ) * 3 * sizeof( DWORD ) ) * NewFaceNum, &ReadModel->Mem ) ;
 	if( NewFace == NULL )
 	{
 		DXFREE( TargetFace1 ) ;
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\x52\x00\x65\x00\x61\x00\x64\x00\x20\x00\x4d\x00\x6f\x00\x64\x00\x65\x00\x6c\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\x2e\x7e\x00\x90\xdd\x30\xea\x30\xb4\x30\xf3\x30\xfd\x8f\xa0\x52\x8c\x5f\x6e\x30\x62\x97\xc7\x30\xfc\x30\xbf\x30\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Read Model Error : Џk‘Юѓ|ѓЉѓSѓ“’З‰БЊг‚М–КѓfЃ[ѓ^‚рЉi”[‚·‚йѓЃѓ‚ѓЉ—М€ж‚МЉm•Ы‚ЙЋё”s‚µ‚Ь‚µ‚Ѕ\n" @*/ )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\x52\x00\x65\x00\x61\x00\x64\x00\x20\x00\x4d\x00\x6f\x00\x64\x00\x65\x00\x6c\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\x2e\x7e\x00\x90\xdd\x30\xea\x30\xb4\x30\xf3\x30\xfd\x8f\xa0\x52\x8c\x5f\x6e\x30\x62\x97\xc7\x30\xfc\x30\xbf\x30\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Read Model Error : зё®йЂЂгѓќгѓЄг‚ґгѓіиїЅеЉ еѕЊгЃ®йќўгѓ‡гѓјг‚їг‚’ж јзґЌгЃ™г‚‹гѓЎгѓўгѓЄй еџџгЃ®зўєдїќгЃ«е¤±ж•—гЃ—гЃѕгЃ—гЃџ\n" @*/ )) ;
 		return false ;
 	}
 	NewIndex = ( DWORD * )( NewFace + NewFaceNum ) ;
 
-	// ѓCѓ“ѓfѓbѓNѓXѓfЃ[ѓ^‚МѓAѓhѓЊѓX‚рѓZѓbѓgѓAѓbѓv
+	// г‚¤гѓігѓ‡гѓѓг‚Їг‚№гѓ‡гѓјг‚їгЃ®г‚ўгѓ‰гѓ¬г‚№г‚’г‚»гѓѓгѓ€г‚ўгѓѓгѓ—
 	NewFaceT = NewFace ;
 	NewIndexT = NewIndex ;
 	for( i = 0 ; i < ( int )NewFaceNum ; i ++, NewFaceT ++ )
@@ -1010,7 +1010,7 @@ static bool MV1NotEqualNormalSideAddZeroAreaPolygon( MV1_MODEL_R *ReadModel, MV1
 			NewFaceT->UVIndex[ j ] = NewIndexT ;
 	}
 
-	// Љщ‘¶‚М–К‚МЏо•с‚рѓRѓsЃ[
+	// ж—ўе­гЃ®йќўгЃ®жѓ…е ±г‚’г‚ігѓ”гѓј
 	FaceT = Mesh->Faces ;
 	NewFaceT = NewFace ;
 	for( i = 0 ; i < ( int )Mesh->FaceNum ; i ++, FaceT ++, NewFaceT ++ )
@@ -1033,7 +1033,7 @@ static bool MV1NotEqualNormalSideAddZeroAreaPolygon( MV1_MODEL_R *ReadModel, MV1
 		NewFaceT->Normal = FaceT->Normal ;
 	}
 
-	// Џk‘Юѓ|ѓЉѓSѓ“‚р’З‰Б
+	// зё®йЂЂгѓќгѓЄг‚ґгѓіг‚’иїЅеЉ 
 	NewFaceT2 = NewFace + Mesh->FaceNum ;
 	for( i = 0 ; ( DWORD )i < TargetSideNum ; i ++ )
 	{
@@ -1089,22 +1089,22 @@ static bool MV1NotEqualNormalSideAddZeroAreaPolygon( MV1_MODEL_R *ReadModel, MV1
 		NewFaceT2++;
 	}
 
-	// –К‚Мђ”‚р‘ќ‚в‚·
+	// йќўгЃ®ж•°г‚’еў—г‚„гЃ™
 	Mesh->FaceNum += AddFaceCount ;
 
-	// ѓЃѓ‚ѓЉ‚М‰р•ъ‚ЖЌ·‚µ‘Ц‚¦
+	// гѓЎгѓўгѓЄгЃ®и§Јж”ѕгЃЁе·®гЃ—ж›їгЃ€
 	SUBMEMAREA( &ReadModel->Mem, Mesh->Faces );
 	Mesh->Faces = NewFace ;
 	Mesh->FaceIndexBuffer = NewIndex ;
 
-	// Ќм‹Ж—p‚МЉm•Ы‚µ‚ЅѓЃѓ‚ѓЉ‚р‰р•ъ
+	// дЅњжҐ­з”ЁгЃ®зўєдїќгЃ—гЃџгѓЎгѓўгѓЄг‚’и§Јж”ѕ
 	DXFREE( TargetFace1 ) ;
 
-	// ђіЏнЏI—№
+	// ж­Јеёёзµ‚дє†
 	return true ;
 }
 
-// ЌА•WЃAѓXѓLѓjѓ“ѓOѓEѓGѓCѓg’l‚Є‘S‚­“Ї€к‚М’ё“_‚р“ќЌ‡‚·‚й( –@ђь‚Н–іЋ‹‚·‚й )
+// еє§жЁ™гЂЃг‚№г‚­гѓ‹гѓіг‚°г‚¦г‚Ёг‚¤гѓ€еЂ¤гЃЊе…ЁгЃЏеђЊдёЂгЃ®й ‚з‚№г‚’зµ±еђ€гЃ™г‚‹( жі•з·љгЃЇз„Ўи¦–гЃ™г‚‹ )
 struct MV1_OPTIMIZEPOSITION_WEIGHT_ONE
 {
 	MV1_SKIN_WEIGHT_R *SkinWeight ;
@@ -1128,12 +1128,12 @@ static bool MV1OptimizePosition( MV1_MODEL_R * /*ReadModel*/, MV1_MESH_R *Mesh )
 	DWORD PosSkinWUnitSize ;
 	MV1_OPTIMIZEPOSITION_WEIGHT *PositionSkinW, *PosSkinW, *PosSkinW2 ;
 
-	// –іЊшѓtѓ‰ѓO‚рЉi”[‚·‚йѓЃѓ‚ѓЉ—М€ж‚МЉm•Ы
+	// з„ЎеЉ№гѓ•гѓ©г‚°г‚’ж јзґЌгЃ™г‚‹гѓЎгѓўгѓЄй еџџгЃ®зўєдїќ
 	PosSkinWUnitSize = sizeof( MV1_OPTIMIZEPOSITION_WEIGHT ) + sizeof( MV1_OPTIMIZEPOSITION_WEIGHT_ONE ) * ( Mesh->SkinWeightsNum - 1 ) ;
 	OldPositions = ( VECTOR * )DXALLOC( ( sizeof( DWORD ) + sizeof( BYTE ) + sizeof( VECTOR ) + PosSkinWUnitSize ) * Mesh->PositionNum ) ;
 	if( OldPositions == NULL )
 	{
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\x52\x00\x65\x00\x61\x00\x64\x00\x20\x00\x4d\x00\x6f\x00\x64\x00\x65\x00\x6c\x00\x20\x00\x43\x00\x6f\x00\x6e\x00\x76\x00\x65\x00\x72\x00\x74\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\x02\x98\xb9\x70\x00\x67\x69\x90\x16\x53\xe6\x51\x06\x74\x67\x30\x7f\x4f\x28\x75\x59\x30\x8b\x30\xc6\x30\xf3\x30\xdd\x30\xe9\x30\xea\x30\xd0\x30\xc3\x30\xd5\x30\xa1\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Read Model Convert Error : ’ё“_ЌЕ“K‰»Џ€—ќ‚ЕЋg—p‚·‚йѓeѓ“ѓ|ѓ‰ѓЉѓoѓbѓtѓ@‚МЉm•Ы‚ЙЋё”s‚µ‚Ь‚µ‚Ѕ\n" @*/ )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\x52\x00\x65\x00\x61\x00\x64\x00\x20\x00\x4d\x00\x6f\x00\x64\x00\x65\x00\x6c\x00\x20\x00\x43\x00\x6f\x00\x6e\x00\x76\x00\x65\x00\x72\x00\x74\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\x02\x98\xb9\x70\x00\x67\x69\x90\x16\x53\xe6\x51\x06\x74\x67\x30\x7f\x4f\x28\x75\x59\x30\x8b\x30\xc6\x30\xf3\x30\xdd\x30\xe9\x30\xea\x30\xd0\x30\xc3\x30\xd5\x30\xa1\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Read Model Convert Error : й ‚з‚№жњЂйЃ©еЊ–е‡¦зђ†гЃ§дЅїз”ЁгЃ™г‚‹гѓ†гѓігѓќгѓ©гѓЄгѓђгѓѓгѓ•г‚ЎгЃ®зўєдїќгЃ«е¤±ж•—гЃ—гЃѕгЃ—гЃџ\n" @*/ )) ;
 		return false ;
 	}
 	PositionSkinW = ( MV1_OPTIMIZEPOSITION_WEIGHT * )( OldPositions + Mesh->PositionNum ) ;
@@ -1142,7 +1142,7 @@ static bool MV1OptimizePosition( MV1_MODEL_R * /*ReadModel*/, MV1_MESH_R *Mesh )
 	_MEMSET( PositionSkinW, 0, ( sizeof( DWORD ) + sizeof( BYTE ) + PosSkinWUnitSize ) * Mesh->PositionNum ) ;
 	_MEMCPY( OldPositions, Mesh->Positions, sizeof( VECTOR ) * Mesh->PositionNum ) ;
 
-	// ѓXѓLѓjѓ“ѓOѓЃѓbѓVѓ…‚МЏкЌ‡ЃAЉe’ё“_‚МѓXѓLѓjѓ“ѓOѓЃѓbѓVѓ…ѓЉѓXѓg‚рЌмђ¬‚·‚й
+	// г‚№г‚­гѓ‹гѓіг‚°гѓЎгѓѓг‚·гѓҐгЃ®е ґеђ€гЂЃеђ„й ‚з‚№гЃ®г‚№г‚­гѓ‹гѓіг‚°гѓЎгѓѓг‚·гѓҐгѓЄг‚№гѓ€г‚’дЅњж€ђгЃ™г‚‹
 	if( Mesh->SkinWeightsNum )
 	{
 		for( i = 0 ; ( DWORD )i < Mesh->SkinWeightsNum ; i ++ )
@@ -1158,21 +1158,21 @@ static bool MV1OptimizePosition( MV1_MODEL_R * /*ReadModel*/, MV1_MESH_R *Mesh )
 		}
 	}
 
-	// €к’vѓeѓXѓg
+	// дёЂи‡ґгѓ†г‚№гѓ€
 	SubNum = 0 ;
 	PosSkinW = PositionSkinW ;
 	for( i = 0 ; ( DWORD )i < Mesh->PositionNum ; i ++, PosSkinW = ( MV1_OPTIMIZEPOSITION_WEIGHT * )( ( BYTE * )PosSkinW + PosSkinWUnitSize ) )
 	{
-		// Љщ‚Й–іЊш‚ѕ‚Б‚Ѕ‚з‰Ѕ‚а‚µ‚И‚ў
+		// ж—ўгЃ«з„ЎеЉ№гЃ гЃЈгЃџг‚‰дЅ•г‚‚гЃ—гЃЄгЃ„
 		if( DisableFlag[ i ] ) continue ;
 
 		PosSkinW2 = ( MV1_OPTIMIZEPOSITION_WEIGHT * )( ( BYTE * )PositionSkinW + PosSkinWUnitSize * ( i + 1 ) ) ;
 		for( j = i + 1 ; ( DWORD )j < Mesh->PositionNum ; j ++, PosSkinW2 = ( MV1_OPTIMIZEPOSITION_WEIGHT * )( ( BYTE * )PosSkinW2 + PosSkinWUnitSize ) )
 		{
-			// Љщ‚Й–іЊш‚ѕ‚Б‚Ѕ‚з‰Ѕ‚а‚µ‚И‚ў
+			// ж—ўгЃ«з„ЎеЉ№гЃ гЃЈгЃџг‚‰дЅ•г‚‚гЃ—гЃЄгЃ„
 			if( DisableFlag[ j ] ) continue ;
 
-			// ЌА•W‚Є“Ї‚¶‚©’І‚Ч‚й
+			// еє§жЁ™гЃЊеђЊгЃгЃ‹иЄїгЃ№г‚‹
 //			if( *( ( DWORD * )&Mesh->Positions[ i ].x ) != *( ( DWORD * )&Mesh->Positions[ j ].x ) ||
 //				*( ( DWORD * )&Mesh->Positions[ i ].y ) != *( ( DWORD * )&Mesh->Positions[ j ].y ) ||
 //				*( ( DWORD * )&Mesh->Positions[ i ].z ) != *( ( DWORD * )&Mesh->Positions[ j ].z ) ) continue ;
@@ -1181,7 +1181,7 @@ static bool MV1OptimizePosition( MV1_MODEL_R * /*ReadModel*/, MV1_MESH_R *Mesh )
 				( Sa.y > 0.00001f && Sa.y < -0.00001f ) ||
 				( Sa.z > 0.00001f && Sa.z < -0.00001f ) ) continue ;
 
-			// ѓXѓLѓjѓ“ѓOѓEѓGѓCѓg‚Є“Ї‚¶‚©’І‚Ч‚й
+			// г‚№г‚­гѓ‹гѓіг‚°г‚¦г‚Ёг‚¤гѓ€гЃЊеђЊгЃгЃ‹иЄїгЃ№г‚‹
 			if( PosSkinW->DataNum != PosSkinW2->DataNum ) continue ;
 			for( k = 0 ; ( DWORD )k < PosSkinW->DataNum ; k ++ )
 			{
@@ -1195,7 +1195,7 @@ static bool MV1OptimizePosition( MV1_MODEL_R * /*ReadModel*/, MV1_MESH_R *Mesh )
 			}
 			if( ( DWORD )k != PosSkinW->DataNum ) continue ;
 
-			// “Ї‚¶’ё“_‚р”­Њ©‚µ‚Ѕ‚з”ФЌ†‚МЋб‚ў’ё“_‚Й“ќЌ‡‚·‚й
+			// еђЊгЃй ‚з‚№г‚’з™єи¦‹гЃ—гЃџг‚‰з•ЄеЏ·гЃ®и‹ҐгЃ„й ‚з‚№гЃ«зµ±еђ€гЃ™г‚‹
 			Face = Mesh->Faces ;
 			for( k = 0 ; ( DWORD )k < Mesh->FaceNum ; k ++, Face ++ )
 			{
@@ -1206,15 +1206,15 @@ static bool MV1OptimizePosition( MV1_MODEL_R * /*ReadModel*/, MV1_MESH_R *Mesh )
 				}
 			}
 
-			// –іЊшѓtѓ‰ѓO‚р—§‚Д‚й
+			// з„ЎеЉ№гѓ•гѓ©г‚°г‚’з«‹гЃ¦г‚‹
 			DisableFlag[ j ] = 1 ;
 
-			// Њё‚з‚µ‚Ѕђ”‚р‰БЋZ‚·‚й
+			// жё›г‚‰гЃ—гЃџж•°г‚’еЉ з®—гЃ™г‚‹
 			SubNum ++ ;
 		}
 	}
 
-	// ‰Ѕ‚аЊё‚з‚И‚ўЏкЌ‡‚Н‚±‚±‚ЕЏI—№
+	// дЅ•г‚‚жё›г‚‰гЃЄгЃ„е ґеђ€гЃЇгЃ“гЃ“гЃ§зµ‚дє†
 	if( SubNum == 0 )
 	{
 		DXFREE( OldPositions ) ;
@@ -1222,7 +1222,7 @@ static bool MV1OptimizePosition( MV1_MODEL_R * /*ReadModel*/, MV1_MESH_R *Mesh )
 		return true ;
 	}
 
-	// Ћg—p‚і‚к‚Д‚ў‚й’ё“_‚М‚Э—с‹“‚·‚й
+	// дЅїз”ЁгЃ•г‚ЊгЃ¦гЃ„г‚‹й ‚з‚№гЃ®гЃїе€—жЊ™гЃ™г‚‹
 	NewPositionNum = 0 ;
 	for( i = 0 ; ( DWORD )i < Mesh->PositionNum ; i ++ )
 	{
@@ -1234,7 +1234,7 @@ static bool MV1OptimizePosition( MV1_MODEL_R * /*ReadModel*/, MV1_MESH_R *Mesh )
 	}
 	Mesh->PositionNum = ( DWORD )NewPositionNum ;
 
-	// ѓ|ѓЉѓSѓ“‚МЌА•WѓCѓ“ѓfѓbѓNѓX‚р•t‚Ї’ј‚·
+	// гѓќгѓЄг‚ґгѓігЃ®еє§жЁ™г‚¤гѓігѓ‡гѓѓг‚Їг‚№г‚’д»гЃ‘з›ґгЃ™
 	Face = Mesh->Faces ;
 	for( i = 0 ; ( DWORD )i < Mesh->FaceNum ; i ++, Face ++ )
 	{
@@ -1244,7 +1244,7 @@ static bool MV1OptimizePosition( MV1_MODEL_R * /*ReadModel*/, MV1_MESH_R *Mesh )
 		}
 	}
 
-	// ѓEѓGѓCѓgЏо•с‚Мѓ^Ѓ[ѓQѓbѓgЌА•W‚Є‚И‚­‚И‚Б‚ЅЏкЌ‡‚НѓEѓGѓCѓg’l‚р‚O‚Й‚·‚й
+	// г‚¦г‚Ёг‚¤гѓ€жѓ…е ±гЃ®г‚їгѓјг‚Ігѓѓгѓ€еє§жЁ™гЃЊгЃЄгЃЏгЃЄгЃЈгЃџе ґеђ€гЃЇг‚¦г‚Ёг‚¤гѓ€еЂ¤г‚’пјђгЃ«гЃ™г‚‹
 	for( i = 0 ; ( DWORD )i < Mesh->SkinWeightsNum ; i ++ )
 	{
 		SkinW = Mesh->SkinWeights[ i ] ;
@@ -1261,7 +1261,7 @@ static bool MV1OptimizePosition( MV1_MODEL_R * /*ReadModel*/, MV1_MESH_R *Mesh )
 		}
 	}
 
-	// Љm•Ы‚µ‚ЅѓЃѓ‚ѓЉ‚р‰р•ъ‚·‚й
+	// зўєдїќгЃ—гЃџгѓЎгѓўгѓЄг‚’и§Јж”ѕгЃ™г‚‹
 	if( OldPositions )
 	{
 		DXFREE( OldPositions ) ;
@@ -1271,21 +1271,21 @@ static bool MV1OptimizePosition( MV1_MODEL_R * /*ReadModel*/, MV1_MESH_R *Mesh )
 	return true ;
 }
 
-// ѓЃѓbѓVѓ…‚МЏ]–@ђь‚ЖђЪђь‚рЊvЋZ‚·‚й( ‘Sѓ|ѓЉѓSѓ“‚ЄЋOЉpЊ`ѓ|ѓЉѓSѓ“‚Е‚ ‚й•K—v‚Є‚ ‚и‚Ь‚· )
+// гѓЎгѓѓг‚·гѓҐгЃ®еѕ“жі•з·љгЃЁжЋҐз·љг‚’иЁ€з®—гЃ™г‚‹( е…ЁгѓќгѓЄг‚ґгѓігЃЊдё‰и§’еЅўгѓќгѓЄг‚ґгѓігЃ§гЃ‚г‚‹еї…и¦ЃгЃЊгЃ‚г‚ЉгЃѕгЃ™ )
 static bool MV1MakeMeshBinormalsAndTangents( MV1_MODEL_R *ReadModel, MV1_MESH_R *Mesh )
 {
 	int i ;
 	MV1_MESHFACE_R *Face ;
 	VECTOR v1, v2, vt, du, dv, vb, vn ;
 
-	// Џ]–@ђь‚ЖђЪђь‚рЉi”[‚·‚йѓЃѓ‚ѓЉ—М€ж‚рЉm•Ы‚·‚й
+	// еѕ“жі•з·љгЃЁжЋҐз·љг‚’ж јзґЌгЃ™г‚‹гѓЎгѓўгѓЄй еџџг‚’зўєдїќгЃ™г‚‹
 	if( Mesh->Binormals == NULL )
 	{
 		Mesh->Binormals = ( VECTOR * )ADDMEMAREA( sizeof( VECTOR ) * Mesh->NormalNum * 2, &ReadModel->Mem ) ;
 		Mesh->Tangents = Mesh->Binormals + Mesh->NormalNum ;
 	}
 
-	// ‘S‚Д‚М–К‚Мђ”‚ѕ‚ЇЊJ‚и•Ф‚µ
+	// е…ЁгЃ¦гЃ®йќўгЃ®ж•°гЃ гЃ‘з№°г‚Љиї”гЃ—
 	Face = Mesh->Faces ;
 	for( i = 0 ; ( DWORD )i < Mesh->FaceNum ; i ++, Face ++ )
 	{
@@ -1336,14 +1336,14 @@ static bool MV1MakeMeshBinormalsAndTangents( MV1_MODEL_R *ReadModel, MV1_MESH_R 
 		VectorAdd( &Mesh->Binormals[ Face->NormalIndex[ 2 ] ], &Mesh->Binormals[ Face->NormalIndex[ 2 ] ], &dv ) ;
 	}
 
-	// –@ђь‚МЋZЏo‚Жђі‹K‰»
+	// жі•з·љгЃ®з®—е‡єгЃЁж­Ји¦ЏеЊ–
 	for( i = 0 ; ( DWORD )i < Mesh->NormalNum ; i ++ )
 	{
 		vt = VNorm( Mesh->Tangents[ i ] ) ;
 		vn = VNorm( VCross( vt, Mesh->Binormals[ i ] ) ) ;
 		vb = VNorm( VCross( vn, vt ) ) ;
 
-		// –@ђь‚М•ыЊь‚рЉm”F
+		// жі•з·љгЃ®ж–№еђ‘г‚’зўєиЄЌ
 		if( VDot( vn, Mesh->Normals[ i ] ) < 0.0f )
 		{
 			vn.x = -vn.x ;
@@ -1351,18 +1351,18 @@ static bool MV1MakeMeshBinormalsAndTangents( MV1_MODEL_R *ReadModel, MV1_MESH_R 
 			vn.z = -vn.z ;
 		}
 
-		// ђі‹K‰»
+		// ж­Ји¦ЏеЊ–
 		Mesh->Tangents[ i ]  = vt ;
 		Mesh->Binormals[ i ] = vb ;
 //		Mesh->Normals[ i ]   = vn ;
 	}
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
 
-// ѓ‚ѓfѓ‹ѓfЃ[ѓ^‚МѓXѓLѓjѓ“ѓOѓЃѓbѓVѓ…—p‚Мѓ{Ѓ[ѓ“Џо•с‚рЌЕ“K‰»‚·‚й
+// гѓўгѓ‡гѓ«гѓ‡гѓјг‚їгЃ®г‚№г‚­гѓ‹гѓіг‚°гѓЎгѓѓг‚·гѓҐз”ЁгЃ®гѓњгѓјгѓіжѓ…е ±г‚’жњЂйЃ©еЊ–гЃ™г‚‹
 static bool MV1OptimizeSkinBoneInfo( MV1_MODEL_BASE *Model )
 {
 	int AfterNum ;
@@ -1380,7 +1380,7 @@ static bool MV1OptimizeSkinBoneInfo( MV1_MODEL_BASE *Model )
 	AfterSkin = ( MV1_SKIN_BONE * )DXALLOC( ( sizeof( int ) + sizeof( MV1_SKIN_BONE_USE_FRAME ) ) * Model->SkinBoneUseFrameNum + ( sizeof( MV1_SKIN_BONE ) + sizeof( int ) ) * Model->SkinBoneNum * 4 ) ;
 	if( AfterSkin == NULL )
 	{
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\x4d\x00\x6f\x00\x64\x00\x65\x00\x6c\x00\x20\x00\x4f\x00\x70\x00\x74\x00\x69\x00\x6d\x00\x69\x00\x7a\x00\x65\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xb9\x30\xad\x30\xcb\x30\xf3\x30\xb0\x30\xe1\x30\xc3\x30\xb7\x30\xe5\x30\xc5\x60\x31\x58\x00\x67\x69\x90\x16\x53\xe6\x51\x06\x74\x67\x30\x7f\x4f\x28\x75\x59\x30\x8b\x30\xc6\x30\xf3\x30\xdd\x30\xe9\x30\xea\x30\xd0\x30\xc3\x30\xd5\x30\xa1\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Model Optimize Error : ѓXѓLѓjѓ“ѓOѓЃѓbѓVѓ…Џо•сЌЕ“K‰»Џ€—ќ‚ЕЋg—p‚·‚йѓeѓ“ѓ|ѓ‰ѓЉѓoѓbѓtѓ@‚МЉm•Ы‚ЙЋё”s‚µ‚Ь‚µ‚Ѕ\n" @*/ )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\x4d\x00\x6f\x00\x64\x00\x65\x00\x6c\x00\x20\x00\x4f\x00\x70\x00\x74\x00\x69\x00\x6d\x00\x69\x00\x7a\x00\x65\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xb9\x30\xad\x30\xcb\x30\xf3\x30\xb0\x30\xe1\x30\xc3\x30\xb7\x30\xe5\x30\xc5\x60\x31\x58\x00\x67\x69\x90\x16\x53\xe6\x51\x06\x74\x67\x30\x7f\x4f\x28\x75\x59\x30\x8b\x30\xc6\x30\xf3\x30\xdd\x30\xe9\x30\xea\x30\xd0\x30\xc3\x30\xd5\x30\xa1\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Model Optimize Error : г‚№г‚­гѓ‹гѓіг‚°гѓЎгѓѓг‚·гѓҐжѓ…е ±жњЂйЃ©еЊ–е‡¦зђ†гЃ§дЅїз”ЁгЃ™г‚‹гѓ†гѓігѓќгѓ©гѓЄгѓђгѓѓгѓ•г‚ЎгЃ®зўєдїќгЃ«е¤±ж•—гЃ—гЃѕгЃ—гЃџ\n" @*/ )) ;
 		return false ;
 	}
 	BeginToAfterIndex = ( int * )( AfterSkin + Model->SkinBoneNum ) ;
@@ -1394,9 +1394,9 @@ static bool MV1OptimizeSkinBoneInfo( MV1_MODEL_BASE *Model )
 	_MEMSET( AfterUseFrame,     0xff, sizeof( int ) * Model->SkinBoneUseFrameNum ) ;
 	_MEMCPY( TempUseFrame, Model->SkinBoneUseFrame, sizeof( MV1_SKIN_BONE_USE_FRAME ) * Model->SkinBoneUseFrameNum ) ;
 
-	// “Ї€к“а—e‚Мѓ{Ѓ[ѓ“Џо•с‚рЌнЏњ‚µ‚ЅЏг‚ЕЃAѓ{Ѓ[ѓ“ѓfЃ[ѓ^‚рѓtѓЊЃ[ѓЂЏ‡‚Й•А‚Ч‘Ц‚¦‚й
+	// еђЊдёЂе†…е®№гЃ®гѓњгѓјгѓіжѓ…е ±г‚’е‰Љй™¤гЃ—гЃџдёЉгЃ§гЂЃгѓњгѓјгѓігѓ‡гѓјг‚їг‚’гѓ•гѓ¬гѓјгѓ й †гЃ«дё¦гЃ№ж›їгЃ€г‚‹
 	{
-		// “Ї€к“а—e‚МЏо•с‚Є–і‚ў‚©’І‚Ч‚И‚Є‚зѓeЃ[ѓuѓ‹‚рЌмђ¬
+		// еђЊдёЂе†…е®№гЃ®жѓ…е ±гЃЊз„ЎгЃ„гЃ‹иЄїгЃ№гЃЄгЃЊг‚‰гѓ†гѓјгѓ–гѓ«г‚’дЅњж€ђ
 		AfterNum = 0 ;
 		SK1 = Model->SkinBone ;
 		ASK = AfterSkin ;
@@ -1436,7 +1436,7 @@ static bool MV1OptimizeSkinBoneInfo( MV1_MODEL_BASE *Model )
 				AfterUseFrame[ SK1->UseFrame - Model->SkinBoneUseFrame + j ] = k ;
 		}
 
-		// ѓ{Ѓ[ѓ“ѓfЃ[ѓ^‚р‘ОЏЫѓtѓЊЃ[ѓЂЏ‡‚Й•А‚Ч‘Ц‚¦‚й
+		// гѓњгѓјгѓігѓ‡гѓјг‚їг‚’еЇѕи±Ўгѓ•гѓ¬гѓјгѓ й †гЃ«дё¦гЃ№ж›їгЃ€г‚‹
 		for( i = 0 ; i < AfterNum ; i ++ )
 		{
 			for( j = i + 1 ; j < AfterNum ; j ++ )
@@ -1459,14 +1459,14 @@ static bool MV1OptimizeSkinBoneInfo( MV1_MODEL_BASE *Model )
 			}
 		}
 
-		// ђ”‚М•ПЌX‚Є–і‚ўЏкЌ‡‚Н‰Ѕ‚а‚µ‚И‚ў
+		// ж•°гЃ®е¤‰ж›ґгЃЊз„ЎгЃ„е ґеђ€гЃЇдЅ•г‚‚гЃ—гЃЄгЃ„
 		if( Change )
 		{
-			// ѓXѓLѓjѓ“ѓOѓЃѓbѓVѓ…‚Мђ”‚ЖЏо•с‚рЌXђV‚·‚й
+			// г‚№г‚­гѓ‹гѓіг‚°гѓЎгѓѓг‚·гѓҐгЃ®ж•°гЃЁжѓ…е ±г‚’ж›ґж–°гЃ™г‚‹
 			Model->SkinBoneNum = AfterNum ;
 			_MEMCPY( Model->SkinBone, AfterSkin, sizeof( MV1_SKIN_BONE ) * Model->SkinBoneNum ) ;
 
-			// ѓ{Ѓ[ѓ“‚рЋg—p‚·‚йѓtѓЊЃ[ѓЂ‚М”z—с‚МѓAѓhѓЊѓX‚рЉ„‚и“–‚Д‚й
+			// гѓњгѓјгѓіг‚’дЅїз”ЁгЃ™г‚‹гѓ•гѓ¬гѓјгѓ гЃ®й…Ќе€—гЃ®г‚ўгѓ‰гѓ¬г‚№г‚’е‰Іг‚ЉеЅ“гЃ¦г‚‹
 			SK1 = Model->SkinBone ;
 			AfterUseFrameNum = 0 ;
 			for( i = 0 ; i < AfterNum ; i ++, SK1 ++ )
@@ -1476,21 +1476,21 @@ static bool MV1OptimizeSkinBoneInfo( MV1_MODEL_BASE *Model )
 				SK1->UseFrameNum = 0 ;
 			}
 
-			// ѓ{Ѓ[ѓ“‚рЋg—p‚·‚йѓtѓЊЃ[ѓЂ‚М”z—с‚рѓZѓbѓg‚·‚й
+			// гѓњгѓјгѓіг‚’дЅїз”ЁгЃ™г‚‹гѓ•гѓ¬гѓјгѓ гЃ®й…Ќе€—г‚’г‚»гѓѓгѓ€гЃ™г‚‹
 			for( i = 0 ; i < Model->SkinBoneUseFrameNum ; i ++ )
 			{
 				if( AfterUseFrame[ i ] == -1 ) continue ;
 				SK1 = &Model->SkinBone[ AfterIndex[ AfterUseFrame[ i ] ] ] ;
 				SK1->UseFrame[ SK1->UseFrameNum ] = TempUseFrame[ i ] ;
 
-				// ѓtѓЊЃ[ѓЂ‚М•ы‚аЌXђV
+				// гѓ•гѓ¬гѓјгѓ гЃ®ж–№г‚‚ж›ґж–°
 				Model->Frame[ TempUseFrame[ i ].Index ].UseSkinBone[ TempUseFrame[ i ].MatrixIndex ] = SK1 ;
 
 				SK1->UseFrameNum ++ ;
 			}
 		}
 
-		// ѓtѓЊЃ[ѓЂ‚ЙЉЦA‚·‚йѓ{Ѓ[ѓ“‚МѓAѓhѓЊѓX‚рѓZѓbѓg‚·‚й
+		// гѓ•гѓ¬гѓјгѓ гЃ«й–ўйЂЈгЃ™г‚‹гѓњгѓјгѓігЃ®г‚ўгѓ‰гѓ¬г‚№г‚’г‚»гѓѓгѓ€гЃ™г‚‹
 		SK1 = Model->SkinBone ;
 		for( i = 0 ; i < Model->SkinBoneNum ; i ++, SK1 ++ )
 		{
@@ -1501,14 +1501,14 @@ static bool MV1OptimizeSkinBoneInfo( MV1_MODEL_BASE *Model )
 		}
 	}
 
-	// Љm•Ы‚µ‚Д‚ў‚ЅѓЃѓ‚ѓЉ‚М‰р•ъ
+	// зўєдїќгЃ—гЃ¦гЃ„гЃџгѓЎгѓўгѓЄгЃ®и§Јж”ѕ
 	DXFREE( AfterSkin ) ;
 	AfterSkin = NULL ;
 
 	return true ;
 }
 
-// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“ѓfЃ[ѓ^‚рЌЕ“K‰»‚·‚й
+// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігѓ‡гѓјг‚їг‚’жњЂйЃ©еЊ–гЃ™г‚‹
 static bool MV1OptimizeAnim( MV1_MODEL_R *ReadModel )
 {
 	MV1_ANIM_R           *AnimR ;
@@ -1523,8 +1523,8 @@ static bool MV1OptimizeAnim( MV1_MODEL_R *ReadModel )
 	float                 f ;
 //	WORD                 *NewTimeB16 ;
 
-#if 0 // Ќs—с‚ЙXYZ‚Е€Щ‚И‚йѓXѓPЃ[ѓ‹‚Є‚і‚к‚Д‚ў‚й‚ЖђіЏн‚ЙЏ€—ќ‚Е‚«‚И‚ў‚М‚Е‰рЊ€‚М–ЪЏ€‚Є—§‚В‚Ь‚ЕѓRѓЃѓ“ѓgѓAѓEѓg
-	// MV1_ANIMKEY_TYPE_MATRIX4X4C ‚р MV1_ANIMKEY_TYPE_MATRIX3X3 ‚Ж MV1_ANIMKEY_TYPE_VECTOR ‚Й•Є‰р‚·‚й
+#if 0 // иЎЊе€—гЃ«XYZгЃ§з•°гЃЄг‚‹г‚№г‚±гѓјгѓ«гЃЊгЃ•г‚ЊгЃ¦гЃ„г‚‹гЃЁж­ЈеёёгЃ«е‡¦зђ†гЃ§гЃЌгЃЄгЃ„гЃ®гЃ§и§Јж±єгЃ®з›®е‡¦гЃЊз«‹гЃ¤гЃѕгЃ§г‚ігѓЎгѓігѓ€г‚ўг‚¦гѓ€
+	// MV1_ANIMKEY_TYPE_MATRIX4X4C г‚’ MV1_ANIMKEY_TYPE_MATRIX3X3 гЃЁ MV1_ANIMKEY_TYPE_VECTOR гЃ«е€†и§ЈгЃ™г‚‹
 	if( ReadModel->AnimDataNotDecomposition == FALSE )
 	{
 		AnimR = ReadModel->AnimFirst ;
@@ -1545,15 +1545,15 @@ static bool MV1OptimizeAnim( MV1_MODEL_R *ReadModel )
 						NewKeyTrans = ( VECTOR * )ADDMEMAREA( ( sizeof( VECTOR ) + sizeof( float ) ) * KeySetR->Num, &ReadModel->Mem ) ;
 						if( NewKeyTrans )
 						{
-							// •ЅЌs€Ъ“®—p‚МѓLЃ[ѓZѓbѓg‚р’З‰Б‚·‚й
+							// е№іиЎЊз§»е‹•з”ЁгЃ®г‚­гѓјг‚»гѓѓгѓ€г‚’иїЅеЉ гЃ™г‚‹
 							NewKeySetR = MV1RAddAnimKeySet( ReadModel, AnimR ) ;
 							if( NewKeySetR )
 							{
-								// ‘ќ‚¦‚й•Є‚МѓfЃ[ѓ^ѓTѓCѓY‚р‰БЋZ‚·‚й
+								// еў—гЃ€г‚‹е€†гЃ®гѓ‡гѓјг‚їг‚µг‚¤г‚єг‚’еЉ з®—гЃ™г‚‹
 								ReadModel->AnimKeyDataSize -= ( sizeof( MV1_ANIM_KEY_MATRIX4X4C ) + sizeof( float ) ) * KeySetR->Num ;
 								ReadModel->AnimKeyDataSize += ( sizeof( MV1_ANIM_KEY_MATRIX3X3 ) + sizeof( VECTOR ) + sizeof( float ) * 2 ) * KeySetR->Num ;
 
-								// ђV‚µ‚ўѓoѓbѓtѓ@‚р‚RЃ~‚RЌs—с‚МѓfЃ[ѓ^‚рЉi”[‚·‚й‚М‚Й‚В‚©‚ў
+								// ж–°гЃ—гЃ„гѓђгѓѓгѓ•г‚Ўг‚’пј“Г—пј“иЎЊе€—гЃ®гѓ‡гѓјг‚їг‚’ж јзґЌгЃ™г‚‹гЃ®гЃ«гЃ¤гЃ‹гЃ„
 								NewKeySetR->Type = MV1_ANIMKEY_TYPE_MATRIX3X3 ;
 								NewKeySetR->DataType = MV1_ANIMKEY_DATATYPE_MATRIX3X3 ;
 								NewKeySetR->TotalTime = KeySetR->TotalTime ;
@@ -1562,7 +1562,7 @@ static bool MV1OptimizeAnim( MV1_MODEL_R *ReadModel )
 								NewKeySetR->KeyTime = ( float * )( NewKeyTrans + KeySetR->Num ) ;
 								_MEMCPY( NewKeySetR->KeyTime, KeySetR->KeyTime, sizeof( float ) * KeySetR->Num ) ;
 
-								// Љщ‘¶‚Мѓoѓbѓtѓ@‚р•ЅЌs€Ъ“®‚МѓfЃ[ѓ^‚рЉi”[‚·‚й‚М‚ЙЋg‚¤
+								// ж—ўе­гЃ®гѓђгѓѓгѓ•г‚Ўг‚’е№іиЎЊз§»е‹•гЃ®гѓ‡гѓјг‚їг‚’ж јзґЌгЃ™г‚‹гЃ®гЃ«дЅїгЃ†
 								KeySetR->Type = MV1_ANIMKEY_TYPE_VECTOR ;
 								KeySetR->DataType = MV1_ANIMKEY_DATATYPE_TRANSLATE ;
 								KeySetR->KeyVector = NewKeyTrans ;
@@ -1595,9 +1595,9 @@ static bool MV1OptimizeAnim( MV1_MODEL_R *ReadModel )
 	}
 
 
-	// MV1_ANIMKEY_TYPE_MATRIX3X3 ѓ^ѓCѓv‚М MV1_ANIMKEY_DATATYPE_MATRIX3X3 ‚р
-	// MV1_ANIMKEY_TYPE_QUATERNION_VMD ѓ^ѓCѓv‚М MV1_ANIMKEY_DATATYPE_ROTATE ‚Ж
-	// MV1_ANIMKEY_TYPE_VECTOR ѓ^ѓCѓv‚М MV1_ANIMKEY_DATATYPE_SCALE ‚Й•ПЉ·‚·‚й
+	// MV1_ANIMKEY_TYPE_MATRIX3X3 г‚їг‚¤гѓ—гЃ® MV1_ANIMKEY_DATATYPE_MATRIX3X3 г‚’
+	// MV1_ANIMKEY_TYPE_QUATERNION_VMD г‚їг‚¤гѓ—гЃ® MV1_ANIMKEY_DATATYPE_ROTATE гЃЁ
+	// MV1_ANIMKEY_TYPE_VECTOR г‚їг‚¤гѓ—гЃ® MV1_ANIMKEY_DATATYPE_SCALE гЃ«е¤‰жЏ›гЃ™г‚‹
 	if( ReadModel->AnimDataNotDecomposition == FALSE )
 	{
 		AnimR = ReadModel->AnimFirst ;
@@ -1616,24 +1616,24 @@ static bool MV1OptimizeAnim( MV1_MODEL_R *ReadModel )
 					KeySetR->Type     != MV1_ANIMKEY_TYPE_MATRIX3X3 )
 					continue ;
 
-				// ѓNѓHЃ[ѓ^ѓjѓIѓ“‚рЋg—p‚µ‚Ѕ‰с“]’l‚Й•ПЉ·‚·‚й
+				// г‚Їг‚©гѓјг‚їгѓ‹г‚Єгѓіг‚’дЅїз”ЁгЃ—гЃџе›ћи»ўеЂ¤гЃ«е¤‰жЏ›гЃ™г‚‹
 
-				// ѓLЃ[ѓTѓCѓY‚рЊё‚з‚µ‚Д‘ќ‚в‚·
+				// г‚­гѓјг‚µг‚¤г‚єг‚’жё›г‚‰гЃ—гЃ¦еў—г‚„гЃ™
 				ReadModel->AnimKeyDataSize -= ( sizeof( MV1_ANIM_KEY_MATRIX3X3 ) ) * KeySetR->Num ;
 				ReadModel->AnimKeyDataSize += ( sizeof( FLOAT4 )                 ) * KeySetR->Num ;
 
-				// ђV‚µ‚ўѓLЃ[‚р€кЋћ“I‚ЙЉi”[‚·‚йѓЃѓ‚ѓЉ—М€ж‚МЉm•Ы
+				// ж–°гЃ—гЃ„г‚­гѓјг‚’дёЂж™‚зљ„гЃ«ж јзґЌгЃ™г‚‹гѓЎгѓўгѓЄй еџџгЃ®зўєдїќ
 				NewBuffer = ( FLOAT4 * )DXALLOC( ( sizeof( VECTOR ) + sizeof( FLOAT4 ) ) * KeySetR->Num ) ;
 				if( NewBuffer )
 				{
-					// ѓ^ѓCѓv‚р•ПЌX
+					// г‚їг‚¤гѓ—г‚’е¤‰ж›ґ
 					KeySetR->Type = MV1_ANIMKEY_TYPE_QUATERNION_VMD ;
 					KeySetR->DataType = MV1_ANIMKEY_DATATYPE_ROTATE ;
 
-					// ‰с“]ѓIЃ[ѓ_Ѓ[‚рѓZѓbѓg
+					// е›ћи»ўг‚ЄгѓјгѓЂгѓјг‚’г‚»гѓѓгѓ€
 					AnimR->RotateOrder = MV1_ROTATE_ORDER_XYZ ;
 
-					// ’l‚р•ПЉ·
+					// еЂ¤г‚’е¤‰жЏ›
 					Key    = KeySetR->KeyMatrix3x3 ;
 					NewQKey = NewBuffer ;
 					NewSKey = ( VECTOR * )( NewBuffer + KeySetR->Num ) ;
@@ -1657,7 +1657,7 @@ static bool MV1OptimizeAnim( MV1_MODEL_R *ReadModel )
 							SizeValid = 1 ;
 						}
 
-						// ђі‹K‰»
+						// ж­Ји¦ЏеЊ–
 						Key->Matrix[ 0 ][ 0 ] *= Size.x ;
 						Key->Matrix[ 1 ][ 0 ] *= Size.x ;
 						Key->Matrix[ 2 ][ 0 ] *= Size.x ;
@@ -1714,19 +1714,19 @@ static bool MV1OptimizeAnim( MV1_MODEL_R *ReadModel )
 						}
 					}
 
-					// ѓNѓHЃ[ѓ^ѓjѓIѓ“‚М“а—e‚рѓRѓsЃ[
+					// г‚Їг‚©гѓјг‚їгѓ‹г‚ЄгѓігЃ®е†…е®№г‚’г‚ігѓ”гѓј
 					_MEMCPY( KeySetR->KeyFloat4, NewBuffer, sizeof( FLOAT4 ) * KeySetR->Num ) ;
 
-					// ѓTѓCѓYѓLЃ[‚Є—LЊш‚ѕ‚Б‚ЅЏкЌ‡‚НѓTѓCѓYѓLЃ[ѓZѓbѓg‚р’З‰Б‚·‚й
+					// г‚µг‚¤г‚єг‚­гѓјгЃЊжњ‰еЉ№гЃ гЃЈгЃџе ґеђ€гЃЇг‚µг‚¤г‚єг‚­гѓјг‚»гѓѓгѓ€г‚’иїЅеЉ гЃ™г‚‹
 					if( SizeValid )
 					{
 						NewKeySetR = MV1RAddAnimKeySet( ReadModel, AnimR ) ;
 						if( NewKeySetR )
 						{
-							// ‘ќ‚¦‚й•Є‚МѓfЃ[ѓ^ѓTѓCѓY‚р‰БЋZ‚·‚й
+							// еў—гЃ€г‚‹е€†гЃ®гѓ‡гѓјг‚їг‚µг‚¤г‚єг‚’еЉ з®—гЃ™г‚‹
 							ReadModel->AnimKeyDataSize += ( sizeof( float ) + sizeof( VECTOR ) ) * KeySetR->Num ;
 
-							// ѓLЃ[ѓZѓbѓgЏо•с‚рѓZѓbѓg
+							// г‚­гѓјг‚»гѓѓгѓ€жѓ…е ±г‚’г‚»гѓѓгѓ€
 							NewKeySetR->Type = MV1_ANIMKEY_TYPE_VECTOR ;
 							NewKeySetR->DataType = MV1_ANIMKEY_DATATYPE_SCALE ;
 							NewKeySetR->TotalTime = KeySetR->TotalTime ;
@@ -1735,12 +1735,12 @@ static bool MV1OptimizeAnim( MV1_MODEL_R *ReadModel )
 							NewKeySetR->KeyTime = ( float * )( NewKeySetR->KeyVector + KeySetR->Num ) ;
 							_MEMCPY( NewKeySetR->KeyTime, KeySetR->KeyTime, sizeof( float ) * KeySetR->Num ) ;
 
-							// ѓLЃ[Џо•с‚рѓoѓbѓtѓ@‚©‚зѓRѓsЃ[
+							// г‚­гѓјжѓ…е ±г‚’гѓђгѓѓгѓ•г‚ЎгЃ‹г‚‰г‚ігѓ”гѓј
 							_MEMCPY( NewKeySetR->KeyVector, NewBuffer + KeySetR->Num, sizeof( VECTOR ) * KeySetR->Num ) ;
 						}
 					}
 
-					// €кЋћ“I‚ЙЉm•Ы‚µ‚ЅѓЃѓ‚ѓЉ‚р‰р•ъ‚·‚й
+					// дёЂж™‚зљ„гЃ«зўєдїќгЃ—гЃџгѓЎгѓўгѓЄг‚’и§Јж”ѕгЃ™г‚‹
 					DXFREE( NewBuffer ) ;
 				}
 
@@ -1750,8 +1750,8 @@ static bool MV1OptimizeAnim( MV1_MODEL_R *ReadModel )
 	}
 #endif 
 
-	// MV1_ANIMKEY_TYPE_MATRIX3X3 ѓ^ѓCѓv‚М MV1_ANIMKEY_DATATYPE_MATRIX3X3 ‚р
-	// MV1_ANIMKEY_TYPE_VECTOR ѓ^ѓCѓv‚М MV1_ANIMKEY_DATATYPE_ROTATE ‚Й•ПЉ·‚·‚й
+	// MV1_ANIMKEY_TYPE_MATRIX3X3 г‚їг‚¤гѓ—гЃ® MV1_ANIMKEY_DATATYPE_MATRIX3X3 г‚’
+	// MV1_ANIMKEY_TYPE_VECTOR г‚їг‚¤гѓ—гЃ® MV1_ANIMKEY_DATATYPE_ROTATE гЃ«е¤‰жЏ›гЃ™г‚‹
 	AnimR = ReadModel->AnimFirst ;
 	for( i = 0 ; ( DWORD )i < ReadModel->AnimNum ; i ++, AnimR = AnimR->DataNext )
 	{
@@ -1767,20 +1767,20 @@ static bool MV1OptimizeAnim( MV1_MODEL_R *ReadModel )
 				KeySetR->Type     != MV1_ANIMKEY_TYPE_MATRIX3X3 )
 				continue ;
 
-			// ‰с“]’l‚Й•ПЉ·‚·‚й
+			// е›ћи»ўеЂ¤гЃ«е¤‰жЏ›гЃ™г‚‹
 
-			// ѓLЃ[ѓTѓCѓY‚рЊё‚з‚µ‚Д‘ќ‚в‚·
+			// г‚­гѓјг‚µг‚¤г‚єг‚’жё›г‚‰гЃ—гЃ¦еў—г‚„гЃ™
 			ReadModel->AnimKeyDataSize -= ( sizeof( MV1_ANIM_KEY_MATRIX3X3 ) ) * KeySetR->Num ;
 			ReadModel->AnimKeyDataSize += ( sizeof( VECTOR )                   ) * KeySetR->Num ;
 
-			// ђV‚µ‚ўѓLЃ[‚р€кЋћ“I‚ЙЉi”[‚·‚йѓЃѓ‚ѓЉ—М€ж‚МЉm•Ы
+			// ж–°гЃ—гЃ„г‚­гѓјг‚’дёЂж™‚зљ„гЃ«ж јзґЌгЃ™г‚‹гѓЎгѓўгѓЄй еџџгЃ®зўєдїќ
 			NewBuffer = ( VECTOR * )DXALLOC( sizeof( VECTOR ) * KeySetR->Num ) ;
 			if( NewBuffer )
 			{
-				// ѓWѓ“ѓoѓ‹ѓЌѓbѓN‚Є”­ђ¶‚µ‚И‚ў‰с“]ѓIЃ[ѓ_Ѓ[‚рЊџЏo‚·‚й
+				// г‚ёгѓігѓђгѓ«гѓ­гѓѓг‚ЇгЃЊз™єз”џгЃ—гЃЄгЃ„е›ћи»ўг‚ЄгѓјгѓЂгѓјг‚’ж¤ње‡єгЃ™г‚‹
 				for( k = 0 ; k < 6 ; k ++ )
 				{
-					// ’l‚р•ПЉ·
+					// еЂ¤г‚’е¤‰жЏ›
 					Key    = KeySetR->KeyMatrix3x3 ;
 					NewKey = NewBuffer ;
 					Error = 0 ;
@@ -1815,18 +1815,18 @@ static bool MV1OptimizeAnim( MV1_MODEL_R *ReadModel )
 					if( Error == 0 || k == 5 ) break ;
 				}
 
-				// ѓ^ѓCѓv‚р•ПЌX
+				// г‚їг‚¤гѓ—г‚’е¤‰ж›ґ
 				KeySetR->Type = MV1_ANIMKEY_TYPE_VECTOR ;
 				KeySetR->DataType = MV1_ANIMKEY_DATATYPE_ROTATE ;
 
-				// ‰с“]ѓIЃ[ѓ_Ѓ[‚рѓZѓbѓg
+				// е›ћи»ўг‚ЄгѓјгѓЂгѓјг‚’г‚»гѓѓгѓ€
 				AnimR->RotateOrder = k ;
 
-				// ѓoѓbѓtѓ@‚М“а—e‚рѓRѓsЃ[‚µ‚Д€кЋћ“I‚ЙЉm•Ы‚µ‚ЅѓЃѓ‚ѓЉ‚р‰р•ъ‚·‚й
+				// гѓђгѓѓгѓ•г‚ЎгЃ®е†…е®№г‚’г‚ігѓ”гѓјгЃ—гЃ¦дёЂж™‚зљ„гЃ«зўєдїќгЃ—гЃџгѓЎгѓўгѓЄг‚’и§Јж”ѕгЃ™г‚‹
 				_MEMCPY( KeySetR->KeyVector, NewBuffer, sizeof( VECTOR ) * KeySetR->Num ) ;
 				DXFREE( NewBuffer ) ;
 
-				// ‰с“]’l‚М”т‚С‚рЏCђі‚·‚й
+				// е›ћи»ўеЂ¤гЃ®йЈ›гЃіг‚’дї®ж­ЈгЃ™г‚‹
 				NewKey = KeySetR->KeyVector + 1 ;
 				for( l = 1 ; l < KeySetR->Num ; l ++, NewKey ++ )
 				{
@@ -1867,7 +1867,7 @@ static bool MV1OptimizeAnim( MV1_MODEL_R *ReadModel )
 		}
 	}
 
-	// ђьЊ`•вЉФ‚ЕЌП‚ЮѓfЃ[ѓ^‚рЌнЏњ‚·‚й‚©ЃAЊё‚з‚№‚йђ”‚ЄЏ­‚И‚­€к’иЉФЉu‚Е•А‚ФѓLЃ[‚Є‘Ѕ‚ўЏкЌ‡‚НЊЕ’иЉФЉu‚Й‚·‚й
+	// з·љеЅўиЈњй–“гЃ§жё€г‚Ђгѓ‡гѓјг‚їг‚’е‰Љй™¤гЃ™г‚‹гЃ‹гЂЃжё›г‚‰гЃ›г‚‹ж•°гЃЊе°‘гЃЄгЃЏдёЂе®љй–“йљ”гЃ§дё¦гЃ¶г‚­гѓјгЃЊе¤љгЃ„е ґеђ€гЃЇе›єе®љй–“йљ”гЃ«гЃ™г‚‹
 	AnimR = ReadModel->AnimFirst ;
 	for( i = 0 ; ( DWORD )i < ReadModel->AnimNum ; i ++, AnimR = AnimR->DataNext )
 	{
@@ -1878,14 +1878,14 @@ static bool MV1OptimizeAnim( MV1_MODEL_R *ReadModel )
 		}
 	}
 
-	// MV1_ANIMKEY_TYPE_VECTOR ѓ^ѓCѓv‚МѓLЃ[‚р•Є‰р‚Е‚«‚й‚©( •Є‰р‚µ‚Ѕ•ы‚ЄѓfЃ[ѓ^ѓTѓCѓY‚ЄЏ¬‚і‚­‚И‚й‚© )’І‚Ч
-	// •Є‰р‚µ‚Ѕ•ы‚Є—З‚ўЏкЌ‡‚Н•Є‰р‚·‚й
+	// MV1_ANIMKEY_TYPE_VECTOR г‚їг‚¤гѓ—гЃ®г‚­гѓјг‚’е€†и§ЈгЃ§гЃЌг‚‹гЃ‹( е€†и§ЈгЃ—гЃџж–№гЃЊгѓ‡гѓјг‚їг‚µг‚¤г‚єгЃЊе°ЏгЃ•гЃЏгЃЄг‚‹гЃ‹ )иЄїгЃ№
+	// е€†и§ЈгЃ—гЃџж–№гЃЊи‰ЇгЃ„е ґеђ€гЃЇе€†и§ЈгЃ™г‚‹
 	if( ReadModel->AnimDataNotDecomposition == FALSE )
 	{
 		AnimR = ReadModel->AnimFirst ;
 		for( i = 0 ; ( DWORD )i < ReadModel->AnimNum ; i ++, AnimR = AnimR->DataNext )
 		{
-			// Ќs—с‚©‚з‰с“]ѓxѓNѓgѓ‹‚Й‚µ‚ЅЏкЌ‡‚Н—v‘f’P€К‚Е•Є‰р‚µ‚И‚ў
+			// иЎЊе€—гЃ‹г‚‰е›ћи»ўгѓ™г‚Їгѓ€гѓ«гЃ«гЃ—гЃџе ґеђ€гЃЇи¦Ѓзґ еЌдЅЌгЃ§е€†и§ЈгЃ—гЃЄгЃ„
 			if( AnimR->Container->IsMatrixLinearBlend ) continue ;
 
 			KeySetR = AnimR->AnimKeySetFirst ;
@@ -1899,11 +1899,11 @@ static bool MV1OptimizeAnim( MV1_MODEL_R *ReadModel )
 				if( KeySetR->Type != MV1_ANIMKEY_TYPE_VECTOR )
 					continue ;
 
-				// ѓLЃ[‚Мђ”‚Є‚QЊВ‚ж‚и‚аЏ­‚И‚ў‚Ж‚«‚Н‰Ѕ‚а‚µ‚И‚ў
+				// г‚­гѓјгЃ®ж•°гЃЊпј’еЂ‹г‚€г‚Љг‚‚е°‘гЃЄгЃ„гЃЁгЃЌгЃЇдЅ•г‚‚гЃ—гЃЄгЃ„
 				if( KeySetR->Num < 2 )
 					continue ;
 
-				// ’l‚МЊџЏШ
+				// еЂ¤гЃ®ж¤њиЁј
 				ix = true;
 				iy = true;
 				iz = true;
@@ -1916,11 +1916,11 @@ static bool MV1OptimizeAnim( MV1_MODEL_R *ReadModel )
 					if( ix == false && iy == false && iz == false ) break ;
 				}
 
-				// €к‚В‚аЊш—¦‰»‚Е‚«‚»‚¤‚а‚И‚ўЏкЌ‡‚Н‰Ѕ‚а‚№‚ёЏI—№
+				// дёЂгЃ¤г‚‚еЉ№зЋ‡еЊ–гЃ§гЃЌгЃќгЃ†г‚‚гЃЄгЃ„е ґеђ€гЃЇдЅ•г‚‚гЃ›гЃљзµ‚дє†
 				if( ix == false && iy == false && iz == false )
 					continue ;
 
-				// •Є‰р‚µ‚ЅЏкЌ‡‚М‘ЌѓfЃ[ѓ^ѓTѓCѓY‚ЖЃA•Є‰р‚µ‚И‚ўЏкЌ‡‚МѓTѓCѓY‚р”дЉr‚µ‚ДЃA•Є‰р‚µ‚Ѕ•ы‚Є—З‚ўЏкЌ‡‚Н•Є‰р‚·‚й
+				// е€†и§ЈгЃ—гЃџе ґеђ€гЃ®з·Џгѓ‡гѓјг‚їг‚µг‚¤г‚єгЃЁгЂЃе€†и§ЈгЃ—гЃЄгЃ„е ґеђ€гЃ®г‚µг‚¤г‚єг‚’жЇ”ијѓгЃ—гЃ¦гЂЃе€†и§ЈгЃ—гЃџж–№гЃЊи‰ЇгЃ„е ґеђ€гЃЇе€†и§ЈгЃ™г‚‹
 				BeginSize = ( int )( sizeof( VECTOR ) * KeySetR->Num + sizeof( MV1_ANIM_KEYSET_BASE ) ) ;
 				if( KeySetR->TimeType == MV1_ANIMKEY_TIME_TYPE_KEY )
 					BeginSize += sizeof( float ) * KeySetR->Num ;
@@ -2004,11 +2004,11 @@ static bool MV1OptimizeAnim( MV1_MODEL_R *ReadModel )
 						NewKeySetRZ->KeyLinear[ k ] = KeySetR->KeyVector[ k ].z ;
 					}
 
-					// ѓLЃ[ѓfЃ[ѓ^‚МѓTѓCѓY‚рЊё‚з‚µ‚Д‘ќ‚в‚·
+					// г‚­гѓјгѓ‡гѓјг‚їгЃ®г‚µг‚¤г‚єг‚’жё›г‚‰гЃ—гЃ¦еў—г‚„гЃ™
 					ReadModel->AnimKeyDataSize -= sizeof( float ) * KeySetR->Num ;
 					ReadModel->AnimKeyDataSize += sizeof( float ) * KeySetR->Num * 3 ;
 
-					// ‘ќ‚¦‚ЅѓLЃ[‹¤ЃXЌЕ“K‰»‚·‚й
+					// еў—гЃ€гЃџг‚­гѓје…±гЂ…жњЂйЃ©еЊ–гЃ™г‚‹
 					MV1OptimizeKeySetTimeType( ReadModel, KeySetR ) ;
 					MV1OptimizeKeySetTimeType( ReadModel, NewKeySetRY ) ;
 					MV1OptimizeKeySetTimeType( ReadModel, NewKeySetRZ ) ;
@@ -2033,7 +2033,7 @@ static bool MV1OptimizeAnim( MV1_MODEL_R *ReadModel )
 		}
 	}
 
-	// ‚а‚¤€к“xђьЊ`•вЉФ‚ЕЌП‚ЮѓfЃ[ѓ^‚рЌнЏњ‚·‚й‚©ЃAЊё‚з‚№‚йђ”‚ЄЏ­‚И‚­€к’иЉФЉu‚Е•А‚ФѓLЃ[‚Є‘Ѕ‚ўЏкЌ‡‚НЊЕ’иЉФЉu‚Й‚·‚й
+	// г‚‚гЃ†дёЂеє¦з·љеЅўиЈњй–“гЃ§жё€г‚Ђгѓ‡гѓјг‚їг‚’е‰Љй™¤гЃ™г‚‹гЃ‹гЂЃжё›г‚‰гЃ›г‚‹ж•°гЃЊе°‘гЃЄгЃЏдёЂе®љй–“йљ”гЃ§дё¦гЃ¶г‚­гѓјгЃЊе¤љгЃ„е ґеђ€гЃЇе›єе®љй–“йљ”гЃ«гЃ™г‚‹
 	AnimR = ReadModel->AnimFirst ;
 	for( i = 0 ; ( DWORD )i < ReadModel->AnimNum ; i ++, AnimR = AnimR->DataNext )
 	{
@@ -2044,14 +2044,14 @@ static bool MV1OptimizeAnim( MV1_MODEL_R *ReadModel )
 		}
 	}
 
-	// “Ї‚¶ѓ^ѓCѓv‚МѓLЃ[ѓZѓbѓg‚Є—v‘f–€‚Й•Є‚©‚к‚Д‚ў‚Ѕ‚з€к‚В‚Й‚·‚й
+	// еђЊгЃг‚їг‚¤гѓ—гЃ®г‚­гѓјг‚»гѓѓгѓ€гЃЊи¦Ѓзґ жЇЋгЃ«е€†гЃ‹г‚ЊгЃ¦гЃ„гЃџг‚‰дёЂгЃ¤гЃ«гЃ™г‚‹
 	AnimR = ReadModel->AnimFirst ;
 	for( i = 0 ; ( DWORD )i < ReadModel->AnimNum ; i ++, AnimR = AnimR->DataNext )
 	{
 		int fx, fy, fz, conv ;
 		MV1_ANIMKEYSET_R *kx = NULL, *ky = NULL, *kz = NULL ;
 
-		// ѓLЃ[‚Мђ”‚Є“Ї‚¶‚И•ЅЌs€Ъ“®ѓLЃ[ѓZѓbѓg‚Є‚w‚x‚y‚Ж‘µ‚Б‚Д‚ў‚Ѕ‚з€к‚В‚Й‚·‚й
+		// г‚­гѓјгЃ®ж•°гЃЊеђЊгЃгЃЄе№іиЎЊз§»е‹•г‚­гѓјг‚»гѓѓгѓ€гЃЊпјёпј№пјєгЃЁжЏѓгЃЈгЃ¦гЃ„гЃџг‚‰дёЂгЃ¤гЃ«гЃ™г‚‹
 		KeySetR = AnimR->AnimKeySetFirst ;
 		fx = 0 ;
 		fy = 0 ;
@@ -2120,7 +2120,7 @@ static bool MV1OptimizeAnim( MV1_MODEL_R *ReadModel )
 			}
 		}
 
-		// ѓLЃ[‚Мђ”‚Є“Ї‚¶‚ИЉg‘еѓLЃ[ѓZѓbѓg‚Є‚w‚x‚y‚Ж‘µ‚Б‚Д‚ў‚Ѕ‚з€к‚В‚Й‚·‚й
+		// г‚­гѓјгЃ®ж•°гЃЊеђЊгЃгЃЄж‹Ўе¤§г‚­гѓјг‚»гѓѓгѓ€гЃЊпјёпј№пјєгЃЁжЏѓгЃЈгЃ¦гЃ„гЃџг‚‰дёЂгЃ¤гЃ«гЃ™г‚‹
 		KeySetR = AnimR->AnimKeySetFirst ;
 		fx = 0 ;
 		fy = 0 ;
@@ -2189,7 +2189,7 @@ static bool MV1OptimizeAnim( MV1_MODEL_R *ReadModel )
 			}
 		}
 
-		// ѓLЃ[‚Мђ”‚Є“Ї‚¶‚И‰с“]ѓLЃ[ѓZѓbѓg‚Є‚w‚x‚y‚Ж‘µ‚Б‚Д‚ў‚Ѕ‚з€к‚В‚Й‚·‚й
+		// г‚­гѓјгЃ®ж•°гЃЊеђЊгЃгЃЄе›ћи»ўг‚­гѓјг‚»гѓѓгѓ€гЃЊпјёпј№пјєгЃЁжЏѓгЃЈгЃ¦гЃ„гЃџг‚‰дёЂгЃ¤гЃ«гЃ™г‚‹
 		KeySetR = AnimR->AnimKeySetFirst ;
 		fx = 0 ;
 		fy = 0 ;
@@ -2259,7 +2259,7 @@ static bool MV1OptimizeAnim( MV1_MODEL_R *ReadModel )
 		}
 	}
 
-	// ЌнЏњ‚Е‚«‚йѓLЃ[‚Є‚ ‚йЏкЌ‡‚НЌнЏњ‚·‚й
+	// е‰Љй™¤гЃ§гЃЌг‚‹г‚­гѓјгЃЊгЃ‚г‚‹е ґеђ€гЃЇе‰Љй™¤гЃ™г‚‹
 	AnimR = ReadModel->AnimFirst ;
 	for( i = 0 ; ( DWORD )i < ReadModel->AnimNum ; i ++, AnimR = AnimR->DataNext )
 	{
@@ -2272,7 +2272,7 @@ static bool MV1OptimizeAnim( MV1_MODEL_R *ReadModel )
 
 	return 0 ;
 /*
-	// 16bit’l‚Й•ПЉ·‚·‚й
+	// 16bitеЂ¤гЃ«е¤‰жЏ›гЃ™г‚‹
 	AnimR = ReadModel->AnimFirst ;
 	for( i = 0 ; ( DWORD )i < ReadModel->AnimNum ; i ++, AnimR = AnimR->DataNext )
 	{
@@ -2281,13 +2281,13 @@ static bool MV1OptimizeAnim( MV1_MODEL_R *ReadModel )
 		{
 			if( KeySetR->Type == MV1_ANIMKEY_TYPE_QUATERNION ) continue ;
 
-			// Љщ‚Й‚P‚Uѓrѓbѓg‚ѕ‚Б‚Ѕ‚з‰Ѕ‚а‚µ‚И‚ў
+			// ж—ўгЃ«пј‘пј–гѓ“гѓѓгѓ€гЃ гЃЈгЃџг‚‰дЅ•г‚‚гЃ—гЃЄгЃ„
 			if( KeySetR->Bit16 ) continue ;
 
-			// ѓLЃ[‚Є‚PЊВ‚©–і‚©‚Б‚Ѕ‚з‰Ѕ‚а‚µ‚И‚ў
+			// г‚­гѓјгЃЊпј‘еЂ‹гЃ‹з„ЎгЃ‹гЃЈгЃџг‚‰дЅ•г‚‚гЃ—гЃЄгЃ„
 			if( KeySetR->Num <= 1 ) continue ;
 
-			// ЋћЉФѓfЃ[ѓ^•”•Є‚рЊЕ’иЏ¬ђ”“_‰»
+			// ж™‚й–“гѓ‡гѓјг‚їйѓЁе€†г‚’е›єе®ље°Џж•°з‚№еЊ–
 			TimeSub.Unit = 1.0f ;
 			TimeSub.Min = 0.0f ;
 			if( KeySetR->TimeType == MV1_ANIMKEY_TIME_TYPE_KEY )
@@ -2302,7 +2302,7 @@ static bool MV1OptimizeAnim( MV1_MODEL_R *ReadModel )
 					if( TimeSub.Unit < *Time ) TimeSub.Unit = *Time ;
 				}
 
-				// 16bit•вЏ•Џо•с‚МЌмђ¬
+				// 16bitиЈњеЉ©жѓ…е ±гЃ®дЅњж€ђ
 				KeySetR->Time16BSub.Min  = MV1AnimKey16BitMinFtoB( TimeSub.Min  ) ;
 				TimeSub.Min              = MV1AnimKey16BitMinBtoF( KeySetR->Time16BSub.Min ) ;
 				TimeSub.Unit            -= TimeSub.Min ;
@@ -2312,7 +2312,7 @@ static bool MV1OptimizeAnim( MV1_MODEL_R *ReadModel )
 				KeySetR->Time16BSub.Unit = MV1AnimKey16BitUnitFtoB( TimeSub.Unit ) ;
 				TimeSub.Unit             = MV1AnimKey16BitUnitBtoF( KeySetR->Time16BSub.Unit ) ;
 
-				// ’l‚р•ПЉ·
+				// еЂ¤г‚’е¤‰жЏ›
 				Time       = KeySetR->KeyTime ;
 				NewTimeB16 = KeySetR->KeyTimeB16 ;
 				for( k = 0 ; k < KeySetR->Num ; k ++, Time ++, NewTimeB16 ++ )
@@ -2328,7 +2328,7 @@ static bool MV1OptimizeAnim( MV1_MODEL_R *ReadModel )
 					WORD *NewKey ;
 					float *Key ;
 
-					// ЌЕЏ¬’l‚ЖЌЕ‘е’l‚рЋж“ѕ
+					// жњЂе°ЏеЂ¤гЃЁжњЂе¤§еЂ¤г‚’еЏ–еѕ—
 					KeySub.Min  =  1000000000000.0f ;
 					KeySub.Unit = -1000000000000.0f ;
 					Key = KeySetR->KeyLinear ;
@@ -2338,7 +2338,7 @@ static bool MV1OptimizeAnim( MV1_MODEL_R *ReadModel )
 						 if( KeySub.Unit < *Key ) KeySub.Unit = *Key ;
 					}
 
-					// 16bit•вЏ•Џо•с‚МЌмђ¬
+					// 16bitиЈњеЉ©жѓ…е ±гЃ®дЅњж€ђ
 					KeySetR->Key16BSub.Min  = MV1AnimKey16BitMinFtoB( KeySub.Min  ) ;
 					KeySub.Min              = MV1AnimKey16BitMinBtoF( KeySetR->Key16BSub.Min ) ;
 					KeySub.Unit            -= KeySub.Min ;
@@ -2348,10 +2348,10 @@ static bool MV1OptimizeAnim( MV1_MODEL_R *ReadModel )
 					KeySetR->Key16BSub.Unit = MV1AnimKey16BitUnitFtoB( KeySub.Unit ) ;
 					KeySub.Unit             = MV1AnimKey16BitUnitBtoF( KeySetR->Key16BSub.Unit ) ;
 
-					// 16bit‚P•У‚и‚М’l‚Є 0.1f ‚р’ґ‚¦‚Д‚µ‚Ь‚Б‚Ѕ‚з 16bit‰»‚µ‚И‚ў
+					// 16bitпј‘иѕєг‚ЉгЃ®еЂ¤гЃЊ 0.1f г‚’и¶…гЃ€гЃ¦гЃ—гЃѕгЃЈгЃџг‚‰ 16bitеЊ–гЃ—гЃЄгЃ„
 					if( KeySub.Unit >= 0.1f ) continue ;
 
-					// ’l‚р•ПЉ·
+					// еЂ¤г‚’е¤‰жЏ›
 					Key        = KeySetR->KeyLinear ;
 					NewKey     = KeySetR->KeyLinearB16 ;
 					for( k = 0 ; k < KeySetR->Num ; k ++, Key ++, NewKey ++ )
@@ -2359,7 +2359,7 @@ static bool MV1OptimizeAnim( MV1_MODEL_R *ReadModel )
 						*( ( WORD * )NewKey ) = ( WORD )( _FTOL( ( *Key - KeySub.Min ) / KeySub.Unit ) ) ;
 					}
 
-					// ѓLЃ[ѓTѓCѓY‚рЊё‚з‚µ‚Д‘ќ‚в‚·
+					// г‚­гѓјг‚µг‚¤г‚єг‚’жё›г‚‰гЃ—гЃ¦еў—г‚„гЃ™
 					ReadModel->AnimKeyDataSize -= sizeof( float ) * KeySetR->Num ;
 					ReadModel->AnimKeyDataSize += sizeof( WORD  ) * KeySetR->Num ;
 				}
@@ -2370,7 +2370,7 @@ static bool MV1OptimizeAnim( MV1_MODEL_R *ReadModel )
 					VECTOR_B16 *NewKey ;
 					VECTOR *Key ;
 
-					// ЌЕЏ¬’l‚ЖЌЕ‘е’l‚рЋж“ѕ
+					// жњЂе°ЏеЂ¤гЃЁжњЂе¤§еЂ¤г‚’еЏ–еѕ—
 					KeySub.Min  =  1000000000000.0f ;
 					KeySub.Unit = -1000000000000.0f ;
 					Key = KeySetR->KeyVector ;
@@ -2384,7 +2384,7 @@ static bool MV1OptimizeAnim( MV1_MODEL_R *ReadModel )
 						 if( KeySub.Unit < Key->z ) KeySub.Unit = Key->z ;
 					}
 
-					// 16bit•вЏ•Џо•с‚МЌмђ¬
+					// 16bitиЈњеЉ©жѓ…е ±гЃ®дЅњж€ђ
 					KeySetR->Key16BSub.Min  = MV1AnimKey16BitMinFtoB( KeySub.Min  ) ;
 					KeySub.Min              = MV1AnimKey16BitMinBtoF( KeySetR->Key16BSub.Min ) ;
 					KeySub.Unit            -= KeySub.Min ;
@@ -2394,10 +2394,10 @@ static bool MV1OptimizeAnim( MV1_MODEL_R *ReadModel )
 					KeySetR->Key16BSub.Unit = MV1AnimKey16BitUnitFtoB( KeySub.Unit ) ;
 					KeySub.Unit             = MV1AnimKey16BitUnitBtoF( KeySetR->Key16BSub.Unit ) ;
 
-					// 16bit‚P•У‚и‚М’l‚Є 0.1f ‚р’ґ‚¦‚Д‚µ‚Ь‚Б‚Ѕ‚з 16bit‰»‚µ‚И‚ў
+					// 16bitпј‘иѕєг‚ЉгЃ®еЂ¤гЃЊ 0.1f г‚’и¶…гЃ€гЃ¦гЃ—гЃѕгЃЈгЃџг‚‰ 16bitеЊ–гЃ—гЃЄгЃ„
 					if( KeySub.Unit >= 0.1f ) continue ;
 
-					// ’l‚р•ПЉ·
+					// еЂ¤г‚’е¤‰жЏ›
 					Key        = KeySetR->KeyVector ;
 					NewKey     = KeySetR->KeyVectorB16 ;
 					for( k = 0 ; k < KeySetR->Num ; k ++, Key ++, NewKey ++ )
@@ -2407,7 +2407,7 @@ static bool MV1OptimizeAnim( MV1_MODEL_R *ReadModel )
 						*( ( WORD * )&NewKey->z ) = ( WORD )( _FTOL( ( Key->z - KeySub.Min ) / KeySub.Unit ) ) ;
 					}
 
-					// ѓLЃ[ѓTѓCѓY‚рЊё‚з‚µ‚Д‘ќ‚в‚·
+					// г‚­гѓјг‚µг‚¤г‚єг‚’жё›г‚‰гЃ—гЃ¦еў—г‚„гЃ™
 					ReadModel->AnimKeyDataSize -= sizeof( VECTOR )     * KeySetR->Num ;
 					ReadModel->AnimKeyDataSize += sizeof( VECTOR_B16 ) * KeySetR->Num ;
 				}
@@ -2418,7 +2418,7 @@ static bool MV1OptimizeAnim( MV1_MODEL_R *ReadModel )
 					FLOAT4_B16 *NewKey ;
 					FLOAT4 *Key ;
 
-					// ЌЕЏ¬’l‚ЖЌЕ‘е’l‚рЋж“ѕ
+					// жњЂе°ЏеЂ¤гЃЁжњЂе¤§еЂ¤г‚’еЏ–еѕ—
 					KeySub.Min  =  1000000000000.0f ;
 					KeySub.Unit = -1000000000000.0f ;
 					Key = KeySetR->KeyFloat4 ;
@@ -2434,7 +2434,7 @@ static bool MV1OptimizeAnim( MV1_MODEL_R *ReadModel )
 						if( KeySub.Unit < Key->w ) KeySub.Unit = Key->w ;
 					}
 
-					// 16bit•вЏ•Џо•с‚МЌмђ¬
+					// 16bitиЈњеЉ©жѓ…е ±гЃ®дЅњж€ђ
 					KeySetR->Key16BSub.Min  = MV1AnimKey16BitMinFtoB( KeySub.Min  ) ;
 					KeySub.Min              = MV1AnimKey16BitMinBtoF( KeySetR->Key16BSub.Min ) ;
 					KeySub.Unit            -= KeySub.Min ;
@@ -2444,10 +2444,10 @@ static bool MV1OptimizeAnim( MV1_MODEL_R *ReadModel )
 					KeySetR->Key16BSub.Unit = MV1AnimKey16BitUnitFtoB( KeySub.Unit ) ;
 					KeySub.Unit             = MV1AnimKey16BitUnitBtoF( KeySetR->Key16BSub.Unit ) ;
 
-					// 16bit‚P•У‚и‚М’l‚Є 0.1f ‚р’ґ‚¦‚Д‚µ‚Ь‚Б‚Ѕ‚з 16bit‰»‚µ‚И‚ў
+					// 16bitпј‘иѕєг‚ЉгЃ®еЂ¤гЃЊ 0.1f г‚’и¶…гЃ€гЃ¦гЃ—гЃѕгЃЈгЃџг‚‰ 16bitеЊ–гЃ—гЃЄгЃ„
 					if( KeySub.Unit >= 0.1f ) continue ;
 
-					// ’l‚р•ПЉ·
+					// еЂ¤г‚’е¤‰жЏ›
 					Key        = KeySetR->KeyFloat4 ;
 					NewKey     = KeySetR->KeyFloat4B16 ;
 					for( k = 0 ; k < KeySetR->Num ; k ++, Key ++, NewKey ++ )
@@ -2458,7 +2458,7 @@ static bool MV1OptimizeAnim( MV1_MODEL_R *ReadModel )
 						*( ( WORD * )&NewKey->w ) = ( WORD )( _FTOL( ( Key->w - KeySub.Min ) / KeySub.Unit ) ) ;
 					}
 
-					// ѓLЃ[ѓTѓCѓY‚рЊё‚з‚µ‚Д‘ќ‚в‚·
+					// г‚­гѓјг‚µг‚¤г‚єг‚’жё›г‚‰гЃ—гЃ¦еў—г‚„гЃ™
 					ReadModel->AnimKeyDataSize -= sizeof( FLOAT4 )     * KeySetR->Num ;
 					ReadModel->AnimKeyDataSize += sizeof( FLOAT4_B16 ) * KeySetR->Num ;
 				}
@@ -2469,7 +2469,7 @@ static bool MV1OptimizeAnim( MV1_MODEL_R *ReadModel )
 					MV1_ANIM_KEY_MATRIX3X3_B16 *NewKey ;
 					MV1_ANIM_KEY_MATRIX3X3 *Key ;
 
-					// ЌЕЏ¬’l‚ЖЌЕ‘е’l‚рЋж“ѕ
+					// жњЂе°ЏеЂ¤гЃЁжњЂе¤§еЂ¤г‚’еЏ–еѕ—
 					KeySub.Min  =  1000000000000.0f ;
 					KeySub.Unit = -1000000000000.0f ;
 					Key  = KeySetR->KeyMatrix3x3 ;
@@ -2495,7 +2495,7 @@ static bool MV1OptimizeAnim( MV1_MODEL_R *ReadModel )
 						if( KeySub.Unit < Key->Matrix[ 2 ][ 2 ] ) KeySub.Unit = Key->Matrix[ 2 ][ 2 ] ;
 					}
 
-					// 16bit•вЏ•Џо•с‚МЌмђ¬
+					// 16bitиЈњеЉ©жѓ…е ±гЃ®дЅњж€ђ
 					KeySetR->Key16BSub.Min  = MV1AnimKey16BitMinFtoB( KeySub.Min  ) ;
 					KeySub.Min              = MV1AnimKey16BitMinBtoF( KeySetR->Key16BSub.Min ) ;
 					KeySub.Unit            -= KeySub.Min ;
@@ -2505,10 +2505,10 @@ static bool MV1OptimizeAnim( MV1_MODEL_R *ReadModel )
 					KeySetR->Key16BSub.Unit = MV1AnimKey16BitUnitFtoB( KeySub.Unit ) ;
 					KeySub.Unit             = MV1AnimKey16BitUnitBtoF( KeySetR->Key16BSub.Unit ) ;
 
-					// 16bit‚P•У‚и‚М’l‚Є 0.1f ‚р’ґ‚¦‚Д‚µ‚Ь‚Б‚Ѕ‚з 16bit‰»‚µ‚И‚ў
+					// 16bitпј‘иѕєг‚ЉгЃ®еЂ¤гЃЊ 0.1f г‚’и¶…гЃ€гЃ¦гЃ—гЃѕгЃЈгЃџг‚‰ 16bitеЊ–гЃ—гЃЄгЃ„
 					if( KeySub.Unit >= 0.1f ) continue ;
 
-					// ’l‚р•ПЉ·
+					// еЂ¤г‚’е¤‰жЏ›
 					Key    = KeySetR->KeyMatrix3x3 ;
 					NewKey = KeySetR->KeyMatrix3x3B16 ;
 					for( k = 0 ; k < KeySetR->Num ; k ++, Key ++, NewKey ++ )
@@ -2524,31 +2524,31 @@ static bool MV1OptimizeAnim( MV1_MODEL_R *ReadModel )
 						NewKey->Matrix[ 2 ][ 2 ] = ( WORD )( _FTOL( ( Key->Matrix[ 2 ][ 2 ] - KeySub.Min ) / KeySub.Unit ) ) ;
 					}
 
-					// ѓLЃ[ѓTѓCѓY‚рЊё‚з‚µ‚Д‘ќ‚в‚·
+					// г‚­гѓјг‚µг‚¤г‚єг‚’жё›г‚‰гЃ—гЃ¦еў—г‚„гЃ™
 					ReadModel->AnimKeyDataSize -= sizeof( MV1_ANIM_KEY_MATRIX3X3     ) * KeySetR->Num ;
 					ReadModel->AnimKeyDataSize += sizeof( MV1_ANIM_KEY_MATRIX3X3_B16 ) * KeySetR->Num ;
 				}
 				break ;
 			}
 
-			// ѓ^ѓCѓЂ‚ЄѓLЃ[ѓ^ѓCѓv‚МЏкЌ‡‚НѓLЃ[ѓTѓCѓY‚рЊё‚з‚µ‚Д‘ќ‚в‚·
+			// г‚їг‚¤гѓ гЃЊг‚­гѓјг‚їг‚¤гѓ—гЃ®е ґеђ€гЃЇг‚­гѓјг‚µг‚¤г‚єг‚’жё›г‚‰гЃ—гЃ¦еў—г‚„гЃ™
 			if( KeySetR->TimeType == MV1_ANIMKEY_TIME_TYPE_KEY )
 			{
 				ReadModel->AnimKeyDataSize -= sizeof( float ) * KeySetR->Num ;
 				ReadModel->AnimKeyDataSize += sizeof( WORD  ) * KeySetR->Num ;
 			}
 
-			// 16ѓrѓbѓgѓtѓ‰ѓO‚р—§‚Д‚й
+			// 16гѓ“гѓѓгѓ€гѓ•гѓ©г‚°г‚’з«‹гЃ¦г‚‹
 			KeySetR->Bit16 = 1 ;
 		}
 	}
 
-	// ЏI—№
+	// зµ‚дє†
 	return true ;
 	*/
 }
 
-// ѓLЃ[ѓZѓbѓg‚МѓLЃ[‚рЌЕ“K‰»‚·‚й
+// г‚­гѓјг‚»гѓѓгѓ€гЃ®г‚­гѓјг‚’жњЂйЃ©еЊ–гЃ™г‚‹
 static void MV1OptimizeKeySetTimeType( MV1_MODEL_R *ReadModel, MV1_ANIMKEYSET_R *KeySetR, bool NotKeySub )
 {
 	float ktime = 0.0f, ntime, f ;
@@ -2558,7 +2558,7 @@ static void MV1OptimizeKeySetTimeType( MV1_MODEL_R *ReadModel, MV1_ANIMKEYSET_R 
 	int k, num = 0, UnitSize = 0, AfterSizeK, AfterSizeU ;
 	float rate ;
 
-	// ЉeѓLЃ[‚Є€к’иЉФЉu‚©‚З‚¤‚©‚р’І‚Ч‚й
+	// еђ„г‚­гѓјгЃЊдёЂе®љй–“йљ”гЃ‹гЃ©гЃ†гЃ‹г‚’иЄїгЃ№г‚‹
 	Ittei = false ;
 	if( KeySetR->TimeType == MV1_ANIMKEY_TIME_TYPE_KEY )
 	{
@@ -2594,7 +2594,7 @@ static void MV1OptimizeKeySetTimeType( MV1_MODEL_R *ReadModel, MV1_ANIMKEYSET_R 
 			AfterBuffer = NewBuffer = ( float * )ADDMEMAREA( ( UnitSize + sizeof( float ) ) * KeySetR->Num, &ReadModel->Mem ) ;
 			if( NewBuffer )
 			{
-				// ђьЊ`•вЉФ‚ЕЌП‚ЮѓLЃ[‚рЌнЏњ‚·‚й
+				// з·љеЅўиЈњй–“гЃ§жё€г‚Ђг‚­гѓјг‚’е‰Љй™¤гЃ™г‚‹
 				num = 0 ;
 				NewKey  = NewBuffer ;
 				NewTime = ( float * )( NewBuffer + KeySetR->Num ) ;
@@ -2662,7 +2662,7 @@ FLOATADD :
 			AfterBuffer = NewBuffer = ( VECTOR * )ADDMEMAREA( ( UnitSize + sizeof( float ) ) * KeySetR->Num, &ReadModel->Mem ) ;
 			if( NewBuffer )
 			{
-				// ђьЊ`•вЉФ‚ЕЌП‚ЮѓLЃ[‚рЌнЏњ‚·‚й
+				// з·љеЅўиЈњй–“гЃ§жё€г‚Ђг‚­гѓјг‚’е‰Љй™¤гЃ™г‚‹
 				num = 0 ;
 				NewKey  = NewBuffer ;
 				NewTime = ( float * )( NewBuffer + KeySetR->Num ) ;
@@ -2739,7 +2739,7 @@ TRANSLATEADD :
 			AfterBuffer = NewBuffer = ( FLOAT4 * )ADDMEMAREA( ( UnitSize + sizeof( float ) ) * KeySetR->Num, &ReadModel->Mem ) ;
 			if( NewBuffer )
 			{
-				// ђьЊ`•вЉФ‚ЕЌП‚ЮѓLЃ[‚рЌнЏњ‚·‚й
+				// з·љеЅўиЈњй–“гЃ§жё€г‚Ђг‚­гѓјг‚’е‰Љй™¤гЃ™г‚‹
 				num = 0 ;
 				NewKey  = NewBuffer ;
 				NewTime = ( float * )( NewBuffer + KeySetR->Num ) ;
@@ -2819,7 +2819,7 @@ QUATERNIONADD :
 			AfterBuffer = NewBuffer = ( MV1_ANIM_KEY_MATRIX3X3 * )ADDMEMAREA( ( UnitSize + sizeof( float ) ) * KeySetR->Num, &ReadModel->Mem ) ;
 			if( NewBuffer )
 			{
-				// ђьЊ`•вЉФ‚ЕЌП‚ЮѓLЃ[‚рЌнЏњ‚·‚й
+				// з·љеЅўиЈњй–“гЃ§жё€г‚Ђг‚­гѓјг‚’е‰Љй™¤гЃ™г‚‹
 				num = 0 ;
 				Key     = KeySetR->KeyMatrix3x3 ;
 				Time    = KeySetR->KeyTime ;
@@ -2914,18 +2914,18 @@ MATRIX3X3ADD :
 
 	if( AfterBuffer )
 	{
-		// ЌнЊёЊг‚МѓLЃ[‚Мђ”‚Є‚PЊВ‚©ЃA
-		// ѓLЃ[‚рЊё‚з‚µ‚ДЌнЊё‚і‚к‚йѓfЃ[ѓ^ѓTѓCѓY‚ЄЊЕ’иѓ^ѓCѓЂ‚Й‚µ‚Д
-		// ЌнЊё‚Е‚«‚йѓfЃ[ѓ^ѓTѓCѓY‚ж‚и‘е‚«‚ў‚©ЃA‚»‚а‚»‚аЊЕ’иѓ^ѓCѓЂ‚Й
-		// ‚Е‚«‚И‚ўЏкЌ‡‚НѓLЃ[‚рЊё‚з‚·
+		// е‰Љжё›еѕЊгЃ®г‚­гѓјгЃ®ж•°гЃЊпј‘еЂ‹гЃ‹гЂЃ
+		// г‚­гѓјг‚’жё›г‚‰гЃ—гЃ¦е‰Љжё›гЃ•г‚Њг‚‹гѓ‡гѓјг‚їг‚µг‚¤г‚єгЃЊе›єе®љг‚їг‚¤гѓ гЃ«гЃ—гЃ¦
+		// е‰Љжё›гЃ§гЃЌг‚‹гѓ‡гѓјг‚їг‚µг‚¤г‚єг‚€г‚Ље¤§гЃЌгЃ„гЃ‹гЂЃгЃќг‚‚гЃќг‚‚е›єе®љг‚їг‚¤гѓ гЃ«
+		// гЃ§гЃЌгЃЄгЃ„е ґеђ€гЃЇг‚­гѓјг‚’жё›г‚‰гЃ™
 		AfterSizeK = ( int )( num          * ( UnitSize + sizeof( float ) ) ) ;
 		AfterSizeU = KeySetR->Num *   UnitSize ;
 		if( num == 1 || ( ( Ittei == false || AfterSizeK < AfterSizeU ) && num < KeySetR->Num ) )
 		{
-			// ѓLЃ[‚Є€к‚В‚Й‚И‚йЏкЌ‡€ИЉO‚ЕѓLЃ[‚рЌнЏњ‚·‚йѓtѓ‰ѓO‚Є–і‚ўЏкЌ‡‚Н‰Ѕ‚а‚µ‚И‚ў
+			// г‚­гѓјгЃЊдёЂгЃ¤гЃ«гЃЄг‚‹е ґеђ€д»Ґе¤–гЃ§г‚­гѓјг‚’е‰Љй™¤гЃ™г‚‹гѓ•гѓ©г‚°гЃЊз„ЎгЃ„е ґеђ€гЃЇдЅ•г‚‚гЃ—гЃЄгЃ„
 			if( NotKeySub == false || num == 1 )
 			{
-				// ѓLЃ[ѓfЃ[ѓ^‚МѓTѓCѓY‚рЊё‚з‚µ‚Д‘ќ‚в‚·
+				// г‚­гѓјгѓ‡гѓјг‚їгЃ®г‚µг‚¤г‚єг‚’жё›г‚‰гЃ—гЃ¦еў—г‚„гЃ™
 				if( KeySetR->TimeType == MV1_ANIMKEY_TIME_TYPE_ONE )
 				{
 					ReadModel->AnimKeyDataSize -= UnitSize * KeySetR->Num ;
@@ -2941,10 +2941,10 @@ MATRIX3X3ADD :
 				KeySetR->Num = num ;
 			}
 
-			// ѓLЃ[‚Є€к‚В‚МЏкЌ‡‚НЌX‚ЙЊЕ’иѓ^ѓCѓЂ‚Й‚·‚й
+			// г‚­гѓјгЃЊдёЂгЃ¤гЃ®е ґеђ€гЃЇж›ґгЃ«е›єе®љг‚їг‚¤гѓ гЃ«гЃ™г‚‹
 			if( num == 1 && KeySetR->TimeType == MV1_ANIMKEY_TIME_TYPE_KEY )
 			{
-				// ѓLЃ[ѓfЃ[ѓ^‚МѓTѓCѓY‚рЊё‚з‚·
+				// г‚­гѓјгѓ‡гѓјг‚їгЃ®г‚µг‚¤г‚єг‚’жё›г‚‰гЃ™
 				ReadModel->AnimKeyDataSize -= sizeof( float ) * num ;
 
 				KeySetR->TimeType = MV1_ANIMKEY_TIME_TYPE_ONE ;
@@ -2953,12 +2953,12 @@ MATRIX3X3ADD :
 			}
 		}
 		else
-		// ‚»‚к€ИЉO‚МЏкЌ‡‚ЕЊЕ’иѓ^ѓCѓЂ‚Й‚Е‚«‚йЏкЌ‡‚НЊЕ’иѓ^ѓCѓЂ‚Й‚·‚й
+		// гЃќг‚Њд»Ґе¤–гЃ®е ґеђ€гЃ§е›єе®љг‚їг‚¤гѓ гЃ«гЃ§гЃЌг‚‹е ґеђ€гЃЇе›єе®љг‚їг‚¤гѓ гЃ«гЃ™г‚‹
 		if( Ittei == true )
 		{
 			if( KeySetR->TimeType == MV1_ANIMKEY_TIME_TYPE_KEY )
 			{
-				// ѓLЃ[ѓfЃ[ѓ^‚МѓTѓCѓY‚рЊё‚з‚·
+				// г‚­гѓјгѓ‡гѓјг‚їгЃ®г‚µг‚¤г‚єг‚’жё›г‚‰гЃ™
 				ReadModel->AnimKeyDataSize -= sizeof( float ) * KeySetR->Num ;
 
 				KeySetR->TimeType = MV1_ANIMKEY_TIME_TYPE_ONE ;
@@ -2969,7 +2969,7 @@ MATRIX3X3ADD :
 	}
 }
 
-// ѓЃѓbѓVѓ…–@ђь‚МЋ©“®ЊvЋZ( ‘Sѓ|ѓЉѓSѓ“‚ЄЋOЉpЊ`ѓ|ѓЉѓSѓ“‚Е‚ ‚й•K—v‚Є‚ ‚и‚Ь‚· )
+// гѓЎгѓѓг‚·гѓҐжі•з·љгЃ®и‡Єе‹•иЁ€з®—( е…ЁгѓќгѓЄг‚ґгѓігЃЊдё‰и§’еЅўгѓќгѓЄг‚ґгѓігЃ§гЃ‚г‚‹еї…и¦ЃгЃЊгЃ‚г‚ЉгЃѕгЃ™ )
 static bool MV1MakeMeshNormals( MV1_MODEL_R *ReadModel, MV1_MESH_R *Mesh )
 {
 	MV1_MESHFACE_R *Face, *FaceT ;
@@ -2986,7 +2986,7 @@ static bool MV1MakeMeshNormals( MV1_MODEL_R *ReadModel, MV1_MESH_R *Mesh )
 	BYTE *NormalUseTable ;
 	DWORD *UseNormalIndex, *NewNormalIndex ;
 
-	// ѓXѓЂЃ[ѓWѓ“ѓO‚рЌs‚¤Љp“x‚МѓRѓTѓCѓ“’l‚р‹Ѓ‚Я‚Д‚Ё‚­
+	// г‚№гѓ гѓјг‚ёгѓіг‚°г‚’иЎЊгЃ†и§’еє¦гЃ®г‚іг‚µг‚¤гѓіеЂ¤г‚’ж±‚г‚ЃгЃ¦гЃЉгЃЏ
 	if( Mesh->Container->SmoothingAngle < -0.00001f )
 	{
 		_SINCOS_PLATFORM( ( float )( 89.5f / 180.0f * DX_PI ), &Sin, &SmoothCos ) ;
@@ -2996,12 +2996,12 @@ static bool MV1MakeMeshNormals( MV1_MODEL_R *ReadModel, MV1_MESH_R *Mesh )
 		_SINCOS_PLATFORM( Mesh->Container->SmoothingAngle, &Sin, &SmoothCos ) ;
 	}
 
-	// –КЏо•с‚©‚зЉф‚В–@ђь‚Є•K—v‚©’І‚Ч‚й
+	// йќўжѓ…е ±гЃ‹г‚‰е№ѕгЃ¤жі•з·љгЃЊеї…и¦ЃгЃ‹иЄїгЃ№г‚‹
 	Face = Mesh->Faces ;
 	Mesh->NormalNum = 0 ;
 	for( i = 0 ; ( DWORD )i < Mesh->FaceNum ; i ++, Face ++ )
 	{
-		// ‚В‚ў‚Е‚Й–К‚М–@ђь‚рЊvЋZ‚·‚й
+		// гЃ¤гЃ„гЃ§гЃ«йќўгЃ®жі•з·љг‚’иЁ€з®—гЃ™г‚‹
 		P0 = &Mesh->Positions[ Face->VertexIndex[ 0 ] ] ;
 		P1 = &Mesh->Positions[ Face->VertexIndex[ 1 ] ] ;
 		P2 = &Mesh->Positions[ Face->VertexIndex[ 2 ] ] ;
@@ -3018,20 +3018,20 @@ static bool MV1MakeMeshNormals( MV1_MODEL_R *ReadModel, MV1_MESH_R *Mesh )
 		}
 		VectorNormalize( &Face->Normal, &Norm ) ;
 
-		// –@ђьѓCѓ“ѓfѓbѓNѓX‚рѓZѓbѓg
+		// жі•з·љг‚¤гѓігѓ‡гѓѓг‚Їг‚№г‚’г‚»гѓѓгѓ€
 		for( j = 0 ; ( DWORD )j < Face->IndexNum ; j ++ )
 			Face->NormalIndex[ j ] = Mesh->NormalNum + j ;
 
-		// –@ђь‚Мђ”‚рѓCѓ“ѓfѓbѓNѓX‚Мђ”‚ѕ‚Ї‘ќ‚в‚·
+		// жі•з·љгЃ®ж•°г‚’г‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃ®ж•°гЃ гЃ‘еў—г‚„гЃ™
 		Mesh->NormalNum += Face->IndexNum ;
 	}
 	IndexNum = Mesh->NormalNum ;
 
-	// –@ђь‚рЉi”[‚·‚йѓЃѓ‚ѓЉ‚рЉm•Ы‚·‚й
+	// жі•з·љг‚’ж јзґЌгЃ™г‚‹гѓЎгѓўгѓЄг‚’зўєдїќгЃ™г‚‹
 	Mesh->Normals = ( VECTOR * )DXALLOC( ( sizeof( VECTOR ) + sizeof( BYTE ) + sizeof( DWORD ) + sizeof( DWORD ) ) * Mesh->NormalNum ) ;
 	if( Mesh->Normals == NULL )
 	{
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\x52\x00\x65\x00\x61\x00\x64\x00\x20\x00\x4d\x00\x6f\x00\x64\x00\x65\x00\x6c\x00\x20\x00\x43\x00\x6f\x00\x6e\x00\x76\x00\x65\x00\x72\x00\x74\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xd5\x6c\xda\x7d\xea\x81\xd5\x52\x5c\x4f\x10\x62\xe6\x51\x06\x74\x67\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xd5\x6c\xda\x7d\x6e\x30\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Read Model Convert Error : –@ђьЋ©“®Ќмђ¬Џ€—ќ‚ЕЉi”[‚·‚й–@ђь‚МѓЃѓ‚ѓЉ‚МЉm•Ы‚ЙЋё”s‚µ‚Ь‚µ‚Ѕ\n" @*/ )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\x52\x00\x65\x00\x61\x00\x64\x00\x20\x00\x4d\x00\x6f\x00\x64\x00\x65\x00\x6c\x00\x20\x00\x43\x00\x6f\x00\x6e\x00\x76\x00\x65\x00\x72\x00\x74\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xd5\x6c\xda\x7d\xea\x81\xd5\x52\x5c\x4f\x10\x62\xe6\x51\x06\x74\x67\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xd5\x6c\xda\x7d\x6e\x30\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Read Model Convert Error : жі•з·љи‡Єе‹•дЅњж€ђе‡¦зђ†гЃ§ж јзґЌгЃ™г‚‹жі•з·љгЃ®гѓЎгѓўгѓЄгЃ®зўєдїќгЃ«е¤±ж•—гЃ—гЃѕгЃ—гЃџ\n" @*/ )) ;
 		return false ;
 	}
 	_MEMSET( Mesh->Normals, 0, ( sizeof( VECTOR ) + sizeof( BYTE ) + sizeof( DWORD ) + sizeof( DWORD ) ) * Mesh->NormalNum ) ;
@@ -3040,14 +3040,14 @@ static bool MV1MakeMeshNormals( MV1_MODEL_R *ReadModel, MV1_MESH_R *Mesh )
 	UseNormalIndex = ( DWORD * )( NormalUseTable + Mesh->NormalNum ) ;
 	NewNormalIndex = UseNormalIndex + Mesh->NormalNum ;
 
-	// –К‚М’ё“_ѓCѓ“ѓfѓbѓNѓX‚М––”ц‚ЙѓCѓ“ѓfѓbѓNѓX‚р’З‰Б‚·‚й‚Ѕ‚Я‚Йѓoѓbѓtѓ@‚рЉg’Ј‚·‚й
+	// йќўгЃ®й ‚з‚№г‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃ®жњ«е°ѕгЃ«г‚¤гѓігѓ‡гѓѓг‚Їг‚№г‚’иїЅеЉ гЃ™г‚‹гЃџг‚ЃгЃ«гѓђгѓѓгѓ•г‚Ўг‚’ж‹ЎејµгЃ™г‚‹
 	if( MV1RSetupMeshFaceBuffer( ReadModel, Mesh, ( int )Mesh->FaceNum, ( int )( Mesh->FaceUnitMaxIndexNum * 2 ) ) < 0 )
 	{
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\x52\x00\x65\x00\x61\x00\x64\x00\x20\x00\x4d\x00\x6f\x00\x64\x00\x65\x00\x6c\x00\x20\x00\x43\x00\x6f\x00\x6e\x00\x76\x00\x65\x00\x72\x00\x74\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xd5\x6c\xda\x7d\xea\x81\xd5\x52\x5c\x4f\x10\x62\xe6\x51\x06\x74\x67\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\x02\x98\xb9\x70\xa4\x30\xf3\x30\xc7\x30\xc3\x30\xaf\x30\xb9\x30\x6e\x30\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Read Model Convert Error : –@ђьЋ©“®Ќмђ¬Џ€—ќ‚ЕЉi”[‚·‚й’ё“_ѓCѓ“ѓfѓbѓNѓX‚МѓЃѓ‚ѓЉ‚МЉm•Ы‚ЙЋё”s‚µ‚Ь‚µ‚Ѕ\n" @*/ )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\x52\x00\x65\x00\x61\x00\x64\x00\x20\x00\x4d\x00\x6f\x00\x64\x00\x65\x00\x6c\x00\x20\x00\x43\x00\x6f\x00\x6e\x00\x76\x00\x65\x00\x72\x00\x74\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xd5\x6c\xda\x7d\xea\x81\xd5\x52\x5c\x4f\x10\x62\xe6\x51\x06\x74\x67\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\x02\x98\xb9\x70\xa4\x30\xf3\x30\xc7\x30\xc3\x30\xaf\x30\xb9\x30\x6e\x30\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Read Model Convert Error : жі•з·љи‡Єе‹•дЅњж€ђе‡¦зђ†гЃ§ж јзґЌгЃ™г‚‹й ‚з‚№г‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃ®гѓЎгѓўгѓЄгЃ®зўєдїќгЃ«е¤±ж•—гЃ—гЃѕгЃ—гЃџ\n" @*/ )) ;
 		return false ;
 	}
 
-	// ‘S‚Д‚М–К‚М’ё“_ѓCѓ“ѓfѓbѓNѓX‚М––”ц‚ЙѓCѓ“ѓfѓbѓNѓX‚р‘г“ь‚·‚й
+	// е…ЁгЃ¦гЃ®йќўгЃ®й ‚з‚№г‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃ®жњ«е°ѕгЃ«г‚¤гѓігѓ‡гѓѓг‚Їг‚№г‚’д»Је…ҐгЃ™г‚‹
 	Face = Mesh->Faces ;
 	for( i = 0 ; ( DWORD )i < Mesh->FaceNum ; i ++, Face ++ )
 	{
@@ -3057,18 +3057,18 @@ static bool MV1MakeMeshNormals( MV1_MODEL_R *ReadModel, MV1_MESH_R *Mesh )
 		}
 	}
 
-	// Љe’ё“_‚ЙЉЦЊW‚·‚й–К‚МѓЉѓXѓg‚рЌмђ¬‚·‚й
+	// еђ„й ‚з‚№гЃ«й–ўдї‚гЃ™г‚‹йќўгЃ®гѓЄг‚№гѓ€г‚’дЅњж€ђгЃ™г‚‹
 	{
 		VertexFaceList = ( MV1_MAKEVERTINDEXINFO ** )DXALLOC( sizeof( MV1_MAKEVERTINDEXINFO * ) * Mesh->PositionNum + sizeof( MV1_MAKEVERTINDEXINFO ) * IndexNum ) ;
 		if( VertexFaceList == NULL )
 		{
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\x52\x00\x65\x00\x61\x00\x64\x00\x20\x00\x4d\x00\x6f\x00\x64\x00\x65\x00\x6c\x00\x20\x00\x43\x00\x6f\x00\x6e\x00\x76\x00\x65\x00\x72\x00\x74\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xa2\x95\xc2\x4f\x59\x30\x8b\x30\x62\x97\x6e\x30\xc5\x60\x31\x58\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Read Model Convert Error : ЉЦЊW‚·‚й–К‚МЏо•с‚рЉi”[‚·‚йѓЃѓ‚ѓЉ‚МЉm•Ы‚ЙЋё”s‚µ‚Ь‚µ‚Ѕ\n" @*/ )) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\x52\x00\x65\x00\x61\x00\x64\x00\x20\x00\x4d\x00\x6f\x00\x64\x00\x65\x00\x6c\x00\x20\x00\x43\x00\x6f\x00\x6e\x00\x76\x00\x65\x00\x72\x00\x74\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xa2\x95\xc2\x4f\x59\x30\x8b\x30\x62\x97\x6e\x30\xc5\x60\x31\x58\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Read Model Convert Error : й–ўдї‚гЃ™г‚‹йќўгЃ®жѓ…е ±г‚’ж јзґЌгЃ™г‚‹гѓЎгѓўгѓЄгЃ®зўєдїќгЃ«е¤±ж•—гЃ—гЃѕгЃ—гЃџ\n" @*/ )) ;
 			return false ;
 		}
 		_MEMSET( VertexFaceList, 0, sizeof( MV1_MAKEVERTINDEXINFO * ) * Mesh->PositionNum ) ;
 		VertexFaceBuffer = ( MV1_MAKEVERTINDEXINFO * )( VertexFaceList + Mesh->PositionNum ) ;
 
-		// ‘S‚Д‚М–К‚МЋQЏЖ‚µ‚Д‚ў‚й’ё“_‚МЏо•с‚рѓZѓbѓg‚·‚й
+		// е…ЁгЃ¦гЃ®йќўгЃ®еЏ‚з…§гЃ—гЃ¦гЃ„г‚‹й ‚з‚№гЃ®жѓ…е ±г‚’г‚»гѓѓгѓ€гЃ™г‚‹
 		Face = Mesh->Faces ;
 		VFBuf = VertexFaceBuffer ;
 		for( i = 0 ; ( DWORD )i < Mesh->FaceNum ; i ++, Face ++ )
@@ -3090,23 +3090,23 @@ static bool MV1MakeMeshNormals( MV1_MODEL_R *ReadModel, MV1_MESH_R *Mesh )
 		}
 	}
 
-	// –К‚М–@ђь‚рЌ\’z‚·‚й
+	// йќўгЃ®жі•з·љг‚’ж§‹зЇ‰гЃ™г‚‹
 	Face = Mesh->Faces ;
 	for( i = 0 ; ( DWORD )i < Mesh->FaceNum ; i ++, Face ++ )
 	{
-		// Љщ‚ЙЏ€—ќЌП‚Э‚МЏкЌ‡‚Н‰Ѕ‚а‚µ‚И‚ў
+		// ж—ўгЃ«е‡¦зђ†жё€гЃїгЃ®е ґеђ€гЃЇдЅ•г‚‚гЃ—гЃЄгЃ„
 		if( Mesh->NormalSetFlag[ Face->NormalIndex[ 0 ] ] &&
 			Mesh->NormalSetFlag[ Face->NormalIndex[ 1 ] ] &&
 			Mesh->NormalSetFlag[ Face->NormalIndex[ 2 ] ] )
 			continue ;
 
-		// ’ё“_‚Мђ”‚ѕ‚ЇЊJ‚и•Ф‚µ
+		// й ‚з‚№гЃ®ж•°гЃ гЃ‘з№°г‚Љиї”гЃ—
 		for( j = 0 ; ( DWORD )j < Face->IndexNum ; j ++ )
 		{
-			// Љщ‚ЙЊvЋZЌП‚Э‚МЏкЌ‡‚Н‰Ѕ‚а‚µ‚И‚ў
+			// ж—ўгЃ«иЁ€з®—жё€гЃїгЃ®е ґеђ€гЃЇдЅ•г‚‚гЃ—гЃЄгЃ„
 			if( Mesh->NormalSetFlag[ Face->NormalIndex[ j ] ] ) continue ;
 
-			// AЊ‹–К‚рѓЉѓXѓgѓAѓbѓv
+			// йЂЈзµђйќўг‚’гѓЄг‚№гѓ€г‚ўгѓѓгѓ—
 			{
 				FaceList[ 0 ] = Face ;
 				FaceNorm = Face->Normal ;
@@ -3114,7 +3114,7 @@ static bool MV1MakeMeshNormals( MV1_MODEL_R *ReadModel, MV1_MESH_R *Mesh )
 				Mesh->NormalSetFlag[ Face->NormalIndex[ j ] ] |= 2 ;
 				FaceCount = 1 ;
 
-				// •Р•ы‚МAЊ‹–К‚рѓЉѓXѓgѓAѓbѓv
+				// з‰‡ж–№гЃ®йЂЈзµђйќўг‚’гѓЄг‚№гѓ€г‚ўгѓѓгѓ—
 				CurFace = Face ;
 				BackCurFace = NULL ;
 				CurFaceIndex = j ;
@@ -3123,7 +3123,7 @@ static bool MV1MakeMeshNormals( MV1_MODEL_R *ReadModel, MV1_MESH_R *Mesh )
 				{
 					MinFace = NULL ;
 
-					// –@ђь‚рЉ„‚иЏo‚µ‚Ѕ‚ў’ё“_‚©‚з—ЧђЪ‚µ‚Д‚ў‚й‚©’І‚Ч‚Ѕ‚ў•У‚М’ё“_‚ЦЊь‚©‚¤ѓxѓNѓgѓ‹‚р‚yЃA‚а‚¤•Р•ы‚М’ё“_‚ЦЊь‚©‚¤ѓxѓNѓgѓ‹‚р‚w‚Ж‚µ‚ЅЋOЋІ‚МЌмђ¬
+					// жі•з·љг‚’е‰Іг‚Ље‡єгЃ—гЃџгЃ„й ‚з‚№гЃ‹г‚‰йљЈжЋҐгЃ—гЃ¦гЃ„г‚‹гЃ‹иЄїгЃ№гЃџгЃ„иѕєгЃ®й ‚з‚№гЃёеђ‘гЃ‹гЃ†гѓ™г‚Їгѓ€гѓ«г‚’пјєгЂЃг‚‚гЃ†з‰‡ж–№гЃ®й ‚з‚№гЃёеђ‘гЃ‹гЃ†гѓ™г‚Їгѓ€гѓ«г‚’пјёгЃЁгЃ—гЃџдё‰и»ёгЃ®дЅњж€ђ
 					VectorSub( &zv, &Mesh->Positions[ CurFace->VertexIndex[ CurFaceIndex + 1 ] ], &Mesh->Positions[ CurFace->VertexIndex[ CurFaceIndex ] ] ) ;
 					VectorSub( &xv, &Mesh->Positions[ CurFace->VertexIndex[ CurFaceIndex + 2 ] ], &Mesh->Positions[ CurFace->VertexIndex[ CurFaceIndex ] ] ) ;
 					VectorOuterProduct( &yv, &zv, &xv ) ;
@@ -3132,7 +3132,7 @@ static bool MV1MakeMeshNormals( MV1_MODEL_R *ReadModel, MV1_MESH_R *Mesh )
 					VectorNormalize( &yv, &yv ) ;
 					VectorNormalize( &zv, &zv ) ;
 
-					// —ЧђЪ‚µ‚Д‚ў‚й‚©’І‚Ч‚Ѕ‚ў•У‚М’ё“_‚Ж‚Н•К‚М‚а‚¤€к‚В‚М’ё“_‚ЦЊь‚©‚¤ѓxѓNѓgѓ‹‚рЏг‹L‚ЕЋZЏo‚µ‚ЅЋOЋІЏг‚Й“Љ‰e‚µ‚ЅѓxѓNѓgѓ‹‚рЋZЏo
+					// йљЈжЋҐгЃ—гЃ¦гЃ„г‚‹гЃ‹иЄїгЃ№гЃџгЃ„иѕєгЃ®й ‚з‚№гЃЁгЃЇе€ҐгЃ®г‚‚гЃ†дёЂгЃ¤гЃ®й ‚з‚№гЃёеђ‘гЃ‹гЃ†гѓ™г‚Їгѓ€гѓ«г‚’дёЉиЁгЃ§з®—е‡єгЃ—гЃџдё‰и»ёдёЉгЃ«жЉ•еЅ±гЃ—гЃџгѓ™г‚Їгѓ€гѓ«г‚’з®—е‡є
 					VectorSub( &tv, &Mesh->Positions[ CurFace->VertexIndex[ CurFaceIndex + 2 ] ], &Mesh->Positions[ CurFace->VertexIndex[ CurFaceIndex ] ] ) ;
 					V1.x = xv.x * tv.x + xv.y * tv.y + xv.z * tv.z ;
 					V1.y = yv.x * tv.x + yv.y * tv.y + yv.z * tv.z ;
@@ -3140,25 +3140,25 @@ static bool MV1MakeMeshNormals( MV1_MODEL_R *ReadModel, MV1_MESH_R *Mesh )
 					V1.z = 0.0f ;
 					VectorNormalize( &V1, &V1 ) ;
 
-					// “Ї€к‚М•У‚рЋќ‚Вѓ|ѓЉѓSѓ“‚МЊџЌх
+					// еђЊдёЂгЃ®иѕєг‚’жЊЃгЃ¤гѓќгѓЄг‚ґгѓігЃ®ж¤њзґў
 					for( VFBuf = VertexFaceList[ CurFace->VertexIndex[ CurFaceIndex ] ] ; VFBuf ; VFBuf = VFBuf->Next )
 					{
 						FaceT = ( MV1_MESHFACE_R * )VFBuf->Face ;
 
-						// Љщ‚ЙЊџЏoЌП‚Э‚Мѓ|ѓЉѓSѓ“‚Н–іЋ‹
+						// ж—ўгЃ«ж¤ње‡єжё€гЃїгЃ®гѓќгѓЄг‚ґгѓігЃЇз„Ўи¦–
 						if( ( Mesh->NormalSetFlag[ FaceT->NormalIndex[ 0 ] ] & 2 ) ||
 							( Mesh->NormalSetFlag[ FaceT->NormalIndex[ 1 ] ] & 2 ) ||
 							( Mesh->NormalSetFlag[ FaceT->NormalIndex[ 2 ] ] & 2 ) ) continue ;
 
-						// Ћ©•ЄЋ©ђg‚©ЃA€к‚В‘O‚ЙЋ©•Є‚ѕ‚Б‚Ѕѓ|ѓЉѓSѓ“‚Н–іЋ‹
+						// и‡Єе€†и‡Єиє«гЃ‹гЂЃдёЂгЃ¤е‰ЌгЃ«и‡Єе€†гЃ гЃЈгЃџгѓќгѓЄг‚ґгѓігЃЇз„Ўи¦–
 						if( FaceT == CurFace || FaceT == BackCurFace ) continue ;
 
-						// ’ё“_‚Мђ”‚ѕ‚ЇЊJ‚и•Ф‚µ
+						// й ‚з‚№гЃ®ж•°гЃ гЃ‘з№°г‚Љиї”гЃ—
 						for( m = 0 ; ( DWORD )m < FaceT->IndexNum ; m ++ )
 						{
 							CmpFlag = 0 ;
 
-							// “Ї‚¶•У‚рЋќ‚В‚©’І‚Ч‚йЃA’ё“_Ћw’и‚МЏ‡”Ф‚©‚з–К‚М•ыЊь‚р’І‚Ч‚й
+							// еђЊгЃиѕєг‚’жЊЃгЃ¤гЃ‹иЄїгЃ№г‚‹гЂЃй ‚з‚№жЊ‡е®љгЃ®й †з•ЄгЃ‹г‚‰йќўгЃ®ж–№еђ‘г‚’иЄїгЃ№г‚‹
 							if( CurFace->VertexIndex[ CurFaceIndex     ] == FaceT->VertexIndex[ m     ] &&
 								CurFace->VertexIndex[ CurFaceIndex + 1 ] == FaceT->VertexIndex[ m + 1 ] )
 							{
@@ -3173,36 +3173,36 @@ static bool MV1MakeMeshNormals( MV1_MODEL_R *ReadModel, MV1_MESH_R *Mesh )
 								FaceUra = 0 ;
 							}
 
-							// ѓJѓЊѓ“ѓg–К‚Ж“Ї€к‚М’ё“_‚рЋg—p‚·‚й‚P‚W‚O“x‰с“]‚µ‚Ѕ–К( ѓJѓЊѓ“ѓg–К‚М— –К )‚ѕ‚Б‚Ѕ‚зЊџЏo‚µ‚Ѕ‚±‚Ж‚р–і‚©‚Б‚Ѕ‚±‚Ж‚Й‚·‚й
+							// г‚«гѓ¬гѓігѓ€йќўгЃЁеђЊдёЂгЃ®й ‚з‚№г‚’дЅїз”ЁгЃ™г‚‹пј‘пјпјђеє¦е›ћи»ўгЃ—гЃџйќў( г‚«гѓ¬гѓігѓ€йќўгЃ®иЈЏйќў )гЃ гЃЈгЃџг‚‰ж¤ње‡єгЃ—гЃџгЃ“гЃЁг‚’з„ЎгЃ‹гЃЈгЃџгЃ“гЃЁгЃ«гЃ™г‚‹
 							if( CmpFlag == 1 && CurFace->VertexIndex[ CurFaceIndex + 2 ] == FaceT->VertexIndex[ m + 2 ] )
 							{
 								CmpFlag = 0 ;
 							}
 
-							// “Ї€к‚М•У‚ЄЊ©‚В‚©‚Б‚Ѕ‚зѓ‹Ѓ[ѓv‚р”І‚Ї‚й
+							// еђЊдёЂгЃ®иѕєгЃЊи¦‹гЃ¤гЃ‹гЃЈгЃџг‚‰гѓ«гѓјгѓ—г‚’жЉњгЃ‘г‚‹
 							if( CmpFlag != 0 ) break ;
 						}
 
-						// “Ї€к‚М•У‚ЄЊ©‚В‚©‚Б‚Ѕ‚зЏ€—ќ
+						// еђЊдёЂгЃ®иѕєгЃЊи¦‹гЃ¤гЃ‹гЃЈгЃџг‚‰е‡¦зђ†
 						if( ( DWORD )m != FaceT->IndexNum )
 						{
-							// Њ©‚В‚Ї‚Ѕѓ|ѓЉѓSѓ“‚МЃA“Ї€к‚М•У‚рђ¬‚·’ё“_‚Ж‚Н•К‚М‚а‚¤€к‚В‚М’ё“_‚ЦЊь‚©‚¤ѓxѓNѓgѓ‹‚рђж‚ЙЋZЏo‚µ‚ЅЋOЋІ‚Ц“Љ‰e‚µ‚ЅѓxѓNѓgѓ‹‚рЋZЏo‚·‚й
+							// и¦‹гЃ¤гЃ‘гЃџгѓќгѓЄг‚ґгѓігЃ®гЂЃеђЊдёЂгЃ®иѕєг‚’ж€ђгЃ™й ‚з‚№гЃЁгЃЇе€ҐгЃ®г‚‚гЃ†дёЂгЃ¤гЃ®й ‚з‚№гЃёеђ‘гЃ‹гЃ†гѓ™г‚Їгѓ€гѓ«г‚’е…€гЃ«з®—е‡єгЃ—гЃџдё‰и»ёгЃёжЉ•еЅ±гЃ—гЃџгѓ™г‚Їгѓ€гѓ«г‚’з®—е‡єгЃ™г‚‹
 							VectorSub( &tv, &Mesh->Positions[ FaceT->VertexIndex[ m + 2 ] ], &Mesh->Positions[ CurFace->VertexIndex[ CurFaceIndex ] ] ) ;
 							V2.x = xv.x * tv.x + xv.y * tv.y + xv.z * tv.z ;
 							V2.y = yv.x * tv.x + yv.y * tv.y + yv.z * tv.z ;
 							V2.z = zv.x * tv.x + zv.y * tv.y + zv.z * tv.z ;
 							V2.z = 0.0f ;
 
-							// “с‚В‚М–К‚рђ^‰Ў‚©‚зЊ©‚Ѕ‚Ж‚«‚Й‚Е‚«‚йђь‚Єђ¬‚·Љp‚МѓRѓTѓCѓ“’l‚р’І‚Ч‚й
-							// ( ѓJѓЊѓ“ѓg–К‚М•\Њь‚«•ыЊь‚Й‰с“]‚µ‚Ѕ‚Ж‚«‚Й“с•У‚Єђ¬‚·Љp‚МЉp“x‚р’І‚Ч‚й )
+							// дєЊгЃ¤гЃ®йќўг‚’зњџжЁЄгЃ‹г‚‰и¦‹гЃџгЃЁгЃЌгЃ«гЃ§гЃЌг‚‹з·љгЃЊж€ђгЃ™и§’гЃ®г‚іг‚µг‚¤гѓіеЂ¤г‚’иЄїгЃ№г‚‹
+							// ( г‚«гѓ¬гѓігѓ€йќўгЃ®иЎЁеђ‘гЃЌж–№еђ‘гЃ«е›ћи»ўгЃ—гЃџгЃЁгЃЌгЃ«дєЊиѕєгЃЊж€ђгЃ™и§’гЃ®и§’еє¦г‚’иЄїгЃ№г‚‹ )
 							{
-								// ЉOђП‚рЋg‚Б‚Д‚P‚W‚O“x€ИЏг‚©‚З‚¤‚©‚р”»’и
+								// е¤–з©Ќг‚’дЅїгЃЈгЃ¦пј‘пјпјђеє¦д»ҐдёЉгЃ‹гЃ©гЃ†гЃ‹г‚’е€¤е®љ
 								VectorOuterProduct( &tv, &V1, &V2 ) ;
 								VectorNormalize( &V2, &V2 ) ;
 								if( tv.z < 0.0f )
 								{
-									// ‚P‚W‚O“x€ИЏг‚ѕ‚Б‚ЅЏкЌ‡‚Н‚P‚W‚O“x€ИЏг‚ѕ‚Б‚Ѕ‚±‚Ж‚р‹L^‚µ‚ЅЏг‚Е
-									// ѓJѓЊѓ“ѓg–К‘¤‚МѓxѓNѓgѓ‹‚р‹t“]‚µ‚Д“ађП‚р‹Ѓ‚Я‚й( ѓRѓTѓCѓ“’l‚р‹Ѓ‚Я‚й )
+									// пј‘пјпјђеє¦д»ҐдёЉгЃ гЃЈгЃџе ґеђ€гЃЇпј‘пјпјђеє¦д»ҐдёЉгЃ гЃЈгЃџгЃ“гЃЁг‚’иЁйЊІгЃ—гЃџдёЉгЃ§
+									// г‚«гѓ¬гѓігѓ€йќўеЃґгЃ®гѓ™г‚Їгѓ€гѓ«г‚’йЂ†и»ўгЃ—гЃ¦е†…з©Ќг‚’ж±‚г‚Ѓг‚‹( г‚іг‚µг‚¤гѓіеЂ¤г‚’ж±‚г‚Ѓг‚‹ )
 									FaceRadi = -1.0f ;
 									FaceRadi2Use = 1 ;
 									V3.x = -V1.x ;
@@ -3212,16 +3212,16 @@ static bool MV1MakeMeshNormals( MV1_MODEL_R *ReadModel, MV1_MESH_R *Mesh )
 								}
 								else
 								{
-									// ‚P‚W‚O“x€И‰є‚ѕ‚Б‚ЅЏкЌ‡‚Н‚»‚М‚Ь‚Ь“с‚В‚Мђь‚М“ађП‚р‹Ѓ‚Я‚й( ѓRѓTѓCѓ“’l‚р‹Ѓ‚Я‚й )
+									// пј‘пјпјђеє¦д»Ґдё‹гЃ гЃЈгЃџе ґеђ€гЃЇгЃќгЃ®гЃѕгЃѕдєЊгЃ¤гЃ®з·љгЃ®е†…з©Ќг‚’ж±‚г‚Ѓг‚‹( г‚іг‚µг‚¤гѓіеЂ¤г‚’ж±‚г‚Ѓг‚‹ )
 									FaceRadi = VectorInnerProduct( &V1, &V2 ) ;
 									FaceRadi2Use = 0 ;
 									FaceRadi2 = 1.0f ;
 								}
 							}
 
-							// ‚Ь‚ѕ—ЧђЪ‚·‚й–К‚рЊ©‚В‚Ї‚Д‚ў‚И‚ў‚©
-							// Љщ‚ЙЊ©‚В‚Ї‚Д‚ў‚й‚ЄЌЎ‰с‚М–К‚М— –К‚©
-							// Љщ‚ЙЊ©‚В‚Ї‚Д‚ў‚й—ЧђЪ–К‚ж‚и‚аЉp“x“I‚Й‹Я‚ў–К‚ѕ‚Б‚Ѕ‚з—ЧђЪ–К‚Ж‚µ‚Д‹L^‚·‚й
+							// гЃѕгЃ йљЈжЋҐгЃ™г‚‹йќўг‚’и¦‹гЃ¤гЃ‘гЃ¦гЃ„гЃЄгЃ„гЃ‹
+							// ж—ўгЃ«и¦‹гЃ¤гЃ‘гЃ¦гЃ„г‚‹гЃЊд»Ље›ћгЃ®йќўгЃ®иЈЏйќўгЃ‹
+							// ж—ўгЃ«и¦‹гЃ¤гЃ‘гЃ¦гЃ„г‚‹йљЈжЋҐйќўг‚€г‚Љг‚‚и§’еє¦зљ„гЃ«иї‘гЃ„йќўгЃ гЃЈгЃџг‚‰йљЈжЋҐйќўгЃЁгЃ—гЃ¦иЁйЊІгЃ™г‚‹
 							if( MinFace == NULL ||
 								( ( ( FaceT->VertexIndex[ 0 ] == MinFace->VertexIndex[ 0 ] &&
 								      FaceT->VertexIndex[ 1 ] == MinFace->VertexIndex[ 2 ] &&
@@ -3247,31 +3247,31 @@ static bool MV1MakeMeshNormals( MV1_MODEL_R *ReadModel, MV1_MESH_R *Mesh )
 						}
 					}
 
-					// —ЧђЪ–К‚р”­Њ©‚Е‚«‚И‚©‚Б‚Ѕ‚©ЃA—ЧђЪ–К‚Є— –К‚ѕ‚Б‚Ѕ‚©ЃA—ЧђЪ–К‚Ж‚М–@ђь‚МЉp“xЌ·‚ЄѓXѓЂЃ[ѓWѓ“ѓO‘ОЏЫ‚Ми‡’l‚р’ґ‚¦‚Д‚ў‚Ѕ‚зѓGѓbѓW‚Ж‚Э‚И‚·
+					// йљЈжЋҐйќўг‚’з™єи¦‹гЃ§гЃЌгЃЄгЃ‹гЃЈгЃџгЃ‹гЂЃйљЈжЋҐйќўгЃЊиЈЏйќўгЃ гЃЈгЃџгЃ‹гЂЃйљЈжЋҐйќўгЃЁгЃ®жі•з·љгЃ®и§’еє¦е·®гЃЊг‚№гѓ гѓјг‚ёгѓіг‚°еЇѕи±ЎгЃ®й–ѕеЂ¤г‚’и¶…гЃ€гЃ¦гЃ„гЃџг‚‰г‚Ёгѓѓг‚ёгЃЁгЃїгЃЄгЃ™
 					if( MinFace == NULL || MinFaceUra || VectorInnerProduct( &MinFace->Normal, &CurFace->Normal ) < SmoothCos )
 						break ;
 
-					// ”­Њ©‚µ‚Ѕ—ЧђЪ–К‚ЄЊџЌхЉJЋn‚М–К‚ѕ‚Б‚ЅЏкЌ‡‚Н€кЋь‚µ‚Ѕ‚Ж‚ў‚¤‚±‚Ж
+					// з™єи¦‹гЃ—гЃџйљЈжЋҐйќўгЃЊж¤њзґўй–‹е§‹гЃ®йќўгЃ гЃЈгЃџе ґеђ€гЃЇдёЂе‘ЁгЃ—гЃџгЃЁгЃ„гЃ†гЃ“гЃЁ
 					if( MinFace == FaceList[ 0 ] )
 					{
 						Issyuu = 1 ;
 						break ;
 					}
 
-					// Љm’и‚µ‚Ѕ—ЧђЪ–К‚р‹L^
+					// зўєе®љгЃ—гЃџйљЈжЋҐйќўг‚’иЁйЊІ
 					FaceList[ FaceCount ] = MinFace ;
 					FaceIndex[ FaceCount ] = ( BYTE )MinFaceIndex ;
 					VectorAdd( &FaceNorm, &FaceNorm, &MinFace->Normal ) ;
 					Mesh->NormalSetFlag[ MinFace->NormalIndex[ MinFaceIndex ] ] |= 2 ;
 					FaceCount ++ ;
 
-					// ѓJѓЊѓ“ѓg–К‚М•ПЌX
+					// г‚«гѓ¬гѓігѓ€йќўгЃ®е¤‰ж›ґ
 					BackCurFace = CurFace ;
 					CurFace = MinFace ;
 					CurFaceIndex = MinFaceIndex ;
 				}
 
-				// ‚а‚¤•Р•ы‚МAЊ‹–К‚рѓЉѓXѓgѓAѓbѓv
+				// г‚‚гЃ†з‰‡ж–№гЃ®йЂЈзµђйќўг‚’гѓЄг‚№гѓ€г‚ўгѓѓгѓ—
 				if( Issyuu == 0 )
 				{
 					BackCurFace = NULL ;
@@ -3281,7 +3281,7 @@ static bool MV1MakeMeshNormals( MV1_MODEL_R *ReadModel, MV1_MESH_R *Mesh )
 					{
 						MinFace = NULL ;
 
-						// –@ђь‚рЉ„‚иЏo‚µ‚Ѕ‚ў’ё“_‚©‚з—ЧђЪ‚µ‚Д‚ў‚й‚©’І‚Ч‚Ѕ‚ў•У‚М’ё“_‚ЦЊь‚©‚¤ѓxѓNѓgѓ‹‚р‚yЃA‚а‚¤•Р•ы‚М’ё“_‚ЦЊь‚©‚¤ѓxѓNѓgѓ‹‚р‚w‚Ж‚µ‚Ѕ‚RЋІѓxѓNѓgѓ‹‚МЌмђ¬
+						// жі•з·љг‚’е‰Іг‚Ље‡єгЃ—гЃџгЃ„й ‚з‚№гЃ‹г‚‰йљЈжЋҐгЃ—гЃ¦гЃ„г‚‹гЃ‹иЄїгЃ№гЃџгЃ„иѕєгЃ®й ‚з‚№гЃёеђ‘гЃ‹гЃ†гѓ™г‚Їгѓ€гѓ«г‚’пјєгЂЃг‚‚гЃ†з‰‡ж–№гЃ®й ‚з‚№гЃёеђ‘гЃ‹гЃ†гѓ™г‚Їгѓ€гѓ«г‚’пјёгЃЁгЃ—гЃџпј“и»ёгѓ™г‚Їгѓ€гѓ«гЃ®дЅњж€ђ
 						VectorSub( &zv, &Mesh->Positions[ CurFace->VertexIndex[ CurFaceIndex + CurFace->IndexNum - 1 ] ], &Mesh->Positions[ CurFace->VertexIndex[ CurFaceIndex ] ] ) ;
 						VectorSub( &xv, &Mesh->Positions[ CurFace->VertexIndex[ CurFaceIndex + CurFace->IndexNum - 2 ] ], &Mesh->Positions[ CurFace->VertexIndex[ CurFaceIndex ] ] ) ;
 						VectorOuterProduct( &yv, &zv, &xv ) ;
@@ -3290,7 +3290,7 @@ static bool MV1MakeMeshNormals( MV1_MODEL_R *ReadModel, MV1_MESH_R *Mesh )
 						VectorNormalize( &yv, &yv ) ;
 						VectorNormalize( &zv, &zv ) ;
 
-						// —ЧђЪ‚µ‚Д‚ў‚й‚©’І‚Ч‚Ѕ‚ў•У‚М’ё“_‚Ж‚Н•К‚М‚а‚¤€к‚В‚М’ё“_‚ЦЊь‚©‚¤ѓxѓNѓgѓ‹‚рЏг‹L‚ЕЋZЏo‚µ‚ЅЋOЋІЏг‚Й“Љ‰e‚µ‚ЅѓxѓNѓgѓ‹‚рЋZЏo
+						// йљЈжЋҐгЃ—гЃ¦гЃ„г‚‹гЃ‹иЄїгЃ№гЃџгЃ„иѕєгЃ®й ‚з‚№гЃЁгЃЇе€ҐгЃ®г‚‚гЃ†дёЂгЃ¤гЃ®й ‚з‚№гЃёеђ‘гЃ‹гЃ†гѓ™г‚Їгѓ€гѓ«г‚’дёЉиЁгЃ§з®—е‡єгЃ—гЃџдё‰и»ёдёЉгЃ«жЉ•еЅ±гЃ—гЃџгѓ™г‚Їгѓ€гѓ«г‚’з®—е‡є
 						VectorSub( &tv, &Mesh->Positions[ CurFace->VertexIndex[ CurFaceIndex + CurFace->IndexNum - 2 ] ], &Mesh->Positions[ CurFace->VertexIndex[ CurFaceIndex ] ] ) ;
 						V1.x = xv.x * tv.x + xv.y * tv.y + xv.z * tv.z ;
 						V1.y = yv.x * tv.x + yv.y * tv.y + yv.z * tv.z ;
@@ -3298,25 +3298,25 @@ static bool MV1MakeMeshNormals( MV1_MODEL_R *ReadModel, MV1_MESH_R *Mesh )
 						V1.z = 0.0f ;
 						VectorNormalize( &V1, &V1 ) ;
 
-						// “Ї€к‚М•У‚рЋќ‚Вѓ|ѓЉѓSѓ“‚МЊџЌх
+						// еђЊдёЂгЃ®иѕєг‚’жЊЃгЃ¤гѓќгѓЄг‚ґгѓігЃ®ж¤њзґў
 						for( VFBuf = VertexFaceList[ CurFace->VertexIndex[ CurFaceIndex ] ] ; VFBuf ; VFBuf = VFBuf->Next )
 						{
 							FaceT = ( MV1_MESHFACE_R * )VFBuf->Face ;
 
-							// Љщ‚ЙЊџЏoЌП‚Э‚Мѓ|ѓЉѓSѓ“‚Н–іЋ‹
+							// ж—ўгЃ«ж¤ње‡єжё€гЃїгЃ®гѓќгѓЄг‚ґгѓігЃЇз„Ўи¦–
 							if( ( Mesh->NormalSetFlag[ FaceT->NormalIndex[ 0 ] ] & 2 ) ||
 								( Mesh->NormalSetFlag[ FaceT->NormalIndex[ 1 ] ] & 2 ) ||
 								( Mesh->NormalSetFlag[ FaceT->NormalIndex[ 2 ] ] & 2 ) ) continue ;
 
-							// Ћ©•ЄЋ©ђg‚©ЃA€к‚В‘O‚ЙЋ©•Є‚ѕ‚Б‚Ѕѓ|ѓЉѓSѓ“‚Н–іЋ‹
+							// и‡Єе€†и‡Єиє«гЃ‹гЂЃдёЂгЃ¤е‰ЌгЃ«и‡Єе€†гЃ гЃЈгЃџгѓќгѓЄг‚ґгѓігЃЇз„Ўи¦–
 							if( FaceT == CurFace || FaceT == BackCurFace ) continue ;
 
-							// ’ё“_‚Мђ”‚ѕ‚ЇЊJ‚и•Ф‚µ
+							// й ‚з‚№гЃ®ж•°гЃ гЃ‘з№°г‚Љиї”гЃ—
 							for( m = 0 ; ( DWORD )m < FaceT->IndexNum ; m ++ )
 							{
 								CmpFlag = 0 ;
 
-								// “Ї‚¶•У‚рЋќ‚В‚©’І‚Ч‚йЃA’ё“_Ћw’и‚МЏ‡”Ф‚©‚з–К‚М•ыЊь‚р’І‚Ч‚й
+								// еђЊгЃиѕєг‚’жЊЃгЃ¤гЃ‹иЄїгЃ№г‚‹гЂЃй ‚з‚№жЊ‡е®љгЃ®й †з•ЄгЃ‹г‚‰йќўгЃ®ж–№еђ‘г‚’иЄїгЃ№г‚‹
 
 								if( CurFace->VertexIndex[ CurFaceIndex                         ] == FaceT->VertexIndex[ m                       ] &&
 									CurFace->VertexIndex[ CurFaceIndex + CurFace->IndexNum - 1 ] == FaceT->VertexIndex[ m + FaceT->IndexNum - 1 ] )
@@ -3332,36 +3332,36 @@ static bool MV1MakeMeshNormals( MV1_MODEL_R *ReadModel, MV1_MESH_R *Mesh )
 									FaceUra = 0 ;
 								}
 
-								// ѓJѓЊѓ“ѓg–К‚Ж“Ї€к‚М’ё“_‚рЋg—p‚·‚й‚P‚W‚O“x‰с“]‚µ‚Ѕ–К( ѓJѓЊѓ“ѓg–К‚М— –К )‚ѕ‚Б‚Ѕ‚зЊџЏo‚µ‚Ѕ‚±‚Ж‚р–і‚©‚Б‚Ѕ‚±‚Ж‚Й‚·‚й
+								// г‚«гѓ¬гѓігѓ€йќўгЃЁеђЊдёЂгЃ®й ‚з‚№г‚’дЅїз”ЁгЃ™г‚‹пј‘пјпјђеє¦е›ћи»ўгЃ—гЃџйќў( г‚«гѓ¬гѓігѓ€йќўгЃ®иЈЏйќў )гЃ гЃЈгЃџг‚‰ж¤ње‡єгЃ—гЃџгЃ“гЃЁг‚’з„ЎгЃ‹гЃЈгЃџгЃ“гЃЁгЃ«гЃ™г‚‹
 								if( CmpFlag == 1 && CurFace->VertexIndex[ CurFaceIndex + CurFace->IndexNum - 2 ] == FaceT->VertexIndex[ m + FaceT->IndexNum - 2 ] )
 								{
 									CmpFlag = 0 ;
 								}
 
-								// “Ї€к‚М•У‚ЄЊ©‚В‚©‚Б‚Ѕ‚зѓ‹Ѓ[ѓv‚р”І‚Ї‚й
+								// еђЊдёЂгЃ®иѕєгЃЊи¦‹гЃ¤гЃ‹гЃЈгЃџг‚‰гѓ«гѓјгѓ—г‚’жЉњгЃ‘г‚‹
 								if( CmpFlag != 0 ) break ;
 							}
 
-							// “Ї€к‚М•У‚ЄЊ©‚В‚©‚Б‚Ѕ‚зЏ€—ќ
+							// еђЊдёЂгЃ®иѕєгЃЊи¦‹гЃ¤гЃ‹гЃЈгЃџг‚‰е‡¦зђ†
 							if( ( DWORD )m != FaceT->IndexNum )
 							{
-								// Њ©‚В‚Ї‚Ѕѓ|ѓЉѓSѓ“‚МЃA“Ї€к‚М•У‚рђ¬‚·’ё“_‚Ж‚Н•К‚М‚а‚¤€к‚В‚М’ё“_‚ЦЊь‚©‚¤ѓxѓNѓgѓ‹‚рђж‚ЙЋZЏo‚µ‚ЅЋOЋІ‚Ц“Љ‰e‚µ‚ЅѓxѓNѓgѓ‹‚рЋZЏo‚·‚й
+								// и¦‹гЃ¤гЃ‘гЃџгѓќгѓЄг‚ґгѓігЃ®гЂЃеђЊдёЂгЃ®иѕєг‚’ж€ђгЃ™й ‚з‚№гЃЁгЃЇе€ҐгЃ®г‚‚гЃ†дёЂгЃ¤гЃ®й ‚з‚№гЃёеђ‘гЃ‹гЃ†гѓ™г‚Їгѓ€гѓ«г‚’е…€гЃ«з®—е‡єгЃ—гЃџдё‰и»ёгЃёжЉ•еЅ±гЃ—гЃџгѓ™г‚Їгѓ€гѓ«г‚’з®—е‡єгЃ™г‚‹
 								VectorSub( &tv, &Mesh->Positions[ FaceT->VertexIndex[ m + FaceT->IndexNum - 2 ] ], &Mesh->Positions[ CurFace->VertexIndex[ CurFaceIndex ] ] ) ;
 								V2.x = xv.x * tv.x + xv.y * tv.y + xv.z * tv.z ;
 								V2.y = yv.x * tv.x + yv.y * tv.y + yv.z * tv.z ;
 								V2.z = zv.x * tv.x + zv.y * tv.y + zv.z * tv.z ;
 								V2.z = 0.0f ;
 
-								// “с‚В‚М–К‚рђ^‰Ў‚©‚зЊ©‚Ѕ‚Ж‚«‚Й‚Е‚«‚йђь‚Єђ¬‚·Љp‚МѓRѓTѓCѓ“’l‚р’І‚Ч‚й
-								// ( ѓJѓЊѓ“ѓg–К‚М•\Њь‚«•ыЊь‚Й‰с“]‚µ‚Ѕ‚Ж‚«‚Й“с•У‚Єђ¬‚·Љp‚МЉp“x‚р’І‚Ч‚й )
+								// дєЊгЃ¤гЃ®йќўг‚’зњџжЁЄгЃ‹г‚‰и¦‹гЃџгЃЁгЃЌгЃ«гЃ§гЃЌг‚‹з·љгЃЊж€ђгЃ™и§’гЃ®г‚іг‚µг‚¤гѓіеЂ¤г‚’иЄїгЃ№г‚‹
+								// ( г‚«гѓ¬гѓігѓ€йќўгЃ®иЎЁеђ‘гЃЌж–№еђ‘гЃ«е›ћи»ўгЃ—гЃџгЃЁгЃЌгЃ«дєЊиѕєгЃЊж€ђгЃ™и§’гЃ®и§’еє¦г‚’иЄїгЃ№г‚‹ )
 								{
-									// ЉOђП‚рЋg‚Б‚Д‚P‚W‚O“x€ИЏг‚©‚З‚¤‚©‚р”»’и
+									// е¤–з©Ќг‚’дЅїгЃЈгЃ¦пј‘пјпјђеє¦д»ҐдёЉгЃ‹гЃ©гЃ†гЃ‹г‚’е€¤е®љ
 									VectorOuterProduct( &tv, &V1, &V2 ) ;
 									VectorNormalize( &V2, &V2 ) ;
 									if( tv.z > 0.0f )
 									{
-										// ‚P‚W‚O“x€ИЏг‚ѕ‚Б‚ЅЏкЌ‡‚Н‚P‚W‚O“x€ИЏг‚ѕ‚Б‚Ѕ‚±‚Ж‚р‹L^‚µ‚ЅЏг‚Е
-										// ѓJѓЊѓ“ѓg–К‘¤‚МѓxѓNѓgѓ‹‚р‹t“]‚µ‚Д“ађП‚р‹Ѓ‚Я‚й( ѓRѓTѓCѓ“’l‚р‹Ѓ‚Я‚й )
+										// пј‘пјпјђеє¦д»ҐдёЉгЃ гЃЈгЃџе ґеђ€гЃЇпј‘пјпјђеє¦д»ҐдёЉгЃ гЃЈгЃџгЃ“гЃЁг‚’иЁйЊІгЃ—гЃџдёЉгЃ§
+										// г‚«гѓ¬гѓігѓ€йќўеЃґгЃ®гѓ™г‚Їгѓ€гѓ«г‚’йЂ†и»ўгЃ—гЃ¦е†…з©Ќг‚’ж±‚г‚Ѓг‚‹( г‚іг‚µг‚¤гѓіеЂ¤г‚’ж±‚г‚Ѓг‚‹ )
 										FaceRadi = -1.0f ;
 										FaceRadi2Use = 1 ;
 										V3.x = -V1.x ;
@@ -3371,16 +3371,16 @@ static bool MV1MakeMeshNormals( MV1_MODEL_R *ReadModel, MV1_MESH_R *Mesh )
 									}
 									else
 									{
-										// ‚P‚W‚O“x€И‰є‚ѕ‚Б‚ЅЏкЌ‡‚Н‚»‚М‚Ь‚Ь“с‚В‚Мђь‚М“ађП‚р‹Ѓ‚Я‚й( ѓRѓTѓCѓ“’l‚р‹Ѓ‚Я‚й )
+										// пј‘пјпјђеє¦д»Ґдё‹гЃ гЃЈгЃџе ґеђ€гЃЇгЃќгЃ®гЃѕгЃѕдєЊгЃ¤гЃ®з·љгЃ®е†…з©Ќг‚’ж±‚г‚Ѓг‚‹( г‚іг‚µг‚¤гѓіеЂ¤г‚’ж±‚г‚Ѓг‚‹ )
 										FaceRadi = VectorInnerProduct( &V1, &V2 ) ;
 										FaceRadi2Use = 0 ;
 										FaceRadi2 = 1.0f ;
 									}
 								}
 
-								// ‚Ь‚ѕ—ЧђЪ‚·‚й–К‚рЊ©‚В‚Ї‚Д‚ў‚И‚ў‚©
-								// Љщ‚ЙЊ©‚В‚Ї‚Д‚ў‚й‚ЄЌЎ‰с‚М–К‚М— –К‚©
-								// Љщ‚ЙЊ©‚В‚Ї‚Д‚ў‚й—ЧђЪ–К‚ж‚и‚аЉp“x“I‚Й‹Я‚ў–К‚ѕ‚Б‚Ѕ‚з—ЧђЪ–К‚Ж‚µ‚Д‹L^‚·‚й
+								// гЃѕгЃ йљЈжЋҐгЃ™г‚‹йќўг‚’и¦‹гЃ¤гЃ‘гЃ¦гЃ„гЃЄгЃ„гЃ‹
+								// ж—ўгЃ«и¦‹гЃ¤гЃ‘гЃ¦гЃ„г‚‹гЃЊд»Ље›ћгЃ®йќўгЃ®иЈЏйќўгЃ‹
+								// ж—ўгЃ«и¦‹гЃ¤гЃ‘гЃ¦гЃ„г‚‹йљЈжЋҐйќўг‚€г‚Љг‚‚и§’еє¦зљ„гЃ«иї‘гЃ„йќўгЃ гЃЈгЃџг‚‰йљЈжЋҐйќўгЃЁгЃ—гЃ¦иЁйЊІгЃ™г‚‹
 								if( MinFace == NULL ||
 									( ( ( FaceT->VertexIndex[ 0 ] == MinFace->VertexIndex[ 0 ] &&
 										  FaceT->VertexIndex[ 1 ] == MinFace->VertexIndex[ 2 ] &&
@@ -3406,36 +3406,36 @@ static bool MV1MakeMeshNormals( MV1_MODEL_R *ReadModel, MV1_MESH_R *Mesh )
 							}
 						}
 
-						// —ЧђЪ–К‚р”­Њ©‚Е‚«‚И‚©‚Б‚Ѕ‚©ЃA—ЧђЪ–К‚Є— –К‚ѕ‚Б‚Ѕ‚©ЃA—ЧђЪ–К‚Ж‚М–@ђь‚МЉp“xЌ·‚ЄѓXѓЂЃ[ѓWѓ“ѓO‘ОЏЫ‚Ми‡’l‚р’ґ‚¦‚Д‚ў‚Ѕ‚зѓGѓbѓW‚Ж‚Э‚И‚·
+						// йљЈжЋҐйќўг‚’з™єи¦‹гЃ§гЃЌгЃЄгЃ‹гЃЈгЃџгЃ‹гЂЃйљЈжЋҐйќўгЃЊиЈЏйќўгЃ гЃЈгЃџгЃ‹гЂЃйљЈжЋҐйќўгЃЁгЃ®жі•з·љгЃ®и§’еє¦е·®гЃЊг‚№гѓ гѓјг‚ёгѓіг‚°еЇѕи±ЎгЃ®й–ѕеЂ¤г‚’и¶…гЃ€гЃ¦гЃ„гЃџг‚‰г‚Ёгѓѓг‚ёгЃЁгЃїгЃЄгЃ™
 						if( MinFace == NULL || MinFaceUra || VectorInnerProduct( &MinFace->Normal, &CurFace->Normal ) < SmoothCos )
 							break ;
 
-						// ”­Њ©‚µ‚Ѕ—ЧђЪ–К‚ЄЊџЌхЉJЋn‚М–К‚ѕ‚Б‚ЅЏкЌ‡‚Н€кЋь‚µ‚Ѕ‚Ж‚ў‚¤‚±‚Ж
+						// з™єи¦‹гЃ—гЃџйљЈжЋҐйќўгЃЊж¤њзґўй–‹е§‹гЃ®йќўгЃ гЃЈгЃџе ґеђ€гЃЇдёЂе‘ЁгЃ—гЃџгЃЁгЃ„гЃ†гЃ“гЃЁ
 						if( MinFace == FaceList[ 0 ] )
 						{
 							Issyuu = 1 ;
 							break ;
 						}
 
-						// Љm’и‚µ‚Ѕ—ЧђЪ–К‚р‹L^
+						// зўєе®љгЃ—гЃџйљЈжЋҐйќўг‚’иЁйЊІ
 						FaceList[ FaceCount ] = MinFace ;
 						FaceIndex[ FaceCount ] = ( BYTE )MinFaceIndex ;
 						VectorAdd( &FaceNorm, &FaceNorm, &MinFace->Normal ) ;
 						Mesh->NormalSetFlag[ MinFace->NormalIndex[ MinFaceIndex ] ] |= 2 ;
 						FaceCount ++ ;
 
-						// ѓJѓЊѓ“ѓg–К‚М•ПЌX
+						// г‚«гѓ¬гѓігѓ€йќўгЃ®е¤‰ж›ґ
 						BackCurFace = CurFace ;
 						CurFace = MinFace ;
 						CurFaceIndex = MinFaceIndex ;
 					}
 				}
 
-				// ЊџЏo‚µ‚Ѕ–К‚М–@ђь‚р‘«‚µ‚Ѕ‚а‚М‚рђі‹K‰»
+				// ж¤ње‡єгЃ—гЃџйќўгЃ®жі•з·љг‚’и¶ігЃ—гЃџг‚‚гЃ®г‚’ж­Ји¦ЏеЊ–
 				VectorNormalize( &FaceNorm, &FaceNorm ) ;
 			}
 
-			// ѓЉѓXѓgѓAѓbѓv‚і‚к‚Ѕ–К‚Йђі‹K‰»‚µ‚Ѕ–@ђь‚рѓZѓbѓg‚·‚й
+			// гѓЄг‚№гѓ€г‚ўгѓѓгѓ—гЃ•г‚ЊгЃџйќўгЃ«ж­Ји¦ЏеЊ–гЃ—гЃџжі•з·љг‚’г‚»гѓѓгѓ€гЃ™г‚‹
 			for( k = 0 ; k < FaceCount ; k ++ )
 			{
 				Index = ( int )FaceList[ k ]->NormalIndex[ FaceIndex[ k ] ] ;
@@ -3446,9 +3446,9 @@ static bool MV1MakeMeshNormals( MV1_MODEL_R *ReadModel, MV1_MESH_R *Mesh )
 		}
 	}
 
-	// Ћg—p‚µ‚Д‚ў‚й–@ђь‚рѓCѓ“ѓfѓbѓNѓX‚МЋб‚ўЏ‡‚Й‹l‚Я‚й
+	// дЅїз”ЁгЃ—гЃ¦гЃ„г‚‹жі•з·љг‚’г‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃ®и‹ҐгЃ„й †гЃ«и©°г‚Ѓг‚‹
 	{
-		// Ћg—p‚і‚к‚Д‚ў‚й–@ђь‚Мѓ}ѓbѓv‚рЌмђ¬‚·‚й
+		// дЅїз”ЁгЃ•г‚ЊгЃ¦гЃ„г‚‹жі•з·љгЃ®гѓћгѓѓгѓ—г‚’дЅњж€ђгЃ™г‚‹
 		_MEMSET( NormalUseTable, 0, Mesh->NormalNum ) ;
 		Face = Mesh->Faces ;
 		UseNormalNum = 0 ;
@@ -3479,23 +3479,23 @@ static bool MV1MakeMeshNormals( MV1_MODEL_R *ReadModel, MV1_MESH_R *Mesh )
 			}
 		}
 
-		// ЌЕЏI”Е‚М–@ђь‚рЉi”[‚·‚й‚Ѕ‚Я‚МѓЃѓ‚ѓЉ‚МЉm•Ы
+		// жњЂзµ‚з‰€гЃ®жі•з·љг‚’ж јзґЌгЃ™г‚‹гЃџг‚ЃгЃ®гѓЎгѓўгѓЄгЃ®зўєдїќ
 		Normal = Mesh->Normals ;
 		Mesh->Normals = ( VECTOR * )ADDMEMAREA( sizeof( VECTOR ) * UseNormalNum, &ReadModel->Mem ) ;
 		if( Mesh->Normals == NULL )
 		{
 			DXFREE( Normal ) ;
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\x52\x00\x65\x00\x61\x00\x64\x00\x20\x00\x4d\x00\x6f\x00\x64\x00\x65\x00\x6c\x00\x20\x00\x43\x00\x6f\x00\x6e\x00\x76\x00\x65\x00\x72\x00\x74\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xd5\x6c\xda\x7d\xea\x81\xd5\x52\x5c\x4f\x10\x62\xe6\x51\x06\x74\x67\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xd5\x6c\xda\x7d\x6e\x30\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x20\x00\x5f\x00\x20\x00\x32\x00\x0a\x00\x00"/*@ L"Read Model Convert Error : –@ђьЋ©“®Ќмђ¬Џ€—ќ‚ЕЉi”[‚·‚й–@ђь‚МѓЃѓ‚ѓЉ‚МЉm•Ы‚ЙЋё”s‚µ‚Ь‚µ‚Ѕ _ 2\n" @*/ )) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\x52\x00\x65\x00\x61\x00\x64\x00\x20\x00\x4d\x00\x6f\x00\x64\x00\x65\x00\x6c\x00\x20\x00\x43\x00\x6f\x00\x6e\x00\x76\x00\x65\x00\x72\x00\x74\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xd5\x6c\xda\x7d\xea\x81\xd5\x52\x5c\x4f\x10\x62\xe6\x51\x06\x74\x67\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xd5\x6c\xda\x7d\x6e\x30\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x20\x00\x5f\x00\x20\x00\x32\x00\x0a\x00\x00"/*@ L"Read Model Convert Error : жі•з·љи‡Єе‹•дЅњж€ђе‡¦зђ†гЃ§ж јзґЌгЃ™г‚‹жі•з·љгЃ®гѓЎгѓўгѓЄгЃ®зўєдїќгЃ«е¤±ж•—гЃ—гЃѕгЃ—гЃџ _ 2\n" @*/ )) ;
 			return false ;
 		}
 
-		// ЌЕЏI”Е‚М–@ђьѓZѓbѓg‚рЌмђ¬‚·‚й
+		// жњЂзµ‚з‰€гЃ®жі•з·љг‚»гѓѓгѓ€г‚’дЅњж€ђгЃ™г‚‹
 		for( i = 0 ; ( DWORD )i < UseNormalNum ; i ++ )
 		{
 			Mesh->Normals[ i ] = Normal[ UseNormalIndex[ i ] ] ;
 		}
 
-		// –КѓfЃ[ѓ^‚М–@ђьѓCѓ“ѓfѓbѓNѓX‚рЌXђV‚·‚й
+		// йќўгѓ‡гѓјг‚їгЃ®жі•з·љг‚¤гѓігѓ‡гѓѓг‚Їг‚№г‚’ж›ґж–°гЃ™г‚‹
 		Face = Mesh->Faces ;
 		for( i = 0 ; ( DWORD )i < Mesh->FaceNum ; i ++, Face ++ )
 		{
@@ -3504,26 +3504,26 @@ static bool MV1MakeMeshNormals( MV1_MODEL_R *ReadModel, MV1_MESH_R *Mesh )
 			Face->NormalIndex[ 2 ] = NewNormalIndex[ Face->NormalIndex[ 2 ] ] ;
 		}
 
-		// ЌЕЏI“I‚И–@ђь‚Мђ”‚рѓZѓbѓg
+		// жњЂзµ‚зљ„гЃЄжі•з·љгЃ®ж•°г‚’г‚»гѓѓгѓ€
 		Mesh->NormalNum = UseNormalNum ;
 	}
 
-	// €кЋћ“I‚ИѓfЃ[ѓ^‚рЉi”[‚µ‚Д‚ў‚ЅѓЃѓ‚ѓЉ—М€ж‚М‰р•ъ
+	// дёЂж™‚зљ„гЃЄгѓ‡гѓјг‚їг‚’ж јзґЌгЃ—гЃ¦гЃ„гЃџгѓЎгѓўгѓЄй еџџгЃ®и§Јж”ѕ
 	DXFREE( Normal ) ;
 	Normal = NULL ;
 
-	// ѓЃѓ‚ѓЉ‚М‰р•ъ
+	// гѓЎгѓўгѓЄгЃ®и§Јж”ѕ
 	if( VertexFaceList )
 	{
 		DXFREE( VertexFaceList ) ;
 		VertexFaceList = NULL ;
 	}
 
-	// ђіЏнЏI—№
+	// ж­Јеёёзµ‚дє†
 	return true ;
 }
 
-// ‰с“]Ќs—с‚рЏжЋZ‚·‚й
+// е›ћи»ўиЎЊе€—г‚’д№—з®—гЃ™г‚‹
 static void MV1MultiplyRotateMatrix( MATRIX *DestBuffer, VECTOR *Rotate, int RotateOrder, bool RotateInverse )
 {
 	MATRIX RotMatX, RotMatY, RotMatZ ;
@@ -3620,7 +3620,7 @@ static void MV1MultiplyRotateMatrix( MATRIX *DestBuffer, VECTOR *Rotate, int Rot
 	}
 }
 
-// ЌА•W•ПЉ·Ќs—с‚МЌмђ¬
+// еє§жЁ™е¤‰жЏ›иЎЊе€—гЃ®дЅњж€ђ
 extern int MV1RMakeMatrix( VECTOR *PreRotate, VECTOR *Rotate, VECTOR *PostRotate, VECTOR *Scale, VECTOR *Translate, VECTOR *MatrixRXYZ, MATRIX *DestBuffer, int RotateOrder )
 {
 	MATRIX TransMat, Matrix3x3 ;
@@ -3648,11 +3648,11 @@ extern int MV1RMakeMatrix( VECTOR *PreRotate, VECTOR *Rotate, VECTOR *PostRotate
 	CreateTranslationMatrix( &TransMat, Translate->x, Translate->y, Translate->z ) ;
 	CreateMultiplyMatrix( DestBuffer, DestBuffer, &TransMat ) ;
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// ѓtѓ@ѓCѓ‹‚рЉЫ‚І‚Ж“З‚ЭЌћ‚Ю
+// гѓ•г‚Ўг‚¤гѓ«г‚’дёёгЃ”гЃЁиЄ­гЃїиѕјг‚Ђ
 extern int MV1RLoadFile( const char *FilePath, void **FileImage, int *FileSize )
 {
 	DWORD_PTR FileHandle ;
@@ -3660,11 +3660,11 @@ extern int MV1RLoadFile( const char *FilePath, void **FileImage, int *FileSize )
 	void *Image ;
 	wchar_t FilePathW[ 1024 ] ;
 
-	// ѓeѓNѓXѓ`ѓѓѓtѓ@ѓCѓ‹‚рЉJ‚­
+	// гѓ†г‚Їг‚№гѓЃгѓЈгѓ•г‚Ўг‚¤гѓ«г‚’й–‹гЃЏ
 	ConvString( ( const char * )FilePath, -1, DX_CHARCODEFORMAT_SHIFTJIS, ( char * )FilePathW, sizeof( FilePathW ), WCHAR_T_CHARCODEFORMAT ) ;
 	FileHandle = DX_FOPEN( FilePathW ) ;
 
-	// ѓtѓ@ѓCѓ‹‚ЄЉJ‚Ї‚И‚©‚Б‚Ѕ‚зѓJѓЊѓ“ѓgѓtѓHѓ‹ѓ_‚©‚зЉJ‚±‚¤‚Ж‚µ‚Д‚Э‚й
+	// гѓ•г‚Ўг‚¤гѓ«гЃЊй–‹гЃ‘гЃЄгЃ‹гЃЈгЃџг‚‰г‚«гѓ¬гѓігѓ€гѓ•г‚©гѓ«гѓЂгЃ‹г‚‰й–‹гЃ“гЃ†гЃЁгЃ—гЃ¦гЃїг‚‹
 	if( FileHandle == 0 )
 	{
 		wchar_t FileName[ 512 ] ;
@@ -3673,16 +3673,16 @@ extern int MV1RLoadFile( const char *FilePath, void **FileImage, int *FileSize )
 		FileHandle = DX_FOPEN( FileName ) ;
 	}
 
-	// ѓtѓ@ѓCѓ‹‚Є–і‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// гѓ•г‚Ўг‚¤гѓ«гЃЊз„ЎгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( FileHandle == 0 )
 		return -1 ;
 
-	// ѓtѓ@ѓCѓ‹ѓTѓCѓY‚рЋж“ѕ
+	// гѓ•г‚Ўг‚¤гѓ«г‚µг‚¤г‚єг‚’еЏ–еѕ—
 	DX_FSEEK( FileHandle, 0L, SEEK_END ) ;
 	Size = ( size_t )DX_FTELL( FileHandle ) ;
 	DX_FSEEK( FileHandle, 0L, SEEK_SET ) ;
 
-	// ѓeѓNѓXѓ`ѓѓѓtѓ@ѓCѓ‹‚ЄЋы‚Ь‚йѓЃѓ‚ѓЉ—М€ж‚МЉm•Ы
+	// гѓ†г‚Їг‚№гѓЃгѓЈгѓ•г‚Ўг‚¤гѓ«гЃЊеЏЋгЃѕг‚‹гѓЎгѓўгѓЄй еџџгЃ®зўєдїќ
 	Image = DXALLOC( Size ) ;
 	if( Image == NULL )
 	{
@@ -3690,31 +3690,31 @@ extern int MV1RLoadFile( const char *FilePath, void **FileImage, int *FileSize )
 		return -1 ;
 	}
 
-	// ѓtѓ@ѓCѓ‹‚рЉЫ‚І‚Ж“З‚ЭЌћ‚Э
+	// гѓ•г‚Ўг‚¤гѓ«г‚’дёёгЃ”гЃЁиЄ­гЃїиѕјгЃї
 	DX_FREAD( Image, Size, 1, FileHandle ) ;
 
-	// ЉJ‚ў‚Ѕѓtѓ@ѓCѓ‹‚р•В‚¶‚й
+	// й–‹гЃ„гЃџгѓ•г‚Ўг‚¤гѓ«г‚’й–‰гЃг‚‹
 	DX_FCLOSE( FileHandle ) ;
 
-	// ѓAѓhѓЊѓX‚рѓZѓbѓg
+	// г‚ўгѓ‰гѓ¬г‚№г‚’г‚»гѓѓгѓ€
 	if( FileImage ) *FileImage = Image ;
 	if( FileSize ) *FileSize = ( int )Size ;
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// ѓtѓ@ѓCѓ‹‚рЉЫ‚І‚Ж“З‚ЭЌћ‚Ю
+// гѓ•г‚Ўг‚¤гѓ«г‚’дёёгЃ”гЃЁиЄ­гЃїиѕјг‚Ђ
 extern int MV1RLoadFileW( const wchar_t *FilePathW, void **FileImage, int *FileSize )
 {
 	DWORD_PTR FileHandle ;
 	size_t Size ;
 	void *Image ;
 
-	// ѓeѓNѓXѓ`ѓѓѓtѓ@ѓCѓ‹‚рЉJ‚­
+	// гѓ†г‚Їг‚№гѓЃгѓЈгѓ•г‚Ўг‚¤гѓ«г‚’й–‹гЃЏ
 	FileHandle = DX_FOPEN( FilePathW ) ;
 
-	// ѓtѓ@ѓCѓ‹‚ЄЉJ‚Ї‚И‚©‚Б‚Ѕ‚зѓJѓЊѓ“ѓgѓtѓHѓ‹ѓ_‚©‚зЉJ‚±‚¤‚Ж‚µ‚Д‚Э‚й
+	// гѓ•г‚Ўг‚¤гѓ«гЃЊй–‹гЃ‘гЃЄгЃ‹гЃЈгЃџг‚‰г‚«гѓ¬гѓігѓ€гѓ•г‚©гѓ«гѓЂгЃ‹г‚‰й–‹гЃ“гЃ†гЃЁгЃ—гЃ¦гЃїг‚‹
 	if( FileHandle == 0 )
 	{
 		wchar_t FileNameW[ 512 ] ;
@@ -3723,16 +3723,16 @@ extern int MV1RLoadFileW( const wchar_t *FilePathW, void **FileImage, int *FileS
 		FileHandle = DX_FOPEN( FileNameW ) ;
 	}
 
-	// ѓtѓ@ѓCѓ‹‚Є–і‚©‚Б‚Ѕ‚зѓGѓ‰Ѓ[
+	// гѓ•г‚Ўг‚¤гѓ«гЃЊз„ЎгЃ‹гЃЈгЃџг‚‰г‚Ёгѓ©гѓј
 	if( FileHandle == 0 )
 		return -1 ;
 
-	// ѓtѓ@ѓCѓ‹ѓTѓCѓY‚рЋж“ѕ
+	// гѓ•г‚Ўг‚¤гѓ«г‚µг‚¤г‚єг‚’еЏ–еѕ—
 	DX_FSEEK( FileHandle, 0L, SEEK_END ) ;
 	Size = ( size_t )DX_FTELL( FileHandle ) ;
 	DX_FSEEK( FileHandle, 0L, SEEK_SET ) ;
 
-	// ѓeѓNѓXѓ`ѓѓѓtѓ@ѓCѓ‹‚ЄЋы‚Ь‚йѓЃѓ‚ѓЉ—М€ж‚МЉm•Ы
+	// гѓ†г‚Їг‚№гѓЃгѓЈгѓ•г‚Ўг‚¤гѓ«гЃЊеЏЋгЃѕг‚‹гѓЎгѓўгѓЄй еџџгЃ®зўєдїќ
 	Image = DXALLOC( Size ) ;
 	if( Image == NULL )
 	{
@@ -3740,22 +3740,22 @@ extern int MV1RLoadFileW( const wchar_t *FilePathW, void **FileImage, int *FileS
 		return -1 ;
 	}
 
-	// ѓtѓ@ѓCѓ‹‚рЉЫ‚І‚Ж“З‚ЭЌћ‚Э
+	// гѓ•г‚Ўг‚¤гѓ«г‚’дёёгЃ”гЃЁиЄ­гЃїиѕјгЃї
 	DX_FREAD( Image, Size, 1, FileHandle ) ;
 
-	// ЉJ‚ў‚Ѕѓtѓ@ѓCѓ‹‚р•В‚¶‚й
+	// й–‹гЃ„гЃџгѓ•г‚Ўг‚¤гѓ«г‚’й–‰гЃг‚‹
 	DX_FCLOSE( FileHandle ) ;
 
-	// ѓAѓhѓЊѓX‚рѓZѓbѓg
+	// г‚ўгѓ‰гѓ¬г‚№г‚’г‚»гѓѓгѓ€
 	if( FileImage ) *FileImage = Image ;
 	if( FileSize ) *FileSize = ( int )Size ;
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
 #ifndef UNICODE
-// ѓ‚ѓfѓ‹Љо–{ѓfЃ[ѓ^—p‚М•¶Ћљ—сѓXѓyЃ[ѓX‚рЉm•Ы‚·‚й
+// гѓўгѓ‡гѓ«еџєжњ¬гѓ‡гѓјг‚їз”ЁгЃ®ж–‡е­—е€—г‚№гѓљгѓјг‚№г‚’зўєдїќгЃ™г‚‹
 static char *MV1RGetStringSpace( MV1_MODEL_BASE *MBase, const char *String )
 {
 	char *Return ;
@@ -3768,7 +3768,7 @@ static char *MV1RGetStringSpace( MV1_MODEL_BASE *MBase, const char *String )
 }
 #endif
 
-// ѓ‚ѓfѓ‹Љо–{ѓfЃ[ѓ^—p‚М•¶Ћљ—сѓXѓyЃ[ѓX‚рЉm•Ы‚·‚й
+// гѓўгѓ‡гѓ«еџєжњ¬гѓ‡гѓјг‚їз”ЁгЃ®ж–‡е­—е€—г‚№гѓљгѓјг‚№г‚’зўєдїќгЃ™г‚‹
 static wchar_t *MV1RGetStringSpaceW( MV1_MODEL_BASE *MBase, const wchar_t *String )
 {
 	wchar_t *Return ;
@@ -3780,20 +3780,20 @@ static wchar_t *MV1RGetStringSpaceW( MV1_MODEL_BASE *MBase, const wchar_t *Strin
 	return Return ;
 }
 
-// “З‚ЭЌћ‚ЭЏ€—ќ—pѓ‚ѓfѓ‹Ќ\‘ў‘М‚МЏ‰Љъ‰»
+// иЄ­гЃїиѕјгЃїе‡¦зђ†з”Ёгѓўгѓ‡гѓ«ж§‹йЂ дЅ“гЃ®е€ќжњџеЊ–
 extern int MV1InitReadModel( MV1_MODEL_R *ReadModel )
 {
-	// ѓ[ѓЌЏ‰Љъ‰»
+	// г‚јгѓ­е€ќжњџеЊ–
 	_MEMSET( ReadModel, 0, sizeof( MV1_MODEL_R ) ) ;
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// “З‚ЭЌћ‚ЭЏ€—ќ—pѓ‚ѓfѓ‹Ќ\‘ў‘М‚МЊгЋn––
+// иЄ­гЃїиѕјгЃїе‡¦зђ†з”Ёгѓўгѓ‡гѓ«ж§‹йЂ дЅ“гЃ®еѕЊе§‹жњ«
 extern int MV1TermReadModel( MV1_MODEL_R *ReadModel )
 {
-	// ѓЃѓ‚ѓЉ‚М‰р•ъ
+	// гѓЎгѓўгѓЄгЃ®и§Јж”ѕ
 	ClearMemArea( &ReadModel->Mem ) ;
 
 	if( ReadModel->FilePath )
@@ -3808,71 +3808,71 @@ extern int MV1TermReadModel( MV1_MODEL_R *ReadModel )
 		ReadModel->Name = NULL ;
 	}
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
 #ifndef UNICODE
 
-// •¶Ћљ—с‚М’З‰Б
+// ж–‡е­—е€—гЃ®иїЅеЉ 
 extern char *MV1RAddString( MV1_MODEL_R *ReadModel, const char *String )
 {
 	int Length ;
 	char *Buffer ;
 
-	// •¶Ћљ—с‚М’·‚і‚рЋж“ѕ
+	// ж–‡е­—е€—гЃ®й•·гЃ•г‚’еЏ–еѕ—
 	Length = ( int )_STRLEN( String ) ;
 
-	// ѓЃѓ‚ѓЉ‚МЉm•Ы
+	// гѓЎгѓўгѓЄгЃ®зўєдїќ
 	Buffer = ( char * )AddMemArea( ( size_t )( ( Length + 1 ) * sizeof( char ) ), &ReadModel->Mem ) ;
 	if( Buffer == NULL )
 		return NULL ;
 
-	// ѓRѓsЃ[
+	// г‚ігѓ”гѓј
 	_STRCPY( Buffer, String ) ;
 
-	// •¶Ћљ—сѓfЃ[ѓ^‚МѓTѓCѓY‚р‰БЋZ
+	// ж–‡е­—е€—гѓ‡гѓјг‚їгЃ®г‚µг‚¤г‚єг‚’еЉ з®—
 	ReadModel->StringSizeA += ( Length + 1 ) * sizeof( char ) ;
 
-	// ‚S‚М”{ђ”‚ЙЌ‡‚н‚№‚й
+	// пј”гЃ®еЂЌж•°гЃ«еђ€г‚ЏгЃ›г‚‹
 	ReadModel->StringSizeA = ( ReadModel->StringSizeA + 3 ) / 4 * 4 ;
 
-	// ЏI—№
+	// зµ‚дє†
 	return Buffer ;
 }
 
 #endif
 
-// •¶Ћљ—с‚М’З‰Б
+// ж–‡е­—е€—гЃ®иїЅеЉ 
 extern wchar_t *MV1RAddStringW( MV1_MODEL_R *ReadModel, const wchar_t *StringW )
 {
 	int Length ;
 	wchar_t *Buffer ;
 
-	// •¶Ћљ—с‚М’·‚і‚рЋж“ѕ
+	// ж–‡е­—е€—гЃ®й•·гЃ•г‚’еЏ–еѕ—
 	Length = ( int )_WCSLEN( StringW ) ;
 
-	// ѓЃѓ‚ѓЉ‚МЉm•Ы
+	// гѓЎгѓўгѓЄгЃ®зўєдїќ
 	Buffer = ( wchar_t * )AddMemArea( ( size_t )( ( Length + 1 ) * sizeof( wchar_t ) ), &ReadModel->Mem ) ;
 	if( Buffer == NULL )
 		return NULL ;
 
-	// ѓRѓsЃ[
+	// г‚ігѓ”гѓј
 	_WCSCPY( Buffer, StringW ) ;
 
-	// •¶Ћљ—сѓfЃ[ѓ^‚МѓTѓCѓY‚р‰БЋZ
+	// ж–‡е­—е€—гѓ‡гѓјг‚їгЃ®г‚µг‚¤г‚єг‚’еЉ з®—
 	ReadModel->StringSizeW += ( Length + 1 ) * sizeof( wchar_t ) ;
 
-	// ‚S‚М”{ђ”‚ЙЌ‡‚н‚№‚й
+	// пј”гЃ®еЂЌж•°гЃ«еђ€г‚ЏгЃ›г‚‹
 	ReadModel->StringSizeW = ( ReadModel->StringSizeW + 3 ) / 4 * 4 ;
 
-	// ЏI—№
+	// зµ‚дє†
 	return Buffer ;
 }
 
 #ifndef UNICODE
 
-// •¶Ћљ—с‚М’З‰Б
+// ж–‡е­—е€—гЃ®иїЅеЉ 
 extern char *MV1RAddStringWToA(	MV1_MODEL_R *ReadModel, const wchar_t *String )
 {
 	char TempBuffer[ 512 ] ;
@@ -3883,7 +3883,7 @@ extern char *MV1RAddStringWToA(	MV1_MODEL_R *ReadModel, const wchar_t *String )
 
 #endif
 
-// •¶Ћљ—с‚М’З‰Б
+// ж–‡е­—е€—гЃ®иїЅеЉ 
 extern wchar_t *MV1RAddStringAToW( MV1_MODEL_R *ReadModel, const char *String )
 {
 	wchar_t TempBuffer[ 512 ] ;
@@ -3892,7 +3892,7 @@ extern wchar_t *MV1RAddStringAToW( MV1_MODEL_R *ReadModel, const char *String )
 	return MV1RAddStringW( ReadModel, TempBuffer ) ;
 }
 
-// ѓtѓЊЃ[ѓЂ‚М’З‰Б
+// гѓ•гѓ¬гѓјгѓ гЃ®иїЅеЉ 
 static MV1_FRAME_R *MV1RAddFrameBase( MV1_MODEL_R *ReadModel, const char *NameA, const wchar_t *NameW, MV1_FRAME_R *Parent )
 {
 	MV1_FRAME_R *Frame ;
@@ -3921,14 +3921,14 @@ static MV1_FRAME_R *MV1RAddFrameBase( MV1_MODEL_R *ReadModel, const char *NameA,
 		}
 	}
 
-	// ѓЃѓ‚ѓЉ‚МЉm•Ы
+	// гѓЎгѓўгѓЄгЃ®зўєдїќ
 	Frame = ( MV1_FRAME_R * )AddMemArea( sizeof( MV1_FRAME_R ), &ReadModel->Mem ) ;
 	if( Frame == NULL )
 	{
 		return NULL ;
 	}
 
-	// ѓЉѓXѓg‚Й’З‰Б
+	// гѓЄг‚№гѓ€гЃ«иїЅеЉ 
 	if( ReadModel->FrameFirst == NULL )
 	{
 		ReadModel->FrameFirst = Frame ;
@@ -3963,7 +3963,7 @@ static MV1_FRAME_R *MV1RAddFrameBase( MV1_MODEL_R *ReadModel, const char *NameA,
 		}
 	}
 
-	// ђeЋqѓЉѓXѓg‚Й’З‰Б
+	// и¦Єе­ђгѓЄг‚№гѓ€гЃ«иїЅеЉ 
 	if( Parent )
 	{
 		if( Parent->ChildFirst == NULL )
@@ -3980,14 +3980,14 @@ static MV1_FRAME_R *MV1RAddFrameBase( MV1_MODEL_R *ReadModel, const char *NameA,
 		Frame->Parent = Parent ;
 	}
 
-	// ѓCѓ“ѓfѓbѓNѓX‚МђU‚и‚И‚Ё‚µ
+	// г‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃ®жЊЇг‚ЉгЃЄгЃЉгЃ—
 	for( i = 0, TempFrame = ReadModel->FrameFirst ; TempFrame ; i ++, TempFrame = TempFrame->DataNext )
 	{
 		TempFrame->Index = i ;
 	}
 	ReadModel->FrameNum ++ ;
 
-	// –ј‘O‚р•Ы‘¶
+	// еђЌе‰Ќг‚’дїќе­
 #ifndef UNICODE
 	Frame->NameA = MV1RAddString( ReadModel, NameA ) ;
 	if( Frame->NameA == NULL )
@@ -4001,7 +4001,7 @@ static MV1_FRAME_R *MV1RAddFrameBase( MV1_MODEL_R *ReadModel, const char *NameA,
 		return NULL ;
 	}
 
-	// Љо–{Џо•с‚МѓZѓbѓg
+	// еџєжњ¬жѓ…е ±гЃ®г‚»гѓѓгѓ€
 	CreateIdentityMatrix( &Frame->Matrix ) ;
 	Frame->Scale.x = 1.0f ;
 	Frame->Scale.y = 1.0f ;
@@ -4011,33 +4011,33 @@ static MV1_FRAME_R *MV1RAddFrameBase( MV1_MODEL_R *ReadModel, const char *NameA,
 	Frame->Visible = 1 ;
 	Frame->SmoothingAngle = DX_PI_F / 2.0f - 0.05f ;
 
-	// ЏI—№
+	// зµ‚дє†
 	return Frame ;
 }
 
-// ѓtѓЊЃ[ѓЂ‚М’З‰Б
+// гѓ•гѓ¬гѓјгѓ гЃ®иїЅеЉ 
 extern MV1_FRAME_R *MV1RAddFrame( MV1_MODEL_R *ReadModel, const char *Name, MV1_FRAME_R *Parent )
 {
 	return MV1RAddFrameBase( ReadModel, Name, NULL, Parent ) ;
 }
 
-// ѓtѓЊЃ[ѓЂ‚М’З‰Б
+// гѓ•гѓ¬гѓјгѓ гЃ®иїЅеЉ 
 extern MV1_FRAME_R *MV1RAddFrameW( MV1_MODEL_R *ReadModel, const wchar_t *Name, MV1_FRAME_R *Parent )
 {
 	return MV1RAddFrameBase( ReadModel, NULL, Name, Parent ) ;
 }
 
-// ѓЃѓbѓVѓ…‚М’З‰Б
+// гѓЎгѓѓг‚·гѓҐгЃ®иїЅеЉ 
 extern MV1_MESH_R *MV1RAddMesh( MV1_MODEL_R *ReadModel, MV1_FRAME_R *Frame )
 {
 	MV1_MESH_R *Mesh ;
 
-	// ѓЃѓ‚ѓЉ‚МЉm•Ы
+	// гѓЎгѓўгѓЄгЃ®зўєдїќ
 	Mesh = ( MV1_MESH_R * )AddMemArea( sizeof( MV1_MESH_R ), &ReadModel->Mem ) ;
 	if( Mesh == NULL )
 		return NULL ;
 
-	// ѓЉѓXѓg‚Й’З‰Б
+	// гѓЄг‚№гѓ€гЃ«иїЅеЉ 
 	MODELLIST_ADD( ReadModel, Mesh ) ;
 	if( Frame )
 	{
@@ -4045,11 +4045,11 @@ extern MV1_MESH_R *MV1RAddMesh( MV1_MODEL_R *ReadModel, MV1_FRAME_R *Frame )
 		Mesh->Container = Frame ;
 	}
 
-	// ЏI—№
+	// зµ‚дє†
 	return Mesh ;
 }
 
-// ѓЃѓbѓVѓ…‚М–К—p‚Мѓoѓbѓtѓ@‚рѓZѓbѓgѓAѓbѓv‚·‚й
+// гѓЎгѓѓг‚·гѓҐгЃ®йќўз”ЁгЃ®гѓђгѓѓгѓ•г‚Ўг‚’г‚»гѓѓгѓ€г‚ўгѓѓгѓ—гЃ™г‚‹
 extern int MV1RSetupMeshFaceBuffer( MV1_MODEL_R *ReadModel, MV1_MESH_R *Mesh, int FaceNum, int MaxIndexNum )
 {
 	MV1_MESHFACE_R *OldFaces ;
@@ -4057,7 +4057,7 @@ extern int MV1RSetupMeshFaceBuffer( MV1_MODEL_R *ReadModel, MV1_MESH_R *Mesh, in
 	DWORD OldMaxIndexNum ;
 	DWORD OldFaceNum ;
 
-	// Љщ‚Йђ”‚Є‘«‚и‚Д‚ў‚Ѕ‚з‰Ѕ‚а‚µ‚И‚ў
+	// ж—ўгЃ«ж•°гЃЊи¶іг‚ЉгЃ¦гЃ„гЃџг‚‰дЅ•г‚‚гЃ—гЃЄгЃ„
 	if( Mesh->FaceIndexBuffer != NULL && ( int )Mesh->FaceUnitMaxIndexNum >= MaxIndexNum &&
 		Mesh->Faces != NULL && ( int )Mesh->FaceNum >= FaceNum ) return 0 ;
 
@@ -4066,7 +4066,7 @@ extern int MV1RSetupMeshFaceBuffer( MV1_MODEL_R *ReadModel, MV1_MESH_R *Mesh, in
 //	OldIndexBuffer = Mesh->FaceIndexBuffer ;
 	OldMaxIndexNum = Mesh->FaceUnitMaxIndexNum ;
 
-	// ѓЃѓ‚ѓЉ‚МЉm•Ы
+	// гѓЎгѓўгѓЄгЃ®зўєдїќ
 	Mesh->Faces = ( MV1_MESHFACE_R * )AddMemArea( ( ( MV1_READ_MAX_UV_NUM + 3 ) * MaxIndexNum * sizeof( DWORD ) + sizeof( MV1_MESHFACE_R ) ) * FaceNum, &ReadModel->Mem ) ;
 	if( Mesh->Faces == NULL )
 		return -1 ;
@@ -4074,7 +4074,7 @@ extern int MV1RSetupMeshFaceBuffer( MV1_MODEL_R *ReadModel, MV1_MESH_R *Mesh, in
 	Mesh->FaceUnitMaxIndexNum = ( DWORD )MaxIndexNum ;
 	Mesh->FaceNum             = ( DWORD )FaceNum ;
 
-	// Љe–К‚Мѓ|ѓCѓ“ѓ^‚рѓZѓbѓgѓAѓbѓv
+	// еђ„йќўгЃ®гѓќг‚¤гѓіг‚їг‚’г‚»гѓѓгѓ€г‚ўгѓѓгѓ—
 	{
 		MV1_MESHFACE_R *Face ;
 		DWORD *Index ;
@@ -4094,7 +4094,7 @@ extern int MV1RSetupMeshFaceBuffer( MV1_MODEL_R *ReadModel, MV1_MESH_R *Mesh, in
 		}
 	}
 
-	// ЌЎ‚Ь‚Е‚МѓfЃ[ѓ^‚Є‚ ‚йЏкЌ‡‚НѓRѓsЃ[‚Ж‰р•ъ
+	// д»ЉгЃѕгЃ§гЃ®гѓ‡гѓјг‚їгЃЊгЃ‚г‚‹е ґеђ€гЃЇг‚ігѓ”гѓјгЃЁи§Јж”ѕ
 	if( OldFaces )
 	{
 		MV1_MESHFACE_R *DestFace ;
@@ -4124,11 +4124,11 @@ extern int MV1RSetupMeshFaceBuffer( MV1_MODEL_R *ReadModel, MV1_MESH_R *Mesh, in
 		SubMemArea( &ReadModel->Mem, OldFaces ) ;
 	}
 
-	// ЏI—№
+	// зµ‚дє†
 	return 0 ;
 }
 
-// ѓVѓFѓCѓvѓfЃ[ѓ^‚М’З‰Б
+// г‚·г‚§г‚¤гѓ—гѓ‡гѓјг‚їгЃ®иїЅеЉ 
 static MV1_SHAPE_R *MV1RAddShapeBase( MV1_MODEL_R *ReadModel, const char *NameA, const wchar_t *NameW, MV1_FRAME_R *Frame )
 {
 	MV1_SHAPE_R *Shape ;
@@ -4155,12 +4155,12 @@ static MV1_SHAPE_R *MV1RAddShapeBase( MV1_MODEL_R *ReadModel, const char *NameA,
 		}
 	}
 
-	// ѓЃѓ‚ѓЉ‚МЉm•Ы
+	// гѓЎгѓўгѓЄгЃ®зўєдїќ
 	Shape = ( MV1_SHAPE_R * )AddMemArea( sizeof( MV1_SHAPE_R ), &ReadModel->Mem ) ;
 	if( Shape == NULL )
 		return NULL ;
 
-	// –ј‘O‚р•Ы‘¶
+	// еђЌе‰Ќг‚’дїќе­
 #ifndef UNICODE
 	Shape->NameA = MV1RAddString( ReadModel, NameA ) ;
 	if( Shape->NameA == NULL )
@@ -4174,7 +4174,7 @@ static MV1_SHAPE_R *MV1RAddShapeBase( MV1_MODEL_R *ReadModel, const char *NameA,
 		return NULL ;
 	}
 
-	// ѓЉѓXѓg‚Й’З‰Б
+	// гѓЄг‚№гѓ€гЃ«иїЅеЉ 
 	MODELLIST_ADD( ReadModel, Shape ) ;
 	if( Frame )
 	{
@@ -4182,23 +4182,23 @@ static MV1_SHAPE_R *MV1RAddShapeBase( MV1_MODEL_R *ReadModel, const char *NameA,
 		Shape->Container = Frame ;
 	}
 
-	// ЏI—№
+	// зµ‚дє†
 	return Shape ;
 }
 
-// ѓVѓFѓCѓvѓfЃ[ѓ^‚М’З‰Б
+// г‚·г‚§г‚¤гѓ—гѓ‡гѓјг‚їгЃ®иїЅеЉ 
 extern MV1_SHAPE_R *MV1RAddShape( MV1_MODEL_R *ReadModel, const char *Name, MV1_FRAME_R *Frame )
 {
 	return MV1RAddShapeBase( ReadModel, Name, NULL, Frame ) ;
 }
 
-// ѓVѓFѓCѓvѓfЃ[ѓ^‚М’З‰Б
+// г‚·г‚§г‚¤гѓ—гѓ‡гѓјг‚їгЃ®иїЅеЉ 
 extern MV1_SHAPE_R *MV1RAddShapeW( MV1_MODEL_R *ReadModel, const wchar_t *Name, MV1_FRAME_R *Frame )
 {
 	return MV1RAddShapeBase( ReadModel, NULL, Name, Frame ) ;
 }
 
-// •Ё—ќ‰‰ЋZ—pЌ„‘МѓfЃ[ѓ^‚М’З‰Б
+// з‰©зђ†жј”з®—з”Ёе‰›дЅ“гѓ‡гѓјг‚їгЃ®иїЅеЉ 
 static MV1_PHYSICS_RIGIDBODY_R *MV1RAddPhysicsRididBodyBase( MV1_MODEL_R *ReadModel, const char *NameA, const wchar_t *NameW, MV1_FRAME_R *TargetFrame )
 {
 	MV1_PHYSICS_RIGIDBODY_R *PhysicsRigidBody ;
@@ -4225,12 +4225,12 @@ static MV1_PHYSICS_RIGIDBODY_R *MV1RAddPhysicsRididBodyBase( MV1_MODEL_R *ReadMo
 		}
 	}
 
-	// ѓЃѓ‚ѓЉ‚МЉm•Ы
+	// гѓЎгѓўгѓЄгЃ®зўєдїќ
 	PhysicsRigidBody = ( MV1_PHYSICS_RIGIDBODY_R * )AddMemArea( sizeof( MV1_PHYSICS_RIGIDBODY_R ), &ReadModel->Mem ) ;
 	if( PhysicsRigidBody == NULL )
 		return NULL ;
 
-	// –ј‘O‚р•Ы‘¶
+	// еђЌе‰Ќг‚’дїќе­
 #ifndef UNICODE
 	PhysicsRigidBody->NameA = MV1RAddString( ReadModel, NameA ) ;
 	if( PhysicsRigidBody->NameA == NULL )
@@ -4244,30 +4244,30 @@ static MV1_PHYSICS_RIGIDBODY_R *MV1RAddPhysicsRididBodyBase( MV1_MODEL_R *ReadMo
 		return NULL ;
 	}
 
-	// ѓЉѓXѓg‚Й’З‰Б
+	// гѓЄг‚№гѓ€гЃ«иїЅеЉ 
 	MODELLIST_ADD( ReadModel, PhysicsRigidBody ) ;
 
-	// ‘ОЏЫѓtѓЊЃ[ѓЂ‚рѓZѓbѓg
+	// еЇѕи±Ўгѓ•гѓ¬гѓјгѓ г‚’г‚»гѓѓгѓ€
 	PhysicsRigidBody->TargetFrame = TargetFrame ;
 
-	// ЏI—№
+	// зµ‚дє†
 	return PhysicsRigidBody ;
 }
 
-// •Ё—ќ‰‰ЋZ—pЌ„‘МѓfЃ[ѓ^‚М’З‰Б
+// з‰©зђ†жј”з®—з”Ёе‰›дЅ“гѓ‡гѓјг‚їгЃ®иїЅеЉ 
 extern MV1_PHYSICS_RIGIDBODY_R *MV1RAddPhysicsRididBody( MV1_MODEL_R *ReadModel, const char *Name, MV1_FRAME_R *TargetFrame )
 {
 	return MV1RAddPhysicsRididBodyBase( ReadModel, Name, NULL, TargetFrame ) ;
 }
 
-// •Ё—ќ‰‰ЋZ—pЌ„‘МѓfЃ[ѓ^‚М’З‰Б
+// з‰©зђ†жј”з®—з”Ёе‰›дЅ“гѓ‡гѓјг‚їгЃ®иїЅеЉ 
 extern MV1_PHYSICS_RIGIDBODY_R *MV1RAddPhysicsRididBodyW( MV1_MODEL_R *ReadModel, const wchar_t *Name, MV1_FRAME_R *TargetFrame )
 {
 	return MV1RAddPhysicsRididBodyBase( ReadModel, NULL, Name, TargetFrame ) ;
 }
 
 
-// •Ё—ќ‰‰ЋZ—pЌ„‘МѓWѓ‡ѓCѓ“ѓgѓfЃ[ѓ^‚М’З‰Б
+// з‰©зђ†жј”з®—з”Ёе‰›дЅ“г‚ёгѓ§г‚¤гѓігѓ€гѓ‡гѓјг‚їгЃ®иїЅеЉ 
 static MV1_PHYSICS_JOINT_R *MV1RAddPhysicsJointBase( MV1_MODEL_R *ReadModel, const char *NameA, const wchar_t *NameW )
 {
 	MV1_PHYSICS_JOINT_R *PhysicsJoint ;
@@ -4294,12 +4294,12 @@ static MV1_PHYSICS_JOINT_R *MV1RAddPhysicsJointBase( MV1_MODEL_R *ReadModel, con
 		}
 	}
 
-	// ѓЃѓ‚ѓЉ‚МЉm•Ы
+	// гѓЎгѓўгѓЄгЃ®зўєдїќ
 	PhysicsJoint = ( MV1_PHYSICS_JOINT_R * )AddMemArea( sizeof( MV1_PHYSICS_JOINT_R ), &ReadModel->Mem ) ;
 	if( PhysicsJoint == NULL )
 		return NULL ;
 
-	// –ј‘O‚р•Ы‘¶
+	// еђЌе‰Ќг‚’дїќе­
 #ifndef UNICODE
 	PhysicsJoint->NameA = MV1RAddString( ReadModel, NameA ) ;
 	if( PhysicsJoint->NameA == NULL )
@@ -4313,29 +4313,29 @@ static MV1_PHYSICS_JOINT_R *MV1RAddPhysicsJointBase( MV1_MODEL_R *ReadModel, con
 		return NULL ;
 	}
 
-	// ѓЉѓXѓg‚Й’З‰Б
+	// гѓЄг‚№гѓ€гЃ«иїЅеЉ 
 	MODELLIST_ADD( ReadModel, PhysicsJoint ) ;
 
-	// ЏI—№
+	// зµ‚дє†
 	return PhysicsJoint ;
 }
 
-// •Ё—ќ‰‰ЋZ—pЌ„‘МѓWѓ‡ѓCѓ“ѓgѓfЃ[ѓ^‚М’З‰Б
+// з‰©зђ†жј”з®—з”Ёе‰›дЅ“г‚ёгѓ§г‚¤гѓігѓ€гѓ‡гѓјг‚їгЃ®иїЅеЉ 
 extern MV1_PHYSICS_JOINT_R *MV1RAddPhysicsJoint( MV1_MODEL_R *ReadModel, const char *Name )
 {
 	return MV1RAddPhysicsJointBase( ReadModel, Name, NULL ) ;
 }
 
-// •Ё—ќ‰‰ЋZ—pЌ„‘МѓWѓ‡ѓCѓ“ѓgѓfЃ[ѓ^‚М’З‰Б
+// з‰©зђ†жј”з®—з”Ёе‰›дЅ“г‚ёгѓ§г‚¤гѓігѓ€гѓ‡гѓјг‚їгЃ®иїЅеЉ 
 extern MV1_PHYSICS_JOINT_R *MV1RAddPhysicsJointW( MV1_MODEL_R *ReadModel, const wchar_t *Name )
 {
 	return MV1RAddPhysicsJointBase( ReadModel, NULL, Name ) ;
 }
 
-// ѓЃѓbѓVѓ…‚МЌнЏњ
+// гѓЎгѓѓг‚·гѓҐгЃ®е‰Љй™¤
 extern void MV1RSubMesh( MV1_MODEL_R *ReadModel, MV1_FRAME_R *Frame, MV1_MESH_R *Mesh )
 {
-	// ѓ‚ѓfѓ‹‚МѓЉѓXѓg‚©‚зЉO‚·
+	// гѓўгѓ‡гѓ«гЃ®гѓЄг‚№гѓ€гЃ‹г‚‰е¤–гЃ™
 	if( Mesh->DataPrev )
 	{
 		Mesh->DataPrev->DataNext = Mesh->DataNext ;
@@ -4355,7 +4355,7 @@ extern void MV1RSubMesh( MV1_MODEL_R *ReadModel, MV1_FRAME_R *Frame, MV1_MESH_R 
 	}
 	ReadModel->MeshNum -- ;
 
-	// ѓtѓЊЃ[ѓЂ‚МѓЉѓXѓg‚©‚зЉO‚·
+	// гѓ•гѓ¬гѓјгѓ гЃ®гѓЄг‚№гѓ€гЃ‹г‚‰е¤–гЃ™
 	if( Mesh->Prev )
 	{
 		Mesh->Prev->Next = Mesh->Next ;
@@ -4376,7 +4376,7 @@ extern void MV1RSubMesh( MV1_MODEL_R *ReadModel, MV1_FRAME_R *Frame, MV1_MESH_R 
 	Frame->MeshNum -- ;
 }
 
-// ѓ}ѓeѓЉѓAѓ‹‚М’З‰Б
+// гѓћгѓ†гѓЄг‚ўгѓ«гЃ®иїЅеЉ 
 static MV1_MATERIAL_R *MV1RAddMaterialBase( MV1_MODEL_R *ReadModel, const char *NameA, const wchar_t *NameW )
 {
 	MV1_MATERIAL_R *Material ;
@@ -4403,15 +4403,15 @@ static MV1_MATERIAL_R *MV1RAddMaterialBase( MV1_MODEL_R *ReadModel, const char *
 		}
 	}
 
-	// ѓЃѓ‚ѓЉ‚МЉm•Ы
+	// гѓЎгѓўгѓЄгЃ®зўєдїќ
 	Material = ( MV1_MATERIAL_R * )AddMemArea( sizeof( MV1_MATERIAL_R ), &ReadModel->Mem ) ;
 	if( Material == NULL )
 		return NULL ;
 
-	// ѓЉѓXѓg‚Й’З‰Б
+	// гѓЄг‚№гѓ€гЃ«иїЅеЉ 
 	MODELLIST_ADD( ReadModel, Material ) ;
 
-	// –ј‘O‚р•Ы‘¶
+	// еђЌе‰Ќг‚’дїќе­
 #ifndef UNICODE
 	Material->NameA = MV1RAddString( ReadModel, NameA ) ;
 	if( Material->NameA == NULL )
@@ -4425,7 +4425,7 @@ static MV1_MATERIAL_R *MV1RAddMaterialBase( MV1_MODEL_R *ReadModel, const char *
 		return NULL ;
 	}
 
-	// Џ‰Љъ’l‚рѓZѓbѓg
+	// е€ќжњџеЂ¤г‚’г‚»гѓѓгѓ€
 	Material->Type = DX_MATERIAL_TYPE_NORMAL ;
 
 	Material->DiffuseGradTextureDefault = -1 ;
@@ -4442,23 +4442,23 @@ static MV1_MATERIAL_R *MV1RAddMaterialBase( MV1_MODEL_R *ReadModel, const char *
 	Material->DrawBlendMode = DX_BLENDMODE_ALPHA ;
 	Material->DrawBlendParam = 255 ;
 
-	// ЏI—№
+	// зµ‚дє†
 	return Material ;
 }
 
-// ѓ}ѓeѓЉѓAѓ‹‚М’З‰Б
+// гѓћгѓ†гѓЄг‚ўгѓ«гЃ®иїЅеЉ 
 extern MV1_MATERIAL_R *MV1RAddMaterial( MV1_MODEL_R *ReadModel, const char *Name )
 {
 	return MV1RAddMaterialBase( ReadModel, Name, NULL ) ;
 }
 
-// ѓ}ѓeѓЉѓAѓ‹‚М’З‰Б
+// гѓћгѓ†гѓЄг‚ўгѓ«гЃ®иїЅеЉ 
 extern MV1_MATERIAL_R *MV1RAddMaterialW( MV1_MODEL_R *ReadModel, const wchar_t *Name )
 {
 	return MV1RAddMaterialBase( ReadModel, NULL, Name ) ;
 }
 
-// Ћw’иѓCѓ“ѓfѓbѓNѓX‚Мѓ}ѓeѓЉѓAѓ‹‚рЋж“ѕ‚·‚й
+// жЊ‡е®љг‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃ®гѓћгѓ†гѓЄг‚ўгѓ«г‚’еЏ–еѕ—гЃ™г‚‹
 extern MV1_MATERIAL_R *MV1RGetMaterial( MV1_MODEL_R *ReadModel, int Index )
 {
 	MV1_MATERIAL_R *Material ;
@@ -4470,7 +4470,7 @@ extern MV1_MATERIAL_R *MV1RGetMaterial( MV1_MODEL_R *ReadModel, int Index )
 	return Material ;
 }
 
-// ѓeѓNѓXѓ`ѓѓ‚М’З‰Б
+// гѓ†г‚Їг‚№гѓЃгѓЈгЃ®иїЅеЉ 
 static MV1_TEXTURE_R *MV1RAddTextureBase(
 	MV1_MODEL_R *ReadModel,
 	const char *NameA,          const wchar_t *NameW,
@@ -4560,15 +4560,15 @@ static MV1_TEXTURE_R *MV1RAddTextureBase(
 		}
 	}
 
-	// ‘Љ‘ОѓpѓX‚р‹Ѓ‚Я‚й
+	// з›ёеЇѕгѓ‘г‚№г‚’ж±‚г‚Ѓг‚‹
 	_WGETCWD( CurrentDirectory, sizeof( CurrentDirectory ) ) ;
 
-	// ѓJѓ‰Ѓ[ѓ`ѓѓѓ“ѓlѓ‹ѓtѓ@ѓCѓ‹ѓpѓX‚р•Ы‘¶
+	// г‚«гѓ©гѓјгѓЃгѓЈгѓігѓЌгѓ«гѓ•г‚Ўг‚¤гѓ«гѓ‘г‚№г‚’дїќе­
 	if( ColorFilePathW )
 	{
 		CreateRelativePathW_( ColorFilePathW, CurrentDirectory, ColorFileRelativePath, sizeof( ColorFileRelativePath ) ) ;
 
-		// ѓtѓ@ѓCѓ‹‚ЄЉJ‚Ї‚й‚©’І‚Ч‚й
+		// гѓ•г‚Ўг‚¤гѓ«гЃЊй–‹гЃ‘г‚‹гЃ‹иЄїгЃ№г‚‹
 		FileHandle = DX_FOPEN( ColorFileRelativePath ) ;
 		if( FileHandle )
 		{
@@ -4577,7 +4577,7 @@ static MV1_TEXTURE_R *MV1RAddTextureBase(
 		}
 		else
 		{
-			// ЉJ‚Ї‚И‚©‚Б‚Ѕ‚зѓJѓЊѓ“ѓgѓtѓHѓ‹ѓ_‚©‚зЉJ‚±‚¤‚Ж‚µ‚Д‚Э‚й
+			// й–‹гЃ‘гЃЄгЃ‹гЃЈгЃџг‚‰г‚«гѓ¬гѓігѓ€гѓ•г‚©гѓ«гѓЂгЃ‹г‚‰й–‹гЃ“гЃ†гЃЁгЃ—гЃ¦гЃїг‚‹
 			AnalysisFileNameAndDirPathW_( ColorFileRelativePath, ColorFileTempPath, sizeof( ColorFileTempPath ), NULL, 0 ) ;
 			FileHandle = DX_FOPEN( ColorFileTempPath ) ;
 			if( FileHandle )
@@ -4587,7 +4587,7 @@ static MV1_TEXTURE_R *MV1RAddTextureBase(
 			}
 			else
 			{
-				// ѓtѓ@ѓCѓ‹‚ЄЉJ‚Ї‚И‚©‚Б‚Ѕ‚зѓЉѓ^Ѓ[ѓ“‚р‚·‚йЋw’и‚МЏкЌ‡‚НЉЦђ”‚©‚з”І‚Ї‚й
+				// гѓ•г‚Ўг‚¤гѓ«гЃЊй–‹гЃ‘гЃЄгЃ‹гЃЈгЃџг‚‰гѓЄг‚їгѓјгѓіг‚’гЃ™г‚‹жЊ‡е®љгЃ®е ґеђ€гЃЇй–ўж•°гЃ‹г‚‰жЉњгЃ‘г‚‹
 				if( OpenFailedReturn )
 				{
 					return NULL ;
@@ -4596,7 +4596,7 @@ static MV1_TEXTURE_R *MV1RAddTextureBase(
 			}
 		}
 
-		// ѓtѓ@ѓCѓ‹‚ЄЉJ‚Ї‚ЅЏкЌ‡‚Еѓoѓ“ѓvѓ}ѓbѓv‚МЋw’и‚ѕ‚Б‚ЅЏкЌ‡‚НѓOѓЊЃ[ѓXѓPЃ[ѓ‹‰ж‘њ‚©’І‚Ч‚й
+		// гѓ•г‚Ўг‚¤гѓ«гЃЊй–‹гЃ‘гЃџе ґеђ€гЃ§гѓђгѓігѓ—гѓћгѓѓгѓ—гЃ®жЊ‡е®љгЃ гЃЈгЃџе ґеђ€гЃЇг‚°гѓ¬гѓјг‚№г‚±гѓјгѓ«з”»еѓЏгЃ‹иЄїгЃ№г‚‹
 		if( BumpMapFlag )
 		{
 			void *ColorFileImage ;
@@ -4608,8 +4608,8 @@ static MV1_TEXTURE_R *MV1RAddTextureBase(
 
 				if( NS_CreateBaseImage( NULL, ColorFileImage, ColorFileSize, LOADIMAGE_TYPE_MEM, &ColorImage, FALSE ) >= 0 )
 				{
-					// ѓoѓ“ѓvѓ}ѓbѓv‚Е‚Н‚И‚­–@ђьѓ}ѓbѓv‚М‰В”\ђ«‚Є‚ ‚й‚М‚ЕЃAFloatѓ^ѓCѓv‚ЕRGBѓ`ѓѓѓ“ѓlѓ‹‚Є‚ ‚й‚©ЃA
-					// 8bitѓJѓ‰Ѓ[‚ж‚иѓrѓbѓgђ[“x‚Є‘е‚«‚­ЃARGBѓ`ѓѓѓ“ѓlѓ‹‚Є‚ ‚йЏкЌ‡‚НѓOѓЊЃ[ѓXѓPЃ[ѓ‹‚©‚З‚¤‚©‚рѓ`ѓFѓbѓN‚·‚й
+					// гѓђгѓігѓ—гѓћгѓѓгѓ—гЃ§гЃЇгЃЄгЃЏжі•з·љгѓћгѓѓгѓ—гЃ®еЏЇиѓЅжЂ§гЃЊгЃ‚г‚‹гЃ®гЃ§гЂЃFloatг‚їг‚¤гѓ—гЃ§RGBгѓЃгѓЈгѓігѓЌгѓ«гЃЊгЃ‚г‚‹гЃ‹гЂЃ
+					// 8bitг‚«гѓ©гѓјг‚€г‚Љгѓ“гѓѓгѓ€ж·±еє¦гЃЊе¤§гЃЌгЃЏгЂЃRGBгѓЃгѓЈгѓігѓЌгѓ«гЃЊгЃ‚г‚‹е ґеђ€гЃЇг‚°гѓ¬гѓјг‚№г‚±гѓјгѓ«гЃ‹гЃ©гЃ†гЃ‹г‚’гѓЃг‚§гѓѓг‚ЇгЃ™г‚‹
 					if( ( ColorImage.ColorData.FloatTypeFlag == TRUE &&
 						  ColorImage.ColorData.ChannelNum >= 3 ) ||
 
@@ -4649,12 +4649,12 @@ static MV1_TEXTURE_R *MV1RAddTextureBase(
 		}
 	}
 
-	// ѓAѓ‹ѓtѓ@ѓ`ѓѓѓ“ѓlѓ‹—pѓtѓ@ѓCѓ‹ѓpѓX‚р•Ы‘¶
+	// г‚ўгѓ«гѓ•г‚ЎгѓЃгѓЈгѓігѓЌгѓ«з”Ёгѓ•г‚Ўг‚¤гѓ«гѓ‘г‚№г‚’дїќе­
 	if( AlphaFilePathW )
 	{
 		CreateRelativePathW_( AlphaFilePathW, CurrentDirectory, AlphaFileRelativePath, sizeof( AlphaFileRelativePath ) ) ;
 
-		// ѓtѓ@ѓCѓ‹‚ЄЉJ‚Ї‚й‚©’І‚Ч‚й
+		// гѓ•г‚Ўг‚¤гѓ«гЃЊй–‹гЃ‘г‚‹гЃ‹иЄїгЃ№г‚‹
 		FileHandle = DX_FOPEN( AlphaFileRelativePath ) ;
 		if( FileHandle )
 		{
@@ -4663,7 +4663,7 @@ static MV1_TEXTURE_R *MV1RAddTextureBase(
 		}
 		else
 		{
-			// ЉJ‚Ї‚И‚©‚Б‚Ѕ‚зѓJѓЊѓ“ѓgѓtѓHѓ‹ѓ_‚©‚зЉJ‚±‚¤‚Ж‚µ‚Д‚Э‚й
+			// й–‹гЃ‘гЃЄгЃ‹гЃЈгЃџг‚‰г‚«гѓ¬гѓігѓ€гѓ•г‚©гѓ«гѓЂгЃ‹г‚‰й–‹гЃ“гЃ†гЃЁгЃ—гЃ¦гЃїг‚‹
 			AnalysisFileNameAndDirPathW_( AlphaFileRelativePath, AlphaFileTempPath, sizeof( AlphaFileTempPath ), NULL, 0 ) ;
 			FileHandle = DX_FOPEN( AlphaFileTempPath ) ;
 			if( FileHandle )
@@ -4678,8 +4678,8 @@ static MV1_TEXTURE_R *MV1RAddTextureBase(
 		}
 	}
 
-	// ѓtѓ@ѓCѓ‹ѓpѓX‚Є“Ї‚¶ѓeѓNѓXѓ`ѓѓ‚Є‚ ‚Б‚Ѕ‚зѓLѓѓѓ“ѓZѓ‹‚·‚йѓtѓ‰ѓO‚Є—§‚Б‚Д‚ў‚Ѕ‚з
-	// ѓtѓ@ѓCѓ‹ѓpѓX‚Є“Ї‚¶ѓeѓNѓXѓ`ѓѓ‚Є‚ ‚й‚©’І‚Ч‚й
+	// гѓ•г‚Ўг‚¤гѓ«гѓ‘г‚№гЃЊеђЊгЃгѓ†г‚Їг‚№гѓЃгѓЈгЃЊгЃ‚гЃЈгЃџг‚‰г‚­гѓЈгѓіг‚»гѓ«гЃ™г‚‹гѓ•гѓ©г‚°гЃЊз«‹гЃЈгЃ¦гЃ„гЃџг‚‰
+	// гѓ•г‚Ўг‚¤гѓ«гѓ‘г‚№гЃЊеђЊгЃгѓ†г‚Їг‚№гѓЃгѓЈгЃЊгЃ‚г‚‹гЃ‹иЄїгЃ№г‚‹
 	if( FilePathDoubleCancel )
 	{
 		Texture = ReadModel->TextureFirst ;
@@ -4709,17 +4709,17 @@ static MV1_TEXTURE_R *MV1RAddTextureBase(
 		if( ( DWORD )i != ReadModel->TextureNum ) return Texture ;
 	}
 
-	// ѓЃѓ‚ѓЉ‚МЉm•Ы
+	// гѓЎгѓўгѓЄгЃ®зўєдїќ
 	Texture = ( MV1_TEXTURE_R * )AddMemArea( sizeof( MV1_TEXTURE_R ), &ReadModel->Mem ) ;
 	if( Texture == NULL )
 	{
 		return NULL ;
 	}
 
-	// ѓЉѓXѓg‚Й’З‰Б
+	// гѓЄг‚№гѓ€гЃ«иїЅеЉ 
 	MODELLIST_ADD( ReadModel, Texture ) ;
 
-	// –ј‘O‚р•Ы‘¶
+	// еђЌе‰Ќг‚’дїќе­
 #ifndef UNICODE
 	Texture->NameA = MV1RAddString( ReadModel, NameA ) ;
 	if( Texture->NameA == NULL )
@@ -4733,30 +4733,30 @@ static MV1_TEXTURE_R *MV1RAddTextureBase(
 		return NULL ;
 	}
 
-	// ѓfѓtѓHѓ‹ѓg‚МѓAѓhѓЊѓXѓ‚Ѓ[ѓh‚рѓZѓbѓg‚·‚й
+	// гѓ‡гѓ•г‚©гѓ«гѓ€гЃ®г‚ўгѓ‰гѓ¬г‚№гѓўгѓјгѓ‰г‚’г‚»гѓѓгѓ€гЃ™г‚‹
 	Texture->AddressModeU = DX_TEXADDRESS_WRAP ;
 	Texture->AddressModeV = DX_TEXADDRESS_WRAP ;
 
-	// ‚t‚uЌА•W‚МѓfѓtѓHѓ‹ѓg‚МѓXѓPЃ[ѓ‹’l‚рѓZѓbѓg‚·‚й
+	// пјµпј¶еє§жЁ™гЃ®гѓ‡гѓ•г‚©гѓ«гѓ€гЃ®г‚№г‚±гѓјгѓ«еЂ¤г‚’г‚»гѓѓгѓ€гЃ™г‚‹
 	Texture->ScaleU = 1.0f ;
 	Texture->ScaleV = 1.0f ;
 	
-	// ѓfѓtѓHѓ‹ѓg‚МѓtѓBѓ‹ѓ^ѓЉѓ“ѓOѓ‚Ѓ[ѓh‚рѓZѓbѓg‚·‚й
+	// гѓ‡гѓ•г‚©гѓ«гѓ€гЃ®гѓ•г‚Јгѓ«г‚їгѓЄгѓіг‚°гѓўгѓјгѓ‰г‚’г‚»гѓѓгѓ€гЃ™г‚‹
 	Texture->FilterMode = DX_DRAWMODE_ANISOTROPIC ;
 
-	// ѓJѓ‰Ѓ[ѓ`ѓѓѓ“ѓlѓ‹‚Єѓoѓ“ѓvѓ}ѓbѓv‚©‚З‚¤‚©‚Мѓtѓ‰ѓO‚р•Ы‘¶‚·‚й
+	// г‚«гѓ©гѓјгѓЃгѓЈгѓігѓЌгѓ«гЃЊгѓђгѓігѓ—гѓћгѓѓгѓ—гЃ‹гЃ©гЃ†гЃ‹гЃ®гѓ•гѓ©г‚°г‚’дїќе­гЃ™г‚‹
 	Texture->BumpMapFlag = BumpMapFlag ;
 
-	// ѓJѓ‰Ѓ[ѓ`ѓѓѓ“ѓlѓ‹‚Єѓoѓ“ѓvѓ}ѓbѓv‚МЏкЌ‡ЃA—Ч‚МѓsѓNѓZѓ‹‚Ж‚М‹——Ј‚р•Ы‘¶‚·‚й
+	// г‚«гѓ©гѓјгѓЃгѓЈгѓігѓЌгѓ«гЃЊгѓђгѓігѓ—гѓћгѓѓгѓ—гЃ®е ґеђ€гЂЃйљЈгЃ®гѓ”г‚Їг‚»гѓ«гЃЁгЃ®и·ќй›ўг‚’дїќе­гЃ™г‚‹
 	Texture->BumpMapNextPixelLength = BumpMapNextPixelLength ;
 
-	// ”Ѕ“]ѓtѓ‰ѓO‚р•Ы‘¶‚·‚й
+	// еЏЌи»ўгѓ•гѓ©г‚°г‚’дїќе­гЃ™г‚‹
 	Texture->ReverseFlag = ReverseFlag ? 1 : 0 ;
 
-	// ‚R‚Qѓrѓbѓg‚a‚l‚o‚МѓAѓ‹ѓtѓ@’l‚Є‘S•”‚O‚ѕ‚Б‚Ѕ‚з XRGB8 ‚Ж‚µ‚Д€µ‚¤‚©‚З‚¤‚©‚Мѓtѓ‰ѓO‚рѓZѓbѓg‚·‚й
+	// пј“пј’гѓ“гѓѓгѓ€пјўпј­пј°гЃ®г‚ўгѓ«гѓ•г‚ЎеЂ¤гЃЊе…ЁйѓЁпјђгЃ гЃЈгЃџг‚‰ XRGB8 гЃЁгЃ—гЃ¦ж‰±гЃ†гЃ‹гЃ©гЃ†гЃ‹гЃ®гѓ•гѓ©г‚°г‚’г‚»гѓѓгѓ€гЃ™г‚‹
 	Texture->Bmp32AllZeroAlphaToXRGB8Flag = Bmp32AllZeroAlphaToXRGB8Flag ? 1 : 0 ;
 
-	// ѓJѓ‰Ѓ[ѓ`ѓѓѓ“ѓlѓ‹ѓtѓ@ѓCѓ‹ѓpѓX‚р•Ы‘¶
+	// г‚«гѓ©гѓјгѓЃгѓЈгѓігѓЌгѓ«гѓ•г‚Ўг‚¤гѓ«гѓ‘г‚№г‚’дїќе­
 	if( ColorFilePathW )
 	{
 #ifndef UNICODE
@@ -4777,7 +4777,7 @@ static MV1_TEXTURE_R *MV1RAddTextureBase(
 		}
 	}
 
-	// ѓAѓ‹ѓtѓ@ѓ`ѓѓѓ“ѓlѓ‹—pѓtѓ@ѓCѓ‹ѓpѓX‚р•Ы‘¶
+	// г‚ўгѓ«гѓ•г‚ЎгѓЃгѓЈгѓігѓЌгѓ«з”Ёгѓ•г‚Ўг‚¤гѓ«гѓ‘г‚№г‚’дїќе­
 	if( AlphaFilePathW )
 	{
 #ifndef UNICODE
@@ -4798,11 +4798,11 @@ static MV1_TEXTURE_R *MV1RAddTextureBase(
 		}
 	}
 
-	// ЏI—№
+	// зµ‚дє†
 	return Texture ;
 }
 
-// ѓeѓNѓXѓ`ѓѓ‚М’З‰Б
+// гѓ†г‚Їг‚№гѓЃгѓЈгЃ®иїЅеЉ 
 extern MV1_TEXTURE_R *MV1RAddTexture(
 	MV1_MODEL_R *ReadModel,
 	const char *Name,
@@ -4817,7 +4817,7 @@ extern MV1_TEXTURE_R *MV1RAddTexture(
 	return MV1RAddTextureBase( ReadModel, Name, NULL, ColorFilePath, NULL, AlphaFilePath, NULL, BumpMapFlag, BumpMapNextPixelLength, FilePathDoubleCancel, ReverseFlag, Bmp32AllZeroAlphaToXRGB8Flag, OpenFailedReturn) ;
 }
 
-// ѓeѓNѓXѓ`ѓѓ‚М’З‰Б
+// гѓ†г‚Їг‚№гѓЃгѓЈгЃ®иїЅеЉ 
 extern MV1_TEXTURE_R *MV1RAddTextureW(
 	MV1_MODEL_R *ReadModel,
 	const wchar_t *Name,
@@ -4832,24 +4832,24 @@ extern MV1_TEXTURE_R *MV1RAddTextureW(
 	return MV1RAddTextureBase( ReadModel, NULL, Name, NULL, ColorFilePath, NULL, AlphaFilePath, BumpMapFlag, BumpMapNextPixelLength, FilePathDoubleCancel, ReverseFlag, Bmp32AllZeroAlphaToXRGB8Flag, OpenFailedReturn ) ;
 }
 
-// ѓXѓLѓ“ѓEѓGѓCѓgЏо•с‚М’З‰Б
+// г‚№г‚­гѓіг‚¦г‚Ёг‚¤гѓ€жѓ…е ±гЃ®иїЅеЉ 
 extern MV1_SKIN_WEIGHT_R *MV1RAddSkinWeight( MV1_MODEL_R *ReadModel )
 {
 	MV1_SKIN_WEIGHT_R *SkinWeight ;
 
-	// ѓЃѓ‚ѓЉ‚МЉm•Ы
+	// гѓЎгѓўгѓЄгЃ®зўєдїќ
 	SkinWeight = ( MV1_SKIN_WEIGHT_R * )AddMemArea( sizeof( MV1_SKIN_WEIGHT_R ), &ReadModel->Mem ) ;
 	if( SkinWeight == NULL )
 		return NULL ;
 
-	// ѓXѓLѓ“ѓEѓGѓCѓgЏо•с‚Мђ”‚рѓCѓ“ѓNѓЉѓЃѓ“ѓg
+	// г‚№г‚­гѓіг‚¦г‚Ёг‚¤гѓ€жѓ…е ±гЃ®ж•°г‚’г‚¤гѓіг‚ЇгѓЄгѓЎгѓігѓ€
 	ReadModel->SkinWeightNum ++ ;
 
-	// ЏI—№
+	// зµ‚дє†
 	return SkinWeight ;
 }
 
-// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“ѓZѓbѓg‚М’З‰Б
+// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓіг‚»гѓѓгѓ€гЃ®иїЅеЉ 
 static MV1_ANIMSET_R *MV1RAddAnimSetBase( MV1_MODEL_R *ReadModel, const char *NameA, const wchar_t *NameW )
 {
 	MV1_ANIMSET_R *AnimSet ;
@@ -4876,15 +4876,15 @@ static MV1_ANIMSET_R *MV1RAddAnimSetBase( MV1_MODEL_R *ReadModel, const char *Na
 		}
 	}
 
-	// ѓЃѓ‚ѓЉ‚МЉm•Ы
+	// гѓЎгѓўгѓЄгЃ®зўєдїќ
 	AnimSet = ( MV1_ANIMSET_R * )AddMemArea( sizeof( MV1_ANIMSET_R ), &ReadModel->Mem ) ;
 	if( AnimSet == NULL )
 		return NULL ;
 
-	// ѓЉѓXѓg‚Й’З‰Б
+	// гѓЄг‚№гѓ€гЃ«иїЅеЉ 
 	MODELLIST_ADD( ReadModel, AnimSet ) ;
 
-	// –ј‘O‚р•Ы‘¶
+	// еђЌе‰Ќг‚’дїќе­
 #ifndef UNICODE
 	AnimSet->NameA = MV1RAddString( ReadModel, NameA ) ;
 	if( AnimSet->NameA == NULL )
@@ -4899,63 +4899,63 @@ static MV1_ANIMSET_R *MV1RAddAnimSetBase( MV1_MODEL_R *ReadModel, const char *Na
 		return NULL ;
 	}
 
-	// ЏI—№
+	// зµ‚дє†
 	return AnimSet ;
 }
 
-// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“ѓZѓbѓg‚М’З‰Б
+// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓіг‚»гѓѓгѓ€гЃ®иїЅеЉ 
 extern MV1_ANIMSET_R *MV1RAddAnimSet( MV1_MODEL_R *ReadModel, const char *Name )
 {
 	return MV1RAddAnimSetBase( ReadModel, Name, NULL ) ;
 }
 
-// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“ѓZѓbѓg‚М’З‰Б
+// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓіг‚»гѓѓгѓ€гЃ®иїЅеЉ 
 extern MV1_ANIMSET_R *MV1RAddAnimSetW( MV1_MODEL_R *ReadModel, const wchar_t *Name )
 {
 	return MV1RAddAnimSetBase( ReadModel, NULL, Name ) ;
 }
 
-// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚М’З‰Б
+// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігЃ®иїЅеЉ 
 extern MV1_ANIM_R *MV1RAddAnim( MV1_MODEL_R *ReadModel, MV1_ANIMSET_R *AnimSet )
 {
 	MV1_ANIM_R *Anim ;
 
-	// ѓЃѓ‚ѓЉ‚МЉm•Ы
+	// гѓЎгѓўгѓЄгЃ®зўєдїќ
 	Anim = ( MV1_ANIM_R * )AddMemArea( sizeof( MV1_ANIM_R ), &ReadModel->Mem ) ;
 	if( Anim == NULL )
 		return NULL ;
 
-	// ѓЉѓXѓg‚Й’З‰Б
+	// гѓЄг‚№гѓ€гЃ«иїЅеЉ 
 	MODELLIST_ADD( ReadModel, Anim ) ;
 	OBJLIST_ADD( AnimSet, Anim ) ;
 	Anim->Container = AnimSet ;
 
-	// ЏI—№
+	// зµ‚дє†
 	return Anim ;
 }
 
-// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“ѓLЃ[ѓZѓbѓg‚М’З‰Б
+// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓіг‚­гѓјг‚»гѓѓгѓ€гЃ®иїЅеЉ 
 extern MV1_ANIMKEYSET_R *MV1RAddAnimKeySet( MV1_MODEL_R *ReadModel, MV1_ANIM_R *Anim )
 {
 	MV1_ANIMKEYSET_R *AnimKeySet ;
 
-	// ѓЃѓ‚ѓЉ‚МЉm•Ы
+	// гѓЎгѓўгѓЄгЃ®зўєдїќ
 	AnimKeySet = ( MV1_ANIMKEYSET_R * )AddMemArea( sizeof( MV1_ANIMKEYSET_R ), &ReadModel->Mem ) ;
 	if( AnimKeySet == NULL )
 		return NULL ;
 
-	// ѓЉѓXѓg‚Й’З‰Б
+	// гѓЄг‚№гѓ€гЃ«иїЅеЉ 
 	MODELLIST_ADD( ReadModel, AnimKeySet ) ;
 	OBJLIST_ADD( Anim, AnimKeySet ) ;
 
-	// ѓpѓ‰ѓЃЃ[ѓ^‚МЏ‰Љъ‰»
+	// гѓ‘гѓ©гѓЎгѓјг‚їгЃ®е€ќжњџеЊ–
 	AnimKeySet->TimeType = MV1_ANIMKEY_TIME_TYPE_KEY ;
 
-	// ЏI—№
+	// зµ‚дє†
 	return AnimKeySet ;
 }
 
-// ѓ‰ѓCѓg‚М’З‰Б
+// гѓ©г‚¤гѓ€гЃ®иїЅеЉ 
 static MV1_LIGHT_R *MV1RAddLightBase( MV1_MODEL_R *ReadModel, const char *NameA, const wchar_t *NameW )
 {
 	MV1_LIGHT_R *Light ;
@@ -4982,15 +4982,15 @@ static MV1_LIGHT_R *MV1RAddLightBase( MV1_MODEL_R *ReadModel, const char *NameA,
 		}
 	}
 
-	// ѓЃѓ‚ѓЉ‚МЉm•Ы
+	// гѓЎгѓўгѓЄгЃ®зўєдїќ
 	Light = ( MV1_LIGHT_R * )AddMemArea( sizeof( MV1_LIGHT_R ), &ReadModel->Mem ) ;
 	if( Light == NULL )
 		return NULL ;
 
-	// ѓЉѓXѓg‚Й’З‰Б
+	// гѓЄг‚№гѓ€гЃ«иїЅеЉ 
 	MODELLIST_ADD( ReadModel, Light ) ;
 
-	// –ј‘O‚р•Ы‘¶
+	// еђЌе‰Ќг‚’дїќе­
 #ifndef UNICODE
 	Light->NameA = MV1RAddString( ReadModel, NameA ) ;
 	if( Light->NameA == NULL )
@@ -5005,23 +5005,23 @@ static MV1_LIGHT_R *MV1RAddLightBase( MV1_MODEL_R *ReadModel, const char *NameA,
 		return NULL ;
 	}
 
-	// ЏI—№
+	// зµ‚дє†
 	return Light ;
 }
 
-// ѓ‰ѓCѓg‚М’З‰Б
+// гѓ©г‚¤гѓ€гЃ®иїЅеЉ 
 extern MV1_LIGHT_R *MV1RAddLight( MV1_MODEL_R *ReadModel, const char *Name )
 {
 	return MV1RAddLightBase( ReadModel, Name, NULL ) ;
 }
 
-// ѓ‰ѓCѓg‚М’З‰Б
+// гѓ©г‚¤гѓ€гЃ®иїЅеЉ 
 extern MV1_LIGHT_R *MV1RAddLightW( MV1_MODEL_R *ReadModel, const wchar_t *Name )
 {
 	return MV1RAddLightBase( ReadModel, NULL, Name ) ;
 }
 
-// “З‚ЭЌћ‚ЭЏ€—ќ—pѓ‚ѓfѓ‹‚©‚зЉо–{ѓ‚ѓfѓ‹ѓfЃ[ѓ^‚рЌмђ¬‚·‚й
+// иЄ­гЃїиѕјгЃїе‡¦зђ†з”Ёгѓўгѓ‡гѓ«гЃ‹г‚‰еџєжњ¬гѓўгѓ‡гѓ«гѓ‡гѓјг‚їг‚’дЅњж€ђгЃ™г‚‹
 extern int MV1LoadModelToReadModel(
 	const MV1LOADMODEL_GPARAM *	GParam,
 	      MV1_MODEL_R *			ReadModel,
@@ -5099,7 +5099,7 @@ extern int MV1LoadModelToReadModel(
 	MV1_MODEL_BASE MTBase, *MBase ;
 	DWORD_PTR AllocSize ;
 
-	// ѓfѓBѓЊѓNѓgѓЉѓpѓX‚рЋж“ѕ
+	// гѓ‡г‚Јгѓ¬г‚Їгѓ€гѓЄгѓ‘г‚№г‚’еЏ–еѕ—
 	dirlen = 0 ;
 	if( CurrentDir != NULL )
 	{
@@ -5112,25 +5112,25 @@ extern int MV1LoadModelToReadModel(
 		}
 	}
 
-	// ’ё“_‚М€кЋћѓoѓbѓtѓ@‚рЏ‰Љъ‰»
+	// й ‚з‚№гЃ®дёЂж™‚гѓђгѓѓгѓ•г‚Ўг‚’е€ќжњџеЊ–
 //	_MEMSET( VertBuffer, 0, sizeof( VertBuffer ) ) ;
 
-	// “Ї€к’ё“_ЊџЏo—pЏо•с‚Мѓ|ѓCѓ“ѓ^‚рЏ‰Љъ‰»
+	// еђЊдёЂй ‚з‚№ж¤ње‡єз”Ёжѓ…е ±гЃ®гѓќг‚¤гѓіг‚їг‚’е€ќжњџеЊ–
 	VertInfoTable = NULL ;
 
-	// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“ѓfЃ[ѓ^‚МЌЕ“K‰»
+	// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігѓ‡гѓјг‚їгЃ®жњЂйЃ©еЊ–
 	MV1OptimizeAnim( ReadModel ) ;
 
-	// ѓVѓFѓCѓv‚Мђ”‚ѕ‚ЇЊJ‚и•Ф‚µѓVѓFѓCѓv‚М‘ОЏЫ‚Й‚И‚Б‚Д‚ў‚йѓЃѓbѓVѓ…‚Й€у‚р•t‚Ї‚й
+	// г‚·г‚§г‚¤гѓ—гЃ®ж•°гЃ гЃ‘з№°г‚Љиї”гЃ—г‚·г‚§г‚¤гѓ—гЃ®еЇѕи±ЎгЃ«гЃЄгЃЈгЃ¦гЃ„г‚‹гѓЎгѓѓг‚·гѓҐгЃ«еЌ°г‚’д»гЃ‘г‚‹
 	for( Shape = ReadModel->ShapeFirst ; Shape ; Shape = Shape->DataNext )
 	{
 		Shape->TargetMesh->IsShapeMesh = TRUE ;
 
-		// ‚В‚ў‚Е‚ЙѓeЃ[ѓuѓ‹‚аЌм‚й
+		// гЃ¤гЃ„гЃ§гЃ«гѓ†гѓјгѓ–гѓ«г‚‚дЅњг‚‹
 		Shape->NextTable = ( DWORD * )ADDMEMAREA( sizeof( DWORD ) * Shape->TargetMesh->PositionNum, &ReadModel->Mem ) ;
 		if( Shape->NextTable == NULL )
 		{
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\x52\x00\x65\x00\x61\x00\x64\x00\x20\x00\x4d\x00\x6f\x00\x64\x00\x65\x00\x6c\x00\x20\x00\x43\x00\x6f\x00\x6e\x00\x76\x00\x65\x00\x72\x00\x74\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xb7\x30\xa7\x30\xa4\x30\xd7\x30\xfe\x5b\x61\x8c\x02\x98\xb9\x70\xc6\x30\xfc\x30\xd6\x30\xeb\x30\x28\x75\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Read Model Convert Error : ѓVѓFѓCѓv‘ОЏЫ’ё“_ѓeЃ[ѓuѓ‹—pѓЃѓ‚ѓЉ‚МЉm•Ы‚ЙЋё”s‚µ‚Ь‚µ‚Ѕ\n" @*/ )) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\x52\x00\x65\x00\x61\x00\x64\x00\x20\x00\x4d\x00\x6f\x00\x64\x00\x65\x00\x6c\x00\x20\x00\x43\x00\x6f\x00\x6e\x00\x76\x00\x65\x00\x72\x00\x74\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xb7\x30\xa7\x30\xa4\x30\xd7\x30\xfe\x5b\x61\x8c\x02\x98\xb9\x70\xc6\x30\xfc\x30\xd6\x30\xeb\x30\x28\x75\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Read Model Convert Error : г‚·г‚§г‚¤гѓ—еЇѕи±Ўй ‚з‚№гѓ†гѓјгѓ–гѓ«з”ЁгѓЎгѓўгѓЄгЃ®зўєдїќгЃ«е¤±ж•—гЃ—гЃѕгЃ—гЃџ\n" @*/ )) ;
 			return -1 ;
 		}
 		_MEMSET( Shape->NextTable, 0xff, sizeof( DWORD ) * Shape->TargetMesh->PositionNum ) ;
@@ -5141,7 +5141,7 @@ extern int MV1LoadModelToReadModel(
 		}
 	}
 
-	// ѓ}ѓeѓЉѓAѓ‹‚ЄЉ„‚и“–‚Д‚з‚к‚Д‚ў‚И‚ўѓЃѓbѓVѓ…‚Й‚Н‰јѓ}ѓeѓЉѓAѓ‹‚р’З‰Б‚·‚й
+	// гѓћгѓ†гѓЄг‚ўгѓ«гЃЊе‰Іг‚ЉеЅ“гЃ¦г‚‰г‚ЊгЃ¦гЃ„гЃЄгЃ„гѓЎгѓѓг‚·гѓҐгЃ«гЃЇд»®гѓћгѓ†гѓЄг‚ўгѓ«г‚’иїЅеЉ гЃ™г‚‹
 	{
 		for( Mesh = ReadModel->MeshFirst ; Mesh ; Mesh = Mesh->DataNext )
 		{
@@ -5153,15 +5153,15 @@ extern int MV1LoadModelToReadModel(
 
 		if( ReadModel->MaterialNum == 0 || Mesh != NULL )
 		{
-			// ѓ}ѓeѓЉѓAѓ‹‚ЄЉ„‚и“–‚Д‚з‚к‚Д‚ў‚И‚ўѓЃѓbѓVѓ…—p‚Мѓ}ѓeѓЉѓAѓ‹‚р’З‰Б
+			// гѓћгѓ†гѓЄг‚ўгѓ«гЃЊе‰Іг‚ЉеЅ“гЃ¦г‚‰г‚ЊгЃ¦гЃ„гЃЄгЃ„гѓЎгѓѓг‚·гѓҐз”ЁгЃ®гѓћгѓ†гѓЄг‚ўгѓ«г‚’иїЅеЉ 
 			Material = MV1RAddMaterial( ReadModel, "NoMaterial" ) ;
 			if( Material == NULL )
 			{
-				DXST_LOGFILEFMT_ADDUTF16LE(( "\x52\x00\x65\x00\x61\x00\x64\x00\x20\x00\x4d\x00\x6f\x00\x64\x00\x65\x00\x6c\x00\x20\x00\x43\x00\x6f\x00\x6e\x00\x76\x00\x65\x00\x72\x00\x74\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\x4d\x00\x61\x00\x74\x00\x65\x00\x72\x00\x69\x00\x61\x00\x6c\x00\x20\x00\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x6e\x30\xfd\x8f\xa0\x52\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Read Model Convert Error : Material ѓIѓuѓWѓFѓNѓg‚М’З‰Б‚ЙЋё”s‚µ‚Ь‚µ‚Ѕ\n" @*/, i ) ) ;
+				DXST_LOGFILEFMT_ADDUTF16LE(( "\x52\x00\x65\x00\x61\x00\x64\x00\x20\x00\x4d\x00\x6f\x00\x64\x00\x65\x00\x6c\x00\x20\x00\x43\x00\x6f\x00\x6e\x00\x76\x00\x65\x00\x72\x00\x74\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\x4d\x00\x61\x00\x74\x00\x65\x00\x72\x00\x69\x00\x61\x00\x6c\x00\x20\x00\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x6e\x30\xfd\x8f\xa0\x52\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Read Model Convert Error : Material г‚Єгѓ–г‚ёг‚§г‚Їгѓ€гЃ®иїЅеЉ гЃ«е¤±ж•—гЃ—гЃѕгЃ—гЃџ\n" @*/, i ) ) ;
 				return -1 ;
 			}
 
-			// ѓЃѓbѓVѓ…ЌА•WѓfЃ[ѓ^‚МѓTѓCѓY‚р‰БЋZ
+			// гѓЎгѓѓг‚·гѓҐеє§жЁ™гѓ‡гѓјг‚їгЃ®г‚µг‚¤г‚єг‚’еЉ з®—
 			for( Mesh = ReadModel->MeshFirst ; Mesh ; Mesh = Mesh->DataNext )
 			{
 				if( Mesh->MaterialNum == 0 )
@@ -5173,24 +5173,24 @@ extern int MV1LoadModelToReadModel(
 		}
 	}
 
-	// ѓЃѓbѓVѓ…‚Мђ”‚ѕ‚ЇЊJ‚и•Ф‚µ
+	// гѓЎгѓѓг‚·гѓҐгЃ®ж•°гЃ гЃ‘з№°г‚Љиї”гЃ—
 	ReadModel->TriangleNum = 0 ;
 	MaxPositionNum = 0 ;
 	MaxTriangleNum = 0 ;
 	for( Mesh = ReadModel->MeshFirst ; Mesh ; Mesh = Mesh->DataNext )
 	{
-		// ѓ|ѓЉѓSѓ“‚МЋOЉpЊ`‰»
+		// гѓќгѓЄг‚ґгѓігЃ®дё‰и§’еЅўеЊ–
 		if( MV1ConvertTrianglePolygon( ReadModel, Mesh ) == false )
 			return -1 ;
 
-		// Ћw’и‚Є‚ ‚йЏкЌ‡‚НЌА•W‚МЌЕ“K‰»
+		// жЊ‡е®љгЃЊгЃ‚г‚‹е ґеђ€гЃЇеє§жЁ™гЃ®жњЂйЃ©еЊ–
 		if( GParam->LoadModelToPositionOptimize )
 		{
 			if( MV1OptimizePosition( ReadModel, Mesh ) == false )
 				return -1 ;
 		}
 
-		// –@ђь‚Є–і‚ў‚©Ћw’и‚Є‚ ‚йЏкЌ‡‚Н–@ђь‚МЌДЊvЋZ
+		// жі•з·љгЃЊз„ЎгЃ„гЃ‹жЊ‡е®љгЃЊгЃ‚г‚‹е ґеђ€гЃЇжі•з·љгЃ®е†ЌиЁ€з®—
 		if( Mesh->Normals == NULL || ReadModel->AutoCreateNormal || GParam->LoadModelToReMakeNormal )
 		{
 			if( ReadModel->AutoCreateNormal == FALSE ) 
@@ -5201,21 +5201,21 @@ extern int MV1LoadModelToReadModel(
 			if( MV1MakeMeshNormals( ReadModel, Mesh ) == false )
 				return -1 ;
 
-			// Џ]–@ђь‚ЖђЪђь‚рЋZЏo
+			// еѕ“жі•з·љгЃЁжЋҐз·љг‚’з®—е‡є
 			if( Mesh->UVNum[ 0 ] != 0 )
 			{
 				MV1MakeMeshBinormalsAndTangents( ReadModel, Mesh ) ;
 			}
 		}
 
-		// Ћw’и‚Є‚ ‚йЏкЌ‡‚НЃA•У‚р‹¤—L‚µ‚Д‚ў‚ДЃAЉЋ‚В–@ђь‚М•ыЊь‚Є€Щ‚И‚й•У‚Й–КђП‚O‚Мѓ|ѓЉѓSѓ“‚р’З‰Б‚·‚й( ‚RЉpЊ`ѓ|ѓЉѓSѓ“‚МЏWЌ‡‚Й‚И‚Б‚Д‚ў‚й•K—v‚ ‚и )
+		// жЊ‡е®љгЃЊгЃ‚г‚‹е ґеђ€гЃЇгЂЃиѕєг‚’е…±жњ‰гЃ—гЃ¦гЃ„гЃ¦гЂЃдё”гЃ¤жі•з·љгЃ®ж–№еђ‘гЃЊз•°гЃЄг‚‹иѕєгЃ«йќўз©ЌпјђгЃ®гѓќгѓЄг‚ґгѓіг‚’иїЅеЉ гЃ™г‚‹( пј“и§’еЅўгѓќгѓЄг‚ґгѓігЃ®й›†еђ€гЃ«гЃЄгЃЈгЃ¦гЃ„г‚‹еї…и¦ЃгЃ‚г‚Љ )
 		if( GParam->LoadModelToNotEqNormalSideAddZeroAreaPolygon )
 		{
 			if( MV1NotEqualNormalSideAddZeroAreaPolygon( ReadModel, Mesh ) == false )
 				return -1 ;
 		}
 
-		// ѓ|ѓЉѓSѓ“‚Мђ”‚рЋZЏo
+		// гѓќгѓЄг‚ґгѓігЃ®ж•°г‚’з®—е‡є
 		Mesh->TriangleNum = 0 ;
 		MeshFace = Mesh->Faces ;
 		for( i = 0 ; i < Mesh->FaceNum ; i ++, MeshFace ++ )
@@ -5225,83 +5225,83 @@ extern int MV1LoadModelToReadModel(
 		}
 		ReadModel->TriangleNum += Mesh->TriangleNum ;
 
-		// ѓ|ѓWѓVѓ‡ѓ“‚МЌЕ‘еђ”‚МЌXђV
+		// гѓќг‚ёг‚·гѓ§гѓігЃ®жњЂе¤§ж•°гЃ®ж›ґж–°
 		if( MaxPositionNum < Mesh->PositionNum )
 			MaxPositionNum = Mesh->PositionNum ;
 
-		// ѓgѓ‰ѓCѓAѓ“ѓOѓ‹‚МЌЕ‘еђ”‚МЌXђV
+		// гѓ€гѓ©г‚¤г‚ўгѓіг‚°гѓ«гЃ®жњЂе¤§ж•°гЃ®ж›ґж–°
 		if( MaxTriangleNum < Mesh->TriangleNum )
 			MaxTriangleNum = Mesh->TriangleNum ;
 
-		// ѓXѓLѓ“ѓЃѓbѓVѓ…‚МЏо•с‚рЋж“ѕ
+		// г‚№г‚­гѓігѓЎгѓѓг‚·гѓҐгЃ®жѓ…е ±г‚’еЏ–еѕ—
 		if( Mesh->SkinWeightsNum )
 		{
-			// ѓgѓ‰ѓCѓAѓ“ѓOѓ‹ѓ^ѓCѓv”z—сЉi”[—p‚МѓЃѓ‚ѓЉ‚рЉm•Ы
+			// гѓ€гѓ©г‚¤г‚ўгѓіг‚°гѓ«г‚їг‚¤гѓ—й…Ќе€—ж јзґЌз”ЁгЃ®гѓЎгѓўгѓЄг‚’зўєдїќ
 			Mesh->SkinFaceBoneNum = ( WORD * )ADDMEMAREA( ( sizeof( BYTE ) + sizeof( WORD ) ) * Mesh->FaceNum, &ReadModel->Mem ) ;
 			Mesh->SkinFaceType = ( BYTE * )( Mesh->SkinFaceBoneNum + Mesh->FaceNum ) ;
 			if( Mesh->SkinFaceBoneNum == NULL )
 			{
-				DXST_LOGFILEFMT_ADDUTF16LE(( "\x52\x00\x65\x00\x61\x00\x64\x00\x20\x00\x4d\x00\x6f\x00\x64\x00\x65\x00\x6c\x00\x20\x00\x43\x00\x6f\x00\x6e\x00\x76\x00\x65\x00\x72\x00\x74\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xc8\x30\xe9\x30\xa4\x30\xa2\x30\xf3\x30\xb0\x30\xeb\x30\xbf\x30\xa4\x30\xd7\x30\x4d\x91\x17\x52\x3c\x68\x0d\x7d\x28\x75\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Read Model Convert Error : ѓgѓ‰ѓCѓAѓ“ѓOѓ‹ѓ^ѓCѓv”z—сЉi”[—pѓЃѓ‚ѓЉ‚МЉm•Ы‚ЙЋё”s‚µ‚Ь‚µ‚Ѕ\n" @*/ )) ;
+				DXST_LOGFILEFMT_ADDUTF16LE(( "\x52\x00\x65\x00\x61\x00\x64\x00\x20\x00\x4d\x00\x6f\x00\x64\x00\x65\x00\x6c\x00\x20\x00\x43\x00\x6f\x00\x6e\x00\x76\x00\x65\x00\x72\x00\x74\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xc8\x30\xe9\x30\xa4\x30\xa2\x30\xf3\x30\xb0\x30\xeb\x30\xbf\x30\xa4\x30\xd7\x30\x4d\x91\x17\x52\x3c\x68\x0d\x7d\x28\x75\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Read Model Convert Error : гѓ€гѓ©г‚¤г‚ўгѓіг‚°гѓ«г‚їг‚¤гѓ—й…Ќе€—ж јзґЌз”ЁгѓЎгѓўгѓЄгЃ®зўєдїќгЃ«е¤±ж•—гЃ—гЃѕгЃ—гЃџ\n" @*/ )) ;
 				return -1 ;
 			}
 			_MEMSET( Mesh->SkinFaceBoneNum, 0, ( sizeof( BYTE ) + sizeof( WORD ) ) * Mesh->FaceNum ) ;
 
-			// Љe’ё“_‚Є‚З‚Мѓ{Ѓ[ѓ“‚М‰e‹ї‚рЋу‚Ї‚й‚©‚МЏо•с‚МЏ‰Љъ‰»
+			// еђ„й ‚з‚№гЃЊгЃ©гЃ®гѓњгѓјгѓігЃ®еЅ±йџїг‚’еЏ—гЃ‘г‚‹гЃ‹гЃ®жѓ…е ±гЃ®е€ќжњџеЊ–
 			if( InitBitList( &Mesh->SkinVerticesBlend, ( int )Mesh->SkinWeightsNum, ( int )Mesh->PositionNum, &ReadModel->Mem ) == -1 )
 			{
-				DXST_LOGFILEFMT_ADDUTF16LE(( "\x52\x00\x65\x00\x61\x00\x64\x00\x20\x00\x4d\x00\x6f\x00\x64\x00\x65\x00\x6c\x00\x20\x00\x43\x00\x6f\x00\x6e\x00\x76\x00\x65\x00\x72\x00\x74\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\x02\x98\xb9\x70\x78\x30\x6e\x30\xdc\x30\xfc\x30\xf3\x30\x6e\x30\x71\x5f\xff\x97\x6b\x30\xa2\x95\x59\x30\x8b\x30\xc7\x30\xfc\x30\xbf\x30\x6e\x30\x1d\x52\x1f\x67\x16\x53\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Read Model Convert Error : ’ё“_‚Ц‚Мѓ{Ѓ[ѓ“‚М‰e‹ї‚ЙЉЦ‚·‚йѓfЃ[ѓ^‚МЏ‰Љъ‰»‚ЙЋё”s‚µ‚Ь‚µ‚Ѕ\n" @*/ )) ;
+				DXST_LOGFILEFMT_ADDUTF16LE(( "\x52\x00\x65\x00\x61\x00\x64\x00\x20\x00\x4d\x00\x6f\x00\x64\x00\x65\x00\x6c\x00\x20\x00\x43\x00\x6f\x00\x6e\x00\x76\x00\x65\x00\x72\x00\x74\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\x02\x98\xb9\x70\x78\x30\x6e\x30\xdc\x30\xfc\x30\xf3\x30\x6e\x30\x71\x5f\xff\x97\x6b\x30\xa2\x95\x59\x30\x8b\x30\xc7\x30\xfc\x30\xbf\x30\x6e\x30\x1d\x52\x1f\x67\x16\x53\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Read Model Convert Error : й ‚з‚№гЃёгЃ®гѓњгѓјгѓігЃ®еЅ±йџїгЃ«й–ўгЃ™г‚‹гѓ‡гѓјг‚їгЃ®е€ќжњџеЊ–гЃ«е¤±ж•—гЃ—гЃѕгЃ—гЃџ\n" @*/ )) ;
 				return -1 ;
 			}
 
-			// Љe’ё“_‚Мѓ{Ѓ[ѓ“‚М‰e‹ї’l‚р•Ы‘¶‚·‚йѓЃѓ‚ѓЉ‚МЉm•Ы
+			// еђ„й ‚з‚№гЃ®гѓњгѓјгѓігЃ®еЅ±йџїеЂ¤г‚’дїќе­гЃ™г‚‹гѓЎгѓўгѓЄгЃ®зўєдїќ
 			Mesh->SkinVerticeWeightInfo = ( float * )ADDMEMAREA( sizeof( float ) * Mesh->SkinWeightsNum * Mesh->PositionNum, &ReadModel->Mem ) ;
 			if( Mesh->SkinVerticeWeightInfo == NULL )
 			{
-				DXST_LOGFILEFMT_ADDUTF16LE(( "\x52\x00\x65\x00\x61\x00\x64\x00\x20\x00\x4d\x00\x6f\x00\x64\x00\x65\x00\x6c\x00\x20\x00\x43\x00\x6f\x00\x6e\x00\x76\x00\x65\x00\x72\x00\x74\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\x02\x98\xb9\x70\x78\x30\x6e\x30\xdc\x30\xfc\x30\xf3\x30\x6e\x30\x71\x5f\xff\x97\x24\x50\x6e\x30\xc5\x60\x31\x58\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Read Model Convert Error : ’ё“_‚Ц‚Мѓ{Ѓ[ѓ“‚М‰e‹ї’l‚МЏо•с‚рЉi”[‚·‚йѓЃѓ‚ѓЉ‚МЉm•Ы‚ЙЋё”s‚µ‚Ь‚µ‚Ѕ\n" @*/ )) ;
+				DXST_LOGFILEFMT_ADDUTF16LE(( "\x52\x00\x65\x00\x61\x00\x64\x00\x20\x00\x4d\x00\x6f\x00\x64\x00\x65\x00\x6c\x00\x20\x00\x43\x00\x6f\x00\x6e\x00\x76\x00\x65\x00\x72\x00\x74\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\x02\x98\xb9\x70\x78\x30\x6e\x30\xdc\x30\xfc\x30\xf3\x30\x6e\x30\x71\x5f\xff\x97\x24\x50\x6e\x30\xc5\x60\x31\x58\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Read Model Convert Error : й ‚з‚№гЃёгЃ®гѓњгѓјгѓігЃ®еЅ±йџїеЂ¤гЃ®жѓ…е ±г‚’ж јзґЌгЃ™г‚‹гѓЎгѓўгѓЄгЃ®зўєдїќгЃ«е¤±ж•—гЃ—гЃѕгЃ—гЃџ\n" @*/ )) ;
 				return -1 ;
 			}
 
-			// Љe–К‚Є‚З‚Мѓ{Ѓ[ѓ“‚М‰e‹ї‚рЋу‚Ї‚й‚М‚©‚МЏо•с‚МЏ‰Љъ‰»
+			// еђ„йќўгЃЊгЃ©гЃ®гѓњгѓјгѓігЃ®еЅ±йџїг‚’еЏ—гЃ‘г‚‹гЃ®гЃ‹гЃ®жѓ…е ±гЃ®е€ќжњџеЊ–
 			if( InitBitList( &Mesh->SkinFacesBlend, ( int )Mesh->SkinWeightsNum, ( int )Mesh->FaceNum, &ReadModel->Mem ) == -1 )
 			{
-				DXST_LOGFILEFMT_ADDUTF16LE(( "\x52\x00\x65\x00\x61\x00\x64\x00\x20\x00\x4d\x00\x6f\x00\x64\x00\x65\x00\x6c\x00\x20\x00\x43\x00\x6f\x00\x6e\x00\x76\x00\x65\x00\x72\x00\x74\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\x62\x97\x78\x30\x6e\x30\xdc\x30\xfc\x30\xf3\x30\x6e\x30\x71\x5f\xff\x97\x6b\x30\xa2\x95\x59\x30\x8b\x30\xc7\x30\xfc\x30\xbf\x30\x6e\x30\x1d\x52\x1f\x67\x16\x53\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Read Model Convert Error : –К‚Ц‚Мѓ{Ѓ[ѓ“‚М‰e‹ї‚ЙЉЦ‚·‚йѓfЃ[ѓ^‚МЏ‰Љъ‰»‚ЙЋё”s‚µ‚Ь‚µ‚Ѕ\n" @*/ )) ;
+				DXST_LOGFILEFMT_ADDUTF16LE(( "\x52\x00\x65\x00\x61\x00\x64\x00\x20\x00\x4d\x00\x6f\x00\x64\x00\x65\x00\x6c\x00\x20\x00\x43\x00\x6f\x00\x6e\x00\x76\x00\x65\x00\x72\x00\x74\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\x62\x97\x78\x30\x6e\x30\xdc\x30\xfc\x30\xf3\x30\x6e\x30\x71\x5f\xff\x97\x6b\x30\xa2\x95\x59\x30\x8b\x30\xc7\x30\xfc\x30\xbf\x30\x6e\x30\x1d\x52\x1f\x67\x16\x53\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Read Model Convert Error : йќўгЃёгЃ®гѓњгѓјгѓігЃ®еЅ±йџїгЃ«й–ўгЃ™г‚‹гѓ‡гѓјг‚їгЃ®е€ќжњџеЊ–гЃ«е¤±ж•—гЃ—гЃѕгЃ—гЃџ\n" @*/ )) ;
 				return -1 ;
 			}
 
-			// ѓXѓLѓ“ѓEѓGѓCѓg‚МЉe’ё“_‚Ц‚М”Ѕ‰fѓЉѓXѓg‚рЌмђ¬
+			// г‚№г‚­гѓіг‚¦г‚Ёг‚¤гѓ€гЃ®еђ„й ‚з‚№гЃёгЃ®еЏЌж гѓЄг‚№гѓ€г‚’дЅњж€ђ
 			for( i = 0 ; i < Mesh->SkinWeightsNum ; i ++ )
 			{
 				SkinWeight = Mesh->SkinWeights[ i ] ;
 
-				// ‘ОЏЫ’ё“_ђ”‚Мђ”‚ѕ‚ЇЊJ‚и•Ф‚µ
+				// еЇѕи±Ўй ‚з‚№ж•°гЃ®ж•°гЃ гЃ‘з№°г‚Љиї”гЃ—
 				SkinWeightOne = SkinWeight->Data ;
 				for( j = 0 ; j < ( int )SkinWeight->DataNum ; j ++, SkinWeightOne ++ )
 				{
-					// ѓEѓGѓCѓg’l‚Є‚O‚МЏкЌ‡‚Н‰Ѕ‚а‚µ‚И‚ў
+					// г‚¦г‚Ёг‚¤гѓ€еЂ¤гЃЊпјђгЃ®е ґеђ€гЃЇдЅ•г‚‚гЃ—гЃЄгЃ„
 					if( SkinWeightOne->Weight <= 0.0f || ( *( ( DWORD * )&SkinWeightOne->Weight ) & 0x7fffffff ) == 0 ) continue ;
 					
-					// ‰e‹ї‚µ‚Д‚ў‚й’ё“_‚ЙЏо•с‚р–„‚ЯЌћ‚Ю
+					// еЅ±йџїгЃ—гЃ¦гЃ„г‚‹й ‚з‚№гЃ«жѓ…е ±г‚’еџ‹г‚Ѓиѕјг‚Ђ
 					SetBitList( &Mesh->SkinVerticesBlend, ( int )SkinWeightOne->TargetVertex, ( int )i ) ;
 					Mesh->SkinVerticeWeightInfo[ SkinWeightOne->TargetVertex * Mesh->SkinWeightsNum + i ] = SkinWeightOne->Weight ;
 				}
 			}
 
-			// ѓtѓFѓCѓX‚Мѓ^ѓCѓv‚рѓZѓbѓg
+			// гѓ•г‚§г‚¤г‚№гЃ®г‚їг‚¤гѓ—г‚’г‚»гѓѓгѓ€
 			MeshFace = Mesh->Faces ;
 			for( i = 0 ; ( DWORD )i < Mesh->FaceNum ; i ++, MeshFace ++ )
 			{
-				// ѓ|ѓЉѓSѓ“‚ЄЋg—p‚µ‚Д‚ў‚йѓ{Ѓ[ѓ“‚МЏо•с‚рЌ\’z
+				// гѓќгѓЄг‚ґгѓігЃЊдЅїз”ЁгЃ—гЃ¦гЃ„г‚‹гѓњгѓјгѓігЃ®жѓ…е ±г‚’ж§‹зЇ‰
 				GetBitList( &Mesh->SkinVerticesBlend, ( int )MeshFace->VertexIndex[ 0 ], BitBuf ) ; 
 				for( j = 1 ; ( DWORD )j < MeshFace->IndexNum ; j ++ )
 					OrBitList( &Mesh->SkinVerticesBlend, ( int )MeshFace->VertexIndex[ j ], BitBuf ) ;
 
-				// ѓ|ѓЉѓSѓ“‚ЄЋg—p‚µ‚Д‚ў‚йѓ{Ѓ[ѓ“‚М‘g‚ЭЌ‡‚н‚№Џо•с‚р•Ы‘¶
+				// гѓќгѓЄг‚ґгѓігЃЊдЅїз”ЁгЃ—гЃ¦гЃ„г‚‹гѓњгѓјгѓігЃ®зµ„гЃїеђ€г‚ЏгЃ›жѓ…е ±г‚’дїќе­
 				CopyBitList( &Mesh->SkinFacesBlend, ( int )i, BitBuf ) ;
 
-				// ѓ|ѓЉѓSѓ“‚ЄЋg—p‚µ‚Д‚ў‚йѓ{Ѓ[ѓ“‚Мђ”‚рЋж“ѕ
+				// гѓќгѓЄг‚ґгѓігЃЊдЅїз”ЁгЃ—гЃ¦гЃ„г‚‹гѓњгѓјгѓігЃ®ж•°г‚’еЏ–еѕ—
 				MaxFaceCon = GetBitCount( BitBuf, Mesh->SkinVerticesBlend.UnitSize ) ;
 
-				// ‚P’ё“_‚ЄЋg—p‚µ‚Д‚ў‚йЌЕ‘еѓ{Ѓ[ѓ“ђ”‚рЋж“ѕ
+				// пј‘й ‚з‚№гЃЊдЅїз”ЁгЃ—гЃ¦гЃ„г‚‹жњЂе¤§гѓњгѓјгѓіж•°г‚’еЏ–еѕ—
 				MaxCon = 0 ;
 				for( j = 0 ; j < ( int )MeshFace->IndexNum ; j ++ )
 				{
@@ -5310,69 +5310,69 @@ extern int MV1LoadModelToReadModel(
 					if( MaxCon < Con ) MaxCon = Con ;
 				}
 
-				// ѓ{Ѓ[ѓ“‚Є‚X‚В€ИЏгЋg—p‚і‚к‚Д‚ў‚й‚©‚ЕЏ€—ќ‚р•ЄЉт
+				// гѓњгѓјгѓігЃЊпј™гЃ¤д»ҐдёЉдЅїз”ЁгЃ•г‚ЊгЃ¦гЃ„г‚‹гЃ‹гЃ§е‡¦зђ†г‚’е€†еІђ
 				if( MaxCon >= 9 )
 				{
 					Mesh->SkinFaceType[ i ] = MV1_VERTEX_TYPE_SKIN_FREEBONE ;
 				}
 				else
-				// ѓ{Ѓ[ѓ“‚Є‚T‚В€ИЏгЋg—p‚і‚к‚Д‚ў‚й‚©‚ЕЏ€—ќ‚р•ЄЉт
+				// гѓњгѓјгѓігЃЊпј•гЃ¤д»ҐдёЉдЅїз”ЁгЃ•г‚ЊгЃ¦гЃ„г‚‹гЃ‹гЃ§е‡¦зђ†г‚’е€†еІђ
 				if( MaxCon >= 5 )
 				{
 					Mesh->SkinFaceType[ i ] = MV1_VERTEX_TYPE_SKIN_8BONE ;
 				}
 				else
-				// ѓ{Ѓ[ѓ“‚Є€к‚В‚Е‚аЋg—p‚і‚к‚Д‚ў‚й‚©‚З‚¤‚©‚ЕЏ€—ќ‚р•ЄЉт
+				// гѓњгѓјгѓігЃЊдёЂгЃ¤гЃ§г‚‚дЅїз”ЁгЃ•г‚ЊгЃ¦гЃ„г‚‹гЃ‹гЃ©гЃ†гЃ‹гЃ§е‡¦зђ†г‚’е€†еІђ
 				if( MaxCon >= 1 )
 				{
 					Mesh->SkinFaceType[ i ] = MV1_VERTEX_TYPE_SKIN_4BONE ;
 				}
 				else
-				// ‚±‚±‚Й—€‚ЅЏкЌ‡‚НЋg—p‚і‚к‚Д‚ў‚йѓ{Ѓ[ѓ“‚Н€к‚В‚а‚И‚ў‚Ж‚ў‚¤‚±‚Ж
+				// гЃ“гЃ“гЃ«жќҐгЃџе ґеђ€гЃЇдЅїз”ЁгЃ•г‚ЊгЃ¦гЃ„г‚‹гѓњгѓјгѓігЃЇдёЂгЃ¤г‚‚гЃЄгЃ„гЃЁгЃ„гЃ†гЃ“гЃЁ
 				{
 					Mesh->SkinFaceType[ i ] = MV1_VERTEX_TYPE_NORMAL ;
 					MaxCon = 1 ;
-//					return DXST_LOGFILE_ADDUTF16LE( L"Error ѓ{Ѓ[ѓ“‚МЋw’и‚Є€к‚В‚а‚И‚ўѓ|ѓЉѓSѓ“‚Є‚ ‚и‚Ь‚· by Fbx\n" ) ;
+//					return DXST_LOGFILE_ADDUTF16LE( L"Error гѓњгѓјгѓігЃ®жЊ‡е®љгЃЊдёЂгЃ¤г‚‚гЃЄгЃ„гѓќгѓЄг‚ґгѓігЃЊгЃ‚г‚ЉгЃѕгЃ™ by Fbx\n" ) ;
 				}
 
-				// ЉЦ‚н‚Б‚Д‚ў‚йѓ{Ѓ[ѓ“‚Мђ”‚р•Ы‘¶
+				// й–ўг‚ЏгЃЈгЃ¦гЃ„г‚‹гѓњгѓјгѓігЃ®ж•°г‚’дїќе­
 				Mesh->SkinFaceBoneNum[ i ] = ( WORD )MaxFaceCon ;
 			}
 		}
 
-		// ѓ}ѓeѓЉѓAѓ‹–€‚Мѓ|ѓЉѓSѓ“‚МЏо•с‚рЌ\’z‚·‚й
+		// гѓћгѓ†гѓЄг‚ўгѓ«жЇЋгЃ®гѓќгѓЄг‚ґгѓігЃ®жѓ…е ±г‚’ж§‹зЇ‰гЃ™г‚‹
 		{
 			DWORD PolyNum, Ind ;
 
-			// ѓ}ѓeѓЉѓAѓ‹‚МЋн—Ю‚Мђ”‚ѕ‚ЇЉm•Ы
+			// гѓћгѓ†гѓЄг‚ўгѓ«гЃ®зЁ®йЎћгЃ®ж•°гЃ гЃ‘зўєдїќ
 			Mesh->MaterialPolyList = ( MV1_MATERIAL_POLY_R * )ADDMEMAREA( sizeof( MV1_MATERIAL_POLY_R ) * ( Mesh->MaterialNum == 0 ? 1 : Mesh->MaterialNum ), &ReadModel->Mem ) ;
 			if( Mesh->MaterialPolyList == NULL )
 			{
-				DXST_LOGFILEFMT_ADDUTF16LE(( "\x52\x00\x65\x00\x61\x00\x64\x00\x20\x00\x4d\x00\x6f\x00\x64\x00\x65\x00\x6c\x00\x20\x00\x43\x00\x6f\x00\x6e\x00\x76\x00\x65\x00\x72\x00\x74\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xde\x30\xc6\x30\xea\x30\xa2\x30\xeb\x30\xce\x6b\x6e\x30\xdd\x30\xea\x30\xb4\x30\xf3\x30\xc7\x30\xfc\x30\xbf\x30\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Read Model Convert Error : ѓ}ѓeѓЉѓAѓ‹–€‚Мѓ|ѓЉѓSѓ“ѓfЃ[ѓ^‚рЉi”[‚·‚йѓЃѓ‚ѓЉ‚МЉm•Ы‚ЙЋё”s‚µ‚Ь‚µ‚Ѕ\n" @*/ )) ;
+				DXST_LOGFILEFMT_ADDUTF16LE(( "\x52\x00\x65\x00\x61\x00\x64\x00\x20\x00\x4d\x00\x6f\x00\x64\x00\x65\x00\x6c\x00\x20\x00\x43\x00\x6f\x00\x6e\x00\x76\x00\x65\x00\x72\x00\x74\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xde\x30\xc6\x30\xea\x30\xa2\x30\xeb\x30\xce\x6b\x6e\x30\xdd\x30\xea\x30\xb4\x30\xf3\x30\xc7\x30\xfc\x30\xbf\x30\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Read Model Convert Error : гѓћгѓ†гѓЄг‚ўгѓ«жЇЋгЃ®гѓќгѓЄг‚ґгѓігѓ‡гѓјг‚їг‚’ж јзґЌгЃ™г‚‹гѓЎгѓўгѓЄгЃ®зўєдїќгЃ«е¤±ж•—гЃ—гЃѕгЃ—гЃџ\n" @*/ )) ;
 				return -1 ;
 			}
 
-			// ЋАѓfЃ[ѓ^‚Е‚Мѓ}ѓeѓЉѓAѓ‹‚Мђ”‚р‰БЋZ
+			// е®џгѓ‡гѓјг‚їгЃ§гЃ®гѓћгѓ†гѓЄг‚ўгѓ«гЃ®ж•°г‚’еЉ з®—
 			ReadModel->MeshMaterialNum += Mesh->MaterialNum == 0 ? 1 : Mesh->MaterialNum ;
 
-			// ѓVѓFѓCѓvѓЃѓbѓVѓ…‚МЏкЌ‡‚НѓVѓFѓCѓvѓЃѓbѓVѓ…‚Мђ”‚р‰БЋZ‚·‚й
+			// г‚·г‚§г‚¤гѓ—гѓЎгѓѓг‚·гѓҐгЃ®е ґеђ€гЃЇг‚·г‚§г‚¤гѓ—гѓЎгѓѓг‚·гѓҐгЃ®ж•°г‚’еЉ з®—гЃ™г‚‹
 			if( Mesh->IsShapeMesh )
 			{
 				ReadModel->ShapeMeshNum += ( Mesh->MaterialNum == 0 ? 1 : Mesh->MaterialNum ) * Mesh->Container->ShapeNum ;
 			}
 
-			// ѓXѓLѓ“ѓЃѓbѓVѓ…‚©‚З‚¤‚©‚ЕЏ€—ќ‚р•ЄЉт
+			// г‚№г‚­гѓігѓЎгѓѓг‚·гѓҐгЃ‹гЃ©гЃ†гЃ‹гЃ§е‡¦зђ†г‚’е€†еІђ
 			if( Mesh->SkinWeightsNum )
 			{
-				// ЉeѓtѓFѓCѓX‚ЄЋg—p‚·‚йѓgѓ‰ѓCѓAѓ“ѓOѓ‹ѓЉѓXѓg”ФЌ†‚р•Ы‘¶‚·‚йѓЃѓ‚ѓЉ—М€ж‚МЉm•Ы
+				// еђ„гѓ•г‚§г‚¤г‚№гЃЊдЅїз”ЁгЃ™г‚‹гѓ€гѓ©г‚¤г‚ўгѓіг‚°гѓ«гѓЄг‚№гѓ€з•ЄеЏ·г‚’дїќе­гЃ™г‚‹гѓЎгѓўгѓЄй еџџгЃ®зўєдїќ
 				Mesh->FaceUseTriangleList = ( WORD * )ADDMEMAREA( sizeof( WORD ) * Mesh->FaceNum, &ReadModel->Mem ) ;
 				if( Mesh->FaceUseTriangleList == NULL )
 				{
-					DXST_LOGFILEFMT_ADDUTF16LE(( "\x52\x00\x65\x00\x61\x00\x64\x00\x20\x00\x4d\x00\x6f\x00\x64\x00\x65\x00\x6c\x00\x20\x00\x43\x00\x6f\x00\x6e\x00\x76\x00\x65\x00\x72\x00\x74\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\x04\x54\x62\x97\x68\x30\xc8\x30\xe9\x30\xa4\x30\xa2\x30\xf3\x30\xb0\x30\xeb\x30\xea\x30\xb9\x30\xc8\x30\x6e\x30\xa2\x95\xc2\x4f\x92\x30\xdd\x4f\x58\x5b\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Read Model Convert Error : Љe–К‚Жѓgѓ‰ѓCѓAѓ“ѓOѓ‹ѓЉѓXѓg‚МЉЦЊW‚р•Ы‘¶‚·‚йѓЃѓ‚ѓЉ—М€ж‚МЉm•Ы‚ЙЋё”s‚µ‚Ь‚µ‚Ѕ\n" @*/ )) ;
+					DXST_LOGFILEFMT_ADDUTF16LE(( "\x52\x00\x65\x00\x61\x00\x64\x00\x20\x00\x4d\x00\x6f\x00\x64\x00\x65\x00\x6c\x00\x20\x00\x43\x00\x6f\x00\x6e\x00\x76\x00\x65\x00\x72\x00\x74\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\x04\x54\x62\x97\x68\x30\xc8\x30\xe9\x30\xa4\x30\xa2\x30\xf3\x30\xb0\x30\xeb\x30\xea\x30\xb9\x30\xc8\x30\x6e\x30\xa2\x95\xc2\x4f\x92\x30\xdd\x4f\x58\x5b\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Read Model Convert Error : еђ„йќўгЃЁгѓ€гѓ©г‚¤г‚ўгѓіг‚°гѓ«гѓЄг‚№гѓ€гЃ®й–ўдї‚г‚’дїќе­гЃ™г‚‹гѓЎгѓўгѓЄй еџџгЃ®зўєдїќгЃ«е¤±ж•—гЃ—гЃѕгЃ—гЃџ\n" @*/ )) ;
 					return -1 ;
 				}
 
-				// ѓXѓLѓ“ѓЃѓbѓVѓ…‚МЏкЌ‡
+				// г‚№г‚­гѓігѓЎгѓѓг‚·гѓҐгЃ®е ґеђ€
 				for( i = 0 ; ( DWORD )i < Mesh->FaceNum ; i ++ )
 				{
 					WORD UseMatrix[ /* MV1_TRIANGLE_LIST_USE_BONE_MAX_NUM */ 1024 ] ;
@@ -5383,30 +5383,30 @@ extern int MV1LoadModelToReadModel(
 					switch( Mesh->SkinFaceType[ i ] )
 					{
 					case MV1_VERTEX_TYPE_SKIN_FREEBONE :
-						// ЉЦ‚н‚йѓ{Ѓ[ѓ“‚Є‚XЊВ€ИЏг‚МЏкЌ‡
+						// й–ўг‚Џг‚‹гѓњгѓјгѓігЃЊпј™еЂ‹д»ҐдёЉгЃ®е ґеђ€
 
-						// ѓ|ѓЉѓSѓ“‚Мђ”‚р‰БЋZ
+						// гѓќгѓЄг‚ґгѓігЃ®ж•°г‚’еЉ з®—
 						Mesh->MaterialPolyList[ Ind ].TypeNum[ MV1_VERTEX_TYPE_SKIN_FREEBONE ] += PolyNum ;
 
-						// Ћ©•Є‚ЄЋg‚¤Ќs—с‚МѓЉѓXѓg‚рЋж“ѕ‚·‚й
+						// и‡Єе€†гЃЊдЅїгЃ†иЎЊе€—гЃ®гѓЄг‚№гѓ€г‚’еЏ–еѕ—гЃ™г‚‹
 						UseBoneNum = GetBitListNumber( &Mesh->SkinFacesBlend, ( int )i, UseMatrix ) ;
 
-						// ЉЦ‚н‚йѓ{Ѓ[ѓ“‚МЌЕ‘еђ”‚рЌXђV
+						// й–ўг‚Џг‚‹гѓњгѓјгѓігЃ®жњЂе¤§ж•°г‚’ж›ґж–°
 						if( Mesh->MaterialPolyList[ Ind ].MaxBoneCount < Mesh->SkinFaceBoneNum[ i ] ) 
 							Mesh->MaterialPolyList[ Ind ].MaxBoneCount = Mesh->SkinFaceBoneNum[ i ] ;
 						break ;
 
 					case MV1_VERTEX_TYPE_SKIN_4BONE :
-						// ЉЦ‚н‚йѓ{Ѓ[ѓ“‚Є‚SЊВ€И“а‚МЏкЌ‡
+						// й–ўг‚Џг‚‹гѓњгѓјгѓігЃЊпј”еЂ‹д»Ґе†…гЃ®е ґеђ€
 						MPoly = &Mesh->MaterialPolyList[ Ind ] ;
 
-						// ѓ|ѓЉѓSѓ“‚Мђ”‚р‰БЋZ
+						// гѓќгѓЄг‚ґгѓігЃ®ж•°г‚’еЉ з®—
 						Mesh->MaterialPolyList[ Ind ].TypeNum[ Mesh->SkinFaceType[ i ] ] += PolyNum ;
 
-						// Ћ©•Є‚ЄЋg‚¤Ќs—с‚МѓЉѓXѓg‚рЋж“ѕ‚·‚й
+						// и‡Єе€†гЃЊдЅїгЃ†иЎЊе€—гЃ®гѓЄг‚№гѓ€г‚’еЏ–еѕ—гЃ™г‚‹
 						UseBoneNum = GetBitListNumber( &Mesh->SkinFacesBlend, ( int )i, UseMatrix ) ;
 
-						// Ћ©•Є‚ЄЋg‚¤Ќs—с‚ЄЉщ‚Й‚ ‚йѓgѓ‰ѓCѓAѓ“ѓOѓ‹ѓЉѓXѓg“а‚Й‚ ‚й‚©’І‚Ч‚й
+						// и‡Єе€†гЃЊдЅїгЃ†иЎЊе€—гЃЊж—ўгЃ«гЃ‚г‚‹гѓ€гѓ©г‚¤г‚ўгѓіг‚°гѓ«гѓЄг‚№гѓ€е†…гЃ«гЃ‚г‚‹гЃ‹иЄїгЃ№г‚‹
 						TList = MPoly->SkinB4TriangleList ;
 						for( j = 0 ; j < MPoly->SkinB4TriangleListNum ; j ++, TList ++ )
 						{
@@ -5418,7 +5418,7 @@ extern int MV1LoadModelToReadModel(
 								if( k == TList->UseBoneNum ) break ;
 							}
 
-							// ‚ ‚Б‚ЅЏкЌ‡‚НЏо•с‚р’З‰Б
+							// гЃ‚гЃЈгЃџе ґеђ€гЃЇжѓ…е ±г‚’иїЅеЉ 
 							if( l == UseBoneNum )
 							{
 								TList->PolyNum += PolyNum ;
@@ -5427,10 +5427,10 @@ extern int MV1LoadModelToReadModel(
 							}
 						}
 
-						// –і‚©‚Б‚ЅЏкЌ‡‚Н’З‰Б‚МЏ€—ќ
+						// з„ЎгЃ‹гЃЈгЃџе ґеђ€гЃЇиїЅеЉ гЃ®е‡¦зђ†
 						if( j == MPoly->SkinB4TriangleListNum )
 						{
-							// ѓgѓ‰ѓCѓAѓ“ѓOѓ‹ѓЉѓXѓg‚Мђ”‚Є‚O‚ѕ‚Б‚Ѕ‚з‚P‚Й‚·‚й
+							// гѓ€гѓ©г‚¤г‚ўгѓіг‚°гѓ«гѓЄг‚№гѓ€гЃ®ж•°гЃЊпјђгЃ гЃЈгЃџг‚‰пј‘гЃ«гЃ™г‚‹
 							if( MPoly->SkinB4TriangleListNum == 0 )
 							{
 								MPoly->SkinB4TriangleListNum ++ ;
@@ -5438,8 +5438,8 @@ extern int MV1LoadModelToReadModel(
 
 							for(;;)
 							{
-								// Ќs—с‚Мђ”‚Є MV1_TRIANGLE_LIST_USE_BONE_MAX_NUM ЊВ‚Й’B‚µ‚Д‚ў‚И‚ўѓgѓ‰ѓCѓAѓ“ѓOѓ‹ѓЉѓXѓg‚Є‚ ‚йЏкЌ‡‚Н
-								// ‚»‚Мѓgѓ‰ѓCѓAѓ“ѓOѓ‹ѓЉѓXѓg‚ЕЋg—p‚·‚йЌs—с‚Мђ”‚р‘ќ‚в‚µ‚ДЉi”[‚·‚й
+								// иЎЊе€—гЃ®ж•°гЃЊ MV1_TRIANGLE_LIST_USE_BONE_MAX_NUM еЂ‹гЃ«йЃ”гЃ—гЃ¦гЃ„гЃЄгЃ„гѓ€гѓ©г‚¤г‚ўгѓіг‚°гѓ«гѓЄг‚№гѓ€гЃЊгЃ‚г‚‹е ґеђ€гЃЇ
+								// гЃќгЃ®гѓ€гѓ©г‚¤г‚ўгѓіг‚°гѓ«гѓЄг‚№гѓ€гЃ§дЅїз”ЁгЃ™г‚‹иЎЊе€—гЃ®ж•°г‚’еў—г‚„гЃ—гЃ¦ж јзґЌгЃ™г‚‹
 								TList = MPoly->SkinB4TriangleList ;
 								for( j = 0 ; j < MPoly->SkinB4TriangleListNum ; j ++, TList ++ )
 								{
@@ -5463,7 +5463,7 @@ extern int MV1LoadModelToReadModel(
 									}
 								}
 
-								// Љщ‘¶‚Мѓgѓ‰ѓCѓAѓ“ѓOѓ‹ѓЉѓXѓg‚Є€к”t‚ѕ‚Б‚Ѕ‚з‚ ‚Ѕ‚з‚Иѓgѓ‰ѓCѓAѓ“ѓOѓ‹ѓЉѓXѓg‚рЌмђ¬‚·‚й
+								// ж—ўе­гЃ®гѓ€гѓ©г‚¤г‚ўгѓіг‚°гѓ«гѓЄг‚№гѓ€гЃЊдёЂжќЇгЃ гЃЈгЃџг‚‰гЃ‚гЃџг‚‰гЃЄгѓ€гѓ©г‚¤г‚ўгѓіг‚°гѓ«гѓЄг‚№гѓ€г‚’дЅњж€ђгЃ™г‚‹
 								if( j == MPoly->SkinB4TriangleListNum )
 								{
 									MPoly->SkinB4TriangleListNum ++ ;
@@ -5473,22 +5473,22 @@ extern int MV1LoadModelToReadModel(
 							}
 						}
 
-						// ЉЦ‚н‚йѓ{Ѓ[ѓ“‚МЌЕ‘еђ”‚рЌXђV
+						// й–ўг‚Џг‚‹гѓњгѓјгѓігЃ®жњЂе¤§ж•°г‚’ж›ґж–°
 						if( Mesh->MaterialPolyList[ Ind ].MaxBoneCount < 4 ) 
 							Mesh->MaterialPolyList[ Ind ].MaxBoneCount = 4 ;
 						break ;
 
 					case MV1_VERTEX_TYPE_SKIN_8BONE :
-						// ЉЦ‚н‚йѓ{Ѓ[ѓ“‚Є‚WЊВ€И“а‚МЏкЌ‡
+						// й–ўг‚Џг‚‹гѓњгѓјгѓігЃЊпјеЂ‹д»Ґе†…гЃ®е ґеђ€
 						MPoly = &Mesh->MaterialPolyList[ Ind ] ;
 
-						// ѓ|ѓЉѓSѓ“‚Мђ”‚р‰БЋZ
+						// гѓќгѓЄг‚ґгѓігЃ®ж•°г‚’еЉ з®—
 						Mesh->MaterialPolyList[ Ind ].TypeNum[ Mesh->SkinFaceType[ i ] ] += PolyNum ;
 
-						// Ћ©•Є‚ЄЋg‚¤Ќs—с‚МѓЉѓXѓg‚рЋж“ѕ‚·‚й
+						// и‡Єе€†гЃЊдЅїгЃ†иЎЊе€—гЃ®гѓЄг‚№гѓ€г‚’еЏ–еѕ—гЃ™г‚‹
 						UseBoneNum = GetBitListNumber( &Mesh->SkinFacesBlend, ( int )i, UseMatrix ) ;
 
-						// Ћ©•Є‚ЄЋg‚¤Ќs—с‚ЄЉщ‚Й‚ ‚йѓgѓ‰ѓCѓAѓ“ѓOѓ‹ѓЉѓXѓg“а‚Й‚ ‚й‚©’І‚Ч‚й
+						// и‡Єе€†гЃЊдЅїгЃ†иЎЊе€—гЃЊж—ўгЃ«гЃ‚г‚‹гѓ€гѓ©г‚¤г‚ўгѓіг‚°гѓ«гѓЄг‚№гѓ€е†…гЃ«гЃ‚г‚‹гЃ‹иЄїгЃ№г‚‹
 						TList = MPoly->SkinB8TriangleList ;
 						for( j = 0 ; j < MPoly->SkinB8TriangleListNum ; j ++, TList ++ )
 						{
@@ -5500,7 +5500,7 @@ extern int MV1LoadModelToReadModel(
 								if( k == TList->UseBoneNum ) break ;
 							}
 
-							// ‚ ‚Б‚ЅЏкЌ‡‚НЏо•с‚р’З‰Б
+							// гЃ‚гЃЈгЃџе ґеђ€гЃЇжѓ…е ±г‚’иїЅеЉ 
 							if( l == UseBoneNum )
 							{
 								TList->PolyNum += PolyNum ;
@@ -5509,10 +5509,10 @@ extern int MV1LoadModelToReadModel(
 							}
 						}
 
-						// –і‚©‚Б‚ЅЏкЌ‡‚Н’З‰Б‚МЏ€—ќ
+						// з„ЎгЃ‹гЃЈгЃџе ґеђ€гЃЇиїЅеЉ гЃ®е‡¦зђ†
 						if( j == MPoly->SkinB8TriangleListNum )
 						{
-							// ѓgѓ‰ѓCѓAѓ“ѓOѓ‹ѓЉѓXѓg‚Мђ”‚Є‚O‚ѕ‚Б‚Ѕ‚з‚P‚Й‚·‚й
+							// гѓ€гѓ©г‚¤г‚ўгѓіг‚°гѓ«гѓЄг‚№гѓ€гЃ®ж•°гЃЊпјђгЃ гЃЈгЃџг‚‰пј‘гЃ«гЃ™г‚‹
 							if( MPoly->SkinB8TriangleListNum == 0 )
 							{
 								MPoly->SkinB8TriangleListNum ++ ;
@@ -5520,8 +5520,8 @@ extern int MV1LoadModelToReadModel(
 
 							for(;;)
 							{
-								// Ќs—с‚Мђ”‚Є MV1_TRIANGLE_LIST_USE_BONE_MAX_NUM ЊВ‚Й’B‚µ‚Д‚ў‚И‚ўѓgѓ‰ѓCѓAѓ“ѓOѓ‹ѓЉѓXѓg‚Є‚ ‚йЏкЌ‡‚Н
-								// ‚»‚Мѓgѓ‰ѓCѓAѓ“ѓOѓ‹ѓЉѓXѓg‚ЕЋg—p‚·‚йЌs—с‚Мђ”‚р‘ќ‚в‚µ‚ДЉi”[‚·‚й
+								// иЎЊе€—гЃ®ж•°гЃЊ MV1_TRIANGLE_LIST_USE_BONE_MAX_NUM еЂ‹гЃ«йЃ”гЃ—гЃ¦гЃ„гЃЄгЃ„гѓ€гѓ©г‚¤г‚ўгѓіг‚°гѓ«гѓЄг‚№гѓ€гЃЊгЃ‚г‚‹е ґеђ€гЃЇ
+								// гЃќгЃ®гѓ€гѓ©г‚¤г‚ўгѓіг‚°гѓ«гѓЄг‚№гѓ€гЃ§дЅїз”ЁгЃ™г‚‹иЎЊе€—гЃ®ж•°г‚’еў—г‚„гЃ—гЃ¦ж јзґЌгЃ™г‚‹
 								TList = MPoly->SkinB8TriangleList ;
 								for( j = 0 ; j < MPoly->SkinB8TriangleListNum ; j ++, TList ++ )
 								{
@@ -5545,7 +5545,7 @@ extern int MV1LoadModelToReadModel(
 									}
 								}
 
-								// Љщ‘¶‚Мѓgѓ‰ѓCѓAѓ“ѓOѓ‹ѓЉѓXѓg‚Є€к”t‚ѕ‚Б‚Ѕ‚з‚ ‚Ѕ‚з‚Иѓgѓ‰ѓCѓAѓ“ѓOѓ‹ѓЉѓXѓg‚рЌмђ¬‚·‚й
+								// ж—ўе­гЃ®гѓ€гѓ©г‚¤г‚ўгѓіг‚°гѓ«гѓЄг‚№гѓ€гЃЊдёЂжќЇгЃ гЃЈгЃџг‚‰гЃ‚гЃџг‚‰гЃЄгѓ€гѓ©г‚¤г‚ўгѓіг‚°гѓ«гѓЄг‚№гѓ€г‚’дЅњж€ђгЃ™г‚‹
 								if( j == MPoly->SkinB8TriangleListNum )
 								{
 									MPoly->SkinB8TriangleListNum ++ ;
@@ -5555,7 +5555,7 @@ extern int MV1LoadModelToReadModel(
 							}
 						}
 
-						// ЉЦ‚н‚йѓ{Ѓ[ѓ“‚МЌЕ‘еђ”‚рЌXђV
+						// й–ўг‚Џг‚‹гѓњгѓјгѓігЃ®жњЂе¤§ж•°г‚’ж›ґж–°
 						if( Mesh->MaterialPolyList[ Ind ].MaxBoneCount < 8 ) 
 							Mesh->MaterialPolyList[ Ind ].MaxBoneCount = 8 ;
 						break ;
@@ -5564,7 +5564,7 @@ extern int MV1LoadModelToReadModel(
 			}
 			else
 			{
-				// ѓXѓLѓ“ѓЃѓbѓVѓ…‚Е‚Н‚И‚ўЏкЌ‡
+				// г‚№г‚­гѓігѓЎгѓѓг‚·гѓҐгЃ§гЃЇгЃЄгЃ„е ґеђ€
 				for( i = 0 ; ( DWORD )i < Mesh->FaceNum ; i ++ )
 				{
 					PolyNum = Mesh->Faces[ i ].PolygonNum ;
@@ -5574,34 +5574,34 @@ extern int MV1LoadModelToReadModel(
 			}
 		}
 
-		// ’ё“_ѓfЃ[ѓ^‚МѓTѓCѓY‚рЋZЏo
+		// й ‚з‚№гѓ‡гѓјг‚їгЃ®г‚µг‚¤г‚єг‚’з®—е‡є
 		{
 			DWORD MatNum ;
 			DWORD FaceNum ;
 			DWORD Bytes ;
 
-			// ѓ}ѓeѓЉѓAѓ‹‚Мђ”‚рѓZѓbѓg
+			// гѓћгѓ†гѓЄг‚ўгѓ«гЃ®ж•°г‚’г‚»гѓѓгѓ€
 			MatNum = Mesh->MaterialNum == 0 ? 1 : Mesh->MaterialNum ;
 
-			// ѓ}ѓeѓЉѓAѓ‹‚Мђ”‚ѕ‚ЇЊJ‚и•Ф‚µ
+			// гѓћгѓ†гѓЄг‚ўгѓ«гЃ®ж•°гЃ гЃ‘з№°г‚Љиї”гЃ—
 			Mesh->VertexDataTotalSize = 0 ;
 			Mesh->MaxBoneUseNum = 0 ;
 			MPoly = Mesh->MaterialPolyList ;
 			for( i = 0 ; i < MatNum ; i ++, MPoly ++ )
 			{
-				// –К‚Мђ”‚рЏ‰Љъ‰»
+				// йќўгЃ®ж•°г‚’е€ќжњџеЊ–
 				FaceNum = 0 ;
 
-				// –@ђь‚Мђ”‚р‰БЋZ
+				// жі•з·љгЃ®ж•°г‚’еЉ з®—
 				ReadModel->MeshNormalNum += Mesh->NormalNum ;
 
-				// ЌЕ‘е“ЇЋћЋg—pѓ{Ѓ[ѓ“ђ”‚МЌXђV
+				// жњЂе¤§еђЊж™‚дЅїз”Ёгѓњгѓјгѓіж•°гЃ®ж›ґж–°
 				if( ( DWORD )MPoly->MaxBoneCount > Mesh->MaxBoneUseNum )
 				{
 					Mesh->MaxBoneUseNum = ( DWORD )MPoly->MaxBoneCount ;
 				}
 
-				// ‚Pѓ{Ѓ[ѓ“ѓ|ѓЉѓSѓ“
+				// пј‘гѓњгѓјгѓігѓќгѓЄг‚ґгѓі
 				if( MPoly->TypeNum[ MV1_VERTEX_TYPE_NORMAL ] )
 				{
 					FaceNum += MPoly->TypeNum[ MV1_VERTEX_TYPE_NORMAL ] ;
@@ -5617,7 +5617,7 @@ extern int MV1LoadModelToReadModel(
 					}
 				}
 
-				// ‚TЊВ–ў–ћѓ{Ѓ[ѓ“ѓ|ѓЉѓSѓ“
+				// пј•еЂ‹жњЄжєЂгѓњгѓјгѓігѓќгѓЄг‚ґгѓі
 				if( MPoly->TypeNum[ MV1_VERTEX_TYPE_SKIN_4BONE ] )
 				{
 					FaceNum += MPoly->TypeNum[ MV1_VERTEX_TYPE_SKIN_4BONE ] ;
@@ -5633,7 +5633,7 @@ extern int MV1LoadModelToReadModel(
 					}
 				}
 
-				// ‚XЊВ–ў–ћѓ{Ѓ[ѓ“ѓ|ѓЉѓSѓ“
+				// пј™еЂ‹жњЄжєЂгѓњгѓјгѓігѓќгѓЄг‚ґгѓі
 				if( MPoly->TypeNum[ MV1_VERTEX_TYPE_SKIN_8BONE ] )
 				{
 					FaceNum += MPoly->TypeNum[ MV1_VERTEX_TYPE_SKIN_8BONE ] ;
@@ -5649,7 +5649,7 @@ extern int MV1LoadModelToReadModel(
 					}
 				}
 
-				// ѓ{Ѓ[ѓ“ђ”–іђ§ЊАѓ|ѓЉѓSѓ“
+				// гѓњгѓјгѓіж•°з„Ўе€¶й™ђгѓќгѓЄг‚ґгѓі
 				if( MPoly->TypeNum[ MV1_VERTEX_TYPE_SKIN_FREEBONE ] )
 				{
 					FaceNum += MPoly->TypeNum[ MV1_VERTEX_TYPE_SKIN_FREEBONE ] ;
@@ -5666,7 +5666,7 @@ extern int MV1LoadModelToReadModel(
 					}
 				}
 
-				// ѓЃѓbѓVѓ…’ё“_ѓfЃ[ѓ^‚МѓTѓCѓY‚р‰БЋZ
+				// гѓЎгѓѓг‚·гѓҐй ‚з‚№гѓ‡гѓјг‚їгЃ®г‚µг‚¤г‚єг‚’еЉ з®—
 				Bytes = ( sizeof( MV1_MESH_VERTEX ) + ( ( Mesh->MaterialNum == 0 || Mesh->Materials[ i ]->DiffuseTexNum == 0 ? 1 : Mesh->Materials[ i ]->DiffuseTexNum ) - 1 ) * sizeof( float ) * 2 ) * FaceNum * 3 ;
 				Mesh->VertexDataTotalSize += Bytes ;
 				ReadModel->MeshVertexSize += Bytes ;
@@ -5677,28 +5677,28 @@ extern int MV1LoadModelToReadModel(
 				}
 			}
 
-			// ЌЕ‘е“ЇЋћЋg—pѓ{Ѓ[ѓ“ђ”‚МЌXђV
+			// жњЂе¤§еђЊж™‚дЅїз”Ёгѓњгѓјгѓіж•°гЃ®ж›ґж–°
 			if( Mesh->MaxBoneUseNum > Mesh->Container->MaxBoneUseNum )
 				Mesh->Container->MaxBoneUseNum = Mesh->MaxBoneUseNum ;
 
-			// ѓЃѓbѓVѓ…–@ђьѓfЃ[ѓ^‚МѓTѓCѓY‚р‰БЋZ
+			// гѓЎгѓѓг‚·гѓҐжі•з·љгѓ‡гѓјг‚їгЃ®г‚µг‚¤г‚єг‚’еЉ з®—
 			Bytes = sizeof( MV1_MESH_NORMAL ) * Mesh->NormalNum ;
 			Mesh->VertexDataTotalSize += Bytes ;
 			ReadModel->MeshNormalNum += Mesh->NormalNum ;
 
-			// ѓgѓ‰ѓCѓAѓ“ѓOѓ‹ѓЉѓXѓg‚Жѓgѓ‰ѓCѓAѓ“ѓOѓ‹ѓCѓ“ѓfѓbѓNѓX‚Мђ”‚рЋZЏo
+			// гѓ€гѓ©г‚¤г‚ўгѓіг‚°гѓ«гѓЄг‚№гѓ€гЃЁгѓ€гѓ©г‚¤г‚ўгѓіг‚°гѓ«г‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃ®ж•°г‚’з®—е‡є
 			{
 				Mesh->TriangleListNum = 0 ;
 				Mesh->IndexDataTotalSize = 0 ;
 
-				// ѓXѓLѓ“ѓЃѓbѓVѓ…‚©‚З‚¤‚©‚ЕЏ€—ќ‚р•ЄЉт
+				// г‚№г‚­гѓігѓЎгѓѓг‚·гѓҐгЃ‹гЃ©гЃ†гЃ‹гЃ§е‡¦зђ†г‚’е€†еІђ
 				if( Mesh->SkinWeightsNum )
 				{
-					// ѓXѓLѓ“ѓЃѓbѓVѓ…‚МЏкЌ‡
+					// г‚№г‚­гѓігѓЎгѓѓг‚·гѓҐгЃ®е ґеђ€
 					MPoly = Mesh->MaterialPolyList ;
 					for( i = 0 ; i < MatNum ; i ++, MPoly ++ )
 					{
-						// ‚Tѓ{Ѓ[ѓ“–ў–ћ‚Мѓ|ѓЉѓSѓ“
+						// пј•гѓњгѓјгѓіжњЄжєЂгЃ®гѓќгѓЄг‚ґгѓі
 						if( MPoly->TypeNum[ MV1_VERTEX_TYPE_SKIN_4BONE ] )
 						{
 							Mesh->TriangleListNum += MPoly->SkinB4TriangleListNum ;
@@ -5707,7 +5707,7 @@ extern int MV1LoadModelToReadModel(
 							Mesh->TypeNumIndexDataSize[ MV1_VERTEX_TYPE_SKIN_4BONE ] += Bytes ;
 						}
 
-						// ‚Xѓ{Ѓ[ѓ“–ў–ћ‚Мѓ|ѓЉѓSѓ“
+						// пј™гѓњгѓјгѓіжњЄжєЂгЃ®гѓќгѓЄг‚ґгѓі
 						if( MPoly->TypeNum[ MV1_VERTEX_TYPE_SKIN_8BONE ] )
 						{
 							Mesh->TriangleListNum += MPoly->SkinB8TriangleListNum ;
@@ -5716,7 +5716,7 @@ extern int MV1LoadModelToReadModel(
 							Mesh->TypeNumIndexDataSize[ MV1_VERTEX_TYPE_SKIN_8BONE ] += Bytes ;
 						}
 
-						// ѓ{Ѓ[ѓ“ђ”–іђ§ЊА‚Мѓ|ѓЉѓSѓ“
+						// гѓњгѓјгѓіж•°з„Ўе€¶й™ђгЃ®гѓќгѓЄг‚ґгѓі
 						if( MPoly->TypeNum[ MV1_VERTEX_TYPE_SKIN_FREEBONE ] )
 						{
 							Mesh->TriangleListNum += ( MPoly->TypeNum[ MV1_VERTEX_TYPE_SKIN_FREEBONE ] * 3 + MV1_TRIANGLE_MAX_INDEX - 1 ) / MV1_TRIANGLE_MAX_INDEX ;
@@ -5728,7 +5728,7 @@ extern int MV1LoadModelToReadModel(
 				}
 				else
 				{
-					// ѓXѓLѓ“ѓЃѓbѓVѓ…‚Е‚Н‚И‚ўЏкЌ‡
+					// г‚№г‚­гѓігѓЎгѓѓг‚·гѓҐгЃ§гЃЇгЃЄгЃ„е ґеђ€
 					MPoly = Mesh->MaterialPolyList ;
 					for( i = 0 ; i < MatNum ; i ++, MPoly ++ )
 					{
@@ -5740,16 +5740,16 @@ extern int MV1LoadModelToReadModel(
 					}
 				}
 
-				// ѓgѓ‰ѓCѓAѓ“ѓOѓ‹ѓЉѓXѓg‚Мђ”‚р‰БЋZ
+				// гѓ€гѓ©г‚¤г‚ўгѓіг‚°гѓ«гѓЄг‚№гѓ€гЃ®ж•°г‚’еЉ з®—
 				ReadModel->TriangleListNum += Mesh->TriangleListNum ;
 
-				// ’ё“_ѓCѓ“ѓfѓbѓNѓX‚Мђ”‚р‰БЋZ
+				// й ‚з‚№г‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃ®ж•°г‚’еЉ з®—
 				ReadModel->IndexNum += Mesh->IndexDataTotalSize / sizeof( WORD ) ;
 			}
 		}
 	}
 
-	// ѓЃѓbѓVѓ…ЌА•WѓfЃ[ѓ^‚МѓTѓCѓY‚р‰БЋZ
+	// гѓЎгѓѓг‚·гѓҐеє§жЁ™гѓ‡гѓјг‚їгЃ®г‚µг‚¤г‚єг‚’еЉ з®—
 	for( Mesh = ReadModel->MeshFirst ; Mesh ; Mesh = Mesh->DataNext )
 	{
 		Size = ( int )( ( sizeof( MV1_MESH_POSITION ) + ( Mesh->Container->MaxBoneUseNum - 4 ) * sizeof( MV1_SKINBONE_BLEND ) ) * Mesh->PositionNum ) ;
@@ -5757,13 +5757,13 @@ extern int MV1LoadModelToReadModel(
 		ReadModel->MeshPositionSize += Size ;
 	}
 
-	// Џу‘Ф•П‰»ЉЗ—ќѓeЃ[ѓuѓ‹‚Й•K—v‚ИѓЃѓ‚ѓЉѓTѓCѓY‚рЋZЏo‚·‚й
+	// зЉ¶ж…‹е¤‰еЊ–з®Ўзђ†гѓ†гѓјгѓ–гѓ«гЃ«еї…и¦ЃгЃЄгѓЎгѓўгѓЄг‚µг‚¤г‚єг‚’з®—е‡єгЃ™г‚‹
 	{
 		MV1_FRAME_R *TempFrame ;
 		MV1_MESH_R *TempMesh ;
 		int MeshNum ;
 
-		// ЉeѓtѓЊЃ[ѓЂ‚ЄЏ]‚¦‚й‘ЌѓtѓЊЃ[ѓЂђ”‚Ж‘ЌѓЃѓbѓVѓ…ђ”‚рЋZЏo‚·‚й
+		// еђ„гѓ•гѓ¬гѓјгѓ гЃЊеѕ“гЃ€г‚‹з·Џгѓ•гѓ¬гѓјгѓ ж•°гЃЁз·ЏгѓЎгѓѓг‚·гѓҐж•°г‚’з®—е‡єгЃ™г‚‹
 		Frame = ReadModel->FrameFirst ;
 		ReadModel->TotalMV1MeshNum = 0 ;
 		for( i = 0 ; ( DWORD )i < ReadModel->FrameNum ; i ++, Frame = Frame->DataNext )
@@ -5783,7 +5783,7 @@ extern int MV1LoadModelToReadModel(
 			}
 		}
 
-		// Џ]‚¦‚й‘ЌѓtѓЊЃ[ѓЂђ”‚Ж‘ЌѓЃѓbѓVѓ…ђ”‚©‚зѓeЃ[ѓuѓ‹‚Й•K—v‚ИѓЃѓ‚ѓЉѓTѓCѓY‚рЋZЏo‚·‚й
+		// еѕ“гЃ€г‚‹з·Џгѓ•гѓ¬гѓјгѓ ж•°гЃЁз·ЏгѓЎгѓѓг‚·гѓҐж•°гЃ‹г‚‰гѓ†гѓјгѓ–гѓ«гЃ«еї…и¦ЃгЃЄгѓЎгѓўгѓЄг‚µг‚¤г‚єг‚’з®—е‡єгЃ™г‚‹
 		ReadModel->ChangeDrawMaterialTableSize = 0 ;
 		ReadModel->ChangeMatrixTableSize = 0 ;
 		Frame = ReadModel->FrameFirst ;
@@ -5798,37 +5798,37 @@ extern int MV1LoadModelToReadModel(
 	ReadModel->MeshVertexSize   = ( ReadModel->MeshVertexSize   + 15 ) / 16 * 16 ; 
 	ReadModel->MeshPositionSize = ( ReadModel->MeshPositionSize + 15 ) / 16 * 16 ; 
 
-	// ѓЃѓ‚ѓЉ‚МЉm•ЫѓTѓCѓY‚рЋZЏo
+	// гѓЎгѓўгѓЄгЃ®зўєдїќг‚µг‚¤г‚єг‚’з®—е‡є
 	{
 		_MEMSET( &MTBase, 0, sizeof( MTBase ) ) ;
 		AllocSize = 0 ;
 
-		// ѓtѓ@ѓCѓ‹ѓpѓX‚р•Ы‘¶‚·‚й‘Љ‘ОѓAѓhѓЊѓX‚рѓZѓbѓg
+		// гѓ•г‚Ўг‚¤гѓ«гѓ‘г‚№г‚’дїќе­гЃ™г‚‹з›ёеЇѕг‚ўгѓ‰гѓ¬г‚№г‚’г‚»гѓѓгѓ€
 		if( ReadModel->FilePath != NULL )
 		{
 			MTBase.FilePath = ( wchar_t * )AllocSize ;
 			AllocSize += ( ( _WCSLEN( ReadModel->FilePath ) + 1 ) * sizeof( wchar_t ) + 3 ) / 4 * 4 ;
 		}
 
-		// ѓ‚ѓfѓ‹–ј‚р•Ы‘¶‚·‚й‘Љ‘ОѓAѓhѓЊѓX‚рѓZѓbѓg
+		// гѓўгѓ‡гѓ«еђЌг‚’дїќе­гЃ™г‚‹з›ёеЇѕг‚ўгѓ‰гѓ¬г‚№г‚’г‚»гѓѓгѓ€
 		if( ReadModel->Name != NULL )
 		{
 			MTBase.Name = ( wchar_t * )AllocSize ;
 			AllocSize += ( ( _WCSLEN( ReadModel->Name ) + 1 ) * sizeof( wchar_t ) + 3 ) / 4 * 4 ;
 		}
 
-		// ѓfѓBѓЊѓNѓgѓЉѓpѓX‚р•Ы‘¶‚·‚й‘Љ‘ОѓAѓhѓЊѓX‚рѓZѓbѓg
+		// гѓ‡г‚Јгѓ¬г‚Їгѓ€гѓЄгѓ‘г‚№г‚’дїќе­гЃ™г‚‹з›ёеЇѕг‚ўгѓ‰гѓ¬г‚№г‚’г‚»гѓѓгѓ€
 		MTBase.DirectoryPath = ( wchar_t * )AllocSize ;
 		AllocSize += ( ( dirlen + 1 ) * sizeof( wchar_t ) + 3 ) / 4 * 4 ;
 
-		// •ПЌXѓeЃ[ѓuѓ‹Џо•с‚р•Ы‘¶‚·‚й‘Љ‘ОѓAѓhѓЊѓX‚рѓZѓbѓg
+		// е¤‰ж›ґгѓ†гѓјгѓ–гѓ«жѓ…е ±г‚’дїќе­гЃ™г‚‹з›ёеЇѕг‚ўгѓ‰гѓ¬г‚№г‚’г‚»гѓѓгѓ€
 		MTBase.ChangeDrawMaterialTable = ( DWORD * )AllocSize ;
 		AllocSize += ReadModel->ChangeDrawMaterialTableSize ;
 
 		MTBase.ChangeMatrixTable = ( DWORD * )AllocSize ;
 		AllocSize += ReadModel->ChangeMatrixTableSize ;
 
-		// ѓtѓЊЃ[ѓЂ”z—с‚МЉm•ЫѓЃѓ‚ѓЉђж“Є‚©‚з‚М‘Љ‘ОѓAѓhѓЊѓX‚рѓZѓbѓg
+		// гѓ•гѓ¬гѓјгѓ й…Ќе€—гЃ®зўєдїќгѓЎгѓўгѓЄе…€й ­гЃ‹г‚‰гЃ®з›ёеЇѕг‚ўгѓ‰гѓ¬г‚№г‚’г‚»гѓѓгѓ€
 		MTBase.FrameNum = ( int )ReadModel->FrameNum ;
 		MTBase.Frame = ( MV1_FRAME_BASE * )AllocSize ;
 		AllocSize += MTBase.FrameNum * sizeof( MV1_FRAME_BASE ) ;
@@ -5836,22 +5836,22 @@ extern int MV1LoadModelToReadModel(
 		MTBase.FrameUseSkinBone = ( MV1_SKIN_BONE ** )AllocSize ;
 		AllocSize += MTBase.FrameUseSkinBoneNum * sizeof( MV1_SKIN_BONE * ) ;
 
-		// ѓ}ѓeѓЉѓAѓ‹”z—с‚МЉm•ЫѓЃѓ‚ѓЉђж“Є‚©‚з‚М‘Љ‘ОѓAѓhѓЊѓX‚рѓZѓbѓg
+		// гѓћгѓ†гѓЄг‚ўгѓ«й…Ќе€—гЃ®зўєдїќгѓЎгѓўгѓЄе…€й ­гЃ‹г‚‰гЃ®з›ёеЇѕг‚ўгѓ‰гѓ¬г‚№г‚’г‚»гѓѓгѓ€
 		MTBase.MaterialNum = ( int )ReadModel->MaterialNum ;
 		MTBase.Material = ( MV1_MATERIAL_BASE * )AllocSize ;
 		AllocSize += MTBase.MaterialNum * sizeof( MV1_MATERIAL_BASE ) ;
 
-		// ѓeѓNѓXѓ`ѓѓ”z—с‚МЉm•ЫѓЃѓ‚ѓЉђж“Є‚©‚з‚М‘Љ‘ОѓAѓhѓЊѓX‚рѓZѓbѓg
+		// гѓ†г‚Їг‚№гѓЃгѓЈй…Ќе€—гЃ®зўєдїќгѓЎгѓўгѓЄе…€й ­гЃ‹г‚‰гЃ®з›ёеЇѕг‚ўгѓ‰гѓ¬г‚№г‚’г‚»гѓѓгѓ€
 		MTBase.TextureNum = ( int )ReadModel->TextureNum ;
 		MTBase.Texture = ( MV1_TEXTURE_BASE * )AllocSize ;
 		AllocSize += MTBase.TextureNum * sizeof( MV1_TEXTURE_BASE ) ;
 
-		// ѓ‰ѓCѓg‚Мђ”‚рѓZѓbѓg
+		// гѓ©г‚¤гѓ€гЃ®ж•°г‚’г‚»гѓѓгѓ€
 		MTBase.LightNum = ( int )ReadModel->LightNum ;
 		MTBase.Light = ( MV1_LIGHT * )AllocSize ;
 		AllocSize += MTBase.LightNum * sizeof( MV1_LIGHT ) ;
 
-		// ѓXѓLѓjѓ“ѓOѓЃѓbѓVѓ…—p‚Мѓ{Ѓ[ѓ“Џо•с‚Мђ”‚рѓZѓbѓg
+		// г‚№г‚­гѓ‹гѓіг‚°гѓЎгѓѓг‚·гѓҐз”ЁгЃ®гѓњгѓјгѓіжѓ…е ±гЃ®ж•°г‚’г‚»гѓѓгѓ€
 		MTBase.SkinBoneNum = ( int )ReadModel->SkinWeightNum ;
 		MTBase.SkinBone = ( MV1_SKIN_BONE * )AllocSize ;
 		AllocSize += MTBase.SkinBoneNum * sizeof( MV1_SKIN_BONE ) ;
@@ -5859,43 +5859,43 @@ extern int MV1LoadModelToReadModel(
 		MTBase.SkinBoneUseFrame = ( MV1_SKIN_BONE_USE_FRAME * )AllocSize ;
 		AllocSize += MTBase.SkinBoneUseFrameNum * sizeof( MV1_SKIN_BONE_USE_FRAME ) ;
 
-		// ѓVѓFѓCѓvѓfЃ[ѓ^”z—с‚МЉm•ЫѓЃѓ‚ѓЉђж“Є‚©‚з‚М‘Љ‘ОѓAѓhѓЊѓX‚рѓZѓbѓg
+		// г‚·г‚§г‚¤гѓ—гѓ‡гѓјг‚їй…Ќе€—гЃ®зўєдїќгѓЎгѓўгѓЄе…€й ­гЃ‹г‚‰гЃ®з›ёеЇѕг‚ўгѓ‰гѓ¬г‚№г‚’г‚»гѓѓгѓ€
 		MTBase.ShapeNum = ( int )ReadModel->ShapeNum ;
 		MTBase.Shape = ( MV1_SHAPE_BASE * )AllocSize ;
 		AllocSize += MTBase.ShapeNum * sizeof( MV1_SHAPE_BASE ) ;
 
-		// ѓVѓFѓCѓvѓЃѓbѓVѓ…‚МѓЃѓ‚ѓЉѓAѓhѓЊѓX‚рѓZѓbѓg
+		// г‚·г‚§г‚¤гѓ—гѓЎгѓѓг‚·гѓҐгЃ®гѓЎгѓўгѓЄг‚ўгѓ‰гѓ¬г‚№г‚’г‚»гѓѓгѓ€
 		MTBase.ShapeMeshNum = ( int )ReadModel->ShapeMeshNum ;
 		MTBase.ShapeMesh = ( MV1_SHAPE_MESH_BASE * )AllocSize ;
 		AllocSize += MTBase.ShapeMeshNum * sizeof( MV1_SHAPE_MESH_BASE ) ;
 
-		// •Ё—ќ‰‰ЋZ‚ЕЋg—p‚·‚йЌ„‘МѓfЃ[ѓ^‚МѓЃѓ‚ѓЉѓAѓhѓЊѓX‚рѓZѓbѓg
+		// з‰©зђ†жј”з®—гЃ§дЅїз”ЁгЃ™г‚‹е‰›дЅ“гѓ‡гѓјг‚їгЃ®гѓЎгѓўгѓЄг‚ўгѓ‰гѓ¬г‚№г‚’г‚»гѓѓгѓ€
 		MTBase.PhysicsRigidBodyNum = ( int )ReadModel->PhysicsRigidBodyNum ;
 		MTBase.PhysicsRigidBody = ( MV1_PHYSICS_RIGIDBODY_BASE * )AllocSize ;
 		AllocSize += MTBase.PhysicsRigidBodyNum * sizeof( MV1_PHYSICS_RIGIDBODY_BASE ) ;
 
-		// •Ё—ќ‰‰ЋZ‚ЕЋg—p‚·‚йѓWѓ‡ѓCѓ“ѓgѓfЃ[ѓ^‚МѓЃѓ‚ѓЉѓAѓhѓЊѓX‚рѓZѓbѓg
+		// з‰©зђ†жј”з®—гЃ§дЅїз”ЁгЃ™г‚‹г‚ёгѓ§г‚¤гѓігѓ€гѓ‡гѓјг‚їгЃ®гѓЎгѓўгѓЄг‚ўгѓ‰гѓ¬г‚№г‚’г‚»гѓѓгѓ€
 		MTBase.PhysicsJointNum = ( int )ReadModel->PhysicsJointNum ;
 		MTBase.PhysicsJoint = ( MV1_PHYSICS_JOINT_BASE * )AllocSize ;
 		AllocSize += MTBase.PhysicsJointNum * sizeof( MV1_PHYSICS_JOINT_BASE ) ;
 
-		// ѓЃѓbѓVѓ…‚Мђ”‚рѓZѓbѓg
+		// гѓЎгѓѓг‚·гѓҐгЃ®ж•°г‚’г‚»гѓѓгѓ€
 		MTBase.MeshNum = ( int )ReadModel->MeshMaterialNum ;
 		MTBase.Mesh = ( MV1_MESH_BASE * )AllocSize ;
 		AllocSize += MTBase.MeshNum * sizeof( MV1_MESH_BASE ) ;
 
-		// ѓgѓ‰ѓCѓAѓ“ѓOѓ‹ѓЉѓXѓg‚МѓЃѓ‚ѓЉѓAѓhѓЊѓX‚рѓZѓbѓg
+		// гѓ€гѓ©г‚¤г‚ўгѓіг‚°гѓ«гѓЄг‚№гѓ€гЃ®гѓЎгѓўгѓЄг‚ўгѓ‰гѓ¬г‚№г‚’г‚»гѓѓгѓ€
 		MTBase.TriangleListNum = ( int )ReadModel->TriangleListNum ;
 		MTBase.TriangleList = ( MV1_TRIANGLE_LIST_BASE * )AllocSize ;
 		AllocSize += MTBase.TriangleListNum * sizeof( MV1_TRIANGLE_LIST_BASE ) ;
 
-		// ’ё“_ѓCѓ“ѓfѓbѓNѓX‚МѓЃѓ‚ѓЉѓAѓhѓЊѓX‚рѓZѓbѓg
+		// й ‚з‚№г‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃ®гѓЎгѓўгѓЄг‚ўгѓ‰гѓ¬г‚№г‚’г‚»гѓѓгѓ€
 		MTBase.TriangleListIndexNum = ( int )ReadModel->IndexNum ;
 		MTBase.TriangleListIndex = ( WORD * )AllocSize ;
 		AllocSize += ( MTBase.TriangleListIndexNum * 2 ) * sizeof( WORD ) ;
 		AllocSize = ( AllocSize + 15 ) / 16 * 16 ; 
 
-		// •¶Ћљ—с‚р•Ы‘¶‚·‚йѓЃѓ‚ѓЉѓAѓhѓЊѓX‚МѓZѓbѓg
+		// ж–‡е­—е€—г‚’дїќе­гЃ™г‚‹гѓЎгѓўгѓЄг‚ўгѓ‰гѓ¬г‚№гЃ®г‚»гѓѓгѓ€
 #ifndef UNICODE
 		MTBase.StringSizeA = ( int )ReadModel->StringSizeA ;
 		MTBase.StringBufferA = ( char * )AllocSize ;
@@ -5906,59 +5906,59 @@ extern int MV1LoadModelToReadModel(
 		MTBase.StringBufferW = ( wchar_t * )AllocSize ;
 		AllocSize += MTBase.StringSizeW ;
 
-		// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“ѓZѓbѓg‚р•Ы‘¶‚·‚йѓЃѓ‚ѓЉѓAѓhѓЊѓX‚МѓZѓbѓg
+		// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓіг‚»гѓѓгѓ€г‚’дїќе­гЃ™г‚‹гѓЎгѓўгѓЄг‚ўгѓ‰гѓ¬г‚№гЃ®г‚»гѓѓгѓ€
 		MTBase.AnimSetNum = ( int )ReadModel->AnimSetNum ;
 		MTBase.AnimSet = ( MV1_ANIMSET_BASE * )AllocSize ;
 		AllocSize += MTBase.AnimSetNum * sizeof( MV1_ANIMSET_BASE ) ;
 
-		// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚р•Ы‘¶‚·‚йѓЃѓ‚ѓЉѓAѓhѓЊѓX‚МѓZѓbѓg
+		// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓіг‚’дїќе­гЃ™г‚‹гѓЎгѓўгѓЄг‚ўгѓ‰гѓ¬г‚№гЃ®г‚»гѓѓгѓ€
 		MTBase.AnimNum = ( int )ReadModel->AnimNum ;
 		MTBase.Anim = ( MV1_ANIM_BASE * )AllocSize ;
 		AllocSize += MTBase.AnimNum * sizeof( MV1_ANIM_BASE ) ;
 
-		// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“ѓLЃ[ѓZѓbѓg‚р•Ы‘¶‚·‚йѓЃѓ‚ѓЉѓAѓhѓЊѓX‚МѓZѓbѓg
+		// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓіг‚­гѓјг‚»гѓѓгѓ€г‚’дїќе­гЃ™г‚‹гѓЎгѓўгѓЄг‚ўгѓ‰гѓ¬г‚№гЃ®г‚»гѓѓгѓ€
 		MTBase.AnimKeySetNum = ( int )ReadModel->AnimKeySetNum ;
 		MTBase.AnimKeySet = ( MV1_ANIM_KEYSET_BASE * )AllocSize ;
 		AllocSize += MTBase.AnimKeySetNum * sizeof( MV1_ANIM_KEYSET_BASE ) ;
 
-		// ЉeѓAѓjѓЃЃ[ѓVѓ‡ѓ“ѓLЃ[‚р•Ы‘¶‚·‚йѓЃѓ‚ѓЉѓAѓhѓЊѓX‚МѓZѓbѓg
+		// еђ„г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓіг‚­гѓјг‚’дїќе­гЃ™г‚‹гѓЎгѓўгѓЄг‚ўгѓ‰гѓ¬г‚№гЃ®г‚»гѓѓгѓ€
 		MTBase.AnimKeyDataSize = ( int )ReadModel->AnimKeyDataSize ;
 		MTBase.AnimKeyData = ( void * )AllocSize ;
 		AllocSize += MTBase.AnimKeyDataSize ;
 
-		// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚ЖѓtѓЊЃ[ѓЂ‚М‘О‰ћѓeЃ[ѓuѓ‹‚МѓЃѓ‚ѓЉѓAѓhѓЊѓX‚рѓZѓbѓg
+		// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігЃЁгѓ•гѓ¬гѓјгѓ гЃ®еЇѕеїњгѓ†гѓјгѓ–гѓ«гЃ®гѓЎгѓўгѓЄг‚ўгѓ‰гѓ¬г‚№г‚’г‚»гѓѓгѓ€
 		MTBase.AnimTargetFrameTable = ( MV1_ANIM_BASE ** )AllocSize ;
 		AllocSize += sizeof( MV1_ANIM_BASE * ) * MTBase.AnimSetNum * MTBase.FrameNum ;
 	}
 
-	// ѓ‚ѓfѓ‹ЉоѓfЃ[ѓ^ѓnѓ“ѓhѓ‹‚МЌмђ¬
+	// гѓўгѓ‡гѓ«еџєгѓ‡гѓјг‚їгѓЏгѓігѓ‰гѓ«гЃ®дЅњж€ђ
 	NewHandle = MV1AddModelBase( ASyncThread ) ;
 	if( NewHandle < 0 )
 	{
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\x52\x00\x65\x00\x61\x00\x64\x00\x20\x00\x4d\x00\x6f\x00\x64\x00\x65\x00\x6c\x00\x20\x00\x43\x00\x6f\x00\x6e\x00\x76\x00\x65\x00\x72\x00\x74\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xe2\x30\xc7\x30\xeb\x30\xfa\x57\x2c\x67\xc7\x30\xfc\x30\xbf\x30\xcf\x30\xf3\x30\xc9\x30\xeb\x30\x6e\x30\xd6\x53\x97\x5f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Read Model Convert Error : ѓ‚ѓfѓ‹Љо–{ѓfЃ[ѓ^ѓnѓ“ѓhѓ‹‚МЋж“ѕ‚ЙЋё”s‚µ‚Ь‚µ‚Ѕ\n" @*/ )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\x52\x00\x65\x00\x61\x00\x64\x00\x20\x00\x4d\x00\x6f\x00\x64\x00\x65\x00\x6c\x00\x20\x00\x43\x00\x6f\x00\x6e\x00\x76\x00\x65\x00\x72\x00\x74\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xe2\x30\xc7\x30\xeb\x30\xfa\x57\x2c\x67\xc7\x30\xfc\x30\xbf\x30\xcf\x30\xf3\x30\xc9\x30\xeb\x30\x6e\x30\xd6\x53\x97\x5f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Read Model Convert Error : гѓўгѓ‡гѓ«еџєжњ¬гѓ‡гѓјг‚їгѓЏгѓігѓ‰гѓ«гЃ®еЏ–еѕ—гЃ«е¤±ж•—гЃ—гЃѕгЃ—гЃџ\n" @*/ )) ;
 		return -1 ;
 	}
 	MBase = ( MV1_MODEL_BASE * )GetHandleInfo( NewHandle ) ;
 
-	// ѓ‚ѓfѓ‹ЉоѓfЃ[ѓ^‚МЌ\’z
+	// гѓўгѓ‡гѓ«еџєгѓ‡гѓјг‚їгЃ®ж§‹зЇ‰
 	{
-		// Џо•с‚р•Ы‘¶‚·‚йѓЃѓ‚ѓЉ‚р€к“x‚ЙЉm•Ы‚·‚й
+		// жѓ…е ±г‚’дїќе­гЃ™г‚‹гѓЎгѓўгѓЄг‚’дёЂеє¦гЃ«зўєдїќгЃ™г‚‹
 		MBase->DataBuffer = MDALLOCMEM( AllocSize ) ;
 		if( MBase->DataBuffer == NULL )
 		{
-			DXST_LOGFILE_ADDUTF16LE( "\x52\x00\x65\x00\x61\x00\x64\x00\x20\x00\x4d\x00\x6f\x00\x64\x00\x65\x00\x6c\x00\x20\x00\x43\x00\x6f\x00\x6e\x00\x76\x00\x65\x00\x72\x00\x74\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xe2\x30\xc7\x30\xeb\x30\xfa\x57\x2c\x67\xc7\x30\xfc\x30\xbf\x30\xdd\x4f\x58\x5b\x28\x75\x6e\x30\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Read Model Convert Error : ѓ‚ѓfѓ‹Љо–{ѓfЃ[ѓ^•Ы‘¶—p‚МѓЃѓ‚ѓЉ‚МЉm•Ы‚ЙЋё”s‚µ‚Ь‚µ‚Ѕ\n" @*/ ) ;
+			DXST_LOGFILE_ADDUTF16LE( "\x52\x00\x65\x00\x61\x00\x64\x00\x20\x00\x4d\x00\x6f\x00\x64\x00\x65\x00\x6c\x00\x20\x00\x43\x00\x6f\x00\x6e\x00\x76\x00\x65\x00\x72\x00\x74\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xe2\x30\xc7\x30\xeb\x30\xfa\x57\x2c\x67\xc7\x30\xfc\x30\xbf\x30\xdd\x4f\x58\x5b\x28\x75\x6e\x30\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Read Model Convert Error : гѓўгѓ‡гѓ«еџєжњ¬гѓ‡гѓјг‚їдїќе­з”ЁгЃ®гѓЎгѓўгѓЄгЃ®зўєдїќгЃ«е¤±ж•—гЃ—гЃѕгЃ—гЃџ\n" @*/ ) ;
 			goto ERRORLABEL ;
 		}
 		MBase->AllocMemorySize = AllocSize ;
 		_MEMSET( MBase->DataBuffer, 0, AllocSize ) ;
 
-		// ѓgѓ‰ѓCѓAѓ“ѓOѓ‹ѓЉѓXѓgЌ\’z—pЏо•с‚рЉi”[‚·‚йѓЃѓ‚ѓЉ‚МЉm•Ы
+		// гѓ€гѓ©г‚¤г‚ўгѓіг‚°гѓ«гѓЄг‚№гѓ€ж§‹зЇ‰з”Ёжѓ…е ±г‚’ж јзґЌгЃ™г‚‹гѓЎгѓўгѓЄгЃ®зўєдїќ
 		if( MaxPositionNum + MaxTriangleNum > 0 )
 		{
 			VertInfoTable = ( MV1_MAKEVERTINDEXINFO ** )DXALLOC( sizeof( MV1_MAKEVERTINDEXINFO * ) * MaxPositionNum + sizeof( MV1_MAKEVERTINDEXINFO ) * MaxTriangleNum * 3 ) ;
 			if( VertInfoTable == NULL )
 			{
-				DXST_LOGFILE_ADDUTF16LE( "\x52\x00\x65\x00\x61\x00\x64\x00\x20\x00\x4d\x00\x6f\x00\x64\x00\x65\x00\x6c\x00\x20\x00\x43\x00\x6f\x00\x6e\x00\x76\x00\x65\x00\x72\x00\x74\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xe2\x30\xc7\x30\xeb\x30\xfa\x57\x2c\x67\xc7\x30\xfc\x30\xbf\x30\xcb\x69\xc9\x7b\x6b\x30\x7f\x4f\x28\x75\x59\x30\x8b\x30\xc6\x30\xf3\x30\xdd\x30\xe9\x30\xea\x30\xd0\x30\xc3\x30\xd5\x30\xa1\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Read Model Convert Error : ѓ‚ѓfѓ‹Љо–{ѓfЃ[ѓ^Ќ\’z‚ЙЋg—p‚·‚йѓeѓ“ѓ|ѓ‰ѓЉѓoѓbѓtѓ@‚МЉm•Ы‚ЙЋё”s‚µ‚Ь‚µ‚Ѕ\n" @*/ ) ;
+				DXST_LOGFILE_ADDUTF16LE( "\x52\x00\x65\x00\x61\x00\x64\x00\x20\x00\x4d\x00\x6f\x00\x64\x00\x65\x00\x6c\x00\x20\x00\x43\x00\x6f\x00\x6e\x00\x76\x00\x65\x00\x72\x00\x74\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xe2\x30\xc7\x30\xeb\x30\xfa\x57\x2c\x67\xc7\x30\xfc\x30\xbf\x30\xcb\x69\xc9\x7b\x6b\x30\x7f\x4f\x28\x75\x59\x30\x8b\x30\xc6\x30\xf3\x30\xdd\x30\xe9\x30\xea\x30\xd0\x30\xc3\x30\xd5\x30\xa1\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Read Model Convert Error : гѓўгѓ‡гѓ«еџєжњ¬гѓ‡гѓјг‚їж§‹зЇ‰гЃ«дЅїз”ЁгЃ™г‚‹гѓ†гѓігѓќгѓ©гѓЄгѓђгѓѓгѓ•г‚ЎгЃ®зўєдїќгЃ«е¤±ж•—гЃ—гЃѕгЃ—гЃџ\n" @*/ ) ;
 				goto ERRORLABEL ;
 			}
 			VertInfoBuffer = ( MV1_MAKEVERTINDEXINFO * )( VertInfoTable + MaxPositionNum ) ;
@@ -5970,7 +5970,7 @@ extern int MV1LoadModelToReadModel(
 			VertValidBuffer = NULL ;
 		}
 
-		// ЉeѓЃѓ‚ѓЉѓAѓhѓЊѓX‚Мђж“Є‚рѓZѓbѓg
+		// еђ„гѓЎгѓўгѓЄг‚ўгѓ‰гѓ¬г‚№гЃ®е…€й ­г‚’г‚»гѓѓгѓ€
 		MBase->DirectoryPath		= ( wchar_t * )                   ( ( BYTE * )MBase->DataBuffer + ( DWORD_PTR )MTBase.DirectoryPath        ) ;
 		MBase->FilePath				= ( wchar_t * )                   ( ( BYTE * )MBase->DataBuffer + ( DWORD_PTR )MTBase.FilePath             ) ;
 		MBase->Name					= ( wchar_t * )                   ( ( BYTE * )MBase->DataBuffer + ( DWORD_PTR )MTBase.Name                 ) ;
@@ -6001,7 +6001,7 @@ extern int MV1LoadModelToReadModel(
 		MBase->PhysicsRigidBody		= ( MV1_PHYSICS_RIGIDBODY_BASE * )( ( BYTE * )MBase->DataBuffer + ( DWORD_PTR )MTBase.PhysicsRigidBody     ) ;
 		MBase->PhysicsJoint		    = ( MV1_PHYSICS_JOINT_BASE * )    ( ( BYTE * )MBase->DataBuffer + ( DWORD_PTR )MTBase.PhysicsJoint         ) ;
 
-		// ’ё“_ѓfЃ[ѓ^Љi”[—p‚МѓЃѓ‚ѓЉ—М€ж‚МЉm•Ы
+		// й ‚з‚№гѓ‡гѓјг‚їж јзґЌз”ЁгЃ®гѓЎгѓўгѓЄй еџџгЃ®зўєдїќ
 		MBase->ShapeNormalPositionNum = 0 ;
 		MBase->ShapeSkinPosition4BNum = 0 ;
 		MBase->ShapeSkinPosition8BNum = 0 ;
@@ -6038,7 +6038,7 @@ extern int MV1LoadModelToReadModel(
 				sizeof( MV1_SHAPE_VERTEX_BASE ) * ReadModel->ShapeVertexNum          + 16 ) ;
 			if( MBase->VertexData == NULL )
 			{
-				DXST_LOGFILE_ADDUTF16LE( "\x52\x00\x65\x00\x61\x00\x64\x00\x20\x00\x4d\x00\x6f\x00\x64\x00\x65\x00\x6c\x00\x20\x00\x43\x00\x6f\x00\x6e\x00\x76\x00\x65\x00\x72\x00\x74\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\x02\x98\xb9\x70\xa7\x5e\x19\x6a\x68\x30\x02\x98\xb9\x70\xd5\x6c\xda\x7d\x92\x30\x00\x4e\x42\x66\x84\x76\x6b\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Read Model Convert Error : ’ё“_ЌА•W‚Ж’ё“_–@ђь‚р€кЋћ“I‚ЙЉi”[‚·‚йѓЃѓ‚ѓЉ—М€ж‚МЉm•Ы‚ЙЋё”s‚µ‚Ь‚µ‚Ѕ\n" @*/ ) ;
+				DXST_LOGFILE_ADDUTF16LE( "\x52\x00\x65\x00\x61\x00\x64\x00\x20\x00\x4d\x00\x6f\x00\x64\x00\x65\x00\x6c\x00\x20\x00\x43\x00\x6f\x00\x6e\x00\x76\x00\x65\x00\x72\x00\x74\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\x02\x98\xb9\x70\xa7\x5e\x19\x6a\x68\x30\x02\x98\xb9\x70\xd5\x6c\xda\x7d\x92\x30\x00\x4e\x42\x66\x84\x76\x6b\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Read Model Convert Error : й ‚з‚№еє§жЁ™гЃЁй ‚з‚№жі•з·љг‚’дёЂж™‚зљ„гЃ«ж јзґЌгЃ™г‚‹гѓЎгѓўгѓЄй еџџгЃ®зўєдїќгЃ«е¤±ж•—гЃ—гЃѕгЃ—гЃџ\n" @*/ ) ;
 				goto ERRORLABEL ;
 			}
 			MBase->TriangleListNormalPosition    = ( MV1_TLIST_NORMAL_POS     * )( ( ( DWORD_PTR )MBase->VertexData + 15 ) / 16 * 16 ) ;
@@ -6053,7 +6053,7 @@ extern int MV1LoadModelToReadModel(
 			MBase->ShapeVertex                   = ( MV1_SHAPE_VERTEX_BASE    * )( ( BYTE * )MBase->MeshVertex                    + ReadModel->MeshVertexSize             ) ;
 		}
 
-		// ѓ‚ѓfѓ‹–ј‚Жѓtѓ@ѓCѓ‹ѓpѓX‚ЖѓfѓBѓЊѓNѓgѓЉѓpѓX‚р•Ы‘¶
+		// гѓўгѓ‡гѓ«еђЌгЃЁгѓ•г‚Ўг‚¤гѓ«гѓ‘г‚№гЃЁгѓ‡г‚Јгѓ¬г‚Їгѓ€гѓЄгѓ‘г‚№г‚’дїќе­
 		if( ReadModel->Name != NULL )
 		{
 			_WCSCPY( MBase->Name,          ReadModel->Name ) ;
@@ -6064,16 +6064,16 @@ extern int MV1LoadModelToReadModel(
 		}
 		_WCSCPY( MBase->DirectoryPath, CurrentDir == NULL ? L"" : DirectoryPath ) ;
 
-		// “ЇЋћ•Ўђ”•`‰ж‚Й‘О‰ћ‚·‚й‚©‚З‚¤‚©‚р•Ы‘¶
+		// еђЊж™‚и¤‡ж•°жЏЏз”»гЃ«еЇѕеїњгЃ™г‚‹гЃ‹гЃ©гЃ†гЃ‹г‚’дїќе­
 		MBase->UsePackDraw = GParam->LoadModelToUsePackDraw ;
 
-		// ‰EЋиЌА•WЊn‚©‚З‚¤‚©‚р•Ы‘¶
+		// еЏіж‰‹еє§жЁ™зі»гЃ‹гЃ©гЃ†гЃ‹г‚’дїќе­
 		MBase->RightHandType = FALSE ;
 
-		// Љ„‚и“–‚Д‚з‚к‚Д‚ў‚йѓ}ѓeѓЉѓAѓ‹‚М”ФЌ†‚Є’б‚ўѓЃѓbѓVѓ…‚©‚з•`‰ж‚·‚й‚©‚З‚¤‚©‚р•Ы‘¶
+		// е‰Іг‚ЉеЅ“гЃ¦г‚‰г‚ЊгЃ¦гЃ„г‚‹гѓћгѓ†гѓЄг‚ўгѓ«гЃ®з•ЄеЏ·гЃЊдЅЋгЃ„гѓЎгѓѓг‚·гѓҐгЃ‹г‚‰жЏЏз”»гЃ™г‚‹гЃ‹гЃ©гЃ†гЃ‹г‚’дїќе­
 		MBase->MaterialNumberOrderDraw = ReadModel->MaterialNumberOrderDraw ;
 
-		// Џd—Нѓpѓ‰ѓЃЃ[ѓ^‚р•Ы‘¶
+		// й‡ЌеЉ›гѓ‘гѓ©гѓЎгѓјг‚їг‚’дїќе­
 		if( GParam->LoadModelToWorldGravityInitialize == FALSE )
 		{
 			MBase->PhysicsGravity = MV1_PHYSICS_DEFAULT_GRAVITY ;
@@ -6083,110 +6083,110 @@ extern int MV1LoadModelToReadModel(
 			MBase->PhysicsGravity = GParam->LoadModelToWorldGravity ;
 		}
 
-		// ѓ|ѓЉѓSѓ“‚Мђ”‚р•Ы‘¶
+		// гѓќгѓЄг‚ґгѓігЃ®ж•°г‚’дїќе­
 		MBase->TriangleNum = ( int )ReadModel->TriangleNum ;
 
-		// ѓfЃ[ѓ^‚рѓZѓbѓg
+		// гѓ‡гѓјг‚їг‚’г‚»гѓѓгѓ€
 		{
-			// —v‘f‚Є‘S•”‚P‚МѓJѓ‰Ѓ[‚рЌмђ¬‚·‚й
+			// и¦Ѓзґ гЃЊе…ЁйѓЁпј‘гЃ®г‚«гѓ©гѓјг‚’дЅњж€ђгЃ™г‚‹
 //			OneColor.r = 255 ;
 //			OneColor.g = 255 ;
 //			OneColor.b = 255 ;
 //			OneColor.a = 255 ;
 
-			// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚рЏ€—ќ
+			// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓіг‚’е‡¦зђ†
 			AnimSet = ReadModel->AnimSetFirst ;
 			MBAnimSet = MBase->AnimSet ;
 			MBase->AnimSetNum = ( int )ReadModel->AnimSetNum ;
 			for( i = 0 ; i < ReadModel->AnimSetNum ; i ++, AnimSet = AnimSet->DataNext, MBAnimSet ++ )
 			{
-				// –ј‘O‚МѓRѓsЃ[
+				// еђЌе‰ЌгЃ®г‚ігѓ”гѓј
 				MBAnimSet->NameAllocMem = FALSE ;
 #ifndef UNICODE
 				MBAnimSet->NameA = MV1RGetStringSpace(  MBase, AnimSet->NameA ) ;
 #endif
 				MBAnimSet->NameW = MV1RGetStringSpaceW( MBase, AnimSet->NameW ) ;
 
-				// ѓ‹Ѓ[ѓvѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚©‚З‚¤‚©‚рѓZѓbѓg
+				// гѓ«гѓјгѓ—г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігЃ‹гЃ©гЃ†гЃ‹г‚’г‚»гѓѓгѓ€
 				MBAnimSet->IsLoopAnim = AnimSet->IsLoopAnim ;
 
-				// ‰БЋZѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚©‚З‚¤‚©‚рѓZѓbѓg
+				// еЉ з®—г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігЃ‹гЃ©гЃ†гЃ‹г‚’г‚»гѓѓгѓ€
 				MBAnimSet->IsAddAnim = AnimSet->IsAddAnim ;
 
-				// ѓLЃ[“ЇЋm‚М•вЉФ‚НЌs—с‚МђьЊ`•вЉФ‚©‚З‚¤‚©‚рѓZѓbѓg
+				// г‚­гѓјеђЊеЈ«гЃ®иЈњй–“гЃЇиЎЊе€—гЃ®з·љеЅўиЈњй–“гЃ‹гЃ©гЃ†гЃ‹г‚’г‚»гѓѓгѓ€
 				MBAnimSet->IsMatrixLinearBlend = AnimSet->IsMatrixLinearBlend ;
 
-				// ѓCѓ“ѓfѓbѓNѓX‚МѓZѓbѓg
+				// г‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃ®г‚»гѓѓгѓ€
 				MBAnimSet->Index = AnimSet->Index ;
 
-				// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚М’·‚і‚рѓZѓbѓg
+				// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігЃ®й•·гЃ•г‚’г‚»гѓѓгѓ€
 				MBAnimSet->MaxTime = AnimSet->EndTime ;
 
-				// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚Мђ”‚рѓZѓbѓg
+				// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігЃ®ж•°г‚’г‚»гѓѓгѓ€
 				MBAnimSet->AnimNum = AnimSet->AnimNum ;
 
-				// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚Мђ”‚ѕ‚ЇЊJ‚и•Ф‚µ
+				// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігЃ®ж•°гЃ гЃ‘з№°г‚Љиї”гЃ—
 				MBAnimSet->Anim = MBase->Anim + MBase->AnimNum ;
 				MBase->AnimNum += MBAnimSet->AnimNum ;
 				MBAnim = MBAnimSet->Anim ;
 				Anim = AnimSet->AnimFirst ;
 				for( j = 0 ; j < AnimSet->AnimNum ; j ++, Anim = Anim->Next, MBAnim ++ )
 				{
-					// ‚±‚МѓAѓjѓЃЃ[ѓVѓ‡ѓ“ѓfЃ[ѓ^‚рЏЉ—L‚·‚йѓAѓjѓЃЃ[ѓVѓ‡ѓ“ѓZѓbѓgѓfЃ[ѓ^‚Ц‚Мѓ|ѓCѓ“ѓ^‚рѓZѓbѓg
+					// гЃ“гЃ®г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігѓ‡гѓјг‚їг‚’ж‰Ђжњ‰гЃ™г‚‹г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓіг‚»гѓѓгѓ€гѓ‡гѓјг‚їгЃёгЃ®гѓќг‚¤гѓіг‚їг‚’г‚»гѓѓгѓ€
 					MBAnim->Container = MBAnimSet ;
 
-					// ‘ОЏЫ‚Ж‚И‚йѓtѓЊЃ[ѓЂ‚М–ј‘O‚рѓZѓbѓg
+					// еЇѕи±ЎгЃЁгЃЄг‚‹гѓ•гѓ¬гѓјгѓ гЃ®еђЌе‰Ќг‚’г‚»гѓѓгѓ€
 					MBAnim->TargetFrame = MBase->Frame + Anim->TargetFrameIndex ;
 
-					// ‘ОЏЫ‚Ж‚И‚йѓtѓЊЃ[ѓЂ‚МѓCѓ“ѓfѓbѓNѓX‚рѓZѓbѓg
+					// еЇѕи±ЎгЃЁгЃЄг‚‹гѓ•гѓ¬гѓјгѓ гЃ®г‚¤гѓігѓ‡гѓѓг‚Їг‚№г‚’г‚»гѓѓгѓ€
 					MBAnim->TargetFrameIndex = Anim->TargetFrameIndex ;
 
-					// ѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚ЖѓtѓЊЃ[ѓЂ‚М‘О‰ћѓeЃ[ѓuѓ‹‚ЙѓAѓhѓЊѓX‚рѓZѓbѓg
+					// г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігЃЁгѓ•гѓ¬гѓјгѓ гЃ®еЇѕеїњгѓ†гѓјгѓ–гѓ«гЃ«г‚ўгѓ‰гѓ¬г‚№г‚’г‚»гѓѓгѓ€
 					MBase->AnimTargetFrameTable[ ReadModel->FrameNum * i + Anim->TargetFrameIndex ] = MBAnim ;
 
-					// ЉeѓLЃ[ѓZѓbѓg‚М’†‚Е€к”Ф’·‚ўЋћЉФ’l‚МѓZѓbѓg
+					// еђ„г‚­гѓјг‚»гѓѓгѓ€гЃ®дё­гЃ§дёЂз•Єй•·гЃ„ж™‚й–“еЂ¤гЃ®г‚»гѓѓгѓ€
 					MBAnim->MaxTime = Anim->MaxTime ;
 
-					// ‰с“]ѓIЃ[ѓ_Ѓ[‚р•Ы‘¶
+					// е›ћи»ўг‚ЄгѓјгѓЂгѓјг‚’дїќе­
 					MBAnim->RotateOrder = Anim->RotateOrder ;
 
-					// ѓLЃ[ѓZѓbѓg‚Ц‚Мѓ|ѓCѓ“ѓ^‚рѓZѓbѓg
+					// г‚­гѓјг‚»гѓѓгѓ€гЃёгЃ®гѓќг‚¤гѓіг‚їг‚’г‚»гѓѓгѓ€
 					MBAnim->KeySetNum = Anim->AnimKeySetNum ;
 					MBAnim->KeySet = MBase->AnimKeySet + MBase->AnimKeySetNum ;
 					MBase->AnimKeySetNum += Anim->AnimKeySetNum ;
 					MBKeySet = MBAnim->KeySet ;
 
-					// ѓLЃ[ѓZѓbѓg‚Мђ”‚ѕ‚ЇЊJ‚и•Ф‚µ
+					// г‚­гѓјг‚»гѓѓгѓ€гЃ®ж•°гЃ гЃ‘з№°г‚Љиї”гЃ—
 					AnimKeySet = Anim->AnimKeySetFirst ;
 					for( k = 0 ; k < Anim->AnimKeySetNum ; k ++, MBKeySet ++, AnimKeySet = AnimKeySet->Next )
 					{
-						// ѓLЃ[ѓ^ѓCѓv‚рѓZѓbѓg
+						// г‚­гѓјг‚їг‚¤гѓ—г‚’г‚»гѓѓгѓ€
 						MBKeySet->Type = AnimKeySet->Type ;
 						MBKeySet->DataType = AnimKeySet->DataType ;
 
-						// ѓVѓFѓCѓvѓ^Ѓ[ѓQѓbѓg‚рѓZѓbѓg
+						// г‚·г‚§г‚¤гѓ—г‚їгѓјг‚Ігѓѓгѓ€г‚’г‚»гѓѓгѓ€
 						MBKeySet->TargetShapeIndex = AnimKeySet->TargetShapeIndex ;
 
-						// ѓ^ѓCѓЂѓ^ѓCѓv‚р•Ы‘¶
+						// г‚їг‚¤гѓ г‚їг‚¤гѓ—г‚’дїќе­
 						MBKeySet->TimeType = AnimKeySet->TimeType ;
 
-						// ’P€КЋћЉФ‚ЖЉJЋnЋћЉФ‚р•Ы‘¶
+						// еЌдЅЌж™‚й–“гЃЁй–‹е§‹ж™‚й–“г‚’дїќе­
 						if( MBKeySet->TimeType == MV1_ANIMKEY_TIME_TYPE_ONE )
 						{
 							MBKeySet->UnitTime = AnimKeySet->UnitTime ;
 							MBKeySet->StartTime = AnimKeySet->StartTime ;
 						}
 
-						// ‘ЌЋћЉФ‚рѓZѓbѓg
+						// з·Џж™‚й–“г‚’г‚»гѓѓгѓ€
 //						MBKeySet->TotalTime = AnimKeySet->TotalTime ;
 
-						// ѓLЃ[‚Мђ”‚рѓZѓbѓg
+						// г‚­гѓјгЃ®ж•°г‚’г‚»гѓѓгѓ€
 						MBKeySet->Num = AnimKeySet->Num ;
 
-						// —v‘fЏо•с‚МѓRѓsЃ[
+						// и¦Ѓзґ жѓ…е ±гЃ®г‚ігѓ”гѓј
 						MBKeySet->KeyFloat4 = ( FLOAT4 * )( ( BYTE * )MBase->AnimKeyData + MBase->AnimKeyDataSize ) ;
 
-						// —v‘fѓ^ѓCѓv‚Й‚ж‚Б‚ДѓRѓsЃ[ѓTѓCѓY‚М•ПЌX
+						// и¦Ѓзґ г‚їг‚¤гѓ—гЃ«г‚€гЃЈгЃ¦г‚ігѓ”гѓјг‚µг‚¤г‚єгЃ®е¤‰ж›ґ
 						Size = 0 ;
 						switch( MBKeySet->Type )
 						{
@@ -6201,10 +6201,10 @@ extern int MV1LoadModelToReadModel(
 						case MV1_ANIMKEY_TYPE_BLEND :          Size = sizeof( float ) ;                   break ;
 						}
 
-						// ѓLЃ[ѓTѓCѓY‚М•Ы‘¶
+						// г‚­гѓјг‚µг‚¤г‚єгЃ®дїќе­
 //						MBKeySet->UnitSize = Size ;
 
-						// “]‘—
+						// и»ўйЂЃ
 						if( GParam->LoadModelToIgnoreScaling &&
 							( MBKeySet->DataType == MV1_ANIMKEY_DATATYPE_SCALE ||
 							  MBKeySet->DataType == MV1_ANIMKEY_DATATYPE_SCALE_X ||
@@ -6237,7 +6237,7 @@ extern int MV1LoadModelToReadModel(
 						MBase->AnimKeyDataSize += Size * MBKeySet->Num ;
 						MBAnimSet->KeyDataSize += Size * MBKeySet->Num ;
 
-						// ѓLЃ[ѓ^ѓCѓЂѓfЃ[ѓ^‚М•Ы‘¶
+						// г‚­гѓјг‚їг‚¤гѓ гѓ‡гѓјг‚їгЃ®дїќе­
 						if( MBKeySet->TimeType == MV1_ANIMKEY_TIME_TYPE_KEY )
 						{
 							MBKeySet->KeyTime = ( float * )( ( BYTE * )MBase->AnimKeyData + MBase->AnimKeyDataSize ) ;
@@ -6249,35 +6249,35 @@ extern int MV1LoadModelToReadModel(
 				}
 			}
 
-			// ѓeѓNѓXѓ`ѓѓѓfЃ[ѓ^‚рЌ\’z‚·‚й
+			// гѓ†г‚Їг‚№гѓЃгѓЈгѓ‡гѓјг‚їг‚’ж§‹зЇ‰гЃ™г‚‹
 			MBase->TextureAllocMem = FALSE ;
 			Texture = ReadModel->TextureFirst ;
 			for( i = 0 ; i < ReadModel->TextureNum ; i ++, Texture = Texture->DataNext )
 			{
-				// ѓAѓhѓЊѓX‚рѓZѓbѓg
+				// г‚ўгѓ‰гѓ¬г‚№г‚’г‚»гѓѓгѓ€
 				MBTexture = MBase->Texture + MBase->TextureNum ;
 				MBase->TextureNum ++ ;
 
-				// ”Ѕ“]ѓtѓ‰ѓO‚рѓZѓbѓg‚·‚й
+				// еЏЌи»ўгѓ•гѓ©г‚°г‚’г‚»гѓѓгѓ€гЃ™г‚‹
 				MBTexture->ReverseFlag = Texture->ReverseFlag ;
 
-				// ‚R‚Qѓrѓbѓg‚a‚l‚o‚МѓAѓ‹ѓtѓ@’l‚Є‘S•”‚O‚ѕ‚Б‚Ѕ‚з XRGB8 ‚Ж‚µ‚Д€µ‚¤‚©‚З‚¤‚©‚Мѓtѓ‰ѓO‚рѓZѓbѓg‚·‚й
+				// пј“пј’гѓ“гѓѓгѓ€пјўпј­пј°гЃ®г‚ўгѓ«гѓ•г‚ЎеЂ¤гЃЊе…ЁйѓЁпјђгЃ гЃЈгЃџг‚‰ XRGB8 гЃЁгЃ—гЃ¦ж‰±гЃ†гЃ‹гЃ©гЃ†гЃ‹гЃ®гѓ•гѓ©г‚°г‚’г‚»гѓѓгѓ€гЃ™г‚‹
 				MBTexture->Bmp32AllZeroAlphaToXRGB8Flag = Texture->Bmp32AllZeroAlphaToXRGB8Flag ;
 
-				// ѓ†Ѓ[ѓUЃ[ѓfЃ[ѓ^‚рЏ‰Љъ‰»
+				// гѓ¦гѓјг‚¶гѓјгѓ‡гѓјг‚їг‚’е€ќжњџеЊ–
 				MBTexture->UserData[ 0 ] = 0 ;
 				MBTexture->UserData[ 1 ] = 0 ;
 				MBTexture->UseUserGraphHandle = 0 ;
 				MBTexture->UserGraphHandle = 0 ;
 
-				// –ј‘O‚р•Ы‘¶
+				// еђЌе‰Ќг‚’дїќе­
 				MBTexture->NameAllocMem = FALSE ;
 #ifndef UNICODE
 				MBTexture->NameA = MV1RGetStringSpace(  MBase, Texture->NameA ) ;
 #endif
 				MBTexture->NameW = MV1RGetStringSpaceW( MBase, Texture->NameW ) ;
 
-				// ѓeѓNѓXѓ`ѓѓ‚М“З‚ЭЌћ‚Э
+				// гѓ†г‚Їг‚№гѓЃгѓЈгЃ®иЄ­гЃїиѕјгЃї
 				{
 					wchar_t ColorPathW[ FILEPATH_MAX ] ;
 					wchar_t AlphaPathW[ FILEPATH_MAX ] ;
@@ -6338,11 +6338,11 @@ extern int MV1LoadModelToReadModel(
 					}
 				}
 
-				// ѓtѓ@ѓCѓ‹–ј—p‚ЙѓЃѓ‚ѓЉ‚рЉm•Ы‚µ‚Ѕѓtѓ‰ѓO‚р“|‚·
+				// гѓ•г‚Ўг‚¤гѓ«еђЌз”ЁгЃ«гѓЎгѓўгѓЄг‚’зўєдїќгЃ—гЃџгѓ•гѓ©г‚°г‚’еЂ’гЃ™
 				MBTexture->ColorImageFilePathAllocMem = FALSE ;
 				MBTexture->AlphaImageFilePathAllocMem = FALSE ;
 
-				// ѓtѓ@ѓCѓ‹ѓpѓX‚р•Ы‘¶
+				// гѓ•г‚Ўг‚¤гѓ«гѓ‘г‚№г‚’дїќе­
 				if( MBTexture->ColorImage || GParam->LoadModelToNotTextureLoad )
 				{
 #ifndef UNICODE
@@ -6358,40 +6358,40 @@ extern int MV1LoadModelToReadModel(
 					MBTexture->AlphaFilePathW = MV1RGetStringSpaceW( MBase, Texture->AlphaFileNameW ) ;
 				}
 
-				// ѓAѓhѓЊѓbѓVѓ“ѓOѓ‚Ѓ[ѓh‚МѓZѓbѓg
+				// г‚ўгѓ‰гѓ¬гѓѓг‚·гѓіг‚°гѓўгѓјгѓ‰гЃ®г‚»гѓѓгѓ€
 				MBTexture->AddressModeU = Texture->AddressModeU ;
 				MBTexture->AddressModeV = Texture->AddressModeV ;
 
-				// ѓeѓNѓXѓ`ѓѓ‚МѓXѓPЃ[ѓ‹’l‚рѓZѓbѓg
+				// гѓ†г‚Їг‚№гѓЃгѓЈгЃ®г‚№г‚±гѓјгѓ«еЂ¤г‚’г‚»гѓѓгѓ€
 				MBTexture->ScaleU = Texture->ScaleU ;
 				MBTexture->ScaleV = Texture->ScaleV ;
 
-				// ѓtѓBѓ‹ѓ^ѓЉѓ“ѓOѓ‚Ѓ[ѓh‚МѓZѓbѓg
+				// гѓ•г‚Јгѓ«г‚їгѓЄгѓіг‚°гѓўгѓјгѓ‰гЃ®г‚»гѓѓгѓ€
 				MBTexture->FilterMode = Texture->FilterMode ;
 
-				// ѓoѓ“ѓvѓ}ѓbѓvЏо•с‚р•Ы‘¶
+				// гѓђгѓігѓ—гѓћгѓѓгѓ—жѓ…е ±г‚’дїќе­
 				MBTexture->BumpImageFlag = Texture->BumpMapFlag ;
 				MBTexture->BumpImageNextPixelLength = Texture->BumpMapNextPixelLength ;
 
-				// ‰ж‘њ‚МѓTѓCѓY‚рЋж“ѕ
+				// з”»еѓЏгЃ®г‚µг‚¤г‚єг‚’еЏ–еѕ—
 				NS_GetGraphSize( MBTexture->GraphHandle, &MBTexture->Width, &MBTexture->Height ) ;
 			}
 
-			// ѓ}ѓeѓЉѓAѓ‹‚рЏ€—ќ
+			// гѓћгѓ†гѓЄг‚ўгѓ«г‚’е‡¦зђ†
 			Material = ReadModel->MaterialFirst ;
 			for( i = 0 ; i < ReadModel->MaterialNum ; i ++, Material = Material->DataNext )
 			{
-				// ѓAѓhѓЊѓX‚рѓZѓbѓg
+				// г‚ўгѓ‰гѓ¬г‚№г‚’г‚»гѓѓгѓ€
 				MBMaterial = MBase->Material + MBase->MaterialNum ;
 				MBase->MaterialNum ++ ;
 
-				// –ј‘O‚р•Ы‘¶
+				// еђЌе‰Ќг‚’дїќе­
 #ifndef UNICODE
 				MBMaterial->NameA = MV1RGetStringSpace(  MBase, Material->NameA ) ;
 #endif
 				MBMaterial->NameW = MV1RGetStringSpaceW( MBase, Material->NameW ) ;
 
-				// ѓpѓ‰ѓЃЃ[ѓ^‚МѓRѓsЃ[
+				// гѓ‘гѓ©гѓЎгѓјг‚їгЃ®г‚ігѓ”гѓј
 				MBMaterial->Type = Material->Type ;
 
 				MBMaterial->Diffuse  = Material->Diffuse ;
@@ -6410,7 +6410,7 @@ extern int MV1LoadModelToReadModel(
 				MBMaterial->DrawAddColor.z = 0 ;
 				MBMaterial->DrawAddColor.w = 0 ;
 
-				// ѓeѓNѓXѓ`ѓѓ‚Є‚ ‚йЏкЌ‡‚НѓeѓNѓXѓ`ѓѓ‚р“З‚ЭЌћ‚Ю
+				// гѓ†г‚Їг‚№гѓЃгѓЈгЃЊгЃ‚г‚‹е ґеђ€гЃЇгѓ†г‚Їг‚№гѓЃгѓЈг‚’иЄ­гЃїиѕјг‚Ђ
 				MBMaterial->DiffuseLayerNum          = Material->DiffuseTexNum ;
 				MBMaterial->SpecularLayerNum         = Material->SpecularTexNum ;
 				MBMaterial->NormalLayerNum           = Material->NormalTexNum ;
@@ -6434,10 +6434,10 @@ extern int MV1LoadModelToReadModel(
 						if( Textures[ j ] == NULL ) continue ;
 						Texture = Textures[ j ] ;
 
-						// ѓuѓЊѓ“ѓhѓ^ѓCѓv‚МѓZѓbѓg
+						// гѓ–гѓ¬гѓігѓ‰г‚їг‚¤гѓ—гЃ®г‚»гѓѓгѓ€
 						MBMaterialLayer[ j ].BlendType = Texture->BlendType ;
 
-						// ѓeѓNѓXѓ`ѓѓѓCѓ“ѓfѓbѓNѓX‚М•Ы‘¶
+						// гѓ†г‚Їг‚№гѓЃгѓЈг‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃ®дїќе­
 						MBMaterialLayer[ j ].Texture = Texture->Index ;
 					}
 				}
@@ -6453,7 +6453,7 @@ extern int MV1LoadModelToReadModel(
 				MBMaterial->OutLineColor          = Material->OutLineColor ;
 			}
 
-			// ѓtѓЊЃ[ѓЂ‚рЏ€—ќ
+			// гѓ•гѓ¬гѓјгѓ г‚’е‡¦зђ†
 			Frame = ReadModel->FrameFirst ;
 			MBase->ChangeDrawMaterialTableSize = 0 ;
 			MBase->ChangeMatrixTableSize       = 0 ;
@@ -6464,31 +6464,31 @@ extern int MV1LoadModelToReadModel(
 //				DWORD TypeNumIndexDataSize ;
 				MATRIX TempMatrix ;
 
-				// Љо–{ѓfЃ[ѓ^‚ЙѓtѓЊЃ[ѓЂ‚р’З‰Б
+				// еџєжњ¬гѓ‡гѓјг‚їгЃ«гѓ•гѓ¬гѓјгѓ г‚’иїЅеЉ 
 				MBFrame = MBase->Frame + MBase->FrameNum ;
 
-				// Ћ©“®–@ђьЊvЋZ—p‚МЉp“xи‡’l‚р•Ы‘¶
+				// и‡Єе‹•жі•з·љиЁ€з®—з”ЁгЃ®и§’еє¦й–ѕеЂ¤г‚’дїќе­
 				MBFrame->SmoothingAngle = Frame->SmoothingAngle ;
 				MBFrame->AutoCreateNormal = ReadModel->AutoCreateNormal ;
 
-				// ѓtѓЊЃ[ѓЂ‚МЋќ‚їЋе‚рѓZѓbѓg
+				// гѓ•гѓ¬гѓјгѓ гЃ®жЊЃгЃЎдё»г‚’г‚»гѓѓгѓ€
 				MBFrame->Container = MBase ;
 
-				// ѓtѓЊЃ[ѓЂ‚МѓAѓhѓЊѓX‚рѓZѓbѓg
+				// гѓ•гѓ¬гѓјгѓ гЃ®г‚ўгѓ‰гѓ¬г‚№г‚’г‚»гѓѓгѓ€
 				Frame->MV1Frame = MBFrame ;
 
-				// –ј‘O‚рѓRѓsЃ[
+				// еђЌе‰Ќг‚’г‚ігѓ”гѓј
 #ifndef UNICODE
 				MBFrame->NameA = MV1RGetStringSpace(  MBase, Frame->NameA ) ;
 #endif
 				MBFrame->NameW = MV1RGetStringSpaceW( MBase, Frame->NameW ) ;
 
-				// ђe‚Ц‚МѓAѓhѓЊѓX‚рѓZѓbѓg
+				// и¦ЄгЃёгЃ®г‚ўгѓ‰гѓ¬г‚№г‚’г‚»гѓѓгѓ€
 				if( Frame->Parent )
 				{
 					MBFrame->Parent = Frame->Parent->MV1Frame ;
 
-					// ђe‚©‚з‚МѓЉѓ“ѓN‚р’З‰Б
+					// и¦ЄгЃ‹г‚‰гЃ®гѓЄгѓіг‚Їг‚’иїЅеЉ 
 					if( MBFrame->Parent->FirstChild == NULL )
 					{
 						MBFrame->Parent->FirstChild = MBFrame ;
@@ -6523,7 +6523,7 @@ extern int MV1LoadModelToReadModel(
 					MBFrame->Name[ 0 ] = MBFrame->Name[ 0 ] ;
 				}
 */
-				// ЌА•W•ПЉ·ѓpѓ‰ѓЃЃ[ѓ^‚рѓZѓbѓg
+				// еє§жЁ™е¤‰жЏ›гѓ‘гѓ©гѓЎгѓјг‚їг‚’г‚»гѓѓгѓ€
 				{
 					float One ;
 					MATRIX ScaleMatrix, RotateMatrix ;
@@ -6547,7 +6547,7 @@ extern int MV1LoadModelToReadModel(
 					MBFrame->PreRotate   = Frame->PreRotate ;
 					MBFrame->PostRotate  = Frame->PostRotate ;
 
-					// •ЅЌs€Ъ“®—v‘f‚ЄЌs—с‚ЙЋdЌћ‚Ь‚к‚Д‚ў‚Ѕ‚зЌs—с‚©‚з•ЅЌs€Ъ“®—v‘f‚рЋж“ѕ‚·‚й
+					// е№іиЎЊз§»е‹•и¦Ѓзґ гЃЊиЎЊе€—гЃ«д»•иѕјгЃѕг‚ЊгЃ¦гЃ„гЃџг‚‰иЎЊе€—гЃ‹г‚‰е№іиЎЊз§»е‹•и¦Ѓзґ г‚’еЏ–еѕ—гЃ™г‚‹
 					if( ( *( ( DWORD * )&TempMatrix.m[ 3 ][ 0 ] ) & 0x7fffffff ) != 0 ||
 						( *( ( DWORD * )&TempMatrix.m[ 3 ][ 1 ] ) & 0x7fffffff ) != 0 ||
 						( *( ( DWORD * )&TempMatrix.m[ 3 ][ 2 ] ) & 0x7fffffff ) != 0 )
@@ -6560,7 +6560,7 @@ extern int MV1LoadModelToReadModel(
 						TempMatrix.m[ 3 ][ 2 ] = 0.0f ;
 					}
 
-					// ‰с“]—v‘f‚ЄЌs—с‚ЙЋdЌћ‚Ь‚к‚Д‚ў‚Ѕ‚зЌs—с‚©‚з‰с“]—v‘f‚р’ЉЏo‚·‚й
+					// е›ћи»ўи¦Ѓзґ гЃЊиЎЊе€—гЃ«д»•иѕјгЃѕг‚ЊгЃ¦гЃ„гЃџг‚‰иЎЊе€—гЃ‹г‚‰е›ћи»ўи¦Ѓзґ г‚’жЉЅе‡єгЃ™г‚‹
 					ScaleVector.x = _SQRT( TempMatrix.m[ 0 ][ 0 ] * TempMatrix.m[ 0 ][ 0 ] + 
 									       TempMatrix.m[ 0 ][ 1 ] * TempMatrix.m[ 0 ][ 1 ] + 
 									       TempMatrix.m[ 0 ][ 2 ] * TempMatrix.m[ 0 ][ 2 ] ) ;
@@ -6662,7 +6662,7 @@ extern int MV1LoadModelToReadModel(
 						ScaleMatrix = TempMatrix ;
 					}
 
-					// Љg‘е—v‘f‚ЄЌs—с‚ЙЋdЌћ‚Ь‚к‚Д‚ў‚Ѕ‚зЌs—с‚©‚зЉg‘е—v‘f‚р’ЉЏo‚·‚й
+					// ж‹Ўе¤§и¦Ѓзґ гЃЊиЎЊе€—гЃ«д»•иѕјгЃѕг‚ЊгЃ¦гЃ„гЃџг‚‰иЎЊе€—гЃ‹г‚‰ж‹Ўе¤§и¦Ѓзґ г‚’жЉЅе‡єгЃ™г‚‹
 					if( GParam->LoadModelToIgnoreScaling == FALSE )
 					{
 						ScaleVector.x = ScaleMatrix.m[ 0 ][ 0 ] ;
@@ -6679,27 +6679,27 @@ extern int MV1LoadModelToReadModel(
 					}
 				}
 
-				// ЋqѓtѓЊЃ[ѓЂ‚М‘Ќђ”ЃAѓЃѓbѓVѓ…‚М‘Ќђ”‚рѓZѓbѓg
+				// е­ђгѓ•гѓ¬гѓјгѓ гЃ®з·Џж•°гЂЃгѓЎгѓѓг‚·гѓҐгЃ®з·Џж•°г‚’г‚»гѓѓгѓ€
 				MBFrame->TotalChildNum = Frame->TotalChildNum ;
 				MBFrame->TotalMeshNum  = Frame->TotalMeshNum ;
 
-				// Џу‘Ф•П‰»ЉЗ—ќ—pЉо–{Џо•с‚МѓZѓbѓg
+				// зЉ¶ж…‹е¤‰еЊ–з®Ўзђ†з”Ёеџєжњ¬жѓ…е ±гЃ®г‚»гѓѓгѓ€
 				MV1ChangeInfoSetup( &MBFrame->ChangeDrawMaterialInfo, ( BYTE * )MBase->ChangeDrawMaterialTable + MBase->ChangeDrawMaterialTableSize, FrameMeshCounter + 1, MBFrame->TotalChildNum + MBFrame->TotalMeshNum + 1 ) ;
 				MBase->ChangeDrawMaterialTableSize += MBFrame->ChangeDrawMaterialInfo.Size * 4 ;
 
 				MV1ChangeInfoSetup( &MBFrame->ChangeMatrixInfo,       ( BYTE * )MBase->ChangeMatrixTable       + MBase->ChangeMatrixTableSize,       MBase->FrameNum + 1,  MBFrame->TotalChildNum + 1 ) ;
 				MBase->ChangeMatrixTableSize += MBFrame->ChangeMatrixInfo.Size * 4 ;
 
-				// ѓtѓЊЃ[ѓЂ‚МѓCѓ“ѓfѓbѓNѓX‚рѓZѓbѓg
+				// гѓ•гѓ¬гѓјгѓ гЃ®г‚¤гѓігѓ‡гѓѓг‚Їг‚№г‚’г‚»гѓѓгѓ€
 				MBFrame->Index = MBase->FrameNum ;
 				MBase->FrameNum ++ ;
 				FrameMeshCounter ++ ;
 
-				// ЌЕ‘еѓ{Ѓ[ѓ“ѓuѓЊѓ“ѓhђ”‚Ж‚P’ё“_•У‚и‚МѓTѓCѓY‚рѓZѓbѓg‚·‚й
+				// жњЂе¤§гѓњгѓјгѓігѓ–гѓ¬гѓігѓ‰ж•°гЃЁпј‘й ‚з‚№иѕєг‚ЉгЃ®г‚µг‚¤г‚єг‚’г‚»гѓѓгѓ€гЃ™г‚‹
 				MBFrame->MaxBoneBlendNum = ( int )Frame->MaxBoneUseNum ;
 				MBFrame->PosUnitSize     = ( int )( sizeof( MV1_MESH_POSITION ) + ( MBFrame->MaxBoneBlendNum - 4 ) * sizeof( MV1_SKINBONE_BLEND ) ) ;
 
-				// ЉeЋнѓtѓ‰ѓO‚рѓZѓbѓg
+				// еђ„зЁ®гѓ•гѓ©г‚°г‚’г‚»гѓѓгѓ€
 				MBFrame->Flag = 0 ;
 				if( Frame->Visible )
 				{
@@ -6716,10 +6716,10 @@ extern int MV1LoadModelToReadModel(
 					MBFrame->Flag |= MV1_FRAMEFLAG_POSTROTATE ;
 				}
 
-				// ђe‚МЌs—с‚р–іЋ‹‚·‚й‚©‚З‚¤‚©‚р•Ы‘¶‚·‚й
+				// и¦ЄгЃ®иЎЊе€—г‚’з„Ўи¦–гЃ™г‚‹гЃ‹гЃ©гЃ†гЃ‹г‚’дїќе­гЃ™г‚‹
 				MBFrame->IgnoreParentTransform = Frame->IgnoreParentTransform ;
 
-				// ѓVѓFѓCѓvѓfЃ[ѓ^‚МѓZѓbѓg
+				// г‚·г‚§г‚¤гѓ—гѓ‡гѓјг‚їгЃ®г‚»гѓѓгѓ€
 				if( Frame->ShapeNum )
 				{
 					MBFrame->ShapeNum = Frame->ShapeNum ;
@@ -6740,7 +6740,7 @@ extern int MV1LoadModelToReadModel(
 					}
 				}
 
-				// ѓЃѓbѓVѓ…‚Є‘¶ЌЭ‚·‚йЏкЌ‡‚НѓЃѓbѓVѓ…‚МЏо•с‚рѓZѓbѓg
+				// гѓЎгѓѓг‚·гѓҐгЃЊе­ењЁгЃ™г‚‹е ґеђ€гЃЇгѓЎгѓѓг‚·гѓҐгЃ®жѓ…е ±г‚’г‚»гѓѓгѓ€
 				if( Frame->MeshNum && Frame->MeshFirst->Positions )
 				{
 					Mesh = Frame->MeshFirst ;
@@ -6749,7 +6749,7 @@ extern int MV1LoadModelToReadModel(
 						_MEMSET( TypeNumVertexDataSize, 0, sizeof( TypeNumVertexDataSize ) ) ;
 //						TypeNumIndexDataSize = 0 ;
 
-						// –@ђьѓfЃ[ѓ^‚рѓZѓbѓg‚·‚й
+						// жі•з·љгѓ‡гѓјг‚їг‚’г‚»гѓѓгѓ€гЃ™г‚‹
 						{
 							MV1_MESH_NORMAL *MBNormal ;
 							VECTOR *Normal ;
@@ -6814,7 +6814,7 @@ extern int MV1LoadModelToReadModel(
 							MBase->MeshNormalNum += Mesh->NormalNum ;
 						}
 
-						// ЌА•WѓfЃ[ѓ^‚рѓZѓbѓg‚·‚й
+						// еє§жЁ™гѓ‡гѓјг‚їг‚’г‚»гѓѓгѓ€гЃ™г‚‹
 						{
 							VECTOR *Position ;
 							MV1_MESH_POSITION *MBPosition ;
@@ -6832,7 +6832,7 @@ extern int MV1LoadModelToReadModel(
 							{
 								MBPosition->Position = *Position ;
 
-								// Ћg—p‚·‚йѓ{Ѓ[ѓ“ѓCѓ“ѓfѓbѓNѓX‚ЖѓEѓGѓCѓg’l‚рѓZѓbѓg
+								// дЅїз”ЁгЃ™г‚‹гѓњгѓјгѓіг‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃЁг‚¦г‚Ёг‚¤гѓ€еЂ¤г‚’г‚»гѓѓгѓ€
 								if( MBFrame->MaxBoneBlendNum > 0 )
 								{
 									float TotalWeight = 0.0f ;
@@ -6866,7 +6866,7 @@ extern int MV1LoadModelToReadModel(
 							MBase->MeshPositionSize += Mesh->PositionNum * MBFrame->PosUnitSize ;
 						}
 
-						// ѓXѓLѓjѓ“ѓOѓЃѓbѓVѓ…‚МѓEѓGѓCѓg‚МЏо•с‚рѓZѓbѓg‚·‚й
+						// г‚№г‚­гѓ‹гѓіг‚°гѓЎгѓѓг‚·гѓҐгЃ®г‚¦г‚Ёг‚¤гѓ€гЃ®жѓ…е ±г‚’г‚»гѓѓгѓ€гЃ™г‚‹
 //						StartMatrixIndex = MBase->SkinBoneNum ;
 						MBSkinW = MBase->SkinBone + MBase->SkinBoneNum ;
 						for( j = 0 ; ( DWORD )j < Mesh->SkinWeightsNum ; j ++, MBSkinW ++ )
@@ -6877,7 +6877,7 @@ extern int MV1LoadModelToReadModel(
 								char FrameNameUTF16LE[ 512 ] ;
 
 								ConvString( ( const char * )Frame->NameW, -1, WCHAR_T_CHARCODEFORMAT, FrameNameUTF16LE, sizeof( FrameNameUTF16LE ), DX_CHARCODEFORMAT_UTF16LE ) ;
-								DXST_LOGFILEFMT_ADDUTF16LE( ( "\x52\x00\x65\x00\x61\x00\x64\x00\x20\x00\x4d\x00\x6f\x00\x64\x00\x65\x00\x6c\x00\x20\x00\x43\x00\x6f\x00\x6e\x00\x76\x00\x65\x00\x72\x00\x74\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xd5\x30\xec\x30\xfc\x30\xe0\x30\x20\x00\x25\x00\x73\x00\x20\x00\x6e\x30\xb9\x30\xad\x30\xcb\x30\xf3\x30\xb0\x30\xe1\x30\xc3\x30\xb7\x30\xe5\x30\x6e\x30\xb9\x30\xad\x30\xf3\x30\xa6\x30\xa8\x30\xa4\x30\xc8\x30\xc5\x60\x31\x58\x67\x30\x00\x4e\xf4\x81\x59\x30\x8b\x30\xce\x30\xfc\x30\xc9\x30\x6e\x30\x21\x71\x44\x30\xea\x30\xf3\x30\xaf\x30\xc5\x60\x31\x58\x4c\x30\x42\x30\x8a\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Read Model Convert Error : ѓtѓЊЃ[ѓЂ %s ‚МѓXѓLѓjѓ“ѓOѓЃѓbѓVѓ…‚МѓXѓLѓ“ѓEѓGѓCѓgЏо•с‚Е€к’v‚·‚йѓmЃ[ѓh‚М–і‚ўѓЉѓ“ѓNЏо•с‚Є‚ ‚и‚Ь‚µ‚Ѕ\n" @*/, FrameNameUTF16LE ) ) ;
+								DXST_LOGFILEFMT_ADDUTF16LE( ( "\x52\x00\x65\x00\x61\x00\x64\x00\x20\x00\x4d\x00\x6f\x00\x64\x00\x65\x00\x6c\x00\x20\x00\x43\x00\x6f\x00\x6e\x00\x76\x00\x65\x00\x72\x00\x74\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xd5\x30\xec\x30\xfc\x30\xe0\x30\x20\x00\x25\x00\x73\x00\x20\x00\x6e\x30\xb9\x30\xad\x30\xcb\x30\xf3\x30\xb0\x30\xe1\x30\xc3\x30\xb7\x30\xe5\x30\x6e\x30\xb9\x30\xad\x30\xf3\x30\xa6\x30\xa8\x30\xa4\x30\xc8\x30\xc5\x60\x31\x58\x67\x30\x00\x4e\xf4\x81\x59\x30\x8b\x30\xce\x30\xfc\x30\xc9\x30\x6e\x30\x21\x71\x44\x30\xea\x30\xf3\x30\xaf\x30\xc5\x60\x31\x58\x4c\x30\x42\x30\x8a\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Read Model Convert Error : гѓ•гѓ¬гѓјгѓ  %s гЃ®г‚№г‚­гѓ‹гѓіг‚°гѓЎгѓѓг‚·гѓҐгЃ®г‚№г‚­гѓіг‚¦г‚Ёг‚¤гѓ€жѓ…е ±гЃ§дёЂи‡ґгЃ™г‚‹гѓЋгѓјгѓ‰гЃ®з„ЎгЃ„гѓЄгѓіг‚Їжѓ…е ±гЃЊгЃ‚г‚ЉгЃѕгЃ—гЃџ\n" @*/, FrameNameUTF16LE ) ) ;
 								goto ERRORLABEL ;
 							}
 							ConvertMatrixFToMatrix4x4cF( &MBSkinW->ModelLocalMatrix, &Mesh->SkinWeights[ j ]->ModelLocalMatrix ) ;
@@ -6914,8 +6914,8 @@ extern int MV1LoadModelToReadModel(
 						}
 						MBase->SkinBoneNum += Mesh->SkinWeightsNum ;
 
-						// ѓ}ѓeѓЉѓAѓ‹ѓЉѓXѓg‚Є‚ ‚йЏкЌ‡‚НѓЃѓbѓVѓ…‚Мђ”‚Нѓ}ѓeѓЉѓAѓ‹‚Мђ”‚ѕ‚Ї
-						// –і‚ўЏкЌ‡‚Н€кЊВ
+						// гѓћгѓ†гѓЄг‚ўгѓ«гѓЄг‚№гѓ€гЃЊгЃ‚г‚‹е ґеђ€гЃЇгѓЎгѓѓг‚·гѓҐгЃ®ж•°гЃЇгѓћгѓ†гѓЄг‚ўгѓ«гЃ®ж•°гЃ гЃ‘
+						// з„ЎгЃ„е ґеђ€гЃЇдёЂеЂ‹
 						if( MBFrame->Mesh == NULL )
 						{
 							MBFrame->Mesh = MBase->Mesh + MBase->MeshNum ;
@@ -6925,58 +6925,58 @@ extern int MV1LoadModelToReadModel(
 						MBFrame->MeshNum += MeshNowNum ;
 						MBase->MeshNum   += MeshNowNum ;
 
-						// ѓgѓ‰ѓCѓAѓ“ѓOѓ‹ѓЉѓXѓg‚рЌмђ¬
+						// гѓ€гѓ©г‚¤г‚ўгѓіг‚°гѓ«гѓЄг‚№гѓ€г‚’дЅњж€ђ
 						{
-							// ѓЃѓbѓVѓ…‚Мђ”‚ѕ‚ЇЊJ‚и•Ф‚µ
+							// гѓЎгѓѓг‚·гѓҐгЃ®ж•°гЃ гЃ‘з№°г‚Љиї”гЃ—
 							MBMesh = MBFrame->Mesh + MeshStartNum ;
 							for( o = 0 ; ( DWORD )o < MeshNowNum ; o ++, MBMesh ++ )
 							{
-								// ђeѓAѓhѓЊѓX‚р•Ы‘¶
+								// и¦Єг‚ўгѓ‰гѓ¬г‚№г‚’дїќе­
 								MBMesh->Container = MBFrame ;
 
-								// Џу‘Ф•П‰»ЉЗ—ќ—pЉо–{Џо•с‚МѓZѓbѓg
+								// зЉ¶ж…‹е¤‰еЊ–з®Ўзђ†з”Ёеџєжњ¬жѓ…е ±гЃ®г‚»гѓѓгѓ€
 								MV1ChangeInfoSetup( &MBMesh->ChangeInfo, NULL, FrameMeshCounter + 1, 0 ) ;
 								FrameMeshCounter ++ ;
 
-								// ѓgѓ‰ѓCѓAѓ“ѓOѓ‹ѓЉѓXѓg‚МѓAѓhѓЊѓX‚рѓZѓbѓg
+								// гѓ€гѓ©г‚¤г‚ўгѓіг‚°гѓ«гѓЄг‚№гѓ€гЃ®г‚ўгѓ‰гѓ¬г‚№г‚’г‚»гѓѓгѓ€
 								MBMesh->TriangleListNum = 0 ;
 								MBMesh->TriangleList = MBase->TriangleList + MBase->TriangleListNum ;
 
-								// Љо–{“I‚ЙѓЃѓbѓVѓ…‚МЏ‰ЉъЏу‘Ф‚Н•\Ћ¦
+								// еџєжњ¬зљ„гЃ«гѓЎгѓѓг‚·гѓҐгЃ®е€ќжњџзЉ¶ж…‹гЃЇиЎЁз¤є
 								MBMesh->Visible = 1 /*( MBFrame->Flag & MV1_FRAMEFLAG_VISIBLE ) != 0 ? 1 : 0*/ ;
 
-								// ’ё“_‚МѓfѓBѓtѓ…Ѓ[ѓYѓJѓ‰Ѓ[‚ЖѓXѓyѓLѓ…ѓ‰ѓJѓ‰Ѓ[‚рЋg—p‚·‚й‚©‚З‚¤‚©‚рѓZѓbѓg
+								// й ‚з‚№гЃ®гѓ‡г‚Јгѓ•гѓҐгѓјг‚єг‚«гѓ©гѓјгЃЁг‚№гѓљг‚­гѓҐгѓ©г‚«гѓ©гѓјг‚’дЅїз”ЁгЃ™г‚‹гЃ‹гЃ©гЃ†гЃ‹г‚’г‚»гѓѓгѓ€
 								MBMesh->UseVertexDiffuseColor = FALSE ;
 								MBMesh->UseVertexSpecularColor = FALSE ;
 
-								// ѓ}ѓeѓЉѓAѓ‹‚МѓAѓhѓЊѓX‚рѓZѓbѓg
+								// гѓћгѓ†гѓЄг‚ўгѓ«гЃ®г‚ўгѓ‰гѓ¬г‚№г‚’г‚»гѓѓгѓ€
 								if( Mesh->MaterialNum )
 								{
 									MBMesh->Material = MBase->Material + Mesh->Materials[ o ]->Index ;
 								}
 
-								// ѓoѓbѓNѓJѓЉѓ“ѓO‚М—L–і‚МѓZѓbѓg
+								// гѓђгѓѓг‚Їг‚«гѓЄгѓіг‚°гЃ®жњ‰з„ЎгЃ®г‚»гѓѓгѓ€
 								MBMesh->BackCulling = ( BYTE )( Mesh->Materials[ o ] == NULL || Mesh->Materials[ o ]->DisableBackCulling == FALSE ? TRUE : FALSE ) ;
 
-								// ’ё“_ѓfЃ[ѓ^‚Ж–КѓfЃ[ѓ^‚рЌ\’z‚·‚й
+								// й ‚з‚№гѓ‡гѓјг‚їгЃЁйќўгѓ‡гѓјг‚їг‚’ж§‹зЇ‰гЃ™г‚‹
 								{
 									BYTE TVertBuf[ sizeof( MV1_MESH_VERTEX ) + sizeof( float ) * 2 * 32 ] ;
 									MV1_MESH_VERTEX *TVertex ;
 
 									TVertex = ( MV1_MESH_VERTEX * )TVertBuf ;
 
-									// ‚t‚u‚Мђ”‚рѓZѓbѓg
+									// пјµпј¶гЃ®ж•°г‚’г‚»гѓѓгѓ€
 									MBMesh->UVSetUnitNum = Mesh->Materials[ o ] == NULL || Mesh->Materials[ o ]->DiffuseTexNum == 0 ? 1 : Mesh->Materials[ o ]->DiffuseTexNum ;
 									MBMesh->UVUnitNum = 2 ;
 
-									// ’ё“_ѓfЃ[ѓ^‚Мђж“ЄѓAѓhѓЊѓX‚рѓZѓbѓg
+									// й ‚з‚№гѓ‡гѓјг‚їгЃ®е…€й ­г‚ўгѓ‰гѓ¬г‚№г‚’г‚»гѓѓгѓ€
 									MBMesh->Vertex       = ( MV1_MESH_VERTEX * )( ( BYTE * )MBase->MeshVertex + MBase->MeshVertexSize ) ;
 									MBMesh->VertUnitSize = ( int )( sizeof( MV1_MESH_VERTEX ) + MBMesh->UVSetUnitNum * MBMesh->UVUnitNum * sizeof( float ) - sizeof( float ) * 2 ) ;
 
-									// –КѓfЃ[ѓ^‚МѓAѓhѓЊѓX‚рѓZѓbѓg
+									// йќўгѓ‡гѓјг‚їгЃ®г‚ўгѓ‰гѓ¬г‚№г‚’г‚»гѓѓгѓ€
 									MBMesh->Face = MBase->MeshFace + MBase->MeshFaceNum ;
 
-									// ’ё“_ѓfЃ[ѓ^‚Ж–КѓfЃ[ѓ^‚рЌ\’z
+									// й ‚з‚№гѓ‡гѓјг‚їгЃЁйќўгѓ‡гѓјг‚їг‚’ж§‹зЇ‰
 									MBMesh->VertexNum = 0 ;
 									MeshFace = Mesh->Faces ;
 									MBFace = MBMesh->Face ;
@@ -6984,10 +6984,10 @@ extern int MV1LoadModelToReadModel(
 									VertInfoNum = 0 ;
 									for( j = 0 ; ( DWORD )j < Mesh->FaceNum ; j ++, MeshFace ++ )
 									{
-										// Ћg—p‚·‚йѓ}ѓeѓЉѓAѓ‹‚Є€Щ‚И‚йЏкЌ‡‚Н‰Ѕ‚а‚µ‚И‚ў
+										// дЅїз”ЁгЃ™г‚‹гѓћгѓ†гѓЄг‚ўгѓ«гЃЊз•°гЃЄг‚‹е ґеђ€гЃЇдЅ•г‚‚гЃ—гЃЄгЃ„
 										if( MeshFace->MaterialIndex != ( DWORD )o ) continue ;
 
-										// Њі‚Є‰EЋиЌА•WЊn‚ѕ‚Б‚Ѕ‚зѓCѓ“ѓfѓbѓNѓX‚МЏ‡”Ф‚р•ПЌX‚·‚й
+										// е…ѓгЃЊеЏіж‰‹еє§жЁ™зі»гЃ гЃЈгЃџг‚‰г‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃ®й †з•Єг‚’е¤‰ж›ґгЃ™г‚‹
 /*										if( ReadModel->MeshFaceRightHand )
 										{
 											p = MBFace->VertexIndex[ 1 ] ;
@@ -6995,14 +6995,14 @@ extern int MV1LoadModelToReadModel(
 											MBFace->VertexIndex[ 2 ] = p ;
 										}*/
 
-										// ’ё“_ѓ^ѓCѓv‚ЖЏЉ‘®ѓgѓ‰ѓCѓAѓ“ѓOѓ‹ѓЉѓXѓg”ФЌ†‚р•Ы‘¶
+										// й ‚з‚№г‚їг‚¤гѓ—гЃЁж‰Ђе±ћгѓ€гѓ©г‚¤г‚ўгѓіг‚°гѓ«гѓЄг‚№гѓ€з•ЄеЏ·г‚’дїќе­
 										MBFace->VertexType        = ( WORD )( Mesh->SkinFaceType        == NULL ? MV1_VERTEX_TYPE_NORMAL : ( WORD )Mesh->SkinFaceType[ j ]        ) ;
 										MBFace->TriangleListIndex = ( WORD )( Mesh->FaceUseTriangleList == NULL ? -1                     : ( WORD )Mesh->FaceUseTriangleList[ j ] ) ;
 
-										// ѓ|ѓЉѓSѓ“‚М’ё“_‚Мђ”‚ѕ‚ЇЊJ‚и•Ф‚µ
+										// гѓќгѓЄг‚ґгѓігЃ®й ‚з‚№гЃ®ж•°гЃ гЃ‘з№°г‚Љиї”гЃ—
 										for( m = 0 ; m < 3 ; m ++ )
 										{
-											// ’З‰Б‚µ‚ж‚¤‚Ж‚µ‚Д‚ў‚й’ё“_ѓfЃ[ѓ^‚МЌмђ¬
+											// иїЅеЉ гЃ—г‚€гЃ†гЃЁгЃ—гЃ¦гЃ„г‚‹й ‚з‚№гѓ‡гѓјг‚їгЃ®дЅњж€ђ
 											TVertex->ToonOutLineScale = Mesh->PositionToonOutLineScale == NULL ? 1.0f : Mesh->PositionToonOutLineScale[ MeshFace->VertexIndex[ m ] ] ;
 											TVertex->PositionIndex = MeshFace->VertexIndex[ m ] + MeshPositionStartNum ;
 											TVertex->NormalIndex = MeshFace->NormalIndex[ m ] + MeshNormalStartNum ;
@@ -7062,7 +7062,7 @@ extern int MV1LoadModelToReadModel(
 												}
 											}
 
-											// ЌЎ‚Ь‚Е‚Й“Ї‚¶’ё“_ѓfЃ[ѓ^‚Є–і‚©‚Б‚Ѕ‚©‚З‚¤‚©‚р’І‚Ч‚й
+											// д»ЉгЃѕгЃ§гЃ«еђЊгЃй ‚з‚№гѓ‡гѓјг‚їгЃЊз„ЎгЃ‹гЃЈгЃџгЃ‹гЃ©гЃ†гЃ‹г‚’иЄїгЃ№г‚‹
 											for( VInfo = VertInfoTable[ MeshFace->VertexIndex[ m ] ] ; VInfo ; VInfo = VInfo->Next )
 											{
 												if( VInfo->TriangleListIndex == MBFace->TriangleListIndex &&
@@ -7071,7 +7071,7 @@ extern int MV1LoadModelToReadModel(
 											}
 											if( VInfo == NULL )
 											{
-												// –і‚©‚Б‚Ѕ‚зѓfЃ[ѓ^‚р’З‰Б
+												// з„ЎгЃ‹гЃЈгЃџг‚‰гѓ‡гѓјг‚їг‚’иїЅеЉ 
 												VInfo = &VertInfoBuffer[ VertInfoNum ] ;
 												VertInfoNum ++ ;
 
@@ -7086,17 +7086,17 @@ extern int MV1LoadModelToReadModel(
 											}
 											else
 											{
-												// ‚ ‚Б‚Ѕ‚зѓCѓ“ѓfѓbѓNѓX‚рѓZѓbѓg
+												// гЃ‚гЃЈгЃџг‚‰г‚¤гѓігѓ‡гѓѓг‚Їг‚№г‚’г‚»гѓѓгѓ€
 												MBFace->VertexIndex[ m ] = ( DWORD )VInfo->VertexIndex ;
 											}
 										}
 
-										// –К‚Мђ”‚рѓCѓ“ѓNѓЉѓЃѓ“ѓg
+										// йќўгЃ®ж•°г‚’г‚¤гѓіг‚ЇгѓЄгѓЎгѓігѓ€
 										MBFace ++ ;
 										MBMesh->FaceNum ++ ;
 									}
 
-									// Њі‚Є‰EЋиЌА•WЊn‚ѕ‚Б‚Ѕ‚зѓCѓ“ѓfѓbѓNѓX‚МЏ‡”Ф‚р•ПЌX‚·‚й
+									// е…ѓгЃЊеЏіж‰‹еє§жЁ™зі»гЃ гЃЈгЃџг‚‰г‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃ®й †з•Єг‚’е¤‰ж›ґгЃ™г‚‹
 									if( ReadModel->MeshFaceRightHand )
 									{
 										MBFace = MBMesh->Face ;
@@ -7108,65 +7108,65 @@ extern int MV1LoadModelToReadModel(
 										}
 									}
 
-									// –К‚М‘Ќђ”‚Ж’ё“_ѓfЃ[ѓ^‚М‘ЌѓTѓCѓY‚р‰БЋZ
+									// йќўгЃ®з·Џж•°гЃЁй ‚з‚№гѓ‡гѓјг‚їгЃ®з·Џг‚µг‚¤г‚єг‚’еЉ з®—
 									MBase->MeshFaceNum += MBMesh->FaceNum ;
 									MBase->MeshVertexSize += MBMesh->VertexNum * MBMesh->VertUnitSize ;
 
-									// Џ]–@ђь‚ЖђЪђь‚рЋZЏo‚·‚й
+									// еѕ“жі•з·љгЃЁжЋҐз·љг‚’з®—е‡єгЃ™г‚‹
 //									MV1MakeMeshBinormalsAndTangents( MBMesh ) ;
 								}
 
-								// ѓ{Ѓ[ѓ“€к‚В‚Мѓgѓ‰ѓCѓAѓ“ѓOѓ‹ѓЉѓXѓg‚МЌмђ¬
+								// гѓњгѓјгѓідёЂгЃ¤гЃ®гѓ€гѓ©г‚¤г‚ўгѓіг‚°гѓ«гѓЄг‚№гѓ€гЃ®дЅњж€ђ
 								if( Mesh->MaterialPolyList[ o ].TypeNum[ MV1_VERTEX_TYPE_NORMAL ] )
 								{
-									// ѓgѓ‰ѓCѓAѓ“ѓOѓ‹ѓЉѓXѓg‚МѓAѓhѓЊѓX‚рѓZѓbѓg
+									// гѓ€гѓ©г‚¤г‚ўгѓіг‚°гѓ«гѓЄг‚№гѓ€гЃ®г‚ўгѓ‰гѓ¬г‚№г‚’г‚»гѓѓгѓ€
 									MBTList = MBMesh->TriangleList + MBMesh->TriangleListNum ;
 									MBase->TriangleListNum  += Mesh->MaterialPolyList[ o ].SimpleTriangleListNum ;
 									MBMesh->TriangleListNum += Mesh->MaterialPolyList[ o ].SimpleTriangleListNum ;
 
-									// ѓgѓ‰ѓCѓAѓ“ѓOѓ‹ѓЉѓXѓg‚Мђ”‚ѕ‚ЇЊJ‚и•Ф‚µ
+									// гѓ€гѓ©г‚¤г‚ўгѓіг‚°гѓ«гѓЄг‚№гѓ€гЃ®ж•°гЃ гЃ‘з№°г‚Љиї”гЃ—
 									l = 0 ;
 									MBFace = MBMesh->Face ;
 									for( j = 0 ; j < Mesh->MaterialPolyList[ o ].SimpleTriangleListNum ; j ++, MBTList ++ )
 									{
-										// ѓgѓ‰ѓCѓAѓ“ѓOѓ‹ѓЉѓXѓg‚МЏо•с‚рѓZѓbѓg
+										// гѓ€гѓ©г‚¤г‚ўгѓіг‚°гѓ«гѓЄг‚№гѓ€гЃ®жѓ…е ±г‚’г‚»гѓѓгѓ€
 										MBTList->Container = MBMesh ;
 										MBTList->VertexType = MV1_VERTEX_TYPE_NORMAL ;
 
-										// ‚P’ё“_‚МѓTѓCѓY‚рѓZѓbѓg
+										// пј‘й ‚з‚№гЃ®г‚µг‚¤г‚єг‚’г‚»гѓѓгѓ€
 										MBTList->PosUnitSize = sizeof( MV1_TLIST_NORMAL_POS ) ;
 
-										// ’ё“_ѓCѓ“ѓfѓbѓNѓXѓfЃ[ѓ^‚Мђж“ЄѓAѓhѓЊѓX‚рѓZѓbѓg
+										// й ‚з‚№г‚¤гѓігѓ‡гѓѓг‚Їг‚№гѓ‡гѓјг‚їгЃ®е…€й ­г‚ўгѓ‰гѓ¬г‚№г‚’г‚»гѓѓгѓ€
 										MBTList->Index = MBase->TriangleListIndex + MBase->TriangleListIndexNum ;
 										MBTList->IndexNum = 0 ;
 										MBTList->ToonOutLineIndex = MBTList->Index + MTBase.TriangleListIndexNum ;
 										MBTList->ToonOutLineIndexNum = 0 ;
 
-										// ’ё“_ѓfЃ[ѓ^‚Мђж“ЄѓAѓhѓЊѓX‚рѓZѓbѓg
+										// й ‚з‚№гѓ‡гѓјг‚їгЃ®е…€й ­г‚ўгѓ‰гѓ¬г‚№г‚’г‚»гѓѓгѓ€
 										MBTList->NormalPosition = MBase->TriangleListNormalPosition + MBase->TriangleListNormalPositionNum ;
 										MBTList->NormalPosition = ( MV1_TLIST_NORMAL_POS * )( ( ( DWORD_PTR )MBTList->NormalPosition + 15 ) / 16 * 16 ) ;
 
-										// ѓЃѓbѓVѓ…’ё“_ѓCѓ“ѓfѓbѓNѓXѓfЃ[ѓ^‚Мђж“ЄѓAѓhѓЊѓX‚рѓZѓbѓg
+										// гѓЎгѓѓг‚·гѓҐй ‚з‚№г‚¤гѓігѓ‡гѓѓг‚Їг‚№гѓ‡гѓјг‚їгЃ®е…€й ­г‚ўгѓ‰гѓ¬г‚№г‚’г‚»гѓѓгѓ€
 										MBTList->MeshVertexIndex = MBase->MeshVertexIndex + MBase->MeshVertexIndexNum ;
 										MBTList->VertexNum = 0 ;
 
-										// ’ё“_‚ЄЉщ‚Й‘¶ЌЭ‚µ‚Д‚ў‚й‚©‚З‚¤‚©‚Мѓtѓ‰ѓO‚рЏ‰Љъ‰»‚·‚й
+										// й ‚з‚№гЃЊж—ўгЃ«е­ењЁгЃ—гЃ¦гЃ„г‚‹гЃ‹гЃ©гЃ†гЃ‹гЃ®гѓ•гѓ©г‚°г‚’е€ќжњџеЊ–гЃ™г‚‹
 										_MEMSET( VertValidBuffer, 0xff, MBMesh->VertexNum * sizeof( int ) ) ;
 
-										// ‚·‚Ч‚Д‚М–К‚рЏ€—ќ‚·‚й‚Ь‚Еѓ‹Ѓ[ѓv
+										// гЃ™гЃ№гЃ¦гЃ®йќўг‚’е‡¦зђ†гЃ™г‚‹гЃѕгЃ§гѓ«гѓјгѓ—
 //										NormV = MBTList->NormalPosition ;
 										for( ; l < MBMesh->FaceNum && MBTList->IndexNum < MV1_TRIANGLE_MAX_INDEX ; l ++, MBFace ++ )
 										{
-											// ѓЃѓbѓVѓ…‚Мѓgѓ‰ѓCѓAѓ“ѓOѓ‹ѓЉѓXѓg”ФЌ†‚МЌXђV
+											// гѓЎгѓѓг‚·гѓҐгЃ®гѓ€гѓ©г‚¤г‚ўгѓіг‚°гѓ«гѓЄг‚№гѓ€з•ЄеЏ·гЃ®ж›ґж–°
 											MBFace->TriangleListIndex = ( WORD )( MBTList - MBMesh->TriangleList ) ;
 
-											// ѓ|ѓЉѓSѓ“‚М’ё“_‚Мђ”‚ѕ‚ЇЊJ‚и•Ф‚µ
+											// гѓќгѓЄг‚ґгѓігЃ®й ‚з‚№гЃ®ж•°гЃ гЃ‘з№°г‚Љиї”гЃ—
 											for( p = 0 ; p < 3 ; p ++, MBTList->IndexNum ++ )
 											{
-												// ѓgѓ‰ѓCѓAѓ“ѓOѓ‹‚ЄЋg—p‚µ‚Д‚ў‚й’ё“_ѓfЃ[ѓ^‚ЄЉщ‚Й‚ ‚й‚©‚З‚¤‚©‚р’І‚Ч‚й
+												// гѓ€гѓ©г‚¤г‚ўгѓіг‚°гѓ«гЃЊдЅїз”ЁгЃ—гЃ¦гЃ„г‚‹й ‚з‚№гѓ‡гѓјг‚їгЃЊж—ўгЃ«гЃ‚г‚‹гЃ‹гЃ©гЃ†гЃ‹г‚’иЄїгЃ№г‚‹
 												if( VertValidBuffer[ MBFace->VertexIndex[ p ] ] == -1 )
 												{
-													// –і‚©‚Б‚Ѕ‚з’З‰Б‚·‚й
+													// з„ЎгЃ‹гЃЈгЃџг‚‰иїЅеЉ гЃ™г‚‹
 //													MBMVert = ( MV1_MESH_VERTEX   * )( ( BYTE * )MBMesh->Vertex    + MBFace->VertexIndex[ p ] * MBMesh->VertUnitSize   ) ;
 //													MBMPos  = ( MV1_MESH_POSITION * )( ( BYTE * )MBFrame->Position + MBFrame->PosUnitSize     * MBMVert->PositionIndex ) ;
 //													MBMNorm = MBFrame->Normal + MBMVert->NormalIndex ;
@@ -7189,89 +7189,89 @@ extern int MV1LoadModelToReadModel(
 											}
 										}
 
-										// ’ё“_ѓCѓ“ѓfѓbѓNѓX‚Мђ”‚р‰БЋZ
+										// й ‚з‚№г‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃ®ж•°г‚’еЉ з®—
 										MBase->TriangleListIndexNum += MBTList->IndexNum ;
 
-										// ѓЃѓbѓVѓ…’ё“_ѓCѓ“ѓfѓbѓNѓXѓfЃ[ѓ^‚Мђ”‚р‰БЋZ‚·‚й
+										// гѓЎгѓѓг‚·гѓҐй ‚з‚№г‚¤гѓігѓ‡гѓѓг‚Їг‚№гѓ‡гѓјг‚їгЃ®ж•°г‚’еЉ з®—гЃ™г‚‹
 										MBase->MeshVertexIndexNum += MBTList->VertexNum ;
 
-										// ѓ{Ѓ[ѓ“–і‚µ’ё“_ѓfЃ[ѓ^‚Мђ”‚р‰БЋZ
+										// гѓњгѓјгѓіз„ЎгЃ—й ‚з‚№гѓ‡гѓјг‚їгЃ®ж•°г‚’еЉ з®—
 										MBase->TriangleListNormalPositionNum += MBTList->VertexNum ;
 
-										// Ќ‚‘¬ѓAѓNѓZѓX—p’ё“_ѓfЃ[ѓ^‚МѓZѓbѓgѓAѓbѓv
+										// й«йЂџг‚ўг‚Їг‚»г‚№з”Ёй ‚з‚№гѓ‡гѓјг‚їгЃ®г‚»гѓѓгѓ€г‚ўгѓѓгѓ—
 										MV1SetupTriangleListPositionAndNormal( MBTList ) ;
 
-										// ѓgѓDЃ[ѓ“—ЦЉsђь—p’ё“_ѓCѓ“ѓfѓbѓNѓX‚МЌмђ¬
+										// гѓ€г‚ҐгѓјгѓіијЄйѓ­з·љз”Ёй ‚з‚№г‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃ®дЅњж€ђ
 										MV1SetupToonOutLineTriangleList( MBTList ) ;
 									}
 								}
 
-								// ѓ{Ѓ[ѓ“‚TЊВ–ў–ћ‚Мѓgѓ‰ѓCѓAѓ“ѓOѓ‹ѓЉѓXѓg‚МЌмђ¬
+								// гѓњгѓјгѓіпј•еЂ‹жњЄжєЂгЃ®гѓ€гѓ©г‚¤г‚ўгѓіг‚°гѓ«гѓЄг‚№гѓ€гЃ®дЅњж€ђ
 								if( Mesh->MaterialPolyList[ o ].TypeNum[ MV1_VERTEX_TYPE_SKIN_4BONE ] )
 								{
 									MBFrame->IsSkinMesh = TRUE ;
 
-									// ѓgѓ‰ѓCѓAѓ“ѓOѓ‹ѓЉѓXѓg‚МѓAѓhѓЊѓX‚рѓZѓbѓg
+									// гѓ€гѓ©г‚¤г‚ўгѓіг‚°гѓ«гѓЄг‚№гѓ€гЃ®г‚ўгѓ‰гѓ¬г‚№г‚’г‚»гѓѓгѓ€
 									MBTList = MBMesh->TriangleList + MBMesh->TriangleListNum ;
 									MBase->TriangleListNum  += Mesh->MaterialPolyList[ o ].SkinB4TriangleListNum ;
 									MBMesh->TriangleListNum += Mesh->MaterialPolyList[ o ].SkinB4TriangleListNum ;
 
-									// ѓgѓ‰ѓCѓAѓ“ѓOѓ‹ѓЉѓXѓg‚Мђ”‚ѕ‚ЇЊJ‚и•Ф‚µ
+									// гѓ€гѓ©г‚¤г‚ўгѓіг‚°гѓ«гѓЄг‚№гѓ€гЃ®ж•°гЃ гЃ‘з№°г‚Љиї”гЃ—
 									TList = Mesh->MaterialPolyList[ o ].SkinB4TriangleList ;
 									for( j = 0 ; j < Mesh->MaterialPolyList[ o ].SkinB4TriangleListNum ; j ++, TList ++, MBTList ++ )
 									{
-										// ѓgѓ‰ѓCѓAѓ“ѓOѓ‹ѓЉѓXѓg‚МЏо•с‚рѓZѓbѓg
+										// гѓ€гѓ©г‚¤г‚ўгѓіг‚°гѓ«гѓЄг‚№гѓ€гЃ®жѓ…е ±г‚’г‚»гѓѓгѓ€
 										MBTList->Container = MBMesh ;
 										MBTList->VertexType = MV1_VERTEX_TYPE_SKIN_4BONE ;
 
-										// ‚P’ё“_‚МѓTѓCѓY‚рѓZѓbѓg
+										// пј‘й ‚з‚№гЃ®г‚µг‚¤г‚єг‚’г‚»гѓѓгѓ€
 										MBTList->PosUnitSize = sizeof( MV1_TLIST_SKIN_POS_4B ) ;
 
-										// Ћg—p‚·‚йѓ{Ѓ[ѓ“ѓCѓ“ѓfѓbѓNѓX‚рѓZѓbѓg
+										// дЅїз”ЁгЃ™г‚‹гѓњгѓјгѓіг‚¤гѓігѓ‡гѓѓг‚Їг‚№г‚’г‚»гѓѓгѓ€
 										for( l = 0 ; l < TList->UseBoneNum ; l ++ )
 											MBTList->UseBone[ l ] = ( int )( TList->UseBone[ l ] + MeshBoneStartNum ) ;
 										for( ; l < MV1_TRIANGLE_LIST_USE_BONE_MAX_NUM ; l ++ )
 											MBTList->UseBone[ l ] = -1 ;
 										MBTList->UseBoneNum = TList->UseBoneNum ;
 
-										// ’ё“_ѓCѓ“ѓfѓbѓNѓXѓfЃ[ѓ^‚Мђж“ЄѓAѓhѓЊѓX‚рѓZѓbѓg
+										// й ‚з‚№г‚¤гѓігѓ‡гѓѓг‚Їг‚№гѓ‡гѓјг‚їгЃ®е…€й ­г‚ўгѓ‰гѓ¬г‚№г‚’г‚»гѓѓгѓ€
 										MBTList->Index = MBase->TriangleListIndex + MBase->TriangleListIndexNum ;
 										MBTList->IndexNum = 0 ;
 										MBTList->ToonOutLineIndex = MBTList->Index + MTBase.TriangleListIndexNum ;
 										MBTList->ToonOutLineIndexNum = 0 ;
 
-										// ’ё“_ѓfЃ[ѓ^‚Мђж“ЄѓAѓhѓЊѓX‚рѓZѓbѓg
+										// й ‚з‚№гѓ‡гѓјг‚їгЃ®е…€й ­г‚ўгѓ‰гѓ¬г‚№г‚’г‚»гѓѓгѓ€
 										MBTList->SkinPosition4B = MBase->TriangleListSkinPosition4B + MBase->TriangleListSkinPosition4BNum ;
 										MBTList->SkinPosition4B = ( MV1_TLIST_SKIN_POS_4B * )( ( ( DWORD_PTR )MBTList->SkinPosition4B + 15 ) / 16 * 16 ) ;
 
-										// ѓЃѓbѓVѓ…’ё“_ѓCѓ“ѓfѓbѓNѓXѓfЃ[ѓ^‚Мђж“ЄѓAѓhѓЊѓX‚рѓZѓbѓg
+										// гѓЎгѓѓг‚·гѓҐй ‚з‚№г‚¤гѓігѓ‡гѓѓг‚Їг‚№гѓ‡гѓјг‚їгЃ®е…€й ­г‚ўгѓ‰гѓ¬г‚№г‚’г‚»гѓѓгѓ€
 										MBTList->MeshVertexIndex = MBase->MeshVertexIndex + MBase->MeshVertexIndexNum ;
 										MBTList->VertexNum = 0 ;
 
-										// ’ё“_‚ЄЉщ‚Й‘¶ЌЭ‚µ‚Д‚ў‚й‚©‚З‚¤‚©‚Мѓtѓ‰ѓO‚рЏ‰Љъ‰»‚·‚й
+										// й ‚з‚№гЃЊж—ўгЃ«е­ењЁгЃ—гЃ¦гЃ„г‚‹гЃ‹гЃ©гЃ†гЃ‹гЃ®гѓ•гѓ©г‚°г‚’е€ќжњџеЊ–гЃ™г‚‹
 										_MEMSET( VertValidBuffer, 0xff, MBMesh->VertexNum * sizeof( int ) ) ;
 
-										// ‚·‚Ч‚Д‚М–К‚рЏ€—ќ‚·‚й‚Ь‚Еѓ‹Ѓ[ѓv
+										// гЃ™гЃ№гЃ¦гЃ®йќўг‚’е‡¦зђ†гЃ™г‚‹гЃѕгЃ§гѓ«гѓјгѓ—
 										MBFace = MBMesh->Face ;
 //										Skin4BV = MBTList->SkinPosition4B ;
 										for( l = 0 ; l < MBMesh->FaceNum ; l ++, MBFace ++ )
 										{
-											// ѓ{Ѓ[ѓ“‚TЊВ–ў–ћ‚Е‚Н‚И‚ўЏкЌ‡‚Н‰Ѕ‚а‚µ‚И‚ў
+											// гѓњгѓјгѓіпј•еЂ‹жњЄжєЂгЃ§гЃЇгЃЄгЃ„е ґеђ€гЃЇдЅ•г‚‚гЃ—гЃЄгЃ„
 											if( MBFace->VertexType != MV1_VERTEX_TYPE_SKIN_4BONE ) continue ;
 
-											// ѓgѓ‰ѓCѓAѓ“ѓOѓ‹ѓЉѓXѓg”ФЌ†‚Є€б‚¤ЏкЌ‡‚а‰Ѕ‚а‚µ‚И‚ў
+											// гѓ€гѓ©г‚¤г‚ўгѓіг‚°гѓ«гѓЄг‚№гѓ€з•ЄеЏ·гЃЊйЃ•гЃ†е ґеђ€г‚‚дЅ•г‚‚гЃ—гЃЄгЃ„
 											if( MBFace->TriangleListIndex != j ) continue ;
 
-											// ѓЃѓbѓVѓ…‚Мѓgѓ‰ѓCѓAѓ“ѓOѓ‹ѓЉѓXѓg”ФЌ†‚МЌXђV
+											// гѓЎгѓѓг‚·гѓҐгЃ®гѓ€гѓ©г‚¤г‚ўгѓіг‚°гѓ«гѓЄг‚№гѓ€з•ЄеЏ·гЃ®ж›ґж–°
 											MBFace->TriangleListIndex = ( WORD )( MBTList - MBMesh->TriangleList ) ;
 
-											// ’ё“_ѓfЃ[ѓ^‚рѓZѓbѓg
+											// й ‚з‚№гѓ‡гѓјг‚їг‚’г‚»гѓѓгѓ€
 											for( p = 0 ; p < 3 ; p ++, MBTList->IndexNum ++ )
 											{
-												// ѓgѓ‰ѓCѓAѓ“ѓOѓ‹‚ЄЋg—p‚µ‚Д‚ў‚й’ё“_ѓfЃ[ѓ^‚ЄЉщ‚Й‚ ‚й‚©‚З‚¤‚©‚р’І‚Ч‚й
+												// гѓ€гѓ©г‚¤г‚ўгѓіг‚°гѓ«гЃЊдЅїз”ЁгЃ—гЃ¦гЃ„г‚‹й ‚з‚№гѓ‡гѓјг‚їгЃЊж—ўгЃ«гЃ‚г‚‹гЃ‹гЃ©гЃ†гЃ‹г‚’иЄїгЃ№г‚‹
 												if( VertValidBuffer[ MBFace->VertexIndex[ p ] ] == -1 )
 												{
-													// –і‚©‚Б‚Ѕ‚з’З‰Б‚·‚й
+													// з„ЎгЃ‹гЃЈгЃџг‚‰иїЅеЉ гЃ™г‚‹
 //													MBMVert = ( MV1_MESH_VERTEX   * )( ( BYTE * )MBMesh->Vertex    + MBFace->VertexIndex[ p ] * MBMesh->VertUnitSize   ) ;
 //													MBMPos  = ( MV1_MESH_POSITION * )( ( BYTE * )MBFrame->Position + MBFrame->PosUnitSize     * MBMVert->PositionIndex ) ;
 //													MBMNorm = MBFrame->Normal + MBMVert->NormalIndex ;
@@ -7307,89 +7307,89 @@ extern int MV1LoadModelToReadModel(
 											}
 										}
 
-										// ’ё“_ѓCѓ“ѓfѓbѓNѓX‚Мђ”‚р‰БЋZ
+										// й ‚з‚№г‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃ®ж•°г‚’еЉ з®—
 										MBase->TriangleListIndexNum += MBTList->IndexNum ;
 
-										// ѓЃѓbѓVѓ…’ё“_ѓCѓ“ѓfѓbѓNѓXѓfЃ[ѓ^‚Мђ”‚р‰БЋZ‚·‚й
+										// гѓЎгѓѓг‚·гѓҐй ‚з‚№г‚¤гѓігѓ‡гѓѓг‚Їг‚№гѓ‡гѓјг‚їгЃ®ж•°г‚’еЉ з®—гЃ™г‚‹
 										MBase->MeshVertexIndexNum += MBTList->VertexNum ;
 
-										// ‚Sѓ{Ѓ[ѓ“€И“аѓXѓLѓjѓ“ѓOѓЃѓbѓVѓ…’ё“_ѓfЃ[ѓ^‚Мђ”‚р‰БЋZ
+										// пј”гѓњгѓјгѓід»Ґе†…г‚№г‚­гѓ‹гѓіг‚°гѓЎгѓѓг‚·гѓҐй ‚з‚№гѓ‡гѓјг‚їгЃ®ж•°г‚’еЉ з®—
 										MBase->TriangleListSkinPosition4BNum += MBTList->VertexNum ;
 
-										// Ќ‚‘¬ѓAѓNѓZѓX—p’ё“_ѓfЃ[ѓ^‚МѓZѓbѓgѓAѓbѓv
+										// й«йЂџг‚ўг‚Їг‚»г‚№з”Ёй ‚з‚№гѓ‡гѓјг‚їгЃ®г‚»гѓѓгѓ€г‚ўгѓѓгѓ—
 										MV1SetupTriangleListPositionAndNormal( MBTList ) ;
 
-										// ѓgѓDЃ[ѓ“—ЦЉsђь—p’ё“_ѓCѓ“ѓfѓbѓNѓX‚МЌмђ¬
+										// гѓ€г‚ҐгѓјгѓіијЄйѓ­з·љз”Ёй ‚з‚№г‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃ®дЅњж€ђ
 										MV1SetupToonOutLineTriangleList( MBTList ) ;
 									}
 								}
 
-								// ѓ{Ѓ[ѓ“‚XЊВ–ў–ћ‚Мѓgѓ‰ѓCѓAѓ“ѓOѓ‹ѓЉѓXѓg‚МЌмђ¬
+								// гѓњгѓјгѓіпј™еЂ‹жњЄжєЂгЃ®гѓ€гѓ©г‚¤г‚ўгѓіг‚°гѓ«гѓЄг‚№гѓ€гЃ®дЅњж€ђ
 								if( Mesh->MaterialPolyList[ o ].TypeNum[ MV1_VERTEX_TYPE_SKIN_8BONE ] )
 								{
 									MBFrame->IsSkinMesh = TRUE ;
 
-									// ѓgѓ‰ѓCѓAѓ“ѓOѓ‹ѓЉѓXѓg‚МѓAѓhѓЊѓX‚рѓZѓbѓg
+									// гѓ€гѓ©г‚¤г‚ўгѓіг‚°гѓ«гѓЄг‚№гѓ€гЃ®г‚ўгѓ‰гѓ¬г‚№г‚’г‚»гѓѓгѓ€
 									MBTList = MBMesh->TriangleList + MBMesh->TriangleListNum ;
 									MBase->TriangleListNum  += Mesh->MaterialPolyList[ o ].SkinB8TriangleListNum ;
 									MBMesh->TriangleListNum += Mesh->MaterialPolyList[ o ].SkinB8TriangleListNum ;
 
-									// ѓgѓ‰ѓCѓAѓ“ѓOѓ‹ѓЉѓXѓg‚Мђ”‚ѕ‚ЇЊJ‚и•Ф‚µ
+									// гѓ€гѓ©г‚¤г‚ўгѓіг‚°гѓ«гѓЄг‚№гѓ€гЃ®ж•°гЃ гЃ‘з№°г‚Љиї”гЃ—
 									TList = Mesh->MaterialPolyList[ o ].SkinB8TriangleList ;
 									for( j = 0 ; j < Mesh->MaterialPolyList[ o ].SkinB8TriangleListNum ; j ++, TList ++, MBTList ++ )
 									{
-										// ѓgѓ‰ѓCѓAѓ“ѓOѓ‹ѓЉѓXѓg‚МЏо•с‚рѓZѓbѓg
+										// гѓ€гѓ©г‚¤г‚ўгѓіг‚°гѓ«гѓЄг‚№гѓ€гЃ®жѓ…е ±г‚’г‚»гѓѓгѓ€
 										MBTList->Container = MBMesh ;
 										MBTList->VertexType = MV1_VERTEX_TYPE_SKIN_8BONE ;
 
-										// ‚P’ё“_‚МѓTѓCѓY‚рѓZѓbѓg
+										// пј‘й ‚з‚№гЃ®г‚µг‚¤г‚єг‚’г‚»гѓѓгѓ€
 										MBTList->PosUnitSize = sizeof( MV1_TLIST_SKIN_POS_8B ) ;
 
-										// Ћg—p‚·‚йѓ{Ѓ[ѓ“ѓCѓ“ѓfѓbѓNѓX‚рѓZѓbѓg
+										// дЅїз”ЁгЃ™г‚‹гѓњгѓјгѓіг‚¤гѓігѓ‡гѓѓг‚Їг‚№г‚’г‚»гѓѓгѓ€
 										for( l = 0 ; l < TList->UseBoneNum ; l ++ )
 											MBTList->UseBone[ l ] = ( int )( TList->UseBone[ l ] + MeshBoneStartNum ) ;
 										for( ; l < MV1_TRIANGLE_LIST_USE_BONE_MAX_NUM ; l ++ )
 											MBTList->UseBone[ l ] = -1 ;
 										MBTList->UseBoneNum = TList->UseBoneNum ;
 
-										// ’ё“_ѓCѓ“ѓfѓbѓNѓXѓfЃ[ѓ^‚Мђж“ЄѓAѓhѓЊѓX‚рѓZѓbѓg
+										// й ‚з‚№г‚¤гѓігѓ‡гѓѓг‚Їг‚№гѓ‡гѓјг‚їгЃ®е…€й ­г‚ўгѓ‰гѓ¬г‚№г‚’г‚»гѓѓгѓ€
 										MBTList->Index = MBase->TriangleListIndex + MBase->TriangleListIndexNum ;
 										MBTList->IndexNum = 0 ;
 										MBTList->ToonOutLineIndex = MBTList->Index + MTBase.TriangleListIndexNum ;
 										MBTList->ToonOutLineIndexNum = 0 ;
 
-										// ’ё“_ѓfЃ[ѓ^‚Мђж“ЄѓAѓhѓЊѓX‚рѓZѓbѓg
+										// й ‚з‚№гѓ‡гѓјг‚їгЃ®е…€й ­г‚ўгѓ‰гѓ¬г‚№г‚’г‚»гѓѓгѓ€
 										MBTList->SkinPosition8B = MBase->TriangleListSkinPosition8B + MBase->TriangleListSkinPosition8BNum ;
 										MBTList->SkinPosition8B = ( MV1_TLIST_SKIN_POS_8B * )( ( ( DWORD_PTR )MBTList->SkinPosition8B + 15 ) / 16 * 16 ) ;
 
-										// ѓЃѓbѓVѓ…’ё“_ѓCѓ“ѓfѓbѓNѓXѓfЃ[ѓ^‚Мђж“ЄѓAѓhѓЊѓX‚рѓZѓbѓg
+										// гѓЎгѓѓг‚·гѓҐй ‚з‚№г‚¤гѓігѓ‡гѓѓг‚Їг‚№гѓ‡гѓјг‚їгЃ®е…€й ­г‚ўгѓ‰гѓ¬г‚№г‚’г‚»гѓѓгѓ€
 										MBTList->MeshVertexIndex = MBase->MeshVertexIndex + MBase->MeshVertexIndexNum ;
 										MBTList->VertexNum = 0 ;
 
-										// ’ё“_‚ЄЉщ‚Й‘¶ЌЭ‚µ‚Д‚ў‚й‚©‚З‚¤‚©‚Мѓtѓ‰ѓO‚рЏ‰Љъ‰»‚·‚й
+										// й ‚з‚№гЃЊж—ўгЃ«е­ењЁгЃ—гЃ¦гЃ„г‚‹гЃ‹гЃ©гЃ†гЃ‹гЃ®гѓ•гѓ©г‚°г‚’е€ќжњџеЊ–гЃ™г‚‹
 										_MEMSET( VertValidBuffer, 0xff, MBMesh->VertexNum * sizeof( int ) ) ;
 
-										// ‚·‚Ч‚Д‚М–К‚рЏ€—ќ‚·‚й‚Ь‚Еѓ‹Ѓ[ѓv
+										// гЃ™гЃ№гЃ¦гЃ®йќўг‚’е‡¦зђ†гЃ™г‚‹гЃѕгЃ§гѓ«гѓјгѓ—
 										MBFace = MBMesh->Face ;
 //										Skin8BV = MBTList->SkinPosition8B ;
 										for( l = 0 ; l < MBMesh->FaceNum ; l ++, MBFace ++ )
 										{
-											// ѓ{Ѓ[ѓ“‚XЊВ–ў–ћ‚Е‚Н‚И‚ўЏкЌ‡‚Н‰Ѕ‚а‚µ‚И‚ў
+											// гѓњгѓјгѓіпј™еЂ‹жњЄжєЂгЃ§гЃЇгЃЄгЃ„е ґеђ€гЃЇдЅ•г‚‚гЃ—гЃЄгЃ„
 											if( MBFace->VertexType != MV1_VERTEX_TYPE_SKIN_8BONE ) continue ;
 
-											// ѓgѓ‰ѓCѓAѓ“ѓOѓ‹ѓЉѓXѓg”ФЌ†‚Є€б‚¤ЏкЌ‡‚а‰Ѕ‚а‚µ‚И‚ў
+											// гѓ€гѓ©г‚¤г‚ўгѓіг‚°гѓ«гѓЄг‚№гѓ€з•ЄеЏ·гЃЊйЃ•гЃ†е ґеђ€г‚‚дЅ•г‚‚гЃ—гЃЄгЃ„
 											if( MBFace->TriangleListIndex != j ) continue ;
 
-											// ѓЃѓbѓVѓ…‚Мѓgѓ‰ѓCѓAѓ“ѓOѓ‹ѓЉѓXѓg”ФЌ†‚МЌXђV
+											// гѓЎгѓѓг‚·гѓҐгЃ®гѓ€гѓ©г‚¤г‚ўгѓіг‚°гѓ«гѓЄг‚№гѓ€з•ЄеЏ·гЃ®ж›ґж–°
 											MBFace->TriangleListIndex = ( WORD )( MBTList - MBMesh->TriangleList ) ;
 
-											// ’ё“_ѓfЃ[ѓ^‚рѓZѓbѓg
+											// й ‚з‚№гѓ‡гѓјг‚їг‚’г‚»гѓѓгѓ€
 											for( p = 0 ; p < 3 ; p ++, MBTList->IndexNum ++ )
 											{
-												// ѓgѓ‰ѓCѓAѓ“ѓOѓ‹‚ЄЋg—p‚µ‚Д‚ў‚й’ё“_ѓfЃ[ѓ^‚ЄЉщ‚Й‚ ‚й‚©‚З‚¤‚©‚р’І‚Ч‚й
+												// гѓ€гѓ©г‚¤г‚ўгѓіг‚°гѓ«гЃЊдЅїз”ЁгЃ—гЃ¦гЃ„г‚‹й ‚з‚№гѓ‡гѓјг‚їгЃЊж—ўгЃ«гЃ‚г‚‹гЃ‹гЃ©гЃ†гЃ‹г‚’иЄїгЃ№г‚‹
 												if( VertValidBuffer[ MBFace->VertexIndex[ p ] ] == -1 )
 												{
-													// –і‚©‚Б‚Ѕ‚з’З‰Б‚·‚й
+													// з„ЎгЃ‹гЃЈгЃџг‚‰иїЅеЉ гЃ™г‚‹
 /*													MBMVert = ( MV1_MESH_VERTEX   * )( ( BYTE * )MBMesh->Vertex    + MBFace->VertexIndex[ p ] * MBMesh->VertUnitSize   ) ;
 													MBMPos  = ( MV1_MESH_POSITION * )( ( BYTE * )MBFrame->Position + MBFrame->PosUnitSize     * MBMVert->PositionIndex ) ;
 													MBMNorm = MBFrame->Normal + MBMVert->NormalIndex ;
@@ -7437,82 +7437,82 @@ extern int MV1LoadModelToReadModel(
 											}
 										}
 
-										// ’ё“_ѓCѓ“ѓfѓbѓNѓX‚Мђ”‚р‰БЋZ
+										// й ‚з‚№г‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃ®ж•°г‚’еЉ з®—
 										MBase->TriangleListIndexNum += MBTList->IndexNum ;
 
-										// ѓЃѓbѓVѓ…’ё“_ѓCѓ“ѓfѓbѓNѓXѓfЃ[ѓ^‚Мђ”‚р‰БЋZ‚·‚й
+										// гѓЎгѓѓг‚·гѓҐй ‚з‚№г‚¤гѓігѓ‡гѓѓг‚Їг‚№гѓ‡гѓјг‚їгЃ®ж•°г‚’еЉ з®—гЃ™г‚‹
 										MBase->MeshVertexIndexNum += MBTList->VertexNum ;
 
-										// ‚Wѓ{Ѓ[ѓ“€И“аѓXѓLѓjѓ“ѓOѓЃѓbѓVѓ…’ё“_ѓfЃ[ѓ^‚Мђ”‚р‰БЋZ
+										// пјгѓњгѓјгѓід»Ґе†…г‚№г‚­гѓ‹гѓіг‚°гѓЎгѓѓг‚·гѓҐй ‚з‚№гѓ‡гѓјг‚їгЃ®ж•°г‚’еЉ з®—
 										MBase->TriangleListSkinPosition8BNum += MBTList->VertexNum ;
 
-										// Ќ‚‘¬ѓAѓNѓZѓX—p’ё“_ѓfЃ[ѓ^‚МѓZѓbѓgѓAѓbѓv
+										// й«йЂџг‚ўг‚Їг‚»г‚№з”Ёй ‚з‚№гѓ‡гѓјг‚їгЃ®г‚»гѓѓгѓ€г‚ўгѓѓгѓ—
 										MV1SetupTriangleListPositionAndNormal( MBTList ) ;
 
-										// ѓgѓDЃ[ѓ“—ЦЉsђь—p’ё“_ѓCѓ“ѓfѓbѓNѓX‚МЌмђ¬
+										// гѓ€г‚ҐгѓјгѓіијЄйѓ­з·љз”Ёй ‚з‚№г‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃ®дЅњж€ђ
 										MV1SetupToonOutLineTriangleList( MBTList ) ;
 									}
 								}
 
-								// ѓ{Ѓ[ѓ“ђ”–іђ§ЊА‚Мѓgѓ‰ѓCѓAѓ“ѓOѓ‹ѓЉѓXѓg‚МЌмђ¬
+								// гѓњгѓјгѓіж•°з„Ўе€¶й™ђгЃ®гѓ€гѓ©г‚¤г‚ўгѓіг‚°гѓ«гѓЄг‚№гѓ€гЃ®дЅњж€ђ
 								if( Mesh->MaterialPolyList[ o ].TypeNum[ MV1_VERTEX_TYPE_SKIN_FREEBONE ] )
 								{
 									MBFrame->IsSkinMesh = TRUE ;
 
-									// ѓgѓ‰ѓCѓAѓ“ѓOѓ‹ѓЉѓXѓg‚МѓAѓhѓЊѓX‚рѓZѓbѓg
+									// гѓ€гѓ©г‚¤г‚ўгѓіг‚°гѓ«гѓЄг‚№гѓ€гЃ®г‚ўгѓ‰гѓ¬г‚№г‚’г‚»гѓѓгѓ€
 									MBTList = MBMesh->TriangleList + MBMesh->TriangleListNum ;
 									MBase->TriangleListNum  += ( Mesh->MaterialPolyList[ o ].TypeNum[ MV1_VERTEX_TYPE_SKIN_FREEBONE ] * 3 + MV1_TRIANGLE_MAX_INDEX - 1 ) / MV1_TRIANGLE_MAX_INDEX ;
 									MBMesh->TriangleListNum += ( Mesh->MaterialPolyList[ o ].TypeNum[ MV1_VERTEX_TYPE_SKIN_FREEBONE ] * 3 + MV1_TRIANGLE_MAX_INDEX - 1 ) / MV1_TRIANGLE_MAX_INDEX ;
 
-									// ‚·‚Ч‚Д‚М–К‚рЏ€—ќ‚·‚й‚Ь‚Еѓ‹Ѓ[ѓv
+									// гЃ™гЃ№гЃ¦гЃ®йќўг‚’е‡¦зђ†гЃ™г‚‹гЃѕгЃ§гѓ«гѓјгѓ—
 									MBFace = MBMesh->Face ;
 									for( l = 0 ; l < MBMesh->FaceNum ; MBTList ++ )
 									{
-										// ѓgѓ‰ѓCѓAѓ“ѓOѓ‹ѓЉѓXѓg‚МЏо•с‚рѓZѓbѓg
+										// гѓ€гѓ©г‚¤г‚ўгѓіг‚°гѓ«гѓЄг‚№гѓ€гЃ®жѓ…е ±г‚’г‚»гѓѓгѓ€
 										MBTList->Container = MBMesh ;
 										MBTList->VertexType = MV1_VERTEX_TYPE_SKIN_FREEBONE ;
 
-										// ‚P’ё“_‚ ‚Ѕ‚и‚МѓTѓCѓY‚рѓZѓbѓg
+										// пј‘й ‚з‚№гЃ‚гЃџг‚ЉгЃ®г‚µг‚¤г‚єг‚’г‚»гѓѓгѓ€
 										MBTList->PosUnitSize = ( unsigned short )( sizeof( MV1_TLIST_SKIN_POS_FREEB ) + sizeof( MV1_SKINBONE_BLEND ) * ( Mesh->MaterialPolyList[ o ].MaxBoneCount - 4 ) ) ;
 										MBTList->PosUnitSize = ( unsigned short )( ( MBTList->PosUnitSize + 15 ) / 16 * 16 ) ;
 
-										// ЌЕ‘еѓ{Ѓ[ѓ“ђ”‚р•Ы‘¶
+										// жњЂе¤§гѓњгѓјгѓіж•°г‚’дїќе­
 										MBTList->MaxBoneNum = Mesh->MaterialPolyList[ o ].MaxBoneCount ;
 
-										// ’ё“_ѓCѓ“ѓfѓbѓNѓXѓfЃ[ѓ^‚Мђж“ЄѓAѓhѓЊѓX‚рѓZѓbѓg
+										// й ‚з‚№г‚¤гѓігѓ‡гѓѓг‚Їг‚№гѓ‡гѓјг‚їгЃ®е…€й ­г‚ўгѓ‰гѓ¬г‚№г‚’г‚»гѓѓгѓ€
 										MBTList->Index = MBase->TriangleListIndex + MBase->TriangleListIndexNum ;
 										MBTList->IndexNum = 0 ;
 										MBTList->ToonOutLineIndex = MBTList->Index + MTBase.TriangleListIndexNum ;
 										MBTList->ToonOutLineIndexNum = 0 ;
 
-										// ’ё“_ѓfЃ[ѓ^‚Мђж“ЄѓAѓhѓЊѓX‚рѓZѓbѓg
+										// й ‚з‚№гѓ‡гѓјг‚їгЃ®е…€й ­г‚ўгѓ‰гѓ¬г‚№г‚’г‚»гѓѓгѓ€
 										MBTList->SkinPositionFREEB = ( MV1_TLIST_SKIN_POS_FREEB * )( ( BYTE * )MBase->TriangleListSkinPositionFREEB + MBase->TriangleListSkinPositionFREEBSize ) ;
 										MBTList->SkinPositionFREEB = ( MV1_TLIST_SKIN_POS_FREEB * )( ( ( DWORD_PTR )MBTList->SkinPositionFREEB + 15 ) / 16 * 16 ) ;
 
-										// ѓЃѓbѓVѓ…’ё“_ѓCѓ“ѓfѓbѓNѓXѓfЃ[ѓ^‚Мђж“ЄѓAѓhѓЊѓX‚рѓZѓbѓg
+										// гѓЎгѓѓг‚·гѓҐй ‚з‚№г‚¤гѓігѓ‡гѓѓг‚Їг‚№гѓ‡гѓјг‚їгЃ®е…€й ­г‚ўгѓ‰гѓ¬г‚№г‚’г‚»гѓѓгѓ€
 										MBTList->MeshVertexIndex = MBase->MeshVertexIndex + MBase->MeshVertexIndexNum ;
 										MBTList->VertexNum = 0 ;
 
-										// ’ё“_‚ЄЉщ‚Й‘¶ЌЭ‚µ‚Д‚ў‚й‚©‚З‚¤‚©‚Мѓtѓ‰ѓO‚рЏ‰Љъ‰»‚·‚й
+										// й ‚з‚№гЃЊж—ўгЃ«е­ењЁгЃ—гЃ¦гЃ„г‚‹гЃ‹гЃ©гЃ†гЃ‹гЃ®гѓ•гѓ©г‚°г‚’е€ќжњџеЊ–гЃ™г‚‹
 										_MEMSET( VertValidBuffer, 0xff, MBMesh->VertexNum * sizeof( int ) ) ;
 
-										// ’ё“_ѓfЃ[ѓ^‚МѓZѓbѓg
+										// й ‚з‚№гѓ‡гѓјг‚їгЃ®г‚»гѓѓгѓ€
 //										SkinFBV  = MBTList->SkinPositionFREEB ;
 										for( ; l < MBMesh->FaceNum && MBTList->IndexNum < MV1_TRIANGLE_MAX_INDEX ; l ++, MBFace ++ )
 										{
-											// ѓ{Ѓ[ѓ“ђ”–іђ§ЊА‚Е‚Н‚И‚ўЏкЌ‡‚Н‰Ѕ‚а‚µ‚И‚ў
+											// гѓњгѓјгѓіж•°з„Ўе€¶й™ђгЃ§гЃЇгЃЄгЃ„е ґеђ€гЃЇдЅ•г‚‚гЃ—гЃЄгЃ„
 											if( MBFace->VertexType != MV1_VERTEX_TYPE_SKIN_FREEBONE ) continue ;
 
-											// ѓЃѓbѓVѓ…‚Мѓgѓ‰ѓCѓAѓ“ѓOѓ‹ѓЉѓXѓg”ФЌ†‚МЌXђV
+											// гѓЎгѓѓг‚·гѓҐгЃ®гѓ€гѓ©г‚¤г‚ўгѓіг‚°гѓ«гѓЄг‚№гѓ€з•ЄеЏ·гЃ®ж›ґж–°
 											MBFace->TriangleListIndex = ( WORD )( MBTList - MBMesh->TriangleList ) ;
 
-											// ’ё“_ѓfЃ[ѓ^‚рѓZѓbѓg
+											// й ‚з‚№гѓ‡гѓјг‚їг‚’г‚»гѓѓгѓ€
 											for( p = 0 ; p < 3 ; p ++, MBTList->IndexNum ++ )
 											{
-												// ѓgѓ‰ѓCѓAѓ“ѓOѓ‹‚ЄЋg—p‚µ‚Д‚ў‚й’ё“_ѓfЃ[ѓ^‚ЄЉщ‚Й‚ ‚й‚©‚З‚¤‚©‚р’І‚Ч‚й
+												// гѓ€гѓ©г‚¤г‚ўгѓіг‚°гѓ«гЃЊдЅїз”ЁгЃ—гЃ¦гЃ„г‚‹й ‚з‚№гѓ‡гѓјг‚їгЃЊж—ўгЃ«гЃ‚г‚‹гЃ‹гЃ©гЃ†гЃ‹г‚’иЄїгЃ№г‚‹
 												if( VertValidBuffer[ MBFace->VertexIndex[ p ] ] == -1 )
 												{
-													// –і‚©‚Б‚Ѕ‚з’З‰Б‚·‚й
+													// з„ЎгЃ‹гЃЈгЃџг‚‰иїЅеЉ гЃ™г‚‹
 /*													MBMVert = ( MV1_MESH_VERTEX   * )( ( BYTE * )MBMesh->Vertex    + MBFace->VertexIndex[ p ] * MBMesh->VertUnitSize   ) ;
 													MBMPos  = ( MV1_MESH_POSITION * )( ( BYTE * )MBFrame->Position + MBFrame->PosUnitSize     * MBMVert->PositionIndex ) ;
 													MBMNorm = MBFrame->Normal + MBMVert->NormalIndex ;
@@ -7547,47 +7547,47 @@ extern int MV1LoadModelToReadModel(
 											}
 										}
 
-										// ’ё“_ѓCѓ“ѓfѓbѓNѓX‚Мђ”‚р‰БЋZ
+										// й ‚з‚№г‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃ®ж•°г‚’еЉ з®—
 										MBase->TriangleListIndexNum += MBTList->IndexNum ;
 
-										// ѓЃѓbѓVѓ…’ё“_ѓCѓ“ѓfѓbѓNѓXѓfЃ[ѓ^‚Мђ”‚р‰БЋZ‚·‚й
+										// гѓЎгѓѓг‚·гѓҐй ‚з‚№г‚¤гѓігѓ‡гѓѓг‚Їг‚№гѓ‡гѓјг‚їгЃ®ж•°г‚’еЉ з®—гЃ™г‚‹
 										MBase->MeshVertexIndexNum += MBTList->VertexNum ;
 
-										// ѓ{Ѓ[ѓ“ђ”–іђ§ЊАѓXѓLѓjѓ“ѓOѓЃѓbѓVѓ…’ё“_ѓfЃ[ѓ^‚МѓTѓCѓY‚р‰БЋZ
+										// гѓњгѓјгѓіж•°з„Ўе€¶й™ђг‚№г‚­гѓ‹гѓіг‚°гѓЎгѓѓг‚·гѓҐй ‚з‚№гѓ‡гѓјг‚їгЃ®г‚µг‚¤г‚єг‚’еЉ з®—
 										MBase->TriangleListSkinPositionFREEBSize += MBTList->VertexNum * MBTList->PosUnitSize ;
 
-										// Ќ‚‘¬ѓAѓNѓZѓX—p’ё“_ѓfЃ[ѓ^‚МѓZѓbѓgѓAѓbѓv
+										// й«йЂџг‚ўг‚Їг‚»г‚№з”Ёй ‚з‚№гѓ‡гѓјг‚їгЃ®г‚»гѓѓгѓ€г‚ўгѓѓгѓ—
 										MV1SetupTriangleListPositionAndNormal( MBTList ) ;
 
-										// ѓgѓDЃ[ѓ“—ЦЉsђь—p’ё“_ѓCѓ“ѓfѓbѓNѓX‚МЌмђ¬
+										// гѓ€г‚ҐгѓјгѓіијЄйѓ­з·љз”Ёй ‚з‚№г‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃ®дЅњж€ђ
 										MV1SetupToonOutLineTriangleList( MBTList ) ;
 									}
 								}
 							}
 						}
 
-						// ѓVѓFѓCѓvѓfЃ[ѓ^‚Є‘ОЏЫ‚Ж‚·‚йѓЃѓbѓVѓ…‚ѕ‚Б‚ЅЏкЌ‡‚НѓVѓFѓCѓvѓЃѓbѓVѓ…‚МЏо•с‚рѓZѓbѓgѓAѓbѓv‚·‚й
+						// г‚·г‚§г‚¤гѓ—гѓ‡гѓјг‚їгЃЊеЇѕи±ЎгЃЁгЃ™г‚‹гѓЎгѓѓг‚·гѓҐгЃ гЃЈгЃџе ґеђ€гЃЇг‚·г‚§г‚¤гѓ—гѓЎгѓѓг‚·гѓҐгЃ®жѓ…е ±г‚’г‚»гѓѓгѓ€г‚ўгѓѓгѓ—гЃ™г‚‹
 						Shape = Frame->ShapeFirst ;
 						MBShape = MBFrame->Shape ;
 						for( j = 0 ; j < Frame->ShapeNum ; j ++, Shape = Shape->Next, MBShape ++ )
 						{
-							// ‘ОЏЫ‚МѓЃѓbѓVѓ…‚Е‚Н–і‚©‚Б‚Ѕ‚з‰Ѕ‚а‚µ‚И‚ў
+							// еЇѕи±ЎгЃ®гѓЎгѓѓг‚·гѓҐгЃ§гЃЇз„ЎгЃ‹гЃЈгЃџг‚‰дЅ•г‚‚гЃ—гЃЄгЃ„
 							if( Shape->TargetMesh != Mesh ) continue ;
 
-							// ѓЃѓbѓVѓ…‚Мђ”‚ѕ‚ЇЊJ‚и•Ф‚µ
+							// гѓЎгѓѓг‚·гѓҐгЃ®ж•°гЃ гЃ‘з№°г‚Љиї”гЃ—
 							MBMesh = MBFrame->Mesh + MeshStartNum ;
 							for( o = 0 ; ( DWORD )o < MeshNowNum ; o ++, MBMesh ++ )
 							{
 								MV1_MESH_VERTEX *TVertex ;
 
-								// ѓAѓhѓЊѓX‚рѓZѓbѓg
+								// г‚ўгѓ‰гѓ¬г‚№г‚’г‚»гѓѓгѓ€
 								MBShapeMesh = MBase->ShapeMesh + MBase->ShapeMeshNum ;
 
 								MBShapeMesh->TargetMesh = MBMesh ;
 								MBShapeMesh->VertexNum = 0 ;
 								MBShapeMesh->Vertex = MBase->ShapeVertex + MBase->ShapeVertexNum ;
 
-								// ѓVѓFѓCѓv‘ОЏЫ‚М’ё“_‚р—с‹“
+								// г‚·г‚§г‚¤гѓ—еЇѕи±ЎгЃ®й ‚з‚№г‚’е€—жЊ™
 								MBShapeVertex = MBShapeMesh->Vertex ;
 								TVertex = MBMesh->Vertex ;
 								for( l = 0 ; l < MBMesh->VertexNum ; l ++, TVertex = ( MV1_MESH_VERTEX * )( ( BYTE * )TVertex + MBMesh->VertUnitSize ) )
@@ -7612,13 +7612,13 @@ extern int MV1LoadModelToReadModel(
 									MBase->ShapeVertexNum ++ ;
 								}
 
-								// ЉЦ‚н‚Б‚Д‚ў‚й’ё“_‚Є€к‚В‚а–і‚©‚Б‚Ѕ‚з‰Ѕ‚а‚µ‚И‚ў
+								// й–ўг‚ЏгЃЈгЃ¦гЃ„г‚‹й ‚з‚№гЃЊдёЂгЃ¤г‚‚з„ЎгЃ‹гЃЈгЃџг‚‰дЅ•г‚‚гЃ—гЃЄгЃ„
 								if( MBShapeMesh->VertexNum == 0 ) continue ;
 
-								// ѓVѓFѓCѓvѓЃѓbѓVѓ…‚Е‚ ‚й€у‚р•t‚Ї‚й
+								// г‚·г‚§г‚¤гѓ—гѓЎгѓѓг‚·гѓҐгЃ§гЃ‚г‚‹еЌ°г‚’д»гЃ‘г‚‹
 								MBMesh->Shape = 1 ;
 
-								// ѓVѓFѓCѓvѓЃѓbѓVѓ…“а‚Мѓgѓ‰ѓCѓAѓ“ѓOѓ‹ѓЉѓXѓg‚М’ё“_ђ”‚р‰БЋZ‚·‚й
+								// г‚·г‚§г‚¤гѓ—гѓЎгѓѓг‚·гѓҐе†…гЃ®гѓ€гѓ©г‚¤г‚ўгѓіг‚°гѓ«гѓЄг‚№гѓ€гЃ®й ‚з‚№ж•°г‚’еЉ з®—гЃ™г‚‹
 								MBTList = MBMesh->TriangleList ;
 								for( l = 0 ; l < MBMesh->TriangleListNum ; l ++, MBTList ++ )
 								{
@@ -7631,7 +7631,7 @@ extern int MV1LoadModelToReadModel(
 									}
 								}
 
-								// ѓVѓFѓCѓvѓЃѓbѓVѓ…‚М’ё“_‚Мђ”‚р‰БЋZ
+								// г‚·г‚§г‚¤гѓ—гѓЎгѓѓг‚·гѓҐгЃ®й ‚з‚№гЃ®ж•°г‚’еЉ з®—
 								MBase->ShapeTargetMeshVertexNum += MBMesh->VertexNum ;
 
 								if( MBShape->MeshNum == 0 )
@@ -7646,14 +7646,14 @@ extern int MV1LoadModelToReadModel(
 					}
 				}
 
-				// ѓ‰ѓCѓg‚Є‘¶ЌЭ‚·‚йЏкЌ‡‚Нѓ‰ѓCѓg‚МЏо•с‚рѓZѓbѓg
+				// гѓ©г‚¤гѓ€гЃЊе­ењЁгЃ™г‚‹е ґеђ€гЃЇгѓ©г‚¤гѓ€гЃ®жѓ…е ±г‚’г‚»гѓѓгѓ€
 				if( Frame->Light )
 				{
 					MBLight = MBase->Light + MBase->LightNum ;
 					MBFrame->Light = MBLight ;
 					MBase->LightNum ++ ;
 
-					// Џо•с‚МѓRѓsЃ[
+					// жѓ…е ±гЃ®г‚ігѓ”гѓј
 					MBLight->Index = Frame->Index ;
 					MBLight->FrameIndex = Frame->Light->FrameIndex ;
 					MBLight->Type = Frame->Light->Type ;
@@ -7668,7 +7668,7 @@ extern int MV1LoadModelToReadModel(
 					MBLight->Theta = Frame->Light->Theta ;
 					MBLight->Phi = Frame->Light->Phi ;
 
-					// –ј‘O‚рѓRѓsЃ[
+					// еђЌе‰Ќг‚’г‚ігѓ”гѓј
 #ifndef UNICODE
 					MBLight->NameA = MV1RGetStringSpace(  MBase, Frame->NameA ) ;
 #endif
@@ -7676,24 +7676,24 @@ extern int MV1LoadModelToReadModel(
 				}
 			}
 
-			// •Ё—ќ‰‰ЋZ‚ЕЋg—p‚·‚йЌ„‘М‚МЏо•с‚рЏ€—ќ‚·‚й
+			// з‰©зђ†жј”з®—гЃ§дЅїз”ЁгЃ™г‚‹е‰›дЅ“гЃ®жѓ…е ±г‚’е‡¦зђ†гЃ™г‚‹
 			PhysicsRigidBody = ReadModel->PhysicsRigidBodyFirst ;
 			for( i = 0 ; i < ReadModel->PhysicsRigidBodyNum ; i ++, PhysicsRigidBody = PhysicsRigidBody->DataNext )
 			{
-				// ѓAѓhѓЊѓX‚рѓZѓbѓg
+				// г‚ўгѓ‰гѓ¬г‚№г‚’г‚»гѓѓгѓ€
 				MBPhysicsRigidBody = MBase->PhysicsRigidBody + MBase->PhysicsRigidBodyNum ;
 				MBase->PhysicsRigidBodyNum ++ ;
 
-				// –ј‘O‚р•Ы‘¶
+				// еђЌе‰Ќг‚’дїќе­
 #ifndef UNICODE
 				MBPhysicsRigidBody->NameA = MV1RGetStringSpace(  MBase, PhysicsRigidBody->NameA ) ;
 #endif
 				MBPhysicsRigidBody->NameW = MV1RGetStringSpaceW( MBase, PhysicsRigidBody->NameW ) ;
 
-				// ѓCѓ“ѓfѓbѓNѓX‚МѓZѓbѓg
+				// г‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃ®г‚»гѓѓгѓ€
 				MBPhysicsRigidBody->Index = PhysicsRigidBody->Index ;
 
-				// ѓpѓ‰ѓЃЃ[ѓ^‚МѓRѓsЃ[
+				// гѓ‘гѓ©гѓЎгѓјг‚їгЃ®г‚ігѓ”гѓј
 				MBPhysicsRigidBody->TargetFrame = &MBase->Frame[ PhysicsRigidBody->TargetFrame->Index ] ;
 				MBPhysicsRigidBody->TargetFrame->PhysicsRigidBody = MBPhysicsRigidBody ;
 				MBPhysicsRigidBody->RigidBodyGroupIndex = PhysicsRigidBody->RigidBodyGroupIndex ;
@@ -7713,24 +7713,24 @@ extern int MV1LoadModelToReadModel(
 				MBPhysicsRigidBody->NoCopyToBone = PhysicsRigidBody->NoCopyToBone ;
 			}
 
-			// •Ё—ќ‰‰ЋZ‚ЕЋg—p‚·‚йѓWѓ‡ѓCѓ“ѓg‚МЏо•с‚рЏ€—ќ‚·‚й
+			// з‰©зђ†жј”з®—гЃ§дЅїз”ЁгЃ™г‚‹г‚ёгѓ§г‚¤гѓігѓ€гЃ®жѓ…е ±г‚’е‡¦зђ†гЃ™г‚‹
 			PhysicsJoint = ReadModel->PhysicsJointFirst ;
 			for( i = 0 ; i < ReadModel->PhysicsJointNum ; i ++, PhysicsJoint = PhysicsJoint->DataNext )
 			{
-				// ѓAѓhѓЊѓX‚рѓZѓbѓg
+				// г‚ўгѓ‰гѓ¬г‚№г‚’г‚»гѓѓгѓ€
 				MBPhysicsJoint = MBase->PhysicsJoint + MBase->PhysicsJointNum ;
 				MBase->PhysicsJointNum ++ ;
 
-				// –ј‘O‚р•Ы‘¶
+				// еђЌе‰Ќг‚’дїќе­
 #ifndef UNICODE
 				MBPhysicsJoint->NameA = MV1RGetStringSpace(  MBase, PhysicsJoint->NameA ) ;
 #endif
 				MBPhysicsJoint->NameW = MV1RGetStringSpaceW( MBase, PhysicsJoint->NameW ) ;
 
-				// ѓCѓ“ѓfѓbѓNѓX‚МѓZѓbѓg
+				// г‚¤гѓігѓ‡гѓѓг‚Їг‚№гЃ®г‚»гѓѓгѓ€
 				MBPhysicsJoint->Index = PhysicsJoint->Index ;
 
-				// ѓpѓ‰ѓЃЃ[ѓ^‚МѓRѓsЃ[
+				// гѓ‘гѓ©гѓЎгѓјг‚їгЃ®г‚ігѓ”гѓј
 				MBPhysicsJoint->RigidBodyA = &MBase->PhysicsRigidBody[ PhysicsJoint->RigidBodyA ] ;
 				MBPhysicsJoint->RigidBodyB = &MBase->PhysicsRigidBody[ PhysicsJoint->RigidBodyB ] ;
 				MBPhysicsJoint->Position = PhysicsJoint->Position ;
@@ -7743,7 +7743,7 @@ extern int MV1LoadModelToReadModel(
 				MBPhysicsJoint->SpringRotation = PhysicsJoint->SpringRotation ;
 			}
 
-			// ЋАЌЫ‚ЙЋg—p‚µ‚ЅѓЃѓ‚ѓЉѓTѓCѓY‚Й‰ћ‚¶‚Д’ё“_ѓfЃ[ѓ^ѓЃѓ‚ѓЉ‚рЉm•Ы‚µ‚И‚Ё‚·
+			// е®џйљ›гЃ«дЅїз”ЁгЃ—гЃџгѓЎгѓўгѓЄг‚µг‚¤г‚єгЃ«еїњгЃгЃ¦й ‚з‚№гѓ‡гѓјг‚їгѓЎгѓўгѓЄг‚’зўєдїќгЃ—гЃЄгЃЉгЃ™
 			if( ReadModel->NormalPositionNum ||
 				ReadModel->SkinPosition4BNum ||
 				ReadModel->SkinPosition8BNum ||
@@ -7790,7 +7790,7 @@ extern int MV1LoadModelToReadModel(
 				if( MBase->VertexData == NULL )
 				{
 					DXFREE( VertexData ) ;
-					DXST_LOGFILE_ADDUTF16LE( "\x52\x00\x65\x00\x61\x00\x64\x00\x20\x00\x4d\x00\x6f\x00\x64\x00\x65\x00\x6c\x00\x20\x00\x43\x00\x6f\x00\x6e\x00\x76\x00\x65\x00\x72\x00\x74\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\x02\x98\xb9\x70\xa7\x5e\x19\x6a\x68\x30\x02\x98\xb9\x70\xd5\x6c\xda\x7d\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Read Model Convert Error : ’ё“_ЌА•W‚Ж’ё“_–@ђь‚рЉi”[‚·‚йѓЃѓ‚ѓЉ—М€ж‚МЉm•Ы‚ЙЋё”s‚µ‚Ь‚µ‚Ѕ\n" @*/ ) ;
+					DXST_LOGFILE_ADDUTF16LE( "\x52\x00\x65\x00\x61\x00\x64\x00\x20\x00\x4d\x00\x6f\x00\x64\x00\x65\x00\x6c\x00\x20\x00\x43\x00\x6f\x00\x6e\x00\x76\x00\x65\x00\x72\x00\x74\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\x02\x98\xb9\x70\xa7\x5e\x19\x6a\x68\x30\x02\x98\xb9\x70\xd5\x6c\xda\x7d\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Read Model Convert Error : й ‚з‚№еє§жЁ™гЃЁй ‚з‚№жі•з·љг‚’ж јзґЌгЃ™г‚‹гѓЎгѓўгѓЄй еџџгЃ®зўєдїќгЃ«е¤±ж•—гЃ—гЃѕгЃ—гЃџ\n" @*/ ) ;
 					goto ERRORLABEL ;
 				}
 				MBase->TriangleListNormalPosition    = ( MV1_TLIST_NORMAL_POS     * )( ( ( DWORD_PTR )MBase->VertexData + 15 ) / 16 * 16 ) ;
@@ -7804,7 +7804,7 @@ extern int MV1LoadModelToReadModel(
 				MBase->MeshVertex                    = ( MV1_MESH_VERTEX          * )( ( BYTE * )MBase->MeshPosition      + MBase->MeshPositionSize      ) ;
 				MBase->ShapeVertex                   = ( MV1_SHAPE_VERTEX_BASE    * )( ( BYTE * )MBase->MeshVertex        + MBase->MeshVertexSize        ) ;
 
-				// ’ё“_ѓfЃ[ѓ^‚рѓRѓsЃ[‚·‚й
+				// й ‚з‚№гѓ‡гѓјг‚їг‚’г‚ігѓ”гѓјгЃ™г‚‹
 				if( MBase->TriangleListNormalPositionNum     ) _MEMCPY( MBase->TriangleListNormalPosition,    NormalPosition,    sizeof( MV1_TLIST_NORMAL_POS )  * MBase->TriangleListNormalPositionNum ) ;
 				else                                           MBase->TriangleListNormalPosition    = NULL ;
 
@@ -7835,7 +7835,7 @@ extern int MV1LoadModelToReadModel(
 				if( MBase->ShapeVertexNum        ) _MEMCPY( MBase->ShapeVertex,       ShapeVertexB,      sizeof( MV1_SHAPE_VERTEX_BASE ) * MBase->ShapeVertexNum ) ;
 				else                               MBase->ShapeVertex       = NULL ;
 
-				// ЉeѓtѓЊЃ[ѓЂ‚МѓЃѓbѓVѓ…‚ЙЉЦ‚·‚йѓ|ѓCѓ“ѓ^‚МѓAѓhѓЊѓX‚р•ПЌX‚·‚й
+				// еђ„гѓ•гѓ¬гѓјгѓ гЃ®гѓЎгѓѓг‚·гѓҐгЃ«й–ўгЃ™г‚‹гѓќг‚¤гѓіг‚їгЃ®г‚ўгѓ‰гѓ¬г‚№г‚’е¤‰ж›ґгЃ™г‚‹
 				MBFrame = MBase->Frame ;
 				for( i = 0 ; i < ( DWORD )MBase->FrameNum ; i ++, MBFrame ++ )
 				{
@@ -7850,7 +7850,7 @@ extern int MV1LoadModelToReadModel(
 					}
 				}
 				
-				// ЉeѓЃѓbѓVѓ…‚М’ё“_ѓfЃ[ѓ^‚МѓAѓhѓЊѓX‚р•ПЌX‚·‚й
+				// еђ„гѓЎгѓѓг‚·гѓҐгЃ®й ‚з‚№гѓ‡гѓјг‚їгЃ®г‚ўгѓ‰гѓ¬г‚№г‚’е¤‰ж›ґгЃ™г‚‹
 				MBMesh = MBase->Mesh ;
 				for( i = 0 ; i < ( DWORD )MBase->MeshNum ; i ++, MBMesh ++ )
 				{
@@ -7865,7 +7865,7 @@ extern int MV1LoadModelToReadModel(
 					}
 				}
 
-				// ЉeѓVѓFѓCѓvѓЃѓbѓVѓ…‚М’ё“_ѓfЃ[ѓ^‚МѓAѓhѓЊѓX‚р•ПЌX‚·‚й
+				// еђ„г‚·г‚§г‚¤гѓ—гѓЎгѓѓг‚·гѓҐгЃ®й ‚з‚№гѓ‡гѓјг‚їгЃ®г‚ўгѓ‰гѓ¬г‚№г‚’е¤‰ж›ґгЃ™г‚‹
 				MBShapeMesh = MBase->ShapeMesh ;
 				for( i = 0 ; i < ( DWORD )MBase->ShapeMeshNum ; i ++, MBShapeMesh ++ )
 				{
@@ -7875,7 +7875,7 @@ extern int MV1LoadModelToReadModel(
 					}
 				}
 
-				// Љeѓgѓ‰ѓCѓAѓ“ѓOѓ‹ѓЉѓXѓg‚Мѓ|ѓCѓ“ѓ^‚МѓAѓhѓЊѓX‚р•ПЌX‚·‚й
+				// еђ„гѓ€гѓ©г‚¤г‚ўгѓіг‚°гѓ«гѓЄг‚№гѓ€гЃ®гѓќг‚¤гѓіг‚їгЃ®г‚ўгѓ‰гѓ¬г‚№г‚’е¤‰ж›ґгЃ™г‚‹
 				MBMesh = MBase->Mesh ;
 				for( i = 0 ; i < ( DWORD )MBase->MeshNum ; i ++, MBMesh ++ )
 				{
@@ -7896,11 +7896,11 @@ extern int MV1LoadModelToReadModel(
 					}
 				}
 
-				// €кЋћ“I‚ЙЋg—p‚µ‚Д‚ў‚Ѕ’ё“_ѓoѓbѓtѓ@‚р‰р•ъ‚·‚й
+				// дёЂж™‚зљ„гЃ«дЅїз”ЁгЃ—гЃ¦гЃ„гЃџй ‚з‚№гѓђгѓѓгѓ•г‚Ўг‚’и§Јж”ѕгЃ™г‚‹
 				DXFREE( VertexData ) ;
 			}
 
-			// ЉeѓtѓЊЃ[ѓЂ‚Мѓ|ѓЉѓSѓ“‚Мђ”‚Ж’ё“_‚Мђ”‚рѓZѓbѓg‚·‚й
+			// еђ„гѓ•гѓ¬гѓјгѓ гЃ®гѓќгѓЄг‚ґгѓігЃ®ж•°гЃЁй ‚з‚№гЃ®ж•°г‚’г‚»гѓѓгѓ€гЃ™г‚‹
 			MBMesh = MBase->Mesh ;
 			for( i = 0 ; i < ( DWORD )MBase->MeshNum ; i ++, MBMesh ++ )
 			{
@@ -7915,7 +7915,7 @@ extern int MV1LoadModelToReadModel(
 				}
 			}
 
-			// Љeѓ{Ѓ[ѓ“‚ЖѓtѓЊЃ[ѓЂ‚МЋg—pЌs—с‚МѓЉѓ“ѓNЏо•с‚рѓZѓbѓg‚·‚й
+			// еђ„гѓњгѓјгѓігЃЁгѓ•гѓ¬гѓјгѓ гЃ®дЅїз”ЁиЎЊе€—гЃ®гѓЄгѓіг‚Їжѓ…е ±г‚’г‚»гѓѓгѓ€гЃ™г‚‹
 			MBSkinW = MBase->SkinBone ;
 			for( i = 0 ; i < ( DWORD )MBase->SkinBoneNum ; i ++, MBSkinW ++ )
 			{
@@ -7926,24 +7926,24 @@ extern int MV1LoadModelToReadModel(
 					for( k = 0 ; k < MBFrame->UseSkinBoneNum && MBFrame->UseSkinBone[ k ] != MBSkinW ; k ++ ){}
 					if( k == MBFrame->UseSkinBoneNum )
 					{
-						// ‚±‚±‚Й‚Н‚±‚И‚ў‚Н‚ё
-						DXST_LOGFILE_ADDUTF16LE( "\xa8\x30\xe9\x30\xfc\x30\x10\xff\x00"/*@ L"ѓGѓ‰Ѓ[‚O" @*/ ) ;
+						// гЃ“гЃ“гЃ«гЃЇгЃ“гЃЄгЃ„гЃЇгЃљ
+						DXST_LOGFILE_ADDUTF16LE( "\xa8\x30\xe9\x30\xfc\x30\x10\xff\x00"/*@ L"г‚Ёгѓ©гѓјпјђ" @*/ ) ;
 						return -1 ;
 					}
 					MBSkinWF->MatrixIndex = k ;
 				}
 			}
 
-			// •ПЌXЏо•сЉЗ—ќ—p‚МѓfЃ[ѓ^ѓTѓCѓY‚р‚P‚U‚М”{ђ”‚Й‚·‚й
+			// е¤‰ж›ґжѓ…е ±з®Ўзђ†з”ЁгЃ®гѓ‡гѓјг‚їг‚µг‚¤г‚єг‚’пј‘пј–гЃ®еЂЌж•°гЃ«гЃ™г‚‹
 			MBase->ChangeDrawMaterialTableSize = ( MBase->ChangeDrawMaterialTableSize + 15 ) / 16 * 16 ;
 			MBase->ChangeMatrixTableSize       = ( MBase->ChangeMatrixTableSize       + 15 ) / 16 * 16 ;
 
-			// ѓXѓLѓjѓ“ѓOѓЃѓbѓVѓ…—p‚Мѓ{Ѓ[ѓ“Џо•с‚рЌЕ“K‰»
+			// г‚№г‚­гѓ‹гѓіг‚°гѓЎгѓѓг‚·гѓҐз”ЁгЃ®гѓњгѓјгѓіжѓ…е ±г‚’жњЂйЃ©еЊ–
 			MV1OptimizeSkinBoneInfo( MBase ) ;
 		}
 	}
 
-	// ”ј“§–ѕ—v‘f‚М‚ ‚йѓ}ѓeѓЉѓAѓ‹‚рЋќ‚ВѓЃѓbѓVѓ…‚рѓoѓbѓNѓJѓЉѓ“ѓO–і‚µ‚Й‚·‚й
+	// еЌЉйЂЏжЋи¦Ѓзґ гЃ®гЃ‚г‚‹гѓћгѓ†гѓЄг‚ўгѓ«г‚’жЊЃгЃ¤гѓЎгѓѓг‚·гѓҐг‚’гѓђгѓѓг‚Їг‚«гѓЄгѓіг‚°з„ЎгЃ—гЃ«гЃ™г‚‹
 	if( ReadModel->TranslateIsBackCulling )
 	{
 		MBMesh = MBase->Mesh ;
@@ -7954,38 +7954,38 @@ extern int MV1LoadModelToReadModel(
 		}
 	}
 
-	// Џ‰ЉъЌs—с‚МѓZѓbѓgѓAѓbѓv
+	// е€ќжњџиЎЊе€—гЃ®г‚»гѓѓгѓ€г‚ўгѓѓгѓ—
 	MV1SetupInitializeMatrixBase( MBase ) ;
 
-	// ѓЃѓbѓVѓ…‚М”ј“§–ѕ‚©‚З‚¤‚©‚МЏо•с‚рѓZѓbѓgѓAѓbѓv‚·‚й
+	// гѓЎгѓѓг‚·гѓҐгЃ®еЌЉйЂЏжЋгЃ‹гЃ©гЃ†гЃ‹гЃ®жѓ…е ±г‚’г‚»гѓѓгѓ€г‚ўгѓѓгѓ—гЃ™г‚‹
 	MV1SetupMeshSemiTransStateBase( MBase ) ;
 
-	// “ЇЋћ•Ўђ”•`‰жЉЦЊW‚МЏо•с‚рѓZѓbѓgѓAѓbѓv‚·‚й
+	// еђЊж™‚и¤‡ж•°жЏЏз”»й–ўдї‚гЃ®жѓ…е ±г‚’г‚»гѓѓгѓ€г‚ўгѓѓгѓ—гЃ™г‚‹
 	if( MBase->UsePackDraw )
 	{
 		MV1SetupPackDrawInfo( MBase ) ;
 	}
 
-	// ѓЃѓ‚ѓЉ‚М‰р•ъ
+	// гѓЎгѓўгѓЄгЃ®и§Јж”ѕ
 	if( VertInfoTable )
 	{
 		DXFREE( VertInfoTable ) ;
 		VertInfoTable = NULL ;
 	}
 
-	// Ћw’и‚Є‚ ‚йЏкЌ‡‚НЌА•W‚МЌЕ“K‰»‚рЌs‚¤
+	// жЊ‡е®љгЃЊгЃ‚г‚‹е ґеђ€гЃЇеє§жЁ™гЃ®жњЂйЃ©еЊ–г‚’иЎЊгЃ†
 	if( GParam->LoadModelToPositionOptimize )
 	{
 		MV1PositionOptimizeBase( NewHandle ) ;
 	}
 
-	// Ћw’и‚Є‚ ‚йЏкЌ‡‚Н–@ђь‚МЌДЊvЋZ‚рЌs‚¤
+	// жЊ‡е®љгЃЊгЃ‚г‚‹е ґеђ€гЃЇжі•з·љгЃ®е†ЌиЁ€з®—г‚’иЎЊгЃ†
 	if( GParam->LoadModelToReMakeNormal )
 	{
 		MV1ReMakeNormalBase( NewHandle, GParam->LoadModelToReMakeNormalSmoothingAngle, ASyncThread ) ;
 	}
 
-	// Ќ‚‘¬Џ€—ќ—p’ё“_ѓfЃ[ѓ^‚МЌ\’z
+	// й«йЂџе‡¦зђ†з”Ёй ‚з‚№гѓ‡гѓјг‚їгЃ®ж§‹зЇ‰
 	MBTList = MBase->TriangleList ;
 	for( i = 0 ; i < ( DWORD )MBase->TriangleListNum ; i ++, MBTList ++ )
 	{
@@ -8000,13 +8000,13 @@ extern int MV1LoadModelToReadModel(
 	}
 #endif // DX_NON_ASYNCLOAD
 
-	// ѓnѓ“ѓhѓ‹‚р•Ф‚·
+	// гѓЏгѓігѓ‰гѓ«г‚’иї”гЃ™
 	return NewHandle ;
 
-	// ѓGѓ‰Ѓ[Џ€—ќ
+	// г‚Ёгѓ©гѓје‡¦зђ†
 ERRORLABEL :
 
-	// ѓnѓ“ѓhѓ‹‚Є—LЊш‚ИЏкЌ‡‚Нѓnѓ“ѓhѓ‹‚МЌнЏњ
+	// гѓЏгѓігѓ‰гѓ«гЃЊжњ‰еЉ№гЃЄе ґеђ€гЃЇгѓЏгѓігѓ‰гѓ«гЃ®е‰Љй™¤
 	if( NewHandle != -1 )
 	{
 #ifndef DX_NON_ASYNCLOAD
@@ -8020,7 +8020,7 @@ ERRORLABEL :
 		NewHandle = -1 ;
 	}
 
-	// ѓЃѓ‚ѓЉ‚М‰р•ъ
+	// гѓЎгѓўгѓЄгЃ®и§Јж”ѕ
 	if( VertInfoTable )
 	{
 		DXFREE( VertInfoTable ) ;

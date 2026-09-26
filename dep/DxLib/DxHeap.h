@@ -1,6 +1,6 @@
 // -------------------------------------------------------------------------------
 // 
-// 		�c�w���C�u����		�q�[�v�֌W�v���O�����w�b�_�t�@�C��
+// 		ＤＸライブラリ		ヒープ関係プログラムヘッダファイル
 // 
 // 				Ver 3.25a
 // 
@@ -9,7 +9,7 @@
 #ifndef DX_HEAP_H
 #define DX_HEAP_H
 
-// �C���N���[�h ------------------------------------------------------------------
+// インクルード ------------------------------------------------------------------
 #include "DxCompileConfig.h"
 #include "DxThread.h"
 
@@ -20,164 +20,164 @@ namespace DxLib
 
 #endif // DX_NON_NAMESPACE
 
-// �}�N����` --------------------------------------------------------------------
+// マクロ定義 --------------------------------------------------------------------
 
 
-#define HEAPMEM_FLAG_AUTOALLOC					(0x0001)			// �����m�ۂ����������̈悩�ǂ���
+#define HEAPMEM_FLAG_AUTOALLOC					(0x0001)			// 自動確保したメモリ領域かどうか
 
-#define ALLOCMEMTAG_MAGIC_ID					(0x4D454D44)		// "DMEM"( �r�b�O�G���f�B�A�����Ƌt�ɂȂ����Ⴄ���ǁE�E�E )
+#define ALLOCMEMTAG_MAGIC_ID					(0x4D454D44)		// "DMEM"( ビッグエンディアンだと逆になっちゃうけど・・・ )
 
-#define ALLOCMEM_MIN_ALIGNED					(16)				// �A���C���̍Œ�l
-#define ALLOCMEM_CATEGORY_2_SHIFT_NUM			(5)					// �J�e�S���[�Q�̐�( 32 )��2�̏搔
+#define ALLOCMEM_MIN_ALIGNED					(16)				// アラインの最低値
+#define ALLOCMEM_CATEGORY_2_SHIFT_NUM			(5)					// カテゴリー２の数( 32 )の2の乗数
 
 #ifdef PLATFORM_64BIT
-#define ALLOCMEMTAG_NAMELENGTH					(18)				// �m�ۃ������̖��O
-#define ALLOCMEM_CATEGORY_1_NUM					(64)				// �J�e�S���[�P�̐�( ������ 0 �` ALLOCMEM_CATEGORY_2_SHIFT_NUM �̃J�e�S���͎g�p���Ȃ�( �ł��Ȃ� ) )
-#define ALLOCMEM_SIZE_TYPE						ULONGLONG			// �m�ۃ������̃T�C�Y�̌^
-#define ALLOCMEMTAG_SIZE						(112)				// ALLOCMEMTAG�\���̂̃T�C�Y
+#define ALLOCMEMTAG_NAMELENGTH					(18)				// 確保メモリの名前
+#define ALLOCMEM_CATEGORY_1_NUM					(64)				// カテゴリー１の数( ただし 0 ～ ALLOCMEM_CATEGORY_2_SHIFT_NUM のカテゴリは使用しない( できない ) )
+#define ALLOCMEM_SIZE_TYPE						ULONGLONG			// 確保メモリのサイズの型
+#define ALLOCMEMTAG_SIZE						(112)				// ALLOCMEMTAG構造体のサイズ
 #else // PLATFORM_64BIT
-#define ALLOCMEMTAG_NAMELENGTH					(18)				// �m�ۃ������̖��O
-#define ALLOCMEM_CATEGORY_1_NUM					(32)				// �J�e�S���[�P�̐�( ������ 0 �` ALLOCMEM_CATEGORY_2_SHIFT_NUM �̃J�e�S���͎g�p���Ȃ�( �ł��Ȃ� ) )
-#define ALLOCMEM_SIZE_TYPE						DWORD				// �m�ۃ������̃T�C�Y�̌^
-#define ALLOCMEMTAG_SIZE						(72)				// ALLOCMEMTAG�\���̂̃T�C�Y
+#define ALLOCMEMTAG_NAMELENGTH					(18)				// 確保メモリの名前
+#define ALLOCMEM_CATEGORY_1_NUM					(32)				// カテゴリー１の数( ただし 0 ～ ALLOCMEM_CATEGORY_2_SHIFT_NUM のカテゴリは使用しない( できない ) )
+#define ALLOCMEM_SIZE_TYPE						DWORD				// 確保メモリのサイズの型
+#define ALLOCMEMTAG_SIZE						(72)				// ALLOCMEMTAG構造体のサイズ
 #endif // PLATFORM_64BIT
 
-#define ALLOCMEMTAG_DEBUGAREA_SIZE				(16)				// �f�o�b�O�p�̒l�Ŗ��߂�̈�̃T�C�Y
+#define ALLOCMEMTAG_DEBUGAREA_SIZE				(16)				// デバッグ用の値で埋める領域のサイズ
 
-// ��̃������m�ۂŕK�v�ȃ^�O�֌W�̃f�[�^�T�C�Y
+// 一つのメモリ確保で必要なタグ関係のデータサイズ
 #define ALLOCMEMTAG_TOTAL_SIZE					( ALLOCMEMTAG_SIZE + ALLOCMEMTAG_DEBUGAREA_SIZE * 2 + sizeof( DWORD ) )
 
-	// �������^�O�����邽�߂ɍŒ���K�v�ȋ󂫃������T�C�Y( �A���C�����l���������� )
+	// メモリタグ一つ入れるために最低限必要な空きメモリサイズ( アラインを考慮したもの )
 #define ALLOCMEMTAG_MIN_SIZE					( ( ALLOCMEMTAG_TOTAL_SIZE + ALLOCMEM_MIN_ALIGNED * 2 + ALLOCMEM_MIN_ALIGNED - 1 ) / ALLOCMEM_MIN_ALIGNED * ALLOCMEM_MIN_ALIGNED )
 
-#define ALLOCMEMTAG_FLAG_LINE_BIT_16			(0x01)				// �s�ԍ���16bit��( WORD �ł� 65535�s�܂ł����\���ł��Ȃ��̂ŁA262143�s�܂ŕ\���ł���悤�ɂ��邽�߂̑Ή� )
-#define ALLOCMEMTAG_FLAG_LINE_BIT_17			(0x02)				// �s�ԍ���17bit��( ���� )
-#define ALLOCMEMTAG_FLAG_USE					(0x04)				// �m�ہE�g�p����Ă��郁�������ǂ���
-#define ALLOCMEMTAG_FLAG_NEXT_CONNECT			(0x08)				// Next �̃������̈�ƃA�h���X���A�����Ă��邩�ǂ���
-#define ALLOCMEMTAG_FLAG_PREV_CONNECT			(0x10)				// Prev �̃������̈�ƃA�h���X���A�����Ă��邩�ǂ���
-#define ALLOCMEMTAG_FLAG_NO_DUMP				(0x20)				// �������_���v�ɏo�͂��Ȃ����ǂ���
+#define ALLOCMEMTAG_FLAG_LINE_BIT_16			(0x01)				// 行番号の16bit目( WORD では 65535行までしか表現できないので、262143行まで表現できるようにするための対応 )
+#define ALLOCMEMTAG_FLAG_LINE_BIT_17			(0x02)				// 行番号の17bit目( 同上 )
+#define ALLOCMEMTAG_FLAG_USE					(0x04)				// 確保・使用されているメモリかどうか
+#define ALLOCMEMTAG_FLAG_NEXT_CONNECT			(0x08)				// Next のメモリ領域とアドレスが連続しているかどうか
+#define ALLOCMEMTAG_FLAG_PREV_CONNECT			(0x10)				// Prev のメモリ領域とアドレスが連続しているかどうか
+#define ALLOCMEMTAG_FLAG_NO_DUMP				(0x20)				// メモリダンプに出力しないかどうか
 
-// �������m�ۏ����^�C�v
-#define ALLOCMEMTYPE_SIMPLE						(0)					// �V���v���Œᑬ�ȃA���S���Y��
+// メモリ確保処理タイプ
+#define ALLOCMEMTYPE_SIMPLE						(0)					// シンプルで低速なアルゴリズム
 #define ALLOCMEMTYPE_TLSF						(1)					// TLSF
 
-// �q�[�v�������m�ۃR�[���o�b�N�֐��Ŏg�p�ł�����̃T�C�Y
+// ヒープメモリ確保コールバック関数で使用できる情報のサイズ
 #define ALLOCHEAP_CALLBACK_INFO_SIZE					(32)
 
-// �\���̒�` --------------------------------------------------------------------
+// 構造体定義 --------------------------------------------------------------------
 
-// �m�ۃ������̃^�O���
-struct ALLOCMEMTAG /* �T�C�Y�� ALLOCMEMTAG_SIZE byte �ɂȂ�悤�ɒ��� */
+// 確保メモリのタグ情報
+struct ALLOCMEMTAG /* サイズは ALLOCMEMTAG_SIZE byte になるように調整 */
 {
 	DWORD					MagicID ;							// DMEM
-	char					Name[ ALLOCMEMTAG_NAMELENGTH ] ;	// �t�@�C���p�X
-	BYTE					Flag ;								// �t���O( ALLOCMEMTAG_FLAG_USE �Ȃ� )
-	BYTE					FLI ;								// �󂫃��������X�g�̃J�e�S���P( �^�C�v�� ALLOCMEMTYPE_TLSF �̍ۂɎg�p����� )
-	BYTE					SLI ;								// �󂫃��������X�g�̃J�e�S���Q( �^�C�v�� ALLOCMEMTYPE_TLSF �̍ۂɎg�p����� )
-	BYTE					IDHigh ;							// ID���8�r�b�g
-	WORD					IDLow ;								// ID����16�r�b�g
-	WORD					Time ;								// ����
-	WORD					Line ;								// �s�ԍ�
-	ALLOCMEM_SIZE_TYPE		Size ;								// ��L���Ă���T�C�Y
-	void *					AllocAddress ;						// �m�ۂ��Ă��郁�����̈�̐擪�A�h���X( Owner->UseSeparateInfo = TRUE �̏ꍇ�̂ݎg�p )
-	void *					UserAddress ;						// AllocMemory �̖߂�l�Ƃ��ĕԂ����A�h���X
-	ALLOCMEM_SIZE_TYPE		UserSize ;							// AllocMemory �Ŏw�肳�ꂽ�T�C�Y
-	ALLOCMEMTAG *			Prev ;								// ��O�̃^�O���ւ̃|�C���^( ��[�̏ꍇ�� NULL )
-	ALLOCMEMTAG *			Next ;								// ���̃^�O���ւ̃|�C���^( �I�[�̏ꍇ�� NULL )
-	ALLOCMEMTAG *			ListPrev ;							// ���X�g�̈�O�̃^�O���ւ̃|�C���^( ��[�̏ꍇ�� NULL )
-	ALLOCMEMTAG *			ListNext ;							// ���X�g�̈��̃^�O���ւ̃|�C���^( �I�[�̏ꍇ�� NULL )
-	struct HEAPINFO *		Owner ;								// �������^�O�������Ă���q�[�v���ւ̃|�C���^
-	struct HEAPMEMINFO *	UseHeapMem ;						// �g�p���Ă��郁�����̈�ւ̃|�C���^
+	char					Name[ ALLOCMEMTAG_NAMELENGTH ] ;	// ファイルパス
+	BYTE					Flag ;								// フラグ( ALLOCMEMTAG_FLAG_USE など )
+	BYTE					FLI ;								// 空きメモリリストのカテゴリ１( タイプが ALLOCMEMTYPE_TLSF の際に使用される )
+	BYTE					SLI ;								// 空きメモリリストのカテゴリ２( タイプが ALLOCMEMTYPE_TLSF の際に使用される )
+	BYTE					IDHigh ;							// ID上位8ビット
+	WORD					IDLow ;								// ID下位16ビット
+	WORD					Time ;								// 時間
+	WORD					Line ;								// 行番号
+	ALLOCMEM_SIZE_TYPE		Size ;								// 占有しているサイズ
+	void *					AllocAddress ;						// 確保しているメモリ領域の先頭アドレス( Owner->UseSeparateInfo = TRUE の場合のみ使用 )
+	void *					UserAddress ;						// AllocMemory の戻り値として返したアドレス
+	ALLOCMEM_SIZE_TYPE		UserSize ;							// AllocMemory で指定されたサイズ
+	ALLOCMEMTAG *			Prev ;								// 一つ前のタグ情報へのポインタ( 先端の場合は NULL )
+	ALLOCMEMTAG *			Next ;								// 一つ先のタグ情報へのポインタ( 終端の場合は NULL )
+	ALLOCMEMTAG *			ListPrev ;							// リストの一つ前のタグ情報へのポインタ( 先端の場合は NULL )
+	ALLOCMEMTAG *			ListNext ;							// リストの一つ先のタグ情報へのポインタ( 終端の場合は NULL )
+	struct HEAPINFO *		Owner ;								// メモリタグが属しているヒープ情報へのポインタ
+	struct HEAPMEMINFO *	UseHeapMem ;						// 使用しているメモリ領域へのポインタ
 } ;
 
-// �q�[�v�p�Ɋm�ۂ��ꂽ�������̏��
+// ヒープ用に確保されたメモリの情報
 struct HEAPMEMINFO
 {
-	void *					Address ;							// �g�p�\�Ƃ��ēn���ꂽ�������̈�̐擪�A�h���X
-	ALLOCMEM_SIZE_TYPE		Size ;								// �g�p�\�Ƃ��ēn���ꂽ�������̃T�C�Y
-	void *					UseAddress ;						// �A���C�����l�������ꍇ�Ɏg�p�ł���擪�A�h���X
-	ALLOCMEM_SIZE_TYPE		UseSize ;							// �A���C�����l�������ꍇ�Ɏg�p�ł��郁�����̃T�C�Y
-	void *					HeapAddress ;						// �q�[�v�p�Ɏg�p�ł��郁�����̐擪�A�h���X
-	ALLOCMEM_SIZE_TYPE		HeapSize ;							// �q�[�v�p�Ɏg�p�ł��郁�����̃T�C�Y
-	ALLOCMEM_SIZE_TYPE		UseMemTagCount ;					// ���̃��������g�p���Ă���g�p�������^�O�̐�
-	ALLOCMEMTAG *			FirstMemTag ;						// ���̃��������g�p���Ă���ŏ��̃������^�O�ւ̃|�C���^
+	void *					Address ;							// 使用可能として渡されたメモリ領域の先頭アドレス
+	ALLOCMEM_SIZE_TYPE		Size ;								// 使用可能として渡されたメモリのサイズ
+	void *					UseAddress ;						// アラインを考慮した場合に使用できる先頭アドレス
+	ALLOCMEM_SIZE_TYPE		UseSize ;							// アラインを考慮した場合に使用できるメモリのサイズ
+	void *					HeapAddress ;						// ヒープ用に使用できるメモリの先頭アドレス
+	ALLOCMEM_SIZE_TYPE		HeapSize ;							// ヒープ用に使用できるメモリのサイズ
+	ALLOCMEM_SIZE_TYPE		UseMemTagCount ;					// このメモリを使用している使用メモリタグの数
+	ALLOCMEMTAG *			FirstMemTag ;						// このメモリを使用している最初のメモリタグへのポインタ
 
-	HEAPMEMINFO *			Prev ;								// ��O�̃q�[�v�p�Ɋm�ۂ��ꂽ�������̏��ւ̃|�C���^( ��[�̏ꍇ�� NULL )
-	HEAPMEMINFO *			Next ;								// ���̃q�[�v�p�Ɋm�ۂ��ꂽ�������̏��ւ̃|�C���^( �I�[�̏ꍇ�� NULL )
+	HEAPMEMINFO *			Prev ;								// 一つ前のヒープ用に確保されたメモリの情報へのポインタ( 先端の場合は NULL )
+	HEAPMEMINFO *			Next ;								// 一つ先のヒープ用に確保されたメモリの情報へのポインタ( 終端の場合は NULL )
 
-	DWORD					Flag ;								// �t���O( HEAPMEM_FLAG_AUTOALLOC �Ȃ� )
+	DWORD					Flag ;								// フラグ( HEAPMEM_FLAG_AUTOALLOC など )
 
-	BYTE					CallbackBuffer[ ALLOCHEAP_CALLBACK_INFO_SIZE ] ;	// �R�[���o�b�N�֐����Ŏ��R�Ɏg�p�ł���o�b�t�@
+	BYTE					CallbackBuffer[ ALLOCHEAP_CALLBACK_INFO_SIZE ] ;	// コールバック関数内で自由に使用できるバッファ
 } ;
 
-// �q�[�v���
+// ヒープ情報
 struct HEAPINFO
 {
-	int						AutoAlloc ;							// �q�[�v�p�̃������̈�������Ŋm�ۂ��邩�ǂ���( TRUE:�����Ŋm�ۂ���  FALSE:�����ł͊m�ۂ��Ȃ� )
-	ALLOCMEM_SIZE_TYPE		AutoAllocUnitSize ;					// �q�[�v�p�̃������̈�������Ŋm�ۂ���ꍇ�́A��x�Ɋm�ۂ���q�[�v�̈�̃T�C�Y
-	int						AutoAlloc_CallbackParam ;			// InitializeHeap �̈��� AutoAlloc_CallbackParam �̒l
-	int					 ( *AutoAlloc_CreateHeapCallback     )( int Param, void *Buffer, ALLOCMEM_SIZE_TYPE Size ) ;	// �q�[�v�p�̃������̈�������Ŋm�ۂ��邽�߂̃R�[���o�b�N�֐�
-	void *				 ( *AutoAlloc_GetHeapAddressCallback )( int Param, void *Buffer ) ;	// �q�[�v�p�̃������̈�������Ŋm�ۂ����ꍇ�́A�������A�h���X���擾���邽�߂̊֐�
-	ALLOCMEM_SIZE_TYPE	 ( *AutoAlloc_GetHeapSizeCallback    )( int Param, void *Buffer ) ;	// �q�[�v�p�̃������̈�������Ŋm�ۂ����ꍇ�́A�������T�C�Y���擾���邽�߂̊֐�
-	int					 ( *AutoAlloc_DeleteHeapCallback     )( int Param, void *Buffer ) ;	// �q�[�v�p�̃������̈�������Ŋm�ۂ����ꍇ�́A�������̈���J�����邽�߂̊֐�
+	int						AutoAlloc ;							// ヒープ用のメモリ領域を自動で確保するかどうか( TRUE:自動で確保する  FALSE:自動では確保しない )
+	ALLOCMEM_SIZE_TYPE		AutoAllocUnitSize ;					// ヒープ用のメモリ領域を自動で確保する場合の、一度に確保するヒープ領域のサイズ
+	int						AutoAlloc_CallbackParam ;			// InitializeHeap の引数 AutoAlloc_CallbackParam の値
+	int					 ( *AutoAlloc_CreateHeapCallback     )( int Param, void *Buffer, ALLOCMEM_SIZE_TYPE Size ) ;	// ヒープ用のメモリ領域を自動で確保するためのコールバック関数
+	void *				 ( *AutoAlloc_GetHeapAddressCallback )( int Param, void *Buffer ) ;	// ヒープ用のメモリ領域を自動で確保した場合の、メモリアドレスを取得するための関数
+	ALLOCMEM_SIZE_TYPE	 ( *AutoAlloc_GetHeapSizeCallback    )( int Param, void *Buffer ) ;	// ヒープ用のメモリ領域を自動で確保した場合の、メモリサイズを取得するための関数
+	int					 ( *AutoAlloc_DeleteHeapCallback     )( int Param, void *Buffer ) ;	// ヒープ用のメモリ領域を自動で確保した場合の、メモリ領域を開放するための関数
 
-	int						AllocType ;							// �������m�ۏ����^�C�v( ALLOCMEMTYPE_SIMPLE �� )
-	ALLOCMEM_SIZE_TYPE		Aligned ;							// �Ԃ��������A�h���X�̃A���C��
+	int						AllocType ;							// メモリ確保処理タイプ( ALLOCMEMTYPE_SIMPLE 等 )
+	ALLOCMEM_SIZE_TYPE		Aligned ;							// 返すメモリアドレスのアライン
 
-	DWORD					AllocMemoryID ;						// �m�ۂ����������Ɋ��蓖�Ă�h�c
-	DWORD					AllocMemoryTime ;					// �m�ۂ����������ɐݒ肷�鎞��
+	DWORD					AllocMemoryID ;						// 確保したメモリに割り当てるＩＤ
+	DWORD					AllocMemoryTime ;					// 確保したメモリに設定する時間
 
-	int						UseSeparateInfo ;					// �������^�O��q�[�v�������̏����q�[�v�ȊO�̗̈�Ɋm�ۂ����z����g�p���邩�ǂ���( TRUE:�g�p����  FALSE:�g�p���Ȃ� )
-	int						SepTagArrayLength ;					// �������^�O���q�[�v�ȊO�̗̈�Ɋm�ۂ����������^�O�z��̒���
-	int						SepTagArrayUseNum ;					// �������^�O���q�[�v�ȊO�̗̈�Ɋm�ۂ����������^�O�z��̓��̎g�p���Ă��鐔
-	ALLOCMEMTAG *			SepTagArray ;						// �������^�O���q�[�v�ȊO�̗̈�Ɋm�ۂ����������^�O�z��ւ̃|�C���^
-	ALLOCMEMTAG *			SepTagArrayNotUseFirst ;			// �������^�O���q�[�v�ȊO�̗̈�Ɋm�ۂ����������^�O�z��̂܂����g�p�̃������^�O�̃��X�g�̐擪�v�f�ւ̃|�C���^
-	int						SepHeapMemArrayLength ;				// �q�[�v�p�Ɋm�ۂ��ꂽ�������̏����q�[�v�ȊO�̗̈�Ɋm�ۂ������z��̒���
-	int						SepHeapMemArrayUseNum ;				// �q�[�v�p�Ɋm�ۂ��ꂽ�������̏����q�[�v�ȊO�̗̈�Ɋm�ۂ������z��̓��̎g�p���Ă��鐔
-	HEAPMEMINFO *			SepHeapMemArray ;					// �q�[�v�p�Ɋm�ۂ��ꂽ�������̏����q�[�v�ȊO�̗̈�Ɋm�ۂ������z��ւ̃|�C���^
-	HEAPMEMINFO *			SepHeapMemArrayNotUseFirst ;		// �q�[�v�p�Ɋm�ۂ��ꂽ�������̏����q�[�v�ȊO�̗̈�Ɋm�ۂ������z��̂܂����g�p�̏��̃��X�g�̐擪�v�f�ւ̃|�C���^
+	int						UseSeparateInfo ;					// メモリタグやヒープメモリの情報をヒープ以外の領域に確保した配列を使用するかどうか( TRUE:使用する  FALSE:使用しない )
+	int						SepTagArrayLength ;					// メモリタグをヒープ以外の領域に確保したメモリタグ配列の長さ
+	int						SepTagArrayUseNum ;					// メモリタグをヒープ以外の領域に確保したメモリタグ配列の内の使用している数
+	ALLOCMEMTAG *			SepTagArray ;						// メモリタグをヒープ以外の領域に確保したメモリタグ配列へのポインタ
+	ALLOCMEMTAG *			SepTagArrayNotUseFirst ;			// メモリタグをヒープ以外の領域に確保したメモリタグ配列のまだ未使用のメモリタグのリストの先頭要素へのポインタ
+	int						SepHeapMemArrayLength ;				// ヒープ用に確保されたメモリの情報をヒープ以外の領域に確保した情報配列の長さ
+	int						SepHeapMemArrayUseNum ;				// ヒープ用に確保されたメモリの情報をヒープ以外の領域に確保した情報配列の内の使用している数
+	HEAPMEMINFO *			SepHeapMemArray ;					// ヒープ用に確保されたメモリの情報をヒープ以外の領域に確保した情報配列へのポインタ
+	HEAPMEMINFO *			SepHeapMemArrayNotUseFirst ;		// ヒープ用に確保されたメモリの情報をヒープ以外の領域に確保した情報配列のまだ未使用の情報のリストの先頭要素へのポインタ
 
-	HEAPMEMINFO *			FirstHeapMem ;						// �q�[�v�p�Ɋm�ۂ��ꂽ�������̏��̃��X�g�̍ŏ��̏��ւ̃|�C���^
+	HEAPMEMINFO *			FirstHeapMem ;						// ヒープ用に確保されたメモリの情報のリストの最初の情報へのポインタ
 
-	int						FreeTagNum ;						// �󂫃������^�O�̐�
-	ALLOCMEM_SIZE_TYPE		TotalFreeSize ;						// �󂫃������̍��v�T�C�Y
+	int						FreeTagNum ;						// 空きメモリタグの数
+	ALLOCMEM_SIZE_TYPE		TotalFreeSize ;						// 空きメモリの合計サイズ
 
-	ALLOCMEMTAG *			FirstTag ;							// �ŏ��̃^�O�ւ̃|�C���^
-	ALLOCMEMTAG *			LastTag ;							// �Ō�̃^�O�ւ̃|�C���^
+	ALLOCMEMTAG *			FirstTag ;							// 最初のタグへのポインタ
+	ALLOCMEMTAG *			LastTag ;							// 最後のタグへのポインタ
 
-	int						UseTagNum ;							// �g�p����Ă��郁�����̐�
-	ALLOCMEM_SIZE_TYPE		TotalUseSize ;						// �g�p����Ă��郁�����̍��v�T�C�Y
-	ALLOCMEMTAG *			UseFirstTag ;						// �g�p�������̍ŏ��̃^�O�ւ̃|�C���^
-	ALLOCMEMTAG *			UseLastTag ;						// �g�p�������̍Ō�̃^�O�ւ̃|�C���^
+	int						UseTagNum ;							// 使用されているメモリの数
+	ALLOCMEM_SIZE_TYPE		TotalUseSize ;						// 使用されているメモリの合計サイズ
+	ALLOCMEMTAG *			UseFirstTag ;						// 使用メモリの最初のタグへのポインタ
+	ALLOCMEMTAG *			UseLastTag ;						// 使用メモリの最後のタグへのポインタ
 
 
 #if defined( DX_THREAD_SAFE ) || defined( DX_THREAD_SAFE_NETWORK_ONLY )
-	DX_CRITICAL_SECTION		MemoryAllocCriticalSection ;		// �������m�ۏ����p�N���e�B�J���Z�N�V����
+	DX_CRITICAL_SECTION		MemoryAllocCriticalSection ;		// メモリ確保処理用クリティカルセクション
 #endif
 
-	// ALLOCMEMTYPE_TLSF �^�C�v�ł̂ݎg�p
+	// ALLOCMEMTYPE_TLSF タイプでのみ使用
 #ifdef PLATFORM_64BIT
-	ULONGLONG				FreeTagBitList1 ;					// �J�e�S���P�̋󂫃�����������J�e�S���̃r�b�g���X�g
+	ULONGLONG				FreeTagBitList1 ;					// カテゴリ１の空きメモリがあるカテゴリのビットリスト
 #else // PLATFORM_64BIT
-	DWORD					FreeTagBitList1 ;					// �J�e�S���P�̋󂫃�����������J�e�S���̃r�b�g���X�g
+	DWORD					FreeTagBitList1 ;					// カテゴリ１の空きメモリがあるカテゴリのビットリスト
 #endif // PLATFORM_64BIT
-	DWORD					FreeTagBitList2[ ALLOCMEM_CATEGORY_1_NUM ] ;												// �e�J�e�S���P�̋󂫃�����������J�e�S���Q�̃r�b�g���X�g
-	ALLOCMEMTAG *			FreeFirstTagArray[ ALLOCMEM_CATEGORY_1_NUM ][ 1 << ALLOCMEM_CATEGORY_2_SHIFT_NUM ] ;		// �e�J�e�S���̋󂫃������ŏ��̃^�O�ւ̃|�C���^
-	ALLOCMEMTAG *			FreeLastTagArray[  ALLOCMEM_CATEGORY_1_NUM ][ 1 << ALLOCMEM_CATEGORY_2_SHIFT_NUM ] ;		// �e�J�e�S���̋󂫃������Ō�̃^�O�ւ̃|�C���^
+	DWORD					FreeTagBitList2[ ALLOCMEM_CATEGORY_1_NUM ] ;												// 各カテゴリ１の空きメモリがあるカテゴリ２のビットリスト
+	ALLOCMEMTAG *			FreeFirstTagArray[ ALLOCMEM_CATEGORY_1_NUM ][ 1 << ALLOCMEM_CATEGORY_2_SHIFT_NUM ] ;		// 各カテゴリの空きメモリ最初のタグへのポインタ
+	ALLOCMEMTAG *			FreeLastTagArray[  ALLOCMEM_CATEGORY_1_NUM ][ 1 << ALLOCMEM_CATEGORY_2_SHIFT_NUM ] ;		// 各カテゴリの空きメモリ最後のタグへのポインタ
 
 
-	// ALLOCMEMTYPE_SIMPLE �^�C�v�ł̂ݎg�p
-	ALLOCMEMTAG *			FreeFirstTag ;						// �󂫃������̍ŏ��̃^�O�ւ̃|�C���^
-	ALLOCMEMTAG *			FreeLastTag ;						// �󂫃������̍Ō�̃^�O�ւ̃|�C���^
+	// ALLOCMEMTYPE_SIMPLE タイプでのみ使用
+	ALLOCMEMTAG *			FreeFirstTag ;						// 空きメモリの最初のタグへのポインタ
+	ALLOCMEMTAG *			FreeLastTag ;						// 空きメモリの最後のタグへのポインタ
 } ;
 
-// �e�[�u��-----------------------------------------------------------------------
+// テーブル-----------------------------------------------------------------------
 
-// �������ϐ��錾 --------------------------------------------------------------
+// 内部大域変数宣言 --------------------------------------------------------------
 
-// �֐��v���g�^�C�v�錾-----------------------------------------------------------
+// 関数プロトタイプ宣言-----------------------------------------------------------
 
-// �q�[�v������������
+// ヒープを初期化する
 extern	int			InitializeHeap(
 						HEAPINFO *				Heap,
 						int						AllocType				= ALLOCMEMTYPE_SIMPLE,
@@ -197,12 +197,12 @@ extern	int			InitializeHeap(
 						int						SepHeapMemArrayLength	= 0,
 						HEAPMEMINFO *			SepHeapMemArray			= NULL
 					) ;
-extern	int			TerminateHeap( HEAPINFO *Heap ) ;				// �q�[�v�̌�n�����s��
-extern	int			AddHeapMemory( HEAPINFO *Heap, void *HeapAddress, ALLOCMEM_SIZE_TYPE HeapSize ) ;	// �q�[�v�Ƃ��Ĉ�����������ǉ�����
-extern	int			SubHeapMemory( HEAPINFO *Heap, void *HeapAddress ) ;								// �q�[�v�Ƃ��Ĉ��������������炷
-extern	ALLOCMEM_SIZE_TYPE	GetHeapTotalMemorySize( HEAPINFO *Heap ) ;	// �q�[�v���g�p���Ă��郁�����̑��T�C�Y���擾����
+extern	int			TerminateHeap( HEAPINFO *Heap ) ;				// ヒープの後始末を行う
+extern	int			AddHeapMemory( HEAPINFO *Heap, void *HeapAddress, ALLOCMEM_SIZE_TYPE HeapSize ) ;	// ヒープとして扱うメモリを追加する
+extern	int			SubHeapMemory( HEAPINFO *Heap, void *HeapAddress ) ;								// ヒープとして扱うメモリを減らす
+extern	ALLOCMEM_SIZE_TYPE	GetHeapTotalMemorySize( HEAPINFO *Heap ) ;	// ヒープが使用しているメモリの総サイズを取得する
 
-// �q�[�v���烁�������m�ۂ���( UseSeparateInfo=TRUE �̏ꍇ�́A�߂��Ă���̂� ALLOCMEMTAG �\���̂̃A�h���X )
+// ヒープからメモリを確保する( UseSeparateInfo=TRUE の場合は、戻ってくるのは ALLOCMEMTAG 構造体のアドレス )
 extern	void *		AllocMemory(
 						HEAPINFO *			Heap,
 						ALLOCMEM_SIZE_TYPE	Size,
@@ -212,7 +212,7 @@ extern	void *		AllocMemory(
 						int					Line			= 0,
 						int					NoMemoryDump	= FALSE
 					) ;
-// �m�ۂ����������̃T�C�Y��ύX����( UseSeparateInfo=TRUE �̏ꍇ�́AAllocAddress �� ALLOCMEMTAG �\���̂̃A�h���X��n�� )
+// 確保したメモリのサイズを変更する( UseSeparateInfo=TRUE の場合は、AllocAddress に ALLOCMEMTAG 構造体のアドレスを渡す )
 extern	void *		ReallocMemory(
 						void *				AllocAddress,
 						int					UseSeparateInfo	= FALSE,
@@ -221,15 +221,15 @@ extern	void *		ReallocMemory(
 						const char *		Name			= NULL,
 						int					Line			= 0
 					) ;
-extern	int			FreeMemory(            void *AllocAddress, int UseSeparateInfo = FALSE ) ;	// �q�[�v����m�ۂ������������J������( UseSeparateInfo = TRUE �̏ꍇ�́AAllocAddress �� ALLOCMEMTAG �\���̂̃A�h���X��n�� )
-extern	void *		GetAllocMemoryAddress( void *AllocAddress, int UseSeparateInfo = FALSE ) ;	// �q�[�v����m�ۂ����������̈�̃A�h���X���擾����( UseSeparateInfo = TRUE �̏ꍇ�́AAllocAddress �� ALLOCMEMTAG �\���̂̃A�h���X��n�� )
-extern	ALLOCMEM_SIZE_TYPE	GetAllocSize(  void *AllocAddress, int UseSeparateInfo = FALSE ) ;	// �q�[�v����m�ۂ����������̃T�C�Y���擾����( UseSeparateInfo = TRUE �̏ꍇ�́AAllocAddress �� ALLOCMEMTAG �\���̂̃A�h���X��n�� )
-extern	ALLOCMEMTAG * GetAllocMemTag(      void *AllocAddress, int UseSeparateInfo = FALSE ) ;	// �q�[�v����m�ۂ����������� ALLOCMEMTAG�\���̂��擾����( UseSeparateInfo = TRUE �̏ꍇ�́AAllocAddress �� ALLOCMEMTAG �\���̂̃A�h���X��n�� )
-extern	void		PrintInfoMemory(       void *AllocAddress, int UseSeparateInfo = FALSE ) ;	// �q�[�v����m�ۂ����������̏������O�ɏo�͂���( UseSeparateInfo = TRUE �̏ꍇ�́AAllocAddress �� ALLOCMEMTAG �\���̂̃A�h���X��n�� )
-extern	int			HeapInfoDump(      HEAPINFO *Heap ) ;										// �q�[�v�̏������O�ɏo�͂���
-extern	int			SetHeapTime(       HEAPINFO *Heap, WORD Time ) ;							// �q�[�v����m�ۂ����������ɐݒ肷�鎞�Ԃ�ύX����
-extern	int			HeapErrorCheck(    HEAPINFO *Heap ) ;										// �q�[�v�̓��e�ɃG���[���Ȃ����`�F�b�N����
-extern	int			HeapDrawAllocInfo( HEAPINFO *Heap, int x, int y, int Width, int Height ) ;	// �q�[�v�̊m�ۏ󋵂�`�悷��
+extern	int			FreeMemory(            void *AllocAddress, int UseSeparateInfo = FALSE ) ;	// ヒープから確保したメモリを開放する( UseSeparateInfo = TRUE の場合は、AllocAddress に ALLOCMEMTAG 構造体のアドレスを渡す )
+extern	void *		GetAllocMemoryAddress( void *AllocAddress, int UseSeparateInfo = FALSE ) ;	// ヒープから確保したメモリ領域のアドレスを取得する( UseSeparateInfo = TRUE の場合は、AllocAddress に ALLOCMEMTAG 構造体のアドレスを渡す )
+extern	ALLOCMEM_SIZE_TYPE	GetAllocSize(  void *AllocAddress, int UseSeparateInfo = FALSE ) ;	// ヒープから確保したメモリのサイズを取得する( UseSeparateInfo = TRUE の場合は、AllocAddress に ALLOCMEMTAG 構造体のアドレスを渡す )
+extern	ALLOCMEMTAG * GetAllocMemTag(      void *AllocAddress, int UseSeparateInfo = FALSE ) ;	// ヒープから確保したメモリの ALLOCMEMTAG構造体を取得する( UseSeparateInfo = TRUE の場合は、AllocAddress に ALLOCMEMTAG 構造体のアドレスを渡す )
+extern	void		PrintInfoMemory(       void *AllocAddress, int UseSeparateInfo = FALSE ) ;	// ヒープから確保したメモリの情報をログに出力する( UseSeparateInfo = TRUE の場合は、AllocAddress に ALLOCMEMTAG 構造体のアドレスを渡す )
+extern	int			HeapInfoDump(      HEAPINFO *Heap ) ;										// ヒープの情報をログに出力する
+extern	int			SetHeapTime(       HEAPINFO *Heap, WORD Time ) ;							// ヒープから確保したメモリに設定する時間を変更する
+extern	int			HeapErrorCheck(    HEAPINFO *Heap ) ;										// ヒープの内容にエラーがないかチェックする
+extern	int			HeapDrawAllocInfo( HEAPINFO *Heap, int x, int y, int Width, int Height ) ;	// ヒープの確保状況を描画する
 
 
 

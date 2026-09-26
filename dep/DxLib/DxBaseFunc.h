@@ -1,6 +1,6 @@
 // -------------------------------------------------------------------------------
 // 
-// 		‚c‚wƒ‰ƒCƒuƒ‰ƒŠ		•W€ŠÖ”‚ÌŒİŠ·ŠÖ”ƒvƒƒOƒ‰ƒ€ƒwƒbƒ_ƒtƒ@ƒCƒ‹
+// 		ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒª		æ¨™æº–é–¢æ•°ã®äº’æ›é–¢æ•°ãƒ—ãƒ­ã‚°ãƒ©ãƒ ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«
 // 
 // 				Ver 3.25a
 // 
@@ -9,7 +9,7 @@
 #ifndef DXBASEFUNC_H
 #define DXBASEFUNC_H
 
-// ƒCƒ“ƒNƒ‹[ƒh ------------------------------------------------------------------
+// ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ ------------------------------------------------------------------
 #include "DxCompileConfig.h"
 #include "DxChar.h"
 #include <stdarg.h>
@@ -40,7 +40,7 @@ namespace DxLib
 
 #endif // DX_NON_NAMESPACE
 
-// ƒ}ƒNƒ’è‹` --------------------------------------------------------------------
+// ãƒã‚¯ãƒ­å®šç¾© --------------------------------------------------------------------
 
 #ifndef _SINCOS_PLATFORM
 	#define _SINCOS_PLATFORM						_SINCOS
@@ -479,29 +479,29 @@ namespace DxLib
 #define READ_MEM_DOUBLE( dst_ptr, src_ptr )		READ_MEM_8BYTE( dst_ptr, src_ptr )
 
 
-#define SINTABLE_DIV						(65536)				// ƒTƒCƒ“ƒe[ƒuƒ‹‚Ì¸“x
+#define SINTABLE_DIV						(65536)				// ã‚µã‚¤ãƒ³ãƒ†ãƒ¼ãƒ–ãƒ«ã®ç²¾åº¦
 
-// \‘¢‘Ì’è‹` --------------------------------------------------------------------
+// æ§‹é€ ä½“å®šç¾© --------------------------------------------------------------------
 
-// •W€ŠÖ”‚ÌŒİŠ·ŠÖ”‚Åg—p‚·‚éî•ñ
+// æ¨™æº–é–¢æ•°ã®äº’æ›é–¢æ•°ã§ä½¿ç”¨ã™ã‚‹æƒ…å ±
 struct BASEFUNCSYSTEM
 {
-	int					UseCharSet ;							// g—p‚·‚é•¶š—ñƒZƒbƒg
-	int					Use_char_CharCodeFormat ;				// char ‚Åg—p‚·‚é•¶šƒR[ƒhŒ`®
-	int					Use_wchar_t_CharCodeFormat ;			// wchar_t g—p‚·‚é•¶šƒR[ƒhŒ`®
+	int					UseCharSet ;							// ä½¿ç”¨ã™ã‚‹æ–‡å­—åˆ—ã‚»ãƒƒãƒˆ
+	int					Use_char_CharCodeFormat ;				// char ã§ä½¿ç”¨ã™ã‚‹æ–‡å­—ã‚³ãƒ¼ãƒ‰å½¢å¼
+	int					Use_wchar_t_CharCodeFormat ;			// wchar_t ä½¿ç”¨ã™ã‚‹æ–‡å­—ã‚³ãƒ¼ãƒ‰å½¢å¼
 
-	float				SinTable[ SINTABLE_DIV ] ;				// ƒTƒCƒ“ƒe[ƒuƒ‹
+	float				SinTable[ SINTABLE_DIV ] ;				// ã‚µã‚¤ãƒ³ãƒ†ãƒ¼ãƒ–ãƒ«
 } ;
 
-// ƒe[ƒuƒ‹-----------------------------------------------------------------------
+// ãƒ†ãƒ¼ãƒ–ãƒ«-----------------------------------------------------------------------
 
-// “à•”‘åˆæ•Ï”éŒ¾ --------------------------------------------------------------
+// å†…éƒ¨å¤§åŸŸå¤‰æ•°å®£è¨€ --------------------------------------------------------------
 
 extern BASEFUNCSYSTEM g_BaseFuncSystem ;
 
-// ŠÖ”ƒvƒƒgƒ^ƒCƒvéŒ¾-----------------------------------------------------------
+// é–¢æ•°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€-----------------------------------------------------------
 
-// TCHAR—p’è‹`
+// TCHARç”¨å®šç¾©
 #ifdef UNICODE
 	#define _TISWCHAR								(TRUE)
 	#define _TSTRCAT								_WCSCAT
@@ -573,7 +573,7 @@ extern	void			_SET_WCHAR_T_CHARCODEFORMAT( int CharCodeFormat ) ;
 extern	int				_GET_WCHAR_T_CHARCODEFORMAT( void ) ;
 
 
-// ©‘O•W€ŠÖ”Œn
+// è‡ªå‰æ¨™æº–é–¢æ•°ç³»
 extern	void			_STRCPY(    char    *Dest,                     const char    *Src ) ;
 extern	void			_WCSCPY(    wchar_t *Dest,                     const wchar_t *Src ) ;
 extern	void			_STRCPY_S(  char    *Dest, size_t BufferBytes, const char    *Src ) ;
@@ -604,8 +604,8 @@ extern	char *			_STRUPR(    char    *Str ) ;
 extern	wchar_t *		_WCSUPR(    wchar_t *Str ) ;
 extern	int				_VSPRINTF(   char    *Buffer,                    const char    *FormatString, va_list Arg ) ;
 extern	int				_VSNPRINTF(  char    *Buffer, size_t BufferSize, const char    *FormatString, va_list Arg ) ;
-extern	int				_VSWPRINTF(  wchar_t *Buffer,                    const wchar_t *FormatString, va_list Arg ) ; // À‘Ì‚Í DxUseCLib.cpp ‚Ì’†
-extern	int				_VSWNPRINTF( wchar_t *Buffer, size_t BufferSize, const wchar_t *FormatString, va_list Arg ) ; // À‘Ì‚Í DxUseCLib.cpp ‚Ì’†
+extern	int				_VSWPRINTF(  wchar_t *Buffer,                    const wchar_t *FormatString, va_list Arg ) ; // å®Ÿä½“ã¯ DxUseCLib.cpp ã®ä¸­
+extern	int				_VSWNPRINTF( wchar_t *Buffer, size_t BufferSize, const wchar_t *FormatString, va_list Arg ) ; // å®Ÿä½“ã¯ DxUseCLib.cpp ã®ä¸­
 extern	int				_SPRINTF(    char    *Buffer,                    const char    *FormatString, ... ) ;
 extern	int				_SNPRINTF(   char    *Buffer, size_t BufferSize, const char    *FormatString, ... ) ;
 extern	int				_SWPRINTF(   wchar_t *Buffer,                    const wchar_t *FormatString, ... ) ;
@@ -752,10 +752,10 @@ __inline int _FTOL( float Real )
 #endif
 }
 
-// va_list ŠÖ”
-extern int sprintfDx_VaList(  TCHAR *Buffer,                    const TCHAR *FormatString, va_list VaList ) ;	// sprintf ‚Æ“¯“™‚Ì‹@”\( ƒ}ƒ‹ƒ`ƒoƒCƒg•¶š—ñ”Å‚Å‚Í•¶šƒR[ƒhŒ`®‚Æ‚µ‚Ä SetUseCharCodeFormat ‚Åİ’è‚µ‚½Œ`®‚ªg—p‚³‚ê‚Ü‚· )
-extern int snprintfDx_VaList( TCHAR *Buffer, size_t BufferSize, const TCHAR *FormatString, va_list VaList ) ;	// snprintf ‚Æ“¯“™‚Ì‹@”\( ƒ}ƒ‹ƒ`ƒoƒCƒg•¶š—ñ”Å‚Å‚Í•¶šƒR[ƒhŒ`®‚Æ‚µ‚Ä SetUseCharCodeFormat ‚Åİ’è‚µ‚½Œ`®‚ªg—p‚³‚ê‚Ü‚· )
-extern int sscanfDx_VaList(   const TCHAR *String, const TCHAR *FormatString, va_list VaList ) ;				// sscanf ‚Æ“¯“™‚Ì‹@”\( ƒ}ƒ‹ƒ`ƒoƒCƒg•¶š—ñ”Å‚Å‚Í•¶šƒR[ƒhŒ`®‚Æ‚µ‚Ä SetUseCharCodeFormat ‚Åİ’è‚µ‚½Œ`®‚ªg—p‚³‚ê‚Ü‚· )
+// va_list é–¢æ•°
+extern int sprintfDx_VaList(  TCHAR *Buffer,                    const TCHAR *FormatString, va_list VaList ) ;	// sprintf ã¨åŒç­‰ã®æ©Ÿèƒ½( ãƒãƒ«ãƒãƒã‚¤ãƒˆæ–‡å­—åˆ—ç‰ˆã§ã¯æ–‡å­—ã‚³ãƒ¼ãƒ‰å½¢å¼ã¨ã—ã¦ SetUseCharCodeFormat ã§è¨­å®šã—ãŸå½¢å¼ãŒä½¿ç”¨ã•ã‚Œã¾ã™ )
+extern int snprintfDx_VaList( TCHAR *Buffer, size_t BufferSize, const TCHAR *FormatString, va_list VaList ) ;	// snprintf ã¨åŒç­‰ã®æ©Ÿèƒ½( ãƒãƒ«ãƒãƒã‚¤ãƒˆæ–‡å­—åˆ—ç‰ˆã§ã¯æ–‡å­—ã‚³ãƒ¼ãƒ‰å½¢å¼ã¨ã—ã¦ SetUseCharCodeFormat ã§è¨­å®šã—ãŸå½¢å¼ãŒä½¿ç”¨ã•ã‚Œã¾ã™ )
+extern int sscanfDx_VaList(   const TCHAR *String, const TCHAR *FormatString, va_list VaList ) ;				// sscanf ã¨åŒç­‰ã®æ©Ÿèƒ½( ãƒãƒ«ãƒãƒã‚¤ãƒˆæ–‡å­—åˆ—ç‰ˆã§ã¯æ–‡å­—ã‚³ãƒ¼ãƒ‰å½¢å¼ã¨ã—ã¦ SetUseCharCodeFormat ã§è¨­å®šã—ãŸå½¢å¼ãŒä½¿ç”¨ã•ã‚Œã¾ã™ )
 
 #ifndef DX_NON_NAMESPACE
 

@@ -1,6 +1,6 @@
 //-----------------------------------------------------------------------------
 // 
-// 		‚c‚wƒ‰ƒCƒuƒ‰ƒŠ		•`‰æˆ—ƒvƒƒOƒ‰ƒ€( Direct3D11 )
+// 		ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒª		æç”»å‡¦ç†ãƒ—ãƒ­ã‚°ãƒ©ãƒ ( Direct3D11 )
 // 
 //  	Ver 3.25a
 // 
@@ -8,7 +8,7 @@
 
 #define VERTEXBUFFERMODE		2
 
-// ‚c‚wƒ‰ƒCƒuƒ‰ƒŠì¬—p’è‹`
+// ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªä½œæˆæ™‚ç”¨å®šç¾©
 #define DX_MAKE
 
 #include "../DxCompileConfig.h"
@@ -17,7 +17,7 @@
 
 #ifndef DX_NON_DIRECT3D11
 
-// ƒCƒ“ƒNƒ‹[ƒh ---------------------------------------------------------------
+// ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ ---------------------------------------------------------------
 #include "DxGraphicsD3D11.h"
 #include "DxGraphicsWin.h"
 #include "DxMaskD3D11.h"
@@ -43,9 +43,9 @@ namespace DxLib
 
 #endif // DX_NON_NAMESPACE
 
-// ƒ}ƒNƒ’è‹` -----------------------------------------------------------------
+// ãƒã‚¯ãƒ­å®šç¾© -----------------------------------------------------------------
 
-// Graphics_D3D11_DrawPreparation ‚ğŒÄ‚Ô’èŒ^•¶
+// Graphics_D3D11_DrawPreparation ã‚’å‘¼ã¶å®šå‹æ–‡
 #define DX_D3D11_DRAWPREP_NOTEX( FLAG )													\
 	if( GD3D11.Device.DrawSetting.RenderTexture != NULL )								\
 		Graphics_D3D11_DrawSetting_SetTexture( NULL, NULL ) ;							\
@@ -326,28 +326,28 @@ namespace DxLib
 
 #define D3D11_COMMONBUFFER_ADDSIZE			(16 * 1024)
 
-// RGB’l‚ğ‹P“xÅ‘å‚ÌRGB’l‚É•ÏŠ·‚·‚é‚½‚ß‚Ìƒ{ƒŠƒ…[ƒ€ƒeƒNƒXƒ`ƒƒ‚ÌƒTƒCƒY
+// RGBå€¤ã‚’è¼åº¦æœ€å¤§ã®RGBå€¤ã«å¤‰æ›ã™ã‚‹ãŸã‚ã®ãƒœãƒªãƒ¥ãƒ¼ãƒ ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ã‚µã‚¤ã‚º
 #define RGBTOVMAXRGB_TEX_SIZE		(128)
 
-// \‘¢‘ÌéŒ¾ -----------------------------------------------------------------
+// æ§‹é€ ä½“å®£è¨€ -----------------------------------------------------------------
 
-// •W€•`‰æ—p‚Ì•¡G‚Èˆ—‚ğs‚í‚È‚¢’¸“_ƒVƒF[ƒ_[‚Ìî•ñ
+// æ¨™æº–æç”»ç”¨ã®è¤‡é›‘ãªå‡¦ç†ã‚’è¡Œã‚ãªã„é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®æƒ…å ±
 typedef struct tagGRAPHICS_HARDWARE_DIRECT3D11_BASE_SIMPLE_VERTEXSHADER_INFO
 {
-	const char *				ShaderFileName ;						// g—p‚·‚é’¸“_ƒVƒF[ƒ_[ƒtƒ@ƒCƒ‹–¼
-	int							VertexDataSize ;						// ’¸“_ƒf[ƒ^ˆê‚Â‚ ‚½‚è‚ÌƒoƒCƒg”
-	D_D3D11_INPUT_ELEMENT_DESC	InputElementDesc[ 11 ] ;				// “ü—Í’¸“_ƒf[ƒ^Œ`®
+	const char *				ShaderFileName ;						// ä½¿ç”¨ã™ã‚‹é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒ•ã‚¡ã‚¤ãƒ«å
+	int							VertexDataSize ;						// é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ä¸€ã¤ã‚ãŸã‚Šã®ãƒã‚¤ãƒˆæ•°
+	D_D3D11_INPUT_ELEMENT_DESC	InputElementDesc[ 11 ] ;				// å…¥åŠ›é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿å½¢å¼
 } GRAPHICS_HARDWARE_DIRECT3D11_BASE_SIMPLE_VERTEXSHADER_INFO ;
 
-// ƒf[ƒ^’è‹` -----------------------------------------------------------------
+// ãƒ‡ãƒ¼ã‚¿å®šç¾© -----------------------------------------------------------------
 
-#define RENDER_BLEND_TYPE_NORMAL			(0)			// 0:’Êí•`‰æ
-#define RENDER_BLEND_TYPE_MUL				(1)			// 1:æZ•`‰æ
-#define RENDER_BLEND_TYPE_INVERSE			(2)			// 2:RGB”½“]
-#define RENDER_BLEND_TYPE_X4				(3)			// 3:•`‰æ‹P“x4”{
-#define RENDER_BLEND_TYPE_PMA_NORMAL		(4)			// 4:æZÏ‚İƒ¿ƒuƒŒƒ“ƒhƒ‚[ƒh‚Ì’Êí•`‰æ
-#define RENDER_BLEND_TYPE_PMA_INVERSE		(5)			// 5:æZÏ‚İƒ¿ƒuƒŒƒ“ƒhƒ‚[ƒh‚ÌRGB”½“]
-#define RENDER_BLEND_TYPE_PMA_X4			(6)			// 6:æZÏ‚İƒ¿ƒuƒŒƒ“ƒhƒ‚[ƒh‚Ì•`‰æ‹P“x4”{
+#define RENDER_BLEND_TYPE_NORMAL			(0)			// 0:é€šå¸¸æç”»
+#define RENDER_BLEND_TYPE_MUL				(1)			// 1:ä¹—ç®—æç”»
+#define RENDER_BLEND_TYPE_INVERSE			(2)			// 2:RGBåè»¢
+#define RENDER_BLEND_TYPE_X4				(3)			// 3:æç”»è¼åº¦4å€
+#define RENDER_BLEND_TYPE_PMA_NORMAL		(4)			// 4:ä¹—ç®—æ¸ˆã¿Î±ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã®é€šå¸¸æç”»
+#define RENDER_BLEND_TYPE_PMA_INVERSE		(5)			// 5:ä¹—ç®—æ¸ˆã¿Î±ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã®RGBåè»¢
+#define RENDER_BLEND_TYPE_PMA_X4			(6)			// 6:ä¹—ç®—æ¸ˆã¿Î±ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã®æç”»è¼åº¦4å€
 #define RENDER_BLEND_TYPE_NUM				(7)
 typedef struct tagDX_DIRECT3D11_RENDER_BLEND_INFO
 {
@@ -357,52 +357,52 @@ typedef struct tagDX_DIRECT3D11_RENDER_BLEND_INFO
 } DX_DIRECT3D11_RENDER_BLEND_INFO ;
 static DX_DIRECT3D11_RENDER_BLEND_INFO g_DefaultBlendDescArray[ DX_BLENDMODE_NUM ] =
 {
-	{ RENDER_BLEND_TYPE_NORMAL,			{ FALSE, D_D3D11_BLEND_ONE,				D_D3D11_BLEND_ZERO,				D_D3D11_BLEND_OP_ADD,			D_D3D11_BLEND_ONE,				D_D3D11_BLEND_ZERO,				D_D3D11_BLEND_OP_ADD,			D_D3D11_COLOR_WRITE_ENABLE_ALL },  TRUE },	// DX_BLENDMODE_NOBLEND				ƒm[ƒuƒŒƒ“ƒh
-	{ RENDER_BLEND_TYPE_NORMAL,			{ TRUE,  D_D3D11_BLEND_SRC_ALPHA,		D_D3D11_BLEND_INV_SRC_ALPHA,	D_D3D11_BLEND_OP_ADD,			D_D3D11_BLEND_SRC_ALPHA,		D_D3D11_BLEND_INV_SRC_ALPHA,	D_D3D11_BLEND_OP_ADD,			D_D3D11_COLOR_WRITE_ENABLE_ALL },  TRUE },	// DX_BLENDMODE_ALPHA				ƒ¿ƒuƒŒƒ“ƒh
-	{ RENDER_BLEND_TYPE_NORMAL,			{ TRUE,  D_D3D11_BLEND_SRC_ALPHA,		D_D3D11_BLEND_ONE,				D_D3D11_BLEND_OP_ADD,			D_D3D11_BLEND_SRC_ALPHA,		D_D3D11_BLEND_ONE,				D_D3D11_BLEND_OP_ADD,			D_D3D11_COLOR_WRITE_ENABLE_ALL },  TRUE },	// DX_BLENDMODE_ADD					‰ÁZƒuƒŒƒ“ƒh
-	{ RENDER_BLEND_TYPE_NORMAL,			{ TRUE,  D_D3D11_BLEND_INV_DEST_COLOR,	D_D3D11_BLEND_ZERO,				D_D3D11_BLEND_OP_ADD,			D_D3D11_BLEND_INV_DEST_ALPHA,	D_D3D11_BLEND_ZERO,				D_D3D11_BLEND_OP_ADD,			D_D3D11_COLOR_WRITE_ENABLE_ALL },  TRUE },	// DX_BLENDMODE_SUB					Œ¸ZƒuƒŒƒ“ƒh
-	{ RENDER_BLEND_TYPE_NORMAL,			{ TRUE,  D_D3D11_BLEND_ZERO,			D_D3D11_BLEND_SRC_COLOR,		D_D3D11_BLEND_OP_ADD,			D_D3D11_BLEND_ZERO,				D_D3D11_BLEND_SRC_ALPHA,		D_D3D11_BLEND_OP_ADD,			D_D3D11_COLOR_WRITE_ENABLE_ALL }, FALSE },	// DX_BLENDMODE_MUL					æZƒuƒŒƒ“ƒh
-	{ RENDER_BLEND_TYPE_NORMAL,			{ TRUE,  D_D3D11_BLEND_SRC_ALPHA,		D_D3D11_BLEND_ONE,				D_D3D11_BLEND_OP_ADD,			D_D3D11_BLEND_SRC_ALPHA,		D_D3D11_BLEND_ONE,				D_D3D11_BLEND_OP_ADD,			D_D3D11_COLOR_WRITE_ENABLE_ALL },  TRUE },	// DX_BLENDMODE_SUB2				“à•”ˆ——pŒ¸ZƒuƒŒƒ“ƒh‚P
-	{ RENDER_BLEND_TYPE_NORMAL,			{ FALSE, D_D3D11_BLEND_ONE,				D_D3D11_BLEND_ZERO,				D_D3D11_BLEND_OP_ADD,			D_D3D11_BLEND_ONE,				D_D3D11_BLEND_ZERO,				D_D3D11_BLEND_OP_ADD,			D_D3D11_COLOR_WRITE_ENABLE_ALL },  TRUE },	// DX_BLENDMODE_XOR					XORƒuƒŒƒ“ƒh(”ñ‘Î‰)
-	{ RENDER_BLEND_TYPE_NORMAL,			{ FALSE, D_D3D11_BLEND_ONE,				D_D3D11_BLEND_ZERO,				D_D3D11_BLEND_OP_ADD,			D_D3D11_BLEND_ONE,				D_D3D11_BLEND_ZERO,				D_D3D11_BLEND_OP_ADD,			D_D3D11_COLOR_WRITE_ENABLE_ALL },  TRUE },	// Œ‡”Ô
-	{ RENDER_BLEND_TYPE_NORMAL,			{ TRUE,  D_D3D11_BLEND_ZERO,			D_D3D11_BLEND_ONE,				D_D3D11_BLEND_OP_ADD,			D_D3D11_BLEND_ZERO,				D_D3D11_BLEND_ONE,				D_D3D11_BLEND_OP_ADD,			D_D3D11_COLOR_WRITE_ENABLE_ALL }, FALSE },	// DX_BLENDMODE_DESTCOLOR			ƒJƒ‰[‚ÍXV‚³‚ê‚È‚¢
-	{ RENDER_BLEND_TYPE_NORMAL,			{ TRUE,  D_D3D11_BLEND_INV_DEST_COLOR,	D_D3D11_BLEND_ZERO,				D_D3D11_BLEND_OP_ADD,			D_D3D11_BLEND_INV_DEST_ALPHA,	D_D3D11_BLEND_ZERO,				D_D3D11_BLEND_OP_ADD,			D_D3D11_COLOR_WRITE_ENABLE_ALL }, FALSE },	// DX_BLENDMODE_INVDESTCOLOR		•`‰ææ‚ÌF‚Ì”½“]’l‚ğŠ|‚¯‚é
-	{ RENDER_BLEND_TYPE_INVERSE,		{ TRUE,  D_D3D11_BLEND_SRC_ALPHA,		D_D3D11_BLEND_INV_SRC_ALPHA,	D_D3D11_BLEND_OP_ADD,			D_D3D11_BLEND_SRC_ALPHA,		D_D3D11_BLEND_INV_SRC_ALPHA,	D_D3D11_BLEND_OP_ADD,			D_D3D11_COLOR_WRITE_ENABLE_ALL },  TRUE },	// DX_BLENDMODE_INVSRC				•`‰æŒ³‚ÌF‚ğ”½“]‚·‚é
-	{ RENDER_BLEND_TYPE_MUL,			{ TRUE,  D_D3D11_BLEND_ZERO,			D_D3D11_BLEND_SRC_COLOR,		D_D3D11_BLEND_OP_ADD,			D_D3D11_BLEND_ZERO,				D_D3D11_BLEND_SRC_ALPHA,		D_D3D11_BLEND_OP_ADD,			D_D3D11_COLOR_WRITE_ENABLE_ALL },  TRUE },	// DX_BLENDMODE_MULA				ƒAƒ‹ƒtƒ@ƒ`ƒƒƒ“ƒlƒ‹l—¶•t‚«æZƒuƒŒƒ“ƒh
-	{ RENDER_BLEND_TYPE_X4,				{ TRUE,  D_D3D11_BLEND_SRC_ALPHA,		D_D3D11_BLEND_INV_SRC_ALPHA,	D_D3D11_BLEND_OP_ADD,			D_D3D11_BLEND_SRC_ALPHA,		D_D3D11_BLEND_INV_SRC_ALPHA,	D_D3D11_BLEND_OP_ADD,			D_D3D11_COLOR_WRITE_ENABLE_ALL },  TRUE },	// DX_BLENDMODE_ALPHA_X4			ƒ¿ƒuƒŒƒ“ƒh‚Ì•`‰æ‘¤‚Ì‹P“x‚ğÅ‘å‚S”{‚É‚Å‚«‚éƒ‚[ƒh
-	{ RENDER_BLEND_TYPE_X4,				{ TRUE,  D_D3D11_BLEND_SRC_ALPHA,		D_D3D11_BLEND_ONE,				D_D3D11_BLEND_OP_ADD,			D_D3D11_BLEND_SRC_ALPHA,		D_D3D11_BLEND_ONE,				D_D3D11_BLEND_OP_ADD,			D_D3D11_COLOR_WRITE_ENABLE_ALL },  TRUE },	// DX_BLENDMODE_ADD_X4				‰ÁZƒuƒŒƒ“ƒh‚Ì•`‰æ‘¤‚Ì‹P“x‚ğÅ‘å‚S”{‚É‚Å‚«‚éƒ‚[ƒh
-	{ RENDER_BLEND_TYPE_NORMAL,			{ TRUE,  D_D3D11_BLEND_ONE,				D_D3D11_BLEND_ZERO,				D_D3D11_BLEND_OP_ADD,			D_D3D11_BLEND_ONE,				D_D3D11_BLEND_ZERO,				D_D3D11_BLEND_OP_ADD,			D_D3D11_COLOR_WRITE_ENABLE_ALL }, FALSE },	// DX_BLENDMODE_SRCCOLOR			•`‰æŒ³‚ÌƒJƒ‰[‚Å‚»‚Ì‚Ü‚Ü•`‰æ‚³‚ê‚é
-	{ RENDER_BLEND_TYPE_NORMAL,			{ TRUE,  D_D3D11_BLEND_ONE,				D_D3D11_BLEND_INV_SRC_ALPHA,	D_D3D11_BLEND_OP_ADD,			D_D3D11_BLEND_ONE,				D_D3D11_BLEND_INV_SRC_ALPHA,	D_D3D11_BLEND_OP_ADD,			D_D3D11_COLOR_WRITE_ENABLE_ALL }, FALSE },	// DX_BLENDMODE_HALF_ADD			”¼‰ÁZƒuƒŒƒ“ƒh
-	{ RENDER_BLEND_TYPE_NORMAL,			{ TRUE,  D_D3D11_BLEND_SRC_ALPHA,		D_D3D11_BLEND_ONE,				D_D3D11_BLEND_OP_REV_SUBTRACT,	D_D3D11_BLEND_SRC_ALPHA,		D_D3D11_BLEND_ONE,				D_D3D11_BLEND_OP_REV_SUBTRACT,	D_D3D11_COLOR_WRITE_ENABLE_ALL },  TRUE },	// DX_BLENDMODE_SUB1				o—ÍƒuƒŒƒ“ƒh‚ªg—p‰Â”\‚Èê‡‚ÌŒ¸ZƒuƒŒƒ“ƒh
+	{ RENDER_BLEND_TYPE_NORMAL,			{ FALSE, D_D3D11_BLEND_ONE,				D_D3D11_BLEND_ZERO,				D_D3D11_BLEND_OP_ADD,			D_D3D11_BLEND_ONE,				D_D3D11_BLEND_ZERO,				D_D3D11_BLEND_OP_ADD,			D_D3D11_COLOR_WRITE_ENABLE_ALL },  TRUE },	// DX_BLENDMODE_NOBLEND				ãƒãƒ¼ãƒ–ãƒ¬ãƒ³ãƒ‰
+	{ RENDER_BLEND_TYPE_NORMAL,			{ TRUE,  D_D3D11_BLEND_SRC_ALPHA,		D_D3D11_BLEND_INV_SRC_ALPHA,	D_D3D11_BLEND_OP_ADD,			D_D3D11_BLEND_SRC_ALPHA,		D_D3D11_BLEND_INV_SRC_ALPHA,	D_D3D11_BLEND_OP_ADD,			D_D3D11_COLOR_WRITE_ENABLE_ALL },  TRUE },	// DX_BLENDMODE_ALPHA				Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
+	{ RENDER_BLEND_TYPE_NORMAL,			{ TRUE,  D_D3D11_BLEND_SRC_ALPHA,		D_D3D11_BLEND_ONE,				D_D3D11_BLEND_OP_ADD,			D_D3D11_BLEND_SRC_ALPHA,		D_D3D11_BLEND_ONE,				D_D3D11_BLEND_OP_ADD,			D_D3D11_COLOR_WRITE_ENABLE_ALL },  TRUE },	// DX_BLENDMODE_ADD					åŠ ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
+	{ RENDER_BLEND_TYPE_NORMAL,			{ TRUE,  D_D3D11_BLEND_INV_DEST_COLOR,	D_D3D11_BLEND_ZERO,				D_D3D11_BLEND_OP_ADD,			D_D3D11_BLEND_INV_DEST_ALPHA,	D_D3D11_BLEND_ZERO,				D_D3D11_BLEND_OP_ADD,			D_D3D11_COLOR_WRITE_ENABLE_ALL },  TRUE },	// DX_BLENDMODE_SUB					æ¸›ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
+	{ RENDER_BLEND_TYPE_NORMAL,			{ TRUE,  D_D3D11_BLEND_ZERO,			D_D3D11_BLEND_SRC_COLOR,		D_D3D11_BLEND_OP_ADD,			D_D3D11_BLEND_ZERO,				D_D3D11_BLEND_SRC_ALPHA,		D_D3D11_BLEND_OP_ADD,			D_D3D11_COLOR_WRITE_ENABLE_ALL }, FALSE },	// DX_BLENDMODE_MUL					ä¹—ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
+	{ RENDER_BLEND_TYPE_NORMAL,			{ TRUE,  D_D3D11_BLEND_SRC_ALPHA,		D_D3D11_BLEND_ONE,				D_D3D11_BLEND_OP_ADD,			D_D3D11_BLEND_SRC_ALPHA,		D_D3D11_BLEND_ONE,				D_D3D11_BLEND_OP_ADD,			D_D3D11_COLOR_WRITE_ENABLE_ALL },  TRUE },	// DX_BLENDMODE_SUB2				å†…éƒ¨å‡¦ç†ç”¨æ¸›ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰ï¼‘
+	{ RENDER_BLEND_TYPE_NORMAL,			{ FALSE, D_D3D11_BLEND_ONE,				D_D3D11_BLEND_ZERO,				D_D3D11_BLEND_OP_ADD,			D_D3D11_BLEND_ONE,				D_D3D11_BLEND_ZERO,				D_D3D11_BLEND_OP_ADD,			D_D3D11_COLOR_WRITE_ENABLE_ALL },  TRUE },	// DX_BLENDMODE_XOR					XORãƒ–ãƒ¬ãƒ³ãƒ‰(éå¯¾å¿œ)
+	{ RENDER_BLEND_TYPE_NORMAL,			{ FALSE, D_D3D11_BLEND_ONE,				D_D3D11_BLEND_ZERO,				D_D3D11_BLEND_OP_ADD,			D_D3D11_BLEND_ONE,				D_D3D11_BLEND_ZERO,				D_D3D11_BLEND_OP_ADD,			D_D3D11_COLOR_WRITE_ENABLE_ALL },  TRUE },	// æ¬ ç•ª
+	{ RENDER_BLEND_TYPE_NORMAL,			{ TRUE,  D_D3D11_BLEND_ZERO,			D_D3D11_BLEND_ONE,				D_D3D11_BLEND_OP_ADD,			D_D3D11_BLEND_ZERO,				D_D3D11_BLEND_ONE,				D_D3D11_BLEND_OP_ADD,			D_D3D11_COLOR_WRITE_ENABLE_ALL }, FALSE },	// DX_BLENDMODE_DESTCOLOR			ã‚«ãƒ©ãƒ¼ã¯æ›´æ–°ã•ã‚Œãªã„
+	{ RENDER_BLEND_TYPE_NORMAL,			{ TRUE,  D_D3D11_BLEND_INV_DEST_COLOR,	D_D3D11_BLEND_ZERO,				D_D3D11_BLEND_OP_ADD,			D_D3D11_BLEND_INV_DEST_ALPHA,	D_D3D11_BLEND_ZERO,				D_D3D11_BLEND_OP_ADD,			D_D3D11_COLOR_WRITE_ENABLE_ALL }, FALSE },	// DX_BLENDMODE_INVDESTCOLOR		æç”»å…ˆã®è‰²ã®åè»¢å€¤ã‚’æ›ã‘ã‚‹
+	{ RENDER_BLEND_TYPE_INVERSE,		{ TRUE,  D_D3D11_BLEND_SRC_ALPHA,		D_D3D11_BLEND_INV_SRC_ALPHA,	D_D3D11_BLEND_OP_ADD,			D_D3D11_BLEND_SRC_ALPHA,		D_D3D11_BLEND_INV_SRC_ALPHA,	D_D3D11_BLEND_OP_ADD,			D_D3D11_COLOR_WRITE_ENABLE_ALL },  TRUE },	// DX_BLENDMODE_INVSRC				æç”»å…ƒã®è‰²ã‚’åè»¢ã™ã‚‹
+	{ RENDER_BLEND_TYPE_MUL,			{ TRUE,  D_D3D11_BLEND_ZERO,			D_D3D11_BLEND_SRC_COLOR,		D_D3D11_BLEND_OP_ADD,			D_D3D11_BLEND_ZERO,				D_D3D11_BLEND_SRC_ALPHA,		D_D3D11_BLEND_OP_ADD,			D_D3D11_COLOR_WRITE_ENABLE_ALL },  TRUE },	// DX_BLENDMODE_MULA				ã‚¢ãƒ«ãƒ•ã‚¡ãƒãƒ£ãƒ³ãƒãƒ«è€ƒæ…®ä»˜ãä¹—ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
+	{ RENDER_BLEND_TYPE_X4,				{ TRUE,  D_D3D11_BLEND_SRC_ALPHA,		D_D3D11_BLEND_INV_SRC_ALPHA,	D_D3D11_BLEND_OP_ADD,			D_D3D11_BLEND_SRC_ALPHA,		D_D3D11_BLEND_INV_SRC_ALPHA,	D_D3D11_BLEND_OP_ADD,			D_D3D11_COLOR_WRITE_ENABLE_ALL },  TRUE },	// DX_BLENDMODE_ALPHA_X4			Î±ãƒ–ãƒ¬ãƒ³ãƒ‰ã®æç”»å´ã®è¼åº¦ã‚’æœ€å¤§ï¼”å€ã«ã§ãã‚‹ãƒ¢ãƒ¼ãƒ‰
+	{ RENDER_BLEND_TYPE_X4,				{ TRUE,  D_D3D11_BLEND_SRC_ALPHA,		D_D3D11_BLEND_ONE,				D_D3D11_BLEND_OP_ADD,			D_D3D11_BLEND_SRC_ALPHA,		D_D3D11_BLEND_ONE,				D_D3D11_BLEND_OP_ADD,			D_D3D11_COLOR_WRITE_ENABLE_ALL },  TRUE },	// DX_BLENDMODE_ADD_X4				åŠ ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰ã®æç”»å´ã®è¼åº¦ã‚’æœ€å¤§ï¼”å€ã«ã§ãã‚‹ãƒ¢ãƒ¼ãƒ‰
+	{ RENDER_BLEND_TYPE_NORMAL,			{ TRUE,  D_D3D11_BLEND_ONE,				D_D3D11_BLEND_ZERO,				D_D3D11_BLEND_OP_ADD,			D_D3D11_BLEND_ONE,				D_D3D11_BLEND_ZERO,				D_D3D11_BLEND_OP_ADD,			D_D3D11_COLOR_WRITE_ENABLE_ALL }, FALSE },	// DX_BLENDMODE_SRCCOLOR			æç”»å…ƒã®ã‚«ãƒ©ãƒ¼ã§ãã®ã¾ã¾æç”»ã•ã‚Œã‚‹
+	{ RENDER_BLEND_TYPE_NORMAL,			{ TRUE,  D_D3D11_BLEND_ONE,				D_D3D11_BLEND_INV_SRC_ALPHA,	D_D3D11_BLEND_OP_ADD,			D_D3D11_BLEND_ONE,				D_D3D11_BLEND_INV_SRC_ALPHA,	D_D3D11_BLEND_OP_ADD,			D_D3D11_COLOR_WRITE_ENABLE_ALL }, FALSE },	// DX_BLENDMODE_HALF_ADD			åŠåŠ ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
+	{ RENDER_BLEND_TYPE_NORMAL,			{ TRUE,  D_D3D11_BLEND_SRC_ALPHA,		D_D3D11_BLEND_ONE,				D_D3D11_BLEND_OP_REV_SUBTRACT,	D_D3D11_BLEND_SRC_ALPHA,		D_D3D11_BLEND_ONE,				D_D3D11_BLEND_OP_REV_SUBTRACT,	D_D3D11_COLOR_WRITE_ENABLE_ALL },  TRUE },	// DX_BLENDMODE_SUB1				å‡ºåŠ›ãƒ–ãƒ¬ãƒ³ãƒ‰ãŒä½¿ç”¨å¯èƒ½ãªå ´åˆã®æ¸›ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 
-	{ RENDER_BLEND_TYPE_PMA_NORMAL,		{ TRUE,  D_D3D11_BLEND_ONE,				D_D3D11_BLEND_INV_SRC_ALPHA,	D_D3D11_BLEND_OP_ADD,			D_D3D11_BLEND_ONE,				D_D3D11_BLEND_INV_SRC_ALPHA,	D_D3D11_BLEND_OP_ADD,			D_D3D11_COLOR_WRITE_ENABLE_ALL },  TRUE },	// DX_BLENDMODE_PMA_ALPHA			æZÏ‚İƒ¿ƒuƒŒƒ“ƒhƒ‚[ƒh‚Ìƒ¿ƒuƒŒƒ“ƒh
-	{ RENDER_BLEND_TYPE_PMA_NORMAL,		{ TRUE,  D_D3D11_BLEND_ONE,				D_D3D11_BLEND_ONE,				D_D3D11_BLEND_OP_ADD,			D_D3D11_BLEND_ONE,				D_D3D11_BLEND_ONE,				D_D3D11_BLEND_OP_ADD,			D_D3D11_COLOR_WRITE_ENABLE_ALL },  TRUE },	// DX_BLENDMODE_PMA_ADD				æZÏ‚İƒ¿ƒuƒŒƒ“ƒhƒ‚[ƒh‚Ì‰ÁZƒuƒŒƒ“ƒh
-	{ RENDER_BLEND_TYPE_PMA_NORMAL,		{ TRUE,  D_D3D11_BLEND_ONE,				D_D3D11_BLEND_ONE,				D_D3D11_BLEND_OP_REV_SUBTRACT,	D_D3D11_BLEND_ONE,				D_D3D11_BLEND_ONE,				D_D3D11_BLEND_OP_REV_SUBTRACT,	D_D3D11_COLOR_WRITE_ENABLE_ALL },  TRUE },	// DX_BLENDMODE_PMA_SUB				æZÏ‚İƒ¿ƒuƒŒƒ“ƒhƒ‚[ƒh‚ÌŒ¸ZƒuƒŒƒ“ƒh
-	{ RENDER_BLEND_TYPE_PMA_INVERSE,	{ TRUE,  D_D3D11_BLEND_ONE,				D_D3D11_BLEND_INV_SRC_ALPHA,	D_D3D11_BLEND_OP_ADD,			D_D3D11_BLEND_ONE,				D_D3D11_BLEND_INV_SRC_ALPHA,	D_D3D11_BLEND_OP_ADD,			D_D3D11_COLOR_WRITE_ENABLE_ALL },  TRUE },	// DX_BLENDMODE_PMA_INVSRC			æZÏ‚İƒ¿ƒuƒŒƒ“ƒhƒ‚[ƒh‚Ì•`‰æŒ³‚ÌF‚ğ”½“]‚·‚é
-	{ RENDER_BLEND_TYPE_PMA_X4,			{ TRUE,  D_D3D11_BLEND_ONE,				D_D3D11_BLEND_INV_SRC_ALPHA,	D_D3D11_BLEND_OP_ADD,			D_D3D11_BLEND_ONE,				D_D3D11_BLEND_INV_SRC_ALPHA,	D_D3D11_BLEND_OP_ADD,			D_D3D11_COLOR_WRITE_ENABLE_ALL },  TRUE },	// DX_BLENDMODE_PMA_ALPHA_X4		æZÏ‚İƒ¿ƒuƒŒƒ“ƒhƒ‚[ƒh‚Ìƒ¿ƒuƒŒƒ“ƒh‚Ì•`‰æ‘¤‚Ì‹P“x‚ğÅ‘å‚S”{‚É‚Å‚«‚éƒ‚[ƒh
-	{ RENDER_BLEND_TYPE_PMA_X4,			{ TRUE,  D_D3D11_BLEND_ONE,				D_D3D11_BLEND_ONE,				D_D3D11_BLEND_OP_ADD,			D_D3D11_BLEND_ONE,				D_D3D11_BLEND_ONE,				D_D3D11_BLEND_OP_ADD,			D_D3D11_COLOR_WRITE_ENABLE_ALL },  TRUE },	// DX_BLENDMODE_PMA_ADD_X4			æZÏ‚İƒ¿ƒuƒŒƒ“ƒhƒ‚[ƒh‚Ì‰ÁZƒuƒŒƒ“ƒh‚Ì•`‰æ‘¤‚Ì‹P“x‚ğÅ‘å‚S”{‚É‚Å‚«‚éƒ‚[ƒh
+	{ RENDER_BLEND_TYPE_PMA_NORMAL,		{ TRUE,  D_D3D11_BLEND_ONE,				D_D3D11_BLEND_INV_SRC_ALPHA,	D_D3D11_BLEND_OP_ADD,			D_D3D11_BLEND_ONE,				D_D3D11_BLEND_INV_SRC_ALPHA,	D_D3D11_BLEND_OP_ADD,			D_D3D11_COLOR_WRITE_ENABLE_ALL },  TRUE },	// DX_BLENDMODE_PMA_ALPHA			ä¹—ç®—æ¸ˆã¿Î±ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã®Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
+	{ RENDER_BLEND_TYPE_PMA_NORMAL,		{ TRUE,  D_D3D11_BLEND_ONE,				D_D3D11_BLEND_ONE,				D_D3D11_BLEND_OP_ADD,			D_D3D11_BLEND_ONE,				D_D3D11_BLEND_ONE,				D_D3D11_BLEND_OP_ADD,			D_D3D11_COLOR_WRITE_ENABLE_ALL },  TRUE },	// DX_BLENDMODE_PMA_ADD				ä¹—ç®—æ¸ˆã¿Î±ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã®åŠ ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
+	{ RENDER_BLEND_TYPE_PMA_NORMAL,		{ TRUE,  D_D3D11_BLEND_ONE,				D_D3D11_BLEND_ONE,				D_D3D11_BLEND_OP_REV_SUBTRACT,	D_D3D11_BLEND_ONE,				D_D3D11_BLEND_ONE,				D_D3D11_BLEND_OP_REV_SUBTRACT,	D_D3D11_COLOR_WRITE_ENABLE_ALL },  TRUE },	// DX_BLENDMODE_PMA_SUB				ä¹—ç®—æ¸ˆã¿Î±ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã®æ¸›ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
+	{ RENDER_BLEND_TYPE_PMA_INVERSE,	{ TRUE,  D_D3D11_BLEND_ONE,				D_D3D11_BLEND_INV_SRC_ALPHA,	D_D3D11_BLEND_OP_ADD,			D_D3D11_BLEND_ONE,				D_D3D11_BLEND_INV_SRC_ALPHA,	D_D3D11_BLEND_OP_ADD,			D_D3D11_COLOR_WRITE_ENABLE_ALL },  TRUE },	// DX_BLENDMODE_PMA_INVSRC			ä¹—ç®—æ¸ˆã¿Î±ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã®æç”»å…ƒã®è‰²ã‚’åè»¢ã™ã‚‹
+	{ RENDER_BLEND_TYPE_PMA_X4,			{ TRUE,  D_D3D11_BLEND_ONE,				D_D3D11_BLEND_INV_SRC_ALPHA,	D_D3D11_BLEND_OP_ADD,			D_D3D11_BLEND_ONE,				D_D3D11_BLEND_INV_SRC_ALPHA,	D_D3D11_BLEND_OP_ADD,			D_D3D11_COLOR_WRITE_ENABLE_ALL },  TRUE },	// DX_BLENDMODE_PMA_ALPHA_X4		ä¹—ç®—æ¸ˆã¿Î±ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã®Î±ãƒ–ãƒ¬ãƒ³ãƒ‰ã®æç”»å´ã®è¼åº¦ã‚’æœ€å¤§ï¼”å€ã«ã§ãã‚‹ãƒ¢ãƒ¼ãƒ‰
+	{ RENDER_BLEND_TYPE_PMA_X4,			{ TRUE,  D_D3D11_BLEND_ONE,				D_D3D11_BLEND_ONE,				D_D3D11_BLEND_OP_ADD,			D_D3D11_BLEND_ONE,				D_D3D11_BLEND_ONE,				D_D3D11_BLEND_OP_ADD,			D_D3D11_COLOR_WRITE_ENABLE_ALL },  TRUE },	// DX_BLENDMODE_PMA_ADD_X4			ä¹—ç®—æ¸ˆã¿Î±ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã®åŠ ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰ã®æç”»å´ã®è¼åº¦ã‚’æœ€å¤§ï¼”å€ã«ã§ãã‚‹ãƒ¢ãƒ¼ãƒ‰
 
-	{ RENDER_BLEND_TYPE_NORMAL,			{ TRUE,  D_D3D11_BLEND_ZERO,			D_D3D11_BLEND_ZERO,				D_D3D11_BLEND_OP_ADD,			D_D3D11_BLEND_ZERO,				D_D3D11_BLEND_ZERO,				D_D3D11_BLEND_OP_ADD,			D_D3D11_COLOR_WRITE_ENABLE_ALL },  FALSE },	// DX_BLENDMODE_LIVE2D_ZERO			Live2D ‚ÌƒuƒŒƒ“ƒhƒ‚[ƒh Zero —p
-	{ RENDER_BLEND_TYPE_NORMAL,			{ TRUE,  D_D3D11_BLEND_ONE,				D_D3D11_BLEND_INV_SRC_ALPHA,	D_D3D11_BLEND_OP_ADD,			D_D3D11_BLEND_ONE,				D_D3D11_BLEND_INV_SRC_ALPHA,	D_D3D11_BLEND_OP_ADD,			D_D3D11_COLOR_WRITE_ENABLE_ALL },  FALSE },	// DX_BLENDMODE_LIVE2D_NORMAL		Live2D ‚ÌƒuƒŒƒ“ƒhƒ‚[ƒh Normal —p 
-	{ RENDER_BLEND_TYPE_NORMAL,			{ TRUE,  D_D3D11_BLEND_ONE,				D_D3D11_BLEND_ONE,				D_D3D11_BLEND_OP_ADD,			D_D3D11_BLEND_ZERO,				D_D3D11_BLEND_ONE,				D_D3D11_BLEND_OP_ADD,			D_D3D11_COLOR_WRITE_ENABLE_ALL },  FALSE },	// DX_BLENDMODE_LIVE2D_ADD			Live2D ‚ÌƒuƒŒƒ“ƒhƒ‚[ƒh Add —p
-	{ RENDER_BLEND_TYPE_NORMAL,			{ TRUE,  D_D3D11_BLEND_DEST_COLOR,		D_D3D11_BLEND_INV_SRC_ALPHA,	D_D3D11_BLEND_OP_ADD,			D_D3D11_BLEND_ZERO,				D_D3D11_BLEND_ONE,				D_D3D11_BLEND_OP_ADD,			D_D3D11_COLOR_WRITE_ENABLE_ALL },  FALSE },	// DX_BLENDMODE_LIVE2D_MULT			Live2D ‚ÌƒuƒŒƒ“ƒhƒ‚[ƒh Mult —p
-	{ RENDER_BLEND_TYPE_NORMAL,			{ TRUE,  D_D3D11_BLEND_ZERO,			D_D3D11_BLEND_INV_SRC_COLOR,	D_D3D11_BLEND_OP_ADD,			D_D3D11_BLEND_ZERO,				D_D3D11_BLEND_INV_SRC_ALPHA,	D_D3D11_BLEND_OP_ADD,			D_D3D11_COLOR_WRITE_ENABLE_ALL },  FALSE },	// DX_BLENDMODE_LIVE2D_MASK			Live2D ‚ÌƒuƒŒƒ“ƒhƒ‚[ƒh Mask —p
+	{ RENDER_BLEND_TYPE_NORMAL,			{ TRUE,  D_D3D11_BLEND_ZERO,			D_D3D11_BLEND_ZERO,				D_D3D11_BLEND_OP_ADD,			D_D3D11_BLEND_ZERO,				D_D3D11_BLEND_ZERO,				D_D3D11_BLEND_OP_ADD,			D_D3D11_COLOR_WRITE_ENABLE_ALL },  FALSE },	// DX_BLENDMODE_LIVE2D_ZERO			Live2D ã®ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ Zero ç”¨
+	{ RENDER_BLEND_TYPE_NORMAL,			{ TRUE,  D_D3D11_BLEND_ONE,				D_D3D11_BLEND_INV_SRC_ALPHA,	D_D3D11_BLEND_OP_ADD,			D_D3D11_BLEND_ONE,				D_D3D11_BLEND_INV_SRC_ALPHA,	D_D3D11_BLEND_OP_ADD,			D_D3D11_COLOR_WRITE_ENABLE_ALL },  FALSE },	// DX_BLENDMODE_LIVE2D_NORMAL		Live2D ã®ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ Normal ç”¨ 
+	{ RENDER_BLEND_TYPE_NORMAL,			{ TRUE,  D_D3D11_BLEND_ONE,				D_D3D11_BLEND_ONE,				D_D3D11_BLEND_OP_ADD,			D_D3D11_BLEND_ZERO,				D_D3D11_BLEND_ONE,				D_D3D11_BLEND_OP_ADD,			D_D3D11_COLOR_WRITE_ENABLE_ALL },  FALSE },	// DX_BLENDMODE_LIVE2D_ADD			Live2D ã®ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ Add ç”¨
+	{ RENDER_BLEND_TYPE_NORMAL,			{ TRUE,  D_D3D11_BLEND_DEST_COLOR,		D_D3D11_BLEND_INV_SRC_ALPHA,	D_D3D11_BLEND_OP_ADD,			D_D3D11_BLEND_ZERO,				D_D3D11_BLEND_ONE,				D_D3D11_BLEND_OP_ADD,			D_D3D11_COLOR_WRITE_ENABLE_ALL },  FALSE },	// DX_BLENDMODE_LIVE2D_MULT			Live2D ã®ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ Mult ç”¨
+	{ RENDER_BLEND_TYPE_NORMAL,			{ TRUE,  D_D3D11_BLEND_ZERO,			D_D3D11_BLEND_INV_SRC_COLOR,	D_D3D11_BLEND_OP_ADD,			D_D3D11_BLEND_ZERO,				D_D3D11_BLEND_INV_SRC_ALPHA,	D_D3D11_BLEND_OP_ADD,			D_D3D11_COLOR_WRITE_ENABLE_ALL },  FALSE },	// DX_BLENDMODE_LIVE2D_MASK			Live2D ã®ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ Mask ç”¨
 
-	{ RENDER_BLEND_TYPE_NORMAL,			{ TRUE,  D_D3D11_BLEND_SRC_ALPHA,		D_D3D11_BLEND_INV_SRC_ALPHA,	D_D3D11_BLEND_OP_ADD,			D_D3D11_BLEND_ONE,				D_D3D11_BLEND_INV_SRC_ALPHA,	D_D3D11_BLEND_OP_ADD,			D_D3D11_COLOR_WRITE_ENABLE_ALL },  FALSE },	// DX_BLENDMODE_SPINE_NORMAL		Spine ‚ÌƒuƒŒƒ“ƒhƒ‚[ƒh Normal —p
-	{ RENDER_BLEND_TYPE_NORMAL,			{ TRUE,  D_D3D11_BLEND_SRC_ALPHA,		D_D3D11_BLEND_ONE,				D_D3D11_BLEND_OP_ADD,			D_D3D11_BLEND_ONE,				D_D3D11_BLEND_ONE,				D_D3D11_BLEND_OP_ADD,			D_D3D11_COLOR_WRITE_ENABLE_ALL },  FALSE },	// DX_BLENDMODE_SPINE_ADDITIVE		Spine ‚ÌƒuƒŒƒ“ƒhƒ‚[ƒh Additive —p
-	{ RENDER_BLEND_TYPE_NORMAL,			{ TRUE,  D_D3D11_BLEND_DEST_COLOR,		D_D3D11_BLEND_INV_SRC_ALPHA,	D_D3D11_BLEND_OP_ADD,			D_D3D11_BLEND_INV_SRC_ALPHA,	D_D3D11_BLEND_INV_SRC_ALPHA,	D_D3D11_BLEND_OP_ADD,			D_D3D11_COLOR_WRITE_ENABLE_ALL },  FALSE },	// DX_BLENDMODE_SPINE_MULTIPLY		Spine ‚ÌƒuƒŒƒ“ƒhƒ‚[ƒh Multiply —p
-	{ RENDER_BLEND_TYPE_NORMAL,			{ TRUE,  D_D3D11_BLEND_ONE,				D_D3D11_BLEND_INV_SRC_COLOR,	D_D3D11_BLEND_OP_ADD,			D_D3D11_BLEND_INV_SRC_COLOR,	D_D3D11_BLEND_INV_SRC_COLOR,	D_D3D11_BLEND_OP_ADD,			D_D3D11_COLOR_WRITE_ENABLE_ALL },  FALSE },	// DX_BLENDMODE_SPINE_SCREEN		Spine ‚ÌƒuƒŒƒ“ƒhƒ‚[ƒh Screen —p
+	{ RENDER_BLEND_TYPE_NORMAL,			{ TRUE,  D_D3D11_BLEND_SRC_ALPHA,		D_D3D11_BLEND_INV_SRC_ALPHA,	D_D3D11_BLEND_OP_ADD,			D_D3D11_BLEND_ONE,				D_D3D11_BLEND_INV_SRC_ALPHA,	D_D3D11_BLEND_OP_ADD,			D_D3D11_COLOR_WRITE_ENABLE_ALL },  FALSE },	// DX_BLENDMODE_SPINE_NORMAL		Spine ã®ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ Normal ç”¨
+	{ RENDER_BLEND_TYPE_NORMAL,			{ TRUE,  D_D3D11_BLEND_SRC_ALPHA,		D_D3D11_BLEND_ONE,				D_D3D11_BLEND_OP_ADD,			D_D3D11_BLEND_ONE,				D_D3D11_BLEND_ONE,				D_D3D11_BLEND_OP_ADD,			D_D3D11_COLOR_WRITE_ENABLE_ALL },  FALSE },	// DX_BLENDMODE_SPINE_ADDITIVE		Spine ã®ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ Additive ç”¨
+	{ RENDER_BLEND_TYPE_NORMAL,			{ TRUE,  D_D3D11_BLEND_DEST_COLOR,		D_D3D11_BLEND_INV_SRC_ALPHA,	D_D3D11_BLEND_OP_ADD,			D_D3D11_BLEND_INV_SRC_ALPHA,	D_D3D11_BLEND_INV_SRC_ALPHA,	D_D3D11_BLEND_OP_ADD,			D_D3D11_COLOR_WRITE_ENABLE_ALL },  FALSE },	// DX_BLENDMODE_SPINE_MULTIPLY		Spine ã®ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ Multiply ç”¨
+	{ RENDER_BLEND_TYPE_NORMAL,			{ TRUE,  D_D3D11_BLEND_ONE,				D_D3D11_BLEND_INV_SRC_COLOR,	D_D3D11_BLEND_OP_ADD,			D_D3D11_BLEND_INV_SRC_COLOR,	D_D3D11_BLEND_INV_SRC_COLOR,	D_D3D11_BLEND_OP_ADD,			D_D3D11_COLOR_WRITE_ENABLE_ALL },  FALSE },	// DX_BLENDMODE_SPINE_SCREEN		Spine ã®ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ Screen ç”¨
 
-	{ RENDER_BLEND_TYPE_NORMAL,			{ TRUE,  D_D3D11_BLEND_SRC_ALPHA,		D_D3D11_BLEND_INV_SRC_ALPHA,	D_D3D11_BLEND_OP_ADD,			D_D3D11_BLEND_SRC_ALPHA,		D_D3D11_BLEND_INV_SRC_ALPHA,	D_D3D11_BLEND_OP_ADD,			D_D3D11_COLOR_WRITE_ENABLE_ALL },  FALSE },	// DX_BLENDMODE_CUSTOM				ƒJƒXƒ^ƒ€ƒuƒŒƒ“ƒh
+	{ RENDER_BLEND_TYPE_NORMAL,			{ TRUE,  D_D3D11_BLEND_SRC_ALPHA,		D_D3D11_BLEND_INV_SRC_ALPHA,	D_D3D11_BLEND_OP_ADD,			D_D3D11_BLEND_SRC_ALPHA,		D_D3D11_BLEND_INV_SRC_ALPHA,	D_D3D11_BLEND_OP_ADD,			D_D3D11_COLOR_WRITE_ENABLE_ALL },  FALSE },	// DX_BLENDMODE_CUSTOM				ã‚«ã‚¹ã‚¿ãƒ ãƒ–ãƒ¬ãƒ³ãƒ‰
 
-	{ RENDER_BLEND_TYPE_NORMAL,			{ TRUE,  D_D3D11_BLEND_ZERO,			D_D3D11_BLEND_ONE,				D_D3D11_BLEND_OP_ADD,			D_D3D11_BLEND_ONE,				D_D3D11_BLEND_ZERO,				D_D3D11_BLEND_OP_ADD,			D_D3D11_COLOR_WRITE_ENABLE_ALL },  FALSE },	// DX_BLENDMODE_DST_RGB_SRC_A		•`‰æŒ³‚Ì A ‚Ì‚İ‚ğ‘‚«‚Ş( •`‰ææ‚Ì RGB ‚Í•ÏX‚³‚ê‚È‚¢ )
-	{ RENDER_BLEND_TYPE_NORMAL,			{ TRUE,  D_D3D11_BLEND_ZERO,			D_D3D11_BLEND_ONE,				D_D3D11_BLEND_OP_ADD,			D_D3D11_BLEND_INV_DEST_ALPHA,	D_D3D11_BLEND_ZERO,				D_D3D11_BLEND_OP_ADD,			D_D3D11_COLOR_WRITE_ENABLE_ALL },  FALSE },	// DX_BLENDMODE_INVDESTCOLOR_A		•`‰ææ‚Ì A ‚Ì”½“]’l‚ğŠ|‚¯‚é( •`‰ææ‚Ì RGB ‚Í•ÏX‚³‚ê‚È‚¢ )
-	{ RENDER_BLEND_TYPE_NORMAL,			{ TRUE,  D_D3D11_BLEND_ZERO,			D_D3D11_BLEND_ONE,				D_D3D11_BLEND_OP_ADD,			D_D3D11_BLEND_ZERO,				D_D3D11_BLEND_SRC_ALPHA,		D_D3D11_BLEND_OP_ADD,			D_D3D11_COLOR_WRITE_ENABLE_ALL }, FALSE },	// DX_BLENDMODE_MUL_A				A ‚Ì‚İ‚ÌæZƒuƒŒƒ“ƒh( •`‰ææ‚Ì RGB ‚Í•ÏX‚³‚ê‚È‚¢ )
-	{ RENDER_BLEND_TYPE_NORMAL,			{ TRUE,  D_D3D11_BLEND_ZERO,			D_D3D11_BLEND_SRC_ALPHA,		D_D3D11_BLEND_OP_ADD,			D_D3D11_BLEND_INV_DEST_ALPHA,	D_D3D11_BLEND_ZERO,				D_D3D11_BLEND_OP_ADD,			D_D3D11_COLOR_WRITE_ENABLE_ALL },  FALSE },	// DX_BLENDMODE_PMA_INVDESTCOLOR_A	æZÏ‚İƒ¿—p‚Ì DX_BLENDMODE_INVDESTCOLOR_A
-	{ RENDER_BLEND_TYPE_NORMAL,			{ TRUE,  D_D3D11_BLEND_ZERO,			D_D3D11_BLEND_SRC_ALPHA,		D_D3D11_BLEND_OP_ADD,			D_D3D11_BLEND_ZERO,				D_D3D11_BLEND_SRC_ALPHA,		D_D3D11_BLEND_OP_ADD,			D_D3D11_COLOR_WRITE_ENABLE_ALL }, FALSE },	// DX_BLENDMODE_PMA_MUL_A			æZÏ‚İƒ¿—p‚Ì DX_BLENDMODE_MUL_A
+	{ RENDER_BLEND_TYPE_NORMAL,			{ TRUE,  D_D3D11_BLEND_ZERO,			D_D3D11_BLEND_ONE,				D_D3D11_BLEND_OP_ADD,			D_D3D11_BLEND_ONE,				D_D3D11_BLEND_ZERO,				D_D3D11_BLEND_OP_ADD,			D_D3D11_COLOR_WRITE_ENABLE_ALL },  FALSE },	// DX_BLENDMODE_DST_RGB_SRC_A		æç”»å…ƒã® A ã®ã¿ã‚’æ›¸ãè¾¼ã‚€( æç”»å…ˆã® RGB ã¯å¤‰æ›´ã•ã‚Œãªã„ )
+	{ RENDER_BLEND_TYPE_NORMAL,			{ TRUE,  D_D3D11_BLEND_ZERO,			D_D3D11_BLEND_ONE,				D_D3D11_BLEND_OP_ADD,			D_D3D11_BLEND_INV_DEST_ALPHA,	D_D3D11_BLEND_ZERO,				D_D3D11_BLEND_OP_ADD,			D_D3D11_COLOR_WRITE_ENABLE_ALL },  FALSE },	// DX_BLENDMODE_INVDESTCOLOR_A		æç”»å…ˆã® A ã®åè»¢å€¤ã‚’æ›ã‘ã‚‹( æç”»å…ˆã® RGB ã¯å¤‰æ›´ã•ã‚Œãªã„ )
+	{ RENDER_BLEND_TYPE_NORMAL,			{ TRUE,  D_D3D11_BLEND_ZERO,			D_D3D11_BLEND_ONE,				D_D3D11_BLEND_OP_ADD,			D_D3D11_BLEND_ZERO,				D_D3D11_BLEND_SRC_ALPHA,		D_D3D11_BLEND_OP_ADD,			D_D3D11_COLOR_WRITE_ENABLE_ALL }, FALSE },	// DX_BLENDMODE_MUL_A				A ã®ã¿ã®ä¹—ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰( æç”»å…ˆã® RGB ã¯å¤‰æ›´ã•ã‚Œãªã„ )
+	{ RENDER_BLEND_TYPE_NORMAL,			{ TRUE,  D_D3D11_BLEND_ZERO,			D_D3D11_BLEND_SRC_ALPHA,		D_D3D11_BLEND_OP_ADD,			D_D3D11_BLEND_INV_DEST_ALPHA,	D_D3D11_BLEND_ZERO,				D_D3D11_BLEND_OP_ADD,			D_D3D11_COLOR_WRITE_ENABLE_ALL },  FALSE },	// DX_BLENDMODE_PMA_INVDESTCOLOR_A	ä¹—ç®—æ¸ˆã¿Î±ç”¨ã® DX_BLENDMODE_INVDESTCOLOR_A
+	{ RENDER_BLEND_TYPE_NORMAL,			{ TRUE,  D_D3D11_BLEND_ZERO,			D_D3D11_BLEND_SRC_ALPHA,		D_D3D11_BLEND_OP_ADD,			D_D3D11_BLEND_ZERO,				D_D3D11_BLEND_SRC_ALPHA,		D_D3D11_BLEND_OP_ADD,			D_D3D11_COLOR_WRITE_ENABLE_ALL }, FALSE },	// DX_BLENDMODE_PMA_MUL_A			ä¹—ç®—æ¸ˆã¿Î±ç”¨ã® DX_BLENDMODE_MUL_A
 } ;
 
-// ‚c‚wƒ‰ƒCƒuƒ‰ƒŠ‚ÌƒuƒŒƒ“ƒh—v‘fƒ^ƒCƒv‚ğ Direct3D 11 ‚Ì—v‘fƒ^ƒCƒv‚É•ÏŠ·‚·‚é‚½‚ß‚Ìƒe[ƒuƒ‹
+// ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®ãƒ–ãƒ¬ãƒ³ãƒ‰è¦ç´ ã‚¿ã‚¤ãƒ—ã‚’ Direct3D 11 ã®è¦ç´ ã‚¿ã‚¤ãƒ—ã«å¤‰æ›ã™ã‚‹ãŸã‚ã®ãƒ†ãƒ¼ãƒ–ãƒ«
 static const D_D3D11_BLEND DxBlendTypeToD3D11Table[ DX_BLEND_NUM ] =
 {
 	D_D3D11_BLEND_ZERO,				// DX_BLEND_ZERO
@@ -418,7 +418,7 @@ static const D_D3D11_BLEND DxBlendTypeToD3D11Table[ DX_BLEND_NUM ] =
 	D_D3D11_BLEND_SRC_ALPHA_SAT,	// DX_BLEND_SRC_ALPHA_SAT
 } ;
 
-// ‚c‚wƒ‰ƒCƒuƒ‰ƒŠ‚ÌƒuƒŒƒ“ƒhˆ—ƒ^ƒCƒv‚ğ Direct3D 11 ‚Ìˆ—ƒ^ƒCƒv‚É•ÏŠ·‚·‚é‚½‚ß‚Ìƒe[ƒuƒ‹
+// ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®ãƒ–ãƒ¬ãƒ³ãƒ‰å‡¦ç†ã‚¿ã‚¤ãƒ—ã‚’ Direct3D 11 ã®å‡¦ç†ã‚¿ã‚¤ãƒ—ã«å¤‰æ›ã™ã‚‹ãŸã‚ã®ãƒ†ãƒ¼ãƒ–ãƒ«
 static const D_D3D11_BLEND_OP DxBlendOpToD3D11Table[ DX_BLENDOP_NUM ] =
 {
 	D_D3D11_BLEND_OP_ADD,			// DX_BLENDOP_ADD
@@ -428,7 +428,7 @@ static const D_D3D11_BLEND_OP DxBlendOpToD3D11Table[ DX_BLENDOP_NUM ] =
 	D_D3D11_BLEND_OP_MAX,			// DX_BLENDOP_MAX
 } ;
 
-// ’¸“_ƒoƒbƒtƒ@‚ÉŠi”[‚Å‚«‚é’¸“_‚ÌÅ‘å”‚Ìƒe[ƒuƒ‹
+// é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã«æ ¼ç´ã§ãã‚‹é ‚ç‚¹ã®æœ€å¤§æ•°ã®ãƒ†ãƒ¼ãƒ–ãƒ«
 static const int D3D11_VertexBuffer_MaxVertexNum[ D3D11_VERTEX_INPUTLAYOUT_NUM ] =
 {
 	D3D11_VERTEXBUFFER_SIZE / sizeof( VERTEX_NOTEX_2D    ),
@@ -441,7 +441,7 @@ static const int D3D11_VertexBuffer_MaxVertexNum[ D3D11_VERTEX_INPUTLAYOUT_NUM ]
 	D3D11_VERTEXBUFFER_SIZE / sizeof( VERTEX2DSHADER     ),
 } ;
 
-// Še’¸“_ƒf[ƒ^‚ÌƒTƒCƒY‚Ìƒe[ƒuƒ‹
+// å„é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ã®ã‚µã‚¤ã‚ºã®ãƒ†ãƒ¼ãƒ–ãƒ«
 static const int D3D11_VertexSize[ D3D11_VERTEX_INPUTLAYOUT_NUM ] =
 {
 	sizeof( VERTEX_NOTEX_2D    ),
@@ -454,7 +454,7 @@ static const int D3D11_VertexSize[ D3D11_VERTEX_INPUTLAYOUT_NUM ] =
 	sizeof( VERTEX2DSHADER     ),
 } ;
 
-// ‚R‚c’¸“_‚©‚Ç‚¤‚©‚Æ’¸“_ƒ^ƒCƒv‚Ì‘g‚İ‡‚í‚¹‚É‘Î‰‚·‚é’¸“_ƒf[ƒ^ƒ^ƒCƒv[ 0:‚Q‚c’¸“_  1:‚R‚c’¸“_ ][ ’¸“_ƒ^ƒCƒv ]
+// ï¼“ï¼¤é ‚ç‚¹ã‹ã©ã†ã‹ã¨é ‚ç‚¹ã‚¿ã‚¤ãƒ—ã®çµ„ã¿åˆã‚ã›ã«å¯¾å¿œã™ã‚‹é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ã‚¿ã‚¤ãƒ—[ 0:ï¼’ï¼¤é ‚ç‚¹  1:ï¼“ï¼¤é ‚ç‚¹ ][ é ‚ç‚¹ã‚¿ã‚¤ãƒ— ]
 static const DWORD D3D11_VertexTypeToInputLayout[ 2 ][ VERTEXTYPE_NUM ] =
 {
 	{
@@ -469,7 +469,7 @@ static const DWORD D3D11_VertexTypeToInputLayout[ 2 ][ VERTEXTYPE_NUM ] =
 	},
 } ;
 
-// ’PˆÊs—ñ
+// å˜ä½è¡Œåˆ—
 static MATRIX D3D11_GlobalIdentMatrix =
 {
 	1.0f, 0.0f, 0.0f, 0.0f,
@@ -478,7 +478,7 @@ static MATRIX D3D11_GlobalIdentMatrix =
 	0.0f, 0.0f, 0.0f, 1.0f
 } ;
 
-// •W€•`‰æ—p‚Ì•¡G‚Èˆ—‚ğs‚í‚È‚¢’¸“_ƒVƒF[ƒ_[‚Ìî•ñ
+// æ¨™æº–æç”»ç”¨ã®è¤‡é›‘ãªå‡¦ç†ã‚’è¡Œã‚ãªã„é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®æƒ…å ±
 static GRAPHICS_HARDWARE_DIRECT3D11_BASE_SIMPLE_VERTEXSHADER_INFO g_BaseSimpleVertexShaderInfo[ D3D11_VERTEX_INPUTLAYOUT_NUM ] =
 {
 	// D3D11_VERTEX_INPUTLAYOUT_NOTEX_2D( VERTEX_NOTEX_2D )
@@ -591,7 +591,7 @@ static GRAPHICS_HARDWARE_DIRECT3D11_BASE_SIMPLE_VERTEXSHADER_INFO g_BaseSimpleVe
 
 #ifdef DX_NON_SHADERCODE_BINARY
 
-// ƒVƒF[ƒ_[ƒ\[ƒX‚Ìƒ}ƒNƒ’è‹`Œn
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚½ãƒ¼ã‚¹ã®ãƒã‚¯ãƒ­å®šç¾©ç³»
 static const char *g_ShaderMacro_FogTypeName[] =
 {
 	NULL,
@@ -653,10 +653,10 @@ static const char *g_ShaderMacro_AlphaTestMode[] =
 
 #endif // DX_NON_SHADERCODE_BINARY
 
-// Direct3D11 ‚ğg‚Á‚½ƒOƒ‰ƒtƒBƒbƒNƒXˆ—î•ñ‚Ì\‘¢‘Ì
+// Direct3D11 ã‚’ä½¿ã£ãŸã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¹å‡¦ç†æƒ…å ±ã®æ§‹é€ ä½“
 GRAPHICS_HARDDATA_DIRECT3D11 GraphicsHardDataDirect3D11 ;
 
-// ƒVƒF[ƒ_[ƒoƒCƒiƒŠ”z—ñ
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒã‚¤ãƒŠãƒªé…åˆ—
 #ifndef DX_NON_SHADERCODE_BINARY
 
 extern int  DxShaderCodeBin_Model_D3D11Convert ;
@@ -681,38 +681,38 @@ extern BYTE DxShaderCodeBin_Filter_D3D11[] ;
 extern int  DxShaderCodeBin_RgbaMix_D3D11Convert ;
 extern BYTE DxShaderCodeBin_RgbaMix_D3D11[] ;
 
-// ŠÖ”éŒ¾ -------------------------------------------------------------------
+// é–¢æ•°å®£è¨€ -------------------------------------------------------------------
 
-static void Graphics_D3D11_VertexShaderArray_Release(      D_ID3D11VertexShader      **pObject, int Num ) ;		// ’¸“_ƒVƒF[ƒ_[”z—ñ‚ğ‰ğ•ú‚·‚é
-static void Graphics_D3D11_PixelShaderArray_Release(       D_ID3D11PixelShader       **pObject, int Num ) ;		// ƒsƒNƒZƒ‹ƒVƒF[ƒ_[”z—ñ‚ğ‰ğ•ú‚·‚é
-static void Graphics_D3D11_DepthStencilStateArray_Release( D_ID3D11DepthStencilState **pObject, int Num ) ;		// ƒfƒvƒXƒXƒeƒ“ƒVƒ‹ƒXƒe[ƒg”z—ñ‚ğ‰ğ•ú‚·‚é
-static void Graphics_D3D11_BlendStateArray_Release(        D_ID3D11BlendState        **pObject, int Num ) ;		// ƒuƒŒƒ“ƒhƒXƒe[ƒg”z—ñ‚ğ‰ğ•ú‚·‚é
-static void Graphics_D3D11_RasterizerStateArray_Release(   D_ID3D11RasterizerState   **pObject, int Num ) ;		// ƒ‰ƒXƒ^ƒ‰ƒCƒU[ƒXƒe[ƒg”z—ñ‚ğ‰ğ•ú‚·‚é
-static void Graphics_D3D11_SamplerStateArray_Release(      D_ID3D11SamplerState      **pObject, int Num ) ;		// ƒTƒ“ƒvƒ‰[ƒXƒe[ƒg”z—ñ‚ğ‰ğ•ú‚·‚é
+static void Graphics_D3D11_VertexShaderArray_Release(      D_ID3D11VertexShader      **pObject, int Num ) ;		// é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼é…åˆ—ã‚’è§£æ”¾ã™ã‚‹
+static void Graphics_D3D11_PixelShaderArray_Release(       D_ID3D11PixelShader       **pObject, int Num ) ;		// ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼é…åˆ—ã‚’è§£æ”¾ã™ã‚‹
+static void Graphics_D3D11_DepthStencilStateArray_Release( D_ID3D11DepthStencilState **pObject, int Num ) ;		// ãƒ‡ãƒ—ã‚¹ã‚¹ãƒ†ãƒ³ã‚·ãƒ«ã‚¹ãƒ†ãƒ¼ãƒˆé…åˆ—ã‚’è§£æ”¾ã™ã‚‹
+static void Graphics_D3D11_BlendStateArray_Release(        D_ID3D11BlendState        **pObject, int Num ) ;		// ãƒ–ãƒ¬ãƒ³ãƒ‰ã‚¹ãƒ†ãƒ¼ãƒˆé…åˆ—ã‚’è§£æ”¾ã™ã‚‹
+static void Graphics_D3D11_RasterizerStateArray_Release(   D_ID3D11RasterizerState   **pObject, int Num ) ;		// ãƒ©ã‚¹ã‚¿ãƒ©ã‚¤ã‚¶ãƒ¼ã‚¹ãƒ†ãƒ¼ãƒˆé…åˆ—ã‚’è§£æ”¾ã™ã‚‹
+static void Graphics_D3D11_SamplerStateArray_Release(      D_ID3D11SamplerState      **pObject, int Num ) ;		// ã‚µãƒ³ãƒ—ãƒ©ãƒ¼ã‚¹ãƒ†ãƒ¼ãƒˆé…åˆ—ã‚’è§£æ”¾ã™ã‚‹
 
-static int Graphics_D3D11_SetupDuplicationOutputTexture( void ) ;									// DXGIOutputDuplication ‚É‚æ‚éƒfƒXƒNƒgƒbƒvƒLƒƒƒvƒ`ƒƒ‚Ì€”õ‚ğs‚¤
+static int Graphics_D3D11_SetupDuplicationOutputTexture( void ) ;									// DXGIOutputDuplication ã«ã‚ˆã‚‹ãƒ‡ã‚¹ã‚¯ãƒˆãƒƒãƒ—ã‚­ãƒ£ãƒ—ãƒãƒ£ã®æº–å‚™ã‚’è¡Œã†
 
-// D3D11Device ƒXƒe[ƒ^ƒXŠÖŒW
-static int Graphics_D3D11_DeviceState_SetupSamplerState( void ) ;									// Œ»İ‚Ìİ’è‚ÉŠî‚Ã‚¢‚Ä ID3D11SamplerState ‚ğƒZƒbƒgƒAƒbƒv‚·‚é
-static int Graphics_D3D11_DeviceState_TerminateSamplerState( void ) ;								// ID3D11SamplerState ‚ğ‰ğ•ú‚·‚é
+// D3D11Device ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹é–¢ä¿‚
+static int Graphics_D3D11_DeviceState_SetupSamplerState( void ) ;									// ç¾åœ¨ã®è¨­å®šã«åŸºã¥ã„ã¦ ID3D11SamplerState ã‚’ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã™ã‚‹
+static int Graphics_D3D11_DeviceState_TerminateSamplerState( void ) ;								// ID3D11SamplerState ã‚’è§£æ”¾ã™ã‚‹
 
-static int Graphics_D3D11_DeviceState_SetupRasterizerState( void ) ;								// Œ»İ‚Ìİ’è‚ÉŠî‚Ã‚¢‚Ä ID3D11RasterizerState ‚ğƒZƒbƒgƒAƒbƒv‚·‚é
-static int Graphics_D3D11_DeviceState_TerminateRasterizerState( void ) ;							// ID3D11RasterizerState ‚ğ‰ğ•ú‚·‚é
+static int Graphics_D3D11_DeviceState_SetupRasterizerState( void ) ;								// ç¾åœ¨ã®è¨­å®šã«åŸºã¥ã„ã¦ ID3D11RasterizerState ã‚’ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã™ã‚‹
+static int Graphics_D3D11_DeviceState_TerminateRasterizerState( void ) ;							// ID3D11RasterizerState ã‚’è§£æ”¾ã™ã‚‹
 
-static int Graphics_D3D11_DeviceState_SetupDepthStencilState( void ) ;								// Œ»İ‚Ìİ’è‚ÉŠî‚Ã‚¢‚Ä ID3D11DepthStencilState ‚ğƒZƒbƒgƒAƒbƒv‚·‚é
-static int Graphics_D3D11_DeviceState_TerminateDepthStencilState( void ) ;							// ID3D11DepthStencilState ‚ğ‰ğ•ú‚·‚é
+static int Graphics_D3D11_DeviceState_SetupDepthStencilState( void ) ;								// ç¾åœ¨ã®è¨­å®šã«åŸºã¥ã„ã¦ ID3D11DepthStencilState ã‚’ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã™ã‚‹
+static int Graphics_D3D11_DeviceState_TerminateDepthStencilState( void ) ;							// ID3D11DepthStencilState ã‚’è§£æ”¾ã™ã‚‹
 
-static int Graphics_D3D11_DeviceState_SetupBlendState( void ) ;										// Œ»İ‚Ìİ’è‚ÉŠî‚Ã‚¢‚Ä ID3D11BlendState ‚ğƒZƒbƒgƒAƒbƒv‚·‚é
-static int Graphics_D3D11_DeviceState_TerminateBlendState( void ) ;									// ID3D11BlendState ‚ğ‰ğ•ú‚·‚é
+static int Graphics_D3D11_DeviceState_SetupBlendState( void ) ;										// ç¾åœ¨ã®è¨­å®šã«åŸºã¥ã„ã¦ ID3D11BlendState ã‚’ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã™ã‚‹
+static int Graphics_D3D11_DeviceState_TerminateBlendState( void ) ;									// ID3D11BlendState ã‚’è§£æ”¾ã™ã‚‹
 
-static int Graphics_D3D11_DeviceState_SetNormalTextureAddressTransformMatrix_ConstBuffer( void ) ;	// •W€•`‰æ—p‚ÌƒeƒNƒXƒ`ƒƒÀ•W•ÏŠ·s—ñ‚ğ’è”ƒoƒbƒtƒ@‚ÉƒZƒbƒg‚·‚é
-static int Graphics_D3D11_DeviceState_UpdateConstantFogParam( void ) ;								// ƒtƒHƒO‚ÌFˆÈŠO‚Ì’è”î•ñ‚ğXV‚·‚é
-static int Graphics_D3D11_DeviceState_UpdateConstantVerticalFogParam( void ) ;						// ‚‚³ƒtƒHƒO‚ÌFˆÈŠO‚Ì’è”î•ñ‚ğXV‚·‚é
-static void Graphics_D3D11_DeviceState_RefreshAmbientAndEmissiveParam( void ) ;						// ƒAƒ“ƒrƒGƒ“ƒgƒ‰ƒCƒg‚ÆƒGƒ~ƒbƒVƒuƒJƒ‰[‚ğŠ|‚¯‡‚í‚¹‚½ƒpƒ‰ƒ[ƒ^‚ğXV‚·‚é
-static void Graphics_D3D11_DeviceState_SetRenderTarget_SizeCheck( void ) ;							// ‘S‚Ä‚Ì•`‰æ‘ÎÛ‚ÌƒTƒCƒY‚ªˆê’v‚µ‚Ä‚¢‚½‚çƒŒƒ“ƒ_ƒŠƒ“ƒOƒ^[ƒQƒbƒg‚ÉƒZƒbƒg
+static int Graphics_D3D11_DeviceState_SetNormalTextureAddressTransformMatrix_ConstBuffer( void ) ;	// æ¨™æº–æç”»ç”¨ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£åº§æ¨™å¤‰æ›è¡Œåˆ—ã‚’å®šæ•°ãƒãƒƒãƒ•ã‚¡ã«ã‚»ãƒƒãƒˆã™ã‚‹
+static int Graphics_D3D11_DeviceState_UpdateConstantFogParam( void ) ;								// ãƒ•ã‚©ã‚°ã®è‰²ä»¥å¤–ã®å®šæ•°æƒ…å ±ã‚’æ›´æ–°ã™ã‚‹
+static int Graphics_D3D11_DeviceState_UpdateConstantVerticalFogParam( void ) ;						// é«˜ã•ãƒ•ã‚©ã‚°ã®è‰²ä»¥å¤–ã®å®šæ•°æƒ…å ±ã‚’æ›´æ–°ã™ã‚‹
+static void Graphics_D3D11_DeviceState_RefreshAmbientAndEmissiveParam( void ) ;						// ã‚¢ãƒ³ãƒ“ã‚¨ãƒ³ãƒˆãƒ©ã‚¤ãƒˆã¨ã‚¨ãƒŸãƒƒã‚·ãƒ–ã‚«ãƒ©ãƒ¼ã‚’æ›ã‘åˆã‚ã›ãŸãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’æ›´æ–°ã™ã‚‹
+static void Graphics_D3D11_DeviceState_SetRenderTarget_SizeCheck( void ) ;							// å…¨ã¦ã®æç”»å¯¾è±¡ã®ã‚µã‚¤ã‚ºãŒä¸€è‡´ã—ã¦ã„ãŸã‚‰ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã«ã‚»ãƒƒãƒˆ
 
 
-// Direct3D11 ‚Éİ’è‚·‚éË‰es—ñ‚ğXV‚·‚é
+// Direct3D11 ã«è¨­å®šã™ã‚‹å°„å½±è¡Œåˆ—ã‚’æ›´æ–°ã™ã‚‹
 static void Graphics_Hardware_D3D11_RefreshProjectionMatrix( void ) ;
 
 static int Graphics_D3D11_BltBmpOrBaseImageToGraph3_MipMapBlt(
@@ -747,7 +747,7 @@ static int Graphics_D3D11_BltBmpOrBaseImageToGraph3_NoMipMapBlt(
 	      int				ASyncThread
 ) ;
 
-__inline	static DWORD GetDiffuseColor( void )															// Œ»İ‚ÌƒfƒBƒtƒ…[ƒYƒJƒ‰[‚ğ“¾‚é
+__inline	static DWORD GetDiffuseColor( void )															// ç¾åœ¨ã®ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚«ãƒ©ãƒ¼ã‚’å¾—ã‚‹
 			{
 				if( GSYS.HardInfo.UseVertexColorBGRAFormat )
 				{
@@ -766,38 +766,38 @@ __inline	static DWORD GetDiffuseColor( void )															// Œ»İ‚ÌƒfƒBƒtƒ…[ƒ
 			}
 
 #ifndef DX_NON_MODEL
-static	int		CreateRGBtoVMaxRGBVolumeTexture( void ) ;							// RGBƒJƒ‰[‚ğ‹P“x‚ğÅ‘å‚É‚µ‚½RGB’l‚É•ÏŠ·‚·‚é‚½‚ß‚Ìƒ{ƒŠƒ…[ƒ€ƒeƒNƒXƒ`ƒƒ‚ğì¬‚·‚é( 0:¬Œ÷  -1:¸”s )
+static	int		CreateRGBtoVMaxRGBVolumeTexture( void ) ;							// RGBã‚«ãƒ©ãƒ¼ã‚’è¼åº¦ã‚’æœ€å¤§ã«ã—ãŸRGBå€¤ã«å¤‰æ›ã™ã‚‹ãŸã‚ã®ãƒœãƒªãƒ¥ãƒ¼ãƒ ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ä½œæˆã™ã‚‹( 0:æˆåŠŸ  -1:å¤±æ•— )
 #endif // DX_NON_MODEL
 
 #ifdef DX_NON_SHADERCODE_BINARY
-// ƒVƒF[ƒ_[ƒR[ƒhì¬ŒnŠÖ”
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚³ãƒ¼ãƒ‰ä½œæˆç³»é–¢æ•°
 
-static int CreateD3D11BaseSimpleVertexShader( int InputLayout ) ;																							// •W€•`‰æ—p‚Ì•¡G‚Èˆ—‚ğs‚í‚È‚¢’¸“_ƒVƒF[ƒ_[‚ÌƒRƒ“ƒpƒCƒ‹‚ğs‚¤
-static int CreateD3D11BaseNoneTexPixelshader( int EffectType, int AlphaTestMode ) ;																			// ŒÅ’è‹@”\ƒpƒCƒvƒ‰ƒCƒ“ŒİŠ·‚ÌƒVƒF[ƒ_[( ƒeƒNƒXƒ`ƒƒ‚È‚µ )‚ÌƒRƒ“ƒpƒCƒ‹‚ğs‚¤
-static int CreateD3D11BaseUseTexPixelshader( int BlendType, int EffectType, int IgnoreTexRGB, int IgnoreTexA, int AlphaTestMode ) ;							// ŒÅ’è‹@”\ƒpƒCƒvƒ‰ƒCƒ“ŒİŠ·‚ÌƒVƒF[ƒ_[( ƒeƒNƒXƒ`ƒƒ‚ ‚è )‚ÌƒRƒ“ƒpƒCƒ‹‚ğs‚¤
-static int CreateD3D11Base3DShadowMapVertexShader( int BumpMap ) ;																							// ƒ‚ƒfƒ‹•`‰æ—p‚ÌƒVƒƒƒhƒEƒ}ƒbƒv‚Ö‚ÌƒŒƒ“ƒ_ƒŠƒ“ƒO—p’¸“_ƒVƒF[ƒ_[‚ÌƒRƒ“ƒpƒCƒ‹‚ğs‚¤
-static int CreateD3D11Base3DShadowMapNormalPixelShader( int AlphaTestMode ) ;																				// ƒ‚ƒfƒ‹•`‰æ—p‚ÌƒVƒƒƒhƒEƒ}ƒbƒv‚Ö‚ÌƒŒƒ“ƒ_ƒŠƒ“ƒO—pƒsƒNƒZƒ‹ƒVƒF[ƒ_[‚ÌƒRƒ“ƒpƒCƒ‹‚ğs‚¤
-static int CreateD3D11Base3DPixelLightingVertexShader( int ShadowMap, int FogType ) ;																		// ƒ‚ƒfƒ‹•`‰æ—pƒsƒNƒZƒ‹’PˆÊƒ‰ƒCƒeƒBƒ“ƒOƒ^ƒCƒv‚Ì’¸“_ƒVƒF[ƒ_[‚ÌƒRƒ“ƒpƒCƒ‹‚ğs‚¤
-static int CreateD3D11Base3DPixelLightingNormalPixelShader( int ShadowMap, const int *LightMode, int RenderBlendType, int AlphaTestMode ) ;					// ƒ‚ƒfƒ‹•`‰æ—pƒsƒNƒZƒ‹’PˆÊƒ‰ƒCƒeƒBƒ“ƒOƒ^ƒCƒv‚ÌƒsƒNƒZƒ‹ƒVƒF[ƒ_[‚ÌƒRƒ“ƒpƒCƒ‹‚ğs‚¤
-static int CreateD3D11Base3DVertexLightingVertexShader( int ShadowMap, int FogType, const int *LightMode ) ;												// ƒ‚ƒfƒ‹•`‰æ—p‚Ìƒ‰ƒCƒeƒBƒ“ƒO‚ ‚è’¸“_ƒVƒF[ƒ_[‚ÌƒRƒ“ƒpƒCƒ‹‚ğs‚¤
-static int CreateD3D11Base3DVertexLightingNormalPixelShader( int ShadowMap, const int *LightMode, int RenderBlendType, int AlphaTestMode ) ;				// ƒ‚ƒfƒ‹•`‰æ—p‚Ìƒ‰ƒCƒeƒBƒ“ƒO‚ ‚èƒsƒNƒZƒ‹ƒVƒF[ƒ_‚ÌƒRƒ“ƒpƒCƒ‹‚ğs‚¤
-static int CreateD3D11Base3DNoLightingVertexShader( int FogType ) ;																							// ƒ‚ƒfƒ‹•`‰æ—p‚Ìƒ‰ƒCƒeƒBƒ“ƒO‚È‚µ’¸“_ƒVƒF[ƒ_[‚ÌƒRƒ“ƒpƒCƒ‹‚ğs‚¤
-static int CreateD3D11Base3DNoLightingNormalPixelShader( int RenderBlendType, int AlphaTestMode ) ;															// ƒ‚ƒfƒ‹•`‰æ—p‚Ìƒ‰ƒCƒeƒBƒ“ƒO‚È‚µƒsƒNƒZƒ‹ƒVƒF[ƒ_[‚ÌƒRƒ“ƒpƒCƒ‹‚ğs‚¤
+static int CreateD3D11BaseSimpleVertexShader( int InputLayout ) ;																							// æ¨™æº–æç”»ç”¨ã®è¤‡é›‘ãªå‡¦ç†ã‚’è¡Œã‚ãªã„é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ã‚’è¡Œã†
+static int CreateD3D11BaseNoneTexPixelshader( int EffectType, int AlphaTestMode ) ;																			// å›ºå®šæ©Ÿèƒ½ãƒ‘ã‚¤ãƒ—ãƒ©ã‚¤ãƒ³äº’æ›ã®ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼( ãƒ†ã‚¯ã‚¹ãƒãƒ£ãªã— )ã®ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ã‚’è¡Œã†
+static int CreateD3D11BaseUseTexPixelshader( int BlendType, int EffectType, int IgnoreTexRGB, int IgnoreTexA, int AlphaTestMode ) ;							// å›ºå®šæ©Ÿèƒ½ãƒ‘ã‚¤ãƒ—ãƒ©ã‚¤ãƒ³äº’æ›ã®ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼( ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚ã‚Š )ã®ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ã‚’è¡Œã†
+static int CreateD3D11Base3DShadowMapVertexShader( int BumpMap ) ;																							// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ã®ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ã¸ã®ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ç”¨é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ã‚’è¡Œã†
+static int CreateD3D11Base3DShadowMapNormalPixelShader( int AlphaTestMode ) ;																				// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ã®ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ã¸ã®ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ç”¨ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ã‚’è¡Œã†
+static int CreateD3D11Base3DPixelLightingVertexShader( int ShadowMap, int FogType ) ;																		// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ãƒ”ã‚¯ã‚»ãƒ«å˜ä½ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ã‚¿ã‚¤ãƒ—ã®é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ã‚’è¡Œã†
+static int CreateD3D11Base3DPixelLightingNormalPixelShader( int ShadowMap, const int *LightMode, int RenderBlendType, int AlphaTestMode ) ;					// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ãƒ”ã‚¯ã‚»ãƒ«å˜ä½ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ã‚¿ã‚¤ãƒ—ã®ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ã‚’è¡Œã†
+static int CreateD3D11Base3DVertexLightingVertexShader( int ShadowMap, int FogType, const int *LightMode ) ;												// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ã®ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ã‚ã‚Šé ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ã‚’è¡Œã†
+static int CreateD3D11Base3DVertexLightingNormalPixelShader( int ShadowMap, const int *LightMode, int RenderBlendType, int AlphaTestMode ) ;				// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ã®ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ã‚ã‚Šãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ã®ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ã‚’è¡Œã†
+static int CreateD3D11Base3DNoLightingVertexShader( int FogType ) ;																							// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ã®ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ãªã—é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ã‚’è¡Œã†
+static int CreateD3D11Base3DNoLightingNormalPixelShader( int RenderBlendType, int AlphaTestMode ) ;															// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ã®ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ãªã—ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ã‚’è¡Œã†
 
 #endif // DX_NON_SHADERCODE_BINARY
 
-// ƒvƒƒOƒ‰ƒ€ -----------------------------------------------------------------
+// ãƒ—ãƒ­ã‚°ãƒ©ãƒ  -----------------------------------------------------------------
 
 #ifdef DX_NON_SHADERCODE_BINARY
 
-// ƒVƒF[ƒ_[ƒRƒ“ƒpƒCƒ‰ƒCƒ“ƒNƒ‹[ƒhˆ——pƒNƒ‰ƒX
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚³ãƒ³ãƒ‘ã‚¤ãƒ©ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰å‡¦ç†ç”¨ã‚¯ãƒ©ã‚¹
 HRESULT	__stdcall Graphics_D3D11_ShaderCompilerIncludeClass::Open( D_D3D_INCLUDE_TYPE /*IncludeType*/, LPCSTR pFileName, LPCVOID /*pParentData*/, LPCVOID *ppData, UINT *pBytes )
 {
 	GRAPHICS_HARDWARE_DIRECT3D11_SHADERCODE *ShaderCode = &GraphicsHardDataDirect3D11.ShaderCode ;
 	int Addr ;
 	int Size ;
 
-	// ‘Š‘ÎƒpƒXw’è‚Í–³‹‚·‚é
+	// ç›¸å¯¾ãƒ‘ã‚¹æŒ‡å®šã¯ç„¡è¦–ã™ã‚‹
 	const char *EnMarkLast = CL_strrstr( DX_CHARCODEFORMAT_ASCII, pFileName, "\\" ) ;
 	const char *SlashMarkLast = CL_strrstr( DX_CHARCODEFORMAT_ASCII, pFileName, "/" ) ;
 	const char *UseP = NULL ;
@@ -810,7 +810,7 @@ HRESULT	__stdcall Graphics_D3D11_ShaderCompilerIncludeClass::Open( D_D3D_INCLUDE
 		UseP = ( EnMarkLast > SlashMarkLast ? EnMarkLast : SlashMarkLast ) + 1 ;
 	}
 
-	// ƒVƒF[ƒ_[ƒ\[ƒXƒtƒ@ƒCƒ‹‚ğæ“¾‚·‚é
+	// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚½ãƒ¼ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«ã‚’å–å¾—ã™ã‚‹
 	if( DXA_GetFileInfo( &ShaderCode->Base.ShaderTxtDxa, DX_CHARCODEFORMAT_ASCII, UseP, &Addr, &Size ) != 0 )
 	{
 		return S_FALSE ;
@@ -975,7 +975,7 @@ __inline void RGBtoVMaxRGBI( int R, int G, int B, BYTE &RD, BYTE &GD, BYTE &BD )
 	}
 }
 
-// RGBƒJƒ‰[‚ğ‹P“x‚ğÅ‘å‚É‚µ‚½RGB’l‚É•ÏŠ·‚·‚é‚½‚ß‚Ìƒ{ƒŠƒ…[ƒ€ƒeƒNƒXƒ`ƒƒ‚ğì¬‚·‚é( 0:¬Œ÷  -1:¸”s )
+// RGBã‚«ãƒ©ãƒ¼ã‚’è¼åº¦ã‚’æœ€å¤§ã«ã—ãŸRGBå€¤ã«å¤‰æ›ã™ã‚‹ãŸã‚ã®ãƒœãƒªãƒ¥ãƒ¼ãƒ ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ä½œæˆã™ã‚‹( 0:æˆåŠŸ  -1:å¤±æ•— )
 static int CreateRGBtoVMaxRGBVolumeTexture( void )
 {
 	D_D3D11_TEXTURE3D_DESC				Texture3DDesc ;
@@ -997,7 +997,7 @@ static int CreateRGBtoVMaxRGBVolumeTexture( void )
 	GD3D11.RGBtoVMaxRGBVolumeTextureSRV = NULL ;
 	TempBuffer							= NULL ;
 
-	// ƒ{ƒŠƒ…[ƒ€ƒeƒNƒXƒ`ƒƒ‚Ìì¬
+	// ãƒœãƒªãƒ¥ãƒ¼ãƒ ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ä½œæˆ
 	_MEMSET( &Texture3DDesc, 0, sizeof( Texture3DDesc ) ) ;
 	Texture3DDesc.Usage              = D_D3D11_USAGE_DEFAULT ;
 	Texture3DDesc.Format             = D_DXGI_FORMAT_R8G8B8A8_UNORM ;
@@ -1010,11 +1010,11 @@ static int CreateRGBtoVMaxRGBVolumeTexture( void )
 	hr = D3D11Device_CreateTexture3D_ASync( &Texture3DDesc, NULL, &GD3D11.RGBtoVMaxRGBVolumeTexture, FALSE ) ;
 	if( FAILED( hr ) )
 	{
-		DXST_LOGFILE_ADDUTF16LE( "\x52\x00\x47\x00\x42\x00\xab\x30\xe9\x30\xfc\x30\x92\x30\x1d\x8f\xa6\x5e\x92\x30\x00\x67\x27\x59\x6b\x30\x57\x30\x5f\x30\x52\x00\x47\x00\x42\x00\x24\x50\x6b\x30\x09\x59\xdb\x63\x59\x30\x8b\x30\x5f\x30\x81\x30\x6e\x30\xdc\x30\xea\x30\xe5\x30\xfc\x30\xe0\x30\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"RGBƒJƒ‰[‚ğ‹P“x‚ğÅ‘å‚É‚µ‚½RGB’l‚É•ÏŠ·‚·‚é‚½‚ß‚Ìƒ{ƒŠƒ…[ƒ€ƒeƒNƒXƒ`ƒƒ‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+		DXST_LOGFILE_ADDUTF16LE( "\x52\x00\x47\x00\x42\x00\xab\x30\xe9\x30\xfc\x30\x92\x30\x1d\x8f\xa6\x5e\x92\x30\x00\x67\x27\x59\x6b\x30\x57\x30\x5f\x30\x52\x00\x47\x00\x42\x00\x24\x50\x6b\x30\x09\x59\xdb\x63\x59\x30\x8b\x30\x5f\x30\x81\x30\x6e\x30\xdc\x30\xea\x30\xe5\x30\xfc\x30\xe0\x30\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"RGBã‚«ãƒ©ãƒ¼ã‚’è¼åº¦ã‚’æœ€å¤§ã«ã—ãŸRGBå€¤ã«å¤‰æ›ã™ã‚‹ãŸã‚ã®ãƒœãƒªãƒ¥ãƒ¼ãƒ ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 		goto ERR ;
 	}
 
-	// ƒVƒF[ƒ_[ƒŠƒ\[ƒXƒrƒ…[‚Ìì¬
+	// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒªã‚½ãƒ¼ã‚¹ãƒ“ãƒ¥ãƒ¼ã®ä½œæˆ
 	_MEMSET( &SRVDesc, 0, sizeof( SRVDesc ) );
 	SRVDesc.Format						= D_DXGI_FORMAT_R8G8B8A8_UNORM ;
 	SRVDesc.ViewDimension				= D_D3D11_SRV_DIMENSION_TEXTURE3D ;
@@ -1023,19 +1023,19 @@ static int CreateRGBtoVMaxRGBVolumeTexture( void )
 	hr = D3D11Device_CreateShaderResourceView_ASync( GD3D11.RGBtoVMaxRGBVolumeTexture, &SRVDesc, &GD3D11.RGBtoVMaxRGBVolumeTextureSRV, FALSE ) ;
 	if( FAILED( hr ) )
 	{
-		DXST_LOGFILE_ADDUTF16LE( "\x52\x00\x47\x00\x42\x00\xab\x30\xe9\x30\xfc\x30\x92\x30\x1d\x8f\xa6\x5e\x92\x30\x00\x67\x27\x59\x6b\x30\x57\x30\x5f\x30\x52\x00\x47\x00\x42\x00\x24\x50\x6b\x30\x09\x59\xdb\x63\x59\x30\x8b\x30\xba\x70\x6e\x30\xdc\x30\xea\x30\xe5\x30\xfc\x30\xe0\x30\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\x28\x75\xb7\x30\xa7\x30\xfc\x30\xc0\x30\xfc\x30\xea\x30\xbd\x30\xfc\x30\xb9\x30\xd3\x30\xe5\x30\xfc\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"RGBƒJƒ‰[‚ğ‹P“x‚ğÅ‘å‚É‚µ‚½RGB’l‚É•ÏŠ·‚·‚éˆ×‚Ìƒ{ƒŠƒ…[ƒ€ƒeƒNƒXƒ`ƒƒ—pƒVƒF[ƒ_[ƒŠƒ\[ƒXƒrƒ…[‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½" @*/ ) ;
+		DXST_LOGFILE_ADDUTF16LE( "\x52\x00\x47\x00\x42\x00\xab\x30\xe9\x30\xfc\x30\x92\x30\x1d\x8f\xa6\x5e\x92\x30\x00\x67\x27\x59\x6b\x30\x57\x30\x5f\x30\x52\x00\x47\x00\x42\x00\x24\x50\x6b\x30\x09\x59\xdb\x63\x59\x30\x8b\x30\xba\x70\x6e\x30\xdc\x30\xea\x30\xe5\x30\xfc\x30\xe0\x30\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\x28\x75\xb7\x30\xa7\x30\xfc\x30\xc0\x30\xfc\x30\xea\x30\xbd\x30\xfc\x30\xb9\x30\xd3\x30\xe5\x30\xfc\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"RGBã‚«ãƒ©ãƒ¼ã‚’è¼åº¦ã‚’æœ€å¤§ã«ã—ãŸRGBå€¤ã«å¤‰æ›ã™ã‚‹ç‚ºã®ãƒœãƒªãƒ¥ãƒ¼ãƒ ãƒ†ã‚¯ã‚¹ãƒãƒ£ç”¨ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒªã‚½ãƒ¼ã‚¹ãƒ“ãƒ¥ãƒ¼ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ" @*/ ) ;
 		goto ERR ;
 	}
 
-	// ƒf[ƒ^“]‘——pƒƒ‚ƒŠ‚ÌŠm•Û
+	// ãƒ‡ãƒ¼ã‚¿è»¢é€ç”¨ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿
 	TempBuffer = DXALLOC( RGBTOVMAXRGB_TEX_SIZE * RGBTOVMAXRGB_TEX_SIZE * RGBTOVMAXRGB_TEX_SIZE * 4 ) ;
 	if( TempBuffer == NULL )
 	{
-		DXST_LOGFILE_ADDUTF16LE( "\x52\x00\x47\x00\x42\x00\xab\x30\xe9\x30\xfc\x30\x92\x30\x1d\x8f\xa6\x5e\x92\x30\x00\x67\x27\x59\x6b\x30\x57\x30\x5f\x30\x52\x00\x47\x00\x42\x00\x24\x50\x6b\x30\x09\x59\xdb\x63\x59\x30\x8b\x30\x5f\x30\x81\x30\x6e\x30\xe2\x8e\x01\x90\x43\x51\x28\x75\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"RGBƒJƒ‰[‚ğ‹P“x‚ğÅ‘å‚É‚µ‚½RGB’l‚É•ÏŠ·‚·‚é‚½‚ß‚Ì“]‘—Œ³—pƒƒ‚ƒŠ‚ÌŠm•Û‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+		DXST_LOGFILE_ADDUTF16LE( "\x52\x00\x47\x00\x42\x00\xab\x30\xe9\x30\xfc\x30\x92\x30\x1d\x8f\xa6\x5e\x92\x30\x00\x67\x27\x59\x6b\x30\x57\x30\x5f\x30\x52\x00\x47\x00\x42\x00\x24\x50\x6b\x30\x09\x59\xdb\x63\x59\x30\x8b\x30\x5f\x30\x81\x30\x6e\x30\xe2\x8e\x01\x90\x43\x51\x28\x75\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"RGBã‚«ãƒ©ãƒ¼ã‚’è¼åº¦ã‚’æœ€å¤§ã«ã—ãŸRGBå€¤ã«å¤‰æ›ã™ã‚‹ãŸã‚ã®è»¢é€å…ƒç”¨ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 		goto ERR ;
 	}
 
-	// ƒVƒXƒeƒ€ƒƒ‚ƒŠƒ{ƒŠƒ…[ƒ€ƒeƒNƒXƒ`ƒƒ‚É•ÏŠ·î•ñ‚ğ‘‚«‚Ş
+	// ã‚·ã‚¹ãƒ†ãƒ ãƒ¡ãƒ¢ãƒªãƒœãƒªãƒ¥ãƒ¼ãƒ ãƒ†ã‚¯ã‚¹ãƒãƒ£ã«å¤‰æ›æƒ…å ±ã‚’æ›¸ãè¾¼ã‚€
 	for( b = 0 ; b < RGBTOVMAXRGB_TEX_SIZE ; b ++ )
 	{
 		for( g = 0 ; g < RGBTOVMAXRGB_TEX_SIZE ; g ++ )
@@ -1055,7 +1055,7 @@ static int CreateRGBtoVMaxRGBVolumeTexture( void )
 		}
 	}
 
-	// ƒeƒNƒXƒ`ƒƒ‚É“]‘—
+	// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã«è»¢é€
 	DestBox.left   = 0 ;
 	DestBox.top    = 0 ;
 	DestBox.front  = 0 ;
@@ -1073,11 +1073,11 @@ static int CreateRGBtoVMaxRGBVolumeTexture( void )
 		0
 	) ;
 
-	// ƒf[ƒ^“]‘——p‚Ìƒƒ‚ƒŠ‚ğ‰ğ•ú
+	// ãƒ‡ãƒ¼ã‚¿è»¢é€ç”¨ã®ãƒ¡ãƒ¢ãƒªã‚’è§£æ”¾
 	DXFREE( TempBuffer ) ;
 	TempBuffer = NULL ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 
 ERR :
@@ -1104,62 +1104,62 @@ ERR :
 
 #endif // DX_NON_MODEL
 
-// Direct3D11 ‚ğg—p‚µ‚½ƒOƒ‰ƒtƒBƒbƒNƒXˆ—‚Ì‰Šú‰»‚ğs‚¤( 0:¬Œ÷ -1:¸”s )
+// Direct3D11 ã‚’ä½¿ç”¨ã—ãŸã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¹å‡¦ç†ã®åˆæœŸåŒ–ã‚’è¡Œã†( 0:æˆåŠŸ -1:å¤±æ•— )
 extern	int		Graphics_D3D11_Initialize( void )
 {
 	int IsUseSubBackBuffer = FALSE ;
 
-	// ‰æ–Êƒ‚[ƒh•ÏX‚É‚ÍƒOƒ‰ƒtƒBƒbƒNƒVƒXƒeƒ€‚Ì‰Šú‰»‚ğs‚í‚È‚¢İ’è‚Ìê‡‚Íˆê•”‚Ìˆ—‚ğƒXƒLƒbƒv‚·‚é
+	// ç”»é¢ãƒ¢ãƒ¼ãƒ‰å¤‰æ›´æ™‚ã«ã¯ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚·ã‚¹ãƒ†ãƒ ã®åˆæœŸåŒ–ã‚’è¡Œã‚ãªã„è¨­å®šã®å ´åˆã¯ä¸€éƒ¨ã®å‡¦ç†ã‚’ã‚¹ã‚­ãƒƒãƒ—ã™ã‚‹
 	if( GSYS.Screen.Graphics_Screen_ChangeModeFlag == FALSE || GSYS.Setting.ChangeScreenModeNotGraphicsSystemFlag == FALSE )
 	{
-		// Direct3D11.DLL ‚Ì“Ç‚İ‚İ
+		// Direct3D11.DLL ã®èª­ã¿è¾¼ã¿
 		if( Direct3D11_LoadDLL() < 0 )
 		{
 			goto ERR ;
 		}
 
-		// DXGI.DLL ‚Ì“Ç‚İ‚İ
+		// DXGI.DLL ã®èª­ã¿è¾¼ã¿
 		if( DXGI_LoadDLL() < 0 )
 		{
 			goto ERR ;
 		}
 
-		// D3D11Device ‚ğì¬‚·‚é
+		// D3D11Device ã‚’ä½œæˆã™ã‚‹
 		if( Graphics_D3D11_Device_Create() != 0 )
 		{
 			goto ERR ;
 		}
 
-		// •W€•`‰æ—p’¸“_ƒoƒbƒtƒ@‚Ìì¬
+		// æ¨™æº–æç”»ç”¨é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã®ä½œæˆ
 		if( Graphics_D3D11_NormalDrawVertexBuffer_Create() != 0 )
 		{
 			goto ERR ;
 		}
 
-		// ƒVƒF[ƒ_[‚Ìì¬
+		// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ä½œæˆ
 		if( Graphics_D3D11_Shader_Initialize() != 0 )
 		{
 			goto ERR ;
 		}
 
-		// ’è”î•ñ‚Ì‰Šú‰»
+		// å®šæ•°æƒ…å ±ã®åˆæœŸåŒ–
 		if( Graphics_D3D11_Constant_Initialize() != 0 )
 		{
 			goto ERR ;
 		}
 
-		// “ü—ÍƒŒƒCƒAƒEƒg‚Ìì¬
+		// å…¥åŠ›ãƒ¬ã‚¤ã‚¢ã‚¦ãƒˆã®ä½œæˆ
 		if( Graphics_D3D11_InputLayout_Base_Create() != 0 )
 		{
 			goto ERR ;
 		}
 
 #ifndef DX_NON_MODEL
-		// ƒ{ƒŠƒ…[ƒ€ƒeƒNƒXƒ`ƒƒ‚Ìì¬
+		// ãƒœãƒªãƒ¥ãƒ¼ãƒ ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ä½œæˆ
 		CreateRGBtoVMaxRGBVolumeTexture() ;
 #endif // DX_NON_MODEL
 
-		// ’Pƒ“]‘—ˆ—‚Ì‰Šú‰»
+		// å˜ç´”è»¢é€å‡¦ç†ã®åˆæœŸåŒ–
 		if( Graphics_D3D11_StretchRect_Initialize() != 0 )
 		{
 			goto ERR ;
@@ -1167,20 +1167,20 @@ extern	int		Graphics_D3D11_Initialize( void )
 	}
 	else
 	{
-		// ƒTƒuƒoƒbƒNƒoƒbƒtƒ@‚ğg—p‚µ‚Ä‚¢‚½‚©‚Ç‚¤‚©‚ğ•Û‘¶‚µ‚Ä‚¨‚­
+		// ã‚µãƒ–ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã‚’ä½¿ç”¨ã—ã¦ã„ãŸã‹ã©ã†ã‹ã‚’ä¿å­˜ã—ã¦ãŠã
 		IsUseSubBackBuffer = GD3D11.Device.Screen.SubBackBufferTexture2D != NULL ? TRUE : FALSE ;
 
-		// ‰æ–Êƒ‚[ƒh•ÏX‚ÍƒTƒuƒoƒbƒNƒoƒbƒtƒ@‚ğˆê’Uíœ‚·‚é
+		// ç”»é¢ãƒ¢ãƒ¼ãƒ‰å¤‰æ›´æ™‚ã¯ã‚µãƒ–ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã‚’ä¸€æ—¦å‰Šé™¤ã™ã‚‹
 		Graphics_D3D11_TerminateSubBackBuffer() ;
 	}
 
-	// [“xƒoƒbƒtƒ@‚Ìì¬‚ğ‚İ‚é
+	// æ·±åº¦ãƒãƒƒãƒ•ã‚¡ã®ä½œæˆã‚’è©¦ã¿ã‚‹
 	if( Graphics_D3D11_CreateDepthBuffer() != 0 )
 	{
 		goto ERR ;
 	}
 
-	// ƒtƒ‹ƒXƒNƒŠ[ƒ“ƒ‚[ƒh‚©AŠù‚ÉƒTƒuƒoƒbƒNƒoƒbƒtƒ@‚ğg—p‚µ‚Ä‚¢‚½ê‡‚ÍƒTƒuƒoƒbƒNƒoƒbƒtƒ@‚ÌƒZƒbƒgƒAƒbƒv‚ğs‚¤
+	// ãƒ•ãƒ«ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ¢ãƒ¼ãƒ‰ã‹ã€æ—¢ã«ã‚µãƒ–ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã‚’ä½¿ç”¨ã—ã¦ã„ãŸå ´åˆã¯ã‚µãƒ–ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã‚’è¡Œã†
 	if( ( GetWindowModeFlag() == FALSE && NS_GetUseFullScreenResolutionMode() != DX_FSRESOLUTIONMODE_BORDERLESS_WINDOW ) || IsUseSubBackBuffer )
 	{
 		if( Graphics_D3D11_SetupSubBackBuffer() != 0 )
@@ -1191,67 +1191,67 @@ extern	int		Graphics_D3D11_Initialize( void )
 
 	GSYS.Setting.ValidHardware = TRUE ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 
-	// ƒGƒ‰[I—¹
+	// ã‚¨ãƒ©ãƒ¼çµ‚äº†
 ERR :
 
-	// Œãn––‚ğs‚¤
+	// å¾Œå§‹æœ«ã‚’è¡Œã†
 	Graphics_D3D11_Terminate() ;
 
 	return -1 ;
 }
 
-// Direct3D11 ‚ğg—p‚µ‚½ƒOƒ‰ƒtƒBƒbƒNƒXˆ—‚ÌŒãn––‚ğs‚¤
+// Direct3D11 ã‚’ä½¿ç”¨ã—ãŸã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¹å‡¦ç†ã®å¾Œå§‹æœ«ã‚’è¡Œã†
 extern int Graphics_D3D11_Terminate( void )
 {
 	int i ;
 
 #ifndef DX_NON_MODEL
-	// ƒ‚ƒfƒ‹‚Ì’¸“_ƒoƒbƒtƒ@‚ğ‰ğ•ú
+	// ãƒ¢ãƒ‡ãƒ«ã®é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã‚’è§£æ”¾
 	MV1TerminateVertexBufferAll() ;
 #endif // DX_NON_MODEL
 
-	// ’Pƒ“]‘—ˆ—‚ÌŒãn––
+	// å˜ç´”è»¢é€å‡¦ç†ã®å¾Œå§‹æœ«
 	Graphics_D3D11_StretchRect_Terminate() ;
 
-	// ƒeƒNƒXƒ`ƒƒ‚Ö‰æ‘œ‚ğ“]‘—‚·‚é‚½‚ß‚Ìƒƒ‚ƒŠ‚ÌŒãn––‚ğs‚¤
+	// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã¸ç”»åƒã‚’è»¢é€ã™ã‚‹ãŸã‚ã®ãƒ¡ãƒ¢ãƒªã®å¾Œå§‹æœ«ã‚’è¡Œã†
 	Graphics_D3D11_Texture_TerminateCommonBuffer() ;
 
-	// ƒTƒ“ƒvƒ‰[ƒXƒe[ƒg‚Ì‰ğ•ú
+	// ã‚µãƒ³ãƒ—ãƒ©ãƒ¼ã‚¹ãƒ†ãƒ¼ãƒˆã®è§£æ”¾
 	Graphics_D3D11_DeviceState_TerminateSamplerState() ;
 
-	// ƒ‰ƒXƒ^ƒ‰ƒCƒU[ƒXƒe[ƒg‚Ì‰ğ•ú
+	// ãƒ©ã‚¹ã‚¿ãƒ©ã‚¤ã‚¶ãƒ¼ã‚¹ãƒ†ãƒ¼ãƒˆã®è§£æ”¾
 	Graphics_D3D11_DeviceState_TerminateRasterizerState() ;
 
-	// [“xƒXƒeƒ“ƒVƒ‹ƒXƒe[ƒg‚Ì‰ğ•ú
+	// æ·±åº¦ã‚¹ãƒ†ãƒ³ã‚·ãƒ«ã‚¹ãƒ†ãƒ¼ãƒˆã®è§£æ”¾
 	Graphics_D3D11_DeviceState_TerminateDepthStencilState() ;
 
-	// ƒuƒŒƒ“ƒhƒXƒe[ƒg‚Ì‰ğ•ú
+	// ãƒ–ãƒ¬ãƒ³ãƒ‰ã‚¹ãƒ†ãƒ¼ãƒˆã®è§£æ”¾
 	Graphics_D3D11_DeviceState_TerminateBlendState() ;
 
-	// ”Ä—p•`‰æ—p’¸“_ƒoƒbƒtƒ@‚ÆƒCƒ“ƒfƒbƒNƒXƒoƒbƒtƒ@‚Ì‰ğ•ú
+	// æ±ç”¨æç”»ç”¨é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã¨ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒãƒƒãƒ•ã‚¡ã®è§£æ”¾
 	Graphics_D3D11_CommonVertexBuffer_Terminate() ;
 	Graphics_D3D11_CommonIndexBuffer_Terminate( D_DXGI_FORMAT_R16_UINT ) ;
 	Graphics_D3D11_CommonIndexBuffer_Terminate( D_DXGI_FORMAT_R32_UINT ) ;
 
-	// •W€•`‰æ—p‚Ì’¸“_ƒoƒbƒtƒ@‚Ì‰ğ•ú
+	// æ¨™æº–æç”»ç”¨ã®é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã®è§£æ”¾
 	Graphics_D3D11_NormalDrawVertexBuffer_Terminate() ;
 
-	// “ü—ÍƒŒƒCƒAƒEƒgî•ñ‚ÌŒãn––
+	// å…¥åŠ›ãƒ¬ã‚¤ã‚¢ã‚¦ãƒˆæƒ…å ±ã®å¾Œå§‹æœ«
 	Graphics_D3D11_InputLayout_Base_Terminate() ;
 #ifndef DX_NON_MODEL
 	Graphics_D3D11_InputLayout_Model_Terminate() ;
 #endif // DX_NON_MODEL
 
-	// ƒVƒF[ƒ_[‚Ì‰ğ•ú
+	// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®è§£æ”¾
 	Graphics_D3D11_Shader_Terminate() ;
 
-	// ’è”î•ñ‚ÌŒãn––
+	// å®šæ•°æƒ…å ±ã®å¾Œå§‹æœ«
 	Graphics_D3D11_Constant_Terminate() ;
 
-	// ƒtƒ‹ƒXƒNƒŠ[ƒ“ƒ‚[ƒh‚É‚µ‚Ä‚¢‚½ê‡‚Í‚±‚±‚ÅƒEƒCƒ“ƒhƒEƒ‚[ƒh‚É–ß‚·
+	// ãƒ•ãƒ«ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ¢ãƒ¼ãƒ‰ã«ã—ã¦ã„ãŸå ´åˆã¯ã“ã“ã§ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ¢ãƒ¼ãƒ‰ã«æˆ»ã™
 	if( GD3D11.Device.Screen.FullscreenSatte )
 	{
 		GD3D11.Device.Screen.FullscreenSatte = FALSE ;
@@ -1262,7 +1262,7 @@ extern int Graphics_D3D11_Terminate( void )
 		}
 	}
 
-	// Zƒoƒbƒtƒ@ ‚Ì‰ğ•ú
+	// Zãƒãƒƒãƒ•ã‚¡ ã®è§£æ”¾
 	if( GD3D11.Device.Screen.DepthBufferDSV )
 	{
 		Direct3D11_Release_DepthStencilView( GD3D11.Device.Screen.DepthBufferDSV ) ;
@@ -1274,11 +1274,11 @@ extern int Graphics_D3D11_Terminate( void )
 		GD3D11.Device.Screen.DepthBufferTexture2D = NULL ;
 	}
 
-	// ƒTƒuƒoƒbƒNƒoƒbƒtƒ@‚Ì‰ğ•ú
+	// ã‚µãƒ–ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã®è§£æ”¾
 	Graphics_D3D11_TerminateSubBackBuffer() ;
 
 #ifndef DX_NON_MODEL
-	// ƒ{ƒŠƒ…[ƒ€ƒeƒNƒXƒ`ƒƒ‚Ì‰ğ•ú
+	// ãƒœãƒªãƒ¥ãƒ¼ãƒ ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®è§£æ”¾
 	if( GD3D11.RGBtoVMaxRGBVolumeTextureSRV )
 	{
 		Direct3D11_Release_ShaderResourceView( GD3D11.RGBtoVMaxRGBVolumeTextureSRV ) ;
@@ -1292,29 +1292,29 @@ extern int Graphics_D3D11_Terminate( void )
 	}
 #endif // DX_NON_MODEL
 
-	// ƒXƒƒbƒvƒ`ƒFƒCƒ“‚ğ‰ğ•ú
+	// ã‚¹ãƒ¯ãƒƒãƒ—ãƒã‚§ã‚¤ãƒ³ã‚’è§£æ”¾
 	for( i = 0 ; i < DX_D3D11_MAX_OUTPUTWINDOW ; i ++ )
 	{
 		Graphics_D3D11_OutputWindow_Sub( NULL, i ) ;
 	}
 
-	// D3D11Device ‚Ì‰ğ•ú
+	// D3D11Device ã®è§£æ”¾
 	D3D11Device_Release() ;
 	GD3D11.Device.DrawInfo.BeginSceneFlag = FALSE ;
 
-	// DXGIFactory ‚Ì‰ğ•ú
+	// DXGIFactory ã®è§£æ”¾
 	DXGIFactory_Release() ;
 
-	// d3d11.dll ‚Ì‰ğ•ú
+	// d3d11.dll ã®è§£æ”¾
 	Direct3D11_FreeDLL() ;
 
-	// dxgi.dll ‚Ì‰ğ•ú
+	// dxgi.dll ã®è§£æ”¾
 	DXGI_FreeDLL() ;
 
-	// Direct3D11 ‚Ìc‚èƒIƒuƒWƒFƒNƒg”‚ğo—Í
+	// Direct3D11 ã®æ®‹ã‚Šã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæ•°ã‚’å‡ºåŠ›
 	Direct3D11_DumpObject() ;
 
-	// ƒfƒoƒCƒXƒZƒbƒgî•ñ‚ğ‰Šú‰»
+	// ãƒ‡ãƒã‚¤ã‚¹ã‚»ãƒƒãƒˆæƒ…å ±ã‚’åˆæœŸåŒ–
 	_MEMSET( GD3D11.Device.State.SamplerState, 0, sizeof( GD3D11.Device.State.SamplerState ) ) ;
 	GD3D11.Device.DrawInfo.VertexBufferNextAddr	= NULL ;
 	GD3D11.Device.DrawInfo.VertexBufferAddr		= NULL ;
@@ -1337,11 +1337,11 @@ extern int Graphics_D3D11_Terminate( void )
 	GD3D11.Device.State.Lighting             = 0 ;
 	_MEMSET( &GD3D11.Device.State.GlobalAmbientLightColor, 0, sizeof( GD3D11.Device.State.GlobalAmbientLightColor ) ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ‚·‚×‚Ä‚Ì Direct3D11 ŒnƒIƒuƒWƒFƒNƒg‚ğ‰ğ•ú‚·‚é
+// ã™ã¹ã¦ã® Direct3D11 ç³»ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’è§£æ”¾ã™ã‚‹
 extern int Graphics_D3D11_ReleaseObjectAll( void )
 {
 	int i ;
@@ -1459,8 +1459,8 @@ extern int Graphics_D3D11_ReleaseObjectAll( void )
 		}
 	}
 
-	// ƒfƒoƒCƒXƒZƒbƒgî•ñ‚ğ‰Šú‰»
-//	State Œn‚Íì¬‚µ‚ÄƒZƒbƒg‚µ‚Ä‚¢‚é‚à‚Ì‚à‚ ‚é‚Ì‚ÅA‰Šú‰»ˆ—‚Í‚µ‚È‚¢
+	// ãƒ‡ãƒã‚¤ã‚¹ã‚»ãƒƒãƒˆæƒ…å ±ã‚’åˆæœŸåŒ–
+//	State ç³»ã¯ä½œæˆã—ã¦ã‚»ãƒƒãƒˆã—ã¦ã„ã‚‹ã‚‚ã®ã‚‚ã‚ã‚‹ã®ã§ã€åˆæœŸåŒ–å‡¦ç†ã¯ã—ãªã„
 //	_MEMSET( GD3D11.Device.State.SamplerState, 0, sizeof( GD3D11.Device.State.SamplerState ) ) ;
 //	GD3D11.Device.State.RasterizerState      = NULL ;
 //	GD3D11.Device.State.DepthStencilState    = NULL ;
@@ -1476,11 +1476,11 @@ extern int Graphics_D3D11_ReleaseObjectAll( void )
 	GD3D11.Device.State.TargetDepthTexture2D = NULL ;
 	GD3D11.Device.State.TargetDepthDSV       = NULL ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ‚·‚×‚Ä‚Ì Direct3D11 ŒnƒIƒuƒWƒFƒNƒg‚ğì¬‚·‚é
+// ã™ã¹ã¦ã® Direct3D11 ç³»ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ä½œæˆã™ã‚‹
 extern int Graphics_D3D11_CreateObjectAll( void )
 {
 	int                                       i ;
@@ -1556,7 +1556,7 @@ extern int Graphics_D3D11_CreateObjectAll( void )
 		}
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
@@ -1575,9 +1575,9 @@ extern int Graphics_D3D11_CreateObjectAll( void )
 
 
 
-// ƒVƒF[ƒ_[ƒR[ƒhŠÖŒW
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚³ãƒ¼ãƒ‰é–¢ä¿‚
 
-// ƒVƒF[ƒ_[ƒR[ƒhƒpƒbƒP[ƒW‚©‚çƒVƒF[ƒ_[ƒR[ƒhƒoƒCƒiƒŠ‚ÌƒAƒhƒŒƒX‚ÆƒTƒCƒY‚ğæ“¾‚·‚é
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚³ãƒ¼ãƒ‰ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ã‹ã‚‰ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚³ãƒ¼ãƒ‰ãƒã‚¤ãƒŠãƒªã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã¨ã‚µã‚¤ã‚ºã‚’å–å¾—ã™ã‚‹
 static void Graphics_D3D11_ShaderCodePackage_GetInfo( WORD **pSize, BYTE **pCode, GRAPHICS_HARDWARE_DIRECT3D11_SHADERCODE_INFO *DestInfo, int Num )
 {
 	WORD *Size ;
@@ -1600,7 +1600,7 @@ static void Graphics_D3D11_ShaderCodePackage_GetInfo( WORD **pSize, BYTE **pCode
 	*pCode = Code ;
 }
 
-// Direct3D11 ‚Ì•W€•`‰æ—p‚ÌƒVƒF[ƒ_[ƒR[ƒh‚Ì‰Šú‰»‚ğs‚¤
+// Direct3D11 ã®æ¨™æº–æç”»ç”¨ã®ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚³ãƒ¼ãƒ‰ã®åˆæœŸåŒ–ã‚’è¡Œã†
 extern int Graphics_D3D11_ShaderCode_Base_Initialize( void )
 {
 	GRAPHICS_HARDWARE_DIRECT3D11_SHADERCODE_BASE *SCBASE = &GraphicsHardDataDirect3D11.ShaderCode.Base ;
@@ -1608,13 +1608,13 @@ extern int Graphics_D3D11_ShaderCode_Base_Initialize( void )
 	BYTE  *ShaderAddr = NULL ;
 	WORD  *SizeBuf    = NULL ;
 
-	// ‚·‚Å‚É‰Šú‰»‚³‚ê‚Ä‚¢‚½‚ç‰½‚à‚µ‚È‚¢
+	// ã™ã§ã«åˆæœŸåŒ–ã•ã‚Œã¦ã„ãŸã‚‰ä½•ã‚‚ã—ãªã„
 	if( SCBASE->BaseShaderInitializeFlag == TRUE )
 	{
 		return TRUE ;
 	}
 
-	// ƒ‰ƒCƒgƒCƒ“ƒfƒbƒNƒXƒŠƒXƒg‚Ì\’z
+	// ãƒ©ã‚¤ãƒˆã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒªã‚¹ãƒˆã®æ§‹ç¯‰
 	{
 		int l0, l1, l2, l3, l4, l5, ind ;
 
@@ -1687,7 +1687,7 @@ extern int Graphics_D3D11_ShaderCode_Base_Initialize( void )
 #ifndef DX_NON_SHADERCODE_BINARY
 	SCBASE->Base2DShaderPackageImage = NULL ;
 
-	// •W€•`‰æ—pƒVƒF[ƒ_[ƒIƒuƒWƒFƒNƒgƒtƒ@ƒCƒ‹‚c‚w‚`‚ğˆ³k‚µ‚½ƒf[ƒ^‚ğ‰ğ“€‚·‚é
+	// æ¨™æº–æç”»ç”¨ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ•ã‚¡ã‚¤ãƒ«ï¼¤ï¼¸ï¼¡ã‚’åœ§ç¸®ã—ãŸãƒ‡ãƒ¼ã‚¿ã‚’è§£å‡ã™ã‚‹
 	{
 		if( DxShaderCodeBin_Base_D3D11Convert == 0 )
 		{
@@ -1704,7 +1704,7 @@ extern int Graphics_D3D11_ShaderCode_Base_Initialize( void )
 		DXA_Decode( DxShaderCodeBin_Base_D3D11, SCBASE->Base2DShaderPackageImage ) ;
 	}
 
-	// ƒAƒhƒŒƒXƒŠƒXƒg‚ÌƒZƒbƒg
+	// ã‚¢ãƒ‰ãƒ¬ã‚¹ãƒªã‚¹ãƒˆã®ã‚»ãƒƒãƒˆ
 	SizeBuf    = ( WORD * )SCBASE->Base2DShaderPackageImage ;
 	ShaderAddr = ( BYTE * )SCBASE->Base2DShaderPackageImage +
 		sizeof( WORD ) * (
@@ -1731,12 +1731,12 @@ extern int Graphics_D3D11_ShaderCode_Base_Initialize( void )
 
 #else // DX_NON_SHADERCODE_BINARY
 
-	// ƒVƒF[ƒ_[ƒRƒ“ƒpƒCƒ‰‚ÌƒCƒ“ƒNƒ‹[ƒhˆ——pƒNƒ‰ƒX‚ğì¬
+	// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚³ãƒ³ãƒ‘ã‚¤ãƒ©ã®ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰å‡¦ç†ç”¨ã‚¯ãƒ©ã‚¹ã‚’ä½œæˆ
 	SCBASE->ShaderCompilerIncludeClass = new Graphics_D3D11_ShaderCompilerIncludeClass ;
 
 	SCBASE->ShaderTxtDxaImage = NULL ;
 
-	// Šî–{ƒVƒF[ƒ_[ƒIƒuƒWƒFƒNƒgƒtƒ@ƒCƒ‹‚c‚w‚`‚ğˆ³k‚µ‚½ƒf[ƒ^‚ğ‰ğ“€‚·‚é
+	// åŸºæœ¬ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ•ã‚¡ã‚¤ãƒ«ï¼¤ï¼¸ï¼¡ã‚’åœ§ç¸®ã—ãŸãƒ‡ãƒ¼ã‚¿ã‚’è§£å‡ã™ã‚‹
 	{
 		if( DxShaderCodeTxt_D3D11Convert == 0 )
 		{
@@ -1752,7 +1752,7 @@ extern int Graphics_D3D11_ShaderCode_Base_Initialize( void )
 
 		DXA_Decode( DxShaderCodeTxt_D3D11, SCBASE->ShaderTxtDxaImage ) ;
 
-		// ‚c‚w‚`ƒtƒ@ƒCƒ‹‚ğƒI[ƒvƒ“‚·‚é
+		// ï¼¤ï¼¸ï¼¡ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ã‚ªãƒ¼ãƒ—ãƒ³ã™ã‚‹
 		DXA_Initialize( &SCBASE->ShaderTxtDxa ) ;
 		if( DXA_OpenArchiveFromMem( &SCBASE->ShaderTxtDxa, SCBASE->ShaderTxtDxaImage, Size, FALSE, FALSE ) != 0 )
 		{
@@ -1765,7 +1765,7 @@ extern int Graphics_D3D11_ShaderCode_Base_Initialize( void )
 
 #ifndef DX_NON_FILTER
 
-	// RGBAMixƒVƒF[ƒ_[ƒpƒbƒNˆ³kƒtƒ@ƒCƒ‹‚ğ“WŠJ‚·‚é
+	// RGBAMixã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒ‘ãƒƒã‚¯åœ§ç¸®ãƒ•ã‚¡ã‚¤ãƒ«ã‚’å±•é–‹ã™ã‚‹
 	{
 		if( DxShaderCodeBin_RgbaMix_D3D11Convert == 0 )
 		{
@@ -1781,7 +1781,7 @@ extern int Graphics_D3D11_ShaderCode_Base_Initialize( void )
 
 		DXA_Decode( DxShaderCodeBin_RgbaMix_D3D11, SCBASE->RGBAMixS_ShaderPackImage ) ;
 
-		// ƒAƒhƒŒƒXƒŠƒXƒg‚ÌƒZƒbƒg
+		// ã‚¢ãƒ‰ãƒ¬ã‚¹ãƒªã‚¹ãƒˆã®ã‚»ãƒƒãƒˆ
 		SizeBuf    = ( WORD  * )SCBASE->RGBAMixS_ShaderPackImage ;
 		ShaderAddr = ( BYTE  * )SCBASE->RGBAMixS_ShaderPackImage +
 			sizeof( WORD ) * (
@@ -1789,7 +1789,7 @@ extern int Graphics_D3D11_ShaderCode_Base_Initialize( void )
 		Graphics_D3D11_ShaderCodePackage_GetInfo( &SizeBuf, &ShaderAddr, ( GRAPHICS_HARDWARE_DIRECT3D11_SHADERCODE_INFO * )SCBASE->RGBAMixS_PS_Code,  sizeof( SCBASE->RGBAMixS_PS_Code )  / sizeof( GRAPHICS_HARDWARE_DIRECT3D11_SHADERCODE_INFO ) ) ;
 	}
 
-	// ƒtƒBƒ‹ƒ^[ƒVƒF[ƒ_[ƒIƒuƒWƒFƒNƒgƒtƒ@ƒCƒ‹‚c‚w‚`‚ğˆ³k‚µ‚½ƒf[ƒ^‚ğ‰ğ“€‚·‚é
+	// ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ•ã‚¡ã‚¤ãƒ«ï¼¤ï¼¸ï¼¡ã‚’åœ§ç¸®ã—ãŸãƒ‡ãƒ¼ã‚¿ã‚’è§£å‡ã™ã‚‹
 	{
 		if( DxShaderCodeBin_Filter_D3D11Convert == 0 )
 		{
@@ -1805,7 +1805,7 @@ extern int Graphics_D3D11_ShaderCode_Base_Initialize( void )
 
 		DXA_Decode( DxShaderCodeBin_Filter_D3D11, SCBASE->FilterShaderBinDxaImage ) ;
 
-		// ‚c‚w‚`ƒtƒ@ƒCƒ‹‚ğƒI[ƒvƒ“‚·‚é
+		// ï¼¤ï¼¸ï¼¡ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ã‚ªãƒ¼ãƒ—ãƒ³ã™ã‚‹
 		DXA_Initialize( &SCBASE->FilterShaderBinDxa ) ;
 		if( DXA_OpenArchiveFromMem( &SCBASE->FilterShaderBinDxa, SCBASE->FilterShaderBinDxaImage, Size, FALSE, FALSE ) != 0 )
 		{
@@ -1817,7 +1817,7 @@ extern int Graphics_D3D11_ShaderCode_Base_Initialize( void )
 
 	SCBASE->BaseShaderInitializeFlag = TRUE ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return TRUE ;
 
 ERR :
@@ -1828,7 +1828,7 @@ ERR :
 		SCBASE->Base2DShaderPackageImage = NULL ;
 	}
 #else // DX_NON_SHADERCODE_BINARY
-	// ƒVƒF[ƒ_[ƒRƒ“ƒpƒCƒ‰ƒCƒ“ƒNƒ‹[ƒhˆ——pƒNƒ‰ƒX‚ÌŒãn––
+	// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚³ãƒ³ãƒ‘ã‚¤ãƒ©ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰å‡¦ç†ç”¨ã‚¯ãƒ©ã‚¹ã®å¾Œå§‹æœ«
 	if( SCBASE->ShaderCompilerIncludeClass != NULL )
 	{
 		delete SCBASE->ShaderCompilerIncludeClass ;
@@ -1859,33 +1859,33 @@ ERR :
 	return FALSE ;
 }
 
-// Direct3D11 ‚Ì•W€•`‰æ—p‚ÌƒVƒF[ƒ_[ƒR[ƒh‚ÌŒãn––‚ğs‚¤
+// Direct3D11 ã®æ¨™æº–æç”»ç”¨ã®ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚³ãƒ¼ãƒ‰ã®å¾Œå§‹æœ«ã‚’è¡Œã†
 extern int Graphics_D3D11_ShaderCode_Base_Terminate( void )
 {
 	GRAPHICS_HARDWARE_DIRECT3D11_SHADERCODE_BASE *SCBASE = &GraphicsHardDataDirect3D11.ShaderCode.Base ;
 
-	// ‚·‚Å‚ÉŒãn––‚³‚ê‚Ä‚¢‚½‚ç‰½‚à‚µ‚È‚¢
+	// ã™ã§ã«å¾Œå§‹æœ«ã•ã‚Œã¦ã„ãŸã‚‰ä½•ã‚‚ã—ãªã„
 	if( SCBASE->BaseShaderInitializeFlag == FALSE )
 	{
 		return TRUE ;
 	}
 
 #ifndef DX_NON_SHADERCODE_BINARY
-	// ‰ğ“€‚µ‚½ƒVƒF[ƒ_[‚ğŠi”[‚µ‚Ä‚¢‚½ƒƒ‚ƒŠ‚Ì‰ğ•ú
+	// è§£å‡ã—ãŸã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’æ ¼ç´ã—ã¦ã„ãŸãƒ¡ãƒ¢ãƒªã®è§£æ”¾
 	if( SCBASE->Base2DShaderPackageImage != NULL )
 	{
 		DXFREE( SCBASE->Base2DShaderPackageImage ) ;
 		SCBASE->Base2DShaderPackageImage = NULL ;
 	}
 #else // DX_NON_SHADERCODE_BINARY
-	// ƒVƒF[ƒ_[ƒRƒ“ƒpƒCƒ‰ƒCƒ“ƒNƒ‹[ƒhˆ——pƒNƒ‰ƒX‚ÌŒãn––
+	// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚³ãƒ³ãƒ‘ã‚¤ãƒ©ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰å‡¦ç†ç”¨ã‚¯ãƒ©ã‚¹ã®å¾Œå§‹æœ«
 	if( SCBASE->ShaderCompilerIncludeClass != NULL )
 	{
 		delete SCBASE->ShaderCompilerIncludeClass ;
 		SCBASE->ShaderCompilerIncludeClass = NULL ;
 	}
 
-	// ƒVƒF[ƒ_[ƒR[ƒh—p‚c‚w‚`‚ÌŒãn––
+	// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚³ãƒ¼ãƒ‰ç”¨ï¼¤ï¼¸ï¼¡ã®å¾Œå§‹æœ«
 	DXA_Terminate( &SCBASE->ShaderTxtDxa ) ;
 
 	if( SCBASE->ShaderTxtDxaImage != NULL )
@@ -1897,7 +1897,7 @@ extern int Graphics_D3D11_ShaderCode_Base_Terminate( void )
 
 #ifndef DX_NON_FILTER
 
-	// ƒtƒBƒ‹ƒ^[ƒVƒF[ƒ_[—p‚c‚w‚`‚ÌŒãn––
+	// ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ç”¨ï¼¤ï¼¸ï¼¡ã®å¾Œå§‹æœ«
 	DXA_Terminate( &SCBASE->FilterShaderBinDxa ) ;
 
 	if( SCBASE->RGBAMixS_ShaderPackImage )
@@ -1913,16 +1913,16 @@ extern int Graphics_D3D11_ShaderCode_Base_Terminate( void )
 
 #endif // DX_NON_FILTER
 
-	// ‰Šú‰»ƒtƒ‰ƒO‚ğ“|‚·
+	// åˆæœŸåŒ–ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 	SCBASE->BaseShaderInitializeFlag = FALSE ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return TRUE ;
 }
 
 #ifndef DX_NON_SHADERCODE_BINARY
 
-// Direct3D11 ‚Ì•W€‚R‚c•`‰æ—p‚ÌƒVƒF[ƒ_[ƒR[ƒh‚Ì‰Šú‰»‚ğs‚¤
+// Direct3D11 ã®æ¨™æº–ï¼“ï¼¤æç”»ç”¨ã®ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚³ãƒ¼ãƒ‰ã®åˆæœŸåŒ–ã‚’è¡Œã†
 extern int Graphics_D3D11_ShaderCode_Base3D_Initialize( void )
 {
 	GRAPHICS_HARDWARE_DIRECT3D11_SHADERCODE_BASE3D *SCBASE3D = &GraphicsHardDataDirect3D11.ShaderCode.Base3D ;
@@ -1931,19 +1931,19 @@ extern int Graphics_D3D11_ShaderCode_Base3D_Initialize( void )
 	BYTE  *ShaderAddr = NULL ;
 	WORD  *SizeBuf    = NULL ;
 
-	// ‚·‚Å‚É‰Šú‰»‚³‚ê‚Ä‚¢‚½‚ç‰½‚à‚µ‚È‚¢
+	// ã™ã§ã«åˆæœŸåŒ–ã•ã‚Œã¦ã„ãŸã‚‰ä½•ã‚‚ã—ãªã„
 	if( SCBASE3D->Base3DShaderInitializeFlag == TRUE )
 	{
 		return TRUE ;
 	}
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 	CRITICALSECTION_LOCK( &HandleManage->CriticalSection ) ;
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚ğæ“¾‚µ‚½ã‚Å‰ü‚ß‚Ä‰Šú‰»Šm”F
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã‚’å–å¾—ã—ãŸä¸Šã§æ”¹ã‚ã¦åˆæœŸåŒ–ç¢ºèª
 	if( SCBASE3D->Base3DShaderInitializeFlag == TRUE )
 	{
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 		CriticalSection_Unlock( &HandleManage->CriticalSection ) ;
 
 		return TRUE ;
@@ -1951,7 +1951,7 @@ extern int Graphics_D3D11_ShaderCode_Base3D_Initialize( void )
 
 	SCBASE3D->Base3DShaderPackageImage = NULL ;
 
-	// ˆ³kƒf[ƒ^‚Ì‰ğ“€
+	// åœ§ç¸®ãƒ‡ãƒ¼ã‚¿ã®è§£å‡
 	{
 		if( DxShaderCodeBin_Base3D_D3D11Convert == 0 )
 		{
@@ -1968,7 +1968,7 @@ extern int Graphics_D3D11_ShaderCode_Base3D_Initialize( void )
 		DXA_Decode( DxShaderCodeBin_Base3D_D3D11, SCBASE3D->Base3DShaderPackageImage ) ;
 	}
 
-	// ƒAƒhƒŒƒXƒŠƒXƒg‚ÌƒZƒbƒg
+	// ã‚¢ãƒ‰ãƒ¬ã‚¹ãƒªã‚¹ãƒˆã®ã‚»ãƒƒãƒˆ
 	SizeBuf    = ( WORD * )SCBASE3D->Base3DShaderPackageImage ;
 	ShaderAddr = ( BYTE * )SCBASE3D->Base3DShaderPackageImage +
 		sizeof( WORD ) * (
@@ -1991,10 +1991,10 @@ extern int Graphics_D3D11_ShaderCode_Base3D_Initialize( void )
 
 	SCBASE3D->Base3DShaderInitializeFlag = TRUE ;
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 	CriticalSection_Unlock( &HandleManage->CriticalSection ) ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return TRUE ;
 
 ERR :
@@ -2004,19 +2004,19 @@ ERR :
 		SCBASE3D->Base3DShaderPackageImage = NULL ;
 	}
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 	CriticalSection_Unlock( &HandleManage->CriticalSection ) ;
 
 	return FALSE ;
 }
 
 
-// Direct3D11 ‚Ì•W€‚R‚c•`‰æ—p‚ÌƒVƒF[ƒ_[ƒR[ƒh‚ÌŒãn––‚ğs‚¤
+// Direct3D11 ã®æ¨™æº–ï¼“ï¼¤æç”»ç”¨ã®ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚³ãƒ¼ãƒ‰ã®å¾Œå§‹æœ«ã‚’è¡Œã†
 extern int Graphics_D3D11_ShaderCode_Base3D_Terminate( void )
 {
 	GRAPHICS_HARDWARE_DIRECT3D11_SHADERCODE_BASE3D *SCBASE3D = &GraphicsHardDataDirect3D11.ShaderCode.Base3D ;
 
-	// ‚·‚Å‚ÉŒãn––‚³‚ê‚Ä‚¢‚½‚ç‰½‚à‚µ‚È‚¢
+	// ã™ã§ã«å¾Œå§‹æœ«ã•ã‚Œã¦ã„ãŸã‚‰ä½•ã‚‚ã—ãªã„
 	if( SCBASE3D->Base3DShaderInitializeFlag == FALSE )
 	{
 		return TRUE ;
@@ -2028,17 +2028,17 @@ extern int Graphics_D3D11_ShaderCode_Base3D_Terminate( void )
 		SCBASE3D->Base3DShaderPackageImage = NULL ;
 	}
 
-	// ‰Šú‰»ƒtƒ‰ƒO‚ğ“|‚·
+	// åˆæœŸåŒ–ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 	SCBASE3D->Base3DShaderInitializeFlag = FALSE ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return TRUE ;
 }
 
 
 #ifndef DX_NON_MODEL
 
-// Direct3D11 ‚Ìƒ‚ƒfƒ‹•`‰æ—p‚ÌƒVƒF[ƒ_[ƒR[ƒh‚Ì‰Šú‰»‚ğs‚¤
+// Direct3D11 ã®ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ã®ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚³ãƒ¼ãƒ‰ã®åˆæœŸåŒ–ã‚’è¡Œã†
 extern	int		Graphics_D3D11_ShaderCode_Model_Initialize( void )
 {
 	GRAPHICS_HARDWARE_DIRECT3D11_SHADERCODE_MODEL *SCMODEL = &GraphicsHardDataDirect3D11.ShaderCode.Model ;
@@ -2047,13 +2047,13 @@ extern	int		Graphics_D3D11_ShaderCode_Model_Initialize( void )
 	BYTE  *ShaderAddr = NULL ;
 	WORD  *SizeBuf    = NULL ;
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 	CRITICALSECTION_LOCK( &HandleManage->CriticalSection ) ;
 
-	// ‚·‚Å‚É‰Šú‰»‚³‚ê‚Ä‚¢‚½‚ç‰½‚à‚µ‚È‚¢
+	// ã™ã§ã«åˆæœŸåŒ–ã•ã‚Œã¦ã„ãŸã‚‰ä½•ã‚‚ã—ãªã„
 	if( SCMODEL->ModelShaderInitializeFlag == TRUE )
 	{
-		// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+		// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 		CriticalSection_Unlock( &HandleManage->CriticalSection ) ;
 
 		return TRUE ;
@@ -2061,7 +2061,7 @@ extern	int		Graphics_D3D11_ShaderCode_Model_Initialize( void )
 
 	SCMODEL->ModelShaderPackImage = NULL ;
 
-	// ˆ³kƒf[ƒ^‚Ì‰ğ“€
+	// åœ§ç¸®ãƒ‡ãƒ¼ã‚¿ã®è§£å‡
 	{
 		if( DxShaderCodeBin_Model_D3D11Convert == 0 )
 		{
@@ -2078,7 +2078,7 @@ extern	int		Graphics_D3D11_ShaderCode_Model_Initialize( void )
 		DXA_Decode( DxShaderCodeBin_Model_D3D11, SCMODEL->ModelShaderPackImage ) ;
 	}
 
-	// ƒAƒhƒŒƒXƒŠƒXƒg‚ÌƒZƒbƒg
+	// ã‚¢ãƒ‰ãƒ¬ã‚¹ãƒªã‚¹ãƒˆã®ã‚»ãƒƒãƒˆ
 	SizeBuf    = ( WORD * )SCMODEL->ModelShaderPackImage ;
 	ShaderAddr = ( BYTE * )SCMODEL->ModelShaderPackImage +
 		sizeof( WORD ) * (
@@ -2121,10 +2121,10 @@ extern	int		Graphics_D3D11_ShaderCode_Model_Initialize( void )
 
 	SCMODEL->ModelShaderInitializeFlag = TRUE ;
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 	CriticalSection_Unlock( &HandleManage->CriticalSection ) ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return TRUE ;
 
 ERR :
@@ -2134,18 +2134,18 @@ ERR :
 		SCMODEL->ModelShaderPackImage = NULL ;
 	}
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 	CriticalSection_Unlock( &HandleManage->CriticalSection ) ;
 
 	return FALSE ;
 }
 
-// Direct3D11 ‚Ìƒ‚ƒfƒ‹•`‰æ—p‚ÌƒVƒF[ƒ_[ƒR[ƒh‚ÌŒãn––‚ğs‚¤
+// Direct3D11 ã®ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ã®ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚³ãƒ¼ãƒ‰ã®å¾Œå§‹æœ«ã‚’è¡Œã†
 extern	int		Graphics_D3D11_ShaderCode_Model_Terminate( void )
 {
 	GRAPHICS_HARDWARE_DIRECT3D11_SHADERCODE_MODEL *SCMODEL = &GraphicsHardDataDirect3D11.ShaderCode.Model ;
 
-	// ‚·‚Å‚ÉŒãn––‚³‚ê‚Ä‚¢‚½‚ç‰½‚à‚µ‚È‚¢
+	// ã™ã§ã«å¾Œå§‹æœ«ã•ã‚Œã¦ã„ãŸã‚‰ä½•ã‚‚ã—ãªã„
 	if( SCMODEL->ModelShaderInitializeFlag == FALSE )
 	{
 		return TRUE ;
@@ -2157,10 +2157,10 @@ extern	int		Graphics_D3D11_ShaderCode_Model_Terminate( void )
 		SCMODEL->ModelShaderPackImage = NULL ;
 	}
 
-	// ‰Šú‰»ƒtƒ‰ƒO‚ğ“|‚·
+	// åˆæœŸåŒ–ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 	SCMODEL->ModelShaderInitializeFlag = FALSE ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return TRUE ;
 }
 
@@ -2168,7 +2168,7 @@ extern	int		Graphics_D3D11_ShaderCode_Model_Terminate( void )
 
 #else // DX_NON_SHADERCODE_BINARY
 
-// Direct3D11 ‚ÌƒVƒF[ƒ_[ƒ\[ƒX‚ğƒRƒ“ƒpƒCƒ‹‚·‚é
+// Direct3D11 ã®ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚½ãƒ¼ã‚¹ã‚’ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ã™ã‚‹
 extern int Graphics_D3D11_CompileShader( const char *FileName, const char *EntryPoint, const char *Profile, const D_D3DXMACRO *MacroTable, D_ID3DBlob **ppShader )
 {
 	GRAPHICS_HARDWARE_DIRECT3D11_SHADERCODE *ShaderCode = &GraphicsHardDataDirect3D11.ShaderCode ;
@@ -2180,14 +2180,14 @@ extern int Graphics_D3D11_CompileShader( const char *FileName, const char *Entry
 	D_ID3DBlob *DestD3D11 = NULL ;
 	D_ID3DBlob *ErrorD3D11 = NULL ;
 
-	// ƒVƒF[ƒ_[ƒ\[ƒXƒtƒ@ƒCƒ‹‚ğæ“¾‚·‚é
+	// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚½ãƒ¼ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«ã‚’å–å¾—ã™ã‚‹
 	if( DXA_GetFileInfo( &ShaderCode->Base.ShaderTxtDxa, DX_CHARCODEFORMAT_ASCII, FileName, &Addr, &Size ) != 0 )
 	{
 		return -1 ;
 	}
 	DataImage = ( BYTE * )DXA_GetFileImage( &ShaderCode->Base.ShaderTxtDxa ) + Addr ;
 
-	// ƒVƒF[ƒ_[‚ğƒRƒ“ƒpƒCƒ‹
+	// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«
 	if( WinAPIData.Win32Func.D3DCompileFunc != NULL )
 	{
 		if( WinAPIData.Win32Func.D3DCompileFunc(
@@ -2246,22 +2246,22 @@ ERR :
 	return -1 ;
 }
 
-// Direct3D11 ‚ÌƒVƒF[ƒ_[ƒ\[ƒX‚ğƒRƒ“ƒpƒCƒ‹‚µ‚Ä’¸“_ƒVƒF[ƒ_[‚ğì¬‚·‚é
+// Direct3D11 ã®ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚½ãƒ¼ã‚¹ã‚’ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ã—ã¦é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ä½œæˆã™ã‚‹
 extern int Graphics_D3D11_CompileVertexShader( const char *FileName, const char *EntryPoint, const D_D3DXMACRO *MacroTable, D_ID3D11VertexShader **VertexShader, D_ID3DBlob **pCode )
 {
 	D_ID3DBlob *Code = NULL ;
 	HRESULT hr ;
 
-	// ƒVƒF[ƒ_[ƒ\[ƒX‚ğƒRƒ“ƒpƒCƒ‹
+	// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚½ãƒ¼ã‚¹ã‚’ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«
 	if( Graphics_D3D11_CompileShader( FileName, EntryPoint, "vs_4_0", MacroTable, &Code ) < 0 )
 	{
 		return -1 ;
 	}
 
-	// ƒVƒF[ƒ_[ƒoƒCƒiƒŠ‚©‚ç’¸“_ƒVƒF[ƒ_[‚ğì¬
+	// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒã‚¤ãƒŠãƒªã‹ã‚‰é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ä½œæˆ
 	hr = D3D11Device_CreateVertexShader( Code->GetBufferPointer(), Code->GetBufferSize(), NULL, VertexShader ) ;
 
-	// ƒVƒF[ƒ_[ƒoƒCƒiƒŠ‚ğó‚¯æ‚é‚½‚ß‚Ìˆø”‚ª‚ ‚éê‡‚Í“n‚µA‚»‚¤‚Å‚È‚¢ê‡‚Í‰ğ•ú‚·‚é
+	// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒã‚¤ãƒŠãƒªã‚’å—ã‘å–ã‚‹ãŸã‚ã®å¼•æ•°ãŒã‚ã‚‹å ´åˆã¯æ¸¡ã—ã€ãã†ã§ãªã„å ´åˆã¯è§£æ”¾ã™ã‚‹
 	if( pCode != NULL )
 	{
 		*pCode = Code ;
@@ -2271,26 +2271,26 @@ extern int Graphics_D3D11_CompileVertexShader( const char *FileName, const char 
 		Code->Release() ;
 	}
 
-	// –ß‚è’l‚ğ•Ô‚·
+	// æˆ»ã‚Šå€¤ã‚’è¿”ã™
 	return hr != S_OK ? -1 : 0 ;
 }
 
-// Direct3D11 ‚ÌƒVƒF[ƒ_[ƒ\[ƒX‚ğƒRƒ“ƒpƒCƒ‹‚µ‚ÄƒsƒNƒZƒ‹ƒVƒF[ƒ_[‚ğì¬‚·‚é
+// Direct3D11 ã®ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚½ãƒ¼ã‚¹ã‚’ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ã—ã¦ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ä½œæˆã™ã‚‹
 extern int Graphics_D3D11_CompilePixelShader( const char *FileName, const char *EntryPoint, const D_D3DXMACRO *MacroTable, D_ID3D11PixelShader **PixelShader, D_ID3DBlob **pCode )
 {
 	D_ID3DBlob *Code = NULL ;
 	HRESULT hr ;
 
-	// ƒVƒF[ƒ_[ƒ\[ƒX‚ğƒRƒ“ƒpƒCƒ‹
+	// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚½ãƒ¼ã‚¹ã‚’ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«
 	if( Graphics_D3D11_CompileShader( FileName, EntryPoint, "ps_4_0", MacroTable, &Code ) < 0 )
 	{
 		return -1 ;
 	}
 
-	// ƒVƒF[ƒ_[ƒoƒCƒiƒŠ‚©‚ç’¸“_ƒVƒF[ƒ_[‚ğì¬
+	// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒã‚¤ãƒŠãƒªã‹ã‚‰é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ä½œæˆ
 	hr = D3D11Device_CreatePixelShader( Code->GetBufferPointer(), Code->GetBufferSize(), NULL, PixelShader ) ;
 
-	// ƒVƒF[ƒ_[ƒoƒCƒiƒŠ‚ğó‚¯æ‚é‚½‚ß‚Ìˆø”‚ª‚ ‚éê‡‚Í“n‚µA‚»‚¤‚Å‚È‚¢ê‡‚Í‰ğ•ú‚·‚é
+	// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒã‚¤ãƒŠãƒªã‚’å—ã‘å–ã‚‹ãŸã‚ã®å¼•æ•°ãŒã‚ã‚‹å ´åˆã¯æ¸¡ã—ã€ãã†ã§ãªã„å ´åˆã¯è§£æ”¾ã™ã‚‹
 	if( pCode != NULL )
 	{
 		*pCode = Code ;
@@ -2300,20 +2300,20 @@ extern int Graphics_D3D11_CompilePixelShader( const char *FileName, const char *
 		Code->Release() ;
 	}
 
-	// –ß‚è’l‚ğ•Ô‚·
+	// æˆ»ã‚Šå€¤ã‚’è¿”ã™
 	return hr != S_OK ? -1 : 0 ;
 }
 
 
-// ƒVƒF[ƒ_[ƒR[ƒhì¬ŒnŠÖ”
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚³ãƒ¼ãƒ‰ä½œæˆç³»é–¢æ•°
 
-// •W€•`‰æ—p‚Ì•¡G‚Èˆ—‚ğs‚í‚È‚¢’¸“_ƒVƒF[ƒ_[‚ÌƒRƒ“ƒpƒCƒ‹‚ğs‚¤
+// æ¨™æº–æç”»ç”¨ã®è¤‡é›‘ãªå‡¦ç†ã‚’è¡Œã‚ãªã„é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ã‚’è¡Œã†
 static int CreateD3D11BaseSimpleVertexShader( int InputLayout )
 {
 	D_D3DXMACRO Macro[ 5 ] ;
 	int MacroNum = 0 ;
 
-	// Šù‚Éì¬Ï‚İ‚Ìê‡‚Í‰½‚à‚µ‚È‚¢
+	// æ—¢ã«ä½œæˆæ¸ˆã¿ã®å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( GD3D11.Device.Shader.Base.BaseSimple_VS[ InputLayout ] != NULL )
 	{
 		return 0 ;
@@ -2392,13 +2392,13 @@ static int CreateD3D11BaseSimpleVertexShader( int InputLayout )
 	}
 }
 
-// ŒÅ’è‹@”\ƒpƒCƒvƒ‰ƒCƒ“ŒİŠ·‚ÌƒVƒF[ƒ_[( ƒeƒNƒXƒ`ƒƒ‚È‚µ )‚ÌƒRƒ“ƒpƒCƒ‹‚ğs‚¤
+// å›ºå®šæ©Ÿèƒ½ãƒ‘ã‚¤ãƒ—ãƒ©ã‚¤ãƒ³äº’æ›ã®ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼( ãƒ†ã‚¯ã‚¹ãƒãƒ£ãªã— )ã®ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ã‚’è¡Œã†
 static int CreateD3D11BaseNoneTexPixelshader( int EffectType, int AlphaTestMode )
 {
 	D_D3DXMACRO Macro[ 4 ] ;
 	int MacroNum = 0 ;
 
-	// Šù‚Éì¬Ï‚İ‚Ìê‡‚Í‰½‚à‚µ‚È‚¢
+	// æ—¢ã«ä½œæˆæ¸ˆã¿ã®å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( GD3D11.Device.Shader.Base.BaseNoneTex_PS[ EffectType ][ AlphaTestMode ] != NULL )
 	{
 		return 0 ;
@@ -2429,7 +2429,7 @@ static int CreateD3D11BaseNoneTexPixelshader( int EffectType, int AlphaTestMode 
 	return Graphics_D3D11_CompilePixelShader( "Base_PS.hlsl", "ps_notex_normal", Macro, &GD3D11.Device.Shader.Base.BaseNoneTex_PS[ EffectType ][ AlphaTestMode ] ) ;
 }
 
-// ŒÅ’è‹@”\ƒpƒCƒvƒ‰ƒCƒ“ŒİŠ·‚ÌƒVƒF[ƒ_[( ƒeƒNƒXƒ`ƒƒ‚ ‚è )‚ÌƒRƒ“ƒpƒCƒ‹‚ğs‚¤
+// å›ºå®šæ©Ÿèƒ½ãƒ‘ã‚¤ãƒ—ãƒ©ã‚¤ãƒ³äº’æ›ã®ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼( ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚ã‚Š )ã®ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ã‚’è¡Œã†
 static int CreateD3D11BaseUseTexPixelshader( int BlendType, int EffectType, int IgnoreTexRGB, int IgnoreTexA, int AlphaTestMode )
 {
 	D_D3DXMACRO Macro[ 6 ] ;
@@ -2442,7 +2442,7 @@ static int CreateD3D11BaseUseTexPixelshader( int BlendType, int EffectType, int 
 		"ps_blend_alpha",
 	} ;
 
-	// Šù‚Éì¬Ï‚İ‚Ìê‡‚Í‰½‚à‚µ‚È‚¢
+	// æ—¢ã«ä½œæˆæ¸ˆã¿ã®å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( GD3D11.Device.Shader.Base.BaseUseTex_PS[ BlendType ][ EffectType ][ IgnoreTexRGB ][ IgnoreTexA ][ AlphaTestMode ] != NULL )
 	{
 		return 0 ;
@@ -2487,7 +2487,7 @@ static int CreateD3D11BaseUseTexPixelshader( int BlendType, int EffectType, int 
 	return Graphics_D3D11_CompilePixelShader( "Base_PS.hlsl", EntryPoint[ BlendType ], Macro, &GD3D11.Device.Shader.Base.BaseUseTex_PS[ BlendType ][ EffectType ][ IgnoreTexRGB ][ IgnoreTexA ][ AlphaTestMode ] ) ;
 }
 
-// ƒ‚ƒfƒ‹•`‰æ—p‚ÌƒVƒƒƒhƒEƒ}ƒbƒv‚Ö‚ÌƒŒƒ“ƒ_ƒŠƒ“ƒO—p’¸“_ƒVƒF[ƒ_[‚ÌƒRƒ“ƒpƒCƒ‹‚ğs‚¤
+// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ã®ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ã¸ã®ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ç”¨é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ã‚’è¡Œã†
 static int CreateD3D11Base3DShadowMapVertexShader( int BumpMap )
 {
 	D_D3DXMACRO Macro[ 4 ] ;
@@ -2520,7 +2520,7 @@ static int CreateD3D11Base3DShadowMapVertexShader( int BumpMap )
 	return Graphics_D3D11_CompileVertexShader( "Base_3D_VertexLighting_VS.hlsl", "VS3D_Normal", Macro, &GD3D11.Device.Shader.Base3D.Base3D_ShadowMap_VS[ BumpMap ] ) ;
 }
 
-// ƒ‚ƒfƒ‹•`‰æ—p‚ÌƒVƒƒƒhƒEƒ}ƒbƒv‚Ö‚ÌƒŒƒ“ƒ_ƒŠƒ“ƒO—pƒsƒNƒZƒ‹ƒVƒF[ƒ_[‚ÌƒRƒ“ƒpƒCƒ‹‚ğs‚¤
+// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ã®ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ã¸ã®ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ç”¨ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ã‚’è¡Œã†
 static int CreateD3D11Base3DShadowMapNormalPixelShader( int AlphaTestMode )
 {
 	D_D3DXMACRO Macro[ 3 ] ;
@@ -2546,13 +2546,13 @@ static int CreateD3D11Base3DShadowMapNormalPixelShader( int AlphaTestMode )
 	return Graphics_D3D11_CompilePixelShader( "Base_3D_VertexLighting_PS.hlsl", "PS3D_Normal", Macro, &GD3D11.Device.Shader.Base3D.Base3D_ShadowMap_Normal_PS[ AlphaTestMode ] ) ;
 }
 
-// ƒ‚ƒfƒ‹•`‰æ—pƒsƒNƒZƒ‹’PˆÊƒ‰ƒCƒeƒBƒ“ƒOƒ^ƒCƒv‚Ì’¸“_ƒVƒF[ƒ_[‚ÌƒRƒ“ƒpƒCƒ‹‚ğs‚¤
+// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ãƒ”ã‚¯ã‚»ãƒ«å˜ä½ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ã‚¿ã‚¤ãƒ—ã®é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ã‚’è¡Œã†
 static int CreateD3D11Base3DPixelLightingVertexShader( int ShadowMap, int FogType )
 {
 	D_D3DXMACRO Macro[ 3 ] ;
 	int MacroNum = 0 ;
 
-	// Šù‚Éì¬Ï‚İ‚Ìê‡‚Í‰½‚à‚µ‚È‚¢
+	// æ—¢ã«ä½œæˆæ¸ˆã¿ã®å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( GD3D11.Device.Shader.Base3D.Base3D_PixelLighting_VS[ ShadowMap ][ FogType ] != NULL )
 	{
 		return 0 ;
@@ -2579,7 +2579,7 @@ static int CreateD3D11Base3DPixelLightingVertexShader( int ShadowMap, int FogTyp
 	return Graphics_D3D11_CompileVertexShader( "Base_3D_PixelLighting_VS.hlsl", "main", Macro, &GD3D11.Device.Shader.Base3D.Base3D_PixelLighting_VS[ ShadowMap ][ FogType ] ) ;
 }
 
-// ƒ‚ƒfƒ‹•`‰æ—pƒsƒNƒZƒ‹’PˆÊƒ‰ƒCƒeƒBƒ“ƒOƒ^ƒCƒv‚ÌƒsƒNƒZƒ‹ƒVƒF[ƒ_[‚ÌƒRƒ“ƒpƒCƒ‹‚ğs‚¤
+// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ãƒ”ã‚¯ã‚»ãƒ«å˜ä½ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ã‚¿ã‚¤ãƒ—ã®ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ã‚’è¡Œã†
 static int CreateD3D11Base3DPixelLightingNormalPixelShader( int ShadowMap, const int *LightMode, int RenderBlendType, int AlphaTestMode )
 {
 	D_D3DXMACRO Macro[ 20 ] ;
@@ -2587,7 +2587,7 @@ static int CreateD3D11Base3DPixelLightingNormalPixelShader( int ShadowMap, const
 	int i ;
 	int LightIndex84 = GD3D11.ShaderCode.Base.LightIndexList84[ LightMode[ 0 ] ][ LightMode[ 1 ] ][ LightMode[ 2 ] ][ LightMode[ 3 ] ][ LightMode[ 4 ] ][ LightMode[ 5 ] ] ;
 
-	// Šù‚Éì¬Ï‚İ‚Ìê‡‚Í‰½‚à‚µ‚È‚¢
+	// æ—¢ã«ä½œæˆæ¸ˆã¿ã®å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( GD3D11.Device.Shader.Base3D.Base3D_PixelLighting_Normal_PS[ ShadowMap ][ LightIndex84 ][ RenderBlendType ][ AlphaTestMode ] != NULL )
 	{
 		return 0 ;
@@ -2649,7 +2649,7 @@ static int CreateD3D11Base3DPixelLightingNormalPixelShader( int ShadowMap, const
 	return Graphics_D3D11_CompilePixelShader( "Base_3D_PixelLighting_PS.hlsl", "main", Macro, &GD3D11.Device.Shader.Base3D.Base3D_PixelLighting_Normal_PS[ ShadowMap ][ LightIndex84 ][ RenderBlendType ][ AlphaTestMode ] ) ;
 }
 
-// ƒ‚ƒfƒ‹•`‰æ—p‚Ìƒ‰ƒCƒeƒBƒ“ƒO‚ ‚è’¸“_ƒVƒF[ƒ_[‚ÌƒRƒ“ƒpƒCƒ‹‚ğs‚¤
+// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ã®ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ã‚ã‚Šé ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ã‚’è¡Œã†
 static int CreateD3D11Base3DVertexLightingVertexShader( int ShadowMap, int FogType, const int *LightMode )
 {
 	int LightIndex20 = GD3D11.ShaderCode.Base.LightIndexList20[ LightMode[ 0 ] ][ LightMode[ 1 ] ][ LightMode[ 2 ] ] ;
@@ -2657,7 +2657,7 @@ static int CreateD3D11Base3DVertexLightingVertexShader( int ShadowMap, int FogTy
 	int MacroNum = 0 ;
 	int i ;
 
-	// Šù‚Éì¬Ï‚İ‚Ìê‡‚Í‰½‚à‚µ‚È‚¢
+	// æ—¢ã«ä½œæˆæ¸ˆã¿ã®å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( GD3D11.Device.Shader.Base3D.Base3D_VertexLighting_VS[ ShadowMap ][ FogType ][ LightIndex20 ] != NULL )
 	{
 		return 0 ;
@@ -2712,7 +2712,7 @@ static int CreateD3D11Base3DVertexLightingVertexShader( int ShadowMap, int FogTy
 	return Graphics_D3D11_CompileVertexShader( "Base_3D_VertexLighting_VS.hlsl", "VS3D_Normal", Macro, &GD3D11.Device.Shader.Base3D.Base3D_VertexLighting_VS[ ShadowMap ][ FogType ][ LightIndex20 ] ) ;
 }
 
-// ƒ‚ƒfƒ‹•`‰æ—p‚Ìƒ‰ƒCƒeƒBƒ“ƒO‚ ‚èƒsƒNƒZƒ‹ƒVƒF[ƒ_‚ÌƒRƒ“ƒpƒCƒ‹‚ğs‚¤
+// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ã®ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ã‚ã‚Šãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ã®ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ã‚’è¡Œã†
 static int CreateD3D11Base3DVertexLightingNormalPixelShader( int ShadowMap, const int *LightMode, int RenderBlendType, int AlphaTestMode )
 {
 	int LightIndex10 = GD3D11.ShaderCode.Base.LightIndexList10
@@ -2723,7 +2723,7 @@ static int CreateD3D11Base3DVertexLightingNormalPixelShader( int ShadowMap, cons
 	D_D3DXMACRO Macro[ 20 ] ;
 	int MacroNum = 0 ;
 
-	// Šù‚Éì¬Ï‚İ‚Ìê‡‚Í‰½‚à‚µ‚È‚¢
+	// æ—¢ã«ä½œæˆæ¸ˆã¿ã®å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( GD3D11.Device.Shader.Base3D.Base3D_VertexLighting_Normal_PS[ ShadowMap ][ LightIndex10 ][ RenderBlendType ][ AlphaTestMode ] != NULL )
 	{
 		return 0 ;
@@ -2792,13 +2792,13 @@ static int CreateD3D11Base3DVertexLightingNormalPixelShader( int ShadowMap, cons
 	return Graphics_D3D11_CompilePixelShader( "Base_3D_VertexLighting_PS.hlsl", "PS3D_Normal", Macro, &GD3D11.Device.Shader.Base3D.Base3D_VertexLighting_Normal_PS[ ShadowMap ][ LightIndex10 ][ RenderBlendType ][ AlphaTestMode ] ) ;
 }
 
-// ƒ‚ƒfƒ‹•`‰æ—p‚Ìƒ‰ƒCƒeƒBƒ“ƒO‚È‚µ’¸“_ƒVƒF[ƒ_[‚ÌƒRƒ“ƒpƒCƒ‹‚ğs‚¤
+// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ã®ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ãªã—é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ã‚’è¡Œã†
 static int CreateD3D11Base3DNoLightingVertexShader( int FogType )
 {
 	D_D3DXMACRO Macro[ 2 ] ;
 	int MacroNum = 0 ;
 
-	// Šù‚Éì¬Ï‚İ‚Ìê‡‚Í‰½‚à‚µ‚È‚¢
+	// æ—¢ã«ä½œæˆæ¸ˆã¿ã®å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( GD3D11.Device.Shader.Base3D.Base3D_NoLighting_VS[ FogType ] != NULL )
 	{
 		return 0 ;
@@ -2818,13 +2818,13 @@ static int CreateD3D11Base3DNoLightingVertexShader( int FogType )
 	return Graphics_D3D11_CompileVertexShader( "Base_3D_VertexLighting_VS.hlsl", "VS3D_Normal", Macro, &GD3D11.Device.Shader.Base3D.Base3D_NoLighting_VS[ FogType ] ) ;
 }
 
-// ƒ‚ƒfƒ‹•`‰æ—p‚Ìƒ‰ƒCƒeƒBƒ“ƒO‚È‚µƒsƒNƒZƒ‹ƒVƒF[ƒ_[‚ÌƒRƒ“ƒpƒCƒ‹‚ğs‚¤
+// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ã®ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ãªã—ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ã‚’è¡Œã†
 static int CreateD3D11Base3DNoLightingNormalPixelShader( int RenderBlendType, int AlphaTestMode )
 {
 	D_D3DXMACRO Macro[ 4 ] ;
 	int MacroNum = 0 ;
 
-	// Šù‚Éì¬Ï‚İ‚Ìê‡‚Í‰½‚à‚µ‚È‚¢
+	// æ—¢ã«ä½œæˆæ¸ˆã¿ã®å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( GD3D11.Device.Shader.Base3D.Base3D_NoLighting_Normal_PS[ RenderBlendType ][ AlphaTestMode ] != NULL )
 	{
 		return 0 ;
@@ -2857,7 +2857,7 @@ static int CreateD3D11Base3DNoLightingNormalPixelShader( int RenderBlendType, in
 
 #ifndef DX_NON_MODEL
 
-// ƒ‚ƒfƒ‹•`‰æ—p‚ÌƒVƒƒƒhƒEƒ}ƒbƒv‚Ö‚ÌƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO—ÖŠsü•`‰æ—p’¸“_ƒVƒF[ƒ_[‚ÌƒRƒ“ƒpƒCƒ‹‚ğs‚¤
+// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ã®ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ã¸ã®ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°è¼ªéƒ­ç·šæç”»ç”¨é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ã‚’è¡Œã†
 extern int CreateD3D11MV1ToonOutLineShadowMapVertexShader( int MeshType, int BumpMap )
 {
 	GRAPHICS_HARDDATA_DIRECT3D11_DEVICE           *Device = &GraphicsHardDataDirect3D11.Device ;
@@ -2866,7 +2866,7 @@ extern int CreateD3D11MV1ToonOutLineShadowMapVertexShader( int MeshType, int Bum
 	D_D3DXMACRO Macro[ 6 ] ;
 	int MacroNum = 0 ;
 
-	// Šù‚Éì¬Ï‚İ‚Ìê‡‚Í‰½‚à‚µ‚È‚¢
+	// æ—¢ã«ä½œæˆæ¸ˆã¿ã®å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( SM->MV1_ToonOutLine_ShadowMap_VS[ MeshType ][ BumpMap ] != NULL )
 	{
 		return 0 ;
@@ -2904,7 +2904,7 @@ extern int CreateD3D11MV1ToonOutLineShadowMapVertexShader( int MeshType, int Bum
 	return Graphics_D3D11_CompileVertexShader( "MV1Default_VertexLighting_VS.hlsl", "main", Macro, &SM->MV1_ToonOutLine_ShadowMap_VS[ MeshType ][ BumpMap ] ) ;
 }
 
-// ƒ‚ƒfƒ‹•`‰æ—p‚Ì–@ü‚Æ[“x•`‰æ—p‚ÌƒsƒNƒZƒ‹ƒVƒF[ƒ_[‚ÌƒRƒ“ƒpƒCƒ‹‚ğs‚¤
+// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ã®æ³•ç·šã¨æ·±åº¦æç”»ç”¨ã®ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ã‚’è¡Œã†
 extern int CreateD3D11MV1NormalDepthPixelShader( int BumpMap )
 {
 	GRAPHICS_HARDDATA_DIRECT3D11_DEVICE           *Device = &GraphicsHardDataDirect3D11.Device ;
@@ -2913,7 +2913,7 @@ extern int CreateD3D11MV1NormalDepthPixelShader( int BumpMap )
 	D_D3DXMACRO Macro[ 6 ] ;
 	int MacroNum = 0 ;
 
-	// Šù‚Éì¬Ï‚İ‚Ìê‡‚Í‰½‚à‚µ‚È‚¢
+	// æ—¢ã«ä½œæˆæ¸ˆã¿ã®å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( SM->MV1_Normal_Depth_PS[ BumpMap ] != NULL )
 	{
 		return 0 ;
@@ -2937,7 +2937,7 @@ extern int CreateD3D11MV1NormalDepthPixelShader( int BumpMap )
 	return Graphics_D3D11_CompilePixelShader( "MV1Default_PixelLighting_PS.hlsl", "main", Macro, &SM->MV1_Normal_Depth_PS[ BumpMap ] ) ;
 }
 
-// ƒ‚ƒfƒ‹•`‰æ—pƒsƒNƒZƒ‹’PˆÊƒ‰ƒCƒeƒBƒ“ƒOƒ^ƒCƒv‚Ì’¸“_ƒVƒF[ƒ_[‚ÌƒRƒ“ƒpƒCƒ‹‚ğs‚¤
+// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ãƒ”ã‚¯ã‚»ãƒ«å˜ä½ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ã‚¿ã‚¤ãƒ—ã®é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ã‚’è¡Œã†
 extern int CreateD3D11MV1PixelLightingVertexShader( int ShadowMap, int MeshType, int BumpMap, int FogType )
 {
 	GRAPHICS_HARDDATA_DIRECT3D11_DEVICE           *Device = &GraphicsHardDataDirect3D11.Device ;
@@ -2946,7 +2946,7 @@ extern int CreateD3D11MV1PixelLightingVertexShader( int ShadowMap, int MeshType,
 	D_D3DXMACRO Macro[ 6 ] ;
 	int MacroNum = 0 ;
 
-	// Šù‚Éì¬Ï‚İ‚Ìê‡‚Í‰½‚à‚µ‚È‚¢
+	// æ—¢ã«ä½œæˆæ¸ˆã¿ã®å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( SM->MV1_PixelLighting_VS[ ShadowMap ][ MeshType ][ BumpMap ][ FogType ] != NULL )
 	{
 		return 0 ;
@@ -2994,7 +2994,7 @@ extern int CreateD3D11MV1PixelLightingVertexShader( int ShadowMap, int MeshType,
 	return Graphics_D3D11_CompileVertexShader( "MV1Default_PixelLighting_VS.hlsl", "main", Macro, &SM->MV1_PixelLighting_VS[ ShadowMap ][ MeshType ][ BumpMap ][ FogType ] ) ;
 }
 
-// ƒ‚ƒfƒ‹•`‰æ—pƒsƒNƒZƒ‹’PˆÊƒ‰ƒCƒeƒBƒ“ƒOƒ^ƒCƒv‚ÌƒgƒD[ƒ“ƒ^ƒCƒv‚P—pƒsƒNƒZƒ‹ƒVƒF[ƒ_[‚ÌƒRƒ“ƒpƒCƒ‹‚ğs‚¤
+// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ãƒ”ã‚¯ã‚»ãƒ«å˜ä½ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ã‚¿ã‚¤ãƒ—ã®ãƒˆã‚¥ãƒ¼ãƒ³ã‚¿ã‚¤ãƒ—ï¼‘ç”¨ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ã‚’è¡Œã†
 extern int CreateD3D11MV1PixelLightingToonType1PixelShader( int ShadowMap, int ToonDiffuseBlendOP, int ToonSpecularBlendOP, int BumpMap, int EnableLightNumMinusOne, int AlphaTestMode )
 {
 	GRAPHICS_HARDDATA_DIRECT3D11_DEVICE           *Device = &GraphicsHardDataDirect3D11.Device ;
@@ -3004,7 +3004,7 @@ extern int CreateD3D11MV1PixelLightingToonType1PixelShader( int ShadowMap, int T
 	D_D3DXMACRO Macro[ 32 ] ;
 	int MacroNum = 0 ;
 
-	// Šù‚Éì¬Ï‚İ‚Ìê‡‚Í‰½‚à‚µ‚È‚¢
+	// æ—¢ã«ä½œæˆæ¸ˆã¿ã®å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( SM->MV1_PixelLighting_ToonType1_PS[ ShadowMap ][ ToonDiffuseBlendOP ][ ToonSpecularBlendOP ][ BumpMap ][ EnableLightNumMinusOne ][ AlphaTestMode ] != NULL )
 	{
 		return 0 ;
@@ -3088,7 +3088,7 @@ extern int CreateD3D11MV1PixelLightingToonType1PixelShader( int ShadowMap, int T
 	return Graphics_D3D11_CompilePixelShader( "MV1Default_PixelLighting_PS.hlsl", "main", Macro, &SM->MV1_PixelLighting_ToonType1_PS[ ShadowMap ][ ToonDiffuseBlendOP ][ ToonSpecularBlendOP ][ BumpMap ][ EnableLightNumMinusOne ][ AlphaTestMode ] ) ;
 }
 
-// ƒ‚ƒfƒ‹•`‰æ—pƒsƒNƒZƒ‹’PˆÊƒ‰ƒCƒeƒBƒ“ƒOƒ^ƒCƒv‚ÌƒgƒD[ƒ“ƒ^ƒCƒv‚Q—pƒsƒNƒZƒ‹ƒVƒF[ƒ_[‚ÌƒRƒ“ƒpƒCƒ‹‚ğs‚¤
+// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ãƒ”ã‚¯ã‚»ãƒ«å˜ä½ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ã‚¿ã‚¤ãƒ—ã®ãƒˆã‚¥ãƒ¼ãƒ³ã‚¿ã‚¤ãƒ—ï¼’ç”¨ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ã‚’è¡Œã†
 extern int CreateD3D11MV1PixelLightingToonType2PixelShader( int ShadowMap, int SphereMapBlendType, int EnableLightNumMinusOne, int AlphaTestMode )
 {
 	GRAPHICS_HARDDATA_DIRECT3D11_DEVICE           *Device = &GraphicsHardDataDirect3D11.Device ;
@@ -3098,7 +3098,7 @@ extern int CreateD3D11MV1PixelLightingToonType2PixelShader( int ShadowMap, int S
 	D_D3DXMACRO Macro[ 32 ] ;
 	int MacroNum = 0 ;
 
-	// Šù‚Éì¬Ï‚İ‚Ìê‡‚Í‰½‚à‚µ‚È‚¢
+	// æ—¢ã«ä½œæˆæ¸ˆã¿ã®å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( SM->MV1_PixelLighting_ToonType2_PS[ ShadowMap ][ SphereMapBlendType ][ EnableLightNumMinusOne ][ AlphaTestMode ] != NULL )
 	{
 		return 0 ;
@@ -3162,7 +3162,7 @@ extern int CreateD3D11MV1PixelLightingToonType2PixelShader( int ShadowMap, int S
 	return Graphics_D3D11_CompilePixelShader( "MV1Default_PixelLighting_PS.hlsl", "main", Macro, &SM->MV1_PixelLighting_ToonType2_PS[ ShadowMap ][ SphereMapBlendType ][ EnableLightNumMinusOne ][ AlphaTestMode ] ) ;
 }
 
-// ƒ‚ƒfƒ‹•`‰æ—pƒsƒNƒZƒ‹’PˆÊƒ‰ƒCƒeƒBƒ“ƒOƒ^ƒCƒv‚ÌƒsƒNƒZƒ‹ƒVƒF[ƒ_[‚ÌƒRƒ“ƒpƒCƒ‹‚ğs‚¤
+// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ãƒ”ã‚¯ã‚»ãƒ«å˜ä½ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ã‚¿ã‚¤ãƒ—ã®ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ã‚’è¡Œã†
 extern int CreateD3D11MV1PixelLightingNormalPixelShader( int ShadowMap, int MultiTexMode, int BumpMap, int EnableLightNumMinusOne, int AlphaTestMode )
 {
 	GRAPHICS_HARDDATA_DIRECT3D11_DEVICE           *Device = &GraphicsHardDataDirect3D11.Device ;
@@ -3172,7 +3172,7 @@ extern int CreateD3D11MV1PixelLightingNormalPixelShader( int ShadowMap, int Mult
 	D_D3DXMACRO Macro[ 32 ] ;
 	int MacroNum = 0 ;
 
-	// Šù‚Éì¬Ï‚İ‚Ìê‡‚Í‰½‚à‚µ‚È‚¢
+	// æ—¢ã«ä½œæˆæ¸ˆã¿ã®å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( SM->MV1_PixelLighting_Normal_PS[ ShadowMap ][ MultiTexMode ][ BumpMap ][ EnableLightNumMinusOne ][ AlphaTestMode ] != NULL )
 	{
 		return 0 ;
@@ -3233,7 +3233,7 @@ extern int CreateD3D11MV1PixelLightingNormalPixelShader( int ShadowMap, int Mult
 	return Graphics_D3D11_CompilePixelShader( "MV1Default_PixelLighting_PS.hlsl", "main", Macro, &SM->MV1_PixelLighting_Normal_PS[ ShadowMap ][ MultiTexMode ][ BumpMap ][ EnableLightNumMinusOne ][ AlphaTestMode ] ) ;
 }
 
-// ƒ‚ƒfƒ‹•`‰æ—p‚Ìƒ‰ƒCƒeƒBƒ“ƒO‚È‚µ’¸“_ƒVƒF[ƒ_[‚ÌƒRƒ“ƒpƒCƒ‹‚ğs‚¤
+// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ã®ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ãªã—é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ã‚’è¡Œã†
 extern int CreateD3D11MV1NoLightingVertexShader( int MeshType, int BumpMap, int FogType )
 {
 	GRAPHICS_HARDDATA_DIRECT3D11_DEVICE           *Device = &GraphicsHardDataDirect3D11.Device ;
@@ -3242,7 +3242,7 @@ extern int CreateD3D11MV1NoLightingVertexShader( int MeshType, int BumpMap, int 
 	D_D3DXMACRO Macro[ 6 ] ;
 	int MacroNum = 0 ;
 
-	// Šù‚Éì¬Ï‚İ‚Ìê‡‚Í‰½‚à‚µ‚È‚¢
+	// æ—¢ã«ä½œæˆæ¸ˆã¿ã®å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( SM->MV1_NoLighting_VS[ MeshType ][ BumpMap ][ FogType ] != NULL )
 	{
 		return 0 ;
@@ -3283,7 +3283,7 @@ extern int CreateD3D11MV1NoLightingVertexShader( int MeshType, int BumpMap, int 
 	return Graphics_D3D11_CompileVertexShader( "MV1Default_VertexLighting_VS.hlsl", "main", Macro, &SM->MV1_NoLighting_VS[ MeshType ][ BumpMap ][ FogType ] ) ;
 }
 
-// ƒ‚ƒfƒ‹•`‰æ—p‚Ìƒ‰ƒCƒeƒBƒ“ƒO‚ ‚è’¸“_ƒVƒF[ƒ_[‚ÌƒRƒ“ƒpƒCƒ‹‚ğs‚¤
+// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ã®ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ã‚ã‚Šé ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ã‚’è¡Œã†
 extern int CreateD3D11MV1VertexLightingVertexShader( int ShadowMap, int MeshType, int BumpMap, int FogType, int LightIndex )
 {
 	GRAPHICS_HARDDATA_DIRECT3D11_DEVICE           *Device = &GraphicsHardDataDirect3D11.Device ;
@@ -3296,7 +3296,7 @@ extern int CreateD3D11MV1VertexLightingVertexShader( int ShadowMap, int MeshType
 
 	LightMode = GD3D11.ShaderCode.Base.LightIndex20LightMode[ LightIndex ] ;
 
-	// Šù‚Éì¬Ï‚İ‚Ìê‡‚Í‰½‚à‚µ‚È‚¢
+	// æ—¢ã«ä½œæˆæ¸ˆã¿ã®å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( SM->MV1_VertexLighting_VS[ ShadowMap ][ MeshType ][ BumpMap ][ FogType ][ LightIndex ] != NULL )
 	{
 		return 0 ;
@@ -3378,7 +3378,7 @@ extern int CreateD3D11MV1VertexLightingVertexShader( int ShadowMap, int MeshType
 	) ;
 }
 
-// ƒ‚ƒfƒ‹•`‰æ—p‚ÌƒVƒƒƒhƒEƒ}ƒbƒv‚Ö‚ÌƒŒƒ“ƒ_ƒŠƒ“ƒO—p’¸“_ƒVƒF[ƒ_[‚ÌƒRƒ“ƒpƒCƒ‹‚ğs‚¤
+// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ã®ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ã¸ã®ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ç”¨é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ã‚’è¡Œã†
 extern int CreateD3D11MV1ShadowMapVertexShader( int MeshType, int BumpMap )
 {
 	GRAPHICS_HARDDATA_DIRECT3D11_DEVICE           *Device = &GraphicsHardDataDirect3D11.Device ;
@@ -3387,7 +3387,7 @@ extern int CreateD3D11MV1ShadowMapVertexShader( int MeshType, int BumpMap )
 	D_D3DXMACRO Macro[ 6 ] ;
 	int MacroNum = 0 ;
 
-	// Šù‚Éì¬Ï‚İ‚Ìê‡‚Í‰½‚à‚µ‚È‚¢
+	// æ—¢ã«ä½œæˆæ¸ˆã¿ã®å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( SM->MV1_ShadowMap_VS[ MeshType ][ BumpMap ] != NULL )
 	{
 		return 0 ;
@@ -3429,7 +3429,7 @@ extern int CreateD3D11MV1ShadowMapVertexShader( int MeshType, int BumpMap )
 	return Graphics_D3D11_CompileVertexShader( "MV1Default_VertexLighting_VS.hlsl", "main", Macro, &SM->MV1_ShadowMap_VS[ MeshType ][ BumpMap ] ) ;
 }
 
-// ƒ‚ƒfƒ‹•`‰æ—p‚ÌƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚Ì—ÖŠsü•`‰æ—p’¸“_ƒVƒF[ƒ_[‚ÌƒRƒ“ƒpƒCƒ‹‚ğs‚¤
+// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ã®ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã®è¼ªéƒ­ç·šæç”»ç”¨é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ã‚’è¡Œã†
 extern int CreateD3D11MV1ToonOutLineVertexShader( int MeshType, int BumpMap, int FogType )
 {
 	GRAPHICS_HARDDATA_DIRECT3D11_DEVICE           *Device = &GraphicsHardDataDirect3D11.Device ;
@@ -3438,7 +3438,7 @@ extern int CreateD3D11MV1ToonOutLineVertexShader( int MeshType, int BumpMap, int
 	D_D3DXMACRO Macro[ 6 ] ;
 	int MacroNum = 0 ;
 
-	// Šù‚Éì¬Ï‚İ‚Ìê‡‚Í‰½‚à‚µ‚È‚¢
+	// æ—¢ã«ä½œæˆæ¸ˆã¿ã®å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( SM->MV1_ToonOutLine_VS[ MeshType ][ BumpMap ][ FogType ] != NULL )
 	{
 		return 0 ;
@@ -3483,7 +3483,7 @@ extern int CreateD3D11MV1ToonOutLineVertexShader( int MeshType, int BumpMap, int
 	return Graphics_D3D11_CompileVertexShader( "MV1Default_VertexLighting_VS.hlsl", "main", Macro, &SM->MV1_ToonOutLine_VS[ MeshType ][ BumpMap ][ FogType ] ) ;
 }
 
-// ƒ‚ƒfƒ‹•`‰æ—p‚Ìƒ}ƒeƒŠƒAƒ‹—v‘f•`‰æ—pƒsƒNƒZƒ‹ƒVƒF[ƒ_[‚ÌƒRƒ“ƒpƒCƒ‹‚ğs‚¤
+// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ã®ãƒãƒ†ãƒªã‚¢ãƒ«è¦ç´ æç”»ç”¨ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ã‚’è¡Œã†
 extern int CreateD3D11MV1MaterialTypePixelShader( int MaterialType, int AlphaTestMode )
 {
 	GRAPHICS_HARDDATA_DIRECT3D11_DEVICE           *Device = &GraphicsHardDataDirect3D11.Device ;
@@ -3492,7 +3492,7 @@ extern int CreateD3D11MV1MaterialTypePixelShader( int MaterialType, int AlphaTes
 	D_D3DXMACRO Macro[ 6 ] ;
 	int MacroNum = 0 ;
 
-	// Šù‚Éì¬Ï‚İ‚Ìê‡‚Í‰½‚à‚µ‚È‚¢
+	// æ—¢ã«ä½œæˆæ¸ˆã¿ã®å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( SM->MV1_MaterialType_PS[ MaterialType ][ AlphaTestMode ] != NULL )
 	{
 		return 0 ;
@@ -3558,7 +3558,7 @@ extern int CreateD3D11MV1MaterialTypePixelShader( int MaterialType, int AlphaTes
 	return Graphics_D3D11_CompilePixelShader( "MV1Default_VertexLighting_PS.hlsl", "main", Macro, &SM->MV1_MaterialType_PS[ MaterialType ][ AlphaTestMode ] ) ;
 }
 
-// ƒ‚ƒfƒ‹•`‰æ—p‚Ìƒ‰ƒCƒeƒBƒ“ƒO‚È‚µƒgƒD[ƒ“—pƒsƒNƒZƒ‹ƒVƒF[ƒ_[‚ÌƒRƒ“ƒpƒCƒ‹‚ğs‚¤
+// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ã®ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ãªã—ãƒˆã‚¥ãƒ¼ãƒ³ç”¨ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ã‚’è¡Œã†
 extern int CreateD3D11MV1NoLightingToonPixelShader( int ToonType, int ToonDiffuseBlendOP, int AlphaTestMode )
 {
 	GRAPHICS_HARDDATA_DIRECT3D11_DEVICE           *Device = &GraphicsHardDataDirect3D11.Device ;
@@ -3567,7 +3567,7 @@ extern int CreateD3D11MV1NoLightingToonPixelShader( int ToonType, int ToonDiffus
 	D_D3DXMACRO Macro[ 6 ] ;
 	int MacroNum = 0 ;
 
-	// Šù‚Éì¬Ï‚İ‚Ìê‡‚Í‰½‚à‚µ‚È‚¢
+	// æ—¢ã«ä½œæˆæ¸ˆã¿ã®å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( SM->MV1_NoLighting_Toon_PS[ ToonType ][ ToonDiffuseBlendOP ][ AlphaTestMode ] != NULL )
 	{
 		return 0 ;
@@ -3604,7 +3604,7 @@ extern int CreateD3D11MV1NoLightingToonPixelShader( int ToonType, int ToonDiffus
 	return Graphics_D3D11_CompilePixelShader( "MV1Default_VertexLighting_PS.hlsl", "main", Macro, &SM->MV1_NoLighting_Toon_PS[ ToonType ][ ToonDiffuseBlendOP ][ AlphaTestMode ] ) ;
 }
 
-// ƒ‚ƒfƒ‹•`‰æ—p‚Ìƒ‰ƒCƒeƒBƒ“ƒO‚ ‚èƒgƒD[ƒ“ƒ^ƒCƒv‚P—pƒsƒNƒZƒ‹ƒVƒF[ƒ_[‚ÌƒRƒ“ƒpƒCƒ‹‚ğs‚¤
+// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ã®ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ã‚ã‚Šãƒˆã‚¥ãƒ¼ãƒ³ã‚¿ã‚¤ãƒ—ï¼‘ç”¨ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ã‚’è¡Œã†
 extern int CreateD3D11MV1VertexLightingToonType1PixelShader( int ShadowMap, int DiffuseGradBlendType, int SpecularGradBlendType, int BumpMap, int LightIndex, int AlphaTestMode )
 {
 	GRAPHICS_HARDDATA_DIRECT3D11_DEVICE           *Device = &GraphicsHardDataDirect3D11.Device ;
@@ -3617,7 +3617,7 @@ extern int CreateD3D11MV1VertexLightingToonType1PixelShader( int ShadowMap, int 
 
 	LightMode = GD3D11.ShaderCode.Base.LightIndex10LightMode[ LightIndex ] ;
 
-	// Šù‚Éì¬Ï‚İ‚Ìê‡‚Í‰½‚à‚µ‚È‚¢
+	// æ—¢ã«ä½œæˆæ¸ˆã¿ã®å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( SM->MV1_VertexLighting_ToonType1_PS[ ShadowMap ][ DiffuseGradBlendType ][ SpecularGradBlendType ][ BumpMap ][ LightIndex ][ AlphaTestMode ] != NULL )
 	{
 		return 0 ;
@@ -3713,7 +3713,7 @@ extern int CreateD3D11MV1VertexLightingToonType1PixelShader( int ShadowMap, int 
 	return Graphics_D3D11_CompilePixelShader( "MV1Default_VertexLighting_PS.hlsl", "main", Macro, &SM->MV1_VertexLighting_ToonType1_PS[ ShadowMap ][ DiffuseGradBlendType ][ SpecularGradBlendType ][ BumpMap ][ LightIndex ][ AlphaTestMode ] ) ;
 }
 
-// ƒ‚ƒfƒ‹•`‰æ—p‚Ìƒ‰ƒCƒeƒBƒ“ƒO‚ ‚èƒgƒD[ƒ“ƒ^ƒCƒv‚Q—pƒsƒNƒZƒ‹ƒVƒF[ƒ_[‚ÌƒRƒ“ƒpƒCƒ‹‚ğs‚¤
+// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ã®ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ã‚ã‚Šãƒˆã‚¥ãƒ¼ãƒ³ã‚¿ã‚¤ãƒ—ï¼’ç”¨ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ã‚’è¡Œã†
 extern int CreateD3D11MV1VertexLightingToonType2PixelShader( int ShadowMap, int SphereMapBlendType, int LightIndex, int AlphaTestMode )
 {
 	GRAPHICS_HARDDATA_DIRECT3D11_DEVICE           *Device = &GraphicsHardDataDirect3D11.Device ;
@@ -3726,7 +3726,7 @@ extern int CreateD3D11MV1VertexLightingToonType2PixelShader( int ShadowMap, int 
 
 	LightMode = GD3D11.ShaderCode.Base.LightIndex10LightMode[ LightIndex ] ;
 
-	// Šù‚Éì¬Ï‚İ‚Ìê‡‚Í‰½‚à‚µ‚È‚¢
+	// æ—¢ã«ä½œæˆæ¸ˆã¿ã®å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( SM->MV1_VertexLighting_ToonType2_PS[ ShadowMap ][ SphereMapBlendType ][ LightIndex ][ AlphaTestMode ] != NULL )
 	{
 		return 0 ;
@@ -3802,7 +3802,7 @@ extern int CreateD3D11MV1VertexLightingToonType2PixelShader( int ShadowMap, int 
 	return Graphics_D3D11_CompilePixelShader( "MV1Default_VertexLighting_PS.hlsl", "main", Macro, &SM->MV1_VertexLighting_ToonType2_PS[ ShadowMap ][ SphereMapBlendType ][ LightIndex ][ AlphaTestMode ] ) ;
 }
 
-// ƒ‚ƒfƒ‹•`‰æ—p‚Ìƒ‰ƒCƒeƒBƒ“ƒO‚È‚µƒsƒNƒZƒ‹ƒVƒF[ƒ_[‚ÌƒRƒ“ƒpƒCƒ‹‚ğs‚¤
+// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ã®ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ãªã—ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ã‚’è¡Œã†
 extern int CreateD3D11MV1NoLightingNormalPixelShader( int MultiTexBlendMode, int AlphaTestMode )
 {
 	GRAPHICS_HARDDATA_DIRECT3D11_DEVICE           *Device = &GraphicsHardDataDirect3D11.Device ;
@@ -3811,7 +3811,7 @@ extern int CreateD3D11MV1NoLightingNormalPixelShader( int MultiTexBlendMode, int
 	D_D3DXMACRO Macro[ 4 ] ;
 	int MacroNum = 0 ;
 
-	// Šù‚Éì¬Ï‚İ‚Ìê‡‚Í‰½‚à‚µ‚È‚¢
+	// æ—¢ã«ä½œæˆæ¸ˆã¿ã®å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( SM->MV1_NoLighting_Normal_PS[ MultiTexBlendMode ][ AlphaTestMode ] != NULL )
 	{
 		return 0 ;
@@ -3832,7 +3832,7 @@ extern int CreateD3D11MV1NoLightingNormalPixelShader( int MultiTexBlendMode, int
 	return Graphics_D3D11_CompilePixelShader( "MV1Default_VertexLighting_PS.hlsl", "main", Macro, &SM->MV1_NoLighting_Normal_PS[ MultiTexBlendMode ][ AlphaTestMode ] ) ;
 }
 
-// ƒ‚ƒfƒ‹•`‰æ—p‚Ìƒ‰ƒCƒeƒBƒ“ƒO‚ ‚èƒsƒNƒZƒ‹ƒVƒF[ƒ_[‚ÌƒRƒ“ƒpƒCƒ‹‚ğs‚¤
+// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ã®ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ã‚ã‚Šãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ã‚’è¡Œã†
 extern int CreateD3D11MV1VertexLightingNormalPixelShader( int ShadowMap, int MultiTexBlendMode, int BumpMap, int LightIndex, int AlphaTestMode )
 {
 	GRAPHICS_HARDDATA_DIRECT3D11_DEVICE           *Device = &GraphicsHardDataDirect3D11.Device ;
@@ -3845,7 +3845,7 @@ extern int CreateD3D11MV1VertexLightingNormalPixelShader( int ShadowMap, int Mul
 
 	LightMode = GD3D11.ShaderCode.Base.LightIndex10LightMode[ LightIndex ] ;
 
-	// Šù‚Éì¬Ï‚İ‚Ìê‡‚Í‰½‚à‚µ‚È‚¢
+	// æ—¢ã«ä½œæˆæ¸ˆã¿ã®å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( SM->MV1_VertexLighting_Normal_PS[ ShadowMap ][ MultiTexBlendMode ][ BumpMap ][ LightIndex ][ AlphaTestMode ]!= NULL )
 	{
 		return 0 ;
@@ -3915,7 +3915,7 @@ extern int CreateD3D11MV1VertexLightingNormalPixelShader( int ShadowMap, int Mul
 	return Graphics_D3D11_CompilePixelShader( "MV1Default_VertexLighting_PS.hlsl", "main", Macro, &SM->MV1_VertexLighting_Normal_PS[ ShadowMap ][ MultiTexBlendMode ][ BumpMap ][ LightIndex ][ AlphaTestMode ] ) ;
 }
 
-// ƒ‚ƒfƒ‹•`‰æ—p‚ÌƒVƒƒƒhƒEƒ}ƒbƒv‚Ö‚ÌƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO—pƒsƒNƒZƒ‹ƒVƒF[ƒ_[‚ÌƒRƒ“ƒpƒCƒ‹‚ğs‚¤
+// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ã®ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ã¸ã®ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ç”¨ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ã‚’è¡Œã†
 extern int CreateD3D11MV1ShadowMapToonPixelShader( int ToonType, int ToonSphereOP, int ToonDiffuseBlendOP, int AlphaTestMode )
 {
 	GRAPHICS_HARDDATA_DIRECT3D11_DEVICE           *Device = &GraphicsHardDataDirect3D11.Device ;
@@ -3924,7 +3924,7 @@ extern int CreateD3D11MV1ShadowMapToonPixelShader( int ToonType, int ToonSphereO
 	D_D3DXMACRO Macro[ 6 ] ;
 	int MacroNum = 0 ;
 
-	// Šù‚Éì¬Ï‚İ‚Ìê‡‚Í‰½‚à‚µ‚È‚¢
+	// æ—¢ã«ä½œæˆæ¸ˆã¿ã®å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( SM->MV1_ShadowMap_Toon_PS[ ToonType ][ ToonSphereOP ][ ToonDiffuseBlendOP ][ AlphaTestMode ] != NULL )
 	{
 		return 0 ;
@@ -3985,7 +3985,7 @@ extern int CreateD3D11MV1ShadowMapToonPixelShader( int ToonType, int ToonSphereO
 	return Graphics_D3D11_CompilePixelShader( "MV1Default_VertexLighting_PS.hlsl", "main", Macro, &SM->MV1_ShadowMap_Toon_PS[ ToonType ][ ToonSphereOP ][ ToonDiffuseBlendOP ][ AlphaTestMode ] ) ;
 }
 
-// ƒ‚ƒfƒ‹•`‰æ—p‚ÌƒVƒƒƒhƒEƒ}ƒbƒv‚Ö‚ÌƒŒƒ“ƒ_ƒŠƒ“ƒO—pƒsƒNƒZƒ‹ƒVƒF[ƒ_[‚ÌƒRƒ“ƒpƒCƒ‹‚ğs‚¤
+// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ã®ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ã¸ã®ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ç”¨ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ã‚’è¡Œã†
 extern int CreateD3D11MV1ShadowMapNormalPixelShader( int AlphaTestMode )
 {
 	GRAPHICS_HARDDATA_DIRECT3D11_DEVICE           *Device = &GraphicsHardDataDirect3D11.Device ;
@@ -3994,7 +3994,7 @@ extern int CreateD3D11MV1ShadowMapNormalPixelShader( int AlphaTestMode )
 	D_D3DXMACRO Macro[ 4 ] ;
 	int MacroNum = 0 ;
 
-	// Šù‚Éì¬Ï‚İ‚Ìê‡‚Í‰½‚à‚µ‚È‚¢
+	// æ—¢ã«ä½œæˆæ¸ˆã¿ã®å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( SM->MV1_ShadowMap_Normal_PS[ AlphaTestMode ]!= NULL )
 	{
 		return 0 ;
@@ -4020,7 +4020,7 @@ extern int CreateD3D11MV1ShadowMapNormalPixelShader( int AlphaTestMode )
 #endif // DX_NON_SHADERCODE_BINARY
 
 
-// ƒVƒF[ƒ_[ƒR[ƒh‚©‚ç’¸“_ƒVƒF[ƒ_[‚ğì¬‚·‚é
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚³ãƒ¼ãƒ‰ã‹ã‚‰é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ä½œæˆã™ã‚‹
 extern int Graphics_D3D11_VertexShader_Create( GRAPHICS_HARDWARE_DIRECT3D11_SHADERCODE_INFO *Code, D_ID3D11VertexShader **pDestShader, int Num )
 {
 	int i ;
@@ -4036,7 +4036,7 @@ extern int Graphics_D3D11_VertexShader_Create( GRAPHICS_HARDWARE_DIRECT3D11_SHAD
 	return 0 ;
 }
 
-// ƒVƒF[ƒ_[ƒR[ƒh‚©‚çƒsƒNƒZƒ‹ƒVƒF[ƒ_[‚ğì¬‚·‚é
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚³ãƒ¼ãƒ‰ã‹ã‚‰ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ä½œæˆã™ã‚‹
 extern int Graphics_D3D11_PixelShader_Create( GRAPHICS_HARDWARE_DIRECT3D11_SHADERCODE_INFO *Code, D_ID3D11PixelShader **pDestShader, int Num )
 {
 	int i ;
@@ -4052,7 +4052,7 @@ extern int Graphics_D3D11_PixelShader_Create( GRAPHICS_HARDWARE_DIRECT3D11_SHADE
 	return 0 ;
 }
 
-// ’¸“_ƒVƒF[ƒ_[”z—ñ‚ğ‰ğ•ú‚·‚é
+// é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼é…åˆ—ã‚’è§£æ”¾ã™ã‚‹
 static void Graphics_D3D11_VertexShaderArray_Release( D_ID3D11VertexShader **pObject, int Num )
 {
 	int i ;
@@ -4067,7 +4067,7 @@ static void Graphics_D3D11_VertexShaderArray_Release( D_ID3D11VertexShader **pOb
 	}
 }
 
-// ƒsƒNƒZƒ‹ƒVƒF[ƒ_[”z—ñ‚ğ‰ğ•ú‚·‚é
+// ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼é…åˆ—ã‚’è§£æ”¾ã™ã‚‹
 static void Graphics_D3D11_PixelShaderArray_Release( D_ID3D11PixelShader **pObject, int Num )
 {
 	int i ;
@@ -4082,7 +4082,7 @@ static void Graphics_D3D11_PixelShaderArray_Release( D_ID3D11PixelShader **pObje
 	}
 }
 
-// ƒuƒŒƒ“ƒhƒXƒe[ƒg”z—ñ‚ğ‰ğ•ú‚·‚é
+// ãƒ–ãƒ¬ãƒ³ãƒ‰ã‚¹ãƒ†ãƒ¼ãƒˆé…åˆ—ã‚’è§£æ”¾ã™ã‚‹
 static void Graphics_D3D11_BlendStateArray_Release( D_ID3D11BlendState **pObject, int Num )
 {
 	int i ;
@@ -4097,7 +4097,7 @@ static void Graphics_D3D11_BlendStateArray_Release( D_ID3D11BlendState **pObject
 	}
 }
 
-// ƒfƒvƒXƒXƒeƒ“ƒVƒ‹ƒXƒe[ƒg”z—ñ‚ğ‰ğ•ú‚·‚é
+// ãƒ‡ãƒ—ã‚¹ã‚¹ãƒ†ãƒ³ã‚·ãƒ«ã‚¹ãƒ†ãƒ¼ãƒˆé…åˆ—ã‚’è§£æ”¾ã™ã‚‹
 static void Graphics_D3D11_DepthStencilStateArray_Release( D_ID3D11DepthStencilState **pObject, int Num )
 {
 	int i ;
@@ -4112,7 +4112,7 @@ static void Graphics_D3D11_DepthStencilStateArray_Release( D_ID3D11DepthStencilS
 	}
 }
 
-// ƒ‰ƒXƒ^ƒ‰ƒCƒU[ƒXƒe[ƒg”z—ñ‚ğ‰ğ•ú‚·‚é
+// ãƒ©ã‚¹ã‚¿ãƒ©ã‚¤ã‚¶ãƒ¼ã‚¹ãƒ†ãƒ¼ãƒˆé…åˆ—ã‚’è§£æ”¾ã™ã‚‹
 static void Graphics_D3D11_RasterizerStateArray_Release( D_ID3D11RasterizerState **pObject, int Num )
 {
 	int i ;
@@ -4127,7 +4127,7 @@ static void Graphics_D3D11_RasterizerStateArray_Release( D_ID3D11RasterizerState
 	}
 }
 
-// ƒTƒ“ƒvƒ‰[ƒXƒe[ƒg”z—ñ‚ğ‰ğ•ú‚·‚é
+// ã‚µãƒ³ãƒ—ãƒ©ãƒ¼ã‚¹ãƒ†ãƒ¼ãƒˆé…åˆ—ã‚’è§£æ”¾ã™ã‚‹
 static void Graphics_D3D11_SamplerStateArray_Release( D_ID3D11SamplerState **pObject, int Num )
 {
 	int i ;
@@ -4142,144 +4142,144 @@ static void Graphics_D3D11_SamplerStateArray_Release( D_ID3D11SamplerState **pOb
 	}
 }
 
-// Direct3D11 ‚ÌƒVƒF[ƒ_[‚Ì‰Šú‰»‚ğs‚¤
+// Direct3D11 ã®ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®åˆæœŸåŒ–ã‚’è¡Œã†
 extern int Graphics_D3D11_Shader_Initialize( void )
 {
 	GRAPHICS_HARDWARE_DIRECT3D11_SHADERCODE      *ShaderCode = &GraphicsHardDataDirect3D11.ShaderCode ;
 	GRAPHICS_HARDWARE_DIRECT3D11_SHADER          *Shader     = &GraphicsHardDataDirect3D11.Device.Shader ;
 
-	// Šù‚Éì¬‚³‚ê‚Ä‚¢‚½‚Æ‚«‚Ì‚½‚ß‚Éíœˆ—‚ğs‚¤
+	// æ—¢ã«ä½œæˆã•ã‚Œã¦ã„ãŸã¨ãã®ãŸã‚ã«å‰Šé™¤å‡¦ç†ã‚’è¡Œã†
 	Graphics_D3D11_Shader_Terminate() ;
 
 #ifdef DX_NON_SHADERCODE_BINARY
-	// ƒVƒF[ƒ_[ƒRƒ“ƒpƒCƒ‰[ DLL ‚Ì“Ç‚İ‚İ
+	// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚³ãƒ³ãƒ‘ã‚¤ãƒ©ãƒ¼ DLL ã®èª­ã¿è¾¼ã¿
 	LoadDirect3D11ShaderCompiler() ;
 #endif // DX_NON_SHADERCODE_BINARY
 
-	DXST_LOGFILE_ADDUTF16LE( "\xb7\x30\xa7\x30\xfc\x30\xc0\x30\xfc\x30\xb3\x30\xfc\x30\xc9\x30\xa2\x95\xc2\x4f\x6e\x30\x1d\x52\x1f\x67\x16\x53\x2e\x00\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"ƒVƒF[ƒ_[ƒR[ƒhŠÖŒW‚Ì‰Šú‰».... " @*/ ) ;
+	DXST_LOGFILE_ADDUTF16LE( "\xb7\x30\xa7\x30\xfc\x30\xc0\x30\xfc\x30\xb3\x30\xfc\x30\xc9\x30\xa2\x95\xc2\x4f\x6e\x30\x1d\x52\x1f\x67\x16\x53\x2e\x00\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚³ãƒ¼ãƒ‰é–¢ä¿‚ã®åˆæœŸåŒ–.... " @*/ ) ;
 
-	// Direct3D11 ‚Ìê‡‚ÍƒVƒF[ƒ_[‚Í•K‚¸g—p‚Å‚«‚é
+	// Direct3D11 ã®å ´åˆã¯ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã¯å¿…ãšä½¿ç”¨ã§ãã‚‹
 	GSYS.HardInfo.UseShader = TRUE ;
 
-	// •W€•`‰æ—pƒVƒF[ƒ_[ƒR[ƒh‚ª“WŠJ‚³‚ê‚Ä‚¢‚È‚¢ê‡‚Í“WŠJ
+	// æ¨™æº–æç”»ç”¨ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚³ãƒ¼ãƒ‰ãŒå±•é–‹ã•ã‚Œã¦ã„ãªã„å ´åˆã¯å±•é–‹
 	if( Graphics_D3D11_ShaderCode_Base_Initialize() == FALSE )
 	{
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\xb7\x30\xa7\x30\xfc\x30\xc0\x30\xfc\x30\xb3\x30\xfc\x30\xc9\x30\x92\x30\x55\x5c\x8b\x95\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ƒVƒF[ƒ_[ƒR[ƒh‚ğ“WŠJ‚·‚éƒƒ‚ƒŠ—Ìˆæ‚ÌŠm•Û‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\xb7\x30\xa7\x30\xfc\x30\xc0\x30\xfc\x30\xb3\x30\xfc\x30\xc9\x30\x92\x30\x55\x5c\x8b\x95\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚³ãƒ¼ãƒ‰ã‚’å±•é–‹ã™ã‚‹ãƒ¡ãƒ¢ãƒªé ˜åŸŸã®ç¢ºä¿ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ )) ;
 		GSYS.HardInfo.UseShader = FALSE ;
 		goto ERR ;
 	}
 
 #ifndef DX_NON_SHADERCODE_BINARY
-	// Šî–{“I‚È•`‰æˆ—‚Ég—p‚·‚éƒVƒF[ƒ_[‚ğì¬‚·‚é
+	// åŸºæœ¬çš„ãªæç”»å‡¦ç†ã«ä½¿ç”¨ã™ã‚‹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ä½œæˆã™ã‚‹
 	{
 		int Result ;
 
-		// •W€•`‰æ—p‚Ì•¡G‚Èˆ—‚ğs‚í‚È‚¢’¸“_ƒVƒF[ƒ_[‚Ìì¬
+		// æ¨™æº–æç”»ç”¨ã®è¤‡é›‘ãªå‡¦ç†ã‚’è¡Œã‚ãªã„é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ä½œæˆ
 		Result = Graphics_D3D11_VertexShader_Create( ( GRAPHICS_HARDWARE_DIRECT3D11_SHADERCODE_INFO * )ShaderCode->Base.BaseSimple_VS_Code, ( D_ID3D11VertexShader ** )Shader->Base.BaseSimple_VS, sizeof( ShaderCode->Base.BaseSimple_VS_Code ) / sizeof( GRAPHICS_HARDWARE_DIRECT3D11_SHADERCODE_INFO ) ) ;
 		if( Result < 0 )
 		{
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\x19\x6a\x96\x6e\xcf\x63\x3b\x75\x28\x75\x6e\x30\x07\x89\xd1\x96\x6a\x30\xe6\x51\x06\x74\x92\x30\x4c\x88\x8f\x30\x6a\x30\x44\x30\x02\x98\xb9\x70\xb7\x30\xa7\x30\xfc\x30\xc0\x30\xfc\x30\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x20\x00\x4e\x00\x6f\x00\x2e\x00\x25\x00\x64\x00\x20\x00\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"•W€•`‰æ—p‚Ì•¡G‚Èˆ—‚ğs‚í‚È‚¢’¸“_ƒVƒF[ƒ_[ƒIƒuƒWƒFƒNƒg No.%d ‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½\n" @*/, -( Result + 1 ) ) ) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\x19\x6a\x96\x6e\xcf\x63\x3b\x75\x28\x75\x6e\x30\x07\x89\xd1\x96\x6a\x30\xe6\x51\x06\x74\x92\x30\x4c\x88\x8f\x30\x6a\x30\x44\x30\x02\x98\xb9\x70\xb7\x30\xa7\x30\xfc\x30\xc0\x30\xfc\x30\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x20\x00\x4e\x00\x6f\x00\x2e\x00\x25\x00\x64\x00\x20\x00\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"æ¨™æº–æç”»ç”¨ã®è¤‡é›‘ãªå‡¦ç†ã‚’è¡Œã‚ãªã„é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ No.%d ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/, -( Result + 1 ) ) ) ;
 			GSYS.HardInfo.UseShader = FALSE ;
 			goto ERR ;
 		}
 
-		// ŒÅ’è‹@”\ƒpƒCƒvƒ‰ƒCƒ“ŒİŠ·‚ÌƒsƒNƒZƒ‹ƒVƒF[ƒ_[( ƒeƒNƒXƒ`ƒƒ‚È‚µ )‚Ìì¬
+		// å›ºå®šæ©Ÿèƒ½ãƒ‘ã‚¤ãƒ—ãƒ©ã‚¤ãƒ³äº’æ›ã®ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼( ãƒ†ã‚¯ã‚¹ãƒãƒ£ãªã— )ã®ä½œæˆ
 		Result = Graphics_D3D11_PixelShader_Create( ( GRAPHICS_HARDWARE_DIRECT3D11_SHADERCODE_INFO * )ShaderCode->Base.BaseNoneTex_PS_Code, ( D_ID3D11PixelShader ** )Shader->Base.BaseNoneTex_PS, sizeof( ShaderCode->Base.BaseNoneTex_PS_Code ) / sizeof( GRAPHICS_HARDWARE_DIRECT3D11_SHADERCODE_INFO ) ) ;
 		if( Result < 0 )
 		{
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\xfa\x56\x9a\x5b\x5f\x6a\xfd\x80\xd1\x30\xa4\x30\xd7\x30\xe9\x30\xa4\x30\xf3\x30\x92\x4e\xdb\x63\x6e\x30\xd4\x30\xaf\x30\xbb\x30\xeb\x30\xb7\x30\xa7\x30\xfc\x30\xc0\x30\xfc\x30\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x28\x00\x20\x00\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\x6a\x30\x57\x30\x20\x00\x29\x00\x20\x00\x4e\x00\x6f\x00\x2e\x00\x25\x00\x64\x00\x20\x00\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ŒÅ’è‹@”\ƒpƒCƒvƒ‰ƒCƒ“ŒİŠ·‚ÌƒsƒNƒZƒ‹ƒVƒF[ƒ_[ƒIƒuƒWƒFƒNƒg( ƒeƒNƒXƒ`ƒƒ‚È‚µ ) No.%d ‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½\n" @*/, -( Result + 1 ) ) ) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\xfa\x56\x9a\x5b\x5f\x6a\xfd\x80\xd1\x30\xa4\x30\xd7\x30\xe9\x30\xa4\x30\xf3\x30\x92\x4e\xdb\x63\x6e\x30\xd4\x30\xaf\x30\xbb\x30\xeb\x30\xb7\x30\xa7\x30\xfc\x30\xc0\x30\xfc\x30\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x28\x00\x20\x00\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\x6a\x30\x57\x30\x20\x00\x29\x00\x20\x00\x4e\x00\x6f\x00\x2e\x00\x25\x00\x64\x00\x20\x00\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"å›ºå®šæ©Ÿèƒ½ãƒ‘ã‚¤ãƒ—ãƒ©ã‚¤ãƒ³äº’æ›ã®ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ( ãƒ†ã‚¯ã‚¹ãƒãƒ£ãªã— ) No.%d ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/, -( Result + 1 ) ) ) ;
 			GSYS.HardInfo.UseShader = FALSE ;
 			goto ERR ;
 		}
 
-		// ŒÅ’è‹@”\ƒpƒCƒvƒ‰ƒCƒ“ŒİŠ·‚ÌƒsƒNƒZƒ‹ƒVƒF[ƒ_[( ƒeƒNƒXƒ`ƒƒ‚ ‚è )‚Ìì¬
+		// å›ºå®šæ©Ÿèƒ½ãƒ‘ã‚¤ãƒ—ãƒ©ã‚¤ãƒ³äº’æ›ã®ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼( ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚ã‚Š )ã®ä½œæˆ
 		Result = Graphics_D3D11_PixelShader_Create( ( GRAPHICS_HARDWARE_DIRECT3D11_SHADERCODE_INFO * )ShaderCode->Base.BaseUseTex_PS_Code, ( D_ID3D11PixelShader ** )Shader->Base.BaseUseTex_PS, sizeof( ShaderCode->Base.BaseUseTex_PS_Code ) / sizeof( GRAPHICS_HARDWARE_DIRECT3D11_SHADERCODE_INFO ) ) ;
 		if( Result < 0 )
 		{
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\xfa\x56\x9a\x5b\x5f\x6a\xfd\x80\xd1\x30\xa4\x30\xd7\x30\xe9\x30\xa4\x30\xf3\x30\x92\x4e\xdb\x63\x6e\x30\xd4\x30\xaf\x30\xbb\x30\xeb\x30\xb7\x30\xa7\x30\xfc\x30\xc0\x30\xfc\x30\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x28\x00\x20\x00\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\x42\x30\x8a\x30\x20\x00\x29\x00\x20\x00\x4e\x00\x6f\x00\x2e\x00\x25\x00\x64\x00\x20\x00\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ŒÅ’è‹@”\ƒpƒCƒvƒ‰ƒCƒ“ŒİŠ·‚ÌƒsƒNƒZƒ‹ƒVƒF[ƒ_[ƒIƒuƒWƒFƒNƒg( ƒeƒNƒXƒ`ƒƒ‚ ‚è ) No.%d ‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½\n" @*/, -( Result + 1 ) ) ) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\xfa\x56\x9a\x5b\x5f\x6a\xfd\x80\xd1\x30\xa4\x30\xd7\x30\xe9\x30\xa4\x30\xf3\x30\x92\x4e\xdb\x63\x6e\x30\xd4\x30\xaf\x30\xbb\x30\xeb\x30\xb7\x30\xa7\x30\xfc\x30\xc0\x30\xfc\x30\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x28\x00\x20\x00\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\x42\x30\x8a\x30\x20\x00\x29\x00\x20\x00\x4e\x00\x6f\x00\x2e\x00\x25\x00\x64\x00\x20\x00\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"å›ºå®šæ©Ÿèƒ½ãƒ‘ã‚¤ãƒ—ãƒ©ã‚¤ãƒ³äº’æ›ã®ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ( ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚ã‚Š ) No.%d ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/, -( Result + 1 ) ) ) ;
 			GSYS.HardInfo.UseShader = FALSE ;
 			goto ERR ;
 		}
 
-		// ƒ}ƒXƒNˆ——pƒsƒNƒZƒ‹ƒVƒF[ƒ_[‚Ìì¬
+		// ãƒã‚¹ã‚¯å‡¦ç†ç”¨ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ä½œæˆ
 		Result = Graphics_D3D11_PixelShader_Create( ( GRAPHICS_HARDWARE_DIRECT3D11_SHADERCODE_INFO * )&ShaderCode->Base.MaskEffect_PS_Code, ( D_ID3D11PixelShader ** )&Shader->Base.MaskEffect_PS, sizeof( ShaderCode->Base.MaskEffect_PS_Code ) / sizeof( GRAPHICS_HARDWARE_DIRECT3D11_SHADERCODE_INFO ) ) ;
 		if( Result < 0 )
 		{
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\xde\x30\xb9\x30\xaf\x30\xe6\x51\x06\x74\x28\x75\x6e\x30\xd4\x30\xaf\x30\xbb\x30\xeb\x30\xb7\x30\xa7\x30\xfc\x30\xc0\x30\xfc\x30\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x20\x00\x4e\x00\x6f\x00\x2e\x00\x25\x00\x64\x00\x20\x00\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ƒ}ƒXƒNˆ——p‚ÌƒsƒNƒZƒ‹ƒVƒF[ƒ_[ƒIƒuƒWƒFƒNƒg No.%d ‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½\n" @*/, -( Result + 1 ) ) ) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\xde\x30\xb9\x30\xaf\x30\xe6\x51\x06\x74\x28\x75\x6e\x30\xd4\x30\xaf\x30\xbb\x30\xeb\x30\xb7\x30\xa7\x30\xfc\x30\xc0\x30\xfc\x30\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x20\x00\x4e\x00\x6f\x00\x2e\x00\x25\x00\x64\x00\x20\x00\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ãƒã‚¹ã‚¯å‡¦ç†ç”¨ã®ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ No.%d ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/, -( Result + 1 ) ) ) ;
 			GSYS.HardInfo.UseShader = FALSE ;
 			goto ERR ;
 		}
 		Result = Graphics_D3D11_PixelShader_Create( ( GRAPHICS_HARDWARE_DIRECT3D11_SHADERCODE_INFO * )&ShaderCode->Base.MaskEffect_ReverseEffect_PS_Code, ( D_ID3D11PixelShader ** )&Shader->Base.MaskEffect_ReverseEffect_PS, sizeof( ShaderCode->Base.MaskEffect_ReverseEffect_PS_Code ) / sizeof( GRAPHICS_HARDWARE_DIRECT3D11_SHADERCODE_INFO ) ) ;
 		if( Result < 0 )
 		{
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\xcd\x53\xe2\x8e\xb9\x52\x9c\x67\xde\x30\xb9\x30\xaf\x30\xe6\x51\x06\x74\x28\x75\x6e\x30\xd4\x30\xaf\x30\xbb\x30\xeb\x30\xb7\x30\xa7\x30\xfc\x30\xc0\x30\xfc\x30\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x20\x00\x4e\x00\x6f\x00\x2e\x00\x25\x00\x64\x00\x20\x00\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"”½“]Œø‰Êƒ}ƒXƒNˆ——p‚ÌƒsƒNƒZƒ‹ƒVƒF[ƒ_[ƒIƒuƒWƒFƒNƒg No.%d ‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½\n" @*/, -( Result + 1 ) ) ) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\xcd\x53\xe2\x8e\xb9\x52\x9c\x67\xde\x30\xb9\x30\xaf\x30\xe6\x51\x06\x74\x28\x75\x6e\x30\xd4\x30\xaf\x30\xbb\x30\xeb\x30\xb7\x30\xa7\x30\xfc\x30\xc0\x30\xfc\x30\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x20\x00\x4e\x00\x6f\x00\x2e\x00\x25\x00\x64\x00\x20\x00\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"åè»¢åŠ¹æœãƒã‚¹ã‚¯å‡¦ç†ç”¨ã®ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ No.%d ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/, -( Result + 1 ) ) ) ;
 			GSYS.HardInfo.UseShader = FALSE ;
 			goto ERR ;
 		}
 		Result = Graphics_D3D11_PixelShader_Create( ( GRAPHICS_HARDWARE_DIRECT3D11_SHADERCODE_INFO * )ShaderCode->Base.MaskEffect_UseGraphHandle_PS_Code, ( D_ID3D11PixelShader ** )Shader->Base.MaskEffect_UseGraphHandle_PS, sizeof( ShaderCode->Base.MaskEffect_UseGraphHandle_PS_Code ) / sizeof( GRAPHICS_HARDWARE_DIRECT3D11_SHADERCODE_INFO ) ) ;
 		if( Result < 0 )
 		{
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\xde\x30\xb9\x30\xaf\x30\xe6\x51\x06\x74\x28\x75\x6e\x30\xd4\x30\xaf\x30\xbb\x30\xeb\x30\xb7\x30\xa7\x30\xfc\x30\xc0\x30\xfc\x30\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x20\x00\x4e\x00\x6f\x00\x2e\x00\x25\x00\x64\x00\x20\x00\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ƒ}ƒXƒNˆ——p‚ÌƒsƒNƒZƒ‹ƒVƒF[ƒ_[ƒIƒuƒWƒFƒNƒg No.%d ‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½\n" @*/, -( Result + 1 ) ) ) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\xde\x30\xb9\x30\xaf\x30\xe6\x51\x06\x74\x28\x75\x6e\x30\xd4\x30\xaf\x30\xbb\x30\xeb\x30\xb7\x30\xa7\x30\xfc\x30\xc0\x30\xfc\x30\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x20\x00\x4e\x00\x6f\x00\x2e\x00\x25\x00\x64\x00\x20\x00\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ãƒã‚¹ã‚¯å‡¦ç†ç”¨ã®ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ No.%d ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/, -( Result + 1 ) ) ) ;
 			GSYS.HardInfo.UseShader = FALSE ;
 			goto ERR ;
 		}
 		Result = Graphics_D3D11_PixelShader_Create( ( GRAPHICS_HARDWARE_DIRECT3D11_SHADERCODE_INFO * )ShaderCode->Base.MaskEffect_UseGraphHandle_ReverseEffect_PS_Code, ( D_ID3D11PixelShader ** )Shader->Base.MaskEffect_UseGraphHandle_ReverseEffect_PS, sizeof( ShaderCode->Base.MaskEffect_UseGraphHandle_ReverseEffect_PS_Code ) / sizeof( GRAPHICS_HARDWARE_DIRECT3D11_SHADERCODE_INFO ) ) ;
 		if( Result < 0 )
 		{
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\xcd\x53\xe2\x8e\xb9\x52\x9c\x67\xde\x30\xb9\x30\xaf\x30\xe6\x51\x06\x74\x28\x75\x6e\x30\xd4\x30\xaf\x30\xbb\x30\xeb\x30\xb7\x30\xa7\x30\xfc\x30\xc0\x30\xfc\x30\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x20\x00\x4e\x00\x6f\x00\x2e\x00\x25\x00\x64\x00\x20\x00\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"”½“]Œø‰Êƒ}ƒXƒNˆ——p‚ÌƒsƒNƒZƒ‹ƒVƒF[ƒ_[ƒIƒuƒWƒFƒNƒg No.%d ‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½\n" @*/, -( Result + 1 ) ) ) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\xcd\x53\xe2\x8e\xb9\x52\x9c\x67\xde\x30\xb9\x30\xaf\x30\xe6\x51\x06\x74\x28\x75\x6e\x30\xd4\x30\xaf\x30\xbb\x30\xeb\x30\xb7\x30\xa7\x30\xfc\x30\xc0\x30\xfc\x30\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x20\x00\x4e\x00\x6f\x00\x2e\x00\x25\x00\x64\x00\x20\x00\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"åè»¢åŠ¹æœãƒã‚¹ã‚¯å‡¦ç†ç”¨ã®ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ No.%d ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/, -( Result + 1 ) ) ) ;
 			GSYS.HardInfo.UseShader = FALSE ;
 			goto ERR ;
 		}
 
-		// ’Pƒ“]‘——pƒVƒF[ƒ_[‚Ìì¬
+		// å˜ç´”è»¢é€ç”¨ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ä½œæˆ
 		Result = Graphics_D3D11_VertexShader_Create( ( GRAPHICS_HARDWARE_DIRECT3D11_SHADERCODE_INFO * )&ShaderCode->Base.StretchRect_VS_Code, ( D_ID3D11VertexShader ** )&Shader->Base.StretchRect_VS, sizeof( ShaderCode->Base.StretchRect_VS_Code ) / sizeof( GRAPHICS_HARDWARE_DIRECT3D11_SHADERCODE_INFO ) ) ;
 		if( Result < 0 )
 		{
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\x58\x53\x14\x7d\xe2\x8e\x01\x90\x28\x75\x6e\x30\x02\x98\xb9\x70\xb7\x30\xa7\x30\xfc\x30\xc0\x30\xfc\x30\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x20\x00\x4e\x00\x6f\x00\x2e\x00\x25\x00\x64\x00\x20\x00\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"’Pƒ“]‘——p‚Ì’¸“_ƒVƒF[ƒ_[ƒIƒuƒWƒFƒNƒg No.%d ‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½\n" @*/, -( Result + 1 ) ) ) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\x58\x53\x14\x7d\xe2\x8e\x01\x90\x28\x75\x6e\x30\x02\x98\xb9\x70\xb7\x30\xa7\x30\xfc\x30\xc0\x30\xfc\x30\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x20\x00\x4e\x00\x6f\x00\x2e\x00\x25\x00\x64\x00\x20\x00\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"å˜ç´”è»¢é€ç”¨ã®é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ No.%d ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/, -( Result + 1 ) ) ) ;
 			GSYS.HardInfo.UseShader = FALSE ;
 			goto ERR ;
 		}
 		Result = Graphics_D3D11_VertexShader_Create( ( GRAPHICS_HARDWARE_DIRECT3D11_SHADERCODE_INFO * )&ShaderCode->Base.StretchRectTex8_VS_Code, ( D_ID3D11VertexShader ** )&Shader->Base.StretchRectTex8_VS, sizeof( ShaderCode->Base.StretchRectTex8_VS_Code ) / sizeof( GRAPHICS_HARDWARE_DIRECT3D11_SHADERCODE_INFO ) ) ;
 		if( Result < 0 )
 		{
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\xa7\x5e\x19\x6a\x38\x00\x0b\x50\x6e\x30\x58\x53\x14\x7d\xe2\x8e\x01\x90\x28\x75\x6e\x30\x02\x98\xb9\x70\xb7\x30\xa7\x30\xfc\x30\xc0\x30\xfc\x30\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x20\x00\x4e\x00\x6f\x00\x2e\x00\x25\x00\x64\x00\x20\x00\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ƒeƒNƒXƒ`ƒƒÀ•W8ŒÂ‚Ì’Pƒ“]‘——p‚Ì’¸“_ƒVƒF[ƒ_[ƒIƒuƒWƒFƒNƒg No.%d ‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½\n" @*/, -( Result + 1 ) ) ) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\xa7\x5e\x19\x6a\x38\x00\x0b\x50\x6e\x30\x58\x53\x14\x7d\xe2\x8e\x01\x90\x28\x75\x6e\x30\x02\x98\xb9\x70\xb7\x30\xa7\x30\xfc\x30\xc0\x30\xfc\x30\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x20\x00\x4e\x00\x6f\x00\x2e\x00\x25\x00\x64\x00\x20\x00\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ãƒ†ã‚¯ã‚¹ãƒãƒ£åº§æ¨™8å€‹ã®å˜ç´”è»¢é€ç”¨ã®é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ No.%d ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/, -( Result + 1 ) ) ) ;
 			GSYS.HardInfo.UseShader = FALSE ;
 			goto ERR ;
 		}
 		Result = Graphics_D3D11_PixelShader_Create( ( GRAPHICS_HARDWARE_DIRECT3D11_SHADERCODE_INFO * )&ShaderCode->Base.StretchRect_PS_Code, ( D_ID3D11PixelShader ** )&Shader->Base.StretchRect_PS, sizeof( ShaderCode->Base.StretchRect_PS_Code ) / sizeof( GRAPHICS_HARDWARE_DIRECT3D11_SHADERCODE_INFO ) ) ;
 		if( Result < 0 )
 		{
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\x58\x53\x14\x7d\xe2\x8e\x01\x90\x28\x75\x6e\x30\xd4\x30\xaf\x30\xbb\x30\xeb\x30\xb7\x30\xa7\x30\xfc\x30\xc0\x30\xfc\x30\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x20\x00\x4e\x00\x6f\x00\x2e\x00\x25\x00\x64\x00\x20\x00\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"’Pƒ“]‘——p‚ÌƒsƒNƒZƒ‹ƒVƒF[ƒ_[ƒIƒuƒWƒFƒNƒg No.%d ‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½\n" @*/, -( Result + 1 ) ) ) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\x58\x53\x14\x7d\xe2\x8e\x01\x90\x28\x75\x6e\x30\xd4\x30\xaf\x30\xbb\x30\xeb\x30\xb7\x30\xa7\x30\xfc\x30\xc0\x30\xfc\x30\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x20\x00\x4e\x00\x6f\x00\x2e\x00\x25\x00\x64\x00\x20\x00\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"å˜ç´”è»¢é€ç”¨ã®ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ No.%d ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/, -( Result + 1 ) ) ) ;
 			GSYS.HardInfo.UseShader = FALSE ;
 			goto ERR ;
 		}
 	}
 #else // DX_NON_SHADERCODE_BINARY
-	// Šî–{“I‚Èˆ—‚Ég—p‚·‚éƒVƒF[ƒ_[‚ğì¬‚·‚é
+	// åŸºæœ¬çš„ãªå‡¦ç†ã«ä½¿ç”¨ã™ã‚‹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ä½œæˆã™ã‚‹
 	{
 		int  i ;
 
-		// •W€•`‰æ—p‚Ì•¡G‚Èˆ—‚ğs‚í‚È‚¢’¸“_ƒVƒF[ƒ_[‚Ìì¬
+		// æ¨™æº–æç”»ç”¨ã®è¤‡é›‘ãªå‡¦ç†ã‚’è¡Œã‚ãªã„é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ä½œæˆ
 		for( i = 0 ; i < D3D11_VERTEX_INPUTLAYOUT_NUM ; i ++ )
 		{
 			if( CreateD3D11BaseSimpleVertexShader( i ) != 0 )
 			{
-				DXST_LOGFILEFMT_ADDUTF16LE( ( "\x12\xff\x24\xff\xcf\x63\x3b\x75\x28\x75\xfa\x57\x2c\x67\x02\x98\xb9\x70\xb7\x30\xa7\x30\xfc\x30\xc0\x30\xfc\x30\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"‚Q‚c•`‰æ—pŠî–{’¸“_ƒVƒF[ƒ_[ƒIƒuƒWƒFƒNƒg‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ) ;
+				DXST_LOGFILEFMT_ADDUTF16LE( ( "\x12\xff\x24\xff\xcf\x63\x3b\x75\x28\x75\xfa\x57\x2c\x67\x02\x98\xb9\x70\xb7\x30\xa7\x30\xfc\x30\xc0\x30\xfc\x30\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ï¼’ï¼¤æç”»ç”¨åŸºæœ¬é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ) ;
 				GSYS.HardInfo.UseShader = FALSE ;
 				goto ERR ;
 			}
 		}
 
-		// ƒ}ƒXƒNˆ——pƒVƒF[ƒ_[‚Ìì¬
+		// ãƒã‚¹ã‚¯å‡¦ç†ç”¨ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ä½œæˆ
 		if( Graphics_D3D11_CompilePixelShader( "Base_PS.hlsl", "MaskBlend_PS", NULL, &Shader->Base.MaskEffect_PS ) != 0 )
 		{
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\xde\x30\xb9\x30\xaf\x30\xe6\x51\x06\x74\x28\x75\xb7\x30\xa7\x30\xfc\x30\xc0\x30\xfc\x30\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ƒ}ƒXƒNˆ——pƒVƒF[ƒ_[ƒIƒuƒWƒFƒNƒg‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ )) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\xde\x30\xb9\x30\xaf\x30\xe6\x51\x06\x74\x28\x75\xb7\x30\xa7\x30\xfc\x30\xc0\x30\xfc\x30\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ãƒã‚¹ã‚¯å‡¦ç†ç”¨ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ )) ;
 			GSYS.HardInfo.UseShader = FALSE ;
 			goto ERR ;
 		}
 		if( Graphics_D3D11_CompilePixelShader( "Base_PS.hlsl", "MaskBlend_ReverseEffect_PS", NULL, &Shader->Base.MaskEffect_ReverseEffect_PS ) != 0 )
 		{
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\xde\x30\xb9\x30\xaf\x30\xe6\x51\x06\x74\x28\x75\xb7\x30\xa7\x30\xfc\x30\xc0\x30\xfc\x30\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ƒ}ƒXƒNˆ——pƒVƒF[ƒ_[ƒIƒuƒWƒFƒNƒg‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ )) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\xde\x30\xb9\x30\xaf\x30\xe6\x51\x06\x74\x28\x75\xb7\x30\xa7\x30\xfc\x30\xc0\x30\xfc\x30\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ãƒã‚¹ã‚¯å‡¦ç†ç”¨ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ )) ;
 			GSYS.HardInfo.UseShader = FALSE ;
 			goto ERR ;
 		}
@@ -4296,39 +4296,39 @@ extern int Graphics_D3D11_Shader_Initialize( void )
 			{
 				if( Graphics_D3D11_CompilePixelShader( "Base_PS.hlsl", "MaskBlend_UseGraphHandle_PS", macro[ i ], &Shader->Base.MaskEffect_UseGraphHandle_PS[ i ] ) != 0 )
 				{
-					DXST_LOGFILEFMT_ADDUTF16LE(( "\xde\x30\xb9\x30\xaf\x30\xe6\x51\x06\x74\x28\x75\xb7\x30\xa7\x30\xfc\x30\xc0\x30\xfc\x30\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ƒ}ƒXƒNˆ——pƒVƒF[ƒ_[ƒIƒuƒWƒFƒNƒg‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ )) ;
+					DXST_LOGFILEFMT_ADDUTF16LE(( "\xde\x30\xb9\x30\xaf\x30\xe6\x51\x06\x74\x28\x75\xb7\x30\xa7\x30\xfc\x30\xc0\x30\xfc\x30\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ãƒã‚¹ã‚¯å‡¦ç†ç”¨ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ )) ;
 					GSYS.HardInfo.UseShader = FALSE ;
 					goto ERR ;
 				}
 
 				if( Graphics_D3D11_CompilePixelShader( "Base_PS.hlsl", "MaskBlend_UseGraphHandle_ReverseEffect_PS", macro[ i ], &Shader->Base.MaskEffect_UseGraphHandle_ReverseEffect_PS[ i ] ) != 0 )
 				{
-					DXST_LOGFILEFMT_ADDUTF16LE(( "\xde\x30\xb9\x30\xaf\x30\xe6\x51\x06\x74\x28\x75\xb7\x30\xa7\x30\xfc\x30\xc0\x30\xfc\x30\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ƒ}ƒXƒNˆ——pƒVƒF[ƒ_[ƒIƒuƒWƒFƒNƒg‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ )) ;
+					DXST_LOGFILEFMT_ADDUTF16LE(( "\xde\x30\xb9\x30\xaf\x30\xe6\x51\x06\x74\x28\x75\xb7\x30\xa7\x30\xfc\x30\xc0\x30\xfc\x30\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ãƒã‚¹ã‚¯å‡¦ç†ç”¨ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ )) ;
 					GSYS.HardInfo.UseShader = FALSE ;
 					goto ERR ;
 				}
 			}
 		}
 
-		// ’Pƒ“]‘——pƒVƒF[ƒ_[‚Ìì¬
+		// å˜ç´”è»¢é€ç”¨ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ä½œæˆ
 		{
 			if( Graphics_D3D11_CompileVertexShader( "Base_2D_VS.hlsl", "StretchRect_VS", NULL, &Shader->Base.StretchRect_VS, &ShaderCode->Base.StretchRect_VS_Blob ) != 0 )
 			{
-				DXST_LOGFILEFMT_ADDUTF16LE( ( "\x58\x53\x14\x7d\xe2\x8e\x01\x90\x28\x75\x02\x98\xb9\x70\xb7\x30\xa7\x30\xfc\x30\xc0\x30\xfc\x30\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"’Pƒ“]‘——p’¸“_ƒVƒF[ƒ_[ƒIƒuƒWƒFƒNƒg‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ) ;
+				DXST_LOGFILEFMT_ADDUTF16LE( ( "\x58\x53\x14\x7d\xe2\x8e\x01\x90\x28\x75\x02\x98\xb9\x70\xb7\x30\xa7\x30\xfc\x30\xc0\x30\xfc\x30\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"å˜ç´”è»¢é€ç”¨é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ) ;
 				GSYS.HardInfo.UseShader = FALSE ;
 				goto ERR ;
 			}
 
 			if( Graphics_D3D11_CompileVertexShader( "Base_2D_VS.hlsl", "StretchRect_Tex8_VS", NULL, &Shader->Base.StretchRectTex8_VS, &ShaderCode->Base.StretchRectTex8_VS_Blob ) != 0 )
 			{
-				DXST_LOGFILEFMT_ADDUTF16LE( ( "\x58\x53\x14\x7d\xe2\x8e\x01\x90\x28\x00\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\xa7\x5e\x19\x6a\x38\x00\x0b\x50\x29\x00\x28\x75\x02\x98\xb9\x70\xb7\x30\xa7\x30\xfc\x30\xc0\x30\xfc\x30\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"’Pƒ“]‘—(ƒeƒNƒXƒ`ƒƒÀ•W8ŒÂ)—p’¸“_ƒVƒF[ƒ_[ƒIƒuƒWƒFƒNƒg‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ) ;
+				DXST_LOGFILEFMT_ADDUTF16LE( ( "\x58\x53\x14\x7d\xe2\x8e\x01\x90\x28\x00\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\xa7\x5e\x19\x6a\x38\x00\x0b\x50\x29\x00\x28\x75\x02\x98\xb9\x70\xb7\x30\xa7\x30\xfc\x30\xc0\x30\xfc\x30\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"å˜ç´”è»¢é€(ãƒ†ã‚¯ã‚¹ãƒãƒ£åº§æ¨™8å€‹)ç”¨é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ) ;
 				GSYS.HardInfo.UseShader = FALSE ;
 				goto ERR ;
 			}
 
 			if( Graphics_D3D11_CompilePixelShader( "Base_PS.hlsl", "StretchRect_PS", NULL, &Shader->Base.StretchRect_PS ) != 0 )
 			{
-				DXST_LOGFILEFMT_ADDUTF16LE( ( "\x58\x53\x14\x7d\xe2\x8e\x01\x90\x28\x75\xd4\x30\xaf\x30\xbb\x30\xeb\x30\xb7\x30\xa7\x30\xfc\x30\xc0\x30\xfc\x30\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"’Pƒ“]‘——pƒsƒNƒZƒ‹ƒVƒF[ƒ_[ƒIƒuƒWƒFƒNƒg‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ) ;
+				DXST_LOGFILEFMT_ADDUTF16LE( ( "\x58\x53\x14\x7d\xe2\x8e\x01\x90\x28\x75\xd4\x30\xaf\x30\xbb\x30\xeb\x30\xb7\x30\xa7\x30\xfc\x30\xc0\x30\xfc\x30\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"å˜ç´”è»¢é€ç”¨ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ) ;
 				GSYS.HardInfo.UseShader = FALSE ;
 				goto ERR ;
 			}
@@ -4337,19 +4337,19 @@ extern int Graphics_D3D11_Shader_Initialize( void )
 
 #endif // DX_NON_SHADERCODE_BINARY
 
-	DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"¬Œ÷\n" @*/ ) ;
+	DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"æˆåŠŸ\n" @*/ ) ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 
 ERR :
 
-	// ƒGƒ‰[I—¹
+	// ã‚¨ãƒ©ãƒ¼çµ‚äº†
 	return -1 ;
 }
 
 
-// Direct3D11 ‚ÌƒVƒF[ƒ_[‚ÌŒãn––‚ğ‚·‚é
+// Direct3D11 ã®ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®å¾Œå§‹æœ«ã‚’ã™ã‚‹
 extern int Graphics_D3D11_Shader_Terminate( void )
 {
 	GRAPHICS_HARDDATA_DIRECT3D11_DEVICE *Device = &GraphicsHardDataDirect3D11.Device ;
@@ -4361,7 +4361,7 @@ extern int Graphics_D3D11_Shader_Terminate( void )
 	}
 
 #ifdef DX_NON_SHADERCODE_BINARY
-	// ƒVƒF[ƒ_[ƒoƒCƒiƒŠ‚Ì‰ğ•ú
+	// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒã‚¤ãƒŠãƒªã®è§£æ”¾
 	{
 		int i ;
 		for( i = 0 ; i < D3D11_VERTEX_INPUTLAYOUT_NUM ; i ++ )
@@ -4386,7 +4386,7 @@ extern int Graphics_D3D11_Shader_Terminate( void )
 		}
 
 	#ifndef DX_NON_MODEL
-		// ‚R‚cƒ‚ƒfƒ‹—p‚ÌƒVƒF[ƒ_[ƒoƒCƒiƒŠ‚à‰ğ•ú
+		// ï¼“ï¼¤ãƒ¢ãƒ‡ãƒ«ç”¨ã®ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒã‚¤ãƒŠãƒªã‚‚è§£æ”¾
 		{
 			int j ;
 			for( i = 0 ; i < 3 ; i ++ )
@@ -4451,11 +4451,11 @@ extern int Graphics_D3D11_Shader_Terminate( void )
 
 #endif // DX_NON_MODEL
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// ‚R‚c•W€•`‰æ‚Ìw’è‚Ì’¸“_—p‚Ì•`‰æ—pƒVƒF[ƒ_[‚ğƒZƒbƒgƒAƒbƒv‚·‚é
+// ï¼“ï¼¤æ¨™æº–æç”»ã®æŒ‡å®šã®é ‚ç‚¹ç”¨ã®æç”»ç”¨ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã™ã‚‹
 extern int Graphics_D3D11_Shader_Normal3DDraw_Setup( void )
 {
 	GRAPHICS_HARDWARE_DIRECT3D11_SHADER_BASE3D		*SB3D  = &GD3D11.Device.Shader.Base3D ;
@@ -4492,7 +4492,7 @@ extern int Graphics_D3D11_Shader_Normal3DDraw_Setup( void )
 	}
 #endif // DX_NON_SHADERCODE_BINARY
 
-	// ƒeƒNƒXƒ`ƒƒƒAƒ‹ƒtƒ@‚ğ–³‹‚·‚é‚©‚Ç‚¤‚©‚ğƒZƒbƒg
+	// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¢ãƒ«ãƒ•ã‚¡ã‚’ç„¡è¦–ã™ã‚‹ã‹ã©ã†ã‹ã‚’ã‚»ãƒƒãƒˆ
 	IgnoreTextureAlpha = 1 ;
 	if( GD3D11.Device.DrawSetting.AlphaChannelValidFlag ||
 		GD3D11.Device.DrawSetting.AlphaTestValidFlag    ||
@@ -4505,24 +4505,24 @@ extern int Graphics_D3D11_Shader_Normal3DDraw_Setup( void )
 		Graphics_D3D11_DrawSetting_SetIgnoreDrawGraphAlpha( IgnoreTextureAlpha ) ;
 	}
 
-	// ƒuƒŒƒ“ƒhƒ‚[ƒh‚ÌŒˆ’è
+	// ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã®æ±ºå®š
 	{
 		NextBlendMode = GD3D11.Device.DrawSetting.BlendMode ;
 		switch( GD3D11.Device.DrawSetting.BlendMode )
 		{
 		case DX_BLENDMODE_SUB :
-			// Œ¸ZƒuƒŒƒ“ƒh‚Ìê‡‚Í14”Ô–Ú‚ÌƒuƒŒƒ“ƒhƒ‚[ƒh‚ğg—p‚·‚é
+			// æ¸›ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰ã®å ´åˆã¯14ç•ªç›®ã®ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã‚’ä½¿ç”¨ã™ã‚‹
 			NextBlendMode = DX_BLENDMODE_SUB1 ;
 			break ;
 
 		case DX_BLENDMODE_NOBLEND :
-			// •`‰ææ‚Éƒ¿’l‚ª‚ ‚éê‡‚Í DX_BLENDMODE_NOBLEND ‚Å‚àƒuƒŒƒ“ƒhƒ‚[ƒh‚Í DX_BLENDMODE_SRCCOLOR ‚É‚·‚é
+			// æç”»å…ˆã«Î±å€¤ãŒã‚ã‚‹å ´åˆã¯ DX_BLENDMODE_NOBLEND ã§ã‚‚ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã¯ DX_BLENDMODE_SRCCOLOR ã«ã™ã‚‹
 			if( GSYS.DrawSetting.AlphaChDrawMode )
 			{
 				NextBlendMode = DX_BLENDMODE_SRCCOLOR ;
 			}
 
-			// •`‰æŒ³‰æ‘œ‚Éƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ª‚ ‚éê‡‚âƒuƒŒƒ“ƒh‰æ‘œ‚Ì—L–³‚È‚ÇğŒŸ‘æ‚Å DX_BLENDMODE_ALPHA ‚ğg—p‚·‚é
+			// æç”»å…ƒç”»åƒã«Î±ãƒãƒ£ãƒ³ãƒãƒ«ãŒã‚ã‚‹å ´åˆã‚„ãƒ–ãƒ¬ãƒ³ãƒ‰ç”»åƒã®æœ‰ç„¡ãªã©æ¡ä»¶æ¬¡ç¬¬ã§ DX_BLENDMODE_ALPHA ã‚’ä½¿ç”¨ã™ã‚‹
 			if( GD3D11.Device.DrawSetting.RenderTexture != NULL )
 			{
 				if( GD3D11.Device.DrawSetting.AlphaChannelValidFlag == TRUE )
@@ -4542,7 +4542,7 @@ extern int Graphics_D3D11_Shader_Normal3DDraw_Setup( void )
 
 	if( GSYS.DrawSetting.ShadowMapDraw )
 	{
-		// ƒVƒƒƒhƒEƒ}ƒbƒv‚Ö‚Ì•`‰æ
+		// ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ã¸ã®æç”»
 	#ifndef DX_NON_SHADERCODE_BINARY
 		VSAddress = &SCB3D->Base3D_ShadowMap_VS_Code[ BumpMap ] ;
 		PSAddress = &SCB3D->Base3D_ShadowMap_Normal_PS_Code[ AlphaTestMode ] ;
@@ -4562,7 +4562,7 @@ extern int Graphics_D3D11_Shader_Normal3DDraw_Setup( void )
 	else
 	if( GD3D11.Device.State.Lighting )
 	{
-		// ƒ‰ƒCƒeƒBƒ“ƒO‚ ‚è•`‰æ
+		// ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ã‚ã‚Šæç”»
 
 		int LightMode[ DX_PIXELLIGHTING_LIGHT_NUM ] ;
 		int i ;
@@ -4609,7 +4609,7 @@ extern int Graphics_D3D11_Shader_Normal3DDraw_Setup( void )
 	}
 	else
 	{
-		// ƒ‰ƒCƒeƒBƒ“ƒO‚È‚µ•`‰æ
+		// ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ãªã—æç”»
 
 	#ifndef DX_NON_SHADERCODE_BINARY
 		VSAddress    = &SCB3D->Base3D_NoLighting_VS_Code[ FogType ] ;
@@ -4639,92 +4639,92 @@ extern int Graphics_D3D11_Shader_Normal3DDraw_Setup( void )
 
 	if( ( GSYS.Light.EnableNum > DX_VERTEXLIGHTING_LIGHT_NUM || GD3D11.UsePixelLightingShader ) && ValidPL )
 	{
-		// ƒVƒF[ƒ_[‚ª‚ ‚é‚©‚Ç‚¤‚©‚ğ’²‚×‚é
+		// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãŒã‚ã‚‹ã‹ã©ã†ã‹ã‚’èª¿ã¹ã‚‹
 		if( *VS_PL == NULL )
 		{
 		#ifndef DX_NON_SHADERCODE_BINARY
-			// ƒVƒF[ƒ_[‚Ìì¬‚ğ‚İ‚é
+			// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ä½œæˆã‚’è©¦ã¿ã‚‹
 			if( Graphics_D3D11_VertexShader_Create( VSAddress_PL, VS_PL, 1 ) != 0 )
 		#endif // DX_NON_SHADERCODE_BINARY
 			{
-				DXST_LOGFILEFMT_ADDUTF16LE(( "\x47\x00\x72\x00\x61\x00\x70\x00\x68\x00\x69\x00\x63\x00\x73\x00\x5f\x00\x44\x00\x33\x00\x44\x00\x31\x00\x31\x00\x5f\x00\x53\x00\x68\x00\x61\x00\x64\x00\x65\x00\x72\x00\x5f\x00\x4e\x00\x6f\x00\x72\x00\x6d\x00\x61\x00\x6c\x00\x33\x00\x44\x00\x44\x00\x72\x00\x61\x00\x77\x00\x5f\x00\x53\x00\x65\x00\x74\x00\x75\x00\x70\x00\x20\x00\x67\x30\x02\x98\xb9\x70\xb7\x30\xa7\x30\xfc\x30\xc0\x30\xfc\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Graphics_D3D11_Shader_Normal3DDraw_Setup ‚Å’¸“_ƒVƒF[ƒ_[‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ )) ;
+				DXST_LOGFILEFMT_ADDUTF16LE(( "\x47\x00\x72\x00\x61\x00\x70\x00\x68\x00\x69\x00\x63\x00\x73\x00\x5f\x00\x44\x00\x33\x00\x44\x00\x31\x00\x31\x00\x5f\x00\x53\x00\x68\x00\x61\x00\x64\x00\x65\x00\x72\x00\x5f\x00\x4e\x00\x6f\x00\x72\x00\x6d\x00\x61\x00\x6c\x00\x33\x00\x44\x00\x44\x00\x72\x00\x61\x00\x77\x00\x5f\x00\x53\x00\x65\x00\x74\x00\x75\x00\x70\x00\x20\x00\x67\x30\x02\x98\xb9\x70\xb7\x30\xa7\x30\xfc\x30\xc0\x30\xfc\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Graphics_D3D11_Shader_Normal3DDraw_Setup ã§é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ )) ;
 				return FALSE ;
 			}
 		}
 
-		// ƒo[ƒeƒbƒNƒXƒVƒF[ƒ_[‚ÌƒZƒbƒgƒAƒbƒv
+		// ãƒãƒ¼ãƒ†ãƒƒã‚¯ã‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 		Graphics_D3D11_DeviceState_SetVertexShader( *VS_PL, FALSE ) ;
 
-		// ƒWƒIƒƒgƒŠƒVƒF[ƒ_[‚ÌƒŠƒZƒbƒg
+		// ã‚¸ã‚ªãƒ¡ãƒˆãƒªã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ãƒªã‚»ãƒƒãƒˆ
 		if( GD3D11.Device.State.SetGeometryShader != NULL )
 		{
 			Graphics_D3D11_DeviceState_ResetGeometryShader() ;
 		}
 
-		// ƒVƒF[ƒ_[‚ª‚ ‚é‚©‚Ç‚¤‚©‚ğ’²‚×‚é
+		// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãŒã‚ã‚‹ã‹ã©ã†ã‹ã‚’èª¿ã¹ã‚‹
 		if( *PS_PL == NULL )
 		{
 		#ifndef DX_NON_SHADERCODE_BINARY
-			// ƒVƒF[ƒ_[‚Ìì¬‚ğ‚İ‚é
+			// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ä½œæˆã‚’è©¦ã¿ã‚‹
 			if( Graphics_D3D11_PixelShader_Create( PSAddress_PL, PS_PL, 1 ) != 0 )
 		#endif // DX_NON_SHADERCODE_BINARY
 			{
-				DXST_LOGFILEFMT_ADDUTF16LE(( "\x47\x00\x72\x00\x61\x00\x70\x00\x68\x00\x69\x00\x63\x00\x73\x00\x5f\x00\x44\x00\x33\x00\x44\x00\x31\x00\x31\x00\x5f\x00\x53\x00\x68\x00\x61\x00\x64\x00\x65\x00\x72\x00\x5f\x00\x4e\x00\x6f\x00\x72\x00\x6d\x00\x61\x00\x6c\x00\x33\x00\x44\x00\x44\x00\x72\x00\x61\x00\x77\x00\x5f\x00\x53\x00\x65\x00\x74\x00\x75\x00\x70\x00\x20\x00\x67\x30\xd4\x30\xaf\x30\xbb\x30\xeb\x30\xb7\x30\xa7\x30\xfc\x30\xc0\x30\xfc\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Graphics_D3D11_Shader_Normal3DDraw_Setup ‚ÅƒsƒNƒZƒ‹ƒVƒF[ƒ_[‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ )) ;
+				DXST_LOGFILEFMT_ADDUTF16LE(( "\x47\x00\x72\x00\x61\x00\x70\x00\x68\x00\x69\x00\x63\x00\x73\x00\x5f\x00\x44\x00\x33\x00\x44\x00\x31\x00\x31\x00\x5f\x00\x53\x00\x68\x00\x61\x00\x64\x00\x65\x00\x72\x00\x5f\x00\x4e\x00\x6f\x00\x72\x00\x6d\x00\x61\x00\x6c\x00\x33\x00\x44\x00\x44\x00\x72\x00\x61\x00\x77\x00\x5f\x00\x53\x00\x65\x00\x74\x00\x75\x00\x70\x00\x20\x00\x67\x30\xd4\x30\xaf\x30\xbb\x30\xeb\x30\xb7\x30\xa7\x30\xfc\x30\xc0\x30\xfc\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Graphics_D3D11_Shader_Normal3DDraw_Setup ã§ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ )) ;
 				return FALSE ;
 			}
 		}
 
-		// ƒsƒNƒZƒ‹ƒVƒF[ƒ_[‚ÌƒZƒbƒgƒAƒbƒv
+		// ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 		Graphics_D3D11_DeviceState_SetPixelShader( *PS_PL, FALSE ) ;
 	}
 	else
 	{
-		// ƒVƒF[ƒ_[‚ª‚ ‚é‚©‚Ç‚¤‚©‚ğ’²‚×‚é
+		// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãŒã‚ã‚‹ã‹ã©ã†ã‹ã‚’èª¿ã¹ã‚‹
 		if( *VS == NULL )
 		{
 		#ifndef DX_NON_SHADERCODE_BINARY
-			// ƒVƒF[ƒ_[‚Ìì¬‚ğ‚İ‚é
+			// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ä½œæˆã‚’è©¦ã¿ã‚‹
 			if( Graphics_D3D11_VertexShader_Create( VSAddress, VS, 1 ) != 0 )
 		#endif // DX_NON_SHADERCODE_BINARY
 			{
-				DXST_LOGFILEFMT_ADDUTF16LE(( "\x47\x00\x72\x00\x61\x00\x70\x00\x68\x00\x69\x00\x63\x00\x73\x00\x5f\x00\x44\x00\x33\x00\x44\x00\x31\x00\x31\x00\x5f\x00\x53\x00\x68\x00\x61\x00\x64\x00\x65\x00\x72\x00\x5f\x00\x4e\x00\x6f\x00\x72\x00\x6d\x00\x61\x00\x6c\x00\x33\x00\x44\x00\x44\x00\x72\x00\x61\x00\x77\x00\x5f\x00\x53\x00\x65\x00\x74\x00\x75\x00\x70\x00\x20\x00\x67\x30\x02\x98\xb9\x70\xb7\x30\xa7\x30\xfc\x30\xc0\x30\xfc\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Graphics_D3D11_Shader_Normal3DDraw_Setup ‚Å’¸“_ƒVƒF[ƒ_[‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ )) ;
+				DXST_LOGFILEFMT_ADDUTF16LE(( "\x47\x00\x72\x00\x61\x00\x70\x00\x68\x00\x69\x00\x63\x00\x73\x00\x5f\x00\x44\x00\x33\x00\x44\x00\x31\x00\x31\x00\x5f\x00\x53\x00\x68\x00\x61\x00\x64\x00\x65\x00\x72\x00\x5f\x00\x4e\x00\x6f\x00\x72\x00\x6d\x00\x61\x00\x6c\x00\x33\x00\x44\x00\x44\x00\x72\x00\x61\x00\x77\x00\x5f\x00\x53\x00\x65\x00\x74\x00\x75\x00\x70\x00\x20\x00\x67\x30\x02\x98\xb9\x70\xb7\x30\xa7\x30\xfc\x30\xc0\x30\xfc\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Graphics_D3D11_Shader_Normal3DDraw_Setup ã§é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ )) ;
 				return FALSE ;
 			}
 		}
 
-		// ƒo[ƒeƒbƒNƒXƒVƒF[ƒ_[‚ÌƒZƒbƒgƒAƒbƒv
+		// ãƒãƒ¼ãƒ†ãƒƒã‚¯ã‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 		Graphics_D3D11_DeviceState_SetVertexShader( *VS, FALSE ) ;
 
-		// ƒWƒIƒƒgƒŠƒVƒF[ƒ_[‚ÌƒŠƒZƒbƒg
+		// ã‚¸ã‚ªãƒ¡ãƒˆãƒªã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ãƒªã‚»ãƒƒãƒˆ
 		if( GD3D11.Device.State.SetGeometryShader != NULL )
 		{
 			Graphics_D3D11_DeviceState_ResetGeometryShader() ;
 		}
 
-		// ƒVƒF[ƒ_[‚ª‚ ‚é‚©‚Ç‚¤‚©‚ğ’²‚×‚é
+		// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãŒã‚ã‚‹ã‹ã©ã†ã‹ã‚’èª¿ã¹ã‚‹
 		if( *PS == NULL )
 		{
 		#ifndef DX_NON_SHADERCODE_BINARY
-			// ƒVƒF[ƒ_[‚Ìì¬‚ğ‚İ‚é
+			// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ä½œæˆã‚’è©¦ã¿ã‚‹
 			if( Graphics_D3D11_PixelShader_Create( PSAddress, PS, 1 ) != 0 )
 		#endif // DX_NON_SHADERCODE_BINARY
 			{
-				DXST_LOGFILEFMT_ADDUTF16LE(( "\x47\x00\x72\x00\x61\x00\x70\x00\x68\x00\x69\x00\x63\x00\x73\x00\x5f\x00\x44\x00\x33\x00\x44\x00\x31\x00\x31\x00\x5f\x00\x53\x00\x68\x00\x61\x00\x64\x00\x65\x00\x72\x00\x5f\x00\x4e\x00\x6f\x00\x72\x00\x6d\x00\x61\x00\x6c\x00\x33\x00\x44\x00\x44\x00\x72\x00\x61\x00\x77\x00\x5f\x00\x53\x00\x65\x00\x74\x00\x75\x00\x70\x00\x20\x00\x67\x30\xd4\x30\xaf\x30\xbb\x30\xeb\x30\xb7\x30\xa7\x30\xfc\x30\xc0\x30\xfc\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Graphics_D3D11_Shader_Normal3DDraw_Setup ‚ÅƒsƒNƒZƒ‹ƒVƒF[ƒ_[‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ )) ;
+				DXST_LOGFILEFMT_ADDUTF16LE(( "\x47\x00\x72\x00\x61\x00\x70\x00\x68\x00\x69\x00\x63\x00\x73\x00\x5f\x00\x44\x00\x33\x00\x44\x00\x31\x00\x31\x00\x5f\x00\x53\x00\x68\x00\x61\x00\x64\x00\x65\x00\x72\x00\x5f\x00\x4e\x00\x6f\x00\x72\x00\x6d\x00\x61\x00\x6c\x00\x33\x00\x44\x00\x44\x00\x72\x00\x61\x00\x77\x00\x5f\x00\x53\x00\x65\x00\x74\x00\x75\x00\x70\x00\x20\x00\x67\x30\xd4\x30\xaf\x30\xbb\x30\xeb\x30\xb7\x30\xa7\x30\xfc\x30\xc0\x30\xfc\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Graphics_D3D11_Shader_Normal3DDraw_Setup ã§ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ )) ;
 				return FALSE ;
 			}
 		}
 
-		// ƒsƒNƒZƒ‹ƒVƒF[ƒ_[‚ÌƒZƒbƒgƒAƒbƒv
+		// ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 		Graphics_D3D11_DeviceState_SetPixelShader( *PS ) ;
 	}
 
 
-	// I—¹
+	// çµ‚äº†
 	return TRUE ;
 }
 
-// ƒAƒ‹ƒtƒ@ƒeƒXƒg‚Ì”äŠrƒ‚[ƒh‚©‚çƒsƒNƒZƒ‹ƒVƒF[ƒ_[‚ÌƒAƒ‹ƒtƒ@ƒeƒXƒgƒ‚[ƒh( DIRECT3D11_PS_ALPHATEST_CMP_GREATER “™ )‚ğæ“¾‚·‚é
-extern int Graphics_D3D11_Shader_GetAlphaTestModeIndex( int AlphaTestEnable, int AlphaTestMode /* DX_CMP_NEVER “™ */ )
+// ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆã®æ¯”è¼ƒãƒ¢ãƒ¼ãƒ‰ã‹ã‚‰ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆãƒ¢ãƒ¼ãƒ‰( DIRECT3D11_PS_ALPHATEST_CMP_GREATER ç­‰ )ã‚’å–å¾—ã™ã‚‹
+extern int Graphics_D3D11_Shader_GetAlphaTestModeIndex( int AlphaTestEnable, int AlphaTestMode /* DX_CMP_NEVER ç­‰ */ )
 {
 	if( AlphaTestEnable == FALSE )
 	{
@@ -4765,9 +4765,9 @@ extern int Graphics_D3D11_Shader_GetAlphaTestModeIndex( int AlphaTestEnable, int
 
 
 
-// ’¸“_ƒoƒbƒtƒ@EƒCƒ“ƒfƒbƒNƒXƒoƒbƒtƒ@ŠÖŒW
+// é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ãƒ»ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒãƒƒãƒ•ã‚¡é–¢ä¿‚
 
-// ’¸“_ƒoƒbƒtƒ@ƒnƒ“ƒhƒ‹—p‚Ì ID3D11Buffer ƒIƒuƒWƒFƒNƒg‚ğì¬‚·‚é
+// é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ãƒãƒ³ãƒ‰ãƒ«ç”¨ã® ID3D11Buffer ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ä½œæˆã™ã‚‹
 extern	int Graphics_D3D11_VertexBuffer_CreateObject( VERTEXBUFFERHANDLEDATA *VertexBuffer, int Restore )
 {
 	D_D3D11_BUFFER_DESC BufferDesc ;
@@ -4781,35 +4781,35 @@ extern	int Graphics_D3D11_VertexBuffer_CreateObject( VERTEXBUFFERHANDLEDATA *Ver
 	hr = D3D11Device_CreateBuffer( &BufferDesc, NULL, &VertexBuffer->PF->D3D11.VertexBuffer ) ;
 	if( FAILED( hr ) )
 	{
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\x02\x98\xb9\x70\xd0\x30\xc3\x30\xd5\x30\xa1\x30\xcf\x30\xf3\x30\xc9\x30\xeb\x30\x28\x75\x6e\x30\x02\x98\xb9\x70\xd0\x30\xc3\x30\xd5\x30\xa1\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"’¸“_ƒoƒbƒtƒ@ƒnƒ“ƒhƒ‹—p‚Ì’¸“_ƒoƒbƒtƒ@‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\x02\x98\xb9\x70\xd0\x30\xc3\x30\xd5\x30\xa1\x30\xcf\x30\xf3\x30\xc9\x30\xeb\x30\x28\x75\x6e\x30\x02\x98\xb9\x70\xd0\x30\xc3\x30\xd5\x30\xa1\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ãƒãƒ³ãƒ‰ãƒ«ç”¨ã®é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ )) ;
 		return -1 ;
 	}
 
-	// ƒf[ƒ^‚ğ•œ‹A‚·‚é
+	// ãƒ‡ãƒ¼ã‚¿ã‚’å¾©å¸°ã™ã‚‹
 	if( Restore )
 	{
 		NS_SetVertexBufferData( 0, VertexBuffer->Buffer, VertexBuffer->Num, VertexBuffer->HandleInfo.Handle ) ; 
 	}
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// ’¸“_ƒoƒbƒtƒ@ƒnƒ“ƒhƒ‹—p‚Ì ID3D11Buffer ƒIƒuƒWƒFƒNƒg‚ğ‰ğ•ú‚·‚é
+// é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ãƒãƒ³ãƒ‰ãƒ«ç”¨ã® ID3D11Buffer ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’è§£æ”¾ã™ã‚‹
 extern	int	Graphics_D3D11_VertexBuffer_ReleaseObject( VERTEXBUFFERHANDLEDATA *VertexBuffer )
 {
-	// ’¸“_ƒoƒbƒtƒ@‚Ì‰ğ•ú
+	// é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã®è§£æ”¾
 	if( VertexBuffer->PF->D3D11.VertexBuffer )
 	{
 		Direct3D11_Release_Buffer( VertexBuffer->PF->D3D11.VertexBuffer ) ;
 		VertexBuffer->PF->D3D11.VertexBuffer = NULL ;
 	}
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// ƒCƒ“ƒfƒbƒNƒXƒoƒbƒtƒ@ƒnƒ“ƒhƒ‹—p‚Ì ID3D11Buffer ƒIƒuƒWƒFƒNƒg‚ğì¬‚·‚é
+// ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒãƒƒãƒ•ã‚¡ãƒãƒ³ãƒ‰ãƒ«ç”¨ã® ID3D11Buffer ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ä½œæˆã™ã‚‹
 extern	int	Graphics_D3D11_IndexBuffer_CreateObject( INDEXBUFFERHANDLEDATA *IndexBuffer, int Restore )
 {
 	D_D3D11_BUFFER_DESC BufferDesc ;
@@ -4823,31 +4823,31 @@ extern	int	Graphics_D3D11_IndexBuffer_CreateObject( INDEXBUFFERHANDLEDATA *Index
 	hr = D3D11Device_CreateBuffer( &BufferDesc, NULL, &IndexBuffer->PF->D3D11.IndexBuffer ) ;
 	if( FAILED( hr ) )
 	{
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\xa4\x30\xf3\x30\xc7\x30\xc3\x30\xaf\x30\xb9\x30\xd0\x30\xc3\x30\xd5\x30\xa1\x30\xcf\x30\xf3\x30\xc9\x30\xeb\x30\x28\x75\x6e\x30\xa4\x30\xf3\x30\xc7\x30\xc3\x30\xaf\x30\xb9\x30\xd0\x30\xc3\x30\xd5\x30\xa1\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ƒCƒ“ƒfƒbƒNƒXƒoƒbƒtƒ@ƒnƒ“ƒhƒ‹—p‚ÌƒCƒ“ƒfƒbƒNƒXƒoƒbƒtƒ@‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\xa4\x30\xf3\x30\xc7\x30\xc3\x30\xaf\x30\xb9\x30\xd0\x30\xc3\x30\xd5\x30\xa1\x30\xcf\x30\xf3\x30\xc9\x30\xeb\x30\x28\x75\x6e\x30\xa4\x30\xf3\x30\xc7\x30\xc3\x30\xaf\x30\xb9\x30\xd0\x30\xc3\x30\xd5\x30\xa1\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒãƒƒãƒ•ã‚¡ãƒãƒ³ãƒ‰ãƒ«ç”¨ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒãƒƒãƒ•ã‚¡ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ )) ;
 		return -1 ;
 	}
 
-	// ƒf[ƒ^‚ğ•œ‹A‚·‚é
+	// ãƒ‡ãƒ¼ã‚¿ã‚’å¾©å¸°ã™ã‚‹
 	if( Restore )
 	{
 		NS_SetIndexBufferData( 0, IndexBuffer->Buffer, IndexBuffer->Num, IndexBuffer->HandleInfo.Handle ) ; 
 	}
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// ƒCƒ“ƒfƒbƒNƒXƒoƒbƒtƒ@ƒnƒ“ƒhƒ‹—p‚Ì ID3D11Buffer ƒIƒuƒWƒFƒNƒg‚ğ‰ğ•ú‚·‚é
+// ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒãƒƒãƒ•ã‚¡ãƒãƒ³ãƒ‰ãƒ«ç”¨ã® ID3D11Buffer ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’è§£æ”¾ã™ã‚‹
 extern	int	Graphics_D3D11_IndexBuffer_ReleaseObject( INDEXBUFFERHANDLEDATA *IndexBuffer )
 {
-	// ƒCƒ“ƒfƒbƒNƒXƒoƒbƒtƒ@‚Ì‰ğ•ú
+	// ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒãƒƒãƒ•ã‚¡ã®è§£æ”¾
 	if( IndexBuffer->PF->D3D11.IndexBuffer )
 	{
 		Direct3D11_Release_Buffer( IndexBuffer->PF->D3D11.IndexBuffer ) ;
 		IndexBuffer->PF->D3D11.IndexBuffer = NULL ;
 	}
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
@@ -4879,9 +4879,9 @@ extern	int	Graphics_D3D11_IndexBuffer_ReleaseObject( INDEXBUFFERHANDLEDATA *Inde
 
 
 
-// Direct3D11 ‚Ì‰æ–ÊŠÖŒW
+// Direct3D11 ã®ç”»é¢é–¢ä¿‚
 
-// ScreenCopy ‚â GetDrawScreen ‚ğÀŒ»‚·‚é‚½‚ß‚Ég—p‚·‚éƒeƒ“ƒ|ƒ‰ƒŠƒoƒbƒtƒ@‚Ìì¬( 0:¬Œ÷  -1:¸”s )
+// ScreenCopy ã‚„ GetDrawScreen ã‚’å®Ÿç¾ã™ã‚‹ãŸã‚ã«ä½¿ç”¨ã™ã‚‹ãƒ†ãƒ³ãƒãƒ©ãƒªãƒãƒƒãƒ•ã‚¡ã®ä½œæˆ( 0:æˆåŠŸ  -1:å¤±æ•— )
 extern	int		Graphics_D3D11_SetupSubBackBuffer( void )
 {
 	HRESULT                           hr ;
@@ -4892,24 +4892,24 @@ extern	int		Graphics_D3D11_SetupSubBackBuffer( void )
 	RECT                              BltRect ;
 	int                               UseMSAA = FALSE ;
 
-	// Šù‚ÉƒTƒuƒoƒbƒNƒoƒbƒtƒ@‚ªì¬‚³‚ê‚Ä‚¢‚éê‡‚Í‰½‚à‚µ‚È‚¢
+	// æ—¢ã«ã‚µãƒ–ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ãŒä½œæˆã•ã‚Œã¦ã„ã‚‹å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( GD3D11.Device.Screen.SubBackBufferTexture2D != NULL ) return 0 ;
 
-	// ƒfƒoƒCƒX‚ª–³Œø‚Ìê‡‚Í‰½‚à‚¹‚¸I—¹
+	// ãƒ‡ãƒã‚¤ã‚¹ãŒç„¡åŠ¹ã®å ´åˆã¯ä½•ã‚‚ã›ãšçµ‚äº†
 	if( GAPIWin.D3D11DeviceObject == NULL )
 	{
 		return -1 ;
 	}
 
-	// •`‰æî•ñ‚ğ“f‚«o‚µ‚Ä‚¨‚­
+	// æç”»æƒ…å ±ã‚’åãå‡ºã—ã¦ãŠã
 	DRAWSTOCKINFO
 
-	// ƒTƒuƒoƒbƒNƒoƒbƒtƒ@‚ÌƒTƒCƒY‚ğƒZƒbƒg
+	// ã‚µãƒ–ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã®ã‚µã‚¤ã‚ºã‚’ã‚»ãƒƒãƒˆ
 	GD3D11.Device.Screen.SubBackBufferTextureSizeX = GSYS.Screen.MainScreenSizeX ;
 	GD3D11.Device.Screen.SubBackBufferTextureSizeY = GSYS.Screen.MainScreenSizeY ;
 
-	// ƒ}ƒ‹ƒ`ƒTƒ“ƒvƒ‹ƒtƒH[ƒ}ƒbƒg‚Ìê‡‚Íƒ}ƒ‹ƒ`ƒTƒ“ƒvƒ‹ƒeƒNƒXƒ`ƒƒ‚ğì¬
-	// ( D_D3D_FEATURE_LEVEL_10_0 –¢–‚Ìê‡‚Íƒ}ƒ‹ƒ`ƒTƒ“ƒvƒ‹‚Íg—p‚Å‚«‚È‚¢ )
+	// ãƒãƒ«ãƒã‚µãƒ³ãƒ—ãƒ«ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®å ´åˆã¯ãƒãƒ«ãƒã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ä½œæˆ
+	// ( D_D3D_FEATURE_LEVEL_10_0 æœªæº€ã®å ´åˆã¯ãƒãƒ«ãƒã‚µãƒ³ãƒ—ãƒ«ã¯ä½¿ç”¨ã§ããªã„ )
 	if( GSYS.Setting.FSAAMultiSampleCount > 1 &&
 		GD3D11.Setting.FeatureLevel >= D_D3D_FEATURE_LEVEL_10_0 &&
 		GSYS.Screen.UserScreenImage == NULL )
@@ -4929,14 +4929,14 @@ extern	int		Graphics_D3D11_SetupSubBackBuffer( void )
 		hr = D3D11Device_CreateTexture2D( &Texture2DDesc, NULL, &GD3D11.Device.Screen.SubBackBufferMSTexture2D ) ;
 		if( FAILED( hr ) )
 		{
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\xb5\x30\xd6\x30\xd0\x30\xc3\x30\xaf\x30\xd0\x30\xc3\x30\xd5\x30\xa1\x30\xde\x30\xeb\x30\xc1\x30\xb5\x30\xf3\x30\xd7\x30\xea\x30\xf3\x30\xb0\x30\x28\x75\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x20\x00\x20\x00\x46\x00\x6f\x00\x72\x00\x6d\x00\x61\x00\x74\x00\x3a\x00\x25\x00\x64\x00\x20\x00\x20\x00\x53\x00\x69\x00\x7a\x00\x65\x00\x58\x00\x3a\x00\x25\x00\x64\x00\x20\x00\x20\x00\x53\x00\x69\x00\x7a\x00\x65\x00\x59\x00\x3a\x00\x25\x00\x64\x00\x20\x00\x0a\x00\x00"/*@ L"ƒTƒuƒoƒbƒNƒoƒbƒtƒ@ƒ}ƒ‹ƒ`ƒTƒ“ƒvƒŠƒ“ƒO—pƒeƒNƒXƒ`ƒƒ‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½  Format:%d  SizeX:%d  SizeY:%d \n" @*/,
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\xb5\x30\xd6\x30\xd0\x30\xc3\x30\xaf\x30\xd0\x30\xc3\x30\xd5\x30\xa1\x30\xde\x30\xeb\x30\xc1\x30\xb5\x30\xf3\x30\xd7\x30\xea\x30\xf3\x30\xb0\x30\x28\x75\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x20\x00\x20\x00\x46\x00\x6f\x00\x72\x00\x6d\x00\x61\x00\x74\x00\x3a\x00\x25\x00\x64\x00\x20\x00\x20\x00\x53\x00\x69\x00\x7a\x00\x65\x00\x58\x00\x3a\x00\x25\x00\x64\x00\x20\x00\x20\x00\x53\x00\x69\x00\x7a\x00\x65\x00\x59\x00\x3a\x00\x25\x00\x64\x00\x20\x00\x0a\x00\x00"/*@ L"ã‚µãƒ–ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ãƒãƒ«ãƒã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ç”¨ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ  Format:%d  SizeX:%d  SizeY:%d \n" @*/,
 				Texture2DDesc.Format, GD3D11.Device.Screen.SubBackBufferTextureSizeX, GD3D11.Device.Screen.SubBackBufferTextureSizeY )) ;
 			return -1 ;
 		}
 		UseMSAA = TRUE ;
 	}
 
-	// ƒTƒuƒoƒbƒNƒoƒbƒtƒ@—pƒeƒNƒXƒ`ƒƒ‚Ìì¬
+	// ã‚µãƒ–ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ç”¨ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ä½œæˆ
 	_MEMSET( &Texture2DDesc, 0, sizeof( Texture2DDesc ) );
 	Texture2DDesc.Usage              = D_D3D11_USAGE_DEFAULT ;
 	Texture2DDesc.Width              = ( UINT )GD3D11.Device.Screen.SubBackBufferTextureSizeX ;
@@ -5022,7 +5022,7 @@ extern	int		Graphics_D3D11_SetupSubBackBuffer( void )
 			break ;
 		}
 
-		// ì‹Æ—pƒoƒbƒtƒ@‚ğg—p‚·‚éê‡‚Í‚±‚±‚Åƒƒ‚ƒŠ‚ğŠm•Û
+		// ä½œæ¥­ç”¨ãƒãƒƒãƒ•ã‚¡ã‚’ä½¿ç”¨ã™ã‚‹å ´åˆã¯ã“ã“ã§ãƒ¡ãƒ¢ãƒªã‚’ç¢ºä¿
 		if( UseTempBuffer )
 		{
 			COLORDATA *ColorData = Graphics_D3D11_GetD3DFormatColorData( GD3D11.Device.Screen.SubBackBufferFormat ) ;
@@ -5030,7 +5030,7 @@ extern	int		Graphics_D3D11_SetupSubBackBuffer( void )
 			GD3D11.Device.Screen.SubBackBufferTextureTempBuffer = DXCALLOC( GD3D11.Device.Screen.SubBackBufferTextureSizeX * GD3D11.Device.Screen.SubBackBufferTextureSizeY * ColorData->PixelByte ) ;
 			if( GD3D11.Device.Screen.SubBackBufferTextureTempBuffer == NULL )
 			{
-				DXST_LOGFILE_ADDUTF16LE( "\xb5\x30\xd6\x30\xd0\x30\xc3\x30\xaf\x30\xd0\x30\xc3\x30\xd5\x30\xa1\x30\x78\x30\x6e\x30\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\xe2\x8e\x01\x90\x28\x75\x6e\x30\xe1\x30\xe2\x30\xea\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ƒTƒuƒoƒbƒNƒoƒbƒtƒ@‚Ö‚ÌƒeƒNƒXƒ`ƒƒ“]‘——p‚Ìƒƒ‚ƒŠŠm•Û‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+				DXST_LOGFILE_ADDUTF16LE( "\xb5\x30\xd6\x30\xd0\x30\xc3\x30\xaf\x30\xd0\x30\xc3\x30\xd5\x30\xa1\x30\x78\x30\x6e\x30\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\xe2\x8e\x01\x90\x28\x75\x6e\x30\xe1\x30\xe2\x30\xea\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ã‚µãƒ–ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã¸ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£è»¢é€ç”¨ã®ãƒ¡ãƒ¢ãƒªç¢ºä¿ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 				return -1 ;
 			}
 		}
@@ -5046,12 +5046,12 @@ extern	int		Graphics_D3D11_SetupSubBackBuffer( void )
 	hr = D3D11Device_CreateTexture2D( &Texture2DDesc, NULL, &GD3D11.Device.Screen.SubBackBufferTexture2D ) ;
 	if( FAILED( hr ) )
 	{
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\xb5\x30\xd6\x30\xd0\x30\xc3\x30\xaf\x30\xd0\x30\xc3\x30\xd5\x30\xa1\x30\x28\x75\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x20\x00\x20\x00\x46\x00\x6f\x00\x72\x00\x6d\x00\x61\x00\x74\x00\x3a\x00\x25\x00\x64\x00\x20\x00\x20\x00\x53\x00\x69\x00\x7a\x00\x65\x00\x58\x00\x3a\x00\x25\x00\x64\x00\x20\x00\x20\x00\x53\x00\x69\x00\x7a\x00\x65\x00\x59\x00\x3a\x00\x25\x00\x64\x00\x20\x00\x0a\x00\x00"/*@ L"ƒTƒuƒoƒbƒNƒoƒbƒtƒ@—pƒeƒNƒXƒ`ƒƒ‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½  Format:%d  SizeX:%d  SizeY:%d \n" @*/,
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\xb5\x30\xd6\x30\xd0\x30\xc3\x30\xaf\x30\xd0\x30\xc3\x30\xd5\x30\xa1\x30\x28\x75\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x20\x00\x20\x00\x46\x00\x6f\x00\x72\x00\x6d\x00\x61\x00\x74\x00\x3a\x00\x25\x00\x64\x00\x20\x00\x20\x00\x53\x00\x69\x00\x7a\x00\x65\x00\x58\x00\x3a\x00\x25\x00\x64\x00\x20\x00\x20\x00\x53\x00\x69\x00\x7a\x00\x65\x00\x59\x00\x3a\x00\x25\x00\x64\x00\x20\x00\x0a\x00\x00"/*@ L"ã‚µãƒ–ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ç”¨ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ  Format:%d  SizeX:%d  SizeY:%d \n" @*/,
 			Texture2DDesc.Format, GD3D11.Device.Screen.SubBackBufferTextureSizeX, GD3D11.Device.Screen.SubBackBufferTextureSizeY )) ;
 		return -1 ;
 	}
 
-	// ƒTƒuƒoƒbƒNƒoƒbƒtƒ@—pƒŒƒ“ƒ_[ƒ^[ƒQƒbƒgƒrƒ…[‚ğì¬
+	// ã‚µãƒ–ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ç”¨ãƒ¬ãƒ³ãƒ€ãƒ¼ã‚¿ãƒ¼ã‚²ãƒƒãƒˆãƒ“ãƒ¥ãƒ¼ã‚’ä½œæˆ
 	if( GSYS.Screen.UserScreenImage == NULL )
 	{
 		_MEMSET( &RTVDesc, 0, sizeof( RTVDesc ) );
@@ -5067,13 +5067,13 @@ extern	int		Graphics_D3D11_SetupSubBackBuffer( void )
 		hr = D3D11Device_CreateRenderTargetView( GD3D11.Device.Screen.SubBackBufferMSTexture2D != NULL ? GD3D11.Device.Screen.SubBackBufferMSTexture2D : GD3D11.Device.Screen.SubBackBufferTexture2D, &RTVDesc, &GD3D11.Device.Screen.SubBackBufferRTV ) ;
 		if( FAILED( hr ) )
 		{
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\xb5\x30\xd6\x30\xd0\x30\xc3\x30\xaf\x30\xd0\x30\xc3\x30\xd5\x30\xa1\x30\x28\x75\xec\x30\xf3\x30\xc0\x30\xfc\x30\xbf\x30\xfc\x30\xb2\x30\xc3\x30\xc8\x30\xd3\x30\xe5\x30\xfc\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x20\x00\x20\x00\x46\x00\x6f\x00\x72\x00\x6d\x00\x61\x00\x74\x00\x3a\x00\x25\x00\x64\x00\x20\x00\x20\x00\x53\x00\x69\x00\x7a\x00\x65\x00\x58\x00\x3a\x00\x25\x00\x64\x00\x20\x00\x20\x00\x53\x00\x69\x00\x7a\x00\x65\x00\x59\x00\x3a\x00\x25\x00\x64\x00\x20\x00\x0a\x00\x00"/*@ L"ƒTƒuƒoƒbƒNƒoƒbƒtƒ@—pƒŒƒ“ƒ_[ƒ^[ƒQƒbƒgƒrƒ…[‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½  Format:%d  SizeX:%d  SizeY:%d \n" @*/,
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\xb5\x30\xd6\x30\xd0\x30\xc3\x30\xaf\x30\xd0\x30\xc3\x30\xd5\x30\xa1\x30\x28\x75\xec\x30\xf3\x30\xc0\x30\xfc\x30\xbf\x30\xfc\x30\xb2\x30\xc3\x30\xc8\x30\xd3\x30\xe5\x30\xfc\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x20\x00\x20\x00\x46\x00\x6f\x00\x72\x00\x6d\x00\x61\x00\x74\x00\x3a\x00\x25\x00\x64\x00\x20\x00\x20\x00\x53\x00\x69\x00\x7a\x00\x65\x00\x58\x00\x3a\x00\x25\x00\x64\x00\x20\x00\x20\x00\x53\x00\x69\x00\x7a\x00\x65\x00\x59\x00\x3a\x00\x25\x00\x64\x00\x20\x00\x0a\x00\x00"/*@ L"ã‚µãƒ–ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ç”¨ãƒ¬ãƒ³ãƒ€ãƒ¼ã‚¿ãƒ¼ã‚²ãƒƒãƒˆãƒ“ãƒ¥ãƒ¼ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ  Format:%d  SizeX:%d  SizeY:%d \n" @*/,
 				Texture2DDesc.Format, GD3D11.Device.Screen.SubBackBufferTextureSizeX, GD3D11.Device.Screen.SubBackBufferTextureSizeY )) ;
 			return -1 ;
 		}
 	}
 
-	// ƒTƒuƒoƒbƒNƒoƒbƒtƒ@—p‚ÌƒVƒF[ƒ_ƒŠƒ\[ƒXƒrƒ…[‚ğì¬
+	// ã‚µãƒ–ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ç”¨ã®ã‚·ã‚§ãƒ¼ãƒ€ãƒªã‚½ãƒ¼ã‚¹ãƒ“ãƒ¥ãƒ¼ã‚’ä½œæˆ
 	_MEMSET( &SRVDesc, 0, sizeof( SRVDesc ) );
 	SRVDesc.Format = Texture2DDesc.Format ;
 //	if( UseMSAA )
@@ -5088,12 +5088,12 @@ extern	int		Graphics_D3D11_SetupSubBackBuffer( void )
 	hr = D3D11Device_CreateShaderResourceView( /* GD3D11.Device.Screen.SubBackBufferMSTexture2D != NULL ? GD3D11.Device.Screen.SubBackBufferMSTexture2D : */ GD3D11.Device.Screen.SubBackBufferTexture2D, &SRVDesc, &GD3D11.Device.Screen.SubBackBufferSRV ) ;
 	if( FAILED( hr ) )
 	{
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\xb5\x30\xd6\x30\xd0\x30\xc3\x30\xaf\x30\xd0\x30\xc3\x30\xd5\x30\xa1\x30\x28\x75\xb7\x30\xa7\x30\xfc\x30\xc0\x30\xfc\x30\xea\x30\xbd\x30\xfc\x30\xb9\x30\xd3\x30\xe5\x30\xfc\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x20\x00\x20\x00\x46\x00\x6f\x00\x72\x00\x6d\x00\x61\x00\x74\x00\x3a\x00\x25\x00\x64\x00\x20\x00\x20\x00\x53\x00\x69\x00\x7a\x00\x65\x00\x58\x00\x3a\x00\x25\x00\x64\x00\x20\x00\x20\x00\x53\x00\x69\x00\x7a\x00\x65\x00\x59\x00\x3a\x00\x25\x00\x64\x00\x20\x00\x0a\x00\x00"/*@ L"ƒTƒuƒoƒbƒNƒoƒbƒtƒ@—pƒVƒF[ƒ_[ƒŠƒ\[ƒXƒrƒ…[‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½  Format:%d  SizeX:%d  SizeY:%d \n" @*/,
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\xb5\x30\xd6\x30\xd0\x30\xc3\x30\xaf\x30\xd0\x30\xc3\x30\xd5\x30\xa1\x30\x28\x75\xb7\x30\xa7\x30\xfc\x30\xc0\x30\xfc\x30\xea\x30\xbd\x30\xfc\x30\xb9\x30\xd3\x30\xe5\x30\xfc\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x20\x00\x20\x00\x46\x00\x6f\x00\x72\x00\x6d\x00\x61\x00\x74\x00\x3a\x00\x25\x00\x64\x00\x20\x00\x20\x00\x53\x00\x69\x00\x7a\x00\x65\x00\x58\x00\x3a\x00\x25\x00\x64\x00\x20\x00\x20\x00\x53\x00\x69\x00\x7a\x00\x65\x00\x59\x00\x3a\x00\x25\x00\x64\x00\x20\x00\x0a\x00\x00"/*@ L"ã‚µãƒ–ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ç”¨ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒªã‚½ãƒ¼ã‚¹ãƒ“ãƒ¥ãƒ¼ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ  Format:%d  SizeX:%d  SizeY:%d \n" @*/,
 			Texture2DDesc.Format, GD3D11.Device.Screen.SubBackBufferTextureSizeX, GD3D11.Device.Screen.SubBackBufferTextureSizeY )) ;
 		return -1 ;
 	}
 
-	// –{ƒoƒbƒNƒoƒbƒtƒ@‚Ì“à—e‚ğ“]‘—
+	// æœ¬ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã®å†…å®¹ã‚’è»¢é€
 	if( GSYS.Screen.UserScreenImage == NULL )
 	{
 		BltRect.left   = 0 ;
@@ -5118,14 +5118,14 @@ extern	int		Graphics_D3D11_SetupSubBackBuffer( void )
 		) ;
 	}
 
-	// –{ƒoƒbƒNƒoƒbƒtƒ@‚Ì“à—e‚ğ‰Šú‰»
+	// æœ¬ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã®å†…å®¹ã‚’åˆæœŸåŒ–
 	ColorRGBA[ 0 ] = 0.0f ;
 	ColorRGBA[ 1 ] = 0.0f ;
 	ColorRGBA[ 2 ] = 0.0f ;
 	ColorRGBA[ 3 ] = 0.0f ;
 	D3D11DeviceContext_ClearRenderTargetView( GD3D11.Device.Screen.OutputWindowInfo[ 0 ].BufferRTV, ColorRGBA ) ;
 
-	// ƒŒƒ“ƒ_ƒŠƒ“ƒOƒ^[ƒQƒbƒg‚Ì•ÏX
+	// ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã®å¤‰æ›´
 	if( GSYS.Screen.UserScreenImage == NULL )
 	{
 		GD3D11.Device.DrawSetting.CancelSettingEqualCheck = TRUE ;
@@ -5133,11 +5133,11 @@ extern	int		Graphics_D3D11_SetupSubBackBuffer( void )
 		GD3D11.Device.DrawSetting.CancelSettingEqualCheck = FALSE ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒTƒuƒoƒbƒNƒoƒbƒtƒ@‚ÌŒãn––‚ğ‚·‚é
+// ã‚µãƒ–ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã®å¾Œå§‹æœ«ã‚’ã™ã‚‹
 extern	int		Graphics_D3D11_TerminateSubBackBuffer( void )
 {
 	if( GD3D11.Device.Screen.SubBackBufferSRV )
@@ -5169,7 +5169,7 @@ extern	int		Graphics_D3D11_TerminateSubBackBuffer( void )
 	return 0 ;
 }
 
-// ƒXƒƒbƒvƒ`ƒFƒCƒ“‚ğì¬‚·‚é
+// ã‚¹ãƒ¯ãƒƒãƒ—ãƒã‚§ã‚¤ãƒ³ã‚’ä½œæˆã™ã‚‹
 static	int		Graphics_D3D11_OutputWindow_CreateSwapChain( int Index )
 {
 	HRESULT Result ;
@@ -5182,7 +5182,7 @@ static	int		Graphics_D3D11_OutputWindow_CreateSwapChain( int Index )
 		D_DXGI_SWAP_CHAIN_DESC1 SwapChainDesc1 ;
 		D_DXGI_SWAP_CHAIN_FULLSCREEN_DESC FullScreenDesc ;
 
-		// ƒXƒƒbƒvƒ`ƒFƒCƒ“‚Ìì¬
+		// ã‚¹ãƒ¯ãƒƒãƒ—ãƒã‚§ã‚¤ãƒ³ã®ä½œæˆ
 		{
 			_MEMSET( &SwapChainDesc1, 0, sizeof( SwapChainDesc1 ) ) ;
 			FullScreenDesc.RefreshRate.Numerator	=( UINT )( GSYS.Screen.MainScreenRefreshRate == 0 ? 60 : GSYS.Screen.MainScreenRefreshRate ) ;
@@ -5204,24 +5204,24 @@ static	int		Graphics_D3D11_OutputWindow_CreateSwapChain( int Index )
 					SwapChainDesc1.Height			= ( UINT )GSYS.Screen.MainScreenSizeY ;
 					FullScreenDesc.Windowed			= TRUE ;
 
-					// ƒtƒ‹ƒXƒNƒŠ[ƒ“ƒ‚[ƒhƒtƒ‰ƒO‚ğ“|‚·
+					// ãƒ•ãƒ«ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ¢ãƒ¼ãƒ‰ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 					GD3D11.Device.Screen.FullscreenSatte = FALSE ;
 
-					DXST_LOGFILEFMT_ADDUTF16LE(( "\x5b\x00\xa6\x30\xa4\x30\xf3\x30\xc9\x30\xa6\x30\xe2\x30\xfc\x30\xc9\x30\x20\x00\x25\x00\x64\x00\x78\x00\x25\x00\x64\x00\x20\x00\x28\x00\x20\x00\x25\x00\x64\x00\x2c\x00\x20\x00\x25\x00\x64\x00\x20\x00\x29\x00\x2d\x00\x28\x00\x20\x00\x25\x00\x64\x00\x2c\x00\x20\x00\x25\x00\x64\x00\x20\x00\x29\x00\x5d\x00\x00"/*@ L"[ƒEƒCƒ“ƒhƒEƒ‚[ƒh %dx%d ( %d, %d )-( %d, %d )]" @*/, SwapChainDesc1.Width, SwapChainDesc1.Height, WinData.WindowRect.left, WinData.WindowRect.top, WinData.WindowRect.right, WinData.WindowRect.bottom )) ;
+					DXST_LOGFILEFMT_ADDUTF16LE(( "\x5b\x00\xa6\x30\xa4\x30\xf3\x30\xc9\x30\xa6\x30\xe2\x30\xfc\x30\xc9\x30\x20\x00\x25\x00\x64\x00\x78\x00\x25\x00\x64\x00\x20\x00\x28\x00\x20\x00\x25\x00\x64\x00\x2c\x00\x20\x00\x25\x00\x64\x00\x20\x00\x29\x00\x2d\x00\x28\x00\x20\x00\x25\x00\x64\x00\x2c\x00\x20\x00\x25\x00\x64\x00\x20\x00\x29\x00\x5d\x00\x00"/*@ L"[ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ¢ãƒ¼ãƒ‰ %dx%d ( %d, %d )-( %d, %d )]" @*/, SwapChainDesc1.Width, SwapChainDesc1.Height, WinData.WindowRect.left, WinData.WindowRect.top, WinData.WindowRect.right, WinData.WindowRect.bottom )) ;
 				}
 				else
 				{
-					// ƒtƒ‹ƒXƒNƒŠ[ƒ“ƒ‚[ƒh‚Ìî•ñ‚ğƒZƒbƒgƒAƒbƒv
+					// ãƒ•ãƒ«ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ¢ãƒ¼ãƒ‰ã®æƒ…å ±ã‚’ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 					Graphics_Screen_SetupFullScreenModeInfo() ;
 
 					SwapChainDesc1.Width			= ( UINT )GSYS.Screen.FullScreenUseDispModeData.Width ;
 					SwapChainDesc1.Height			= ( UINT )GSYS.Screen.FullScreenUseDispModeData.Height ;
 					FullScreenDesc.Windowed			= FALSE ;
 
-					// ƒtƒ‹ƒXƒNƒŠ[ƒ“ƒ‚[ƒhƒtƒ‰ƒO‚ğ—§‚Ä‚é
+					// ãƒ•ãƒ«ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ¢ãƒ¼ãƒ‰ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 					GD3D11.Device.Screen.FullscreenSatte = TRUE ;
 
-					DXST_LOGFILEFMT_ADDUTF16LE(( "\x5b\x00\xd5\x30\xeb\x30\xb9\x30\xaf\x30\xea\x30\xfc\x30\xf3\x30\xe2\x30\xfc\x30\xc9\x30\x20\x00\x25\x00\x64\x00\x78\x00\x25\x00\x64\x00\x5d\x00\x00"/*@ L"[ƒtƒ‹ƒXƒNƒŠ[ƒ“ƒ‚[ƒh %dx%d]" @*/, SwapChainDesc1.Width, SwapChainDesc1.Height )) ;
+					DXST_LOGFILEFMT_ADDUTF16LE(( "\x5b\x00\xd5\x30\xeb\x30\xb9\x30\xaf\x30\xea\x30\xfc\x30\xf3\x30\xe2\x30\xfc\x30\xc9\x30\x20\x00\x25\x00\x64\x00\x78\x00\x25\x00\x64\x00\x5d\x00\x00"/*@ L"[ãƒ•ãƒ«ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ¢ãƒ¼ãƒ‰ %dx%d]" @*/, SwapChainDesc1.Width, SwapChainDesc1.Height )) ;
 				}
 			}
 			else
@@ -5238,16 +5238,16 @@ static	int		Graphics_D3D11_OutputWindow_CreateSwapChain( int Index )
 				SwapChainDesc1.Height				= ( UINT )( ClientRect.bottom - ClientRect.top  ) ;
 				FullScreenDesc.Windowed				= TRUE ;
 
-				// ƒtƒ‹ƒXƒNƒŠ[ƒ“ƒ‚[ƒhƒtƒ‰ƒO‚ğ“|‚·
+				// ãƒ•ãƒ«ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ¢ãƒ¼ãƒ‰ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 				GD3D11.Device.Screen.FullscreenSatte = FALSE ;
 
-				DXST_LOGFILEFMT_ADDUTF16LE(( "\x5b\x00\xa6\x30\xa4\x30\xf3\x30\xc9\x30\xa6\x30\xe2\x30\xfc\x30\xc9\x30\x20\x00\x25\x00\x64\x00\x78\x00\x25\x00\x64\x00\x20\x00\x28\x00\x20\x00\x25\x00\x64\x00\x2c\x00\x20\x00\x25\x00\x64\x00\x20\x00\x29\x00\x2d\x00\x28\x00\x20\x00\x25\x00\x64\x00\x2c\x00\x20\x00\x25\x00\x64\x00\x20\x00\x29\x00\x20\x00\x4e\x00\x6f\x00\x74\x00\x20\x00\x4d\x00\x61\x00\x69\x00\x6e\x00\x20\x00\x54\x00\x61\x00\x72\x00\x67\x00\x65\x00\x74\x00\x5d\x00\x00"/*@ L"[ƒEƒCƒ“ƒhƒEƒ‚[ƒh %dx%d ( %d, %d )-( %d, %d ) Not Main Target]" @*/, SwapChainDesc1.Width, SwapChainDesc1.Height, WindowRect.left, WindowRect.top, WindowRect.right, WindowRect.bottom )) ;
+				DXST_LOGFILEFMT_ADDUTF16LE(( "\x5b\x00\xa6\x30\xa4\x30\xf3\x30\xc9\x30\xa6\x30\xe2\x30\xfc\x30\xc9\x30\x20\x00\x25\x00\x64\x00\x78\x00\x25\x00\x64\x00\x20\x00\x28\x00\x20\x00\x25\x00\x64\x00\x2c\x00\x20\x00\x25\x00\x64\x00\x20\x00\x29\x00\x2d\x00\x28\x00\x20\x00\x25\x00\x64\x00\x2c\x00\x20\x00\x25\x00\x64\x00\x20\x00\x29\x00\x20\x00\x4e\x00\x6f\x00\x74\x00\x20\x00\x4d\x00\x61\x00\x69\x00\x6e\x00\x20\x00\x54\x00\x61\x00\x72\x00\x67\x00\x65\x00\x74\x00\x5d\x00\x00"/*@ L"[ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ¢ãƒ¼ãƒ‰ %dx%d ( %d, %d )-( %d, %d ) Not Main Target]" @*/, SwapChainDesc1.Width, SwapChainDesc1.Height, WindowRect.left, WindowRect.top, WindowRect.right, WindowRect.bottom )) ;
 			}
 
-			// FSAA‚Ìİ’è’l‚ğ’²‚×‚é
+			// FSAAã®è¨­å®šå€¤ã‚’èª¿ã¹ã‚‹
 			if( GSYS.Setting.FSAAMultiSampleCount > 1 )
 			{
-				// D_D3D_FEATURE_LEVEL_10_0 –¢–‚Ìê‡‚Íƒ}ƒ‹ƒ`ƒTƒ“ƒvƒ‹‚Íg—p‚Å‚«‚È‚¢
+				// D_D3D_FEATURE_LEVEL_10_0 æœªæº€ã®å ´åˆã¯ãƒãƒ«ãƒã‚µãƒ³ãƒ—ãƒ«ã¯ä½¿ç”¨ã§ããªã„
 				if( GD3D11.Setting.FeatureLevel < D_D3D_FEATURE_LEVEL_10_0 )
 				{
 					SwapChainDesc1.SampleDesc.Count		= 1 ;
@@ -5268,9 +5268,9 @@ static	int		Graphics_D3D11_OutputWindow_CreateSwapChain( int Index )
 			GSYS.Setting.FSAAMultiSampleCount   = ( int )SwapChainDesc1.SampleDesc.Count ;
 			GSYS.Setting.FSAAMultiSampleQuality = ( int )SwapChainDesc1.SampleDesc.Quality ;
 
-			DXST_LOGFILE_ADDUTF16LE( "\x49\x00\x44\x00\x58\x00\x47\x00\x49\x00\x53\x00\x77\x00\x61\x00\x70\x00\x43\x00\x68\x00\x61\x00\x69\x00\x6e\x00\x32\x00\x20\x00\x92\x30\x5c\x4f\x10\x62\x57\x30\x7e\x30\x59\x30\x2e\x00\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"IDXGISwapChain2 ‚ğì¬‚µ‚Ü‚·.... " @*/ ) ;
+			DXST_LOGFILE_ADDUTF16LE( "\x49\x00\x44\x00\x58\x00\x47\x00\x49\x00\x53\x00\x77\x00\x61\x00\x70\x00\x43\x00\x68\x00\x61\x00\x69\x00\x6e\x00\x32\x00\x20\x00\x92\x30\x5c\x4f\x10\x62\x57\x30\x7e\x30\x59\x30\x2e\x00\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"IDXGISwapChain2 ã‚’ä½œæˆã—ã¾ã™.... " @*/ ) ;
 
-			// ƒXƒƒbƒvƒ`ƒFƒCƒ“‚Ìì¬
+			// ã‚¹ãƒ¯ãƒƒãƒ—ãƒã‚§ã‚¤ãƒ³ã®ä½œæˆ
 			Result = DXGIFactory2_CreateSwapChainForHwnd(
 				GAPIWin.D3D11DeviceObject,
 				OWI->TargetWindow,
@@ -5281,18 +5281,18 @@ static	int		Graphics_D3D11_OutputWindow_CreateSwapChain( int Index )
 			) ;
 			if( OWI->DXGISwapChain == NULL )
 			{
-				DXST_LOGFILEFMT_ADDUTF16LE(( "\x31\x59\x57\x65\x20\x00\xa8\x30\xe9\x30\xfc\x30\xb3\x30\xfc\x30\xc9\x30\x1a\xff\x30\x00\x78\x00\x25\x00\x30\x00\x38\x00\x78\x00\x00"/*@ L"¸”s ƒGƒ‰[ƒR[ƒhF0x%08x" @*/, Result )) ;
+				DXST_LOGFILEFMT_ADDUTF16LE(( "\x31\x59\x57\x65\x20\x00\xa8\x30\xe9\x30\xfc\x30\xb3\x30\xfc\x30\xc9\x30\x1a\xff\x30\x00\x78\x00\x25\x00\x30\x00\x38\x00\x78\x00\x00"/*@ L"å¤±æ•— ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰ï¼š0x%08x" @*/, Result )) ;
 				goto ERR ;
 			}
 
-			// ALT+Enter‚ğ–³Œø‰»‚·‚é
+			// ALT+Enterã‚’ç„¡åŠ¹åŒ–ã™ã‚‹
 			DXGIFactory_MakeWindowAssociation( OWI->TargetWindow, D_DXGI_MWA_NO_WINDOW_CHANGES | D_DXGI_MWA_NO_ALT_ENTER ) ;
 
-			DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"¬Œ÷\n" @*/ ) ;
+			DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"æˆåŠŸ\n" @*/ ) ;
 
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\x49\x00\x44\x00\x58\x00\x47\x00\x49\x00\x46\x00\x61\x00\x63\x00\x74\x00\x6f\x00\x72\x00\x79\x00\x32\x00\x2d\x00\x3e\x00\x43\x00\x72\x00\x65\x00\x61\x00\x74\x00\x65\x00\x53\x00\x77\x00\x61\x00\x70\x00\x43\x00\x68\x00\x61\x00\x69\x00\x6e\x00\x46\x00\x6f\x00\x72\x00\x48\x00\x77\x00\x6e\x00\x64\x00\x20\x00\x6e\x30\x3b\x62\x8a\x30\x24\x50\x1a\xff\x30\x00\x78\x00\x25\x00\x30\x00\x38\x00\x78\x00\x00"/*@ L"IDXGIFactory2->CreateSwapChainForHwnd ‚Ì–ß‚è’lF0x%08x" @*/, Result )) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\x49\x00\x44\x00\x58\x00\x47\x00\x49\x00\x46\x00\x61\x00\x63\x00\x74\x00\x6f\x00\x72\x00\x79\x00\x32\x00\x2d\x00\x3e\x00\x43\x00\x72\x00\x65\x00\x61\x00\x74\x00\x65\x00\x53\x00\x77\x00\x61\x00\x70\x00\x43\x00\x68\x00\x61\x00\x69\x00\x6e\x00\x46\x00\x6f\x00\x72\x00\x48\x00\x77\x00\x6e\x00\x64\x00\x20\x00\x6e\x30\x3b\x62\x8a\x30\x24\x50\x1a\xff\x30\x00\x78\x00\x25\x00\x30\x00\x38\x00\x78\x00\x00"/*@ L"IDXGIFactory2->CreateSwapChainForHwnd ã®æˆ»ã‚Šå€¤ï¼š0x%08x" @*/, Result )) ;
 
-			// ƒXƒƒbƒvƒ`ƒFƒCƒ“‚Ìî•ñ‚ğæ“¾‚·‚é
+			// ã‚¹ãƒ¯ãƒƒãƒ—ãƒã‚§ã‚¤ãƒ³ã®æƒ…å ±ã‚’å–å¾—ã™ã‚‹
 			DXGISwapChain_GetDesc( OWI->DXGISwapChain, &OWI->DXGISwapChainDesc ) ;
 		}
 	}
@@ -5300,7 +5300,7 @@ static	int		Graphics_D3D11_OutputWindow_CreateSwapChain( int Index )
 	{
 		D_DXGI_SWAP_CHAIN_DESC SwapChainDesc ;
 
-		// ƒXƒƒbƒvƒ`ƒFƒCƒ“‚Ìì¬
+		// ã‚¹ãƒ¯ãƒƒãƒ—ãƒã‚§ã‚¤ãƒ³ã®ä½œæˆ
 		{
 			_MEMSET( &SwapChainDesc, 0, sizeof( SwapChainDesc ) ) ;
 			SwapChainDesc.BufferDesc.RefreshRate.Numerator		= ( UINT )( GSYS.Screen.MainScreenRefreshRate == 0 ? 60 : GSYS.Screen.MainScreenRefreshRate ) ;
@@ -5322,24 +5322,24 @@ static	int		Graphics_D3D11_OutputWindow_CreateSwapChain( int Index )
 					SwapChainDesc.BufferDesc.Height				= ( UINT )GSYS.Screen.MainScreenSizeY ;
 					SwapChainDesc.Windowed						= TRUE ;
 
-					// ƒtƒ‹ƒXƒNƒŠ[ƒ“ƒ‚[ƒhƒtƒ‰ƒO‚ğ“|‚·
+					// ãƒ•ãƒ«ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ¢ãƒ¼ãƒ‰ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 					GD3D11.Device.Screen.FullscreenSatte = FALSE ;
 
-					DXST_LOGFILEFMT_ADDUTF16LE(( "\x5b\x00\xa6\x30\xa4\x30\xf3\x30\xc9\x30\xa6\x30\xe2\x30\xfc\x30\xc9\x30\x20\x00\x25\x00\x64\x00\x78\x00\x25\x00\x64\x00\x20\x00\x28\x00\x20\x00\x25\x00\x64\x00\x2c\x00\x20\x00\x25\x00\x64\x00\x20\x00\x29\x00\x2d\x00\x28\x00\x20\x00\x25\x00\x64\x00\x2c\x00\x20\x00\x25\x00\x64\x00\x20\x00\x29\x00\x5d\x00\x00"/*@ L"[ƒEƒCƒ“ƒhƒEƒ‚[ƒh %dx%d ( %d, %d )-( %d, %d )]" @*/, SwapChainDesc.BufferDesc.Width, SwapChainDesc.BufferDesc.Height, WinData.WindowRect.left, WinData.WindowRect.top, WinData.WindowRect.right, WinData.WindowRect.bottom )) ;
+					DXST_LOGFILEFMT_ADDUTF16LE(( "\x5b\x00\xa6\x30\xa4\x30\xf3\x30\xc9\x30\xa6\x30\xe2\x30\xfc\x30\xc9\x30\x20\x00\x25\x00\x64\x00\x78\x00\x25\x00\x64\x00\x20\x00\x28\x00\x20\x00\x25\x00\x64\x00\x2c\x00\x20\x00\x25\x00\x64\x00\x20\x00\x29\x00\x2d\x00\x28\x00\x20\x00\x25\x00\x64\x00\x2c\x00\x20\x00\x25\x00\x64\x00\x20\x00\x29\x00\x5d\x00\x00"/*@ L"[ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ¢ãƒ¼ãƒ‰ %dx%d ( %d, %d )-( %d, %d )]" @*/, SwapChainDesc.BufferDesc.Width, SwapChainDesc.BufferDesc.Height, WinData.WindowRect.left, WinData.WindowRect.top, WinData.WindowRect.right, WinData.WindowRect.bottom )) ;
 				}
 				else
 				{
-					// ƒtƒ‹ƒXƒNƒŠ[ƒ“ƒ‚[ƒh‚Ìî•ñ‚ğƒZƒbƒgƒAƒbƒv
+					// ãƒ•ãƒ«ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ¢ãƒ¼ãƒ‰ã®æƒ…å ±ã‚’ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 					Graphics_Screen_SetupFullScreenModeInfo() ;
 
 					SwapChainDesc.BufferDesc.Width				= ( UINT )GSYS.Screen.FullScreenUseDispModeData.Width ;
 					SwapChainDesc.BufferDesc.Height				= ( UINT )GSYS.Screen.FullScreenUseDispModeData.Height ;
 					SwapChainDesc.Windowed						= FALSE ;
 
-					// ƒtƒ‹ƒXƒNƒŠ[ƒ“ƒ‚[ƒhƒtƒ‰ƒO‚ğ—§‚Ä‚é
+					// ãƒ•ãƒ«ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ¢ãƒ¼ãƒ‰ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 					GD3D11.Device.Screen.FullscreenSatte        = TRUE ;
 
-					DXST_LOGFILEFMT_ADDUTF16LE(( "\x5b\x00\xd5\x30\xeb\x30\xb9\x30\xaf\x30\xea\x30\xfc\x30\xf3\x30\xe2\x30\xfc\x30\xc9\x30\x20\x00\x25\x00\x64\x00\x78\x00\x25\x00\x64\x00\x5d\x00\x00"/*@ L"[ƒtƒ‹ƒXƒNƒŠ[ƒ“ƒ‚[ƒh %dx%d]" @*/, SwapChainDesc.BufferDesc.Width, SwapChainDesc.BufferDesc.Height )) ;
+					DXST_LOGFILEFMT_ADDUTF16LE(( "\x5b\x00\xd5\x30\xeb\x30\xb9\x30\xaf\x30\xea\x30\xfc\x30\xf3\x30\xe2\x30\xfc\x30\xc9\x30\x20\x00\x25\x00\x64\x00\x78\x00\x25\x00\x64\x00\x5d\x00\x00"/*@ L"[ãƒ•ãƒ«ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ¢ãƒ¼ãƒ‰ %dx%d]" @*/, SwapChainDesc.BufferDesc.Width, SwapChainDesc.BufferDesc.Height )) ;
 				}
 			}
 			else
@@ -5356,16 +5356,16 @@ static	int		Graphics_D3D11_OutputWindow_CreateSwapChain( int Index )
 				SwapChainDesc.BufferDesc.Height					= ( UINT )( ClientRect.bottom - ClientRect.top  ) ;
 				SwapChainDesc.Windowed							= TRUE ;
 
-				// ƒtƒ‹ƒXƒNƒŠ[ƒ“ƒ‚[ƒhƒtƒ‰ƒO‚ğ“|‚·
+				// ãƒ•ãƒ«ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ¢ãƒ¼ãƒ‰ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 				GD3D11.Device.Screen.FullscreenSatte = FALSE ;
 
-				DXST_LOGFILEFMT_ADDUTF16LE(( "\x5b\x00\xa6\x30\xa4\x30\xf3\x30\xc9\x30\xa6\x30\xe2\x30\xfc\x30\xc9\x30\x20\x00\x25\x00\x64\x00\x78\x00\x25\x00\x64\x00\x20\x00\x28\x00\x20\x00\x25\x00\x64\x00\x2c\x00\x20\x00\x25\x00\x64\x00\x20\x00\x29\x00\x2d\x00\x28\x00\x20\x00\x25\x00\x64\x00\x2c\x00\x20\x00\x25\x00\x64\x00\x20\x00\x29\x00\x20\x00\x4e\x00\x6f\x00\x74\x00\x20\x00\x4d\x00\x61\x00\x69\x00\x6e\x00\x20\x00\x54\x00\x61\x00\x72\x00\x67\x00\x65\x00\x74\x00\x5d\x00\x00"/*@ L"[ƒEƒCƒ“ƒhƒEƒ‚[ƒh %dx%d ( %d, %d )-( %d, %d ) Not Main Target]" @*/, SwapChainDesc.BufferDesc.Width, SwapChainDesc.BufferDesc.Height, WindowRect.left, WindowRect.top, WindowRect.right, WindowRect.bottom )) ;
+				DXST_LOGFILEFMT_ADDUTF16LE(( "\x5b\x00\xa6\x30\xa4\x30\xf3\x30\xc9\x30\xa6\x30\xe2\x30\xfc\x30\xc9\x30\x20\x00\x25\x00\x64\x00\x78\x00\x25\x00\x64\x00\x20\x00\x28\x00\x20\x00\x25\x00\x64\x00\x2c\x00\x20\x00\x25\x00\x64\x00\x20\x00\x29\x00\x2d\x00\x28\x00\x20\x00\x25\x00\x64\x00\x2c\x00\x20\x00\x25\x00\x64\x00\x20\x00\x29\x00\x20\x00\x4e\x00\x6f\x00\x74\x00\x20\x00\x4d\x00\x61\x00\x69\x00\x6e\x00\x20\x00\x54\x00\x61\x00\x72\x00\x67\x00\x65\x00\x74\x00\x5d\x00\x00"/*@ L"[ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ¢ãƒ¼ãƒ‰ %dx%d ( %d, %d )-( %d, %d ) Not Main Target]" @*/, SwapChainDesc.BufferDesc.Width, SwapChainDesc.BufferDesc.Height, WindowRect.left, WindowRect.top, WindowRect.right, WindowRect.bottom )) ;
 			}
 
-			// FSAA‚Ìİ’è’l‚ğ’²‚×‚é
+			// FSAAã®è¨­å®šå€¤ã‚’èª¿ã¹ã‚‹
 			if( GSYS.Setting.FSAAMultiSampleCount > 1 )
 			{
-				// D_D3D_FEATURE_LEVEL_10_0 –¢–‚Ìê‡‚Íƒ}ƒ‹ƒ`ƒTƒ“ƒvƒ‹‚Íg—p‚Å‚«‚È‚¢
+				// D_D3D_FEATURE_LEVEL_10_0 æœªæº€ã®å ´åˆã¯ãƒãƒ«ãƒã‚µãƒ³ãƒ—ãƒ«ã¯ä½¿ç”¨ã§ããªã„
 				if( GD3D11.Setting.FeatureLevel < D_D3D_FEATURE_LEVEL_10_0 )
 				{
 					SwapChainDesc.SampleDesc.Count		= 1 ;
@@ -5386,46 +5386,46 @@ static	int		Graphics_D3D11_OutputWindow_CreateSwapChain( int Index )
 			GSYS.Setting.FSAAMultiSampleCount   = ( int )SwapChainDesc.SampleDesc.Count ;
 			GSYS.Setting.FSAAMultiSampleQuality = ( int )SwapChainDesc.SampleDesc.Quality ;
 
-			DXST_LOGFILE_ADDUTF16LE( "\x49\x00\x44\x00\x58\x00\x47\x00\x49\x00\x53\x00\x77\x00\x61\x00\x70\x00\x43\x00\x68\x00\x61\x00\x69\x00\x6e\x00\x20\x00\x92\x30\x5c\x4f\x10\x62\x57\x30\x7e\x30\x59\x30\x2e\x00\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"IDXGISwapChain ‚ğì¬‚µ‚Ü‚·.... " @*/ ) ;
+			DXST_LOGFILE_ADDUTF16LE( "\x49\x00\x44\x00\x58\x00\x47\x00\x49\x00\x53\x00\x77\x00\x61\x00\x70\x00\x43\x00\x68\x00\x61\x00\x69\x00\x6e\x00\x20\x00\x92\x30\x5c\x4f\x10\x62\x57\x30\x7e\x30\x59\x30\x2e\x00\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"IDXGISwapChain ã‚’ä½œæˆã—ã¾ã™.... " @*/ ) ;
 
-			// ƒXƒƒbƒvƒ`ƒFƒCƒ“‚Ìì¬
+			// ã‚¹ãƒ¯ãƒƒãƒ—ãƒã‚§ã‚¤ãƒ³ã®ä½œæˆ
 			Result = DXGIFactory_CreateSwapChain( &SwapChainDesc, &OWI->DXGISwapChain ) ;
 			if( OWI->DXGISwapChain == NULL )
 			{
-				DXST_LOGFILEFMT_ADDUTF16LE(( "\x31\x59\x57\x65\x20\x00\xa8\x30\xe9\x30\xfc\x30\xb3\x30\xfc\x30\xc9\x30\x1a\xff\x30\x00\x78\x00\x25\x00\x30\x00\x38\x00\x78\x00\x00"/*@ L"¸”s ƒGƒ‰[ƒR[ƒhF0x%08x" @*/, Result )) ;
+				DXST_LOGFILEFMT_ADDUTF16LE(( "\x31\x59\x57\x65\x20\x00\xa8\x30\xe9\x30\xfc\x30\xb3\x30\xfc\x30\xc9\x30\x1a\xff\x30\x00\x78\x00\x25\x00\x30\x00\x38\x00\x78\x00\x00"/*@ L"å¤±æ•— ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰ï¼š0x%08x" @*/, Result )) ;
 				goto ERR ;
 			}
 
-			// ALT+Enter‚ğ–³Œø‰»‚·‚é
+			// ALT+Enterã‚’ç„¡åŠ¹åŒ–ã™ã‚‹
 			DXGIFactory_MakeWindowAssociation( OWI->TargetWindow, D_DXGI_MWA_NO_WINDOW_CHANGES | D_DXGI_MWA_NO_ALT_ENTER ) ;
 
-			DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"¬Œ÷\n" @*/ ) ;
+			DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"æˆåŠŸ\n" @*/ ) ;
 
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\x49\x00\x44\x00\x58\x00\x47\x00\x49\x00\x46\x00\x61\x00\x63\x00\x74\x00\x6f\x00\x72\x00\x79\x00\x2d\x00\x3e\x00\x43\x00\x72\x00\x65\x00\x61\x00\x74\x00\x65\x00\x53\x00\x77\x00\x61\x00\x70\x00\x43\x00\x68\x00\x61\x00\x69\x00\x6e\x00\x20\x00\x6e\x30\x3b\x62\x8a\x30\x24\x50\x1a\xff\x30\x00\x78\x00\x25\x00\x30\x00\x38\x00\x78\x00\x00"/*@ L"IDXGIFactory->CreateSwapChain ‚Ì–ß‚è’lF0x%08x" @*/, Result )) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\x49\x00\x44\x00\x58\x00\x47\x00\x49\x00\x46\x00\x61\x00\x63\x00\x74\x00\x6f\x00\x72\x00\x79\x00\x2d\x00\x3e\x00\x43\x00\x72\x00\x65\x00\x61\x00\x74\x00\x65\x00\x53\x00\x77\x00\x61\x00\x70\x00\x43\x00\x68\x00\x61\x00\x69\x00\x6e\x00\x20\x00\x6e\x30\x3b\x62\x8a\x30\x24\x50\x1a\xff\x30\x00\x78\x00\x25\x00\x30\x00\x38\x00\x78\x00\x00"/*@ L"IDXGIFactory->CreateSwapChain ã®æˆ»ã‚Šå€¤ï¼š0x%08x" @*/, Result )) ;
 
-			// ƒXƒƒbƒvƒ`ƒFƒCƒ“‚Ìî•ñ‚ğæ“¾‚·‚é
+			// ã‚¹ãƒ¯ãƒƒãƒ—ãƒã‚§ã‚¤ãƒ³ã®æƒ…å ±ã‚’å–å¾—ã™ã‚‹
 			DXGISwapChain_GetDesc( OWI->DXGISwapChain, &OWI->DXGISwapChainDesc ) ;
 		}
 	}
 
-	DXST_LOGFILE_ADDUTF16LE( "\x49\x00\x44\x00\x58\x00\x47\x00\x49\x00\x4f\x00\x75\x00\x74\x00\x70\x00\x75\x00\x74\x00\x20\x00\x92\x30\xd6\x53\x97\x5f\x57\x30\x7e\x30\x59\x30\x2e\x00\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"IDXGIOutput ‚ğæ“¾‚µ‚Ü‚·.... " @*/ ) ;
+	DXST_LOGFILE_ADDUTF16LE( "\x49\x00\x44\x00\x58\x00\x47\x00\x49\x00\x4f\x00\x75\x00\x74\x00\x70\x00\x75\x00\x74\x00\x20\x00\x92\x30\xd6\x53\x97\x5f\x57\x30\x7e\x30\x59\x30\x2e\x00\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"IDXGIOutput ã‚’å–å¾—ã—ã¾ã™.... " @*/ ) ;
 
-	// IDXGIOutput ‚Ìæ“¾
+	// IDXGIOutput ã®å–å¾—
 	Result = DXGISwapChain_GetContainingOutput( OWI->DXGISwapChain, &OWI->DXGIOutput ) ;
 	if( Result != S_OK )
 	{
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\x31\x59\x57\x65\x20\x00\xa8\x30\xe9\x30\xfc\x30\xb3\x30\xfc\x30\xc9\x30\x1a\xff\x30\x00\x78\x00\x25\x00\x30\x00\x38\x00\x78\x00\x00"/*@ L"¸”s ƒGƒ‰[ƒR[ƒhF0x%08x" @*/, Result )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\x31\x59\x57\x65\x20\x00\xa8\x30\xe9\x30\xfc\x30\xb3\x30\xfc\x30\xc9\x30\x1a\xff\x30\x00\x78\x00\x25\x00\x30\x00\x38\x00\x78\x00\x00"/*@ L"å¤±æ•— ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰ï¼š0x%08x" @*/, Result )) ;
 		goto ERR ;
 	}
 
-	// IDXGIOutput1 ‚Ìæ“¾
+	// IDXGIOutput1 ã®å–å¾—
 	OWI->DXGIOutput->QueryInterface( IID_IDXGIOUTPUT1, ( void ** )&OWI->DXGIOutput1 ) ;
 
-	DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"¬Œ÷\n" @*/ ) ;
+	DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"æˆåŠŸ\n" @*/ ) ;
 
 	return 0 ;
 
-	// ƒGƒ‰[ˆ—
+	// ã‚¨ãƒ©ãƒ¼å‡¦ç†
 ERR :
 	if( OWI->BufferSRV != NULL )
 	{
@@ -5484,7 +5484,7 @@ ERR :
 	return -1 ;
 }
 
-// o—ÍæƒEƒCƒ“ƒhƒE‚Ì’Ç‰Á‚ğs‚¤( -1:¸”s  -1ˆÈŠO:‘ÎÛƒEƒCƒ“ƒhƒE—pî•ñ‚Ì”z—ñƒCƒ“ƒfƒbƒNƒX )
+// å‡ºåŠ›å…ˆã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®è¿½åŠ ã‚’è¡Œã†( -1:å¤±æ•—  -1ä»¥å¤–:å¯¾è±¡ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ç”¨æƒ…å ±ã®é…åˆ—ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ )
 extern	int		Graphics_D3D11_OutputWindow_Add( HWND TargetWindow, int IsMainTarget )
 {
 	int i ;
@@ -5494,7 +5494,7 @@ extern	int		Graphics_D3D11_OutputWindow_Add( HWND TargetWindow, int IsMainTarget
 
 	SETUP_WIN_API
 
-	// Šù‚Éw’è‚ÌƒEƒCƒ“ƒhƒE‚ª‘ÎÛ‚É“ü‚Á‚Ä‚¢‚é‚©’²‚×‚é
+	// æ—¢ã«æŒ‡å®šã®ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãŒå¯¾è±¡ã«å…¥ã£ã¦ã„ã‚‹ã‹èª¿ã¹ã‚‹
 	OWI = GD3D11.Device.Screen.OutputWindowInfo ;
 	j = 0 ;
 	NewIndex = -1 ;
@@ -5510,12 +5510,12 @@ extern	int		Graphics_D3D11_OutputWindow_Add( HWND TargetWindow, int IsMainTarget
 
 		if( OWI->DXGISwapChainDesc.OutputWindow == TargetWindow )
 		{
-			// Šù‚É“ü‚Á‚Ä‚¢‚½‚ç”z—ñ‚ÌƒCƒ“ƒfƒbƒNƒX‚ğ•Ô‚·
+			// æ—¢ã«å…¥ã£ã¦ã„ãŸã‚‰é…åˆ—ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’è¿”ã™
 			return i ;
 		}
 	}
 
-	// –³Œø‚É‚È‚Á‚Ä‚¢‚éƒEƒBƒ“ƒhƒE‚ª‚ ‚Á‚½‚ço—ÍæƒEƒBƒ“ƒhƒE‚©‚çŠO‚·
+	// ç„¡åŠ¹ã«ãªã£ã¦ã„ã‚‹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãŒã‚ã£ãŸã‚‰å‡ºåŠ›å…ˆã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‹ã‚‰å¤–ã™
 	OWI = GD3D11.Device.Screen.OutputWindowInfo ;
 	for( i = 0 ; i < DX_D3D11_MAX_OUTPUTWINDOW ; i ++, OWI ++ )
 	{
@@ -5524,57 +5524,57 @@ extern	int		Graphics_D3D11_OutputWindow_Add( HWND TargetWindow, int IsMainTarget
 			continue ;
 		}
 
-		// ƒEƒBƒ“ƒhƒEƒnƒ“ƒhƒ‹‚Ì—LŒøƒ`ƒFƒbƒN
+		// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒãƒ³ãƒ‰ãƒ«ã®æœ‰åŠ¹ãƒã‚§ãƒƒã‚¯
 		if( WinAPIData.Win32Func.IsWindowFunc( OWI->DXGISwapChainDesc.OutputWindow ) )
 		{
 			continue ;
 		}
 
-		// o—ÍæƒEƒBƒ“ƒhƒE‚©‚çŠO‚·
+		// å‡ºåŠ›å…ˆã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‹ã‚‰å¤–ã™
 		Graphics_D3D11_OutputWindow_Sub( NULL, i ) ;
 	}
 
-	// Šù‚Éo—ÍæƒEƒCƒ“ƒhƒE‚Ì”‚ªÅ‘å‚É’B‚µ‚Ä‚¢‚½‚çƒGƒ‰[
+	// æ—¢ã«å‡ºåŠ›å…ˆã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®æ•°ãŒæœ€å¤§ã«é”ã—ã¦ã„ãŸã‚‰ã‚¨ãƒ©ãƒ¼
 	if( GD3D11.Device.Screen.OutputWindowNum >= DX_D3D11_MAX_OUTPUTWINDOW )
 	{
 		return -1 ;
 	}
 
-	// “ü‚Á‚Ä‚¢‚È‚¢ê‡‚ÍV‹K‚Éì¬
+	// å…¥ã£ã¦ã„ãªã„å ´åˆã¯æ–°è¦ã«ä½œæˆ
 
-	// g—p‚³‚ê‚Ä‚¢‚È‚¢”z—ñ—v‘f‚ğŒŸõ‚·‚é
+	// ä½¿ç”¨ã•ã‚Œã¦ã„ãªã„é…åˆ—è¦ç´ ã‚’æ¤œç´¢ã™ã‚‹
 	if( NewIndex == -1 )
 	{
 		for( NewIndex = 0; GD3D11.Device.Screen.OutputWindowInfo[ NewIndex ].UseFlag; NewIndex++ ){}
 	}
 	OWI = &GD3D11.Device.Screen.OutputWindowInfo[ NewIndex ] ;
 
-	// ‘ÎÛ‚ÌƒEƒBƒ“ƒhƒE‚ÆƒƒCƒ“ƒ^[ƒQƒbƒg‚©‚Ç‚¤‚©‚Ìî•ñ‚ğ•Û‘¶
+	// å¯¾è±¡ã®ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã¨ãƒ¡ã‚¤ãƒ³ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã‹ã©ã†ã‹ã®æƒ…å ±ã‚’ä¿å­˜
 	OWI->TargetWindow = TargetWindow ;
 	OWI->IsMainTarget = IsMainTarget ;
 
-	// ƒXƒƒbƒvƒ`ƒFƒCƒ“‚Ìì¬
+	// ã‚¹ãƒ¯ãƒƒãƒ—ãƒã‚§ã‚¤ãƒ³ã®ä½œæˆ
 	if( Graphics_D3D11_OutputWindow_CreateSwapChain( NewIndex ) < 0 )
 	{
 		goto ERR ;
 	}
 
-	// ƒoƒbƒNƒoƒbƒtƒ@‚ÌƒZƒbƒgƒAƒbƒv
+	// ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 	if( Graphics_D3D11_OutputWindow_SetupBuffer( NewIndex ) < 0 )
 	{
 		goto ERR ;
 	}
 
-	// g—p‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// ä½¿ç”¨ã—ã¦ã„ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	OWI->UseFlag = TRUE ;
 
-	// o—ÍæƒEƒCƒ“ƒhƒE‚Ì”‚ğ‘‚â‚·
+	// å‡ºåŠ›å…ˆã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®æ•°ã‚’å¢—ã‚„ã™
 	GD3D11.Device.Screen.OutputWindowNum ++ ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return NewIndex ;
 
-	// ƒGƒ‰[ˆ—
+	// ã‚¨ãƒ©ãƒ¼å‡¦ç†
 ERR :
 	Graphics_D3D11_OutputWindow_ReleaseBuffer( NewIndex ) ;
 
@@ -5617,12 +5617,12 @@ ERR :
 	return -1 ;
 }
 
-// w’è‚ÌƒEƒCƒ“ƒhƒE‚ğo—ÍæƒEƒCƒ“ƒhƒE‚©‚çŠO‚·
+// æŒ‡å®šã®ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚’å‡ºåŠ›å…ˆã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‹ã‚‰å¤–ã™
 extern int Graphics_D3D11_OutputWindow_Sub( HWND TargetWindow, int Index )
 {
 	GRAPHICS_HARDDATA_DIRECT3D11_OUTPUTWINDOWINFO *OWI ;
 
-	// TargetWindow ‚ª NULL ‚Ìê‡‚Í Index ‚ğg—p‚·‚é
+	// TargetWindow ãŒ NULL ã®å ´åˆã¯ Index ã‚’ä½¿ç”¨ã™ã‚‹
 	if( TargetWindow == NULL )
 	{
 		if( Index < 0 || Index >= DX_D3D11_MAX_OUTPUTWINDOW )
@@ -5693,20 +5693,20 @@ extern int Graphics_D3D11_OutputWindow_Sub( HWND TargetWindow, int Index )
 		OWI->DXGISwapChain = NULL ;
 	}
 
-	// g—p‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğ“|‚·
+	// ä½¿ç”¨ã—ã¦ã„ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 	if( OWI->UseFlag )
 	{
 		OWI->UseFlag = FALSE ;
 
-		// o—ÍæƒEƒCƒ“ƒhƒE‚Ì”‚ğŒ¸‚ç‚·
+		// å‡ºåŠ›å…ˆã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®æ•°ã‚’æ¸›ã‚‰ã™
 		GD3D11.Device.Screen.OutputWindowNum -- ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// w’è‚Ìo—ÍæƒEƒCƒ“ƒhƒE—p‚ÌƒoƒbƒNƒoƒbƒtƒ@[‚ğƒZƒbƒgƒAƒbƒv‚·‚é
+// æŒ‡å®šã®å‡ºåŠ›å…ˆã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ç”¨ã®ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ãƒ¼ã‚’ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã™ã‚‹
 extern int Graphics_D3D11_OutputWindow_SetupBuffer( int Index )
 {
 	GRAPHICS_HARDDATA_DIRECT3D11_OUTPUTWINDOWINFO *OWI ;
@@ -5720,57 +5720,57 @@ extern int Graphics_D3D11_OutputWindow_SetupBuffer( int Index )
 	OWI = &GD3D11.Device.Screen.OutputWindowInfo[ Index ] ;
 
 
-//	DXST_LOGFILE_ADDUTF16LE( "\xb9\x30\xef\x30\xc3\x30\xd7\x30\xc1\x30\xa7\x30\xa4\x30\xf3\x30\x6e\x30\xd0\x30\xc3\x30\xd5\x30\xa1\x30\x6e\x30\x20\x00\x49\x00\x44\x00\x33\x00\x44\x00\x31\x00\x31\x00\x54\x00\x65\x00\x78\x00\x74\x00\x75\x00\x72\x00\x65\x00\x32\x00\x44\x00\x20\x00\x92\x30\xd6\x53\x97\x5f\x57\x30\x7e\x30\x59\x30\x2e\x00\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"ƒXƒƒbƒvƒ`ƒFƒCƒ“‚Ìƒoƒbƒtƒ@‚Ì ID3D11Texture2D ‚ğæ“¾‚µ‚Ü‚·.... " @*/ ) ;
+//	DXST_LOGFILE_ADDUTF16LE( "\xb9\x30\xef\x30\xc3\x30\xd7\x30\xc1\x30\xa7\x30\xa4\x30\xf3\x30\x6e\x30\xd0\x30\xc3\x30\xd5\x30\xa1\x30\x6e\x30\x20\x00\x49\x00\x44\x00\x33\x00\x44\x00\x31\x00\x31\x00\x54\x00\x65\x00\x78\x00\x74\x00\x75\x00\x72\x00\x65\x00\x32\x00\x44\x00\x20\x00\x92\x30\xd6\x53\x97\x5f\x57\x30\x7e\x30\x59\x30\x2e\x00\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"ã‚¹ãƒ¯ãƒƒãƒ—ãƒã‚§ã‚¤ãƒ³ã®ãƒãƒƒãƒ•ã‚¡ã® ID3D11Texture2D ã‚’å–å¾—ã—ã¾ã™.... " @*/ ) ;
 
-	// ƒoƒbƒNƒoƒbƒtƒ@‚ğæ“¾
+	// ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã‚’å–å¾—
 	Result = DXGISwapChain_GetBuffer( OWI->DXGISwapChain, 0, IID_ID3D11TEXTURE2D, ( void ** )&OWI->BufferTexture2D ) ;
 	if( Result != S_OK )
 	{
-//		DXST_LOGFILE_ADDUTF16LE( "\x31\x59\x57\x65\x0a\x00\x00"/*@ L"¸”s\n" @*/ ) ;
-		DXST_LOGFILE_ADDUTF16LE( "\xb9\x30\xef\x30\xc3\x30\xd7\x30\xc1\x30\xa7\x30\xa4\x30\xf3\x30\x6e\x30\xd0\x30\xc3\x30\xd5\x30\xa1\x30\x6e\x30\x20\x00\x49\x00\x44\x00\x33\x00\x44\x00\x31\x00\x31\x00\x54\x00\x65\x00\x78\x00\x74\x00\x75\x00\x72\x00\x65\x00\x32\x00\x44\x00\x20\x00\x6e\x30\xd6\x53\x97\x5f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ƒXƒƒbƒvƒ`ƒFƒCƒ“‚Ìƒoƒbƒtƒ@‚Ì ID3D11Texture2D ‚Ìæ“¾‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+//		DXST_LOGFILE_ADDUTF16LE( "\x31\x59\x57\x65\x0a\x00\x00"/*@ L"å¤±æ•—\n" @*/ ) ;
+		DXST_LOGFILE_ADDUTF16LE( "\xb9\x30\xef\x30\xc3\x30\xd7\x30\xc1\x30\xa7\x30\xa4\x30\xf3\x30\x6e\x30\xd0\x30\xc3\x30\xd5\x30\xa1\x30\x6e\x30\x20\x00\x49\x00\x44\x00\x33\x00\x44\x00\x31\x00\x31\x00\x54\x00\x65\x00\x78\x00\x74\x00\x75\x00\x72\x00\x65\x00\x32\x00\x44\x00\x20\x00\x6e\x30\xd6\x53\x97\x5f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ã‚¹ãƒ¯ãƒƒãƒ—ãƒã‚§ã‚¤ãƒ³ã®ãƒãƒƒãƒ•ã‚¡ã® ID3D11Texture2D ã®å–å¾—ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 		return -1 ;
 	}
 
-//	DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"¬Œ÷\n" @*/ ) ;
+//	DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"æˆåŠŸ\n" @*/ ) ;
 
 
-	// ƒoƒbƒNƒoƒbƒtƒ@‚Ìî•ñ‚ğæ“¾
+	// ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã®æƒ…å ±ã‚’å–å¾—
 	D3D11Texture2D_GetDesc( OWI->BufferTexture2D, &OWI->BufferTexture2DDesc ) ;
 
 
-//	DXST_LOGFILE_ADDUTF16LE( "\xb9\x30\xef\x30\xc3\x30\xd7\x30\xc1\x30\xa7\x30\xa4\x30\xf3\x30\x6e\x30\xd0\x30\xc3\x30\xd5\x30\xa1\x30\x6e\x30\x20\x00\x49\x00\x44\x00\x33\x00\x44\x00\x31\x00\x31\x00\x53\x00\x68\x00\x61\x00\x64\x00\x65\x00\x72\x00\x52\x00\x65\x00\x73\x00\x6f\x00\x75\x00\x72\x00\x63\x00\x65\x00\x56\x00\x69\x00\x65\x00\x77\x00\x20\x00\x92\x30\x5c\x4f\x10\x62\x57\x30\x7e\x30\x59\x30\x2e\x00\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"ƒXƒƒbƒvƒ`ƒFƒCƒ“‚Ìƒoƒbƒtƒ@‚Ì ID3D11ShaderResourceView ‚ğì¬‚µ‚Ü‚·.... " @*/ ) ;
+//	DXST_LOGFILE_ADDUTF16LE( "\xb9\x30\xef\x30\xc3\x30\xd7\x30\xc1\x30\xa7\x30\xa4\x30\xf3\x30\x6e\x30\xd0\x30\xc3\x30\xd5\x30\xa1\x30\x6e\x30\x20\x00\x49\x00\x44\x00\x33\x00\x44\x00\x31\x00\x31\x00\x53\x00\x68\x00\x61\x00\x64\x00\x65\x00\x72\x00\x52\x00\x65\x00\x73\x00\x6f\x00\x75\x00\x72\x00\x63\x00\x65\x00\x56\x00\x69\x00\x65\x00\x77\x00\x20\x00\x92\x30\x5c\x4f\x10\x62\x57\x30\x7e\x30\x59\x30\x2e\x00\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"ã‚¹ãƒ¯ãƒƒãƒ—ãƒã‚§ã‚¤ãƒ³ã®ãƒãƒƒãƒ•ã‚¡ã® ID3D11ShaderResourceView ã‚’ä½œæˆã—ã¾ã™.... " @*/ ) ;
 
-	// ƒoƒbƒNƒoƒbƒtƒ@—p‚ÌƒVƒF[ƒ_[ƒŠƒ\[ƒXƒrƒ…[‚ğì¬
+	// ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ç”¨ã®ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒªã‚½ãƒ¼ã‚¹ãƒ“ãƒ¥ãƒ¼ã‚’ä½œæˆ
 	Result = D3D11Device_CreateShaderResourceView( OWI->BufferTexture2D, NULL, &OWI->BufferSRV ) ;
 	if( Result != S_OK )
 	{
-//		DXST_LOGFILE_ADDUTF16LE( "\x31\x59\x57\x65\x0a\x00\x00"/*@ L"¸”s\n" @*/ ) ;
-		DXST_LOGFILE_ADDUTF16LE( "\xb9\x30\xef\x30\xc3\x30\xd7\x30\xc1\x30\xa7\x30\xa4\x30\xf3\x30\x6e\x30\xd0\x30\xc3\x30\xd5\x30\xa1\x30\x6e\x30\x20\x00\x49\x00\x44\x00\x33\x00\x44\x00\x31\x00\x31\x00\x53\x00\x68\x00\x61\x00\x64\x00\x65\x00\x72\x00\x52\x00\x65\x00\x73\x00\x6f\x00\x75\x00\x72\x00\x63\x00\x65\x00\x56\x00\x69\x00\x65\x00\x77\x00\x20\x00\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ƒXƒƒbƒvƒ`ƒFƒCƒ“‚Ìƒoƒbƒtƒ@‚Ì ID3D11ShaderResourceView ‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+//		DXST_LOGFILE_ADDUTF16LE( "\x31\x59\x57\x65\x0a\x00\x00"/*@ L"å¤±æ•—\n" @*/ ) ;
+		DXST_LOGFILE_ADDUTF16LE( "\xb9\x30\xef\x30\xc3\x30\xd7\x30\xc1\x30\xa7\x30\xa4\x30\xf3\x30\x6e\x30\xd0\x30\xc3\x30\xd5\x30\xa1\x30\x6e\x30\x20\x00\x49\x00\x44\x00\x33\x00\x44\x00\x31\x00\x31\x00\x53\x00\x68\x00\x61\x00\x64\x00\x65\x00\x72\x00\x52\x00\x65\x00\x73\x00\x6f\x00\x75\x00\x72\x00\x63\x00\x65\x00\x56\x00\x69\x00\x65\x00\x77\x00\x20\x00\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ã‚¹ãƒ¯ãƒƒãƒ—ãƒã‚§ã‚¤ãƒ³ã®ãƒãƒƒãƒ•ã‚¡ã® ID3D11ShaderResourceView ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 		return -1 ;
 	}
 
-//	DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"¬Œ÷\n" @*/ ) ;
+//	DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"æˆåŠŸ\n" @*/ ) ;
 
 
-//	DXST_LOGFILE_ADDUTF16LE( "\xb9\x30\xef\x30\xc3\x30\xd7\x30\xc1\x30\xa7\x30\xa4\x30\xf3\x30\x6e\x30\xd0\x30\xc3\x30\xd5\x30\xa1\x30\x6e\x30\x20\x00\x49\x00\x44\x00\x33\x00\x44\x00\x31\x00\x31\x00\x52\x00\x65\x00\x6e\x00\x64\x00\x65\x00\x72\x00\x54\x00\x61\x00\x72\x00\x67\x00\x65\x00\x74\x00\x56\x00\x69\x00\x65\x00\x77\x00\x20\x00\x92\x30\x5c\x4f\x10\x62\x57\x30\x7e\x30\x59\x30\x2e\x00\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"ƒXƒƒbƒvƒ`ƒFƒCƒ“‚Ìƒoƒbƒtƒ@‚Ì ID3D11RenderTargetView ‚ğì¬‚µ‚Ü‚·.... " @*/ ) ;
+//	DXST_LOGFILE_ADDUTF16LE( "\xb9\x30\xef\x30\xc3\x30\xd7\x30\xc1\x30\xa7\x30\xa4\x30\xf3\x30\x6e\x30\xd0\x30\xc3\x30\xd5\x30\xa1\x30\x6e\x30\x20\x00\x49\x00\x44\x00\x33\x00\x44\x00\x31\x00\x31\x00\x52\x00\x65\x00\x6e\x00\x64\x00\x65\x00\x72\x00\x54\x00\x61\x00\x72\x00\x67\x00\x65\x00\x74\x00\x56\x00\x69\x00\x65\x00\x77\x00\x20\x00\x92\x30\x5c\x4f\x10\x62\x57\x30\x7e\x30\x59\x30\x2e\x00\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"ã‚¹ãƒ¯ãƒƒãƒ—ãƒã‚§ã‚¤ãƒ³ã®ãƒãƒƒãƒ•ã‚¡ã® ID3D11RenderTargetView ã‚’ä½œæˆã—ã¾ã™.... " @*/ ) ;
 
-	// ƒoƒbƒNƒoƒbƒtƒ@—p‚ÌƒŒƒ“ƒ_[ƒ^[ƒQƒbƒg‚ğì¬
+	// ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ç”¨ã®ãƒ¬ãƒ³ãƒ€ãƒ¼ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã‚’ä½œæˆ
 	Result = D3D11Device_CreateRenderTargetView( OWI->BufferTexture2D, NULL, &OWI->BufferRTV ) ;
 	if( Result != S_OK )
 	{
-//		DXST_LOGFILE_ADDUTF16LE( "\x31\x59\x57\x65\x0a\x00\x00"/*@ L"¸”s\n" @*/ ) ;
-		DXST_LOGFILE_ADDUTF16LE( "\xb9\x30\xef\x30\xc3\x30\xd7\x30\xc1\x30\xa7\x30\xa4\x30\xf3\x30\x6e\x30\xd0\x30\xc3\x30\xd5\x30\xa1\x30\x6e\x30\x20\x00\x49\x00\x44\x00\x33\x00\x44\x00\x31\x00\x31\x00\x52\x00\x65\x00\x6e\x00\x64\x00\x65\x00\x72\x00\x54\x00\x61\x00\x72\x00\x67\x00\x65\x00\x74\x00\x56\x00\x69\x00\x65\x00\x77\x00\x20\x00\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ƒXƒƒbƒvƒ`ƒFƒCƒ“‚Ìƒoƒbƒtƒ@‚Ì ID3D11RenderTargetView ‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+//		DXST_LOGFILE_ADDUTF16LE( "\x31\x59\x57\x65\x0a\x00\x00"/*@ L"å¤±æ•—\n" @*/ ) ;
+		DXST_LOGFILE_ADDUTF16LE( "\xb9\x30\xef\x30\xc3\x30\xd7\x30\xc1\x30\xa7\x30\xa4\x30\xf3\x30\x6e\x30\xd0\x30\xc3\x30\xd5\x30\xa1\x30\x6e\x30\x20\x00\x49\x00\x44\x00\x33\x00\x44\x00\x31\x00\x31\x00\x52\x00\x65\x00\x6e\x00\x64\x00\x65\x00\x72\x00\x54\x00\x61\x00\x72\x00\x67\x00\x65\x00\x74\x00\x56\x00\x69\x00\x65\x00\x77\x00\x20\x00\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ã‚¹ãƒ¯ãƒƒãƒ—ãƒã‚§ã‚¤ãƒ³ã®ãƒãƒƒãƒ•ã‚¡ã® ID3D11RenderTargetView ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 		return -1 ;
 	}
 
-//	DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"¬Œ÷\n" @*/ ) ;
+//	DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"æˆåŠŸ\n" @*/ ) ;
 
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// w’è‚Ìo—ÍæƒEƒCƒ“ƒhƒE—p‚ÌƒoƒbƒNƒoƒbƒtƒ@[‚ÌŒãn––‚ğ‚·‚é
+// æŒ‡å®šã®å‡ºåŠ›å…ˆã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ç”¨ã®ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ãƒ¼ã®å¾Œå§‹æœ«ã‚’ã™ã‚‹
 extern int Graphics_D3D11_OutputWindow_ReleaseBuffer( int Index )
 {
 	GRAPHICS_HARDDATA_DIRECT3D11_OUTPUTWINDOWINFO *OWI ;
@@ -5800,11 +5800,11 @@ extern int Graphics_D3D11_OutputWindow_ReleaseBuffer( int Index )
 		OWI->BufferTexture2D = NULL ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// w’è‚Ìo—ÍæƒEƒCƒ“ƒhƒE‚ÌƒoƒbƒNƒoƒbƒtƒ@‚ÌƒTƒCƒY‚ğ•ÏX‚·‚é
+// æŒ‡å®šã®å‡ºåŠ›å…ˆã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã®ã‚µã‚¤ã‚ºã‚’å¤‰æ›´ã™ã‚‹
 extern int Graphics_D3D11_OutputWindow_ResizeBuffer( int Index, int NewSizeX, int NewSizeY )
 {
 	int     RenderTargetIndex ;
@@ -5824,7 +5824,7 @@ extern int Graphics_D3D11_OutputWindow_ResizeBuffer( int Index, int NewSizeX, in
 
 	OWI = &GD3D11.Device.Screen.OutputWindowInfo[ Index ] ;
 
-	// w’è‚ÌƒoƒbƒNƒoƒbƒtƒ@‚ª•`‰æ‘ÎÛ‚É‚È‚Á‚Ä‚¢‚éê‡‚Íˆê“xŠO‚·
+	// æŒ‡å®šã®ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ãŒæç”»å¯¾è±¡ã«ãªã£ã¦ã„ã‚‹å ´åˆã¯ä¸€åº¦å¤–ã™
 	RenderTargetIndex = -1 ;
 	for( i = 0 ; i < DX_RENDERTARGET_COUNT ; i ++ )
 	{
@@ -5836,34 +5836,34 @@ extern int Graphics_D3D11_OutputWindow_ResizeBuffer( int Index, int NewSizeX, in
 		}
 	}
 
-	// ƒoƒbƒNƒoƒbƒtƒ@‚ğ‰ğ•ú
+	// ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã‚’è§£æ”¾
 	Graphics_D3D11_OutputWindow_ReleaseBuffer( Index ) ;
 
-	// ƒoƒbƒNƒoƒbƒtƒ@‚ÌƒTƒCƒY‚ğ•ÏX
+	// ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã®ã‚µã‚¤ã‚ºã‚’å¤‰æ›´
 	hr = DXGISwapChain_ResizeBuffers( OWI->DXGISwapChain, 2, ( UINT )NewSizeX, ( UINT )NewSizeY, DIRECT3D11_BACKBUFFER_FORMAT, 0 ) ;
 	if( hr != S_OK )
 	{
-		DXST_LOGFILE_ADDUTF16LE( "\xd0\x30\xc3\x30\xaf\x30\xd0\x30\xc3\x30\xd5\x30\xa1\x30\x6e\x30\xb5\x30\xa4\x30\xba\x30\x09\x59\xf4\x66\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ƒoƒbƒNƒoƒbƒtƒ@‚ÌƒTƒCƒY•ÏX‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+		DXST_LOGFILE_ADDUTF16LE( "\xd0\x30\xc3\x30\xaf\x30\xd0\x30\xc3\x30\xd5\x30\xa1\x30\x6e\x30\xb5\x30\xa4\x30\xba\x30\x09\x59\xf4\x66\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã®ã‚µã‚¤ã‚ºå¤‰æ›´ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 		return -1 ;
 	}
 
-	// ƒoƒbƒNƒoƒbƒtƒ@‚ÌƒZƒbƒgƒAƒbƒv
+	// ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 	if( Graphics_D3D11_OutputWindow_SetupBuffer( Index ) < 0 )
 	{
 		return -1 ;
 	}
 
-	// ƒoƒbƒNƒoƒbƒtƒ@‚ª•`‰æ‘ÎÛ‚É‚È‚Á‚Ä‚¢‚½‚çÄ“x•`‰æ‘ÎÛ‚Éİ’è‚·‚é
+	// ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ãŒæç”»å¯¾è±¡ã«ãªã£ã¦ã„ãŸã‚‰å†åº¦æç”»å¯¾è±¡ã«è¨­å®šã™ã‚‹
 	if( RenderTargetIndex != -1 )
 	{
 		Graphics_D3D11_DeviceState_SetRenderTarget( OWI->BufferTexture2D, OWI->BufferRTV, RenderTargetIndex ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// w’è‚Ìo—ÍæƒEƒCƒ“ƒhƒE‚ÌƒTƒCƒY‚ğ•ÏX‚·‚é
+// æŒ‡å®šã®å‡ºåŠ›å…ˆã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ã‚µã‚¤ã‚ºã‚’å¤‰æ›´ã™ã‚‹
 extern int Graphics_D3D11_OutputWindow_ResizeTarget( int Index, int NewSizeX, int NewSizeY, int NewRefreshRate )
 {
 	D_DXGI_MODE_DESC ModeDesc ;
@@ -5882,7 +5882,7 @@ extern int Graphics_D3D11_OutputWindow_ResizeTarget( int Index, int NewSizeX, in
 
 	OWI = &GD3D11.Device.Screen.OutputWindowInfo[ Index ] ;
 
-	// İ’è‚ÌƒZƒbƒgƒAƒbƒv
+	// è¨­å®šã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 	_MEMSET( &ModeDesc, 0, sizeof( ModeDesc ) ) ;
 	ModeDesc.Width                   = ( UINT )NewSizeX ;
 	ModeDesc.Height                  = ( UINT )NewSizeY ;
@@ -5892,19 +5892,19 @@ extern int Graphics_D3D11_OutputWindow_ResizeTarget( int Index, int NewSizeX, in
 	ModeDesc.ScanlineOrdering        = D_DXGI_MODE_SCANLINE_ORDER_UNSPECIFIED ;
 	ModeDesc.Scaling                 = D_DXGI_MODE_SCALING_UNSPECIFIED ;
 
-	// ƒ^[ƒQƒbƒg‚ÌƒTƒCƒY‚ğ•ÏX
+	// ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã®ã‚µã‚¤ã‚ºã‚’å¤‰æ›´
 	hr = DXGISwapChain_ResizeTarget( OWI->DXGISwapChain, &ModeDesc ) ;
 	if( hr != S_OK )
 	{
-		DXST_LOGFILE_ADDUTF16LE( "\xbf\x30\xfc\x30\xb2\x30\xc3\x30\xc8\x30\x6e\x30\xb5\x30\xa4\x30\xba\x30\x09\x59\xf4\x66\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ƒ^[ƒQƒbƒg‚ÌƒTƒCƒY•ÏX‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+		DXST_LOGFILE_ADDUTF16LE( "\xbf\x30\xfc\x30\xb2\x30\xc3\x30\xc8\x30\x6e\x30\xb5\x30\xa4\x30\xba\x30\x09\x59\xf4\x66\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã®ã‚µã‚¤ã‚ºå¤‰æ›´ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 		return -1 ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// w’è‚Ìo—ÍæƒEƒCƒ“ƒhƒE‚Ì SwapChain ‚ğì¬‚µ‚È‚¨‚·
+// æŒ‡å®šã®å‡ºåŠ›å…ˆã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã® SwapChain ã‚’ä½œæˆã—ãªãŠã™
 extern int Graphics_D3D11_OutputWindow_ReCreate( int Index )
 {
 	int RenderTargetIndex ;
@@ -5918,7 +5918,7 @@ extern int Graphics_D3D11_OutputWindow_ReCreate( int Index )
 
 	OWI = &GD3D11.Device.Screen.OutputWindowInfo[ Index ] ;
 
-	// w’è‚ÌƒoƒbƒNƒoƒbƒtƒ@‚ª•`‰æ‘ÎÛ‚É‚È‚Á‚Ä‚¢‚éê‡‚Íˆê“xŠO‚·
+	// æŒ‡å®šã®ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ãŒæç”»å¯¾è±¡ã«ãªã£ã¦ã„ã‚‹å ´åˆã¯ä¸€åº¦å¤–ã™
 	RenderTargetIndex = -1 ;
 	for( i = 0 ; i < DX_RENDERTARGET_COUNT ; i ++ )
 	{
@@ -5930,16 +5930,16 @@ extern int Graphics_D3D11_OutputWindow_ReCreate( int Index )
 		}
 	}
 
-	// ƒtƒ‹ƒXƒNƒŠ[ƒ“‚Ìê‡‚Í‚±‚±‚ÅƒEƒCƒ“ƒhƒEƒ‚[ƒh‚É–ß‚·
+	// ãƒ•ãƒ«ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã®å ´åˆã¯ã“ã“ã§ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ¢ãƒ¼ãƒ‰ã«æˆ»ã™
 	if( OWI->IsFullscreen && OWI->DXGISwapChain != NULL )
 	{
 		DXGISwapChain_SetFullscreenState( OWI->DXGISwapChain, FALSE, NULL ) ;
 	}
 
-	// ƒoƒbƒNƒoƒbƒtƒ@‚ğ‰ğ•ú
+	// ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã‚’è§£æ”¾
 	Graphics_D3D11_OutputWindow_ReleaseBuffer( Index ) ;
 
-	// ƒIƒuƒWƒFƒNƒg‚Ì‰ğ•ú
+	// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®è§£æ”¾
 	if( OWI->DXGIOutput != NULL )
 	{
 		Direct3D11_ObjectRelease( OWI->DXGIOutput ) ;
@@ -5976,28 +5976,28 @@ extern int Graphics_D3D11_OutputWindow_ReCreate( int Index )
 		OWI->DXGISwapChain = NULL ;
 	}
 
-	// ƒXƒƒbƒvƒ`ƒFƒCƒ“‚Ìì¬
+	// ã‚¹ãƒ¯ãƒƒãƒ—ãƒã‚§ã‚¤ãƒ³ã®ä½œæˆ
 	if( Graphics_D3D11_OutputWindow_CreateSwapChain( Index ) < 0 )
 	{
 		goto ERR ;
 	}
 
-	// ƒoƒbƒNƒoƒbƒtƒ@‚ÌƒZƒbƒgƒAƒbƒv
+	// ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 	if( Graphics_D3D11_OutputWindow_SetupBuffer( Index ) < 0 )
 	{
 		return -1 ;
 	}
 
-	// ƒoƒbƒNƒoƒbƒtƒ@‚ª•`‰æ‘ÎÛ‚É‚È‚Á‚Ä‚¢‚½‚çÄ“x•`‰æ‘ÎÛ‚Éİ’è‚·‚é
+	// ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ãŒæç”»å¯¾è±¡ã«ãªã£ã¦ã„ãŸã‚‰å†åº¦æç”»å¯¾è±¡ã«è¨­å®šã™ã‚‹
 	if( RenderTargetIndex != -1 )
 	{
 		Graphics_D3D11_DeviceState_SetRenderTarget( OWI->BufferTexture2D, OWI->BufferRTV, RenderTargetIndex ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 
-	// ƒGƒ‰[ˆ—
+	// ã‚¨ãƒ©ãƒ¼å‡¦ç†
 ERR :
 	Graphics_D3D11_OutputWindow_ReleaseBuffer( Index ) ;
 
@@ -6040,7 +6040,7 @@ ERR :
 	return -1 ;
 }
 
-// [“xƒoƒbƒtƒ@ƒIƒuƒWƒFƒNƒg‚Ìì¬( 0:¬Œ÷  -1:¸”s )
+// æ·±åº¦ãƒãƒƒãƒ•ã‚¡ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ä½œæˆ( 0:æˆåŠŸ  -1:å¤±æ•— )
 extern	int		Graphics_D3D11_CreateDepthBuffer( void )
 {
 	HRESULT hr ;
@@ -6052,7 +6052,7 @@ extern	int		Graphics_D3D11_CreateDepthBuffer( void )
 		return -1 ;
 	}
 
-	// Šù‚Éì¬Ï‚İ‚Ìê‡‚Íˆê“xíœ‚·‚é
+	// æ—¢ã«ä½œæˆæ¸ˆã¿ã®å ´åˆã¯ä¸€åº¦å‰Šé™¤ã™ã‚‹
 	if( GD3D11.Device.Screen.DepthBufferTexture2D )
 	{
 		Direct3D11_Release_Texture2D( GD3D11.Device.Screen.DepthBufferTexture2D ) ;
@@ -6064,13 +6064,13 @@ extern	int		Graphics_D3D11_CreateDepthBuffer( void )
 		GD3D11.Device.Screen.DepthBufferDSV = NULL ;
 	}
 
-	DXST_LOGFILE_ADDUTF16LE( "\xf1\x6d\xa6\x5e\xd0\x30\xc3\x30\xd5\x30\xa1\x30\x92\x30\x5c\x4f\x10\x62\x57\x30\x7e\x30\x59\x30\x2e\x00\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"[“xƒoƒbƒtƒ@‚ğì¬‚µ‚Ü‚·.... " @*/ ) ;
+	DXST_LOGFILE_ADDUTF16LE( "\xf1\x6d\xa6\x5e\xd0\x30\xc3\x30\xd5\x30\xa1\x30\x92\x30\x5c\x4f\x10\x62\x57\x30\x7e\x30\x59\x30\x2e\x00\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"æ·±åº¦ãƒãƒƒãƒ•ã‚¡ã‚’ä½œæˆã—ã¾ã™.... " @*/ ) ;
 
-	// [“xƒoƒbƒtƒ@‚ÌƒTƒCƒY‚ğŒˆ’è
+	// æ·±åº¦ãƒãƒƒãƒ•ã‚¡ã®ã‚µã‚¤ã‚ºã‚’æ±ºå®š
 	GD3D11.Device.Screen.DepthBufferSizeX = GSYS.Screen.MainScreenSizeX ;
 	GD3D11.Device.Screen.DepthBufferSizeY = GSYS.Screen.MainScreenSizeY ;
 
-	// [“xƒoƒbƒtƒ@‚Ìƒrƒbƒg[“x‚ğŒˆ’è
+	// æ·±åº¦ãƒãƒƒãƒ•ã‚¡ã®ãƒ“ãƒƒãƒˆæ·±åº¦ã‚’æ±ºå®š
 	if( GD3D11.Setting.UserDepthBufferBitDepthSet == FALSE ||
 		GD3D11.Device.Screen.DepthBufferBitDepth == 0  )
 	{
@@ -6089,7 +6089,7 @@ extern	int		Graphics_D3D11_CreateDepthBuffer( void )
 	case 32 : index = ZBUFFER_FORMAT_32BIT ; break ;
 	}
 
-	// [“xƒoƒbƒtƒ@ƒeƒNƒXƒ`ƒƒ‚Ìì¬
+	// æ·±åº¦ãƒãƒƒãƒ•ã‚¡ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ä½œæˆ
 	{
 		D_D3D11_TEXTURE2D_DESC Texture2DDesc ;
 
@@ -6107,16 +6107,16 @@ extern	int		Graphics_D3D11_CreateDepthBuffer( void )
 		Texture2DDesc.CPUAccessFlags     = 0 ;
 		Texture2DDesc.MiscFlags          = 0 ;
 
-		// ì¬
+		// ä½œæˆ
 		hr = D3D11Device_CreateTexture2D( &Texture2DDesc, NULL, &GD3D11.Device.Screen.DepthBufferTexture2D ) ;
 		if( FAILED( hr ) )
 		{
-			DXST_LOGFILE_ADDUTF16LE( "\xf1\x6d\xa6\x5e\xd0\x30\xc3\x30\xd5\x30\xa1\x30\x28\x75\x20\x00\x54\x00\x65\x00\x78\x00\x74\x00\x75\x00\x72\x00\x65\x00\x32\x00\x44\x00\x20\x00\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"[“xƒoƒbƒtƒ@—p Texture2D ‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+			DXST_LOGFILE_ADDUTF16LE( "\xf1\x6d\xa6\x5e\xd0\x30\xc3\x30\xd5\x30\xa1\x30\x28\x75\x20\x00\x54\x00\x65\x00\x78\x00\x74\x00\x75\x00\x72\x00\x65\x00\x32\x00\x44\x00\x20\x00\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"æ·±åº¦ãƒãƒƒãƒ•ã‚¡ç”¨ Texture2D ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 			return -1 ;
 		}
 	}
 
-	// [“xƒXƒeƒ“ƒVƒ‹ƒrƒ…[‚Ìì¬
+	// æ·±åº¦ã‚¹ãƒ†ãƒ³ã‚·ãƒ«ãƒ“ãƒ¥ãƒ¼ã®ä½œæˆ
 	{
 		D_D3D11_DEPTH_STENCIL_VIEW_DESC DepthStencilViewDesc ;
 
@@ -6135,24 +6135,24 @@ extern	int		Graphics_D3D11_CreateDepthBuffer( void )
 		hr = D3D11Device_CreateDepthStencilView( GD3D11.Device.Screen.DepthBufferTexture2D, &DepthStencilViewDesc, &GD3D11.Device.Screen.DepthBufferDSV ) ;
 		if( FAILED( hr ) )
 		{
-			DXST_LOGFILE_ADDUTF16LE( "\xf1\x6d\xa6\x5e\xd0\x30\xc3\x30\xd5\x30\xa1\x30\x28\x75\x20\x00\x44\x00\x65\x00\x70\x00\x74\x00\x68\x00\x53\x00\x74\x00\x65\x00\x6e\x00\x63\x00\x69\x00\x6c\x00\x56\x00\x69\x00\x65\x00\x77\x00\x20\x00\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"[“xƒoƒbƒtƒ@—p DepthStencilView ‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+			DXST_LOGFILE_ADDUTF16LE( "\xf1\x6d\xa6\x5e\xd0\x30\xc3\x30\xd5\x30\xa1\x30\x28\x75\x20\x00\x44\x00\x65\x00\x70\x00\x74\x00\x68\x00\x53\x00\x74\x00\x65\x00\x6e\x00\x63\x00\x69\x00\x6c\x00\x56\x00\x69\x00\x65\x00\x77\x00\x20\x00\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"æ·±åº¦ãƒãƒƒãƒ•ã‚¡ç”¨ DepthStencilView ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 			return -1 ;
 		}
 	}
 
-	// ƒfƒoƒCƒX‚ÉƒZƒbƒg
+	// ãƒ‡ãƒã‚¤ã‚¹ã«ã‚»ãƒƒãƒˆ
 	Graphics_D3D11_DeviceState_SetDepthStencil( GD3D11.Device.Screen.DepthBufferTexture2D, GD3D11.Device.Screen.DepthBufferDSV ) ;
 
-	// ƒNƒŠƒA
+	// ã‚¯ãƒªã‚¢
 	D3D11DeviceContext_ClearDepthStencilView( GD3D11.Device.Screen.DepthBufferDSV, D_D3D11_CLEAR_DEPTH, 1.0f, 0 ) ;
 
-	DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"¬Œ÷\n" @*/ ) ;
+	DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"æˆåŠŸ\n" @*/ ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒtƒ‹ƒXƒNƒŠ[ƒ“İ’è‚ğs‚¤
+// ãƒ•ãƒ«ã‚¹ã‚¯ãƒªãƒ¼ãƒ³è¨­å®šã‚’è¡Œã†
 extern int Graphics_D3D11_FullscreenSetup( int IsFullscreen )
 {
 	if( GD3D11.Device.Screen.OutputWindowInfo[ 0 ].DXGISwapChain == NULL ||
@@ -6193,9 +6193,9 @@ extern int Graphics_D3D11_FullscreenSetup( int IsFullscreen )
 
 
 
-// Direct3D11 ‚Ì‰æ‘œŠÖŒW
+// Direct3D11 ã®ç”»åƒé–¢ä¿‚
 
-// D_DXGI_FORMAT ‚ÌƒtƒH[ƒ}ƒbƒg‚É‡‚í‚¹‚½ƒJƒ‰[ƒtƒH[ƒ}ƒbƒgî•ñ‚ğæ“¾‚·‚é
+// D_DXGI_FORMAT ã®ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã«åˆã‚ã›ãŸã‚«ãƒ©ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆæƒ…å ±ã‚’å–å¾—ã™ã‚‹
 extern COLORDATA *Graphics_D3D11_GetD3DFormatColorData( D_DXGI_FORMAT Format )
 {
 	volatile static int InitializeFlag = FALSE ;
@@ -6262,7 +6262,7 @@ extern COLORDATA *Graphics_D3D11_GetD3DFormatColorData( D_DXGI_FORMAT Format )
 	return NULL ;
 }
 
-// •`‰ææ—pƒeƒNƒXƒ`ƒƒ‚Æ•`‰æ—pƒeƒNƒXƒ`ƒƒ‚ª•ª‚©‚ê‚Ä‚¢‚éê‡‚ÉA•`‰æ—pƒeƒNƒXƒ`ƒƒ‚É•`‰ææ—pƒeƒNƒXƒ`ƒƒ‚Ì“à—e‚ğ”½‰f‚·‚é
+// æç”»å…ˆç”¨ãƒ†ã‚¯ã‚¹ãƒãƒ£ã¨æç”»ç”¨ãƒ†ã‚¯ã‚¹ãƒãƒ£ãŒåˆ†ã‹ã‚Œã¦ã„ã‚‹å ´åˆã«ã€æç”»ç”¨ãƒ†ã‚¯ã‚¹ãƒãƒ£ã«æç”»å…ˆç”¨ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®å†…å®¹ã‚’åæ˜ ã™ã‚‹
 extern	int		Graphics_D3D11_UpdateDrawTexture( IMAGEDATA_ORIG_HARD_TEX *OrigTex, int TargetSurface, D_DXGI_FORMAT Format )
 {
 	D3D11DeviceContext_ResolveSubresource(
@@ -6273,12 +6273,12 @@ extern	int		Graphics_D3D11_UpdateDrawTexture( IMAGEDATA_ORIG_HARD_TEX *OrigTex, 
 		Format
 	) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// Šî–{ƒCƒ[ƒW‚ÌƒtƒH[ƒ}ƒbƒg‚ğ DX_BASEIMAGE_FORMAT_NORMAL ‚É•ÏŠ·‚·‚é•K—v‚ª‚ ‚é‚©‚Ç‚¤‚©‚ğƒ`ƒFƒbƒN‚·‚é
-// ( RequiredRgbBaseImageConvFlag ‚Æ RequiredAlphaBaseImageConvFlag ‚É“ü‚é’l  TRUE:•ÏŠ·‚·‚é•K—v‚ª‚ ‚é  FALSE:•ÏŠ·‚·‚é•K—v‚Í–³‚¢ )
+// åŸºæœ¬ã‚¤ãƒ¡ãƒ¼ã‚¸ã®ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã‚’ DX_BASEIMAGE_FORMAT_NORMAL ã«å¤‰æ›ã™ã‚‹å¿…è¦ãŒã‚ã‚‹ã‹ã©ã†ã‹ã‚’ãƒã‚§ãƒƒã‚¯ã™ã‚‹
+// ( RequiredRgbBaseImageConvFlag ã¨ RequiredAlphaBaseImageConvFlag ã«å…¥ã‚‹å€¤  TRUE:å¤‰æ›ã™ã‚‹å¿…è¦ãŒã‚ã‚‹  FALSE:å¤‰æ›ã™ã‚‹å¿…è¦ã¯ç„¡ã„ )
 extern	int		Graphics_D3D11_CheckRequiredNormalImageConv_BaseImageFormat_PF(
 	IMAGEDATA_ORIG *Orig,
 	int             RgbBaseImageFormat,
@@ -6355,43 +6355,43 @@ extern	int		Graphics_D3D11_CheckRequiredNormalImageConv_BaseImageFormat_PF(
 		*RequiredAlphaBaseImageConvFlag = AlphaConvFlag ;
 	}
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// ƒeƒNƒXƒ`ƒƒ‰æ‘œ“]‘——p‚Ì‹¤—Lƒƒ‚ƒŠ‚ÌƒZƒbƒgƒAƒbƒv‚ğs‚¤
+// ãƒ†ã‚¯ã‚¹ãƒãƒ£ç”»åƒè»¢é€ç”¨ã®å…±æœ‰ãƒ¡ãƒ¢ãƒªã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã‚’è¡Œã†
 extern int Graphics_D3D11_Texture_SetupCommonBuffer( unsigned int Size )
 {
-	// Šù‚Éw’è‚ÌƒTƒCƒY‚ğŠm•Û‚µ‚Ä‚ ‚Á‚½‚ç‰½‚à‚¹‚¸‚ÉI—¹
+	// æ—¢ã«æŒ‡å®šã®ã‚µã‚¤ã‚ºã‚’ç¢ºä¿ã—ã¦ã‚ã£ãŸã‚‰ä½•ã‚‚ã›ãšã«çµ‚äº†
 	if( GD3D11.Texture.CommonBufferSize >= Size )
 	{
 		return 0 ;
 	}
 
-	// Šù‘¶‚Ìƒƒ‚ƒŠ‚ğ‰ğ•ú
+	// æ—¢å­˜ã®ãƒ¡ãƒ¢ãƒªã‚’è§£æ”¾
 	DXFREE( GD3D11.Texture.CommonBuffer ) ;
 	GD3D11.Texture.CommonBuffer     = NULL ;
 	GD3D11.Texture.CommonBufferSize = 0 ;
 
-	// ƒƒ‚ƒŠ‚ÌŠm•Û
+	// ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿
 	GD3D11.Texture.CommonBuffer = DXALLOC( Size ) ;
 	if( GD3D11.Texture.CommonBuffer == NULL )
 	{
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\x6b\x30\x3b\x75\xcf\x50\x92\x30\xe2\x8e\x01\x90\x59\x30\x8b\x30\x5f\x30\x81\x30\x6e\x30\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x5b\x00\x47\x00\x72\x00\x61\x00\x70\x00\x68\x00\x69\x00\x63\x00\x73\x00\x5f\x00\x44\x00\x33\x00\x44\x00\x31\x00\x31\x00\x5f\x00\x54\x00\x65\x00\x78\x00\x74\x00\x75\x00\x72\x00\x65\x00\x5f\x00\x53\x00\x65\x00\x74\x00\x75\x00\x70\x00\x43\x00\x6f\x00\x6d\x00\x6d\x00\x6f\x00\x6e\x00\x42\x00\x75\x00\x66\x00\x66\x00\x65\x00\x72\x00\x5d\x00\x0a\x00\x00"/*@ L"ƒeƒNƒXƒ`ƒƒ‚É‰æ‘œ‚ğ“]‘—‚·‚é‚½‚ß‚Ìƒƒ‚ƒŠ‚ÌŠm•Û‚É¸”s‚µ‚Ü‚µ‚½[Graphics_D3D11_Texture_SetupCommonBuffer]\n" @*/ )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\x6b\x30\x3b\x75\xcf\x50\x92\x30\xe2\x8e\x01\x90\x59\x30\x8b\x30\x5f\x30\x81\x30\x6e\x30\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x5b\x00\x47\x00\x72\x00\x61\x00\x70\x00\x68\x00\x69\x00\x63\x00\x73\x00\x5f\x00\x44\x00\x33\x00\x44\x00\x31\x00\x31\x00\x5f\x00\x54\x00\x65\x00\x78\x00\x74\x00\x75\x00\x72\x00\x65\x00\x5f\x00\x53\x00\x65\x00\x74\x00\x75\x00\x70\x00\x43\x00\x6f\x00\x6d\x00\x6d\x00\x6f\x00\x6e\x00\x42\x00\x75\x00\x66\x00\x66\x00\x65\x00\x72\x00\x5d\x00\x0a\x00\x00"/*@ L"ãƒ†ã‚¯ã‚¹ãƒãƒ£ã«ç”»åƒã‚’è»¢é€ã™ã‚‹ãŸã‚ã®ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿ã«å¤±æ•—ã—ã¾ã—ãŸ[Graphics_D3D11_Texture_SetupCommonBuffer]\n" @*/ )) ;
 		return -1 ;
 	}
 
-	// Šm•Û‚µ‚½ƒƒ‚ƒŠ‚ÌƒTƒCƒY‚ğ•Û‘¶
+	// ç¢ºä¿ã—ãŸãƒ¡ãƒ¢ãƒªã®ã‚µã‚¤ã‚ºã‚’ä¿å­˜
 	GD3D11.Texture.CommonBufferSize = Size ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒeƒNƒXƒ`ƒƒ‰æ‘œ“]‘——p‚Ì‹¤—Lƒƒ‚ƒŠ‚ÌŒãn––‚ğs‚¤
+// ãƒ†ã‚¯ã‚¹ãƒãƒ£ç”»åƒè»¢é€ç”¨ã®å…±æœ‰ãƒ¡ãƒ¢ãƒªã®å¾Œå§‹æœ«ã‚’è¡Œã†
 extern int Graphics_D3D11_Texture_TerminateCommonBuffer( void )
 {
-	// ƒƒ‚ƒŠ‚ğŠm•Û‚µ‚Ä‚¢‚½‚ç‰ğ•ú
+	// ãƒ¡ãƒ¢ãƒªã‚’ç¢ºä¿ã—ã¦ã„ãŸã‚‰è§£æ”¾
 	if( GD3D11.Texture.CommonBuffer != NULL )
 	{
 		DXFREE( GD3D11.Texture.CommonBuffer ) ;
@@ -6399,19 +6399,19 @@ extern int Graphics_D3D11_Texture_TerminateCommonBuffer( void )
 	}
 	GD3D11.Texture.CommonBufferSize = 0 ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ’Pƒ“]‘—ˆ—‚Ì‰Šú‰»‚ğs‚¤
+// å˜ç´”è»¢é€å‡¦ç†ã®åˆæœŸåŒ–ã‚’è¡Œã†
 extern int Graphics_D3D11_StretchRect_Initialize( void )
 {
 	HRESULT hr ;
 	int i ;
 
-	DXST_LOGFILE_ADDUTF16LE( "\x3b\x75\xcf\x50\x6e\x30\x58\x53\x14\x7d\xe2\x8e\x01\x90\xe6\x51\x06\x74\x6e\x30\x1d\x52\x1f\x67\x16\x53\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"‰æ‘œ‚Ì’Pƒ“]‘—ˆ—‚Ì‰Šú‰»... " @*/ ) ;
+	DXST_LOGFILE_ADDUTF16LE( "\x3b\x75\xcf\x50\x6e\x30\x58\x53\x14\x7d\xe2\x8e\x01\x90\xe6\x51\x06\x74\x6e\x30\x1d\x52\x1f\x67\x16\x53\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"ç”»åƒã®å˜ç´”è»¢é€å‡¦ç†ã®åˆæœŸåŒ–... " @*/ ) ;
 
-	// ƒuƒŒƒ“ƒhƒXƒe[ƒg‚Ìì¬
+	// ãƒ–ãƒ¬ãƒ³ãƒ‰ã‚¹ãƒ†ãƒ¼ãƒˆã®ä½œæˆ
 	if( GD3D11.Device.Shader.Base.StretchRect_BlendState[ 0 ] == NULL )
 	{
 		D_D3D11_BLEND_DESC BlendDesc ;
@@ -6449,7 +6449,7 @@ extern int Graphics_D3D11_StretchRect_Initialize( void )
 		hr = D3D11Device_CreateBlendState( &BlendDesc, &GD3D11.Device.Shader.Base.StretchRect_BlendState[ 0 ] ) ;
 		if( hr != S_OK )
 		{
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\x58\x53\x14\x7d\xe2\x8e\x01\x90\x28\x75\x6e\x30\x20\x00\x49\x00\x44\x00\x33\x00\x44\x00\x31\x00\x31\x00\x42\x00\x6c\x00\x65\x00\x6e\x00\x64\x00\x53\x00\x74\x00\x61\x00\x74\x00\x65\x00\x20\x00\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"’Pƒ“]‘——p‚Ì ID3D11BlendState ‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ )) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\x58\x53\x14\x7d\xe2\x8e\x01\x90\x28\x75\x6e\x30\x20\x00\x49\x00\x44\x00\x33\x00\x44\x00\x31\x00\x31\x00\x42\x00\x6c\x00\x65\x00\x6e\x00\x64\x00\x53\x00\x74\x00\x61\x00\x74\x00\x65\x00\x20\x00\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"å˜ç´”è»¢é€ç”¨ã® ID3D11BlendState ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ )) ;
 			return -1 ;
 		}
 
@@ -6457,12 +6457,12 @@ extern int Graphics_D3D11_StretchRect_Initialize( void )
 		hr = D3D11Device_CreateBlendState( &BlendDesc, &GD3D11.Device.Shader.Base.StretchRect_BlendState[ 1 ] ) ;
 		if( hr != S_OK )
 		{
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\x58\x53\x14\x7d\xa2\x30\xeb\x30\xd5\x30\xa1\x30\xd6\x30\xec\x30\xf3\x30\xc9\x30\xe2\x8e\x01\x90\x28\x75\x6e\x30\x20\x00\x49\x00\x44\x00\x33\x00\x44\x00\x31\x00\x31\x00\x42\x00\x6c\x00\x65\x00\x6e\x00\x64\x00\x53\x00\x74\x00\x61\x00\x74\x00\x65\x00\x20\x00\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"’PƒƒAƒ‹ƒtƒ@ƒuƒŒƒ“ƒh“]‘——p‚Ì ID3D11BlendState ‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ )) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\x58\x53\x14\x7d\xa2\x30\xeb\x30\xd5\x30\xa1\x30\xd6\x30\xec\x30\xf3\x30\xc9\x30\xe2\x8e\x01\x90\x28\x75\x6e\x30\x20\x00\x49\x00\x44\x00\x33\x00\x44\x00\x31\x00\x31\x00\x42\x00\x6c\x00\x65\x00\x6e\x00\x64\x00\x53\x00\x74\x00\x61\x00\x74\x00\x65\x00\x20\x00\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"å˜ç´”ã‚¢ãƒ«ãƒ•ã‚¡ãƒ–ãƒ¬ãƒ³ãƒ‰è»¢é€ç”¨ã® ID3D11BlendState ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ )) ;
 			return -1 ;
 		}
 	}
 
-	// ƒTƒ“ƒvƒ‰[ƒXƒe[ƒg‚Ìì¬
+	// ã‚µãƒ³ãƒ—ãƒ©ãƒ¼ã‚¹ãƒ†ãƒ¼ãƒˆã®ä½œæˆ
 	{
 		static D_D3D11_SAMPLER_DESC SamplerDesc =
 		{
@@ -6484,7 +6484,7 @@ extern int Graphics_D3D11_StretchRect_Initialize( void )
 			hr = D3D11Device_CreateSamplerState( &SamplerDesc, &GD3D11.Device.Shader.Base.StretchRect_SamplerState[ 0 ] ) ;
 			if( hr != S_OK )
 			{
-				DXST_LOGFILEFMT_ADDUTF16LE(( "\x00\x67\xd1\x8f\xb9\x70\xb5\x30\xf3\x30\xd7\x30\xea\x30\xf3\x30\xb0\x30\x58\x53\x14\x7d\xe2\x8e\x01\x90\x28\x75\x6e\x30\x20\x00\x49\x00\x44\x00\x33\x00\x44\x00\x31\x00\x31\x00\x53\x00\x61\x00\x6d\x00\x70\x00\x6c\x00\x65\x00\x72\x00\x53\x00\x74\x00\x61\x00\x74\x00\x65\x00\x20\x00\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Å‹ß“_ƒTƒ“ƒvƒŠƒ“ƒO’Pƒ“]‘——p‚Ì ID3D11SamplerState ‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ )) ;
+				DXST_LOGFILEFMT_ADDUTF16LE(( "\x00\x67\xd1\x8f\xb9\x70\xb5\x30\xf3\x30\xd7\x30\xea\x30\xf3\x30\xb0\x30\x58\x53\x14\x7d\xe2\x8e\x01\x90\x28\x75\x6e\x30\x20\x00\x49\x00\x44\x00\x33\x00\x44\x00\x31\x00\x31\x00\x53\x00\x61\x00\x6d\x00\x70\x00\x6c\x00\x65\x00\x72\x00\x53\x00\x74\x00\x61\x00\x74\x00\x65\x00\x20\x00\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"æœ€è¿‘ç‚¹ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°å˜ç´”è»¢é€ç”¨ã® ID3D11SamplerState ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ )) ;
 				return -1 ;
 			}
 		}
@@ -6495,7 +6495,7 @@ extern int Graphics_D3D11_StretchRect_Initialize( void )
 			hr = D3D11Device_CreateSamplerState( &SamplerDesc, &GD3D11.Device.Shader.Base.StretchRect_SamplerState[ 1 ] ) ;
 			if( hr != S_OK )
 			{
-				DXST_LOGFILEFMT_ADDUTF16LE(( "\xd0\x30\xa4\x30\xea\x30\xcb\x30\xa2\x30\xdc\x88\x93\x95\x58\x53\x14\x7d\xe2\x8e\x01\x90\x28\x75\x6e\x30\x20\x00\x49\x00\x44\x00\x33\x00\x44\x00\x31\x00\x31\x00\x53\x00\x61\x00\x6d\x00\x70\x00\x6c\x00\x65\x00\x72\x00\x53\x00\x74\x00\x61\x00\x74\x00\x65\x00\x20\x00\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ƒoƒCƒŠƒjƒA•âŠÔ’Pƒ“]‘——p‚Ì ID3D11SamplerState ‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ )) ;
+				DXST_LOGFILEFMT_ADDUTF16LE(( "\xd0\x30\xa4\x30\xea\x30\xcb\x30\xa2\x30\xdc\x88\x93\x95\x58\x53\x14\x7d\xe2\x8e\x01\x90\x28\x75\x6e\x30\x20\x00\x49\x00\x44\x00\x33\x00\x44\x00\x31\x00\x31\x00\x53\x00\x61\x00\x6d\x00\x70\x00\x6c\x00\x65\x00\x72\x00\x53\x00\x74\x00\x61\x00\x74\x00\x65\x00\x20\x00\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ãƒã‚¤ãƒªãƒ‹ã‚¢è£œé–“å˜ç´”è»¢é€ç”¨ã® ID3D11SamplerState ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ )) ;
 				return -1 ;
 			}
 		}
@@ -6509,13 +6509,13 @@ extern int Graphics_D3D11_StretchRect_Initialize( void )
 			hr = D3D11Device_CreateSamplerState( &SamplerDesc, &GD3D11.Device.Shader.Base.StretchRect_SamplerState[ 2 ] ) ;
 			if( hr != S_OK )
 			{
-				DXST_LOGFILEFMT_ADDUTF16LE(( "\x00\x67\xd1\x8f\xb9\x70\xb5\x30\xf3\x30\xd7\x30\xea\x30\xf3\x30\xb0\x30\xca\x53\x73\x30\x57\x00\x52\x00\x41\x00\x50\x00\x58\x53\x14\x7d\xe2\x8e\x01\x90\x28\x75\x6e\x30\x20\x00\x49\x00\x44\x00\x33\x00\x44\x00\x31\x00\x31\x00\x53\x00\x61\x00\x6d\x00\x70\x00\x6c\x00\x65\x00\x72\x00\x53\x00\x74\x00\x61\x00\x74\x00\x65\x00\x20\x00\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Å‹ß“_ƒTƒ“ƒvƒŠƒ“ƒO‹y‚ÑWRAP’Pƒ“]‘——p‚Ì ID3D11SamplerState ‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ )) ;
+				DXST_LOGFILEFMT_ADDUTF16LE(( "\x00\x67\xd1\x8f\xb9\x70\xb5\x30\xf3\x30\xd7\x30\xea\x30\xf3\x30\xb0\x30\xca\x53\x73\x30\x57\x00\x52\x00\x41\x00\x50\x00\x58\x53\x14\x7d\xe2\x8e\x01\x90\x28\x75\x6e\x30\x20\x00\x49\x00\x44\x00\x33\x00\x44\x00\x31\x00\x31\x00\x53\x00\x61\x00\x6d\x00\x70\x00\x6c\x00\x65\x00\x72\x00\x53\x00\x74\x00\x61\x00\x74\x00\x65\x00\x20\x00\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"æœ€è¿‘ç‚¹ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°åŠã³WRAPå˜ç´”è»¢é€ç”¨ã® ID3D11SamplerState ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ )) ;
 				return -1 ;
 			}
 		}
 	}
 
-	// ƒ‰ƒXƒ^ƒ‰ƒCƒU[ƒXƒe[ƒg‚Ìì¬
+	// ãƒ©ã‚¹ã‚¿ãƒ©ã‚¤ã‚¶ãƒ¼ã‚¹ãƒ†ãƒ¼ãƒˆã®ä½œæˆ
 	if( GD3D11.Device.Shader.Base.StretchRect_RasterizerState == NULL )
 	{
 		static D_D3D11_RASTERIZER_DESC RasterizerDesc =
@@ -6535,12 +6535,12 @@ extern int Graphics_D3D11_StretchRect_Initialize( void )
 		hr = D3D11Device_CreateRasterizerState( &RasterizerDesc, &GD3D11.Device.Shader.Base.StretchRect_RasterizerState ) ;
 		if( hr != S_OK )
 		{
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\x58\x53\x14\x7d\xe2\x8e\x01\x90\x28\x75\x6e\x30\x20\x00\x49\x00\x44\x00\x33\x00\x44\x00\x31\x00\x31\x00\x52\x00\x61\x00\x73\x00\x74\x00\x65\x00\x72\x00\x69\x00\x7a\x00\x65\x00\x72\x00\x53\x00\x74\x00\x61\x00\x74\x00\x65\x00\x20\x00\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"’Pƒ“]‘——p‚Ì ID3D11RasterizerState ‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ )) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\x58\x53\x14\x7d\xe2\x8e\x01\x90\x28\x75\x6e\x30\x20\x00\x49\x00\x44\x00\x33\x00\x44\x00\x31\x00\x31\x00\x52\x00\x61\x00\x73\x00\x74\x00\x65\x00\x72\x00\x69\x00\x7a\x00\x65\x00\x72\x00\x53\x00\x74\x00\x61\x00\x74\x00\x65\x00\x20\x00\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"å˜ç´”è»¢é€ç”¨ã® ID3D11RasterizerState ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ )) ;
 			return -1 ;
 		}
 	}
 
-	// [“xƒXƒeƒ“ƒVƒ‹ƒXƒe[ƒg‚Ìì¬
+	// æ·±åº¦ã‚¹ãƒ†ãƒ³ã‚·ãƒ«ã‚¹ãƒ†ãƒ¼ãƒˆã®ä½œæˆ
 	if( GD3D11.Device.Shader.Base.StretchRect_DepthStencilState == NULL )
 	{
 		static D_D3D11_DEPTH_STENCIL_DESC DepthStencilDesc =
@@ -6565,22 +6565,22 @@ extern int Graphics_D3D11_StretchRect_Initialize( void )
 			}
 		} ;
 
-		// ‚æ‚­g‚¤İ’è‚Ì[“xƒXƒeƒ“ƒVƒ‹ƒXƒe[ƒg‚Å‚Í‚È‚¢ê‡‚Í‚±‚±‚Å[“xƒXƒeƒ“ƒVƒ‹ƒXƒe[ƒg‚ğì¬‚·‚é
+		// ã‚ˆãä½¿ã†è¨­å®šã®æ·±åº¦ã‚¹ãƒ†ãƒ³ã‚·ãƒ«ã‚¹ãƒ†ãƒ¼ãƒˆã§ã¯ãªã„å ´åˆã¯ã“ã“ã§æ·±åº¦ã‚¹ãƒ†ãƒ³ã‚·ãƒ«ã‚¹ãƒ†ãƒ¼ãƒˆã‚’ä½œæˆã™ã‚‹
 		hr = D3D11Device_CreateDepthStencilState( &DepthStencilDesc, &GD3D11.Device.Shader.Base.StretchRect_DepthStencilState ) ;
 		if( hr != S_OK )
 		{
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\x58\x53\x14\x7d\xe2\x8e\x01\x90\x28\x75\x6e\x30\x20\x00\x49\x00\x44\x00\x33\x00\x44\x00\x31\x00\x31\x00\x44\x00\x65\x00\x70\x00\x74\x00\x68\x00\x53\x00\x74\x00\x65\x00\x6e\x00\x63\x00\x69\x00\x6c\x00\x53\x00\x74\x00\x61\x00\x74\x00\x65\x00\x20\x00\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"’Pƒ“]‘——p‚Ì ID3D11DepthStencilState ‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ )) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\x58\x53\x14\x7d\xe2\x8e\x01\x90\x28\x75\x6e\x30\x20\x00\x49\x00\x44\x00\x33\x00\x44\x00\x31\x00\x31\x00\x44\x00\x65\x00\x70\x00\x74\x00\x68\x00\x53\x00\x74\x00\x65\x00\x6e\x00\x63\x00\x69\x00\x6c\x00\x53\x00\x74\x00\x61\x00\x74\x00\x65\x00\x20\x00\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"å˜ç´”è»¢é€ç”¨ã® ID3D11DepthStencilState ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ )) ;
 			return -1 ;
 		}
 	}
 
-	DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"¬Œ÷\n" @*/ ) ;
+	DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"æˆåŠŸ\n" @*/ ) ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// ’Pƒ“]‘—ˆ—‚ÌŒãn––‚ğs‚¤
+// å˜ç´”è»¢é€å‡¦ç†ã®å¾Œå§‹æœ«ã‚’è¡Œã†
 extern int Graphics_D3D11_StretchRect_Terminate( void )
 {
 	int i ;
@@ -6615,11 +6615,11 @@ extern int Graphics_D3D11_StretchRect_Terminate( void )
 		}
 	}
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// ƒŒƒ“ƒ_[ƒ^[ƒQƒbƒgƒeƒNƒXƒ`ƒƒ‚ÉƒeƒNƒXƒ`ƒƒ‚Ì’Pƒ“]‘—‚ğs‚¤
+// ãƒ¬ãƒ³ãƒ€ãƒ¼ã‚¿ãƒ¼ã‚²ãƒƒãƒˆãƒ†ã‚¯ã‚¹ãƒãƒ£ã«ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®å˜ç´”è»¢é€ã‚’è¡Œã†
 extern int		Graphics_D3D11_StretchRect(
 	D_ID3D11Texture2D *SrcTexture,  D_ID3D11ShaderResourceView *SrcTextureSRV,  const RECT *SrcRect,
 	D_ID3D11Texture2D *DestTexture, D_ID3D11RenderTargetView   *DestTextureRTV, const RECT *DestRect,
@@ -6651,7 +6651,7 @@ extern int		Graphics_D3D11_StretchRect(
 
 	DRAWSTOCKINFO
 
-	// ƒeƒNƒXƒ`ƒƒî•ñ‚ğæ“¾
+	// ãƒ†ã‚¯ã‚¹ãƒãƒ£æƒ…å ±ã‚’å–å¾—
 	SrcTexture->GetDesc(  &SrcDesc  ) ;
 	DestTexture->GetDesc( &DestDesc ) ;
 	if( BlendTexture != NULL )
@@ -6679,7 +6679,7 @@ extern int		Graphics_D3D11_StretchRect(
 		DestRect = &DestRectTemp ;
 	}
 
-	// ’¸“_ƒf[ƒ^‚ğ€”õ
+	// é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ã‚’æº–å‚™
 	if( Texcoord8Vertex == NULL )
 	{
 		DestRectF.left   =     ( float )DestRect->left   / DestDesc.Width  * 2.0f - 1.0f   ;
@@ -6818,10 +6818,10 @@ extern int		Graphics_D3D11_StretchRect(
 		0
 	) ;
 
-	// ƒŒƒ“ƒ_ƒŠƒ“ƒOƒ^[ƒQƒbƒg‚ÌƒZƒbƒg
+	// ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã®ã‚»ãƒƒãƒˆ
 	D3D11DeviceContext_OMSetRenderTargets( 1, &DestTextureRTV, NULL ) ;
 
-	// ƒVƒF[ƒ_[ƒŠƒ\[ƒXƒrƒ…[‚ğƒZƒbƒg
+	// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒªã‚½ãƒ¼ã‚¹ãƒ“ãƒ¥ãƒ¼ã‚’ã‚»ãƒƒãƒˆ
 	D3D11DeviceContext_PSSetShaderResources( 0, 1, &SrcTextureSRV ) ;
 	if( BlendTextureSRV != NULL )
 	{
@@ -6832,7 +6832,7 @@ extern int		Graphics_D3D11_StretchRect(
 		D3D11DeviceContext_PSSetShaderResources( 2, 1, &SubTextureSRV ) ;
 	}
 
-	// ƒrƒ…[ƒ|[ƒg‚ÌƒZƒbƒg
+	// ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆã®ã‚»ãƒƒãƒˆ
 	Viewport.TopLeftX = 0.0f ;
 	Viewport.TopLeftY = 0.0f ;
 	Viewport.Width    = ( float )DestDesc.Width ;
@@ -6841,7 +6841,7 @@ extern int		Graphics_D3D11_StretchRect(
 	Viewport.MaxDepth = 1.0f ;
 	D3D11DeviceContext_RSSetViewports( 1, &Viewport ) ;
 
-	// ƒTƒ“ƒvƒ‰[ƒXƒe[ƒg‚ğƒZƒbƒg
+	// ã‚µãƒ³ãƒ—ãƒ©ãƒ¼ã‚¹ãƒ†ãƒ¼ãƒˆã‚’ã‚»ãƒƒãƒˆ
 	D3D11DeviceContext_PSSetSamplers( 0, 1, &GD3D11.Device.Shader.Base.StretchRect_SamplerState[ FilterType == D_D3D11_FILTER_TYPE_POINT ? 0 : 1 ] ) ;
 	if( BlendTexture != NULL )
 	{
@@ -6852,74 +6852,74 @@ extern int		Graphics_D3D11_StretchRect(
 		D3D11DeviceContext_PSSetSamplers( 2, 1, &GD3D11.Device.Shader.Base.StretchRect_SamplerState[ IsSubTextureWrap ? 2 : ( FilterType == D_D3D11_FILTER_TYPE_POINT ? 0 : 1 ) ] ) ;
 	}
 
-	// ƒ‰ƒXƒ^ƒ‰ƒCƒU[ƒXƒe[ƒg‚ğƒZƒbƒg
+	// ãƒ©ã‚¹ã‚¿ãƒ©ã‚¤ã‚¶ãƒ¼ã‚¹ãƒ†ãƒ¼ãƒˆã‚’ã‚»ãƒƒãƒˆ
 	D3D11DeviceContext_RSSetState( GD3D11.Device.Shader.Base.StretchRect_RasterizerState ) ;
 
-	// [“xƒXƒeƒ“ƒVƒ‹ƒXƒe[ƒg‚ğƒZƒbƒg
+	// æ·±åº¦ã‚¹ãƒ†ãƒ³ã‚·ãƒ«ã‚¹ãƒ†ãƒ¼ãƒˆã‚’ã‚»ãƒƒãƒˆ
 	D3D11DeviceContext_OMSetDepthStencilState( GD3D11.Device.Shader.Base.StretchRect_DepthStencilState, 0 ) ;
 
-	// ƒuƒŒƒ“ƒhƒXƒe[ƒg‚ğƒZƒbƒg
+	// ãƒ–ãƒ¬ãƒ³ãƒ‰ã‚¹ãƒ†ãƒ¼ãƒˆã‚’ã‚»ãƒƒãƒˆ
 	D3D11DeviceContext_OMSetBlendState( GD3D11.Device.Shader.Base.StretchRect_BlendState[ AlphaBlend ? 1 : 0 ], BlendFactor, 0xffffffff ) ;
 
-	// ƒvƒŠƒ~ƒeƒBƒuƒ^ƒCƒv‚ğƒZƒbƒg
+	// ãƒ—ãƒªãƒŸãƒ†ã‚£ãƒ–ã‚¿ã‚¤ãƒ—ã‚’ã‚»ãƒƒãƒˆ
 	D3D11DeviceContext_IASetPrimitiveTopology( D_D3D11_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP ) ;
 
-	// “ü—ÍƒŒƒCƒAƒEƒg‚ğƒZƒbƒg
+	// å…¥åŠ›ãƒ¬ã‚¤ã‚¢ã‚¦ãƒˆã‚’ã‚»ãƒƒãƒˆ
 	D3D11DeviceContext_IASetInputLayout( Texcoord8Vertex != NULL ? GD3D11.Device.InputLayout.BaseStretchRectTex8InputLayout : GD3D11.Device.InputLayout.BaseStretchRectInputLayout ) ;
 
-	// ƒsƒNƒZƒ‹ƒVƒF[ƒ_[‚ğƒZƒbƒg
+	// ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ã‚»ãƒƒãƒˆ
 	D3D11DeviceContext_PSSetShader( PixelShader  != NULL ? PixelShader  : GD3D11.Device.Shader.Base.StretchRect_PS, NULL, 0 ) ;
 
-	// ’¸“_ƒVƒF[ƒ_[‚ğƒZƒbƒg
+	// é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ã‚»ãƒƒãƒˆ
 	D3D11DeviceContext_VSSetShader( VertexShader != NULL ? VertexShader : ( Texcoord8Vertex != NULL ? GD3D11.Device.Shader.Base.StretchRectTex8_VS : GD3D11.Device.Shader.Base.StretchRect_VS ), NULL, 0 ) ;
 
-	// ƒWƒIƒƒgƒŠƒVƒF[ƒ_[‚ğƒZƒbƒg
+	// ã‚¸ã‚ªãƒ¡ãƒˆãƒªã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ã‚»ãƒƒãƒˆ
 	if( GD3D11.Device.State.SetGeometryShader != NULL )
 	{
 		D3D11DeviceContext_GSSetShader( NULL, NULL, 0 ) ;
 	}
 
-	// ’¸“_ƒoƒbƒtƒ@‚ğƒZƒbƒg
+	// é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã‚’ã‚»ãƒƒãƒˆ
 	VertexStride = Texcoord8Vertex != NULL ? sizeof( VertexDataTex8[ 0 ] ) : sizeof( VertexData[ 0 ] ) ;
 	D3D11DeviceContext_IASetVertexBuffers( 0, 1, &GD3D11.Device.DrawInfo.CommonVertexBuffer, &VertexStride, &Offsets ) ;
 
 
-	// •`‰æ
+	// æç”»
 	D3D11DeviceContext_Draw( 4, 0 ) ;
 	GSYS.PerformanceInfo.NowFrameDrawCallCount ++ ;
 
 
-	// ’¸“_ƒoƒbƒtƒ@İ’è‚ğ•œ‹A
+	// é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡è¨­å®šã‚’å¾©å¸°
 	D3D11DeviceContext_IASetVertexBuffers( 0, 1, &GD3D11.Device.State.SetVertexBuffer, ( UINT * )&GD3D11.Device.State.SetVertexBufferStride, &Offsets ) ;
 
-	// ƒZƒbƒg‚·‚é’¸“_ƒVƒF[ƒ_[‚ğ•œ‹A
+	// ã‚»ãƒƒãƒˆã™ã‚‹é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’å¾©å¸°
 	D3D11DeviceContext_VSSetShader( GD3D11.Device.State.SetVertexShader, NULL, 0 ) ;
 
-	// ƒZƒbƒg‚·‚éƒsƒNƒZƒ‹ƒVƒF[ƒ_[‚ğ•œ‹A
+	// ã‚»ãƒƒãƒˆã™ã‚‹ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’å¾©å¸°
 	D3D11DeviceContext_PSSetShader( GD3D11.Device.State.SetPixelShader, NULL, 0 ) ;
 
-	// ƒZƒbƒg‚·‚éƒWƒIƒƒgƒŠƒVƒF[ƒ_[‚ğ•œ‹A
+	// ã‚»ãƒƒãƒˆã™ã‚‹ã‚¸ã‚ªãƒ¡ãƒˆãƒªã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’å¾©å¸°
 	if( GD3D11.Device.State.SetGeometryShader != NULL )
 	{
 		D3D11DeviceContext_GSSetShader( GD3D11.Device.State.SetGeometryShader, NULL, 0 ) ;
 	}
 
-	// “ü—ÍƒŒƒCƒAƒEƒgİ’è‚ğ•œ‹A
+	// å…¥åŠ›ãƒ¬ã‚¤ã‚¢ã‚¦ãƒˆè¨­å®šã‚’å¾©å¸°
 	D3D11DeviceContext_IASetInputLayout( GD3D11.Device.State.SetVertexInputLayout ) ;
 
-	// ƒvƒŠƒ~ƒeƒBƒuƒ^ƒCƒvİ’è‚Ì•œ‹A
+	// ãƒ—ãƒªãƒŸãƒ†ã‚£ãƒ–ã‚¿ã‚¤ãƒ—è¨­å®šã®å¾©å¸°
 	D3D11DeviceContext_IASetPrimitiveTopology( GD3D11.Device.State.PrimitiveTopology ) ;
 
-	// ƒZƒbƒg‚·‚éƒuƒŒƒ“ƒhƒXƒe[ƒg•œ‹A
+	// ã‚»ãƒƒãƒˆã™ã‚‹ãƒ–ãƒ¬ãƒ³ãƒ‰ã‚¹ãƒ†ãƒ¼ãƒˆå¾©å¸°
 	D3D11DeviceContext_OMSetBlendState( GD3D11.Device.State.BlendState, BlendFactor, 0xffffffff ) ;
 
-	// ƒZƒbƒg‚·‚é[“xƒXƒeƒ“ƒVƒ‹ƒXƒe[ƒg‚ğ•œ‹A
+	// ã‚»ãƒƒãƒˆã™ã‚‹æ·±åº¦ã‚¹ãƒ†ãƒ³ã‚·ãƒ«ã‚¹ãƒ†ãƒ¼ãƒˆã‚’å¾©å¸°
 	D3D11DeviceContext_OMSetDepthStencilState( GD3D11.Device.State.DepthStencilState, 0 ) ;
 
-	// ƒZƒbƒg‚·‚éƒ‰ƒXƒ^ƒ‰ƒCƒU[ƒXƒe[ƒg‚ğ•œ‹A
+	// ã‚»ãƒƒãƒˆã™ã‚‹ãƒ©ã‚¹ã‚¿ãƒ©ã‚¤ã‚¶ãƒ¼ã‚¹ãƒ†ãƒ¼ãƒˆã‚’å¾©å¸°
 	D3D11DeviceContext_RSSetState( GD3D11.Device.State.RasterizerState ) ;
 
-	// ƒZƒbƒg‚·‚éƒTƒ“ƒvƒ‰[ƒXƒe[ƒg‚ğ•œ‹A
+	// ã‚»ãƒƒãƒˆã™ã‚‹ã‚µãƒ³ãƒ—ãƒ©ãƒ¼ã‚¹ãƒ†ãƒ¼ãƒˆã‚’å¾©å¸°
 	D3D11DeviceContext_PSSetSamplers( 0, 1, &GD3D11.Device.State.SamplerState[ 0 ] ) ;
 	if( BlendTexture != NULL )
 	{
@@ -6930,13 +6930,13 @@ extern int		Graphics_D3D11_StretchRect(
 		D3D11DeviceContext_PSSetSamplers( 2, 1, &GD3D11.Device.State.SamplerState[ 2 ] ) ;
 	}
 
-	// ƒZƒbƒg‚·‚éƒŒƒ“ƒ_ƒŠƒ“ƒOƒ^[ƒQƒbƒg‚Ì•œ‹A
+	// ã‚»ãƒƒãƒˆã™ã‚‹ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã®å¾©å¸°
 	Graphics_D3D11_DeviceState_SetRenderTarget_SizeCheck() ;
 
-	// ƒrƒ…[ƒ|[ƒgİ’è‚Ì•œ‹A
+	// ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆè¨­å®šã®å¾©å¸°
 	D3D11DeviceContext_RSSetViewports( 1, &GD3D11.Device.State.Viewport ) ;
 
-	// ƒZƒbƒg‚·‚éƒVƒF[ƒ_[ƒŠƒ\[ƒXƒrƒ…[‚ğ•œ‹A
+	// ã‚»ãƒƒãƒˆã™ã‚‹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒªã‚½ãƒ¼ã‚¹ãƒ“ãƒ¥ãƒ¼ã‚’å¾©å¸°
 	D3D11DeviceContext_PSSetShaderResources( 0, 1, &GD3D11.Device.State.PSSetShaderResourceView[ 0 ] ) ;
 	if( BlendTextureSRV != NULL )
 	{
@@ -6950,13 +6950,13 @@ extern int		Graphics_D3D11_StretchRect(
 	return 0 ;
 }
 
-// w’è‚ÌƒeƒNƒXƒ`ƒƒ‚Ì“à—e‚É“Ç‚İ‚İƒAƒNƒZƒX‚Å‚«‚é‚æ‚¤‚É‚·‚é
+// æŒ‡å®šã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®å†…å®¹ã«èª­ã¿è¾¼ã¿ã‚¢ã‚¯ã‚»ã‚¹ã§ãã‚‹ã‚ˆã†ã«ã™ã‚‹
 extern	int		Graphics_D3D11_Texture2D_Map(
 	D_ID3D11Texture2D *				TargetTexture,
 	D_ID3D11ShaderResourceView *	/*TargetTextureSRV*/,
 	int								TargetTextureArraySlice,
 	int								TargetTextureMipSlice,
-	const RECT *					MapRect /* NULL ‚Å‘S‘Ì */,
+	const RECT *					MapRect /* NULL ã§å…¨ä½“ */,
 	BASEIMAGE *						MapBaseImage,
 	D_ID3D11Texture2D **			MapTempTexture
 )
@@ -6975,10 +6975,10 @@ extern	int		Graphics_D3D11_Texture2D_Map(
 	int								Height ;
 	HRESULT							hr ;
 
-	// •`‰æ‘Ò‹@‚µ‚Ä‚¢‚é•`‰æ•¨‚ğ•`‰æ
+	// æç”»å¾…æ©Ÿã—ã¦ã„ã‚‹æç”»ç‰©ã‚’æç”»
 	DRAWSTOCKINFO
 
-	// î•ñ‚ğæ“¾
+	// æƒ…å ±ã‚’å–å¾—
 	TargetTexture->GetDesc( &TargetTexture2DDesc ) ;
 	TargetColorData = Graphics_D3D11_GetD3DFormatColorData( TargetTexture2DDesc.Format ) ;
 
@@ -7006,8 +7006,8 @@ extern	int		Graphics_D3D11_Texture2D_Map(
 
 	*MapTempTexture = NULL ;
 
-	// ƒƒbƒN‘ÎÛ‚ªƒ}ƒ‹ƒ`ƒTƒ“ƒvƒ‹‘Î‰‚©A”z—ñƒeƒNƒXƒ`ƒƒ(ƒLƒ…[ƒuƒ}ƒbƒv‚È‚Ç)‚©A
-	// ƒ~ƒbƒvƒ}ƒbƒv•t‚«‚Ìê‡‚Í“¯ƒTƒCƒY‚Ìƒ~ƒbƒvƒ}ƒbƒv‚È‚µ”ñƒ}ƒ‹ƒ`ƒTƒ“ƒvƒ‹ƒeƒNƒXƒ`ƒƒ‚É“]‘—
+	// ãƒ­ãƒƒã‚¯å¯¾è±¡ãŒãƒãƒ«ãƒã‚µãƒ³ãƒ—ãƒ«å¯¾å¿œã‹ã€é…åˆ—ãƒ†ã‚¯ã‚¹ãƒãƒ£(ã‚­ãƒ¥ãƒ¼ãƒ–ãƒãƒƒãƒ—ãªã©)ã‹ã€
+	// ãƒŸãƒƒãƒ—ãƒãƒƒãƒ—ä»˜ãã®å ´åˆã¯åŒã‚µã‚¤ã‚ºã®ãƒŸãƒƒãƒ—ãƒãƒƒãƒ—ãªã—éãƒãƒ«ãƒã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚¯ã‚¹ãƒãƒ£ã«è»¢é€
 	if( TargetTexture2DDesc.SampleDesc.Count != 1 ||
 		TargetTexture2DDesc.MipLevels        != 1 ||
 		TargetTexture2DDesc.ArraySize        != 1 )
@@ -7026,11 +7026,11 @@ extern	int		Graphics_D3D11_Texture2D_Map(
 		hr = D3D11Device_CreateTexture2D_ASync( &Texture2DDesc, NULL, &DownSampleTexture ) ;
 		if( FAILED( hr ) )
 		{
-			DXST_LOGFILE_ADDUTF16LE( "\xc0\x30\xa6\x30\xf3\x30\xb5\x30\xf3\x30\xd7\x30\xea\x30\xf3\x30\xb0\x30\x28\x75\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ƒ_ƒEƒ“ƒTƒ“ƒvƒŠƒ“ƒO—pƒeƒNƒXƒ`ƒƒ‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+			DXST_LOGFILE_ADDUTF16LE( "\xc0\x30\xa6\x30\xf3\x30\xb5\x30\xf3\x30\xd7\x30\xea\x30\xf3\x30\xb0\x30\x28\x75\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ãƒ€ã‚¦ãƒ³ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ç”¨ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 			goto ERR ;
 		}
 
-		// “]‘—
+		// è»¢é€
 		D3D11DeviceContext_ResolveSubresource(
 			DownSampleTexture,
 			D_D3D11CalcSubresource( 0, 0, 1 ),
@@ -7045,11 +7045,11 @@ extern	int		Graphics_D3D11_Texture2D_Map(
 //		hr = D3D11Device_CreateRenderTargetView( DrawValidTexture, &RTVDesc, &DrawValidTextureRTV ) ;
 //		if( FAILED( hr ) )
 //		{
-//			DXST_LOGFILEFMT_ADDUTF16LE(( "\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\xfc\x30\xde\x30\xc3\x30\xd7\x30\x28\x75\xcf\x63\x3b\x75\xef\x53\xfd\x80\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\x28\x75\xec\x30\xf3\x30\xc0\x30\xfc\x30\xbf\x30\xfc\x30\xb2\x30\xc3\x30\xc8\x30\xd3\x30\xe5\x30\xfc\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"ƒeƒNƒXƒ`ƒƒ[ƒ}ƒbƒv—p•`‰æ‰Â”\ƒeƒNƒXƒ`ƒƒ—pƒŒƒ“ƒ_[ƒ^[ƒQƒbƒgƒrƒ…[‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½" @*/ )) ;
+//			DXST_LOGFILEFMT_ADDUTF16LE(( "\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\xfc\x30\xde\x30\xc3\x30\xd7\x30\x28\x75\xcf\x63\x3b\x75\xef\x53\xfd\x80\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\x28\x75\xec\x30\xf3\x30\xc0\x30\xfc\x30\xbf\x30\xfc\x30\xb2\x30\xc3\x30\xc8\x30\xd3\x30\xe5\x30\xfc\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ãƒãƒƒãƒ—ç”¨æç”»å¯èƒ½ãƒ†ã‚¯ã‚¹ãƒãƒ£ç”¨ãƒ¬ãƒ³ãƒ€ãƒ¼ã‚¿ãƒ¼ã‚²ãƒƒãƒˆãƒ“ãƒ¥ãƒ¼ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ" @*/ )) ;
 //			goto ERR ;
 //		}
 //
-//		// “]‘—
+//		// è»¢é€
 //		Graphics_D3D11_StretchRect(
 //			TargetTexture,    TargetTextureSRV,    NULL,
 //			DrawValidTexture, DrawValidTextureRTV, NULL,
@@ -7057,7 +7057,7 @@ extern	int		Graphics_D3D11_Texture2D_Map(
 //		) ;
 	}
 
-	// “]‘——pƒeƒNƒXƒ`ƒƒ‚É•`‰æ‘ÎÛ‰æ‘œ‚ğ“]‘—
+	// è»¢é€ç”¨ãƒ†ã‚¯ã‚¹ãƒãƒ£ã«æç”»å¯¾è±¡ç”»åƒã‚’è»¢é€
 	{
 		_MEMSET( &Texture2DDesc, 0, sizeof( Texture2DDesc ) ) ;
 		Texture2DDesc.Usage              = D_D3D11_USAGE_STAGING ;
@@ -7073,36 +7073,36 @@ extern	int		Graphics_D3D11_Texture2D_Map(
 		hr = D3D11Device_CreateTexture2D_ASync( &Texture2DDesc, NULL, MapTempTexture ) ;
 		if( FAILED( hr ) )
 		{
-			DXST_LOGFILE_ADDUTF16LE( "\xcf\x63\x3b\x75\xfe\x5b\x61\x8c\xd0\x30\xc3\x30\xd5\x30\xa1\x30\xad\x8a\x7f\x30\xd6\x53\x8a\x30\x28\x75\x6e\x30\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"•`‰æ‘ÎÛƒoƒbƒtƒ@“Ç‚İæ‚è—p‚ÌƒeƒNƒXƒ`ƒƒ‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+			DXST_LOGFILE_ADDUTF16LE( "\xcf\x63\x3b\x75\xfe\x5b\x61\x8c\xd0\x30\xc3\x30\xd5\x30\xa1\x30\xad\x8a\x7f\x30\xd6\x53\x8a\x30\x28\x75\x6e\x30\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"æç”»å¯¾è±¡ãƒãƒƒãƒ•ã‚¡èª­ã¿å–ã‚Šç”¨ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 			goto ERR ;
 		}
 
 		D3D11DeviceContext_CopyResource( *MapTempTexture, DownSampleTexture ? DownSampleTexture : TargetTexture ) ;
 
-		// ƒ}ƒbƒv
+		// ãƒãƒƒãƒ—
 		hr = D3D11DeviceContext_Map( *MapTempTexture, D_D3D11CalcSubresource( 0, 0, 1 ), D_D3D11_MAP_READ, 0, &MappedSubresource ) ;
 		if( FAILED( hr ) )
 		{
-			DXST_LOGFILE_ADDUTF16LE( "\xcf\x63\x3b\x75\xfe\x5b\x61\x8c\xd0\x30\xc3\x30\xd5\x30\xa1\x30\xad\x8a\x7f\x30\xd6\x53\x8a\x30\x28\x75\x6e\x30\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\x6e\x30\xde\x30\xc3\x30\xd4\x30\xf3\x30\xb0\x30\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"•`‰æ‘ÎÛƒoƒbƒtƒ@“Ç‚İæ‚è—p‚ÌƒeƒNƒXƒ`ƒƒ‚Ìƒ}ƒbƒsƒ“ƒO‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+			DXST_LOGFILE_ADDUTF16LE( "\xcf\x63\x3b\x75\xfe\x5b\x61\x8c\xd0\x30\xc3\x30\xd5\x30\xa1\x30\xad\x8a\x7f\x30\xd6\x53\x8a\x30\x28\x75\x6e\x30\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\x6e\x30\xde\x30\xc3\x30\xd4\x30\xf3\x30\xb0\x30\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"æç”»å¯¾è±¡ãƒãƒƒãƒ•ã‚¡èª­ã¿å–ã‚Šç”¨ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ãƒãƒƒãƒ”ãƒ³ã‚°ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 			goto ERR ;
 		}
 	}
 
-//	// •`‰æ—pƒeƒNƒXƒ`ƒƒ‚ğg—p‚µ‚½ê‡‚Í‚±‚±‚Å‰ğ•ú
+//	// æç”»ç”¨ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ä½¿ç”¨ã—ãŸå ´åˆã¯ã“ã“ã§è§£æ”¾
 //	if( DrawValidTextureRTV != NULL )
 //	{
 //		Direct3D11_Release_RenderTargetView( DrawValidTextureRTV ) ;
 //		DrawValidTextureRTV = NULL ;
 //	}
 
-	// ƒ_ƒEƒ“ƒTƒ“ƒvƒŠƒ“ƒO—pƒeƒNƒXƒ`ƒƒ‚ğg—p‚µ‚½ê‡‚Í‚±‚±‚Å‰ğ•ú
+	// ãƒ€ã‚¦ãƒ³ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ç”¨ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ä½¿ç”¨ã—ãŸå ´åˆã¯ã“ã“ã§è§£æ”¾
 	if( DownSampleTexture != NULL )
 	{
 		Direct3D11_Release_Texture2D( DownSampleTexture ) ;
 		DownSampleTexture = NULL ;
 	}
 
-	// Šî–{ƒCƒ[ƒW\‘¢‘Ì‚Ìƒf[ƒ^‚ÉƒZƒbƒg
+	// åŸºæœ¬ã‚¤ãƒ¡ãƒ¼ã‚¸æ§‹é€ ä½“ã®ãƒ‡ãƒ¼ã‚¿ã«ã‚»ãƒƒãƒˆ
 	MapBaseImage->ColorData      = *TargetColorData ;
 	MapBaseImage->Width          = Width ;
 	MapBaseImage->Height         = Height ;
@@ -7111,10 +7111,10 @@ extern	int		Graphics_D3D11_Texture2D_Map(
 	MapBaseImage->MipMapCount    = 0 ;
 	MapBaseImage->GraphDataCount = 0 ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 
-	// ƒGƒ‰[ˆ—
+	// ã‚¨ãƒ©ãƒ¼å‡¦ç†
 ERR :
 
 	if( *MapTempTexture != NULL )
@@ -7135,11 +7135,11 @@ ERR :
 		DownSampleTexture = NULL ;
 	}
 
-	// ƒGƒ‰[I—¹
+	// ã‚¨ãƒ©ãƒ¼çµ‚äº†
 	return -1 ;
 }
 
-// w’è‚ÌƒeƒNƒXƒ`ƒƒ‚Ì“à—e‚Ö‚Ì“Ç‚İ‚İƒAƒNƒZƒX‚ğI—¹‚·‚é
+// æŒ‡å®šã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®å†…å®¹ã¸ã®èª­ã¿è¾¼ã¿ã‚¢ã‚¯ã‚»ã‚¹ã‚’çµ‚äº†ã™ã‚‹
 extern	int		Graphics_D3D11_Texture2D_Unmap( D_ID3D11Texture2D *MapTempTexture )
 {
 	if( MapTempTexture != NULL )
@@ -7148,7 +7148,7 @@ extern	int		Graphics_D3D11_Texture2D_Unmap( D_ID3D11Texture2D *MapTempTexture )
 		MapTempTexture = NULL ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
@@ -7196,46 +7196,46 @@ extern	int		Graphics_D3D11_Texture2D_Unmap( D_ID3D11Texture2D *MapTempTexture )
 
 
 
-// D3D11Device ‚Ì‰Šú‰»ŠÖŒW
+// D3D11Device ã®åˆæœŸåŒ–é–¢ä¿‚
 
-// D3D11Device ƒIƒuƒWƒFƒNƒg‚Ìì¬( 0:¬Œ÷  -1:¸”s )
+// D3D11Device ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ä½œæˆ( 0:æˆåŠŸ  -1:å¤±æ•— )
 extern	int		Graphics_D3D11_Device_Create( void )
 {
 	const char *String = NULL ;
 
-	// Šù‚Éì¬Ï‚İ‚Ìê‡‚Íˆê“xíœ‚·‚é
+	// æ—¢ã«ä½œæˆæ¸ˆã¿ã®å ´åˆã¯ä¸€åº¦å‰Šé™¤ã™ã‚‹
 	D3D11Device_Release() ;
 	GD3D11.Device.DrawInfo.BeginSceneFlag = FALSE ;
 
-	// DXGIFactory ‚Ìì¬
+	// DXGIFactory ã®ä½œæˆ
 	if( DXGIFactory_Create() < 0 )
 	{
 		return -1 ;
 	}
 
-	// ƒAƒ_ƒvƒ^[î•ñ‚Ì—ñ‹“
+	// ã‚¢ãƒ€ãƒ—ã‚¿ãƒ¼æƒ…å ±ã®åˆ—æŒ™
 	if( EnumDXGIAdapterInfo() < 0 )
 	{
 		return -1 ;
 	}
 
-	// ƒfƒoƒCƒX‚Ìì¬
+	// ãƒ‡ãƒã‚¤ã‚¹ã®ä½œæˆ
 	if( D3D11_CreateDevice() < 0 )
 	{
 		return -1 ;
 	}
 
-	// ƒƒCƒ“ƒXƒƒbƒvƒ`ƒFƒCƒ“‚Ìì¬
+	// ãƒ¡ã‚¤ãƒ³ã‚¹ãƒ¯ãƒƒãƒ—ãƒã‚§ã‚¤ãƒ³ã®ä½œæˆ
 	if( Graphics_D3D11_OutputWindow_Add( GetDisplayWindowHandle(), TRUE ) < 0 )
 	{
 		return -1 ;
 	}
 	GD3D11.Device.Screen.TargetOutputWindow = 0 ;
 
-	// ƒtƒ‹ƒXƒNƒŠ[ƒ“ƒ‚[ƒh‚Ìê‡‚ÍƒfƒXƒNƒgƒbƒvã‚ÌˆÊ’u‚ğæ“¾‚µ‚Ä‚¨‚­
+	// ãƒ•ãƒ«ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ¢ãƒ¼ãƒ‰ã®å ´åˆã¯ãƒ‡ã‚¹ã‚¯ãƒˆãƒƒãƒ—ä¸Šã®ä½ç½®ã‚’å–å¾—ã—ã¦ãŠã
 	if( NS_GetWindowModeFlag() == FALSE && NS_GetUseFullScreenResolutionMode() != DX_FSRESOLUTIONMODE_BORDERLESS_WINDOW )
 	{
-		// ‰æ–Êî•ñ‚ªƒZƒbƒgƒAƒbƒv‚³‚ê‚Ä‚¢‚È‚©‚Á‚½‚çƒZƒbƒgƒAƒbƒv
+		// ç”»é¢æƒ…å ±ãŒã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã•ã‚Œã¦ã„ãªã‹ã£ãŸã‚‰ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 		if( GSYS.Screen.DisplayInfo == NULL )
 		{
 			Graphics_SetupDisplayInfo_PF() ;
@@ -7244,136 +7244,136 @@ extern	int		Graphics_D3D11_Device_Create( void )
 		GSYS.Screen.FullScreenDesktopRect = GSYS.Screen.DisplayInfo[ GSYS.Screen.ValidUseDisplayIndex ? GSYS.Screen.UseDisplayIndex : GSYS.Screen.PrimaryDisplayIndex ].DesktopRect ;
 	}
 
-	// RGB‚ÌƒuƒŒƒ“ƒhİ’è‚Æ‚Í•Ê‚ÉƒAƒ‹ƒtƒ@ƒ`ƒƒƒ“ƒlƒ‹‚ÌƒuƒŒƒ“ƒhİ’è‚ªs‚¦‚é
+	// RGBã®ãƒ–ãƒ¬ãƒ³ãƒ‰è¨­å®šã¨ã¯åˆ¥ã«ã‚¢ãƒ«ãƒ•ã‚¡ãƒãƒ£ãƒ³ãƒãƒ«ã®ãƒ–ãƒ¬ãƒ³ãƒ‰è¨­å®šãŒè¡Œãˆã‚‹
 	GSYS.HardInfo.SeparateAlphaBlendEnable = TRUE ;
 
-	// Œ¸ZƒuƒŒƒ“ƒh‚ª‰Â”\‚©‚Ç‚¤‚©‚ğƒZƒbƒg‚·‚é
+	// æ¸›ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰ãŒå¯èƒ½ã‹ã©ã†ã‹ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 	GSYS.HardInfo.ValidSubBlend = TRUE ;
 
-	// ƒeƒNƒXƒ`ƒƒ‚ª³•ûŒ`‚Å‚ ‚é•K—v‚ª‚ ‚é‚©‚Ç‚¤‚©‚ğæ“¾‚·‚é
+	// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãŒæ­£æ–¹å½¢ã§ã‚ã‚‹å¿…è¦ãŒã‚ã‚‹ã‹ã©ã†ã‹ã‚’å–å¾—ã™ã‚‹
 	GSYS.HardInfo.TextureSquareOnly = FALSE ;
 
-	// DxLib_Init ŒÄo‚µŒã‚Å‚à SetWaitVSyncFlag ‚ÌŒÄ‚Ño‚µ‚É‘Î‰
+	// DxLib_Init å‘¼å‡ºã—å¾Œã§ã‚‚ SetWaitVSyncFlag ã®å‘¼ã³å‡ºã—ã«å¯¾å¿œ
 	GSYS.HardInfo.UseOfSetWaitVSyncFlagIsSupportedEvenAfterDxLib_Init = TRUE ;
 
-	// ˆê“x‚Ég—p‚·‚é‚±‚Æ‚Ìo—ˆ‚éÅ‘å’¸“_”‚ğæ“¾‚·‚é
+	// ä¸€åº¦ã«ä½¿ç”¨ã™ã‚‹ã“ã¨ã®å‡ºæ¥ã‚‹æœ€å¤§é ‚ç‚¹æ•°ã‚’å–å¾—ã™ã‚‹
 	GSYS.HardInfo.MaxVertexIndex = 0xffff ;
 
-	// ’¸“_À•Wƒ^ƒCƒv‚Í DX_DRAWFLOATCOORDTYPE_DIRECT3D10
+	// é ‚ç‚¹åº§æ¨™ã‚¿ã‚¤ãƒ—ã¯ DX_DRAWFLOATCOORDTYPE_DIRECT3D10
 	GSYS.HardInfo.DrawFloatCoordType = DX_DRAWFLOATCOORDTYPE_DIRECT3D10 ;
 
 	switch( GD3D11.Setting.FeatureLevel )
 	{
 	case D_D3D_FEATURE_LEVEL_11_0 :
 	case D_D3D_FEATURE_LEVEL_11_1 :
-		// “¯‚ÉƒŒƒ“ƒ_ƒŠƒ“ƒO‚Å‚«‚éƒ^[ƒQƒbƒg‚Ì”‚ğ•Û‘¶
+		// åŒæ™‚ã«ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã§ãã‚‹ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã®æ•°ã‚’ä¿å­˜
 		GSYS.HardInfo.RenderTargetNum = 8 ;
 
-		// ƒeƒNƒXƒ`ƒƒ‚ÌÅ‘å•‚ÆÅ‘å‚‚³‚ğ•Û‘¶‚·‚é
+		// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®æœ€å¤§å¹…ã¨æœ€å¤§é«˜ã•ã‚’ä¿å­˜ã™ã‚‹
 		GSYS.HardInfo.MaxTextureWidth  = 16384 ;
 		GSYS.HardInfo.MaxTextureHeight = GSYS.HardInfo.MaxTextureWidth ;
 
-		// ƒeƒNƒXƒ`ƒƒ‚ÌƒTƒCƒY‚ª‚Q‚Ì‚æ‚Å‚ ‚é•K—v‚Í–³‚¢
+		// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ã‚µã‚¤ã‚ºãŒï¼’ã®ï½ä¹—ã§ã‚ã‚‹å¿…è¦ã¯ç„¡ã„
 		GSYS.HardInfo.TextureSizePow2 = FALSE ;
 
-		// ğŒ•t‚ÅƒeƒNƒXƒ`ƒƒ‚ÌƒTƒCƒY‚ª‚Q‚Ì‚æ‚Å‚Í‚È‚­‚Ä‚à‘åä•v
+		// æ¡ä»¶ä»˜ã§ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ã‚µã‚¤ã‚ºãŒï¼’ã®ï½ä¹—ã§ã¯ãªãã¦ã‚‚å¤§ä¸ˆå¤«
 		GSYS.HardInfo.TextureSizeNonPow2Conditional = TRUE ;
 
-		// ’¸“_ƒJƒ‰[‚ÍBGRAƒJƒ‰[ƒ^ƒCƒv‚ğg—p‚·‚é
+		// é ‚ç‚¹ã‚«ãƒ©ãƒ¼ã¯BGRAã‚«ãƒ©ãƒ¼ã‚¿ã‚¤ãƒ—ã‚’ä½¿ç”¨ã™ã‚‹
 		GSYS.HardInfo.UseVertexColorBGRAFormat = TRUE ;
 
-		// ˆê“x‚É•`‰æ‚Å‚«‚éÅ‘åƒvƒŠƒ~ƒeƒBƒu”‚ğæ“¾‚·‚é
+		// ä¸€åº¦ã«æç”»ã§ãã‚‹æœ€å¤§ãƒ—ãƒªãƒŸãƒ†ã‚£ãƒ–æ•°ã‚’å–å¾—ã™ã‚‹
 		GSYS.HardInfo.MaxPrimitiveCount = 0x7fffffff ;
 		break ;
 
 	case D_D3D_FEATURE_LEVEL_10_0 :
 	case D_D3D_FEATURE_LEVEL_10_1 :
-		// “¯‚ÉƒŒƒ“ƒ_ƒŠƒ“ƒO‚Å‚«‚éƒ^[ƒQƒbƒg‚Ì”‚ğ•Û‘¶
+		// åŒæ™‚ã«ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã§ãã‚‹ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã®æ•°ã‚’ä¿å­˜
 		GSYS.HardInfo.RenderTargetNum = 8 ;
 
-		// ƒeƒNƒXƒ`ƒƒ‚ÌÅ‘å•‚ÆÅ‘å‚‚³‚ğ•Û‘¶‚·‚é
+		// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®æœ€å¤§å¹…ã¨æœ€å¤§é«˜ã•ã‚’ä¿å­˜ã™ã‚‹
 		GSYS.HardInfo.MaxTextureWidth  = 8192 ;
 		GSYS.HardInfo.MaxTextureHeight = GSYS.HardInfo.MaxTextureWidth ;
 
-		// ƒeƒNƒXƒ`ƒƒ‚ÌƒTƒCƒY‚ª‚Q‚Ì‚æ‚Å‚ ‚é•K—v‚Í–³‚¢
+		// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ã‚µã‚¤ã‚ºãŒï¼’ã®ï½ä¹—ã§ã‚ã‚‹å¿…è¦ã¯ç„¡ã„
 		GSYS.HardInfo.TextureSizePow2 = FALSE ;
 
-		// ğŒ•t‚ÅƒeƒNƒXƒ`ƒƒ‚ÌƒTƒCƒY‚ª‚Q‚Ì‚æ‚Å‚Í‚È‚­‚Ä‚à‘åä•v
+		// æ¡ä»¶ä»˜ã§ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ã‚µã‚¤ã‚ºãŒï¼’ã®ï½ä¹—ã§ã¯ãªãã¦ã‚‚å¤§ä¸ˆå¤«
 		GSYS.HardInfo.TextureSizeNonPow2Conditional = TRUE ;
 
-		// ’¸“_ƒJƒ‰[‚ÍBGRAƒJƒ‰[ƒ^ƒCƒv‚ğg—p‚·‚é
+		// é ‚ç‚¹ã‚«ãƒ©ãƒ¼ã¯BGRAã‚«ãƒ©ãƒ¼ã‚¿ã‚¤ãƒ—ã‚’ä½¿ç”¨ã™ã‚‹
 		GSYS.HardInfo.UseVertexColorBGRAFormat = TRUE ;
 
-		// ˆê“x‚É•`‰æ‚Å‚«‚éÅ‘åƒvƒŠƒ~ƒeƒBƒu”‚ğæ“¾‚·‚é
+		// ä¸€åº¦ã«æç”»ã§ãã‚‹æœ€å¤§ãƒ—ãƒªãƒŸãƒ†ã‚£ãƒ–æ•°ã‚’å–å¾—ã™ã‚‹
 		GSYS.HardInfo.MaxPrimitiveCount = 0x7fffffff ;
 		break ;
 
 	case D_D3D_FEATURE_LEVEL_9_1 :
 	case D_D3D_FEATURE_LEVEL_9_2 :
 	case D_D3D_FEATURE_LEVEL_9_3 :
-		// “¯‚ÉƒŒƒ“ƒ_ƒŠƒ“ƒO‚Å‚«‚éƒ^[ƒQƒbƒg‚Ì”‚ğ•Û‘¶
+		// åŒæ™‚ã«ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã§ãã‚‹ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã®æ•°ã‚’ä¿å­˜
 		GSYS.HardInfo.RenderTargetNum = GD3D11.Setting.FeatureLevel == D_D3D_FEATURE_LEVEL_9_3 ? 4 : 1 ;
 
-		// ƒeƒNƒXƒ`ƒƒ‚ÌÅ‘å•‚ÆÅ‘å‚‚³‚ğ•Û‘¶‚·‚é
+		// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®æœ€å¤§å¹…ã¨æœ€å¤§é«˜ã•ã‚’ä¿å­˜ã™ã‚‹
 		GSYS.HardInfo.MaxTextureWidth  = GD3D11.Setting.FeatureLevel == D_D3D_FEATURE_LEVEL_9_3 ? 4096 : 2048 ;
 		GSYS.HardInfo.MaxTextureHeight = GSYS.HardInfo.MaxTextureWidth ;
 
-		// ğŒ•t‚ÅƒeƒNƒXƒ`ƒƒ‚ÌƒTƒCƒY‚ª‚Q‚Ì‚æ‚Å‚Í‚È‚­‚Ä‚à‘åä•v
+		// æ¡ä»¶ä»˜ã§ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ã‚µã‚¤ã‚ºãŒï¼’ã®ï½ä¹—ã§ã¯ãªãã¦ã‚‚å¤§ä¸ˆå¤«
 		GSYS.HardInfo.TextureSizeNonPow2Conditional = TRUE ;
 
-		// ’¸“_ƒJƒ‰[‚ÍBGRAƒJƒ‰[ƒ^ƒCƒv‚ğg—p‚·‚é
+		// é ‚ç‚¹ã‚«ãƒ©ãƒ¼ã¯BGRAã‚«ãƒ©ãƒ¼ã‚¿ã‚¤ãƒ—ã‚’ä½¿ç”¨ã™ã‚‹
 		GSYS.HardInfo.UseVertexColorBGRAFormat = TRUE ;
 
-		// ƒeƒNƒXƒ`ƒƒ‚ÌƒTƒCƒY‚ª‚Q‚Ì‚æ‚Å‚ ‚é•K—v‚ª‚ ‚é
+		// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ã‚µã‚¤ã‚ºãŒï¼’ã®ï½ä¹—ã§ã‚ã‚‹å¿…è¦ãŒã‚ã‚‹
 //		GSYS.HardInfo.TextureSizePow2 = TRUE ;
 
-		// ğŒ•t‚ÅƒeƒNƒXƒ`ƒƒ‚ÌƒTƒCƒY‚ª‚Q‚Ì‚æ‚Å‚Í‚È‚­‚Ä‚à‘åä•v‚Å‚Í‚È‚¢
+		// æ¡ä»¶ä»˜ã§ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ã‚µã‚¤ã‚ºãŒï¼’ã®ï½ä¹—ã§ã¯ãªãã¦ã‚‚å¤§ä¸ˆå¤«ã§ã¯ãªã„
 //		GSYS.HardInfo.TextureSizeNonPow2Conditional = FALSE ;
 
-		// ƒsƒNƒZƒ‹’PˆÊƒ‰ƒCƒeƒBƒ“ƒO‚Í–³Œø
+		// ãƒ”ã‚¯ã‚»ãƒ«å˜ä½ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ã¯ç„¡åŠ¹
 		GD3D11.UsePixelLightingShader = FALSE ;
 
-		// ’¸“_ƒJƒ‰[‚ÍBGRAƒJƒ‰[ƒ^ƒCƒv‚ğg—p‚µ‚È‚¢
+		// é ‚ç‚¹ã‚«ãƒ©ãƒ¼ã¯BGRAã‚«ãƒ©ãƒ¼ã‚¿ã‚¤ãƒ—ã‚’ä½¿ç”¨ã—ãªã„
 		GSYS.HardInfo.UseVertexColorBGRAFormat = FALSE ;
 
-		// ˆê“x‚É•`‰æ‚Å‚«‚éÅ‘åƒvƒŠƒ~ƒeƒBƒu”‚ğæ“¾‚·‚é
+		// ä¸€åº¦ã«æç”»ã§ãã‚‹æœ€å¤§ãƒ—ãƒªãƒŸãƒ†ã‚£ãƒ–æ•°ã‚’å–å¾—ã™ã‚‹
 		GSYS.HardInfo.MaxPrimitiveCount = GD3D11.Setting.FeatureLevel == D_D3D_FEATURE_LEVEL_9_1 ? 65535 : 1048575 ;
 		break ;
 	}
 
-	// ƒTƒCƒY‚Ì¬‚³‚¢‚Ù‚¤‚ğÅ‘åƒTƒCƒY‚Æ‚·‚é
+	// ã‚µã‚¤ã‚ºã®å°ã•ã„ã»ã†ã‚’æœ€å¤§ã‚µã‚¤ã‚ºã¨ã™ã‚‹
 	GSYS.HardInfo.MaxTextureSize = GSYS.HardInfo.MaxTextureWidth < GSYS.HardInfo.MaxTextureHeight ? GSYS.HardInfo.MaxTextureWidth : GSYS.HardInfo.MaxTextureHeight ;
 
-	// ƒŒƒ“ƒ_[ƒ^[ƒQƒbƒg‚Ì”‚ğ’²®
+	// ãƒ¬ãƒ³ãƒ€ãƒ¼ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã®æ•°ã‚’èª¿æ•´
 	if( GSYS.HardInfo.RenderTargetNum > DX_RENDERTARGET_COUNT )
 	{
 		GSYS.HardInfo.RenderTargetNum = DX_RENDERTARGET_COUNT ;
 	}
 
-	// Graphics_D3D11_DrawPreparation ‚ğs‚¤‚×‚«ƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// Graphics_D3D11_DrawPreparation ã‚’è¡Œã†ã¹ããƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	GD3D11.Device.DrawSetting.DrawPrepAlwaysFlag = TRUE ;
 
-	// ƒhƒ‰ƒCƒoî•ño—Í
+	// ãƒ‰ãƒ©ã‚¤ãƒæƒ…å ±å‡ºåŠ›
 	DXST_LOGFILEFMT_ADDW(( L"Graphics Device:%s", GraphicsHardDataDirect3D11.Adapter.Info[ GraphicsHardDataDirect3D11.Setting.UseDXGIAdapterIndex ].Desc.Description )) ;
 	CL_strcpy( WCHAR_T_CHARCODEFORMAT, ( char * )WinData.PcInfo.VideoDriverString, ( char * )GD3D11.Adapter.Info[ GD3D11.Setting.UseDXGIAdapterIndex ].Desc.Description ) ;
 
-	// ŠeíƒtƒH[ƒ}ƒbƒg‚ğ’²‚×‚é
+	// å„ç¨®ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã‚’èª¿ã¹ã‚‹
 	{
 		UINT FormatSupport ;
 
-		// ‰æ–Ê‚ÌƒtƒH[ƒ}ƒbƒg‚Ìæ“¾
+		// ç”»é¢ã®ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®å–å¾—
 		GD3D11.Device.Caps.ScreenFormat = DIRECT3D11_BACKBUFFER_FORMAT ;
 		String = "DXGI_FORMAT_R8G8B8A8_UNORM" ;
-		DXST_LOGFILEFMT_ADDA(( "\x89\xe6\x96\xca\x82\xcc\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xcd %s \x82\xc5\x82\xb7"/*@ "‰æ–Ê‚ÌƒtƒH[ƒ}ƒbƒg‚Í %s ‚Å‚·" @*/, String )) ;
+		DXST_LOGFILEFMT_ADDA(( "\x89\xe6\x96\xca\x82\xcc\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xcd %s \x82\xc5\x82\xb7"/*@ "ç”»é¢ã®ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã¯ %s ã§ã™" @*/, String )) ;
 
-		// 16ƒrƒbƒg[“xƒoƒbƒtƒ@ƒtƒH[ƒ}ƒbƒg‚Ìİ’è
+		// 16ãƒ“ãƒƒãƒˆæ·±åº¦ãƒãƒƒãƒ•ã‚¡ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®è¨­å®š
 		GD3D11.Device.Caps.DepthBufferTexture2DFormat[ ZBUFFER_FORMAT_16BIT ]    = DIRECT3D11_DEPTHBUFFER_TEXTURE2D_FORMAT ;
 		GD3D11.Device.Caps.DepthBufferTextureSRVFormat[ ZBUFFER_FORMAT_16BIT ]   = D_DXGI_FORMAT_R16_UNORM ;
 		GD3D11.Device.Caps.DepthBufferDepthStencilFormat[ ZBUFFER_FORMAT_16BIT ] = DIRECT3D11_DEPTHBUFFER_DEPTHSTENCIL_FORMAT ;
 		String = "DXGI_FORMAT_D16_UNORM" ;
-		DXST_LOGFILEFMT_ADDA(( "16bit Z\x83\x6f\x83\x62\x83\x74\x83\x40\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xcd %s \x82\xc5\x82\xb7"/*@ "16bit Zƒoƒbƒtƒ@ƒtƒH[ƒ}ƒbƒg‚Í %s ‚Å‚·" @*/, String )) ;
+		DXST_LOGFILEFMT_ADDA(( "16bit Z\x83\x6f\x83\x62\x83\x74\x83\x40\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xcd %s \x82\xc5\x82\xb7"/*@ "16bit Zãƒãƒƒãƒ•ã‚¡ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã¯ %s ã§ã™" @*/, String )) ;
 
-		// 24ƒrƒbƒg[“xƒoƒbƒtƒ@ƒtƒH[ƒ}ƒbƒg‚Ì‘I’è
+		// 24ãƒ“ãƒƒãƒˆæ·±åº¦ãƒãƒƒãƒ•ã‚¡ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®é¸å®š
 		if( /*D3D11Device_CheckFormatSupport( D_DXGI_FORMAT_R24G8_TYPELESS, &FormatSupport ) == S_OK &&
 			( FormatSupport & D_D3D11_FORMAT_SUPPORT_RENDER_TARGET ) != 0 &&*/
 			D3D11Device_CheckFormatSupport( D_DXGI_FORMAT_D24_UNORM_S8_UINT, &FormatSupport ) == S_OK &&
@@ -7390,9 +7390,9 @@ extern	int		Graphics_D3D11_Device_Create( void )
 			GD3D11.Device.Caps.DepthBufferTextureSRVFormat[ ZBUFFER_FORMAT_24BIT ]   = GD3D11.Device.Caps.DepthBufferTextureSRVFormat[ ZBUFFER_FORMAT_16BIT ] ;
 			GD3D11.Device.Caps.DepthBufferDepthStencilFormat[ ZBUFFER_FORMAT_24BIT ] = GD3D11.Device.Caps.DepthBufferDepthStencilFormat[ ZBUFFER_FORMAT_16BIT ] ;
 		}
-		DXST_LOGFILEFMT_ADDA(( "24bit Z\x83\x6f\x83\x62\x83\x74\x83\x40\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xcd %s \x82\xc5\x82\xb7"/*@ "24bit Zƒoƒbƒtƒ@ƒtƒH[ƒ}ƒbƒg‚Í %s ‚Å‚·" @*/, String )) ;
+		DXST_LOGFILEFMT_ADDA(( "24bit Z\x83\x6f\x83\x62\x83\x74\x83\x40\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xcd %s \x82\xc5\x82\xb7"/*@ "24bit Zãƒãƒƒãƒ•ã‚¡ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã¯ %s ã§ã™" @*/, String )) ;
 
-		// 32ƒrƒbƒg[“xƒoƒbƒtƒ@ƒtƒH[ƒ}ƒbƒg‚Ìİ’è
+		// 32ãƒ“ãƒƒãƒˆæ·±åº¦ãƒãƒƒãƒ•ã‚¡ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®è¨­å®š
 		if( /*D3D11Device_CheckFormatSupport( D_DXGI_FORMAT_R32_TYPELESS, &FormatSupport ) == S_OK &&
 			( FormatSupport & D_D3D11_FORMAT_SUPPORT_RENDER_TARGET ) != 0 &&*/
 			D3D11Device_CheckFormatSupport( D_DXGI_FORMAT_D32_FLOAT, &FormatSupport ) == S_OK &&
@@ -7409,9 +7409,9 @@ extern	int		Graphics_D3D11_Device_Create( void )
 			GD3D11.Device.Caps.DepthBufferTextureSRVFormat[ ZBUFFER_FORMAT_32BIT ]   = GD3D11.Device.Caps.DepthBufferTextureSRVFormat[ ZBUFFER_FORMAT_24BIT ] ;
 			GD3D11.Device.Caps.DepthBufferDepthStencilFormat[ ZBUFFER_FORMAT_32BIT ] = GD3D11.Device.Caps.DepthBufferDepthStencilFormat[ ZBUFFER_FORMAT_24BIT ] ;
 		}
-		DXST_LOGFILEFMT_ADDA(( "32bit Z\x83\x6f\x83\x62\x83\x74\x83\x40\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xcd %s \x82\xc5\x82\xb7"/*@ "32bit Zƒoƒbƒtƒ@ƒtƒH[ƒ}ƒbƒg‚Í %s ‚Å‚·" @*/, String )) ;
+		DXST_LOGFILEFMT_ADDA(( "32bit Z\x83\x6f\x83\x62\x83\x74\x83\x40\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xcd %s \x82\xc5\x82\xb7"/*@ "32bit Zãƒãƒƒãƒ•ã‚¡ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã¯ %s ã§ã™" @*/, String )) ;
 
-		// 16ƒrƒbƒgƒJƒ‰[ƒtƒH[ƒ}ƒbƒg‚Ì‘I’è
+		// 16ãƒ“ãƒƒãƒˆã‚«ãƒ©ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®é¸å®š
 		if( D3D11Device_CheckFormatSupport( D_DXGI_FORMAT_B5G6R5_UNORM, &FormatSupport ) == S_OK &&
 			( FormatSupport & D_D3D11_FORMAT_SUPPORT_TEXTURE2D ) != 0 )
 		{
@@ -7430,9 +7430,9 @@ extern	int		Graphics_D3D11_Device_Create( void )
 			GD3D11.Device.Caps.TextureFormat[ DX_GRAPHICSIMAGE_FORMAT_3D_RGB16 ] = D_DXGI_FORMAT_R8G8B8A8_UNORM ;
 			String = "DXGI_FORMAT_R8G8B8A8_UNORM" ;
 		}
-		DXST_LOGFILEFMT_ADDA(( "16bit \x83\x4a\x83\x89\x81\x5b\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xcd %s \x82\xc5\x82\xb7"/*@ "16bit ƒJƒ‰[ƒtƒH[ƒ}ƒbƒg‚Í %s ‚Å‚·" @*/, String )) ;
+		DXST_LOGFILEFMT_ADDA(( "16bit \x83\x4a\x83\x89\x81\x5b\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xcd %s \x82\xc5\x82\xb7"/*@ "16bit ã‚«ãƒ©ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã¯ %s ã§ã™" @*/, String )) ;
 
-		// 32ƒrƒbƒgƒJƒ‰[ƒtƒH[ƒ}ƒbƒg‚Ì‘I’è
+		// 32ãƒ“ãƒƒãƒˆã‚«ãƒ©ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®é¸å®š
 		if( D3D11Device_CheckFormatSupport( D_DXGI_FORMAT_B8G8R8X8_UNORM, &FormatSupport ) == S_OK &&
 			( FormatSupport & D_D3D11_FORMAT_SUPPORT_TEXTURE2D ) != 0 )
 		{
@@ -7443,9 +7443,9 @@ extern	int		Graphics_D3D11_Device_Create( void )
 		{
 			GD3D11.Device.Caps.TextureFormat[ DX_GRAPHICSIMAGE_FORMAT_3D_RGB32 ] = GD3D11.Device.Caps.TextureFormat[ DX_GRAPHICSIMAGE_FORMAT_3D_RGB16 ] ;
 		}
-		DXST_LOGFILEFMT_ADDA(( "32bit \x83\x4a\x83\x89\x81\x5b\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xcd %s \x82\xc5\x82\xb7"/*@ "32bit ƒJƒ‰[ƒtƒH[ƒ}ƒbƒg‚Í %s ‚Å‚·" @*/, String )) ;
+		DXST_LOGFILEFMT_ADDA(( "32bit \x83\x4a\x83\x89\x81\x5b\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xcd %s \x82\xc5\x82\xb7"/*@ "32bit ã‚«ãƒ©ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã¯ %s ã§ã™" @*/, String )) ;
 
-		// ƒAƒ‹ƒtƒ@•t‚« 16ƒrƒbƒgƒJƒ‰[ƒtƒH[ƒ}ƒbƒg‚Ì‘I’è
+		// ã‚¢ãƒ«ãƒ•ã‚¡ä»˜ã 16ãƒ“ãƒƒãƒˆã‚«ãƒ©ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®é¸å®š
 		if( D3D11Device_CheckFormatSupport( D_DXGI_FORMAT_B4G4R4A4_UNORM, &FormatSupport ) == S_OK &&
 			( FormatSupport & D_D3D11_FORMAT_SUPPORT_TEXTURE2D ) != 0 )
 		{
@@ -7457,14 +7457,14 @@ extern	int		Graphics_D3D11_Device_Create( void )
 			GD3D11.Device.Caps.TextureFormat[ DX_GRAPHICSIMAGE_FORMAT_3D_ALPHA_RGB16 ] = D_DXGI_FORMAT_R8G8B8A8_UNORM ;
 			String = "DXGI_FORMAT_R8G8B8A8_UNORM" ;
 		}
-		DXST_LOGFILEFMT_ADDA(( "\x83\x41\x83\x8b\x83\x74\x83\x40\x95\x74\x82\xab 16bit \x83\x4a\x83\x89\x81\x5b\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xcd %s \x82\xc5\x82\xb7"/*@ "ƒAƒ‹ƒtƒ@•t‚« 16bit ƒJƒ‰[ƒtƒH[ƒ}ƒbƒg‚Í %s ‚Å‚·" @*/, String )) ;
+		DXST_LOGFILEFMT_ADDA(( "\x83\x41\x83\x8b\x83\x74\x83\x40\x95\x74\x82\xab 16bit \x83\x4a\x83\x89\x81\x5b\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xcd %s \x82\xc5\x82\xb7"/*@ "ã‚¢ãƒ«ãƒ•ã‚¡ä»˜ã 16bit ã‚«ãƒ©ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã¯ %s ã§ã™" @*/, String )) ;
 
-		// ƒAƒ‹ƒtƒ@•t‚« 32ƒrƒbƒgƒJƒ‰[ƒtƒH[ƒ}ƒbƒg‚Ì‘I’è
+		// ã‚¢ãƒ«ãƒ•ã‚¡ä»˜ã 32ãƒ“ãƒƒãƒˆã‚«ãƒ©ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®é¸å®š
 		GD3D11.Device.Caps.TextureFormat[ DX_GRAPHICSIMAGE_FORMAT_3D_ALPHA_RGB32 ] = D_DXGI_FORMAT_R8G8B8A8_UNORM ;
 		String = "DXGI_FORMAT_R8G8B8A8_UNORM" ;
-		DXST_LOGFILEFMT_ADDA(( "\x83\x41\x83\x8b\x83\x74\x83\x40\x95\x74\x82\xab 32bit \x83\x4a\x83\x89\x81\x5b\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xcd %s \x82\xc5\x82\xb7"/*@ "ƒAƒ‹ƒtƒ@•t‚« 32bit ƒJƒ‰[ƒtƒH[ƒ}ƒbƒg‚Í %s ‚Å‚·" @*/, String )) ;
+		DXST_LOGFILEFMT_ADDA(( "\x83\x41\x83\x8b\x83\x74\x83\x40\x95\x74\x82\xab 32bit \x83\x4a\x83\x89\x81\x5b\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xcd %s \x82\xc5\x82\xb7"/*@ "ã‚¢ãƒ«ãƒ•ã‚¡ä»˜ã 32bit ã‚«ãƒ©ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã¯ %s ã§ã™" @*/, String )) ;
 
-		// ƒAƒ‹ƒtƒ@ƒeƒXƒg—p 16ƒrƒbƒgƒJƒ‰[ƒtƒH[ƒ}ƒbƒg‚Ì‘I’è
+		// ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆç”¨ 16ãƒ“ãƒƒãƒˆã‚«ãƒ©ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®é¸å®š
 		if( D3D11Device_CheckFormatSupport( D_DXGI_FORMAT_B5G5R5A1_UNORM, &FormatSupport ) == S_OK &&
 			( FormatSupport & D_D3D11_FORMAT_SUPPORT_TEXTURE2D ) != 0 )
 		{
@@ -7476,14 +7476,14 @@ extern	int		Graphics_D3D11_Device_Create( void )
 			GD3D11.Device.Caps.TextureFormat[ DX_GRAPHICSIMAGE_FORMAT_3D_ALPHATEST_RGB16 ] = D_DXGI_FORMAT_R8G8B8A8_UNORM ;
 			String = "DXGI_FORMAT_R8G8B8A8_UNORM" ;
 		}
-		DXST_LOGFILEFMT_ADDA(( "\x83\x41\x83\x8b\x83\x74\x83\x40\x83\x65\x83\x58\x83\x67\x97\x70 16bit \x83\x4a\x83\x89\x81\x5b\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xcd %s \x82\xc5\x82\xb7"/*@ "ƒAƒ‹ƒtƒ@ƒeƒXƒg—p 16bit ƒJƒ‰[ƒtƒH[ƒ}ƒbƒg‚Í %s ‚Å‚·" @*/, String )) ;
+		DXST_LOGFILEFMT_ADDA(( "\x83\x41\x83\x8b\x83\x74\x83\x40\x83\x65\x83\x58\x83\x67\x97\x70 16bit \x83\x4a\x83\x89\x81\x5b\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xcd %s \x82\xc5\x82\xb7"/*@ "ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆç”¨ 16bit ã‚«ãƒ©ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã¯ %s ã§ã™" @*/, String )) ;
 
-		// ƒAƒ‹ƒtƒ@ƒeƒXƒg—p 32ƒrƒbƒgƒJƒ‰[ƒtƒH[ƒ}ƒbƒg‚Ì‘I’è
+		// ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆç”¨ 32ãƒ“ãƒƒãƒˆã‚«ãƒ©ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®é¸å®š
 		GD3D11.Device.Caps.TextureFormat[ DX_GRAPHICSIMAGE_FORMAT_3D_ALPHATEST_RGB32 ] = D_DXGI_FORMAT_R8G8B8A8_UNORM ;
 		String = "DXGI_FORMAT_R8G8B8A8_UNORM" ;
-		DXST_LOGFILEFMT_ADDA(( "\x83\x41\x83\x8b\x83\x74\x83\x40\x83\x65\x83\x58\x83\x67\x97\x70 32bit \x83\x4a\x83\x89\x81\x5b\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xcd %s \x82\xc5\x82\xb7"/*@ "ƒAƒ‹ƒtƒ@ƒeƒXƒg—p 32bit ƒJƒ‰[ƒtƒH[ƒ}ƒbƒg‚Í %s ‚Å‚·" @*/, String )) ;
+		DXST_LOGFILEFMT_ADDA(( "\x83\x41\x83\x8b\x83\x74\x83\x40\x83\x65\x83\x58\x83\x67\x97\x70 32bit \x83\x4a\x83\x89\x81\x5b\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xcd %s \x82\xc5\x82\xb7"/*@ "ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆç”¨ 32bit ã‚«ãƒ©ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã¯ %s ã§ã™" @*/, String )) ;
 
-		// ƒpƒŒƒbƒgƒJƒ‰[ƒtƒH[ƒ}ƒbƒg‚ÌƒZƒbƒg
+		// ãƒ‘ãƒ¬ãƒƒãƒˆã‚«ãƒ©ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®ã‚»ãƒƒãƒˆ
 		GD3D11.Device.Caps.TextureFormat[ DX_GRAPHICSIMAGE_FORMAT_3D_PAL4           ] = D_DXGI_FORMAT_R8G8B8A8_UNORM ;
 		GD3D11.Device.Caps.TextureFormat[ DX_GRAPHICSIMAGE_FORMAT_3D_PAL8           ] = D_DXGI_FORMAT_R8G8B8A8_UNORM ;
 		GD3D11.Device.Caps.TextureFormat[ DX_GRAPHICSIMAGE_FORMAT_3D_ALPHA_PAL4     ] = D_DXGI_FORMAT_R8G8B8A8_UNORM ;
@@ -7491,88 +7491,88 @@ extern	int		Graphics_D3D11_Device_Create( void )
 		GD3D11.Device.Caps.TextureFormat[ DX_GRAPHICSIMAGE_FORMAT_3D_ALPHATEST_PAL4 ] = D_DXGI_FORMAT_R8G8B8A8_UNORM ;
 		GD3D11.Device.Caps.TextureFormat[ DX_GRAPHICSIMAGE_FORMAT_3D_ALPHATEST_PAL8 ] = D_DXGI_FORMAT_R8G8B8A8_UNORM ;
 
-		// DXT1ƒtƒH[ƒ}ƒbƒg‚Ìƒ`ƒFƒbƒN
+		// DXT1ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®ãƒã‚§ãƒƒã‚¯
 		if( D3D11Device_CheckFormatSupport( D_DXGI_FORMAT_BC1_UNORM, &FormatSupport ) == S_OK &&
 			( FormatSupport & D_D3D11_FORMAT_SUPPORT_TEXTURE2D ) != 0 )
 		{
 			GD3D11.Device.Caps.TextureFormat[ DX_GRAPHICSIMAGE_FORMAT_3D_DXT1 ] = D_DXGI_FORMAT_BC1_UNORM ;
-			String = " DXGI_FORMAT_BC1_UNORM \x82\xc5\x82\xb7"/*@ " DXGI_FORMAT_BC1_UNORM ‚Å‚·" @*/ ;
+			String = " DXGI_FORMAT_BC1_UNORM \x82\xc5\x82\xb7"/*@ " DXGI_FORMAT_BC1_UNORM ã§ã™" @*/ ;
 		}
 		else
 		{
 			GD3D11.Device.Caps.TextureFormat[ DX_GRAPHICSIMAGE_FORMAT_3D_DXT1 ] = GD3D11.Device.Caps.TextureFormat[ DX_GRAPHICSIMAGE_FORMAT_3D_ALPHATEST_RGB16 ] ;
-			String = "\x8e\x67\x82\xa6\x82\xdc\x82\xb9\x82\xf1"/*@ "g‚¦‚Ü‚¹‚ñ" @*/ ;
+			String = "\x8e\x67\x82\xa6\x82\xdc\x82\xb9\x82\xf1"/*@ "ä½¿ãˆã¾ã›ã‚“" @*/ ;
 		}
-		DXST_LOGFILEFMT_ADDA(( "\x82\x63\x82\x77\x82\x73\x82\x50\x83\x65\x83\x4e\x83\x58\x83\x60\x83\x83\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xcd%s"/*@ "‚c‚w‚s‚PƒeƒNƒXƒ`ƒƒƒtƒH[ƒ}ƒbƒg‚Í%s" @*/, String )) ;
+		DXST_LOGFILEFMT_ADDA(( "\x82\x63\x82\x77\x82\x73\x82\x50\x83\x65\x83\x4e\x83\x58\x83\x60\x83\x83\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xcd%s"/*@ "ï¼¤ï¼¸ï¼´ï¼‘ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã¯%s" @*/, String )) ;
 
-		// DXT2ƒtƒH[ƒ}ƒbƒg‚Íg—p‚Å‚«‚È‚¢
+		// DXT2ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã¯ä½¿ç”¨ã§ããªã„
 		GD3D11.Device.Caps.TextureFormat[ DX_GRAPHICSIMAGE_FORMAT_3D_DXT2 ] = GD3D11.Device.Caps.TextureFormat[ DX_GRAPHICSIMAGE_FORMAT_3D_ALPHA_RGB32 ] ;
-		DXST_LOGFILEFMT_ADDA(( "\x82\x63\x82\x77\x82\x73\x82\x51\x83\x65\x83\x4e\x83\x58\x83\x60\x83\x83\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xcd\x8e\x67\x82\xa6\x82\xdc\x82\xb9\x82\xf1"/*@ "‚c‚w‚s‚QƒeƒNƒXƒ`ƒƒƒtƒH[ƒ}ƒbƒg‚Íg‚¦‚Ü‚¹‚ñ" @*/ )) ;
+		DXST_LOGFILEFMT_ADDA(( "\x82\x63\x82\x77\x82\x73\x82\x51\x83\x65\x83\x4e\x83\x58\x83\x60\x83\x83\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xcd\x8e\x67\x82\xa6\x82\xdc\x82\xb9\x82\xf1"/*@ "ï¼¤ï¼¸ï¼´ï¼’ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã¯ä½¿ãˆã¾ã›ã‚“" @*/ )) ;
 
-		// DXT3ƒtƒH[ƒ}ƒbƒg‚Ìƒ`ƒFƒbƒN
+		// DXT3ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®ãƒã‚§ãƒƒã‚¯
 		if( D3D11Device_CheckFormatSupport( D_DXGI_FORMAT_BC2_UNORM, &FormatSupport ) == S_OK &&
 			( FormatSupport & D_D3D11_FORMAT_SUPPORT_TEXTURE2D ) != 0 )
 		{
 			GD3D11.Device.Caps.TextureFormat[ DX_GRAPHICSIMAGE_FORMAT_3D_DXT3 ] = D_DXGI_FORMAT_BC2_UNORM ;
-			String = " DXGI_FORMAT_BC2_UNORM \x82\xc5\x82\xb7"/*@ " DXGI_FORMAT_BC2_UNORM ‚Å‚·" @*/ ;
+			String = " DXGI_FORMAT_BC2_UNORM \x82\xc5\x82\xb7"/*@ " DXGI_FORMAT_BC2_UNORM ã§ã™" @*/ ;
 		}
 		else
 		{
 			GD3D11.Device.Caps.TextureFormat[ DX_GRAPHICSIMAGE_FORMAT_3D_DXT3 ] = GD3D11.Device.Caps.TextureFormat[ DX_GRAPHICSIMAGE_FORMAT_3D_ALPHA_RGB32 ] ;
-			String = "\x8e\x67\x82\xa6\x82\xdc\x82\xb9\x82\xf1"/*@ "g‚¦‚Ü‚¹‚ñ" @*/ ;
+			String = "\x8e\x67\x82\xa6\x82\xdc\x82\xb9\x82\xf1"/*@ "ä½¿ãˆã¾ã›ã‚“" @*/ ;
 		}
-		DXST_LOGFILEFMT_ADDA(( "\x82\x63\x82\x77\x82\x73\x82\x52\x83\x65\x83\x4e\x83\x58\x83\x60\x83\x83\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xcd%s"/*@ "‚c‚w‚s‚RƒeƒNƒXƒ`ƒƒƒtƒH[ƒ}ƒbƒg‚Í%s" @*/, String )) ;
+		DXST_LOGFILEFMT_ADDA(( "\x82\x63\x82\x77\x82\x73\x82\x52\x83\x65\x83\x4e\x83\x58\x83\x60\x83\x83\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xcd%s"/*@ "ï¼¤ï¼¸ï¼´ï¼“ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã¯%s" @*/, String )) ;
 
-		// DXT4ƒtƒH[ƒ}ƒbƒg‚Íg—p‚Å‚«‚È‚¢
+		// DXT4ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã¯ä½¿ç”¨ã§ããªã„
 		GD3D11.Device.Caps.TextureFormat[ DX_GRAPHICSIMAGE_FORMAT_3D_DXT4 ] = GD3D11.Device.Caps.TextureFormat[ DX_GRAPHICSIMAGE_FORMAT_3D_ALPHA_RGB32 ] ;
-		DXST_LOGFILEFMT_ADDA(( "\x82\x63\x82\x77\x82\x73\x82\x53\x83\x65\x83\x4e\x83\x58\x83\x60\x83\x83\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xcd\x8e\x67\x82\xa6\x82\xdc\x82\xb9\x82\xf1"/*@ "‚c‚w‚s‚SƒeƒNƒXƒ`ƒƒƒtƒH[ƒ}ƒbƒg‚Íg‚¦‚Ü‚¹‚ñ" @*/ )) ;
+		DXST_LOGFILEFMT_ADDA(( "\x82\x63\x82\x77\x82\x73\x82\x53\x83\x65\x83\x4e\x83\x58\x83\x60\x83\x83\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xcd\x8e\x67\x82\xa6\x82\xdc\x82\xb9\x82\xf1"/*@ "ï¼¤ï¼¸ï¼´ï¼”ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã¯ä½¿ãˆã¾ã›ã‚“" @*/ )) ;
 
-		// DXT5ƒtƒH[ƒ}ƒbƒg‚Ìƒ`ƒFƒbƒN
+		// DXT5ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®ãƒã‚§ãƒƒã‚¯
 		if( D3D11Device_CheckFormatSupport( D_DXGI_FORMAT_BC3_UNORM, &FormatSupport ) == S_OK &&
 			( FormatSupport & D_D3D11_FORMAT_SUPPORT_TEXTURE2D ) != 0 )
 		{
 			GD3D11.Device.Caps.TextureFormat[ DX_GRAPHICSIMAGE_FORMAT_3D_DXT5 ] = D_DXGI_FORMAT_BC3_UNORM ;
-			String = " DXGI_FORMAT_BC3_UNORM \x82\xc5\x82\xb7"/*@ " DXGI_FORMAT_BC3_UNORM ‚Å‚·" @*/ ;
+			String = " DXGI_FORMAT_BC3_UNORM \x82\xc5\x82\xb7"/*@ " DXGI_FORMAT_BC3_UNORM ã§ã™" @*/ ;
 		}
 		else
 		{
 			GD3D11.Device.Caps.TextureFormat[ DX_GRAPHICSIMAGE_FORMAT_3D_DXT5 ] = GD3D11.Device.Caps.TextureFormat[ DX_GRAPHICSIMAGE_FORMAT_3D_ALPHA_RGB32 ] ;
-			String = "\x8e\x67\x82\xa6\x82\xdc\x82\xb9\x82\xf1"/*@ "g‚¦‚Ü‚¹‚ñ" @*/ ;
+			String = "\x8e\x67\x82\xa6\x82\xdc\x82\xb9\x82\xf1"/*@ "ä½¿ãˆã¾ã›ã‚“" @*/ ;
 		}
-		DXST_LOGFILEFMT_ADDA(( "\x82\x63\x82\x77\x82\x73\x82\x54\x83\x65\x83\x4e\x83\x58\x83\x60\x83\x83\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xcd%s"/*@ "‚c‚w‚s‚TƒeƒNƒXƒ`ƒƒƒtƒH[ƒ}ƒbƒg‚Í%s" @*/, String )) ;
+		DXST_LOGFILEFMT_ADDA(( "\x82\x63\x82\x77\x82\x73\x82\x54\x83\x65\x83\x4e\x83\x58\x83\x60\x83\x83\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xcd%s"/*@ "ï¼¤ï¼¸ï¼´ï¼•ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã¯%s" @*/, String )) ;
 
-		// BC7 UNORM ƒtƒH[ƒ}ƒbƒg‚Ìƒ`ƒFƒbƒN
+		// BC7 UNORM ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®ãƒã‚§ãƒƒã‚¯
 		if( D3D11Device_CheckFormatSupport( D_DXGI_FORMAT_BC7_UNORM, &FormatSupport ) == S_OK &&
 			( FormatSupport & D_D3D11_FORMAT_SUPPORT_TEXTURE2D ) != 0 )
 		{
 			GD3D11.Device.Caps.TextureFormat[ DX_GRAPHICSIMAGE_FORMAT_3D_BC7_UNORM ] = D_DXGI_FORMAT_BC7_UNORM ;
-			String = " DXGI_FORMAT_BC7_UNORM \x82\xc5\x82\xb7"/*@ " DXGI_FORMAT_BC7_UNORM ‚Å‚·" @*/ ;
+			String = " DXGI_FORMAT_BC7_UNORM \x82\xc5\x82\xb7"/*@ " DXGI_FORMAT_BC7_UNORM ã§ã™" @*/ ;
 		}
 		else
 		{
 			GD3D11.Device.Caps.TextureFormat[ DX_GRAPHICSIMAGE_FORMAT_3D_BC7_UNORM ] = GD3D11.Device.Caps.TextureFormat[ DX_GRAPHICSIMAGE_FORMAT_3D_ALPHA_RGB32 ] ;
-			String = "\x8e\x67\x82\xa6\x82\xdc\x82\xb9\x82\xf1"/*@ "g‚¦‚Ü‚¹‚ñ" @*/ ;
+			String = "\x8e\x67\x82\xa6\x82\xdc\x82\xb9\x82\xf1"/*@ "ä½¿ãˆã¾ã›ã‚“" @*/ ;
 		}
-		DXST_LOGFILEFMT_ADDA(( "\x42\x43\x37\x5f\x55\x4e\x4f\x52\x4d\x20\x83\x65\x83\x4e\x83\x58\x83\x60\x83\x83\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xcd\x25\x73"/*@ "BC7_UNORM ƒeƒNƒXƒ`ƒƒƒtƒH[ƒ}ƒbƒg‚Í%s" @*/, String )) ;
+		DXST_LOGFILEFMT_ADDA(( "\x42\x43\x37\x5f\x55\x4e\x4f\x52\x4d\x20\x83\x65\x83\x4e\x83\x58\x83\x60\x83\x83\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xcd\x25\x73"/*@ "BC7_UNORM ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã¯%s" @*/, String )) ;
 
-		// BC7 UNORM SRGB ƒtƒH[ƒ}ƒbƒg‚Ìƒ`ƒFƒbƒN
+		// BC7 UNORM SRGB ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®ãƒã‚§ãƒƒã‚¯
 		if( D3D11Device_CheckFormatSupport( D_DXGI_FORMAT_BC7_UNORM_SRGB, &FormatSupport ) == S_OK &&
 			( FormatSupport & D_D3D11_FORMAT_SUPPORT_TEXTURE2D ) != 0 )
 		{
 			GD3D11.Device.Caps.TextureFormat[ DX_GRAPHICSIMAGE_FORMAT_3D_BC7_UNORM_SRGB ] = D_DXGI_FORMAT_BC7_UNORM_SRGB ;
-			String = " DXGI_FORMAT_BC7_UNORM_SRGB \x82\xc5\x82\xb7"/*@ " DXGI_FORMAT_BC7_UNORM ‚Å‚·" @*/ ;
+			String = " DXGI_FORMAT_BC7_UNORM_SRGB \x82\xc5\x82\xb7"/*@ " DXGI_FORMAT_BC7_UNORM ã§ã™" @*/ ;
 		}
 		else
 		{
 			GD3D11.Device.Caps.TextureFormat[ DX_GRAPHICSIMAGE_FORMAT_3D_BC7_UNORM_SRGB ] = GD3D11.Device.Caps.TextureFormat[ DX_GRAPHICSIMAGE_FORMAT_3D_ALPHA_RGB32 ] ;
-			String = "\x8e\x67\x82\xa6\x82\xdc\x82\xb9\x82\xf1"/*@ "g‚¦‚Ü‚¹‚ñ" @*/ ;
+			String = "\x8e\x67\x82\xa6\x82\xdc\x82\xb9\x82\xf1"/*@ "ä½¿ãˆã¾ã›ã‚“" @*/ ;
 		}
-		DXST_LOGFILEFMT_ADDA(( "\x42\x43\x37\x5f\x55\x4e\x4f\x52\x4d\x5f\x53\x52\x47\x42\x20\x83\x65\x83\x4e\x83\x58\x83\x60\x83\x83\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xcd\x25\x73"/*@ "BC7_UNORM_SRGB ƒeƒNƒXƒ`ƒƒƒtƒH[ƒ}ƒbƒg‚Í%s" @*/, String )) ;
+		DXST_LOGFILEFMT_ADDA(( "\x42\x43\x37\x5f\x55\x4e\x4f\x52\x4d\x5f\x53\x52\x47\x42\x20\x83\x65\x83\x4e\x83\x58\x83\x60\x83\x83\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xcd\x25\x73"/*@ "BC7_UNORM_SRGB ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã¯%s" @*/, String )) ;
 
 
 
 
-		// ARGB®”16ƒrƒbƒgŒ^ƒJƒ‰[ƒtƒH[ƒ}ƒbƒg‚Ì‘I’è
+		// ARGBæ•´æ•°16ãƒ“ãƒƒãƒˆå‹ã‚«ãƒ©ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®é¸å®š
 		if( D3D11Device_CheckFormatSupport( D_DXGI_FORMAT_R16G16B16A16_UNORM, &FormatSupport ) == S_OK &&
 			( FormatSupport & D_D3D11_FORMAT_SUPPORT_TEXTURE2D     ) != 0 )
 		{
@@ -7581,16 +7581,16 @@ extern	int		Graphics_D3D11_Device_Create( void )
 		}
 		else
 		{
-			DXST_LOGFILE_ADDA( "\x8e\x67\x97\x70\x82\xc5\x82\xab\x82\xe9\x20\x41\x42\x47\x52\x20\x90\xae\x90\x94\x20\x31\x36\x20\x83\x72\x83\x62\x83\x67\x8c\x5e\x83\x4a\x83\x89\x81\x5b\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xaa\x82\xa0\x82\xe8\x82\xdc\x82\xb9\x82\xf1\x82\xc5\x82\xb5\x82\xbd\x5c\x6e"/*@ "g—p‚Å‚«‚é ABGR ®” 16 ƒrƒbƒgŒ^ƒJƒ‰[ƒtƒH[ƒ}ƒbƒg‚ª‚ ‚è‚Ü‚¹‚ñ‚Å‚µ‚½\n" @*/ ) ;
+			DXST_LOGFILE_ADDA( "\x8e\x67\x97\x70\x82\xc5\x82\xab\x82\xe9\x20\x41\x42\x47\x52\x20\x90\xae\x90\x94\x20\x31\x36\x20\x83\x72\x83\x62\x83\x67\x8c\x5e\x83\x4a\x83\x89\x81\x5b\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xaa\x82\xa0\x82\xe8\x82\xdc\x82\xb9\x82\xf1\x82\xc5\x82\xb5\x82\xbd\x5c\x6e"/*@ "ä½¿ç”¨ã§ãã‚‹ ABGR æ•´æ•° 16 ãƒ“ãƒƒãƒˆå‹ã‚«ãƒ©ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆãŒã‚ã‚Šã¾ã›ã‚“ã§ã—ãŸ\n" @*/ ) ;
 			GD3D11.Device.Caps.TextureFormat[ DX_GRAPHICSIMAGE_FORMAT_3D_ABGR_I16 ] = D_DXGI_FORMAT_UNKNOWN ;
 		}
 
 		if( GD3D11.Device.Caps.TextureFormat[ DX_GRAPHICSIMAGE_FORMAT_3D_ABGR_I16 ] != D_DXGI_FORMAT_UNKNOWN )
 		{
-			DXST_LOGFILEFMT_ADDA(( "\x41\x42\x47\x52\x20\x90\xae\x90\x94\x20\x31\x36\x20\x83\x72\x83\x62\x83\x67\x8c\x5e\x83\x4a\x83\x89\x81\x5b\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xcd\x20\x25\x73\x20\x82\xc5\x82\xb7"/*@ "ABGR ®” 16 ƒrƒbƒgŒ^ƒJƒ‰[ƒtƒH[ƒ}ƒbƒg‚Í %s ‚Å‚·" @*/, String )) ;
+			DXST_LOGFILEFMT_ADDA(( "\x41\x42\x47\x52\x20\x90\xae\x90\x94\x20\x31\x36\x20\x83\x72\x83\x62\x83\x67\x8c\x5e\x83\x4a\x83\x89\x81\x5b\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xcd\x20\x25\x73\x20\x82\xc5\x82\xb7"/*@ "ABGR æ•´æ•° 16 ãƒ“ãƒƒãƒˆå‹ã‚«ãƒ©ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã¯ %s ã§ã™" @*/, String )) ;
 		}
 
-		// ARGB•‚“®¬”“_16ƒrƒbƒgŒ^ƒJƒ‰[ƒtƒH[ƒ}ƒbƒg‚Ì‘I’è
+		// ARGBæµ®å‹•å°æ•°ç‚¹16ãƒ“ãƒƒãƒˆå‹ã‚«ãƒ©ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®é¸å®š
 		if( D3D11Device_CheckFormatSupport( D_DXGI_FORMAT_R16G16B16A16_FLOAT, &FormatSupport ) == S_OK &&
 			( FormatSupport & D_D3D11_FORMAT_SUPPORT_TEXTURE2D     ) != 0 )
 		{
@@ -7599,16 +7599,16 @@ extern	int		Graphics_D3D11_Device_Create( void )
 		}
 		else
 		{
-			DXST_LOGFILE_ADDA( "\x8e\x67\x97\x70\x82\xc5\x82\xab\x82\xe9\x41\x42\x47\x52\x20\x95\x82\x93\xae\x8f\xac\x90\x94\x93\x5f\x20\x31\x36\x20\x83\x72\x83\x62\x83\x67\x8c\x5e\x83\x4a\x83\x89\x81\x5b\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xaa\x82\xa0\x82\xe8\x82\xdc\x82\xb9\x82\xf1\x82\xc5\x82\xb5\x82\xbd\x5c\x6e"/*@ "g—p‚Å‚«‚éABGR •‚“®¬”“_ 16 ƒrƒbƒgŒ^ƒJƒ‰[ƒtƒH[ƒ}ƒbƒg‚ª‚ ‚è‚Ü‚¹‚ñ‚Å‚µ‚½\n" @*/ ) ;
+			DXST_LOGFILE_ADDA( "\x8e\x67\x97\x70\x82\xc5\x82\xab\x82\xe9\x41\x42\x47\x52\x20\x95\x82\x93\xae\x8f\xac\x90\x94\x93\x5f\x20\x31\x36\x20\x83\x72\x83\x62\x83\x67\x8c\x5e\x83\x4a\x83\x89\x81\x5b\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xaa\x82\xa0\x82\xe8\x82\xdc\x82\xb9\x82\xf1\x82\xc5\x82\xb5\x82\xbd\x5c\x6e"/*@ "ä½¿ç”¨ã§ãã‚‹ABGR æµ®å‹•å°æ•°ç‚¹ 16 ãƒ“ãƒƒãƒˆå‹ã‚«ãƒ©ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆãŒã‚ã‚Šã¾ã›ã‚“ã§ã—ãŸ\n" @*/ ) ;
 			GD3D11.Device.Caps.TextureFormat[ DX_GRAPHICSIMAGE_FORMAT_3D_ABGR_F16 ] = D_DXGI_FORMAT_UNKNOWN ;
 		}
 
 		if( GD3D11.Device.Caps.TextureFormat[ DX_GRAPHICSIMAGE_FORMAT_3D_ABGR_F16 ] != D_DXGI_FORMAT_UNKNOWN )
 		{
-			DXST_LOGFILEFMT_ADDA(( "\x41\x42\x47\x52\x20\x95\x82\x93\xae\x8f\xac\x90\x94\x93\x5f\x20\x31\x36\x20\x83\x72\x83\x62\x83\x67\x8c\x5e\x83\x4a\x83\x89\x81\x5b\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xcd\x20\x25\x73\x20\x82\xc5\x82\xb7"/*@ "ABGR •‚“®¬”“_ 16 ƒrƒbƒgŒ^ƒJƒ‰[ƒtƒH[ƒ}ƒbƒg‚Í %s ‚Å‚·" @*/, String )) ;
+			DXST_LOGFILEFMT_ADDA(( "\x41\x42\x47\x52\x20\x95\x82\x93\xae\x8f\xac\x90\x94\x93\x5f\x20\x31\x36\x20\x83\x72\x83\x62\x83\x67\x8c\x5e\x83\x4a\x83\x89\x81\x5b\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xcd\x20\x25\x73\x20\x82\xc5\x82\xb7"/*@ "ABGR æµ®å‹•å°æ•°ç‚¹ 16 ãƒ“ãƒƒãƒˆå‹ã‚«ãƒ©ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã¯ %s ã§ã™" @*/, String )) ;
 		}
 
-		// ARGB•‚“®¬”“_32ƒrƒbƒgŒ^ƒJƒ‰[ƒtƒH[ƒ}ƒbƒg‚Ì‘I’è
+		// ARGBæµ®å‹•å°æ•°ç‚¹32ãƒ“ãƒƒãƒˆå‹ã‚«ãƒ©ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®é¸å®š
 		if( D3D11Device_CheckFormatSupport( D_DXGI_FORMAT_R32G32B32A32_FLOAT, &FormatSupport ) == S_OK &&
 			( FormatSupport & D_D3D11_FORMAT_SUPPORT_TEXTURE2D     ) != 0 )
 		{
@@ -7624,16 +7624,16 @@ extern	int		Graphics_D3D11_Device_Create( void )
 		}
 		else
 		{
-			DXST_LOGFILE_ADDA( "\x8e\x67\x97\x70\x82\xc5\x82\xab\x82\xe9\x41\x42\x47\x52\x20\x95\x82\x93\xae\x8f\xac\x90\x94\x93\x5f\x20\x33\x32\x20\x83\x72\x83\x62\x83\x67\x8c\x5e\x83\x4a\x83\x89\x81\x5b\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xaa\x82\xa0\x82\xe8\x82\xdc\x82\xb9\x82\xf1\x82\xc5\x82\xb5\x82\xbd\x5c\x6e"/*@ "g—p‚Å‚«‚éABGR •‚“®¬”“_ 32 ƒrƒbƒgŒ^ƒJƒ‰[ƒtƒH[ƒ}ƒbƒg‚ª‚ ‚è‚Ü‚¹‚ñ‚Å‚µ‚½\n" @*/ ) ;
+			DXST_LOGFILE_ADDA( "\x8e\x67\x97\x70\x82\xc5\x82\xab\x82\xe9\x41\x42\x47\x52\x20\x95\x82\x93\xae\x8f\xac\x90\x94\x93\x5f\x20\x33\x32\x20\x83\x72\x83\x62\x83\x67\x8c\x5e\x83\x4a\x83\x89\x81\x5b\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xaa\x82\xa0\x82\xe8\x82\xdc\x82\xb9\x82\xf1\x82\xc5\x82\xb5\x82\xbd\x5c\x6e"/*@ "ä½¿ç”¨ã§ãã‚‹ABGR æµ®å‹•å°æ•°ç‚¹ 32 ãƒ“ãƒƒãƒˆå‹ã‚«ãƒ©ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆãŒã‚ã‚Šã¾ã›ã‚“ã§ã—ãŸ\n" @*/ ) ;
 			GD3D11.Device.Caps.TextureFormat[ DX_GRAPHICSIMAGE_FORMAT_3D_ABGR_F32 ] = D_DXGI_FORMAT_UNKNOWN ;
 		}
 
 		if( GD3D11.Device.Caps.TextureFormat[ DX_GRAPHICSIMAGE_FORMAT_3D_ABGR_F32 ] != D_DXGI_FORMAT_UNKNOWN )
 		{
-			DXST_LOGFILEFMT_ADDA(( "\x41\x42\x47\x52\x20\x95\x82\x93\xae\x8f\xac\x90\x94\x93\x5f\x20\x33\x32\x20\x83\x72\x83\x62\x83\x67\x8c\x5e\x83\x4a\x83\x89\x81\x5b\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xcd\x20\x25\x73\x20\x82\xc5\x82\xb7"/*@ "ABGR •‚“®¬”“_ 32 ƒrƒbƒgŒ^ƒJƒ‰[ƒtƒH[ƒ}ƒbƒg‚Í %s ‚Å‚·" @*/, String )) ;
+			DXST_LOGFILEFMT_ADDA(( "\x41\x42\x47\x52\x20\x95\x82\x93\xae\x8f\xac\x90\x94\x93\x5f\x20\x33\x32\x20\x83\x72\x83\x62\x83\x67\x8c\x5e\x83\x4a\x83\x89\x81\x5b\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xcd\x20\x25\x73\x20\x82\xc5\x82\xb7"/*@ "ABGR æµ®å‹•å°æ•°ç‚¹ 32 ãƒ“ãƒƒãƒˆå‹ã‚«ãƒ©ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã¯ %s ã§ã™" @*/, String )) ;
 		}
 
-		// ‚Pƒ`ƒƒƒ“ƒlƒ‹®”8ƒrƒbƒgŒ^ƒJƒ‰[ƒtƒH[ƒ}ƒbƒg‚Ì‘I’è
+		// ï¼‘ãƒãƒ£ãƒ³ãƒãƒ«æ•´æ•°8ãƒ“ãƒƒãƒˆå‹ã‚«ãƒ©ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®é¸å®š
 		if( D3D11Device_CheckFormatSupport( D_DXGI_FORMAT_R8_UNORM, &FormatSupport ) == S_OK &&
 			( FormatSupport & D_D3D11_FORMAT_SUPPORT_TEXTURE2D     ) != 0 )
 		{
@@ -7656,16 +7656,16 @@ extern	int		Graphics_D3D11_Device_Create( void )
 		}
 		else
 		{
-			DXST_LOGFILE_ADDA( "\x8e\x67\x97\x70\x82\xc5\x82\xab\x82\xe9\x82\x50\x83\x60\x83\x83\x83\x93\x83\x6c\x83\x8b\x90\xae\x90\x94\x20\x38\x20\x83\x72\x83\x62\x83\x67\x8c\x5e\x83\x4a\x83\x89\x81\x5b\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xaa\x82\xa0\x82\xe8\x82\xdc\x82\xb9\x82\xf1\x82\xc5\x82\xb5\x82\xbd\x5c\x6e"/*@ "g—p‚Å‚«‚é‚Pƒ`ƒƒƒ“ƒlƒ‹®” 8 ƒrƒbƒgŒ^ƒJƒ‰[ƒtƒH[ƒ}ƒbƒg‚ª‚ ‚è‚Ü‚¹‚ñ‚Å‚µ‚½\n" @*/ ) ;
+			DXST_LOGFILE_ADDA( "\x8e\x67\x97\x70\x82\xc5\x82\xab\x82\xe9\x82\x50\x83\x60\x83\x83\x83\x93\x83\x6c\x83\x8b\x90\xae\x90\x94\x20\x38\x20\x83\x72\x83\x62\x83\x67\x8c\x5e\x83\x4a\x83\x89\x81\x5b\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xaa\x82\xa0\x82\xe8\x82\xdc\x82\xb9\x82\xf1\x82\xc5\x82\xb5\x82\xbd\x5c\x6e"/*@ "ä½¿ç”¨ã§ãã‚‹ï¼‘ãƒãƒ£ãƒ³ãƒãƒ«æ•´æ•° 8 ãƒ“ãƒƒãƒˆå‹ã‚«ãƒ©ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆãŒã‚ã‚Šã¾ã›ã‚“ã§ã—ãŸ\n" @*/ ) ;
 			GD3D11.Device.Caps.TextureFormat[ DX_GRAPHICSIMAGE_FORMAT_3D_ONE_I8 ] = D_DXGI_FORMAT_UNKNOWN ;
 		}
 
 		if( GD3D11.Device.Caps.TextureFormat[ DX_GRAPHICSIMAGE_FORMAT_3D_ONE_I8 ] != D_DXGI_FORMAT_UNKNOWN )
 		{
-			DXST_LOGFILEFMT_ADDA(( "\x82\x50\x83\x60\x83\x83\x83\x93\x83\x6c\x83\x8b\x90\xae\x90\x94\x20\x38\x20\x83\x72\x83\x62\x83\x67\x8c\x5e\x83\x4a\x83\x89\x81\x5b\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xcd\x20\x25\x73\x20\x82\xc5\x82\xb7"/*@ "‚Pƒ`ƒƒƒ“ƒlƒ‹®” 8 ƒrƒbƒgŒ^ƒJƒ‰[ƒtƒH[ƒ}ƒbƒg‚Í %s ‚Å‚·" @*/, String )) ;
+			DXST_LOGFILEFMT_ADDA(( "\x82\x50\x83\x60\x83\x83\x83\x93\x83\x6c\x83\x8b\x90\xae\x90\x94\x20\x38\x20\x83\x72\x83\x62\x83\x67\x8c\x5e\x83\x4a\x83\x89\x81\x5b\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xcd\x20\x25\x73\x20\x82\xc5\x82\xb7"/*@ "ï¼‘ãƒãƒ£ãƒ³ãƒãƒ«æ•´æ•° 8 ãƒ“ãƒƒãƒˆå‹ã‚«ãƒ©ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã¯ %s ã§ã™" @*/, String )) ;
 		}
 
-		// ‚Pƒ`ƒƒƒ“ƒlƒ‹®”16ƒrƒbƒgŒ^ƒJƒ‰[ƒtƒH[ƒ}ƒbƒg‚Ì‘I’è
+		// ï¼‘ãƒãƒ£ãƒ³ãƒãƒ«æ•´æ•°16ãƒ“ãƒƒãƒˆå‹ã‚«ãƒ©ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®é¸å®š
 		if( D3D11Device_CheckFormatSupport( D_DXGI_FORMAT_R16_UNORM, &FormatSupport ) == S_OK &&
 			( FormatSupport & D_D3D11_FORMAT_SUPPORT_TEXTURE2D     ) != 0 )
 		{
@@ -7688,16 +7688,16 @@ extern	int		Graphics_D3D11_Device_Create( void )
 		}
 		else
 		{
-			DXST_LOGFILE_ADDA( "\x8e\x67\x97\x70\x82\xc5\x82\xab\x82\xe9\x82\x50\x83\x60\x83\x83\x83\x93\x83\x6c\x83\x8b\x90\xae\x90\x94\x20\x31\x36\x20\x83\x72\x83\x62\x83\x67\x8c\x5e\x83\x4a\x83\x89\x81\x5b\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xaa\x82\xa0\x82\xe8\x82\xdc\x82\xb9\x82\xf1\x82\xc5\x82\xb5\x82\xbd\x5c\x6e"/*@ "g—p‚Å‚«‚é‚Pƒ`ƒƒƒ“ƒlƒ‹®” 16 ƒrƒbƒgŒ^ƒJƒ‰[ƒtƒH[ƒ}ƒbƒg‚ª‚ ‚è‚Ü‚¹‚ñ‚Å‚µ‚½\n" @*/ ) ;
+			DXST_LOGFILE_ADDA( "\x8e\x67\x97\x70\x82\xc5\x82\xab\x82\xe9\x82\x50\x83\x60\x83\x83\x83\x93\x83\x6c\x83\x8b\x90\xae\x90\x94\x20\x31\x36\x20\x83\x72\x83\x62\x83\x67\x8c\x5e\x83\x4a\x83\x89\x81\x5b\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xaa\x82\xa0\x82\xe8\x82\xdc\x82\xb9\x82\xf1\x82\xc5\x82\xb5\x82\xbd\x5c\x6e"/*@ "ä½¿ç”¨ã§ãã‚‹ï¼‘ãƒãƒ£ãƒ³ãƒãƒ«æ•´æ•° 16 ãƒ“ãƒƒãƒˆå‹ã‚«ãƒ©ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆãŒã‚ã‚Šã¾ã›ã‚“ã§ã—ãŸ\n" @*/ ) ;
 			GD3D11.Device.Caps.TextureFormat[ DX_GRAPHICSIMAGE_FORMAT_3D_ONE_I16 ] = D_DXGI_FORMAT_UNKNOWN ;
 		}
 
 		if( GD3D11.Device.Caps.TextureFormat[ DX_GRAPHICSIMAGE_FORMAT_3D_ONE_I16 ] != D_DXGI_FORMAT_UNKNOWN )
 		{
-			DXST_LOGFILEFMT_ADDA(( "\x82\x50\x83\x60\x83\x83\x83\x93\x83\x6c\x83\x8b\x90\xae\x90\x94\x20\x31\x36\x20\x83\x72\x83\x62\x83\x67\x8c\x5e\x83\x4a\x83\x89\x81\x5b\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xcd\x20\x25\x73\x20\x82\xc5\x82\xb7"/*@ "‚Pƒ`ƒƒƒ“ƒlƒ‹®” 16 ƒrƒbƒgŒ^ƒJƒ‰[ƒtƒH[ƒ}ƒbƒg‚Í %s ‚Å‚·" @*/, String )) ;
+			DXST_LOGFILEFMT_ADDA(( "\x82\x50\x83\x60\x83\x83\x83\x93\x83\x6c\x83\x8b\x90\xae\x90\x94\x20\x31\x36\x20\x83\x72\x83\x62\x83\x67\x8c\x5e\x83\x4a\x83\x89\x81\x5b\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xcd\x20\x25\x73\x20\x82\xc5\x82\xb7"/*@ "ï¼‘ãƒãƒ£ãƒ³ãƒãƒ«æ•´æ•° 16 ãƒ“ãƒƒãƒˆå‹ã‚«ãƒ©ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã¯ %s ã§ã™" @*/, String )) ;
 		}
 
-		// ‚Pƒ`ƒƒƒ“ƒlƒ‹•‚“®¬”“_16ƒrƒbƒgŒ^ƒJƒ‰[ƒtƒH[ƒ}ƒbƒg‚Ì‘I’è
+		// ï¼‘ãƒãƒ£ãƒ³ãƒãƒ«æµ®å‹•å°æ•°ç‚¹16ãƒ“ãƒƒãƒˆå‹ã‚«ãƒ©ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®é¸å®š
 		if( D3D11Device_CheckFormatSupport( D_DXGI_FORMAT_R16_FLOAT, &FormatSupport ) == S_OK &&
 			( FormatSupport & D_D3D11_FORMAT_SUPPORT_TEXTURE2D     ) != 0 )
 		{
@@ -7727,16 +7727,16 @@ extern	int		Graphics_D3D11_Device_Create( void )
 		}
 		else
 		{
-			DXST_LOGFILE_ADDA( "\x8e\x67\x97\x70\x82\xc5\x82\xab\x82\xe9\x82\x50\x83\x60\x83\x83\x83\x93\x83\x6c\x83\x8b\x95\x82\x93\xae\x8f\xac\x90\x94\x93\x5f\x20\x31\x36\x20\x83\x72\x83\x62\x83\x67\x8c\x5e\x83\x4a\x83\x89\x81\x5b\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xaa\x82\xa0\x82\xe8\x82\xdc\x82\xb9\x82\xf1\x82\xc5\x82\xb5\x82\xbd\x5c\x6e"/*@ "g—p‚Å‚«‚é‚Pƒ`ƒƒƒ“ƒlƒ‹•‚“®¬”“_ 16 ƒrƒbƒgŒ^ƒJƒ‰[ƒtƒH[ƒ}ƒbƒg‚ª‚ ‚è‚Ü‚¹‚ñ‚Å‚µ‚½\n" @*/ ) ;
+			DXST_LOGFILE_ADDA( "\x8e\x67\x97\x70\x82\xc5\x82\xab\x82\xe9\x82\x50\x83\x60\x83\x83\x83\x93\x83\x6c\x83\x8b\x95\x82\x93\xae\x8f\xac\x90\x94\x93\x5f\x20\x31\x36\x20\x83\x72\x83\x62\x83\x67\x8c\x5e\x83\x4a\x83\x89\x81\x5b\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xaa\x82\xa0\x82\xe8\x82\xdc\x82\xb9\x82\xf1\x82\xc5\x82\xb5\x82\xbd\x5c\x6e"/*@ "ä½¿ç”¨ã§ãã‚‹ï¼‘ãƒãƒ£ãƒ³ãƒãƒ«æµ®å‹•å°æ•°ç‚¹ 16 ãƒ“ãƒƒãƒˆå‹ã‚«ãƒ©ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆãŒã‚ã‚Šã¾ã›ã‚“ã§ã—ãŸ\n" @*/ ) ;
 			GD3D11.Device.Caps.TextureFormat[ DX_GRAPHICSIMAGE_FORMAT_3D_ONE_F16 ] = D_DXGI_FORMAT_UNKNOWN ;
 		}
 
 		if( GD3D11.Device.Caps.TextureFormat[ DX_GRAPHICSIMAGE_FORMAT_3D_ONE_F16 ] != D_DXGI_FORMAT_UNKNOWN )
 		{
-			DXST_LOGFILEFMT_ADDA(( "\x82\x50\x83\x60\x83\x83\x83\x93\x83\x6c\x83\x8b\x95\x82\x93\xae\x8f\xac\x90\x94\x93\x5f\x20\x31\x36\x20\x83\x72\x83\x62\x83\x67\x8c\x5e\x83\x4a\x83\x89\x81\x5b\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xcd\x20\x25\x73\x20\x82\xc5\x82\xb7"/*@ "‚Pƒ`ƒƒƒ“ƒlƒ‹•‚“®¬”“_ 16 ƒrƒbƒgŒ^ƒJƒ‰[ƒtƒH[ƒ}ƒbƒg‚Í %s ‚Å‚·" @*/, String )) ;
+			DXST_LOGFILEFMT_ADDA(( "\x82\x50\x83\x60\x83\x83\x83\x93\x83\x6c\x83\x8b\x95\x82\x93\xae\x8f\xac\x90\x94\x93\x5f\x20\x31\x36\x20\x83\x72\x83\x62\x83\x67\x8c\x5e\x83\x4a\x83\x89\x81\x5b\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xcd\x20\x25\x73\x20\x82\xc5\x82\xb7"/*@ "ï¼‘ãƒãƒ£ãƒ³ãƒãƒ«æµ®å‹•å°æ•°ç‚¹ 16 ãƒ“ãƒƒãƒˆå‹ã‚«ãƒ©ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã¯ %s ã§ã™" @*/, String )) ;
 		}
 
-		// ‚Pƒ`ƒƒƒ“ƒlƒ‹•‚“®¬”“_32ƒrƒbƒgŒ^ƒJƒ‰[ƒtƒH[ƒ}ƒbƒg‚Ì‘I’è
+		// ï¼‘ãƒãƒ£ãƒ³ãƒãƒ«æµ®å‹•å°æ•°ç‚¹32ãƒ“ãƒƒãƒˆå‹ã‚«ãƒ©ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®é¸å®š
 		if( D3D11Device_CheckFormatSupport( D_DXGI_FORMAT_R32_FLOAT, &FormatSupport ) == S_OK &&
 			( FormatSupport & D_D3D11_FORMAT_SUPPORT_TEXTURE2D     ) != 0 )
 		{
@@ -7766,16 +7766,16 @@ extern	int		Graphics_D3D11_Device_Create( void )
 		}
 		else
 		{
-			DXST_LOGFILE_ADDA( "\x8e\x67\x97\x70\x82\xc5\x82\xab\x82\xe9\x82\x50\x83\x60\x83\x83\x83\x93\x83\x6c\x83\x8b\x95\x82\x93\xae\x8f\xac\x90\x94\x93\x5f\x20\x33\x32\x20\x83\x72\x83\x62\x83\x67\x8c\x5e\x83\x4a\x83\x89\x81\x5b\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xaa\x82\xa0\x82\xe8\x82\xdc\x82\xb9\x82\xf1\x82\xc5\x82\xb5\x82\xbd\x5c\x6e"/*@ "g—p‚Å‚«‚é‚Pƒ`ƒƒƒ“ƒlƒ‹•‚“®¬”“_ 32 ƒrƒbƒgŒ^ƒJƒ‰[ƒtƒH[ƒ}ƒbƒg‚ª‚ ‚è‚Ü‚¹‚ñ‚Å‚µ‚½\n" @*/ ) ;
+			DXST_LOGFILE_ADDA( "\x8e\x67\x97\x70\x82\xc5\x82\xab\x82\xe9\x82\x50\x83\x60\x83\x83\x83\x93\x83\x6c\x83\x8b\x95\x82\x93\xae\x8f\xac\x90\x94\x93\x5f\x20\x33\x32\x20\x83\x72\x83\x62\x83\x67\x8c\x5e\x83\x4a\x83\x89\x81\x5b\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xaa\x82\xa0\x82\xe8\x82\xdc\x82\xb9\x82\xf1\x82\xc5\x82\xb5\x82\xbd\x5c\x6e"/*@ "ä½¿ç”¨ã§ãã‚‹ï¼‘ãƒãƒ£ãƒ³ãƒãƒ«æµ®å‹•å°æ•°ç‚¹ 32 ãƒ“ãƒƒãƒˆå‹ã‚«ãƒ©ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆãŒã‚ã‚Šã¾ã›ã‚“ã§ã—ãŸ\n" @*/ ) ;
 			GD3D11.Device.Caps.TextureFormat[ DX_GRAPHICSIMAGE_FORMAT_3D_ONE_F32 ] = D_DXGI_FORMAT_UNKNOWN ;
 		}
 
 		if( GD3D11.Device.Caps.TextureFormat[ DX_GRAPHICSIMAGE_FORMAT_3D_ONE_F32 ] != D_DXGI_FORMAT_UNKNOWN )
 		{
-			DXST_LOGFILEFMT_ADDA(( "\x82\x50\x83\x60\x83\x83\x83\x93\x83\x6c\x83\x8b\x95\x82\x93\xae\x8f\xac\x90\x94\x93\x5f\x20\x33\x32\x20\x83\x72\x83\x62\x83\x67\x8c\x5e\x83\x4a\x83\x89\x81\x5b\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xcd\x20\x25\x73\x20\x82\xc5\x82\xb7"/*@ "‚Pƒ`ƒƒƒ“ƒlƒ‹•‚“®¬”“_ 32 ƒrƒbƒgŒ^ƒJƒ‰[ƒtƒH[ƒ}ƒbƒg‚Í %s ‚Å‚·" @*/, String )) ;
+			DXST_LOGFILEFMT_ADDA(( "\x82\x50\x83\x60\x83\x83\x83\x93\x83\x6c\x83\x8b\x95\x82\x93\xae\x8f\xac\x90\x94\x93\x5f\x20\x33\x32\x20\x83\x72\x83\x62\x83\x67\x8c\x5e\x83\x4a\x83\x89\x81\x5b\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xcd\x20\x25\x73\x20\x82\xc5\x82\xb7"/*@ "ï¼‘ãƒãƒ£ãƒ³ãƒãƒ«æµ®å‹•å°æ•°ç‚¹ 32 ãƒ“ãƒƒãƒˆå‹ã‚«ãƒ©ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã¯ %s ã§ã™" @*/, String )) ;
 		}
 
-		// ‚Qƒ`ƒƒƒ“ƒlƒ‹®”8ƒrƒbƒgŒ^ƒJƒ‰[ƒtƒH[ƒ}ƒbƒg‚Ì‘I’è
+		// ï¼’ãƒãƒ£ãƒ³ãƒãƒ«æ•´æ•°8ãƒ“ãƒƒãƒˆå‹ã‚«ãƒ©ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®é¸å®š
 		if( D3D11Device_CheckFormatSupport( D_DXGI_FORMAT_R8G8_UNORM, &FormatSupport ) == S_OK &&
 			( FormatSupport & D_D3D11_FORMAT_SUPPORT_TEXTURE2D     ) != 0 )
 		{
@@ -7791,16 +7791,16 @@ extern	int		Graphics_D3D11_Device_Create( void )
 		}
 		else
 		{
-			DXST_LOGFILE_ADDA( "\x8e\x67\x97\x70\x82\xc5\x82\xab\x82\xe9\x82\x51\x83\x60\x83\x83\x83\x93\x83\x6c\x83\x8b\x90\xae\x90\x94\x20\x38\x20\x83\x72\x83\x62\x83\x67\x8c\x5e\x83\x4a\x83\x89\x81\x5b\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xaa\x82\xa0\x82\xe8\x82\xdc\x82\xb9\x82\xf1\x82\xc5\x82\xb5\x82\xbd\x5c\x6e"/*@ "g—p‚Å‚«‚é‚Qƒ`ƒƒƒ“ƒlƒ‹®” 8 ƒrƒbƒgŒ^ƒJƒ‰[ƒtƒH[ƒ}ƒbƒg‚ª‚ ‚è‚Ü‚¹‚ñ‚Å‚µ‚½\n" @*/ ) ;
+			DXST_LOGFILE_ADDA( "\x8e\x67\x97\x70\x82\xc5\x82\xab\x82\xe9\x82\x51\x83\x60\x83\x83\x83\x93\x83\x6c\x83\x8b\x90\xae\x90\x94\x20\x38\x20\x83\x72\x83\x62\x83\x67\x8c\x5e\x83\x4a\x83\x89\x81\x5b\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xaa\x82\xa0\x82\xe8\x82\xdc\x82\xb9\x82\xf1\x82\xc5\x82\xb5\x82\xbd\x5c\x6e"/*@ "ä½¿ç”¨ã§ãã‚‹ï¼’ãƒãƒ£ãƒ³ãƒãƒ«æ•´æ•° 8 ãƒ“ãƒƒãƒˆå‹ã‚«ãƒ©ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆãŒã‚ã‚Šã¾ã›ã‚“ã§ã—ãŸ\n" @*/ ) ;
 			GD3D11.Device.Caps.TextureFormat[ DX_GRAPHICSIMAGE_FORMAT_3D_TWO_I8 ] = D_DXGI_FORMAT_UNKNOWN ;
 		}
 
 		if( GD3D11.Device.Caps.TextureFormat[ DX_GRAPHICSIMAGE_FORMAT_3D_TWO_I8 ] != D_DXGI_FORMAT_UNKNOWN )
 		{
-			DXST_LOGFILEFMT_ADDA(( "\x82\x51\x83\x60\x83\x83\x83\x93\x83\x6c\x83\x8b\x90\xae\x90\x94\x20\x38\x20\x83\x72\x83\x62\x83\x67\x8c\x5e\x83\x4a\x83\x89\x81\x5b\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xcd\x20\x25\x73\x20\x82\xc5\x82\xb7"/*@ "‚Qƒ`ƒƒƒ“ƒlƒ‹®” 8 ƒrƒbƒgŒ^ƒJƒ‰[ƒtƒH[ƒ}ƒbƒg‚Í %s ‚Å‚·" @*/, String )) ;
+			DXST_LOGFILEFMT_ADDA(( "\x82\x51\x83\x60\x83\x83\x83\x93\x83\x6c\x83\x8b\x90\xae\x90\x94\x20\x38\x20\x83\x72\x83\x62\x83\x67\x8c\x5e\x83\x4a\x83\x89\x81\x5b\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xcd\x20\x25\x73\x20\x82\xc5\x82\xb7"/*@ "ï¼’ãƒãƒ£ãƒ³ãƒãƒ«æ•´æ•° 8 ãƒ“ãƒƒãƒˆå‹ã‚«ãƒ©ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã¯ %s ã§ã™" @*/, String )) ;
 		}
 
-		// ‚Qƒ`ƒƒƒ“ƒlƒ‹®”16ƒrƒbƒgŒ^ƒJƒ‰[ƒtƒH[ƒ}ƒbƒg‚Ì‘I’è
+		// ï¼’ãƒãƒ£ãƒ³ãƒãƒ«æ•´æ•°16ãƒ“ãƒƒãƒˆå‹ã‚«ãƒ©ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®é¸å®š
 		if( D3D11Device_CheckFormatSupport( D_DXGI_FORMAT_R16G16_UNORM, &FormatSupport ) == S_OK &&
 			( FormatSupport & D_D3D11_FORMAT_SUPPORT_TEXTURE2D     ) != 0 )
 		{
@@ -7816,16 +7816,16 @@ extern	int		Graphics_D3D11_Device_Create( void )
 		}
 		else
 		{
-			DXST_LOGFILE_ADDA( "\x8e\x67\x97\x70\x82\xc5\x82\xab\x82\xe9\x82\x51\x83\x60\x83\x83\x83\x93\x83\x6c\x83\x8b\x90\xae\x90\x94\x20\x31\x36\x20\x83\x72\x83\x62\x83\x67\x8c\x5e\x83\x4a\x83\x89\x81\x5b\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xaa\x82\xa0\x82\xe8\x82\xdc\x82\xb9\x82\xf1\x82\xc5\x82\xb5\x82\xbd\x5c\x6e"/*@ "g—p‚Å‚«‚é‚Qƒ`ƒƒƒ“ƒlƒ‹®” 16 ƒrƒbƒgŒ^ƒJƒ‰[ƒtƒH[ƒ}ƒbƒg‚ª‚ ‚è‚Ü‚¹‚ñ‚Å‚µ‚½\n" @*/ ) ;
+			DXST_LOGFILE_ADDA( "\x8e\x67\x97\x70\x82\xc5\x82\xab\x82\xe9\x82\x51\x83\x60\x83\x83\x83\x93\x83\x6c\x83\x8b\x90\xae\x90\x94\x20\x31\x36\x20\x83\x72\x83\x62\x83\x67\x8c\x5e\x83\x4a\x83\x89\x81\x5b\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xaa\x82\xa0\x82\xe8\x82\xdc\x82\xb9\x82\xf1\x82\xc5\x82\xb5\x82\xbd\x5c\x6e"/*@ "ä½¿ç”¨ã§ãã‚‹ï¼’ãƒãƒ£ãƒ³ãƒãƒ«æ•´æ•° 16 ãƒ“ãƒƒãƒˆå‹ã‚«ãƒ©ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆãŒã‚ã‚Šã¾ã›ã‚“ã§ã—ãŸ\n" @*/ ) ;
 			GD3D11.Device.Caps.TextureFormat[ DX_GRAPHICSIMAGE_FORMAT_3D_TWO_I16 ] = D_DXGI_FORMAT_UNKNOWN ;
 		}
 
 		if( GD3D11.Device.Caps.TextureFormat[ DX_GRAPHICSIMAGE_FORMAT_3D_TWO_I16 ] != D_DXGI_FORMAT_UNKNOWN )
 		{
-			DXST_LOGFILEFMT_ADDA(( "\x82\x51\x83\x60\x83\x83\x83\x93\x83\x6c\x83\x8b\x90\xae\x90\x94\x20\x31\x36\x20\x83\x72\x83\x62\x83\x67\x8c\x5e\x83\x4a\x83\x89\x81\x5b\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xcd\x20\x25\x73\x20\x82\xc5\x82\xb7"/*@ "‚Qƒ`ƒƒƒ“ƒlƒ‹®” 16 ƒrƒbƒgŒ^ƒJƒ‰[ƒtƒH[ƒ}ƒbƒg‚Í %s ‚Å‚·" @*/, String )) ;
+			DXST_LOGFILEFMT_ADDA(( "\x82\x51\x83\x60\x83\x83\x83\x93\x83\x6c\x83\x8b\x90\xae\x90\x94\x20\x31\x36\x20\x83\x72\x83\x62\x83\x67\x8c\x5e\x83\x4a\x83\x89\x81\x5b\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xcd\x20\x25\x73\x20\x82\xc5\x82\xb7"/*@ "ï¼’ãƒãƒ£ãƒ³ãƒãƒ«æ•´æ•° 16 ãƒ“ãƒƒãƒˆå‹ã‚«ãƒ©ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã¯ %s ã§ã™" @*/, String )) ;
 		}
 
-		// ‚Qƒ`ƒƒƒ“ƒlƒ‹•‚“®¬”“_16ƒrƒbƒgŒ^ƒJƒ‰[ƒtƒH[ƒ}ƒbƒg‚Ì‘I’è
+		// ï¼’ãƒãƒ£ãƒ³ãƒãƒ«æµ®å‹•å°æ•°ç‚¹16ãƒ“ãƒƒãƒˆå‹ã‚«ãƒ©ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®é¸å®š
 		if( D3D11Device_CheckFormatSupport( D_DXGI_FORMAT_R16G16_FLOAT, &FormatSupport ) == S_OK &&
 			( FormatSupport & D_D3D11_FORMAT_SUPPORT_TEXTURE2D     ) != 0 )
 		{
@@ -7848,16 +7848,16 @@ extern	int		Graphics_D3D11_Device_Create( void )
 		}
 		else
 		{
-			DXST_LOGFILE_ADDA( "\x8e\x67\x97\x70\x82\xc5\x82\xab\x82\xe9\x82\x51\x83\x60\x83\x83\x83\x93\x83\x6c\x83\x8b\x95\x82\x93\xae\x8f\xac\x90\x94\x93\x5f\x20\x31\x36\x20\x83\x72\x83\x62\x83\x67\x8c\x5e\x83\x4a\x83\x89\x81\x5b\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xaa\x82\xa0\x82\xe8\x82\xdc\x82\xb9\x82\xf1\x82\xc5\x82\xb5\x82\xbd\x5c\x6e"/*@ "g—p‚Å‚«‚é‚Qƒ`ƒƒƒ“ƒlƒ‹•‚“®¬”“_ 16 ƒrƒbƒgŒ^ƒJƒ‰[ƒtƒH[ƒ}ƒbƒg‚ª‚ ‚è‚Ü‚¹‚ñ‚Å‚µ‚½\n" @*/ ) ;
+			DXST_LOGFILE_ADDA( "\x8e\x67\x97\x70\x82\xc5\x82\xab\x82\xe9\x82\x51\x83\x60\x83\x83\x83\x93\x83\x6c\x83\x8b\x95\x82\x93\xae\x8f\xac\x90\x94\x93\x5f\x20\x31\x36\x20\x83\x72\x83\x62\x83\x67\x8c\x5e\x83\x4a\x83\x89\x81\x5b\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xaa\x82\xa0\x82\xe8\x82\xdc\x82\xb9\x82\xf1\x82\xc5\x82\xb5\x82\xbd\x5c\x6e"/*@ "ä½¿ç”¨ã§ãã‚‹ï¼’ãƒãƒ£ãƒ³ãƒãƒ«æµ®å‹•å°æ•°ç‚¹ 16 ãƒ“ãƒƒãƒˆå‹ã‚«ãƒ©ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆãŒã‚ã‚Šã¾ã›ã‚“ã§ã—ãŸ\n" @*/ ) ;
 			GD3D11.Device.Caps.TextureFormat[ DX_GRAPHICSIMAGE_FORMAT_3D_TWO_F16 ] = D_DXGI_FORMAT_UNKNOWN ;
 		}
 
 		if( GD3D11.Device.Caps.TextureFormat[ DX_GRAPHICSIMAGE_FORMAT_3D_TWO_F16 ] != D_DXGI_FORMAT_UNKNOWN )
 		{
-			DXST_LOGFILEFMT_ADDA(( "\x82\x51\x83\x60\x83\x83\x83\x93\x83\x6c\x83\x8b\x95\x82\x93\xae\x8f\xac\x90\x94\x93\x5f\x20\x31\x36\x20\x83\x72\x83\x62\x83\x67\x8c\x5e\x83\x4a\x83\x89\x81\x5b\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xcd\x20\x25\x73\x20\x82\xc5\x82\xb7"/*@ "‚Qƒ`ƒƒƒ“ƒlƒ‹•‚“®¬”“_ 16 ƒrƒbƒgŒ^ƒJƒ‰[ƒtƒH[ƒ}ƒbƒg‚Í %s ‚Å‚·" @*/, String )) ;
+			DXST_LOGFILEFMT_ADDA(( "\x82\x51\x83\x60\x83\x83\x83\x93\x83\x6c\x83\x8b\x95\x82\x93\xae\x8f\xac\x90\x94\x93\x5f\x20\x31\x36\x20\x83\x72\x83\x62\x83\x67\x8c\x5e\x83\x4a\x83\x89\x81\x5b\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xcd\x20\x25\x73\x20\x82\xc5\x82\xb7"/*@ "ï¼’ãƒãƒ£ãƒ³ãƒãƒ«æµ®å‹•å°æ•°ç‚¹ 16 ãƒ“ãƒƒãƒˆå‹ã‚«ãƒ©ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã¯ %s ã§ã™" @*/, String )) ;
 		}
 
-		// ‚Qƒ`ƒƒƒ“ƒlƒ‹•‚“®¬”“_32ƒrƒbƒgŒ^ƒJƒ‰[ƒtƒH[ƒ}ƒbƒg‚Ì‘I’è
+		// ï¼’ãƒãƒ£ãƒ³ãƒãƒ«æµ®å‹•å°æ•°ç‚¹32ãƒ“ãƒƒãƒˆå‹ã‚«ãƒ©ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®é¸å®š
 		if( D3D11Device_CheckFormatSupport( D_DXGI_FORMAT_R32G32_FLOAT, &FormatSupport ) == S_OK &&
 			( FormatSupport & D_D3D11_FORMAT_SUPPORT_TEXTURE2D     ) != 0 )
 		{
@@ -7880,20 +7880,20 @@ extern	int		Graphics_D3D11_Device_Create( void )
 		}
 		else
 		{
-			DXST_LOGFILE_ADDA( "\x8e\x67\x97\x70\x82\xc5\x82\xab\x82\xe9\x82\x51\x83\x60\x83\x83\x83\x93\x83\x6c\x83\x8b\x95\x82\x93\xae\x8f\xac\x90\x94\x93\x5f\x20\x33\x32\x20\x83\x72\x83\x62\x83\x67\x8c\x5e\x83\x4a\x83\x89\x81\x5b\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xaa\x82\xa0\x82\xe8\x82\xdc\x82\xb9\x82\xf1\x82\xc5\x82\xb5\x82\xbd\x5c\x6e"/*@ "g—p‚Å‚«‚é‚Qƒ`ƒƒƒ“ƒlƒ‹•‚“®¬”“_ 32 ƒrƒbƒgŒ^ƒJƒ‰[ƒtƒH[ƒ}ƒbƒg‚ª‚ ‚è‚Ü‚¹‚ñ‚Å‚µ‚½\n" @*/ ) ;
+			DXST_LOGFILE_ADDA( "\x8e\x67\x97\x70\x82\xc5\x82\xab\x82\xe9\x82\x51\x83\x60\x83\x83\x83\x93\x83\x6c\x83\x8b\x95\x82\x93\xae\x8f\xac\x90\x94\x93\x5f\x20\x33\x32\x20\x83\x72\x83\x62\x83\x67\x8c\x5e\x83\x4a\x83\x89\x81\x5b\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xaa\x82\xa0\x82\xe8\x82\xdc\x82\xb9\x82\xf1\x82\xc5\x82\xb5\x82\xbd\x5c\x6e"/*@ "ä½¿ç”¨ã§ãã‚‹ï¼’ãƒãƒ£ãƒ³ãƒãƒ«æµ®å‹•å°æ•°ç‚¹ 32 ãƒ“ãƒƒãƒˆå‹ã‚«ãƒ©ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆãŒã‚ã‚Šã¾ã›ã‚“ã§ã—ãŸ\n" @*/ ) ;
 			GD3D11.Device.Caps.TextureFormat[ DX_GRAPHICSIMAGE_FORMAT_3D_TWO_F32 ] = D_DXGI_FORMAT_UNKNOWN ;
 		}
 
 		if( GD3D11.Device.Caps.TextureFormat[ DX_GRAPHICSIMAGE_FORMAT_3D_TWO_F32 ] != D_DXGI_FORMAT_UNKNOWN )
 		{
-			DXST_LOGFILEFMT_ADDA(( "\x82\x51\x83\x60\x83\x83\x83\x93\x83\x6c\x83\x8b\x95\x82\x93\xae\x8f\xac\x90\x94\x93\x5f\x20\x33\x32\x20\x83\x72\x83\x62\x83\x67\x8c\x5e\x83\x4a\x83\x89\x81\x5b\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xcd\x20\x25\x73\x20\x82\xc5\x82\xb7"/*@ "‚Qƒ`ƒƒƒ“ƒlƒ‹•‚“®¬”“_ 32 ƒrƒbƒgŒ^ƒJƒ‰[ƒtƒH[ƒ}ƒbƒg‚Í %s ‚Å‚·" @*/, String )) ;
+			DXST_LOGFILEFMT_ADDA(( "\x82\x51\x83\x60\x83\x83\x83\x93\x83\x6c\x83\x8b\x95\x82\x93\xae\x8f\xac\x90\x94\x93\x5f\x20\x33\x32\x20\x83\x72\x83\x62\x83\x67\x8c\x5e\x83\x4a\x83\x89\x81\x5b\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xcd\x20\x25\x73\x20\x82\xc5\x82\xb7"/*@ "ï¼’ãƒãƒ£ãƒ³ãƒãƒ«æµ®å‹•å°æ•°ç‚¹ 32 ãƒ“ãƒƒãƒˆå‹ã‚«ãƒ©ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã¯ %s ã§ã™" @*/, String )) ;
 		}
 
 
 
 
 
-		// 16bit•`‰æ‰Â”\ƒJƒ‰[ƒtƒH[ƒ}ƒbƒg‚Ì‘I’è
+		// 16bitæç”»å¯èƒ½ã‚«ãƒ©ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®é¸å®š
 		if( D3D11Device_CheckFormatSupport( D_DXGI_FORMAT_B5G6R5_UNORM, &FormatSupport ) == S_OK ||
 			( FormatSupport & D_D3D11_FORMAT_SUPPORT_TEXTURE2D     ) != 0 ||
 			( FormatSupport & D_D3D11_FORMAT_SUPPORT_RENDER_TARGET ) != 0 )
@@ -7919,16 +7919,16 @@ extern	int		Graphics_D3D11_Device_Create( void )
 		}
 		else
 		{
-			DXST_LOGFILE_ADDA( "\x8e\x67\x97\x70\x82\xc5\x82\xab\x82\xe9 16bit \x95\x60\x89\xe6\x89\xc2\x94\x5c\x83\x4a\x83\x89\x81\x5b\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xaa\x8c\xa9\x82\xc2\x82\xa9\x82\xe8\x82\xdc\x82\xb9\x82\xf1\x82\xc5\x82\xb5\x82\xbd\n"/*@ "g—p‚Å‚«‚é 16bit •`‰æ‰Â”\ƒJƒ‰[ƒtƒH[ƒ}ƒbƒg‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñ‚Å‚µ‚½\n" @*/ ) ;
+			DXST_LOGFILE_ADDA( "\x8e\x67\x97\x70\x82\xc5\x82\xab\x82\xe9 16bit \x95\x60\x89\xe6\x89\xc2\x94\x5c\x83\x4a\x83\x89\x81\x5b\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xaa\x8c\xa9\x82\xc2\x82\xa9\x82\xe8\x82\xdc\x82\xb9\x82\xf1\x82\xc5\x82\xb5\x82\xbd\n"/*@ "ä½¿ç”¨ã§ãã‚‹ 16bit æç”»å¯èƒ½ã‚«ãƒ©ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“ã§ã—ãŸ\n" @*/ ) ;
 			GD3D11.Device.Caps.TextureFormat[ DX_GRAPHICSIMAGE_FORMAT_3D_DRAWVALID_RGB16 ] = D_DXGI_FORMAT_UNKNOWN ;
 		}
 
 		if( GD3D11.Device.Caps.TextureFormat[ DX_GRAPHICSIMAGE_FORMAT_3D_DRAWVALID_RGB16 ] != D_DXGI_FORMAT_UNKNOWN )
 		{
-			DXST_LOGFILEFMT_ADDA(( "\x95\x60\x89\xe6\x97\x70 16bit \x83\x4a\x83\x89\x81\x5b\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xcd %s \x82\xc5\x82\xb7"/*@ "•`‰æ—p 16bit ƒJƒ‰[ƒtƒH[ƒ}ƒbƒg‚Í %s ‚Å‚·" @*/, String )) ;
+			DXST_LOGFILEFMT_ADDA(( "\x95\x60\x89\xe6\x97\x70 16bit \x83\x4a\x83\x89\x81\x5b\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xcd %s \x82\xc5\x82\xb7"/*@ "æç”»ç”¨ 16bit ã‚«ãƒ©ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã¯ %s ã§ã™" @*/, String )) ;
 		}
 
-		// 32bit•`‰æ‰Â”\ƒJƒ‰[ƒtƒH[ƒ}ƒbƒg‚Ì‘I’è
+		// 32bitæç”»å¯èƒ½ã‚«ãƒ©ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®é¸å®š
 		if( D3D11Device_CheckFormatSupport( D_DXGI_FORMAT_B8G8R8X8_UNORM, &FormatSupport ) == S_OK ||
 			( FormatSupport & D_D3D11_FORMAT_SUPPORT_TEXTURE2D     ) != 0 ||
 			( FormatSupport & D_D3D11_FORMAT_SUPPORT_RENDER_TARGET ) != 0 )
@@ -7946,16 +7946,16 @@ extern	int		Graphics_D3D11_Device_Create( void )
 		}
 		else
 		{
-			DXST_LOGFILE_ADDA( "\x8e\x67\x97\x70\x82\xc5\x82\xab\x82\xe9 32bit \x95\x60\x89\xe6\x89\xc2\x94\x5c\x83\x4a\x83\x89\x81\x5b\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xaa\x8c\xa9\x82\xc2\x82\xa9\x82\xe8\x82\xdc\x82\xb9\x82\xf1\x82\xc5\x82\xb5\x82\xbd\n"/*@ "g—p‚Å‚«‚é 32bit •`‰æ‰Â”\ƒJƒ‰[ƒtƒH[ƒ}ƒbƒg‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñ‚Å‚µ‚½\n" @*/ ) ;
+			DXST_LOGFILE_ADDA( "\x8e\x67\x97\x70\x82\xc5\x82\xab\x82\xe9 32bit \x95\x60\x89\xe6\x89\xc2\x94\x5c\x83\x4a\x83\x89\x81\x5b\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xaa\x8c\xa9\x82\xc2\x82\xa9\x82\xe8\x82\xdc\x82\xb9\x82\xf1\x82\xc5\x82\xb5\x82\xbd\n"/*@ "ä½¿ç”¨ã§ãã‚‹ 32bit æç”»å¯èƒ½ã‚«ãƒ©ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“ã§ã—ãŸ\n" @*/ ) ;
 			GD3D11.Device.Caps.TextureFormat[ DX_GRAPHICSIMAGE_FORMAT_3D_DRAWVALID_RGB32 ] = D_DXGI_FORMAT_UNKNOWN ;
 		}
 
 		if( GD3D11.Device.Caps.TextureFormat[ DX_GRAPHICSIMAGE_FORMAT_3D_DRAWVALID_RGB32 ] != D_DXGI_FORMAT_UNKNOWN )
 		{
-			DXST_LOGFILEFMT_ADDA(( "\x95\x60\x89\xe6\x97\x70 32bit \x83\x4a\x83\x89\x81\x5b\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xcd %s \x82\xc5\x82\xb7"/*@ "•`‰æ—p 32bit ƒJƒ‰[ƒtƒH[ƒ}ƒbƒg‚Í %s ‚Å‚·" @*/, String )) ;
+			DXST_LOGFILEFMT_ADDA(( "\x95\x60\x89\xe6\x97\x70 32bit \x83\x4a\x83\x89\x81\x5b\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xcd %s \x82\xc5\x82\xb7"/*@ "æç”»ç”¨ 32bit ã‚«ãƒ©ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã¯ %s ã§ã™" @*/, String )) ;
 		}
 
-		// ƒAƒ‹ƒtƒ@ƒ`ƒƒƒ“ƒlƒ‹•t‚« 32bit•`‰æ‰Â”\ƒJƒ‰[ƒtƒH[ƒ}ƒbƒg‚Ì‘I’è
+		// ã‚¢ãƒ«ãƒ•ã‚¡ãƒãƒ£ãƒ³ãƒãƒ«ä»˜ã 32bitæç”»å¯èƒ½ã‚«ãƒ©ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®é¸å®š
 		if( D3D11Device_CheckFormatSupport( D_DXGI_FORMAT_R8G8B8A8_UNORM, &FormatSupport ) == S_OK ||
 			( FormatSupport & D_D3D11_FORMAT_SUPPORT_TEXTURE2D     ) != 0 ||
 			( FormatSupport & D_D3D11_FORMAT_SUPPORT_RENDER_TARGET ) != 0 )
@@ -7965,16 +7965,16 @@ extern	int		Graphics_D3D11_Device_Create( void )
 		}
 		else
 		{
-			DXST_LOGFILE_ADDA( "\x8e\x67\x97\x70\x82\xc5\x82\xab\x82\xe9\x83\x41\x83\x8b\x83\x74\x83\x40\x95\x74\x82\xab 32bit \x95\x60\x89\xe6\x89\xc2\x94\x5c\x83\x4a\x83\x89\x81\x5b\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xaa\x8c\xa9\x82\xc2\x82\xa9\x82\xe8\x82\xdc\x82\xb9\x82\xf1\x82\xc5\x82\xb5\x82\xbd\n"/*@ "g—p‚Å‚«‚éƒAƒ‹ƒtƒ@•t‚« 32bit •`‰æ‰Â”\ƒJƒ‰[ƒtƒH[ƒ}ƒbƒg‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñ‚Å‚µ‚½\n" @*/ ) ;
+			DXST_LOGFILE_ADDA( "\x8e\x67\x97\x70\x82\xc5\x82\xab\x82\xe9\x83\x41\x83\x8b\x83\x74\x83\x40\x95\x74\x82\xab 32bit \x95\x60\x89\xe6\x89\xc2\x94\x5c\x83\x4a\x83\x89\x81\x5b\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xaa\x8c\xa9\x82\xc2\x82\xa9\x82\xe8\x82\xdc\x82\xb9\x82\xf1\x82\xc5\x82\xb5\x82\xbd\n"/*@ "ä½¿ç”¨ã§ãã‚‹ã‚¢ãƒ«ãƒ•ã‚¡ä»˜ã 32bit æç”»å¯èƒ½ã‚«ãƒ©ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“ã§ã—ãŸ\n" @*/ ) ;
 			GD3D11.Device.Caps.TextureFormat[ DX_GRAPHICSIMAGE_FORMAT_3D_DRAWVALID_ALPHA_RGB32 ] = D_DXGI_FORMAT_UNKNOWN ;
 		}
 
 		if( GD3D11.Device.Caps.TextureFormat[ DX_GRAPHICSIMAGE_FORMAT_3D_DRAWVALID_ALPHA_RGB32 ] != D_DXGI_FORMAT_UNKNOWN )
 		{
-			DXST_LOGFILEFMT_ADDA(( "\x95\x60\x89\xe6\x97\x70\x83\x41\x83\x8b\x83\x74\x83\x40\x95\x74\x82\xab 32bit \x83\x4a\x83\x89\x81\x5b\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xcd %s \x82\xc5\x82\xb7"/*@ "•`‰æ—pƒAƒ‹ƒtƒ@•t‚« 32bit ƒJƒ‰[ƒtƒH[ƒ}ƒbƒg‚Í %s ‚Å‚·" @*/, String )) ;
+			DXST_LOGFILEFMT_ADDA(( "\x95\x60\x89\xe6\x97\x70\x83\x41\x83\x8b\x83\x74\x83\x40\x95\x74\x82\xab 32bit \x83\x4a\x83\x89\x81\x5b\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xcd %s \x82\xc5\x82\xb7"/*@ "æç”»ç”¨ã‚¢ãƒ«ãƒ•ã‚¡ä»˜ã 32bit ã‚«ãƒ©ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã¯ %s ã§ã™" @*/, String )) ;
 		}
 
-		// •`‰æ‰Â”\ ARGB®”16ƒrƒbƒgŒ^ƒJƒ‰[ƒtƒH[ƒ}ƒbƒg‚Ì‘I’è
+		// æç”»å¯èƒ½ ARGBæ•´æ•°16ãƒ“ãƒƒãƒˆå‹ã‚«ãƒ©ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®é¸å®š
 		if( D3D11Device_CheckFormatSupport( D_DXGI_FORMAT_R16G16B16A16_UNORM, &FormatSupport ) == S_OK &&
 			( FormatSupport & D_D3D11_FORMAT_SUPPORT_TEXTURE2D     ) != 0 &&
 			( FormatSupport & D_D3D11_FORMAT_SUPPORT_RENDER_TARGET ) != 0 )
@@ -7984,16 +7984,16 @@ extern	int		Graphics_D3D11_Device_Create( void )
 		}
 		else
 		{
-			DXST_LOGFILE_ADDA( "\x8e\x67\x97\x70\x82\xc5\x82\xab\x82\xe9\x95\x60\x89\xe6\x97\x70 ABGR \x90\xae\x90\x94 16 \x83\x72\x83\x62\x83\x67\x8c\x5e\x83\x4a\x83\x89\x81\x5b\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xaa\x82\xa0\x82\xe8\x82\xdc\x82\xb9\x82\xf1\x82\xc5\x82\xb5\x82\xbd\n"/*@ "g—p‚Å‚«‚é•`‰æ—p ABGR ®” 16 ƒrƒbƒgŒ^ƒJƒ‰[ƒtƒH[ƒ}ƒbƒg‚ª‚ ‚è‚Ü‚¹‚ñ‚Å‚µ‚½\n" @*/ ) ;
+			DXST_LOGFILE_ADDA( "\x8e\x67\x97\x70\x82\xc5\x82\xab\x82\xe9\x95\x60\x89\xe6\x97\x70 ABGR \x90\xae\x90\x94 16 \x83\x72\x83\x62\x83\x67\x8c\x5e\x83\x4a\x83\x89\x81\x5b\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xaa\x82\xa0\x82\xe8\x82\xdc\x82\xb9\x82\xf1\x82\xc5\x82\xb5\x82\xbd\n"/*@ "ä½¿ç”¨ã§ãã‚‹æç”»ç”¨ ABGR æ•´æ•° 16 ãƒ“ãƒƒãƒˆå‹ã‚«ãƒ©ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆãŒã‚ã‚Šã¾ã›ã‚“ã§ã—ãŸ\n" @*/ ) ;
 			GD3D11.Device.Caps.TextureFormat[ DX_GRAPHICSIMAGE_FORMAT_3D_DRAWVALID_ABGR_I16 ] = D_DXGI_FORMAT_UNKNOWN ;
 		}
 
 		if( GD3D11.Device.Caps.TextureFormat[ DX_GRAPHICSIMAGE_FORMAT_3D_DRAWVALID_ABGR_I16 ] != D_DXGI_FORMAT_UNKNOWN )
 		{
-			DXST_LOGFILEFMT_ADDA(( "\x95\x60\x89\xe6\x97\x70 ABGR \x90\xae\x90\x94 16 \x83\x72\x83\x62\x83\x67\x8c\x5e\x83\x4a\x83\x89\x81\x5b\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xcd %s \x82\xc5\x82\xb7"/*@ "•`‰æ—p ABGR ®” 16 ƒrƒbƒgŒ^ƒJƒ‰[ƒtƒH[ƒ}ƒbƒg‚Í %s ‚Å‚·" @*/, String )) ;
+			DXST_LOGFILEFMT_ADDA(( "\x95\x60\x89\xe6\x97\x70 ABGR \x90\xae\x90\x94 16 \x83\x72\x83\x62\x83\x67\x8c\x5e\x83\x4a\x83\x89\x81\x5b\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xcd %s \x82\xc5\x82\xb7"/*@ "æç”»ç”¨ ABGR æ•´æ•° 16 ãƒ“ãƒƒãƒˆå‹ã‚«ãƒ©ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã¯ %s ã§ã™" @*/, String )) ;
 		}
 
-		// •`‰æ‰Â”\ ARGB•‚“®¬”“_16ƒrƒbƒgŒ^ƒJƒ‰[ƒtƒH[ƒ}ƒbƒg‚Ì‘I’è
+		// æç”»å¯èƒ½ ARGBæµ®å‹•å°æ•°ç‚¹16ãƒ“ãƒƒãƒˆå‹ã‚«ãƒ©ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®é¸å®š
 		if( D3D11Device_CheckFormatSupport( D_DXGI_FORMAT_R16G16B16A16_FLOAT, &FormatSupport ) == S_OK &&
 			( FormatSupport & D_D3D11_FORMAT_SUPPORT_TEXTURE2D     ) != 0 &&
 			( FormatSupport & D_D3D11_FORMAT_SUPPORT_RENDER_TARGET ) != 0 )
@@ -8003,16 +8003,16 @@ extern	int		Graphics_D3D11_Device_Create( void )
 		}
 		else
 		{
-			DXST_LOGFILE_ADDA( "\x8e\x67\x97\x70\x82\xc5\x82\xab\x82\xe9\x95\x60\x89\xe6\x97\x70 ABGR \x95\x82\x93\xae\x8f\xac\x90\x94\x93\x5f 16 \x83\x72\x83\x62\x83\x67\x8c\x5e\x83\x4a\x83\x89\x81\x5b\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xaa\x82\xa0\x82\xe8\x82\xdc\x82\xb9\x82\xf1\x82\xc5\x82\xb5\x82\xbd\n"/*@ "g—p‚Å‚«‚é•`‰æ—p ABGR •‚“®¬”“_ 16 ƒrƒbƒgŒ^ƒJƒ‰[ƒtƒH[ƒ}ƒbƒg‚ª‚ ‚è‚Ü‚¹‚ñ‚Å‚µ‚½\n" @*/ ) ;
+			DXST_LOGFILE_ADDA( "\x8e\x67\x97\x70\x82\xc5\x82\xab\x82\xe9\x95\x60\x89\xe6\x97\x70 ABGR \x95\x82\x93\xae\x8f\xac\x90\x94\x93\x5f 16 \x83\x72\x83\x62\x83\x67\x8c\x5e\x83\x4a\x83\x89\x81\x5b\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xaa\x82\xa0\x82\xe8\x82\xdc\x82\xb9\x82\xf1\x82\xc5\x82\xb5\x82\xbd\n"/*@ "ä½¿ç”¨ã§ãã‚‹æç”»ç”¨ ABGR æµ®å‹•å°æ•°ç‚¹ 16 ãƒ“ãƒƒãƒˆå‹ã‚«ãƒ©ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆãŒã‚ã‚Šã¾ã›ã‚“ã§ã—ãŸ\n" @*/ ) ;
 			GD3D11.Device.Caps.TextureFormat[ DX_GRAPHICSIMAGE_FORMAT_3D_DRAWVALID_ABGR_F16 ] = D_DXGI_FORMAT_UNKNOWN ;
 		}
 
 		if( GD3D11.Device.Caps.TextureFormat[ DX_GRAPHICSIMAGE_FORMAT_3D_DRAWVALID_ABGR_F16 ] != D_DXGI_FORMAT_UNKNOWN )
 		{
-			DXST_LOGFILEFMT_ADDA(( "\x95\x60\x89\xe6\x97\x70 ABGR \x95\x82\x93\xae\x8f\xac\x90\x94\x93\x5f 16 \x83\x72\x83\x62\x83\x67\x8c\x5e\x83\x4a\x83\x89\x81\x5b\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xcd %s \x82\xc5\x82\xb7"/*@ "•`‰æ—p ABGR •‚“®¬”“_ 16 ƒrƒbƒgŒ^ƒJƒ‰[ƒtƒH[ƒ}ƒbƒg‚Í %s ‚Å‚·" @*/, String )) ;
+			DXST_LOGFILEFMT_ADDA(( "\x95\x60\x89\xe6\x97\x70 ABGR \x95\x82\x93\xae\x8f\xac\x90\x94\x93\x5f 16 \x83\x72\x83\x62\x83\x67\x8c\x5e\x83\x4a\x83\x89\x81\x5b\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xcd %s \x82\xc5\x82\xb7"/*@ "æç”»ç”¨ ABGR æµ®å‹•å°æ•°ç‚¹ 16 ãƒ“ãƒƒãƒˆå‹ã‚«ãƒ©ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã¯ %s ã§ã™" @*/, String )) ;
 		}
 
-		// •`‰æ‰Â”\ ARGB•‚“®¬”“_32ƒrƒbƒgŒ^ƒJƒ‰[ƒtƒH[ƒ}ƒbƒg‚Ì‘I’è
+		// æç”»å¯èƒ½ ARGBæµ®å‹•å°æ•°ç‚¹32ãƒ“ãƒƒãƒˆå‹ã‚«ãƒ©ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®é¸å®š
 		if( D3D11Device_CheckFormatSupport( D_DXGI_FORMAT_R32G32B32A32_FLOAT, &FormatSupport ) == S_OK &&
 			( FormatSupport & D_D3D11_FORMAT_SUPPORT_TEXTURE2D     ) != 0 &&
 			( FormatSupport & D_D3D11_FORMAT_SUPPORT_RENDER_TARGET ) != 0 )
@@ -8030,16 +8030,16 @@ extern	int		Graphics_D3D11_Device_Create( void )
 		}
 		else
 		{
-			DXST_LOGFILE_ADDA( "\x8e\x67\x97\x70\x82\xc5\x82\xab\x82\xe9\x95\x60\x89\xe6\x97\x70 ABGR \x95\x82\x93\xae\x8f\xac\x90\x94\x93\x5f 32 \x83\x72\x83\x62\x83\x67\x8c\x5e\x83\x4a\x83\x89\x81\x5b\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xaa\x82\xa0\x82\xe8\x82\xdc\x82\xb9\x82\xf1\x82\xc5\x82\xb5\x82\xbd\n"/*@ "g—p‚Å‚«‚é•`‰æ—p ABGR •‚“®¬”“_ 32 ƒrƒbƒgŒ^ƒJƒ‰[ƒtƒH[ƒ}ƒbƒg‚ª‚ ‚è‚Ü‚¹‚ñ‚Å‚µ‚½\n" @*/ ) ;
+			DXST_LOGFILE_ADDA( "\x8e\x67\x97\x70\x82\xc5\x82\xab\x82\xe9\x95\x60\x89\xe6\x97\x70 ABGR \x95\x82\x93\xae\x8f\xac\x90\x94\x93\x5f 32 \x83\x72\x83\x62\x83\x67\x8c\x5e\x83\x4a\x83\x89\x81\x5b\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xaa\x82\xa0\x82\xe8\x82\xdc\x82\xb9\x82\xf1\x82\xc5\x82\xb5\x82\xbd\n"/*@ "ä½¿ç”¨ã§ãã‚‹æç”»ç”¨ ABGR æµ®å‹•å°æ•°ç‚¹ 32 ãƒ“ãƒƒãƒˆå‹ã‚«ãƒ©ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆãŒã‚ã‚Šã¾ã›ã‚“ã§ã—ãŸ\n" @*/ ) ;
 			GD3D11.Device.Caps.TextureFormat[ DX_GRAPHICSIMAGE_FORMAT_3D_DRAWVALID_ABGR_F32 ] = D_DXGI_FORMAT_UNKNOWN ;
 		}
 
 		if( GD3D11.Device.Caps.TextureFormat[ DX_GRAPHICSIMAGE_FORMAT_3D_DRAWVALID_ABGR_F32 ] != D_DXGI_FORMAT_UNKNOWN )
 		{
-			DXST_LOGFILEFMT_ADDA(( "\x95\x60\x89\xe6\x97\x70 ABGR \x95\x82\x93\xae\x8f\xac\x90\x94\x93\x5f 32 \x83\x72\x83\x62\x83\x67\x8c\x5e\x83\x4a\x83\x89\x81\x5b\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xcd %s \x82\xc5\x82\xb7"/*@ "•`‰æ—p ABGR •‚“®¬”“_ 32 ƒrƒbƒgŒ^ƒJƒ‰[ƒtƒH[ƒ}ƒbƒg‚Í %s ‚Å‚·" @*/, String )) ;
+			DXST_LOGFILEFMT_ADDA(( "\x95\x60\x89\xe6\x97\x70 ABGR \x95\x82\x93\xae\x8f\xac\x90\x94\x93\x5f 32 \x83\x72\x83\x62\x83\x67\x8c\x5e\x83\x4a\x83\x89\x81\x5b\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xcd %s \x82\xc5\x82\xb7"/*@ "æç”»ç”¨ ABGR æµ®å‹•å°æ•°ç‚¹ 32 ãƒ“ãƒƒãƒˆå‹ã‚«ãƒ©ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã¯ %s ã§ã™" @*/, String )) ;
 		}
 
-		// •`‰æ‰Â”\ ‚Pƒ`ƒƒƒ“ƒlƒ‹®”8ƒrƒbƒgŒ^ƒJƒ‰[ƒtƒH[ƒ}ƒbƒg‚Ì‘I’è
+		// æç”»å¯èƒ½ ï¼‘ãƒãƒ£ãƒ³ãƒãƒ«æ•´æ•°8ãƒ“ãƒƒãƒˆå‹ã‚«ãƒ©ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®é¸å®š
 		if( D3D11Device_CheckFormatSupport( D_DXGI_FORMAT_R8_UNORM, &FormatSupport ) == S_OK &&
 			( FormatSupport & D_D3D11_FORMAT_SUPPORT_TEXTURE2D     ) != 0 &&
 			( FormatSupport & D_D3D11_FORMAT_SUPPORT_RENDER_TARGET ) != 0 )
@@ -8065,16 +8065,16 @@ extern	int		Graphics_D3D11_Device_Create( void )
 		}
 		else
 		{
-			DXST_LOGFILE_ADDA( "\x8e\x67\x97\x70\x82\xc5\x82\xab\x82\xe9\x95\x60\x89\xe6\x97\x70\x82\x50\x83\x60\x83\x83\x83\x93\x83\x6c\x83\x8b\x90\xae\x90\x94 8 \x83\x72\x83\x62\x83\x67\x8c\x5e\x83\x4a\x83\x89\x81\x5b\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xaa\x82\xa0\x82\xe8\x82\xdc\x82\xb9\x82\xf1\x82\xc5\x82\xb5\x82\xbd\n"/*@ "g—p‚Å‚«‚é•`‰æ—p‚Pƒ`ƒƒƒ“ƒlƒ‹®” 8 ƒrƒbƒgŒ^ƒJƒ‰[ƒtƒH[ƒ}ƒbƒg‚ª‚ ‚è‚Ü‚¹‚ñ‚Å‚µ‚½\n" @*/ ) ;
+			DXST_LOGFILE_ADDA( "\x8e\x67\x97\x70\x82\xc5\x82\xab\x82\xe9\x95\x60\x89\xe6\x97\x70\x82\x50\x83\x60\x83\x83\x83\x93\x83\x6c\x83\x8b\x90\xae\x90\x94 8 \x83\x72\x83\x62\x83\x67\x8c\x5e\x83\x4a\x83\x89\x81\x5b\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xaa\x82\xa0\x82\xe8\x82\xdc\x82\xb9\x82\xf1\x82\xc5\x82\xb5\x82\xbd\n"/*@ "ä½¿ç”¨ã§ãã‚‹æç”»ç”¨ï¼‘ãƒãƒ£ãƒ³ãƒãƒ«æ•´æ•° 8 ãƒ“ãƒƒãƒˆå‹ã‚«ãƒ©ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆãŒã‚ã‚Šã¾ã›ã‚“ã§ã—ãŸ\n" @*/ ) ;
 			GD3D11.Device.Caps.TextureFormat[ DX_GRAPHICSIMAGE_FORMAT_3D_DRAWVALID_ONE_I8 ] = D_DXGI_FORMAT_UNKNOWN ;
 		}
 
 		if( GD3D11.Device.Caps.TextureFormat[ DX_GRAPHICSIMAGE_FORMAT_3D_DRAWVALID_ONE_I8 ] != D_DXGI_FORMAT_UNKNOWN )
 		{
-			DXST_LOGFILEFMT_ADDA(( "\x95\x60\x89\xe6\x97\x70\x82\x50\x83\x60\x83\x83\x83\x93\x83\x6c\x83\x8b\x90\xae\x90\x94 8 \x83\x72\x83\x62\x83\x67\x8c\x5e\x83\x4a\x83\x89\x81\x5b\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xcd %s \x82\xc5\x82\xb7"/*@ "•`‰æ—p‚Pƒ`ƒƒƒ“ƒlƒ‹®” 8 ƒrƒbƒgŒ^ƒJƒ‰[ƒtƒH[ƒ}ƒbƒg‚Í %s ‚Å‚·" @*/, String )) ;
+			DXST_LOGFILEFMT_ADDA(( "\x95\x60\x89\xe6\x97\x70\x82\x50\x83\x60\x83\x83\x83\x93\x83\x6c\x83\x8b\x90\xae\x90\x94 8 \x83\x72\x83\x62\x83\x67\x8c\x5e\x83\x4a\x83\x89\x81\x5b\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xcd %s \x82\xc5\x82\xb7"/*@ "æç”»ç”¨ï¼‘ãƒãƒ£ãƒ³ãƒãƒ«æ•´æ•° 8 ãƒ“ãƒƒãƒˆå‹ã‚«ãƒ©ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã¯ %s ã§ã™" @*/, String )) ;
 		}
 
-		// •`‰æ‰Â”\ ‚Pƒ`ƒƒƒ“ƒlƒ‹®”16ƒrƒbƒgŒ^ƒJƒ‰[ƒtƒH[ƒ}ƒbƒg‚Ì‘I’è
+		// æç”»å¯èƒ½ ï¼‘ãƒãƒ£ãƒ³ãƒãƒ«æ•´æ•°16ãƒ“ãƒƒãƒˆå‹ã‚«ãƒ©ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®é¸å®š
 		if( D3D11Device_CheckFormatSupport( D_DXGI_FORMAT_R16_UNORM, &FormatSupport ) == S_OK &&
 			( FormatSupport & D_D3D11_FORMAT_SUPPORT_TEXTURE2D     ) != 0 &&
 			( FormatSupport & D_D3D11_FORMAT_SUPPORT_RENDER_TARGET ) != 0 )
@@ -8100,16 +8100,16 @@ extern	int		Graphics_D3D11_Device_Create( void )
 		}
 		else
 		{
-			DXST_LOGFILE_ADDA( "\x8e\x67\x97\x70\x82\xc5\x82\xab\x82\xe9\x95\x60\x89\xe6\x97\x70\x82\x50\x83\x60\x83\x83\x83\x93\x83\x6c\x83\x8b\x90\xae\x90\x94 16 \x83\x72\x83\x62\x83\x67\x8c\x5e\x83\x4a\x83\x89\x81\x5b\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xaa\x82\xa0\x82\xe8\x82\xdc\x82\xb9\x82\xf1\x82\xc5\x82\xb5\x82\xbd\n"/*@ "g—p‚Å‚«‚é•`‰æ—p‚Pƒ`ƒƒƒ“ƒlƒ‹®” 16 ƒrƒbƒgŒ^ƒJƒ‰[ƒtƒH[ƒ}ƒbƒg‚ª‚ ‚è‚Ü‚¹‚ñ‚Å‚µ‚½\n" @*/ ) ;
+			DXST_LOGFILE_ADDA( "\x8e\x67\x97\x70\x82\xc5\x82\xab\x82\xe9\x95\x60\x89\xe6\x97\x70\x82\x50\x83\x60\x83\x83\x83\x93\x83\x6c\x83\x8b\x90\xae\x90\x94 16 \x83\x72\x83\x62\x83\x67\x8c\x5e\x83\x4a\x83\x89\x81\x5b\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xaa\x82\xa0\x82\xe8\x82\xdc\x82\xb9\x82\xf1\x82\xc5\x82\xb5\x82\xbd\n"/*@ "ä½¿ç”¨ã§ãã‚‹æç”»ç”¨ï¼‘ãƒãƒ£ãƒ³ãƒãƒ«æ•´æ•° 16 ãƒ“ãƒƒãƒˆå‹ã‚«ãƒ©ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆãŒã‚ã‚Šã¾ã›ã‚“ã§ã—ãŸ\n" @*/ ) ;
 			GD3D11.Device.Caps.TextureFormat[ DX_GRAPHICSIMAGE_FORMAT_3D_DRAWVALID_ONE_I16 ] = D_DXGI_FORMAT_UNKNOWN ;
 		}
 
 		if( GD3D11.Device.Caps.TextureFormat[ DX_GRAPHICSIMAGE_FORMAT_3D_DRAWVALID_ONE_I16 ] != D_DXGI_FORMAT_UNKNOWN )
 		{
-			DXST_LOGFILEFMT_ADDA(( "\x95\x60\x89\xe6\x97\x70\x82\x50\x83\x60\x83\x83\x83\x93\x83\x6c\x83\x8b\x90\xae\x90\x94 16 \x83\x72\x83\x62\x83\x67\x8c\x5e\x83\x4a\x83\x89\x81\x5b\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xcd %s \x82\xc5\x82\xb7"/*@ "•`‰æ—p‚Pƒ`ƒƒƒ“ƒlƒ‹®” 16 ƒrƒbƒgŒ^ƒJƒ‰[ƒtƒH[ƒ}ƒbƒg‚Í %s ‚Å‚·" @*/, String )) ;
+			DXST_LOGFILEFMT_ADDA(( "\x95\x60\x89\xe6\x97\x70\x82\x50\x83\x60\x83\x83\x83\x93\x83\x6c\x83\x8b\x90\xae\x90\x94 16 \x83\x72\x83\x62\x83\x67\x8c\x5e\x83\x4a\x83\x89\x81\x5b\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xcd %s \x82\xc5\x82\xb7"/*@ "æç”»ç”¨ï¼‘ãƒãƒ£ãƒ³ãƒãƒ«æ•´æ•° 16 ãƒ“ãƒƒãƒˆå‹ã‚«ãƒ©ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã¯ %s ã§ã™" @*/, String )) ;
 		}
 
-		// •`‰æ‰Â”\ ‚Pƒ`ƒƒƒ“ƒlƒ‹•‚“®¬”“_16ƒrƒbƒgŒ^ƒJƒ‰[ƒtƒH[ƒ}ƒbƒg‚Ì‘I’è
+		// æç”»å¯èƒ½ ï¼‘ãƒãƒ£ãƒ³ãƒãƒ«æµ®å‹•å°æ•°ç‚¹16ãƒ“ãƒƒãƒˆå‹ã‚«ãƒ©ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®é¸å®š
 		if( D3D11Device_CheckFormatSupport( D_DXGI_FORMAT_R16_FLOAT, &FormatSupport ) == S_OK &&
 			( FormatSupport & D_D3D11_FORMAT_SUPPORT_TEXTURE2D     ) != 0 &&
 			( FormatSupport & D_D3D11_FORMAT_SUPPORT_RENDER_TARGET ) != 0 )
@@ -8143,16 +8143,16 @@ extern	int		Graphics_D3D11_Device_Create( void )
 		}
 		else
 		{
-			DXST_LOGFILE_ADDA( "\x8e\x67\x97\x70\x82\xc5\x82\xab\x82\xe9\x95\x60\x89\xe6\x97\x70\x82\x50\x83\x60\x83\x83\x83\x93\x83\x6c\x83\x8b\x95\x82\x93\xae\x8f\xac\x90\x94\x93\x5f 16 \x83\x72\x83\x62\x83\x67\x8c\x5e\x83\x4a\x83\x89\x81\x5b\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xaa\x82\xa0\x82\xe8\x82\xdc\x82\xb9\x82\xf1\x82\xc5\x82\xb5\x82\xbd\n"/*@ "g—p‚Å‚«‚é•`‰æ—p‚Pƒ`ƒƒƒ“ƒlƒ‹•‚“®¬”“_ 16 ƒrƒbƒgŒ^ƒJƒ‰[ƒtƒH[ƒ}ƒbƒg‚ª‚ ‚è‚Ü‚¹‚ñ‚Å‚µ‚½\n" @*/ ) ;
+			DXST_LOGFILE_ADDA( "\x8e\x67\x97\x70\x82\xc5\x82\xab\x82\xe9\x95\x60\x89\xe6\x97\x70\x82\x50\x83\x60\x83\x83\x83\x93\x83\x6c\x83\x8b\x95\x82\x93\xae\x8f\xac\x90\x94\x93\x5f 16 \x83\x72\x83\x62\x83\x67\x8c\x5e\x83\x4a\x83\x89\x81\x5b\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xaa\x82\xa0\x82\xe8\x82\xdc\x82\xb9\x82\xf1\x82\xc5\x82\xb5\x82\xbd\n"/*@ "ä½¿ç”¨ã§ãã‚‹æç”»ç”¨ï¼‘ãƒãƒ£ãƒ³ãƒãƒ«æµ®å‹•å°æ•°ç‚¹ 16 ãƒ“ãƒƒãƒˆå‹ã‚«ãƒ©ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆãŒã‚ã‚Šã¾ã›ã‚“ã§ã—ãŸ\n" @*/ ) ;
 			GD3D11.Device.Caps.TextureFormat[ DX_GRAPHICSIMAGE_FORMAT_3D_DRAWVALID_ONE_F16 ] = D_DXGI_FORMAT_UNKNOWN ;
 		}
 
 		if( GD3D11.Device.Caps.TextureFormat[ DX_GRAPHICSIMAGE_FORMAT_3D_DRAWVALID_ONE_F16 ] != D_DXGI_FORMAT_UNKNOWN )
 		{
-			DXST_LOGFILEFMT_ADDA(( "\x95\x60\x89\xe6\x97\x70\x82\x50\x83\x60\x83\x83\x83\x93\x83\x6c\x83\x8b\x95\x82\x93\xae\x8f\xac\x90\x94\x93\x5f 16 \x83\x72\x83\x62\x83\x67\x8c\x5e\x83\x4a\x83\x89\x81\x5b\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xcd %s \x82\xc5\x82\xb7"/*@ "•`‰æ—p‚Pƒ`ƒƒƒ“ƒlƒ‹•‚“®¬”“_ 16 ƒrƒbƒgŒ^ƒJƒ‰[ƒtƒH[ƒ}ƒbƒg‚Í %s ‚Å‚·" @*/, String )) ;
+			DXST_LOGFILEFMT_ADDA(( "\x95\x60\x89\xe6\x97\x70\x82\x50\x83\x60\x83\x83\x83\x93\x83\x6c\x83\x8b\x95\x82\x93\xae\x8f\xac\x90\x94\x93\x5f 16 \x83\x72\x83\x62\x83\x67\x8c\x5e\x83\x4a\x83\x89\x81\x5b\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xcd %s \x82\xc5\x82\xb7"/*@ "æç”»ç”¨ï¼‘ãƒãƒ£ãƒ³ãƒãƒ«æµ®å‹•å°æ•°ç‚¹ 16 ãƒ“ãƒƒãƒˆå‹ã‚«ãƒ©ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã¯ %s ã§ã™" @*/, String )) ;
 		}
 
-		// •`‰æ‰Â”\ ‚Pƒ`ƒƒƒ“ƒlƒ‹•‚“®¬”“_32ƒrƒbƒgŒ^ƒJƒ‰[ƒtƒH[ƒ}ƒbƒg‚Ì‘I’è
+		// æç”»å¯èƒ½ ï¼‘ãƒãƒ£ãƒ³ãƒãƒ«æµ®å‹•å°æ•°ç‚¹32ãƒ“ãƒƒãƒˆå‹ã‚«ãƒ©ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®é¸å®š
 		if( D3D11Device_CheckFormatSupport( D_DXGI_FORMAT_R32_FLOAT, &FormatSupport ) == S_OK &&
 			( FormatSupport & D_D3D11_FORMAT_SUPPORT_TEXTURE2D     ) != 0 &&
 			( FormatSupport & D_D3D11_FORMAT_SUPPORT_RENDER_TARGET ) != 0 )
@@ -8186,16 +8186,16 @@ extern	int		Graphics_D3D11_Device_Create( void )
 		}
 		else
 		{
-			DXST_LOGFILE_ADDA( "\x8e\x67\x97\x70\x82\xc5\x82\xab\x82\xe9\x95\x60\x89\xe6\x97\x70\x82\x50\x83\x60\x83\x83\x83\x93\x83\x6c\x83\x8b\x95\x82\x93\xae\x8f\xac\x90\x94\x93\x5f 32 \x83\x72\x83\x62\x83\x67\x8c\x5e\x83\x4a\x83\x89\x81\x5b\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xaa\x82\xa0\x82\xe8\x82\xdc\x82\xb9\x82\xf1\x82\xc5\x82\xb5\x82\xbd\n"/*@ "g—p‚Å‚«‚é•`‰æ—p‚Pƒ`ƒƒƒ“ƒlƒ‹•‚“®¬”“_ 32 ƒrƒbƒgŒ^ƒJƒ‰[ƒtƒH[ƒ}ƒbƒg‚ª‚ ‚è‚Ü‚¹‚ñ‚Å‚µ‚½\n" @*/ ) ;
+			DXST_LOGFILE_ADDA( "\x8e\x67\x97\x70\x82\xc5\x82\xab\x82\xe9\x95\x60\x89\xe6\x97\x70\x82\x50\x83\x60\x83\x83\x83\x93\x83\x6c\x83\x8b\x95\x82\x93\xae\x8f\xac\x90\x94\x93\x5f 32 \x83\x72\x83\x62\x83\x67\x8c\x5e\x83\x4a\x83\x89\x81\x5b\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xaa\x82\xa0\x82\xe8\x82\xdc\x82\xb9\x82\xf1\x82\xc5\x82\xb5\x82\xbd\n"/*@ "ä½¿ç”¨ã§ãã‚‹æç”»ç”¨ï¼‘ãƒãƒ£ãƒ³ãƒãƒ«æµ®å‹•å°æ•°ç‚¹ 32 ãƒ“ãƒƒãƒˆå‹ã‚«ãƒ©ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆãŒã‚ã‚Šã¾ã›ã‚“ã§ã—ãŸ\n" @*/ ) ;
 			GD3D11.Device.Caps.TextureFormat[ DX_GRAPHICSIMAGE_FORMAT_3D_DRAWVALID_ONE_F32 ] = D_DXGI_FORMAT_UNKNOWN ;
 		}
 
 		if( GD3D11.Device.Caps.TextureFormat[ DX_GRAPHICSIMAGE_FORMAT_3D_DRAWVALID_ONE_F32 ] != D_DXGI_FORMAT_UNKNOWN )
 		{
-			DXST_LOGFILEFMT_ADDA(( "\x95\x60\x89\xe6\x97\x70\x82\x50\x83\x60\x83\x83\x83\x93\x83\x6c\x83\x8b\x95\x82\x93\xae\x8f\xac\x90\x94\x93\x5f 32 \x83\x72\x83\x62\x83\x67\x8c\x5e\x83\x4a\x83\x89\x81\x5b\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xcd %s \x82\xc5\x82\xb7"/*@ "•`‰æ—p‚Pƒ`ƒƒƒ“ƒlƒ‹•‚“®¬”“_ 32 ƒrƒbƒgŒ^ƒJƒ‰[ƒtƒH[ƒ}ƒbƒg‚Í %s ‚Å‚·" @*/, String )) ;
+			DXST_LOGFILEFMT_ADDA(( "\x95\x60\x89\xe6\x97\x70\x82\x50\x83\x60\x83\x83\x83\x93\x83\x6c\x83\x8b\x95\x82\x93\xae\x8f\xac\x90\x94\x93\x5f 32 \x83\x72\x83\x62\x83\x67\x8c\x5e\x83\x4a\x83\x89\x81\x5b\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xcd %s \x82\xc5\x82\xb7"/*@ "æç”»ç”¨ï¼‘ãƒãƒ£ãƒ³ãƒãƒ«æµ®å‹•å°æ•°ç‚¹ 32 ãƒ“ãƒƒãƒˆå‹ã‚«ãƒ©ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã¯ %s ã§ã™" @*/, String )) ;
 		}
 
-		// •`‰æ‰Â”\ ‚Qƒ`ƒƒƒ“ƒlƒ‹®”8ƒrƒbƒgŒ^ƒJƒ‰[ƒtƒH[ƒ}ƒbƒg‚Ì‘I’è
+		// æç”»å¯èƒ½ ï¼’ãƒãƒ£ãƒ³ãƒãƒ«æ•´æ•°8ãƒ“ãƒƒãƒˆå‹ã‚«ãƒ©ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®é¸å®š
 		if( D3D11Device_CheckFormatSupport( D_DXGI_FORMAT_R8G8_UNORM, &FormatSupport ) == S_OK &&
 			( FormatSupport & D_D3D11_FORMAT_SUPPORT_TEXTURE2D     ) != 0 &&
 			( FormatSupport & D_D3D11_FORMAT_SUPPORT_RENDER_TARGET ) != 0 )
@@ -8213,16 +8213,16 @@ extern	int		Graphics_D3D11_Device_Create( void )
 		}
 		else
 		{
-			DXST_LOGFILE_ADDA( "\x8e\x67\x97\x70\x82\xc5\x82\xab\x82\xe9\x95\x60\x89\xe6\x97\x70\x82\x51\x83\x60\x83\x83\x83\x93\x83\x6c\x83\x8b\x90\xae\x90\x94 8 \x83\x72\x83\x62\x83\x67\x8c\x5e\x83\x4a\x83\x89\x81\x5b\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xaa\x82\xa0\x82\xe8\x82\xdc\x82\xb9\x82\xf1\x82\xc5\x82\xb5\x82\xbd\n"/*@ "g—p‚Å‚«‚é•`‰æ—p‚Qƒ`ƒƒƒ“ƒlƒ‹®” 8 ƒrƒbƒgŒ^ƒJƒ‰[ƒtƒH[ƒ}ƒbƒg‚ª‚ ‚è‚Ü‚¹‚ñ‚Å‚µ‚½\n" @*/ ) ;
+			DXST_LOGFILE_ADDA( "\x8e\x67\x97\x70\x82\xc5\x82\xab\x82\xe9\x95\x60\x89\xe6\x97\x70\x82\x51\x83\x60\x83\x83\x83\x93\x83\x6c\x83\x8b\x90\xae\x90\x94 8 \x83\x72\x83\x62\x83\x67\x8c\x5e\x83\x4a\x83\x89\x81\x5b\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xaa\x82\xa0\x82\xe8\x82\xdc\x82\xb9\x82\xf1\x82\xc5\x82\xb5\x82\xbd\n"/*@ "ä½¿ç”¨ã§ãã‚‹æç”»ç”¨ï¼’ãƒãƒ£ãƒ³ãƒãƒ«æ•´æ•° 8 ãƒ“ãƒƒãƒˆå‹ã‚«ãƒ©ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆãŒã‚ã‚Šã¾ã›ã‚“ã§ã—ãŸ\n" @*/ ) ;
 			GD3D11.Device.Caps.TextureFormat[ DX_GRAPHICSIMAGE_FORMAT_3D_DRAWVALID_TWO_I8 ] = D_DXGI_FORMAT_UNKNOWN ;
 		}
 
 		if( GD3D11.Device.Caps.TextureFormat[ DX_GRAPHICSIMAGE_FORMAT_3D_DRAWVALID_TWO_I8 ] != D_DXGI_FORMAT_UNKNOWN )
 		{
-			DXST_LOGFILEFMT_ADDA(( "\x95\x60\x89\xe6\x97\x70\x82\x51\x83\x60\x83\x83\x83\x93\x83\x6c\x83\x8b\x90\xae\x90\x94 8 \x83\x72\x83\x62\x83\x67\x8c\x5e\x83\x4a\x83\x89\x81\x5b\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xcd %s \x82\xc5\x82\xb7"/*@ "•`‰æ—p‚Qƒ`ƒƒƒ“ƒlƒ‹®” 8 ƒrƒbƒgŒ^ƒJƒ‰[ƒtƒH[ƒ}ƒbƒg‚Í %s ‚Å‚·" @*/, String )) ;
+			DXST_LOGFILEFMT_ADDA(( "\x95\x60\x89\xe6\x97\x70\x82\x51\x83\x60\x83\x83\x83\x93\x83\x6c\x83\x8b\x90\xae\x90\x94 8 \x83\x72\x83\x62\x83\x67\x8c\x5e\x83\x4a\x83\x89\x81\x5b\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xcd %s \x82\xc5\x82\xb7"/*@ "æç”»ç”¨ï¼’ãƒãƒ£ãƒ³ãƒãƒ«æ•´æ•° 8 ãƒ“ãƒƒãƒˆå‹ã‚«ãƒ©ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã¯ %s ã§ã™" @*/, String )) ;
 		}
 
-		// •`‰æ‰Â”\ ‚Qƒ`ƒƒƒ“ƒlƒ‹®”16ƒrƒbƒgŒ^ƒJƒ‰[ƒtƒH[ƒ}ƒbƒg‚Ì‘I’è
+		// æç”»å¯èƒ½ ï¼’ãƒãƒ£ãƒ³ãƒãƒ«æ•´æ•°16ãƒ“ãƒƒãƒˆå‹ã‚«ãƒ©ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®é¸å®š
 		if( D3D11Device_CheckFormatSupport( D_DXGI_FORMAT_R16G16_UNORM, &FormatSupport ) == S_OK &&
 			( FormatSupport & D_D3D11_FORMAT_SUPPORT_TEXTURE2D     ) != 0 &&
 			( FormatSupport & D_D3D11_FORMAT_SUPPORT_RENDER_TARGET ) != 0 )
@@ -8240,16 +8240,16 @@ extern	int		Graphics_D3D11_Device_Create( void )
 		}
 		else
 		{
-			DXST_LOGFILE_ADDA( "\x8e\x67\x97\x70\x82\xc5\x82\xab\x82\xe9\x95\x60\x89\xe6\x97\x70\x82\x51\x83\x60\x83\x83\x83\x93\x83\x6c\x83\x8b\x90\xae\x90\x94 16 \x83\x72\x83\x62\x83\x67\x8c\x5e\x83\x4a\x83\x89\x81\x5b\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xaa\x82\xa0\x82\xe8\x82\xdc\x82\xb9\x82\xf1\x82\xc5\x82\xb5\x82\xbd\n"/*@ "g—p‚Å‚«‚é•`‰æ—p‚Qƒ`ƒƒƒ“ƒlƒ‹®” 16 ƒrƒbƒgŒ^ƒJƒ‰[ƒtƒH[ƒ}ƒbƒg‚ª‚ ‚è‚Ü‚¹‚ñ‚Å‚µ‚½\n" @*/ ) ;
+			DXST_LOGFILE_ADDA( "\x8e\x67\x97\x70\x82\xc5\x82\xab\x82\xe9\x95\x60\x89\xe6\x97\x70\x82\x51\x83\x60\x83\x83\x83\x93\x83\x6c\x83\x8b\x90\xae\x90\x94 16 \x83\x72\x83\x62\x83\x67\x8c\x5e\x83\x4a\x83\x89\x81\x5b\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xaa\x82\xa0\x82\xe8\x82\xdc\x82\xb9\x82\xf1\x82\xc5\x82\xb5\x82\xbd\n"/*@ "ä½¿ç”¨ã§ãã‚‹æç”»ç”¨ï¼’ãƒãƒ£ãƒ³ãƒãƒ«æ•´æ•° 16 ãƒ“ãƒƒãƒˆå‹ã‚«ãƒ©ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆãŒã‚ã‚Šã¾ã›ã‚“ã§ã—ãŸ\n" @*/ ) ;
 			GD3D11.Device.Caps.TextureFormat[ DX_GRAPHICSIMAGE_FORMAT_3D_DRAWVALID_TWO_I16 ] = D_DXGI_FORMAT_UNKNOWN ;
 		}
 
 		if( GD3D11.Device.Caps.TextureFormat[ DX_GRAPHICSIMAGE_FORMAT_3D_DRAWVALID_TWO_I16 ] != D_DXGI_FORMAT_UNKNOWN )
 		{
-			DXST_LOGFILEFMT_ADDA(( "\x95\x60\x89\xe6\x97\x70\x82\x51\x83\x60\x83\x83\x83\x93\x83\x6c\x83\x8b\x90\xae\x90\x94 16 \x83\x72\x83\x62\x83\x67\x8c\x5e\x83\x4a\x83\x89\x81\x5b\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xcd %s \x82\xc5\x82\xb7"/*@ "•`‰æ—p‚Qƒ`ƒƒƒ“ƒlƒ‹®” 16 ƒrƒbƒgŒ^ƒJƒ‰[ƒtƒH[ƒ}ƒbƒg‚Í %s ‚Å‚·" @*/, String )) ;
+			DXST_LOGFILEFMT_ADDA(( "\x95\x60\x89\xe6\x97\x70\x82\x51\x83\x60\x83\x83\x83\x93\x83\x6c\x83\x8b\x90\xae\x90\x94 16 \x83\x72\x83\x62\x83\x67\x8c\x5e\x83\x4a\x83\x89\x81\x5b\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xcd %s \x82\xc5\x82\xb7"/*@ "æç”»ç”¨ï¼’ãƒãƒ£ãƒ³ãƒãƒ«æ•´æ•° 16 ãƒ“ãƒƒãƒˆå‹ã‚«ãƒ©ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã¯ %s ã§ã™" @*/, String )) ;
 		}
 
-		// •`‰æ‰Â”\ ‚Qƒ`ƒƒƒ“ƒlƒ‹•‚“®¬”“_16ƒrƒbƒgŒ^ƒJƒ‰[ƒtƒH[ƒ}ƒbƒg‚Ì‘I’è
+		// æç”»å¯èƒ½ ï¼’ãƒãƒ£ãƒ³ãƒãƒ«æµ®å‹•å°æ•°ç‚¹16ãƒ“ãƒƒãƒˆå‹ã‚«ãƒ©ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®é¸å®š
 		if( D3D11Device_CheckFormatSupport( D_DXGI_FORMAT_R16G16_FLOAT, &FormatSupport ) == S_OK &&
 			( FormatSupport & D_D3D11_FORMAT_SUPPORT_TEXTURE2D     ) != 0 &&
 			( FormatSupport & D_D3D11_FORMAT_SUPPORT_RENDER_TARGET ) != 0 )
@@ -8275,16 +8275,16 @@ extern	int		Graphics_D3D11_Device_Create( void )
 		}
 		else
 		{
-			DXST_LOGFILE_ADDA( "\x8e\x67\x97\x70\x82\xc5\x82\xab\x82\xe9\x95\x60\x89\xe6\x97\x70\x82\x51\x83\x60\x83\x83\x83\x93\x83\x6c\x83\x8b\x95\x82\x93\xae\x8f\xac\x90\x94\x93\x5f 16 \x83\x72\x83\x62\x83\x67\x8c\x5e\x83\x4a\x83\x89\x81\x5b\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xaa\x82\xa0\x82\xe8\x82\xdc\x82\xb9\x82\xf1\x82\xc5\x82\xb5\x82\xbd\n"/*@ "g—p‚Å‚«‚é•`‰æ—p‚Qƒ`ƒƒƒ“ƒlƒ‹•‚“®¬”“_ 16 ƒrƒbƒgŒ^ƒJƒ‰[ƒtƒH[ƒ}ƒbƒg‚ª‚ ‚è‚Ü‚¹‚ñ‚Å‚µ‚½\n" @*/ ) ;
+			DXST_LOGFILE_ADDA( "\x8e\x67\x97\x70\x82\xc5\x82\xab\x82\xe9\x95\x60\x89\xe6\x97\x70\x82\x51\x83\x60\x83\x83\x83\x93\x83\x6c\x83\x8b\x95\x82\x93\xae\x8f\xac\x90\x94\x93\x5f 16 \x83\x72\x83\x62\x83\x67\x8c\x5e\x83\x4a\x83\x89\x81\x5b\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xaa\x82\xa0\x82\xe8\x82\xdc\x82\xb9\x82\xf1\x82\xc5\x82\xb5\x82\xbd\n"/*@ "ä½¿ç”¨ã§ãã‚‹æç”»ç”¨ï¼’ãƒãƒ£ãƒ³ãƒãƒ«æµ®å‹•å°æ•°ç‚¹ 16 ãƒ“ãƒƒãƒˆå‹ã‚«ãƒ©ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆãŒã‚ã‚Šã¾ã›ã‚“ã§ã—ãŸ\n" @*/ ) ;
 			GD3D11.Device.Caps.TextureFormat[ DX_GRAPHICSIMAGE_FORMAT_3D_DRAWVALID_TWO_F16 ] = D_DXGI_FORMAT_UNKNOWN ;
 		}
 
 		if( GD3D11.Device.Caps.TextureFormat[ DX_GRAPHICSIMAGE_FORMAT_3D_DRAWVALID_TWO_F16 ] != D_DXGI_FORMAT_UNKNOWN )
 		{
-			DXST_LOGFILEFMT_ADDA(( "\x95\x60\x89\xe6\x97\x70\x82\x51\x83\x60\x83\x83\x83\x93\x83\x6c\x83\x8b\x95\x82\x93\xae\x8f\xac\x90\x94\x93\x5f 16 \x83\x72\x83\x62\x83\x67\x8c\x5e\x83\x4a\x83\x89\x81\x5b\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xcd %s \x82\xc5\x82\xb7"/*@ "•`‰æ—p‚Qƒ`ƒƒƒ“ƒlƒ‹•‚“®¬”“_ 16 ƒrƒbƒgŒ^ƒJƒ‰[ƒtƒH[ƒ}ƒbƒg‚Í %s ‚Å‚·" @*/, String )) ;
+			DXST_LOGFILEFMT_ADDA(( "\x95\x60\x89\xe6\x97\x70\x82\x51\x83\x60\x83\x83\x83\x93\x83\x6c\x83\x8b\x95\x82\x93\xae\x8f\xac\x90\x94\x93\x5f 16 \x83\x72\x83\x62\x83\x67\x8c\x5e\x83\x4a\x83\x89\x81\x5b\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xcd %s \x82\xc5\x82\xb7"/*@ "æç”»ç”¨ï¼’ãƒãƒ£ãƒ³ãƒãƒ«æµ®å‹•å°æ•°ç‚¹ 16 ãƒ“ãƒƒãƒˆå‹ã‚«ãƒ©ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã¯ %s ã§ã™" @*/, String )) ;
 		}
 
-		// •`‰æ‰Â”\ ‚Qƒ`ƒƒƒ“ƒlƒ‹•‚“®¬”“_32ƒrƒbƒgŒ^ƒJƒ‰[ƒtƒH[ƒ}ƒbƒg‚Ì‘I’è
+		// æç”»å¯èƒ½ ï¼’ãƒãƒ£ãƒ³ãƒãƒ«æµ®å‹•å°æ•°ç‚¹32ãƒ“ãƒƒãƒˆå‹ã‚«ãƒ©ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®é¸å®š
 		if( D3D11Device_CheckFormatSupport( D_DXGI_FORMAT_R32G32_FLOAT, &FormatSupport ) == S_OK &&
 			( FormatSupport & D_D3D11_FORMAT_SUPPORT_TEXTURE2D     ) != 0 &&
 			( FormatSupport & D_D3D11_FORMAT_SUPPORT_RENDER_TARGET ) != 0 )
@@ -8310,23 +8310,23 @@ extern	int		Graphics_D3D11_Device_Create( void )
 		}
 		else
 		{
-			DXST_LOGFILE_ADDA( "\x8e\x67\x97\x70\x82\xc5\x82\xab\x82\xe9\x95\x60\x89\xe6\x97\x70\x82\x51\x83\x60\x83\x83\x83\x93\x83\x6c\x83\x8b\x95\x82\x93\xae\x8f\xac\x90\x94\x93\x5f 32 \x83\x72\x83\x62\x83\x67\x8c\x5e\x83\x4a\x83\x89\x81\x5b\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xaa\x82\xa0\x82\xe8\x82\xdc\x82\xb9\x82\xf1\x82\xc5\x82\xb5\x82\xbd\n"/*@ "g—p‚Å‚«‚é•`‰æ—p‚Qƒ`ƒƒƒ“ƒlƒ‹•‚“®¬”“_ 32 ƒrƒbƒgŒ^ƒJƒ‰[ƒtƒH[ƒ}ƒbƒg‚ª‚ ‚è‚Ü‚¹‚ñ‚Å‚µ‚½\n" @*/ ) ;
+			DXST_LOGFILE_ADDA( "\x8e\x67\x97\x70\x82\xc5\x82\xab\x82\xe9\x95\x60\x89\xe6\x97\x70\x82\x51\x83\x60\x83\x83\x83\x93\x83\x6c\x83\x8b\x95\x82\x93\xae\x8f\xac\x90\x94\x93\x5f 32 \x83\x72\x83\x62\x83\x67\x8c\x5e\x83\x4a\x83\x89\x81\x5b\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xaa\x82\xa0\x82\xe8\x82\xdc\x82\xb9\x82\xf1\x82\xc5\x82\xb5\x82\xbd\n"/*@ "ä½¿ç”¨ã§ãã‚‹æç”»ç”¨ï¼’ãƒãƒ£ãƒ³ãƒãƒ«æµ®å‹•å°æ•°ç‚¹ 32 ãƒ“ãƒƒãƒˆå‹ã‚«ãƒ©ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆãŒã‚ã‚Šã¾ã›ã‚“ã§ã—ãŸ\n" @*/ ) ;
 			GD3D11.Device.Caps.TextureFormat[ DX_GRAPHICSIMAGE_FORMAT_3D_DRAWVALID_TWO_F32 ] = D_DXGI_FORMAT_UNKNOWN ;
 		}
 
 		if( GD3D11.Device.Caps.TextureFormat[ DX_GRAPHICSIMAGE_FORMAT_3D_DRAWVALID_TWO_F32 ] != D_DXGI_FORMAT_UNKNOWN )
 		{
-			DXST_LOGFILEFMT_ADDA(( "\x95\x60\x89\xe6\x97\x70\x82\x51\x83\x60\x83\x83\x83\x93\x83\x6c\x83\x8b\x95\x82\x93\xae\x8f\xac\x90\x94\x93\x5f 32 \x83\x72\x83\x62\x83\x67\x8c\x5e\x83\x4a\x83\x89\x81\x5b\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xcd %s \x82\xc5\x82\xb7"/*@ "•`‰æ—p‚Qƒ`ƒƒƒ“ƒlƒ‹•‚“®¬”“_ 32 ƒrƒbƒgŒ^ƒJƒ‰[ƒtƒH[ƒ}ƒbƒg‚Í %s ‚Å‚·" @*/, String )) ;
+			DXST_LOGFILEFMT_ADDA(( "\x95\x60\x89\xe6\x97\x70\x82\x51\x83\x60\x83\x83\x83\x93\x83\x6c\x83\x8b\x95\x82\x93\xae\x8f\xac\x90\x94\x93\x5f 32 \x83\x72\x83\x62\x83\x67\x8c\x5e\x83\x4a\x83\x89\x81\x5b\x83\x74\x83\x48\x81\x5b\x83\x7d\x83\x62\x83\x67\x82\xcd %s \x82\xc5\x82\xb7"/*@ "æç”»ç”¨ï¼’ãƒãƒ£ãƒ³ãƒãƒ«æµ®å‹•å°æ•°ç‚¹ 32 ãƒ“ãƒƒãƒˆå‹ã‚«ãƒ©ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã¯ %s ã§ã™" @*/, String )) ;
 		}
 
-		// ƒ}ƒXƒNƒJƒ‰[ƒoƒbƒtƒ@—pƒtƒH[ƒ}ƒbƒg‚Ì‘I’è
+		// ãƒã‚¹ã‚¯ã‚«ãƒ©ãƒ¼ãƒãƒƒãƒ•ã‚¡ç”¨ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®é¸å®š
 		GD3D11.Device.Caps.MaskColorFormat = GSYS.Screen.MainScreenColorBitDepth == 32 ? GD3D11.Device.Caps.TextureFormat[ DX_GRAPHICSIMAGE_FORMAT_3D_DRAWVALID_RGB32 ] : GD3D11.Device.Caps.TextureFormat[ DX_GRAPHICSIMAGE_FORMAT_3D_DRAWVALID_RGB16 ] ;
 
-		// ƒ}ƒXƒNƒAƒ‹ƒtƒ@ƒtƒH[ƒ}ƒbƒg‚Ì‘I’è
+		// ãƒã‚¹ã‚¯ã‚¢ãƒ«ãƒ•ã‚¡ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®é¸å®š
 		GD3D11.Device.Caps.MaskAlphaFormat = D_DXGI_FORMAT_R8_UNORM ;
 	}
 
-	// î•ño—Í
+	// æƒ…å ±å‡ºåŠ›
 	{
 		switch( GD3D11.Setting.FeatureLevel )
 		{
@@ -8358,20 +8358,20 @@ extern	int		Graphics_D3D11_Device_Create( void )
 			String = "D3D_FEATURE_LEVEL_11_1" ;
 			break ;
 		}
-		DXST_LOGFILEFMT_ADDA(( "\x8e\x67\x97\x70\x82\xb7\x82\xe9\x8b\x40\x94\x5c\x83\x8c\x83\x78\x83\x8b:%s"/*@ "g—p‚·‚é‹@”\ƒŒƒxƒ‹:%s" @*/, String )) ;
-//		DXST_LOGFILEFMT_ADDA(( "‘Î‰‚µ‚Ä‚¢‚éÅ‘å’¸“_ƒCƒ“ƒfƒbƒNƒX:%d",     GSYS.HardInfo.MaxVertexIndex )) ;
-		DXST_LOGFILEFMT_ADDA(( "\x93\xaf\x8e\x9e\x82\xc9\x83\x8c\x83\x93\x83\x5f\x83\x8a\x83\x93\x83\x4f\x82\xc5\x82\xab\x82\xe9\x83\x6f\x83\x62\x83\x74\x83\x40\x82\xcc\x90\x94:%d"/*@ "“¯‚ÉƒŒƒ“ƒ_ƒŠƒ“ƒO‚Å‚«‚éƒoƒbƒtƒ@‚Ì”:%d" @*/, GSYS.HardInfo.RenderTargetNum )) ;
-		DXST_LOGFILEFMT_ADDA(( "\x8d\xc5\x91\xe5\x83\x65\x83\x4e\x83\x58\x83\x60\x83\x83\x83\x54\x83\x43\x83\x59\x81\x40\x95\x9d:%d \x8d\x82\x82\xb3:%d"/*@ "Å‘åƒeƒNƒXƒ`ƒƒƒTƒCƒY@•:%d ‚‚³:%d" @*/, GSYS.HardInfo.MaxTextureWidth, GSYS.HardInfo.MaxTextureHeight )) ;
+		DXST_LOGFILEFMT_ADDA(( "\x8e\x67\x97\x70\x82\xb7\x82\xe9\x8b\x40\x94\x5c\x83\x8c\x83\x78\x83\x8b:%s"/*@ "ä½¿ç”¨ã™ã‚‹æ©Ÿèƒ½ãƒ¬ãƒ™ãƒ«:%s" @*/, String )) ;
+//		DXST_LOGFILEFMT_ADDA(( "å¯¾å¿œã—ã¦ã„ã‚‹æœ€å¤§é ‚ç‚¹ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹:%d",     GSYS.HardInfo.MaxVertexIndex )) ;
+		DXST_LOGFILEFMT_ADDA(( "\x93\xaf\x8e\x9e\x82\xc9\x83\x8c\x83\x93\x83\x5f\x83\x8a\x83\x93\x83\x4f\x82\xc5\x82\xab\x82\xe9\x83\x6f\x83\x62\x83\x74\x83\x40\x82\xcc\x90\x94:%d"/*@ "åŒæ™‚ã«ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã§ãã‚‹ãƒãƒƒãƒ•ã‚¡ã®æ•°:%d" @*/, GSYS.HardInfo.RenderTargetNum )) ;
+		DXST_LOGFILEFMT_ADDA(( "\x8d\xc5\x91\xe5\x83\x65\x83\x4e\x83\x58\x83\x60\x83\x83\x83\x54\x83\x43\x83\x59\x81\x40\x95\x9d:%d \x8d\x82\x82\xb3:%d"/*@ "æœ€å¤§ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚µã‚¤ã‚ºã€€å¹…:%d é«˜ã•:%d" @*/, GSYS.HardInfo.MaxTextureWidth, GSYS.HardInfo.MaxTextureHeight )) ;
 	}
 
-	// ƒJƒ‰[ƒtƒH[ƒ}ƒbƒgî•ñ‚Ì‰Šú‰»‚ğs‚¤
+	// ã‚«ãƒ©ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆæƒ…å ±ã®åˆæœŸåŒ–ã‚’è¡Œã†
 	Graphics_D3D11_GetD3DFormatColorData( D_DXGI_FORMAT_R8G8B8A8_UNORM ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// Direct3DDevice11 ŠÖŒW‚Ì‰Šú‰»
+// Direct3DDevice11 é–¢ä¿‚ã®åˆæœŸåŒ–
 extern	int		Graphics_D3D11_Device_Initialize( void )
 {
 	int i ;
@@ -8380,11 +8380,11 @@ extern	int		Graphics_D3D11_Device_Initialize( void )
 	GraphFilter_Initialize() ;
 #endif // DX_NON_FILTER
 
-	// •`‰æƒXƒe[ƒ^ƒX‚ÌƒZƒbƒg
+	// æç”»ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã®ã‚»ãƒƒãƒˆ
 	{
 		GD3D11.Device.DrawSetting.CancelSettingEqualCheck = TRUE ;
 
-		// ƒ‰ƒXƒ^ƒ‰ƒCƒYŠÖŒW‚Ì‰Šú’l‚ğƒZƒbƒg
+		// ãƒ©ã‚¹ã‚¿ãƒ©ã‚¤ã‚ºé–¢ä¿‚ã®åˆæœŸå€¤ã‚’ã‚»ãƒƒãƒˆ
 		GD3D11.Device.State.RasterizerDesc.FillMode              = D_D3D11_FILL_SOLID ;
 		GD3D11.Device.State.RasterizerDesc.CullMode              = D_D3D11_CULL_NONE ;
 		GD3D11.Device.State.RasterizerDesc.FrontCounterClockwise = 0 ;
@@ -8396,7 +8396,7 @@ extern	int		Graphics_D3D11_Device_Initialize( void )
 		GD3D11.Device.State.RasterizerDesc.MultisampleEnable     = TRUE ;
 		GD3D11.Device.State.RasterizerDesc.AntialiasedLineEnable = FALSE ;
 
-		// [“xƒXƒeƒ“ƒVƒ‹ŠÖŒW‚Ì‰Šú’l‚ğƒZƒbƒg
+		// æ·±åº¦ã‚¹ãƒ†ãƒ³ã‚·ãƒ«é–¢ä¿‚ã®åˆæœŸå€¤ã‚’ã‚»ãƒƒãƒˆ
 		GD3D11.Device.State.DepthStencilDesc.DepthEnable					= FALSE ;
 		GD3D11.Device.State.DepthStencilDesc.DepthWriteMask					= D_D3D11_DEPTH_WRITE_MASK_ZERO ;
 		GD3D11.Device.State.DepthStencilDesc.DepthFunc						= D_D3D11_COMPARISON_LESS_EQUAL ;
@@ -8412,7 +8412,7 @@ extern	int		Graphics_D3D11_Device_Initialize( void )
 		GD3D11.Device.State.DepthStencilDesc.BackFace.StencilPassOp			= D_D3D11_STENCIL_OP_KEEP ;
 		GD3D11.Device.State.DepthStencilDesc.BackFace.StencilFunc			= D_D3D11_COMPARISON_ALWAYS ;
 
-		// ƒuƒŒƒ“ƒhƒXƒe[ƒgŠÖŒW‚Ì‰Šú’l‚ğƒZƒbƒg
+		// ãƒ–ãƒ¬ãƒ³ãƒ‰ã‚¹ãƒ†ãƒ¼ãƒˆé–¢ä¿‚ã®åˆæœŸå€¤ã‚’ã‚»ãƒƒãƒˆ
 		GD3D11.Device.State.BlendDesc.AlphaToCoverageEnable		= FALSE ;
 		GD3D11.Device.State.BlendDesc.IndependentBlendEnable	= FALSE ;
 		for( i = 0 ; i < 8 ; i ++ )
@@ -8427,7 +8427,7 @@ extern	int		Graphics_D3D11_Device_Initialize( void )
 			GD3D11.Device.State.BlendDesc.RenderTarget[ i ].RenderTargetWriteMask	= D_D3D11_COLOR_WRITE_ENABLE_ALL ;
 		}
 
-		// ƒTƒ“ƒvƒ‰[ƒXƒe[ƒgŠÖŒW‚Ì‰Šú’l‚ğƒZƒbƒg
+		// ã‚µãƒ³ãƒ—ãƒ©ãƒ¼ã‚¹ãƒ†ãƒ¼ãƒˆé–¢ä¿‚ã®åˆæœŸå€¤ã‚’ã‚»ãƒƒãƒˆ
 		for( i = 0 ; i < USE_TEXTURESTAGE_NUM ; i ++ )
 		{
 			GD3D11.Device.State.SamplerDesc[ i ].Filter				= D_D3D11_FILTER_MIN_MAG_MIP_POINT ;
@@ -8445,7 +8445,7 @@ extern	int		Graphics_D3D11_Device_Initialize( void )
 			GD3D11.Device.State.SamplerDesc[ i ].MaxLOD				=  D_D3D11_FLOAT32_MAX ;
 		}
 
-		// ƒeƒNƒXƒ`ƒƒƒAƒhƒŒƒXƒ‚[ƒhİ’è
+		// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¢ãƒ‰ãƒ¬ã‚¹ãƒ¢ãƒ¼ãƒ‰è¨­å®š
 		for( i = 0 ; i < USE_TEXTURESTAGE_NUM ; i ++ )
 		{
 			if( GSYS.DrawSetting.TexAddressModeU[ i ] == 0 )
@@ -8464,21 +8464,21 @@ extern	int		Graphics_D3D11_Device_Initialize( void )
 			}
 		}
 
-		// •`‰æƒ‚[ƒh‚ğƒZƒbƒg
+		// æç”»ãƒ¢ãƒ¼ãƒ‰ã‚’ã‚»ãƒƒãƒˆ
 		Graphics_D3D11_DeviceState_SetDrawMode( DX_DRAWMODE_NEAREST ) ;
 
-		// Å‘åˆÙ•û«‚ğƒZƒbƒg
+		// æœ€å¤§ç•°æ–¹æ€§ã‚’ã‚»ãƒƒãƒˆ
 		Graphics_D3D11_DeviceState_SetMaxAnisotropy( 16 ) ;
 
-		// ƒeƒNƒXƒ`ƒƒÀ•W•ÏŠ·s—ñ‚ğg—p‚·‚é‚©‚Ç‚¤‚©‚Ìİ’è‚ğƒZƒbƒg
+		// ãƒ†ã‚¯ã‚¹ãƒãƒ£åº§æ¨™å¤‰æ›è¡Œåˆ—ã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã®è¨­å®šã‚’ã‚»ãƒƒãƒˆ
 		Graphics_D3D11_DeviceState_SetTextureAddressTransformMatrix(
 			FALSE,
 			&D3D11_GlobalIdentMatrix ) ;
 
-		// ƒ‰ƒCƒeƒBƒ“ƒO‚n‚m
+		// ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ï¼¯ï¼®
 		Graphics_D3D11_DeviceState_SetLighting( TRUE ) ;
 
-		// ƒ}ƒeƒŠƒAƒ‹‚Ìƒpƒ‰ƒ[ƒ^‚ğİ’è
+		// ãƒãƒ†ãƒªã‚¢ãƒ«ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’è¨­å®š
 		{
 			MATERIALPARAM Material ;
 			Material.Diffuse.r  = 0.8f ;
@@ -8501,14 +8501,14 @@ extern	int		Graphics_D3D11_Device_Initialize( void )
 			Graphics_D3D11_DeviceState_SetMaterial( &Material ) ;
 		}
 
-		// ’¸“_‚ÌƒJƒ‰[’l‚ğƒ}ƒeƒŠƒAƒ‹‚ÌƒfƒBƒtƒ…[ƒYƒJƒ‰[‚âƒXƒyƒLƒ…ƒ‰ƒJƒ‰[‚Æ‚µ‚Äg—p‚·‚é‚©‚Ç‚¤‚©‚Ìİ’è‚ğ‰Šú‰»
+		// é ‚ç‚¹ã®ã‚«ãƒ©ãƒ¼å€¤ã‚’ãƒãƒ†ãƒªã‚¢ãƒ«ã®ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚«ãƒ©ãƒ¼ã‚„ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã‚«ãƒ©ãƒ¼ã¨ã—ã¦ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã®è¨­å®šã‚’åˆæœŸåŒ–
 		Graphics_D3D11_DeviceState_SetUseVertexDiffuseColor( TRUE ) ;
 		Graphics_D3D11_DeviceState_SetUseVertexSpecularColor( TRUE ) ;
 
-		// ƒXƒyƒLƒ…ƒ‰ˆ—‚ğg—p‚·‚é‚©‚Ç‚¤‚©‚ğ‰Šú‰»
+		// ã‚¹ãƒšã‚­ãƒ¥ãƒ©å‡¦ç†ã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã‚’åˆæœŸåŒ–
 		Graphics_D3D11_DeviceState_SetSpecularEnable( TRUE ) ;
 
-		// ƒtƒHƒOŠÖŒW‚Ìİ’è
+		// ãƒ•ã‚©ã‚°é–¢ä¿‚ã®è¨­å®š
 		Graphics_D3D11_DeviceState_SetFogEnable( FALSE ) ;
 		Graphics_D3D11_DeviceState_SetFogColor( 0 ) ;
 		Graphics_D3D11_DeviceState_SetFogVertexMode( DX_FOGMODE_NONE ) ;
@@ -8521,14 +8521,14 @@ extern	int		Graphics_D3D11_Device_Initialize( void )
 		Graphics_D3D11_DeviceState_SetVerticalFogStartEnd( 0.0f, 1.0f ) ;
 		Graphics_D3D11_DeviceState_SetVerticalFogDensity( 0.0f, 1.0f ) ;
 
-		// ƒOƒ[ƒoƒ‹ƒAƒ“ƒrƒGƒ“ƒgƒJƒ‰[ƒZƒbƒg
+		// ã‚°ãƒ­ãƒ¼ãƒãƒ«ã‚¢ãƒ³ãƒ“ã‚¨ãƒ³ãƒˆã‚«ãƒ©ãƒ¼ã‚»ãƒƒãƒˆ
 		{
 			COLOR_F GAmbColor = { 0.0f } ;
 
 			Graphics_D3D11_DeviceState_SetAmbient( &GAmbColor ) ;
 		}
 
-		// ƒrƒ…[ƒ|[ƒg‚ğİ’è
+		// ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆã‚’è¨­å®š
 		{
 			D_D3D11_VIEWPORT Viewport ;
 
@@ -8541,42 +8541,42 @@ extern	int		Graphics_D3D11_Device_Initialize( void )
 			Graphics_D3D11_DeviceState_SetViewport( &Viewport ) ;
 		}
 
-		// •`‰æ‰æ‘œ‚Ì‚q‚f‚a‚ğ–³‹‚·‚é‚©‚Ç‚¤‚©‚ğƒZƒbƒg
+		// æç”»ç”»åƒã®ï¼²ï¼§ï¼¢ã‚’ç„¡è¦–ã™ã‚‹ã‹ã©ã†ã‹ã‚’ã‚»ãƒƒãƒˆ
 		Graphics_D3D11_DrawSetting_SetIgnoreDrawGraphColor( FALSE ) ;
 
-		// •`‰æ‰æ‘œ‚Ì‚`‚ğ–³‹‚·‚é‚©‚Ç‚¤‚©‚ğƒZƒbƒg
+		// æç”»ç”»åƒã®ï¼¡ã‚’ç„¡è¦–ã™ã‚‹ã‹ã©ã†ã‹ã‚’ã‚»ãƒƒãƒˆ
 		Graphics_D3D11_DrawSetting_SetIgnoreDrawGraphAlpha( FALSE ) ;
 
-		// ƒ‰ƒCƒg‚ÌŠp“xŒ¸Š‚ğs‚í‚È‚¢‚©‚Ç‚¤‚©‚ğƒZƒbƒg‚·‚é
+		// ãƒ©ã‚¤ãƒˆã®è§’åº¦æ¸›è¡°ã‚’è¡Œã‚ãªã„ã‹ã©ã†ã‹ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 		Graphics_D3D11_DrawSetting_SetLightNoAngleAttenuation( FALSE ) ;
 
-		// ƒn[ƒtƒ‰ƒ“ƒo[ƒg‚ğg—p‚·‚é‚©‚Ç‚¤‚©‚ğƒZƒbƒg‚·‚é
+		// ãƒãƒ¼ãƒ•ãƒ©ãƒ³ãƒãƒ¼ãƒˆã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 		Graphics_D3D11_DrawSetting_SetLightUseHalfLambert( FALSE ) ;
 
-		// ƒAƒ‹ƒtƒ@ƒ`ƒƒƒ“ƒlƒ‹‚ğ‘‚«Š·‚¦‚é‚©‚Ç‚¤‚©‚ğİ’è
+		// ã‚¢ãƒ«ãƒ•ã‚¡ãƒãƒ£ãƒ³ãƒãƒ«ã‚’æ›¸ãæ›ãˆã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®š
 		Graphics_D3D11_DrawSetting_SetWriteAlphaChannelFlag( FALSE ) ;
 
-		// •`‰ææİ’è
+		// æç”»å…ˆè¨­å®š
 		Graphics_D3D11_DeviceState_SetRenderTarget(
 			GD3D11.Device.Screen.OutputWindowInfo[ 0 ].BufferTexture2D,
 			GD3D11.Device.Screen.OutputWindowInfo[ 0 ].BufferRTV
 		) ;
 
-		// ƒuƒŒƒ“ƒhƒ‚[ƒhİ’è
+		// ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰è¨­å®š
 		Graphics_D3D11_DeviceState_SetBlendMode( DX_BLENDMODE_NOBLEND, FALSE, DX_BLEND_ZERO, DX_BLEND_ZERO, DX_BLENDOP_ADD, DX_BLEND_ZERO, DX_BLEND_ZERO, DX_BLENDOP_ADD, FALSE ) ;
 
-		// ƒvƒŠƒ~ƒeƒBƒuƒ^ƒCƒv‚ğƒZƒbƒg
+		// ãƒ—ãƒªãƒŸãƒ†ã‚£ãƒ–ã‚¿ã‚¤ãƒ—ã‚’ã‚»ãƒƒãƒˆ
 		Graphics_D3D11_DeviceState_SetPrimitiveTopology( D_D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST ) ;
 
-		// ƒAƒ‹ƒtƒ@ƒeƒXƒgİ’è‚ğ‰Šú‰»
+		// ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆè¨­å®šã‚’åˆæœŸåŒ–
 		Graphics_D3D11_DrawSetting_SetDrawAlphaTest( -1, 0 ) ;
 
-		// ƒuƒŒƒ“ƒhƒeƒNƒXƒ`ƒƒŠÖŒW‚ğ‰Šú‰»
+		// ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ†ã‚¯ã‚¹ãƒãƒ£é–¢ä¿‚ã‚’åˆæœŸåŒ–
 		Graphics_D3D11_DrawSetting_SetBlendTexture( NULL, NULL ) ;
 		GD3D11.Device.DrawSetting.BlendGraphBorderParam	= -1 ;
 		GD3D11.Device.DrawSetting.BlendGraphType		= 0 ;
 
-		// •`‰æƒeƒNƒXƒ`ƒƒŠÖŒW‚ğ‰Šú‰»
+		// æç”»ãƒ†ã‚¯ã‚¹ãƒãƒ£é–¢ä¿‚ã‚’åˆæœŸåŒ–
 		Graphics_D3D11_DrawSetting_SetTexture( NULL, NULL ) ;
 		GD3D11.Device.DrawSetting.AlphaChannelValidFlag	= FALSE ;
 		GD3D11.Device.DrawSetting.AlphaTestValidFlag	= FALSE ;
@@ -8584,15 +8584,15 @@ extern	int		Graphics_D3D11_Device_Initialize( void )
 		GD3D11.Device.DrawSetting.CancelSettingEqualCheck = FALSE ;
 	}
 
-	// ƒfƒoƒCƒXİ’è‚ğƒŠƒtƒŒƒbƒVƒ…
+	// ãƒ‡ãƒã‚¤ã‚¹è¨­å®šã‚’ãƒªãƒ•ãƒ¬ãƒƒã‚·ãƒ¥
 	Graphics_D3D11_DeviceState_RefreshRenderState() ;
 
-	// ƒtƒ‰ƒO‚ğ‰Šú‰»
+	// ãƒ•ãƒ©ã‚°ã‚’åˆæœŸåŒ–
 	GD3D11.Device.DrawSetting.DrawPrepAlwaysFlag	= TRUE ;
 	GD3D11.Device.DrawSetting.ChangeBlendParamFlag	= TRUE ;
 	GD3D11.Device.DrawSetting.ChangeTextureFlag		= FALSE ;
 
-	// •`‰æî•ñ‚ğ‰Šú‰»
+	// æç”»æƒ…å ±ã‚’åˆæœŸåŒ–
 	GD3D11.Device.DrawInfo.DiffuseColor				= 0xffffffff ;
 	GD3D11.Device.DrawInfo.BlendMaxNotDrawFlag		= FALSE ;
 	GD3D11.Device.DrawInfo.BeginSceneFlag			= FALSE ;
@@ -8607,11 +8607,11 @@ extern	int		Graphics_D3D11_Device_Initialize( void )
 	GD3D11.Device.DrawInfo.VertexBufferNextAddr		= GD3D11.Device.DrawInfo.VertexBufferTemp ;
 #endif
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ˆê“I‚É Direct3DDevice11 ‚ğ”jŠü‚µ‚½Û‚ÉA”jŠü‘O‚Ìó‘Ô‚ğì‚èo‚·‚½‚ß‚ÌŠÖ”
+// ä¸€æ™‚çš„ã« Direct3DDevice11 ã‚’ç ´æ£„ã—ãŸéš›ã«ã€ç ´æ£„å‰ã®çŠ¶æ…‹ã‚’ä½œã‚Šå‡ºã™ãŸã‚ã®é–¢æ•°
 extern	int		Graphics_D3D11_Device_ReInitialize( void )
 {
 	int i ;
@@ -8621,23 +8621,23 @@ extern	int		Graphics_D3D11_Device_ReInitialize( void )
 		return -1 ;
 	}
 
-	// ‰Šú‰»ƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// åˆæœŸåŒ–ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	GD3D11.Device.DrawSetting.CancelSettingEqualCheck = TRUE ;
 
-	// •K‚¸ Graphics_D3D11_DrawPreparation ‚ğÀs‚·‚éƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// å¿…ãš Graphics_D3D11_DrawPreparation ã‚’å®Ÿè¡Œã™ã‚‹ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	GD3D11.Device.DrawSetting.DrawPrepAlwaysFlag = TRUE ;
 
-	// íœ‘O‚Æ“¯‚¶ŠÂ‹«‚ğì‚èo‚·
+	// å‰Šé™¤å‰ã¨åŒã˜ç’°å¢ƒã‚’ä½œã‚Šå‡ºã™
 	{
-		// •`‰æƒeƒNƒXƒ`ƒƒŠÖŒW‚ğ‰Šú‰»
+		// æç”»ãƒ†ã‚¯ã‚¹ãƒãƒ£é–¢ä¿‚ã‚’åˆæœŸåŒ–
 		Graphics_D3D11_DrawSetting_SetTexture( NULL, NULL ) ;
 		GD3D11.Device.DrawSetting.AlphaChannelValidFlag	= FALSE ;
 		GD3D11.Device.DrawSetting.AlphaTestValidFlag	= FALSE ;
 
-		// •`‰æ’¸“_î•ñ‚àƒŠƒZƒbƒg
+		// æç”»é ‚ç‚¹æƒ…å ±ã‚‚ãƒªã‚»ãƒƒãƒˆ
 		GD3D11.Device.DrawInfo.VertexNum = 0 ;
 
-		// •`‰æƒuƒŒƒ“ƒhƒ‚[ƒh‚Ìİ’è
+		// æç”»ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã®è¨­å®š
 		Graphics_D3D11_DrawSetting_SetDrawBlendMode(
 			GD3D11.Device.DrawSetting.BlendMode,
 			GD3D11.Device.DrawSetting.BlendEnable,
@@ -8651,25 +8651,25 @@ extern	int		Graphics_D3D11_Device_ReInitialize( void )
 			GD3D11.Device.DrawSetting.AlphaChannelValidFlag
 		) ;
 
-		// •`‰æ‰æ‘œ‚Ì‚q‚f‚a‚ğ–³‹‚·‚é‚©‚Ç‚¤‚©‚ğƒZƒbƒg‚·‚é
+		// æç”»ç”»åƒã®ï¼²ï¼§ï¼¢ã‚’ç„¡è¦–ã™ã‚‹ã‹ã©ã†ã‹ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 		Graphics_D3D11_DrawSetting_SetIgnoreDrawGraphColor( GD3D11.Device.DrawSetting.IgnoreGraphColorFlag ) ;
 
-		// •`‰æ‰æ‘œ‚Ì‚`‚ğ–³‹‚·‚é‚©‚Ç‚¤‚©‚ğƒZƒbƒg
+		// æç”»ç”»åƒã®ï¼¡ã‚’ç„¡è¦–ã™ã‚‹ã‹ã©ã†ã‹ã‚’ã‚»ãƒƒãƒˆ
 		Graphics_D3D11_DrawSetting_SetIgnoreDrawGraphAlpha( GD3D11.Device.DrawSetting.IgnoreGraphAlphaFlag ) ;
 
-		// ƒ‰ƒCƒg‚ÌŠp“xŒ¸Š‚ğs‚í‚È‚¢‚©‚Ç‚¤‚©‚ğƒZƒbƒg‚·‚é
+		// ãƒ©ã‚¤ãƒˆã®è§’åº¦æ¸›è¡°ã‚’è¡Œã‚ãªã„ã‹ã©ã†ã‹ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 		Graphics_D3D11_DrawSetting_SetLightNoAngleAttenuation( GD3D11.Device.DrawSetting.NoLightAngleAttenuation ) ;
 
-		// ƒn[ƒtƒ‰ƒ“ƒo[ƒg‚ğg—p‚·‚é‚©‚Ç‚¤‚©‚ğƒZƒbƒg‚·‚é
+		// ãƒãƒ¼ãƒ•ãƒ©ãƒ³ãƒãƒ¼ãƒˆã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 		Graphics_D3D11_DrawSetting_SetLightUseHalfLambert( GD3D11.Device.DrawSetting.UseHalfLambert ) ;
 
-		// ƒAƒ‹ƒtƒ@ƒ`ƒƒƒ“ƒlƒ‹‚ğ‘‚«Š·‚¦‚é‚©‚Ç‚¤‚©‚ğİ’è
+		// ã‚¢ãƒ«ãƒ•ã‚¡ãƒãƒ£ãƒ³ãƒãƒ«ã‚’æ›¸ãæ›ãˆã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®š
 		Graphics_D3D11_DrawSetting_SetWriteAlphaChannelFlag( GD3D11.Device.DrawSetting.NotWriteAlphaChannelFlag ) ;
 
-		// ˆÙ•û«ƒtƒBƒ‹ƒ^ƒŠƒ“ƒO‚Ìİ’è‚ğƒZƒbƒg
+		// ç•°æ–¹æ€§ãƒ•ã‚£ãƒ«ã‚¿ãƒªãƒ³ã‚°ã®è¨­å®šã‚’ã‚»ãƒƒãƒˆ
 		Graphics_D3D11_DeviceState_SetMaxAnisotropy( GD3D11.Device.State.MaxAnisotropy ) ;
 
-		// UVƒAƒhƒŒƒbƒVƒ“ƒOƒ‚[ƒh‚Ìİ’è‚ğƒZƒbƒg
+		// UVã‚¢ãƒ‰ãƒ¬ãƒƒã‚·ãƒ³ã‚°ãƒ¢ãƒ¼ãƒ‰ã®è¨­å®šã‚’ã‚»ãƒƒãƒˆ
 		for( i = 0 ; i < USE_TEXTURESTAGE_NUM ; i ++ )
 		{
 			Graphics_D3D11_DeviceState_SetTextureAddressUVW(
@@ -8679,15 +8679,15 @@ extern	int		Graphics_D3D11_Device_ReInitialize( void )
 				i ) ;
 		}
 
-		// ƒeƒNƒXƒ`ƒƒÀ•W•ÏŠ·s—ñ‚ğg—p‚·‚é‚©‚Ç‚¤‚©‚Ìİ’è‚ğƒZƒbƒg
+		// ãƒ†ã‚¯ã‚¹ãƒãƒ£åº§æ¨™å¤‰æ›è¡Œåˆ—ã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã®è¨­å®šã‚’ã‚»ãƒƒãƒˆ
 		Graphics_D3D11_DeviceState_SetTextureAddressTransformMatrix(
 			GD3D11.Device.State.TextureAddressTransformMatrixUse,
 			&GD3D11.Device.State.TextureAddressTransformMatrix ) ;
 
-		// ƒvƒŠƒ~ƒeƒBƒuƒ^ƒCƒv‚ğƒZƒbƒg
+		// ãƒ—ãƒªãƒŸãƒ†ã‚£ãƒ–ã‚¿ã‚¤ãƒ—ã‚’ã‚»ãƒƒãƒˆ
 		Graphics_D3D11_DeviceState_SetPrimitiveTopology( GD3D11.Device.State.PrimitiveTopology ) ;
 
-		// ƒtƒHƒO‚Ìİ’è‚ğƒZƒbƒg
+		// ãƒ•ã‚©ã‚°ã®è¨­å®šã‚’ã‚»ãƒƒãƒˆ
 		Graphics_D3D11_DeviceState_SetFogEnable(     GD3D11.Device.State.FogEnable ) ;
 		Graphics_D3D11_DeviceState_SetFogVertexMode( GD3D11.Device.State.FogMode ) ;
 		Graphics_D3D11_DeviceState_SetFogColor(      GD3D11.Device.State.FogColor ) ;
@@ -8700,13 +8700,13 @@ extern	int		Graphics_D3D11_Device_ReInitialize( void )
 		Graphics_D3D11_DeviceState_SetVerticalFogStartEnd(   GD3D11.Device.State.VerticalFogStart, GD3D11.Device.State.FogEnd ) ;
 		Graphics_D3D11_DeviceState_SetVerticalFogDensity(    GD3D11.Device.State.VerticalFogDensityStart, GD3D11.Device.State.VerticalFogDensity ) ;
 
-		// s—ñ‚ÌÄİ’è
+		// è¡Œåˆ—ã®å†è¨­å®š
 		NS_SetTransformToWorldD(                              &GSYS.DrawSetting.WorldMatrix ) ;
 		NS_SetTransformToViewD(                               &GSYS.DrawSetting.ViewMatrix ) ;
 		Graphics_DrawSetting_SetTransformToProjection_Direct( &GSYS.DrawSetting.ProjectionMatrix ) ;
 		NS_SetTransformToViewportD(                           &GSYS.DrawSetting.ViewportMatrix ) ;
 
-		// ƒ‰ƒCƒg‚ÌÄİ’è
+		// ãƒ©ã‚¤ãƒˆã®å†è¨­å®š
 		Graphics_D3D11_DeviceState_SetAmbient( &GD3D11.Device.State.GlobalAmbientLightColor ) ;
 		Graphics_D3D11_DeviceState_SetLighting( GD3D11.Device.State.Lighting ) ;
 		for( i = 0 ; i < DX_D3D11_COMMON_CONST_LIGHT_NUM ; i ++ )
@@ -8721,13 +8721,13 @@ extern	int		Graphics_D3D11_Device_ReInitialize( void )
 		}
 	}
 
-	// ‰Šú‰»ƒtƒ‰ƒO‚ğ“|‚·
+	// åˆæœŸåŒ–ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 	GD3D11.Device.DrawSetting.CancelSettingEqualCheck = FALSE ;
 
-	// ã‹LˆÈŠO‚Ìİ’è‚ğƒŠƒtƒŒƒbƒVƒ…
+	// ä¸Šè¨˜ä»¥å¤–ã®è¨­å®šã‚’ãƒªãƒ•ãƒ¬ãƒƒã‚·ãƒ¥
 	Graphics_D3D11_DeviceState_RefreshRenderState() ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
@@ -8757,9 +8757,9 @@ extern	int		Graphics_D3D11_Device_ReInitialize( void )
 
 
 
-// DXGIAdapter ŠÖŒW
+// DXGIAdapter é–¢ä¿‚
 
-// DXGIƒIƒuƒWƒFƒNƒgî•ñ‚Ì—ñ‹“
+// DXGIã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæƒ…å ±ã®åˆ—æŒ™
 extern int EnumDXGIAdapterInfo( void )
 {
 	D_IDXGIAdapter *DXGIAdapter ;
@@ -8776,20 +8776,20 @@ extern int EnumDXGIAdapterInfo( void )
 	{
 		AfterRelease = TRUE ;
 
-		// dxgi.DLL ‚Ì“Ç‚İ‚İ
+		// dxgi.DLL ã®èª­ã¿è¾¼ã¿
 		if( DXGI_LoadDLL() < 0 )
 		{
 			return -1 ;
 		}
 
-		// IDXGIFactory ‚Ìì¬
+		// IDXGIFactory ã®ä½œæˆ
 		if( DXGIFactory_Create() < 0 )
 		{
 			return -1 ;
 		}
 	}
 
-	DXST_LOGFILE_ADDUTF16LE( "\x49\x00\x44\x00\x58\x00\x47\x00\x49\x00\x41\x00\x64\x00\x61\x00\x70\x00\x74\x00\x65\x00\x72\x00\x20\x00\x92\x30\x17\x52\x19\x63\x0a\x00\x00"/*@ L"IDXGIAdapter ‚ğ—ñ‹“\n" @*/ ) ;
+	DXST_LOGFILE_ADDUTF16LE( "\x49\x00\x44\x00\x58\x00\x47\x00\x49\x00\x41\x00\x64\x00\x61\x00\x70\x00\x74\x00\x65\x00\x72\x00\x20\x00\x92\x30\x17\x52\x19\x63\x0a\x00\x00"/*@ L"IDXGIAdapter ã‚’åˆ—æŒ™\n" @*/ ) ;
 
 	AdapterInfo = GD3D11.Adapter.Info ;
 	for( GD3D11.Adapter.InfoNum = 0 ; GD3D11.Adapter.InfoNum < DX_D3D11_MAX_ADAPTER_LISTUP ; GD3D11.Adapter.InfoNum ++, AdapterInfo ++ )
@@ -8832,16 +8832,16 @@ extern int EnumDXGIAdapterInfo( void )
 
 	if( AfterRelease )
 	{
-		// IDXGIFactory ‚Ì‰ğ•ú
+		// IDXGIFactory ã®è§£æ”¾
 		DXGIFactory_Release() ;
 
-		// dxgi.dll ‚Ì‰ğ•ú
+		// dxgi.dll ã®è§£æ”¾
 		DXGI_FreeDLL() ;
 	}
 
 	GD3D11.Adapter.ValidInfo = TRUE ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
@@ -8878,20 +8878,20 @@ extern int EnumDXGIAdapterInfo( void )
 
 
 
-// D3D11Device ƒXƒe[ƒ^ƒXŠÖŒW
+// D3D11Device ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹é–¢ä¿‚
 
-// •`‰æİ’è‚ğƒŠƒtƒŒƒbƒVƒ…
+// æç”»è¨­å®šã‚’ãƒªãƒ•ãƒ¬ãƒƒã‚·ãƒ¥
 extern	void	Graphics_D3D11_DeviceState_RefreshRenderState( void )
 {
 	if( GAPIWin.D3D11DeviceObject == NULL ) return ;
 
-	// ‰Šú‰»ƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// åˆæœŸåŒ–ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	GD3D11.Device.DrawSetting.CancelSettingEqualCheck = TRUE ;
 
-	// Graphics_D3D11_DrawPreparation ‚ğs‚¤‚×‚«ƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// Graphics_D3D11_DrawPreparation ã‚’è¡Œã†ã¹ããƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	GD3D11.Device.DrawSetting.DrawPrepAlwaysFlag = TRUE ;
 
-	// İ’è‚ÌƒŠƒtƒŒƒbƒVƒ…
+	// è¨­å®šã®ãƒªãƒ•ãƒ¬ãƒƒã‚·ãƒ¥
 	Graphics_D3D11_DeviceState_SetFogEnable             ( GD3D11.Device.State.FogEnable           ) ;
 	Graphics_D3D11_DeviceState_SetViewport              ( &GD3D11.Device.State.Viewport           ) ;
 //	Graphics_D3D11_DeviceState_SetScissorRect           ( &GD3D11.Device.State.ScissorRect        ) ;
@@ -8922,7 +8922,7 @@ extern	void	Graphics_D3D11_DeviceState_RefreshRenderState( void )
 	Graphics_D3D11_DeviceState_SetRenderTarget_SizeCheck() ;
 	D3D11DeviceContext_RSSetViewports( 1, &GD3D11.Device.State.Viewport ) ;
 
-	// ’è”ƒoƒbƒtƒ@‚ğƒŠƒtƒŒƒbƒVƒ…
+	// å®šæ•°ãƒãƒƒãƒ•ã‚¡ã‚’ãƒªãƒ•ãƒ¬ãƒƒã‚·ãƒ¥
 	GD3D11.Device.Shader.Constant.ConstBuffer_Common->ChangeFlag = TRUE ;
 	Graphics_D3D11_ConstantBuffer_Update( GD3D11.Device.Shader.Constant.ConstBuffer_Common ) ;
 
@@ -8944,7 +8944,7 @@ extern	void	Graphics_D3D11_DeviceState_RefreshRenderState( void )
 	GD3D11.Device.Shader.Constant.ConstBuffer_PS_Filter->ChangeFlag = TRUE ;
 	Graphics_D3D11_ConstantBuffer_Update( GD3D11.Device.Shader.Constant.ConstBuffer_PS_Filter ) ;
 
-	// ’è”ƒoƒbƒtƒ@‚ğƒZƒbƒg
+	// å®šæ•°ãƒãƒƒãƒ•ã‚¡ã‚’ã‚»ãƒƒãƒˆ
 	Graphics_D3D11_ConstantBuffer_VSSet( DX_D3D11_VS_CONSTANTBUFFER_COMMON,      1, &GD3D11.Device.Shader.Constant.ConstBuffer_Common ) ;
 	Graphics_D3D11_ConstantBuffer_VSSet( DX_D3D11_VS_CONSTANTBUFFER_BASE,        1, &GD3D11.Device.Shader.Constant.ConstBuffer_VS_Base ) ;
 	Graphics_D3D11_ConstantBuffer_VSSet( DX_D3D11_VS_CONSTANTBUFFER_OTHERMATRIX, 1, &GD3D11.Device.Shader.Constant.ConstBuffer_VS_OtherMatrix ) ;
@@ -8955,11 +8955,11 @@ extern	void	Graphics_D3D11_DeviceState_RefreshRenderState( void )
 	Graphics_D3D11_ConstantBuffer_PSSet( DX_D3D11_PS_CONSTANTBUFFER_SHADOWMAP,   1, &GD3D11.Device.Shader.Constant.ConstBuffer_PS_ShadowMap ) ;
 	Graphics_D3D11_ConstantBuffer_PSSet( DX_D3D11_PS_CONSTANTBUFFER_FILTER,      1, &GD3D11.Device.Shader.Constant.ConstBuffer_PS_Filter ) ;
 
-	// ‰Šú‰»ƒtƒ‰ƒO‚ğ“|‚·
+	// åˆæœŸåŒ–ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 	GD3D11.Device.DrawSetting.CancelSettingEqualCheck = FALSE ;
 }
 
-// Direct3DDevice11 ‚ÌŠî–{İ’è‚ğs‚¤
+// Direct3DDevice11 ã®åŸºæœ¬è¨­å®šã‚’è¡Œã†
 extern int Graphics_D3D11_DeviceState_SetBaseState( void )
 {
 	if( GAPIWin.D3D11DeviceObject == NULL )
@@ -8967,32 +8967,32 @@ extern int Graphics_D3D11_DeviceState_SetBaseState( void )
 		return -1 ;
 	}
 
-	// ‘‚«o‚µ
+	// æ›¸ãå‡ºã—
 	DRAWSTOCKINFO
 
-	// g—p‚µ‚È‚¢ƒVƒF[ƒ_[‚ğ–³Œø‰»
+	// ä½¿ç”¨ã—ãªã„ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ç„¡åŠ¹åŒ–
 //	D3D11DeviceContext_GSSetShader( NULL, NULL, 0 ) ;
 	D3D11DeviceContext_HSSetShader( NULL, NULL, 0 ) ;
 	D3D11DeviceContext_DSSetShader( NULL, NULL, 0 ) ;
 	D3D11DeviceContext_CSSetShader( NULL, NULL, 0 ) ;
 
-	// ƒTƒ“ƒvƒ‰[İ’èÄƒZƒbƒgƒAƒbƒv
+	// ã‚µãƒ³ãƒ—ãƒ©ãƒ¼è¨­å®šå†ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 	Graphics_D3D11_DeviceState_SetupSamplerState() ;
 
-	// ƒ‰ƒXƒ^ƒ‰ƒCƒUƒXƒe[ƒgÄƒZƒbƒgƒAƒbƒv
+	// ãƒ©ã‚¹ã‚¿ãƒ©ã‚¤ã‚¶ã‚¹ãƒ†ãƒ¼ãƒˆå†ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 	Graphics_D3D11_DeviceState_SetupRasterizerState() ;
 
-	// [“xƒXƒeƒ“ƒVƒ‹ƒXƒe[ƒgÄƒZƒbƒgƒAƒbƒv
+	// æ·±åº¦ã‚¹ãƒ†ãƒ³ã‚·ãƒ«ã‚¹ãƒ†ãƒ¼ãƒˆå†ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 	Graphics_D3D11_DeviceState_SetupDepthStencilState() ;
 
-	// ƒuƒŒƒ“ƒhƒXƒe[ƒgÄƒZƒbƒgƒAƒbƒv
+	// ãƒ–ãƒ¬ãƒ³ãƒ‰ã‚¹ãƒ†ãƒ¼ãƒˆå†ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 	Graphics_D3D11_DeviceState_SetupBlendState() ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒTƒ“ƒvƒ‰[‚ÌƒeƒNƒXƒ`ƒƒƒtƒBƒ‹ƒ^ƒŠƒ“ƒOƒ‚[ƒh‚ğİ’è‚·‚é
+// ã‚µãƒ³ãƒ—ãƒ©ãƒ¼ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ•ã‚£ãƒ«ã‚¿ãƒªãƒ³ã‚°ãƒ¢ãƒ¼ãƒ‰ã‚’è¨­å®šã™ã‚‹
 extern int Graphics_D3D11_DeviceState_SetSampleFilterMode( D_D3D11_FILTER Filter, int Sampler )
 {
 	int						i ;
@@ -9075,7 +9075,7 @@ extern int Graphics_D3D11_DeviceState_SetSampleFilterMode( D_D3D11_FILTER Filter
 	return 0 ;
 }
 
-// [“xƒoƒbƒtƒ@‚Ì—LŒø–³Œø‚ÌƒZƒbƒg
+// æ·±åº¦ãƒãƒƒãƒ•ã‚¡ã®æœ‰åŠ¹ç„¡åŠ¹ã®ã‚»ãƒƒãƒˆ
 extern int Graphics_D3D11_DeviceState_SetDepthEnable( BOOL DepthEnable )
 {
 	if( GAPIWin.D3D11DeviceObject == NULL )
@@ -9083,7 +9083,7 @@ extern int Graphics_D3D11_DeviceState_SetDepthEnable( BOOL DepthEnable )
 		return -1 ;
 	}
 
-	// ƒ‚[ƒh‚ª“¯‚¶‚¾‚Á‚½‚ç‰½‚à‚¹‚¸I—¹
+	// ãƒ¢ãƒ¼ãƒ‰ãŒåŒã˜ã ã£ãŸã‚‰ä½•ã‚‚ã›ãšçµ‚äº†
 	if( GD3D11.Device.State.DepthStencilDesc.DepthEnable == DepthEnable &&
 		GD3D11.Device.DrawSetting.CancelSettingEqualCheck == FALSE )
 	{
@@ -9102,7 +9102,7 @@ extern int Graphics_D3D11_DeviceState_SetDepthEnable( BOOL DepthEnable )
 	return 0 ;
 }
 
-// [“xƒoƒbƒtƒ@‚Ì‘‚«‚İ‚Ì—L–³‚ğƒZƒbƒg
+// æ·±åº¦ãƒãƒƒãƒ•ã‚¡ã®æ›¸ãè¾¼ã¿ã®æœ‰ç„¡ã‚’ã‚»ãƒƒãƒˆ
 extern int Graphics_D3D11_DeviceState_SetDepthWriteEnable( int Flag )
 {
 	D_D3D11_DEPTH_WRITE_MASK DepthWriteMask ;
@@ -9114,7 +9114,7 @@ extern int Graphics_D3D11_DeviceState_SetDepthWriteEnable( int Flag )
 
 	DepthWriteMask = Flag == FALSE ? D_D3D11_DEPTH_WRITE_MASK_ZERO : D_D3D11_DEPTH_WRITE_MASK_ALL ;
 
-	// ƒ‚[ƒh‚ª“¯‚¶‚¾‚Á‚½‚ç‰½‚à‚¹‚¸I—¹
+	// ãƒ¢ãƒ¼ãƒ‰ãŒåŒã˜ã ã£ãŸã‚‰ä½•ã‚‚ã›ãšçµ‚äº†
 	if( GD3D11.Device.State.DepthStencilDesc.DepthWriteMask == DepthWriteMask &&
 		GD3D11.Device.DrawSetting.CancelSettingEqualCheck == FALSE )
 	{
@@ -9133,7 +9133,7 @@ extern int Graphics_D3D11_DeviceState_SetDepthWriteEnable( int Flag )
 	return 0 ;
 }
 
-// [“x’l‚Ì”äŠrƒ^ƒCƒv‚ğƒZƒbƒg
+// æ·±åº¦å€¤ã®æ¯”è¼ƒã‚¿ã‚¤ãƒ—ã‚’ã‚»ãƒƒãƒˆ
 extern int Graphics_D3D11_DeviceState_SetDepthFunc( D_D3D11_COMPARISON_FUNC DepthFunc )
 {
 	if( GAPIWin.D3D11DeviceObject == NULL )
@@ -9141,7 +9141,7 @@ extern int Graphics_D3D11_DeviceState_SetDepthFunc( D_D3D11_COMPARISON_FUNC Dept
 		return -1 ;
 	}
 
-	// ƒ‚[ƒh‚ª“¯‚¶‚¾‚Á‚½‚ç‰½‚à‚¹‚¸I—¹
+	// ãƒ¢ãƒ¼ãƒ‰ãŒåŒã˜ã ã£ãŸã‚‰ä½•ã‚‚ã›ãšçµ‚äº†
 	if( GD3D11.Device.State.DepthStencilDesc.DepthFunc == DepthFunc &&
 		GD3D11.Device.DrawSetting.CancelSettingEqualCheck == FALSE )
 	{
@@ -9160,7 +9160,7 @@ extern int Graphics_D3D11_DeviceState_SetDepthFunc( D_D3D11_COMPARISON_FUNC Dept
 	return 0 ;
 }
 
-// [“x’l‚ÌƒoƒCƒAƒX‚ğƒZƒbƒg
+// æ·±åº¦å€¤ã®ãƒã‚¤ã‚¢ã‚¹ã‚’ã‚»ãƒƒãƒˆ
 extern int Graphics_D3D11_DeviceState_SetDepthBias( int DepthBias )
 {
 	if( GAPIWin.D3D11DeviceObject == NULL )
@@ -9168,7 +9168,7 @@ extern int Graphics_D3D11_DeviceState_SetDepthBias( int DepthBias )
 		return -1 ;
 	}
 
-	// ƒ‚[ƒh‚ª“¯‚¶‚¾‚Á‚½‚ç‰½‚à‚¹‚¸I—¹
+	// ãƒ¢ãƒ¼ãƒ‰ãŒåŒã˜ã ã£ãŸã‚‰ä½•ã‚‚ã›ãšçµ‚äº†
 	if( GD3D11.Device.State.RasterizerDesc.DepthBias == DepthBias &&
 		GD3D11.Device.DrawSetting.CancelSettingEqualCheck == FALSE )
 	{
@@ -9187,7 +9187,7 @@ extern int Graphics_D3D11_DeviceState_SetDepthBias( int DepthBias )
 	return 0 ;
 }
 
-// ƒtƒBƒ‹ƒ‚[ƒh‚ğƒZƒbƒg
+// ãƒ•ã‚£ãƒ«ãƒ¢ãƒ¼ãƒ‰ã‚’ã‚»ãƒƒãƒˆ
 extern int Graphics_D3D11_DeviceState_SetFillMode( D_D3D11_FILL_MODE FillMode )
 {
 	if( GAPIWin.D3D11DeviceObject == NULL )
@@ -9195,7 +9195,7 @@ extern int Graphics_D3D11_DeviceState_SetFillMode( D_D3D11_FILL_MODE FillMode )
 		return -1 ;
 	}
 
-	// ƒ‚[ƒh‚ª“¯‚¶‚¾‚Á‚½‚ç‰½‚à‚¹‚¸I—¹
+	// ãƒ¢ãƒ¼ãƒ‰ãŒåŒã˜ã ã£ãŸã‚‰ä½•ã‚‚ã›ãšçµ‚äº†
 	if( GD3D11.Device.State.RasterizerDesc.FillMode == FillMode &&
 		GD3D11.Device.DrawSetting.CancelSettingEqualCheck == FALSE )
 	{
@@ -9214,7 +9214,7 @@ extern int Graphics_D3D11_DeviceState_SetFillMode( D_D3D11_FILL_MODE FillMode )
 	return 0 ;
 }
 
-// ƒ[ƒ‹ƒh•ÏŠ·—ps—ñ‚ğƒZƒbƒg‚·‚é
+// ãƒ¯ãƒ¼ãƒ«ãƒ‰å¤‰æ›ç”¨è¡Œåˆ—ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern int Graphics_D3D11_DeviceState_SetWorldMatrix( const MATRIX *Matrix )
 {
 	DX_D3D11_VS_CONST_BUFFER_BASE *ConstantVSBase ;
@@ -9226,7 +9226,7 @@ extern int Graphics_D3D11_DeviceState_SetWorldMatrix( const MATRIX *Matrix )
 
 	ConstantVSBase = ( DX_D3D11_VS_CONST_BUFFER_BASE * )GD3D11.Device.Shader.Constant.ConstBuffer_VS_Base->SysmemBuffer ;
 
-	// ’è”ƒf[ƒ^‚É”½‰f
+	// å®šæ•°ãƒ‡ãƒ¼ã‚¿ã«åæ˜ 
 	ConstantVSBase->LocalWorldMatrix[ 0 ][ 0 ] = Matrix->m[ 0 ][ 0 ] ;
 	ConstantVSBase->LocalWorldMatrix[ 0 ][ 1 ] = Matrix->m[ 1 ][ 0 ] ;
 	ConstantVSBase->LocalWorldMatrix[ 0 ][ 2 ] = Matrix->m[ 2 ][ 0 ] ;
@@ -9242,14 +9242,14 @@ extern int Graphics_D3D11_DeviceState_SetWorldMatrix( const MATRIX *Matrix )
 
 	GD3D11.Device.Shader.Constant.ConstBuffer_VS_Base->ChangeFlag = TRUE ;
 
-	// ’è”ƒoƒbƒtƒ@‚ğXV
+	// å®šæ•°ãƒãƒƒãƒ•ã‚¡ã‚’æ›´æ–°
 //	Graphics_D3D11_ConstantBuffer_Update( GD3D11.Device.Shader.Constant.ConstBuffer_VS_Base ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒrƒ…[•ÏŠ·—ps—ñ‚ğƒZƒbƒg‚·‚é
+// ãƒ“ãƒ¥ãƒ¼å¤‰æ›ç”¨è¡Œåˆ—ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern int Graphics_D3D11_DeviceState_SetViewMatrix( const MATRIX *Matrix )
 {
 	DX_D3D11_VS_CONST_BUFFER_BASE *ConstantVSBase ;
@@ -9261,7 +9261,7 @@ extern int Graphics_D3D11_DeviceState_SetViewMatrix( const MATRIX *Matrix )
 
 	ConstantVSBase = ( DX_D3D11_VS_CONST_BUFFER_BASE * )GD3D11.Device.Shader.Constant.ConstBuffer_VS_Base->SysmemBuffer ;
 
-	// ƒ‰ƒCƒg‚ÌˆÊ’uE•ûŒü‚ÌÄŒvZ
+	// ãƒ©ã‚¤ãƒˆã®ä½ç½®ãƒ»æ–¹å‘ã®å†è¨ˆç®—
 	{
 		DX_D3D11_CONST_BUFFER_COMMON  *ConstantCommon = ( DX_D3D11_CONST_BUFFER_COMMON  * )GD3D11.Device.Shader.Constant.ConstBuffer_Common->SysmemBuffer ;
 		DX_D3D11_CONST_LIGHT          *ConstantLight ;
@@ -9284,11 +9284,11 @@ extern int Graphics_D3D11_DeviceState_SetViewMatrix( const MATRIX *Matrix )
 
 		GD3D11.Device.Shader.Constant.ConstBuffer_Common->ChangeFlag = TRUE ;
 
-		// ’è”ƒoƒbƒtƒ@‚ğXV
+		// å®šæ•°ãƒãƒƒãƒ•ã‚¡ã‚’æ›´æ–°
 //		Graphics_D3D11_ConstantBuffer_Update( GD3D11.Device.Shader.Constant.ConstBuffer_Common ) ;
 	}
 
-	// ’è”ƒf[ƒ^‚É”½‰f
+	// å®šæ•°ãƒ‡ãƒ¼ã‚¿ã«åæ˜ 
 	ConstantVSBase->ViewMatrix[ 0 ][ 0 ] = Matrix->m[ 0 ][ 0 ] ;
 	ConstantVSBase->ViewMatrix[ 0 ][ 1 ] = Matrix->m[ 1 ][ 0 ] ;
 	ConstantVSBase->ViewMatrix[ 0 ][ 2 ] = Matrix->m[ 2 ][ 0 ] ;
@@ -9304,14 +9304,14 @@ extern int Graphics_D3D11_DeviceState_SetViewMatrix( const MATRIX *Matrix )
 
 	GD3D11.Device.Shader.Constant.ConstBuffer_VS_Base->ChangeFlag = TRUE ;
 
-	// ’è”ƒoƒbƒtƒ@‚ğXV
+	// å®šæ•°ãƒãƒƒãƒ•ã‚¡ã‚’æ›´æ–°
 //	Graphics_D3D11_ConstantBuffer_Update( GD3D11.Device.Shader.Constant.ConstBuffer_VS_Base ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// “Š‰e•ÏŠ·—ps—ñ‚ğƒZƒbƒg‚·‚é
+// æŠ•å½±å¤‰æ›ç”¨è¡Œåˆ—ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern int Graphics_D3D11_DeviceState_SetProjectionMatrix( const MATRIX *Matrix )
 {
 	DX_D3D11_VS_CONST_BUFFER_BASE *ConstantVSBase ;
@@ -9323,7 +9323,7 @@ extern int Graphics_D3D11_DeviceState_SetProjectionMatrix( const MATRIX *Matrix 
 
 	ConstantVSBase = ( DX_D3D11_VS_CONST_BUFFER_BASE * )GD3D11.Device.Shader.Constant.ConstBuffer_VS_Base->SysmemBuffer ;
 
-	// ’è”ƒf[ƒ^‚É”½‰f
+	// å®šæ•°ãƒ‡ãƒ¼ã‚¿ã«åæ˜ 
 	ConstantVSBase->ProjectionMatrix[ 0 ][ 0 ] = Matrix->m[ 0 ][ 0 ] ;
 	ConstantVSBase->ProjectionMatrix[ 0 ][ 1 ] = Matrix->m[ 1 ][ 0 ] ;
 	ConstantVSBase->ProjectionMatrix[ 0 ][ 2 ] = Matrix->m[ 2 ][ 0 ] ;
@@ -9343,14 +9343,14 @@ extern int Graphics_D3D11_DeviceState_SetProjectionMatrix( const MATRIX *Matrix 
 
 	GD3D11.Device.Shader.Constant.ConstBuffer_VS_Base->ChangeFlag = TRUE ;
 
-	// ’è”ƒoƒbƒtƒ@‚ğXV
+	// å®šæ•°ãƒãƒƒãƒ•ã‚¡ã‚’æ›´æ–°
 //	Graphics_D3D11_ConstantBuffer_Update( GD3D11.Device.Shader.Constant.ConstBuffer_VS_Base ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒAƒ“ƒ`ƒrƒ…[ƒ|[ƒgs—ñ‚ğƒZƒbƒg‚·‚é
+// ã‚¢ãƒ³ãƒãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆè¡Œåˆ—ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern int Graphics_D3D11_DeviceState_SetAntiViewportMatrix( const MATRIX *Matrix )
 {
 	DX_D3D11_VS_CONST_BUFFER_BASE *ConstantVSBase ;
@@ -9362,7 +9362,7 @@ extern int Graphics_D3D11_DeviceState_SetAntiViewportMatrix( const MATRIX *Matri
 
 	ConstantVSBase = ( DX_D3D11_VS_CONST_BUFFER_BASE * )GD3D11.Device.Shader.Constant.ConstBuffer_VS_Base->SysmemBuffer ;
 
-	// ’è”ƒf[ƒ^‚É”½‰f
+	// å®šæ•°ãƒ‡ãƒ¼ã‚¿ã«åæ˜ 
 	ConstantVSBase->AntiViewportMatrix[ 0 ][ 0 ] = Matrix->m[ 0 ][ 0 ] ;
 	ConstantVSBase->AntiViewportMatrix[ 0 ][ 1 ] = Matrix->m[ 1 ][ 0 ] ;
 	ConstantVSBase->AntiViewportMatrix[ 0 ][ 2 ] = Matrix->m[ 2 ][ 0 ] ;
@@ -9382,14 +9382,14 @@ extern int Graphics_D3D11_DeviceState_SetAntiViewportMatrix( const MATRIX *Matri
 
 	GD3D11.Device.Shader.Constant.ConstBuffer_VS_Base->ChangeFlag = TRUE ;
 
-	// ’è”ƒoƒbƒtƒ@‚ğXV
+	// å®šæ•°ãƒãƒƒãƒ•ã‚¡ã‚’æ›´æ–°
 //	Graphics_D3D11_ConstantBuffer_Update( GD3D11.Device.Shader.Constant.ConstBuffer_VS_Base ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒAƒ“ƒrƒGƒ“ƒgƒ‰ƒCƒg‚ÆƒGƒ~ƒbƒVƒuƒJƒ‰[‚ğŠ|‚¯‡‚í‚¹‚½ƒpƒ‰ƒ[ƒ^‚ğXV‚·‚é
+// ã‚¢ãƒ³ãƒ“ã‚¨ãƒ³ãƒˆãƒ©ã‚¤ãƒˆã¨ã‚¨ãƒŸãƒƒã‚·ãƒ–ã‚«ãƒ©ãƒ¼ã‚’æ›ã‘åˆã‚ã›ãŸãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’æ›´æ–°ã™ã‚‹
 extern void Graphics_D3D11_DeviceState_RefreshAmbientAndEmissiveParam( void )
 {
 	DX_D3D11_CONST_BUFFER_COMMON  *ConstantCommon ;
@@ -9403,7 +9403,7 @@ extern void Graphics_D3D11_DeviceState_RefreshAmbientAndEmissiveParam( void )
 
 	ConstantCommon = ( DX_D3D11_CONST_BUFFER_COMMON  * )GD3D11.Device.Shader.Constant.ConstBuffer_Common->SysmemBuffer ;
 
-	// —LŒø‚Èƒ‰ƒCƒg‚ÌƒAƒ“ƒrƒGƒ“ƒgƒJƒ‰[‚Æƒ}ƒeƒŠƒAƒ‹‚ÌƒAƒ“ƒrƒGƒ“ƒgƒJƒ‰[‚ğæZ‚µ‚½‚à‚Ì‚ğƒVƒF[ƒ_[‚ÉƒZƒbƒg‚·‚é
+	// æœ‰åŠ¹ãªãƒ©ã‚¤ãƒˆã®ã‚¢ãƒ³ãƒ“ã‚¨ãƒ³ãƒˆã‚«ãƒ©ãƒ¼ã¨ãƒãƒ†ãƒªã‚¢ãƒ«ã®ã‚¢ãƒ³ãƒ“ã‚¨ãƒ³ãƒˆã‚«ãƒ©ãƒ¼ã‚’ä¹—ç®—ã—ãŸã‚‚ã®ã‚’ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã«ã‚»ãƒƒãƒˆã™ã‚‹
 	ConstantLight = ConstantCommon->Light ;
 	for( i = 0 ; i <= GD3D11.Device.State.LightEnableMaxIndex ; i ++, ConstantLight ++ )
 	{
@@ -9412,14 +9412,14 @@ extern void Graphics_D3D11_DeviceState_RefreshAmbientAndEmissiveParam( void )
 			continue ;
 		}
 
-		// ’è”ƒoƒbƒtƒ@‚É”½‰f‚·‚é
+		// å®šæ•°ãƒãƒƒãƒ•ã‚¡ã«åæ˜ ã™ã‚‹
 		ConstantLight->Ambient[ 0 ] = GD3D11.Device.State.LightParam[ i ].Ambient.r * GD3D11.Device.State.Material.Ambient.r ;
 		ConstantLight->Ambient[ 1 ] = GD3D11.Device.State.LightParam[ i ].Ambient.g * GD3D11.Device.State.Material.Ambient.g ;
 		ConstantLight->Ambient[ 2 ] = GD3D11.Device.State.LightParam[ i ].Ambient.b * GD3D11.Device.State.Material.Ambient.b ;
 		ConstantLight->Ambient[ 3 ] = GD3D11.Device.State.LightParam[ i ].Ambient.a * GD3D11.Device.State.Material.Ambient.a ;
 	}
 
-	// ƒOƒ[ƒoƒ‹ƒAƒ“ƒrƒGƒ“ƒgƒ‰ƒCƒgƒJƒ‰[‚Æƒ}ƒeƒŠƒAƒ‹ƒAƒ“ƒrƒGƒ“ƒgƒJƒ‰[‚ğæZ‚µ‚½‚à‚Ì‚ÆƒGƒ~ƒbƒVƒuƒJƒ‰[‚ğ‰ÁZ‚µ‚½‚à‚Ì‚ğì¬‚·‚é
+	// ã‚°ãƒ­ãƒ¼ãƒãƒ«ã‚¢ãƒ³ãƒ“ã‚¨ãƒ³ãƒˆãƒ©ã‚¤ãƒˆã‚«ãƒ©ãƒ¼ã¨ãƒãƒ†ãƒªã‚¢ãƒ«ã‚¢ãƒ³ãƒ“ã‚¨ãƒ³ãƒˆã‚«ãƒ©ãƒ¼ã‚’ä¹—ç®—ã—ãŸã‚‚ã®ã¨ã‚¨ãƒŸãƒƒã‚·ãƒ–ã‚«ãƒ©ãƒ¼ã‚’åŠ ç®—ã—ãŸã‚‚ã®ã‚’ä½œæˆã™ã‚‹
 	ConstantCommon->Material.Ambient_Emissive[ 0 ] = GD3D11.Device.State.GlobalAmbientLightColor.r * GD3D11.Device.State.Material.Ambient.r + GD3D11.Device.State.Material.Emissive.r ;
 	ConstantCommon->Material.Ambient_Emissive[ 1 ] = GD3D11.Device.State.GlobalAmbientLightColor.g * GD3D11.Device.State.Material.Ambient.g + GD3D11.Device.State.Material.Emissive.g ;
 	ConstantCommon->Material.Ambient_Emissive[ 2 ] = GD3D11.Device.State.GlobalAmbientLightColor.b * GD3D11.Device.State.Material.Ambient.b + GD3D11.Device.State.Material.Emissive.b ;
@@ -9430,7 +9430,7 @@ extern void Graphics_D3D11_DeviceState_RefreshAmbientAndEmissiveParam( void )
 
 
 
-// ƒ‰ƒCƒg‚ÌƒZƒbƒg
+// ãƒ©ã‚¤ãƒˆã®ã‚»ãƒƒãƒˆ
 extern int Graphics_D3D11_DeviceState_SetLightState( int LightNumber, LIGHTPARAM *Light )
 {
 	DX_D3D11_CONST_BUFFER_COMMON  *ConstantCommon ;
@@ -9462,10 +9462,10 @@ extern int Graphics_D3D11_DeviceState_SetLightState( int LightNumber, LIGHTPARAM
 
 	DRAWSTOCKINFO
 
-	// ƒpƒ‰ƒ[ƒ^‚Ì•Û‘¶
+	// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®ä¿å­˜
 	GD3D11.Device.State.LightParam[ LightNumber ] = *Light ;
 
-	// ’è”ƒf[ƒ^‚É”½‰f
+	// å®šæ•°ãƒ‡ãƒ¼ã‚¿ã«åæ˜ 
 	ConstantLight = &ConstantCommon->Light[ LightNumber ] ;
 
 	_SINCOS( Light->Theta / 2.0f, &ThetaSin, &ThetaCos ) ;
@@ -9506,17 +9506,17 @@ extern int Graphics_D3D11_DeviceState_SetLightState( int LightNumber, LIGHTPARAM
 	ConstantLight->Attenuation2   = Light->Attenuation2 ;
 	GD3D11.Device.Shader.Constant.ConstBuffer_Common->ChangeFlag = TRUE ;
 
-	// ƒAƒ“ƒrƒGƒ“ƒgƒJƒ‰[‚ÆƒGƒ~ƒbƒVƒuƒJƒ‰[‚ğŠ|‚¯‡‚í‚¹‚½î•ñ‚ğXV‚·‚é
+	// ã‚¢ãƒ³ãƒ“ã‚¨ãƒ³ãƒˆã‚«ãƒ©ãƒ¼ã¨ã‚¨ãƒŸãƒƒã‚·ãƒ–ã‚«ãƒ©ãƒ¼ã‚’æ›ã‘åˆã‚ã›ãŸæƒ…å ±ã‚’æ›´æ–°ã™ã‚‹
 	Graphics_D3D11_DeviceState_RefreshAmbientAndEmissiveParam() ;
 
-	// ’è”ƒoƒbƒtƒ@‚ğXV
+	// å®šæ•°ãƒãƒƒãƒ•ã‚¡ã‚’æ›´æ–°
 //	Graphics_D3D11_ConstantBuffer_Update( GD3D11.Device.Shader.Constant.ConstBuffer_Common ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒ‰ƒCƒg‚Ì—LŒøA–³Œø‚ğ•ÏX
+// ãƒ©ã‚¤ãƒˆã®æœ‰åŠ¹ã€ç„¡åŠ¹ã‚’å¤‰æ›´
 extern int Graphics_D3D11_DeviceState_SetLightEnable( int LightNumber, int EnableState )
 {
 	if( GAPIWin.D3D11DeviceObject == NULL )
@@ -9539,7 +9539,7 @@ extern int Graphics_D3D11_DeviceState_SetLightEnable( int LightNumber, int Enabl
 
 	GD3D11.Device.State.LightEnableFlag[ LightNumber ] = EnableState ;
 
-	// —LŒø‚Èƒ‰ƒCƒg‚ÌÅ‘åƒCƒ“ƒfƒbƒNƒX‚ğXV
+	// æœ‰åŠ¹ãªãƒ©ã‚¤ãƒˆã®æœ€å¤§ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’æ›´æ–°
 	if( EnableState == TRUE )
 	{
 		if( GD3D11.Device.State.LightEnableMaxIndex < LightNumber )
@@ -9556,19 +9556,19 @@ extern int Graphics_D3D11_DeviceState_SetLightEnable( int LightNumber, int Enabl
 		}
 	}
 
-	// ƒAƒ“ƒrƒGƒ“ƒgƒJƒ‰[‚ÆƒGƒ~ƒbƒVƒuƒJƒ‰[‚ğŠ|‚¯‡‚í‚¹‚½î•ñ‚ğXV‚·‚é
+	// ã‚¢ãƒ³ãƒ“ã‚¨ãƒ³ãƒˆã‚«ãƒ©ãƒ¼ã¨ã‚¨ãƒŸãƒƒã‚·ãƒ–ã‚«ãƒ©ãƒ¼ã‚’æ›ã‘åˆã‚ã›ãŸæƒ…å ±ã‚’æ›´æ–°ã™ã‚‹
 	Graphics_D3D11_DeviceState_RefreshAmbientAndEmissiveParam() ;
 
-	// ’è”ƒoƒbƒtƒ@‚ğXV
+	// å®šæ•°ãƒãƒƒãƒ•ã‚¡ã‚’æ›´æ–°
 //	Graphics_D3D11_ConstantBuffer_Update( GD3D11.Device.Shader.Constant.ConstBuffer_Common ) ;
 
 	GD3D11.Device.DrawSetting.DrawPrepAlwaysFlag = TRUE ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒ}ƒeƒŠƒAƒ‹‚ÌƒZƒbƒg
+// ãƒãƒ†ãƒªã‚¢ãƒ«ã®ã‚»ãƒƒãƒˆ
 extern int Graphics_D3D11_DeviceState_SetMaterial( MATERIALPARAM *Material )
 {
 	DX_D3D11_CONST_BUFFER_COMMON *ConstantCommon ;
@@ -9592,7 +9592,7 @@ extern int Graphics_D3D11_DeviceState_SetMaterial( MATERIALPARAM *Material )
 	GD3D11.Device.State.Material = *Material ;
 	_MEMCPY( GD3D11.Device.State.MaterialTypeParam, GSYS.Light.MaterialTypeParam, sizeof( GSYS.Light.MaterialTypeParam ) ) ;
 
-	// ’è”ƒf[ƒ^‚É”½‰f
+	// å®šæ•°ãƒ‡ãƒ¼ã‚¿ã«åæ˜ 
 	ConstantCommon->Material.Diffuse[ 0 ]  = Material->Diffuse.r ;
 	ConstantCommon->Material.Diffuse[ 1 ]  = Material->Diffuse.g ;
 	ConstantCommon->Material.Diffuse[ 2 ]  = Material->Diffuse.b ;
@@ -9607,19 +9607,19 @@ extern int Graphics_D3D11_DeviceState_SetMaterial( MATERIALPARAM *Material )
 	ConstantCommon->Material.TypeParam2    = GD3D11.Device.State.MaterialTypeParam[ 2 ] ;
 	GD3D11.Device.Shader.Constant.ConstBuffer_Common->ChangeFlag = TRUE ;
 
-	// ƒAƒ“ƒrƒGƒ“ƒgƒJƒ‰[‚ÆƒGƒ~ƒbƒVƒuƒJƒ‰[‚ğŠ|‚¯‡‚í‚¹‚½î•ñ‚ğXV‚·‚é
+	// ã‚¢ãƒ³ãƒ“ã‚¨ãƒ³ãƒˆã‚«ãƒ©ãƒ¼ã¨ã‚¨ãƒŸãƒƒã‚·ãƒ–ã‚«ãƒ©ãƒ¼ã‚’æ›ã‘åˆã‚ã›ãŸæƒ…å ±ã‚’æ›´æ–°ã™ã‚‹
 	Graphics_D3D11_DeviceState_RefreshAmbientAndEmissiveParam() ;
 
-	// ’è”ƒoƒbƒtƒ@‚ğXV
+	// å®šæ•°ãƒãƒƒãƒ•ã‚¡ã‚’æ›´æ–°
 //	Graphics_D3D11_ConstantBuffer_Update( GD3D11.Device.Shader.Constant.ConstBuffer_Common ) ;
 
 	GD3D11.Device.DrawSetting.DrawPrepAlwaysFlag = TRUE ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒXƒyƒLƒ…ƒ‰‚ğg—p‚·‚é‚©‚Ç‚¤‚©‚ğƒZƒbƒg
+// ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã‚’ã‚»ãƒƒãƒˆ
 extern int Graphics_D3D11_DeviceState_SetSpecularEnable( int UseFlag )
 {
 	DX_D3D11_VS_CONST_BUFFER_BASE *ConstantVSBase ;
@@ -9629,7 +9629,7 @@ extern int Graphics_D3D11_DeviceState_SetSpecularEnable( int UseFlag )
 		return -1 ;
 	}
 
-	// Šù‘¶‚Ìƒpƒ‰ƒ[ƒ^‚Æ“¯‚¶ê‡‚Í‰½‚à‚µ‚È‚¢
+	// æ—¢å­˜ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¨åŒã˜å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( GD3D11.Device.State.UseSpecular == UseFlag &&
 		GD3D11.Device.DrawSetting.CancelSettingEqualCheck == FALSE )
 	{
@@ -9642,20 +9642,20 @@ extern int Graphics_D3D11_DeviceState_SetSpecularEnable( int UseFlag )
 
 	GD3D11.Device.State.UseSpecular = UseFlag ;
 
-	// ’è”ƒf[ƒ^‚É”½‰f
+	// å®šæ•°ãƒ‡ãƒ¼ã‚¿ã«åæ˜ 
 	ConstantVSBase->MulSpecularColor = UseFlag ? 1.0f : 0.0f ;
 	GD3D11.Device.Shader.Constant.ConstBuffer_VS_Base->ChangeFlag = TRUE ;
 
-	// ’è”ƒoƒbƒtƒ@‚ğXV
+	// å®šæ•°ãƒãƒƒãƒ•ã‚¡ã‚’æ›´æ–°
 //	Graphics_D3D11_ConstantBuffer_Update( GD3D11.Device.Shader.Constant.ConstBuffer_VS_Base ) ;
 
 	GD3D11.Device.DrawSetting.DrawPrepAlwaysFlag = TRUE ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ’¸“_‚ÌƒfƒBƒtƒ…[ƒYƒJƒ‰[‚ğƒ}ƒeƒŠƒAƒ‹‚ÌƒfƒBƒtƒ…[ƒYƒJƒ‰[‚Æ‚µ‚Äg—p‚·‚é‚©‚Ç‚¤‚©‚ğİ’è‚·‚é
+// é ‚ç‚¹ã®ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚«ãƒ©ãƒ¼ã‚’ãƒãƒ†ãƒªã‚¢ãƒ«ã®ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚«ãƒ©ãƒ¼ã¨ã—ã¦ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹
 extern int Graphics_D3D11_DeviceState_SetUseVertexDiffuseColor( int UseFlag )
 {
 	DX_D3D11_VS_CONST_BUFFER_BASE *ConstantVSBase ;
@@ -9675,22 +9675,22 @@ extern int Graphics_D3D11_DeviceState_SetUseVertexDiffuseColor( int UseFlag )
 
 	DRAWSTOCKINFO
 
-	// ’è”ƒf[ƒ^‚É”½‰f
+	// å®šæ•°ãƒ‡ãƒ¼ã‚¿ã«åæ˜ 
 	ConstantVSBase->DiffuseSource = UseFlag ? 1.0f : 0.0f ;
 	GD3D11.Device.Shader.Constant.ConstBuffer_VS_Base->ChangeFlag = TRUE ;
 
-	// ’è”ƒoƒbƒtƒ@‚ğXV
+	// å®šæ•°ãƒãƒƒãƒ•ã‚¡ã‚’æ›´æ–°
 //	Graphics_D3D11_ConstantBuffer_Update( GD3D11.Device.Shader.Constant.ConstBuffer_VS_Base ) ;
 
 	GD3D11.Device.State.MaterialUseVertexDiffuseColor = UseFlag ;
 
 	GD3D11.Device.DrawSetting.DrawPrepAlwaysFlag = TRUE ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ’¸“_‚ÌƒXƒyƒLƒ…ƒ‰ƒJƒ‰[‚ğƒ}ƒeƒŠƒAƒ‹‚ÌƒXƒyƒLƒ…ƒ‰ƒJƒ‰[‚Æ‚µ‚Äg—p‚·‚é‚©‚Ç‚¤‚©‚ğİ’è‚·‚é
+// é ‚ç‚¹ã®ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã‚«ãƒ©ãƒ¼ã‚’ãƒãƒ†ãƒªã‚¢ãƒ«ã®ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã‚«ãƒ©ãƒ¼ã¨ã—ã¦ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹
 extern int Graphics_D3D11_DeviceState_SetUseVertexSpecularColor( int UseFlag )
 {
 	DX_D3D11_VS_CONST_BUFFER_BASE *ConstantVSBase ;
@@ -9710,22 +9710,22 @@ extern int Graphics_D3D11_DeviceState_SetUseVertexSpecularColor( int UseFlag )
 
 	DRAWSTOCKINFO
 
-	// ’è”ƒf[ƒ^‚É”½‰f
+	// å®šæ•°ãƒ‡ãƒ¼ã‚¿ã«åæ˜ 
 	ConstantVSBase->SpecularSource = UseFlag ? 1.0f : 0.0f ;
 	GD3D11.Device.Shader.Constant.ConstBuffer_VS_Base->ChangeFlag = TRUE ;
 
-	// ’è”ƒoƒbƒtƒ@‚ğXV
+	// å®šæ•°ãƒãƒƒãƒ•ã‚¡ã‚’æ›´æ–°
 //	Graphics_D3D11_ConstantBuffer_Update( GD3D11.Device.Shader.Constant.ConstBuffer_VS_Base ) ;
 
 	GD3D11.Device.State.MaterialUseVertexSpecularColor = UseFlag ;
 
 	GD3D11.Device.DrawSetting.DrawPrepAlwaysFlag = TRUE ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒJƒŠƒ“ƒO‚Ì—L–³‚ğƒZƒbƒg 
+// ã‚«ãƒªãƒ³ã‚°ã®æœ‰ç„¡ã‚’ã‚»ãƒƒãƒˆ 
 extern int Graphics_D3D11_DeviceState_SetCullMode( int State )
 {
 	D_D3D11_CULL_MODE D3DCullMode ;
@@ -9751,7 +9751,7 @@ extern int Graphics_D3D11_DeviceState_SetCullMode( int State )
 		break ;
 	}
 
-	// ƒ‚[ƒh‚ª“¯‚¶‚¾‚Á‚½‚ç‰½‚à‚¹‚¸I—¹
+	// ãƒ¢ãƒ¼ãƒ‰ãŒåŒã˜ã ã£ãŸã‚‰ä½•ã‚‚ã›ãšçµ‚äº†
 	if( GD3D11.Device.State.RasterizerDesc.CullMode == D3DCullMode &&
 		GD3D11.Device.DrawSetting.CancelSettingEqualCheck == FALSE )
 	{
@@ -9770,7 +9770,7 @@ extern int Graphics_D3D11_DeviceState_SetCullMode( int State )
 	return 0 ;
 }
 
-// ƒAƒ“ƒrƒGƒ“ƒgƒJƒ‰[‚ÌƒZƒbƒg
+// ã‚¢ãƒ³ãƒ“ã‚¨ãƒ³ãƒˆã‚«ãƒ©ãƒ¼ã®ã‚»ãƒƒãƒˆ
 extern int Graphics_D3D11_DeviceState_SetAmbient( COLOR_F *Color )
 {
 	if( GAPIWin.D3D11DeviceObject == NULL )
@@ -9788,20 +9788,20 @@ extern int Graphics_D3D11_DeviceState_SetAmbient( COLOR_F *Color )
 
 	GD3D11.Device.State.GlobalAmbientLightColor = *Color ;
 
-	// ƒAƒ“ƒrƒGƒ“ƒgƒJƒ‰[‚ÆƒGƒ~ƒbƒVƒuƒJƒ‰[‚ğŠ|‚¯‡‚í‚¹‚½î•ñ‚ğXV‚·‚é
+	// ã‚¢ãƒ³ãƒ“ã‚¨ãƒ³ãƒˆã‚«ãƒ©ãƒ¼ã¨ã‚¨ãƒŸãƒƒã‚·ãƒ–ã‚«ãƒ©ãƒ¼ã‚’æ›ã‘åˆã‚ã›ãŸæƒ…å ±ã‚’æ›´æ–°ã™ã‚‹
 	Graphics_D3D11_DeviceState_RefreshAmbientAndEmissiveParam() ;
 
-	// ’è”ƒoƒbƒtƒ@‚ğXV
+	// å®šæ•°ãƒãƒƒãƒ•ã‚¡ã‚’æ›´æ–°
 //	Graphics_D3D11_ConstantBuffer_Update( GD3D11.Device.Shader.Constant.ConstBuffer_Common ) ;
 
 	GD3D11.Device.DrawSetting.DrawPrepAlwaysFlag = TRUE ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// O‚Â‚ÌƒtƒBƒ‹ƒ^[ƒ^ƒCƒv‚©‚ç D_D3D11_FILTER ‚ğæ“¾‚·‚é
-static D_D3D11_FILTER Graphics_D3D11_DeviceState_GetFilter( int MinFilter /* DX_DRAWMODE_NEAREST “™ */, int MagFilter, int MipFilter )
+// ä¸‰ã¤ã®ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ã‚¿ã‚¤ãƒ—ã‹ã‚‰ D_D3D11_FILTER ã‚’å–å¾—ã™ã‚‹
+static D_D3D11_FILTER Graphics_D3D11_DeviceState_GetFilter( int MinFilter /* DX_DRAWMODE_NEAREST ç­‰ */, int MagFilter, int MipFilter )
 {
 	if( MagFilter == DX_DRAWMODE_ANISOTROPIC ||
 		MinFilter == DX_DRAWMODE_ANISOTROPIC ||
@@ -9843,7 +9843,7 @@ static D_D3D11_FILTER Graphics_D3D11_DeviceState_GetFilter( int MinFilter /* DX_
 	}
 }
 
-// Œ»İ‚Ìİ’è‚ÉŠî‚Ã‚¢‚Ä ID3D11SamplerState ‚ğƒZƒbƒgƒAƒbƒv‚·‚é
+// ç¾åœ¨ã®è¨­å®šã«åŸºã¥ã„ã¦ ID3D11SamplerState ã‚’ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã™ã‚‹
 static int Graphics_D3D11_DeviceState_SetupSamplerState( void )
 {
 	int                     i ;
@@ -9855,7 +9855,7 @@ static int Graphics_D3D11_DeviceState_SetupSamplerState( void )
 	static int				DefaultFilterIndexTableInitialize = FALSE ;
 	static int				DefaultFilterIndexTable[ 0xff ] ;
 
-	// D_D3D11_FILTER ‚©‚çƒCƒ“ƒfƒbƒNƒX‚ğæ“¾‚·‚é‚½‚ß‚Ìƒe[ƒuƒ‹‚ª‰Šú‰»‚³‚ê‚Ä‚¢‚È‚¢ê‡‚Í‰Šú‰»‚·‚é
+	// D_D3D11_FILTER ã‹ã‚‰ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’å–å¾—ã™ã‚‹ãŸã‚ã®ãƒ†ãƒ¼ãƒ–ãƒ«ãŒåˆæœŸåŒ–ã•ã‚Œã¦ã„ãªã„å ´åˆã¯åˆæœŸåŒ–ã™ã‚‹
 	if( DefaultFilterIndexTableInitialize == FALSE )
 	{
 		DefaultFilterIndexTableInitialize = TRUE ;
@@ -9880,26 +9880,26 @@ static int Graphics_D3D11_DeviceState_SetupSamplerState( void )
 		DefaultFilterIndexTable[ D_D3D11_FILTER_COMPARISON_ANISOTROPIC                     ] = 17 ;
 	}
 
-	// İ’è‚É•ÏX‚ª–³‚¢ê‡‚Í‰½‚à‚¹‚¸‚ÉI—¹
+	// è¨­å®šã«å¤‰æ›´ãŒç„¡ã„å ´åˆã¯ä½•ã‚‚ã›ãšã«çµ‚äº†
 	if( GD3D11.Device.State.ChangeSamplerDesc == FALSE &&
 		GD3D11.Device.DrawSetting.CancelSettingEqualCheck == FALSE )
 	{
 		return 0 ;
 	}
 
-	// •ÏX‚ª‚ ‚Á‚½‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğ“|‚·
+	// å¤‰æ›´ãŒã‚ã£ãŸã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 	GD3D11.Device.State.ChangeSamplerDesc = FALSE ;
 
-	// ƒTƒ“ƒvƒ‰[ƒXƒƒbƒg‚Ì”‚¾‚¯ŒJ‚è•Ô‚µ
+	// ã‚µãƒ³ãƒ—ãƒ©ãƒ¼ã‚¹ãƒ­ãƒƒãƒˆã®æ•°ã ã‘ç¹°ã‚Šè¿”ã—
 	SamplerDesc = GD3D11.Device.State.SamplerDesc ;
 	SetLength     = 0 ;
 	for( i = 0 ; i < USE_TEXTURESTAGE_NUM ; i ++, SamplerDesc ++ )
 	{
-		// İ’è’l‚É•ÏX‚ª–³‚­A•K‚¸Äİ’è‚ğs‚¤ƒtƒ‰ƒO‚à“|‚ê‚Ä‚¢‚½‚çŸ‚Ìƒ‹[ƒv‚Ö
+		// è¨­å®šå€¤ã«å¤‰æ›´ãŒç„¡ãã€å¿…ãšå†è¨­å®šã‚’è¡Œã†ãƒ•ãƒ©ã‚°ã‚‚å€’ã‚Œã¦ã„ãŸã‚‰æ¬¡ã®ãƒ«ãƒ¼ãƒ—ã¸
 		if( GD3D11.Device.State.ChangeSamplerDescSlot[ i ] == FALSE &&
 			GD3D11.Device.DrawSetting.CancelSettingEqualCheck == FALSE )
 		{
-			// •ÏX‚·‚éİ’è‚Ì”‚ª‚O‚Å‚Í‚È‚¢ê‡‚ÍƒTƒ“ƒvƒ‰[ƒXƒe[ƒg‚ğƒfƒoƒCƒXƒRƒ“ƒeƒLƒXƒg‚Éİ’è‚·‚é
+			// å¤‰æ›´ã™ã‚‹è¨­å®šã®æ•°ãŒï¼ã§ã¯ãªã„å ´åˆã¯ã‚µãƒ³ãƒ—ãƒ©ãƒ¼ã‚¹ãƒ†ãƒ¼ãƒˆã‚’ãƒ‡ãƒã‚¤ã‚¹ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã«è¨­å®šã™ã‚‹
 			if( SetLength > 0 )
 			{
 				D3D11DeviceContext_PSSetSamplers( ( UINT )( i - SetLength ), ( UINT )SetLength, &GD3D11.Device.State.SamplerState[ i - SetLength ] ) ;
@@ -9909,13 +9909,13 @@ static int Graphics_D3D11_DeviceState_SetupSamplerState( void )
 			continue ;
 		}
 
-		// •ÏX‚ª‚ ‚Á‚½‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğ“|‚·
+		// å¤‰æ›´ãŒã‚ã£ãŸã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 		GD3D11.Device.State.ChangeSamplerDescSlot[ i ] = FALSE ;
 
-		// Œ»İİ’è‚³‚ê‚Ä‚¢‚éƒTƒ“ƒvƒ‰[‚ª‚ ‚éê‡‚Í‰ğœ‚·‚é
+		// ç¾åœ¨è¨­å®šã•ã‚Œã¦ã„ã‚‹ã‚µãƒ³ãƒ—ãƒ©ãƒ¼ãŒã‚ã‚‹å ´åˆã¯è§£é™¤ã™ã‚‹
 		if( GD3D11.Device.State.SamplerState[ i ] != NULL )
 		{
-			// Œ»İ‚Ìİ’è‚ğ•ÏX‚·‚éÛ‚ÉƒTƒ“ƒvƒ‰[ƒXƒe[ƒg‚ğƒŠƒŠ[ƒX‚·‚éw’è‚É‚È‚Á‚Ä‚¢‚½‚çƒŠƒŠ[ƒX‚·‚é
+			// ç¾åœ¨ã®è¨­å®šã‚’å¤‰æ›´ã™ã‚‹éš›ã«ã‚µãƒ³ãƒ—ãƒ©ãƒ¼ã‚¹ãƒ†ãƒ¼ãƒˆã‚’ãƒªãƒªãƒ¼ã‚¹ã™ã‚‹æŒ‡å®šã«ãªã£ã¦ã„ãŸã‚‰ãƒªãƒªãƒ¼ã‚¹ã™ã‚‹
 			if( GD3D11.Device.State.ChangeSamplerStateReleaseFlag[ i ] )
 			{
 				Direct3D11_Release_SamplerState( GD3D11.Device.State.SamplerState[ i ] ) ;
@@ -9924,10 +9924,10 @@ static int Graphics_D3D11_DeviceState_SetupSamplerState( void )
 			GD3D11.Device.State.SamplerState[ i ] = NULL ;
 		}
 
-		// İ’è‚ğ•ÏX‚·‚éÛ‚ÉƒTƒ“ƒvƒ‰[ƒXƒe[ƒg‚ğƒŠƒŠ[ƒX‚·‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğ“|‚·
+		// è¨­å®šã‚’å¤‰æ›´ã™ã‚‹éš›ã«ã‚µãƒ³ãƒ—ãƒ©ãƒ¼ã‚¹ãƒ†ãƒ¼ãƒˆã‚’ãƒªãƒªãƒ¼ã‚¹ã™ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 		GD3D11.Device.State.ChangeSamplerStateReleaseFlag[ i ] = FALSE ;
 
-		// ‚æ‚­g‚¤İ’è‚ÌƒTƒ“ƒvƒ‰[ƒXƒe[ƒg‚©‚Ç‚¤‚©‚ğ”»’è‚·‚é
+		// ã‚ˆãä½¿ã†è¨­å®šã®ã‚µãƒ³ãƒ—ãƒ©ãƒ¼ã‚¹ãƒ†ãƒ¼ãƒˆã‹ã©ã†ã‹ã‚’åˆ¤å®šã™ã‚‹
 		if(	SamplerDesc->MipLODBias       != 0.0f ||
 			( SamplerDesc->MaxAnisotropy  != 16 && SamplerDesc->MaxAnisotropy != 2 && SamplerDesc->MaxAnisotropy != 1 ) ||
 			SamplerDesc->ComparisonFunc   != D_D3D11_COMPARISON_ALWAYS ||
@@ -9938,46 +9938,46 @@ static int Graphics_D3D11_DeviceState_SetupSamplerState( void )
 			SamplerDesc->MinLOD           != -D_D3D11_FLOAT32_MAX ||
 			SamplerDesc->MaxLOD           !=  D_D3D11_FLOAT32_MAX )
 		{
-			// ‚æ‚­g‚¤İ’è‚ÌƒTƒ“ƒvƒ‰[ƒXƒe[ƒg‚Å‚Í‚È‚¢ê‡‚Í‚±‚±‚ÅƒTƒ“ƒvƒ‰[ƒXƒe[ƒg‚ğì¬‚·‚é
+			// ã‚ˆãä½¿ã†è¨­å®šã®ã‚µãƒ³ãƒ—ãƒ©ãƒ¼ã‚¹ãƒ†ãƒ¼ãƒˆã§ã¯ãªã„å ´åˆã¯ã“ã“ã§ã‚µãƒ³ãƒ—ãƒ©ãƒ¼ã‚¹ãƒ†ãƒ¼ãƒˆã‚’ä½œæˆã™ã‚‹
 			hr = D3D11Device_CreateSamplerState( SamplerDesc, &NewSamplerState ) ;
 			if( hr != S_OK )
 			{
-				DXST_LOGFILEFMT_ADDUTF16LE(( "\x49\x00\x44\x00\x33\x00\x44\x00\x31\x00\x31\x00\x53\x00\x61\x00\x6d\x00\x70\x00\x6c\x00\x65\x00\x72\x00\x53\x00\x74\x00\x61\x00\x74\x00\x65\x00\x20\x00\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00\x30\x87\x7b\x40\x62\x11\xff\x0a\x00\x00"/*@ L"ID3D11SamplerState ‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½@‰ÓŠ‚P\n" @*/ )) ;
+				DXST_LOGFILEFMT_ADDUTF16LE(( "\x49\x00\x44\x00\x33\x00\x44\x00\x31\x00\x31\x00\x53\x00\x61\x00\x6d\x00\x70\x00\x6c\x00\x65\x00\x72\x00\x53\x00\x74\x00\x61\x00\x74\x00\x65\x00\x20\x00\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00\x30\x87\x7b\x40\x62\x11\xff\x0a\x00\x00"/*@ L"ID3D11SamplerState ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸã€€ç®‡æ‰€ï¼‘\n" @*/ )) ;
 				return -1 ;
 			}
 
-			// ì¬‚µ‚½ƒTƒ“ƒvƒ‰[ƒXƒe[ƒg‚ğİ’è
+			// ä½œæˆã—ãŸã‚µãƒ³ãƒ—ãƒ©ãƒ¼ã‚¹ãƒ†ãƒ¼ãƒˆã‚’è¨­å®š
 			GD3D11.Device.State.SamplerState[ i ] = NewSamplerState ;
 
-			// ‚±‚ÌƒTƒ“ƒvƒ‰[ƒXƒe[ƒg‚Íˆê“I‚È‚à‚Ì‚È‚Ì‚ÅAI—¹‚ÉƒŠƒŠ[ƒX‚·‚é‚æ‚¤‚É‚·‚é
+			// ã“ã®ã‚µãƒ³ãƒ—ãƒ©ãƒ¼ã‚¹ãƒ†ãƒ¼ãƒˆã¯ä¸€æ™‚çš„ãªã‚‚ã®ãªã®ã§ã€çµ‚äº†æ™‚ã«ãƒªãƒªãƒ¼ã‚¹ã™ã‚‹ã‚ˆã†ã«ã™ã‚‹
 			GD3D11.Device.State.ChangeSamplerStateReleaseFlag[ i ] = TRUE ;
 		}
 		else
 		{
-			// ‚æ‚­g‚¤İ’è‚ÌƒTƒ“ƒvƒ‰[ƒXƒe[ƒg‚Ìê‡
+			// ã‚ˆãä½¿ã†è¨­å®šã®ã‚µãƒ³ãƒ—ãƒ©ãƒ¼ã‚¹ãƒ†ãƒ¼ãƒˆã®å ´åˆ
 
-			// w’è‚Ì‚æ‚­g‚¤İ’è‚ÌƒTƒ“ƒvƒ‰[ƒXƒe[ƒg‚ª‚Ü‚¾ì¬‚³‚ê‚Ä‚¢‚È‚©‚Á‚½‚çì¬‚·‚é
+			// æŒ‡å®šã®ã‚ˆãä½¿ã†è¨­å®šã®ã‚µãƒ³ãƒ—ãƒ©ãƒ¼ã‚¹ãƒ†ãƒ¼ãƒˆãŒã¾ã ä½œæˆã•ã‚Œã¦ã„ãªã‹ã£ãŸã‚‰ä½œæˆã™ã‚‹
 			DefaultSamplerState = &GD3D11.Device.State.DefaultSamplerStateArray[ DefaultFilterIndexTable[ SamplerDesc->Filter ] ][ SamplerDesc->AddressU ][ SamplerDesc->AddressV ][ SamplerDesc->AddressW ][ SamplerDesc->MaxAnisotropy == 1 ? 0 : ( SamplerDesc->MaxAnisotropy == 2 ? 1 : 2 ) ] ;
 			if( *DefaultSamplerState == NULL )
 			{
 				hr = D3D11Device_CreateSamplerState( SamplerDesc, &NewSamplerState ) ;
 				if( hr != S_OK )
 				{
-					DXST_LOGFILEFMT_ADDUTF16LE(( "\x49\x00\x44\x00\x33\x00\x44\x00\x31\x00\x31\x00\x53\x00\x61\x00\x6d\x00\x70\x00\x6c\x00\x65\x00\x72\x00\x53\x00\x74\x00\x61\x00\x74\x00\x65\x00\x20\x00\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00\x30\x87\x7b\x40\x62\x12\xff\x0a\x00\x00"/*@ L"ID3D11SamplerState ‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½@‰ÓŠ‚Q\n" @*/ )) ;
+					DXST_LOGFILEFMT_ADDUTF16LE(( "\x49\x00\x44\x00\x33\x00\x44\x00\x31\x00\x31\x00\x53\x00\x61\x00\x6d\x00\x70\x00\x6c\x00\x65\x00\x72\x00\x53\x00\x74\x00\x61\x00\x74\x00\x65\x00\x20\x00\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00\x30\x87\x7b\x40\x62\x12\xff\x0a\x00\x00"/*@ L"ID3D11SamplerState ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸã€€ç®‡æ‰€ï¼’\n" @*/ )) ;
 					return -1 ;
 				}
 				*DefaultSamplerState = NewSamplerState ;
 			}
 
-			// ‚æ‚­g‚¤İ’è‚ÌƒTƒ“ƒvƒ‰[ƒXƒe[ƒg‚ğİ’è
+			// ã‚ˆãä½¿ã†è¨­å®šã®ã‚µãƒ³ãƒ—ãƒ©ãƒ¼ã‚¹ãƒ†ãƒ¼ãƒˆã‚’è¨­å®š
 			GD3D11.Device.State.SamplerState[ i ] = *DefaultSamplerState ;
 		}
 
-		// •ÏX‚·‚éİ’è‚Ì”‚ğƒCƒ“ƒNƒŠƒƒ“ƒg
+		// å¤‰æ›´ã™ã‚‹è¨­å®šã®æ•°ã‚’ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆ
 		SetLength ++ ;
 	}
 
-	// •ÏX‚·‚éİ’è‚Ì”‚ª‚O‚Å‚Í‚È‚¢ê‡‚ÍƒTƒ“ƒvƒ‰[ƒXƒe[ƒg‚ğƒfƒoƒCƒXƒRƒ“ƒeƒLƒXƒg‚Éİ’è‚·‚é
+	// å¤‰æ›´ã™ã‚‹è¨­å®šã®æ•°ãŒï¼ã§ã¯ãªã„å ´åˆã¯ã‚µãƒ³ãƒ—ãƒ©ãƒ¼ã‚¹ãƒ†ãƒ¼ãƒˆã‚’ãƒ‡ãƒã‚¤ã‚¹ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã«è¨­å®šã™ã‚‹
 	if( SetLength > 0 )
 	{
 		D3D11DeviceContext_PSSetSamplers( ( UINT )( i - SetLength ), ( UINT )SetLength, &GD3D11.Device.State.SamplerState[ i - SetLength ] ) ;
@@ -9985,11 +9985,11 @@ static int Graphics_D3D11_DeviceState_SetupSamplerState( void )
 		SetLength = 0 ;
 	}
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// ID3D11SamplerState ‚ğ‰ğ•ú‚·‚é
+// ID3D11SamplerState ã‚’è§£æ”¾ã™ã‚‹
 static int Graphics_D3D11_DeviceState_TerminateSamplerState( void )
 {
 	int i ;
@@ -10016,11 +10016,11 @@ static int Graphics_D3D11_DeviceState_TerminateSamplerState( void )
 
 	Graphics_D3D11_SamplerStateArray_Release( ( D_ID3D11SamplerState ** )GD3D11.Device.State.DefaultSamplerStateArray, sizeof( GD3D11.Device.State.DefaultSamplerStateArray ) / sizeof( D_ID3D11SamplerState * ) ) ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// Œ»İ‚Ìİ’è‚ÉŠî‚Ã‚¢‚Ä ID3D11RasterizerState ‚ğƒZƒbƒgƒAƒbƒv‚·‚é
+// ç¾åœ¨ã®è¨­å®šã«åŸºã¥ã„ã¦ ID3D11RasterizerState ã‚’ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã™ã‚‹
 static int Graphics_D3D11_DeviceState_SetupRasterizerState( void )
 {
 	D_D3D11_RASTERIZER_DESC *RasterizerDesc ;
@@ -10028,20 +10028,20 @@ static int Graphics_D3D11_DeviceState_SetupRasterizerState( void )
 	D_ID3D11RasterizerState **DefaultRasterizerState ;
 	HRESULT                  hr ;
 
-	// İ’è‚É•ÏX‚ª–³‚­A•K‚¸Äİ’è‚ğs‚¤ƒtƒ‰ƒO‚à“|‚ê‚Ä‚¢‚½‚ç‰½‚à‚¹‚¸I—¹
+	// è¨­å®šã«å¤‰æ›´ãŒç„¡ãã€å¿…ãšå†è¨­å®šã‚’è¡Œã†ãƒ•ãƒ©ã‚°ã‚‚å€’ã‚Œã¦ã„ãŸã‚‰ä½•ã‚‚ã›ãšçµ‚äº†
 	if( GD3D11.Device.State.ChangeRasterizerDesc == FALSE &&
 		GD3D11.Device.DrawSetting.CancelSettingEqualCheck == FALSE )
 	{
 		return 0 ;
 	}
 
-	// İ’è‚É•ÏX‚ª‚ ‚Á‚½‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğ“|‚·
+	// è¨­å®šã«å¤‰æ›´ãŒã‚ã£ãŸã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 	GD3D11.Device.State.ChangeRasterizerDesc = FALSE ;
 
-	// Œ»İİ’è‚³‚ê‚Ä‚¢‚éƒ‰ƒXƒ^ƒ‰ƒCƒU[ƒXƒe[ƒg‚ª‚ ‚éê‡‚Í‰ğœ‚·‚é
+	// ç¾åœ¨è¨­å®šã•ã‚Œã¦ã„ã‚‹ãƒ©ã‚¹ã‚¿ãƒ©ã‚¤ã‚¶ãƒ¼ã‚¹ãƒ†ãƒ¼ãƒˆãŒã‚ã‚‹å ´åˆã¯è§£é™¤ã™ã‚‹
 	if( GD3D11.Device.State.RasterizerState != NULL )
 	{
-		// Œ»İ‚Ìİ’è‚ğ•ÏX‚·‚éÛ‚Éƒ‰ƒXƒ^ƒ‰ƒCƒU[ƒXƒe[ƒg‚ğƒŠƒŠ[ƒX‚·‚éw’è‚É‚È‚Á‚Ä‚¢‚½‚çƒŠƒŠ[ƒX‚·‚é
+		// ç¾åœ¨ã®è¨­å®šã‚’å¤‰æ›´ã™ã‚‹éš›ã«ãƒ©ã‚¹ã‚¿ãƒ©ã‚¤ã‚¶ãƒ¼ã‚¹ãƒ†ãƒ¼ãƒˆã‚’ãƒªãƒªãƒ¼ã‚¹ã™ã‚‹æŒ‡å®šã«ãªã£ã¦ã„ãŸã‚‰ãƒªãƒªãƒ¼ã‚¹ã™ã‚‹
 		if( GD3D11.Device.State.ChangeRasterizerStateReleaseFlag )
 		{
 			Direct3D11_Release_RasterizerState( GD3D11.Device.State.RasterizerState ) ;
@@ -10050,10 +10050,10 @@ static int Graphics_D3D11_DeviceState_SetupRasterizerState( void )
 		GD3D11.Device.State.RasterizerState = NULL ;
 	}
 
-	// İ’è‚ğ•ÏX‚·‚éÛ‚Éƒ‰ƒXƒ^ƒ‰ƒCƒU[ƒXƒe[ƒg‚ğƒŠƒŠ[ƒX‚·‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğ“|‚·
+	// è¨­å®šã‚’å¤‰æ›´ã™ã‚‹éš›ã«ãƒ©ã‚¹ã‚¿ãƒ©ã‚¤ã‚¶ãƒ¼ã‚¹ãƒ†ãƒ¼ãƒˆã‚’ãƒªãƒªãƒ¼ã‚¹ã™ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 	GD3D11.Device.State.ChangeRasterizerStateReleaseFlag = FALSE ;
 
-	// ‚æ‚­g‚¤İ’è‚Ìƒ‰ƒXƒ^ƒ‰ƒCƒU[ƒXƒe[ƒg‚©‚Ç‚¤‚©‚ğ”»’è‚·‚é
+	// ã‚ˆãä½¿ã†è¨­å®šã®ãƒ©ã‚¹ã‚¿ãƒ©ã‚¤ã‚¶ãƒ¼ã‚¹ãƒ†ãƒ¼ãƒˆã‹ã©ã†ã‹ã‚’åˆ¤å®šã™ã‚‹
 	RasterizerDesc = &GD3D11.Device.State.RasterizerDesc ;
 	if( RasterizerDesc->FrontCounterClockwise != FALSE ||
 		RasterizerDesc->DepthBias             != 0 ||
@@ -10062,49 +10062,49 @@ static int Graphics_D3D11_DeviceState_SetupRasterizerState( void )
 		RasterizerDesc->ScissorEnable         != FALSE ||
 		RasterizerDesc->AntialiasedLineEnable != FALSE )
 	{
-		// ‚æ‚­g‚¤İ’è‚Ìƒ‰ƒXƒ^ƒ‰ƒCƒU[ƒXƒe[ƒg‚Å‚Í‚È‚¢ê‡‚Í‚±‚±‚Åƒ‰ƒXƒ^ƒ‰ƒCƒU[ƒXƒe[ƒg‚ğì¬‚·‚é
+		// ã‚ˆãä½¿ã†è¨­å®šã®ãƒ©ã‚¹ã‚¿ãƒ©ã‚¤ã‚¶ãƒ¼ã‚¹ãƒ†ãƒ¼ãƒˆã§ã¯ãªã„å ´åˆã¯ã“ã“ã§ãƒ©ã‚¹ã‚¿ãƒ©ã‚¤ã‚¶ãƒ¼ã‚¹ãƒ†ãƒ¼ãƒˆã‚’ä½œæˆã™ã‚‹
 		hr = D3D11Device_CreateRasterizerState( RasterizerDesc, &NewRasterizerState ) ;
 		if( hr != S_OK )
 		{
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\x49\x00\x44\x00\x33\x00\x44\x00\x31\x00\x31\x00\x52\x00\x61\x00\x73\x00\x74\x00\x65\x00\x72\x00\x69\x00\x7a\x00\x65\x00\x72\x00\x53\x00\x74\x00\x61\x00\x74\x00\x65\x00\x20\x00\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00\x30\x87\x7b\x40\x62\x11\xff\x0a\x00\x00"/*@ L"ID3D11RasterizerState ‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½@‰ÓŠ‚P\n" @*/ )) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\x49\x00\x44\x00\x33\x00\x44\x00\x31\x00\x31\x00\x52\x00\x61\x00\x73\x00\x74\x00\x65\x00\x72\x00\x69\x00\x7a\x00\x65\x00\x72\x00\x53\x00\x74\x00\x61\x00\x74\x00\x65\x00\x20\x00\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00\x30\x87\x7b\x40\x62\x11\xff\x0a\x00\x00"/*@ L"ID3D11RasterizerState ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸã€€ç®‡æ‰€ï¼‘\n" @*/ )) ;
 			return -1 ;
 		}
 
-		// ì¬‚µ‚½ƒ‰ƒXƒ^ƒ‰ƒCƒU[ƒXƒe[ƒg‚ğİ’è
+		// ä½œæˆã—ãŸãƒ©ã‚¹ã‚¿ãƒ©ã‚¤ã‚¶ãƒ¼ã‚¹ãƒ†ãƒ¼ãƒˆã‚’è¨­å®š
 		GD3D11.Device.State.RasterizerState = NewRasterizerState ;
 
-		// ‚±‚Ìƒ‰ƒXƒ^ƒ‰ƒCƒU[ƒXƒe[ƒg‚Íˆê“I‚È‚à‚Ì‚È‚Ì‚ÅAI—¹‚ÉƒŠƒŠ[ƒX‚·‚é‚æ‚¤‚É‚·‚é
+		// ã“ã®ãƒ©ã‚¹ã‚¿ãƒ©ã‚¤ã‚¶ãƒ¼ã‚¹ãƒ†ãƒ¼ãƒˆã¯ä¸€æ™‚çš„ãªã‚‚ã®ãªã®ã§ã€çµ‚äº†æ™‚ã«ãƒªãƒªãƒ¼ã‚¹ã™ã‚‹ã‚ˆã†ã«ã™ã‚‹
 		GD3D11.Device.State.ChangeRasterizerStateReleaseFlag = TRUE ;
 	}
 	else
 	{
-		// ‚æ‚­g‚¤İ’è‚Ìƒ‰ƒXƒ^ƒ‰ƒCƒU[ƒXƒe[ƒg‚Ìê‡
+		// ã‚ˆãä½¿ã†è¨­å®šã®ãƒ©ã‚¹ã‚¿ãƒ©ã‚¤ã‚¶ãƒ¼ã‚¹ãƒ†ãƒ¼ãƒˆã®å ´åˆ
 
-		// w’è‚Ì‚æ‚­g‚¤İ’è‚Ìƒ‰ƒXƒ^ƒ‰ƒCƒU[ƒXƒe[ƒg‚ª‚Ü‚¾ì¬‚³‚ê‚Ä‚¢‚È‚©‚Á‚½‚çì¬‚·‚é
+		// æŒ‡å®šã®ã‚ˆãä½¿ã†è¨­å®šã®ãƒ©ã‚¹ã‚¿ãƒ©ã‚¤ã‚¶ãƒ¼ã‚¹ãƒ†ãƒ¼ãƒˆãŒã¾ã ä½œæˆã•ã‚Œã¦ã„ãªã‹ã£ãŸã‚‰ä½œæˆã™ã‚‹
 		DefaultRasterizerState = &GD3D11.Device.State.DefaultRasterizerStateArray[ RasterizerDesc->CullMode ][ RasterizerDesc->FillMode ][ RasterizerDesc->DepthClipEnable ][ RasterizerDesc->MultisampleEnable ] ;
 		if( *DefaultRasterizerState == NULL )
 		{
 			hr = D3D11Device_CreateRasterizerState( RasterizerDesc, &NewRasterizerState ) ;
 			if( hr != S_OK )
 			{
-				DXST_LOGFILEFMT_ADDUTF16LE(( "\x49\x00\x44\x00\x33\x00\x44\x00\x31\x00\x31\x00\x52\x00\x61\x00\x73\x00\x74\x00\x65\x00\x72\x00\x69\x00\x7a\x00\x65\x00\x72\x00\x53\x00\x74\x00\x61\x00\x74\x00\x65\x00\x20\x00\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00\x30\x87\x7b\x40\x62\x12\xff\x0a\x00\x00"/*@ L"ID3D11RasterizerState ‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½@‰ÓŠ‚Q\n" @*/ )) ;
+				DXST_LOGFILEFMT_ADDUTF16LE(( "\x49\x00\x44\x00\x33\x00\x44\x00\x31\x00\x31\x00\x52\x00\x61\x00\x73\x00\x74\x00\x65\x00\x72\x00\x69\x00\x7a\x00\x65\x00\x72\x00\x53\x00\x74\x00\x61\x00\x74\x00\x65\x00\x20\x00\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00\x30\x87\x7b\x40\x62\x12\xff\x0a\x00\x00"/*@ L"ID3D11RasterizerState ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸã€€ç®‡æ‰€ï¼’\n" @*/ )) ;
 				return -1 ;
 			}
 			*DefaultRasterizerState = NewRasterizerState ;
 		}
 
-		// ‚æ‚­g‚¤İ’è‚Ìƒ‰ƒXƒ^ƒ‰ƒCƒU[ƒXƒe[ƒg‚ğİ’è
+		// ã‚ˆãä½¿ã†è¨­å®šã®ãƒ©ã‚¹ã‚¿ãƒ©ã‚¤ã‚¶ãƒ¼ã‚¹ãƒ†ãƒ¼ãƒˆã‚’è¨­å®š
 		GD3D11.Device.State.RasterizerState = *DefaultRasterizerState ;
 	}
 
-	// ƒ‰ƒXƒ^ƒ‰ƒCƒU[ƒXƒe[ƒg‚ğƒfƒoƒCƒXƒRƒ“ƒeƒLƒXƒg‚Éİ’è‚·‚é
+	// ãƒ©ã‚¹ã‚¿ãƒ©ã‚¤ã‚¶ãƒ¼ã‚¹ãƒ†ãƒ¼ãƒˆã‚’ãƒ‡ãƒã‚¤ã‚¹ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã«è¨­å®šã™ã‚‹
 	D3D11DeviceContext_RSSetState( GD3D11.Device.State.RasterizerState ) ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// ID3D11RasterizerState ‚ğ‰ğ•ú‚·‚é
+// ID3D11RasterizerState ã‚’è§£æ”¾ã™ã‚‹
 static int Graphics_D3D11_DeviceState_TerminateRasterizerState( void )
 {
 	GD3D11.Device.State.ChangeRasterizerDesc = FALSE ;
@@ -10120,11 +10120,11 @@ static int Graphics_D3D11_DeviceState_TerminateRasterizerState( void )
 
 	Graphics_D3D11_RasterizerStateArray_Release( ( D_ID3D11RasterizerState ** )GD3D11.Device.State.DefaultRasterizerStateArray, sizeof( GD3D11.Device.State.DefaultRasterizerStateArray ) / sizeof( D_ID3D11RasterizerState * ) ) ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// Œ»İ‚Ìİ’è‚ÉŠî‚Ã‚¢‚Ä ID3D11DepthStencilState ‚ğƒZƒbƒgƒAƒbƒv‚·‚é
+// ç¾åœ¨ã®è¨­å®šã«åŸºã¥ã„ã¦ ID3D11DepthStencilState ã‚’ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã™ã‚‹
 static int Graphics_D3D11_DeviceState_SetupDepthStencilState( void )
 {
 	D_D3D11_DEPTH_STENCIL_DESC *DepthStencilDesc ;
@@ -10132,20 +10132,20 @@ static int Graphics_D3D11_DeviceState_SetupDepthStencilState( void )
 	D_ID3D11DepthStencilState  **DefaultDepthStencilState ;
 	HRESULT                     hr ;
 
-	// İ’è‚É•ÏX‚ª–³‚­A•K‚¸Äİ’è‚ğs‚¤ƒtƒ‰ƒO‚à“|‚ê‚Ä‚¢‚½‚ç‰½‚à‚¹‚¸I—¹
+	// è¨­å®šã«å¤‰æ›´ãŒç„¡ãã€å¿…ãšå†è¨­å®šã‚’è¡Œã†ãƒ•ãƒ©ã‚°ã‚‚å€’ã‚Œã¦ã„ãŸã‚‰ä½•ã‚‚ã›ãšçµ‚äº†
 	if( GD3D11.Device.State.ChangeDepthStencilDesc == FALSE &&
 		GD3D11.Device.DrawSetting.CancelSettingEqualCheck == FALSE )
 	{
 		return 0 ;
 	}
 
-	// İ’è‚É•ÏX‚ª‚ ‚Á‚½‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğ“|‚·
+	// è¨­å®šã«å¤‰æ›´ãŒã‚ã£ãŸã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 	GD3D11.Device.State.ChangeDepthStencilDesc = FALSE ;
 
-	// Œ»İİ’è‚³‚ê‚Ä‚¢‚é[“xƒXƒeƒ“ƒVƒ‹ƒXƒe[ƒg‚ª‚ ‚éê‡‚Í‰ğœ‚·‚é
+	// ç¾åœ¨è¨­å®šã•ã‚Œã¦ã„ã‚‹æ·±åº¦ã‚¹ãƒ†ãƒ³ã‚·ãƒ«ã‚¹ãƒ†ãƒ¼ãƒˆãŒã‚ã‚‹å ´åˆã¯è§£é™¤ã™ã‚‹
 	if( GD3D11.Device.State.DepthStencilState != NULL )
 	{
-		// Œ»İ‚Ìİ’è‚ğ•ÏX‚·‚éÛ‚É[“xƒXƒeƒ“ƒVƒ‹ƒXƒe[ƒg‚ğƒŠƒŠ[ƒX‚·‚éw’è‚É‚È‚Á‚Ä‚¢‚½‚çƒŠƒŠ[ƒX‚·‚é
+		// ç¾åœ¨ã®è¨­å®šã‚’å¤‰æ›´ã™ã‚‹éš›ã«æ·±åº¦ã‚¹ãƒ†ãƒ³ã‚·ãƒ«ã‚¹ãƒ†ãƒ¼ãƒˆã‚’ãƒªãƒªãƒ¼ã‚¹ã™ã‚‹æŒ‡å®šã«ãªã£ã¦ã„ãŸã‚‰ãƒªãƒªãƒ¼ã‚¹ã™ã‚‹
 		if( GD3D11.Device.State.ChangeDepthStencilStateReleaseFlag )
 		{
 			Direct3D11_Release_DepthStencilState( GD3D11.Device.State.DepthStencilState ) ;
@@ -10154,10 +10154,10 @@ static int Graphics_D3D11_DeviceState_SetupDepthStencilState( void )
 		GD3D11.Device.State.DepthStencilState = NULL ;
 	}
 
-	// İ’è‚ğ•ÏX‚·‚éÛ‚É[“xƒXƒeƒ“ƒVƒ‹ƒXƒe[ƒg‚ğƒŠƒŠ[ƒX‚·‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğ“|‚·
+	// è¨­å®šã‚’å¤‰æ›´ã™ã‚‹éš›ã«æ·±åº¦ã‚¹ãƒ†ãƒ³ã‚·ãƒ«ã‚¹ãƒ†ãƒ¼ãƒˆã‚’ãƒªãƒªãƒ¼ã‚¹ã™ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 	GD3D11.Device.State.ChangeDepthStencilStateReleaseFlag = FALSE ;
 
-	// ‚æ‚­g‚¤İ’è‚Ì[“xƒXƒeƒ“ƒVƒ‹ƒXƒe[ƒg‚©‚Ç‚¤‚©‚ğ”»’è‚·‚é
+	// ã‚ˆãä½¿ã†è¨­å®šã®æ·±åº¦ã‚¹ãƒ†ãƒ³ã‚·ãƒ«ã‚¹ãƒ†ãƒ¼ãƒˆã‹ã©ã†ã‹ã‚’åˆ¤å®šã™ã‚‹
 	DepthStencilDesc = &GD3D11.Device.State.DepthStencilDesc ;
 	if( DepthStencilDesc->StencilEnable					!= FALSE ||
 		DepthStencilDesc->StencilReadMask				!= D_D3D11_DEFAULT_STENCIL_READ_MASK ||
@@ -10171,49 +10171,49 @@ static int Graphics_D3D11_DeviceState_SetupDepthStencilState( void )
 		DepthStencilDesc->BackFace.StencilPassOp		!= D_D3D11_STENCIL_OP_KEEP ||
 		DepthStencilDesc->BackFace.StencilFunc			!= D_D3D11_COMPARISON_ALWAYS )
 	{
-		// ‚æ‚­g‚¤İ’è‚Ì[“xƒXƒeƒ“ƒVƒ‹ƒXƒe[ƒg‚Å‚Í‚È‚¢ê‡‚Í‚±‚±‚Å[“xƒXƒeƒ“ƒVƒ‹ƒXƒe[ƒg‚ğì¬‚·‚é
+		// ã‚ˆãä½¿ã†è¨­å®šã®æ·±åº¦ã‚¹ãƒ†ãƒ³ã‚·ãƒ«ã‚¹ãƒ†ãƒ¼ãƒˆã§ã¯ãªã„å ´åˆã¯ã“ã“ã§æ·±åº¦ã‚¹ãƒ†ãƒ³ã‚·ãƒ«ã‚¹ãƒ†ãƒ¼ãƒˆã‚’ä½œæˆã™ã‚‹
 		hr = D3D11Device_CreateDepthStencilState( DepthStencilDesc, &NewDepthStencilState ) ;
 		if( hr != S_OK )
 		{
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\x49\x00\x44\x00\x33\x00\x44\x00\x31\x00\x31\x00\x44\x00\x65\x00\x70\x00\x74\x00\x68\x00\x53\x00\x74\x00\x65\x00\x6e\x00\x63\x00\x69\x00\x6c\x00\x53\x00\x74\x00\x61\x00\x74\x00\x65\x00\x20\x00\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00\x30\x87\x7b\x40\x62\x11\xff\x0a\x00\x00"/*@ L"ID3D11DepthStencilState ‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½@‰ÓŠ‚P\n" @*/ )) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\x49\x00\x44\x00\x33\x00\x44\x00\x31\x00\x31\x00\x44\x00\x65\x00\x70\x00\x74\x00\x68\x00\x53\x00\x74\x00\x65\x00\x6e\x00\x63\x00\x69\x00\x6c\x00\x53\x00\x74\x00\x61\x00\x74\x00\x65\x00\x20\x00\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00\x30\x87\x7b\x40\x62\x11\xff\x0a\x00\x00"/*@ L"ID3D11DepthStencilState ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸã€€ç®‡æ‰€ï¼‘\n" @*/ )) ;
 			return -1 ;
 		}
 
-		// ì¬‚µ‚½[“xƒXƒeƒ“ƒVƒ‹ƒXƒe[ƒg‚ğİ’è
+		// ä½œæˆã—ãŸæ·±åº¦ã‚¹ãƒ†ãƒ³ã‚·ãƒ«ã‚¹ãƒ†ãƒ¼ãƒˆã‚’è¨­å®š
 		GD3D11.Device.State.DepthStencilState = NewDepthStencilState ;
 
-		// ‚±‚Ì[“xƒXƒeƒ“ƒVƒ‹ƒXƒe[ƒg‚Íˆê“I‚È‚à‚Ì‚È‚Ì‚ÅAI—¹‚ÉƒŠƒŠ[ƒX‚·‚é‚æ‚¤‚É‚·‚é
+		// ã“ã®æ·±åº¦ã‚¹ãƒ†ãƒ³ã‚·ãƒ«ã‚¹ãƒ†ãƒ¼ãƒˆã¯ä¸€æ™‚çš„ãªã‚‚ã®ãªã®ã§ã€çµ‚äº†æ™‚ã«ãƒªãƒªãƒ¼ã‚¹ã™ã‚‹ã‚ˆã†ã«ã™ã‚‹
 		GD3D11.Device.State.ChangeDepthStencilStateReleaseFlag = TRUE ;
 	}
 	else
 	{
-		// ‚æ‚­g‚¤İ’è‚Ì[“xƒXƒeƒ“ƒVƒ‹ƒXƒe[ƒg‚Ìê‡
+		// ã‚ˆãä½¿ã†è¨­å®šã®æ·±åº¦ã‚¹ãƒ†ãƒ³ã‚·ãƒ«ã‚¹ãƒ†ãƒ¼ãƒˆã®å ´åˆ
 
-		// w’è‚Ì‚æ‚­g‚¤İ’è‚Ì[“xƒXƒeƒ“ƒVƒ‹ƒXƒe[ƒg‚ª‚Ü‚¾ì¬‚³‚ê‚Ä‚¢‚È‚©‚Á‚½‚çì¬‚·‚é
+		// æŒ‡å®šã®ã‚ˆãä½¿ã†è¨­å®šã®æ·±åº¦ã‚¹ãƒ†ãƒ³ã‚·ãƒ«ã‚¹ãƒ†ãƒ¼ãƒˆãŒã¾ã ä½œæˆã•ã‚Œã¦ã„ãªã‹ã£ãŸã‚‰ä½œæˆã™ã‚‹
 		DefaultDepthStencilState = &GD3D11.Device.State.DefaultDepthStencilStateArray[ DepthStencilDesc->DepthEnable ][ DepthStencilDesc->DepthWriteMask == D_D3D11_DEPTH_WRITE_MASK_ALL ? 1 : 0 ][ DepthStencilDesc->DepthFunc ] ;
 		if( *DefaultDepthStencilState == NULL )
 		{
 			hr = D3D11Device_CreateDepthStencilState( DepthStencilDesc, &NewDepthStencilState ) ;
 			if( hr != S_OK )
 			{
-				DXST_LOGFILEFMT_ADDUTF16LE(( "\x49\x00\x44\x00\x33\x00\x44\x00\x31\x00\x31\x00\x44\x00\x65\x00\x70\x00\x74\x00\x68\x00\x53\x00\x74\x00\x65\x00\x6e\x00\x63\x00\x69\x00\x6c\x00\x53\x00\x74\x00\x61\x00\x74\x00\x65\x00\x20\x00\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00\x30\x87\x7b\x40\x62\x12\xff\x0a\x00\x00"/*@ L"ID3D11DepthStencilState ‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½@‰ÓŠ‚Q\n" @*/ )) ;
+				DXST_LOGFILEFMT_ADDUTF16LE(( "\x49\x00\x44\x00\x33\x00\x44\x00\x31\x00\x31\x00\x44\x00\x65\x00\x70\x00\x74\x00\x68\x00\x53\x00\x74\x00\x65\x00\x6e\x00\x63\x00\x69\x00\x6c\x00\x53\x00\x74\x00\x61\x00\x74\x00\x65\x00\x20\x00\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00\x30\x87\x7b\x40\x62\x12\xff\x0a\x00\x00"/*@ L"ID3D11DepthStencilState ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸã€€ç®‡æ‰€ï¼’\n" @*/ )) ;
 				return -1 ;
 			}
 			*DefaultDepthStencilState = NewDepthStencilState ;
 		}
 
-		// ‚æ‚­g‚¤İ’è‚Ì[“xƒXƒeƒ“ƒVƒ‹ƒXƒe[ƒg‚ğİ’è
+		// ã‚ˆãä½¿ã†è¨­å®šã®æ·±åº¦ã‚¹ãƒ†ãƒ³ã‚·ãƒ«ã‚¹ãƒ†ãƒ¼ãƒˆã‚’è¨­å®š
 		GD3D11.Device.State.DepthStencilState = *DefaultDepthStencilState ;
 	}
 
-	// [“xƒXƒeƒ“ƒVƒ‹ƒXƒe[ƒg‚ğƒfƒoƒCƒXƒRƒ“ƒeƒLƒXƒg‚Éİ’è‚·‚é
+	// æ·±åº¦ã‚¹ãƒ†ãƒ³ã‚·ãƒ«ã‚¹ãƒ†ãƒ¼ãƒˆã‚’ãƒ‡ãƒã‚¤ã‚¹ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã«è¨­å®šã™ã‚‹
 	D3D11DeviceContext_OMSetDepthStencilState( GD3D11.Device.State.DepthStencilState, 0 ) ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// ID3D11DepthStencilState ‚ğ‰ğ•ú‚·‚é
+// ID3D11DepthStencilState ã‚’è§£æ”¾ã™ã‚‹
 static int Graphics_D3D11_DeviceState_TerminateDepthStencilState( void )
 {
 	GD3D11.Device.State.ChangeDepthStencilDesc = FALSE ;
@@ -10229,31 +10229,31 @@ static int Graphics_D3D11_DeviceState_TerminateDepthStencilState( void )
 
 	Graphics_D3D11_DepthStencilStateArray_Release( ( D_ID3D11DepthStencilState ** )GD3D11.Device.State.DefaultDepthStencilStateArray, sizeof( GD3D11.Device.State.DefaultDepthStencilStateArray ) / sizeof( D_ID3D11DepthStencilState * ) ) ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// Œ»İ‚Ìİ’è‚ÉŠî‚Ã‚¢‚Ä ID3D11BlendState ‚ğƒZƒbƒgƒAƒbƒv‚·‚é
+// ç¾åœ¨ã®è¨­å®šã«åŸºã¥ã„ã¦ ID3D11BlendState ã‚’ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã™ã‚‹
 static int Graphics_D3D11_DeviceState_SetupBlendState( void )
 {
 	D_ID3D11BlendState *NewBlendState ;
 	D_ID3D11BlendState **DefaultBlendState ;
 	HRESULT            hr ;
 
-	// İ’è‚É•ÏX‚ª–³‚­A•K‚¸Äİ’è‚ğs‚¤ƒtƒ‰ƒO‚à“|‚ê‚Ä‚¢‚½‚ç‰½‚à‚¹‚¸I—¹
+	// è¨­å®šã«å¤‰æ›´ãŒç„¡ãã€å¿…ãšå†è¨­å®šã‚’è¡Œã†ãƒ•ãƒ©ã‚°ã‚‚å€’ã‚Œã¦ã„ãŸã‚‰ä½•ã‚‚ã›ãšçµ‚äº†
 	if( GD3D11.Device.State.ChangeBlendDesc == FALSE &&
 		GD3D11.Device.DrawSetting.CancelSettingEqualCheck == FALSE )
 	{
 		return 0 ;
 	}
 
-	// İ’è‚É•ÏX‚ª‚ ‚Á‚½‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğ“|‚·
+	// è¨­å®šã«å¤‰æ›´ãŒã‚ã£ãŸã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 	GD3D11.Device.State.ChangeBlendDesc = FALSE ;
 
-	// Œ»İİ’è‚³‚ê‚Ä‚¢‚éƒuƒŒƒ“ƒhƒXƒe[ƒg‚ª‚ ‚éê‡‚Í‰ğœ‚·‚é
+	// ç¾åœ¨è¨­å®šã•ã‚Œã¦ã„ã‚‹ãƒ–ãƒ¬ãƒ³ãƒ‰ã‚¹ãƒ†ãƒ¼ãƒˆãŒã‚ã‚‹å ´åˆã¯è§£é™¤ã™ã‚‹
 	if( GD3D11.Device.State.BlendState != NULL )
 	{
-		// Œ»İ‚Ìİ’è‚ğ•ÏX‚·‚éÛ‚ÉƒuƒŒƒ“ƒhƒXƒe[ƒg‚ğƒŠƒŠ[ƒX‚·‚éw’è‚É‚È‚Á‚Ä‚¢‚½‚çƒŠƒŠ[ƒX‚·‚é
+		// ç¾åœ¨ã®è¨­å®šã‚’å¤‰æ›´ã™ã‚‹éš›ã«ãƒ–ãƒ¬ãƒ³ãƒ‰ã‚¹ãƒ†ãƒ¼ãƒˆã‚’ãƒªãƒªãƒ¼ã‚¹ã™ã‚‹æŒ‡å®šã«ãªã£ã¦ã„ãŸã‚‰ãƒªãƒªãƒ¼ã‚¹ã™ã‚‹
 		if( GD3D11.Device.State.ChangeBlendStateReleaseFlag )
 		{
 			Direct3D11_Release_BlendState( GD3D11.Device.State.BlendState ) ;
@@ -10262,15 +10262,15 @@ static int Graphics_D3D11_DeviceState_SetupBlendState( void )
 		GD3D11.Device.State.BlendState = NULL ;
 	}
 
-	// İ’è‚ğ•ÏX‚·‚éÛ‚ÉƒuƒŒƒ“ƒhƒXƒe[ƒg‚ğƒŠƒŠ[ƒX‚·‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğ“|‚·
+	// è¨­å®šã‚’å¤‰æ›´ã™ã‚‹éš›ã«ãƒ–ãƒ¬ãƒ³ãƒ‰ã‚¹ãƒ†ãƒ¼ãƒˆã‚’ãƒªãƒªãƒ¼ã‚¹ã™ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 	GD3D11.Device.State.ChangeBlendStateReleaseFlag = FALSE ;
 
-	// ‚æ‚­g‚¤İ’è‚ÌƒuƒŒƒ“ƒhƒXƒe[ƒg‚©‚Ç‚¤‚©‚ğ”»’è‚·‚é
+	// ã‚ˆãä½¿ã†è¨­å®šã®ãƒ–ãƒ¬ãƒ³ãƒ‰ã‚¹ãƒ†ãƒ¼ãƒˆã‹ã©ã†ã‹ã‚’åˆ¤å®šã™ã‚‹
 	if( GD3D11.Device.State.BlendMode == -1 || GD3D11.Device.State.BlendMode == DX_BLENDMODE_CUSTOM )
 	{
-		// ‚æ‚­g‚¤İ’è‚ÌƒuƒŒƒ“ƒhƒXƒe[ƒg‚Å‚Í‚È‚¢ê‡‚Í‚±‚±‚ÅƒuƒŒƒ“ƒhƒXƒe[ƒg‚ğì¬‚·‚é
+		// ã‚ˆãä½¿ã†è¨­å®šã®ãƒ–ãƒ¬ãƒ³ãƒ‰ã‚¹ãƒ†ãƒ¼ãƒˆã§ã¯ãªã„å ´åˆã¯ã“ã“ã§ãƒ–ãƒ¬ãƒ³ãƒ‰ã‚¹ãƒ†ãƒ¼ãƒˆã‚’ä½œæˆã™ã‚‹
 
-		// ƒJƒXƒ^ƒ€ƒuƒŒƒ“ƒh‚Ìê‡‚Ìˆ—
+		// ã‚«ã‚¹ã‚¿ãƒ ãƒ–ãƒ¬ãƒ³ãƒ‰ã®å ´åˆã®å‡¦ç†
 		if( GD3D11.Device.State.BlendMode == DX_BLENDMODE_CUSTOM )
 		{
 			D_D3D11_BLEND_DESC TempBlendDesc ;
@@ -10293,7 +10293,7 @@ static int Graphics_D3D11_DeviceState_SetupBlendState( void )
 			hr = D3D11Device_CreateBlendState( &TempBlendDesc, &NewBlendState ) ;
 			if( hr != S_OK )
 			{
-				DXST_LOGFILEFMT_ADDUTF16LE(( "\x49\x00\x44\x00\x33\x00\x44\x00\x31\x00\x31\x00\x42\x00\x6c\x00\x65\x00\x6e\x00\x64\x00\x53\x00\x74\x00\x61\x00\x74\x00\x65\x00\x20\x00\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00\x30\x87\x7b\x40\x62\x13\xff\x0a\x00\x00"/*@ L"ID3D11BlendState ‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½@‰ÓŠ‚R\n" @*/ )) ;
+				DXST_LOGFILEFMT_ADDUTF16LE(( "\x49\x00\x44\x00\x33\x00\x44\x00\x31\x00\x31\x00\x42\x00\x6c\x00\x65\x00\x6e\x00\x64\x00\x53\x00\x74\x00\x61\x00\x74\x00\x65\x00\x20\x00\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00\x30\x87\x7b\x40\x62\x13\xff\x0a\x00\x00"/*@ L"ID3D11BlendState ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸã€€ç®‡æ‰€ï¼“\n" @*/ )) ;
 				return -1 ;
 			}
 
@@ -10303,22 +10303,22 @@ static int Graphics_D3D11_DeviceState_SetupBlendState( void )
 			hr = D3D11Device_CreateBlendState( &GD3D11.Device.State.BlendDesc, &NewBlendState ) ;
 			if( hr != S_OK )
 			{
-				DXST_LOGFILEFMT_ADDUTF16LE(( "\x49\x00\x44\x00\x33\x00\x44\x00\x31\x00\x31\x00\x42\x00\x6c\x00\x65\x00\x6e\x00\x64\x00\x53\x00\x74\x00\x61\x00\x74\x00\x65\x00\x20\x00\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00\x30\x87\x7b\x40\x62\x11\xff\x0a\x00\x00"/*@ L"ID3D11BlendState ‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½@‰ÓŠ‚P\n" @*/ )) ;
+				DXST_LOGFILEFMT_ADDUTF16LE(( "\x49\x00\x44\x00\x33\x00\x44\x00\x31\x00\x31\x00\x42\x00\x6c\x00\x65\x00\x6e\x00\x64\x00\x53\x00\x74\x00\x61\x00\x74\x00\x65\x00\x20\x00\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00\x30\x87\x7b\x40\x62\x11\xff\x0a\x00\x00"/*@ L"ID3D11BlendState ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸã€€ç®‡æ‰€ï¼‘\n" @*/ )) ;
 				return -1 ;
 			}
 		}
 
-		// ì¬‚µ‚½ƒuƒŒƒ“ƒhƒXƒe[ƒg‚ğİ’è
+		// ä½œæˆã—ãŸãƒ–ãƒ¬ãƒ³ãƒ‰ã‚¹ãƒ†ãƒ¼ãƒˆã‚’è¨­å®š
 		GD3D11.Device.State.BlendState = NewBlendState ;
 
-		// ‚±‚ÌƒuƒŒƒ“ƒhƒXƒe[ƒg‚Íˆê“I‚È‚à‚Ì‚È‚Ì‚ÅAI—¹‚ÉƒŠƒŠ[ƒX‚·‚é‚æ‚¤‚É‚·‚é
+		// ã“ã®ãƒ–ãƒ¬ãƒ³ãƒ‰ã‚¹ãƒ†ãƒ¼ãƒˆã¯ä¸€æ™‚çš„ãªã‚‚ã®ãªã®ã§ã€çµ‚äº†æ™‚ã«ãƒªãƒªãƒ¼ã‚¹ã™ã‚‹ã‚ˆã†ã«ã™ã‚‹
 		GD3D11.Device.State.ChangeBlendStateReleaseFlag = TRUE ;
 	}
 	else
 	{
-		// ‚æ‚­g‚¤İ’è‚ÌƒuƒŒƒ“ƒhƒXƒe[ƒg‚Ìê‡
+		// ã‚ˆãä½¿ã†è¨­å®šã®ãƒ–ãƒ¬ãƒ³ãƒ‰ã‚¹ãƒ†ãƒ¼ãƒˆã®å ´åˆ
 
-		// w’è‚Ì‚æ‚­g‚¤İ’è‚ÌƒuƒŒƒ“ƒhƒXƒe[ƒg‚ª‚Ü‚¾ì¬‚³‚ê‚Ä‚¢‚È‚©‚Á‚½‚çì¬‚·‚é
+		// æŒ‡å®šã®ã‚ˆãä½¿ã†è¨­å®šã®ãƒ–ãƒ¬ãƒ³ãƒ‰ã‚¹ãƒ†ãƒ¼ãƒˆãŒã¾ã ä½œæˆã•ã‚Œã¦ã„ãªã‹ã£ãŸã‚‰ä½œæˆã™ã‚‹
 		DefaultBlendState = &GD3D11.Device.State.DefaultBlendStateArray[ GD3D11.Device.State.BlendMode ][ GD3D11.Device.State.NotWriteAlphaChannelFlag ] ;
 		if( *DefaultBlendState == NULL )
 		{
@@ -10341,25 +10341,25 @@ static int Graphics_D3D11_DeviceState_SetupBlendState( void )
 			hr = D3D11Device_CreateBlendState( &TempBlendDesc, &NewBlendState ) ;
 			if( hr != S_OK )
 			{
-				DXST_LOGFILEFMT_ADDUTF16LE(( "\x49\x00\x44\x00\x33\x00\x44\x00\x31\x00\x31\x00\x42\x00\x6c\x00\x65\x00\x6e\x00\x64\x00\x53\x00\x74\x00\x61\x00\x74\x00\x65\x00\x20\x00\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00\x30\x87\x7b\x40\x62\x12\xff\x0a\x00\x00"/*@ L"ID3D11BlendState ‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½@‰ÓŠ‚Q\n" @*/ )) ;
+				DXST_LOGFILEFMT_ADDUTF16LE(( "\x49\x00\x44\x00\x33\x00\x44\x00\x31\x00\x31\x00\x42\x00\x6c\x00\x65\x00\x6e\x00\x64\x00\x53\x00\x74\x00\x61\x00\x74\x00\x65\x00\x20\x00\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00\x30\x87\x7b\x40\x62\x12\xff\x0a\x00\x00"/*@ L"ID3D11BlendState ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸã€€ç®‡æ‰€ï¼’\n" @*/ )) ;
 				return -1 ;
 			}
 			*DefaultBlendState = NewBlendState ;
 		}
 
-		// ‚æ‚­g‚¤İ’è‚ÌƒuƒŒƒ“ƒhƒXƒe[ƒg‚ğİ’è
+		// ã‚ˆãä½¿ã†è¨­å®šã®ãƒ–ãƒ¬ãƒ³ãƒ‰ã‚¹ãƒ†ãƒ¼ãƒˆã‚’è¨­å®š
 		GD3D11.Device.State.BlendState = *DefaultBlendState ;
 	}
 
-	// ƒuƒŒƒ“ƒhƒXƒe[ƒg‚ğƒfƒoƒCƒXƒRƒ“ƒeƒLƒXƒg‚Éİ’è‚·‚é
+	// ãƒ–ãƒ¬ãƒ³ãƒ‰ã‚¹ãƒ†ãƒ¼ãƒˆã‚’ãƒ‡ãƒã‚¤ã‚¹ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã«è¨­å®šã™ã‚‹
 	static FLOAT BlendFactor[ 4 ] = { 0.0f } ;
 	D3D11DeviceContext_OMSetBlendState( GD3D11.Device.State.BlendState, BlendFactor, 0xffffffff ) ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// ID3D11BlendState ‚ğ‰ğ•ú‚·‚é
+// ID3D11BlendState ã‚’è§£æ”¾ã™ã‚‹
 static int Graphics_D3D11_DeviceState_TerminateBlendState( void )
 {
 	GD3D11.Device.State.ChangeBlendDesc = FALSE ;
@@ -10375,11 +10375,11 @@ static int Graphics_D3D11_DeviceState_TerminateBlendState( void )
 
 	Graphics_D3D11_BlendStateArray_Release( ( D_ID3D11BlendState ** )GD3D11.Device.State.DefaultBlendStateArray, sizeof( GD3D11.Device.State.DefaultBlendStateArray ) / sizeof( D_ID3D11BlendState * ) ) ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// ƒeƒNƒXƒ`ƒƒ[‚ÌƒAƒhƒŒƒbƒVƒ“ƒOƒ‚[ƒh‚ğƒZƒbƒg‚·‚é
+// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã®ã‚¢ãƒ‰ãƒ¬ãƒƒã‚·ãƒ³ã‚°ãƒ¢ãƒ¼ãƒ‰ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern int  Graphics_D3D11_DeviceState_SetTextureAddress( int AddressMode, int Sampler )
 {
 	int								i ;
@@ -10466,7 +10466,7 @@ extern int  Graphics_D3D11_DeviceState_SetTextureAddress( int AddressMode, int S
 	return 0 ;
 }
 
-// ƒeƒNƒXƒ`ƒƒ[‚ÌƒAƒhƒŒƒbƒVƒ“ƒOƒ‚[ƒh‚ğƒZƒbƒg‚·‚é
+// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã®ã‚¢ãƒ‰ãƒ¬ãƒƒã‚·ãƒ³ã‚°ãƒ¢ãƒ¼ãƒ‰ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern int Graphics_D3D11_DeviceState_SetTextureAddressU( int AddressMode, int Sampler )
 {
 	int								i ;
@@ -10543,7 +10543,7 @@ extern int Graphics_D3D11_DeviceState_SetTextureAddressU( int AddressMode, int S
 	return 0 ;
 }
 
-// ƒeƒNƒXƒ`ƒƒ[‚ÌƒAƒhƒŒƒbƒVƒ“ƒOƒ‚[ƒh‚ğƒZƒbƒg‚·‚é
+// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã®ã‚¢ãƒ‰ãƒ¬ãƒƒã‚·ãƒ³ã‚°ãƒ¢ãƒ¼ãƒ‰ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern int Graphics_D3D11_DeviceState_SetTextureAddressV( int AddressMode, int Sampler )
 {
 	int								i ;
@@ -10620,7 +10620,7 @@ extern int Graphics_D3D11_DeviceState_SetTextureAddressV( int AddressMode, int S
 	return 0 ;
 }
 
-// ƒeƒNƒXƒ`ƒƒ[‚ÌƒAƒhƒŒƒbƒVƒ“ƒOƒ‚[ƒh‚ğƒZƒbƒg‚·‚é
+// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã®ã‚¢ãƒ‰ãƒ¬ãƒƒã‚·ãƒ³ã‚°ãƒ¢ãƒ¼ãƒ‰ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern int Graphics_D3D11_DeviceState_SetTextureAddressW( int AddressMode, int Sampler )
 {
 	int								i ;
@@ -10698,7 +10698,7 @@ extern int Graphics_D3D11_DeviceState_SetTextureAddressW( int AddressMode, int S
 	return 0 ;
 }
 
-// ƒeƒNƒXƒ`ƒƒ[‚ÌƒAƒhƒŒƒbƒVƒ“ƒOƒ‚[ƒh‚ğƒZƒbƒg‚·‚é
+// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã®ã‚¢ãƒ‰ãƒ¬ãƒƒã‚·ãƒ³ã‚°ãƒ¢ãƒ¼ãƒ‰ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern int Graphics_D3D11_DeviceState_SetTextureAddressUVW( int AddressModeU, int AddressModeV, int AddressModeW, int Sampler )
 {
 	if( Graphics_D3D11_DeviceState_SetTextureAddressU( AddressModeU, Sampler ) < 0 )
@@ -10719,7 +10719,7 @@ extern int Graphics_D3D11_DeviceState_SetTextureAddressUVW( int AddressModeU, in
 	return 0 ;
 }
 
-// •W€•`‰æ—p‚ÌƒeƒNƒXƒ`ƒƒÀ•W•ÏŠ·s—ñ‚ğ’è”ƒoƒbƒtƒ@‚ÉƒZƒbƒg‚·‚é
+// æ¨™æº–æç”»ç”¨ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£åº§æ¨™å¤‰æ›è¡Œåˆ—ã‚’å®šæ•°ãƒãƒƒãƒ•ã‚¡ã«ã‚»ãƒƒãƒˆã™ã‚‹
 static int Graphics_D3D11_DeviceState_SetNormalTextureAddressTransformMatrix_ConstBuffer( void )
 {
 	DX_D3D11_VS_CONST_BUFFER_OTHERMATRIX *ConstOtherMatrix ;
@@ -10731,7 +10731,7 @@ static int Graphics_D3D11_DeviceState_SetNormalTextureAddressTransformMatrix_Con
 
 	ConstOtherMatrix = ( DX_D3D11_VS_CONST_BUFFER_OTHERMATRIX * )GD3D11.Device.Shader.Constant.ConstBuffer_VS_OtherMatrix->SysmemBuffer ;
 
-	// ’è”ƒf[ƒ^‚É”½‰f
+	// å®šæ•°ãƒ‡ãƒ¼ã‚¿ã«åæ˜ 
 	ConstOtherMatrix->TextureMatrix[ 0 ][ 0 ][ 0 ] = GD3D11.Device.State.TextureAddressTransformMatrix.m[ 0 ][ 0 ] ;
 	ConstOtherMatrix->TextureMatrix[ 0 ][ 0 ][ 1 ] = GD3D11.Device.State.TextureAddressTransformMatrix.m[ 1 ][ 0 ] ;
 	ConstOtherMatrix->TextureMatrix[ 0 ][ 0 ][ 2 ] = GD3D11.Device.State.TextureAddressTransformMatrix.m[ 2 ][ 0 ] ;
@@ -10742,17 +10742,17 @@ static int Graphics_D3D11_DeviceState_SetNormalTextureAddressTransformMatrix_Con
 	ConstOtherMatrix->TextureMatrix[ 0 ][ 1 ][ 3 ] = GD3D11.Device.State.TextureAddressTransformMatrix.m[ 3 ][ 1 ] ;
 	GD3D11.Device.Shader.Constant.ConstBuffer_VS_OtherMatrix->ChangeFlag = TRUE ;
 
-	// ’è”ƒoƒbƒtƒ@‚ğXV
+	// å®šæ•°ãƒãƒƒãƒ•ã‚¡ã‚’æ›´æ–°
 //	Graphics_D3D11_ConstantBuffer_Update( GD3D11.Device.Shader.Constant.ConstBuffer_VS_OtherMatrix ) ;
 
-	// •W€•`‰æ—p‚ÌƒeƒNƒXƒ`ƒƒƒpƒ‰ƒ[ƒ^‚ªİ’è‚³‚ê‚Ä‚¢‚é‚©‚Ç‚¤‚©ƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// æ¨™æº–æç”»ç”¨ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãŒè¨­å®šã•ã‚Œã¦ã„ã‚‹ã‹ã©ã†ã‹ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	GD3D11.Device.Shader.Constant.SetNormalTextureAddressTransformMatrix = TRUE ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// ƒeƒNƒXƒ`ƒƒÀ•W•ÏŠ·s—ñ‚ğƒZƒbƒg‚·‚é
+// ãƒ†ã‚¯ã‚¹ãƒãƒ£åº§æ¨™å¤‰æ›è¡Œåˆ—ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern int  Graphics_D3D11_DeviceState_SetTextureAddressTransformMatrix( int Use, MATRIX *Matrix )
 {
 	if( GAPIWin.D3D11DeviceObject == NULL )
@@ -10769,10 +10769,10 @@ extern int  Graphics_D3D11_DeviceState_SetTextureAddressTransformMatrix( int Use
 
 	DRAWSTOCKINFO
 
-	// ƒeƒNƒXƒ`ƒƒÀ•W•ÏŠ·s—ñ‚ğg—p‚·‚é‚©‚Ç‚¤‚©‚ğ•Û‘¶
+	// ãƒ†ã‚¯ã‚¹ãƒãƒ£åº§æ¨™å¤‰æ›è¡Œåˆ—ã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã‚’ä¿å­˜
 	GD3D11.Device.State.TextureAddressTransformMatrixUse = Use ;
 
-	// ƒeƒNƒXƒ`ƒƒÀ•W•ÏŠ·s—ñ‚ğƒZƒbƒg
+	// ãƒ†ã‚¯ã‚¹ãƒãƒ£åº§æ¨™å¤‰æ›è¡Œåˆ—ã‚’ã‚»ãƒƒãƒˆ
 	if( Use == TRUE )
 	{
 		GD3D11.Device.State.TextureAddressTransformMatrix = *Matrix ;
@@ -10782,13 +10782,13 @@ extern int  Graphics_D3D11_DeviceState_SetTextureAddressTransformMatrix( int Use
 		CreateIdentityMatrix( &GD3D11.Device.State.TextureAddressTransformMatrix ) ;
 	}
 
-	// ’è”ƒoƒbƒtƒ@‚É”½‰f‚·‚é
+	// å®šæ•°ãƒãƒƒãƒ•ã‚¡ã«åæ˜ ã™ã‚‹
 	Graphics_D3D11_DeviceState_SetNormalTextureAddressTransformMatrix_ConstBuffer() ;
 
 	return 0 ;
 }
 
-// ƒtƒHƒO‚ğ—LŒø‚É‚·‚é‚©‚Ç‚¤‚©‚ğİ’è‚·‚é( TRUE:—LŒø  FALSE:–³Œø )
+// ãƒ•ã‚©ã‚°ã‚’æœ‰åŠ¹ã«ã™ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹( TRUE:æœ‰åŠ¹  FALSE:ç„¡åŠ¹ )
 extern int  Graphics_D3D11_DeviceState_SetFogEnable( int Flag )
 {
 	if( GAPIWin.D3D11DeviceObject == NULL )
@@ -10808,12 +10808,12 @@ extern int  Graphics_D3D11_DeviceState_SetFogEnable( int Flag )
 
 	GD3D11.Device.DrawSetting.DrawPrepAlwaysFlag = TRUE ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒtƒHƒOƒ‚[ƒh‚ğİ’è‚·‚é
-extern int  Graphics_D3D11_DeviceState_SetFogVertexMode( int Mode /* DX_FOGMODE_NONE “™ */ )
+// ãƒ•ã‚©ã‚°ãƒ¢ãƒ¼ãƒ‰ã‚’è¨­å®šã™ã‚‹
+extern int  Graphics_D3D11_DeviceState_SetFogVertexMode( int Mode /* DX_FOGMODE_NONE ç­‰ */ )
 {
 	if( GAPIWin.D3D11DeviceObject == NULL )
 	{
@@ -10832,11 +10832,11 @@ extern int  Graphics_D3D11_DeviceState_SetFogVertexMode( int Mode /* DX_FOGMODE_
 
 	GD3D11.Device.DrawSetting.DrawPrepAlwaysFlag = TRUE ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒtƒHƒOƒJƒ‰[‚ğ•ÏX‚·‚é
+// ãƒ•ã‚©ã‚°ã‚«ãƒ©ãƒ¼ã‚’å¤‰æ›´ã™ã‚‹
 extern int  Graphics_D3D11_DeviceState_SetFogColor( unsigned int Color )
 {
 	DX_D3D11_CONST_BUFFER_COMMON *ConstantCommon ;
@@ -10856,25 +10856,25 @@ extern int  Graphics_D3D11_DeviceState_SetFogColor( unsigned int Color )
 
 	DRAWSTOCKINFO
 
-	// ’è”ƒf[ƒ^‚É”½‰f
+	// å®šæ•°ãƒ‡ãƒ¼ã‚¿ã«åæ˜ 
 	ConstantCommon->Fog.Color[ 0 ] = ( ( Color >> 16 ) & 0xff ) / 255.0f ;
 	ConstantCommon->Fog.Color[ 1 ] = ( ( Color >>  8 ) & 0xff ) / 255.0f ;
 	ConstantCommon->Fog.Color[ 2 ] = ( ( Color >>  0 ) & 0xff ) / 255.0f ;
 	ConstantCommon->Fog.Color[ 3 ] = 1.0f ;
 	GD3D11.Device.Shader.Constant.ConstBuffer_Common->ChangeFlag = TRUE ;
 
-	// ’è”ƒoƒbƒtƒ@‚ğXV
+	// å®šæ•°ãƒãƒƒãƒ•ã‚¡ã‚’æ›´æ–°
 //	Graphics_D3D11_ConstantBuffer_Update( GD3D11.Device.Shader.Constant.ConstBuffer_Common ) ;
 
 	GD3D11.Device.State.FogColor = Color ;
 
 	GD3D11.Device.DrawSetting.DrawPrepAlwaysFlag = TRUE ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒtƒHƒO‚ÌFˆÈŠO‚Ì’è”î•ñ‚ğXV‚·‚é
+// ãƒ•ã‚©ã‚°ã®è‰²ä»¥å¤–ã®å®šæ•°æƒ…å ±ã‚’æ›´æ–°ã™ã‚‹
 static int Graphics_D3D11_DeviceState_UpdateConstantFogParam( void )
 {
 	DX_D3D11_CONST_BUFFER_COMMON *ConstantCommon ;
@@ -10886,7 +10886,7 @@ static int Graphics_D3D11_DeviceState_UpdateConstantFogParam( void )
 
 	ConstantCommon = ( DX_D3D11_CONST_BUFFER_COMMON * )GD3D11.Device.Shader.Constant.ConstBuffer_Common->SysmemBuffer ;
 
-	// ’è”ƒf[ƒ^‚É”½‰f
+	// å®šæ•°ãƒ‡ãƒ¼ã‚¿ã«åæ˜ 
 	ConstantCommon->Fog.Mode         = GD3D11.Device.State.FogEnable ? GD3D11.Device.State.FogMode : DX_FOGMODE_NONE ;
 	ConstantCommon->Fog.LinearAdd    = GD3D11.Device.State.FogEnd / ( GD3D11.Device.State.FogEnd - GD3D11.Device.State.FogStart ) ;
 	ConstantCommon->Fog.LinearDiv    = -1.0f / ( GD3D11.Device.State.FogEnd - GD3D11.Device.State.FogStart ) ;
@@ -10895,14 +10895,14 @@ static int Graphics_D3D11_DeviceState_UpdateConstantFogParam( void )
 	ConstantCommon->Fog.E            = 2.71828183f ;
 	GD3D11.Device.Shader.Constant.ConstBuffer_Common->ChangeFlag = TRUE ;
 
-	// ’è”ƒoƒbƒtƒ@‚ğXV
+	// å®šæ•°ãƒãƒƒãƒ•ã‚¡ã‚’æ›´æ–°
 //	Graphics_D3D11_ConstantBuffer_Update( GD3D11.Device.Shader.Constant.ConstBuffer_Common ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒtƒHƒO‚ªn‚Ü‚é‹——£‚ÆI—¹‚·‚é‹——£‚ğİ’è‚·‚é( 0.0f ` 1.0f )
+// ãƒ•ã‚©ã‚°ãŒå§‹ã¾ã‚‹è·é›¢ã¨çµ‚äº†ã™ã‚‹è·é›¢ã‚’è¨­å®šã™ã‚‹( 0.0f ï½ 1.0f )
 extern int  Graphics_D3D11_DeviceState_SetFogStartEnd( float Start, float End )
 {
 	int UpdateFlag ;
@@ -10932,17 +10932,17 @@ extern int  Graphics_D3D11_DeviceState_SetFogStartEnd( float Start, float End )
 
 	if( UpdateFlag )
 	{
-		// ’è”î•ñ‚ğXV
+		// å®šæ•°æƒ…å ±ã‚’æ›´æ–°
 		Graphics_D3D11_DeviceState_UpdateConstantFogParam() ;
 	}
 
 	GD3D11.Device.DrawSetting.DrawPrepAlwaysFlag = TRUE ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒtƒHƒO‚Ì–§“x‚ğİ’è‚·‚é( 0.0f ` 1.0f )
+// ãƒ•ã‚©ã‚°ã®å¯†åº¦ã‚’è¨­å®šã™ã‚‹( 0.0f ï½ 1.0f )
 extern int  Graphics_D3D11_DeviceState_SetFogDensity( float Density )
 {
 	if( GAPIWin.D3D11DeviceObject == NULL )
@@ -10960,12 +10960,12 @@ extern int  Graphics_D3D11_DeviceState_SetFogDensity( float Density )
 
 	GD3D11.Device.State.FogDensity = Density ;
 
-	// ’è”î•ñ‚ğXV
+	// å®šæ•°æƒ…å ±ã‚’æ›´æ–°
 	Graphics_D3D11_DeviceState_UpdateConstantFogParam() ;
 
 	GD3D11.Device.DrawSetting.DrawPrepAlwaysFlag = TRUE ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
@@ -10978,7 +10978,7 @@ extern int  Graphics_D3D11_DeviceState_SetFogDensity( float Density )
 
 
 
-// ‚‚³ƒtƒHƒO‚ğ—LŒø‚É‚·‚é‚©‚Ç‚¤‚©‚ğİ’è‚·‚é( TRUE:—LŒø  FALSE:–³Œø )
+// é«˜ã•ãƒ•ã‚©ã‚°ã‚’æœ‰åŠ¹ã«ã™ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹( TRUE:æœ‰åŠ¹  FALSE:ç„¡åŠ¹ )
 extern int  Graphics_D3D11_DeviceState_SetVerticalFogEnable( int Flag )
 {
 	if( GAPIWin.D3D11DeviceObject == NULL )
@@ -10998,15 +10998,15 @@ extern int  Graphics_D3D11_DeviceState_SetVerticalFogEnable( int Flag )
 
 	GD3D11.Device.DrawSetting.DrawPrepAlwaysFlag = TRUE ;
 
-	// ’è”î•ñ‚ğXV
+	// å®šæ•°æƒ…å ±ã‚’æ›´æ–°
 	Graphics_D3D11_DeviceState_UpdateConstantVerticalFogParam() ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ‚‚³ƒtƒHƒOƒ‚[ƒh‚ğİ’è‚·‚é
-extern int  Graphics_D3D11_DeviceState_SetVerticalFogVertexMode( int Mode /* DX_FOGMODE_NONE “™ */ )
+// é«˜ã•ãƒ•ã‚©ã‚°ãƒ¢ãƒ¼ãƒ‰ã‚’è¨­å®šã™ã‚‹
+extern int  Graphics_D3D11_DeviceState_SetVerticalFogVertexMode( int Mode /* DX_FOGMODE_NONE ç­‰ */ )
 {
 	if( GAPIWin.D3D11DeviceObject == NULL )
 	{
@@ -11025,14 +11025,14 @@ extern int  Graphics_D3D11_DeviceState_SetVerticalFogVertexMode( int Mode /* DX_
 
 	GD3D11.Device.DrawSetting.DrawPrepAlwaysFlag = TRUE ;
 
-	// ’è”î•ñ‚ğXV
+	// å®šæ•°æƒ…å ±ã‚’æ›´æ–°
 	Graphics_D3D11_DeviceState_UpdateConstantVerticalFogParam() ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ‚‚³ƒtƒHƒOƒJƒ‰[‚ğ•ÏX‚·‚é
+// é«˜ã•ãƒ•ã‚©ã‚°ã‚«ãƒ©ãƒ¼ã‚’å¤‰æ›´ã™ã‚‹
 extern int  Graphics_D3D11_DeviceState_SetVerticalFogColor( unsigned int Color )
 {
 	DX_D3D11_CONST_BUFFER_COMMON *ConstantCommon ;
@@ -11052,25 +11052,25 @@ extern int  Graphics_D3D11_DeviceState_SetVerticalFogColor( unsigned int Color )
 
 	DRAWSTOCKINFO
 
-	// ’è”ƒf[ƒ^‚É”½‰f
+	// å®šæ•°ãƒ‡ãƒ¼ã‚¿ã«åæ˜ 
 	ConstantCommon->VerticalFog.Color[ 0 ] = ( ( Color >> 16 ) & 0xff ) / 255.0f ;
 	ConstantCommon->VerticalFog.Color[ 1 ] = ( ( Color >>  8 ) & 0xff ) / 255.0f ;
 	ConstantCommon->VerticalFog.Color[ 2 ] = ( ( Color >>  0 ) & 0xff ) / 255.0f ;
 	ConstantCommon->VerticalFog.Color[ 3 ] = 1.0f ;
 	GD3D11.Device.Shader.Constant.ConstBuffer_Common->ChangeFlag = TRUE ;
 
-	// ’è”ƒoƒbƒtƒ@‚ğXV
+	// å®šæ•°ãƒãƒƒãƒ•ã‚¡ã‚’æ›´æ–°
 //	Graphics_D3D11_ConstantBuffer_Update( GD3D11.Device.Shader.Constant.ConstBuffer_Common ) ;
 
 	GD3D11.Device.State.VerticalFogColor = Color ;
 
 	GD3D11.Device.DrawSetting.DrawPrepAlwaysFlag = TRUE ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ‚‚³ƒtƒHƒO‚ÌFˆÈŠO‚Ì’è”î•ñ‚ğXV‚·‚é
+// é«˜ã•ãƒ•ã‚©ã‚°ã®è‰²ä»¥å¤–ã®å®šæ•°æƒ…å ±ã‚’æ›´æ–°ã™ã‚‹
 static int Graphics_D3D11_DeviceState_UpdateConstantVerticalFogParam( void )
 {
 	DX_D3D11_CONST_BUFFER_COMMON *ConstantCommon ;
@@ -11082,7 +11082,7 @@ static int Graphics_D3D11_DeviceState_UpdateConstantVerticalFogParam( void )
 
 	ConstantCommon = ( DX_D3D11_CONST_BUFFER_COMMON * )GD3D11.Device.Shader.Constant.ConstBuffer_Common->SysmemBuffer ;
 
-	// ’è”ƒf[ƒ^‚É”½‰f
+	// å®šæ•°ãƒ‡ãƒ¼ã‚¿ã«åæ˜ 
 	ConstantCommon->VerticalFog.Mode         = GD3D11.Device.State.VerticalFogEnable ? GD3D11.Device.State.VerticalFogMode : DX_FOGMODE_NONE ;
 	if( GD3D11.Device.State.VerticalFogStart > GD3D11.Device.State.VerticalFogEnd )
 	{
@@ -11099,14 +11099,14 @@ static int Graphics_D3D11_DeviceState_UpdateConstantVerticalFogParam( void )
 	ConstantCommon->VerticalFog.E            = 2.71828183f ;
 	GD3D11.Device.Shader.Constant.ConstBuffer_Common->ChangeFlag = TRUE ;
 
-	// ’è”ƒoƒbƒtƒ@‚ğXV
+	// å®šæ•°ãƒãƒƒãƒ•ã‚¡ã‚’æ›´æ–°
 //	Graphics_D3D11_ConstantBuffer_Update( GD3D11.Device.Shader.Constant.ConstBuffer_Common ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ‚‚³ƒtƒHƒO‚ªn‚Ü‚é‹——£‚ÆI—¹‚·‚é‹——£‚ğİ’è‚·‚é( 0.0f ` 1.0f )
+// é«˜ã•ãƒ•ã‚©ã‚°ãŒå§‹ã¾ã‚‹è·é›¢ã¨çµ‚äº†ã™ã‚‹è·é›¢ã‚’è¨­å®šã™ã‚‹( 0.0f ï½ 1.0f )
 extern int  Graphics_D3D11_DeviceState_SetVerticalFogStartEnd( float Start, float End )
 {
 	int UpdateFlag ;
@@ -11136,17 +11136,17 @@ extern int  Graphics_D3D11_DeviceState_SetVerticalFogStartEnd( float Start, floa
 
 	if( UpdateFlag )
 	{
-		// ’è”î•ñ‚ğXV
+		// å®šæ•°æƒ…å ±ã‚’æ›´æ–°
 		Graphics_D3D11_DeviceState_UpdateConstantVerticalFogParam() ;
 	}
 
 	GD3D11.Device.DrawSetting.DrawPrepAlwaysFlag = TRUE ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ‚‚³ƒtƒHƒO‚Ì–§“x‚ğİ’è‚·‚é( 0.0f ` 1.0f )
+// é«˜ã•ãƒ•ã‚©ã‚°ã®å¯†åº¦ã‚’è¨­å®šã™ã‚‹( 0.0f ï½ 1.0f )
 extern int  Graphics_D3D11_DeviceState_SetVerticalFogDensity( float Start, float Density )
 {
 	if( GAPIWin.D3D11DeviceObject == NULL )
@@ -11165,12 +11165,12 @@ extern int  Graphics_D3D11_DeviceState_SetVerticalFogDensity( float Start, float
 	GD3D11.Device.State.VerticalFogDensity = Density ;
 	GD3D11.Device.State.VerticalFogDensityStart = Start ;
 
-	// ’è”î•ñ‚ğXV
+	// å®šæ•°æƒ…å ±ã‚’æ›´æ–°
 	Graphics_D3D11_DeviceState_UpdateConstantVerticalFogParam() ;
 
 	GD3D11.Device.DrawSetting.DrawPrepAlwaysFlag = TRUE ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
@@ -11183,7 +11183,7 @@ extern int  Graphics_D3D11_DeviceState_SetVerticalFogDensity( float Start, float
 
 
 
-// ƒ‰ƒCƒeƒBƒ“ƒO‚Ì—L–³ƒtƒ‰ƒO‚ğƒZƒbƒg‚·‚é
+// ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ã®æœ‰ç„¡ãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern int  Graphics_D3D11_DeviceState_SetLighting( int UseFlag )
 {
 	if( GAPIWin.D3D11DeviceObject == NULL )
@@ -11203,11 +11203,11 @@ extern int  Graphics_D3D11_DeviceState_SetLighting( int UseFlag )
 
 	GD3D11.Device.DrawSetting.DrawPrepAlwaysFlag = TRUE ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// Å‘åˆÙ•û«‚ğƒZƒbƒg‚·‚é
+// æœ€å¤§ç•°æ–¹æ€§ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern	int		Graphics_D3D11_DeviceState_SetMaxAnisotropy( int MaxAnisotropy, int Sampler )
 {
 	int						i ;
@@ -11218,7 +11218,7 @@ extern	int		Graphics_D3D11_DeviceState_SetMaxAnisotropy( int MaxAnisotropy, int 
 		return -1 ;
 	}
 
-	// ’l‚Ì•â³
+	// å€¤ã®è£œæ­£
 	if( MaxAnisotropy < 1 )
 	{
 		MaxAnisotropy = 1 ;
@@ -11302,7 +11302,7 @@ extern	int		Graphics_D3D11_DeviceState_SetMaxAnisotropy( int MaxAnisotropy, int 
 	return 0 ;
 }
 
-// ƒrƒ…[ƒ|[ƒg‚ğƒZƒbƒg‚·‚é
+// ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern	int		Graphics_D3D11_DeviceState_SetViewport( D_D3D11_VIEWPORT *Viewport )
 {
 	if( GAPIWin.D3D11DeviceObject == NULL )
@@ -11319,26 +11319,26 @@ extern	int		Graphics_D3D11_DeviceState_SetViewport( D_D3D11_VIEWPORT *Viewport )
 		return 0 ;
 	}
 
-	// ‘‚«o‚·
+	// æ›¸ãå‡ºã™
 	if( GD3D11.Device.DrawSetting.CancelSettingEqualCheck == FALSE )
 	{
 		DRAWSTOCKINFO
 	}
 
-	// •`‰æ‚ğI—¹‚³‚¹‚Ä‚¨‚­
+	// æç”»ã‚’çµ‚äº†ã•ã›ã¦ãŠã
 	Graphics_D3D11_RenderEnd() ;
 
-	// ƒrƒ…[ƒ|[ƒg‚ÌƒZƒbƒeƒBƒ“ƒO
+	// ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆã®ã‚»ãƒƒãƒ†ã‚£ãƒ³ã‚°
 	D3D11DeviceContext_RSSetViewports( 1, Viewport ) ;
 
-	// ƒrƒ…[ƒ|[ƒg‚Ìî•ñ‚Ì•Û‘¶
+	// ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆã®æƒ…å ±ã®ä¿å­˜
 	GD3D11.Device.State.Viewport = *Viewport ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒrƒ…[ƒ|[ƒg‚ğƒZƒbƒg‚·‚é( ŠÈˆÕ”Å )
+// ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆã‚’ã‚»ãƒƒãƒˆã™ã‚‹( ç°¡æ˜“ç‰ˆ )
 extern	int		Graphics_D3D11_DeviceState_SetViewportEasy( float x1, float y1, float x2, float y2 )
 {
 	D_D3D11_VIEWPORT Viewport ;
@@ -11353,7 +11353,7 @@ extern	int		Graphics_D3D11_DeviceState_SetViewportEasy( float x1, float y1, floa
 	return Graphics_D3D11_DeviceState_SetViewport( &Viewport ) ;
 }
 
-// •`‰æƒ‚[ƒh‚ÌƒZƒbƒg
+// æç”»ãƒ¢ãƒ¼ãƒ‰ã®ã‚»ãƒƒãƒˆ
 extern	int		Graphics_D3D11_DeviceState_SetDrawMode( int DrawMode )
 {
 	if( GAPIWin.D3D11DeviceObject == NULL )
@@ -11372,21 +11372,21 @@ extern	int		Graphics_D3D11_DeviceState_SetDrawMode( int DrawMode )
 		DRAWSTOCKINFO
 	}
 
-	// ƒŒƒ“ƒ_ƒŠƒ“ƒOİ’è‚ğ•ÏX‚·‚é
+	// ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°è¨­å®šã‚’å¤‰æ›´ã™ã‚‹
 	switch( DrawMode )
 	{
 	case DX_DRAWMODE_BILINEAR :
-		// ƒoƒCƒŠƒjƒA•`‰æ
+		// ãƒã‚¤ãƒªãƒ‹ã‚¢æç”»
 		Graphics_D3D11_DeviceState_SetSampleFilterMode( D_D3D11_FILTER_MIN_MAG_MIP_LINEAR, -1 ) ;
 		break ;
 
 	case DX_DRAWMODE_NEAREST :
-		// “ñƒAƒŒƒXƒgƒlƒCƒo[
+		// äºŒã‚¢ãƒ¬ã‚¹ãƒˆãƒã‚¤ãƒãƒ¼
 		Graphics_D3D11_DeviceState_SetSampleFilterMode( D_D3D11_FILTER_MIN_MAG_MIP_POINT, -1 ) ;
 		break ;
 
 	case DX_DRAWMODE_ANISOTROPIC :
-		// ˆÙ•û«ƒtƒBƒ‹ƒ^ƒŠƒ“ƒO
+		// ç•°æ–¹æ€§ãƒ•ã‚£ãƒ«ã‚¿ãƒªãƒ³ã‚°
 		Graphics_D3D11_DeviceState_SetSampleFilterMode( D_D3D11_FILTER_ANISOTROPIC, -1 ) ;
 		break ;
 
@@ -11396,12 +11396,12 @@ extern	int		Graphics_D3D11_DeviceState_SetDrawMode( int DrawMode )
 	GD3D11.Device.State.DrawMode                 = DrawMode ;
 	GD3D11.Device.DrawSetting.DrawPrepAlwaysFlag = TRUE ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒAƒ‹ƒtƒ@ƒeƒXƒg‚Åg—p‚·‚é”äŠrƒ‚[ƒh‚ğİ’è‚·‚é
-extern	int		Graphics_D3D11_DeviceState_SetAlphaTestCmpMode( int AlphaTestCmpMode /* DX_CMP_NEVER ‚È‚Ç */ )
+// ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆã§ä½¿ç”¨ã™ã‚‹æ¯”è¼ƒãƒ¢ãƒ¼ãƒ‰ã‚’è¨­å®šã™ã‚‹
+extern	int		Graphics_D3D11_DeviceState_SetAlphaTestCmpMode( int AlphaTestCmpMode /* DX_CMP_NEVER ãªã© */ )
 {
 	DX_D3D11_PS_CONST_BUFFER_BASE *ConstantPSBase ;
 
@@ -11420,22 +11420,22 @@ extern	int		Graphics_D3D11_DeviceState_SetAlphaTestCmpMode( int AlphaTestCmpMode
 
 	DRAWSTOCKINFO
 
-	// ’l‚ğ•Û‘¶
+	// å€¤ã‚’ä¿å­˜
 	GD3D11.Device.State.AlphaTestCmpMode = AlphaTestCmpMode ;
 
-	// ’è”ƒf[ƒ^‚É”½‰f
+	// å®šæ•°ãƒ‡ãƒ¼ã‚¿ã«åæ˜ 
 	ConstantPSBase->AlphaTestCmpMode = AlphaTestCmpMode ;
 
 	GD3D11.Device.Shader.Constant.ConstBuffer_PS_Base->ChangeFlag = TRUE ;
 	
-	// ’è”ƒoƒbƒtƒ@‚ğXV
+	// å®šæ•°ãƒãƒƒãƒ•ã‚¡ã‚’æ›´æ–°
 //	Graphics_D3D11_ConstantBuffer_Update( GD3D11.Device.Shader.Constant.ConstBuffer_PS_Base ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒAƒ‹ƒtƒ@ƒeƒXƒg‚Åg—p‚·‚éQÆ’l‚ğİ’è‚·‚é
+// ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆã§ä½¿ç”¨ã™ã‚‹å‚ç…§å€¤ã‚’è¨­å®šã™ã‚‹
 extern	int		Graphics_D3D11_DeviceState_SetAlphaTestRef( int AlphaTestRef )
 {
 	DX_D3D11_PS_CONST_BUFFER_BASE *ConstantPSBase ;
@@ -11455,22 +11455,22 @@ extern	int		Graphics_D3D11_DeviceState_SetAlphaTestRef( int AlphaTestRef )
 
 	DRAWSTOCKINFO
 
-	// ’l‚ğ•Û‘¶
+	// å€¤ã‚’ä¿å­˜
 	GD3D11.Device.State.AlphaTestRef = AlphaTestRef ;
 
-	// ’è”ƒf[ƒ^‚É”½‰f
+	// å®šæ•°ãƒ‡ãƒ¼ã‚¿ã«åæ˜ 
 	ConstantPSBase->AlphaTestRef = AlphaTestRef / 255.0f ;
 
 	GD3D11.Device.Shader.Constant.ConstBuffer_PS_Base->ChangeFlag = TRUE ;
 	
-	// ’è”ƒoƒbƒtƒ@‚ğXV
+	// å®šæ•°ãƒãƒƒãƒ•ã‚¡ã‚’æ›´æ–°
 //	Graphics_D3D11_ConstantBuffer_Update( GD3D11.Device.Shader.Constant.ConstBuffer_PS_Base ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒJƒ‰[‚ÉƒAƒ‹ƒtƒ@’l‚ğæZ‚·‚é‚©‚Ç‚¤‚©‚ğİ’è‚·‚é
+// ã‚«ãƒ©ãƒ¼ã«ã‚¢ãƒ«ãƒ•ã‚¡å€¤ã‚’ä¹—ç®—ã™ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹
 extern	int		Graphics_D3D11_DeviceState_SetMulAlphaColor( int UseMulAlphaColor )
 {
 	DX_D3D11_PS_CONST_BUFFER_BASE *ConstantPSBase ;
@@ -11484,19 +11484,19 @@ extern	int		Graphics_D3D11_DeviceState_SetMulAlphaColor( int UseMulAlphaColor )
 
 	DRAWSTOCKINFO
 
-	// ’è”ƒf[ƒ^‚É”½‰f
+	// å®šæ•°ãƒ‡ãƒ¼ã‚¿ã«åæ˜ 
 	ConstantPSBase->MulAlphaColor = UseMulAlphaColor ? 1.0f : 0.0f ;
 
 	GD3D11.Device.Shader.Constant.ConstBuffer_PS_Base->ChangeFlag = TRUE ;
 	
-	// ’è”ƒoƒbƒtƒ@‚ğXV
+	// å®šæ•°ãƒãƒƒãƒ•ã‚¡ã‚’æ›´æ–°
 //	Graphics_D3D11_ConstantBuffer_Update( GD3D11.Device.Shader.Constant.ConstBuffer_PS_Base ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒfƒoƒCƒX‚Åg—p‚·‚éƒvƒŠƒ~ƒeƒBƒuƒ^ƒCƒv‚ğİ’è‚·‚é
+// ãƒ‡ãƒã‚¤ã‚¹ã§ä½¿ç”¨ã™ã‚‹ãƒ—ãƒªãƒŸãƒ†ã‚£ãƒ–ã‚¿ã‚¤ãƒ—ã‚’è¨­å®šã™ã‚‹
 extern	int		Graphics_D3D11_DeviceState_SetPrimitiveTopology( D_D3D11_PRIMITIVE_TOPOLOGY PrimitiveTopology )
 {
 	if( GAPIWin.D3D11DeviceObject == NULL )
@@ -11510,17 +11510,17 @@ extern	int		Graphics_D3D11_DeviceState_SetPrimitiveTopology( D_D3D11_PRIMITIVE_T
 		return 0 ;
 	}
 
-	// ’l‚ğ•Û‘¶
+	// å€¤ã‚’ä¿å­˜
 	GD3D11.Device.State.PrimitiveTopology = PrimitiveTopology ;
 
-	// ƒvƒŠƒ~ƒeƒBƒuƒ^ƒCƒv‚ğƒZƒbƒg
+	// ãƒ—ãƒªãƒŸãƒ†ã‚£ãƒ–ã‚¿ã‚¤ãƒ—ã‚’ã‚»ãƒƒãƒˆ
 	D3D11DeviceContext_IASetPrimitiveTopology( GD3D11.Device.State.PrimitiveTopology ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// Factor Color ‚ğİ’è‚·‚é
+// Factor Color ã‚’è¨­å®šã™ã‚‹
 extern	int		Graphics_D3D11_DeviceState_SetFactorColor( const DX_D3D11_SHADER_FLOAT4 *FactorColor )
 {
 	DX_D3D11_PS_CONST_BUFFER_BASE *ConstantPSBase ;
@@ -11543,7 +11543,7 @@ extern	int		Graphics_D3D11_DeviceState_SetFactorColor( const DX_D3D11_SHADER_FLO
 
 	DRAWSTOCKINFO
 
-	// ’è”ƒf[ƒ^‚É”½‰f
+	// å®šæ•°ãƒ‡ãƒ¼ã‚¿ã«åæ˜ 
 	ConstantPSBase->FactorColor[ 0 ] = (*FactorColor)[ 0 ] ;
 	ConstantPSBase->FactorColor[ 1 ] = (*FactorColor)[ 1 ] ;
 	ConstantPSBase->FactorColor[ 2 ] = (*FactorColor)[ 2 ] ;
@@ -11551,14 +11551,14 @@ extern	int		Graphics_D3D11_DeviceState_SetFactorColor( const DX_D3D11_SHADER_FLO
 
 	GD3D11.Device.Shader.Constant.ConstBuffer_PS_Base->ChangeFlag = TRUE ;
 	
-	// ’è”ƒoƒbƒtƒ@‚ğXV
+	// å®šæ•°ãƒãƒƒãƒ•ã‚¡ã‚’æ›´æ–°
 //	Graphics_D3D11_ConstantBuffer_Update( GD3D11.Device.Shader.Constant.ConstBuffer_PS_Base ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚Ì—ÖŠsü‚Ì‘¾‚³‚ğİ’è‚·‚é
+// ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã®è¼ªéƒ­ç·šã®å¤ªã•ã‚’è¨­å®šã™ã‚‹
 extern int Graphics_D3D11_DeviceState_SetToonOutLineSize( float Size )
 {
 	DX_D3D11_VS_CONST_BUFFER_BASE *ConstantVSBase ;
@@ -11578,7 +11578,7 @@ extern int Graphics_D3D11_DeviceState_SetToonOutLineSize( float Size )
 
 	DRAWSTOCKINFO
 
-	// ’è”ƒf[ƒ^‚É”½‰f
+	// å®šæ•°ãƒ‡ãƒ¼ã‚¿ã«åæ˜ 
 	ConstantVSBase->ToonOutLineSize[ 0 ] = Size ;
 	ConstantVSBase->ToonOutLineSize[ 1 ] = Size ;
 	ConstantVSBase->ToonOutLineSize[ 2 ] = Size ;
@@ -11586,14 +11586,14 @@ extern int Graphics_D3D11_DeviceState_SetToonOutLineSize( float Size )
 
 	GD3D11.Device.Shader.Constant.ConstBuffer_VS_Base->ChangeFlag = TRUE ;
 	
-	// ’è”ƒoƒbƒtƒ@‚ğXV
+	// å®šæ•°ãƒãƒƒãƒ•ã‚¡ã‚’æ›´æ–°
 //	Graphics_D3D11_ConstantBuffer_Update( GD3D11.Device.Shader.Constant.ConstBuffer_VS_Base ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// •`‰æƒuƒŒƒ“ƒhƒ‚[ƒh‚ÌƒZƒbƒg
+// æç”»ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã®ã‚»ãƒƒãƒˆ
 extern int Graphics_D3D11_DeviceState_SetBlendMode( int BlendMode, int BlendEnable, int BlendRGBSrc, int BlendRGBDest, int BlendRGBOp, int BlendASrc, int BlendADest, int BlendAOp, int NotWriteAlphaChannelFlag )
 {
 	if( GAPIWin.D3D11DeviceObject == NULL )
@@ -11634,7 +11634,7 @@ extern int Graphics_D3D11_DeviceState_SetBlendMode( int BlendMode, int BlendEnab
 	return 0 ;
 }
 
-// ‘S‚Ä‚Ì•`‰æ‘ÎÛ‚ÌƒTƒCƒY‚ªˆê’v‚µ‚Ä‚¢‚½‚çƒŒƒ“ƒ_ƒŠƒ“ƒOƒ^[ƒQƒbƒg‚ÉƒZƒbƒg
+// å…¨ã¦ã®æç”»å¯¾è±¡ã®ã‚µã‚¤ã‚ºãŒä¸€è‡´ã—ã¦ã„ãŸã‚‰ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã«ã‚»ãƒƒãƒˆ
 static	void	Graphics_D3D11_DeviceState_SetRenderTarget_SizeCheck( void )
 {
 	int i, Base ;
@@ -11667,7 +11667,7 @@ static	void	Graphics_D3D11_DeviceState_SetRenderTarget_SizeCheck( void )
 	D3D11DeviceContext_OMSetRenderTargets( DX_RENDERTARGET_COUNT, GD3D11.Device.State.TargetRTV, GD3D11.Device.State.TargetDepthDSV ) ;
 }
 
-// •`‰æ‘ÎÛ‚Ì•ÏX
+// æç”»å¯¾è±¡ã®å¤‰æ›´
 extern	int		Graphics_D3D11_DeviceState_SetRenderTarget( D_ID3D11Texture2D *RenderTargetTexture, D_ID3D11RenderTargetView *RenderTargetView, int TargetIndex )
 {
 	D_D3D11_TEXTURE2D_DESC      Texture2DDesc ;
@@ -11689,10 +11689,10 @@ extern	int		Graphics_D3D11_DeviceState_SetRenderTarget( D_ID3D11Texture2D *Rende
 		return 0 ;
 	}
 
-	// ’¸“_‘‚«o‚µ
+	// é ‚ç‚¹æ›¸ãå‡ºã—
 	DRAWSTOCKINFO
 
-	// ƒŒƒ“ƒ_ƒŠƒ“ƒOƒ^[ƒQƒbƒg‚Ì•Û‘¶
+	// ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã®ä¿å­˜
 	GD3D11.Device.State.TargetTexture2D[ TargetIndex ] = RenderTargetTexture ;
 	GD3D11.Device.State.TargetRTV[ TargetIndex ]       = RenderTargetView ;
 	if( RenderTargetTexture != NULL )
@@ -11704,10 +11704,10 @@ extern	int		Graphics_D3D11_DeviceState_SetRenderTarget( D_ID3D11Texture2D *Rende
 		_MEMSET( &GD3D11.Device.State.TargetTexture2DDesc[ TargetIndex ], 0, sizeof( D_D3D11_TEXTURE2D_DESC ) ) ;
 	}
 
-	// ƒŒƒ“ƒ_ƒŠƒ“ƒOƒ^[ƒQƒbƒg‚Ì•ÏX
+	// ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã®å¤‰æ›´
 	Graphics_D3D11_DeviceState_SetRenderTarget_SizeCheck() ;
 
-	// ƒrƒ…[ƒ|[ƒg‚Ìİ’è’l‚ğXV
+	// ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆã®è¨­å®šå€¤ã‚’æ›´æ–°
 	if( TargetIndex == 0 && RenderTargetTexture != NULL )
 	{
 		int Width, Height ;
@@ -11739,11 +11739,11 @@ extern	int		Graphics_D3D11_DeviceState_SetRenderTarget( D_ID3D11Texture2D *Rende
 		}
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return  0 ;
 }
 
-// •`‰æ‘ÎÛ‚Ì[“xƒoƒbƒtƒ@‚ğ•ÏX
+// æç”»å¯¾è±¡ã®æ·±åº¦ãƒãƒƒãƒ•ã‚¡ã‚’å¤‰æ›´
 extern	int		Graphics_D3D11_DeviceState_SetDepthStencil( D_ID3D11Texture2D *DepthStencilTexture, D_ID3D11DepthStencilView *DepthStencilView )
 {
 	if( GAPIWin.D3D11DeviceObject == NULL )
@@ -11758,10 +11758,10 @@ extern	int		Graphics_D3D11_DeviceState_SetDepthStencil( D_ID3D11Texture2D *Depth
 		return 0 ;
 	}
 
-	// ’¸“_‘‚«o‚µ
+	// é ‚ç‚¹æ›¸ãå‡ºã—
 	DRAWSTOCKINFO
 
-	// g—p‚·‚é[“xƒoƒbƒtƒ@‚Ì•Û‘¶
+	// ä½¿ç”¨ã™ã‚‹æ·±åº¦ãƒãƒƒãƒ•ã‚¡ã®ä¿å­˜
 	GD3D11.Device.State.TargetDepthTexture2D = DepthStencilTexture ;
 	GD3D11.Device.State.TargetDepthDSV       = DepthStencilView ;
 	if( DepthStencilTexture != NULL )
@@ -11773,14 +11773,14 @@ extern	int		Graphics_D3D11_DeviceState_SetDepthStencil( D_ID3D11Texture2D *Depth
 		_MEMSET( &GD3D11.Device.State.TargetDepthTexture2DDesc, 0, sizeof( D_D3D11_TEXTURE2D_DESC ) ) ;
 	}
 
-	// ƒŒƒ“ƒ_ƒŠƒ“ƒOƒ^[ƒQƒbƒg‚Ì•ÏX
+	// ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã®å¤‰æ›´
 	Graphics_D3D11_DeviceState_SetRenderTarget_SizeCheck() ;
 
-	// I—¹
+	// çµ‚äº†
 	return  0 ;
 }
 
-// g—p‚·‚é“ü—ÍƒŒƒCƒAƒEƒg‚ğ•ÏX‚·‚é
+// ä½¿ç”¨ã™ã‚‹å…¥åŠ›ãƒ¬ã‚¤ã‚¢ã‚¦ãƒˆã‚’å¤‰æ›´ã™ã‚‹
 extern	int		Graphics_D3D11_DeviceState_SetInputLayout( D_ID3D11InputLayout *InputLayout )
 {
 	if( GAPIWin.D3D11DeviceObject == NULL )
@@ -11802,16 +11802,16 @@ extern	int		Graphics_D3D11_DeviceState_SetInputLayout( D_ID3D11InputLayout *Inpu
 
 	GD3D11.Device.DrawSetting.DrawPrepAlwaysFlag = TRUE ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// w’è‚Ì’¸“_ƒVƒF[ƒ_[‚ğƒfƒoƒCƒX‚ÉƒZƒbƒg‚·‚é
+// æŒ‡å®šã®é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ãƒ‡ãƒã‚¤ã‚¹ã«ã‚»ãƒƒãƒˆã™ã‚‹
 extern int Graphics_D3D11_DeviceState_SetVertexShaderToHandle( int ShaderHandle )
 {
 	SHADERHANDLEDATA *VertexShader ;
 
-	// ƒnƒ“ƒhƒ‹ƒ`ƒFƒbƒN
+	// ãƒãƒ³ãƒ‰ãƒ«ãƒã‚§ãƒƒã‚¯
 	if( SHADERCHK( ShaderHandle, VertexShader ) )
 	{
 		return -1 ;
@@ -11821,14 +11821,14 @@ extern int Graphics_D3D11_DeviceState_SetVertexShaderToHandle( int ShaderHandle 
 		return -1 ;
 	}
 
-	// ƒVƒF[ƒ_[‚ÌƒZƒbƒg
+	// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚»ãƒƒãƒˆ
 	Graphics_D3D11_DeviceState_SetVertexShader( VertexShader->PF->D3D11.VertexShader ) ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// g—p‚·‚é’¸“_ƒVƒF[ƒ_[‚ğ•ÏX‚·‚é
+// ä½¿ç”¨ã™ã‚‹é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’å¤‰æ›´ã™ã‚‹
 extern	int		Graphics_D3D11_DeviceState_SetVertexShader( D_ID3D11VertexShader *VertexShader, int NormalVertexShader )
 {
 	if( GD3D11.Device.State.SetVertexShader == VertexShader &&
@@ -11850,11 +11850,11 @@ extern	int		Graphics_D3D11_DeviceState_SetVertexShader( D_ID3D11VertexShader *Ve
 		GD3D11.Device.DrawSetting.DrawPrepAlwaysFlag = TRUE ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ’¸“_ƒVƒF[ƒ_[‚Ìg—p‚ğ~‚ß‚é
+// é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ä½¿ç”¨ã‚’æ­¢ã‚ã‚‹
 extern	int		Graphics_D3D11_DeviceState_ResetVertexShader( int SetNormalVertexShaderCancel )
 {
 	if( GD3D11.Device.State.SetNormalVertexShader &&
@@ -11893,11 +11893,11 @@ extern	int		Graphics_D3D11_DeviceState_ResetVertexShader( int SetNormalVertexSha
 	GD3D11.Device.State.SetNormalVertexShader    = FALSE ;
 	GD3D11.Device.DrawSetting.DrawPrepAlwaysFlag = TRUE ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ’¸“_ƒVƒF[ƒ_[‚Åg—p‚·‚é’è”ƒoƒbƒtƒ@[‚ğİ’è‚·‚é
+// é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã§ä½¿ç”¨ã™ã‚‹å®šæ•°ãƒãƒƒãƒ•ã‚¡ãƒ¼ã‚’è¨­å®šã™ã‚‹
 extern	int		Graphics_D3D11_DeviceState_SetVertexShaderConstantBuffers( UINT StartSlot, UINT NumBuffers, D_ID3D11Buffer * const *pConstantBuffers )
 {
 	UINT i ;
@@ -11934,18 +11934,18 @@ extern	int		Graphics_D3D11_DeviceState_SetVertexShaderConstantBuffers( UINT Star
 		GD3D11.Device.State.SetVertexShaderConstantBuffer[ i + StartSlot ] = pConstantBuffers[ i ] ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
 
 
-// w’è‚ÌƒWƒIƒƒgƒŠƒVƒF[ƒ_[‚ğƒfƒoƒCƒX‚ÉƒZƒbƒg‚·‚é
+// æŒ‡å®šã®ã‚¸ã‚ªãƒ¡ãƒˆãƒªã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ãƒ‡ãƒã‚¤ã‚¹ã«ã‚»ãƒƒãƒˆã™ã‚‹
 extern int Graphics_D3D11_DeviceState_SetGeometryShaderToHandle( int ShaderHandle )
 {
 	SHADERHANDLEDATA *GeometryShader ;
 
-	// ƒnƒ“ƒhƒ‹ƒ`ƒFƒbƒN
+	// ãƒãƒ³ãƒ‰ãƒ«ãƒã‚§ãƒƒã‚¯
 	if( SHADERCHK( ShaderHandle, GeometryShader ) )
 	{
 		return -1 ;
@@ -11955,14 +11955,14 @@ extern int Graphics_D3D11_DeviceState_SetGeometryShaderToHandle( int ShaderHandl
 		return -1 ;
 	}
 
-	// ƒVƒF[ƒ_[‚ÌƒZƒbƒg
+	// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚»ãƒƒãƒˆ
 	Graphics_D3D11_DeviceState_SetGeometryShader( GeometryShader->PF->D3D11.GeometryShader ) ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// g—p‚·‚éƒWƒIƒƒgƒŠƒVƒF[ƒ_[‚ğ•ÏX‚·‚é
+// ä½¿ç”¨ã™ã‚‹ã‚¸ã‚ªãƒ¡ãƒˆãƒªã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’å¤‰æ›´ã™ã‚‹
 extern	int		Graphics_D3D11_DeviceState_SetGeometryShader( D_ID3D11GeometryShader *GeometryShader )
 {
 	if( GD3D11.Device.State.SetGeometryShader == GeometryShader &&
@@ -11981,11 +11981,11 @@ extern	int		Graphics_D3D11_DeviceState_SetGeometryShader( D_ID3D11GeometryShader
 
 	GD3D11.Device.DrawSetting.DrawPrepAlwaysFlag = TRUE ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒWƒIƒƒgƒŠƒVƒF[ƒ_[‚Ìg—p‚ğ~‚ß‚é
+// ã‚¸ã‚ªãƒ¡ãƒˆãƒªã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ä½¿ç”¨ã‚’æ­¢ã‚ã‚‹
 extern	int		Graphics_D3D11_DeviceState_ResetGeometryShader( void )
 {
 	if( GD3D11.Device.DrawSetting.CancelSettingEqualCheck == FALSE &&
@@ -12008,11 +12008,11 @@ extern	int		Graphics_D3D11_DeviceState_ResetGeometryShader( void )
 
 	GD3D11.Device.DrawSetting.DrawPrepAlwaysFlag = TRUE ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒWƒIƒƒgƒŠƒVƒF[ƒ_[‚Åg—p‚·‚é’è”ƒoƒbƒtƒ@[‚ğİ’è‚·‚é
+// ã‚¸ã‚ªãƒ¡ãƒˆãƒªã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã§ä½¿ç”¨ã™ã‚‹å®šæ•°ãƒãƒƒãƒ•ã‚¡ãƒ¼ã‚’è¨­å®šã™ã‚‹
 extern	int		Graphics_D3D11_DeviceState_SetGeometryShaderConstantBuffers( UINT StartSlot, UINT NumBuffers, D_ID3D11Buffer * const *pConstantBuffers )
 {
 	UINT i ;
@@ -12049,18 +12049,18 @@ extern	int		Graphics_D3D11_DeviceState_SetGeometryShaderConstantBuffers( UINT St
 		GD3D11.Device.State.SetGeometryShaderConstantBuffer[ i + StartSlot ] = pConstantBuffers[ i ] ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
 
 
-// w’è‚ÌƒsƒNƒZƒ‹ƒVƒF[ƒ_[‚ğƒfƒoƒCƒX‚ÉƒZƒbƒg‚·‚é
+// æŒ‡å®šã®ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ãƒ‡ãƒã‚¤ã‚¹ã«ã‚»ãƒƒãƒˆã™ã‚‹
 extern int Graphics_D3D11_DeviceState_SetPixelShaderToHandle( int ShaderHandle )
 {
 	SHADERHANDLEDATA *PixelShader ;
 
-	// ƒnƒ“ƒhƒ‹ƒ`ƒFƒbƒN
+	// ãƒãƒ³ãƒ‰ãƒ«ãƒã‚§ãƒƒã‚¯
 	if( SHADERCHK( ShaderHandle, PixelShader ) )
 	{
 		return -1 ;
@@ -12070,14 +12070,14 @@ extern int Graphics_D3D11_DeviceState_SetPixelShaderToHandle( int ShaderHandle )
 		return -1 ;
 	}
 
-	// ƒVƒF[ƒ_[‚ÌƒZƒbƒg
+	// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚»ãƒƒãƒˆ
 	Graphics_D3D11_DeviceState_SetPixelShader( PixelShader->PF->D3D11.PixelShader ) ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// g—p‚·‚éƒsƒNƒZƒ‹ƒVƒF[ƒ_[‚ğ•ÏX‚·‚é
+// ä½¿ç”¨ã™ã‚‹ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’å¤‰æ›´ã™ã‚‹
 extern	int		Graphics_D3D11_DeviceState_SetPixelShader( D_ID3D11PixelShader *PixelShader, int NormalPixelShader )
 {
 	if( GD3D11.Device.State.SetPixelShader == PixelShader &&
@@ -12099,11 +12099,11 @@ extern	int		Graphics_D3D11_DeviceState_SetPixelShader( D_ID3D11PixelShader *Pixe
 		GD3D11.Device.DrawSetting.DrawPrepAlwaysFlag = TRUE ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒsƒNƒZƒ‹ƒVƒF[ƒ_[‚Ìg—p‚ğ~‚ß‚é
+// ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ä½¿ç”¨ã‚’æ­¢ã‚ã‚‹
 extern	int		Graphics_D3D11_DeviceState_ResetPixelShader( int SetNormalPixelShaderCancel )
 {
 	if( GD3D11.Device.State.SetNormalPixelShader &&
@@ -12134,11 +12134,11 @@ extern	int		Graphics_D3D11_DeviceState_ResetPixelShader( int SetNormalPixelShade
 	GD3D11.Device.State.SetNormalPixelShader     = FALSE ;
 	GD3D11.Device.DrawSetting.DrawPrepAlwaysFlag = TRUE ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒsƒNƒZƒ‹ƒVƒF[ƒ_[‚Åg—p‚·‚é’è”ƒoƒbƒtƒ@[‚ğİ’è‚·‚é
+// ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã§ä½¿ç”¨ã™ã‚‹å®šæ•°ãƒãƒƒãƒ•ã‚¡ãƒ¼ã‚’è¨­å®šã™ã‚‹
 extern	int		Graphics_D3D11_DeviceState_SetPixelShaderConstantBuffers( UINT StartSlot, UINT NumBuffers, D_ID3D11Buffer * const *pConstantBuffers )
 {
 	UINT i ;
@@ -12175,11 +12175,11 @@ extern	int		Graphics_D3D11_DeviceState_SetPixelShaderConstantBuffers( UINT Start
 		GD3D11.Device.State.SetPixelShaderConstantBuffer[ i + StartSlot ] = pConstantBuffers[ i ] ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// g—p‚·‚é’¸“_ƒoƒbƒtƒ@‚ğ•ÏX‚·‚é
+// ä½¿ç”¨ã™ã‚‹é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã‚’å¤‰æ›´ã™ã‚‹
 extern	int		Graphics_D3D11_DeviceState_SetVertexBuffer( D_ID3D11Buffer *VertexBuffer, int VertexStride )
 {
 	UINT Offsets ;
@@ -12204,11 +12204,11 @@ extern	int		Graphics_D3D11_DeviceState_SetVertexBuffer( D_ID3D11Buffer *VertexBu
 	GD3D11.Device.State.SetVertexBuffer       = VertexBuffer ;
 	GD3D11.Device.State.SetVertexBufferStride = VertexStride ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// g—p‚·‚éƒCƒ“ƒfƒbƒNƒXƒoƒbƒtƒ@‚ğ•ÏX‚·‚é
+// ä½¿ç”¨ã™ã‚‹ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒãƒƒãƒ•ã‚¡ã‚’å¤‰æ›´ã™ã‚‹
 extern	int		Graphics_D3D11_DeviceState_SetIndexBuffer( D_ID3D11Buffer *IndexBuffer, D_DXGI_FORMAT Format )
 {
 	if( GD3D11.Device.State.SetIndexBuffer == IndexBuffer &&
@@ -12229,11 +12229,11 @@ extern	int		Graphics_D3D11_DeviceState_SetIndexBuffer( D_ID3D11Buffer *IndexBuff
 	GD3D11.Device.State.SetIndexBuffer       = IndexBuffer ;
 	GD3D11.Device.State.SetIndexBufferFormat = Format ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒsƒNƒZƒ‹ƒVƒF[ƒ_[‚Åg—p‚·‚éƒVƒF[ƒ_[ƒŠƒ\[ƒXƒrƒ…[‚ğ•ÏX‚·‚é
+// ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã§ä½¿ç”¨ã™ã‚‹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒªã‚½ãƒ¼ã‚¹ãƒ“ãƒ¥ãƒ¼ã‚’å¤‰æ›´ã™ã‚‹
 extern int Graphics_D3D11_DeviceState_SetPSShaderResouceView( int StartSlot, int Num, D_ID3D11ShaderResourceView * const *ppShaderResourceViews )
 {
 	int i ;
@@ -12269,32 +12269,32 @@ extern int Graphics_D3D11_DeviceState_SetPSShaderResouceView( int StartSlot, int
 	{
 		return 0 ;
 	}
-	// ƒsƒNƒZƒ‹ƒVƒF[ƒ_[‚Éİ’è
+	// ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã«è¨­å®š
 	D3D11DeviceContext_PSSetShaderResources( ( UINT )FixStartSlot, ( UINT )FixNum, &ppShaderResourceViews[ FixStartI ] ) ;
 
-	// ’¸“_ƒVƒF[ƒ_[‚É‚àİ’è
+	// é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã«ã‚‚è¨­å®š
 	D3D11DeviceContext_VSSetShaderResources( ( UINT )FixStartSlot, ( UINT )FixNum, &ppShaderResourceViews[ FixStartI ] ) ;
 
-	// ƒWƒIƒƒgƒŠƒVƒF[ƒ_[‚É‚àİ’è
+	// ã‚¸ã‚ªãƒ¡ãƒˆãƒªã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã«ã‚‚è¨­å®š
 	D3D11DeviceContext_GSSetShaderResources( ( UINT )FixStartSlot, ( UINT )FixNum, &ppShaderResourceViews[ FixStartI ] ) ;
 
-	// ƒIƒŠƒWƒiƒ‹’¸“_ƒVƒF[ƒ_[‚ğg—p‚µ‚Ä‚¢‚½‚ç’¸“_ƒVƒF[ƒ_[‚É‚àİ’è
+	// ã‚ªãƒªã‚¸ãƒŠãƒ«é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ä½¿ç”¨ã—ã¦ã„ãŸã‚‰é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã«ã‚‚è¨­å®š
 //	if( GSYS.DrawSetting.UserShaderRenderInfo.SetVertexShaderHandle != 0 )
 //	{
 //		D3D11DeviceContext_VSSetShaderResources( ( UINT )FixStartSlot, ( UINT )FixNum, &ppShaderResourceViews[ FixStartI ] ) ;
 //	}
 
-//	// ƒIƒŠƒWƒiƒ‹ƒWƒIƒƒgƒŠƒVƒF[ƒ_[‚ğg—p‚µ‚Ä‚¢‚½‚çƒWƒIƒƒgƒŠƒVƒF[ƒ_[‚É‚àİ’è
+//	// ã‚ªãƒªã‚¸ãƒŠãƒ«ã‚¸ã‚ªãƒ¡ãƒˆãƒªã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ä½¿ç”¨ã—ã¦ã„ãŸã‚‰ã‚¸ã‚ªãƒ¡ãƒˆãƒªã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã«ã‚‚è¨­å®š
 //	if( GSYS.DrawSetting.UserShaderRenderInfo.SetGeometryShaderHandle != 0 )
 //	{
 //		D3D11DeviceContext_GSSetShaderResources( ( UINT )FixStartSlot, ( UINT )FixNum, &ppShaderResourceViews[ FixStartI ] ) ;
 //	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// •W€•`‰æ‚Ì€”õ‚ğs‚¤
+// æ¨™æº–æç”»ã®æº–å‚™ã‚’è¡Œã†
 extern	int		Graphics_D3D11_DeviceState_NormalDrawSetup( void )
 {
 	int							IgnoreTextureAlpha ;
@@ -12319,14 +12319,14 @@ extern	int		Graphics_D3D11_DeviceState_NormalDrawSetup( void )
 		return -1 ;
 	}
 
-	// ƒeƒNƒXƒ`ƒƒ‚ª•ÏX‚³‚ê‚½Aƒtƒ‰ƒO‚ğ“|‚·
+	// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãŒå¤‰æ›´ã•ã‚ŒãŸã€ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 	GD3D11.Device.DrawSetting.ChangeTextureFlag = FALSE ;
 	GD3D11.Device.DrawSetting.DrawPrepAlwaysFlag = TRUE ;
 
-	// ƒpƒ‰ƒ[ƒ^‚ª•ÏX‚³‚ê‚½Aƒtƒ‰ƒO‚ğ“|‚·
+	// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãŒå¤‰æ›´ã•ã‚ŒãŸã€ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 	GD3D11.Device.DrawSetting.ChangeBlendParamFlag = FALSE ;
 
-	// ƒuƒŒƒ“ƒhƒ‚[ƒh‚ÌŒˆ’è
+	// ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã®æ±ºå®š
 	{
 		NextBlendMode		= GD3D11.Device.DrawSetting.BlendMode    ;
 		NextBlendEnable		= GD3D11.Device.DrawSetting.BlendEnable	 ;
@@ -12339,18 +12339,18 @@ extern	int		Graphics_D3D11_DeviceState_NormalDrawSetup( void )
 		switch( GD3D11.Device.DrawSetting.BlendMode )
 		{
 		case DX_BLENDMODE_SUB :
-			// Œ¸ZƒuƒŒƒ“ƒh‚Ìê‡‚Í14”Ô–Ú‚ÌƒuƒŒƒ“ƒhƒ‚[ƒh‚ğg—p‚·‚é
+			// æ¸›ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰ã®å ´åˆã¯14ç•ªç›®ã®ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã‚’ä½¿ç”¨ã™ã‚‹
 			NextBlendMode = DX_BLENDMODE_SUB1 ;
 			break ;
 
 		case DX_BLENDMODE_NOBLEND :
-			// •`‰ææ‚Éƒ¿’l‚ª‚ ‚éê‡‚Í DX_BLENDMODE_NOBLEND ‚Å‚àƒuƒŒƒ“ƒhƒ‚[ƒh‚Í DX_BLENDMODE_SRCCOLOR ‚É‚·‚é
+			// æç”»å…ˆã«Î±å€¤ãŒã‚ã‚‹å ´åˆã¯ DX_BLENDMODE_NOBLEND ã§ã‚‚ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã¯ DX_BLENDMODE_SRCCOLOR ã«ã™ã‚‹
 			if( GSYS.DrawSetting.AlphaChDrawMode )
 			{
 				NextBlendMode = DX_BLENDMODE_SRCCOLOR ;
 			}
 
-			// •`‰æŒ³‰æ‘œ‚Éƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ª‚ ‚éê‡‚âƒuƒŒƒ“ƒh‰æ‘œ‚Ì—L–³‚È‚ÇğŒŸ‘æ‚Å DX_BLENDMODE_ALPHA ‚ğg—p‚·‚é
+			// æç”»å…ƒç”»åƒã«Î±ãƒãƒ£ãƒ³ãƒãƒ«ãŒã‚ã‚‹å ´åˆã‚„ãƒ–ãƒ¬ãƒ³ãƒ‰ç”»åƒã®æœ‰ç„¡ãªã©æ¡ä»¶æ¬¡ç¬¬ã§ DX_BLENDMODE_ALPHA ã‚’ä½¿ç”¨ã™ã‚‹
 			if( GD3D11.Device.DrawSetting.RenderTexture != NULL )
 			{
 				if( GD3D11.Device.DrawSetting.BlendTexture != NULL )
@@ -12383,15 +12383,15 @@ extern	int		Graphics_D3D11_DeviceState_NormalDrawSetup( void )
 		}
 	}
 	
-	// ƒJƒŒƒ“ƒgƒeƒNƒXƒ`ƒƒ‚ª–³‚¢ê‡‚Æ‚ ‚éê‡‚Å•ªŠò
+	// ã‚«ãƒ¬ãƒ³ãƒˆãƒ†ã‚¯ã‚¹ãƒãƒ£ãŒç„¡ã„å ´åˆã¨ã‚ã‚‹å ´åˆã§åˆ†å²
 	if( GD3D11.Device.DrawSetting.RenderTexture == NULL )
 	{
-		// ƒJƒŒƒ“ƒgƒeƒNƒXƒ`ƒƒ‚ª–³‚¢ê‡‚Íü‚â” ‚Ì•`‰æ‚Æ”»’fAƒeƒNƒXƒ`ƒƒƒXƒe[ƒW‚Í–³Œø‚É‚·‚é
+		// ã‚«ãƒ¬ãƒ³ãƒˆãƒ†ã‚¯ã‚¹ãƒãƒ£ãŒç„¡ã„å ´åˆã¯ç·šã‚„ç®±ã®æç”»ã¨åˆ¤æ–­ã€ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¹ãƒ†ãƒ¼ã‚¸ã¯ç„¡åŠ¹ã«ã™ã‚‹
 
-		// ‚Æ‚è‚ ‚¦‚¸•`‰æˆ—‚ğs‚¤
+		// ã¨ã‚Šã‚ãˆãšæç”»å‡¦ç†ã‚’è¡Œã†
 		GD3D11.Device.DrawInfo.BlendMaxNotDrawFlag = FALSE ;
 
-		// ƒAƒ‹ƒtƒ@ƒeƒXƒgƒpƒ‰ƒ[ƒ^‚ª—LŒø‚Èê‡‚Í‚»‚ê‚ğ—Dæ‚·‚é
+		// ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãŒæœ‰åŠ¹ãªå ´åˆã¯ãã‚Œã‚’å„ªå…ˆã™ã‚‹
 		if( GD3D11.Device.DrawSetting.AlphaTestMode != -1 )
 		{
 			GD3D11.Device.State.AlphaTestEnable = TRUE ;
@@ -12403,7 +12403,7 @@ extern	int		Graphics_D3D11_DeviceState_NormalDrawSetup( void )
 			GD3D11.Device.State.AlphaTestEnable = FALSE ;
 		}
 
-		// g—p‚·‚éƒsƒNƒZƒ‹ƒVƒF[ƒ_[‚Ìæ“¾
+		// ä½¿ç”¨ã™ã‚‹ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®å–å¾—
 		GD3D11.Device.State.AlphaTestModeShaderIndex = Graphics_D3D11_Shader_GetAlphaTestModeIndex( GD3D11.Device.State.AlphaTestEnable, AlphaTestCmpMode ) ;
 	#ifdef DX_NON_SHADERCODE_BINARY
 		if( GD3D11.Device.Shader.Base.BaseNoneTex_PS[ g_DefaultBlendDescArray[ NextBlendMode ].RenderBlendType ][ GD3D11.Device.State.AlphaTestModeShaderIndex ] == NULL )
@@ -12413,7 +12413,7 @@ extern	int		Graphics_D3D11_DeviceState_NormalDrawSetup( void )
 	#endif // DX_NON_SHADERCODE_BINARY
 		UsePixelShader = GD3D11.Device.Shader.Base.BaseNoneTex_PS[ g_DefaultBlendDescArray[ NextBlendMode ].RenderBlendType ][ GD3D11.Device.State.AlphaTestModeShaderIndex ] ;
 
-		// ’¸“_ƒ^ƒCƒv‚ÌƒZƒbƒg
+		// é ‚ç‚¹ã‚¿ã‚¤ãƒ—ã®ã‚»ãƒƒãƒˆ
 		GD3D11.Device.DrawInfo.VertexType = VERTEXTYPE_NOTEX ;
 
 #if VERTEXBUFFERMODE == 2
@@ -12425,9 +12425,9 @@ extern	int		Graphics_D3D11_DeviceState_NormalDrawSetup( void )
 	}
 	else
 	{
-		// ƒJƒŒƒ“ƒgƒeƒNƒXƒ`ƒƒ‚ª‚ ‚éê‡‚ÍƒeƒNƒXƒ`ƒƒƒXƒe[ƒWƒuƒŒƒ“ƒhƒe[ƒuƒ‹‚©‚ç’l‚ğæ“¾‚·‚é
+		// ã‚«ãƒ¬ãƒ³ãƒˆãƒ†ã‚¯ã‚¹ãƒãƒ£ãŒã‚ã‚‹å ´åˆã¯ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¹ãƒ†ãƒ¼ã‚¸ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ†ãƒ¼ãƒ–ãƒ«ã‹ã‚‰å€¤ã‚’å–å¾—ã™ã‚‹
 
-		// g—p‚·‚éƒeƒNƒXƒ`ƒƒƒuƒŒƒ“ƒhƒXƒe[ƒWƒXƒe[ƒ^ƒXƒe[ƒuƒ‹‚ÌƒCƒ“ƒfƒbƒNƒX‚ğƒZƒbƒg
+		// ä½¿ç”¨ã™ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ–ãƒ¬ãƒ³ãƒ‰ã‚¹ãƒ†ãƒ¼ã‚¸ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒ†ãƒ¼ãƒ–ãƒ«ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’ã‚»ãƒƒãƒˆ
 		IgnoreTextureAlpha = 1 ;
 		if( GD3D11.Device.DrawSetting.AlphaChannelValidFlag ||
 			GD3D11.Device.DrawSetting.AlphaTestValidFlag    ||
@@ -12437,22 +12437,22 @@ extern	int		Graphics_D3D11_DeviceState_NormalDrawSetup( void )
 			IgnoreTextureAlpha = 0 ;
 		}
 
-		// ƒuƒŒƒ“ƒhƒeƒNƒXƒ`ƒƒ[‚ğg—p‚·‚é‚©‚Ç‚¤‚©‚Å•ªŠò
+		// ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã§åˆ†å²
 		if( GD3D11.Device.DrawSetting.BlendTexture != NULL )
 		{
 			int RenderBlendType ;
 
-			// ƒuƒŒƒ“ƒhƒeƒNƒXƒ`ƒƒ[‚ª‚ ‚éê‡‚Í AlphaTestValidFlag ‚Í–³‹
+			// ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ãŒã‚ã‚‹å ´åˆã¯ AlphaTestValidFlag ã¯ç„¡è¦–
 
-			// g—p‚·‚éƒe[ƒuƒ‹‚ÌƒCƒ“ƒfƒbƒNƒX‚ğŠ„‚èo‚·
+			// ä½¿ç”¨ã™ã‚‹ãƒ†ãƒ¼ãƒ–ãƒ«ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’å‰²ã‚Šå‡ºã™
 			RenderBlendType = g_DefaultBlendDescArray[ NextBlendMode ].RenderBlendType ;
 
-			// g—p‚·‚éƒeƒNƒXƒ`ƒƒ[ƒAƒhƒŒƒX‚ğƒZƒbƒg
+			// ä½¿ç”¨ã™ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ã‚»ãƒƒãƒˆ
 			ShaderResourceView[ 0 ] = GD3D11.Device.DrawSetting.RenderTextureSRV ;
 			ShaderResourceView[ 1 ] = GD3D11.Device.DrawSetting.BlendTextureSRV ;
 			ShaderResourceViewNum = 2 ;
 
-			// ’¸“_ƒ^ƒCƒv‚ÌƒZƒbƒg
+			// é ‚ç‚¹ã‚¿ã‚¤ãƒ—ã®ã‚»ãƒƒãƒˆ
 			GD3D11.Device.DrawInfo.VertexType = VERTEXTYPE_BLENDTEX ;
 
 #if VERTEXBUFFERMODE == 2
@@ -12462,14 +12462,14 @@ extern	int		Graphics_D3D11_DeviceState_NormalDrawSetup( void )
 			GD3D11.Device.DrawInfo.VertexBufferNextAddr = GD3D11.Device.DrawInfo.VertexBufferTemp ;
 #endif
 
-			// ƒuƒŒƒ“ƒhƒ^ƒCƒv‚É‚æ‚Á‚Äˆ—‚ğ•ªŠò
+			// ãƒ–ãƒ¬ãƒ³ãƒ‰ã‚¿ã‚¤ãƒ—ã«ã‚ˆã£ã¦å‡¦ç†ã‚’åˆ†å²
 			switch( GD3D11.Device.DrawSetting.BlendGraphType )
 			{
 			case DX_BLENDGRAPHTYPE_NORMAL :
-				// ‚Æ‚è‚ ‚¦‚¸•`‰æˆ—‚ğs‚¤
+				// ã¨ã‚Šã‚ãˆãšæç”»å‡¦ç†ã‚’è¡Œã†
 				GD3D11.Device.DrawInfo.BlendMaxNotDrawFlag = FALSE ;
 
-				// ƒAƒ‹ƒtƒ@ƒeƒXƒgƒpƒ‰ƒ[ƒ^‚ª—LŒø‚Èê‡‚Í‚»‚ê‚ğ—Dæ‚·‚é
+				// ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãŒæœ‰åŠ¹ãªå ´åˆã¯ãã‚Œã‚’å„ªå…ˆã™ã‚‹
 				if( GD3D11.Device.DrawSetting.AlphaTestMode != -1 )
 				{
 					GD3D11.Device.State.AlphaTestEnable = TRUE ;
@@ -12478,7 +12478,7 @@ extern	int		Graphics_D3D11_DeviceState_NormalDrawSetup( void )
 				}
 				else
 				{
-					// ƒ¿ˆ—‚ª—LŒø‚Èê‡‚Íƒ¿’l‚ª‚O‚Ìê‡‚Ì‚İ•\¦‚³‚ê‚È‚¢‚æ‚¤‚É‚·‚é
+					// Î±å‡¦ç†ãŒæœ‰åŠ¹ãªå ´åˆã¯Î±å€¤ãŒï¼ã®å ´åˆã®ã¿è¡¨ç¤ºã•ã‚Œãªã„ã‚ˆã†ã«ã™ã‚‹
 					if( GD3D11.Device.DrawSetting.AlphaTestValidFlag == TRUE ||
 						g_DefaultBlendDescArray[ NextBlendMode ].RenderTargetBlendDesc.BlendEnable == TRUE ||
 						GD3D11.Device.DrawSetting.AlphaChannelValidFlag == TRUE )
@@ -12493,14 +12493,14 @@ extern	int		Graphics_D3D11_DeviceState_NormalDrawSetup( void )
 					}
 				}
 
-				// ƒNƒƒXƒtƒF[ƒh—¦‚ğİ’è‚·‚é
+				// ã‚¯ãƒ­ã‚¹ãƒ•ã‚§ãƒ¼ãƒ‰ç‡ã‚’è¨­å®šã™ã‚‹
 				UseFloatFactorColor = TRUE ;
 				FloatFactorColor[ 0 ] = 1.0f ;
 				FloatFactorColor[ 1 ] = 1.0f ;
 				FloatFactorColor[ 2 ] = 1.0f ;
 				FloatFactorColor[ 3 ] = GD3D11.Device.DrawSetting.BlendGraphFadeRatio / 255.0f ;
 
-				// g—p‚·‚éƒVƒF[ƒ_[‚ğƒZƒbƒg
+				// ä½¿ç”¨ã™ã‚‹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ã‚»ãƒƒãƒˆ
 				GD3D11.Device.State.AlphaTestModeShaderIndex = Graphics_D3D11_Shader_GetAlphaTestModeIndex( GD3D11.Device.State.AlphaTestEnable, AlphaTestCmpMode ) ;
 			#ifdef DX_NON_SHADERCODE_BINARY
 				if( GD3D11.Device.Shader.Base.BaseUseTex_PS[ 1 ][ RenderBlendType ][ GD3D11.Device.DrawSetting.IgnoreGraphColorFlag ? 1 : 0 ][ IgnoreTextureAlpha ][ GD3D11.Device.State.AlphaTestModeShaderIndex ] == NULL )
@@ -12512,34 +12512,34 @@ extern	int		Graphics_D3D11_DeviceState_NormalDrawSetup( void )
 				break ;
 
 			case DX_BLENDGRAPHTYPE_WIPE :
-				// ƒuƒŒƒ“ƒh‹«ŠE’l‚ªÅ‘å‚Ìê‡‚Í‰½‚à•`‰æ‚µ‚È‚¢
+				// ãƒ–ãƒ¬ãƒ³ãƒ‰å¢ƒç•Œå€¤ãŒæœ€å¤§ã®å ´åˆã¯ä½•ã‚‚æç”»ã—ãªã„
 				GD3D11.Device.DrawInfo.BlendMaxNotDrawFlag = GD3D11.Device.DrawSetting.BlendGraphBorderParam == 255 ? TRUE : FALSE ;
 
-				// floatŒ^‚Ì FactorColor ‚ğg—p‚·‚é
+				// floatå‹ã® FactorColor ã‚’ä½¿ç”¨ã™ã‚‹
 				UseFloatFactorColor = TRUE ;
 				FloatFactorColor[ 0 ] = 0.0f ;
 				FloatFactorColor[ 1 ] = 0.0f ;
 				FloatFactorColor[ 2 ] = 0.0f ;
 				FloatFactorColor[ 3 ] = 0.0f ;
 
-				// ‹«ŠE”ÍˆÍ‚ª‚PˆÈ‰º‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+				// å¢ƒç•Œç¯„å›²ãŒï¼‘ä»¥ä¸‹ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 				if( GD3D11.Device.DrawSetting.BlendGraphBorderRange <= 1 )
 				{
-					// ‚±‚±‚Í‚à‚¤–w‚Ç—áŠOˆ— -------------------------------------------
+					// ã“ã“ã¯ã‚‚ã†æ®†ã©ä¾‹å¤–å‡¦ç† -------------------------------------------
 
-					// ƒ¿ƒeƒXƒg‚ğg—p‚·‚é
+					// Î±ãƒ†ã‚¹ãƒˆã‚’ä½¿ç”¨ã™ã‚‹
 					GD3D11.Device.State.AlphaTestEnable = TRUE ;
 					AlphaTestRef     = GD3D11.Device.DrawSetting.BlendGraphBorderParam ;
 					AlphaTestCmpMode = DX_CMP_GREATEREQUAL ;
 
-					// ƒ¿ƒuƒŒƒ“ƒh‹@”\‚n‚e‚e
+					// Î±ãƒ–ãƒ¬ãƒ³ãƒ‰æ©Ÿèƒ½ï¼¯ï¼¦ï¼¦
 					NextBlendMode = DX_BLENDMODE_NOBLEND ;
 
-					// ‘•ª‚·‚éƒ¿’l‚Í–³‚µ
+					// å¢—åˆ†ã™ã‚‹Î±å€¤ã¯ç„¡ã—
 					FloatFactorColor[ 3 ] = 0.0f ;
 					FloatFactorColor[ 2 ] = 1.0f ;
 
-					// ‚à‚µ‰æ‘œ‚ªƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ğg—p‚µ‚Ä‚¢‚ÄAŠ‚Â BlendGraphBorderParam ‚ª 0 ‚¾‚Á‚½‚ç AlphaRef ‚ğ‚O‚É‚µ‚È‚¢
+					// ã‚‚ã—ç”»åƒãŒÎ±ãƒãƒ£ãƒ³ãƒãƒ«ã‚’ä½¿ç”¨ã—ã¦ã„ã¦ã€ä¸”ã¤ BlendGraphBorderParam ãŒ 0 ã ã£ãŸã‚‰ AlphaRef ã‚’ï¼ã«ã—ãªã„
 					if( ( GD3D11.Device.DrawSetting.AlphaChannelValidFlag ||
 						  GD3D11.Device.DrawSetting.AlphaTestValidFlag ) &&
 						GD3D11.Device.DrawSetting.BlendGraphBorderParam == 0 )
@@ -12551,19 +12551,19 @@ extern	int		Graphics_D3D11_DeviceState_NormalDrawSetup( void )
 				{
 					int p ;
 				
-					// ƒ¿ƒuƒŒƒ“ƒh‚É‚æ‚éƒeƒNƒXƒ`ƒƒƒuƒŒƒ“ƒh
+					// Î±ãƒ–ãƒ¬ãƒ³ãƒ‰ã«ã‚ˆã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ–ãƒ¬ãƒ³ãƒ‰
 
-					// ƒ¿ƒeƒXƒg‚Ís‚í‚È‚¢
+					// Î±ãƒ†ã‚¹ãƒˆã¯è¡Œã‚ãªã„
 					GD3D11.Device.State.AlphaTestEnable = FALSE ;
 
-					// ‹«ŠE”ÍˆÍ‚É‚æ‚Á‚Ä‚S’iŠK
+					// å¢ƒç•Œç¯„å›²ã«ã‚ˆã£ã¦ï¼”æ®µéš
 					if( GD3D11.Device.DrawSetting.BlendGraphBorderRange <= 64 )
 					{
-						// ~‚S
+						// Ã—ï¼”
 
 						p = 1280 - GD3D11.Device.DrawSetting.BlendGraphBorderParam * 1280 / 255 ; 
 
-						// ƒuƒŒƒ“ƒhƒeƒNƒXƒ`ƒƒ‚ÌƒuƒŒƒ“ƒh’l‚É‚æ‚Á‚Ä‡¬ƒpƒ‰ƒ[ƒ^‚ğ•ÏX
+						// ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ãƒ–ãƒ¬ãƒ³ãƒ‰å€¤ã«ã‚ˆã£ã¦åˆæˆãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’å¤‰æ›´
 						if( p < 1024 )
 						{
 							FloatFactorColor[ 3 ] = - ( float )( 255 - p * 255 / 1024 ) / 255.0f ;
@@ -12578,11 +12578,11 @@ extern	int		Graphics_D3D11_DeviceState_NormalDrawSetup( void )
 					else
 					if( GD3D11.Device.DrawSetting.BlendGraphBorderRange <= 128 )
 					{
-						// ~‚Q
+						// Ã—ï¼’
 
 						p = 768 - GD3D11.Device.DrawSetting.BlendGraphBorderParam * 768 / 255 ; 
 
-						// ƒuƒŒƒ“ƒhƒeƒNƒXƒ`ƒƒ‚ÌƒuƒŒƒ“ƒh’l‚É‚æ‚Á‚Ä‡¬ƒpƒ‰ƒ[ƒ^‚ğ•ÏX
+						// ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ãƒ–ãƒ¬ãƒ³ãƒ‰å€¤ã«ã‚ˆã£ã¦åˆæˆãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’å¤‰æ›´
 						if( p < 512 )
 						{
 							FloatFactorColor[ 3 ] = - ( float )( 255 - p * 255 / 512 ) / 255.0f ;
@@ -12596,11 +12596,11 @@ extern	int		Graphics_D3D11_DeviceState_NormalDrawSetup( void )
 					}
 					else
 					{
-						// ~‚P
+						// Ã—ï¼‘
 
 						p = 512 - GD3D11.Device.DrawSetting.BlendGraphBorderParam * 512 / 255 ; 
 
-						// ƒuƒŒƒ“ƒhƒeƒNƒXƒ`ƒƒ‚ÌƒuƒŒƒ“ƒh’l‚É‚æ‚Á‚Ä‡¬ƒpƒ‰ƒ[ƒ^‚ğ•ÏX
+						// ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ãƒ–ãƒ¬ãƒ³ãƒ‰å€¤ã«ã‚ˆã£ã¦åˆæˆãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’å¤‰æ›´
 						if( p < 256 )
 						{
 							FloatFactorColor[ 3 ] = - ( float )( 255 - p * 255 / 256 ) / 255.0f ;
@@ -12614,7 +12614,7 @@ extern	int		Graphics_D3D11_DeviceState_NormalDrawSetup( void )
 					}
 				}
 
-				// g—p‚·‚éƒVƒF[ƒ_[‚ğƒZƒbƒg
+				// ä½¿ç”¨ã™ã‚‹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ã‚»ãƒƒãƒˆ
 				GD3D11.Device.State.AlphaTestModeShaderIndex = Graphics_D3D11_Shader_GetAlphaTestModeIndex( GD3D11.Device.State.AlphaTestEnable, AlphaTestCmpMode ) ;
 			#ifdef DX_NON_SHADERCODE_BINARY
 				if( GD3D11.Device.Shader.Base.BaseUseTex_PS[ 2 ][ RenderBlendType ][ GD3D11.Device.DrawSetting.IgnoreGraphColorFlag ? 1 : 0 ][ IgnoreTextureAlpha ][ GD3D11.Device.State.AlphaTestModeShaderIndex ] == NULL )
@@ -12626,10 +12626,10 @@ extern	int		Graphics_D3D11_DeviceState_NormalDrawSetup( void )
 				break ;
 
 			case DX_BLENDGRAPHTYPE_ALPHA :
-				// ‚Æ‚è‚ ‚¦‚¸•`‰æˆ—‚ğs‚¤
+				// ã¨ã‚Šã‚ãˆãšæç”»å‡¦ç†ã‚’è¡Œã†
 				GD3D11.Device.DrawInfo.BlendMaxNotDrawFlag = FALSE ;
 
-				// ƒAƒ‹ƒtƒ@ƒeƒXƒgƒpƒ‰ƒ[ƒ^‚ª—LŒø‚Èê‡‚Í‚»‚ê‚ğ—Dæ‚·‚é
+				// ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãŒæœ‰åŠ¹ãªå ´åˆã¯ãã‚Œã‚’å„ªå…ˆã™ã‚‹
 				if( GD3D11.Device.DrawSetting.AlphaTestMode != -1 )
 				{
 					GD3D11.Device.State.AlphaTestEnable = TRUE ;
@@ -12638,7 +12638,7 @@ extern	int		Graphics_D3D11_DeviceState_NormalDrawSetup( void )
 				}
 				else
 				{
-					// ƒ¿ˆ—‚ª—LŒø‚Èê‡‚Íƒ¿’l‚ª‚O‚Ìê‡‚Ì‚İ•\¦‚³‚ê‚È‚¢‚æ‚¤‚É‚·‚é
+					// Î±å‡¦ç†ãŒæœ‰åŠ¹ãªå ´åˆã¯Î±å€¤ãŒï¼ã®å ´åˆã®ã¿è¡¨ç¤ºã•ã‚Œãªã„ã‚ˆã†ã«ã™ã‚‹
 					if( g_DefaultBlendDescArray[ NextBlendMode ].RenderTargetBlendDesc.BlendEnable == TRUE )
 					{
 						GD3D11.Device.State.AlphaTestEnable = TRUE ;
@@ -12651,7 +12651,7 @@ extern	int		Graphics_D3D11_DeviceState_NormalDrawSetup( void )
 					}
 				}
 
-				// g—p‚·‚éƒVƒF[ƒ_[‚ğƒZƒbƒg
+				// ä½¿ç”¨ã™ã‚‹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ã‚»ãƒƒãƒˆ
 				GD3D11.Device.State.AlphaTestModeShaderIndex = Graphics_D3D11_Shader_GetAlphaTestModeIndex( GD3D11.Device.State.AlphaTestEnable, AlphaTestCmpMode ) ;
 			#ifdef DX_NON_SHADERCODE_BINARY
 				if( GD3D11.Device.Shader.Base.BaseUseTex_PS[ 3 ][ RenderBlendType ][ GD3D11.Device.DrawSetting.IgnoreGraphColorFlag ? 1 : 0 ][ IgnoreTextureAlpha ][ GD3D11.Device.State.AlphaTestModeShaderIndex ] == NULL )
@@ -12665,12 +12665,12 @@ extern	int		Graphics_D3D11_DeviceState_NormalDrawSetup( void )
 		}
 		else
 		{
-			// ƒuƒŒƒ“ƒhƒeƒNƒXƒ`ƒƒ[‚ª–³‚¢ê‡
+			// ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ãŒç„¡ã„å ´åˆ
 
-			// ‚Æ‚è‚ ‚¦‚¸•`‰æˆ—‚ğs‚¤
+			// ã¨ã‚Šã‚ãˆãšæç”»å‡¦ç†ã‚’è¡Œã†
 			GD3D11.Device.DrawInfo.BlendMaxNotDrawFlag = FALSE ;
 
-			// ’¸“_ƒ^ƒCƒv‚ÌƒZƒbƒg
+			// é ‚ç‚¹ã‚¿ã‚¤ãƒ—ã®ã‚»ãƒƒãƒˆ
 			GD3D11.Device.DrawInfo.VertexType = VERTEXTYPE_TEX ;
 
 #if VERTEXBUFFERMODE == 2
@@ -12680,7 +12680,7 @@ extern	int		Graphics_D3D11_DeviceState_NormalDrawSetup( void )
 			GD3D11.Device.DrawInfo.VertexBufferNextAddr = GD3D11.Device.DrawInfo.VertexBufferTemp ;
 #endif
 
-			// ƒAƒ‹ƒtƒ@ƒeƒXƒgƒpƒ‰ƒ[ƒ^‚ª—LŒø‚Èê‡‚Í‚»‚ê‚ğ—Dæ‚·‚é
+			// ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãŒæœ‰åŠ¹ãªå ´åˆã¯ãã‚Œã‚’å„ªå…ˆã™ã‚‹
 			if( GD3D11.Device.DrawSetting.AlphaTestMode != -1 )
 			{
 				GD3D11.Device.State.AlphaTestEnable = TRUE ;
@@ -12689,17 +12689,17 @@ extern	int		Graphics_D3D11_DeviceState_NormalDrawSetup( void )
 			}
 			else
 			{
-				// ƒ¿ƒeƒXƒg‚ğg—p‚·‚é‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+				// Î±ãƒ†ã‚¹ãƒˆã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 				if( GD3D11.Device.DrawSetting.AlphaTestValidFlag == TRUE )
 				{
-					// ƒ¿ƒeƒXƒg‚ğs‚¤(“§‰ßFˆ—ˆÈŠO‚Éƒ¿ƒeƒXƒg‚ÍƒuƒŒƒ“ƒhƒeƒNƒXƒ`ƒƒ‚Å‚àg—p‚µ‚Ä‚¢‚é)
+					// Î±ãƒ†ã‚¹ãƒˆã‚’è¡Œã†(é€éè‰²å‡¦ç†ä»¥å¤–ã«Î±ãƒ†ã‚¹ãƒˆã¯ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ†ã‚¯ã‚¹ãƒãƒ£ã§ã‚‚ä½¿ç”¨ã—ã¦ã„ã‚‹)
 					GD3D11.Device.State.AlphaTestEnable = TRUE ;
 					AlphaTestRef     = 16 ;
 					AlphaTestCmpMode = DX_CMP_GREATER ;
 				}
 				else
 				{
-					// ƒ¿ˆ—‚ª—LŒø‚Èê‡‚ÍƒuƒŒƒ“ƒhƒ‚[ƒh‚É‚æ‚Á‚Ä‚Íƒ¿’l‚ª‚O‚Ìê‡‚Ì‚İ•\¦‚³‚ê‚È‚¢‚æ‚¤‚É‚·‚é
+					// Î±å‡¦ç†ãŒæœ‰åŠ¹ãªå ´åˆã¯ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã«ã‚ˆã£ã¦ã¯Î±å€¤ãŒï¼ã®å ´åˆã®ã¿è¡¨ç¤ºã•ã‚Œãªã„ã‚ˆã†ã«ã™ã‚‹
 					if( g_DefaultBlendDescArray[ NextBlendMode ].RenderTargetBlendDesc.BlendEnable == TRUE &&
 						g_DefaultBlendDescArray[ NextBlendMode ].AlphaZeroNotDrawFlag == TRUE )
 					{
@@ -12714,7 +12714,7 @@ extern	int		Graphics_D3D11_DeviceState_NormalDrawSetup( void )
 				}
 			}
 
-			// g—p‚·‚éƒsƒNƒZƒ‹ƒVƒF[ƒ_[‚ğƒZƒbƒg
+			// ä½¿ç”¨ã™ã‚‹ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ã‚»ãƒƒãƒˆ
 			GD3D11.Device.State.AlphaTestModeShaderIndex = Graphics_D3D11_Shader_GetAlphaTestModeIndex( GD3D11.Device.State.AlphaTestEnable, AlphaTestCmpMode ) ;
 		#ifdef DX_NON_SHADERCODE_BINARY
 			if( GD3D11.Device.Shader.Base.BaseUseTex_PS[ 0 ][ g_DefaultBlendDescArray[ NextBlendMode ].RenderBlendType ][ GD3D11.Device.DrawSetting.IgnoreGraphColorFlag ? 1 : 0 ][ IgnoreTextureAlpha ][ GD3D11.Device.State.AlphaTestModeShaderIndex ] == NULL )
@@ -12724,15 +12724,15 @@ extern	int		Graphics_D3D11_DeviceState_NormalDrawSetup( void )
 		#endif // DX_NON_SHADERCODE_BINARY
 			UsePixelShader = GD3D11.Device.Shader.Base.BaseUseTex_PS[ 0 ][ g_DefaultBlendDescArray[ NextBlendMode ].RenderBlendType ][ GD3D11.Device.DrawSetting.IgnoreGraphColorFlag ? 1 : 0 ][ IgnoreTextureAlpha ][ GD3D11.Device.State.AlphaTestModeShaderIndex ] ;
 
-			// g—p‚·‚éƒeƒNƒXƒ`ƒƒ[ƒAƒhƒŒƒX‚ğƒZƒbƒg
+			// ä½¿ç”¨ã™ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ã‚»ãƒƒãƒˆ
 			ShaderResourceView[ 0 ] = GD3D11.Device.DrawSetting.RenderTextureSRV ;
 
-			// g—p‚·‚éƒeƒNƒXƒ`ƒƒ‚Ì”‚Íˆê‚Â
+			// ä½¿ç”¨ã™ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®æ•°ã¯ä¸€ã¤
 			ShaderResourceViewNum = 1 ;
 		}
 	}
 
-	// ƒVƒƒƒhƒEƒ}ƒbƒv‚Ìİ’è
+	// ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ã®è¨­å®š
 	if( GSYS.DrawSetting.UseShadowMapNum > 0 )
 	{
 		int i ;
@@ -12812,38 +12812,38 @@ extern	int		Graphics_D3D11_DeviceState_NormalDrawSetup( void )
 		Graphics_D3D11_DeviceState_SetPixelShader( UsePixelShader, TRUE ) ;
 	}
 	
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// Œ»İ‚Ìİ’è‚ÉŠî‚Ã‚¢‚Ä ID3D11SamplerStateAID3D11RasterizerStateAID3D11DepthStencilStateAID3D11BlendState ‚ÌƒZƒbƒgƒAƒbƒv‚ÆA’è”ƒoƒbƒtƒ@‚ÌƒAƒbƒvƒf[ƒg‚ğs‚¤
+// ç¾åœ¨ã®è¨­å®šã«åŸºã¥ã„ã¦ ID3D11SamplerStateã€ID3D11RasterizerStateã€ID3D11DepthStencilStateã€ID3D11BlendState ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã¨ã€å®šæ•°ãƒãƒƒãƒ•ã‚¡ã®ã‚¢ãƒƒãƒ—ãƒ‡ãƒ¼ãƒˆã‚’è¡Œã†
 __inline void Graphics_D3D11_DeviceState_SetupStateAndConstantBuffer_Inline( void )
 {
-	// Œ»İ‚Ìİ’è‚ÉŠî‚Ã‚¢‚Ä ID3D11SamplerState ‚ğƒZƒbƒgƒAƒbƒv‚·‚é
+	// ç¾åœ¨ã®è¨­å®šã«åŸºã¥ã„ã¦ ID3D11SamplerState ã‚’ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã™ã‚‹
 	if( GD3D11.Device.State.ChangeSamplerDesc )
 	{
 		Graphics_D3D11_DeviceState_SetupSamplerState() ;
 	}
 
-	// Œ»İ‚Ìİ’è‚ÉŠî‚Ã‚¢‚Ä ID3D11RasterizerState ‚ğƒZƒbƒgƒAƒbƒv‚·‚é
+	// ç¾åœ¨ã®è¨­å®šã«åŸºã¥ã„ã¦ ID3D11RasterizerState ã‚’ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã™ã‚‹
 	if( GD3D11.Device.State.ChangeRasterizerDesc )
 	{
 		Graphics_D3D11_DeviceState_SetupRasterizerState() ;
 	}
 
-	// Œ»İ‚Ìİ’è‚ÉŠî‚Ã‚¢‚Ä ID3D11DepthStencilState ‚ğƒZƒbƒgƒAƒbƒv‚·‚é
+	// ç¾åœ¨ã®è¨­å®šã«åŸºã¥ã„ã¦ ID3D11DepthStencilState ã‚’ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã™ã‚‹
 	if( GD3D11.Device.State.ChangeDepthStencilDesc )
 	{
 		Graphics_D3D11_DeviceState_SetupDepthStencilState() ;
 	}
 
-	// Œ»İ‚Ìİ’è‚ÉŠî‚Ã‚¢‚Ä ID3D11BlendState ‚ğƒZƒbƒgƒAƒbƒv‚·‚é
+	// ç¾åœ¨ã®è¨­å®šã«åŸºã¥ã„ã¦ ID3D11BlendState ã‚’ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã™ã‚‹
 	if( GD3D11.Device.State.ChangeBlendDesc )
 	{
 		Graphics_D3D11_DeviceState_SetupBlendState() ;
 	}
 
-	// ’è”ƒoƒbƒtƒ@‚ğƒAƒbƒvƒf[ƒg
+	// å®šæ•°ãƒãƒƒãƒ•ã‚¡ã‚’ã‚¢ãƒƒãƒ—ãƒ‡ãƒ¼ãƒˆ
 	if( GD3D11.Device.Shader.Constant.ConstBuffer_Common->ChangeFlag )
 	{
 		Graphics_D3D11_ConstantBuffer_Update( GD3D11.Device.Shader.Constant.ConstBuffer_Common ) ;
@@ -12901,9 +12901,9 @@ extern int Graphics_D3D11_DeviceState_SetupStateAndConstantBuffer( void )
 
 
 
-// •`‰æİ’èŠÖŒWŠÖ”
+// æç”»è¨­å®šé–¢ä¿‚é–¢æ•°
 
-// •`‰æƒuƒŒƒ“ƒhƒ‚[ƒh‚Ìİ’è
+// æç”»ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã®è¨­å®š
 extern int Graphics_D3D11_DrawSetting_SetDrawBlendMode( int BlendMode, int BlendEnable, int BlendRGBSrc, int BlendRGBDest, int BlendRGBOp, int BlendASrc, int BlendADest, int BlendAOp, int AlphaTestValidFlag, int AlphaChannelValidFlag )
 {
 	if( GAPIWin.D3D11DeviceObject == NULL )
@@ -12926,7 +12926,7 @@ extern int Graphics_D3D11_DrawSetting_SetDrawBlendMode( int BlendMode, int Blend
 		return 0 ;
 	}
 
-	// •`‰æ‘Ò‹@‚µ‚Ä‚¢‚é•`‰æ•¨‚ğ•`‰æ
+	// æç”»å¾…æ©Ÿã—ã¦ã„ã‚‹æç”»ç‰©ã‚’æç”»
 	DRAWSTOCKINFO
 
 	GD3D11.Device.DrawSetting.BlendMode             = BlendMode ;
@@ -12941,13 +12941,13 @@ extern int Graphics_D3D11_DrawSetting_SetDrawBlendMode( int BlendMode, int Blend
 	GD3D11.Device.DrawSetting.AlphaTestValidFlag    = AlphaTestValidFlag ;
 	GD3D11.Device.DrawSetting.DrawPrepAlwaysFlag    = TRUE ;
 
-	// ƒpƒ‰ƒ[ƒ^‚ª•ÏX‚³‚ê‚½Aƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãŒå¤‰æ›´ã•ã‚ŒãŸã€ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	GD3D11.Device.DrawSetting.ChangeBlendParamFlag = TRUE ;
 
 	return 0 ;
 }
 
-// •`‰æ‚Ì‰æ‘œ‚Ì‚q‚f‚a‚ğ–³‹‚·‚é‚©‚Ç‚¤‚©‚ğİ’è‚·‚é
+// æç”»æ™‚ã®ç”»åƒã®ï¼²ï¼§ï¼¢ã‚’ç„¡è¦–ã™ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹
 extern int Graphics_D3D11_DrawSetting_SetIgnoreDrawGraphColor( int EnableFlag )
 {
 	DX_D3D11_PS_CONST_BUFFER_BASE *ConstantPSBase ;
@@ -12965,13 +12965,13 @@ extern int Graphics_D3D11_DrawSetting_SetIgnoreDrawGraphColor( int EnableFlag )
 
 	ConstantPSBase = ( DX_D3D11_PS_CONST_BUFFER_BASE * )GD3D11.Device.Shader.Constant.ConstBuffer_PS_Base->SysmemBuffer ;
 
-	// •`‰æ‘Ò‹@‚µ‚Ä‚¢‚é•`‰æ•¨‚ğ•`‰æ
+	// æç”»å¾…æ©Ÿã—ã¦ã„ã‚‹æç”»ç‰©ã‚’æç”»
 	DRAWSTOCKINFO
 
-	// ’l‚ğ•Û‘¶
+	// å€¤ã‚’ä¿å­˜
 	GD3D11.Device.DrawSetting.IgnoreGraphColorFlag = EnableFlag ;
 
-	// ’è”ƒf[ƒ^‚É”½‰f
+	// å®šæ•°ãƒ‡ãƒ¼ã‚¿ã«åæ˜ 
 	if( GD3D11.Device.DrawSetting.IgnoreGraphColorFlag )
 	{
 		ConstantPSBase->IgnoreTextureColor[ 0 ] = 1.0f ;
@@ -12989,13 +12989,13 @@ extern int Graphics_D3D11_DrawSetting_SetIgnoreDrawGraphColor( int EnableFlag )
 
 //	GD3D11.Device.DrawSetting.DrawPrepAlwaysFlag = TRUE ;
 
-	// ƒpƒ‰ƒ[ƒ^‚ª•ÏX‚³‚ê‚½Aƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãŒå¤‰æ›´ã•ã‚ŒãŸã€ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	GD3D11.Device.DrawSetting.ChangeBlendParamFlag = TRUE ;
 
 	return 0 ;
 }
 
-// •`‰æ‚Ì‰æ‘œ‚Ì‚`‚ğ–³‹‚·‚é‚©‚Ç‚¤‚©‚ğİ’è‚·‚é
+// æç”»æ™‚ã®ç”»åƒã®ï¼¡ã‚’ç„¡è¦–ã™ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹
 extern int Graphics_D3D11_DrawSetting_SetIgnoreDrawGraphAlpha( int EnableFlag )
 {
 	DX_D3D11_PS_CONST_BUFFER_BASE *ConstantPSBase ;
@@ -13013,13 +13013,13 @@ extern int Graphics_D3D11_DrawSetting_SetIgnoreDrawGraphAlpha( int EnableFlag )
 
 	ConstantPSBase = ( DX_D3D11_PS_CONST_BUFFER_BASE * )GD3D11.Device.Shader.Constant.ConstBuffer_PS_Base->SysmemBuffer ;
 
-	// •`‰æ‘Ò‹@‚µ‚Ä‚¢‚é•`‰æ•¨‚ğ•`‰æ
+	// æç”»å¾…æ©Ÿã—ã¦ã„ã‚‹æç”»ç‰©ã‚’æç”»
 	DRAWSTOCKINFO
 
-	// ’l‚ğ•Û‘¶
+	// å€¤ã‚’ä¿å­˜
 	GD3D11.Device.DrawSetting.IgnoreGraphAlphaFlag = EnableFlag ;
 
-	// ’è”ƒf[ƒ^‚É”½‰f
+	// å®šæ•°ãƒ‡ãƒ¼ã‚¿ã«åæ˜ 
 	if( GD3D11.Device.DrawSetting.IgnoreGraphAlphaFlag )
 	{
 		ConstantPSBase->IgnoreTextureColor[ 3 ] = 1.0f ;
@@ -13031,13 +13031,13 @@ extern int Graphics_D3D11_DrawSetting_SetIgnoreDrawGraphAlpha( int EnableFlag )
 
 	GD3D11.Device.Shader.Constant.ConstBuffer_PS_Base->ChangeFlag = TRUE ;
 
-	// ƒpƒ‰ƒ[ƒ^‚ª•ÏX‚³‚ê‚½Aƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãŒå¤‰æ›´ã•ã‚ŒãŸã€ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	GD3D11.Device.DrawSetting.ChangeBlendParamFlag = TRUE ;
 
 	return 0 ;
 }
 
-// •`‰ææ‚ÌƒAƒ‹ƒtƒ@ƒ`ƒƒƒ“ƒlƒ‹‚Ì“à—e‚ğ‘‚«Š·‚¦‚é‚©‚ğİ’è‚·‚é
+// æç”»å…ˆã®ã‚¢ãƒ«ãƒ•ã‚¡ãƒãƒ£ãƒ³ãƒãƒ«ã®å†…å®¹ã‚’æ›¸ãæ›ãˆã‚‹ã‹ã‚’è¨­å®šã™ã‚‹
 extern int Graphics_D3D11_DrawSetting_SetWriteAlphaChannelFlag( int NotFlag )
 {
 	if( GAPIWin.D3D11DeviceObject == NULL )
@@ -13051,19 +13051,19 @@ extern int Graphics_D3D11_DrawSetting_SetWriteAlphaChannelFlag( int NotFlag )
 		return 0 ;
 	}
 
-	// •`‰æ‘Ò‹@‚µ‚Ä‚¢‚é•`‰æ•¨‚ğ•`‰æ
+	// æç”»å¾…æ©Ÿã—ã¦ã„ã‚‹æç”»ç‰©ã‚’æç”»
 	DRAWSTOCKINFO
 
 	GD3D11.Device.DrawSetting.NotWriteAlphaChannelFlag = NotFlag ;
 	GD3D11.Device.DrawSetting.DrawPrepAlwaysFlag    = TRUE ;
 
-	// ƒpƒ‰ƒ[ƒ^‚ª•ÏX‚³‚ê‚½Aƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãŒå¤‰æ›´ã•ã‚ŒãŸã€ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	GD3D11.Device.DrawSetting.ChangeBlendParamFlag = TRUE ;
 
 	return 0 ;
 }
 
-// ƒAƒ‹ƒtƒ@ƒeƒXƒg‚Ìİ’è
+// ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆã®è¨­å®š
 extern int Graphics_D3D11_DrawSetting_SetDrawAlphaTest( int TestMode, int TestParam )
 {
 	if( GAPIWin.D3D11DeviceObject == NULL )
@@ -13078,20 +13078,20 @@ extern int Graphics_D3D11_DrawSetting_SetDrawAlphaTest( int TestMode, int TestPa
 		return 0 ;
 	}
 
-	// •`‰æ‘Ò‹@‚µ‚Ä‚¢‚é•`‰æ•¨‚ğ•`‰æ
+	// æç”»å¾…æ©Ÿã—ã¦ã„ã‚‹æç”»ç‰©ã‚’æç”»
 	DRAWSTOCKINFO
 
 	GD3D11.Device.DrawSetting.AlphaTestMode      = TestMode ;
 	GD3D11.Device.DrawSetting.AlphaTestParam     = TestParam ;
 	GD3D11.Device.DrawSetting.DrawPrepAlwaysFlag = TRUE ;
 
-	// ƒpƒ‰ƒ[ƒ^‚ª•ÏX‚³‚ê‚½Aƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãŒå¤‰æ›´ã•ã‚ŒãŸã€ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	GD3D11.Device.DrawSetting.ChangeBlendParamFlag = TRUE ;
 
 	return 0 ;
 }
 
-// ƒuƒŒƒ“ƒh‚·‚éƒeƒNƒXƒ`ƒƒ‚Ìƒpƒ‰ƒ[ƒ^‚ğƒZƒbƒg‚·‚é
+// ãƒ–ãƒ¬ãƒ³ãƒ‰ã™ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern int Graphics_D3D11_DrawSetting_SetBlendTextureParam( int BlendType, int *Param )
 {
 	if( GAPIWin.D3D11DeviceObject == NULL )
@@ -13099,7 +13099,7 @@ extern int Graphics_D3D11_DrawSetting_SetBlendTextureParam( int BlendType, int *
 		return -1 ;
 	}
 
-	// ƒpƒ‰ƒ[ƒ^‚ğ•Û‘¶
+	// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ä¿å­˜
 	switch( BlendType )
 	{
 	case DX_BLENDGRAPHTYPE_NORMAL :
@@ -13112,7 +13112,7 @@ extern int Graphics_D3D11_DrawSetting_SetBlendTextureParam( int BlendType, int *
 
 		if( GD3D11.Device.DrawSetting.CancelSettingEqualCheck == FALSE )
 		{
-			// •`‰æ‘Ò‹@‚µ‚Ä‚¢‚é•`‰æ•¨‚ğ•`‰æ
+			// æç”»å¾…æ©Ÿã—ã¦ã„ã‚‹æç”»ç‰©ã‚’æç”»
 			DRAWSTOCKINFO
 		}
 
@@ -13130,7 +13130,7 @@ extern int Graphics_D3D11_DrawSetting_SetBlendTextureParam( int BlendType, int *
 
 		if( GD3D11.Device.DrawSetting.CancelSettingEqualCheck == FALSE )
 		{
-			// •`‰æ‘Ò‹@‚µ‚Ä‚¢‚é•`‰æ•¨‚ğ•`‰æ
+			// æç”»å¾…æ©Ÿã—ã¦ã„ã‚‹æç”»ç‰©ã‚’æç”»
 			DRAWSTOCKINFO
 		}
 
@@ -13147,24 +13147,24 @@ extern int Graphics_D3D11_DrawSetting_SetBlendTextureParam( int BlendType, int *
 
 		if( GD3D11.Device.DrawSetting.CancelSettingEqualCheck == FALSE )
 		{
-			// •`‰æ‘Ò‹@‚µ‚Ä‚¢‚é•`‰æ•¨‚ğ•`‰æ
+			// æç”»å¾…æ©Ÿã—ã¦ã„ã‚‹æç”»ç‰©ã‚’æç”»
 			DRAWSTOCKINFO
 		}
 		break;
 	}
 
-	// ƒuƒŒƒ“ƒhƒ^ƒCƒv‚ğ•Û‘¶‚·‚é
+	// ãƒ–ãƒ¬ãƒ³ãƒ‰ã‚¿ã‚¤ãƒ—ã‚’ä¿å­˜ã™ã‚‹
 	GD3D11.Device.DrawSetting.BlendGraphType = BlendType ;
 
-	// ƒpƒ‰ƒ[ƒ^‚ª•ÏX‚³‚ê‚½Aƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãŒå¤‰æ›´ã•ã‚ŒãŸã€ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	GD3D11.Device.DrawSetting.ChangeBlendParamFlag = TRUE ;
 	GD3D11.Device.DrawSetting.DrawPrepAlwaysFlag = TRUE ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒeƒNƒXƒ`ƒƒ‚ğƒZƒbƒg‚·‚é 
+// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ã‚»ãƒƒãƒˆã™ã‚‹ 
 extern int Graphics_D3D11_DrawSetting_SetTexture( D_ID3D11Texture2D *RenderTexture, D_ID3D11ShaderResourceView *RenderTextureSRV )
 {
 	if( GAPIWin.D3D11DeviceObject == NULL )
@@ -13180,30 +13180,30 @@ extern int Graphics_D3D11_DrawSetting_SetTexture( D_ID3D11Texture2D *RenderTextu
 
 	if( GD3D11.Device.DrawSetting.CancelSettingEqualCheck == FALSE )
 	{
-		// •`‰æ‘Ò‹@‚µ‚Ä‚¢‚é•`‰æ•¨‚ğ•`‰æ
+		// æç”»å¾…æ©Ÿã—ã¦ã„ã‚‹æç”»ç‰©ã‚’æç”»
 		DRAWSTOCKINFO
 	}
 
-	// ƒeƒNƒXƒ`ƒƒ‚ª•ÏX‚³‚ê‚½Aƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãŒå¤‰æ›´ã•ã‚ŒãŸã€ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	GD3D11.Device.DrawSetting.ChangeTextureFlag = TRUE ;
 
-	// ƒeƒNƒXƒ`ƒƒ‚Ì—L‚è–³‚µ‚ª•ÏX‚³‚ê‚½ê‡‚ÍƒuƒŒƒ“ƒhƒpƒ‰ƒ[ƒ^‚Ì•ÏX‚às‚¤ƒtƒ‰ƒO‚àƒZƒbƒg‚·‚é
+	// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®æœ‰ã‚Šç„¡ã—ãŒå¤‰æ›´ã•ã‚ŒãŸå ´åˆã¯ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®å¤‰æ›´ã‚‚è¡Œã†ãƒ•ãƒ©ã‚°ã‚‚ã‚»ãƒƒãƒˆã™ã‚‹
 	if( ( GD3D11.Device.DrawSetting.RenderTexture == NULL && RenderTexture != NULL ) ||
 		( GD3D11.Device.DrawSetting.RenderTexture != NULL && RenderTexture == NULL ) )
 	{
 		GD3D11.Device.DrawSetting.ChangeBlendParamFlag = TRUE ;
 	}
 
-	// ƒeƒNƒXƒ`ƒƒƒZƒbƒg
+	// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚»ãƒƒãƒˆ
 	GD3D11.Device.DrawSetting.RenderTexture      = RenderTexture ;
 	GD3D11.Device.DrawSetting.RenderTextureSRV   = RenderTextureSRV ;
 	GD3D11.Device.DrawSetting.DrawPrepAlwaysFlag = TRUE ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒuƒŒƒ“ƒh‚·‚éƒeƒNƒXƒ`ƒƒ‚ğƒZƒbƒg‚·‚é 
+// ãƒ–ãƒ¬ãƒ³ãƒ‰ã™ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ã‚»ãƒƒãƒˆã™ã‚‹ 
 extern int Graphics_D3D11_DrawSetting_SetBlendTexture( D_ID3D11Texture2D *BlendTexture,  D_ID3D11ShaderResourceView *BlendTextureSRV, int TexWidth, int TexHeight )
 {
 	if( GAPIWin.D3D11DeviceObject == NULL )
@@ -13219,26 +13219,26 @@ extern int Graphics_D3D11_DrawSetting_SetBlendTexture( D_ID3D11Texture2D *BlendT
 
 	if( GD3D11.Device.DrawSetting.CancelSettingEqualCheck == FALSE )
 	{
-		// •`‰æ‘Ò‹@‚µ‚Ä‚¢‚é•`‰æ•¨‚ğ•`‰æ
+		// æç”»å¾…æ©Ÿã—ã¦ã„ã‚‹æç”»ç‰©ã‚’æç”»
 		DRAWSTOCKINFO
 	}
 
-	// ƒeƒNƒXƒ`ƒƒ‚ª•ÏX‚³‚ê‚½Aƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãŒå¤‰æ›´ã•ã‚ŒãŸã€ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	GD3D11.Device.DrawSetting.ChangeTextureFlag = TRUE ;
 	GD3D11.Device.DrawSetting.DrawPrepAlwaysFlag = TRUE ;
 
-	// ƒuƒŒƒ“ƒhƒeƒNƒXƒ`ƒƒ‚Ì—L‚è–³‚µ‚ª•ÏX‚³‚ê‚½ê‡‚ÍƒuƒŒƒ“ƒhƒpƒ‰ƒ[ƒ^‚Ì•ÏX‚às‚¤ƒtƒ‰ƒO‚àƒZƒbƒg‚·‚é
+	// ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®æœ‰ã‚Šç„¡ã—ãŒå¤‰æ›´ã•ã‚ŒãŸå ´åˆã¯ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®å¤‰æ›´ã‚‚è¡Œã†ãƒ•ãƒ©ã‚°ã‚‚ã‚»ãƒƒãƒˆã™ã‚‹
 	if( ( GD3D11.Device.DrawSetting.BlendTexture == NULL && BlendTexture != NULL ) ||
 		( GD3D11.Device.DrawSetting.BlendTexture != NULL && BlendTexture == NULL ) )
 	{
 		GD3D11.Device.DrawSetting.ChangeBlendParamFlag = TRUE ;
 	}
 
-	// ƒeƒNƒXƒ`ƒƒƒZƒbƒg
+	// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚»ãƒƒãƒˆ
 	GD3D11.Device.DrawSetting.BlendTexture    = BlendTexture ;
 	GD3D11.Device.DrawSetting.BlendTextureSRV = BlendTextureSRV ;
 
-	// ƒeƒNƒXƒ`ƒƒ‚Ì•‚Æ‚‚³‚ğ•Û‘¶
+	// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®å¹…ã¨é«˜ã•ã‚’ä¿å­˜
 	if( BlendTexture != NULL )
 	{
 		GD3D11.Device.DrawSetting.BlendTextureWidth  = ( float )TexWidth  ;
@@ -13247,11 +13247,11 @@ extern int Graphics_D3D11_DrawSetting_SetBlendTexture( D_ID3D11Texture2D *BlendT
 		GD3D11.Device.DrawSetting.InvBlendTextureHeight = 1.0F / GD3D11.Device.DrawSetting.BlendTextureHeight ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒ‰ƒCƒeƒBƒ“ƒOŒvZ‚ÌŠp“xŒ¸Š‚ğs‚í‚È‚¢‚©‚ğİ’è‚·‚é
+// ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°è¨ˆç®—ã®è§’åº¦æ¸›è¡°ã‚’è¡Œã‚ãªã„ã‹ã‚’è¨­å®šã™ã‚‹
 extern int Graphics_D3D11_DrawSetting_SetLightNoAngleAttenuation( int NoAngleAttenuation )
 {
 	DX_D3D11_PS_CONST_BUFFER_BASE *ConstantPSBase ;
@@ -13269,26 +13269,26 @@ extern int Graphics_D3D11_DrawSetting_SetLightNoAngleAttenuation( int NoAngleAtt
 
 	ConstantPSBase = ( DX_D3D11_PS_CONST_BUFFER_BASE * )GD3D11.Device.Shader.Constant.ConstBuffer_PS_Base->SysmemBuffer ;
 
-	// •`‰æ‘Ò‹@‚µ‚Ä‚¢‚é•`‰æ•¨‚ğ•`‰æ
+	// æç”»å¾…æ©Ÿã—ã¦ã„ã‚‹æç”»ç‰©ã‚’æç”»
 	DRAWSTOCKINFO
 
-	// ’l‚ğ•Û‘¶
+	// å€¤ã‚’ä¿å­˜
 	GD3D11.Device.DrawSetting.NoLightAngleAttenuation = NoAngleAttenuation ;
 
-	// ’è”ƒf[ƒ^‚É”½‰f
+	// å®šæ•°ãƒ‡ãƒ¼ã‚¿ã«åæ˜ 
 	ConstantPSBase->NoLightAngleAttenuation = GD3D11.Device.DrawSetting.NoLightAngleAttenuation ? 1 : 0 ;
 
 	GD3D11.Device.Shader.Constant.ConstBuffer_PS_Base->ChangeFlag = TRUE ;
 
 //	GD3D11.Device.DrawSetting.DrawPrepAlwaysFlag = TRUE ;
 
-	// ƒpƒ‰ƒ[ƒ^‚ª•ÏX‚³‚ê‚½Aƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãŒå¤‰æ›´ã•ã‚ŒãŸã€ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	GD3D11.Device.DrawSetting.ChangeBlendParamFlag = TRUE ;
 
 	return 0 ;
 }
 
-// ƒ‰ƒCƒeƒBƒ“ƒOŒvZ‚Åƒn[ƒtƒ‰ƒ“ƒo[ƒg‚ğg—p‚·‚é‚©‚Ç‚¤‚©‚ğİ’è‚·‚é
+// ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°è¨ˆç®—ã§ãƒãƒ¼ãƒ•ãƒ©ãƒ³ãƒãƒ¼ãƒˆã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹
 extern int Graphics_D3D11_DrawSetting_SetLightUseHalfLambert( int UseHalfLambert )
 {
 	DX_D3D11_PS_CONST_BUFFER_BASE *ConstantPSBase ;
@@ -13306,20 +13306,20 @@ extern int Graphics_D3D11_DrawSetting_SetLightUseHalfLambert( int UseHalfLambert
 
 	ConstantPSBase = ( DX_D3D11_PS_CONST_BUFFER_BASE * )GD3D11.Device.Shader.Constant.ConstBuffer_PS_Base->SysmemBuffer ;
 
-	// •`‰æ‘Ò‹@‚µ‚Ä‚¢‚é•`‰æ•¨‚ğ•`‰æ
+	// æç”»å¾…æ©Ÿã—ã¦ã„ã‚‹æç”»ç‰©ã‚’æç”»
 	DRAWSTOCKINFO
 
-	// ’l‚ğ•Û‘¶
+	// å€¤ã‚’ä¿å­˜
 	GD3D11.Device.DrawSetting.UseHalfLambert = UseHalfLambert ;
 
-	// ’è”ƒf[ƒ^‚É”½‰f
+	// å®šæ•°ãƒ‡ãƒ¼ã‚¿ã«åæ˜ 
 	ConstantPSBase->UseHalfLambert = GD3D11.Device.DrawSetting.UseHalfLambert ? 1 : 0 ;
 
 	GD3D11.Device.Shader.Constant.ConstBuffer_PS_Base->ChangeFlag = TRUE ;
 
 //	GD3D11.Device.DrawSetting.DrawPrepAlwaysFlag = TRUE ;
 
-	// ƒpƒ‰ƒ[ƒ^‚ª•ÏX‚³‚ê‚½Aƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãŒå¤‰æ›´ã•ã‚ŒãŸã€ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	GD3D11.Device.DrawSetting.ChangeBlendParamFlag = TRUE ;
 
 	return 0 ;
@@ -13354,14 +13354,14 @@ extern int Graphics_D3D11_DrawSetting_SetLightUseHalfLambert( int UseHalfLambert
 
 
 
-// ’è”î•ñŠÖŒWŠÖ”
+// å®šæ•°æƒ…å ±é–¢ä¿‚é–¢æ•°
 
-// Direct3D11 ‚Ì’è”î•ñ‚Ì‰Šú‰»‚ğs‚¤
+// Direct3D11 ã®å®šæ•°æƒ…å ±ã®åˆæœŸåŒ–ã‚’è¡Œã†
 extern int Graphics_D3D11_Constant_Initialize( void )
 {
-	DXST_LOGFILE_ADDUTF16LE( "\x04\x54\x2e\x7a\xb7\x30\xa7\x30\xfc\x30\xc0\x30\xfc\x30\x28\x75\x9a\x5b\x70\x65\xd0\x30\xc3\x30\xd5\x30\xa1\x30\x6e\x30\x5c\x4f\x10\x62\x2e\x00\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"ŠeíƒVƒF[ƒ_[—p’è”ƒoƒbƒtƒ@‚Ìì¬.... " @*/ ) ;
+	DXST_LOGFILE_ADDUTF16LE( "\x04\x54\x2e\x7a\xb7\x30\xa7\x30\xfc\x30\xc0\x30\xfc\x30\x28\x75\x9a\x5b\x70\x65\xd0\x30\xc3\x30\xd5\x30\xa1\x30\x6e\x30\x5c\x4f\x10\x62\x2e\x00\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"å„ç¨®ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ç”¨å®šæ•°ãƒãƒƒãƒ•ã‚¡ã®ä½œæˆ.... " @*/ ) ;
 
-	// Šeí’è”ƒoƒbƒtƒ@‚ğì¬
+	// å„ç¨®å®šæ•°ãƒãƒƒãƒ•ã‚¡ã‚’ä½œæˆ
 	GD3D11.Device.Shader.Constant.ConstBuffer_Common = Graphics_D3D11_ConstantBuffer_Create( sizeof( DX_D3D11_CONST_BUFFER_COMMON ) ) ;
 	if( GD3D11.Device.Shader.Constant.ConstBuffer_Common == NULL )
 	{
@@ -13404,13 +13404,13 @@ extern int Graphics_D3D11_Constant_Initialize( void )
 		goto ERR ;
 	}
 
-	DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"¬Œ÷\n" @*/ ) ;
+	DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"æˆåŠŸ\n" @*/ ) ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 
 ERR :
-	DXST_LOGFILE_ADDUTF16LE( "\x31\x59\x57\x65\x0a\x00\x00"/*@ L"¸”s\n" @*/ ) ;
+	DXST_LOGFILE_ADDUTF16LE( "\x31\x59\x57\x65\x0a\x00\x00"/*@ L"å¤±æ•—\n" @*/ ) ;
 
 	if( GD3D11.Device.Shader.Constant.ConstBuffer_Common != NULL )
 	{
@@ -13454,11 +13454,11 @@ ERR :
 		GD3D11.Device.Shader.Constant.ConstBuffer_PS_Filter = NULL ;
 	}
 
-	// ƒGƒ‰[I—¹
+	// ã‚¨ãƒ©ãƒ¼çµ‚äº†
 	return -1 ;
 }
 
-// Direct3D11 ‚Ì’è”î•ñ‚ÌŒãn––‚ğs‚¤
+// Direct3D11 ã®å®šæ•°æƒ…å ±ã®å¾Œå§‹æœ«ã‚’è¡Œã†
 extern int Graphics_D3D11_Constant_Terminate( void )
 {
 	if( GD3D11.Device.Shader.Constant.ConstBuffer_Common != NULL )
@@ -13503,7 +13503,7 @@ extern int Graphics_D3D11_Constant_Terminate( void )
 		GD3D11.Device.Shader.Constant.ConstBuffer_PS_Filter = NULL ;
 	}
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
@@ -13539,39 +13539,39 @@ extern int Graphics_D3D11_Constant_Terminate( void )
 
 
 
-// ’è”ƒoƒbƒtƒ@ŠÖŒWŠÖ”
+// å®šæ•°ãƒãƒƒãƒ•ã‚¡é–¢ä¿‚é–¢æ•°
 
 
-// ’è”ƒoƒbƒtƒ@‚ğì¬‚·‚é
+// å®šæ•°ãƒãƒƒãƒ•ã‚¡ã‚’ä½œæˆã™ã‚‹
 extern	CONSTANTBUFFER_DIRECT3D11 *Graphics_D3D11_ConstantBuffer_Create( DWORD Size, int ASyncThread )
 {
 	CONSTANTBUFFER_DIRECT3D11	*NewBuffer = NULL ;
 	DWORD						AllocSize ;
 	D_D3D11_BUFFER_DESC			BufferDesc ;
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 	CRITICALSECTION_LOCK( &HandleManageArray[ DX_HANDLETYPE_SHADER_CONSTANT_BUFFER ].CriticalSection ) ;
 
-	// ƒTƒCƒYƒ`ƒFƒbƒN
+	// ã‚µã‚¤ã‚ºãƒã‚§ãƒƒã‚¯
 	if( Size % 16 != 0 )
 	{
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\x9a\x5b\x70\x65\xd0\x30\xc3\x30\xd5\x30\xa1\x30\x6e\x30\xb5\x30\xa4\x30\xba\x30\x6f\x30\x11\xff\x16\xff\x6e\x30\x0d\x50\x70\x65\x67\x30\x42\x30\x8b\x30\xc5\x5f\x81\x89\x4c\x30\x42\x30\x8a\x30\x7e\x30\x59\x30\x0a\x00\x00"/*@ L"’è”ƒoƒbƒtƒ@‚ÌƒTƒCƒY‚Í‚P‚U‚Ì”{”‚Å‚ ‚é•K—v‚ª‚ ‚è‚Ü‚·\n" @*/ )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\x9a\x5b\x70\x65\xd0\x30\xc3\x30\xd5\x30\xa1\x30\x6e\x30\xb5\x30\xa4\x30\xba\x30\x6f\x30\x11\xff\x16\xff\x6e\x30\x0d\x50\x70\x65\x67\x30\x42\x30\x8b\x30\xc5\x5f\x81\x89\x4c\x30\x42\x30\x8a\x30\x7e\x30\x59\x30\x0a\x00\x00"/*@ L"å®šæ•°ãƒãƒƒãƒ•ã‚¡ã®ã‚µã‚¤ã‚ºã¯ï¼‘ï¼–ã®å€æ•°ã§ã‚ã‚‹å¿…è¦ãŒã‚ã‚Šã¾ã™\n" @*/ )) ;
 		goto ERR ;
 	}
 
-	// ƒƒ‚ƒŠ‚ÌŠm•Û
+	// ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿
 	AllocSize = Size + sizeof( CONSTANTBUFFER_DIRECT3D11 ) ;
 	NewBuffer = ( CONSTANTBUFFER_DIRECT3D11 * )DXALLOC( AllocSize ) ;
 	if( NewBuffer == NULL )
 	{
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\x9a\x5b\x70\x65\xd0\x30\xc3\x30\xd5\x30\xa1\x30\xc5\x60\x31\x58\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"’è”ƒoƒbƒtƒ@î•ñ‚ğŠi”[‚·‚éƒƒ‚ƒŠ—Ìˆæ‚ÌŠm•Û‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\x9a\x5b\x70\x65\xd0\x30\xc3\x30\xd5\x30\xa1\x30\xc5\x60\x31\x58\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"å®šæ•°ãƒãƒƒãƒ•ã‚¡æƒ…å ±ã‚’æ ¼ç´ã™ã‚‹ãƒ¡ãƒ¢ãƒªé ˜åŸŸã®ç¢ºä¿ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ )) ;
 		goto ERR ;
 	}
 
-	// —ë‰Šú‰»
+	// é›¶åˆæœŸåŒ–
 	_MEMSET( NewBuffer, 0, AllocSize ) ;
 
-	// ID3D11Buffer ‚Ìì¬
+	// ID3D11Buffer ã®ä½œæˆ
 	_MEMSET( &BufferDesc, 0, sizeof( BufferDesc ) ) ;
 	BufferDesc.ByteWidth      = Size ;
 	BufferDesc.Usage          = D_D3D11_USAGE_DEFAULT ;
@@ -13579,16 +13579,16 @@ extern	CONSTANTBUFFER_DIRECT3D11 *Graphics_D3D11_ConstantBuffer_Create( DWORD Si
 	BufferDesc.CPUAccessFlags = 0 ;
 	if( D3D11Device_CreateBuffer_ASync( &BufferDesc, NULL, &NewBuffer->ConstantBuffer, ASyncThread ) != S_OK )
 	{
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\x9a\x5b\x70\x65\xd0\x30\xc3\x30\xd5\x30\xa1\x30\x28\x75\x6e\x30\x20\x00\x49\x00\x44\x00\x33\x00\x44\x00\x31\x00\x31\x00\x42\x00\x75\x00\x66\x00\x66\x00\x65\x00\x72\x00\x20\x00\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"’è”ƒoƒbƒtƒ@—p‚Ì ID3D11Buffer ‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\x9a\x5b\x70\x65\xd0\x30\xc3\x30\xd5\x30\xa1\x30\x28\x75\x6e\x30\x20\x00\x49\x00\x44\x00\x33\x00\x44\x00\x31\x00\x31\x00\x42\x00\x75\x00\x66\x00\x66\x00\x65\x00\x72\x00\x20\x00\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"å®šæ•°ãƒãƒƒãƒ•ã‚¡ç”¨ã® ID3D11Buffer ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ )) ;
 		goto ERR ;
 	}
 
-	// î•ñ‚ğƒZƒbƒg
+	// æƒ…å ±ã‚’ã‚»ãƒƒãƒˆ
 	NewBuffer->Size         = Size ;
 	NewBuffer->SysmemBuffer = NewBuffer + 1 ;
 	NewBuffer->ChangeFlag   = FALSE ;
 
-	// ƒŠƒXƒg‚É’Ç‰Á
+	// ãƒªã‚¹ãƒˆã«è¿½åŠ 
 	if( GD3D11.Device.Shader.Constant.ConstantBufferManage.FirstBuffer != NULL )
 	{
 		NewBuffer->NextData = GD3D11.Device.Shader.Constant.ConstantBufferManage.FirstBuffer ;
@@ -13596,17 +13596,17 @@ extern	CONSTANTBUFFER_DIRECT3D11 *Graphics_D3D11_ConstantBuffer_Create( DWORD Si
 	}
 	GD3D11.Device.Shader.Constant.ConstantBufferManage.FirstBuffer = NewBuffer ;
 
-	// ƒoƒbƒtƒ@‚Ì”‚ğ‘‚â‚·
+	// ãƒãƒƒãƒ•ã‚¡ã®æ•°ã‚’å¢—ã‚„ã™
 	GD3D11.Device.Shader.Constant.ConstantBufferManage.BufferNum ++ ;
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 	CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_SHADER_CONSTANT_BUFFER ].CriticalSection ) ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return NewBuffer ;
 
 
-	// ƒGƒ‰[ˆ—
+	// ã‚¨ãƒ©ãƒ¼å‡¦ç†
 ERR :
 	if( NewBuffer != NULL )
 	{
@@ -13619,22 +13619,22 @@ ERR :
 		DXFREE( NewBuffer ) ;
 	}
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 	CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_SHADER_CONSTANT_BUFFER ].CriticalSection ) ;
 
-	// ƒGƒ‰[I—¹
+	// ã‚¨ãƒ©ãƒ¼çµ‚äº†
 	return NULL ;
 }
 
-// ’è”ƒoƒbƒtƒ@‚ğíœ‚·‚é
+// å®šæ•°ãƒãƒƒãƒ•ã‚¡ã‚’å‰Šé™¤ã™ã‚‹
 extern int Graphics_D3D11_ConstantBuffer_Delete( CONSTANTBUFFER_DIRECT3D11 *ConstantBuffer )
 {
 	int i ;
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìæ“¾
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å–å¾—
 	CRITICALSECTION_LOCK( &HandleManageArray[ DX_HANDLETYPE_SHADER_CONSTANT_BUFFER ].CriticalSection ) ;
 
-	// ƒfƒoƒCƒX‚Åg—p‚³‚ê‚Ä‚¢‚½‚çŠO‚·
+	// ãƒ‡ãƒã‚¤ã‚¹ã§ä½¿ç”¨ã•ã‚Œã¦ã„ãŸã‚‰å¤–ã™
 	for( i = 0 ; i < D_D3D11_COMMONSHADER_CONSTANT_BUFFER_API_SLOT_COUNT ; i ++ )
 	{
 		if( GD3D11.Device.State.SetPixelShaderConstantBuffer[ i ] == ConstantBuffer->ConstantBuffer )
@@ -13648,14 +13648,14 @@ extern int Graphics_D3D11_ConstantBuffer_Delete( CONSTANTBUFFER_DIRECT3D11 *Cons
 		}
 	}
 
-	// ID3D11Buffer ‚ğ‰ğ•ú
+	// ID3D11Buffer ã‚’è§£æ”¾
 	if( ConstantBuffer->ConstantBuffer != NULL )
 	{
 		Direct3D11_Release_Buffer( ConstantBuffer->ConstantBuffer ) ;
 		ConstantBuffer->ConstantBuffer = NULL ;
 	}
 
-	// ƒŠƒXƒg‚©‚çŠO‚·
+	// ãƒªã‚¹ãƒˆã‹ã‚‰å¤–ã™
 	if( GD3D11.Device.Shader.Constant.ConstantBufferManage.FirstBuffer == ConstantBuffer )
 	{
 		GD3D11.Device.Shader.Constant.ConstantBufferManage.FirstBuffer = ConstantBuffer->NextData ;
@@ -13673,39 +13673,39 @@ extern int Graphics_D3D11_ConstantBuffer_Delete( CONSTANTBUFFER_DIRECT3D11 *Cons
 		}
 	}
 
-	// ƒƒ‚ƒŠ‚Ì‰ğ•ú
+	// ãƒ¡ãƒ¢ãƒªã®è§£æ”¾
 	DXFREE( ConstantBuffer ) ;
 
-	// ƒoƒbƒtƒ@‚Ì”‚ğŒ¸‚ç‚·
+	// ãƒãƒƒãƒ•ã‚¡ã®æ•°ã‚’æ¸›ã‚‰ã™
 	GD3D11.Device.Shader.Constant.ConstantBufferManage.BufferNum -- ;
 
-	// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰ğ•ú
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 	CriticalSection_Unlock( &HandleManageArray[ DX_HANDLETYPE_SHADER_CONSTANT_BUFFER ].CriticalSection ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒVƒXƒeƒ€ƒƒ‚ƒŠã‚Ìƒoƒbƒtƒ@‚És‚Á‚½•ÏX‚ğ“K—p‚·‚é
+// ã‚·ã‚¹ãƒ†ãƒ ãƒ¡ãƒ¢ãƒªä¸Šã®ãƒãƒƒãƒ•ã‚¡ã«è¡Œã£ãŸå¤‰æ›´ã‚’é©ç”¨ã™ã‚‹
 extern int Graphics_D3D11_ConstantBuffer_Update( CONSTANTBUFFER_DIRECT3D11 *ConstantBuffer )
 {
-	// •ÏX‚ª–³‚¢ê‡‚Í‰½‚à‚¹‚¸‚ÉI—¹
+	// å¤‰æ›´ãŒç„¡ã„å ´åˆã¯ä½•ã‚‚ã›ãšã«çµ‚äº†
 	if( ConstantBuffer->ChangeFlag == FALSE )
 	{
 		return 0 ;
 	}
 
-	// XV
+	// æ›´æ–°
 	D3D11DeviceContext_UpdateSubresource( ConstantBuffer->ConstantBuffer, 0, NULL, ConstantBuffer->SysmemBuffer, 0, 0 ) ;
 
-	// •ÏX‚ª‚ ‚éƒtƒ‰ƒO‚ğ“|‚·
+	// å¤‰æ›´ãŒã‚ã‚‹ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 	ConstantBuffer->ChangeFlag = FALSE ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// w’è‚Ì’è”ƒoƒbƒtƒ@‚ğ’¸“_ƒVƒF[ƒ_[‚Éİ’è‚·‚é
+// æŒ‡å®šã®å®šæ•°ãƒãƒƒãƒ•ã‚¡ã‚’é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã«è¨­å®šã™ã‚‹
 extern int Graphics_D3D11_ConstantBuffer_VSSet( UINT StartSlot, UINT NumBuffers, CONSTANTBUFFER_DIRECT3D11 * const *pConstantBuffers )
 {
 	D_ID3D11Buffer *D3D11ConstantBuffer[ D_D3D11_COMMONSHADER_CONSTANT_BUFFER_API_SLOT_COUNT ] ;
@@ -13729,7 +13729,7 @@ extern int Graphics_D3D11_ConstantBuffer_VSSet( UINT StartSlot, UINT NumBuffers,
 	return Graphics_D3D11_DeviceState_SetVertexShaderConstantBuffers( StartSlot, NumBuffers, D3D11ConstantBuffer ) ;
 }
 
-// w’è‚Ì’è”ƒoƒbƒtƒ@‚ğƒWƒIƒƒgƒŠƒVƒF[ƒ_[‚Éİ’è‚·‚é
+// æŒ‡å®šã®å®šæ•°ãƒãƒƒãƒ•ã‚¡ã‚’ã‚¸ã‚ªãƒ¡ãƒˆãƒªã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã«è¨­å®šã™ã‚‹
 extern int Graphics_D3D11_ConstantBuffer_GSSet( UINT StartSlot, UINT NumBuffers, CONSTANTBUFFER_DIRECT3D11 * const *pConstantBuffers )
 {
 	D_ID3D11Buffer *D3D11ConstantBuffer[ D_D3D11_COMMONSHADER_CONSTANT_BUFFER_API_SLOT_COUNT ] ;
@@ -13753,7 +13753,7 @@ extern int Graphics_D3D11_ConstantBuffer_GSSet( UINT StartSlot, UINT NumBuffers,
 	return Graphics_D3D11_DeviceState_SetGeometryShaderConstantBuffers( StartSlot, NumBuffers, D3D11ConstantBuffer ) ;
 }
 
-// w’è‚Ì’è”ƒoƒbƒtƒ@‚ğƒsƒNƒZƒ‹ƒVƒF[ƒ_[‚Éİ’è‚·‚é
+// æŒ‡å®šã®å®šæ•°ãƒãƒƒãƒ•ã‚¡ã‚’ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã«è¨­å®šã™ã‚‹
 extern int Graphics_D3D11_ConstantBuffer_PSSet( UINT StartSlot, UINT NumBuffers, CONSTANTBUFFER_DIRECT3D11 * const *pConstantBuffers )
 {
 	D_ID3D11Buffer *D3D11ConstantBuffer[ D_D3D11_COMMONSHADER_CONSTANT_BUFFER_API_SLOT_COUNT ] ;
@@ -13808,7 +13808,7 @@ extern int Graphics_D3D11_ConstantBuffer_PSSet( UINT StartSlot, UINT NumBuffers,
 
 
 
-// “ü—ÍƒŒƒCƒAƒEƒgŠÖŒWŠÖ”
+// å…¥åŠ›ãƒ¬ã‚¤ã‚¢ã‚¦ãƒˆé–¢ä¿‚é–¢æ•°
 
 static D_D3D11_INPUT_ELEMENT_DESC MakeD3D11InputElement( LPCSTR SemanticName, UINT SemanticIndex, D_DXGI_FORMAT Format, UINT InputSlot, UINT AlignedByteOffset )
 {
@@ -13825,7 +13825,7 @@ static D_D3D11_INPUT_ELEMENT_DESC MakeD3D11InputElement( LPCSTR SemanticName, UI
 	return Result ;
 }
 
-// •W€•`‰æ—p‚Ì ID3D11InputLayout ƒIƒuƒWƒFƒNƒg‚Ìì¬( 0:¬Œ÷  -1:¸”s )
+// æ¨™æº–æç”»ç”¨ã® ID3D11InputLayout ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ä½œæˆ( 0:æˆåŠŸ  -1:å¤±æ•— )
 extern int Graphics_D3D11_InputLayout_Base_Create( void )
 {
 	int							i ;
@@ -13837,22 +13837,22 @@ extern int Graphics_D3D11_InputLayout_Base_Create( void )
 	GRAPHICS_HARDWARE_DIRECT3D11_SHADERCODE_INFO *Code ;
 #endif // DX_NON_SHADERCODE_BINARY
 
-	// Šù‚Éì¬‚³‚ê‚Ä‚¢‚½‚Æ‚«‚Ì‚½‚ß‚Éíœˆ—‚ğs‚¤
+	// æ—¢ã«ä½œæˆã•ã‚Œã¦ã„ãŸã¨ãã®ãŸã‚ã«å‰Šé™¤å‡¦ç†ã‚’è¡Œã†
 	Graphics_D3D11_InputLayout_Base_Terminate() ;
 
-	DXST_LOGFILE_ADDUTF16LE( "\x04\x54\x2e\x7a\x20\x00\x49\x00\x44\x00\x33\x00\x44\x00\x31\x00\x31\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x4c\x00\x61\x00\x79\x00\x6f\x00\x75\x00\x74\x00\x20\x00\x6e\x30\x5c\x4f\x10\x62\x2e\x00\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"Šeí ID3D11InputLayout ‚Ìì¬.... " @*/ ) ;
+	DXST_LOGFILE_ADDUTF16LE( "\x04\x54\x2e\x7a\x20\x00\x49\x00\x44\x00\x33\x00\x44\x00\x31\x00\x31\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x4c\x00\x61\x00\x79\x00\x6f\x00\x75\x00\x74\x00\x20\x00\x6e\x30\x5c\x4f\x10\x62\x2e\x00\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"å„ç¨® ID3D11InputLayout ã®ä½œæˆ.... " @*/ ) ;
 
-	// •W€•`‰æ—p‚ÌƒVƒF[ƒ_[‚Åg—p‚·‚é’¸“_ƒf[ƒ^Œ`®‚ğì¬
+	// æ¨™æº–æç”»ç”¨ã®ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã§ä½¿ç”¨ã™ã‚‹é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿å½¢å¼ã‚’ä½œæˆ
 	BSVI = g_BaseSimpleVertexShaderInfo ;
 #ifndef DX_NON_SHADERCODE_BINARY
 	Code = GraphicsHardDataDirect3D11.ShaderCode.Base.BaseSimple_VS_Code ;
 #endif // DX_NON_SHADERCODE_BINARY
 	for( i = 0 ; i < D3D11_VERTEX_INPUTLAYOUT_NUM ; i++, BSVI++ )
 	{
-		// ’¸“_‚ÉŠÜ‚Ü‚ê‚éî•ñ‚Ì”‚ğ”‚¦‚é
+		// é ‚ç‚¹ã«å«ã¾ã‚Œã‚‹æƒ…å ±ã®æ•°ã‚’æ•°ãˆã‚‹
 		for( ElementNum = 0 ; BSVI->InputElementDesc[ ElementNum ].SemanticName != NULL ; ElementNum ++ ){}
 
-		// BGRAƒJƒ‰[‚ğg—p‚·‚éê‡‚Í’¸“_ƒJƒ‰[ƒtƒH[ƒ}ƒbƒg‚ğ•ÏX‚·‚é
+		// BGRAã‚«ãƒ©ãƒ¼ã‚’ä½¿ç”¨ã™ã‚‹å ´åˆã¯é ‚ç‚¹ã‚«ãƒ©ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã‚’å¤‰æ›´ã™ã‚‹
 		if( GSYS.HardInfo.UseVertexColorBGRAFormat )
 		{
 			for( j = 0 ; j < ElementNum ; j ++ )
@@ -13864,7 +13864,7 @@ extern int Graphics_D3D11_InputLayout_Base_Create( void )
 			}
 		}
 
-		// ’¸“_ƒf[ƒ^ƒtƒH[ƒ}ƒbƒg‚ğì¬
+		// é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã‚’ä½œæˆ
 	#ifndef DX_NON_SHADERCODE_BINARY
 		hr = D3D11Device_CreateInputLayout( BSVI->InputElementDesc, ( UINT )ElementNum, Code->Binary, ( SIZE_T )Code->Size, &GD3D11.Device.InputLayout.BaseInputLayout[ i ] ) ;
 	#else // DX_NON_SHADERCODE_BINARY
@@ -13872,7 +13872,7 @@ extern int Graphics_D3D11_InputLayout_Base_Create( void )
 	#endif // DX_NON_SHADERCODE_BINARY
 		if( hr != S_OK )
 		{
-			DXST_LOGFILE_ADDUTF16LE( "\x19\x6a\x96\x6e\xcf\x63\x3b\x75\x28\x75\x6e\x30\x20\x00\x49\x00\x44\x00\x33\x00\x44\x00\x31\x00\x31\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x4c\x00\x61\x00\x79\x00\x6f\x00\x75\x00\x74\x00\x20\x00\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x0a\x00\x00"/*@ L"•W€•`‰æ—p‚Ì ID3D11InputLayout ‚Ìì¬‚É¸”s\n" @*/ ) ;
+			DXST_LOGFILE_ADDUTF16LE( "\x19\x6a\x96\x6e\xcf\x63\x3b\x75\x28\x75\x6e\x30\x20\x00\x49\x00\x44\x00\x33\x00\x44\x00\x31\x00\x31\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x4c\x00\x61\x00\x79\x00\x6f\x00\x75\x00\x74\x00\x20\x00\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x0a\x00\x00"/*@ L"æ¨™æº–æç”»ç”¨ã® ID3D11InputLayout ã®ä½œæˆã«å¤±æ•—\n" @*/ ) ;
 			return -1 ;
 		}
 
@@ -13881,7 +13881,7 @@ extern int Graphics_D3D11_InputLayout_Base_Create( void )
 	#endif // DX_NON_SHADERCODE_BINARY
 	}
 
-	// ’Pƒ“]‘——p‚Ì’¸“_ƒf[ƒ^ƒtƒH[ƒ}ƒbƒg‚ğì¬
+	// å˜ç´”è»¢é€ç”¨ã®é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã‚’ä½œæˆ
 	{
 		static D_D3D11_INPUT_ELEMENT_DESC StretchRectInputElementDesc[] =
 		{
@@ -13916,7 +13916,7 @@ extern int Graphics_D3D11_InputLayout_Base_Create( void )
 			&GD3D11.Device.InputLayout.BaseStretchRectInputLayout ) ;
 		if( hr != S_OK )
 		{
-			DXST_LOGFILE_ADDUTF16LE( "\x58\x53\x14\x7d\xe2\x8e\x01\x90\x28\x75\x6e\x30\x20\x00\x49\x00\x44\x00\x33\x00\x44\x00\x31\x00\x31\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x4c\x00\x61\x00\x79\x00\x6f\x00\x75\x00\x74\x00\x20\x00\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x0a\x00\x00"/*@ L"’Pƒ“]‘——p‚Ì ID3D11InputLayout ‚Ìì¬‚É¸”s\n" @*/ ) ;
+			DXST_LOGFILE_ADDUTF16LE( "\x58\x53\x14\x7d\xe2\x8e\x01\x90\x28\x75\x6e\x30\x20\x00\x49\x00\x44\x00\x33\x00\x44\x00\x31\x00\x31\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x4c\x00\x61\x00\x79\x00\x6f\x00\x75\x00\x74\x00\x20\x00\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x0a\x00\x00"/*@ L"å˜ç´”è»¢é€ç”¨ã® ID3D11InputLayout ã®ä½œæˆã«å¤±æ•—\n" @*/ ) ;
 			return -1 ;
 		}
 
@@ -13933,18 +13933,18 @@ extern int Graphics_D3D11_InputLayout_Base_Create( void )
 			&GD3D11.Device.InputLayout.BaseStretchRectTex8InputLayout ) ;
 		if( hr != S_OK )
 		{
-			DXST_LOGFILE_ADDUTF16LE( "\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\xa7\x5e\x19\x6a\x38\x00\x0b\x50\x6e\x30\x58\x53\x14\x7d\xe2\x8e\x01\x90\x28\x75\x6e\x30\x20\x00\x49\x00\x44\x00\x33\x00\x44\x00\x31\x00\x31\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x4c\x00\x61\x00\x79\x00\x6f\x00\x75\x00\x74\x00\x20\x00\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x0a\x00\x00"/*@ L"ƒeƒNƒXƒ`ƒƒÀ•W8ŒÂ‚Ì’Pƒ“]‘——p‚Ì ID3D11InputLayout ‚Ìì¬‚É¸”s\n" @*/ ) ;
+			DXST_LOGFILE_ADDUTF16LE( "\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\xa7\x5e\x19\x6a\x38\x00\x0b\x50\x6e\x30\x58\x53\x14\x7d\xe2\x8e\x01\x90\x28\x75\x6e\x30\x20\x00\x49\x00\x44\x00\x33\x00\x44\x00\x31\x00\x31\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x4c\x00\x61\x00\x79\x00\x6f\x00\x75\x00\x74\x00\x20\x00\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x0a\x00\x00"/*@ L"ãƒ†ã‚¯ã‚¹ãƒãƒ£åº§æ¨™8å€‹ã®å˜ç´”è»¢é€ç”¨ã® ID3D11InputLayout ã®ä½œæˆã«å¤±æ•—\n" @*/ ) ;
 			return -1 ;
 		}
 	}
 
-	DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"¬Œ÷\n" @*/ ) ;
+	DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"æˆåŠŸ\n" @*/ ) ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// •W€•`‰æ—p‚Ì ID3D11InputLayout ƒIƒuƒWƒFƒNƒg‚Ìíœ( 0:¬Œ÷  -1:¸”s )
+// æ¨™æº–æç”»ç”¨ã® ID3D11InputLayout ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®å‰Šé™¤( 0:æˆåŠŸ  -1:å¤±æ•— )
 extern int Graphics_D3D11_InputLayout_Base_Terminate( void )
 {
 	int							i ;
@@ -13955,7 +13955,7 @@ extern int Graphics_D3D11_InputLayout_Base_Terminate( void )
 		return -1 ;
 	}
 
-	// •W€•`‰æ—p‚ÌƒVƒF[ƒ_[‚Åg—p‚·‚é’¸“_ƒf[ƒ^Œ`®‚ğ‰ğ•ú
+	// æ¨™æº–æç”»ç”¨ã®ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã§ä½¿ç”¨ã™ã‚‹é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿å½¢å¼ã‚’è§£æ”¾
 	BSVI = g_BaseSimpleVertexShaderInfo ;
 	for( i = 0 ; i < D3D11_VERTEX_INPUTLAYOUT_NUM ; i++, BSVI++ )
 	{
@@ -13966,7 +13966,7 @@ extern int Graphics_D3D11_InputLayout_Base_Terminate( void )
 		}
 	}
 
-	// ’Pƒ“]‘——p‚Ì’¸“_ƒf[ƒ^ƒtƒH[ƒ}ƒbƒg‚ğ‰ğ•ú
+	// å˜ç´”è»¢é€ç”¨ã®é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã‚’è§£æ”¾
 	if( GD3D11.Device.InputLayout.BaseStretchRectInputLayout != NULL )
 	{
 		Direct3D11_Release_InputLayout( GD3D11.Device.InputLayout.BaseStretchRectInputLayout ) ;
@@ -13978,13 +13978,13 @@ extern int Graphics_D3D11_InputLayout_Base_Terminate( void )
 		GD3D11.Device.InputLayout.BaseStretchRectTex8InputLayout = NULL ;
 	}
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
 #ifndef DX_NON_MODEL
 
-// ƒ‚ƒfƒ‹•`‰æ—p‚Ì ID3D11InputLayout ƒIƒuƒWƒFƒNƒg‚Ìì¬( 0:¬Œ÷  -1:¸”s )
+// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ã® ID3D11InputLayout ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ä½œæˆ( 0:æˆåŠŸ  -1:å¤±æ•— )
 extern int Graphics_D3D11_InputLayout_Model_Create( int BumpMap, int MeshType )
 {
 	DWORD offset, index ;
@@ -14008,7 +14008,7 @@ extern int Graphics_D3D11_InputLayout_Model_Create( int BumpMap, int MeshType )
 		return -1 ;
 	}
 
-	// Šù‚É‚ ‚Á‚½‚ç‰½‚à‚¹‚¸I—¹
+	// æ—¢ã«ã‚ã£ãŸã‚‰ä½•ã‚‚ã›ãšçµ‚äº†
 	if( GD3D11.Device.InputLayout.MV1_VertexInputLayout[ BumpMap ][ MeshType ] != NULL )
 	{
 		return 0 ;
@@ -14029,11 +14029,11 @@ extern int Graphics_D3D11_InputLayout_Model_Create( int BumpMap, int MeshType )
 
 	switch( MeshType )
 	{
-	case 0 :	// „‘ÌƒƒbƒVƒ…
+	case 0 :	// å‰›ä½“ãƒ¡ãƒƒã‚·ãƒ¥
 		break ;
 
-	case 1 :	// ‚Sƒ{[ƒ“ˆÈ“àƒXƒLƒjƒ“ƒOƒƒbƒVƒ…
-	case 2 :	// ‚Wƒ{[ƒ“ˆÈ“àƒXƒLƒjƒ“ƒOƒƒbƒVƒ…
+	case 1 :	// ï¼”ãƒœãƒ¼ãƒ³ä»¥å†…ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥
+	case 2 :	// ï¼˜ãƒœãƒ¼ãƒ³ä»¥å†…ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥
 		InputElement[ index ] = MakeD3D11InputElement( "BLENDINDICES", 0, D_DXGI_FORMAT_R8G8B8A8_UINT,      0, offset ) ;
 		index++ ;
 		offset += sizeof( BYTE ) * 4 ;
@@ -14065,15 +14065,15 @@ extern int Graphics_D3D11_InputLayout_Model_Create( int BumpMap, int MeshType )
 #endif // DX_NON_SHADERCODE_BINARY
 	VS = &GD3D11.Device.Shader.Model.MV1_VertexLighting_VS[ 0 ][ MeshType ][ BumpMap ][ 0 ][ 0 ] ;
 
-	// ƒVƒF[ƒ_[‚ª‚ ‚é‚©‚ğ’²‚×‚é
+	// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãŒã‚ã‚‹ã‹ã‚’èª¿ã¹ã‚‹
 	if( *VS == NULL )
 	{
 	#ifndef DX_NON_SHADERCODE_BINARY
-		// ƒVƒF[ƒ_[‚Ìì¬‚ğ‚İ‚é
+		// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ä½œæˆã‚’è©¦ã¿ã‚‹
 		if( Graphics_D3D11_VertexShader_Create( VSAddress, VS, 1 ) != 0 )
 	#endif // DX_NON_SHADERCODE_BINARY
 		{
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\x47\x00\x72\x00\x61\x00\x70\x00\x68\x00\x69\x00\x63\x00\x73\x00\x5f\x00\x44\x00\x33\x00\x44\x00\x31\x00\x31\x00\x5f\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x4c\x00\x61\x00\x79\x00\x6f\x00\x75\x00\x74\x00\x5f\x00\x4d\x00\x6f\x00\x64\x00\x65\x00\x6c\x00\x5f\x00\x43\x00\x72\x00\x65\x00\x61\x00\x74\x00\x65\x00\x20\x00\x67\x30\x02\x98\xb9\x70\xb7\x30\xa7\x30\xfc\x30\xc0\x30\xfc\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Graphics_D3D11_InputLayout_Model_Create ‚Å’¸“_ƒVƒF[ƒ_[‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ )) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\x47\x00\x72\x00\x61\x00\x70\x00\x68\x00\x69\x00\x63\x00\x73\x00\x5f\x00\x44\x00\x33\x00\x44\x00\x31\x00\x31\x00\x5f\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x4c\x00\x61\x00\x79\x00\x6f\x00\x75\x00\x74\x00\x5f\x00\x4d\x00\x6f\x00\x64\x00\x65\x00\x6c\x00\x5f\x00\x43\x00\x72\x00\x65\x00\x61\x00\x74\x00\x65\x00\x20\x00\x67\x30\x02\x98\xb9\x70\xb7\x30\xa7\x30\xfc\x30\xc0\x30\xfc\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Graphics_D3D11_InputLayout_Model_Create ã§é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ )) ;
 			return -1 ;
 		}
 	}
@@ -14095,11 +14095,11 @@ extern int Graphics_D3D11_InputLayout_Model_Create( int BumpMap, int MeshType )
 		return -1 ;
 	}
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// ƒ‚ƒfƒ‹•`‰æ—p‚Ì ID3D11InputLayout ƒIƒuƒWƒFƒNƒg‚Ìíœ( 0:¬Œ÷  -1:¸”s )
+// ãƒ¢ãƒ‡ãƒ«æç”»ç”¨ã® ID3D11InputLayout ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®å‰Šé™¤( 0:æˆåŠŸ  -1:å¤±æ•— )
 extern int Graphics_D3D11_InputLayout_Model_Terminate( void )
 {
 	int i ;
@@ -14140,15 +14140,15 @@ extern int Graphics_D3D11_InputLayout_Model_Terminate( void )
 
 
 
-// •W€•`‰æŠÖŒW
+// æ¨™æº–æç”»é–¢ä¿‚
 
-// •W€•`‰æ—p‚Ì’¸“_ƒoƒbƒtƒ@‚Ìì¬( 0:¬Œ÷  -1:¸”s )
+// æ¨™æº–æç”»ç”¨ã®é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã®ä½œæˆ( 0:æˆåŠŸ  -1:å¤±æ•— )
 extern	int		Graphics_D3D11_NormalDrawVertexBuffer_Create( void )
 {
 	D_D3D11_BUFFER_DESC BufferDesc ;
 	HRESULT             hr ;
 
-	DXST_LOGFILE_ADDUTF16LE( "\x19\x6a\x96\x6e\xcf\x63\x3b\x75\x28\x75\x6e\x30\x02\x98\xb9\x70\xd0\x30\xc3\x30\xd5\x30\xa1\x30\x6e\x30\x5c\x4f\x10\x62\x2e\x00\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"•W€•`‰æ—p‚Ì’¸“_ƒoƒbƒtƒ@‚Ìì¬.... " @*/ ) ;
+	DXST_LOGFILE_ADDUTF16LE( "\x19\x6a\x96\x6e\xcf\x63\x3b\x75\x28\x75\x6e\x30\x02\x98\xb9\x70\xd0\x30\xc3\x30\xd5\x30\xa1\x30\x6e\x30\x5c\x4f\x10\x62\x2e\x00\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"æ¨™æº–æç”»ç”¨ã®é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã®ä½œæˆ.... " @*/ ) ;
 
 	_MEMSET( &BufferDesc, 0, sizeof( BufferDesc ) ) ;
 	BufferDesc.ByteWidth      = D3D11_VERTEXBUFFER_SIZE ;
@@ -14163,17 +14163,17 @@ extern	int		Graphics_D3D11_NormalDrawVertexBuffer_Create( void )
 	hr = D3D11Device_CreateBuffer( &BufferDesc, NULL, &GD3D11.Device.DrawInfo.VertexBuffer ) ;
 	if( FAILED( hr ) )
 	{
-		DXST_LOGFILE_ADDUTF16LE( "\x31\x59\x57\x65\x0a\x00\x00"/*@ L"¸”s\n" @*/ ) ;
+		DXST_LOGFILE_ADDUTF16LE( "\x31\x59\x57\x65\x0a\x00\x00"/*@ L"å¤±æ•—\n" @*/ ) ;
 		return -1 ;
 	}
 
-	DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"¬Œ÷\n" @*/ ) ;
+	DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"æˆåŠŸ\n" @*/ ) ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// •W€•`‰æ—p‚Ì’¸“_ƒoƒbƒtƒ@‚Ìíœ( 0:¬Œ÷  -1:¸”s )
+// æ¨™æº–æç”»ç”¨ã®é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã®å‰Šé™¤( 0:æˆåŠŸ  -1:å¤±æ•— )
 extern	int		Graphics_D3D11_NormalDrawVertexBuffer_Terminate( void )
 {
 	if( GD3D11.Device.DrawInfo.VertexBuffer )
@@ -14185,11 +14185,11 @@ extern	int		Graphics_D3D11_NormalDrawVertexBuffer_Terminate( void )
 		GD3D11.Device.DrawInfo.VertexBufferNextAddr = NULL ;
 	}
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// ”Ä—p•`‰æ—p’¸“_ƒoƒbƒtƒ@‚ğg—p‚µ‚ÄƒVƒXƒeƒ€ƒƒ‚ƒŠã‚Ì’¸“_ƒf[ƒ^‚Ì•`‰æ‚ğs‚¤
+// æ±ç”¨æç”»ç”¨é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã‚’ä½¿ç”¨ã—ã¦ã‚·ã‚¹ãƒ†ãƒ ãƒ¡ãƒ¢ãƒªä¸Šã®é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ã®æç”»ã‚’è¡Œã†
 extern int Graphics_D3D11_CommonBuffer_DrawPrimitive(
 	int                        InputLayout,
 	D_D3D11_PRIMITIVE_TOPOLOGY PrimitiveType,
@@ -14227,13 +14227,13 @@ extern int Graphics_D3D11_CommonBuffer_DrawPrimitive(
 		0
 	) ;
 
-	// ƒvƒŠƒ~ƒeƒBƒuƒ^ƒCƒv‚ğƒZƒbƒg
+	// ãƒ—ãƒªãƒŸãƒ†ã‚£ãƒ–ã‚¿ã‚¤ãƒ—ã‚’ã‚»ãƒƒãƒˆ
 	Graphics_D3D11_DeviceState_SetPrimitiveTopology( PrimitiveType ) ;
 
-	// “ü—ÍƒŒƒCƒAƒEƒg‚ğƒZƒbƒg
+	// å…¥åŠ›ãƒ¬ã‚¤ã‚¢ã‚¦ãƒˆã‚’ã‚»ãƒƒãƒˆ
 	Graphics_D3D11_DeviceState_SetInputLayout( GD3D11.Device.InputLayout.BaseInputLayout[ InputLayout ] ) ;
 
-	// ’¸“_ƒVƒF[ƒ_[‚ğƒZƒbƒg
+	// é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ã‚»ãƒƒãƒˆ
 	if( UseDefaultVertexShader )
 	{
 		if( InputLayout == D3D11_VERTEX_INPUTLAYOUT_3D_LIGHT )
@@ -14249,21 +14249,21 @@ extern int Graphics_D3D11_CommonBuffer_DrawPrimitive(
 		}
 	}
 
-	// ’¸“_ƒoƒbƒtƒ@‚ğƒZƒbƒg
+	// é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã‚’ã‚»ãƒƒãƒˆ
 	Graphics_D3D11_DeviceState_SetVertexBuffer( GD3D11.Device.DrawInfo.CommonVertexBuffer, D3D11_VertexSize[ InputLayout ] ) ;
 
-	// ƒXƒe[ƒg‚Æ’è”ƒoƒbƒtƒ@‚ÌXV
+	// ã‚¹ãƒ†ãƒ¼ãƒˆã¨å®šæ•°ãƒãƒƒãƒ•ã‚¡ã®æ›´æ–°
 	Graphics_D3D11_DeviceState_SetupStateAndConstantBuffer() ;
 
-	// •`‰æ
+	// æç”»
 	D3D11DeviceContext_Draw( ( UINT )VertexNum, 0 ) ;
 	GSYS.PerformanceInfo.NowFrameDrawCallCount ++ ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ”Ä—p•`‰æ—p’¸“_ƒoƒbƒtƒ@EƒCƒ“ƒfƒbƒNƒXƒoƒbƒtƒ@‚ğg—p‚µ‚ÄƒVƒXƒeƒ€ƒƒ‚ƒŠã‚Ì’¸“_ƒf[ƒ^EƒCƒ“ƒfƒbƒNƒXƒf[ƒ^‚Ì•`‰æ‚ğs‚¤
+// æ±ç”¨æç”»ç”¨é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ãƒ»ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒãƒƒãƒ•ã‚¡ã‚’ä½¿ç”¨ã—ã¦ã‚·ã‚¹ãƒ†ãƒ ãƒ¡ãƒ¢ãƒªä¸Šã®é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ãƒ»ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿ã®æç”»ã‚’è¡Œã†
 extern int Graphics_D3D11_CommonBuffer_DrawIndexedPrimitive(
 	int							InputLayout,
 	D_D3D11_PRIMITIVE_TOPOLOGY	PrimitiveType,
@@ -14335,13 +14335,13 @@ extern int Graphics_D3D11_CommonBuffer_DrawIndexedPrimitive(
 		0
 	) ;
 
-	// ƒvƒŠƒ~ƒeƒBƒuƒ^ƒCƒv‚ğƒZƒbƒg
+	// ãƒ—ãƒªãƒŸãƒ†ã‚£ãƒ–ã‚¿ã‚¤ãƒ—ã‚’ã‚»ãƒƒãƒˆ
 	Graphics_D3D11_DeviceState_SetPrimitiveTopology( PrimitiveType ) ;
 
-	// “ü—ÍƒŒƒCƒAƒEƒg‚ğƒZƒbƒg
+	// å…¥åŠ›ãƒ¬ã‚¤ã‚¢ã‚¦ãƒˆã‚’ã‚»ãƒƒãƒˆ
 	Graphics_D3D11_DeviceState_SetInputLayout( GD3D11.Device.InputLayout.BaseInputLayout[ InputLayout ] ) ;
 
-	// ’¸“_ƒVƒF[ƒ_[‚ğƒZƒbƒg
+	// é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ã‚»ãƒƒãƒˆ
 	if( UseDefaultVertexShader )
 	{
 		if( InputLayout == D3D11_VERTEX_INPUTLAYOUT_3D_LIGHT )
@@ -14355,7 +14355,7 @@ extern int Graphics_D3D11_CommonBuffer_DrawIndexedPrimitive(
 		{
 			Graphics_D3D11_DeviceState_SetVertexShader( GD3D11.Device.Shader.Base.BaseSimple_VS[ InputLayout ], TRUE ) ;
 
-			// ƒWƒIƒƒgƒŠƒVƒF[ƒ_[‚ÌƒŠƒZƒbƒg
+			// ã‚¸ã‚ªãƒ¡ãƒˆãƒªã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ãƒªã‚»ãƒƒãƒˆ
 			if( GD3D11.Device.State.SetGeometryShader != NULL )
 			{
 				Graphics_D3D11_DeviceState_ResetGeometryShader() ;
@@ -14363,24 +14363,24 @@ extern int Graphics_D3D11_CommonBuffer_DrawIndexedPrimitive(
 		}
 	}
 
-	// ’¸“_ƒoƒbƒtƒ@‚ğƒZƒbƒg
+	// é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã‚’ã‚»ãƒƒãƒˆ
 	Graphics_D3D11_DeviceState_SetVertexBuffer( GD3D11.Device.DrawInfo.CommonVertexBuffer, D3D11_VertexSize[ InputLayout ] ) ;
 
-	// ƒCƒ“ƒfƒbƒNƒXƒoƒbƒtƒ@‚ğƒZƒbƒg
+	// ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒãƒƒãƒ•ã‚¡ã‚’ã‚»ãƒƒãƒˆ
 	Graphics_D3D11_DeviceState_SetIndexBuffer( GD3D11.Device.DrawInfo.CommonIndexBuffer[ FormatIndex ], IndexFormat ) ;
 
-	// ƒXƒe[ƒg‚Æ’è”ƒoƒbƒtƒ@‚ÌXV
+	// ã‚¹ãƒ†ãƒ¼ãƒˆã¨å®šæ•°ãƒãƒƒãƒ•ã‚¡ã®æ›´æ–°
 	Graphics_D3D11_DeviceState_SetupStateAndConstantBuffer() ;
 
-	// •`‰æ
+	// æç”»
 	D3D11DeviceContext_DrawIndexed( ( UINT )IndexNum, 0, 0 ) ;
 	GSYS.PerformanceInfo.NowFrameDrawCallCount ++ ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// w’èƒTƒCƒY‚Ì”Ä—p•`‰æ—p’¸“_ƒoƒbƒtƒ@‚Ì€”õ‚ğs‚¤
+// æŒ‡å®šã‚µã‚¤ã‚ºã®æ±ç”¨æç”»ç”¨é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã®æº–å‚™ã‚’è¡Œã†
 extern int Graphics_D3D11_CommonVertexBuffer_Setup( int Size )
 {
 	D_D3D11_BUFFER_DESC BufferDesc ;
@@ -14406,17 +14406,17 @@ extern int Graphics_D3D11_CommonVertexBuffer_Setup( int Size )
 	hr = D3D11Device_CreateBuffer( &BufferDesc, NULL, &GD3D11.Device.DrawInfo.CommonVertexBuffer ) ;
 	if( FAILED( hr ) )
 	{
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\x4e\x6c\x28\x75\xcf\x63\x3b\x75\x28\x75\x6e\x30\x02\x98\xb9\x70\xd0\x30\xc3\x30\xd5\x30\xa1\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x28\x00\x20\x00\xb5\x30\xa4\x30\xba\x30\x20\x00\x25\x00\x64\x00\x20\x00\x62\x00\x79\x00\x74\x00\x65\x00\x20\x00\x29\x00\x0a\x00\x00"/*@ L"”Ä—p•`‰æ—p‚Ì’¸“_ƒoƒbƒtƒ@‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½( ƒTƒCƒY %d byte )\n" @*/, Size ) ) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\x4e\x6c\x28\x75\xcf\x63\x3b\x75\x28\x75\x6e\x30\x02\x98\xb9\x70\xd0\x30\xc3\x30\xd5\x30\xa1\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x28\x00\x20\x00\xb5\x30\xa4\x30\xba\x30\x20\x00\x25\x00\x64\x00\x20\x00\x62\x00\x79\x00\x74\x00\x65\x00\x20\x00\x29\x00\x0a\x00\x00"/*@ L"æ±ç”¨æç”»ç”¨ã®é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ( ã‚µã‚¤ã‚º %d byte )\n" @*/, Size ) ) ;
 		return -1 ;
 	}
 
 	GD3D11.Device.DrawInfo.CommonVertexBufferSize = Size ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// w’èƒTƒCƒY‚Ì”Ä—p•`‰æ—pƒCƒ“ƒfƒbƒNƒXƒoƒbƒtƒ@‚Ì€”õ‚ğs‚¤
+// æŒ‡å®šã‚µã‚¤ã‚ºã®æ±ç”¨æç”»ç”¨ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒãƒƒãƒ•ã‚¡ã®æº–å‚™ã‚’è¡Œã†
 extern int Graphics_D3D11_CommonIndexBuffer_Setup( int Size, D_DXGI_FORMAT IndexFormat )
 {
 	D_D3D11_BUFFER_DESC BufferDesc ;
@@ -14443,17 +14443,17 @@ extern int Graphics_D3D11_CommonIndexBuffer_Setup( int Size, D_DXGI_FORMAT Index
 	hr = D3D11Device_CreateBuffer( &BufferDesc, NULL, &GD3D11.Device.DrawInfo.CommonIndexBuffer[ FormatIndex ] ) ;
 	if( FAILED( hr ) )
 	{
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\x4e\x6c\x28\x75\xcf\x63\x3b\x75\x28\x75\x6e\x30\xa4\x30\xf3\x30\xc7\x30\xc3\x30\xaf\x30\xb9\x30\xd0\x30\xc3\x30\xd5\x30\xa1\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x28\x00\x20\x00\xb5\x30\xa4\x30\xba\x30\x20\x00\x25\x00\x64\x00\x20\x00\x62\x00\x79\x00\x74\x00\x65\x00\x20\x00\x29\x00\x0a\x00\x00"/*@ L"”Ä—p•`‰æ—p‚ÌƒCƒ“ƒfƒbƒNƒXƒoƒbƒtƒ@‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½( ƒTƒCƒY %d byte )\n" @*/, Size ) ) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\x4e\x6c\x28\x75\xcf\x63\x3b\x75\x28\x75\x6e\x30\xa4\x30\xf3\x30\xc7\x30\xc3\x30\xaf\x30\xb9\x30\xd0\x30\xc3\x30\xd5\x30\xa1\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x28\x00\x20\x00\xb5\x30\xa4\x30\xba\x30\x20\x00\x25\x00\x64\x00\x20\x00\x62\x00\x79\x00\x74\x00\x65\x00\x20\x00\x29\x00\x0a\x00\x00"/*@ L"æ±ç”¨æç”»ç”¨ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒãƒƒãƒ•ã‚¡ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ( ã‚µã‚¤ã‚º %d byte )\n" @*/, Size ) ) ;
 		return -1 ;
 	}
 
 	GD3D11.Device.DrawInfo.CommonIndexBufferSize[ FormatIndex ] = Size ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// ”Ä—p•`‰æ—p’¸“_ƒoƒbƒtƒ@‚ÌŒãn––‚ğs‚¤
+// æ±ç”¨æç”»ç”¨é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã®å¾Œå§‹æœ«ã‚’è¡Œã†
 extern int Graphics_D3D11_CommonVertexBuffer_Terminate( void )
 {
 	if( GD3D11.Device.DrawInfo.CommonVertexBuffer == NULL )
@@ -14474,7 +14474,7 @@ extern int Graphics_D3D11_CommonVertexBuffer_Terminate( void )
 	return 0 ;
 }
 
-// ”Ä—p•`‰æ—pƒCƒ“ƒfƒbƒNƒXƒoƒbƒtƒ@‚ÌŒãn––‚ğs‚¤
+// æ±ç”¨æç”»ç”¨ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒãƒƒãƒ•ã‚¡ã®å¾Œå§‹æœ«ã‚’è¡Œã†
 extern int Graphics_D3D11_CommonIndexBuffer_Terminate( D_DXGI_FORMAT IndexFormat )
 {
 	int FormatIndex = IndexFormat == D_DXGI_FORMAT_R16_UINT ? 0 : 1 ;
@@ -14518,7 +14518,7 @@ extern int Graphics_D3D11_CommonIndexBuffer_Terminate( D_DXGI_FORMAT IndexFormat
 
 
 
-// Direct3D11 ‚Ì•`‰æˆ—€”õŠÖŒW
+// Direct3D11 ã®æç”»å‡¦ç†æº–å‚™é–¢ä¿‚
 
 #ifndef DX_NON_ASYNCLOAD
 static int Graphics_D3D11_RenderVertexASyncCallback( ASYNCLOAD_MAINTHREAD_REQUESTINFO * Info )
@@ -14529,7 +14529,7 @@ static int Graphics_D3D11_RenderVertexASyncCallback( ASYNCLOAD_MAINTHREAD_REQUES
 }
 #endif // DX_NON_ASYNCLOAD
 
-// ’¸“_ƒoƒbƒtƒ@‚É—­‚Ü‚Á‚½’¸“_ƒf[ƒ^‚ğƒŒƒ“ƒ_ƒŠƒ“ƒO‚·‚é
+// é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã«æºœã¾ã£ãŸé ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ã‚’ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã™ã‚‹
 extern	int		Graphics_D3D11_RenderVertex( int NextUse3DVertex, int ASyncThread )
 {
 #ifndef DX_NON_ASYNCLOAD
@@ -14548,20 +14548,20 @@ extern	int		Graphics_D3D11_RenderVertex( int NextUse3DVertex, int ASyncThread )
 		return -1 ;
 	}
 
-	// ’¸“_‚ªˆê‚Â‚à–³‚©‚Á‚½‚ç•`‰æ‚Ís‚í‚È‚¢
+	// é ‚ç‚¹ãŒä¸€ã¤ã‚‚ç„¡ã‹ã£ãŸã‚‰æç”»ã¯è¡Œã‚ãªã„
 	if( GD3D11.Device.DrawInfo.VertexNum != 0 && DxLib_GetEndRequest() == FALSE )
 	{
-		// Graphics_D3D11_BeginScene ‚ğ‚µ‚Ä‚¢‚È‚©‚Á‚½‚ç‚·‚é
+		// Graphics_D3D11_BeginScene ã‚’ã—ã¦ã„ãªã‹ã£ãŸã‚‰ã™ã‚‹
 //		if( GD3D11.Device.DrawInfo.BeginSceneFlag == FALSE ) Graphics_D3D11_BeginScene() ;
 
-		// ”ñ•`‰æƒtƒ‰ƒO‚ª—§‚Á‚Ä‚¢‚È‚¯‚ê‚ÎƒŒƒ“ƒ_ƒŠƒ“ƒO‚·‚é
+		// éæç”»ãƒ•ãƒ©ã‚°ãŒç«‹ã£ã¦ã„ãªã‘ã‚Œã°ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã™ã‚‹
 		if( GD3D11.Device.DrawInfo.BlendMaxNotDrawFlag == FALSE )
 		{
 			DWORD                      InputLayout ;
 
 			InputLayout = D3D11_VertexTypeToInputLayout[ GD3D11.Device.DrawInfo.Use3DVertex ][ GD3D11.Device.DrawInfo.VertexType ] ;
 
-			// ’¸“_ƒf[ƒ^‚ğ’¸“_ƒoƒbƒtƒ@‚É”½‰f
+			// é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ã‚’é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã«åæ˜ 
 #if VERTEXBUFFERMODE == 2
 			NORMALVERTEXBUFFER_UNMAP
 #elif VERTEXBUFFERMODE == 1
@@ -14598,19 +14598,19 @@ extern	int		Graphics_D3D11_RenderVertex( int NextUse3DVertex, int ASyncThread )
 			) ;
 #endif
 
-			// ƒvƒŠƒ~ƒeƒBƒuƒ^ƒCƒv‚ğƒZƒbƒg
+			// ãƒ—ãƒªãƒŸãƒ†ã‚£ãƒ–ã‚¿ã‚¤ãƒ—ã‚’ã‚»ãƒƒãƒˆ
 			if( GD3D11.Device.State.PrimitiveTopology != GD3D11.Device.DrawInfo.PrimitiveType )
 			{
 				Graphics_D3D11_DeviceState_SetPrimitiveTopology( GD3D11.Device.DrawInfo.PrimitiveType ) ;
 			}
 
-			// “ü—ÍƒŒƒCƒAƒEƒg‚ğƒZƒbƒg
+			// å…¥åŠ›ãƒ¬ã‚¤ã‚¢ã‚¦ãƒˆã‚’ã‚»ãƒƒãƒˆ
 			if( GD3D11.Device.State.SetVertexInputLayout != GD3D11.Device.InputLayout.BaseInputLayout[ InputLayout ] )
 			{
 				Graphics_D3D11_DeviceState_SetInputLayout( GD3D11.Device.InputLayout.BaseInputLayout[ InputLayout ] ) ;
 			}
 
-			// ’¸“_ƒVƒF[ƒ_[‚ğƒZƒbƒg
+			// é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ã‚»ãƒƒãƒˆ
 			if( InputLayout == D3D11_VERTEX_INPUTLAYOUT_3D_LIGHT )
 			{
 				if( Graphics_D3D11_Shader_Normal3DDraw_Setup() == FALSE )
@@ -14625,24 +14625,24 @@ extern	int		Graphics_D3D11_RenderVertex( int NextUse3DVertex, int ASyncThread )
 					Graphics_D3D11_DeviceState_SetVertexShader( GD3D11.Device.Shader.Base.BaseSimple_VS[ InputLayout ], TRUE ) ;
 				}
 
-				// ƒWƒIƒƒgƒŠƒVƒF[ƒ_[‚ÌƒŠƒZƒbƒg
+				// ã‚¸ã‚ªãƒ¡ãƒˆãƒªã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ãƒªã‚»ãƒƒãƒˆ
 				if( GD3D11.Device.State.SetGeometryShader != NULL )
 				{
 					Graphics_D3D11_DeviceState_ResetGeometryShader() ;
 				}
 			}
 
-			// ’¸“_ƒoƒbƒtƒ@‚ğƒZƒbƒg
+			// é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã‚’ã‚»ãƒƒãƒˆ
 			if( GD3D11.Device.State.SetVertexBuffer       != GD3D11.Device.DrawInfo.VertexBuffer ||
 				GD3D11.Device.State.SetVertexBufferStride != D3D11_VertexSize[ InputLayout ] )
 			{
 				Graphics_D3D11_DeviceState_SetVertexBuffer( GD3D11.Device.DrawInfo.VertexBuffer, D3D11_VertexSize[ InputLayout ] ) ;
 			}
 
-			// ƒXƒe[ƒg‚Æ’è”ƒoƒbƒtƒ@‚ÌXV
+			// ã‚¹ãƒ†ãƒ¼ãƒˆã¨å®šæ•°ãƒãƒƒãƒ•ã‚¡ã®æ›´æ–°
 			Graphics_D3D11_DeviceState_SetupStateAndConstantBuffer_Inline() ;
 
-			// •`‰æ
+			// æç”»
 			D3D11DeviceContext_Draw( ( UINT )GD3D11.Device.DrawInfo.VertexNum, 0 ) ;
 			GSYS.PerformanceInfo.NowFrameDrawCallCount ++ ;
 		}
@@ -14662,11 +14662,11 @@ extern	int		Graphics_D3D11_RenderVertex( int NextUse3DVertex, int ASyncThread )
 	GD3D11.Device.DrawInfo.VertexBufferNextAddr = GD3D11.Device.DrawInfo.VertexBufferTemp ;
 #endif
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// •`‰æ€”õ‚ğs‚¤
+// æç”»æº–å‚™ã‚’è¡Œã†
 extern	void	FASTCALL Graphics_D3D11_DrawPreparation( int ParamFlag )
 {
 	int AlphaTest ;
@@ -14674,23 +14674,23 @@ extern	void	FASTCALL Graphics_D3D11_DrawPreparation( int ParamFlag )
 	int Specular ;
 	int i ;
 
-	// •K‚¸ Graphics_D3D11_DrawPreparation ‚ğs‚¤‚×‚«‚Æ‚¢‚¤ƒtƒ‰ƒO‚ğ“|‚·
+	// å¿…ãš Graphics_D3D11_DrawPreparation ã‚’è¡Œã†ã¹ãã¨ã„ã†ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 	GD3D11.Device.DrawSetting.DrawPrepAlwaysFlag = FALSE ;
 
-	// İ’è‚ª•ÏX‚³‚ê‚½‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğ“|‚·
+	// è¨­å®šãŒå¤‰æ›´ã•ã‚ŒãŸã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 	GSYS.ChangeSettingFlag = FALSE ;
 
-	// ƒ‰ƒCƒg‚ğg‚¤‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+	// ãƒ©ã‚¤ãƒˆã‚’ä½¿ã†ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 	if( ( ParamFlag & DX_D3D11_DRAWPREP_LIGHTING ) != 0 && GSYS.Light.ProcessDisable == FALSE )
 	{
-		// ƒ‰ƒCƒg‚Ìİ’è‚ª•ÏX‚³‚ê‚Ä‚¢‚½‚ç•ÏX‚ğ“K‰‚·‚é
+		// ãƒ©ã‚¤ãƒˆã®è¨­å®šãŒå¤‰æ›´ã•ã‚Œã¦ã„ãŸã‚‰å¤‰æ›´ã‚’é©å¿œã™ã‚‹
 		if( GSYS.Light.HardwareChange )
 		{
 			Graphics_Light_RefreshState() ;
 		}
 		else
 		{
-			// ƒ‰ƒCƒg‚ª—LŒø‚È‚Ì‚Éˆê“I‚É–³Œø‚É‚È‚Á‚Ä‚¢‚½‚ç—LŒø‚É‚·‚é
+			// ãƒ©ã‚¤ãƒˆãŒæœ‰åŠ¹ãªã®ã«ä¸€æ™‚çš„ã«ç„¡åŠ¹ã«ãªã£ã¦ã„ãŸã‚‰æœ‰åŠ¹ã«ã™ã‚‹
 			if( GD3D11.Device.State.Lighting == 0 )
 			{
 				Graphics_D3D11_DeviceState_SetLighting( TRUE ) ;
@@ -14699,21 +14699,21 @@ extern	void	FASTCALL Graphics_D3D11_DrawPreparation( int ParamFlag )
 	}
 	else
 	{
-		// ƒ‰ƒCƒg‚ª—LŒø‚É‚È‚Á‚Ä‚¢‚½‚ç–³Œø‚É‚·‚é
+		// ãƒ©ã‚¤ãƒˆãŒæœ‰åŠ¹ã«ãªã£ã¦ã„ãŸã‚‰ç„¡åŠ¹ã«ã™ã‚‹
 		if( GD3D11.Device.State.Lighting == 1 )
 		{
 			Graphics_D3D11_DeviceState_SetLighting( FALSE ) ;
 		}
 	}
 
-	// ƒ}ƒeƒŠƒAƒ‹‚Ìİ’è‚ªŠO•”‚©‚ç•ÏX‚³‚ê‚Ä‚¢‚½‚çŒ³‚É–ß‚·
+	// ãƒãƒ†ãƒªã‚¢ãƒ«ã®è¨­å®šãŒå¤–éƒ¨ã‹ã‚‰å¤‰æ›´ã•ã‚Œã¦ã„ãŸã‚‰å…ƒã«æˆ»ã™
 	if( GSYS.Light.ChangeMaterial )
 	{
 		GSYS.Light.ChangeMaterial = 0 ;
 		Graphics_D3D11_DeviceState_SetMaterial( &GSYS.Light.Material ) ;
 	}
 
-	// ’¸“_ƒJƒ‰[‚ğƒ}ƒeƒŠƒAƒ‹‚ÌƒJƒ‰[‚Æ‚µ‚Äg—p‚·‚é‚©‚Ç‚¤‚©‚ğƒZƒbƒg‚·‚é
+	// é ‚ç‚¹ã‚«ãƒ©ãƒ¼ã‚’ãƒãƒ†ãƒªã‚¢ãƒ«ã®ã‚«ãƒ©ãƒ¼ã¨ã—ã¦ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 	if( ( GSYS.Light.MaterialNotUseVertexDiffuseColor ? FALSE : TRUE ) != GD3D11.Device.State.MaterialUseVertexDiffuseColor )
 	{
 		Graphics_D3D11_DeviceState_SetUseVertexDiffuseColor( GSYS.Light.MaterialNotUseVertexDiffuseColor ? FALSE : TRUE ) ;
@@ -14724,17 +14724,17 @@ extern	void	FASTCALL Graphics_D3D11_DrawPreparation( int ParamFlag )
 		Graphics_D3D11_DeviceState_SetUseVertexSpecularColor( GSYS.Light.MaterialNotUseVertexSpecularColor ? FALSE : TRUE ) ;
 	}
 
-	// ƒXƒyƒLƒ…ƒ‰‚ğg—p‚·‚é‚©‚Ç‚¤‚©‚Ìİ’è‚ğs‚¤
+	// ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã®è¨­å®šã‚’è¡Œã†
 	Specular = ( GSYS.DrawSetting.NotUseSpecular == FALSE && ( ParamFlag & DX_D3D11_DRAWPREP_SPECULAR ) != 0 ) ? TRUE : FALSE ;
 	if( Specular != GD3D11.Device.State.UseSpecular )
 	{
 		Graphics_D3D11_DeviceState_SetSpecularEnable( Specular ) ;
 	}
 
-	// Ë‰es—ñ‚Ìİ’è‚ğs‚¤
+	// å°„å½±è¡Œåˆ—ã®è¨­å®šã‚’è¡Œã†
 //	Graphics_DrawSetting_SetUse2DProjectionMatrix( ( ParamFlag & DX_D3D11_DRAWPREP_3D ) == 0 ? TRUE : FALSE ) ;
 
-	// ‚yƒoƒbƒtƒ@‚Ìİ’è‚ğs‚¤
+	// ï¼ºãƒãƒƒãƒ•ã‚¡ã®è¨­å®šã‚’è¡Œã†
 	{
 		BOOL                    DepthEnable ;
 		int                     WriteDepthBuffer ;
@@ -14792,13 +14792,13 @@ extern	void	FASTCALL Graphics_D3D11_DrawPreparation( int ParamFlag )
 		}
 	}
 
-	// ƒtƒBƒ‹ƒ‚[ƒh‚ÌƒZƒbƒg
+	// ãƒ•ã‚£ãƒ«ãƒ¢ãƒ¼ãƒ‰ã®ã‚»ãƒƒãƒˆ
 	if( GD3D11.Device.State.RasterizerDesc.FillMode != ( D_D3D11_FILL_MODE )GSYS.DrawSetting.FillMode )
 	{
 		Graphics_D3D11_DeviceState_SetFillMode( ( D_D3D11_FILL_MODE )GSYS.DrawSetting.FillMode ) ;
 	}
 
-	// ƒtƒHƒO‚Ìİ’è‚ğs‚¤
+	// ãƒ•ã‚©ã‚°ã®è¨­å®šã‚’è¡Œã†
 	if( ParamFlag & DX_D3D11_DRAWPREP_FOG )
 	{
 		if( GD3D11.Device.State.FogEnable != GSYS.DrawSetting.FogEnable )
@@ -14814,29 +14814,29 @@ extern	void	FASTCALL Graphics_D3D11_DrawPreparation( int ParamFlag )
 		}
 	}
 
-	// ƒuƒŒƒ“ƒfƒBƒ“ƒOŠÖŒW‚ÌƒZƒbƒeƒBƒ“ƒO‚ğs‚¤ê‡‚Ì‚İÀs‚·‚é
+	// ãƒ–ãƒ¬ãƒ³ãƒ‡ã‚£ãƒ³ã‚°é–¢ä¿‚ã®ã‚»ãƒƒãƒ†ã‚£ãƒ³ã‚°ã‚’è¡Œã†å ´åˆã®ã¿å®Ÿè¡Œã™ã‚‹
 	if( ( ParamFlag & DX_D3D11_DRAWPREP_NOBLENDSETTING ) == 0 )
 	{
-		// ƒtƒ‰ƒO‚Ì‰Šú‰»
+		// ãƒ•ãƒ©ã‚°ã®åˆæœŸåŒ–
 		AlphaTest    = FALSE ;
 		AlphaChannel = FALSE ;
 
-		// ƒeƒNƒXƒ`ƒƒ[‚ğg—p‚·‚é‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
-		// g—p‚µ‚È‚¢ê‡‚Í‰Šú’l‚Ì‚Ü‚Ü
+		// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
+		// ä½¿ç”¨ã—ãªã„å ´åˆã¯åˆæœŸå€¤ã®ã¾ã¾
 		if( ParamFlag & DX_D3D11_DRAWPREP_TEXTURE )
 		{
-			// “§‰ßFˆ—‚ğs‚í‚È‚¢ê‡‚ÍƒJƒ‰[ƒL[‚àƒ¿ƒeƒXƒg‚àƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚àg—p‚µ‚È‚¢‚Ì‚Å‰Šú’l‚Ì‚Ü‚Ü
-			// “§‰ßFˆ—‚ğs‚¤ê‡‚Ì‚İˆ—‚ğ‚·‚é
+			// é€éè‰²å‡¦ç†ã‚’è¡Œã‚ãªã„å ´åˆã¯ã‚«ãƒ©ãƒ¼ã‚­ãƒ¼ã‚‚Î±ãƒ†ã‚¹ãƒˆã‚‚Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚‚ä½¿ç”¨ã—ãªã„ã®ã§åˆæœŸå€¤ã®ã¾ã¾
+			// é€éè‰²å‡¦ç†ã‚’è¡Œã†å ´åˆã®ã¿å‡¦ç†ã‚’ã™ã‚‹
 			if( ParamFlag & DX_D3D11_DRAWPREP_TRANS )
 			{
 				int TexAlphaTestFlag = ( ParamFlag & DX_D3D11_DRAWPREP_TEXALPHATEST ) != 0 ? 1 : 0 ;
 				int TexAlphaChFlag   = ( ParamFlag & DX_D3D11_DRAWPREP_TEXALPHACH   ) != 0 ? 1 : 0 ;
 
-				// ƒeƒNƒXƒ`ƒƒ‚Éƒ¿ƒrƒbƒg‚ª‚ ‚é‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã«Î±ãƒ“ãƒƒãƒˆãŒã‚ã‚‹ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 				if( TexAlphaTestFlag || TexAlphaChFlag )
 				{
-					// ƒ¿ƒeƒXƒg‚Å‚à’¸“_À•W‚Ìƒf[ƒ^Œ^‚ª•‚“®¬”“_Œ^‚ÅAŠ‚ÂƒeƒNƒXƒ`ƒƒƒtƒBƒ‹ƒ^ƒŠƒ“ƒOƒ‚[ƒh‚ª
-					// üŒ`•âŠÔ‚Å‚ ‚é‚©AƒuƒŒƒ“ƒhƒ‚[ƒh‚ª DX_BLENDMODE_NOBLEND ˆÈŠO‚¾‚Á‚½‚çƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚Æ‚µ‚Äˆµ‚¤
+					// Î±ãƒ†ã‚¹ãƒˆã§ã‚‚é ‚ç‚¹åº§æ¨™ã®ãƒ‡ãƒ¼ã‚¿å‹ãŒæµ®å‹•å°æ•°ç‚¹å‹ã§ã€ä¸”ã¤ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ•ã‚£ãƒ«ã‚¿ãƒªãƒ³ã‚°ãƒ¢ãƒ¼ãƒ‰ãŒ
+					// ç·šå½¢è£œé–“ã§ã‚ã‚‹ã‹ã€ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ãŒ DX_BLENDMODE_NOBLEND ä»¥å¤–ã ã£ãŸã‚‰Î±ãƒãƒ£ãƒ³ãƒãƒ«ã¨ã—ã¦æ‰±ã†
 					if( ( GSYS.DrawSetting.BlendMode != DX_BLENDMODE_NOBLEND && GSYS.DrawSetting.BlendMode != DX_BLENDMODE_DESTCOLOR ) ||
 						( ( ParamFlag & DX_D3D11_DRAWPREP_VECTORINT ) == 0   && GSYS.DrawSetting.DrawMode  == DX_DRAWMODE_BILINEAR   ) )
 					{
@@ -14844,7 +14844,7 @@ extern	void	FASTCALL Graphics_D3D11_DrawPreparation( int ParamFlag )
 					}
 					else
 					{
-						// ‚»‚êˆÈŠO‚Ìê‡‚ÍƒeƒNƒXƒ`ƒƒ[‚Ìƒtƒ‰ƒO‚ÉˆÏ‚Ë‚é
+						// ãã‚Œä»¥å¤–ã®å ´åˆã¯ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã®ãƒ•ãƒ©ã‚°ã«å§”ã­ã‚‹
 						AlphaTest    = TexAlphaTestFlag ;
 						AlphaChannel = TexAlphaChFlag ;
 					}
@@ -14852,7 +14852,7 @@ extern	void	FASTCALL Graphics_D3D11_DrawPreparation( int ParamFlag )
 			}
 		}
 
-		// ’²®‚³‚ê‚½ƒpƒ‰ƒ[ƒ^‚ğƒZƒbƒg‚·‚é
+		// èª¿æ•´ã•ã‚ŒãŸãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 		if( GD3D11.Device.DrawSetting.IgnoreGraphColorFlag  != GSYS.DrawSetting.IgnoreGraphColorFlag )
 		{
 			Graphics_D3D11_DrawSetting_SetIgnoreDrawGraphColor( GSYS.DrawSetting.IgnoreGraphColorFlag ) ;
@@ -14991,12 +14991,12 @@ extern	void	FASTCALL Graphics_D3D11_DrawPreparation( int ParamFlag )
 		}
 	}
 
-	// ƒpƒ‰ƒ[ƒ^‚ğ•Û‘¶
+	// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ä¿å­˜
 	GD3D11.Device.DrawSetting.DrawPrepParamFlag = ParamFlag ;
 }
 
 
-// •`‰æƒRƒ}ƒ“ƒh‚ğŠJn‚·‚é
+// æç”»ã‚³ãƒãƒ³ãƒ‰ã‚’é–‹å§‹ã™ã‚‹
 extern	void	Graphics_D3D11_RenderBegin( void )
 {
 	if( D3D11Device_IsValid() == 0 || GD3D11.Device.DrawInfo.BeginSceneFlag == TRUE ) return ;
@@ -15006,7 +15006,7 @@ extern	void	Graphics_D3D11_RenderBegin( void )
 	GD3D11.Device.DrawSetting.DrawPrepAlwaysFlag = TRUE ;
 }
 
-// •`‰æƒRƒ}ƒ“ƒh‚ğI—¹‚·‚é
+// æç”»ã‚³ãƒãƒ³ãƒ‰ã‚’çµ‚äº†ã™ã‚‹
 extern	void	Graphics_D3D11_RenderEnd( void )
 {
 	if( D3D11Device_IsValid() == 0 || GD3D11.Device.DrawInfo.BeginSceneFlag == FALSE ) return ;
@@ -15042,9 +15042,9 @@ extern	void	Graphics_D3D11_RenderEnd( void )
 
 
 
-// Direct3D11 ‚ğg‚Á‚½•`‰æŠÖŒW
+// Direct3D11 ã‚’ä½¿ã£ãŸæç”»é–¢ä¿‚
 
-// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒ^g—p”Å DrawBillboard3D
+// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚¿ä½¿ç”¨ç‰ˆ DrawBillboard3D
 extern	int		Graphics_D3D11_DrawBillboard3D( VECTOR Pos, float cx, float cy, float SizeX, float SizeY, float Angle, IMAGEDATA *Image, IMAGEDATA *BlendImage, int TransFlag, int ReverseXFlag, int ReverseYFlag, int DrawFlag, RECT *DrawArea )
 {
 	VERTEX_2D *DrawVert ;
@@ -15085,7 +15085,7 @@ extern	int		Graphics_D3D11_DrawBillboard3D( VECTOR Pos, float cx, float cy, floa
 		return -1 ;
 	}
 
-	// •`‰æ€”õ
+	// æç”»æº–å‚™
 	if( DrawFlag )
 	{
 		Flag = TransFlag | DX_D3D11_DRAWPREP_3D | DX_D3D11_DRAWPREP_FOG | DX_D3D11_DRAWPREP_TEXADDRESS ;
@@ -15099,20 +15099,20 @@ extern	int		Graphics_D3D11_DrawBillboard3D( VECTOR Pos, float cx, float cy, floa
 		dbottom =  100000000.0f ;
 	}
 
-	// ’¸“_ƒf[ƒ^‚ğæ“¾
+	// é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
 	DiffuseColor = GD3D11.Device.DrawInfo.DiffuseColor ;
 
-	// •`‰æî•ñ‚Ì”‚ğƒZƒbƒg
+	// æç”»æƒ…å ±ã®æ•°ã‚’ã‚»ãƒƒãƒˆ
 	DrawTexNum = Image->Hard.DrawNum ;
 
-	// •`‰æî•ñ‚Ì”‚ªƒuƒŒƒ“ƒh‰æ‘œ‚ÆˆÙ‚È‚Á‚Ä‚¢‚½‚ç‚O”Ô–Ú‚ÌƒeƒNƒXƒ`ƒƒ‚¾‚¯‚ğg—p‚·‚é
+	// æç”»æƒ…å ±ã®æ•°ãŒãƒ–ãƒ¬ãƒ³ãƒ‰ç”»åƒã¨ç•°ãªã£ã¦ã„ãŸã‚‰ï¼ç•ªç›®ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ã ã‘ã‚’ä½¿ç”¨ã™ã‚‹
 	BlendGraphNoIncFlag = FALSE ;
 	if( BlendImage != NULL && BlendImage->Hard.DrawNum != Image->Hard.DrawNum )
 	{
 		BlendGraphNoIncFlag = TRUE ;
 	}
 
-	// •`‰æî•ñ”z—ñ‚ÌƒAƒhƒŒƒX‚ğƒZƒbƒg‚µ‚Ä‚¨‚­
+	// æç”»æƒ…å ±é…åˆ—ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ã‚»ãƒƒãƒˆã—ã¦ãŠã
 	DrawTex = Image->Hard.Draw ;
 	BlendDrawTex = NULL ;
 	if( BlendImage != NULL )
@@ -15120,22 +15120,22 @@ extern	int		Graphics_D3D11_DrawBillboard3D( VECTOR Pos, float cx, float cy, floa
 		BlendDrawTex = BlendImage->Hard.Draw ;
 	}
 
-	// ƒTƒCƒY‚ÆÀ•WŠÖŒW‚Ì–‘OŒvZ
+	// ã‚µã‚¤ã‚ºã¨åº§æ¨™é–¢ä¿‚ã®äº‹å‰è¨ˆç®—
 	ScaleX = SizeX / Image->WidthF ;
 	ScaleY = SizeY / Image->HeightF ;
 	cx *= Image->WidthF ;
 	cy *= Image->HeightF ;
 
-	// ‰ñ“]‚·‚éê‡‚Í‰ñ“]’l‚ğ‹‚ß‚Ä‚¨‚­
+	// å›è»¢ã™ã‚‹å ´åˆã¯å›è»¢å€¤ã‚’æ±‚ã‚ã¦ãŠã
 	if( Angle != 0.0 )
 	{
 		_SINCOS( (float)Angle, &Sin, &Cos ) ;
 	}
 
-	// ƒeƒNƒXƒ`ƒƒ[‚Ì”‚¾‚¯ŒJ‚è•Ô‚·
+	// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã®æ•°ã ã‘ç¹°ã‚Šè¿”ã™
 	for( i = 0 ; i < DrawTexNum ; i ++, DrawTex ++ )
 	{
-		// •`‰æ‚·‚éƒeƒNƒXƒ`ƒƒ[‚ÌƒZƒbƒg
+		// æç”»ã™ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã®ã‚»ãƒƒãƒˆ
 		if( DrawFlag )
 		{
 			Graphics_D3D11_DrawSetting_SetTexture( DrawTex->Tex->PF->D3D11.Texture, DrawTex->Tex->PF->D3D11.TextureSRV ) ;
@@ -15157,22 +15157,22 @@ extern	int		Graphics_D3D11_DrawBillboard3D( VECTOR Pos, float cx, float cy, floa
 			BlendTexVert = BlendDrawTex->Vertex ;
 		}
 
-		// ƒuƒŒƒ“ƒhƒOƒ‰ƒtƒBƒbƒN‚ğg—p‚µ‚Ä‚¢‚È‚­‚ÄAŠ‚Â•`‰æ‚·‚éê‡‚Í‚‘¬‚Èˆ—‚ğg—p‚·‚é
+		// ãƒ–ãƒ¬ãƒ³ãƒ‰ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚’ä½¿ç”¨ã—ã¦ã„ãªãã¦ã€ä¸”ã¤æç”»ã™ã‚‹å ´åˆã¯é«˜é€Ÿãªå‡¦ç†ã‚’ä½¿ç”¨ã™ã‚‹
 		if( GD3D11.Device.DrawInfo.VertexType != VERTEXTYPE_BLENDTEX && DrawFlag == TRUE )
 		{
 			GETVERTEX_BILLBOARD( DrawVert3D ) ;
 
-			// ‰ñ“]‚·‚éê‡‚Æ‚µ‚È‚¢ê‡‚Åˆ—‚ğ•ªŠò
+			// å›è»¢ã™ã‚‹å ´åˆã¨ã—ãªã„å ´åˆã§å‡¦ç†ã‚’åˆ†å²
 			if( Angle != 0.0 )
 			{
-				// ƒ[ƒJƒ‹À•W€”õ
+				// ãƒ­ãƒ¼ã‚«ãƒ«åº§æ¨™æº–å‚™
 				SrcVec[2].x = SrcVec[0].x = ( -cx + TexVert[0].x ) * ScaleX ;
 				SrcVec[3].x = SrcVec[1].x = ( -cx + TexVert[1].x ) * ScaleX ;
 
 				SrcVec[1].y = SrcVec[0].y = ( -cy + Image->HeightF - TexVert[0].y ) * ScaleY ;
 				SrcVec[3].y = SrcVec[2].y = ( -cy + Image->HeightF - TexVert[2].y ) * ScaleY ;
 
-				// ‰ñ“]ŒvZ
+				// å›è»¢è¨ˆç®—
 				f             = SrcVec[ 0 ].x * Cos - SrcVec[ 0 ].y * Sin ;	
 				SrcVec[ 0 ].y = SrcVec[ 0 ].x * Sin + SrcVec[ 0 ].y * Cos ;
 				SrcVec[ 0 ].x = f ;
@@ -15189,7 +15189,7 @@ extern	int		Graphics_D3D11_DrawBillboard3D( VECTOR Pos, float cx, float cy, floa
 				SrcVec[ 3 ].y = SrcVec[ 3 ].x * Sin + SrcVec[ 3 ].y * Cos ;
 				SrcVec[ 3 ].x = f ;
 
-				// ƒrƒ‹ƒ{[ƒhÀ•W‚ğƒ[ƒ‹ƒhÀ•W‚Ö•ÏŠ·
+				// ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰åº§æ¨™ã‚’ãƒ¯ãƒ¼ãƒ«ãƒ‰åº§æ¨™ã¸å¤‰æ›
 				DrawVert3D[ 0 ].pos.x = SrcVec[ 0 ].x * GSYS.DrawSetting.BillboardMatrixF.m[0][0] + SrcVec[ 0 ].y * GSYS.DrawSetting.BillboardMatrixF.m[1][0] + Pos.x ;
 				DrawVert3D[ 0 ].pos.y = SrcVec[ 0 ].x * GSYS.DrawSetting.BillboardMatrixF.m[0][1] + SrcVec[ 0 ].y * GSYS.DrawSetting.BillboardMatrixF.m[1][1] + Pos.y ;
 				DrawVert3D[ 0 ].pos.z = SrcVec[ 0 ].x * GSYS.DrawSetting.BillboardMatrixF.m[0][2] + SrcVec[ 0 ].y * GSYS.DrawSetting.BillboardMatrixF.m[1][2] + Pos.z ;
@@ -15218,14 +15218,14 @@ extern	int		Graphics_D3D11_DrawBillboard3D( VECTOR Pos, float cx, float cy, floa
 			{
 				VECTOR TempVecX[ 2 ], TempVecY[ 2 ] ;
 
-				// ƒ[ƒJƒ‹À•W€”õ
+				// ãƒ­ãƒ¼ã‚«ãƒ«åº§æ¨™æº–å‚™
 				SrcVec[0].x = ( -cx + TexVert[0].x ) * ScaleX ;
 				SrcVec[1].x = ( -cx + TexVert[1].x ) * ScaleX ;
 
 				SrcVec[0].y = ( -cy + Image->HeightF - TexVert[0].y ) * ScaleY ;
 				SrcVec[2].y = ( -cy + Image->HeightF - TexVert[2].y ) * ScaleY ;
 
-				// ƒrƒ‹ƒ{[ƒhÀ•W‚ğƒ[ƒ‹ƒhÀ•W‚Ö•ÏŠ·
+				// ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰åº§æ¨™ã‚’ãƒ¯ãƒ¼ãƒ«ãƒ‰åº§æ¨™ã¸å¤‰æ›
 				TempVecX[ 0 ].x = SrcVec[ 0 ].x * GSYS.DrawSetting.BillboardMatrixF.m[0][0] + Pos.x ;
 				TempVecX[ 0 ].y = SrcVec[ 0 ].x * GSYS.DrawSetting.BillboardMatrixF.m[0][1] + Pos.y ;
 				TempVecX[ 0 ].z = SrcVec[ 0 ].x * GSYS.DrawSetting.BillboardMatrixF.m[0][2] + Pos.z ;
@@ -15311,26 +15311,26 @@ extern	int		Graphics_D3D11_DrawBillboard3D( VECTOR Pos, float cx, float cy, floa
 				DrawVert3D[5].v = TexVert[0].v ;
 			}
 
-			// ƒeƒNƒXƒ`ƒƒ[‚ğ•`‰æ‚·‚é
+			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã‚’æç”»ã™ã‚‹
 			ADD4VERTEX_BILLBOARD
 		}
 		else
 		{
 			VECTOR DrawPos[ 4 ] ;
 
-			// ƒrƒ‹ƒ{[ƒh‚Ì‚S’¸“_‚ğ“¾‚é
+			// ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã®ï¼”é ‚ç‚¹ã‚’å¾—ã‚‹
 			{
-				// ‰ñ“]‚·‚éê‡‚Æ‚µ‚È‚¢ê‡‚Åˆ—‚ğ•ªŠò
+				// å›è»¢ã™ã‚‹å ´åˆã¨ã—ãªã„å ´åˆã§å‡¦ç†ã‚’åˆ†å²
 				if( Angle != 0.0 )
 				{
-					// ƒ[ƒJƒ‹À•W€”õ
+					// ãƒ­ãƒ¼ã‚«ãƒ«åº§æ¨™æº–å‚™
 					SrcVec[2].x = SrcVec[0].x = ( -cx + TexVert[0].x ) * ScaleX ;
 					SrcVec[3].x = SrcVec[1].x = ( -cx + TexVert[1].x ) * ScaleX ;
 
 					SrcVec[1].y = SrcVec[0].y = ( -cy + Image->HeightF - TexVert[0].y ) * ScaleY ;
 					SrcVec[3].y = SrcVec[2].y = ( -cy + Image->HeightF - TexVert[2].y ) * ScaleY ;
 
-					// ‰ñ“]ŒvZ
+					// å›è»¢è¨ˆç®—
 					f             = SrcVec[ 0 ].x * Cos - SrcVec[ 0 ].y * Sin ;	
 					SrcVec[ 0 ].y = SrcVec[ 0 ].x * Sin + SrcVec[ 0 ].y * Cos ;
 					SrcVec[ 0 ].x = f ;
@@ -15347,7 +15347,7 @@ extern	int		Graphics_D3D11_DrawBillboard3D( VECTOR Pos, float cx, float cy, floa
 					SrcVec[ 3 ].y = SrcVec[ 3 ].x * Sin + SrcVec[ 3 ].y * Cos ;
 					SrcVec[ 3 ].x = f ;
 
-					// ƒrƒ‹ƒ{[ƒhÀ•W‚ğƒ[ƒ‹ƒhÀ•W‚Ö•ÏŠ·
+					// ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰åº§æ¨™ã‚’ãƒ¯ãƒ¼ãƒ«ãƒ‰åº§æ¨™ã¸å¤‰æ›
 					SrcVec2[ 0 ].x = SrcVec[ 0 ].x * GSYS.DrawSetting.BillboardMatrixF.m[0][0] + SrcVec[ 0 ].y * GSYS.DrawSetting.BillboardMatrixF.m[1][0] + Pos.x ;
 					SrcVec2[ 0 ].y = SrcVec[ 0 ].x * GSYS.DrawSetting.BillboardMatrixF.m[0][1] + SrcVec[ 0 ].y * GSYS.DrawSetting.BillboardMatrixF.m[1][1] + Pos.y ;
 					SrcVec2[ 0 ].z = SrcVec[ 0 ].x * GSYS.DrawSetting.BillboardMatrixF.m[0][2] + SrcVec[ 0 ].y * GSYS.DrawSetting.BillboardMatrixF.m[1][2] + Pos.z ;
@@ -15368,14 +15368,14 @@ extern	int		Graphics_D3D11_DrawBillboard3D( VECTOR Pos, float cx, float cy, floa
 				{
 					VECTOR TempVecX[ 2 ], TempVecY[ 2 ] ;
 
-					// ƒ[ƒJƒ‹À•W€”õ
+					// ãƒ­ãƒ¼ã‚«ãƒ«åº§æ¨™æº–å‚™
 					SrcVec[0].x = ( -cx + TexVert[0].x ) * ScaleX ;
 					SrcVec[1].x = ( -cx + TexVert[1].x ) * ScaleX ;
 
 					SrcVec[0].y = ( -cy + Image->HeightF - TexVert[0].y ) * ScaleY ;
 					SrcVec[2].y = ( -cy + Image->HeightF - TexVert[2].y ) * ScaleY ;
 
-					// ƒrƒ‹ƒ{[ƒhÀ•W‚ğƒ[ƒ‹ƒhÀ•W‚Ö•ÏŠ·
+					// ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰åº§æ¨™ã‚’ãƒ¯ãƒ¼ãƒ«ãƒ‰åº§æ¨™ã¸å¤‰æ›
 					TempVecX[ 0 ].x = SrcVec[ 0 ].x * GSYS.DrawSetting.BillboardMatrixF.m[0][0] + Pos.x ;
 					TempVecX[ 0 ].y = SrcVec[ 0 ].x * GSYS.DrawSetting.BillboardMatrixF.m[0][1] + Pos.y ;
 					TempVecX[ 0 ].z = SrcVec[ 0 ].x * GSYS.DrawSetting.BillboardMatrixF.m[0][2] + Pos.z ;
@@ -15410,13 +15410,13 @@ extern	int		Graphics_D3D11_DrawBillboard3D( VECTOR Pos, float cx, float cy, floa
 				}
 			}
 
-			// ’¸“_ƒ^ƒCƒv‚É‚æ‚Á‚Äˆ—‚ğ•ªŠò
+			// é ‚ç‚¹ã‚¿ã‚¤ãƒ—ã«ã‚ˆã£ã¦å‡¦ç†ã‚’åˆ†å²
 			switch( GD3D11.Device.DrawInfo.VertexType )
 			{
 			case VERTEXTYPE_BLENDTEX :
-				// ƒuƒŒƒ“ƒhƒeƒNƒXƒ`ƒƒ‚ğg—p‚·‚é
+				// ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ä½¿ç”¨ã™ã‚‹
 
-				// ’¸“_ƒoƒbƒtƒ@‚Ìæ“¾
+				// é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã®å–å¾—
 				if( DrawFlag )
 				{
 					GETVERTEX_QUAD( DrawVertB )
@@ -15433,7 +15433,7 @@ extern	int		Graphics_D3D11_DrawBillboard3D( VECTOR Pos, float cx, float cy, floa
 				DrawVertB[4].color = DiffuseColor ;
 				DrawVertB[5].color = DiffuseColor ;
 
-				// ƒXƒNƒŠ[ƒ“À•W‚É•ÏŠ·
+				// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³åº§æ¨™ã«å¤‰æ›
 				rhw = 1.0f / ( SrcVec2[0].x * GSYS.DrawSetting.Blend3DMatrixF.m[0][3] + SrcVec2[0].y * GSYS.DrawSetting.Blend3DMatrixF.m[1][3] + SrcVec2[0].z * GSYS.DrawSetting.Blend3DMatrixF.m[2][3] + GSYS.DrawSetting.Blend3DMatrixF.m[3][3] ) ;
 				z   = rhw  * ( SrcVec2[0].x * GSYS.DrawSetting.Blend3DMatrixF.m[0][2] + SrcVec2[0].y * GSYS.DrawSetting.Blend3DMatrixF.m[1][2] + SrcVec2[0].z * GSYS.DrawSetting.Blend3DMatrixF.m[2][2] + GSYS.DrawSetting.Blend3DMatrixF.m[3][2] ) ;
 
@@ -15548,7 +15548,7 @@ extern	int		Graphics_D3D11_DrawBillboard3D( VECTOR Pos, float cx, float cy, floa
 				DrawVertB[4].rhw = rhw ;
 				DrawVertB[5].rhw = rhw ;
 
-				// ƒeƒNƒXƒ`ƒƒ[‚ğ•`‰æ‚·‚é
+				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã‚’æç”»ã™ã‚‹
 				if( DrawFlag )
 				{
 					ADD4VERTEX_BLENDTEX
@@ -15583,9 +15583,9 @@ extern	int		Graphics_D3D11_DrawBillboard3D( VECTOR Pos, float cx, float cy, floa
 				break ;
 
 			case VERTEXTYPE_TEX :
-				// ƒuƒŒƒ“ƒhƒeƒNƒXƒ`ƒƒ‚ğg—p‚µ‚È‚¢
+				// ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ä½¿ç”¨ã—ãªã„
 
-				// ’¸“_ƒoƒbƒtƒ@‚Ìæ“¾
+				// é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã®å–å¾—
 				if( DrawFlag )
 				{
 					GETVERTEX_QUAD( DrawVert )
@@ -15595,7 +15595,7 @@ extern	int		Graphics_D3D11_DrawBillboard3D( VECTOR Pos, float cx, float cy, floa
 					DrawVert = TempVert;
 				}
 
-				// ƒXƒNƒŠ[ƒ“À•W‚É•ÏŠ·
+				// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³åº§æ¨™ã«å¤‰æ›
 				rhw = 1.0f / ( SrcVec2[0].x * GSYS.DrawSetting.Blend3DMatrixF.m[0][3] + SrcVec2[0].y * GSYS.DrawSetting.Blend3DMatrixF.m[1][3] + SrcVec2[0].z * GSYS.DrawSetting.Blend3DMatrixF.m[2][3] + GSYS.DrawSetting.Blend3DMatrixF.m[3][3] ) ;
 				z   = rhw  * ( SrcVec2[0].x * GSYS.DrawSetting.Blend3DMatrixF.m[0][2] + SrcVec2[0].y * GSYS.DrawSetting.Blend3DMatrixF.m[1][2] + SrcVec2[0].z * GSYS.DrawSetting.Blend3DMatrixF.m[2][2] + GSYS.DrawSetting.Blend3DMatrixF.m[3][2] ) ;
 
@@ -15670,7 +15670,7 @@ extern	int		Graphics_D3D11_DrawBillboard3D( VECTOR Pos, float cx, float cy, floa
 					DrawVert[5].v = TexVert[0].v ;
 				}
 
-				// ƒeƒNƒXƒ`ƒƒ[‚ğ•`‰æ‚·‚é
+				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã‚’æç”»ã™ã‚‹
 				if( DrawFlag )
 				{
 					ADD4VERTEX_TEX
@@ -15710,11 +15710,11 @@ extern	int		Graphics_D3D11_DrawBillboard3D( VECTOR Pos, float cx, float cy, floa
 		DrawArea->bottom = _FTOL( dbottom ) + 1 ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒ^g—p”Å DrawModiBillboard3D
+// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚¿ä½¿ç”¨ç‰ˆ DrawModiBillboard3D
 extern	int		Graphics_D3D11_DrawModiBillboard3D( VECTOR Pos, float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4, IMAGEDATA *Image, IMAGEDATA *BlendImage, int TransFlag, int DrawFlag, RECT *DrawArea )
 {
 	VERTEX_2D *DrawVert ;
@@ -15740,7 +15740,7 @@ extern	int		Graphics_D3D11_DrawModiBillboard3D( VECTOR Pos, float x1, float y1, 
 
 	if( GAPIWin.D3D11DeviceObject == NULL ) return -1 ;
 
-	// •`‰æ€”õ
+	// æç”»æº–å‚™
 	if( DrawFlag )
 	{
 		Flag = TransFlag | DX_D3D11_DRAWPREP_3D | DX_D3D11_DRAWPREP_FOG | DX_D3D11_DRAWPREP_TEXADDRESS ;
@@ -15754,20 +15754,20 @@ extern	int		Graphics_D3D11_DrawModiBillboard3D( VECTOR Pos, float x1, float y1, 
 		dbottom =  100000000.0f ;
 	}
 
-	// ’¸“_ƒf[ƒ^‚ğæ“¾
+	// é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
 	DiffuseColor = GD3D11.Device.DrawInfo.DiffuseColor ;
 
-	// •`‰æî•ñ‚Ì”‚ğƒZƒbƒg
+	// æç”»æƒ…å ±ã®æ•°ã‚’ã‚»ãƒƒãƒˆ
 	DrawTexNum = Image->Hard.DrawNum ;
 
-	// •`‰æî•ñ‚Ì”‚ªƒuƒŒƒ“ƒh‰æ‘œ‚ÆˆÙ‚È‚Á‚Ä‚¢‚½‚ç‚O”Ô–Ú‚ÌƒeƒNƒXƒ`ƒƒ‚¾‚¯‚ğg—p‚·‚é
+	// æç”»æƒ…å ±ã®æ•°ãŒãƒ–ãƒ¬ãƒ³ãƒ‰ç”»åƒã¨ç•°ãªã£ã¦ã„ãŸã‚‰ï¼ç•ªç›®ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ã ã‘ã‚’ä½¿ç”¨ã™ã‚‹
 	BlendGraphNoIncFlag = FALSE ;
 	if( BlendImage != NULL && BlendImage->Hard.DrawNum != Image->Hard.DrawNum )
 	{
 		BlendGraphNoIncFlag = TRUE ;
 	}
 
-	// •`‰æî•ñ”z—ñ‚ÌƒAƒhƒŒƒX‚ğƒZƒbƒg‚µ‚Ä‚¨‚­
+	// æç”»æƒ…å ±é…åˆ—ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ã‚»ãƒƒãƒˆã—ã¦ãŠã
 	DrawTex = Image->Hard.Draw ;
 	BlendDrawTex = NULL ;
 	if( BlendImage != NULL )
@@ -15775,10 +15775,10 @@ extern	int		Graphics_D3D11_DrawModiBillboard3D( VECTOR Pos, float x1, float y1, 
 		BlendDrawTex = BlendImage->Hard.Draw ;
 	}
 
-	// ƒeƒNƒXƒ`ƒƒ[‚Ì”‚¾‚¯ŒJ‚è•Ô‚·
+	// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã®æ•°ã ã‘ç¹°ã‚Šè¿”ã™
 	for( i = 0 ; i < DrawTexNum ; i ++, DrawTex ++ )
 	{
-		// •`‰æ‚·‚éƒeƒNƒXƒ`ƒƒ[‚ÌƒZƒbƒg
+		// æç”»ã™ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã®ã‚»ãƒƒãƒˆ
 		if( DrawFlag )
 		{
 			Graphics_D3D11_DrawSetting_SetTexture( DrawTex->Tex->PF->D3D11.Texture, DrawTex->Tex->PF->D3D11.TextureSRV ) ;
@@ -15800,12 +15800,12 @@ extern	int		Graphics_D3D11_DrawModiBillboard3D( VECTOR Pos, float x1, float y1, 
 			BlendTexVert = BlendDrawTex->Vertex ;
 		}
 
-		// ƒuƒŒƒ“ƒhƒOƒ‰ƒtƒBƒbƒN‚ğg—p‚µ‚Ä‚¢‚È‚­‚ÄAŠ‚Â•`‰æ‚·‚éê‡‚Í‚‘¬‚Èˆ—‚ğg—p‚·‚é
+		// ãƒ–ãƒ¬ãƒ³ãƒ‰ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚’ä½¿ç”¨ã—ã¦ã„ãªãã¦ã€ä¸”ã¤æç”»ã™ã‚‹å ´åˆã¯é«˜é€Ÿãªå‡¦ç†ã‚’ä½¿ç”¨ã™ã‚‹
 		if( GD3D11.Device.DrawInfo.VertexType != VERTEXTYPE_BLENDTEX && DrawFlag == TRUE )
 		{
 			GETVERTEX_BILLBOARD( DrawVert3D ) ;
 
-			// ƒrƒ‹ƒ{[ƒhÀ•W‚ğƒ[ƒ‹ƒhÀ•W‚Ö•ÏŠ·
+			// ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰åº§æ¨™ã‚’ãƒ¯ãƒ¼ãƒ«ãƒ‰åº§æ¨™ã¸å¤‰æ›
 			DrawVert3D[ 0 ].pos.x = x1 * GSYS.DrawSetting.BillboardMatrixF.m[0][0] + y1 * GSYS.DrawSetting.BillboardMatrixF.m[1][0] + Pos.x ;
 			DrawVert3D[ 0 ].pos.y = x1 * GSYS.DrawSetting.BillboardMatrixF.m[0][1] + y1 * GSYS.DrawSetting.BillboardMatrixF.m[1][1] + Pos.y ;
 			DrawVert3D[ 0 ].pos.z = x1 * GSYS.DrawSetting.BillboardMatrixF.m[0][2] + y1 * GSYS.DrawSetting.BillboardMatrixF.m[1][2] + Pos.z ;
@@ -15850,16 +15850,16 @@ extern	int		Graphics_D3D11_DrawModiBillboard3D( VECTOR Pos, float x1, float y1, 
 			DrawVert3D[5].u = TexVert[1].u ;
 			DrawVert3D[5].v = TexVert[0].v ;
 
-			// ƒeƒNƒXƒ`ƒƒ[‚ğ•`‰æ‚·‚é
+			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã‚’æç”»ã™ã‚‹
 			ADD4VERTEX_BILLBOARD
 		}
 		else
 		{
 			VECTOR DrawPos[ 4 ] ;
 
-			// ƒrƒ‹ƒ{[ƒh‚Ì‚S’¸“_‚ğ“¾‚é
+			// ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã®ï¼”é ‚ç‚¹ã‚’å¾—ã‚‹
 			{
-				// ƒrƒ‹ƒ{[ƒhÀ•W‚ğƒ[ƒ‹ƒhÀ•W‚Ö•ÏŠ·
+				// ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰åº§æ¨™ã‚’ãƒ¯ãƒ¼ãƒ«ãƒ‰åº§æ¨™ã¸å¤‰æ›
 				SrcVec2[ 0 ].x = x1 * GSYS.DrawSetting.BillboardMatrixF.m[0][0] + y1 * GSYS.DrawSetting.BillboardMatrixF.m[1][0] + Pos.x ;
 				SrcVec2[ 0 ].y = x1 * GSYS.DrawSetting.BillboardMatrixF.m[0][1] + y1 * GSYS.DrawSetting.BillboardMatrixF.m[1][1] + Pos.y ;
 				SrcVec2[ 0 ].z = x1 * GSYS.DrawSetting.BillboardMatrixF.m[0][2] + y1 * GSYS.DrawSetting.BillboardMatrixF.m[1][2] + Pos.z ;
@@ -15877,13 +15877,13 @@ extern	int		Graphics_D3D11_DrawModiBillboard3D( VECTOR Pos, float x1, float y1, 
 				SrcVec2[ 3 ].z = x3 * GSYS.DrawSetting.BillboardMatrixF.m[0][2] + y3 * GSYS.DrawSetting.BillboardMatrixF.m[1][2] + Pos.z ;
 			}
 
-			// ’¸“_ƒ^ƒCƒv‚É‚æ‚Á‚Äˆ—‚ğ•ªŠò
+			// é ‚ç‚¹ã‚¿ã‚¤ãƒ—ã«ã‚ˆã£ã¦å‡¦ç†ã‚’åˆ†å²
 			switch( GD3D11.Device.DrawInfo.VertexType )
 			{
 			case VERTEXTYPE_BLENDTEX :
-				// ƒuƒŒƒ“ƒhƒeƒNƒXƒ`ƒƒ‚ğg—p‚·‚é
+				// ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ä½¿ç”¨ã™ã‚‹
 
-				// ’¸“_ƒoƒbƒtƒ@‚Ìæ“¾
+				// é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã®å–å¾—
 				GETVERTEX_QUAD( DrawVertB )
 
 				DrawVertB[0].color = DiffuseColor ;
@@ -15893,7 +15893,7 @@ extern	int		Graphics_D3D11_DrawModiBillboard3D( VECTOR Pos, float x1, float y1, 
 				DrawVertB[4].color = DiffuseColor ;
 				DrawVertB[5].color = DiffuseColor ;
 
-				// ƒXƒNƒŠ[ƒ“À•W‚É•ÏŠ·
+				// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³åº§æ¨™ã«å¤‰æ›
 				rhw = 1.0f / ( SrcVec2[0].x * GSYS.DrawSetting.Blend3DMatrixF.m[0][3] + SrcVec2[0].y * GSYS.DrawSetting.Blend3DMatrixF.m[1][3] + SrcVec2[0].z * GSYS.DrawSetting.Blend3DMatrixF.m[2][3] + GSYS.DrawSetting.Blend3DMatrixF.m[3][3] ) ;
 				z   = rhw  * ( SrcVec2[0].x * GSYS.DrawSetting.Blend3DMatrixF.m[0][2] + SrcVec2[0].y * GSYS.DrawSetting.Blend3DMatrixF.m[1][2] + SrcVec2[0].z * GSYS.DrawSetting.Blend3DMatrixF.m[2][2] + GSYS.DrawSetting.Blend3DMatrixF.m[3][2] ) ;
 
@@ -15984,7 +15984,7 @@ extern	int		Graphics_D3D11_DrawModiBillboard3D( VECTOR Pos, float x1, float y1, 
 				DrawVertB[4].rhw = rhw ;
 				DrawVertB[5].rhw = rhw ;
 
-				// ƒeƒNƒXƒ`ƒƒ[‚ğ•`‰æ‚·‚é
+				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã‚’æç”»ã™ã‚‹
 				if( DrawFlag )
 				{
 					ADD4VERTEX_BLENDTEX
@@ -16019,12 +16019,12 @@ extern	int		Graphics_D3D11_DrawModiBillboard3D( VECTOR Pos, float x1, float y1, 
 				break ;
 
 			case VERTEXTYPE_TEX :
-				// ƒuƒŒƒ“ƒhƒeƒNƒXƒ`ƒƒ‚ğg—p‚µ‚È‚¢
+				// ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ä½¿ç”¨ã—ãªã„
 
-				// ’¸“_ƒoƒbƒtƒ@‚Ìæ“¾
+				// é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã®å–å¾—
 				GETVERTEX_QUAD( DrawVert )
 
-				// ƒXƒNƒŠ[ƒ“À•W‚É•ÏŠ·
+				// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³åº§æ¨™ã«å¤‰æ›
 				rhw = 1.0f / ( SrcVec2[0].x * GSYS.DrawSetting.Blend3DMatrixF.m[0][3] + SrcVec2[0].y * GSYS.DrawSetting.Blend3DMatrixF.m[1][3] + SrcVec2[0].z * GSYS.DrawSetting.Blend3DMatrixF.m[2][3] + GSYS.DrawSetting.Blend3DMatrixF.m[3][3] ) ;
 				z   = rhw  * ( SrcVec2[0].x * GSYS.DrawSetting.Blend3DMatrixF.m[0][2] + SrcVec2[0].y * GSYS.DrawSetting.Blend3DMatrixF.m[1][2] + SrcVec2[0].z * GSYS.DrawSetting.Blend3DMatrixF.m[2][2] + GSYS.DrawSetting.Blend3DMatrixF.m[3][2] ) ;
 
@@ -16076,7 +16076,7 @@ extern	int		Graphics_D3D11_DrawModiBillboard3D( VECTOR Pos, float x1, float y1, 
 				DrawVert[4].v = TexVert[2].v ;
 				DrawVert[5].v = TexVert[0].v ;
 
-				// ƒeƒNƒXƒ`ƒƒ[‚ğ•`‰æ‚·‚é
+				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã‚’æç”»ã™ã‚‹
 				if( DrawFlag )
 				{
 					ADD4VERTEX_TEX
@@ -16116,11 +16116,11 @@ extern	int		Graphics_D3D11_DrawModiBillboard3D( VECTOR Pos, float x1, float y1, 
 		DrawArea->bottom = _FTOL( dbottom ) + 1 ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒ^g—p”Å DrawGraph
+// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚¿ä½¿ç”¨ç‰ˆ DrawGraph
 extern	int		Graphics_D3D11_DrawGraph( int x, int y, float xf, float yf, IMAGEDATA *Image, IMAGEDATA *BlendImage, int TransFlag, int IntFlag )
 {
 	VERTEX_2D			*DrawVert ;
@@ -16155,53 +16155,53 @@ extern	int		Graphics_D3D11_DrawGraph( int x, int y, float xf, float yf, IMAGEDAT
 		return -1 ;
 	}
 
-	// floatÀ•W•â³
+	// floatåº§æ¨™è£œæ­£
 //	xf -= 0.5F ;
 //	yf -= 0.5F ;
 
-	// •`‰æ€”õ
+	// æç”»æº–å‚™
 	Flag = TransFlag | ( IntFlag << 1 ) ;
 	DX_D3D11_DRAWPREP_TEX( Orig, Image->Hard.Draw[ 0 ].Tex->PF->D3D11.Texture, Image->Hard.Draw[ 0 ].Tex->PF->D3D11.TextureSRV, Flag )
 
-	// ’¸“_ƒf[ƒ^‚ğæ“¾
+	// é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
 	DiffuseColor = GD3D11.Device.DrawInfo.DiffuseColor ;
 
-	// •`‰æî•ñ‚Ì”‚ğƒZƒbƒg
+	// æç”»æƒ…å ±ã®æ•°ã‚’ã‚»ãƒƒãƒˆ
 	DrawTexNum = Image->Hard.DrawNum ;
 
-	// •`‰æî•ñ‚Ì”‚ªƒuƒŒƒ“ƒh‰æ‘œ‚ÆˆÙ‚È‚Á‚Ä‚¢‚½‚ç‚O”Ô–Ú‚ÌƒeƒNƒXƒ`ƒƒ‚¾‚¯‚ğg—p‚·‚é
+	// æç”»æƒ…å ±ã®æ•°ãŒãƒ–ãƒ¬ãƒ³ãƒ‰ç”»åƒã¨ç•°ãªã£ã¦ã„ãŸã‚‰ï¼ç•ªç›®ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ã ã‘ã‚’ä½¿ç”¨ã™ã‚‹
 	BlendGraphNoIncFlag = FALSE ;
 	if( BlendImage != NULL && BlendImage->Hard.DrawNum != Image->Hard.DrawNum )
 	{
 		BlendGraphNoIncFlag = TRUE ;
 	}
 
-	// •`‰æî•ñ”z—ñ‚ÌƒAƒhƒŒƒX‚ğƒZƒbƒg‚µ‚Ä‚¨‚­
+	// æç”»æƒ…å ±é…åˆ—ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ã‚»ãƒƒãƒˆã—ã¦ãŠã
 	DrawTex = Image->Hard.Draw ;
 	if( BlendImage != NULL )
 	{
 		BlendDrawTex = BlendImage->Hard.Draw ;
 	}
 
-	// ‚yƒoƒbƒtƒ@‚É‘‚«‚Ş‚y’l‚ğƒZƒbƒg‚·‚é
+	// ï¼ºãƒãƒƒãƒ•ã‚¡ã«æ›¸ãè¾¼ã‚€ï¼ºå€¤ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 	drawz = *( ( DWORD * )&GSYS.DrawSetting.DrawZ ) ;
 
-	// •`‰æ”ÍˆÍ‚©‚ç‚Í‚İo‚Ä‚¢‚é‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+	// æç”»ç¯„å›²ã‹ã‚‰ã¯ã¿å‡ºã¦ã„ã‚‹ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 	if( GSYS.DrawSetting.Valid2DMatrix || IN_DRAWAREA_CHECK( x, y, x + Image->WidthI, y + Image->HeightI ) )
 //	if( x + Image->Width  < GSYS.DrawSetting.DrawArea.right  && x > GSYS.DrawSetting.DrawArea.left &&
 //		y + Image->Height < GSYS.DrawSetting.DrawArea.bottom && y > GSYS.DrawSetting.DrawArea.right )
 	{
-		// ‚Í‚İo‚Ä‚¢‚È‚¢ê‡
+		// ã¯ã¿å‡ºã¦ã„ãªã„å ´åˆ
 
-		// ’¸“_ƒ^ƒCƒv‚É‚æ‚Á‚Äˆ—‚ğ•ªŠò
+		// é ‚ç‚¹ã‚¿ã‚¤ãƒ—ã«ã‚ˆã£ã¦å‡¦ç†ã‚’åˆ†å²
 		if( GD3D11.Device.DrawInfo.VertexType == VERTEXTYPE_BLENDTEX )
 		{
-			// ƒuƒŒƒ“ƒhƒeƒNƒXƒ`ƒƒ‚ğg—p‚·‚é
+			// ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ä½¿ç”¨ã™ã‚‹
 
-			// ƒeƒNƒXƒ`ƒƒ[‚Ì”‚¾‚¯ŒJ‚è•Ô‚·
+			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã®æ•°ã ã‘ç¹°ã‚Šè¿”ã™
 			for( i = 0 ; i < DrawTexNum ; i ++, DrawTex ++ )
 			{
-				// •`‰æ‚·‚éƒeƒNƒXƒ`ƒƒ[‚ÌƒZƒbƒg
+				// æç”»ã™ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã®ã‚»ãƒƒãƒˆ
 				Graphics_D3D11_DrawSetting_SetTexture( DrawTex->Tex->PF->D3D11.Texture, DrawTex->Tex->PF->D3D11.TextureSRV ) ;
 				Graphics_D3D11_DrawSetting_SetBlendTexture( BlendDrawTex->Tex->PF->D3D11.Texture, BlendDrawTex->Tex->PF->D3D11.TextureSRV, BlendDrawTex->Tex->TexWidth, BlendDrawTex->Tex->TexHeight );
 
@@ -16210,7 +16210,7 @@ extern	int		Graphics_D3D11_DrawGraph( int x, int y, float xf, float yf, IMAGEDAT
 					Graphics_D3D11_DeviceState_NormalDrawSetup() ;
 				}
 
-				// ’¸“_ƒoƒbƒtƒ@‚Ìæ“¾
+				// é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã®å–å¾—
 				GETVERTEX_QUAD( DrawVertB )
 				
 				TexVert = DrawTex->Vertex ;
@@ -16299,7 +16299,7 @@ extern	int		Graphics_D3D11_DrawGraph( int x, int y, float xf, float yf, IMAGEDAT
 				DrawVertB[4].rhw = 1.0f ;
 				DrawVertB[5].rhw = 1.0f ;
 
-				// ƒeƒNƒXƒ`ƒƒ[‚ğ•`‰æ‚·‚é
+				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã‚’æç”»ã™ã‚‹
 				ADD4VERTEX_BLENDTEX
 
 				if( BlendGraphNoIncFlag == FALSE )
@@ -16310,16 +16310,16 @@ extern	int		Graphics_D3D11_DrawGraph( int x, int y, float xf, float yf, IMAGEDAT
 		}
 		else
 		{
-			// ƒuƒŒƒ“ƒhƒeƒNƒXƒ`ƒƒ‚ğg—p‚µ‚È‚¢
+			// ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ä½¿ç”¨ã—ãªã„
 
-			// ƒeƒNƒXƒ`ƒƒ[‚Ì”‚¾‚¯ŒJ‚è•Ô‚·
+			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã®æ•°ã ã‘ç¹°ã‚Šè¿”ã™
 			i = 0 ;
 			for(;;)
 			{
-				// ’¸“_ƒoƒbƒtƒ@‚Ìæ“¾
+				// é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã®å–å¾—
 				GETVERTEX_QUAD( DrawVert )
 
-				// ’¸“_ƒf[ƒ^€”õ
+				// é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿æº–å‚™
 				TexVert = DrawTex->Vertex ;
 				DrawVert[0].color	= DiffuseColor ;
 				DrawVert[1].color	= DiffuseColor ;
@@ -16368,13 +16368,13 @@ extern	int		Graphics_D3D11_DrawGraph( int x, int y, float xf, float yf, IMAGEDAT
 				DrawVert[4].rhw = 1.0f ;
 				DrawVert[5].rhw = 1.0f ;
 
-				// ƒeƒNƒXƒ`ƒƒ[‚ğ•`‰æ‚·‚é
+				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã‚’æç”»ã™ã‚‹
 				ADD4VERTEX_TEX
 
 				i ++ ;
 				if( i >= DrawTexNum ) break ;
 
-				// •`‰æ‚·‚éƒeƒNƒXƒ`ƒƒ[‚ÌƒZƒbƒg
+				// æç”»ã™ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã®ã‚»ãƒƒãƒˆ
 				DrawTex ++ ;
 				Graphics_D3D11_DrawSetting_SetTexture( DrawTex->Tex->PF->D3D11.Texture, DrawTex->Tex->PF->D3D11.TextureSRV ) ;
 				Graphics_D3D11_DeviceState_NormalDrawSetup() ;
@@ -16383,26 +16383,26 @@ extern	int		Graphics_D3D11_DrawGraph( int x, int y, float xf, float yf, IMAGEDAT
 	}
 	else
 	{
-		// ‚Í‚İo‚Ä‚¢‚éê‡
+		// ã¯ã¿å‡ºã¦ã„ã‚‹å ´åˆ
 
-		// Š®‘S‚É‚Í‚İo‚Ä‚¢‚½‚ç‰½‚à‚¹‚¸I—¹
+		// å®Œå…¨ã«ã¯ã¿å‡ºã¦ã„ãŸã‚‰ä½•ã‚‚ã›ãšçµ‚äº†
 		if( OUT_DRAWAREA_CHECK( x, y, x + Image->WidthI, y + Image->HeightI ) ) return 0 ;
 //		if( x > GSYS.DrawSetting.DrawArea.right || x + Image->Width < GSYS.DrawSetting.DrawArea.left ||
 //			y > GSYS.DrawSetting.DrawArea.bottom || y + Image->Height < GSYS.DrawSetting.DrawArea.top ) return 0 ;
 
-		// •`‰æ‹éŒ`‚Ì•Û‘¶
+		// æç”»çŸ©å½¢ã®ä¿å­˜
 		left	= GSYS.DrawSetting.DrawAreaF.left   ;
 		top		= GSYS.DrawSetting.DrawAreaF.top    ;
 		right	= GSYS.DrawSetting.DrawAreaF.right  ;
 		bottom	= GSYS.DrawSetting.DrawAreaF.bottom ;
 
-		// ’¸“_ƒ^ƒCƒv‚É‚æ‚Á‚Äˆ—‚ğ•ªŠò
+		// é ‚ç‚¹ã‚¿ã‚¤ãƒ—ã«ã‚ˆã£ã¦å‡¦ç†ã‚’åˆ†å²
 		switch( GD3D11.Device.DrawInfo.VertexType )
 		{
 		case VERTEXTYPE_BLENDTEX :
-			// ƒuƒŒƒ“ƒhƒeƒNƒXƒ`ƒƒ‚ğg—p‚·‚é
+			// ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ä½¿ç”¨ã™ã‚‹
 
-			// ƒeƒNƒXƒ`ƒƒ[‚Ì”‚¾‚¯ŒJ‚è•Ô‚·
+			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã®æ•°ã ã‘ç¹°ã‚Šè¿”ã™
 			for( i = 0 ; i < DrawTexNum ; i ++, DrawTex ++ )
 			{
 				VECTOR DrawPos[ 4 ] ;
@@ -16411,7 +16411,7 @@ extern	int		Graphics_D3D11_DrawGraph( int x, int y, float xf, float yf, IMAGEDAT
 				float u2[ 4 ] ;
 				float v2[ 4 ] ;
 
-				// •`‰æ‚·‚éƒeƒNƒXƒ`ƒƒ[‚ÌƒZƒbƒg
+				// æç”»ã™ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã®ã‚»ãƒƒãƒˆ
 				Graphics_D3D11_DrawSetting_SetTexture( DrawTex->Tex->PF->D3D11.Texture, DrawTex->Tex->PF->D3D11.TextureSRV ) ;
 				Graphics_D3D11_DrawSetting_SetBlendTexture( BlendDrawTex->Tex->PF->D3D11.Texture, BlendDrawTex->Tex->PF->D3D11.TextureSRV, BlendDrawTex->Tex->TexWidth, BlendDrawTex->Tex->TexHeight );
 
@@ -16420,10 +16420,10 @@ extern	int		Graphics_D3D11_DrawGraph( int x, int y, float xf, float yf, IMAGEDAT
 					Graphics_D3D11_DeviceState_NormalDrawSetup() ;
 				}
 
-				// ’¸“_ƒoƒbƒtƒ@‚Ìæ“¾
+				// é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã®å–å¾—
 				GETVERTEX_QUAD( DrawVertB )
 				
-				// ’¸“_ƒf[ƒ^‚ğ‰Šú‰»‚·‚é
+				// é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ã‚’åˆæœŸåŒ–ã™ã‚‹
 				TexVert = DrawTex->Vertex ;
 				BlendTexVert = BlendDrawTex->Vertex ;
 
@@ -16473,7 +16473,7 @@ extern	int		Graphics_D3D11_DrawGraph( int x, int y, float xf, float yf, IMAGEDAT
 
 				for( j = 0 ; j < 4 ; j ++ )
 				{
-					// •`‰æ‹éŒ`‚©‚ço‚Ä‚¢‚½ê‡‚Ì•â³ˆ—
+					// æç”»çŸ©å½¢ã‹ã‚‰å‡ºã¦ã„ãŸå ´åˆã®è£œæ­£å‡¦ç†
 					if( DrawPos[ j ].x < left )
 					{
 						u2[ j ] += ( left - DrawPos[ j ].x ) * Vx ;
@@ -16556,7 +16556,7 @@ extern	int		Graphics_D3D11_DrawGraph( int x, int y, float xf, float yf, IMAGEDAT
 				DrawVertB[4].rhw = 1.0f ;
 				DrawVertB[5].rhw = 1.0f ;
 
-				// ƒeƒNƒXƒ`ƒƒ[‚ğ•`‰æ‚·‚é
+				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã‚’æç”»ã™ã‚‹
 				ADD4VERTEX_BLENDTEX
 
 				if( BlendGraphNoIncFlag == FALSE )
@@ -16567,9 +16567,9 @@ extern	int		Graphics_D3D11_DrawGraph( int x, int y, float xf, float yf, IMAGEDAT
 			break ;
 		
 		case VERTEXTYPE_TEX :
-			// ƒuƒŒƒ“ƒhƒeƒNƒXƒ`ƒƒ‚ğg—p‚µ‚È‚¢
+			// ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ä½¿ç”¨ã—ãªã„
 
-			// ƒeƒNƒXƒ`ƒƒ[‚Ì”‚¾‚¯ŒJ‚è•Ô‚·
+			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã®æ•°ã ã‘ç¹°ã‚Šè¿”ã™
 			i = 0 ;
 			for(;;)
 			{
@@ -16577,10 +16577,10 @@ extern	int		Graphics_D3D11_DrawGraph( int x, int y, float xf, float yf, IMAGEDAT
 				float u4[ 4 ] ;
 				float v4[ 4 ] ;
 
-				// ’¸“_ƒoƒbƒtƒ@‚Ìæ“¾
+				// é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã®å–å¾—
 				GETVERTEX_QUAD( DrawVert )
 				
-				// ’¸“_ƒf[ƒ^€”õ
+				// é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿æº–å‚™
 				TexVert = DrawTex->Vertex ;
 				DrawVert[0].color	= DiffuseColor ;
 				DrawVert[1].color	= DiffuseColor ;
@@ -16603,12 +16603,12 @@ extern	int		Graphics_D3D11_DrawGraph( int x, int y, float xf, float yf, IMAGEDAT
 				v4[1] = v4[0] = TexVert[0].v ;
 				v4[3] = v4[2] = TexVert[2].v ;
 				
-				// ’¸“_ƒf[ƒ^‚ğ‰Šú‰»‚·‚é
+				// é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ã‚’åˆæœŸåŒ–ã™ã‚‹
 				Vx	= 1.0F / ( float )DrawTex->Tex->TexWidth ;
 				Vy	= 1.0F / ( float )DrawTex->Tex->TexHeight ;
 				for( j = 0 ; j < 4 ; j ++ )
 				{
-					// •`‰æ‹éŒ`‚©‚ço‚Ä‚¢‚½ê‡‚Ì•â³ˆ—
+					// æç”»çŸ©å½¢ã‹ã‚‰å‡ºã¦ã„ãŸå ´åˆã®è£œæ­£å‡¦ç†
 					if( DrawPos[ j ].x < left )
 					{
 						u4[ j ] += ( left - DrawPos[ j ].x ) * Vx ;
@@ -16674,13 +16674,13 @@ extern	int		Graphics_D3D11_DrawGraph( int x, int y, float xf, float yf, IMAGEDAT
 				DrawVert[4].rhw = 1.0f ;
 				DrawVert[5].rhw = 1.0f ;
 
-				// ƒeƒNƒXƒ`ƒƒ[‚ğ•`‰æ‚·‚é
+				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã‚’æç”»ã™ã‚‹
 				ADD4VERTEX_TEX
 
 				i ++ ;
 				if( i >= DrawTexNum ) break ;
 
-				// •`‰æ‚·‚éƒeƒNƒXƒ`ƒƒ[‚ÌƒZƒbƒg
+				// æç”»ã™ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã®ã‚»ãƒƒãƒˆ
 				DrawTex ++ ;
 				Graphics_D3D11_DrawSetting_SetTexture( DrawTex->Tex->PF->D3D11.Texture, DrawTex->Tex->PF->D3D11.TextureSRV ) ;
 				Graphics_D3D11_DeviceState_NormalDrawSetup() ;
@@ -16689,11 +16689,11 @@ extern	int		Graphics_D3D11_DrawGraph( int x, int y, float xf, float yf, IMAGEDAT
 		}
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒ^g—p”Å DrawExtendGraph
+// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚¿ä½¿ç”¨ç‰ˆ DrawExtendGraph
 extern	int		Graphics_D3D11_DrawExtendGraph( int x1, int y1, int x2, int y2, float x1f, float y1f, float x2f, float y2f, IMAGEDATA *Image, IMAGEDATA *BlendImage, int TransFlag, int IntFlag )
 {
 	VERTEX_2D *DrawVert ;
@@ -16728,40 +16728,40 @@ extern	int		Graphics_D3D11_DrawExtendGraph( int x1, int y1, int x2, int y2, floa
 		return -1 ;
 	}
 
-	// •`‰æ”»’è
+	// æç”»åˆ¤å®š
 //	if( x2 - x1 == Image->Width && y2 - y1 == Image->Height ) return G_D3D_DrawGraph( x1, y1, GraphData, TransFlag ) ; 	
 
-	// •‚ª‚È‚©‚Á‚½ê‡‚ÍƒGƒ‰[
+	// å¹…ãŒãªã‹ã£ãŸå ´åˆã¯ã‚¨ãƒ©ãƒ¼
 	if( x1 == x2 || y1 == y2 ) return -1 ;
 
-	// •`‰æ‚Ì€”õ
+	// æç”»ã®æº–å‚™
 	Flag = TransFlag | ( IntFlag ? ( GSYS.DrawSetting.DrawMode == DX_DRAWMODE_BILINEAR ? 0 : DX_D3D11_DRAWPREP_VECTORINT ) : 0 ) ;
 	DX_D3D11_DRAWPREP_TEX( Orig, Image->Hard.Draw[ 0 ].Tex->PF->D3D11.Texture, Image->Hard.Draw[ 0 ].Tex->PF->D3D11.TextureSRV, Flag )
 
-	// ƒfƒBƒtƒ…[ƒYƒJƒ‰[‚Ìæ“¾
+	// ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚«ãƒ©ãƒ¼ã®å–å¾—
 	DiffuseColor = GD3D11.Device.DrawInfo.DiffuseColor ;
 
-	// •`‰æî•ñ‚Ì”‚ğƒZƒbƒg
+	// æç”»æƒ…å ±ã®æ•°ã‚’ã‚»ãƒƒãƒˆ
 	DrawTexNum = Image->Hard.DrawNum ;
 
-	// •`‰æî•ñ‚Ì”‚ªƒuƒŒƒ“ƒh‰æ‘œ‚ÆˆÙ‚È‚Á‚Ä‚¢‚½‚ç‚O”Ô–Ú‚ÌƒeƒNƒXƒ`ƒƒ‚¾‚¯‚ğg—p‚·‚é
+	// æç”»æƒ…å ±ã®æ•°ãŒãƒ–ãƒ¬ãƒ³ãƒ‰ç”»åƒã¨ç•°ãªã£ã¦ã„ãŸã‚‰ï¼ç•ªç›®ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ã ã‘ã‚’ä½¿ç”¨ã™ã‚‹
 	BlendGraphNoIncFlag = FALSE ;
 	if( BlendImage != NULL && BlendImage->Hard.DrawNum != Image->Hard.DrawNum )
 	{
 		BlendGraphNoIncFlag = TRUE ;
 	}
 
-	// •`‰æî•ñ”z—ñ‚ÌƒAƒhƒŒƒX‚ğƒZƒbƒg‚µ‚Ä‚¨‚­
+	// æç”»æƒ…å ±é…åˆ—ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ã‚»ãƒƒãƒˆã—ã¦ãŠã
 	DrawTex = Image->Hard.Draw ;
 	if( BlendImage != NULL )
 	{
 		BlendDrawTex = BlendImage->Hard.Draw ;
 	}
 
-	// ‚yƒoƒbƒtƒ@‚É‘‚«‚Ş‚y’l‚ğƒZƒbƒg‚·‚é
+	// ï¼ºãƒãƒƒãƒ•ã‚¡ã«æ›¸ãè¾¼ã‚€ï¼ºå€¤ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 	drawz = *((DWORD *)&GSYS.DrawSetting.DrawZ);
 
-	// Šg‘å—¦‚ğæ“¾‚µ‚Ä‚¨‚­
+	// æ‹¡å¤§ç‡ã‚’å–å¾—ã—ã¦ãŠã
 	GraphExRateX = ( x2f - x1f ) / Image->WidthF ;
 	GraphExRateY = ( y2f - y1f ) / Image->HeightF ;
 	Reverse = ( GraphExRateX < 0 ) != ( GraphExRateY < 0 ) ;
@@ -16772,17 +16772,17 @@ extern	int		Graphics_D3D11_DrawExtendGraph( int x1, int y1, int x2, int y2, floa
 	if( x1 > x2 ){ i = x2; x2 = x1; x1 = i; }
 	if( y1 > y2 ){ i = y2; y2 = y1; y1 = i; }
 
-	// •`‰æ”ÍˆÍ‚©‚ç‚Í‚İo‚Ä‚¢‚é‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+	// æç”»ç¯„å›²ã‹ã‚‰ã¯ã¿å‡ºã¦ã„ã‚‹ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 	if( GSYS.DrawSetting.Valid2DMatrix || IN_DRAWAREA_CHECK( x1, y1, x2, y2 ) )
 	{
-		// ’¸“_ƒ^ƒCƒv‚É‚æ‚Á‚Äˆ—‚ğ•ªŠò
+		// é ‚ç‚¹ã‚¿ã‚¤ãƒ—ã«ã‚ˆã£ã¦å‡¦ç†ã‚’åˆ†å²
 		switch( GD3D11.Device.DrawInfo.VertexType )
 		{
-		case VERTEXTYPE_BLENDTEX :	// ƒuƒŒƒ“ƒhƒeƒNƒXƒ`ƒƒ‚ğg—p‚·‚é
-			// ƒeƒNƒXƒ`ƒƒ[‚Ì”‚¾‚¯ŒJ‚è•Ô‚·
+		case VERTEXTYPE_BLENDTEX :	// ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ä½¿ç”¨ã™ã‚‹
+			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã®æ•°ã ã‘ç¹°ã‚Šè¿”ã™
 			for( i = 0 ; i < DrawTexNum ; i ++, DrawTex ++ )
 			{
-				// •`‰æ‚·‚éƒeƒNƒXƒ`ƒƒ[‚ÌƒZƒbƒg
+				// æç”»ã™ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã®ã‚»ãƒƒãƒˆ
 				Graphics_D3D11_DrawSetting_SetTexture( DrawTex->Tex->PF->D3D11.Texture, DrawTex->Tex->PF->D3D11.TextureSRV ) ;
 				Graphics_D3D11_DrawSetting_SetBlendTexture( BlendDrawTex->Tex->PF->D3D11.Texture, BlendDrawTex->Tex->PF->D3D11.TextureSRV, BlendDrawTex->Tex->TexWidth, BlendDrawTex->Tex->TexHeight );
 
@@ -16791,7 +16791,7 @@ extern	int		Graphics_D3D11_DrawExtendGraph( int x1, int y1, int x2, int y2, floa
 					Graphics_D3D11_DeviceState_NormalDrawSetup() ;
 				}
 
-				// ’¸“_ƒf[ƒ^‚ğ‰Šú‰»‚·‚é
+				// é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ã‚’åˆæœŸåŒ–ã™ã‚‹
 				GETVERTEX_QUAD( DrawVertB )
 				
 				TexVert = DrawTex->Vertex ;
@@ -16884,7 +16884,7 @@ extern	int		Graphics_D3D11_DrawExtendGraph( int x1, int y1, int x2, int y2, floa
 				DrawVertB[4].rhw = 1.0f ;
 				DrawVertB[5].rhw = 1.0f ;
 
-				// ƒeƒNƒXƒ`ƒƒ[‚ğ•`‰æ‚·‚é
+				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã‚’æç”»ã™ã‚‹
 				ADD4VERTEX_BLENDTEX
 
 				if( BlendGraphNoIncFlag == FALSE )
@@ -16894,12 +16894,12 @@ extern	int		Graphics_D3D11_DrawExtendGraph( int x1, int y1, int x2, int y2, floa
 			}
 			break ;
 
-		case VERTEXTYPE_TEX :	// ƒuƒŒƒ“ƒhƒeƒNƒXƒ`ƒƒ‚ğg—p‚µ‚È‚¢
-			// ƒeƒNƒXƒ`ƒƒ[‚Ì”‚¾‚¯ŒJ‚è•Ô‚·
+		case VERTEXTYPE_TEX :	// ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ä½¿ç”¨ã—ãªã„
+			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã®æ•°ã ã‘ç¹°ã‚Šè¿”ã™
 			i = 0 ;
 			for(;;)
 			{
-				// ’¸“_ƒf[ƒ^‚ğ‰Šú‰»‚·‚é
+				// é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ã‚’åˆæœŸåŒ–ã™ã‚‹
 				GETVERTEX_QUAD( DrawVert )
 				
 				TexVert = DrawTex->Vertex ;
@@ -16955,13 +16955,13 @@ extern	int		Graphics_D3D11_DrawExtendGraph( int x1, int y1, int x2, int y2, floa
 				DrawVert[4].rhw = 1.0f ;
 				DrawVert[5].rhw = 1.0f ;
 
-				// ƒeƒNƒXƒ`ƒƒ[‚ğ•`‰æ‚·‚é
+				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã‚’æç”»ã™ã‚‹
 				ADD4VERTEX_TEX
 
 				i ++ ;
 				if( i >= DrawTexNum ) break ;
 
-				// •`‰æ‚·‚éƒeƒNƒXƒ`ƒƒ[‚ÌƒZƒbƒg
+				// æç”»ã™ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã®ã‚»ãƒƒãƒˆ
 				DrawTex ++ ;
 				Graphics_D3D11_DrawSetting_SetTexture( DrawTex->Tex->PF->D3D11.Texture, DrawTex->Tex->PF->D3D11.TextureSRV ) ;
 				Graphics_D3D11_DeviceState_NormalDrawSetup() ;
@@ -16971,20 +16971,20 @@ extern	int		Graphics_D3D11_DrawExtendGraph( int x1, int y1, int x2, int y2, floa
 	}
 	else
 	{
-		// Š®‘S‚É‚Í‚İo‚Ä‚¢‚½‚ç‰½‚à‚¹‚¸I—¹
+		// å®Œå…¨ã«ã¯ã¿å‡ºã¦ã„ãŸã‚‰ä½•ã‚‚ã›ãšçµ‚äº†
 		if( OUT_DRAWAREA_CHECK( x1, y1, x2, y2 ) ) return 0 ;
 
-		// •`‰æ‹éŒ`‚Ì•Û‘¶
+		// æç”»çŸ©å½¢ã®ä¿å­˜
 		left	= GSYS.DrawSetting.DrawAreaF.left   ;
 		top		= GSYS.DrawSetting.DrawAreaF.top    ;
 		right	= GSYS.DrawSetting.DrawAreaF.right  ;
 		bottom	= GSYS.DrawSetting.DrawAreaF.bottom ;
 
-		// ’¸“_ƒ^ƒCƒv‚É‚æ‚Á‚Äˆ—‚ğ•ªŠò
+		// é ‚ç‚¹ã‚¿ã‚¤ãƒ—ã«ã‚ˆã£ã¦å‡¦ç†ã‚’åˆ†å²
 		switch( GD3D11.Device.DrawInfo.VertexType )
 		{
-		case VERTEXTYPE_BLENDTEX :	// ƒuƒŒƒ“ƒhƒeƒNƒXƒ`ƒƒ‚ğg—p‚·‚é
-			// ƒeƒNƒXƒ`ƒƒ[‚Ì”‚¾‚¯ŒJ‚è•Ô‚·
+		case VERTEXTYPE_BLENDTEX :	// ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ä½¿ç”¨ã™ã‚‹
+			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã®æ•°ã ã‘ç¹°ã‚Šè¿”ã™
 			for( i = 0 ; i < DrawTexNum ; i ++, DrawTex ++ )
 			{
 				VECTOR DrawPos[ 4 ] ;
@@ -16993,7 +16993,7 @@ extern	int		Graphics_D3D11_DrawExtendGraph( int x1, int y1, int x2, int y2, floa
 				float u2[ 4 ] ;
 				float v2[ 4 ] ;
 
-				// •`‰æ‚·‚éƒeƒNƒXƒ`ƒƒ[‚ÌƒZƒbƒg
+				// æç”»ã™ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã®ã‚»ãƒƒãƒˆ
 				Graphics_D3D11_DrawSetting_SetTexture( DrawTex->Tex->PF->D3D11.Texture, DrawTex->Tex->PF->D3D11.TextureSRV ) ;
 				Graphics_D3D11_DrawSetting_SetBlendTexture( BlendDrawTex->Tex->PF->D3D11.Texture, BlendDrawTex->Tex->PF->D3D11.TextureSRV, BlendDrawTex->Tex->TexWidth, BlendDrawTex->Tex->TexHeight );
 
@@ -17009,7 +17009,7 @@ extern	int		Graphics_D3D11_DrawExtendGraph( int x1, int y1, int x2, int y2, floa
 				VBx = GD3D11.Device.DrawSetting.InvBlendTextureWidth ;
 				VBy = GD3D11.Device.DrawSetting.InvBlendTextureHeight ;
 
-				// ’¸“_ƒf[ƒ^‚ğ‰Šú‰»‚·‚é
+				// é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ã‚’åˆæœŸåŒ–ã™ã‚‹
 				TexVert = DrawTex->Vertex ;
 				BlendTexVert = BlendDrawTex->Vertex ;
 
@@ -17058,7 +17058,7 @@ extern	int		Graphics_D3D11_DrawExtendGraph( int x1, int y1, int x2, int y2, floa
 
 				for( j = 0 ; j < 4 ; j ++ )
 				{
-					// •`‰æ‹éŒ`‚©‚ço‚Ä‚¢‚½ê‡‚Ì•â³ˆ—
+					// æç”»çŸ©å½¢ã‹ã‚‰å‡ºã¦ã„ãŸå ´åˆã®è£œæ­£å‡¦ç†
 					if( DrawPos[ j ].x < left )
 					{
 						u2[ j ] += ( left - DrawPos[ j ].x ) * Vx ;
@@ -17141,7 +17141,7 @@ extern	int		Graphics_D3D11_DrawExtendGraph( int x1, int y1, int x2, int y2, floa
 				DrawVertB[4].rhw = 1.0f ;
 				DrawVertB[5].rhw = 1.0f ;
 
-				// ƒeƒNƒXƒ`ƒƒ[‚ğ•`‰æ‚·‚é
+				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã‚’æç”»ã™ã‚‹
 				ADD4VERTEX_BLENDTEX
 
 				if( BlendGraphNoIncFlag == FALSE )
@@ -17151,8 +17151,8 @@ extern	int		Graphics_D3D11_DrawExtendGraph( int x1, int y1, int x2, int y2, floa
 			}
 			break ;
 
-		case VERTEXTYPE_TEX :	// ƒuƒŒƒ“ƒhƒeƒNƒXƒ`ƒƒ‚ğg—p‚µ‚È‚¢
-			// ƒeƒNƒXƒ`ƒƒ[‚Ì”‚¾‚¯ŒJ‚è•Ô‚·
+		case VERTEXTYPE_TEX :	// ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ä½¿ç”¨ã—ãªã„
+			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã®æ•°ã ã‘ç¹°ã‚Šè¿”ã™
 			i = 0 ;
 			for(;;)
 			{
@@ -17160,7 +17160,7 @@ extern	int		Graphics_D3D11_DrawExtendGraph( int x1, int y1, int x2, int y2, floa
 				float u4[ 4 ] ;
 				float v4[ 4 ] ;
 
-				// ’¸“_ƒf[ƒ^‚ğ‰Šú‰»‚·‚é
+				// é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ã‚’åˆæœŸåŒ–ã™ã‚‹
 				GETVERTEX_QUAD( DrawVert )
 				
 				TexVert = DrawTex->Vertex ;
@@ -17194,7 +17194,7 @@ extern	int		Graphics_D3D11_DrawExtendGraph( int x1, int y1, int x2, int y2, floa
 				Vy = 1.0F / ( DrawTex->Tex->TexHeight * GraphExRateY ) ;
 				for( j = 0 ; j < 4 ; j ++ )
 				{
-					// •`‰æ‹éŒ`‚©‚ço‚Ä‚¢‚½ê‡‚Ì•â³ˆ—
+					// æç”»çŸ©å½¢ã‹ã‚‰å‡ºã¦ã„ãŸå ´åˆã®è£œæ­£å‡¦ç†
 					if( DrawPos[ j ].x < left )
 					{
 						u4[ j ] += ( left - DrawPos[ j ].x ) * Vx ;
@@ -17260,13 +17260,13 @@ extern	int		Graphics_D3D11_DrawExtendGraph( int x1, int y1, int x2, int y2, floa
 				DrawVert[4].rhw = 1.0f ;
 				DrawVert[5].rhw = 1.0f ;
 
-				// ƒeƒNƒXƒ`ƒƒ[‚ğ•`‰æ‚·‚é
+				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã‚’æç”»ã™ã‚‹
 				ADD4VERTEX_TEX
 
 				i ++ ;
 				if( i >= DrawTexNum ) break ;
 
-				// •`‰æ‚·‚éƒeƒNƒXƒ`ƒƒ[‚ÌƒZƒbƒg
+				// æç”»ã™ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã®ã‚»ãƒƒãƒˆ
 				DrawTex ++ ;
 				Graphics_D3D11_DrawSetting_SetTexture( DrawTex->Tex->PF->D3D11.Texture, DrawTex->Tex->PF->D3D11.TextureSRV ) ;
 				Graphics_D3D11_DeviceState_NormalDrawSetup() ;
@@ -17275,11 +17275,11 @@ extern	int		Graphics_D3D11_DrawExtendGraph( int x1, int y1, int x2, int y2, floa
 		}
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒ^g—p”Å DrawRotaGraph
+// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚¿ä½¿ç”¨ç‰ˆ DrawRotaGraph
 extern int Graphics_D3D11_DrawRotaGraph( int x, int y, float xf, float yf, double ExRate, double Angle, IMAGEDATA *Image, IMAGEDATA *BlendImage, int TransFlag, int ReverseXFlag, int ReverseYFlag, int IntFlag )
 {
 	VERTEX_2D *DrawVert ;
@@ -17312,14 +17312,14 @@ extern int Graphics_D3D11_DrawRotaGraph( int x, int y, float xf, float yf, doubl
 		return -1 ;
 	}
 
-	// •‚ª‚È‚©‚Á‚½ê‡‚ÍƒGƒ‰[
+	// å¹…ãŒãªã‹ã£ãŸå ´åˆã¯ã‚¨ãƒ©ãƒ¼
 	if( ExRate == 0.0 ) return -1 ;
 
-	// •`‰æ‚Ì€”õ
+	// æç”»ã®æº–å‚™
 	Flag = TransFlag ;
 	DX_D3D11_DRAWPREP_TEX( Image->Orig, Image->Hard.Draw[ 0 ].Tex->PF->D3D11.Texture, Image->Hard.Draw[ 0 ].Tex->PF->D3D11.TextureSRV, Flag )
 
-	// ‰ñ“]—v‘f‚ª–³‚¢‚©’²‚×‚é
+	// å›è»¢è¦ç´ ãŒç„¡ã„ã‹èª¿ã¹ã‚‹
 	if( Angle == 0.0 )
 	{
 		SinCosNone = 1;
@@ -17331,7 +17331,7 @@ extern int Graphics_D3D11_DrawRotaGraph( int x, int y, float xf, float yf, doubl
 	}
 //	if( _FABS( (float)Angle ) < 0.0001 && ExRate < 1.001 && ExRate > 0.999 ) Adj = TRUE ;
 
-	// À•W‚Ì•â³
+	// åº§æ¨™ã®è£œæ­£
 	if( IntFlag || GSYS.DrawSetting.DrawMode == DX_DRAWMODE_NEAREST )
 	{
 		AlwaysCheck = 0 ;
@@ -17404,7 +17404,7 @@ extern int Graphics_D3D11_DrawRotaGraph( int x, int y, float xf, float yf, doubl
 		FastCode = 1 ;
 	}
 
-	// ”÷–­‚È‰ñ“]’l‚Ìƒ`ƒFƒbƒN‚ğs‚¤‚©‚Ç‚¤‚©‚ğ’²‚×‚é
+	// å¾®å¦™ãªå›è»¢å€¤ã®ãƒã‚§ãƒƒã‚¯ã‚’è¡Œã†ã‹ã©ã†ã‹ã‚’èª¿ã¹ã‚‹
 	if( IntFlag == TRUE && AlwaysCheck == 0 && SinCosNone == 0 && ( hx == 1 || hy == 1 ) &&
 		( ( Angle < DX_PI / 180.0 *         - 4.0   ) ||
 		  ( Angle > DX_PI / 180.0 * ( 360.0 + 4.0 ) ) ||
@@ -17424,41 +17424,41 @@ extern int Graphics_D3D11_DrawRotaGraph( int x, int y, float xf, float yf, doubl
 //	AlwaysCheck = 1 ;
 //	FastCode = 1 ;
 
-	// ’¸“_ƒf[ƒ^‚ğæ“¾i¡‚Ì‚Æ‚±‚ëFî•ñ‚ÌƒZƒbƒg‚Ì‚İj
+	// é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—ï¼ˆä»Šã®ã¨ã“ã‚è‰²æƒ…å ±ã®ã‚»ãƒƒãƒˆã®ã¿ï¼‰
 	DiffuseColor = GD3D11.Device.DrawInfo.DiffuseColor ;
 
-	// •`‰æî•ñ‚Ì”‚ğƒZƒbƒg
+	// æç”»æƒ…å ±ã®æ•°ã‚’ã‚»ãƒƒãƒˆ
 	DrawTexNum = Image->Hard.DrawNum ;
 
-	// •`‰æî•ñ‚Ì”‚ªƒuƒŒƒ“ƒh‰æ‘œ‚ÆˆÙ‚È‚Á‚Ä‚¢‚½‚ç‚O”Ô–Ú‚ÌƒeƒNƒXƒ`ƒƒ‚¾‚¯‚ğg—p‚·‚é
+	// æç”»æƒ…å ±ã®æ•°ãŒãƒ–ãƒ¬ãƒ³ãƒ‰ç”»åƒã¨ç•°ãªã£ã¦ã„ãŸã‚‰ï¼ç•ªç›®ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ã ã‘ã‚’ä½¿ç”¨ã™ã‚‹
 	BlendGraphNoIncFlag = FALSE ;
 	if( BlendImage != NULL && BlendImage->Hard.DrawNum != Image->Hard.DrawNum )
 	{
 		BlendGraphNoIncFlag = TRUE ;
 	}
 
-	// •`‰æî•ñ”z—ñ‚ÌƒAƒhƒŒƒX‚ğƒZƒbƒg‚µ‚Ä‚¨‚­
+	// æç”»æƒ…å ±é…åˆ—ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ã‚»ãƒƒãƒˆã—ã¦ãŠã
 	DrawTex = Image->Hard.Draw ;
 	if( BlendImage != NULL )
 	{
 		BlendDrawTex = BlendImage->Hard.Draw ;
 	}
 
-	// ‚yƒoƒbƒtƒ@‚É‘‚«‚Ş‚y’l‚ğƒZƒbƒg‚·‚é
+	// ï¼ºãƒãƒƒãƒ•ã‚¡ã«æ›¸ãè¾¼ã‚€ï¼ºå€¤ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 	drawz = *((DWORD *)&GSYS.DrawSetting.DrawZ);
 
-	// ”½“]‚ğl—¶‚µ‚½Šg‘å—¦‚ğƒZƒbƒg
+	// åè»¢ã‚’è€ƒæ…®ã—ãŸæ‹¡å¤§ç‡ã‚’ã‚»ãƒƒãƒˆ
 	ExtendRateX = ( ( ReverseXFlag == TRUE ) ? -1.0f : 1.0f ) * ExtendRate ;
 	ExtendRateY = ( ( ReverseYFlag == TRUE ) ? -1.0f : 1.0f ) * ExtendRate ;
 
-	// ’¸“_ƒ^ƒCƒv‚É‚æ‚Á‚Äˆ—‚ğ•ªŠò
+	// é ‚ç‚¹ã‚¿ã‚¤ãƒ—ã«ã‚ˆã£ã¦å‡¦ç†ã‚’åˆ†å²
 	switch( GD3D11.Device.DrawInfo.VertexType )
 	{
-	case VERTEXTYPE_BLENDTEX :	// ƒuƒŒƒ“ƒhƒeƒNƒXƒ`ƒƒ‚ğg—p‚·‚é
-		// ƒeƒNƒXƒ`ƒƒ[‚Ì”‚¾‚¯ŒJ‚è•Ô‚·
+	case VERTEXTYPE_BLENDTEX :	// ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ä½¿ç”¨ã™ã‚‹
+		// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã®æ•°ã ã‘ç¹°ã‚Šè¿”ã™
 		if( DrawTexNum == 1 && FastCode == 1 )
 		{
-			// •`‰æ‚·‚éƒeƒNƒXƒ`ƒƒ[‚ÌƒZƒbƒg
+			// æç”»ã™ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã®ã‚»ãƒƒãƒˆ
 			Graphics_D3D11_DrawSetting_SetTexture( DrawTex->Tex->PF->D3D11.Texture, DrawTex->Tex->PF->D3D11.TextureSRV ) ;
 			Graphics_D3D11_DrawSetting_SetBlendTexture( BlendDrawTex->Tex->PF->D3D11.Texture, BlendDrawTex->Tex->PF->D3D11.TextureSRV, BlendDrawTex->Tex->TexWidth, BlendDrawTex->Tex->TexHeight );
 
@@ -17467,7 +17467,7 @@ extern int Graphics_D3D11_DrawRotaGraph( int x, int y, float xf, float yf, doubl
 				Graphics_D3D11_DeviceState_NormalDrawSetup() ;
 			}
 
-			// ’¸“_ƒf[ƒ^‚ğ‰Šú‰»‚·‚é
+			// é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ã‚’åˆæœŸåŒ–ã™ã‚‹
 			GETVERTEX_QUAD( DrawVertB )
 
 			TexVert = DrawTex->Vertex ;
@@ -17568,7 +17568,7 @@ extern int Graphics_D3D11_DrawRotaGraph( int x, int y, float xf, float yf, doubl
 			DrawVertB[4].rhw = 1.0f ;
 			DrawVertB[5].rhw = 1.0f ;
 
-			// ƒeƒNƒXƒ`ƒƒ[‚ğ•`‰æ‚·‚é
+			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã‚’æç”»ã™ã‚‹
 			ADD4VERTEX_BLENDTEX
 
 			if( BlendGraphNoIncFlag == FALSE )
@@ -17578,10 +17578,10 @@ extern int Graphics_D3D11_DrawRotaGraph( int x, int y, float xf, float yf, doubl
 		}
 		else
 		{
-			// ƒeƒNƒXƒ`ƒƒ[‚Ì”‚¾‚¯ŒJ‚è•Ô‚·
+			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã®æ•°ã ã‘ç¹°ã‚Šè¿”ã™
 			for( i = 0 ; i < DrawTexNum ; i ++, DrawTex ++ )
 			{
-				// •`‰æ‚·‚éƒeƒNƒXƒ`ƒƒ[‚ÌƒZƒbƒg
+				// æç”»ã™ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã®ã‚»ãƒƒãƒˆ
 				Graphics_D3D11_DrawSetting_SetTexture( DrawTex->Tex->PF->D3D11.Texture, DrawTex->Tex->PF->D3D11.TextureSRV ) ;
 				Graphics_D3D11_DrawSetting_SetBlendTexture( BlendDrawTex->Tex->PF->D3D11.Texture, BlendDrawTex->Tex->PF->D3D11.TextureSRV, BlendDrawTex->Tex->TexWidth, BlendDrawTex->Tex->TexHeight );
 
@@ -17590,7 +17590,7 @@ extern int Graphics_D3D11_DrawRotaGraph( int x, int y, float xf, float yf, doubl
 					Graphics_D3D11_DeviceState_NormalDrawSetup() ;
 				}
 
-				// ’¸“_ƒf[ƒ^‚ğ‰Šú‰»‚·‚é
+				// é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ã‚’åˆæœŸåŒ–ã™ã‚‹
 				GETVERTEX_QUAD( DrawVertB )
 
 				TexVert = DrawTex->Vertex ;
@@ -17707,7 +17707,7 @@ extern int Graphics_D3D11_DrawRotaGraph( int x, int y, float xf, float yf, doubl
 				DrawVertB[4].rhw = 1.0f ;
 				DrawVertB[5].rhw = 1.0f ;
 
-				// ƒeƒNƒXƒ`ƒƒ[‚ğ•`‰æ‚·‚é
+				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã‚’æç”»ã™ã‚‹
 				ADD4VERTEX_BLENDTEX
 
 				if( BlendGraphNoIncFlag == FALSE )
@@ -17718,13 +17718,13 @@ extern int Graphics_D3D11_DrawRotaGraph( int x, int y, float xf, float yf, doubl
 		}
 		break ;
 
-	case VERTEXTYPE_TEX :	// ƒuƒŒƒ“ƒhƒeƒNƒXƒ`ƒƒ‚ğg—p‚µ‚È‚¢
-		// ƒeƒNƒXƒ`ƒƒ[‚Ì”‚¾‚¯ŒJ‚è•Ô‚·
+	case VERTEXTYPE_TEX :	// ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ä½¿ç”¨ã—ãªã„
+		// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã®æ•°ã ã‘ç¹°ã‚Šè¿”ã™
 		if( DrawTexNum == 1 && FastCode == 1 )
 		{
 			if( SinCosNone == 0 )
 			{
-				// ’¸“_ƒf[ƒ^‚ğ‰Šú‰»‚·‚é
+				// é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ã‚’åˆæœŸåŒ–ã™ã‚‹
 				GETVERTEX_QUAD( DrawVert )
 				
 				TexVert = DrawTex->Vertex ;
@@ -17897,12 +17897,12 @@ extern int Graphics_D3D11_DrawRotaGraph( int x, int y, float xf, float yf, doubl
 				DrawVert[4].rhw = 1.0f ;
 				DrawVert[5].rhw = 1.0f ;
 
-				// ƒeƒNƒXƒ`ƒƒ[‚ğ•`‰æ‚·‚é
+				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã‚’æç”»ã™ã‚‹
 				ADD4VERTEX_TEX
 			}
 			else
 			{
-				// ’¸“_ƒf[ƒ^‚ğ‰Šú‰»‚·‚é
+				// é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ã‚’åˆæœŸåŒ–ã™ã‚‹
 				GETVERTEX_QUAD( DrawVert )
 				
 				TexVert = DrawTex->Vertex ;
@@ -17960,7 +17960,7 @@ extern int Graphics_D3D11_DrawRotaGraph( int x, int y, float xf, float yf, doubl
 				DrawVert[4].rhw = 1.0f ;
 				DrawVert[5].rhw = 1.0f ;
 
-				// ƒeƒNƒXƒ`ƒƒ[‚ğ•`‰æ‚·‚é
+				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã‚’æç”»ã™ã‚‹
 				ADD4VERTEX_TEX
 			}
 		}
@@ -17968,11 +17968,11 @@ extern int Graphics_D3D11_DrawRotaGraph( int x, int y, float xf, float yf, doubl
 		{
 			if( SinCosNone == 0 )
 			{
-				// ƒeƒNƒXƒ`ƒƒ[‚Ì”‚¾‚¯ŒJ‚è•Ô‚·
+				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã®æ•°ã ã‘ç¹°ã‚Šè¿”ã™
 				i = 0 ;
 				for(;;)
 				{
-					// ’¸“_ƒf[ƒ^‚ğ‰Šú‰»‚·‚é
+					// é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ã‚’åˆæœŸåŒ–ã™ã‚‹
 					GETVERTEX_QUAD( DrawVert )
 					
 					TexVert = DrawTex->Vertex ;
@@ -18170,13 +18170,13 @@ extern int Graphics_D3D11_DrawRotaGraph( int x, int y, float xf, float yf, doubl
 					DrawVert[4].rhw = 1.0f ;
 					DrawVert[5].rhw = 1.0f ;
 
-					// ƒeƒNƒXƒ`ƒƒ[‚ğ•`‰æ‚·‚é
+					// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã‚’æç”»ã™ã‚‹
 					ADD4VERTEX_TEX
 
 					i ++ ;
 					if( i >= DrawTexNum ) break ;
 
-					// •`‰æ‚·‚éƒeƒNƒXƒ`ƒƒ[‚ÌƒZƒbƒg
+					// æç”»ã™ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã®ã‚»ãƒƒãƒˆ
 					DrawTex ++ ;
 					Graphics_D3D11_DrawSetting_SetTexture( DrawTex->Tex->PF->D3D11.Texture, DrawTex->Tex->PF->D3D11.TextureSRV ) ;
 					Graphics_D3D11_DeviceState_NormalDrawSetup() ;
@@ -18184,11 +18184,11 @@ extern int Graphics_D3D11_DrawRotaGraph( int x, int y, float xf, float yf, doubl
 			}
 			else
 			{
-				// ƒeƒNƒXƒ`ƒƒ[‚Ì”‚¾‚¯ŒJ‚è•Ô‚·
+				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã®æ•°ã ã‘ç¹°ã‚Šè¿”ã™
 				i = 0 ;
 				for(;;)
 				{
-					// ’¸“_ƒf[ƒ^‚ğ‰Šú‰»‚·‚é
+					// é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ã‚’åˆæœŸåŒ–ã™ã‚‹
 					GETVERTEX_QUAD( DrawVert )
 					
 					TexVert = DrawTex->Vertex ;
@@ -18249,13 +18249,13 @@ extern int Graphics_D3D11_DrawRotaGraph( int x, int y, float xf, float yf, doubl
 					DrawVert[4].rhw = 1.0f ;
 					DrawVert[5].rhw = 1.0f ;
 
-					// ƒeƒNƒXƒ`ƒƒ[‚ğ•`‰æ‚·‚é
+					// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã‚’æç”»ã™ã‚‹
 					ADD4VERTEX_TEX
 
 					i ++ ;
 					if( i >= DrawTexNum ) break ;
 
-					// •`‰æ‚·‚éƒeƒNƒXƒ`ƒƒ[‚ÌƒZƒbƒg
+					// æç”»ã™ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã®ã‚»ãƒƒãƒˆ
 					DrawTex ++ ;
 					Graphics_D3D11_DrawSetting_SetTexture( DrawTex->Tex->PF->D3D11.Texture, DrawTex->Tex->PF->D3D11.TextureSRV ) ;
 					Graphics_D3D11_DeviceState_NormalDrawSetup() ;
@@ -18265,11 +18265,11 @@ extern int Graphics_D3D11_DrawRotaGraph( int x, int y, float xf, float yf, doubl
 		break ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒ^g—p”Å DrawRotaGraphFast
+// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚¿ä½¿ç”¨ç‰ˆ DrawRotaGraphFast
 extern	int		Graphics_D3D11_DrawRotaGraphFast( int /*x*/, int /*y*/, float xf, float yf, float ExtendRate, float Angle, IMAGEDATA *Image, IMAGEDATA *BlendImage, int TransFlag, int ReverseXFlag, int ReverseYFlag, int /*IntFlag*/ )
 {
 	VERTEX_2D *DrawVert ;
@@ -18300,14 +18300,14 @@ extern	int		Graphics_D3D11_DrawRotaGraphFast( int /*x*/, int /*y*/, float xf, fl
 		return -1 ;
 	}
 
-	// •‚ª‚È‚©‚Á‚½ê‡‚ÍƒGƒ‰[
+	// å¹…ãŒãªã‹ã£ãŸå ´åˆã¯ã‚¨ãƒ©ãƒ¼
 	if( ExtendRate == 0.0f ) return -1 ;
 
-	// •`‰æ‚Ì€”õ
+	// æç”»ã®æº–å‚™
 	Flag = TransFlag ;
 	DX_D3D11_DRAWPREP_TEX( Image->Orig, Image->Hard.Draw[ 0 ].Tex->PF->D3D11.Texture, Image->Hard.Draw[ 0 ].Tex->PF->D3D11.TextureSRV, Flag )
 
-	// ‰ñ“]—v‘f‚ª–³‚¢‚©’²‚×‚é
+	// å›è»¢è¦ç´ ãŒç„¡ã„ã‹èª¿ã¹ã‚‹
 	if( Angle == 0.0f )
 	{
 		SinCosNone = 1;
@@ -18318,45 +18318,45 @@ extern	int		Graphics_D3D11_DrawRotaGraphFast( int /*x*/, int /*y*/, float xf, fl
 		_TABLE_SINCOS( Angle, &Sin, &Cos ) ;
 	}
 
-	// ’†SÀ•W‚ÌƒZƒbƒg
+	// ä¸­å¿ƒåº§æ¨™ã®ã‚»ãƒƒãƒˆ
 	CenX = ( float )Image->WidthF  * 0.5f ;
 	CenY = ( float )Image->HeightF * 0.5f ;
 
-	// ’¸“_ƒf[ƒ^‚ğæ“¾i¡‚Ì‚Æ‚±‚ëFî•ñ‚ÌƒZƒbƒg‚Ì‚İj
+	// é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—ï¼ˆä»Šã®ã¨ã“ã‚è‰²æƒ…å ±ã®ã‚»ãƒƒãƒˆã®ã¿ï¼‰
 	DiffuseColor = GD3D11.Device.DrawInfo.DiffuseColor ;
 
-	// •`‰æî•ñ‚Ì”‚ğƒZƒbƒg
+	// æç”»æƒ…å ±ã®æ•°ã‚’ã‚»ãƒƒãƒˆ
 	DrawTexNum = Image->Hard.DrawNum ;
 
-	// •`‰æî•ñ‚Ì”‚ªƒuƒŒƒ“ƒh‰æ‘œ‚ÆˆÙ‚È‚Á‚Ä‚¢‚½‚ç‚O”Ô–Ú‚ÌƒeƒNƒXƒ`ƒƒ‚¾‚¯‚ğg—p‚·‚é
+	// æç”»æƒ…å ±ã®æ•°ãŒãƒ–ãƒ¬ãƒ³ãƒ‰ç”»åƒã¨ç•°ãªã£ã¦ã„ãŸã‚‰ï¼ç•ªç›®ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ã ã‘ã‚’ä½¿ç”¨ã™ã‚‹
 	BlendGraphNoIncFlag = FALSE ;
 	if( BlendImage != NULL && BlendImage->Hard.DrawNum != Image->Hard.DrawNum )
 	{
 		BlendGraphNoIncFlag = TRUE ;
 	}
 
-	// •`‰æî•ñ”z—ñ‚ÌƒAƒhƒŒƒX‚ğƒZƒbƒg‚µ‚Ä‚¨‚­
+	// æç”»æƒ…å ±é…åˆ—ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ã‚»ãƒƒãƒˆã—ã¦ãŠã
 	DrawTex = Image->Hard.Draw ;
 	if( BlendImage != NULL )
 	{
 		BlendDrawTex = BlendImage->Hard.Draw ;
 	}
 
-	// ‚yƒoƒbƒtƒ@‚É‘‚«‚Ş‚y’l‚ğƒZƒbƒg‚·‚é
+	// ï¼ºãƒãƒƒãƒ•ã‚¡ã«æ›¸ãè¾¼ã‚€ï¼ºå€¤ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 	drawz = *((DWORD *)&GSYS.DrawSetting.DrawZ);
 
-	// ”½“]‚ğl—¶‚µ‚½Šg‘å—¦‚ğƒZƒbƒg
+	// åè»¢ã‚’è€ƒæ…®ã—ãŸæ‹¡å¤§ç‡ã‚’ã‚»ãƒƒãƒˆ
 	ExtendRateX = ( ( ReverseXFlag == TRUE ) ? -1.0f : 1.0f ) * ExtendRate ;
 	ExtendRateY = ( ( ReverseYFlag == TRUE ) ? -1.0f : 1.0f ) * ExtendRate ;
 
-	// ’¸“_ƒ^ƒCƒv‚É‚æ‚Á‚Äˆ—‚ğ•ªŠò
+	// é ‚ç‚¹ã‚¿ã‚¤ãƒ—ã«ã‚ˆã£ã¦å‡¦ç†ã‚’åˆ†å²
 	switch( GD3D11.Device.DrawInfo.VertexType )
 	{
-	case VERTEXTYPE_BLENDTEX :	// ƒuƒŒƒ“ƒhƒeƒNƒXƒ`ƒƒ‚ğg—p‚·‚é
-		// ƒeƒNƒXƒ`ƒƒ[‚Ì”‚¾‚¯ŒJ‚è•Ô‚·
+	case VERTEXTYPE_BLENDTEX :	// ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ä½¿ç”¨ã™ã‚‹
+		// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã®æ•°ã ã‘ç¹°ã‚Šè¿”ã™
 		if( DrawTexNum == 1 )
 		{
-			// •`‰æ‚·‚éƒeƒNƒXƒ`ƒƒ[‚ÌƒZƒbƒg
+			// æç”»ã™ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã®ã‚»ãƒƒãƒˆ
 			Graphics_D3D11_DrawSetting_SetTexture( DrawTex->Tex->PF->D3D11.Texture, DrawTex->Tex->PF->D3D11.TextureSRV ) ;
 			Graphics_D3D11_DrawSetting_SetBlendTexture( BlendDrawTex->Tex->PF->D3D11.Texture, BlendDrawTex->Tex->PF->D3D11.TextureSRV, BlendDrawTex->Tex->TexWidth, BlendDrawTex->Tex->TexHeight );
 
@@ -18365,7 +18365,7 @@ extern	int		Graphics_D3D11_DrawRotaGraphFast( int /*x*/, int /*y*/, float xf, fl
 				Graphics_D3D11_DeviceState_NormalDrawSetup() ;
 			}
 
-			// ’¸“_ƒf[ƒ^‚ğ‰Šú‰»‚·‚é
+			// é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ã‚’åˆæœŸåŒ–ã™ã‚‹
 			GETVERTEX_QUAD( DrawVertB )
 
 			TexVert = DrawTex->Vertex ;
@@ -18466,7 +18466,7 @@ extern	int		Graphics_D3D11_DrawRotaGraphFast( int /*x*/, int /*y*/, float xf, fl
 			DrawVertB[4].rhw = 1.0f ;
 			DrawVertB[5].rhw = 1.0f ;
 
-			// ƒeƒNƒXƒ`ƒƒ[‚ğ•`‰æ‚·‚é
+			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã‚’æç”»ã™ã‚‹
 			ADD4VERTEX_BLENDTEX
 
 			if( BlendGraphNoIncFlag == FALSE )
@@ -18476,10 +18476,10 @@ extern	int		Graphics_D3D11_DrawRotaGraphFast( int /*x*/, int /*y*/, float xf, fl
 		}
 		else
 		{
-			// ƒeƒNƒXƒ`ƒƒ[‚Ì”‚¾‚¯ŒJ‚è•Ô‚·
+			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã®æ•°ã ã‘ç¹°ã‚Šè¿”ã™
 			for( i = 0 ; i < DrawTexNum ; i ++, DrawTex ++ )
 			{
-				// •`‰æ‚·‚éƒeƒNƒXƒ`ƒƒ[‚ÌƒZƒbƒg
+				// æç”»ã™ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã®ã‚»ãƒƒãƒˆ
 				Graphics_D3D11_DrawSetting_SetTexture( DrawTex->Tex->PF->D3D11.Texture, DrawTex->Tex->PF->D3D11.TextureSRV ) ;
 				Graphics_D3D11_DrawSetting_SetBlendTexture( BlendDrawTex->Tex->PF->D3D11.Texture, BlendDrawTex->Tex->PF->D3D11.TextureSRV, BlendDrawTex->Tex->TexWidth, BlendDrawTex->Tex->TexHeight );
 
@@ -18488,7 +18488,7 @@ extern	int		Graphics_D3D11_DrawRotaGraphFast( int /*x*/, int /*y*/, float xf, fl
 					Graphics_D3D11_DeviceState_NormalDrawSetup() ;
 				}
 
-				// ’¸“_ƒf[ƒ^‚ğ‰Šú‰»‚·‚é
+				// é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ã‚’åˆæœŸåŒ–ã™ã‚‹
 				GETVERTEX_QUAD( DrawVertB )
 
 				TexVert = DrawTex->Vertex ;
@@ -18605,7 +18605,7 @@ extern	int		Graphics_D3D11_DrawRotaGraphFast( int /*x*/, int /*y*/, float xf, fl
 				DrawVertB[4].rhw = 1.0f ;
 				DrawVertB[5].rhw = 1.0f ;
 
-				// ƒeƒNƒXƒ`ƒƒ[‚ğ•`‰æ‚·‚é
+				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã‚’æç”»ã™ã‚‹
 				ADD4VERTEX_BLENDTEX
 
 				if( BlendGraphNoIncFlag == FALSE )
@@ -18616,13 +18616,13 @@ extern	int		Graphics_D3D11_DrawRotaGraphFast( int /*x*/, int /*y*/, float xf, fl
 		}
 		break ;
 
-	case VERTEXTYPE_TEX :	// ƒuƒŒƒ“ƒhƒeƒNƒXƒ`ƒƒ‚ğg—p‚µ‚È‚¢
-		// ƒeƒNƒXƒ`ƒƒ[‚Ì”‚¾‚¯ŒJ‚è•Ô‚·
+	case VERTEXTYPE_TEX :	// ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ä½¿ç”¨ã—ãªã„
+		// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã®æ•°ã ã‘ç¹°ã‚Šè¿”ã™
 		if( DrawTexNum == 1 )
 		{
 			if( SinCosNone == 0 )
 			{
-				// ’¸“_ƒf[ƒ^‚ğ‰Šú‰»‚·‚é
+				// é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ã‚’åˆæœŸåŒ–ã™ã‚‹
 				GETVERTEX_QUAD( DrawVert )
 				
 				TexVert = DrawTex->Vertex ;
@@ -18684,12 +18684,12 @@ extern	int		Graphics_D3D11_DrawRotaGraphFast( int /*x*/, int /*y*/, float xf, fl
 				DrawVert[4].rhw = 1.0f ;
 				DrawVert[5].rhw = 1.0f ;
 
-				// ƒeƒNƒXƒ`ƒƒ[‚ğ•`‰æ‚·‚é
+				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã‚’æç”»ã™ã‚‹
 				ADD4VERTEX_TEX
 			}
 			else
 			{
-				// ’¸“_ƒf[ƒ^‚ğ‰Šú‰»‚·‚é
+				// é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ã‚’åˆæœŸåŒ–ã™ã‚‹
 				GETVERTEX_QUAD( DrawVert )
 				
 				TexVert = DrawTex->Vertex ;
@@ -18747,7 +18747,7 @@ extern	int		Graphics_D3D11_DrawRotaGraphFast( int /*x*/, int /*y*/, float xf, fl
 				DrawVert[4].rhw = 1.0f ;
 				DrawVert[5].rhw = 1.0f ;
 
-				// ƒeƒNƒXƒ`ƒƒ[‚ğ•`‰æ‚·‚é
+				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã‚’æç”»ã™ã‚‹
 				ADD4VERTEX_TEX
 			}
 		}
@@ -18755,11 +18755,11 @@ extern	int		Graphics_D3D11_DrawRotaGraphFast( int /*x*/, int /*y*/, float xf, fl
 		{
 			if( SinCosNone == 0 )
 			{
-				// ƒeƒNƒXƒ`ƒƒ[‚Ì”‚¾‚¯ŒJ‚è•Ô‚·
+				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã®æ•°ã ã‘ç¹°ã‚Šè¿”ã™
 				i = 0 ;
 				for(;;)
 				{
-					// ’¸“_ƒf[ƒ^‚ğ‰Šú‰»‚·‚é
+					// é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ã‚’åˆæœŸåŒ–ã™ã‚‹
 					GETVERTEX_QUAD( DrawVert )
 					
 					TexVert = DrawTex->Vertex ;
@@ -18831,13 +18831,13 @@ extern	int		Graphics_D3D11_DrawRotaGraphFast( int /*x*/, int /*y*/, float xf, fl
 					DrawVert[4].rhw = 1.0f ;
 					DrawVert[5].rhw = 1.0f ;
 
-					// ƒeƒNƒXƒ`ƒƒ[‚ğ•`‰æ‚·‚é
+					// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã‚’æç”»ã™ã‚‹
 					ADD4VERTEX_TEX
 
 					i ++ ;
 					if( i >= DrawTexNum ) break ;
 
-					// •`‰æ‚·‚éƒeƒNƒXƒ`ƒƒ[‚ÌƒZƒbƒg
+					// æç”»ã™ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã®ã‚»ãƒƒãƒˆ
 					DrawTex ++ ;
 					Graphics_D3D11_DrawSetting_SetTexture( DrawTex->Tex->PF->D3D11.Texture, DrawTex->Tex->PF->D3D11.TextureSRV ) ;
 					Graphics_D3D11_DeviceState_NormalDrawSetup() ;
@@ -18845,11 +18845,11 @@ extern	int		Graphics_D3D11_DrawRotaGraphFast( int /*x*/, int /*y*/, float xf, fl
 			}
 			else
 			{
-				// ƒeƒNƒXƒ`ƒƒ[‚Ì”‚¾‚¯ŒJ‚è•Ô‚·
+				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã®æ•°ã ã‘ç¹°ã‚Šè¿”ã™
 				i = 0 ;
 				for(;;)
 				{
-					// ’¸“_ƒf[ƒ^‚ğ‰Šú‰»‚·‚é
+					// é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ã‚’åˆæœŸåŒ–ã™ã‚‹
 					GETVERTEX_QUAD( DrawVert )
 					
 					TexVert = DrawTex->Vertex ;
@@ -18910,13 +18910,13 @@ extern	int		Graphics_D3D11_DrawRotaGraphFast( int /*x*/, int /*y*/, float xf, fl
 					DrawVert[4].rhw = 1.0f ;
 					DrawVert[5].rhw = 1.0f ;
 
-					// ƒeƒNƒXƒ`ƒƒ[‚ğ•`‰æ‚·‚é
+					// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã‚’æç”»ã™ã‚‹
 					ADD4VERTEX_TEX
 
 					i ++ ;
 					if( i >= DrawTexNum ) break ;
 
-					// •`‰æ‚·‚éƒeƒNƒXƒ`ƒƒ[‚ÌƒZƒbƒg
+					// æç”»ã™ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã®ã‚»ãƒƒãƒˆ
 					DrawTex ++ ;
 					Graphics_D3D11_DrawSetting_SetTexture( DrawTex->Tex->PF->D3D11.Texture, DrawTex->Tex->PF->D3D11.TextureSRV ) ;
 					Graphics_D3D11_DeviceState_NormalDrawSetup() ;
@@ -18926,17 +18926,17 @@ extern	int		Graphics_D3D11_DrawRotaGraphFast( int /*x*/, int /*y*/, float xf, fl
 		break ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒ^g—p”Å DrawModiGraph
+// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚¿ä½¿ç”¨ç‰ˆ DrawModiGraph
 extern	int		Graphics_D3D11_DrawModiGraph( int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4, IMAGEDATA *Image, IMAGEDATA *BlendImage, int TransFlag, bool SimpleDrawFlag )
 {
 	if( x1 == x3 && x2 == x4 && y1 == y2 && y3 == y4 ) return Graphics_D3D11_DrawExtendGraph( x1, y1, x4, y4, ( float )x1, ( float )y1, ( float )x4, ( float )y4, Image, BlendImage, TransFlag, TRUE ) ; 
 
-	// ‚à‚µƒuƒŒƒ“ƒhƒeƒNƒXƒ`ƒƒ‚ğg—p‚¹‚¸A‹ŒŒ^ŠÖ”‚ğg—p‚·‚éƒtƒ‰ƒO‚à—§‚Á‚Ä‚¢‚È‚¯‚ê‚Î
-	// “à•”•ªŠ„‚ğs‚¤•`‰æŠÖ”‚ğg—p‚·‚é
+	// ã‚‚ã—ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ä½¿ç”¨ã›ãšã€æ—§å‹é–¢æ•°ã‚’ä½¿ç”¨ã™ã‚‹ãƒ•ãƒ©ã‚°ã‚‚ç«‹ã£ã¦ã„ãªã‘ã‚Œã°
+	// å†…éƒ¨åˆ†å‰²ã‚’è¡Œã†æç”»é–¢æ•°ã‚’ä½¿ç”¨ã™ã‚‹
 	if( GD3D11.Setting.UseOldDrawModiGraphCodeFlag == FALSE && GSYS.DrawSetting.BlendGraph <= 0 )
 		return Graphics_D3D11_DrawModiGraphF( (float)x1, (float)y1, (float)x2, (float)y2, (float)x3, (float)y3, (float)x4, (float)y4, Image, BlendImage, TransFlag, SimpleDrawFlag ) ;
 
@@ -18969,7 +18969,7 @@ extern	int		Graphics_D3D11_DrawModiGraph( int x1, int y1, int x2, int y2, int x3
 		return -1 ;
 	}
 
-	// •`‰æ‚Ì€”õ
+	// æç”»ã®æº–å‚™
 	Flag = TransFlag | DX_D3D11_DRAWPREP_VECTORINT ;
 	DX_D3D11_DRAWPREP_TEX( Image->Orig, Image->Hard.Draw[ 0 ].Tex->PF->D3D11.Texture, Image->Hard.Draw[ 0 ].Tex->PF->D3D11.TextureSRV, Flag )
 
@@ -18983,37 +18983,37 @@ extern	int		Graphics_D3D11_DrawModiGraph( int x1, int y1, int x2, int y2, int x3
 	xf1 = (float)x1 ; yf1 = (float)y1 ;
 	xf4 = (float)x4 ; yf4 = (float)y4 ; 
 
-	// ’¸“_ƒf[ƒ^‚ğæ“¾i¡‚Ì‚Æ‚±‚ëFî•ñ‚ÌƒZƒbƒg‚Ì‚İj
+	// é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—ï¼ˆä»Šã®ã¨ã“ã‚è‰²æƒ…å ±ã®ã‚»ãƒƒãƒˆã®ã¿ï¼‰
 	DiffuseColor = GD3D11.Device.DrawInfo.DiffuseColor ;
 
-	// ‚yƒoƒbƒtƒ@‚É‘‚«‚Ş‚y’l‚ğƒZƒbƒg‚·‚é
+	// ï¼ºãƒãƒƒãƒ•ã‚¡ã«æ›¸ãè¾¼ã‚€ï¼ºå€¤ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 	drawz = *((DWORD *)&GSYS.DrawSetting.DrawZ);
 
-	// •`‰æî•ñ‚Ì”‚ğƒZƒbƒg
+	// æç”»æƒ…å ±ã®æ•°ã‚’ã‚»ãƒƒãƒˆ
 	DrawTexNum = Image->Hard.DrawNum ;
 
-	// •`‰æî•ñ‚Ì”‚ªƒuƒŒƒ“ƒh‰æ‘œ‚ÆˆÙ‚È‚Á‚Ä‚¢‚½‚ç‚O”Ô–Ú‚ÌƒeƒNƒXƒ`ƒƒ‚¾‚¯‚ğg—p‚·‚é
+	// æç”»æƒ…å ±ã®æ•°ãŒãƒ–ãƒ¬ãƒ³ãƒ‰ç”»åƒã¨ç•°ãªã£ã¦ã„ãŸã‚‰ï¼ç•ªç›®ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ã ã‘ã‚’ä½¿ç”¨ã™ã‚‹
 	BlendGraphNoIncFlag = FALSE ;
 	if( BlendImage != NULL && BlendImage->Hard.DrawNum != Image->Hard.DrawNum )
 	{
 		BlendGraphNoIncFlag = TRUE ;
 	}
 
-	// •`‰æî•ñ”z—ñ‚ÌƒAƒhƒŒƒX‚ğƒZƒbƒg‚µ‚Ä‚¨‚­
+	// æç”»æƒ…å ±é…åˆ—ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ã‚»ãƒƒãƒˆã—ã¦ãŠã
 	DrawTex = Image->Hard.Draw ;
 	if( BlendImage != NULL )
 	{
 		BlendDrawTex = BlendImage->Hard.Draw ;
 	}
 
-	// ’¸“_ƒ^ƒCƒv‚É‚æ‚Á‚Äˆ—‚ğ•ªŠò
+	// é ‚ç‚¹ã‚¿ã‚¤ãƒ—ã«ã‚ˆã£ã¦å‡¦ç†ã‚’åˆ†å²
 	switch( GD3D11.Device.DrawInfo.VertexType )
 	{
-	case VERTEXTYPE_BLENDTEX :	// ƒuƒŒƒ“ƒhƒeƒNƒXƒ`ƒƒ‚ğg—p‚·‚é
-		// ƒeƒNƒXƒ`ƒƒ[‚Ì”‚¾‚¯ŒJ‚è•Ô‚·
+	case VERTEXTYPE_BLENDTEX :	// ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ä½¿ç”¨ã™ã‚‹
+		// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã®æ•°ã ã‘ç¹°ã‚Šè¿”ã™
 		for( i = 0 ; i < DrawTexNum ; i ++, DrawTex ++ )
 		{
-			// •`‰æ‚·‚éƒeƒNƒXƒ`ƒƒ[‚ÌƒZƒbƒg
+			// æç”»ã™ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã®ã‚»ãƒƒãƒˆ
 			Graphics_D3D11_DrawSetting_SetTexture( DrawTex->Tex->PF->D3D11.Texture, DrawTex->Tex->PF->D3D11.TextureSRV ) ;
 			Graphics_D3D11_DrawSetting_SetBlendTexture( BlendDrawTex->Tex->PF->D3D11.Texture, BlendDrawTex->Tex->PF->D3D11.TextureSRV, BlendDrawTex->Tex->TexWidth, BlendDrawTex->Tex->TexHeight );
 
@@ -19022,7 +19022,7 @@ extern	int		Graphics_D3D11_DrawModiGraph( int x1, int y1, int x2, int y2, int x3
 				Graphics_D3D11_DeviceState_NormalDrawSetup() ;
 			}
 
-			// ’¸“_ƒoƒbƒtƒ@‚Ìæ“¾
+			// é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã®å–å¾—
 			GETVERTEX_QUAD( DrawVertB )
 
 			DrawVertB[0].color = ( DWORD )DiffuseColor ;
@@ -19038,16 +19038,16 @@ extern	int		Graphics_D3D11_DrawModiGraph( int x1, int y1, int x2, int y2, int x3
 
 			for( j = 0 ; j < 4 ; j ++, TexVert ++ )
 			{
-				// ’¸“_À•W‚ÌZo
+				// é ‚ç‚¹åº§æ¨™ã®ç®—å‡º
 				if( *VertType ++ )
 				{
-					// OŠp‚Ìã‘¤
+					// ä¸‰è§’ã®ä¸Šå´
 					DrawPos[ j ].x = ( TexVert->x * ExRate1X1 ) + ( TexVert->y * ExRate1X2 ) + xf1 ;
 					DrawPos[ j ].y = ( TexVert->y * ExRate1Y1 ) + ( TexVert->x * ExRate1Y2 ) + yf1 ;
 				} 
 				else
 				{
-					// OŠp‚Ì‰º‘¤
+					// ä¸‰è§’ã®ä¸‹å´
 					XBuf = TexVert->x - GraphSizeX ;
 					YBuf = TexVert->y - GraphSizeY ;
 					DrawPos[ j ].x = ( XBuf * ExRate2X1 ) + ( YBuf * ExRate2X2 ) + xf4 ;
@@ -19058,7 +19058,7 @@ extern	int		Graphics_D3D11_DrawModiGraph( int x1, int y1, int x2, int y2, int x3
 				v[ j ] = ( TexVert->y - BlendTexVert->y + GSYS.DrawSetting.BlendGraphY ) * GD3D11.Device.DrawSetting.InvBlendTextureHeight ;
 			}
 
-			// ”½“]”»’èˆ—
+			// åè»¢åˆ¤å®šå‡¦ç†
 			Reverse0 =  ( DrawPos[ 1 ].x - DrawPos[ 0 ].x ) * ( DrawPos[ 2 ].y - DrawPos[ 0 ].y ) -
 						( DrawPos[ 2 ].x - DrawPos[ 0 ].x ) * ( DrawPos[ 1 ].y - DrawPos[ 0 ].y ) ;
 //			Reverse1 = -( DrawPos[ 1 ].x - DrawPos[ 3 ].x ) * ( DrawPos[ 2 ].y - DrawPos[ 3 ].y ) +
@@ -19203,7 +19203,7 @@ extern	int		Graphics_D3D11_DrawModiGraph( int x1, int y1, int x2, int y2, int x3
 			DrawVertB[4].rhw = 1.0f ;
 			DrawVertB[5].rhw = 1.0f ;
 
-			// ƒeƒNƒXƒ`ƒƒ[‚ğ•`‰æ‚·‚é
+			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã‚’æç”»ã™ã‚‹
 			ADD4VERTEX_BLENDTEX
 
 			if( BlendGraphNoIncFlag == FALSE )
@@ -19213,15 +19213,15 @@ extern	int		Graphics_D3D11_DrawModiGraph( int x1, int y1, int x2, int y2, int x3
 		}
 		break ;
 
-	case VERTEXTYPE_TEX :	// ƒuƒŒƒ“ƒhƒeƒNƒXƒ`ƒƒ‚ğg—p‚µ‚È‚¢
-		// ƒeƒNƒXƒ`ƒƒ[‚Ì”‚¾‚¯ŒJ‚è•Ô‚·
+	case VERTEXTYPE_TEX :	// ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ä½¿ç”¨ã—ãªã„
+		// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã®æ•°ã ã‘ç¹°ã‚Šè¿”ã™
 		i = 0 ;
 		for(;;)
 		{
-			// ’¸“_ƒoƒbƒtƒ@‚Ìæ“¾
+			// é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã®å–å¾—
 			GETVERTEX_QUAD( DrawVert )
 
-			// ’¸“_ƒf[ƒ^‚ğƒZƒbƒg‚·‚é
+			// é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 			DrawVert[0].color = ( DWORD )DiffuseColor ;
 			DrawVert[1].color = ( DWORD )DiffuseColor ;
 			DrawVert[2].color = ( DWORD )DiffuseColor ;
@@ -19234,16 +19234,16 @@ extern	int		Graphics_D3D11_DrawModiGraph( int x1, int y1, int x2, int y2, int x3
 
 			for( j = 0 ; j < 4 ; j ++, TexVert ++ )
 			{
-				// ’¸“_À•W‚ÌZo
+				// é ‚ç‚¹åº§æ¨™ã®ç®—å‡º
 				if( *VertType ++ )
 				{
-					// OŠp‚Ìã‘¤
+					// ä¸‰è§’ã®ä¸Šå´
 					DrawPos[ j ].x = ( TexVert->x * ExRate1X1 ) + ( TexVert->y * ExRate1X2 ) + xf1 ;
 					DrawPos[ j ].y = ( TexVert->y * ExRate1Y1 ) + ( TexVert->x * ExRate1Y2 ) + yf1 ;
 				} 
 				else
 				{
-					// OŠp‚Ì‰º‘¤
+					// ä¸‰è§’ã®ä¸‹å´
 					XBuf = TexVert->x - GraphSizeX ;
 					YBuf = TexVert->y - GraphSizeY ;
 					DrawPos[ j ].x = ( XBuf * ExRate2X1 ) + ( YBuf * ExRate2X2 ) + xf4 ;
@@ -19251,7 +19251,7 @@ extern	int		Graphics_D3D11_DrawModiGraph( int x1, int y1, int x2, int y2, int x3
 				}
 			}
 
-			// ”½“]”»’èˆ—
+			// åè»¢åˆ¤å®šå‡¦ç†
 			Reverse0 =  ( DrawPos[ 1 ].x - DrawPos[ 0 ].x ) * ( DrawPos[ 2 ].y - DrawPos[ 0 ].y ) -
 						( DrawPos[ 2 ].x - DrawPos[ 0 ].x ) * ( DrawPos[ 1 ].y - DrawPos[ 0 ].y ) ;
 //			Reverse1 = -( DrawPos[ 1 ].x - DrawPos[ 3 ].x ) * ( DrawPos[ 2 ].y - DrawPos[ 3 ].y ) +
@@ -19333,7 +19333,7 @@ extern	int		Graphics_D3D11_DrawModiGraph( int x1, int y1, int x2, int y2, int x3
 			i ++ ;
 			if( i >= DrawTexNum ) break ;
 
-			// •`‰æ‚·‚éƒeƒNƒXƒ`ƒƒ[‚ÌƒZƒbƒg
+			// æç”»ã™ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã®ã‚»ãƒƒãƒˆ
 			DrawTex ++ ;
 			Graphics_D3D11_DrawSetting_SetTexture( DrawTex->Tex->PF->D3D11.Texture, DrawTex->Tex->PF->D3D11.TextureSRV ) ;
 			Graphics_D3D11_DeviceState_NormalDrawSetup() ;
@@ -19341,11 +19341,11 @@ extern	int		Graphics_D3D11_DrawModiGraph( int x1, int y1, int x2, int y2, int x3
 		break ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒ^g—p”Å DrawModiGraphF
+// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚¿ä½¿ç”¨ç‰ˆ DrawModiGraphF
 extern	int		Graphics_D3D11_DrawModiGraphF( float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4, IMAGEDATA *Image, IMAGEDATA *BlendImage, int TransFlag, bool SimpleDrawFlag )
 {
 	int Flag ;
@@ -19355,17 +19355,17 @@ extern	int		Graphics_D3D11_DrawModiGraphF( float x1, float y1, float x2, float y
 		return -1 ;
 	}
 
-	// ‚à‚µƒuƒŒƒ“ƒhƒeƒNƒXƒ`ƒƒ•t‚Ìê‡‚Í“à•”•ªŠ„‚ğs‚í‚È‚¢•`‰æŠÖ”‚ğg—p‚·‚é
+	// ã‚‚ã—ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ†ã‚¯ã‚¹ãƒãƒ£ä»˜ã®å ´åˆã¯å†…éƒ¨åˆ†å‰²ã‚’è¡Œã‚ãªã„æç”»é–¢æ•°ã‚’ä½¿ç”¨ã™ã‚‹
 	if( GSYS.DrawSetting.BlendGraph > 0 ) return Graphics_D3D11_DrawModiGraph( _FTOL( x1 ), _FTOL( y1 ), _FTOL( x2 ), _FTOL( y2 ), _FTOL( x3 ), _FTOL( y3 ), _FTOL( x4 ), _FTOL( y4 ), Image, BlendImage, TransFlag, SimpleDrawFlag ) ;
 
-	// •`‰æ‚Ì€”õ
+	// æç”»ã®æº–å‚™
 	Flag = TransFlag ;
 	DX_D3D11_DRAWPREP_TEX( Image->Orig, Image->Hard.Draw[ 0 ].Tex->PF->D3D11.Texture, Image->Hard.Draw[ 0 ].Tex->PF->D3D11.TextureSRV, Flag )
 
-	// ƒeƒNƒXƒ`ƒƒ[‚ª‚P–‡‚Ì‚İ‚Ìê‡‚Íˆ—‚ğ•ªŠò
+	// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ãŒï¼‘æšã®ã¿ã®å ´åˆã¯å‡¦ç†ã‚’åˆ†å²
 	if( Image->Hard.DrawNum == 1 )
 	{
-		// ‚»‚Ì‚Ü‚Ü•`‰æ
+		// ãã®ã¾ã¾æç”»
 		Graphics_D3D11_DrawModiTex( x1, y1, x2, y2, x3, y3, x4, y4, &Image->Hard.Draw[ 0 ], false ) ;
 	}
 	else
@@ -19389,19 +19389,19 @@ extern	int		Graphics_D3D11_DrawModiGraphF( float x1, float y1, float x2, float y
 		w = 1.0F / (double)Image->WidthF ;
 		h = 1.0F / (double)Image->HeightF ;
 
-		// •`‰æî•ñ‚Ì”‚ğƒZƒbƒg
+		// æç”»æƒ…å ±ã®æ•°ã‚’ã‚»ãƒƒãƒˆ
 		DrawTexNum = Image->Hard.DrawNum ;
 
-		// •`‰æî•ñ”z—ñ‚ÌƒAƒhƒŒƒX‚ğƒZƒbƒg‚µ‚Ä‚¨‚­
+		// æç”»æƒ…å ±é…åˆ—ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ã‚»ãƒƒãƒˆã—ã¦ãŠã
 		DrawTex = Image->Hard.Draw ;
 
-		// ƒeƒNƒXƒ`ƒƒ[‚Ì”‚¾‚¯ŒJ‚è•Ô‚·
+		// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã®æ•°ã ã‘ç¹°ã‚Šè¿”ã™
 		for( i = 0 ; i < DrawTexNum ; i ++, DrawTex ++ )
 		{
-			// ƒeƒNƒXƒ`ƒƒ[‚Ìƒf[ƒ^ƒAƒhƒŒƒX‚ğæ“¾
+			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã®ãƒ‡ãƒ¼ã‚¿ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å–å¾—
 			TexVert = DrawTex->Vertex ;
 
-			// À•W‚ğZo
+			// åº§æ¨™ã‚’ç®—å‡º
 			xp = x ;
 			yp = y ;
 			for( j = 0 ; j < 4 ; j ++, TexVert ++ )
@@ -19415,16 +19415,16 @@ extern	int		Graphics_D3D11_DrawModiGraphF( float x1, float y1, float x2, float y
 				*yp++ = (float)( ( yt2 - yt1 ) * r + yt1 ) ;
 			}
 
-			// •`‰æ
+			// æç”»
 			Graphics_D3D11_DrawModiTex( x[0], y[0], x[1], y[1], x[2], y[2], x[3], y[3], DrawTex, false ) ;
 		}
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ‚QŸŒ³”z—ñ“I‚É”z’u‚³‚ê‚½’¸“_ƒf[ƒ^‚ğ’¸“_ƒoƒbƒtƒ@‚É’Ç‰Á‚·‚é
+// ï¼’æ¬¡å…ƒé…åˆ—çš„ã«é…ç½®ã•ã‚ŒãŸé ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ã‚’é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã«è¿½åŠ ã™ã‚‹
 static int D3D11_Graphics_SetPlaneVertexHardware( VERTEX_2D *GraphVert, int xnum, int ynum )
 {
 	int i, j, k, l ;
@@ -19433,20 +19433,20 @@ static int D3D11_Graphics_SetPlaneVertexHardware( VERTEX_2D *GraphVert, int xnum
 
 	if( xnum < 2 || ynum < 2 ) return -1 ;
 
-	// ƒgƒ‰ƒCƒAƒ“ƒOƒ‹ƒŠƒXƒgƒ‚[ƒh‚Ìê‡‚Íƒoƒbƒtƒ@‚Íg—p‚µ‚È‚¢
+	// ãƒˆãƒ©ã‚¤ã‚¢ãƒ³ã‚°ãƒ«ãƒªã‚¹ãƒˆãƒ¢ãƒ¼ãƒ‰ã®å ´åˆã¯ãƒãƒƒãƒ•ã‚¡ã¯ä½¿ç”¨ã—ãªã„
 	DRAWSTOCKINFO
 
-	// ƒoƒbƒtƒ@‚ğg—p‚µ‚È‚¢İ’è‚É‚È‚Á‚Ä‚¢‚½‚ç‚±‚Ìê‚Å•`‰æ
+	// ãƒãƒƒãƒ•ã‚¡ã‚’ä½¿ç”¨ã—ãªã„è¨­å®šã«ãªã£ã¦ã„ãŸã‚‰ã“ã®å ´ã§æç”»
 	{
 #define MAX_POSNUM		1000
 		WORD list[MAX_POSNUM] ;
 
-		// ’¸“_ƒCƒ“ƒfƒbƒNƒXƒŠƒXƒg‚ğì¬‚·‚é
+		// é ‚ç‚¹ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒªã‚¹ãƒˆã‚’ä½œæˆã™ã‚‹
 		k = 0 ;
 		l = 0 ;
 		for( i = 0 ; i < ynum - 1 ; i ++ )
 		{
-			// ’¸“_”‚ª’´‚¦‚»‚¤‚¾‚Á‚½‚ç•`‰æ
+			// é ‚ç‚¹æ•°ãŒè¶…ãˆãã†ã ã£ãŸã‚‰æç”»
 			if( k + xnum * 2 + 2 > MAX_POSNUM )
 			{
 				Graphics_D3D11_CommonBuffer_DrawIndexedPrimitive(
@@ -19462,7 +19462,7 @@ static int D3D11_Graphics_SetPlaneVertexHardware( VERTEX_2D *GraphVert, int xnum
 				k = 0 ;
 			}
 
-			// ‘O‚Ìs‚©‚ç‚Ì‘±‚«‚¾‚Á‚½ê‡‚ÍƒXƒgƒŠƒbƒv‚Ì˜A‘±—p‚Ì’¸“_‚ğo—Í		
+			// å‰ã®è¡Œã‹ã‚‰ã®ç¶šãã ã£ãŸå ´åˆã¯ã‚¹ãƒˆãƒªãƒƒãƒ—ã®é€£ç¶šç”¨ã®é ‚ç‚¹ã‚’å‡ºåŠ›		
 			if( k != 0 )
 			{
 				list[k] = ( WORD )( l + xnum ) ;
@@ -19496,11 +19496,11 @@ static int D3D11_Graphics_SetPlaneVertexHardware( VERTEX_2D *GraphVert, int xnum
 #undef	MAX_POSNUM
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒeƒNƒXƒ`ƒƒ‚ğ•ÏŒ`‚µ‚Ä•`‰æ‚·‚é
+// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’å¤‰å½¢ã—ã¦æç”»ã™ã‚‹
 extern	void	Graphics_D3D11_DrawModiTex( float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4, IMAGEDATA_HARD_DRAW *DrawTex, bool SimpleDrawFlag )
 {
 	IMAGEDATA_HARD_VERT *TexVert ;
@@ -19514,28 +19514,28 @@ extern	void	Graphics_D3D11_DrawModiTex( float x1, float y1, float x2, float y2, 
 	float u[ 2 ] ;
 	float v[ 2 ] ;
 
-	// •`‰æ‚·‚éƒeƒNƒXƒ`ƒƒ[‚ÌƒZƒbƒg
+	// æç”»ã™ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã®ã‚»ãƒƒãƒˆ
 	Graphics_D3D11_DrawSetting_SetTexture( DrawTex->Tex->PF->D3D11.Texture, DrawTex->Tex->PF->D3D11.TextureSRV ) ;
 	if( GD3D11.Device.DrawSetting.ChangeTextureFlag )
 	{
 		Graphics_D3D11_DeviceState_NormalDrawSetup() ;
 	}
 
-	// ’¸“_ƒf[ƒ^‚ğæ“¾i¡‚Ì‚Æ‚±‚ëFî•ñ‚ÌƒZƒbƒg‚Ì‚İj
+	// é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—ï¼ˆä»Šã®ã¨ã“ã‚è‰²æƒ…å ±ã®ã‚»ãƒƒãƒˆã®ã¿ï¼‰
 	DiffuseColor = GD3D11.Device.DrawInfo.DiffuseColor ;
 
-	// ‚yƒoƒbƒtƒ@‚É‘‚«‚Ş‚y’l‚ğƒZƒbƒg‚·‚é
+	// ï¼ºãƒãƒƒãƒ•ã‚¡ã«æ›¸ãè¾¼ã‚€ï¼ºå€¤ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 	drawz = *((DWORD *)&GSYS.DrawSetting.DrawZ);
 
 	TexVert = DrawTex->Vertex ;
 
-	// ”½“]”»’è—pˆ—
+	// åè»¢åˆ¤å®šç”¨å‡¦ç†
 	Reverse0 =  ( x2 - x1 ) * ( y3 - y1 ) - ( x3 - x1 ) * ( y2 - y1 ) ;
 	Reverse1 = -( x2 - x4 ) * ( y3 - y4 ) + ( y2 - y4 ) * ( x3 - x4 ) ;
 
 	if( SimpleDrawFlag ) goto R1 ;
 
-	// •½sl•ÓŒ`ˆÈã‚Ì•ÏŒ`‚ª‹N‚«‚Ä‚¢‚È‚©‚Á‚½‚ç•’Ê‚Ìˆ—‚ğÀs
+	// å¹³è¡Œå››è¾ºå½¢ä»¥ä¸Šã®å¤‰å½¢ãŒèµ·ãã¦ã„ãªã‹ã£ãŸã‚‰æ™®é€šã®å‡¦ç†ã‚’å®Ÿè¡Œ
 	f1 = f2 = c = 0 ;
 	xx1 = x2 - x1 ; xx2 = x4 - x3 ;
 	yy1 = y2 - y1 ; yy2 = y4 - y3 ;
@@ -19548,7 +19548,7 @@ extern	void	Graphics_D3D11_DrawModiTex( float x1, float y1, float x2, float y2, 
 	if( c == 2 ) goto R1 ;
 
 /*
-	// ‘äŒ`‚©Š®‘S‚È©—RlŠpŒ`‚©‚ğ”»’è
+	// å°å½¢ã‹å®Œå…¨ãªè‡ªç”±å››è§’å½¢ã‹ã‚’åˆ¤å®š
 	f1 = f2 = c = 0 ;
 	r1 = _SQRT( xx1 * xx1 + yy1 * yy1 ) ;	xtmp1 = xx1 / r1 ;	ytmp1 = yy1 / r1 ;
 	r2 = _SQRT( xx2 * xx2 + yy2 * yy2 ) ;	xtmp2 = xx2 / r2 ;	ytmp2 = yy2 / r2 ;
@@ -19571,7 +19571,7 @@ extern	void	Graphics_D3D11_DrawModiTex( float x1, float y1, float x2, float y2, 
 		int i, j ;
 		float adjust_u_l, adjust_u_r, adjust_v_t, adjust_v_b ;
 
-		// •ªŠ„‰æ‘œ‚Ìê‡—×‚Ì‰æ‘œ‚ÌƒsƒNƒZƒ‹‚ª“ü‚ç‚È‚¢‚½‚ß‚Ì•â³‚t‚u’l‚ğì¬‚·‚é
+		// åˆ†å‰²ç”»åƒã®å ´åˆéš£ã®ç”»åƒã®ãƒ”ã‚¯ã‚»ãƒ«ãŒå…¥ã‚‰ãªã„ãŸã‚ã®è£œæ­£ï¼µï¼¶å€¤ã‚’ä½œæˆã™ã‚‹
 		{
 			if( TexVert[ 0 ].u < 0.000001f )
 			{
@@ -19610,7 +19610,7 @@ extern	void	Graphics_D3D11_DrawModiTex( float x1, float y1, float x2, float y2, 
 			}
 		}
 
-		// •ªŠ„”‚ÌZo
+		// åˆ†å‰²æ•°ã®ç®—å‡º
 		{
 			float v1x, v1y, v2x, v2y ;
 			float rate ;
@@ -19628,7 +19628,7 @@ extern	void	Graphics_D3D11_DrawModiTex( float x1, float y1, float x2, float y2, 
 			for( DivNum = TDIVNUM ; DivNum > 0 && rate < Table[TDIVNUM - DivNum] ; DivNum -- ){}
 		}
 
-		// ©—RlŠpŒ`ˆ—
+		// è‡ªç”±å››è§’å½¢å‡¦ç†
 		adx1 = xx3 / ( tdn - 1 ) ;	ady1 = yy3 / ( tdn - 1 ) ;
 		adx2 = xx4 / ( tdn - 1 ) ;	ady2 = yy4 / ( tdn - 1 ) ;
 		xxx1 = x1 ;		yyy1 = y1 ;
@@ -19661,7 +19661,7 @@ extern	void	Graphics_D3D11_DrawModiTex( float x1, float y1, float x2, float y2, 
 			}
 		}
 
-		// ’¸“_’Ç‰Áˆ—
+		// é ‚ç‚¹è¿½åŠ å‡¦ç†
 		D3D11_Graphics_SetPlaneVertexHardware( VertData2, tdn, tdn ) ;
 
 #undef TDIVNUM
@@ -19671,7 +19671,7 @@ extern	void	Graphics_D3D11_DrawModiTex( float x1, float y1, float x2, float y2, 
 	return ;
 		
 R1 :
-	// •’Ê‚É•`‰æ
+	// æ™®é€šã«æç”»
 	GETVERTEX_QUAD( vec )
 
 	vec[0].color = ( DWORD )DiffuseColor ;
@@ -19760,7 +19760,7 @@ R1 :
 	ADD4VERTEX_TEX
 }
 
-// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒ^g—p”Å DrawSimpleQuadrangleGraphF
+// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚¿ä½¿ç”¨ç‰ˆ DrawSimpleQuadrangleGraphF
 extern	int		Graphics_D3D11_DrawSimpleQuadrangleGraphF( const GRAPHICS_DRAW_DRAWSIMPLEQUADRANGLEGRAPHF_PARAM *Param, IMAGEDATA *Image, IMAGEDATA *BlendImage )
 {
 	VERTEX_2D *DrawVert ;
@@ -19782,34 +19782,34 @@ extern	int		Graphics_D3D11_DrawSimpleQuadrangleGraphF( const GRAPHICS_DRAW_DRAWS
 		return -1 ;
 	}
 
-	// ƒeƒNƒXƒ`ƒƒ‚Ì”‚ª‚PˆÈŠO‚Ìê‡‚ÍƒGƒ‰[
+	// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®æ•°ãŒï¼‘ä»¥å¤–ã®å ´åˆã¯ã‚¨ãƒ©ãƒ¼
 	if( Image->Hard.DrawNum != 1 )
 	{
 		return -1 ;
 	}
 
-	// •`‰æ‚Ì€”õ
+	// æç”»ã®æº–å‚™
 	Flag = Param->TransFlag ;
 	DX_D3D11_DRAWPREP_TEX( Image->Orig, Image->Hard.Draw[ 0 ].Tex->PF->D3D11.Texture, Image->Hard.Draw[ 0 ].Tex->PF->D3D11.TextureSRV, Flag )
 
-	// ’¸“_ƒf[ƒ^‚ğæ“¾i¡‚Ì‚Æ‚±‚ëFî•ñ‚ÌƒZƒbƒg‚Ì‚İj
+	// é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—ï¼ˆä»Šã®ã¨ã“ã‚è‰²æƒ…å ±ã®ã‚»ãƒƒãƒˆã®ã¿ï¼‰
 	DiffuseColor = GD3D11.Device.DrawInfo.DiffuseColor ;
 
-	// •`‰æî•ñ”z—ñ‚ÌƒAƒhƒŒƒX‚ğƒZƒbƒg‚µ‚Ä‚¨‚­
+	// æç”»æƒ…å ±é…åˆ—ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ã‚»ãƒƒãƒˆã—ã¦ãŠã
 	DrawTex = Image->Hard.Draw ;
 	if( BlendImage != NULL )
 	{
 		BlendDrawTex = BlendImage->Hard.Draw ;
 	}
 
-	// ‚yƒoƒbƒtƒ@‚É‘‚«‚Ş‚y’l‚ğƒZƒbƒg‚·‚é
+	// ï¼ºãƒãƒƒãƒ•ã‚¡ã«æ›¸ãè¾¼ã‚€ï¼ºå€¤ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 	drawz = *((DWORD *)&GSYS.DrawSetting.DrawZ);
 
-	// ’¸“_ƒ^ƒCƒv‚É‚æ‚Á‚Äˆ—‚ğ•ªŠò
+	// é ‚ç‚¹ã‚¿ã‚¤ãƒ—ã«ã‚ˆã£ã¦å‡¦ç†ã‚’åˆ†å²
 	switch( GD3D11.Device.DrawInfo.VertexType )
 	{
-	case VERTEXTYPE_BLENDTEX :	// ƒuƒŒƒ“ƒhƒeƒNƒXƒ`ƒƒ‚ğg—p‚·‚é
-		// •`‰æ‚·‚éƒeƒNƒXƒ`ƒƒ[‚ÌƒZƒbƒg
+	case VERTEXTYPE_BLENDTEX :	// ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ä½¿ç”¨ã™ã‚‹
+		// æç”»ã™ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã®ã‚»ãƒƒãƒˆ
 		Graphics_D3D11_DrawSetting_SetTexture( DrawTex->Tex->PF->D3D11.Texture, DrawTex->Tex->PF->D3D11.TextureSRV ) ;
 		Graphics_D3D11_DrawSetting_SetBlendTexture( BlendDrawTex->Tex->PF->D3D11.Texture, BlendDrawTex->Tex->PF->D3D11.TextureSRV, BlendDrawTex->Tex->TexWidth, BlendDrawTex->Tex->TexHeight );
 
@@ -19821,7 +19821,7 @@ extern	int		Graphics_D3D11_DrawSimpleQuadrangleGraphF( const GRAPHICS_DRAW_DRAWS
 		TexVert = DrawTex->Vertex ;
 		BlendTexVert = BlendDrawTex->Vertex ;
 
-		// ’¸“_ƒf[ƒ^‚ğ‰Šú‰»‚·‚é
+		// é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ã‚’åˆæœŸåŒ–ã™ã‚‹
 		ParamV = Param->Vertex ;
 		for( i = 0 ; i < Param->QuadrangleNum ; i ++, ParamV += 4 )
 		{
@@ -19913,15 +19913,15 @@ extern	int		Graphics_D3D11_DrawSimpleQuadrangleGraphF( const GRAPHICS_DRAW_DRAWS
 			DrawVertB[4].rhw = 1.0f ;
 			DrawVertB[5].rhw = 1.0f ;
 
-			// ƒeƒNƒXƒ`ƒƒ[‚ğ•`‰æ‚·‚é
+			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã‚’æç”»ã™ã‚‹
 			ADD4VERTEX_BLENDTEX
 		}
 		break ;
 
-	case VERTEXTYPE_TEX :	// ƒuƒŒƒ“ƒhƒeƒNƒXƒ`ƒƒ‚ğg—p‚µ‚È‚¢
+	case VERTEXTYPE_TEX :	// ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ä½¿ç”¨ã—ãªã„
 		TexVert = DrawTex->Vertex ;
 
-		// ’¸“_ƒf[ƒ^‚ğ‰Šú‰»‚·‚é
+		// é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ã‚’åˆæœŸåŒ–ã™ã‚‹
 		ParamV = Param->Vertex ;
 		for( i = 0 ; i < Param->QuadrangleNum ; i ++, ParamV += 4 )
 		{
@@ -19974,17 +19974,17 @@ extern	int		Graphics_D3D11_DrawSimpleQuadrangleGraphF( const GRAPHICS_DRAW_DRAWS
 			DrawVert[4].rhw = 1.0f ;
 			DrawVert[5].rhw = 1.0f ;
 
-			// ƒeƒNƒXƒ`ƒƒ[‚ğ•`‰æ‚·‚é
+			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã‚’æç”»ã™ã‚‹
 			ADD4VERTEX_TEX
 		}
 		break ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒ^g—p”Å DrawSimpleTriangleGraphF
+// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚¿ä½¿ç”¨ç‰ˆ DrawSimpleTriangleGraphF
 extern	int		Graphics_D3D11_DrawSimpleTriangleGraphF( const GRAPHICS_DRAW_DRAWSIMPLETRIANGLEGRAPHF_PARAM *Param, IMAGEDATA *Image, IMAGEDATA *BlendImage )
 {
 	VERTEX_2D *DrawVert ;
@@ -20006,34 +20006,34 @@ extern	int		Graphics_D3D11_DrawSimpleTriangleGraphF( const GRAPHICS_DRAW_DRAWSIM
 		return -1 ;
 	}
 
-	// ƒeƒNƒXƒ`ƒƒ‚Ì”‚ª‚PˆÈŠO‚Ìê‡‚ÍƒGƒ‰[
+	// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®æ•°ãŒï¼‘ä»¥å¤–ã®å ´åˆã¯ã‚¨ãƒ©ãƒ¼
 	if( Image->Hard.DrawNum != 1 )
 	{
 		return -1 ;
 	}
 
-	// •`‰æ‚Ì€”õ
+	// æç”»ã®æº–å‚™
 	Flag = Param->TransFlag ;
 	DX_D3D11_DRAWPREP_TEX( Image->Orig, Image->Hard.Draw[ 0 ].Tex->PF->D3D11.Texture, Image->Hard.Draw[ 0 ].Tex->PF->D3D11.TextureSRV, Flag )
 
-	// ’¸“_ƒf[ƒ^‚ğæ“¾i¡‚Ì‚Æ‚±‚ëFî•ñ‚ÌƒZƒbƒg‚Ì‚İj
+	// é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—ï¼ˆä»Šã®ã¨ã“ã‚è‰²æƒ…å ±ã®ã‚»ãƒƒãƒˆã®ã¿ï¼‰
 	DiffuseColor = GD3D11.Device.DrawInfo.DiffuseColor ;
 
-	// •`‰æî•ñ”z—ñ‚ÌƒAƒhƒŒƒX‚ğƒZƒbƒg‚µ‚Ä‚¨‚­
+	// æç”»æƒ…å ±é…åˆ—ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ã‚»ãƒƒãƒˆã—ã¦ãŠã
 	DrawTex = Image->Hard.Draw ;
 	if( BlendImage != NULL )
 	{
 		BlendDrawTex = BlendImage->Hard.Draw ;
 	}
 
-	// ‚yƒoƒbƒtƒ@‚É‘‚«‚Ş‚y’l‚ğƒZƒbƒg‚·‚é
+	// ï¼ºãƒãƒƒãƒ•ã‚¡ã«æ›¸ãè¾¼ã‚€ï¼ºå€¤ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 	drawz = *((DWORD *)&GSYS.DrawSetting.DrawZ);
 
-	// ’¸“_ƒ^ƒCƒv‚É‚æ‚Á‚Äˆ—‚ğ•ªŠò
+	// é ‚ç‚¹ã‚¿ã‚¤ãƒ—ã«ã‚ˆã£ã¦å‡¦ç†ã‚’åˆ†å²
 	switch( GD3D11.Device.DrawInfo.VertexType )
 	{
-	case VERTEXTYPE_BLENDTEX :	// ƒuƒŒƒ“ƒhƒeƒNƒXƒ`ƒƒ‚ğg—p‚·‚é
-		// •`‰æ‚·‚éƒeƒNƒXƒ`ƒƒ[‚ÌƒZƒbƒg
+	case VERTEXTYPE_BLENDTEX :	// ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ä½¿ç”¨ã™ã‚‹
+		// æç”»ã™ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã®ã‚»ãƒƒãƒˆ
 		Graphics_D3D11_DrawSetting_SetTexture( DrawTex->Tex->PF->D3D11.Texture, DrawTex->Tex->PF->D3D11.TextureSRV ) ;
 		Graphics_D3D11_DrawSetting_SetBlendTexture( BlendDrawTex->Tex->PF->D3D11.Texture, BlendDrawTex->Tex->PF->D3D11.TextureSRV, BlendDrawTex->Tex->TexWidth, BlendDrawTex->Tex->TexHeight );
 
@@ -20045,7 +20045,7 @@ extern	int		Graphics_D3D11_DrawSimpleTriangleGraphF( const GRAPHICS_DRAW_DRAWSIM
 		TexVert = DrawTex->Vertex ;
 		BlendTexVert = BlendDrawTex->Vertex ;
 
-		// ’¸“_ƒf[ƒ^‚ğ‰Šú‰»‚·‚é
+		// é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ã‚’åˆæœŸåŒ–ã™ã‚‹
 		ParamV = Param->Vertex ;
 		for( i = 0 ; i < Param->TriangleNum ; i ++, ParamV += 3 )
 		{
@@ -20106,15 +20106,15 @@ extern	int		Graphics_D3D11_DrawSimpleTriangleGraphF( const GRAPHICS_DRAW_DRAWSIM
 			DrawVertB[1].rhw = 1.0f ;
 			DrawVertB[2].rhw = 1.0f ;
 
-			// ƒeƒNƒXƒ`ƒƒ[‚ğ•`‰æ‚·‚é
+			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã‚’æç”»ã™ã‚‹
 			ADD3VERTEX_BLENDTEX
 		}
 		break ;
 
-	case VERTEXTYPE_TEX :	// ƒuƒŒƒ“ƒhƒeƒNƒXƒ`ƒƒ‚ğg—p‚µ‚È‚¢
+	case VERTEXTYPE_TEX :	// ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ä½¿ç”¨ã—ãªã„
 		TexVert = DrawTex->Vertex ;
 
-		// ’¸“_ƒf[ƒ^‚ğ‰Šú‰»‚·‚é
+		// é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ã‚’åˆæœŸåŒ–ã™ã‚‹
 		ParamV = Param->Vertex ;
 		for( i = 0 ; i < Param->TriangleNum ; i ++, ParamV += 3 )
 		{
@@ -20146,17 +20146,17 @@ extern	int		Graphics_D3D11_DrawSimpleTriangleGraphF( const GRAPHICS_DRAW_DRAWSIM
 			DrawVert[1].rhw = 1.0f ;
 			DrawVert[2].rhw = 1.0f ;
 
-			// ƒeƒNƒXƒ`ƒƒ[‚ğ•`‰æ‚·‚é
+			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã‚’æç”»ã™ã‚‹
 			ADD3VERTEX_TEX
 		}
 		break ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒ^g—p”Å DrawFillBox
+// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚¿ä½¿ç”¨ç‰ˆ DrawFillBox
 extern	int		Graphics_D3D11_DrawFillBox( int x1, int y1, int x2, int y2, unsigned int Color )
 {
 	VERTEX_NOTEX_2D *vec ;
@@ -20169,7 +20169,7 @@ extern	int		Graphics_D3D11_DrawFillBox( int x1, int y1, int x2, int y2, unsigned
 		return -1 ;
 	}
 
-	// ”½“]ˆ—
+	// åè»¢å‡¦ç†
 	{
 		int b ;
 
@@ -20177,31 +20177,31 @@ extern	int		Graphics_D3D11_DrawFillBox( int x1, int y1, int x2, int y2, unsigned
 		if( y1 > y2 ){ b = y1 ; y1 = y2 ; y2 = b ; }
 	}
 
-	// À•W‚ÌƒZƒbƒg
+	// åº§æ¨™ã®ã‚»ãƒƒãƒˆ
 	drect.left   = x1 ;
 	drect.right  = x2 ;
 	drect.top    = y1 ;
 	drect.bottom = y2 ;
 
-	// ƒNƒŠƒbƒsƒ“ƒOˆ—
+	// ã‚¯ãƒªãƒƒãƒ”ãƒ³ã‚°å‡¦ç†
 	if( GSYS.DrawSetting.Valid2DMatrix == FALSE )
 	{
 		RectClipping_Inline( &drect, &GSYS.DrawSetting.DrawArea ) ;
 		if( drect.left == drect.right || drect.top == drect.bottom ) return 0 ;
 	}
 
-	// •`‰æ‚Ì€”õ
+	// æç”»ã®æº–å‚™
 	Flag = DX_D3D11_DRAWPREP_DIFFUSERGB ;
 	DX_D3D11_DRAWPREP_NOTEX( Flag ) ;
 
-	// F‚»‚Ì‘¼ƒXƒe[ƒ^ƒX‚ÌƒZƒbƒg
+	// è‰²ãã®ä»–ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã®ã‚»ãƒƒãƒˆ
 	NS_GetColor2( Color, &Red, &Green, &Blue ) ;
 	SETUPCOLOR( Color )
 
-	// ‚yƒoƒbƒtƒ@‚É‘‚«‚Ş‚y’l‚ğƒZƒbƒg‚·‚é
+	// ï¼ºãƒãƒƒãƒ•ã‚¡ã«æ›¸ãè¾¼ã‚€ï¼ºå€¤ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 	drawz = *((DWORD *)&GSYS.DrawSetting.DrawZ);
 
-	// ’¸“_ƒf[ƒ^‚ÌƒZƒbƒg
+	// é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ã®ã‚»ãƒƒãƒˆ
 	GETVERTEX_QUAD( vec )
 
 	vec[0].color = Color ;
@@ -20238,14 +20238,14 @@ extern	int		Graphics_D3D11_DrawFillBox( int x1, int y1, int x2, int y2, unsigned
 	vec[4].rhw = 1.0f ;
 	vec[5].rhw = 1.0f ;
 
-	// ’¸“_ƒf[ƒ^‚Ìo—Í
+	// é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ã®å‡ºåŠ›
 	ADD4VERTEX_NOTEX
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒ^g—p”Å DrawLineBox
+// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚¿ä½¿ç”¨ç‰ˆ DrawLineBox
 extern	int		Graphics_D3D11_DrawLineBox( int x1, int y1, int x2, int y2, unsigned int Color, int Thickness )
 {
 	VERTEX_NOTEX_2D *VertData ;
@@ -20259,18 +20259,18 @@ extern	int		Graphics_D3D11_DrawLineBox( int x1, int y1, int x2, int y2, unsigned
 		return -1 ;
 	}
 
-	// •`‰æ‚Ì€”õ
+	// æç”»ã®æº–å‚™
 	Flag = DX_D3D11_DRAWPREP_DIFFUSERGB ;
 	DX_D3D11_DRAWPREP_NOTEX( Flag ) ;
 
-	// ‚yƒoƒbƒtƒ@‚É‘‚«‚Ş‚y’l‚ğƒZƒbƒg‚·‚é
+	// ï¼ºãƒãƒƒãƒ•ã‚¡ã«æ›¸ãè¾¼ã‚€ï¼ºå€¤ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 	drawz = *((DWORD *)&GSYS.DrawSetting.DrawZ);
 
-	// F‚»‚Ì‘¼ƒXƒe[ƒ^ƒX‚ÌƒZƒbƒg
+	// è‰²ãã®ä»–ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã®ã‚»ãƒƒãƒˆ
 	NS_GetColor2( Color, &Red, &Green, &Blue ) ;
 	SETUPCOLOR( Color )
 
-	// ”½“]ˆ—
+	// åè»¢å‡¦ç†
 	{
 		int bx, by ;
 
@@ -20467,14 +20467,14 @@ extern	int		Graphics_D3D11_DrawLineBox( int x1, int y1, int x2, int y2, unsigned
 		VertData += 6 ;
 	}
 
-	// ’¸“_‚Ì’Ç‰Á
+	// é ‚ç‚¹ã®è¿½åŠ 
 	ADD4VERTEX_LINEBOX
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒ^g—p”Å DrawLine
+// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚¿ä½¿ç”¨ç‰ˆ DrawLine
 extern	int		Graphics_D3D11_DrawLine( int x1, int y1, int x2, int y2, unsigned int Color )
 {
 	VERTEX_NOTEX_2D *VertData ;
@@ -20488,14 +20488,14 @@ extern	int		Graphics_D3D11_DrawLine( int x1, int y1, int x2, int y2, unsigned in
 
 	if( x2 - x1 == 0 && y2 - y1 == 0 ) return 0 ; 
 
-	// •`‰æ‚Ì€”õ
+	// æç”»ã®æº–å‚™
 	Flag = DX_D3D11_DRAWPREP_DIFFUSERGB ;
 	DX_D3D11_DRAWPREP_NOTEX( Flag )
 
-	// ‚yƒoƒbƒtƒ@‚É‘‚«‚Ş‚y’l‚ğƒZƒbƒg‚·‚é
+	// ï¼ºãƒãƒƒãƒ•ã‚¡ã«æ›¸ãè¾¼ã‚€ï¼ºå€¤ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 	drawz = *((DWORD *)&GSYS.DrawSetting.DrawZ);
 
-	// F‚ğƒZƒbƒg
+	// è‰²ã‚’ã‚»ãƒƒãƒˆ
 	GETVERTEX_LINE( VertData ) ;
 	NS_GetColor2( Color, &Red, &Green, &Blue ) ;
 	SETUPCOLOR( Color )
@@ -20506,14 +20506,14 @@ extern	int		Graphics_D3D11_DrawLine( int x1, int y1, int x2, int y2, unsigned in
 	VertData[ 0 ].rhw = 1.0f ;
 	VertData[ 1 ].rhw = 1.0f ;
 
-	// À•W‚ğƒZƒbƒg
+	// åº§æ¨™ã‚’ã‚»ãƒƒãƒˆ
 	VertData[ 0 ].pos.x = ( float )( x1 + 0.5f ) ;
 	VertData[ 0 ].pos.y = ( float )( y1 + 0.5f ) ;
 
 	VertData[ 1 ].pos.x = ( float )( x2 + 0.5f ) ;
 	VertData[ 1 ].pos.y = ( float )( y2 + 0.5f ) ;
 
-	// À•W‚Ì•â³
+	// åº§æ¨™ã®è£œæ­£
 	if( x1 == x2 )
 	{
 		if( y1 < y2 )
@@ -20542,14 +20542,14 @@ extern	int		Graphics_D3D11_DrawLine( int x1, int y1, int x2, int y2, unsigned in
 		}
 	}
 
-	// ’¸“_‚Ì’Ç‰Á
+	// é ‚ç‚¹ã®è¿½åŠ 
 	ADD4VERTEX_LINE
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒ^g—p”Å DrawLine3D
+// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚¿ä½¿ç”¨ç‰ˆ DrawLine3D
 extern	int		Graphics_D3D11_DrawLine3D( VECTOR Pos1, VECTOR Pos2, unsigned int Color, int DrawFlag, RECT *DrawArea )
 {
 	VERTEX_NOTEX_3D *VertData ;
@@ -20562,23 +20562,23 @@ extern	int		Graphics_D3D11_DrawLine3D( VECTOR Pos1, VECTOR Pos2, unsigned int Co
 			return -1 ;
 		}
 
-		// •`‰æ‚Ì€”õ
+		// æç”»ã®æº–å‚™
 		Flag = DX_D3D11_DRAWPREP_DIFFUSERGB | DX_D3D11_DRAWPREP_3D | DX_D3D11_DRAWPREP_FOG ;
 		DX_D3D11_DRAWPREP_NOTEX( Flag )
 
 		GETVERTEX_LINE3D( VertData ) ;
 
-		// F‚ğƒZƒbƒg
+		// è‰²ã‚’ã‚»ãƒƒãƒˆ
 		NS_GetColor2( Color, &Red, &Green, &Blue ) ;
 		SETUPCOLOR( Color )
 		*( ( DWORD * )&VertData[ 0 ].b ) = Color ;
 		*( ( DWORD * )&VertData[ 1 ].b ) = Color ;
 
-		// À•W‚ğƒZƒbƒg
+		// åº§æ¨™ã‚’ã‚»ãƒƒãƒˆ
 		VertData[ 0 ].pos = Pos1 ;
 		VertData[ 1 ].pos = Pos2 ;
 
-		// ’¸“_‚Ì’Ç‰Á
+		// é ‚ç‚¹ã®è¿½åŠ 
 		ADD4VERTEX_LINE3D
 	}
 	else
@@ -20591,7 +20591,7 @@ extern	int		Graphics_D3D11_DrawLine3D( VECTOR Pos1, VECTOR Pos2, unsigned int Co
 		dtop    = -100000000.0f ;
 		dbottom =  100000000.0f ;
 
-		// ƒXƒNƒŠ[ƒ“À•W‚É•ÏŠ·
+		// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³åº§æ¨™ã«å¤‰æ›
 		TempVert[0].pos.x = Pos1.x * GSYS.DrawSetting.Blend3DMatrixF.m[0][0] + Pos1.y * GSYS.DrawSetting.Blend3DMatrixF.m[1][0] + Pos1.z * GSYS.DrawSetting.Blend3DMatrixF.m[2][0] + GSYS.DrawSetting.Blend3DMatrixF.m[3][0]  ;
 		TempVert[0].pos.y = Pos1.x * GSYS.DrawSetting.Blend3DMatrixF.m[0][1] + Pos1.y * GSYS.DrawSetting.Blend3DMatrixF.m[1][1] + Pos1.z * GSYS.DrawSetting.Blend3DMatrixF.m[2][1] + GSYS.DrawSetting.Blend3DMatrixF.m[3][1]  ;
 		TempVert[0].pos.z = Pos1.x * GSYS.DrawSetting.Blend3DMatrixF.m[0][2] + Pos1.y * GSYS.DrawSetting.Blend3DMatrixF.m[1][2] + Pos1.z * GSYS.DrawSetting.Blend3DMatrixF.m[2][2] + GSYS.DrawSetting.Blend3DMatrixF.m[3][2]  ;
@@ -20630,7 +20630,7 @@ extern	int		Graphics_D3D11_DrawLine3D( VECTOR Pos1, VECTOR Pos2, unsigned int Co
 		DrawArea->bottom = _FTOL( dbottom ) + 1 ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
@@ -20662,7 +20662,7 @@ extern	int		Graphics_D3D11_DrawLine3D( VECTOR Pos1, VECTOR Pos2, unsigned int Co
 		VertNum = 0 ;														\
 	}																		
 
-// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒ^g—p”Å DrawCircle( ‘¾‚³w’è‚ ‚è )
+// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚¿ä½¿ç”¨ç‰ˆ DrawCircle( å¤ªã•æŒ‡å®šã‚ã‚Š )
 extern	int		Graphics_D3D11_DrawCircle_Thickness( int x, int y, int r, unsigned int Color, int Thickness )
 {
 	VERTEX_NOTEX_2D *VertBuf ;
@@ -20676,13 +20676,13 @@ extern	int		Graphics_D3D11_DrawCircle_Thickness( int x, int y, int r, unsigned i
 	int x1, x2 ;
 	float y1f ;
 
-	// ‘¾‚³‚ª‚QˆÈ‰º‚¾‚Á‚½‚ç‰½‚à‚¹‚¸I—¹
+	// å¤ªã•ãŒï¼’ä»¥ä¸‹ã ã£ãŸã‚‰ä½•ã‚‚ã›ãšçµ‚äº†
 	if( Thickness < 2 )
 	{
 		return -1 ;
 	}
 
-	// •`‰æ‘Ò‹@‚µ‚Ä‚¢‚é•`‰æ•¨‚ğ•`‰æ
+	// æç”»å¾…æ©Ÿã—ã¦ã„ã‚‹æç”»ç‰©ã‚’æç”»
 	DRAWSTOCKINFO
 
 	if( GAPIWin.D3D11DeviceObject == NULL )
@@ -20690,27 +20690,27 @@ extern	int		Graphics_D3D11_DrawCircle_Thickness( int x, int y, int r, unsigned i
 		return -1 ;
 	}
 
-	// •`‰æ—pƒƒ‚ƒŠ‚ÌŠm•Û
+	// æç”»ç”¨ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿
 	if( Graphics_Other_AllocCommonBuffer( 0, sizeof( VERTEX_NOTEX_2D ) * D3D11_CIRCLE_VERTEX_NUM ) < 0 )
 	{
 		return -1 ;
 	}
 	VertBuf = ( VERTEX_NOTEX_2D * )GSYS.Resource.CommonBuffer[ 0 ] ;
 
-	// •`‰æ‚Ì€”õ
+	// æç”»ã®æº–å‚™
 	Flag = DX_D3D11_DRAWPREP_DIFFUSERGB ;
 	DX_D3D11_DRAWPREP_NOTEX( Flag )
 
-	// ‚yƒoƒbƒtƒ@‚É‘‚«‚Ş‚y’l‚ğƒZƒbƒg‚·‚é
+	// ï¼ºãƒãƒƒãƒ•ã‚¡ã«æ›¸ãè¾¼ã‚€ï¼ºå€¤ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 	drawz = *((DWORD *)&GSYS.DrawSetting.DrawZ);
 
-	// •â³
+	// è£œæ­£
 	DrawRect = GSYS.DrawSetting.DrawArea ;
 
 	NS_GetColor2( Color, &Red, &Green, &Blue ) ;
 	SETUPCOLOR( Color )
 
-	// ‰~‚ÌÀ•W‚ğ‘ã“ü‚·‚éƒoƒbƒtƒ@‚ğæ“¾
+	// å††ã®åº§æ¨™ã‚’ä»£å…¥ã™ã‚‹ãƒãƒƒãƒ•ã‚¡ã‚’å–å¾—
 	if( Graphics_Other_AllocCommonBuffer( 1, sizeof( short ) * 5 * DrawRect.bottom ) < 0 )
 	{
 		return -1 ;
@@ -20718,10 +20718,10 @@ extern	int		Graphics_D3D11_DrawCircle_Thickness( int x, int y, int r, unsigned i
 	CirclePos = ( short (*)[ 5 ] )GSYS.Resource.CommonBuffer[ 1 ] ;
 	_MEMSET( CirclePos, 0, sizeof( short ) * 5 * DrawRect.bottom ) ;
 
-	// ‰~‚ÌÀ•WƒŠƒXƒgì¬
+	// å††ã®åº§æ¨™ãƒªã‚¹ãƒˆä½œæˆ
 	Graphics_Draw_GetCircle_ThicknessDrawPosition( x, y, r, Thickness, CirclePos ) ;
 
-	// •`‰æˆ—
+	// æç”»å‡¦ç†
 	VertNum = 0 ;
 	for( i = DrawRect.top ; i < DrawRect.bottom ; i ++ )
 	{
@@ -20754,11 +20754,11 @@ extern	int		Graphics_D3D11_DrawCircle_Thickness( int x, int y, int r, unsigned i
 		Graphics_D3D11_CommonBuffer_DrawPrimitive( D3D11_VERTEX_INPUTLAYOUT_NOTEX_2D, D_D3D11_PRIMITIVE_TOPOLOGY_LINELIST, VertBuf, VertNum ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒ^g—p”Å DrawOval( ‘¾‚³w’è‚ ‚è )
+// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚¿ä½¿ç”¨ç‰ˆ DrawOval( å¤ªã•æŒ‡å®šã‚ã‚Š )
 extern	int		Graphics_D3D11_DrawOval_Thickness( int x, int y, int rx, int ry, unsigned int Color, int Thickness )
 {
 	VERTEX_NOTEX_2D *VertBuf ;
@@ -20772,13 +20772,13 @@ extern	int		Graphics_D3D11_DrawOval_Thickness( int x, int y, int rx, int ry, uns
 	int x1, x2 ;
 	float y1f ;
 
-	// ‘¾‚³‚ª‚QˆÈ‰º‚¾‚Á‚½‚ç‰½‚à‚¹‚¸I—¹
+	// å¤ªã•ãŒï¼’ä»¥ä¸‹ã ã£ãŸã‚‰ä½•ã‚‚ã›ãšçµ‚äº†
 	if( Thickness < 2 )
 	{
 		return -1 ;
 	}
 
-	// •`‰æ‘Ò‹@‚µ‚Ä‚¢‚é•`‰æ•¨‚ğ•`‰æ
+	// æç”»å¾…æ©Ÿã—ã¦ã„ã‚‹æç”»ç‰©ã‚’æç”»
 	DRAWSTOCKINFO
 
 	if( GAPIWin.D3D11DeviceObject == NULL )
@@ -20786,27 +20786,27 @@ extern	int		Graphics_D3D11_DrawOval_Thickness( int x, int y, int rx, int ry, uns
 		return -1 ;
 	}
 
-	// •`‰æ—pƒƒ‚ƒŠ‚ÌŠm•Û
+	// æç”»ç”¨ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿
 	if( Graphics_Other_AllocCommonBuffer( 0, sizeof( VERTEX_NOTEX_2D ) * D3D11_CIRCLE_VERTEX_NUM ) < 0 )
 	{
 		return -1 ;
 	}
 	VertBuf = ( VERTEX_NOTEX_2D * )GSYS.Resource.CommonBuffer[ 0 ] ;
 
-	// •`‰æ‚Ì€”õ
+	// æç”»ã®æº–å‚™
 	Flag = DX_D3D11_DRAWPREP_DIFFUSERGB ;
 	DX_D3D11_DRAWPREP_NOTEX( Flag )
 
-	// ‚yƒoƒbƒtƒ@‚É‘‚«‚Ş‚y’l‚ğƒZƒbƒg‚·‚é
+	// ï¼ºãƒãƒƒãƒ•ã‚¡ã«æ›¸ãè¾¼ã‚€ï¼ºå€¤ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 	drawz = *((DWORD *)&GSYS.DrawSetting.DrawZ);
 
-	// •â³
+	// è£œæ­£
 	DrawRect = GSYS.DrawSetting.DrawArea ;
 
 	NS_GetColor2( Color, &Red, &Green, &Blue ) ;
 	SETUPCOLOR( Color )
 
-	// ‰~‚ÌÀ•W‚ğ‘ã“ü‚·‚éƒoƒbƒtƒ@‚ğæ“¾
+	// å††ã®åº§æ¨™ã‚’ä»£å…¥ã™ã‚‹ãƒãƒƒãƒ•ã‚¡ã‚’å–å¾—
 	if( Graphics_Other_AllocCommonBuffer( 1, sizeof( short ) * 5 * DrawRect.bottom ) < 0 )
 	{
 		return -1 ;
@@ -20814,13 +20814,13 @@ extern	int		Graphics_D3D11_DrawOval_Thickness( int x, int y, int rx, int ry, uns
 	CirclePos = ( short (*)[ 5 ] )GSYS.Resource.CommonBuffer[ 1 ] ;
 	_MEMSET( CirclePos, 0, sizeof( short ) * 5 * DrawRect.bottom ) ;
 
-	// ‘È‰~‚ÌÀ•WƒŠƒXƒgì¬
+	// æ¥•å††ã®åº§æ¨™ãƒªã‚¹ãƒˆä½œæˆ
 	if( Graphics_Draw_GetOval_ThicknessDrawPosition( x, y, rx, ry, Thickness, CirclePos ) < 0 )
 	{
 		return -1 ;
 	}
 
-	// •`‰æˆ—
+	// æç”»å‡¦ç†
 	VertNum = 0 ;
 	for( i = DrawRect.top ; i < DrawRect.bottom ; i ++ )
 	{
@@ -20853,7 +20853,7 @@ extern	int		Graphics_D3D11_DrawOval_Thickness( int x, int y, int rx, int ry, uns
 		Graphics_D3D11_CommonBuffer_DrawPrimitive( D3D11_VERTEX_INPUTLAYOUT_NOTEX_2D, D_D3D11_PRIMITIVE_TOPOLOGY_LINELIST, VertBuf, VertNum ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
@@ -20907,7 +20907,7 @@ extern	int		Graphics_D3D11_DrawOval_Thickness( int x, int y, int rx, int ry, uns
 				}																		\
 			}
 
-// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒ^g—p”Å DrawCircle
+// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚¿ä½¿ç”¨ç‰ˆ DrawCircle
 extern	int		Graphics_D3D11_DrawCircle( int x, int y, int r, unsigned int Color, int FillFlag, int Rx_One_Minus, int Ry_One_Minus )
 {
 	VERTEX_NOTEX_2D *VertBuf ;
@@ -20923,7 +20923,7 @@ extern	int		Graphics_D3D11_DrawCircle( int x, int y, int r, unsigned int Color, 
 	Rx_One_Minus = Rx_One_Minus ? 1 : 0 ;
 	Ry_One_Minus = Ry_One_Minus ? 1 : 0 ;
 
-	// •`‰æ‘Ò‹@‚µ‚Ä‚¢‚é•`‰æ•¨‚ğ•`‰æ
+	// æç”»å¾…æ©Ÿã—ã¦ã„ã‚‹æç”»ç‰©ã‚’æç”»
 	DRAWSTOCKINFO
 
 	if( GAPIWin.D3D11DeviceObject == NULL )
@@ -20931,47 +20931,47 @@ extern	int		Graphics_D3D11_DrawCircle( int x, int y, int r, unsigned int Color, 
 		return -1 ;
 	}
 
-	// •`‰æ—pƒƒ‚ƒŠ‚ÌŠm•Û
+	// æç”»ç”¨ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿
 	if( Graphics_Other_AllocCommonBuffer( 0, sizeof( VERTEX_NOTEX_2D ) * D3D11_CIRCLE_VERTEX_NUM ) < 0 )
 	{
 		return -1 ;
 	}
 	VertBuf = ( VERTEX_NOTEX_2D * )GSYS.Resource.CommonBuffer[ 0 ] ;
 
-	// •`‰æ‚Ì€”õ
+	// æç”»ã®æº–å‚™
 	Flag = DX_D3D11_DRAWPREP_DIFFUSERGB ;
 	DX_D3D11_DRAWPREP_NOTEX( Flag )
 
-	// ‚yƒoƒbƒtƒ@‚É‘‚«‚Ş‚y’l‚ğƒZƒbƒg‚·‚é
+	// ï¼ºãƒãƒƒãƒ•ã‚¡ã«æ›¸ãè¾¼ã‚€ï¼ºå€¤ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 	drawz = *((DWORD *)&GSYS.DrawSetting.DrawZ);
 
-	// •â³
+	// è£œæ­£
 	DrawRect = GSYS.DrawSetting.DrawArea ;
 
 	NS_GetColor2( Color, &Red, &Green, &Blue ) ;
 	SETUPCOLOR( Color )
 
-	// •`‰æˆ—
+	// æç”»å‡¦ç†
 	{
 		int Dx, Dy, F/*, i*/, j ;
 		int x1, x2, y1 ;
 
-		// ‰Šú’lƒZƒbƒg
+		// åˆæœŸå€¤ã‚»ãƒƒãƒˆ
 		Dx = r ; Dy = 0 ; F = -2 * r + 3 ;
 		VertNum = 0 ;
 
 		j = 0 ;
-		// •`‰æŠJn
+		// æç”»é–‹å§‹
 		if( FillFlag )
 		{
 			if( Graphics_Other_AllocCommonBuffer( 1, ( DWORD )DrawRect.bottom ) < 0 )
 			{
-				return DXST_LOGFILE_ADDUTF16LE( "\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x20\x00\x69\x00\x6e\x00\x20\x00\x47\x00\x5f\x00\x44\x00\x33\x00\x44\x00\x5f\x00\x44\x00\x72\x00\x61\x00\x77\x00\x43\x00\x69\x00\x72\x00\x63\x00\x6c\x00\x65\x00\x00"/*@ L"ƒƒ‚ƒŠ‚ÌŠm•Û‚É¸”s‚µ‚Ü‚µ‚½ in G_D3D_DrawCircle" @*/ ) ;
+				return DXST_LOGFILE_ADDUTF16LE( "\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x20\x00\x69\x00\x6e\x00\x20\x00\x47\x00\x5f\x00\x44\x00\x33\x00\x44\x00\x5f\x00\x44\x00\x72\x00\x61\x00\x77\x00\x43\x00\x69\x00\x72\x00\x63\x00\x6c\x00\x65\x00\x00"/*@ L"ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿ã«å¤±æ•—ã—ã¾ã—ãŸ in G_D3D_DrawCircle" @*/ ) ;
 			}
 			LineDrawBuf = ( BYTE * )GSYS.Resource.CommonBuffer[ 1 ] ;
 			_MEMSET( LineDrawBuf, 0, ( size_t )DrawRect.bottom ) ;
 
-			// Å‰‚Ìƒ‰ƒCƒ“‚ğ•`‚­
+			// æœ€åˆã®ãƒ©ã‚¤ãƒ³ã‚’æã
 			{
 				if( Ry_One_Minus == FALSE )
 				{
@@ -20979,7 +20979,7 @@ extern	int		Graphics_D3D11_DrawCircle( int x, int y, int r, unsigned int Color, 
 					DX_D3D11_CIRCLE ;
 				}
 
-				// À•Wƒf[ƒ^‚ği‚ß‚é
+				// åº§æ¨™ãƒ‡ãƒ¼ã‚¿ã‚’é€²ã‚ã‚‹
 				if( F >= 0 )
 				{
 					x2 = Dy + x - Rx_One_Minus ; x1 = -Dy + x ; y1 = Dx + y - Ry_One_Minus ;
@@ -21002,7 +21002,7 @@ extern	int		Graphics_D3D11_DrawCircle( int x, int y, int r, unsigned int Color, 
 				x2 = Dx + x - Rx_One_Minus ; x1 = -Dx + x ; y1 = -Dy + y ;
 				DX_D3D11_CIRCLE ;
 
-				// À•Wƒf[ƒ^‚ği‚ß‚é
+				// åº§æ¨™ãƒ‡ãƒ¼ã‚¿ã‚’é€²ã‚ã‚‹
 				if( F >= 0 )
 				{
 					x2 = Dy + x - Rx_One_Minus ; x1 = -Dy + x ; y1 = Dx + y - Ry_One_Minus ;
@@ -21024,7 +21024,7 @@ extern	int		Graphics_D3D11_DrawCircle( int x, int y, int r, unsigned int Color, 
 		}
 		else
 		{
-			// Å‰‚Ì“_‚ğ•`‚­
+			// æœ€åˆã®ç‚¹ã‚’æã
 			{
 				if( Ry_One_Minus == FALSE )
 				{
@@ -21043,7 +21043,7 @@ extern	int		Graphics_D3D11_DrawCircle( int x, int y, int r, unsigned int Color, 
 					DX_D3D11_CIRCLE_PSET ;
 				}
 
-				// À•Wƒf[ƒ^‚ği‚ß‚é
+				// åº§æ¨™ãƒ‡ãƒ¼ã‚¿ã‚’é€²ã‚ã‚‹
 				if( F >= 0 )
 				{
 					Dx -- ;
@@ -21076,7 +21076,7 @@ extern	int		Graphics_D3D11_DrawCircle( int x, int y, int r, unsigned int Color, 
 				x1 = -Dy + x ; 
 				DX_D3D11_CIRCLE_PSET ;
 
-				// À•Wƒf[ƒ^‚ği‚ß‚é
+				// åº§æ¨™ãƒ‡ãƒ¼ã‚¿ã‚’é€²ã‚ã‚‹
 				if( F >= 0 )
 				{
 					Dx -- ;
@@ -21093,11 +21093,11 @@ extern	int		Graphics_D3D11_DrawCircle( int x, int y, int r, unsigned int Color, 
 		}
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒ^g—p”Å DrawOval
+// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚¿ä½¿ç”¨ç‰ˆ DrawOval
 extern	int		Graphics_D3D11_DrawOval( int x, int y, int rx, int ry, unsigned int Color, int FillFlag, int Rx_One_Minus, int Ry_One_Minus )
 {
 	VERTEX_NOTEX_2D *VertBuf ;
@@ -21114,7 +21114,7 @@ extern	int		Graphics_D3D11_DrawOval( int x, int y, int rx, int ry, unsigned int 
 	Rx_One_Minus = Rx_One_Minus ? 1 : 0 ;
 	Ry_One_Minus = Ry_One_Minus ? 1 : 0 ;
 
-	// •`‰æ‘Ò‹@‚µ‚Ä‚¢‚é•`‰æ•¨‚ğ•`‰æ
+	// æç”»å¾…æ©Ÿã—ã¦ã„ã‚‹æç”»ç‰©ã‚’æç”»
 	DRAWSTOCKINFO
 
 	if( GAPIWin.D3D11DeviceObject == NULL )
@@ -21123,18 +21123,18 @@ extern	int		Graphics_D3D11_DrawOval( int x, int y, int rx, int ry, unsigned int 
 	}
 	if( !rx || !ry ) return -1 ;
 
-	// •`‰æ—pƒƒ‚ƒŠ‚ÌŠm•Û
+	// æç”»ç”¨ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿
 	if( Graphics_Other_AllocCommonBuffer( 0, sizeof( VERTEX_NOTEX_2D ) * D3D11_CIRCLE_VERTEX_NUM ) < 0 )
 	{
 		return -1 ;
 	}
 	VertBuf = ( VERTEX_NOTEX_2D * )GSYS.Resource.CommonBuffer[ 0 ] ;
 
-	// •`‰æ‚Ì€”õ
+	// æç”»ã®æº–å‚™
 	Flag = DX_D3D11_DRAWPREP_DIFFUSERGB ;
 	DX_D3D11_DRAWPREP_NOTEX( Flag )
 
-	// •â³
+	// è£œæ­£
 	if( rx < 0 ) rx *= -1 ;
 	if( ry < 0 ) ry *= -1 ;
 	DrawRect = GSYS.DrawSetting.DrawArea ;
@@ -21142,31 +21142,31 @@ extern	int		Graphics_D3D11_DrawOval( int x, int y, int rx, int ry, unsigned int 
 	NS_GetColor2( Color, &Red, &Green, &Blue ) ;
 	SETUPCOLOR( Color )
 
-	// ‚yƒoƒbƒtƒ@‚É‘‚«‚Ş‚y’l‚ğƒZƒbƒg‚·‚é
+	// ï¼ºãƒãƒƒãƒ•ã‚¡ã«æ›¸ãè¾¼ã‚€ï¼ºå€¤ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 	drawz = *((DWORD *)&GSYS.DrawSetting.DrawZ);
 
 	VertNum = 0 ;
 
-	// •`‰æˆ—
+	// æç”»å‡¦ç†
 	{
 		int Dx, Dy, F, H, j/*, i */ ;
 		int x1, x2, y1, Df ;
 		int yc, xc, rc, r ;
 
 		j = 0 ;
-		// •`‰æŠJn
+		// æç”»é–‹å§‹
 		if( FillFlag )
 		{
 			if( Graphics_Other_AllocCommonBuffer( 1, ( DWORD )DrawRect.bottom ) < 0 )
 			{
-				return DXST_LOGFILE_ADDUTF16LE( "\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x20\x00\x69\x00\x6e\x00\x20\x00\x47\x00\x5f\x00\x44\x00\x33\x00\x44\x00\x5f\x00\x44\x00\x72\x00\x61\x00\x77\x00\x43\x00\x69\x00\x72\x00\x63\x00\x6c\x00\x65\x00\x00"/*@ L"ƒƒ‚ƒŠ‚ÌŠm•Û‚É¸”s‚µ‚Ü‚µ‚½ in G_D3D_DrawCircle" @*/ ) ;
+				return DXST_LOGFILE_ADDUTF16LE( "\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x20\x00\x69\x00\x6e\x00\x20\x00\x47\x00\x5f\x00\x44\x00\x33\x00\x44\x00\x5f\x00\x44\x00\x72\x00\x61\x00\x77\x00\x43\x00\x69\x00\x72\x00\x63\x00\x6c\x00\x65\x00\x00"/*@ L"ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿ã«å¤±æ•—ã—ã¾ã—ãŸ in G_D3D_DrawCircle" @*/ ) ;
 			}
 			LineDrawBuf = ( BYTE * )GSYS.Resource.CommonBuffer[ 1 ] ;
 			_MEMSET( LineDrawBuf, 0, ( size_t )DrawRect.bottom ) ;
 
 			if( rx >= ry )
 			{
-				// ‰Šú’l‚ğƒZƒbƒg
+				// åˆæœŸå€¤ã‚’ã‚»ãƒƒãƒˆ
 				rc = ( rx * rx ) / ry ;
 
 				xc = 0 ; yc = 0 ;
@@ -21178,7 +21178,7 @@ extern	int		Graphics_D3D11_DrawOval( int x, int y, int rx, int ry, unsigned int 
 				F = -2 * r + 1 + 2 * 1;
 				H = -4 * r + 2 + 1;
 
-				// Å‰‚Ìü‚ğ•`‚­
+				// æœ€åˆã®ç·šã‚’æã
 				{
 					if( Ry_One_Minus == FALSE )
 					{
@@ -21188,7 +21188,7 @@ extern	int		Graphics_D3D11_DrawOval( int x, int y, int rx, int ry, unsigned int 
 
 					Df = 0 ;
 
-					// À•Wƒf[ƒ^‚ği‚ß‚é
+					// åº§æ¨™ãƒ‡ãƒ¼ã‚¿ã‚’é€²ã‚ã‚‹
 					if( F < 0 )
 					{
 						yc += ry ;
@@ -21240,7 +21240,7 @@ extern	int		Graphics_D3D11_DrawOval( int x, int y, int rx, int ry, unsigned int 
 
 					Df = 0 ;
 
-					// À•Wƒf[ƒ^‚ği‚ß‚é
+					// åº§æ¨™ãƒ‡ãƒ¼ã‚¿ã‚’é€²ã‚ã‚‹
 					if( F < 0 )
 					{
 						yc += ry ;
@@ -21277,13 +21277,13 @@ extern	int		Graphics_D3D11_DrawOval( int x, int y, int rx, int ry, unsigned int 
 					}
 				}
 
-				// ÅŒã‚Ìü‚ğ•`‚­
+				// æœ€å¾Œã®ç·šã‚’æã
 				x1 = -Dx + x ; x2 = Dx + x - Rx_One_Minus ; y1 = -Dy + y;
 				DX_D3D11_CIRCLE ;
 			}
 			else
 			{
-				// ‰Šú’l‚ğƒZƒbƒg
+				// åˆæœŸå€¤ã‚’ã‚»ãƒƒãƒˆ
 				rc = ( ry * ry ) / rx ;
 
 				yc = 0 ; xc = 0 ;
@@ -21294,9 +21294,9 @@ extern	int		Graphics_D3D11_DrawOval( int x, int y, int rx, int ry, unsigned int 
 				F = -2 * r + 1 + 2 * 1;
 				H = -4 * r + 2 + 1;
 
-				// Å‰‚Ìü‚ğ•`‚­
+				// æœ€åˆã®ç·šã‚’æã
 				{
-					// À•Wƒf[ƒ^‚ği‚ß‚é
+					// åº§æ¨™ãƒ‡ãƒ¼ã‚¿ã‚’é€²ã‚ã‚‹
 					if( F < 0 )
 					{
 						xc += rx ;
@@ -21333,7 +21333,7 @@ extern	int		Graphics_D3D11_DrawOval( int x, int y, int rx, int ry, unsigned int 
 
 				while( Dy >= 0 )
 				{
-					// À•Wƒf[ƒ^‚ği‚ß‚é
+					// åº§æ¨™ãƒ‡ãƒ¼ã‚¿ã‚’é€²ã‚ã‚‹
 					if( F < 0 )
 					{
 						xc += rx ;
@@ -21383,7 +21383,7 @@ extern	int		Graphics_D3D11_DrawOval( int x, int y, int rx, int ry, unsigned int 
 		{
 			if( rx >= ry )
 			{
-				// ‰Šú’l‚ğƒZƒbƒg
+				// åˆæœŸå€¤ã‚’ã‚»ãƒƒãƒˆ
 				rc = ( rx * rx ) / ry ;
 
 				xc = 0 ; yc = 0 ;
@@ -21395,7 +21395,7 @@ extern	int		Graphics_D3D11_DrawOval( int x, int y, int rx, int ry, unsigned int 
 				F = -2 * r + 1 + 2 * 1;
 				H = -4 * r + 2 + 1;
 
-				// Å‰‚Ì“_‚ğ•`‚­
+				// æœ€åˆã®ç‚¹ã‚’æã
 				{
 					if( Ry_One_Minus == FALSE )
 					{
@@ -21407,7 +21407,7 @@ extern	int		Graphics_D3D11_DrawOval( int x, int y, int rx, int ry, unsigned int 
 
 					Df = 0 ;
 
-					// À•Wƒf[ƒ^‚ği‚ß‚é
+					// åº§æ¨™ãƒ‡ãƒ¼ã‚¿ã‚’é€²ã‚ã‚‹
 					if( F < 0 )
 					{
 						yc += ry ;
@@ -21463,7 +21463,7 @@ extern	int		Graphics_D3D11_DrawOval( int x, int y, int rx, int ry, unsigned int 
 
 					Df = 0 ;
 
-					// À•Wƒf[ƒ^‚ği‚ß‚é
+					// åº§æ¨™ãƒ‡ãƒ¼ã‚¿ã‚’é€²ã‚ã‚‹
 					if( F < 0 )
 					{
 						yc += ry ;
@@ -21502,7 +21502,7 @@ extern	int		Graphics_D3D11_DrawOval( int x, int y, int rx, int ry, unsigned int 
 					}
 				}
 
-				// ÅŒã‚Ì“_‚ğ•`‚­
+				// æœ€å¾Œã®ç‚¹ã‚’æã
 				if( Rx_One_Minus == FALSE )
 				{
 					x1 = Dx + x ; y1 = -Dy + y ;
@@ -21514,7 +21514,7 @@ extern	int		Graphics_D3D11_DrawOval( int x, int y, int rx, int ry, unsigned int 
 			}
 			else
 			{
-				// ‰Šú’l‚ğƒZƒbƒg
+				// åˆæœŸå€¤ã‚’ã‚»ãƒƒãƒˆ
 				rc = ( ry * ry ) / rx ;
 
 				xc = 0 ; yc = 0 ;
@@ -21526,7 +21526,7 @@ extern	int		Graphics_D3D11_DrawOval( int x, int y, int rx, int ry, unsigned int 
 				F = -2 * r + 1 + 2 * 1;
 				H = -4 * r + 2 + 1;
 
-				// Å‰‚Ì“_‚ğ•`‚­
+				// æœ€åˆã®ç‚¹ã‚’æã
 				{
 					if( Ry_One_Minus == FALSE )
 					{
@@ -21538,7 +21538,7 @@ extern	int		Graphics_D3D11_DrawOval( int x, int y, int rx, int ry, unsigned int 
 
 					Df = 0 ;
 
-					// À•Wƒf[ƒ^‚ği‚ß‚é
+					// åº§æ¨™ãƒ‡ãƒ¼ã‚¿ã‚’é€²ã‚ã‚‹
 					if( F < 0 )
 					{
 						xc += rx ;
@@ -21594,7 +21594,7 @@ extern	int		Graphics_D3D11_DrawOval( int x, int y, int rx, int ry, unsigned int 
 
 					Df = 0 ;
 
-					// À•Wƒf[ƒ^‚ği‚ß‚é
+					// åº§æ¨™ãƒ‡ãƒ¼ã‚¿ã‚’é€²ã‚ã‚‹
 					if( F < 0 )
 					{
 						xc += rx ;
@@ -21633,7 +21633,7 @@ extern	int		Graphics_D3D11_DrawOval( int x, int y, int rx, int ry, unsigned int 
 					}
 				}
 
-				// ÅŒã‚Ì“_‚ğ•`‚­
+				// æœ€å¾Œã®ç‚¹ã‚’æã
 				if( Rx_One_Minus == FALSE )
 				{
 					y1 = Dy + y ; x1 = -Dx + x ;
@@ -21650,11 +21650,11 @@ extern	int		Graphics_D3D11_DrawOval( int x, int y, int rx, int ry, unsigned int 
 		}
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒ^g—p”Å DrawTriangle
+// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚¿ä½¿ç”¨ç‰ˆ DrawTriangle
 extern	int		Graphics_D3D11_DrawTriangle( int x1, int y1, int x2, int y2, int x3, int y3, unsigned int Color, int FillFlag )
 {
 	VERTEX_NOTEX_2D *vec ; 
@@ -21668,18 +21668,18 @@ extern	int		Graphics_D3D11_DrawTriangle( int x1, int y1, int x2, int y2, int x3,
 		return -1 ;
 	}
 
-	// •`‰æ‚Ì€”õ
+	// æç”»ã®æº–å‚™
 	Flag = DX_D3D11_DRAWPREP_DIFFUSERGB ;
 	DX_D3D11_DRAWPREP_NOTEX( Flag )
 
-	// ‚yƒoƒbƒtƒ@‚É‘‚«‚Ş‚y’l‚ğƒZƒbƒg‚·‚é
+	// ï¼ºãƒãƒƒãƒ•ã‚¡ã«æ›¸ãè¾¼ã‚€ï¼ºå€¤ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 	drawz = *((DWORD *)&GSYS.DrawSetting.DrawZ);
 
-	// F‚»‚Ì‘¼ƒXƒe[ƒ^ƒX‚ÌƒZƒbƒg
+	// è‰²ãã®ä»–ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã®ã‚»ãƒƒãƒˆ
 	NS_GetColor2( Color, &Red, &Green, &Blue ) ;
 	SETUPCOLOR( Color )
 
-	// ƒ‰ƒCƒ“‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+	// ãƒ©ã‚¤ãƒ³ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 	if( FillFlag )
 	{
 		GETVERTEX_TRIANGLE( vec ) ;
@@ -21690,15 +21690,15 @@ extern	int		Graphics_D3D11_DrawTriangle( int x1, int y1, int x2, int y2, int x3,
 
 		vec[ 0 ].pos.x = ( float )x1 ; vec[ 0 ].pos.y = ( float )y1 ;
 
-		// ƒJƒŠƒ“ƒO‚ª—LŒø‚É‚È‚Á‚Ä‚¢‚éê‡‚ÍƒJƒŠƒ“ƒO‚³‚ê‚È‚¢‚æ‚¤‚É‚·‚é
+		// ã‚«ãƒªãƒ³ã‚°ãŒæœ‰åŠ¹ã«ãªã£ã¦ã„ã‚‹å ´åˆã¯ã‚«ãƒªãƒ³ã‚°ã•ã‚Œãªã„ã‚ˆã†ã«ã™ã‚‹
 		switch( GSYS.DrawSetting.CullMode )
 		{
-		case 0 :	// ƒJƒŠƒ“ƒO‚È‚µ
+		case 0 :	// ã‚«ãƒªãƒ³ã‚°ãªã—
 			vec[ 1 ].pos.x = ( float )x2 ; vec[ 1 ].pos.y = ( float )y2 ;
 			vec[ 2 ].pos.x = ( float )x3 ; vec[ 2 ].pos.y = ( float )y3 ;
 			break ;
 
-		case 1 :	// ¶‰ñ‚èƒJƒŠƒ“ƒO
+		case 1 :	// å·¦å›ã‚Šã‚«ãƒªãƒ³ã‚°
 			sx1 = x2 - x1 ;		sy1 = y2 - y1 ;
 			sx2 = x3 - x1 ;		sy2 = y3 - y1 ;
 			if( sx1 * sy2 - sy1 * sx2 > 0 )
@@ -21713,7 +21713,7 @@ extern	int		Graphics_D3D11_DrawTriangle( int x1, int y1, int x2, int y2, int x3,
 			}
 			break ;
 
-		case 2 :	// ‰E‰ñ‚èƒJƒŠƒ“ƒO
+		case 2 :	// å³å›ã‚Šã‚«ãƒªãƒ³ã‚°
 			sx1 = x2 - x1 ;		sy1 = y2 - y1 ;
 			sx2 = x3 - x1 ;		sy2 = y3 - y1 ;
 			if( sx1 * sy2 - sy1 * sx2 < 0 )
@@ -21773,11 +21773,11 @@ extern	int		Graphics_D3D11_DrawTriangle( int x1, int y1, int x2, int y2, int x3,
 		ADD4VERTEX_LINETRIANGLE
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒ^g—p”Å DrawTriangle3D
+// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚¿ä½¿ç”¨ç‰ˆ DrawTriangle3D
 extern	int		Graphics_D3D11_DrawTriangle3D( VECTOR Pos1, VECTOR Pos2, VECTOR Pos3, unsigned int Color, int FillFlag, int DrawFlag, RECT *DrawArea )
 {
 	VERTEX_NOTEX_3D *vec ; 
@@ -21791,15 +21791,15 @@ extern	int		Graphics_D3D11_DrawTriangle3D( VECTOR Pos1, VECTOR Pos2, VECTOR Pos3
 			return -1 ;
 		}
 
-		// •`‰æ‚Ì€”õ
+		// æç”»ã®æº–å‚™
 		Flag = DX_D3D11_DRAWPREP_DIFFUSERGB | DX_D3D11_DRAWPREP_3D | DX_D3D11_DRAWPREP_FOG | DX_D3D11_DRAWPREP_CULLING ;
 		DX_D3D11_DRAWPREP_NOTEX( Flag )
 
-		// F‚»‚Ì‘¼ƒXƒe[ƒ^ƒX‚ÌƒZƒbƒg
+		// è‰²ãã®ä»–ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã®ã‚»ãƒƒãƒˆ
 		NS_GetColor2( Color, &Red, &Green, &Blue ) ;
 		SETUPCOLOR( Color )
 
-		// ƒ‰ƒCƒ“‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+		// ãƒ©ã‚¤ãƒ³ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 		if( FillFlag )
 		{
 			GETVERTEX_TRIANGLE3D( vec ) ;
@@ -21844,7 +21844,7 @@ extern	int		Graphics_D3D11_DrawTriangle3D( VECTOR Pos1, VECTOR Pos2, VECTOR Pos3
 		dtop    =  100000000.0f ;
 		dbottom = -100000000.0f ;
 
-		// ƒXƒNƒŠ[ƒ“À•W‚É•ÏŠ·
+		// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³åº§æ¨™ã«å¤‰æ›
 		TempVert[0].pos.x = Pos1.x * GSYS.DrawSetting.Blend3DMatrixF.m[0][0] + Pos1.y * GSYS.DrawSetting.Blend3DMatrixF.m[1][0] + Pos1.z * GSYS.DrawSetting.Blend3DMatrixF.m[2][0] + GSYS.DrawSetting.Blend3DMatrixF.m[3][0]  ;
 		TempVert[0].pos.y = Pos1.x * GSYS.DrawSetting.Blend3DMatrixF.m[0][1] + Pos1.y * GSYS.DrawSetting.Blend3DMatrixF.m[1][1] + Pos1.z * GSYS.DrawSetting.Blend3DMatrixF.m[2][1] + GSYS.DrawSetting.Blend3DMatrixF.m[3][1]  ;
 		TempVert[0].pos.z = Pos1.x * GSYS.DrawSetting.Blend3DMatrixF.m[0][2] + Pos1.y * GSYS.DrawSetting.Blend3DMatrixF.m[1][2] + Pos1.z * GSYS.DrawSetting.Blend3DMatrixF.m[2][2] + GSYS.DrawSetting.Blend3DMatrixF.m[3][2]  ;
@@ -21897,11 +21897,11 @@ extern	int		Graphics_D3D11_DrawTriangle3D( VECTOR Pos1, VECTOR Pos2, VECTOR Pos3
 		DrawArea->bottom = _FTOL( dbottom ) + 1 ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒ^g—p”Å DrawQuadrangle
+// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚¿ä½¿ç”¨ç‰ˆ DrawQuadrangle
 extern	int		Graphics_D3D11_DrawQuadrangle( int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4, unsigned int Color, int FillFlag )
 {
 	VERTEX_NOTEX_2D *vec ;
@@ -21914,23 +21914,23 @@ extern	int		Graphics_D3D11_DrawQuadrangle( int x1, int y1, int x2, int y2, int x
 		return -1 ;
 	}
 
-	// •`‰æ‚Ì€”õ
+	// æç”»ã®æº–å‚™
 	Flag = DX_D3D11_DRAWPREP_DIFFUSERGB ;
 	DX_D3D11_DRAWPREP_NOTEX( Flag )
 
-	// ‚yƒoƒbƒtƒ@‚É‘‚«‚Ş‚y’l‚ğƒZƒbƒg‚·‚é
+	// ï¼ºãƒãƒƒãƒ•ã‚¡ã«æ›¸ãè¾¼ã‚€ï¼ºå€¤ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 	drawz = *((DWORD *)&GSYS.DrawSetting.DrawZ);
 
-	// F‚»‚Ì‘¼ƒXƒe[ƒ^ƒX‚ÌƒZƒbƒg
+	// è‰²ãã®ä»–ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã®ã‚»ãƒƒãƒˆ
 	NS_GetColor2( Color, &Red, &Green, &Blue ) ;
 	SETUPCOLOR( Color )
 
-	// “h‚è‚Â‚Ô‚µ‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+	// å¡—ã‚Šã¤ã¶ã—ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 	if( FillFlag )
 	{
-		// “h‚è‚Â‚Ô‚µ‚Ìê‡
+		// å¡—ã‚Šã¤ã¶ã—ã®å ´åˆ
 
-		// ’¸“_ƒf[ƒ^‚ÌƒZƒbƒg
+		// é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ã®ã‚»ãƒƒãƒˆ
 		GETVERTEX_QUAD( vec )
 
 		vec[ 0 ].color = Color ;
@@ -21961,12 +21961,12 @@ extern	int		Graphics_D3D11_DrawQuadrangle( int x1, int y1, int x2, int y2, int x
 		vec[4].rhw = 1.0f ;
 		vec[5].rhw = 1.0f ;
 
-		// ’¸“_ƒf[ƒ^‚Ìo—Í
+		// é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ã®å‡ºåŠ›
 		ADD4VERTEX_NOTEX
 	}
 	else
 	{
-		// “h‚è‚Â‚Ô‚µ‚Å‚Í–³‚¢ê‡
+		// å¡—ã‚Šã¤ã¶ã—ã§ã¯ç„¡ã„å ´åˆ
 
 		GETVERTEX_LINE( vec ) ;
 
@@ -21985,7 +21985,7 @@ extern	int		Graphics_D3D11_DrawQuadrangle( int x1, int y1, int x2, int y2, int x
 		vec[ 1 ].pos.x = ( float )( x2 ) ;
 		vec[ 1 ].pos.y = ( float )( y2 ) ;
 
-		// ’¸“_‚Ì’Ç‰Á
+		// é ‚ç‚¹ã®è¿½åŠ 
 		ADD4VERTEX_LINE
 
 
@@ -22006,7 +22006,7 @@ extern	int		Graphics_D3D11_DrawQuadrangle( int x1, int y1, int x2, int y2, int x
 		vec[ 1 ].pos.x = ( float )( x3 ) ;
 		vec[ 1 ].pos.y = ( float )( y3 ) ;
 
-		// ’¸“_‚Ì’Ç‰Á
+		// é ‚ç‚¹ã®è¿½åŠ 
 		ADD4VERTEX_LINE
 
 
@@ -22027,7 +22027,7 @@ extern	int		Graphics_D3D11_DrawQuadrangle( int x1, int y1, int x2, int y2, int x
 		vec[ 1 ].pos.x = ( float )( x4 ) ;
 		vec[ 1 ].pos.y = ( float )( y4 ) ;
 
-		// ’¸“_‚Ì’Ç‰Á
+		// é ‚ç‚¹ã®è¿½åŠ 
 		ADD4VERTEX_LINE
 
 
@@ -22048,15 +22048,15 @@ extern	int		Graphics_D3D11_DrawQuadrangle( int x1, int y1, int x2, int y2, int x
 		vec[ 1 ].pos.x = ( float )( x1 ) ;
 		vec[ 1 ].pos.y = ( float )( y1 ) ;
 
-		// ’¸“_‚Ì’Ç‰Á
+		// é ‚ç‚¹ã®è¿½åŠ 
 		ADD4VERTEX_LINE
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒ^g—p”Å DrawQuadrangle
+// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚¿ä½¿ç”¨ç‰ˆ DrawQuadrangle
 extern	int		Graphics_D3D11_DrawQuadrangleF( float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4, unsigned int Color, int FillFlag )
 {
 	VERTEX_NOTEX_2D *vec ;
@@ -22069,23 +22069,23 @@ extern	int		Graphics_D3D11_DrawQuadrangleF( float x1, float y1, float x2, float 
 		return -1 ;
 	}
 
-	// •`‰æ‚Ì€”õ
+	// æç”»ã®æº–å‚™
 	Flag = DX_D3D11_DRAWPREP_DIFFUSERGB ;
 	DX_D3D11_DRAWPREP_NOTEX( Flag )
 
-	// ‚yƒoƒbƒtƒ@‚É‘‚«‚Ş‚y’l‚ğƒZƒbƒg‚·‚é
+	// ï¼ºãƒãƒƒãƒ•ã‚¡ã«æ›¸ãè¾¼ã‚€ï¼ºå€¤ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 	drawz = *((DWORD *)&GSYS.DrawSetting.DrawZ);
 
-	// F‚»‚Ì‘¼ƒXƒe[ƒ^ƒX‚ÌƒZƒbƒg
+	// è‰²ãã®ä»–ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã®ã‚»ãƒƒãƒˆ
 	NS_GetColor2( Color, &Red, &Green, &Blue ) ;
 	SETUPCOLOR( Color )
 
-	// “h‚è‚Â‚Ô‚µ‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+	// å¡—ã‚Šã¤ã¶ã—ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 	if( FillFlag )
 	{
-		// “h‚è‚Â‚Ô‚µ‚Ìê‡
+		// å¡—ã‚Šã¤ã¶ã—ã®å ´åˆ
 
-		// ’¸“_ƒf[ƒ^‚ÌƒZƒbƒg
+		// é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ã®ã‚»ãƒƒãƒˆ
 		GETVERTEX_QUAD( vec )
 
 		vec[ 0 ].color = Color ;
@@ -22116,12 +22116,12 @@ extern	int		Graphics_D3D11_DrawQuadrangleF( float x1, float y1, float x2, float 
 		vec[4].rhw = 1.0f ;
 		vec[5].rhw = 1.0f ;
 
-		// ’¸“_ƒf[ƒ^‚Ìo—Í
+		// é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ã®å‡ºåŠ›
 		ADD4VERTEX_NOTEX
 	}
 	else
 	{
-		// “h‚è‚Â‚Ô‚µ‚Å‚Í–³‚¢ê‡
+		// å¡—ã‚Šã¤ã¶ã—ã§ã¯ç„¡ã„å ´åˆ
 
 		GETVERTEX_LINE( vec ) ;
 
@@ -22140,7 +22140,7 @@ extern	int		Graphics_D3D11_DrawQuadrangleF( float x1, float y1, float x2, float 
 		vec[ 1 ].pos.x = ( x2 ) ;
 		vec[ 1 ].pos.y = ( y2 ) ;
 
-		// ’¸“_‚Ì’Ç‰Á
+		// é ‚ç‚¹ã®è¿½åŠ 
 		ADD4VERTEX_LINE
 
 
@@ -22161,7 +22161,7 @@ extern	int		Graphics_D3D11_DrawQuadrangleF( float x1, float y1, float x2, float 
 		vec[ 1 ].pos.x = ( x3 ) ;
 		vec[ 1 ].pos.y = ( y3 ) ;
 
-		// ’¸“_‚Ì’Ç‰Á
+		// é ‚ç‚¹ã®è¿½åŠ 
 		ADD4VERTEX_LINE
 
 
@@ -22182,7 +22182,7 @@ extern	int		Graphics_D3D11_DrawQuadrangleF( float x1, float y1, float x2, float 
 		vec[ 1 ].pos.x = ( x4 ) ;
 		vec[ 1 ].pos.y = ( y4 ) ;
 
-		// ’¸“_‚Ì’Ç‰Á
+		// é ‚ç‚¹ã®è¿½åŠ 
 		ADD4VERTEX_LINE
 
 
@@ -22203,15 +22203,15 @@ extern	int		Graphics_D3D11_DrawQuadrangleF( float x1, float y1, float x2, float 
 		vec[ 1 ].pos.x = ( x1 ) ;
 		vec[ 1 ].pos.y = ( y1 ) ;
 
-		// ’¸“_‚Ì’Ç‰Á
+		// é ‚ç‚¹ã®è¿½åŠ 
 		ADD4VERTEX_LINE
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒ^g—p”Å DrawPixel
+// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚¿ä½¿ç”¨ç‰ˆ DrawPixel
 extern	int		Graphics_D3D11_DrawPixel( int x, int y, unsigned int Color )
 {
 	VERTEX_NOTEX_2D *VertData ;
@@ -22222,11 +22222,11 @@ extern	int		Graphics_D3D11_DrawPixel( int x, int y, unsigned int Color )
 		return -1 ; 
 	}
 
-	// •`‰æ‚Ì€”õ
+	// æç”»ã®æº–å‚™
 	Flag = DX_D3D11_DRAWPREP_DIFFUSERGB ;
 	DX_D3D11_DRAWPREP_NOTEX( Flag )
 
-	// F‚»‚Ì‘¼ƒXƒe[ƒ^ƒX‚ÌƒZƒbƒg
+	// è‰²ãã®ä»–ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã®ã‚»ãƒƒãƒˆ
 	GETVERTEX_POINT( VertData ) ;
 
 	if( GD3D11.Device.DrawInfo.DiffuseColor == 0xffffffff )
@@ -22247,20 +22247,20 @@ extern	int		Graphics_D3D11_DrawPixel( int x, int y, unsigned int Color )
 		SETUPCOLOR( VertData->color )
 	}
 
-	// À•W‚ÌƒZƒbƒg
+	// åº§æ¨™ã®ã‚»ãƒƒãƒˆ
 	VertData->pos.x = ( float )x + 0.1f ;
 	VertData->pos.y = ( float )y + 0.1f ;
 	VertData->pos.z = GSYS.DrawSetting.DrawZ ;
 	VertData->rhw   = 1.0f ;
 
-	// ’¸“_‚Ì’Ç‰Á
+	// é ‚ç‚¹ã®è¿½åŠ 
 	ADD4VERTEX_POINT
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒ^g—p”Å DrawPixel3D
+// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚¿ä½¿ç”¨ç‰ˆ DrawPixel3D
 extern	int		Graphics_D3D11_DrawPixel3D( VECTOR Pos, unsigned int Color, int DrawFlag, RECT *DrawArea )
 {
 	VERTEX_NOTEX_3D *VertData ; 
@@ -22274,11 +22274,11 @@ extern	int		Graphics_D3D11_DrawPixel3D( VECTOR Pos, unsigned int Color, int Draw
 			return -1 ;
 		}
 
-		// •`‰æ‚Ì€”õ
+		// æç”»ã®æº–å‚™
 		Flag = DX_D3D11_DRAWPREP_DIFFUSERGB | DX_D3D11_DRAWPREP_3D | DX_D3D11_DRAWPREP_FOG ;
 		DX_D3D11_DRAWPREP_NOTEX( Flag )
 
-		// F‚»‚Ì‘¼ƒXƒe[ƒ^ƒX‚ÌƒZƒbƒg
+		// è‰²ãã®ä»–ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã®ã‚»ãƒƒãƒˆ
 		GETVERTEX_POINT3D( VertData ) ;
 
 		NS_GetColor2( Color, &Red, &Green, &Blue ) ;
@@ -22298,17 +22298,17 @@ extern	int		Graphics_D3D11_DrawPixel3D( VECTOR Pos, unsigned int Color, int Draw
 			SETUPCOLOR( *( ( DWORD * )&VertData->b ) )
 		}
 
-		// À•W‚ÌƒZƒbƒg
+		// åº§æ¨™ã®ã‚»ãƒƒãƒˆ
 		VertData->pos = Pos ;
 
-		// ’¸“_‚Ì’Ç‰Á
+		// é ‚ç‚¹ã®è¿½åŠ 
 		ADD4VERTEX_POINT3D
 	}
 	else
 	{
 		VERTEX_2D TempVert ;
 
-		// ƒXƒNƒŠ[ƒ“À•W‚É•ÏŠ·
+		// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³åº§æ¨™ã«å¤‰æ›
 		TempVert.pos.x = Pos.x * GSYS.DrawSetting.Blend3DMatrixF.m[0][0] + Pos.y * GSYS.DrawSetting.Blend3DMatrixF.m[1][0] + Pos.z * GSYS.DrawSetting.Blend3DMatrixF.m[2][0] + GSYS.DrawSetting.Blend3DMatrixF.m[3][0]  ;
 		TempVert.pos.y = Pos.x * GSYS.DrawSetting.Blend3DMatrixF.m[0][1] + Pos.y * GSYS.DrawSetting.Blend3DMatrixF.m[1][1] + Pos.z * GSYS.DrawSetting.Blend3DMatrixF.m[2][1] + GSYS.DrawSetting.Blend3DMatrixF.m[3][1]  ;
 		TempVert.pos.z = Pos.x * GSYS.DrawSetting.Blend3DMatrixF.m[0][2] + Pos.y * GSYS.DrawSetting.Blend3DMatrixF.m[1][2] + Pos.z * GSYS.DrawSetting.Blend3DMatrixF.m[2][2] + GSYS.DrawSetting.Blend3DMatrixF.m[3][2]  ;
@@ -22325,11 +22325,11 @@ extern	int		Graphics_D3D11_DrawPixel3D( VECTOR Pos, unsigned int Color, int Draw
 		DrawArea->bottom = _FTOL( TempVert.pos.y ) + 1 ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒ^g—p”Å DrawPixelSet
+// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚¿ä½¿ç”¨ç‰ˆ DrawPixelSet
 extern	int		Graphics_D3D11_DrawPixelSet( const POINTDATA *PointData, int Num )
 {
 	VERTEX_NOTEX_2D *VertData ;
@@ -22345,17 +22345,17 @@ extern	int		Graphics_D3D11_DrawPixelSet( const POINTDATA *PointData, int Num )
 		return -1 ;
 	}
 
-	// •`‰æ‘Ò‹@‚µ‚Ä‚¢‚é•`‰æ•¨‚ğ•`‰æ
+	// æç”»å¾…æ©Ÿã—ã¦ã„ã‚‹æç”»ç‰©ã‚’æç”»
 	DRAWSTOCKINFO
 
-	// •`‰æ‚Ì€”õ
+	// æç”»ã®æº–å‚™
 	Flag = DX_D3D11_DRAWPREP_DIFFUSERGB ;
 	DX_D3D11_DRAWPREP_NOTEX( Flag )
 
-	// ‚yƒoƒbƒtƒ@‚É‘‚«‚Ş‚y’l‚ğƒZƒbƒg‚·‚é
+	// ï¼ºãƒãƒƒãƒ•ã‚¡ã«æ›¸ãè¾¼ã‚€ï¼ºå€¤ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 	drawz = *((DWORD *)&GSYS.DrawSetting.DrawZ);
 
-	// ƒxƒNƒgƒ‹Šî–{ƒXƒe[ƒ^ƒX‚ğæ“¾
+	// ãƒ™ã‚¯ãƒˆãƒ«åŸºæœ¬ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚’å–å¾—
 	ColorData = *( ( COLORDATA * )NS_GetDispColorData() ) ;
 	
 	MaxRed		= ( 1 << ColorData.RedWidth	  ) - 1 ; 
@@ -22377,15 +22377,15 @@ extern	int		Graphics_D3D11_DrawPixelSet( const POINTDATA *PointData, int Num )
 		*((DWORD *)&VertData->pos.z) = drawz ;
 		VertData->rhw    = 1.0f ;
 
-		// ’¸“_‚Ì’Ç‰Á
+		// é ‚ç‚¹ã®è¿½åŠ 
 		ADD4VERTEX_POINT
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0;
 }
 
-// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒ^g—p”Å DrawLineSet
+// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚¿ä½¿ç”¨ç‰ˆ DrawLineSet
 extern	int		Graphics_D3D11_DrawLineSet( const LINEDATA *LineData, int Num )
 {
 	int i ;
@@ -22401,17 +22401,17 @@ extern	int		Graphics_D3D11_DrawLineSet( const LINEDATA *LineData, int Num )
 		return -1 ;
 	}
 
-	// •`‰æ‘Ò‹@‚µ‚Ä‚¢‚é•`‰æ•¨‚ğ•`‰æ
+	// æç”»å¾…æ©Ÿã—ã¦ã„ã‚‹æç”»ç‰©ã‚’æç”»
 	DRAWSTOCKINFO
 
-	// •`‰æ‚Ì€”õ
+	// æç”»ã®æº–å‚™
 	Flag = DX_D3D11_DRAWPREP_DIFFUSERGB ;
 	DX_D3D11_DRAWPREP_NOTEX( Flag )
 
-	// ‚yƒoƒbƒtƒ@‚É‘‚«‚Ş‚y’l‚ğƒZƒbƒg‚·‚é
+	// ï¼ºãƒãƒƒãƒ•ã‚¡ã«æ›¸ãè¾¼ã‚€ï¼ºå€¤ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 	drawz = *((DWORD *)&GSYS.DrawSetting.DrawZ);
 
-	// ƒxƒNƒgƒ‹Šî–{ƒXƒe[ƒ^ƒX‚ğæ“¾
+	// ãƒ™ã‚¯ãƒˆãƒ«åŸºæœ¬ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚’å–å¾—
 	ColorData = *( ( COLORDATA * )NS_GetDispColorData() ) ;
 	
 	MaxRed		= ( 1 << ColorData.RedWidth	) - 1 ; 
@@ -22433,25 +22433,25 @@ extern	int		Graphics_D3D11_DrawLineSet( const LINEDATA *LineData, int Num )
 		VertData[0].rhw   = 1.0f ;
 		VertData[1].rhw   = 1.0f ;
  
-		// À•W‚ÌƒZƒbƒg•ƒEƒCƒ“ƒhƒE’¼Ú•`‰æ•â³
+		// åº§æ¨™ã®ã‚»ãƒƒãƒˆï¼†ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ç›´æ¥æç”»æ™‚è£œæ­£
 		VertData[0].pos.x = ( float )LineData->x1 ;
 		VertData[0].pos.y = ( float )LineData->y1 ;
 		VertData[1].pos.x = ( float )LineData->x2 ;
 		VertData[1].pos.y = ( float )LineData->y2 ;
 
-		// À•W‚Ì•â³
+		// åº§æ¨™ã®è£œæ­£
 		if( LineData->x1 == LineData->x2 ) VertData[ 1 ].pos.y += LineData->y2 > LineData->y1 ? -0.1F : 0.1F ;
 		if( LineData->y1 == LineData->y2 ) VertData[ 1 ].pos.x += LineData->x2 > LineData->x1 ? -0.1F : 0.1F ;
 
-		// ’¸“_‚Ì’Ç‰Á
+		// é ‚ç‚¹ã®è¿½åŠ 
 		ADD4VERTEX_LINE
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒ^g—p”Å DrawBoxSet
+// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚¿ä½¿ç”¨ç‰ˆ DrawBoxSet
 extern int Graphics_D3D11_DrawBoxSet( const RECTDATA *RectData, int Num )
 {
 	int i ;
@@ -22467,17 +22467,17 @@ extern int Graphics_D3D11_DrawBoxSet( const RECTDATA *RectData, int Num )
 		return -1 ;
 	}
 
-	// •`‰æ‘Ò‹@‚µ‚Ä‚¢‚é•`‰æ•¨‚ğ•`‰æ
+	// æç”»å¾…æ©Ÿã—ã¦ã„ã‚‹æç”»ç‰©ã‚’æç”»
 	DRAWSTOCKINFO
 
-	// •`‰æ‚Ì€”õ
+	// æç”»ã®æº–å‚™
 	Flag = DX_D3D11_DRAWPREP_DIFFUSERGB ;
 	DX_D3D11_DRAWPREP_NOTEX( Flag )
 
-	// ‚yƒoƒbƒtƒ@‚É‘‚«‚Ş‚y’l‚ğƒZƒbƒg‚·‚é
+	// ï¼ºãƒãƒƒãƒ•ã‚¡ã«æ›¸ãè¾¼ã‚€ï¼ºå€¤ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 	drawz = *((DWORD *)&GSYS.DrawSetting.DrawZ);
 
-	// ƒxƒNƒgƒ‹Šî–{ƒXƒe[ƒ^ƒX‚ğæ“¾
+	// ãƒ™ã‚¯ãƒˆãƒ«åŸºæœ¬ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚’å–å¾—
 	ColorData = *( ( COLORDATA * )NS_GetDispColorData() ) ;
 	
 	if( ColorData.AlphaMask == 0xff000000 &&
@@ -22545,7 +22545,7 @@ extern int Graphics_D3D11_DrawBoxSet( const RECTDATA *RectData, int Num )
 			VectData[4].rhw   = 1.0f ;
 			VectData[5].rhw   = 1.0f ;
 
-			// ’¸“_‚Ì’Ç‰Á
+			// é ‚ç‚¹ã®è¿½åŠ 
 			ADD4VERTEX_NOTEX
 		}
 	}
@@ -22619,12 +22619,12 @@ extern int Graphics_D3D11_DrawBoxSet( const RECTDATA *RectData, int Num )
 			VectData[4].rhw   = 1.0f ;
 			VectData[5].rhw   = 1.0f ;
 
-			// ’¸“_‚Ì’Ç‰Á
+			// é ‚ç‚¹ã®è¿½åŠ 
 			ADD4VERTEX_NOTEX
 		}
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
@@ -22640,7 +22640,7 @@ extern int Graphics_D3D11_DrawBoxSet( const RECTDATA *RectData, int Num )
 
 
 
-// DrawPrimitive3D Œn‚Ì‹¤’Ê‚Ì€”õˆ—‚ğs‚¤ŠÖ”
+// DrawPrimitive3D ç³»ã®å…±é€šã®æº–å‚™å‡¦ç†ã‚’è¡Œã†é–¢æ•°
 __inline int Graphics_D3D11_DrawPrimitive3DPreparation( int AddFlag, IMAGEDATA *Image, int TransFlag, int TextureNo = 0 )
 {
 	int Flag ;
@@ -22650,10 +22650,10 @@ __inline int Graphics_D3D11_DrawPrimitive3DPreparation( int AddFlag, IMAGEDATA *
 		return -1 ;
 	}
 
-	// •`‰æ‘Ò‹@‚µ‚Ä‚¢‚é•`‰æ•¨‚ğ•`‰æ
+	// æç”»å¾…æ©Ÿã—ã¦ã„ã‚‹æç”»ç‰©ã‚’æç”»
 	DRAWSTOCKINFO
 
-	// •`‰æ‚Ì€”õ
+	// æç”»ã®æº–å‚™
 	Flag = TransFlag | DX_D3D11_DRAWPREP_3D | DX_D3D11_DRAWPREP_FOG | DX_D3D11_DRAWPREP_TEXADDRESS | DX_D3D11_DRAWPREP_CULLING | AddFlag ;
 	if( Image )
 	{
@@ -22697,7 +22697,7 @@ extern	int		Graphics_D3D11_DrawPrimitive( const VERTEX_3D *Vertex, int VertexNum
 		}
 	}
 
-	// •`‰æ
+	// æç”»
 	Graphics_D3D11_CommonBuffer_DrawPrimitive(
 		D3D11_VERTEX_INPUTLAYOUT_3D,
 		( D_D3D11_PRIMITIVE_TOPOLOGY )PrimitiveType,
@@ -22716,7 +22716,7 @@ extern	int		Graphics_D3D11_DrawPrimitive( const VERTEX_3D *Vertex, int VertexNum
 		}
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
@@ -22742,7 +22742,7 @@ extern	int		Graphics_D3D11_DrawIndexedPrimitive( const VERTEX_3D *Vertex, int Ve
 		}
 	}
 
-	// •`‰æ
+	// æç”»
 	Graphics_D3D11_CommonBuffer_DrawIndexedPrimitive(
 		D3D11_VERTEX_INPUTLAYOUT_3D,
 		( D_D3D11_PRIMITIVE_TOPOLOGY )PrimitiveType,
@@ -22764,7 +22764,7 @@ extern	int		Graphics_D3D11_DrawIndexedPrimitive( const VERTEX_3D *Vertex, int Ve
 		}
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
@@ -22790,7 +22790,7 @@ extern	int		Graphics_D3D11_Draw32bitIndexedPrimitive( const VERTEX_3D *Vertex, i
 		}
 	}
 
-	// •`‰æ
+	// æç”»
 	Graphics_D3D11_CommonBuffer_DrawIndexedPrimitive(
 		D3D11_VERTEX_INPUTLAYOUT_3D,
 		( D_D3D11_PRIMITIVE_TOPOLOGY )PrimitiveType,
@@ -22812,7 +22812,7 @@ extern	int		Graphics_D3D11_Draw32bitIndexedPrimitive( const VERTEX_3D *Vertex, i
 		}
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
@@ -22842,7 +22842,7 @@ extern	int		Graphics_D3D11_DrawPrimitiveLight( const VERTEX3D *Vertex, int Verte
 		}
 	}
 
-	// •`‰æ
+	// æç”»
 	Graphics_D3D11_CommonBuffer_DrawPrimitive(
 		D3D11_VERTEX_INPUTLAYOUT_3D_LIGHT,
 		( D_D3D11_PRIMITIVE_TOPOLOGY )PrimitiveType,
@@ -22865,7 +22865,7 @@ extern	int		Graphics_D3D11_DrawPrimitiveLight( const VERTEX3D *Vertex, int Verte
 		}
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
@@ -22895,7 +22895,7 @@ extern	int		Graphics_D3D11_DrawIndexedPrimitiveLight( const VERTEX3D *Vertex, in
 		}
 	}
 
-	// •`‰æ
+	// æç”»
 	Graphics_D3D11_CommonBuffer_DrawIndexedPrimitive(
 		D3D11_VERTEX_INPUTLAYOUT_3D_LIGHT,
 		( D_D3D11_PRIMITIVE_TOPOLOGY )PrimitiveType,
@@ -22921,7 +22921,7 @@ extern	int		Graphics_D3D11_DrawIndexedPrimitiveLight( const VERTEX3D *Vertex, in
 		}
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
@@ -22951,7 +22951,7 @@ extern	int		Graphics_D3D11_Draw32bitIndexedPrimitiveLight( const VERTEX3D *Verte
 		}
 	}
 
-	// •`‰æ
+	// æç”»
 	Graphics_D3D11_CommonBuffer_DrawIndexedPrimitive(
 		D3D11_VERTEX_INPUTLAYOUT_3D_LIGHT,
 		( D_D3D11_PRIMITIVE_TOPOLOGY )PrimitiveType,
@@ -22977,7 +22977,7 @@ extern	int		Graphics_D3D11_Draw32bitIndexedPrimitiveLight( const VERTEX3D *Verte
 		}
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
@@ -22990,7 +22990,7 @@ extern	int		Graphics_D3D11_DrawPrimitiveLight_UseVertexBuffer(
 	int						TransFlag 
 )
 {
-	// VERTEX3D\‘¢‘Ì‚Ì‚İ‘Î‰
+	// VERTEX3Dæ§‹é€ ä½“ã®ã¿å¯¾å¿œ
 	if( VertexBuffer->Type != DX_VERTEX_TYPE_NORMAL_3D )
 	{
 		return -1 ;
@@ -23001,29 +23001,29 @@ extern	int		Graphics_D3D11_DrawPrimitiveLight_UseVertexBuffer(
 		return -1 ;
 	}
 
-	// ƒvƒŠƒ~ƒeƒBƒuƒ^ƒCƒv‚ğƒZƒbƒg
+	// ãƒ—ãƒªãƒŸãƒ†ã‚£ãƒ–ã‚¿ã‚¤ãƒ—ã‚’ã‚»ãƒƒãƒˆ
 	Graphics_D3D11_DeviceState_SetPrimitiveTopology( ( D_D3D11_PRIMITIVE_TOPOLOGY )PrimitiveType ) ;
 
-	// “ü—ÍƒŒƒCƒAƒEƒg‚ğƒZƒbƒg
+	// å…¥åŠ›ãƒ¬ã‚¤ã‚¢ã‚¦ãƒˆã‚’ã‚»ãƒƒãƒˆ
 	Graphics_D3D11_DeviceState_SetInputLayout( GD3D11.Device.InputLayout.BaseInputLayout[ D3D11_VERTEX_INPUTLAYOUT_3D_LIGHT ] ) ;
 
-	// ’¸“_ƒVƒF[ƒ_[‚ğƒZƒbƒg
+	// é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ã‚»ãƒƒãƒˆ
 	if( Graphics_D3D11_Shader_Normal3DDraw_Setup() == FALSE )
 	{
 		return -1 ;
 	}
 
-	// ’¸“_ƒoƒbƒtƒ@‚ğƒZƒbƒg
+	// é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã‚’ã‚»ãƒƒãƒˆ
 	Graphics_D3D11_DeviceState_SetVertexBuffer( VertexBuffer->PF->D3D11.VertexBuffer, D3D11_VertexSize[ D3D11_VERTEX_INPUTLAYOUT_3D_LIGHT ] ) ;
 
-	// ƒXƒe[ƒg‚Æ’è”ƒoƒbƒtƒ@‚ÌXV
+	// ã‚¹ãƒ†ãƒ¼ãƒˆã¨å®šæ•°ãƒãƒƒãƒ•ã‚¡ã®æ›´æ–°
 	Graphics_D3D11_DeviceState_SetupStateAndConstantBuffer() ;
 
-	// •`‰æ
+	// æç”»
 	D3D11DeviceContext_Draw( ( UINT )UseVertexNum, ( UINT )StartVertex ) ;
 	GSYS.PerformanceInfo.NowFrameDrawCallCount ++ ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
@@ -23042,7 +23042,7 @@ extern	int		Graphics_D3D11_DrawIndexedPrimitiveLight_UseVertexBuffer(
 {
 	D_DXGI_FORMAT IndexFormat ;
 
-	// VERTEX3D\‘¢‘Ì‚Ì‚İ‘Î‰
+	// VERTEX3Dæ§‹é€ ä½“ã®ã¿å¯¾å¿œ
 	if( VertexBuffer->Type != DX_VERTEX_TYPE_NORMAL_3D )
 	{
 		return -1 ;
@@ -23065,32 +23065,32 @@ extern	int		Graphics_D3D11_DrawIndexedPrimitiveLight_UseVertexBuffer(
 		return -1 ;
 	}
 
-	// ƒvƒŠƒ~ƒeƒBƒuƒ^ƒCƒv‚ğƒZƒbƒg
+	// ãƒ—ãƒªãƒŸãƒ†ã‚£ãƒ–ã‚¿ã‚¤ãƒ—ã‚’ã‚»ãƒƒãƒˆ
 	Graphics_D3D11_DeviceState_SetPrimitiveTopology( ( D_D3D11_PRIMITIVE_TOPOLOGY )PrimitiveType ) ;
 
-	// “ü—ÍƒŒƒCƒAƒEƒg‚ğƒZƒbƒg
+	// å…¥åŠ›ãƒ¬ã‚¤ã‚¢ã‚¦ãƒˆã‚’ã‚»ãƒƒãƒˆ
 	Graphics_D3D11_DeviceState_SetInputLayout( GD3D11.Device.InputLayout.BaseInputLayout[ D3D11_VERTEX_INPUTLAYOUT_3D_LIGHT ] ) ;
 
-	// ’¸“_ƒVƒF[ƒ_[‚ğƒZƒbƒg
+	// é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ã‚»ãƒƒãƒˆ
 	if( Graphics_D3D11_Shader_Normal3DDraw_Setup() == FALSE )
 	{
 		return -1 ;
 	}
 
-	// ’¸“_ƒoƒbƒtƒ@‚ğƒZƒbƒg
+	// é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã‚’ã‚»ãƒƒãƒˆ
 	Graphics_D3D11_DeviceState_SetVertexBuffer( VertexBuffer->PF->D3D11.VertexBuffer, D3D11_VertexSize[ D3D11_VERTEX_INPUTLAYOUT_3D_LIGHT ] ) ;
 
-	// ƒCƒ“ƒfƒbƒNƒXƒoƒbƒtƒ@‚ğƒZƒbƒg
+	// ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒãƒƒãƒ•ã‚¡ã‚’ã‚»ãƒƒãƒˆ
 	Graphics_D3D11_DeviceState_SetIndexBuffer( IndexBuffer->PF->D3D11.IndexBuffer, IndexFormat ) ;
 
-	// ƒXƒe[ƒg‚Æ’è”ƒoƒbƒtƒ@‚ÌXV
+	// ã‚¹ãƒ†ãƒ¼ãƒˆã¨å®šæ•°ãƒãƒƒãƒ•ã‚¡ã®æ›´æ–°
 	Graphics_D3D11_DeviceState_SetupStateAndConstantBuffer() ;
 
-	// •`‰æ
+	// æç”»
 	D3D11DeviceContext_DrawIndexed( ( UINT )UseIndexNum, ( UINT )StartIndex, BaseVertex ) ;
 	GSYS.PerformanceInfo.NowFrameDrawCallCount ++ ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
@@ -23105,10 +23105,10 @@ extern	int		Graphics_D3D11_DrawPrimitive2D( VERTEX_2D *Vertex, int VertexNum, in
 
 	if( GAPIWin.D3D11DeviceObject == NULL ) return -1 ;
 
-	// •`‰æ‘Ò‹@‚µ‚Ä‚¢‚é•`‰æ•¨‚ğ•`‰æ
+	// æç”»å¾…æ©Ÿã—ã¦ã„ã‚‹æç”»ç‰©ã‚’æç”»
 	DRAWSTOCKINFO
 
-	// •`‰æ‚Ì€”õ
+	// æç”»ã®æº–å‚™
 	if( BillboardFlag == TRUE )
 	{
 		Flag = TransFlag | ( Is3D ? DX_D3D11_DRAWPREP_3D | DX_D3D11_DRAWPREP_FOG : 0 ) | DX_D3D11_DRAWPREP_TEXADDRESS ;
@@ -23143,7 +23143,7 @@ extern	int		Graphics_D3D11_DrawPrimitive2D( VERTEX_2D *Vertex, int VertexNum, in
 		DX_D3D11_DRAWPREP_NOTEX( Flag )
 	}
 
-	// ƒrƒ‹ƒ{[ƒh‚Ìê‡‚Í‚t‚u’l‚ğƒT[ƒtƒFƒXƒf[ƒ^‚©‚çæ“¾‚·‚é
+	// ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã®å ´åˆã¯ï¼µï¼¶å€¤ã‚’ã‚µãƒ¼ãƒ•ã‚§ã‚¹ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰å–å¾—ã™ã‚‹
 	if( BillboardFlag == TRUE )
 	{
 		float tu1, tv1, tu2, tv2 ;
@@ -23204,7 +23204,7 @@ extern	int		Graphics_D3D11_DrawPrimitive2D( VERTEX_2D *Vertex, int VertexNum, in
 		}
 	}
 
-	// •`‰æ
+	// æç”»
 	Graphics_D3D11_CommonBuffer_DrawPrimitive(
 		D3D11_VERTEX_INPUTLAYOUT_2D,
 		( D_D3D11_PRIMITIVE_TOPOLOGY )PrimitiveType,
@@ -23223,7 +23223,7 @@ extern	int		Graphics_D3D11_DrawPrimitive2D( VERTEX_2D *Vertex, int VertexNum, in
 		}
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
@@ -23239,10 +23239,10 @@ extern	int		Graphics_D3D11_DrawPrimitive2DUser( const VERTEX2D *Vertex, int Vert
 		return -1 ;
 	}
 
-	// •`‰æ‘Ò‹@‚µ‚Ä‚¢‚é•`‰æ•¨‚ğ•`‰æ
+	// æç”»å¾…æ©Ÿã—ã¦ã„ã‚‹æç”»ç‰©ã‚’æç”»
 	DRAWSTOCKINFO
 
-	// •`‰æ‚Ì€”õ
+	// æç”»ã®æº–å‚™
 	Flag = TransFlag | ( Is3D ? DX_D3D11_DRAWPREP_3D | DX_D3D11_DRAWPREP_FOG : 0 ) | DX_D3D11_DRAWPREP_TEXADDRESS | DX_D3D11_DRAWPREP_CULLING ;
 	if( Image )
 	{
@@ -23264,7 +23264,7 @@ extern	int		Graphics_D3D11_DrawPrimitive2DUser( const VERTEX2D *Vertex, int Vert
 		}
 	}
 
-	// •`‰æ
+	// æç”»
 	Graphics_D3D11_CommonBuffer_DrawPrimitive(
 		D3D11_VERTEX_INPUTLAYOUT_2D,
 		( D_D3D11_PRIMITIVE_TOPOLOGY )PrimitiveType,
@@ -23283,7 +23283,7 @@ extern	int		Graphics_D3D11_DrawPrimitive2DUser( const VERTEX2D *Vertex, int Vert
 		}
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
@@ -23299,10 +23299,10 @@ extern	int		Graphics_D3D11_DrawIndexedPrimitive2DUser( const VERTEX2D *Vertex, i
 		return -1 ;
 	}
 
-	// •`‰æ‘Ò‹@‚µ‚Ä‚¢‚é•`‰æ•¨‚ğ•`‰æ
+	// æç”»å¾…æ©Ÿã—ã¦ã„ã‚‹æç”»ç‰©ã‚’æç”»
 	DRAWSTOCKINFO
 
-	// •`‰æ‚Ì€”õ
+	// æç”»ã®æº–å‚™
 	Flag = TransFlag | DX_D3D11_DRAWPREP_TEXADDRESS | DX_D3D11_DRAWPREP_CULLING ;
 	if( Image )
 	{
@@ -23324,7 +23324,7 @@ extern	int		Graphics_D3D11_DrawIndexedPrimitive2DUser( const VERTEX2D *Vertex, i
 		}
 	}
 
-	// •`‰æ
+	// æç”»
 	Graphics_D3D11_CommonBuffer_DrawIndexedPrimitive(
 		D3D11_VERTEX_INPUTLAYOUT_2D,
 		( D_D3D11_PRIMITIVE_TOPOLOGY )PrimitiveType,
@@ -23346,7 +23346,7 @@ extern	int		Graphics_D3D11_DrawIndexedPrimitive2DUser( const VERTEX2D *Vertex, i
 		}
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
@@ -23362,10 +23362,10 @@ extern	int		Graphics_D3D11_Draw32bitIndexedPrimitive2DUser( const VERTEX2D *Vert
 		return -1 ;
 	}
 
-	// •`‰æ‘Ò‹@‚µ‚Ä‚¢‚é•`‰æ•¨‚ğ•`‰æ
+	// æç”»å¾…æ©Ÿã—ã¦ã„ã‚‹æç”»ç‰©ã‚’æç”»
 	DRAWSTOCKINFO
 
-	// •`‰æ‚Ì€”õ
+	// æç”»ã®æº–å‚™
 	Flag = TransFlag | DX_D3D11_DRAWPREP_TEXADDRESS | DX_D3D11_DRAWPREP_CULLING ;
 	if( Image )
 	{
@@ -23387,7 +23387,7 @@ extern	int		Graphics_D3D11_Draw32bitIndexedPrimitive2DUser( const VERTEX2D *Vert
 		}
 	}
 
-	// •`‰æ
+	// æç”»
 	Graphics_D3D11_CommonBuffer_DrawIndexedPrimitive(
 		D3D11_VERTEX_INPUTLAYOUT_2D,
 		( D_D3D11_PRIMITIVE_TOPOLOGY )PrimitiveType,
@@ -23409,7 +23409,7 @@ extern	int		Graphics_D3D11_Draw32bitIndexedPrimitive2DUser( const VERTEX2D *Vert
 		}
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
@@ -23424,7 +23424,7 @@ extern	int		Graphics_D3D11_Draw32bitIndexedPrimitive2DUser( const VERTEX2D *Vert
 
 
 
-// ƒVƒF[ƒ_[•`‰æ—p•`‰æ‘OƒZƒbƒgƒAƒbƒvŠÖ”
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼æç”»ç”¨æç”»å‰ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—é–¢æ•°
 extern void Graphics_D3D11_DrawPreparationToShader( int ParamFlag, int Is2D )
 {
 	int							i ;
@@ -23432,11 +23432,11 @@ extern void Graphics_D3D11_DrawPreparationToShader( int ParamFlag, int Is2D )
 	D_ID3D11ShaderResourceView	*ShaderResourceView[ USE_TEXTURESTAGE_NUM ] ;
 	int							ShaderResourceViewNum ;
 
-	// Šî–{“I‚ÈƒZƒbƒgƒAƒbƒvˆ—
+	// åŸºæœ¬çš„ãªã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—å‡¦ç†
 	Flag = ParamFlag | DX_D3D11_DRAWPREP_SPECULAR | DX_D3D11_DRAWPREP_TEXADDRESS | DX_D3D11_DRAWPREP_NOBLENDSETTING | DX_D3D11_DRAWPREP_CULLING | ( Is2D ? 0 : DX_D3D11_DRAWPREP_3D ) ;
 	DX_D3D11_DRAWPREP_NOTEX( Flag )
 
-	// ƒAƒ‹ƒtƒ@ƒeƒXƒgƒpƒ‰ƒ[ƒ^‚ª—LŒø‚Èê‡‚Í‚»‚ê‚ğ—Dæ‚·‚é
+	// ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãŒæœ‰åŠ¹ãªå ´åˆã¯ãã‚Œã‚’å„ªå…ˆã™ã‚‹
 	if( GSYS.DrawSetting.AlphaTestMode != -1 )
 	{
 		Graphics_D3D11_DeviceState_SetAlphaTestRef( GSYS.DrawSetting.AlphaTestParam ) ;
@@ -23444,12 +23444,12 @@ extern void Graphics_D3D11_DrawPreparationToShader( int ParamFlag, int Is2D )
 	}
 	else
 	{
-		// ƒfƒtƒHƒ‹ƒg‚ÌƒAƒ‹ƒtƒ@ƒeƒXƒg‚Ìİ’è‚ğƒZƒbƒg
+		// ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆã®è¨­å®šã‚’ã‚»ãƒƒãƒˆ
 		Graphics_D3D11_DeviceState_SetAlphaTestRef( -1 ) ;
 		Graphics_D3D11_DeviceState_SetAlphaTestCmpMode( DX_CMP_GREATER ) ;
 	}
 
-	// o—Íæ‚Æ‚ÌƒuƒŒƒ“ƒh•û®‚ğƒZƒbƒg
+	// å‡ºåŠ›å…ˆã¨ã®ãƒ–ãƒ¬ãƒ³ãƒ‰æ–¹å¼ã‚’ã‚»ãƒƒãƒˆ
 	Graphics_D3D11_DeviceState_SetBlendMode(
 		GSYS.DrawSetting.BlendMode == DX_BLENDMODE_SUB ? DX_BLENDMODE_SUB1 : GSYS.DrawSetting.BlendMode,
 		GSYS.DrawSetting.BlendEnable,
@@ -23462,7 +23462,7 @@ extern void Graphics_D3D11_DrawPreparationToShader( int ParamFlag, int Is2D )
 		GSYS.DrawSetting.NotWriteAlphaChannelFlag
 	) ;
 
-	// g—p‚·‚éƒeƒNƒXƒ`ƒƒ‚ğ—ñ‹“
+	// ä½¿ç”¨ã™ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’åˆ—æŒ™
 	ShaderResourceViewNum = 0 ;
 	for( i = 0 ; i < USE_TEXTURESTAGE_NUM ; i ++ )
 	{
@@ -23486,51 +23486,51 @@ extern void Graphics_D3D11_DrawPreparationToShader( int ParamFlag, int Is2D )
 		ShaderResourceViewNum = i + 1 ;
 	}
 
-	// g—p‚·‚éƒeƒNƒXƒ`ƒƒ‚ğƒZƒbƒg
+	// ä½¿ç”¨ã™ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ã‚»ãƒƒãƒˆ
 	if( ShaderResourceViewNum > 0 )
 	{
 		Graphics_D3D11_DeviceState_SetPSShaderResouceView( 0, ShaderResourceViewNum, ShaderResourceView ) ;
 	}
 
-	// g—p‚·‚é’¸“_ƒVƒF[ƒ_[‚ğXV
+	// ä½¿ç”¨ã™ã‚‹é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’æ›´æ–°
 	if( Graphics_D3D11_DeviceState_SetVertexShaderToHandle( GSYS.DrawSetting.UserShaderRenderInfo.SetVertexShaderHandle ) < 0 )
 	{
-		// ƒIƒŠƒWƒiƒ‹‚Ì’¸“_ƒVƒF[ƒ_[‚Ìw’è‚ª–³‚¢ê‡‚ÍƒfƒtƒHƒ‹ƒg‚Ì’¸“_ƒVƒF[ƒ_[‚ğg—p‚·‚é
+		// ã‚ªãƒªã‚¸ãƒŠãƒ«ã®é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®æŒ‡å®šãŒç„¡ã„å ´åˆã¯ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ä½¿ç”¨ã™ã‚‹
 		Graphics_D3D11_DeviceState_SetVertexShader(
 			Is2D ?
 				GD3D11.Device.Shader.Base.BaseSimple_VS[ D3D11_VERTEX_INPUTLAYOUT_SHADER_2D ] :
 				GD3D11.Device.Shader.Base.BaseSimple_VS[ D3D11_VERTEX_INPUTLAYOUT_SHADER_3D ], FALSE ) ;
 	}
 
-	// g—p‚·‚éƒWƒIƒƒgƒŠƒVƒF[ƒ_[‚ğXV
+	// ä½¿ç”¨ã™ã‚‹ã‚¸ã‚ªãƒ¡ãƒˆãƒªã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’æ›´æ–°
 	if( Graphics_D3D11_DeviceState_SetGeometryShaderToHandle( GSYS.DrawSetting.UserShaderRenderInfo.SetGeometryShaderHandle ) < 0 )
 	{
-		// ƒIƒŠƒWƒiƒ‹‚ÌƒWƒIƒƒgƒŠƒVƒF[ƒ_[‚Ìw’è‚ª–³‚¢ê‡‚ÍƒWƒIƒƒgƒŠƒVƒF[ƒ_[‚ğƒŠƒZƒbƒg‚·‚é
+		// ã‚ªãƒªã‚¸ãƒŠãƒ«ã®ã‚¸ã‚ªãƒ¡ãƒˆãƒªã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®æŒ‡å®šãŒç„¡ã„å ´åˆã¯ã‚¸ã‚ªãƒ¡ãƒˆãƒªã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ãƒªã‚»ãƒƒãƒˆã™ã‚‹
 		if( GD3D11.Device.State.SetGeometryShader != NULL )
 		{
 			Graphics_D3D11_DeviceState_ResetGeometryShader() ;
 		}
 	}
 
-	// g—p‚·‚éƒsƒNƒZƒ‹ƒVƒF[ƒ_[‚ğXV
+	// ä½¿ç”¨ã™ã‚‹ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’æ›´æ–°
 	Graphics_D3D11_DeviceState_SetPixelShaderToHandle( GSYS.DrawSetting.UserShaderRenderInfo.SetPixelShaderHandle ) ;
 }
 
-// ƒVƒF[ƒ_[‚ğg‚Á‚Ä‚Q‚cƒvƒŠƒ~ƒeƒBƒu‚ğ•`‰æ‚·‚é
-extern	int		Graphics_D3D11_DrawPrimitive2DToShader(        const VERTEX2DSHADER *Vertex, int VertexNum,                                              int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST “™ */ )
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ä½¿ã£ã¦ï¼’ï¼¤ãƒ—ãƒªãƒŸãƒ†ã‚£ãƒ–ã‚’æç”»ã™ã‚‹
+extern	int		Graphics_D3D11_DrawPrimitive2DToShader(        const VERTEX2DSHADER *Vertex, int VertexNum,                                              int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST ç­‰ */ )
 {
 	if( GAPIWin.D3D11DeviceObject == NULL )
 	{
 		return -1 ;
 	}
 
-	// •`‰æ‘Ò‹@‚µ‚Ä‚¢‚é•`‰æ•¨‚ğ•`‰æ
+	// æç”»å¾…æ©Ÿã—ã¦ã„ã‚‹æç”»ç‰©ã‚’æç”»
 	DRAWSTOCKINFO
 
-	// •`‰æ‚Ì€”õ
+	// æç”»ã®æº–å‚™
 	Graphics_D3D11_DrawPreparationToShader( 0, TRUE ) ;
 
-	// •`‰æ
+	// æç”»
 	Graphics_D3D11_CommonBuffer_DrawPrimitive(
 		D3D11_VERTEX_INPUTLAYOUT_SHADER_2D,
 		( D_D3D11_PRIMITIVE_TOPOLOGY )PrimitiveType,
@@ -23538,29 +23538,29 @@ extern	int		Graphics_D3D11_DrawPrimitive2DToShader(        const VERTEX2DSHADER 
 		VertexNum
 	) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒVƒF[ƒ_[‚ğg‚Á‚Ä‚R‚cƒvƒŠƒ~ƒeƒBƒu‚ğ•`‰æ‚·‚é
-extern	int		Graphics_D3D11_DrawPrimitive3DToShader(        const VERTEX3DSHADER *Vertex, int VertexNum,                                              int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST “™ */ )
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ä½¿ã£ã¦ï¼“ï¼¤ãƒ—ãƒªãƒŸãƒ†ã‚£ãƒ–ã‚’æç”»ã™ã‚‹
+extern	int		Graphics_D3D11_DrawPrimitive3DToShader(        const VERTEX3DSHADER *Vertex, int VertexNum,                                              int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST ç­‰ */ )
 {
 	if( GAPIWin.D3D11DeviceObject == NULL )
 	{
 		return -1 ;
 	}
 
-	// •`‰æ‘Ò‹@‚µ‚Ä‚¢‚é•`‰æ•¨‚ğ•`‰æ
+	// æç”»å¾…æ©Ÿã—ã¦ã„ã‚‹æç”»ç‰©ã‚’æç”»
 	DRAWSTOCKINFO
 
-	// •`‰æ‚Ì€”õ
+	// æç”»ã®æº–å‚™
 	Graphics_D3D11_DrawPreparationToShader( DX_D3D11_DRAWPREP_LIGHTING | DX_D3D11_DRAWPREP_FOG, FALSE ) ;
 
-	// ‚R‚cs—ñ‚ğƒn[ƒhƒEƒGƒA‚É”½‰f‚·‚é
+	// ï¼“ï¼¤è¡Œåˆ—ã‚’ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã«åæ˜ ã™ã‚‹
 	if( GSYS.DrawSetting.MatchHardware3DMatrix == FALSE )
 		Graphics_DrawSetting_ApplyLib3DMatrixToHardware() ;
 
-	// •`‰æ
+	// æç”»
 	Graphics_D3D11_CommonBuffer_DrawPrimitive(
 		D3D11_VERTEX_INPUTLAYOUT_SHADER_3D,
 		( D_D3D11_PRIMITIVE_TOPOLOGY )PrimitiveType,
@@ -23569,25 +23569,25 @@ extern	int		Graphics_D3D11_DrawPrimitive3DToShader(        const VERTEX3DSHADER 
 		FALSE
 	) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒVƒF[ƒ_[‚ğg‚Á‚Ä‚Q‚cƒvƒŠƒ~ƒeƒBƒu‚ğ•`‰æ‚·‚é( ’¸“_ƒCƒ“ƒfƒbƒNƒX‚ğg—p‚·‚é )
-extern	int		Graphics_D3D11_DrawPrimitiveIndexed2DToShader( const VERTEX2DSHADER *Vertex, int VertexNum, const unsigned short *Indices, int IndexNum, int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST “™ */ )
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ä½¿ã£ã¦ï¼’ï¼¤ãƒ—ãƒªãƒŸãƒ†ã‚£ãƒ–ã‚’æç”»ã™ã‚‹( é ‚ç‚¹ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’ä½¿ç”¨ã™ã‚‹ )
+extern	int		Graphics_D3D11_DrawPrimitiveIndexed2DToShader( const VERTEX2DSHADER *Vertex, int VertexNum, const unsigned short *Indices, int IndexNum, int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST ç­‰ */ )
 {
 	if( GAPIWin.D3D11DeviceObject == NULL )
 	{
 		return -1 ;
 	}
 
-	// •`‰æ‘Ò‹@‚µ‚Ä‚¢‚é•`‰æ•¨‚ğ•`‰æ
+	// æç”»å¾…æ©Ÿã—ã¦ã„ã‚‹æç”»ç‰©ã‚’æç”»
 	DRAWSTOCKINFO
 
-	// •`‰æ‚Ì€”õ
+	// æç”»ã®æº–å‚™
 	Graphics_D3D11_DrawPreparationToShader( 0, TRUE ) ;
 
-	// •`‰æ
+	// æç”»
 	Graphics_D3D11_CommonBuffer_DrawIndexedPrimitive(
 		D3D11_VERTEX_INPUTLAYOUT_SHADER_2D,
 		( D_D3D11_PRIMITIVE_TOPOLOGY )PrimitiveType,
@@ -23598,25 +23598,25 @@ extern	int		Graphics_D3D11_DrawPrimitiveIndexed2DToShader( const VERTEX2DSHADER 
 		D_DXGI_FORMAT_R16_UINT
 	) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒVƒF[ƒ_[‚ğg‚Á‚Ä‚Q‚cƒvƒŠƒ~ƒeƒBƒu‚ğ•`‰æ‚·‚é( ’¸“_ƒCƒ“ƒfƒbƒNƒX‚ğg—p‚·‚é )
-extern	int		Graphics_D3D11_DrawPrimitive32bitIndexed2DToShader( const VERTEX2DSHADER *Vertex, int VertexNum, const unsigned int *Indices, int IndexNum, int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST “™ */ )
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ä½¿ã£ã¦ï¼’ï¼¤ãƒ—ãƒªãƒŸãƒ†ã‚£ãƒ–ã‚’æç”»ã™ã‚‹( é ‚ç‚¹ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’ä½¿ç”¨ã™ã‚‹ )
+extern	int		Graphics_D3D11_DrawPrimitive32bitIndexed2DToShader( const VERTEX2DSHADER *Vertex, int VertexNum, const unsigned int *Indices, int IndexNum, int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST ç­‰ */ )
 {
 	if( GAPIWin.D3D11DeviceObject == NULL )
 	{
 		return -1 ;
 	}
 
-	// •`‰æ‘Ò‹@‚µ‚Ä‚¢‚é•`‰æ•¨‚ğ•`‰æ
+	// æç”»å¾…æ©Ÿã—ã¦ã„ã‚‹æç”»ç‰©ã‚’æç”»
 	DRAWSTOCKINFO
 
-	// •`‰æ‚Ì€”õ
+	// æç”»ã®æº–å‚™
 	Graphics_D3D11_DrawPreparationToShader( 0, TRUE ) ;
 
-	// •`‰æ
+	// æç”»
 	Graphics_D3D11_CommonBuffer_DrawIndexedPrimitive(
 		D3D11_VERTEX_INPUTLAYOUT_SHADER_2D,
 		( D_D3D11_PRIMITIVE_TOPOLOGY )PrimitiveType,
@@ -23627,29 +23627,29 @@ extern	int		Graphics_D3D11_DrawPrimitive32bitIndexed2DToShader( const VERTEX2DSH
 		D_DXGI_FORMAT_R32_UINT
 	) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒVƒF[ƒ_[‚ğg‚Á‚Ä‚R‚cƒvƒŠƒ~ƒeƒBƒu‚ğ•`‰æ‚·‚é( ’¸“_ƒCƒ“ƒfƒbƒNƒX‚ğg—p‚·‚é )
-extern	int		Graphics_D3D11_DrawPrimitiveIndexed3DToShader( const VERTEX3DSHADER *Vertex, int VertexNum, const unsigned short *Indices, int IndexNum, int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST “™ */ )
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ä½¿ã£ã¦ï¼“ï¼¤ãƒ—ãƒªãƒŸãƒ†ã‚£ãƒ–ã‚’æç”»ã™ã‚‹( é ‚ç‚¹ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’ä½¿ç”¨ã™ã‚‹ )
+extern	int		Graphics_D3D11_DrawPrimitiveIndexed3DToShader( const VERTEX3DSHADER *Vertex, int VertexNum, const unsigned short *Indices, int IndexNum, int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST ç­‰ */ )
 {
 	if( GAPIWin.D3D11DeviceObject == NULL )
 	{
 		return -1 ;
 	}
 
-	// •`‰æ‘Ò‹@‚µ‚Ä‚¢‚é•`‰æ•¨‚ğ•`‰æ
+	// æç”»å¾…æ©Ÿã—ã¦ã„ã‚‹æç”»ç‰©ã‚’æç”»
 	DRAWSTOCKINFO
 
-	// •`‰æ‚Ì€”õ
+	// æç”»ã®æº–å‚™
 	Graphics_D3D11_DrawPreparationToShader( DX_D3D11_DRAWPREP_LIGHTING | DX_D3D11_DRAWPREP_FOG, FALSE ) ;
 
-	// ‚R‚cs—ñ‚ğƒn[ƒhƒEƒGƒA‚É”½‰f‚·‚é
+	// ï¼“ï¼¤è¡Œåˆ—ã‚’ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã«åæ˜ ã™ã‚‹
 	if( GSYS.DrawSetting.MatchHardware3DMatrix == FALSE )
 		Graphics_DrawSetting_ApplyLib3DMatrixToHardware() ;
 
-	// •`‰æ
+	// æç”»
 	Graphics_D3D11_CommonBuffer_DrawIndexedPrimitive(
 		D3D11_VERTEX_INPUTLAYOUT_SHADER_3D,
 		( D_D3D11_PRIMITIVE_TOPOLOGY )PrimitiveType,
@@ -23661,29 +23661,29 @@ extern	int		Graphics_D3D11_DrawPrimitiveIndexed3DToShader( const VERTEX3DSHADER 
 		FALSE
 	) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒVƒF[ƒ_[‚ğg‚Á‚Ä‚R‚cƒvƒŠƒ~ƒeƒBƒu‚ğ•`‰æ‚·‚é( ’¸“_ƒCƒ“ƒfƒbƒNƒX‚ğg—p‚·‚é )
-extern	int		Graphics_D3D11_DrawPrimitive32bitIndexed3DToShader( const VERTEX3DSHADER *Vertex, int VertexNum, const unsigned int *Indices, int IndexNum, int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST “™ */ )
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ä½¿ã£ã¦ï¼“ï¼¤ãƒ—ãƒªãƒŸãƒ†ã‚£ãƒ–ã‚’æç”»ã™ã‚‹( é ‚ç‚¹ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’ä½¿ç”¨ã™ã‚‹ )
+extern	int		Graphics_D3D11_DrawPrimitive32bitIndexed3DToShader( const VERTEX3DSHADER *Vertex, int VertexNum, const unsigned int *Indices, int IndexNum, int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST ç­‰ */ )
 {
 	if( GAPIWin.D3D11DeviceObject == NULL )
 	{
 		return -1 ;
 	}
 
-	// •`‰æ‘Ò‹@‚µ‚Ä‚¢‚é•`‰æ•¨‚ğ•`‰æ
+	// æç”»å¾…æ©Ÿã—ã¦ã„ã‚‹æç”»ç‰©ã‚’æç”»
 	DRAWSTOCKINFO
 
-	// •`‰æ‚Ì€”õ
+	// æç”»ã®æº–å‚™
 	Graphics_D3D11_DrawPreparationToShader( DX_D3D11_DRAWPREP_LIGHTING | DX_D3D11_DRAWPREP_FOG, FALSE ) ;
 
-	// ‚R‚cs—ñ‚ğƒn[ƒhƒEƒGƒA‚É”½‰f‚·‚é
+	// ï¼“ï¼¤è¡Œåˆ—ã‚’ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã«åæ˜ ã™ã‚‹
 	if( GSYS.DrawSetting.MatchHardware3DMatrix == FALSE )
 		Graphics_DrawSetting_ApplyLib3DMatrixToHardware() ;
 
-	// •`‰æ
+	// æç”»
 	Graphics_D3D11_CommonBuffer_DrawIndexedPrimitive(
 		D3D11_VERTEX_INPUTLAYOUT_SHADER_3D,
 		( D_D3D11_PRIMITIVE_TOPOLOGY )PrimitiveType,
@@ -23695,25 +23695,25 @@ extern	int		Graphics_D3D11_DrawPrimitive32bitIndexed3DToShader( const VERTEX3DSH
 		FALSE
 	) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒVƒF[ƒ_[‚ğg‚Á‚Ä‚Q‚cƒvƒŠƒ~ƒeƒBƒu‚ğ•`‰æ‚·‚é
-extern	int		Graphics_D3D11_DrawPrimitive2DToShader2(        const VERTEX2D *Vertex, int VertexNum,                                              int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST “™ */ )
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ä½¿ã£ã¦ï¼’ï¼¤ãƒ—ãƒªãƒŸãƒ†ã‚£ãƒ–ã‚’æç”»ã™ã‚‹
+extern	int		Graphics_D3D11_DrawPrimitive2DToShader2(        const VERTEX2D *Vertex, int VertexNum,                                              int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST ç­‰ */ )
 {
 	if( GAPIWin.D3D11DeviceObject == NULL )
 	{
 		return -1 ;
 	}
 
-	// •`‰æ‘Ò‹@‚µ‚Ä‚¢‚é•`‰æ•¨‚ğ•`‰æ
+	// æç”»å¾…æ©Ÿã—ã¦ã„ã‚‹æç”»ç‰©ã‚’æç”»
 	DRAWSTOCKINFO
 
-	// •`‰æ‚Ì€”õ
+	// æç”»ã®æº–å‚™
 	Graphics_D3D11_DrawPreparationToShader( 0, TRUE ) ;
 
-	// •`‰æ
+	// æç”»
 	Graphics_D3D11_CommonBuffer_DrawPrimitive(
 		D3D11_VERTEX_INPUTLAYOUT_2D,
 		( D_D3D11_PRIMITIVE_TOPOLOGY )PrimitiveType,
@@ -23721,29 +23721,29 @@ extern	int		Graphics_D3D11_DrawPrimitive2DToShader2(        const VERTEX2D *Vert
 		VertexNum
 	) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒVƒF[ƒ_[‚ğg‚Á‚Ä‚R‚cƒvƒŠƒ~ƒeƒBƒu‚ğ•`‰æ‚·‚é
-extern	int		Graphics_D3D11_DrawPrimitive3DToShader2(        const VERTEX3D *Vertex, int VertexNum,                                              int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST “™ */ )
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ä½¿ã£ã¦ï¼“ï¼¤ãƒ—ãƒªãƒŸãƒ†ã‚£ãƒ–ã‚’æç”»ã™ã‚‹
+extern	int		Graphics_D3D11_DrawPrimitive3DToShader2(        const VERTEX3D *Vertex, int VertexNum,                                              int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST ç­‰ */ )
 {
 	if( GAPIWin.D3D11DeviceObject == NULL )
 	{
 		return -1 ;
 	}
 
-	// •`‰æ‘Ò‹@‚µ‚Ä‚¢‚é•`‰æ•¨‚ğ•`‰æ
+	// æç”»å¾…æ©Ÿã—ã¦ã„ã‚‹æç”»ç‰©ã‚’æç”»
 	DRAWSTOCKINFO
 
-	// •`‰æ‚Ì€”õ
+	// æç”»ã®æº–å‚™
 	Graphics_D3D11_DrawPreparationToShader( DX_D3D11_DRAWPREP_LIGHTING | DX_D3D11_DRAWPREP_FOG, FALSE ) ;
 
-	// ‚R‚cs—ñ‚ğƒn[ƒhƒEƒGƒA‚É”½‰f‚·‚é
+	// ï¼“ï¼¤è¡Œåˆ—ã‚’ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã«åæ˜ ã™ã‚‹
 	if( GSYS.DrawSetting.MatchHardware3DMatrix == FALSE )
 		Graphics_DrawSetting_ApplyLib3DMatrixToHardware() ;
 
-	// •`‰æ
+	// æç”»
 	Graphics_D3D11_CommonBuffer_DrawPrimitive(
 		D3D11_VERTEX_INPUTLAYOUT_3D_LIGHT,
 		( D_D3D11_PRIMITIVE_TOPOLOGY )PrimitiveType,
@@ -23752,25 +23752,25 @@ extern	int		Graphics_D3D11_DrawPrimitive3DToShader2(        const VERTEX3D *Vert
 		FALSE
 	) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒVƒF[ƒ_[‚ğg‚Á‚Ä‚Q‚cƒvƒŠƒ~ƒeƒBƒu‚ğ•`‰æ‚·‚é( ’¸“_ƒCƒ“ƒfƒbƒNƒX‚ğg—p‚·‚é )
-extern	int		Graphics_D3D11_DrawPrimitiveIndexed2DToShader2( const VERTEX2D *Vertex, int VertexNum, const unsigned short *Indices, int IndexNum, int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST “™ */ )
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ä½¿ã£ã¦ï¼’ï¼¤ãƒ—ãƒªãƒŸãƒ†ã‚£ãƒ–ã‚’æç”»ã™ã‚‹( é ‚ç‚¹ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’ä½¿ç”¨ã™ã‚‹ )
+extern	int		Graphics_D3D11_DrawPrimitiveIndexed2DToShader2( const VERTEX2D *Vertex, int VertexNum, const unsigned short *Indices, int IndexNum, int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST ç­‰ */ )
 {
 	if( GAPIWin.D3D11DeviceObject == NULL )
 	{
 		return -1 ;
 	}
 
-	// •`‰æ‘Ò‹@‚µ‚Ä‚¢‚é•`‰æ•¨‚ğ•`‰æ
+	// æç”»å¾…æ©Ÿã—ã¦ã„ã‚‹æç”»ç‰©ã‚’æç”»
 	DRAWSTOCKINFO
 
-	// •`‰æ‚Ì€”õ
+	// æç”»ã®æº–å‚™
 	Graphics_D3D11_DrawPreparationToShader( 0, TRUE ) ;
 
-	// •`‰æ
+	// æç”»
 	Graphics_D3D11_CommonBuffer_DrawIndexedPrimitive(
 		D3D11_VERTEX_INPUTLAYOUT_2D,
 		( D_D3D11_PRIMITIVE_TOPOLOGY )PrimitiveType,
@@ -23781,25 +23781,25 @@ extern	int		Graphics_D3D11_DrawPrimitiveIndexed2DToShader2( const VERTEX2D *Vert
 		D_DXGI_FORMAT_R16_UINT
 	) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒVƒF[ƒ_[‚ğg‚Á‚Ä‚Q‚cƒvƒŠƒ~ƒeƒBƒu‚ğ•`‰æ‚·‚é( ’¸“_ƒCƒ“ƒfƒbƒNƒX‚ğg—p‚·‚é )
-extern	int		Graphics_D3D11_DrawPrimitive32bitIndexed2DToShader2( const VERTEX2D *Vertex, int VertexNum, const unsigned int *Indices, int IndexNum, int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST “™ */ )
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ä½¿ã£ã¦ï¼’ï¼¤ãƒ—ãƒªãƒŸãƒ†ã‚£ãƒ–ã‚’æç”»ã™ã‚‹( é ‚ç‚¹ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’ä½¿ç”¨ã™ã‚‹ )
+extern	int		Graphics_D3D11_DrawPrimitive32bitIndexed2DToShader2( const VERTEX2D *Vertex, int VertexNum, const unsigned int *Indices, int IndexNum, int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST ç­‰ */ )
 {
 	if( GAPIWin.D3D11DeviceObject == NULL )
 	{
 		return -1 ;
 	}
 
-	// •`‰æ‘Ò‹@‚µ‚Ä‚¢‚é•`‰æ•¨‚ğ•`‰æ
+	// æç”»å¾…æ©Ÿã—ã¦ã„ã‚‹æç”»ç‰©ã‚’æç”»
 	DRAWSTOCKINFO
 
-	// •`‰æ‚Ì€”õ
+	// æç”»ã®æº–å‚™
 	Graphics_D3D11_DrawPreparationToShader( 0, TRUE ) ;
 
-	// •`‰æ
+	// æç”»
 	Graphics_D3D11_CommonBuffer_DrawIndexedPrimitive(
 		D3D11_VERTEX_INPUTLAYOUT_2D,
 		( D_D3D11_PRIMITIVE_TOPOLOGY )PrimitiveType,
@@ -23810,29 +23810,29 @@ extern	int		Graphics_D3D11_DrawPrimitive32bitIndexed2DToShader2( const VERTEX2D 
 		D_DXGI_FORMAT_R32_UINT
 	) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒVƒF[ƒ_[‚ğg‚Á‚Ä‚R‚cƒvƒŠƒ~ƒeƒBƒu‚ğ•`‰æ‚·‚é( ’¸“_ƒCƒ“ƒfƒbƒNƒX‚ğg—p‚·‚é )
-extern	int		Graphics_D3D11_DrawPrimitiveIndexed3DToShader2( const VERTEX3D *Vertex, int VertexNum, const unsigned short *Indices, int IndexNum, int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST “™ */ )
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ä½¿ã£ã¦ï¼“ï¼¤ãƒ—ãƒªãƒŸãƒ†ã‚£ãƒ–ã‚’æç”»ã™ã‚‹( é ‚ç‚¹ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’ä½¿ç”¨ã™ã‚‹ )
+extern	int		Graphics_D3D11_DrawPrimitiveIndexed3DToShader2( const VERTEX3D *Vertex, int VertexNum, const unsigned short *Indices, int IndexNum, int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST ç­‰ */ )
 {
 	if( GAPIWin.D3D11DeviceObject == NULL )
 	{
 		return -1 ;
 	}
 
-	// •`‰æ‘Ò‹@‚µ‚Ä‚¢‚é•`‰æ•¨‚ğ•`‰æ
+	// æç”»å¾…æ©Ÿã—ã¦ã„ã‚‹æç”»ç‰©ã‚’æç”»
 	DRAWSTOCKINFO
 
-	// •`‰æ‚Ì€”õ
+	// æç”»ã®æº–å‚™
 	Graphics_D3D11_DrawPreparationToShader( DX_D3D11_DRAWPREP_LIGHTING | DX_D3D11_DRAWPREP_FOG, FALSE ) ;
 
-	// ‚R‚cs—ñ‚ğƒn[ƒhƒEƒGƒA‚É”½‰f‚·‚é
+	// ï¼“ï¼¤è¡Œåˆ—ã‚’ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã«åæ˜ ã™ã‚‹
 	if( GSYS.DrawSetting.MatchHardware3DMatrix == FALSE )
 		Graphics_DrawSetting_ApplyLib3DMatrixToHardware() ;
 
-	// •`‰æ
+	// æç”»
 	Graphics_D3D11_CommonBuffer_DrawIndexedPrimitive(
 		D3D11_VERTEX_INPUTLAYOUT_3D_LIGHT,
 		( D_D3D11_PRIMITIVE_TOPOLOGY )PrimitiveType,
@@ -23844,29 +23844,29 @@ extern	int		Graphics_D3D11_DrawPrimitiveIndexed3DToShader2( const VERTEX3D *Vert
 		FALSE
 	) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒVƒF[ƒ_[‚ğg‚Á‚Ä‚R‚cƒvƒŠƒ~ƒeƒBƒu‚ğ•`‰æ‚·‚é( ’¸“_ƒCƒ“ƒfƒbƒNƒX‚ğg—p‚·‚é )
-extern	int		Graphics_D3D11_DrawPrimitive32bitIndexed3DToShader2( const VERTEX3D *Vertex, int VertexNum, const unsigned int *Indices, int IndexNum, int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST “™ */ )
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ä½¿ã£ã¦ï¼“ï¼¤ãƒ—ãƒªãƒŸãƒ†ã‚£ãƒ–ã‚’æç”»ã™ã‚‹( é ‚ç‚¹ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’ä½¿ç”¨ã™ã‚‹ )
+extern	int		Graphics_D3D11_DrawPrimitive32bitIndexed3DToShader2( const VERTEX3D *Vertex, int VertexNum, const unsigned int *Indices, int IndexNum, int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST ç­‰ */ )
 {
 	if( GAPIWin.D3D11DeviceObject == NULL )
 	{
 		return -1 ;
 	}
 
-	// •`‰æ‘Ò‹@‚µ‚Ä‚¢‚é•`‰æ•¨‚ğ•`‰æ
+	// æç”»å¾…æ©Ÿã—ã¦ã„ã‚‹æç”»ç‰©ã‚’æç”»
 	DRAWSTOCKINFO
 
-	// •`‰æ‚Ì€”õ
+	// æç”»ã®æº–å‚™
 	Graphics_D3D11_DrawPreparationToShader( DX_D3D11_DRAWPREP_LIGHTING | DX_D3D11_DRAWPREP_FOG, FALSE ) ;
 
-	// ‚R‚cs—ñ‚ğƒn[ƒhƒEƒGƒA‚É”½‰f‚·‚é
+	// ï¼“ï¼¤è¡Œåˆ—ã‚’ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã«åæ˜ ã™ã‚‹
 	if( GSYS.DrawSetting.MatchHardware3DMatrix == FALSE )
 		Graphics_DrawSetting_ApplyLib3DMatrixToHardware() ;
 
-	// •`‰æ
+	// æç”»
 	Graphics_D3D11_CommonBuffer_DrawIndexedPrimitive(
 		D3D11_VERTEX_INPUTLAYOUT_3D_LIGHT,
 		( D_D3D11_PRIMITIVE_TOPOLOGY )PrimitiveType,
@@ -23878,65 +23878,65 @@ extern	int		Graphics_D3D11_DrawPrimitive32bitIndexed3DToShader2( const VERTEX3D 
 		FALSE
 	) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒVƒF[ƒ_[‚ğg‚Á‚Ä‚R‚cƒvƒŠƒ~ƒeƒBƒu‚ğ•`‰æ‚·‚é( ’¸“_ƒoƒbƒtƒ@g—p”Å )
-extern	int		Graphics_D3D11_DrawPrimitive3DToShader_UseVertexBuffer2(        int VertexBufHandle,                     int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST “™ */, int StartVertex, int UseVertexNum )
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ä½¿ã£ã¦ï¼“ï¼¤ãƒ—ãƒªãƒŸãƒ†ã‚£ãƒ–ã‚’æç”»ã™ã‚‹( é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ä½¿ç”¨ç‰ˆ )
+extern	int		Graphics_D3D11_DrawPrimitive3DToShader_UseVertexBuffer2(        int VertexBufHandle,                     int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST ç­‰ */, int StartVertex, int UseVertexNum )
 {
 	VERTEXBUFFERHANDLEDATA *VertexBuffer ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( VERTEXBUFFERCHK( VertexBufHandle, VertexBuffer ) )
 	{
 		return -1 ;
 	}
 
-	// ƒVƒF[ƒ_[—p’¸“_ƒf[ƒ^‚Å‚Í‚È‚¢ê‡‚ÍƒGƒ‰[
+	// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ç”¨é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ã§ã¯ãªã„å ´åˆã¯ã‚¨ãƒ©ãƒ¼
 	if( VertexBuffer->Type != DX_VERTEX_TYPE_SHADER_3D )
 	{
 		return -1 ;
 	}
 
-	// ‚R‚cs—ñ‚ğƒn[ƒhƒEƒGƒA‚É”½‰f‚·‚é
+	// ï¼“ï¼¤è¡Œåˆ—ã‚’ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã«åæ˜ ã™ã‚‹
 	if( GSYS.DrawSetting.MatchHardware3DMatrix == FALSE )
 		Graphics_DrawSetting_ApplyLib3DMatrixToHardware() ;
 
-	// •`‰æ‘Ò‹@‚µ‚Ä‚¢‚é•`‰æ•¨‚ğ•`‰æ
+	// æç”»å¾…æ©Ÿã—ã¦ã„ã‚‹æç”»ç‰©ã‚’æç”»
 	DRAWSTOCKINFO
 
-	// •`‰æ‚Ì€”õ
+	// æç”»ã®æº–å‚™
 	Graphics_D3D11_DrawPreparationToShader( DX_D3D11_DRAWPREP_LIGHTING | DX_D3D11_DRAWPREP_FOG, FALSE ) ;
 
-	// ƒvƒŠƒ~ƒeƒBƒuƒ^ƒCƒv‚ğƒZƒbƒg
+	// ãƒ—ãƒªãƒŸãƒ†ã‚£ãƒ–ã‚¿ã‚¤ãƒ—ã‚’ã‚»ãƒƒãƒˆ
 	Graphics_D3D11_DeviceState_SetPrimitiveTopology( ( D_D3D11_PRIMITIVE_TOPOLOGY )PrimitiveType ) ;
 
-	// “ü—ÍƒŒƒCƒAƒEƒg‚ğƒZƒbƒg
+	// å…¥åŠ›ãƒ¬ã‚¤ã‚¢ã‚¦ãƒˆã‚’ã‚»ãƒƒãƒˆ
 	Graphics_D3D11_DeviceState_SetInputLayout( GD3D11.Device.InputLayout.BaseInputLayout[ D3D11_VERTEX_INPUTLAYOUT_SHADER_3D ] ) ;
 
-	// ’¸“_ƒoƒbƒtƒ@‚ğƒZƒbƒg
+	// é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã‚’ã‚»ãƒƒãƒˆ
 	Graphics_D3D11_DeviceState_SetVertexBuffer( VertexBuffer->PF->D3D11.VertexBuffer, D3D11_VertexSize[ D3D11_VERTEX_INPUTLAYOUT_SHADER_3D ] ) ;
 
-	// ƒXƒe[ƒg‚Æ’è”ƒoƒbƒtƒ@‚ÌXV
+	// ã‚¹ãƒ†ãƒ¼ãƒˆã¨å®šæ•°ãƒãƒƒãƒ•ã‚¡ã®æ›´æ–°
 	Graphics_D3D11_DeviceState_SetupStateAndConstantBuffer() ;
 
-	// •`‰æ
+	// æç”»
 	D3D11DeviceContext_Draw( ( UINT )UseVertexNum, ( UINT )StartVertex ) ;
 	GSYS.PerformanceInfo.NowFrameDrawCallCount ++ ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒVƒF[ƒ_[‚ğg‚Á‚Ä‚R‚cƒvƒŠƒ~ƒeƒBƒu‚ğ•`‰æ‚·‚é( ’¸“_ƒoƒbƒtƒ@‚ÆƒCƒ“ƒfƒbƒNƒXƒoƒbƒtƒ@g—p”Å )
-extern	int		Graphics_D3D11_DrawPrimitiveIndexed3DToShader_UseVertexBuffer2( int VertexBufHandle, int IndexBufHandle, int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST “™ */, int BaseVertex, int /*StartVertex*/, int /*UseVertexNum*/, int StartIndex, int UseIndexNum )
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ä½¿ã£ã¦ï¼“ï¼¤ãƒ—ãƒªãƒŸãƒ†ã‚£ãƒ–ã‚’æç”»ã™ã‚‹( é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã¨ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒãƒƒãƒ•ã‚¡ä½¿ç”¨ç‰ˆ )
+extern	int		Graphics_D3D11_DrawPrimitiveIndexed3DToShader_UseVertexBuffer2( int VertexBufHandle, int IndexBufHandle, int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST ç­‰ */, int BaseVertex, int /*StartVertex*/, int /*UseVertexNum*/, int StartIndex, int UseIndexNum )
 {
 	VERTEXBUFFERHANDLEDATA *VertexBuffer ;
 	INDEXBUFFERHANDLEDATA  *IndexBuffer ;
 	D_DXGI_FORMAT IndexFormat ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( VERTEXBUFFERCHK( VertexBufHandle, VertexBuffer ) )
 	{
 		return -1 ;
@@ -23946,7 +23946,7 @@ extern	int		Graphics_D3D11_DrawPrimitiveIndexed3DToShader_UseVertexBuffer2( int 
 		return -1 ;
 	}
 
-	// ƒVƒF[ƒ_[—p’¸“_ƒf[ƒ^‚Å‚Í‚È‚¢ê‡‚ÍƒGƒ‰[
+	// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ç”¨é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ã§ã¯ãªã„å ´åˆã¯ã‚¨ãƒ©ãƒ¼
 	if( VertexBuffer->Type != DX_VERTEX_TYPE_SHADER_3D )
 	{
 		return -1 ;
@@ -23964,36 +23964,36 @@ extern	int		Graphics_D3D11_DrawPrimitiveIndexed3DToShader_UseVertexBuffer2( int 
 		break ;
 	}
 
-	// ‚R‚cs—ñ‚ğƒn[ƒhƒEƒGƒA‚É”½‰f‚·‚é
+	// ï¼“ï¼¤è¡Œåˆ—ã‚’ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã«åæ˜ ã™ã‚‹
 	if( GSYS.DrawSetting.MatchHardware3DMatrix == FALSE )
 		Graphics_DrawSetting_ApplyLib3DMatrixToHardware() ;
 
-	// •`‰æ‘Ò‹@‚µ‚Ä‚¢‚é•`‰æ•¨‚ğ•`‰æ
+	// æç”»å¾…æ©Ÿã—ã¦ã„ã‚‹æç”»ç‰©ã‚’æç”»
 	DRAWSTOCKINFO
 
-	// •`‰æ‚Ì€”õ
+	// æç”»ã®æº–å‚™
 	Graphics_D3D11_DrawPreparationToShader( DX_D3D11_DRAWPREP_LIGHTING | DX_D3D11_DRAWPREP_FOG, FALSE ) ;
 
-	// ƒvƒŠƒ~ƒeƒBƒuƒ^ƒCƒv‚ğƒZƒbƒg
+	// ãƒ—ãƒªãƒŸãƒ†ã‚£ãƒ–ã‚¿ã‚¤ãƒ—ã‚’ã‚»ãƒƒãƒˆ
 	Graphics_D3D11_DeviceState_SetPrimitiveTopology( ( D_D3D11_PRIMITIVE_TOPOLOGY )PrimitiveType ) ;
 
-	// “ü—ÍƒŒƒCƒAƒEƒg‚ğƒZƒbƒg
+	// å…¥åŠ›ãƒ¬ã‚¤ã‚¢ã‚¦ãƒˆã‚’ã‚»ãƒƒãƒˆ
 	Graphics_D3D11_DeviceState_SetInputLayout( GD3D11.Device.InputLayout.BaseInputLayout[ D3D11_VERTEX_INPUTLAYOUT_SHADER_3D ] ) ;
 
-	// ’¸“_ƒoƒbƒtƒ@‚ğƒZƒbƒg
+	// é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã‚’ã‚»ãƒƒãƒˆ
 	Graphics_D3D11_DeviceState_SetVertexBuffer( VertexBuffer->PF->D3D11.VertexBuffer, D3D11_VertexSize[ D3D11_VERTEX_INPUTLAYOUT_SHADER_3D ] ) ;
 
-	// ƒCƒ“ƒfƒbƒNƒXƒoƒbƒtƒ@‚ğƒZƒbƒg
+	// ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒãƒƒãƒ•ã‚¡ã‚’ã‚»ãƒƒãƒˆ
 	Graphics_D3D11_DeviceState_SetIndexBuffer( IndexBuffer->PF->D3D11.IndexBuffer, IndexFormat ) ;
 
-	// ƒXƒe[ƒg‚Æ’è”ƒoƒbƒtƒ@‚ÌXV
+	// ã‚¹ãƒ†ãƒ¼ãƒˆã¨å®šæ•°ãƒãƒƒãƒ•ã‚¡ã®æ›´æ–°
 	Graphics_D3D11_DeviceState_SetupStateAndConstantBuffer() ;
 
-	// •`‰æ
+	// æç”»
 	D3D11DeviceContext_DrawIndexed( ( UINT )UseIndexNum, ( UINT )StartIndex, BaseVertex ) ;
 	GSYS.PerformanceInfo.NowFrameDrawCallCount ++ ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
@@ -24024,49 +24024,49 @@ extern	int		Graphics_D3D11_DrawPrimitiveIndexed3DToShader_UseVertexBuffer2( int 
 
 
 
-// ŠÂ‹«ˆË‘¶‰Šú‰»ŠÖŒW
+// ç’°å¢ƒä¾å­˜åˆæœŸåŒ–é–¢ä¿‚
 
-// •`‰æˆ—‚ÌŠÂ‹«ˆË‘¶•”•ª‚Ì‰Šú‰»‚ğs‚¤ŠÖ”( Às‰ÓŠ‹æ•Ê‚O )
+// æç”»å‡¦ç†ã®ç’°å¢ƒä¾å­˜éƒ¨åˆ†ã®åˆæœŸåŒ–ã‚’è¡Œã†é–¢æ•°( å®Ÿè¡Œç®‡æ‰€åŒºåˆ¥ï¼ )
 extern	int		Graphics_D3D11_Initialize_Timing0_PF( void )
 {
-	// Direct3D11 ‚ğg—p‚µ‚½ƒOƒ‰ƒtƒBƒbƒNƒXˆ—‚Ì‰Šú‰»
+	// Direct3D11 ã‚’ä½¿ç”¨ã—ãŸã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¹å‡¦ç†ã®åˆæœŸåŒ–
 	if( Graphics_D3D11_Initialize() == -1 )
 	{
 		return -1 ;
 	}
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// •`‰æˆ—‚ÌŠÂ‹«ˆË‘¶•”•ª‚Ì‰Šú‰»‚ğs‚¤ŠÖ”( Às‰ÓŠ‹æ•Ê‚Q )
+// æç”»å‡¦ç†ã®ç’°å¢ƒä¾å­˜éƒ¨åˆ†ã®åˆæœŸåŒ–ã‚’è¡Œã†é–¢æ•°( å®Ÿè¡Œç®‡æ‰€åŒºåˆ¥ï¼’ )
 extern	int		Graphics_D3D11_Initialize_Timing1_PF( void )
 {
-	// ƒfƒoƒCƒX‚Ìİ’è‚ğƒŠƒtƒŒƒbƒVƒ…
+	// ãƒ‡ãƒã‚¤ã‚¹ã®è¨­å®šã‚’ãƒªãƒ•ãƒ¬ãƒƒã‚·ãƒ¥
 	Graphics_D3D11_DeviceState_RefreshRenderState() ;
 
-	// ‰æ–Ê‚Ì‰Šú‰»
+	// ç”»é¢ã®åˆæœŸåŒ–
 	Graphics_Hardware_D3D11_ClearDrawScreen_PF( NULL ) ;
 
 	CL_strcpy( WCHAR_T_CHARCODEFORMAT, ( char * )WinData.PcInfo.DirectXString, ( char * )L"DirectX 11" ) ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒ^‚ğg—p‚·‚éê‡‚ÌŠÂ‹«ˆË‘¶‚Ì‰Šú‰»ˆ—‚ğs‚¤
+// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚¿ã‚’ä½¿ç”¨ã™ã‚‹å ´åˆã®ç’°å¢ƒä¾å­˜ã®åˆæœŸåŒ–å‡¦ç†ã‚’è¡Œã†
 extern	int		Graphics_D3D11_Hardware_Initialize_PF( void )
 {
 	return Graphics_D3D11_Device_Initialize() ;
 }
 
-// •`‰æˆ—‚ÌŠÂ‹«ˆË‘¶•”•ª‚ÌŒãn––‚ğs‚¤ŠÖ”
+// æç”»å‡¦ç†ã®ç’°å¢ƒä¾å­˜éƒ¨åˆ†ã®å¾Œå§‹æœ«ã‚’è¡Œã†é–¢æ•°
 extern	int		Graphics_D3D11_Terminate_PF( void )
 {
-	// Direct3D11 ‚Ì•`‰æˆ—‚ÌŒãn––
+	// Direct3D11 ã®æç”»å‡¦ç†ã®å¾Œå§‹æœ«
 	Graphics_D3D11_Terminate() ;
 
-	// ƒVƒF[ƒ_[ƒR[ƒh‚ÌŒãn––
+	// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚³ãƒ¼ãƒ‰ã®å¾Œå§‹æœ«
 	Graphics_D3D11_ShaderCode_Base_Terminate() ;
 
 #ifndef DX_NON_SHADERCODE_BINARY
@@ -24077,19 +24077,19 @@ extern	int		Graphics_D3D11_Terminate_PF( void )
 #endif // DX_NON_MODEL
 #endif // DX_NON_SHADERCODE_BINARY
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒOƒ‰ƒtƒBƒbƒNƒXƒVƒXƒeƒ€‚Ì•œ‹AA–”‚Í•ÏX•t‚«‚ÌÄƒZƒbƒgƒAƒbƒv‚ğs‚¤
+// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¹ã‚·ã‚¹ãƒ†ãƒ ã®å¾©å¸°ã€åˆã¯å¤‰æ›´ä»˜ãã®å†ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã‚’è¡Œã†
 extern	int		Graphics_D3D11_RestoreOrChangeSetupGraphSystem_PF( int Change, int ScreenSizeX, int ScreenSizeY, int ColorBitDepth, int RefreshRate )
 {
 	int i ;
 
-	// ‰æ–Êƒ‚[ƒh•ÏX‚É‚ÍƒOƒ‰ƒtƒBƒbƒNƒVƒXƒeƒ€‚Ì‰Šú‰»‚ğs‚í‚È‚¢İ’è‚Ìê‡‚Íˆê•”‚Ìˆ—‚ğƒXƒLƒbƒv‚·‚é
+	// ç”»é¢ãƒ¢ãƒ¼ãƒ‰å¤‰æ›´æ™‚ã«ã¯ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚·ã‚¹ãƒ†ãƒ ã®åˆæœŸåŒ–ã‚’è¡Œã‚ãªã„è¨­å®šã®å ´åˆã¯ä¸€éƒ¨ã®å‡¦ç†ã‚’ã‚¹ã‚­ãƒƒãƒ—ã™ã‚‹
 	if( GSYS.Screen.Graphics_Screen_ChangeModeFlag == FALSE || GSYS.Setting.ChangeScreenModeNotGraphicsSystemFlag == FALSE )
 	{
-		// ƒOƒ‰ƒtƒBƒbƒNƒXƒfƒoƒCƒX‚ÌƒƒXƒg‚©‚ç•œ‹A‚·‚é‘O‚ÉŒÄ‚ÔŠÖ”‚ª“o˜^‚³‚ê‚Ä‚¢‚½‚çÀs‚·‚é
+		// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¹ãƒ‡ãƒã‚¤ã‚¹ã®ãƒ­ã‚¹ãƒˆã‹ã‚‰å¾©å¸°ã™ã‚‹å‰ã«å‘¼ã¶é–¢æ•°ãŒç™»éŒ²ã•ã‚Œã¦ã„ãŸã‚‰å®Ÿè¡Œã™ã‚‹
 		if( GD3D11.Device.Setting.DeviceLostCallbackFunction )
 		{
 			GD3D11.Device.Setting.DeviceLostCallbackFunction( GD3D11.Device.Setting.DeviceLostCallbackData ) ;
@@ -24097,14 +24097,14 @@ extern	int		Graphics_D3D11_RestoreOrChangeSetupGraphSystem_PF( int Change, int S
 
 		if( DxSysData.NotDrawFlag == FALSE )
 		{
-			// DirectX ‚ÌƒIƒuƒWƒFƒNƒg‚ğ‰ğ•ú‚·‚é
+			// DirectX ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’è§£æ”¾ã™ã‚‹
 			Graphics_ReleaseDirectXObject() ;
 		}
 	}
 
 	if( Change == TRUE )
 	{
-		// ‰æ–Êƒ‚[ƒh‚ÌƒZƒbƒg
+		// ç”»é¢ãƒ¢ãƒ¼ãƒ‰ã®ã‚»ãƒƒãƒˆ
 		Graphics_Screen_SetMainScreenSize( ScreenSizeX, ScreenSizeY ) ;
 		GSYS.Screen.MainScreenColorBitDepth = ColorBitDepth ;
 		GSYS.Screen.MainScreenRefreshRate   = RefreshRate ;
@@ -24112,7 +24112,7 @@ extern	int		Graphics_D3D11_RestoreOrChangeSetupGraphSystem_PF( int Change, int S
 	}
 	else
 	{
-		// DirectInput ƒIƒuƒWƒFƒNƒg‚ÌÄƒZƒbƒgƒAƒbƒv
+		// DirectInput ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®å†ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 #ifndef DX_NON_INPUT
 		TerminateInputSystem() ;
 		InitializeInputSystem() ;
@@ -24124,32 +24124,32 @@ extern	int		Graphics_D3D11_RestoreOrChangeSetupGraphSystem_PF( int Change, int S
 		RefreshRate = GSYS.Screen.MainScreenRefreshRate ;
 	}
 
-//	DXST_LOGFILEFMT_ADDUTF16LE(( L"Šm•Ûƒƒ‚ƒŠ”:%d  Šm•Ûƒƒ‚ƒŠ‘ƒTƒCƒY:%dByte(%dKByte)", NS_DxGetAllocNum(), NS_DxGetAllocSize(), NS_DxGetAllocSize() / 1024 )) ;
+//	DXST_LOGFILEFMT_ADDUTF16LE(( L"ç¢ºä¿ãƒ¡ãƒ¢ãƒªæ•°:%d  ç¢ºä¿ãƒ¡ãƒ¢ãƒªç·ã‚µã‚¤ã‚º:%dByte(%dKByte)", NS_DxGetAllocNum(), NS_DxGetAllocSize(), NS_DxGetAllocSize() / 1024 )) ;
 
 	if( DxSysData.NotDrawFlag == FALSE )
 	{
 		MATRIX_D ViewMatrix, ProjectionMatrix, ViewportMatrix ;
 
-		// Direct3D11 ‚É‚æ‚é•`‰æˆ—‚Ì‰Šú‰»
+		// Direct3D11 ã«ã‚ˆã‚‹æç”»å‡¦ç†ã®åˆæœŸåŒ–
 		GSYS.Screen.FullScreenResolutionModeAct = GSYS.Screen.FullScreenResolutionMode ;
 		Graphics_D3D11_Initialize() ;
 
-		// ‰æ–Êƒ‚[ƒh•ÏX‚É‚ÍƒOƒ‰ƒtƒBƒbƒNƒVƒXƒeƒ€‚Ì‰Šú‰»‚ğs‚í‚È‚¢İ’è‚Ìê‡‚Íˆê•”‚Ìˆ—‚ğƒXƒLƒbƒv‚·‚é
+		// ç”»é¢ãƒ¢ãƒ¼ãƒ‰å¤‰æ›´æ™‚ã«ã¯ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚·ã‚¹ãƒ†ãƒ ã®åˆæœŸåŒ–ã‚’è¡Œã‚ãªã„è¨­å®šã®å ´åˆã¯ä¸€éƒ¨ã®å‡¦ç†ã‚’ã‚¹ã‚­ãƒƒãƒ—ã™ã‚‹
 		if( GSYS.Screen.Graphics_Screen_ChangeModeFlag == FALSE || GSYS.Setting.ChangeScreenModeNotGraphicsSystemFlag == FALSE )
 		{
-			// ƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ª‚Â Direct3D11 ƒIƒuƒWƒFƒNƒg‚ÌÄì¬
+			// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ãŒæŒã¤ Direct3D11 ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®å†ä½œæˆ
 			Graphics_D3D11_CreateObjectAll() ;
 		}
 
 #ifndef DX_NON_MASK
-		// ƒ}ƒXƒNƒT[ƒtƒFƒX‚ÌÄì¬
+		// ãƒã‚¹ã‚¯ã‚µãƒ¼ãƒ•ã‚§ã‚¹ã®å†ä½œæˆ
 		Mask_ReCreateSurface() ;
 #endif
 
-		// ‰æ–Êƒ‚[ƒh•ÏX‚É‚ÍƒOƒ‰ƒtƒBƒbƒNƒVƒXƒeƒ€‚Ì‰Šú‰»‚ğs‚í‚È‚¢İ’è‚Ìê‡‚Íˆê•”‚Ìˆ—‚ğƒXƒLƒbƒv‚·‚é
+		// ç”»é¢ãƒ¢ãƒ¼ãƒ‰å¤‰æ›´æ™‚ã«ã¯ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚·ã‚¹ãƒ†ãƒ ã®åˆæœŸåŒ–ã‚’è¡Œã‚ãªã„è¨­å®šã®å ´åˆã¯ä¸€éƒ¨ã®å‡¦ç†ã‚’ã‚¹ã‚­ãƒƒãƒ—ã™ã‚‹
 		if( GSYS.Screen.Graphics_Screen_ChangeModeFlag == FALSE || GSYS.Setting.ChangeScreenModeNotGraphicsSystemFlag )
 		{
-			// ƒAƒNƒeƒBƒuƒOƒ‰ƒtƒBƒbƒN‚ÌƒAƒhƒŒƒX‚ğÄ“xİ’è
+			// ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å†åº¦è¨­å®š
 			if( Change == FALSE )
 			{
 				ViewMatrix       = GSYS.DrawSetting.ViewMatrix ;
@@ -24157,44 +24157,44 @@ extern	int		Graphics_D3D11_RestoreOrChangeSetupGraphSystem_PF( int Change, int S
 				ViewportMatrix   = GSYS.DrawSetting.ViewportMatrix ;
 			}
 
-			// ƒŒƒ“ƒ_[ƒ^[ƒQƒbƒg‚ÌÄİ’è
+			// ãƒ¬ãƒ³ãƒ€ãƒ¼ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã®å†è¨­å®š
 			NS_SetRenderTargetToShader( 0, GSYS.DrawSetting.TargetScreen[ 0 ], GSYS.DrawSetting.TargetScreenSurface[ 0 ], 0 ) ;
 
-			// ƒOƒ‰ƒtƒBƒbƒNŠÖŒW‚Ìİ’è‚ğ‰Šú‰»
+			// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯é–¢ä¿‚ã®è¨­å®šã‚’åˆæœŸåŒ–
 			Graphics_D3D11_Device_ReInitialize() ;
 
-			// ƒfƒoƒCƒXƒƒXƒg”­¶‚Éíœ‚·‚éƒtƒ‰ƒO‚ª—§‚Á‚Ä‚¢‚éƒOƒ‰ƒtƒBƒbƒN‚ğíœ‚·‚é
+			// ãƒ‡ãƒã‚¤ã‚¹ãƒ­ã‚¹ãƒˆç™ºç”Ÿæ™‚ã«å‰Šé™¤ã™ã‚‹ãƒ•ãƒ©ã‚°ãŒç«‹ã£ã¦ã„ã‚‹ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚’å‰Šé™¤ã™ã‚‹
 			Graphics_Image_DeleteDeviceLostDelete() ;
 
-			// ƒOƒ‰ƒtƒBƒbƒN‚Ì•œŒ³
+			// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®å¾©å…ƒ
 			NS_RunRestoreShred() ;
 
-			// ƒOƒ‰ƒtƒBƒbƒNƒXƒfƒoƒCƒX‚ÌƒƒXƒg‚©‚ç•œ‹A‚µ‚½‚Æ‚«‚ÉŒÄ‚ÔŠÖ”‚ª“o˜^‚³‚ê‚Ä‚¢‚½‚çÀs‚·‚é
+			// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¹ãƒ‡ãƒã‚¤ã‚¹ã®ãƒ­ã‚¹ãƒˆã‹ã‚‰å¾©å¸°ã—ãŸã¨ãã«å‘¼ã¶é–¢æ•°ãŒç™»éŒ²ã•ã‚Œã¦ã„ãŸã‚‰å®Ÿè¡Œã™ã‚‹
 			if( GD3D11.Device.Setting.DeviceRestoreCallbackFunction )
 			{
 				GD3D11.Device.Setting.DeviceRestoreCallbackFunction( GD3D11.Device.Setting.DeviceRestoreCallbackData ) ;
 			}
 
-			// ƒn[ƒhƒEƒGƒA‚Ìİ’è‚ğƒŠƒtƒŒƒbƒVƒ…
+			// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã®è¨­å®šã‚’ãƒªãƒ•ãƒ¬ãƒƒã‚·ãƒ¥
 			Graphics_D3D11_DeviceState_RefreshRenderState() ;
 
 	#ifndef DX_NON_MODEL
-			// ’¸“_ƒoƒbƒtƒ@‚ÌƒZƒbƒgƒAƒbƒv
+			// é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 			MV1SetupVertexBufferAll() ;
 	#endif
 
-			// ƒ‰ƒCƒg‚ÌÄİ’è
+			// ãƒ©ã‚¤ãƒˆã®å†è¨­å®š
 			GSYS.Light.HardwareRefresh = TRUE ;
 			NS_SetUseLighting( GSYS.Light.ProcessDisable ? FALSE : TRUE );
 
-			// ‚»‚Ì‘¼‚ÌÄİ’è
+			// ãã®ä»–ã®å†è¨­å®š
 			NS_SetDrawArea( GSYS.DrawSetting.OriginalDrawRect.left, GSYS.DrawSetting.OriginalDrawRect.top, GSYS.DrawSetting.OriginalDrawRect.right, GSYS.DrawSetting.OriginalDrawRect.bottom ) ;
 			NS_SetTransformToWorldD( &GSYS.DrawSetting.WorldMatrix );
 			NS_SetTransformToViewD( &ViewMatrix );
 			NS_SetTransformToProjectionD( &ProjectionMatrix );
 			NS_SetTransformToViewportD( &ViewportMatrix );
 
-			// ‚OˆÈŠO‚Ìƒ^[ƒQƒbƒg‚ÌƒZƒbƒgƒAƒbƒv
+			// ï¼ä»¥å¤–ã®ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 			for( i = 1 ; i < GSYS.HardInfo.RenderTargetNum ; i ++ )
 			{
 				NS_SetRenderTargetToShader( i, GSYS.DrawSetting.TargetScreen[ i ], GSYS.DrawSetting.TargetScreenSurface[ i ], 0 ) ;
@@ -24202,15 +24202,15 @@ extern	int		Graphics_D3D11_RestoreOrChangeSetupGraphSystem_PF( int Change, int S
 		}
 		else
 		{
-			// ƒtƒ‹ƒXƒNƒŠ[ƒ“ƒ‚[ƒh‚Ìê‡‚©ƒEƒBƒ“ƒhƒEƒ‚[ƒh‚ª•ÏX‚³‚ê‚éê‡‚Í SwapChain ‚ğì‚è’¼‚·
+			// ãƒ•ãƒ«ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ¢ãƒ¼ãƒ‰ã®å ´åˆã‹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ¢ãƒ¼ãƒ‰ãŒå¤‰æ›´ã•ã‚Œã‚‹å ´åˆã¯ SwapChain ã‚’ä½œã‚Šç›´ã™
 			if( NS_GetWindowModeFlag() == FALSE || WinData.ChangeWindodwFlag == TRUE )
 			{
-				// ƒ^[ƒQƒbƒg‚ÌƒTƒCƒY•ÏX
+				// ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã®ã‚µã‚¤ã‚ºå¤‰æ›´
 				Graphics_D3D11_OutputWindow_ReCreate( GD3D11.Device.Screen.TargetOutputWindow ) ;
 			}
 			else
 			{
-				// ƒoƒbƒtƒ@‚ÌƒTƒCƒY‚ğ•ÏX‚·‚é
+				// ãƒãƒƒãƒ•ã‚¡ã®ã‚µã‚¤ã‚ºã‚’å¤‰æ›´ã™ã‚‹
 				Graphics_D3D11_OutputWindow_ResizeBuffer(
 					GD3D11.Device.Screen.TargetOutputWindow,
 					ScreenSizeX,
@@ -24218,16 +24218,16 @@ extern	int		Graphics_D3D11_RestoreOrChangeSetupGraphSystem_PF( int Change, int S
 				) ;
 			}
 
-//			// ƒtƒ‹ƒXƒNƒŠ[ƒ“ƒ‚[ƒh‚Ìê‡‚Åƒtƒ‹ƒXƒNƒŠ[ƒ“ƒ‚[ƒh‚ªƒlƒCƒeƒBƒuİ’è‚Ìê‡‚©AƒEƒBƒ“ƒhƒEƒ‚[ƒh‚ª•ÏX‚³‚ê‚éê‡‚Í SwapChain ‚ğì‚è’¼‚·
+//			// ãƒ•ãƒ«ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ¢ãƒ¼ãƒ‰ã®å ´åˆã§ãƒ•ãƒ«ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ¢ãƒ¼ãƒ‰ãŒãƒã‚¤ãƒ†ã‚£ãƒ–è¨­å®šã®å ´åˆã‹ã€ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ¢ãƒ¼ãƒ‰ãŒå¤‰æ›´ã•ã‚Œã‚‹å ´åˆã¯ SwapChain ã‚’ä½œã‚Šç›´ã™
 //			if( ( NS_GetWindowModeFlag() == FALSE && GSYS.Screen.FullScreenResolutionModeAct == DX_FSRESOLUTIONMODE_NATIVE ) ||
 //				WinData.ChangeWindodwFlag == TRUE )
 //			{
-//				// ƒ^[ƒQƒbƒg‚ÌƒTƒCƒY•ÏX
+//				// ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã®ã‚µã‚¤ã‚ºå¤‰æ›´
 //				Graphics_D3D11_OutputWindow_ReCreate( GD3D11.Device.Screen.TargetOutputWindow ) ;
 //			}
 //			else
 //			{
-//				// ƒoƒbƒtƒ@‚ÌƒTƒCƒY‚ğ•ÏX‚·‚é
+//				// ãƒãƒƒãƒ•ã‚¡ã®ã‚µã‚¤ã‚ºã‚’å¤‰æ›´ã™ã‚‹
 //				Graphics_D3D11_OutputWindow_ResizeBuffer(
 //					GD3D11.Device.Screen.TargetOutputWindow,
 //					ScreenSizeX,
@@ -24235,32 +24235,32 @@ extern	int		Graphics_D3D11_RestoreOrChangeSetupGraphSystem_PF( int Change, int S
 //				) ;
 //			}
 
-			// •`‰æ”ÍˆÍ‚ğÄİ’è‚·‚é
+			// æç”»ç¯„å›²ã‚’å†è¨­å®šã™ã‚‹
 			NS_SetDrawArea( 0, 0, ScreenSizeX, ScreenSizeY ) ;
 		}
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// •`‰æ—pƒfƒoƒCƒX‚ª—LŒø‚©‚Ç‚¤‚©‚ğæ“¾‚·‚é( –ß‚è’l  TRUE:—LŒø  FALSE:–³Œø )
+// æç”»ç”¨ãƒ‡ãƒã‚¤ã‚¹ãŒæœ‰åŠ¹ã‹ã©ã†ã‹ã‚’å–å¾—ã™ã‚‹( æˆ»ã‚Šå€¤  TRUE:æœ‰åŠ¹  FALSE:ç„¡åŠ¹ )
 extern	int		Graphics_D3D11_Hardware_CheckValid_PF( void )
 {
 	return D3D11Device_IsValid() ;
 }
 
-// DirectX ‚ÌƒIƒuƒWƒFƒNƒg‚ğ‰ğ•ú‚·‚é
+// DirectX ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’è§£æ”¾ã™ã‚‹
 extern	void	Graphics_D3D11_ReleaseDirectXObject_PF( void )
 {
 #ifndef DX_NON_MASK
-	// ƒ}ƒXƒNƒT[ƒtƒFƒX‚ğˆêíœ
+	// ãƒã‚¹ã‚¯ã‚µãƒ¼ãƒ•ã‚§ã‚¹ã‚’ä¸€æ™‚å‰Šé™¤
 	Mask_ReleaseSurface() ;
 #endif
-	// ƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ª‚Â DirectX ƒIƒuƒWƒFƒNƒg‚Ì‰ğ•ú
+	// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ãŒæŒã¤ DirectX ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®è§£æ”¾
 	Graphics_D3D11_ReleaseObjectAll() ;
 
-	// ƒVƒXƒeƒ€‚ª‚Â Direct3D11 ƒIƒuƒWƒFƒNƒg‚Ì‰ğ•ú
+	// ã‚·ã‚¹ãƒ†ãƒ ãŒæŒã¤ Direct3D11 ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®è§£æ”¾
 	Graphics_D3D11_Terminate() ;
 }
 
@@ -24284,9 +24284,9 @@ extern	void	Graphics_D3D11_ReleaseDirectXObject_PF( void )
 
 
 
-// ŠÂ‹«ˆË‘¶ƒVƒXƒeƒ€ŠÖŒW
+// ç’°å¢ƒä¾å­˜ã‚·ã‚¹ãƒ†ãƒ é–¢ä¿‚
 
-// WM_ACTIVATE ƒƒbƒZ[ƒW‚Ìˆ—‚ÅAƒEƒCƒ“ƒhƒEƒ‚[ƒh‚ÉƒAƒNƒeƒBƒu‚É‚È‚Á‚½Û‚ÉŒÄ‚Î‚ê‚éŠÖ”
+// WM_ACTIVATE ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®å‡¦ç†ã§ã€ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ¢ãƒ¼ãƒ‰æ™‚ã«ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ãªã£ãŸéš›ã«å‘¼ã°ã‚Œã‚‹é–¢æ•°
 extern	void	Graphics_D3D11_WM_ACTIVATE_ActiveProcess_PF( void )
 {
 }
@@ -24314,36 +24314,36 @@ extern	void	Graphics_D3D11_WM_ACTIVATE_ActiveProcess_PF( void )
 
 
 
-// ŠÂ‹«ˆË‘¶•`‰æİ’èŠÖŒW
+// ç’°å¢ƒä¾å­˜æç”»è¨­å®šé–¢ä¿‚
 
-// ƒVƒF[ƒ_[•`‰æ‚Å‚Ì•`‰ææ‚ğİ’è‚·‚é
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼æç”»ã§ã®æç”»å…ˆã‚’è¨­å®šã™ã‚‹
 extern	int		Graphics_Hardware_D3D11_SetRenderTargetToShader_PF( int TargetIndex, int DrawScreen, int SurfaceIndex, int MipLevel )
 {
 	IMAGEDATA *Image ;
 	IMAGEDATA *OldImage ;
 
-	// ƒ^[ƒQƒbƒg‚ª‚OˆÈŠO‚Ìê‡‚ÍƒVƒF[ƒ_[‚ªg—p‚Å‚«‚È‚¢ê‡‚Í‰½‚à‚µ‚È‚¢
+	// ã‚¿ãƒ¼ã‚²ãƒƒãƒˆãŒï¼ä»¥å¤–ã®å ´åˆã¯ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãŒä½¿ç”¨ã§ããªã„å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( GSYS.HardInfo.UseShader == FALSE )
 		return -1 ;
 
-	// ƒfƒoƒCƒX‚ª–³Œø‚É‚È‚Á‚Ä‚¢‚½‚ç‰½‚à‚¹‚¸I—¹
+	// ãƒ‡ãƒã‚¤ã‚¹ãŒç„¡åŠ¹ã«ãªã£ã¦ã„ãŸã‚‰ä½•ã‚‚ã›ãšçµ‚äº†
 	if( GAPIWin.D3D11DeviceObject == NULL )
 		return -1 ;
 
-	// •`‰æ‘Ò‹@‚µ‚Ä‚¢‚é•`‰æ•¨‚ğ•`‰æ
+	// æç”»å¾…æ©Ÿã—ã¦ã„ã‚‹æç”»ç‰©ã‚’æç”»
 	DRAWSTOCKINFO
 
-	// ƒZƒbƒg‚µ‚Ä‚¢‚½ƒeƒNƒXƒ`ƒƒ[‚ğŠO‚·
+	// ã‚»ãƒƒãƒˆã—ã¦ã„ãŸãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã‚’å¤–ã™
 	Graphics_D3D11_DrawSetting_SetTexture( NULL, NULL ) ;
 
-	// ¡‚Ü‚Å‚Ì•`‰ææ‚Ì‰æ‘œî•ñ‚Ìæ“¾
+	// ä»Šã¾ã§ã®æç”»å…ˆã®ç”»åƒæƒ…å ±ã®å–å¾—
 	if( GRAPHCHKFULL( GSYS.DrawSetting.TargetScreen[ TargetIndex ], OldImage ) )
 	{
 		OldImage = NULL ;
 	}
 	else
 	{
-		// ¡‚Ü‚Å‚Ì•`‰ææ‚ªƒ}ƒ‹ƒ`ƒTƒ“ƒvƒ‹ƒ^ƒCƒv‚ÌƒŒƒ“ƒ_ƒŠƒ“ƒOƒ^[ƒQƒbƒg‚¾‚Á‚½ê‡‚Íƒ_ƒEƒ“ƒTƒ“ƒvƒŠƒ“ƒO‚·‚é
+		// ä»Šã¾ã§ã®æç”»å…ˆãŒãƒãƒ«ãƒã‚µãƒ³ãƒ—ãƒ«ã‚¿ã‚¤ãƒ—ã®ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã ã£ãŸå ´åˆã¯ãƒ€ã‚¦ãƒ³ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ã™ã‚‹
 		if( OldImage->Hard.Draw[ 0 ].Tex->PF->D3D11.MSTexture != NULL )
 		{
 			Graphics_D3D11_UpdateDrawTexture(
@@ -24354,10 +24354,10 @@ extern	int		Graphics_Hardware_D3D11_SetRenderTargetToShader_PF( int TargetIndex,
 		}
 	}
 
-	// ‰æ‘œ‚©‚Ç‚¤‚©‚ğ”»’è
+	// ç”»åƒã‹ã©ã†ã‹ã‚’åˆ¤å®š
 	if( GRAPHCHKFULL( DrawScreen, Image ) )
 	{
-		// ‰æ‘œ‚Å‚Í‚È‚¢ê‡‚Í•`‰æ‘ÎÛ‚ğ–³Œø‚É‚·‚é
+		// ç”»åƒã§ã¯ãªã„å ´åˆã¯æç”»å¯¾è±¡ã‚’ç„¡åŠ¹ã«ã™ã‚‹
 		GSYS.DrawSetting.TargetScreen[ TargetIndex ] = 0 ;
 		GSYS.DrawSetting.TargetScreenSurface[ TargetIndex ] = 0 ;
 		GSYS.DrawSetting.TargetScreenMipLevel[ TargetIndex ] = 0 ;
@@ -24365,85 +24365,85 @@ extern	int		Graphics_Hardware_D3D11_SetRenderTargetToShader_PF( int TargetIndex,
 		return 0 ;
 	}
 
-	// ‰æ‘œ‚¾‚Á‚½ê‡‚Í•`‰æ‰Â”\‚Å‚Í–³‚¢ê‡‚ÍƒGƒ‰[
+	// ç”»åƒã ã£ãŸå ´åˆã¯æç”»å¯èƒ½ã§ã¯ç„¡ã„å ´åˆã¯ã‚¨ãƒ©ãƒ¼
 	if( Image->Orig->FormatDesc.DrawValidFlag == FALSE )
 	{
 		return -1 ;
 	}
 
-	// •`‰ææ‚ğƒZƒbƒg
+	// æç”»å…ˆã‚’ã‚»ãƒƒãƒˆ
 	Graphics_D3D11_DeviceState_SetRenderTarget( Image->Hard.Draw[ 0 ].Tex->PF->D3D11.Texture, Image->Hard.Draw[ 0 ].Tex->PF->D3D11.TextureRTV[ SurfaceIndex * Image->Orig->Hard.MipMapCount + MipLevel ], TargetIndex ) ;
 
-	// ƒ^[ƒQƒbƒg‚ª 0 ‚Ìê‡‚Íg—p‚·‚é‚yƒoƒbƒtƒ@‚ÌƒZƒbƒgƒAƒbƒv
+	// ã‚¿ãƒ¼ã‚²ãƒƒãƒˆãŒ 0 ã®å ´åˆã¯ä½¿ç”¨ã™ã‚‹ï¼ºãƒãƒƒãƒ•ã‚¡ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 	if( TargetIndex == 0 )
 	{
 		Graphics_Screen_SetupUseZBuffer() ;
 	}
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// SetDrawBright ‚Ìˆø”‚ªˆê‚Â”Å
+// SetDrawBright ã®å¼•æ•°ãŒä¸€ã¤ç‰ˆ
 extern	int		Graphics_Hardware_D3D11_SetDrawBrightToOneParam_PF( DWORD /*Bright*/ )
 {
-	// ƒfƒBƒt[ƒYƒJƒ‰[‚ÌXV
+	// ãƒ‡ã‚£ãƒ•ãƒ¼ã‚ºã‚«ãƒ©ãƒ¼ã®æ›´æ–°
 	GD3D11.Device.DrawInfo.DiffuseColor = GetDiffuseColor() ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// •`‰æƒuƒŒƒ“ƒhƒ‚[ƒh‚ğƒZƒbƒg‚·‚é
+// æç”»ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern	int		Graphics_Hardware_D3D11_SetDrawBlendMode_PF( int /*BlendMode*/, int /*BlendParam*/ )
 {
-	// ƒfƒBƒt[ƒYƒJƒ‰[‚ÌXV
+	// ãƒ‡ã‚£ãƒ•ãƒ¼ã‚ºã‚«ãƒ©ãƒ¼ã®æ›´æ–°
 	GD3D11.Device.DrawInfo.DiffuseColor = GetDiffuseColor() ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// ƒJƒXƒ^ƒ€ƒuƒŒƒ“ƒhƒ‚[ƒh‚ğİ’è‚·‚é
+// ã‚«ã‚¹ã‚¿ãƒ ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã‚’è¨­å®šã™ã‚‹
 extern	int		Graphics_Hardware_D3D11_SetDrawCustomBlendMode_PF(int BlendEnable, int SrcBlendRGB, int DestBlendRGB, int BlendOpRGB, int SrcBlendA, int DestBlendA, int BlendOpA, int BlendParam)
 {
-	// ƒfƒBƒt[ƒYƒJƒ‰[‚ÌXV
+	// ãƒ‡ã‚£ãƒ•ãƒ¼ã‚ºã‚«ãƒ©ãƒ¼ã®æ›´æ–°
 	GD3D11.Device.DrawInfo.DiffuseColor = GetDiffuseColor() ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// •`‰æ‚ÌƒAƒ‹ƒtƒ@ƒeƒXƒg‚Ìİ’è‚ğs‚¤( TestMode:DX_CMP_GREATER“™( -1:ƒfƒtƒHƒ‹ƒg“®ì‚É–ß‚· )  TestParam:•`‰æƒAƒ‹ƒtƒ@’l‚Æ‚Ì”äŠr‚Ég—p‚·‚é’l )
+// æç”»æ™‚ã®ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆã®è¨­å®šã‚’è¡Œã†( TestMode:DX_CMP_GREATERç­‰( -1:ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå‹•ä½œã«æˆ»ã™ )  TestParam:æç”»ã‚¢ãƒ«ãƒ•ã‚¡å€¤ã¨ã®æ¯”è¼ƒã«ä½¿ç”¨ã™ã‚‹å€¤ )
 extern	int		Graphics_Hardware_D3D11_SetDrawAlphaTest_PF( int /*TestMode*/, int /*TestParam*/ )
 {
-	// ƒfƒBƒt[ƒYƒJƒ‰[‚ÌXV
+	// ãƒ‡ã‚£ãƒ•ãƒ¼ã‚ºã‚«ãƒ©ãƒ¼ã®æ›´æ–°
 	GD3D11.Device.DrawInfo.DiffuseColor = GetDiffuseColor() ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// •`‰æƒ‚[ƒh‚ğƒZƒbƒg‚·‚é
+// æç”»ãƒ¢ãƒ¼ãƒ‰ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern	int		Graphics_Hardware_D3D11_SetDrawMode_PF( int DrawMode )
 {
 	Graphics_D3D11_DeviceState_SetDrawMode( DrawMode ) ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// •`‰æ‹P“x‚ğƒZƒbƒg
+// æç”»è¼åº¦ã‚’ã‚»ãƒƒãƒˆ
 extern	int		Graphics_Hardware_D3D11_SetDrawBright_PF( int /*RedBright*/, int /*GreenBright*/, int /*BlueBright*/ )
 {
-	// ƒfƒBƒt[ƒYƒJƒ‰[‚ÌXV
+	// ãƒ‡ã‚£ãƒ•ãƒ¼ã‚ºã‚«ãƒ©ãƒ¼ã®æ›´æ–°
 	GD3D11.Device.DrawInfo.DiffuseColor = GetDiffuseColor() ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// •`‰æF‚É‰ÁZ‚·‚éF‚ğƒZƒbƒg
+// æç”»è‰²ã«åŠ ç®—ã™ã‚‹è‰²ã‚’ã‚»ãƒƒãƒˆ
 extern	int		Graphics_Hardware_D3D11_SetDrawAddColor_PF( int Red, int Green, int Blue )
 {
 	DX_D3D11_PS_CONST_BUFFER_BASE *ConstantPSBase ;
@@ -24457,7 +24457,7 @@ extern	int		Graphics_Hardware_D3D11_SetDrawAddColor_PF( int Red, int Green, int 
 
 	DRAWSTOCKINFO
 
-	// ’è”ƒf[ƒ^‚É”½‰f
+	// å®šæ•°ãƒ‡ãƒ¼ã‚¿ã«åæ˜ 
 	ConstantPSBase->DrawAddColor[ 0 ] = ( float )Red   / 255.0f ;
 	ConstantPSBase->DrawAddColor[ 1 ] = ( float )Green / 255.0f ;
 	ConstantPSBase->DrawAddColor[ 2 ] = ( float )Blue  / 255.0f ;
@@ -24465,19 +24465,19 @@ extern	int		Graphics_Hardware_D3D11_SetDrawAddColor_PF( int Red, int Green, int 
 
 	GD3D11.Device.Shader.Constant.ConstBuffer_PS_Base->ChangeFlag = TRUE ;
 	
-	// ’è”ƒoƒbƒtƒ@‚ğXV
+	// å®šæ•°ãƒãƒƒãƒ•ã‚¡ã‚’æ›´æ–°
 //	Graphics_D3D11_ConstantBuffer_Update( GD3D11.Device.Shader.Constant.ConstBuffer_PS_Base ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// SetBlendGraphParam ‚Ì‰Â•Ï’·ˆø”ƒpƒ‰ƒ[ƒ^•t‚«
+// SetBlendGraphParam ã®å¯å¤‰é•·å¼•æ•°ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ä»˜ã
 extern	int		Graphics_Hardware_D3D11_SetBlendGraphParamBase_PF( IMAGEDATA *BlendImage, int BlendType, int *Param )
 {
 	if( GAPIWin.D3D11DeviceObject == NULL ) return -1 ;
 	
-	// ƒuƒŒƒ“ƒh‰æ‘œ‚ª NULL ‚à‚µ‚­‚ÍƒeƒNƒXƒ`ƒƒ‚Å‚Í‚È‚©‚Á‚½‚çƒuƒŒƒ“ƒh‰æ‘œˆ—‚Ì‰ğœ
+	// ãƒ–ãƒ¬ãƒ³ãƒ‰ç”»åƒãŒ NULL ã‚‚ã—ãã¯ãƒ†ã‚¯ã‚¹ãƒãƒ£ã§ã¯ãªã‹ã£ãŸã‚‰ãƒ–ãƒ¬ãƒ³ãƒ‰ç”»åƒå‡¦ç†ã®è§£é™¤
 	if( BlendImage == NULL || BlendImage->Orig->FormatDesc.TextureFlag == FALSE )
 	{
 		GSYS.DrawSetting.BlendGraph = -1 ;
@@ -24485,7 +24485,7 @@ extern	int		Graphics_Hardware_D3D11_SetBlendGraphParamBase_PF( IMAGEDATA *BlendI
 	}
 	else
 	{
-		// ƒuƒŒƒ“ƒhƒpƒ‰ƒ[ƒ^‚ğƒZƒbƒg‚·‚é
+		// ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 		Graphics_D3D11_DrawSetting_SetBlendTexture(
 			BlendImage->Hard.Draw[ 0 ].Tex[ 0 ].PF->D3D11.Texture,
 			BlendImage->Hard.Draw[ 0 ].Tex[ 0 ].PF->D3D11.TextureSRV,
@@ -24495,36 +24495,36 @@ extern	int		Graphics_Hardware_D3D11_SetBlendGraphParamBase_PF( IMAGEDATA *BlendI
 		Graphics_D3D11_DrawSetting_SetBlendTextureParam( BlendType, Param ) ;
 	}
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// Å‘åˆÙ•û«‚Ì’l‚ğƒZƒbƒg‚·‚é
+// æœ€å¤§ç•°æ–¹æ€§ã®å€¤ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern	int		Graphics_Hardware_D3D11_SetMaxAnisotropy_PF( int /*MaxAnisotropy*/ )
 {
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// ƒ[ƒ‹ƒh•ÏŠ·—ps—ñ‚ğƒZƒbƒg‚·‚é
+// ãƒ¯ãƒ¼ãƒ«ãƒ‰å¤‰æ›ç”¨è¡Œåˆ—ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern	int		Graphics_Hardware_D3D11_SetTransformToWorld_PF( const MATRIX *Matrix )
 {
 	Graphics_D3D11_DeviceState_SetWorldMatrix( Matrix ) ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// ƒrƒ…[•ÏŠ·—ps—ñ‚ğƒZƒbƒg‚·‚é
+// ãƒ“ãƒ¥ãƒ¼å¤‰æ›ç”¨è¡Œåˆ—ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern	int		Graphics_Hardware_D3D11_SetTransformToView_PF( const MATRIX *Matrix )
 {
 	Graphics_D3D11_DeviceState_SetViewMatrix( Matrix ) ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// Direct3D11 ‚Éİ’è‚·‚éË‰es—ñ‚ğXV‚·‚é
+// Direct3D11 ã«è¨­å®šã™ã‚‹å°„å½±è¡Œåˆ—ã‚’æ›´æ–°ã™ã‚‹
 static void Graphics_Hardware_D3D11_RefreshProjectionMatrix( /* int Update3DProjection, int Update2DProjection, int AlwaysUpdate */ )
 {
 	MATRIX *UseProjectionMatrix ;
@@ -24564,143 +24564,143 @@ static void Graphics_Hardware_D3D11_RefreshProjectionMatrix( /* int Update3DProj
 	Graphics_D3D11_DeviceState_SetProjectionMatrix( &TempMatrix ) ;
 }
 
-// “Š‰e•ÏŠ·—ps—ñ‚ğƒZƒbƒg‚·‚é
+// æŠ•å½±å¤‰æ›ç”¨è¡Œåˆ—ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern	int		Graphics_Hardware_D3D11_SetTransformToProjection_PF( const MATRIX * /*Matrix*/ )
 {
 	Graphics_Hardware_D3D11_RefreshProjectionMatrix() ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// ƒrƒ…[ƒ|[ƒgs—ñ‚ğƒZƒbƒg‚·‚é
+// ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆè¡Œåˆ—ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern	int		Graphics_Hardware_D3D11_SetTransformToViewport_PF( const MATRIX * /* Matrix */ )
 {
 	Graphics_Hardware_D3D11_RefreshProjectionMatrix() ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// ƒeƒNƒXƒ`ƒƒƒAƒhƒŒƒXƒ‚[ƒh‚ğİ’è‚·‚é
-extern	int		Graphics_Hardware_D3D11_SetTextureAddressMode_PF( int Mode /* DX_TEXADDRESS_WRAP “™ */, int Stage )
+// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¢ãƒ‰ãƒ¬ã‚¹ãƒ¢ãƒ¼ãƒ‰ã‚’è¨­å®šã™ã‚‹
+extern	int		Graphics_Hardware_D3D11_SetTextureAddressMode_PF( int Mode /* DX_TEXADDRESS_WRAP ç­‰ */, int Stage )
 {
 	Graphics_D3D11_DeviceState_SetTextureAddress( Mode, Stage ) ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// ƒeƒNƒXƒ`ƒƒƒAƒhƒŒƒXƒ‚[ƒh‚ğİ’è‚·‚é
+// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¢ãƒ‰ãƒ¬ã‚¹ãƒ¢ãƒ¼ãƒ‰ã‚’è¨­å®šã™ã‚‹
 extern	int		Graphics_Hardware_D3D11_SetTextureAddressModeUV_PF( int ModeU, int ModeV, int Stage )
 {
 	Graphics_D3D11_DeviceState_SetTextureAddressU( ModeU, Stage ) ;
 	Graphics_D3D11_DeviceState_SetTextureAddressV( ModeV, Stage ) ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// ƒeƒNƒXƒ`ƒƒÀ•W•ÏŠ·s—ñ‚ğƒZƒbƒg‚·‚é
+// ãƒ†ã‚¯ã‚¹ãƒãƒ£åº§æ¨™å¤‰æ›è¡Œåˆ—ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern	int		Graphics_Hardware_D3D11_SetTextureAddressTransformMatrix_PF( int UseFlag, MATRIX *Matrix, int /*Sampler*/ )
 {
 	Graphics_D3D11_DeviceState_SetTextureAddressTransformMatrix( UseFlag, Matrix ) ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// ƒtƒHƒO‚ğ—LŒø‚É‚·‚é‚©‚Ç‚¤‚©‚ğİ’è‚·‚é( TRUE:—LŒø  FALSE:–³Œø )
+// ãƒ•ã‚©ã‚°ã‚’æœ‰åŠ¹ã«ã™ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹( TRUE:æœ‰åŠ¹  FALSE:ç„¡åŠ¹ )
 extern	int		Graphics_Hardware_D3D11_SetFogEnable_PF( int Flag )
 {
 	Graphics_D3D11_DeviceState_SetFogEnable( Flag ) ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// ƒtƒHƒOƒ‚[ƒh‚ğİ’è‚·‚é
-extern	int		Graphics_Hardware_D3D11_SetFogMode_PF( int Mode /* DX_FOGMODE_NONE “™ */ )
+// ãƒ•ã‚©ã‚°ãƒ¢ãƒ¼ãƒ‰ã‚’è¨­å®šã™ã‚‹
+extern	int		Graphics_Hardware_D3D11_SetFogMode_PF( int Mode /* DX_FOGMODE_NONE ç­‰ */ )
 {
 	Graphics_D3D11_DeviceState_SetFogVertexMode( Mode ) ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// ƒtƒHƒOƒJƒ‰[‚ğ•ÏX‚·‚é
+// ãƒ•ã‚©ã‚°ã‚«ãƒ©ãƒ¼ã‚’å¤‰æ›´ã™ã‚‹
 extern	int		Graphics_Hardware_D3D11_SetFogColor_PF( DWORD FogColor )
 {
 	Graphics_D3D11_DeviceState_SetFogColor( FogColor ) ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// ƒtƒHƒO‚ªn‚Ü‚é‹——£‚ÆI—¹‚·‚é‹——£‚ğİ’è‚·‚é( 0.0f ` 1.0f )
+// ãƒ•ã‚©ã‚°ãŒå§‹ã¾ã‚‹è·é›¢ã¨çµ‚äº†ã™ã‚‹è·é›¢ã‚’è¨­å®šã™ã‚‹( 0.0f ï½ 1.0f )
 extern	int		Graphics_Hardware_D3D11_SetFogStartEnd_PF( float start, float end )
 {
 	Graphics_D3D11_DeviceState_SetFogStartEnd( start, end ) ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// ƒtƒHƒO‚Ì–§“x‚ğİ’è‚·‚é( 0.0f ` 1.0f )
+// ãƒ•ã‚©ã‚°ã®å¯†åº¦ã‚’è¨­å®šã™ã‚‹( 0.0f ï½ 1.0f )
 extern	int		Graphics_Hardware_D3D11_SetFogDensity_PF( float density )
 {
 	Graphics_D3D11_DeviceState_SetFogDensity( density ) ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// ‚‚³ƒtƒHƒO‚ğ—LŒø‚É‚·‚é‚©‚Ç‚¤‚©‚ğİ’è‚·‚é( TRUE:—LŒø  FALSE:–³Œø )
+// é«˜ã•ãƒ•ã‚©ã‚°ã‚’æœ‰åŠ¹ã«ã™ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹( TRUE:æœ‰åŠ¹  FALSE:ç„¡åŠ¹ )
 extern	int		Graphics_Hardware_D3D11_SetVerticalFogEnable_PF( int Flag )
 {
 	Graphics_D3D11_DeviceState_SetVerticalFogEnable( Flag ) ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// ‚‚³ƒtƒHƒOƒ‚[ƒh‚ğİ’è‚·‚é
-extern	int		Graphics_Hardware_D3D11_SetVerticalFogMode_PF( int Mode /* DX_FOGMODE_NONE “™ */ )
+// é«˜ã•ãƒ•ã‚©ã‚°ãƒ¢ãƒ¼ãƒ‰ã‚’è¨­å®šã™ã‚‹
+extern	int		Graphics_Hardware_D3D11_SetVerticalFogMode_PF( int Mode /* DX_FOGMODE_NONE ç­‰ */ )
 {
 	Graphics_D3D11_DeviceState_SetVerticalFogVertexMode( Mode ) ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// ‚‚³ƒtƒHƒOƒJƒ‰[‚ğ•ÏX‚·‚é
+// é«˜ã•ãƒ•ã‚©ã‚°ã‚«ãƒ©ãƒ¼ã‚’å¤‰æ›´ã™ã‚‹
 extern	int		Graphics_Hardware_D3D11_SetVerticalFogColor_PF( DWORD VerticalFogColor )
 {
 	Graphics_D3D11_DeviceState_SetVerticalFogColor( VerticalFogColor ) ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// ‚‚³ƒtƒHƒO‚ªn‚Ü‚é‹——£‚ÆI—¹‚·‚é‹——£‚ğİ’è‚·‚é( 0.0f ` 1.0f )
+// é«˜ã•ãƒ•ã‚©ã‚°ãŒå§‹ã¾ã‚‹è·é›¢ã¨çµ‚äº†ã™ã‚‹è·é›¢ã‚’è¨­å®šã™ã‚‹( 0.0f ï½ 1.0f )
 extern	int		Graphics_Hardware_D3D11_SetVerticalFogStartEnd_PF( float start, float end )
 {
 	Graphics_D3D11_DeviceState_SetVerticalFogStartEnd( start, end ) ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// ‚‚³ƒtƒHƒO‚Ì–§“x‚ğİ’è‚·‚é( 0.0f ` 1.0f )
+// é«˜ã•ãƒ•ã‚©ã‚°ã®å¯†åº¦ã‚’è¨­å®šã™ã‚‹( 0.0f ï½ 1.0f )
 extern	int		Graphics_Hardware_D3D11_SetVerticalFogDensity_PF( float start, float density )
 {
 	Graphics_D3D11_DeviceState_SetVerticalFogDensity( start, density ) ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// Šî–{ƒf[ƒ^‚Éİ’è‚³‚ê‚Ä‚¢‚éƒtƒHƒOî•ñ‚ğƒn[ƒhƒEƒFƒA‚É”½‰f‚·‚é
+// åŸºæœ¬ãƒ‡ãƒ¼ã‚¿ã«è¨­å®šã•ã‚Œã¦ã„ã‚‹ãƒ•ã‚©ã‚°æƒ…å ±ã‚’ãƒãƒ¼ãƒ‰ã‚¦ã‚§ã‚¢ã«åæ˜ ã™ã‚‹
 extern	int		Graphics_Hardware_D3D11_ApplyLigFogToHardware_PF( void )
 {
 	if( GD3D11.Device.State.FogEnable != GSYS.DrawSetting.FogEnable )
@@ -24713,20 +24713,20 @@ extern	int		Graphics_Hardware_D3D11_ApplyLigFogToHardware_PF( void )
 		Graphics_D3D11_DeviceState_SetVerticalFogEnable( GSYS.DrawSetting.VerticalFogEnable ) ;
 	}
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// ˆÈ‘O‚Ì DrawModiGraph ŠÖ”‚ÌƒR[ƒh‚ğg—p‚·‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğƒZƒbƒg‚·‚é
+// ä»¥å‰ã® DrawModiGraph é–¢æ•°ã®ã‚³ãƒ¼ãƒ‰ã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern	int		Graphics_Hardware_D3D11_SetUseOldDrawModiGraphCodeFlag_PF( int Flag )
 {
 	GD3D11.Setting.UseOldDrawModiGraphCodeFlag = Flag ;
 	
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// •`‰ææ‚É³‚µ‚¢ƒ¿’l‚ğ‘‚«‚Ş‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğXV‚·‚é
+// æç”»å…ˆã«æ­£ã—ã„Î±å€¤ã‚’æ›¸ãè¾¼ã‚€ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’æ›´æ–°ã™ã‚‹
 extern	int		Graphics_Hardware_D3D11_RefreshAlphaChDrawMode_PF( void )
 {
 	IMAGEDATA *Image ;
@@ -24735,38 +24735,38 @@ extern	int		Graphics_Hardware_D3D11_RefreshAlphaChDrawMode_PF( void )
 
 	NextFlag = FALSE ;
 
-	// ‚O”ÔˆÈŠO‚É‚à•`‰ææ‚ªİ’è‚³‚ê‚Ä‚¢‚½ê‡‚Í’Êíƒ‚[ƒh
+	// ï¼ç•ªä»¥å¤–ã«ã‚‚æç”»å…ˆãŒè¨­å®šã•ã‚Œã¦ã„ãŸå ´åˆã¯é€šå¸¸ãƒ¢ãƒ¼ãƒ‰
 	for( i = 1 ; i < DX_RENDERTARGET_COUNT ; i ++ )
 	{
 		if( GSYS.DrawSetting.TargetScreen[ i ] != 0 )
 			goto END ;
 	}
 
-	// •`‰ææ‚ª’Êí‰æ–Ê‚Ìê‡‚Í‰½‚à‚µ‚È‚¢
+	// æç”»å…ˆãŒé€šå¸¸ç”»é¢ã®å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( GSYS.DrawSetting.TargetScreen[ 0 ] == DX_SCREEN_BACK ||
 		GSYS.DrawSetting.TargetScreen[ 0 ] == DX_SCREEN_FRONT ||
 		GSYS.DrawSetting.TargetScreen[ 0 ] == DX_SCREEN_WORK ||
 		GSYS.DrawSetting.TargetScreen[ 0 ] == DX_SCREEN_TEMPFRONT )
 		goto END ;
 
-	// •`‰ææ‚Æ‚È‚Á‚Ä‚¢‚é‰æ‘œ‚ª–³Œø‚Ìê‡‚Í‰½‚à‚µ‚È‚¢
+	// æç”»å…ˆã¨ãªã£ã¦ã„ã‚‹ç”»åƒãŒç„¡åŠ¹ã®å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( GRAPHCHKFULL( GSYS.DrawSetting.TargetScreen[ 0 ], Image ) )
 		goto END ;
 
-	// •`‰ææ‚Ì‰æ‘œ‚Éƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ª–³‚¢ê‡‚à‰½‚à‚µ‚È‚¢
+	// æç”»å…ˆã®ç”»åƒã«Î±ãƒãƒ£ãƒ³ãƒãƒ«ãŒç„¡ã„å ´åˆã‚‚ä½•ã‚‚ã—ãªã„
 	if( Image->Orig->FormatDesc.AlphaChFlag == FALSE )
 		goto END ;
 	
-	// ƒeƒNƒXƒ`ƒƒ‚Å‚Í‚È‚¢ê‡‚Í‰½‚à‚µ‚È‚¢
+	// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã§ã¯ãªã„å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( Image->Orig->FormatDesc.TextureFlag == FALSE )
 		goto END ;
 
-	// ‚±‚±‚É—ˆ‚½‚Æ‚¢‚¤‚±‚Æ‚Í³Šm‚Èƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ÌŒvZ‚ğs‚¤‚Æ‚¢‚¤‚±‚Æ
+	// ã“ã“ã«æ¥ãŸã¨ã„ã†ã“ã¨ã¯æ­£ç¢ºãªÎ±ãƒãƒ£ãƒ³ãƒãƒ«ã®è¨ˆç®—ã‚’è¡Œã†ã¨ã„ã†ã“ã¨
 	NextFlag = TRUE ;
 
 END :
 /*
-	// ƒeƒNƒXƒ`ƒƒ‚Ì•Û‘¶
+	// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ä¿å­˜
 	if( NextFlag == TRUE )
 	{
 		IMAGEDATA *WorkImage ;
@@ -24787,16 +24787,16 @@ END :
 		GRH.RenderTargetTexture = FALSE ;
 	}
 */
-	// ˆÈ‘O‚Æƒtƒ‰ƒO‚Ìó‘Ô‚ªˆÙ‚È‚éê‡‚Ì‚İƒuƒŒƒ“ƒhƒ‚[ƒh‚ÌXV‚às‚¤
+	// ä»¥å‰ã¨ãƒ•ãƒ©ã‚°ã®çŠ¶æ…‹ãŒç•°ãªã‚‹å ´åˆã®ã¿ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã®æ›´æ–°ã‚‚è¡Œã†
 	if( NextFlag != GSYS.DrawSetting.AlphaChDrawMode )
 	{
-		// ƒtƒ‰ƒO‚Ì•Û‘¶
+		// ãƒ•ãƒ©ã‚°ã®ä¿å­˜
 		GSYS.DrawSetting.AlphaChDrawMode = NextFlag ;
 		GD3D11.Device.DrawSetting.ChangeBlendParamFlag = TRUE ;
 		GSYS.ChangeSettingFlag = TRUE ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
@@ -24823,19 +24823,19 @@ END :
 
 
 
-// ŠÂ‹«ˆË‘¶İ’èŠÖŒW
+// ç’°å¢ƒä¾å­˜è¨­å®šé–¢ä¿‚
 
-// ƒsƒNƒZƒ‹’PˆÊ‚Åƒ‰ƒCƒeƒBƒ“ƒO‚ğs‚¤‚©‚Ç‚¤‚©‚ğİ’è‚·‚éA—v ShaderModel 3.0( TRUE:ƒsƒNƒZƒ‹’PˆÊ‚Ìƒ‰ƒCƒeƒBƒ“ƒO‚ğs‚¤  FALSE:’¸“_’PˆÊ‚Ìƒ‰ƒCƒeƒBƒ“ƒO‚ğs‚¤( ƒfƒtƒHƒ‹ƒg ) )
+// ãƒ”ã‚¯ã‚»ãƒ«å˜ä½ã§ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ã‚’è¡Œã†ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹ã€è¦ ShaderModel 3.0( TRUE:ãƒ”ã‚¯ã‚»ãƒ«å˜ä½ã®ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ã‚’è¡Œã†  FALSE:é ‚ç‚¹å˜ä½ã®ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ã‚’è¡Œã†( ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ ) )
 extern	int		Graphics_Hardware_D3D11_SetUsePixelLighting_PF( int Flag )
 {
-	// ‰Šú‰»‘O‚Ìê‡‚Íİ’è’l‚¾‚¯•Û‘¶‚·‚é
+	// åˆæœŸåŒ–å‰ã®å ´åˆã¯è¨­å®šå€¤ã ã‘ä¿å­˜ã™ã‚‹
 	if( DxSysData.DxLib_InitializeFlag == FALSE )
 	{
 		GD3D11.UsePixelLightingShader = Flag ;
 	}
 	else
 	{
-		// ‰Šú‰»Œã‚Ìê‡‚Í D_D3D_FEATURE_LEVEL_10_0 –¢–‚Ìê‡‚ÍƒsƒNƒZƒ‹’PˆÊƒ‰ƒCƒeƒBƒ“ƒO‚Íg—p‚Å‚«‚È‚¢
+		// åˆæœŸåŒ–å¾Œã®å ´åˆã¯ D_D3D_FEATURE_LEVEL_10_0 æœªæº€ã®å ´åˆã¯ãƒ”ã‚¯ã‚»ãƒ«å˜ä½ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ã¯ä½¿ç”¨ã§ããªã„
 		if( GD3D11.Setting.FeatureLevel < D_D3D_FEATURE_LEVEL_10_0 )
 		{
 			GD3D11.UsePixelLightingShader = FALSE ;
@@ -24846,31 +24846,31 @@ extern	int		Graphics_Hardware_D3D11_SetUsePixelLighting_PF( int Flag )
 		}
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒOƒ‰ƒtƒBƒbƒNƒXƒfƒoƒCƒX‚ªƒƒXƒg‚©‚ç•œ‹A‚µ‚½Û‚ÉŒÄ‚Î‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”‚ğİ’è‚·‚é
+// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¹ãƒ‡ãƒã‚¤ã‚¹ãŒãƒ­ã‚¹ãƒˆã‹ã‚‰å¾©å¸°ã—ãŸéš›ã«å‘¼ã°ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã‚’è¨­å®šã™ã‚‹
 extern	int		Graphics_Hardware_D3D11_SetGraphicsDeviceRestoreCallbackFunction_PF( void (* Callback )( void *Data ), void *CallbackData )
 {
 	GD3D11.Device.Setting.DeviceRestoreCallbackFunction = Callback ;
 	GD3D11.Device.Setting.DeviceRestoreCallbackData = CallbackData ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒOƒ‰ƒtƒBƒbƒNƒXƒfƒoƒCƒX‚ªƒƒXƒg‚©‚ç•œ‹A‚·‚é‘O‚ÉŒÄ‚Î‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”‚ğİ’è‚·‚é
+// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¹ãƒ‡ãƒã‚¤ã‚¹ãŒãƒ­ã‚¹ãƒˆã‹ã‚‰å¾©å¸°ã™ã‚‹å‰ã«å‘¼ã°ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã‚’è¨­å®šã™ã‚‹
 extern	int		Graphics_Hardware_D3D11_SetGraphicsDeviceLostCallbackFunction_PF( void (* Callback )( void *Data ), void *CallbackData )
 {
 	GD3D11.Device.Setting.DeviceLostCallbackFunction = Callback ;
 	GD3D11.Device.Setting.DeviceLostCallbackData = CallbackData ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒrƒfƒIƒƒ‚ƒŠ‚Ì—e—Ê‚ğ“¾‚é( 64bit”Å )
+// ãƒ“ãƒ‡ã‚ªãƒ¡ãƒ¢ãƒªã®å®¹é‡ã‚’å¾—ã‚‹( 64bitç‰ˆ )
 extern	int		Graphics_Hardware_D3D11_GetVideoMemorySizeEx_PF( ULONGLONG *TotalSize, ULONGLONG *UseSize )
 {
 	D_DXGI_QUERY_VIDEO_MEMORY_INFO MemoryInfo ;
@@ -24899,7 +24899,7 @@ extern	int		Graphics_Hardware_D3D11_GetVideoMemorySizeEx_PF( ULONGLONG *TotalSiz
 	return 0 ;
 }
 
-// ‚c‚wƒ‰ƒCƒuƒ‰ƒŠ‚Ì‚c‚‰‚’‚…‚ƒ‚”‚R‚cİ’è‚ğ‚µ‚È‚¨‚·
+// ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®ï¼¤ï½‰ï½’ï½…ï½ƒï½”ï¼“ï¼¤è¨­å®šã‚’ã—ãªãŠã™
 extern	int		Graphics_Hardware_D3D11_RefreshDxLibDirect3DSetting_PF( void )
 {
 	if( GAPIWin.D3D11DeviceObject == NULL )
@@ -24909,10 +24909,10 @@ extern	int		Graphics_Hardware_D3D11_RefreshDxLibDirect3DSetting_PF( void )
 
 	Graphics_D3D11_DeviceState_RefreshRenderState() ;
 
-	// ‰Šú‰»ƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// åˆæœŸåŒ–ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	GD3D11.Device.DrawSetting.CancelSettingEqualCheck = TRUE ;
 
-	// ƒuƒŒƒ“ƒhƒ‚[ƒh‚ÌÄİ’è
+	// ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã®å†è¨­å®š
 	Graphics_D3D11_DrawSetting_SetDrawBlendMode(
 		GD3D11.Device.DrawSetting.BlendMode,
 		GD3D11.Device.DrawSetting.BlendEnable,
@@ -24927,73 +24927,73 @@ extern	int		Graphics_Hardware_D3D11_RefreshDxLibDirect3DSetting_PF( void )
 	) ;
 	Graphics_D3D11_DrawPreparation() ;
 
-	// ‰Šú‰»ƒtƒ‰ƒO‚ğ“|‚·
+	// åˆæœŸåŒ–ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 	GD3D11.Device.DrawSetting.CancelSettingEqualCheck = FALSE ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// Direct3D11 ‚Åg—p‚·‚éÅ’á‹@”\ƒŒƒxƒ‹‚ğw’è‚·‚éŠÖ”‚Å‚·A®ADX_DIRECT3D_11_FEATURE_LEVEL_11_0 ‚æ‚è’á‚¢‹@”\ƒŒƒxƒ‹‚Å‚Ì³í‚È“®ì‚Í•ÛØ‚µ‚Ü‚¹‚ñ( ƒfƒtƒHƒ‹ƒg‚Í DX_DIRECT3D_11_FEATURE_LEVEL_11_0 )
-extern int Graphics_D3D11_SetUseDirect3D11MinFeatureLevel_PF( int Level /* DX_DIRECT3D_11_FEATURE_LEVEL_10_0 ‚È‚Ç */ )
+// Direct3D11 ã§ä½¿ç”¨ã™ã‚‹æœ€ä½æ©Ÿèƒ½ãƒ¬ãƒ™ãƒ«ã‚’æŒ‡å®šã™ã‚‹é–¢æ•°ã§ã™ã€å°šã€DX_DIRECT3D_11_FEATURE_LEVEL_11_0 ã‚ˆã‚Šä½ã„æ©Ÿèƒ½ãƒ¬ãƒ™ãƒ«ã§ã®æ­£å¸¸ãªå‹•ä½œã¯ä¿è¨¼ã—ã¾ã›ã‚“( ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã¯ DX_DIRECT3D_11_FEATURE_LEVEL_11_0 )
+extern int Graphics_D3D11_SetUseDirect3D11MinFeatureLevel_PF( int Level /* DX_DIRECT3D_11_FEATURE_LEVEL_10_0 ãªã© */ )
 {
-	// ‰Šú‰»‘O‚Ì‚İ—LŒø
+	// åˆæœŸåŒ–å‰ã®ã¿æœ‰åŠ¹
 	if( DxSysData.DxLib_InitializeFlag == TRUE ) return -1 ;
 
-	// ƒtƒ‰ƒO‚ğ•Û‘¶
+	// ãƒ•ãƒ©ã‚°ã‚’ä¿å­˜
 	GD3D11.Setting.UseMinFeatureLevelDirect3D11 = Level ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// D3D_DRIVER_TYPE_WARP ƒ^ƒCƒv‚Ì Direct3D 11 ƒhƒ‰ƒCƒo‚ğg—p‚·‚é‚©‚Ç‚¤‚©‚ğİ’è‚·‚é( TRUE:g—p‚·‚é  FALSE:g—p‚µ‚È‚¢( ƒfƒtƒHƒ‹ƒg ) )
+// D3D_DRIVER_TYPE_WARP ã‚¿ã‚¤ãƒ—ã® Direct3D 11 ãƒ‰ãƒ©ã‚¤ãƒã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹( TRUE:ä½¿ç”¨ã™ã‚‹  FALSE:ä½¿ç”¨ã—ãªã„( ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ ) )
 extern int NS_SetUseDirect3D11WARPDriver( int Flag )
 {
-	// ‰Šú‰»‘O‚Ì‚İ—LŒø
+	// åˆæœŸåŒ–å‰ã®ã¿æœ‰åŠ¹
 	if( DxSysData.DxLib_InitializeFlag == TRUE ) return -1 ;
 
-	// ƒtƒ‰ƒO‚ğ•Û‘¶
+	// ãƒ•ãƒ©ã‚°ã‚’ä¿å­˜
 	GD3D11.Setting.UseDirect3D11WARPTypeDriver = Flag ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// g—p‚·‚éƒOƒ‰ƒtƒBƒbƒNƒXƒfƒoƒCƒX‚ÌƒAƒ_ƒvƒ^[‚ÌƒCƒ“ƒfƒbƒNƒX‚ğİ’è‚·‚é
+// ä½¿ç”¨ã™ã‚‹ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¹ãƒ‡ãƒã‚¤ã‚¹ã®ã‚¢ãƒ€ãƒ—ã‚¿ãƒ¼ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’è¨­å®šã™ã‚‹
 extern int NS_SetUseDirect3D11AdapterIndex( int Index )
 {
 	int i, j ;
 
-	// ‰Šú‰»‘O‚Ì‚İ—LŒø
+	// åˆæœŸåŒ–å‰ã®ã¿æœ‰åŠ¹
 	if( DxSysData.DxLib_InitializeFlag == TRUE ) return -1 ;
 
-	// ƒAƒ_ƒvƒ^[‚ğ—ñ‹“
+	// ã‚¢ãƒ€ãƒ—ã‚¿ãƒ¼ã‚’åˆ—æŒ™
 	EnumDXGIAdapterInfo() ;
 
-	// ƒfƒBƒXƒvƒŒƒC‚ğ—ñ‹“
+	// ãƒ‡ã‚£ã‚¹ãƒ—ãƒ¬ã‚¤ã‚’åˆ—æŒ™
 	if( GSYS.Screen.DisplayInfo == NULL )
 	{
 		Graphics_SetupDisplayInfo_PF() ;
 	}
 
-	// w’è”Ô†‚ÌƒCƒ“ƒfƒbƒNƒX‚ÌƒAƒ_ƒvƒ^[‚ª–³‚¢ê‡‚ÍƒGƒ‰[
+	// æŒ‡å®šç•ªå·ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã®ã‚¢ãƒ€ãƒ—ã‚¿ãƒ¼ãŒç„¡ã„å ´åˆã¯ã‚¨ãƒ©ãƒ¼
 	if( Index >= GD3D11.Adapter.InfoNum )
 	{
 		return -1 ;
 	}
 
-	// w’è”Ô†‚ÌƒAƒ_ƒvƒ^[‚ªo—Íæ‚ª–³‚¢ê‡‚àƒGƒ‰[
+	// æŒ‡å®šç•ªå·ã®ã‚¢ãƒ€ãƒ—ã‚¿ãƒ¼ãŒå‡ºåŠ›å…ˆãŒç„¡ã„å ´åˆã‚‚ã‚¨ãƒ©ãƒ¼
 	if( GD3D11.Adapter.Info[ Index ].OutputNum <= 0 )
 	{
 		return -1 ;
 	}
 
-	// ƒtƒ‰ƒO‚ğ•Û‘¶
+	// ãƒ•ãƒ©ã‚°ã‚’ä¿å­˜
 	GD3D11.Setting.EnableUseDXGIAdapterIndex = TRUE ;
 	GD3D11.Setting.UseDXGIAdapterIndex = Index ;
 
-	// w’è”Ô†‚ÌƒAƒ_ƒvƒ^[‚ÌƒfƒBƒXƒvƒŒƒC‚ğo—Í‘ÎÛ‚É‚·‚é
+	// æŒ‡å®šç•ªå·ã®ã‚¢ãƒ€ãƒ—ã‚¿ãƒ¼ã®ãƒ‡ã‚£ã‚¹ãƒ—ãƒ¬ã‚¤ã‚’å‡ºåŠ›å¯¾è±¡ã«ã™ã‚‹
 	for( i = 0 ; i < GSYS.Screen.DisplayNum ; i ++ )
 	{
 		for( j = 0 ; j < GD3D11.Adapter.Info[ Index ].OutputNum ; j ++ )
@@ -25006,35 +25006,35 @@ extern int NS_SetUseDirect3D11AdapterIndex( int Index )
 		}
 	}
 
-	// ‚±‚±‚É—ˆ‚½ê‡‚Ío—Íæ‚ÌƒfƒBƒXƒvƒŒƒC‚ªŒ©‚Â‚©‚ç‚È‚©‚Á‚½‚Æ‚¢‚¤–‚È‚Ì‚ÅƒGƒ‰[
+	// ã“ã“ã«æ¥ãŸå ´åˆã¯å‡ºåŠ›å…ˆã®ãƒ‡ã‚£ã‚¹ãƒ—ãƒ¬ã‚¤ãŒè¦‹ã¤ã‹ã‚‰ãªã‹ã£ãŸã¨ã„ã†äº‹ãªã®ã§ã‚¨ãƒ©ãƒ¼
 	return -1 ;
 }
 
-// g—p‚·‚é IDXGIAdapter ‚Ì LUID ‚ğİ’è‚·‚é
+// ä½¿ç”¨ã™ã‚‹ IDXGIAdapter ã® LUID ã‚’è¨­å®šã™ã‚‹
 extern int NS_SetUseDirect3D11AdapterLUID( LUID *UseLUID )
 {
 	int i ;
 
-	// ‰Šú‰»‘O‚Ì‚İ—LŒø
+	// åˆæœŸåŒ–å‰ã®ã¿æœ‰åŠ¹
 	if( DxSysData.DxLib_InitializeFlag == TRUE ) return -1 ;
 
-	// NULL ‚Ìê‡‚Íİ’è‚ğ–³Œø‰»
+	// NULL ã®å ´åˆã¯è¨­å®šã‚’ç„¡åŠ¹åŒ–
 	if( UseLUID == NULL )
 	{
 		GD3D11.Setting.EnableUseDXGIAdapterIndex = FALSE ;
 		return 0 ;
 	}
 	
-	// ƒAƒ_ƒvƒ^[‚ğ—ñ‹“
+	// ã‚¢ãƒ€ãƒ—ã‚¿ãƒ¼ã‚’åˆ—æŒ™
 	EnumDXGIAdapterInfo() ;
 
-	// ƒfƒBƒXƒvƒŒƒC‚ğ—ñ‹“
+	// ãƒ‡ã‚£ã‚¹ãƒ—ãƒ¬ã‚¤ã‚’åˆ—æŒ™
 	if( GSYS.Screen.DisplayInfo == NULL )
 	{
 		Graphics_SetupDisplayInfo_PF() ;
 	}
 
-	// w’è‚Ì LUID ‚ÌƒAƒ_ƒvƒ^‚ğŒŸõ
+	// æŒ‡å®šã® LUID ã®ã‚¢ãƒ€ãƒ—ã‚¿ã‚’æ¤œç´¢
 	for( i = 0 ; i < GD3D11.Adapter.InfoNum ; i ++ )
 	{
 		if( _MEMCMP( UseLUID, &GD3D11.Adapter.Info[ i ].Desc.AdapterLuid, sizeof( LUID ) ) == 0 )
@@ -25043,23 +25043,23 @@ extern int NS_SetUseDirect3D11AdapterLUID( LUID *UseLUID )
 		}
 	}
 	
-	// w’è‚Ì LUID ‚ÌƒAƒ_ƒvƒ^‚ª–³‚¯‚ê‚ÎƒGƒ‰[
+	// æŒ‡å®šã® LUID ã®ã‚¢ãƒ€ãƒ—ã‚¿ãŒç„¡ã‘ã‚Œã°ã‚¨ãƒ©ãƒ¼
 	if( i == GD3D11.Adapter.InfoNum )
 	{
 		return -1 ;
 	}
 
-	// w’è‚Ì LUID ‚ÌƒAƒ_ƒvƒ^‚ª‚ ‚Á‚½ê‡‚ÍA‚»‚ÌƒAƒ_ƒvƒ^‚ğg—p‚·‚é‚æ‚¤‚Éİ’è‚·‚é
+	// æŒ‡å®šã® LUID ã®ã‚¢ãƒ€ãƒ—ã‚¿ãŒã‚ã£ãŸå ´åˆã¯ã€ãã®ã‚¢ãƒ€ãƒ—ã‚¿ã‚’ä½¿ç”¨ã™ã‚‹ã‚ˆã†ã«è¨­å®šã™ã‚‹
 	NS_SetUseDirect3D11AdapterIndex( i ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// g—p‚·‚é IDXGIAdapter ‚Ì LUID ‚ğæ“¾‚·‚é
+// ä½¿ç”¨ã™ã‚‹ IDXGIAdapter ã® LUID ã‚’å–å¾—ã™ã‚‹
 extern LUID NS_GetUseDirect3D11AdapterLUID( void )
 {
-	// g—p‚·‚é LUID ‚ªw’è‚³‚ê‚Ä‚¢‚È‚¢ê‡‚Í–³Œø‚È’l‚ğ•Ô‚·
+	// ä½¿ç”¨ã™ã‚‹ LUID ãŒæŒ‡å®šã•ã‚Œã¦ã„ãªã„å ´åˆã¯ç„¡åŠ¹ãªå€¤ã‚’è¿”ã™
 	if( GD3D11.Setting.EnableUseDXGIAdapterIndex == FALSE )
 	{
 		LUID NoneLUID ;
@@ -25067,27 +25067,27 @@ extern LUID NS_GetUseDirect3D11AdapterLUID( void )
 		return NoneLUID ;
 	}
 
-	// g—p‚·‚éƒAƒ_ƒvƒ^‚Ì LUID ‚ğ•Ô‚·
+	// ä½¿ç”¨ã™ã‚‹ã‚¢ãƒ€ãƒ—ã‚¿ã® LUID ã‚’è¿”ã™
 	return GD3D11.Adapter.Info[ GD3D11.Setting.UseDXGIAdapterIndex ].Desc.AdapterLuid ;
 }
 
-// D3D11Device ì¬‚É D3D11_CREATE_DEVICE_BGRA_SUPPORT ‚ğw’è‚·‚é‚©‚Ç‚¤‚©‚ğİ’è‚·‚é( TRUE:w’è‚·‚é  FALSE:w’è‚µ‚È‚¢( ƒfƒtƒHƒ‹ƒg ) )
+// D3D11Device ä½œæˆæ™‚ã« D3D11_CREATE_DEVICE_BGRA_SUPPORT ã‚’æŒ‡å®šã™ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹( TRUE:æŒ‡å®šã™ã‚‹  FALSE:æŒ‡å®šã—ãªã„( ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ ) )
 extern int NS_SetUseDirect3D11BGRASupport( int Flag )
 {
-	// ‰Šú‰»‘O‚Ì‚İ—LŒø
+	// åˆæœŸåŒ–å‰ã®ã¿æœ‰åŠ¹
 	if( DxSysData.DxLib_InitializeFlag == TRUE ) return -1 ;
 
-	// ƒtƒ‰ƒO‚ğ•Û‘¶
+	// ãƒ•ãƒ©ã‚°ã‚’ä¿å­˜
 	GD3D11.Setting.UseDirect3D11BGRASupport = Flag ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// D3D11Device ì¬‚É D3D11_CREATE_DEVICE_BGRA_SUPPORT ‚ğw’è‚·‚é‚©‚Ç‚¤‚©‚ğæ“¾‚·‚é
+// D3D11Device ä½œæˆæ™‚ã« D3D11_CREATE_DEVICE_BGRA_SUPPORT ã‚’æŒ‡å®šã™ã‚‹ã‹ã©ã†ã‹ã‚’å–å¾—ã™ã‚‹
 extern int NS_GetUseDirect3D11BGRASupport( void )
 {
-	// ƒtƒ‰ƒO‚ğ•Ô‚·
+	// ãƒ•ãƒ©ã‚°ã‚’è¿”ã™
 	return GD3D11.Setting.UseDirect3D11BGRASupport ;
 }
 
@@ -25120,23 +25120,23 @@ extern int NS_GetUseDirect3D11BGRASupport( void )
 
 
 
-// ŠÂ‹«ˆË‘¶‰æ–ÊŠÖŒW
+// ç’°å¢ƒä¾å­˜ç”»é¢é–¢ä¿‚
 
-// İ’è‚ÉŠî‚Ã‚¢‚Äg—p‚·‚é‚yƒoƒbƒtƒ@‚ğƒZƒbƒg‚·‚é
+// è¨­å®šã«åŸºã¥ã„ã¦ä½¿ç”¨ã™ã‚‹ï¼ºãƒãƒƒãƒ•ã‚¡ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern	int		Graphics_Hardware_D3D11_SetupUseZBuffer_PF_Base( D_ID3D11DepthStencilView *pID3D11DepthStencilView )
 {
 	IMAGEDATA *TargetScreenImage = NULL ;
 	IMAGEDATA *TargetZBufferImage = NULL ;
 	SHADOWMAPDATA *TargetShadowMap = NULL ;
 
-	// ƒVƒƒƒhƒEƒ}ƒbƒv‚©‚Ç‚¤‚©‚ğƒ`ƒFƒbƒN
+	// ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ã‹ã©ã†ã‹ã‚’ãƒã‚§ãƒƒã‚¯
 	if( !SHADOWMAPCHKFULL( GSYS.DrawSetting.TargetScreen[ 0 ], TargetShadowMap ) )
 	{
-		// ƒVƒƒƒhƒEƒ}ƒbƒv‚Ìê‡‚Íê—p‚Ì‚yƒoƒbƒtƒ@‚ğg—p‚·‚é
+		// ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ã®å ´åˆã¯å°‚ç”¨ã®ï¼ºãƒãƒƒãƒ•ã‚¡ã‚’ä½¿ç”¨ã™ã‚‹
 		Graphics_D3D11_DeviceState_SetDepthStencil( TargetShadowMap->PF->D3D11.DepthBuffer, TargetShadowMap->PF->D3D11.DepthBufferDSV ) ;
 	}
 	else
-	// ID3D11DepthStencilView ‚ª’¼Úw’è‚³‚ê‚½ê‡‚Í‚»‚ê‚ğ•`‰æ‘ÎÌ‚É‚·‚é
+	// ID3D11DepthStencilView ãŒç›´æ¥æŒ‡å®šã•ã‚ŒãŸå ´åˆã¯ãã‚Œã‚’æç”»å¯¾ç§°ã«ã™ã‚‹
 	if( pID3D11DepthStencilView != NULL )
 	{
 		D_ID3D11Texture2D *pID3D11DepthBuffer = NULL ;
@@ -25152,13 +25152,13 @@ extern	int		Graphics_Hardware_D3D11_SetupUseZBuffer_PF_Base( D_ID3D11DepthStenci
 	}
 	else
 	{
-		// •`‰ææ‚Ì‰æ‘œî•ñ‚Ìæ“¾
+		// æç”»å…ˆã®ç”»åƒæƒ…å ±ã®å–å¾—
 		GRAPHCHKFULL( GSYS.DrawSetting.TargetScreen[ 0 ], TargetScreenImage ) ;
 
-		// g—p‚·‚é‚yƒoƒbƒtƒ@‚Ì‰æ‘œî•ñ‚Ìæ“¾
+		// ä½¿ç”¨ã™ã‚‹ï¼ºãƒãƒƒãƒ•ã‚¡ã®ç”»åƒæƒ…å ±ã®å–å¾—
 		GRAPHCHKFULL( GSYS.DrawSetting.TargetZBuffer, TargetZBufferImage ) ;
 
-		// ƒ}ƒXƒNƒT[ƒtƒFƒX‚ª‘¶İ‚µ‚Ä‚¢‚ÄŠ‚Â—LŒø‚Èê‡‚Íƒ}ƒXƒNƒT[ƒtƒFƒX‚Ì‚yƒoƒbƒtƒ@‚ğg—p‚·‚é
+		// ãƒã‚¹ã‚¯ã‚µãƒ¼ãƒ•ã‚§ã‚¹ãŒå­˜åœ¨ã—ã¦ã„ã¦ä¸”ã¤æœ‰åŠ¹ãªå ´åˆã¯ãƒã‚¹ã‚¯ã‚µãƒ¼ãƒ•ã‚§ã‚¹ã®ï¼ºãƒãƒƒãƒ•ã‚¡ã‚’ä½¿ç”¨ã™ã‚‹
 //#ifndef DX_NON_MASK
 //		if( MASKD.MaskValidFlag && MASKD3D11.MaskScreenSurface )
 //		{
@@ -25166,10 +25166,10 @@ extern	int		Graphics_Hardware_D3D11_SetupUseZBuffer_PF_Base( D_ID3D11DepthStenci
 //		}
 //		else
 //#endif
-		// •`‰æ‰Â”\‰æ‘œ‚ª•`‰ææ‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+		// æç”»å¯èƒ½ç”»åƒãŒæç”»å…ˆã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 		if( TargetScreenImage )
 		{
-			// •`‰ææ‚yƒoƒbƒtƒ@‚ª‚ ‚Á‚ÄAŠ‚Â•`‰ææˆÈã‚ÌƒTƒCƒY‚ğ‚Âê‡‚Í•`‰ææ‚yƒoƒbƒtƒ@‚ğg—p‚·‚é
+			// æç”»å…ˆï¼ºãƒãƒƒãƒ•ã‚¡ãŒã‚ã£ã¦ã€ä¸”ã¤æç”»å…ˆä»¥ä¸Šã®ã‚µã‚¤ã‚ºã‚’æŒã¤å ´åˆã¯æç”»å…ˆï¼ºãƒãƒƒãƒ•ã‚¡ã‚’ä½¿ç”¨ã™ã‚‹
 			if( TargetZBufferImage != NULL &&
 				TargetZBufferImage->WidthI  >= TargetScreenImage->WidthI &&
 				TargetZBufferImage->HeightI >= TargetScreenImage->HeightI )
@@ -25180,7 +25180,7 @@ extern	int		Graphics_Hardware_D3D11_SetupUseZBuffer_PF_Base( D_ID3D11DepthStenci
 				) ;
 			}
 			else
-			// •`‰æ‰Â”\‰æ‘œ‚Ì‚yƒoƒbƒtƒ@‚ª‚ ‚éê‡‚Í‚»‚Ì‚yƒoƒbƒtƒ@‚ğg—p‚·‚é
+			// æç”»å¯èƒ½ç”»åƒã®ï¼ºãƒãƒƒãƒ•ã‚¡ãŒã‚ã‚‹å ´åˆã¯ãã®ï¼ºãƒãƒƒãƒ•ã‚¡ã‚’ä½¿ç”¨ã™ã‚‹
 			if( TargetScreenImage->Hard.Draw[ 0 ].Tex->PF->D3D11.DepthBuffer )
 			{
 				Graphics_D3D11_DeviceState_SetDepthStencil(
@@ -25189,7 +25189,7 @@ extern	int		Graphics_Hardware_D3D11_SetupUseZBuffer_PF_Base( D_ID3D11DepthStenci
 				) ;
 			}
 			else
-			// •`‰ææ‚ªƒfƒtƒHƒ‹ƒg‚Ì‚yƒoƒbƒtƒ@‚Æ‘å‚«‚³‚ªˆÙ‚È‚Á‚½‚ç‚yƒoƒbƒtƒ@‚ğŠO‚·
+			// æç”»å…ˆãŒãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®ï¼ºãƒãƒƒãƒ•ã‚¡ã¨å¤§ãã•ãŒç•°ãªã£ãŸã‚‰ï¼ºãƒãƒƒãƒ•ã‚¡ã‚’å¤–ã™
 			if( TargetScreenImage->WidthI  != GD3D11.Device.Screen.DepthBufferSizeX || 
 				TargetScreenImage->HeightI != GD3D11.Device.Screen.DepthBufferSizeY )
 			{
@@ -25197,13 +25197,13 @@ extern	int		Graphics_Hardware_D3D11_SetupUseZBuffer_PF_Base( D_ID3D11DepthStenci
 			}
 			else
 			{
-				// ƒfƒtƒHƒ‹ƒg‚Ì‚yƒoƒbƒtƒ@‚ğg—p‚·‚é
+				// ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®ï¼ºãƒãƒƒãƒ•ã‚¡ã‚’ä½¿ç”¨ã™ã‚‹
 				Graphics_D3D11_DeviceState_SetDepthStencil( GD3D11.Device.Screen.DepthBufferTexture2D, GD3D11.Device.Screen.DepthBufferDSV ) ;
 			}
 		}
 		else
 		{
-			// •`‰ææ‚yƒoƒbƒtƒ@‚ª‚ ‚Á‚ÄAŠ‚Â•`‰ææ‚Æ“¯‚¶ƒTƒCƒY‚ğ‚Âê‡‚Í•`‰ææ‚yƒoƒbƒtƒ@‚ğg—p‚·‚é
+			// æç”»å…ˆï¼ºãƒãƒƒãƒ•ã‚¡ãŒã‚ã£ã¦ã€ä¸”ã¤æç”»å…ˆã¨åŒã˜ã‚µã‚¤ã‚ºã‚’æŒã¤å ´åˆã¯æç”»å…ˆï¼ºãƒãƒƒãƒ•ã‚¡ã‚’ä½¿ç”¨ã™ã‚‹
 			if( TargetZBufferImage != NULL &&
 				TargetZBufferImage->WidthI  == GSYS.DrawSetting.DrawSizeX &&
 				TargetZBufferImage->HeightI == GSYS.DrawSetting.DrawSizeY )
@@ -25215,13 +25215,13 @@ extern	int		Graphics_Hardware_D3D11_SetupUseZBuffer_PF_Base( D_ID3D11DepthStenci
 			}
 			else
 			{
-				// ƒfƒtƒHƒ‹ƒg‚Ì‚yƒoƒbƒtƒ@‚ğg—p‚·‚é
+				// ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®ï¼ºãƒãƒƒãƒ•ã‚¡ã‚’ä½¿ç”¨ã™ã‚‹
 				Graphics_D3D11_DeviceState_SetDepthStencil( GD3D11.Device.Screen.DepthBufferTexture2D, GD3D11.Device.Screen.DepthBufferDSV ) ;
 			}
 		}
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
@@ -25230,17 +25230,17 @@ extern	int		Graphics_Hardware_D3D11_SetupUseZBuffer_PF( void )
 	return Graphics_Hardware_D3D11_SetupUseZBuffer_PF_Base( NULL ) ;
 }
 
-// ‰æ–Ê‚Ì‚yƒoƒbƒtƒ@‚Ìó‘Ô‚ğ‰Šú‰»‚·‚é
+// ç”»é¢ã®ï¼ºãƒãƒƒãƒ•ã‚¡ã®çŠ¶æ…‹ã‚’åˆæœŸåŒ–ã™ã‚‹
 extern	int		Graphics_Hardware_D3D11_ClearDrawScreenZBuffer_PF( const RECT * /*ClearRect*/ )
 {
-	// •`‰æ‘ÎÛ‚Ì[“xƒoƒbƒtƒ@‚ğ‰Šú‰»
+	// æç”»å¯¾è±¡ã®æ·±åº¦ãƒãƒƒãƒ•ã‚¡ã‚’åˆæœŸåŒ–
 	D3D11DeviceContext_ClearDepthStencilView_ASync( GD3D11.Device.State.TargetDepthDSV, D_D3D11_CLEAR_DEPTH, GSYS.DrawSetting.UseReversedZFlag && GSYS.DrawSetting.ShadowMapDraw == FALSE ? 0.0f : 1.0f, 0 ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ‰æ–Ê‚Ìó‘Ô‚ğ‰Šú‰»‚·‚é
+// ç”»é¢ã®çŠ¶æ…‹ã‚’åˆæœŸåŒ–ã™ã‚‹
 extern	int		Graphics_Hardware_D3D11_ClearDrawScreen_PF( const RECT * /*ClearRect*/ )
 {
 	D_ID3D11Texture2D        *TargetTexture2D ;
@@ -25255,13 +25255,13 @@ extern	int		Graphics_Hardware_D3D11_ClearDrawScreen_PF( const RECT * /*ClearRect
 
 	for( i = 0 ; i < GSYS.HardInfo.RenderTargetNum ; i ++ )
 	{
-		// –³Œø‚È•`‰ææ‚¾‚Á‚½ê‡‚Í‰½‚à‚µ‚È‚¢
+		// ç„¡åŠ¹ãªæç”»å…ˆã ã£ãŸå ´åˆã¯ä½•ã‚‚ã—ãªã„
 		if( GSYS.DrawSetting.TargetScreen[ i ] == 0 )
 		{
 			continue ;
 		}
 
-		// •`‰ææ‰æ‘œ‚Ì‰æ‘œî•ñ‚ğæ“¾
+		// æç”»å…ˆç”»åƒã®ç”»åƒæƒ…å ±ã‚’å–å¾—
 		Image     = NULL ;
 		ShadowMap = NULL ;
 		if( GRAPHCHKFULL( GSYS.DrawSetting.TargetScreen[ i ], Image ) && i != 0 )
@@ -25270,34 +25270,34 @@ extern	int		Graphics_Hardware_D3D11_ClearDrawScreen_PF( const RECT * /*ClearRect
 		}
 		SHADOWMAPCHKFULL( GSYS.DrawSetting.TargetScreen[ i ], ShadowMap ) ;
 
-		// •`‰æ‘Ò‹@‚µ‚Ä‚¢‚é•`‰æ•¨‚ğ•`‰æ
+		// æç”»å¾…æ©Ÿã—ã¦ã„ã‚‹æç”»ç‰©ã‚’æç”»
 		DRAWSTOCKINFO
 
-		// •`‰æ‚ÌI—¹
+		// æç”»ã®çµ‚äº†
 	//	Graphics_D3D11_EndScene() ;
 
-		// ƒVƒƒƒhƒEƒ}ƒbƒv‚ªg—p‚³‚ê‚Ä‚¢‚éê‡‚ÍƒVƒƒƒhƒEƒ}ƒbƒv‚ğ‰Šú‰»
+		// ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ãŒä½¿ç”¨ã•ã‚Œã¦ã„ã‚‹å ´åˆã¯ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ã‚’åˆæœŸåŒ–
 		if( ShadowMap )
 		{
 			TargetTexture2D = ShadowMap->PF->D3D11.DepthTexture ;
 			TargetRTV       = ShadowMap->PF->D3D11.DepthTextureRTV ;
 		}
 		else
-		// •`‰æ‰Â”\‰æ‘œ‚ªg—p‚³‚ê‚Ä‚¢‚éê‡‚Í•`‰æ‰Â”\‰æ‘œ‚ğ‰Šú‰»
+		// æç”»å¯èƒ½ç”»åƒãŒä½¿ç”¨ã•ã‚Œã¦ã„ã‚‹å ´åˆã¯æç”»å¯èƒ½ç”»åƒã‚’åˆæœŸåŒ–
 		if( Image )
 		{
 			TargetTexture2D = Image->Orig->Hard.Tex[ 0 ].PF->D3D11.Texture ;
 			TargetRTV       = Image->Orig->Hard.Tex[ 0 ].PF->D3D11.TextureRTV[ GSYS.DrawSetting.TargetScreenSurface[ i ] * Image->Orig->Hard.MipMapCount + GSYS.DrawSetting.TargetScreenMipLevel[ i ] ] ;
 		}
 		else
-		// ‚»‚Ì‘¼‚Ì•`‰ææ‚Ìê‡‚Í ID3D11RenderTargetView ‚ª’¼Úw’è‚³‚ê‚½‚Æ”»’f‚·‚é
+		// ãã®ä»–ã®æç”»å…ˆã®å ´åˆã¯ ID3D11RenderTargetView ãŒç›´æ¥æŒ‡å®šã•ã‚ŒãŸã¨åˆ¤æ–­ã™ã‚‹
 		if( GSYS.DrawSetting.TargetScreen[ i ] == DX_SCREEN_OTHER )
 		{
 			TargetTexture2D = GD3D11.Device.State.TargetTexture2D[ i ] ;
 			TargetRTV       = GD3D11.Device.State.TargetRTV[ i ] ;
 		}
 		else
-		// ƒTƒuƒoƒbƒNƒoƒbƒtƒ@‚ª—LŒø‚É‚È‚Á‚Ä‚¢‚éê‡‚ÍƒTƒuƒoƒbƒNƒoƒbƒtƒ@‚ğ‰Šú‰»
+		// ã‚µãƒ–ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ãŒæœ‰åŠ¹ã«ãªã£ã¦ã„ã‚‹å ´åˆã¯ã‚µãƒ–ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã‚’åˆæœŸåŒ–
 		if( GD3D11.Device.Screen.SubBackBufferTexture2D != NULL )
 		{
 			TargetTexture2D = GD3D11.Device.Screen.SubBackBufferMSTexture2D != NULL ? GD3D11.Device.Screen.SubBackBufferMSTexture2D : GD3D11.Device.Screen.SubBackBufferTexture2D ;
@@ -25309,7 +25309,7 @@ extern	int		Graphics_Hardware_D3D11_ClearDrawScreen_PF( const RECT * /*ClearRect
 			TargetRTV       = GD3D11.Device.Screen.OutputWindowInfo[ 0 ].BufferRTV ;
 		}
 
-		// •`‰æ‘ÎÛ‚ÌƒJƒ‰[ƒoƒbƒtƒ@‚ğ‰Šú‰»
+		// æç”»å¯¾è±¡ã®ã‚«ãƒ©ãƒ¼ãƒãƒƒãƒ•ã‚¡ã‚’åˆæœŸåŒ–
 		ClearColor[ 0 ] = GSYS.Screen.BackgroundRed   / 255.0f ;
 		ClearColor[ 1 ] = GSYS.Screen.BackgroundGreen / 255.0f ;
 		ClearColor[ 2 ] = GSYS.Screen.BackgroundBlue  / 255.0f ;
@@ -25317,14 +25317,14 @@ extern	int		Graphics_Hardware_D3D11_ClearDrawScreen_PF( const RECT * /*ClearRect
 		D3D11DeviceContext_ClearRenderTargetView_ASync( TargetRTV, ClearColor ) ;
 	}
 
-	// •`‰æ‘ÎÛ‚Ì[“xƒoƒbƒtƒ@‚ğ‰Šú‰»
+	// æç”»å¯¾è±¡ã®æ·±åº¦ãƒãƒƒãƒ•ã‚¡ã‚’åˆæœŸåŒ–
 	D3D11DeviceContext_ClearDepthStencilView_ASync( GD3D11.Device.State.TargetDepthDSV, D_D3D11_CLEAR_DEPTH, GSYS.DrawSetting.UseReversedZFlag && GSYS.DrawSetting.ShadowMapDraw == FALSE ? 0.0f : 1.0f, 0 ) ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// •`‰ææ‰æ–Ê‚ÌƒZƒbƒg
+// æç”»å…ˆç”»é¢ã®ã‚»ãƒƒãƒˆ
 static	int		Graphics_Hardware_D3D11_SetDrawScreen_PF_Base( int /*DrawScreen*/, int /*OldScreenSurface*/, int /*OldScreenMipLevel*/, IMAGEDATA *NewTargetImage, IMAGEDATA *OldTargetImage, SHADOWMAPDATA *NewTargetShadowMap, SHADOWMAPDATA * /*OldTargetShadowMap*/, D_ID3D11RenderTargetView *pID3D11RenderTargetView, D_ID3D11DepthStencilView *pID3D11DepthStencilView )
 {
 	D_ID3D11ShaderResourceView *pShaderResourceViews[ D_D3D11_COMMONSHADER_INPUT_RESOURCE_SLOT_COUNT ] = { NULL } ;
@@ -25334,14 +25334,14 @@ static	int		Graphics_Hardware_D3D11_SetDrawScreen_PF_Base( int /*DrawScreen*/, i
 		return -1 ;
 	}
 
-	// •`‰æ‘Ò‹@‚µ‚Ä‚¢‚é•`‰æ•¨‚ğ•`‰æ
+	// æç”»å¾…æ©Ÿã—ã¦ã„ã‚‹æç”»ç‰©ã‚’æç”»
 	DRAWSTOCKINFO
 
-	// ƒZƒbƒg‚µ‚Ä‚¢‚½ƒeƒNƒXƒ`ƒƒ[‚ğŠO‚·
+	// ã‚»ãƒƒãƒˆã—ã¦ã„ãŸãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã‚’å¤–ã™
 	Graphics_D3D11_DrawSetting_SetTexture( NULL, NULL ) ;
 	Graphics_D3D11_DeviceState_SetPSShaderResouceView( 0, D_D3D11_COMMONSHADER_INPUT_RESOURCE_SLOT_COUNT, pShaderResourceViews ) ;
 
-	// ¡‚Ü‚Å‚Ì•`‰ææ‚ªƒ}ƒ‹ƒ`ƒTƒ“ƒvƒ‹ƒ^ƒCƒv‚ÌƒŒƒ“ƒ_ƒŠƒ“ƒOƒ^[ƒQƒbƒg‚¾‚Á‚½ê‡‚Íƒ_ƒEƒ“ƒTƒ“ƒvƒŠƒ“ƒO‚·‚é
+	// ä»Šã¾ã§ã®æç”»å…ˆãŒãƒãƒ«ãƒã‚µãƒ³ãƒ—ãƒ«ã‚¿ã‚¤ãƒ—ã®ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã ã£ãŸå ´åˆã¯ãƒ€ã‚¦ãƒ³ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ã™ã‚‹
 	if( OldTargetImage != NULL && OldTargetImage->Hard.Draw[ 0 ].Tex->PF->D3D11.MSTexture != NULL )
 	{
 		Graphics_D3D11_UpdateDrawTexture(
@@ -25351,9 +25351,9 @@ static	int		Graphics_Hardware_D3D11_SetDrawScreen_PF_Base( int /*DrawScreen*/, i
 		) ;
 	}
 
-	// •`‰ææ‚Ì•ÏX
+	// æç”»å…ˆã®å¤‰æ›´
 
-	// ƒ}ƒXƒNƒT[ƒtƒFƒX‚ª‘¶İ‚µ‚Ä‚¢‚ÄŠ‚Â—LŒø‚Èê‡‚Íƒ}ƒXƒNƒT[ƒtƒFƒX‚ğ•`‰æ‘ÎÛ‚É‚·‚é
+	// ãƒã‚¹ã‚¯ã‚µãƒ¼ãƒ•ã‚§ã‚¹ãŒå­˜åœ¨ã—ã¦ã„ã¦ä¸”ã¤æœ‰åŠ¹ãªå ´åˆã¯ãƒã‚¹ã‚¯ã‚µãƒ¼ãƒ•ã‚§ã‚¹ã‚’æç”»å¯¾è±¡ã«ã™ã‚‹
 #ifndef DX_NON_MASK
 	if( MASKD.MaskValidFlag && MASKD3D11.MaskScreenTexture )
 	{
@@ -25361,13 +25361,13 @@ static	int		Graphics_Hardware_D3D11_SetDrawScreen_PF_Base( int /*DrawScreen*/, i
 	}
 	else
 #endif
-	// ƒVƒƒƒhƒEƒ}ƒbƒv‚ª—LŒø‚Èê‡‚ÍƒVƒƒƒhƒEƒ}ƒbƒv‚ğ•`‰æ‘ÎÛ‚É‚·‚é
+	// ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ãŒæœ‰åŠ¹ãªå ´åˆã¯ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ã‚’æç”»å¯¾è±¡ã«ã™ã‚‹
 	if( NewTargetShadowMap )
 	{
 		Graphics_D3D11_DeviceState_SetRenderTarget( NewTargetShadowMap->PF->D3D11.DepthTexture, NewTargetShadowMap->PF->D3D11.DepthTextureRTV, 0 ) ;
 	}
 	else
-	// •`‰æ‰Â”\‰æ‘œ‚ª—LŒø‚Èê‡‚Í•`‰æ‰Â”\‰æ‘œ‚ğ•`‰æ‘ÎÛ‚É‚·‚é
+	// æç”»å¯èƒ½ç”»åƒãŒæœ‰åŠ¹ãªå ´åˆã¯æç”»å¯èƒ½ç”»åƒã‚’æç”»å¯¾è±¡ã«ã™ã‚‹
 	if( NewTargetImage )
 	{
 		Graphics_D3D11_DeviceState_SetRenderTarget(
@@ -25377,7 +25377,7 @@ static	int		Graphics_Hardware_D3D11_SetDrawScreen_PF_Base( int /*DrawScreen*/, i
 		) ;
 	}
 	else
-	// ID3D11RenderTargetView ‚ª’¼Úw’è‚³‚ê‚½ê‡‚Í‚»‚ê‚ğ•`‰æ‘ÎÛ‚É‚·‚é
+	// ID3D11RenderTargetView ãŒç›´æ¥æŒ‡å®šã•ã‚ŒãŸå ´åˆã¯ãã‚Œã‚’æç”»å¯¾è±¡ã«ã™ã‚‹
 	if( pID3D11RenderTargetView )
 	{
 		D_ID3D11Texture2D *pID3D11Texture2D = NULL ;
@@ -25386,21 +25386,21 @@ static	int		Graphics_Hardware_D3D11_SetDrawScreen_PF_Base( int /*DrawScreen*/, i
 		Graphics_D3D11_DeviceState_SetRenderTarget( pID3D11Texture2D, pID3D11RenderTargetView ) ;
 	}
 	else
-	// ƒTƒuƒoƒbƒNƒoƒbƒtƒ@‚ª—LŒø‚Èê‡‚ÍƒTƒuƒoƒbƒNƒoƒbƒtƒ@‚ğ•`‰æ‘ÎÛ‚É‚·‚é
+	// ã‚µãƒ–ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ãŒæœ‰åŠ¹ãªå ´åˆã¯ã‚µãƒ–ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã‚’æç”»å¯¾è±¡ã«ã™ã‚‹
 	if( GD3D11.Device.Screen.SubBackBufferRTV != NULL )
 	{
 		Graphics_D3D11_DeviceState_SetRenderTarget( GD3D11.Device.Screen.SubBackBufferMSTexture2D != NULL ? GD3D11.Device.Screen.SubBackBufferMSTexture2D : GD3D11.Device.Screen.SubBackBufferTexture2D, GD3D11.Device.Screen.SubBackBufferRTV ) ;
 	}
 	else
-	// ‚»‚êˆÈŠO‚Ìê‡‚ÍƒoƒbƒNƒoƒbƒtƒ@‚ğ•`‰æ‘ÎÛ‚É‚·‚é
+	// ãã‚Œä»¥å¤–ã®å ´åˆã¯ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã‚’æç”»å¯¾è±¡ã«ã™ã‚‹
 	{
 		Graphics_D3D11_DeviceState_SetRenderTarget( GD3D11.Device.Screen.OutputWindowInfo[ 0 ].BufferTexture2D, GD3D11.Device.Screen.OutputWindowInfo[ 0 ].BufferRTV ) ;
 	}
 
-	// g—p‚·‚é‚yƒoƒbƒtƒ@‚ÌƒZƒbƒgƒAƒbƒv
+	// ä½¿ç”¨ã™ã‚‹ï¼ºãƒãƒƒãƒ•ã‚¡ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 	Graphics_Hardware_D3D11_SetupUseZBuffer_PF_Base( pID3D11DepthStencilView ) ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 extern	int		Graphics_Hardware_D3D11_SetDrawScreen_PF( int DrawScreen, int OldScreenSurface, int OldScreenMipLevel, IMAGEDATA *NewTargetImage, IMAGEDATA *OldTargetImage, SHADOWMAPDATA *NewTargetShadowMap, SHADOWMAPDATA *OldTargetShadowMap )
@@ -25408,7 +25408,7 @@ extern	int		Graphics_Hardware_D3D11_SetDrawScreen_PF( int DrawScreen, int OldScr
 	return Graphics_Hardware_D3D11_SetDrawScreen_PF_Base( DrawScreen, OldScreenSurface, OldScreenMipLevel, NewTargetImage, OldTargetImage, NewTargetShadowMap, OldTargetShadowMap, NULL, NULL ) ;
 }
 
-// ’èŠú“I‚É ScreenCopy ‚ğs‚¤ƒR[ƒ‹ƒoƒbƒNŠÖ”
+// å®šæœŸçš„ã« ScreenCopy ã‚’è¡Œã†ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 #define GRAPHICS_HARDWARE_D3D11_SCREENFLIPTIMER_ID		(32767)
 #if _MSC_VER > 1200 || defined( DX_GCC_COMPILE_4_9_2 )
 static VOID CALLBACK Graphics_Hardware_D3D11_ScreenFlipTimerProc( HWND /*hwnd*/, UINT /*uMsg*/, UINT_PTR /*idEvent*/, DWORD /*dwTime*/ )
@@ -25433,7 +25433,7 @@ static VOID CALLBACK Graphics_Hardware_D3D11_ScreenFlipTimerProc( HWND /*hwnd*/,
 	}
 }
 
-// SetDrawScreen ‚ÌÅŒã‚ÅŒÄ‚Î‚ê‚éŠÖ”
+// SetDrawScreen ã®æœ€å¾Œã§å‘¼ã°ã‚Œã‚‹é–¢æ•°
 extern	int		Graphics_Hardware_D3D11_SetDrawScreen_Post_PF( int DrawScreen )
 {
 	SETUP_WIN_API
@@ -25443,11 +25443,11 @@ extern	int		Graphics_Hardware_D3D11_SetDrawScreen_Post_PF( int DrawScreen )
 		WinAPIData.Win32Func.SetTimerFunc( NS_GetMainWindowHandle(), GRAPHICS_HARDWARE_D3D11_SCREENFLIPTIMER_ID, 32, Graphics_Hardware_D3D11_ScreenFlipTimerProc ) ;
 	}
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// •`‰æ‰Â”\—Ìˆæ‚ÌƒZƒbƒg
+// æç”»å¯èƒ½é ˜åŸŸã®ã‚»ãƒƒãƒˆ
 extern	int		Graphics_Hardware_D3D11_SetDrawArea_PF( int /*x1*/, int /*y1*/, int /*x2*/, int /*y2*/ )
 {
 	D_D3D11_VIEWPORT Viewport ;
@@ -25463,7 +25463,7 @@ extern	int		Graphics_Hardware_D3D11_SetDrawArea_PF( int /*x1*/, int /*y1*/, int 
 		return -1 ;
 	}
 
-	// ƒrƒ…[ƒ|[ƒg‚ÌƒZƒbƒg
+	// ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆã®ã‚»ãƒƒãƒˆ
 	Viewport.TopLeftX	= ( float )GSYS.DrawSetting.DrawArea.left ;
 	Viewport.TopLeftY	= ( float )GSYS.DrawSetting.DrawArea.top ;
 	Viewport.Width		= ( float )( GSYS.DrawSetting.DrawArea.right  - GSYS.DrawSetting.DrawArea.left ) ;
@@ -25472,39 +25472,39 @@ extern	int		Graphics_Hardware_D3D11_SetDrawArea_PF( int /*x1*/, int /*y1*/, int 
 	Viewport.MaxDepth	= 1.0f ;
 	Graphics_D3D11_DeviceState_SetViewport( &Viewport ) ;
 
-	// Ë‰es—ñ‚Æƒrƒ…[ƒ|[ƒgs—ñ‚Ì‹ts—ñ‚ğæZ‚µ‚½‚à‚Ì‚ğƒZƒbƒg
+	// å°„å½±è¡Œåˆ—ã¨ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆè¡Œåˆ—ã®é€†è¡Œåˆ—ã‚’ä¹—ç®—ã—ãŸã‚‚ã®ã‚’ã‚»ãƒƒãƒˆ
 	Graphics_Hardware_D3D11_RefreshProjectionMatrix() ;
 	GSYS.DrawSetting.MatchHardwareProjectionMatrix = TRUE ;
 
-	// ƒAƒ“ƒ`ƒrƒ…[ƒ|[ƒgs—ñ‚ğXV
+	// ã‚¢ãƒ³ãƒãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆè¡Œåˆ—ã‚’æ›´æ–°
 	Graphics_D3D11_DeviceState_SetAntiViewportMatrix( &GSYS.DrawSetting.Direct3DViewportMatrixAntiF ) ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// •`‰ææƒoƒbƒtƒ@‚ğƒƒbƒN‚·‚é
+// æç”»å…ˆãƒãƒƒãƒ•ã‚¡ã‚’ãƒ­ãƒƒã‚¯ã™ã‚‹
 extern	int		Graphics_Hardware_D3D11_LockDrawScreenBuffer_PF( RECT *LockRect, BASEIMAGE *BaseImage, int /*TargetScreen*/, IMAGEDATA *TargetImage, int TargetScreenSurface, int TargetScreenMipLevel, int /*ReadOnly*/, int TargetScreenTextureNo )
 {
 	D_ID3D11Texture2D                 *TargetTexture ;
 	D_ID3D11ShaderResourceView        *TargetTextureSRV ;
 
-	// •`‰æ‘Ò‹@‚µ‚Ä‚¢‚é•`‰æ•¨‚ğ•`‰æ
+	// æç”»å¾…æ©Ÿã—ã¦ã„ã‚‹æç”»ç‰©ã‚’æç”»
 	DRAWSTOCKINFO
 
-	// æ‚è‚İŒ³‚Æ‚È‚éƒT[ƒtƒFƒX‚ÌŒˆ’è
+	// å–ã‚Šè¾¼ã¿å…ƒã¨ãªã‚‹ã‚µãƒ¼ãƒ•ã‚§ã‚¹ã®æ±ºå®š
 
-	// •`‰æ‰Â”\‰æ‘œ‚ª‘ÎÛ‚Ìê‡
+	// æç”»å¯èƒ½ç”»åƒãŒå¯¾è±¡ã®å ´åˆ
 	if( TargetImage )
 	{
 		TargetTexture    = TargetImage->Orig->Hard.Tex[ TargetScreenTextureNo ].PF->D3D11.Texture ;
 		TargetTextureSRV = TargetImage->Orig->Hard.Tex[ TargetScreenTextureNo ].PF->D3D11.TextureSRV ;
 	}
 	else
-	// ƒTƒuƒoƒbƒNƒoƒbƒtƒ@‚ª—LŒø‚É‚È‚Á‚Ä‚¢‚éê‡‚ÍƒTƒuƒoƒbƒNƒoƒbƒtƒ@‚ğ‰Šú‰»
+	// ã‚µãƒ–ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ãŒæœ‰åŠ¹ã«ãªã£ã¦ã„ã‚‹å ´åˆã¯ã‚µãƒ–ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã‚’åˆæœŸåŒ–
 	if( GD3D11.Device.Screen.SubBackBufferTexture2D != NULL )
 	{
-		// ƒ}ƒ‹ƒ`ƒTƒ“ƒvƒ‹‚ª—LŒø‚Èê‡‚Íƒ_ƒEƒ“ƒTƒ“ƒvƒŠƒ“ƒO‚·‚é
+		// ãƒãƒ«ãƒã‚µãƒ³ãƒ—ãƒ«ãŒæœ‰åŠ¹ãªå ´åˆã¯ãƒ€ã‚¦ãƒ³ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ã™ã‚‹
 		if( GD3D11.Device.Screen.SubBackBufferMSTexture2D != NULL )
 		{
 			D3D11DeviceContext_ResolveSubresource(
@@ -25525,7 +25525,7 @@ extern	int		Graphics_Hardware_D3D11_LockDrawScreenBuffer_PF( RECT *LockRect, BAS
 		TargetTextureSRV = GD3D11.Device.Screen.OutputWindowInfo[ 0 ].BufferSRV ;
 	}
 
-	// ƒ}ƒbƒv
+	// ãƒãƒƒãƒ—
 	if( Graphics_D3D11_Texture2D_Map(
 			TargetTexture,
 			TargetTextureSRV,
@@ -25535,38 +25535,38 @@ extern	int		Graphics_Hardware_D3D11_LockDrawScreenBuffer_PF( RECT *LockRect, BAS
 			BaseImage,
 			&GD3D11.Device.Screen.DrawScreenBufferLockSMTexture ) < 0 )
 	{
-		DXST_LOGFILE_ADDUTF16LE( "\xcf\x63\x3b\x75\xfe\x5b\x61\x8c\xd0\x30\xc3\x30\xd5\x30\xa1\x30\x6e\x30\xed\x30\xc3\x30\xaf\x30\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"•`‰æ‘ÎÛƒoƒbƒtƒ@‚ÌƒƒbƒN‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+		DXST_LOGFILE_ADDUTF16LE( "\xcf\x63\x3b\x75\xfe\x5b\x61\x8c\xd0\x30\xc3\x30\xd5\x30\xa1\x30\x6e\x30\xed\x30\xc3\x30\xaf\x30\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"æç”»å¯¾è±¡ãƒãƒƒãƒ•ã‚¡ã®ãƒ­ãƒƒã‚¯ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 		return -1 ;
 	}
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// •`‰ææƒoƒbƒtƒ@‚ğƒAƒ“ƒƒbƒN‚·‚é
+// æç”»å…ˆãƒãƒƒãƒ•ã‚¡ã‚’ã‚¢ãƒ³ãƒ­ãƒƒã‚¯ã™ã‚‹
 extern	int		Graphics_Hardware_D3D11_UnlockDrawScreenBuffer_PF( void )
 {
-	// ƒ}ƒbƒv‚ğ‰ğœ
+	// ãƒãƒƒãƒ—ã‚’è§£é™¤
 	Graphics_D3D11_Texture2D_Unmap( GD3D11.Device.Screen.DrawScreenBufferLockSMTexture ) ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// — ‰æ–Ê‚Ì“à—e‚ğ•\‰æ–Ê‚É•`‰æ‚·‚é
+// è£ç”»é¢ã®å†…å®¹ã‚’è¡¨ç”»é¢ã«æç”»ã™ã‚‹
 extern	int		Graphics_Hardware_D3D11_ScreenCopy_PF( void )
 {
-	// ƒTƒuƒoƒbƒNƒoƒbƒtƒ@‚ÌƒZƒbƒgƒAƒbƒv
+	// ã‚µãƒ–ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 	if( NS_GetWindowModeFlag() == FALSE && NS_GetUseFullScreenResolutionMode() != DX_FSRESOLUTIONMODE_BORDERLESS_WINDOW )
 	{
 		Graphics_D3D11_SetupSubBackBuffer() ;
 	}
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// ‚’¼“¯ŠúM†‚ğ‘Ò‚Â
+// å‚ç›´åŒæœŸä¿¡å·ã‚’å¾…ã¤
 extern	int		Graphics_Hardware_D3D11_WaitVSync_PF( int SyncNum )
 {
 	int i ;
@@ -25579,7 +25579,7 @@ extern	int		Graphics_Hardware_D3D11_WaitVSync_PF( int SyncNum )
 	return 0 ;
 }
 
-// — ‰æ–Ê‚Æ•\‰æ–Ê‚ğŒğŠ·‚·‚é
+// è£ç”»é¢ã¨è¡¨ç”»é¢ã‚’äº¤æ›ã™ã‚‹
 extern	int		Graphics_Hardware_D3D11_ScreenFlipBase_PF( void )
 {
 	GRAPHICS_HARDDATA_DIRECT3D11_OUTPUTWINDOWINFO *OWI ;
@@ -25591,7 +25591,7 @@ extern	int		Graphics_Hardware_D3D11_ScreenFlipBase_PF( void )
 		return -1 ;
 	}
 
-	// “Áê‚ÈğŒ‚Å‚ÍƒtƒŠƒbƒv‚ğƒLƒƒƒ“ƒZƒ‹‚·‚é
+	// ç‰¹æ®Šãªæ¡ä»¶ã§ã¯ãƒ•ãƒªãƒƒãƒ—ã‚’ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã™ã‚‹
 	if( WinData.ActiveFlag == FALSE && 
 		WinData.DrawBackGraphFlag == FALSE && 
 		WinData.PauseGraph.GraphData != NULL )
@@ -25599,10 +25599,10 @@ extern	int		Graphics_Hardware_D3D11_ScreenFlipBase_PF( void )
 		return 0 ;
 	}
 
-	// ƒtƒ‹ƒXƒNƒŠ[ƒ“ƒ‚[ƒhŠ‚Âƒtƒ‹ƒXƒNƒŠ[ƒ“‰ğ‘œ“xƒ‚[ƒh‚ª DX_FSRESOLUTIONMODE_NATIVE ‚Å‚Í‚È‚¢ê‡‚â
-	// GSYS.Screen.ValidGraphDisplayArea ‚ª TRUE ‚Ìê‡‚ÍƒTƒuƒoƒbƒNƒoƒbƒtƒ@‚ÌƒZƒbƒgƒAƒbƒv
+	// ãƒ•ãƒ«ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ¢ãƒ¼ãƒ‰ä¸”ã¤ãƒ•ãƒ«ã‚¹ã‚¯ãƒªãƒ¼ãƒ³è§£åƒåº¦ãƒ¢ãƒ¼ãƒ‰ãŒ DX_FSRESOLUTIONMODE_NATIVE ã§ã¯ãªã„å ´åˆã‚„
+	// GSYS.Screen.ValidGraphDisplayArea ãŒ TRUE ã®å ´åˆã¯ã‚µãƒ–ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 	//
-	// –”‚Í GSYS.Screen.UserScreenImage ‚ª NULL ‚Å‚Í‚È‚¢ê‡
+	// åˆã¯ GSYS.Screen.UserScreenImage ãŒ NULL ã§ã¯ãªã„å ´åˆ
 	if( NS_GetWindowModeFlag() == TRUE ||
 		GSYS.Screen.FullScreenResolutionModeAct != DX_FSRESOLUTIONMODE_NATIVE ||
 		GSYS.Screen.ValidGraphDisplayArea != FALSE ||
@@ -25611,22 +25611,22 @@ extern	int		Graphics_Hardware_D3D11_ScreenFlipBase_PF( void )
 		Graphics_D3D11_SetupSubBackBuffer() ;
 	}
 
-	// — ‰æ–Ê‚Ì“à—e‚ğ•\‰æ–Ê‚É”½‰f
+	// è£ç”»é¢ã®å†…å®¹ã‚’è¡¨ç”»é¢ã«åæ˜ 
 //	return DXGISwapChain_Present() ;
 
-	// •`‰æ‘Ò‹@‚µ‚Ä‚¢‚é•`‰æ•¨‚ğ•`‰æ
+	// æç”»å¾…æ©Ÿã—ã¦ã„ã‚‹æç”»ç‰©ã‚’æç”»
 	DRAWSTOCKINFO
 
-	// o—ÍæƒEƒCƒ“ƒhƒE‚Ìî•ñ‚ğæ“¾‚µ‚Ä‚¨‚­
+	// å‡ºåŠ›å…ˆã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®æƒ…å ±ã‚’å–å¾—ã—ã¦ãŠã
 	OWI = &GD3D11.Device.Screen.OutputWindowInfo[ GD3D11.Device.Screen.TargetOutputWindow ] ;
 
-	// o—ÍæƒEƒBƒ“ƒhƒE‚ª–³Œø‚É‚È‚Á‚Ä‚¢‚½‚ç‰½‚à‚¹‚¸I—¹
+	// å‡ºåŠ›å…ˆã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãŒç„¡åŠ¹ã«ãªã£ã¦ã„ãŸã‚‰ä½•ã‚‚ã›ãšçµ‚äº†
 	if( WinAPIData.Win32Func.IsWindowFunc( OWI->TargetWindow ) == FALSE )
 	{
 		return 0 ;
 	}
 
-	// ƒEƒCƒ“ƒhƒE‚ÌƒNƒ‰ƒCƒAƒ“ƒg—Ìˆæ‚ÌƒTƒCƒY‚ªƒoƒbƒNƒoƒbƒtƒ@[‚ÌƒTƒCƒY‚ÆˆÙ‚È‚éê‡‚ÍƒoƒbƒNƒoƒbƒtƒ@‚ÌƒTƒCƒY‚ğ•ÏX‚·‚é
+	// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆé ˜åŸŸã®ã‚µã‚¤ã‚ºãŒãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ãƒ¼ã®ã‚µã‚¤ã‚ºã¨ç•°ãªã‚‹å ´åˆã¯ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã®ã‚µã‚¤ã‚ºã‚’å¤‰æ›´ã™ã‚‹
 	{
 		RECT TargetWindowClientRect ;
 		SIZE TargetWindowClientSize ;
@@ -25647,7 +25647,7 @@ extern	int		Graphics_Hardware_D3D11_ScreenFlipBase_PF( void )
 			( ( UINT )TargetWindowClientSize.cx != OWI->BufferTexture2DDesc.Width ||
 			  ( UINT )TargetWindowClientSize.cy != OWI->BufferTexture2DDesc.Height ) )
 		{
-			// ƒTƒuƒoƒbƒNƒoƒbƒtƒ@‚ğæ‚ÉƒZƒbƒgƒAƒbƒv‚·‚é
+			// ã‚µãƒ–ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã‚’å…ˆã«ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã™ã‚‹
 			Graphics_D3D11_SetupSubBackBuffer() ;
 
 			Graphics_D3D11_OutputWindow_ResizeBuffer(
@@ -25658,13 +25658,13 @@ extern	int		Graphics_Hardware_D3D11_ScreenFlipBase_PF( void )
 		}
 	}
 
-	// ƒTƒuƒoƒbƒNƒoƒbƒtƒ@‚ğg—p‚µ‚Ä‚¢‚éê‡‚Í“à—e‚ğo—ÍæƒEƒCƒ“ƒhƒE‚ÌƒoƒbƒNƒoƒbƒtƒ@‚É“]‘—‚·‚é
+	// ã‚µãƒ–ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹å ´åˆã¯å†…å®¹ã‚’å‡ºåŠ›å…ˆã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã«è»¢é€ã™ã‚‹
 	if( GD3D11.Device.Screen.SubBackBufferTexture2D != NULL )
 	{
 		RECT SrcRect ;
 		RECT DestRect = { 0 } ;
 
-		// ƒTƒuƒoƒbƒNƒoƒbƒtƒ@‚É“]‘—‚·‚é—Ìˆæ‚ğİ’è‚·‚é
+		// ã‚µãƒ–ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã«è»¢é€ã™ã‚‹é ˜åŸŸã‚’è¨­å®šã™ã‚‹
 		if( GSYS.Screen.ValidGraphDisplayArea )
 		{
 			RECT ClipRect ;
@@ -25692,7 +25692,7 @@ extern	int		Graphics_Hardware_D3D11_ScreenFlipBase_PF( void )
 
 		if( NS_GetWindowModeFlag() == TRUE )
 		{
-			// ƒƒCƒ“ƒEƒCƒ“ƒhƒEˆÈŠO‚Ö‚Ì“]‘—‚Ìê‡‚ÍÅ‘å‰»ŠÖŒW‚È‚µ
+			// ãƒ¡ã‚¤ãƒ³ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ä»¥å¤–ã¸ã®è»¢é€ã®å ´åˆã¯æœ€å¤§åŒ–é–¢ä¿‚ãªã—
 			if( GD3D11.Device.Screen.TargetOutputWindow != 0 )
 			{
 				double WindowSizeExRateX ;
@@ -25707,7 +25707,7 @@ extern	int		Graphics_Hardware_D3D11_ScreenFlipBase_PF( void )
 			}
 			else
 			{
-				// 320x240‰æ–ÊƒGƒ~ƒ…ƒŒ[ƒVƒ‡ƒ“ƒ‚[ƒh‚Ìê‡‚Í“]‘—æ‚Ì‹éŒ`‚ÍŒÅ’è
+				// 320x240ç”»é¢ã‚¨ãƒŸãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ãƒ¢ãƒ¼ãƒ‰ã®å ´åˆã¯è»¢é€å…ˆã®çŸ©å½¢ã¯å›ºå®š
 				if( GSYS.Screen.Emulation320x240Flag )
 				{
 					double WindowSizeExRateX ;
@@ -25769,7 +25769,7 @@ extern	int		Graphics_Hardware_D3D11_ScreenFlipBase_PF( void )
 		}
 		else
 		{
-			// ƒtƒ‹ƒXƒNƒŠ[ƒ“ƒ‚[ƒh‚Ìê‡‚Íƒtƒ‹ƒXƒNƒŠ[ƒ“‰ğ‘œ“xƒ‚[ƒh‚É‚æ‚Á‚Äˆ—‚ğ•ªŠò
+			// ãƒ•ãƒ«ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ¢ãƒ¼ãƒ‰ã®å ´åˆã¯ãƒ•ãƒ«ã‚¹ã‚¯ãƒªãƒ¼ãƒ³è§£åƒåº¦ãƒ¢ãƒ¼ãƒ‰ã«ã‚ˆã£ã¦å‡¦ç†ã‚’åˆ†å²
 			switch( GSYS.Screen.FullScreenResolutionModeAct )
 			{
 			case DX_FSRESOLUTIONMODE_NATIVE :
@@ -25782,7 +25782,7 @@ extern	int		Graphics_Hardware_D3D11_ScreenFlipBase_PF( void )
 			case DX_FSRESOLUTIONMODE_MAXIMUM :
 			case DX_FSRESOLUTIONMODE_DESKTOP :
 			case DX_FSRESOLUTIONMODE_BORDERLESS_WINDOW :
-				// “]‘—æ‹éŒ`‚ÌƒZƒbƒgƒAƒbƒv
+				// è»¢é€å…ˆçŸ©å½¢ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 				Graphics_Screen_SetupFullScreenScalingDestRect() ;
 
 				DestRect = GSYS.Screen.FullScreenScalingDestRect ;
@@ -25801,7 +25801,7 @@ extern	int		Graphics_Hardware_D3D11_ScreenFlipBase_PF( void )
 			DestRect.bottom = ( LONG )OWI->BufferTexture2DDesc.Height ;
 		}
 
-		// ƒTƒuƒoƒbƒNƒoƒbƒtƒ@‚Æ–{ƒoƒbƒNƒoƒbƒtƒ@‚ÌƒTƒCƒY‚ªˆÙ‚È‚éê‡‚Í–{ƒoƒbƒNƒoƒbƒtƒ@‚ğæ‚ÉƒNƒŠƒA‚·‚é
+		// ã‚µãƒ–ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã¨æœ¬ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã®ã‚µã‚¤ã‚ºãŒç•°ãªã‚‹å ´åˆã¯æœ¬ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã‚’å…ˆã«ã‚¯ãƒªã‚¢ã™ã‚‹
 		if( OWI->BufferTexture2DDesc.Width  != ( DWORD )GD3D11.Device.Screen.SubBackBufferTextureSizeX ||
 			OWI->BufferTexture2DDesc.Height != ( DWORD )GD3D11.Device.Screen.SubBackBufferTextureSizeY )
 		{
@@ -25814,7 +25814,7 @@ extern	int		Graphics_Hardware_D3D11_ScreenFlipBase_PF( void )
 			D3D11DeviceContext_ClearRenderTargetView_ASync( OWI->BufferRTV, ClearColor ) ;
 		}
 
-		// ƒ†[ƒU[w’è‚Ìƒƒ‚ƒŠƒCƒ[ƒW‚ª‚ ‚éê‡‚ÍƒTƒuƒoƒbƒNƒoƒbƒtƒ@‚É“]‘—
+		// ãƒ¦ãƒ¼ã‚¶ãƒ¼æŒ‡å®šã®ãƒ¡ãƒ¢ãƒªã‚¤ãƒ¡ãƒ¼ã‚¸ãŒã‚ã‚‹å ´åˆã¯ã‚µãƒ–ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã«è»¢é€
 		if( GSYS.Screen.UserScreenImage != NULL )
 		{
 			D_D3D11_BOX DestBox ;
@@ -25826,7 +25826,7 @@ extern	int		Graphics_Hardware_D3D11_ScreenFlipBase_PF( void )
 			DestBox.bottom = GD3D11.Device.Screen.SubBackBufferTextureSizeY ;
 			DestBox.back   = 1 ;
 
-			// ƒlƒCƒeƒBƒu‚É‘Î‰‚µ‚Ä‚¢‚È‚¢ê‡‚Í•ÏŠ·‚µ‚Ä‚©‚ç“]‘—
+			// ãƒã‚¤ãƒ†ã‚£ãƒ–ã«å¯¾å¿œã—ã¦ã„ãªã„å ´åˆã¯å¤‰æ›ã—ã¦ã‹ã‚‰è»¢é€
 			if( GD3D11.Device.Screen.SubBackBufferTextureTempBuffer != NULL )
 			{
 				COLORDATA *DestColorData = Graphics_D3D11_GetD3DFormatColorData( GD3D11.Device.Screen.SubBackBufferFormat ) ;
@@ -25874,7 +25874,7 @@ extern	int		Graphics_Hardware_D3D11_ScreenFlipBase_PF( void )
 			}
 		}
 
-		// ƒ}ƒ‹ƒ`ƒTƒ“ƒvƒ‹‚ª—LŒø‚Èê‡‚Íƒ_ƒEƒ“ƒTƒ“ƒvƒŠƒ“ƒO‚·‚é
+		// ãƒãƒ«ãƒã‚µãƒ³ãƒ—ãƒ«ãŒæœ‰åŠ¹ãªå ´åˆã¯ãƒ€ã‚¦ãƒ³ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ã™ã‚‹
 		if( GD3D11.Device.Screen.SubBackBufferMSTexture2D != NULL )
 		{
 			D3D11DeviceContext_ResolveSubresource(
@@ -25886,7 +25886,7 @@ extern	int		Graphics_Hardware_D3D11_ScreenFlipBase_PF( void )
 			) ;
 		}
 
-		// ƒTƒuƒoƒbƒNƒoƒbƒtƒ@‚Ì“à—e‚ğ–{ƒoƒbƒNƒoƒbƒtƒ@‚É“]‘—
+		// ã‚µãƒ–ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã®å†…å®¹ã‚’æœ¬ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã«è»¢é€
 		Graphics_D3D11_StretchRect(
 			GD3D11.Device.Screen.SubBackBufferTexture2D,
 			GD3D11.Device.Screen.SubBackBufferSRV,
@@ -25898,7 +25898,7 @@ extern	int		Graphics_Hardware_D3D11_ScreenFlipBase_PF( void )
 		) ;
 	}
 
-	// ƒoƒbƒNƒoƒbƒtƒ@‚Ì“§‰ßF‚Ì•”•ª‚ğ“§‰ß‚·‚éƒtƒ‰ƒO‚©AUpdateLayerdWindow ‚ğg—p‚·‚éƒtƒ‰ƒO‚ª—§‚Á‚Ä‚¢‚éê‡‚Íˆ—‚ğ•ªŠò
+	// ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã®é€éè‰²ã®éƒ¨åˆ†ã‚’é€éã™ã‚‹ãƒ•ãƒ©ã‚°ã‹ã€UpdateLayerdWindow ã‚’ä½¿ç”¨ã™ã‚‹ãƒ•ãƒ©ã‚°ãŒç«‹ã£ã¦ã„ã‚‹å ´åˆã¯å‡¦ç†ã‚’åˆ†å²
 	if( WinData.BackBufferTransColorFlag || WinData.UseUpdateLayerdWindowFlag )
 	{
 		BASEIMAGE BackBufferImage ;
@@ -25906,13 +25906,13 @@ extern	int		Graphics_Hardware_D3D11_ScreenFlipBase_PF( void )
 		int       OldTargetScreen ;
 		int       OldTargetScreenSurfaceIndex ;
 
-		// ‚u‚r‚x‚m‚b‚ğ‘Ò‚Â	
+		// ï¼¶ï¼³ï¼¹ï¼®ï¼£ã‚’å¾…ã¤	
 		if( GSYS.Screen.NotWaitVSyncFlag == FALSE )
 		{
 			DXGIOutput_WaitForVBlank( GD3D11.Device.Screen.OutputWindowInfo[ 0 ].DXGIOutput ) ;
 		}
 
-		// Graphics_Screen_LockDrawScreen ‚ğg‚¤•û–@
+		// Graphics_Screen_LockDrawScreen ã‚’ä½¿ã†æ–¹æ³•
 		OldTargetScreen                           = GSYS.DrawSetting.TargetScreen[ 0 ] ;
 		OldTargetScreenSurfaceIndex               = GSYS.DrawSetting.TargetScreenSurface [ 0 ] ;
 		GSYS.DrawSetting.TargetScreen[ 0 ]        = DX_SCREEN_BACK ;
@@ -25932,22 +25932,22 @@ extern	int		Graphics_Hardware_D3D11_ScreenFlipBase_PF( void )
 	}
 	else
 	{
-		// ƒtƒŠƒbƒv
+		// ãƒ•ãƒªãƒƒãƒ—
 		if( OWI->DXGISwapChain )
 		{
 			HRESULT hr ;
 
-			// ( ƒtƒŠƒbƒv‚µ‚È‚¢‚Æg—pƒƒ‚ƒŠ‚ª‘‚¦‚éŒ»Û‚ª”­¶‚·‚é‚Ì‚ÅAÅ¬‰»‚³‚ê‚Ä‚¢‚é‰Â”\«‚ª‚ ‚Á‚Ä‚à•K‚¸ƒtƒŠƒbƒv‚ğs‚¤ )
+			// ( ãƒ•ãƒªãƒƒãƒ—ã—ãªã„ã¨ä½¿ç”¨ãƒ¡ãƒ¢ãƒªãŒå¢—ãˆã‚‹ç¾è±¡ãŒç™ºç”Ÿã™ã‚‹ã®ã§ã€æœ€å°åŒ–ã•ã‚Œã¦ã„ã‚‹å¯èƒ½æ€§ãŒã‚ã£ã¦ã‚‚å¿…ãšãƒ•ãƒªãƒƒãƒ—ã‚’è¡Œã† )
 			hr = DXGISwapChain_Present( OWI->DXGISwapChain, ( UINT )( GSYS.Screen.NotWaitVSyncFlag ? 0 : 1 ), 0 ) ;
 			if( FAILED( hr ) )
 			{
-				// ƒfƒoƒCƒXƒƒXƒg‚Ìê‡‚ÍƒfƒoƒCƒX‚ğÅ‰Šú‰»‚·‚é
-				if( hr == 0x887a0005 /* 0x887a0005 ‚Í DXGI_ERROR_DEVICE_REMOVED */ )
+				// ãƒ‡ãƒã‚¤ã‚¹ãƒ­ã‚¹ãƒˆã®å ´åˆã¯ãƒ‡ãƒã‚¤ã‚¹ã‚’æœ€åˆæœŸåŒ–ã™ã‚‹
+				if( hr == 0x887a0005 /* 0x887a0005 ã¯ DXGI_ERROR_DEVICE_REMOVED */ )
 				{
-					// ƒfƒoƒCƒXƒƒXƒg‚Ìê‡‚Í‰Šú‰»‚ğs‚¤
+					// ãƒ‡ãƒã‚¤ã‚¹ãƒ­ã‚¹ãƒˆã®å ´åˆã¯åˆæœŸåŒ–ã‚’è¡Œã†
 					NS_RestoreGraphSystem() ;
 
-					// ˆê’UŠÖ”‚Í‚·‚®”²‚¯‚é
+					// ä¸€æ—¦é–¢æ•°ã¯ã™ãæŠœã‘ã‚‹
 					return 0 ;
 				}
 				else
@@ -25956,8 +25956,8 @@ extern	int		Graphics_Hardware_D3D11_ScreenFlipBase_PF( void )
 				}
 			}
 
-			// ”ñƒAƒNƒeƒBƒu‚Å‚àÀs‚·‚éİ’è‚ÅAVSYNC‘Ò‚¿‚ğ‚·‚éw’è‚ğ‚µ‚Ä‚¢‚éİ’è‚ÅŠ‚ÂÅ¬‰»‚³‚ê‚Ä‚¢‚éê‡‚ÍVSYNC‘Ò‚¿‚ğ‚·‚é
-			// ( Å¬‰»‚³‚ê‚Ä‚¢‚éó‘Ô‚ÅƒƒCƒ“ƒ‹[ƒv‚ª¦‚¢‘¬‚³‚Å‹ó‰ñ‚è‚·‚é‚Ì‚ğ–h~‚·‚é–Ú“I )
+			// éã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã§ã‚‚å®Ÿè¡Œã™ã‚‹è¨­å®šã§ã€VSYNCå¾…ã¡ã‚’ã™ã‚‹æŒ‡å®šã‚’ã—ã¦ã„ã‚‹è¨­å®šã§ä¸”ã¤æœ€å°åŒ–ã•ã‚Œã¦ã„ã‚‹å ´åˆã¯VSYNCå¾…ã¡ã‚’ã™ã‚‹
+			// ( æœ€å°åŒ–ã•ã‚Œã¦ã„ã‚‹çŠ¶æ…‹ã§ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒ—ãŒå‡„ã„é€Ÿã•ã§ç©ºå›ã‚Šã™ã‚‹ã®ã‚’é˜²æ­¢ã™ã‚‹ç›®çš„ )
 			if( NS_GetAlwaysRunFlag() &&
 				GSYS.Screen.NotWaitVSyncFlag == FALSE &&
 				WinData.WindowMinSizeFlag )
@@ -25967,30 +25967,30 @@ extern	int		Graphics_Hardware_D3D11_ScreenFlipBase_PF( void )
 		}
 	}
 
-	// Direct3D 11 ‚É‘Î‚·‚éİ’è‚ğÄ“xs‚¤
+	// Direct3D 11 ã«å¯¾ã™ã‚‹è¨­å®šã‚’å†åº¦è¡Œã†
 	NS_RefreshDxLibDirect3DSetting() ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 
 ERR:
-	// ƒGƒ‰[I—¹
+	// ã‚¨ãƒ©ãƒ¼çµ‚äº†
 	return -1;
 }
 
-// — ‰æ–Ê‚Ìw’è‚Ì—Ìˆæ‚ğƒEƒCƒ“ƒhƒE‚ÌƒNƒ‰ƒCƒAƒ“ƒg—Ìˆæ‚Ìw’è‚Ì—Ìˆæ‚É“]‘—‚·‚é
+// è£ç”»é¢ã®æŒ‡å®šã®é ˜åŸŸã‚’ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆé ˜åŸŸã®æŒ‡å®šã®é ˜åŸŸã«è»¢é€ã™ã‚‹
 extern	int		Graphics_Hardware_D3D11_BltRectBackScreenToWindow_PF( HWND /*Window*/, RECT /*BackScreenRect*/, RECT /*WindowClientRect*/ )
 {
-	// –¢À‘•
+	// æœªå®Ÿè£…
 	return 0 ;
 }
 
-// ScreenFlip ‚Å‰æ‘œ‚ğ“]‘—‚·‚éæ‚ÌƒEƒCƒ“ƒhƒE‚ğİ’è‚·‚é( NULL ‚ğw’è‚·‚é‚Æİ’è‰ğœ )
+// ScreenFlip ã§ç”»åƒã‚’è»¢é€ã™ã‚‹å…ˆã®ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚’è¨­å®šã™ã‚‹( NULL ã‚’æŒ‡å®šã™ã‚‹ã¨è¨­å®šè§£é™¤ )
 extern	int		Graphics_Hardware_D3D11_SetScreenFlipTargetWindow_PF( HWND TargetWindow, double /*ScaleX*/, double /*ScaleY*/ )
 {
 	int Result ;
 
-	// w’è‚ÌƒEƒBƒ“ƒhƒE‚ª–³Œø‚¾‚Á‚½‚çƒGƒ‰[
+	// æŒ‡å®šã®ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãŒç„¡åŠ¹ã ã£ãŸã‚‰ã‚¨ãƒ©ãƒ¼
 	if( TargetWindow != NULL && WinAPIData.Win32Func.IsWindowFunc( TargetWindow ) == FALSE )
 	{
 		return -1 ;
@@ -26009,7 +26009,7 @@ extern	int		Graphics_Hardware_D3D11_SetScreenFlipTargetWindow_PF( HWND TargetWin
 		return -1 ;
 	}
 
-	// ƒƒCƒ“ƒEƒCƒ“ƒhƒEˆÈŠO‚ªƒ^[ƒQƒbƒg‚É‚È‚Á‚½ê‡‚ÍƒTƒuƒoƒbƒNƒoƒbƒtƒ@‚ğƒZƒbƒgƒAƒbƒv‚·‚é
+	// ãƒ¡ã‚¤ãƒ³ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ä»¥å¤–ãŒã‚¿ãƒ¼ã‚²ãƒƒãƒˆã«ãªã£ãŸå ´åˆã¯ã‚µãƒ–ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã‚’ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã™ã‚‹
 	if( Result > 0 )
 	{
 		if( Graphics_D3D11_SetupSubBackBuffer() < 0 )
@@ -26018,17 +26018,17 @@ extern	int		Graphics_Hardware_D3D11_SetScreenFlipTargetWindow_PF( HWND TargetWin
 		}
 	}
 
-	// ƒ^[ƒQƒbƒgƒEƒCƒ“ƒhƒE‚Ì”z—ñƒCƒ“ƒfƒbƒNƒX‚ğ•Û‘¶
+	// ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®é…åˆ—ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’ä¿å­˜
 	GD3D11.Device.Screen.TargetOutputWindow = Result ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// ƒƒCƒ“‰æ–Ê‚Ì‚yƒoƒbƒtƒ@‚Ìİ’è‚ğ•ÏX‚·‚é
+// ãƒ¡ã‚¤ãƒ³ç”»é¢ã®ï¼ºãƒãƒƒãƒ•ã‚¡ã®è¨­å®šã‚’å¤‰æ›´ã™ã‚‹
 extern	int		Graphics_Hardware_D3D11_SetZBufferMode_PF( int /*ZBufferSizeX*/, int /*ZBufferSizeY*/, int ZBufferBitDepth )
 {
-	// ‰Šú‰»‘O‚Ìê‡‚Ì‚İ—LŒø
+	// åˆæœŸåŒ–å‰ã®å ´åˆã®ã¿æœ‰åŠ¹
 	if( GAPIWin.D3D11DeviceObject != NULL )
 		return 0 ;
 
@@ -26045,85 +26045,85 @@ extern	int		Graphics_Hardware_D3D11_SetZBufferMode_PF( int /*ZBufferSizeX*/, int
 	return 0 ;
 }
 
-// •`‰ææ‚yƒoƒbƒtƒ@‚ÌƒZƒbƒg
+// æç”»å…ˆï¼ºãƒãƒƒãƒ•ã‚¡ã®ã‚»ãƒƒãƒˆ
 extern	int		Graphics_Hardware_D3D11_SetDrawZBuffer_PF( int /*DrawScreen*/, IMAGEDATA * /*Image*/ )
 {
-	// –¢À‘•
+	// æœªå®Ÿè£…
 	return 0 ;
 }
 
-// g—p’†‚ÌID3D11DeviceƒIƒuƒWƒFƒNƒg‚ğæ“¾‚·‚é( –ß‚è’l‚ğ ID3D11Device * ‚ÉƒLƒƒƒXƒg‚µ‚Ä‚­‚¾‚³‚¢ )
+// ä½¿ç”¨ä¸­ã®ID3D11Deviceã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å–å¾—ã™ã‚‹( æˆ»ã‚Šå€¤ã‚’ ID3D11Device * ã«ã‚­ãƒ£ã‚¹ãƒˆã—ã¦ãã ã•ã„ )
 extern const void* Graphics_Hardware_D3D11_GetUseDirect3D11Device_PF( void )
 {
 	return D3D11Device_Get() ;
 }
 
-// g—p’†‚ÌID3D11DeviceContextƒIƒuƒWƒFƒNƒg‚ğæ“¾‚·‚é( –ß‚è’l‚ğ ID3D11DeviceContext * ‚ÉƒLƒƒƒXƒg‚µ‚Ä‚­‚¾‚³‚¢ )
+// ä½¿ç”¨ä¸­ã®ID3D11DeviceContextã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å–å¾—ã™ã‚‹( æˆ»ã‚Šå€¤ã‚’ ID3D11DeviceContext * ã«ã‚­ãƒ£ã‚¹ãƒˆã—ã¦ãã ã•ã„ )
 extern const void* Graphics_Hardware_D3D11_GetUseDirect3D11DeviceContext_PF( void )
 {
 	return D3D11DeviceContext_Get() ;
 }
 
-// g—p’†‚ÌƒoƒbƒNƒoƒbƒtƒ@‚ÌID3D11Texture2DƒIƒuƒWƒFƒNƒg‚ğæ“¾‚·‚é( –ß‚è’l‚ğ ID3D11Texture2D * ‚ÉƒLƒƒƒXƒg‚µ‚Ä‚­‚¾‚³‚¢ )
+// ä½¿ç”¨ä¸­ã®ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã®ID3D11Texture2Dã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å–å¾—ã™ã‚‹( æˆ»ã‚Šå€¤ã‚’ ID3D11Texture2D * ã«ã‚­ãƒ£ã‚¹ãƒˆã—ã¦ãã ã•ã„ )
 extern const void* Graphics_Hardware_D3D11_GetUseDirect3D11BackBufferTexture2D_PF( void )
 {
-	// •`‰æ‘Ò‹@‚µ‚Ä‚¢‚é•`‰æ•¨‚ğ•`‰æ
+	// æç”»å¾…æ©Ÿã—ã¦ã„ã‚‹æç”»ç‰©ã‚’æç”»
 	DRAWSTOCKINFO
 
-	// ƒtƒ‹ƒXƒNƒŠ[ƒ“ƒ}ƒXƒNˆ—‚ğs‚Á‚Ä‚¢‚éê‡‚Íƒ}ƒXƒN•`‰æ‚ÌŒ‹‰Ê‚ğ”½‰f‚³‚¹‚é
+	// ãƒ•ãƒ«ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒã‚¹ã‚¯å‡¦ç†ã‚’è¡Œã£ã¦ã„ã‚‹å ´åˆã¯ãƒã‚¹ã‚¯æç”»ã®çµæœã‚’åæ˜ ã•ã›ã‚‹
 	MASK_FULLSCREEN_MASKUPDATE
 
-	// ƒTƒuƒoƒbƒNƒoƒbƒtƒ@‚ª—LŒø‚Èê‡‚ÍƒTƒuƒoƒbƒNƒoƒbƒtƒ@‚Ìî•ñ‚ğ•Ô‚·
+	// ã‚µãƒ–ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ãŒæœ‰åŠ¹ãªå ´åˆã¯ã‚µãƒ–ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã®æƒ…å ±ã‚’è¿”ã™
 	if( GD3D11.Device.Screen.SubBackBufferTexture2D != NULL )
 	{
 		return GD3D11.Device.Screen.SubBackBufferMSTexture2D != NULL ? GD3D11.Device.Screen.SubBackBufferMSTexture2D : GD3D11.Device.Screen.SubBackBufferTexture2D ;
 	}
 
-	// ‚»‚êˆÈŠO‚Ìê‡‚ÍƒoƒbƒNƒoƒbƒtƒ@‚Ìî•ñ‚ğ•Ô‚·
+	// ãã‚Œä»¥å¤–ã®å ´åˆã¯ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã®æƒ…å ±ã‚’è¿”ã™
 	return GD3D11.Device.Screen.OutputWindowInfo[ 0 ].BufferTexture2D ;
 }
 
-// g—p’†‚ÌƒoƒbƒNƒoƒbƒtƒ@‚ÌID3D11RenderTargetViewƒIƒuƒWƒFƒNƒg‚ğæ“¾‚·‚é( –ß‚è’l‚ğ ID3D11RenderTargetView * ‚ÉƒLƒƒƒXƒg‚µ‚Ä‚­‚¾‚³‚¢ )
+// ä½¿ç”¨ä¸­ã®ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã®ID3D11RenderTargetViewã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å–å¾—ã™ã‚‹( æˆ»ã‚Šå€¤ã‚’ ID3D11RenderTargetView * ã«ã‚­ãƒ£ã‚¹ãƒˆã—ã¦ãã ã•ã„ )
 extern const void* Graphics_Hardware_D3D11_GetUseDirect3D11BackBufferRenderTargetView_PF( void )
 {
-	// ƒTƒuƒoƒbƒNƒoƒbƒtƒ@‚ª—LŒø‚Èê‡‚ÍƒTƒuƒoƒbƒNƒoƒbƒtƒ@‚Ìî•ñ‚ğ•Ô‚·
+	// ã‚µãƒ–ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ãŒæœ‰åŠ¹ãªå ´åˆã¯ã‚µãƒ–ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã®æƒ…å ±ã‚’è¿”ã™
 	if( GD3D11.Device.Screen.SubBackBufferRTV != NULL )
 	{
 		return GD3D11.Device.Screen.SubBackBufferRTV ;
 	}
 
-	// ‚»‚êˆÈŠO‚Ìê‡‚ÍƒoƒbƒNƒoƒbƒtƒ@‚Ìî•ñ‚ğ•Ô‚·
+	// ãã‚Œä»¥å¤–ã®å ´åˆã¯ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã®æƒ…å ±ã‚’è¿”ã™
 	return GD3D11.Device.Screen.OutputWindowInfo[ 0 ].BufferRTV ;
 }
 
-// g—p’†‚Ì[“xƒXƒeƒ“ƒVƒ‹ƒoƒbƒtƒ@‚ÌID3D11Texture2DƒIƒuƒWƒFƒNƒg‚ğæ“¾‚·‚é( –ß‚è’l‚ğ ID3D11Texture2D * ‚ÉƒLƒƒƒXƒg‚µ‚Ä‚­‚¾‚³‚¢ )
+// ä½¿ç”¨ä¸­ã®æ·±åº¦ã‚¹ãƒ†ãƒ³ã‚·ãƒ«ãƒãƒƒãƒ•ã‚¡ã®ID3D11Texture2Dã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å–å¾—ã™ã‚‹( æˆ»ã‚Šå€¤ã‚’ ID3D11Texture2D * ã«ã‚­ãƒ£ã‚¹ãƒˆã—ã¦ãã ã•ã„ )
 extern const void* Graphics_Hardware_D3D11_GetUseDirect3D11DepthStencilTexture2D_PF( void )
 {
 	return GD3D11.Device.Screen.DepthBufferTexture2D ;
 }
 
-// ƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ª‚Â ID3D11Texture2D ‚ğæ“¾‚·‚é( Direct3D11 ‚ğg—p‚µ‚Ä‚¢‚éê‡‚Ì‚İ—LŒø )( –ß‚è’l‚ğ ID3D11Texture2D * ‚ÉƒLƒƒƒXƒg‚µ‚Ä‚­‚¾‚³‚¢ )
+// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ãŒæŒã¤ ID3D11Texture2D ã‚’å–å¾—ã™ã‚‹( Direct3D11 ã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹å ´åˆã®ã¿æœ‰åŠ¹ )( æˆ»ã‚Šå€¤ã‚’ ID3D11Texture2D * ã«ã‚­ãƒ£ã‚¹ãƒˆã—ã¦ãã ã•ã„ )
 extern const void* Graphics_Hardware_D3D11_GetGraphID3D11Texture2D_PF( IMAGEDATA *Image )
 {
 	return Image->Hard.Draw[ 0 ].Tex->PF->D3D11.Texture ;
 }
 
-// ƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ª‚Â ID3D11RenderTargetView ‚ğæ“¾‚·‚é( Direct3D11 ‚ğg—p‚µ‚Ä‚¢‚ÄAŠ‚Â MakeScreen ‚Åì¬‚µ‚½ƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚Å‚Ì‚İ—LŒø )( –ß‚è’l‚ğ ID3D11RenderTargetView * ‚ÉƒLƒƒƒXƒg‚µ‚Ä‚­‚¾‚³‚¢ )
+// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ãŒæŒã¤ ID3D11RenderTargetView ã‚’å–å¾—ã™ã‚‹( Direct3D11 ã‚’ä½¿ç”¨ã—ã¦ã„ã¦ã€ä¸”ã¤ MakeScreen ã§ä½œæˆã—ãŸã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã§ã®ã¿æœ‰åŠ¹ )( æˆ»ã‚Šå€¤ã‚’ ID3D11RenderTargetView * ã«ã‚­ãƒ£ã‚¹ãƒˆã—ã¦ãã ã•ã„ )
 extern const void* Graphics_Hardware_D3D11_GetGraphID3D11RenderTargetView_PF( IMAGEDATA *Image )
 {
 	return Image->Hard.Draw[ 0 ].Tex->PF->D3D11.TextureRTV[ 0 ] ;
 }
 
-// ƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ª‚Â ID3D11DepthStencilView ‚ğæ“¾‚·‚é( Direct3D11 ‚ğg—p‚µ‚Ä‚¢‚ÄAŠ‚Â MakeScreen ‚Åì¬‚µ‚½ƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚Å‚Ì‚İ—LŒø )( –ß‚è’l‚ğ ID3D11DepthStencilView * ‚ÉƒLƒƒƒXƒg‚µ‚Ä‚­‚¾‚³‚¢ )
+// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ãŒæŒã¤ ID3D11DepthStencilView ã‚’å–å¾—ã™ã‚‹( Direct3D11 ã‚’ä½¿ç”¨ã—ã¦ã„ã¦ã€ä¸”ã¤ MakeScreen ã§ä½œæˆã—ãŸã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã§ã®ã¿æœ‰åŠ¹ )( æˆ»ã‚Šå€¤ã‚’ ID3D11DepthStencilView * ã«ã‚­ãƒ£ã‚¹ãƒˆã—ã¦ãã ã•ã„ )
 extern const void* Graphics_Hardware_D3D11_GetGraphID3D11DepthStencilView_PF( IMAGEDATA *Image )
 {
 	return Image->Hard.Draw[ 0 ].Tex->PF->D3D11.DepthBufferDSV[ 0 ] ;
 }
 
-// w’è‚Ì ID3D11RenderTargetView ‚ğ•`‰æ‘ÎÛ‚É‚·‚é
+// æŒ‡å®šã® ID3D11RenderTargetView ã‚’æç”»å¯¾è±¡ã«ã™ã‚‹
 extern int Graphics_Hardware_D3D11_SetDrawScreen_ID3D11RenderTargetView_PF( const void *pID3D11RenderTargetView, const void *pID3D11DepthStencilView )
 {
-	// ˆ—“à—e‚Í NS_SetDrawScreen ‚ğƒRƒs[•ƒy[ƒXƒg‚µ‚Ä‰ü‘¢‚µ‚½‚à‚Ì
+	// å‡¦ç†å†…å®¹ã¯ NS_SetDrawScreen ã‚’ã‚³ãƒ”ãƒ¼ï¼†ãƒšãƒ¼ã‚¹ãƒˆã—ã¦æ”¹é€ ã—ãŸã‚‚ã®
 
 	int OldScreen ;
 	int OldScreenSurface ;
@@ -26141,10 +26141,10 @@ extern int Graphics_Hardware_D3D11_SetDrawScreen_ID3D11RenderTargetView_PF( cons
 	
 	if( GSYS.InitializeFlag == FALSE ) return -1 ;
 
-	// ƒ\ƒtƒg‚ª”ñƒAƒNƒeƒBƒu‚Ìê‡‚ÍƒAƒNƒeƒBƒu‚É‚È‚é‚Ü‚Å‘Ò‚Â
+	// ã‚½ãƒ•ãƒˆãŒéã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã®å ´åˆã¯ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ãªã‚‹ã¾ã§å¾…ã¤
 	CheckActiveState() ;
 
-	// ¡‚Ü‚Å‚Ì•`‰ææ‚Ì‰æ‘œî•ñ‚Ìæ“¾
+	// ä»Šã¾ã§ã®æç”»å…ˆã®ç”»åƒæƒ…å ±ã®å–å¾—
 	if( GRAPHCHKFULL( GSYS.DrawSetting.TargetScreen[ 0 ], OldImage ) )
 	{
 		OldImage = NULL ;
@@ -26154,7 +26154,7 @@ extern int Graphics_Hardware_D3D11_SetDrawScreen_ID3D11RenderTargetView_PF( cons
 		}
 	}
 
-	// •`‰ææ‚ÌƒTƒCƒY‚ğæ“¾
+	// æç”»å…ˆã®ã‚µã‚¤ã‚ºã‚’å–å¾—
 	D3D11View_GetResource( ( D_ID3D11RenderTargetView * )pID3D11RenderTargetView, ( D_ID3D11Resource ** )&pID3D11Texture2D ) ;
 	D3D11Texture2D_GetDesc( pID3D11Texture2D, &TexDesc ) ;
 	if( pID3D11DepthStencilView != NULL )
@@ -26162,7 +26162,7 @@ extern int Graphics_Hardware_D3D11_SetDrawScreen_ID3D11RenderTargetView_PF( cons
 		D3D11View_GetResource( ( D_ID3D11DepthStencilView * )pID3D11DepthStencilView, ( D_ID3D11Resource ** )&pID3D11DepthBuffer ) ;
 		D3D11Texture2D_GetDesc( pID3D11DepthBuffer, &DepthBufferDesc ) ;
 
-		// [“xƒoƒbƒtƒ@‚Æ•`‰ææ‚Ìƒoƒbƒtƒ@‚ÌƒTƒCƒY‚ªˆÙ‚È‚éê‡‚ÍƒGƒ‰[
+		// æ·±åº¦ãƒãƒƒãƒ•ã‚¡ã¨æç”»å…ˆã®ãƒãƒƒãƒ•ã‚¡ã®ã‚µã‚¤ã‚ºãŒç•°ãªã‚‹å ´åˆã¯ã‚¨ãƒ©ãƒ¼
 		if( DepthBufferDesc.Width != TexDesc.Width ||
 			DepthBufferDesc.Height != TexDesc.Height )
 		{
@@ -26170,52 +26170,52 @@ extern int Graphics_Hardware_D3D11_SetDrawScreen_ID3D11RenderTargetView_PF( cons
 		}
 	}
 
-	// ¡‚Ü‚Å‚Ì‰æ–Ê‚ª•\‰æ–Ê‚¾‚Á‚½ê‡‚Íˆê“x ScreenCopy ‚ğs‚¤
+	// ä»Šã¾ã§ã®ç”»é¢ãŒè¡¨ç”»é¢ã ã£ãŸå ´åˆã¯ä¸€åº¦ ScreenCopy ã‚’è¡Œã†
 	if( GSYS.DrawSetting.TargetScreen[ 0 ] == DX_SCREEN_FRONT )
 	{
 		Graphics_Screen_ScreenCopyBase( TRUE ) ;
 	}
 
-	// ƒVƒƒƒhƒEƒ}ƒbƒv‚Ö‚Ì•`‰æİ’è‚ª‚³‚ê‚Ä‚¢‚½‚ç‰ğœ
+	// ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ã¸ã®æç”»è¨­å®šãŒã•ã‚Œã¦ã„ãŸã‚‰è§£é™¤
 	if( GSYS.DrawSetting.ShadowMapDraw )
 	{
 		NS_ShadowMap_DrawEnd() ;
 	}
 
 #ifndef DX_NON_MASK
-	// ƒ}ƒXƒN‚ğg—pI—¹‚·‚éè‘±‚«‚ğæ‚é
+	// ãƒã‚¹ã‚¯ã‚’ä½¿ç”¨çµ‚äº†ã™ã‚‹æ‰‹ç¶šãã‚’å–ã‚‹
 	MaskUseFlag = MASKD.MaskUseFlag ;
 	NS_SetUseMaskScreenFlag( FALSE ) ;
 
-	// •`‰ææ‚ÌƒTƒCƒY‚Åƒ}ƒXƒN‰æ–Ê‚ğì¬‚µ‚È‚¨‚·
+	// æç”»å…ˆã®ã‚µã‚¤ã‚ºã§ãƒã‚¹ã‚¯ç”»é¢ã‚’ä½œæˆã—ãªãŠã™
 	if( MASKD.CreateMaskFlag )
 	{
 		Mask_CreateScreenFunction( TRUE, ( int )TexDesc.Width, ( int )TexDesc.Height ) ;
 	}
 #endif
 
-	// •`‰ææ‚ğ•Û‘¶
+	// æç”»å…ˆã‚’ä¿å­˜
 	OldScreen                                 = GSYS.DrawSetting.TargetScreen[ 0 ] ;
 	OldScreenSurface                          = GSYS.DrawSetting.TargetScreenSurface[ 0 ] ;
 	OldScreenMipLevel                         = GSYS.DrawSetting.TargetScreenMipLevel[ 0 ] ;
 	GSYS.DrawSetting.TargetScreen[ 0 ]        = DX_SCREEN_OTHER ;
 	GSYS.DrawSetting.TargetScreenSurface[ 0 ] = 0 ;
 
-	// •`‰æ‰Â”\ƒTƒCƒY‚Ìæ“¾
+	// æç”»å¯èƒ½ã‚µã‚¤ã‚ºã®å–å¾—
 	GSYS.DrawSetting.DrawSizeX = ( int )TexDesc.Width ;
 	GSYS.DrawSetting.DrawSizeY = ( int )TexDesc.Height ;
 
-	// •`‰ææ‚É³‚µ‚¢ƒ¿’l‚ğ‘‚«‚Ş‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğXV‚·‚é
+	// æç”»å…ˆã«æ­£ã—ã„Î±å€¤ã‚’æ›¸ãè¾¼ã‚€ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’æ›´æ–°ã™ã‚‹
 	Graphics_DrawSetting_RefreshAlphaChDrawMode() ;
 
-	// ‚R‚c•`‰æŠÖŒW‚Ì•`‰ææ‚ğƒZƒbƒg
+	// ï¼“ï¼¤æç”»é–¢ä¿‚ã®æç”»å…ˆã‚’ã‚»ãƒƒãƒˆ
 	if( GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )
 	{
-		// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒ^‚ğg—p‚·‚éê‡‚Ìˆ—
+		// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚¿ã‚’ä½¿ç”¨ã™ã‚‹å ´åˆã®å‡¦ç†
 		Graphics_Hardware_D3D11_SetDrawScreen_PF_Base( DX_SCREEN_OTHER, OldScreenSurface, OldScreenMipLevel, NULL, OldImage, NULL, OldShadowMap, ( D_ID3D11RenderTargetView * )pID3D11RenderTargetView, ( D_ID3D11DepthStencilView * )pID3D11DepthStencilView ) ;
 	}
 
-	// •`‰æ—Ìˆæ‚ğXV
+	// æç”»é ˜åŸŸã‚’æ›´æ–°
 	{
 		RECT SrcRect ;
 		int NewWidth, NewHeight, OldWidth = 10, OldHeight = 10 ;
@@ -26259,25 +26259,25 @@ extern int Graphics_Hardware_D3D11_SetDrawScreen_ID3D11RenderTargetView_PF( cons
 		}
 	}
 		
-	// ‚R‚c•`‰æˆ——p‚Ìs—ñİ’è‚Ì‰Šú‰»‚ğs‚¤
+	// ï¼“ï¼¤æç”»å‡¦ç†ç”¨ã®è¡Œåˆ—è¨­å®šã®åˆæœŸåŒ–ã‚’è¡Œã†
 	if( GSYS.DrawSetting.SetDrawScreenNoSettingResetFlag == FALSE )
 	{
 		MATRIX mat ;
 		float D ;
 
-		// ƒhƒbƒgƒAƒXƒyƒNƒg‚ğ‚PD‚O‚É–ß‚·
+		// ãƒ‰ãƒƒãƒˆã‚¢ã‚¹ãƒšã‚¯ãƒˆã‚’ï¼‘ï¼ï¼ã«æˆ»ã™
 		NS_SetCameraDotAspect( 1.0f ) ;
 
-		// ƒ[ƒ‹ƒh•ÏŠ·s—ñ‚Í’PˆÊs—ñ
+		// ãƒ¯ãƒ¼ãƒ«ãƒ‰å¤‰æ›è¡Œåˆ—ã¯å˜ä½è¡Œåˆ—
 		CreateIdentityMatrix( &mat ) ;
 		NS_SetTransformToWorld( &mat ) ;
 
-		// ƒ‰ƒCƒuƒ‰ƒŠŠÇ—‚Ìƒrƒ…[ƒ|[ƒgs—ñ‚ğXV
+		// ãƒ©ã‚¤ãƒ–ãƒ©ãƒªç®¡ç†ã®ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆè¡Œåˆ—ã‚’æ›´æ–°
 		GSYS.Camera.ScreenCenterX = ( double )GSYS.DrawSetting.DrawSizeX / 2.0 ;
 		GSYS.Camera.ScreenCenterY = ( double )GSYS.DrawSetting.DrawSizeY / 2.0 ;
 		NS_SetCameraScreenCenterD( GSYS.Camera.ScreenCenterX, GSYS.Camera.ScreenCenterY ) ;
 
-		// ƒrƒ…[s—ñ‚Í z = 0.0 ‚Ì‚É’š“xƒXƒNƒŠ[ƒ“‘S‘Ì‚ªÊ‚éˆÊ’u‚Æ•ûŒü‚ğ‚ÂƒJƒƒ‰‚ğ
+		// ãƒ“ãƒ¥ãƒ¼è¡Œåˆ—ã¯ z = 0.0 ã®æ™‚ã«ä¸åº¦ã‚¹ã‚¯ãƒªãƒ¼ãƒ³å…¨ä½“ãŒå†™ã‚‹ä½ç½®ã¨æ–¹å‘ã‚’æŒã¤ã‚«ãƒ¡ãƒ©ã‚’
 		{
 			VECTOR up, at, eye ;
 
@@ -26298,32 +26298,32 @@ extern int Graphics_Hardware_D3D11_SetDrawScreen_ID3D11RenderTargetView_PF( cons
 			NS_SetCameraPositionAndTargetAndUpVec( eye, at, up ) ;
 		}
 
-		// ƒvƒƒWƒFƒNƒVƒ‡ƒ“s—ñ‚Í•’Ê‚É
+		// ãƒ—ãƒ­ã‚¸ã‚§ã‚¯ã‚·ãƒ§ãƒ³è¡Œåˆ—ã¯æ™®é€šã«
 		NS_SetupCamera_Perspective( DEFAULT_FOV ) ;
 		NS_SetCameraNearFar( D * 0.1f + DEFAULT_NEAR, D + DEFAULT_FAR ) ;
 	}
 
 #ifndef DX_NON_MASK
-	// ƒ}ƒXƒN‚ğg—p‚·‚éè‘±‚«‚ğæ‚é
+	// ãƒã‚¹ã‚¯ã‚’ä½¿ç”¨ã™ã‚‹æ‰‹ç¶šãã‚’å–ã‚‹
 	NS_SetUseMaskScreenFlag( MaskUseFlag ) ;
 #endif
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// g—p‚·‚é SwapEffect ‚ğİ’è‚·‚é
+// ä½¿ç”¨ã™ã‚‹ SwapEffect ã‚’è¨­å®šã™ã‚‹
 extern int Graphics_Hardware_D3D11_SetUseSwapEffect_PF( D_DXGI_SWAP_EFFECT SwapEffect )
 {
-	// ‰ŠúŒã‚Ìê‡‚Í‰½‚à‚¹‚¸I—¹
+	// åˆæœŸå¾Œã®å ´åˆã¯ä½•ã‚‚ã›ãšçµ‚äº†
 	if( DxSysData.DxLib_InitializeFlag == TRUE )
 		return -1 ;
 
-	// î•ñ‚ğ•Û‘¶
+	// æƒ…å ±ã‚’ä¿å­˜
 	GD3D11.Device.Screen.EnableUserSwapEffect = TRUE ;
 	GD3D11.Device.Screen.UserSwapEffect = SwapEffect ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
@@ -26345,21 +26345,21 @@ extern int Graphics_Hardware_D3D11_SetUseSwapEffect_PF( D_DXGI_SWAP_EFFECT SwapE
 
 
 
-// ŠÂ‹«ˆË‘¶î•ñæ“¾ŠÖŒW
+// ç’°å¢ƒä¾å­˜æƒ…å ±å–å¾—é–¢ä¿‚
 
-// GetColor ‚â GetColor2 ‚Åg—p‚·‚éƒJƒ‰[ƒf[ƒ^‚ğæ“¾‚·‚é
+// GetColor ã‚„ GetColor2 ã§ä½¿ç”¨ã™ã‚‹ã‚«ãƒ©ãƒ¼ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—ã™ã‚‹
 extern const COLORDATA *Graphics_Hardware_D3D11_GetMainColorData_PF( void )
 {
 	return Graphics_D3D11_GetD3DFormatColorData( DIRECT3D11_BACKBUFFER_FORMAT ) ;
 }
 
-// ƒfƒBƒXƒvƒŒ[‚ÌƒJƒ‰[ƒf[ƒ^ƒ|ƒCƒ“ƒ^‚ğ“¾‚é
+// ãƒ‡ã‚£ã‚¹ãƒ—ãƒ¬ãƒ¼ã®ã‚«ãƒ©ãƒ¼ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿ã‚’å¾—ã‚‹
 extern	const COLORDATA *Graphics_Hardware_D3D11_GetDispColorData_PF( void )
 {
 	return Graphics_D3D11_GetD3DFormatColorData( GD3D11.Device.Caps.ScreenFormat ) ;
 }
 
-// w’èÀ•W‚ÌF‚ğæ“¾‚·‚é
+// æŒ‡å®šåº§æ¨™ã®è‰²ã‚’å–å¾—ã™ã‚‹
 extern	DWORD Graphics_Hardware_D3D11_GetPixel_PF( int x, int y )
 {
 	RECT            SrcRect ;
@@ -26368,10 +26368,10 @@ extern	DWORD Graphics_Hardware_D3D11_GetPixel_PF( int x, int y )
 	DWORD           Ret = 0xffffffff ;
 	int	Red = 0, Green = 0, Blue = 0, Alpha = 0 ;
 
-	// •`‰æ‘Ò‹@‚µ‚Ä‚¢‚é•`‰æ•¨‚ğ•`‰æ
+	// æç”»å¾…æ©Ÿã—ã¦ã„ã‚‹æç”»ç‰©ã‚’æç”»
 	DRAWSTOCKINFO
 
-	// •`‰ææƒoƒbƒtƒ@‚ğƒƒbƒN
+	// æç”»å…ˆãƒãƒƒãƒ•ã‚¡ã‚’ãƒ­ãƒƒã‚¯
 	SrcRect.left   = x ;
 	SrcRect.right  = x + 1 ;
 	SrcRect.top    = y ;
@@ -26423,14 +26423,14 @@ extern	DWORD Graphics_Hardware_D3D11_GetPixel_PF( int x, int y )
 
 	Ret = 0xff000000 | ( ( ( unsigned int )Red ) << 16 ) | ( ( ( unsigned int )Green ) << 8 ) | ( ( unsigned int )Blue ) ;
 
-	// •`‰ææƒoƒbƒtƒ@‚ğƒAƒ“ƒƒbƒN
+	// æç”»å…ˆãƒãƒƒãƒ•ã‚¡ã‚’ã‚¢ãƒ³ãƒ­ãƒƒã‚¯
 	Graphics_Screen_UnlockDrawScreen() ;
 
-	// F‚ğ•Ô‚·
+	// è‰²ã‚’è¿”ã™
 	return Ret ;
 }
 
-// w’èÀ•W‚ÌF‚ğæ“¾‚·‚é( floatŒ^ )
+// æŒ‡å®šåº§æ¨™ã®è‰²ã‚’å–å¾—ã™ã‚‹( floatå‹ )
 extern COLOR_F Graphics_Hardware_D3D11_GetPixelF_PF( int x, int y )
 {
 	RECT            SrcRect ;
@@ -26438,10 +26438,10 @@ extern COLOR_F Graphics_Hardware_D3D11_GetPixelF_PF( int x, int y )
 	BASEIMAGE       BufferImage ;
 	COLOR_F			Result = { 0.0f } ;
 
-	// •`‰æ‘Ò‹@‚µ‚Ä‚¢‚é•`‰æ•¨‚ğ•`‰æ
+	// æç”»å¾…æ©Ÿã—ã¦ã„ã‚‹æç”»ç‰©ã‚’æç”»
 	DRAWSTOCKINFO
 
-	// •`‰ææƒoƒbƒtƒ@‚ğƒƒbƒN
+	// æç”»å…ˆãƒãƒƒãƒ•ã‚¡ã‚’ãƒ­ãƒƒã‚¯
 	SrcRect.left   = x ;
 	SrcRect.right  = x + 1 ;
 	SrcRect.top    = y ;
@@ -26491,10 +26491,10 @@ extern COLOR_F Graphics_Hardware_D3D11_GetPixelF_PF( int x, int y )
 		Result.a = ( float )Alpha / 255.0f ;
 	}
 
-	// •`‰ææƒoƒbƒtƒ@‚ğƒAƒ“ƒƒbƒN
+	// æç”»å…ˆãƒãƒƒãƒ•ã‚¡ã‚’ã‚¢ãƒ³ãƒ­ãƒƒã‚¯
 	Graphics_Screen_UnlockDrawScreen() ;
 
-	// F‚ğ•Ô‚·
+	// è‰²ã‚’è¿”ã™
 	return Result ;
 }
 
@@ -26523,42 +26523,42 @@ extern COLOR_F Graphics_Hardware_D3D11_GetPixelF_PF( int x, int y )
 
 
 
-// ŠÂ‹«ˆË‘¶‰æ‘œŠÖŒW
+// ç’°å¢ƒä¾å­˜ç”»åƒé–¢ä¿‚
 
-// YUVƒT[ƒtƒFƒX‚ğg‚Á‚½ Theora “®‰æ‚Ì“à—e‚ğƒOƒ‰ƒtƒBƒbƒNƒXƒnƒ“ƒhƒ‹‚ÌƒeƒNƒXƒ`ƒƒ‚É“]‘—‚·‚é
+// YUVã‚µãƒ¼ãƒ•ã‚§ã‚¹ã‚’ä½¿ã£ãŸ Theora å‹•ç”»ã®å†…å®¹ã‚’ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¹ãƒãƒ³ãƒ‰ãƒ«ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ã«è»¢é€ã™ã‚‹
 extern	int		Graphics_Hardware_D3D11_UpdateGraphMovie_TheoraYUV_PF( MOVIEGRAPH * /*Movie*/, IMAGEDATA * /*Image*/ )
 {
-	// –¢À‘•
+	// æœªå®Ÿè£…
 	return 0 ;
 }
 
-// ƒOƒ‰ƒtƒBƒbƒNƒƒ‚ƒŠ—Ìˆæ‚ÌƒƒbƒN
+// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ¡ãƒ¢ãƒªé ˜åŸŸã®ãƒ­ãƒƒã‚¯
 extern	int		Graphics_Hardware_D3D11_GraphLock_PF( IMAGEDATA *Image, COLORDATA **ColorDataP, int WriteOnly )
 {
 	COLORDATA           *ColorData ;
 
-	// •`‰æ‘Ò‹@‚µ‚Ä‚¢‚é•`‰æ•¨‚ğ•`‰æ
+	// æç”»å¾…æ©Ÿã—ã¦ã„ã‚‹æç”»ç‰©ã‚’æç”»
 	DRAWSTOCKINFO
 
-	// ƒJƒ‰[ƒtƒH[ƒ}ƒbƒg‚ğæ“¾‚·‚é
+	// ã‚«ãƒ©ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã‚’å–å¾—ã™ã‚‹
 	ColorData = Graphics_D3D11_GetD3DFormatColorData( GD3D11.Device.Caps.TextureFormat[ Image->Orig->ColorFormat ] ) ;
 
-	// •W€ƒtƒH[ƒ}ƒbƒgˆÈŠO‚Å‚ÍƒƒbƒN‚Å‚«‚È‚¢
+	// æ¨™æº–ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆä»¥å¤–ã§ã¯ãƒ­ãƒƒã‚¯ã§ããªã„
 	if( ColorData->Format != DX_BASEIMAGE_FORMAT_NORMAL )
 	{
 		return -1 ;
 	}
 
-	// ƒeƒ“ƒ|ƒ‰ƒŠƒoƒbƒtƒ@‚ğŠm•Û‚·‚é
+	// ãƒ†ãƒ³ãƒãƒ©ãƒªãƒãƒƒãƒ•ã‚¡ã‚’ç¢ºä¿ã™ã‚‹
 	Image->LockImagePitch	= ( DWORD )( ColorData->PixelByte * Image->WidthI ) ;
 	Image->LockImage		= ( BYTE * )DXALLOC( Image->LockImagePitch * Image->HeightI ) ;
 	if( Image->LockImage == NULL )
 	{
-		DXST_LOGFILE_ADDUTF16LE( "\xed\x30\xc3\x30\xaf\x30\x28\x75\xc6\x30\xf3\x30\xdd\x30\xe9\x30\xea\x30\xa4\x30\xe1\x30\xfc\x30\xb8\x30\x3c\x68\x0d\x7d\x28\x75\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ƒƒbƒN—pƒeƒ“ƒ|ƒ‰ƒŠƒCƒ[ƒWŠi”[—pƒƒ‚ƒŠ‚ÌŠm•Û‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+		DXST_LOGFILE_ADDUTF16LE( "\xed\x30\xc3\x30\xaf\x30\x28\x75\xc6\x30\xf3\x30\xdd\x30\xe9\x30\xea\x30\xa4\x30\xe1\x30\xfc\x30\xb8\x30\x3c\x68\x0d\x7d\x28\x75\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ãƒ­ãƒƒã‚¯ç”¨ãƒ†ãƒ³ãƒãƒ©ãƒªã‚¤ãƒ¡ãƒ¼ã‚¸æ ¼ç´ç”¨ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 		goto ERR ;
 	}
 
-	// ‘‚«‚İê—p‚Å‚Í‚È‚¢ê‡‚Íƒeƒ“ƒ|ƒ‰ƒŠƒoƒbƒtƒ@‚Éƒf[ƒ^‚ğ“]‘—‚·‚é
+	// æ›¸ãè¾¼ã¿å°‚ç”¨ã§ã¯ãªã„å ´åˆã¯ãƒ†ãƒ³ãƒãƒ©ãƒªãƒãƒƒãƒ•ã‚¡ã«ãƒ‡ãƒ¼ã‚¿ã‚’è»¢é€ã™ã‚‹
 	if( WriteOnly == FALSE )
 	{
 		int                  i ;
@@ -26569,11 +26569,11 @@ extern	int		Graphics_Hardware_D3D11_GraphLock_PF( IMAGEDATA *Image, COLORDATA **
 		D_ID3D11Texture2D   *MapTempTexture ;
 		IMAGEDATA_HARD_DRAW *DrawTex ;
 
-		// •`‰æî•ñ‚Ì”‚¾‚¯ŒJ‚è•Ô‚µ
+		// æç”»æƒ…å ±ã®æ•°ã ã‘ç¹°ã‚Šè¿”ã—
 		DrawTex = Image->Hard.Draw ;
 		for( i = 0 ; i < Image->Hard.DrawNum ; i ++, DrawTex ++ )
 		{
-			// ƒ}ƒbƒv
+			// ãƒãƒƒãƒ—
 			if( Graphics_D3D11_Texture2D_Map(
 				DrawTex->Tex->PF->D3D11.Texture,
 				DrawTex->Tex->PF->D3D11.TextureSRV,
@@ -26586,7 +26586,7 @@ extern	int		Graphics_Hardware_D3D11_GraphLock_PF( IMAGEDATA *Image, COLORDATA **
 				goto ERR ;
 			}
 
-			// “]‘—
+			// è»¢é€
 			Src  = ( BYTE * )MapBaseImage.GraphData + DrawTex->UsePosXI  * ColorData->PixelByte + DrawTex->UsePosYI  * MapBaseImage.Pitch ;
 			Dest = Image->LockImage                 + DrawTex->DrawPosXI * ColorData->PixelByte + DrawTex->DrawPosYI * Image->LockImagePitch ;
 			WidthByte = ( DWORD )( DrawTex->WidthI * ColorData->PixelByte ) ;
@@ -26595,15 +26595,15 @@ extern	int		Graphics_Hardware_D3D11_GraphLock_PF( IMAGEDATA *Image, COLORDATA **
 				_MEMCPY( Dest, Src, WidthByte ) ;
 			}
 
-			// ƒ}ƒbƒv‚Ì‰ğœ
+			// ãƒãƒƒãƒ—ã®è§£é™¤
 			Graphics_D3D11_Texture2D_Unmap( MapTempTexture ) ;
 		}
 	}
 
-	// ƒJƒ‰[ƒf[ƒ^‚ÌƒAƒhƒŒƒX‚ğ•Û‘¶
+	// ã‚«ãƒ©ãƒ¼ãƒ‡ãƒ¼ã‚¿ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ä¿å­˜
 	*ColorDataP = ColorData ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 
 ERR :
@@ -26614,11 +26614,11 @@ ERR :
 		Image->LockImage = NULL ;
 	}
 
-	// ƒGƒ‰[I—¹
+	// ã‚¨ãƒ©ãƒ¼çµ‚äº†
 	return -1 ;
 }
 
-// ƒOƒ‰ƒtƒBƒbƒNƒƒ‚ƒŠ—Ìˆæ‚ÌƒƒbƒN‰ğœ
+// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ¡ãƒ¢ãƒªé ˜åŸŸã®ãƒ­ãƒƒã‚¯è§£é™¤
 extern	int		Graphics_Hardware_D3D11_GraphUnlock_PF( IMAGEDATA *Image )
 {
 	COLORDATA           *ColorData ;
@@ -26626,13 +26626,13 @@ extern	int		Graphics_Hardware_D3D11_GraphUnlock_PF( IMAGEDATA *Image )
 	BASEIMAGE            AlphaBaseImage = { 0 } ;
 	RECT                 Rect ;
 
-	// •`‰æ‘Ò‹@‚µ‚Ä‚¢‚é•`‰æ•¨‚ğ•`‰æ
+	// æç”»å¾…æ©Ÿã—ã¦ã„ã‚‹æç”»ç‰©ã‚’æç”»
 	DRAWSTOCKINFO
 
-	// ƒJƒ‰[ƒtƒH[ƒ}ƒbƒg‚ğæ“¾‚·‚é
+	// ã‚«ãƒ©ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã‚’å–å¾—ã™ã‚‹
 	ColorData = Graphics_D3D11_GetD3DFormatColorData( GD3D11.Device.Caps.TextureFormat[ Image->Orig->ColorFormat ] ) ;
 
-	// Šî–{ƒCƒ[ƒW‚ğ\’z‚·‚é
+	// åŸºæœ¬ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’æ§‹ç¯‰ã™ã‚‹
 	BaseImage.ColorData      = *ColorData ;
 	BaseImage.Width          = Image->WidthI ;
 	BaseImage.Height         = Image->HeightI ;
@@ -26641,55 +26641,55 @@ extern	int		Graphics_Hardware_D3D11_GraphUnlock_PF( IMAGEDATA *Image )
 	BaseImage.MipMapCount    = 0 ;
 	BaseImage.GraphDataCount = 0 ;
 
-	// “]‘—
+	// è»¢é€
 	Rect.left   = 0 ;
 	Rect.top    = 0 ;
 	Rect.right  = Image->WidthI ;
 	Rect.bottom = Image->HeightI ;
 	Graphics_Hardware_D3D11_BltBmpOrBaseImageToGraph3_PF( &Rect, 0, 0, Image->HandleInfo.Handle, &BaseImage, &AlphaBaseImage, FALSE, FALSE, TRUE, FALSE ) ;
 
-	// ƒƒbƒNƒCƒ[ƒW‚Ì‰ğ•ú
+	// ãƒ­ãƒƒã‚¯ã‚¤ãƒ¡ãƒ¼ã‚¸ã®è§£æ”¾
 	if( Image->LockImage )
 	{
 		DXFREE( Image->LockImage ) ;
 		Image->LockImage = NULL ;
 	}
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// ƒOƒ‰ƒtƒBƒbƒN‚Ì‚yƒoƒbƒtƒ@‚Ìó‘Ô‚ğ•Ê‚ÌƒOƒ‰ƒtƒBƒbƒN‚Ì‚yƒoƒbƒtƒ@‚ÉƒRƒs[‚·‚é( DestGrHandle ‚à SrcGrHandle ‚à‚yƒoƒbƒtƒ@‚ğ‚Á‚Ä‚¢‚é•`‰æ‰Â”\‰æ‘œ‚ÅAŠ‚ÂƒAƒ“ƒ`ƒGƒCƒŠƒAƒX‰æ‘œ‚Å‚Í‚È‚¢‚±‚Æ‚ªğŒ )
+// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®ï¼ºãƒãƒƒãƒ•ã‚¡ã®çŠ¶æ…‹ã‚’åˆ¥ã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®ï¼ºãƒãƒƒãƒ•ã‚¡ã«ã‚³ãƒ”ãƒ¼ã™ã‚‹( DestGrHandle ã‚‚ SrcGrHandle ã‚‚ï¼ºãƒãƒƒãƒ•ã‚¡ã‚’æŒã£ã¦ã„ã‚‹æç”»å¯èƒ½ç”»åƒã§ã€ä¸”ã¤ã‚¢ãƒ³ãƒã‚¨ã‚¤ãƒªã‚¢ã‚¹ç”»åƒã§ã¯ãªã„ã“ã¨ãŒæ¡ä»¶ )
 extern	int		Graphics_Hardware_D3D11_CopyGraphZBufferImage_PF( IMAGEDATA * /*DestImage*/, IMAGEDATA * /*SrcImage*/ )
 {
-	// –¢À‘•
+	// æœªå®Ÿè£…
 	return 0 ;
 }
 
-// ‰æ‘œƒf[ƒ^‚Ì‰Šú‰»
+// ç”»åƒãƒ‡ãƒ¼ã‚¿ã®åˆæœŸåŒ–
 extern	int		Graphics_Hardware_D3D11_InitGraph_PF( void )
 {
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// ƒOƒ‰ƒtƒBƒbƒN‚ğ“Á’è‚ÌF‚Å“h‚è‚Â‚Ô‚·
+// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚’ç‰¹å®šã®è‰²ã§å¡—ã‚Šã¤ã¶ã™
 extern	int		Graphics_Hardware_D3D11_FillGraph_PF( IMAGEDATA *Image, int Red, int Green, int Blue, int Alpha, int /*ASyncThread*/ )
 {
-	// ƒfƒoƒCƒX‚ª–³‚©‚Á‚½‚çƒGƒ‰[
+	// ãƒ‡ãƒã‚¤ã‚¹ãŒç„¡ã‹ã£ãŸã‚‰ã‚¨ãƒ©ãƒ¼
 	if( GAPIWin.D3D11DeviceObject == NULL ) return -1 ;
 
-	// •`‰æî•ñ‚Ì”‚¾‚¯ŒJ‚è•Ô‚µ
+	// æç”»æƒ…å ±ã®æ•°ã ã‘ç¹°ã‚Šè¿”ã—
 	if( Image->Orig->FormatDesc.DrawValidFlag )
 	{
 		IMAGEDATA_HARD_DRAW *DrawTex ;
 		FLOAT               ColorRGBA[ 4 ] ;
 		int                 i ;
 
-		// •`‰æ‘Ò‹@‚µ‚Ä‚¢‚é•`‰æ•¨‚ğ•`‰æ
+		// æç”»å¾…æ©Ÿã—ã¦ã„ã‚‹æç”»ç‰©ã‚’æç”»
 		DRAWSTOCKINFO
 
-		// •`‰æ‚ÌI—¹
+		// æç”»ã®çµ‚äº†
 //		Graphics_D3D11_EndScene() ;
 
 		ColorRGBA[ 0 ] = Red   / 255.0f ;
@@ -26700,7 +26700,7 @@ extern	int		Graphics_Hardware_D3D11_FillGraph_PF( IMAGEDATA *Image, int Red, int
 		DrawTex = Image->Hard.Draw ;
 		for( i = 0 ; i < Image->Hard.DrawNum ; i ++, DrawTex ++ )
 		{
-			// g—pˆæ‚ğw’èF‚Å“h‚è‚Â‚Ô‚µ
+			// ä½¿ç”¨åŸŸã‚’æŒ‡å®šè‰²ã§å¡—ã‚Šã¤ã¶ã—
 			D3D11DeviceContext_ClearRenderTargetView( DrawTex->Tex->PF->D3D11.TextureRTV[ 0 ], ColorRGBA ) ;
 		}
 	}
@@ -26709,11 +26709,11 @@ extern	int		Graphics_Hardware_D3D11_FillGraph_PF( IMAGEDATA *Image, int Red, int
 		return 2 ;
 	}
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// •`‰æ‰Â”\‰æ‘œ‚âƒoƒbƒNƒoƒbƒtƒ@‚©‚çw’è—Ìˆæ‚ÌƒOƒ‰ƒtƒBƒbƒN‚ğæ“¾‚·‚é
+// æç”»å¯èƒ½ç”»åƒã‚„ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã‹ã‚‰æŒ‡å®šé ˜åŸŸã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚’å–å¾—ã™ã‚‹
 extern	int		Graphics_Hardware_D3D11_GetDrawScreenGraphBase_PF( IMAGEDATA *Image, IMAGEDATA *TargetImage, int TargetScreen, int TargetScreenSurface, int TargetScreenMipLevel, int /*TargetScreenWidth*/, int /*TargetScreenHeight*/, int x1, int y1, int x2, int y2, int destX, int destY )
 {
 	RECT SrcRect ;
@@ -26721,32 +26721,32 @@ extern	int		Graphics_Hardware_D3D11_GetDrawScreenGraphBase_PF( IMAGEDATA *Image,
 	RECT Rect ;
 	int Width, Height ;
 
-	// •`‰æ‘Ò‹@‚µ‚Ä‚¢‚é•`‰æ•¨‚ğ•`‰æ
+	// æç”»å¾…æ©Ÿã—ã¦ã„ã‚‹æç”»ç‰©ã‚’æç”»
 	DRAWSTOCKINFO
 
-	// •‚Æ‚‚³‚ğŒvZ
+	// å¹…ã¨é«˜ã•ã‚’è¨ˆç®—
 	Width  = x2 - x1 ;
 	Height = y2 - y1 ;
 
-	// “]‘—æ‚Æ‚È‚éƒT[ƒtƒFƒX‚ª•`‰æ‰Â”\ƒeƒNƒXƒ`ƒƒ‚¾‚Á‚½ê‡‚Í’Pƒ‚É“]‘—
+	// è»¢é€å…ˆã¨ãªã‚‹ã‚µãƒ¼ãƒ•ã‚§ã‚¹ãŒæç”»å¯èƒ½ãƒ†ã‚¯ã‚¹ãƒãƒ£ã ã£ãŸå ´åˆã¯å˜ç´”ã«è»¢é€
 	if( Image->Orig->FormatDesc.DrawValidFlag )
 	{
 		D_ID3D11Texture2D          *TargetTexture ;
 		D_ID3D11ShaderResourceView *TargetTextureSRV ;
 
-		// æ‚è‚İŒ³‚Æ‚È‚éƒeƒNƒXƒ`ƒƒ‚ÌŒˆ’è
+		// å–ã‚Šè¾¼ã¿å…ƒã¨ãªã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®æ±ºå®š
 
-		// •`‰æ‰Â”\‰æ‘œ‚ª‘ÎÛ‚Ìê‡
+		// æç”»å¯èƒ½ç”»åƒãŒå¯¾è±¡ã®å ´åˆ
 		if( TargetImage )
 		{
 			TargetTexture    = TargetImage->Orig->Hard.Tex[ 0 ].PF->D3D11.Texture ;
 			TargetTextureSRV = TargetImage->Orig->Hard.Tex[ 0 ].PF->D3D11.TextureSRV ;
 		}
 		else
-		// ƒTƒuƒoƒbƒNƒoƒbƒtƒ@‚ª—LŒø‚É‚È‚Á‚Ä‚¢‚éê‡‚ÍƒTƒuƒoƒbƒNƒoƒbƒtƒ@‚ğ“]‘—
+		// ã‚µãƒ–ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ãŒæœ‰åŠ¹ã«ãªã£ã¦ã„ã‚‹å ´åˆã¯ã‚µãƒ–ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã‚’è»¢é€
 		if( GD3D11.Device.Screen.SubBackBufferTexture2D != NULL )
 		{
-			// ƒ}ƒ‹ƒ`ƒTƒ“ƒvƒ‹‚ª—LŒø‚Èê‡‚Íƒ_ƒEƒ“ƒTƒ“ƒvƒŠƒ“ƒO‚·‚é
+			// ãƒãƒ«ãƒã‚µãƒ³ãƒ—ãƒ«ãŒæœ‰åŠ¹ãªå ´åˆã¯ãƒ€ã‚¦ãƒ³ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ã™ã‚‹
 			if( GD3D11.Device.Screen.SubBackBufferMSTexture2D != NULL )
 			{
 				D3D11DeviceContext_ResolveSubresource(
@@ -26789,9 +26789,9 @@ extern	int		Graphics_Hardware_D3D11_GetDrawScreenGraphBase_PF( IMAGEDATA *Image,
 		}
 	}
 	else
-	// ’Êí‚ÌƒeƒNƒXƒ`ƒƒ‚¾‚Á‚½ê‡‚ÍƒƒbƒN‚ğ‚·
+	// é€šå¸¸ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ã ã£ãŸå ´åˆã¯ãƒ­ãƒƒã‚¯ã‚’è©¦ã™
 	{
-		// •`‰ææƒoƒbƒtƒ@‚ğƒƒbƒN
+		// æç”»å…ˆãƒãƒƒãƒ•ã‚¡ã‚’ãƒ­ãƒƒã‚¯
 		BASEIMAGE LockImage ;
 		SrcRect.left   = x1 ;
 		SrcRect.top    = y1 ;
@@ -26802,7 +26802,7 @@ extern	int		Graphics_Hardware_D3D11_GetDrawScreenGraphBase_PF( IMAGEDATA *Image,
 			return -1 ;
 		}
 
-		// ƒeƒNƒXƒ`ƒƒ‚É“]‘—
+		// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã«è»¢é€
 		Rect.left   = 0 ;
 		Rect.top    = 0 ;
 		Rect.right  = LockImage.Width ;
@@ -26817,15 +26817,15 @@ extern	int		Graphics_Hardware_D3D11_GetDrawScreenGraphBase_PF( IMAGEDATA *Image,
 			FALSE
 		) ;
 
-		// •`‰ææƒoƒbƒtƒ@‚ÌƒAƒ“ƒƒbƒN
+		// æç”»å…ˆãƒãƒƒãƒ•ã‚¡ã®ã‚¢ãƒ³ãƒ­ãƒƒã‚¯
 		Graphics_Screen_UnlockDrawScreen() ;
 	}
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// DXGIOutputDuplication ‚É‚æ‚éƒfƒXƒNƒgƒbƒvƒLƒƒƒvƒ`ƒƒ‚Ì€”õ‚ğs‚¤
+// DXGIOutputDuplication ã«ã‚ˆã‚‹ãƒ‡ã‚¹ã‚¯ãƒˆãƒƒãƒ—ã‚­ãƒ£ãƒ—ãƒãƒ£ã®æº–å‚™ã‚’è¡Œã†
 static int Graphics_D3D11_SetupDuplicationOutputTexture( void )
 {
 	GRAPHICS_HARDDATA_DIRECT3D11_OUTPUTWINDOWINFO *OWI ;
@@ -26837,22 +26837,22 @@ static int Graphics_D3D11_SetupDuplicationOutputTexture( void )
 	D_D3D11_TEXTURE2D_DESC Texture2DDesc ;
 	int ValidFrame = FALSE ;
 
-	// o—ÍæƒEƒCƒ“ƒhƒE‚Ìî•ñ‚ğæ“¾‚µ‚Ä‚¨‚­
+	// å‡ºåŠ›å…ˆã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®æƒ…å ±ã‚’å–å¾—ã—ã¦ãŠã
 	OWI = &GD3D11.Device.Screen.OutputWindowInfo[ GD3D11.Device.Screen.TargetOutputWindow ] ;
 
-	// o—ÍæƒEƒBƒ“ƒhƒE‚ª–³Œø‚É‚È‚Á‚Ä‚¢‚½‚ç‰½‚à‚¹‚¸I—¹
+	// å‡ºåŠ›å…ˆã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãŒç„¡åŠ¹ã«ãªã£ã¦ã„ãŸã‚‰ä½•ã‚‚ã›ãšçµ‚äº†
 	if( WinAPIData.Win32Func.IsWindowFunc( OWI->TargetWindow ) == FALSE )
 	{
 		return 0 ;
 	}
 
-	// IDXGIOutput1 ‚ª–³‚©‚Á‚½‚ç‚‘¬æ“¾‚Í‚Å‚«‚È‚¢
+	// IDXGIOutput1 ãŒç„¡ã‹ã£ãŸã‚‰é«˜é€Ÿå–å¾—ã¯ã§ããªã„
 	if( OWI->DXGIOutput1 == NULL )
 	{
 		return -1 ;
 	}
 
-	// IDXGIOutputDuplication ‚ğ‚Ü‚¾æ“¾‚µ‚Ä‚¢‚È‚©‚Á‚½‚çæ“¾‚·‚é
+	// IDXGIOutputDuplication ã‚’ã¾ã å–å¾—ã—ã¦ã„ãªã‹ã£ãŸã‚‰å–å¾—ã™ã‚‹
 	if( OWI->DXGIOutputDuplication == NULL )
 	{
 		if( DXGIOutput1_DuplicateOutput( OWI->DXGIOutput1, GAPIWin.D3D11DeviceObject, &OWI->DXGIOutputDuplication ) != S_OK )
@@ -26861,11 +26861,11 @@ static int Graphics_D3D11_SetupDuplicationOutputTexture( void )
 		}
 	}
 
-	// ƒLƒƒƒvƒ`ƒƒ
+	// ã‚­ãƒ£ãƒ—ãƒãƒ£
 	hr = OWI->DXGIOutputDuplication->AcquireNextFrame( 0, &FrameInfo, &DXGIResource ) ;
 	if( hr != S_OK && hr != D_DXGI_ERROR_WAIT_TIMEOUT )
 	{
-		// Äæ“¾‚µ‚Ä‚·
+		// å†å–å¾—ã—ã¦è©¦ã™
 		Direct3D11_ObjectRelease( OWI->DXGIOutputDuplication ) ;
 		OWI->DXGIOutputDuplication = NULL ;
 		if( DXGIOutput1_DuplicateOutput( OWI->DXGIOutput1, GAPIWin.D3D11DeviceObject, &OWI->DXGIOutputDuplication ) != S_OK )
@@ -26876,23 +26876,23 @@ static int Graphics_D3D11_SetupDuplicationOutputTexture( void )
 		hr = OWI->DXGIOutputDuplication->AcquireNextFrame( 0, &FrameInfo, &DXGIResource ) ;
 		if( hr != S_OK && hr != D_DXGI_ERROR_WAIT_TIMEOUT )
 		{
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\x49\x00\x44\x00\x58\x00\x47\x00\x49\x00\x4f\x00\x75\x00\x74\x00\x70\x00\x75\x00\x74\x00\x44\x00\x75\x00\x70\x00\x6c\x00\x69\x00\x63\x00\x61\x00\x74\x00\x69\x00\x6f\x00\x6e\x00\x3a\x00\x3a\x00\x41\x00\x63\x00\x71\x00\x75\x00\x69\x00\x72\x00\x65\x00\x4e\x00\x65\x00\x78\x00\x74\x00\x46\x00\x72\x00\x61\x00\x6d\x00\x65\x00\x20\x00\xa8\x30\xe9\x30\xfc\x30\x20\x00\x3a\x00\x20\x00\x30\x00\x78\x00\x25\x00\x30\x00\x38\x00\x78\x00\x00"/*@ L"IDXGIOutputDuplication::AcquireNextFrame ƒGƒ‰[ : 0x%08x" @*/, hr )) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\x49\x00\x44\x00\x58\x00\x47\x00\x49\x00\x4f\x00\x75\x00\x74\x00\x70\x00\x75\x00\x74\x00\x44\x00\x75\x00\x70\x00\x6c\x00\x69\x00\x63\x00\x61\x00\x74\x00\x69\x00\x6f\x00\x6e\x00\x3a\x00\x3a\x00\x41\x00\x63\x00\x71\x00\x75\x00\x69\x00\x72\x00\x65\x00\x4e\x00\x65\x00\x78\x00\x74\x00\x46\x00\x72\x00\x61\x00\x6d\x00\x65\x00\x20\x00\xa8\x30\xe9\x30\xfc\x30\x20\x00\x3a\x00\x20\x00\x30\x00\x78\x00\x25\x00\x30\x00\x38\x00\x78\x00\x00"/*@ L"IDXGIOutputDuplication::AcquireNextFrame ã‚¨ãƒ©ãƒ¼ : 0x%08x" @*/, hr )) ;
 			return -1 ;
 		}
 	}
 	if( hr == S_OK )
 	{
-		// Texture2D ‚Ìæ“¾
+		// Texture2D ã®å–å¾—
 		if( FAILED( DXGIResource->QueryInterface( IID_ID3D11TEXTURE2D, ( void ** )&Texture2D ) ) )
 		{
 			goto ERR ;
 		}
 
-		// Texture2D ‚Ìî•ñ‚ğæ“¾
+		// Texture2D ã®æƒ…å ±ã‚’å–å¾—
 		_MEMSET( &Texture2DDesc, 0, sizeof( Texture2DDesc ) );
 		Texture2D->GetDesc( &Texture2DDesc ) ;
 
-		// ¡‚Ü‚Å‚ÆƒTƒCƒY‚ªˆÙ‚È‚éê‡‚©A•¡»‚ª‚Ü‚¾ì¬‚³‚ê‚Ä‚¢‚È‚¢ê‡‚Í Texture2D ‚ğì¬‚·‚é
+		// ä»Šã¾ã§ã¨ã‚µã‚¤ã‚ºãŒç•°ãªã‚‹å ´åˆã‹ã€è¤‡è£½ãŒã¾ã ä½œæˆã•ã‚Œã¦ã„ãªã„å ´åˆã¯ Texture2D ã‚’ä½œæˆã™ã‚‹
 		if( OWI->DXGIDuplicationTexture2D == NULL ||
 			OWI->DXGIDuplicationTexture2DDesc.Width  != Texture2DDesc.Width  ||
 			OWI->DXGIDuplicationTexture2DDesc.Height != Texture2DDesc.Height )
@@ -26928,14 +26928,14 @@ static int Graphics_D3D11_SetupDuplicationOutputTexture( void )
 				goto ERR ;
 			}
 
-			// ƒeƒNƒXƒ`ƒƒ‚Ìî•ñ‚ğ•Û‘¶
+			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®æƒ…å ±ã‚’ä¿å­˜
 			OWI->DXGIDuplicationTexture2DDesc = CreateTexture2DDesc ;
 		}
 
-		// ƒŠƒ\[ƒX‚ÌƒRƒs[
+		// ãƒªã‚½ãƒ¼ã‚¹ã®ã‚³ãƒ”ãƒ¼
 		D3D11DeviceContext_CopyResource( OWI->DXGIDuplicationTexture2D, Texture2D ) ;
 
-		// ƒVƒF[ƒ_[ƒŠƒ\[ƒXƒrƒ…[‚ğì¬
+		// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒªã‚½ãƒ¼ã‚¹ãƒ“ãƒ¥ãƒ¼ã‚’ä½œæˆ
 		_MEMSET( &SRVDesc, 0, sizeof( SRVDesc ) );
 		SRVDesc.Format              = Texture2DDesc.Format ;
 		SRVDesc.ViewDimension       = D_D3D11_SRV_DIMENSION_TEXTURE2D ;
@@ -26961,13 +26961,13 @@ static int Graphics_D3D11_SetupDuplicationOutputTexture( void )
 		DXGIResource = NULL ;
 	}
 
-	// ƒtƒŒ[ƒ€‰ğ•ú
+	// ãƒ•ãƒ¬ãƒ¼ãƒ è§£æ”¾
 	if( ValidFrame )
 	{
 		OWI->DXGIOutputDuplication->ReleaseFrame() ;
 	}
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 
 ERR :
@@ -27001,30 +27001,30 @@ extern int Graphics_Hardware_D3D11_GetDesktopScreenGraph_PF( int x1, int y1, int
 	RECT DestRect ;
 	int Width, Height ;
 
-	// •‚Æ‚‚³‚ğŒvZ
+	// å¹…ã¨é«˜ã•ã‚’è¨ˆç®—
 	Width  = x2 - x1 ;
 	Height = y2 - y1 ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( GRAPHCHK( GrHandle, Image ) )
 		return -1 ;
 
-	// o—ÍæƒEƒCƒ“ƒhƒE‚Ìî•ñ‚ğæ“¾‚µ‚Ä‚¨‚­
+	// å‡ºåŠ›å…ˆã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®æƒ…å ±ã‚’å–å¾—ã—ã¦ãŠã
 	OWI = &GD3D11.Device.Screen.OutputWindowInfo[ GD3D11.Device.Screen.TargetOutputWindow ] ;
 
-	// o—ÍæƒEƒBƒ“ƒhƒE‚ª–³Œø‚É‚È‚Á‚Ä‚¢‚½‚ç‰½‚à‚¹‚¸I—¹
+	// å‡ºåŠ›å…ˆã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãŒç„¡åŠ¹ã«ãªã£ã¦ã„ãŸã‚‰ä½•ã‚‚ã›ãšçµ‚äº†
 	if( WinAPIData.Win32Func.IsWindowFunc( OWI->TargetWindow ) == FALSE )
 	{
 		return 0 ;
 	}
 
-	// DXGIOutputDuplication ‚Ì€”õ
+	// DXGIOutputDuplication ã®æº–å‚™
 	if( Graphics_D3D11_SetupDuplicationOutputTexture() < 0 )
 	{
 		return -1 ;
 	}
 
-	// “]‘—æ‚Æ‚È‚éƒT[ƒtƒFƒX‚ª•`‰æ‰Â”\ƒeƒNƒXƒ`ƒƒ‚¾‚Á‚½ê‡‚Í’Pƒ‚É“]‘—
+	// è»¢é€å…ˆã¨ãªã‚‹ã‚µãƒ¼ãƒ•ã‚§ã‚¹ãŒæç”»å¯èƒ½ãƒ†ã‚¯ã‚¹ãƒãƒ£ã ã£ãŸå ´åˆã¯å˜ç´”ã«è»¢é€
 	if( Image->Orig->FormatDesc.DrawValidFlag )
 	{
 		SrcRect.left    = x1 ;
@@ -27037,7 +27037,7 @@ extern int Graphics_Hardware_D3D11_GetDesktopScreenGraph_PF( int x1, int y1, int
 		DestRect.right  = DestX + Width ;
 		DestRect.bottom = DestY + Height ;
 
-		// ƒ|ƒCƒ“ƒ^[ƒ`ƒFƒbƒN
+		// ãƒã‚¤ãƒ³ã‚¿ãƒ¼ãƒã‚§ãƒƒã‚¯
 		if( OWI->DXGIDuplicationTexture2D  == NULL ||
 			OWI->DXGIDuplicationTextureSRV == NULL ||
 			Image->Orig->Hard.Tex[ 0 ].PF->D3D11.Texture         == NULL ||
@@ -27046,18 +27046,18 @@ extern int Graphics_Hardware_D3D11_GetDesktopScreenGraph_PF( int x1, int y1, int
 			goto ERR ;
 		}
 
-		// “]‘—
+		// è»¢é€
 		Graphics_D3D11_StretchRect(
 			OWI->DXGIDuplicationTexture2D,                OWI->DXGIDuplicationTextureSRV,                       &SrcRect,
 			Image->Orig->Hard.Tex[ 0 ].PF->D3D11.Texture, Image->Orig->Hard.Tex[ 0 ].PF->D3D11.TextureRTV[ 0 ], &DestRect
 		) ; 
 	}
 	else
-	// ’Êí‚ÌƒeƒNƒXƒ`ƒƒ‚¾‚Á‚½ê‡‚Íƒ}ƒbƒv‚ğ‚·
+	// é€šå¸¸ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ã ã£ãŸå ´åˆã¯ãƒãƒƒãƒ—ã‚’è©¦ã™
 	{
 		BASEIMAGE BaseImage ;
 
-		// ƒeƒNƒXƒ`ƒƒ‚ğƒ}ƒbƒv
+		// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ãƒãƒƒãƒ—
 		SrcRect.left   = x1 ;
 		SrcRect.top    = y1 ;
 		SrcRect.right  = x2 ;
@@ -27074,7 +27074,7 @@ extern int Graphics_Hardware_D3D11_GetDesktopScreenGraph_PF( int x1, int y1, int
 			goto ERR ;
 		}
 
-		// ƒeƒNƒXƒ`ƒƒ‚É“]‘—
+		// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã«è»¢é€
 		Rect.left   = 0 ;
 		Rect.top    = 0 ;
 		Rect.right  = BaseImage.Width ;
@@ -27096,7 +27096,7 @@ extern int Graphics_Hardware_D3D11_GetDesktopScreenGraph_PF( int x1, int y1, int
 		MapTempTexture = NULL ;
 	}
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 
 ERR :
@@ -27122,7 +27122,7 @@ extern void *Graphics_Hardware_D3D11_GetDesktopScreenGraphMemImage_PF( int x1, i
 	int RectW ;
 	int RectH ;
 
-	// “]‘—æ‚ÌƒJƒ‰[ƒf[ƒ^‚Ìì¬
+	// è»¢é€å…ˆã®ã‚«ãƒ©ãƒ¼ãƒ‡ãƒ¼ã‚¿ã®ä½œæˆ
 	if( ColorBitDepth == 24 )
 	{
 		CreateFullColorData( &DestColorData ) ;
@@ -27141,7 +27141,7 @@ extern void *Graphics_Hardware_D3D11_GetDesktopScreenGraphMemImage_PF( int x1, i
 	DesktopRect.right  = DesktopRect.left + RectW ;
 	DesktopRect.bottom = DesktopRect.top  + RectH ;
 
-	// w’è‚Ì‹éŒ`‚Ì•â³
+	// æŒ‡å®šã®çŸ©å½¢ã®è£œæ­£
 	if( x1 < DesktopRect.left )
 	{
 		x1 = DesktopRect.left ;
@@ -27159,26 +27159,26 @@ extern void *Graphics_Hardware_D3D11_GetDesktopScreenGraphMemImage_PF( int x1, i
 		y2 = DesktopRect.bottom ;
 	}
 
-	// •‚Æ‚‚³‚ğŒvZ
+	// å¹…ã¨é«˜ã•ã‚’è¨ˆç®—
 	CaptureW = x2 - x1 ;
 	CaptureH = y2 - y1 ;
 
-	// o—ÍæƒEƒCƒ“ƒhƒE‚Ìî•ñ‚ğæ“¾‚µ‚Ä‚¨‚­
+	// å‡ºåŠ›å…ˆã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®æƒ…å ±ã‚’å–å¾—ã—ã¦ãŠã
 	OWI = &GD3D11.Device.Screen.OutputWindowInfo[ GD3D11.Device.Screen.TargetOutputWindow ] ;
 
-	// o—ÍæƒEƒBƒ“ƒhƒE‚ª–³Œø‚É‚È‚Á‚Ä‚¢‚½‚ç‰½‚à‚¹‚¸I—¹
+	// å‡ºåŠ›å…ˆã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãŒç„¡åŠ¹ã«ãªã£ã¦ã„ãŸã‚‰ä½•ã‚‚ã›ãšçµ‚äº†
 	if( WinAPIData.Win32Func.IsWindowFunc( OWI->TargetWindow ) == FALSE )
 	{
 		return 0 ;
 	}
 
-	// DXGIOutputDuplication ‚Ì€”õ
+	// DXGIOutputDuplication ã®æº–å‚™
 	if( Graphics_D3D11_SetupDuplicationOutputTexture() < 0 )
 	{
 		return NULL ;
 	}
 
-	// 1ƒ‰ƒCƒ“‚ÌƒoƒCƒg”‚ğZo
+	// 1ãƒ©ã‚¤ãƒ³ã®ãƒã‚¤ãƒˆæ•°ã‚’ç®—å‡º
 	BufferStride = ColorBitDepth * CaptureW / 8 ;
 	BufferStride = ( BufferStride + 3 ) / 4 * 4 ;
 
@@ -27196,12 +27196,12 @@ extern void *Graphics_Hardware_D3D11_GetDesktopScreenGraphMemImage_PF( int x1, i
 		WinData.DXGIDesktopImageHeight = CaptureH ;
 	}
 
-	// ƒ}ƒbƒv‚ğ‚·
+	// ãƒãƒƒãƒ—ã‚’è©¦ã™
 	{
 		BASEIMAGE BaseImage ;
 		POINT DestPoint ;
 
-		// ƒeƒNƒXƒ`ƒƒ‚ğƒ}ƒbƒv
+		// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ãƒãƒƒãƒ—
 		SrcRect.left   = x1 ;
 		SrcRect.top    = y1 ;
 		SrcRect.right  = x2 ;
@@ -27218,7 +27218,7 @@ extern void *Graphics_Hardware_D3D11_GetDesktopScreenGraphMemImage_PF( int x1, i
 			goto ERR ;
 		}
 
-		// ƒCƒ[ƒW‚ğ“]‘—
+		// ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’è»¢é€
 		DestPoint.x = 0 ;
 		DestPoint.y = 0 ;
 		Rect.left   = 0 ;
@@ -27234,7 +27234,7 @@ extern void *Graphics_Hardware_D3D11_GetDesktopScreenGraphMemImage_PF( int x1, i
 		) ;
 	}
 
-	// ƒfƒXƒNƒgƒbƒvƒCƒ[ƒW‚Ìî•ñ‚ğ‘ã“ü
+	// ãƒ‡ã‚¹ã‚¯ãƒˆãƒƒãƒ—ã‚¤ãƒ¡ãƒ¼ã‚¸ã®æƒ…å ±ã‚’ä»£å…¥
 	if( Width != NULL )
 	{
 		*Width = CaptureW ;
@@ -27256,7 +27256,7 @@ extern void *Graphics_Hardware_D3D11_GetDesktopScreenGraphMemImage_PF( int x1, i
 		MapTempTexture = NULL ;
 	}
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return WinData.DXGIDesktopImageAddress ;
 
 ERR :
@@ -27289,7 +27289,7 @@ extern int Graphics_Hardware_D3D11_GetDesktopScreenBaseImage_PF( int x1, int y1,
 	DesktopRect.right  = DesktopRect.left + RectW ;
 	DesktopRect.bottom = DesktopRect.top  + RectH ;
 
-	// w’è‚Ì‹éŒ`‚Ì•â³
+	// æŒ‡å®šã®çŸ©å½¢ã®è£œæ­£
 	if( x1 < DesktopRect.left )
 	{
 		x1 = DesktopRect.left ;
@@ -27307,26 +27307,26 @@ extern int Graphics_Hardware_D3D11_GetDesktopScreenBaseImage_PF( int x1, int y1,
 		y2 = DesktopRect.bottom ;
 	}
 
-	// •‚Æ‚‚³‚ğŒvZ
+	// å¹…ã¨é«˜ã•ã‚’è¨ˆç®—
 	CaptureW = x2 - x1 ;
 	CaptureH = y2 - y1 ;
 
-	// o—ÍæƒEƒCƒ“ƒhƒE‚Ìî•ñ‚ğæ“¾‚µ‚Ä‚¨‚­
+	// å‡ºåŠ›å…ˆã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®æƒ…å ±ã‚’å–å¾—ã—ã¦ãŠã
 	OWI = &GD3D11.Device.Screen.OutputWindowInfo[ GD3D11.Device.Screen.TargetOutputWindow ] ;
 
-	// o—ÍæƒEƒBƒ“ƒhƒE‚ª–³Œø‚É‚È‚Á‚Ä‚¢‚½‚ç‰½‚à‚¹‚¸I—¹
+	// å‡ºåŠ›å…ˆã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãŒç„¡åŠ¹ã«ãªã£ã¦ã„ãŸã‚‰ä½•ã‚‚ã›ãšçµ‚äº†
 	if( WinAPIData.Win32Func.IsWindowFunc( OWI->TargetWindow ) == FALSE )
 	{
 		return 0 ;
 	}
 
-	// DXGIOutputDuplication ‚Ì€”õ
+	// DXGIOutputDuplication ã®æº–å‚™
 	if( Graphics_D3D11_SetupDuplicationOutputTexture() < 0 )
 	{
 		return -1 ;
 	}
 
-	// ƒeƒNƒXƒ`ƒƒ‚ğƒ}ƒbƒv
+	// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ãƒãƒƒãƒ—
 	SrcRect.left   = x1 ;
 	SrcRect.top    = y1 ;
 	SrcRect.right  = x2 ;
@@ -27343,7 +27343,7 @@ extern int Graphics_Hardware_D3D11_GetDesktopScreenBaseImage_PF( int x1, int y1,
 		goto ERR ;
 	}
 
-	// ƒfƒXƒNƒgƒbƒvƒCƒ[ƒW‚ğŠî–{ƒCƒ[ƒWƒf[ƒ^‚É“]‘—
+	// ãƒ‡ã‚¹ã‚¯ãƒˆãƒƒãƒ—ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’åŸºæœ¬ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ã«è»¢é€
 	NS_BltBaseImage2( DestX, DestY, &CaptureImage, BaseImage ) ;
 
 	if( MapTempTexture != NULL )
@@ -27352,7 +27352,7 @@ extern int Graphics_Hardware_D3D11_GetDesktopScreenBaseImage_PF( int x1, int y1,
 		MapTempTexture = NULL ;
 	}
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 
 ERR :
@@ -27400,7 +27400,7 @@ static int Graphics_D3D11_BltBmpOrBaseImageToGraph3_MipMapBlt(
 
 	ImageNum = Orig->FormatDesc.CubeMapTextureFlag ? CUBEMAP_SURFACE_NUM : 1 ;
 
-	// “]‘—æ‚ªƒeƒNƒXƒ`ƒƒ‘S‘Ì‚ÅAŠ‚Â“]‘—Œ³‚Éƒ~ƒbƒvƒ}ƒbƒvî•ñ‚ª‚ ‚èAŠ‚ÂƒtƒH[ƒ}ƒbƒg‚àˆê’v‚µ‚Ä‚¢‚éê‡‚Í•ªŠò
+	// è»¢é€å…ˆãŒãƒ†ã‚¯ã‚¹ãƒãƒ£å…¨ä½“ã§ã€ä¸”ã¤è»¢é€å…ƒã«ãƒŸãƒƒãƒ—ãƒãƒƒãƒ—æƒ…å ±ãŒã‚ã‚Šã€ä¸”ã¤ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã‚‚ä¸€è‡´ã—ã¦ã„ã‚‹å ´åˆã¯åˆ†å²
 	if( DestRect->left == 0 && DestRect->right  == TexWidth  &&
 		DestRect->top  == 0 && DestRect->bottom == TexHeight &&
 		RgbBaseImage->MipMapCount >= Orig->Hard.MipMapCount && 
@@ -27436,7 +27436,7 @@ static int Graphics_D3D11_BltBmpOrBaseImageToGraph3_MipMapBlt(
 					ImageSize = TempTexWidth * TempTexHeight * RgbBaseImage->ColorData.PixelByte ;
 				}
 
-				// ƒeƒNƒXƒ`ƒƒ‚É“]‘—
+				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã«è»¢é€
 				DestBox.left   = 0 ;
 				DestBox.top    = 0 ;
 				DestBox.front  = 0 ;
@@ -27461,7 +27461,7 @@ static int Graphics_D3D11_BltBmpOrBaseImageToGraph3_MipMapBlt(
 					ASyncThread
 				) ;
 
-				// “]‘—Œ³ƒAƒhƒŒƒX‚ği‚ß‚é
+				// è»¢é€å…ƒã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’é€²ã‚ã‚‹
 				ImageBuffer  = ( BYTE * )ImageBuffer + ImageSize ;
 				ImageSize   /= 4 ;
 				if( ImageSize < 8 )
@@ -27484,10 +27484,10 @@ static int Graphics_D3D11_BltBmpOrBaseImageToGraph3_MipMapBlt(
 	}
 	else
 	{
-		// “]‘—æ‚ª•W€ƒtƒH[ƒ}ƒbƒg‚Å‚Í‚È‚¢ê‡‚Í“]‘—‚Å‚«‚È‚¢
+		// è»¢é€å…ˆãŒæ¨™æº–ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã§ã¯ãªã„å ´åˆã¯è»¢é€ã§ããªã„
 		if( IsDXTFormat  )
 		{
-			DXST_LOGFILE_ADDUTF16LE( "\x44\x00\x58\x00\x54\x00\xd5\x30\xa9\x30\xfc\x30\xde\x30\xc3\x30\xc8\x30\x6e\x30\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\x6b\x30\x19\x6a\x96\x6e\x62\x5f\x0f\x5f\x6e\x30\xa4\x30\xe1\x30\xfc\x30\xb8\x30\x92\x30\xe2\x8e\x01\x90\x59\x30\x8b\x30\x53\x30\x68\x30\x6f\x30\x67\x30\x4d\x30\x7e\x30\x5b\x30\x93\x30\x0a\x00\x00"/*@ L"DXTƒtƒH[ƒ}ƒbƒg‚ÌƒeƒNƒXƒ`ƒƒ‚É•W€Œ`®‚ÌƒCƒ[ƒW‚ğ“]‘—‚·‚é‚±‚Æ‚Í‚Å‚«‚Ü‚¹‚ñ\n" @*/ ) ;
+			DXST_LOGFILE_ADDUTF16LE( "\x44\x00\x58\x00\x54\x00\xd5\x30\xa9\x30\xfc\x30\xde\x30\xc3\x30\xc8\x30\x6e\x30\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\x6b\x30\x19\x6a\x96\x6e\x62\x5f\x0f\x5f\x6e\x30\xa4\x30\xe1\x30\xfc\x30\xb8\x30\x92\x30\xe2\x8e\x01\x90\x59\x30\x8b\x30\x53\x30\x68\x30\x6f\x30\x67\x30\x4d\x30\x7e\x30\x5b\x30\x93\x30\x0a\x00\x00"/*@ L"DXTãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ã«æ¨™æº–å½¢å¼ã®ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’è»¢é€ã™ã‚‹ã“ã¨ã¯ã§ãã¾ã›ã‚“\n" @*/ ) ;
 		}
 		else
 		{
@@ -27510,7 +27510,7 @@ static int Graphics_D3D11_BltBmpOrBaseImageToGraph3_MipMapBlt(
 			DestPoint.x = 0 ;
 			DestPoint.y = 0 ;
 
-			// ˆêƒoƒbƒtƒ@‚ÉŠi”[
+			// ä¸€æ™‚ãƒãƒƒãƒ•ã‚¡ã«æ ¼ç´
 			ts = DestRect->right  - DestRect->left ;
 			for( ImageW = 1 ; ImageW < ts ; ImageW <<= 1 ){}
 			ts = DestRect->bottom - DestRect->top  ;
@@ -27523,7 +27523,7 @@ static int Graphics_D3D11_BltBmpOrBaseImageToGraph3_MipMapBlt(
 				ImageBuffer = DXALLOC( ( size_t )( ImageSize * 2 ) ) ;
 				if( ImageBuffer == NULL )
 				{
-					DXST_LOGFILE_ADDUTF16LE( "\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\x78\x30\xe2\x8e\x01\x90\x59\x30\x8b\x30\x3b\x75\xcf\x50\x92\x30\x00\x4e\x42\x66\x84\x76\x6b\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ƒeƒNƒXƒ`ƒƒ‚Ö“]‘—‚·‚é‰æ‘œ‚ğˆê“I‚ÉŠi”[‚·‚éƒƒ‚ƒŠ—Ìˆæ‚ÌŠm•Û‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+					DXST_LOGFILE_ADDUTF16LE( "\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\x78\x30\xe2\x8e\x01\x90\x59\x30\x8b\x30\x3b\x75\xcf\x50\x92\x30\x00\x4e\x42\x66\x84\x76\x6b\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ãƒ†ã‚¯ã‚¹ãƒãƒ£ã¸è»¢é€ã™ã‚‹ç”»åƒã‚’ä¸€æ™‚çš„ã«æ ¼ç´ã™ã‚‹ãƒ¡ãƒ¢ãƒªé ˜åŸŸã®ç¢ºä¿ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 					return -1 ;
 				}
 			}
@@ -27542,17 +27542,17 @@ static int Graphics_D3D11_BltBmpOrBaseImageToGraph3_MipMapBlt(
 			AlphaImageSize = AlphaBaseImage->Pitch * AlphaBaseImage->Height ;
 			for( i = 0 ; i < ImageNum ; i ++ )
 			{
-				// ƒ~ƒbƒvƒ}ƒbƒv‚Ì[‚³‚¾‚¯ŒJ‚è•Ô‚µ
+				// ãƒŸãƒƒãƒ—ãƒãƒƒãƒ—ã®æ·±ã•ã ã‘ç¹°ã‚Šè¿”ã—
 				ImageSW = ImageW ;
 				ImageSH = ImageH ;
 				ImageDW = ImageW ;
 				ImageDH = ImageH ;
 				for( j = 0 ; j < Orig->Hard.MipMapCount ; j ++ )
 				{
-					// k¬‰æ‘œ‚Ìì¬
+					// ç¸®å°ç”»åƒã®ä½œæˆ
 					if( j == 0 )
 					{
-						// level0 ‚Ì‚Í“™”{‚Ìo—ÍƒtƒH[ƒ}ƒbƒg‰æ‘œ‚ğì¬‚·‚é
+						// level0 ã®æ™‚ã¯ç­‰å€ã®å‡ºåŠ›ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆç”»åƒã‚’ä½œæˆã™ã‚‹
 						NS_GraphColorMatchBltVer2(
 							Image1,                                                   ImagePitch,            DestColor,
 							( BYTE * )RgbBaseImage->GraphData   + RgbImageSize   * i, RgbBaseImage->Pitch,   &RgbBaseImage->ColorData,
@@ -27580,7 +27580,7 @@ static int Graphics_D3D11_BltBmpOrBaseImageToGraph3_MipMapBlt(
 						GraphHalfScaleBlt( DestColor, ImageD, ImagePitch, ImageS, ImagePitch, 0, 0, 0, 0, ImageSW, ImageSH ) ;
 					}
 
-					// ƒeƒNƒXƒ`ƒƒ‚É“]‘—
+					// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã«è»¢é€
 					DestBox.left   = ( DWORD )DestRect->left   >> j ;
 					DestBox.top    = ( DWORD )DestRect->top    >> j ;
 					DestBox.front  = 0 ;
@@ -27598,7 +27598,7 @@ static int Graphics_D3D11_BltBmpOrBaseImageToGraph3_MipMapBlt(
 
 					D3D11DeviceContext_UpdateSubresource_ASync( UseTex, D_D3D11CalcSubresource( ( UINT )j, ( UINT )i, 1 ), &DestBox, ImageD, ( DWORD )ImagePitch, 0, ASyncThread ) ;
 
-					// Ÿ‚ÌƒCƒ[ƒW‚ÌƒTƒCƒY‚ğƒZƒbƒg
+					// æ¬¡ã®ã‚¤ãƒ¡ãƒ¼ã‚¸ã®ã‚µã‚¤ã‚ºã‚’ã‚»ãƒƒãƒˆ
 					ImageSW = ImageDW ;
 					ImageSH = ImageDH ;
 					ImageDW >>= 1 ;
@@ -27608,7 +27608,7 @@ static int Graphics_D3D11_BltBmpOrBaseImageToGraph3_MipMapBlt(
 				}
 			}
 
-			// ƒƒ‚ƒŠ‚Ì‰ğ•ú
+			// ãƒ¡ãƒ¢ãƒªã®è§£æ”¾
 			if( ASyncThread )
 			{
 				DXFREE( ImageBuffer ) ;
@@ -27616,7 +27616,7 @@ static int Graphics_D3D11_BltBmpOrBaseImageToGraph3_MipMapBlt(
 		}
 	}
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
@@ -27687,7 +27687,7 @@ static int Graphics_D3D11_BltBmpOrBaseImageToGraph3_NoMipMapBlt(
 			TempBuffer      = DXALLOC( TempBufferSize ) ;
 			if( TempBuffer == NULL )
 			{
-				DXST_LOGFILEFMT_ADDUTF16LE(( "\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\x6b\x30\x3b\x75\xcf\x50\x92\x30\xe2\x8e\x01\x90\x59\x30\x8b\x30\x5f\x30\x81\x30\x6e\x30\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x5b\x00\x47\x00\x72\x00\x61\x00\x70\x00\x68\x00\x69\x00\x63\x00\x73\x00\x5f\x00\x44\x00\x33\x00\x44\x00\x31\x00\x31\x00\x5f\x00\x42\x00\x6c\x00\x74\x00\x42\x00\x6d\x00\x70\x00\x4f\x00\x72\x00\x42\x00\x61\x00\x73\x00\x65\x00\x49\x00\x6d\x00\x61\x00\x67\x00\x65\x00\x54\x00\x6f\x00\x47\x00\x72\x00\x61\x00\x70\x00\x68\x00\x33\x00\x5f\x00\x4e\x00\x6f\x00\x4d\x00\x69\x00\x70\x00\x4d\x00\x61\x00\x70\x00\x42\x00\x6c\x00\x74\x00\x5d\x00\x0a\x00\x00"/*@ L"ƒeƒNƒXƒ`ƒƒ‚É‰æ‘œ‚ğ“]‘—‚·‚é‚½‚ß‚Ìƒƒ‚ƒŠ‚ÌŠm•Û‚É¸”s‚µ‚Ü‚µ‚½[Graphics_D3D11_BltBmpOrBaseImageToGraph3_NoMipMapBlt]\n" @*/ )) ;
+				DXST_LOGFILEFMT_ADDUTF16LE(( "\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\x6b\x30\x3b\x75\xcf\x50\x92\x30\xe2\x8e\x01\x90\x59\x30\x8b\x30\x5f\x30\x81\x30\x6e\x30\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x5b\x00\x47\x00\x72\x00\x61\x00\x70\x00\x68\x00\x69\x00\x63\x00\x73\x00\x5f\x00\x44\x00\x33\x00\x44\x00\x31\x00\x31\x00\x5f\x00\x42\x00\x6c\x00\x74\x00\x42\x00\x6d\x00\x70\x00\x4f\x00\x72\x00\x42\x00\x61\x00\x73\x00\x65\x00\x49\x00\x6d\x00\x61\x00\x67\x00\x65\x00\x54\x00\x6f\x00\x47\x00\x72\x00\x61\x00\x70\x00\x68\x00\x33\x00\x5f\x00\x4e\x00\x6f\x00\x4d\x00\x69\x00\x70\x00\x4d\x00\x61\x00\x70\x00\x42\x00\x6c\x00\x74\x00\x5d\x00\x0a\x00\x00"/*@ L"ãƒ†ã‚¯ã‚¹ãƒãƒ£ã«ç”»åƒã‚’è»¢é€ã™ã‚‹ãŸã‚ã®ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿ã«å¤±æ•—ã—ã¾ã—ãŸ[Graphics_D3D11_BltBmpOrBaseImageToGraph3_NoMipMapBlt]\n" @*/ )) ;
 				return -1 ;
 			}
 		}
@@ -27705,9 +27705,9 @@ static int Graphics_D3D11_BltBmpOrBaseImageToGraph3_NoMipMapBlt(
 
 	for( i = 0 ; i < ImageNum ; i ++ )
 	{
-		// “]‘—ˆ—
+		// è»¢é€å‡¦ç†
 
-		// “]‘—æ‚ªƒeƒNƒXƒ`ƒƒ‘S‘Ì‚ÅAŠ‚ÂDXTƒtƒH[ƒ}ƒbƒg‚Ìê‡‚Í’Pƒ‚Èƒƒ‚ƒŠ“]‘—‚ğs‚¤
+		// è»¢é€å…ˆãŒãƒ†ã‚¯ã‚¹ãƒãƒ£å…¨ä½“ã§ã€ä¸”ã¤DXTãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®å ´åˆã¯å˜ç´”ãªãƒ¡ãƒ¢ãƒªè»¢é€ã‚’è¡Œã†
 		if( DestRect->left == 0 && DestRect->right  == TexWidth  &&
 			DestRect->top  == 0 && DestRect->bottom == TexHeight && IsDXTFormat )
 		{
@@ -27732,7 +27732,7 @@ static int Graphics_D3D11_BltBmpOrBaseImageToGraph3_NoMipMapBlt(
 		}
 		else
 		{
-			// “]‘—æ‚ª•W€ƒtƒH[ƒ}ƒbƒg‚Å‚Í‚È‚¢ê‡‚Í“]‘—‚Å‚«‚È‚¢
+			// è»¢é€å…ˆãŒæ¨™æº–ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã§ã¯ãªã„å ´åˆã¯è»¢é€ã§ããªã„
 			if( IsDXTFormat == FALSE )
 			{
 				ImageSize      = ( DWORD )( RgbBaseImage->Pitch   * RgbBaseImage->Height   ) ;
@@ -27787,7 +27787,7 @@ static int Graphics_D3D11_BltBmpOrBaseImageToGraph3_NoMipMapBlt(
 					}
 				}
 
-				// ƒeƒNƒXƒ`ƒƒ‚Ö“]‘—
+				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã¸è»¢é€
 				DestBox.left   = ( UINT )DestRect->left ;
 				DestBox.top    = ( UINT )DestRect->top ;
 				DestBox.front  = 0 ;
@@ -27799,7 +27799,7 @@ static int Graphics_D3D11_BltBmpOrBaseImageToGraph3_NoMipMapBlt(
 			}
 			else
 			{
-				DXST_LOGFILE_ADDUTF16LE( "\x44\x00\x58\x00\x54\x00\xd5\x30\xa9\x30\xfc\x30\xde\x30\xc3\x30\xc8\x30\x6e\x30\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\x6b\x30\x19\x6a\x96\x6e\x62\x5f\x0f\x5f\x6e\x30\xa4\x30\xe1\x30\xfc\x30\xb8\x30\x92\x30\xe2\x8e\x01\x90\x59\x30\x8b\x30\x53\x30\x68\x30\x6f\x30\x67\x30\x4d\x30\x7e\x30\x5b\x30\x93\x30\x0a\x00\x00"/*@ L"DXTƒtƒH[ƒ}ƒbƒg‚ÌƒeƒNƒXƒ`ƒƒ‚É•W€Œ`®‚ÌƒCƒ[ƒW‚ğ“]‘—‚·‚é‚±‚Æ‚Í‚Å‚«‚Ü‚¹‚ñ\n" @*/ ) ;
+				DXST_LOGFILE_ADDUTF16LE( "\x44\x00\x58\x00\x54\x00\xd5\x30\xa9\x30\xfc\x30\xde\x30\xc3\x30\xc8\x30\x6e\x30\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\x6b\x30\x19\x6a\x96\x6e\x62\x5f\x0f\x5f\x6e\x30\xa4\x30\xe1\x30\xfc\x30\xb8\x30\x92\x30\xe2\x8e\x01\x90\x59\x30\x8b\x30\x53\x30\x68\x30\x6f\x30\x67\x30\x4d\x30\x7e\x30\x5b\x30\x93\x30\x0a\x00\x00"/*@ L"DXTãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ã«æ¨™æº–å½¢å¼ã®ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’è»¢é€ã™ã‚‹ã“ã¨ã¯ã§ãã¾ã›ã‚“\n" @*/ ) ;
 			}
 		}
 	}
@@ -27816,11 +27816,11 @@ static int Graphics_D3D11_BltBmpOrBaseImageToGraph3_NoMipMapBlt(
 		}
 	}
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// Direct3D11 ‚ÌƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚É‰æ‘œƒf[ƒ^‚ğ“]‘—‚·‚é‚½‚ß‚ÌŠÖ”
+// Direct3D11 ã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã«ç”»åƒãƒ‡ãƒ¼ã‚¿ã‚’è»¢é€ã™ã‚‹ãŸã‚ã®é–¢æ•°
 extern	int		Graphics_Hardware_D3D11_BltBmpOrBaseImageToGraph3_PF(
 	const RECT		*SrcRect,
 	      int		DestX,
@@ -27854,10 +27854,10 @@ extern	int		Graphics_Hardware_D3D11_BltBmpOrBaseImageToGraph3_PF(
 		return -1 ;
 	}
 
-	// •`‰æ‘Ò‹@‚µ‚Ä‚¢‚é•`‰æ•¨‚ğ•`‰æ
+	// æç”»å¾…æ©Ÿã—ã¦ã„ã‚‹æç”»ç‰©ã‚’æç”»
 	DRAWSTOCKINFO_ASYNC( ASyncThread ) ;
 
-	// DXTˆ³k‚Ì‰æ‘œ‚©‚ğ’²‚×‚Ä‚¨‚­
+	// DXTåœ§ç¸®ã®ç”»åƒã‹ã‚’èª¿ã¹ã¦ãŠã
 	IsDXT =
 		( RgbBaseImage->ColorData.Format == DX_BASEIMAGE_FORMAT_DXT1 ||
 		  RgbBaseImage->ColorData.Format == DX_BASEIMAGE_FORMAT_DXT2 ||
@@ -27867,7 +27867,7 @@ extern	int		Graphics_Hardware_D3D11_BltBmpOrBaseImageToGraph3_PF(
 		  RgbBaseImage->ColorData.Format == DX_BASEIMAGE_FORMAT_BC7_UNORM ||
 		  RgbBaseImage->ColorData.Format == DX_BASEIMAGE_FORMAT_BC7_UNORM_SRGB ) ? TRUE : FALSE ;
 
-	// “]‘—•‚ğŒvZ‚µ‚Ä‚¨‚­
+	// è»¢é€å¹…ã‚’è¨ˆç®—ã—ã¦ãŠã
 	SrcWidth  = SrcRect->right  - SrcRect->left ;
 	SrcHeight = SrcRect->bottom - SrcRect->top ;
 	if( SrcWidth <= 0 || SrcHeight <= 0 )
@@ -27875,7 +27875,7 @@ extern	int		Graphics_Hardware_D3D11_BltBmpOrBaseImageToGraph3_PF(
 		return 0 ;
 	}
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( ASyncThread )
 	{
 		if( GRAPHCHK_ASYNC( GrHandle, Image ) )
@@ -27892,26 +27892,26 @@ extern	int		Graphics_Hardware_D3D11_BltBmpOrBaseImageToGraph3_PF(
 	}
 	Orig = Image->Orig ;
 
-	// ƒCƒ[ƒW‚Ì”‚ğƒZƒbƒg
+	// ã‚¤ãƒ¡ãƒ¼ã‚¸ã®æ•°ã‚’ã‚»ãƒƒãƒˆ
 	ImageNum = RgbBaseImage->GraphDataCount == 0 ? 1 : RgbBaseImage->GraphDataCount ;
 
-	// ƒeƒNƒXƒ`ƒƒ‚ÌƒJƒ‰[î•ñ‚ğæ“¾‚·‚é
+	// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ã‚«ãƒ©ãƒ¼æƒ…å ±ã‚’å–å¾—ã™ã‚‹
 	DestColor = Graphics_D3D11_GetD3DFormatColorData( GD3D11.Device.Caps.TextureFormat[ Orig->ColorFormat ] ) ;
 
-	// “]‘—ˆÊ’u‚ÌƒZƒbƒg
+	// è»¢é€ä½ç½®ã®ã‚»ãƒƒãƒˆ
 	DestPoint.x = 0 ;
 	DestPoint.y = 0 ;
 
-	// “]‘—‘ÎÛ‚ªƒIƒŠƒWƒiƒ‹‰æ‘œ‚É‘Î‚µ‚Ä‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+	// è»¢é€å¯¾è±¡ãŒã‚ªãƒªã‚¸ãƒŠãƒ«ç”»åƒã«å¯¾ã—ã¦ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 	if( TargetOrig == TRUE )
 	{
-		// ƒIƒŠƒWƒiƒ‹‰æ‘œ‚É‘Î‚µ‚Ä‚Ìê‡
+		// ã‚ªãƒªã‚¸ãƒŠãƒ«ç”»åƒã«å¯¾ã—ã¦ã®å ´åˆ
 
-		// ƒeƒNƒXƒ`ƒƒ‚Ì”‚¾‚¯ŒJ‚è•Ô‚µ
+		// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®æ•°ã ã‘ç¹°ã‚Šè¿”ã—
 		OrigTex = Orig->Hard.Tex ;
 		for( i = 0 ; i < Orig->Hard.TexNum ; i ++, OrigTex ++ )
 		{
-			// “]‘—‹éŒ`‚Ìì¬
+			// è»¢é€çŸ©å½¢ã®ä½œæˆ
 			if( Graphics_Image_BltBmpOrBaseImageToGraph3_Make_OrigTex_MoveRect(
 					OrigTex,
 					SrcRect,
@@ -27928,7 +27928,7 @@ extern	int		Graphics_Hardware_D3D11_BltBmpOrBaseImageToGraph3_PF(
 
 			UseTex = OrigTex->PF->D3D11.Texture ;
 
-			// ƒ~ƒbƒvƒ}ƒbƒv‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+			// ãƒŸãƒƒãƒ—ãƒãƒƒãƒ—ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 			if( Orig->Hard.MipMapCount > 1 )
 			{
 				if( Graphics_D3D11_BltBmpOrBaseImageToGraph3_MipMapBlt(
@@ -27969,15 +27969,15 @@ extern	int		Graphics_Hardware_D3D11_BltBmpOrBaseImageToGraph3_PF(
 	}
 	else
 	{
-		// ƒIƒŠƒWƒiƒ‹‰æ‘œ‚É‘Î‚µ‚Ä‚Å‚Í‚È‚¢ê‡
+		// ã‚ªãƒªã‚¸ãƒŠãƒ«ç”»åƒã«å¯¾ã—ã¦ã§ã¯ãªã„å ´åˆ
 
-		// •`‰æî•ñ‚Ì”‚¾‚¯ŒJ‚è•Ô‚µ
+		// æç”»æƒ…å ±ã®æ•°ã ã‘ç¹°ã‚Šè¿”ã—
 		DrawTex = Image->Hard.Draw ;
 		DestPoint.x = 0 ;
 		DestPoint.y = 0 ;
 		for( i = 0 ; i < Image->Hard.DrawNum ; i ++, DrawTex ++ )
 		{
-			// “]‘—‹éŒ`‚Ìì¬
+			// è»¢é€çŸ©å½¢ã®ä½œæˆ
 			if( Graphics_Image_BltBmpOrBaseImageToGraph3_Make_DrawTex_MoveRect(
 					DrawTex,
 					SrcRect,
@@ -27994,7 +27994,7 @@ extern	int		Graphics_Hardware_D3D11_BltBmpOrBaseImageToGraph3_PF(
 
 			UseTex = DrawTex->Tex->PF->D3D11.Texture ;
 
-			// ƒ~ƒbƒvƒ}ƒbƒv‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+			// ãƒŸãƒƒãƒ—ãƒãƒƒãƒ—ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 			if( Orig->Hard.MipMapCount > 1 )
 			{
 				if( Graphics_D3D11_BltBmpOrBaseImageToGraph3_MipMapBlt(
@@ -28034,16 +28034,16 @@ extern	int		Graphics_Hardware_D3D11_BltBmpOrBaseImageToGraph3_PF(
 		}
 	}
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 
 
-	// ƒGƒ‰[I—¹
+	// ã‚¨ãƒ©ãƒ¼çµ‚äº†
 ERR :
 	return -1 ;
 }
 
-// ƒIƒŠƒWƒiƒ‹‰æ‘œî•ñ’†‚ÌƒeƒNƒXƒ`ƒƒ‚ğì¬‚·‚é( 0:¬Œ÷  -1:¸”s )
+// ã‚ªãƒªã‚¸ãƒŠãƒ«ç”»åƒæƒ…å ±ä¸­ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ä½œæˆã™ã‚‹( 0:æˆåŠŸ  -1:å¤±æ•— )
 extern	int		Graphics_Hardware_D3D11_CreateOrigTexture_PF(  IMAGEDATA_ORIG *Orig, int ASyncThread )
 {
 	int									i ;
@@ -28063,23 +28063,23 @@ extern	int		Graphics_Hardware_D3D11_CreateOrigTexture_PF(  IMAGEDATA_ORIG *Orig,
 		return -1 ;
 	}
 
-	// ƒn[ƒhƒEƒGƒA‚ğg—p‚·‚é‰æ‘œ‚Å‚Í‚È‚¢ê‡‚Í‰½‚à‚¹‚¸‚ÉI—¹
+	// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚’ä½¿ç”¨ã™ã‚‹ç”»åƒã§ã¯ãªã„å ´åˆã¯ä½•ã‚‚ã›ãšã«çµ‚äº†
 	if( Orig->FormatDesc.TextureFlag == FALSE )
 	{
 		return 0 ;
 	}
 
-	// w’è‚ÌƒtƒH[ƒ}ƒbƒg‚ªì¬‚Å‚«‚È‚¢ê‡‚Í¸”s
+	// æŒ‡å®šã®ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆãŒä½œæˆã§ããªã„å ´åˆã¯å¤±æ•—
 	if( Orig->UserPlatformTexture == NULL && GD3D11.Device.Caps.TextureFormat[ Orig->ColorFormat ] == D_DXGI_FORMAT_UNKNOWN )
 	{
-		DXST_LOGFILE_ADDUTF16LE( "\x07\x63\x9a\x5b\x6e\x30\xd5\x30\xa9\x30\xfc\x30\xde\x30\xc3\x30\xc8\x30\x67\x30\x5c\x4f\x10\x62\x67\x30\x4d\x30\x8b\x30\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\xd5\x30\xa9\x30\xfc\x30\xde\x30\xc3\x30\xc8\x30\x4c\x30\x42\x30\x8a\x30\x7e\x30\x5b\x30\x93\x30\x67\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"w’è‚ÌƒtƒH[ƒ}ƒbƒg‚Åì¬‚Å‚«‚éƒeƒNƒXƒ`ƒƒƒtƒH[ƒ}ƒbƒg‚ª‚ ‚è‚Ü‚¹‚ñ‚Å‚µ‚½\n" @*/ ) ;
+		DXST_LOGFILE_ADDUTF16LE( "\x07\x63\x9a\x5b\x6e\x30\xd5\x30\xa9\x30\xfc\x30\xde\x30\xc3\x30\xc8\x30\x67\x30\x5c\x4f\x10\x62\x67\x30\x4d\x30\x8b\x30\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\xd5\x30\xa9\x30\xfc\x30\xde\x30\xc3\x30\xc8\x30\x4c\x30\x42\x30\x8a\x30\x7e\x30\x5b\x30\x93\x30\x67\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"æŒ‡å®šã®ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã§ä½œæˆã§ãã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆãŒã‚ã‚Šã¾ã›ã‚“ã§ã—ãŸ\n" @*/ ) ;
 		return -1 ;
 	}
 
-	// ƒ}ƒ‹ƒ`ƒTƒ“ƒvƒ‹ƒtƒH[ƒ}ƒbƒg‚Ìê‡‚Íg—p‚Å‚«‚éƒTƒ“ƒvƒ‹”‚ÆƒNƒIƒŠƒeƒB‚ğæ“¾‚µ‚Ä‚¨‚­
+	// ãƒãƒ«ãƒã‚µãƒ³ãƒ—ãƒ«ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®å ´åˆã¯ä½¿ç”¨ã§ãã‚‹ã‚µãƒ³ãƒ—ãƒ«æ•°ã¨ã‚¯ã‚ªãƒªãƒ†ã‚£ã‚’å–å¾—ã—ã¦ãŠã
 	if( Orig->UserPlatformTexture == NULL && Orig->FormatDesc.MSSamples != 0 )
 	{
-		// ƒLƒ…[ƒuƒ}ƒbƒv–”‚Í D_D3D_FEATURE_LEVEL_10_0 –¢–‚Ìê‡‚Íƒ}ƒ‹ƒ`ƒTƒ“ƒvƒ‹‚Íg—p‚Å‚«‚È‚¢
+		// ã‚­ãƒ¥ãƒ¼ãƒ–ãƒãƒƒãƒ—åˆã¯ D_D3D_FEATURE_LEVEL_10_0 æœªæº€ã®å ´åˆã¯ãƒãƒ«ãƒã‚µãƒ³ãƒ—ãƒ«ã¯ä½¿ç”¨ã§ããªã„
 		if( Orig->FormatDesc.CubeMapTextureFlag || GD3D11.Setting.FeatureLevel < D_D3D_FEATURE_LEVEL_10_0 )
 		{
 			Samples = 1 ;
@@ -28093,21 +28093,21 @@ extern	int		Graphics_Hardware_D3D11_CreateOrigTexture_PF(  IMAGEDATA_ORIG *Orig,
 		}
 	}
 
-	// ƒeƒNƒXƒ`ƒƒ‚Ìê‡‚ÍƒeƒNƒXƒ`ƒƒ‚Ì”‚¾‚¯ƒeƒNƒXƒ`ƒƒ‚ğì¬
+	// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®å ´åˆã¯ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®æ•°ã ã‘ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ä½œæˆ
 	OrigTex = Orig->Hard.Tex ;
 	for( i = 0 ; i < Orig->Hard.TexNum ; i ++, OrigTex ++ )
 	{
-		// Direct3D11 ‚ÉŠÇ—‘®«‚Í–³‚¢
+		// Direct3D11 ã«ç®¡ç†å±æ€§ã¯ç„¡ã„
 		Orig->FormatDesc.UseManagedTextureFlag = FALSE ;
 		
-		// ƒ†[ƒU[w’èƒeƒNƒXƒ`ƒƒ‚ª‚ ‚éê‡‚Æ‚È‚¢ê‡‚Åˆ—‚ğ•ªŠò
+		// ãƒ¦ãƒ¼ã‚¶ãƒ¼æŒ‡å®šãƒ†ã‚¯ã‚¹ãƒãƒ£ãŒã‚ã‚‹å ´åˆã¨ãªã„å ´åˆã§å‡¦ç†ã‚’åˆ†å²
 		if( Orig->UserPlatformTexture != NULL )
 		{
 			OrigTex->PF->D3D11.Texture = ( D_ID3D11Texture2D * )Orig->UserPlatformTexture ;
 		}
 		else
 		{
-			// ƒ}ƒ‹ƒ`ƒTƒ“ƒvƒ‹ƒtƒH[ƒ}ƒbƒg‚Ìê‡‚Íƒ}ƒ‹ƒ`ƒTƒ“ƒvƒ‹ƒeƒNƒXƒ`ƒƒ‚ğì¬
+			// ãƒãƒ«ãƒã‚µãƒ³ãƒ—ãƒ«ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®å ´åˆã¯ãƒãƒ«ãƒã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ä½œæˆ
 			if( OrigTex->PF->D3D11.MSTexture == NULL && Samples > 1 )
 			{
 				_MEMSET( &Texture2DDesc, 0, sizeof( Texture2DDesc ) ) ;
@@ -28127,12 +28127,12 @@ extern	int		Graphics_Hardware_D3D11_CreateOrigTexture_PF(  IMAGEDATA_ORIG *Orig,
 				hr = D3D11Device_CreateTexture2D_ASync( &Texture2DDesc, NULL, &OrigTex->PF->D3D11.MSTexture, ASyncThread ) ;
 				if( FAILED( hr ) )
 				{
-					DXST_LOGFILE_ADDUTF16LE( "\xde\x30\xeb\x30\xc1\x30\xb5\x30\xf3\x30\xd7\x30\xeb\x30\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ƒ}ƒ‹ƒ`ƒTƒ“ƒvƒ‹ƒeƒNƒXƒ`ƒƒ‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+					DXST_LOGFILE_ADDUTF16LE( "\xde\x30\xeb\x30\xc1\x30\xb5\x30\xf3\x30\xd7\x30\xeb\x30\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ãƒãƒ«ãƒã‚µãƒ³ãƒ—ãƒ«ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 					return -1 ;
 				}
 			}
 
-			// ƒeƒNƒXƒ`ƒƒ‚Ìì¬
+			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ä½œæˆ
 			if( OrigTex->PF->D3D11.Texture == NULL )
 			{
 				_MEMSET( &Texture2DDesc, 0, sizeof( Texture2DDesc ) ) ;
@@ -28152,25 +28152,25 @@ extern	int		Graphics_Hardware_D3D11_CreateOrigTexture_PF(  IMAGEDATA_ORIG *Orig,
 				hr = D3D11Device_CreateTexture2D_ASync( &Texture2DDesc, NULL, &OrigTex->PF->D3D11.Texture, ASyncThread ) ;
 				if( FAILED( hr ) )
 				{
-					DXST_LOGFILE_ADDUTF16LE( "\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ƒeƒNƒXƒ`ƒƒ‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+					DXST_LOGFILE_ADDUTF16LE( "\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 					return -1 ;
 				}
 			}
 
-			// •`‰æ‘ÎÛ‚É‚·‚é‚±‚Æ‚ª‚Å‚«‚éê‡‚Íˆ—‚ğ•ªŠò
+			// æç”»å¯¾è±¡ã«ã™ã‚‹ã“ã¨ãŒã§ãã‚‹å ´åˆã¯å‡¦ç†ã‚’åˆ†å²
 			if( Orig->FormatDesc.DrawValidFlag )
 			{
 				int ArraySize ;
 
 				ArraySize = Orig->FormatDesc.CubeMapTextureFlag ? CUBEMAP_SURFACE_NUM : 1 ;
 
-				// ƒŒƒ“ƒ_[ƒ^[ƒQƒbƒgƒrƒ…[‚Ìƒ|ƒCƒ“ƒ^‚ğ•Û‘¶‚·‚é‚½‚ß‚Ìƒƒ‚ƒŠ‚ğŠm•Û
+				// ãƒ¬ãƒ³ãƒ€ãƒ¼ã‚¿ãƒ¼ã‚²ãƒƒãƒˆãƒ“ãƒ¥ãƒ¼ã®ãƒã‚¤ãƒ³ã‚¿ã‚’ä¿å­˜ã™ã‚‹ãŸã‚ã®ãƒ¡ãƒ¢ãƒªã‚’ç¢ºä¿
 				if( OrigTex->PF->D3D11.TextureRTV == NULL )
 				{
 					OrigTex->PF->D3D11.TextureRTV = ( D_ID3D11RenderTargetView ** )DXALLOC( sizeof( D_ID3D11RenderTargetView * ) * ArraySize * Orig->Hard.MipMapCount ) ;
 					if( OrigTex->PF->D3D11.TextureRTV == NULL )
 					{
-						DXST_LOGFILE_ADDUTF16LE( "\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\x28\x75\xec\x30\xf3\x30\xc0\x30\xfc\x30\xbf\x30\xfc\x30\xb2\x30\xc3\x30\xc8\x30\xd3\x30\xe5\x30\xfc\x30\x6e\x30\xa2\x30\xc9\x30\xec\x30\xb9\x30\x92\x30\xdd\x4f\x58\x5b\x59\x30\x8b\x30\x5f\x30\x81\x30\x6e\x30\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ƒeƒNƒXƒ`ƒƒ—pƒŒƒ“ƒ_[ƒ^[ƒQƒbƒgƒrƒ…[‚ÌƒAƒhƒŒƒX‚ğ•Û‘¶‚·‚é‚½‚ß‚Ìƒƒ‚ƒŠ‚ÌŠm•Û‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+						DXST_LOGFILE_ADDUTF16LE( "\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\x28\x75\xec\x30\xf3\x30\xc0\x30\xfc\x30\xbf\x30\xfc\x30\xb2\x30\xc3\x30\xc8\x30\xd3\x30\xe5\x30\xfc\x30\x6e\x30\xa2\x30\xc9\x30\xec\x30\xb9\x30\x92\x30\xdd\x4f\x58\x5b\x59\x30\x8b\x30\x5f\x30\x81\x30\x6e\x30\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ãƒ†ã‚¯ã‚¹ãƒãƒ£ç”¨ãƒ¬ãƒ³ãƒ€ãƒ¼ã‚¿ãƒ¼ã‚²ãƒƒãƒˆãƒ“ãƒ¥ãƒ¼ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ä¿å­˜ã™ã‚‹ãŸã‚ã®ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 						return -1 ;
 					}
 					_MEMSET( OrigTex->PF->D3D11.TextureRTV, 0, sizeof( D_ID3D11RenderTargetView * ) * ArraySize * Orig->Hard.MipMapCount ) ;
@@ -28180,7 +28180,7 @@ extern	int		Graphics_Hardware_D3D11_CreateOrigTexture_PF(  IMAGEDATA_ORIG *Orig,
 				{
 					for( k = 0 ; k < Orig->Hard.MipMapCount ; k ++ )
 					{
-						// ƒŒƒ“ƒ_[ƒ^[ƒQƒbƒgƒrƒ…[‚ğì¬
+						// ãƒ¬ãƒ³ãƒ€ãƒ¼ã‚¿ãƒ¼ã‚²ãƒƒãƒˆãƒ“ãƒ¥ãƒ¼ã‚’ä½œæˆ
 						if( OrigTex->PF->D3D11.TextureRTV[ j * Orig->Hard.MipMapCount + k ] == NULL )
 						{
 							_MEMSET( &RTVDesc, 0, sizeof( RTVDesc ) );
@@ -28212,7 +28212,7 @@ extern	int		Graphics_Hardware_D3D11_CreateOrigTexture_PF(  IMAGEDATA_ORIG *Orig,
 							) ;
 							if( FAILED( hr ) )
 							{
-								DXST_LOGFILEFMT_ADDUTF16LE(( "\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\x28\x75\xec\x30\xf3\x30\xc0\x30\xfc\x30\xbf\x30\xfc\x30\xb2\x30\xc3\x30\xc8\x30\xd3\x30\xe5\x30\xfc\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x20\x00\x20\x00\x46\x00\x6f\x00\x72\x00\x6d\x00\x61\x00\x74\x00\x3a\x00\x25\x00\x64\x00\x20\x00\x20\x00\x53\x00\x69\x00\x7a\x00\x65\x00\x58\x00\x3a\x00\x25\x00\x64\x00\x20\x00\x20\x00\x53\x00\x69\x00\x7a\x00\x65\x00\x59\x00\x3a\x00\x25\x00\x64\x00\x20\x00\x0a\x00\x00"/*@ L"ƒeƒNƒXƒ`ƒƒ—pƒŒƒ“ƒ_[ƒ^[ƒQƒbƒgƒrƒ…[‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½  Format:%d  SizeX:%d  SizeY:%d \n" @*/,
+								DXST_LOGFILEFMT_ADDUTF16LE(( "\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\x28\x75\xec\x30\xf3\x30\xc0\x30\xfc\x30\xbf\x30\xfc\x30\xb2\x30\xc3\x30\xc8\x30\xd3\x30\xe5\x30\xfc\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x20\x00\x20\x00\x46\x00\x6f\x00\x72\x00\x6d\x00\x61\x00\x74\x00\x3a\x00\x25\x00\x64\x00\x20\x00\x20\x00\x53\x00\x69\x00\x7a\x00\x65\x00\x58\x00\x3a\x00\x25\x00\x64\x00\x20\x00\x20\x00\x53\x00\x69\x00\x7a\x00\x65\x00\x59\x00\x3a\x00\x25\x00\x64\x00\x20\x00\x0a\x00\x00"/*@ L"ãƒ†ã‚¯ã‚¹ãƒãƒ£ç”¨ãƒ¬ãƒ³ãƒ€ãƒ¼ã‚¿ãƒ¼ã‚²ãƒƒãƒˆãƒ“ãƒ¥ãƒ¼ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ  Format:%d  SizeX:%d  SizeY:%d \n" @*/,
 									GD3D11.Device.Caps.TextureFormat[ Orig->ColorFormat ], OrigTex->TexWidth, OrigTex->TexHeight )) ;
 								return -1 ;
 							}
@@ -28220,7 +28220,7 @@ extern	int		Graphics_Hardware_D3D11_CreateOrigTexture_PF(  IMAGEDATA_ORIG *Orig,
 					}
 				}
 
-				// ƒ}ƒ‹ƒ`ƒTƒ“ƒvƒ‹‚©A[“xƒoƒbƒtƒ@‚ğì¬‚·‚éw’è‚ª‚ ‚éê‡‚Í[“xƒoƒbƒtƒ@‚ğì¬
+				// ãƒãƒ«ãƒã‚µãƒ³ãƒ—ãƒ«ã‹ã€æ·±åº¦ãƒãƒƒãƒ•ã‚¡ã‚’ä½œæˆã™ã‚‹æŒ‡å®šãŒã‚ã‚‹å ´åˆã¯æ·±åº¦ãƒãƒƒãƒ•ã‚¡ã‚’ä½œæˆ
 				if( ( ( GSYS.Setting.FSAAMultiSampleCount == 1 && Samples >  1 ) ||
 					  ( GSYS.Setting.FSAAMultiSampleCount >  1 && Samples == 1 ) ||
 					  Orig->ZBufferFlag ) )
@@ -28245,7 +28245,7 @@ extern	int		Graphics_Hardware_D3D11_CreateOrigTexture_PF(  IMAGEDATA_ORIG *Orig,
 						OrigTex->PF->D3D11.DepthBufferDSV = NULL ;
 					}
 
-					// ƒeƒNƒXƒ`ƒƒ‚Ìì¬
+					// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ä½œæˆ
 					_MEMSET( &Texture2DDesc, 0, sizeof( Texture2DDesc ) ) ;
 					Texture2DDesc.Width              = ( UINT )OrigTex->TexWidth ;
 					Texture2DDesc.Height             = ( UINT )OrigTex->TexHeight ;
@@ -28265,24 +28265,24 @@ extern	int		Graphics_Hardware_D3D11_CreateOrigTexture_PF(  IMAGEDATA_ORIG *Orig,
 						hr = D3D11Device_CreateTexture2D_ASync( &Texture2DDesc, NULL, &OrigTex->PF->D3D11.DepthBuffer, ASyncThread ) ;
 						if( FAILED( hr ) )
 						{
-							DXST_LOGFILE_ADDUTF16LE( "\xf8\x66\x4d\x30\xbc\x8f\x7f\x30\x02\x5c\x28\x75\xde\x30\xeb\x30\xc1\x30\xb5\x30\xf3\x30\xd7\x30\xeb\x30\xf1\x6d\xa6\x5e\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"‘‚«‚İê—pƒ}ƒ‹ƒ`ƒTƒ“ƒvƒ‹[“xƒeƒNƒXƒ`ƒƒ‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+							DXST_LOGFILE_ADDUTF16LE( "\xf8\x66\x4d\x30\xbc\x8f\x7f\x30\x02\x5c\x28\x75\xde\x30\xeb\x30\xc1\x30\xb5\x30\xf3\x30\xd7\x30\xeb\x30\xf1\x6d\xa6\x5e\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"æ›¸ãè¾¼ã¿å°‚ç”¨ãƒãƒ«ãƒã‚µãƒ³ãƒ—ãƒ«æ·±åº¦ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 							return -1 ;
 						}
 					}
 
-					// [“xƒXƒeƒ“ƒVƒ‹ƒrƒ…[‚Ìƒ|ƒCƒ“ƒ^‚ğ•Û‘¶‚·‚é‚½‚ß‚Ìƒƒ‚ƒŠ‚ğŠm•Û
+					// æ·±åº¦ã‚¹ãƒ†ãƒ³ã‚·ãƒ«ãƒ“ãƒ¥ãƒ¼ã®ãƒã‚¤ãƒ³ã‚¿ã‚’ä¿å­˜ã™ã‚‹ãŸã‚ã®ãƒ¡ãƒ¢ãƒªã‚’ç¢ºä¿
 					if( OrigTex->PF->D3D11.DepthBufferDSV == NULL )
 					{
 						OrigTex->PF->D3D11.DepthBufferDSV = ( D_ID3D11DepthStencilView ** )DXALLOC( sizeof( D_ID3D11DepthStencilView * ) * Orig->Hard.MipMapCount ) ;
 						if( OrigTex->PF->D3D11.DepthBufferDSV == NULL )
 						{
-							DXST_LOGFILE_ADDUTF16LE( "\xf1\x6d\xa6\x5e\xd0\x30\xc3\x30\xd5\x30\xa1\x30\x28\x75\xf1\x6d\xa6\x5e\xb9\x30\xc6\x30\xf3\x30\xb7\x30\xeb\x30\xd3\x30\xe5\x30\xfc\x30\x6e\x30\xa2\x30\xc9\x30\xec\x30\xb9\x30\x92\x30\xdd\x4f\x58\x5b\x59\x30\x8b\x30\x5f\x30\x81\x30\x6e\x30\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"[“xƒoƒbƒtƒ@—p[“xƒXƒeƒ“ƒVƒ‹ƒrƒ…[‚ÌƒAƒhƒŒƒX‚ğ•Û‘¶‚·‚é‚½‚ß‚Ìƒƒ‚ƒŠ‚ÌŠm•Û‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+							DXST_LOGFILE_ADDUTF16LE( "\xf1\x6d\xa6\x5e\xd0\x30\xc3\x30\xd5\x30\xa1\x30\x28\x75\xf1\x6d\xa6\x5e\xb9\x30\xc6\x30\xf3\x30\xb7\x30\xeb\x30\xd3\x30\xe5\x30\xfc\x30\x6e\x30\xa2\x30\xc9\x30\xec\x30\xb9\x30\x92\x30\xdd\x4f\x58\x5b\x59\x30\x8b\x30\x5f\x30\x81\x30\x6e\x30\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"æ·±åº¦ãƒãƒƒãƒ•ã‚¡ç”¨æ·±åº¦ã‚¹ãƒ†ãƒ³ã‚·ãƒ«ãƒ“ãƒ¥ãƒ¼ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ä¿å­˜ã™ã‚‹ãŸã‚ã®ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 							return -1 ;
 						}
 						_MEMSET( OrigTex->PF->D3D11.DepthBufferDSV, 0, sizeof( D_ID3D11DepthStencilView * ) * Orig->Hard.MipMapCount ) ;
 					}
 
-					// [“xƒXƒeƒ“ƒVƒ‹ƒrƒ…[‚Ìì¬
+					// æ·±åº¦ã‚¹ãƒ†ãƒ³ã‚·ãƒ«ãƒ“ãƒ¥ãƒ¼ã®ä½œæˆ
 					for( j = 0 ; j < Orig->Hard.MipMapCount ; j ++ )
 					{
 						_MEMSET( &DepthStencilViewDesc, 0, sizeof( DepthStencilViewDesc ) ) ;
@@ -28300,7 +28300,7 @@ extern	int		Graphics_Hardware_D3D11_CreateOrigTexture_PF(  IMAGEDATA_ORIG *Orig,
 						hr = D3D11Device_CreateDepthStencilView_ASync( OrigTex->PF->D3D11.DepthBuffer, &DepthStencilViewDesc, &OrigTex->PF->D3D11.DepthBufferDSV[ j ], ASyncThread ) ;
 						if( FAILED( hr ) )
 						{
-							DXST_LOGFILE_ADDUTF16LE( "\xf1\x6d\xa6\x5e\xd0\x30\xc3\x30\xd5\x30\xa1\x30\x28\x75\xf1\x6d\xa6\x5e\xb9\x30\xc6\x30\xf3\x30\xb7\x30\xeb\x30\xd3\x30\xe5\x30\xfc\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"[“xƒoƒbƒtƒ@—p[“xƒXƒeƒ“ƒVƒ‹ƒrƒ…[‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+							DXST_LOGFILE_ADDUTF16LE( "\xf1\x6d\xa6\x5e\xd0\x30\xc3\x30\xd5\x30\xa1\x30\x28\x75\xf1\x6d\xa6\x5e\xb9\x30\xc6\x30\xf3\x30\xb7\x30\xeb\x30\xd3\x30\xe5\x30\xfc\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"æ·±åº¦ãƒãƒƒãƒ•ã‚¡ç”¨æ·±åº¦ã‚¹ãƒ†ãƒ³ã‚·ãƒ«ãƒ“ãƒ¥ãƒ¼ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 							return -1 ;
 						}
 					}
@@ -28330,7 +28330,7 @@ extern	int		Graphics_Hardware_D3D11_CreateOrigTexture_PF(  IMAGEDATA_ORIG *Orig,
 			}
 		}
 
-		// ƒVƒF[ƒ_[ƒŠƒ\[ƒXƒrƒ…[‚ğì¬
+		// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒªã‚½ãƒ¼ã‚¹ãƒ“ãƒ¥ãƒ¼ã‚’ä½œæˆ
 		if( OrigTex->PF->D3D11.TextureSRV == NULL )
 		{
 			_MEMSET( &SRVDesc, 0, sizeof( SRVDesc ) );
@@ -28356,13 +28356,13 @@ extern	int		Graphics_Hardware_D3D11_CreateOrigTexture_PF(  IMAGEDATA_ORIG *Orig,
 			hr = D3D11Device_CreateShaderResourceView_ASync( OrigTex->PF->D3D11.Texture, &SRVDesc, &OrigTex->PF->D3D11.TextureSRV, ASyncThread ) ;
 			if( FAILED( hr ) )
 			{
-				DXST_LOGFILEFMT_ADDUTF16LE(( "\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\x28\x75\xb7\x30\xa7\x30\xfc\x30\xc0\x30\xfc\x30\xea\x30\xbd\x30\xfc\x30\xb9\x30\xd3\x30\xe5\x30\xfc\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x20\x00\x20\x00\x46\x00\x6f\x00\x72\x00\x6d\x00\x61\x00\x74\x00\x3a\x00\x25\x00\x64\x00\x20\x00\x20\x00\x53\x00\x69\x00\x7a\x00\x65\x00\x58\x00\x3a\x00\x25\x00\x64\x00\x20\x00\x20\x00\x53\x00\x69\x00\x7a\x00\x65\x00\x59\x00\x3a\x00\x25\x00\x64\x00\x20\x00\x0a\x00\x00"/*@ L"ƒeƒNƒXƒ`ƒƒ—pƒVƒF[ƒ_[ƒŠƒ\[ƒXƒrƒ…[‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½  Format:%d  SizeX:%d  SizeY:%d \n" @*/,
+				DXST_LOGFILEFMT_ADDUTF16LE(( "\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\x28\x75\xb7\x30\xa7\x30\xfc\x30\xc0\x30\xfc\x30\xea\x30\xbd\x30\xfc\x30\xb9\x30\xd3\x30\xe5\x30\xfc\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x20\x00\x20\x00\x46\x00\x6f\x00\x72\x00\x6d\x00\x61\x00\x74\x00\x3a\x00\x25\x00\x64\x00\x20\x00\x20\x00\x53\x00\x69\x00\x7a\x00\x65\x00\x58\x00\x3a\x00\x25\x00\x64\x00\x20\x00\x20\x00\x53\x00\x69\x00\x7a\x00\x65\x00\x59\x00\x3a\x00\x25\x00\x64\x00\x20\x00\x0a\x00\x00"/*@ L"ãƒ†ã‚¯ã‚¹ãƒãƒ£ç”¨ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒªã‚½ãƒ¼ã‚¹ãƒ“ãƒ¥ãƒ¼ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ  Format:%d  SizeX:%d  SizeY:%d \n" @*/,
 					GD3D11.Device.Caps.TextureFormat[ Orig->ColorFormat ], OrigTex->TexWidth, OrigTex->TexHeight )) ;
 				return -1 ;
 			}
 		}
 
-		// [“xƒoƒbƒtƒ@‚ÌƒVƒF[ƒ_[ƒŠƒ\[ƒXƒrƒ…[‚ğì¬
+		// æ·±åº¦ãƒãƒƒãƒ•ã‚¡ã®ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒªã‚½ãƒ¼ã‚¹ãƒ“ãƒ¥ãƒ¼ã‚’ä½œæˆ
 		if( OrigTex->PF->D3D11.DepthBuffer != NULL && OrigTex->PF->D3D11.DepthBufferSRV == NULL &&
 			GD3D11.Device.Caps.DepthBufferTexture2DFormat[ Orig->ZBufferBitDepthIndex ] != D_DXGI_FORMAT_D16_UNORM )
 		{
@@ -28373,13 +28373,13 @@ extern	int		Graphics_Hardware_D3D11_CreateOrigTexture_PF(  IMAGEDATA_ORIG *Orig,
 			hr = D3D11Device_CreateShaderResourceView_ASync( OrigTex->PF->D3D11.DepthBuffer, &SRVDesc, &OrigTex->PF->D3D11.DepthBufferSRV, ASyncThread ) ;
 //			if( FAILED( hr ) )
 //			{
-//				DXST_LOGFILEFMT_ADDUTF16LE(( "\xf1\x6d\xa6\x5e\xd0\x30\xc3\x30\xd5\x30\xa1\x30\x28\x75\xb7\x30\xa7\x30\xfc\x30\xc0\x30\xfc\x30\xea\x30\xbd\x30\xfc\x30\xb9\x30\xd3\x30\xe5\x30\xfc\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x20\x00\x20\x00\x46\x00\x6f\x00\x72\x00\x6d\x00\x61\x00\x74\x00\x3a\x00\x25\x00\x64\x00\x20\x00\x20\x00\x53\x00\x69\x00\x7a\x00\x65\x00\x58\x00\x3a\x00\x25\x00\x64\x00\x20\x00\x20\x00\x53\x00\x69\x00\x7a\x00\x65\x00\x59\x00\x3a\x00\x25\x00\x64\x00\x20\x00\x0a\x00\x00"/*@ L"[“xƒoƒbƒtƒ@—pƒVƒF[ƒ_[ƒŠƒ\[ƒXƒrƒ…[‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½  Format:%d  SizeX:%d  SizeY:%d \n" @*/,
+//				DXST_LOGFILEFMT_ADDUTF16LE(( "\xf1\x6d\xa6\x5e\xd0\x30\xc3\x30\xd5\x30\xa1\x30\x28\x75\xb7\x30\xa7\x30\xfc\x30\xc0\x30\xfc\x30\xea\x30\xbd\x30\xfc\x30\xb9\x30\xd3\x30\xe5\x30\xfc\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x20\x00\x20\x00\x46\x00\x6f\x00\x72\x00\x6d\x00\x61\x00\x74\x00\x3a\x00\x25\x00\x64\x00\x20\x00\x20\x00\x53\x00\x69\x00\x7a\x00\x65\x00\x58\x00\x3a\x00\x25\x00\x64\x00\x20\x00\x20\x00\x53\x00\x69\x00\x7a\x00\x65\x00\x59\x00\x3a\x00\x25\x00\x64\x00\x20\x00\x0a\x00\x00"/*@ L"æ·±åº¦ãƒãƒƒãƒ•ã‚¡ç”¨ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒªã‚½ãƒ¼ã‚¹ãƒ“ãƒ¥ãƒ¼ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ  Format:%d  SizeX:%d  SizeY:%d \n" @*/,
 //					GD3D11.Device.Caps.DepthBufferTexture2DFormat[ Orig->ZBufferBitDepthIndex ], OrigTex->TexWidth, OrigTex->TexHeight )) ;
 //				return -1 ;
 //			}
 		}
 
-		// •`‰æ‘ÎÛ‚Éo—ˆ‚é‰æ‘œ‚Ìê‡‚Í^‚Á•‚É“h‚è‚Â‚Ô‚·
+		// æç”»å¯¾è±¡ã«å‡ºæ¥ã‚‹ç”»åƒã®å ´åˆã¯çœŸã£é»’ã«å¡—ã‚Šã¤ã¶ã™
 		if( Orig->FormatDesc.DrawValidFlag )
 		{
 			int RTVNum ;
@@ -28405,18 +28405,18 @@ extern	int		Graphics_Hardware_D3D11_CreateOrigTexture_PF(  IMAGEDATA_ORIG *Orig,
 		}
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒeƒNƒXƒ`ƒƒƒVƒF[ƒ_[ƒŠƒ\[ƒXƒrƒ…[‚ğ‰ğ•ú‚·‚é
+// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒªã‚½ãƒ¼ã‚¹ãƒ“ãƒ¥ãƒ¼ã‚’è§£æ”¾ã™ã‚‹
 static	int		Graphics_Hardware_D3D11_ReleaseTextureSRV( D_ID3D11ShaderResourceView *TextureSRV )
 {
 	int i ;
 	int Flag ;
 	D_ID3D11ShaderResourceView *pShaderResourceView = NULL ;
 
-	// ƒsƒNƒZƒ‹ƒVƒF[ƒ_[‚Åg—p‚·‚éƒeƒNƒXƒ`ƒƒ‚Æ‚µ‚Äİ’è‚³‚ê‚Ä‚¢‚½‚ç‰ğœ‚·‚é
+	// ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã§ä½¿ç”¨ã™ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ã¨ã—ã¦è¨­å®šã•ã‚Œã¦ã„ãŸã‚‰è§£é™¤ã™ã‚‹
 	Flag = FALSE ;
 	for( i = 0 ; i < D_D3D11_COMMONSHADER_INPUT_RESOURCE_SLOT_COUNT ; i ++ )
 	{
@@ -28424,7 +28424,7 @@ static	int		Graphics_Hardware_D3D11_ReleaseTextureSRV( D_ID3D11ShaderResourceVie
 		{
 			if( Flag == FALSE )
 			{
-				// •`‰æ‘Ò‹@‚µ‚Ä‚¢‚é•`‰æ•¨‚ğ•`‰æ
+				// æç”»å¾…æ©Ÿã—ã¦ã„ã‚‹æç”»ç‰©ã‚’æç”»
 				DRAWSTOCKINFO
 				Flag = TRUE ;
 			}
@@ -28433,26 +28433,26 @@ static	int		Graphics_Hardware_D3D11_ReleaseTextureSRV( D_ID3D11ShaderResourceVie
 		}
 	}
 
-	// ‚Ç‚±‚©‚ÌƒXƒƒbƒg‚ÉƒZƒbƒg‚³‚ê‚Ä‚¢‚½‚ç•`‰æ—pƒeƒNƒXƒ`ƒƒ‚à‰ğœ
+	// ã©ã“ã‹ã®ã‚¹ãƒ­ãƒƒãƒˆã«ã‚»ãƒƒãƒˆã•ã‚Œã¦ã„ãŸã‚‰æç”»ç”¨ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚‚è§£é™¤
 	if( Flag )
 	{
 		Graphics_D3D11_DrawSetting_SetTexture( NULL, NULL ) ;
 	}
 
-	// ƒVƒF[ƒ_[ƒŠƒ\[ƒXƒrƒ…[‚ğ‰ğ•ú‚·‚é
+	// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒªã‚½ãƒ¼ã‚¹ãƒ“ãƒ¥ãƒ¼ã‚’è§£æ”¾ã™ã‚‹
 	Direct3D11_Release_ShaderResourceView( TextureSRV ) ;
 
 	return 0 ;
 }
 
-// ƒIƒŠƒWƒiƒ‹‰æ‘œî•ñ’†‚ÌƒeƒNƒXƒ`ƒƒ‚ğ‰ğ•ú‚·‚é
+// ã‚ªãƒªã‚¸ãƒŠãƒ«ç”»åƒæƒ…å ±ä¸­ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’è§£æ”¾ã™ã‚‹
 extern	int		Graphics_Hardware_D3D11_ReleaseOrigTexture_PF( IMAGEDATA_ORIG *Orig )
 {
 	int i ;
 	int j ;
 	IMAGEDATA_ORIG_HARD_TEX *OrigTex ;
 
-	// ƒn[ƒhƒEƒGƒA‚ğg—p‚·‚é‰æ‘œ‚Å‚Í‚È‚¢ê‡‚Í‰½‚à‚¹‚¸‚ÉI—¹
+	// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚’ä½¿ç”¨ã™ã‚‹ç”»åƒã§ã¯ãªã„å ´åˆã¯ä½•ã‚‚ã›ãšã«çµ‚äº†
 	if( Orig->FormatDesc.TextureFlag == FALSE )
 	{
 		return 0 ;
@@ -28489,7 +28489,7 @@ extern	int		Graphics_Hardware_D3D11_ReleaseOrigTexture_PF( IMAGEDATA_ORIG *Orig 
 		}
 		if( OrigTex->PF->D3D11.Texture )
 		{
-			// ƒ†[ƒU[w’è‚ÌƒeƒNƒXƒ`ƒƒ‚Å‚Í‚È‚©‚Á‚½ê‡‚Ì‚İ‰ğ•ú
+			// ãƒ¦ãƒ¼ã‚¶ãƒ¼æŒ‡å®šã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ã§ã¯ãªã‹ã£ãŸå ´åˆã®ã¿è§£æ”¾
 			if( Orig->UserPlatformTexture == NULL )
 			{
 				Direct3D11_Release_Texture2D( OrigTex->PF->D3D11.Texture ) ;
@@ -28522,11 +28522,11 @@ extern	int		Graphics_Hardware_D3D11_ReleaseOrigTexture_PF( IMAGEDATA_ORIG *Orig 
 		}
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// w’è‚Ìƒ}ƒ‹ƒ`ƒTƒ“ƒvƒ‹”‚Åg—p‚Å‚«‚éÅ‘åƒNƒIƒŠƒeƒB’l‚ğæ“¾‚·‚é
+// æŒ‡å®šã®ãƒãƒ«ãƒã‚µãƒ³ãƒ—ãƒ«æ•°ã§ä½¿ç”¨ã§ãã‚‹æœ€å¤§ã‚¯ã‚ªãƒªãƒ†ã‚£å€¤ã‚’å–å¾—ã™ã‚‹
 extern	int		Graphics_Hardware_D3D11_GetMultiSampleQuality_PF( int Samples )
 {
 	IMAGEFORMATDESC				Format ;
@@ -28545,34 +28545,34 @@ extern	int		Graphics_Hardware_D3D11_GetMultiSampleQuality_PF( int Samples )
 		return -1 ;
 	}
 
-	// Œ»İ‚Ìİ’è‚ÌƒtƒH[ƒ}ƒbƒg‚ğƒZƒbƒgƒAƒbƒv‚·‚é
+	// ç¾åœ¨ã®è¨­å®šã®ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã‚’ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã™ã‚‹
 	Graphics_Image_InitSetupGraphHandleGParam( &GParam ) ; 
 	GParam.DrawValidImageCreateFlag = TRUE ;
 	GParam.CubeMapTextureCreateFlag = FALSE ;
 	Graphics_Image_SetupFormatDesc( &Format, &GParam, 256, 256, GParam.AlphaChannelImageCreateFlag, FALSE, 0, DX_BASEIMAGE_FORMAT_NORMAL, -1 ) ;
 
-	// ƒtƒH[ƒ}ƒbƒgƒCƒ“ƒfƒbƒNƒX‚ğ“¾‚é
+	// ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’å¾—ã‚‹
 	FormatIndex = NS_GetTexFormatIndex( &Format ) ;
 
-	// Direct3D ‚Å‚ÌƒtƒH[ƒ}ƒbƒg‚ğæ“¾
+	// Direct3D ã§ã®ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã‚’å–å¾—
 	D3DFormat = GD3D11.Device.Caps.TextureFormat[ FormatIndex ] ;
 	if( D3DFormat == D_DXGI_FORMAT_UNKNOWN )
 	{
 		return -1 ;
 	}
 
-	// İ’è‚Å‚«‚éƒNƒIƒŠƒeƒB‚ğæ“¾
+	// è¨­å®šã§ãã‚‹ã‚¯ã‚ªãƒªãƒ†ã‚£ã‚’å–å¾—
 	Quality = 10000 ;
 	if( D3D11Device_CheckMultiSampleParam_ASync( D3DFormat, ( UINT * )&Samples, &Quality, TRUE ) < 0 )
 	{
 		return -1 ;
 	}
 
-	// ƒNƒIƒŠƒeƒB‚ğ•Ô‚·
+	// ã‚¯ã‚ªãƒªãƒ†ã‚£ã‚’è¿”ã™
 	return ( int )Quality ;
 }
 
-// ì¬‚·‚éƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚Åg—p‚·‚éŠÂ‹«ˆË‘¶‚ÌƒeƒNƒXƒ`ƒƒƒtƒH[ƒ}ƒbƒg‚ğw’è‚·‚é
+// ä½œæˆã™ã‚‹ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã§ä½¿ç”¨ã™ã‚‹ç’°å¢ƒä¾å­˜ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã‚’æŒ‡å®šã™ã‚‹
 extern int Graphics_Hardware_D3D11_SetUsePlatformTextureFormat_PF( int /*PlatformTextureFormat*/ )
 {
 	return 0 ;
@@ -28605,21 +28605,21 @@ extern int Graphics_Hardware_D3D11_SetUsePlatformTextureFormat_PF( int /*Platfor
 
 
 
-// ŠÂ‹«ˆË‘¶’¸“_ƒoƒbƒtƒ@EƒCƒ“ƒfƒbƒNƒXƒoƒbƒtƒ@ŠÖŒW
+// ç’°å¢ƒä¾å­˜é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ãƒ»ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒãƒƒãƒ•ã‚¡é–¢ä¿‚
 
-// ’¸“_ƒoƒbƒtƒ@ƒnƒ“ƒhƒ‹‚Ì’¸“_ƒoƒbƒtƒ@‚ğì¬‚·‚é
+// é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ãƒãƒ³ãƒ‰ãƒ«ã®é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã‚’ä½œæˆã™ã‚‹
 extern	int		Graphics_Hardware_D3D11_VertexBuffer_Create_PF( VERTEXBUFFERHANDLEDATA *VertexBuffer )
 {
 	return Graphics_D3D11_VertexBuffer_CreateObject( VertexBuffer, FALSE ) ;
 }
 
-// ’¸“_ƒoƒbƒtƒ@ƒnƒ“ƒhƒ‹‚ÌŒãn––
+// é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ãƒãƒ³ãƒ‰ãƒ«ã®å¾Œå§‹æœ«
 extern	int		Graphics_Hardware_D3D11_VertexBuffer_Terminate_PF( VERTEXBUFFERHANDLEDATA *VertexBuffer )
 {
 	return Graphics_D3D11_VertexBuffer_ReleaseObject( VertexBuffer ) ;
 }
 
-// ’¸“_ƒoƒbƒtƒ@‚É’¸“_ƒf[ƒ^‚ğ“]‘—‚·‚é
+// é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã«é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ã‚’è»¢é€ã™ã‚‹
 extern	int		Graphics_Hardware_D3D11_VertexBuffer_SetData_PF( VERTEXBUFFERHANDLEDATA *VertexBuffer, int SetIndex, const void *VertexData, int VertexNum )
 {
 	D_D3D11_BOX DestBox ;
@@ -28633,23 +28633,23 @@ extern	int		Graphics_Hardware_D3D11_VertexBuffer_SetData_PF( VERTEXBUFFERHANDLED
 
 	D3D11DeviceContext_UpdateSubresource_ASync( VertexBuffer->PF->D3D11.VertexBuffer, 0, &DestBox, VertexData, 0, 0 ) ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// ƒCƒ“ƒfƒbƒNƒXƒoƒbƒtƒ@ƒnƒ“ƒhƒ‹‚ÌƒZƒbƒgƒAƒbƒv‚ğs‚¤
+// ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒãƒƒãƒ•ã‚¡ãƒãƒ³ãƒ‰ãƒ«ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã‚’è¡Œã†
 extern	int		Graphics_Hardware_D3D11_IndexBuffer_Create_PF( INDEXBUFFERHANDLEDATA *IndexBuffer )
 {
 	return Graphics_D3D11_IndexBuffer_CreateObject( IndexBuffer, FALSE ) ;
 }
 
-// ƒCƒ“ƒfƒbƒNƒXƒoƒbƒtƒ@ƒnƒ“ƒhƒ‹‚ÌŒãn––
+// ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒãƒƒãƒ•ã‚¡ãƒãƒ³ãƒ‰ãƒ«ã®å¾Œå§‹æœ«
 extern	int		Graphics_Hardware_D3D11_IndexBuffer_Terminate_PF( INDEXBUFFERHANDLEDATA *IndexBuffer )
 {
 	return Graphics_D3D11_IndexBuffer_ReleaseObject( IndexBuffer ) ;
 }
 
-// ƒCƒ“ƒfƒbƒNƒXƒoƒbƒtƒ@‚ÉƒCƒ“ƒfƒbƒNƒXƒf[ƒ^‚ğ“]‘—‚·‚é
+// ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒãƒƒãƒ•ã‚¡ã«ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿ã‚’è»¢é€ã™ã‚‹
 extern	int		Graphics_Hardware_D3D11_IndexBuffer_SetData_PF( INDEXBUFFERHANDLEDATA *IndexBuffer, int SetIndex, const void *IndexData, int IndexNum )
 {
 	D_D3D11_BOX DestBox ;
@@ -28663,7 +28663,7 @@ extern	int		Graphics_Hardware_D3D11_IndexBuffer_SetData_PF( INDEXBUFFERHANDLEDAT
 
 	D3D11DeviceContext_UpdateSubresource_ASync( IndexBuffer->PF->D3D11.IndexBuffer, 0, &DestBox, IndexData, 0, 0 ) ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
@@ -28689,39 +28689,39 @@ extern	int		Graphics_Hardware_D3D11_IndexBuffer_SetData_PF( INDEXBUFFERHANDLEDAT
 
 
 
-// ŠÂ‹«ˆË‘¶ƒ‰ƒCƒgŠÖŒW
+// ç’°å¢ƒä¾å­˜ãƒ©ã‚¤ãƒˆé–¢ä¿‚
 
-// ƒ‰ƒCƒeƒBƒ“ƒO‚ğs‚¤‚©‚Ç‚¤‚©‚ğİ’è‚·‚é
+// ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ã‚’è¡Œã†ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹
 extern	int		Graphics_Hardware_D3D11_Light_SetUse_PF( int Flag )
 {
 	return Graphics_D3D11_DeviceState_SetLighting( Flag ) ;
 }
 
-// ƒOƒ[ƒoƒ‹ƒAƒ“ƒrƒGƒ“ƒgƒ‰ƒCƒgƒJƒ‰[‚ğİ’è‚·‚é
+// ã‚°ãƒ­ãƒ¼ãƒãƒ«ã‚¢ãƒ³ãƒ“ã‚¨ãƒ³ãƒˆãƒ©ã‚¤ãƒˆã‚«ãƒ©ãƒ¼ã‚’è¨­å®šã™ã‚‹
 extern	int		Graphics_Hardware_D3D11_Light_GlobalAmbient_PF( COLOR_F *Color )
 {
 	return Graphics_D3D11_DeviceState_SetAmbient( Color ) ;
 }
 
-// ƒ‰ƒCƒgƒpƒ‰ƒ[ƒ^‚ğƒZƒbƒg
+// ãƒ©ã‚¤ãƒˆãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆ
 extern	int		Graphics_Hardware_D3D11_Light_SetState_PF( int LightNumber, LIGHTPARAM *LightParam )
 {
 	return Graphics_D3D11_DeviceState_SetLightState( LightNumber, LightParam ) ;
 }
 
-// ƒ‰ƒCƒg‚Ì—LŒøA–³Œø‚ğ•ÏX
+// ãƒ©ã‚¤ãƒˆã®æœ‰åŠ¹ã€ç„¡åŠ¹ã‚’å¤‰æ›´
 extern	int		Graphics_Hardware_D3D11_Light_SetEnable_PF( int LightNumber, int EnableState )
 {
 	return Graphics_D3D11_DeviceState_SetLightEnable( LightNumber, EnableState ) ;
 }
 
-// ƒ‰ƒCƒg‚ÌŒvZ‚ÅŠp“xŒ¸Š‚ğs‚í‚È‚¢‚æ‚¤‚É‚·‚é‚©‚Ç‚¤‚©‚ğİ’è‚·‚é
+// ãƒ©ã‚¤ãƒˆã®è¨ˆç®—ã§è§’åº¦æ¸›è¡°ã‚’è¡Œã‚ãªã„ã‚ˆã†ã«ã™ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹
 extern	int		Graphics_Hardware_D3D11_Light_SetNoAngleAttenuation_PF( int NoAngleAttenuation )
 {
 	return Graphics_D3D11_DrawSetting_SetLightNoAngleAttenuation( NoAngleAttenuation ) ;
 }
 
-// ƒ‰ƒCƒg‚ÌŒvZ‚Åƒn[ƒtƒ‰ƒ“ƒo[ƒg‚ğg—p‚·‚é‚©‚Ç‚¤‚©‚ğİ’è‚·‚é
+// ãƒ©ã‚¤ãƒˆã®è¨ˆç®—ã§ãƒãƒ¼ãƒ•ãƒ©ãƒ³ãƒãƒ¼ãƒˆã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹
 extern	int		Graphics_Hardware_D3D11_Light_SetUseHalfLambert_PF( int UseHalfLambert )
 {
 	return Graphics_D3D11_DrawSetting_SetLightUseHalfLambert( UseHalfLambert ) ;
@@ -28753,9 +28753,9 @@ extern	int		Graphics_Hardware_D3D11_Light_SetUseHalfLambert_PF( int UseHalfLambe
 
 
 
-// ŠÂ‹«ˆË‘¶ƒVƒƒƒhƒEƒ}ƒbƒvŠÖŒW
+// ç’°å¢ƒä¾å­˜ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—é–¢ä¿‚
 
-// ƒVƒƒƒhƒEƒ}ƒbƒvƒf[ƒ^‚É•K—v‚ÈƒeƒNƒXƒ`ƒƒ‚ğì¬‚·‚é
+// ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ã«å¿…è¦ãªãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ä½œæˆã™ã‚‹
 extern	int		Graphics_Hardware_D3D11_ShadowMap_CreateTexture_PF( SHADOWMAPDATA *ShadowMap, int ASyncThread )
 {
 	D_D3D11_TEXTURE2D_DESC				Texture2DDesc ;
@@ -28764,7 +28764,7 @@ extern	int		Graphics_Hardware_D3D11_ShadowMap_CreateTexture_PF( SHADOWMAPDATA *S
 	D_D3D11_DEPTH_STENCIL_VIEW_DESC		DepthStencilViewDesc ;
 	HRESULT								hr ;
 
-	// ƒtƒH[ƒ}ƒbƒg‚ÌŒˆ’è
+	// ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®æ±ºå®š
 	if( ShadowMap->TexFormat_Float )
 	{
 		if( ShadowMap->TexFormat_BitDepth == 16 )
@@ -28792,17 +28792,17 @@ extern	int		Graphics_Hardware_D3D11_ShadowMap_CreateTexture_PF( SHADOWMAPDATA *S
 		}
 	}
 
-	// Œˆ’è‚µ‚½ƒtƒH[ƒ}ƒbƒg‚ªì¬‚Å‚«‚È‚¢ê‡‚Í¸”s
+	// æ±ºå®šã—ãŸãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆãŒä½œæˆã§ããªã„å ´åˆã¯å¤±æ•—
 	if( GD3D11.Device.Caps.TextureFormat[ ShadowMap->ColorFormat ] == D_DXGI_FORMAT_UNKNOWN )
 	{
-		DXST_LOGFILE_ADDUTF16LE( "\xb7\x30\xe3\x30\xc9\x30\xa6\x30\xde\x30\xc3\x30\xd7\x30\xc7\x30\xfc\x30\xbf\x30\x28\x75\x6e\x30\xd5\x30\xa9\x30\xfc\x30\xde\x30\xc3\x30\xc8\x30\x67\x30\x5c\x4f\x10\x62\x67\x30\x4d\x30\x8b\x30\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\xd5\x30\xa9\x30\xfc\x30\xde\x30\xc3\x30\xc8\x30\x4c\x30\x42\x30\x8a\x30\x7e\x30\x5b\x30\x93\x30\x67\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ƒVƒƒƒhƒEƒ}ƒbƒvƒf[ƒ^—p‚ÌƒtƒH[ƒ}ƒbƒg‚Åì¬‚Å‚«‚éƒeƒNƒXƒ`ƒƒƒtƒH[ƒ}ƒbƒg‚ª‚ ‚è‚Ü‚¹‚ñ‚Å‚µ‚½\n" @*/ ) ;
+		DXST_LOGFILE_ADDUTF16LE( "\xb7\x30\xe3\x30\xc9\x30\xa6\x30\xde\x30\xc3\x30\xd7\x30\xc7\x30\xfc\x30\xbf\x30\x28\x75\x6e\x30\xd5\x30\xa9\x30\xfc\x30\xde\x30\xc3\x30\xc8\x30\x67\x30\x5c\x4f\x10\x62\x67\x30\x4d\x30\x8b\x30\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\xd5\x30\xa9\x30\xfc\x30\xde\x30\xc3\x30\xc8\x30\x4c\x30\x42\x30\x8a\x30\x7e\x30\x5b\x30\x93\x30\x67\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ç”¨ã®ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã§ä½œæˆã§ãã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆãŒã‚ã‚Šã¾ã›ã‚“ã§ã—ãŸ\n" @*/ ) ;
 		return -1 ;
 	}
 
-	// ƒŒƒ“ƒ_ƒŠƒ“ƒOƒ^[ƒQƒbƒg[“xƒoƒbƒtƒ@‚Ìì¬
+	// ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã‚¿ãƒ¼ã‚²ãƒƒãƒˆæ·±åº¦ãƒãƒƒãƒ•ã‚¡ã®ä½œæˆ
 	if( ShadowMap->PF->D3D11.DepthBuffer == NULL )
 	{
-		// ƒeƒNƒXƒ`ƒƒ‚Ìì¬
+		// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ä½œæˆ
 		_MEMSET( &Texture2DDesc, 0, sizeof( Texture2DDesc ) ) ;
 		Texture2DDesc.Width              = ( UINT )ShadowMap->BaseSizeX ;
 		Texture2DDesc.Height             = ( UINT )ShadowMap->BaseSizeY ;
@@ -28818,11 +28818,11 @@ extern	int		Graphics_Hardware_D3D11_ShadowMap_CreateTexture_PF( SHADOWMAPDATA *S
 		hr = D3D11Device_CreateTexture2D_ASync( &Texture2DDesc, NULL, &ShadowMap->PF->D3D11.DepthBuffer, ASyncThread ) ;
 		if( FAILED( hr ) )
 		{
-			DXST_LOGFILE_ADDUTF16LE( "\xb7\x30\xe3\x30\xc9\x30\xa6\x30\xde\x30\xc3\x30\xd7\x30\x28\x75\xf1\x6d\xa6\x5e\xd0\x30\xc3\x30\xd5\x30\xa1\x30\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ƒVƒƒƒhƒEƒ}ƒbƒv—p[“xƒoƒbƒtƒ@ƒeƒNƒXƒ`ƒƒ‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+			DXST_LOGFILE_ADDUTF16LE( "\xb7\x30\xe3\x30\xc9\x30\xa6\x30\xde\x30\xc3\x30\xd7\x30\x28\x75\xf1\x6d\xa6\x5e\xd0\x30\xc3\x30\xd5\x30\xa1\x30\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ç”¨æ·±åº¦ãƒãƒƒãƒ•ã‚¡ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 			return -1 ;
 		}
 
-		// [“xƒXƒeƒ“ƒVƒ‹ƒrƒ…[‚Ìì¬
+		// æ·±åº¦ã‚¹ãƒ†ãƒ³ã‚·ãƒ«ãƒ“ãƒ¥ãƒ¼ã®ä½œæˆ
 		_MEMSET( &DepthStencilViewDesc, 0, sizeof( DepthStencilViewDesc ) ) ;
 		DepthStencilViewDesc.Format             = GD3D11.Device.Caps.DepthBufferDepthStencilFormat[ ShadowMap->ZBufferFormat ] ;
 		DepthStencilViewDesc.ViewDimension      = D_D3D11_DSV_DIMENSION_TEXTURE2D;
@@ -28831,12 +28831,12 @@ extern	int		Graphics_Hardware_D3D11_ShadowMap_CreateTexture_PF( SHADOWMAPDATA *S
 		hr = D3D11Device_CreateDepthStencilView_ASync( ShadowMap->PF->D3D11.DepthBuffer, &DepthStencilViewDesc, &ShadowMap->PF->D3D11.DepthBufferDSV, ASyncThread ) ;
 		if( FAILED( hr ) )
 		{
-			DXST_LOGFILE_ADDUTF16LE( "\xb7\x30\xe3\x30\xc9\x30\xa6\x30\xde\x30\xc3\x30\xd7\x30\x28\x75\xf1\x6d\xa6\x5e\xb9\x30\xc6\x30\xf3\x30\xb7\x30\xeb\x30\xd3\x30\xe5\x30\xfc\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ƒVƒƒƒhƒEƒ}ƒbƒv—p[“xƒXƒeƒ“ƒVƒ‹ƒrƒ…[‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+			DXST_LOGFILE_ADDUTF16LE( "\xb7\x30\xe3\x30\xc9\x30\xa6\x30\xde\x30\xc3\x30\xd7\x30\x28\x75\xf1\x6d\xa6\x5e\xb9\x30\xc6\x30\xf3\x30\xb7\x30\xeb\x30\xd3\x30\xe5\x30\xfc\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ç”¨æ·±åº¦ã‚¹ãƒ†ãƒ³ã‚·ãƒ«ãƒ“ãƒ¥ãƒ¼ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 			return -1 ;
 		}
 	}
 
-	// ƒŒƒ“ƒ_[ƒ^[ƒQƒbƒg‚É‚Å‚«‚éƒeƒNƒXƒ`ƒƒ‚Ìì¬
+	// ãƒ¬ãƒ³ãƒ€ãƒ¼ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã«ã§ãã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ä½œæˆ
 	if( ShadowMap->PF->D3D11.DepthTexture == NULL )
 	{
 		_MEMSET( &Texture2DDesc, 0, sizeof( Texture2DDesc ) ) ;
@@ -28853,7 +28853,7 @@ extern	int		Graphics_Hardware_D3D11_ShadowMap_CreateTexture_PF( SHADOWMAPDATA *S
 		hr = D3D11Device_CreateTexture2D_ASync( &Texture2DDesc, NULL, &ShadowMap->PF->D3D11.DepthTexture, ASyncThread ) ;
 		if( FAILED( hr ) )
 		{
-			DXST_LOGFILE_ADDUTF16LE( "\xb7\x30\xe3\x30\xc9\x30\xa6\x30\xde\x30\xc3\x30\xd7\x30\x28\x75\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ƒVƒƒƒhƒEƒ}ƒbƒv—pƒeƒNƒXƒ`ƒƒ‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+			DXST_LOGFILE_ADDUTF16LE( "\xb7\x30\xe3\x30\xc9\x30\xa6\x30\xde\x30\xc3\x30\xd7\x30\x28\x75\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ç”¨ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 			return -1 ;
 		}
 
@@ -28863,7 +28863,7 @@ extern	int		Graphics_Hardware_D3D11_ShadowMap_CreateTexture_PF( SHADOWMAPDATA *S
 		hr = D3D11Device_CreateRenderTargetView_ASync( ShadowMap->PF->D3D11.DepthTexture, &RTVDesc, &ShadowMap->PF->D3D11.DepthTextureRTV, ASyncThread ) ;
 		if( FAILED( hr ) )
 		{
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\xb7\x30\xe3\x30\xc9\x30\xa6\x30\xde\x30\xc3\x30\xd7\x30\x28\x75\xec\x30\xf3\x30\xc0\x30\xfc\x30\xbf\x30\xfc\x30\xb2\x30\xc3\x30\xc8\x30\xd3\x30\xe5\x30\xfc\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x20\x00\x20\x00\x46\x00\x6f\x00\x72\x00\x6d\x00\x61\x00\x74\x00\x3a\x00\x25\x00\x64\x00\x20\x00\x20\x00\x53\x00\x69\x00\x7a\x00\x65\x00\x58\x00\x3a\x00\x25\x00\x64\x00\x20\x00\x20\x00\x53\x00\x69\x00\x7a\x00\x65\x00\x59\x00\x3a\x00\x25\x00\x64\x00\x20\x00\x0a\x00\x00"/*@ L"ƒVƒƒƒhƒEƒ}ƒbƒv—pƒŒƒ“ƒ_[ƒ^[ƒQƒbƒgƒrƒ…[‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½  Format:%d  SizeX:%d  SizeY:%d \n" @*/,
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\xb7\x30\xe3\x30\xc9\x30\xa6\x30\xde\x30\xc3\x30\xd7\x30\x28\x75\xec\x30\xf3\x30\xc0\x30\xfc\x30\xbf\x30\xfc\x30\xb2\x30\xc3\x30\xc8\x30\xd3\x30\xe5\x30\xfc\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x20\x00\x20\x00\x46\x00\x6f\x00\x72\x00\x6d\x00\x61\x00\x74\x00\x3a\x00\x25\x00\x64\x00\x20\x00\x20\x00\x53\x00\x69\x00\x7a\x00\x65\x00\x58\x00\x3a\x00\x25\x00\x64\x00\x20\x00\x20\x00\x53\x00\x69\x00\x7a\x00\x65\x00\x59\x00\x3a\x00\x25\x00\x64\x00\x20\x00\x0a\x00\x00"/*@ L"ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ç”¨ãƒ¬ãƒ³ãƒ€ãƒ¼ã‚¿ãƒ¼ã‚²ãƒƒãƒˆãƒ“ãƒ¥ãƒ¼ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ  Format:%d  SizeX:%d  SizeY:%d \n" @*/,
 				GD3D11.Device.Caps.TextureFormat[ ShadowMap->ColorFormat ], ShadowMap->BaseSizeX, ShadowMap->BaseSizeY )) ;
 			return -1 ;
 		}
@@ -28875,17 +28875,17 @@ extern	int		Graphics_Hardware_D3D11_ShadowMap_CreateTexture_PF( SHADOWMAPDATA *S
 		hr = D3D11Device_CreateShaderResourceView_ASync( ShadowMap->PF->D3D11.DepthTexture, &SRVDesc, &ShadowMap->PF->D3D11.DepthTextureSRV, ASyncThread ) ;
 		if( FAILED( hr ) )
 		{
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\xb7\x30\xe3\x30\xc9\x30\xa6\x30\xde\x30\xc3\x30\xd7\x30\x28\x75\xb7\x30\xa7\x30\xfc\x30\xc0\x30\xfc\x30\xea\x30\xbd\x30\xfc\x30\xb9\x30\xd3\x30\xe5\x30\xfc\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x20\x00\x20\x00\x46\x00\x6f\x00\x72\x00\x6d\x00\x61\x00\x74\x00\x3a\x00\x25\x00\x64\x00\x20\x00\x20\x00\x53\x00\x69\x00\x7a\x00\x65\x00\x58\x00\x3a\x00\x25\x00\x64\x00\x20\x00\x20\x00\x53\x00\x69\x00\x7a\x00\x65\x00\x59\x00\x3a\x00\x25\x00\x64\x00\x20\x00\x0a\x00\x00"/*@ L"ƒVƒƒƒhƒEƒ}ƒbƒv—pƒVƒF[ƒ_[ƒŠƒ\[ƒXƒrƒ…[‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½  Format:%d  SizeX:%d  SizeY:%d \n" @*/,
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\xb7\x30\xe3\x30\xc9\x30\xa6\x30\xde\x30\xc3\x30\xd7\x30\x28\x75\xb7\x30\xa7\x30\xfc\x30\xc0\x30\xfc\x30\xea\x30\xbd\x30\xfc\x30\xb9\x30\xd3\x30\xe5\x30\xfc\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x20\x00\x20\x00\x46\x00\x6f\x00\x72\x00\x6d\x00\x61\x00\x74\x00\x3a\x00\x25\x00\x64\x00\x20\x00\x20\x00\x53\x00\x69\x00\x7a\x00\x65\x00\x58\x00\x3a\x00\x25\x00\x64\x00\x20\x00\x20\x00\x53\x00\x69\x00\x7a\x00\x65\x00\x59\x00\x3a\x00\x25\x00\x64\x00\x20\x00\x0a\x00\x00"/*@ L"ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ç”¨ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒªã‚½ãƒ¼ã‚¹ãƒ“ãƒ¥ãƒ¼ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ  Format:%d  SizeX:%d  SizeY:%d \n" @*/,
 				GD3D11.Device.Caps.TextureFormat[ ShadowMap->ColorFormat ], ShadowMap->BaseSizeX, ShadowMap->BaseSizeY )) ;
 			return -1 ;
 		}
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒVƒƒƒhƒEƒ}ƒbƒvƒf[ƒ^‚É•K—v‚ÈƒeƒNƒXƒ`ƒƒ‚ğ‰ğ•ú‚·‚é
+// ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ã«å¿…è¦ãªãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’è§£æ”¾ã™ã‚‹
 extern	int		Graphics_Hardware_D3D11_ShadowMap_ReleaseTexture_PF( SHADOWMAPDATA *ShadowMap )
 {
 	if( ShadowMap->PF->D3D11.DepthTexture != NULL )
@@ -28918,11 +28918,11 @@ extern	int		Graphics_Hardware_D3D11_ShadowMap_ReleaseTexture_PF( SHADOWMAPDATA *
 		ShadowMap->PF->D3D11.DepthBufferDSV = NULL ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ’¸“_ƒVƒF[ƒ_[‚Éİ’è‚·‚éƒVƒƒƒhƒEƒ}ƒbƒv‚Ìî•ñ‚ğXV‚·‚é
+// é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã«è¨­å®šã™ã‚‹ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ã®æƒ…å ±ã‚’æ›´æ–°ã™ã‚‹
 extern	void	Graphics_Hardware_D3D11_ShadowMap_RefreshVSParam_PF( void )
 {
 	DX_D3D11_VS_CONST_BUFFER_OTHERMATRIX *ConstOtherMatrix ;
@@ -28945,14 +28945,14 @@ extern	void	Graphics_Hardware_D3D11_ShadowMap_RefreshVSParam_PF( void )
 
 	for( i = 0 ; i < MAX_USE_SHADOWMAP_NUM ; i ++ )
 	{
-		// ƒAƒhƒŒƒX‚Ìæ“¾
+		// ã‚¢ãƒ‰ãƒ¬ã‚¹ã®å–å¾—
 		if( SHADOWMAPCHKFULL( GSYS.DrawSetting.ShadowMap[ i ], ShadowMap ) )
 		{
 			_MEMCPY( ConstOtherMatrix->ShadowMapLightViewProjectionMatrix[ i ], TranspMatDef, sizeof( TranspMatDef ) ) ;
 		}
 		else
 		{
-			// s—ñ‚ÌƒZƒbƒg
+			// è¡Œåˆ—ã®ã‚»ãƒƒãƒˆ
 			ConstOtherMatrix->ShadowMapLightViewProjectionMatrix[ i ][ 0 ][ 0 ] = ShadowMap->ShadowMapViewProjectionMatrix.m[ 0 ][ 0 ] ;
 			ConstOtherMatrix->ShadowMapLightViewProjectionMatrix[ i ][ 0 ][ 1 ] = ShadowMap->ShadowMapViewProjectionMatrix.m[ 1 ][ 0 ] ;
 			ConstOtherMatrix->ShadowMapLightViewProjectionMatrix[ i ][ 0 ][ 2 ] = ShadowMap->ShadowMapViewProjectionMatrix.m[ 2 ][ 0 ] ;
@@ -28977,11 +28977,11 @@ extern	void	Graphics_Hardware_D3D11_ShadowMap_RefreshVSParam_PF( void )
 
 	GD3D11.Device.Shader.Constant.ConstBuffer_VS_OtherMatrix->ChangeFlag = TRUE ;
 
-	// ’è”ƒoƒbƒtƒ@‚ğXV
+	// å®šæ•°ãƒãƒƒãƒ•ã‚¡ã‚’æ›´æ–°
 //	Graphics_D3D11_ConstantBuffer_Update( GD3D11.Device.Shader.Constant.ConstBuffer_VS_OtherMatrix ) ;
 }
 
-// ƒsƒNƒZƒ‹ƒVƒF[ƒ_[‚Éİ’è‚·‚éƒVƒƒƒhƒEƒ}ƒbƒv‚Ìî•ñ‚ğXV‚·‚é
+// ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã«è¨­å®šã™ã‚‹ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ã®æƒ…å ±ã‚’æ›´æ–°ã™ã‚‹
 extern	void	Graphics_Hardware_D3D11_ShadowMap_RefreshPSParam_PF( void )
 {
 	DX_D3D11_PS_CONST_BUFFER_SHADOWMAP *ConstantPSShadowMap ;
@@ -29006,7 +29006,7 @@ extern	void	Graphics_Hardware_D3D11_ShadowMap_RefreshPSParam_PF( void )
 		ConstantPSShadowMap->Data[ i ].Enable_Light1 = 1.0f ;
 		ConstantPSShadowMap->Data[ i ].Enable_Light2 = 1.0f ;
 
-		// ƒAƒhƒŒƒX‚Ìæ“¾
+		// ã‚¢ãƒ‰ãƒ¬ã‚¹ã®å–å¾—
 		if( SHADOWMAPCHKFULL( GSYS.DrawSetting.ShadowMap[ i ], ShadowMap ) )
 		{
 			ConstantPSShadowMap->Data[ i ].AdjustDepth    = 1.0f ;
@@ -29042,34 +29042,34 @@ extern	void	Graphics_Hardware_D3D11_ShadowMap_RefreshPSParam_PF( void )
 	}
 	GD3D11.Device.Shader.Constant.ConstBuffer_PS_ShadowMap->ChangeFlag = TRUE ;
 
-	// ’è”ƒoƒbƒtƒ@‚ğXV
+	// å®šæ•°ãƒãƒƒãƒ•ã‚¡ã‚’æ›´æ–°
 //	Graphics_D3D11_ConstantBuffer_Update( GD3D11.Device.Shader.Constant.ConstBuffer_PS_ShadowMap ) ;
 }
 
-// ƒVƒƒƒhƒEƒ}ƒbƒv‚Ö‚Ì•`‰æ‚Ì€”õ‚ğs‚¤
+// ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ã¸ã®æç”»ã®æº–å‚™ã‚’è¡Œã†
 extern	int		Graphics_Hardware_D3D11_ShadowMap_DrawSetup_PF( SHADOWMAPDATA * /*ShadowMap*/ )
 {
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// ƒVƒƒƒhƒEƒ}ƒbƒv‚Ö‚Ì•`‰æ‚ğI—¹‚·‚é
+// ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ã¸ã®æç”»ã‚’çµ‚äº†ã™ã‚‹
 extern	int		Graphics_Hardware_D3D11_ShadowMap_DrawEnd_PF( SHADOWMAPDATA * /*ShadowMap*/ )
 {
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// •`‰æ‚Åg—p‚·‚éƒVƒƒƒhƒEƒ}ƒbƒv‚ğw’è‚·‚é( ƒXƒƒbƒg‚Í‚O‚©‚P‚©‚ğw’è‰Â”\ )
+// æç”»ã§ä½¿ç”¨ã™ã‚‹ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ã‚’æŒ‡å®šã™ã‚‹( ã‚¹ãƒ­ãƒƒãƒˆã¯ï¼ã‹ï¼‘ã‹ã‚’æŒ‡å®šå¯èƒ½ )
 extern	int		Graphics_Hardware_D3D11_ShadowMap_SetUse_PF( int /*SlotIndex*/, SHADOWMAPDATA * /*ShadowMap*/ )
 {
-	// ƒpƒ‰ƒ[ƒ^‚ª•ÏX‚³‚ê‚½Aƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãŒå¤‰æ›´ã•ã‚ŒãŸã€ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	GD3D11.Device.DrawSetting.ChangeBlendParamFlag = TRUE ;
 
-	// Graphics_D3D11_DrawPreparation ‚ğs‚¤‚×‚«ƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// Graphics_D3D11_DrawPreparation ã‚’è¡Œã†ã¹ããƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	GD3D11.Device.DrawSetting.DrawPrepAlwaysFlag = TRUE ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
@@ -29103,9 +29103,9 @@ extern	int		Graphics_Hardware_D3D11_ShadowMap_SetUse_PF( int /*SlotIndex*/, SHAD
 
 
 
-// ŠÂ‹«ˆË‘¶ƒVƒF[ƒ_[ŠÖŒW
+// ç’°å¢ƒä¾å­˜ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼é–¢ä¿‚
 
-// ƒVƒF[ƒ_[ƒnƒ“ƒhƒ‹‚ğ‰Šú‰»‚·‚é
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒãƒ³ãƒ‰ãƒ«ã‚’åˆæœŸåŒ–ã™ã‚‹
 extern	int		Graphics_Hardware_D3D11_Shader_Create_PF( int ShaderHandle, int ShaderType, void *Image, int ImageSize, int ImageAfterFree, int ASyncThread )
 {
 	SHADERHANDLEDATA       *pShader ;
@@ -29113,7 +29113,7 @@ extern	int		Graphics_Hardware_D3D11_Shader_Create_PF( int ShaderHandle, int Shad
 	D_ID3D11GeometryShader *GeometryShader = NULL ;
 	D_ID3D11PixelShader    *PixelShader    = NULL ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( ASyncThread )
 	{
 		if( SHADERCHK_ASYNC( ShaderHandle, pShader ) )
@@ -29125,13 +29125,13 @@ extern	int		Graphics_Hardware_D3D11_Shader_Create_PF( int ShaderHandle, int Shad
 			return -1 ;
 	}
 
-	// ƒVƒF[ƒ_[‚ğì¬‚·‚é
+	// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ä½œæˆã™ã‚‹
 	switch( ShaderType )
 	{
 	case DX_SHADERTYPE_VERTEX :
 		if( D3D11Device_CreateVertexShader_ASync( Image, ( SIZE_T )ImageSize, NULL, &VertexShader, ASyncThread ) != S_OK )
 		{
-			DXST_LOGFILE_ADDUTF16LE( "\x02\x98\xb9\x70\xb7\x30\xa7\x30\xfc\x30\xc0\x30\xfc\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"’¸“_ƒVƒF[ƒ_[‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+			DXST_LOGFILE_ADDUTF16LE( "\x02\x98\xb9\x70\xb7\x30\xa7\x30\xfc\x30\xc0\x30\xfc\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 			goto ERR ;
 		}
 		break ;
@@ -29139,7 +29139,7 @@ extern	int		Graphics_Hardware_D3D11_Shader_Create_PF( int ShaderHandle, int Shad
 	case DX_SHADERTYPE_GEOMETRY :
 		if( D3D11Device_CreateGeometryShader_ASync( Image, ( SIZE_T )ImageSize, NULL, &GeometryShader, ASyncThread ) != S_OK )
 		{
-			DXST_LOGFILE_ADDUTF16LE( "\xb8\x30\xaa\x30\xe1\x30\xc8\x30\xea\x30\xb7\x30\xa7\x30\xfc\x30\xc0\x30\xfc\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ƒWƒIƒƒgƒŠƒVƒF[ƒ_[‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+			DXST_LOGFILE_ADDUTF16LE( "\xb8\x30\xaa\x30\xe1\x30\xc8\x30\xea\x30\xb7\x30\xa7\x30\xfc\x30\xc0\x30\xfc\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ã‚¸ã‚ªãƒ¡ãƒˆãƒªã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 			goto ERR ;
 		}
 		break ;
@@ -29147,30 +29147,30 @@ extern	int		Graphics_Hardware_D3D11_Shader_Create_PF( int ShaderHandle, int Shad
 	case DX_SHADERTYPE_PIXEL :
 		if( D3D11Device_CreatePixelShader_ASync( Image, ( SIZE_T )ImageSize, NULL, &PixelShader, ASyncThread ) != S_OK )
 		{
-			DXST_LOGFILE_ADDUTF16LE( "\xd4\x30\xaf\x30\xbb\x30\xeb\x30\xb7\x30\xa7\x30\xfc\x30\xc0\x30\xfc\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ƒsƒNƒZƒ‹ƒVƒF[ƒ_[‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+			DXST_LOGFILE_ADDUTF16LE( "\xd4\x30\xaf\x30\xbb\x30\xeb\x30\xb7\x30\xa7\x30\xfc\x30\xc0\x30\xfc\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 			goto ERR ;
 		}
 		break ;
 	}
 
-	// ƒoƒCƒiƒŠƒCƒ[ƒW‚ğ•Û‘¶‚·‚éƒƒ‚ƒŠ—Ìˆæ‚ÌŠm•Û
+	// ãƒã‚¤ãƒŠãƒªã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’ä¿å­˜ã™ã‚‹ãƒ¡ãƒ¢ãƒªé ˜åŸŸã®ç¢ºä¿
 	pShader->FunctionCode = DXCALLOC( ( size_t )ImageSize ) ;
 	if( pShader->FunctionCode == NULL )
 	{
-		DXST_LOGFILE_ADDUTF16LE( "\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"ƒƒ‚ƒŠ‚ÌŠm•Û‚É¸”s‚µ‚Ü‚µ‚½" @*/ ) ;
+		DXST_LOGFILE_ADDUTF16LE( "\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿ã«å¤±æ•—ã—ã¾ã—ãŸ" @*/ ) ;
 		goto ERR ;
 	}
 
-	// ƒoƒCƒiƒŠƒCƒ[ƒW‚ğ•Û‘¶‚·‚é
+	// ãƒã‚¤ãƒŠãƒªã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’ä¿å­˜ã™ã‚‹
 	_MEMCPY( pShader->FunctionCode, Image, ( size_t )ImageSize ) ;
 
-	// ƒoƒCƒiƒŠƒCƒ[ƒW‚ÌƒTƒCƒY‚ğ•Û‘¶‚·‚é
+	// ãƒã‚¤ãƒŠãƒªã‚¤ãƒ¡ãƒ¼ã‚¸ã®ã‚µã‚¤ã‚ºã‚’ä¿å­˜ã™ã‚‹
 	pShader->FunctionCodeSize = ImageSize ;
 
-	// ƒVƒF[ƒ_[ƒ^ƒCƒv‚ğ•Û‘¶‚·‚é
+	// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚¿ã‚¤ãƒ—ã‚’ä¿å­˜ã™ã‚‹
 	pShader->ShaderType = ShaderType ;
 
-	// ƒVƒF[ƒ_[‚ÌƒAƒhƒŒƒX‚ğ•Û‘¶
+	// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ä¿å­˜
 	switch( ShaderType )
 	{
 	case DX_SHADERTYPE_VERTEX :
@@ -29186,13 +29186,13 @@ extern	int		Graphics_Hardware_D3D11_Shader_Create_PF( int ShaderHandle, int Shad
 		break ;
 	}
 
-	// ˆ—Œã‚É‰ğ•ú‚·‚×‚µ‚Ìƒtƒ‰ƒO‚ª—§‚Á‚Ä‚¢‚½‚ç‰ğ•ú‚·‚é
+	// å‡¦ç†å¾Œã«è§£æ”¾ã™ã¹ã—ã®ãƒ•ãƒ©ã‚°ãŒç«‹ã£ã¦ã„ãŸã‚‰è§£æ”¾ã™ã‚‹
 	if( ImageAfterFree )
 	{
 		DXFREE( Image ) ;
 	}
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 
 ERR :
@@ -29206,7 +29206,7 @@ ERR :
 		Direct3D11_Release_PixelShader_ASync( PixelShader, ASyncThread ) ;
 	}
 
-	// ˆ—Œã‚É‰ğ•ú‚·‚×‚µ‚Ìƒtƒ‰ƒO‚ª—§‚Á‚Ä‚¢‚½‚ç‰ğ•ú‚·‚é
+	// å‡¦ç†å¾Œã«è§£æ”¾ã™ã¹ã—ã®ãƒ•ãƒ©ã‚°ãŒç«‹ã£ã¦ã„ãŸã‚‰è§£æ”¾ã™ã‚‹
 	if( ImageAfterFree )
 	{
 		DXFREE( Image ) ;
@@ -29215,10 +29215,10 @@ ERR :
 	return -1 ;
 }
 
-// ƒVƒF[ƒ_[ƒnƒ“ƒhƒ‹‚ÌŒãn––
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒãƒ³ãƒ‰ãƒ«ã®å¾Œå§‹æœ«
 extern	int		Graphics_Hardware_D3D11_Shader_TerminateHandle_PF( SHADERHANDLEDATA *Shader )
 {
-	// ƒVƒF[ƒ_[‚Ì‰ğ•ú
+	// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®è§£æ”¾
 	switch( Shader->ShaderType )
 	{
 	case DX_SHADERTYPE_VERTEX :
@@ -29246,11 +29246,11 @@ extern	int		Graphics_Hardware_D3D11_Shader_TerminateHandle_PF( SHADERHANDLEDATA 
 		break ;
 	}
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// g—p‚Å‚«‚éƒVƒF[ƒ_[‚Ìƒo[ƒWƒ‡ƒ“‚ğæ“¾‚·‚é( 0=g‚¦‚È‚¢  200=ƒVƒF[ƒ_[ƒ‚ƒfƒ‹‚QD‚O‚ªg—p‰Â”\  300=ƒVƒF[ƒ_[ƒ‚ƒfƒ‹‚RD‚O‚ªg—p‰Â”\ )
+// ä½¿ç”¨ã§ãã‚‹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã‚’å–å¾—ã™ã‚‹( 0=ä½¿ãˆãªã„  200=ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒ¢ãƒ‡ãƒ«ï¼’ï¼ï¼ãŒä½¿ç”¨å¯èƒ½  300=ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒ¢ãƒ‡ãƒ«ï¼“ï¼ï¼ãŒä½¿ç”¨å¯èƒ½ )
 extern	int		Graphics_Hardware_D3D11_Shader_GetValidShaderVersion_PF( void )
 {
 	switch( GD3D11.Setting.FeatureLevel )
@@ -29272,40 +29272,40 @@ extern	int		Graphics_Hardware_D3D11_Shader_GetValidShaderVersion_PF( void )
 	return 0 ;
 }
 
-// w’è‚Ì–¼‘O‚ğ‚Â’è”‚ªg—p‚·‚éƒVƒF[ƒ_[’è”‚Ì”Ô†‚ğæ“¾‚·‚é
+// æŒ‡å®šã®åå‰ã‚’æŒã¤å®šæ•°ãŒä½¿ç”¨ã™ã‚‹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼å®šæ•°ã®ç•ªå·ã‚’å–å¾—ã™ã‚‹
 extern	int		Graphics_Hardware_D3D11_Shader_GetConstIndex_PF( const wchar_t * /*ConstantName*/, SHADERHANDLEDATA * /*Shader*/ )
 {
 	return 0 ;
 }
 
-// w’è‚Ì–¼‘O‚ğ‚Â’è”‚ªg—p‚·‚éƒVƒF[ƒ_[’è”‚Ì”‚ğæ“¾‚·‚é
+// æŒ‡å®šã®åå‰ã‚’æŒã¤å®šæ•°ãŒä½¿ç”¨ã™ã‚‹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼å®šæ•°ã®æ•°ã‚’å–å¾—ã™ã‚‹
 extern	int		Graphics_Hardware_D3D11_Shader_GetConstCount_PF( const wchar_t * /*ConstantName*/, SHADERHANDLEDATA * /*Shader*/ )
 {
 	return 0 ;
 }
 
-// w’è‚Ì–¼‘O‚ğ‚Â•‚“®¬”“_’è”‚ÌƒfƒtƒHƒ‹ƒgƒpƒ‰ƒ[ƒ^‚ªŠi”[‚³‚ê‚Ä‚¢‚éƒƒ‚ƒŠƒAƒhƒŒƒX‚ğæ“¾‚·‚é
+// æŒ‡å®šã®åå‰ã‚’æŒã¤æµ®å‹•å°æ•°ç‚¹å®šæ•°ã®ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãŒæ ¼ç´ã•ã‚Œã¦ã„ã‚‹ãƒ¡ãƒ¢ãƒªã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å–å¾—ã™ã‚‹
 extern	const FLOAT4 *Graphics_Hardware_D3D11_Shader_GetConstDefaultParamF_PF( const wchar_t * /*ConstantName*/, SHADERHANDLEDATA * /*Shader*/ )
 {
 	return 0 ;
 }
 
-// ƒVƒF[ƒ_[’è”î•ñ‚ğİ’è‚·‚é
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼å®šæ•°æƒ…å ±ã‚’è¨­å®šã™ã‚‹
 extern	int		Graphics_Hardware_D3D11_Shader_SetConst_PF( int /*TypeIndex*/, int /*SetIndex*/, int /*ConstantIndex*/, const void * /*Param*/, int /*ParamNum*/, int /*UpdateUseArea*/ )
 {
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// w’è—Ìˆæ‚ÌƒVƒF[ƒ_[’è”î•ñ‚ğƒŠƒZƒbƒg‚·‚é
+// æŒ‡å®šé ˜åŸŸã®ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼å®šæ•°æƒ…å ±ã‚’ãƒªã‚»ãƒƒãƒˆã™ã‚‹
 extern	int		Graphics_Hardware_D3D11_Shader_ResetConst_PF( int /*TypeIndex*/, int /*SetIndex*/, int /*ConstantIndex*/, int /*ParamNum*/ )
 {
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
 #ifndef DX_NON_MODEL
-// ‚R‚cƒ‚ƒfƒ‹—p‚ÌƒVƒF[ƒ_[ƒR[ƒh‚Ì‰Šú‰»‚ğs‚¤
+// ï¼“ï¼¤ãƒ¢ãƒ‡ãƒ«ç”¨ã®ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚³ãƒ¼ãƒ‰ã®åˆæœŸåŒ–ã‚’è¡Œã†
 extern	int		Graphics_Hardware_D3D11_Shader_ModelCode_Init_PF( void )
 {
 #ifndef DX_NON_SHADERCODE_BINARY
@@ -29315,7 +29315,7 @@ extern	int		Graphics_Hardware_D3D11_Shader_ModelCode_Init_PF( void )
 	}
 #endif // DX_NON_SHADERCODE_BINARY
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 #endif // DX_NON_MODEL
@@ -29351,14 +29351,14 @@ extern	int		Graphics_Hardware_D3D11_Shader_ModelCode_Init_PF( void )
 
 
 
-// ŠÂ‹«ˆË‘¶ƒVƒF[ƒ_[—p’è”ƒoƒbƒtƒ@ŠÖŒW
+// ç’°å¢ƒä¾å­˜ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ç”¨å®šæ•°ãƒãƒƒãƒ•ã‚¡é–¢ä¿‚
 
-// ƒVƒF[ƒ_[—p’è”ƒoƒbƒtƒ@ƒnƒ“ƒhƒ‹‚ğ‰Šú‰»‚·‚é
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ç”¨å®šæ•°ãƒãƒƒãƒ•ã‚¡ãƒãƒ³ãƒ‰ãƒ«ã‚’åˆæœŸåŒ–ã™ã‚‹
 extern	int		Graphics_Hardware_D3D11_ShaderConstantBuffer_Create_PF( int ShaderConstantBufferHandle, int BufferSize, int ASyncThread ) 
 {
 	SHADERCONSTANTBUFFERHANDLEDATA *ShaderConstantBuffer ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( ASyncThread )
 	{
 		if( SHADERCONSTANTBUFFERCHK_ASYNC( ShaderConstantBufferHandle, ShaderConstantBuffer ) )
@@ -29370,75 +29370,75 @@ extern	int		Graphics_Hardware_D3D11_ShaderConstantBuffer_Create_PF( int ShaderCo
 			return -1 ;
 	}
 
-	// ƒVƒF[ƒ_[—p’è”ƒoƒbƒtƒ@‚ğì¬‚·‚é
+	// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ç”¨å®šæ•°ãƒãƒƒãƒ•ã‚¡ã‚’ä½œæˆã™ã‚‹
 	ShaderConstantBuffer->PF->D3D11.ConstBuffer = Graphics_D3D11_ConstantBuffer_Create( ( DWORD )BufferSize, ASyncThread ) ;
 	if( ShaderConstantBuffer->PF->D3D11.ConstBuffer == NULL )
 	{
 		return -1 ;
 	}
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// ƒVƒF[ƒ_[—p’è”ƒoƒbƒtƒ@ƒnƒ“ƒhƒ‹‚ÌŒãn––
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ç”¨å®šæ•°ãƒãƒƒãƒ•ã‚¡ãƒãƒ³ãƒ‰ãƒ«ã®å¾Œå§‹æœ«
 extern	int		Graphics_Hardware_D3D11_ShaderConstantBuffer_TerminateHandle_PF( SHADERCONSTANTBUFFERHANDLEDATA *ShaderConstantBuffer )
 {
-	// ƒVƒF[ƒ_[—p’è”ƒoƒbƒtƒ@‚ğíœ‚·‚é
+	// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ç”¨å®šæ•°ãƒãƒƒãƒ•ã‚¡ã‚’å‰Šé™¤ã™ã‚‹
 	if( ShaderConstantBuffer->PF->D3D11.ConstBuffer != NULL )
 	{
 		Graphics_D3D11_ConstantBuffer_Delete( ShaderConstantBuffer->PF->D3D11.ConstBuffer ) ;
 		ShaderConstantBuffer->PF->D3D11.ConstBuffer = NULL ;
 	}
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// ƒVƒF[ƒ_[—p’è”ƒoƒbƒtƒ@ƒnƒ“ƒhƒ‹‚Ì’è”ƒoƒbƒtƒ@‚ÌƒAƒhƒŒƒX‚ğæ“¾‚·‚é
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ç”¨å®šæ•°ãƒãƒƒãƒ•ã‚¡ãƒãƒ³ãƒ‰ãƒ«ã®å®šæ•°ãƒãƒƒãƒ•ã‚¡ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å–å¾—ã™ã‚‹
 extern	void *	Graphics_Hardware_D3D11_ShaderConstantBuffer_GetBuffer_PF( SHADERCONSTANTBUFFERHANDLEDATA *ShaderConstantBuffer )
 {
 	return ShaderConstantBuffer->PF->D3D11.ConstBuffer->SysmemBuffer ;
 }
 
-// ƒVƒF[ƒ_[—p’è”ƒoƒbƒtƒ@ƒnƒ“ƒhƒ‹‚Ì’è”ƒoƒbƒtƒ@‚Ö‚Ì•ÏX‚ğ“K—p‚·‚é
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ç”¨å®šæ•°ãƒãƒƒãƒ•ã‚¡ãƒãƒ³ãƒ‰ãƒ«ã®å®šæ•°ãƒãƒƒãƒ•ã‚¡ã¸ã®å¤‰æ›´ã‚’é©ç”¨ã™ã‚‹
 extern	int		Graphics_Hardware_D3D11_ShaderConstantBuffer_Update_PF( SHADERCONSTANTBUFFERHANDLEDATA *ShaderConstantBuffer )
 {
 	ShaderConstantBuffer->PF->D3D11.ConstBuffer->ChangeFlag = TRUE ;
 	Graphics_D3D11_ConstantBuffer_Update( ShaderConstantBuffer->PF->D3D11.ConstBuffer ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒVƒF[ƒ_[—p’è”ƒoƒbƒtƒ@ƒnƒ“ƒhƒ‹‚Ì’è”ƒoƒbƒtƒ@‚ğw’è‚ÌƒVƒF[ƒ_[‚Ìw’è‚ÌƒXƒƒbƒg‚ÉƒZƒbƒg‚·‚é
-extern	int		Graphics_Hardware_D3D11_ShaderConstantBuffer_Set_PF( SHADERCONSTANTBUFFERHANDLEDATA *ShaderConstantBuffer, int TargetShader /* DX_SHADERTYPE_VERTEX ‚È‚Ç */, int Slot )
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ç”¨å®šæ•°ãƒãƒƒãƒ•ã‚¡ãƒãƒ³ãƒ‰ãƒ«ã®å®šæ•°ãƒãƒƒãƒ•ã‚¡ã‚’æŒ‡å®šã®ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®æŒ‡å®šã®ã‚¹ãƒ­ãƒƒãƒˆã«ã‚»ãƒƒãƒˆã™ã‚‹
+extern	int		Graphics_Hardware_D3D11_ShaderConstantBuffer_Set_PF( SHADERCONSTANTBUFFERHANDLEDATA *ShaderConstantBuffer, int TargetShader /* DX_SHADERTYPE_VERTEX ãªã© */, int Slot )
 {
 	switch( TargetShader )
 	{
-	case DX_SHADERTYPE_VERTEX :			// ’¸“_ƒVƒF[ƒ_[
+	case DX_SHADERTYPE_VERTEX :			// é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼
 		Graphics_D3D11_ConstantBuffer_VSSet( ( UINT )Slot, 1, &ShaderConstantBuffer->PF->D3D11.ConstBuffer ) ;
 		break ;
 
-	case DX_SHADERTYPE_PIXEL :			// ƒsƒNƒZƒ‹ƒVƒF[ƒ_[
+	case DX_SHADERTYPE_PIXEL :			// ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼
 		Graphics_D3D11_ConstantBuffer_PSSet( ( UINT )Slot, 1, &ShaderConstantBuffer->PF->D3D11.ConstBuffer ) ;
 		break ;
 
-	case DX_SHADERTYPE_GEOMETRY :		// ƒWƒIƒƒgƒŠƒVƒF[ƒ_[
+	case DX_SHADERTYPE_GEOMETRY :		// ã‚¸ã‚ªãƒ¡ãƒˆãƒªã‚·ã‚§ãƒ¼ãƒ€ãƒ¼
 		Graphics_D3D11_ConstantBuffer_GSSet( ( UINT )Slot, 1, &ShaderConstantBuffer->PF->D3D11.ConstBuffer ) ;
 		break ;
 
-	case DX_SHADERTYPE_COMPUTE :		// ƒRƒ“ƒsƒ…[ƒgƒVƒF[ƒ_[
+	case DX_SHADERTYPE_COMPUTE :		// ã‚³ãƒ³ãƒ”ãƒ¥ãƒ¼ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼
 		break ;
 
-	case DX_SHADERTYPE_DOMAIN :			// ƒhƒƒCƒ“ƒVƒF[ƒ_[
+	case DX_SHADERTYPE_DOMAIN :			// ãƒ‰ãƒ¡ã‚¤ãƒ³ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼
 		break ;
 
-	case DX_SHADERTYPE_HULL :			// ƒnƒ‹ƒVƒF[ƒ_[
+	case DX_SHADERTYPE_HULL :			// ãƒãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼
 		break ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
@@ -29478,12 +29478,12 @@ extern	int		Graphics_Hardware_D3D11_ShaderConstantBuffer_Set_PF( SHADERCONSTANTB
 
 
 
-// ŠÂ‹«ˆË‘¶•`‰æŠÖŒW
+// ç’°å¢ƒä¾å­˜æç”»é–¢ä¿‚
 
-// w’è“_‚©‚ç‹«ŠEF‚ª‚ ‚é‚Æ‚±‚ë‚Ü‚Å“h‚è‚Â‚Ô‚·
+// æŒ‡å®šç‚¹ã‹ã‚‰å¢ƒç•Œè‰²ãŒã‚ã‚‹ã¨ã“ã‚ã¾ã§å¡—ã‚Šã¤ã¶ã™
 extern	int		Graphics_Hardware_D3D11_Paint_PF( int /*x*/, int /*y*/, unsigned int /*FillColor*/, ULONGLONG /*BoundaryColor*/ )
 {
-	// ƒfƒtƒHƒ‹ƒg‚Ìˆ—‚ğs‚¤
+	// ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®å‡¦ç†ã‚’è¡Œã†
 	return 2 ;
 }
 

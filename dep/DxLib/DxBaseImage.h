@@ -1,6 +1,6 @@
 // -------------------------------------------------------------------------------
 // 
-// 		‚c‚wƒ‰ƒCƒuƒ‰ƒŠ		‚a‚‚“‚…‚h‚‚‚‡‚…ƒvƒƒOƒ‰ƒ€ƒwƒbƒ_ƒtƒ@ƒCƒ‹
+// 		ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒª		ï¼¢ï½ï½“ï½…ï¼©ï½ï½ï½‡ï½…ãƒ—ãƒ­ã‚°ãƒ©ãƒ ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«
 // 
 // 				Ver 3.25a
 // 
@@ -9,7 +9,7 @@
 #ifndef DXBASEIMAGE_H
 #define DXBASEIMAGE_H
 
-// ƒCƒ“ƒNƒ‹[ƒh ------------------------------------------------------------------
+// ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ ------------------------------------------------------------------
 #include "DxCompileConfig.h"
 #include "DxLib.h"
 #include "DxStatic.h"
@@ -22,12 +22,12 @@ namespace DxLib
 
 #endif // DX_NON_NAMESPACE
 
-// ƒ}ƒNƒ’è‹` --------------------------------------------------------------------
+// ãƒã‚¯ãƒ­å®šç¾© --------------------------------------------------------------------
 
-// ƒLƒ…[ƒuƒ}ƒbƒv‚Ì–Ê‚Ì”
+// ã‚­ãƒ¥ãƒ¼ãƒ–ãƒãƒƒãƒ—ã®é¢ã®æ•°
 #define CUBEMAP_SURFACE_NUM					(6)
 
-// YUVŠÖ˜A‚Ì’è‹`
+// YUVé–¢é€£ã®å®šç¾©
 #define YUV_RV								(0)
 #define YUV_GU								(1)
 #define YUV_GV								(2)
@@ -36,118 +36,118 @@ namespace DxLib
 
 #define BASEIM								BaseImageManage
 
-// \‘¢‘Ì’è‹` --------------------------------------------------------------------
+// æ§‹é€ ä½“å®šç¾© --------------------------------------------------------------------
 
-// ”Ä—p‰æ‘œ“Ç‚İ‚İ‚É•K—v‚ÈƒOƒ[ƒoƒ‹ƒf[ƒ^‚ğW‚ß‚½\‘¢‘Ì
+// æ±ç”¨ç”»åƒèª­ã¿è¾¼ã¿ã«å¿…è¦ãªã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿ã‚’é›†ã‚ãŸæ§‹é€ ä½“
 struct CREATEBASEIMAGETYPE2_GPARAM
 {
-	int						( *UserImageLoadFunc4[ MAX_USERIMAGEREAD_FUNCNUM ] )( STREAMDATA *Src, BASEIMAGE *BaseImage ) ;	// ƒ†[ƒU[‰æ‘œ“Ç‚İ‚İŠÖ”Ver4
-	int						UserImageLoadFuncNum4 ;																		// ƒ†[ƒU[‰æ‘œ“Ç‚İ‚İŠÖ”Ver4‚Ì”
-	int						GetFormatOnly ;																				// ƒtƒH[ƒ}ƒbƒg‚Ìæ“¾‚Ì‚İ‚ğs‚¤‚©‚Ç‚¤‚©( TRUE:ƒtƒH[ƒ}ƒbƒg‚Ìæ“¾‚Ì‚İs‚¤  FALSE:ƒf[ƒ^‚à“Ç‚İ‚Ş )
+	int						( *UserImageLoadFunc4[ MAX_USERIMAGEREAD_FUNCNUM ] )( STREAMDATA *Src, BASEIMAGE *BaseImage ) ;	// ãƒ¦ãƒ¼ã‚¶ãƒ¼ç”»åƒèª­ã¿è¾¼ã¿é–¢æ•°Ver4
+	int						UserImageLoadFuncNum4 ;																		// ãƒ¦ãƒ¼ã‚¶ãƒ¼ç”»åƒèª­ã¿è¾¼ã¿é–¢æ•°Ver4ã®æ•°
+	int						GetFormatOnly ;																				// ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®å–å¾—ã®ã¿ã‚’è¡Œã†ã‹ã©ã†ã‹( TRUE:ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®å–å¾—ã®ã¿è¡Œã†  FALSE:ãƒ‡ãƒ¼ã‚¿ã‚‚èª­ã¿è¾¼ã‚€ )
 } ;
 
-// ‰æ‘œ‚Ì“Ç‚İ‚İ‚É•K—v‚ÈƒOƒ[ƒoƒ‹ƒf[ƒ^‚ğ“Z‚ß‚½\‘¢‘Ì
+// ç”»åƒã®èª­ã¿è¾¼ã¿ã«å¿…è¦ãªã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿ã‚’çºã‚ãŸæ§‹é€ ä½“
 struct LOADBASEIMAGE_GPARAM
 {
-	CREATEBASEIMAGETYPE2_GPARAM CreateGraphImageType2GParam ;		// CreateGraphImageType2_UseGParam ‚Åg—p‚·‚éƒf[ƒ^
+	CREATEBASEIMAGETYPE2_GPARAM CreateGraphImageType2GParam ;		// CreateGraphImageType2_UseGParam ã§ä½¿ç”¨ã™ã‚‹ãƒ‡ãƒ¼ã‚¿
 
-	STREAMDATASHREDTYPE2W	StreamDataShred2 ;						// ƒXƒgƒŠ[ƒ€ƒf[ƒ^ƒAƒNƒZƒX—pŠÖ”‚Q
-	STREAMDATASHRED			FileStreamDataShred ;					// ƒtƒ@ƒCƒ‹ƒf[ƒ^ƒAƒNƒZƒX—pŠÖ”
-	STREAMDATASHRED			MemStreamDataShred ;					// ƒƒ‚ƒŠƒf[ƒ^ƒAƒNƒZƒX—pŠÖ”
+	STREAMDATASHREDTYPE2W	StreamDataShred2 ;						// ã‚¹ãƒˆãƒªãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿ã‚¢ã‚¯ã‚»ã‚¹ç”¨é–¢æ•°ï¼’
+	STREAMDATASHRED			FileStreamDataShred ;					// ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‡ãƒ¼ã‚¿ã‚¢ã‚¯ã‚»ã‚¹ç”¨é–¢æ•°
+	STREAMDATASHRED			MemStreamDataShred ;					// ãƒ¡ãƒ¢ãƒªãƒ‡ãƒ¼ã‚¿ã‚¢ã‚¯ã‚»ã‚¹ç”¨é–¢æ•°
 
-	int						ConvertPremultipliedAlpha ;				// “Ç‚İ‚İˆ—Œã‚ÉæZÏ‚İƒAƒ‹ƒtƒ@‚Ì‰æ‘œ‚É•ÏŠ·‚·‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO( TRUE:•ÏŠ·ˆ—‚ğs‚¤  FALSE:•ÏŠ·ˆ—‚ğs‚í‚È‚¢ )
-	int						ConvertNormalFormat ;					// “Ç‚İ‚İˆ—Œã‚É DX_BASEIMAGE_FORMAT_NORMAL ˆÈŠO‚ÌŒ`®‚ÌƒCƒ[ƒW‚ğ DX_BASEIMAGE_FORMAT_NORMAL Œ`®‚ÌƒCƒ[ƒW‚É•ÏŠ·‚·‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO( TRUE:•ÏŠ·ˆ—‚ğs‚¤  FALSE:•ÏŠ·ˆ—‚ğs‚È‚í‚È‚¢ )
-	int						AlphaTestImageCreateFlag ;				// ƒAƒ‹ƒtƒ@ƒeƒXƒg‚ğg—p‚·‚éƒOƒ‰ƒtƒBƒbƒN‚ğì¬‚·‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO( TRUE:ƒ¿ƒeƒXƒg‚ğg—p‚·‚é  FALSE:ƒ¿ƒeƒXƒg‚Íg—p‚µ‚È‚¢ )
-	DWORD					TransColor ;							// “§‰ßF( AlphaTestImageCreateFlag ‚ª TRUE ‚Ìê‡—p )
+	int						ConvertPremultipliedAlpha ;				// èª­ã¿è¾¼ã¿å‡¦ç†å¾Œã«ä¹—ç®—æ¸ˆã¿ã‚¢ãƒ«ãƒ•ã‚¡ã®ç”»åƒã«å¤‰æ›ã™ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°( TRUE:å¤‰æ›å‡¦ç†ã‚’è¡Œã†  FALSE:å¤‰æ›å‡¦ç†ã‚’è¡Œã‚ãªã„ )
+	int						ConvertNormalFormat ;					// èª­ã¿è¾¼ã¿å‡¦ç†å¾Œã« DX_BASEIMAGE_FORMAT_NORMAL ä»¥å¤–ã®å½¢å¼ã®ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’ DX_BASEIMAGE_FORMAT_NORMAL å½¢å¼ã®ã‚¤ãƒ¡ãƒ¼ã‚¸ã«å¤‰æ›ã™ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°( TRUE:å¤‰æ›å‡¦ç†ã‚’è¡Œã†  FALSE:å¤‰æ›å‡¦ç†ã‚’è¡Œãªã‚ãªã„ )
+	int						AlphaTestImageCreateFlag ;				// ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆã‚’ä½¿ç”¨ã™ã‚‹ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚’ä½œæˆã™ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°( TRUE:Î±ãƒ†ã‚¹ãƒˆã‚’ä½¿ç”¨ã™ã‚‹  FALSE:Î±ãƒ†ã‚¹ãƒˆã¯ä½¿ç”¨ã—ãªã„ )
+	DWORD					TransColor ;							// é€éè‰²( AlphaTestImageCreateFlag ãŒ TRUE ã®å ´åˆç”¨ )
 } ;
 
-// BASEIMAGE + DIB ŠÖŒW‚Ìî•ñ\‘¢‘Ì
+// BASEIMAGE + DIB é–¢ä¿‚ã®æƒ…å ±æ§‹é€ ä½“
 struct BASEIMAGEMANAGE
 {
-	int						( *UserImageLoadFunc4[ MAX_USERIMAGEREAD_FUNCNUM ] )( STREAMDATA *Src, BASEIMAGE *BaseImage ) ;																									// ƒ†[ƒU[‰æ‘œ“Ç‚İ‚İŠÖ”Ver4
-	int						UserImageLoadFuncNum4 ;																																										// ƒ†[ƒU[‰æ‘œ“Ç‚İ‚İŠÖ”Ver4‚Ì”
+	int						( *UserImageLoadFunc4[ MAX_USERIMAGEREAD_FUNCNUM ] )( STREAMDATA *Src, BASEIMAGE *BaseImage ) ;																									// ãƒ¦ãƒ¼ã‚¶ãƒ¼ç”»åƒèª­ã¿è¾¼ã¿é–¢æ•°Ver4
+	int						UserImageLoadFuncNum4 ;																																										// ãƒ¦ãƒ¼ã‚¶ãƒ¼ç”»åƒèª­ã¿è¾¼ã¿é–¢æ•°Ver4ã®æ•°
 /*
-	int						( *UserImageLoadFunc3[ MAX_USERIMAGEREAD_FUNCNUM ] )( void *DataImage, int DataImageSize, int DataImageType, int BmpFlag, BASEIMAGE *BaseImage, BITMAPINFO **BmpInfo, void **GraphData ) ;		// ƒ†[ƒU[‰æ‘œ“Ç‚İ‚İŠÖ”Ver3
-	int						UserImageLoadFuncNum3 ;																																										// ƒ†[ƒU[‰æ‘œ“Ç‚İ‚İŠÖ”Ver3‚Ì”
+	int						( *UserImageLoadFunc3[ MAX_USERIMAGEREAD_FUNCNUM ] )( void *DataImage, int DataImageSize, int DataImageType, int BmpFlag, BASEIMAGE *BaseImage, BITMAPINFO **BmpInfo, void **GraphData ) ;		// ãƒ¦ãƒ¼ã‚¶ãƒ¼ç”»åƒèª­ã¿è¾¼ã¿é–¢æ•°Ver3
+	int						UserImageLoadFuncNum3 ;																																										// ãƒ¦ãƒ¼ã‚¶ãƒ¼ç”»åƒèª­ã¿è¾¼ã¿é–¢æ•°Ver3ã®æ•°
 
-	int						( *UserImageLoadFunc2[ MAX_USERIMAGEREAD_FUNCNUM ] )( void *Image, int ImageSize, int ImageType, BITMAPINFO **BmpInfo, void **GraphData ) ;													// ƒ†[ƒU[‰æ‘œ“Ç‚İ‚İŠÖ”Ver2
-	int						UserImageLoadFuncNum2 ;																																										// ƒ†[ƒU[‰æ‘œ“Ç‚İ‚İŠÖ”Ver2‚Ì”
+	int						( *UserImageLoadFunc2[ MAX_USERIMAGEREAD_FUNCNUM ] )( void *Image, int ImageSize, int ImageType, BITMAPINFO **BmpInfo, void **GraphData ) ;													// ãƒ¦ãƒ¼ã‚¶ãƒ¼ç”»åƒèª­ã¿è¾¼ã¿é–¢æ•°Ver2
+	int						UserImageLoadFuncNum2 ;																																										// ãƒ¦ãƒ¼ã‚¶ãƒ¼ç”»åƒèª­ã¿è¾¼ã¿é–¢æ•°Ver2ã®æ•°
 
-	int						( *UserImageLoadFunc[ MAX_USERIMAGEREAD_FUNCNUM ] )( FILE *fp, BITMAPINFO **BmpInfo, void **GraphData ) ;																					// ƒ†[ƒU[‰æ‘œ“Ç‚İ‚İŠÖ”
-	int						UserImageLoadFuncNum ;																																										// ƒ†[ƒU[‰æ‘œ“Ç‚İ‚İŠÖ”‚Ì”
+	int						( *UserImageLoadFunc[ MAX_USERIMAGEREAD_FUNCNUM ] )( FILE *fp, BITMAPINFO **BmpInfo, void **GraphData ) ;																					// ãƒ¦ãƒ¼ã‚¶ãƒ¼ç”»åƒèª­ã¿è¾¼ã¿é–¢æ•°
+	int						UserImageLoadFuncNum ;																																										// ãƒ¦ãƒ¼ã‚¶ãƒ¼ç”»åƒèª­ã¿è¾¼ã¿é–¢æ•°ã®æ•°
 */
 
-	DX_CRITICAL_SECTION		CriticalProcessHandle ;					// ƒf[ƒ^ˆ—Õ“Ë‰ñ”ğ—pƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“
-	int						InitializeFlag ;						// ‰Šú‰»ƒtƒ‰ƒO
+	DX_CRITICAL_SECTION		CriticalProcessHandle ;					// ãƒ‡ãƒ¼ã‚¿å‡¦ç†è¡çªå›é¿ç”¨ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³
+	int						InitializeFlag ;						// åˆæœŸåŒ–ãƒ•ãƒ©ã‚°
 
-	int						Bmp32AllZeroAlphaToXRGB8 ;				// 32bit bmp ‰æ‘œ‚Ì‚`¬•ª‚ª‚·‚×‚Ä‚O‚¾‚Á‚½‚ç‚`¬•ª‚ğ–³‹‚·‚é‚©‚Ç‚¤‚©
-	int						LowLoadFlag ;							// ƒOƒ‰ƒtƒBƒbƒN‚Ì’á‘¬“Ç‚İ‚İ‚ğs‚¤‚©ƒtƒ‰ƒO
-	int						ImageShavedMode ;						// Œ¸F‚ÌŠgUƒpƒ^[ƒ“
-	int						ConvertPremultipliedAlpha ;				// “Ç‚İ‚İˆ—Œã‚ÉæZÏ‚İƒAƒ‹ƒtƒ@‚Ì‰æ‘œ‚É•ÏŠ·‚·‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO( TRUE:•ÏŠ·ˆ—‚ğs‚¤  FALSE:•ÏŠ·ˆ—‚ğs‚í‚È‚¢ )
-	int						ConvertNormalFormat ;					// “Ç‚İ‚İˆ—Œã‚É DX_BASEIMAGE_FORMAT_NORMAL ˆÈŠO‚ÌŒ`®‚ÌƒCƒ[ƒW‚ğ DX_BASEIMAGE_FORMAT_NORMAL Œ`®‚ÌƒCƒ[ƒW‚É•ÏŠ·‚·‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO( TRUE:•ÏŠ·ˆ—‚ğs‚¤  FALSE:•ÏŠ·ˆ—‚ğs‚È‚í‚È‚¢ )
-	int						PlatformLoadFunctionAfterFlag ;			// ŠÂ‹«ˆË‘¶‚Ì“Ç‚İ‚İŠÖ”‚ğŒã‚ÉÀs‚·‚é‚©‚Ç‚¤‚©( TRUE:Œã‚ÉÀs‚·‚é  FALSE:æ‚ÉÀs‚·‚é )
+	int						Bmp32AllZeroAlphaToXRGB8 ;				// 32bit bmp ç”»åƒã®ï¼¡æˆåˆ†ãŒã™ã¹ã¦ï¼ã ã£ãŸã‚‰ï¼¡æˆåˆ†ã‚’ç„¡è¦–ã™ã‚‹ã‹ã©ã†ã‹
+	int						LowLoadFlag ;							// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®ä½é€Ÿèª­ã¿è¾¼ã¿ã‚’è¡Œã†ã‹ãƒ•ãƒ©ã‚°
+	int						ImageShavedMode ;						// æ¸›è‰²æ™‚ã®æ‹¡æ•£ãƒ‘ã‚¿ãƒ¼ãƒ³
+	int						ConvertPremultipliedAlpha ;				// èª­ã¿è¾¼ã¿å‡¦ç†å¾Œã«ä¹—ç®—æ¸ˆã¿ã‚¢ãƒ«ãƒ•ã‚¡ã®ç”»åƒã«å¤‰æ›ã™ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°( TRUE:å¤‰æ›å‡¦ç†ã‚’è¡Œã†  FALSE:å¤‰æ›å‡¦ç†ã‚’è¡Œã‚ãªã„ )
+	int						ConvertNormalFormat ;					// èª­ã¿è¾¼ã¿å‡¦ç†å¾Œã« DX_BASEIMAGE_FORMAT_NORMAL ä»¥å¤–ã®å½¢å¼ã®ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’ DX_BASEIMAGE_FORMAT_NORMAL å½¢å¼ã®ã‚¤ãƒ¡ãƒ¼ã‚¸ã«å¤‰æ›ã™ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°( TRUE:å¤‰æ›å‡¦ç†ã‚’è¡Œã†  FALSE:å¤‰æ›å‡¦ç†ã‚’è¡Œãªã‚ãªã„ )
+	int						PlatformLoadFunctionAfterFlag ;			// ç’°å¢ƒä¾å­˜ã®èª­ã¿è¾¼ã¿é–¢æ•°ã‚’å¾Œã«å®Ÿè¡Œã™ã‚‹ã‹ã©ã†ã‹( TRUE:å¾Œã«å®Ÿè¡Œã™ã‚‹  FALSE:å…ˆã«å®Ÿè¡Œã™ã‚‹ )
 
-	int						AlphaTestImageCreateFlag ;				// ƒAƒ‹ƒtƒ@ƒeƒXƒg‚ğg—p‚·‚éƒOƒ‰ƒtƒBƒbƒN‚ğì¬‚·‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO( TRUE:ƒ¿ƒeƒXƒg‚ğg—p‚·‚é  FALSE:ƒ¿ƒeƒXƒg‚Íg—p‚µ‚È‚¢ )
-	DWORD					TransColor ;							// “§‰ßF( AlphaTestImageCreateFlag ‚ª TRUE ‚Ìê‡—p )
+	int						AlphaTestImageCreateFlag ;				// ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆã‚’ä½¿ç”¨ã™ã‚‹ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚’ä½œæˆã™ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°( TRUE:Î±ãƒ†ã‚¹ãƒˆã‚’ä½¿ç”¨ã™ã‚‹  FALSE:Î±ãƒ†ã‚¹ãƒˆã¯ä½¿ç”¨ã—ãªã„ )
+	DWORD					TransColor ;							// é€éè‰²( AlphaTestImageCreateFlag ãŒ TRUE ã®å ´åˆç”¨ )
 
-	BYTE					RgbToPmaTable[ 256 ][ 256 ] ;			// RGB’l‚ğPMA’l‚É•ÏŠ·‚·‚éÛ‚Ég—p‚·‚éƒe[ƒuƒ‹[ RGB’l ][ A’l ]
-	BYTE					PmaToRgbTable[ 256 ][ 256 ] ;			// PMA’l‚ğRGB’l‚É•ÏŠ·‚·‚éÛ‚Ég—p‚·‚éƒe[ƒuƒ‹[ RGB’l ][ A’l ]
+	BYTE					RgbToPmaTable[ 256 ][ 256 ] ;			// RGBå€¤ã‚’PMAå€¤ã«å¤‰æ›ã™ã‚‹éš›ã«ä½¿ç”¨ã™ã‚‹ãƒ†ãƒ¼ãƒ–ãƒ«[ RGBå€¤ ][ Aå€¤ ]
+	BYTE					PmaToRgbTable[ 256 ][ 256 ] ;			// PMAå€¤ã‚’RGBå€¤ã«å¤‰æ›ã™ã‚‹éš›ã«ä½¿ç”¨ã™ã‚‹ãƒ†ãƒ¼ãƒ–ãƒ«[ RGBå€¤ ][ Aå€¤ ]
 } ;
 
 
-// ƒe[ƒuƒ‹-----------------------------------------------------------------------
+// ãƒ†ãƒ¼ãƒ–ãƒ«-----------------------------------------------------------------------
 
 extern BYTE YUVLimitTable[ 512 * 2 + 256 ] ;
 extern int YUVTable[ 5 ][ 256 ] ;		// 0:rv  1:gu   2:gv   3:bu   4:y
 
-// “à•”‘åˆæ•Ï”éŒ¾ --------------------------------------------------------------
+// å†…éƒ¨å¤§åŸŸå¤‰æ•°å®£è¨€ --------------------------------------------------------------
 
-// ŠÂ‹«ˆË‘¶‚Ì‰æ‘œ“Ç‚İ‚İŠÖ””z—ñ
+// ç’°å¢ƒä¾å­˜ã®ç”»åƒèª­ã¿è¾¼ã¿é–¢æ•°é…åˆ—
 extern int ( *DefaultImageLoadFunc_PF[] )( STREAMDATA *Src, BASEIMAGE *BaseImage, int GetFormatOnly ) ;
 
-// Šî–{ƒCƒ[ƒWŠÇ——pƒf[ƒ^
+// åŸºæœ¬ã‚¤ãƒ¡ãƒ¼ã‚¸ç®¡ç†ç”¨ãƒ‡ãƒ¼ã‚¿
 extern BASEIMAGEMANAGE BaseImageManage ;
 
-// ŠÖ”ƒvƒƒgƒ^ƒCƒvéŒ¾-----------------------------------------------------------
+// é–¢æ•°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€-----------------------------------------------------------
 
-// ‰Šú‰»AŒãn––
-extern	int		InitializeBaseImageManage( void ) ;															// Šî–{ƒCƒ[ƒWŠÇ—î•ñ‚Ì‰Šú‰»
-extern	int		TerminateBaseImageManage( void ) ;															// Šî–{ƒCƒ[ƒWŠÇ—î•ñ‚ÌŒãn––
+// åˆæœŸåŒ–ã€å¾Œå§‹æœ«
+extern	int		InitializeBaseImageManage( void ) ;															// åŸºæœ¬ã‚¤ãƒ¡ãƒ¼ã‚¸ç®¡ç†æƒ…å ±ã®åˆæœŸåŒ–
+extern	int		TerminateBaseImageManage( void ) ;															// åŸºæœ¬ã‚¤ãƒ¡ãƒ¼ã‚¸ç®¡ç†æƒ…å ±ã®å¾Œå§‹æœ«
 
-// ‰æ‘œ“Ç‚İ‚İŠÖ”
-extern	int		SetBmp32AllZeroAlphaToXRGB8( int Flag ) ;															// 32bit bmp ‰æ‘œ‚Ì‚`¬•ª‚ª‚·‚×‚Ä‚O‚¾‚Á‚½‚ç‚`¬•ª‚ğ–³‹‚·‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğƒZƒbƒg‚·‚é
+// ç”»åƒèª­ã¿è¾¼ã¿é–¢æ•°
+extern	int		SetBmp32AllZeroAlphaToXRGB8( int Flag ) ;															// 32bit bmp ç”»åƒã®ï¼¡æˆåˆ†ãŒã™ã¹ã¦ï¼ã ã£ãŸã‚‰ï¼¡æˆåˆ†ã‚’ç„¡è¦–ã™ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 
 extern	int		ScalingBltBaseImage(
 					int SrcX1,  int SrcY1,  int SrcX2,  int SrcY2,  BASEIMAGE *SrcBaseImage,
-					int DestX1, int DestY1, int DestX2, int DestY2, BASEIMAGE *DestBaseImage, int Bilinear = TRUE ) ;		// Šî–{ƒCƒ[ƒWƒf[ƒ^‚ğŠg‘å“]‘—‚·‚é
+					int DestX1, int DestY1, int DestX2, int DestY2, BASEIMAGE *DestBaseImage, int Bilinear = TRUE ) ;		// åŸºæœ¬ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ã‚’æ‹¡å¤§è»¢é€ã™ã‚‹
 extern	int		GraphHalfScaleBlt(	const COLORDATA *ColorData,
 										      void *DestGraphData, int DestPitch,
 										const void *SrcGraphData,  int SrcPitch,
-										int DestX, int DestY, int SrcX, int SrcY, int SrcWidth, int SrcHeight ) ;	// ‚Q•ª‚Ì‚PƒXƒP[ƒŠƒ“ƒO‚µ‚È‚ª‚çƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^ŠÔ“]‘—‚ğs‚¤A‚»‚Ì‚½‚ßŠï””{”‚Ì“]‘—‹éŒ`‚Íw’è‚Å‚«‚È‚¢
-extern	int		NoneMaskFill( RECT *Rect, void *ImageData, int Pitch, COLORDATA *ColorData, unsigned int Fill = 0xff ) ;		// g‚í‚ê‚Ä‚¢‚È‚¢ƒrƒbƒg‚ğw’è‚Ì’l‚Å–„‚ß‚é
+										int DestX, int DestY, int SrcX, int SrcY, int SrcWidth, int SrcHeight ) ;	// ï¼’åˆ†ã®ï¼‘ã‚¹ã‚±ãƒ¼ãƒªãƒ³ã‚°ã—ãªãŒã‚‰ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿é–“è»¢é€ã‚’è¡Œã†ã€ãã®ãŸã‚å¥‡æ•°å€æ•°ã®è»¢é€çŸ©å½¢ã¯æŒ‡å®šã§ããªã„
+extern	int		NoneMaskFill( RECT *Rect, void *ImageData, int Pitch, COLORDATA *ColorData, unsigned int Fill = 0xff ) ;		// ä½¿ã‚ã‚Œã¦ã„ãªã„ãƒ“ãƒƒãƒˆã‚’æŒ‡å®šã®å€¤ã§åŸ‹ã‚ã‚‹
 
 
-extern	int		ConvertYV12ToXRGB32( void *YV12Image, int Width, int Height, BASEIMAGE *DestBaseImage ) ;				// YV12 ƒtƒH[ƒ}ƒbƒg‚ÌƒCƒ[ƒW‚ğ XRGB32 ‚Ìƒrƒbƒgƒ}ƒbƒvƒCƒ[ƒW‚É•ÏŠ·‚·‚é
-extern	int		ConvertNV11ToXRGB32( void *NV11Image, int Width, int Height, BASEIMAGE *DestBaseImage ) ;				// NV11 ƒtƒH[ƒ}ƒbƒg‚ÌƒCƒ[ƒW‚ğ XRGB32 ‚Ìƒrƒbƒgƒ}ƒbƒvƒCƒ[ƒW‚É•ÏŠ·‚·‚é
-extern	int		ConvertNV12ToXRGB32( void *NV12Image, int Width, int Height, BASEIMAGE *DestBaseImage ) ;				// NV12 ƒtƒH[ƒ}ƒbƒg‚ÌƒCƒ[ƒW‚ğ XRGB32 ‚Ìƒrƒbƒgƒ}ƒbƒvƒCƒ[ƒW‚É•ÏŠ·‚·‚é
-extern	int		ConvertYUY2ToXRGB32( void *YUY2Image, int Width, int Height, BASEIMAGE *DestBaseImage ) ;				// YUY2 ƒtƒH[ƒ}ƒbƒg‚ÌƒCƒ[ƒW‚ğ XRGB32 ‚Ìƒrƒbƒgƒ}ƒbƒvƒCƒ[ƒW‚É•ÏŠ·‚·‚é
-extern	int		ConvertUYVYToXRGB32( void *UYVYImage, int Width, int Height, BASEIMAGE *DestBaseImage ) ;				// UYVY ƒtƒH[ƒ}ƒbƒg‚ÌƒCƒ[ƒW‚ğ XRGB32 ‚Ìƒrƒbƒgƒ}ƒbƒvƒCƒ[ƒW‚É•ÏŠ·‚·‚é
-extern	int		ConvertYVYUToXRGB32( void *YVYUImage, int Width, int Height, BASEIMAGE *DestBaseImage ) ;				// YVYU ƒtƒH[ƒ}ƒbƒg‚ÌƒCƒ[ƒW‚ğ XRGB32 ‚Ìƒrƒbƒgƒ}ƒbƒvƒCƒ[ƒW‚É•ÏŠ·‚·‚é
+extern	int		ConvertYV12ToXRGB32( void *YV12Image, int Width, int Height, BASEIMAGE *DestBaseImage ) ;				// YV12 ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’ XRGB32 ã®ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚¤ãƒ¡ãƒ¼ã‚¸ã«å¤‰æ›ã™ã‚‹
+extern	int		ConvertNV11ToXRGB32( void *NV11Image, int Width, int Height, BASEIMAGE *DestBaseImage ) ;				// NV11 ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’ XRGB32 ã®ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚¤ãƒ¡ãƒ¼ã‚¸ã«å¤‰æ›ã™ã‚‹
+extern	int		ConvertNV12ToXRGB32( void *NV12Image, int Width, int Height, BASEIMAGE *DestBaseImage ) ;				// NV12 ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’ XRGB32 ã®ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚¤ãƒ¡ãƒ¼ã‚¸ã«å¤‰æ›ã™ã‚‹
+extern	int		ConvertYUY2ToXRGB32( void *YUY2Image, int Width, int Height, BASEIMAGE *DestBaseImage ) ;				// YUY2 ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’ XRGB32 ã®ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚¤ãƒ¡ãƒ¼ã‚¸ã«å¤‰æ›ã™ã‚‹
+extern	int		ConvertUYVYToXRGB32( void *UYVYImage, int Width, int Height, BASEIMAGE *DestBaseImage ) ;				// UYVY ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’ XRGB32 ã®ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚¤ãƒ¡ãƒ¼ã‚¸ã«å¤‰æ›ã™ã‚‹
+extern	int		ConvertYVYUToXRGB32( void *YVYUImage, int Width, int Height, BASEIMAGE *DestBaseImage ) ;				// YVYU ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’ XRGB32 ã®ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚¤ãƒ¡ãƒ¼ã‚¸ã«å¤‰æ›ã™ã‚‹
 
-extern	int		ConvertYV12ToYPlane_UVPlane( void *YV12Image, int Width, int Height, void *YBuffer, void *UVBuffer ) ;	// YV12 ƒtƒH[ƒ}ƒbƒg‚ÌƒCƒ[ƒW‚ğ Y¬•ª‚ÆUV¬•ª‚ÌƒCƒ[ƒW‚É•ª—£‚·‚é
-extern	int		ConvertNV11ToYPlane_UVPlane( void *NV11Image, int Width, int Height, void *YBuffer, void *UVBuffer ) ;	// NV11 ƒtƒH[ƒ}ƒbƒg‚ÌƒCƒ[ƒW‚ğ Y¬•ª‚ÆUV¬•ª‚ÌƒCƒ[ƒW‚É•ª—£‚·‚é
-extern	int		ConvertNV12ToYPlane_UVPlane( void *NV12Image, int Width, int Height, void *YBuffer, void *UVBuffer ) ;	// NV12 ƒtƒH[ƒ}ƒbƒg‚ÌƒCƒ[ƒW‚ğ Y¬•ª‚ÆUV¬•ª‚ÌƒCƒ[ƒW‚É•ª—£‚·‚é
-extern	int		ConvertYUY2ToYPlane_UVPlane( void *YUY2Image, int Width, int Height, void *YBuffer, void *UVBuffer ) ;	// YUY2 ƒtƒH[ƒ}ƒbƒg‚ÌƒCƒ[ƒW‚ğ Y¬•ª‚ÆUV¬•ª‚ÌƒCƒ[ƒW‚É•ª—£‚·‚é
-extern	int		ConvertUYVYToYPlane_UVPlane( void *UYVYImage, int Width, int Height, void *YBuffer, void *UVBuffer ) ;	// UYVY ƒtƒH[ƒ}ƒbƒg‚ÌƒCƒ[ƒW‚ğ Y¬•ª‚ÆUV¬•ª‚ÌƒCƒ[ƒW‚É•ª—£‚·‚é
-extern	int		ConvertYVYUToYPlane_UVPlane( void *YVYUImage, int Width, int Height, void *YBuffer, void *UVBuffer ) ;	// YVYU ƒtƒH[ƒ}ƒbƒg‚ÌƒCƒ[ƒW‚ğ Y¬•ª‚ÆUV¬•ª‚ÌƒCƒ[ƒW‚É•ª—£‚·‚é
+extern	int		ConvertYV12ToYPlane_UVPlane( void *YV12Image, int Width, int Height, void *YBuffer, void *UVBuffer ) ;	// YV12 ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’ Yæˆåˆ†ã¨UVæˆåˆ†ã®ã‚¤ãƒ¡ãƒ¼ã‚¸ã«åˆ†é›¢ã™ã‚‹
+extern	int		ConvertNV11ToYPlane_UVPlane( void *NV11Image, int Width, int Height, void *YBuffer, void *UVBuffer ) ;	// NV11 ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’ Yæˆåˆ†ã¨UVæˆåˆ†ã®ã‚¤ãƒ¡ãƒ¼ã‚¸ã«åˆ†é›¢ã™ã‚‹
+extern	int		ConvertNV12ToYPlane_UVPlane( void *NV12Image, int Width, int Height, void *YBuffer, void *UVBuffer ) ;	// NV12 ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’ Yæˆåˆ†ã¨UVæˆåˆ†ã®ã‚¤ãƒ¡ãƒ¼ã‚¸ã«åˆ†é›¢ã™ã‚‹
+extern	int		ConvertYUY2ToYPlane_UVPlane( void *YUY2Image, int Width, int Height, void *YBuffer, void *UVBuffer ) ;	// YUY2 ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’ Yæˆåˆ†ã¨UVæˆåˆ†ã®ã‚¤ãƒ¡ãƒ¼ã‚¸ã«åˆ†é›¢ã™ã‚‹
+extern	int		ConvertUYVYToYPlane_UVPlane( void *UYVYImage, int Width, int Height, void *YBuffer, void *UVBuffer ) ;	// UYVY ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’ Yæˆåˆ†ã¨UVæˆåˆ†ã®ã‚¤ãƒ¡ãƒ¼ã‚¸ã«åˆ†é›¢ã™ã‚‹
+extern	int		ConvertYVYUToYPlane_UVPlane( void *YVYUImage, int Width, int Height, void *YBuffer, void *UVBuffer ) ;	// YVYU ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’ Yæˆåˆ†ã¨UVæˆåˆ†ã®ã‚¤ãƒ¡ãƒ¼ã‚¸ã«åˆ†é›¢ã™ã‚‹
 
-extern	void	InitCreateBaseImageType2GParam( CREATEBASEIMAGETYPE2_GPARAM *GParam, int GetFormatOnly ) ;				// CREATEBASEIMAGETYPE2_GPARAM ‚Ìƒf[ƒ^‚ğƒZƒbƒg‚·‚é
-extern	void	InitLoadBaseImageGParam( LOADBASEIMAGE_GPARAM *GParam, int GetFormatOnly ) ;							// LOADBASEIMAGE_GPARAM ‚Ìƒf[ƒ^‚ğƒZƒbƒg‚·‚é
+extern	void	InitCreateBaseImageType2GParam( CREATEBASEIMAGETYPE2_GPARAM *GParam, int GetFormatOnly ) ;				// CREATEBASEIMAGETYPE2_GPARAM ã®ãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
+extern	void	InitLoadBaseImageGParam( LOADBASEIMAGE_GPARAM *GParam, int GetFormatOnly ) ;							// LOADBASEIMAGE_GPARAM ã®ãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 
-// CreateGraphImageType2 ‚ÌƒOƒ[ƒoƒ‹•Ï”‚ÉƒAƒNƒZƒX‚µ‚È‚¢ƒo[ƒWƒ‡ƒ“
+// CreateGraphImageType2 ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°ã«ã‚¢ã‚¯ã‚»ã‚¹ã—ãªã„ãƒãƒ¼ã‚¸ãƒ§ãƒ³
 extern	int		CreateGraphImageType2_UseGParam( CREATEBASEIMAGETYPE2_GPARAM *GParam, STREAMDATA *Src, BASEIMAGE *Dest ) ;
 
-// CreateGraphImageOrDIBGraph ‚ÌƒOƒ[ƒoƒ‹•Ï”‚ÉƒAƒNƒZƒX‚µ‚È‚¢ƒo[ƒWƒ‡ƒ“
+// CreateGraphImageOrDIBGraph ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°ã«ã‚¢ã‚¯ã‚»ã‚¹ã—ãªã„ãƒãƒ¼ã‚¸ãƒ§ãƒ³
 extern	int		CreateGraphImageOrDIBGraph_UseGParam(
 					LOADBASEIMAGE_GPARAM *GParam,
 					const wchar_t *FileName,
@@ -156,7 +156,7 @@ extern	int		CreateGraphImageOrDIBGraph_UseGParam(
 					BASEIMAGE *BaseImage, BITMAPINFO **BmpInfo, void **GraphData
 				) ;
 
-// CreateGraphImage_plus_Alpha ‚ÌƒOƒ[ƒoƒ‹•Ï”‚ÉƒAƒNƒZƒX‚µ‚È‚¢ƒo[ƒWƒ‡ƒ“
+// CreateGraphImage_plus_Alpha ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°ã«ã‚¢ã‚¯ã‚»ã‚¹ã—ãªã„ãƒãƒ¼ã‚¸ãƒ§ãƒ³
 extern	int		CreateGraphImage_plus_Alpha_UseGParam(
 					LOADBASEIMAGE_GPARAM *GParam,
 					const wchar_t *FileName,
@@ -167,8 +167,8 @@ extern	int		CreateGraphImage_plus_Alpha_UseGParam(
 				) ;
 
 
-// wchar_t”ÅŠÖ”
-extern	int		CreateGraphImageOrDIBGraph_WCHAR_T(    const wchar_t *FileName, const void *DataImage, int DataImageSize, int DataImageType /* LOADIMAGE_TYPE_FILE “™ */ , int BmpFlag, int ReverseFlag, int NotUseTransColor, BASEIMAGE *BaseImage, BITMAPINFO **BmpInfo, void **GraphData ) ;
+// wchar_tç‰ˆé–¢æ•°
+extern	int		CreateGraphImageOrDIBGraph_WCHAR_T(    const wchar_t *FileName, const void *DataImage, int DataImageSize, int DataImageType /* LOADIMAGE_TYPE_FILE ç­‰ */ , int BmpFlag, int ReverseFlag, int NotUseTransColor, BASEIMAGE *BaseImage, BITMAPINFO **BmpInfo, void **GraphData ) ;
 extern	int		GetImageSize_File_WCHAR_T(             const wchar_t *FileName, int *SizeX, int *SizeY ) ;
 extern	int		CreateGraphImage_plus_Alpha_WCHAR_T(   const wchar_t *FileName, const void *RgbBaseImage, int RgbImageSize, int RgbImageType, const void *AlphaImage, int AlphaImageSize, int AlphaImageType, BASEIMAGE *RgbGraphImage, BASEIMAGE *AlphaGraphImage, int ReverseFlag, int NotUseTransColor ) ;
 #ifdef WINDOWS_DESKTOP_OS
@@ -199,14 +199,14 @@ extern	int		SaveBaseImageToJpeg_WCHAR_T(           const wchar_t *FilePath,     
 
 
 
-// ŠÂ‹«ˆË‘¶‰Šú‰»EI—¹ŠÖ”
-extern	int		InitializeBaseImageManage_PF( void ) ;													// Šî–{ƒCƒ[ƒWŠÇ—î•ñ‚ÌŠÂ‹«ˆË‘¶ˆ—‚Ì‰Šú‰»
-extern	int		TerminateBaseImageManage_PF( void ) ;													// Šî–{ƒCƒ[ƒWŠÇ—î•ñ‚ÌŠÂ‹«ˆË‘¶ˆ—‚ÌŒãn––
+// ç’°å¢ƒä¾å­˜åˆæœŸåŒ–ãƒ»çµ‚äº†é–¢æ•°
+extern	int		InitializeBaseImageManage_PF( void ) ;													// åŸºæœ¬ã‚¤ãƒ¡ãƒ¼ã‚¸ç®¡ç†æƒ…å ±ã®ç’°å¢ƒä¾å­˜å‡¦ç†ã®åˆæœŸåŒ–
+extern	int		TerminateBaseImageManage_PF( void ) ;													// åŸºæœ¬ã‚¤ãƒ¡ãƒ¼ã‚¸ç®¡ç†æƒ…å ±ã®ç’°å¢ƒä¾å­˜å‡¦ç†ã®å¾Œå§‹æœ«
 
 
-// ƒCƒ“ƒ‰ƒCƒ“ŠÖ”Eƒ}ƒNƒ---------------------------------------------------------
+// ã‚¤ãƒ³ãƒ©ã‚¤ãƒ³é–¢æ•°ãƒ»ãƒã‚¯ãƒ­---------------------------------------------------------
 
-// ”¼¸“x•‚“®¬”“_‚ğ’P¸“x•‚“®¬”“_‚É•ÏŠ·‚·‚é
+// åŠç²¾åº¦æµ®å‹•å°æ•°ç‚¹ã‚’å˜ç²¾åº¦æµ®å‹•å°æ•°ç‚¹ã«å¤‰æ›ã™ã‚‹
 __inline float Float16ToFloat32( WORD Float16 )
 {
 	unsigned int s ;
@@ -226,7 +226,7 @@ __inline float Float16ToFloat32( WORD Float16 )
 	return	*( ( float * )&dest ) ;
 }
 
-// ’P¸“x•‚“®¬”“_‚ğ”¼¸“x•‚“®¬”“_‚É•ÏŠ·‚·‚é
+// å˜ç²¾åº¦æµ®å‹•å°æ•°ç‚¹ã‚’åŠç²¾åº¦æµ®å‹•å°æ•°ç‚¹ã«å¤‰æ›ã™ã‚‹
 __inline WORD Float32ToFloat16( float Float32 )
 {
 	unsigned int src = *( ( DWORD * )&Float32 ) ;
@@ -255,13 +255,13 @@ __inline WORD Float32ToFloat16( float Float32 )
 	return ( ( s >> 16 ) & 0x8000 ) | ( ( e << 10 ) & 0x7c00 ) | ( ( f >> 13 ) & 0x03ff ) ;
 }
 
-// DrawPixel “™‚Ì•`‰æŠÖ”‚Åg—p‚·‚éƒJƒ‰[’l‚ğæ“¾‚·‚é
+// DrawPixel ç­‰ã®æç”»é–¢æ•°ã§ä½¿ç”¨ã™ã‚‹ã‚«ãƒ©ãƒ¼å€¤ã‚’å–å¾—ã™ã‚‹
 #ifndef DX_NON_GRAPHICS
 	#define GetColor_Macro( /*int*/ Red, /*int*/ Green, /*int*/ Blue, /*int*/ Dest )\
 	{\
 		const COLORDATA *ColorData ;\
 	\
-		/* Fî•ñ‚ğ•Ô‚· */\
+		/* è‰²æƒ…å ±ã‚’è¿”ã™ */\
 		if( GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )\
 		{\
 			Dest = 0xff000000 | ( ( ( unsigned int )( Red ) ) << 16 ) | ( ( ( unsigned int )( Green ) ) << 8 ) | ( ( unsigned int )( Blue ) ) ;\
@@ -279,11 +279,11 @@ __inline WORD Float32ToFloat16( float Float32 )
 	#define GetColor_Macro( /*int*/ Red, /*int*/ Green, /*int*/ Blue, /*int*/ Dest )	0
 #endif // DX_NON_GRAPHICS
 
-// ƒJƒ‰[’l‚©‚çÔA—ÎAÂAƒAƒ‹ƒtƒ@‚Ì’l‚ğæ“¾‚·‚é
+// ã‚«ãƒ©ãƒ¼å€¤ã‹ã‚‰èµ¤ã€ç·‘ã€é’ã€ã‚¢ãƒ«ãƒ•ã‚¡ã®å€¤ã‚’å–å¾—ã™ã‚‹
 #ifndef DX_NON_GRAPHICS
 	#define GetColor2_Macro( /* unsigned int */ Color, /* int */Red, /* int */Green, /* int */Blue )\
 	{\
-		/* Fî•ñ‚ğ•Ô‚· */\
+		/* è‰²æƒ…å ±ã‚’è¿”ã™ */\
 		if( GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )\
 		{\
 			Red   = ( int )( ( Color >> 16 ) & 0xff ) ;\
@@ -303,7 +303,7 @@ __inline WORD Float32ToFloat16( float Float32 )
 			MaxGreen	= ( 1 << ColorData->GreenWidth ) - 1 ;\
 			MaxBlue		= ( 1 << ColorData->BlueWidth  ) - 1 ;\
 \
-			/* Fî•ñ‚ğŠi”[‚·‚é */\
+			/* è‰²æƒ…å ±ã‚’æ ¼ç´ã™ã‚‹ */\
 			Red		= ( int )( ( ( Color & ColorData->RedMask   ) >> ColorData->RedLoc   ) * 255 / MaxRed   ) ;\
 			Green	= ( int )( ( ( Color & ColorData->GreenMask ) >> ColorData->GreenLoc ) * 255 / MaxGreen ) ;\
 			Blue	= ( int )( ( ( Color & ColorData->BlueMask  ) >> ColorData->BlueLoc  ) * 255 / MaxBlue  ) ;\

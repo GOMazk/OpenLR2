@@ -1,6 +1,6 @@
 // -------------------------------------------------------------------------------
 // 
-// 		‚c‚wƒ‰ƒCƒuƒ‰ƒŠ		ƒ}ƒXƒNˆ—ƒvƒƒOƒ‰ƒ€( Direct3D9 )ƒwƒbƒ_ƒtƒ@ƒCƒ‹
+// 		ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒª		ãƒã‚¹ã‚¯å‡¦ç†ãƒ—ãƒ­ã‚°ãƒ©ãƒ ( Direct3D9 )ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«
 // 
 // 				Ver 3.25a
 // 
@@ -17,7 +17,7 @@
 
 #ifndef DX_NON_MASK
 
-// ƒCƒ“ƒNƒ‹[ƒh ------------------------------------------------------------------
+// ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ ------------------------------------------------------------------
 #include "../DxLib.h"
 #include "../DxGraphics.h"
 #include "../DxArchive_.h"
@@ -30,23 +30,23 @@ namespace DxLib
 
 #endif // DX_NON_NAMESPACE
 
-// ƒ}ƒNƒ’è‹` --------------------------------------------------------------------
+// ãƒã‚¯ãƒ­å®šç¾© --------------------------------------------------------------------
 
 #define MASKD3D9					MaskManageData_D3D9
 
 
-// \‘¢‘Ì’è‹` --------------------------------------------------------------------
+// æ§‹é€ ä½“å®šç¾© --------------------------------------------------------------------
 
 
-// Direct3D9 ‚ğg‚Á‚½ƒOƒ‰ƒtƒBƒbƒNƒXˆ—î•ñ‚Ì\‘¢‘Ì
+// Direct3D9 ã‚’ä½¿ã£ãŸã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¹å‡¦ç†æƒ…å ±ã®æ§‹é€ ä½“
 struct MASKMANAGEDATA_DIRECT3D9
 {
-	int						MaskTextureSizeX, MaskTextureSizeY ;	// ƒ}ƒXƒNƒeƒNƒXƒ`ƒƒ‚ÌƒTƒCƒY
-	D_IDirect3DTexture9		*MaskImageTexture ;						// ƒ}ƒXƒNƒCƒ[ƒWƒeƒNƒXƒ`ƒƒ
-//	D_IDirect3DSurface9		*MaskImageSurface ;						// ƒ}ƒXƒNƒCƒ[ƒWƒT[ƒtƒFƒX
-//	D_IDirect3DSurface9		*MaskMemImageSurface ;					// ƒ}ƒXƒNƒƒ‚ƒŠƒCƒ[ƒWƒT[ƒtƒFƒX
-	D_IDirect3DTexture9		*MaskScreenTexture ;					// ƒ}ƒXƒNƒXƒNƒŠ[ƒ“ƒeƒNƒXƒ`ƒƒ
-	D_IDirect3DSurface9		*MaskScreenSurface ;					// ƒ}ƒXƒNƒXƒNƒŠ[ƒ“ƒT[ƒtƒFƒX
+	int						MaskTextureSizeX, MaskTextureSizeY ;	// ãƒã‚¹ã‚¯ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ã‚µã‚¤ã‚º
+	D_IDirect3DTexture9		*MaskImageTexture ;						// ãƒã‚¹ã‚¯ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ†ã‚¯ã‚¹ãƒãƒ£
+//	D_IDirect3DSurface9		*MaskImageSurface ;						// ãƒã‚¹ã‚¯ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚µãƒ¼ãƒ•ã‚§ã‚¹
+//	D_IDirect3DSurface9		*MaskMemImageSurface ;					// ãƒã‚¹ã‚¯ãƒ¡ãƒ¢ãƒªã‚¤ãƒ¡ãƒ¼ã‚¸ã‚µãƒ¼ãƒ•ã‚§ã‚¹
+	D_IDirect3DTexture9		*MaskScreenTexture ;					// ãƒã‚¹ã‚¯ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ†ã‚¯ã‚¹ãƒãƒ£
+	D_IDirect3DSurface9		*MaskScreenSurface ;					// ãƒã‚¹ã‚¯ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚µãƒ¼ãƒ•ã‚§ã‚¹
 
 	D_IDirect3DTexture9		*MaskImageTextureOld ;
 //	D_IDirect3DSurface9		*MaskImageSurfaceOld ;
@@ -59,23 +59,23 @@ struct MASKMANAGEDATA_DIRECT3D9
 } ;
 
 
-// “à•”‘åˆæ•Ï”éŒ¾ --------------------------------------------------------------
+// å†…éƒ¨å¤§åŸŸå¤‰æ•°å®£è¨€ --------------------------------------------------------------
 
 extern MASKMANAGEDATA_DIRECT3D9 MaskManageData_D3D9 ;
 
-// ŠÖ”ƒvƒƒgƒ^ƒCƒvéŒ¾-----------------------------------------------------------
+// é–¢æ•°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€-----------------------------------------------------------
 
 
-// ŠÂ‹«ˆË‘¶ŠÖ”
-extern	int			Mask_D3D9_CreateScreenFunction_Timing0_PF( void ) ;														// ƒ}ƒXƒNƒXƒNƒŠ[ƒ“‚ğì¬‚·‚éŠÖ”
-extern	int			Mask_D3D9_CreateScreenFunction_Timing1_PF( int Width, int Height ) ;									// ƒ}ƒXƒNƒXƒNƒŠ[ƒ“‚ğì¬‚·‚éŠÖ”
-extern	int			Mask_D3D9_CreateScreenFunction_Timing2_PF( int MaskBufferSizeXOld, int MaskBufferSizeYOld ) ;			// ƒ}ƒXƒNƒXƒNƒŠ[ƒ“‚ğì¬‚·‚éŠÖ”
-extern	int			Mask_D3D9_ReleaseSurface_PF( void ) ;																	// ƒ}ƒXƒNƒXƒNƒŠ[ƒ“‚ğˆêíœ‚·‚é
-extern	int			Mask_D3D9_SetUseMaskScreenFlag_PF( void ) ;																// ƒ}ƒXƒNg—pƒ‚[ƒh‚ğ•ÏX
-extern	int			Mask_D3D9_DrawBeginFunction_PF( RECT *Rect ) ;															// ƒ}ƒXƒN‚ğg—p‚µ‚½•`‰æ‚Ì‘O‚ÉŒÄ‚ÔŠÖ”( ‚Â‚¢‚Å‚ÉƒTƒuƒoƒbƒtƒ@‚ğg—p‚µ‚½•`‰æƒGƒŠƒA‹@”\‚ğg—p‚µ‚Ä‚¢‚éê‡‚Ìˆ—‚à‚¢‚ê‚Ä‚µ‚Ü‚Á‚Ä‚¢‚é‚æ )
-extern	int			Mask_D3D9_DrawAfterFunction_PF( RECT *Rect ) ;															// ƒ}ƒXƒN‚ğg—p‚µ‚½•`‰æ‚ÌŒã‚ÉŒÄ‚ÔŠÖ”( ‚Â‚¢‚Å‚ÉƒTƒuƒoƒbƒtƒ@‚ğg—p‚µ‚½•`‰æƒGƒŠƒA‹@”\‚ğg—p‚µ‚Ä‚¢‚éê‡‚Ìˆ—‚à‚¢‚ê‚Ä‚µ‚Ü‚Á‚Ä‚¢‚é‚æ )
-extern	int			Mask_D3D9_FillMaskScreen_PF( int Flag ) ;																// ƒ}ƒXƒNƒXƒNƒŠ[ƒ“‚ğw’è‚ÌF‚Å“h‚è‚Â‚Ô‚·
-extern	int			Mask_D3D9_UpdateMaskImageTexture_PF( RECT *Rect ) ;															// w’è—Ìˆæ‚Ìƒ}ƒXƒNƒCƒ[ƒWƒeƒNƒXƒ`ƒƒ‚ğXV‚·‚é
+// ç’°å¢ƒä¾å­˜é–¢æ•°
+extern	int			Mask_D3D9_CreateScreenFunction_Timing0_PF( void ) ;														// ãƒã‚¹ã‚¯ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚’ä½œæˆã™ã‚‹é–¢æ•°
+extern	int			Mask_D3D9_CreateScreenFunction_Timing1_PF( int Width, int Height ) ;									// ãƒã‚¹ã‚¯ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚’ä½œæˆã™ã‚‹é–¢æ•°
+extern	int			Mask_D3D9_CreateScreenFunction_Timing2_PF( int MaskBufferSizeXOld, int MaskBufferSizeYOld ) ;			// ãƒã‚¹ã‚¯ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚’ä½œæˆã™ã‚‹é–¢æ•°
+extern	int			Mask_D3D9_ReleaseSurface_PF( void ) ;																	// ãƒã‚¹ã‚¯ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚’ä¸€æ™‚å‰Šé™¤ã™ã‚‹
+extern	int			Mask_D3D9_SetUseMaskScreenFlag_PF( void ) ;																// ãƒã‚¹ã‚¯ä½¿ç”¨ãƒ¢ãƒ¼ãƒ‰ã‚’å¤‰æ›´
+extern	int			Mask_D3D9_DrawBeginFunction_PF( RECT *Rect ) ;															// ãƒã‚¹ã‚¯ã‚’ä½¿ç”¨ã—ãŸæç”»ã®å‰ã«å‘¼ã¶é–¢æ•°( ã¤ã„ã§ã«ã‚µãƒ–ãƒãƒƒãƒ•ã‚¡ã‚’ä½¿ç”¨ã—ãŸæç”»ã‚¨ãƒªã‚¢æ©Ÿèƒ½ã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹å ´åˆã®å‡¦ç†ã‚‚ã„ã‚Œã¦ã—ã¾ã£ã¦ã„ã‚‹ã‚ˆ )
+extern	int			Mask_D3D9_DrawAfterFunction_PF( RECT *Rect ) ;															// ãƒã‚¹ã‚¯ã‚’ä½¿ç”¨ã—ãŸæç”»ã®å¾Œã«å‘¼ã¶é–¢æ•°( ã¤ã„ã§ã«ã‚µãƒ–ãƒãƒƒãƒ•ã‚¡ã‚’ä½¿ç”¨ã—ãŸæç”»ã‚¨ãƒªã‚¢æ©Ÿèƒ½ã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹å ´åˆã®å‡¦ç†ã‚‚ã„ã‚Œã¦ã—ã¾ã£ã¦ã„ã‚‹ã‚ˆ )
+extern	int			Mask_D3D9_FillMaskScreen_PF( int Flag ) ;																// ãƒã‚¹ã‚¯ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚’æŒ‡å®šã®è‰²ã§å¡—ã‚Šã¤ã¶ã™
+extern	int			Mask_D3D9_UpdateMaskImageTexture_PF( RECT *Rect ) ;															// æŒ‡å®šé ˜åŸŸã®ãƒã‚¹ã‚¯ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’æ›´æ–°ã™ã‚‹
 
 
 #ifndef DX_NON_NAMESPACE

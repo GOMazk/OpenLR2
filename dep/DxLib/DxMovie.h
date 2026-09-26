@@ -1,6 +1,6 @@
 // -------------------------------------------------------------------------------
 // 
-// 		‚c‚wƒ‰ƒCƒuƒ‰ƒŠ		“®‰æƒvƒƒOƒ‰ƒ€ƒwƒbƒ_ƒtƒ@ƒCƒ‹
+// 		ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒª		å‹•ç”»ãƒ—ãƒ­ã‚°ãƒ©ãƒ ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«
 // 
 // 				Ver 3.25a
 // 
@@ -13,7 +13,7 @@
 
 #ifndef DX_NON_MOVIE
 
-// ƒCƒ“ƒNƒ‹[ƒh ------------------------------------------------------------------
+// ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ ------------------------------------------------------------------
 #include "DxHandle.h"
 #include "DxBaseImage.h"
 #include "DxFile.h"
@@ -44,119 +44,119 @@ namespace DxLib
 
 #endif // DX_NON_NAMESPACE
 
-// ƒ}ƒNƒ’è‹` --------------------------------------------------------------------
+// ãƒã‚¯ãƒ­å®šç¾© --------------------------------------------------------------------
 
-// \‘¢‘Ì’è‹` --------------------------------------------------------------------
+// æ§‹é€ ä½“å®šç¾© --------------------------------------------------------------------
 
-// ƒ€[ƒr[ƒtƒ@ƒCƒ‹‚ÌƒI[ƒvƒ“‚É•K—v‚ÈƒOƒ[ƒoƒ‹ƒf[ƒ^‚ğ“Z‚ß‚½‚à‚Ì
+// ãƒ ãƒ¼ãƒ“ãƒ¼ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚ªãƒ¼ãƒ—ãƒ³ã«å¿…è¦ãªã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿ã‚’çºã‚ãŸã‚‚ã®
 struct OPENMOVIE_GPARAM
 {
-	int							RightAlphaFlag;					// “®‰æ‘œ‚Ì‰E‘¤‚ğƒAƒ‹ƒtƒ@‚Æ‚İ‚È‚·“®‰æƒnƒ“ƒhƒ‹‚ğì¬‚·‚é‚©(TRUE:ì¬‚·‚é)
-	int							A8R8G8B8Flag ;					// 32bitƒJƒ‰[ƒtƒH[ƒ}ƒbƒg‚Ì“®‰æ‚ğ A8R8G8B8 Œ`®‚Æ‚µ‚Äˆµ‚¤‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO
-	int							NotUseYUVFormatSurfaceFlag ;	// ‚x‚t‚uƒtƒH[ƒ}ƒbƒg‚ÌƒT[ƒtƒFƒX‚ğg—p‚µ‚È‚¢‚©‚Ç‚¤‚©
+	int							RightAlphaFlag;					// å‹•ç”»åƒã®å³å´ã‚’ã‚¢ãƒ«ãƒ•ã‚¡ã¨ã¿ãªã™å‹•ç”»ãƒãƒ³ãƒ‰ãƒ«ã‚’ä½œæˆã™ã‚‹ã‹(TRUE:ä½œæˆã™ã‚‹)
+	int							A8R8G8B8Flag ;					// 32bitã‚«ãƒ©ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®å‹•ç”»ã‚’ A8R8G8B8 å½¢å¼ã¨ã—ã¦æ‰±ã†ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°
+	int							NotUseYUVFormatSurfaceFlag ;	// ï¼¹ï¼µï¼¶ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®ã‚µãƒ¼ãƒ•ã‚§ã‚¹ã‚’ä½¿ç”¨ã—ãªã„ã‹ã©ã†ã‹
 } ;
 
-// Ogg Theora ‚ÌƒfƒR[ƒh‚Ìî•ñ
+// Ogg Theora ã®ãƒ‡ã‚³ãƒ¼ãƒ‰æ™‚ã®æƒ…å ±
 struct THEORADECODE_INFO
 {
-	double						FrameRate ;						// ‚P•bŠÔ•Ó‚è‚ÌƒRƒ}”
-	int							TotalFrame ;					// ‘ƒtƒŒ[ƒ€”
-	int							Width, Height ;					// •‚Æ‚‚³
+	double						FrameRate ;						// ï¼‘ç§’é–“è¾ºã‚Šã®ã‚³ãƒæ•°
+	int							TotalFrame ;					// ç·ãƒ•ãƒ¬ãƒ¼ãƒ æ•°
+	int							Width, Height ;					// å¹…ã¨é«˜ã•
 } ;
 
-// ƒ€[ƒr[ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^Œ^
+// ãƒ ãƒ¼ãƒ“ãƒ¼ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿å‹
 struct MOVIEGRAPH
 {
-	HANDLEINFO				HandleInfo ;					// ƒnƒ“ƒhƒ‹‹¤’Êƒf[ƒ^
+	HANDLEINFO				HandleInfo ;					// ãƒãƒ³ãƒ‰ãƒ«å…±é€šãƒ‡ãƒ¼ã‚¿
 
-	int						ParentGrHandle ;				// ‚±‚Ìƒ€[ƒr[ƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ğg—p‚µ‚Ä‚¢‚éƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹
+	int						ParentGrHandle ;				// ã“ã®ãƒ ãƒ¼ãƒ“ãƒ¼ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«
 
-	int						PlayType ;						// Ä¶ƒ^ƒCƒv
+	int						PlayType ;						// å†ç”Ÿã‚¿ã‚¤ãƒ—
 
 #ifndef DX_NON_OGGTHEORA
-	int						TheoraFlag ;					// Theora ‚ğg—p‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO( 1:g—p‚µ‚Ä‚¢‚é  0:g—p‚µ‚Ä‚¢‚È‚¢ )
-	DWORD_PTR				TheoraHandle ;					// Theora ƒtƒ@ƒCƒ‹ƒnƒ“ƒhƒ‹
-//	LONGLONG				TheoraPlayTime ;				// Ä¶ŠJnŠÔ
-	ULONGLONG				TheoraPrevTimeCount ;			// ‘O‰ñ‚ÌŒv‘ªŠÔ
-	ULONGLONG				TheoraPlayNowTime ;				// Ä¶ŠÔ
-	int						TheoraTotalPlayTime ;			// Ä¶‘ŠÔ( ƒ~ƒŠ•b )
-	int						TheoraTotalFrame ;				// ‘ƒtƒŒ[ƒ€”
-	DWORD_PTR				TheoraStreamData ;				// ƒXƒgƒŠ[ƒ€ˆ——pƒf[ƒ^
-	int						TheoraStreamDataIsFileImage ;	// ƒXƒgƒŠ[ƒ€ˆ——pƒf[ƒ^‚ªƒtƒ@ƒCƒ‹‚ğƒƒ‚ƒŠ‚É“Ç‚İ‚ñ‚¾‚à‚Ì‚©‚Ç‚¤‚©
-	double					TheoraFrameRate ;				// ƒtƒŒ[ƒ€ƒŒ[ƒg
-	int						TheoraLoopType ;				// ƒ‹[ƒvƒ^ƒCƒv( 0:“®‰æƒf[ƒ^‚É‡‚í‚¹‚Äƒ‹[ƒv  1:ƒTƒEƒ“ƒhƒf[ƒ^‚É‡‚í‚¹‚Äƒ‹[ƒv )
-	int						TheoraSetupGraphHandleImage ;	// ‰æ‘œ\’z‚ÌŒãAƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ÌƒZƒbƒgƒAƒbƒv‚ğI‚¦‚Ä‚¢‚é‚©‚Ç‚¤‚©( TRUE:I‚¦‚Ä‚¢‚é  FALSE:I‚¦‚Ä‚¢‚È‚¢ )
+	int						TheoraFlag ;					// Theora ã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°( 1:ä½¿ç”¨ã—ã¦ã„ã‚‹  0:ä½¿ç”¨ã—ã¦ã„ãªã„ )
+	DWORD_PTR				TheoraHandle ;					// Theora ãƒ•ã‚¡ã‚¤ãƒ«ãƒãƒ³ãƒ‰ãƒ«
+//	LONGLONG				TheoraPlayTime ;				// å†ç”Ÿé–‹å§‹æ™‚é–“
+	ULONGLONG				TheoraPrevTimeCount ;			// å‰å›ã®è¨ˆæ¸¬æ™‚é–“
+	ULONGLONG				TheoraPlayNowTime ;				// å†ç”Ÿæ™‚é–“
+	int						TheoraTotalPlayTime ;			// å†ç”Ÿç·æ™‚é–“( ãƒŸãƒªç§’ )
+	int						TheoraTotalFrame ;				// ç·ãƒ•ãƒ¬ãƒ¼ãƒ æ•°
+	DWORD_PTR				TheoraStreamData ;				// ã‚¹ãƒˆãƒªãƒ¼ãƒ å‡¦ç†ç”¨ãƒ‡ãƒ¼ã‚¿
+	int						TheoraStreamDataIsFileImage ;	// ã‚¹ãƒˆãƒªãƒ¼ãƒ å‡¦ç†ç”¨ãƒ‡ãƒ¼ã‚¿ãŒãƒ•ã‚¡ã‚¤ãƒ«ã‚’ãƒ¡ãƒ¢ãƒªã«èª­ã¿è¾¼ã‚“ã ã‚‚ã®ã‹ã©ã†ã‹
+	double					TheoraFrameRate ;				// ãƒ•ãƒ¬ãƒ¼ãƒ ãƒ¬ãƒ¼ãƒˆ
+	int						TheoraLoopType ;				// ãƒ«ãƒ¼ãƒ—ã‚¿ã‚¤ãƒ—( 0:å‹•ç”»ãƒ‡ãƒ¼ã‚¿ã«åˆã‚ã›ã¦ãƒ«ãƒ¼ãƒ—  1:ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ã«åˆã‚ã›ã¦ãƒ«ãƒ¼ãƒ— )
+	int						TheoraSetupGraphHandleImage ;	// ç”»åƒæ§‹ç¯‰ã®å¾Œã€ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã‚’çµ‚ãˆã¦ã„ã‚‹ã‹ã©ã†ã‹( TRUE:çµ‚ãˆã¦ã„ã‚‹  FALSE:çµ‚ãˆã¦ã„ãªã„ )
 #ifndef DX_NON_SOUND
-	int						TheoraVorbisHandle ;			// Vorbis—pƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹
-	int						TheoraVorbisFrequency ;			// Vorbis—pƒTƒEƒ“ƒh‚Ìü”g”
-	int						TheoraVorbisTotalTime ;			// VorbisƒTƒEƒ“ƒhƒf[ƒ^‚ÌÄ¶‘ŠÔ( ƒ~ƒŠ•b )
+	int						TheoraVorbisHandle ;			// Vorbisç”¨ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«
+	int						TheoraVorbisFrequency ;			// Vorbisç”¨ã‚µã‚¦ãƒ³ãƒ‰ã®å‘¨æ³¢æ•°
+	int						TheoraVorbisTotalTime ;			// Vorbisã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ã®å†ç”Ÿç·æ™‚é–“( ãƒŸãƒªç§’ )
 #endif // DX_NON_SOUND
-	double					TheoraPlaySpeedRate ;			// Theora—pÄ¶‘¬“x
+	double					TheoraPlaySpeedRate ;			// Theoraç”¨å†ç”Ÿé€Ÿåº¦
 #endif // DX_NON_OGGTHEORA
 
-	int						SoundVolume ;					// ‰¹º‚Ìƒ{ƒŠƒ…[ƒ€( 0`10000 )
+	int						SoundVolume ;					// éŸ³å£°ã®ãƒœãƒªãƒ¥ãƒ¼ãƒ ( 0ï½10000 )
 
-	RECT					SrcRect ;						// ƒuƒƒbƒN“]‘—‘€ì‚Ì“]‘—Œ³‹éŒ`
+	RECT					SrcRect ;						// ãƒ–ãƒ­ãƒƒã‚¯è»¢é€æ“ä½œã®è»¢é€å…ƒçŸ©å½¢
 
-	LONGLONG				RefreshFrame ;					// ‘O‰ñXV‚µ‚½ƒtƒŒ[ƒ€
-	LONGLONG				RefreshTime ;					// ‘O‰ñXV‚µ‚½ŠÔ
+	LONGLONG				RefreshFrame ;					// å‰å›æ›´æ–°ã—ãŸãƒ•ãƒ¬ãƒ¼ãƒ 
+	LONGLONG				RefreshTime ;					// å‰å›æ›´æ–°ã—ãŸæ™‚é–“
 
-	LONGLONG				StopTime ;						// I—¹ƒ^ƒCƒ€
-	int						SufIsSystemMemory ;				// ƒT[ƒtƒFƒX‚ªƒVƒXƒeƒ€ƒƒ‚ƒŠã‚É‚ ‚éê‡‚s‚q‚t‚d
-	int						Width, Height ;					// ƒ€[ƒr[ƒOƒ‰ƒtƒBƒbƒN‚ÌƒTƒCƒY
-	int						RightAlpha ;					// ƒ€[ƒr[‚Ì‰E‘¤‚ğƒAƒ‹ƒtƒ@ƒ`ƒƒƒ“ƒlƒ‹‚Æ‚µ‚Äˆµ‚¤‚©(TRUE:ˆµ‚¤)
-	int						A8R8G8B8Flag ;					// 32bitƒJƒ‰[ƒtƒH[ƒ}ƒbƒg‚Ì“®‰æ‚ğ A8R8G8B8 Œ`®‚Æ‚µ‚Äˆµ‚¤‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO
-	int						NotUseYUVFormatSurfaceFlag ;	// ‚x‚t‚uƒtƒH[ƒ}ƒbƒg‚ÌƒT[ƒtƒFƒX‚ğg—p‚µ‚È‚¢‚©‚Ç‚¤‚©
-	int						PlayFlag ;						// Ä¶’†ƒtƒ‰ƒO
-	int						SysPauseFlag ;					// “à•”ˆê’â~ƒtƒ‰ƒO
-	int						FirstUpdateFlag ;				// Å‰‚ÌƒAƒbƒvƒf[ƒg‚ªs‚í‚ê‚½‚©‚Ç‚¤‚©( TRUE:s‚í‚ê‚½  FALSE:‚Ü‚¾ )
+	LONGLONG				StopTime ;						// çµ‚äº†ã‚¿ã‚¤ãƒ 
+	int						SufIsSystemMemory ;				// ã‚µãƒ¼ãƒ•ã‚§ã‚¹ãŒã‚·ã‚¹ãƒ†ãƒ ãƒ¡ãƒ¢ãƒªä¸Šã«ã‚ã‚‹å ´åˆï¼´ï¼²ï¼µï¼¥
+	int						Width, Height ;					// ãƒ ãƒ¼ãƒ“ãƒ¼ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®ã‚µã‚¤ã‚º
+	int						RightAlpha ;					// ãƒ ãƒ¼ãƒ“ãƒ¼ã®å³å´ã‚’ã‚¢ãƒ«ãƒ•ã‚¡ãƒãƒ£ãƒ³ãƒãƒ«ã¨ã—ã¦æ‰±ã†ã‹(TRUE:æ‰±ã†)
+	int						A8R8G8B8Flag ;					// 32bitã‚«ãƒ©ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®å‹•ç”»ã‚’ A8R8G8B8 å½¢å¼ã¨ã—ã¦æ‰±ã†ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°
+	int						NotUseYUVFormatSurfaceFlag ;	// ï¼¹ï¼µï¼¶ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®ã‚µãƒ¼ãƒ•ã‚§ã‚¹ã‚’ä½¿ç”¨ã—ãªã„ã‹ã©ã†ã‹
+	int						PlayFlag ;						// å†ç”Ÿä¸­ãƒ•ãƒ©ã‚°
+	int						SysPauseFlag ;					// å†…éƒ¨ä¸€æ™‚åœæ­¢ãƒ•ãƒ©ã‚°
+	int						FirstUpdateFlag ;				// æœ€åˆã®ã‚¢ãƒƒãƒ—ãƒ‡ãƒ¼ãƒˆãŒè¡Œã‚ã‚ŒãŸã‹ã©ã†ã‹( TRUE:è¡Œã‚ã‚ŒãŸ  FALSE:ã¾ã  )
 
-	int						YUVFlag ;						// ‚x‚t‚uŒ`®‚ğg—p‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©( TRUE:‚µ‚Ä‚¢‚é  FALSE:‚µ‚Ä‚¢‚È‚¢ )
-	int						SurfaceMode ;					// g—p‚µ‚Ä‚¢‚éƒT[ƒtƒFƒXƒ^ƒCƒv
+	int						YUVFlag ;						// ï¼¹ï¼µï¼¶å½¢å¼ã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹ã‹ã©ã†ã‹( TRUE:ã—ã¦ã„ã‚‹  FALSE:ã—ã¦ã„ãªã„ )
+	int						SurfaceMode ;					// ä½¿ç”¨ã—ã¦ã„ã‚‹ã‚µãƒ¼ãƒ•ã‚§ã‚¹ã‚¿ã‚¤ãƒ—
 
 	BASEIMAGE				NowImage ;
-	int						NowImageGraphOutAlloc ;			// NowImage ‚Ì GraphData ‚ªŠO•”‚ÅŠm•Û‚³‚ê‚½ƒoƒbƒtƒ@‚ğg—p‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©
-	int						NowImageUpdateFlag ;			// NowImage ‚Ì“à—e‚ªXV‚³‚ê‚½‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO( GetMovieBaseImageToGraph —p )
-	BASEIMAGE				*UseNowImage ;					// Theora “à‚Ì BASEIMAGE ‚ğg—p‚µ‚Ä‚¢‚é‰Â”\«‚à‚ ‚é‚Ì‚ÅŠO•”‚ÌƒvƒƒOƒ‰ƒ€‚Í‚±‚¿‚ç‚ğg‚¤‚×‚µ
+	int						NowImageGraphOutAlloc ;			// NowImage ã® GraphData ãŒå¤–éƒ¨ã§ç¢ºä¿ã•ã‚ŒãŸãƒãƒƒãƒ•ã‚¡ã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹ã‹ã©ã†ã‹
+	int						NowImageUpdateFlag ;			// NowImage ã®å†…å®¹ãŒæ›´æ–°ã•ã‚ŒãŸã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°( GetMovieBaseImageToGraph ç”¨ )
+	BASEIMAGE				*UseNowImage ;					// Theora å†…ã® BASEIMAGE ã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹å¯èƒ½æ€§ã‚‚ã‚ã‚‹ã®ã§å¤–éƒ¨ã®ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã¯ã“ã¡ã‚‰ã‚’ä½¿ã†ã¹ã—
 #ifndef DX_NON_FILTER
-	int						YGrHandle ;						// YUVƒJƒ‰[‚ÌY¬•ª‚Ì‚İ‚ÌƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹
-	int						UVGrHandle ;					// YUVƒJƒ‰[‚ÌUV¬•ª‚Ì‚İ‚ÌƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹
+	int						YGrHandle ;						// YUVã‚«ãƒ©ãƒ¼ã®Yæˆåˆ†ã®ã¿ã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«
+	int						UVGrHandle ;					// YUVã‚«ãƒ©ãƒ¼ã®UVæˆåˆ†ã®ã¿ã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«
 #endif // DX_NON_FILTER
-	int						OverlayDestX, OverlayDestY ;	// ÅŒã‚Éİ’è‚³‚ê‚½ƒI[ƒo[ƒŒƒCƒT[ƒtƒFƒX‚Ìo—ÍˆÊ’u
-	int						OverlayDestExRate ;				// ÅŒã‚Éİ’è‚³‚ê‚½ƒI[ƒo[ƒŒƒCƒT[ƒtƒFƒX‚Ìo—Í”{—¦
-	int						OverlayDispFlag ;				// ÅŒã‚Éİ’è‚³‚ê‚½ƒI[ƒo[ƒŒƒCƒT[ƒtƒFƒX‚Ì•\¦ƒtƒ‰ƒO
-	RECT					OverlaySrcRect, OverlayDestRect ;// ÅŒã‚ÉƒZƒbƒg‚³‚ê‚½ƒI[ƒo[ƒŒƒCƒ\[ƒX‹éŒ`‚Æo—Í‹éŒ`
+	int						OverlayDestX, OverlayDestY ;	// æœ€å¾Œã«è¨­å®šã•ã‚ŒãŸã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ã‚µãƒ¼ãƒ•ã‚§ã‚¹ã®å‡ºåŠ›ä½ç½®
+	int						OverlayDestExRate ;				// æœ€å¾Œã«è¨­å®šã•ã‚ŒãŸã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ã‚µãƒ¼ãƒ•ã‚§ã‚¹ã®å‡ºåŠ›å€ç‡
+	int						OverlayDispFlag ;				// æœ€å¾Œã«è¨­å®šã•ã‚ŒãŸã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ã‚µãƒ¼ãƒ•ã‚§ã‚¹ã®è¡¨ç¤ºãƒ•ãƒ©ã‚°
+	RECT					OverlaySrcRect, OverlayDestRect ;// æœ€å¾Œã«ã‚»ãƒƒãƒˆã•ã‚ŒãŸã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ã‚½ãƒ¼ã‚¹çŸ©å½¢ã¨å‡ºåŠ›çŸ©å½¢
 
-	void					( *UpdateFunction )( struct MOVIEGRAPH *Movie, void *Data ) ;		// “®‰æXV‚ÉŒÄ‚ÔƒR[ƒ‹ƒoƒbƒNŠÖ”
-	void					*UpdateFunctionData ;												// ƒR[ƒ‹ƒoƒbƒNŠÖ”‚É“n‚·ƒ|ƒCƒ“ƒ^
+	void					( *UpdateFunction )( struct MOVIEGRAPH *Movie, void *Data ) ;		// å‹•ç”»æ›´æ–°æ™‚ã«å‘¼ã¶ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+	void					*UpdateFunctionData ;												// ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã«æ¸¡ã™ãƒã‚¤ãƒ³ã‚¿
 
-	MOVIEGRAPH_PF			PF ;							// ŠÂ‹«ˆË‘¶î•ñ
+	MOVIEGRAPH_PF			PF ;							// ç’°å¢ƒä¾å­˜æƒ…å ±
 } ;
 
-// ƒ€[ƒr[ƒf[ƒ^ŠÇ—\‘¢‘Ì
+// ãƒ ãƒ¼ãƒ“ãƒ¼ãƒ‡ãƒ¼ã‚¿ç®¡ç†æ§‹é€ ä½“
 struct MOVIEGRAPHMANAGE
 {
-	int						InitializeFlag ;				// ‰Šú‰»ƒtƒ‰ƒO
+	int						InitializeFlag ;				// åˆæœŸåŒ–ãƒ•ãƒ©ã‚°
 
-	int						RightAlphaFlag ;				// “®‰æ‘œ‚Ì‰E‘¤‚ğƒAƒ‹ƒtƒ@‚Æ‚İ‚È‚·“®‰æƒnƒ“ƒhƒ‹‚ğì¬‚·‚é‚©(TRUE:ì¬‚·‚é)
-	int						A8R8G8B8Flag ;					// 32bitƒJƒ‰[ƒtƒH[ƒ}ƒbƒg‚ğ A8R8G8B8 Œ`®‚Æ‚µ‚Äˆµ‚¤‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO
-	int						NotUseYUVFormatSurfaceFlag ;	// ‚x‚t‚uƒtƒH[ƒ}ƒbƒg‚ÌƒT[ƒtƒFƒX‚ğg—p‚µ‚È‚¢‚©‚Ç‚¤‚©
+	int						RightAlphaFlag ;				// å‹•ç”»åƒã®å³å´ã‚’ã‚¢ãƒ«ãƒ•ã‚¡ã¨ã¿ãªã™å‹•ç”»ãƒãƒ³ãƒ‰ãƒ«ã‚’ä½œæˆã™ã‚‹ã‹(TRUE:ä½œæˆã™ã‚‹)
+	int						A8R8G8B8Flag ;					// 32bitã‚«ãƒ©ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã‚’ A8R8G8B8 å½¢å¼ã¨ã—ã¦æ‰±ã†ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°
+	int						NotUseYUVFormatSurfaceFlag ;	// ï¼¹ï¼µï¼¶ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®ã‚µãƒ¼ãƒ•ã‚§ã‚¹ã‚’ä½¿ç”¨ã—ãªã„ã‹ã©ã†ã‹
 
-	MOVIEGRAPHMANAGE_PF		PF ;							// ŠÂ‹«ˆË‘¶î•ñ
+	MOVIEGRAPHMANAGE_PF		PF ;							// ç’°å¢ƒä¾å­˜æƒ…å ±
 } ;
 
-// ƒe[ƒuƒ‹-----------------------------------------------------------------------
+// ãƒ†ãƒ¼ãƒ–ãƒ«-----------------------------------------------------------------------
 
-// “à•”‘åˆæ•Ï”éŒ¾ --------------------------------------------------------------
+// å†…éƒ¨å¤§åŸŸå¤‰æ•°å®£è¨€ --------------------------------------------------------------
 
-extern MOVIEGRAPHMANAGE MovieGraphManageData ;								// “®‰æŠÖ˜Aƒf[ƒ^
+extern MOVIEGRAPHMANAGE MovieGraphManageData ;								// å‹•ç”»é–¢é€£ãƒ‡ãƒ¼ã‚¿
 
-// ŠÖ”ƒvƒƒgƒ^ƒCƒvéŒ¾-----------------------------------------------------------
+// é–¢æ•°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€-----------------------------------------------------------
 
-extern	int		InitializeMovieManage( void ) ;																		// ƒ€[ƒr[ŠÖ˜A‚ÌŠÇ—ˆ—‚Ì‰Šú‰»
-extern	int		TerminateMovieManage( void ) ;																		// ƒ€[ƒr[ŠÖ˜A‚ÌŠÇ—ˆ—‚ÌŒãn––
+extern	int		InitializeMovieManage( void ) ;																		// ãƒ ãƒ¼ãƒ“ãƒ¼é–¢é€£ã®ç®¡ç†å‡¦ç†ã®åˆæœŸåŒ–
+extern	int		TerminateMovieManage( void ) ;																		// ãƒ ãƒ¼ãƒ“ãƒ¼é–¢é€£ã®ç®¡ç†å‡¦ç†ã®å¾Œå§‹æœ«
 
-// OpenMovie ‚ÌƒOƒ[ƒoƒ‹•Ï”‚ÉƒAƒNƒZƒX‚µ‚È‚¢ƒo[ƒWƒ‡ƒ“
+// OpenMovie ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°ã«ã‚¢ã‚¯ã‚»ã‚¹ã—ãªã„ãƒãƒ¼ã‚¸ãƒ§ãƒ³
 extern	int		OpenMovie_UseGParam(
 					int GrHandle,
 					OPENMOVIE_GPARAM *GParam,
@@ -169,60 +169,60 @@ extern	int		OpenMovie_UseGParam(
 					int ImageSizeGetOnly = FALSE,
 					int ASyncThread = FALSE ) ;
 
-extern	int		OpenMovie( const wchar_t *FileName, int *Width, int *Height, int SurfaceMode ) ;					// ƒ€[ƒr[‚ğŠJ‚­
-extern	int		CloseMovie( int MovieHandle ) ;																		// ƒ€[ƒr[‚ğ•Â‚¶‚é
-extern 	int		PlayMovie_( int MovieHandle, int PlayType = DX_PLAYTYPE_BACK, int SysPlay = 0 ) ;					// ƒ€[ƒr[‚ÌÄ¶‚ğŠJn‚·‚é
-extern 	int		PauseMovie( int MovieHandle, int SysPause = 0 ) ;													// ƒ€[ƒr[‚ÌÄ¶‚ğƒXƒgƒbƒv‚·‚é
-extern	int		AddMovieFrame( int MovieHandle, unsigned int FrameNum ) ;											// ƒ€[ƒr[‚ÌƒtƒŒ[ƒ€‚ği‚ß‚éA–ß‚·‚±‚Æ‚Ío—ˆ‚È‚¢( ƒ€[ƒr[‚ª’â~ó‘Ô‚ÅAŠ‚Â Ogg Theora ‚Ì‚İ—LŒø )
-extern	int		SeekMovie( int MovieHandle, int Time ) ;															// ƒ€[ƒr[‚ÌÄ¶ˆÊ’u‚ğİ’è‚·‚é(ƒ~ƒŠ•b’PˆÊ)
-extern	int		SetPlaySpeedRateMovie( int MovieHandle, double SpeedRate ) ;										// ƒ€[ƒr[‚ÌÄ¶‘¬“x‚ğİ’è‚·‚é( 1.0 = “™”{‘¬  2.0 = ‚Q”{‘¬ )Aˆê•”‚Ìƒtƒ@ƒCƒ‹ƒtƒH[ƒ}ƒbƒg‚Ì‚İ‚Å—LŒø‚È‹@”\‚Å‚·
-extern 	int		GetMovieState( int MovieHandle ) ;																	// ƒ€[ƒr[‚ÌÄ¶ó‘Ô‚ğ“¾‚é
-extern	int		SetMovieVolume( int Volume, int MovieHandle ) ;														// ƒ€[ƒr[‚Ìƒ{ƒŠƒ…[ƒ€‚ğƒZƒbƒg‚·‚é(0`10000)
-extern	int		GetMovieVolume( int MovieHandle ) ;																	// ƒ€[ƒr[‚Ìƒ{ƒŠƒ…[ƒ€‚ğæ“¾‚·‚é(0`10000)
-extern	BASEIMAGE *GetMovieBaseImage( int MovieHandle, int *ImageUpdateFlag, int ImageUpdateFlagSetOnly ) ;			// ƒ€[ƒr[‚ÌŠî–{ƒCƒ[ƒWƒf[ƒ^‚ğæ“¾‚·‚é
-extern	int		GetMovieTotalFrame( int MovieHandle ) ;																// ƒ€[ƒr[‚Ì‘ƒtƒŒ[ƒ€”‚ğ“¾‚é( Ogg Theora ‚Å‚Ì‚İ—LŒø )
-extern	int		TellMovie( int MovieHandle ) ;																		// ƒ€[ƒr[‚ÌÄ¶ˆÊ’u‚ğæ“¾‚·‚é(ƒ~ƒŠ•b’PˆÊ)
-extern	int		TellMovieToFrame( int MovieHandle ) ;																// ƒ€[ƒr[‚ÌÄ¶ˆÊ’u‚ğæ“¾‚·‚é(ƒtƒŒ[ƒ€’PˆÊ)
-extern	int		SeekMovieToFrame( int MovieHandle, int Frame ) ;													// ƒ€[ƒr[‚ÌÄ¶ˆÊ’u‚ğİ’è‚·‚é(ƒtƒŒ[ƒ€’PˆÊ)
-extern	LONGLONG GetOneFrameTimeMovie( int MovieHandle ) ;															// ƒ€[ƒr[‚Ì‚PƒtƒŒ[ƒ€‚ ‚½‚è‚ÌŠÔ‚ğ“¾‚é
-extern	MOVIEGRAPH *GetMovieData( int MovieHandle ) ;																// ƒ€[ƒr[ƒOƒ‰ƒtƒBƒbƒN‚Ìƒf[ƒ^‚ğæ“¾‚·‚é
+extern	int		OpenMovie( const wchar_t *FileName, int *Width, int *Height, int SurfaceMode ) ;					// ãƒ ãƒ¼ãƒ“ãƒ¼ã‚’é–‹ã
+extern	int		CloseMovie( int MovieHandle ) ;																		// ãƒ ãƒ¼ãƒ“ãƒ¼ã‚’é–‰ã˜ã‚‹
+extern 	int		PlayMovie_( int MovieHandle, int PlayType = DX_PLAYTYPE_BACK, int SysPlay = 0 ) ;					// ãƒ ãƒ¼ãƒ“ãƒ¼ã®å†ç”Ÿã‚’é–‹å§‹ã™ã‚‹
+extern 	int		PauseMovie( int MovieHandle, int SysPause = 0 ) ;													// ãƒ ãƒ¼ãƒ“ãƒ¼ã®å†ç”Ÿã‚’ã‚¹ãƒˆãƒƒãƒ—ã™ã‚‹
+extern	int		AddMovieFrame( int MovieHandle, unsigned int FrameNum ) ;											// ãƒ ãƒ¼ãƒ“ãƒ¼ã®ãƒ•ãƒ¬ãƒ¼ãƒ ã‚’é€²ã‚ã‚‹ã€æˆ»ã™ã“ã¨ã¯å‡ºæ¥ãªã„( ãƒ ãƒ¼ãƒ“ãƒ¼ãŒåœæ­¢çŠ¶æ…‹ã§ã€ä¸”ã¤ Ogg Theora ã®ã¿æœ‰åŠ¹ )
+extern	int		SeekMovie( int MovieHandle, int Time ) ;															// ãƒ ãƒ¼ãƒ“ãƒ¼ã®å†ç”Ÿä½ç½®ã‚’è¨­å®šã™ã‚‹(ãƒŸãƒªç§’å˜ä½)
+extern	int		SetPlaySpeedRateMovie( int MovieHandle, double SpeedRate ) ;										// ãƒ ãƒ¼ãƒ“ãƒ¼ã®å†ç”Ÿé€Ÿåº¦ã‚’è¨­å®šã™ã‚‹( 1.0 = ç­‰å€é€Ÿ  2.0 = ï¼’å€é€Ÿ )ã€ä¸€éƒ¨ã®ãƒ•ã‚¡ã‚¤ãƒ«ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®ã¿ã§æœ‰åŠ¹ãªæ©Ÿèƒ½ã§ã™
+extern 	int		GetMovieState( int MovieHandle ) ;																	// ãƒ ãƒ¼ãƒ“ãƒ¼ã®å†ç”ŸçŠ¶æ…‹ã‚’å¾—ã‚‹
+extern	int		SetMovieVolume( int Volume, int MovieHandle ) ;														// ãƒ ãƒ¼ãƒ“ãƒ¼ã®ãƒœãƒªãƒ¥ãƒ¼ãƒ ã‚’ã‚»ãƒƒãƒˆã™ã‚‹(0ï½10000)
+extern	int		GetMovieVolume( int MovieHandle ) ;																	// ãƒ ãƒ¼ãƒ“ãƒ¼ã®ãƒœãƒªãƒ¥ãƒ¼ãƒ ã‚’å–å¾—ã™ã‚‹(0ï½10000)
+extern	BASEIMAGE *GetMovieBaseImage( int MovieHandle, int *ImageUpdateFlag, int ImageUpdateFlagSetOnly ) ;			// ãƒ ãƒ¼ãƒ“ãƒ¼ã®åŸºæœ¬ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—ã™ã‚‹
+extern	int		GetMovieTotalFrame( int MovieHandle ) ;																// ãƒ ãƒ¼ãƒ“ãƒ¼ã®ç·ãƒ•ãƒ¬ãƒ¼ãƒ æ•°ã‚’å¾—ã‚‹( Ogg Theora ã§ã®ã¿æœ‰åŠ¹ )
+extern	int		TellMovie( int MovieHandle ) ;																		// ãƒ ãƒ¼ãƒ“ãƒ¼ã®å†ç”Ÿä½ç½®ã‚’å–å¾—ã™ã‚‹(ãƒŸãƒªç§’å˜ä½)
+extern	int		TellMovieToFrame( int MovieHandle ) ;																// ãƒ ãƒ¼ãƒ“ãƒ¼ã®å†ç”Ÿä½ç½®ã‚’å–å¾—ã™ã‚‹(ãƒ•ãƒ¬ãƒ¼ãƒ å˜ä½)
+extern	int		SeekMovieToFrame( int MovieHandle, int Frame ) ;													// ãƒ ãƒ¼ãƒ“ãƒ¼ã®å†ç”Ÿä½ç½®ã‚’è¨­å®šã™ã‚‹(ãƒ•ãƒ¬ãƒ¼ãƒ å˜ä½)
+extern	LONGLONG GetOneFrameTimeMovie( int MovieHandle ) ;															// ãƒ ãƒ¼ãƒ“ãƒ¼ã®ï¼‘ãƒ•ãƒ¬ãƒ¼ãƒ ã‚ãŸã‚Šã®æ™‚é–“ã‚’å¾—ã‚‹
+extern	MOVIEGRAPH *GetMovieData( int MovieHandle ) ;																// ãƒ ãƒ¼ãƒ“ãƒ¼ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—ã™ã‚‹
 
-extern	int		SetCallbackMovie( int MovieHandle, void ( *Callback )( MOVIEGRAPH *Movie, void *Data ), void *Data );	// ƒ€[ƒr[‚ÌXV‚ÉŒÄ‚Ño‚·ƒR[ƒ‹ƒoƒbƒNŠÖ”‚ğ“o˜^‚·‚é
-extern	int		UpdateMovie( int MovieHandle, int AlwaysFlag = FALSE ) ;											// ƒ€[ƒr[‚ÌXV‚ğs‚¤
-extern	int		ReleaseMovieSurface( int MovieHandle ) ;															// ƒ€[ƒr[‚Åg—p‚µ‚Ä‚¢‚éƒT[ƒtƒFƒX‚Ì‰ğ•ú‚ğs‚¤
+extern	int		SetCallbackMovie( int MovieHandle, void ( *Callback )( MOVIEGRAPH *Movie, void *Data ), void *Data );	// ãƒ ãƒ¼ãƒ“ãƒ¼ã®æ›´æ–°æ™‚ã«å‘¼ã³å‡ºã™ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã‚’ç™»éŒ²ã™ã‚‹
+extern	int		UpdateMovie( int MovieHandle, int AlwaysFlag = FALSE ) ;											// ãƒ ãƒ¼ãƒ“ãƒ¼ã®æ›´æ–°ã‚’è¡Œã†
+extern	int		ReleaseMovieSurface( int MovieHandle ) ;															// ãƒ ãƒ¼ãƒ“ãƒ¼ã§ä½¿ç”¨ã—ã¦ã„ã‚‹ã‚µãƒ¼ãƒ•ã‚§ã‚¹ã®è§£æ”¾ã‚’è¡Œã†
 
-extern	int		DisableMovieAll( void ) ;																			// ƒ€[ƒr[‚ÌÄ¶ó‘Ô‚ğ’â~‚·‚é
-extern	int		RestoreMovieAll( void ) ;																			// ƒ€[ƒr[‚ÌÄ¶ó‘Ô‚ğÄ¶‚·‚é
+extern	int		DisableMovieAll( void ) ;																			// ãƒ ãƒ¼ãƒ“ãƒ¼ã®å†ç”ŸçŠ¶æ…‹ã‚’åœæ­¢ã™ã‚‹
+extern	int		RestoreMovieAll( void ) ;																			// ãƒ ãƒ¼ãƒ“ãƒ¼ã®å†ç”ŸçŠ¶æ…‹ã‚’å†ç”Ÿã™ã‚‹
 
-extern 	int		PlayMovieAll( void ) ;																				// ‚·‚×‚Ä‚Ìƒ€[ƒr[ƒOƒ‰ƒtƒBƒbƒN‚ğƒXƒ^[ƒg
-extern 	int		PauseMovieAll( void ) ;																				// ‚·‚×‚Ä‚Ìƒ€[ƒr[ƒOƒ‰ƒtƒBƒbƒN‚ğƒXƒgƒbƒv
+extern 	int		PlayMovieAll( void ) ;																				// ã™ã¹ã¦ã®ãƒ ãƒ¼ãƒ“ãƒ¼ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚’ã‚¹ã‚¿ãƒ¼ãƒˆ
+extern 	int		PauseMovieAll( void ) ;																				// ã™ã¹ã¦ã®ãƒ ãƒ¼ãƒ“ãƒ¼ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚’ã‚¹ãƒˆãƒƒãƒ—
 
-extern	int		InitializeMovieHandle( HANDLEINFO *HandleInfo ) ;													// ƒ€[ƒr[ƒnƒ“ƒhƒ‹‚ğ‰Šú‰»‚ğ‚·‚éŠÖ”
-extern	int		TerminateMovieHandle( HANDLEINFO *HandleInfo ) ;													// ƒ€[ƒr[ƒnƒ“ƒhƒ‹‚ÌŒãn––‚ğs‚¤ŠÖ”
+extern	int		InitializeMovieHandle( HANDLEINFO *HandleInfo ) ;													// ãƒ ãƒ¼ãƒ“ãƒ¼ãƒãƒ³ãƒ‰ãƒ«ã‚’åˆæœŸåŒ–ã‚’ã™ã‚‹é–¢æ•°
+extern	int		TerminateMovieHandle( HANDLEINFO *HandleInfo ) ;													// ãƒ ãƒ¼ãƒ“ãƒ¼ãƒãƒ³ãƒ‰ãƒ«ã®å¾Œå§‹æœ«ã‚’è¡Œã†é–¢æ•°
 
 
-// ŠÂ‹«ˆË‘¶ŠÖ”
+// ç’°å¢ƒä¾å­˜é–¢æ•°
 
-extern	int		InitializeMovieManage_PF( void ) ;																	// ƒ€[ƒr[ŠÖ˜A‚ÌŠÇ—ˆ—‚Ì‰Šú‰»‚ÌŠÂ‹«ˆË‘¶ˆ—
-extern	int		TerminateMovieManage_PF( void ) ;																	// ƒ€[ƒr[ŠÖ˜A‚ÌŠÇ—ˆ—‚ÌŒãn––‚ÌŠÂ‹«ˆË‘¶ˆ—
+extern	int		InitializeMovieManage_PF( void ) ;																	// ãƒ ãƒ¼ãƒ“ãƒ¼é–¢é€£ã®ç®¡ç†å‡¦ç†ã®åˆæœŸåŒ–ã®ç’°å¢ƒä¾å­˜å‡¦ç†
+extern	int		TerminateMovieManage_PF( void ) ;																	// ãƒ ãƒ¼ãƒ“ãƒ¼é–¢é€£ã®ç®¡ç†å‡¦ç†ã®å¾Œå§‹æœ«ã®ç’°å¢ƒä¾å­˜å‡¦ç†
 
-extern	int		TerminateMovieHandle_PF( HANDLEINFO *HandleInfo ) ;													// ƒ€[ƒr[ƒnƒ“ƒhƒ‹‚ÌŒãn––‚ğs‚¤
-extern	int		OpenMovie_UseGParam_PF( MOVIEGRAPH * Movie, OPENMOVIE_GPARAM *GParam, const wchar_t *FileName, int *Width, int *Height, int SurfaceMode, int ImageSizeGetOnly = FALSE, int ASyncThread = FALSE ) ;	// OpenMovie ‚ÌƒOƒ[ƒoƒ‹•Ï”‚ÉƒAƒNƒZƒX‚µ‚È‚¢ƒo[ƒWƒ‡ƒ“‚ÌŠÂ‹«ˆË‘¶ˆ—
-extern	int		OpenMovie_CustomGraphHandleGParam_PF( MOVIEGRAPH * Movie, struct SETUP_GRAPHHANDLE_GPARAM *InitGraphHandleGParam ) ;	// ƒ€[ƒr[—p‚ÌƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹ì¬—p‚Ìƒpƒ‰ƒ[ƒ^‚ğƒJƒXƒ^ƒ}ƒCƒY‚·‚é
-extern 	int		PlayMovie__PF( MOVIEGRAPH * Movie, int PlayType = DX_PLAYTYPE_BACK, int SysPlay = 0 ) ;				// ƒ€[ƒr[‚ÌÄ¶‚ğŠJn‚·‚éˆ—‚ÌŠÂ‹«ˆË‘¶ˆ—
-extern 	int		PauseMovie_PF( MOVIEGRAPH * Movie, int SysPause = 0 ) ;												// ƒ€[ƒr[‚ÌÄ¶‚ğƒXƒgƒbƒv‚·‚éˆ—‚ÌŠÂ‹«ˆË‘¶ˆ—
-extern	int		SeekMovie_PF( MOVIEGRAPH * Movie, int Time ) ;														// ƒ€[ƒr[‚ÌÄ¶ˆÊ’u‚ğİ’è‚·‚é(ƒ~ƒŠ•b’PˆÊ)ˆ—‚ÌŠÂ‹«ˆË‘¶ˆ—
-extern	int		SetPlaySpeedRateMovie_PF( MOVIEGRAPH * Movie, double SpeedRate ) ;									// ƒ€[ƒr[‚ÌÄ¶‘¬“x‚ğİ’è‚·‚é( 1.0 = “™”{‘¬  2.0 = ‚Q”{‘¬ )ˆ—‚ÌŠÂ‹«ˆË‘¶ˆ—
-extern 	int		GetMovieState_PF( MOVIEGRAPH * Movie ) ;															// ƒ€[ƒr[‚ÌÄ¶ó‘Ô‚ğ“¾‚éˆ—‚ÌŠÂ‹«ˆË‘¶ˆ—
-extern	int		SetMovieVolume_PF( MOVIEGRAPH * Movie, int Volume ) ;												// ƒ€[ƒr[‚Ìƒ{ƒŠƒ…[ƒ€‚ğƒZƒbƒg‚·‚é(0`10000)ˆ—‚ÌŠÂ‹«ˆË‘¶ˆ—
-extern	BASEIMAGE *GetMovieBaseImage_PF( MOVIEGRAPH * Movie, int *ImageUpdateFlag, int ImageUpdateFlagSetOnly ) ;		// ƒ€[ƒr[‚ÌŠî–{ƒCƒ[ƒWƒf[ƒ^‚ğæ“¾‚·‚éˆ—‚ÌŠÂ‹«ˆË‘¶ˆ—
-extern	int		GetMovieTotalFrame_PF( MOVIEGRAPH * Movie ) ;														// ƒ€[ƒr[‚Ì‘ƒtƒŒ[ƒ€”‚ğ“¾‚é
-extern	int		TellMovie_PF( MOVIEGRAPH * Movie ) ;																// ƒ€[ƒr[‚ÌÄ¶ˆÊ’u‚ğæ“¾‚·‚é(ƒ~ƒŠ•b’PˆÊ)ˆ—‚ÌŠÂ‹«ˆË‘¶ˆ—
-extern	int		TellMovieToFrame_PF( MOVIEGRAPH * Movie ) ;															// ƒ€[ƒr[‚ÌÄ¶ˆÊ’u‚ğæ“¾‚·‚é(ƒtƒŒ[ƒ€’PˆÊ)ˆ—‚ÌŠÂ‹«ˆË‘¶ˆ—
-extern	int		SeekMovieToFrame_PF( MOVIEGRAPH * Movie, int Frame ) ;												// ƒ€[ƒr[‚ÌÄ¶ˆÊ’u‚ğİ’è‚·‚é(ƒtƒŒ[ƒ€’PˆÊ)ˆ—‚ÌŠÂ‹«ˆË‘¶ˆ—
-extern	LONGLONG GetOneFrameTimeMovie_PF( MOVIEGRAPH * Movie ) ;													// ƒ€[ƒr[‚Ì‚PƒtƒŒ[ƒ€‚ ‚½‚è‚ÌŠÔ‚ğ“¾‚éˆ—‚ÌŠÂ‹«ˆË‘¶ˆ—
+extern	int		TerminateMovieHandle_PF( HANDLEINFO *HandleInfo ) ;													// ãƒ ãƒ¼ãƒ“ãƒ¼ãƒãƒ³ãƒ‰ãƒ«ã®å¾Œå§‹æœ«ã‚’è¡Œã†
+extern	int		OpenMovie_UseGParam_PF( MOVIEGRAPH * Movie, OPENMOVIE_GPARAM *GParam, const wchar_t *FileName, int *Width, int *Height, int SurfaceMode, int ImageSizeGetOnly = FALSE, int ASyncThread = FALSE ) ;	// OpenMovie ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°ã«ã‚¢ã‚¯ã‚»ã‚¹ã—ãªã„ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã®ç’°å¢ƒä¾å­˜å‡¦ç†
+extern	int		OpenMovie_CustomGraphHandleGParam_PF( MOVIEGRAPH * Movie, struct SETUP_GRAPHHANDLE_GPARAM *InitGraphHandleGParam ) ;	// ãƒ ãƒ¼ãƒ“ãƒ¼ç”¨ã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ä½œæˆç”¨ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ã‚«ã‚¹ã‚¿ãƒã‚¤ã‚ºã™ã‚‹
+extern 	int		PlayMovie__PF( MOVIEGRAPH * Movie, int PlayType = DX_PLAYTYPE_BACK, int SysPlay = 0 ) ;				// ãƒ ãƒ¼ãƒ“ãƒ¼ã®å†ç”Ÿã‚’é–‹å§‹ã™ã‚‹å‡¦ç†ã®ç’°å¢ƒä¾å­˜å‡¦ç†
+extern 	int		PauseMovie_PF( MOVIEGRAPH * Movie, int SysPause = 0 ) ;												// ãƒ ãƒ¼ãƒ“ãƒ¼ã®å†ç”Ÿã‚’ã‚¹ãƒˆãƒƒãƒ—ã™ã‚‹å‡¦ç†ã®ç’°å¢ƒä¾å­˜å‡¦ç†
+extern	int		SeekMovie_PF( MOVIEGRAPH * Movie, int Time ) ;														// ãƒ ãƒ¼ãƒ“ãƒ¼ã®å†ç”Ÿä½ç½®ã‚’è¨­å®šã™ã‚‹(ãƒŸãƒªç§’å˜ä½)å‡¦ç†ã®ç’°å¢ƒä¾å­˜å‡¦ç†
+extern	int		SetPlaySpeedRateMovie_PF( MOVIEGRAPH * Movie, double SpeedRate ) ;									// ãƒ ãƒ¼ãƒ“ãƒ¼ã®å†ç”Ÿé€Ÿåº¦ã‚’è¨­å®šã™ã‚‹( 1.0 = ç­‰å€é€Ÿ  2.0 = ï¼’å€é€Ÿ )å‡¦ç†ã®ç’°å¢ƒä¾å­˜å‡¦ç†
+extern 	int		GetMovieState_PF( MOVIEGRAPH * Movie ) ;															// ãƒ ãƒ¼ãƒ“ãƒ¼ã®å†ç”ŸçŠ¶æ…‹ã‚’å¾—ã‚‹å‡¦ç†ã®ç’°å¢ƒä¾å­˜å‡¦ç†
+extern	int		SetMovieVolume_PF( MOVIEGRAPH * Movie, int Volume ) ;												// ãƒ ãƒ¼ãƒ“ãƒ¼ã®ãƒœãƒªãƒ¥ãƒ¼ãƒ ã‚’ã‚»ãƒƒãƒˆã™ã‚‹(0ï½10000)å‡¦ç†ã®ç’°å¢ƒä¾å­˜å‡¦ç†
+extern	BASEIMAGE *GetMovieBaseImage_PF( MOVIEGRAPH * Movie, int *ImageUpdateFlag, int ImageUpdateFlagSetOnly ) ;		// ãƒ ãƒ¼ãƒ“ãƒ¼ã®åŸºæœ¬ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—ã™ã‚‹å‡¦ç†ã®ç’°å¢ƒä¾å­˜å‡¦ç†
+extern	int		GetMovieTotalFrame_PF( MOVIEGRAPH * Movie ) ;														// ãƒ ãƒ¼ãƒ“ãƒ¼ã®ç·ãƒ•ãƒ¬ãƒ¼ãƒ æ•°ã‚’å¾—ã‚‹
+extern	int		TellMovie_PF( MOVIEGRAPH * Movie ) ;																// ãƒ ãƒ¼ãƒ“ãƒ¼ã®å†ç”Ÿä½ç½®ã‚’å–å¾—ã™ã‚‹(ãƒŸãƒªç§’å˜ä½)å‡¦ç†ã®ç’°å¢ƒä¾å­˜å‡¦ç†
+extern	int		TellMovieToFrame_PF( MOVIEGRAPH * Movie ) ;															// ãƒ ãƒ¼ãƒ“ãƒ¼ã®å†ç”Ÿä½ç½®ã‚’å–å¾—ã™ã‚‹(ãƒ•ãƒ¬ãƒ¼ãƒ å˜ä½)å‡¦ç†ã®ç’°å¢ƒä¾å­˜å‡¦ç†
+extern	int		SeekMovieToFrame_PF( MOVIEGRAPH * Movie, int Frame ) ;												// ãƒ ãƒ¼ãƒ“ãƒ¼ã®å†ç”Ÿä½ç½®ã‚’è¨­å®šã™ã‚‹(ãƒ•ãƒ¬ãƒ¼ãƒ å˜ä½)å‡¦ç†ã®ç’°å¢ƒä¾å­˜å‡¦ç†
+extern	LONGLONG GetOneFrameTimeMovie_PF( MOVIEGRAPH * Movie ) ;													// ãƒ ãƒ¼ãƒ“ãƒ¼ã®ï¼‘ãƒ•ãƒ¬ãƒ¼ãƒ ã‚ãŸã‚Šã®æ™‚é–“ã‚’å¾—ã‚‹å‡¦ç†ã®ç’°å¢ƒä¾å­˜å‡¦ç†
 
-extern	int		UpdateMovie_PF( MOVIEGRAPH * Movie, int AlwaysFlag = FALSE ) ;										// ƒ€[ƒr[‚ÌXV‚ğs‚¤ˆ—‚ÌŠÂ‹«ˆË‘¶ˆ—
+extern	int		UpdateMovie_PF( MOVIEGRAPH * Movie, int AlwaysFlag = FALSE ) ;										// ãƒ ãƒ¼ãƒ“ãƒ¼ã®æ›´æ–°ã‚’è¡Œã†å‡¦ç†ã®ç’°å¢ƒä¾å­˜å‡¦ç†
 
 
 

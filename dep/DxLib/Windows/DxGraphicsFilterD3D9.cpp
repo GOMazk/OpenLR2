@@ -1,12 +1,12 @@
 //-----------------------------------------------------------------------------
 // 
-// 		‚c‚wƒ‰ƒCƒuƒ‰ƒŠ		GraphFilterŒnƒvƒƒOƒ‰ƒ€( Direct3D9 )
+// 		ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒª		GraphFilterç³»ãƒ—ãƒ­ã‚°ãƒ©ãƒ ( Direct3D9 )
 // 
 //  	Ver 3.25a
 // 
 //-----------------------------------------------------------------------------
 
-// ‚c‚wƒ‰ƒCƒuƒ‰ƒŠì¬—p’è‹`
+// ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªä½œæˆæ™‚ç”¨å®šç¾©
 #define DX_MAKE
 
 #include "../DxCompileConfig.h"
@@ -15,7 +15,7 @@
 
 #ifndef DX_NON_DIRECT3D9
 
-// ƒCƒ“ƒNƒ‹[ƒh ---------------------------------------------------------------
+// ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ ---------------------------------------------------------------
 #include "DxGraphicsFilterD3D9.h"
 #include "DxGraphicsWin.h"
 #include "DxWindow.h"
@@ -37,9 +37,9 @@ namespace DxLib
 
 #endif // DX_NON_NAMESPACE
 
-// ƒ}ƒNƒ’è‹` -----------------------------------------------------------------
+// ãƒã‚¯ãƒ­å®šç¾© -----------------------------------------------------------------
 
-// \‘¢‘ÌéŒ¾ -----------------------------------------------------------------
+// æ§‹é€ ä½“å®£è¨€ -----------------------------------------------------------------
 
 struct GRAPHFILTER_SHADERPARAMTEMP_DIRECT3D9
 {
@@ -49,7 +49,7 @@ struct GRAPHFILTER_SHADERPARAMTEMP_DIRECT3D9
 	int						TextureNum ;
 } ;
 
-// ƒf[ƒ^’è‹` -----------------------------------------------------------------
+// ãƒ‡ãƒ¼ã‚¿å®šç¾© -----------------------------------------------------------------
 
 
 static int GraphFilterPassNum_Table[DX_GRAPH_FILTER_NUM] =
@@ -198,11 +198,11 @@ static int GraphBlendUseWorkScreen_Table[DX_GRAPH_BLEND_NUM] =
 
 GRAPHFILTER_SYSTEMIFNO_DIRET3D9 GraphFilterSystemInfoD3D9 ;
 
-// ŠÖ”éŒ¾ -------------------------------------------------------------------
+// é–¢æ•°å®£è¨€ -------------------------------------------------------------------
 
-static int	Direct3D9_GraphFilter_GetWorkTexture( int IsFloatType, int ChannelBitDepth, DWORD TexSizeW, DWORD TexSizeH, DWORD HandleIndex ) ;		// ƒtƒBƒ‹ƒ^[ì‹Æ—p‚ÌƒeƒNƒXƒ`ƒƒƒnƒ“ƒhƒ‹‚ğæ“¾‚·‚é
+static int	Direct3D9_GraphFilter_GetWorkTexture( int IsFloatType, int ChannelBitDepth, DWORD TexSizeW, DWORD TexSizeH, DWORD HandleIndex ) ;		// ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ä½œæ¥­ç”¨ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒãƒ³ãƒ‰ãƒ«ã‚’å–å¾—ã™ã‚‹
 
-static int  Direct3D9_MemLoadShaderCode( const char *ShaderName, int ShaderType ) ;	// w’è–¼‚Ì–‘O—pˆÓƒVƒF[ƒ_[‚ğ“Ç‚İ‚Ş
+static int  Direct3D9_MemLoadShaderCode( const char *ShaderName, int ShaderType ) ;	// æŒ‡å®šåã®äº‹å‰ç”¨æ„ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’èª­ã¿è¾¼ã‚€
 
 extern void Direct3D9_GraphFilter_PushBaseDrawParam( GRAPHFILTER_DRAWPARAMTEMP_DIRECT3D9 *DrawParamTemp, int BltBlendMode ) ;
 extern void Direct3D9_GraphFilter_PopBaseDrawParam(  GRAPHFILTER_DRAWPARAMTEMP_DIRECT3D9 *DrawParamTemp ) ;
@@ -211,9 +211,9 @@ static void Direct3D9_GraphFilter_PopShaderParam(    GRAPHFILTER_SHADERPARAMTEMP
 
 static int  Direct3D9_BasePolygonDraw( GRAPHFILTER_INFO *Info, int ScaleDivNum = 1, VERTEX_TEX8_2D *Texcoord8Vertex = NULL ) ;
 
-// ƒvƒƒOƒ‰ƒ€ -----------------------------------------------------------------
+// ãƒ—ãƒ­ã‚°ãƒ©ãƒ  -----------------------------------------------------------------
 
-// ƒtƒBƒ‹ƒ^[ì‹Æ—p‚ÌƒeƒNƒXƒ`ƒƒƒnƒ“ƒhƒ‹‚ğæ“¾‚·‚é
+// ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ä½œæ¥­ç”¨ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒãƒ³ãƒ‰ãƒ«ã‚’å–å¾—ã™ã‚‹
 static int	Direct3D9_GraphFilter_GetWorkTexture( int IsFloatType, int ChannelBitDepth, DWORD TexSizeW, DWORD TexSizeH, DWORD HandleIndex )
 {
 	IMAGEDATA *BaseImage ;
@@ -243,7 +243,7 @@ static int	Direct3D9_GraphFilter_GetWorkTexture( int IsFloatType, int ChannelBit
 		GraphFilterSystemInfoD3D9.WorkDrawValidGrHandle[ IsFloatType ][ BitDepth ][ NPowW ][ NPowH ][ HandleIndex ] = Graphics_Image_MakeGraph_UseGParam( &GParam, WorkTexSizeW, WorkTexSizeH, FALSE, FALSE, 0, FALSE ) ;
 		if( GraphFilterSystemInfoD3D9.WorkDrawValidGrHandle[ IsFloatType ][ BitDepth ][ NPowW ][ NPowH ][ HandleIndex ] < 0 )
 		{
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\x5c\x4f\x6d\x69\x28\x75\xcf\x63\x3b\x75\xef\x53\xfd\x80\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x20\x00\x53\x00\x69\x00\x7a\x00\x65\x00\x3a\x00\x25\x00\x64\x00\x78\x00\x25\x00\x64\x00\x00"/*@ L"ì‹Æ—p•`‰æ‰Â”\ƒeƒNƒXƒ`ƒƒ‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½ Size:%dx%d" @*/, WorkTexSizeW, WorkTexSizeH )) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\x5c\x4f\x6d\x69\x28\x75\xcf\x63\x3b\x75\xef\x53\xfd\x80\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x20\x00\x53\x00\x69\x00\x7a\x00\x65\x00\x3a\x00\x25\x00\x64\x00\x78\x00\x25\x00\x64\x00\x00"/*@ L"ä½œæ¥­ç”¨æç”»å¯èƒ½ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ Size:%dx%d" @*/, WorkTexSizeW, WorkTexSizeH )) ;
 			return -1 ;
 		}
 		NS_SetDeleteHandleFlag( GraphFilterSystemInfoD3D9.WorkDrawValidGrHandle[ IsFloatType ][ BitDepth ][ NPowW ][ NPowH ][ HandleIndex ], &GraphFilterSystemInfoD3D9.WorkDrawValidGrHandle[ IsFloatType ][ BitDepth ][ NPowW ][ NPowH ][ HandleIndex ] ) ;
@@ -252,7 +252,7 @@ static int	Direct3D9_GraphFilter_GetWorkTexture( int IsFloatType, int ChannelBit
 	return GraphFilterSystemInfoD3D9.WorkDrawValidGrHandle[ IsFloatType ][ BitDepth ][ NPowW ][ NPowH ][ HandleIndex ] ;
 }
 
-// w’è–¼‚Ì–‘O—pˆÓƒVƒF[ƒ_[‚ğ“Ç‚İ‚Ş
+// æŒ‡å®šåã®äº‹å‰ç”¨æ„ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’èª­ã¿è¾¼ã‚€
 static int Direct3D9_MemLoadShaderCode( const char *ShaderName, int ShaderType )
 {
 	int Addr, Size ;
@@ -382,7 +382,7 @@ extern int	GraphFilter_D3D9_Mono_PF(        GRAPHFILTER_INFO *Info, float Cb, fl
 
 	NS_SetDrawMode( DX_DRAWMODE_NEAREST ) ;
 
-	// g—p‚·‚éƒVƒF[ƒ_[‚ÌƒZƒbƒgƒAƒbƒv
+	// ä½¿ç”¨ã™ã‚‹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 	if( GraphFilterShaderHandle.MonoPS < 0 )
 	{
 		GraphFilterShaderHandle.MonoPS = Direct3D9_MemLoadShaderCode( PsoFileName[ 0 ], DX_SHADERTYPE_PIXEL ) ;
@@ -391,7 +391,7 @@ extern int	GraphFilter_D3D9_Mono_PF(        GRAPHFILTER_INFO *Info, float Cb, fl
 			char PathUTF16LE[ 128 ] ;
 
 			ConvString( PsoFileName[ 0 ], -1, DX_CHARCODEFORMAT_ASCII, ( char * )PathUTF16LE, sizeof( PathUTF16LE ), DX_CHARCODEFORMAT_UTF16LE ) ;
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\xd5\x30\xa3\x30\xeb\x30\xbf\x30\xfc\x30\x28\x75\xb7\x30\xa7\x30\xfc\x30\xc0\x30\xfc\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x20\x00\x25\x00\x73\x00\x00"/*@ L"ƒtƒBƒ‹ƒ^[—pƒVƒF[ƒ_[‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½ %s" @*/, PathUTF16LE )) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\xd5\x30\xa3\x30\xeb\x30\xbf\x30\xfc\x30\x28\x75\xb7\x30\xa7\x30\xfc\x30\xc0\x30\xfc\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x20\x00\x25\x00\x73\x00\x00"/*@ L"ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ç”¨ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ %s" @*/, PathUTF16LE )) ;
 			return -1 ;
 		}
 		NS_SetDeleteHandleFlag( GraphFilterShaderHandle.MonoPS, &GraphFilterShaderHandle.MonoPS ) ;
@@ -417,7 +417,7 @@ extern int	GraphFilter_D3D9_Mono_PF(        GRAPHFILTER_INFO *Info, float Cb, fl
 
 	Graphics_D3D9_ShaderConstant_InfoSet_ResetParam( &GD3D9.Device.Shader.ShaderConstantInfo, DX_SHADERCONSTANTTYPE_PS_FLOAT, DX_SHADERCONSTANTSET_LIB_SUB, 0, 2 ) ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
@@ -446,7 +446,7 @@ extern int	GraphFilter_D3D9_Gauss_PF( GRAPHFILTER_INFO *Info, int PixelWidth, fl
 		SHADOWMAPCHK( Info->SrcGrHandle, SrcShadowMap ) )
 		return -1 ;
 
-	// PixelWidth ‚É‚æ‚Á‚ÄƒVƒF[ƒ_[‚ğ•ÏX
+	// PixelWidth ã«ã‚ˆã£ã¦ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’å¤‰æ›´
 	switch( PixelWidth )
 	{
 	case 8  : UseShader = 0 ; break ;
@@ -483,7 +483,7 @@ extern int	GraphFilter_D3D9_Gauss_PF( GRAPHFILTER_INFO *Info, int PixelWidth, fl
 	}
 	else */
 	{
-		// g—p‚·‚éƒVƒF[ƒ_[‚ÌƒZƒbƒgƒAƒbƒv
+		// ä½¿ç”¨ã™ã‚‹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 		if( GraphFilterShaderHandle.Gauss_PS[ UseShader ] < 0 )
 		{
 			GraphFilterShaderHandle.Gauss_PS[ UseShader ] = Direct3D9_MemLoadShaderCode( PsoFileName[ UseShader ], DX_SHADERTYPE_PIXEL ) ;
@@ -492,7 +492,7 @@ extern int	GraphFilter_D3D9_Gauss_PF( GRAPHFILTER_INFO *Info, int PixelWidth, fl
 				char PathUTF16LE[ 128 ] ;
 
 				ConvString( PsoFileName[ UseShader ], -1, DX_CHARCODEFORMAT_ASCII, ( char * )PathUTF16LE, sizeof( PathUTF16LE ), DX_CHARCODEFORMAT_UTF16LE ) ;
-				DXST_LOGFILEFMT_ADDUTF16LE(( "\xd5\x30\xa3\x30\xeb\x30\xbf\x30\xfc\x30\x28\x75\xb7\x30\xa7\x30\xfc\x30\xc0\x30\xfc\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x20\x00\x25\x00\x73\x00\x00"/*@ L"ƒtƒBƒ‹ƒ^[—pƒVƒF[ƒ_[‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½ %s" @*/, PathUTF16LE )) ;
+				DXST_LOGFILEFMT_ADDUTF16LE(( "\xd5\x30\xa3\x30\xeb\x30\xbf\x30\xfc\x30\x28\x75\xb7\x30\xa7\x30\xfc\x30\xc0\x30\xfc\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x20\x00\x25\x00\x73\x00\x00"/*@ L"ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ç”¨ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ %s" @*/, PathUTF16LE )) ;
 				return -1 ;
 			}
 			NS_SetDeleteHandleFlag( GraphFilterShaderHandle.Gauss_PS[ UseShader ], &GraphFilterShaderHandle.Gauss_PS[ UseShader ] ) ;
@@ -521,7 +521,7 @@ extern int	GraphFilter_D3D9_Gauss_PF( GRAPHFILTER_INFO *Info, int PixelWidth, fl
 		ParamF4[  4 ].z = Table[ 14 ] ;
 		ParamF4[  4 ].w = Table[ 15 ] ;
 
-		// ƒpƒX‚É‚æ‚Á‚Äˆ—‚ğ•ªŠò
+		// ãƒ‘ã‚¹ã«ã‚ˆã£ã¦å‡¦ç†ã‚’åˆ†å²
 		switch( Info->Pass )
 		{
 		case 0 :
@@ -600,7 +600,7 @@ extern int	GraphFilter_D3D9_Gauss_PF( GRAPHFILTER_INFO *Info, int PixelWidth, fl
 		}
 	}
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
@@ -629,7 +629,7 @@ extern int	GraphFilter_D3D9_Down_Scale_PF(  GRAPHFILTER_INFO *Info, int DivNum )
 	if( GRAPHCHK( Info->SrcGrHandle, SrcImage ) )
 		return -1 ;
 
-	// g—p‚·‚éƒVƒF[ƒ_[‚ÌƒZƒbƒgƒAƒbƒv
+	// ä½¿ç”¨ã™ã‚‹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 	switch( DivNum )
 	{
 	case 1 : 
@@ -645,7 +645,7 @@ extern int	GraphFilter_D3D9_Down_Scale_PF(  GRAPHFILTER_INFO *Info, int DivNum )
 			char PathUTF16LE[ 128 ] ;
 
 			ConvString( PsoFileName[ UseShader ], -1, DX_CHARCODEFORMAT_ASCII, ( char * )PathUTF16LE, sizeof( PathUTF16LE ), DX_CHARCODEFORMAT_UTF16LE ) ;
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\xd5\x30\xa3\x30\xeb\x30\xbf\x30\xfc\x30\x28\x75\xb7\x30\xa7\x30\xfc\x30\xc0\x30\xfc\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x20\x00\x25\x00\x73\x00\x00"/*@ L"ƒtƒBƒ‹ƒ^[—pƒVƒF[ƒ_[‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½ %s" @*/, PathUTF16LE )) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\xd5\x30\xa3\x30\xeb\x30\xbf\x30\xfc\x30\x28\x75\xb7\x30\xa7\x30\xfc\x30\xc0\x30\xfc\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x20\x00\x25\x00\x73\x00\x00"/*@ L"ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ç”¨ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ %s" @*/, PathUTF16LE )) ;
 			return -1 ;
 		}
 		NS_SetDeleteHandleFlag( GraphFilterShaderHandle.DownScalePS[ UseShader ], &GraphFilterShaderHandle.DownScalePS[ UseShader ] ) ;
@@ -706,7 +706,7 @@ extern int	GraphFilter_D3D9_Down_Scale_PF(  GRAPHFILTER_INFO *Info, int DivNum )
 
 	Graphics_D3D9_ShaderConstant_InfoSet_ResetParam( &GD3D9.Device.Shader.ShaderConstantInfo, DX_SHADERCONSTANTTYPE_PS_FLOAT, DX_SHADERCONSTANTSET_LIB_SUB, 0, UseConstNum ) ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
@@ -735,7 +735,7 @@ extern int	GraphFilter_D3D9_Bright_Clip_PF( GRAPHFILTER_INFO *Info, int CmpType,
 
 	NS_SetDrawMode( DX_DRAWMODE_NEAREST ) ;
 
-	// g—p‚·‚éƒVƒF[ƒ_[‚ÌƒZƒbƒgƒAƒbƒv
+	// ä½¿ç”¨ã™ã‚‹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 	UseFill = ClipFillFlag == TRUE ? 1 : 0 ;
 	switch( CmpType )
 	{
@@ -755,7 +755,7 @@ extern int	GraphFilter_D3D9_Bright_Clip_PF( GRAPHFILTER_INFO *Info, int CmpType,
 			char PathUTF16LE[ 128 ] ;
 
 			ConvString( PsoFileName[ UseShader ][ UseFill ][ IsPMA ], -1, DX_CHARCODEFORMAT_ASCII, ( char * )PathUTF16LE, sizeof( PathUTF16LE ), DX_CHARCODEFORMAT_UTF16LE ) ;
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\xd5\x30\xa3\x30\xeb\x30\xbf\x30\xfc\x30\x28\x75\xb7\x30\xa7\x30\xfc\x30\xc0\x30\xfc\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x20\x00\x25\x00\x73\x00\x00"/*@ L"ƒtƒBƒ‹ƒ^[—pƒVƒF[ƒ_[‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½ %s" @*/, PathUTF16LE )) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\xd5\x30\xa3\x30\xeb\x30\xbf\x30\xfc\x30\x28\x75\xb7\x30\xa7\x30\xfc\x30\xc0\x30\xfc\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x20\x00\x25\x00\x73\x00\x00"/*@ L"ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ç”¨ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ %s" @*/, PathUTF16LE )) ;
 			return -1 ;
 		}
 		NS_SetDeleteHandleFlag( GraphFilterShaderHandle.BrightClipPS[ UseShader ][ UseFill ][ IsPMA ], &GraphFilterShaderHandle.BrightClipPS[ UseShader ][ UseFill ][ IsPMA ] ) ;
@@ -788,7 +788,7 @@ extern int	GraphFilter_D3D9_Bright_Clip_PF( GRAPHFILTER_INFO *Info, int CmpType,
 
 	Graphics_D3D9_ShaderConstant_InfoSet_ResetParam( &GD3D9.Device.Shader.ShaderConstantInfo, DX_SHADERCONSTANTTYPE_PS_FLOAT, DX_SHADERCONSTANTSET_LIB_SUB, 0, 3 ) ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
@@ -809,7 +809,7 @@ extern int	GraphFilter_D3D9_Bright_Scale_PF( GRAPHFILTER_INFO *Info, int BrightM
 
 	NS_SetDrawMode( DX_DRAWMODE_NEAREST ) ;
 
-	// g—p‚·‚éƒVƒF[ƒ_[‚ÌƒZƒbƒgƒAƒbƒv
+	// ä½¿ç”¨ã™ã‚‹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 	if( GraphFilterShaderHandle.BrightScalePS[ IsPMA ] < 0 )
 	{
 		GraphFilterShaderHandle.BrightScalePS[ IsPMA ] = Direct3D9_MemLoadShaderCode( PsoFileName[ IsPMA ], DX_SHADERTYPE_PIXEL ) ;
@@ -818,7 +818,7 @@ extern int	GraphFilter_D3D9_Bright_Scale_PF( GRAPHFILTER_INFO *Info, int BrightM
 			char PathUTF16LE[ 128 ] ;
 
 			ConvString( PsoFileName[ IsPMA ], -1, DX_CHARCODEFORMAT_ASCII, ( char * )PathUTF16LE, sizeof( PathUTF16LE ), DX_CHARCODEFORMAT_UTF16LE ) ;
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\xd5\x30\xa3\x30\xeb\x30\xbf\x30\xfc\x30\x28\x75\xb7\x30\xa7\x30\xfc\x30\xc0\x30\xfc\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x20\x00\x25\x00\x73\x00\x00"/*@ L"ƒtƒBƒ‹ƒ^[—pƒVƒF[ƒ_[‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½ %s" @*/, PathUTF16LE )) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\xd5\x30\xa3\x30\xeb\x30\xbf\x30\xfc\x30\x28\x75\xb7\x30\xa7\x30\xfc\x30\xc0\x30\xfc\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x20\x00\x25\x00\x73\x00\x00"/*@ L"ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ç”¨ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ %s" @*/, PathUTF16LE )) ;
 			return -1 ;
 		}
 		NS_SetDeleteHandleFlag( GraphFilterShaderHandle.BrightScalePS[ IsPMA ], &GraphFilterShaderHandle.BrightScalePS[ IsPMA ] ) ;
@@ -840,7 +840,7 @@ extern int	GraphFilter_D3D9_Bright_Scale_PF( GRAPHFILTER_INFO *Info, int BrightM
 
 	Graphics_D3D9_ShaderConstant_InfoSet_ResetParam( &GD3D9.Device.Shader.ShaderConstantInfo, DX_SHADERCONSTANTTYPE_PS_FLOAT, DX_SHADERCONSTANTSET_LIB_SUB, 0, 1 ) ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
@@ -866,7 +866,7 @@ extern int	GraphFilter_D3D9_HSB_PF(         GRAPHFILTER_INFO *Info, int HueType,
 
 	NS_SetDrawMode( DX_DRAWMODE_NEAREST ) ;
 
-	// g—p‚·‚éƒVƒF[ƒ_[‚ÌƒZƒbƒgƒAƒbƒv
+	// ä½¿ç”¨ã™ã‚‹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 	if( HueType == 1 )
 	{
 		UseShader = 2 ;
@@ -883,7 +883,7 @@ extern int	GraphFilter_D3D9_HSB_PF(         GRAPHFILTER_INFO *Info, int HueType,
 			char PathUTF16LE[ 128 ] ;
 
 			ConvString( PsoFileName[ UseShader ][ IsPMA ], -1, DX_CHARCODEFORMAT_ASCII, ( char * )PathUTF16LE, sizeof( PathUTF16LE ), DX_CHARCODEFORMAT_UTF16LE ) ;
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\xd5\x30\xa3\x30\xeb\x30\xbf\x30\xfc\x30\x28\x75\xb7\x30\xa7\x30\xfc\x30\xc0\x30\xfc\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x20\x00\x25\x00\x73\x00\x00"/*@ L"ƒtƒBƒ‹ƒ^[—pƒVƒF[ƒ_[‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½ %s" @*/, PathUTF16LE )) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\xd5\x30\xa3\x30\xeb\x30\xbf\x30\xfc\x30\x28\x75\xb7\x30\xa7\x30\xfc\x30\xc0\x30\xfc\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x20\x00\x25\x00\x73\x00\x00"/*@ L"ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ç”¨ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ %s" @*/, PathUTF16LE )) ;
 			return -1 ;
 		}
 		NS_SetDeleteHandleFlag( GraphFilterShaderHandle.HsbPS[ UseShader ][ IsPMA ], &GraphFilterShaderHandle.HsbPS[ UseShader ][ IsPMA ] ) ;
@@ -913,7 +913,7 @@ extern int	GraphFilter_D3D9_HSB_PF(         GRAPHFILTER_INFO *Info, int HueType,
 
 	Graphics_D3D9_ShaderConstant_InfoSet_ResetParam( &GD3D9.Device.Shader.ShaderConstantInfo, DX_SHADERCONSTANTTYPE_PS_FLOAT, DX_SHADERCONSTANTSET_LIB_SUB, 0, 3 ) ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
@@ -933,7 +933,7 @@ extern int	GraphFilter_D3D9_Invert_PF(      GRAPHFILTER_INFO *Info, int IsPMA )
 
 	NS_SetDrawMode( DX_DRAWMODE_NEAREST ) ;
 
-	// g—p‚·‚éƒVƒF[ƒ_[‚ÌƒZƒbƒgƒAƒbƒv
+	// ä½¿ç”¨ã™ã‚‹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 	if( GraphFilterShaderHandle.InvertPS[ IsPMA ] < 0 )
 	{
 		GraphFilterShaderHandle.InvertPS[ IsPMA ] = Direct3D9_MemLoadShaderCode( PsoFileName[ IsPMA ], DX_SHADERTYPE_PIXEL ) ;
@@ -942,7 +942,7 @@ extern int	GraphFilter_D3D9_Invert_PF(      GRAPHFILTER_INFO *Info, int IsPMA )
 			char PathUTF16LE[ 128 ] ;
 
 			ConvString( PsoFileName[ IsPMA ], -1, DX_CHARCODEFORMAT_ASCII, ( char * )PathUTF16LE, sizeof( PathUTF16LE ), DX_CHARCODEFORMAT_UTF16LE ) ;
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\xd5\x30\xa3\x30\xeb\x30\xbf\x30\xfc\x30\x28\x75\xb7\x30\xa7\x30\xfc\x30\xc0\x30\xfc\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x20\x00\x25\x00\x73\x00\x00"/*@ L"ƒtƒBƒ‹ƒ^[—pƒVƒF[ƒ_[‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½ %s" @*/, PathUTF16LE )) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\xd5\x30\xa3\x30\xeb\x30\xbf\x30\xfc\x30\x28\x75\xb7\x30\xa7\x30\xfc\x30\xc0\x30\xfc\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x20\x00\x25\x00\x73\x00\x00"/*@ L"ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ç”¨ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ %s" @*/, PathUTF16LE )) ;
 			return -1 ;
 		}
 		NS_SetDeleteHandleFlag( GraphFilterShaderHandle.InvertPS[ IsPMA ], &GraphFilterShaderHandle.InvertPS[ IsPMA ] ) ;
@@ -956,7 +956,7 @@ extern int	GraphFilter_D3D9_Invert_PF(      GRAPHFILTER_INFO *Info, int IsPMA )
 
 	Direct3D9_GraphFilter_PopShaderParam( &ShaderParamTemp ) ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
@@ -977,7 +977,7 @@ extern int	GraphFilter_D3D9_Level_PF(       GRAPHFILTER_INFO *Info, float Min, f
 
 	// NS_SetDrawMode( DX_DRAWMODE_NEAREST ) ;
 
-	// g—p‚·‚éƒVƒF[ƒ_[‚ÌƒZƒbƒgƒAƒbƒv
+	// ä½¿ç”¨ã™ã‚‹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 	if( GraphFilterShaderHandle.LevelPS[ IsPMA ] < 0 )
 	{
 		GraphFilterShaderHandle.LevelPS[ IsPMA ] = Direct3D9_MemLoadShaderCode( PsoFileName[ IsPMA ], DX_SHADERTYPE_PIXEL ) ;
@@ -986,7 +986,7 @@ extern int	GraphFilter_D3D9_Level_PF(       GRAPHFILTER_INFO *Info, float Min, f
 			char PathUTF16LE[ 128 ] ;
 
 			ConvString( PsoFileName[ IsPMA ], -1, DX_CHARCODEFORMAT_ASCII, ( char * )PathUTF16LE, sizeof( PathUTF16LE ), DX_CHARCODEFORMAT_UTF16LE ) ;
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\xd5\x30\xa3\x30\xeb\x30\xbf\x30\xfc\x30\x28\x75\xb7\x30\xa7\x30\xfc\x30\xc0\x30\xfc\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x20\x00\x25\x00\x73\x00\x00"/*@ L"ƒtƒBƒ‹ƒ^[—pƒVƒF[ƒ_[‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½ %s" @*/, PathUTF16LE )) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\xd5\x30\xa3\x30\xeb\x30\xbf\x30\xfc\x30\x28\x75\xb7\x30\xa7\x30\xfc\x30\xc0\x30\xfc\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x20\x00\x25\x00\x73\x00\x00"/*@ L"ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ç”¨ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ %s" @*/, PathUTF16LE )) ;
 			return -1 ;
 		}
 		NS_SetDeleteHandleFlag( GraphFilterShaderHandle.LevelPS[ IsPMA ], &GraphFilterShaderHandle.LevelPS[ IsPMA ] ) ;
@@ -1010,7 +1010,7 @@ extern int	GraphFilter_D3D9_Level_PF(       GRAPHFILTER_INFO *Info, float Min, f
 
 	Graphics_D3D9_ShaderConstant_InfoSet_ResetParam( &GD3D9.Device.Shader.ShaderConstantInfo, DX_SHADERCONSTANTTYPE_PS_FLOAT, DX_SHADERCONSTANTSET_LIB_SUB, 0, 1 ) ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
@@ -1033,7 +1033,7 @@ extern int	GraphFilter_D3D9_TwoColor_PF(    GRAPHFILTER_INFO *Info, float Thresh
 
 	NS_SetDrawMode( DX_DRAWMODE_NEAREST ) ;
 
-	// g—p‚·‚éƒVƒF[ƒ_[‚ÌƒZƒbƒgƒAƒbƒv
+	// ä½¿ç”¨ã™ã‚‹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 	if( GraphFilterShaderHandle.TwoColorPS[ IsPMA ] < 0 )
 	{
 		GraphFilterShaderHandle.TwoColorPS[ IsPMA ] = Direct3D9_MemLoadShaderCode( PsoFileName[ IsPMA ], DX_SHADERTYPE_PIXEL ) ;
@@ -1042,7 +1042,7 @@ extern int	GraphFilter_D3D9_TwoColor_PF(    GRAPHFILTER_INFO *Info, float Thresh
 			char PathUTF16LE[ 128 ] ;
 
 			ConvString( PsoFileName[ IsPMA ], -1, DX_CHARCODEFORMAT_ASCII, ( char * )PathUTF16LE, sizeof( PathUTF16LE ), DX_CHARCODEFORMAT_UTF16LE ) ;
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\xd5\x30\xa3\x30\xeb\x30\xbf\x30\xfc\x30\x28\x75\xb7\x30\xa7\x30\xfc\x30\xc0\x30\xfc\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x20\x00\x25\x00\x73\x00\x00"/*@ L"ƒtƒBƒ‹ƒ^[—pƒVƒF[ƒ_[‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½ %s" @*/, PathUTF16LE )) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\xd5\x30\xa3\x30\xeb\x30\xbf\x30\xfc\x30\x28\x75\xb7\x30\xa7\x30\xfc\x30\xc0\x30\xfc\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x20\x00\x25\x00\x73\x00\x00"/*@ L"ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ç”¨ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ %s" @*/, PathUTF16LE )) ;
 			return -1 ;
 		}
 		NS_SetDeleteHandleFlag( GraphFilterShaderHandle.TwoColorPS[ IsPMA ], &GraphFilterShaderHandle.TwoColorPS[ IsPMA ] ) ;
@@ -1072,7 +1072,7 @@ extern int	GraphFilter_D3D9_TwoColor_PF(    GRAPHFILTER_INFO *Info, float Thresh
 
 	Graphics_D3D9_ShaderConstant_InfoSet_ResetParam( &GD3D9.Device.Shader.ShaderConstantInfo, DX_SHADERCONSTANTTYPE_PS_FLOAT, DX_SHADERCONSTANTSET_LIB_SUB, 0, 3 ) ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
@@ -1096,7 +1096,7 @@ extern int	GraphFilter_D3D9_GradientMap_PF( GRAPHFILTER_INFO *Info, int MapGrHan
 
 	NS_SetDrawMode( DX_DRAWMODE_NEAREST ) ;
 
-	// g—p‚·‚éƒVƒF[ƒ_[‚ÌƒZƒbƒgƒAƒbƒv
+	// ä½¿ç”¨ã™ã‚‹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 	UseShader = Reverse ? 1 : 0 ;
 	if( GraphFilterShaderHandle.GradientMapPS[ UseShader ][ IsPMA ] < 0 )
 	{
@@ -1106,7 +1106,7 @@ extern int	GraphFilter_D3D9_GradientMap_PF( GRAPHFILTER_INFO *Info, int MapGrHan
 			char PathUTF16LE[ 128 ] ;
 
 			ConvString( PsoFileName[ UseShader ][ IsPMA ], -1, DX_CHARCODEFORMAT_ASCII, ( char * )PathUTF16LE, sizeof( PathUTF16LE ), DX_CHARCODEFORMAT_UTF16LE ) ;
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\xd5\x30\xa3\x30\xeb\x30\xbf\x30\xfc\x30\x28\x75\xb7\x30\xa7\x30\xfc\x30\xc0\x30\xfc\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x20\x00\x25\x00\x73\x00\x00"/*@ L"ƒtƒBƒ‹ƒ^[—pƒVƒF[ƒ_[‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½ %s" @*/, PathUTF16LE )) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\xd5\x30\xa3\x30\xeb\x30\xbf\x30\xfc\x30\x28\x75\xb7\x30\xa7\x30\xfc\x30\xc0\x30\xfc\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x20\x00\x25\x00\x73\x00\x00"/*@ L"ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ç”¨ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ %s" @*/, PathUTF16LE )) ;
 			return -1 ;
 		}
 		NS_SetDeleteHandleFlag( GraphFilterShaderHandle.GradientMapPS[ UseShader ][ IsPMA ], &GraphFilterShaderHandle.GradientMapPS[ UseShader ][ IsPMA ] ) ;
@@ -1130,7 +1130,7 @@ extern int	GraphFilter_D3D9_GradientMap_PF( GRAPHFILTER_INFO *Info, int MapGrHan
 
 	Graphics_D3D9_ShaderConstant_InfoSet_ResetParam( &GD3D9.Device.Shader.ShaderConstantInfo, DX_SHADERCONSTANTTYPE_PS_FLOAT, DX_SHADERCONSTANTSET_LIB_SUB, 0, 1 ) ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
@@ -1151,7 +1151,7 @@ extern int	GraphFilter_D3D9_Replacement_PF(   GRAPHFILTER_INFO *Info, COLOR_U8 T
 
 	NS_SetDrawMode( DX_DRAWMODE_NEAREST ) ;
 
-	// g—p‚·‚éƒVƒF[ƒ_[‚ÌƒZƒbƒgƒAƒbƒv
+	// ä½¿ç”¨ã™ã‚‹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 	if( GraphFilterShaderHandle.ReplacementPS[ IsPMA ] < 0 )
 	{
 		GraphFilterShaderHandle.ReplacementPS[ IsPMA ] = Direct3D9_MemLoadShaderCode( PsoFileName[ IsPMA ], DX_SHADERTYPE_PIXEL ) ;
@@ -1160,7 +1160,7 @@ extern int	GraphFilter_D3D9_Replacement_PF(   GRAPHFILTER_INFO *Info, COLOR_U8 T
 			char PathUTF16LE[ 128 ] ;
 
 			ConvString( PsoFileName[ IsPMA ], -1, DX_CHARCODEFORMAT_ASCII, ( char * )PathUTF16LE, sizeof( PathUTF16LE ), DX_CHARCODEFORMAT_UTF16LE ) ;
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\xd5\x30\xa3\x30\xeb\x30\xbf\x30\xfc\x30\x28\x75\xb7\x30\xa7\x30\xfc\x30\xc0\x30\xfc\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x20\x00\x25\x00\x73\x00\x00"/*@ L"ƒtƒBƒ‹ƒ^[—pƒVƒF[ƒ_[‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½ %s" @*/, PathUTF16LE )) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\xd5\x30\xa3\x30\xeb\x30\xbf\x30\xfc\x30\x28\x75\xb7\x30\xa7\x30\xfc\x30\xc0\x30\xfc\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x20\x00\x25\x00\x73\x00\x00"/*@ L"ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ç”¨ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ %s" @*/, PathUTF16LE )) ;
 			return -1 ;
 		}
 		NS_SetDeleteHandleFlag( GraphFilterShaderHandle.ReplacementPS[ IsPMA ], &GraphFilterShaderHandle.ReplacementPS[ IsPMA ] ) ;
@@ -1186,7 +1186,7 @@ extern int	GraphFilter_D3D9_Replacement_PF(   GRAPHFILTER_INFO *Info, COLOR_U8 T
 
 	Graphics_D3D9_ShaderConstant_InfoSet_ResetParam( &GD3D9.Device.Shader.ShaderConstantInfo, DX_SHADERCONSTANTTYPE_PS_FLOAT, DX_SHADERCONSTANTSET_LIB_SUB, 0, 2 ) ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
@@ -1206,7 +1206,7 @@ extern int	GraphFilter_D3D9_PremulAlpha_PF( GRAPHFILTER_INFO *Info )
 
 	NS_SetDrawMode( DX_DRAWMODE_NEAREST ) ;
 
-	// g—p‚·‚éƒVƒF[ƒ_[‚ÌƒZƒbƒgƒAƒbƒv
+	// ä½¿ç”¨ã™ã‚‹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 	UseShader = 0 ;
 	if( GraphFilterShaderHandle.PreMulAlphaPS < 0 )
 	{
@@ -1216,7 +1216,7 @@ extern int	GraphFilter_D3D9_PremulAlpha_PF( GRAPHFILTER_INFO *Info )
 			char PathUTF16LE[ 128 ] ;
 
 			ConvString( PsoFileName[ UseShader ], -1, DX_CHARCODEFORMAT_ASCII, ( char * )PathUTF16LE, sizeof( PathUTF16LE ), DX_CHARCODEFORMAT_UTF16LE ) ;
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\xd5\x30\xa3\x30\xeb\x30\xbf\x30\xfc\x30\x28\x75\xb7\x30\xa7\x30\xfc\x30\xc0\x30\xfc\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x20\x00\x25\x00\x73\x00\x00"/*@ L"ƒtƒBƒ‹ƒ^[—pƒVƒF[ƒ_[‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½ %s" @*/, PathUTF16LE )) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\xd5\x30\xa3\x30\xeb\x30\xbf\x30\xfc\x30\x28\x75\xb7\x30\xa7\x30\xfc\x30\xc0\x30\xfc\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x20\x00\x25\x00\x73\x00\x00"/*@ L"ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ç”¨ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ %s" @*/, PathUTF16LE )) ;
 			return -1 ;
 		}
 		NS_SetDeleteHandleFlag( GraphFilterShaderHandle.PreMulAlphaPS, &GraphFilterShaderHandle.PreMulAlphaPS ) ;
@@ -1230,7 +1230,7 @@ extern int	GraphFilter_D3D9_PremulAlpha_PF( GRAPHFILTER_INFO *Info )
 
 	Direct3D9_GraphFilter_PopShaderParam( &ShaderParamTemp ) ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
@@ -1250,7 +1250,7 @@ extern int	GraphFilter_D3D9_InterpAlpha_PF( GRAPHFILTER_INFO *Info )
 
 	NS_SetDrawMode( DX_DRAWMODE_NEAREST ) ;
 
-	// g—p‚·‚éƒVƒF[ƒ_[‚ÌƒZƒbƒgƒAƒbƒv
+	// ä½¿ç”¨ã™ã‚‹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 	UseShader = 0 ;
 	if( GraphFilterShaderHandle.InterpAlphaPS < 0 )
 	{
@@ -1260,7 +1260,7 @@ extern int	GraphFilter_D3D9_InterpAlpha_PF( GRAPHFILTER_INFO *Info )
 			char PathUTF16LE[ 128 ] ;
 
 			ConvString( PsoFileName[ UseShader ], -1, DX_CHARCODEFORMAT_ASCII, ( char * )PathUTF16LE, sizeof( PathUTF16LE ), DX_CHARCODEFORMAT_UTF16LE ) ;
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\xd5\x30\xa3\x30\xeb\x30\xbf\x30\xfc\x30\x28\x75\xb7\x30\xa7\x30\xfc\x30\xc0\x30\xfc\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x20\x00\x25\x00\x73\x00\x00"/*@ L"ƒtƒBƒ‹ƒ^[—pƒVƒF[ƒ_[‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½ %s" @*/, PathUTF16LE )) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\xd5\x30\xa3\x30\xeb\x30\xbf\x30\xfc\x30\x28\x75\xb7\x30\xa7\x30\xfc\x30\xc0\x30\xfc\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x20\x00\x25\x00\x73\x00\x00"/*@ L"ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ç”¨ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ %s" @*/, PathUTF16LE )) ;
 			return -1 ;
 		}
 		NS_SetDeleteHandleFlag( GraphFilterShaderHandle.InterpAlphaPS, &GraphFilterShaderHandle.InterpAlphaPS ) ;
@@ -1274,7 +1274,7 @@ extern int	GraphFilter_D3D9_InterpAlpha_PF( GRAPHFILTER_INFO *Info )
 
 	Direct3D9_GraphFilter_PopShaderParam( &ShaderParamTemp ) ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
@@ -1300,7 +1300,7 @@ extern int	GraphFilter_D3D9_YUVtoRGB_PF(     GRAPHFILTER_INFO *Info, int UVGrHan
 
 	NS_SetDrawMode( DX_DRAWMODE_NEAREST ) ;
 
-	// g—p‚·‚éƒVƒF[ƒ_[‚ÌƒZƒbƒgƒAƒbƒv
+	// ä½¿ç”¨ã™ã‚‹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 	UseShader = ( UVGrHandle < 0 ? 0 : 1 ) + ( RRAFlag ? 2 : 0 ) ;
 	if( GraphFilterShaderHandle.YUVtoRGBPS[ UseShader ] < 0 )
 	{
@@ -1310,7 +1310,7 @@ extern int	GraphFilter_D3D9_YUVtoRGB_PF(     GRAPHFILTER_INFO *Info, int UVGrHan
 			char PathUTF16LE[ 128 ] ;
 
 			ConvString( PsoFileName[ UseShader ], -1, DX_CHARCODEFORMAT_ASCII, ( char * )PathUTF16LE, sizeof( PathUTF16LE ), DX_CHARCODEFORMAT_UTF16LE ) ;
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\xd5\x30\xa3\x30\xeb\x30\xbf\x30\xfc\x30\x28\x75\xb7\x30\xa7\x30\xfc\x30\xc0\x30\xfc\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x20\x00\x25\x00\x73\x00\x00"/*@ L"ƒtƒBƒ‹ƒ^[—pƒVƒF[ƒ_[‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½ %s" @*/, PathUTF16LE )) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\xd5\x30\xa3\x30\xeb\x30\xbf\x30\xfc\x30\x28\x75\xb7\x30\xa7\x30\xfc\x30\xc0\x30\xfc\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x20\x00\x25\x00\x73\x00\x00"/*@ L"ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ç”¨ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ %s" @*/, PathUTF16LE )) ;
 			return -1 ;
 		}
 		NS_SetDeleteHandleFlag( GraphFilterShaderHandle.YUVtoRGBPS[ UseShader ], &GraphFilterShaderHandle.YUVtoRGBPS[ UseShader ] ) ;
@@ -1369,7 +1369,7 @@ extern int	GraphFilter_D3D9_YUVtoRGB_PF(     GRAPHFILTER_INFO *Info, int UVGrHan
 		Graphics_D3D9_ShaderConstant_InfoSet_ResetParam( &GD3D9.Device.Shader.ShaderConstantInfo, DX_SHADERCONSTANTTYPE_PS_FLOAT, DX_SHADERCONSTANTSET_LIB_SUB, 0, 1 ) ;
 	}
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
@@ -1391,7 +1391,7 @@ extern int	GraphFilter_D3D9_BicubicScale_PF( GRAPHFILTER_INFO *Info, int DestSiz
 
 	NS_SetDrawMode( DX_DRAWMODE_NEAREST ) ;
 
-	// g—p‚·‚éƒVƒF[ƒ_[‚ÌƒZƒbƒgƒAƒbƒv
+	// ä½¿ç”¨ã™ã‚‹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 	UseShader = 0 ;
 	if( GraphFilterShaderHandle.BicubicPS < 0 )
 	{
@@ -1401,7 +1401,7 @@ extern int	GraphFilter_D3D9_BicubicScale_PF( GRAPHFILTER_INFO *Info, int DestSiz
 			char PathUTF16LE[ 128 ] ;
 
 			ConvString( PsoFileName[ UseShader ], -1, DX_CHARCODEFORMAT_ASCII, ( char * )PathUTF16LE, sizeof( PathUTF16LE ), DX_CHARCODEFORMAT_UTF16LE ) ;
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\xd5\x30\xa3\x30\xeb\x30\xbf\x30\xfc\x30\x28\x75\xb7\x30\xa7\x30\xfc\x30\xc0\x30\xfc\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x20\x00\x25\x00\x73\x00\x00"/*@ L"ƒtƒBƒ‹ƒ^[—pƒVƒF[ƒ_[‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½ %s" @*/, PathUTF16LE )) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\xd5\x30\xa3\x30\xeb\x30\xbf\x30\xfc\x30\x28\x75\xb7\x30\xa7\x30\xfc\x30\xc0\x30\xfc\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x20\x00\x25\x00\x73\x00\x00"/*@ L"ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ç”¨ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ %s" @*/, PathUTF16LE )) ;
 			return -1 ;
 		}
 		NS_SetDeleteHandleFlag( GraphFilterShaderHandle.BicubicPS, &GraphFilterShaderHandle.BicubicPS ) ;
@@ -1487,7 +1487,7 @@ extern int	GraphFilter_D3D9_BicubicScale_PF( GRAPHFILTER_INFO *Info, int DestSiz
 
 	Graphics_D3D9_ShaderConstant_InfoSet_ResetParam( &GD3D9.Device.Shader.ShaderConstantInfo, DX_SHADERCONSTANTTYPE_PS_FLOAT, DX_SHADERCONSTANTSET_LIB_SUB, 0, 2 ) ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
@@ -1509,7 +1509,7 @@ extern int	GraphFilter_D3D9_Lanczos3Scale_PF( GRAPHFILTER_INFO *Info, int DestSi
 
 	NS_SetDrawMode( DX_DRAWMODE_NEAREST ) ;
 
-	// g—p‚·‚éƒVƒF[ƒ_[‚ÌƒZƒbƒgƒAƒbƒv
+	// ä½¿ç”¨ã™ã‚‹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 	UseShader = 0 ;
 	if( GraphFilterShaderHandle.Lanczos3PS < 0 )
 	{
@@ -1519,7 +1519,7 @@ extern int	GraphFilter_D3D9_Lanczos3Scale_PF( GRAPHFILTER_INFO *Info, int DestSi
 			char PathUTF16LE[ 128 ] ;
 
 			ConvString( PsoFileName[ UseShader ], -1, DX_CHARCODEFORMAT_ASCII, ( char * )PathUTF16LE, sizeof( PathUTF16LE ), DX_CHARCODEFORMAT_UTF16LE ) ;
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\xd5\x30\xa3\x30\xeb\x30\xbf\x30\xfc\x30\x28\x75\xb7\x30\xa7\x30\xfc\x30\xc0\x30\xfc\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x20\x00\x25\x00\x73\x00\x00"/*@ L"ƒtƒBƒ‹ƒ^[—pƒVƒF[ƒ_[‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½ %s" @*/, PathUTF16LE )) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\xd5\x30\xa3\x30\xeb\x30\xbf\x30\xfc\x30\x28\x75\xb7\x30\xa7\x30\xfc\x30\xc0\x30\xfc\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x20\x00\x25\x00\x73\x00\x00"/*@ L"ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ç”¨ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ %s" @*/, PathUTF16LE )) ;
 			return -1 ;
 		}
 		NS_SetDeleteHandleFlag( GraphFilterShaderHandle.Lanczos3PS, &GraphFilterShaderHandle.Lanczos3PS ) ;
@@ -1597,7 +1597,7 @@ extern int	GraphFilter_D3D9_Lanczos3Scale_PF( GRAPHFILTER_INFO *Info, int DestSi
 
 	Graphics_D3D9_ShaderConstant_InfoSet_ResetParam( &GD3D9.Device.Shader.ShaderConstantInfo, DX_SHADERCONSTANTTYPE_PS_FLOAT, DX_SHADERCONSTANTSET_LIB_SUB, 0, 2 ) ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
@@ -1663,7 +1663,7 @@ extern int	GraphBlend_D3D9_Basic_PF(           GRAPHFILTER_INFO *Info, int /*IsP
 
 //	NS_SetDrawMode( DX_DRAWMODE_NEAREST ) ;
 
-	// g—p‚·‚éƒVƒF[ƒ_[‚ÌƒZƒbƒgƒAƒbƒv
+	// ä½¿ç”¨ã™ã‚‹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 	UseShader = Info->FilterOrBlendType ;
 	if( GraphFilterShaderHandle.BasicBlendPS[ UseShader ] < 0 )
 	{
@@ -1673,7 +1673,7 @@ extern int	GraphBlend_D3D9_Basic_PF(           GRAPHFILTER_INFO *Info, int /*IsP
 			char PathUTF16LE[ 128 ] ;
 
 			ConvString( PsoFileName[ UseShader ], -1, DX_CHARCODEFORMAT_ASCII, ( char * )PathUTF16LE, sizeof( PathUTF16LE ), DX_CHARCODEFORMAT_UTF16LE ) ;
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\xd5\x30\xa3\x30\xeb\x30\xbf\x30\xfc\x30\x28\x75\xb7\x30\xa7\x30\xfc\x30\xc0\x30\xfc\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x20\x00\x25\x00\x73\x00\x00"/*@ L"ƒtƒBƒ‹ƒ^[—pƒVƒF[ƒ_[‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½ %s" @*/, PathUTF16LE )) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\xd5\x30\xa3\x30\xeb\x30\xbf\x30\xfc\x30\x28\x75\xb7\x30\xa7\x30\xfc\x30\xc0\x30\xfc\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x20\x00\x25\x00\x73\x00\x00"/*@ L"ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ç”¨ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ %s" @*/, PathUTF16LE )) ;
 			return -1 ;
 		}
 		NS_SetDeleteHandleFlag( GraphFilterShaderHandle.BasicBlendPS[ UseShader ], &GraphFilterShaderHandle.BasicBlendPS[ UseShader ] ) ;
@@ -1699,7 +1699,7 @@ extern int	GraphBlend_D3D9_Basic_PF(           GRAPHFILTER_INFO *Info, int /*IsP
 
 	Graphics_D3D9_ShaderConstant_InfoSet_ResetParam( &GD3D9.Device.Shader.ShaderConstantInfo, DX_SHADERCONSTANTTYPE_PS_FLOAT, DX_SHADERCONSTANTSET_LIB_SUB, 0, 2 ) ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
@@ -1730,7 +1730,7 @@ extern int	GraphBlend_D3D9_RGBA_Select_Mix_PF( GRAPHFILTER_INFO *Info, int Selec
 
 	NS_SetDrawMode( DX_DRAWMODE_NEAREST ) ;
 
-	// g—p‚·‚éƒVƒF[ƒ_[‚ÌƒZƒbƒgƒAƒbƒv
+	// ä½¿ç”¨ã™ã‚‹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 	if( ( SelectR >= DX_RGBA_SELECT_SRC_INV_R && SelectR <= DX_RGBA_SELECT_BLEND_INV_A ) ||
 		( SelectG >= DX_RGBA_SELECT_SRC_INV_R && SelectG <= DX_RGBA_SELECT_BLEND_INV_A ) ||
 		( SelectB >= DX_RGBA_SELECT_SRC_INV_R && SelectB <= DX_RGBA_SELECT_BLEND_INV_A ) ||
@@ -1779,7 +1779,7 @@ extern int	GraphBlend_D3D9_RGBA_Select_Mix_PF( GRAPHFILTER_INFO *Info, int Selec
 				*PixelShaderHandle = NS_LoadPixelShaderFromMem( GD3D9.ShaderCode.Base.RGBAMixS_ShaderAddress[ SelectR ][ SelectG ][ SelectB ][ SelectA ][ IsPMA ], GD3D9.ShaderCode.Base.RGBAMixS_ShaderSize[ SelectR ][ SelectG ][ SelectB ][ SelectA ][ IsPMA ] ) ;
 				if( *PixelShaderHandle < 0 )
 				{
-					DXST_LOGFILEFMT_ADDUTF16LE(( "\x52\x00\x47\x00\x42\x00\x41\x00\x4d\x00\x69\x00\x78\x00\x53\x00\x20\x00\xd5\x30\xa3\x30\xeb\x30\xbf\x30\xfc\x30\x28\x75\xb7\x30\xa7\x30\xfc\x30\xc0\x30\xfc\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"RGBAMixS ƒtƒBƒ‹ƒ^[—pƒVƒF[ƒ_[‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½" @*/ )) ;
+					DXST_LOGFILEFMT_ADDUTF16LE(( "\x52\x00\x47\x00\x42\x00\x41\x00\x4d\x00\x69\x00\x78\x00\x53\x00\x20\x00\xd5\x30\xa3\x30\xeb\x30\xbf\x30\xfc\x30\x28\x75\xb7\x30\xa7\x30\xfc\x30\xc0\x30\xfc\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"RGBAMixS ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ç”¨ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ" @*/ )) ;
 					return -1 ;
 				}
 				NS_SetDeleteHandleFlag( *PixelShaderHandle, PixelShaderHandle ) ;
@@ -1811,7 +1811,7 @@ extern int	GraphBlend_D3D9_RGBA_Select_Mix_PF( GRAPHFILTER_INFO *Info, int Selec
 			if( *PixelShaderHandle < 0 )
 			{
 				ConvString( FileName, -1, DX_CHARCODEFORMAT_ASCII, ( char * )PathUTF16LE, sizeof( PathUTF16LE ), DX_CHARCODEFORMAT_UTF16LE ) ;
-				DXST_LOGFILEFMT_ADDUTF16LE(( "\x52\x00\x47\x00\x42\x00\x41\x00\x4d\x00\x69\x00\x78\x00\x53\x00\x20\x00\xd5\x30\xa3\x30\xeb\x30\xbf\x30\xfc\x30\x28\x75\xb7\x30\xa7\x30\xfc\x30\xc0\x30\xfc\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x20\x00\x25\x00\x73\x00\x00"/*@ L"RGBAMixS ƒtƒBƒ‹ƒ^[—pƒVƒF[ƒ_[‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½ %s" @*/, PathUTF16LE )) ;
+				DXST_LOGFILEFMT_ADDUTF16LE(( "\x52\x00\x47\x00\x42\x00\x41\x00\x4d\x00\x69\x00\x78\x00\x53\x00\x20\x00\xd5\x30\xa3\x30\xeb\x30\xbf\x30\xfc\x30\x28\x75\xb7\x30\xa7\x30\xfc\x30\xc0\x30\xfc\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x20\x00\x25\x00\x73\x00\x00"/*@ L"RGBAMixS ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ç”¨ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ %s" @*/, PathUTF16LE )) ;
 				return -1 ;
 			}
 			NS_SetDeleteHandleFlag( *PixelShaderHandle, PixelShaderHandle ) ;
@@ -1843,7 +1843,7 @@ extern int	GraphBlend_D3D9_RGBA_Select_Mix_PF( GRAPHFILTER_INFO *Info, int Selec
 			if( *PixelShaderHandle < 0 )
 			{
 				ConvString( FileName, -1, DX_CHARCODEFORMAT_ASCII, ( char * )PathUTF16LE, sizeof( PathUTF16LE ), DX_CHARCODEFORMAT_UTF16LE ) ;
-				DXST_LOGFILEFMT_ADDUTF16LE(( "\x52\x00\x47\x00\x42\x00\x41\x00\x4d\x00\x69\x00\x78\x00\x53\x00\x20\x00\xd5\x30\xa3\x30\xeb\x30\xbf\x30\xfc\x30\x28\x75\xb7\x30\xa7\x30\xfc\x30\xc0\x30\xfc\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x20\x00\x25\x00\x73\x00\x00"/*@ L"RGBAMixS ƒtƒBƒ‹ƒ^[—pƒVƒF[ƒ_[‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½ %s" @*/, PathUTF16LE )) ;
+				DXST_LOGFILEFMT_ADDUTF16LE(( "\x52\x00\x47\x00\x42\x00\x41\x00\x4d\x00\x69\x00\x78\x00\x53\x00\x20\x00\xd5\x30\xa3\x30\xeb\x30\xbf\x30\xfc\x30\x28\x75\xb7\x30\xa7\x30\xfc\x30\xc0\x30\xfc\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x20\x00\x25\x00\x73\x00\x00"/*@ L"RGBAMixS ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ç”¨ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ %s" @*/, PathUTF16LE )) ;
 				return -1 ;
 			}
 			NS_SetDeleteHandleFlag( *PixelShaderHandle, PixelShaderHandle ) ;
@@ -1859,7 +1859,7 @@ USE_BASE_SHADER:
 			if( *PixelShaderHandle < 0 )
 			{
 				ConvString( PsoFileName[ IsPMA ], -1, DX_CHARCODEFORMAT_ASCII, ( char * )PathUTF16LE, sizeof( PathUTF16LE ), DX_CHARCODEFORMAT_UTF16LE ) ;
-				DXST_LOGFILEFMT_ADDUTF16LE(( "\xd5\x30\xa3\x30\xeb\x30\xbf\x30\xfc\x30\x28\x75\xb7\x30\xa7\x30\xfc\x30\xc0\x30\xfc\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x20\x00\x25\x00\x73\x00\x00"/*@ L"ƒtƒBƒ‹ƒ^[—pƒVƒF[ƒ_[‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½ %s" @*/, PathUTF16LE )) ;
+				DXST_LOGFILEFMT_ADDUTF16LE(( "\xd5\x30\xa3\x30\xeb\x30\xbf\x30\xfc\x30\x28\x75\xb7\x30\xa7\x30\xfc\x30\xc0\x30\xfc\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x20\x00\x25\x00\x73\x00\x00"/*@ L"ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ç”¨ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ %s" @*/, PathUTF16LE )) ;
 				return -1 ;
 			}
 			NS_SetDeleteHandleFlag( *PixelShaderHandle, PixelShaderHandle ) ;
@@ -1893,7 +1893,7 @@ USE_BASE_SHADER:
 
 	Graphics_D3D9_ShaderConstant_InfoSet_ResetParam( &GD3D9.Device.Shader.ShaderConstantInfo, DX_SHADERCONSTANTTYPE_PS_FLOAT, DX_SHADERCONSTANTSET_LIB_SUB, 0, 2 ) ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
@@ -2039,14 +2039,14 @@ static int Direct3D9_BasePolygonDraw( GRAPHFILTER_INFO *Info, int ScaleDivNum, V
 
 	NS_SetUseTextureToShader( 0, Info->SrcGrHandle ) ;
 
-	// •`‰æ‘Ò‹@‚µ‚Ä‚¢‚é•`‰æ•¨‚ğ•`‰æ
+	// æç”»å¾…æ©Ÿã—ã¦ã„ã‚‹æç”»ç‰©ã‚’æç”»
 	DRAWSTOCKINFO
 
-	// •`‰æ‚Ì€”õ
+	// æç”»ã®æº–å‚™
 	Graphics_D3D9_BeginScene() ;
 	Graphics_D3D9_DrawPreparationToShader( 0, FALSE, TRUE, TRUE ) ;
 
-	// •`‰æ
+	// æç”»
 	if( Texcoord8Vertex != NULL )
 	{
 		Graphics_D3D9_DeviceState_SetFVF( VERTEXFVF_TEX8_2D ) ;
@@ -2066,7 +2066,7 @@ static int Direct3D9_BasePolygonDraw( GRAPHFILTER_INFO *Info, int ScaleDivNum, V
 		Graphics_D3D9_UpdateDrawTexture( DestImage->Hard.Draw[ 0 ].Tex, 0 ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
@@ -2094,13 +2094,13 @@ extern int GraphFilter_D3D9_RectBltBase_Timing0_PF( GRAPHFILTER_INFO *Info, GRAP
 	Info->PassNum = -1 ;
 	if( Info->IsBlend )
 	{
-		// ƒpƒX‚Ì”‚ğæ“¾
+		// ãƒ‘ã‚¹ã®æ•°ã‚’å–å¾—
 		if( Info->PassNum == -1 )
 		{
 			Info->PassNum = GraphBlendPassNum_Table[ Info->FilterOrBlendType ] ;
 		}
 
-		// ì‹Æ—pƒeƒNƒXƒ`ƒƒ‚ğg—p‚·‚é‚©‚Ç‚¤‚©‚ğæ“¾
+		// ä½œæ¥­ç”¨ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã‚’å–å¾—
 		Info->UseWorkScreen = GraphBlendUseWorkScreen_Table[ Info->FilterOrBlendType ] ;
 	}
 	else
@@ -2148,13 +2148,13 @@ extern int GraphFilter_D3D9_RectBltBase_Timing0_PF( GRAPHFILTER_INFO *Info, GRAP
 			break ;
 		}
 
-		// ƒpƒX‚Ì”‚ğæ“¾
+		// ãƒ‘ã‚¹ã®æ•°ã‚’å–å¾—
 		if( Info->PassNum == -1 )
 		{
 			Info->PassNum = GraphFilterPassNum_Table[ Info->FilterOrBlendType ] ;
 		}
 
-		// ì‹Æ—pƒeƒNƒXƒ`ƒƒ‚ğg—p‚·‚é‚©‚Ç‚¤‚©‚ğæ“¾
+		// ä½œæ¥­ç”¨ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã‚’å–å¾—
 		Info->UseWorkScreen = GraphFilterUseWorkScreen_Table[ Info->FilterOrBlendType ] ;
 	}
 	if( Info->SrcX1 != Info->DestX ||
@@ -2164,7 +2164,7 @@ extern int GraphFilter_D3D9_RectBltBase_Timing0_PF( GRAPHFILTER_INFO *Info, GRAP
 		Info->UseWorkScreen = 1 ;
 	}
 
-	// ƒVƒF[ƒ_[‚ªg‚¦‚È‚¢ê‡‚Í•K‚¸‚PƒpƒX‚ÅI‚í‚é
+	// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãŒä½¿ãˆãªã„å ´åˆã¯å¿…ãšï¼‘ãƒ‘ã‚¹ã§çµ‚ã‚ã‚‹
 	if( GSYS.HardInfo.UseShader == FALSE )
 	{
 		Info->PassNum = 1 ;
@@ -2175,7 +2175,7 @@ extern int GraphFilter_D3D9_RectBltBase_Timing0_PF( GRAPHFILTER_INFO *Info, GRAP
 		Graphics_D3D9_BeginScene() ;
 	}
 
-	// ƒpƒ‰ƒ[ƒ^‚Ì•Û‘¶
+	// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®ä¿å­˜
 	Direct3D9_GraphFilter_PushBaseDrawParam( &GraphFilterSystemInfoD3D9.DrawParamTemp, Info->BltBlendMode ) ;
 
 	return 0 ;
@@ -2183,7 +2183,7 @@ extern int GraphFilter_D3D9_RectBltBase_Timing0_PF( GRAPHFILTER_INFO *Info, GRAP
 
 extern int GraphFilter_D3D9_RectBltBase_Timing1_PF( void )
 {
-	// ƒpƒ‰ƒ[ƒ^‚Ì•œ‹A
+	// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®å¾©å¸°
 	Direct3D9_GraphFilter_PopBaseDrawParam( &GraphFilterSystemInfoD3D9.DrawParamTemp ) ;
 
 	return 0 ;
@@ -2270,7 +2270,7 @@ extern int GraphFilter_D3D9_DestGraphSetup_PF( GRAPHFILTER_INFO *Info, int *UseS
 
 	UseSrcWorkHandleIndex = 0 ;
 
-	// ƒVƒF[ƒ_[‚ªg‚¦‚È‚¢ê‡‚Íì‹Æ—p‰æ‘œ‚Íg—p‚µ‚È‚¢
+	// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãŒä½¿ãˆãªã„å ´åˆã¯ä½œæ¥­ç”¨ç”»åƒã¯ä½¿ç”¨ã—ãªã„
 	if( GSYS.HardInfo.UseShader == FALSE )
 	{
 		*UseDestGrHandle = Info->DestGrHandle ;

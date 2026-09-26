@@ -1,6 +1,6 @@
 // -------------------------------------------------------------------------------
 // 
-// 		‚c‚wƒ‰ƒCƒuƒ‰ƒŠ		GraphFilterŒnƒvƒƒOƒ‰ƒ€ƒwƒbƒ_ƒtƒ@ƒCƒ‹
+// 		ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒª		GraphFilterç³»ãƒ—ãƒ­ã‚°ãƒ©ãƒ ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«
 // 
 // 				Ver 3.25a
 // 
@@ -13,7 +13,7 @@
 
 #ifndef DX_NON_FILTER
 
-// ƒCƒ“ƒNƒ‹[ƒh ------------------------------------------------------------------
+// ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ ------------------------------------------------------------------
 #include "DxLib.h"
 #include "DxGraphics.h"
 #include <stdarg.h>
@@ -25,12 +25,12 @@ namespace DxLib
 
 #endif // DX_NON_NAMESPACE
 
-// ƒ}ƒNƒ’è‹` --------------------------------------------------------------------
+// ãƒã‚¯ãƒ­å®šç¾© --------------------------------------------------------------------
 
 
-// \‘¢‘Ì’è‹` --------------------------------------------------------------------
+// æ§‹é€ ä½“å®šç¾© --------------------------------------------------------------------
 
-// ƒtƒBƒ‹ƒ^[î•ñ\‘¢‘Ì
+// ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼æƒ…å ±æ§‹é€ ä½“
 struct GRAPHFILTER_INFO
 {
 	int						BlendGraphScalingFilterIsBilinear ;
@@ -72,7 +72,7 @@ struct GRAPHFILTER_INFO
 	IMAGEDATA				*TargetScreenImage ;
 } ;
 
-// ƒtƒBƒ‹ƒ^[–ˆî•ñ
+// ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼æ¯æƒ…å ±
 struct GRAPHFILTER_PARAM
 {
 	int						Gauss_PixelWidth ;
@@ -121,56 +121,56 @@ struct GRAPHFILTER_PARAM
 	int						RGBA_A ;
 } ;
 
-// ƒtƒBƒ‹ƒ^[‚ÌƒVƒF[ƒ_[ƒnƒ“ƒhƒ‹
+// ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ã®ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒãƒ³ãƒ‰ãƒ«
 struct GRAPHFILTER_SHADER_HANDLE
 {
-	int						Gauss_PS[ 3 ] ;							// ƒKƒEƒXƒtƒBƒ‹ƒ^‚ÌƒsƒNƒZƒ‹ƒVƒF[ƒ_[
-	int						BrightClipPS[ 2 ][ 2 ][ 2 ] ;			// –¾‚é‚³‚ÅƒNƒŠƒbƒv‚·‚éƒtƒBƒ‹ƒ^‚ÌƒsƒNƒZƒ‹ƒVƒF[ƒ_[[ 1:ˆê’èˆÈãƒNƒŠƒbƒv  0:ˆê’èˆÈ‰ºƒNƒŠƒbƒv ][ 1:ƒNƒŠƒbƒv“h‚è‚Â‚Ô‚µ‚ ‚è 0:“h‚è‚Â‚Ô‚µ‚È‚µ ][ 0:’Êí—p  1:æZÏ‚İƒAƒ‹ƒtƒ@—p ]
-	int						BrightScalePS[ 2 ] ;					// w’è‚Ì–¾‚é‚³‚Ì—Ìˆæ‚ğŠg‘å‚·‚éƒtƒBƒ‹ƒ^‚ÌƒsƒNƒZƒ‹ƒVƒF[ƒ_[[ 0:’Êí—p  1:æZÏ‚İƒAƒ‹ƒtƒ@—p ]
-	int						DownScalePS[ 3 ] ;						// k¬ƒtƒBƒ‹ƒ^[( 0:X2 1:X4 2:X8 )
-	int						HsbPS[ 3 ][ 2 ] ;						// ‚g‚r‚aƒtƒBƒ‹ƒ^[[ 0:RGB to HSI  1:HSI to RGB  2:HSB ‚Ì HLock ][ 0:’Êí—p  1:æZÏ‚İƒAƒ‹ƒtƒ@—p ]
-	int						MonoPS ;								// ƒ‚ƒmƒg[ƒ“ƒtƒBƒ‹ƒ^[
-	int						InvertPS[ 2 ] ;							// ŠK’²”½“]ƒtƒBƒ‹ƒ^[[ 0:’Êí—p  1:æZÏ‚İƒAƒ‹ƒtƒ@—p ]
-	int						LevelPS[ 2 ] ;							// ƒŒƒxƒ‹•â³ƒtƒBƒ‹ƒ^[[ 0:’Êí—p  1:æZÏ‚İƒAƒ‹ƒtƒ@—p ]
-	int						GammaTex ;								// ƒKƒ“ƒ}•â³‚Ég—p‚·‚é‰æ‘œ
-	float					PrevGamma ;								// ‘O‰ñ‚ÌƒKƒ“ƒ}ƒtƒBƒ‹ƒ^‚ÌÛ‚ÌƒKƒ“ƒ}’l
-	int						TwoColorPS[ 2 ] ;						// ‚Q’l‰»ƒtƒBƒ‹ƒ^[[ 0:’Êí—p  1:æZÏ‚İƒAƒ‹ƒtƒ@—p ]
-	int						GradientMapPS[ 2 ][ 2 ] ;				// ƒOƒ‰ƒf[ƒVƒ‡ƒ“ƒ}ƒbƒvƒtƒBƒ‹ƒ^[[ 0:’Êí—p  1:æZÏ‚İƒAƒ‹ƒtƒ@—p ]
-	int						ReplacementPS[ 2 ] ;					// F‚Ì’uŠ·[ 0:’Êí—p  1:æZÏ‚İƒAƒ‹ƒtƒ@—p ]
-	int						BilateralBlurPS[ 2 ] ;					// ƒoƒCƒ‰ƒeƒ‰ƒ‹ƒuƒ‰[[ 0:’Êí—p  1:æZÏ‚İƒAƒ‹ƒtƒ@—p ]
-	int						PreMulAlphaPS ;							// ’Êí‰æ‘œ‚©‚çæZÏ‚İƒAƒ‹ƒtƒ@‰æ‘œ‚ğì¬‚·‚éˆ×‚ÌƒtƒBƒ‹ƒ^[
-	int						InterpAlphaPS ;							// æZÏ‚İƒAƒ‹ƒtƒ@‰æ‘œ‚©‚ç’Êí‰æ‘œ‚ğì¬‚·‚éˆ×‚ÌƒtƒBƒ‹ƒ^[
-	int						YUVtoRGBPS[ 4 ] ;						// YUVƒJƒ‰[‚ğRGBƒJƒ‰[‚É•ÏŠ·‚·‚éƒtƒBƒ‹ƒ^[
-	int						BicubicPS ;								// ƒoƒCƒLƒ…[ƒrƒbƒN•âŠÔƒtƒBƒ‹ƒ^[
-	int						Lanczos3PS ;							// Lanczos-3•âŠÔƒtƒBƒ‹ƒ^[
-	int						SSAOPS[ 3 ] ;							// SSAOƒtƒBƒ‹ƒ^[
-	int						SSAOMixPS ;								// SSAO‚Ì‰B•ÁŒW”‚ÆƒJƒ‰[ƒoƒbƒtƒ@‚ğ‡¬‚·‚éƒtƒBƒ‹ƒ^[
-	int						FloatColorScalePS ;						// FloatColorScaleƒtƒBƒ‹ƒ^[
+	int						Gauss_PS[ 3 ] ;							// ã‚¬ã‚¦ã‚¹ãƒ•ã‚£ãƒ«ã‚¿ã®ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼
+	int						BrightClipPS[ 2 ][ 2 ][ 2 ] ;			// æ˜ã‚‹ã•ã§ã‚¯ãƒªãƒƒãƒ—ã™ã‚‹ãƒ•ã‚£ãƒ«ã‚¿ã®ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼[ 1:ä¸€å®šä»¥ä¸Šã‚¯ãƒªãƒƒãƒ—  0:ä¸€å®šä»¥ä¸‹ã‚¯ãƒªãƒƒãƒ— ][ 1:ã‚¯ãƒªãƒƒãƒ—å¡—ã‚Šã¤ã¶ã—ã‚ã‚Š 0:å¡—ã‚Šã¤ã¶ã—ãªã— ][ 0:é€šå¸¸ç”¨  1:ä¹—ç®—æ¸ˆã¿ã‚¢ãƒ«ãƒ•ã‚¡ç”¨ ]
+	int						BrightScalePS[ 2 ] ;					// æŒ‡å®šã®æ˜ã‚‹ã•ã®é ˜åŸŸã‚’æ‹¡å¤§ã™ã‚‹ãƒ•ã‚£ãƒ«ã‚¿ã®ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼[ 0:é€šå¸¸ç”¨  1:ä¹—ç®—æ¸ˆã¿ã‚¢ãƒ«ãƒ•ã‚¡ç”¨ ]
+	int						DownScalePS[ 3 ] ;						// ç¸®å°ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼( 0:X2 1:X4 2:X8 )
+	int						HsbPS[ 3 ][ 2 ] ;						// ï¼¨ï¼³ï¼¢ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼[ 0:RGB to HSI  1:HSI to RGB  2:HSB ã® HLock ][ 0:é€šå¸¸ç”¨  1:ä¹—ç®—æ¸ˆã¿ã‚¢ãƒ«ãƒ•ã‚¡ç”¨ ]
+	int						MonoPS ;								// ãƒ¢ãƒãƒˆãƒ¼ãƒ³ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼
+	int						InvertPS[ 2 ] ;							// éšèª¿åè»¢ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼[ 0:é€šå¸¸ç”¨  1:ä¹—ç®—æ¸ˆã¿ã‚¢ãƒ«ãƒ•ã‚¡ç”¨ ]
+	int						LevelPS[ 2 ] ;							// ãƒ¬ãƒ™ãƒ«è£œæ­£ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼[ 0:é€šå¸¸ç”¨  1:ä¹—ç®—æ¸ˆã¿ã‚¢ãƒ«ãƒ•ã‚¡ç”¨ ]
+	int						GammaTex ;								// ã‚¬ãƒ³ãƒè£œæ­£ã«ä½¿ç”¨ã™ã‚‹ç”»åƒ
+	float					PrevGamma ;								// å‰å›ã®ã‚¬ãƒ³ãƒãƒ•ã‚£ãƒ«ã‚¿ã®éš›ã®ã‚¬ãƒ³ãƒå€¤
+	int						TwoColorPS[ 2 ] ;						// ï¼’å€¤åŒ–ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼[ 0:é€šå¸¸ç”¨  1:ä¹—ç®—æ¸ˆã¿ã‚¢ãƒ«ãƒ•ã‚¡ç”¨ ]
+	int						GradientMapPS[ 2 ][ 2 ] ;				// ã‚°ãƒ©ãƒ‡ãƒ¼ã‚·ãƒ§ãƒ³ãƒãƒƒãƒ—ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼[ 0:é€šå¸¸ç”¨  1:ä¹—ç®—æ¸ˆã¿ã‚¢ãƒ«ãƒ•ã‚¡ç”¨ ]
+	int						ReplacementPS[ 2 ] ;					// è‰²ã®ç½®æ›[ 0:é€šå¸¸ç”¨  1:ä¹—ç®—æ¸ˆã¿ã‚¢ãƒ«ãƒ•ã‚¡ç”¨ ]
+	int						BilateralBlurPS[ 2 ] ;					// ãƒã‚¤ãƒ©ãƒ†ãƒ©ãƒ«ãƒ–ãƒ©ãƒ¼[ 0:é€šå¸¸ç”¨  1:ä¹—ç®—æ¸ˆã¿ã‚¢ãƒ«ãƒ•ã‚¡ç”¨ ]
+	int						PreMulAlphaPS ;							// é€šå¸¸ç”»åƒã‹ã‚‰ä¹—ç®—æ¸ˆã¿ã‚¢ãƒ«ãƒ•ã‚¡ç”»åƒã‚’ä½œæˆã™ã‚‹ç‚ºã®ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼
+	int						InterpAlphaPS ;							// ä¹—ç®—æ¸ˆã¿ã‚¢ãƒ«ãƒ•ã‚¡ç”»åƒã‹ã‚‰é€šå¸¸ç”»åƒã‚’ä½œæˆã™ã‚‹ç‚ºã®ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼
+	int						YUVtoRGBPS[ 4 ] ;						// YUVã‚«ãƒ©ãƒ¼ã‚’RGBã‚«ãƒ©ãƒ¼ã«å¤‰æ›ã™ã‚‹ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼
+	int						BicubicPS ;								// ãƒã‚¤ã‚­ãƒ¥ãƒ¼ãƒ“ãƒƒã‚¯è£œé–“ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼
+	int						Lanczos3PS ;							// Lanczos-3è£œé–“ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼
+	int						SSAOPS[ 3 ] ;							// SSAOãƒ•ã‚£ãƒ«ã‚¿ãƒ¼
+	int						SSAOMixPS ;								// SSAOã®éš è”½ä¿‚æ•°ã¨ã‚«ãƒ©ãƒ¼ãƒãƒƒãƒ•ã‚¡ã‚’åˆæˆã™ã‚‹ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼
+	int						FloatColorScalePS ;						// FloatColorScaleãƒ•ã‚£ãƒ«ã‚¿ãƒ¼
 
-	int						BasicBlendPS[ DX_GRAPH_BLEND_NUM ] ;	// Šî–{“I‚ÈƒuƒŒƒ“ƒhƒtƒBƒ‹ƒ^[
-	int						RgbaMixBasePS[ 2 ] ;					// RGBAMixƒuƒŒƒ“ƒhŠî–{[ 0:’Êí—p  1:æZÏ‚İƒAƒ‹ƒtƒ@—p ]
-	int						RgbaMixSRGBB[ 4 ][ 2 ] ;				// RGBAMixƒuƒŒƒ“ƒh‚Ì A ‚¾‚¯ BRGBA ‚Ì‚S‚Â[ 0:’Êí—p  1:æZÏ‚İƒAƒ‹ƒtƒ@—p ]
-	int						RgbaMixSRRRB[ 4 ][ 4 ][ 2 ] ;			// RGBAMixƒuƒŒƒ“ƒh‚Ì SYYY BX ‚Ì‚P‚U‚± [ Y ][ X ][ 0:’Êí—p  1:æZÏ‚İƒAƒ‹ƒtƒ@—p ]
-	int						RgbaMixS[ 4 ][ 4 ][ 4 ][ 4 ][ 2 ] ;		// RGBAMixƒuƒŒƒ“ƒh‚Ì S ‚¾‚¯‚Ì‘g‚İ‡‚í‚¹256ŒÂ[ R ][ G ][ B ][ A ][ 0:’Êí—p  1:æZÏ‚İƒAƒ‹ƒtƒ@—p ]
+	int						BasicBlendPS[ DX_GRAPH_BLEND_NUM ] ;	// åŸºæœ¬çš„ãªãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼
+	int						RgbaMixBasePS[ 2 ] ;					// RGBAMixãƒ–ãƒ¬ãƒ³ãƒ‰åŸºæœ¬[ 0:é€šå¸¸ç”¨  1:ä¹—ç®—æ¸ˆã¿ã‚¢ãƒ«ãƒ•ã‚¡ç”¨ ]
+	int						RgbaMixSRGBB[ 4 ][ 2 ] ;				// RGBAMixãƒ–ãƒ¬ãƒ³ãƒ‰ã® A ã ã‘ BRGBA ã®ï¼”ã¤[ 0:é€šå¸¸ç”¨  1:ä¹—ç®—æ¸ˆã¿ã‚¢ãƒ«ãƒ•ã‚¡ç”¨ ]
+	int						RgbaMixSRRRB[ 4 ][ 4 ][ 2 ] ;			// RGBAMixãƒ–ãƒ¬ãƒ³ãƒ‰ã® SYYY BX ã®ï¼‘ï¼–ã“ [ Y ][ X ][ 0:é€šå¸¸ç”¨  1:ä¹—ç®—æ¸ˆã¿ã‚¢ãƒ«ãƒ•ã‚¡ç”¨ ]
+	int						RgbaMixS[ 4 ][ 4 ][ 4 ][ 4 ][ 2 ] ;		// RGBAMixãƒ–ãƒ¬ãƒ³ãƒ‰ã® S ã ã‘ã®çµ„ã¿åˆã‚ã›256å€‹[ R ][ G ][ B ][ A ][ 0:é€šå¸¸ç”¨  1:ä¹—ç®—æ¸ˆã¿ã‚¢ãƒ«ãƒ•ã‚¡ç”¨ ]
 } ;
 
-// ƒtƒBƒ‹ƒ^[ˆ—‚ÌƒVƒXƒeƒ€ƒf[ƒ^
+// ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼å‡¦ç†ã®ã‚·ã‚¹ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿
 struct GRAPHFILTER_SYSTEM_DATA
 {
-	int						BlendGraphScalingFilterIsNotBilinear ;	// SrcGrHandle ‚Æ BlendGrHandle ‚ÌƒTƒCƒY‚ªˆÙ‚È‚Á‚½ê‡‚ÌƒXƒP[ƒŠƒ“ƒOƒtƒBƒ‹ƒ^[ƒ‚[ƒh‚ÍƒoƒCƒŠƒjƒA•û®‚Å‚Í‚È‚¢‚©‚Ç‚¤‚©
-	int						BltBlendMode ;							// “]‘—æ‚Æ‚ÌƒuƒŒƒ“ƒhƒ‚[ƒh
+	int						BlendGraphScalingFilterIsNotBilinear ;	// SrcGrHandle ã¨ BlendGrHandle ã®ã‚µã‚¤ã‚ºãŒç•°ãªã£ãŸå ´åˆã®ã‚¹ã‚±ãƒ¼ãƒªãƒ³ã‚°ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ãƒ¢ãƒ¼ãƒ‰ã¯ãƒã‚¤ãƒªãƒ‹ã‚¢æ–¹å¼ã§ã¯ãªã„ã‹ã©ã†ã‹
+	int						BltBlendMode ;							// è»¢é€å…ˆã¨ã®ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰
 } ;
 
-// “à•”‘åˆæ•Ï”éŒ¾ --------------------------------------------------------------
+// å†…éƒ¨å¤§åŸŸå¤‰æ•°å®£è¨€ --------------------------------------------------------------
 
 extern GRAPHFILTER_SHADER_HANDLE GraphFilterShaderHandle ;
 extern GRAPHFILTER_SYSTEM_DATA GraphFilterSystemData ;
 extern float SSAO_Kernel[ /*32*//*18*/64 * 4 ] ;
 
-// ŠÖ”ƒvƒƒgƒ^ƒCƒvéŒ¾-----------------------------------------------------------
+// é–¢æ•°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€-----------------------------------------------------------
 
-extern int	GraphFilter_Initialize( void ) ;	// ƒtƒBƒ‹ƒ^[ˆ—‚Ì‰Šú‰»
-extern int	GraphFilter_Terminate( void ) ;		// ƒtƒBƒ‹ƒ^[ˆ—‚ÌŒãn––
+extern int	GraphFilter_Initialize( void ) ;	// ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼å‡¦ç†ã®åˆæœŸåŒ–
+extern int	GraphFilter_Terminate( void ) ;		// ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼å‡¦ç†ã®å¾Œå§‹æœ«
 
 extern int	GraphFilter_Mono(            GRAPHFILTER_INFO *Info, float Cb, float Cr ) ;
 extern int	GraphFilter_Gauss(           GRAPHFILTER_INFO *Info, int PixelWidth, float Param ) ;
@@ -199,16 +199,16 @@ extern int	GraphBlend_RGBA_Select_Mix( GRAPHFILTER_INFO *Info, int SelectR, int 
 
 
 
-// va_list ŠÖ”
-extern	int	GraphFilter_VaList(			int    GrHandle,                                                                                                               int FilterType /* DX_GRAPH_FILTER_GAUSS “™ */ , va_list VaList ) ;		// ‰æ‘œ‚ÉƒtƒBƒ‹ƒ^[ˆ—‚ğs‚¤
-extern	int	GraphFilterBlt_VaList(		int SrcGrHandle, int DestGrHandle,                                                                                             int FilterType /* DX_GRAPH_FILTER_GAUSS “™ */ , va_list VaList ) ;		// ‰æ‘œ‚ÌƒtƒBƒ‹ƒ^[•t‚«“]‘—‚ğs‚¤
-extern	int	GraphFilterRectBlt_VaList(	int SrcGrHandle, int DestGrHandle, int SrcX1, int SrcY1, int SrcX2, int SrcY2, int DestX,  int DestY,                          int FilterType /* DX_GRAPH_FILTER_GAUSS “™ */ , va_list VaList ) ;		// ‰æ‘œ‚ÌƒtƒBƒ‹ƒ^[•t‚«“]‘—‚ğs‚¤( ‹éŒ`w’è )
-extern	int	GraphBlend_VaList(			int    GrHandle, int BlendGrHandle,                                                                                                                                          int BlendRatio /* ƒuƒŒƒ“ƒhŒø‰Ê‚Ì‰e‹¿“x( 0:‚O“  255:‚P‚O‚O“ ) */ , int BlendType /* DX_GRAPH_BLEND_ADD “™ */ , va_list VaList ) ;	// “ñ‚Â‚Ì‰æ‘œ‚ğƒuƒŒƒ“ƒh‚·‚é
-extern	int	GraphBlendBlt_VaList(		int SrcGrHandle, int BlendGrHandle, int DestGrHandle,                                                                                                                        int BlendRatio /* ƒuƒŒƒ“ƒhŒø‰Ê‚Ì‰e‹¿“x( 0:‚O“  255:‚P‚O‚O“ ) */ , int BlendType /* DX_GRAPH_BLEND_ADD “™ */ , va_list VaList ) ;	// “ñ‚Â‚Ì‰æ‘œ‚ğƒuƒŒƒ“ƒh‚µ‚ÄŒ‹‰Ê‚ğw’è‚Ì‰æ‘œ‚Éo—Í‚·‚é
-extern	int	GraphBlendRectBlt_VaList(	int SrcGrHandle, int BlendGrHandle, int DestGrHandle, int SrcX1, int SrcY1, int SrcX2, int SrcY2, int BlendX,  int BlendY,                             int DestX, int DestY, int BlendRatio /* ƒuƒŒƒ“ƒhŒø‰Ê‚Ì‰e‹¿“x( 0:‚O“  255:‚P‚O‚O“ ) */ , int BlendType /* DX_GRAPH_BLEND_ADD “™ */ , va_list VaList ) ;	// “ñ‚Â‚Ì‰æ‘œ‚ğƒuƒŒƒ“ƒh‚µ‚ÄŒ‹‰Ê‚ğw’è‚Ì‰æ‘œ‚Éo—Í‚·‚é( ‹éŒ`w’è )
-extern	int	GraphBlendRectBlt2_VaList(	int SrcGrHandle, int BlendGrHandle, int DestGrHandle, int SrcX1, int SrcY1, int SrcX2, int SrcY2, int BlendX1, int BlendY1, int BlendX2,  int BlendY2, int DestX, int DestY, int BlendRatio /* ƒuƒŒƒ“ƒhŒø‰Ê‚Ì‰e‹¿“x( 0:‚O“  255:‚P‚O‚O“ ) */ , int BlendType /* DX_GRAPH_BLEND_ADD “™ */ , va_list VaList ) ;	// “ñ‚Â‚Ì‰æ‘œ‚ğƒuƒŒƒ“ƒh‚µ‚ÄŒ‹‰Ê‚ğw’è‚Ì‰æ‘œ‚Éo—Í‚·‚é( ‹éŒ`w’èAƒuƒŒƒ“ƒh‰æ‘œ‚Ì‹éŒ`‚àw’è )
+// va_list é–¢æ•°
+extern	int	GraphFilter_VaList(			int    GrHandle,                                                                                                               int FilterType /* DX_GRAPH_FILTER_GAUSS ç­‰ */ , va_list VaList ) ;		// ç”»åƒã«ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼å‡¦ç†ã‚’è¡Œã†
+extern	int	GraphFilterBlt_VaList(		int SrcGrHandle, int DestGrHandle,                                                                                             int FilterType /* DX_GRAPH_FILTER_GAUSS ç­‰ */ , va_list VaList ) ;		// ç”»åƒã®ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ä»˜ãè»¢é€ã‚’è¡Œã†
+extern	int	GraphFilterRectBlt_VaList(	int SrcGrHandle, int DestGrHandle, int SrcX1, int SrcY1, int SrcX2, int SrcY2, int DestX,  int DestY,                          int FilterType /* DX_GRAPH_FILTER_GAUSS ç­‰ */ , va_list VaList ) ;		// ç”»åƒã®ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ä»˜ãè»¢é€ã‚’è¡Œã†( çŸ©å½¢æŒ‡å®š )
+extern	int	GraphBlend_VaList(			int    GrHandle, int BlendGrHandle,                                                                                                                                          int BlendRatio /* ãƒ–ãƒ¬ãƒ³ãƒ‰åŠ¹æœã®å½±éŸ¿åº¦( 0:ï¼ï¼…  255:ï¼‘ï¼ï¼ï¼… ) */ , int BlendType /* DX_GRAPH_BLEND_ADD ç­‰ */ , va_list VaList ) ;	// äºŒã¤ã®ç”»åƒã‚’ãƒ–ãƒ¬ãƒ³ãƒ‰ã™ã‚‹
+extern	int	GraphBlendBlt_VaList(		int SrcGrHandle, int BlendGrHandle, int DestGrHandle,                                                                                                                        int BlendRatio /* ãƒ–ãƒ¬ãƒ³ãƒ‰åŠ¹æœã®å½±éŸ¿åº¦( 0:ï¼ï¼…  255:ï¼‘ï¼ï¼ï¼… ) */ , int BlendType /* DX_GRAPH_BLEND_ADD ç­‰ */ , va_list VaList ) ;	// äºŒã¤ã®ç”»åƒã‚’ãƒ–ãƒ¬ãƒ³ãƒ‰ã—ã¦çµæœã‚’æŒ‡å®šã®ç”»åƒã«å‡ºåŠ›ã™ã‚‹
+extern	int	GraphBlendRectBlt_VaList(	int SrcGrHandle, int BlendGrHandle, int DestGrHandle, int SrcX1, int SrcY1, int SrcX2, int SrcY2, int BlendX,  int BlendY,                             int DestX, int DestY, int BlendRatio /* ãƒ–ãƒ¬ãƒ³ãƒ‰åŠ¹æœã®å½±éŸ¿åº¦( 0:ï¼ï¼…  255:ï¼‘ï¼ï¼ï¼… ) */ , int BlendType /* DX_GRAPH_BLEND_ADD ç­‰ */ , va_list VaList ) ;	// äºŒã¤ã®ç”»åƒã‚’ãƒ–ãƒ¬ãƒ³ãƒ‰ã—ã¦çµæœã‚’æŒ‡å®šã®ç”»åƒã«å‡ºåŠ›ã™ã‚‹( çŸ©å½¢æŒ‡å®š )
+extern	int	GraphBlendRectBlt2_VaList(	int SrcGrHandle, int BlendGrHandle, int DestGrHandle, int SrcX1, int SrcY1, int SrcX2, int SrcY2, int BlendX1, int BlendY1, int BlendX2,  int BlendY2, int DestX, int DestY, int BlendRatio /* ãƒ–ãƒ¬ãƒ³ãƒ‰åŠ¹æœã®å½±éŸ¿åº¦( 0:ï¼ï¼…  255:ï¼‘ï¼ï¼ï¼… ) */ , int BlendType /* DX_GRAPH_BLEND_ADD ç­‰ */ , va_list VaList ) ;	// äºŒã¤ã®ç”»åƒã‚’ãƒ–ãƒ¬ãƒ³ãƒ‰ã—ã¦çµæœã‚’æŒ‡å®šã®ç”»åƒã«å‡ºåŠ›ã™ã‚‹( çŸ©å½¢æŒ‡å®šã€ãƒ–ãƒ¬ãƒ³ãƒ‰ç”»åƒã®çŸ©å½¢ã‚‚æŒ‡å®š )
 
-// ŠÂ‹«ˆË‘¶ŠÖŒW
+// ç’°å¢ƒä¾å­˜é–¢ä¿‚
 extern int	GraphFilter_Initialize_PF( void ) ;
 extern int	GraphFilter_Terminate_PF( void ) ;
 

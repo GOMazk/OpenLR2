@@ -1,6 +1,6 @@
 // -------------------------------------------------------------------------------
 // 
-// 		�c�w���C�u����		Windows�p�t�H���g�֌W�v���O�����w�b�_�t�@�C��
+// 		ＤＸライブラリ		Windows用フォント関係プログラムヘッダファイル
 // 
 // 				Ver 3.25a
 // 
@@ -13,7 +13,7 @@
 
 #ifndef DX_NON_FONT
 
-// �C���N���[�h ------------------------------------------------------------------
+// インクルード ------------------------------------------------------------------
 #include "../DxFile.h"
 #include "DxWinAPI.h"
 
@@ -24,43 +24,43 @@ namespace DxLib
 
 #endif // DX_NON_NAMESPACE
 
-// �}�N����` --------------------------------------------------------------------
+// マクロ定義 --------------------------------------------------------------------
 
-// �\���̒�` --------------------------------------------------------------------
+// 構造体定義 --------------------------------------------------------------------
 
-// Windows�p �t�H���g�L���b�V���̊��ˑ��Ǘ��f�[�^
+// Windows用 フォントキャッシュの環境依存管理データ
 struct FONTMANAGE_PF
 {
-	int						UseTextOut ;						// TextOut ���g�p����^�C�v�̃t�H���g���ǂ���( TRUE:TextOut���g�p����  FALSE:GetGlyphOutline ���g�p���� )
+	int						UseTextOut ;						// TextOut を使用するタイプのフォントかどうか( TRUE:TextOutを使用する  FALSE:GetGlyphOutline を使用する )
 
-	HBITMAP					CacheBitmap ;						// �e�L�X�g�L���b�V���p�r�b�g�}�b�v
-	unsigned char *			CacheBitmapMem ;					// �e�L�X�g�L���b�V���p�r�b�g�}�b�v�̃�����
-	DWORD					CacheBitmapMemPitch ;				// �e�L�X�g�L���b�V���p�r�b�g�}�b�v�̃s�b�`
+	HBITMAP					CacheBitmap ;						// テキストキャッシュ用ビットマップ
+	unsigned char *			CacheBitmapMem ;					// テキストキャッシュ用ビットマップのメモリ
+	DWORD					CacheBitmapMemPitch ;				// テキストキャッシュ用ビットマップのピッチ
 
-	HFONT					FontObj ;							// �t�H���g�̃I�u�W�F�N�g�f�[�^
+	HFONT					FontObj ;							// フォントのオブジェクトデータ
 
-	D_GLYPHSET *			Glyphset ;							// �t�H���g�ɑ��݂��镶���̏��
+	D_GLYPHSET *			Glyphset ;							// フォントに存在する文字の情報
 
-	void *					GetGlyphOutlineBuffer ;				// GetGlyphOutline �̃f�[�^�擾�p�Ɏg�p����o�b�t�@
-	DWORD					GetGlyphOutlineBufferSize ;			// GetGlyphOutline �̃f�[�^�擾�p�Ɏg�p����o�b�t�@�̃T�C�Y
+	void *					GetGlyphOutlineBuffer ;				// GetGlyphOutline のデータ取得用に使用するバッファ
+	DWORD					GetGlyphOutlineBufferSize ;			// GetGlyphOutline のデータ取得用に使用するバッファのサイズ
 } ;
 
-// Windows�p �t�H���g�V�X�e���p�\����
+// Windows用 フォントシステム用構造体
 struct FONTSYSTEM_WIN
 {
-	HDC						Devicecontext ;						// FontCacheCharAddToHandle �̏����Ŏg�p����f�o�C�X�R���e�L�X�g
-	HFONT					OldFont ;							// FontCacheCharAddToHandle �̏����Ŏg�p����t�H���g
-	HBITMAP					OldBitmap ;							// FontCacheCharAddToHandle �̏����Ŏg�p����r�b�g�}�b�v
-	TEXTMETRICW				TextMetric ;						// FontCacheCharAddToHandle �̏����Ŏg�p����t�H���g�̏��
+	HDC						Devicecontext ;						// FontCacheCharAddToHandle の処理で使用するデバイスコンテキスト
+	HFONT					OldFont ;							// FontCacheCharAddToHandle の処理で使用するフォント
+	HBITMAP					OldBitmap ;							// FontCacheCharAddToHandle の処理で使用するビットマップ
+	TEXTMETRICW				TextMetric ;						// FontCacheCharAddToHandle の処理で使用するフォントの情報
 } ;
 
-// �������ϐ��錾 --------------------------------------------------------------
+// 内部大域変数宣言 --------------------------------------------------------------
 
 extern FONTSYSTEM_WIN FontSystem_Win ;
 
-// �֐��v���g�^�C�v�錾-----------------------------------------------------------
+// 関数プロトタイプ宣言-----------------------------------------------------------
 
-extern	HANDLE		AddFontFile_WCHAR_T( const wchar_t *FontFilePath ) ;																			// �w��̃t�H���g�t�@�C�����V�X�e���ɒǉ�����( �߂�l  NULL:���s  NULL�ȊO:�t�H���g�n���h��( WindowsOS �̂��̂Ȃ̂ŁA�c�w���C�u�����̃t�H���g�n���h���Ƃ͕ʕ��ł� ) )
+extern	HANDLE		AddFontFile_WCHAR_T( const wchar_t *FontFilePath ) ;																			// 指定のフォントファイルをシステムに追加する( 戻り値  NULL:失敗  NULL以外:フォントハンドル( WindowsOS のものなので、ＤＸライブラリのフォントハンドルとは別物です ) )
 
 #ifndef DX_NON_NAMESPACE
 

@@ -1,12 +1,12 @@
 //-----------------------------------------------------------------------------
 // 
-// 		‚c‚wƒ‰ƒCƒuƒ‰ƒŠ		Windows—pOggŠÖŒWƒvƒƒOƒ‰ƒ€
+// 		ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒª		Windowsç”¨Oggé–¢ä¿‚ãƒ—ãƒ­ã‚°ãƒ©ãƒ 
 // 
 //  	Ver 3.25a
 // 
 //-----------------------------------------------------------------------------
 
-// ‚c‚wƒ‰ƒCƒuƒ‰ƒŠì¬Žž—p’è‹`
+// ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªä½œæˆæ™‚ç”¨å®šç¾©
 #define DX_MAKE
 
 #include "../DxCompileConfig.h"
@@ -21,7 +21,7 @@ using namespace DxLib ;
 
 #if !defined( DX_NON_OGGVORBIS ) && !defined( DX_NON_OGGTHEORA )
 
-// ƒCƒ“ƒNƒ‹[ƒh----------------------------------------------------------------
+// ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰----------------------------------------------------------------
 #include "../DxLib.h"
 #include "../DxStatic.h"
 #include "../DxUseCLib.h"
@@ -34,22 +34,22 @@ using namespace DxLib ;
 //namespace DxLib
 //{
 
-// ƒ}ƒNƒ’è‹`------------------------------------------------------------------
+// ãƒžã‚¯ãƒ­å®šç¾©------------------------------------------------------------------
 
-// Œ^’è‹`----------------------------------------------------------------------
+// åž‹å®šç¾©----------------------------------------------------------------------
 
-// ƒf[ƒ^éŒ¾------------------------------------------------------------------
+// ãƒ‡ãƒ¼ã‚¿å®£è¨€------------------------------------------------------------------
 
 
-// ŠÖ”ƒvƒƒgƒ^ƒCƒvéŒ¾ -------------------------------------------------------
+// é–¢æ•°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€ -------------------------------------------------------
 
 static DWORD WINAPI	TheoraDecode_Thread( LPVOID Data ) ;
 
-// ƒvƒƒOƒ‰ƒ€------------------------------------------------------------------
+// ãƒ—ãƒ­ã‚°ãƒ©ãƒ ------------------------------------------------------------------
 
-// ŠÂ‹«ˆË‘¶ŠÖ”
+// ç’°å¢ƒä¾å­˜é–¢æ•°
 
-// ƒn[ƒhƒEƒGƒA‹@”\‚ª—LŒø‚Èê‡‚Í YUV ƒtƒH[ƒ}ƒbƒg‚ÌˆêŽž•Û‘¶—pƒeƒNƒXƒ`ƒƒ‚ðì¬‚·‚é
+// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢æ©Ÿèƒ½ãŒæœ‰åŠ¹ãªå ´åˆã¯ YUV ãƒ•ã‚©ãƒ¼ãƒžãƒƒãƒˆã®ä¸€æ™‚ä¿å­˜ç”¨ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ä½œæˆã™ã‚‹
 extern	int	TheoraDecode_CreateSurface_PF( DECODE_THEORA *DT )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -90,7 +90,7 @@ extern	void	TheoraDecode_ReleaseSurface_PF(	DECODE_THEORA *DT )
 	}
 }
 
-// ƒJƒŒƒ“ƒgƒtƒŒ[ƒ€‚ÌRGB‰æ‘œ‚ðì¬‚·‚é( –ß‚è’l  1:ì¬‚³‚ê‚½  0:‚³‚ê‚È‚©‚Á‚½ )
+// ã‚«ãƒ¬ãƒ³ãƒˆãƒ•ãƒ¬ãƒ¼ãƒ ã®RGBç”»åƒã‚’ä½œæˆã™ã‚‹( æˆ»ã‚Šå€¤  1:ä½œæˆã•ã‚ŒãŸ  0:ã•ã‚Œãªã‹ã£ãŸ )
 extern	int		TheoraDecode_SetupImage_PF( DECODE_THEORA *DT, volatile THEORA_STOCKFRAME *Stock, int ASyncThread )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -110,7 +110,7 @@ extern	int		TheoraDecode_SetupImage_PF( DECODE_THEORA *DT, volatile THEORA_STOCK
 	}
 }
 
-// ˆêŽžƒoƒbƒtƒ@‚Ì YUV ƒtƒH[ƒ}ƒbƒg‚ÌƒeƒNƒXƒ`ƒƒ‚ð“¾‚é
+// ä¸€æ™‚ãƒãƒƒãƒ•ã‚¡ã® YUV ãƒ•ã‚©ãƒ¼ãƒžãƒƒãƒˆã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’å¾—ã‚‹
 extern	const void *TheoraDecode_GetYUVImage_PF( DECODE_THEORA *DT )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -130,7 +130,7 @@ extern	const void *TheoraDecode_GetYUVImage_PF( DECODE_THEORA *DT )
 	}
 }
 
-// ƒfƒR[ƒhƒXƒŒƒbƒh
+// ãƒ‡ã‚³ãƒ¼ãƒ‰ã‚¹ãƒ¬ãƒƒãƒ‰
 /*
 DWORD WINAPI TheoraDecode_Thread( LPVOID Data )
 {
@@ -138,10 +138,10 @@ DWORD WINAPI TheoraDecode_Thread( LPVOID Data )
 
 	while( TheoraDecode_Thread_LoopProcess( DT ) != 2 ){}
 
-	// ƒXƒŒƒbƒhI—¹
+	// ã‚¹ãƒ¬ãƒƒãƒ‰çµ‚äº†
 	WinAPIData.Win32Func.ExitThreadFunc( 0 ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 */
@@ -152,22 +152,22 @@ void TheoraDecode_Thread( THREAD_INFO * /*pThreadInfo*/, void *ASyncLoadThreadDa
 	while( TheoraDecode_Thread_LoopProcess( DT ) != 2 ){}
 }
 
-// Ogg Theora ‚Ì“Ç‚Ýž‚Ýˆ—‚Ì€”õ‚ðs‚¤ˆ—‚ÌŠÂ‹«ˆË‘¶ˆ—‚ðs‚¤ŠÖ”
+// Ogg Theora ã®èª­ã¿è¾¼ã¿å‡¦ç†ã®æº–å‚™ã‚’è¡Œã†å‡¦ç†ã®ç’°å¢ƒä¾å­˜å‡¦ç†ã‚’è¡Œã†é–¢æ•°
 extern int TheoraDecode_InitializeStream_PF( DECODE_THEORA *DT )
 {
-	// ƒfƒR[ƒhˆ—ƒXƒŒƒbƒh‚Ìì¬
+	// ãƒ‡ã‚³ãƒ¼ãƒ‰å‡¦ç†ã‚¹ãƒ¬ãƒƒãƒ‰ã®ä½œæˆ
 	DT->ThreadStopRequest = 1 ;
 	DT->ThreadState = THEORAT_STATE_IDLE ;
 	DT->ThreadStandbyTime = NS_GetNowCount( FALSE ) ;
 //	DT->DecodeThreadHandle = WinAPIData.Win32Func.CreateThreadFunc( NULL, 0, TheoraDecode_Thread, DT, 0, ( LPDWORD )&DT->DecodeThreadID ) ;
 //	if( DT->DecodeThreadHandle == NULL )
 //	{
-//		DXST_LOGFILE_ADDA( "Theora \x83\x80\x81\x5b\x83\x72\x81\x5b\x83\x66\x83\x52\x81\x5b\x83\x68\x97\x70\x83\x58\x83\x8c\x83\x62\x83\x68\x82\xcc\x8d\xec\x90\xac\x82\xc9\x8e\xb8\x94\x73\x82\xb5\x82\xdc\x82\xb5\x82\xbd\n"/*@ "Theora ƒ€[ƒr[ƒfƒR[ƒh—pƒXƒŒƒbƒh‚Ìì¬‚ÉŽ¸”s‚µ‚Ü‚µ‚½\n" @*/ );
+//		DXST_LOGFILE_ADDA( "Theora \x83\x80\x81\x5b\x83\x72\x81\x5b\x83\x66\x83\x52\x81\x5b\x83\x68\x97\x70\x83\x58\x83\x8c\x83\x62\x83\x68\x82\xcc\x8d\xec\x90\xac\x82\xc9\x8e\xb8\x94\x73\x82\xb5\x82\xdc\x82\xb5\x82\xbd\n"/*@ "Theora ãƒ ãƒ¼ãƒ“ãƒ¼ãƒ‡ã‚³ãƒ¼ãƒ‰ç”¨ã‚¹ãƒ¬ãƒƒãƒ‰ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ );
 //		return -1 ;
 //	}
 	if( Thread_Create( &DT->DecodeThreadInfo, TheoraDecode_Thread, DT ) == -1 )
 	{
-		DXST_LOGFILE_ADDA( "Theora \x83\x80\x81\x5b\x83\x72\x81\x5b\x83\x66\x83\x52\x81\x5b\x83\x68\x97\x70\x83\x58\x83\x8c\x83\x62\x83\x68\x82\xcc\x8d\xec\x90\xac\x82\xc9\x8e\xb8\x94\x73\x82\xb5\x82\xdc\x82\xb5\x82\xbd\n"/*@ "Theora ƒ€[ƒr[ƒfƒR[ƒh—pƒXƒŒƒbƒh‚Ìì¬‚ÉŽ¸”s‚µ‚Ü‚µ‚½\n" @*/ );
+		DXST_LOGFILE_ADDA( "Theora \x83\x80\x81\x5b\x83\x72\x81\x5b\x83\x66\x83\x52\x81\x5b\x83\x68\x97\x70\x83\x58\x83\x8c\x83\x62\x83\x68\x82\xcc\x8d\xec\x90\xac\x82\xc9\x8e\xb8\x94\x73\x82\xb5\x82\xdc\x82\xb5\x82\xbd\n"/*@ "Theora ãƒ ãƒ¼ãƒ“ãƒ¼ãƒ‡ã‚³ãƒ¼ãƒ‰ç”¨ã‚¹ãƒ¬ãƒƒãƒ‰ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ );
 		return -1 ;
 	}
 //	Thread_SetPriority( &DT->DecodeThreadInfo, DX_THREAD_PRIORITY_NORMAL ) ;

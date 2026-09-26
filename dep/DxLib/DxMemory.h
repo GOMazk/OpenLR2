@@ -1,6 +1,6 @@
 // -------------------------------------------------------------------------------
 // 
-// 		‚c‚wƒ‰ƒCƒuƒ‰ƒŠ		ƒƒ‚ƒŠŠÖŒWƒvƒƒOƒ‰ƒ€ƒwƒbƒ_ƒtƒ@ƒCƒ‹
+// 		ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒª		ãƒ¡ãƒ¢ãƒªé–¢ä¿‚ãƒ—ãƒ­ã‚°ãƒ©ãƒ ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«
 // 
 // 				Ver 3.25a
 // 
@@ -9,7 +9,7 @@
 #ifndef DX_MEMORY_H
 #define DX_MEMORY_H
 
-// ƒCƒ“ƒNƒ‹[ƒh ------------------------------------------------------------------
+// ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ ------------------------------------------------------------------
 #include "DxCompileConfig.h"
 #include "DxThread.h"
 #include "DxHeap.h"
@@ -40,9 +40,9 @@ namespace DxLib
 
 #endif // DX_NON_NAMESPACE
 
-// ƒ}ƒNƒ’è‹` --------------------------------------------------------------------
+// ãƒã‚¯ãƒ­å®šç¾© --------------------------------------------------------------------
 
-// ƒƒ‚ƒŠŠm•ÛŒnŠÖ”
+// ãƒ¡ãƒ¢ãƒªç¢ºä¿ç³»é–¢æ•°
 #if !defined( BC_COMPILER ) || defined( _DEBUG )
 	#define DXALLOCBASE( size, aligned )	DxAllocBase( (size), (aligned), __FILE__, __LINE__ )
 	#define DXALLOC( size )					NS_DxAlloc( (size), __FILE__, __LINE__ )
@@ -59,62 +59,62 @@ namespace DxLib
 
 
 
-// \‘¢‘Ì’è‹` --------------------------------------------------------------------
+// æ§‹é€ ä½“å®šç¾© --------------------------------------------------------------------
 
-// ƒƒ‚ƒŠŠÖŒW‚Ìî•ñ\‘¢‘Ì
+// ãƒ¡ãƒ¢ãƒªé–¢ä¿‚ã®æƒ…å ±æ§‹é€ ä½“
 struct MEMORYDATA
 {
-	size_t					AllocMemorySize ;					// Šm•Û‚µ‚Ä‚¢‚éƒƒ‚ƒŠ‚Ì‘—Ê
-	int						AllocMemoryNum ;					// ƒ‰ƒCƒuƒ‰ƒŠ‚ÅŠm•Û‚µ‚½ƒƒ‚ƒŠ‚Ì”
-	int						AllocMemoryPrintFlag ;				// Šm•Û‚³‚ê‚é‚Éî•ñ‚ğo—Í‚·‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO
-	int						AllocMemorySizeOutFlag ;			// Šm•Û‚â‰ğ•ú‚ªs‚í‚ê‚é“x‚ÉŠm•Ûƒƒ‚ƒŠ‚Ì‘—Ê‚ğƒƒO‚Éo—Í‚·‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO
-	int						AllocMemoryErrorCheckFlag ;			// Šm•Û‚â‰ğ•ú‚ªs‚í‚ê‚é“x‚ÉŠm•Ûƒƒ‚ƒŠ‚Ìî•ñ‚ª”j‘¹‚µ‚Ä‚¢‚È‚¢‚©‚ğƒ`ƒFƒbƒN‚·‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO
-	size_t					AllocTrapSize ;						// —ñ‹“‘ÎÛ‚É‚·‚éŠm•ÛƒTƒCƒY
+	size_t					AllocMemorySize ;					// ç¢ºä¿ã—ã¦ã„ã‚‹ãƒ¡ãƒ¢ãƒªã®ç·é‡
+	int						AllocMemoryNum ;					// ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã§ç¢ºä¿ã—ãŸãƒ¡ãƒ¢ãƒªã®æ•°
+	int						AllocMemoryPrintFlag ;				// ç¢ºä¿ã•ã‚Œã‚‹æ™‚ã«æƒ…å ±ã‚’å‡ºåŠ›ã™ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°
+	int						AllocMemorySizeOutFlag ;			// ç¢ºä¿ã‚„è§£æ”¾ãŒè¡Œã‚ã‚Œã‚‹åº¦ã«ç¢ºä¿ãƒ¡ãƒ¢ãƒªã®ç·é‡ã‚’ãƒ­ã‚°ã«å‡ºåŠ›ã™ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°
+	int						AllocMemoryErrorCheckFlag ;			// ç¢ºä¿ã‚„è§£æ”¾ãŒè¡Œã‚ã‚Œã‚‹åº¦ã«ç¢ºä¿ãƒ¡ãƒ¢ãƒªã®æƒ…å ±ãŒç ´æã—ã¦ã„ãªã„ã‹ã‚’ãƒã‚§ãƒƒã‚¯ã™ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°
+	size_t					AllocTrapSize ;						// åˆ—æŒ™å¯¾è±¡ã«ã™ã‚‹ç¢ºä¿ã‚µã‚¤ã‚º
 
-	int						InitializeFlag ;					// ‰Šú‰»ƒtƒ‰ƒO
-	int						StartTime ;							// ƒJƒEƒ“ƒgŠJnŠÔ
-	HEAPINFO				SmallHeap ;							// ¬‚³‚¢ƒTƒCƒY‚Ìƒƒ‚ƒŠŠm•Û—pƒq[ƒv
-	HEAPINFO				BigHeap ;							// ‘å‚«‚¢ƒTƒCƒY‚Ìƒƒ‚ƒŠŠm•Û—pƒq[ƒv
+	int						InitializeFlag ;					// åˆæœŸåŒ–ãƒ•ãƒ©ã‚°
+	int						StartTime ;							// ã‚«ã‚¦ãƒ³ãƒˆé–‹å§‹æ™‚é–“
+	HEAPINFO				SmallHeap ;							// å°ã•ã„ã‚µã‚¤ã‚ºã®ãƒ¡ãƒ¢ãƒªç¢ºä¿ç”¨ãƒ’ãƒ¼ãƒ—
+	HEAPINFO				BigHeap ;							// å¤§ãã„ã‚µã‚¤ã‚ºã®ãƒ¡ãƒ¢ãƒªç¢ºä¿ç”¨ãƒ’ãƒ¼ãƒ—
 
 #if defined( DX_THREAD_SAFE ) || defined( DX_THREAD_SAFE_NETWORK_ONLY )
-	int						InitMemoryAllocCriticalSection ;	// MemoryAllocCriticalSection ‚Ì‰Šú‰»‚ªÏ‚ñ‚Å‚¢‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO
-	DX_CRITICAL_SECTION		MemoryAllocCriticalSection ;		// ƒƒ‚ƒŠŠm•Ûˆ——pƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“
+	int						InitMemoryAllocCriticalSection ;	// MemoryAllocCriticalSection ã®åˆæœŸåŒ–ãŒæ¸ˆã‚“ã§ã„ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°
+	DX_CRITICAL_SECTION		MemoryAllocCriticalSection ;		// ãƒ¡ãƒ¢ãƒªç¢ºä¿å‡¦ç†ç”¨ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³
 #endif
 } ;
 
-// ƒe[ƒuƒ‹-----------------------------------------------------------------------
+// ãƒ†ãƒ¼ãƒ–ãƒ«-----------------------------------------------------------------------
 
-// “à•”‘åˆæ•Ï”éŒ¾ --------------------------------------------------------------
+// å†…éƒ¨å¤§åŸŸå¤‰æ•°å®£è¨€ --------------------------------------------------------------
 
-// ƒƒ‚ƒŠŠÖŒW‚Ìî•ñ
+// ãƒ¡ãƒ¢ãƒªé–¢ä¿‚ã®æƒ…å ±
 extern MEMORYDATA MemData ;
 
-// ŠÖ”ƒvƒƒgƒ^ƒCƒvéŒ¾-----------------------------------------------------------
+// é–¢æ•°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€-----------------------------------------------------------
 
-extern	int			MemoryInitialize( void ) ;												// ƒƒ‚ƒŠˆ—‚Ì‰Šú‰»‚ğs‚¤
-extern	int			MemoryTerminate( void ) ;												// ƒƒ‚ƒŠˆ—‚ÌŒãn––‚ğs‚¤
-extern	int			MemoryProcess( void ) ;													// ƒƒ‚ƒŠˆ—‚ÌüŠú“Iˆ—
-extern	int			MemoryDrawAllocInfo( int x, int y, int Width, int Height ) ;			// ƒƒ‚ƒŠ‚ÌŠm•Ûó‹µ‚ğ•`‰æ‚·‚é
+extern	int			MemoryInitialize( void ) ;												// ãƒ¡ãƒ¢ãƒªå‡¦ç†ã®åˆæœŸåŒ–ã‚’è¡Œã†
+extern	int			MemoryTerminate( void ) ;												// ãƒ¡ãƒ¢ãƒªå‡¦ç†ã®å¾Œå§‹æœ«ã‚’è¡Œã†
+extern	int			MemoryProcess( void ) ;													// ãƒ¡ãƒ¢ãƒªå‡¦ç†ã®å‘¨æœŸçš„å‡¦ç†
+extern	int			MemoryDrawAllocInfo( int x, int y, int Width, int Height ) ;			// ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿çŠ¶æ³ã‚’æç”»ã™ã‚‹
 
-extern	void		MemoryDump( void *buffer, int size ) ;									// ƒƒ‚ƒŠ‚Ìî•ñ‚ğƒƒO‚Éo—Í‚·‚é
-extern	int			MemoryErrorCheck( void ) ;												// ƒƒ‚ƒŠ‚ÌƒGƒ‰[‚ğƒ`ƒFƒbƒN‚·‚é
+extern	void		MemoryDump( void *buffer, int size ) ;									// ãƒ¡ãƒ¢ãƒªã®æƒ…å ±ã‚’ãƒ­ã‚°ã«å‡ºåŠ›ã™ã‚‹
+extern	int			MemoryErrorCheck( void ) ;												// ãƒ¡ãƒ¢ãƒªã®ã‚¨ãƒ©ãƒ¼ã‚’ãƒã‚§ãƒƒã‚¯ã™ã‚‹
 
-extern	void *		DxAllocBase( size_t AllocSize, size_t Aligned, const char *File = NULL, int Line = -1, int NoMemoryDump = FALSE ) ;	// DxAlloc ‚Ì“à•”ˆ——pŠÖ”
-extern	void *		DxReallocBase( void *Memory, size_t AllocSize, size_t Aligned, const char *File = NULL, int Line = -1 ) ;			// DxRealloc ‚Ì“à•”ˆ——pŠÖ”
+extern	void *		DxAllocBase( size_t AllocSize, size_t Aligned, const char *File = NULL, int Line = -1, int NoMemoryDump = FALSE ) ;	// DxAlloc ã®å†…éƒ¨å‡¦ç†ç”¨é–¢æ•°
+extern	void *		DxReallocBase( void *Memory, size_t AllocSize, size_t Aligned, const char *File = NULL, int Line = -1 ) ;			// DxRealloc ã®å†…éƒ¨å‡¦ç†ç”¨é–¢æ•°
 
 
-// ŠÂ‹«ˆË‘¶ŠÖ”
-extern	int			MemoryInitialize_PF( void ) ;								// ƒƒ‚ƒŠˆ—‚Ì‰Šú‰»‚ğs‚¤ŠÖ”‚ÌŠÂ‹«ˆË‘¶ˆ—
-extern	int			MemoryTerminate_PF( void ) ;								// ƒƒ‚ƒŠˆ—‚ÌŒãn––‚ğs‚¤ŠÖ”‚ÌŠÂ‹«ˆË‘¶ˆ—
-extern	int			MemoryProcess_PF( void ) ;									// ƒƒ‚ƒŠˆ—‚ÌüŠú“Iˆ—‚ÌŠÂ‹«ˆË‘¶ˆ—
+// ç’°å¢ƒä¾å­˜é–¢æ•°
+extern	int			MemoryInitialize_PF( void ) ;								// ãƒ¡ãƒ¢ãƒªå‡¦ç†ã®åˆæœŸåŒ–ã‚’è¡Œã†é–¢æ•°ã®ç’°å¢ƒä¾å­˜å‡¦ç†
+extern	int			MemoryTerminate_PF( void ) ;								// ãƒ¡ãƒ¢ãƒªå‡¦ç†ã®å¾Œå§‹æœ«ã‚’è¡Œã†é–¢æ•°ã®ç’°å¢ƒä¾å­˜å‡¦ç†
+extern	int			MemoryProcess_PF( void ) ;									// ãƒ¡ãƒ¢ãƒªå‡¦ç†ã®å‘¨æœŸçš„å‡¦ç†ã®ç’°å¢ƒä¾å­˜å‡¦ç†
 
-extern	int					 NormalMemory_AutoAlloc_CreateHeapCallback_PF(     int Param, void *Buffer, ALLOCMEM_SIZE_TYPE Size ) ;		// ŠÂ‹«ˆË‘¶‚Ìˆê”Ê“I‚Èƒq[ƒv—p‚Ìƒƒ‚ƒŠ—Ìˆæ‚ğŠm•Û‚·‚é‚½‚ß‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”ŒQ‚Ì AutoAlloc_CreateHeapCallback
-extern	void *				 NormalMemory_AutoAlloc_GetHeapAddressCallback_PF( int Param, void *Buffer ) ;			// ŠÂ‹«ˆË‘¶‚Ìˆê”Ê“I‚Èƒq[ƒv—p‚Ìƒƒ‚ƒŠ—Ìˆæ‚ğŠm•Û‚·‚é‚½‚ß‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”ŒQ‚Ì AutoAlloc_GetHeapAddressCallback
-extern	ALLOCMEM_SIZE_TYPE	 NormalMemory_AutoAlloc_GetHeapSizeCallback_PF(    int Param, void *Buffer ) ;			// ŠÂ‹«ˆË‘¶‚Ìˆê”Ê“I‚Èƒq[ƒv—p‚Ìƒƒ‚ƒŠ—Ìˆæ‚ğŠm•Û‚·‚é‚½‚ß‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”ŒQ‚Ì AutoAlloc_GetHeapSizeCallback
-extern	int					 NormalMemory_AutoAlloc_DeleteHeapCallback_PF(     int Param, void *Buffer ) ;			// ŠÂ‹«ˆË‘¶‚Ìˆê”Ê“I‚Èƒq[ƒv—p‚Ìƒƒ‚ƒŠ—Ìˆæ‚ğŠm•Û‚·‚é‚½‚ß‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”ŒQ‚Ì AutoAlloc_DeleteHeapCallback
+extern	int					 NormalMemory_AutoAlloc_CreateHeapCallback_PF(     int Param, void *Buffer, ALLOCMEM_SIZE_TYPE Size ) ;		// ç’°å¢ƒä¾å­˜ã®ä¸€èˆ¬çš„ãªãƒ’ãƒ¼ãƒ—ç”¨ã®ãƒ¡ãƒ¢ãƒªé ˜åŸŸã‚’ç¢ºä¿ã™ã‚‹ãŸã‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ç¾¤ã® AutoAlloc_CreateHeapCallback
+extern	void *				 NormalMemory_AutoAlloc_GetHeapAddressCallback_PF( int Param, void *Buffer ) ;			// ç’°å¢ƒä¾å­˜ã®ä¸€èˆ¬çš„ãªãƒ’ãƒ¼ãƒ—ç”¨ã®ãƒ¡ãƒ¢ãƒªé ˜åŸŸã‚’ç¢ºä¿ã™ã‚‹ãŸã‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ç¾¤ã® AutoAlloc_GetHeapAddressCallback
+extern	ALLOCMEM_SIZE_TYPE	 NormalMemory_AutoAlloc_GetHeapSizeCallback_PF(    int Param, void *Buffer ) ;			// ç’°å¢ƒä¾å­˜ã®ä¸€èˆ¬çš„ãªãƒ’ãƒ¼ãƒ—ç”¨ã®ãƒ¡ãƒ¢ãƒªé ˜åŸŸã‚’ç¢ºä¿ã™ã‚‹ãŸã‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ç¾¤ã® AutoAlloc_GetHeapSizeCallback
+extern	int					 NormalMemory_AutoAlloc_DeleteHeapCallback_PF(     int Param, void *Buffer ) ;			// ç’°å¢ƒä¾å­˜ã®ä¸€èˆ¬çš„ãªãƒ’ãƒ¼ãƒ—ç”¨ã®ãƒ¡ãƒ¢ãƒªé ˜åŸŸã‚’ç¢ºä¿ã™ã‚‹ãŸã‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ç¾¤ã® AutoAlloc_DeleteHeapCallback
 
-extern	int			DxDumpAlloc_PF( void ) ;									// Šm•Û‚µ‚Ä‚¢‚éƒƒ‚ƒŠ‚ğ—ñ‹“‚·‚éŠÖ”‚ÌŠÂ‹«ˆË‘¶ˆ—
-extern	int			MemoryErrorCheck_PF( void ) ;								// ƒƒ‚ƒŠ‚ÌƒGƒ‰[ƒ`ƒFƒbƒN‚ÌŠÂ‹«ˆË‘¶ˆ—
+extern	int			DxDumpAlloc_PF( void ) ;									// ç¢ºä¿ã—ã¦ã„ã‚‹ãƒ¡ãƒ¢ãƒªã‚’åˆ—æŒ™ã™ã‚‹é–¢æ•°ã®ç’°å¢ƒä¾å­˜å‡¦ç†
+extern	int			MemoryErrorCheck_PF( void ) ;								// ãƒ¡ãƒ¢ãƒªã®ã‚¨ãƒ©ãƒ¼ãƒã‚§ãƒƒã‚¯ã®ç’°å¢ƒä¾å­˜å‡¦ç†
 
 #ifndef DX_NON_NAMESPACE
 

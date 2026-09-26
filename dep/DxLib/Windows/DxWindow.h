@@ -1,6 +1,6 @@
 // -------------------------------------------------------------------------------
 // 
-// 		‚c‚wƒ‰ƒCƒuƒ‰ƒŠ		ƒEƒCƒ“ƒhƒEƒvƒƒOƒ‰ƒ€ƒwƒbƒ_ƒtƒ@ƒCƒ‹
+// 		ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒª		ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ—ãƒ­ã‚°ãƒ©ãƒ ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«
 // 
 // 				Ver 3.25a
 // 
@@ -9,7 +9,7 @@
 #ifndef DX_WINDOW_H
 #define DX_WINDOW_H
 
-// ƒCƒ“ƒNƒ‹[ƒh ------------------------------------------------------------------
+// ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ ------------------------------------------------------------------
 #include "../DxCompileConfig.h"
 #include "../DxLib.h"
 #include "../DxMemory.h"
@@ -23,343 +23,343 @@ namespace DxLib
 
 #endif // DX_NON_NAMESPACE
 
-// ƒ}ƒNƒ’è‹` --------------------------------------------------------------------
+// ãƒã‚¯ãƒ­å®šç¾© --------------------------------------------------------------------
 
-#define MAX_MENUITEMSELECT_NUM		(64)				// •Û‚µ‚Ä‚¨‚¯‚é‘I‘ğ‚³‚ê‚½ƒƒjƒ…[€–Ú‚ÌÅ‘å”
-#define MAX_MENUITEM_NUM			(128)				// ƒƒjƒ…[€–Ú‚ÌÅ‘å”
-#define MAX_ACCELERATOR_NUM			(64)				// ƒAƒNƒZƒ‰ƒŒ[ƒ^‚ÌÅ‘å”
-#define MAX_TOOLBARITEM_NUM			(64)				// ƒc[ƒ‹ƒo[‚É’u‚¯‚éƒAƒCƒeƒ€‚ÌÅ‘å”
+#define MAX_MENUITEMSELECT_NUM		(64)				// ä¿æŒã—ã¦ãŠã‘ã‚‹é¸æŠã•ã‚ŒãŸãƒ¡ãƒ‹ãƒ¥ãƒ¼é …ç›®ã®æœ€å¤§æ•°
+#define MAX_MENUITEM_NUM			(128)				// ãƒ¡ãƒ‹ãƒ¥ãƒ¼é …ç›®ã®æœ€å¤§æ•°
+#define MAX_ACCELERATOR_NUM			(64)				// ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚¿ã®æœ€å¤§æ•°
+#define MAX_TOOLBARITEM_NUM			(64)				// ãƒ„ãƒ¼ãƒ«ãƒãƒ¼ã«ç½®ã‘ã‚‹ã‚¢ã‚¤ãƒ†ãƒ ã®æœ€å¤§æ•°
 
-#define MAX_MESTAKEOVERWIN_NUM		(100)				// ƒƒbƒZ[ƒWƒvƒƒZƒX‚ğŒ¨‘ã‚í‚è‚·‚éƒEƒCƒ“ƒhƒE‚ÌÅ‘å”
-#define MAX_DRAGFILE_NUM			(1000)				// ƒhƒ‰ƒbƒO&ƒhƒƒbƒv‚³‚ê‚½ƒtƒ@ƒCƒ‹–¼‚ğ•Û‘¶‚·‚éÅ‚”
-#define MAX_THREADWAIT_NUM			(4096)				// “¯‚É‘Ò‚Â‚±‚Æ‚ªo—ˆ‚éƒXƒŒƒbƒh‚ÌÅ‘å”
+#define MAX_MESTAKEOVERWIN_NUM		(100)				// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ—ãƒ­ã‚»ã‚¹ã‚’è‚©ä»£ã‚ã‚Šã™ã‚‹ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®æœ€å¤§æ•°
+#define MAX_DRAGFILE_NUM			(1000)				// ãƒ‰ãƒ©ãƒƒã‚°&ãƒ‰ãƒ­ãƒƒãƒ—ã•ã‚ŒãŸãƒ•ã‚¡ã‚¤ãƒ«åã‚’ä¿å­˜ã™ã‚‹æœ€é«˜æ•°
+#define MAX_THREADWAIT_NUM			(4096)				// åŒæ™‚ã«å¾…ã¤ã“ã¨ãŒå‡ºæ¥ã‚‹ã‚¹ãƒ¬ãƒƒãƒ‰ã®æœ€å¤§æ•°
 
-typedef HHOOK 						( *MSGFUNC )( HWND MainWindow, HHOOK *pKeyboardHookHandle, int Enable ) ;		// ƒƒbƒZ[ƒWƒtƒbƒNİ’èŠÖ”
+typedef HHOOK 						( *MSGFUNC )( HWND MainWindow, HHOOK *pKeyboardHookHandle, int Enable ) ;		// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ•ãƒƒã‚¯è¨­å®šé–¢æ•°
 
 #define WSA_WINSOCKMESSAGE 			(WM_USER + 261)
 
-// \‘¢‘Ì’è‹` --------------------------------------------------------------------
+// æ§‹é€ ä½“å®šç¾© --------------------------------------------------------------------
 
-// ƒƒjƒ…[€–Ú‚Ìî•ñ
+// ãƒ¡ãƒ‹ãƒ¥ãƒ¼é …ç›®ã®æƒ…å ±
 struct WINMENUITEMINFO
 {
-	HMENU					Menu ;								// ƒƒjƒ…[
-	short					Index ;								// ƒiƒ“ƒo[
-	unsigned short			ID ;								// ‚h‚c
-	wchar_t					Name[128] ;							// –¼‘O
+	HMENU					Menu ;								// ãƒ¡ãƒ‹ãƒ¥ãƒ¼
+	short					Index ;								// ãƒŠãƒ³ãƒãƒ¼
+	unsigned short			ID ;								// ï¼©ï¼¤
+	wchar_t					Name[128] ;							// åå‰
 } ;
 
-// ƒc[ƒ‹ƒo[€–Ú‚Ìî•ñ
+// ãƒ„ãƒ¼ãƒ«ãƒãƒ¼é …ç›®ã®æƒ…å ±
 struct WINTOOLBARITEMINFO
 {
 	int						ID ;								// ID
-	int						ImageIndex ;						// ‰æ‘œ‚ÌƒCƒ“ƒfƒbƒNƒX
-	int						Type ;								// ƒ^ƒCƒv
-	int						State ;								// ó‘Ô
-	int						Click ;								// ƒNƒŠƒbƒN‚³‚ê‚½‚©
+	int						ImageIndex ;						// ç”»åƒã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+	int						Type ;								// ã‚¿ã‚¤ãƒ—
+	int						State ;								// çŠ¶æ…‹
+	int						Click ;								// ã‚¯ãƒªãƒƒã‚¯ã•ã‚ŒãŸã‹
 } ;
 
-// ‚o‚b‚Ìî•ñ
+// ï¼°ï¼£ã®æƒ…å ±
 struct PCINFO
 {
-	wchar_t					OSString[256] ;						// ‚n‚r‚Ì‹Lq
-	wchar_t					DirectXString[256] ;				// ‚c‚‰‚’‚…‚ƒ‚”‚w‚Ì‹Lq
-	wchar_t					CPUString[256] ;					// ‚b‚o‚t‚Ì‹Lq
-	int						CPUSpeed ;							// ‚b‚o‚t‚Ì‘¬“x(’PˆÊMHz)
-	LONGLONG				FreeMemorySize ;					// ‹ó‚«ƒƒ‚ƒŠƒTƒCƒY(’PˆÊbyte)
-	LONGLONG				TotalMemorySize ;					// ‘ƒƒ‚ƒŠƒTƒCƒY(’PˆÊbyte)
-	wchar_t					VideoDriverFileName[256] ;			// ƒrƒfƒIƒJ[ƒhƒhƒ‰ƒCƒoƒtƒ@ƒCƒ‹–¼
-	wchar_t					VideoDriverString[256] ;			// ƒrƒfƒIƒJ[ƒhƒhƒ‰ƒCƒo‚Ì‹Lq
-	unsigned int			VideoFreeMemorySize ;				// ‹ó‚«‚u‚q‚`‚lƒTƒCƒY(’PˆÊbyte)
-	unsigned int			VideoTotalMemorySize ;				// ‚u‚q‚`‚l‚Ì‘ƒTƒCƒY(’PˆÊbyte)
+	wchar_t					OSString[256] ;						// ï¼¯ï¼³ã®è¨˜è¿°
+	wchar_t					DirectXString[256] ;				// ï¼¤ï½‰ï½’ï½…ï½ƒï½”ï¼¸ã®è¨˜è¿°
+	wchar_t					CPUString[256] ;					// ï¼£ï¼°ï¼µã®è¨˜è¿°
+	int						CPUSpeed ;							// ï¼£ï¼°ï¼µã®é€Ÿåº¦(å˜ä½MHz)
+	LONGLONG				FreeMemorySize ;					// ç©ºããƒ¡ãƒ¢ãƒªã‚µã‚¤ã‚º(å˜ä½byte)
+	LONGLONG				TotalMemorySize ;					// ç·ãƒ¡ãƒ¢ãƒªã‚µã‚¤ã‚º(å˜ä½byte)
+	wchar_t					VideoDriverFileName[256] ;			// ãƒ“ãƒ‡ã‚ªã‚«ãƒ¼ãƒ‰ãƒ‰ãƒ©ã‚¤ãƒãƒ•ã‚¡ã‚¤ãƒ«å
+	wchar_t					VideoDriverString[256] ;			// ãƒ“ãƒ‡ã‚ªã‚«ãƒ¼ãƒ‰ãƒ‰ãƒ©ã‚¤ãƒã®è¨˜è¿°
+	unsigned int			VideoFreeMemorySize ;				// ç©ºãï¼¶ï¼²ï¼¡ï¼­ã‚µã‚¤ã‚º(å˜ä½byte)
+	unsigned int			VideoTotalMemorySize ;				// ï¼¶ï¼²ï¼¡ï¼­ã®ç·ã‚µã‚¤ã‚º(å˜ä½byte)
 } ;
 
 #ifndef DX_NON_INPUT
-// ƒ}ƒEƒX‚Ì“ü—Íî•ñ
+// ãƒã‚¦ã‚¹ã®å…¥åŠ›æƒ…å ±
 struct WINMOUSEINPUT
 {
-	int						LogType ;							// ƒƒOƒ^ƒCƒv( MOUSE_INPUT_LOG_DOWN –”‚Í MOUSE_INPUT_LOG_UP )
-	int						Button ;							// ƒNƒŠƒbƒN‚µ‚½ƒ{ƒ^ƒ“
-	int						ClickX, ClickY ;					// ƒNƒŠƒbƒN‚µ‚½ƒNƒ‰ƒCƒAƒ“ƒgÀ•W
-	int						IsDummy ;							// GetMousePoint ‚Æ GetMouseInput ‚ğg—p‚µ‚½ƒ_ƒ~[î•ñ‚©‚Ç‚¤‚©
+	int						LogType ;							// ãƒ­ã‚°ã‚¿ã‚¤ãƒ—( MOUSE_INPUT_LOG_DOWN åˆã¯ MOUSE_INPUT_LOG_UP )
+	int						Button ;							// ã‚¯ãƒªãƒƒã‚¯ã—ãŸãƒœã‚¿ãƒ³
+	int						ClickX, ClickY ;					// ã‚¯ãƒªãƒƒã‚¯ã—ãŸã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆåº§æ¨™
+	int						IsDummy ;							// GetMousePoint ã¨ GetMouseInput ã‚’ä½¿ç”¨ã—ãŸãƒ€ãƒŸãƒ¼æƒ…å ±ã‹ã©ã†ã‹
 } ;
 #endif // DX_NON_INPUT
 
-// ƒEƒCƒ“ƒhƒEŒnƒf[ƒ^\‘¢‘Ì
+// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ç³»ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
 struct WINDATA
 {
-	PCINFO					PcInfo ;							// ‚o‚b‚Ìî•ñ
-	HINSTANCE				Instance ;							// ƒ\ƒtƒg‚ÌƒCƒ“ƒXƒ^ƒ“ƒXƒnƒ“ƒhƒ‹
-	HWND					MainWindow ;						// ƒƒCƒ“ƒEƒCƒ“ƒhƒEƒnƒ“ƒhƒ‹
-	HWND					UserChildWindow ;					// •\¦—pqƒEƒCƒ“ƒhƒEƒnƒ“ƒhƒ‹
+	PCINFO					PcInfo ;							// ï¼°ï¼£ã®æƒ…å ±
+	HINSTANCE				Instance ;							// ã‚½ãƒ•ãƒˆã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ãƒãƒ³ãƒ‰ãƒ«
+	HWND					MainWindow ;						// ãƒ¡ã‚¤ãƒ³ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒãƒ³ãƒ‰ãƒ«
+	HWND					UserChildWindow ;					// è¡¨ç¤ºç”¨å­ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒãƒ³ãƒ‰ãƒ«
 
-	int						ProcessorNum ;						// ˜_—‚b‚o‚tƒRƒA‚Ì”
-	int						AeroDisableFlag ;					// Aero‚ğ–³Œø‚É‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO
-	int						SystembarHeight ;					// ƒVƒXƒeƒ€ƒo[‚Ì‚‚³
+	int						ProcessorNum ;						// è«–ç†ï¼£ï¼°ï¼µã‚³ã‚¢ã®æ•°
+	int						AeroDisableFlag ;					// Aeroã‚’ç„¡åŠ¹ã«ã—ã¦ã„ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°
+	int						SystembarHeight ;					// ã‚·ã‚¹ãƒ†ãƒ ãƒãƒ¼ã®é«˜ã•
 
 #ifdef DX_THREAD_SAFE
-	HANDLE					ProcessMessageThreadHandle ;		// ProcessMessage ‚ğ‚Ğ‚½‚·‚çŒÄ‚Ñ‚Â‚Ã‚¯‚éƒvƒƒZƒX‚Ìƒnƒ“ƒhƒ‹
-	DWORD					ProcessMessageThreadID ;			// ProcessMessage ‚ğ‚Ğ‚½‚·‚çŒÄ‚Ñ‚Â‚Ã‚¯‚éƒvƒƒZƒX‚Ì‚h‚c
-	DWORD					ProcessMessageThreadExitFlag ;		// ProcessMessage ‚ğ‚Ğ‚½‚·‚çŒÄ‚Ñ‚Â‚Ã‚¯‚éƒvƒƒZƒX‚ªI—¹‚É—§‚Ä‚éƒtƒ‰ƒO
+	HANDLE					ProcessMessageThreadHandle ;		// ProcessMessage ã‚’ã²ãŸã™ã‚‰å‘¼ã³ã¤ã¥ã‘ã‚‹ãƒ—ãƒ­ã‚»ã‚¹ã®ãƒãƒ³ãƒ‰ãƒ«
+	DWORD					ProcessMessageThreadID ;			// ProcessMessage ã‚’ã²ãŸã™ã‚‰å‘¼ã³ã¤ã¥ã‘ã‚‹ãƒ—ãƒ­ã‚»ã‚¹ã®ï¼©ï¼¤
+	DWORD					ProcessMessageThreadExitFlag ;		// ProcessMessage ã‚’ã²ãŸã™ã‚‰å‘¼ã³ã¤ã¥ã‘ã‚‹ãƒ—ãƒ­ã‚»ã‚¹ãŒçµ‚äº†æ™‚ã«ç«‹ã¦ã‚‹ãƒ•ãƒ©ã‚°
 #endif
 
-	HRGN					WindowRgn ;							// ƒƒCƒ“ƒEƒCƒ“ƒhƒE‚ÌƒŠ[ƒWƒ‡ƒ“
-	int						WindowStyle ;						// ƒEƒCƒ“ƒhƒE‚ÌƒXƒ^ƒCƒ‹ƒ^ƒCƒvƒCƒ“ƒfƒbƒNƒX’l
-	int						WindowZType ;						// ƒEƒCƒ“ƒhƒE‚Ì‚yƒI[ƒ_[ƒ^ƒCƒv( DX_WIN_ZTYPE_NORMAL ‚È‚Ç )
-	int						WindowZTypeNoActivateFlag ;			// WindowZType ‚É”º‚¤ SetWindowPos ŒÄ‚Ño‚µ‚ÌÛ‚ÉƒEƒBƒ“ƒhƒE‚ğƒAƒNƒeƒBƒu‚É‚µ‚È‚¢‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO( TRUE:ƒAƒNƒeƒBƒu‚É‚µ‚È‚¢  FALSE:ƒAƒNƒeƒBƒu‚É‚·‚é )
-	int						WindowMaximizeButtonBehaviorType ;	// ƒEƒCƒ“ƒhƒE‚ÌÅ‘å‰»ƒ{ƒ^ƒ“‚ª‰Ÿ‚³‚ê‚½‚Æ‚«‚Ì‹““®( 0=•W€“®ì 1=•W€“®ì‚Ís‚í‚¸AALTƒL[+ENTERƒL[‚ª‰Ÿ‚³‚ê‚½‚±‚Æ‚É‚·‚é )
-	int						UserWindowFlag ;					// MainWindow ‚Í‚c‚wƒ‰ƒCƒuƒ‰ƒŠ‚ªì¬‚µ‚½ƒEƒCƒ“ƒhƒE‚Å‚Í‚È‚¢‚©Aƒtƒ‰ƒO(‚s‚q‚t‚dFƒ†[ƒU[‚©‚ç“n‚³‚ê‚½ƒEƒCƒ“ƒhƒE  ‚e‚`‚k‚r‚dF‚c‚wƒ‰ƒCƒuƒ‰ƒŠ‚ªì¬‚µ‚½ƒEƒCƒ“ƒhƒE)
-	int						NotUserWindowMessageProcessDXLibFlag ;	// UserWindowFlag ‚ª—§‚Á‚Ä‚¢‚éê‡AƒEƒCƒ“ƒhƒE‚ÌƒƒbƒZ[ƒWˆ—‚ğ‚c‚wƒ‰ƒCƒuƒ‰ƒŠ‚ªs‚í‚È‚¢‚©‚Ç‚¤‚©Aƒtƒ‰ƒO(‚s‚q‚t‚dF‚c‚wƒ‰ƒCƒuƒ‰ƒŠ‚Í‰½‚à‚¹‚¸ƒ†[ƒU[‚ªƒƒbƒZ[ƒWˆ—‚ğs‚¤@‚e‚`‚k‚r‚dF‚c‚wƒ‰ƒCƒuƒ‰ƒŠ‚ªs‚¤)
-	WNDPROC					DefaultUserWindowProc ;				// ‚c‚wƒ‰ƒCƒuƒ‰ƒŠ‚ÌƒvƒƒV[ƒWƒƒ‚ğİ’è‚·‚é‘O‚Éƒ†[ƒU[‚ÌƒEƒCƒ“ƒhƒE‚Éİ’è‚³‚ê‚Ä‚¢‚½ƒvƒƒV[ƒWƒƒ
-	DWORD					MainThreadID ;						// InitializeWindow ‚ğŒÄ‚Ño‚µ‚½ƒXƒŒƒbƒh‚Ì‚h‚c
+	HRGN					WindowRgn ;							// ãƒ¡ã‚¤ãƒ³ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ãƒªãƒ¼ã‚¸ãƒ§ãƒ³
+	int						WindowStyle ;						// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ã‚¹ã‚¿ã‚¤ãƒ«ã‚¿ã‚¤ãƒ—ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹å€¤
+	int						WindowZType ;						// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ï¼ºã‚ªãƒ¼ãƒ€ãƒ¼ã‚¿ã‚¤ãƒ—( DX_WIN_ZTYPE_NORMAL ãªã© )
+	int						WindowZTypeNoActivateFlag ;			// WindowZType ã«ä¼´ã† SetWindowPos å‘¼ã³å‡ºã—ã®éš›ã«ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ã—ãªã„ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°( TRUE:ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ã—ãªã„  FALSE:ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ã™ã‚‹ )
+	int						WindowMaximizeButtonBehaviorType ;	// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®æœ€å¤§åŒ–ãƒœã‚¿ãƒ³ãŒæŠ¼ã•ã‚ŒãŸã¨ãã®æŒ™å‹•( 0=æ¨™æº–å‹•ä½œ 1=æ¨™æº–å‹•ä½œã¯è¡Œã‚ãšã€ALTã‚­ãƒ¼+ENTERã‚­ãƒ¼ãŒæŠ¼ã•ã‚ŒãŸã“ã¨ã«ã™ã‚‹ )
+	int						UserWindowFlag ;					// MainWindow ã¯ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªãŒä½œæˆã—ãŸã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã§ã¯ãªã„ã‹ã€ãƒ•ãƒ©ã‚°(ï¼´ï¼²ï¼µï¼¥ï¼šãƒ¦ãƒ¼ã‚¶ãƒ¼ã‹ã‚‰æ¸¡ã•ã‚ŒãŸã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦  ï¼¦ï¼¡ï¼¬ï¼³ï¼¥ï¼šï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªãŒä½œæˆã—ãŸã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦)
+	int						NotUserWindowMessageProcessDXLibFlag ;	// UserWindowFlag ãŒç«‹ã£ã¦ã„ã‚‹å ´åˆã€ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å‡¦ç†ã‚’ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªãŒè¡Œã‚ãªã„ã‹ã©ã†ã‹ã€ãƒ•ãƒ©ã‚°(ï¼´ï¼²ï¼µï¼¥ï¼šï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã¯ä½•ã‚‚ã›ãšãƒ¦ãƒ¼ã‚¶ãƒ¼ãŒãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å‡¦ç†ã‚’è¡Œã†ã€€ï¼¦ï¼¡ï¼¬ï¼³ï¼¥ï¼šï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªãŒè¡Œã†)
+	WNDPROC					DefaultUserWindowProc ;				// ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®ãƒ—ãƒ­ã‚·ãƒ¼ã‚¸ãƒ£ã‚’è¨­å®šã™ã‚‹å‰ã«ãƒ¦ãƒ¼ã‚¶ãƒ¼ã®ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã«è¨­å®šã•ã‚Œã¦ã„ãŸãƒ—ãƒ­ã‚·ãƒ¼ã‚¸ãƒ£
+	DWORD					MainThreadID ;						// InitializeWindow ã‚’å‘¼ã³å‡ºã—ãŸã‚¹ãƒ¬ãƒƒãƒ‰ã®ï¼©ï¼¤
 
 
-	RECT					WindowEdgeRect ;					// ƒEƒCƒ“ƒhƒEƒ‚[ƒh‚Å“®ì‚µ‚Ä‚¢‚é‚ÌƒEƒCƒ“ƒhƒE‚Ì‹éŒ`—Ìˆæ
-	RECT					WindowRect ;						// ƒEƒCƒ“ƒhƒEƒ‚[ƒh‚Å“®ì‚µ‚Ä‚¢‚é‚ÌƒEƒCƒ“ƒhƒE‚ÌƒNƒ‰ƒCƒAƒ“ƒg—Ìˆæ
-	int						WindowModeFlag ;					// ƒEƒCƒ“ƒhƒEƒ‚[ƒh‚Å“®ì‚µ‚Ä‚¢‚é‚©A‚Ìƒtƒ‰ƒO
-	int						ChangeWindodwFlag ;					// ƒEƒCƒ“ƒhƒEƒ‚[ƒh‚É•ÏX’†‚©Aƒtƒ‰ƒO
-	int						UseChangeWindowModeFlag ;			// ALT+ENTER ‚É‚æ‚éƒtƒ‹ƒXƒNƒŠ[ƒ“©¨ƒEƒCƒ“ƒhƒE‚Ì•ÏX‹@”\‚ª—LŒø‚Å‚ ‚é‚©ƒtƒ‰ƒO
-	void					(*ChangeWindowModeCallBackFunction)(void *) ; // ƒtƒ‹ƒXƒNƒŠ[ƒ“©¨ƒEƒCƒ“ƒhƒE‚Ì•ÏX‚ª‹N‚«‚½‚Æ‚«‚ÉŒÄ‚ÔŠÖ”
-	void					*ChangeWindowModeCallBackFunctionData ;	// ƒtƒ‹ƒXƒNƒŠ[ƒ“©¨ƒEƒCƒ“ƒhƒE‚Ì•ÏX‚ª‹N‚«‚½‚Æ‚«‚ÉŒÄ‚ÔŠÖ”‚É“n‚·ƒf[ƒ^
-	void					(*ShutdownCallBackFunction)(void *) ; // ƒVƒƒƒbƒgƒ_ƒEƒ“‚É‚æ‚éƒ\ƒtƒg‚Ì‹­§I—¹‚ª”­¶‚µ‚½Û‚ÉŒÄ‚Î‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”
-	void					*ShutdownCallBackFunctionData ;		// ƒVƒƒƒbƒgƒ_ƒEƒ“‚É‚æ‚éƒ\ƒtƒg‚Ì‹­§I—¹‚ª”­¶‚µ‚½Û‚ÉŒÄ‚Î‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”‚É“n‚·ƒf[ƒ^
-	wchar_t					ShutdownMessage[ 512 ] ;			// ƒVƒƒƒbƒgƒ_ƒEƒ“‚É‚æ‚éƒ\ƒtƒg‚Ì‹­§I—¹‚ª”­¶‚µ‚½Û‚ÉŒÄ‚Î‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”‚Ìˆ—‚ªÀs‚³‚ê‚Ä‚¢‚éŠÔ‚É•\¦‚³‚ê‚éƒƒbƒZ[ƒW
+	RECT					WindowEdgeRect ;					// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ¢ãƒ¼ãƒ‰ã§å‹•ä½œã—ã¦ã„ã‚‹æ™‚ã®ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®çŸ©å½¢é ˜åŸŸ
+	RECT					WindowRect ;						// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ¢ãƒ¼ãƒ‰ã§å‹•ä½œã—ã¦ã„ã‚‹æ™‚ã®ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆé ˜åŸŸ
+	int						WindowModeFlag ;					// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ¢ãƒ¼ãƒ‰ã§å‹•ä½œã—ã¦ã„ã‚‹ã‹ã€ã®ãƒ•ãƒ©ã‚°
+	int						ChangeWindodwFlag ;					// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ¢ãƒ¼ãƒ‰ã«å¤‰æ›´ä¸­ã‹ã€ãƒ•ãƒ©ã‚°
+	int						UseChangeWindowModeFlag ;			// ALT+ENTER ã«ã‚ˆã‚‹ãƒ•ãƒ«ã‚¹ã‚¯ãƒªãƒ¼ãƒ³â†â†’ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®å¤‰æ›´æ©Ÿèƒ½ãŒæœ‰åŠ¹ã§ã‚ã‚‹ã‹ãƒ•ãƒ©ã‚°
+	void					(*ChangeWindowModeCallBackFunction)(void *) ; // ãƒ•ãƒ«ã‚¹ã‚¯ãƒªãƒ¼ãƒ³â†â†’ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®å¤‰æ›´ãŒèµ·ããŸã¨ãã«å‘¼ã¶é–¢æ•°
+	void					*ChangeWindowModeCallBackFunctionData ;	// ãƒ•ãƒ«ã‚¹ã‚¯ãƒªãƒ¼ãƒ³â†â†’ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®å¤‰æ›´ãŒèµ·ããŸã¨ãã«å‘¼ã¶é–¢æ•°ã«æ¸¡ã™ãƒ‡ãƒ¼ã‚¿
+	void					(*ShutdownCallBackFunction)(void *) ; // ã‚·ãƒ£ãƒƒãƒˆãƒ€ã‚¦ãƒ³ã«ã‚ˆã‚‹ã‚½ãƒ•ãƒˆã®å¼·åˆ¶çµ‚äº†ãŒç™ºç”Ÿã—ãŸéš›ã«å‘¼ã°ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+	void					*ShutdownCallBackFunctionData ;		// ã‚·ãƒ£ãƒƒãƒˆãƒ€ã‚¦ãƒ³ã«ã‚ˆã‚‹ã‚½ãƒ•ãƒˆã®å¼·åˆ¶çµ‚äº†ãŒç™ºç”Ÿã—ãŸéš›ã«å‘¼ã°ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã«æ¸¡ã™ãƒ‡ãƒ¼ã‚¿
+	wchar_t					ShutdownMessage[ 512 ] ;			// ã‚·ãƒ£ãƒƒãƒˆãƒ€ã‚¦ãƒ³ã«ã‚ˆã‚‹ã‚½ãƒ•ãƒˆã®å¼·åˆ¶çµ‚äº†ãŒç™ºç”Ÿã—ãŸéš›ã«å‘¼ã°ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã®å‡¦ç†ãŒå®Ÿè¡Œã•ã‚Œã¦ã„ã‚‹é–“ã«è¡¨ç¤ºã•ã‚Œã‚‹ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 
 #ifndef DX_NON_INPUT
-	int						RecvWM_DEVICECHANGEFlag ;			// WM_DEVICECHANGE ƒƒbƒZ[ƒW‚ª—ˆ‚½‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO
+	int						RecvWM_DEVICECHANGEFlag ;			// WM_DEVICECHANGE ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãŒæ¥ãŸã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°
 #endif // DX_NON_INPUT
 
-	wchar_t					InputSysChara ;						// “ü—Í‚³‚ê‚½ƒVƒXƒeƒ€•¶šƒR[ƒh
+	wchar_t					InputSysChara ;						// å…¥åŠ›ã•ã‚ŒãŸã‚·ã‚¹ãƒ†ãƒ æ–‡å­—ã‚³ãƒ¼ãƒ‰
 
-	int						QuitMessageFlag ;					// WM_QUITƒƒbƒZ[ƒW‚ª‘—‚ç‚ê‚Ä‚«‚½‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO•Ï”
-	int						CloseMessagePostFlag ;				// WM_CLOSEƒƒbƒZ[ƒW‚ğ‘—‚Á‚½‚É‚s‚q‚t‚d‚É‚È‚éƒtƒ‰ƒO•Ï”
-	int						DestroyMessageCatchFlag ;			// WM_DESTROY ƒƒbƒZ[ƒW‚ª—ˆ‚½‚É‚s‚q‚t‚d‚É‚È‚éƒtƒ‰ƒO•Ï”
-	int						DisplayChangeMessageFlag ;			// WM_DISPLAYCHANGE ƒƒbƒZ[ƒW‚ª—ˆ‚©‚½ƒtƒ‰ƒO
+	int						QuitMessageFlag ;					// WM_QUITãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãŒé€ã‚‰ã‚Œã¦ããŸã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°å¤‰æ•°
+	int						CloseMessagePostFlag ;				// WM_CLOSEãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’é€ã£ãŸæ™‚ã«ï¼´ï¼²ï¼µï¼¥ã«ãªã‚‹ãƒ•ãƒ©ã‚°å¤‰æ•°
+	int						DestroyMessageCatchFlag ;			// WM_DESTROY ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãŒæ¥ãŸæ™‚ã«ï¼´ï¼²ï¼µï¼¥ã«ãªã‚‹ãƒ•ãƒ©ã‚°å¤‰æ•°
+	int						DisplayChangeMessageFlag ;			// WM_DISPLAYCHANGE ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãŒæ¥ã‹ãŸãƒ•ãƒ©ã‚°
 	
-	int						ScreenCopyRequestFlag ;				// ScreenCopy ‚ğ‚µ‚Ä—~‚µ‚¢‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO
-	int						ScreenCopyRequestStartTime ;		// ScreenCopy ‚ğ‚µ‚Ä—~‚µ‚¢‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ª—§‚Á‚½‚Æ‚«‚ÌŠÔ
-	int						ActiveFlag ;						// Às’†‚Ìƒ\ƒtƒg‚ªƒAƒNƒeƒBƒuó‘Ô‚©i‚s‚q‚t‚dFƒAƒNƒeƒBƒu ‚e‚`‚k‚r‚dF”ñƒAƒNƒeƒBƒuj
-	int						WindowMinSizeFlag ;					// Å¬‰»‚³‚ê‚Ä‚¢‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO
-	int						WindowMaximizeButtonInputFlag ;		// Å‘å‰»ƒ{ƒ^ƒ“‚ª‰Ÿ‚³‚ê‚½‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO
-	int						WaitTimeValidFlag ;					// WaitTime ‚ª—LŒø‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO
-	int						WaitTime ;							// ‘¼‚Ìƒ\ƒtƒg‚ªƒAƒNƒeƒBƒu‚É‚È‚èAƒ\ƒtƒg‚ª’â~‚µn‚ß‚½‚ÌƒJƒEƒ“ƒg
-	int						StopFlag ;							// ˆê“I‚ÉƒIƒuƒWƒFƒNƒg‚ğƒŠƒŠ[ƒX‚µ‚Ä‚¢‚é‚©ƒtƒ‰ƒO
-	int						ChangeWindowModeFlag ;				// ƒEƒCƒ“ƒhƒEƒ‚[ƒh‚Ì•ÏX‚ğs‚¤w’è‚ª‹N‚±‚Á‚½‚ç‚s‚q‚t‚d‚É‚È‚éƒtƒ‰ƒO
-	int						NonUserCloseEnableFlag ;			// ƒ†[ƒU[‚ª~ƒ{ƒ^ƒ“‚ğ‰Ÿ‚µ‚½‚Éƒ‰ƒCƒuƒ‰ƒŠ‘¤‚ÅƒEƒCƒ“ƒhƒE‚ğ•Â‚¶‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO
-	int						NonDxLibEndPostQuitMessageFlag ;	//‚c‚wƒ‰ƒCƒuƒ‰ƒŠ‚ÌI—¹‚É PostQuitMessage ‚ğŒÄ‚Î‚È‚¢‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO
-	int						BorderlessWindowFlag ;				// ƒ{[ƒ_[ƒŒƒXƒEƒBƒ“ƒhƒE‚É‚·‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO( TRUE:ƒ{[ƒ_[ƒŒƒXƒEƒBƒ“ƒhƒE  FALSE:’ÊíƒEƒBƒ“ƒhƒE )
-	int						AltF4_EndFlag ;						// ‹­§I—¹‚©Aƒtƒ‰ƒO
-	int						WM_PAINTFlag ;						// WM_PAINT ˆ—’†‚©Aƒtƒ‰ƒO
-	int						RecvWM_PAINTFlag;					// WM_PAINT ‚ª—ˆ‚½‚©‚Ç‚¤‚©Aƒtƒ‰ƒO
-	int						NotUseDxLibWM_PAINTProcess ;		// ‚c‚wƒ‰ƒCƒuƒ‰ƒŠ‚Ì WM_PAINT ‚Ìˆ—‚ğÀs‚µ‚È‚¢‚©‚Ìƒtƒ‰ƒO
-	int						DisableWindows10_WM_CHAR_CancelTime ;	// Windows10 ‚Å WM_CHAR ‚Å’ZŠÔ‚É˜A‘±‚µ‚Ä“¯‚¶•¶š‚ª“ü—Í‚³‚ê‚½ê‡‚Ì–³Œøˆµ‚¢‚É‚·‚éˆ—‚ğ–³Œø‚É‚·‚é‚©‚Ç‚¤‚©ƒtƒ‰ƒO( TRUEF–³Œø‚É‚·‚é  FALSEF–³Œø‚É‚µ‚È‚¢ )
-	int						EnableWindows10_WM_CHAR_CancelTime ;// Windows10_WM_CHAR_CancelTime ‚ª—LŒø‚©‚Ç‚¤‚©
-	int						Windows10_WM_CHAR_CancelTime ;		// Windows10 ‚Å WM_CHAR ‚Å’ZŠÔ‚É˜A‘±‚µ‚Ä“¯‚¶•¶š‚ª“ü—Í‚³‚ê‚½ê‡‚Ì–³Œøˆµ‚¢‚É‚·‚éŠÔ( MilliSecond ‚Ìƒ~ƒŠ•bˆÈ“à‚É˜A‘±‚µ‚Ä“¯‚¶•¶š‚ª“ü—Í‚³‚ê‚½ê‡‚É–³Œø‚É‚·‚é )
-	int						UseFPUPreserve ;					// FPU¸“x‚ğ—‚Æ‚³‚È‚¢İ’è‚ğg—p‚·‚é‚©‚Ç‚¤‚©( TRUE:g—p‚·‚é  FALSE:g—p‚µ‚È‚¢ )
+	int						ScreenCopyRequestFlag ;				// ScreenCopy ã‚’ã—ã¦æ¬²ã—ã„ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°
+	int						ScreenCopyRequestStartTime ;		// ScreenCopy ã‚’ã—ã¦æ¬²ã—ã„ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ãŒç«‹ã£ãŸã¨ãã®æ™‚é–“
+	int						ActiveFlag ;						// å®Ÿè¡Œä¸­ã®ã‚½ãƒ•ãƒˆãŒã‚¢ã‚¯ãƒ†ã‚£ãƒ–çŠ¶æ…‹ã‹ï¼ˆï¼´ï¼²ï¼µï¼¥ï¼šã‚¢ã‚¯ãƒ†ã‚£ãƒ– ï¼¦ï¼¡ï¼¬ï¼³ï¼¥ï¼šéã‚¢ã‚¯ãƒ†ã‚£ãƒ–ï¼‰
+	int						WindowMinSizeFlag ;					// æœ€å°åŒ–ã•ã‚Œã¦ã„ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°
+	int						WindowMaximizeButtonInputFlag ;		// æœ€å¤§åŒ–ãƒœã‚¿ãƒ³ãŒæŠ¼ã•ã‚ŒãŸã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°
+	int						WaitTimeValidFlag ;					// WaitTime ãŒæœ‰åŠ¹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°
+	int						WaitTime ;							// ä»–ã®ã‚½ãƒ•ãƒˆãŒã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ãªã‚Šã€ã‚½ãƒ•ãƒˆãŒåœæ­¢ã—å§‹ã‚ãŸæ™‚ã®ã‚«ã‚¦ãƒ³ãƒˆ
+	int						StopFlag ;							// ä¸€æ™‚çš„ã«ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ãƒªãƒªãƒ¼ã‚¹ã—ã¦ã„ã‚‹ã‹ãƒ•ãƒ©ã‚°
+	int						ChangeWindowModeFlag ;				// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ¢ãƒ¼ãƒ‰ã®å¤‰æ›´ã‚’è¡Œã†æŒ‡å®šãŒèµ·ã“ã£ãŸã‚‰ï¼´ï¼²ï¼µï¼¥ã«ãªã‚‹ãƒ•ãƒ©ã‚°
+	int						NonUserCloseEnableFlag ;			// ãƒ¦ãƒ¼ã‚¶ãƒ¼ãŒÃ—ãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸæ™‚ã«ãƒ©ã‚¤ãƒ–ãƒ©ãƒªå´ã§ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚’é–‰ã˜ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°
+	int						NonDxLibEndPostQuitMessageFlag ;	//ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®çµ‚äº†æ™‚ã« PostQuitMessage ã‚’å‘¼ã°ãªã„ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°
+	int						BorderlessWindowFlag ;				// ãƒœãƒ¼ãƒ€ãƒ¼ãƒ¬ã‚¹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã«ã™ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°( TRUE:ãƒœãƒ¼ãƒ€ãƒ¼ãƒ¬ã‚¹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦  FALSE:é€šå¸¸ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ )
+	int						AltF4_EndFlag ;						// å¼·åˆ¶çµ‚äº†ã‹ã€ãƒ•ãƒ©ã‚°
+	int						WM_PAINTFlag ;						// WM_PAINT å‡¦ç†ä¸­ã‹ã€ãƒ•ãƒ©ã‚°
+	int						RecvWM_PAINTFlag;					// WM_PAINT ãŒæ¥ãŸã‹ã©ã†ã‹ã€ãƒ•ãƒ©ã‚°
+	int						NotUseDxLibWM_PAINTProcess ;		// ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã® WM_PAINT ã®å‡¦ç†ã‚’å®Ÿè¡Œã—ãªã„ã‹ã®ãƒ•ãƒ©ã‚°
+	int						DisableWindows10_WM_CHAR_CancelTime ;	// Windows10 ã§ WM_CHAR ã§çŸ­æ™‚é–“ã«é€£ç¶šã—ã¦åŒã˜æ–‡å­—ãŒå…¥åŠ›ã•ã‚ŒãŸå ´åˆã®ç„¡åŠ¹æ‰±ã„ã«ã™ã‚‹å‡¦ç†ã‚’ç„¡åŠ¹ã«ã™ã‚‹ã‹ã©ã†ã‹ãƒ•ãƒ©ã‚°( TRUEï¼šç„¡åŠ¹ã«ã™ã‚‹  FALSEï¼šç„¡åŠ¹ã«ã—ãªã„ )
+	int						EnableWindows10_WM_CHAR_CancelTime ;// Windows10_WM_CHAR_CancelTime ãŒæœ‰åŠ¹ã‹ã©ã†ã‹
+	int						Windows10_WM_CHAR_CancelTime ;		// Windows10 ã§ WM_CHAR ã§çŸ­æ™‚é–“ã«é€£ç¶šã—ã¦åŒã˜æ–‡å­—ãŒå…¥åŠ›ã•ã‚ŒãŸå ´åˆã®ç„¡åŠ¹æ‰±ã„ã«ã™ã‚‹æ™‚é–“( MilliSecond ã®ãƒŸãƒªç§’ä»¥å†…ã«é€£ç¶šã—ã¦åŒã˜æ–‡å­—ãŒå…¥åŠ›ã•ã‚ŒãŸå ´åˆã«ç„¡åŠ¹ã«ã™ã‚‹ )
+	int						UseFPUPreserve ;					// FPUç²¾åº¦ã‚’è½ã¨ã•ãªã„è¨­å®šã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹( TRUE:ä½¿ç”¨ã™ã‚‹  FALSE:ä½¿ç”¨ã—ãªã„ )
 
-	int						MouseDispFlag ;						// ƒ}ƒEƒX‚Ì•\¦ƒtƒ‰ƒO
-	int						MouseDispState ;					// ƒ}ƒEƒX‚Ì•\¦ó‘Ô
-	int						MouseDispIgnoreMenuFlag ;			// ƒ}ƒEƒX‚Ì•\¦ó‘Ô‚É‚Â‚¢‚Äƒƒjƒ…[‚Ìó‘Ô‚ğ–³‹‚·‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO( TRUE:–³‹‚·‚é  FALSE:–³‹‚µ‚È‚¢ )
-	int						MouseMoveZ ;						// ƒ}ƒEƒX‚ÌƒzƒC[ƒ‹‚ÌˆÚ“®—Ê
-	int						MouseMoveHZ ;						// ƒ}ƒEƒX‚Ì…•½ƒzƒC[ƒ‹‚ÌˆÚ“®—Ê
+	int						MouseDispFlag ;						// ãƒã‚¦ã‚¹ã®è¡¨ç¤ºãƒ•ãƒ©ã‚°
+	int						MouseDispState ;					// ãƒã‚¦ã‚¹ã®è¡¨ç¤ºçŠ¶æ…‹
+	int						MouseDispIgnoreMenuFlag ;			// ãƒã‚¦ã‚¹ã®è¡¨ç¤ºçŠ¶æ…‹ã«ã¤ã„ã¦ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®çŠ¶æ…‹ã‚’ç„¡è¦–ã™ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°( TRUE:ç„¡è¦–ã™ã‚‹  FALSE:ç„¡è¦–ã—ãªã„ )
+	int						MouseMoveZ ;						// ãƒã‚¦ã‚¹ã®ãƒ›ã‚¤ãƒ¼ãƒ«ã®ç§»å‹•é‡
+	int						MouseMoveHZ ;						// ãƒã‚¦ã‚¹ã®æ°´å¹³ãƒ›ã‚¤ãƒ¼ãƒ«ã®ç§»å‹•é‡
 
-	int						WM_ACTIVATE_StockNum ;				// WM_ACTIVATE ƒƒbƒZ[ƒWƒXƒgƒbƒN‚Ì”
-	int						WM_ACTIVATE_StartIndex ;			// WM_ACTIVATE ƒƒbƒZ[ƒWƒŠƒ“ƒOƒoƒbƒtƒ@‚ÌŠJnƒCƒ“ƒfƒbƒNƒX
-	int						WM_ACTIVATE_EndIndex ;				// WM_ACTIVATE ƒƒbƒZ[ƒWƒŠƒ“ƒOƒoƒbƒtƒ@‚ÌI—¹ƒCƒ“ƒfƒbƒNƒX
-	WPARAM					WM_ACTIVATE_wParam[ 512 ] ;			// WM_ACTIVATE ‚ÉƒƒbƒZ[ƒW‚ª—ˆ‚½Õ‚Ì wParam
-	LPARAM					WM_ACTIVATE_lParam[ 512 ] ;			// WM_ACTIVATE ‚ÉƒƒbƒZ[ƒW‚ª—ˆ‚½Õ‚Ì lParam
-	int						WM_ACTIVATE_APPMes[ 512 ] ;			// WM_ACTIVATEAPP ‚ÌŒ¨‘ã‚í‚è‚©
-	int						WM_ACTIVATE_Dummy[ 512 ] ;			// WM_ACTIVATE ‚Ìƒ_ƒ~[ƒƒbƒZ[ƒW‚©‚Ç‚¤‚©
-	int						WM_ACTIVATE_ProcessFlag ;			// WM_ACTIVATEProcess ‚ğÀs’†‚©‚Ç‚¤‚©
-	int						WM_CHAR_Time ;						// WM_CHAR ‚ª”­¶‚µ‚½ŠÔ
-	WPARAM					WM_CHAR_wParam ;					// WM_CHAR ‚Ì wParam
+	int						WM_ACTIVATE_StockNum ;				// WM_ACTIVATE ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¹ãƒˆãƒƒã‚¯ã®æ•°
+	int						WM_ACTIVATE_StartIndex ;			// WM_ACTIVATE ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒªãƒ³ã‚°ãƒãƒƒãƒ•ã‚¡ã®é–‹å§‹ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+	int						WM_ACTIVATE_EndIndex ;				// WM_ACTIVATE ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒªãƒ³ã‚°ãƒãƒƒãƒ•ã‚¡ã®çµ‚äº†ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+	WPARAM					WM_ACTIVATE_wParam[ 512 ] ;			// WM_ACTIVATE ã«ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãŒæ¥ãŸç¥­ã® wParam
+	LPARAM					WM_ACTIVATE_lParam[ 512 ] ;			// WM_ACTIVATE ã«ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãŒæ¥ãŸç¥­ã® lParam
+	int						WM_ACTIVATE_APPMes[ 512 ] ;			// WM_ACTIVATEAPP ã®è‚©ä»£ã‚ã‚Šã‹
+	int						WM_ACTIVATE_Dummy[ 512 ] ;			// WM_ACTIVATE ã®ãƒ€ãƒŸãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‹ã©ã†ã‹
+	int						WM_ACTIVATE_ProcessFlag ;			// WM_ACTIVATEProcess ã‚’å®Ÿè¡Œä¸­ã‹ã©ã†ã‹
+	int						WM_CHAR_Time ;						// WM_CHAR ãŒç™ºç”Ÿã—ãŸæ™‚é–“
+	WPARAM					WM_CHAR_wParam ;					// WM_CHAR ã® wParam
 
-	int						PerformanceTimerFlag ;				// ƒpƒtƒH[ƒ}ƒ“ƒXƒJƒEƒ“ƒ^[‚ªg‚¦‚é‚©ƒtƒ‰ƒO
-	LONGLONG				PerformanceTimerFrequency ;			// ƒpƒtƒH[ƒ}ƒ“ƒXƒJƒEƒ“ƒ^[‚Ìü”g”
+	int						PerformanceTimerFlag ;				// ãƒ‘ãƒ•ã‚©ãƒ¼ãƒãƒ³ã‚¹ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼ãŒä½¿ãˆã‚‹ã‹ãƒ•ãƒ©ã‚°
+	LONGLONG				PerformanceTimerFrequency ;			// ãƒ‘ãƒ•ã‚©ãƒ¼ãƒãƒ³ã‚¹ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼ã®å‘¨æ³¢æ•°
 
-//	SIZE					DefaultScreenSize ;					// ‹N“®‚ÌƒfƒXƒNƒgƒbƒv‚Ì‰æ–ÊƒTƒCƒY
-//	int						DefaultColorBitCount ;				// ‹N“®‚ÌƒfƒXƒNƒgƒbƒv‚ÌƒJƒ‰[ƒrƒbƒg”
-//	int						DefaultRefreshRate ;				// ‹N“®‚ÌƒfƒXƒNƒgƒbƒv‚ÌƒŠƒtƒŒƒbƒVƒ…ƒŒ[ƒg
+//	SIZE					DefaultScreenSize ;					// èµ·å‹•æ™‚ã®ãƒ‡ã‚¹ã‚¯ãƒˆãƒƒãƒ—ã®ç”»é¢ã‚µã‚¤ã‚º
+//	int						DefaultColorBitCount ;				// èµ·å‹•æ™‚ã®ãƒ‡ã‚¹ã‚¯ãƒˆãƒƒãƒ—ã®ã‚«ãƒ©ãƒ¼ãƒ“ãƒƒãƒˆæ•°
+//	int						DefaultRefreshRate ;				// èµ·å‹•æ™‚ã®ãƒ‡ã‚¹ã‚¯ãƒˆãƒƒãƒ—ã®ãƒªãƒ•ãƒ¬ãƒƒã‚·ãƒ¥ãƒ¬ãƒ¼ãƒˆ
 
-	int						ComInitializeFlag ;					// ‚b‚n‚l‚ğ‰Šú‰»‚µ‚½‚©A‚Ìƒtƒ‰ƒO
-	int						WindowCreateFlag ;					// ƒEƒCƒ“ƒhƒEì¬’†‚©Aƒtƒ‰ƒO
-	int						ProcessMessageFlag ;				// ProcessMessage ‚ğÀs’†‚©Aƒtƒ‰ƒO
-	int						DoubleStartValidFlag ;				// ‚Qd‹N“®‚ğ‹–‚·‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO(TRUE:‹–‚· FALSE:‹–‚³‚È‚¢)
+	int						ComInitializeFlag ;					// ï¼£ï¼¯ï¼­ã‚’åˆæœŸåŒ–ã—ãŸã‹ã€ã®ãƒ•ãƒ©ã‚°
+	int						WindowCreateFlag ;					// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ä½œæˆä¸­ã‹ã€ãƒ•ãƒ©ã‚°
+	int						ProcessMessageFlag ;				// ProcessMessage ã‚’å®Ÿè¡Œä¸­ã‹ã€ãƒ•ãƒ©ã‚°
+	int						DoubleStartValidFlag ;				// ï¼’é‡èµ·å‹•ã‚’è¨±ã™ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°(TRUE:è¨±ã™ FALSE:è¨±ã•ãªã„)
 
-	BASEIMAGE				PauseGraph ;						// ƒAƒNƒeƒBƒu‚ª‘¼‚ÉˆÚ‚Á‚Ä‚¢‚é‚Æ‚«‚É•`‰æ‚·‚é‰æ‘œ
-	int						PauseGraphHandle ;					// ƒAƒNƒeƒBƒu‚ª‘¼‚ÉˆÚ‚Á‚Ä‚¢‚é‚Æ‚«‚É•`‰æ‚·‚é‰æ‘œ‚ÌƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹
-	int						(*ActiveStateChangeCallBackFunction)( int ActiveState, void *UserData ) ;	// ƒEƒCƒ“ƒhƒE‚ÌƒAƒNƒeƒBƒuó‘Ô‚É•Ï‰»‚ª‚ ‚Á‚½‚Æ‚«‚ÉŒÄ‚Î‚ê‚éŠÖ”
-	void					*ActiveStateChangeCallBackFunctionData ;	// ActiveStateChangeCallBackFunction ‚É“n‚·ƒf[ƒ^ƒAƒhƒŒƒX
+	BASEIMAGE				PauseGraph ;						// ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ãŒä»–ã«ç§»ã£ã¦ã„ã‚‹ã¨ãã«æç”»ã™ã‚‹ç”»åƒ
+	int						PauseGraphHandle ;					// ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ãŒä»–ã«ç§»ã£ã¦ã„ã‚‹ã¨ãã«æç”»ã™ã‚‹ç”»åƒã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«
+	int						(*ActiveStateChangeCallBackFunction)( int ActiveState, void *UserData ) ;	// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ã‚¢ã‚¯ãƒ†ã‚£ãƒ–çŠ¶æ…‹ã«å¤‰åŒ–ãŒã‚ã£ãŸã¨ãã«å‘¼ã°ã‚Œã‚‹é–¢æ•°
+	void					*ActiveStateChangeCallBackFunctionData ;	// ActiveStateChangeCallBackFunction ã«æ¸¡ã™ãƒ‡ãƒ¼ã‚¿ã‚¢ãƒ‰ãƒ¬ã‚¹
 
-	wchar_t					CurrentDirectory[ FILEPATH_MAX ] ;	// ‹N“®‚ÌƒJƒŒƒ“ƒgƒfƒBƒŒƒNƒgƒŠ
-	int						EnableWindowText ;					// WindowText ‚ª—LŒø‚©‚Ç‚¤‚©
-	wchar_t					WindowText[ 256 ] ;					// ƒƒCƒ“ƒEƒCƒ“ƒhƒEƒeƒLƒXƒg
-	wchar_t					ClassName[ 256 ] ;					// ƒƒCƒ“ƒEƒCƒ“ƒhƒE‚ÌƒNƒ‰ƒX–¼
+	wchar_t					CurrentDirectory[ FILEPATH_MAX ] ;	// èµ·å‹•æ™‚ã®ã‚«ãƒ¬ãƒ³ãƒˆãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒª
+	int						EnableWindowText ;					// WindowText ãŒæœ‰åŠ¹ã‹ã©ã†ã‹
+	wchar_t					WindowText[ 256 ] ;					// ãƒ¡ã‚¤ãƒ³ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ†ã‚­ã‚¹ãƒˆ
+	wchar_t					ClassName[ 256 ] ;					// ãƒ¡ã‚¤ãƒ³ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ã‚¯ãƒ©ã‚¹å
 
-	int						NonActiveRunFlag ;					// ƒEƒCƒ“ƒhƒE‚ªƒAƒNƒeƒBƒu‚Å‚Í‚È‚­‚Ä‚àˆ—‚ğÀs‚·‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO
-	int						DrawBackGraphFlag ;					// DrawBackGraph ŠÖ”‚ğÀs’†‚©‚Ç‚¤‚©( TRUE:Às’†  FALSE:Às’†‚Å‚Í‚È‚¢ )
+	int						NonActiveRunFlag ;					// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãŒã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã§ã¯ãªãã¦ã‚‚å‡¦ç†ã‚’å®Ÿè¡Œã™ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°
+	int						DrawBackGraphFlag ;					// DrawBackGraph é–¢æ•°ã‚’å®Ÿè¡Œä¸­ã‹ã©ã†ã‹( TRUE:å®Ÿè¡Œä¸­  FALSE:å®Ÿè¡Œä¸­ã§ã¯ãªã„ )
 
-	int						IconID ;							// g—p‚·‚éƒAƒCƒRƒ“‚Ì‚h‚c
-	HICON					IconHandle ;						// g—p‚·‚éƒAƒCƒRƒ“‚Ìƒnƒ“ƒhƒ‹
+	int						IconID ;							// ä½¿ç”¨ã™ã‚‹ã‚¢ã‚¤ã‚³ãƒ³ã®ï¼©ï¼¤
+	HICON					IconHandle ;						// ä½¿ç”¨ã™ã‚‹ã‚¢ã‚¤ã‚³ãƒ³ã®ãƒãƒ³ãƒ‰ãƒ«
 
-	int						UseAccelFlag ;						// ƒAƒNƒZƒ‰ƒŒ[ƒ^[‚ğg—p‚·‚é‚©‚Ç‚¤‚©ƒtƒ‰ƒO
-	HACCEL					Accel ;								// ƒAƒNƒZƒ‰ƒŒ[ƒ^[
+	int						UseAccelFlag ;						// ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚¿ãƒ¼ã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ãƒ•ãƒ©ã‚°
+	HACCEL					Accel ;								// ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚¿ãƒ¼
 
-	HMENU					Menu ;								// g—p‚µ‚Ä‚¢‚éƒƒjƒ…[‚Ìƒnƒ“ƒhƒ‹
-	int						MenuSetupFlag ;						// ƒƒjƒ…[‚ğƒZƒbƒg‚µ‚Ä‚ ‚é‚©‚Ç‚¤‚©ƒtƒ‰ƒO( TRUE:ƒZƒbƒg‚µ‚Ä‚ ‚é  FALSE:‚µ‚Ä‚È‚¢ )
-	int						MenuUseFlag ;						// ƒƒjƒ…[‚ğg—p‚µ‚Ä‚¢‚é‚©ƒtƒ‰ƒO
-	int						MenuResourceID ;					// ƒƒjƒ…[‚ÌƒŠƒ\[ƒX‚h‚c
-	int						(*MenuProc)( WORD ID ) ;			// ƒƒjƒ…[ƒƒbƒZ[ƒW‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-	void					(*MenuCallBackFunction)( const TCHAR *ItemName, int ItemID ) ;	// ƒƒjƒ…[ƒƒbƒZ[ƒW‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-	int						NotMenuDisplayFlag ;				// ƒƒjƒ…[•\¦ƒtƒ‰ƒO
-	int						MenuDisplayState ;					// ƒƒjƒ…[‚ª•\¦‚³‚ê‚Ä‚¢‚é‚©‚Ç‚¤‚©ƒtƒ‰ƒO
-	int						NotMenuAutoDisplayFlag ;			// ƒƒjƒ…[‚ğ©“®‚Å•\¦‚µ‚½‚è‚µ‚È‚©‚Á‚½‚è‚·‚é
-	int						MousePosInMenuBarFlag ;				// ƒƒjƒ…[ƒo[‚Ì—Ìˆæ‚Éƒ}ƒEƒXƒ|ƒCƒ“ƒ^‚ª“ü‚Á‚Ä‚¢‚é‚©Aƒtƒ‰ƒO
-	int						SelectMenuItem[MAX_MENUITEMSELECT_NUM] ; // ‘I‘ğ‚³‚ê‚½ƒƒjƒ…[€–Ú‚ÌƒŠƒXƒg
-	int						SelectMenuItemNum ;					// ‘I‘ğ‚³‚ê‚½ƒƒjƒ…[€–Ú‚Ì”
-	WINMENUITEMINFO			MenuItemInfo[MAX_MENUITEM_NUM] ;	// ƒƒjƒ…[‚Ì‘I‘ğ€–Ú‚Ìî•ñ
-	int						MenuItemInfoNum ;					// ƒƒjƒ…[‚Ì‘I‘ğ€–Ú‚Ì”
+	HMENU					Menu ;								// ä½¿ç”¨ã—ã¦ã„ã‚‹ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®ãƒãƒ³ãƒ‰ãƒ«
+	int						MenuSetupFlag ;						// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’ã‚»ãƒƒãƒˆã—ã¦ã‚ã‚‹ã‹ã©ã†ã‹ãƒ•ãƒ©ã‚°( TRUE:ã‚»ãƒƒãƒˆã—ã¦ã‚ã‚‹  FALSE:ã—ã¦ãªã„ )
+	int						MenuUseFlag ;						// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹ã‹ãƒ•ãƒ©ã‚°
+	int						MenuResourceID ;					// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®ãƒªã‚½ãƒ¼ã‚¹ï¼©ï¼¤
+	int						(*MenuProc)( WORD ID ) ;			// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+	void					(*MenuCallBackFunction)( const TCHAR *ItemName, int ItemID ) ;	// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+	int						NotMenuDisplayFlag ;				// ãƒ¡ãƒ‹ãƒ¥ãƒ¼è¡¨ç¤ºãƒ•ãƒ©ã‚°
+	int						MenuDisplayState ;					// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãŒè¡¨ç¤ºã•ã‚Œã¦ã„ã‚‹ã‹ã©ã†ã‹ãƒ•ãƒ©ã‚°
+	int						NotMenuAutoDisplayFlag ;			// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’è‡ªå‹•ã§è¡¨ç¤ºã—ãŸã‚Šã—ãªã‹ã£ãŸã‚Šã™ã‚‹
+	int						MousePosInMenuBarFlag ;				// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒãƒ¼ã®é ˜åŸŸã«ãƒã‚¦ã‚¹ãƒã‚¤ãƒ³ã‚¿ãŒå…¥ã£ã¦ã„ã‚‹ã‹ã€ãƒ•ãƒ©ã‚°
+	int						SelectMenuItem[MAX_MENUITEMSELECT_NUM] ; // é¸æŠã•ã‚ŒãŸãƒ¡ãƒ‹ãƒ¥ãƒ¼é …ç›®ã®ãƒªã‚¹ãƒˆ
+	int						SelectMenuItemNum ;					// é¸æŠã•ã‚ŒãŸãƒ¡ãƒ‹ãƒ¥ãƒ¼é …ç›®ã®æ•°
+	WINMENUITEMINFO			MenuItemInfo[MAX_MENUITEM_NUM] ;	// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®é¸æŠé …ç›®ã®æƒ…å ±
+	int						MenuItemInfoNum ;					// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®é¸æŠé …ç›®ã®æ•°
 
-	int						ToolBarUseFlag ;					// ƒc[ƒ‹ƒo[‚ğg—p‚·‚é‚©‚Ç‚¤‚©‚Ìî•ñ
-	HWND					ToolBarHandle ;						// ƒc[ƒ‹ƒo[‚ÌƒEƒCƒ“ƒhƒEƒnƒ“ƒhƒ‹
-	HBITMAP					ToolBarButtonImage ;				// ƒc[ƒ‹ƒo[‚Ìƒ{ƒ^ƒ“‚Ìƒrƒbƒgƒ}ƒbƒv
-	int						ToolBarItemNum ;					// ƒc[ƒ‹ƒo[‚ÌƒAƒCƒeƒ€‚Ì”
-	WINTOOLBARITEMINFO		ToolBarItem[MAX_TOOLBARITEM_NUM] ;	// ƒc[ƒ‹ƒo[‚Ìƒ{ƒ^ƒ“‚Ìî•ñ
+	int						ToolBarUseFlag ;					// ãƒ„ãƒ¼ãƒ«ãƒãƒ¼ã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã®æƒ…å ±
+	HWND					ToolBarHandle ;						// ãƒ„ãƒ¼ãƒ«ãƒãƒ¼ã®ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒãƒ³ãƒ‰ãƒ«
+	HBITMAP					ToolBarButtonImage ;				// ãƒ„ãƒ¼ãƒ«ãƒãƒ¼ã®ãƒœã‚¿ãƒ³ã®ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—
+	int						ToolBarItemNum ;					// ãƒ„ãƒ¼ãƒ«ãƒãƒ¼ã®ã‚¢ã‚¤ãƒ†ãƒ ã®æ•°
+	WINTOOLBARITEMINFO		ToolBarItem[MAX_TOOLBARITEM_NUM] ;	// ãƒ„ãƒ¼ãƒ«ãƒãƒ¼ã®ãƒœã‚¿ãƒ³ã®æƒ…å ±
 
-	int						WindowSizeChangeEnable ;			// ƒEƒCƒ“ƒhƒE‚ÌƒTƒCƒY‚ğ•ÏX‚Å‚«‚é‚©ƒtƒ‰ƒO
-	int						EnableWindowSizeExRate ;			// WindowSizeExRateX, WindowSizeExRateY ‚ª—LŒø‚È’l‚ªİ’è‚³‚ê‚Ä‚¢‚é‚©‚Ç‚¤‚©
-	double					WindowSizeExRateX, WindowSizeExRateY ;	// •`‰æ‰æ–Ê‚ÌƒTƒCƒY‚É‘Î‚·‚éƒEƒCƒ“ƒhƒEƒTƒCƒY‚Ì”ä—¦
-	int						ChangeWindowSizeExRate ;			// ƒEƒBƒ“ƒhƒE‚ÌƒTƒCƒY‚Ì”ä—¦‚ğ•ÏX’†‚©‚Ç‚¤‚©
-	int						ScreenNotFitWindowSize ;			// ƒEƒCƒ“ƒhƒE‚ÌƒNƒ‰ƒCƒAƒ“ƒg—Ìˆæ‚É‰æ–Ê‚ğƒtƒBƒbƒg‚³‚¹‚È‚¢‚©‚Ç‚¤‚©ƒtƒ‰ƒO( TRUE:ƒtƒBƒbƒg‚³‚¹‚È‚¢  FALSE:ƒtƒBƒbƒg‚·‚é )
-	int						WindowWidth, WindowHeight ;			// ƒEƒCƒ“ƒhƒE‚ÌƒTƒCƒY( ƒ†[ƒU[w’è )
-	int						WindowSizeValid ;					// ƒEƒCƒ“ƒhƒE‚ÌƒTƒCƒY‚ª—LŒø‚©‚Ç‚¤‚©( TRUE:—LŒø  FALSE:–³Œø )
-	int						WindowSizeValidResetRequest ;		// ƒEƒCƒ“ƒhƒE‚ÌƒTƒCƒY‚ª—LŒø‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğƒŠƒZƒbƒg‚·‚éƒŠƒNƒGƒXƒgƒtƒ‰ƒO
-	int						WindowX, WindowY ;					// ƒEƒCƒ“ƒhƒE‚ÌˆÊ’u( ƒ†[ƒU[w’è )
-	int						WindowPosValid ;					// ƒEƒCƒ“ƒhƒE‚ÌˆÊ’u‚ª—LŒø‚©‚Ç‚¤‚©( TRUE:—LŒø  FALSE:–³Œø )
-	int						WindowMaxWidth, WindowMaxHeight ;	// ƒEƒCƒ“ƒhƒE‚ÌÅ‘åƒTƒCƒY( ƒ†[ƒU[w’è )
-	int						WindowMaxSizeValid ;				// ƒEƒCƒ“ƒhƒE‚ÌÅ‘åƒTƒCƒY‚ª—LŒø‚©‚Ç‚¤‚©( TRUE:—LŒø  FALSE:–³Œø )
-	int						WindowMinWidth, WindowMinHeight ;	// ƒEƒCƒ“ƒhƒE‚ÌÅ¬ƒTƒCƒY( ƒ†[ƒU[w’è )
-	int						WindowMinSizeValid ;				// ƒEƒCƒ“ƒhƒE‚ÌÅ¬ƒTƒCƒY‚ª—LŒø‚©‚Ç‚¤‚©( TRUE:—LŒø  FALSE:–³Œø )
-	int						WindowLeftEdgeWidth ;				// ƒEƒCƒ“ƒhƒE‚Ì¶‘¤‚Ì‰‚Ì•
-	int						WindowRightEdgeWidth ;				// ƒEƒCƒ“ƒhƒE‚Ì‰E‘¤‚Ì‰‚Ì•
-	int						WindowTopEdgeWidth ;				// ƒEƒCƒ“ƒhƒE‚Ìã‘¤‚Ì‰‚Ì•
-	int						WindowBottomEdgeWidth ;				// ƒEƒCƒ“ƒhƒE‚Ì‰º‘¤‚Ì‰‚Ì•
+	int						WindowSizeChangeEnable ;			// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ã‚µã‚¤ã‚ºã‚’å¤‰æ›´ã§ãã‚‹ã‹ãƒ•ãƒ©ã‚°
+	int						EnableWindowSizeExRate ;			// WindowSizeExRateX, WindowSizeExRateY ãŒæœ‰åŠ¹ãªå€¤ãŒè¨­å®šã•ã‚Œã¦ã„ã‚‹ã‹ã©ã†ã‹
+	double					WindowSizeExRateX, WindowSizeExRateY ;	// æç”»ç”»é¢ã®ã‚µã‚¤ã‚ºã«å¯¾ã™ã‚‹ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚µã‚¤ã‚ºã®æ¯”ç‡
+	int						ChangeWindowSizeExRate ;			// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ã‚µã‚¤ã‚ºã®æ¯”ç‡ã‚’å¤‰æ›´ä¸­ã‹ã©ã†ã‹
+	int						ScreenNotFitWindowSize ;			// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆé ˜åŸŸã«ç”»é¢ã‚’ãƒ•ã‚£ãƒƒãƒˆã•ã›ãªã„ã‹ã©ã†ã‹ãƒ•ãƒ©ã‚°( TRUE:ãƒ•ã‚£ãƒƒãƒˆã•ã›ãªã„  FALSE:ãƒ•ã‚£ãƒƒãƒˆã™ã‚‹ )
+	int						WindowWidth, WindowHeight ;			// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ã‚µã‚¤ã‚º( ãƒ¦ãƒ¼ã‚¶ãƒ¼æŒ‡å®š )
+	int						WindowSizeValid ;					// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ã‚µã‚¤ã‚ºãŒæœ‰åŠ¹ã‹ã©ã†ã‹( TRUE:æœ‰åŠ¹  FALSE:ç„¡åŠ¹ )
+	int						WindowSizeValidResetRequest ;		// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ã‚µã‚¤ã‚ºãŒæœ‰åŠ¹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’ãƒªã‚»ãƒƒãƒˆã™ã‚‹ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ•ãƒ©ã‚°
+	int						WindowX, WindowY ;					// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ä½ç½®( ãƒ¦ãƒ¼ã‚¶ãƒ¼æŒ‡å®š )
+	int						WindowPosValid ;					// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ä½ç½®ãŒæœ‰åŠ¹ã‹ã©ã†ã‹( TRUE:æœ‰åŠ¹  FALSE:ç„¡åŠ¹ )
+	int						WindowMaxWidth, WindowMaxHeight ;	// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®æœ€å¤§ã‚µã‚¤ã‚º( ãƒ¦ãƒ¼ã‚¶ãƒ¼æŒ‡å®š )
+	int						WindowMaxSizeValid ;				// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®æœ€å¤§ã‚µã‚¤ã‚ºãŒæœ‰åŠ¹ã‹ã©ã†ã‹( TRUE:æœ‰åŠ¹  FALSE:ç„¡åŠ¹ )
+	int						WindowMinWidth, WindowMinHeight ;	// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®æœ€å°ã‚µã‚¤ã‚º( ãƒ¦ãƒ¼ã‚¶ãƒ¼æŒ‡å®š )
+	int						WindowMinSizeValid ;				// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®æœ€å°ã‚µã‚¤ã‚ºãŒæœ‰åŠ¹ã‹ã©ã†ã‹( TRUE:æœ‰åŠ¹  FALSE:ç„¡åŠ¹ )
+	int						WindowLeftEdgeWidth ;				// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®å·¦å´ã®ç¸ã®å¹…
+	int						WindowRightEdgeWidth ;				// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®å³å´ã®ç¸ã®å¹…
+	int						WindowTopEdgeWidth ;				// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ä¸Šå´ã®ç¸ã®å¹…
+	int						WindowBottomEdgeWidth ;				// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ä¸‹å´ã®ç¸ã®å¹…
 
 	int						VisibleFlag ;
-	int						NotWindowVisibleFlag ;				// ƒEƒCƒ“ƒhƒE‚ğ•\¦‚µ‚È‚¢ƒtƒ‰ƒO
-	int						WindowMinimizeFlag ;				// ƒEƒCƒ“ƒhƒE‚ğÅ¬‰»ó‘Ô‚É‚·‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO
-	int						WindowMaximizeFlag ;				// ƒEƒCƒ“ƒhƒE‚ğÅ‘å‰»ó‘Ô‚É‚·‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO
-	RECT					WindowMaximizedClientRect ;			// ƒEƒCƒ“ƒhƒEÅ‘å‰»ó‘Ô‚Å‚ÌƒNƒ‰ƒCƒAƒ“ƒg‹éŒ`
-	RECT					WindowMaximizedRect ;				// ƒEƒCƒ“ƒhƒEÅ‘å‰»ó‘Ô‚Å‚ÌƒEƒCƒ“ƒhƒE‹éŒ`
-	RECT					WindowMaximizedAdjustRect ;			// ƒEƒCƒ“ƒhƒEÅ‘å‰»ó‘Ô‚Å‚ÌƒEƒCƒ“ƒhƒE‹éŒ`‚ğ‚c‚wƒ‰ƒCƒuƒ‰ƒŠ‘¤‚Å•â³‚µ‚½‚à‚Ì
-	int						ValidFirstWindowMaximizedRect ;		// ˆê”ÔÅ‰‚ÌÅ‘å‰»ó‘Ô‚Å‚ÌƒEƒCƒ“ƒhƒE‚Ì‹éŒ`‚ª—LŒø‰»‚Ç‚¤‚©( TRUE:—LŒø  FALSE:–³Œø )
-	RECT					FirstWindowMaximizedRect ;			// ˆê”ÔÅ‰‚ÌÅ‘å‰»ó‘Ô‚Å‚ÌƒEƒCƒ“ƒhƒE‚Ì‹éŒ`
-	int						NotMoveMousePointerOutClientAreaFlag ;	// ƒEƒCƒ“ƒhƒE‚ÌƒNƒ‰ƒCƒAƒ“ƒgƒGƒŠƒAŠO‚Éƒ}ƒEƒXƒ|ƒCƒ“ƒ^‚ªˆÚ“®‚Å‚«‚È‚¢‚æ‚¤‚É‚·‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO
-	int						NotActive_WindowMoveOrSystemMenu ;	// WM_ENTERSIZEMOVE ‚â WM_ENTERMENULOOP ‚É‚æ‚Á‚Ä”ñƒAƒNƒeƒBƒu‚É‚È‚Á‚Ä‚¢‚é
-	int						SetClipCursorFlag ;					// ClipCursor ‚Ìİ’è‚ª—LŒø‚É‚È‚Á‚Ä‚¢‚é‚©‚Ç‚¤‚©ƒtƒ‰ƒO
-	int						SysCommandOffFlag ;					// ƒ^ƒXƒNƒXƒCƒbƒ`‚ğ—}§‚·‚éˆ—‚ğs‚¤‚©ƒtƒ‰ƒO
+	int						NotWindowVisibleFlag ;				// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚’è¡¨ç¤ºã—ãªã„ãƒ•ãƒ©ã‚°
+	int						WindowMinimizeFlag ;				// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚’æœ€å°åŒ–çŠ¶æ…‹ã«ã™ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°
+	int						WindowMaximizeFlag ;				// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚’æœ€å¤§åŒ–çŠ¶æ…‹ã«ã™ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°
+	RECT					WindowMaximizedClientRect ;			// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦æœ€å¤§åŒ–çŠ¶æ…‹ã§ã®ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆçŸ©å½¢
+	RECT					WindowMaximizedRect ;				// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦æœ€å¤§åŒ–çŠ¶æ…‹ã§ã®ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦çŸ©å½¢
+	RECT					WindowMaximizedAdjustRect ;			// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦æœ€å¤§åŒ–çŠ¶æ…‹ã§ã®ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦çŸ©å½¢ã‚’ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªå´ã§è£œæ­£ã—ãŸã‚‚ã®
+	int						ValidFirstWindowMaximizedRect ;		// ä¸€ç•ªæœ€åˆã®æœ€å¤§åŒ–çŠ¶æ…‹ã§ã®ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®çŸ©å½¢ãŒæœ‰åŠ¹åŒ–ã©ã†ã‹( TRUE:æœ‰åŠ¹  FALSE:ç„¡åŠ¹ )
+	RECT					FirstWindowMaximizedRect ;			// ä¸€ç•ªæœ€åˆã®æœ€å¤§åŒ–çŠ¶æ…‹ã§ã®ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®çŸ©å½¢
+	int						NotMoveMousePointerOutClientAreaFlag ;	// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã‚¨ãƒªã‚¢å¤–ã«ãƒã‚¦ã‚¹ãƒã‚¤ãƒ³ã‚¿ãŒç§»å‹•ã§ããªã„ã‚ˆã†ã«ã™ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°
+	int						NotActive_WindowMoveOrSystemMenu ;	// WM_ENTERSIZEMOVE ã‚„ WM_ENTERMENULOOP ã«ã‚ˆã£ã¦éã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ãªã£ã¦ã„ã‚‹
+	int						SetClipCursorFlag ;					// ClipCursor ã®è¨­å®šãŒæœ‰åŠ¹ã«ãªã£ã¦ã„ã‚‹ã‹ã©ã†ã‹ãƒ•ãƒ©ã‚°
+	int						SysCommandOffFlag ;					// ã‚¿ã‚¹ã‚¯ã‚¹ã‚¤ãƒƒãƒã‚’æŠ‘åˆ¶ã™ã‚‹å‡¦ç†ã‚’è¡Œã†ã‹ãƒ•ãƒ©ã‚°
 #ifndef DX_NON_STOPTASKSWITCH
-	HHOOK					TaskHookHandle ;					// ƒtƒbƒNƒnƒ“ƒhƒ‹
+	HHOOK					TaskHookHandle ;					// ãƒ•ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«
 #endif // DX_NON_STOPTASKSWITCH
-	HHOOK					GetMessageHookHandle ;				// WH_GETMESSAGE ƒtƒbƒNƒnƒ“ƒhƒ‹
-	HHOOK					KeyboardHookHandle ;				// WH_KEYBOARD_LL ƒtƒbƒNƒnƒ“ƒhƒ‹
-	int						LockInitializeFlag ;				// ƒƒbƒN‚ğ‚©‚¯‚ë‚Æ‚¢‚¤ƒtƒ‰ƒO
-	wchar_t					HookDLLFilePath[FILEPATH_MAX] ;		// ƒtƒbƒNˆ—‚ğ‚·‚é‚c‚k‚kƒtƒ@ƒCƒ‹‚Ö‚ÌƒpƒX
-	int						NotUseUserHookDllFlag ;				// ƒ†[ƒU[w’è‚Ì‚c‚k‚k‚ğg—p‚µ‚Ä‚¢‚È‚¢‚©‚Ç‚¤‚©ƒtƒ‰ƒO
-	HMODULE					LoadResourModule ;					// ƒŠƒ\[ƒX‚©‚ç“Ç‚İ‚ŞŒn‚Åg—p‚·‚éƒ‚ƒWƒ…[ƒ‹( NULL ‚Ìê‡‚Í GetModuleHandle( NULL ) ‚ğg—p )
-	int						WM_PAINTMessageFlag ;				// WM_PAINT ƒƒbƒZ[ƒW‚ª—ˆ‚½Û‚É TRUE ‚É‚È‚éƒtƒ‰ƒO
+	HHOOK					GetMessageHookHandle ;				// WH_GETMESSAGE ãƒ•ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«
+	HHOOK					KeyboardHookHandle ;				// WH_KEYBOARD_LL ãƒ•ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«
+	int						LockInitializeFlag ;				// ãƒ­ãƒƒã‚¯ã‚’ã‹ã‘ã‚ã¨ã„ã†ãƒ•ãƒ©ã‚°
+	wchar_t					HookDLLFilePath[FILEPATH_MAX] ;		// ãƒ•ãƒƒã‚¯å‡¦ç†ã‚’ã™ã‚‹ï¼¤ï¼¬ï¼¬ãƒ•ã‚¡ã‚¤ãƒ«ã¸ã®ãƒ‘ã‚¹
+	int						NotUseUserHookDllFlag ;				// ãƒ¦ãƒ¼ã‚¶ãƒ¼æŒ‡å®šã®ï¼¤ï¼¬ï¼¬ã‚’ä½¿ç”¨ã—ã¦ã„ãªã„ã‹ã©ã†ã‹ãƒ•ãƒ©ã‚°
+	HMODULE					LoadResourModule ;					// ãƒªã‚½ãƒ¼ã‚¹ã‹ã‚‰èª­ã¿è¾¼ã‚€ç³»ã§ä½¿ç”¨ã™ã‚‹ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«( NULL ã®å ´åˆã¯ GetModuleHandle( NULL ) ã‚’ä½¿ç”¨ )
+	int						WM_PAINTMessageFlag ;				// WM_PAINT ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãŒæ¥ãŸéš›ã« TRUE ã«ãªã‚‹ãƒ•ãƒ©ã‚°
 
-	int						BackBufferTransColorFlag ;			// ƒoƒbƒNƒoƒbƒtƒ@‚Ì“§‰ßF‚Ì•”•ª‚ğ“§‰ß‚³‚¹‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO( TRUE:“§‰ß‚³‚¹‚é  FALSE:“§‰ß‚³‚¹‚È‚¢ )
-	int						UseUpdateLayerdWindowFlag ;			// UpdateLayerdWindow ‚ğg—p‚·‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO( TRUE;g—p‚·‚é  FALSE:g—p‚µ‚È‚¢ )
-	int						UseTransparentWindowFlag ;			// SetUseBackBufferTransColorFlag( TRUE ); –”‚Í SetUseUpdateLayerdWindowFlag( TRUE ); ‚ğİ’è‚ÌÛ‚Éƒ}ƒEƒXŠÖŒW‚ÌƒCƒxƒ“ƒg‚ğ”wŒã‚ÌƒEƒBƒ“ƒhƒE‚É“§‰ß‚³‚¹‚é‚©‚Ìİ’è( TRUE:“§‰ß‚·‚é   FALSE:“§‰ß‚µ‚È‚¢( ƒfƒtƒHƒ‹ƒg ) )
-	HBITMAP					BackBufferTransBitmap ;				// ƒoƒbƒNƒoƒbƒtƒ@‚Ì“§‰ßF‚Ì•”•ª‚ğ“§‰ß‚³‚¹‚é‚½‚ß‚Ìƒrƒbƒgƒ}ƒbƒv
-	void					*BackBufferTransBitmapImage ;		// BackBufferTransBitmap ‚ÌƒCƒ[ƒW‚Ìæ“ªƒAƒhƒŒƒX
-	SIZE					BackBufferTransBitmapSize ;			// BackBufferTransBitmap ‚ÌƒTƒCƒY
-	COLORDATA				BackBufferTransBitmapColorData ;	// BackBufferTransBitmap ‚ÌƒJƒ‰[ƒtƒH[ƒ}ƒbƒg
+	int						BackBufferTransColorFlag ;			// ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã®é€éè‰²ã®éƒ¨åˆ†ã‚’é€éã•ã›ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°( TRUE:é€éã•ã›ã‚‹  FALSE:é€éã•ã›ãªã„ )
+	int						UseUpdateLayerdWindowFlag ;			// UpdateLayerdWindow ã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°( TRUE;ä½¿ç”¨ã™ã‚‹  FALSE:ä½¿ç”¨ã—ãªã„ )
+	int						UseTransparentWindowFlag ;			// SetUseBackBufferTransColorFlag( TRUE ); åˆã¯ SetUseUpdateLayerdWindowFlag( TRUE ); ã‚’è¨­å®šã®éš›ã«ãƒã‚¦ã‚¹é–¢ä¿‚ã®ã‚¤ãƒ™ãƒ³ãƒˆã‚’èƒŒå¾Œã®ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã«é€éã•ã›ã‚‹ã‹ã®è¨­å®š( TRUE:é€éã™ã‚‹   FALSE:é€éã—ãªã„( ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ ) )
+	HBITMAP					BackBufferTransBitmap ;				// ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã®é€éè‰²ã®éƒ¨åˆ†ã‚’é€éã•ã›ã‚‹ãŸã‚ã®ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—
+	void					*BackBufferTransBitmapImage ;		// BackBufferTransBitmap ã®ã‚¤ãƒ¡ãƒ¼ã‚¸ã®å…ˆé ­ã‚¢ãƒ‰ãƒ¬ã‚¹
+	SIZE					BackBufferTransBitmapSize ;			// BackBufferTransBitmap ã®ã‚µã‚¤ã‚º
+	COLORDATA				BackBufferTransBitmapColorData ;	// BackBufferTransBitmap ã®ã‚«ãƒ©ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆ
 
-	HINSTANCE				MessageHookDLL ;					// ƒƒbƒZ[ƒWƒtƒbƒN‚c‚k‚k‚Ìƒnƒ“ƒhƒ‹
-	MSGFUNC					MessageHookCallBack ;				// ƒƒbƒZ[ƒWƒtƒbƒN‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-	DWORD					MessageHookThredID ;				// ƒƒbƒZ[ƒWƒtƒbƒN‚c‚k‚k‚ÌƒXƒŒƒbƒh‚h‚c
+	HINSTANCE				MessageHookDLL ;					// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ•ãƒƒã‚¯ï¼¤ï¼¬ï¼¬ã®ãƒãƒ³ãƒ‰ãƒ«
+	MSGFUNC					MessageHookCallBack ;				// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ•ãƒƒã‚¯ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+	DWORD					MessageHookThredID ;				// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ•ãƒƒã‚¯ï¼¤ï¼¬ï¼¬ã®ã‚¹ãƒ¬ãƒƒãƒ‰ï¼©ï¼¤
 
-	int						DirectXVersion ;					// DirectX‚Ìƒo[ƒWƒ‡ƒ“
-	int						WindowsVersion ;					// Windows‚Ìƒo[ƒWƒ‡ƒ“
-	int						UseMMXFlag ;						// MMX‚ªg‚¦‚é‚©ƒtƒ‰ƒO
-	int						UseSSEFlag ;						// SSE‚ªg‚¦‚é‚©‚Ç‚¤‚©ƒtƒ‰ƒO
-	int						UseSSE2Flag ;						// SSE2‚ªg‚¦‚é‚©‚Ç‚¤‚©ƒtƒ‰ƒO
-	int						UseRDTSCFlag ;						// RDTSC –½—ß‚ªg‚¦‚é‚©Aƒtƒ‰ƒO
-	LONGLONG				OneSecCount ;						// ˆê•bŠÔ‚ ‚½‚è‚ÌƒNƒƒbƒN”
+	int						DirectXVersion ;					// DirectXã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³
+	int						WindowsVersion ;					// Windowsã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³
+	int						UseMMXFlag ;						// MMXãŒä½¿ãˆã‚‹ã‹ãƒ•ãƒ©ã‚°
+	int						UseSSEFlag ;						// SSEãŒä½¿ãˆã‚‹ã‹ã©ã†ã‹ãƒ•ãƒ©ã‚°
+	int						UseSSE2Flag ;						// SSE2ãŒä½¿ãˆã‚‹ã‹ã©ã†ã‹ãƒ•ãƒ©ã‚°
+	int						UseRDTSCFlag ;						// RDTSC å‘½ä»¤ãŒä½¿ãˆã‚‹ã‹ã€ãƒ•ãƒ©ã‚°
+	LONGLONG				OneSecCount ;						// ä¸€ç§’é–“ã‚ãŸã‚Šã®ã‚¯ãƒ­ãƒƒã‚¯æ•°
 
-	WNDPROC					UserWindowProc ;					// ƒ†[ƒU[’è‹`‚ÌƒEƒCƒ“ƒhƒEƒvƒ[ƒWƒƒ
-	int						UseUserWindowProcReturnValue ;		// ƒ†[ƒU[’è‹`‚ÌƒEƒCƒ“ƒhƒEƒvƒ[ƒWƒƒ‚Ì–ß‚è’l‚ğg—p‚·‚é‚©‚Ç‚¤‚©( TRUE:g—p‚·‚é  FALSE:g—p‚µ‚È‚¢ )
+	WNDPROC					UserWindowProc ;					// ãƒ¦ãƒ¼ã‚¶ãƒ¼å®šç¾©ã®ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ—ãƒ­ãƒ¼ã‚¸ãƒ£
+	int						UseUserWindowProcReturnValue ;		// ãƒ¦ãƒ¼ã‚¶ãƒ¼å®šç¾©ã®ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ—ãƒ­ãƒ¼ã‚¸ãƒ£ã®æˆ»ã‚Šå€¤ã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹( TRUE:ä½¿ç”¨ã™ã‚‹  FALSE:ä½¿ç”¨ã—ãªã„ )
 
-	HWND					MesTakeOverWindow[MAX_MESTAKEOVERWIN_NUM] ;	// ƒƒbƒZ[ƒWˆ—‚ğŒ¨‘ã‚í‚è‚·‚éƒEƒCƒ“ƒhƒE‚ÌƒŠƒXƒg
-	int						MesTakeOverWindowNum ;				// ƒƒbƒZ[ƒWˆ—‚ğŒ¨‘ã‚í‚è‚·‚éƒEƒCƒ“ƒhƒE‚Ì”
+	HWND					MesTakeOverWindow[MAX_MESTAKEOVERWIN_NUM] ;	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å‡¦ç†ã‚’è‚©ä»£ã‚ã‚Šã™ã‚‹ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ãƒªã‚¹ãƒˆ
+	int						MesTakeOverWindowNum ;				// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å‡¦ç†ã‚’è‚©ä»£ã‚ã‚Šã™ã‚‹ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®æ•°
 	
-	POINT					InitializeWindowPos ;				// ‰ŠúƒEƒCƒ“ƒhƒE‚ÌˆÊ’u
-	int						InitializeWindowPosValidFlag ;		// ‰ŠúƒEƒCƒ“ƒhƒE‚ÌˆÊ’u‚ÌÀ•W‚Ì—LŒøƒtƒ‰ƒO
+	POINT					InitializeWindowPos ;				// åˆæœŸã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ä½ç½®
+	int						InitializeWindowPosValidFlag ;		// åˆæœŸã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ä½ç½®ã®åº§æ¨™ã®æœ‰åŠ¹ãƒ•ãƒ©ã‚°
 	
-	HWND					DialogBoxHandle ;					// ƒ_ƒCƒAƒƒOƒ{ƒbƒNƒX‚Ìƒnƒ“ƒhƒ‹
+	HWND					DialogBoxHandle ;					// ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ãƒœãƒƒã‚¯ã‚¹ã®ãƒãƒ³ãƒ‰ãƒ«
 	
-	int						DragFileValidFlag ;					// ƒtƒ@ƒCƒ‹‚Ìƒhƒ‰ƒbƒO•ƒhƒƒbƒv‚ğ‹–‚·‚©ƒtƒ‰ƒO
-	wchar_t					*DragFileName[MAX_DRAGFILE_NUM] ;	// ƒhƒ‰ƒbƒO•ƒhƒƒbƒv‚³‚ê‚½ƒtƒ@ƒCƒ‹–¼
-	int						DragFileNum ;						// ƒhƒ‰ƒbƒO•ƒhƒƒbƒv‚³‚ê‚½ƒtƒ@ƒCƒ‹‚Ì”
+	int						DragFileValidFlag ;					// ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ‰ãƒ©ãƒƒã‚°ï¼†ãƒ‰ãƒ­ãƒƒãƒ—ã‚’è¨±ã™ã‹ãƒ•ãƒ©ã‚°
+	wchar_t					*DragFileName[MAX_DRAGFILE_NUM] ;	// ãƒ‰ãƒ©ãƒƒã‚°ï¼†ãƒ‰ãƒ­ãƒƒãƒ—ã•ã‚ŒãŸãƒ•ã‚¡ã‚¤ãƒ«å
+	int						DragFileNum ;						// ãƒ‰ãƒ©ãƒƒã‚°ï¼†ãƒ‰ãƒ­ãƒƒãƒ—ã•ã‚ŒãŸãƒ•ã‚¡ã‚¤ãƒ«ã®æ•°
 
-//	WINFILEACCESS			*ReadOnlyFileAccessFirst ;			// ƒtƒ@ƒCƒ‹ƒAƒNƒZƒX\‘¢‘ÌƒŠƒXƒg‚Ìæ“ª‚Ö‚Ìƒ|ƒCƒ“ƒ^
-//	int						ReadOnlyFileAccessLockFlag ;		// ƒtƒ@ƒCƒ‹ƒAƒNƒZƒX\‘¢‘ÌƒŠƒXƒg‚Ö‚ÌƒAƒNƒZƒX‚ğ‹Ö~‚µ‚Ä‚¢‚é‚©Aƒtƒ‰ƒO
+//	WINFILEACCESS			*ReadOnlyFileAccessFirst ;			// ãƒ•ã‚¡ã‚¤ãƒ«ã‚¢ã‚¯ã‚»ã‚¹æ§‹é€ ä½“ãƒªã‚¹ãƒˆã®å…ˆé ­ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+//	int						ReadOnlyFileAccessLockFlag ;		// ãƒ•ã‚¡ã‚¤ãƒ«ã‚¢ã‚¯ã‚»ã‚¹æ§‹é€ ä½“ãƒªã‚¹ãƒˆã¸ã®ã‚¢ã‚¯ã‚»ã‚¹ã‚’ç¦æ­¢ã—ã¦ã„ã‚‹ã‹ã€ãƒ•ãƒ©ã‚°
 
-	HBITMAP					DesktopImageHBitmap ;				// GetDesktopScreenGraphMemImage ‚Åg—p‚·‚é HBITMAP
-	void					*DesktopImageAddress ;				// GetDesktopScreenGraphMemImage ‚Åg—p‚·‚é HBITMAP ‚ÌƒCƒ[ƒWƒAƒhƒŒƒX
-	int						DesktopImageWidth ;					// GetDesktopScreenGraphMemImage ‚Åg—p‚·‚é HBITMAP ‚ÌƒCƒ[ƒW‚Ì•
-	int						DesktopImageHeight ;				// GetDesktopScreenGraphMemImage ‚Åg—p‚·‚é HBITMAP ‚ÌƒCƒ[ƒW‚Ì‚‚³
+	HBITMAP					DesktopImageHBitmap ;				// GetDesktopScreenGraphMemImage ã§ä½¿ç”¨ã™ã‚‹ HBITMAP
+	void					*DesktopImageAddress ;				// GetDesktopScreenGraphMemImage ã§ä½¿ç”¨ã™ã‚‹ HBITMAP ã®ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¢ãƒ‰ãƒ¬ã‚¹
+	int						DesktopImageWidth ;					// GetDesktopScreenGraphMemImage ã§ä½¿ç”¨ã™ã‚‹ HBITMAP ã®ã‚¤ãƒ¡ãƒ¼ã‚¸ã®å¹…
+	int						DesktopImageHeight ;				// GetDesktopScreenGraphMemImage ã§ä½¿ç”¨ã™ã‚‹ HBITMAP ã®ã‚¤ãƒ¡ãƒ¼ã‚¸ã®é«˜ã•
 
-	void					*DXGIDesktopImageAddress ;			// GetDesktopScreenGraphMemImage ‚Åg—p‚·‚éƒCƒ[ƒWƒAƒhƒŒƒX( DXGIDuplication —p )
-	int						DXGIDesktopImageWidth ;				// GetDesktopScreenGraphMemImage ‚Åg—p‚·‚éƒCƒ[ƒW‚Ì•( DXGIDuplication —p )
-	int						DXGIDesktopImageHeight ;			// GetDesktopScreenGraphMemImage ‚Åg—p‚·‚éƒCƒ[ƒW‚Ì‚‚³( DXGIDuplication —p )
+	void					*DXGIDesktopImageAddress ;			// GetDesktopScreenGraphMemImage ã§ä½¿ç”¨ã™ã‚‹ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¢ãƒ‰ãƒ¬ã‚¹( DXGIDuplication ç”¨ )
+	int						DXGIDesktopImageWidth ;				// GetDesktopScreenGraphMemImage ã§ä½¿ç”¨ã™ã‚‹ã‚¤ãƒ¡ãƒ¼ã‚¸ã®å¹…( DXGIDuplication ç”¨ )
+	int						DXGIDesktopImageHeight ;			// GetDesktopScreenGraphMemImage ã§ä½¿ç”¨ã™ã‚‹ã‚¤ãƒ¡ãƒ¼ã‚¸ã®é«˜ã•( DXGIDuplication ç”¨ )
 
 #if defined( DX_THREAD_SAFE ) || defined( DX_THREAD_SAFE_NETWORK_ONLY )
-//	int						DxConflictCheckFlag ;				// ‚c‚wƒ‰ƒCƒuƒ‰ƒŠ‚ÌŠÖ”‚ª•¡”‚Ìƒ^ƒXƒN‚©‚ç“¯‚ÉÀs‚³‚ê‚È‚¢‚æ‚¤‚É‚·‚é‚½‚ß‚ÌƒJƒEƒ“ƒ^‚»‚Ì‚P
-	int						DxConflictCheckCounter ;			// ‚c‚wƒ‰ƒCƒuƒ‰ƒŠ‚ÌŠÖ”‚ª•¡”‚Ìƒ^ƒXƒN‚©‚ç“¯‚ÉÀs‚³‚ê‚È‚¢‚æ‚¤‚É‚·‚é‚½‚ß‚ÌƒJƒEƒ“ƒ^‚»‚Ì‚Q
-	int						DxUseThreadFlag ;					// ‚c‚wƒ‰ƒCƒuƒ‰ƒŠ‚ğg—p‚µ‚Ä‚¢‚éƒXƒŒƒbƒh‚ª‚ ‚é‚©‚Ç‚¤‚©Aƒtƒ‰ƒO( FALSE:‚È‚¢  TRUE:‚ ‚é )
-	DWORD					DxUseThreadID ;						// ‚c‚wƒ‰ƒCƒuƒ‰ƒŠ‚ğg—p‚µ‚Ä‚¢‚éƒXƒŒƒbƒh‚Ì‚h‚c
-	DWORD_PTR				DxConflictWaitThreadID[MAX_THREADWAIT_NUM][2] ;	// 0:‘Ò‚¿ƒXƒŒƒbƒh‚ÌID  1:ƒCƒxƒ“ƒgƒnƒ“ƒhƒ‹
-	int						DxConflictWaitThreadIDInitializeFlag ;	// DxConflictWaitThreadID ‚ğ‰Šú‰»‚µ‚Ä‚ ‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO
-	int						DxConflictWaitThreadNum ;			// ‘Ò‚¿ƒXƒŒƒbƒh‚Ì”
-	DX_CRITICAL_SECTION		DxConflictCheckCriticalSection ;	// Õ“Ë–h~—pƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“
+//	int						DxConflictCheckFlag ;				// ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®é–¢æ•°ãŒè¤‡æ•°ã®ã‚¿ã‚¹ã‚¯ã‹ã‚‰åŒæ™‚ã«å®Ÿè¡Œã•ã‚Œãªã„ã‚ˆã†ã«ã™ã‚‹ãŸã‚ã®ã‚«ã‚¦ãƒ³ã‚¿ãã®ï¼‘
+	int						DxConflictCheckCounter ;			// ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®é–¢æ•°ãŒè¤‡æ•°ã®ã‚¿ã‚¹ã‚¯ã‹ã‚‰åŒæ™‚ã«å®Ÿè¡Œã•ã‚Œãªã„ã‚ˆã†ã«ã™ã‚‹ãŸã‚ã®ã‚«ã‚¦ãƒ³ã‚¿ãã®ï¼’
+	int						DxUseThreadFlag ;					// ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹ã‚¹ãƒ¬ãƒƒãƒ‰ãŒã‚ã‚‹ã‹ã©ã†ã‹ã€ãƒ•ãƒ©ã‚°( FALSE:ãªã„  TRUE:ã‚ã‚‹ )
+	DWORD					DxUseThreadID ;						// ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹ã‚¹ãƒ¬ãƒƒãƒ‰ã®ï¼©ï¼¤
+	DWORD_PTR				DxConflictWaitThreadID[MAX_THREADWAIT_NUM][2] ;	// 0:å¾…ã¡ã‚¹ãƒ¬ãƒƒãƒ‰ã®ID  1:ã‚¤ãƒ™ãƒ³ãƒˆãƒãƒ³ãƒ‰ãƒ«
+	int						DxConflictWaitThreadIDInitializeFlag ;	// DxConflictWaitThreadID ã‚’åˆæœŸåŒ–ã—ã¦ã‚ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°
+	int						DxConflictWaitThreadNum ;			// å¾…ã¡ã‚¹ãƒ¬ãƒƒãƒ‰ã®æ•°
+	DX_CRITICAL_SECTION		DxConflictCheckCriticalSection ;	// è¡çªé˜²æ­¢ç”¨ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³
 #endif
 } ;
 
-// ƒe[ƒuƒ‹-----------------------------------------------------------------------
+// ãƒ†ãƒ¼ãƒ–ãƒ«-----------------------------------------------------------------------
 
-// “à•”‘åˆæ•Ï”éŒ¾ --------------------------------------------------------------
+// å†…éƒ¨å¤§åŸŸå¤‰æ•°å®£è¨€ --------------------------------------------------------------
 
-// ƒEƒCƒ“ƒhƒE‚Ìƒf[ƒ^
+// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ãƒ‡ãƒ¼ã‚¿
 extern WINDATA WinData ;
 
-// ŠÖ”ƒvƒƒgƒ^ƒCƒvéŒ¾-----------------------------------------------------------
+// é–¢æ•°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€-----------------------------------------------------------
 
-// ‚b‚n‚l‰Šú‰»AI—¹ŠÖŒWŠÖ”
-extern	int			InitializeCom( void ) ;													// ‚b‚n‚lƒCƒ“ƒ^[ƒtƒF[ƒX‚ğ‰Šú‰»‚·‚é
-extern	int			TerminateCom( void ) ;													// ‚b‚n‚lƒCƒ“ƒ^[ƒtƒF[ƒX‚ğI—¹‚·‚é
+// ï¼£ï¼¯ï¼­åˆæœŸåŒ–ã€çµ‚äº†é–¢ä¿‚é–¢æ•°
+extern	int			InitializeCom( void ) ;													// ï¼£ï¼¯ï¼­ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ã‚’åˆæœŸåŒ–ã™ã‚‹
+extern	int			TerminateCom( void ) ;													// ï¼£ï¼¯ï¼­ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ã‚’çµ‚äº†ã™ã‚‹
 
-// ‰Šú‰»I—¹ŒnŠÖ”
-extern int			InitializeWindow( void ) ;												// ƒEƒCƒ“ƒhƒEŠÖŒW‚Ì‰Šú‰»ŠÖ”
-extern int			TerminateWindow( void ) ;												// ƒEƒCƒ“ƒhƒEŠÖŒW‚Ìˆ—I—¹ŠÖ”
+// åˆæœŸåŒ–çµ‚äº†ç³»é–¢æ•°
+extern int			InitializeWindow( void ) ;												// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦é–¢ä¿‚ã®åˆæœŸåŒ–é–¢æ•°
+extern int			TerminateWindow( void ) ;												// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦é–¢ä¿‚ã®å‡¦ç†çµ‚äº†é–¢æ•°
 
-// î•ño—ÍŒn
-extern	int			OutSystemInfo( void ) ;													// ‚n‚r‚â‚c‚‰‚’‚…‚ƒ‚”‚w‚Ìƒo[ƒWƒ‡ƒ“‚ğæ“¾‚·‚é
+// æƒ…å ±å‡ºåŠ›ç³»
+extern	int			OutSystemInfo( void ) ;													// ï¼¯ï¼³ã‚„ï¼¤ï½‰ï½’ï½…ï½ƒï½”ï¼¸ã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã‚’å–å¾—ã™ã‚‹
 
-// Õ“Ë–h~—pŠÖ”
-//extern	void	PreparationDxFunction( void ) ;											// ‚c‚wƒ‰ƒCƒuƒ‰ƒŠ“à•”‚ÅŒöŠJŠÖ”‚ğg—p‚·‚é‘O‚ÉŒÄ‚ÔŠÖ”
-extern	void		CheckConflictAndWaitDxFunction( void ) ;								// “¯‚É‚c‚wƒ‰ƒCƒuƒ‰ƒŠ‚ÌŠÖ”‚ªŒÄ‚Î‚ê‚Ä‚¢‚È‚¢‚©ƒ`ƒFƒbƒN‚µ‚ÄA“¯‚ÉŒÄ‚Î‚ê‚Ä‚¢‚½‚ç‘Ò‚ÂŠÖ”
-extern	void		PostConflictProcessDxFunction( void ) ;									// CheckConfictAndWaitDxFunction ‚ğg—p‚µ‚½‚c‚wƒ‰ƒCƒuƒ‰ƒŠ‚ÌŠÖ”‚ª return ‚·‚é‘O‚ÉŒÄ‚Ô‚×‚«ŠÖ”
+// è¡çªé˜²æ­¢ç”¨é–¢æ•°
+//extern	void	PreparationDxFunction( void ) ;											// ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªå†…éƒ¨ã§å…¬é–‹é–¢æ•°ã‚’ä½¿ç”¨ã™ã‚‹å‰ã«å‘¼ã¶é–¢æ•°
+extern	void		CheckConflictAndWaitDxFunction( void ) ;								// åŒæ™‚ã«ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®é–¢æ•°ãŒå‘¼ã°ã‚Œã¦ã„ãªã„ã‹ãƒã‚§ãƒƒã‚¯ã—ã¦ã€åŒæ™‚ã«å‘¼ã°ã‚Œã¦ã„ãŸã‚‰å¾…ã¤é–¢æ•°
+extern	void		PostConflictProcessDxFunction( void ) ;									// CheckConfictAndWaitDxFunction ã‚’ä½¿ç”¨ã—ãŸï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®é–¢æ•°ãŒ return ã™ã‚‹å‰ã«å‘¼ã¶ã¹ãé–¢æ•°
 
-// ƒ\ƒtƒg‚ÌƒEƒCƒ“ƒhƒE‚ÉƒtƒH[ƒJƒX‚ğˆÚ‚·
+// ã‚½ãƒ•ãƒˆã®ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã«ãƒ•ã‚©ãƒ¼ã‚«ã‚¹ã‚’ç§»ã™
 extern	void		SetAbsoluteForegroundWindow( HWND hWnd, int Flag = TRUE ) ;
 
 
-// wchar_t”ÅŠÖ”
+// wchar_tç‰ˆé–¢æ•°
 extern	int			GetResourceInfo_WCHAR_T(			const wchar_t *ResourceName , const wchar_t *ResourceType , void **DataPointerP , size_t *DataSizeP ) ;
-extern	int			GetPcInfo_WCHAR_T(					wchar_t *OSString , wchar_t *DirectXString , wchar_t *CPUString , int *CPUSpeed /* ’PˆÊMHz */ , double *FreeMemorySize /* ’PˆÊMByte */ , double *TotalMemorySize , wchar_t *VideoDriverFileName , wchar_t *VideoDriverString , double *FreeVideoMemorySize /* ’PˆÊMByte */ , double *TotalVideoMemorySize ) ;
+extern	int			GetPcInfo_WCHAR_T(					wchar_t *OSString , wchar_t *DirectXString , wchar_t *CPUString , int *CPUSpeed /* å˜ä½MHz */ , double *FreeMemorySize /* å˜ä½MByte */ , double *TotalMemorySize , wchar_t *VideoDriverFileName , wchar_t *VideoDriverString , double *FreeVideoMemorySize /* å˜ä½MByte */ , double *TotalVideoMemorySize ) ;
 extern	wchar_t		GetInputSystemChar_WCHAR_T(			int DeleteFlag ) ;
 extern	int			LoadPauseGraph_WCHAR_T(				const wchar_t *FileName ) ;
 extern	int			SetMainWindowText_WCHAR_T(			const wchar_t *WindowText ) ;
@@ -371,7 +371,7 @@ extern	int			SetWindowRgnGraph_WCHAR_T(			const wchar_t *FileName ) ;
 extern	int			SetupToolBar_WCHAR_T(				const wchar_t *BitmapName , int DivNum , int ResourceID = -1 ) ;
 extern	int			AddKeyAccel_WCHAR_T(				const wchar_t *ItemName , int ItemID , int KeyCode , int CtrlFlag , int AltFlag , int ShiftFlag ) ;
 extern	int			AddKeyAccel_Name_WCHAR_T(			const wchar_t *ItemName , int KeyCode , int CtrlFlag , int AltFlag , int ShiftFlag ) ;
-extern	int			AddMenuItem_WCHAR_T(				int AddType /* MENUITEM_ADD_CHILD“™ */ , const wchar_t *ItemName, int ItemID, int SeparatorFlag, const wchar_t *NewItemName = NULL , int NewItemID = -1 ) ;
+extern	int			AddMenuItem_WCHAR_T(				int AddType /* MENUITEM_ADD_CHILDç­‰ */ , const wchar_t *ItemName, int ItemID, int SeparatorFlag, const wchar_t *NewItemName = NULL , int NewItemID = -1 ) ;
 extern	int			DeleteMenuItem_WCHAR_T(				const wchar_t *ItemName, int ItemID ) ;
 extern	int			CheckMenuItemSelect_WCHAR_T(		const wchar_t *ItemName, int ItemID ) ;
 extern	int			SetMenuItemEnable_WCHAR_T(			const wchar_t *ItemName, int ItemID, int EnableFlag ) ;
@@ -393,51 +393,51 @@ extern	int			GetMenuItemName_WCHAR_T(			int ItemID, wchar_t *NameBuffer ) ;
 extern __inline void PreparationDxFunction( void )
 {
 #if defined( DX_THREAD_SAFE ) || defined( DX_THREAD_SAFE_NETWORK_ONLY )
-	// ƒƒCƒ“ƒJƒEƒ“ƒ^‚ğƒCƒ“ƒNƒŠƒƒ“ƒg‚·‚é
+	// ãƒ¡ã‚¤ãƒ³ã‚«ã‚¦ãƒ³ã‚¿ã‚’ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆã™ã‚‹
 	WinData.DxConflictCheckCounter ++ ;
 #endif
 }
 */
 
 
-// İ’èŒnŠÖ”
-extern	int			SetWindowModeFlag( int Flag ) ;											// ƒEƒCƒ“ƒhƒEƒ‚[ƒh‚Å‹N“®‚·‚é‚©‚ğƒZƒbƒg
-extern	int			SetWindowStyle( int CenterPosition = TRUE ) ;							// ƒEƒCƒ“ƒhƒE‚ÌƒXƒ^ƒCƒ‹‚ğƒZƒbƒg‚·‚é
-extern	int			RefreshDragFileValidFlag( void ) ;										// ƒtƒ@ƒCƒ‹‚Ìƒhƒ‰ƒbƒO•ƒhƒƒbƒv‹@”\‚ğ—LŒø‚É‚·‚é‚©‚Ç‚¤‚©‚Ìİ’è‚ğÄİ’è‚·‚é
+// è¨­å®šç³»é–¢æ•°
+extern	int			SetWindowModeFlag( int Flag ) ;											// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ¢ãƒ¼ãƒ‰ã§èµ·å‹•ã™ã‚‹ã‹ã‚’ã‚»ãƒƒãƒˆ
+extern	int			SetWindowStyle( int CenterPosition = TRUE ) ;							// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ã‚¹ã‚¿ã‚¤ãƒ«ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
+extern	int			RefreshDragFileValidFlag( void ) ;										// ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ‰ãƒ©ãƒƒã‚°ï¼†ãƒ‰ãƒ­ãƒƒãƒ—æ©Ÿèƒ½ã‚’æœ‰åŠ¹ã«ã™ã‚‹ã‹ã©ã†ã‹ã®è¨­å®šã‚’å†è¨­å®šã™ã‚‹
 
 
-// î•ñæ“¾ŒxŠ¯”
-extern	PCINFO		*GetPcInfoStructP( void ) ;												// ‚o‚bî•ñ\‘¢‘Ì‚ÌƒAƒhƒŒƒX‚ğ“¾‚é
-extern	HWND		GetDisplayWindowHandle( void ) ;										// •\¦‚Ég—p‚·‚éƒEƒCƒ“ƒhƒE‚Ìƒnƒ“ƒhƒ‹‚ğæ“¾‚·‚é
+// æƒ…å ±å–å¾—è­¦å®˜æ•°
+extern	PCINFO		*GetPcInfoStructP( void ) ;												// ï¼°ï¼£æƒ…å ±æ§‹é€ ä½“ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å¾—ã‚‹
+extern	HWND		GetDisplayWindowHandle( void ) ;										// è¡¨ç¤ºã«ä½¿ç”¨ã™ã‚‹ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ãƒãƒ³ãƒ‰ãƒ«ã‚’å–å¾—ã™ã‚‹
 
 
-// •Ö—˜ŠÖ”
-//extern	int			CheckConflict( int *Check_Inc_Counter ) ;									// ƒ}ƒ‹ƒ`ƒXƒŒƒbƒh‚ÌÕ“Ë‚ğ–h‚®‚½‚ß‚ÌŠÖ”
-//extern	int			CheckConflict2( int *Check_NonInc_Counter, int *NonCheck_Inc_Counter ) ;	// ƒ}ƒ‹ƒ`ƒXƒŒƒbƒh‚ÌÕ“Ë‚ğ–h‚®‚½‚ß‚ÌŠÖ”2
-//extern	int			CheckConflict3( int *Check_NonInc_Counter, int *Check_Inc_Counter ) ;		// ƒ}ƒ‹ƒ`ƒXƒŒƒbƒh‚ÌÕ“Ë‚ğ–h‚®‚½‚ß‚ÌŠÖ”3
+// ä¾¿åˆ©é–¢æ•°
+//extern	int			CheckConflict( int *Check_Inc_Counter ) ;									// ãƒãƒ«ãƒã‚¹ãƒ¬ãƒƒãƒ‰æ™‚ã®è¡çªã‚’é˜²ããŸã‚ã®é–¢æ•°
+//extern	int			CheckConflict2( int *Check_NonInc_Counter, int *NonCheck_Inc_Counter ) ;	// ãƒãƒ«ãƒã‚¹ãƒ¬ãƒƒãƒ‰æ™‚ã®è¡çªã‚’é˜²ããŸã‚ã®é–¢æ•°2
+//extern	int			CheckConflict3( int *Check_NonInc_Counter, int *Check_Inc_Counter ) ;		// ãƒãƒ«ãƒã‚¹ãƒ¬ãƒƒãƒ‰æ™‚ã®è¡çªã‚’é˜²ããŸã‚ã®é–¢æ•°3
 
-// ƒƒbƒZ[ƒWˆ—ŠÖ”
-extern	void		DxActiveWait( void ) ;													// ƒAƒNƒeƒBƒu‚É‚È‚é‚Ü‚Å‰½‚à‚µ‚È‚¢
-extern	int			CheckActiveWait( void ) ;												// ”ñƒAƒNƒeƒBƒu‚©‚Ç‚¤‚©‚ğƒ`ƒFƒbƒN‚·‚é
-extern	int			GetQuitMessageFlag( void ) ;											// WM_QUIT ‚ª”­s‚³‚ê‚Ä‚¢‚é‚©‚Ç‚¤‚©‚ğæ“¾‚·‚é
+// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å‡¦ç†é–¢æ•°
+extern	void		DxActiveWait( void ) ;													// ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ãªã‚‹ã¾ã§ä½•ã‚‚ã—ãªã„
+extern	int			CheckActiveWait( void ) ;												// éã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã‹ã©ã†ã‹ã‚’ãƒã‚§ãƒƒã‚¯ã™ã‚‹
+extern	int			GetQuitMessageFlag( void ) ;											// WM_QUIT ãŒç™ºè¡Œã•ã‚Œã¦ã„ã‚‹ã‹ã©ã†ã‹ã‚’å–å¾—ã™ã‚‹
 extern	int			WM_ACTIVATEProcessUseStock( WPARAM wParam, LPARAM lParam, int APPMes = FALSE, int Dummy = FALSE ) ;
 extern	int			WM_ACTIVATEProcess(         WPARAM wParam, LPARAM lParam, int APPMes = FALSE, int Dummy = FALSE ) ;
 
-// Aero ‚Ì—LŒøA–³Œøİ’è
+// Aero ã®æœ‰åŠ¹ã€ç„¡åŠ¹è¨­å®š
 extern	int			SetEnableAero( int Flag ) ;
 
-// ƒc[ƒ‹ƒo[ŠÖŒW
-extern	int			GetToolBarHeight( void ) ;													// ƒc[ƒ‹ƒo[‚Ì‚‚³‚ğ“¾‚é
+// ãƒ„ãƒ¼ãƒ«ãƒãƒ¼é–¢ä¿‚
+extern	int			GetToolBarHeight( void ) ;													// ãƒ„ãƒ¼ãƒ«ãƒãƒ¼ã®é«˜ã•ã‚’å¾—ã‚‹
 
-// ƒƒjƒ…[ŠÖŒW
-extern	int			MenuAutoDisplayProcess( void ) ;																// ƒƒjƒ…[‚ğ©“®“I‚É•\¦‚µ‚½‚è”ñ•\¦‚É‚µ‚½‚è‚·‚éˆ—‚ğs‚¤
+// ãƒ¡ãƒ‹ãƒ¥ãƒ¼é–¢ä¿‚
+extern	int			MenuAutoDisplayProcess( void ) ;																// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’è‡ªå‹•çš„ã«è¡¨ç¤ºã—ãŸã‚Šéè¡¨ç¤ºã«ã—ãŸã‚Šã™ã‚‹å‡¦ç†ã‚’è¡Œã†
 
-// •â•ŠÖ”
+// è£œåŠ©é–¢æ•°
 extern	void		_FileTimeToLocalDateData( FILETIME *FileTime, DATEDATA *DateData ) ;
-extern	int			UpdateBackBufferTransColorWindow( const BASEIMAGE *SrcImage, const RECT *SrcImageRect = NULL, HDC Direct3DDC = NULL, int NotColorKey = FALSE, int PreMultipliedAlphaImage = FALSE ) ;	// w’è‚ÌŠî–{ƒCƒ[ƒW‚ğg—p‚µ‚Ä UpdateLayeredWindow ‚ğs‚¤
+extern	int			UpdateBackBufferTransColorWindow( const BASEIMAGE *SrcImage, const RECT *SrcImageRect = NULL, HDC Direct3DDC = NULL, int NotColorKey = FALSE, int PreMultipliedAlphaImage = FALSE ) ;	// æŒ‡å®šã®åŸºæœ¬ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’ä½¿ç”¨ã—ã¦ UpdateLayeredWindow ã‚’è¡Œã†
 
-// ƒŠƒ\[ƒXŠÖŒW
-extern	int			GetBmpImageToResource( int ResourceID, BITMAPINFO **BmpInfoP, void **GraphDataP ) ;					// ‚a‚l‚oƒŠƒ\[ƒX‚©‚ç BITMAPINFO ‚Æ‰æ‘œƒCƒ[ƒW‚ğ\’z‚·‚é
+// ãƒªã‚½ãƒ¼ã‚¹é–¢ä¿‚
+extern	int			GetBmpImageToResource( int ResourceID, BITMAPINFO **BmpInfoP, void **GraphDataP ) ;					// ï¼¢ï¼­ï¼°ãƒªã‚½ãƒ¼ã‚¹ã‹ã‚‰ BITMAPINFO ã¨ç”»åƒã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’æ§‹ç¯‰ã™ã‚‹
 
 #ifndef DX_NON_NAMESPACE
 

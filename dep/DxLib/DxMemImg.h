@@ -1,16 +1,16 @@
 // -------------------------------------------------------------------------------
 // 
-// 		‚c‚wƒ‰ƒCƒuƒ‰ƒŠ		ƒƒ‚ƒŠƒCƒ[ƒW§Œä—pƒwƒbƒ_ƒtƒ@ƒCƒ‹
+// 		ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒª		ãƒ¡ãƒ¢ãƒªã‚¤ãƒ¡ãƒ¼ã‚¸åˆ¶å¾¡ç”¨ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«
 // 
 // 				Ver 3.25a
 // 
 // -------------------------------------------------------------------------------
 
-// ‘½dƒCƒ“ƒNƒ‹[ƒh–hŽ~—p’è‹`
+// å¤šé‡ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰é˜²æ­¢ç”¨å®šç¾©
 #ifndef DX_MEMIMG_H
 #define DX_MEMIMG_H
 
-// ƒCƒ“ƒNƒ‹[ƒh----------------------------------------------------------------
+// ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰----------------------------------------------------------------
 #include "DxCompileConfig.h"
 #include "DxLib.h"
 
@@ -22,7 +22,7 @@ namespace DxLib
 
 #endif // DX_NON_NAMESPACE
 
-// ƒ}ƒNƒ’è‹`------------------------------------------------------------------
+// ãƒžã‚¯ãƒ­å®šç¾©------------------------------------------------------------------
 
 #define MEMIMG_VALID(MIMG)			( (MIMG).Image != NULL )
 #define MEMIMG_INITIALIZECODE		(0x12345678)
@@ -85,13 +85,13 @@ namespace DxLib
 #define MEMIMG_XRGB8_SUBMASK3		MEMIMG_XRGB8_ADDMASK3
 #define MEMIMG_XRGB8_SUBSHFT		MEMIMG_XRGB8_ADDSHFT
 
-// ŒÅ’è¬”“_‚ÉŽg—p‚³‚ê‚é¬”“_ƒrƒbƒg”
+// å›ºå®šå°æ•°ç‚¹ã«ä½¿ç”¨ã•ã‚Œã‚‹å°æ•°ç‚¹ãƒ“ãƒƒãƒˆæ•°
 #define QUALI	(1 << 18)
 
-// ƒyƒCƒ“ƒg—pƒoƒbƒtƒ@‚ÌƒTƒCƒY
+// ãƒšã‚¤ãƒ³ãƒˆç”¨ãƒãƒƒãƒ•ã‚¡ã®ã‚µã‚¤ã‚º
 #define PAINTBUFFERSIZE		(8000)
 
-// ƒAƒ‹ƒtƒ@—pƒ}ƒXƒNƒ}ƒNƒ
+// ã‚¢ãƒ«ãƒ•ã‚¡ç”¨ãƒžã‚¹ã‚¯ãƒžã‚¯ãƒ­
 #if 1
 #define MK565_5 	(0X00000000)         //ShiftMasking  PixelFormat565
 #define MK565_4 	(0X08610861)
@@ -124,22 +124,22 @@ namespace DxLib
 #define MK565_MG 	(0x40)
 #define MK565_MB 	(0x20)
 									    //ADD Mask      PixelFormat565
-#define MK565_ADD4 	(0x7BEF7BEF)    //Œ…ã‚ª‚è•”•ª‚ð‚O‚É‚·‚é
-#define MK565_ADD5 	(0x84108410)    //Œ…ã‚ª‚èŒŸoƒ}ƒXƒNiADD‚ÅŽg—pj
-#define MK565_ADD6 	(0x08210821)	//Å‰ºˆÊƒrƒbƒgƒ}ƒXƒN
+#define MK565_ADD4 	(0x7BEF7BEF)    //æ¡ä¸ŠãŒã‚Šéƒ¨åˆ†ã‚’ï¼ã«ã™ã‚‹
+#define MK565_ADD5 	(0x84108410)    //æ¡ä¸ŠãŒã‚Šæ¤œå‡ºãƒžã‚¹ã‚¯ï¼ˆADDã§ä½¿ç”¨ï¼‰
+#define MK565_ADD6 	(0x08210821)	//æœ€ä¸‹ä½ãƒ“ãƒƒãƒˆãƒžã‚¹ã‚¯
 
-#define MK565_ADD1 	(0xF7DF)		// Œ…ã‚ª‚è•”•ª‚ð‚O‚É‚·‚é
-#define MK565_ADD2 	(0x10820)		// Œ…ã‚ª‚èƒrƒbƒgŒŸoƒ}ƒXƒN
-#define MK565_ADD3 	(0x0820)		// Å‰ºˆÊƒrƒbƒgƒ}ƒXƒN
+#define MK565_ADD1 	(0xF7DF)		// æ¡ä¸ŠãŒã‚Šéƒ¨åˆ†ã‚’ï¼ã«ã™ã‚‹
+#define MK565_ADD2 	(0x10820)		// æ¡ä¸ŠãŒã‚Šãƒ“ãƒƒãƒˆæ¤œå‡ºãƒžã‚¹ã‚¯
+#define MK565_ADD3 	(0x0820)		// æœ€ä¸‹ä½ãƒ“ãƒƒãƒˆãƒžã‚¹ã‚¯
 
-#define MK565_SUB1 	(0xF7DF)		// Œ…ã‚ª‚è•”•ª‚ð‚O‚É‚·‚é
-#define MK565_SUB2 	(0x10820)		// Œ…ã‚ª‚èƒrƒbƒgŒŸoƒ}ƒXƒN
-#define MK565_SUB3 	(0x0820)		// Å‰ºˆÊƒrƒbƒgƒ}ƒXƒN
+#define MK565_SUB1 	(0xF7DF)		// æ¡ä¸ŠãŒã‚Šéƒ¨åˆ†ã‚’ï¼ã«ã™ã‚‹
+#define MK565_SUB2 	(0x10820)		// æ¡ä¸ŠãŒã‚Šãƒ“ãƒƒãƒˆæ¤œå‡ºãƒžã‚¹ã‚¯
+#define MK565_SUB3 	(0x0820)		// æœ€ä¸‹ä½ãƒ“ãƒƒãƒˆãƒžã‚¹ã‚¯
 
 
 //#define MK565_ADD1 	(0x7BEE7BEE)
 //#define MK565_ADD2 	(0x84108410)
-//#define MK565_ADD3 	(0x08610861)	//Å‰ºˆÊƒrƒbƒgƒ}ƒXƒN
+//#define MK565_ADD3 	(0x08610861)	//æœ€ä¸‹ä½ãƒ“ãƒƒãƒˆãƒžã‚¹ã‚¯
 
 #define MK565_R5 	(0x00000000)
 #define MK565_R4 	(0x08000800)
@@ -212,25 +212,25 @@ namespace DxLib
 #define MK555_TN 	(64)
 
 /*									    //ADD Mask      PixelFormat555
-#define MK555_ADD1 	(0x3DEF3DEF)      //Œ…ã‚ª‚è•”•ª‚ð‚O‚É‚·‚é
-//#define MK555_ADD2 	(0x42104210)      //Œ…ã‚ª‚èŒŸoƒ}ƒXƒNiADD‚ÅŽg—pj
+#define MK555_ADD1 	(0x3DEF3DEF)      //æ¡ä¸ŠãŒã‚Šéƒ¨åˆ†ã‚’ï¼ã«ã™ã‚‹
+//#define MK555_ADD2 	(0x42104210)      //æ¡ä¸ŠãŒã‚Šæ¤œå‡ºãƒžã‚¹ã‚¯ï¼ˆADDã§ä½¿ç”¨ï¼‰
 
 //#define MK555_ADD1 	(0x3DEE3DEE)
 #define MK555_ADD2 	(0x42104210)
-#define MK555_ADD3 	(0x04210421)	//Å‰ºˆÊƒrƒbƒgƒ}ƒXƒN
+#define MK555_ADD3 	(0x04210421)	//æœ€ä¸‹ä½ãƒ“ãƒƒãƒˆãƒžã‚¹ã‚¯
 */
 
-#define MK555_ADD4 	(0x3DEF3DEF)    //Œ…ã‚ª‚è•”•ª‚ð‚O‚É‚·‚é
-#define MK555_ADD5 	(0x42104210)    //Œ…ã‚ª‚èŒŸoƒ}ƒXƒNiADD‚ÅŽg—pj
-#define MK555_ADD6 	(0x04210421)	//Å‰ºˆÊƒrƒbƒgƒ}ƒXƒN
+#define MK555_ADD4 	(0x3DEF3DEF)    //æ¡ä¸ŠãŒã‚Šéƒ¨åˆ†ã‚’ï¼ã«ã™ã‚‹
+#define MK555_ADD5 	(0x42104210)    //æ¡ä¸ŠãŒã‚Šæ¤œå‡ºãƒžã‚¹ã‚¯ï¼ˆADDã§ä½¿ç”¨ï¼‰
+#define MK555_ADD6 	(0x04210421)	//æœ€ä¸‹ä½ãƒ“ãƒƒãƒˆãƒžã‚¹ã‚¯
 
-#define MK555_ADD1 	(0x7BDF)		// Œ…ã‚ª‚è•”•ª‚ð‚O‚É‚·‚é
-#define MK555_ADD2 	(0x8420)		// Œ…ã‚ª‚èƒrƒbƒgŒŸoƒ}ƒXƒN
-#define MK555_ADD3 	(0x0420)		// Å‰ºˆÊƒrƒbƒgƒ}ƒXƒN
+#define MK555_ADD1 	(0x7BDF)		// æ¡ä¸ŠãŒã‚Šéƒ¨åˆ†ã‚’ï¼ã«ã™ã‚‹
+#define MK555_ADD2 	(0x8420)		// æ¡ä¸ŠãŒã‚Šãƒ“ãƒƒãƒˆæ¤œå‡ºãƒžã‚¹ã‚¯
+#define MK555_ADD3 	(0x0420)		// æœ€ä¸‹ä½ãƒ“ãƒƒãƒˆãƒžã‚¹ã‚¯
 
-#define MK555_SUB1 	(0x7BDF)		// Œ…ã‚ª‚è•”•ª‚ð‚O‚É‚·‚é
-#define MK555_SUB2 	(0x8420)		// Œ…ã‚ª‚èƒrƒbƒgŒŸoƒ}ƒXƒN
-#define MK555_SUB3 	(0x0420)		// Å‰ºˆÊƒrƒbƒgƒ}ƒXƒN
+#define MK555_SUB1 	(0x7BDF)		// æ¡ä¸ŠãŒã‚Šéƒ¨åˆ†ã‚’ï¼ã«ã™ã‚‹
+#define MK555_SUB2 	(0x8420)		// æ¡ä¸ŠãŒã‚Šãƒ“ãƒƒãƒˆæ¤œå‡ºãƒžã‚¹ã‚¯
+#define MK555_SUB3 	(0x0420)		// æœ€ä¸‹ä½ãƒ“ãƒƒãƒˆãƒžã‚¹ã‚¯
 
 
 
@@ -282,25 +282,25 @@ namespace DxLib
 #define MK888_TN 	(256)
 
 /*									    //ADD Mask      PixelFormat565
-#define MK888_ADD1 	(0x7F7F7F)      //Œ…ã‚ª‚è•”•ª‚ð‚O‚É‚·‚é
-//#define MK888_ADD2 	(0x808080)      //Œ…ã‚ª‚èŒŸoƒ}ƒXƒNiADD‚ÅŽg—pj
+#define MK888_ADD1 	(0x7F7F7F)      //æ¡ä¸ŠãŒã‚Šéƒ¨åˆ†ã‚’ï¼ã«ã™ã‚‹
+//#define MK888_ADD2 	(0x808080)      //æ¡ä¸ŠãŒã‚Šæ¤œå‡ºãƒžã‚¹ã‚¯ï¼ˆADDã§ä½¿ç”¨ï¼‰
 
 //#define MK888_ADD1 	(0x7F7F7E)
 #define MK888_ADD2 	(0x808080)
-#define MK888_ADD3 	(0x10101)	//Å‰ºˆÊƒrƒbƒgƒ}ƒXƒN
+#define MK888_ADD3 	(0x10101)	//æœ€ä¸‹ä½ãƒ“ãƒƒãƒˆãƒžã‚¹ã‚¯
 */
 
-#define MK888_ADD4 	(0x7F7F7F)		//Œ…ã‚ª‚è•”•ª‚ð‚O‚É‚·‚é
-#define MK888_ADD5 	(0x808080)		//Œ…ã‚ª‚èŒŸoƒ}ƒXƒNiADD‚ÅŽg—pj
-#define MK888_ADD6 	(0x010101)		//Å‰ºˆÊƒrƒbƒgƒ}ƒXƒN
+#define MK888_ADD4 	(0x7F7F7F)		//æ¡ä¸ŠãŒã‚Šéƒ¨åˆ†ã‚’ï¼ã«ã™ã‚‹
+#define MK888_ADD5 	(0x808080)		//æ¡ä¸ŠãŒã‚Šæ¤œå‡ºãƒžã‚¹ã‚¯ï¼ˆADDã§ä½¿ç”¨ï¼‰
+#define MK888_ADD6 	(0x010101)		//æœ€ä¸‹ä½ãƒ“ãƒƒãƒˆãƒžã‚¹ã‚¯
 
-#define MK888_ADD1 	(0x0FEFEFF)		// Œ…ã‚ª‚è•”•ª‚ð‚O‚É‚·‚é
-#define MK888_ADD2 	(0x1010100)		// Œ…ã‚ª‚èƒrƒbƒgŒŸoƒ}ƒXƒN
-#define MK888_ADD3 	(0x0010100)		// Å‰ºˆÊƒrƒbƒgƒ}ƒXƒN
+#define MK888_ADD1 	(0x0FEFEFF)		// æ¡ä¸ŠãŒã‚Šéƒ¨åˆ†ã‚’ï¼ã«ã™ã‚‹
+#define MK888_ADD2 	(0x1010100)		// æ¡ä¸ŠãŒã‚Šãƒ“ãƒƒãƒˆæ¤œå‡ºãƒžã‚¹ã‚¯
+#define MK888_ADD3 	(0x0010100)		// æœ€ä¸‹ä½ãƒ“ãƒƒãƒˆãƒžã‚¹ã‚¯
 
-#define MK888_SUB1 	(0x0FEFEFF)		// Œ…ã‚ª‚è•”•ª‚ð‚O‚É‚·‚é
-#define MK888_SUB2 	(0x1010100)		// Œ…ã‚ª‚èƒrƒbƒgŒŸoƒ}ƒXƒN
-#define MK888_SUB3	(0x0010100)		// Å‰ºˆÊƒrƒbƒgƒ}ƒXƒN
+#define MK888_SUB1 	(0x0FEFEFF)		// æ¡ä¸ŠãŒã‚Šéƒ¨åˆ†ã‚’ï¼ã«ã™ã‚‹
+#define MK888_SUB2 	(0x1010100)		// æ¡ä¸ŠãŒã‚Šãƒ“ãƒƒãƒˆæ¤œå‡ºãƒžã‚¹ã‚¯
+#define MK888_SUB3	(0x0010100)		// æœ€ä¸‹ä½ãƒ“ãƒƒãƒˆãƒžã‚¹ã‚¯
 
 
 
@@ -341,19 +341,19 @@ namespace DxLib
 
   #define BPARAM		MemImgManage.BlendParam
 
-  // BI:ƒuƒŒƒ“ƒhƒCƒ[ƒW   BR:‹P“x  AC:ƒ¿ƒ`ƒƒƒ“ƒlƒ‹ 
-  // BNO:ƒuƒŒƒ“ƒh–³‚µ  BAL:ƒ¿ƒuƒŒƒ“ƒh  BAD:‰ÁŽZƒuƒŒƒ“ƒh  BSB:Œ¸ŽZƒuƒŒƒ“ƒh  BML:æŽZƒuƒŒƒ“ƒh  BMA:æŽZ{ƒ¿ƒuƒŒƒ“ƒh  BIS:•`‰æŒ³‚ÌF‚ð”½“]{ƒ¿ƒuƒŒƒ“ƒh
-  // ND:•W€•`‰æ  FD:‚‘¬•`‰æ
-  // TCK:“§‰ßFƒ`ƒFƒbƒN  ACK:ƒ¿ƒ`ƒFƒbƒN
-  // NTBL:ƒuƒŒƒ“ƒh‰æ‘œˆÈŠO‚ÌæŽbƒe[ƒuƒ‹‚ðŽg—p‚µ‚È‚¢
+  // BI:ãƒ–ãƒ¬ãƒ³ãƒ‰ã‚¤ãƒ¡ãƒ¼ã‚¸   BR:è¼åº¦  AC:Î±ãƒãƒ£ãƒ³ãƒãƒ« 
+  // BNO:ãƒ–ãƒ¬ãƒ³ãƒ‰ç„¡ã—  BAL:Î±ãƒ–ãƒ¬ãƒ³ãƒ‰  BAD:åŠ ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰  BSB:æ¸›ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰  BML:ä¹—ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰  BMA:ä¹—ç®—ï¼‹Î±ãƒ–ãƒ¬ãƒ³ãƒ‰  BIS:æç”»å…ƒã®è‰²ã‚’åè»¢ï¼‹Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
+  // ND:æ¨™æº–æç”»  FD:é«˜é€Ÿæç”»
+  // TCK:é€éŽè‰²ãƒã‚§ãƒƒã‚¯  ACK:Î±ãƒã‚§ãƒƒã‚¯
+  // NTBL:ãƒ–ãƒ¬ãƒ³ãƒ‰ç”»åƒä»¥å¤–ã®ä¹—æš«ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’ä½¿ç”¨ã—ãªã„
 
-  // ƒuƒŒƒ“ƒh–³‚µ
+  // ãƒ–ãƒ¬ãƒ³ãƒ‰ç„¡ã—
 
-	// ƒuƒŒƒ“ƒh‰æ‘œ‚ ‚è
+	// ãƒ–ãƒ¬ãƒ³ãƒ‰ç”»åƒã‚ã‚Š
 
-	  // ‹P“x–³‚µ
+	  // è¼åº¦ç„¡ã—
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š
 		#define CODE_UBI_C16_NBR_UAC_BNO( SRC, SRCA, DEST, DESTP, BLEND )	\
 		{\
 			Src2 = ( DWORD )( (DEST) << 16 ) ;\
@@ -362,7 +362,7 @@ namespace DxLib
 							         ( ( ( BMSK16(SRC) - BMSK16(DEST) ) * BIMG(BLEND) * SRCA + ( Src2 & ( BM16 << 16 ) ) ) >> 16 ) ) ;\
 		}
 		
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒ`ƒFƒbƒNƒR[ƒh•t‚«)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒã‚§ãƒƒã‚¯ã‚³ãƒ¼ãƒ‰ä»˜ã)
 		#define CODE_UBI_C16_NBR_UAC_BNO_ACK( SRC, SRCA, DEST, DESTP, BLEND )	\
 			if( SRCA != 0 )\
 			{\
@@ -370,7 +370,7 @@ namespace DxLib
 				else				CODE_UBI_C16_NBR_UAC_BNO( SRC, SRCA, DEST, DESTP, BLEND )\
 			}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—
 		#define CODE_UBI_C16_NBR_NAC_BNO( SRC, DEST, DESTP, BLEND )	\
 		{\
 			Src2 = ( DWORD )( (DEST) << 8 ) ;\
@@ -379,14 +379,14 @@ namespace DxLib
 							         ( ( ( BMSK16(SRC) - BMSK16(DEST) ) * BIMG(BLEND) + ( Src2 & ( BM16 << 8 ) ) ) >> 8 ) ) ;\
 		}
 		
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(“§‰ßFƒ`ƒFƒbƒN•t‚«)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(é€éŽè‰²ãƒã‚§ãƒƒã‚¯ä»˜ã)
 		#define CODE_UBI_C16_NBR_NAC_BNO_TCK( SRC, DEST, DESTP, BLEND )	\
 			if( SRC != TransColor ) CODE_UBI_C16_NBR_NAC_BNO( SRC, DEST, DESTP, BLEND )
 		
 
-	  // ‹P“x‚ ‚è
+	  // è¼åº¦ã‚ã‚Š
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š
 		#define CODE_UBI_C16_UBR_UAC_BNO( SRC, SRCA, DEST, DESTP, BLEND )	\
 		{\
 			*(DESTP) = (WORD)( RMSK16( ( ( RTABLE( RBOT16(SRC) ) - RBOT16(DEST) ) * BIMG(BLEND) * SRCA + (RMSK16(DEST) << ( 16 - MEMIMG_R5G6B5_LR ) ) ) >> ( 16 - MEMIMG_R5G6B5_LR ) ) |\
@@ -394,7 +394,7 @@ namespace DxLib
 							         ( ( ( BTABLE( BBOT16(SRC) ) - BBOT16(DEST) ) * BIMG(BLEND) * SRCA + (BMSK16(DEST) << ( 16 - MEMIMG_R5G6B5_LB ) ) ) >> ( 16 - MEMIMG_R5G6B5_LB ) ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_UBI_C16_UBR_UAC_BNO_NTBL( SRC, SRCA, DEST, DESTP, BLEND, RBRIGHT, GBRIGHT, BBRIGHT )	\
 		{\
 			*(DESTP) = (WORD)( RMSK16( ( ( ( ( RBOT16(SRC) * RBRIGHT ) >> 8 ) - RBOT16(DEST) ) * BIMG(BLEND) * SRCA + (RMSK16(DEST) << ( 16 - MEMIMG_R5G6B5_LR ) ) ) >> ( 16 - MEMIMG_R5G6B5_LR ) ) |\
@@ -402,7 +402,7 @@ namespace DxLib
 							         ( ( ( ( ( BBOT16(SRC) * BBRIGHT ) >> 8 ) - BBOT16(DEST) ) * BIMG(BLEND) * SRCA + (BMSK16(DEST) << ( 16 - MEMIMG_R5G6B5_LB ) ) ) >> ( 16 - MEMIMG_R5G6B5_LB ) ) ) ;\
 		}
 		
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒ`ƒFƒbƒN•t‚«)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒã‚§ãƒƒã‚¯ä»˜ã)
 		#define CODE_UBI_C16_UBR_UAC_BNO_ACK( SRC, SRCA, DEST, DESTP, BLEND )	\
 			if( SRCA != 0 )\
 			{\
@@ -410,7 +410,7 @@ namespace DxLib
 				else				CODE_UBI_C16_UBR_UAC_BNO( SRC, SRCA, DEST, DESTP, BLEND )\
 			}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒ`ƒFƒbƒN•t‚«)(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒã‚§ãƒƒã‚¯ä»˜ã)(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_UBI_C16_UBR_UAC_BNO_ACK_NTBL( SRC, SRCA, DEST, DESTP, BLEND, RBRIGHT, GBRIGHT, BBRIGHT )	\
 			if( SRCA != 0 )\
 			{\
@@ -418,7 +418,7 @@ namespace DxLib
 				else				CODE_UBI_C16_UBR_UAC_BNO_NTBL( SRC, SRCA, DEST, DESTP, BLEND, RBRIGHT, GBRIGHT, BBRIGHT )\
 			}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—
 		#define CODE_UBI_C16_UBR_NAC_BNO( SRC, DEST, DESTP, BLEND )	\
 		{\
 			*(DESTP) = (WORD)( RMSK16( ( ( RTABLE( RBOT16(SRC) ) - RBOT16(DEST) ) * BIMG(BLEND) + (RMSK16(DEST) >> 3) ) << 3 ) |\
@@ -426,7 +426,7 @@ namespace DxLib
 							         ( ( ( BTABLE( BBOT16(SRC) ) - BBOT16(DEST) ) * BIMG(BLEND) + (BMSK16(DEST) << 8) ) >> 8 ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_UBI_C16_UBR_NAC_BNO_NTBL( SRC, DEST, DESTP, BLEND, RBRIGHT, GBRIGHT, BBRIGHT )	\
 		{\
 			*(DESTP) = (WORD)( RMSK16( ( ( ( ( RBOT16(SRC) * RBRIGHT ) >> 8 ) - RBOT16(DEST) ) * BIMG(BLEND) + (RMSK16(DEST) >> 3) ) << 3 ) |\
@@ -434,19 +434,19 @@ namespace DxLib
 							         ( ( ( ( ( BBOT16(SRC) * BBRIGHT ) >> 8 ) - BBOT16(DEST) ) * BIMG(BLEND) + (BMSK16(DEST) << 8) ) >> 8 ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(“§‰ßFƒ`ƒFƒbƒN•t‚«)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(é€éŽè‰²ãƒã‚§ãƒƒã‚¯ä»˜ã)
 		#define CODE_UBI_C16_UBR_NAC_BNO_TCK( SRC, DEST, DESTP, BLEND )	\
 			if( SRC != TransColor ) CODE_UBI_C16_UBR_NAC_BNO( SRC, DEST, DESTP, BLEND )
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(“§‰ßFƒ`ƒFƒbƒN•t‚«)(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(é€éŽè‰²ãƒã‚§ãƒƒã‚¯ä»˜ã)(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_UBI_C16_UBR_NAC_BNO_TCK_NTBL( SRC, DEST, DESTP, BLEND, RBRIGHT, GBRIGHT, BBRIGHT )	\
 			if( SRC != TransColor ) CODE_UBI_C16_UBR_NAC_BNO_NTBL( SRC, DEST, DESTP, BLEND, RBRIGHT, GBRIGHT, BBRIGHT )
 
-	// ƒuƒŒƒ“ƒh‰æ‘œ–³‚µ
+	// ãƒ–ãƒ¬ãƒ³ãƒ‰ç”»åƒç„¡ã—
 
-	  // ‹P“x–³‚µ
+	  // è¼åº¦ç„¡ã—
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š
 		#define CODE_NBI_C16_NBR_UAC_BNO( SRC, SRCA, DEST, DESTP )	\
 		{\
 			*(DESTP) = (WORD)( RMSK16( ( ( RMSK16(SRC) - RMSK16(DEST) ) * SRCA + ( RMSK16(DEST) << 8 ) ) >> 8 ) |\
@@ -454,7 +454,7 @@ namespace DxLib
 							         ( ( ( BMSK16(SRC) - BMSK16(DEST) ) * SRCA + ( BMSK16(DEST) << 8 ) ) >> 8 ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒ`ƒFƒbƒN•t‚«)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒã‚§ãƒƒã‚¯ä»˜ã)
 		#define CODE_NBI_C16_NBR_UAC_BNO_ACK( SRC, SRCA, DEST, DESTP )	\
 			if( SRCA != 0 )\
 			{\
@@ -462,20 +462,20 @@ namespace DxLib
 				else				CODE_NBI_C16_NBR_UAC_BNO( SRC, SRCA, DEST, DESTP )\
 			}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—
 		#define CODE_NBI_C16_NBR_NAC_BNO( SRC, DEST, DESTP )	\
 		{\
 			*(DESTP) = (WORD)(SRC) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(“§‰ßFƒ`ƒFƒbƒN•t‚«)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(é€éŽè‰²ãƒã‚§ãƒƒã‚¯ä»˜ã)
 		#define CODE_NBI_C16_NBR_NAC_BNO_TCK( SRC, DEST, DESTP )	\
 			if( SRC != TransColor ) CODE_NBI_C16_NBR_NAC_BNO( SRC, DEST, DESTP )
 
 	
-	  // ‹P“x‚ ‚è
+	  // è¼åº¦ã‚ã‚Š
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š
 		#define CODE_NBI_C16_UBR_UAC_BNO( SRC, SRCA, DEST, DESTP )	\
 		{\
 			*(DESTP) = (WORD)( RMSK16( ( ( RTABLE( RBOT16(SRC) ) - RBOT16(DEST) ) * SRCA + ( RMSK16(DEST) >> 3 ) ) << 3 ) |\
@@ -483,7 +483,7 @@ namespace DxLib
 							         ( ( ( BTABLE( BBOT16(SRC) ) - BBOT16(DEST) ) * SRCA + ( BMSK16(DEST) << 8 ) ) >> 8 ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_NBI_C16_UBR_UAC_BNO_NTBL( SRC, SRCA, DEST, DESTP, RBRIGHT, GBRIGHT, BBRIGHT )	\
 		{\
 			*(DESTP) = (WORD)( RMSK16( ( ( ( ( RBOT16(SRC) * RBRIGHT ) >> 8 ) - RBOT16(DEST) ) * SRCA + ( RMSK16(DEST) >> 3 ) ) << 3 ) |\
@@ -491,7 +491,7 @@ namespace DxLib
 							         ( ( ( ( ( BBOT16(SRC) * BBRIGHT ) >> 8 ) - BBOT16(DEST) ) * SRCA + ( BMSK16(DEST) << 8 ) ) >> 8 ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒ`ƒFƒbƒN•t‚«)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒã‚§ãƒƒã‚¯ä»˜ã)
 		#define CODE_NBI_C16_UBR_UAC_BNO_ACK( SRC, SRCA, DEST, DESTP )	\
 			if( SRCA != 0 )\
 			{\
@@ -499,7 +499,7 @@ namespace DxLib
 				else				CODE_NBI_C16_UBR_UAC_BNO( SRC, SRCA, DEST, DESTP )\
 			}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒ`ƒFƒbƒN•t‚«)(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒã‚§ãƒƒã‚¯ä»˜ã)(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_NBI_C16_UBR_UAC_BNO_ACK_NTBL( SRC, SRCA, DEST, DESTP, RBRIGHT, GBRIGHT, BBRIGHT )	\
 			if( SRCA != 0 )\
 			{\
@@ -507,7 +507,7 @@ namespace DxLib
 				else				CODE_NBI_C16_UBR_UAC_BNO_NTBL( SRC, SRCA, DEST, DESTP, RBRIGHT, GBRIGHT, BBRIGHT )\
 			}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—
 		#define CODE_NBI_C16_UBR_NAC_BNO( SRC, DEST, DESTP )	\
 		{\
 		    *(DESTP) = (WORD)( RUP16( RTABLE( RBOT16(SRC) ) ) |\
@@ -515,7 +515,7 @@ namespace DxLib
 							   BUP16( BTABLE( BBOT16(SRC) ) ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_NBI_C16_UBR_NAC_BNO_NTBL( SRC, DEST, DESTP, RBRIGHT, GBRIGHT, BBRIGHT )	\
 		{\
 		    *(DESTP) = (WORD)( RMSK16( ( RMSK16(SRC) * RBRIGHT ) >> 8 ) |\
@@ -523,21 +523,21 @@ namespace DxLib
 							   BMSK16( ( BMSK16(SRC) * BBRIGHT ) >> 8 ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(“§‰ßFƒ`ƒFƒbƒN•t‚«)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(é€éŽè‰²ãƒã‚§ãƒƒã‚¯ä»˜ã)
 		#define CODE_NBI_C16_UBR_NAC_BNO_TCK( SRC, DEST, DESTP )	\
 			if( SRC != TransColor ) CODE_NBI_C16_UBR_NAC_BNO( SRC, DEST, DESTP )
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(“§‰ßFƒ`ƒFƒbƒN•t‚«)(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(é€éŽè‰²ãƒã‚§ãƒƒã‚¯ä»˜ã)(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_NBI_C16_UBR_NAC_BNO_TCK_NTBL( SRC, DEST, DESTP, RBRIGHT, GBRIGHT, BBRIGHT )	\
 			if( SRC != TransColor ) CODE_NBI_C16_UBR_NAC_BNO_NTBL( SRC, DEST, DESTP, RBRIGHT, GBRIGHT, BBRIGHT )
 
-  // ƒ¿ƒuƒŒƒ“ƒh
+  // Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
 
-    // ƒuƒŒƒ“ƒh‰æ‘œ‚ ‚è
+    // ãƒ–ãƒ¬ãƒ³ãƒ‰ç”»åƒã‚ã‚Š
  
-      // ‹P“x–³‚µ
+      // è¼åº¦ç„¡ã—
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š
 		#define CODE_UBI_C16_NBR_UAC_BAL( SRC, SRCA, DEST, DESTP, BLEND )	\
 		{\
 			*(DESTP) = (WORD)( RMSK16( ( ( ( RBOT16(SRC) - RBOT16(DEST) ) * BIMG(BLEND) * SRCA * BPARAM + ( RMSK16(DEST) << 13 ) ) >> 13 ) ) |\
@@ -545,7 +545,7 @@ namespace DxLib
 							         ( ( ( ( BBOT16(SRC) - BBOT16(DEST) ) * BIMG(BLEND) * SRCA * BPARAM + ( BMSK16(DEST) << 24 ) ) >> 24 ) ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_UBI_C16_NBR_UAC_BAL_NTBL( SRC, SRCA, DEST, DESTP, BLEND, ABRIGHT )	\
 		{\
 			*(DESTP) = (WORD)( RMSK16( ( ( ( RBOT16(SRC) - RBOT16(DEST) ) * BIMG(BLEND) * SRCA * ABRIGHT + ( RMSK16(DEST) << 13 ) ) >> 13 ) ) |\
@@ -553,7 +553,7 @@ namespace DxLib
 							         ( ( ( ( BBOT16(SRC) - BBOT16(DEST) ) * BIMG(BLEND) * SRCA * ABRIGHT + ( BMSK16(DEST) << 24 ) ) >> 24 ) ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒ`ƒFƒbƒN•t‚«)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒã‚§ãƒƒã‚¯ä»˜ã)
 		#define CODE_UBI_C16_NBR_UAC_BAL_ACK( SRC, SRCA, DEST, DESTP, BLEND )	\
 			if( SRCA != 0 )\
 			{\
@@ -561,7 +561,7 @@ namespace DxLib
 				else				CODE_UBI_C16_NBR_UAC_BAL( SRC, SRCA, DEST, DESTP, BLEND )\
 			}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒ`ƒFƒbƒN•t‚«)(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒã‚§ãƒƒã‚¯ä»˜ã)(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_UBI_C16_NBR_UAC_BAL_ACK_NTBL( SRC, SRCA, DEST, DESTP, BLEND, ABRIGHT )	\
 			if( SRCA != 0 )\
 			{\
@@ -569,7 +569,7 @@ namespace DxLib
 				else				CODE_UBI_C16_NBR_UAC_BAL_NTBL( SRC, SRCA, DEST, DESTP, BLEND, ABRIGHT )\
 			}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—
 		#define CODE_UBI_C16_NBR_NAC_BAL( SRC, DEST, DESTP, BLEND )	\
 		{\
 			*(DESTP) = (WORD)( RMSK16( ( ( ( RMSK16(SRC) - RMSK16(DEST) ) * BIMG(BLEND) * BPARAM + ( RMSK16(DEST) << 16 ) ) >> 16 ) ) |\
@@ -577,7 +577,7 @@ namespace DxLib
 							         ( ( ( ( BMSK16(SRC) - BMSK16(DEST) ) * BIMG(BLEND) * BPARAM + ( BMSK16(DEST) << 16 ) ) >> 16 ) ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_UBI_C16_NBR_NAC_BAL_NTBL( SRC, DEST, DESTP, BLEND, ABRIGHT )	\
 		{\
 			*(DESTP) = (WORD)( RMSK16( ( ( ( RMSK16(SRC) - RMSK16(DEST) ) * BIMG(BLEND) * ABRIGHT + ( RMSK16(DEST) << 16 ) ) >> 16 ) ) |\
@@ -585,18 +585,18 @@ namespace DxLib
 							         ( ( ( ( BMSK16(SRC) - BMSK16(DEST) ) * BIMG(BLEND) * ABRIGHT + ( BMSK16(DEST) << 16 ) ) >> 16 ) ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(“§‰ßFƒ`ƒFƒbƒN•t‚«)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(é€éŽè‰²ãƒã‚§ãƒƒã‚¯ä»˜ã)
 		#define CODE_UBI_C16_NBR_NAC_BAL_TCK( SRC, DEST, DESTP, BLEND )	\
 			if( SRC != TransColor ) CODE_UBI_C16_NBR_NAC_BAL( SRC, DEST, DESTP, BLEND )
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(“§‰ßFƒ`ƒFƒbƒN•t‚«)(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(é€éŽè‰²ãƒã‚§ãƒƒã‚¯ä»˜ã)(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_UBI_C16_NBR_NAC_BAL_TCK_NTBL( SRC, DEST, DESTP, BLEND, ABRIGHT )	\
 			if( SRC != TransColor ) CODE_UBI_C16_NBR_NAC_BAL_NTBL( SRC, DEST, DESTP, BLEND, ABRIGHT )
 
 
-      // ‹P“x‚ ‚è
+      // è¼åº¦ã‚ã‚Š
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š
 		#define CODE_UBI_C16_UBR_UAC_BAL( SRC, SRCA, DEST, DESTP, BLEND )	\
 		{\
 			*(DESTP) = (WORD)( RMSK16( ( ( RTABLE( RBOT16(SRC) ) - RBOT16(DEST) ) * BIMG(BLEND) * BPARAM * SRCA + ( RMSK16(DEST) << 13 ) ) >> 13 ) |\
@@ -604,7 +604,7 @@ namespace DxLib
 							   BMSK16( ( ( BTABLE( BBOT16(SRC) ) - BBOT16(DEST) ) * BIMG(BLEND) * BPARAM * SRCA + ( BMSK16(DEST) << 24 ) ) >> 24 ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_UBI_C16_UBR_UAC_BAL_NTBL( SRC, SRCA, DEST, DESTP, BLEND, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )	\
 		{\
 			*(DESTP) = (WORD)( RMSK16( ( ( ( ( RBOT16(SRC) * RBRIGHT ) >> 8 ) - RBOT16(DEST) ) * BIMG(BLEND) * ABRIGHT * SRCA + ( RMSK16(DEST) << 13 ) ) >> 13 ) |\
@@ -612,7 +612,7 @@ namespace DxLib
 							   BMSK16( ( ( ( ( BBOT16(SRC) * BBRIGHT ) >> 8 ) - BBOT16(DEST) ) * BIMG(BLEND) * ABRIGHT * SRCA + ( BMSK16(DEST) << 24 ) ) >> 24 ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒ`ƒFƒbƒN•t‚«)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒã‚§ãƒƒã‚¯ä»˜ã)
 		#define CODE_UBI_C16_UBR_UAC_BAL_ACK( SRC, SRCA, DEST, DESTP, BLEND )	\
 			if( SRCA != 0 )\
 			{\
@@ -620,7 +620,7 @@ namespace DxLib
 				else				CODE_UBI_C16_UBR_UAC_BAL( SRC, SRCA, DEST, DESTP, BLEND )\
 			}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒ`ƒFƒbƒN•t‚«)(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒã‚§ãƒƒã‚¯ä»˜ã)(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_UBI_C16_UBR_UAC_BAL_ACK_NTBL( SRC, SRCA, DEST, DESTP, BLEND, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )	\
 			if( SRCA != 0 )\
 			{\
@@ -628,7 +628,7 @@ namespace DxLib
 				else				CODE_UBI_C16_UBR_UAC_BAL_NTBL( SRC, SRCA, DEST, DESTP, BLEND, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )\
 			}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—
 		#define CODE_UBI_C16_UBR_NAC_BAL( SRC, DEST, DESTP, BLEND )	\
 		{\
 			*(DESTP) = (WORD)( RMSK16( ( ( RTABLE( RBOT16(SRC) ) - RBOT16(DEST) ) * BIMG(BLEND) * BPARAM + ( RMSK16(DEST) << 5 ) ) >> 5 ) |\
@@ -636,7 +636,7 @@ namespace DxLib
 							   BMSK16( ( ( BTABLE( BBOT16(SRC) ) - BBOT16(DEST) ) * BIMG(BLEND) * BPARAM + ( BMSK16(DEST) << 16 ) ) >> 16 ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_UBI_C16_UBR_NAC_BAL_NTBL( SRC, DEST, DESTP, BLEND, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )	\
 		{\
 			*(DESTP) = (WORD)( RMSK16( ( ( ( ( RBOT16(SRC) * RBRIGHT ) >> 8 ) - RBOT16(DEST) ) * BIMG(BLEND) * ABRIGHT + ( RMSK16(DEST) << 5 ) ) >> 5 ) |\
@@ -644,19 +644,19 @@ namespace DxLib
 							   BMSK16( ( ( ( ( BBOT16(SRC) * BBRIGHT ) >> 8 ) - BBOT16(DEST) ) * BIMG(BLEND) * ABRIGHT + ( BMSK16(DEST) << 16 ) ) >> 16 ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(“§‰ßFƒ`ƒFƒbƒN•t‚«)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(é€éŽè‰²ãƒã‚§ãƒƒã‚¯ä»˜ã)
 		#define CODE_UBI_C16_UBR_NAC_BAL_TCK( SRC, DEST, DESTP, BLEND )	\
 			if( SRC != TransColor ) CODE_UBI_C16_UBR_NAC_BAL( SRC, DEST, DESTP, BLEND )
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(“§‰ßFƒ`ƒFƒbƒN•t‚«)(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(é€éŽè‰²ãƒã‚§ãƒƒã‚¯ä»˜ã)(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_UBI_C16_UBR_NAC_BAL_TCK_NTBL( SRC, DEST, DESTP, BLEND, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )	\
 			if( SRC != TransColor ) CODE_UBI_C16_UBR_NAC_BAL_NTBL( SRC, DEST, DESTP, BLEND, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )
 
-    // ƒuƒŒƒ“ƒh‰æ‘œ–³‚µ
+    // ãƒ–ãƒ¬ãƒ³ãƒ‰ç”»åƒç„¡ã—
 
-      // ‹P“x–³‚µ
+      // è¼åº¦ç„¡ã—
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š
 		#define CODE_NBI_C16_NBR_UAC_BAL( SRC, SRCA, DEST, DESTP )	\
 		{\
 			*(DESTP) = (WORD)( RMSK16( ( ( ( RMSK16(SRC) - RMSK16(DEST) ) * SRCA * BPARAM + ( RMSK16(DEST) << 16 ) ) >> 16 ) ) |\
@@ -664,7 +664,7 @@ namespace DxLib
 							         ( ( ( ( BMSK16(SRC) - BMSK16(DEST) ) * SRCA * BPARAM + ( BMSK16(DEST) << 16 ) ) >> 16 ) ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_NBI_C16_NBR_UAC_BAL_NTBL( SRC, SRCA, DEST, DESTP, ABRIGHT )	\
 		{\
 			*(DESTP) = (WORD)( RMSK16( ( ( ( RMSK16(SRC) - RMSK16(DEST) ) * SRCA * ABRIGHT + ( RMSK16(DEST) << 16 ) ) >> 16 ) ) |\
@@ -672,7 +672,7 @@ namespace DxLib
 							         ( ( ( ( BMSK16(SRC) - BMSK16(DEST) ) * SRCA * ABRIGHT + ( BMSK16(DEST) << 16 ) ) >> 16 ) ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒ`ƒFƒbƒN•t‚«)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒã‚§ãƒƒã‚¯ä»˜ã)
 		#define CODE_NBI_C16_NBR_UAC_BAL_ACK( SRC, SRCA, DEST, DESTP )	\
 			if( SRCA != 0 )\
 			{\
@@ -680,7 +680,7 @@ namespace DxLib
 				else				CODE_NBI_C16_NBR_UAC_BAL( SRC, SRCA, DEST, DESTP )\
 			}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒ`ƒFƒbƒN•t‚«)(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒã‚§ãƒƒã‚¯ä»˜ã)(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_NBI_C16_NBR_UAC_BAL_ACK_NTBL( SRC, SRCA, DEST, DESTP, ABRIGHT )	\
 			if( SRCA != 0 )\
 			{\
@@ -688,7 +688,7 @@ namespace DxLib
 				else				CODE_NBI_C16_NBR_UAC_BAL_NTBL( SRC, SRCA, DEST, DESTP, ABRIGHT )\
 			}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—
 		#define CODE_NBI_C16_NBR_NAC_BAL( SRC, DEST, DESTP )	\
 		{\
 			*(DESTP) = (WORD)( RUP16( MT2( (int)RBOT16(SRC) - (int)RBOT16(DEST) ) + RBOT16(DEST) ) |\
@@ -696,7 +696,7 @@ namespace DxLib
 							   BUP16( MT2( (int)BBOT16(SRC) - (int)BBOT16(DEST) ) + BBOT16(DEST) ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_NBI_C16_NBR_NAC_BAL_NTBL( SRC, DEST, DESTP, ABRIGHT )	\
 		{\
 			*(DESTP) = (WORD)( RUP16( ( ( ( (int)RBOT16(SRC) - (int)RBOT16(DEST) ) * ABRIGHT ) >> 8 ) + RBOT16(DEST) ) |\
@@ -704,18 +704,18 @@ namespace DxLib
 							   BUP16( ( ( ( (int)BBOT16(SRC) - (int)BBOT16(DEST) ) * ABRIGHT ) >> 8 ) + BBOT16(DEST) ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(“§‰ßFƒ`ƒFƒbƒN•t‚«)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(é€éŽè‰²ãƒã‚§ãƒƒã‚¯ä»˜ã)
 		#define CODE_NBI_C16_NBR_NAC_BAL_TCK( SRC, DEST, DESTP )	\
 			if( SRC != TransColor ) CODE_NBI_C16_NBR_NAC_BAL( SRC, DEST, DESTP )
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(“§‰ßFƒ`ƒFƒbƒN•t‚«)(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(é€éŽè‰²ãƒã‚§ãƒƒã‚¯ä»˜ã)(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_NBI_C16_NBR_NAC_BAL_TCK_NTBL( SRC, DEST, DESTP, ABRIGHT )	\
 			if( SRC != TransColor ) CODE_NBI_C16_NBR_NAC_BAL_NTBL( SRC, DEST, DESTP, ABRIGHT )
 
 
-      // ‹P“x‚ ‚è
+      // è¼åº¦ã‚ã‚Š
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š
 		#define CODE_NBI_C16_UBR_UAC_BAL( SRC, SRCA, DEST, DESTP )	\
 		{\
 			*(DESTP) = (WORD)( RMSK16( ( ( RTABLE( RBOT16(SRC) ) - RBOT16(DEST) ) * BPARAM * SRCA + ( RMSK16(DEST) << 5  ) ) >> 5  ) |\
@@ -723,7 +723,7 @@ namespace DxLib
 							   BMSK16( ( ( BTABLE( BBOT16(SRC) ) - BBOT16(DEST) ) * BPARAM * SRCA + ( BMSK16(DEST) << 16 ) ) >> 16 ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_NBI_C16_UBR_UAC_BAL_NTBL( SRC, SRCA, DEST, DESTP, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )	\
 		{\
 			*(DESTP) = (WORD)( RMSK16( ( ( ( ( RBOT16(SRC) * RBRIGHT ) >> 8 ) - RBOT16(DEST) ) * ABRIGHT * SRCA + ( RMSK16(DEST) << 5  ) ) >> 5  ) |\
@@ -731,7 +731,7 @@ namespace DxLib
 							   BMSK16( ( ( ( ( BBOT16(SRC) * BBRIGHT ) >> 8 ) - BBOT16(DEST) ) * ABRIGHT * SRCA + ( BMSK16(DEST) << 16 ) ) >> 16 ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒ`ƒFƒbƒN•t‚«)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒã‚§ãƒƒã‚¯ä»˜ã)
 		#define CODE_NBI_C16_UBR_UAC_BAL_ACK( SRC, SRCA, DEST, DESTP )	\
 			if( SRCA != 0 )\
 			{\
@@ -739,7 +739,7 @@ namespace DxLib
 				else				CODE_NBI_C16_UBR_UAC_BAL( SRC, SRCA, DEST, DESTP )\
 			}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒ`ƒFƒbƒN•t‚«)(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒã‚§ãƒƒã‚¯ä»˜ã)(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_NBI_C16_UBR_UAC_BAL_ACK_NTBL( SRC, SRCA, DEST, DESTP, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )	\
 			if( SRCA != 0 )\
 			{\
@@ -747,7 +747,7 @@ namespace DxLib
 				else				CODE_NBI_C16_UBR_UAC_BAL_NTBL( SRC, SRCA, DEST, DESTP, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )\
 			}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—
 		#define CODE_NBI_C16_UBR_NAC_BAL( SRC, DEST, DESTP )	\
 		{\
 			*(DESTP) = (WORD)( RUP16( MT2( (int)RTABLE( RBOT16(SRC) ) - (int)RBOT16(DEST) ) + RBOT16(DEST) ) |\
@@ -755,7 +755,7 @@ namespace DxLib
 							   BUP16( MT2( (int)BTABLE( BBOT16(SRC) ) - (int)BBOT16(DEST) ) + BBOT16(DEST) ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_NBI_C16_UBR_NAC_BAL_NTBL( SRC, DEST, DESTP, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )	\
 		{\
 			*(DESTP) = (WORD)( RUP16( ( ( ( (int)( ( RBOT16(SRC) * RBRIGHT ) >> 8 ) * ABRIGHT ) >> 8 ) - (int)RBOT16(DEST) ) + RBOT16(DEST) ) |\
@@ -763,21 +763,21 @@ namespace DxLib
 							   BUP16( ( ( ( (int)( ( BBOT16(SRC) * BBRIGHT ) >> 8 ) * ABRIGHT ) >> 8 ) - (int)BBOT16(DEST) ) + BBOT16(DEST) ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(“§‰ßFƒ`ƒFƒbƒN•t‚«)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(é€éŽè‰²ãƒã‚§ãƒƒã‚¯ä»˜ã)
 		#define CODE_NBI_C16_UBR_NAC_BAL_TCK( SRC, DEST, DESTP )	\
 			if( SRC != TransColor ) CODE_NBI_C16_UBR_NAC_BAL( SRC, DEST, DESTP )
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(“§‰ßFƒ`ƒFƒbƒN•t‚«)(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(é€éŽè‰²ãƒã‚§ãƒƒã‚¯ä»˜ã)(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_NBI_C16_UBR_NAC_BAL_TCK_NTBL( SRC, DEST, DESTP, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )	\
 			if( SRC != TransColor ) CODE_NBI_C16_UBR_NAC_BAL_NTBL( SRC, DEST, DESTP, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )
 
-  // ‰ÁŽZƒuƒŒƒ“ƒh
+  // åŠ ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 
-	// ƒuƒŒƒ“ƒh‰æ‘œ‚ ‚è
+	// ãƒ–ãƒ¬ãƒ³ãƒ‰ç”»åƒã‚ã‚Š
 
-      // ‹P“x‚È‚µ
+      // è¼åº¦ãªã—
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š
 		#define CODE_UBI_C16_NBR_UAC_BAD( SRC, SRCA, DEST, DESTP, BLEND )	\
 		{\
 			Src1 = (WORD)( RUP16( MT1( (DWORD)( RMSK16(SRC) * SRCA * BIMG(BLEND) ) >> 27 ) ) +\
@@ -788,7 +788,7 @@ namespace DxLib
 			*(DESTP) = (WORD)( ( ( Data | ( DataD - ( DataD >> MEMIMG_R5G6B5_ADDSHFT ) ) ) ) | ( ( Src1 | (DEST) ) & MEMIMG_R5G6B5_ADDMASK3 ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_UBI_C16_NBR_UAC_BAD_NTBL( SRC, SRCA, DEST, DESTP, BLEND, ABRIGHT )	\
 		{\
 			Src1 = (WORD)( RUP16( (DWORD)( RBOT16(SRC) * SRCA * BIMG(BLEND) * ABRIGHT ) >> 24 ) +\
@@ -799,7 +799,7 @@ namespace DxLib
 			*(DESTP) = (WORD)( ( ( Data | ( DataD - ( DataD >> MEMIMG_R5G6B5_ADDSHFT ) ) ) ) | ( ( Src1 | (DEST) ) & MEMIMG_R5G6B5_ADDMASK3 ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒ`ƒFƒbƒN•t‚«)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒã‚§ãƒƒã‚¯ä»˜ã)
 		#define CODE_UBI_C16_NBR_UAC_BAD_ACK( SRC, SRCA, DEST, DESTP, BLEND )	\
 			if( SRCA != 0 )\
 			{\
@@ -807,7 +807,7 @@ namespace DxLib
 				else				CODE_UBI_C16_NBR_UAC_BAD( SRC, SRCA, DEST, DESTP, BLEND )\
 			}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒ`ƒFƒbƒN•t‚«)(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒã‚§ãƒƒã‚¯ä»˜ã)(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_UBI_C16_NBR_UAC_BAD_ACK_NTBL( SRC, SRCA, DEST, DESTP, BLEND, ABRIGHT )	\
 			if( SRCA != 0 )\
 			{\
@@ -815,7 +815,7 @@ namespace DxLib
 				else				CODE_UBI_C16_NBR_UAC_BAD_NTBL( SRC, SRCA, DEST, DESTP, BLEND, ABRIGHT )\
 			}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—
 		#define CODE_UBI_C16_NBR_NAC_BAD( SRC, DEST, DESTP, BLEND )	\
 		{\
 			Src1 = (WORD)( RUP16( MT1( ( RMSK16(SRC) * BIMG(BLEND) ) >> 19 ) ) +\
@@ -826,7 +826,7 @@ namespace DxLib
 			*(DESTP) = (WORD)( ( ( Data | ( DataD - ( DataD >> MEMIMG_R5G6B5_ADDSHFT ) ) ) ) | ( ( Src1 | (DEST) ) & MEMIMG_R5G6B5_ADDMASK3 ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_UBI_C16_NBR_NAC_BAD_NTBL( SRC, DEST, DESTP, BLEND, ABRIGHT )	\
 		{\
 			Src1 = (WORD)( RUP16( ( RMSK16(SRC) * BIMG(BLEND) * ABRIGHT ) >> 27 ) +\
@@ -837,17 +837,17 @@ namespace DxLib
 			*(DESTP) = (WORD)( ( ( Data | ( DataD - ( DataD >> MEMIMG_R5G6B5_ADDSHFT ) ) ) ) | ( ( Src1 | (DEST) ) & MEMIMG_R5G6B5_ADDMASK3 ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(“§‰ßFƒ`ƒFƒbƒN•t‚«)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(é€éŽè‰²ãƒã‚§ãƒƒã‚¯ä»˜ã)
 		#define CODE_UBI_C16_NBR_NAC_BAD_TCK( SRC, DEST, DESTP, BLEND )	\
 			if( SRC != TransColor ) CODE_UBI_C16_NBR_NAC_BAD( SRC, DEST, DESTP, BLEND )
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(“§‰ßFƒ`ƒFƒbƒN•t‚«)(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(é€éŽè‰²ãƒã‚§ãƒƒã‚¯ä»˜ã)(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_UBI_C16_NBR_NAC_BAD_TCK_NTBL( SRC, DEST, DESTP, BLEND, ABRIGHT )	\
 			if( SRC != TransColor ) CODE_UBI_C16_NBR_NAC_BAD_NTBL( SRC, DEST, DESTP, BLEND, ABRIGHT )
 
-	  // ‹P“x‚ ‚è
+	  // è¼åº¦ã‚ã‚Š
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š
 		#define CODE_UBI_C16_UBR_UAC_BAD( SRC, SRCA, DEST, DESTP, BLEND )	\
 		{\
 			Src1 = (WORD)( RUP16( MT1( ( RTABLE( RBOT16(SRC) ) * BIMG(BLEND) * SRCA ) >> 16 ) ) +\
@@ -858,7 +858,7 @@ namespace DxLib
 			*(DESTP) = (WORD)( ( ( Data | ( DataD - ( DataD >> MEMIMG_R5G6B5_ADDSHFT ) ) ) ) | ( ( Src1 | (DEST) ) & MEMIMG_R5G6B5_ADDMASK3 ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_UBI_C16_UBR_UAC_BAD_NTBL( SRC, SRCA, DEST, DESTP, BLEND, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )	\
 		{\
 			Src1 = (WORD)( RUP16( ( ( ( RBOT16(SRC) * RBRIGHT ) >> 8 ) * BIMG(BLEND) * SRCA * ABRIGHT ) >> 24 ) +\
@@ -869,7 +869,7 @@ namespace DxLib
 			*(DESTP) = (WORD)( ( ( Data | ( DataD - ( DataD >> MEMIMG_R5G6B5_ADDSHFT ) ) ) ) | ( ( Src1 | (DEST) ) & MEMIMG_R5G6B5_ADDMASK3 ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒ`ƒFƒbƒN•t‚«)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒã‚§ãƒƒã‚¯ä»˜ã)
 		#define CODE_UBI_C16_UBR_UAC_BAD_ACK( SRC, SRCA, DEST, DESTP, BLEND )	\
 			if( SRCA != 0 )\
 			{\
@@ -877,7 +877,7 @@ namespace DxLib
 				else				CODE_UBI_C16_UBR_UAC_BAD( SRC, SRCA, DEST, DESTP, BLEND )\
 			}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒ`ƒFƒbƒN•t‚«)(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒã‚§ãƒƒã‚¯ä»˜ã)(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_UBI_C16_UBR_UAC_BAD_ACK_NTBL( SRC, SRCA, DEST, DESTP, BLEND, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )	\
 			if( SRCA != 0 )\
 			{\
@@ -885,7 +885,7 @@ namespace DxLib
 				else				CODE_UBI_C16_UBR_UAC_BAD_NTBL( SRC, SRCA, DEST, DESTP, BLEND, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )\
 			}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—
 		#define CODE_UBI_C16_UBR_NAC_BAD( SRC, DEST, DESTP, BLEND )	\
 		{\
 			Src1 = (WORD)( RUP16( MT1( ( BIMG(BLEND) * RTABLE( RBOT16(SRC) ) ) >> 8 ) ) +\
@@ -896,7 +896,7 @@ namespace DxLib
 			*(DESTP) = (WORD)( ( ( Data | ( DataD - ( DataD >> MEMIMG_R5G6B5_ADDSHFT ) ) ) ) | ( ( Src1 | (DEST) ) & MEMIMG_R5G6B5_ADDMASK3 ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_UBI_C16_UBR_NAC_BAD_NTBL( SRC, DEST, DESTP, BLEND, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )	\
 		{\
 			Src1 = (WORD)( RUP16( ( RBOT16(SRC) * RBRIGHT * ABRIGHT * BIMG(BLEND) ) >> 24 ) +\
@@ -907,19 +907,19 @@ namespace DxLib
 			*(DESTP) = (WORD)( ( ( Data | ( DataD - ( DataD >> MEMIMG_R5G6B5_ADDSHFT ) ) ) ) | ( ( Src1 | (DEST) ) & MEMIMG_R5G6B5_ADDMASK3 ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(“§‰ßFƒ`ƒFƒbƒN•t‚«)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(é€éŽè‰²ãƒã‚§ãƒƒã‚¯ä»˜ã)
 		#define CODE_UBI_C16_UBR_NAC_BAD_TCK( SRC, DEST, DESTP, BLEND )	\
 			if( SRC != TransColor ) CODE_UBI_C16_UBR_NAC_BAD( SRC, DEST, DESTP, BLEND )
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(“§‰ßFƒ`ƒFƒbƒN•t‚«)(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(é€éŽè‰²ãƒã‚§ãƒƒã‚¯ä»˜ã)(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_UBI_C16_UBR_NAC_BAD_TCK_NTBL( SRC, DEST, DESTP, BLEND, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )	\
 			if( SRC != TransColor ) CODE_UBI_C16_UBR_NAC_BAD_NTBL( SRC, DEST, DESTP, BLEND, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )
 
-	// ƒuƒŒƒ“ƒh‰æ‘œ–³‚µ
+	// ãƒ–ãƒ¬ãƒ³ãƒ‰ç”»åƒç„¡ã—
 	
-	  // ‹P“x–³‚µ
+	  // è¼åº¦ç„¡ã—
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š
 		#define CODE_NBI_C16_NBR_UAC_BAD( SRC, SRCA, DEST, DESTP )	\
 		{\
 			Src1 = (WORD)(  RUP16( MT1( ( RMSK16(SRC) * SRCA ) >> 19 ) ) +\
@@ -930,7 +930,7 @@ namespace DxLib
 			*(DESTP) = (WORD)( ( ( Data | ( DataD - ( DataD >> MEMIMG_R5G6B5_ADDSHFT ) ) ) ) | ( ( Src1 | (DEST) ) & MEMIMG_R5G6B5_ADDMASK3 ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_NBI_C16_NBR_UAC_BAD_NTBL( SRC, SRCA, DEST, DESTP, ABRIGHT )	\
 		{\
 			Src1 = (WORD)(  RUP16( ( RMSK16(SRC) * SRCA * ABRIGHT ) >> 27 ) +\
@@ -941,7 +941,7 @@ namespace DxLib
 			*(DESTP) = (WORD)( ( ( Data | ( DataD - ( DataD >> MEMIMG_R5G6B5_ADDSHFT ) ) ) ) | ( ( Src1 | (DEST) ) & MEMIMG_R5G6B5_ADDMASK3 ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒ`ƒFƒbƒN•t‚«)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒã‚§ãƒƒã‚¯ä»˜ã)
 		#define CODE_NBI_C16_NBR_UAC_BAD_ACK( SRC, SRCA, DEST, DESTP )	\
 			if( SRCA != 0 )\
 			{\
@@ -949,7 +949,7 @@ namespace DxLib
 				else				CODE_NBI_C16_NBR_UAC_BAD( SRC, SRCA, DEST, DESTP )\
 			}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒ`ƒFƒbƒN•t‚«)(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒã‚§ãƒƒã‚¯ä»˜ã)(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_NBI_C16_NBR_UAC_BAD_ACK_NTBL( SRC, SRCA, DEST, DESTP, ABRIGHT )	\
 			if( SRCA != 0 )\
 			{\
@@ -957,7 +957,7 @@ namespace DxLib
 				else				CODE_NBI_C16_NBR_UAC_BAD_NTBL( SRC, SRCA, DEST, DESTP, ABRIGHT )\
 			}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—
 		#define CODE_NBI_C16_NBR_NAC_BAD( SRC, DEST, DESTP )	\
 		{\
 			Src1 = (WORD)(  RUP16( MT1( RBOT16(SRC) ) ) +\
@@ -968,7 +968,7 @@ namespace DxLib
 			*(DESTP) = (WORD)( ( ( Data | ( DataD - ( DataD >> MEMIMG_R5G6B5_ADDSHFT ) ) ) ) | ( ( Src1 | (DEST) ) & MEMIMG_R5G6B5_ADDMASK3 ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_NBI_C16_NBR_NAC_BAD_NTBL( SRC, DEST, DESTP, ABRIGHT )	\
 		{\
 			Src1 = (WORD)(  RUP16( ( RMSK16(SRC) * ABRIGHT ) >> ( 8 + MEMIMG_R5G6B5_LR ) ) +\
@@ -979,17 +979,17 @@ namespace DxLib
 			*(DESTP) = (WORD)( ( ( Data | ( DataD - ( DataD >> MEMIMG_R5G6B5_ADDSHFT ) ) ) ) | ( ( Src1 | (DEST) ) & MEMIMG_R5G6B5_ADDMASK3 ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(“§‰ßFƒ`ƒFƒbƒN•t‚«)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(é€éŽè‰²ãƒã‚§ãƒƒã‚¯ä»˜ã)
 		#define CODE_NBI_C16_NBR_NAC_BAD_TCK( SRC, DEST, DESTP )	\
 			if( SRC != TransColor ) CODE_NBI_C16_NBR_NAC_BAD( SRC, DEST, DESTP )
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(“§‰ßFƒ`ƒFƒbƒN•t‚«)(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(é€éŽè‰²ãƒã‚§ãƒƒã‚¯ä»˜ã)(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_NBI_C16_NBR_NAC_BAD_TCK_NTBL( SRC, DEST, DESTP, ABRIGHT )	\
 			if( SRC != TransColor ) CODE_NBI_C16_NBR_NAC_BAD_NTBL( SRC, DEST, DESTP, ABRIGHT )
 
-	  // ‹P“x‚ ‚è
+	  // è¼åº¦ã‚ã‚Š
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š
 		#define CODE_NBI_C16_UBR_UAC_BAD( SRC, SRCA, DEST, DESTP )	\
 		{\
 			Src1 = (WORD)( RUP16( MT1( RTABLE( ( RMSK16(SRC) * SRCA ) >> 19 ) ) ) +\
@@ -1000,7 +1000,7 @@ namespace DxLib
 			*(DESTP) = (WORD)( ( ( Data | ( DataD - ( DataD >> MEMIMG_R5G6B5_ADDSHFT ) ) ) ) | ( ( Src1 | (DEST) ) & MEMIMG_R5G6B5_ADDMASK3 ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_NBI_C16_UBR_UAC_BAD_NTBL( SRC, SRCA, DEST, DESTP, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )	\
 		{\
 			Src1 = (WORD)( RUP16( ( RBOT16(SRC) * SRCA * ABRIGHT * RBRIGHT ) >> 24 ) +\
@@ -1011,7 +1011,7 @@ namespace DxLib
 			*(DESTP) = (WORD)( ( ( Data | ( DataD - ( DataD >> MEMIMG_R5G6B5_ADDSHFT ) ) ) ) | ( ( Src1 | (DEST) ) & MEMIMG_R5G6B5_ADDMASK3 ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒ`ƒFƒbƒN•t‚«)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒã‚§ãƒƒã‚¯ä»˜ã)
 		#define CODE_NBI_C16_UBR_UAC_BAD_ACK( SRC, SRCA, DEST, DESTP )	\
 			if( SRCA != 0 )\
 			{\
@@ -1019,7 +1019,7 @@ namespace DxLib
 				else				CODE_NBI_C16_UBR_UAC_BAD( SRC, SRCA, DEST, DESTP )\
 			}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒ`ƒFƒbƒN•t‚«)(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒã‚§ãƒƒã‚¯ä»˜ã)(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_NBI_C16_UBR_UAC_BAD_ACK_NTBL( SRC, SRCA, DEST, DESTP, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )	\
 			if( SRCA != 0 )\
 			{\
@@ -1027,7 +1027,7 @@ namespace DxLib
 				else				CODE_NBI_C16_UBR_UAC_BAD_NTBL( SRC, SRCA, DEST, DESTP, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )\
 			}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—
 		#define CODE_NBI_C16_UBR_NAC_BAD( SRC, DEST, DESTP )	\
 		{\
 			Src1 = (WORD)( RUP16( MT1( RTABLE( RBOT16(SRC) ) ) ) +\
@@ -1038,7 +1038,7 @@ namespace DxLib
 			*(DESTP) = (WORD)( ( ( Data | ( DataD - ( DataD >> MEMIMG_R5G6B5_ADDSHFT ) ) ) ) | ( ( Src1 | (DEST) ) & MEMIMG_R5G6B5_ADDMASK3 ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_NBI_C16_UBR_NAC_BAD_NTBL( SRC, DEST, DESTP, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )	\
 		{\
 			Src1 = (WORD)( RUP16( ( RMSK16(SRC) * ABRIGHT * RBRIGHT ) >> ( 16 + MEMIMG_R5G6B5_LR ) ) +\
@@ -1049,21 +1049,21 @@ namespace DxLib
 			*(DESTP) = (WORD)( ( ( Data | ( DataD - ( DataD >> MEMIMG_R5G6B5_ADDSHFT ) ) ) ) | ( ( Src1 | (DEST) ) & MEMIMG_R5G6B5_ADDMASK3 ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(“§‰ßFƒ`ƒFƒbƒN•t‚«)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(é€éŽè‰²ãƒã‚§ãƒƒã‚¯ä»˜ã)
 		#define CODE_NBI_C16_UBR_NAC_BAD_TCK( SRC, DEST, DESTP )	\
 			if( SRC != TransColor ) CODE_NBI_C16_UBR_NAC_BAD( SRC, DEST, DESTP )
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(“§‰ßFƒ`ƒFƒbƒN•t‚«)(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(é€éŽè‰²ãƒã‚§ãƒƒã‚¯ä»˜ã)(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_NBI_C16_UBR_NAC_BAD_TCK_NTBL( SRC, DEST, DESTP, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT  )	\
 			if( SRC != TransColor ) CODE_NBI_C16_UBR_NAC_BAD_NTBL( SRC, DEST, DESTP, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )
 
-  // Œ¸ŽZƒuƒŒƒ“ƒh
+  // æ¸›ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 
-    // ƒuƒŒƒ“ƒh‰æ‘œ‚ ‚è
+    // ãƒ–ãƒ¬ãƒ³ãƒ‰ç”»åƒã‚ã‚Š
  
-      // ‹P“x–³‚µ
+      // è¼åº¦ç„¡ã—
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š
 		#define CODE_UBI_C16_NBR_UAC_BSB( SRC, SRCA, DEST, DESTP, BLEND )	\
 		{\
 			Src1 = (WORD)( RUP16( MT1( (DWORD)( RMSK16(SRC) * BIMG(BLEND) * SRCA ) >> 27 ) ) +\
@@ -1074,7 +1074,7 @@ namespace DxLib
 			*(DESTP) = (WORD)( Data & ( DataD - ( DataD >> MEMIMG_R5G6B5_SUBSHFT ) ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_UBI_C16_NBR_UAC_BSB_NTBL( SRC, SRCA, DEST, DESTP, BLEND, ABRIGHT )	\
 		{\
 			Src1 = (WORD)( RUP16( (DWORD)( RBOT16(SRC) * BIMG(BLEND) * SRCA * ABRIGHT ) >> 24 ) +\
@@ -1085,7 +1085,7 @@ namespace DxLib
 			*(DESTP) = (WORD)( Data & ( DataD - ( DataD >> MEMIMG_R5G6B5_SUBSHFT ) ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒ`ƒFƒbƒN•t‚«)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒã‚§ãƒƒã‚¯ä»˜ã)
 		#define CODE_UBI_C16_NBR_UAC_BSB_ACK( SRC, SRCA, DEST, DESTP, BLEND )	\
 			if( SRCA != 0 )\
 			{\
@@ -1093,7 +1093,7 @@ namespace DxLib
 				else				CODE_UBI_C16_NBR_UAC_BSB( SRC, SRCA, DEST, DESTP, BLEND )\
 			}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒ`ƒFƒbƒN•t‚«)(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒã‚§ãƒƒã‚¯ä»˜ã)(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_UBI_C16_NBR_UAC_BSB_ACK_NTBL( SRC, SRCA, DEST, DESTP, BLEND, ABRIGHT )	\
 			if( SRCA != 0 )\
 			{\
@@ -1101,7 +1101,7 @@ namespace DxLib
 				else				CODE_UBI_C16_NBR_UAC_BSB_NTBL( SRC, SRCA, DEST, DESTP, BLEND, ABRIGHT )\
 			}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—
 		#define CODE_UBI_C16_NBR_NAC_BSB( SRC, DEST, DESTP, BLEND )	\
 		{\
 			Src1 = (WORD)( RUP16( MT1( ( RMSK16(SRC) * BIMG(BLEND) ) >> ( 8 + MEMIMG_R5G6B5_LR ) ) ) +\
@@ -1112,7 +1112,7 @@ namespace DxLib
 			*(DESTP) = (WORD)( Data & ( DataD - ( DataD >> MEMIMG_R5G6B5_SUBSHFT ) ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_UBI_C16_NBR_NAC_BSB_NTBL( SRC, DEST, DESTP, BLEND, ABRIGHT )	\
 		{\
 			Src1 = (WORD)( RUP16( ( RMSK16(SRC) * BIMG(BLEND) * ABRIGHT ) >> ( 16 + MEMIMG_R5G6B5_LR ) ) +\
@@ -1123,17 +1123,17 @@ namespace DxLib
 			*(DESTP) = (WORD)( Data & ( DataD - ( DataD >> MEMIMG_R5G6B5_SUBSHFT ) ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(“§‰ßFƒ`ƒFƒbƒN•t‚«)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(é€éŽè‰²ãƒã‚§ãƒƒã‚¯ä»˜ã)
 		#define CODE_UBI_C16_NBR_NAC_BSB_TCK( SRC, DEST, DESTP, BLEND )	\
 			if( SRC != TransColor ) CODE_UBI_C16_NBR_NAC_BSB( SRC, DEST, DESTP, BLEND )
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(“§‰ßFƒ`ƒFƒbƒN•t‚«)(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(é€éŽè‰²ãƒã‚§ãƒƒã‚¯ä»˜ã)(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_UBI_C16_NBR_NAC_BSB_TCK_NTBL( SRC, DEST, DESTP, BLEND, ABRIGHT )	\
 			if( SRC != TransColor ) CODE_UBI_C16_NBR_NAC_BSB_NTBL( SRC, DEST, DESTP, BLEND, ABRIGHT )
 
-      // ‹P“x‚ ‚è
+      // è¼åº¦ã‚ã‚Š
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š
 		#define CODE_UBI_C16_UBR_UAC_BSB( SRC, SRCA, DEST, DESTP, BLEND )	\
 		{\
 			Src1 = (WORD)( RUP16( MT1( ( RTABLE( RBOT16(SRC) ) * BIMG(BLEND) * SRCA ) >> 16 ) ) +\
@@ -1144,7 +1144,7 @@ namespace DxLib
 			*(DESTP) = (WORD)( Data & ( DataD - ( DataD >> MEMIMG_R5G6B5_SUBSHFT ) ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_UBI_C16_UBR_UAC_BSB_NTBL( SRC, SRCA, DEST, DESTP, BLEND, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )	\
 		{\
 			Src1 = (WORD)( RUP16( ( ( ( RBOT16(SRC) * RBRIGHT ) >> 8 ) * BIMG(BLEND) * SRCA * ABRIGHT ) >> 24 ) +\
@@ -1155,7 +1155,7 @@ namespace DxLib
 			*(DESTP) = (WORD)( Data & ( DataD - ( DataD >> MEMIMG_R5G6B5_SUBSHFT ) ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒ`ƒFƒbƒN•t‚«)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒã‚§ãƒƒã‚¯ä»˜ã)
 		#define CODE_UBI_C16_UBR_UAC_BSB_ACK( SRC, SRCA, DEST, DESTP, BLEND )	\
 			if( SRCA != 0 )\
 			{\
@@ -1163,7 +1163,7 @@ namespace DxLib
 				else				CODE_UBI_C16_UBR_UAC_BSB( SRC, SRCA, DEST, DESTP, BLEND )\
 			}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒ`ƒFƒbƒN•t‚«)(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒã‚§ãƒƒã‚¯ä»˜ã)(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_UBI_C16_UBR_UAC_BSB_ACK_NTBL( SRC, SRCA, DEST, DESTP, BLEND, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )	\
 			if( SRCA != 0 )\
 			{\
@@ -1171,7 +1171,7 @@ namespace DxLib
 				else				CODE_UBI_C16_UBR_UAC_BSB_NTBL( SRC, SRCA, DEST, DESTP, BLEND, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )\
 			}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—
 		#define CODE_UBI_C16_UBR_NAC_BSB( SRC, DEST, DESTP, BLEND )	\
 		{\
 			Src1 = (WORD)( RUP16( MT1( ( RTABLE( RBOT16(SRC) ) * BIMG(BLEND) ) >> 8 ) ) +\
@@ -1182,7 +1182,7 @@ namespace DxLib
 			*(DESTP) = (WORD)( Data & ( DataD - ( DataD >> MEMIMG_R5G6B5_SUBSHFT ) ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_UBI_C16_UBR_NAC_BSB_NTBL( SRC, DEST, DESTP, BLEND, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )	\
 		{\
 			Src1 = (WORD)( RUP16( ( RBOT16(SRC) * BIMG(BLEND) * ABRIGHT * RBRIGHT ) >> 24 ) +\
@@ -1193,19 +1193,19 @@ namespace DxLib
 			*(DESTP) = (WORD)( Data & ( DataD - ( DataD >> MEMIMG_R5G6B5_SUBSHFT ) ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(“§‰ßFƒ`ƒFƒbƒN•t‚«)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(é€éŽè‰²ãƒã‚§ãƒƒã‚¯ä»˜ã)
 		#define CODE_UBI_C16_UBR_NAC_BSB_TCK( SRC, DEST, DESTP, BLEND )	\
 			if( SRC != TransColor ) CODE_UBI_C16_UBR_NAC_BSB( SRC, DEST, DESTP, BLEND )
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(“§‰ßFƒ`ƒFƒbƒN•t‚«)(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(é€éŽè‰²ãƒã‚§ãƒƒã‚¯ä»˜ã)(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_UBI_C16_UBR_NAC_BSB_TCK_NTBL( SRC, DEST, DESTP, BLEND, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )	\
 			if( SRC != TransColor ) CODE_UBI_C16_UBR_NAC_BSB_NTBL( SRC, DEST, DESTP, BLEND, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )
 
-    // ƒuƒŒƒ“ƒh‰æ‘œ–³‚µ
+    // ãƒ–ãƒ¬ãƒ³ãƒ‰ç”»åƒç„¡ã—
 
-	  // ‹P“x–³‚µ
+	  // è¼åº¦ç„¡ã—
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š
 		#define CODE_NBI_C16_NBR_UAC_BSB( SRC, SRCA, DEST, DESTP )	\
 		{\
 		    Src1 = (WORD)(  RUP16( MT1( ( RMSK16(SRC) * SRCA ) >> ( 8 + MEMIMG_R5G6B5_LR ) ) ) +\
@@ -1216,7 +1216,7 @@ namespace DxLib
 			*(DESTP) = (WORD)( Data & ( DataD - ( DataD >> MEMIMG_R5G6B5_SUBSHFT ) ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_NBI_C16_NBR_UAC_BSB_NTBL( SRC, SRCA, DEST, DESTP, ABRIGHT )	\
 		{\
 		    Src1 = (WORD)(  RUP16( ( RMSK16(SRC) * SRCA * ABRIGHT ) >> ( 16 + MEMIMG_R5G6B5_LR ) ) +\
@@ -1227,7 +1227,7 @@ namespace DxLib
 			*(DESTP) = (WORD)( Data & ( DataD - ( DataD >> MEMIMG_R5G6B5_SUBSHFT ) ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒ`ƒFƒbƒN•t‚«)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒã‚§ãƒƒã‚¯ä»˜ã)
 		#define CODE_NBI_C16_NBR_UAC_BSB_ACK( SRC, SRCA, DEST, DESTP )	\
 			if( SRCA != 0 )\
 			{\
@@ -1235,7 +1235,7 @@ namespace DxLib
 				else				CODE_NBI_C16_NBR_UAC_BSB( SRC, SRCA, DEST, DESTP )\
 			}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒ`ƒFƒbƒN•t‚«)(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒã‚§ãƒƒã‚¯ä»˜ã)(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_NBI_C16_NBR_UAC_BSB_ACK_NTBL( SRC, SRCA, DEST, DESTP, ABRIGHT )	\
 			if( SRCA != 0 )\
 			{\
@@ -1243,7 +1243,7 @@ namespace DxLib
 				else				CODE_NBI_C16_NBR_UAC_BSB_NTBL( SRC, SRCA, DEST, DESTP, ABRIGHT )\
 			}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—
 		#define CODE_NBI_C16_NBR_NAC_BSB( SRC, DEST, DESTP )	\
 		{\
 		    Src1 = (WORD)(  RUP16( MT1( RBOT16(SRC) ) ) +\
@@ -1254,7 +1254,7 @@ namespace DxLib
 			*(DESTP) = (WORD)( Data & ( DataD - ( DataD >> MEMIMG_R5G6B5_SUBSHFT ) ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_NBI_C16_NBR_NAC_BSB_NTBL( SRC, DEST, DESTP, ABRIGHT )	\
 		{\
 		    Src1 = (WORD)(  RUP16( ( RMSK16(SRC) * ABRIGHT ) >> ( 8 + MEMIMG_R5G6B5_LR ) ) +\
@@ -1265,17 +1265,17 @@ namespace DxLib
 			*(DESTP) = (WORD)( Data & ( DataD - ( DataD >> MEMIMG_R5G6B5_SUBSHFT ) ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(“§‰ßFƒ`ƒFƒbƒN•t‚«)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(é€éŽè‰²ãƒã‚§ãƒƒã‚¯ä»˜ã)
 		#define CODE_NBI_C16_NBR_NAC_BSB_TCK( SRC, DEST, DESTP )	\
 			if( SRC != TransColor ) CODE_NBI_C16_NBR_NAC_BSB( SRC, DEST, DESTP )
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(“§‰ßFƒ`ƒFƒbƒN•t‚«)(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(é€éŽè‰²ãƒã‚§ãƒƒã‚¯ä»˜ã)(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_NBI_C16_NBR_NAC_BSB_TCK_NTBL( SRC, DEST, DESTP, ABRIGHT )	\
 			if( SRC != TransColor ) CODE_NBI_C16_NBR_NAC_BSB_NTBL( SRC, DEST, DESTP, ABRIGHT )
 
-	  // ‹P“x‚ ‚è
+	  // è¼åº¦ã‚ã‚Š
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š
 		#define CODE_NBI_C16_UBR_UAC_BSB( SRC, SRCA, DEST, DESTP )	\
 		{\
 			Src1 = (WORD)( RUP16( MT1( RTABLE( ( RMSK16(SRC) * SRCA ) >> 19 ) ) ) +\
@@ -1286,7 +1286,7 @@ namespace DxLib
 			*(DESTP) = (WORD)( Data & ( DataD - ( DataD >> MEMIMG_R5G6B5_SUBSHFT ) ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_NBI_C16_UBR_UAC_BSB_NTBL( SRC, SRCA, DEST, DESTP, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )	\
 		{\
 			Src1 = (WORD)( RUP16( ( RBOT16(SRC) * SRCA * ABRIGHT * RBRIGHT ) >> 24 ) +\
@@ -1297,7 +1297,7 @@ namespace DxLib
 			*(DESTP) = (WORD)( Data & ( DataD - ( DataD >> MEMIMG_R5G6B5_SUBSHFT ) ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒ`ƒFƒbƒN•t‚«)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒã‚§ãƒƒã‚¯ä»˜ã)
 		#define CODE_NBI_C16_UBR_UAC_BSB_ACK( SRC, SRCA, DEST, DESTP )	\
 			if( SRCA != 0 )\
 			{\
@@ -1305,7 +1305,7 @@ namespace DxLib
 				else				CODE_NBI_C16_UBR_UAC_BSB( SRC, SRCA, DEST, DESTP )\
 			}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒ`ƒFƒbƒN•t‚«)(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒã‚§ãƒƒã‚¯ä»˜ã)(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_NBI_C16_UBR_UAC_BSB_ACK_NTBL( SRC, SRCA, DEST, DESTP, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )	\
 			if( SRCA != 0 )\
 			{\
@@ -1313,7 +1313,7 @@ namespace DxLib
 				else				CODE_NBI_C16_UBR_UAC_BSB_NTBL( SRC, SRCA, DEST, DESTP, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )\
 			}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—
 		#define CODE_NBI_C16_UBR_NAC_BSB( SRC, DEST, DESTP )	\
 		{\
 			Src1 = (WORD)( RUP16( MT1( RTABLE( RBOT16(SRC) ) ) ) +\
@@ -1324,7 +1324,7 @@ namespace DxLib
 			*(DESTP) = (WORD)( Data & ( DataD - ( DataD >> MEMIMG_R5G6B5_SUBSHFT ) ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_NBI_C16_UBR_NAC_BSB_NTBL( SRC, DEST, DESTP, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )	\
 		{\
 			Src1 = (WORD)( RUP16( ( RMSK16(SRC) * ABRIGHT * RBRIGHT ) >> ( 16 + MEMIMG_R5G6B5_LR ) ) +\
@@ -1335,22 +1335,22 @@ namespace DxLib
 			*(DESTP) = (WORD)( Data & ( DataD - ( DataD >> MEMIMG_R5G6B5_SUBSHFT ) ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(“§‰ßFƒ`ƒFƒbƒN•t‚«)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(é€éŽè‰²ãƒã‚§ãƒƒã‚¯ä»˜ã)
 		#define CODE_NBI_C16_UBR_NAC_BSB_TCK( SRC, DEST, DESTP )	\
 			if( SRC != TransColor ) CODE_NBI_C16_UBR_NAC_BSB( SRC, DEST, DESTP )
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(“§‰ßFƒ`ƒFƒbƒN•t‚«)(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(é€éŽè‰²ãƒã‚§ãƒƒã‚¯ä»˜ã)(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_NBI_C16_UBR_NAC_BSB_TCK_NTBL( SRC, DEST, DESTP, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )	\
 			if( SRC != TransColor ) CODE_NBI_C16_UBR_NAC_BSB_NTBL( SRC, DEST, DESTP, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )
 
 
-  // æŽZƒuƒŒƒ“ƒh
+  // ä¹—ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 
-    // ƒuƒŒƒ“ƒh‰æ‘œ‚ ‚è
+    // ãƒ–ãƒ¬ãƒ³ãƒ‰ç”»åƒã‚ã‚Š
  
-      // ‹P“x–³‚µ
+      // è¼åº¦ç„¡ã—
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š
 		#define CODE_UBI_C16_NBR_UAC_BML( SRC, SRCA, DEST, DESTP, BLEND )	\
 		{\
 		    *(DESTP) = (WORD)( RMSK16( ( RBOT16(SRC) * BIMG(BLEND) * SRCA * RBOT16(DEST) ) >> 10  ) |\
@@ -1358,12 +1358,12 @@ namespace DxLib
 							         ( ( BBOT16(SRC) * BIMG(BLEND) * SRCA * BBOT16(DEST) ) >> 21 ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒ`ƒFƒbƒN•t‚«)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒã‚§ãƒƒã‚¯ä»˜ã)
 		#define CODE_UBI_C16_NBR_UAC_BML_ACK( SRC, SRCA, DEST, DESTP, BLEND )	\
 			if( SRCA == 255 ) 	CODE_UBI_C16_NBR_NAC_BML( SRC, DEST, DESTP, BLEND )\
 			else				CODE_UBI_C16_NBR_UAC_BML( SRC, SRCA, DEST, DESTP, BLEND )
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—
 		#define CODE_UBI_C16_NBR_NAC_BML( SRC, DEST, DESTP, BLEND )	\
 		{\
 		    *(DESTP) = (WORD)( RMSK16( ( RBOT16(SRC) * BIMG(BLEND) * RBOT16(DEST) ) >> 2  ) |\
@@ -1371,13 +1371,13 @@ namespace DxLib
 							         ( ( BBOT16(SRC) * BIMG(BLEND) * BBOT16(DEST) ) >> 13 ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(“§‰ßFƒ`ƒFƒbƒN•t‚«)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(é€éŽè‰²ãƒã‚§ãƒƒã‚¯ä»˜ã)
 		#define CODE_UBI_C16_NBR_NAC_BML_TCK( SRC, DEST, DESTP, BLEND )	\
 			if( SRC != TransColor ) CODE_UBI_C16_NBR_NAC_BML( SRC, DEST, DESTP, BLEND )
 
-      // ‹P“x‚ ‚è
+      // è¼åº¦ã‚ã‚Š
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š
 		#define CODE_UBI_C16_UBR_UAC_BML( SRC, SRCA, DEST, DESTP, BLEND )	\
 		{\
 		    *(DESTP) = (WORD)( RMSK16( ( RTABLE( RBOT16(SRC) ) * SRCA * BIMG(BLEND) * RBOT16(DEST) ) >> 10  ) |\
@@ -1385,7 +1385,7 @@ namespace DxLib
 							         ( ( BTABLE( BBOT16(SRC) ) * SRCA * BIMG(BLEND) * BBOT16(DEST) ) >> 21 ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_UBI_C16_UBR_UAC_BML_NTBL( SRC, SRCA, DEST, DESTP, BLEND, RBRIGHT, GBRIGHT, BBRIGHT )	\
 		{\
 		    *(DESTP) = (WORD)( RMSK16( ( ( ( RBOT16(SRC) * RBRIGHT ) >> 8 ) * SRCA * BIMG(BLEND) * RBOT16(DEST) ) >> 10  ) |\
@@ -1393,17 +1393,17 @@ namespace DxLib
 							         ( ( ( ( BBOT16(SRC) * BBRIGHT ) >> 8 ) * SRCA * BIMG(BLEND) * BBOT16(DEST) ) >> 21 ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒ`ƒFƒbƒN•t‚«)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒã‚§ãƒƒã‚¯ä»˜ã)
 		#define CODE_UBI_C16_UBR_UAC_BML_ACK( SRC, SRCA, DEST, DESTP, BLEND )	\
 			if( SRCA == 255 ) 	CODE_UBI_C16_UBR_NAC_BML( SRC, DEST, DESTP, BLEND )\
 			else				CODE_UBI_C16_UBR_UAC_BML( SRC, SRCA, DEST, DESTP, BLEND )
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒ`ƒFƒbƒN•t‚«)(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒã‚§ãƒƒã‚¯ä»˜ã)(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_UBI_C16_UBR_UAC_BML_ACK_NTBL( SRC, SRCA, DEST, DESTP, BLEND, RBRIGHT, GBRIGHT, BBRIGHT )	\
 			if( SRCA == 255 ) 	CODE_UBI_C16_UBR_NAC_BML_NTBL( SRC, DEST, DESTP, BLEND, RBRIGHT, GBRIGHT, BBRIGHT )\
 			else				CODE_UBI_C16_UBR_UAC_BML_NTBL( SRC, SRCA, DEST, DESTP, BLEND, RBRIGHT, GBRIGHT, BBRIGHT )
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—
 		#define CODE_UBI_C16_UBR_NAC_BML( SRC, DEST, DESTP, BLEND )	\
 		{\
 		    *(DESTP) = (WORD)( RMSK16( ( RTABLE( RBOT16(SRC) ) * BIMG(BLEND) * RBOT16(DEST) ) >> 2  ) |\
@@ -1411,7 +1411,7 @@ namespace DxLib
 							         ( ( BTABLE( BBOT16(SRC) ) * BIMG(BLEND) * BBOT16(DEST) ) >> 13 ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_UBI_C16_UBR_NAC_BML_NTBL( SRC, DEST, DESTP, BLEND, RBRIGHT, GBRIGHT, BBRIGHT )	\
 		{\
 		    *(DESTP) = (WORD)( RMSK16( ( RBOT16(SRC) * RBRIGHT * BIMG(BLEND) * RBOT16(DEST) ) >> 10  ) |\
@@ -1419,19 +1419,19 @@ namespace DxLib
 							         ( ( BBOT16(SRC) * BBRIGHT * BIMG(BLEND) * BBOT16(DEST) ) >> 21 ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(“§‰ßFƒ`ƒFƒbƒN•t‚«)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(é€éŽè‰²ãƒã‚§ãƒƒã‚¯ä»˜ã)
 		#define CODE_UBI_C16_UBR_NAC_BML_TCK( SRC, DEST, DESTP, BLEND )	\
 			if( SRC != TransColor ) CODE_UBI_C16_UBR_NAC_BML( SRC, DEST, DESTP, BLEND )
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(“§‰ßFƒ`ƒFƒbƒN•t‚«)(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(é€éŽè‰²ãƒã‚§ãƒƒã‚¯ä»˜ã)(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_UBI_C16_UBR_NAC_BML_TCK_NTBL( SRC, DEST, DESTP, BLEND, RBRIGHT, GBRIGHT, BBRIGHT )	\
 			if( SRC != TransColor ) CODE_UBI_C16_UBR_NAC_BML_NTBL( SRC, DEST, DESTP, BLEND, RBRIGHT, GBRIGHT, BBRIGHT )
 
-    // ƒuƒŒƒ“ƒh‰æ‘œ–³‚µ
+    // ãƒ–ãƒ¬ãƒ³ãƒ‰ç”»åƒç„¡ã—
 
-      // ‹P“x–³‚µ
+      // è¼åº¦ç„¡ã—
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š
 		#define CODE_NBI_C16_NBR_UAC_BML( SRC, SRCA, DEST, DESTP )	\
 		{\
 		    *(DESTP) = (WORD)( RMSK16( ( RBOT16(SRC) * SRCA * RBOT16(DEST) ) >> 2  ) |\
@@ -1439,12 +1439,12 @@ namespace DxLib
 							         ( ( BBOT16(SRC) * SRCA * BBOT16(DEST) ) >> 13 ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒ`ƒFƒbƒN•t‚«)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒã‚§ãƒƒã‚¯ä»˜ã)
 		#define CODE_NBI_C16_NBR_UAC_BML_ACK( SRC, SRCA, DEST, DESTP )	\
 			if( SRCA == 255 ) 	CODE_NBI_C16_NBR_NAC_BML( SRC, DEST, DESTP )\
 			else				CODE_NBI_C16_NBR_UAC_BML( SRC, SRCA, DEST, DESTP )
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—
 		#define CODE_NBI_C16_NBR_NAC_BML( SRC, DEST, DESTP )	\
 		{\
 			*(DESTP) = (WORD)( RMSK16( ( RMSK16(SRC) * RMSK16(DEST) ) >> 16 ) |\
@@ -1452,13 +1452,13 @@ namespace DxLib
 							         ( ( BMSK16(SRC) * BMSK16(DEST) ) >> 5  ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(“§‰ßFƒ`ƒFƒbƒN•t‚«)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(é€éŽè‰²ãƒã‚§ãƒƒã‚¯ä»˜ã)
 		#define CODE_NBI_C16_NBR_NAC_BML_TCK( SRC, DEST, DESTP )	\
 			if( SRC != TransColor ) CODE_NBI_C16_NBR_NAC_BML( SRC, DEST, DESTP )
 
-      // ‹P“x‚ ‚è
+      // è¼åº¦ã‚ã‚Š
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š
 		#define CODE_NBI_C16_UBR_UAC_BML( SRC, SRCA, DEST, DESTP )	\
 		{\
 			*(DESTP) = (WORD)( RMSK16( ( RTABLE( RBOT16(SRC) ) * SRCA * RBOT16(DEST) ) >> 2 ) |\
@@ -1466,7 +1466,7 @@ namespace DxLib
 							         ( ( BTABLE( BBOT16(SRC) ) * SRCA * BBOT16(DEST) ) >> 13 ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_NBI_C16_UBR_UAC_BML_NTBL( SRC, SRCA, DEST, DESTP, RBRIGHT, GBRIGHT, BBRIGHT )	\
 		{\
 			*(DESTP) = (WORD)( RMSK16( ( RBOT16(SRC) * RBRIGHT * SRCA * RBOT16(DEST) ) >> 10 ) |\
@@ -1474,17 +1474,17 @@ namespace DxLib
 							         ( ( BBOT16(SRC) * BBRIGHT * SRCA * BBOT16(DEST) ) >> 21 ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒ`ƒFƒbƒN•t‚«)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒã‚§ãƒƒã‚¯ä»˜ã)
 		#define CODE_NBI_C16_UBR_UAC_BML_ACK( SRC, SRCA, DEST, DESTP )	\
 			if( SRCA == 255 ) 	CODE_NBI_C16_UBR_NAC_BML( SRC, DEST, DESTP )\
 			else				CODE_NBI_C16_UBR_UAC_BML( SRC, SRCA, DEST, DESTP )
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒ`ƒFƒbƒN•t‚«)(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒã‚§ãƒƒã‚¯ä»˜ã)(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_NBI_C16_UBR_UAC_BML_ACK_NTBL( SRC, SRCA, DEST, DESTP, RBRIGHT, GBRIGHT, BBRIGHT )	\
 			if( SRCA == 255 ) 	CODE_NBI_C16_UBR_NAC_BML_NTBL( SRC, DEST, DESTP, RBRIGHT, GBRIGHT, BBRIGHT )\
 			else				CODE_NBI_C16_UBR_UAC_BML_NTBL( SRC, SRCA, DEST, DESTP, RBRIGHT, GBRIGHT, BBRIGHT )
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—
 		#define CODE_NBI_C16_UBR_NAC_BML( SRC, DEST, DESTP )	\
 		{\
 			*(DESTP) = (WORD)( RMSK16( ( RTABLE( RBOT16(SRC) ) * RBOT16(DEST) ) << 6 ) |\
@@ -1492,7 +1492,7 @@ namespace DxLib
 							         ( ( BTABLE( BBOT16(SRC) ) * BBOT16(DEST) ) >> 5 ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_NBI_C16_UBR_NAC_BML_NTBL( SRC, DEST, DESTP, RBRIGHT, GBRIGHT, BBRIGHT )	\
 		{\
 			*(DESTP) = (WORD)( RMSK16( ( RBOT16(SRC) * RBRIGHT * RBOT16(DEST) ) >> 2 ) |\
@@ -1500,21 +1500,21 @@ namespace DxLib
 							         ( ( BBOT16(SRC) * BBRIGHT * BBOT16(DEST) ) >> 13 ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(“§‰ßFƒ`ƒFƒbƒN•t‚«)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(é€éŽè‰²ãƒã‚§ãƒƒã‚¯ä»˜ã)
 		#define CODE_NBI_C16_UBR_NAC_BML_TCK( SRC, DEST, DESTP )	\
 			if( SRC != TransColor ) CODE_NBI_C16_UBR_NAC_BML( SRC, DEST, DESTP )
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(“§‰ßFƒ`ƒFƒbƒN•t‚«)(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(é€éŽè‰²ãƒã‚§ãƒƒã‚¯ä»˜ã)(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_NBI_C16_UBR_NAC_BML_TCK_NTBL( SRC, DEST, DESTP, RBRIGHT, GBRIGHT, BBRIGHT )	\
 			if( SRC != TransColor ) CODE_NBI_C16_UBR_NAC_BML_NTBL( SRC, DEST, DESTP, RBRIGHT, GBRIGHT, BBRIGHT )
 
-  // æŽZ{ƒ¿ƒuƒŒƒ“ƒh
+  // ä¹—ç®—ï¼‹Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
 
-    // ƒuƒŒƒ“ƒh‰æ‘œ‚ ‚è
+    // ãƒ–ãƒ¬ãƒ³ãƒ‰ç”»åƒã‚ã‚Š
  
-      // ‹P“x–³‚µ
+      // è¼åº¦ç„¡ã—
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š
 		#define CODE_UBI_C16_NBR_UAC_BMA( SRC, SRCA, DEST, DESTP, BLEND )	\
 		{\
 			*(DESTP) = (WORD)( RMSK16( ( ( ( ( ( RBOT16(SRC) * RBOT16(DEST) ) >> 5 ) - RBOT16(DEST) ) * BIMG(BLEND) * SRCA * BPARAM + ( RBOT16(DEST) << 24 ) ) >> 13 ) ) |\
@@ -1522,12 +1522,12 @@ namespace DxLib
 							         ( ( ( ( ( ( BBOT16(SRC) * BBOT16(DEST) ) >> 5 ) - BBOT16(DEST) ) * BIMG(BLEND) * SRCA * BPARAM + ( BBOT16(DEST) << 24 ) ) >> 24 ) ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒ`ƒFƒbƒN•t‚«)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒã‚§ãƒƒã‚¯ä»˜ã)
 		#define CODE_UBI_C16_NBR_UAC_BMA_ACK( SRC, SRCA, DEST, DESTP, BLEND )	\
 			if( SRCA == 255 ) 	CODE_UBI_C16_NBR_NAC_BMA( SRC, DEST, DESTP, BLEND )\
 			else				CODE_UBI_C16_NBR_UAC_BMA( SRC, SRCA, DEST, DESTP, BLEND )
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—
 		#define CODE_UBI_C16_NBR_NAC_BMA( SRC, DEST, DESTP, BLEND )	\
 		{\
 			*(DESTP) = (WORD)( RMSK16( ( ( ( ( ( RBOT16(SRC) * RBOT16(DEST) ) >> 5 ) - RBOT16(DEST) ) * BIMG(BLEND) * BPARAM + ( RBOT16(DEST) << 16 ) ) >> 5 ) ) |\
@@ -1535,13 +1535,13 @@ namespace DxLib
 							         ( ( ( ( ( ( BBOT16(SRC) * BBOT16(DEST) ) >> 5 ) - BBOT16(DEST) ) * BIMG(BLEND) * BPARAM + ( BBOT16(DEST) << 16 ) ) >> 16 ) ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(“§‰ßFƒ`ƒFƒbƒN•t‚«)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(é€éŽè‰²ãƒã‚§ãƒƒã‚¯ä»˜ã)
 		#define CODE_UBI_C16_NBR_NAC_BMA_TCK( SRC, DEST, DESTP, BLEND )	\
 			if( SRC != TransColor ) CODE_UBI_C16_NBR_NAC_BMA( SRC, DEST, DESTP, BLEND )
 
-      // ‹P“x‚ ‚è
+      // è¼åº¦ã‚ã‚Š
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š
 		#define CODE_UBI_C16_UBR_UAC_BMA( SRC, SRCA, DEST, DESTP, BLEND )	\
 		{\
 			*(DESTP) = (WORD)( RMSK16( ( ( ( ( RTABLE( RBOT16(SRC) ) * RBOT16(DEST) ) >> 5 ) - RBOT16(DEST) ) * BIMG(BLEND) * BPARAM * SRCA + ( RMSK16(DEST) << 13 ) ) >> 13 ) |\
@@ -1549,7 +1549,7 @@ namespace DxLib
 							   BMSK16( ( ( ( ( BTABLE( BBOT16(SRC) ) * BBOT16(DEST) ) >> 5 ) - BBOT16(DEST) ) * BIMG(BLEND) * BPARAM * SRCA + ( BMSK16(DEST) << 24 ) ) >> 24 ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_UBI_C16_UBR_UAC_BMA_NTBL( SRC, SRCA, DEST, DESTP, BLEND, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )	\
 		{\
 			*(DESTP) = (WORD)( RMSK16( ( ( ( ( RBOT16(SRC) * RBRIGHT * RBOT16(DEST) ) >> 13 ) - RBOT16(DEST) ) * BIMG(BLEND) * ABRIGHT * SRCA + ( RMSK16(DEST) << 13 ) ) >> 13 ) |\
@@ -1557,17 +1557,17 @@ namespace DxLib
 							   BMSK16( ( ( ( ( BBOT16(SRC) * BBRIGHT * BBOT16(DEST) ) >> 13 ) - BBOT16(DEST) ) * BIMG(BLEND) * ABRIGHT * SRCA + ( BMSK16(DEST) << 24 ) ) >> 24 ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒ`ƒFƒbƒN•t‚«)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒã‚§ãƒƒã‚¯ä»˜ã)
 		#define CODE_UBI_C16_UBR_UAC_BMA_ACK( SRC, SRCA, DEST, DESTP, BLEND )	\
 			if( SRCA == 255 ) 	CODE_UBI_C16_UBR_NAC_BMA( SRC, DEST, DESTP, BLEND )\
 			else				CODE_UBI_C16_UBR_UAC_BMA( SRC, SRCA, DEST, DESTP, BLEND )
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒ`ƒFƒbƒN•t‚«)(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒã‚§ãƒƒã‚¯ä»˜ã)(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_UBI_C16_UBR_UAC_BMA_ACK_NTBL( SRC, SRCA, DEST, DESTP, BLEND, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )	\
 			if( SRCA == 255 ) 	CODE_UBI_C16_UBR_NAC_BMA_NTBL( SRC,       DEST, DESTP, BLEND, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )\
 			else				CODE_UBI_C16_UBR_UAC_BMA_NTBL( SRC, SRCA, DEST, DESTP, BLEND, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—
 		#define CODE_UBI_C16_UBR_NAC_BMA( SRC, DEST, DESTP, BLEND )	\
 		{\
 			*(DESTP) = (WORD)( RMSK16( ( ( ( ( RTABLE( RBOT16(SRC) ) * RBOT16(DEST) ) >> 5 ) - RBOT16(DEST) ) * BIMG(BLEND) * BPARAM + ( RMSK16(DEST) << 5  ) ) >> 5  ) |\
@@ -1575,7 +1575,7 @@ namespace DxLib
 							   BMSK16( ( ( ( ( BTABLE( BBOT16(SRC) ) * BBOT16(DEST) ) >> 5 ) - BBOT16(DEST) ) * BIMG(BLEND) * BPARAM + ( BMSK16(DEST) << 16 ) ) >> 16 ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_UBI_C16_UBR_NAC_BMA_NTBL( SRC, DEST, DESTP, BLEND, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )	\
 		{\
 			*(DESTP) = (WORD)( RMSK16( ( ( ( ( RBOT16(SRC) * RBRIGHT * RBOT16(DEST) ) >> 13 ) - RBOT16(DEST) ) * BIMG(BLEND) * ABRIGHT + ( RMSK16(DEST) << 5 ) ) >> 5 ) |\
@@ -1583,19 +1583,19 @@ namespace DxLib
 							   BMSK16( ( ( ( ( BBOT16(SRC) * BBRIGHT * BBOT16(DEST) ) >> 13 ) - BBOT16(DEST) ) * BIMG(BLEND) * ABRIGHT + ( BMSK16(DEST) << 16 ) ) >> 16 ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(“§‰ßFƒ`ƒFƒbƒN•t‚«)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(é€éŽè‰²ãƒã‚§ãƒƒã‚¯ä»˜ã)
 		#define CODE_UBI_C16_UBR_NAC_BMA_TCK( SRC, DEST, DESTP, BLEND )	\
 			if( SRC != TransColor ) CODE_UBI_C16_UBR_NAC_BMA( SRC, DEST, DESTP, BLEND )
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(“§‰ßFƒ`ƒFƒbƒN•t‚«)(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(é€éŽè‰²ãƒã‚§ãƒƒã‚¯ä»˜ã)(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_UBI_C16_UBR_NAC_BMA_TCK_NTBL( SRC, DEST, DESTP, BLEND, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )	\
 			if( SRC != TransColor ) CODE_UBI_C16_UBR_NAC_BMA_NTBL( SRC, DEST, DESTP, BLEND, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )
 
-    // ƒuƒŒƒ“ƒh‰æ‘œ–³‚µ
+    // ãƒ–ãƒ¬ãƒ³ãƒ‰ç”»åƒç„¡ã—
 
-      // ‹P“x–³‚µ
+      // è¼åº¦ç„¡ã—
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š
 		#define CODE_NBI_C16_NBR_UAC_BMA( SRC, SRCA, DEST, DESTP )	\
 		{\
 			*(DESTP) = (WORD)( RMSK16( ( ( ( ( ( RMSK16(SRC) * RMSK16(DEST) ) >> 27 ) - RBOT16(DEST) ) * SRCA * BPARAM + ( RBOT16(DEST) << 16 ) ) >> 5  ) ) |\
@@ -1603,12 +1603,12 @@ namespace DxLib
 							         ( ( ( ( ( ( BMSK16(SRC) * BMSK16(DEST) ) >> 5  ) - BMSK16(DEST) ) * SRCA * BPARAM + ( BMSK16(DEST) << 16 ) ) >> 16 ) ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒ`ƒFƒbƒN•t‚«)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒã‚§ãƒƒã‚¯ä»˜ã)
 		#define CODE_NBI_C16_NBR_UAC_BMA_ACK( SRC, SRCA, DEST, DESTP )	\
 			if( SRCA == 255 ) 	CODE_NBI_C16_NBR_NAC_BMA( SRC, DEST, DESTP )\
 			else				CODE_NBI_C16_NBR_UAC_BMA( SRC, SRCA, DEST, DESTP )
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—
 		#define CODE_NBI_C16_NBR_NAC_BMA( SRC, DEST, DESTP )	\
 		{\
 			*(DESTP) = (WORD)( RUP16( MT2( (int)( ( RBOT16(SRC) * RBOT16(DEST) ) >> 5 ) - (int)RBOT16(DEST) ) + RBOT16(DEST) ) |\
@@ -1616,13 +1616,13 @@ namespace DxLib
 							   BUP16( MT2( (int)( ( BBOT16(SRC) * BBOT16(DEST) ) >> 5 ) - (int)BBOT16(DEST) ) + BBOT16(DEST) ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(“§‰ßFƒ`ƒFƒbƒN•t‚«)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(é€éŽè‰²ãƒã‚§ãƒƒã‚¯ä»˜ã)
 		#define CODE_NBI_C16_NBR_NAC_BMA_TCK( SRC, DEST, DESTP )	\
 			if( SRC != TransColor ) CODE_NBI_C16_NBR_NAC_BMA( SRC, DEST, DESTP )
 
-      // ‹P“x‚ ‚è
+      // è¼åº¦ã‚ã‚Š
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š
 		#define CODE_NBI_C16_UBR_UAC_BMA( SRC, SRCA, DEST, DESTP )	\
 		{\
 			*(DESTP) = (WORD)( RMSK16( ( ( ( ( RTABLE( RBOT16(SRC) ) * RBOT16(DEST) ) >> 5 ) - RBOT16(DEST) ) * BPARAM * SRCA + ( RMSK16(DEST) << 5  ) ) >> 5  ) |\
@@ -1630,7 +1630,7 @@ namespace DxLib
 							   BMSK16( ( ( ( ( BTABLE( BBOT16(SRC) ) * BBOT16(DEST) ) >> 5 ) - BBOT16(DEST) ) * BPARAM * SRCA + ( BMSK16(DEST) << 16 ) ) >> 16 ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_NBI_C16_UBR_UAC_BMA_NTBL( SRC, SRCA, DEST, DESTP, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )	\
 		{\
 			*(DESTP) = (WORD)( RMSK16( ( ( ( ( RBOT16(SRC) * RBRIGHT * RBOT16(DEST) ) >> 13 ) - RBOT16(DEST) ) * ABRIGHT * SRCA + ( RMSK16(DEST) << 5  ) ) >> 5  ) |\
@@ -1638,17 +1638,17 @@ namespace DxLib
 							   BMSK16( ( ( ( ( BBOT16(SRC) * BBRIGHT * BBOT16(DEST) ) >> 13 ) - BBOT16(DEST) ) * ABRIGHT * SRCA + ( BMSK16(DEST) << 16 ) ) >> 16 ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒ`ƒFƒbƒN•t‚«)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒã‚§ãƒƒã‚¯ä»˜ã)
 		#define CODE_NBI_C16_UBR_UAC_BMA_ACK( SRC, SRCA, DEST, DESTP )	\
 			if( SRCA == 255 ) 	CODE_NBI_C16_UBR_NAC_BMA( SRC, DEST, DESTP )\
 			else				CODE_NBI_C16_UBR_UAC_BMA( SRC, SRCA, DEST, DESTP )
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒ`ƒFƒbƒN•t‚«)(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒã‚§ãƒƒã‚¯ä»˜ã)(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_NBI_C16_UBR_UAC_BMA_ACK_NTBL( SRC, SRCA, DEST, DESTP, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )	\
 			if( SRCA == 255 ) 	CODE_NBI_C16_UBR_NAC_BMA_NTBL( SRC,       DEST, DESTP, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )\
 			else				CODE_NBI_C16_UBR_UAC_BMA_NTBL( SRC, SRCA, DEST, DESTP, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—
 		#define CODE_NBI_C16_UBR_NAC_BMA( SRC, DEST, DESTP )	\
 		{\
 			*(DESTP) = (WORD)( RUP16( MT2( (int)( ( RTABLE( RBOT16(SRC) ) * RBOT16(DEST) ) >> 5 ) - (int)RBOT16(DEST) ) + RBOT16(DEST) ) |\
@@ -1656,7 +1656,7 @@ namespace DxLib
 							   BUP16( MT2( (int)( ( BTABLE( BBOT16(SRC) ) * BBOT16(DEST) ) >> 5 ) - (int)BBOT16(DEST) ) + BBOT16(DEST) ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_NBI_C16_UBR_NAC_BMA_NTBL( SRC, DEST, DESTP, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )	\
 		{\
 			*(DESTP) = (WORD)( RUP16( ( ( ( (int)( ( RBOT16(SRC) * RBRIGHT * RBOT16(DEST) ) >> 13 ) * ABRIGHT ) >> 8 ) - (int)RBOT16(DEST) ) + RBOT16(DEST) ) |\
@@ -1664,22 +1664,22 @@ namespace DxLib
 							   BUP16( ( ( ( (int)( ( BBOT16(SRC) * BBRIGHT * BBOT16(DEST) ) >> 13 ) * ABRIGHT ) >> 8 ) - (int)BBOT16(DEST) ) + BBOT16(DEST) ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(“§‰ßFƒ`ƒFƒbƒN•t‚«)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(é€éŽè‰²ãƒã‚§ãƒƒã‚¯ä»˜ã)
 		#define CODE_NBI_C16_UBR_NAC_BMA_TCK( SRC, DEST, DESTP )	\
 			if( SRC != TransColor ) CODE_NBI_C16_UBR_NAC_BMA( SRC, DEST, DESTP )
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(“§‰ßFƒ`ƒFƒbƒN•t‚«)(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(é€éŽè‰²ãƒã‚§ãƒƒã‚¯ä»˜ã)(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_NBI_C16_UBR_NAC_BMA_TCK_NTBL( SRC, DEST, DESTP, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )	\
 			if( SRC != TransColor ) CODE_NBI_C16_UBR_NAC_BMA_NTBL( SRC, DEST, DESTP, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )
 
 
-  // •`‰æŒ³‚ÌF‚ð”½“]{ƒ¿ƒuƒŒƒ“ƒh
+  // æç”»å…ƒã®è‰²ã‚’åè»¢ï¼‹Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
 
-    // ƒuƒŒƒ“ƒh‰æ‘œ‚ ‚è
+    // ãƒ–ãƒ¬ãƒ³ãƒ‰ç”»åƒã‚ã‚Š
  
-      // ‹P“x–³‚µ
+      // è¼åº¦ç„¡ã—
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š
 		#define CODE_UBI_C16_NBR_UAC_BIS( SRC, SRCA, DEST, DESTP, BLEND )	\
 		{\
 			*(DESTP) = (WORD)( RMSK16( ( ( ( RBOT16((WORD)~(SRC)) - RBOT16(DEST) ) * BIMG(BLEND) * SRCA * BPARAM + ( RMSK16(DEST) << 13 ) ) >> 13 ) ) |\
@@ -1687,7 +1687,7 @@ namespace DxLib
 							         ( ( ( ( BBOT16((WORD)~(SRC)) - BBOT16(DEST) ) * BIMG(BLEND) * SRCA * BPARAM + ( BMSK16(DEST) << 24 ) ) >> 24 ) ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_UBI_C16_NBR_UAC_BIS_NTBL( SRC, SRCA, DEST, DESTP, BLEND, ABRIGHT )	\
 		{\
 			*(DESTP) = (WORD)( RMSK16( ( ( ( RBOT16((WORD)~(SRC)) - RBOT16(DEST) ) * BIMG(BLEND) * SRCA * ABRIGHT + ( RMSK16(DEST) << 13 ) ) >> 13 ) ) |\
@@ -1695,7 +1695,7 @@ namespace DxLib
 							         ( ( ( ( BBOT16((WORD)~(SRC)) - BBOT16(DEST) ) * BIMG(BLEND) * SRCA * ABRIGHT + ( BMSK16(DEST) << 24 ) ) >> 24 ) ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒ`ƒFƒbƒN•t‚«)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒã‚§ãƒƒã‚¯ä»˜ã)
 		#define CODE_UBI_C16_NBR_UAC_BIS_ACK( SRC, SRCA, DEST, DESTP, BLEND )	\
 			if( SRCA != 0 )\
 			{\
@@ -1703,7 +1703,7 @@ namespace DxLib
 				else				CODE_UBI_C16_NBR_UAC_BIS( SRC, SRCA, DEST, DESTP, BLEND )\
 			}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒ`ƒFƒbƒN•t‚«)(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒã‚§ãƒƒã‚¯ä»˜ã)(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_UBI_C16_NBR_UAC_BIS_ACK_NTBL( SRC, SRCA, DEST, DESTP, BLEND, ABRIGHT )	\
 			if( SRCA != 0 )\
 			{\
@@ -1711,7 +1711,7 @@ namespace DxLib
 				else				CODE_UBI_C16_NBR_UAC_BIS_NTBL( SRC, SRCA, DEST, DESTP, BLEND, ABRIGHT )\
 			}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—
 		#define CODE_UBI_C16_NBR_NAC_BIS( SRC, DEST, DESTP, BLEND )	\
 		{\
 			*(DESTP) = (WORD)( RMSK16( ( ( ( RMSK16((WORD)~(SRC)) - RMSK16(DEST) ) * BIMG(BLEND) * BPARAM + ( RMSK16(DEST) << 16 ) ) >> 16 ) ) |\
@@ -1719,7 +1719,7 @@ namespace DxLib
 							         ( ( ( ( BMSK16((WORD)~(SRC)) - BMSK16(DEST) ) * BIMG(BLEND) * BPARAM + ( BMSK16(DEST) << 16 ) ) >> 16 ) ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_UBI_C16_NBR_NAC_BIS_NTBL( SRC, DEST, DESTP, BLEND, ABRIGHT )	\
 		{\
 			*(DESTP) = (WORD)( RMSK16( ( ( ( RMSK16((WORD)~(SRC)) - RMSK16(DEST) ) * BIMG(BLEND) * ABRIGHT + ( RMSK16(DEST) << 16 ) ) >> 16 ) ) |\
@@ -1727,18 +1727,18 @@ namespace DxLib
 							         ( ( ( ( BMSK16((WORD)~(SRC)) - BMSK16(DEST) ) * BIMG(BLEND) * ABRIGHT + ( BMSK16(DEST) << 16 ) ) >> 16 ) ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(“§‰ßFƒ`ƒFƒbƒN•t‚«)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(é€éŽè‰²ãƒã‚§ãƒƒã‚¯ä»˜ã)
 		#define CODE_UBI_C16_NBR_NAC_BIS_TCK( SRC, DEST, DESTP, BLEND )	\
 			if( SRC != TransColor ) CODE_UBI_C16_NBR_NAC_BIS( SRC, DEST, DESTP, BLEND )
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(“§‰ßFƒ`ƒFƒbƒN•t‚«)(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(é€éŽè‰²ãƒã‚§ãƒƒã‚¯ä»˜ã)(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_UBI_C16_NBR_NAC_BIS_TCK_NTBL( SRC, DEST, DESTP, BLEND, ABRIGHT )	\
 			if( SRC != TransColor ) CODE_UBI_C16_NBR_NAC_BIS_NTBL( SRC, DEST, DESTP, BLEND, ABRIGHT )
 
 
-      // ‹P“x‚ ‚è
+      // è¼åº¦ã‚ã‚Š
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š
 		#define CODE_UBI_C16_UBR_UAC_BIS( SRC, SRCA, DEST, DESTP, BLEND )	\
 		{\
 			*(DESTP) = (WORD)( RMSK16( ( ( RTABLE( RBOT16((WORD)~(SRC)) ) - RBOT16(DEST) ) * BIMG(BLEND) * BPARAM * SRCA + ( RMSK16(DEST) << 13 ) ) >> 13 ) |\
@@ -1746,7 +1746,7 @@ namespace DxLib
 							   BMSK16( ( ( BTABLE( BBOT16((WORD)~(SRC)) ) - BBOT16(DEST) ) * BIMG(BLEND) * BPARAM * SRCA + ( BMSK16(DEST) << 24 ) ) >> 24 ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_UBI_C16_UBR_UAC_BIS_NTBL( SRC, SRCA, DEST, DESTP, BLEND, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )	\
 		{\
 			*(DESTP) = (WORD)( RMSK16( ( ( ( ( RBOT16((WORD)~(SRC)) * RBRIGHT ) >> 8 ) - RBOT16(DEST) ) * BIMG(BLEND) * ABRIGHT * SRCA + ( RMSK16(DEST) << 13 ) ) >> 13 ) |\
@@ -1754,7 +1754,7 @@ namespace DxLib
 							   BMSK16( ( ( ( ( BBOT16((WORD)~(SRC)) * BBRIGHT ) >> 8 ) - BBOT16(DEST) ) * BIMG(BLEND) * ABRIGHT * SRCA + ( BMSK16(DEST) << 24 ) ) >> 24 ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒ`ƒFƒbƒN•t‚«)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒã‚§ãƒƒã‚¯ä»˜ã)
 		#define CODE_UBI_C16_UBR_UAC_BIS_ACK( SRC, SRCA, DEST, DESTP, BLEND )	\
 			if( SRCA != 0 )\
 			{\
@@ -1762,7 +1762,7 @@ namespace DxLib
 				else				CODE_UBI_C16_UBR_UAC_BIS( SRC, SRCA, DEST, DESTP, BLEND )\
 			}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒ`ƒFƒbƒN•t‚«)(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒã‚§ãƒƒã‚¯ä»˜ã)(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_UBI_C16_UBR_UAC_BIS_ACK_NTBL( SRC, SRCA, DEST, DESTP, BLEND, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )	\
 			if( SRCA != 0 )\
 			{\
@@ -1770,7 +1770,7 @@ namespace DxLib
 				else				CODE_UBI_C16_UBR_UAC_BIS_NTBL( SRC, SRCA, DEST, DESTP, BLEND, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )\
 			}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—
 		#define CODE_UBI_C16_UBR_NAC_BIS( SRC, DEST, DESTP, BLEND )	\
 		{\
 			*(DESTP) = (WORD)( RMSK16( ( ( RTABLE( RBOT16((WORD)~(SRC)) ) - RBOT16(DEST) ) * BIMG(BLEND) * BPARAM + ( RMSK16(DEST) << 5 ) ) >> 5 ) |\
@@ -1778,7 +1778,7 @@ namespace DxLib
 							   BMSK16( ( ( BTABLE( BBOT16((WORD)~(SRC)) ) - BBOT16(DEST) ) * BIMG(BLEND) * BPARAM + ( BMSK16(DEST) << 16 ) ) >> 16 ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_UBI_C16_UBR_NAC_BIS_NTBL( SRC, DEST, DESTP, BLEND, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )	\
 		{\
 			*(DESTP) = (WORD)( RMSK16( ( ( ( ( RBOT16((WORD)~(SRC)) * RBRIGHT ) >> 8 ) - RBOT16(DEST) ) * BIMG(BLEND) * ABRIGHT + ( RMSK16(DEST) << 5 ) ) >> 5 ) |\
@@ -1786,19 +1786,19 @@ namespace DxLib
 							   BMSK16( ( ( ( ( BBOT16((WORD)~(SRC)) * BBRIGHT ) >> 8 ) - BBOT16(DEST) ) * BIMG(BLEND) * ABRIGHT + ( BMSK16(DEST) << 16 ) ) >> 16 ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(“§‰ßFƒ`ƒFƒbƒN•t‚«)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(é€éŽè‰²ãƒã‚§ãƒƒã‚¯ä»˜ã)
 		#define CODE_UBI_C16_UBR_NAC_BIS_TCK( SRC, DEST, DESTP, BLEND )	\
 			if( SRC != TransColor ) CODE_UBI_C16_UBR_NAC_BIS( SRC, DEST, DESTP, BLEND )
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(“§‰ßFƒ`ƒFƒbƒN•t‚«)(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(é€éŽè‰²ãƒã‚§ãƒƒã‚¯ä»˜ã)(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_UBI_C16_UBR_NAC_BIS_TCK_NTBL( SRC, DEST, DESTP, BLEND, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )	\
 			if( SRC != TransColor ) CODE_UBI_C16_UBR_NAC_BIS_NTBL( SRC, DEST, DESTP, BLEND, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )
 
-    // ƒuƒŒƒ“ƒh‰æ‘œ–³‚µ
+    // ãƒ–ãƒ¬ãƒ³ãƒ‰ç”»åƒç„¡ã—
 
-      // ‹P“x–³‚µ
+      // è¼åº¦ç„¡ã—
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š
 		#define CODE_NBI_C16_NBR_UAC_BIS( SRC, SRCA, DEST, DESTP )	\
 		{\
 			*(DESTP) = (WORD)( RMSK16( ( ( ( RMSK16((WORD)~(SRC)) - RMSK16(DEST) ) * SRCA * BPARAM + ( RMSK16(DEST) << 16 ) ) >> 16 ) ) |\
@@ -1806,7 +1806,7 @@ namespace DxLib
 							         ( ( ( ( BMSK16((WORD)~(SRC)) - BMSK16(DEST) ) * SRCA * BPARAM + ( BMSK16(DEST) << 16 ) ) >> 16 ) ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_NBI_C16_NBR_UAC_BIS_NTBL( SRC, SRCA, DEST, DESTP, ABRIGHT )	\
 		{\
 			*(DESTP) = (WORD)( RMSK16( ( ( ( RMSK16((WORD)~(SRC)) - RMSK16(DEST) ) * SRCA * ABRIGHT + ( RMSK16(DEST) << 16 ) ) >> 16 ) ) |\
@@ -1814,7 +1814,7 @@ namespace DxLib
 							         ( ( ( ( BMSK16((WORD)~(SRC)) - BMSK16(DEST) ) * SRCA * ABRIGHT + ( BMSK16(DEST) << 16 ) ) >> 16 ) ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒ`ƒFƒbƒN•t‚«)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒã‚§ãƒƒã‚¯ä»˜ã)
 		#define CODE_NBI_C16_NBR_UAC_BIS_ACK( SRC, SRCA, DEST, DESTP )	\
 			if( SRCA != 0 )\
 			{\
@@ -1822,7 +1822,7 @@ namespace DxLib
 				else				CODE_NBI_C16_NBR_UAC_BIS( SRC, SRCA, DEST, DESTP )\
 			}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒ`ƒFƒbƒN•t‚«)(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒã‚§ãƒƒã‚¯ä»˜ã)(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_NBI_C16_NBR_UAC_BIS_ACK_NTBL( SRC, SRCA, DEST, DESTP, ABRIGHT )	\
 			if( SRCA != 0 )\
 			{\
@@ -1830,7 +1830,7 @@ namespace DxLib
 				else				CODE_NBI_C16_NBR_UAC_BIS_NTBL( SRC, SRCA, DEST, DESTP, ABRIGHT )\
 			}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—
 		#define CODE_NBI_C16_NBR_NAC_BIS( SRC, DEST, DESTP )	\
 		{\
 			*(DESTP) = (WORD)( RUP16( MT2( (int)RBOT16((WORD)~(SRC)) - (int)RBOT16(DEST) ) + RBOT16(DEST) ) |\
@@ -1838,7 +1838,7 @@ namespace DxLib
 							   BUP16( MT2( (int)BBOT16((WORD)~(SRC)) - (int)BBOT16(DEST) ) + BBOT16(DEST) ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_NBI_C16_NBR_NAC_BIS_NTBL( SRC, DEST, DESTP, ABRIGHT )	\
 		{\
 			*(DESTP) = (WORD)( RUP16( ( ( ( (int)RBOT16((WORD)~(SRC)) - (int)RBOT16(DEST) ) * ABRIGHT ) >> 8 ) + RBOT16(DEST) ) |\
@@ -1846,18 +1846,18 @@ namespace DxLib
 							   BUP16( ( ( ( (int)BBOT16((WORD)~(SRC)) - (int)BBOT16(DEST) ) * ABRIGHT ) >> 8 ) + BBOT16(DEST) ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(“§‰ßFƒ`ƒFƒbƒN•t‚«)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(é€éŽè‰²ãƒã‚§ãƒƒã‚¯ä»˜ã)
 		#define CODE_NBI_C16_NBR_NAC_BIS_TCK( SRC, DEST, DESTP )	\
 			if( SRC != TransColor ) CODE_NBI_C16_NBR_NAC_BIS( SRC, DEST, DESTP )
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(“§‰ßFƒ`ƒFƒbƒN•t‚«)(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(é€éŽè‰²ãƒã‚§ãƒƒã‚¯ä»˜ã)(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_NBI_C16_NBR_NAC_BIS_TCK_NTBL( SRC, DEST, DESTP, ABRIGHT )	\
 			if( SRC != TransColor ) CODE_NBI_C16_NBR_NAC_BIS_NTBL( SRC, DEST, DESTP, ABRIGHT )
 
 
-      // ‹P“x‚ ‚è
+      // è¼åº¦ã‚ã‚Š
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š
 		#define CODE_NBI_C16_UBR_UAC_BIS( SRC, SRCA, DEST, DESTP )	\
 		{\
 			*(DESTP) = (WORD)( RMSK16( ( ( RTABLE( RBOT16((WORD)~(SRC)) ) - RBOT16(DEST) ) * BPARAM * SRCA + ( RMSK16(DEST) << 5  ) ) >> 5  ) |\
@@ -1865,7 +1865,7 @@ namespace DxLib
 							   BMSK16( ( ( BTABLE( BBOT16((WORD)~(SRC)) ) - BBOT16(DEST) ) * BPARAM * SRCA + ( BMSK16(DEST) << 16 ) ) >> 16 ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_NBI_C16_UBR_UAC_BIS_NTBL( SRC, SRCA, DEST, DESTP, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )	\
 		{\
 			*(DESTP) = (WORD)( RMSK16( ( ( ( ( RBOT16((WORD)~(SRC)) * RBRIGHT ) >> 8 ) - RBOT16(DEST) ) * ABRIGHT * SRCA + ( RMSK16(DEST) << 5  ) ) >> 5  ) |\
@@ -1873,7 +1873,7 @@ namespace DxLib
 							   BMSK16( ( ( ( ( BBOT16((WORD)~(SRC)) * BBRIGHT ) >> 8 ) - BBOT16(DEST) ) * ABRIGHT * SRCA + ( BMSK16(DEST) << 16 ) ) >> 16 ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒ`ƒFƒbƒN•t‚«)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒã‚§ãƒƒã‚¯ä»˜ã)
 		#define CODE_NBI_C16_UBR_UAC_BIS_ACK( SRC, SRCA, DEST, DESTP )	\
 			if( SRCA != 0 )\
 			{\
@@ -1881,7 +1881,7 @@ namespace DxLib
 				else				CODE_NBI_C16_UBR_UAC_BIS( SRC, SRCA, DEST, DESTP )\
 			}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒ`ƒFƒbƒN•t‚«)(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒã‚§ãƒƒã‚¯ä»˜ã)(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_NBI_C16_UBR_UAC_BIS_ACK_NTBL( SRC, SRCA, DEST, DESTP, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )	\
 			if( SRCA != 0 )\
 			{\
@@ -1889,7 +1889,7 @@ namespace DxLib
 				else				CODE_NBI_C16_UBR_UAC_BIS_NTBL( SRC, SRCA, DEST, DESTP, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )\
 			}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—
 		#define CODE_NBI_C16_UBR_NAC_BIS( SRC, DEST, DESTP )	\
 		{\
 			*(DESTP) = (WORD)( RUP16( MT2( (int)RTABLE( RBOT16((WORD)~(SRC)) ) - (int)RBOT16(DEST) ) + RBOT16(DEST) ) |\
@@ -1897,7 +1897,7 @@ namespace DxLib
 							   BUP16( MT2( (int)BTABLE( BBOT16((WORD)~(SRC)) ) - (int)BBOT16(DEST) ) + BBOT16(DEST) ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_NBI_C16_UBR_NAC_BIS_NTBL( SRC, DEST, DESTP, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )	\
 		{\
 			*(DESTP) = (WORD)( RUP16( ( ( ( (int)( ( RBOT16((WORD)~(SRC)) * RBRIGHT ) >> 8 ) * ABRIGHT ) >> 8 ) - (int)RBOT16(DEST) ) + RBOT16(DEST) ) |\
@@ -1905,24 +1905,24 @@ namespace DxLib
 							   BUP16( ( ( ( (int)( ( BBOT16((WORD)~(SRC)) * BBRIGHT ) >> 8 ) * ABRIGHT ) >> 8 ) - (int)BBOT16(DEST) ) + BBOT16(DEST) ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(“§‰ßFƒ`ƒFƒbƒN•t‚«)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(é€éŽè‰²ãƒã‚§ãƒƒã‚¯ä»˜ã)
 		#define CODE_NBI_C16_UBR_NAC_BIS_TCK( SRC, DEST, DESTP )	\
 			if( SRC != TransColor ) CODE_NBI_C16_UBR_NAC_BIS( SRC, DEST, DESTP )
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(“§‰ßFƒ`ƒFƒbƒN•t‚«)(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(é€éŽè‰²ãƒã‚§ãƒƒã‚¯ä»˜ã)(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_NBI_C16_UBR_NAC_BIS_TCK_NTBL( SRC, DEST, DESTP, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )	\
 			if( SRC != TransColor ) CODE_NBI_C16_UBR_NAC_BIS_NTBL( SRC, DEST, DESTP, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )
 
 
 // 32bit
 
-  // ƒuƒŒƒ“ƒh–³‚µ
+  // ãƒ–ãƒ¬ãƒ³ãƒ‰ç„¡ã—
 
-	// ƒuƒŒƒ“ƒh‰æ‘œ‚ ‚è
+	// ãƒ–ãƒ¬ãƒ³ãƒ‰ç”»åƒã‚ã‚Š
 
-	  // ‹P“x–³‚µ
+	  // è¼åº¦ç„¡ã—
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š
 		#define CODE_UBI_C32_NBR_UAC_BNO( SRCP, DESTP, BLEND )	\
 		{\
 			(DESTP)[0] = (BYTE)( ( ( (SRCP)[0] - (DESTP)[0] ) * BIMG(BLEND) * SRCP[3] + ( (DESTP)[0] << 16 ) ) >> 16 ) ;\
@@ -1930,7 +1930,7 @@ namespace DxLib
 			(DESTP)[2] = (BYTE)( ( ( (SRCP)[2] - (DESTP)[2] ) * BIMG(BLEND) * SRCP[3] + ( (DESTP)[2] << 16 ) ) >> 16 ) ;\
 		}
 		
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒ`ƒFƒbƒNƒR[ƒh•t‚«)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒã‚§ãƒƒã‚¯ã‚³ãƒ¼ãƒ‰ä»˜ã)
 		#define CODE_UBI_C32_NBR_UAC_BNO_ACK( SRCP, DESTP, BLEND )	\
 			if( (SRCP)[3] != 0 )\
 			{\
@@ -1938,7 +1938,7 @@ namespace DxLib
 				else					CODE_UBI_C32_NBR_UAC_BNO( SRCP, DESTP, BLEND )\
 			}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—
 		#define CODE_UBI_C32_NBR_NAC_BNO( SRCP, DESTP, BLEND )	\
 		{\
 			(DESTP)[0] = (BYTE)( ( ( (SRCP)[0] - (DESTP)[0] ) * BIMG(BLEND) + ( (DESTP)[0] << 8 ) ) >> 8 ) ;\
@@ -1946,14 +1946,14 @@ namespace DxLib
 			(DESTP)[2] = (BYTE)( ( ( (SRCP)[2] - (DESTP)[2] ) * BIMG(BLEND) + ( (DESTP)[2] << 8 ) ) >> 8 ) ;\
 		}
 		
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(“§‰ßFƒ`ƒFƒbƒN•t‚«)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(é€éŽè‰²ãƒã‚§ãƒƒã‚¯ä»˜ã)
 		#define CODE_UBI_C32_NBR_NAC_BNO_TCK( SRCP, DESTP, BLEND )	\
 			if( *((DWORD *)(SRCP)) != TransColor ) CODE_UBI_C32_NBR_NAC_BNO( SRCP, DESTP, BLEND )
 		
 
-	  // ‹P“x‚ ‚è
+	  // è¼åº¦ã‚ã‚Š
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š
 		#define CODE_UBI_C32_UBR_UAC_BNO( SRCP, DESTP, BLEND )	\
 		{\
 			(DESTP)[0] = (BYTE)( ( ( BTABLE( (SRCP)[0] ) - (DESTP)[0] ) * BIMG(BLEND) * SRCP[3] + ( (DESTP)[0] << 16 ) ) >> 16 ) ;\
@@ -1961,7 +1961,7 @@ namespace DxLib
 			(DESTP)[2] = (BYTE)( ( ( RTABLE( (SRCP)[2] ) - (DESTP)[2] ) * BIMG(BLEND) * SRCP[3] + ( (DESTP)[2] << 16 ) ) >> 16 ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_UBI_C32_UBR_UAC_BNO_NTBL( SRCP, DESTP, BLEND, RBRIGHT, GBRIGHT, BBRIGHT )	\
 		{\
 			(DESTP)[0] = (BYTE)( ( ( ( ( (SRCP)[0] * BBRIGHT ) >> 8 ) - (DESTP)[0] ) * BIMG(BLEND) * SRCP[3] + ( (DESTP)[0] << 16 ) ) >> 16 ) ;\
@@ -1969,7 +1969,7 @@ namespace DxLib
 			(DESTP)[2] = (BYTE)( ( ( ( ( (SRCP)[2] * RBRIGHT ) >> 8 ) - (DESTP)[2] ) * BIMG(BLEND) * SRCP[3] + ( (DESTP)[2] << 16 ) ) >> 16 ) ;\
 		}
 		
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒ`ƒFƒbƒNƒR[ƒh•t‚«)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒã‚§ãƒƒã‚¯ã‚³ãƒ¼ãƒ‰ä»˜ã)
 		#define CODE_UBI_C32_UBR_UAC_BNO_ACK( SRCP, DESTP, BLEND )	\
 			if( (SRCP)[3] != 0 )\
 			{\
@@ -1977,7 +1977,7 @@ namespace DxLib
 				else					CODE_UBI_C32_UBR_UAC_BNO( SRCP, DESTP, BLEND )\
 			}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒ`ƒFƒbƒNƒR[ƒh•t‚«)(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒã‚§ãƒƒã‚¯ã‚³ãƒ¼ãƒ‰ä»˜ã)(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_UBI_C32_UBR_UAC_BNO_ACK_NTBL( SRCP, DESTP, BLEND, RBRIGHT, GBRIGHT, BBRIGHT )	\
 			if( (SRCP)[3] != 0 )\
 			{\
@@ -1985,7 +1985,7 @@ namespace DxLib
 				else					CODE_UBI_C32_UBR_UAC_BNO_NTBL( SRCP, DESTP, BLEND, RBRIGHT, GBRIGHT, BBRIGHT )\
 			}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—
 		#define CODE_UBI_C32_UBR_NAC_BNO( SRCP, DESTP, BLEND )	\
 		{\
 			(DESTP)[0] = (BYTE)( ( ( BTABLE( (SRCP)[0] ) - (DESTP)[0] ) * BIMG(BLEND) + ( (DESTP)[0] << 8 ) ) >> 8 ) ;\
@@ -1993,7 +1993,7 @@ namespace DxLib
 			(DESTP)[2] = (BYTE)( ( ( RTABLE( (SRCP)[2] ) - (DESTP)[2] ) * BIMG(BLEND) + ( (DESTP)[2] << 8 ) ) >> 8 ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_UBI_C32_UBR_NAC_BNO_NTBL( SRCP, DESTP, BLEND, RBRIGHT, GBRIGHT, BBRIGHT )	\
 		{\
 			(DESTP)[0] = (BYTE)( ( ( ( ( (SRCP)[0] * BBRIGHT ) >> 8 ) - (DESTP)[0] ) * BIMG(BLEND) + ( (DESTP)[0] << 8 ) ) >> 8 ) ;\
@@ -2001,19 +2001,19 @@ namespace DxLib
 			(DESTP)[2] = (BYTE)( ( ( ( ( (SRCP)[2] * RBRIGHT ) >> 8 ) - (DESTP)[2] ) * BIMG(BLEND) + ( (DESTP)[2] << 8 ) ) >> 8 ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(“§‰ßFƒ`ƒFƒbƒN•t‚«)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(é€éŽè‰²ãƒã‚§ãƒƒã‚¯ä»˜ã)
 		#define CODE_UBI_C32_UBR_NAC_BNO_TCK( SRCP, DESTP, BLEND )	\
 			if( *((DWORD *)(SRCP)) != TransColor ) CODE_UBI_C32_UBR_NAC_BNO( SRCP, DESTP, BLEND )
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(“§‰ßFƒ`ƒFƒbƒN•t‚«)(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(é€éŽè‰²ãƒã‚§ãƒƒã‚¯ä»˜ã)(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_UBI_C32_UBR_NAC_BNO_TCK_NTBL( SRCP, DESTP, BLEND, RBRIGHT, GBRIGHT, BBRIGHT )	\
 			if( *((DWORD *)(SRCP)) != TransColor ) CODE_UBI_C32_UBR_NAC_BNO_NTBL( SRCP, DESTP, BLEND, RBRIGHT, GBRIGHT, BBRIGHT )
 
-	// ƒuƒŒƒ“ƒh‰æ‘œ–³‚µ
+	// ãƒ–ãƒ¬ãƒ³ãƒ‰ç”»åƒç„¡ã—
 
-	  // ‹P“x–³‚µ
+	  // è¼åº¦ç„¡ã—
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š
 		#define CODE_NBI_C32_NBR_UAC_BNO( SRCP, DESTP )	\
 		{\
 			(DESTP)[0] = (BYTE)( ( ( (SRCP)[0] - (DESTP)[0] ) * SRCP[3] + ( (DESTP)[0] << 8 ) ) >> 8 ) ;\
@@ -2021,7 +2021,7 @@ namespace DxLib
 			(DESTP)[2] = (BYTE)( ( ( (SRCP)[2] - (DESTP)[2] ) * SRCP[3] + ( (DESTP)[2] << 8 ) ) >> 8 ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒ`ƒFƒbƒN•t‚«)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒã‚§ãƒƒã‚¯ä»˜ã)
 		#define CODE_NBI_C32_NBR_UAC_BNO_ACK( SRCP, DESTP )	\
 			if( (SRCP)[3] != 0 )\
 			{\
@@ -2029,20 +2029,20 @@ namespace DxLib
 				else					CODE_NBI_C32_NBR_UAC_BNO( SRCP, DESTP )\
 			}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—
 		#define CODE_NBI_C32_NBR_NAC_BNO( SRCP, DESTP )	\
 		{\
 			*((DWORD *)(DESTP)) = *((DWORD *)(SRCP)) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(“§‰ßFƒ`ƒFƒbƒN•t‚«)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(é€éŽè‰²ãƒã‚§ãƒƒã‚¯ä»˜ã)
 		#define CODE_NBI_C32_NBR_NAC_BNO_TCK( SRCP, DESTP )	\
 			if( *((DWORD *)(SRCP)) != TransColor ) CODE_NBI_C32_NBR_NAC_BNO( SRCP, DESTP )
 
 	
-	  // ‹P“x‚ ‚è
+	  // è¼åº¦ã‚ã‚Š
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š
 		#define CODE_NBI_C32_UBR_UAC_BNO( SRCP, DESTP )	\
 		{\
 			(DESTP)[0] = (BYTE)( ( ( BTABLE( (SRCP)[0] ) - (DESTP)[0] ) * SRCP[3] + ( (DESTP)[0] << 8 ) ) >> 8 ) ;\
@@ -2050,7 +2050,7 @@ namespace DxLib
 			(DESTP)[2] = (BYTE)( ( ( RTABLE( (SRCP)[2] ) - (DESTP)[2] ) * SRCP[3] + ( (DESTP)[2] << 8 ) ) >> 8 ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_NBI_C32_UBR_UAC_BNO_NTBL( SRCP, DESTP, RBRIGHT, GBRIGHT, BBRIGHT )	\
 		{\
 			(DESTP)[0] = (BYTE)( ( ( ( ( (SRCP)[0] * BBRIGHT ) >> 8 ) - (DESTP)[0] ) * SRCP[3] + ( (DESTP)[0] << 8 ) ) >> 8 ) ;\
@@ -2058,7 +2058,7 @@ namespace DxLib
 			(DESTP)[2] = (BYTE)( ( ( ( ( (SRCP)[2] * RBRIGHT ) >> 8 ) - (DESTP)[2] ) * SRCP[3] + ( (DESTP)[2] << 8 ) ) >> 8 ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒ`ƒFƒbƒN•t‚«)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒã‚§ãƒƒã‚¯ä»˜ã)
 		#define CODE_NBI_C32_UBR_UAC_BNO_ACK( SRCP, DESTP )	\
 			if( (SRCP)[3] != 0 )\
 			{\
@@ -2066,7 +2066,7 @@ namespace DxLib
 				else					CODE_NBI_C32_UBR_UAC_BNO( SRCP, DESTP )\
 			}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒ`ƒFƒbƒN•t‚«)(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒã‚§ãƒƒã‚¯ä»˜ã)(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_NBI_C32_UBR_UAC_BNO_ACK_NTBL( SRCP, DESTP, RBRIGHT, GBRIGHT, BBRIGHT )	\
 			if( (SRCP)[3] != 0 )\
 			{\
@@ -2074,7 +2074,7 @@ namespace DxLib
 				else					CODE_NBI_C32_UBR_UAC_BNO_NTBL( SRCP, DESTP, RBRIGHT, GBRIGHT, BBRIGHT )\
 			}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—
 		#define CODE_NBI_C32_UBR_NAC_BNO( SRCP, DESTP )	\
 		{\
 			(DESTP)[0] = (BYTE)( BTABLE( (SRCP)[0] ) ) ;\
@@ -2082,7 +2082,7 @@ namespace DxLib
 			(DESTP)[2] = (BYTE)( RTABLE( (SRCP)[2] ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_NBI_C32_UBR_NAC_BNO_NTBL( SRCP, DESTP, RBRIGHT, GBRIGHT, BBRIGHT )	\
 		{\
 			(DESTP)[0] = (BYTE)( ( (SRCP)[0] * BBRIGHT ) >> 8 ) ;\
@@ -2090,21 +2090,21 @@ namespace DxLib
 			(DESTP)[2] = (BYTE)( ( (SRCP)[2] * RBRIGHT ) >> 8 ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(“§‰ßFƒ`ƒFƒbƒN•t‚«)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(é€éŽè‰²ãƒã‚§ãƒƒã‚¯ä»˜ã)
 		#define CODE_NBI_C32_UBR_NAC_BNO_TCK( SRCP, DESTP )	\
 			if( *((DWORD *)(SRCP)) != TransColor ) CODE_NBI_C32_UBR_NAC_BNO( SRCP, DESTP )
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(“§‰ßFƒ`ƒFƒbƒN•t‚«)(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(é€éŽè‰²ãƒã‚§ãƒƒã‚¯ä»˜ã)(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_NBI_C32_UBR_NAC_BNO_TCK_NTBL( SRCP, DESTP, RBRIGHT, GBRIGHT, BBRIGHT )	\
 			if( *((DWORD *)(SRCP)) != TransColor ) CODE_NBI_C32_UBR_NAC_BNO_NTBL( SRCP, DESTP, RBRIGHT, GBRIGHT, BBRIGHT )
 
-  // ƒ¿ƒuƒŒƒ“ƒh
+  // Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
 
-    // ƒuƒŒƒ“ƒh‰æ‘œ‚ ‚è
+    // ãƒ–ãƒ¬ãƒ³ãƒ‰ç”»åƒã‚ã‚Š
  
-      // ‹P“x–³‚µ
+      // è¼åº¦ç„¡ã—
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š
 		#define CODE_UBI_C32_NBR_UAC_BAL( SRCP, DESTP, BLEND )	\
 		{\
 			(DESTP)[0] = (BYTE)( ( ( (SRCP)[0] - (DESTP)[0] ) * BPARAM * BIMG(BLEND) * SRCP[3] + ( (DESTP)[0] << 24 ) ) >> 24 ) ;\
@@ -2112,7 +2112,7 @@ namespace DxLib
 			(DESTP)[2] = (BYTE)( ( ( (SRCP)[2] - (DESTP)[2] ) * BPARAM * BIMG(BLEND) * SRCP[3] + ( (DESTP)[2] << 24 ) ) >> 24 ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_UBI_C32_NBR_UAC_BAL_NTBL( SRCP, DESTP, BLEND, ABRIGHT )	\
 		{\
 			(DESTP)[0] = (BYTE)( ( ( (SRCP)[0] - (DESTP)[0] ) * ABRIGHT * BIMG(BLEND) * SRCP[3] + ( (DESTP)[0] << 24 ) ) >> 24 ) ;\
@@ -2120,7 +2120,7 @@ namespace DxLib
 			(DESTP)[2] = (BYTE)( ( ( (SRCP)[2] - (DESTP)[2] ) * ABRIGHT * BIMG(BLEND) * SRCP[3] + ( (DESTP)[2] << 24 ) ) >> 24 ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒ`ƒFƒbƒN•t‚«)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒã‚§ãƒƒã‚¯ä»˜ã)
 		#define CODE_UBI_C32_NBR_UAC_BAL_ACK( SRCP, DESTP, BLEND )	\
 			if( (SRCP)[3] != 0 )\
 			{\
@@ -2128,7 +2128,7 @@ namespace DxLib
 				else					CODE_UBI_C32_NBR_UAC_BAL( SRCP, DESTP, BLEND )\
 			}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒ`ƒFƒbƒN•t‚«)(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒã‚§ãƒƒã‚¯ä»˜ã)(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_UBI_C32_NBR_UAC_BAL_ACK_NTBL( SRCP, DESTP, BLEND, ABRIGHT )	\
 			if( (SRCP)[3] != 0 )\
 			{\
@@ -2136,7 +2136,7 @@ namespace DxLib
 				else					CODE_UBI_C32_NBR_UAC_BAL_NTBL( SRCP, DESTP, BLEND, ABRIGHT )\
 			}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—
 		#define CODE_UBI_C32_NBR_NAC_BAL( SRCP, DESTP, BLEND )	\
 		{\
 			(DESTP)[0] = (BYTE)( ( ( (SRCP)[0] - (DESTP)[0] ) * BPARAM * BIMG(BLEND) + ( (DESTP)[0] << 16 ) ) >> 16 ) ;\
@@ -2144,7 +2144,7 @@ namespace DxLib
 			(DESTP)[2] = (BYTE)( ( ( (SRCP)[2] - (DESTP)[2] ) * BPARAM * BIMG(BLEND) + ( (DESTP)[2] << 16 ) ) >> 16 ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_UBI_C32_NBR_NAC_BAL_NTBL( SRCP, DESTP, BLEND, ABRIGHT )	\
 		{\
 			(DESTP)[0] = (BYTE)( ( ( (SRCP)[0] - (DESTP)[0] ) * ABRIGHT * BIMG(BLEND) + ( (DESTP)[0] << 16 ) ) >> 16 ) ;\
@@ -2152,18 +2152,18 @@ namespace DxLib
 			(DESTP)[2] = (BYTE)( ( ( (SRCP)[2] - (DESTP)[2] ) * ABRIGHT * BIMG(BLEND) + ( (DESTP)[2] << 16 ) ) >> 16 ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(“§‰ßFƒ`ƒFƒbƒN•t‚«)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(é€éŽè‰²ãƒã‚§ãƒƒã‚¯ä»˜ã)
 		#define CODE_UBI_C32_NBR_NAC_BAL_TCK( SRCP, DESTP, BLEND )	\
 			if( *((DWORD *)(SRCP)) != TransColor ) CODE_UBI_C32_NBR_NAC_BAL( SRCP, DESTP, BLEND )
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(“§‰ßFƒ`ƒFƒbƒN•t‚«)(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(é€éŽè‰²ãƒã‚§ãƒƒã‚¯ä»˜ã)(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_UBI_C32_NBR_NAC_BAL_TCK_NTBL( SRCP, DESTP, BLEND, ABRIGHT )	\
 			if( *((DWORD *)(SRCP)) != TransColor ) CODE_UBI_C32_NBR_NAC_BAL_NTBL( SRCP, DESTP, BLEND, ABRIGHT )
 
 
-      // ‹P“x‚ ‚è
+      // è¼åº¦ã‚ã‚Š
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š
 		#define CODE_UBI_C32_UBR_UAC_BAL( SRCP, DESTP, BLEND )	\
 		{\
 			(DESTP)[0] = (BYTE)( ( ( BTABLE( (SRCP)[0] ) - (DESTP)[0] ) * BPARAM * BIMG(BLEND) * SRCP[3] + ( (DESTP)[0] << 24 ) ) >> 24 ) ;\
@@ -2171,7 +2171,7 @@ namespace DxLib
 			(DESTP)[2] = (BYTE)( ( ( RTABLE( (SRCP)[2] ) - (DESTP)[2] ) * BPARAM * BIMG(BLEND) * SRCP[3] + ( (DESTP)[2] << 24 ) ) >> 24 ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_UBI_C32_UBR_UAC_BAL_NTBL( SRCP, DESTP, BLEND, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )	\
 		{\
 			(DESTP)[0] = (BYTE)( ( ( ( ( (SRCP)[0] * BBRIGHT ) >> 8 ) - (DESTP)[0] ) * ABRIGHT * BIMG(BLEND) * SRCP[3] + ( (DESTP)[0] << 24 ) ) >> 24 ) ;\
@@ -2179,7 +2179,7 @@ namespace DxLib
 			(DESTP)[2] = (BYTE)( ( ( ( ( (SRCP)[2] * RBRIGHT ) >> 8 ) - (DESTP)[2] ) * ABRIGHT * BIMG(BLEND) * SRCP[3] + ( (DESTP)[2] << 24 ) ) >> 24 ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒ`ƒFƒbƒN•t‚«)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒã‚§ãƒƒã‚¯ä»˜ã)
 		#define CODE_UBI_C32_UBR_UAC_BAL_ACK( SRCP, DESTP, BLEND )	\
 			if( (SRCP)[3] != 0 )\
 			{\
@@ -2187,7 +2187,7 @@ namespace DxLib
 				else					CODE_UBI_C32_UBR_UAC_BAL( SRCP, DESTP, BLEND )\
 			}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒ`ƒFƒbƒN•t‚«)(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒã‚§ãƒƒã‚¯ä»˜ã)(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_UBI_C32_UBR_UAC_BAL_ACK_NTBL( SRCP, DESTP, BLEND, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )	\
 			if( (SRCP)[3] != 0 )\
 			{\
@@ -2195,7 +2195,7 @@ namespace DxLib
 				else					CODE_UBI_C32_UBR_UAC_BAL_NTBL( SRCP, DESTP, BLEND, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )\
 			}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—
 		#define CODE_UBI_C32_UBR_NAC_BAL( SRCP, DESTP, BLEND )	\
 		{\
 			(DESTP)[0] = (BYTE)( ( ( BTABLE( (SRCP)[0] ) - (DESTP)[0] ) * BPARAM * BIMG(BLEND) + ( (DESTP)[0] << 16 ) ) >> 16 ) ;\
@@ -2203,7 +2203,7 @@ namespace DxLib
 			(DESTP)[2] = (BYTE)( ( ( RTABLE( (SRCP)[2] ) - (DESTP)[2] ) * BPARAM * BIMG(BLEND) + ( (DESTP)[2] << 16 ) ) >> 16 ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_UBI_C32_UBR_NAC_BAL_NTBL( SRCP, DESTP, BLEND, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )	\
 		{\
 			(DESTP)[0] = (BYTE)( ( ( ( ( (SRCP)[0] * BBRIGHT ) >> 8 ) - (DESTP)[0] ) * ABRIGHT * BIMG(BLEND) + ( (DESTP)[0] << 16 ) ) >> 16 ) ;\
@@ -2211,19 +2211,19 @@ namespace DxLib
 			(DESTP)[2] = (BYTE)( ( ( ( ( (SRCP)[2] * RBRIGHT ) >> 8 ) - (DESTP)[2] ) * ABRIGHT * BIMG(BLEND) + ( (DESTP)[2] << 16 ) ) >> 16 ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(“§‰ßFƒ`ƒFƒbƒN•t‚«)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(é€éŽè‰²ãƒã‚§ãƒƒã‚¯ä»˜ã)
 		#define CODE_UBI_C32_UBR_NAC_BAL_TCK( SRCP, DESTP, BLEND )	\
 			if( *((DWORD *)(SRCP)) != TransColor ) CODE_UBI_C32_UBR_NAC_BAL( SRCP, DESTP, BLEND )
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(“§‰ßFƒ`ƒFƒbƒN•t‚«)(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(é€éŽè‰²ãƒã‚§ãƒƒã‚¯ä»˜ã)(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_UBI_C32_UBR_NAC_BAL_TCK_NTBL( SRCP, DESTP, BLEND, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )	\
 			if( *((DWORD *)(SRCP)) != TransColor ) CODE_UBI_C32_UBR_NAC_BAL_NTBL( SRCP, DESTP, BLEND, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )
 
-    // ƒuƒŒƒ“ƒh‰æ‘œ–³‚µ
+    // ãƒ–ãƒ¬ãƒ³ãƒ‰ç”»åƒç„¡ã—
 
-      // ‹P“x–³‚µ
+      // è¼åº¦ç„¡ã—
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š
 		#define CODE_NBI_C32_NBR_UAC_BAL( SRCP, DESTP )	\
 		{\
 			(DESTP)[0] = (BYTE)( ( ( (SRCP)[0] - (DESTP)[0] ) * BPARAM * SRCP[3] + ( (DESTP)[0] << 16 ) ) >> 16 ) ;\
@@ -2231,7 +2231,7 @@ namespace DxLib
 			(DESTP)[2] = (BYTE)( ( ( (SRCP)[2] - (DESTP)[2] ) * BPARAM * SRCP[3] + ( (DESTP)[2] << 16 ) ) >> 16 ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_NBI_C32_NBR_UAC_BAL_NTBL( SRCP, DESTP, ABRIGHT )	\
 		{\
 			(DESTP)[0] = (BYTE)( ( ( (SRCP)[0] - (DESTP)[0] ) * ABRIGHT * SRCP[3] + ( (DESTP)[0] << 16 ) ) >> 16 ) ;\
@@ -2239,7 +2239,7 @@ namespace DxLib
 			(DESTP)[2] = (BYTE)( ( ( (SRCP)[2] - (DESTP)[2] ) * ABRIGHT * SRCP[3] + ( (DESTP)[2] << 16 ) ) >> 16 ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒ`ƒFƒbƒN•t‚«)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒã‚§ãƒƒã‚¯ä»˜ã)
 		#define CODE_NBI_C32_NBR_UAC_BAL_ACK( SRCP, DESTP )	\
 			if( (SRCP)[3] != 0 )\
 			{\
@@ -2247,7 +2247,7 @@ namespace DxLib
 				else					CODE_NBI_C32_NBR_UAC_BAL( SRCP, DESTP )\
 			}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒ`ƒFƒbƒN•t‚«)(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒã‚§ãƒƒã‚¯ä»˜ã)(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_NBI_C32_NBR_UAC_BAL_ACK_NTBL( SRCP, DESTP, ABRIGHT )	\
 			if( (SRCP)[3] != 0 )\
 			{\
@@ -2255,7 +2255,7 @@ namespace DxLib
 				else					CODE_NBI_C32_NBR_UAC_BAL_NTBL( SRCP, DESTP, ABRIGHT )\
 			}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—
 		#define CODE_NBI_C32_NBR_NAC_BAL( SRCP, DESTP )	\
 		{\
 			(DESTP)[0] = (BYTE)( ( ( (SRCP)[0] - (DESTP)[0] ) * BPARAM + ( (DESTP)[0] << 8 ) ) >> 8 ) ;\
@@ -2263,7 +2263,7 @@ namespace DxLib
 			(DESTP)[2] = (BYTE)( ( ( (SRCP)[2] - (DESTP)[2] ) * BPARAM + ( (DESTP)[2] << 8 ) ) >> 8 ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_NBI_C32_NBR_NAC_BAL_NTBL( SRCP, DESTP, ABRIGHT )	\
 		{\
 			(DESTP)[0] = (BYTE)( ( ( (SRCP)[0] - (DESTP)[0] ) * ABRIGHT + ( (DESTP)[0] << 8 ) ) >> 8 ) ;\
@@ -2271,18 +2271,18 @@ namespace DxLib
 			(DESTP)[2] = (BYTE)( ( ( (SRCP)[2] - (DESTP)[2] ) * ABRIGHT + ( (DESTP)[2] << 8 ) ) >> 8 ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(“§‰ßFƒ`ƒFƒbƒN•t‚«)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(é€éŽè‰²ãƒã‚§ãƒƒã‚¯ä»˜ã)
 		#define CODE_NBI_C32_NBR_NAC_BAL_TCK( SRCP, DESTP )	\
 			if( *((DWORD *)(SRCP)) != TransColor ) CODE_NBI_C32_NBR_NAC_BAL( SRCP, DESTP )
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(“§‰ßFƒ`ƒFƒbƒN•t‚«)(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(é€éŽè‰²ãƒã‚§ãƒƒã‚¯ä»˜ã)(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_NBI_C32_NBR_NAC_BAL_TCK_NTBL( SRCP, DESTP, ABRIGHT )	\
 			if( *((DWORD *)(SRCP)) != TransColor ) CODE_NBI_C32_NBR_NAC_BAL_NTBL( SRCP, DESTP, ABRIGHT )
 
 
-      // ‹P“x‚ ‚è
+      // è¼åº¦ã‚ã‚Š
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š
 		#define CODE_NBI_C32_UBR_UAC_BAL( SRCP, DESTP )	\
 		{\
 			(DESTP)[0] = (BYTE)( ( ( BTABLE( (SRCP)[0] ) - (DESTP)[0] ) * BPARAM * SRCP[3] + ( (DESTP)[0] << 16 ) ) >> 16 ) ;\
@@ -2290,7 +2290,7 @@ namespace DxLib
 			(DESTP)[2] = (BYTE)( ( ( RTABLE( (SRCP)[2] ) - (DESTP)[2] ) * BPARAM * SRCP[3] + ( (DESTP)[2] << 16 ) ) >> 16 ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_NBI_C32_UBR_UAC_BAL_NTBL( SRCP, DESTP, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )	\
 		{\
 			(DESTP)[0] = (BYTE)( ( ( ( ( (SRCP)[0] * BBRIGHT ) >> 8 ) - (DESTP)[0] ) * ABRIGHT * SRCP[3] + ( (DESTP)[0] << 16 ) ) >> 16 ) ;\
@@ -2298,7 +2298,7 @@ namespace DxLib
 			(DESTP)[2] = (BYTE)( ( ( ( ( (SRCP)[2] * RBRIGHT ) >> 8 ) - (DESTP)[2] ) * ABRIGHT * SRCP[3] + ( (DESTP)[2] << 16 ) ) >> 16 ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒ`ƒFƒbƒN•t‚«)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒã‚§ãƒƒã‚¯ä»˜ã)
 		#define CODE_NBI_C32_UBR_UAC_BAL_ACK( SRCP, DESTP )	\
 			if( (SRCP)[3] != 0 )\
 			{\
@@ -2306,7 +2306,7 @@ namespace DxLib
 				else					CODE_NBI_C32_UBR_UAC_BAL( SRCP, DESTP )\
 			}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒ`ƒFƒbƒN•t‚«)(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒã‚§ãƒƒã‚¯ä»˜ã)(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_NBI_C32_UBR_UAC_BAL_ACK_NTBL( SRCP, DESTP, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )	\
 			if( (SRCP)[3] != 0 )\
 			{\
@@ -2314,7 +2314,7 @@ namespace DxLib
 				else					CODE_NBI_C32_UBR_UAC_BAL_NTBL( SRCP, DESTP, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )\
 			}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—
 		#define CODE_NBI_C32_UBR_NAC_BAL( SRCP, DESTP )	\
 		{\
 			(DESTP)[0] = (BYTE)( ( ( BTABLE( (SRCP)[0] ) - (DESTP)[0] ) * BPARAM + ( (DESTP)[0] << 8 ) ) >> 8 ) ;\
@@ -2322,7 +2322,7 @@ namespace DxLib
 			(DESTP)[2] = (BYTE)( ( ( RTABLE( (SRCP)[2] ) - (DESTP)[2] ) * BPARAM + ( (DESTP)[2] << 8 ) ) >> 8 ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_NBI_C32_UBR_NAC_BAL_NTBL( SRCP, DESTP, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )	\
 		{\
 			(DESTP)[0] = (BYTE)( ( ( ( ( (SRCP)[0] * BBRIGHT ) >> 8 ) - (DESTP)[0] ) * ABRIGHT + ( (DESTP)[0] << 8 ) ) >> 8 ) ;\
@@ -2330,21 +2330,21 @@ namespace DxLib
 			(DESTP)[2] = (BYTE)( ( ( ( ( (SRCP)[2] * RBRIGHT ) >> 8 ) - (DESTP)[2] ) * ABRIGHT + ( (DESTP)[2] << 8 ) ) >> 8 ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(“§‰ßFƒ`ƒFƒbƒN•t‚«)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(é€éŽè‰²ãƒã‚§ãƒƒã‚¯ä»˜ã)
 		#define CODE_NBI_C32_UBR_NAC_BAL_TCK( SRCP, DESTP )	\
 			if( *((DWORD *)(SRCP)) != TransColor ) CODE_NBI_C32_UBR_NAC_BAL( SRCP, DESTP )
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(“§‰ßFƒ`ƒFƒbƒN•t‚«)(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(é€éŽè‰²ãƒã‚§ãƒƒã‚¯ä»˜ã)(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_NBI_C32_UBR_NAC_BAL_TCK_NTBL( SRCP, DESTP, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )	\
 			if( *((DWORD *)(SRCP)) != TransColor ) CODE_NBI_C32_UBR_NAC_BAL_NTBL( SRCP, DESTP, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )
 
-  // ‰ÁŽZƒuƒŒƒ“ƒh
+  // åŠ ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 
-	// ƒuƒŒƒ“ƒh‰æ‘œ‚ ‚è
+	// ãƒ–ãƒ¬ãƒ³ãƒ‰ç”»åƒã‚ã‚Š
 
-      // ‹P“x‚È‚µ
+      // è¼åº¦ãªã—
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š
 		#define CODE_UBI_C32_NBR_UAC_BAD( SRCP, DESTP, BLEND )	\
 		{\
 			SrcB[0] = (BYTE)( ( (SRCP)[0] * (SRCP)[3] * BIMG(BLEND) * BPARAM ) >> 24 ) ;\
@@ -2355,7 +2355,7 @@ namespace DxLib
 			*((DWORD *)(DESTP)) = (DWORD)( ( ( Data | ( DataD - ( DataD >> MEMIMG_XRGB8_ADDSHFT ) ) ) ) | ( ( SrcD | *((DWORD *)(DESTP)) ) & MEMIMG_XRGB8_ADDMASK3 ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_UBI_C32_NBR_UAC_BAD_NTBL( SRCP, DESTP, BLEND, ABRIGHT )	\
 		{\
 			SrcB[0] = (BYTE)( ( (SRCP)[0] * (SRCP)[3] * BIMG(BLEND) * ABRIGHT ) >> 24 ) ;\
@@ -2366,7 +2366,7 @@ namespace DxLib
 			*((DWORD *)(DESTP)) = (DWORD)( ( ( Data | ( DataD - ( DataD >> MEMIMG_XRGB8_ADDSHFT ) ) ) ) | ( ( SrcD | *((DWORD *)(DESTP)) ) & MEMIMG_XRGB8_ADDMASK3 ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒ`ƒFƒbƒN•t‚«)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒã‚§ãƒƒã‚¯ä»˜ã)
 		#define CODE_UBI_C32_NBR_UAC_BAD_ACK( SRCP, DESTP, BLEND )	\
 			if( (SRCP)[3] != 0 )\
 			{\
@@ -2374,7 +2374,7 @@ namespace DxLib
 				else					CODE_UBI_C32_NBR_UAC_BAD( SRCP, DESTP, BLEND )\
 			}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒ`ƒFƒbƒN•t‚«)(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒã‚§ãƒƒã‚¯ä»˜ã)(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_UBI_C32_NBR_UAC_BAD_ACK_NTBL( SRCP, DESTP, BLEND, ABRIGHT )	\
 			if( (SRCP)[3] != 0 )\
 			{\
@@ -2382,7 +2382,7 @@ namespace DxLib
 				else					CODE_UBI_C32_NBR_UAC_BAD_NTBL( SRCP, DESTP, BLEND, ABRIGHT )\
 			}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—
 		#define CODE_UBI_C32_NBR_NAC_BAD( SRCP, DESTP, BLEND )	\
 		{\
 			SrcB[0] = (BYTE)( ( (SRCP)[0] * BIMG(BLEND) * BPARAM ) >> 16 ) ;\
@@ -2393,7 +2393,7 @@ namespace DxLib
 			*((DWORD *)(DESTP)) = (DWORD)( ( ( Data | ( DataD - ( DataD >> MEMIMG_XRGB8_ADDSHFT ) ) ) ) | ( ( SrcD | *((DWORD *)(DESTP)) ) & MEMIMG_XRGB8_ADDMASK3 ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_UBI_C32_NBR_NAC_BAD_NTBL( SRCP, DESTP, BLEND, ABRIGHT )	\
 		{\
 			SrcB[0] = (BYTE)( ( (SRCP)[0] * BIMG(BLEND) * ABRIGHT ) >> 16 ) ;\
@@ -2404,17 +2404,17 @@ namespace DxLib
 			*((DWORD *)(DESTP)) = (DWORD)( ( ( Data | ( DataD - ( DataD >> MEMIMG_XRGB8_ADDSHFT ) ) ) ) | ( ( SrcD | *((DWORD *)(DESTP)) ) & MEMIMG_XRGB8_ADDMASK3 ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(“§‰ßFƒ`ƒFƒbƒN•t‚«)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(é€éŽè‰²ãƒã‚§ãƒƒã‚¯ä»˜ã)
 		#define CODE_UBI_C32_NBR_NAC_BAD_TCK( SRCP, DESTP, BLEND )	\
 			if( *((DWORD *)(SRCP)) != TransColor ) CODE_UBI_C32_NBR_NAC_BAD( SRCP, DESTP, BLEND )
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(“§‰ßFƒ`ƒFƒbƒN•t‚«)(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(é€éŽè‰²ãƒã‚§ãƒƒã‚¯ä»˜ã)(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_UBI_C32_NBR_NAC_BAD_TCK_NTBL( SRCP, DESTP, BLEND, ABRIGHT )	\
 			if( *((DWORD *)(SRCP)) != TransColor ) CODE_UBI_C32_NBR_NAC_BAD_NTBL( SRCP, DESTP, BLEND, ABRIGHT )
 
-	  // ‹P“x‚ ‚è
+	  // è¼åº¦ã‚ã‚Š
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š
 		#define CODE_UBI_C32_UBR_UAC_BAD( SRCP, DESTP, BLEND )	\
 		{\
 			SrcB[0] = (BYTE)( ( BTABLE( (SRCP)[0] ) * (SRCP)[3] * BIMG(BLEND) * BPARAM ) >> 24 ) ;\
@@ -2425,7 +2425,7 @@ namespace DxLib
 			*((DWORD *)(DESTP)) = (DWORD)( ( ( Data | ( DataD - ( DataD >> MEMIMG_XRGB8_ADDSHFT ) ) ) ) | ( ( SrcD | *((DWORD *)(DESTP)) ) & MEMIMG_XRGB8_ADDMASK3 ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_UBI_C32_UBR_UAC_BAD_NTBL( SRCP, DESTP, BLEND, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )	\
 		{\
 			SrcB[0] = (BYTE)( ( ( ( (SRCP)[0] * BBRIGHT ) >> 8 ) * (SRCP)[3] * BIMG(BLEND) * ABRIGHT ) >> 24 ) ;\
@@ -2436,7 +2436,7 @@ namespace DxLib
 			*((DWORD *)(DESTP)) = (DWORD)( ( ( Data | ( DataD - ( DataD >> MEMIMG_XRGB8_ADDSHFT ) ) ) ) | ( ( SrcD | *((DWORD *)(DESTP)) ) & MEMIMG_XRGB8_ADDMASK3 ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒ`ƒFƒbƒN•t‚«)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒã‚§ãƒƒã‚¯ä»˜ã)
 		#define CODE_UBI_C32_UBR_UAC_BAD_ACK( SRCP, DESTP, BLEND )	\
 			if( (SRCP)[3] != 0 )\
 			{\
@@ -2444,7 +2444,7 @@ namespace DxLib
 				else					CODE_UBI_C32_UBR_UAC_BAD( SRCP, DESTP, BLEND )\
 			}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒ`ƒFƒbƒN•t‚«)(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒã‚§ãƒƒã‚¯ä»˜ã)(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_UBI_C32_UBR_UAC_BAD_ACK_NTBL( SRCP, DESTP, BLEND, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )	\
 			if( (SRCP)[3] != 0 )\
 			{\
@@ -2452,7 +2452,7 @@ namespace DxLib
 				else					CODE_UBI_C32_UBR_UAC_BAD_NTBL( SRCP, DESTP, BLEND, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )\
 			}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—
 		#define CODE_UBI_C32_UBR_NAC_BAD( SRCP, DESTP, BLEND )	\
 		{\
 			SrcB[0] = (BYTE)( ( BTABLE( (SRCP)[0] ) * BIMG(BLEND) * BPARAM ) >> 16 ) ;\
@@ -2463,7 +2463,7 @@ namespace DxLib
 			*((DWORD *)(DESTP)) = (DWORD)( ( ( Data | ( DataD - ( DataD >> MEMIMG_XRGB8_ADDSHFT ) ) ) ) | ( ( SrcD | *((DWORD *)(DESTP)) ) & MEMIMG_XRGB8_ADDMASK3 ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_UBI_C32_UBR_NAC_BAD_NTBL( SRCP, DESTP, BLEND, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )	\
 		{\
 			SrcB[0] = (BYTE)( ( (SRCP)[0] * BBRIGHT * BIMG(BLEND) * ABRIGHT ) >> 24 ) ;\
@@ -2474,19 +2474,19 @@ namespace DxLib
 			*((DWORD *)(DESTP)) = (DWORD)( ( ( Data | ( DataD - ( DataD >> MEMIMG_XRGB8_ADDSHFT ) ) ) ) | ( ( SrcD | *((DWORD *)(DESTP)) ) & MEMIMG_XRGB8_ADDMASK3 ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(“§‰ßFƒ`ƒFƒbƒN•t‚«)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(é€éŽè‰²ãƒã‚§ãƒƒã‚¯ä»˜ã)
 		#define CODE_UBI_C32_UBR_NAC_BAD_TCK( SRCP, DESTP, BLEND )	\
 			if( *((DWORD *)(SRCP)) != TransColor ) CODE_UBI_C32_UBR_NAC_BAD( SRCP, DESTP, BLEND )
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(“§‰ßFƒ`ƒFƒbƒN•t‚«)(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(é€éŽè‰²ãƒã‚§ãƒƒã‚¯ä»˜ã)(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_UBI_C32_UBR_NAC_BAD_TCK_NTBL( SRCP, DESTP, BLEND, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )	\
 			if( *((DWORD *)(SRCP)) != TransColor ) CODE_UBI_C32_UBR_NAC_BAD_NTBL( SRCP, DESTP, BLEND, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )
 
-	// ƒuƒŒƒ“ƒh‰æ‘œ–³‚µ
+	// ãƒ–ãƒ¬ãƒ³ãƒ‰ç”»åƒç„¡ã—
 	
-	  // ‹P“x–³‚µ
+	  // è¼åº¦ç„¡ã—
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š
 		#define CODE_NBI_C32_NBR_UAC_BAD( SRCP, DESTP )	\
 		{\
 			SrcB[0] = (BYTE)( ( (SRCP)[0] * (SRCP)[3] * BPARAM ) >> 16 ) ;\
@@ -2497,7 +2497,7 @@ namespace DxLib
 			*((DWORD *)(DESTP)) = (DWORD)( ( ( Data | ( DataD - ( DataD >> MEMIMG_XRGB8_ADDSHFT ) ) ) ) | ( ( SrcD | *((DWORD *)(DESTP)) ) & MEMIMG_XRGB8_ADDMASK3 ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_NBI_C32_NBR_UAC_BAD_NTBL( SRCP, DESTP, ABRIGHT )	\
 		{\
 			SrcB[0] = (BYTE)( ( (SRCP)[0] * (SRCP)[3] * ABRIGHT ) >> 16 ) ;\
@@ -2508,7 +2508,7 @@ namespace DxLib
 			*((DWORD *)(DESTP)) = (DWORD)( ( ( Data | ( DataD - ( DataD >> MEMIMG_XRGB8_ADDSHFT ) ) ) ) | ( ( SrcD | *((DWORD *)(DESTP)) ) & MEMIMG_XRGB8_ADDMASK3 ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒ`ƒFƒbƒN•t‚«)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒã‚§ãƒƒã‚¯ä»˜ã)
 		#define CODE_NBI_C32_NBR_UAC_BAD_ACK( SRCP, DESTP )	\
 			if( (SRCP)[3] != 0 )\
 			{\
@@ -2516,7 +2516,7 @@ namespace DxLib
 				else					CODE_NBI_C32_NBR_UAC_BAD( SRCP, DESTP )\
 			}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒ`ƒFƒbƒN•t‚«)(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒã‚§ãƒƒã‚¯ä»˜ã)(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_NBI_C32_NBR_UAC_BAD_ACK_NTBL( SRCP, DESTP, ABRIGHT )	\
 			if( (SRCP)[3] != 0 )\
 			{\
@@ -2524,7 +2524,7 @@ namespace DxLib
 				else					CODE_NBI_C32_NBR_UAC_BAD_NTBL( SRCP, DESTP, ABRIGHT )\
 			}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—
 		#define CODE_NBI_C32_NBR_NAC_BAD( SRCP, DESTP )	\
 		{\
 			SrcB[0] = (BYTE)( MT1( (SRCP)[0] ) ) ;\
@@ -2535,7 +2535,7 @@ namespace DxLib
 			*((DWORD *)(DESTP)) = (DWORD)( ( ( Data | ( DataD - ( DataD >> MEMIMG_XRGB8_ADDSHFT ) ) ) ) | ( ( SrcD | *((DWORD *)(DESTP)) ) & MEMIMG_XRGB8_ADDMASK3 ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_NBI_C32_NBR_NAC_BAD_NTBL( SRCP, DESTP, ABRIGHT )	\
 		{\
 			SrcB[0] = (BYTE)( ( (SRCP)[0] * ABRIGHT ) >> 8 ) ;\
@@ -2546,17 +2546,17 @@ namespace DxLib
 			*((DWORD *)(DESTP)) = (DWORD)( ( ( Data | ( DataD - ( DataD >> MEMIMG_XRGB8_ADDSHFT ) ) ) ) | ( ( SrcD | *((DWORD *)(DESTP)) ) & MEMIMG_XRGB8_ADDMASK3 ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(“§‰ßFƒ`ƒFƒbƒN•t‚«)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(é€éŽè‰²ãƒã‚§ãƒƒã‚¯ä»˜ã)
 		#define CODE_NBI_C32_NBR_NAC_BAD_TCK( SRCP, DESTP )	\
 			if( *((DWORD *)(SRCP)) != TransColor ) CODE_NBI_C32_NBR_NAC_BAD( SRCP, DESTP )
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(“§‰ßFƒ`ƒFƒbƒN•t‚«)(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(é€éŽè‰²ãƒã‚§ãƒƒã‚¯ä»˜ã)(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_NBI_C32_NBR_NAC_BAD_TCK_NTBL( SRCP, DESTP, ABRIGHT )	\
 			if( *((DWORD *)(SRCP)) != TransColor ) CODE_NBI_C32_NBR_NAC_BAD_NTBL( SRCP, DESTP, ABRIGHT )
 
-	  // ‹P“x‚ ‚è
+	  // è¼åº¦ã‚ã‚Š
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š
 		#define CODE_NBI_C32_UBR_UAC_BAD( SRCP, DESTP )	\
 		{\
 			SrcB[0] = (BYTE)( ( BTABLE( (SRCP)[0] ) * (SRCP)[3] * BPARAM ) >> 16 ) ;\
@@ -2567,7 +2567,7 @@ namespace DxLib
 			*((DWORD *)(DESTP)) = (DWORD)( ( ( Data | ( DataD - ( DataD >> MEMIMG_XRGB8_ADDSHFT ) ) ) ) | ( ( SrcD | *((DWORD *)(DESTP)) ) & MEMIMG_XRGB8_ADDMASK3 ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_NBI_C32_UBR_UAC_BAD_NTBL( SRCP, DESTP, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )	\
 		{\
 			SrcB[0] = (BYTE)( ( (SRCP)[0] * BBRIGHT * (SRCP)[3] * ABRIGHT ) >> 24 ) ;\
@@ -2578,7 +2578,7 @@ namespace DxLib
 			*((DWORD *)(DESTP)) = (DWORD)( ( ( Data | ( DataD - ( DataD >> MEMIMG_XRGB8_ADDSHFT ) ) ) ) | ( ( SrcD | *((DWORD *)(DESTP)) ) & MEMIMG_XRGB8_ADDMASK3 ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒ`ƒFƒbƒN•t‚«)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒã‚§ãƒƒã‚¯ä»˜ã)
 		#define CODE_NBI_C32_UBR_UAC_BAD_ACK( SRCP, DESTP )	\
 			if( (SRCP)[3] != 0 )\
 			{\
@@ -2586,7 +2586,7 @@ namespace DxLib
 				else					CODE_NBI_C32_UBR_UAC_BAD( SRCP, DESTP )\
 			}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒ`ƒFƒbƒN•t‚«)(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒã‚§ãƒƒã‚¯ä»˜ã)(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_NBI_C32_UBR_UAC_BAD_ACK_NTBL( SRCP, DESTP, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )	\
 			if( (SRCP)[3] != 0 )\
 			{\
@@ -2594,7 +2594,7 @@ namespace DxLib
 				else					CODE_NBI_C32_UBR_UAC_BAD_NTBL( SRCP, DESTP, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )\
 			}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—
 		#define CODE_NBI_C32_UBR_NAC_BAD( SRCP, DESTP )	\
 		{\
 			SrcB[0] = (BYTE)( MT1( BTABLE( (SRCP)[0] ) ) ) ;\
@@ -2605,7 +2605,7 @@ namespace DxLib
 			*((DWORD *)(DESTP)) = (DWORD)( ( ( Data | ( DataD - ( DataD >> MEMIMG_XRGB8_ADDSHFT ) ) ) ) | ( ( SrcD | *((DWORD *)(DESTP)) ) & MEMIMG_XRGB8_ADDMASK3 ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_NBI_C32_UBR_NAC_BAD_NTBL( SRCP, DESTP, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )	\
 		{\
 			SrcB[0] = (BYTE)( ( (SRCP)[0] * ABRIGHT * BBRIGHT ) >> 16 ) ;\
@@ -2616,21 +2616,21 @@ namespace DxLib
 			*((DWORD *)(DESTP)) = (DWORD)( ( ( Data | ( DataD - ( DataD >> MEMIMG_XRGB8_ADDSHFT ) ) ) ) | ( ( SrcD | *((DWORD *)(DESTP)) ) & MEMIMG_XRGB8_ADDMASK3 ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(“§‰ßFƒ`ƒFƒbƒN•t‚«)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(é€éŽè‰²ãƒã‚§ãƒƒã‚¯ä»˜ã)
 		#define CODE_NBI_C32_UBR_NAC_BAD_TCK( SRCP, DESTP )	\
 			if( *((DWORD *)(SRCP)) != TransColor ) CODE_NBI_C32_UBR_NAC_BAD( SRCP, DESTP )
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(“§‰ßFƒ`ƒFƒbƒN•t‚«)(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(é€éŽè‰²ãƒã‚§ãƒƒã‚¯ä»˜ã)(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_NBI_C32_UBR_NAC_BAD_TCK_NTBL( SRCP, DESTP, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )	\
 			if( *((DWORD *)(SRCP)) != TransColor ) CODE_NBI_C32_UBR_NAC_BAD_NTBL( SRCP, DESTP, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )
 
-  // Œ¸ŽZƒuƒŒƒ“ƒh
+  // æ¸›ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 
-    // ƒuƒŒƒ“ƒh‰æ‘œ‚ ‚è
+    // ãƒ–ãƒ¬ãƒ³ãƒ‰ç”»åƒã‚ã‚Š
  
-      // ‹P“x–³‚µ
+      // è¼åº¦ç„¡ã—
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š
 		#define CODE_UBI_C32_NBR_UAC_BSB( SRCP, DESTP, BLEND )	\
 		{\
 			SrcB[0] = (BYTE)( ( (SRCP)[0] * (SRCP)[3] * BIMG(BLEND) * BPARAM ) >> 24 ) ;\
@@ -2641,7 +2641,7 @@ namespace DxLib
 			*((DWORD *)(DESTP)) = (DWORD)( Data & ( DataD - ( DataD >> MEMIMG_XRGB8_SUBSHFT ) ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_UBI_C32_NBR_UAC_BSB_NTBL( SRCP, DESTP, BLEND, ABRIGHT )	\
 		{\
 			SrcB[0] = (BYTE)( ( (SRCP)[0] * (SRCP)[3] * BIMG(BLEND) * ABRIGHT ) >> 24 ) ;\
@@ -2652,7 +2652,7 @@ namespace DxLib
 			*((DWORD *)(DESTP)) = (DWORD)( Data & ( DataD - ( DataD >> MEMIMG_XRGB8_SUBSHFT ) ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒ`ƒFƒbƒN•t‚«)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒã‚§ãƒƒã‚¯ä»˜ã)
 		#define CODE_UBI_C32_NBR_UAC_BSB_ACK( SRCP, DESTP, BLEND )	\
 			if( (SRCP)[3] != 0 )\
 			{\
@@ -2660,7 +2660,7 @@ namespace DxLib
 				else					CODE_UBI_C32_NBR_UAC_BSB( SRCP, DESTP, BLEND )\
 			}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒ`ƒFƒbƒN•t‚«)(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒã‚§ãƒƒã‚¯ä»˜ã)(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_UBI_C32_NBR_UAC_BSB_ACK_NTBL( SRCP, DESTP, BLEND, ABRIGHT )	\
 			if( (SRCP)[3] != 0 )\
 			{\
@@ -2668,7 +2668,7 @@ namespace DxLib
 				else					CODE_UBI_C32_NBR_UAC_BSB_NTBL( SRCP, DESTP, BLEND, ABRIGHT )\
 			}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—
 		#define CODE_UBI_C32_NBR_NAC_BSB( SRCP, DESTP, BLEND )	\
 		{\
 			SrcB[0] = (BYTE)( ( (SRCP)[0] * BIMG(BLEND) * BPARAM ) >> 16 ) ;\
@@ -2679,7 +2679,7 @@ namespace DxLib
 			*((DWORD *)(DESTP)) = (DWORD)( Data & ( DataD - ( DataD >> MEMIMG_XRGB8_SUBSHFT ) ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_UBI_C32_NBR_NAC_BSB_NTBL( SRCP, DESTP, BLEND, ABRIGHT )	\
 		{\
 			SrcB[0] = (BYTE)( ( (SRCP)[0] * BIMG(BLEND) * ABRIGHT ) >> 16 ) ;\
@@ -2690,17 +2690,17 @@ namespace DxLib
 			*((DWORD *)(DESTP)) = (DWORD)( Data & ( DataD - ( DataD >> MEMIMG_XRGB8_SUBSHFT ) ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(“§‰ßFƒ`ƒFƒbƒN•t‚«)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(é€éŽè‰²ãƒã‚§ãƒƒã‚¯ä»˜ã)
 		#define CODE_UBI_C32_NBR_NAC_BSB_TCK( SRCP, DESTP, BLEND )	\
 			if( *((DWORD *)(SRCP)) != TransColor ) CODE_UBI_C32_NBR_NAC_BSB( SRCP, DESTP, BLEND )
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(“§‰ßFƒ`ƒFƒbƒN•t‚«)(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(é€éŽè‰²ãƒã‚§ãƒƒã‚¯ä»˜ã)(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_UBI_C32_NBR_NAC_BSB_TCK_NTBL( SRCP, DESTP, BLEND, ABRIGHT )	\
 			if( *((DWORD *)(SRCP)) != TransColor ) CODE_UBI_C32_NBR_NAC_BSB_NTBL( SRCP, DESTP, BLEND, ABRIGHT )
 
-      // ‹P“x‚ ‚è
+      // è¼åº¦ã‚ã‚Š
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š
 		#define CODE_UBI_C32_UBR_UAC_BSB( SRCP, DESTP, BLEND )	\
 		{\
 			SrcB[0] = (BYTE)( ( BTABLE( (SRCP)[0] ) * (SRCP)[3] * BIMG(BLEND) * BPARAM ) >> 24 ) ;\
@@ -2711,7 +2711,7 @@ namespace DxLib
 			*((DWORD *)(DESTP)) = (DWORD)( Data & ( DataD - ( DataD >> MEMIMG_XRGB8_SUBSHFT ) ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_UBI_C32_UBR_UAC_BSB_NTBL( SRCP, DESTP, BLEND, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )	\
 		{\
 			SrcB[0] = (BYTE)( ( ( ( (SRCP)[0] * BBRIGHT ) >> 8 ) * (SRCP)[3] * BIMG(BLEND) * ABRIGHT ) >> 24 ) ;\
@@ -2722,7 +2722,7 @@ namespace DxLib
 			*((DWORD *)(DESTP)) = (DWORD)( Data & ( DataD - ( DataD >> MEMIMG_XRGB8_SUBSHFT ) ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒ`ƒFƒbƒN•t‚«)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒã‚§ãƒƒã‚¯ä»˜ã)
 		#define CODE_UBI_C32_UBR_UAC_BSB_ACK( SRCP, DESTP, BLEND )	\
 			if( (SRCP)[3] != 0 )\
 			{\
@@ -2730,7 +2730,7 @@ namespace DxLib
 				else					CODE_UBI_C32_UBR_UAC_BSB( SRCP, DESTP, BLEND )\
 			}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒ`ƒFƒbƒN•t‚«)(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒã‚§ãƒƒã‚¯ä»˜ã)(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_UBI_C32_UBR_UAC_BSB_ACK_NTBL( SRCP, DESTP, BLEND, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )	\
 			if( (SRCP)[3] != 0 )\
 			{\
@@ -2738,7 +2738,7 @@ namespace DxLib
 				else					CODE_UBI_C32_UBR_UAC_BSB_NTBL( SRCP, DESTP, BLEND, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )\
 			}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—
 		#define CODE_UBI_C32_UBR_NAC_BSB( SRCP, DESTP, BLEND )	\
 		{\
 			SrcB[0] = (BYTE)( ( BTABLE( (SRCP)[0] ) * BIMG(BLEND) * BPARAM ) >> 16 ) ;\
@@ -2749,7 +2749,7 @@ namespace DxLib
 			*((DWORD *)(DESTP)) = (DWORD)( Data & ( DataD - ( DataD >> MEMIMG_XRGB8_SUBSHFT ) ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_UBI_C32_UBR_NAC_BSB_NTBL( SRCP, DESTP, BLEND, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )	\
 		{\
 			SrcB[0] = (BYTE)( ( (SRCP)[0] * BBRIGHT * BIMG(BLEND) * ABRIGHT ) >> 24 ) ;\
@@ -2760,19 +2760,19 @@ namespace DxLib
 			*((DWORD *)(DESTP)) = (DWORD)( Data & ( DataD - ( DataD >> MEMIMG_XRGB8_SUBSHFT ) ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(“§‰ßFƒ`ƒFƒbƒN•t‚«)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(é€éŽè‰²ãƒã‚§ãƒƒã‚¯ä»˜ã)
 		#define CODE_UBI_C32_UBR_NAC_BSB_TCK( SRCP, DESTP, BLEND )	\
 			if( *((DWORD *)(SRCP)) != TransColor ) CODE_UBI_C32_UBR_NAC_BSB( SRCP, DESTP, BLEND )
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(“§‰ßFƒ`ƒFƒbƒN•t‚«)(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(é€éŽè‰²ãƒã‚§ãƒƒã‚¯ä»˜ã)(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_UBI_C32_UBR_NAC_BSB_TCK_NTBL( SRCP, DESTP, BLEND, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )	\
 			if( *((DWORD *)(SRCP)) != TransColor ) CODE_UBI_C32_UBR_NAC_BSB_NTBL( SRCP, DESTP, BLEND, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )
 
-    // ƒuƒŒƒ“ƒh‰æ‘œ–³‚µ
+    // ãƒ–ãƒ¬ãƒ³ãƒ‰ç”»åƒç„¡ã—
 
-	  // ‹P“x–³‚µ
+	  // è¼åº¦ç„¡ã—
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š
 		#define CODE_NBI_C32_NBR_UAC_BSB( SRCP, DESTP )	\
 		{\
 			SrcB[0] = (BYTE)( ( (SRCP)[0] * (SRCP)[3] * BPARAM ) >> 16 ) ;\
@@ -2793,7 +2793,7 @@ namespace DxLib
 			*((DWORD *)(DESTP)) = (DWORD)( Data & ( DataD - ( DataD >> MEMIMG_XRGB8_SUBSHFT ) ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒ`ƒFƒbƒN•t‚«)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒã‚§ãƒƒã‚¯ä»˜ã)
 		#define CODE_NBI_C32_NBR_UAC_BSB_ACK( SRCP, DESTP )	\
 			if( (SRCP)[3] != 0 )\
 			{\
@@ -2801,7 +2801,7 @@ namespace DxLib
 				else					CODE_NBI_C32_NBR_UAC_BSB( SRCP, DESTP )\
 			}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒ`ƒFƒbƒN•t‚«)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒã‚§ãƒƒã‚¯ä»˜ã)
 		#define CODE_NBI_C32_NBR_UAC_BSB_ACK_NTBL( SRCP, DESTP, ABRIGHT )	\
 			if( (SRCP)[3] != 0 )\
 			{\
@@ -2809,7 +2809,7 @@ namespace DxLib
 				else					CODE_NBI_C32_NBR_UAC_BSB_NTBL( SRCP, DESTP, ABRIGHT )\
 			}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—
 		#define CODE_NBI_C32_NBR_NAC_BSB( SRCP, DESTP )	\
 		{\
 			SrcB[0] = (BYTE)( MT1( (SRCP)[0] ) ) ;\
@@ -2820,7 +2820,7 @@ namespace DxLib
 			*((DWORD *)(DESTP)) = (DWORD)( Data & ( DataD - ( DataD >> MEMIMG_XRGB8_SUBSHFT ) ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_NBI_C32_NBR_NAC_BSB_NTBL( SRCP, DESTP, ABRIGHT )	\
 		{\
 			SrcB[0] = (BYTE)( ( (SRCP)[0] * ABRIGHT ) >> 8 ) ;\
@@ -2831,17 +2831,17 @@ namespace DxLib
 			*((DWORD *)(DESTP)) = (DWORD)( Data & ( DataD - ( DataD >> MEMIMG_XRGB8_SUBSHFT ) ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(“§‰ßFƒ`ƒFƒbƒN•t‚«)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(é€éŽè‰²ãƒã‚§ãƒƒã‚¯ä»˜ã)
 		#define CODE_NBI_C32_NBR_NAC_BSB_TCK( SRCP, DESTP )	\
 			if( *((DWORD *)(SRCP)) != TransColor ) CODE_NBI_C32_NBR_NAC_BSB( SRCP, DESTP )
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(“§‰ßFƒ`ƒFƒbƒN•t‚«)(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(é€éŽè‰²ãƒã‚§ãƒƒã‚¯ä»˜ã)(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_NBI_C32_NBR_NAC_BSB_TCK_NTBL( SRCP, DESTP, ABRIGHT )	\
 			if( *((DWORD *)(SRCP)) != TransColor ) CODE_NBI_C32_NBR_NAC_BSB_NTBL( SRCP, DESTP, ABRIGHT )
 
-	  // ‹P“x‚ ‚è
+	  // è¼åº¦ã‚ã‚Š
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š
 		#define CODE_NBI_C32_UBR_UAC_BSB( SRCP, DESTP )	\
 		{\
 			SrcB[0] = (BYTE)( ( BTABLE( (SRCP)[0] ) * (SRCP)[3] * BPARAM ) >> 16 ) ;\
@@ -2852,7 +2852,7 @@ namespace DxLib
 			*((DWORD *)(DESTP)) = (DWORD)( Data & ( DataD - ( DataD >> MEMIMG_XRGB8_SUBSHFT ) ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_NBI_C32_UBR_UAC_BSB_NTBL( SRCP, DESTP, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )	\
 		{\
 			SrcB[0] = (BYTE)( ( (SRCP)[0] * BBRIGHT * (SRCP)[3] * ABRIGHT ) >> 24 ) ;\
@@ -2863,7 +2863,7 @@ namespace DxLib
 			*((DWORD *)(DESTP)) = (DWORD)( Data & ( DataD - ( DataD >> MEMIMG_XRGB8_SUBSHFT ) ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒ`ƒFƒbƒN•t‚«)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒã‚§ãƒƒã‚¯ä»˜ã)
 		#define CODE_NBI_C32_UBR_UAC_BSB_ACK( SRCP, DESTP )	\
 			if( (SRCP)[3] != 0 )\
 			{\
@@ -2871,7 +2871,7 @@ namespace DxLib
 				else					CODE_NBI_C32_UBR_UAC_BSB( SRCP, DESTP )\
 			}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒ`ƒFƒbƒN•t‚«)(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒã‚§ãƒƒã‚¯ä»˜ã)(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_NBI_C32_UBR_UAC_BSB_ACK_NTBL( SRCP, DESTP, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )	\
 			if( (SRCP)[3] != 0 )\
 			{\
@@ -2879,7 +2879,7 @@ namespace DxLib
 				else					CODE_NBI_C32_UBR_UAC_BSB_NTBL( SRCP, DESTP, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )\
 			}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—
 		#define CODE_NBI_C32_UBR_NAC_BSB( SRCP, DESTP )	\
 		{\
 			SrcB[0] = (BYTE)( MT1( BTABLE( (SRCP)[0] ) ) ) ;\
@@ -2890,7 +2890,7 @@ namespace DxLib
 			*((DWORD *)(DESTP)) = (DWORD)( Data & ( DataD - ( DataD >> MEMIMG_XRGB8_SUBSHFT ) ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_NBI_C32_UBR_NAC_BSB_NTBL( SRCP, DESTP, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )	\
 		{\
 			SrcB[0] = (BYTE)( ( (SRCP)[0] * ABRIGHT * BBRIGHT ) >> 16 ) ;\
@@ -2901,22 +2901,22 @@ namespace DxLib
 			*((DWORD *)(DESTP)) = (DWORD)( Data & ( DataD - ( DataD >> MEMIMG_XRGB8_SUBSHFT ) ) ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(“§‰ßFƒ`ƒFƒbƒN•t‚«)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(é€éŽè‰²ãƒã‚§ãƒƒã‚¯ä»˜ã)
 		#define CODE_NBI_C32_UBR_NAC_BSB_TCK( SRCP, DESTP )	\
 			if( *((DWORD *)(SRCP)) != TransColor ) CODE_NBI_C32_UBR_NAC_BSB( SRCP, DESTP )
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(“§‰ßFƒ`ƒFƒbƒN•t‚«)(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(é€éŽè‰²ãƒã‚§ãƒƒã‚¯ä»˜ã)(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_NBI_C32_UBR_NAC_BSB_TCK_NTBL( SRCP, DESTP, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )	\
 			if( *((DWORD *)(SRCP)) != TransColor ) CODE_NBI_C32_UBR_NAC_BSB_NTBL( SRCP, DESTP, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )
 
 
-  // æŽZƒuƒŒƒ“ƒh
+  // ä¹—ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 
-    // ƒuƒŒƒ“ƒh‰æ‘œ‚ ‚è
+    // ãƒ–ãƒ¬ãƒ³ãƒ‰ç”»åƒã‚ã‚Š
  
-      // ‹P“x–³‚µ
+      // è¼åº¦ç„¡ã—
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š
 		#define CODE_UBI_C32_NBR_UAC_BML( SRCP, DESTP, BLEND )	\
 		{\
 			(DESTP)[0] = (BYTE)( ( (SRCP)[0] * BIMG(BLEND) * (SRCP)[3] * (DESTP)[0] ) >> 24 ) ;\
@@ -2924,12 +2924,12 @@ namespace DxLib
 			(DESTP)[2] = (BYTE)( ( (SRCP)[2] * BIMG(BLEND) * (SRCP)[3] * (DESTP)[2] ) >> 24 ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒ`ƒFƒbƒN•t‚«)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒã‚§ãƒƒã‚¯ä»˜ã)
 		#define CODE_UBI_C32_NBR_UAC_BML_ACK( SRCP, DESTP, BLEND )	\
 			if( (SRCP)[3] == 255 ) 	CODE_UBI_C32_NBR_NAC_BML( SRCP, DESTP, BLEND )\
 			else					CODE_UBI_C32_NBR_UAC_BML( SRCP, DESTP, BLEND )
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—
 		#define CODE_UBI_C32_NBR_NAC_BML( SRCP, DESTP, BLEND )	\
 		{\
 			(DESTP)[0] = (BYTE)( ( (SRCP)[0] * BIMG(BLEND) * (DESTP)[0] ) >> 16 ) ;\
@@ -2937,13 +2937,13 @@ namespace DxLib
 			(DESTP)[2] = (BYTE)( ( (SRCP)[2] * BIMG(BLEND) * (DESTP)[2] ) >> 16 ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(“§‰ßFƒ`ƒFƒbƒN•t‚«)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(é€éŽè‰²ãƒã‚§ãƒƒã‚¯ä»˜ã)
 		#define CODE_UBI_C32_NBR_NAC_BML_TCK( SRCP, DESTP, BLEND )	\
 			if( *((DWORD *)(SRCP)) != TransColor ) CODE_UBI_C32_NBR_NAC_BML( SRCP, DESTP, BLEND )
 
-      // ‹P“x‚ ‚è
+      // è¼åº¦ã‚ã‚Š
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š
 		#define CODE_UBI_C32_UBR_UAC_BML( SRCP, DESTP, BLEND )	\
 		{\
 			(DESTP)[0] = (BYTE)( ( BTABLE( (SRCP)[0] ) * BIMG(BLEND) * (SRCP)[3] * (DESTP)[0] ) >> 24 ) ;\
@@ -2951,7 +2951,7 @@ namespace DxLib
 			(DESTP)[2] = (BYTE)( ( RTABLE( (SRCP)[2] ) * BIMG(BLEND) * (SRCP)[3] * (DESTP)[2] ) >> 24 ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_UBI_C32_UBR_UAC_BML_NTBL( SRCP, DESTP, BLEND, RBRIGHT, GBRIGHT, BBRIGHT )	\
 		{\
 			(DESTP)[0] = (BYTE)( ( ( ( (SRCP)[0] * BBRIGHT ) >> 8 ) * BIMG(BLEND) * (SRCP)[3] * (DESTP)[0] ) >> 24 ) ;\
@@ -2959,17 +2959,17 @@ namespace DxLib
 			(DESTP)[2] = (BYTE)( ( ( ( (SRCP)[2] * RBRIGHT ) >> 8 ) * BIMG(BLEND) * (SRCP)[3] * (DESTP)[2] ) >> 24 ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒ`ƒFƒbƒN•t‚«)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒã‚§ãƒƒã‚¯ä»˜ã)
 		#define CODE_UBI_C32_UBR_UAC_BML_ACK( SRCP, DESTP, BLEND )	\
 			if( (SRCP)[3] == 255 ) 	CODE_UBI_C32_UBR_NAC_BML( SRCP, DESTP, BLEND )\
 			else					CODE_UBI_C32_UBR_UAC_BML( SRCP, DESTP, BLEND )
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒ`ƒFƒbƒN•t‚«)(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒã‚§ãƒƒã‚¯ä»˜ã)(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_UBI_C32_UBR_UAC_BML_ACK_NTBL( SRCP, DESTP, BLEND, RBRIGHT, GBRIGHT, BBRIGHT )	\
 			if( (SRCP)[3] == 255 ) 	CODE_UBI_C32_UBR_NAC_BML_NTBL( SRCP, DESTP, BLEND, RBRIGHT, GBRIGHT, BBRIGHT )\
 			else					CODE_UBI_C32_UBR_UAC_BML_NTBL( SRCP, DESTP, BLEND, RBRIGHT, GBRIGHT, BBRIGHT )
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—
 		#define CODE_UBI_C32_UBR_NAC_BML( SRCP, DESTP, BLEND )	\
 		{\
 			(DESTP)[0] = (BYTE)( ( BTABLE( (SRCP)[0] ) * BIMG(BLEND) * (DESTP)[0] ) >> 16 ) ;\
@@ -2977,7 +2977,7 @@ namespace DxLib
 			(DESTP)[2] = (BYTE)( ( RTABLE( (SRCP)[2] ) * BIMG(BLEND) * (DESTP)[2] ) >> 16 ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_UBI_C32_UBR_NAC_BML_NTBL( SRCP, DESTP, BLEND, RBRIGHT, GBRIGHT, BBRIGHT )	\
 		{\
 			(DESTP)[0] = (BYTE)( ( (SRCP)[0] * BBRIGHT * BIMG(BLEND) * (DESTP)[0] ) >> 24 ) ;\
@@ -2985,19 +2985,19 @@ namespace DxLib
 			(DESTP)[2] = (BYTE)( ( (SRCP)[2] * RBRIGHT * BIMG(BLEND) * (DESTP)[2] ) >> 24 ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(“§‰ßFƒ`ƒFƒbƒN•t‚«)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(é€éŽè‰²ãƒã‚§ãƒƒã‚¯ä»˜ã)
 		#define CODE_UBI_C32_UBR_NAC_BML_TCK( SRCP, DESTP, BLEND )	\
 			if( *((DWORD *)(SRCP)) != TransColor ) CODE_UBI_C32_UBR_NAC_BML( SRCP, DESTP, BLEND )
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(“§‰ßFƒ`ƒFƒbƒN•t‚«)(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(é€éŽè‰²ãƒã‚§ãƒƒã‚¯ä»˜ã)(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_UBI_C32_UBR_NAC_BML_TCK_NTBL( SRCP, DESTP, BLEND, RBRIGHT, GBRIGHT, BBRIGHT )	\
 			if( *((DWORD *)(SRCP)) != TransColor ) CODE_UBI_C32_UBR_NAC_BML_NTBL( SRCP, DESTP, BLEND, RBRIGHT, GBRIGHT, BBRIGHT )
 
-    // ƒuƒŒƒ“ƒh‰æ‘œ–³‚µ
+    // ãƒ–ãƒ¬ãƒ³ãƒ‰ç”»åƒç„¡ã—
 
-      // ‹P“x–³‚µ
+      // è¼åº¦ç„¡ã—
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š
 		#define CODE_NBI_C32_NBR_UAC_BML( SRCP, DESTP )	\
 		{\
 			(DESTP)[0] = (BYTE)( ( (SRCP)[0] * (SRCP)[3] * (DESTP)[0] ) >> 16 ) ;\
@@ -3005,12 +3005,12 @@ namespace DxLib
 			(DESTP)[2] = (BYTE)( ( (SRCP)[2] * (SRCP)[3] * (DESTP)[2] ) >> 16 ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒ`ƒFƒbƒN•t‚«)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒã‚§ãƒƒã‚¯ä»˜ã)
 		#define CODE_NBI_C32_NBR_UAC_BML_ACK( SRCP, DESTP )	\
 			if( (SRCP)[3] == 255 ) 	CODE_NBI_C32_NBR_NAC_BML( SRCP, DESTP )\
 			else					CODE_NBI_C32_NBR_UAC_BML( SRCP, DESTP )
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—
 		#define CODE_NBI_C32_NBR_NAC_BML( SRCP, DESTP )	\
 		{\
 			(DESTP)[0] = (BYTE)( ( (SRCP)[0] * (DESTP)[0] ) >> 8 ) ;\
@@ -3018,13 +3018,13 @@ namespace DxLib
 			(DESTP)[2] = (BYTE)( ( (SRCP)[2] * (DESTP)[2] ) >> 8 ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(“§‰ßFƒ`ƒFƒbƒN•t‚«)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(é€éŽè‰²ãƒã‚§ãƒƒã‚¯ä»˜ã)
 		#define CODE_NBI_C32_NBR_NAC_BML_TCK( SRCP, DESTP )	\
 			if( *((DWORD *)(SRCP)) != TransColor ) CODE_NBI_C32_NBR_NAC_BML( SRCP, DESTP )
 
-      // ‹P“x‚ ‚è
+      // è¼åº¦ã‚ã‚Š
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š
 		#define CODE_NBI_C32_UBR_UAC_BML( SRCP, DESTP )	\
 		{\
 			(DESTP)[0] = (BYTE)( ( BTABLE( (SRCP)[0] ) * (SRCP)[3] * (DESTP)[0] ) >> 16 ) ;\
@@ -3032,7 +3032,7 @@ namespace DxLib
 			(DESTP)[2] = (BYTE)( ( RTABLE( (SRCP)[2] ) * (SRCP)[3] * (DESTP)[2] ) >> 16 ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_NBI_C32_UBR_UAC_BML_NTBL( SRCP, DESTP, RBRIGHT, GBRIGHT, BBRIGHT )	\
 		{\
 			(DESTP)[0] = (BYTE)( ( (SRCP)[0] * BBRIGHT * (SRCP)[3] * (DESTP)[0] ) >> 24 ) ;\
@@ -3040,17 +3040,17 @@ namespace DxLib
 			(DESTP)[2] = (BYTE)( ( (SRCP)[2] * RBRIGHT * (SRCP)[3] * (DESTP)[2] ) >> 24 ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒ`ƒFƒbƒN•t‚«)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒã‚§ãƒƒã‚¯ä»˜ã)
 		#define CODE_NBI_C32_UBR_UAC_BML_ACK( SRCP, DESTP )	\
 			if( (SRCP)[3] == 255 ) 	CODE_NBI_C32_UBR_NAC_BML( SRCP, DESTP )\
 			else					CODE_NBI_C32_UBR_UAC_BML( SRCP, DESTP )
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒ`ƒFƒbƒN•t‚«)(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒã‚§ãƒƒã‚¯ä»˜ã)(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_NBI_C32_UBR_UAC_BML_ACK_NTBL( SRCP, DESTP, RBRIGHT, GBRIGHT, BBRIGHT )	\
 			if( (SRCP)[3] == 255 ) 	CODE_NBI_C32_UBR_NAC_BML_NTBL( SRCP, DESTP, RBRIGHT, GBRIGHT, BBRIGHT )\
 			else					CODE_NBI_C32_UBR_UAC_BML_NTBL( SRCP, DESTP, RBRIGHT, GBRIGHT, BBRIGHT )
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—
 		#define CODE_NBI_C32_UBR_NAC_BML( SRCP, DESTP )	\
 		{\
 			(DESTP)[0] = (BYTE)( ( BTABLE( (SRCP)[0] ) * (DESTP)[0] ) >> 8 ) ;\
@@ -3058,7 +3058,7 @@ namespace DxLib
 			(DESTP)[2] = (BYTE)( ( RTABLE( (SRCP)[2] ) * (DESTP)[2] ) >> 8 ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_NBI_C32_UBR_NAC_BML_NTBL( SRCP, DESTP, RBRIGHT, GBRIGHT, BBRIGHT )	\
 		{\
 			(DESTP)[0] = (BYTE)( ( (SRCP)[0] * BBRIGHT * (DESTP)[0] ) >> 16 ) ;\
@@ -3066,22 +3066,22 @@ namespace DxLib
 			(DESTP)[2] = (BYTE)( ( (SRCP)[2] * RBRIGHT * (DESTP)[2] ) >> 16 ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(“§‰ßFƒ`ƒFƒbƒN•t‚«)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(é€éŽè‰²ãƒã‚§ãƒƒã‚¯ä»˜ã)
 		#define CODE_NBI_C32_UBR_NAC_BML_TCK( SRCP, DESTP )	\
 			if( *((DWORD *)(SRCP)) != TransColor ) CODE_NBI_C32_UBR_NAC_BML( SRCP, DESTP )
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(“§‰ßFƒ`ƒFƒbƒN•t‚«)(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(é€éŽè‰²ãƒã‚§ãƒƒã‚¯ä»˜ã)(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_NBI_C32_UBR_NAC_BML_TCK_NTBL( SRCP, DESTP, RBRIGHT, GBRIGHT, BBRIGHT )	\
 			if( *((DWORD *)(SRCP)) != TransColor ) CODE_NBI_C32_UBR_NAC_BML_NTBL( SRCP, DESTP, RBRIGHT, GBRIGHT, BBRIGHT )
 
 
-  // æŽZ{ƒ¿ƒuƒŒƒ“ƒh
+  // ä¹—ç®—ï¼‹Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
 
-    // ƒuƒŒƒ“ƒh‰æ‘œ‚ ‚è
+    // ãƒ–ãƒ¬ãƒ³ãƒ‰ç”»åƒã‚ã‚Š
  
-      // ‹P“x–³‚µ
+      // è¼åº¦ç„¡ã—
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š
 		#define CODE_UBI_C32_NBR_UAC_BMA( SRCP, DESTP, BLEND )	\
 		{\
 			(DESTP)[0] = (BYTE)( ( ( (BYTE)( ( (SRCP)[0] * (DESTP)[0] ) >> 8 ) - (DESTP)[0] ) * BPARAM * BIMG(BLEND) * SRCP[3] + ( (DESTP)[0] << 24 ) ) >> 24 ) ;\
@@ -3089,12 +3089,12 @@ namespace DxLib
 			(DESTP)[2] = (BYTE)( ( ( (BYTE)( ( (SRCP)[2] * (DESTP)[2] ) >> 8 ) - (DESTP)[2] ) * BPARAM * BIMG(BLEND) * SRCP[3] + ( (DESTP)[2] << 24 ) ) >> 24 ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒ`ƒFƒbƒN•t‚«)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒã‚§ãƒƒã‚¯ä»˜ã)
 		#define CODE_UBI_C32_NBR_UAC_BMA_ACK( SRCP, DESTP, BLEND )	\
 			if( (SRCP)[3] == 255 ) 	CODE_UBI_C32_NBR_NAC_BMA( SRCP, DESTP, BLEND )\
 			else					CODE_UBI_C32_NBR_UAC_BMA( SRCP, DESTP, BLEND )
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—
 		#define CODE_UBI_C32_NBR_NAC_BMA( SRCP, DESTP, BLEND )	\
 		{\
 			(DESTP)[0] = (BYTE)( ( ( (BYTE)( ( (SRCP)[0] * (DESTP)[0] ) >> 8 ) - (DESTP)[0] ) * BPARAM * BIMG(BLEND) + ( (DESTP)[0] << 16 ) ) >> 16 ) ;\
@@ -3102,13 +3102,13 @@ namespace DxLib
 			(DESTP)[2] = (BYTE)( ( ( (BYTE)( ( (SRCP)[2] * (DESTP)[2] ) >> 8 ) - (DESTP)[2] ) * BPARAM * BIMG(BLEND) + ( (DESTP)[2] << 16 ) ) >> 16 ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(“§‰ßFƒ`ƒFƒbƒN•t‚«)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(é€éŽè‰²ãƒã‚§ãƒƒã‚¯ä»˜ã)
 		#define CODE_UBI_C32_NBR_NAC_BMA_TCK( SRCP, DESTP, BLEND )	\
 			if( *((DWORD *)(SRCP)) != TransColor ) CODE_UBI_C32_NBR_NAC_BMA( SRCP, DESTP, BLEND )
 
-      // ‹P“x‚ ‚è
+      // è¼åº¦ã‚ã‚Š
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š
 		#define CODE_UBI_C32_UBR_UAC_BMA( SRCP, DESTP, BLEND )	\
 		{\
 			(DESTP)[0] = (BYTE)( ( ( (BYTE)( ( BTABLE( (SRCP)[0] ) * (DESTP)[0] ) >> 8 ) - (DESTP)[0] ) * BPARAM * BIMG(BLEND) * SRCP[3] + ( (DESTP)[0] << 24 ) ) >> 24 ) ;\
@@ -3116,7 +3116,7 @@ namespace DxLib
 			(DESTP)[2] = (BYTE)( ( ( (BYTE)( ( RTABLE( (SRCP)[2] ) * (DESTP)[2] ) >> 8 ) - (DESTP)[2] ) * BPARAM * BIMG(BLEND) * SRCP[3] + ( (DESTP)[2] << 24 ) ) >> 24 ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_UBI_C32_UBR_UAC_BMA_NTBL( SRCP, DESTP, BLEND, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )	\
 		{\
 			(DESTP)[0] = (BYTE)( ( ( (BYTE)( ( (SRCP)[0] * BBRIGHT * (DESTP)[0] ) >> 16 ) - (DESTP)[0] ) * ABRIGHT * BIMG(BLEND) * SRCP[3] + ( (DESTP)[0] << 24 ) ) >> 24 ) ;\
@@ -3124,17 +3124,17 @@ namespace DxLib
 			(DESTP)[2] = (BYTE)( ( ( (BYTE)( ( (SRCP)[2] * RBRIGHT * (DESTP)[2] ) >> 16 ) - (DESTP)[2] ) * ABRIGHT * BIMG(BLEND) * SRCP[3] + ( (DESTP)[2] << 24 ) ) >> 24 ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒ`ƒFƒbƒN•t‚«)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒã‚§ãƒƒã‚¯ä»˜ã)
 		#define CODE_UBI_C32_UBR_UAC_BMA_ACK( SRCP, DESTP, BLEND )	\
 			if( (SRCP)[3] == 255 ) 	CODE_UBI_C32_UBR_NAC_BMA( SRCP, DESTP, BLEND )\
 			else					CODE_UBI_C32_UBR_UAC_BMA( SRCP, DESTP, BLEND )
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒ`ƒFƒbƒN•t‚«)(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒã‚§ãƒƒã‚¯ä»˜ã)(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_UBI_C32_UBR_UAC_BMA_ACK_NTBL( SRCP, DESTP, BLEND, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )	\
 			if( (SRCP)[3] == 255 ) 	CODE_UBI_C32_UBR_NAC_BMA_NTBL( SRCP, DESTP, BLEND, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )\
 			else					CODE_UBI_C32_UBR_UAC_BMA_NTBL( SRCP, DESTP, BLEND, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—
 		#define CODE_UBI_C32_UBR_NAC_BMA( SRCP, DESTP, BLEND )	\
 		{\
 			(DESTP)[0] = (BYTE)( ( ( (BYTE)( ( BTABLE( (SRCP)[0] ) * (DESTP)[0] ) >> 8 ) - (DESTP)[0] ) * BPARAM * BIMG(BLEND) + ( (DESTP)[0] << 16 ) ) >> 16 ) ;\
@@ -3142,7 +3142,7 @@ namespace DxLib
 			(DESTP)[2] = (BYTE)( ( ( (BYTE)( ( RTABLE( (SRCP)[2] ) * (DESTP)[2] ) >> 8 ) - (DESTP)[2] ) * BPARAM * BIMG(BLEND) + ( (DESTP)[2] << 16 ) ) >> 16 ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_UBI_C32_UBR_NAC_BMA_NTBL( SRCP, DESTP, BLEND, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )	\
 		{\
 			(DESTP)[0] = (BYTE)( ( ( (BYTE)( ( (SRCP)[0] * BBRIGHT * (DESTP)[0] ) >> 16 ) - (DESTP)[0] ) * ABRIGHT * BIMG(BLEND) + ( (DESTP)[0] << 16 ) ) >> 16 ) ;\
@@ -3150,19 +3150,19 @@ namespace DxLib
 			(DESTP)[2] = (BYTE)( ( ( (BYTE)( ( (SRCP)[2] * RBRIGHT * (DESTP)[2] ) >> 16 ) - (DESTP)[2] ) * ABRIGHT * BIMG(BLEND) + ( (DESTP)[2] << 16 ) ) >> 16 ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(“§‰ßFƒ`ƒFƒbƒN•t‚«)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(é€éŽè‰²ãƒã‚§ãƒƒã‚¯ä»˜ã)
 		#define CODE_UBI_C32_UBR_NAC_BMA_TCK( SRCP, DESTP, BLEND )	\
 			if( *((DWORD *)(SRCP)) != TransColor ) CODE_UBI_C32_UBR_NAC_BMA( SRCP, DESTP, BLEND )
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(“§‰ßFƒ`ƒFƒbƒN•t‚«)(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(é€éŽè‰²ãƒã‚§ãƒƒã‚¯ä»˜ã)(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_UBI_C32_UBR_NAC_BMA_TCK_NTBL( SRCP, DESTP, BLEND, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )	\
 			if( *((DWORD *)(SRCP)) != TransColor ) CODE_UBI_C32_UBR_NAC_BMA_NTBL( SRCP, DESTP, BLEND, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )
 
-    // ƒuƒŒƒ“ƒh‰æ‘œ–³‚µ
+    // ãƒ–ãƒ¬ãƒ³ãƒ‰ç”»åƒç„¡ã—
 
-      // ‹P“x–³‚µ
+      // è¼åº¦ç„¡ã—
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š
 		#define CODE_NBI_C32_NBR_UAC_BMA( SRCP, DESTP )	\
 		{\
 			(DESTP)[0] = (BYTE)( ( ( (BYTE)( ( (SRCP)[0] * (DESTP)[0] ) >> 8 ) - (DESTP)[0] ) * BPARAM * SRCP[3] + ( (DESTP)[0] << 16 ) ) >> 16 ) ;\
@@ -3170,12 +3170,12 @@ namespace DxLib
 			(DESTP)[2] = (BYTE)( ( ( (BYTE)( ( (SRCP)[2] * (DESTP)[2] ) >> 8 ) - (DESTP)[2] ) * BPARAM * SRCP[3] + ( (DESTP)[2] << 16 ) ) >> 16 ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒ`ƒFƒbƒN•t‚«)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒã‚§ãƒƒã‚¯ä»˜ã)
 		#define CODE_NBI_C32_NBR_UAC_BMA_ACK( SRCP, DESTP )	\
 			if( (SRCP)[3] == 255 ) 	CODE_NBI_C32_NBR_NAC_BMA( SRCP, DESTP )\
 			else					CODE_NBI_C32_NBR_UAC_BMA( SRCP, DESTP )
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—
 		#define CODE_NBI_C32_NBR_NAC_BMA( SRCP, DESTP )	\
 		{\
 			(DESTP)[0] = (BYTE)( ( ( (BYTE)( ( (SRCP)[0] * (DESTP)[0] ) >> 8 ) - (DESTP)[0] ) * BPARAM + ( (DESTP)[0] << 8 ) ) >> 8 ) ;\
@@ -3183,13 +3183,13 @@ namespace DxLib
 			(DESTP)[2] = (BYTE)( ( ( (BYTE)( ( (SRCP)[2] * (DESTP)[2] ) >> 8 ) - (DESTP)[2] ) * BPARAM + ( (DESTP)[2] << 8 ) ) >> 8 ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(“§‰ßFƒ`ƒFƒbƒN•t‚«)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(é€éŽè‰²ãƒã‚§ãƒƒã‚¯ä»˜ã)
 		#define CODE_NBI_C32_NBR_NAC_BMA_TCK( SRCP, DESTP )	\
 			if( *((DWORD *)(SRCP)) != TransColor ) CODE_NBI_C32_NBR_NAC_BMA( SRCP, DESTP )
 
-      // ‹P“x‚ ‚è
+      // è¼åº¦ã‚ã‚Š
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š
 		#define CODE_NBI_C32_UBR_UAC_BMA( SRCP, DESTP )	\
 		{\
 			(DESTP)[0] = (BYTE)( ( ( (BYTE)( ( BTABLE( (SRCP)[0] ) * (DESTP)[0] ) >> 8 ) - (DESTP)[0] ) * BPARAM * SRCP[3] + ( (DESTP)[0] << 16 ) ) >> 16 ) ;\
@@ -3197,7 +3197,7 @@ namespace DxLib
 			(DESTP)[2] = (BYTE)( ( ( (BYTE)( ( RTABLE( (SRCP)[2] ) * (DESTP)[2] ) >> 8 ) - (DESTP)[2] ) * BPARAM * SRCP[3] + ( (DESTP)[2] << 16 ) ) >> 16 ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_NBI_C32_UBR_UAC_BMA_NTBL( SRCP, DESTP, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )	\
 		{\
 			(DESTP)[0] = (BYTE)( ( ( (BYTE)( ( (SRCP)[0] * BBRIGHT * (DESTP)[0] ) >> 16 ) - (DESTP)[0] ) * ABRIGHT * SRCP[3] + ( (DESTP)[0] << 16 ) ) >> 16 ) ;\
@@ -3205,17 +3205,17 @@ namespace DxLib
 			(DESTP)[2] = (BYTE)( ( ( (BYTE)( ( (SRCP)[2] * RBRIGHT * (DESTP)[2] ) >> 16 ) - (DESTP)[2] ) * ABRIGHT * SRCP[3] + ( (DESTP)[2] << 16 ) ) >> 16 ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒ`ƒFƒbƒN•t‚«)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒã‚§ãƒƒã‚¯ä»˜ã)
 		#define CODE_NBI_C32_UBR_UAC_BMA_ACK( SRCP, DESTP )	\
 			if( (SRCP)[3] == 255 ) 	CODE_NBI_C32_UBR_NAC_BMA( SRCP, DESTP )\
 			else					CODE_NBI_C32_UBR_UAC_BMA( SRCP, DESTP )
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒ`ƒFƒbƒN•t‚«)(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒã‚§ãƒƒã‚¯ä»˜ã)(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_NBI_C32_UBR_UAC_BMA_ACK_NTBL( SRCP, DESTP, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )	\
 			if( (SRCP)[3] == 255 ) 	CODE_NBI_C32_UBR_NAC_BMA_NTBL( SRCP, DESTP, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )\
 			else					CODE_NBI_C32_UBR_UAC_BMA_NTBL( SRCP, DESTP, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—
 		#define CODE_NBI_C32_UBR_NAC_BMA( SRCP, DESTP )	\
 		{\
 			(DESTP)[0] = (BYTE)( ( ( (BYTE)( ( BTABLE( (SRCP)[0] ) * (DESTP)[0] ) >> 8 ) - (DESTP)[0] ) * BPARAM + ( (DESTP)[0] << 8 ) ) >> 8 ) ;\
@@ -3223,7 +3223,7 @@ namespace DxLib
 			(DESTP)[2] = (BYTE)( ( ( (BYTE)( ( RTABLE( (SRCP)[2] ) * (DESTP)[2] ) >> 8 ) - (DESTP)[2] ) * BPARAM + ( (DESTP)[2] << 8 ) ) >> 8 ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_NBI_C32_UBR_NAC_BMA_NTBL( SRCP, DESTP, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )	\
 		{\
 			(DESTP)[0] = (BYTE)( ( ( (BYTE)( ( (SRCP)[0] * BBRIGHT * (DESTP)[0] ) >> 16 ) - (DESTP)[0] ) * ABRIGHT + ( (DESTP)[0] << 8 ) ) >> 8 ) ;\
@@ -3231,22 +3231,22 @@ namespace DxLib
 			(DESTP)[2] = (BYTE)( ( ( (BYTE)( ( (SRCP)[2] * RBRIGHT * (DESTP)[2] ) >> 16 ) - (DESTP)[2] ) * ABRIGHT + ( (DESTP)[2] << 8 ) ) >> 8 ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(“§‰ßFƒ`ƒFƒbƒN•t‚«)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(é€éŽè‰²ãƒã‚§ãƒƒã‚¯ä»˜ã)
 		#define CODE_NBI_C32_UBR_NAC_BMA_TCK( SRCP, DESTP )	\
 			if( *((DWORD *)(SRCP)) != TransColor ) CODE_NBI_C32_UBR_NAC_BMA( SRCP, DESTP )
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(“§‰ßFƒ`ƒFƒbƒN•t‚«)(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(é€éŽè‰²ãƒã‚§ãƒƒã‚¯ä»˜ã)(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_NBI_C32_UBR_NAC_BMA_TCK_NTBL( SRCP, DESTP, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )	\
 			if( *((DWORD *)(SRCP)) != TransColor ) CODE_NBI_C32_UBR_NAC_BMA_NTBL( SRCP, DESTP, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )
 
 
-  // •`‰æŒ³‚ÌF‚ð”½“]{ƒ¿ƒuƒŒƒ“ƒh
+  // æç”»å…ƒã®è‰²ã‚’åè»¢ï¼‹Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
 
-    // ƒuƒŒƒ“ƒh‰æ‘œ‚ ‚è
+    // ãƒ–ãƒ¬ãƒ³ãƒ‰ç”»åƒã‚ã‚Š
  
-      // ‹P“x–³‚µ
+      // è¼åº¦ç„¡ã—
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š
 		#define CODE_UBI_C32_NBR_UAC_BIS( SRCP, DESTP, BLEND )	\
 		{\
 			(DESTP)[0] = (BYTE)( ( ( (BYTE)( ~(SRCP)[0] ) - (DESTP)[0] ) * BPARAM * BIMG(BLEND) * SRCP[3] + ( (DESTP)[0] << 24 ) ) >> 24 ) ;\
@@ -3254,12 +3254,12 @@ namespace DxLib
 			(DESTP)[2] = (BYTE)( ( ( (BYTE)( ~(SRCP)[2] ) - (DESTP)[2] ) * BPARAM * BIMG(BLEND) * SRCP[3] + ( (DESTP)[2] << 24 ) ) >> 24 ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒ`ƒFƒbƒN•t‚«)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒã‚§ãƒƒã‚¯ä»˜ã)
 		#define CODE_UBI_C32_NBR_UAC_BIS_ACK( SRCP, DESTP, BLEND )	\
 			if( (SRCP)[3] == 255 ) 	CODE_UBI_C32_NBR_NAC_BIS( SRCP, DESTP, BLEND )\
 			else					CODE_UBI_C32_NBR_UAC_BIS( SRCP, DESTP, BLEND )
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—
 		#define CODE_UBI_C32_NBR_NAC_BIS( SRCP, DESTP, BLEND )	\
 		{\
 			(DESTP)[0] = (BYTE)( ( ( (BYTE)( ~(SRCP)[0] ) - (DESTP)[0] ) * BPARAM * BIMG(BLEND) + ( (DESTP)[0] << 16 ) ) >> 16 ) ;\
@@ -3267,13 +3267,13 @@ namespace DxLib
 			(DESTP)[2] = (BYTE)( ( ( (BYTE)( ~(SRCP)[2] ) - (DESTP)[2] ) * BPARAM * BIMG(BLEND) + ( (DESTP)[2] << 16 ) ) >> 16 ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(“§‰ßFƒ`ƒFƒbƒN•t‚«)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(é€éŽè‰²ãƒã‚§ãƒƒã‚¯ä»˜ã)
 		#define CODE_UBI_C32_NBR_NAC_BIS_TCK( SRCP, DESTP, BLEND )	\
 			if( *((DWORD *)(SRCP)) != TransColor ) CODE_UBI_C32_NBR_NAC_BIS( SRCP, DESTP, BLEND )
 
-      // ‹P“x‚ ‚è
+      // è¼åº¦ã‚ã‚Š
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š
 		#define CODE_UBI_C32_UBR_UAC_BIS( SRCP, DESTP, BLEND )	\
 		{\
 			(DESTP)[0] = (BYTE)( ( ( (BYTE)( BTABLE( ( BYTE )~(SRCP)[0] ) ) - (DESTP)[0] ) * BPARAM * BIMG(BLEND) * SRCP[3] + ( (DESTP)[0] << 24 ) ) >> 24 ) ;\
@@ -3281,7 +3281,7 @@ namespace DxLib
 			(DESTP)[2] = (BYTE)( ( ( (BYTE)( RTABLE( ( BYTE )~(SRCP)[2] ) ) - (DESTP)[2] ) * BPARAM * BIMG(BLEND) * SRCP[3] + ( (DESTP)[2] << 24 ) ) >> 24 ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_UBI_C32_UBR_UAC_BIS_NTBL( SRCP, DESTP, BLEND, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )	\
 		{\
 			(DESTP)[0] = (BYTE)( ( ( (BYTE)( ( ( BYTE )~(SRCP)[0] * BBRIGHT ) >> 8 ) - (DESTP)[0] ) * ABRIGHT * BIMG(BLEND) * SRCP[3] + ( (DESTP)[0] << 24 ) ) >> 24 ) ;\
@@ -3289,17 +3289,17 @@ namespace DxLib
 			(DESTP)[2] = (BYTE)( ( ( (BYTE)( ( ( BYTE )~(SRCP)[2] * RBRIGHT ) >> 8 ) - (DESTP)[2] ) * ABRIGHT * BIMG(BLEND) * SRCP[3] + ( (DESTP)[2] << 24 ) ) >> 24 ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒ`ƒFƒbƒN•t‚«)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒã‚§ãƒƒã‚¯ä»˜ã)
 		#define CODE_UBI_C32_UBR_UAC_BIS_ACK( SRCP, DESTP, BLEND )	\
 			if( (SRCP)[3] == 255 ) 	CODE_UBI_C32_UBR_NAC_BIS( SRCP, DESTP, BLEND )\
 			else					CODE_UBI_C32_UBR_UAC_BIS( SRCP, DESTP, BLEND )
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒ`ƒFƒbƒN•t‚«)(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒã‚§ãƒƒã‚¯ä»˜ã)(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_UBI_C32_UBR_UAC_BIS_ACK_NTBL( SRCP, DESTP, BLEND, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )	\
 			if( (SRCP)[3] == 255 ) 	CODE_UBI_C32_UBR_NAC_BIS_NTBL( SRCP, DESTP, BLEND, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )\
 			else					CODE_UBI_C32_UBR_UAC_BIS_NTBL( SRCP, DESTP, BLEND, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—
 		#define CODE_UBI_C32_UBR_NAC_BIS( SRCP, DESTP, BLEND )	\
 		{\
 			(DESTP)[0] = (BYTE)( ( ( (BYTE)( BTABLE( (BYTE)~(SRCP)[0] ) ) - (DESTP)[0] ) * BPARAM * BIMG(BLEND) + ( (DESTP)[0] << 16 ) ) >> 16 ) ;\
@@ -3307,7 +3307,7 @@ namespace DxLib
 			(DESTP)[2] = (BYTE)( ( ( (BYTE)( RTABLE( (BYTE)~(SRCP)[2] ) ) - (DESTP)[2] ) * BPARAM * BIMG(BLEND) + ( (DESTP)[2] << 16 ) ) >> 16 ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_UBI_C32_UBR_NAC_BIS_NTBL( SRCP, DESTP, BLEND, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )	\
 		{\
 			(DESTP)[0] = (BYTE)( ( ( (BYTE)( ( (BYTE)~(SRCP)[0] * BBRIGHT ) >> 8 ) - (DESTP)[0] ) * ABRIGHT * BIMG(BLEND) + ( (DESTP)[0] << 16 ) ) >> 16 ) ;\
@@ -3315,19 +3315,19 @@ namespace DxLib
 			(DESTP)[2] = (BYTE)( ( ( (BYTE)( ( (BYTE)~(SRCP)[2] * RBRIGHT ) >> 8 ) - (DESTP)[2] ) * ABRIGHT * BIMG(BLEND) + ( (DESTP)[2] << 16 ) ) >> 16 ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(“§‰ßFƒ`ƒFƒbƒN•t‚«)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(é€éŽè‰²ãƒã‚§ãƒƒã‚¯ä»˜ã)
 		#define CODE_UBI_C32_UBR_NAC_BIS_TCK( SRCP, DESTP, BLEND )	\
 			if( *((DWORD *)(SRCP)) != TransColor ) CODE_UBI_C32_UBR_NAC_BIS( SRCP, DESTP, BLEND )
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(“§‰ßFƒ`ƒFƒbƒN•t‚«)(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(é€éŽè‰²ãƒã‚§ãƒƒã‚¯ä»˜ã)(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_UBI_C32_UBR_NAC_BIS_TCK_NTBL( SRCP, DESTP, BLEND, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )	\
 			if( *((DWORD *)(SRCP)) != TransColor ) CODE_UBI_C32_UBR_NAC_BIS_NTBL( SRCP, DESTP, BLEND, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )
 
-    // ƒuƒŒƒ“ƒh‰æ‘œ–³‚µ
+    // ãƒ–ãƒ¬ãƒ³ãƒ‰ç”»åƒç„¡ã—
 
-      // ‹P“x–³‚µ
+      // è¼åº¦ç„¡ã—
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š
 		#define CODE_NBI_C32_NBR_UAC_BIS( SRCP, DESTP )	\
 		{\
 			(DESTP)[0] = (BYTE)( ( ( (BYTE)~(SRCP)[0] - (DESTP)[0] ) * BPARAM * SRCP[3] + ( (DESTP)[0] << 16 ) ) >> 16 ) ;\
@@ -3335,12 +3335,12 @@ namespace DxLib
 			(DESTP)[2] = (BYTE)( ( ( (BYTE)~(SRCP)[2] - (DESTP)[2] ) * BPARAM * SRCP[3] + ( (DESTP)[2] << 16 ) ) >> 16 ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒ`ƒFƒbƒN•t‚«)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒã‚§ãƒƒã‚¯ä»˜ã)
 		#define CODE_NBI_C32_NBR_UAC_BIS_ACK( SRCP, DESTP )	\
 			if( (SRCP)[3] == 255 ) 	CODE_NBI_C32_NBR_NAC_BIS( SRCP, DESTP )\
 			else					CODE_NBI_C32_NBR_UAC_BIS( SRCP, DESTP )
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—
 		#define CODE_NBI_C32_NBR_NAC_BIS( SRCP, DESTP )	\
 		{\
 			(DESTP)[0] = (BYTE)( ( ( (BYTE)~(SRCP)[0] - (DESTP)[0] ) * BPARAM + ( (DESTP)[0] << 8 ) ) >> 8 ) ;\
@@ -3348,13 +3348,13 @@ namespace DxLib
 			(DESTP)[2] = (BYTE)( ( ( (BYTE)~(SRCP)[2] - (DESTP)[2] ) * BPARAM + ( (DESTP)[2] << 8 ) ) >> 8 ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(“§‰ßFƒ`ƒFƒbƒN•t‚«)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(é€éŽè‰²ãƒã‚§ãƒƒã‚¯ä»˜ã)
 		#define CODE_NBI_C32_NBR_NAC_BIS_TCK( SRCP, DESTP )	\
 			if( *((DWORD *)(SRCP)) != TransColor ) CODE_NBI_C32_NBR_NAC_BIS( SRCP, DESTP )
 
-      // ‹P“x‚ ‚è
+      // è¼åº¦ã‚ã‚Š
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š
 		#define CODE_NBI_C32_UBR_UAC_BIS( SRCP, DESTP )	\
 		{\
 			(DESTP)[0] = (BYTE)( ( ( (BYTE)( BTABLE( (BYTE)~(SRCP)[0] ) ) - (DESTP)[0] ) * BPARAM * SRCP[3] + ( (DESTP)[0] << 16 ) ) >> 16 ) ;\
@@ -3362,7 +3362,7 @@ namespace DxLib
 			(DESTP)[2] = (BYTE)( ( ( (BYTE)( RTABLE( (BYTE)~(SRCP)[2] ) ) - (DESTP)[2] ) * BPARAM * SRCP[3] + ( (DESTP)[2] << 16 ) ) >> 16 ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_NBI_C32_UBR_UAC_BIS_NTBL( SRCP, DESTP, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )	\
 		{\
 			(DESTP)[0] = (BYTE)( ( ( (BYTE)( ( (BYTE)~(SRCP)[0] * BBRIGHT ) >> 8 ) - (DESTP)[0] ) * ABRIGHT * SRCP[3] + ( (DESTP)[0] << 16 ) ) >> 16 ) ;\
@@ -3370,17 +3370,17 @@ namespace DxLib
 			(DESTP)[2] = (BYTE)( ( ( (BYTE)( ( (BYTE)~(SRCP)[2] * RBRIGHT ) >> 8 ) - (DESTP)[2] ) * ABRIGHT * SRCP[3] + ( (DESTP)[2] << 16 ) ) >> 16 ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒ`ƒFƒbƒN•t‚«)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒã‚§ãƒƒã‚¯ä»˜ã)
 		#define CODE_NBI_C32_UBR_UAC_BIS_ACK( SRCP, DESTP )	\
 			if( (SRCP)[3] == 255 ) 	CODE_NBI_C32_UBR_NAC_BIS( SRCP, DESTP )\
 			else					CODE_NBI_C32_UBR_UAC_BIS( SRCP, DESTP )
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è(ƒ`ƒFƒbƒN•t‚«)(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Š(ãƒã‚§ãƒƒã‚¯ä»˜ã)(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_NBI_C32_UBR_UAC_BIS_ACK_NTBL( SRCP, DESTP, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )	\
 			if( (SRCP)[3] == 255 ) 	CODE_NBI_C32_UBR_NAC_BIS_NTBL( SRCP, DESTP, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )\
 			else					CODE_NBI_C32_UBR_UAC_BIS_NTBL( SRCP, DESTP, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—
 		#define CODE_NBI_C32_UBR_NAC_BIS( SRCP, DESTP )	\
 		{\
 			(DESTP)[0] = (BYTE)( ( ( (BYTE)( BTABLE( (BYTE)~(SRCP)[0] ) ) - (DESTP)[0] ) * BPARAM + ( (DESTP)[0] << 8 ) ) >> 8 ) ;\
@@ -3388,7 +3388,7 @@ namespace DxLib
 			(DESTP)[2] = (BYTE)( ( ( (BYTE)( RTABLE( (BYTE)~(SRCP)[2] ) ) - (DESTP)[2] ) * BPARAM + ( (DESTP)[2] << 8 ) ) >> 8 ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_NBI_C32_UBR_NAC_BIS_NTBL( SRCP, DESTP, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )	\
 		{\
 			(DESTP)[0] = (BYTE)( ( ( (BYTE)( ( (BYTE)~(SRCP)[0] * BBRIGHT ) >> 8 ) - (DESTP)[0] ) * ABRIGHT + ( (DESTP)[0] << 8 ) ) >> 8 ) ;\
@@ -3396,11 +3396,11 @@ namespace DxLib
 			(DESTP)[2] = (BYTE)( ( ( (BYTE)( ( (BYTE)~(SRCP)[2] * RBRIGHT ) >> 8 ) - (DESTP)[2] ) * ABRIGHT + ( (DESTP)[2] << 8 ) ) >> 8 ) ;\
 		}
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(“§‰ßFƒ`ƒFƒbƒN•t‚«)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(é€éŽè‰²ãƒã‚§ãƒƒã‚¯ä»˜ã)
 		#define CODE_NBI_C32_UBR_NAC_BIS_TCK( SRCP, DESTP )	\
 			if( *((DWORD *)(SRCP)) != TransColor ) CODE_NBI_C32_UBR_NAC_BIS( SRCP, DESTP )
 
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ(“§‰ßFƒ`ƒFƒbƒN•t‚«)(ƒe[ƒuƒ‹”ñŽg—p)
+		// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã—(é€éŽè‰²ãƒã‚§ãƒƒã‚¯ä»˜ã)(ãƒ†ãƒ¼ãƒ–ãƒ«éžä½¿ç”¨)
 		#define CODE_NBI_C32_UBR_NAC_BIS_TCK_NTBL( SRCP, DESTP, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )	\
 			if( *((DWORD *)(SRCP)) != TransColor ) CODE_NBI_C32_UBR_NAC_BIS_NTBL( SRCP, DESTP, ABRIGHT, RBRIGHT, GBRIGHT, BBRIGHT )
 
@@ -3414,9 +3414,9 @@ namespace DxLib
 
 
 
-// \‘¢‘Ì’è‹` --------------------------------------------------------------------
+// æ§‹é€ ä½“å®šç¾© --------------------------------------------------------------------
 
-// Ž©—R•ÏŒ`•`‰æ•â•—pƒ|ƒŠƒSƒ“•`‰æŠÖ”
+// è‡ªç”±å¤‰å½¢æç”»è£œåŠ©ç”¨ãƒãƒªã‚´ãƒ³æç”»é–¢æ•°
 struct DX_POINTDATA
 {
 	int						x , y ;
@@ -3424,129 +3424,129 @@ struct DX_POINTDATA
 } ;
 
 /*
-‰ðÍƒf[ƒ^ƒtƒH[ƒ}ƒbƒg
+è§£æžãƒ‡ãƒ¼ã‚¿ãƒ•ã‚©ãƒ¼ãƒžãƒƒãƒˆ
 
-  ‰ðÍî•ñ‚Íˆê‚Â‚PƒoƒCƒg
+  è§£æžæƒ…å ±ã¯ä¸€ã¤ï¼‘ãƒã‚¤ãƒˆ
 	
-    2bit(BitMask 11000000):ƒf[ƒ^‚ÌŽí—Þ
-      0(00B):•`‰æ‚·‚é•K—v‚ª–³‚¢
-      1(01B):ƒ¿’l‚ªÅ‘å‚È‚Ì‚Åƒ¿’l‚ð“K‰ž‚·‚é•K—v‚ª–³‚¢
-      2(10B):ƒ¿’l‚ð“K‰ž‚·‚é•K—v‚ª‚ ‚é
-      3(11B):s‚ÌI’[
+    2bit(BitMask 11000000):ãƒ‡ãƒ¼ã‚¿ã®ç¨®é¡ž
+      0(00B):æç”»ã™ã‚‹å¿…è¦ãŒç„¡ã„
+      1(01B):Î±å€¤ãŒæœ€å¤§ãªã®ã§Î±å€¤ã‚’é©å¿œã™ã‚‹å¿…è¦ãŒç„¡ã„
+      2(10B):Î±å€¤ã‚’é©å¿œã™ã‚‹å¿…è¦ãŒã‚ã‚‹
+      3(11B):è¡Œã®çµ‚ç«¯
 
-    6bit(BitMask 00111111):ƒf[ƒ^‚ÌŽí—Þ‚ÉŠî‚Ã‚­ƒf[ƒ^‚Ì’·‚³(Å‘å64(0‚ð1ŒÂ‚Æ”‚¦‚é))
+    6bit(BitMask 00111111):ãƒ‡ãƒ¼ã‚¿ã®ç¨®é¡žã«åŸºã¥ããƒ‡ãƒ¼ã‚¿ã®é•·ã•(æœ€å¤§64(0ã‚’1å€‹ã¨æ•°ãˆã‚‹))
 */
 
-// MEMIMG ‚Ì Derivation ‚µ‚Ä‚à‹¤’Ê‚È•”•ª‚Ìƒf[ƒ^
+// MEMIMG ã® Derivation ã—ã¦ã‚‚å…±é€šãªéƒ¨åˆ†ã®ãƒ‡ãƒ¼ã‚¿
 struct MEMIMGBASE
 {
-	int						RefCount ;							// ŽQÆƒJƒEƒ“ƒg
-	int						BaseWidth ;							// •
-	int						BaseHeight ;						// ‚‚³
-	unsigned int			Pitch ;								// ƒsƒbƒ`
-	int						PitchPow2n ;						// ƒsƒbƒ`‚ª‚Q‚Ì‚Žæ‚¾‚Á‚½Žž‚Ì¶ƒVƒtƒg”( -1 ‚Ìê‡‚Í‚Q‚Ì‚Žæ‚Å‚Í‚È‚¢ )
-	COLORDATA				*ColorDataP ;						// ƒJƒ‰[ƒtƒH[ƒ}ƒbƒg‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	int						UseTransColor ;						// “§‰ßF‚Í—LŒø‚©‚Ç‚¤‚©( 1:—LŒø  0:–³Œø )
-	unsigned int			TransColor ;						// “§‰ßF(ƒJƒ‰[ƒ^ƒCƒv 0,1 ‚ÌŽž‚Ì‚Ý—LŒø)
-//	unsigned int			TransPalette ;						// “§‰ßƒpƒŒƒbƒg”Ô†(ƒpƒŒƒbƒg‚ª‚ ‚éŽž‚Ì‚Ý—LŒø)
-	int						ColorType ;							// ƒJƒ‰[ƒ^ƒCƒv( 0:16bit(R5G6B5 or X8A8R5G6B5)  1:32bit(XRGB8 –”‚Í ARGB8)  2:8bit(ƒuƒŒƒ“ƒh‰æ‘œ)  3:16bit(‚yƒoƒbƒtƒ@) )
-	int						UsePalette ;						// ƒpƒŒƒbƒgŽg—p‚Ì—L–³( 1:—L‚è  0:–³‚µ ) ƒJƒ‰[ƒ^ƒCƒv 0,1 ‚ÌŽž‚Ì‚Ý—LŒø
-	int						ColorNum ;							// ƒpƒŒƒbƒg‚ÅŽg—p‚µ‚Ä‚¢‚éF‚Ì”
-	int						UseAlpha ;							// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚Ì—L–³( 1:—L‚è  0:–³‚µ ) ƒJƒ‰[ƒ^ƒCƒv 0,1 ‚ÌŽž‚Ì‚Ý—LŒø
-	int						AlphaImageValid ;					// AlphaImage ‚ª—LŒø‚©‚Ç‚¤‚©( 1:—LŒø  0:–³Œø )(ƒJƒ‰[ƒ^ƒCƒv 0,1 ‚ÌŽž‚Ì‚Ý—LŒø)
-	int						AnalysisDataValid ;					// AnalysisData ‚ª—LŒø‚©‚Ç‚¤‚©( 1:—LŒø  0:–³Œø )(ƒJƒ‰[ƒ^ƒCƒv 0,1 ‚ÌŽž‚Ì‚Ý—LŒø)
-	int						UserImageFlag ;						// ƒ†[ƒU[‚ª Image ‚ð—pˆÓ‚µ‚½‚©Aƒtƒ‰ƒO
-	unsigned int			*Palette ;							// ƒpƒŒƒbƒg‚Ö‚Ìƒ|ƒCƒ“ƒ^A”h¶ŽžˆÈŠO‚Í“¯ƒƒ“ƒo”z—ñ‚Ì PaletteBase ‚ðŽg—p‚·‚é
-	unsigned int			*OriginalPalette ;					// ƒIƒŠƒWƒiƒ‹ƒpƒŒƒbƒg‚Ö‚Ìƒ|ƒCƒ“ƒ^A”h¶ŽžˆÈŠO‚Í“¯ƒƒ“ƒo”z—ñ‚Ì OriginalPaletteBase ‚ðŽg—p‚·‚é
-	unsigned char			*Image ;							// ƒCƒ[ƒWƒf[ƒ^‚Ö‚ÌƒAƒhƒŒƒX
-	unsigned char			*AlphaImage ;						// —\‚ßƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ÌŒø‰Ê‚ðƒCƒ[ƒW‚É“K‰ž‚µ‚½ƒCƒ[ƒWAUseAlpha ‚Æ AlphaImageValid ‚ª‚P‚ÌŽž‚Ì‚Ý—LŒø(ƒJƒ‰[ƒ^ƒCƒv 0,1 ‚ÌŽž‚Ì‚Ý—LŒø)
-	unsigned char			*AnalysisData ;						// “§‰ßF‚Ì˜A‘±‰ñ”‚âƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ªÅ‘å’l‚©Å¬’l‚©A‚»‚ê‚ª‰½ƒhƒbƒg˜A‘±‚µ‚Ä‚¢‚é‚©“™‚Ì‰ðÍî•ñAAnalysisDataValid ‚ª‚P‚ÌŽž‚Ì‚Ý—LŒø(ƒJƒ‰[ƒ^ƒCƒv 0,1 ‚ÌŽž‚Ì‚Ý—LŒø)
+	int						RefCount ;							// å‚ç…§ã‚«ã‚¦ãƒ³ãƒˆ
+	int						BaseWidth ;							// å¹…
+	int						BaseHeight ;						// é«˜ã•
+	unsigned int			Pitch ;								// ãƒ”ãƒƒãƒ
+	int						PitchPow2n ;						// ãƒ”ãƒƒãƒãŒï¼’ã®ï½Žä¹—ã ã£ãŸæ™‚ã®å·¦ã‚·ãƒ•ãƒˆæ•°( -1 ã®å ´åˆã¯ï¼’ã®ï½Žä¹—ã§ã¯ãªã„ )
+	COLORDATA				*ColorDataP ;						// ã‚«ãƒ©ãƒ¼ãƒ•ã‚©ãƒ¼ãƒžãƒƒãƒˆã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	int						UseTransColor ;						// é€éŽè‰²ã¯æœ‰åŠ¹ã‹ã©ã†ã‹( 1:æœ‰åŠ¹  0:ç„¡åŠ¹ )
+	unsigned int			TransColor ;						// é€éŽè‰²(ã‚«ãƒ©ãƒ¼ã‚¿ã‚¤ãƒ— 0,1 ã®æ™‚ã®ã¿æœ‰åŠ¹)
+//	unsigned int			TransPalette ;						// é€éŽãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·(ãƒ‘ãƒ¬ãƒƒãƒˆãŒã‚ã‚‹æ™‚ã®ã¿æœ‰åŠ¹)
+	int						ColorType ;							// ã‚«ãƒ©ãƒ¼ã‚¿ã‚¤ãƒ—( 0:16bit(R5G6B5 or X8A8R5G6B5)  1:32bit(XRGB8 åˆã¯ ARGB8)  2:8bit(ãƒ–ãƒ¬ãƒ³ãƒ‰ç”»åƒ)  3:16bit(ï¼ºãƒãƒƒãƒ•ã‚¡) )
+	int						UsePalette ;						// ãƒ‘ãƒ¬ãƒƒãƒˆä½¿ç”¨ã®æœ‰ç„¡( 1:æœ‰ã‚Š  0:ç„¡ã— ) ã‚«ãƒ©ãƒ¼ã‚¿ã‚¤ãƒ— 0,1 ã®æ™‚ã®ã¿æœ‰åŠ¹
+	int						ColorNum ;							// ãƒ‘ãƒ¬ãƒƒãƒˆã§ä½¿ç”¨ã—ã¦ã„ã‚‹è‰²ã®æ•°
+	int						UseAlpha ;							// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã®æœ‰ç„¡( 1:æœ‰ã‚Š  0:ç„¡ã— ) ã‚«ãƒ©ãƒ¼ã‚¿ã‚¤ãƒ— 0,1 ã®æ™‚ã®ã¿æœ‰åŠ¹
+	int						AlphaImageValid ;					// AlphaImage ãŒæœ‰åŠ¹ã‹ã©ã†ã‹( 1:æœ‰åŠ¹  0:ç„¡åŠ¹ )(ã‚«ãƒ©ãƒ¼ã‚¿ã‚¤ãƒ— 0,1 ã®æ™‚ã®ã¿æœ‰åŠ¹)
+	int						AnalysisDataValid ;					// AnalysisData ãŒæœ‰åŠ¹ã‹ã©ã†ã‹( 1:æœ‰åŠ¹  0:ç„¡åŠ¹ )(ã‚«ãƒ©ãƒ¼ã‚¿ã‚¤ãƒ— 0,1 ã®æ™‚ã®ã¿æœ‰åŠ¹)
+	int						UserImageFlag ;						// ãƒ¦ãƒ¼ã‚¶ãƒ¼ãŒ Image ã‚’ç”¨æ„ã—ãŸã‹ã€ãƒ•ãƒ©ã‚°
+	unsigned int			*Palette ;							// ãƒ‘ãƒ¬ãƒƒãƒˆã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€æ´¾ç”Ÿæ™‚ä»¥å¤–ã¯åŒãƒ¡ãƒ³ãƒé…åˆ—ã® PaletteBase ã‚’ä½¿ç”¨ã™ã‚‹
+	unsigned int			*OriginalPalette ;					// ã‚ªãƒªã‚¸ãƒŠãƒ«ãƒ‘ãƒ¬ãƒƒãƒˆã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€æ´¾ç”Ÿæ™‚ä»¥å¤–ã¯åŒãƒ¡ãƒ³ãƒé…åˆ—ã® OriginalPaletteBase ã‚’ä½¿ç”¨ã™ã‚‹
+	unsigned char			*Image ;							// ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ã¸ã®ã‚¢ãƒ‰ãƒ¬ã‚¹
+	unsigned char			*AlphaImage ;						// äºˆã‚Î±ãƒãƒ£ãƒ³ãƒãƒ«ã®åŠ¹æžœã‚’ã‚¤ãƒ¡ãƒ¼ã‚¸ã«é©å¿œã—ãŸã‚¤ãƒ¡ãƒ¼ã‚¸ã€UseAlpha ã¨ AlphaImageValid ãŒï¼‘ã®æ™‚ã®ã¿æœ‰åŠ¹(ã‚«ãƒ©ãƒ¼ã‚¿ã‚¤ãƒ— 0,1 ã®æ™‚ã®ã¿æœ‰åŠ¹)
+	unsigned char			*AnalysisData ;						// é€éŽè‰²ã®é€£ç¶šå›žæ•°ã‚„Î±ãƒãƒ£ãƒ³ãƒãƒ«ãŒæœ€å¤§å€¤ã‹æœ€å°å€¤ã‹ã€ãã‚ŒãŒä½•ãƒ‰ãƒƒãƒˆé€£ç¶šã—ã¦ã„ã‚‹ã‹ç­‰ã®è§£æžæƒ…å ±ã€AnalysisDataValid ãŒï¼‘ã®æ™‚ã®ã¿æœ‰åŠ¹(ã‚«ãƒ©ãƒ¼ã‚¿ã‚¤ãƒ— 0,1 ã®æ™‚ã®ã¿æœ‰åŠ¹)
 } ;
 
-// ƒVƒXƒeƒ€ƒƒ‚ƒŠã‚Ì‰æ‘œƒf[ƒ^
+// ã‚·ã‚¹ãƒ†ãƒ ãƒ¡ãƒ¢ãƒªä¸Šã®ç”»åƒãƒ‡ãƒ¼ã‚¿
 struct MEMIMG
 {
-	int						InitializeCheck ;					// ‰Šú‰»ƒ`ƒFƒbƒNƒf[ƒ^
-	unsigned int			Width, Height ;						// ƒTƒCƒY
-	unsigned char			*UseImage ;							// ƒCƒ[ƒWƒf[ƒ^‚ÌŽg—p‚µ‚Ä‚¢‚é—Ìˆæ‚Ö‚ÌƒAƒhƒŒƒX
-	unsigned char			*UseAlphaImage ;					// —\‚ßƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ÌŒø‰Ê‚ðƒCƒ[ƒW‚É“K‰ž‚µ‚½ƒCƒ[ƒW‚ÌŽg—p‚µ‚Ä‚¢‚é—Ìˆæ‚Ö‚ÌƒAƒhƒŒƒXAUseAlpha ‚Æ AlphaImageValid ‚ª‚P‚ÌŽž‚Ì‚Ý—LŒø(ƒJƒ‰[ƒ^ƒCƒv 0,1 ‚ÌŽž‚Ì‚Ý—LŒø)
-	MEMIMGBASE				*Base ;								// ‹¤’Êî•ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	int						InitializeCheck ;					// åˆæœŸåŒ–ãƒã‚§ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿
+	unsigned int			Width, Height ;						// ã‚µã‚¤ã‚º
+	unsigned char			*UseImage ;							// ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ã®ä½¿ç”¨ã—ã¦ã„ã‚‹é ˜åŸŸã¸ã®ã‚¢ãƒ‰ãƒ¬ã‚¹
+	unsigned char			*UseAlphaImage ;					// äºˆã‚Î±ãƒãƒ£ãƒ³ãƒãƒ«ã®åŠ¹æžœã‚’ã‚¤ãƒ¡ãƒ¼ã‚¸ã«é©å¿œã—ãŸã‚¤ãƒ¡ãƒ¼ã‚¸ã®ä½¿ç”¨ã—ã¦ã„ã‚‹é ˜åŸŸã¸ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã€UseAlpha ã¨ AlphaImageValid ãŒï¼‘ã®æ™‚ã®ã¿æœ‰åŠ¹(ã‚«ãƒ©ãƒ¼ã‚¿ã‚¤ãƒ— 0,1 ã®æ™‚ã®ã¿æœ‰åŠ¹)
+	MEMIMGBASE				*Base ;								// å…±é€šæƒ…å ±ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 } ;
 
-// MEMIMG ŠÇ—\‘¢‘Ì
+// MEMIMG ç®¡ç†æ§‹é€ ä½“
 struct MEMIMGMANAGE
 {
-	BYTE					RateTable16[64][64][64] ;			// Š„‡ƒe[ƒuƒ‹ ¶‚©‚ç [‘f’l1‚ÌŠ„‡’l(0=0% 63=100%][‘f’l1][‘f’l2]
-	DWORD					RateTable[256][256] ;				// Š„‡ƒe[ƒuƒ‹ ¶‚©‚ç [Š„‡’l(0=0% 255=100%)][‘f’l] 
-	int						RateTable2[256][512] ;				// Š„‡ƒe[ƒuƒ‹ ¶‚©‚ç [Š„‡’l(0=0% 255=100%)][‘f’l+255] 
-	BYTE					BlendGraphTable[256] ;				// ƒuƒŒƒ“ƒhƒCƒ[ƒW“K‰žŽž—pƒe[ƒuƒ‹
-	int						DefaultColorType ;					// ƒfƒtƒHƒ‹ƒg‚ÌƒJƒ‰[ƒ^ƒCƒv
-	RECT					DrawArea ;							// •`‰æ‰Â”\”ÍˆÍ
+	BYTE					RateTable16[64][64][64] ;			// å‰²åˆãƒ†ãƒ¼ãƒ–ãƒ« å·¦ã‹ã‚‰ [ç´ å€¤1ã®å‰²åˆå€¤(0=0% 63=100%][ç´ å€¤1][ç´ å€¤2]
+	DWORD					RateTable[256][256] ;				// å‰²åˆãƒ†ãƒ¼ãƒ–ãƒ« å·¦ã‹ã‚‰ [å‰²åˆå€¤(0=0% 255=100%)][ç´ å€¤] 
+	int						RateTable2[256][512] ;				// å‰²åˆãƒ†ãƒ¼ãƒ–ãƒ« å·¦ã‹ã‚‰ [å‰²åˆå€¤(0=0% 255=100%)][ç´ å€¤+255] 
+	BYTE					BlendGraphTable[256] ;				// ãƒ–ãƒ¬ãƒ³ãƒ‰ã‚¤ãƒ¡ãƒ¼ã‚¸é©å¿œæ™‚ç”¨ãƒ†ãƒ¼ãƒ–ãƒ«
+	int						DefaultColorType ;					// ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®ã‚«ãƒ©ãƒ¼ã‚¿ã‚¤ãƒ—
+	RECT					DrawArea ;							// æç”»å¯èƒ½ç¯„å›²
 
-	int						BlendMode ;							// ƒuƒŒƒ“ƒhƒ‚[ƒh
-	int						BlendParam ;						// ƒuƒŒƒ“ƒhƒpƒ‰ƒ[ƒ^
+	int						BlendMode ;							// ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰
+	int						BlendParam ;						// ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 	union
 	{
-		RGBCOLOR			DrawBright ;							// •`‰æ‹P“x
+		RGBCOLOR			DrawBright ;							// æç”»è¼åº¦
 		DWORD				bDrawBright ;
 	} ;
 } ;
 
-// “à•”‘åˆæ•Ï”éŒ¾ --------------------------------------------------------------
+// å†…éƒ¨å¤§åŸŸå¤‰æ•°å®£è¨€ --------------------------------------------------------------
 
 extern MEMIMGMANAGE MemImgManage ;
 
-// ŠÖ”ƒvƒƒgƒ^ƒCƒvéŒ¾-----------------------------------------------------------
+// é–¢æ•°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€-----------------------------------------------------------
 
-// ƒƒ‚ƒŠ‰æ‘œƒf[ƒ^‚ðˆ—‚·‚éŠÖ”( DxMemImg.cpp )
-extern	int		InitializeMemImgManage( void ) ;																													// MEMIMG ŠÇ—ƒf[ƒ^‚Ì‰Šú‰»
+// ãƒ¡ãƒ¢ãƒªç”»åƒãƒ‡ãƒ¼ã‚¿ã‚’å‡¦ç†ã™ã‚‹é–¢æ•°( DxMemImg.cpp )
+extern	int		InitializeMemImgManage( void ) ;																													// MEMIMG ç®¡ç†ãƒ‡ãƒ¼ã‚¿ã®åˆæœŸåŒ–
 
-extern	int		SetMemImgDefaultColorType( int ColorType ) ;																										// ƒfƒtƒHƒ‹ƒg‚ÌƒJƒ‰[ƒ^ƒCƒv‚ðƒZƒbƒg‚·‚é
-extern	int		SetMemImgDrawArea( const RECT *DrawArea ) ;																											// MEMIMG—p‚Ì•`‰æ”ÍˆÍ‚ðÝ’è‚·‚é
-extern	int		SetMemImgDrawBlendMode( int BlendMode, int BlendParam ) ;																							// MEMIMG—p‚ÌƒuƒŒƒ“ƒhƒ‚[ƒh‚ÆƒuƒŒƒ“ƒhƒpƒ‰ƒ[ƒ^‚ÌÝ’è‚ðs‚¤
-extern	int		SetMemImgDrawBright( DWORD Bright ) ;																												// MEMIMG—p‚Ì•`‰æ‹P“x
+extern	int		SetMemImgDefaultColorType( int ColorType ) ;																										// ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®ã‚«ãƒ©ãƒ¼ã‚¿ã‚¤ãƒ—ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
+extern	int		SetMemImgDrawArea( const RECT *DrawArea ) ;																											// MEMIMGç”¨ã®æç”»ç¯„å›²ã‚’è¨­å®šã™ã‚‹
+extern	int		SetMemImgDrawBlendMode( int BlendMode, int BlendParam ) ;																							// MEMIMGç”¨ã®ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã¨ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®è¨­å®šã‚’è¡Œã†
+extern	int		SetMemImgDrawBright( DWORD Bright ) ;																												// MEMIMGç”¨ã®æç”»è¼åº¦
 
-extern	int		LoadImageToMemImg( const wchar_t *FilePath, MEMIMG *MemImg, DWORD TransColor, int ColorType = -1/*-1=‰æ–Ê‚É‡‚Á‚½ƒtƒH[ƒ}ƒbƒg*/, int UsePaletteFormat = 0 ) ;			// (•â•ŠÖ”)MEMIMG \‘¢‘Ì‚É‰æ‘œ‚ð“Ç‚Ýž‚Þ( ‚±‚ê‚ðŒÄ‚ñ‚¾ê‡ InitializeMemImg ‚Í•K—v‚È‚µA‚ ‚ÆMemImg‚Í‚OƒNƒŠƒA‚µ‚Ä‚¨‚­•K—v‚Í–³‚¢ )( –ß‚è’l: -1=Ž¸”s  0=¬Œ÷ )
-extern	int		MakeMemImgScreen( MEMIMG *Img, int Width, int Height, int ColorType = -1/*-1=‰æ–Ê‚É‡‚Á‚½ƒtƒH[ƒ}ƒbƒg*/  ) ;										// (•â•ŠÖ”)•`‰æ‘ÎÛ—p‚Ìƒƒ‚ƒŠ‰æ‘œ‚ðì¬‚·‚é( InitializeMemImg ‚ðŠÈ—ª‰»‚µ‚½‚¾‚¯‚Ì‚à‚ÌAMemImg‚Í‚OƒNƒŠƒA‚µ‚Ä‚¨‚­•K—v‚Í–³‚¢ )
-extern	int		MakeMemImgZBuffer( MEMIMG *Img, int Width, int Height ) ;																							// (•â•ŠÖ”)‚yƒoƒbƒtƒ@‚Ìƒƒ‚ƒŠƒCƒ[ƒW‚ðì¬‚·‚é( InitializeMemImg ‚ðŠÈ—ª‰»‚µ‚½‚¾‚¯‚Ì‚à‚ÌAMemImg‚Í‚OƒNƒŠƒA‚µ‚Ä‚¨‚­•K—v‚Í–³‚¢ )
-extern	void	BltMemImg( MEMIMG *DestImg, const MEMIMG *SrcImg, const RECT *SrcRect/* NULL:‘S‘Ì */, int DestX, int DestY ) ;										// (•â•ŠÖ”)MEMIMG ŠÔ‚Åƒf[ƒ^‚Ì“]‘—‚ðs‚¤
-extern	void	DerivationMemImg( MEMIMG *DestImg, MEMIMG *SrcImg, int SrcX, int SrcY, int Width, int Height ) ;													// ‚ ‚é MEMIMG ‚Ìˆê•”‚ðŽg—p‚·‚é MEMIMG ‚Ìî•ñ‚ð€”õ‚·‚é(”h¶Œ³‚ª–³Œø‚É‚È‚Á‚½‚ç”h¶ MEMIMG ‚àŽg—p•s‰Â‚É‚È‚éA‚Æ‚¢‚¤‚©Aˆêu‚¾‚¯‘¼‚Ì‰æ‘œ‚ðŠÔŽØ‚è‚µ‚½‚¢‚Æ‚«ˆÊ‚É‚µ‚©Žg‚¦‚È‚¢)
+extern	int		LoadImageToMemImg( const wchar_t *FilePath, MEMIMG *MemImg, DWORD TransColor, int ColorType = -1/*-1=ç”»é¢ã«åˆã£ãŸãƒ•ã‚©ãƒ¼ãƒžãƒƒãƒˆ*/, int UsePaletteFormat = 0 ) ;			// (è£œåŠ©é–¢æ•°)MEMIMG æ§‹é€ ä½“ã«ç”»åƒã‚’èª­ã¿è¾¼ã‚€( ã“ã‚Œã‚’å‘¼ã‚“ã å ´åˆ InitializeMemImg ã¯å¿…è¦ãªã—ã€ã‚ã¨MemImgã¯ï¼ã‚¯ãƒªã‚¢ã—ã¦ãŠãå¿…è¦ã¯ç„¡ã„ )( æˆ»ã‚Šå€¤: -1=å¤±æ•—  0=æˆåŠŸ )
+extern	int		MakeMemImgScreen( MEMIMG *Img, int Width, int Height, int ColorType = -1/*-1=ç”»é¢ã«åˆã£ãŸãƒ•ã‚©ãƒ¼ãƒžãƒƒãƒˆ*/  ) ;										// (è£œåŠ©é–¢æ•°)æç”»å¯¾è±¡ç”¨ã®ãƒ¡ãƒ¢ãƒªç”»åƒã‚’ä½œæˆã™ã‚‹( InitializeMemImg ã‚’ç°¡ç•¥åŒ–ã—ãŸã ã‘ã®ã‚‚ã®ã€MemImgã¯ï¼ã‚¯ãƒªã‚¢ã—ã¦ãŠãå¿…è¦ã¯ç„¡ã„ )
+extern	int		MakeMemImgZBuffer( MEMIMG *Img, int Width, int Height ) ;																							// (è£œåŠ©é–¢æ•°)ï¼ºãƒãƒƒãƒ•ã‚¡ã®ãƒ¡ãƒ¢ãƒªã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’ä½œæˆã™ã‚‹( InitializeMemImg ã‚’ç°¡ç•¥åŒ–ã—ãŸã ã‘ã®ã‚‚ã®ã€MemImgã¯ï¼ã‚¯ãƒªã‚¢ã—ã¦ãŠãå¿…è¦ã¯ç„¡ã„ )
+extern	void	BltMemImg( MEMIMG *DestImg, const MEMIMG *SrcImg, const RECT *SrcRect/* NULL:å…¨ä½“ */, int DestX, int DestY ) ;										// (è£œåŠ©é–¢æ•°)MEMIMG é–“ã§ãƒ‡ãƒ¼ã‚¿ã®è»¢é€ã‚’è¡Œã†
+extern	void	DerivationMemImg( MEMIMG *DestImg, MEMIMG *SrcImg, int SrcX, int SrcY, int Width, int Height ) ;													// ã‚ã‚‹ MEMIMG ã®ä¸€éƒ¨ã‚’ä½¿ç”¨ã™ã‚‹ MEMIMG ã®æƒ…å ±ã‚’æº–å‚™ã™ã‚‹(æ´¾ç”Ÿå…ƒãŒç„¡åŠ¹ã«ãªã£ãŸã‚‰æ´¾ç”Ÿ MEMIMG ã‚‚ä½¿ç”¨ä¸å¯ã«ãªã‚‹ã€ã¨ã„ã†ã‹ã€ä¸€çž¬ã ã‘ä»–ã®ç”»åƒã‚’é–“å€Ÿã‚Šã—ãŸã„ã¨ãä½ã«ã—ã‹ä½¿ãˆãªã„)
 
-extern	int		InitializeMemImg( MEMIMG *Img, int Width, int Height, int Pitch/*‹K’è’l:-1*/, DWORD TransColor, int ColorType, int UsePalette, int UseAlpha, int AnalysisFlag = TRUE, const void *UserImage = NULL ) ;		// ƒƒ‚ƒŠ‰æ‘œ‚ð‰Šú‰»‚·‚éA\‘¢‘Ì‚Íƒ[ƒ‰Šú‰»‚³‚ê‚Ä‚¢‚é•K—v‚ª‚ ‚é( –ß‚è’l: -1=Ž¸”s  0=¬Œ÷ )
-extern	int		CheckValidMemImg( const MEMIMG *Img ) ;																												// MEMIMG ‚ª—LŒø‚©‚Ç‚¤‚©‚ðŽæ“¾‚·‚é
-extern	void	TerminateMemImg( MEMIMG *Img ) ;																													// ƒƒ‚ƒŠ‰æ‘œ‚ÌŒãŽn––‚ð‚·‚é( Ž©‘O‚Å‰Šú‰»‚µ‚½ê‡‚ÍŽÀs‚·‚é•K—v‚È‚µ( ƒCƒ[ƒW—Ìˆæ‚Ì‰ð•ú‚¾‚¯‚È‚Ì‚Å ) )
-extern	void	BltBaseImageToMemImg( const BASEIMAGE *RgbBaseImage, const BASEIMAGE *AlphaBaseImage, MEMIMG *MemImg, int SrcX, int SrcY, int Width, int Height, int DestX, int DestY, int UseTransColorConvAlpha = TRUE ) ;	// BASEIMAGE ƒCƒ[ƒW‚©‚ç MEMIMG ƒCƒ[ƒW‚É‰æ‘œƒf[ƒ^‚ð“]‘—‚·‚é( ƒpƒŒƒbƒg‚àŸŽè‚É“]‘—‚³‚ê‚é )
-extern	void	BltMemImgToBaseImage( BASEIMAGE *BaseImage, const MEMIMG *MemImg, int SrcX, int SrcY, int Width, int Height, int DestX, int DestY, DWORD TransColor = 0, int TransFlag = FALSE ) ;	// MEMIMG ƒCƒ[ƒW‚©‚ç BASEIMAGE ƒCƒ[ƒW‚É‰æ‘œƒf[ƒ^‚ð“]‘—‚·‚é
-extern	void	ClearMemImg(            MEMIMG *MemImg, const RECT *FillArea = NULL, unsigned int Color = 0 ) ;																		// ƒCƒ[ƒW‚ð‰Šú‰»‚·‚é
-extern	void	DrawMemImg(             MEMIMG *DestImg, const MEMIMG *SrcImg, int DestX, int DestY,                                              int TransFlag = TRUE, const MEMIMG *BlendImg = NULL ) ;							// ƒCƒ[ƒW‚ð•`‰æ‚·‚é
+extern	int		InitializeMemImg( MEMIMG *Img, int Width, int Height, int Pitch/*è¦å®šå€¤:-1*/, DWORD TransColor, int ColorType, int UsePalette, int UseAlpha, int AnalysisFlag = TRUE, const void *UserImage = NULL ) ;		// ãƒ¡ãƒ¢ãƒªç”»åƒã‚’åˆæœŸåŒ–ã™ã‚‹ã€æ§‹é€ ä½“ã¯ã‚¼ãƒ­åˆæœŸåŒ–ã•ã‚Œã¦ã„ã‚‹å¿…è¦ãŒã‚ã‚‹( æˆ»ã‚Šå€¤: -1=å¤±æ•—  0=æˆåŠŸ )
+extern	int		CheckValidMemImg( const MEMIMG *Img ) ;																												// MEMIMG ãŒæœ‰åŠ¹ã‹ã©ã†ã‹ã‚’å–å¾—ã™ã‚‹
+extern	void	TerminateMemImg( MEMIMG *Img ) ;																													// ãƒ¡ãƒ¢ãƒªç”»åƒã®å¾Œå§‹æœ«ã‚’ã™ã‚‹( è‡ªå‰ã§åˆæœŸåŒ–ã—ãŸå ´åˆã¯å®Ÿè¡Œã™ã‚‹å¿…è¦ãªã—( ã‚¤ãƒ¡ãƒ¼ã‚¸é ˜åŸŸã®è§£æ”¾ã ã‘ãªã®ã§ ) )
+extern	void	BltBaseImageToMemImg( const BASEIMAGE *RgbBaseImage, const BASEIMAGE *AlphaBaseImage, MEMIMG *MemImg, int SrcX, int SrcY, int Width, int Height, int DestX, int DestY, int UseTransColorConvAlpha = TRUE ) ;	// BASEIMAGE ã‚¤ãƒ¡ãƒ¼ã‚¸ã‹ã‚‰ MEMIMG ã‚¤ãƒ¡ãƒ¼ã‚¸ã«ç”»åƒãƒ‡ãƒ¼ã‚¿ã‚’è»¢é€ã™ã‚‹( ãƒ‘ãƒ¬ãƒƒãƒˆã‚‚å‹æ‰‹ã«è»¢é€ã•ã‚Œã‚‹ )
+extern	void	BltMemImgToBaseImage( BASEIMAGE *BaseImage, const MEMIMG *MemImg, int SrcX, int SrcY, int Width, int Height, int DestX, int DestY, DWORD TransColor = 0, int TransFlag = FALSE ) ;	// MEMIMG ã‚¤ãƒ¡ãƒ¼ã‚¸ã‹ã‚‰ BASEIMAGE ã‚¤ãƒ¡ãƒ¼ã‚¸ã«ç”»åƒãƒ‡ãƒ¼ã‚¿ã‚’è»¢é€ã™ã‚‹
+extern	void	ClearMemImg(            MEMIMG *MemImg, const RECT *FillArea = NULL, unsigned int Color = 0 ) ;																		// ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’åˆæœŸåŒ–ã™ã‚‹
+extern	void	DrawMemImg(             MEMIMG *DestImg, const MEMIMG *SrcImg, int DestX, int DestY,                                              int TransFlag = TRUE, const MEMIMG *BlendImg = NULL ) ;							// ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’æç”»ã™ã‚‹
 extern	void	DrawTurnMemImg(         MEMIMG *DestImg, const MEMIMG *SrcImg, int XTurnFlag, int YTurnFlag, int DestX, int DestY,                int TransFlag = TRUE, const MEMIMG *BlendImg = NULL ) ;
-extern	void	DrawEnlargeMemImg(      MEMIMG *DestImg, const MEMIMG *SrcImg, const RECT *DestRect,                                              int TransFlag = TRUE, const MEMIMG *BlendImg = NULL ) ;							// ƒCƒ[ƒW‚ðŠg‘å•`‰æ‚·‚é
-extern	void	DrawEnlargeMemImg(      MEMIMG *DestImg, const MEMIMG *SrcImg, int x1, int y1, int x2, int y2,                                    int TransFlag = TRUE, const MEMIMG *BlendImg = NULL ) ;							// ƒCƒ[ƒW‚ðŠg‘å•`‰æ‚·‚é
-extern	void 	DrawRotationMemImg(     MEMIMG *DestImg, const MEMIMG *SrcImg, int x, int y, float Angle, float EnlageRateX, float EnlageRateY,   int TransFlag = TRUE, int ReverseXFlag = FALSE, int ReverseYFlag = FALSE, const MEMIMG *BlendImg = NULL ) ;		// ƒCƒ[ƒW‚ð‰ñ“]•`‰æ‚·‚é
-extern	void	DrawBasicPolygonMemImg( MEMIMG *DestImg, const MEMIMG *SrcImg, const DX_POINTDATA *pos3,                                          int TransFlag = TRUE, const MEMIMG *BlendImg = NULL, unsigned int Color = 0xffffffff ) ;	// ƒCƒ[ƒW‚ðŽg—p‚µ‚Äƒ|ƒŠƒSƒ“‚ð•`‰æ‚·‚é( ‚Q‚c‹óŠÔ‚É‰æ‘œ‚ð•ÏŒ`‚µ‚Ä•`‰æ‚·‚é‚Ì‚ª–Ú“I )
-extern	void	DrawTransformMemImg(    MEMIMG *DestImg, const MEMIMG *SrcImg, const POINT *pos4,                                                 int TransFlag = TRUE, const MEMIMG *BlendImg = NULL ) ;							// ƒCƒ[ƒW‚ð•ÏŒ`•`‰æ‚·‚é
+extern	void	DrawEnlargeMemImg(      MEMIMG *DestImg, const MEMIMG *SrcImg, const RECT *DestRect,                                              int TransFlag = TRUE, const MEMIMG *BlendImg = NULL ) ;							// ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’æ‹¡å¤§æç”»ã™ã‚‹
+extern	void	DrawEnlargeMemImg(      MEMIMG *DestImg, const MEMIMG *SrcImg, int x1, int y1, int x2, int y2,                                    int TransFlag = TRUE, const MEMIMG *BlendImg = NULL ) ;							// ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’æ‹¡å¤§æç”»ã™ã‚‹
+extern	void 	DrawRotationMemImg(     MEMIMG *DestImg, const MEMIMG *SrcImg, int x, int y, float Angle, float EnlageRateX, float EnlageRateY,   int TransFlag = TRUE, int ReverseXFlag = FALSE, int ReverseYFlag = FALSE, const MEMIMG *BlendImg = NULL ) ;		// ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’å›žè»¢æç”»ã™ã‚‹
+extern	void	DrawBasicPolygonMemImg( MEMIMG *DestImg, const MEMIMG *SrcImg, const DX_POINTDATA *pos3,                                          int TransFlag = TRUE, const MEMIMG *BlendImg = NULL, unsigned int Color = 0xffffffff ) ;	// ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’ä½¿ç”¨ã—ã¦ãƒãƒªã‚´ãƒ³ã‚’æç”»ã™ã‚‹( ï¼’ï¼¤ç©ºé–“ã«ç”»åƒã‚’å¤‰å½¢ã—ã¦æç”»ã™ã‚‹ã®ãŒç›®çš„ )
+extern	void	DrawTransformMemImg(    MEMIMG *DestImg, const MEMIMG *SrcImg, const POINT *pos4,                                                 int TransFlag = TRUE, const MEMIMG *BlendImg = NULL ) ;							// ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’å¤‰å½¢æç”»ã™ã‚‹
 #ifndef DX_NON_GRAPHICS
-extern	void	DrawPolygonMemImg(      MEMIMG *DestImg, MEMIMG *ZImg, const MEMIMG *SrcImg, const struct tagVERTEX_2D *Vertex3,                  int TransFlag = TRUE, const MEMIMG *BlendImg = NULL, int ZWriteFlag = TRUE, int GouraudShadeMode = TRUE, int PerspectiveEnable = TRUE, int ScissorTest = TRUE ) ;	// ƒCƒ[ƒW‚ðŽg—p‚µ‚Äƒ|ƒŠƒSƒ“‚ð•`‰æ‚·‚é( ‚R‚c‹óŠÔ‚É‚R‚cƒ|ƒŠƒSƒ“‚ð•`‰æ‚·‚é‚Ì‚ª–Ú“I )
+extern	void	DrawPolygonMemImg(      MEMIMG *DestImg, MEMIMG *ZImg, const MEMIMG *SrcImg, const struct tagVERTEX_2D *Vertex3,                  int TransFlag = TRUE, const MEMIMG *BlendImg = NULL, int ZWriteFlag = TRUE, int GouraudShadeMode = TRUE, int PerspectiveEnable = TRUE, int ScissorTest = TRUE ) ;	// ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’ä½¿ç”¨ã—ã¦ãƒãƒªã‚´ãƒ³ã‚’æç”»ã™ã‚‹( ï¼“ï¼¤ç©ºé–“ã«ï¼“ï¼¤ãƒãƒªã‚´ãƒ³ã‚’æç”»ã™ã‚‹ã®ãŒç›®çš„ )
 #endif // DX_NON_GRAPHICS
 
-extern	DWORD	GetPixelColorMemImg( const MEMIMG *MemImg, int x, int y ) ;																								// ƒCƒ[ƒW’†‚ÌŽw’èÀ•W‚ÌF‚ðŽæ“¾
-extern	void	PaintMemImg(        MEMIMG *DestImg, int x, int y,                   unsigned int FillColor, ULONGLONG BoundaryColor ) ;								// Žw’è“_‚©‚ç‹«ŠEF‚ª‚ ‚é‚Æ‚±‚ë‚Ü‚Å“h‚è‚Â‚Ô‚·
-extern	void	DrawPixelMemImg(    MEMIMG *DestImg, int x, int y,                   unsigned int Color ) ;																// ƒCƒ[ƒW‚É“_‚ð•`‰æ‚·‚é
-extern	void	DrawFillBoxMemImg(  MEMIMG *DestImg, const RECT *FillRect,           unsigned int Color ) ;																// ƒCƒ[ƒW‚É’†g‚Ì‚ ‚éƒ{ƒbƒNƒX‚ð•`‰æ‚·‚é
-extern	void	DrawFillBoxMemImg(  MEMIMG *DestImg, int x1, int y1, int x2, int y2, unsigned int Color ) ;																// ƒCƒ[ƒW‚É’†g‚Ì‚ ‚éƒ{ƒbƒNƒX‚ð•`‰æ‚·‚é
-extern	void	DrawLineMemImg(     MEMIMG *DestImg, int x1, int y1, int x2, int y2, unsigned int Color ) ;																// ƒCƒ[ƒW‚Éü‚ð•`‰æ‚·‚é
-extern	void	DrawLineBoxMemImg(  MEMIMG *DestImg, int x1, int y1, int x2, int y2, unsigned int Color ) ;																// ƒCƒ[ƒW‚É˜g‚¾‚¯‚Ìƒ{ƒbƒNƒX‚ð•`‰æ‚·‚é
-extern 	void	DrawPixelSetMemImg( MEMIMG *DestImg, const POINTDATA *PointData, int Num ) ;																			// ƒCƒ[ƒW‚É“_‚ÌW‡‚ð•`‰æ‚·‚é
-extern	void	DrawLineSetMemImg(  MEMIMG *DestImg, const LINEDATA *LineData,   int Num ) ;																			// ƒCƒ[ƒW‚Éü‚ÌW‡‚ð•`‰æ‚·‚é
-extern	void	DrawBoxSetMemImg(   MEMIMG *DestImg, const RECTDATA *RectData,   int Num ) ;																			// ƒCƒ[ƒW‚É‹éŒ`‚ÌW‡‚ð•`‰æ‚·‚é
-extern	void	DrawCircleMemImg(   MEMIMG *DestImg, int x, int y, int r,            unsigned int Color, int FillFlag, int Rx_One_Minus = FALSE, int Ry_One_Minus = FALSE ) ;	// ƒCƒ[ƒW‚É‰~‚ð•`‰æ‚·‚é
-extern	void	DrawOvalMemImg(     MEMIMG *DestImg, int x, int y, int rx, int ry,   unsigned int Color, int FillFlag, int Rx_One_Minus = FALSE, int Ry_One_Minus = FALSE ) ;	// ƒCƒ[ƒW‚É‘È‰~‚ð•`‰æ‚·‚é
+extern	DWORD	GetPixelColorMemImg( const MEMIMG *MemImg, int x, int y ) ;																								// ã‚¤ãƒ¡ãƒ¼ã‚¸ä¸­ã®æŒ‡å®šåº§æ¨™ã®è‰²ã‚’å–å¾—
+extern	void	PaintMemImg(        MEMIMG *DestImg, int x, int y,                   unsigned int FillColor, ULONGLONG BoundaryColor ) ;								// æŒ‡å®šç‚¹ã‹ã‚‰å¢ƒç•Œè‰²ãŒã‚ã‚‹ã¨ã“ã‚ã¾ã§å¡—ã‚Šã¤ã¶ã™
+extern	void	DrawPixelMemImg(    MEMIMG *DestImg, int x, int y,                   unsigned int Color ) ;																// ã‚¤ãƒ¡ãƒ¼ã‚¸ã«ç‚¹ã‚’æç”»ã™ã‚‹
+extern	void	DrawFillBoxMemImg(  MEMIMG *DestImg, const RECT *FillRect,           unsigned int Color ) ;																// ã‚¤ãƒ¡ãƒ¼ã‚¸ã«ä¸­èº«ã®ã‚ã‚‹ãƒœãƒƒã‚¯ã‚¹ã‚’æç”»ã™ã‚‹
+extern	void	DrawFillBoxMemImg(  MEMIMG *DestImg, int x1, int y1, int x2, int y2, unsigned int Color ) ;																// ã‚¤ãƒ¡ãƒ¼ã‚¸ã«ä¸­èº«ã®ã‚ã‚‹ãƒœãƒƒã‚¯ã‚¹ã‚’æç”»ã™ã‚‹
+extern	void	DrawLineMemImg(     MEMIMG *DestImg, int x1, int y1, int x2, int y2, unsigned int Color ) ;																// ã‚¤ãƒ¡ãƒ¼ã‚¸ã«ç·šã‚’æç”»ã™ã‚‹
+extern	void	DrawLineBoxMemImg(  MEMIMG *DestImg, int x1, int y1, int x2, int y2, unsigned int Color ) ;																// ã‚¤ãƒ¡ãƒ¼ã‚¸ã«æž ã ã‘ã®ãƒœãƒƒã‚¯ã‚¹ã‚’æç”»ã™ã‚‹
+extern 	void	DrawPixelSetMemImg( MEMIMG *DestImg, const POINTDATA *PointData, int Num ) ;																			// ã‚¤ãƒ¡ãƒ¼ã‚¸ã«ç‚¹ã®é›†åˆã‚’æç”»ã™ã‚‹
+extern	void	DrawLineSetMemImg(  MEMIMG *DestImg, const LINEDATA *LineData,   int Num ) ;																			// ã‚¤ãƒ¡ãƒ¼ã‚¸ã«ç·šã®é›†åˆã‚’æç”»ã™ã‚‹
+extern	void	DrawBoxSetMemImg(   MEMIMG *DestImg, const RECTDATA *RectData,   int Num ) ;																			// ã‚¤ãƒ¡ãƒ¼ã‚¸ã«çŸ©å½¢ã®é›†åˆã‚’æç”»ã™ã‚‹
+extern	void	DrawCircleMemImg(   MEMIMG *DestImg, int x, int y, int r,            unsigned int Color, int FillFlag, int Rx_One_Minus = FALSE, int Ry_One_Minus = FALSE ) ;	// ã‚¤ãƒ¡ãƒ¼ã‚¸ã«å††ã‚’æç”»ã™ã‚‹
+extern	void	DrawOvalMemImg(     MEMIMG *DestImg, int x, int y, int rx, int ry,   unsigned int Color, int FillFlag, int Rx_One_Minus = FALSE, int Ry_One_Minus = FALSE ) ;	// ã‚¤ãƒ¡ãƒ¼ã‚¸ã«æ¥•å††ã‚’æç”»ã™ã‚‹
 
-extern	void	SetBlendGraphParamMemImg( int BorderParam, int BorderRange ) ;																							// ƒuƒŒƒ“ƒhƒOƒ‰ƒtƒBƒbƒNˆ—‚É•K—v‚Èƒe[ƒuƒ‹‚ÌƒZƒbƒgƒAƒbƒv‚ðs‚¤
-extern	COLORDATA *GetMemImgColorData( int ColorType, int UseAlpha, int UsePalette ) ;																					// Žw’è‚ÌƒtƒH[ƒ}ƒbƒg‚ÌƒJƒ‰[ƒf[ƒ^‚ð“¾‚é
+extern	void	SetBlendGraphParamMemImg( int BorderParam, int BorderRange ) ;																							// ãƒ–ãƒ¬ãƒ³ãƒ‰ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯å‡¦ç†ã«å¿…è¦ãªãƒ†ãƒ¼ãƒ–ãƒ«ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã‚’è¡Œã†
+extern	COLORDATA *GetMemImgColorData( int ColorType, int UseAlpha, int UsePalette ) ;																					// æŒ‡å®šã®ãƒ•ã‚©ãƒ¼ãƒžãƒƒãƒˆã®ã‚«ãƒ©ãƒ¼ãƒ‡ãƒ¼ã‚¿ã‚’å¾—ã‚‹
 //#ifdef WINDOWS_DESKTOP_OS
-//extern	int		CreatePixelFormat(	D_DDPIXELFORMAT *PixelFormatBuf, int ColorBitDepth, DWORD RedMask, DWORD GreenMask, DWORD BlueMask, DWORD AlphaMask ) ;			// DDPIXELFORMATƒf[ƒ^‚ðì¬‚·‚é
-//extern	D_DDPIXELFORMAT *GetMemImgPixelFormat( int ColorType, int UseAlpha, int UsePalette ) ;																		// Žw’è‚ÌƒtƒH[ƒ}ƒbƒg‚ÌƒJƒ‰[ƒf[ƒ^‚ð“¾‚é
+//extern	int		CreatePixelFormat(	D_DDPIXELFORMAT *PixelFormatBuf, int ColorBitDepth, DWORD RedMask, DWORD GreenMask, DWORD BlueMask, DWORD AlphaMask ) ;			// DDPIXELFORMATãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆã™ã‚‹
+//extern	D_DDPIXELFORMAT *GetMemImgPixelFormat( int ColorType, int UseAlpha, int UsePalette ) ;																		// æŒ‡å®šã®ãƒ•ã‚©ãƒ¼ãƒžãƒƒãƒˆã®ã‚«ãƒ©ãƒ¼ãƒ‡ãƒ¼ã‚¿ã‚’å¾—ã‚‹
 //#endif // WINDOWS_DESKTOP_OS
 
 #ifndef DX_NON_NAMESPACE

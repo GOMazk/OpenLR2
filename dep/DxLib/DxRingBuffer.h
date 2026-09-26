@@ -1,6 +1,6 @@
 // -------------------------------------------------------------------------------
 // 
-// 		‚c‚wƒ‰ƒCƒuƒ‰ƒŠ		ƒŠƒ“ƒOƒoƒbƒtƒ@ƒvƒƒOƒ‰ƒ€ƒwƒbƒ_ƒtƒ@ƒCƒ‹
+// 		ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒª		ãƒªãƒ³ã‚°ãƒãƒƒãƒ•ã‚¡ãƒ—ãƒ­ã‚°ãƒ©ãƒ ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«
 // 
 // 				Ver 3.25a
 // 
@@ -9,7 +9,7 @@
 #ifndef DX_RINGBUFFER_H
 #define DX_RINGBUFFER_H
 
-// ƒCƒ“ƒNƒ‹[ƒh ------------------------------------------------------------------
+// ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ ------------------------------------------------------------------
 
 #include "DxCompileConfig.h"
 
@@ -20,31 +20,31 @@ namespace DxLib
 
 #endif // DX_NON_NAMESPACE
 
-// ƒ}ƒNƒ’è‹` --------------------------------------------------------------------
+// ãƒã‚¯ãƒ­å®šç¾© --------------------------------------------------------------------
 
-// \‘¢‘Ì’è‹` --------------------------------------------------------------------
+// æ§‹é€ ä½“å®šç¾© --------------------------------------------------------------------
 
-// ƒŠƒ“ƒOƒoƒbƒtƒ@ƒf[ƒ^\‘¢‘Ì
+// ãƒªãƒ³ã‚°ãƒãƒƒãƒ•ã‚¡ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
 struct RINGBUF
 {
-	char					*DataBuffer ;						// ƒf[ƒ^—Ìˆæ‚Ìƒ|ƒCƒ“ƒ^
-	int						Start, End ;						// —LŒøƒf[ƒ^‚Ìn‚Ü‚è‚ÆI‚è
-	int						DataLength ;						// —LŒø‚Èƒf[ƒ^‚Ì’·‚³
-	int						BufferSize ;						// ƒŠƒ“ƒOƒoƒbƒtƒ@‚Ì‘å‚«‚³
+	char					*DataBuffer ;						// ãƒ‡ãƒ¼ã‚¿é ˜åŸŸã®ãƒã‚¤ãƒ³ã‚¿
+	int						Start, End ;						// æœ‰åŠ¹ãƒ‡ãƒ¼ã‚¿ã®å§‹ã¾ã‚Šã¨çµ‚ã‚Š
+	int						DataLength ;						// æœ‰åŠ¹ãªãƒ‡ãƒ¼ã‚¿ã®é•·ã•
+	int						BufferSize ;						// ãƒªãƒ³ã‚°ãƒãƒƒãƒ•ã‚¡ã®å¤§ãã•
 } ;
 
-// ŠÖ”ƒvƒƒgƒ^ƒCƒvéŒ¾-----------------------------------------------------------
+// é–¢æ•°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€-----------------------------------------------------------
 
-// ƒŠƒ“ƒOƒoƒbƒtƒ@
-extern	int			RingBufInitialize( RINGBUF * RingBuf ) ;									// ƒŠƒ“ƒOƒoƒbƒtƒ@‚ğ‰Šú‰»‚·‚é
-extern	int			RingBufTerminate( RINGBUF * RingBuf ) ;										// ƒŠƒ“ƒOƒoƒbƒtƒ@‚ÌŒãn––‚ğ‚·‚é
-extern	int			RingBufDataAdd( RINGBUF * RingBuf, const void *Data, int Len ) ;			// ƒŠƒ“ƒOƒoƒbƒtƒ@‚Éƒf[ƒ^‚ğ’Ç‰Á‚·‚é
-extern	int			RingBufDataGet( RINGBUF * RingBuf, void *Buf, int Len, int PeekFlag) ;		// ƒŠƒ“ƒOƒoƒbƒtƒ@‚©‚çƒf[ƒ^‚ğ“Ç‚İ‚±‚Ş
-extern	int			RingBufGetDataLength( RINGBUF * RingBuf ) ;									// ƒŠƒ“ƒOƒoƒbƒtƒ@‚Ì—LŒøƒf[ƒ^—Ê‚Ìæ“¾ 
-extern	int			RingBufGetRestDataLength( RINGBUF * RingBuf ) ;								// ƒŠƒ“ƒOƒoƒbƒtƒ@‚Ìc‚è‹ó‚«ƒf[ƒ^—Ìˆæ‚ğæ“¾
-extern	int			RingBufReSize( RINGBUF * RingBuf, int AddSize ) ;							// ƒŠƒ“ƒOƒoƒbƒtƒ@‚Ì—e—Ê‚ğw’è—Ê‚Ìƒf[ƒ^‚ğ’Ç‰Á‚µ‚Ä‚àû‚Ü‚éƒTƒCƒY‚É’²®‚·‚é
+// ãƒªãƒ³ã‚°ãƒãƒƒãƒ•ã‚¡
+extern	int			RingBufInitialize( RINGBUF * RingBuf ) ;									// ãƒªãƒ³ã‚°ãƒãƒƒãƒ•ã‚¡ã‚’åˆæœŸåŒ–ã™ã‚‹
+extern	int			RingBufTerminate( RINGBUF * RingBuf ) ;										// ãƒªãƒ³ã‚°ãƒãƒƒãƒ•ã‚¡ã®å¾Œå§‹æœ«ã‚’ã™ã‚‹
+extern	int			RingBufDataAdd( RINGBUF * RingBuf, const void *Data, int Len ) ;			// ãƒªãƒ³ã‚°ãƒãƒƒãƒ•ã‚¡ã«ãƒ‡ãƒ¼ã‚¿ã‚’è¿½åŠ ã™ã‚‹
+extern	int			RingBufDataGet( RINGBUF * RingBuf, void *Buf, int Len, int PeekFlag) ;		// ãƒªãƒ³ã‚°ãƒãƒƒãƒ•ã‚¡ã‹ã‚‰ãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿ã“ã‚€
+extern	int			RingBufGetDataLength( RINGBUF * RingBuf ) ;									// ãƒªãƒ³ã‚°ãƒãƒƒãƒ•ã‚¡ã®æœ‰åŠ¹ãƒ‡ãƒ¼ã‚¿é‡ã®å–å¾— 
+extern	int			RingBufGetRestDataLength( RINGBUF * RingBuf ) ;								// ãƒªãƒ³ã‚°ãƒãƒƒãƒ•ã‚¡ã®æ®‹ã‚Šç©ºããƒ‡ãƒ¼ã‚¿é ˜åŸŸã‚’å–å¾—
+extern	int			RingBufReSize( RINGBUF * RingBuf, int AddSize ) ;							// ãƒªãƒ³ã‚°ãƒãƒƒãƒ•ã‚¡ã®å®¹é‡ã‚’æŒ‡å®šé‡ã®ãƒ‡ãƒ¼ã‚¿ã‚’è¿½åŠ ã—ã¦ã‚‚åã¾ã‚‹ã‚µã‚¤ã‚ºã«èª¿æ•´ã™ã‚‹
 
-// ƒŠƒ“ƒOƒoƒbƒtƒ@‚ÌƒAƒhƒŒƒX‚É•s³‚ª‚È‚¢‚©ƒ`ƒFƒbƒN‚·‚é
+// ãƒªãƒ³ã‚°ãƒãƒƒãƒ•ã‚¡ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã«ä¸æ­£ãŒãªã„ã‹ãƒã‚§ãƒƒã‚¯ã™ã‚‹
 __inline void RingBufAddressCheck( RINGBUF * RingBuf )
 {
 	if( RingBuf->Start == RingBuf->BufferSize ) RingBuf->Start = 0 ;

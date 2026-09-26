@@ -1,15 +1,15 @@
 //-----------------------------------------------------------------------------
 // 
-// 		‚c‚wƒ‰ƒCƒuƒ‰ƒŠ		Android—pƒXƒŒƒbƒhŠÖŒWƒvƒƒOƒ‰ƒ€
+// 		ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒª		Androidç”¨ã‚¹ãƒ¬ãƒƒãƒ‰é–¢ä¿‚ãƒ—ãƒ­ã‚°ãƒ©ãƒ 
 // 
 //  	Ver 3.25a
 // 
 //-----------------------------------------------------------------------------
 
-// ‚c‚wƒ‰ƒCƒuƒ‰ƒŠì¬—p’è‹`
+// ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªä½œæˆæ™‚ç”¨å®šç¾©
 #define DX_MAKE
 
-// ƒCƒ“ƒNƒ‹[ƒh ---------------------------------------------------------------
+// ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ ---------------------------------------------------------------
 #include "DxThreadAndroid.h"
 #include "../DxMemory.h"
 #include "../DxBaseFunc.h"
@@ -22,43 +22,43 @@ namespace DxLib
 
 #endif // DX_NON_NAMESPACE
 
-// ƒ}ƒNƒ’è‹` -----------------------------------------------------------------
+// ãƒã‚¯ãƒ­å®šç¾© -----------------------------------------------------------------
 
-#define THREAD_STACK_SIZE				(128 * 1024)			// ƒXƒŒƒbƒh‚ÌƒXƒ^ƒbƒNƒTƒCƒY
+#define THREAD_STACK_SIZE				(128 * 1024)			// ã‚¹ãƒ¬ãƒƒãƒ‰ã®ã‚¹ã‚¿ãƒƒã‚¯ã‚µã‚¤ã‚º
 
-#define THREAD_SUSPEND_EVENT_BIT		(0x00000001)			// ‹x~ó‘Ôˆ——p‚ÌƒCƒxƒ“ƒg‚Ìƒrƒbƒg
+#define THREAD_SUSPEND_EVENT_BIT		(0x00000001)			// ä¼‘æ­¢çŠ¶æ…‹å‡¦ç†ç”¨ã®ã‚¤ãƒ™ãƒ³ãƒˆã®ãƒ“ãƒƒãƒˆ
 
-// \‘¢‘ÌéŒ¾ -----------------------------------------------------------------
+// æ§‹é€ ä½“å®£è¨€ -----------------------------------------------------------------
 
-// ƒf[ƒ^’è‹` -----------------------------------------------------------------
+// ãƒ‡ãƒ¼ã‚¿å®šç¾© -----------------------------------------------------------------
 
-// ŠÖ”éŒ¾ -------------------------------------------------------------------
+// é–¢æ•°å®£è¨€ -------------------------------------------------------------------
 
-// ƒvƒƒOƒ‰ƒ€ -----------------------------------------------------------------
+// ãƒ—ãƒ­ã‚°ãƒ©ãƒ  -----------------------------------------------------------------
 
-// ƒXƒŒƒbƒh‚Ìˆ—‚ğ‰Šú‰»‚·‚é
+// ã‚¹ãƒ¬ãƒƒãƒ‰ã®å‡¦ç†ã‚’åˆæœŸåŒ–ã™ã‚‹
 extern void Thread_Initialize( void )
 {
 	return ;
 }
 
-// ƒXƒŒƒbƒh‚ğÀs‚·‚éŠÖ”
+// ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’å®Ÿè¡Œã™ã‚‹é–¢æ•°
 static void * ThreadRunFunction( void *pArgBlock )
 {
 	THREAD_INFO *pInfo = ( THREAD_INFO * )pArgBlock ;
 
 	Thread_Suspend( pInfo ) ;
 
-	// ƒXƒŒƒbƒhì¬‚É“n‚³‚ê‚½ŠÖ”‚ğÀs
+	// ã‚¹ãƒ¬ãƒƒãƒ‰ä½œæˆæ™‚ã«æ¸¡ã•ã‚ŒãŸé–¢æ•°ã‚’å®Ÿè¡Œ
 	pInfo->pFunction( pInfo, pInfo->pParam ) ;
 
 	return NULL ;
 }
 
-// ƒXƒŒƒbƒh‚ğì¬‚·‚é
+// ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’ä½œæˆã™ã‚‹
 extern int Thread_Create( THREAD_INFO *pThreadInfo, void ( *pFunction )( THREAD_INFO *, void * ), void *pParam )
 {
-	// ’l‚ğ‰Šú‰»
+	// å€¤ã‚’åˆæœŸåŒ–
 	pThreadInfo->Thread_valid		= 0 ;
 	pThreadInfo->Threadattr_valid	= 0 ;
 	pThreadInfo->Cond_valid			= 0 ;
@@ -66,64 +66,64 @@ extern int Thread_Create( THREAD_INFO *pThreadInfo, void ( *pFunction )( THREAD_
 	pThreadInfo->Mutexaddr_valid	= 0 ;
 	pThreadInfo->SuspendFlag		= FALSE ;
 
-	// ƒpƒ‰ƒ[ƒ^‚Ì•Û‘¶
+	// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®ä¿å­˜
 	pThreadInfo->pFunction	= pFunction ;
 	pThreadInfo->pParam		= pParam ;
 
-	// ƒ~ƒ…[ƒeƒbƒNƒX‘®«‚Ì‰Šú‰»
+	// ãƒŸãƒ¥ãƒ¼ãƒ†ãƒƒã‚¯ã‚¹å±æ€§ã®åˆæœŸåŒ–
 	if( pthread_mutexattr_init( &pThreadInfo->Mutexattr ) != 0 )
 	{
 		goto ERR ;
 	}
 	pThreadInfo->Mutexaddr_valid = 1 ;
 
-	// Ä‹AƒƒbƒN‰Â”\‚É‚·‚é
+	// å†å¸°ãƒ­ãƒƒã‚¯å¯èƒ½ã«ã™ã‚‹
 	if( pthread_mutexattr_settype( &pThreadInfo->Mutexattr, PTHREAD_MUTEX_RECURSIVE ) != 0 )
 	{
 		goto ERR ;
 	}
 
-	// ƒ~ƒ…[ƒeƒbƒNƒX‚Ìì¬
+	// ãƒŸãƒ¥ãƒ¼ãƒ†ãƒƒã‚¯ã‚¹ã®ä½œæˆ
 	if( pthread_mutex_init( &pThreadInfo->Mutex, &pThreadInfo->Mutexattr ) != 0 )
 	{
 		goto ERR ;
 	}
 	pThreadInfo->Mutex_valid = 1 ;
 
-	// ğŒ•Ï”‚Ìì¬
+	// æ¡ä»¶å¤‰æ•°ã®ä½œæˆ
 	if( pthread_cond_init( &pThreadInfo->Cond, NULL ) != 0 )
 	{
 		goto ERR ;
 	}
 	pThreadInfo->Cond_valid = 1 ;
 
-	// ƒXƒŒƒbƒh‘®«‚Ì‰Šú‰»
+	// ã‚¹ãƒ¬ãƒƒãƒ‰å±æ€§ã®åˆæœŸåŒ–
 	if( pthread_attr_init( &pThreadInfo->Threadattr ) != 0 )
 	{
 		goto ERR ;
 	}
 	pThreadInfo->Threadattr_valid = 1 ;
 
-	// ƒXƒŒƒbƒh‘®«‚ÌƒZƒbƒg
+	// ã‚¹ãƒ¬ãƒƒãƒ‰å±æ€§ã®ã‚»ãƒƒãƒˆ
 //	if( pthread_attr_setdetachstate( &pThreadInfo->Threadattr, PTHREAD_CREATE_DETACHED ) != 0 )
 //	{
 //		goto ERR ;
 //	}
 
-	// ƒXƒ^ƒbƒNƒTƒCƒY‚ÌƒZƒbƒg
+	// ã‚¹ã‚¿ãƒƒã‚¯ã‚µã‚¤ã‚ºã®ã‚»ãƒƒãƒˆ
 	if( pthread_attr_setstacksize( &pThreadInfo->Threadattr, THREAD_STACK_SIZE ) != 0 )
 	{
 		goto ERR ;
 	}
 
-	// ƒXƒŒƒbƒh‚Ìì¬
+	// ã‚¹ãƒ¬ãƒƒãƒ‰ã®ä½œæˆ
 	if( pthread_create( &pThreadInfo->Thread, &pThreadInfo->Threadattr, ThreadRunFunction, pThreadInfo ) != 0 )
 	{
 		goto ERR ;
 	}
 	pThreadInfo->Thread_valid = 1 ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 
 ERR :
@@ -158,11 +158,11 @@ ERR :
 		pThreadInfo->Thread_valid = 0 ;
 	}
 
-	// ƒGƒ‰[I—¹
+	// ã‚¨ãƒ©ãƒ¼çµ‚äº†
 	return -1 ;
 }
 
-// ƒXƒŒƒbƒh‚ÌŒãn––‚ğs‚¤
+// ã‚¹ãƒ¬ãƒƒãƒ‰ã®å¾Œå§‹æœ«ã‚’è¡Œã†
 extern void Thread_Delete( THREAD_INFO *pThreadInfo )
 {
 	if( pThreadInfo->Mutex_valid )
@@ -196,15 +196,15 @@ extern void Thread_Delete( THREAD_INFO *pThreadInfo )
 	}
 }
 
-// ƒXƒŒƒbƒh‚ª—LŒø‚©‚Ç‚¤‚©‚ğæ“¾‚·‚é( 1:—LŒø  0:–³Œø )
+// ã‚¹ãƒ¬ãƒƒãƒ‰ãŒæœ‰åŠ¹ã‹ã©ã†ã‹ã‚’å–å¾—ã™ã‚‹( 1:æœ‰åŠ¹  0:ç„¡åŠ¹ )
 extern int Thread_IsValid( THREAD_INFO *pThreadInfo )
 {
 	return pThreadInfo->Thread_valid ;
 }
 
 
-// ƒXƒŒƒbƒh‚ÌÀs—Dæ‡ˆÊ‚ğİ’è‚·‚é
-extern void Thread_SetPriority( THREAD_INFO *pThreadInfo, int Priority /* DX_THREAD_PRIORITY_LOWEST ‚È‚Ç */ )
+// ã‚¹ãƒ¬ãƒƒãƒ‰ã®å®Ÿè¡Œå„ªå…ˆé †ä½ã‚’è¨­å®šã™ã‚‹
+extern void Thread_SetPriority( THREAD_INFO *pThreadInfo, int Priority /* DX_THREAD_PRIORITY_LOWEST ãªã© */ )
 {
 	sched_param param ;
 	volatile static int InitPriorityTable = 0 ;
@@ -235,64 +235,64 @@ extern void Thread_SetPriority( THREAD_INFO *pThreadInfo, int Priority /* DX_THR
 	pthread_setschedparam( pThreadInfo->Thread, SCHED_NORMAL, &param ) ;
 }
 
-// ƒJƒŒƒ“ƒgƒXƒŒƒbƒh‚Ì‚h‚c‚ğæ“¾‚·‚é
+// ã‚«ãƒ¬ãƒ³ãƒˆã‚¹ãƒ¬ãƒƒãƒ‰ã®ï¼©ï¼¤ã‚’å–å¾—ã™ã‚‹
 extern DWORD_PTR Thread_GetCurrentId( void )
 {
 	return ( DWORD_PTR )pthread_self() ;
 }
 
-// ƒXƒŒƒbƒh‚Ì‚h‚c‚ğæ“¾‚·‚é
+// ã‚¹ãƒ¬ãƒƒãƒ‰ã®ï¼©ï¼¤ã‚’å–å¾—ã™ã‚‹
 extern DWORD_PTR Thread_GetId( THREAD_INFO *pThreadInfo )
 {
 	return ( DWORD_PTR )pThreadInfo->Thread ;
 }
 
-// ƒXƒŒƒbƒh‚ğ‹x~ó‘Ô‚É‚·‚é
+// ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’ä¼‘æ­¢çŠ¶æ…‹ã«ã™ã‚‹
 extern void Thread_Suspend( THREAD_INFO *pThreadInfo )
 {
-	// ƒ~ƒ…[ƒeƒbƒNƒX‚ğƒƒbƒN
+	// ãƒŸãƒ¥ãƒ¼ãƒ†ãƒƒã‚¯ã‚¹ã‚’ãƒ­ãƒƒã‚¯
 	pthread_mutex_lock( &pThreadInfo->Mutex ) ;
 
-	// ‹x~ó‘Ô‚Ìƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// ä¼‘æ­¢çŠ¶æ…‹ã®ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	pThreadInfo->SuspendFlag = TRUE ;
 
-	// ƒVƒOƒiƒ‹‘Ò‚¿‚É‚·‚é
+	// ã‚·ã‚°ãƒŠãƒ«å¾…ã¡ã«ã™ã‚‹
 	pthread_cond_wait( &pThreadInfo->Cond, &pThreadInfo->Mutex ) ;
 
-	// ƒ~ƒ…[ƒeƒbƒNƒX‚ğƒAƒ“ƒƒbƒN
+	// ãƒŸãƒ¥ãƒ¼ãƒ†ãƒƒã‚¯ã‚¹ã‚’ã‚¢ãƒ³ãƒ­ãƒƒã‚¯
 	pthread_mutex_unlock( &pThreadInfo->Mutex ) ;
 }
 
-// ƒXƒŒƒbƒh‚Ì‹x~ó‘Ô‚ğ‰ğœ‚·‚é( 0:‹x~ó‘Ô‚¶‚á‚È‚©‚Á‚½  1:‹x~ó‘Ô‚¾‚Á‚½ )
+// ã‚¹ãƒ¬ãƒƒãƒ‰ã®ä¼‘æ­¢çŠ¶æ…‹ã‚’è§£é™¤ã™ã‚‹( 0:ä¼‘æ­¢çŠ¶æ…‹ã˜ã‚ƒãªã‹ã£ãŸ  1:ä¼‘æ­¢çŠ¶æ…‹ã ã£ãŸ )
 extern int Thread_Resume( THREAD_INFO *pThreadInfo )
 {
-	// ƒ~ƒ…[ƒeƒbƒNƒX‚ğƒƒbƒN
+	// ãƒŸãƒ¥ãƒ¼ãƒ†ãƒƒã‚¯ã‚¹ã‚’ãƒ­ãƒƒã‚¯
 	pthread_mutex_lock( &pThreadInfo->Mutex ) ;
 
-	// ‹x~ó‘Ô‚Å‚Í‚È‚©‚Á‚½‚ç‚·‚®‚É”²‚¯‚é
+	// ä¼‘æ­¢çŠ¶æ…‹ã§ã¯ãªã‹ã£ãŸã‚‰ã™ãã«æŠœã‘ã‚‹
 	if( pThreadInfo->SuspendFlag == FALSE )
 	{
-		// ƒ~ƒ…[ƒeƒbƒNƒX‚ğƒAƒ“ƒƒbƒN
+		// ãƒŸãƒ¥ãƒ¼ãƒ†ãƒƒã‚¯ã‚¹ã‚’ã‚¢ãƒ³ãƒ­ãƒƒã‚¯
 		pthread_mutex_unlock( &pThreadInfo->Mutex ) ;
 
-		// ‹x~ó‘Ô‚Å‚Í‚È‚©‚Á‚½‚Ì–ß‚è’l
+		// ä¼‘æ­¢çŠ¶æ…‹ã§ã¯ãªã‹ã£ãŸã®æˆ»ã‚Šå€¤
 		return 0 ;
 	}
 
-	// ‹x~ó‘Ô‚Ìƒtƒ‰ƒO‚ğ“|‚·
+	// ä¼‘æ­¢çŠ¶æ…‹ã®ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 	pThreadInfo->SuspendFlag = FALSE ;
 
-	// ƒVƒOƒiƒ‹‚ğ‘—‚é
+	// ã‚·ã‚°ãƒŠãƒ«ã‚’é€ã‚‹
 	pthread_cond_signal( &pThreadInfo->Cond ) ; 
 
-	// ƒ~ƒ…[ƒeƒbƒNƒX‚ğƒAƒ“ƒƒbƒN
+	// ãƒŸãƒ¥ãƒ¼ãƒ†ãƒƒã‚¯ã‚¹ã‚’ã‚¢ãƒ³ãƒ­ãƒƒã‚¯
 	pthread_mutex_unlock( &pThreadInfo->Mutex ) ;
 
-	// ‹x~ó‘Ô‚¾‚Á‚½‚Ì–ß‚è’l
+	// ä¼‘æ­¢çŠ¶æ…‹ã ã£ãŸã®æˆ»ã‚Šå€¤
 	return 1 ;
 }
 
-// w’èŠÔƒXƒŒƒbƒh‚ğ’â~‚·‚é
+// æŒ‡å®šæ™‚é–“ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’åœæ­¢ã™ã‚‹
 extern void Thread_Sleep( DWORD MiliSecond )
 {
 	usleep( MiliSecond * 1000 ) ;
@@ -302,26 +302,26 @@ extern void Thread_Sleep( DWORD MiliSecond )
 
 
 
-// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ì‰Šú‰»
+// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®åˆæœŸåŒ–
 extern int CriticalSection_Initialize( DX_CRITICAL_SECTION *pCSection )
 {
 	pCSection->Mutex_valid		= 0 ;
 	pCSection->Mutexaddr_valid	= 0 ;
 
-	// ƒ~ƒ…[ƒeƒbƒNƒX‘®«‚Ì‰Šú‰»
+	// ãƒŸãƒ¥ãƒ¼ãƒ†ãƒƒã‚¯ã‚¹å±æ€§ã®åˆæœŸåŒ–
 	if( pthread_mutexattr_init( &pCSection->Mutexattr ) != 0 )
 	{
 		goto ERR ;
 	}
 	pCSection->Mutexaddr_valid = 1 ;
 
-	// Ä‹AƒƒbƒN‰Â”\‚É‚·‚é
+	// å†å¸°ãƒ­ãƒƒã‚¯å¯èƒ½ã«ã™ã‚‹
 	if( pthread_mutexattr_settype( &pCSection->Mutexattr, PTHREAD_MUTEX_RECURSIVE ) != 0 )
 	{
 		goto ERR ;
 	}
 
-	// ƒ~ƒ…[ƒeƒbƒNƒX‚Ìì¬
+	// ãƒŸãƒ¥ãƒ¼ãƒ†ãƒƒã‚¯ã‚¹ã®ä½œæˆ
 	if( pthread_mutex_init( &pCSection->Mutex, &pCSection->Mutexattr ) != 0 )
 	{
 		goto ERR ;
@@ -355,7 +355,7 @@ ERR :
 	return -1 ;
 }
 
-// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚Ìíœ
+// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å‰Šé™¤
 extern int CriticalSection_Delete( DX_CRITICAL_SECTION *pCSection )
 {
 	if( pCSection->Mutex_valid )
@@ -373,7 +373,7 @@ extern int CriticalSection_Delete( DX_CRITICAL_SECTION *pCSection )
 	return 0 ;
 }
 
-// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚ÌƒƒbƒN‚Ìæ“¾
+// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®ãƒ­ãƒƒã‚¯ã®å–å¾—
 //#if defined( _DEBUG )
 #if 1
 extern int CriticalSection_Lock( DX_CRITICAL_SECTION *pCSection, const char *FilePath, int LineNo )
@@ -385,7 +385,7 @@ extern int CriticalSection_Lock( DX_CRITICAL_SECTION *pCSection )
 	DWORD_PTR ThreadID = Thread_GetCurrentId() ;
 #endif
 
-	// ƒ~ƒ…[ƒeƒbƒNƒX‚ğƒƒbƒN
+	// ãƒŸãƒ¥ãƒ¼ãƒ†ãƒƒã‚¯ã‚¹ã‚’ãƒ­ãƒƒã‚¯
 	pthread_mutex_lock( &pCSection->Mutex ) ;
 
 #if defined( _DEBUG )
@@ -400,10 +400,10 @@ extern int CriticalSection_Lock( DX_CRITICAL_SECTION *pCSection )
 	return 0 ;
 }
 
-// ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚ÌƒƒbƒN‚ğ‰ğ•ú‚·‚é
+// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®ãƒ­ãƒƒã‚¯ã‚’è§£æ”¾ã™ã‚‹
 extern int CriticalSection_Unlock( DX_CRITICAL_SECTION *pCSection )
 {
-	// ƒ~ƒ…[ƒeƒbƒNƒX‚ğ‰ğœ
+	// ãƒŸãƒ¥ãƒ¼ãƒ†ãƒƒã‚¯ã‚¹ã‚’è§£é™¤
 	pthread_mutex_unlock( &pCSection->Mutex ) ;
 
 	return 0 ;

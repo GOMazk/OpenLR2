@@ -1,6 +1,6 @@
 // -------------------------------------------------------------------------------
 // 
-// 		‚c‚wƒ‰ƒCƒuƒ‰ƒŠ		WindowsOS—pƒTƒEƒ“ƒhƒvƒƒOƒ‰ƒ€ƒwƒbƒ_ƒtƒ@ƒCƒ‹
+// 		ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒª		WindowsOSç”¨ã‚µã‚¦ãƒ³ãƒ‰ãƒ—ãƒ­ã‚°ãƒ©ãƒ ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«
 // 
 // 				Ver 3.25a
 // 
@@ -13,7 +13,7 @@
 
 #ifndef DX_NON_SOUND
 
-// ƒCƒ“ƒNƒ‹[ƒh ------------------------------------------------------------------
+// ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ ------------------------------------------------------------------
 #include "../DxLib.h"
 #include "DxDirectX.h"
 #include "DxUseCStrmBaseFilter.h"
@@ -25,14 +25,14 @@ namespace DxLib
 
 #endif // DX_NON_NAMESPACE
 
-// ƒ}ƒNƒ’è‹` --------------------------------------------------------------------
+// ãƒžã‚¯ãƒ­å®šç¾© --------------------------------------------------------------------
 
-// ƒXƒgƒŠ[ƒ€ŠÖŒW‚Ì’è‹`( WindowsŠÂ‹«‚ÍHDD‚ªƒXƒŠ[ƒv‚·‚é‚Ì‚ÅAƒtƒ@ƒCƒ‹‚©‚ç’¼ÚÄ¶‚·‚éê‡‚Íƒoƒbƒtƒ@‚ð‘½‚ß‚ÉŠm•Û )
-#define STS_BUFSEC_FILE						(256 * 13)			// ƒXƒgƒŠ[ƒ€•—ƒTƒEƒ“ƒhÄ¶Žž‚ÉŠm•Û‚·‚éƒTƒEƒ“ƒhƒoƒbƒtƒ@‚ÌŽžŠÔ( ’PˆÊ‚Í STS_DIVNUM•ª‚Ì1•b )( ƒtƒ@ƒCƒ‹‚©‚ç‚ÌƒXƒgƒŠ[ƒ€Ä¶—p )
-#define STS_ADVANCECOPYSEC_FILE				(256 * 12 + 192)	// ƒXƒgƒŠ[ƒ€•—ƒTƒEƒ“ƒhÄ¶Žž‚É‰¹ºƒf[ƒ^‚ðæs“WŠJ‚µ‚Ä‚¨‚­Å‘åŽžŠÔ( ’PˆÊ‚Í STS_DIVNUM•ª‚Ì1•b )( ƒtƒ@ƒCƒ‹‚©‚ç‚ÌƒXƒgƒŠ[ƒ€Ä¶—p )
-#define STS_MINADVANCECOPYSEC_FILE			(256 * 12)			// ƒXƒgƒŠ[ƒ€•—ƒTƒEƒ“ƒhÄ¶Žž‚É‰¹ºƒf[ƒ^‚ðæs“WŠJ‚µ‚Ä‚¨‚­Å¬ŽžŠÔ( ’PˆÊ‚Í STS_DIVNUM•ª‚Ì1•b )( ƒtƒ@ƒCƒ‹‚©‚ç‚ÌƒXƒgƒŠ[ƒ€Ä¶—p )
+// ã‚¹ãƒˆãƒªãƒ¼ãƒ é–¢ä¿‚ã®å®šç¾©( Windowsç’°å¢ƒã¯HDDãŒã‚¹ãƒªãƒ¼ãƒ—ã™ã‚‹ã®ã§ã€ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰ç›´æŽ¥å†ç”Ÿã™ã‚‹å ´åˆã¯ãƒãƒƒãƒ•ã‚¡ã‚’å¤šã‚ã«ç¢ºä¿ )
+#define STS_BUFSEC_FILE						(256 * 13)			// ã‚¹ãƒˆãƒªãƒ¼ãƒ é¢¨ã‚µã‚¦ãƒ³ãƒ‰å†ç”Ÿæ™‚ã«ç¢ºä¿ã™ã‚‹ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡ã®æ™‚é–“( å˜ä½ã¯ STS_DIVNUMåˆ†ã®1ç§’ )( ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰ã®ã‚¹ãƒˆãƒªãƒ¼ãƒ å†ç”Ÿç”¨ )
+#define STS_ADVANCECOPYSEC_FILE				(256 * 12 + 192)	// ã‚¹ãƒˆãƒªãƒ¼ãƒ é¢¨ã‚µã‚¦ãƒ³ãƒ‰å†ç”Ÿæ™‚ã«éŸ³å£°ãƒ‡ãƒ¼ã‚¿ã‚’å…ˆè¡Œå±•é–‹ã—ã¦ãŠãæœ€å¤§æ™‚é–“( å˜ä½ã¯ STS_DIVNUMåˆ†ã®1ç§’ )( ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰ã®ã‚¹ãƒˆãƒªãƒ¼ãƒ å†ç”Ÿç”¨ )
+#define STS_MINADVANCECOPYSEC_FILE			(256 * 12)			// ã‚¹ãƒˆãƒªãƒ¼ãƒ é¢¨ã‚µã‚¦ãƒ³ãƒ‰å†ç”Ÿæ™‚ã«éŸ³å£°ãƒ‡ãƒ¼ã‚¿ã‚’å…ˆè¡Œå±•é–‹ã—ã¦ãŠãæœ€å°æ™‚é–“( å˜ä½ã¯ STS_DIVNUMåˆ†ã®1ç§’ )( ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰ã®ã‚¹ãƒˆãƒªãƒ¼ãƒ å†ç”Ÿç”¨ )
 
-#define D_X3DAUDIO_INPUTCHANNELS			(8)				// X3DAudio ‚ÌŒvŽZ‚ÅŽg—p‚·‚éÅ‘å“ü—Íƒ`ƒƒƒ“ƒlƒ‹”
+#define D_X3DAUDIO_INPUTCHANNELS			(8)				// X3DAudio ã®è¨ˆç®—ã§ä½¿ç”¨ã™ã‚‹æœ€å¤§å…¥åŠ›ãƒãƒ£ãƒ³ãƒãƒ«æ•°
 
 #ifndef DX_NON_ASIO
 #define ASIO_DRV_DESC						L"description"
@@ -44,9 +44,9 @@ namespace DxLib
 #define ASIO_MAX_DRVNAME2_LEN				(32)
 #endif // DX_NON_ASIO
 
-// \‘¢‘Ì’è‹` --------------------------------------------------------------------
+// æ§‹é€ ä½“å®šç¾© --------------------------------------------------------------------
 
-// WASAPI—p’Ê’mˆ——pƒNƒ‰ƒX
+// WASAPIç”¨é€šçŸ¥å‡¦ç†ç”¨ã‚¯ãƒ©ã‚¹
 class D_CMMNotificationClient : public D_IMMNotificationClient
 {
 	LONG _cRef ;
@@ -71,7 +71,7 @@ public:
 	HRESULT	__stdcall OnPropertyValueChanged	( LPCWSTR pwstrDeviceId, const D_PROPERTYKEY key ) ;
 } ;
 
-// XAudio2—pƒR[ƒ‹ƒoƒbƒNˆ——p\‘¢‘Ì
+// XAudio2ç”¨ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯å‡¦ç†ç”¨æ§‹é€ ä½“
 struct SOUNDBUFFER_CALLBACK : public D_IXAudio2VoiceCallback
 {
 	virtual void    __stdcall OnVoiceProcessingPassStart( DWORD BytesRequired ) ;
@@ -85,7 +85,7 @@ struct SOUNDBUFFER_CALLBACK : public D_IXAudio2VoiceCallback
 	struct SOUNDBUFFER			*Buffer ;
 } ;
 
-// ƒTƒEƒ“ƒhƒoƒbƒtƒ@ŠÂ‹«ˆË‘¶î•ñ\‘¢‘Ì
+// ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡ç’°å¢ƒä¾å­˜æƒ…å ±æ§‹é€ ä½“
 struct SOUNDBUFFER_PF
 {
 	union
@@ -99,28 +99,28 @@ struct SOUNDBUFFER_PF
 		D_IXAudio2SubmixVoice		*XA2SubmixVoice ;		// XAudio2SubmixVoice
 		D_IXAudio2_8SubmixVoice		*XA2_8SubmixVoice ;		// XAudio2_8SubmixVoice
 	} ;
-	D_IUnknown					*XA2ReverbEffect ;		// ƒŠƒo[ƒuƒGƒtƒFƒNƒg
-	SOUNDBUFFER_CALLBACK		*XA2Callback ;			// XAudio2—p‚ÌƒR[ƒ‹ƒoƒbƒN
+	D_IUnknown					*XA2ReverbEffect ;		// ãƒªãƒãƒ¼ãƒ–ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
+	SOUNDBUFFER_CALLBACK		*XA2Callback ;			// XAudio2ç”¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
 
 	union
 	{
-		D_XAUDIO2FX_REVERB_PARAMETERS    XAudio2ReverbParameter ;	// ƒŠƒo[ƒuŒvŽZ—pƒpƒ‰ƒ[ƒ^
-		D_XAUDIO2FX_REVERB_PARAMETERS2_8 XAudio2_8ReverbParameter ;	// ƒŠƒo[ƒuŒvŽZ—pƒpƒ‰ƒ[ƒ^XAudio2.8—p
+		D_XAUDIO2FX_REVERB_PARAMETERS    XAudio2ReverbParameter ;	// ãƒªãƒãƒ¼ãƒ–è¨ˆç®—ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+		D_XAUDIO2FX_REVERB_PARAMETERS2_8 XAudio2_8ReverbParameter ;	// ãƒªãƒãƒ¼ãƒ–è¨ˆç®—ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿XAudio2.8ç”¨
 	} ;
 
-	int							XAudioChannels ;		// XAudio ‘¤‚Å‚Ìƒ`ƒƒƒ“ƒlƒ‹”
+	int							XAudioChannels ;		// XAudio å´ã§ã®ãƒãƒ£ãƒ³ãƒãƒ«æ•°
 
-	// ‚R‚cƒTƒEƒ“ƒhÄ¶—pƒf[ƒ^
-	D_X3DAUDIO_EMITTER			X3DAudioEmitterData ;									// ‚R‚cƒTƒEƒ“ƒh—p‰¹Œ¹î•ñ
-	D_X3DAUDIO_CONE				X3DAudioEmitterConeData ;								// ‚R‚cƒTƒEƒ“ƒh—p‰¹Œ¹î•ñ‚ÅŽg—p‚·‚éƒR[ƒ“î•ñ
-	float						X3DAudioEmitterChannelAzimuths[ D_X3DAUDIO_INPUTCHANNELS ] ;	// ‚R‚cƒTƒEƒ“ƒh—p‰¹Œ¹î•ñ‚ÅŽg—p‚·‚éƒ`ƒƒƒ“ƒlƒ‹ˆÊ’uƒe[ƒuƒ‹
+	// ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰å†ç”Ÿç”¨ãƒ‡ãƒ¼ã‚¿
+	D_X3DAUDIO_EMITTER			X3DAudioEmitterData ;									// ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰ç”¨éŸ³æºæƒ…å ±
+	D_X3DAUDIO_CONE				X3DAudioEmitterConeData ;								// ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰ç”¨éŸ³æºæƒ…å ±ã§ä½¿ç”¨ã™ã‚‹ã‚³ãƒ¼ãƒ³æƒ…å ±
+	float						X3DAudioEmitterChannelAzimuths[ D_X3DAUDIO_INPUTCHANNELS ] ;	// ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰ç”¨éŸ³æºæƒ…å ±ã§ä½¿ç”¨ã™ã‚‹ãƒãƒ£ãƒ³ãƒãƒ«ä½ç½®ãƒ†ãƒ¼ãƒ–ãƒ«
 } ;
 
-// ƒTƒEƒ“ƒhƒVƒXƒeƒ€—pŠÂ‹«ˆË‘¶ƒf[ƒ^\‘¢‘Ì
+// ã‚µã‚¦ãƒ³ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ç”¨ç’°å¢ƒä¾å­˜ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
 struct SOUNDSYSTEMDATA_PF
 {
-	D_IDirectMusicLoader8		*DirectMusicLoaderObject ;		// DirectMusicLoader8 ƒIƒuƒWƒFƒNƒg
-	D_IDirectMusicPerformance8	*DirectMusicPerformanceObject ;	// DirectMusicPerformance8 ƒIƒuƒWƒFƒNƒg
+	D_IDirectMusicLoader8		*DirectMusicLoaderObject ;		// DirectMusicLoader8 ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+	D_IDirectMusicPerformance8	*DirectMusicPerformanceObject ;	// DirectMusicPerformance8 ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
 
 	HMODULE						XAudio2_8DLL ;					// XAudio2_8.dll
 	HRESULT						( WINAPI *XAudio2CreateFunc )( D_IXAudio2_8 ** ppXAudio2, DWORD Flags, D_XAUDIO2_PROCESSOR XAudio2Processor );
@@ -133,108 +133,108 @@ struct SOUNDSYSTEMDATA_PF
 
 	union
 	{
-		D_IXAudio2				*XAudio2Object ;				// XAudio2ƒIƒuƒWƒFƒNƒg
-		D_IXAudio2_8			*XAudio2_8Object ;				// XAudio2_8ƒIƒuƒWƒFƒNƒg
-		D_IDirectSound			*DirectSoundObject ;			// ‚c‚‰‚’‚…‚ƒ‚”‚r‚‚•‚Ž‚„ƒIƒuƒWƒFƒNƒg
-		DWORD_PTR				InitializeFlag ;				// Ž©‘Oƒ~ƒLƒVƒ“ƒO—p‰Šú‰»ƒtƒ‰ƒO
+		D_IXAudio2				*XAudio2Object ;				// XAudio2ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+		D_IXAudio2_8			*XAudio2_8Object ;				// XAudio2_8ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+		D_IDirectSound			*DirectSoundObject ;			// ï¼¤ï½‰ï½’ï½…ï½ƒï½”ï¼³ï½ï½•ï½Žï½„ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+		DWORD_PTR				InitializeFlag ;				// è‡ªå‰ãƒŸã‚­ã‚·ãƒ³ã‚°ç”¨åˆæœŸåŒ–ãƒ•ãƒ©ã‚°
 	} ;
 
-	D_XAUDIO2FX_REVERB_PARAMETERS    XAudio2ReverbParameters[ D_XAUDIO2FX_PRESET_NUM ] ;	// ƒŠƒo[ƒuŒvŽZ—pƒpƒ‰ƒ[ƒ^
-	D_XAUDIO2FX_REVERB_PARAMETERS2_8 XAudio2_8ReverbParameters[ D_XAUDIO2FX_PRESET_NUM ] ;	// ƒŠƒo[ƒuŒvŽZ—pƒpƒ‰ƒ[ƒ^XAudio2.8—p
-	D_IXAudio2MasteringVoice	*XAudio2MasteringVoiceObject ;	// XAudio2MasteringVoiceƒIƒuƒWƒFƒNƒg
-	D_IXAudio2_8MasteringVoice	*XAudio2_8MasteringVoiceObject ;// XAudio2_8MasteringVoiceƒIƒuƒWƒFƒNƒg
-	D_XAUDIO2_EFFECT_CHAIN		XAudio2MasteringEffectChain ;	// ƒ}ƒXƒ^[ƒ{ƒCƒX—p‚ÌƒGƒtƒFƒNƒgƒ`ƒFƒCƒ“
+	D_XAUDIO2FX_REVERB_PARAMETERS    XAudio2ReverbParameters[ D_XAUDIO2FX_PRESET_NUM ] ;	// ãƒªãƒãƒ¼ãƒ–è¨ˆç®—ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+	D_XAUDIO2FX_REVERB_PARAMETERS2_8 XAudio2_8ReverbParameters[ D_XAUDIO2FX_PRESET_NUM ] ;	// ãƒªãƒãƒ¼ãƒ–è¨ˆç®—ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿XAudio2.8ç”¨
+	D_IXAudio2MasteringVoice	*XAudio2MasteringVoiceObject ;	// XAudio2MasteringVoiceã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+	D_IXAudio2_8MasteringVoice	*XAudio2_8MasteringVoiceObject ;// XAudio2_8MasteringVoiceã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+	D_XAUDIO2_EFFECT_CHAIN		XAudio2MasteringEffectChain ;	// ãƒžã‚¹ã‚¿ãƒ¼ãƒœã‚¤ã‚¹ç”¨ã®ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒã‚§ã‚¤ãƒ³
 
-	DWORD						XAudio2OutputChannelMask ;		// o—Íƒ`ƒƒƒ“ƒlƒ‹ƒ}ƒXƒN
+	DWORD						XAudio2OutputChannelMask ;		// å‡ºåŠ›ãƒãƒ£ãƒ³ãƒãƒ«ãƒžã‚¹ã‚¯
 
-	D_X3DAUDIO_HANDLE			X3DAudioInstance ;				// ‚R‚cƒTƒEƒ“ƒhŒvŽZ—pƒCƒ“ƒXƒ^ƒ“ƒXƒnƒ“ƒhƒ‹
-	D_X3DAUDIO_CONE				X3DAudioListenerConeData ;		// ‚R‚cƒTƒEƒ“ƒh‚ÌƒŠƒXƒi[î•ñ‚ÉŽg—p‚·‚éƒR[ƒ“î•ñ
-	D_X3DAUDIO_LISTENER			X3DAudioListenerData ;			// ‚R‚cƒTƒEƒ“ƒh‚ÌƒŠƒXƒi[î•ñ
+	D_X3DAUDIO_HANDLE			X3DAudioInstance ;				// ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰è¨ˆç®—ç”¨ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ãƒãƒ³ãƒ‰ãƒ«
+	D_X3DAUDIO_CONE				X3DAudioListenerConeData ;		// ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰ã®ãƒªã‚¹ãƒŠãƒ¼æƒ…å ±ã«ä½¿ç”¨ã™ã‚‹ã‚³ãƒ¼ãƒ³æƒ…å ±
+	D_X3DAUDIO_LISTENER			X3DAudioListenerData ;			// ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰ã®ãƒªã‚¹ãƒŠãƒ¼æƒ…å ±
 
-	D_WAVEFORMATEXTENSIBLE		SelfMixingFormatEx ;			// Ž©‘Oƒ~ƒLƒVƒ“ƒOƒtƒH[ƒ}ƒbƒg‚Ì WAVEFORMATEXTENSIBLE ”Å
+	D_WAVEFORMATEXTENSIBLE		SelfMixingFormatEx ;			// è‡ªå‰ãƒŸã‚­ã‚·ãƒ³ã‚°ãƒ•ã‚©ãƒ¼ãƒžãƒƒãƒˆã® WAVEFORMATEXTENSIBLE ç‰ˆ
 
-	D_IMMDeviceEnumerator		*IMMDeviceEnumerator ;			// ƒ}ƒ‹ƒ`ƒƒfƒBƒAƒfƒoƒCƒX—ñ‹“ƒCƒ“ƒ^[ƒtƒF[ƒX
-	D_CMMNotificationClient		*CMMNotificationClient ;		// ƒfƒoƒCƒX‚ÌƒR[ƒ‹ƒoƒbƒNƒCƒ“ƒ^[ƒtƒFƒCƒX
-	D_IMMDevice					*IMMDevice ;					// ƒfƒoƒCƒXƒCƒ“ƒ^[ƒtƒF[ƒX
-	D_IAudioClient				*AudioClient ;					// ƒI[ƒfƒBƒIƒNƒ‰ƒCƒAƒ“ƒgƒCƒ“ƒ^[ƒtƒF[ƒX
-	D_IAudioClock				*AudioClock ;					// ƒI[ƒfƒBƒIƒNƒƒbƒNƒCƒ“ƒ^[ƒtƒF[ƒX
-	D_IAudioRenderClient		*AudioRenderClient ;			// ƒŒƒ“ƒ_[ƒNƒ‰ƒCƒAƒ“ƒgƒCƒ“ƒ^[ƒtƒF[ƒX
-	HANDLE						WASAPI_Event ;					// WASAPI—pƒCƒxƒ“ƒgƒnƒ“ƒhƒ‹
-	HANDLE						WASAPI_ThreadHandle ;			// WASAPI—pƒXƒŒƒbƒhƒnƒ“ƒhƒ‹
-	BOOL						WASAPI_ThreadLoop ;				// WASAPI—pƒXƒŒƒbƒhˆ—’†‚©
-	D_REFERENCE_TIME			WASAPI_DevicePeriod ;			// WASAPI‚ÌƒfƒoƒCƒXƒsƒŠƒIƒh
-	D_REFERENCE_TIME			WASAPI_DefaultDevicePeriod ;	// WASAPI‚ÌƒfƒtƒHƒ‹ƒgƒfƒoƒCƒXƒsƒŠƒIƒh
-	D_REFERENCE_TIME			WASAPI_MinimumDevicePeriod ;	// WASAPI‚ÌÅ¬ƒfƒoƒCƒXƒsƒŠƒIƒh
-	DWORD						WASAPI_BufferSamples ;			// WASAPI‚Ìƒoƒbƒtƒ@‚ÌƒTƒ“ƒvƒ‹”
-	int							WASAPI_IsExclusiveFlag ;		// WASAPI‚ð”r‘¼ƒ‚[ƒh‚ÅŽg—p‚·‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO( TRUE:”r‘¼ƒ‚[ƒh  FALSE:‹¤—Lƒ‚[ƒh )
-	int							WASAPI_DefaultDeviceChange ;	// WASAPI‚ÌƒfƒtƒHƒ‹ƒgƒfƒoƒCƒX‚ª•Ï‰»‚µ‚½‚ç—§‚Âƒtƒ‰ƒO
+	D_IMMDeviceEnumerator		*IMMDeviceEnumerator ;			// ãƒžãƒ«ãƒãƒ¡ãƒ‡ã‚£ã‚¢ãƒ‡ãƒã‚¤ã‚¹åˆ—æŒ™ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹
+	D_CMMNotificationClient		*CMMNotificationClient ;		// ãƒ‡ãƒã‚¤ã‚¹ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ã‚¤ã‚¹
+	D_IMMDevice					*IMMDevice ;					// ãƒ‡ãƒã‚¤ã‚¹ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹
+	D_IAudioClient				*AudioClient ;					// ã‚ªãƒ¼ãƒ‡ã‚£ã‚ªã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹
+	D_IAudioClock				*AudioClock ;					// ã‚ªãƒ¼ãƒ‡ã‚£ã‚ªã‚¯ãƒ­ãƒƒã‚¯ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹
+	D_IAudioRenderClient		*AudioRenderClient ;			// ãƒ¬ãƒ³ãƒ€ãƒ¼ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹
+	HANDLE						WASAPI_Event ;					// WASAPIç”¨ã‚¤ãƒ™ãƒ³ãƒˆãƒãƒ³ãƒ‰ãƒ«
+	HANDLE						WASAPI_ThreadHandle ;			// WASAPIç”¨ã‚¹ãƒ¬ãƒƒãƒ‰ãƒãƒ³ãƒ‰ãƒ«
+	BOOL						WASAPI_ThreadLoop ;				// WASAPIç”¨ã‚¹ãƒ¬ãƒƒãƒ‰å‡¦ç†ä¸­ã‹
+	D_REFERENCE_TIME			WASAPI_DevicePeriod ;			// WASAPIã®ãƒ‡ãƒã‚¤ã‚¹ãƒ”ãƒªã‚ªãƒ‰
+	D_REFERENCE_TIME			WASAPI_DefaultDevicePeriod ;	// WASAPIã®ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãƒ‡ãƒã‚¤ã‚¹ãƒ”ãƒªã‚ªãƒ‰
+	D_REFERENCE_TIME			WASAPI_MinimumDevicePeriod ;	// WASAPIã®æœ€å°ãƒ‡ãƒã‚¤ã‚¹ãƒ”ãƒªã‚ªãƒ‰
+	DWORD						WASAPI_BufferSamples ;			// WASAPIã®ãƒãƒƒãƒ•ã‚¡ã®ã‚µãƒ³ãƒ—ãƒ«æ•°
+	int							WASAPI_IsExclusiveFlag ;		// WASAPIã‚’æŽ’ä»–ãƒ¢ãƒ¼ãƒ‰ã§ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°( TRUE:æŽ’ä»–ãƒ¢ãƒ¼ãƒ‰  FALSE:å…±æœ‰ãƒ¢ãƒ¼ãƒ‰ )
+	int							WASAPI_DefaultDeviceChange ;	// WASAPIã®ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãƒ‡ãƒã‚¤ã‚¹ãŒå¤‰åŒ–ã—ãŸã‚‰ç«‹ã¤ãƒ•ãƒ©ã‚°
 
-	int							WASAPI_EnableUserParam ;		// WASAPI‚Ìƒ†[ƒU[Ý’èƒpƒ‰ƒ[ƒ^‚ª—LŒø‚©
-	int							WASAPI_UserParam_DevicePeriod ;	// WASAPI‚ÌƒfƒoƒCƒXƒsƒŠƒIƒh
-	int							WASAPI_UserParam_SamplePerSec ;	// WASAPI‚ÌƒTƒ“ƒvƒŠƒ“ƒOƒŒ[ƒg
+	int							WASAPI_EnableUserParam ;		// WASAPIã®ãƒ¦ãƒ¼ã‚¶ãƒ¼è¨­å®šãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãŒæœ‰åŠ¹ã‹
+	int							WASAPI_UserParam_DevicePeriod ;	// WASAPIã®ãƒ‡ãƒã‚¤ã‚¹ãƒ”ãƒªã‚ªãƒ‰
+	int							WASAPI_UserParam_SamplePerSec ;	// WASAPIã®ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ãƒ¬ãƒ¼ãƒˆ
 
 #ifndef DX_NON_ASIO
-	long						ASIO_DriverNum ;				// ASIOƒhƒ‰ƒCƒo[‚Ì”
-	int							ASIO_DriverUseIndex ;			// Žg—p‚·‚éASIOƒhƒ‰ƒCƒo
-	char						ASIO_DriverPaths[ ASIO_MAX_DRIVER_NUM ][ ASIO_MAX_PATH_LEN ] ;		// ASIOƒhƒ‰ƒCƒo[‚ÌƒpƒX
-	wchar_t						ASIO_DriverNames[ ASIO_MAX_DRIVER_NUM ][ ASIO_MAX_DRVNAME_LEN ] ;	// ASIOƒhƒ‰ƒCƒo[‚Ì–¼‘O
-	char						ASIO_DriverNames2[ ASIO_MAX_DRIVER_NUM ][ ASIO_MAX_DRVNAME2_LEN ] ;	// ASIOƒhƒ‰ƒCƒo[‚Ì–¼‘O‚»‚Ì‚Q
-	long						ASIO_DriverVersion[ ASIO_MAX_DRIVER_NUM ] ;	// ASIOƒhƒ‰ƒCƒo[‚Ìƒo[ƒWƒ‡ƒ“
-	GUID						ASIO_DriverGUID[ ASIO_MAX_DRIVER_NUM ] ;	// ASIOƒhƒ‰ƒCƒo‚ÌGUID
-	D_IASIO						*ASIO_Driver[ ASIO_MAX_DRIVER_NUM ] ;		// ASIOƒhƒ‰ƒCƒoƒIƒuƒWƒFƒNƒg
-	long						ASIO_BufferMiniNum ;			// ƒoƒbƒtƒ@‚ÌÅ¬ƒTƒCƒY
-	long						ASIO_BufferMaxiNum ;			// ƒoƒbƒtƒ@‚ÌÅ‘åƒTƒCƒY
-	long						ASIO_Preferred ;				// —Dæƒoƒbƒtƒ@ƒTƒCƒYiƒTƒCƒYƒpƒtƒH[ƒ}ƒ“ƒX‚Æƒn[ƒhƒEƒFƒA‚Ì—vŒ‚ÉÅ“Kj
-	long						ASIO_BufferSize ;				// Žg—p‚·‚éŽÀÛ‚Ìƒoƒbƒtƒ@ƒTƒCƒY
-	long						ASIO_Granularity ;				// ƒoƒbƒtƒ@ƒTƒCƒY‚Ì—±“x
-	D_ASIOBufferInfo			ASIO_BufferInfo[ ASIO_MAX_BUFFER_NUM ] ;	// ƒoƒbƒtƒ@î•ñ
-	int							ASIO_EnableUserParam ;			// ASIO‚Ìƒ†[ƒU[Ý’èƒpƒ‰ƒ[ƒ^‚ª—LŒø‚©
-	int							ASIO_UserParam_BufferSize ;		// ASIO‚ÌƒfƒoƒCƒXƒsƒŠƒIƒh
-	int							ASIO_UserParam_SamplePerSec ;	// ASIO‚ÌƒTƒ“ƒvƒŠƒ“ƒOƒŒ[ƒg
+	long						ASIO_DriverNum ;				// ASIOãƒ‰ãƒ©ã‚¤ãƒãƒ¼ã®æ•°
+	int							ASIO_DriverUseIndex ;			// ä½¿ç”¨ã™ã‚‹ASIOãƒ‰ãƒ©ã‚¤ãƒ
+	char						ASIO_DriverPaths[ ASIO_MAX_DRIVER_NUM ][ ASIO_MAX_PATH_LEN ] ;		// ASIOãƒ‰ãƒ©ã‚¤ãƒãƒ¼ã®ãƒ‘ã‚¹
+	wchar_t						ASIO_DriverNames[ ASIO_MAX_DRIVER_NUM ][ ASIO_MAX_DRVNAME_LEN ] ;	// ASIOãƒ‰ãƒ©ã‚¤ãƒãƒ¼ã®åå‰
+	char						ASIO_DriverNames2[ ASIO_MAX_DRIVER_NUM ][ ASIO_MAX_DRVNAME2_LEN ] ;	// ASIOãƒ‰ãƒ©ã‚¤ãƒãƒ¼ã®åå‰ãã®ï¼’
+	long						ASIO_DriverVersion[ ASIO_MAX_DRIVER_NUM ] ;	// ASIOãƒ‰ãƒ©ã‚¤ãƒãƒ¼ã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³
+	GUID						ASIO_DriverGUID[ ASIO_MAX_DRIVER_NUM ] ;	// ASIOãƒ‰ãƒ©ã‚¤ãƒã®GUID
+	D_IASIO						*ASIO_Driver[ ASIO_MAX_DRIVER_NUM ] ;		// ASIOãƒ‰ãƒ©ã‚¤ãƒã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+	long						ASIO_BufferMiniNum ;			// ãƒãƒƒãƒ•ã‚¡ã®æœ€å°ã‚µã‚¤ã‚º
+	long						ASIO_BufferMaxiNum ;			// ãƒãƒƒãƒ•ã‚¡ã®æœ€å¤§ã‚µã‚¤ã‚º
+	long						ASIO_Preferred ;				// å„ªå…ˆãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚ºï¼ˆã‚µã‚¤ã‚ºãƒ‘ãƒ•ã‚©ãƒ¼ãƒžãƒ³ã‚¹ã¨ãƒãƒ¼ãƒ‰ã‚¦ã‚§ã‚¢ã®è¦ä»¶ã«æœ€é©ï¼‰
+	long						ASIO_BufferSize ;				// ä½¿ç”¨ã™ã‚‹å®Ÿéš›ã®ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚º
+	long						ASIO_Granularity ;				// ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚ºã®ç²’åº¦
+	D_ASIOBufferInfo			ASIO_BufferInfo[ ASIO_MAX_BUFFER_NUM ] ;	// ãƒãƒƒãƒ•ã‚¡æƒ…å ±
+	int							ASIO_EnableUserParam ;			// ASIOã®ãƒ¦ãƒ¼ã‚¶ãƒ¼è¨­å®šãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãŒæœ‰åŠ¹ã‹
+	int							ASIO_UserParam_BufferSize ;		// ASIOã®ãƒ‡ãƒã‚¤ã‚¹ãƒ”ãƒªã‚ªãƒ‰
+	int							ASIO_UserParam_SamplePerSec ;	// ASIOã®ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ãƒ¬ãƒ¼ãƒˆ
 #endif // DX_NON_ASIO
 
-	int							waveOut_EnableUserParam ;			// waveOut‚Ìƒ†[ƒU[Ý’èƒpƒ‰ƒ[ƒ^‚ª—LŒø‚©
-	int							waveOut_UserParam_BufferSamples ;	// waveOut‚Ìƒoƒbƒtƒ@[ƒTƒCƒY
-	int							waveOut_UserParam_SamplePerSec ;	// waveOut‚ÌƒTƒ“ƒvƒŠƒ“ƒOƒŒ[ƒg
-	DWORD						waveOut_BufferSamples ;				// WASAPI‚Ìƒoƒbƒtƒ@‚ÌƒTƒ“ƒvƒ‹”
-	HWAVEOUT					waveOut_WaveOut ;					// waveOutƒnƒ“ƒhƒ‹
-	WAVEHDR						waveOut_WaveHeader[ 2 ] ;			// waveOut‚Ì”gŒ`o—Í—p\‘¢‘Ì
-	int							waveOut_EndFlag ;					// waveOut‚ðI—¹‚·‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO
+	int							waveOut_EnableUserParam ;			// waveOutã®ãƒ¦ãƒ¼ã‚¶ãƒ¼è¨­å®šãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãŒæœ‰åŠ¹ã‹
+	int							waveOut_UserParam_BufferSamples ;	// waveOutã®ãƒãƒƒãƒ•ã‚¡ãƒ¼ã‚µã‚¤ã‚º
+	int							waveOut_UserParam_SamplePerSec ;	// waveOutã®ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ãƒ¬ãƒ¼ãƒˆ
+	DWORD						waveOut_BufferSamples ;				// WASAPIã®ãƒãƒƒãƒ•ã‚¡ã®ã‚µãƒ³ãƒ—ãƒ«æ•°
+	HWAVEOUT					waveOut_WaveOut ;					// waveOutãƒãƒ³ãƒ‰ãƒ«
+	WAVEHDR						waveOut_WaveHeader[ 2 ] ;			// waveOutã®æ³¢å½¢å‡ºåŠ›ç”¨æ§‹é€ ä½“
+	int							waveOut_EndFlag ;					// waveOutã‚’çµ‚äº†ã™ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°
 
-	D_IDirectSoundBuffer		*PrimarySoundBuffer ;			// ƒvƒ‰ƒCƒ}ƒŠƒTƒEƒ“ƒhƒoƒbƒtƒ@
+	D_IDirectSoundBuffer		*PrimarySoundBuffer ;			// ãƒ—ãƒ©ã‚¤ãƒžãƒªã‚µã‚¦ãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡
 
-	D_IDirectSoundBuffer		*NoSoundBuffer ;				// –³‰¹ƒoƒbƒtƒ@
+	D_IDirectSoundBuffer		*NoSoundBuffer ;				// ç„¡éŸ³ãƒãƒƒãƒ•ã‚¡
 
-	int							EnableXAudioFlag ;				// XAudio‚ðŽg—p‚·‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO( TRUE:Žg—p‚·‚é  FALSE:Žg—p‚µ‚È‚¢ ) 
-	int							DisableWASAPIFlag ;				// WASAPI‚ðŽg—p‚µ‚È‚¢‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO( TRUE:Žg—p‚·‚é  FALSE:Žg—p‚µ‚È‚¢ ) 
+	int							EnableXAudioFlag ;				// XAudioã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°( TRUE:ä½¿ç”¨ã™ã‚‹  FALSE:ä½¿ç”¨ã—ãªã„ ) 
+	int							DisableWASAPIFlag ;				// WASAPIã‚’ä½¿ç”¨ã—ãªã„ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°( TRUE:ä½¿ç”¨ã™ã‚‹  FALSE:ä½¿ç”¨ã—ãªã„ ) 
 #ifndef DX_NON_ASIO
-	int							EnableASIOFlag ;				// ASIO‚ðŽg—p‚·‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO( TRUE:Žg—p‚·‚é  FALSE:Žg—p‚µ‚È‚¢ ) 
+	int							EnableASIOFlag ;				// ASIOã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°( TRUE:ä½¿ç”¨ã™ã‚‹  FALSE:ä½¿ç”¨ã—ãªã„ ) 
 #endif // DX_NON_ASIO
-	int							EnableMMEwaveOutFlag ;			// waveOut‚ðŽg—p‚·‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO( TRUE:Žg—p‚·‚é  FALSE:Žg—p‚µ‚È‚¢ ) 
-	int							UseSoftwareMixing ;				// ƒ\ƒtƒgƒEƒGƒAƒ~ƒLƒVƒ“ƒO‚ðs‚¤‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO( TRUE:ƒ\ƒtƒgƒEƒGƒA  FALSE:ƒn[ƒhƒEƒGƒA )
+	int							EnableMMEwaveOutFlag ;			// waveOutã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°( TRUE:ä½¿ç”¨ã™ã‚‹  FALSE:ä½¿ç”¨ã—ãªã„ ) 
+	int							UseSoftwareMixing ;				// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ãƒŸã‚­ã‚·ãƒ³ã‚°ã‚’è¡Œã†ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°( TRUE:ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢  FALSE:ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ )
 
-	HANDLE						StreamSoundThreadHandle ;		// ƒXƒgƒŠ[ƒ€ƒTƒEƒ“ƒh‚ðÄ¶‚·‚éˆ—‚ðs‚¤ƒXƒŒƒbƒh‚Ìƒnƒ“ƒhƒ‹
-	DWORD						StreamSoundThreadID ;			// ƒXƒgƒŠ[ƒ€ƒTƒEƒ“ƒh‚ðÄ¶‚·‚éˆ—‚ðs‚¤ƒXƒŒƒbƒh‚Ì‚h‚c
-	DWORD						StreamSoundThreadEndFlag ;		// ƒXƒgƒŠ[ƒ€ƒTƒEƒ“ƒh‚ðÄ¶‚·‚éˆ—‚ðI—¹‚·‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO
+	HANDLE						StreamSoundThreadHandle ;		// ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‚µã‚¦ãƒ³ãƒ‰ã‚’å†ç”Ÿã™ã‚‹å‡¦ç†ã‚’è¡Œã†ã‚¹ãƒ¬ãƒƒãƒ‰ã®ãƒãƒ³ãƒ‰ãƒ«
+	DWORD						StreamSoundThreadID ;			// ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‚µã‚¦ãƒ³ãƒ‰ã‚’å†ç”Ÿã™ã‚‹å‡¦ç†ã‚’è¡Œã†ã‚¹ãƒ¬ãƒƒãƒ‰ã®ï¼©ï¼¤
+	DWORD						StreamSoundThreadEndFlag ;		// ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‚µã‚¦ãƒ³ãƒ‰ã‚’å†ç”Ÿã™ã‚‹å‡¦ç†ã‚’çµ‚äº†ã™ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°
 } ;
 
-// ‚l‚h‚c‚hƒf[ƒ^ŠÂ‹«ˆË‘¶î•ñ
+// ï¼­ï¼©ï¼¤ï¼©ãƒ‡ãƒ¼ã‚¿ç’°å¢ƒä¾å­˜æƒ…å ±
 struct MIDIHANDLEDATA_PF
 {
-	D_IDirectMusicSegment8		*DirectMusicSegmentObject ;		// DirectMusicSegment8 ƒIƒuƒWƒFƒNƒg
+	D_IDirectMusicSegment8		*DirectMusicSegmentObject ;		// DirectMusicSegment8 ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
 } ;
 
-// ‚l‚h‚c‚hƒVƒXƒeƒ€—pŠÂ‹«ˆË‘¶ƒf[ƒ^\‘¢‘Ì
+// ï¼­ï¼©ï¼¤ï¼©ã‚·ã‚¹ãƒ†ãƒ ç”¨ç’°å¢ƒä¾å­˜ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
 struct MIDISYSTEMDATA_PF
 {
-	UINT						MidiDeviceID ;					// ‚l‚h‚c‚h‰‰‘tŽž‚ÌƒfƒoƒCƒX‚h‚c
+	UINT						MidiDeviceID ;					// ï¼­ï¼©ï¼¤ï¼©æ¼”å¥æ™‚ã®ãƒ‡ãƒã‚¤ã‚¹ï¼©ï¼¤
 } ;
 
-// “à•”‘åˆæ•Ï”éŒ¾ --------------------------------------------------------------
+// å†…éƒ¨å¤§åŸŸå¤‰æ•°å®£è¨€ --------------------------------------------------------------
 
-// ŠÖ”ƒvƒƒgƒ^ƒCƒvéŒ¾-----------------------------------------------------------
+// é–¢æ•°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€-----------------------------------------------------------
 
-extern	int		MidiCallBackProcess( void ) ;																			// ‚l‚h‚c‚h‰‰‘tI—¹ŽžŒÄ‚Î‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”
+extern	int		MidiCallBackProcess( void ) ;																			// ï¼­ï¼©ï¼¤ï¼©æ¼”å¥çµ‚äº†æ™‚å‘¼ã°ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 
 
 #ifndef DX_NON_NAMESPACE

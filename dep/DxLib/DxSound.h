@@ -1,6 +1,6 @@
 // -------------------------------------------------------------------------------
 // 
-// 		‚c‚wƒ‰ƒCƒuƒ‰ƒŠ		ƒTƒEƒ“ƒhƒvƒƒOƒ‰ƒ€ƒwƒbƒ_ƒtƒ@ƒCƒ‹
+// 		ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒª		ã‚µã‚¦ãƒ³ãƒ‰ãƒ—ãƒ­ã‚°ãƒ©ãƒ ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«
 // 
 // 				Ver 3.25a
 // 
@@ -13,7 +13,7 @@
 
 #ifndef DX_NON_SOUND
 
-// ƒCƒ“ƒNƒ‹[ƒh ------------------------------------------------------------------
+// ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ ------------------------------------------------------------------
 #include "DxLib.h"
 #include "DxStatic.h"
 #include "DxRingBuffer.h"
@@ -48,59 +48,59 @@ namespace DxLib
 
 #endif // DX_NON_NAMESPACE
 
-// ƒ}ƒNƒ’è‹` --------------------------------------------------------------------
+// ãƒã‚¯ãƒ­å®šç¾© --------------------------------------------------------------------
 
-#define MAX_SOUNDBUFFER_NUM				(10)			// DIRECTSOUNDBUFFER ƒoƒbƒtƒ@‚ÌÅ‘å”
-#define STS_SETSOUNDNUM					(4)				// ƒXƒgƒŠ[ƒ€•—ƒTƒEƒ“ƒhÄ¶‚É“o˜^‚Å‚«‚éƒTƒEƒ“ƒh‚Ì”
+#define MAX_SOUNDBUFFER_NUM				(10)			// DIRECTSOUNDBUFFER ãƒãƒƒãƒ•ã‚¡ã®æœ€å¤§æ•°
+#define STS_SETSOUNDNUM					(4)				// ã‚¹ãƒˆãƒªãƒ¼ãƒ é¢¨ã‚µã‚¦ãƒ³ãƒ‰å†ç”Ÿã«ç™»éŒ²ã§ãã‚‹ã‚µã‚¦ãƒ³ãƒ‰ã®æ•°
 
-#define SOUNDBUFFER_MAX_CHANNEL_NUM		(8)				// ‘Î‰‚·‚éƒTƒEƒ“ƒhƒ`ƒƒƒ“ƒlƒ‹‚ÌÅ‘å”
+#define SOUNDBUFFER_MAX_CHANNEL_NUM		(8)				// å¯¾å¿œã™ã‚‹ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ£ãƒ³ãƒãƒ«ã®æœ€å¤§æ•°
 
-#define SOUND_SINTABLE_DIV				(65536)			// ƒTƒCƒ“ƒe[ƒuƒ‹‚Ì¸“x
+#define SOUND_SINTABLE_DIV				(65536)			// ã‚µã‚¤ãƒ³ãƒ†ãƒ¼ãƒ–ãƒ«ã®ç²¾åº¦
 
-#define SOUND_FFT_BITCOUNT_MIN			(4)				// ‚‘¬ƒt[ƒŠƒG•ÏŠ·‚Åg—p‚·‚éƒTƒ“ƒvƒ‹”‚ÌÅ¬ƒrƒbƒg”
-#define SOUND_FFT_BITCOUNT_MAX			(16)			// ‚‘¬ƒt[ƒŠƒG•ÏŠ·‚Åg—p‚·‚éƒTƒ“ƒvƒ‹”‚ÌÅ‘åƒrƒbƒg”
+#define SOUND_FFT_BITCOUNT_MIN			(4)				// é«˜é€Ÿãƒ•ãƒ¼ãƒªã‚¨å¤‰æ›ã§ä½¿ç”¨ã™ã‚‹ã‚µãƒ³ãƒ—ãƒ«æ•°ã®æœ€å°ãƒ“ãƒƒãƒˆæ•°
+#define SOUND_FFT_BITCOUNT_MAX			(16)			// é«˜é€Ÿãƒ•ãƒ¼ãƒªã‚¨å¤‰æ›ã§ä½¿ç”¨ã™ã‚‹ã‚µãƒ³ãƒ—ãƒ«æ•°ã®æœ€å¤§ãƒ“ãƒƒãƒˆæ•°
 	
-#define SOUND_BEEPSOUNDBUFFER_NUM		(3)				// BEEP‰¹Ä¶—p‚ÌƒTƒEƒ“ƒhƒoƒbƒtƒ@‚Ì”
+#define SOUND_BEEPSOUNDBUFFER_NUM		(3)				// BEEPéŸ³å†ç”Ÿç”¨ã®ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡ã®æ•°
 
 
-// ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹ƒGƒ‰[ƒ`ƒFƒbƒN—pƒ}ƒNƒ
+// ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ã‚¨ãƒ©ãƒ¼ãƒã‚§ãƒƒã‚¯ç”¨ãƒã‚¯ãƒ­
 #define SOUNDHCHK( HAND, SPOINT )			HANDLECHK(       DX_HANDLETYPE_SOUND, HAND, *( ( HANDLEINFO ** )&SPOINT ) )
 #define SOUNDHCHK_ASYNC( HAND, SPOINT )		HANDLECHK_ASYNC( DX_HANDLETYPE_SOUND, HAND, *( ( HANDLEINFO ** )&SPOINT ) )
 
-// ƒ\ƒtƒgƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹ƒGƒ‰[ƒ`ƒFƒbƒN—pƒ}ƒNƒ
+// ã‚½ãƒ•ãƒˆã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ã‚¨ãƒ©ãƒ¼ãƒã‚§ãƒƒã‚¯ç”¨ãƒã‚¯ãƒ­
 #define SSND_MASKHCHK( HAND, SPOINT )		HANDLECHK(       DX_HANDLETYPE_SOFTSOUND, HAND, *( ( HANDLEINFO ** )&SPOINT ) )
 #define SSND_MASKHCHK_ASYNC( HAND, SPOINT )	HANDLECHK_ASYNC( DX_HANDLETYPE_SOFTSOUND, HAND, *( ( HANDLEINFO ** )&SPOINT ) )
 
-// ƒ~ƒ…[ƒWƒbƒNƒnƒ“ƒhƒ‹ƒGƒ‰[ƒ`ƒFƒbƒN—pƒ}ƒNƒ
+// ãƒŸãƒ¥ãƒ¼ã‚¸ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã‚¨ãƒ©ãƒ¼ãƒã‚§ãƒƒã‚¯ç”¨ãƒã‚¯ãƒ­
 #define MIDI_MASKHCHK( HAND, SPOINT )		HANDLECHK(       DX_HANDLETYPE_MUSIC, HAND, *( ( HANDLEINFO ** )&SPOINT ) )
 #define MIDI_MASKHCHK_ASYNC( HAND, SPOINT )	HANDLECHK_ASYNC( DX_HANDLETYPE_MUSIC, HAND, *( ( HANDLEINFO ** )&SPOINT ) )
 
 
-// \‘¢‘Ì’è‹` --------------------------------------------------------------------
+// æ§‹é€ ä½“å®šç¾© --------------------------------------------------------------------
 
-// ƒtƒ@ƒCƒ‹‚©‚çƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹‚ğì¬‚·‚éˆ—‚É•K—v‚ÈƒOƒ[ƒoƒ‹ƒf[ƒ^‚ğ“Z‚ß‚½‚à‚Ì
+// ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ã‚’ä½œæˆã™ã‚‹å‡¦ç†ã«å¿…è¦ãªã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿ã‚’çºã‚ãŸã‚‚ã®
 struct LOADSOUND_GPARAM
 {
-	int							NotInitSoundMemDelete ;					// InitSoundMem ‚Åíœ‚µ‚È‚¢‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO( TRUE:InitSoundMem‚Å‚Ííœ‚µ‚È‚¢  FALSE:InitSoundMem‚Åíœ‚·‚é )
-	int							Create3DSoundFlag ;						// 3DƒTƒEƒ“ƒh‚ğì¬‚·‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO( TRUE:‚R‚cƒTƒEƒ“ƒh‚ğì¬‚·‚é  FALSE:‚R‚cƒTƒEƒ“ƒh‚ğì¬‚µ‚È‚¢ )
-	int							CreateSoundDataType ;					// ì¬‚·‚éƒTƒEƒ“ƒhƒf[ƒ^‚Ìƒf[ƒ^ƒ^ƒCƒv
-	int							CreateSoundPitchRateEnable ;			// ì¬‚·‚éƒTƒEƒ“ƒhƒf[ƒ^‚Ìƒsƒbƒ`ƒŒ[ƒg‚ª—LŒø‚©‚Ç‚¤‚©
-	float						CreateSoundPitchRate ;					// ì¬‚·‚éƒTƒEƒ“ƒhƒf[ƒ^‚Ìƒsƒbƒ`ƒŒ[ƒg
-	int							CreateSoundTimeStretchRateEnable ;		// ì¬‚·‚éƒTƒEƒ“ƒhƒf[ƒ^‚Ìƒ^ƒCƒ€ƒXƒgƒŒƒbƒ`ƒŒ[ƒg‚ª—LŒø‚©‚Ç‚¤‚©
-	float						CreateSoundTimeStretchRate ;			// ì¬‚·‚éƒTƒEƒ“ƒhƒf[ƒ^‚Ìƒ^ƒCƒ€ƒXƒgƒŒƒbƒ`ƒŒ[ƒg
-	LONGLONG					CreateSoundLoopStartTimePosition ;		// ì¬‚·‚éƒTƒEƒ“ƒhƒf[ƒ^‚Ìƒ‹[ƒv”ÍˆÍ‚Ìæ’[( ƒ~ƒŠ•b )
-	LONGLONG					CreateSoundLoopStartSamplePosition ;	// ì¬‚·‚éƒTƒEƒ“ƒhƒf[ƒ^‚Ìƒ‹[ƒv”ÍˆÍ‚Ìæ’[( ƒTƒ“ƒvƒ‹ )
-	LONGLONG					CreateSoundLoopEndTimePosition ;		// ì¬‚·‚éƒTƒEƒ“ƒhƒf[ƒ^‚Ìƒ‹[ƒv”ÍˆÍ‚ÌI’[( ƒ~ƒŠ•b )
-	LONGLONG					CreateSoundLoopEndSamplePosition ;		// ì¬‚·‚éƒTƒEƒ“ƒhƒf[ƒ^‚Ìƒ‹[ƒv”ÍˆÍ‚ÌI’[( ƒTƒ“ƒvƒ‹ )
-	int							CreateSoundIgnoreLoopAreaInfo ;			// ì¬‚·‚éƒTƒEƒ“ƒhƒf[ƒ^‚Åƒ‹[ƒv”ÍˆÍî•ñ‚ğ–³‹‚·‚é‚©‚Ç‚¤‚©
-	int							DisableReadSoundFunctionMask ;			// g—p‚µ‚È‚¢“Ç‚İ‚İˆ—‚Ìƒ}ƒXƒN
+	int							NotInitSoundMemDelete ;					// InitSoundMem ã§å‰Šé™¤ã—ãªã„ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°( TRUE:InitSoundMemã§ã¯å‰Šé™¤ã—ãªã„  FALSE:InitSoundMemã§å‰Šé™¤ã™ã‚‹ )
+	int							Create3DSoundFlag ;						// 3Dã‚µã‚¦ãƒ³ãƒ‰ã‚’ä½œæˆã™ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°( TRUE:ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰ã‚’ä½œæˆã™ã‚‹  FALSE:ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰ã‚’ä½œæˆã—ãªã„ )
+	int							CreateSoundDataType ;					// ä½œæˆã™ã‚‹ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ã®ãƒ‡ãƒ¼ã‚¿ã‚¿ã‚¤ãƒ—
+	int							CreateSoundPitchRateEnable ;			// ä½œæˆã™ã‚‹ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ã®ãƒ”ãƒƒãƒãƒ¬ãƒ¼ãƒˆãŒæœ‰åŠ¹ã‹ã©ã†ã‹
+	float						CreateSoundPitchRate ;					// ä½œæˆã™ã‚‹ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ã®ãƒ”ãƒƒãƒãƒ¬ãƒ¼ãƒˆ
+	int							CreateSoundTimeStretchRateEnable ;		// ä½œæˆã™ã‚‹ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ã®ã‚¿ã‚¤ãƒ ã‚¹ãƒˆãƒ¬ãƒƒãƒãƒ¬ãƒ¼ãƒˆãŒæœ‰åŠ¹ã‹ã©ã†ã‹
+	float						CreateSoundTimeStretchRate ;			// ä½œæˆã™ã‚‹ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ã®ã‚¿ã‚¤ãƒ ã‚¹ãƒˆãƒ¬ãƒƒãƒãƒ¬ãƒ¼ãƒˆ
+	LONGLONG					CreateSoundLoopStartTimePosition ;		// ä½œæˆã™ã‚‹ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ã®ãƒ«ãƒ¼ãƒ—ç¯„å›²ã®å…ˆç«¯( ãƒŸãƒªç§’ )
+	LONGLONG					CreateSoundLoopStartSamplePosition ;	// ä½œæˆã™ã‚‹ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ã®ãƒ«ãƒ¼ãƒ—ç¯„å›²ã®å…ˆç«¯( ã‚µãƒ³ãƒ—ãƒ« )
+	LONGLONG					CreateSoundLoopEndTimePosition ;		// ä½œæˆã™ã‚‹ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ã®ãƒ«ãƒ¼ãƒ—ç¯„å›²ã®çµ‚ç«¯( ãƒŸãƒªç§’ )
+	LONGLONG					CreateSoundLoopEndSamplePosition ;		// ä½œæˆã™ã‚‹ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ã®ãƒ«ãƒ¼ãƒ—ç¯„å›²ã®çµ‚ç«¯( ã‚µãƒ³ãƒ—ãƒ« )
+	int							CreateSoundIgnoreLoopAreaInfo ;			// ä½œæˆã™ã‚‹ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ã§ãƒ«ãƒ¼ãƒ—ç¯„å›²æƒ…å ±ã‚’ç„¡è¦–ã™ã‚‹ã‹ã©ã†ã‹
+	int							DisableReadSoundFunctionMask ;			// ä½¿ç”¨ã—ãªã„èª­ã¿è¾¼ã¿å‡¦ç†ã®ãƒã‚¹ã‚¯
 #ifndef DX_NON_OGGVORBIS
-	int							OggVorbisBitDepth ;						// ‚n‚‡‚‡‚u‚‚’‚‚‚‰‚“g—p‚Ìƒrƒbƒg[“x(1:8bit 2:16bit)
-	int							OggVorbisFromTheoraFile ;				// Ogg Theora ƒtƒ@ƒCƒ‹’†‚Ì Vorbis ƒf[ƒ^‚ğQÆ‚·‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO( TRUE:Theora ƒtƒ@ƒCƒ‹’†‚Ì Vorbis ƒf[ƒ^‚ğQÆ‚·‚é )
+	int							OggVorbisBitDepth ;						// ï¼¯ï½‡ï½‡ï¼¶ï½ï½’ï½‚ï½‰ï½“ä½¿ç”¨æ™‚ã®ãƒ“ãƒƒãƒˆæ·±åº¦(1:8bit 2:16bit)
+	int							OggVorbisFromTheoraFile ;				// Ogg Theora ãƒ•ã‚¡ã‚¤ãƒ«ä¸­ã® Vorbis ãƒ‡ãƒ¼ã‚¿ã‚’å‚ç…§ã™ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°( TRUE:Theora ãƒ•ã‚¡ã‚¤ãƒ«ä¸­ã® Vorbis ãƒ‡ãƒ¼ã‚¿ã‚’å‚ç…§ã™ã‚‹ )
 #endif
 } ;
 
-// ƒTƒEƒ“ƒhƒoƒbƒtƒ@‚ğƒƒbƒN‚µ‚½Û‚Ég—p‚·‚éƒf[ƒ^Œ^
+// ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡ã‚’ãƒ­ãƒƒã‚¯ã—ãŸéš›ã«ä½¿ç”¨ã™ã‚‹ãƒ‡ãƒ¼ã‚¿å‹
 struct SOUNDBUFFERLOCKDATA
 {
 	DWORD						StartOffst ;
@@ -110,502 +110,502 @@ struct SOUNDBUFFERLOCKDATA
 	DWORD						Valid, Valid2 ;
 } ;
 
-// ”gŒ`ƒf[ƒ^\‘¢‘Ì
+// æ³¢å½¢ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
 struct WAVEDATA
 {
-	void						*Buffer ;				// ”gŒ`ƒf[ƒ^
-	void						*DoubleSizeBuffer ;		// ‚Q”{—e—Ê‚Ì”gŒ`ƒf[ƒ^
-	int							Bytes ;					// ƒTƒCƒY
-	int							RefCount ;				// QÆ”
+	void						*Buffer ;				// æ³¢å½¢ãƒ‡ãƒ¼ã‚¿
+	void						*DoubleSizeBuffer ;		// ï¼’å€å®¹é‡ã®æ³¢å½¢ãƒ‡ãƒ¼ã‚¿
+	int							Bytes ;					// ã‚µã‚¤ã‚º
+	int							RefCount ;				// å‚ç…§æ•°
 } ;
 
-// ‚R‚cƒTƒEƒ“ƒhƒf[ƒ^‚ÌŠî–{“I‚Èî•ñ
+// ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ã®åŸºæœ¬çš„ãªæƒ…å ±
 struct _3DSOUNDINFO
 {
-	VECTOR						Position ;				// ˆÊ’u
-	VECTOR						FrontDirection ;		// ‘O•û•ûŒü
-	VECTOR						UpDirection ;			// ã•ûŒü
-	VECTOR						Velocity ;				// ˆÚ“®‘¬“x
-	float						InnerAngle ;			// ‰Â’®“àŠp“x
-	float						OuterAngle ;			// ‰Â’®ŠOŠp“x
-	float						InnerVolume ;			// ‰Â’®“àŠp“x‚Å‚Ì‰¹—ÊƒXƒP[ƒ‹
-	float						OuterVolume ;			// ‰Â’®ŠOŠp“x‚Å‚Ì‰¹—ÊƒXƒP[ƒ‹
+	VECTOR						Position ;				// ä½ç½®
+	VECTOR						FrontDirection ;		// å‰æ–¹æ–¹å‘
+	VECTOR						UpDirection ;			// ä¸Šæ–¹å‘
+	VECTOR						Velocity ;				// ç§»å‹•é€Ÿåº¦
+	float						InnerAngle ;			// å¯è´å†…è§’åº¦
+	float						OuterAngle ;			// å¯è´å¤–è§’åº¦
+	float						InnerVolume ;			// å¯è´å†…è§’åº¦ã§ã®éŸ³é‡ã‚¹ã‚±ãƒ¼ãƒ«
+	float						OuterVolume ;			// å¯è´å¤–è§’åº¦ã§ã®éŸ³é‡ã‚¹ã‚±ãƒ¼ãƒ«
 } ;
 
-// ƒTƒEƒ“ƒhƒoƒbƒtƒ@\‘¢‘Ì
+// ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡æ§‹é€ ä½“
 struct SOUNDBUFFER
 {
-	int							Valid ;					// ƒf[ƒ^‚ª—LŒø‚©”Û‚©(TRUE:—LŒø FALSE:–³Œø)
+	int							Valid ;					// ãƒ‡ãƒ¼ã‚¿ãŒæœ‰åŠ¹ã‹å¦ã‹(TRUE:æœ‰åŠ¹ FALSE:ç„¡åŠ¹)
 
-	int							Pan ;					// ƒpƒ“( 10000:¶100%‰E0%  0:¶‰E100%  -100000:‰E100% )
-	int							Volume[ SOUNDBUFFER_MAX_CHANNEL_NUM ] ;	// ƒ{ƒŠƒ…[ƒ€( 10000:0%  0:100% )
-	int							Frequency ;				// Ä¶ü”g”( -1:ƒfƒtƒHƒ‹ƒg )
-	int							ChangeFrequency ;		// ˆê“x‚Å‚àÄ¶ü”g”‚ğ•Ï‚¦‚½‚©‚Ç‚¤‚©( TRUE:•Ï‚¦‚½  FALSE:•Ï‚¦‚Ä‚¢‚È‚¢ )
-	int							SampleNum ;				// ƒTƒ“ƒvƒ‹‚Ì”
+	int							Pan ;					// ãƒ‘ãƒ³( 10000:å·¦100%å³0%  0:å·¦å³100%  -100000:å³100% )
+	int							Volume[ SOUNDBUFFER_MAX_CHANNEL_NUM ] ;	// ãƒœãƒªãƒ¥ãƒ¼ãƒ ( 10000:0%  0:100% )
+	int							Frequency ;				// å†ç”Ÿå‘¨æ³¢æ•°( -1:ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ )
+	int							ChangeFrequency ;		// ä¸€åº¦ã§ã‚‚å†ç”Ÿå‘¨æ³¢æ•°ã‚’å¤‰ãˆãŸã‹ã©ã†ã‹( TRUE:å¤‰ãˆãŸ  FALSE:å¤‰ãˆã¦ã„ãªã„ )
+	int							SampleNum ;				// ã‚µãƒ³ãƒ—ãƒ«ã®æ•°
 
-	WAVEFORMATEX				Format ;				// ƒoƒbƒtƒ@‚ÌƒtƒH[ƒ}ƒbƒg
+	WAVEFORMATEX				Format ;				// ãƒãƒƒãƒ•ã‚¡ã®ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆ
 
-	int							UseGetCurrentPosition ;	// GetCurrentPosition ‚ğg—p‚·‚é‚©‚Ç‚¤‚©
-	int							IsStream ;				// ƒXƒgƒŠ[ƒ€Ä¶—p‚ÌƒTƒEƒ“ƒhƒoƒbƒtƒ@‚©‚Ç‚¤‚©
+	int							UseGetCurrentPosition ;	// GetCurrentPosition ã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹
+	int							IsStream ;				// ã‚¹ãƒˆãƒªãƒ¼ãƒ å†ç”Ÿç”¨ã®ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡ã‹ã©ã†ã‹
 
-	// DirectSound ˆÈŠO‚Ìê‡‚Ég—p
-	WAVEDATA					*Wave ;						// ”gŒ`ƒf[ƒ^ƒoƒbƒtƒ@
-	volatile int				State ;						// Ä¶ó‘Ô( TRUE:Ä¶’†  FALSE:’â~’† )
-	volatile int				PlayPos ;					// Ä¶ˆÊ’u
-	volatile int				CompPos ;					// “]‘—‚ªŠ®—¹‚µ‚½ˆÊ’u
-	volatile double				CompPosF ;					// “]‘—‚ªŠ®—¹‚µ‚½ˆÊ’u( SetFrequency ‚ÅÄ¶ü”gW‚ğ•ÏX‚³‚ê‚½‚Æ‚«—p )
-	volatile int				EnableComPosF ;				// CompPosF ‚ª—LŒø‚©‚Ç‚¤‚©( TRUE:—LŒø  FALSE:–³Œø )
-	volatile int				Loop ;						// ƒ‹[ƒv‚·‚é‚©‚Ç‚¤‚©( TRUE:ƒ‹[ƒv‚·‚é  FALSE:ƒ‹[ƒv‚µ‚È‚¢ )
-	volatile float				CalcPan ;					// ƒLƒƒƒvƒ`ƒƒ—p‚ÉŒvZ‚µ‚½Œã‚Ìƒpƒ“( 256:¶100%‰E0%  0:¶‰E100%  -256:‰E100% )
-	volatile float				CalcVolume ;				// ƒLƒƒƒvƒ`ƒƒ—p‚ÉŒvZ‚µ‚½Œã‚Ìƒ{ƒŠƒ…[ƒ€( 256:100%  0:0% )
-	volatile int				StopTimeState ;				// StopTime ‚Ìó‘Ô( 0:“®ì–³‚µ 1:Ä¶I—¹‘Ò‚¿ 2:ŠÔŒo‰ß‘Ò‚¿ )
-	volatile int				StopTime ;					// Ä¶‚ª’â~‚µ‚½ŠÔ
-	volatile int				EnableTopPos ;				// TopPos_WriteSamples ‚ª—LŒø‚©‚Ç‚¤‚©
-	volatile ULONGLONG			TopPos_TotalWriteSamples ;	// ƒoƒbƒtƒ@‚Ìæ“ª‚ªÄ¶ŠJn‚³‚ê‚é‚Ì‘Ä¶ƒTƒ“ƒvƒ‹”
-	volatile int				AddPlaySoundBufferList ;	// PlaySoundBufferList ‚ªƒŠƒXƒg‚É’Ç‰Á‚³‚ê‚Ä‚¢‚é‚©‚Ç‚¤‚©( TRUE:’Ç‰Á‚³‚ê‚Ä‚¢‚é  FALSE:’Ç‰Á‚³‚ê‚Ä‚¢‚È‚¢ )
-	volatile SIMPLELIST			PlaySoundBufferList ;		// Ä¶’†ƒTƒEƒ“ƒhƒoƒbƒtƒ@ƒŠƒXƒgˆ——p\‘¢‘Ì
-	volatile int				OutputDelaySamples ;		// o—Í‚ğ’x‚ç‚¹‚éƒTƒ“ƒvƒ‹”
+	// DirectSound ä»¥å¤–ã®å ´åˆã«ä½¿ç”¨
+	WAVEDATA					*Wave ;						// æ³¢å½¢ãƒ‡ãƒ¼ã‚¿ãƒãƒƒãƒ•ã‚¡
+	volatile int				State ;						// å†ç”ŸçŠ¶æ…‹( TRUE:å†ç”Ÿä¸­  FALSE:åœæ­¢ä¸­ )
+	volatile int				PlayPos ;					// å†ç”Ÿä½ç½®
+	volatile int				CompPos ;					// è»¢é€ãŒå®Œäº†ã—ãŸä½ç½®
+	volatile double				CompPosF ;					// è»¢é€ãŒå®Œäº†ã—ãŸä½ç½®( SetFrequency ã§å†ç”Ÿå‘¨æ³¢é›†ã‚’å¤‰æ›´ã•ã‚ŒãŸã¨ãç”¨ )
+	volatile int				EnableComPosF ;				// CompPosF ãŒæœ‰åŠ¹ã‹ã©ã†ã‹( TRUE:æœ‰åŠ¹  FALSE:ç„¡åŠ¹ )
+	volatile int				Loop ;						// ãƒ«ãƒ¼ãƒ—ã™ã‚‹ã‹ã©ã†ã‹( TRUE:ãƒ«ãƒ¼ãƒ—ã™ã‚‹  FALSE:ãƒ«ãƒ¼ãƒ—ã—ãªã„ )
+	volatile float				CalcPan ;					// ã‚­ãƒ£ãƒ—ãƒãƒ£ç”¨ã«è¨ˆç®—ã—ãŸå¾Œã®ãƒ‘ãƒ³( 256:å·¦100%å³0%  0:å·¦å³100%  -256:å³100% )
+	volatile float				CalcVolume ;				// ã‚­ãƒ£ãƒ—ãƒãƒ£ç”¨ã«è¨ˆç®—ã—ãŸå¾Œã®ãƒœãƒªãƒ¥ãƒ¼ãƒ ( 256:100%  0:0% )
+	volatile int				StopTimeState ;				// StopTime ã®çŠ¶æ…‹( 0:å‹•ä½œç„¡ã— 1:å†ç”Ÿçµ‚äº†å¾…ã¡ 2:æ™‚é–“çµŒéå¾…ã¡ )
+	volatile int				StopTime ;					// å†ç”ŸãŒåœæ­¢ã—ãŸæ™‚é–“
+	volatile int				EnableTopPos ;				// TopPos_WriteSamples ãŒæœ‰åŠ¹ã‹ã©ã†ã‹
+	volatile ULONGLONG			TopPos_TotalWriteSamples ;	// ãƒãƒƒãƒ•ã‚¡ã®å…ˆé ­ãŒå†ç”Ÿé–‹å§‹ã•ã‚Œã‚‹æ™‚ã®ç·å†ç”Ÿã‚µãƒ³ãƒ—ãƒ«æ•°
+	volatile int				AddPlaySoundBufferList ;	// PlaySoundBufferList ãŒãƒªã‚¹ãƒˆã«è¿½åŠ ã•ã‚Œã¦ã„ã‚‹ã‹ã©ã†ã‹( TRUE:è¿½åŠ ã•ã‚Œã¦ã„ã‚‹  FALSE:è¿½åŠ ã•ã‚Œã¦ã„ãªã„ )
+	volatile SIMPLELIST			PlaySoundBufferList ;		// å†ç”Ÿä¸­ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡ãƒªã‚¹ãƒˆå‡¦ç†ç”¨æ§‹é€ ä½“
+	volatile int				OutputDelaySamples ;		// å‡ºåŠ›ã‚’é…ã‚‰ã›ã‚‹ã‚µãƒ³ãƒ—ãƒ«æ•°
 
-	// ‚R‚cƒTƒEƒ“ƒhÄ¶—pƒf[ƒ^
-	int							Is3DSound ;												// ‚R‚cƒTƒEƒ“ƒh‚©‚Ç‚¤‚©
-	_3DSOUNDINFO				EmitterInfo ;											// ‚R‚cƒTƒEƒ“ƒh—p‚Ìî•ñ
-	float						EmitterRadius ;											// ‚R‚cƒTƒEƒ“ƒh—p‰¹Œ¹‚Ì‰¹‚ª“Í‚­‹——£
-	float						EmitterInnerRadius ;									// ‚R‚cƒTƒEƒ“ƒh—p‰¹Œ¹‚Ì‰¹‚ª‰¹—Ê‚P‚O‚O“‚Å•·‚±‚¦‚é‹——£
-	int							EmitterDataChangeFlag ;									// ‚R‚cƒTƒEƒ“ƒh—p‰¹Œ¹î•ñ‚ª•ÏX‚³‚ê‚½‚©‚Ç‚¤‚©( TRUE:•ÏX‚³‚ê‚½  FALSE:•ÏX‚³‚ê‚Ä‚¢‚È‚¢ )
-	float						DSound_Calc3DVolume ;									// DirectSound—p‚Ì‚R‚cŒvZŒã‚Ìƒ{ƒŠƒ…[ƒ€
-	float						DSound_Calc3DPan ;										// DirectSound—p‚Ì‚R‚cŒvZŒã‚Ìƒpƒ“
+	// ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰å†ç”Ÿç”¨ãƒ‡ãƒ¼ã‚¿
+	int							Is3DSound ;												// ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰ã‹ã©ã†ã‹
+	_3DSOUNDINFO				EmitterInfo ;											// ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰ç”¨ã®æƒ…å ±
+	float						EmitterRadius ;											// ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰ç”¨éŸ³æºã®éŸ³ãŒå±Šãè·é›¢
+	float						EmitterInnerRadius ;									// ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰ç”¨éŸ³æºã®éŸ³ãŒéŸ³é‡ï¼‘ï¼ï¼ï¼…ã§èã“ãˆã‚‹è·é›¢
+	int							EmitterDataChangeFlag ;									// ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰ç”¨éŸ³æºæƒ…å ±ãŒå¤‰æ›´ã•ã‚ŒãŸã‹ã©ã†ã‹( TRUE:å¤‰æ›´ã•ã‚ŒãŸ  FALSE:å¤‰æ›´ã•ã‚Œã¦ã„ãªã„ )
+	float						DSound_Calc3DVolume ;									// DirectSoundç”¨ã®ï¼“ï¼¤è¨ˆç®—å¾Œã®ãƒœãƒªãƒ¥ãƒ¼ãƒ 
+	float						DSound_Calc3DPan ;										// DirectSoundç”¨ã®ï¼“ï¼¤è¨ˆç®—å¾Œã®ãƒ‘ãƒ³
 
-	SOUNDBUFFER_PF				PF ;					// ŠÂ‹«ˆË‘¶î•ñ
+	SOUNDBUFFER_PF				PF ;					// ç’°å¢ƒä¾å­˜æƒ…å ±
 } ;
 
-// ƒXƒgƒŠ[ƒ€•—ƒTƒEƒ“ƒhƒvƒŒƒC—pƒtƒ@ƒCƒ‹ƒf[ƒ^
+// ã‚¹ãƒˆãƒªãƒ¼ãƒ é¢¨ã‚µã‚¦ãƒ³ãƒ‰ãƒ—ãƒ¬ã‚¤ç”¨ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‡ãƒ¼ã‚¿
 struct STREAMFILEDATA
 {
-	signed char					LoopNum ;					// ƒ‹[ƒv‰ñ”( -1:–³ŒÀƒ‹[ƒv )
-	int							DataType ;					// ƒf[ƒ^‚Ìƒ^ƒCƒv( DX_SOUNDDATATYPE_MEMNOPRESS “™ )
-	void						*FileImage ;				// ƒƒ‚ƒŠã‚É“WŠJ‚µ‚½ƒtƒ@ƒCƒ‹ƒCƒ[ƒW( DX_SOUNDDATATYPE_FILE ˆÈŠO‚Åg—p )
-	ULONGLONG					FileImageSize ;				// ƒƒ‚ƒŠã‚É“WŠJ‚µ‚½ƒtƒ@ƒCƒ‹ƒCƒ[ƒW‚ÌƒTƒCƒY( DX_SOUNDDATATYPE_FILE ˆÈŠO‚Åg—p )
-	STREAMDATA					MemStream ;					// ƒƒ‚ƒŠƒXƒgƒŠ[ƒ€ˆ——pƒf[ƒ^( DX_SOUNDDATATYPE_FILE ˆÈŠO‚Åg—p )
-	LONGLONG					LoopSamplePosition ;		// ƒ‹[ƒvŒã‚ÌÄ¶ˆÊ’u(ƒTƒ“ƒvƒ‹’PˆÊAOGG ‚© –³ˆ³kWAV ‚Ì‚İ—LŒø )
-	LONGLONG					LoopStartSamplePosition ;	// ƒ‹[ƒv‚ğŠJn‚·‚éÄ¶ˆÊ’u(ƒTƒ“ƒvƒ‹’PˆÊAOGG ‚© –³ˆ³kWAV ‚Ì‚İ—LŒø )
+	signed char					LoopNum ;					// ãƒ«ãƒ¼ãƒ—å›æ•°( -1:ç„¡é™ãƒ«ãƒ¼ãƒ— )
+	int							DataType ;					// ãƒ‡ãƒ¼ã‚¿ã®ã‚¿ã‚¤ãƒ—( DX_SOUNDDATATYPE_MEMNOPRESS ç­‰ )
+	void						*FileImage ;				// ãƒ¡ãƒ¢ãƒªä¸Šã«å±•é–‹ã—ãŸãƒ•ã‚¡ã‚¤ãƒ«ã‚¤ãƒ¡ãƒ¼ã‚¸( DX_SOUNDDATATYPE_FILE ä»¥å¤–ã§ä½¿ç”¨ )
+	ULONGLONG					FileImageSize ;				// ãƒ¡ãƒ¢ãƒªä¸Šã«å±•é–‹ã—ãŸãƒ•ã‚¡ã‚¤ãƒ«ã‚¤ãƒ¡ãƒ¼ã‚¸ã®ã‚µã‚¤ã‚º( DX_SOUNDDATATYPE_FILE ä»¥å¤–ã§ä½¿ç”¨ )
+	STREAMDATA					MemStream ;					// ãƒ¡ãƒ¢ãƒªã‚¹ãƒˆãƒªãƒ¼ãƒ å‡¦ç†ç”¨ãƒ‡ãƒ¼ã‚¿( DX_SOUNDDATATYPE_FILE ä»¥å¤–ã§ä½¿ç”¨ )
+	LONGLONG					LoopSamplePosition ;		// ãƒ«ãƒ¼ãƒ—å¾Œã®å†ç”Ÿä½ç½®(ã‚µãƒ³ãƒ—ãƒ«å˜ä½ã€OGG ã‹ ç„¡åœ§ç¸®WAV ã®ã¿æœ‰åŠ¹ )
+	LONGLONG					LoopStartSamplePosition ;	// ãƒ«ãƒ¼ãƒ—ã‚’é–‹å§‹ã™ã‚‹å†ç”Ÿä½ç½®(ã‚µãƒ³ãƒ—ãƒ«å˜ä½ã€OGG ã‹ ç„¡åœ§ç¸®WAV ã®ã¿æœ‰åŠ¹ )
 	
-	SOUNDCONV					ConvData ;					// ƒtƒH[ƒ}ƒbƒg•ÏŠ·ˆ——pƒf[ƒ^
+	SOUNDCONV					ConvData ;					// ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆå¤‰æ›å‡¦ç†ç”¨ãƒ‡ãƒ¼ã‚¿
 } ;
 
-// ƒXƒgƒŠ[ƒ€•—ƒTƒEƒ“ƒhƒvƒŒƒC—pƒf[ƒ^
+// ã‚¹ãƒˆãƒªãƒ¼ãƒ é¢¨ã‚µã‚¦ãƒ³ãƒ‰ãƒ—ãƒ¬ã‚¤ç”¨ãƒ‡ãƒ¼ã‚¿
 struct STREAMPLAYDATA
 {
-	int							BufferBorrowSoundHandle ;								// DirectSoundBuffer ‚ğ‘İ‚è‚Ä‚¢‚éƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹(-1:Ø‚è‚Ä‚¢‚È‚¢)
-	int							BufferBorrowSoundHandleCount ;							// DirectSoundBuffer ‚ğ‘İ‚µ‚Ä‚¢‚é”(0:‘İ‚µ‚Ä‚¢‚È‚¢)
-	int							BufferUseSoundHandle ;									// DirectSoundBuffer ‚ğŒ»İg—p‚µ‚Ä‚¢‚éƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹(-1:’N‚à¡‚Íg‚Á‚Ä‚¢‚È‚¢)
-	int							DeleteWaitFlag ;										// DirectSoundBuffer ‚ğ‘İ‚µ‚Ä‚¢‚é‚©‚çíœ‚Å‚«‚È‚¢‚Å‹‚é‚Ì‚©Aƒtƒ‰ƒO
+	int							BufferBorrowSoundHandle ;								// DirectSoundBuffer ã‚’è²¸ã‚Šã¦ã„ã‚‹ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«(-1:å€Ÿã‚Šã¦ã„ãªã„)
+	int							BufferBorrowSoundHandleCount ;							// DirectSoundBuffer ã‚’è²¸ã—ã¦ã„ã‚‹æ•°(0:è²¸ã—ã¦ã„ãªã„)
+	int							BufferUseSoundHandle ;									// DirectSoundBuffer ã‚’ç¾åœ¨ä½¿ç”¨ã—ã¦ã„ã‚‹ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«(-1:èª°ã‚‚ä»Šã¯ä½¿ã£ã¦ã„ãªã„)
+	int							DeleteWaitFlag ;										// DirectSoundBuffer ã‚’è²¸ã—ã¦ã„ã‚‹ã‹ã‚‰å‰Šé™¤ã§ããªã„ã§å±…ã‚‹ã®ã‹ã€ãƒ•ãƒ©ã‚°
 	
-	BYTE						*SoundBuffer ;											// ƒTƒEƒ“ƒhƒoƒbƒtƒ@( XAudio2—p )
-	DWORD						SoundBufferSize ;										// DirectSoundBuffer ‚ÌƒTƒCƒY( ’PˆÊ‚ÍƒoƒCƒg )
-	int							SoundBufferCompCopyOffset ;								// ‘O‰ñ‚ÌƒTƒEƒ“ƒhƒf[ƒ^ƒRƒs[‚Å“]‘—‚ªŠ®—¹‚µ‚½ƒTƒEƒ“ƒhƒf[ƒ^—Ìˆæ‚Ì––’[ƒIƒtƒZƒbƒg
-	int							SoundBufferCopyStartOffset ;							// w‚±‚±‚Ü‚Å‚«‚½‚çŸ‚ÌƒTƒEƒ“ƒhƒf[ƒ^ƒRƒs[‚ğŠJn‚·‚éx‚Æ‚¢‚¤ƒf[ƒ^ƒIƒtƒZƒbƒg
+	BYTE						*SoundBuffer ;											// ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡( XAudio2ç”¨ )
+	DWORD						SoundBufferSize ;										// DirectSoundBuffer ã®ã‚µã‚¤ã‚º( å˜ä½ã¯ãƒã‚¤ãƒˆ )
+	int							SoundBufferCompCopyOffset ;								// å‰å›ã®ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ã‚³ãƒ”ãƒ¼ã§è»¢é€ãŒå®Œäº†ã—ãŸã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿é ˜åŸŸã®æœ«ç«¯ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+	int							SoundBufferCopyStartOffset ;							// ã€ã“ã“ã¾ã§ããŸã‚‰æ¬¡ã®ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ã‚³ãƒ”ãƒ¼ã‚’é–‹å§‹ã™ã‚‹ã€ã¨ã„ã†ãƒ‡ãƒ¼ã‚¿ã‚ªãƒ•ã‚»ãƒƒãƒˆ
 
-	STREAMFILEDATA				File[ STS_SETSOUNDNUM ] ;								// ƒXƒgƒŠ[ƒ€ƒtƒ@ƒCƒ‹ƒf[ƒ^
-	BYTE						FileLibraryLoadFlag[ STS_SETSOUNDNUM ] ;				// ƒ‰ƒCƒuƒ‰ƒŠ‚ªƒ[ƒh‚µ‚½ƒf[ƒ^‚©‚Ç‚¤‚©
-	int							FileNum ;												// ƒXƒgƒŠ[ƒ€ƒtƒ@ƒCƒ‹ƒf[ƒ^‚Ì”
-	int							FileActive ;											// ƒAƒNƒeƒBƒu‚ÈƒXƒgƒŠ[ƒ€ƒtƒ@ƒCƒ‹ƒf[ƒ^”Ô†
-	int							FileLoopCount ;											// Œ»İƒAƒNƒeƒBƒu‚ÈƒXƒgƒŠ[ƒ€ƒf[ƒ^‚ªƒ‹[ƒv‚µ‚½‰ñ”
-	LONGLONG					FileCompCopyLength ;									// Œ»İƒAƒNƒeƒBƒu‚ÈƒXƒgƒŠ[ƒ€ƒf[ƒ^’†‚ÌƒTƒEƒ“ƒhƒoƒbƒtƒ@‚Ö‚Ì“]‘—‚ªŠ®—¹‚µ‚½ƒoƒCƒg”
-	int							FileUseFile ;											// ƒƒ‚ƒŠƒCƒ[ƒW‚Å‚Í‚È‚­ƒfƒBƒXƒN‚È‚Ç‚Ì•â•‹L‰¯‘•’uã‚É‚ ‚éƒtƒ@ƒCƒ‹‚ğg—p‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©
-	LONGLONG					TotalSample ;											// ‘SƒXƒgƒŠ[ƒ€‚ÌƒTƒ“ƒvƒ‹‘”
+	STREAMFILEDATA				File[ STS_SETSOUNDNUM ] ;								// ã‚¹ãƒˆãƒªãƒ¼ãƒ ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‡ãƒ¼ã‚¿
+	BYTE						FileLibraryLoadFlag[ STS_SETSOUNDNUM ] ;				// ãƒ©ã‚¤ãƒ–ãƒ©ãƒªãŒãƒ­ãƒ¼ãƒ‰ã—ãŸãƒ‡ãƒ¼ã‚¿ã‹ã©ã†ã‹
+	int							FileNum ;												// ã‚¹ãƒˆãƒªãƒ¼ãƒ ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‡ãƒ¼ã‚¿ã®æ•°
+	int							FileActive ;											// ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ãªã‚¹ãƒˆãƒªãƒ¼ãƒ ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‡ãƒ¼ã‚¿ç•ªå·
+	int							FileLoopCount ;											// ç¾åœ¨ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ãªã‚¹ãƒˆãƒªãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿ãŒãƒ«ãƒ¼ãƒ—ã—ãŸå›æ•°
+	LONGLONG					FileCompCopyLength ;									// ç¾åœ¨ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ãªã‚¹ãƒˆãƒªãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿ä¸­ã®ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡ã¸ã®è»¢é€ãŒå®Œäº†ã—ãŸãƒã‚¤ãƒˆæ•°
+	int							FileUseFile ;											// ãƒ¡ãƒ¢ãƒªã‚¤ãƒ¡ãƒ¼ã‚¸ã§ã¯ãªããƒ‡ã‚£ã‚¹ã‚¯ãªã©ã®è£œåŠ©è¨˜æ†¶è£…ç½®ä¸Šã«ã‚ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹ã‹ã©ã†ã‹
+	LONGLONG					TotalSample ;											// å…¨ã‚¹ãƒˆãƒªãƒ¼ãƒ ã®ã‚µãƒ³ãƒ—ãƒ«ç·æ•°
 
-	ULONGLONG					CompPlayWaveLength ;									// Ä¶‚µI‚í‚Á‚½”gŒ`ƒf[ƒ^‚Ì’·‚³
-	DWORD						PrevCheckPlayPosition ;									// ‘O‰ñƒ`ƒFƒbƒN‚µ‚½Ä¶ˆÊ’u
+	ULONGLONG					CompPlayWaveLength ;									// å†ç”Ÿã—çµ‚ã‚ã£ãŸæ³¢å½¢ãƒ‡ãƒ¼ã‚¿ã®é•·ã•
+	DWORD						PrevCheckPlayPosition ;									// å‰å›ãƒã‚§ãƒƒã‚¯ã—ãŸå†ç”Ÿä½ç½®
 
-	BYTE						StartSetupCompFlag ;									// Ä¶€”õŠ®—¹ƒtƒ‰ƒO
-	BYTE						EndWaitFlag ;											// I—¹‘Ò‚¿’†ƒtƒ‰ƒO
-	BYTE						LoopPositionValidFlag ;									// ƒ‹[ƒvˆÊ’u‚ª—LŒøƒtƒ‰ƒO
-	BYTE						AllPlayFlag ;											// ‘S‘Ì‚ğ’Ê‚µ‚Äˆê“x‚Å‚àÅŒã‚Å‚àÄ¶‚µ‚½‚©ƒtƒ‰ƒO
-	ULONGLONG					LoopAfterCompPlayWaveLength ;							// ƒ‹[ƒvŒã‚Ì CompPlayWaveLength ‚É‰ÁZ‚·‚é’l
-	int							IsNextLoopEndStop ;										// Ÿ‰ñ‚Ìƒ‹[ƒvI—¹‚É‰¹‚ğ~‚ß‚éw’è‚©‚Ìƒtƒ‰ƒO
+	BYTE						StartSetupCompFlag ;									// å†ç”Ÿæº–å‚™å®Œäº†ãƒ•ãƒ©ã‚°
+	BYTE						EndWaitFlag ;											// çµ‚äº†å¾…ã¡ä¸­ãƒ•ãƒ©ã‚°
+	BYTE						LoopPositionValidFlag ;									// ãƒ«ãƒ¼ãƒ—ä½ç½®ãŒæœ‰åŠ¹ãƒ•ãƒ©ã‚°
+	BYTE						AllPlayFlag ;											// å…¨ä½“ã‚’é€šã—ã¦ä¸€åº¦ã§ã‚‚æœ€å¾Œã§ã‚‚å†ç”Ÿã—ãŸã‹ãƒ•ãƒ©ã‚°
+	ULONGLONG					LoopAfterCompPlayWaveLength ;							// ãƒ«ãƒ¼ãƒ—å¾Œã® CompPlayWaveLength ã«åŠ ç®—ã™ã‚‹å€¤
+	int							IsNextLoopEndStop ;										// æ¬¡å›ã®ãƒ«ãƒ¼ãƒ—çµ‚äº†æ™‚ã«éŸ³ã‚’æ­¢ã‚ã‚‹æŒ‡å®šã‹ã®ãƒ•ãƒ©ã‚°
 	
-	DWORD						EndOffset ;												// I—¹ƒIƒtƒZƒbƒg
-	DWORD						EndStartOffset ;										// I—¹ˆ—ŠJnƒIƒtƒZƒbƒg
-	DWORD						LoopPosition ;											// ƒ‹[ƒvˆÊ’u(Ä¶ƒoƒbƒtƒ@“à‚ÌƒAƒhƒŒƒX)
+	DWORD						EndOffset ;												// çµ‚äº†ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+	DWORD						EndStartOffset ;										// çµ‚äº†å‡¦ç†é–‹å§‹ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+	DWORD						LoopPosition ;											// ãƒ«ãƒ¼ãƒ—ä½ç½®(å†ç”Ÿãƒãƒƒãƒ•ã‚¡å†…ã®ã‚¢ãƒ‰ãƒ¬ã‚¹)
 
-	HANDLELIST					StreamSoundList ;										// ƒXƒgƒŠ[ƒ€ƒTƒEƒ“ƒhƒŠƒXƒgˆ——p\‘¢‘Ì
+	HANDLELIST					StreamSoundList ;										// ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‚µã‚¦ãƒ³ãƒ‰ãƒªã‚¹ãƒˆå‡¦ç†ç”¨æ§‹é€ ä½“
 } ;
 
-// ƒm[ƒ}ƒ‹ƒTƒEƒ“ƒhƒvƒŒƒC—pƒf[ƒ^
+// ãƒãƒ¼ãƒãƒ«ã‚µã‚¦ãƒ³ãƒ‰ãƒ—ãƒ¬ã‚¤ç”¨ãƒ‡ãƒ¼ã‚¿
 struct NORMALPLAYDATA
 {
-	int							WaveSize ;												// ”gŒ`ƒf[ƒ^‚ÌƒTƒCƒY
-	void						*WaveData ;												// ”gŒ`ƒf[ƒ^
-	int							*WaveDataUseCount ;										// ”gŒ`ƒf[ƒ^QÆ”
-	int							BufferDuplicateFlag[ MAX_SOUNDBUFFER_NUM ] ;			// •¡»‚³‚ê‚½ƒTƒEƒ“ƒhƒoƒbƒtƒ@‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO
-	int							BackPlayBufferNo ;										// ˆê‚Â‘O‚ÉÄ¶‚µ‚½ƒTƒEƒ“ƒhƒoƒbƒtƒ@‚Ì”Ô†(Ä¶—pƒoƒbƒtƒ@‚ª•¡”‚ ‚éê‡—p)
+	int							WaveSize ;												// æ³¢å½¢ãƒ‡ãƒ¼ã‚¿ã®ã‚µã‚¤ã‚º
+	void						*WaveData ;												// æ³¢å½¢ãƒ‡ãƒ¼ã‚¿
+	int							*WaveDataUseCount ;										// æ³¢å½¢ãƒ‡ãƒ¼ã‚¿å‚ç…§æ•°
+	int							BufferDuplicateFlag[ MAX_SOUNDBUFFER_NUM ] ;			// è¤‡è£½ã•ã‚ŒãŸã‚µã‚¦ãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°
+	int							BackPlayBufferNo ;										// ä¸€ã¤å‰ã«å†ç”Ÿã—ãŸã‚µã‚¦ãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡ã®ç•ªå·(å†ç”Ÿç”¨ãƒãƒƒãƒ•ã‚¡ãŒè¤‡æ•°ã‚ã‚‹å ´åˆç”¨)
 } ;
 
-// ƒTƒEƒ“ƒhƒf[ƒ^
+// ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿
 struct SOUND
 {
-	HANDLEINFO					HandleInfo ;											// ƒnƒ“ƒhƒ‹‹¤’Êî•ñ
+	HANDLEINFO					HandleInfo ;											// ãƒãƒ³ãƒ‰ãƒ«å…±é€šæƒ…å ±
 
-	HANDLELIST					_3DSoundList ;											// ‚R‚cƒTƒEƒ“ƒhƒŠƒXƒgˆ——p\‘¢‘Ì
-	int							Is3DSound ;												// ‚R‚cƒTƒEƒ“ƒh‚©‚Ç‚¤‚©( TRUE:‚R‚cƒTƒEƒ“ƒh  FALSE:”ñ‚R‚cƒTƒEƒ“ƒh )
-	int							AddPlay3DSoundList ;									// Play3DSoundList ‚ªƒŠƒXƒg‚É’Ç‰Á‚³‚ê‚Ä‚¢‚é‚©‚Ç‚¤‚©( TRUE:’Ç‰Á‚³‚ê‚Ä‚¢‚é  FALSE:’Ç‰Á‚³‚ê‚Ä‚¢‚È‚¢ )
-	HANDLELIST					Play3DSoundList ;										// Ä¶’†‚Ì‚R‚cƒTƒEƒ“ƒh‚ÌƒŠƒXƒgˆ——p\‘¢‘Ì
+	HANDLELIST					_3DSoundList ;											// ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰ãƒªã‚¹ãƒˆå‡¦ç†ç”¨æ§‹é€ ä½“
+	int							Is3DSound ;												// ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰ã‹ã©ã†ã‹( TRUE:ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰  FALSE:éï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰ )
+	int							AddPlay3DSoundList ;									// Play3DSoundList ãŒãƒªã‚¹ãƒˆã«è¿½åŠ ã•ã‚Œã¦ã„ã‚‹ã‹ã©ã†ã‹( TRUE:è¿½åŠ ã•ã‚Œã¦ã„ã‚‹  FALSE:è¿½åŠ ã•ã‚Œã¦ã„ãªã„ )
+	HANDLELIST					Play3DSoundList ;										// å†ç”Ÿä¸­ã®ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰ã®ãƒªã‚¹ãƒˆå‡¦ç†ç”¨æ§‹é€ ä½“
 
-	int							AddPlaySoundList ;										// PlaySoundList ‚ªƒŠƒXƒg‚É’Ç‰Á‚³‚ê‚Ä‚¢‚é‚©‚Ç‚¤‚©( TRUE:’Ç‰Á‚³‚ê‚Ä‚¢‚é  FALSE:’Ç‰Á‚³‚ê‚Ä‚¢‚È‚¢ )
-	HANDLELIST					PlaySoundList ;											// Ä¶’†‚ÌƒTƒEƒ“ƒh‚ÌƒŠƒXƒgˆ——p\‘¢‘Ì
+	int							AddPlaySoundList ;										// PlaySoundList ãŒãƒªã‚¹ãƒˆã«è¿½åŠ ã•ã‚Œã¦ã„ã‚‹ã‹ã©ã†ã‹( TRUE:è¿½åŠ ã•ã‚Œã¦ã„ã‚‹  FALSE:è¿½åŠ ã•ã‚Œã¦ã„ãªã„ )
+	HANDLELIST					PlaySoundList ;											// å†ç”Ÿä¸­ã®ã‚µã‚¦ãƒ³ãƒ‰ã®ãƒªã‚¹ãƒˆå‡¦ç†ç”¨æ§‹é€ ä½“
 
-	int							PlayFinishDeleteFlag ;									// ƒTƒEƒ“ƒh‚ÌÄ¶‚ªI—¹‚µ‚½‚çíœ‚·‚é‚©‚Ç‚¤‚©( TRUE:íœ‚·‚é  FALSE:íœ‚µ‚È‚¢ )
-	HANDLELIST					PlayFinishDeleteSoundList ;								// ƒTƒEƒ“ƒh‚ÌÄ¶‚ªI—¹‚µ‚½‚çíœ‚·‚éƒTƒEƒ“ƒh‚ÌƒŠƒXƒgˆ——p\‘¢‘Ì
+	int							PlayFinishDeleteFlag ;									// ã‚µã‚¦ãƒ³ãƒ‰ã®å†ç”ŸãŒçµ‚äº†ã—ãŸã‚‰å‰Šé™¤ã™ã‚‹ã‹ã©ã†ã‹( TRUE:å‰Šé™¤ã™ã‚‹  FALSE:å‰Šé™¤ã—ãªã„ )
+	HANDLELIST					PlayFinishDeleteSoundList ;								// ã‚µã‚¦ãƒ³ãƒ‰ã®å†ç”ŸãŒçµ‚äº†ã—ãŸã‚‰å‰Šé™¤ã™ã‚‹ã‚µã‚¦ãƒ³ãƒ‰ã®ãƒªã‚¹ãƒˆå‡¦ç†ç”¨æ§‹é€ ä½“
 
-	int							NotInitSoundMemDelete ;									// InitSoundMem ‚Åíœ‚µ‚È‚¢‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO( TRUE:InitSoundMem‚Å‚Ííœ‚µ‚È‚¢  FALSE:InitSoundMem‚Åíœ‚·‚é )
+	int							NotInitSoundMemDelete ;									// InitSoundMem ã§å‰Šé™¤ã—ãªã„ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°( TRUE:InitSoundMemã§ã¯å‰Šé™¤ã—ãªã„  FALSE:InitSoundMemã§å‰Šé™¤ã™ã‚‹ )
 
-//	char						FilePath[ 256 ] ;										// ƒfƒBƒŒƒNƒgƒŠ
-//	char						SoundName[ 256 ] ;										// ƒTƒEƒ“ƒhƒtƒ@ƒCƒ‹ƒl[ƒ€
+//	char						FilePath[ 256 ] ;										// ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒª
+//	char						SoundName[ 256 ] ;										// ã‚µã‚¦ãƒ³ãƒ‰ãƒ•ã‚¡ã‚¤ãƒ«ãƒãƒ¼ãƒ 
 
-	int							ValidBufferNum ;										// —LŒø‚Èƒoƒbƒtƒ@‚Ì”
-	volatile int				BufferPlayStateBackupFlagValid[ MAX_SOUNDBUFFER_NUM ] ;	// BufferPlayStateBackupFlag ‚ª—LŒø‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO( TRUE:—LŒø  FALSE:–³Œø )
-	volatile int				BufferPlayStateBackupFlag[ MAX_SOUNDBUFFER_NUM ] ;		// ƒTƒEƒ“ƒhƒoƒbƒtƒ@‚ğˆê’â~‚·‚é‚Æ‚«‚ÌÄ¶ó‘Ôƒtƒ‰ƒO
-	SOUNDBUFFER					Buffer[ MAX_SOUNDBUFFER_NUM ] ;							// ƒTƒEƒ“ƒhƒoƒbƒtƒ@
-	WAVEFORMATEX				BufferFormat ;											// ƒTƒEƒ“ƒhƒoƒbƒtƒ@‚ÌƒtƒH[ƒ}ƒbƒg
+	int							ValidBufferNum ;										// æœ‰åŠ¹ãªãƒãƒƒãƒ•ã‚¡ã®æ•°
+	volatile int				BufferPlayStateBackupFlagValid[ MAX_SOUNDBUFFER_NUM ] ;	// BufferPlayStateBackupFlag ãŒæœ‰åŠ¹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°( TRUE:æœ‰åŠ¹  FALSE:ç„¡åŠ¹ )
+	volatile int				BufferPlayStateBackupFlag[ MAX_SOUNDBUFFER_NUM ] ;		// ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡ã‚’ä¸€æ™‚åœæ­¢ã™ã‚‹ã¨ãã®å†ç”ŸçŠ¶æ…‹ãƒ•ãƒ©ã‚°
+	SOUNDBUFFER					Buffer[ MAX_SOUNDBUFFER_NUM ] ;							// ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡
+	WAVEFORMATEX				BufferFormat ;											// ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡ã®ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆ
 
-	int							Type ;													// ƒTƒEƒ“ƒh‚Ìƒ^ƒCƒv
-	int							PlayType ;												// Ä¶ƒ^ƒCƒv
+	int							Type ;													// ã‚µã‚¦ãƒ³ãƒ‰ã®ã‚¿ã‚¤ãƒ—
+	int							PlayType ;												// å†ç”Ÿã‚¿ã‚¤ãƒ—
 
-	STREAMPLAYDATA				Stream ;												// ƒXƒgƒŠ[ƒ€•—ƒTƒEƒ“ƒhƒvƒŒƒC—pƒf[ƒ^
-	NORMALPLAYDATA				Normal ;												// ƒm[ƒ}ƒ‹ƒTƒEƒ“ƒhƒvƒŒƒC—pƒf[ƒ^
+	STREAMPLAYDATA				Stream ;												// ã‚¹ãƒˆãƒªãƒ¼ãƒ é¢¨ã‚µã‚¦ãƒ³ãƒ‰ãƒ—ãƒ¬ã‚¤ç”¨ãƒ‡ãƒ¼ã‚¿
+	NORMALPLAYDATA				Normal ;												// ãƒãƒ¼ãƒãƒ«ã‚µã‚¦ãƒ³ãƒ‰ãƒ—ãƒ¬ã‚¤ç”¨ãƒ‡ãƒ¼ã‚¿
 
-	int							PresetReverbParam ;										// ‚R‚cƒTƒEƒ“ƒh‚Éİ’è‚·‚éƒvƒŠƒZƒbƒgƒŠƒo[ƒuƒpƒ‰ƒ[ƒ^”Ô†( DX_REVERB_PRESET_DEFAULT “™ )
-	SOUND3D_REVERB_PARAM		ReverbParam ;											// ‚R‚cƒTƒEƒ“ƒh‚Éİ’è‚·‚éƒŠƒo[ƒuƒpƒ‰ƒ[ƒ^( PresetReverbParam ‚ª -1 ‚ÌÛ‚Ég—p )
+	int							PresetReverbParam ;										// ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰æ™‚ã«è¨­å®šã™ã‚‹ãƒ—ãƒªã‚»ãƒƒãƒˆãƒªãƒãƒ¼ãƒ–ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ç•ªå·( DX_REVERB_PRESET_DEFAULT ç­‰ )
+	SOUND3D_REVERB_PARAM		ReverbParam ;											// ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰æ™‚ã«è¨­å®šã™ã‚‹ãƒªãƒãƒ¼ãƒ–ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿( PresetReverbParam ãŒ -1 ã®éš›ã«ä½¿ç”¨ )
 
-	int							BaseVolume[ SOUNDBUFFER_MAX_CHANNEL_NUM ] ;				// Šî–{ƒ{ƒŠƒ…[ƒ€( 100•ª‚Ì1ƒfƒVƒxƒ‹’PˆÊ 0 ` 10000 )( -1:ƒfƒtƒHƒ‹ƒg )
-	int							BaseVolume8bit[ SOUNDBUFFER_MAX_CHANNEL_NUM ] ;			// Šî–{ƒ{ƒŠƒ…[ƒ€( 0 ` 255 )( -1:ƒfƒtƒHƒ‹ƒg )
-	int							BasePan ;												// Šî–{ƒpƒ“( -1:ƒfƒtƒHƒ‹ƒg )
-	int							BaseFrequency ;											// Šî–{Ä¶ü”g”( -1:ƒfƒtƒHƒ‹ƒg )
-	VECTOR						Base3DPosition ;										// Šî–{Ä¶ˆÊ’u
-	float						Base3DRadius ;											// Šî–{•·‚±‚¦‚é‹——£
-	VECTOR						Base3DVelocity ;										// Šî–{‰¹‚Ì‘¬“x
-	int							PitchRateEnable ;										// ƒsƒbƒ`ƒŒ[ƒg‚ª—LŒø‰»‚Ç‚¤‚©( TRUE:—LŒø  FALSE:–³Œø )
-	float						PitchRate ;												// ƒsƒbƒ`ƒŒ[ƒg
+	int							BaseVolume[ SOUNDBUFFER_MAX_CHANNEL_NUM ] ;				// åŸºæœ¬ãƒœãƒªãƒ¥ãƒ¼ãƒ ( 100åˆ†ã®1ãƒ‡ã‚·ãƒ™ãƒ«å˜ä½ 0 ï½ 10000 )( -1:ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ )
+	int							BaseVolume8bit[ SOUNDBUFFER_MAX_CHANNEL_NUM ] ;			// åŸºæœ¬ãƒœãƒªãƒ¥ãƒ¼ãƒ ( 0 ï½ 255 )( -1:ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ )
+	int							BasePan ;												// åŸºæœ¬ãƒ‘ãƒ³( -1:ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ )
+	int							BaseFrequency ;											// åŸºæœ¬å†ç”Ÿå‘¨æ³¢æ•°( -1:ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ )
+	VECTOR						Base3DPosition ;										// åŸºæœ¬å†ç”Ÿä½ç½®
+	float						Base3DRadius ;											// åŸºæœ¬èã“ãˆã‚‹è·é›¢
+	VECTOR						Base3DVelocity ;										// åŸºæœ¬éŸ³ã®é€Ÿåº¦
+	int							PitchRateEnable ;										// ãƒ”ãƒƒãƒãƒ¬ãƒ¼ãƒˆãŒæœ‰åŠ¹åŒ–ã©ã†ã‹( TRUE:æœ‰åŠ¹  FALSE:ç„¡åŠ¹ )
+	float						PitchRate ;												// ãƒ”ãƒƒãƒãƒ¬ãƒ¼ãƒˆ
 
-	BYTE						ValidNextPlayVolume[ SOUNDBUFFER_MAX_CHANNEL_NUM ] ;	// NextPlayVolume ‚ª—LŒø‚©‚Ç‚¤‚©( 1:—LŒø 0:–³Œø )
-	BYTE						ValidNextPlayPan ;										// NextPlayPan ‚ª—LŒø‚©‚Ç‚¤‚©( 1:—LŒø 0:–³Œø )
-	BYTE						ValidNextPlayFrequency ;								// NextPlayFrequency ‚ª—LŒø‚©‚Ç‚¤‚©( 1:—LŒø 0:–³Œø )
-	BYTE						ValidNextPlay3DPosition ;								// NextPlay3DPosition ‚ª—LŒø‚©‚Ç‚¤‚©( 1:—LŒø 0:–³Œø )
-	BYTE						ValidNextPlay3DRadius ;									// NextPlay3DRadius ‚ª—LŒø‚©‚Ç‚¤‚©( 1:—LŒø 0:–³Œø )
-	BYTE						ValidNextPlay3DVelocity ;								// NextPlay3DVelocity ‚ª—LŒø‚©‚Ç‚¤‚©( 1:—LŒø 0:–³Œø )
-	int							NextPlayVolume[ SOUNDBUFFER_MAX_CHANNEL_NUM ] ;			// Ÿ‚É–Â‚ç‚·‰¹‚Ìƒ{ƒŠƒ…[ƒ€
-	int							NextPlayPan ;											// Ÿ‚É–Â‚ç‚·‰¹‚Ìƒpƒ“
-	int							NextPlayFrequency ;										// Ÿ‚É–Â‚ç‚·‰¹‚Ìü”g”
-	VECTOR						NextPlay3DPosition ;									// Ÿ‚É–Â‚ç‚·‰¹‚ÌˆÊ’u
-	float						NextPlay3DRadius ;										// Ÿ‚É–Â‚ç‚·‰¹‚Ì•·‚±‚¦‚é‹——£
-	VECTOR						NextPlay3DVelocity ;									// Ÿ‚É–Â‚ç‚·‰¹‚ÌˆÚ“®‘¬“x
+	BYTE						ValidNextPlayVolume[ SOUNDBUFFER_MAX_CHANNEL_NUM ] ;	// NextPlayVolume ãŒæœ‰åŠ¹ã‹ã©ã†ã‹( 1:æœ‰åŠ¹ 0:ç„¡åŠ¹ )
+	BYTE						ValidNextPlayPan ;										// NextPlayPan ãŒæœ‰åŠ¹ã‹ã©ã†ã‹( 1:æœ‰åŠ¹ 0:ç„¡åŠ¹ )
+	BYTE						ValidNextPlayFrequency ;								// NextPlayFrequency ãŒæœ‰åŠ¹ã‹ã©ã†ã‹( 1:æœ‰åŠ¹ 0:ç„¡åŠ¹ )
+	BYTE						ValidNextPlay3DPosition ;								// NextPlay3DPosition ãŒæœ‰åŠ¹ã‹ã©ã†ã‹( 1:æœ‰åŠ¹ 0:ç„¡åŠ¹ )
+	BYTE						ValidNextPlay3DRadius ;									// NextPlay3DRadius ãŒæœ‰åŠ¹ã‹ã©ã†ã‹( 1:æœ‰åŠ¹ 0:ç„¡åŠ¹ )
+	BYTE						ValidNextPlay3DVelocity ;								// NextPlay3DVelocity ãŒæœ‰åŠ¹ã‹ã©ã†ã‹( 1:æœ‰åŠ¹ 0:ç„¡åŠ¹ )
+	int							NextPlayVolume[ SOUNDBUFFER_MAX_CHANNEL_NUM ] ;			// æ¬¡ã«é³´ã‚‰ã™éŸ³ã®ãƒœãƒªãƒ¥ãƒ¼ãƒ 
+	int							NextPlayPan ;											// æ¬¡ã«é³´ã‚‰ã™éŸ³ã®ãƒ‘ãƒ³
+	int							NextPlayFrequency ;										// æ¬¡ã«é³´ã‚‰ã™éŸ³ã®å‘¨æ³¢æ•°
+	VECTOR						NextPlay3DPosition ;									// æ¬¡ã«é³´ã‚‰ã™éŸ³ã®ä½ç½®
+	float						NextPlay3DRadius ;										// æ¬¡ã«é³´ã‚‰ã™éŸ³ã®èã“ãˆã‚‹è·é›¢
+	VECTOR						NextPlay3DVelocity ;									// æ¬¡ã«é³´ã‚‰ã™éŸ³ã®ç§»å‹•é€Ÿåº¦
 } ;
 
-// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤”gŒ`ƒf[ƒ^‚Ì”gŒ`ƒf[ƒ^\‘¢‘Ì
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†æ³¢å½¢ãƒ‡ãƒ¼ã‚¿ã®æ³¢å½¢ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
 struct SOFTSOUND_WAVE
 {
-	LONGLONG					BufferSampleNum ;										// ƒoƒbƒtƒ@‚ÌƒTƒCƒY( ƒTƒ“ƒvƒ‹” )
-	void *						Buffer ;												// ƒf[ƒ^ƒoƒbƒtƒ@
+	LONGLONG					BufferSampleNum ;										// ãƒãƒƒãƒ•ã‚¡ã®ã‚µã‚¤ã‚º( ã‚µãƒ³ãƒ—ãƒ«æ•° )
+	void *						Buffer ;												// ãƒ‡ãƒ¼ã‚¿ãƒãƒƒãƒ•ã‚¡
 } ;
 
-// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤”gŒ`ƒf[ƒ^‚ÌƒvƒŒƒCƒ„[\‘¢‘Ì
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†æ³¢å½¢ãƒ‡ãƒ¼ã‚¿ã®ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼æ§‹é€ ä½“
 struct SOFTSOUND_PLAYER
 {
-	HANDLELIST					SoftSoundPlayerList ;									// ƒ\ƒtƒgƒEƒGƒAƒTƒEƒ“ƒhƒvƒŒƒCƒ„[ƒŠƒXƒgˆ——p\‘¢‘Ì
+	HANDLELIST					SoftSoundPlayerList ;									// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã‚µã‚¦ãƒ³ãƒ‰ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒªã‚¹ãƒˆå‡¦ç†ç”¨æ§‹é€ ä½“
 
-	int							StockSampleNum ;										// ƒXƒgƒbƒN‚µ‚Ä‚¢‚éƒTƒ“ƒvƒ‹‚Ì”
-	RINGBUF						StockSample ;											// ƒTƒ“ƒvƒ‹ƒXƒgƒbƒN—pƒŠƒ“ƒOƒoƒbƒtƒ@
+	int							StockSampleNum ;										// ã‚¹ãƒˆãƒƒã‚¯ã—ã¦ã„ã‚‹ã‚µãƒ³ãƒ—ãƒ«ã®æ•°
+	RINGBUF						StockSample ;											// ã‚µãƒ³ãƒ—ãƒ«ã‚¹ãƒˆãƒƒã‚¯ç”¨ãƒªãƒ³ã‚°ãƒãƒƒãƒ•ã‚¡
 
-	int							SoundBufferPlayStateBackupFlagValid ;					// SoundBufferPlayStateBackupFlag ‚ª—LŒø‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO( TRUE:—LŒø  FALSE:–³Œø )
-	int							SoundBufferPlayStateBackupFlag ;						// ƒTƒEƒ“ƒhƒoƒbƒtƒ@‚ğˆê’â~‚·‚é‚Æ‚«‚ÌÄ¶ó‘Ôƒtƒ‰ƒO
-	SOUNDBUFFER					SoundBuffer ;											// Ä¶—pƒTƒEƒ“ƒhƒoƒbƒtƒ@
-	int							SoundBufferSize ;										// Ä¶—pƒTƒEƒ“ƒhƒoƒbƒtƒ@‚ÌƒTƒCƒY( ƒoƒCƒg’PˆÊ )
-//	int							BackCheckPlayOffset ;									// ˆê‚Â‘O‚Éƒ`ƒFƒbƒN‚µ‚½Ä¶ˆÊ’u
-	int							DataSetCompOffset ;										// ƒf[ƒ^ƒZƒbƒg‚ªÏ‚ñ‚Å‚¢‚éƒTƒEƒ“ƒhƒoƒbƒtƒ@ã‚ÌˆÊ’u( -1:‚Ü‚¾ƒZƒbƒg‚µ‚Ä‚¢‚È‚¢ )
+	int							SoundBufferPlayStateBackupFlagValid ;					// SoundBufferPlayStateBackupFlag ãŒæœ‰åŠ¹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°( TRUE:æœ‰åŠ¹  FALSE:ç„¡åŠ¹ )
+	int							SoundBufferPlayStateBackupFlag ;						// ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡ã‚’ä¸€æ™‚åœæ­¢ã™ã‚‹ã¨ãã®å†ç”ŸçŠ¶æ…‹ãƒ•ãƒ©ã‚°
+	SOUNDBUFFER					SoundBuffer ;											// å†ç”Ÿç”¨ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡
+	int							SoundBufferSize ;										// å†ç”Ÿç”¨ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡ã®ã‚µã‚¤ã‚º( ãƒã‚¤ãƒˆå˜ä½ )
+//	int							BackCheckPlayOffset ;									// ä¸€ã¤å‰ã«ãƒã‚§ãƒƒã‚¯ã—ãŸå†ç”Ÿä½ç½®
+	int							DataSetCompOffset ;										// ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆãŒæ¸ˆã‚“ã§ã„ã‚‹ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡ä¸Šã®ä½ç½®( -1:ã¾ã ã‚»ãƒƒãƒˆã—ã¦ã„ãªã„ )
 
-	int							NoneDataSetCompOffset ;									// –³‰¹ƒf[ƒ^‚ÌƒZƒbƒg‚ğŠJn‚µ‚½ƒTƒEƒ“ƒhƒoƒbƒtƒ@ã‚ÌˆÊ’u( -1:‚Ü‚¾ƒZƒbƒg‚µ‚Ä‚¢‚È‚¢ )
-	int							NoneDataPlayCheckBackPlayOffset ;						// –³‰¹ƒf[ƒ^‚ÌÄ¶‚ğŠJn‚µ‚½‚©‚ğŒŸo‚·‚é‚½‚ß‚Ì‘O‰ñƒ`ƒFƒbƒN‚ÌÄ¶ˆÊ’u
-	int							NoneDataPlayStartFlag ;									// –³‰¹ƒf[ƒ^‚ÌÄ¶‚ğŠJn‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©ƒtƒ‰ƒO( TRUE:‚µ‚Ä‚¢‚é  FALSE:‚µ‚Ä‚¢‚È‚¢ )
+	int							NoneDataSetCompOffset ;									// ç„¡éŸ³ãƒ‡ãƒ¼ã‚¿ã®ã‚»ãƒƒãƒˆã‚’é–‹å§‹ã—ãŸã‚µã‚¦ãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡ä¸Šã®ä½ç½®( -1:ã¾ã ã‚»ãƒƒãƒˆã—ã¦ã„ãªã„ )
+	int							NoneDataPlayCheckBackPlayOffset ;						// ç„¡éŸ³ãƒ‡ãƒ¼ã‚¿ã®å†ç”Ÿã‚’é–‹å§‹ã—ãŸã‹ã‚’æ¤œå‡ºã™ã‚‹ãŸã‚ã®å‰å›ãƒã‚§ãƒƒã‚¯æ™‚ã®å†ç”Ÿä½ç½®
+	int							NoneDataPlayStartFlag ;									// ç„¡éŸ³ãƒ‡ãƒ¼ã‚¿ã®å†ç”Ÿã‚’é–‹å§‹ã—ã¦ã„ã‚‹ã‹ã©ã†ã‹ãƒ•ãƒ©ã‚°( TRUE:ã—ã¦ã„ã‚‹  FALSE:ã—ã¦ã„ãªã„ )
 
-	int							MaxDataSetSize ;										// Ä¶ˆÊ’u‚Éæs‚µ‚ÄƒZƒbƒg‚·‚éÅ‘åƒf[ƒ^ƒTƒCƒYAƒoƒCƒg’PˆÊ( æs‚µ‚ÄƒZƒbƒg‚µ‚Ä‚ ‚éƒf[ƒ^‚ÌƒTƒCƒY‚ª‚±‚ÌƒTƒCƒYˆÈã‚É‚È‚ç‚È‚¢‚æ‚¤‚É‚·‚é )
-	int							MinDataSetSize ;										// Ä¶ˆÊ’u‚Éæs‚µ‚ÄƒZƒbƒg‚·‚éÅ¬ƒf[ƒ^ƒTƒCƒYAƒoƒCƒg’PˆÊ( æs‚µ‚ÄƒZƒbƒg‚µ‚Ä‚ ‚éƒf[ƒ^‚ÌƒTƒCƒY‚ª‚±‚ÌƒTƒCƒYˆÈ‰º‚É‚È‚ç‚È‚¢‚æ‚¤‚É‚·‚é )
+	int							MaxDataSetSize ;										// å†ç”Ÿä½ç½®ã«å…ˆè¡Œã—ã¦ã‚»ãƒƒãƒˆã™ã‚‹æœ€å¤§ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºã€ãƒã‚¤ãƒˆå˜ä½( å…ˆè¡Œã—ã¦ã‚»ãƒƒãƒˆã—ã¦ã‚ã‚‹ãƒ‡ãƒ¼ã‚¿ã®ã‚µã‚¤ã‚ºãŒã“ã®ã‚µã‚¤ã‚ºä»¥ä¸Šã«ãªã‚‰ãªã„ã‚ˆã†ã«ã™ã‚‹ )
+	int							MinDataSetSize ;										// å†ç”Ÿä½ç½®ã«å…ˆè¡Œã—ã¦ã‚»ãƒƒãƒˆã™ã‚‹æœ€å°ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºã€ãƒã‚¤ãƒˆå˜ä½( å…ˆè¡Œã—ã¦ã‚»ãƒƒãƒˆã—ã¦ã‚ã‚‹ãƒ‡ãƒ¼ã‚¿ã®ã‚µã‚¤ã‚ºãŒã“ã®ã‚µã‚¤ã‚ºä»¥ä¸‹ã«ãªã‚‰ãªã„ã‚ˆã†ã«ã™ã‚‹ )
 
-	int							IsPlayFlag ;											// Ä¶’†‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO( TRUE:Ä¶’†   FALSE:’â~’† )
+	int							IsPlayFlag ;											// å†ç”Ÿä¸­ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°( TRUE:å†ç”Ÿä¸­   FALSE:åœæ­¢ä¸­ )
 } ;
 
-// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤”gŒ`ƒf[ƒ^
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†æ³¢å½¢ãƒ‡ãƒ¼ã‚¿
 struct SOFTSOUND
 {
-	HANDLEINFO					HandleInfo ;											// ƒnƒ“ƒhƒ‹‹¤’Êî•ñ
+	HANDLEINFO					HandleInfo ;											// ãƒãƒ³ãƒ‰ãƒ«å…±é€šæƒ…å ±
 
-	int							IsPlayer ;												// ƒvƒŒƒCƒ„[‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO( TRUE:ƒvƒŒƒCƒ„[  FALSE:ƒTƒEƒ“ƒhƒf[ƒ^ )
-	WAVEFORMATEX				BufferFormat ;											// ƒTƒEƒ“ƒh‚ÌƒtƒH[ƒ}ƒbƒg
+	int							IsPlayer ;												// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°( TRUE:ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼  FALSE:ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ )
+	WAVEFORMATEX				BufferFormat ;											// ã‚µã‚¦ãƒ³ãƒ‰ã®ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆ
 
 	union
 	{
-		SOFTSOUND_WAVE			Wave ;													// ”gŒ`ƒf[ƒ^
-		SOFTSOUND_PLAYER		Player ;												// ƒvƒŒƒCƒ„[
+		SOFTSOUND_WAVE			Wave ;													// æ³¢å½¢ãƒ‡ãƒ¼ã‚¿
+		SOFTSOUND_PLAYER		Player ;												// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼
 	} ;
 } ;
 
 #ifndef DX_NON_BEEP
 
-// BEEP‰¹—pƒTƒEƒ“ƒhƒoƒbƒtƒ@‚Ìƒf[ƒ^—p\‘¢‘Ì
+// BEEPéŸ³ç”¨ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡ã®ãƒ‡ãƒ¼ã‚¿ç”¨æ§‹é€ ä½“
 struct SOUND_BEEP_BUFFERDATA
 {
-	SOUNDBUFFER					Buffer ;								// BEEP‰¹Ä¶—p‚ÌƒTƒEƒ“ƒhƒoƒbƒtƒ@
-	DWORD						NextFillBufferPosition ;				// Ÿ‚Ì”gŒ`ƒf[ƒ^”z’uŠJnƒTƒ“ƒvƒ‹ˆÊ’u
-	int							NextUseOneCycleSampleBufferPosition ;	// Ÿ‚Ì”gŒ`ƒf[ƒ^”z’u‚Åg—p‚·‚é”gŒ`‚Pü•ª‚ÌƒTƒ“ƒvƒ‹ƒoƒbƒtƒ@‚ÌƒTƒ“ƒvƒ‹ˆÊ’u
-	int							OneCycleSamples ;						// ”gŒ`‚Pü•ª‚ÌƒTƒ“ƒvƒ‹”
-	short						*OneCycleSampleBuffer ;					// ”gŒ`‚Pü•ª‚ÌƒTƒ“ƒvƒ‹‚ğŠi”[‚µ‚Ä‚¢‚éƒoƒbƒtƒ@
-	int							OneCycleSampleBufferSize ;				// ”gŒ`‚Pü•ª‚ÌƒTƒ“ƒvƒ‹‚ğŠi”[‚µ‚Ä‚¢‚éƒoƒbƒtƒ@‚ÌƒTƒCƒY
-	int							VolumeUpRequest ;						// BEEP‰¹Ä¶‰¹—ÊƒAƒbƒvƒŠƒNƒGƒXƒgƒtƒ‰ƒO
-	int							PlayTime ;								// BEEP‰¹Ä¶—p‚ÌƒTƒEƒ“ƒhƒoƒbƒtƒ@‚ÌÄ¶‚ğŠJn‚µ‚½ŠÔ
-	int							StopRequest ;							// BEEP‰¹Ä¶’â~ƒŠƒNƒGƒXƒgƒtƒ‰ƒO
-	int							StopTime ;								// BEEP‰¹Ä¶—p‚ÌƒTƒEƒ“ƒhƒoƒbƒtƒ@‚ÌÄ¶ó‘Ô‚ğ’â~‚É‚µ‚½ŠÔ
+	SOUNDBUFFER					Buffer ;								// BEEPéŸ³å†ç”Ÿç”¨ã®ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡
+	DWORD						NextFillBufferPosition ;				// æ¬¡ã®æ³¢å½¢ãƒ‡ãƒ¼ã‚¿é…ç½®é–‹å§‹ã‚µãƒ³ãƒ—ãƒ«ä½ç½®
+	int							NextUseOneCycleSampleBufferPosition ;	// æ¬¡ã®æ³¢å½¢ãƒ‡ãƒ¼ã‚¿é…ç½®ã§ä½¿ç”¨ã™ã‚‹æ³¢å½¢ï¼‘å‘¨åˆ†ã®ã‚µãƒ³ãƒ—ãƒ«ãƒãƒƒãƒ•ã‚¡ã®ã‚µãƒ³ãƒ—ãƒ«ä½ç½®
+	int							OneCycleSamples ;						// æ³¢å½¢ï¼‘å‘¨åˆ†ã®ã‚µãƒ³ãƒ—ãƒ«æ•°
+	short						*OneCycleSampleBuffer ;					// æ³¢å½¢ï¼‘å‘¨åˆ†ã®ã‚µãƒ³ãƒ—ãƒ«ã‚’æ ¼ç´ã—ã¦ã„ã‚‹ãƒãƒƒãƒ•ã‚¡
+	int							OneCycleSampleBufferSize ;				// æ³¢å½¢ï¼‘å‘¨åˆ†ã®ã‚µãƒ³ãƒ—ãƒ«ã‚’æ ¼ç´ã—ã¦ã„ã‚‹ãƒãƒƒãƒ•ã‚¡ã®ã‚µã‚¤ã‚º
+	int							VolumeUpRequest ;						// BEEPéŸ³å†ç”ŸéŸ³é‡ã‚¢ãƒƒãƒ—ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ•ãƒ©ã‚°
+	int							PlayTime ;								// BEEPéŸ³å†ç”Ÿç”¨ã®ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡ã®å†ç”Ÿã‚’é–‹å§‹ã—ãŸæ™‚é–“
+	int							StopRequest ;							// BEEPéŸ³å†ç”Ÿåœæ­¢ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ•ãƒ©ã‚°
+	int							StopTime ;								// BEEPéŸ³å†ç”Ÿç”¨ã®ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡ã®å†ç”ŸçŠ¶æ…‹ã‚’åœæ­¢ã«ã—ãŸæ™‚é–“
 } ;
 
 #endif // DX_NON_BEEP
 
 
-// ƒTƒEƒ“ƒhƒVƒXƒeƒ€—pƒf[ƒ^\‘¢‘Ì
+// ã‚µã‚¦ãƒ³ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ç”¨ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
 struct SOUNDSYSTEMDATA
 {
-	int							InitializeFlag ;				// ‰Šú‰»ƒtƒ‰ƒO
+	int							InitializeFlag ;				// åˆæœŸåŒ–ãƒ•ãƒ©ã‚°
 
-	DWORD						OutputChannels ;				// o—Íƒ`ƒƒƒ“ƒlƒ‹”
-	DWORD						OutputSmaplesPerSec ;			// o—ÍƒTƒ“ƒvƒŠƒ“ƒOƒŒ[ƒg
+	DWORD						OutputChannels ;				// å‡ºåŠ›ãƒãƒ£ãƒ³ãƒãƒ«æ•°
+	DWORD						OutputSmaplesPerSec ;			// å‡ºåŠ›ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ãƒ¬ãƒ¼ãƒˆ
 
-	int							_3DSoundOneMetreEnable ;		// _3DSoundOneMetre ‚ª—LŒø‚©‚Ç‚¤‚©( TRUE:—LŒø  FALSE:–³Œø )
-	float						_3DSoundOneMetre ;				// ‚R‚cƒTƒEƒ“ƒhˆ——p‚Ì‚Pƒ[ƒgƒ‹
-	_3DSOUNDINFO				ListenerInfo ;					// ‚R‚cƒTƒEƒ“ƒh‚ÌƒŠƒXƒi[‚Ìî•ñ
-	VECTOR						ListenerSideDirection ;			// ‚R‚cƒTƒEƒ“ƒh‚ÌƒŠƒXƒi[‚Ì‰¡•ûŒü
+	int							_3DSoundOneMetreEnable ;		// _3DSoundOneMetre ãŒæœ‰åŠ¹ã‹ã©ã†ã‹( TRUE:æœ‰åŠ¹  FALSE:ç„¡åŠ¹ )
+	float						_3DSoundOneMetre ;				// ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰å‡¦ç†ç”¨ã®ï¼‘ãƒ¡ãƒ¼ãƒˆãƒ«
+	_3DSOUNDINFO				ListenerInfo ;					// ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰ã®ãƒªã‚¹ãƒŠãƒ¼ã®æƒ…å ±
+	VECTOR						ListenerSideDirection ;			// ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰ã®ãƒªã‚¹ãƒŠãƒ¼ã®æ¨ªæ–¹å‘
 
-	HANDLELIST					_3DSoundListFirst ;				// ‚R‚cƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹ƒŠƒXƒg‚Ìæ“ª
-	HANDLELIST					_3DSoundListLast ;				// ‚R‚cƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹ƒŠƒXƒg‚ÌI’[
-	DX_CRITICAL_SECTION			_3DSoundListCriticalSection ;	// ‚R‚cƒTƒEƒ“ƒhƒŠƒXƒgƒAƒNƒZƒX—pƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“
+	HANDLELIST					_3DSoundListFirst ;				// ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ãƒªã‚¹ãƒˆã®å…ˆé ­
+	HANDLELIST					_3DSoundListLast ;				// ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ãƒªã‚¹ãƒˆã®çµ‚ç«¯
+	DX_CRITICAL_SECTION			_3DSoundListCriticalSection ;	// ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰ãƒªã‚¹ãƒˆã‚¢ã‚¯ã‚»ã‚¹æ™‚ç”¨ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³
 
-	SIMPLELIST					PlaySoundBufferListFirst ;				// Ä¶’†ƒTƒEƒ“ƒhƒoƒbƒtƒ@ƒŠƒXƒg‚Ìæ“ª
-	SIMPLELIST					PlaySoundBufferListLast ;				// Ä¶’†ƒTƒEƒ“ƒhƒoƒbƒtƒ@ƒŠƒXƒg‚ÌI’[
-	DX_CRITICAL_SECTION			PlaySoundBufferListCriticalSection ;	// Ä¶’†ƒTƒEƒ“ƒhƒoƒbƒtƒ@ƒŠƒXƒgƒAƒNƒZƒX—pƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“
+	SIMPLELIST					PlaySoundBufferListFirst ;				// å†ç”Ÿä¸­ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡ãƒªã‚¹ãƒˆã®å…ˆé ­
+	SIMPLELIST					PlaySoundBufferListLast ;				// å†ç”Ÿä¸­ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡ãƒªã‚¹ãƒˆã®çµ‚ç«¯
+	DX_CRITICAL_SECTION			PlaySoundBufferListCriticalSection ;	// å†ç”Ÿä¸­ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡ãƒªã‚¹ãƒˆã‚¢ã‚¯ã‚»ã‚¹æ™‚ç”¨ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³
 
-	HANDLELIST					PlaySoundListFirst ;			// Ä¶’†‚ÌƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹ƒŠƒXƒg‚Ìæ“ª
-	HANDLELIST					PlaySoundListLast ;				// Ä¶’†‚ÌƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹ƒŠƒXƒg‚ÌI’[
-	DX_CRITICAL_SECTION			PlaySoundListCriticalSection ;	// Ä¶’†‚ÌƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹ƒŠƒXƒgƒAƒNƒZƒX—pƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“
+	HANDLELIST					PlaySoundListFirst ;			// å†ç”Ÿä¸­ã®ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ãƒªã‚¹ãƒˆã®å…ˆé ­
+	HANDLELIST					PlaySoundListLast ;				// å†ç”Ÿä¸­ã®ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ãƒªã‚¹ãƒˆã®çµ‚ç«¯
+	DX_CRITICAL_SECTION			PlaySoundListCriticalSection ;	// å†ç”Ÿä¸­ã®ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ãƒªã‚¹ãƒˆã‚¢ã‚¯ã‚»ã‚¹æ™‚ç”¨ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³
 
-	HANDLELIST					StreamSoundListFirst ;			// ƒXƒgƒŠ[ƒ€ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹ƒŠƒXƒg‚Ìæ“ª
-	HANDLELIST					StreamSoundListLast ;			// ƒXƒgƒŠ[ƒ€ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹ƒŠƒXƒg‚ÌI’[
-	DX_CRITICAL_SECTION			StreamSoundListCriticalSection ;// ƒXƒgƒŠ[ƒ€ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹ƒŠƒXƒgƒAƒNƒZƒX—pƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“
+	HANDLELIST					StreamSoundListFirst ;			// ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ãƒªã‚¹ãƒˆã®å…ˆé ­
+	HANDLELIST					StreamSoundListLast ;			// ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ãƒªã‚¹ãƒˆã®çµ‚ç«¯
+	DX_CRITICAL_SECTION			StreamSoundListCriticalSection ;// ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ãƒªã‚¹ãƒˆã‚¢ã‚¯ã‚»ã‚¹æ™‚ç”¨ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³
 
-	HANDLELIST					SoftSoundPlayerListFirst ;		// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤”gŒ`ƒf[ƒ^‚ÌƒvƒŒƒCƒ„[‚Ìƒnƒ“ƒhƒ‹ƒŠƒXƒg‚Ìæ“ª
-	HANDLELIST					SoftSoundPlayerListLast ;		// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤”gŒ`ƒf[ƒ^‚ÌƒvƒŒƒCƒ„[‚Ìƒnƒ“ƒhƒ‹ƒŠƒXƒg‚ÌI’[
+	HANDLELIST					SoftSoundPlayerListFirst ;		// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†æ³¢å½¢ãƒ‡ãƒ¼ã‚¿ã®ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ãƒãƒ³ãƒ‰ãƒ«ãƒªã‚¹ãƒˆã®å…ˆé ­
+	HANDLELIST					SoftSoundPlayerListLast ;		// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†æ³¢å½¢ãƒ‡ãƒ¼ã‚¿ã®ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ãƒãƒ³ãƒ‰ãƒ«ãƒªã‚¹ãƒˆã®çµ‚ç«¯
 
-	HANDLELIST					PlayFinishDeleteSoundListFirst ; // Ä¶I—¹‚Éíœ‚·‚éƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹ƒŠƒXƒg‚Ìæ“ª
-	HANDLELIST					PlayFinishDeleteSoundListLast ;	 // Ä¶I—¹‚Éíœ‚·‚éƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹ƒŠƒXƒg‚ÌI’[
+	HANDLELIST					PlayFinishDeleteSoundListFirst ; // å†ç”Ÿçµ‚äº†æ™‚ã«å‰Šé™¤ã™ã‚‹ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ãƒªã‚¹ãƒˆã®å…ˆé ­
+	HANDLELIST					PlayFinishDeleteSoundListLast ;	 // å†ç”Ÿçµ‚äº†æ™‚ã«å‰Šé™¤ã™ã‚‹ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ãƒªã‚¹ãƒˆã®çµ‚ç«¯
 
-	HANDLELIST					Play3DSoundListFirst ;			// Ä¶‚µ‚Ä‚¢‚é‚R‚cƒTƒEƒ“ƒhƒŠƒXƒg‚Ìæ“ª
-	HANDLELIST					Play3DSoundListLast ;			// Ä¶‚µ‚Ä‚¢‚é‚R‚cƒTƒEƒ“ƒhƒŠƒXƒg‚ÌI’[
-	DX_CRITICAL_SECTION			Play3DSoundListCriticalSection ;// Ä¶‚µ‚Ä‚¢‚é‚R‚cƒTƒEƒ“ƒhƒŠƒXƒgƒAƒNƒZƒX—pƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“
+	HANDLELIST					Play3DSoundListFirst ;			// å†ç”Ÿã—ã¦ã„ã‚‹ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰ãƒªã‚¹ãƒˆã®å…ˆé ­
+	HANDLELIST					Play3DSoundListLast ;			// å†ç”Ÿã—ã¦ã„ã‚‹ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰ãƒªã‚¹ãƒˆã®çµ‚ç«¯
+	DX_CRITICAL_SECTION			Play3DSoundListCriticalSection ;// å†ç”Ÿã—ã¦ã„ã‚‹ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰ãƒªã‚¹ãƒˆã‚¢ã‚¯ã‚»ã‚¹æ™‚ç”¨ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³
 
-	int							PlayWavSoundHandle ;			// PlayWavŠÖ”‚Å–Â‚ç‚³‚ê‚Ä‚¢‚éWAVEƒf[ƒ^‚Ìƒnƒ“ƒhƒ‹
+	int							PlayWavSoundHandle ;			// PlayWavé–¢æ•°ã§é³´ã‚‰ã•ã‚Œã¦ã„ã‚‹WAVEãƒ‡ãƒ¼ã‚¿ã®ãƒãƒ³ãƒ‰ãƒ«
 
-	int							Create3DSoundFlag ;				// 3DƒTƒEƒ“ƒh‚ğì¬‚·‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO( TRUE:‚R‚cƒTƒEƒ“ƒh‚ğì¬‚·‚é  FALSE:‚R‚cƒTƒEƒ“ƒh‚ğì¬‚µ‚È‚¢ )
-	int							OldVolumeTypeFlag ;				// Ver3.10cˆÈ‘O‚Ì‰¹—ÊŒvZ®‚ğg—p‚·‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO( TRUE:ŒÃ‚¢ŒvZ®‚ğg—p‚·‚é  FALSE:V‚µ‚¢ŒvZ®‚ğg—p‚·‚é )
-	int							SoundMode ;						// Ä¶Œ`®
-	int							CurrentTimeType ;				// GetSoundCurrentTime ‚È‚Ç‚ğg—p‚µ‚½ê‡‚Éæ“¾‚Å‚«‚éÄ¶ŠÔ‚Ìƒ^ƒCƒv
+	int							Create3DSoundFlag ;				// 3Dã‚µã‚¦ãƒ³ãƒ‰ã‚’ä½œæˆã™ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°( TRUE:ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰ã‚’ä½œæˆã™ã‚‹  FALSE:ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰ã‚’ä½œæˆã—ãªã„ )
+	int							OldVolumeTypeFlag ;				// Ver3.10cä»¥å‰ã®éŸ³é‡è¨ˆç®—å¼ã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°( TRUE:å¤ã„è¨ˆç®—å¼ã‚’ä½¿ç”¨ã™ã‚‹  FALSE:æ–°ã—ã„è¨ˆç®—å¼ã‚’ä½¿ç”¨ã™ã‚‹ )
+	int							SoundMode ;						// å†ç”Ÿå½¢å¼
+	int							CurrentTimeType ;				// GetSoundCurrentTime ãªã©ã‚’ä½¿ç”¨ã—ãŸå ´åˆã«å–å¾—ã§ãã‚‹å†ç”Ÿæ™‚é–“ã®ã‚¿ã‚¤ãƒ—
 
-	int							MaxVolume ;						// Å‘å‰¹—Ê
+	int							MaxVolume ;						// æœ€å¤§éŸ³é‡
 
-	WAVEFORMATEX				SelfMixingFormat ;				// ©‘Oƒ~ƒLƒVƒ“ƒO‚ÌƒtƒH[ƒ}ƒbƒg
-	int							SelfMixingFormatValidBitsPerSample ;	// ©‘Oƒ~ƒLƒVƒ“ƒO‚ÌƒtƒH[ƒ}ƒbƒg‚Ì—LŒøƒrƒbƒg”
-	int							SelfMixingFormatIsFloat ;		// ©‘Oƒ~ƒLƒVƒ“ƒO‚ÌƒtƒH[ƒ}ƒbƒg‚ª floatŒ^‚©
-	int							SelfMixingFormatIsMSB ;			// ©‘Oƒ~ƒLƒVƒ“ƒO‚ÌƒtƒH[ƒ}ƒbƒg‚ªƒrƒbƒOƒGƒ“ƒfƒBƒAƒ“‚©
-	volatile ULONGLONG			SelfMixingTotalWriteSamples ;	// ©‘Oƒ~ƒLƒVƒ“ƒO‚Åo—Í‚µ‚½ƒTƒ“ƒvƒ‹”
-//	volatile int				SelfMixingInitlizeTotalPlayTimeBaseCountFlag ;	// ©‘Oƒ~ƒLƒVƒ“ƒO‚Ì‘Ä¶ŠÔ‚ÌŠî€‚Æ‚È‚éƒJƒEƒ“ƒg’l‚ª‰Šú‰»Ï‚İ‚©‚Ç‚¤‚©
-//	volatile ULONGLONG			SelfMixingTotalPlayTimeBaseCount ;				// ©‘Oƒ~ƒLƒVƒ“ƒO‚Ì‘Ä¶ŠÔ‚ÌŠî€‚Æ‚È‚éƒJƒEƒ“ƒg’l
-	int							SelfMixingBufferIsFloat ;		// ©‘Oƒ~ƒLƒVƒ“ƒOˆ——p‚Ìƒoƒbƒtƒ@‚ª floatŒ^‚©‚Ç‚¤‚©
-	int							SelfMixingBufferSamples ;		// ©‘Oƒ~ƒLƒVƒ“ƒOˆ——p‚Ìƒoƒbƒtƒ@‚ÌƒTƒ“ƒvƒ‹”
-	void *						SelfMixingBuffer ;				// ©‘Oƒ~ƒLƒVƒ“ƒOˆ——p‚Ìƒoƒbƒtƒ@
-	int							SelfMixingOutputDelaySamplesUnit ;	// ˆê‰ñ‚ÌÄ¶•Ó‚è‚É‰ÁZ‚·‚é’x‰„ƒTƒ“ƒvƒ‹”‚Ì”
-	int							SelfMixingOutputDelaySamples ;	// ©‘Oƒ~ƒLƒVƒ“ƒO‚ÅŸ‚ÌÄ¶ŠJnƒTƒEƒ“ƒhƒoƒbƒtƒ@‚É‘Î‚µ‚ÄŠ„‚è“–‚Ä‚éƒfƒBƒŒƒCƒTƒ“ƒvƒ‹”
-	int							SelfMixingScalingFlag ;			// ©‘Oƒ~ƒLƒVƒ“ƒO‚ÅƒXƒP[ƒŠƒ“ƒO‚ğs‚Á‚Ä‚¢‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO
-	float						SelfMixingScalingStartParam ;	// ©‘Oƒ~ƒLƒVƒ“ƒO‚ÅƒXƒP[ƒŠƒ“ƒO‚ğs‚¤ˆ—‚Ì‰Šú’l
-	int							SelfMixingScalingTotalSamples ;	// ©‘Oƒ~ƒLƒVƒ“ƒO‚ÅƒXƒP[ƒŠƒ“ƒO‚ğs‚¤ŠÔ
-	int							SelfMixingScalingSampleCount ;	// ©‘Oƒ~ƒLƒVƒ“ƒO‚ÅƒXƒP[ƒŠƒ“ƒO‚ğs‚¤ƒJƒEƒ“ƒ^
+	WAVEFORMATEX				SelfMixingFormat ;				// è‡ªå‰ãƒŸã‚­ã‚·ãƒ³ã‚°ã®ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆ
+	int							SelfMixingFormatValidBitsPerSample ;	// è‡ªå‰ãƒŸã‚­ã‚·ãƒ³ã‚°ã®ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®æœ‰åŠ¹ãƒ“ãƒƒãƒˆæ•°
+	int							SelfMixingFormatIsFloat ;		// è‡ªå‰ãƒŸã‚­ã‚·ãƒ³ã‚°ã®ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆãŒ floatå‹ã‹
+	int							SelfMixingFormatIsMSB ;			// è‡ªå‰ãƒŸã‚­ã‚·ãƒ³ã‚°ã®ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆãŒãƒ“ãƒƒã‚°ã‚¨ãƒ³ãƒ‡ã‚£ã‚¢ãƒ³ã‹
+	volatile ULONGLONG			SelfMixingTotalWriteSamples ;	// è‡ªå‰ãƒŸã‚­ã‚·ãƒ³ã‚°ã§å‡ºåŠ›ã—ãŸã‚µãƒ³ãƒ—ãƒ«æ•°
+//	volatile int				SelfMixingInitlizeTotalPlayTimeBaseCountFlag ;	// è‡ªå‰ãƒŸã‚­ã‚·ãƒ³ã‚°ã®ç·å†ç”Ÿæ™‚é–“ã®åŸºæº–ã¨ãªã‚‹ã‚«ã‚¦ãƒ³ãƒˆå€¤ãŒåˆæœŸåŒ–æ¸ˆã¿ã‹ã©ã†ã‹
+//	volatile ULONGLONG			SelfMixingTotalPlayTimeBaseCount ;				// è‡ªå‰ãƒŸã‚­ã‚·ãƒ³ã‚°ã®ç·å†ç”Ÿæ™‚é–“ã®åŸºæº–ã¨ãªã‚‹ã‚«ã‚¦ãƒ³ãƒˆå€¤
+	int							SelfMixingBufferIsFloat ;		// è‡ªå‰ãƒŸã‚­ã‚·ãƒ³ã‚°å‡¦ç†ç”¨ã®ãƒãƒƒãƒ•ã‚¡ãŒ floatå‹ã‹ã©ã†ã‹
+	int							SelfMixingBufferSamples ;		// è‡ªå‰ãƒŸã‚­ã‚·ãƒ³ã‚°å‡¦ç†ç”¨ã®ãƒãƒƒãƒ•ã‚¡ã®ã‚µãƒ³ãƒ—ãƒ«æ•°
+	void *						SelfMixingBuffer ;				// è‡ªå‰ãƒŸã‚­ã‚·ãƒ³ã‚°å‡¦ç†ç”¨ã®ãƒãƒƒãƒ•ã‚¡
+	int							SelfMixingOutputDelaySamplesUnit ;	// ä¸€å›ã®å†ç”Ÿè¾ºã‚Šã«åŠ ç®—ã™ã‚‹é…å»¶ã‚µãƒ³ãƒ—ãƒ«æ•°ã®æ•°
+	int							SelfMixingOutputDelaySamples ;	// è‡ªå‰ãƒŸã‚­ã‚·ãƒ³ã‚°ã§æ¬¡ã®å†ç”Ÿé–‹å§‹ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡ã«å¯¾ã—ã¦å‰²ã‚Šå½“ã¦ã‚‹ãƒ‡ã‚£ãƒ¬ã‚¤ã‚µãƒ³ãƒ—ãƒ«æ•°
+	int							SelfMixingScalingFlag ;			// è‡ªå‰ãƒŸã‚­ã‚·ãƒ³ã‚°ã§ã‚¹ã‚±ãƒ¼ãƒªãƒ³ã‚°ã‚’è¡Œã£ã¦ã„ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°
+	float						SelfMixingScalingStartParam ;	// è‡ªå‰ãƒŸã‚­ã‚·ãƒ³ã‚°ã§ã‚¹ã‚±ãƒ¼ãƒªãƒ³ã‚°ã‚’è¡Œã†å‡¦ç†ã®åˆæœŸå€¤
+	int							SelfMixingScalingTotalSamples ;	// è‡ªå‰ãƒŸã‚­ã‚·ãƒ³ã‚°ã§ã‚¹ã‚±ãƒ¼ãƒªãƒ³ã‚°ã‚’è¡Œã†æ™‚é–“
+	int							SelfMixingScalingSampleCount ;	// è‡ªå‰ãƒŸã‚­ã‚·ãƒ³ã‚°ã§ã‚¹ã‚±ãƒ¼ãƒªãƒ³ã‚°ã‚’è¡Œã†ã‚«ã‚¦ãƒ³ã‚¿
 
-	int							EnableSelfMixingFlag ;			// ©‘Oƒ~ƒLƒVƒ“ƒO‚ğs‚¤‚©‚Ç‚¤‚©
-	int							EnableChangeLoopFlag ;			// Ä¶“r’†‚Ì Loopƒtƒ‰ƒO‚Ì•ÏX‚É‘Î‰‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©
-	int							EnableSoundCaptureFlag ;		// ƒTƒEƒ“ƒhƒLƒƒƒvƒ`ƒƒ‚ğ‘O’ñ‚Æ‚µ‚½“®ì‚ğ‚·‚é
+	int							EnableSelfMixingFlag ;			// è‡ªå‰ãƒŸã‚­ã‚·ãƒ³ã‚°ã‚’è¡Œã†ã‹ã©ã†ã‹
+	int							EnableChangeLoopFlag ;			// å†ç”Ÿé€”ä¸­ã® Loopãƒ•ãƒ©ã‚°ã®å¤‰æ›´ã«å¯¾å¿œã—ã¦ã„ã‚‹ã‹ã©ã†ã‹
+	int							EnableSoundCaptureFlag ;		// ã‚µã‚¦ãƒ³ãƒ‰ã‚­ãƒ£ãƒ—ãƒãƒ£ã‚’å‰æã¨ã—ãŸå‹•ä½œã‚’ã™ã‚‹
 #ifndef DX_NON_SAVEFUNCTION
-	int							SoundCaptureFlag ;				// ƒTƒEƒ“ƒhƒLƒƒƒvƒ`ƒƒ‚ğÀs‚µ‚Ä‚¢‚éÅ’†‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO(TRUE:Å’† FASLE:ˆá‚¤)
-	LONGLONG					SoundCaptureSample ;			// ƒLƒƒƒvƒ`ƒƒ‚µ‚½ƒTƒ“ƒvƒ‹‚Ì”(44.1KHzŠ·Z)
-	DWORD_PTR					SoundCaptureFileHandle ;		// ƒLƒƒƒvƒ`ƒƒ‚µ‚½ƒTƒEƒ“ƒh‚ğ•Û‘¶‚µ‚Ä‚¢‚éƒtƒ@ƒCƒ‹
+	int							SoundCaptureFlag ;				// ã‚µã‚¦ãƒ³ãƒ‰ã‚­ãƒ£ãƒ—ãƒãƒ£ã‚’å®Ÿè¡Œã—ã¦ã„ã‚‹æœ€ä¸­ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°(TRUE:æœ€ä¸­ FASLE:é•ã†)
+	LONGLONG					SoundCaptureSample ;			// ã‚­ãƒ£ãƒ—ãƒãƒ£ã—ãŸã‚µãƒ³ãƒ—ãƒ«ã®æ•°(44.1KHzæ›ç®—)
+	DWORD_PTR					SoundCaptureFileHandle ;		// ã‚­ãƒ£ãƒ—ãƒãƒ£ã—ãŸã‚µã‚¦ãƒ³ãƒ‰ã‚’ä¿å­˜ã—ã¦ã„ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«
 #endif // DX_NON_SAVEFUNCTION
 
-	int							CreateSoundDataType ;					// ì¬‚·‚éƒTƒEƒ“ƒhƒf[ƒ^‚Ìƒf[ƒ^ƒ^ƒCƒv
-	int							CreateSoundPitchRateEnable ;			// ì¬‚·‚éƒTƒEƒ“ƒhƒf[ƒ^‚Ìƒsƒbƒ`ƒŒ[ƒg‚ª—LŒø‚©‚Ç‚¤‚©
-	float						CreateSoundPitchRate ;					// ì¬‚·‚éƒTƒEƒ“ƒhƒf[ƒ^‚Ìƒsƒbƒ`ƒŒ[ƒg
-	float						CreateSoundPitchRate_Cents ;			// ì¬‚·‚éƒTƒEƒ“ƒhƒf[ƒ^‚Ìƒsƒbƒ`ƒŒ[ƒg( ƒZƒ“ƒg’PˆÊ )
-	int							CreateSoundTimeStretchRateEnable ;		// ì¬‚·‚éƒTƒEƒ“ƒhƒf[ƒ^‚Ìƒ^ƒCƒ€ƒXƒgƒŒƒbƒ`ƒŒ[ƒg‚ª—LŒø‚©‚Ç‚¤‚©
-	float						CreateSoundTimeStretchRate ;			// ì¬‚·‚éƒTƒEƒ“ƒhƒf[ƒ^‚Ìƒ^ƒCƒ€ƒXƒgƒŒƒbƒ`ƒŒ[ƒg
-	LONGLONG					CreateSoundLoopStartTimePosition ;		// ì¬‚·‚éƒTƒEƒ“ƒhƒf[ƒ^‚Ìƒ‹[ƒv”ÍˆÍ‚Ìæ’[( ƒ~ƒŠ•b )
-	LONGLONG					CreateSoundLoopStartSamplePosition ;	// ì¬‚·‚éƒTƒEƒ“ƒhƒf[ƒ^‚Ìƒ‹[ƒv”ÍˆÍ‚Ìæ’[( ƒTƒ“ƒvƒ‹ )
-	LONGLONG					CreateSoundLoopEndTimePosition ;		// ì¬‚·‚éƒTƒEƒ“ƒhƒf[ƒ^‚Ìƒ‹[ƒv”ÍˆÍ‚ÌI’[( ƒ~ƒŠ•b )
-	LONGLONG					CreateSoundLoopEndSamplePosition ;		// ì¬‚·‚éƒTƒEƒ“ƒhƒf[ƒ^‚Ìƒ‹[ƒv”ÍˆÍ‚ÌI’[( ƒTƒ“ƒvƒ‹ )
-	int							CreateSoundIgnoreLoopAreaInfo ;			// ì¬‚·‚éƒTƒEƒ“ƒhƒf[ƒ^‚Åƒ‹[ƒv”ÍˆÍî•ñ‚ğ–³‹‚·‚é‚©‚Ç‚¤‚©
-	int							DisableReadSoundFunctionMask ;			// g—p‚µ‚È‚¢“Ç‚İ‚İˆ—‚Ìƒ}ƒXƒN
+	int							CreateSoundDataType ;					// ä½œæˆã™ã‚‹ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ã®ãƒ‡ãƒ¼ã‚¿ã‚¿ã‚¤ãƒ—
+	int							CreateSoundPitchRateEnable ;			// ä½œæˆã™ã‚‹ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ã®ãƒ”ãƒƒãƒãƒ¬ãƒ¼ãƒˆãŒæœ‰åŠ¹ã‹ã©ã†ã‹
+	float						CreateSoundPitchRate ;					// ä½œæˆã™ã‚‹ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ã®ãƒ”ãƒƒãƒãƒ¬ãƒ¼ãƒˆ
+	float						CreateSoundPitchRate_Cents ;			// ä½œæˆã™ã‚‹ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ã®ãƒ”ãƒƒãƒãƒ¬ãƒ¼ãƒˆ( ã‚»ãƒ³ãƒˆå˜ä½ )
+	int							CreateSoundTimeStretchRateEnable ;		// ä½œæˆã™ã‚‹ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ã®ã‚¿ã‚¤ãƒ ã‚¹ãƒˆãƒ¬ãƒƒãƒãƒ¬ãƒ¼ãƒˆãŒæœ‰åŠ¹ã‹ã©ã†ã‹
+	float						CreateSoundTimeStretchRate ;			// ä½œæˆã™ã‚‹ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ã®ã‚¿ã‚¤ãƒ ã‚¹ãƒˆãƒ¬ãƒƒãƒãƒ¬ãƒ¼ãƒˆ
+	LONGLONG					CreateSoundLoopStartTimePosition ;		// ä½œæˆã™ã‚‹ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ã®ãƒ«ãƒ¼ãƒ—ç¯„å›²ã®å…ˆç«¯( ãƒŸãƒªç§’ )
+	LONGLONG					CreateSoundLoopStartSamplePosition ;	// ä½œæˆã™ã‚‹ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ã®ãƒ«ãƒ¼ãƒ—ç¯„å›²ã®å…ˆç«¯( ã‚µãƒ³ãƒ—ãƒ« )
+	LONGLONG					CreateSoundLoopEndTimePosition ;		// ä½œæˆã™ã‚‹ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ã®ãƒ«ãƒ¼ãƒ—ç¯„å›²ã®çµ‚ç«¯( ãƒŸãƒªç§’ )
+	LONGLONG					CreateSoundLoopEndSamplePosition ;		// ä½œæˆã™ã‚‹ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ã®ãƒ«ãƒ¼ãƒ—ç¯„å›²ã®çµ‚ç«¯( ã‚µãƒ³ãƒ—ãƒ« )
+	int							CreateSoundIgnoreLoopAreaInfo ;			// ä½œæˆã™ã‚‹ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ã§ãƒ«ãƒ¼ãƒ—ç¯„å›²æƒ…å ±ã‚’ç„¡è¦–ã™ã‚‹ã‹ã©ã†ã‹
+	int							DisableReadSoundFunctionMask ;			// ä½¿ç”¨ã—ãªã„èª­ã¿è¾¼ã¿å‡¦ç†ã®ãƒã‚¹ã‚¯
 #ifndef DX_NON_OGGVORBIS
-	int							OggVorbisBitDepth ;				// ‚n‚‡‚‡‚u‚‚’‚‚‚‰‚“g—p‚Ìƒrƒbƒg[“x(1:8bit 2:16bit)
-	int							OggVorbisFromTheoraFile ;		// Ogg Theora ƒtƒ@ƒCƒ‹’†‚Ì Vorbis ƒf[ƒ^‚ğQÆ‚·‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO( TRUE:Theora ƒtƒ@ƒCƒ‹’†‚Ì Vorbis ƒf[ƒ^‚ğQÆ‚·‚é )
+	int							OggVorbisBitDepth ;				// ï¼¯ï½‡ï½‡ï¼¶ï½ï½’ï½‚ï½‰ï½“ä½¿ç”¨æ™‚ã®ãƒ“ãƒƒãƒˆæ·±åº¦(1:8bit 2:16bit)
+	int							OggVorbisFromTheoraFile ;		// Ogg Theora ãƒ•ã‚¡ã‚¤ãƒ«ä¸­ã® Vorbis ãƒ‡ãƒ¼ã‚¿ã‚’å‚ç…§ã™ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°( TRUE:Theora ãƒ•ã‚¡ã‚¤ãƒ«ä¸­ã® Vorbis ãƒ‡ãƒ¼ã‚¿ã‚’å‚ç…§ã™ã‚‹ )
 #endif
 
 #ifndef DX_NON_BEEP
-	int							BeepFrequency ;									// Ä¶‚·‚éBEEP‰¹‚Ìü”g”
-	int							BeepPlay ;										// BEEP‚ğÄ¶’†‚©‚Ç‚¤‚©
-	int							BeepSoundBufferUseIndex ;						// g—p‚·‚éBEEP‰¹Ä¶—p‚ÌƒTƒEƒ“ƒhƒoƒbƒtƒ@
-	SOUND_BEEP_BUFFERDATA		BeepSoundBuffer[ SOUND_BEEPSOUNDBUFFER_NUM ] ;	// BEEP‰¹—p‚ÌƒTƒEƒ“ƒhƒoƒbƒtƒ@ŠÖ˜Aî•ñ
+	int							BeepFrequency ;									// å†ç”Ÿã™ã‚‹BEEPéŸ³ã®å‘¨æ³¢æ•°
+	int							BeepPlay ;										// BEEPã‚’å†ç”Ÿä¸­ã‹ã©ã†ã‹
+	int							BeepSoundBufferUseIndex ;						// ä½¿ç”¨ã™ã‚‹BEEPéŸ³å†ç”Ÿç”¨ã®ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡
+	SOUND_BEEP_BUFFERDATA		BeepSoundBuffer[ SOUND_BEEPSOUNDBUFFER_NUM ] ;	// BEEPéŸ³ç”¨ã®ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡é–¢é€£æƒ…å ±
 #endif
 
-	short						SinTable[ SOUND_SINTABLE_DIV ] ;	// ƒTƒCƒ“ƒe[ƒuƒ‹
-	short						Bit8To16Table[ 256 ] ;				// 8bit”gŒ`‚ğ16bit”gŒ`‚É•ÏŠ·‚·‚é‚½‚ß‚Ìƒe[ƒuƒ‹
+	short						SinTable[ SOUND_SINTABLE_DIV ] ;	// ã‚µã‚¤ãƒ³ãƒ†ãƒ¼ãƒ–ãƒ«
+	short						Bit8To16Table[ 256 ] ;				// 8bitæ³¢å½¢ã‚’16bitæ³¢å½¢ã«å¤‰æ›ã™ã‚‹ãŸã‚ã®ãƒ†ãƒ¼ãƒ–ãƒ«
 
-	void						*FFTVibrationWorkBuffer[ SOUND_FFT_BITCOUNT_MAX ] ;		// ‚‘¬ƒt[ƒŠƒG•ÏŠ·—pì‹Æ—pƒoƒbƒtƒ@
+	void						*FFTVibrationWorkBuffer[ SOUND_FFT_BITCOUNT_MAX ] ;		// é«˜é€Ÿãƒ•ãƒ¼ãƒªã‚¨å¤‰æ›ç”¨ä½œæ¥­ç”¨ãƒãƒƒãƒ•ã‚¡
 
-	SOUNDSYSTEMDATA_PF			PF ;							// ŠÂ‹«ˆË‘¶î•ñ
+	SOUNDSYSTEMDATA_PF			PF ;							// ç’°å¢ƒä¾å­˜æƒ…å ±
 } ;
 
-// ‚l‚h‚c‚hƒf[ƒ^
+// ï¼­ï¼©ï¼¤ï¼©ãƒ‡ãƒ¼ã‚¿
 struct MIDIHANDLEDATA
 {
-	HANDLEINFO					HandleInfo ;					// ƒnƒ“ƒhƒ‹‹¤’Êƒf[ƒ^
+	HANDLEINFO					HandleInfo ;					// ãƒãƒ³ãƒ‰ãƒ«å…±é€šãƒ‡ãƒ¼ã‚¿
 
-	int							PlayFlag ;						// Ä¶’†‚©Aƒtƒ‰ƒO
-	int							PlayStartFlag ;					// Ä¶‚ªŠJn‚³‚ê‚½‚©Aƒtƒ‰ƒO
-	int							Volume ;						// ‰¹—Ê
+	int							PlayFlag ;						// å†ç”Ÿä¸­ã‹ã€ãƒ•ãƒ©ã‚°
+	int							PlayStartFlag ;					// å†ç”ŸãŒé–‹å§‹ã•ã‚ŒãŸã‹ã€ãƒ•ãƒ©ã‚°
+	int							Volume ;						// éŸ³é‡
 
-	void						*DataImage ;					// ‚l‚h‚c‚hƒtƒ@ƒCƒ‹‚Ìƒf[ƒ^‚ªŠi”[‚³‚ê‚Ä‚¢‚éƒAƒhƒŒƒX( DSOUND.SoundMode ‚ª DX_MIDIMODE_MCI ‚Ì‚Ì‚İ—LŒø )
-	size_t						DataSize ;						// ‚l‚h‚c‚hƒtƒ@ƒCƒ‹‚Ìƒf[ƒ^ƒTƒCƒY( DSOUND.SoundMode ‚ª DX_MIDIMODE_MCI ‚Ì‚Ì‚İ—LŒø )
+	void						*DataImage ;					// ï¼­ï¼©ï¼¤ï¼©ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ‡ãƒ¼ã‚¿ãŒæ ¼ç´ã•ã‚Œã¦ã„ã‚‹ã‚¢ãƒ‰ãƒ¬ã‚¹( DSOUND.SoundMode ãŒ DX_MIDIMODE_MCI ã®æ™‚ã®ã¿æœ‰åŠ¹ )
+	size_t						DataSize ;						// ï¼­ï¼©ï¼¤ï¼©ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º( DSOUND.SoundMode ãŒ DX_MIDIMODE_MCI ã®æ™‚ã®ã¿æœ‰åŠ¹ )
 
-	int							StartTime ;						// Ä¶ŠJnŠÔ
+	int							StartTime ;						// å†ç”Ÿé–‹å§‹æ™‚é–“
 
-	MIDIHANDLEDATA_PF			PF ;							// ŠÂ‹«ˆË‘¶î•ñ
+	MIDIHANDLEDATA_PF			PF ;							// ç’°å¢ƒä¾å­˜æƒ…å ±
 } ;
 
-// ‚l‚h‚c‚hƒVƒXƒeƒ€—pƒf[ƒ^\‘¢‘Ì
+// ï¼­ï¼©ï¼¤ï¼©ã‚·ã‚¹ãƒ†ãƒ ç”¨ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
 struct MIDISYSTEMDATA
 {
-	int							PlayFlag ;						// ‰‰‘t’†ƒtƒ‰ƒO
-	int							PlayHandle ;					// ‰‰‘t’†‚Ìƒnƒ“ƒhƒ‹
+	int							PlayFlag ;						// æ¼”å¥ä¸­ãƒ•ãƒ©ã‚°
+	int							PlayHandle ;					// æ¼”å¥ä¸­ã®ãƒãƒ³ãƒ‰ãƒ«
 
-	wchar_t						FileName[ FILEPATH_MAX ] ;		// ƒtƒ@ƒCƒ‹ƒl[ƒ€
+	wchar_t						FileName[ FILEPATH_MAX ] ;		// ãƒ•ã‚¡ã‚¤ãƒ«ãƒãƒ¼ãƒ 
 
-	int							LoopFlag ;						// ƒ‹[ƒv‰‰‘t‚©Aƒtƒ‰ƒO
+	int							LoopFlag ;						// ãƒ«ãƒ¼ãƒ—æ¼”å¥ã‹ã€ãƒ•ãƒ©ã‚°
 
-	int							StartTime ;						// Ä¶ŠJnŠÔ
+	int							StartTime ;						// å†ç”Ÿé–‹å§‹æ™‚é–“
 
-	int							MemImagePlayFlag ;				// ƒƒ‚ƒŠã‚ÌƒCƒ[ƒW‚ğg—p‚µ‚ÄÄ¶‚µ‚Ä‚¢‚é‚©Aƒtƒ‰ƒO( TRUE:ƒƒ‚ƒŠƒCƒ[ƒW  FALSE:ƒtƒ@ƒCƒ‹ )
+	int							MemImagePlayFlag ;				// ãƒ¡ãƒ¢ãƒªä¸Šã®ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’ä½¿ç”¨ã—ã¦å†ç”Ÿã—ã¦ã„ã‚‹ã‹ã€ãƒ•ãƒ©ã‚°( TRUE:ãƒ¡ãƒ¢ãƒªã‚¤ãƒ¡ãƒ¼ã‚¸  FALSE:ãƒ•ã‚¡ã‚¤ãƒ« )
 
-	int							DefaultHandle ;					// •W€‚ÌÄ¶ŠÖ”‚Åg—p‚·‚éMIDIƒnƒ“ƒhƒ‹
-	int							DefaultHandleToSoundHandleFlag ;	// •W€‚ÌÄ¶ŠÖ”‚ÅÄ¶‚µ‚Ä‚¢‚éƒnƒ“ƒhƒ‹‚Í‰¹ºƒnƒ“ƒhƒ‹‚©Aƒtƒ‰ƒO
+	int							DefaultHandle ;					// æ¨™æº–ã®å†ç”Ÿé–¢æ•°ã§ä½¿ç”¨ã™ã‚‹MIDIãƒãƒ³ãƒ‰ãƒ«
+	int							DefaultHandleToSoundHandleFlag ;	// æ¨™æº–ã®å†ç”Ÿé–¢æ•°ã§å†ç”Ÿã—ã¦ã„ã‚‹ãƒãƒ³ãƒ‰ãƒ«ã¯éŸ³å£°ãƒãƒ³ãƒ‰ãƒ«ã‹ã€ãƒ•ãƒ©ã‚°
 
-	MIDISYSTEMDATA_PF			PF ;							// ŠÂ‹«ˆË‘¶î•ñ
+	MIDISYSTEMDATA_PF			PF ;							// ç’°å¢ƒä¾å­˜æƒ…å ±
 } ;
 
-// ƒe[ƒuƒ‹-----------------------------------------------------------------------
+// ãƒ†ãƒ¼ãƒ–ãƒ«-----------------------------------------------------------------------
 
-// “à•”‘åˆæ•Ï”éŒ¾ --------------------------------------------------------------
+// å†…éƒ¨å¤§åŸŸå¤‰æ•°å®£è¨€ --------------------------------------------------------------
 
-// ƒTƒEƒ“ƒhƒVƒXƒeƒ€ƒf[ƒ^
+// ã‚µã‚¦ãƒ³ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿
 extern SOUNDSYSTEMDATA SoundSysData ;
 
-// ‚l‚h‚c‚hŠÇ——pƒf[ƒ^
+// ï¼­ï¼©ï¼¤ï¼©ç®¡ç†ç”¨ãƒ‡ãƒ¼ã‚¿
 extern MIDISYSTEMDATA MidiSystemData ;	
 
-// ŠÖ”ƒvƒƒgƒ^ƒCƒvéŒ¾-----------------------------------------------------------
+// é–¢æ•°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€-----------------------------------------------------------
 
-extern	int		InitializeSoundSystem( void ) ;																			// ƒTƒEƒ“ƒhƒVƒXƒeƒ€‚ğ‰Šú‰»‚·‚é
-extern	int		TerminateSoundSystem( void ) ;																			// ƒTƒEƒ“ƒhƒVƒXƒeƒ€‚ÌŒãn––‚ğ‚·‚é
+extern	int		InitializeSoundSystem( void ) ;																			// ã‚µã‚¦ãƒ³ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ã‚’åˆæœŸåŒ–ã™ã‚‹
+extern	int		TerminateSoundSystem( void ) ;																			// ã‚µã‚¦ãƒ³ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ã®å¾Œå§‹æœ«ã‚’ã™ã‚‹
 
-extern	int		RefreshStreamSoundPlayCompLength( int SoundHandle, int CurrentPosition = -1, int ASyncThread = FALSE ) ;	// ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹‚ÌÄ¶Š®—¹ŠÔ‚ğXV‚·‚é
-extern	int		ST_SoftSoundPlayerProcessAll( void ) ;																	// ƒ\ƒtƒgƒEƒGƒA‚Å§Œä‚·‚é‘S‚Ä‚ÌƒTƒEƒ“ƒhƒf[ƒ^ƒvƒŒƒCƒ„[‚Ì’èŠúˆ—‚ğs‚¤
+extern	int		RefreshStreamSoundPlayCompLength( int SoundHandle, int CurrentPosition = -1, int ASyncThread = FALSE ) ;	// ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ã®å†ç”Ÿå®Œäº†æ™‚é–“ã‚’æ›´æ–°ã™ã‚‹
+extern	int		ST_SoftSoundPlayerProcessAll( void ) ;																	// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§åˆ¶å¾¡ã™ã‚‹å…¨ã¦ã®ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å®šæœŸå‡¦ç†ã‚’è¡Œã†
 
-extern	int		StartSoundCapture( const wchar_t *SaveFilePath ) ;														// ƒTƒEƒ“ƒhƒLƒƒƒvƒ`ƒƒ‚ÌŠJn
-extern	int		SoundCaptureProcess( int CaptureSample ) ;																// ƒTƒEƒ“ƒhƒLƒƒƒvƒ`ƒƒ‚ÌüŠú“Iˆ—
-extern	int		EndSoundCapture( void ) ;																				// ƒTƒEƒ“ƒhƒLƒƒƒvƒ`ƒƒ‚ÌI—¹
+extern	int		StartSoundCapture( const wchar_t *SaveFilePath ) ;														// ã‚µã‚¦ãƒ³ãƒ‰ã‚­ãƒ£ãƒ—ãƒãƒ£ã®é–‹å§‹
+extern	int		SoundCaptureProcess( int CaptureSample ) ;																// ã‚µã‚¦ãƒ³ãƒ‰ã‚­ãƒ£ãƒ—ãƒãƒ£ã®å‘¨æœŸçš„å‡¦ç†
+extern	int		EndSoundCapture( void ) ;																				// ã‚µã‚¦ãƒ³ãƒ‰ã‚­ãƒ£ãƒ—ãƒãƒ£ã®çµ‚äº†
 
-extern	int		SetupSelfMixingWorkBuffer( int IsFloat, int Samples ) ;													// ©‘Oƒ~ƒLƒVƒ“ƒOˆ——p‚Ìƒoƒbƒtƒ@‚ğƒZƒbƒgƒAƒbƒv‚·‚é
-extern	int		WriteSelfMixingSample( BYTE *Buffer0, BYTE *Buffer1, DWORD Stride, DWORD SampleNum ) ;					// w’è‚Ìƒoƒbƒtƒ@‚É©‘Oƒ~ƒLƒVƒ“ƒO‚Ìƒf[ƒ^‚ğ‘‚«‚Ş
+extern	int		SetupSelfMixingWorkBuffer( int IsFloat, int Samples ) ;													// è‡ªå‰ãƒŸã‚­ã‚·ãƒ³ã‚°å‡¦ç†ç”¨ã®ãƒãƒƒãƒ•ã‚¡ã‚’ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã™ã‚‹
+extern	int		WriteSelfMixingSample( BYTE *Buffer0, BYTE *Buffer1, DWORD Stride, DWORD SampleNum ) ;					// æŒ‡å®šã®ãƒãƒƒãƒ•ã‚¡ã«è‡ªå‰ãƒŸã‚­ã‚·ãƒ³ã‚°ã®ãƒ‡ãƒ¼ã‚¿ã‚’æ›¸ãè¾¼ã‚€
 
-extern	void	InitLoadSoundGParam( LOADSOUND_GPARAM *GParam ) ;														// LOADSOUND_GPARAM ‚Ìƒf[ƒ^‚ğƒZƒbƒg‚·‚é
+extern	void	InitLoadSoundGParam( LOADSOUND_GPARAM *GParam ) ;														// LOADSOUND_GPARAM ã®ãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 
-extern	int		InitializeSoundHandle( HANDLEINFO *HandleInfo ) ;														// ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹‚Ì‰Šú‰»
-extern	int		TerminateSoundHandle( HANDLEINFO *HandleInfo ) ;														// ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹‚ÌŒãn––
-extern	int		DumpInfoSoundHandle( HANDLEINFO *HandleInfo ) ;															// ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹‚Ìî•ño—Í
+extern	int		InitializeSoundHandle( HANDLEINFO *HandleInfo ) ;														// ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ã®åˆæœŸåŒ–
+extern	int		TerminateSoundHandle( HANDLEINFO *HandleInfo ) ;														// ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ã®å¾Œå§‹æœ«
+extern	int		DumpInfoSoundHandle( HANDLEINFO *HandleInfo ) ;															// ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ã®æƒ…å ±å‡ºåŠ›
 
-extern	int		LoadSoundMemBase_UseGParam(              LOADSOUND_GPARAM *GParam, const wchar_t *WaveName, int BufferNum, int UnionHandle, int ASyncLoadFlag = FALSE, int ASyncThread = FALSE ) ;																		// LoadSoundMemBase ‚ÌƒOƒ[ƒoƒ‹•Ï”‚ÉƒAƒNƒZƒX‚µ‚È‚¢ƒo[ƒWƒ‡ƒ“
-extern	int		LoadSoundMemByMemImageBase_UseGParam(    LOADSOUND_GPARAM *GParam, int CreateSoundHandle, int SoundHandle, const void *FileImageBuffer, size_t ImageSize, int BufferNum, int UnionHandle = -1, int ASyncLoadFlag = FALSE, int ASyncThread = FALSE ) ;	// LoadSoundMemByMemImageBase ‚ÌƒOƒ[ƒoƒ‹•Ï”‚ÉƒAƒNƒZƒX‚µ‚È‚¢ƒo[ƒWƒ‡ƒ“
-extern	int		LoadSoundMem2_UseGParam(                 LOADSOUND_GPARAM *GParam, const wchar_t *WaveName1 , const wchar_t *WaveName2, int ASyncLoadFlag = FALSE ) ;																									// LoadSoundMem2 ‚ÌƒOƒ[ƒoƒ‹•Ï”‚ÉƒAƒNƒZƒX‚µ‚È‚¢ƒo[ƒWƒ‡ƒ“
-extern	int		LoadSoundMem2ByMemImage_UseGParam(       LOADSOUND_GPARAM *GParam, const void *FileImageBuffer1, size_t ImageSize1, const void *FileImageBuffer2, size_t ImageSize2, int ASyncLoadFlag = FALSE ) ;														// LoadSoundMem2ByMemImage ‚ÌƒOƒ[ƒoƒ‹•Ï”‚ÉƒAƒNƒZƒX‚µ‚È‚¢ƒo[ƒWƒ‡ƒ“
+extern	int		LoadSoundMemBase_UseGParam(              LOADSOUND_GPARAM *GParam, const wchar_t *WaveName, int BufferNum, int UnionHandle, int ASyncLoadFlag = FALSE, int ASyncThread = FALSE ) ;																		// LoadSoundMemBase ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°ã«ã‚¢ã‚¯ã‚»ã‚¹ã—ãªã„ãƒãƒ¼ã‚¸ãƒ§ãƒ³
+extern	int		LoadSoundMemByMemImageBase_UseGParam(    LOADSOUND_GPARAM *GParam, int CreateSoundHandle, int SoundHandle, const void *FileImageBuffer, size_t ImageSize, int BufferNum, int UnionHandle = -1, int ASyncLoadFlag = FALSE, int ASyncThread = FALSE ) ;	// LoadSoundMemByMemImageBase ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°ã«ã‚¢ã‚¯ã‚»ã‚¹ã—ãªã„ãƒãƒ¼ã‚¸ãƒ§ãƒ³
+extern	int		LoadSoundMem2_UseGParam(                 LOADSOUND_GPARAM *GParam, const wchar_t *WaveName1 , const wchar_t *WaveName2, int ASyncLoadFlag = FALSE ) ;																									// LoadSoundMem2 ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°ã«ã‚¢ã‚¯ã‚»ã‚¹ã—ãªã„ãƒãƒ¼ã‚¸ãƒ§ãƒ³
+extern	int		LoadSoundMem2ByMemImage_UseGParam(       LOADSOUND_GPARAM *GParam, const void *FileImageBuffer1, size_t ImageSize1, const void *FileImageBuffer2, size_t ImageSize2, int ASyncLoadFlag = FALSE ) ;														// LoadSoundMem2ByMemImage ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°ã«ã‚¢ã‚¯ã‚»ã‚¹ã—ãªã„ãƒãƒ¼ã‚¸ãƒ§ãƒ³
 
-extern	int		AddStreamSoundMem_UseGParam(       LOADSOUND_GPARAM *GParam, STREAMDATA *Stream, int LoopNum,  int SoundHandle, int StreamDataType, int *CanStreamCloseFlag, int UnionHandle = -1, int ASyncThread = FALSE ) ;											// AddStreamSoundMem ‚ÌƒOƒ[ƒoƒ‹•Ï”‚ÉƒAƒNƒZƒX‚µ‚È‚¢ƒo[ƒWƒ‡ƒ“
-extern	int		AddStreamSoundMemToFile_UseGParam( LOADSOUND_GPARAM *GParam, const wchar_t *WaveFile, int LoopNum,  int SoundHandle, int StreamDataType, int UnionHandle = -1, int ASyncThread = FALSE ) ;																// AddStreamSoundMemToFile ‚ÌƒOƒ[ƒoƒ‹•Ï”‚ÉƒAƒNƒZƒX‚µ‚È‚¢ƒo[ƒWƒ‡ƒ“
-extern	int		AddStreamSoundMemToMem_UseGParam(  LOADSOUND_GPARAM *GParam, void *FileImageBuffer, size_t ImageSize, int LoopNum,  int SoundHandle, int StreamDataType, int UnionHandle = -1, int ASyncThread = FALSE ) ;												// AddStreamSoundMemToMem ‚ÌƒOƒ[ƒoƒ‹•Ï”‚ÉƒAƒNƒZƒX‚µ‚È‚¢ƒo[ƒWƒ‡ƒ“
-extern	int		SetupStreamSoundMem_UseGParam(     int SoundHandle, int ASyncThread = FALSE ) ;																																											// SetupStreamSoundMem ‚ÌƒOƒ[ƒoƒ‹•Ï”‚ÉƒAƒNƒZƒX‚µ‚È‚¢ƒo[ƒWƒ‡ƒ“
-extern	int		ProcessStreamSoundMem_UseGParam(   int SoundHandle, int ASyncThread = FALSE ) ;																																											// ProcessStreamSoundMem ‚ÌƒOƒ[ƒoƒ‹•Ï”‚ÉƒAƒNƒZƒX‚µ‚È‚¢ƒo[ƒWƒ‡ƒ“
+extern	int		AddStreamSoundMem_UseGParam(       LOADSOUND_GPARAM *GParam, STREAMDATA *Stream, int LoopNum,  int SoundHandle, int StreamDataType, int *CanStreamCloseFlag, int UnionHandle = -1, int ASyncThread = FALSE ) ;											// AddStreamSoundMem ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°ã«ã‚¢ã‚¯ã‚»ã‚¹ã—ãªã„ãƒãƒ¼ã‚¸ãƒ§ãƒ³
+extern	int		AddStreamSoundMemToFile_UseGParam( LOADSOUND_GPARAM *GParam, const wchar_t *WaveFile, int LoopNum,  int SoundHandle, int StreamDataType, int UnionHandle = -1, int ASyncThread = FALSE ) ;																// AddStreamSoundMemToFile ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°ã«ã‚¢ã‚¯ã‚»ã‚¹ã—ãªã„ãƒãƒ¼ã‚¸ãƒ§ãƒ³
+extern	int		AddStreamSoundMemToMem_UseGParam(  LOADSOUND_GPARAM *GParam, void *FileImageBuffer, size_t ImageSize, int LoopNum,  int SoundHandle, int StreamDataType, int UnionHandle = -1, int ASyncThread = FALSE ) ;												// AddStreamSoundMemToMem ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°ã«ã‚¢ã‚¯ã‚»ã‚¹ã—ãªã„ãƒãƒ¼ã‚¸ãƒ§ãƒ³
+extern	int		SetupStreamSoundMem_UseGParam(     int SoundHandle, int ASyncThread = FALSE ) ;																																											// SetupStreamSoundMem ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°ã«ã‚¢ã‚¯ã‚»ã‚¹ã—ãªã„ãƒãƒ¼ã‚¸ãƒ§ãƒ³
+extern	int		ProcessStreamSoundMem_UseGParam(   int SoundHandle, int ASyncThread = FALSE ) ;																																											// ProcessStreamSoundMem ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°ã«ã‚¢ã‚¯ã‚»ã‚¹ã—ãªã„ãƒãƒ¼ã‚¸ãƒ§ãƒ³
 
-extern	int		SetLoopAreaTimePosSoundMem_UseGParam(    LONGLONG LoopStartTime,           LONGLONG LoopEndTime,           int SoundHandle, int ASyncThread = FALSE ) ;																									// SetLoopAreaTimePosSoundMem ‚ÌƒOƒ[ƒoƒ‹•Ï”‚ÉƒAƒNƒZƒX‚µ‚È‚¢ƒo[ƒWƒ‡ƒ“
-extern	int		SetLoopAreaSamplePosSoundMem_UseGParam(  LONGLONG LoopStartSamplePosition, LONGLONG LoopEndSamplePosition, int SoundHandle, int ASyncThread = FALSE ) ;																									// SetLoopAreaSamplePosSoundMem ‚ÌƒOƒ[ƒoƒ‹•Ï”‚ÉƒAƒNƒZƒX‚µ‚È‚¢ƒo[ƒWƒ‡ƒ“
-extern	int		SetLoopTimePosSoundMem_UseGParam(        LONGLONG LoopTime,                                                int SoundHandle, int ASyncThread = FALSE ) ;																									// SetLoopTimePosSoundMem ‚ÌƒOƒ[ƒoƒ‹•Ï”‚ÉƒAƒNƒZƒX‚µ‚È‚¢ƒo[ƒWƒ‡ƒ“
-extern	int		SetLoopSamplePosSoundMem_UseGParam(      LONGLONG LoopSamplePosition,                                      int SoundHandle, int ASyncThread = FALSE ) ;																									// SetLoopSamplePosSoundMem ‚ÌƒOƒ[ƒoƒ‹•Ï”‚ÉƒAƒNƒZƒX‚µ‚È‚¢ƒo[ƒWƒ‡ƒ“
-extern	int		SetLoopStartTimePosSoundMem_UseGParam(   LONGLONG LoopStartTime,                                           int SoundHandle, int ASyncThread = FALSE ) ;																									// SetLoopStartTimePosSoundMem ‚ÌƒOƒ[ƒoƒ‹•Ï”‚ÉƒAƒNƒZƒX‚µ‚È‚¢ƒo[ƒWƒ‡ƒ“
-extern	int		SetLoopStartSamplePosSoundMem_UseGParam( LONGLONG LoopStartSamplePosition,                                 int SoundHandle, int ASyncThread = FALSE ) ;																									// SetLoopStartTimePosSoundMem ‚ÌƒOƒ[ƒoƒ‹•Ï”‚ÉƒAƒNƒZƒX‚µ‚È‚¢ƒo[ƒWƒ‡ƒ“
+extern	int		SetLoopAreaTimePosSoundMem_UseGParam(    LONGLONG LoopStartTime,           LONGLONG LoopEndTime,           int SoundHandle, int ASyncThread = FALSE ) ;																									// SetLoopAreaTimePosSoundMem ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°ã«ã‚¢ã‚¯ã‚»ã‚¹ã—ãªã„ãƒãƒ¼ã‚¸ãƒ§ãƒ³
+extern	int		SetLoopAreaSamplePosSoundMem_UseGParam(  LONGLONG LoopStartSamplePosition, LONGLONG LoopEndSamplePosition, int SoundHandle, int ASyncThread = FALSE ) ;																									// SetLoopAreaSamplePosSoundMem ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°ã«ã‚¢ã‚¯ã‚»ã‚¹ã—ãªã„ãƒãƒ¼ã‚¸ãƒ§ãƒ³
+extern	int		SetLoopTimePosSoundMem_UseGParam(        LONGLONG LoopTime,                                                int SoundHandle, int ASyncThread = FALSE ) ;																									// SetLoopTimePosSoundMem ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°ã«ã‚¢ã‚¯ã‚»ã‚¹ã—ãªã„ãƒãƒ¼ã‚¸ãƒ§ãƒ³
+extern	int		SetLoopSamplePosSoundMem_UseGParam(      LONGLONG LoopSamplePosition,                                      int SoundHandle, int ASyncThread = FALSE ) ;																									// SetLoopSamplePosSoundMem ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°ã«ã‚¢ã‚¯ã‚»ã‚¹ã—ãªã„ãƒãƒ¼ã‚¸ãƒ§ãƒ³
+extern	int		SetLoopStartTimePosSoundMem_UseGParam(   LONGLONG LoopStartTime,                                           int SoundHandle, int ASyncThread = FALSE ) ;																									// SetLoopStartTimePosSoundMem ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°ã«ã‚¢ã‚¯ã‚»ã‚¹ã—ãªã„ãƒãƒ¼ã‚¸ãƒ§ãƒ³
+extern	int		SetLoopStartSamplePosSoundMem_UseGParam( LONGLONG LoopStartSamplePosition,                                 int SoundHandle, int ASyncThread = FALSE ) ;																									// SetLoopStartTimePosSoundMem ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°ã«ã‚¢ã‚¯ã‚»ã‚¹ã—ãªã„ãƒãƒ¼ã‚¸ãƒ§ãƒ³
 
-extern	LONGLONG GetSoundTotalSample_UseGParam( int SoundHandle, int ASyncThread = FALSE ) ;																																												// GetSoundTotalSample ‚ÌƒOƒ[ƒoƒ‹•Ï”‚ÉƒAƒNƒZƒX‚µ‚È‚¢ƒo[ƒWƒ‡ƒ“
-extern	int		SetStreamSoundCurrentPosition_UseGParam( LONGLONG Byte, int SoundHandle, int ASyncThread = FALSE ) ;																																					// SetStreamSoundCurrentPosition ‚ÌƒOƒ[ƒoƒ‹•Ï”‚ÉƒAƒNƒZƒX‚µ‚È‚¢ƒo[ƒWƒ‡ƒ“
+extern	LONGLONG GetSoundTotalSample_UseGParam( int SoundHandle, int ASyncThread = FALSE ) ;																																												// GetSoundTotalSample ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°ã«ã‚¢ã‚¯ã‚»ã‚¹ã—ãªã„ãƒãƒ¼ã‚¸ãƒ§ãƒ³
+extern	int		SetStreamSoundCurrentPosition_UseGParam( LONGLONG Byte, int SoundHandle, int ASyncThread = FALSE ) ;																																					// SetStreamSoundCurrentPosition ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°ã«ã‚¢ã‚¯ã‚»ã‚¹ã—ãªã„ãƒãƒ¼ã‚¸ãƒ§ãƒ³
 
-extern	int		Refresh3DSoundParamAll() ;																				// Ä¶’†‚Ì‚·‚×‚Ä‚Ì‚R‚cƒTƒEƒ“ƒh‚Ìƒpƒ‰ƒ[ƒ^‚ğXV‚·‚é
+extern	int		Refresh3DSoundParamAll() ;																				// å†ç”Ÿä¸­ã®ã™ã¹ã¦ã®ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’æ›´æ–°ã™ã‚‹
 
-extern	int		ProcessPlayFinishDeleteSoundMemAll( void ) ;															// Ä¶‚ªI—¹‚µ‚½‚çƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹‚ğíœ‚·‚éƒTƒEƒ“ƒh‚Ìˆ—‚ğs‚¤
-extern	int		ProcessPlaySoundMemAll( void ) ;																		// ƒTƒEƒ“ƒh‚ğÄ¶‚µ‚Ä‚¢‚éƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹‚É‘Î‚·‚éˆ—‚ğs‚¤
-extern	int		ProcessPlay3DSoundMemAll( void ) ;																		// ‚R‚cƒTƒEƒ“ƒh‚ğÄ¶‚µ‚Ä‚¢‚éƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹‚É‘Î‚·‚éˆ—‚ğs‚¤
+extern	int		ProcessPlayFinishDeleteSoundMemAll( void ) ;															// å†ç”ŸãŒçµ‚äº†ã—ãŸã‚‰ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ã‚’å‰Šé™¤ã™ã‚‹ã‚µã‚¦ãƒ³ãƒ‰ã®å‡¦ç†ã‚’è¡Œã†
+extern	int		ProcessPlaySoundMemAll( void ) ;																		// ã‚µã‚¦ãƒ³ãƒ‰ã‚’å†ç”Ÿã—ã¦ã„ã‚‹ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ã«å¯¾ã™ã‚‹å‡¦ç†ã‚’è¡Œã†
+extern	int		ProcessPlay3DSoundMemAll( void ) ;																		// ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰ã‚’å†ç”Ÿã—ã¦ã„ã‚‹ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ã«å¯¾ã™ã‚‹å‡¦ç†ã‚’è¡Œã†
 
-extern	int		ProcessSoundSystem( void ) ;																			// ƒTƒEƒ“ƒhƒVƒXƒeƒ€‚ÅüŠú“I‚És‚¤ˆ——p‚ÌŠÖ”
+extern	int		ProcessSoundSystem( void ) ;																			// ã‚µã‚¦ãƒ³ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ã§å‘¨æœŸçš„ã«è¡Œã†å‡¦ç†ç”¨ã®é–¢æ•°
 
-extern	int		SetupSoftSoundHandle( int SoftSoundHandle, int IsPlayer, int Channels, int BitsPerSample, int SamplesPerSec, int IsFloatType, LONGLONG SampleNum ) ;	// ƒ\ƒtƒgƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹‚ğƒZƒbƒgƒAƒbƒv
+extern	int		SetupSoftSoundHandle( int SoftSoundHandle, int IsPlayer, int Channels, int BitsPerSample, int SamplesPerSec, int IsFloatType, LONGLONG SampleNum ) ;	// ã‚½ãƒ•ãƒˆã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ã‚’ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 
-extern	int		InitializeSoftSoundHandle( HANDLEINFO *HandleInfo ) ;													// ƒ\ƒtƒgƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹‚Ì‰Šú‰»
-extern	int		TerminateSoftSoundHandle( HANDLEINFO *HandleInfo ) ;													// ƒ\ƒtƒgƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹‚ÌŒãn––
+extern	int		InitializeSoftSoundHandle( HANDLEINFO *HandleInfo ) ;													// ã‚½ãƒ•ãƒˆã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ã®åˆæœŸåŒ–
+extern	int		TerminateSoftSoundHandle( HANDLEINFO *HandleInfo ) ;													// ã‚½ãƒ•ãƒˆã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ã®å¾Œå§‹æœ«
 
-extern	int		DeleteCancelCheckSoftSoundFunction( HANDLEINFO *HandleInfo ) ;											// ƒ\ƒtƒgƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹‚ğíœ‚·‚é‚©‚Ç‚¤‚©‚ğƒ`ƒFƒbƒN‚·‚éŠÖ”
-extern	int		DeleteCancelCheckSoftSoundPlayerFunction( HANDLEINFO *HandleInfo ) ;									// ƒ\ƒtƒgƒTƒEƒ“ƒhƒvƒŒ[ƒ„[ƒnƒ“ƒhƒ‹‚ğíœ‚·‚é‚©‚Ç‚¤‚©‚ğƒ`ƒFƒbƒN‚·‚éŠÖ”
+extern	int		DeleteCancelCheckSoftSoundFunction( HANDLEINFO *HandleInfo ) ;											// ã‚½ãƒ•ãƒˆã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«ã‚’å‰Šé™¤ã™ã‚‹ã‹ã©ã†ã‹ã‚’ãƒã‚§ãƒƒã‚¯ã™ã‚‹é–¢æ•°
+extern	int		DeleteCancelCheckSoftSoundPlayerFunction( HANDLEINFO *HandleInfo ) ;									// ã‚½ãƒ•ãƒˆã‚µã‚¦ãƒ³ãƒ‰ãƒ—ãƒ¬ãƒ¼ãƒ¤ãƒ¼ãƒãƒ³ãƒ‰ãƒ«ã‚’å‰Šé™¤ã™ã‚‹ã‹ã©ã†ã‹ã‚’ãƒã‚§ãƒƒã‚¯ã™ã‚‹é–¢æ•°
 
-extern	int		LoadSoftSoundBase_UseGParam( LOADSOUND_GPARAM *GParam, const wchar_t *FileName, const void *FileImage, size_t FileImageSize, int ASyncLoadFlag = FALSE ) ;		// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤”gŒ`ƒf[ƒ^‚ğƒtƒ@ƒCƒ‹‚Ü‚½‚Íƒƒ‚ƒŠã‚É“WŠJ‚³‚ê‚½ƒtƒ@ƒCƒ‹ƒCƒ[ƒW‚©‚çì¬‚·‚é
-extern	int		MakeSoftSoundBase_UseGParam( int IsPlayer, int Channels, int BitsPerSample, int SamplesPerSec, LONGLONG SampleNum, int IsFloatType, int UseFormat_SoftSoundHandle = -1, int ASyncLoadFlag = FALSE ) ;	// ƒ\ƒtƒgƒEƒGƒA‚Å§Œä‚·‚éƒTƒEƒ“ƒhƒf[ƒ^ƒnƒ“ƒhƒ‹‚Ìì¬
+extern	int		LoadSoftSoundBase_UseGParam( LOADSOUND_GPARAM *GParam, const wchar_t *FileName, const void *FileImage, size_t FileImageSize, int ASyncLoadFlag = FALSE ) ;		// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†æ³¢å½¢ãƒ‡ãƒ¼ã‚¿ã‚’ãƒ•ã‚¡ã‚¤ãƒ«ã¾ãŸã¯ãƒ¡ãƒ¢ãƒªä¸Šã«å±•é–‹ã•ã‚ŒãŸãƒ•ã‚¡ã‚¤ãƒ«ã‚¤ãƒ¡ãƒ¼ã‚¸ã‹ã‚‰ä½œæˆã™ã‚‹
+extern	int		MakeSoftSoundBase_UseGParam( int IsPlayer, int Channels, int BitsPerSample, int SamplesPerSec, LONGLONG SampleNum, int IsFloatType, int UseFormat_SoftSoundHandle = -1, int ASyncLoadFlag = FALSE ) ;	// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§åˆ¶å¾¡ã™ã‚‹ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ãƒãƒ³ãƒ‰ãƒ«ã®ä½œæˆ
 
-extern	int		AddMusicData( void ) ;																					// V‚µ‚¢‚l‚h‚c‚hƒnƒ“ƒhƒ‹‚ğæ“¾‚·‚é
+extern	int		AddMusicData( void ) ;																					// æ–°ã—ã„ï¼­ï¼©ï¼¤ï¼©ãƒãƒ³ãƒ‰ãƒ«ã‚’å–å¾—ã™ã‚‹
 
-extern	int		InitializeMidiHandle( HANDLEINFO *HandleInfo ) ;														// ‚l‚h‚c‚hƒnƒ“ƒhƒ‹‚ğ‰Šú‰»‚ğ‚·‚éŠÖ”
-extern	int		TerminateMidiHandle( HANDLEINFO *HandleInfo ) ;															// ‚l‚h‚c‚hƒnƒ“ƒhƒ‹‚ÌŒãn––‚ğs‚¤ŠÖ”
+extern	int		InitializeMidiHandle( HANDLEINFO *HandleInfo ) ;														// ï¼­ï¼©ï¼¤ï¼©ãƒãƒ³ãƒ‰ãƒ«ã‚’åˆæœŸåŒ–ã‚’ã™ã‚‹é–¢æ•°
+extern	int		TerminateMidiHandle( HANDLEINFO *HandleInfo ) ;															// ï¼­ï¼©ï¼¤ï¼©ãƒãƒ³ãƒ‰ãƒ«ã®å¾Œå§‹æœ«ã‚’è¡Œã†é–¢æ•°
 
-extern	int		LoadMusicMemByMemImage_UseGParam( void *FileImage, size_t FileImageSize, int ASyncLoadFlag = FALSE ) ;	// LoadMusicMemByMemImage ‚ÌƒOƒ[ƒoƒ‹•Ï”‚ÉƒAƒNƒZƒX‚µ‚È‚¢ƒo[ƒWƒ‡ƒ“
-extern	int		LoadMusicMem_UseGParam( const wchar_t *FileName, int ASyncLoadFlag = FALSE ) ;							// LoadMusicMem ‚ÌƒOƒ[ƒoƒ‹•Ï”‚ÉƒAƒNƒZƒX‚µ‚È‚¢ƒo[ƒWƒ‡ƒ“
-extern	int		LoadMusicMemByResource_UseGParam( const wchar_t *ResourceName, const wchar_t *ResourceType, int ASyncLoadFlag = FALSE ) ;	// LoadMusicMemByResource ‚ÌƒOƒ[ƒoƒ‹•Ï”‚ÉƒAƒNƒZƒX‚µ‚È‚¢ƒo[ƒWƒ‡ƒ“
-extern	int		LoadMusicMemByMemImage_Static( int MusicHandle, const void *FileImage, size_t FileImageSize, int ASyncThread ) ;	// LoadMusicMemByMemImage ‚ÌÀˆ—ŠÖ”
+extern	int		LoadMusicMemByMemImage_UseGParam( void *FileImage, size_t FileImageSize, int ASyncLoadFlag = FALSE ) ;	// LoadMusicMemByMemImage ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°ã«ã‚¢ã‚¯ã‚»ã‚¹ã—ãªã„ãƒãƒ¼ã‚¸ãƒ§ãƒ³
+extern	int		LoadMusicMem_UseGParam( const wchar_t *FileName, int ASyncLoadFlag = FALSE ) ;							// LoadMusicMem ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°ã«ã‚¢ã‚¯ã‚»ã‚¹ã—ãªã„ãƒãƒ¼ã‚¸ãƒ§ãƒ³
+extern	int		LoadMusicMemByResource_UseGParam( const wchar_t *ResourceName, const wchar_t *ResourceType, int ASyncLoadFlag = FALSE ) ;	// LoadMusicMemByResource ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°ã«ã‚¢ã‚¯ã‚»ã‚¹ã—ãªã„ãƒãƒ¼ã‚¸ãƒ§ãƒ³
+extern	int		LoadMusicMemByMemImage_Static( int MusicHandle, const void *FileImage, size_t FileImageSize, int ASyncThread ) ;	// LoadMusicMemByMemImage ã®å®Ÿå‡¦ç†é–¢æ•°
 
-extern	int		PauseSoundMemAll( int PauseFlag ) ;																		// ‘S‚Ä‚Ì‰¹‚Ìˆê’â~ó‘Ô‚ğ•ÏX‚·‚é
-extern	int		PauseSoftSoundAll( int PauseFlag ) ;																	// ‘S‚Ä‚Ìƒ\ƒtƒgƒEƒGƒAƒTƒEƒ“ƒh‚Ìˆê’â~ó‘Ô‚ğ•ÏX‚·‚é
+extern	int		PauseSoundMemAll( int PauseFlag ) ;																		// å…¨ã¦ã®éŸ³ã®ä¸€æ™‚åœæ­¢çŠ¶æ…‹ã‚’å¤‰æ›´ã™ã‚‹
+extern	int		PauseSoftSoundAll( int PauseFlag ) ;																	// å…¨ã¦ã®ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã‚µã‚¦ãƒ³ãƒ‰ã®ä¸€æ™‚åœæ­¢çŠ¶æ…‹ã‚’å¤‰æ›´ã™ã‚‹
 
-extern	int		CopySoftSound( int SrcSoftSoundHandle, int DestSoftSoundHandle ) ;										// ƒTƒEƒ“ƒhƒf[ƒ^‚ğ•Ê‚ÌƒTƒEƒ“ƒhƒf[ƒ^‚ÉƒRƒs[‚·‚é
-extern	int		ConvertIntToFloatSoftSound( int SrcSoftSoundHandle, int DestSoftSoundHandle ) ;							// intŒ^‚ÌƒTƒEƒ“ƒhƒf[ƒ^‚©‚ç floatŒ^‚ÌƒTƒEƒ“ƒhƒf[ƒ^‚ğƒZƒbƒgƒAƒbƒv‚·‚é
-extern	int		ConvertFloatToIntSoftSound( int SrcSoftSoundHandle, int DestSoftSoundHandle ) ;							// floatŒ^‚ÌƒTƒEƒ“ƒhƒf[ƒ^‚©‚ç intŒ^‚ÌƒTƒEƒ“ƒhƒf[ƒ^‚ğƒZƒbƒgƒAƒbƒv‚·‚é
+extern	int		CopySoftSound( int SrcSoftSoundHandle, int DestSoftSoundHandle ) ;										// ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ã‚’åˆ¥ã®ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ã«ã‚³ãƒ”ãƒ¼ã™ã‚‹
+extern	int		ConvertIntToFloatSoftSound( int SrcSoftSoundHandle, int DestSoftSoundHandle ) ;							// intå‹ã®ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰ floatå‹ã®ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã™ã‚‹
+extern	int		ConvertFloatToIntSoftSound( int SrcSoftSoundHandle, int DestSoftSoundHandle ) ;							// floatå‹ã®ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰ intå‹ã®ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã™ã‚‹
 
-// ƒfƒVƒxƒ‹’l‚©‚ç XAudio2 ‚Ì—¦’l‚É•ÏŠ·‚·‚éŠÖ”
+// ãƒ‡ã‚·ãƒ™ãƒ«å€¤ã‹ã‚‰ XAudio2 ã®ç‡å€¤ã«å¤‰æ›ã™ã‚‹é–¢æ•°
 __inline float D_XAudio2DecibelsToAmplitudeRatio( float Decibels )
 {
     return _POW( 10.0f, Decibels / 20.0f ) ;
 }
 
-// XAudio2 ‚Ì—¦’l‚©‚çƒfƒVƒxƒ‹’l‚É•ÏŠ·‚·‚éŠÖ”
+// XAudio2 ã®ç‡å€¤ã‹ã‚‰ãƒ‡ã‚·ãƒ™ãƒ«å€¤ã«å¤‰æ›ã™ã‚‹é–¢æ•°
 __inline float D_XAudio2AmplitudeRatioToDecibels( float Volume )
 {
     if( Volume == 0 )
@@ -619,7 +619,7 @@ __inline float D_XAudio2AmplitudeRatioToDecibels( float Volume )
 
 
 
-// wchar_t”ÅŠÖ”
+// wchar_tç‰ˆé–¢æ•°
 extern	int		AddStreamSoundMemToFile_WCHAR_T(	const wchar_t *WaveFile, int LoopNum,  int SoundHandle, int StreamDataType, int UnionHandle = -1 ) ;
 extern	int		LoadSoundMem2_WCHAR_T(				const wchar_t *FileName1, const wchar_t *FileName2 ) ;
 
@@ -651,7 +651,7 @@ extern	int		GetMP3TagInfo_WCHAR_T(              const wchar_t *FileName, TCHAR *
 
 
 
-//ƒTƒEƒ“ƒhƒoƒbƒtƒ@—p
+//ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡ç”¨
 extern	int		SoundBuffer_Initialize(          SOUNDBUFFER *Buffer, DWORD Bytes, WAVEFORMATEX *Format, SOUNDBUFFER *Src, int UseGetCurrentPosition, int IsStream, int Is3DSound ) ;
 extern	int		SoundBuffer_Duplicate(           SOUNDBUFFER *Buffer, SOUNDBUFFER *Src, int Is3DSound ) ;
 extern	int		SoundBuffer_Terminate(           SOUNDBUFFER *Buffer ) ;
@@ -686,7 +686,7 @@ extern	int		SoundBuffer_SetPresetReverbParam( SOUNDBUFFER *Buffer, int PresetNo 
 extern	int		SoundBuffer_ConvertFrequency(    void *SrcBuffer, int SrcSamples, void *DestBuffer, int DestSamples, int Channels, int SrcBitsPerSample, int DestBitsPerSample, float ExRate, int Loop, int *pSrcPos, float *pSrcPosF, int *pIsEndSrc, DWORD *pOutputSamples ) ;
 
 
-// ”gŒ`ƒf[ƒ^—p
+// æ³¢å½¢ãƒ‡ãƒ¼ã‚¿ç”¨
 extern	WAVEDATA *	AllocWaveData( int Size, int UseDoubleSizeBuffer = FALSE ) ;
 extern	int			ReleaseWaveData( WAVEDATA *Data ) ;
 extern	WAVEDATA *	DuplicateWaveData( WAVEDATA *Data ) ;
@@ -697,34 +697,34 @@ extern	WAVEDATA *	DuplicateWaveData( WAVEDATA *Data ) ;
 
 
 
-// ŠÂ‹«ˆË‘¶ŠÖ”
-extern	int		InitializeSoundSystem_PF_Timing0( void ) ;											// ƒTƒEƒ“ƒhƒVƒXƒeƒ€‚ğ‰Šú‰»‚·‚éŠÖ”‚ÌŠÂ‹«ˆË‘¶ˆ—‚ğs‚¤ŠÖ”( Às‰ÓŠ‹æ•Ê‚O )
-extern	int		InitializeSoundSystem_PF_Timing1( void ) ;											// ƒTƒEƒ“ƒhƒVƒXƒeƒ€‚ğ‰Šú‰»‚·‚éŠÖ”‚ÌŠÂ‹«ˆË‘¶ˆ—‚ğs‚¤ŠÖ”( Às‰ÓŠ‹æ•Ê‚P )
+// ç’°å¢ƒä¾å­˜é–¢æ•°
+extern	int		InitializeSoundSystem_PF_Timing0( void ) ;											// ã‚µã‚¦ãƒ³ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ã‚’åˆæœŸåŒ–ã™ã‚‹é–¢æ•°ã®ç’°å¢ƒä¾å­˜å‡¦ç†ã‚’è¡Œã†é–¢æ•°( å®Ÿè¡Œç®‡æ‰€åŒºåˆ¥ï¼ )
+extern	int		InitializeSoundSystem_PF_Timing1( void ) ;											// ã‚µã‚¦ãƒ³ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ã‚’åˆæœŸåŒ–ã™ã‚‹é–¢æ•°ã®ç’°å¢ƒä¾å­˜å‡¦ç†ã‚’è¡Œã†é–¢æ•°( å®Ÿè¡Œç®‡æ‰€åŒºåˆ¥ï¼‘ )
 
-extern	int		TerminateSoundSystem_PF_Timing0( void ) ;											// ƒTƒEƒ“ƒhƒVƒXƒeƒ€‚ÌŒãn––‚ğ‚·‚éŠÖ”‚ÌŠÂ‹«ˆË‘¶ˆ—‚ğs‚¤ŠÖ”( Às‰ÓŠ‹æ•Ê‚O )
-extern	int		TerminateSoundSystem_PF_Timing1( void ) ;											// ƒTƒEƒ“ƒhƒVƒXƒeƒ€‚ÌŒãn––‚ğ‚·‚éŠÖ”‚ÌŠÂ‹«ˆË‘¶ˆ—‚ğs‚¤ŠÖ”( Às‰ÓŠ‹æ•Ê‚P )
+extern	int		TerminateSoundSystem_PF_Timing0( void ) ;											// ã‚µã‚¦ãƒ³ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ã®å¾Œå§‹æœ«ã‚’ã™ã‚‹é–¢æ•°ã®ç’°å¢ƒä¾å­˜å‡¦ç†ã‚’è¡Œã†é–¢æ•°( å®Ÿè¡Œç®‡æ‰€åŒºåˆ¥ï¼ )
+extern	int		TerminateSoundSystem_PF_Timing1( void ) ;											// ã‚µã‚¦ãƒ³ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ã®å¾Œå§‹æœ«ã‚’ã™ã‚‹é–¢æ•°ã®ç’°å¢ƒä¾å­˜å‡¦ç†ã‚’è¡Œã†é–¢æ•°( å®Ÿè¡Œç®‡æ‰€åŒºåˆ¥ï¼‘ )
 
-extern	int		ProcessSoundSystem_PF( void ) ;														// ƒTƒEƒ“ƒhƒVƒXƒeƒ€‚ÅüŠú“I‚És‚¤ˆ——p‚ÌŠÖ”‚ÌŠÂ‹«ˆË‘¶ˆ—‚ğs‚¤ŠÖ”
+extern	int		ProcessSoundSystem_PF( void ) ;														// ã‚µã‚¦ãƒ³ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ã§å‘¨æœŸçš„ã«è¡Œã†å‡¦ç†ç”¨ã®é–¢æ•°ã®ç’°å¢ƒä¾å­˜å‡¦ç†ã‚’è¡Œã†é–¢æ•°
 
-extern	int		CheckSoundSystem_Initialize_PF( void ) ;											// ƒTƒEƒ“ƒhƒVƒXƒeƒ€‚Ì‰Šú‰»ƒ`ƒFƒbƒN‚ÌŠÂ‹«ˆË‘¶ˆ—‚ğs‚¤ŠÖ”( TRUE:‰Šú‰»‚³‚ê‚Ä‚¢‚é  FALSE:‰Šú‰»‚³‚ê‚Ä‚¢‚È‚¢ )
-extern	int		GetSoundSystemTotalPlaySamples_PF( ULONGLONG *TotalPlaySamples, ULONGLONG *Frequency ) ;	// ƒTƒEƒ“ƒhƒVƒXƒeƒ€‚Ì‘Ä¶ŠÔ‚ğæ“¾‚·‚é
+extern	int		CheckSoundSystem_Initialize_PF( void ) ;											// ã‚µã‚¦ãƒ³ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ã®åˆæœŸåŒ–ãƒã‚§ãƒƒã‚¯ã®ç’°å¢ƒä¾å­˜å‡¦ç†ã‚’è¡Œã†é–¢æ•°( TRUE:åˆæœŸåŒ–ã•ã‚Œã¦ã„ã‚‹  FALSE:åˆæœŸåŒ–ã•ã‚Œã¦ã„ãªã„ )
+extern	int		GetSoundSystemTotalPlaySamples_PF( ULONGLONG *TotalPlaySamples, ULONGLONG *Frequency ) ;	// ã‚µã‚¦ãƒ³ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ã®ç·å†ç”Ÿæ™‚é–“ã‚’å–å¾—ã™ã‚‹
 
-extern	int		TerminateMidiHandle_PF( MIDIHANDLEDATA *MusicData ) ;								// ‚l‚h‚c‚hƒnƒ“ƒhƒ‹‚ÌŒãn––‚ğs‚¤ŠÖ”‚ÌŠÂ‹«ˆË‘¶ˆ—
+extern	int		TerminateMidiHandle_PF( MIDIHANDLEDATA *MusicData ) ;								// ï¼­ï¼©ï¼¤ï¼©ãƒãƒ³ãƒ‰ãƒ«ã®å¾Œå§‹æœ«ã‚’è¡Œã†é–¢æ•°ã®ç’°å¢ƒä¾å­˜å‡¦ç†
 
-extern	int		Get3DPresetReverbParamSoundMem_PF( SOUND3D_REVERB_PARAM *ParamBuffer, int PresetNo /* DX_REVERB_PRESET_DEFAULT “™ */ ) ;		// ƒvƒŠƒZƒbƒg‚Ì‚R‚cƒTƒEƒ“ƒh—p‚ÌƒŠƒo[ƒuƒpƒ‰ƒ[ƒ^‚ğæ“¾‚·‚éˆ—‚ÌŠÂ‹«ˆË‘¶ˆ—‚ğs‚¤ŠÖ”
-extern	int		Set3DSoundListenerPosAndFrontPosAndUpVec_PF( VECTOR Position, VECTOR FrontPosition, VECTOR UpVector ) ;							// ‚R‚cƒTƒEƒ“ƒh‚ÌƒŠƒXƒi[‚ÌˆÊ’u‚ÆƒŠƒXƒi[‚Ì‘O•ûˆÊ’u‚ÆƒŠƒXƒi[‚Ìã•ûŒüˆÊ’u‚ğİ’è‚·‚éˆ—‚ÌŠÂ‹«ˆË‘¶ˆ—‚ğs‚¤ŠÖ”
-extern	int		Set3DSoundListenerVelocity_PF( VECTOR Velocity ) ;																				// ‚R‚cƒTƒEƒ“ƒh‚ÌƒŠƒXƒi[‚ÌˆÚ“®‘¬“x‚ğİ’è‚·‚éˆ—‚ÌŠÂ‹«ˆË‘¶ˆ—‚ğs‚¤ŠÖ”
-extern	int		Set3DSoundListenerConeAngle_PF( float InnerAngle, float OuterAngle ) ;															// ‚R‚cƒTƒEƒ“ƒh‚ÌƒŠƒXƒi[‚Ì‰Â’®Šp“x”ÍˆÍ‚ğİ’è‚·‚éˆ—‚ÌŠÂ‹«ˆË‘¶ˆ—‚ğs‚¤ŠÖ”
-extern	int		Set3DSoundListenerConeVolume_PF( float InnerAngleVolume, float OuterAngleVolume ) ;												// ‚R‚cƒTƒEƒ“ƒh‚ÌƒŠƒXƒi[‚Ì‰Â’®Šp“x”ÍˆÍ‚Ì‰¹—Ê”{—¦‚ğİ’è‚·‚éˆ—‚ÌŠÂ‹«ˆË‘¶ˆ—‚ğs‚¤ŠÖ”
+extern	int		Get3DPresetReverbParamSoundMem_PF( SOUND3D_REVERB_PARAM *ParamBuffer, int PresetNo /* DX_REVERB_PRESET_DEFAULT ç­‰ */ ) ;		// ãƒ—ãƒªã‚»ãƒƒãƒˆã®ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰ç”¨ã®ãƒªãƒãƒ¼ãƒ–ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’å–å¾—ã™ã‚‹å‡¦ç†ã®ç’°å¢ƒä¾å­˜å‡¦ç†ã‚’è¡Œã†é–¢æ•°
+extern	int		Set3DSoundListenerPosAndFrontPosAndUpVec_PF( VECTOR Position, VECTOR FrontPosition, VECTOR UpVector ) ;							// ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰ã®ãƒªã‚¹ãƒŠãƒ¼ã®ä½ç½®ã¨ãƒªã‚¹ãƒŠãƒ¼ã®å‰æ–¹ä½ç½®ã¨ãƒªã‚¹ãƒŠãƒ¼ã®ä¸Šæ–¹å‘ä½ç½®ã‚’è¨­å®šã™ã‚‹å‡¦ç†ã®ç’°å¢ƒä¾å­˜å‡¦ç†ã‚’è¡Œã†é–¢æ•°
+extern	int		Set3DSoundListenerVelocity_PF( VECTOR Velocity ) ;																				// ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰ã®ãƒªã‚¹ãƒŠãƒ¼ã®ç§»å‹•é€Ÿåº¦ã‚’è¨­å®šã™ã‚‹å‡¦ç†ã®ç’°å¢ƒä¾å­˜å‡¦ç†ã‚’è¡Œã†é–¢æ•°
+extern	int		Set3DSoundListenerConeAngle_PF( float InnerAngle, float OuterAngle ) ;															// ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰ã®ãƒªã‚¹ãƒŠãƒ¼ã®å¯è´è§’åº¦ç¯„å›²ã‚’è¨­å®šã™ã‚‹å‡¦ç†ã®ç’°å¢ƒä¾å­˜å‡¦ç†ã‚’è¡Œã†é–¢æ•°
+extern	int		Set3DSoundListenerConeVolume_PF( float InnerAngleVolume, float OuterAngleVolume ) ;												// ï¼“ï¼¤ã‚µã‚¦ãƒ³ãƒ‰ã®ãƒªã‚¹ãƒŠãƒ¼ã®å¯è´è§’åº¦ç¯„å›²ã®éŸ³é‡å€ç‡ã‚’è¨­å®šã™ã‚‹å‡¦ç†ã®ç’°å¢ƒä¾å­˜å‡¦ç†ã‚’è¡Œã†é–¢æ•°
 
-extern	int		LoadMusicMemByMemImage_Static_PF( MIDIHANDLEDATA *MusicData, int ASyncThread ) ;												// LoadMusicMemByMemImage ‚ÌÀˆ—ŠÖ”‚ÌŠÂ‹«ˆË‘¶ˆ—‚ğs‚¤ŠÖ”
-extern	int		PlayMusicMem_PF( MIDIHANDLEDATA *MusicData, int PlayType ) ;																	// “Ç‚İ‚ñ‚¾‚l‚h‚c‚hƒf[ƒ^‚Ì‰‰‘t‚ğŠJn‚·‚éˆ—‚ÌŠÂ‹«ˆË‘¶ˆ—‚ğs‚¤ŠÖ”
-extern	int		StopMusicMem_PF( MIDIHANDLEDATA *MusicData ) ;																					// ‚l‚h‚c‚hƒf[ƒ^‚Ì‰‰‘t‚ğ’â~‚·‚éˆ—‚ÌŠÂ‹«ˆË‘¶ˆ—‚ğs‚¤
-extern	int		CheckMusicMem_PF( MIDIHANDLEDATA *MusicData ) ;																					// ‚l‚h‚c‚hƒf[ƒ^‚ª‰‰‘t’†‚©‚Ç‚¤‚©‚ğæ“¾‚·‚é( TRUE:‰‰‘t’†  FALSE:’â~’† )ˆ—‚ÌŠÂ‹«ˆË‘¶ˆ—‚ğs‚¤ŠÖ”
-extern	int		ProcessMusicMem_PF( MIDIHANDLEDATA *MusicData ) ;																				// ‚l‚h‚c‚hƒf[ƒ^‚ÌüŠú“Iˆ—‚ÌŠÂ‹«ˆË‘¶ˆ—‚ğs‚¤ŠÖ”
-extern	int		GetMusicMemPosition_PF( MIDIHANDLEDATA *MusicData ) ;																			// ‚l‚h‚c‚hƒf[ƒ^‚ÌŒ»İ‚ÌÄ¶ˆÊ’u‚ğæ“¾‚·‚éˆ—‚ÌŠÂ‹«ˆË‘¶ˆ—‚ğs‚¤ŠÖ”
-extern	int		SetVolumeMusic_PF( int Volume ) ;																								// ‚l‚h‚c‚h‚ÌÄ¶‰¹—Ê‚ğƒZƒbƒg‚·‚éˆ—‚ÌŠÂ‹«ˆË‘¶ˆ—‚ğs‚¤ŠÖ”
-extern	int		GetMusicPosition_PF( void ) ;																									// ‚l‚h‚c‚h‚ÌŒ»İ‚ÌÄ¶ˆÊ’u‚ğæ“¾‚·‚éˆ—‚ÌŠÂ‹«ˆË‘¶ˆ—‚ğs‚¤ŠÖ”
+extern	int		LoadMusicMemByMemImage_Static_PF( MIDIHANDLEDATA *MusicData, int ASyncThread ) ;												// LoadMusicMemByMemImage ã®å®Ÿå‡¦ç†é–¢æ•°ã®ç’°å¢ƒä¾å­˜å‡¦ç†ã‚’è¡Œã†é–¢æ•°
+extern	int		PlayMusicMem_PF( MIDIHANDLEDATA *MusicData, int PlayType ) ;																	// èª­ã¿è¾¼ã‚“ã ï¼­ï¼©ï¼¤ï¼©ãƒ‡ãƒ¼ã‚¿ã®æ¼”å¥ã‚’é–‹å§‹ã™ã‚‹å‡¦ç†ã®ç’°å¢ƒä¾å­˜å‡¦ç†ã‚’è¡Œã†é–¢æ•°
+extern	int		StopMusicMem_PF( MIDIHANDLEDATA *MusicData ) ;																					// ï¼­ï¼©ï¼¤ï¼©ãƒ‡ãƒ¼ã‚¿ã®æ¼”å¥ã‚’åœæ­¢ã™ã‚‹å‡¦ç†ã®ç’°å¢ƒä¾å­˜å‡¦ç†ã‚’è¡Œã†
+extern	int		CheckMusicMem_PF( MIDIHANDLEDATA *MusicData ) ;																					// ï¼­ï¼©ï¼¤ï¼©ãƒ‡ãƒ¼ã‚¿ãŒæ¼”å¥ä¸­ã‹ã©ã†ã‹ã‚’å–å¾—ã™ã‚‹( TRUE:æ¼”å¥ä¸­  FALSE:åœæ­¢ä¸­ )å‡¦ç†ã®ç’°å¢ƒä¾å­˜å‡¦ç†ã‚’è¡Œã†é–¢æ•°
+extern	int		ProcessMusicMem_PF( MIDIHANDLEDATA *MusicData ) ;																				// ï¼­ï¼©ï¼¤ï¼©ãƒ‡ãƒ¼ã‚¿ã®å‘¨æœŸçš„å‡¦ç†ã®ç’°å¢ƒä¾å­˜å‡¦ç†ã‚’è¡Œã†é–¢æ•°
+extern	int		GetMusicMemPosition_PF( MIDIHANDLEDATA *MusicData ) ;																			// ï¼­ï¼©ï¼¤ï¼©ãƒ‡ãƒ¼ã‚¿ã®ç¾åœ¨ã®å†ç”Ÿä½ç½®ã‚’å–å¾—ã™ã‚‹å‡¦ç†ã®ç’°å¢ƒä¾å­˜å‡¦ç†ã‚’è¡Œã†é–¢æ•°
+extern	int		SetVolumeMusic_PF( int Volume ) ;																								// ï¼­ï¼©ï¼¤ï¼©ã®å†ç”ŸéŸ³é‡ã‚’ã‚»ãƒƒãƒˆã™ã‚‹å‡¦ç†ã®ç’°å¢ƒä¾å­˜å‡¦ç†ã‚’è¡Œã†é–¢æ•°
+extern	int		GetMusicPosition_PF( void ) ;																									// ï¼­ï¼©ï¼¤ï¼©ã®ç¾åœ¨ã®å†ç”Ÿä½ç½®ã‚’å–å¾—ã™ã‚‹å‡¦ç†ã®ç’°å¢ƒä¾å­˜å‡¦ç†ã‚’è¡Œã†é–¢æ•°
 
 
 

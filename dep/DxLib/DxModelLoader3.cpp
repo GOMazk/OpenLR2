@@ -1,6 +1,6 @@
 // -------------------------------------------------------------------------------
 // 
-// 		�c�w���C�u����		�o�l�c���f���f�[�^�ǂݍ��݃v���O����
+// 		ＤＸライブラリ		ＰＭＤモデルデータ読み込みプログラム
 // 
 // 				Ver 3.25a
 // 
@@ -8,24 +8,24 @@
 
 /*
 
-�{�\�[�X���쐬����ۂɎQ�l�ɂ����Ă����������E�F�u�T�C�g�ƃv���O�����\�[�X
+本ソースを作成する際に参考にさせていただいたウェブサイトとプログラムソース
 
 
-PMD�`���ɂ��ĎQ�l�ɂ����Ă����������E�F�u�T�C�g
+PMD形式について参考にさせていただいたウェブサイト
 
-<< �ʂ肷����̋L�� >> �ʂ肷����l
+<< 通りすがりの記憶 >> 通りすがり様
 http://blog.goo.ne.jp/torisu_tetosuki
 
 
-VMD�`����Bullet�ɂ�镨�����Z�ɂ��ĎQ�l�ɂ����Ă����������v���O�����\�[�X
+VMD形式とBulletによる物理演算について参考にさせていただいたプログラムソース
 
-<< PY >> PY�l
+<< PY >> PY様
 http://ppyy.hp.infoseek.co.jp/
 << artk_mmd_src.zip >> 
 
 
-IK�����̃v���O�����\�[�X
-���M�l
+IK処理のプログラムソース
+樋口M様
 << ik.zip >>
 
 */
@@ -36,7 +36,7 @@ IK�����̃v���O�����\�[�X
 
 #ifndef DX_NON_MODEL
 
-// �C���N���[�h ---------------------------------
+// インクルード ---------------------------------
 #include "DxFile.h"
 #include "DxLog.h"
 #include "DxModelLoaderVMD.h"
@@ -51,19 +51,19 @@ namespace DxLib
 
 #endif // DX_NON_NAMESPACE
 
-// �}�N����` -----------------------------------
+// マクロ定義 -----------------------------------
 
-// �f�[�^�錾 -----------------------------------
+// データ宣言 -----------------------------------
 
 static int           WCHAR_T_StringSetup = 0 ;
-static const char *  HizaString_UTF16LE   = "\x72\x30\x56\x30\x00"/*@ L"�Ђ�" @*/ ;
-static const char *  CenterString_UTF16LE = "\xbb\x30\xf3\x30\xbf\x30\xfc\x30\x00"/*@ L"�Z���^�[" @*/ ;
+static const char *  HizaString_UTF16LE   = "\x72\x30\x56\x30\x00"/*@ L"ひざ" @*/ ;
+static const char *  CenterString_UTF16LE = "\xbb\x30\xf3\x30\xbf\x30\xfc\x30\x00"/*@ L"センター" @*/ ;
 static wchar_t       HizaString_WCHAR_T[ 8 ] ;
 static wchar_t       CenterString_WCHAR_T[ 8 ] ;
 
-// �֐��錾 -------------------------------------
+// 関数宣言 -------------------------------------
 
-// �u�l�c�t�@�C����ǂݍ���( -1:�G���[ )
+// ＶＭＤファイルを読み込む( -1:エラー )
 static int _MV1LoadModelToVMD_PMD(
 	int								DataIndex,
 	MV1_MODEL_R *					RModel,
@@ -81,25 +81,25 @@ static int _MV1LoadModelToVMD_PMD(
 	bool							FPS60
 ) ;
 
-// �s����v�Z����( ������� )
+// 行列を計算する( 骨一つだけ )
 static void MV1LoadModelToPMD_SetupMatrix_One( PMD_READ_BONE_INFO *BoneInfo ) ;
 
-// �s����v�Z����
+// 行列を計算する
 static void MV1LoadModelToPMD_SetupMatrix( PMD_READ_BONE_INFO *BoneInfo, int BoneNum, int UseInitParam, int IKSkip ) ;
 
-// �h�j�{�[���̃g�����X���[�V��������]�l�ɕϊ�����
+// ＩＫボーンのトランスレーションを回転値に変換する
 //static void MV1LoadModelToPMD_ConvertTransToRotate( PMD_READ_BONE_INFO *BoneInfo, PMD_READ_IK_INFO *IKInfoFirst ) ;
 
-// �h�j���v�Z����
+// ＩＫを計算する
 static void MV1LoadModelToPMD_SetupIK( PMD_READ_BONE_INFO *BoneInfo, PMD_READ_IK_INFO *IKInfoFirst ) ;
 
-// �w��̃{�[���ɃA�j���[�V�����̎w��L�[�̃p�����[�^�𔽉f������
+// 指定のボーンにアニメーションの指定キーのパラメータを反映させる
 static void MV1LoadModelToPMD_SetupOneBoneMatrixFormAnimKey( PMD_READ_BONE_INFO *BoneInfo, int Time, int LoopNo, int MaxTime, int ValidNextRate, float NextRate ) ;
 
-// �v���O���� -----------------------------------
+// プログラム -----------------------------------
 
 /*
-// VMD�̃J�����p�����[�^������W�Ɖ�]�l���Z�o����
+// VMDのカメラパラメータから座標と回転値を算出する
 void CalculateCameraParam( VECTOR *Position, VECTOR *Rotation, float Length, VECTOR *OutPosition, VECTOR *OutRotation )
 {
 	VECTOR OutPosition ;
@@ -121,7 +121,7 @@ void CalculateCameraParam( VECTOR *Position, VECTOR *Rotation, float Length, VEC
 	OutRotation->y = Rotation->y ;
 }
 */
-// �o�l�c�t�@�C����ǂݍ���( -1:�G���[  0�ȏ�:���f���n���h�� )
+// ＰＭＤファイルを読み込む( -1:エラー  0以上:モデルハンドル )
 extern int MV1LoadModelToPMD( const MV1_MODEL_LOAD_PARAM *LoadParam, int ASyncThread )
 {
 	int NewHandle = -1 ;
@@ -175,7 +175,7 @@ extern int MV1LoadModelToPMD( const MV1_MODEL_LOAD_PARAM *LoadParam, int ASyncTh
 	_MEMSET( &MLPhysicsInfo, 0, sizeof( MLPhysicsInfo ) ) ;
 #endif
 
-	// ������̃Z�b�g�A�b�v
+	// 文字列のセットアップ
 	if( WCHAR_T_StringSetup == 0 )
 	{
 		ConvString( HizaString_UTF16LE,   -1, DX_CHARCODEFORMAT_UTF16LE, ( char * )HizaString_WCHAR_T,   sizeof( HizaString_WCHAR_T ),   WCHAR_T_CHARCODEFORMAT ) ;
@@ -183,38 +183,38 @@ extern int MV1LoadModelToPMD( const MV1_MODEL_LOAD_PARAM *LoadParam, int ASyncTh
 		WCHAR_T_StringSetup = 1 ;
 	}
 
-	// �ǂݍ��݂悤�f�[�^�̏�����
+	// 読み込みようデータの初期化
 	MV1InitReadModel( &RModel ) ;
 	RModel.MaterialNumberOrderDraw = TRUE ;
 	RModel.MeshFaceRightHand = FALSE ;
 	RModel.TranslateIsBackCulling = TRUE ;
 
-	// Pmd���f���f�[�^�̏����Z�b�g
+	// Pmdモデルデータの情報をセット
 	Src = ( BYTE * )LoadParam->DataBuffer ;
 //	PmdHeader = ( PMD_HEADER * )LoadParam->DataBuffer ;
 
-	// PMD�t�@�C�����ǂ������m�F
+	// PMDファイルかどうかを確認
 	if( Src[ 0 ] != 'P' || Src[ 1 ] != 'm' || Src[ 2 ] != 'd' )
 		return -1 ;
 
-	// �o�[�W�����P�ȊO�͓ǂݍ��߂Ȃ�
+	// バージョン１以外は読み込めない
 	if( GET_MEM_DWORD( &Src[ 3 ] ) != 0x3f800000 )
 	{
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xd0\x30\xfc\x30\xb8\x30\xe7\x30\xf3\x30\x11\xff\x0e\xff\x10\xff\xe5\x4e\x16\x59\x6f\x30\xad\x8a\x7f\x30\xbc\x8f\x81\x30\x7e\x30\x5b\x30\x93\x30\x0a\x00\x00"/*@ L"PMD Load Error : �o�[�W�����P�D�O�ȊO�͓ǂݍ��߂܂���\n" @*/ )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xd0\x30\xfc\x30\xb8\x30\xe7\x30\xf3\x30\x11\xff\x0e\xff\x10\xff\xe5\x4e\x16\x59\x6f\x30\xad\x8a\x7f\x30\xbc\x8f\x81\x30\x7e\x30\x5b\x30\x93\x30\x0a\x00\x00"/*@ L"PMD Load Error : バージョン１．０以外は読み込めません\n" @*/ )) ;
 		return -1 ;
 	}
 
-	// ���f�����ƃt�@�C�����ƕ����R�[�h�`�����Z�b�g
+	// モデル名とファイル名と文字コード形式をセット
 	RModel.CharCodeFormat = DX_CHARCODEFORMAT_SHIFTJIS ;
 	RModel.FilePath = ( wchar_t * )DXALLOC( ( _WCSLEN( LoadParam->FilePath ) + 1 ) * sizeof( wchar_t ) ) ;
 	RModel.Name     = ( wchar_t * )DXALLOC( ( _WCSLEN( LoadParam->Name     ) + 1 ) * sizeof( wchar_t ) ) ;
 	_WCSCPY( RModel.FilePath, LoadParam->FilePath ) ;
 	_WCSCPY( RModel.Name,     LoadParam->Name ) ;
 
-	// �@��̎��������͎g�p���Ȃ�
+	// 法泉の自動生成は使用しない
 	RModel.AutoCreateNormal = FALSE ;
 
-	// �e�f�[�^�̐擪�A�h���X���Z�b�g
+	// 各データの先頭アドレスをセット
 	{
 		Src += 283 ;
 
@@ -249,23 +249,23 @@ extern int MV1LoadModelToPMD( const MV1_MODEL_LOAD_PARAM *LoadParam, int ASyncTh
 		PmdIK = ( PMD_IK * )Src ;
 	}
 
-	// ���b�V�������߂�t���[���̒ǉ�
+	// メッシュを収めるフレームの追加
 	Frame = MV1RAddFrame( &RModel, "Mesh", NULL ) ;
 	if( Frame == NULL )
 	{
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xd5\x30\xec\x30\xfc\x30\xe0\x30\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x6e\x30\xfd\x8f\xa0\x52\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : �t���[���I�u�W�F�N�g�̒ǉ��Ɏ��s���܂���\n" @*/ )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xd5\x30\xec\x30\xfc\x30\xe0\x30\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x6e\x30\xfd\x8f\xa0\x52\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : フレームオブジェクトの追加に失敗しました\n" @*/ )) ;
 		goto ENDLABEL ;
 	}
 
-	// �ǂݍ��ݏ����p�̃{�[���f�[�^���i�[���郁�����̈�̊m��
+	// 読み込み処理用のボーンデータを格納するメモリ領域の確保
 	BoneInfoDim = ( PMD_READ_BONE_INFO * )DXALLOC( sizeof( PMD_READ_BONE_INFO ) * PmdBoneNum ) ;
 	if( BoneInfoDim == NULL )
 	{
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xad\x8a\x7f\x30\xbc\x8f\x7f\x30\xe6\x51\x06\x74\x28\x75\xdc\x30\xfc\x30\xf3\x30\xc5\x60\x31\x58\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : �ǂݍ��ݏ����p�{�[�������i�[���郁�����̈�̊m�ۂɎ��s���܂���\n" @*/ )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xad\x8a\x7f\x30\xbc\x8f\x7f\x30\xe6\x51\x06\x74\x28\x75\xdc\x30\xfc\x30\xf3\x30\xc5\x60\x31\x58\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : 読み込み処理用ボーン情報を格納するメモリ領域の確保に失敗しました\n" @*/ )) ;
 		goto ENDLABEL ;
 	}
 
-	// �{�[���f�[�^�̒ǉ�
+	// ボーンデータの追加
 	_MEMSET( FrameDimEnable, 0, sizeof( FrameDimEnable ) ) ;
 	_MEMSET( FrameDim, 0, sizeof( FrameDim ) ) ;
 	do
@@ -293,10 +293,10 @@ extern int MV1LoadModelToPMD( const MV1_MODEL_LOAD_PARAM *LoadParam, int ASyncTh
 			FrameDim[ i ] = MV1RAddFrame( &RModel, String, ParentBoneIndex == 0xffff ? NULL : FrameDim[ ParentBoneIndex ] ) ;
 			if( FrameDim[ i ] == NULL )
 			{
-				DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xd5\x30\xec\x30\xfc\x30\xe0\x30\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x6e\x30\xfd\x8f\xa0\x52\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : �t���[���I�u�W�F�N�g�̒ǉ��Ɏ��s���܂���\n" @*/ )) ;
+				DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xd5\x30\xec\x30\xfc\x30\xe0\x30\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x6e\x30\xfd\x8f\xa0\x52\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : フレームオブジェクトの追加に失敗しました\n" @*/ )) ;
 				goto ENDLABEL ;
 			}
-//			BoneInfo->IKLimitAngle = _STRCMP( "���Ђ�", FrameDim[ i ]->Name ) == 0 || _STRCMP( "�E�Ђ�", FrameDim[ i ]->Name ) == 0 ? 1 : 0 ;
+//			BoneInfo->IKLimitAngle = _STRCMP( "左ひざ", FrameDim[ i ]->Name ) == 0 || _STRCMP( "右ひざ", FrameDim[ i ]->Name ) == 0 ? 1 : 0 ;
 			BoneInfo->IKLimitAngle = _WCSSTR( FrameDim[ i ]->NameW, HizaString_WCHAR_T ) != NULL ;
 			READ_MEM_4BYTE( &BoneInfo->OrgTranslate.x, &Src[ 27 ] ) ;
 			READ_MEM_4BYTE( &BoneInfo->OrgTranslate.y, &Src[ 31 ] ) ;
@@ -337,19 +337,19 @@ extern int MV1LoadModelToPMD( const MV1_MODEL_LOAD_PARAM *LoadParam, int ASyncTh
 	}while( FrameSkipNum != 0 ) ;
 	MV1LoadModelToPMD_SetupMatrix( BoneInfoDim, PmdBoneNum, TRUE, FALSE ) ;
 
-	// ���b�V����ǉ�
+	// メッシュを追加
 	{
 		Mesh = MV1RAddMesh( &RModel, Frame ) ;
 		if( Mesh == NULL )
 		{
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xe1\x30\xc3\x30\xb7\x30\xe5\x30\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x6e\x30\xfd\x8f\xa0\x52\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : ���b�V���I�u�W�F�N�g�̒ǉ��Ɏ��s���܂���\n" @*/ )) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xe1\x30\xc3\x30\xb7\x30\xe5\x30\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x6e\x30\xfd\x8f\xa0\x52\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : メッシュオブジェクトの追加に失敗しました\n" @*/ )) ;
 			goto ENDLABEL ;
 		}
 
-		// �ʏ����i�[���郁�����̈�̊m��
+		// 面情報を格納するメモリ領域の確保
 		if( MV1RSetupMeshFaceBuffer( &RModel, Mesh, ( int )PmdFaceNum, 3 ) < 0 )
 		{
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\x62\x97\xc5\x60\x31\x58\x92\x30\xdd\x4f\x58\x5b\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : �ʏ���ۑ����郁�����̈�̊m�ۂɎ��s���܂���\n" @*/ )) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\x62\x97\xc5\x60\x31\x58\x92\x30\xdd\x4f\x58\x5b\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : 面情報を保存するメモリ領域の確保に失敗しました\n" @*/ )) ;
 			goto ENDLABEL ;
 		}
 
@@ -357,7 +357,7 @@ extern int MV1LoadModelToPMD( const MV1_MODEL_LOAD_PARAM *LoadParam, int ASyncTh
 		Mesh->Positions = ( VECTOR * )ADDMEMAREA( ( sizeof( VECTOR ) + sizeof( float ) ) * Mesh->PositionNum, &RModel.Mem ) ;
 		if( Mesh->Positions == NULL )
 		{
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\x02\x98\xb9\x70\xa7\x5e\x19\x6a\x92\x30\xdd\x4f\x58\x5b\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : ���_���W��ۑ����郁�����̈�̊m�ۂɎ��s���܂���\n" @*/ )) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\x02\x98\xb9\x70\xa7\x5e\x19\x6a\x92\x30\xdd\x4f\x58\x5b\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : 頂点座標を保存するメモリ領域の確保に失敗しました\n" @*/ )) ;
 			goto ENDLABEL ;
 		}
 		Mesh->PositionToonOutLineScale = ( float * )( Mesh->Positions + Mesh->PositionNum ) ;
@@ -366,7 +366,7 @@ extern int MV1LoadModelToPMD( const MV1_MODEL_LOAD_PARAM *LoadParam, int ASyncTh
 		Mesh->Normals = ( VECTOR * )ADDMEMAREA( sizeof( VECTOR ) * Mesh->NormalNum, &RModel.Mem ) ;
 		if( Mesh->Normals == NULL )
 		{
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\x02\x98\xb9\x70\xd5\x6c\xda\x7d\x92\x30\xdd\x4f\x58\x5b\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : ���_�@����ۑ����郁�����̈�̊m�ۂɎ��s���܂���\n" @*/ )) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\x02\x98\xb9\x70\xd5\x6c\xda\x7d\x92\x30\xdd\x4f\x58\x5b\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : 頂点法線を保存するメモリ領域の確保に失敗しました\n" @*/ )) ;
 			goto ENDLABEL ;
 		}
 
@@ -374,15 +374,15 @@ extern int MV1LoadModelToPMD( const MV1_MODEL_LOAD_PARAM *LoadParam, int ASyncTh
 		Mesh->UVs[ 0 ] = ( FLOAT4 * )ADDMEMAREA( sizeof( FLOAT4 ) * Mesh->UVNum[ 0 ], &RModel.Mem ) ;
 		if( Mesh->UVs[ 0 ] == NULL )
 		{
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\x02\x98\xb9\x70\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\xa7\x5e\x19\x6a\x92\x30\xdd\x4f\x58\x5b\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : ���_�e�N�X�`�����W��ۑ����郁�����̈�̊m�ۂɎ��s���܂���\n" @*/ )) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\x02\x98\xb9\x70\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\xa7\x5e\x19\x6a\x92\x30\xdd\x4f\x58\x5b\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : 頂点テクスチャ座標を保存するメモリ領域の確保に失敗しました\n" @*/ )) ;
 			goto ENDLABEL ;
 		}
 
-		// �{�[���̏���ǉ�
+		// ボーンの情報を追加
 		Mesh->SkinWeightsNum = 0 ;
 		for( i = 0 ; i < PmdBoneNum ; i ++ )
 		{
-			// ���̃{�[�����g�p���Ă��钸�_�̐��𐔂���
+			// このボーンを使用している頂点の数を数える
 			Src = ( BYTE * )PmdVertex ;
 			weightcount = 0 ;
 			for( j = 0 ; ( DWORD )j < PmdVertexNum ; j ++, Src += 38 )
@@ -393,7 +393,7 @@ extern int MV1LoadModelToPMD( const MV1_MODEL_LOAD_PARAM *LoadParam, int ASyncTh
 				}
 			}
 
-			// �g�p����Ă��Ȃ�������E�G�C�g���͕t���Ȃ�
+			// 使用されていなかったらウエイト情報は付けない
 			if( weightcount == 0 ) continue ;
 
 			Mesh->SkinWeights[ Mesh->SkinWeightsNum ] = MV1RAddSkinWeight( &RModel ) ;
@@ -402,16 +402,16 @@ extern int MV1LoadModelToPMD( const MV1_MODEL_LOAD_PARAM *LoadParam, int ASyncTh
 			SkinWeight->TargetFrame = ( DWORD )FrameDim[ i ]->Index ;
 			CreateTranslationMatrix( &SkinWeight->ModelLocalMatrix, -FrameDim[ i ]->TempVector.x, -FrameDim[ i ]->TempVector.y, -FrameDim[ i ]->TempVector.z ) ;
 
-			// �f�[�^���i�[���郁�����̈�̊m��
+			// データを格納するメモリ領域の確保
 			SkinWeight->DataNum = ( DWORD )weightcount ;
 			SkinWeight->Data = ( MV1_SKIN_WEIGHT_ONE_R * )ADDMEMAREA( sizeof( MV1_SKIN_WEIGHT_ONE_R ) * SkinWeight->DataNum, &RModel.Mem ) ;
 			if( SkinWeight->Data == NULL )
 			{
-				DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xb9\x30\xad\x30\xcb\x30\xf3\x30\xb0\x30\xe1\x30\xc3\x30\xb7\x30\xe5\x30\xa6\x30\xa8\x30\xa4\x30\xc8\x30\x24\x50\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : �X�L�j���O���b�V���E�G�C�g�l���i�[���郁�����̈�̊m�ۂɎ��s���܂���\n" @*/ )) ;
+				DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xb9\x30\xad\x30\xcb\x30\xf3\x30\xb0\x30\xe1\x30\xc3\x30\xb7\x30\xe5\x30\xa6\x30\xa8\x30\xa4\x30\xc8\x30\x24\x50\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : スキニングメッシュウエイト値を格納するメモリ領域の確保に失敗しました\n" @*/ )) ;
 				return -1 ;
 			}
 
-			// �E�G�C�g�̏����i�[����
+			// ウエイトの情報を格納する
 			SkinW = SkinWeight->Data ;
 			Src = ( BYTE * )PmdVertex ;
 			for( j = 0 ; ( DWORD )j < PmdVertexNum ; j ++, Src += 38 )
@@ -439,7 +439,7 @@ extern int MV1LoadModelToPMD( const MV1_MODEL_LOAD_PARAM *LoadParam, int ASyncTh
 			}
 		}
 
-		// ���_�f�[�^���Z�b�g
+		// 頂点データをセット
 		Src = ( BYTE * )PmdVertex ;
 		for( i = 0 ; ( DWORD )i < PmdVertexNum ; i ++, Src += 38 )
 		{
@@ -454,7 +454,7 @@ extern int MV1LoadModelToPMD( const MV1_MODEL_LOAD_PARAM *LoadParam, int ASyncTh
 			Mesh->PositionToonOutLineScale[ i ] = Src[ 37 ] != 0 ? 0.0f : 1.0f ;
 		}
 
-		// �ʃf�[�^���Z�b�g
+		// 面データをセット
 		Src = ( BYTE * )PmdFaceVertex ;
 		MeshFace = Mesh->Faces ;
 		j = 0 ;
@@ -477,18 +477,18 @@ extern int MV1LoadModelToPMD( const MV1_MODEL_LOAD_PARAM *LoadParam, int ASyncTh
 		PmdFaceNum = ( DWORD )j ;
 	}
 
-	// �h�j�̏����i�[���郁�����̈�̊m��
+	// ＩＫの情報を格納するメモリ領域の確保
 	if( PmdIKNum )
 	{
 		IKInfoDim = ( PMD_READ_IK_INFO * )DXALLOC( sizeof( PMD_READ_IK_INFO ) * PmdIKNum ) ;
 		if( IKInfoDim == NULL )
 		{
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xad\x8a\x7f\x30\xbc\x8f\x7f\x30\xe6\x51\x06\x74\x28\x75\x29\xff\x2b\xff\xc5\x60\x31\x58\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : �ǂݍ��ݏ����p�h�j�����i�[���郁�����̈�̊m�ۂɎ��s���܂���\n" @*/ )) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xad\x8a\x7f\x30\xbc\x8f\x7f\x30\xe6\x51\x06\x74\x28\x75\x29\xff\x2b\xff\xc5\x60\x31\x58\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : 読み込み処理用ＩＫ情報を格納するメモリ領域の確保に失敗しました\n" @*/ )) ;
 			goto ENDLABEL ;
 		}
 	}
 
-	// �h�j�f�[�^�̒ǉ�
+	// ＩＫデータの追加
 	Src = ( BYTE * )PmdIK ;
 	IKInfo = IKInfoDim ;
 	IKInfoFirst = NULL ;
@@ -496,7 +496,7 @@ extern int MV1LoadModelToPMD( const MV1_MODEL_LOAD_PARAM *LoadParam, int ASyncTh
 	{
 		PMD_READ_BONE_INFO *BoneBone ;
 
-		// �f�[�^���Z�b�g
+		// データをセット
 		IKInfo->Base = ( PMD_IK * )Src ;
 		IKInfo->Bone = &BoneInfoDim[ GET_MEM_WORD( &Src[ 0 ] ) ] ;
 		IKInfo->TargetBone = &BoneInfoDim[ GET_MEM_WORD( &Src[ 2 ] ) ] ;
@@ -517,7 +517,7 @@ extern int MV1LoadModelToPMD( const MV1_MODEL_LOAD_PARAM *LoadParam, int ASyncTh
 			if( BoneBone->IKLimitAngle ) IKInfo->LimitAngleIK = 1 ;
 		}
 
-		// ���X�g�ɒǉ�
+		// リストに追加
 		if( IKInfoFirst == NULL )
 		{
 			IKInfoFirst = IKInfo ;
@@ -555,7 +555,7 @@ extern int MV1LoadModelToPMD( const MV1_MODEL_LOAD_PARAM *LoadParam, int ASyncTh
 		}
 	}
 
-	// �h�j�̉e�����󂯂�{�[���̎q�łh�j�̉e�����󂯂Ȃ��{�[���Ɉ������
+	// ＩＫの影響を受けるボーンの子でＩＫの影響を受けないボーンに印をつける
 	BoneInfo = BoneInfoDim ;
 	for( i = 0 ; i < PmdBoneNum ; i ++, BoneInfo ++ )
 	{
@@ -574,7 +574,7 @@ extern int MV1LoadModelToPMD( const MV1_MODEL_LOAD_PARAM *LoadParam, int ASyncTh
 		}
 	}
 
-	// �\��f�[�^�̃A�h���X��ۑ�
+	// 表情データのアドレスを保存
 	PmdSkinNum = GET_MEM_WORD( Src ) ;
 	Src += 2 ;
 	PmdSkin = Src ;
@@ -589,86 +589,86 @@ extern int MV1LoadModelToPMD( const MV1_MODEL_LOAD_PARAM *LoadParam, int ASyncTh
 		}
 	}
 
-	// �\��g�p�\�����X�g�̓ǂݔ�΂�
+	// 表情枠用表示リストの読み飛ばし
 	i = ( int )*Src ;
 	Src += sizeof( BYTE ) + sizeof( WORD ) * i ;
 
-	// �{�[���g�p�g�����X�g�̓ǂݔ�΂�
+	// ボーン枠用枠名リストの読み飛ばし
 	BoneDispNum = ( int )*Src ;
 	Src += sizeof( BYTE ) + sizeof( char ) * 50 * BoneDispNum ;
 
-	// ����ȏ�f�[�^�����݂��Ȃ������畨�����Z�p�̃f�[�^�͂Ȃ��Ƃ�������
+	// これ以上データが存在しなかったら物理演算用のデータはないということ
 	if( Src - ( BYTE * )LoadParam->DataBuffer >= LoadParam->DataSize ) goto PHYSICSDATAREADEND ;
 
-	// �{�[���g�p�\�����X�g�̓ǂݔ�΂�
+	// ボーン枠用表示リストの読み飛ばし
 	i = ( int )GET_MEM_DWORD( Src ) ;
 	Src += sizeof( DWORD ) + 3 * i ;
 
-	// ����ȏ�f�[�^�����݂��Ȃ������畨�����Z�p�̃f�[�^�͂Ȃ��Ƃ�������
+	// これ以上データが存在しなかったら物理演算用のデータはないということ
 	if( Src - ( BYTE * )LoadParam->DataBuffer >= LoadParam->DataSize ) goto PHYSICSDATAREADEND ;
 
-	// �p�ꖼ���̓ǂݔ�΂�
+	// 英語名情報の読み飛ばし
 	i = ( int )*Src ;
 	Src ++ ;
 	if( i )
 	{
-		// ���f�����ƃR�����g�̓ǂݔ�΂�
+		// モデル名とコメントの読み飛ばし
 		Src += 276 ;
 
-		// �{�[�����̓ǂݔ�΂�
+		// ボーン名の読み飛ばし
 		Src += PmdBoneNum * 20 ;
 
-		// �\��̓ǂݔ�΂�
+		// 表情名の読み飛ばし
 		if( PmdSkinNum > 1 )
 		{
 			Src += ( PmdSkinNum - 1 ) * 20 ;
 		}
 
-		// �{�[���g�p�g���̓ǂݔ�΂�
+		// ボーン枠用枠名の読み飛ばし
 		Src += BoneDispNum * 50 ;
 	}
 
-	// ����ȏ�f�[�^�����݂��Ȃ������畨�����Z�p�̃f�[�^�͂Ȃ��Ƃ�������
+	// これ以上データが存在しなかったら物理演算用のデータはないということ
 	if( Src - ( BYTE * )LoadParam->DataBuffer >= LoadParam->DataSize ) goto PHYSICSDATAREADEND ;
 
-	// �g�D�[���V�F�[�f�B���O�p�e�N�X�`���t�@�C�������X�g�̃A�h���X���Z�b�g
+	// トゥーンシェーディング用テクスチャファイル名リストのアドレスをセット
 	PmdToonFileName = ( char * )Src ;
 	Src += 100 * 10 ;
 
-	// ����ȏ�f�[�^�����݂��Ȃ������畨�����Z�p�̃f�[�^�͂Ȃ��Ƃ�������
+	// これ以上データが存在しなかったら物理演算用のデータはないということ
 	if( Src - ( BYTE * )LoadParam->DataBuffer >= LoadParam->DataSize ) goto PHYSICSDATAREADEND ;
 
 #ifndef DX_NON_BULLET_PHYSICS
-	// �������Z�f�[�^�̓ǂݍ���
+	// 物理演算データの読み込み
 	if( LoadParam->GParam.LoadModelToUsePhysicsMode != DX_LOADMODEL_PHYSICS_DISABLE )
 	{
-		// �������Z�f�[�^������ꍇ�̂ݏ���������
+		// 物理演算データがある場合のみ処理をする
 		if( GET_MEM_DWORD( Src ) > 0 && GET_MEM_DWORD( Src ) != 0xfdfdfdfd )
 		{
 			PMD_READ_PHYSICS_INFO *PhysicsInfo ;
 			PMD_READ_PHYSICS_JOINT_INFO *JointInfo ;
 
-			// �����ɂ����畨�����Z�p�f�[�^������Ƃ�������
+			// ここにきたら物理演算用データがあるということ
 			ValidPhysics = TRUE ;
 
-			// �������Z���̓ǂݍ���
+			// 物理演算情報の読み込み
 
-			// �[��������
+			// ゼロ初期化
 			_MEMSET( &MLPhysicsInfo, 0, sizeof( DX_MODELLOADER3_PMD_PHYSICS_INFO ) ) ;
 
-			// �������Z���̐����擾
+			// 物理演算情報の数を取得
 			MLPhysicsInfo.PmdPhysicsNum = GET_MEM_SIGNED_DWORD( Src ) ;
 			Src += 4 ;
 
-			// �f�[�^���i�[���郁�����̈�̊m��
+			// データを格納するメモリ領域の確保
 			MLPhysicsInfo.PmdPhysicsInfoDim = ( PMD_READ_PHYSICS_INFO * )DXALLOC( sizeof( PMD_READ_PHYSICS_INFO ) * MLPhysicsInfo.PmdPhysicsNum ) ;
 			if( MLPhysicsInfo.PmdPhysicsInfoDim == NULL )
 			{
-				DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\x69\x72\x06\x74\x14\x6f\x97\x7b\xc5\x60\x31\x58\x4d\x91\x17\x52\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : �������Z���z����i�[���郁�����̈�̊m�ۂɎ��s���܂���\n" @*/ )) ;
+				DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\x69\x72\x06\x74\x14\x6f\x97\x7b\xc5\x60\x31\x58\x4d\x91\x17\x52\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : 物理演算情報配列を格納するメモリ領域の確保に失敗しました\n" @*/ )) ;
 				goto ENDLABEL ;
 			}
 
-			// �f�[�^��ǂݏo��
+			// データを読み出す
 		//	PmdPhysics = ( PMD_PHYSICS * )Src ;
 			PhysicsInfo = MLPhysicsInfo.PmdPhysicsInfoDim ;
 			for( i = 0 ; i < MLPhysicsInfo.PmdPhysicsNum ; i ++, PhysicsInfo ++, Src += 83 )
@@ -692,27 +692,27 @@ extern int MV1LoadModelToPMD( const MV1_MODEL_LOAD_PARAM *LoadParam, int ASyncTh
 				PhysicsInfo->Bone->PhysicsIndex = i ;
 				PhysicsInfo->Bone->SetupPhysicsAnim = 0 ;
 
-				// ���̃^�C�v��ۑ�
+				// 剛体タイプを保存
 				PhysicsInfo->RigidBodyType = Src[ 82 ] ;
 				PhysicsInfo->NoCopyToBone = _WCSCMP( PhysicsInfo->Bone->Frame->NameW, CenterString_WCHAR_T ) == 0 ;
 			}
 
-			// �W���C���g���̐����擾
+			// ジョイント情報の数を取得
 			MLPhysicsInfo.PmdPhysicsJointNum = GET_MEM_SIGNED_DWORD( Src ) ;
 			Src += 4 ;
 
-			// �W���C���g��񂪂���ꍇ�̂ݏ���
+			// ジョイント情報がある場合のみ処理
 			if( MLPhysicsInfo.PmdPhysicsJointNum != 0 )
 			{
-				// �f�[�^���i�[���郁�����̈�̊m��
+				// データを格納するメモリ領域の確保
 				MLPhysicsInfo.PmdPhysicsJointInfoDim = ( PMD_READ_PHYSICS_JOINT_INFO * )DXALLOC( sizeof( PMD_READ_PHYSICS_JOINT_INFO ) * MLPhysicsInfo.PmdPhysicsJointNum ) ;
 				if( MLPhysicsInfo.PmdPhysicsJointInfoDim == NULL )
 				{
-					DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\x69\x72\x06\x74\x14\x6f\x97\x7b\xb8\x30\xe7\x30\xa4\x30\xf3\x30\xc8\x30\xc5\x60\x31\x58\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : �������Z�W���C���g�����i�[���郁�����̈�̊m�ۂɎ��s���܂���\n" @*/ )) ;
+					DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\x69\x72\x06\x74\x14\x6f\x97\x7b\xb8\x30\xe7\x30\xa4\x30\xf3\x30\xc8\x30\xc5\x60\x31\x58\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : 物理演算ジョイント情報を格納するメモリ領域の確保に失敗しました\n" @*/ )) ;
 					goto ENDLABEL ;
 				}
 
-				// �f�[�^��ǂݏo��
+				// データを読み出す
 			//	PmdPhysicsJoint = ( PMD_PHYSICS_JOINT * )Src ;
 				JointInfo = MLPhysicsInfo.PmdPhysicsJointInfoDim ;
 				for( i = 0 ; i < MLPhysicsInfo.PmdPhysicsJointNum ; i ++, JointInfo ++, Src += 124 )
@@ -721,7 +721,7 @@ extern int MV1LoadModelToPMD( const MV1_MODEL_LOAD_PARAM *LoadParam, int ASyncTh
 				}
 			}
 
-			// �������A���^�C�������������s���ꍇ�͓ǂݍ��ݏ��ɕ����{�[���ƕ����W���C���g�̏���������
+			// もしリアルタイム物理処理を行う場合は読み込み情報に物理ボーンと物理ジョイントの情報を加える
 			if( LoadParam->GParam.LoadModelToUsePhysicsMode == DX_LOADMODEL_PHYSICS_REALTIME )
 			{
 				MV1_PHYSICS_RIGIDBODY_R *RigidBody ;
@@ -733,7 +733,7 @@ extern int MV1LoadModelToPMD( const MV1_MODEL_LOAD_PARAM *LoadParam, int ASyncTh
 					RigidBody = MV1RAddPhysicsRididBody( &RModel, PhysicsInfo->Name, PhysicsInfo->Bone->Frame ) ;
 					if( RigidBody == NULL )
 					{
-						DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\x69\x72\x06\x74\x08\x8a\x97\x7b\x28\x75\x5b\x52\x53\x4f\xc5\x60\x31\x58\x6e\x30\xfd\x8f\xa0\x52\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : �����v�Z�p���̏��̒ǉ��Ɏ��s���܂���\n" @*/ )) ;
+						DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\x69\x72\x06\x74\x08\x8a\x97\x7b\x28\x75\x5b\x52\x53\x4f\xc5\x60\x31\x58\x6e\x30\xfd\x8f\xa0\x52\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : 物理計算用剛体情報の追加に失敗しました\n" @*/ )) ;
 						goto ENDLABEL ;
 					}
 
@@ -767,7 +767,7 @@ extern int MV1LoadModelToPMD( const MV1_MODEL_LOAD_PARAM *LoadParam, int ASyncTh
 					Joint = MV1RAddPhysicsJoint( &RModel, JointInfo->Base.Name ) ;
 					if( Joint == NULL )
 					{
-						DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\x69\x72\x06\x74\x08\x8a\x97\x7b\x28\x75\x5b\x52\x53\x4f\xa5\x63\x08\x54\xc5\x60\x31\x58\x6e\x30\xfd\x8f\xa0\x52\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : �����v�Z�p���̐ڍ����̒ǉ��Ɏ��s���܂���\n" @*/ )) ;
+						DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\x69\x72\x06\x74\x08\x8a\x97\x7b\x28\x75\x5b\x52\x53\x4f\xa5\x63\x08\x54\xc5\x60\x31\x58\x6e\x30\xfd\x8f\xa0\x52\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : 物理計算用剛体接合情報の追加に失敗しました\n" @*/ )) ;
 						goto ENDLABEL ;
 					}
 
@@ -803,16 +803,16 @@ extern int MV1LoadModelToPMD( const MV1_MODEL_LOAD_PARAM *LoadParam, int ASyncTh
 	}
 	else
 #endif
-	// �������Z�f�[�^�̕������A�h���X��i�߂�
+	// 物理演算データの分だけアドレスを進める
 	{
-		// �������Z�f�[�^������ꍇ�̂ݐi�߂�
+		// 物理演算データがある場合のみ進める
 		if( GET_MEM_DWORD( Src ) > 0 && GET_MEM_DWORD( Src ) != 0xfdfdfdfd )
 		{
-			// �������Z���̕������i�߂�
+			// 物理演算情報の分だけ進める
 			i = GET_MEM_SIGNED_DWORD( Src ) ;
 			Src += 83 * i + 4 ;
 
-			// �W���C���g���̕������i�߂�
+			// ジョイント情報の分だけ進める
 			i = GET_MEM_SIGNED_DWORD( Src ) ;
 			Src += 124 * i + 4 ;
 		}
@@ -820,7 +820,7 @@ extern int MV1LoadModelToPMD( const MV1_MODEL_LOAD_PARAM *LoadParam, int ASyncTh
 
 PHYSICSDATAREADEND :
 
-	// �}�e���A���̓ǂ݂���
+	// マテリアルの読みこみ
 	Src = ( BYTE * )PmdMaterial ;
 	facecount = 0 ;
 	for( i = 0 ; ( DWORD )i < PmdMaterialNum ; i ++ )
@@ -831,14 +831,14 @@ PHYSICSDATAREADEND :
 		Material = MV1RAddMaterial( &RModel, String ) ;
 		if( Material == NULL )
 		{
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\x4e\x00\x6f\x00\x2e\x00\x25\x00\x64\x00\x20\x00\x6e\x30\x20\x00\x4d\x00\x61\x00\x74\x00\x65\x00\x72\x00\x69\x00\x61\x00\x6c\x00\x20\x00\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x6e\x30\xfd\x8f\xa0\x52\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : No.%d �� Material �I�u�W�F�N�g�̒ǉ��Ɏ��s���܂���\n" @*/, i ) ) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\x4e\x00\x6f\x00\x2e\x00\x25\x00\x64\x00\x20\x00\x6e\x30\x20\x00\x4d\x00\x61\x00\x74\x00\x65\x00\x72\x00\x69\x00\x61\x00\x6c\x00\x20\x00\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x6e\x30\xfd\x8f\xa0\x52\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : No.%d の Material オブジェクトの追加に失敗しました\n" @*/, i ) ) ;
 			goto ENDLABEL ;
 		}
 
-		// �}�e���A���^�C�v�̓g�D�[��
+		// マテリアルタイプはトゥーン
 		Material->Type = DX_MATERIAL_TYPE_TOON_2 ;
 
-		// �����Z�b�g
+		// 情報をセット
 		READ_MEM_4BYTE( &Material->Diffuse.r, &Src[  0 ] ) ;
 		READ_MEM_4BYTE( &Material->Diffuse.g, &Src[  4 ] ) ;
 		READ_MEM_4BYTE( &Material->Diffuse.b, &Src[  8 ] ) ;
@@ -862,10 +862,10 @@ PHYSICSDATAREADEND :
 		Material->Ambient.a = 0.0f ;
 		Src += 12 ;
 
-		// �g�D�[���e�N�X�`����ǉ�
+		// トゥーンテクスチャを追加
 //		ToonTexIndex = *Src ;
 		{
-			// �X�t�B�A�}�b�v�̃t�@�C�������܂܂��ꍇ�͂��������
+			// スフィアマップのファイル名が含まれる場合はそれを除く
 			if( *Src != 0xff && PmdToonFileName != NULL )
 			{
 				_STRCPY_S( String, sizeof( String ), &PmdToonFileName[ *Src * 100 ] ) ;
@@ -879,7 +879,7 @@ PHYSICSDATAREADEND :
 			Texture = MV1RAddTexture( &RModel, String, String, NULL, FALSE, 0.1f, true, true, true ) ;
 			if( Texture == NULL )
 			{
-				DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\x4e\x00\x6f\x00\x2e\x00\x25\x00\x64\x00\x20\x00\x6e\x30\x20\x00\xc8\x30\xa5\x30\xfc\x30\xf3\x30\x28\x75\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : No.%d �� �g�D�[���p�e�N�X�`���I�u�W�F�N�g�̍쐬�Ɏ��s���܂���\n" @*/, i ) ) ;
+				DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\x4e\x00\x6f\x00\x2e\x00\x25\x00\x64\x00\x20\x00\x6e\x30\x20\x00\xc8\x30\xa5\x30\xfc\x30\xf3\x30\x28\x75\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : No.%d の トゥーン用テクスチャオブジェクトの作成に失敗しました\n" @*/, i ) ) ;
 				goto ENDLABEL ;
 			}
 			Texture->AddressModeU = DX_TEXADDRESS_CLAMP ;
@@ -891,7 +891,7 @@ PHYSICSDATAREADEND :
 		Material->SpecularGradBlendType = MV1_LAYERBLEND_TYPE_ADDITIVE ;
 		Src ++ ;
 
-		// ���̑������Z�b�g
+		// 線の太さをセット
 		if( *Src )
 		{
 			Material->OutLineWidth = 0.01f ;
@@ -899,7 +899,7 @@ PHYSICSDATAREADEND :
 		}
 		Src ++ ;
 
-		// �ʃf�[�^�Ƀ}�e���A���ԍ����Z�b�g����
+		// 面データにマテリアル番号をセットする
 		PmdMaterialFaceVertexNum = GET_MEM_DWORD( Src ) ;
 		Src += 4 ;
 		for( j = 0 ; ( DWORD )j < PmdMaterialFaceVertexNum ; j += 3, facecount ++ )
@@ -907,7 +907,7 @@ PHYSICSDATAREADEND :
 			Mesh->Faces[ facecount ].MaterialIndex = Mesh->MaterialNum ;
 		}
 		
-		// �e�N�X�`����ǉ�
+		// テクスチャを追加
 		_MEMSET( String, 0, sizeof( String ) ) ;
 		_MEMCPY( String, Src, 20 ) ;
 		Src += 20 ;
@@ -921,47 +921,47 @@ PHYSICSDATAREADEND :
 			TexFileName[ 0 ] = '\0' ;
 			SphBlendType = DX_MATERIAL_BLENDTYPE_MODULATE ;
 
-			// �t�@�C�������
+			// ファイル名解析
 			for(;;)
 			{
 				for( j = 0 ; String[ j ] != '.' && String[ j ] != '\0' && String[ j ] != '*' ; j ++ ){}
 
-				// �s���I�h�ɍs��������X�t�B�A�}�b�v���ǂ����𔻒肷�邽�߂Ɋg���q����
+				// ピリオドに行きついたらスフィアマップかどうかを判定するために拡張子検査
 				if( String[ j ] == '.' )
 				{
-					// �ŏ��̃t�@�C�������X�t�B�A�}�b�v���ǂ����ŏ����𕪊�
+					// 最初のファイル名がスフィアマップかどうかで処理を分岐
 					if( String[ j + 1 ] == 's' && String[ j + 2 ] == 'p' && ( String[ j + 3 ] == 'h' || String[ j + 3 ] == 'a' ) )
 					{
-						// �X�t�B�A�}�b�v�̃t�@�C������ۑ�����
+						// スフィアマップのファイル名を保存する
 						_MEMCPY( SphFileName, String, ( size_t )( j + 4 ) ) ;
 						SphFileName[ j + 4 ] = '\0' ;
 
-						// �X�t�B�A�}�b�v�̃u�����h�����𒲂ׂ�
+						// スフィアマップのブレンド方式を調べる
 						SphBlendType = String[ j + 3 ] == 'a' ? DX_MATERIAL_BLENDTYPE_ADDITIVE : DX_MATERIAL_BLENDTYPE_MODULATE ;
 						break ;
 					}
 
-					// �X�t�B�A�}�b�v�ł͂Ȃ������ꍇ�͕��ʂ̃e�N�X�`���Ȃ̂ŁA�p�����ĕ�����̏I�[�܂� j ��i�߂�
+					// スフィアマップではなかった場合は普通のテクスチャなので、継続して文字列の終端まで j を進める
 					for( j = 0 ; String[ j ] != '\0' && String[ j ] != '*' ; j ++ ){}
 				}
 
-				// �e�N�X�`���t�@�C������ۑ�
+				// テクスチャファイル名を保存
 				_MEMCPY( TexFileName, String, ( size_t )j ) ;
 				TexFileName[ j ] = '\0' ;
 
-				// ������̏I�[�������炱���ŏ����͏I��
+				// 文字列の終端だったらここで処理は終了
 				if( String[ j ] == '\0' )
 					break ;
 
-				// �����ɂ����� String[ j ] == '*' �Ƃ�������
+				// ここにきたら String[ j ] == '*' ということ
 				j ++ ;
 
-				// �X�t�B�A�}�b�v�̃t�@�C������ۑ�����
+				// スフィアマップのファイル名を保存する
 				len = ( int )_STRLEN( &String[ j ] ) ;
 				_MEMCPY( SphFileName, &String[ j ], ( size_t )len ) ;
 				SphFileName[ len ] = '\0' ;
 
-				// �X�t�B�A�}�b�v�̃u�����h�����𒲂ׂ�
+				// スフィアマップのブレンド方式を調べる
 				SphBlendType = String[ j + len - 1 ] == 'a' ? DX_MATERIAL_BLENDTYPE_ADDITIVE : DX_MATERIAL_BLENDTYPE_MODULATE ;
 				break ;
 			}
@@ -969,26 +969,26 @@ PHYSICSDATAREADEND :
 //			ap = _STRCHR( String, '*' ) ;
 //			if( ap != NULL ) *ap = '\0' ;
 
-			// ���ʂ̃e�N�X�`��������ꍇ�̏���
+			// 普通のテクスチャがある場合の処理
 			if( TexFileName[ 0 ] != '\0' )
 			{
 				Texture = MV1RAddTexture( &RModel, TexFileName, TexFileName, NULL, false, 0.1f, true, false, true ) ;
 				if( Texture == NULL )
 				{
-					DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\x4e\x00\x6f\x00\x2e\x00\x25\x00\x64\x00\x20\x00\x6e\x30\x20\x00\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : No.%d �� �e�N�X�`���I�u�W�F�N�g�̍쐬�Ɏ��s���܂���\n" @*/, i ) ) ;
+					DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\x4e\x00\x6f\x00\x2e\x00\x25\x00\x64\x00\x20\x00\x6e\x30\x20\x00\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : No.%d の テクスチャオブジェクトの作成に失敗しました\n" @*/, i ) ) ;
 					goto ENDLABEL ;
 				}
 				Material->DiffuseTexNum = 1 ;
 				Material->DiffuseTexs[ 0 ] = Texture ;
 			}
 
-			// �X�t�B�A�}�b�v�e�N�X�`��������ꍇ�̏���
+			// スフィアマップテクスチャがある場合の処理
 			if( SphFileName[ 0 ] != '\0' )
 			{
 				Texture = MV1RAddTexture( &RModel, SphFileName, SphFileName, NULL, false, 0.1f, true, false, true ) ;
 				if( Texture == NULL )
 				{
-					DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\x4e\x00\x6f\x00\x2e\x00\x25\x00\x64\x00\x20\x00\x6e\x30\x20\x00\xb9\x30\xd5\x30\xa3\x30\xa2\x30\xde\x30\xc3\x30\xd7\x30\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : No.%d �� �X�t�B�A�}�b�v�e�N�X�`���I�u�W�F�N�g�̍쐬�Ɏ��s���܂���\n" @*/, i ) ) ;
+					DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\x4e\x00\x6f\x00\x2e\x00\x25\x00\x64\x00\x20\x00\x6e\x30\x20\x00\xb9\x30\xd5\x30\xa3\x30\xa2\x30\xde\x30\xc3\x30\xd7\x30\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : No.%d の スフィアマップテクスチャオブジェクトの作成に失敗しました\n" @*/, i ) ) ;
 					goto ENDLABEL ;
 				}
 				Material->SphereMapTexture = Texture ;
@@ -997,7 +997,7 @@ PHYSICSDATAREADEND :
 		}
 
 
-		// �}�e���A�����P�|���S���ɂł��g�p����Ă���ꍇ�̓}�e���A���̃A�h���X���Z�b�g
+		// マテリアルが１ポリゴンにでも使用されている場合はマテリアルのアドレスをセット
 		if( PmdMaterialFaceVertexNum )
 		{
 			Mesh->Materials[ Mesh->MaterialNum ] = Material ;
@@ -1005,30 +1005,30 @@ PHYSICSDATAREADEND :
 		}
 	}
 
-	// �\��f�[�^�̒ǉ�
+	// 表情データの追加
 	if( PmdSkinNum > 1 )
 	{
 		Src = PmdSkin ;
 
-		// �\��f�[�^�{�̂̒��_�����擾
+		// 表情データ本体の頂点数を取得
 		Src += 20 ;
 		SkinBaseVertNum = GET_MEM_DWORD( Src ) ;
 
-		// �\��f�[�^�̒��_�����O�̏ꍇ�͕\��f�[�^�̓ǂݍ��݂����Ȃ�
+		// 表情データの頂点数が０の場合は表情データの読み込みをしない
 		if( SkinBaseVertNum != 0 )
 		{
 			SkinMesh = MV1RAddMesh( &RModel, Frame ) ;
 			if( SkinMesh == NULL )
 			{
-				DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xb9\x30\xad\x30\xf3\x30\xe1\x30\xc3\x30\xb7\x30\xe5\x30\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x6e\x30\xfd\x8f\xa0\x52\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : �X�L�����b�V���I�u�W�F�N�g�̒ǉ��Ɏ��s���܂���\n" @*/ )) ;
+				DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xb9\x30\xad\x30\xf3\x30\xe1\x30\xc3\x30\xb7\x30\xe5\x30\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x6e\x30\xfd\x8f\xa0\x52\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : スキンメッシュオブジェクトの追加に失敗しました\n" @*/ )) ;
 				goto ENDLABEL ;
 			}
 
-			// base ���b�V�����猳���f������g�p���钸�_�Ɩʂ̏�������o��
+			// base メッシュから元モデルから使用する頂点と面の情報を割り出す
 			SkinNextVertIndex = ( DWORD * )DXALLOC( sizeof( DWORD ) * ( 2 * PmdVertexNum + 2 * PmdFaceNum + 2 * PmdMaterialNum ) ) ;
 			if( SkinNextVertIndex == NULL )
 			{
-				DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\x00\x4e\x42\x66\xdd\x4f\x58\x5b\x28\x75\x6e\x30\x02\x98\xb9\x70\xc7\x30\xfc\x30\xbf\x30\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : �ꎞ�ۑ��p�̒��_�f�[�^���i�[���郁�����̈�̊m�ۂɎ��s���܂���\n" @*/ )) ;
+				DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\x00\x4e\x42\x66\xdd\x4f\x58\x5b\x28\x75\x6e\x30\x02\x98\xb9\x70\xc7\x30\xfc\x30\xbf\x30\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : 一時保存用の頂点データを格納するメモリ領域の確保に失敗しました\n" @*/ )) ;
 				goto ENDLABEL ;
 			}
 			SkinPrevVertIndex     = SkinNextVertIndex     + PmdVertexNum ;
@@ -1043,7 +1043,7 @@ PHYSICSDATAREADEND :
 			_MEMSET( SkinNextMaterialIndex, 0xff, sizeof( DWORD ) * PmdMaterialNum ) ;
 			_MEMSET( SkinPrevMaterialIndex, 0xff, sizeof( DWORD ) * PmdMaterialNum ) ;
 
-			// �\��f�[�^�{�̂Ŏg�p���钸�_�̌��̃��b�V���ł̒��_�ԍ����擾
+			// 表情データ本体で使用する頂点の元のメッシュでの頂点番号を取得
 			Src += 5 ;
 			PmdBaseSkinVert = ( PMD_SKIN_VERT * )Src ;
 			SkinVertNum = 0 ;
@@ -1055,7 +1055,7 @@ PHYSICSDATAREADEND :
 				SkinVertNum ++ ;
 			}
 
-			// �\��f�[�^�Ŏg�p����Ă��钸�_���g���Ă���ʂ̐��𐔂���
+			// 表情データで使用されている頂点を使っている面の数を数える
 			MeshFace = Mesh->Faces ;
 			SkinFaceNum = 0 ;
 			SkinMaterialNum = 0 ;
@@ -1098,26 +1098,26 @@ PHYSICSDATAREADEND :
 				}
 			}
 
-			// �g�p����Ă���}�e���A���̃��X�g���쐬����
+			// 使用されているマテリアルのリストを作成する
 			SkinMesh->MaterialNum = SkinMaterialNum ;
 			for( i = 0 ; ( DWORD )i < SkinMaterialNum ; i ++ )
 			{
 				SkinMesh->Materials[ i ] = Mesh->Materials[ SkinPrevMaterialIndex[ i ] ] ;
 			}
 
-			// �\��f�[�^�Ŏ��p����ʂ�ۑ����郁�����̈���m�ۂ���
+			// 表情データで私用する面を保存するメモリ領域を確保する
 			if( MV1RSetupMeshFaceBuffer( &RModel, SkinMesh, ( int )SkinFaceNum, 3 ) < 0 )
 			{
-				DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\x68\x88\xc5\x60\xc7\x30\xfc\x30\xbf\x30\x6e\x30\x62\x97\xc5\x60\x31\x58\x92\x30\xdd\x4f\x58\x5b\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : �\��f�[�^�̖ʏ���ۑ����郁�����̈�̊m�ۂɎ��s���܂���\n" @*/ )) ;
+				DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\x68\x88\xc5\x60\xc7\x30\xfc\x30\xbf\x30\x6e\x30\x62\x97\xc5\x60\x31\x58\x92\x30\xdd\x4f\x58\x5b\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : 表情データの面情報を保存するメモリ領域の確保に失敗しました\n" @*/ )) ;
 				goto ENDLABEL ;
 			}
 
-			// �\��f�[�^�Ŏg�p���钸�_��ۑ����郁�����̈���m�ۂ���
+			// 表情データで使用する頂点を保存するメモリ領域を確保する
 			SkinMesh->PositionNum = SkinVertNum ;
 			SkinMesh->Positions = ( VECTOR * )ADDMEMAREA( ( sizeof( VECTOR ) + sizeof( float ) ) * SkinMesh->PositionNum, &RModel.Mem ) ;
 			if( SkinMesh->Positions == NULL )
 			{
-				DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\x68\x88\xc5\x60\xc7\x30\xfc\x30\xbf\x30\x6e\x30\x02\x98\xb9\x70\xa7\x5e\x19\x6a\x92\x30\xdd\x4f\x58\x5b\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : �\��f�[�^�̒��_���W��ۑ����郁�����̈�̊m�ۂɎ��s���܂���\n" @*/ )) ;
+				DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\x68\x88\xc5\x60\xc7\x30\xfc\x30\xbf\x30\x6e\x30\x02\x98\xb9\x70\xa7\x5e\x19\x6a\x92\x30\xdd\x4f\x58\x5b\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : 表情データの頂点座標を保存するメモリ領域の確保に失敗しました\n" @*/ )) ;
 				goto ENDLABEL ;
 			}
 			SkinMesh->PositionToonOutLineScale = ( float * )( SkinMesh->Positions + SkinMesh->PositionNum ) ;
@@ -1126,7 +1126,7 @@ PHYSICSDATAREADEND :
 			SkinMesh->Normals = ( VECTOR * )ADDMEMAREA( sizeof( VECTOR ) * SkinMesh->NormalNum, &RModel.Mem ) ;
 			if( SkinMesh->Normals == NULL )
 			{
-				DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\x68\x88\xc5\x60\xc7\x30\xfc\x30\xbf\x30\x6e\x30\x02\x98\xb9\x70\xd5\x6c\xda\x7d\x92\x30\xdd\x4f\x58\x5b\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : �\��f�[�^�̒��_�@����ۑ����郁�����̈�̊m�ۂɎ��s���܂���\n" @*/ )) ;
+				DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\x68\x88\xc5\x60\xc7\x30\xfc\x30\xbf\x30\x6e\x30\x02\x98\xb9\x70\xd5\x6c\xda\x7d\x92\x30\xdd\x4f\x58\x5b\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : 表情データの頂点法線を保存するメモリ領域の確保に失敗しました\n" @*/ )) ;
 				goto ENDLABEL ;
 			}
 
@@ -1134,11 +1134,11 @@ PHYSICSDATAREADEND :
 			SkinMesh->UVs[ 0 ] = ( FLOAT4 * )ADDMEMAREA( sizeof( FLOAT4 ) * SkinMesh->UVNum[ 0 ], &RModel.Mem ) ;
 			if( SkinMesh->UVs[ 0 ] == NULL )
 			{
-				DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\x68\x88\xc5\x60\xc7\x30\xfc\x30\xbf\x30\x6e\x30\x02\x98\xb9\x70\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\xa7\x5e\x19\x6a\x92\x30\xdd\x4f\x58\x5b\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : �\��f�[�^�̒��_�e�N�X�`�����W��ۑ����郁�����̈�̊m�ۂɎ��s���܂���\n" @*/ )) ;
+				DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\x68\x88\xc5\x60\xc7\x30\xfc\x30\xbf\x30\x6e\x30\x02\x98\xb9\x70\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\xa7\x5e\x19\x6a\x92\x30\xdd\x4f\x58\x5b\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : 表情データの頂点テクスチャ座標を保存するメモリ領域の確保に失敗しました\n" @*/ )) ;
 				goto ENDLABEL ;
 			}
 
-			// �\��f�[�^�Ŏg�p���钸�_�̃f�[�^���Z�b�g����
+			// 表情データで使用する頂点のデータをセットする
 			for( i = 0 ; ( DWORD )i < SkinVertNum ; i ++ )
 			{
 				SkinMesh->Positions[ i ] = Mesh->Positions[ SkinPrevVertIndex[ i ] ] ;
@@ -1147,7 +1147,7 @@ PHYSICSDATAREADEND :
 				SkinMesh->UVs[ 0 ][ i ] = Mesh->UVs[ 0 ][ SkinPrevVertIndex[ i ] ] ;
 			}
 
-			// �\��f�[�^�Ŏg�p����ʂ̃f�[�^���Z�b�g����
+			// 表情データで使用する面のデータをセットする
 			MeshFace = SkinMesh->Faces ;
 			for( i = 0 ; ( DWORD )i < SkinFaceNum ; i ++, MeshFace ++ )
 			{
@@ -1165,7 +1165,7 @@ PHYSICSDATAREADEND :
 				MeshFace->MaterialIndex = SkinNextMaterialIndex[ MeshFaceTemp->MaterialIndex ] ;
 			}
 
-			// ���̃��b�V���ŕ\��f�[�^�Ɏg�p����Ă���ʂ𖳌�������
+			// 元のメッシュで表情データに使用されている面を無効化する
 			NextFaceNum = 0 ;
 			MeshFaceTemp = Mesh->Faces ;
 			MeshFace = Mesh->Faces ;
@@ -1178,10 +1178,10 @@ PHYSICSDATAREADEND :
 			}
 			Mesh->FaceNum = NextFaceNum ;
 
-			// �X�L�j���O���b�V�������\�z����
+			// スキニングメッシュ情報を構築する
 			for( i = 0 ; ( DWORD )i < Mesh->SkinWeightsNum ; i ++ )
 			{
-				// �\��f�[�^�Ŏg�p���邩�ǂ����𒲂ׂ�
+				// 表情データで使用するかどうかを調べる
 				SkinWeightTemp = Mesh->SkinWeights[ i ] ;
 				SkinWTemp = SkinWeightTemp->Data ;
 				weightcount = 0 ;
@@ -1192,7 +1192,7 @@ PHYSICSDATAREADEND :
 				}
 				if( weightcount == 0 ) continue ;
 
-				// �g���ꍇ�͒ǉ�
+				// 使う場合は追加
 				SkinMesh->SkinWeights[ SkinMesh->SkinWeightsNum ] = MV1RAddSkinWeight( &RModel ) ;
 				SkinWeight = SkinMesh->SkinWeights[ SkinMesh->SkinWeightsNum ] ;
 				SkinMesh->SkinWeightsNum ++ ;
@@ -1202,11 +1202,11 @@ PHYSICSDATAREADEND :
 				SkinWeight->Data = ( MV1_SKIN_WEIGHT_ONE_R * )ADDMEMAREA( sizeof( MV1_SKIN_WEIGHT_ONE_R ) * weightcount, &RModel.Mem ) ;
 				if( SkinWeight->Data == NULL )
 				{
-					DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\x68\x88\xc5\x60\xc7\x30\xfc\x30\xbf\x30\x28\x75\xb9\x30\xad\x30\xcb\x30\xf3\x30\xb0\x30\xe1\x30\xc3\x30\xb7\x30\xe5\x30\xa6\x30\xa8\x30\xa4\x30\xc8\x30\x24\x50\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : �\��f�[�^�p�X�L�j���O���b�V���E�G�C�g�l���i�[���郁�����̈�̊m�ۂɎ��s���܂���\n" @*/ )) ;
+					DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\x68\x88\xc5\x60\xc7\x30\xfc\x30\xbf\x30\x28\x75\xb9\x30\xad\x30\xcb\x30\xf3\x30\xb0\x30\xe1\x30\xc3\x30\xb7\x30\xe5\x30\xa6\x30\xa8\x30\xa4\x30\xc8\x30\x24\x50\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : 表情データ用スキニングメッシュウエイト値を格納するメモリ領域の確保に失敗しました\n" @*/ )) ;
 					return -1 ;
 				}
 
-				// �f�[�^���Z�b�g
+				// データをセット
 				SkinW = SkinWeight->Data ;
 				SkinWTemp = SkinWeightTemp->Data ;
 				for( j = 0 ; ( DWORD )j < SkinWeightTemp->DataNum ; j ++, SkinWTemp ++ )
@@ -1219,10 +1219,10 @@ PHYSICSDATAREADEND :
 				}
 			}
 
-			// ���̃��b�V���ŕ\��f�[�^�Ɏg�p����Ă���X�L�j���O���b�V�����𖳌�������
+			// 元のメッシュで表情データに使用されているスキニングメッシュ情報を無効化する
 			for( i = 0 ; ( DWORD )i < Mesh->SkinWeightsNum ; i ++ )
 			{
-				// �\��f�[�^�Ŏg�p���邩�ǂ����𒲂ׂ�
+				// 表情データで使用するかどうかを調べる
 				SkinWeightTemp = Mesh->SkinWeights[ i ] ;
 				SkinWTemp = SkinWeightTemp->Data ;
 				SkinW = SkinWeightTemp->Data ;
@@ -1234,7 +1234,7 @@ PHYSICSDATAREADEND :
 					SkinW ++ ;
 					weightcount ++ ;
 				}
-				// �Ō�̈�͕ʏ���
+				// 最後の一つは別処理
 				if( weightcount == 0 || SkinNextVertIndex[ SkinWTemp->TargetVertex ] >= SkinBaseVertNum )
 				{
 					*SkinW = *SkinWTemp ;
@@ -1244,39 +1244,39 @@ PHYSICSDATAREADEND :
 				SkinWeightTemp->DataNum = ( DWORD )weightcount ;
 			}
 
-			// �c��̕\��f�[�^��ǉ�����
+			// 残りの表情データを追加する
 			for( i = 1 ; i < PmdSkinNum ; i ++ )
 			{
-				// �\��f�[�^�̒ǉ�
+				// 表情データの追加
 				_MEMSET( String, 0, sizeof( String ) ) ;
 				_MEMCPY( String, Src, 20 ) ;
 				Shape = MV1RAddShape( &RModel, String, Frame ) ; 
 				if( Shape == NULL )
 				{
-					DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xb7\x30\xa7\x30\xa4\x30\xd7\x30\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x6e\x30\xfd\x8f\xa0\x52\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : �V�F�C�v�I�u�W�F�N�g�̒ǉ��Ɏ��s���܂���\n" @*/ )) ;
+					DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xb7\x30\xa7\x30\xa4\x30\xd7\x30\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x6e\x30\xfd\x8f\xa0\x52\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : シェイプオブジェクトの追加に失敗しました\n" @*/ )) ;
 					goto ENDLABEL ;
 				}
 				Src += 20 ;
 
-				// �Ώۃ��b�V���̃Z�b�g
+				// 対象メッシュのセット
 				Shape->TargetMesh = SkinMesh ;
 
-				// �@���͖���
+				// 法線は無し
 				Shape->ValidVertexNormal = FALSE ;
 
-				// ���_�̐���ۑ�
+				// 頂点の数を保存
 				Shape->VertexNum = GET_MEM_SIGNED_DWORD( Src ) ;
 				Src += 5 ;
 
-				// ���_�f�[�^���i�[���郁�����̈�̊m��
+				// 頂点データを格納するメモリ領域の確保
 				Shape->Vertex = ( MV1_SHAPE_VERTEX_R * )ADDMEMAREA( sizeof( MV1_SHAPE_VERTEX_R ) * Shape->VertexNum, &RModel.Mem ) ;
 				if( Shape->Vertex == NULL )
 				{
-					DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xb7\x30\xa7\x30\xa4\x30\xd7\x30\x02\x98\xb9\x70\xc7\x30\xfc\x30\xbf\x30\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : �V�F�C�v���_�f�[�^���i�[���郁�����̈�̊m�ۂɎ��s���܂���\n" @*/ )) ;
+					DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xb7\x30\xa7\x30\xa4\x30\xd7\x30\x02\x98\xb9\x70\xc7\x30\xfc\x30\xbf\x30\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : シェイプ頂点データを格納するメモリ領域の確保に失敗しました\n" @*/ )) ;
 					goto ENDLABEL ;
 				}
 
-				// ���_�f�[�^�𖄂߂�
+				// 頂点データを埋める
 				ShapeVert = Shape->Vertex ;
 				for( j = 0 ; j < Shape->VertexNum ; j ++, ShapeVert ++, Src += 16 )
 				{
@@ -1299,7 +1299,7 @@ PHYSICSDATAREADEND :
 		}
 	}
 
-	// VMD�t�@�C������������ǂݍ���
+	// VMDファイルがあったら読み込む
 	{
 		int FileSize ;
 		void *VmdData ;
@@ -1346,7 +1346,7 @@ PHYSICSDATAREADEND :
 
 			for( i = 0 ; ; i ++ )
 			{
-				// VMD�t�@�C���̓ǂݍ���
+				// VMDファイルの読み込み
 				if( LoadFile_VMD(
 						&VmdData,
 						&FileSize,
@@ -1364,15 +1364,15 @@ PHYSICSDATAREADEND :
 					) == FALSE )
 					break ;
 
-				// �s��̍ăZ�b�g�A�b�v
+				// 行列の再セットアップ
 				MV1LoadModelToPMD_SetupMatrix( BoneInfoDim, PmdBoneNum, TRUE, FALSE ) ;
 
 #ifndef DX_NON_BULLET_PHYSICS
-				// ���[�v���[�V�������ǂ����̏����Z�b�g����
+				// ループモーションかどうかの情報をセットする
 				if( LoopMotionFlag )
 				{
 					MLPhysicsInfo.LoopMotionFlag = TRUE ;
-					MLPhysicsInfo.LoopMotionNum = 3 ;	// �����݂��̒l��L���ɂ���ꍇ�͂R�Œ� 
+					MLPhysicsInfo.LoopMotionNum = 3 ;	// ←現在この値を有効にする場合は３固定 
 				}
 				else
 				{
@@ -1380,7 +1380,7 @@ PHYSICSDATAREADEND :
 					MLPhysicsInfo.LoopMotionNum = 1 ;
 				}
 
-				// �d�̓p�����[�^���Z�b�g
+				// 重力パラメータをセット
 				if( GravityEnable )
 				{
 					MLPhysicsInfo.Gravity = Gravity ;
@@ -1397,7 +1397,7 @@ PHYSICSDATAREADEND :
 					MLPhysicsInfo.Gravity.z = 0.0f ;
 				}
 
-				// �v�Z���x�̃p�����[�^���Z�b�g
+				// 計算精度のパラメータをセット
 				MLPhysicsInfo.PhysicsCalcPrecision = LoadParam->GParam.LoadModelToPhysicsCalcPrecision ;
 #endif
 				_SNPRINTF( String, sizeof( String ), "Anim%03d", k ) ;
@@ -1434,23 +1434,23 @@ PHYSICSDATAREADEND :
 		}
 	}
 
-	// ���f����f�[�^�n���h���̍쐬
+	// モデル基データハンドルの作成
 	NewHandle = MV1LoadModelToReadModel( &LoadParam->GParam, &RModel, LoadParam->CurrentDir, LoadParam->FileReadFunc, ASyncThread ) ;
 	if( NewHandle < 0 ) goto ENDLABEL ;
 
-	// �G���[�t���O��|��
+	// エラーフラグを倒す
 	ErrorFlag = 0 ;
 
 ENDLABEL :
 
-	// �G���[�t���O�������Ă����烂�f���n���h�������
+	// エラーフラグが立っていたらモデルハンドルを解放
 	if( ErrorFlag == 1 && NewHandle != -1 )
 	{
 		MV1SubModelBase( NewHandle ) ;
 		NewHandle = -1 ;
 	}
 
-	// �������̉��
+	// メモリの解放
 	if( SkinNextVertIndex != NULL )
 	{
 		DXFREE( SkinNextVertIndex ) ;
@@ -1499,14 +1499,14 @@ ENDLABEL :
 	}
 #endif
 
-	// �ǂݍ��݂悤���f�������
+	// 読み込みようモデルを解放
 	MV1TermReadModel( &RModel ) ; 
 
-	// �n���h����Ԃ�
+	// ハンドルを返す
 	return NewHandle ;
 }
 
-// �s����v�Z����( ������� )
+// 行列を計算する( 骨一つだけ )
 static void MV1LoadModelToPMD_SetupMatrix_One( PMD_READ_BONE_INFO *BoneInfo )
 {
 	MATRIX Matrix ;
@@ -1548,14 +1548,14 @@ static void MV1LoadModelToPMD_SetupMatrix_One( PMD_READ_BONE_INFO *BoneInfo )
 	}
 }
 
-// �s����v�Z����
+// 行列を計算する
 static void MV1LoadModelToPMD_SetupMatrix( PMD_READ_BONE_INFO *BoneInfo, int BoneNum, int UseInitParam, int IKSkip )
 {
 	int i ;
 	int SetupBoneNum ;
 	PMD_READ_BONE_INFO *BoneInfoTemp ;
 
-	// ���ׂẴ{�[���̃��[�J���s����v�Z
+	// すべてのボーンのローカル行列を計算
 	BoneInfoTemp = BoneInfo ;
 	for( i = 0 ; i < BoneNum ; i ++, BoneInfo ++ )
 	{
@@ -1626,20 +1626,20 @@ static void MV1LoadModelToPMD_SetupMatrix( PMD_READ_BONE_INFO *BoneInfo, int Bon
 		BoneInfo->LocalMatrix.m[ 2 ][ 3 ] = 0.0f ;
 	}
 
-	// ���ׂẴ{�[���̐e�q�֌W�̍s����v�Z
+	// すべてのボーンの親子関係の行列を計算
 	SetupBoneNum = 0 ;
 	while( SetupBoneNum < BoneNum )
 	{
 		BoneInfo = BoneInfoTemp ;
 		for( i = 0 ; i < BoneNum ; i ++, BoneInfo ++ )
 		{
-			// ���łɃZ�b�g�A�b�v������Ă����牽�����Ȃ�
+			// すでにセットアップがされていたら何もしない
 			if( BoneInfo->SetupLocalWorldMatrix )
 			{
 				continue ;
 			}
 
-			// IK �Ōv�Z����{�[���̏ꍇ�͉������Ȃ�
+			// IK で計算するボーンの場合は何もしない
 			if( IKSkip && BoneInfo->IsIK )
 			{
 				BoneInfo->SetupLocalWorldMatrix = TRUE ;
@@ -1659,7 +1659,7 @@ static void MV1LoadModelToPMD_SetupMatrix( PMD_READ_BONE_INFO *BoneInfo, int Bon
 
 				ParentBoneInfo = ( PMD_READ_BONE_INFO * )BoneInfo->Frame->Parent->UserData ;
 
-				// �e�̃Z�b�g�A�b�v���������Ă���ꍇ�̂݃Z�b�g�A�b�v���s��
+				// 親のセットアップが完了している場合のみセットアップを行う
 				if( ParentBoneInfo->SetupLocalWorldMatrix )
 				{
 					MV1LoadModelToVMD_CreateMultiplyMatrix( &BoneInfo->LocalWorldMatrix, &BoneInfo->LocalMatrix, &ParentBoneInfo->LocalWorldMatrix ) ;
@@ -1671,7 +1671,7 @@ static void MV1LoadModelToPMD_SetupMatrix( PMD_READ_BONE_INFO *BoneInfo, int Bon
 	}
 }
 
-// �h�j���v�Z����
+// ＩＫを計算する
 static void MV1LoadModelToPMD_SetupIK( PMD_READ_BONE_INFO *BoneInfo, PMD_READ_IK_INFO *IKInfoFirst )
 {
 	int i, j, k ;
@@ -1688,7 +1688,7 @@ static void MV1LoadModelToPMD_SetupIK( PMD_READ_BONE_INFO *BoneInfo, PMD_READ_IK
 
 	for( IKInfo = IKInfoFirst ; IKInfo ; IKInfo = IKInfo->Next )
 	{
-		// IK�̃^�[�Q�b�g�̃��[���h���W���擾���Ă���
+		// IKのターゲットのワールド座標を取得しておく
 		IKBonePos.x = IKInfo->Bone->LocalWorldMatrix.m[ 3 ][ 0 ];
 		IKBonePos.y = IKInfo->Bone->LocalWorldMatrix.m[ 3 ][ 1 ];
 		IKBonePos.z = IKInfo->Bone->LocalWorldMatrix.m[ 3 ][ 2 ];
@@ -1702,7 +1702,7 @@ static void MV1LoadModelToPMD_SetupIK( PMD_READ_BONE_INFO *BoneInfo, PMD_READ_IK
 				ChainBone = &BoneInfo[ IKInfo->ChainBone[ j ] ] ;
 				ChainParentBone = ( PMD_READ_BONE_INFO * )ChainBone->Frame->Parent->UserData ;
 
-				// �^�[�Q�b�g�{�[���Ɠ����{�[����������f�[�^�̃G���[�Ȃ̂Ŗ���
+				// ターゲットボーンと同じボーンだったらデータのエラーなので無視
 				if( ChainBone == IKInfo->TargetBone )
 					continue ;
 
@@ -1801,7 +1801,7 @@ static void MV1LoadModelToPMD_SetupIK( PMD_READ_BONE_INFO *BoneInfo, PMD_READ_IK
 	}
 }
 
-// �w��̃{�[���ɃA�j���[�V�����̎w��L�[�̃p�����[�^�𔽉f������
+// 指定のボーンにアニメーションの指定キーのパラメータを反映させる
 static void MV1LoadModelToPMD_SetupOneBoneMatrixFormAnimKey( PMD_READ_BONE_INFO *BoneInfo, int Time, int LoopNo, int MaxTime, int ValidNextRate, float NextRate )
 {
 	VMD_READ_KEY_INFO *NowKey, *NextKey ;
@@ -1841,7 +1841,7 @@ static void MV1LoadModelToPMD_SetupOneBoneMatrixFormAnimKey( PMD_READ_BONE_INFO 
 
 				BoneInfo->DisablePhysics = BoneInfo->KeyDisablePhysics != NULL ? ( *NextKeyDisablePhysics - *NowKeyDisablePhysics ) * NextRate + *NowKeyDisablePhysics : 0.0f ;
 
-				// ���ʐ��`���
+				// 球面線形補間
 				_MV1SphereLinear( NowKeyRot, NextKeyRot, NextRate, &BoneInfo->Rotate ) ;
 
 //				{
@@ -1897,7 +1897,7 @@ static void MV1LoadModelToPMD_SetupOneBoneMatrixFormAnimKey( PMD_READ_BONE_INFO 
 	else
 	if( BoneInfo->IsIK == 0 && BoneInfo->Anim != NULL )
 	{
-		// �L�[�̏���
+		// キーの準備
 		if( BoneInfo->NowKey->Next == NULL )
 		{
 			NowKey = BoneInfo->NowKey ;
@@ -1916,7 +1916,7 @@ static void MV1LoadModelToPMD_SetupOneBoneMatrixFormAnimKey( PMD_READ_BONE_INFO 
 			NextKey = NowKey->Next ;
 		}
 
-		// ���̃L�[���Ȃ������݂̃L�[�̃t���[���ȉ��̏ꍇ�͌��݂̃t���[���̒l���̂܂�
+		// 次のキーがないか現在のキーのフレーム以下の場合は現在のフレームの値そのまま
 		if( NextKey == NULL || NowKey->Frame * 2 >= ( DWORD )Time )
 		{
 			BoneInfo->Translate      = NowKey->MVRPosKey[ 0 ] ;
@@ -1960,7 +1960,7 @@ static void MV1LoadModelToPMD_SetupOneBoneMatrixFormAnimKey( PMD_READ_BONE_INFO 
 
 				BoneInfo->DisablePhysics = NowKey->MVRDisablePhysicsKey != NULL ? ( *NextKeyDisablePhysics - *NowKeyDisablePhysics ) * NextRate + *NowKeyDisablePhysics : 0.0f ;
 
-				// ���ʐ��`���
+				// 球面線形補間
 				_MV1SphereLinear( NowKeyRot, NextKeyRot, NextRate, &BoneInfo->Rotate ) ;
 
 //				{
@@ -1998,7 +1998,7 @@ static void MV1LoadModelToPMD_SetupOneBoneMatrixFormAnimKey( PMD_READ_BONE_INFO 
 			}
 			else
 			{
-				// ���炩���ߎZ�o������Ԓl���Z�b�g
+				// あらかじめ算出した補間値をセット
 				BoneInfo->Translate      = NowKey->MVRPosKey[ KeyNo ] ;
 				BoneInfo->Rotate         = NowKey->MVRRotKey[ KeyNo ] ;
 				BoneInfo->DisablePhysics = NowKey->MVRDisablePhysicsKey != NULL ? NowKey->MVRDisablePhysicsKey[ KeyNo ] : 0.0f ;
@@ -2007,7 +2007,7 @@ static void MV1LoadModelToPMD_SetupOneBoneMatrixFormAnimKey( PMD_READ_BONE_INFO 
 	}
 }
 
-// �u�l�c�t�@�C����ǂݍ���( -1:�G���[ )
+// ＶＭＤファイルを読み込む( -1:エラー )
 static int _MV1LoadModelToVMD_PMD(
 	int								DataIndex,
 	MV1_MODEL_R *					RModel,
@@ -2045,8 +2045,8 @@ static int _MV1LoadModelToVMD_PMD(
 	wchar_t String[ 256 ] ;
 
 #ifndef DX_NON_BULLET_PHYSICS
-	// DisablePhysicsFlag �� TRUE �ŁA���� MV1Man.LoadModelToDisablePhysicsNameWordMode ��
-	// DX_LOADMODEL_PHYSICS_DISABLENAMEWORD_ALWAYS �������畨�����������S�ɖ����ɂ���
+	// DisablePhysicsFlag が TRUE で、且つ MV1Man.LoadModelToDisablePhysicsNameWordMode が
+	// DX_LOADMODEL_PHYSICS_DISABLENAMEWORD_ALWAYS だったら物理処理を完全に無効にする
 	if( DisablePhysicsFlag &&
 		MV1Man.LoadModelToDisablePhysicsNameWordMode == DX_LOADMODEL_PHYSICS_DISABLENAMEWORD_ALWAYS )
 	{
@@ -2054,30 +2054,30 @@ static int _MV1LoadModelToVMD_PMD(
 	}
 #endif
 
-	// ��{���̓ǂݍ���
+	// 基本情報の読み込み
 	if( LoadVMDBaseData( &VmdData, DataBuffer, DataSize ) < 0 )
 		return -1 ;
 
 #ifndef DX_NON_BULLET_PHYSICS
 	if( MLPhysicsInfo )
 	{
-		// �����I�u�W�F�N�g�̏���������
+		// 物理オブジェクトの準備をする
 		SetupPhysicsObject_PMDPhysicsInfo( MLPhysicsInfo, DisablePhysicsFlag ) ;
 	}
 #endif
 
-	// �A�j���[�V�����Z�b�g��ǉ�
+	// アニメーションセットを追加
 	AnimSet = MV1RAddAnimSet( RModel, Name ) ;
 	if( AnimSet == NULL )
 	{
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xa2\x30\xcb\x30\xe1\x30\xfc\x30\xb7\x30\xe7\x30\xf3\x30\xbb\x30\xc3\x30\xc8\x30\x6e\x30\xfd\x8f\xa0\x52\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : �A�j���[�V�����Z�b�g�̒ǉ��Ɏ��s���܂���\n" @*/ )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xa2\x30\xcb\x30\xe1\x30\xfc\x30\xb7\x30\xe7\x30\xf3\x30\xbb\x30\xc3\x30\xc8\x30\x6e\x30\xfd\x8f\xa0\x52\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : アニメーションセットの追加に失敗しました\n" @*/ )) ;
 		goto ENDLABEL ;
 	}
 
-	// ���[�v���[�V�������ǂ������Z�b�g
+	// ループモーションかどうかをセット
 	AnimSet->IsLoopAnim = LoopMotionFlag ? 1 : 0 ;
 
-	// �{�[���̃A�j���[�V�����|�C���^�̏�����
+	// ボーンのアニメーションポインタの初期化
 	BoneInfo = PmdBoneInfo ;
 	for( i = 0 ; i < PmdBoneNum ; i ++, BoneInfo ++ )
 	{
@@ -2088,11 +2088,11 @@ static int _MV1LoadModelToVMD_PMD(
 	AnimSet->StartTime = 0.0f ;
 	AnimSet->EndTime = ( float )VmdData.MaxTime ;
 
-	// �m�[�h�̐������J��Ԃ�
+	// ノードの数だけ繰り返し
 	VmdNode = VmdData.Node ;
 	for( i = 0 ; ( DWORD )i < VmdData.NodeNum ; i ++, VmdNode ++ )
 	{
-		// �t���[���̌���
+		// フレームの検索
 		wchar_t VmdNodeNameW[ 64 ] ;
 		ConvString( VmdNode->Name, -1, DX_CHARCODEFORMAT_SHIFTJIS, ( char * )VmdNodeNameW, sizeof( VmdNodeNameW ), WCHAR_T_CHARCODEFORMAT ) ;
 		for( Frame = RModel->FrameFirst ; Frame && _WCSCMP( Frame->NameW, VmdNodeNameW ) != 0 ; Frame = Frame->DataNext ){}
@@ -2100,22 +2100,22 @@ static int _MV1LoadModelToVMD_PMD(
 
 		BoneInfo = ( PMD_READ_BONE_INFO * )Frame->UserData ;
 
-		// �A�j���[�V�����̒ǉ�
+		// アニメーションの追加
 		Anim = MV1RAddAnim( RModel, AnimSet ) ;
 		if( Anim == NULL )
 		{
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xa2\x30\xcb\x30\xe1\x30\xfc\x30\xb7\x30\xe7\x30\xf3\x30\x6e\x30\xfd\x8f\xa0\x52\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : �A�j���[�V�����̒ǉ��Ɏ��s���܂���\n" @*/ )) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xa2\x30\xcb\x30\xe1\x30\xfc\x30\xb7\x30\xe7\x30\xf3\x30\x6e\x30\xfd\x8f\xa0\x52\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : アニメーションの追加に失敗しました\n" @*/ )) ;
 			goto ENDLABEL ;
 		}
 
-		// �{�[���ɏ��Z�b�g
+		// ボーンに情報セット
 		BoneInfo->Anim = Anim ;
 		BoneInfo->Node = VmdNode ;
 
-		// �Ώۃm�[�h�̃Z�b�g
+		// 対象ノードのセット
 		Anim->TargetFrameIndex = Frame->Index ;
 
-		// �ő厞�Ԃ��Z�b�g
+		// 最大時間をセット
 		if( BoneInfo->IsIK )
 		{
 			Anim->MaxTime = ( float )VmdData.MaxTime ;
@@ -2125,21 +2125,21 @@ static int _MV1LoadModelToVMD_PMD(
 			Anim->MaxTime = ( float )VmdNode->MaxFrame ;
 		}
 
-		// �ő厞�Ԃƍŏ����Ԃ��X�V
+		// 最大時間と最小時間を更新
 //		if( AnimSet->StartTime > ( float )VmdNode->MinFrame ) AnimSet->StartTime = ( float )VmdNode->MinFrame ;
 //		if( AnimSet->EndTime   < ( float )VmdNode->MaxFrame ) AnimSet->EndTime   = ( float )VmdNode->MaxFrame ;
 
-		// �A�j���[�V�����L�[�̏����Z�b�g
+		// アニメーションキーの情報をセット
 		KeyPosSet = MV1RAddAnimKeySet( RModel, Anim ) ;
 		if( KeyPosSet == NULL )
 		{
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xa2\x30\xcb\x30\xe1\x30\xfc\x30\xb7\x30\xe7\x30\xf3\x30\xa7\x5e\x19\x6a\xad\x30\xfc\x30\xbb\x30\xc3\x30\xc8\x30\x6e\x30\xfd\x8f\xa0\x52\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : �A�j���[�V�������W�L�[�Z�b�g�̒ǉ��Ɏ��s���܂���\n" @*/ )) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xa2\x30\xcb\x30\xe1\x30\xfc\x30\xb7\x30\xe7\x30\xf3\x30\xa7\x5e\x19\x6a\xad\x30\xfc\x30\xbb\x30\xc3\x30\xc8\x30\x6e\x30\xfd\x8f\xa0\x52\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : アニメーション座標キーセットの追加に失敗しました\n" @*/ )) ;
 			goto ENDLABEL ;
 		}
 		KeyRotSet = MV1RAddAnimKeySet( RModel, Anim ) ;
 		if( KeyRotSet == NULL )
 		{
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xa2\x30\xcb\x30\xe1\x30\xfc\x30\xb7\x30\xe7\x30\xf3\x30\xde\x56\xe2\x8e\xad\x30\xfc\x30\xbb\x30\xc3\x30\xc8\x30\x6e\x30\xfd\x8f\xa0\x52\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : �A�j���[�V������]�L�[�Z�b�g�̒ǉ��Ɏ��s���܂���\n" @*/ )) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xa2\x30\xcb\x30\xe1\x30\xfc\x30\xb7\x30\xe7\x30\xf3\x30\xde\x56\xe2\x8e\xad\x30\xfc\x30\xbb\x30\xc3\x30\xc8\x30\x6e\x30\xfd\x8f\xa0\x52\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : アニメーション回転キーセットの追加に失敗しました\n" @*/ )) ;
 			goto ENDLABEL ;
 		}
 
@@ -2160,33 +2160,33 @@ static int _MV1LoadModelToVMD_PMD(
 		KeyPosSet->KeyTime = ( float * )ADDMEMAREA( sizeof( float ) * KeyPosSet->Num, &RModel->Mem ) ;
 		if( KeyPosSet->KeyTime == NULL )
 		{
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xa2\x30\xcb\x30\xe1\x30\xfc\x30\xb7\x30\xe7\x30\xf3\x30\xad\x30\xfc\x30\xbf\x30\xa4\x30\xe0\x30\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : �A�j���[�V�����L�[�^�C�����i�[���郁�����̈�̊m�ۂɎ��s���܂���\n" @*/ )) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xa2\x30\xcb\x30\xe1\x30\xfc\x30\xb7\x30\xe7\x30\xf3\x30\xad\x30\xfc\x30\xbf\x30\xa4\x30\xe0\x30\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : アニメーションキータイムを格納するメモリ領域の確保に失敗しました\n" @*/ )) ;
 			goto ENDLABEL ;
 		}
 		KeyPosSet->KeyVector = ( VECTOR * )ADDMEMAREA( sizeof( VECTOR ) * KeyPosSet->Num, &RModel->Mem ) ;
 		if( KeyPosSet->KeyVector == NULL )
 		{
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xa2\x30\xcb\x30\xe1\x30\xfc\x30\xb7\x30\xe7\x30\xf3\x30\xad\x30\xfc\x30\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : �A�j���[�V�����L�[���i�[���郁�����̈�̊m�ۂɎ��s���܂���\n" @*/ )) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xa2\x30\xcb\x30\xe1\x30\xfc\x30\xb7\x30\xe7\x30\xf3\x30\xad\x30\xfc\x30\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : アニメーションキーを格納するメモリ領域の確保に失敗しました\n" @*/ )) ;
 			goto ENDLABEL ;
 		}
 
 		KeyRotSet->KeyTime = ( float * )ADDMEMAREA( sizeof( float ) * KeyRotSet->Num, &RModel->Mem ) ;
 		if( KeyRotSet->KeyTime == NULL )
 		{
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xa2\x30\xcb\x30\xe1\x30\xfc\x30\xb7\x30\xe7\x30\xf3\x30\xad\x30\xfc\x30\xbf\x30\xa4\x30\xe0\x30\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : �A�j���[�V�����L�[�^�C�����i�[���郁�����̈�̊m�ۂɎ��s���܂���\n" @*/ )) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xa2\x30\xcb\x30\xe1\x30\xfc\x30\xb7\x30\xe7\x30\xf3\x30\xad\x30\xfc\x30\xbf\x30\xa4\x30\xe0\x30\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : アニメーションキータイムを格納するメモリ領域の確保に失敗しました\n" @*/ )) ;
 			goto ENDLABEL ;
 		}
 		KeyRotSet->KeyVector = ( VECTOR * )ADDMEMAREA( sizeof( FLOAT4 ) * KeyRotSet->Num, &RModel->Mem ) ;
 		if( KeyRotSet->KeyVector == NULL )
 		{
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xa2\x30\xcb\x30\xe1\x30\xfc\x30\xb7\x30\xe7\x30\xf3\x30\xad\x30\xfc\x30\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : �A�j���[�V�����L�[���i�[���郁�����̈�̊m�ۂɎ��s���܂���\n" @*/ )) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xa2\x30\xcb\x30\xe1\x30\xfc\x30\xb7\x30\xe7\x30\xf3\x30\xad\x30\xfc\x30\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : アニメーションキーを格納するメモリ領域の確保に失敗しました\n" @*/ )) ;
 			goto ENDLABEL ;
 		}
 
 		KeyDisablePhysics = ( float * )ADDMEMAREA( sizeof( float ) * KeyPosSet->Num, &RModel->Mem ) ;
 		if( KeyDisablePhysics == NULL )
 		{
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xa2\x30\xcb\x30\xe1\x30\xfc\x30\xb7\x30\xe7\x30\xf3\x30\xad\x30\xfc\x30\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : �A�j���[�V�����L�[���i�[���郁�����̈�̊m�ۂɎ��s���܂���\n" @*/ )) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xa2\x30\xcb\x30\xe1\x30\xfc\x30\xb7\x30\xe7\x30\xf3\x30\xad\x30\xfc\x30\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : アニメーションキーを格納するメモリ領域の確保に失敗しました\n" @*/ )) ;
 			goto ENDLABEL ;
 		}
 
@@ -2339,7 +2339,7 @@ static int _MV1LoadModelToVMD_PMD(
 
 					VmdCalcLine( RLinear, Rate, RateH, RX1, RX2, RY1, RY2 ) ;
 
-					// ���ʐ��`���
+					// 球面線形補間
 					{
 						FLOAT4 NowKeyRot ;
 						FLOAT4 NextKeyRot ;
@@ -2433,7 +2433,7 @@ static int _MV1LoadModelToVMD_PMD(
 		}
 	}
 
-	// �J�����̃��[�V������񂪂���ꍇ�̓J��������ǉ�����
+	// カメラのモーション情報がある場合はカメラ情報を追加する
 	if( VmdData.Camera != NULL )
 	{
 		_SWNPRINTF( String, sizeof( String ) / 2, L"Camera%03d", DataIndex ) ;
@@ -2441,10 +2441,10 @@ static int _MV1LoadModelToVMD_PMD(
 			goto ENDLABEL ;
 	}
 
-	// �{�[����񂪂���ꍇ�݂̂��̐�̏������s��
+	// ボーン情報がある場合のみこの先の処理を行う
 	if( PmdBoneInfo != NULL )
 	{
-		// �A�j���[�V�����̍Đ�����
+		// アニメーションの再生準備
 		BoneInfo = PmdBoneInfo ;
 		for( i = 0 ; i < PmdBoneNum ; i ++, BoneInfo ++ )
 		{
@@ -2457,34 +2457,34 @@ static int _MV1LoadModelToVMD_PMD(
 			else
 			if( BoneInfo->IsIK )
 			{
-				// IK�{�[���ŃA�j���[�V�������Ȃ��ꍇ�̓L�[��ł���������
+				// IKボーンでアニメーションがない場合はキーを打つ準備をする
 				if( BoneInfo->Anim == NULL )
 				{
 					BoneInfo->IsIKAnim = TRUE ;
 
-					// �A�j���[�V�����̒ǉ�
+					// アニメーションの追加
 					BoneInfo->Anim = MV1RAddAnim( RModel, AnimSet ) ;
 					if( BoneInfo->Anim == NULL )
 					{
-						DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xa2\x30\xcb\x30\xe1\x30\xfc\x30\xb7\x30\xe7\x30\xf3\x30\x6e\x30\xfd\x8f\xa0\x52\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : �A�j���[�V�����̒ǉ��Ɏ��s���܂���\n" @*/ )) ;
+						DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xa2\x30\xcb\x30\xe1\x30\xfc\x30\xb7\x30\xe7\x30\xf3\x30\x6e\x30\xfd\x8f\xa0\x52\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : アニメーションの追加に失敗しました\n" @*/ )) ;
 						goto ENDLABEL ;
 					}
 
-					// �Ώۃm�[�h�̃Z�b�g
+					// 対象ノードのセット
 					BoneInfo->Anim->TargetFrameIndex = BoneInfo->Frame->Index ;
 					BoneInfo->Anim->MaxTime = ( float )VmdData.MaxTime ;
 
-					// �A�j���[�V�����L�[�̏����Z�b�g
+					// アニメーションキーの情報をセット
 					KeyPosSet = MV1RAddAnimKeySet( RModel, BoneInfo->Anim ) ;
 					if( KeyPosSet == NULL )
 					{
-						DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xa2\x30\xcb\x30\xe1\x30\xfc\x30\xb7\x30\xe7\x30\xf3\x30\xad\x30\xfc\x30\xbb\x30\xc3\x30\xc8\x30\x6e\x30\xfd\x8f\xa0\x52\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : �A�j���[�V�����L�[�Z�b�g�̒ǉ��Ɏ��s���܂���\n" @*/ )) ;
+						DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xa2\x30\xcb\x30\xe1\x30\xfc\x30\xb7\x30\xe7\x30\xf3\x30\xad\x30\xfc\x30\xbb\x30\xc3\x30\xc8\x30\x6e\x30\xfd\x8f\xa0\x52\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : アニメーションキーセットの追加に失敗しました\n" @*/ )) ;
 						goto ENDLABEL ;
 					}
 					KeyRotSet = MV1RAddAnimKeySet( RModel, BoneInfo->Anim ) ;
 					if( KeyRotSet == NULL )
 					{
-						DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xa2\x30\xcb\x30\xe1\x30\xfc\x30\xb7\x30\xe7\x30\xf3\x30\xad\x30\xfc\x30\xbb\x30\xc3\x30\xc8\x30\x6e\x30\xfd\x8f\xa0\x52\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : �A�j���[�V�����L�[�Z�b�g�̒ǉ��Ɏ��s���܂���\n" @*/ )) ;
+						DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xa2\x30\xcb\x30\xe1\x30\xfc\x30\xb7\x30\xe7\x30\xf3\x30\xad\x30\xfc\x30\xbb\x30\xc3\x30\xc8\x30\x6e\x30\xfd\x8f\xa0\x52\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : アニメーションキーセットの追加に失敗しました\n" @*/ )) ;
 						goto ENDLABEL ;
 					}
 
@@ -2503,26 +2503,26 @@ static int _MV1LoadModelToVMD_PMD(
 					KeyPosSet->KeyTime = ( float * )ADDMEMAREA( sizeof( float ) * KeyPosSet->Num, &RModel->Mem ) ;
 					if( KeyPosSet->KeyTime == NULL )
 					{
-						DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xa2\x30\xcb\x30\xe1\x30\xfc\x30\xb7\x30\xe7\x30\xf3\x30\xad\x30\xfc\x30\xbf\x30\xa4\x30\xe0\x30\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : �A�j���[�V�����L�[�^�C�����i�[���郁�����̈�̊m�ۂɎ��s���܂���\n" @*/ )) ;
+						DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xa2\x30\xcb\x30\xe1\x30\xfc\x30\xb7\x30\xe7\x30\xf3\x30\xad\x30\xfc\x30\xbf\x30\xa4\x30\xe0\x30\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : アニメーションキータイムを格納するメモリ領域の確保に失敗しました\n" @*/ )) ;
 						goto ENDLABEL ;
 					}
 					KeyPosSet->KeyVector = ( VECTOR * )ADDMEMAREA( sizeof( VECTOR ) * KeyPosSet->Num, &RModel->Mem ) ;
 					if( KeyPosSet->KeyVector == NULL )
 					{
-						DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xa2\x30\xcb\x30\xe1\x30\xfc\x30\xb7\x30\xe7\x30\xf3\x30\xad\x30\xfc\x30\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : �A�j���[�V�����L�[���i�[���郁�����̈�̊m�ۂɎ��s���܂���\n" @*/ )) ;
+						DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xa2\x30\xcb\x30\xe1\x30\xfc\x30\xb7\x30\xe7\x30\xf3\x30\xad\x30\xfc\x30\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : アニメーションキーを格納するメモリ領域の確保に失敗しました\n" @*/ )) ;
 						goto ENDLABEL ;
 					}
 
 					KeyRotSet->KeyTime = ( float * )ADDMEMAREA( sizeof( float ) * KeyRotSet->Num, &RModel->Mem ) ;
 					if( KeyRotSet->KeyTime == NULL )
 					{
-						DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xa2\x30\xcb\x30\xe1\x30\xfc\x30\xb7\x30\xe7\x30\xf3\x30\xad\x30\xfc\x30\xbf\x30\xa4\x30\xe0\x30\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : �A�j���[�V�����L�[�^�C�����i�[���郁�����̈�̊m�ۂɎ��s���܂���\n" @*/ )) ;
+						DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xa2\x30\xcb\x30\xe1\x30\xfc\x30\xb7\x30\xe7\x30\xf3\x30\xad\x30\xfc\x30\xbf\x30\xa4\x30\xe0\x30\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : アニメーションキータイムを格納するメモリ領域の確保に失敗しました\n" @*/ )) ;
 						goto ENDLABEL ;
 					}
 					KeyRotSet->KeyVector = ( VECTOR * )ADDMEMAREA( sizeof( FLOAT4 ) * KeyRotSet->Num, &RModel->Mem ) ;
 					if( KeyRotSet->KeyVector == NULL )
 					{
-						DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xa2\x30\xcb\x30\xe1\x30\xfc\x30\xb7\x30\xe7\x30\xf3\x30\xad\x30\xfc\x30\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : �A�j���[�V�����L�[���i�[���郁�����̈�̊m�ۂɎ��s���܂���\n" @*/ )) ;
+						DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xa2\x30\xcb\x30\xe1\x30\xfc\x30\xb7\x30\xe7\x30\xf3\x30\xad\x30\xfc\x30\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : アニメーションキーを格納するメモリ領域の確保に失敗しました\n" @*/ )) ;
 						goto ENDLABEL ;
 					}
 
@@ -2548,7 +2548,7 @@ static int _MV1LoadModelToVMD_PMD(
 				BoneInfo->KeyMatrix2 = ( MATRIX * )DXALLOC( sizeof( MATRIX ) * ( ( FPS60 ? VmdData.MaxTime * 2 : VmdData.MaxTime ) + 1 ) ) ;
 				if( BoneInfo->KeyMatrix2 == NULL )
 				{
-					DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xa2\x30\xcb\x30\xe1\x30\xfc\x30\xb7\x30\xe7\x30\xf3\x30\x4c\x88\x17\x52\xad\x30\xfc\x30\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : �A�j���[�V�����s��L�[���i�[���郁�����̈�̊m�ۂɎ��s���܂���\n" @*/ )) ;
+					DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xa2\x30\xcb\x30\xe1\x30\xfc\x30\xb7\x30\xe7\x30\xf3\x30\x4c\x88\x17\x52\xad\x30\xfc\x30\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : アニメーション行列キーを格納するメモリ領域の確保に失敗しました\n" @*/ )) ;
 					goto ENDLABEL ;
 				}
 			}
@@ -2565,7 +2565,7 @@ static int _MV1LoadModelToVMD_PMD(
 				BoneInfo->KeyMatrix = ( MATRIX * )DXALLOC( sizeof( MATRIX ) * ( ( FPS60 ? VmdData.MaxTime * 2 : VmdData.MaxTime ) + 1 ) ) ;
 				if( BoneInfo->KeyMatrix == NULL )
 				{
-					DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xa2\x30\xcb\x30\xe1\x30\xfc\x30\xb7\x30\xe7\x30\xf3\x30\x4c\x88\x17\x52\xad\x30\xfc\x30\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : �A�j���[�V�����s��L�[���i�[���郁�����̈�̊m�ۂɎ��s���܂���\n" @*/ )) ;
+					DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xa2\x30\xcb\x30\xe1\x30\xfc\x30\xb7\x30\xe7\x30\xf3\x30\x4c\x88\x17\x52\xad\x30\xfc\x30\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : アニメーション行列キーを格納するメモリ領域の確保に失敗しました\n" @*/ )) ;
 					goto ENDLABEL ;
 				}
 				if( MLPhysicsInfo->LoopMotionFlag )
@@ -2576,7 +2576,7 @@ static int _MV1LoadModelToVMD_PMD(
 		}
 #endif
 
-		// �A�j���[�V�������Đ�����
+		// アニメーションを再生する
 		bool IKSkip ;
 		int PlayLoopNum ;
 		int LoopNo ;
@@ -2607,7 +2607,7 @@ static int _MV1LoadModelToVMD_PMD(
 
 		for( LoopNo = 0 ; LoopNo < PlayLoopNum ; LoopNo ++ )
 		{
-			// ���ׂẴt���[���̎Q�ƃA�j���[�V�����L�[�����Z�b�g����
+			// すべてのフレームの参照アニメーションキーをリセットする
 			BoneInfo = PmdBoneInfo ;
 			for( i = 0 ; i < PmdBoneNum ; i ++, BoneInfo ++ )
 			{
@@ -2627,7 +2627,7 @@ static int _MV1LoadModelToVMD_PMD(
 				{
 					if( IKSkip )
 					{
-						// ���ׂẴt���[���̌��݂̃t���[���ł̃p�����[�^���Z�o����
+						// すべてのフレームの現在のフレームでのパラメータを算出する
 						for( j = 0 ; j < PmdBoneNum ; j ++ )
 						{
 							if( PmdBoneInfo[ j ].IsIK == FALSE && PmdIKInfoFirst != NULL )
@@ -2636,24 +2636,24 @@ static int _MV1LoadModelToVMD_PMD(
 							}
 						}
 
-						// �s��̌v�Z
+						// 行列の計算
 						MV1LoadModelToPMD_SetupMatrix( PmdBoneInfo, PmdBoneNum, FALSE, PmdIKInfoFirst != NULL ? TRUE : FALSE ) ;
 					}
 					else
 					{
-						// ���ׂẴt���[���̌��݂̃t���[���ł̃p�����[�^���Z�o����
+						// すべてのフレームの現在のフレームでのパラメータを算出する
 						for( j = 0 ; j < PmdBoneNum ; j ++ )
 						{
 							MV1LoadModelToPMD_SetupOneBoneMatrixFormAnimKey( &PmdBoneInfo[ j ], TimeNo, LoopNo, MaxTime, TimeDivLoopCount == 0 ? FALSE : ValidNextRate, NextRate ) ;
 						}
 
-						// �s��̌v�Z
+						// 行列の計算
 						MV1LoadModelToPMD_SetupMatrix( PmdBoneInfo, PmdBoneNum, FALSE, FALSE ) ;
 
-						// IK�̌v�Z���s���̂̓��[�V�������[�v�̍ŏ�����
+						// IKの計算を行うのはモーションループの最初だけ
 						if( LoopNo == 0 )
 						{
-							// �h�j�̌v�Z
+							// ＩＫの計算
 							if( PmdIKInfoFirst )
 							{
 								MV1LoadModelToPMD_SetupIK( PmdBoneInfo, PmdIKInfoFirst ) ;
@@ -2662,7 +2662,7 @@ static int _MV1LoadModelToVMD_PMD(
 					}
 
 #ifndef DX_NON_BULLET_PHYSICS
-					// �������Z���s��
+					// 物理演算を行う
 					if( MLPhysicsInfo )
 					{
 						for( j = 0 ; j < PmdBoneNum ; j ++ )
@@ -2672,7 +2672,7 @@ static int _MV1LoadModelToVMD_PMD(
 						OneFrameProcess_PMDPhysicsInfo( MLPhysicsInfo, TimeNo, LoopNo, FPS60, TimeDivLoopCount == 0 ? FALSE : ValidNextRate, TimeDivLoopNum ) ;
 					}
 #endif
-					// TimeDivLoopCount �� 0 �̂Ƃ��� Rotate �� Translate �� LocalWorldMatrix ��ۑ����Ă���
+					// TimeDivLoopCount が 0 のときの Rotate と Translate と LocalWorldMatrix を保存しておく
 					if( TimeDivLoopCount == 0 )
 					{
 						for( j = 0 ; j < PmdBoneNum ; j ++ )
@@ -2686,7 +2686,7 @@ static int _MV1LoadModelToVMD_PMD(
 
 				if( LoopNo == 0 )
 				{
-					// �L�[�^�C�������͕K���ۑ�����
+					// キータイムだけは必ず保存する
 					BoneInfo = PmdBoneInfo ;
 					for( j = 0 ; j < PmdBoneNum ; j ++, BoneInfo ++ )
 					{
@@ -2699,7 +2699,7 @@ static int _MV1LoadModelToVMD_PMD(
 
 					if( ( ValidNextRate || FPS60 || ( FPS60 == false && TimeNo % 2 == 0 ) ) && PmdIKInfoFirst != NULL )
 					{
-						// �h�j�Ɋւ���Ă���{�[�����͂h�j�̉e�����Ȃ��h�j�{�[���̎q�{�[���̃L�[��ۑ�
+						// ＩＫに関わっているボーン又はＩＫの影響しないＩＫボーンの子ボーンのキーを保存
 						BoneInfo = PmdBoneInfo ;
 						for( j = 0 ; j < PmdBoneNum ; j ++, BoneInfo ++ )
 						{
@@ -2719,7 +2719,7 @@ static int _MV1LoadModelToVMD_PMD(
 								{
 									MATRIX InvParentBoneLWM ;
 
-									// �e�{�[������̋t�s��������̍s��Ɋ|���āA�{�[���̃��[�J���s����擾����
+									// 親ボーンからの逆行列を自分の行列に掛けて、ボーンのローカル行列を取得する
 									MV1LoadModelToVMD_InverseMatrix( ( ( PMD_READ_BONE_INFO * )BoneInfo->Frame->Parent->UserData )->TimeDivLoopCount0_LocalWorldMatrix, InvParentBoneLWM ) ;
 									MV1LoadModelToVMD_CreateMultiplyMatrix( &BoneInfo->KeyMatrix2[ DestIndex ], &BoneInfo->TimeDivLoopCount0_LocalWorldMatrix, &InvParentBoneLWM ) ;
 								}
@@ -2740,7 +2740,7 @@ static int _MV1LoadModelToVMD_PMD(
 			MV1_ANIMKEYSET_R *KeyMatrixSet ;
 			int PmdPhysicsNum ;
 
-			// �����K���̃A�j���[�V�����f�[�^���Z�b�g����
+			// 物理適応のアニメーションデータをセットする
 			PmdPhysicsNum = MLPhysicsInfo->PmdPhysicsNum ;
 			for( i = 0 ; i < PmdPhysicsNum ; i ++ )
 			{
@@ -2748,10 +2748,10 @@ static int _MV1LoadModelToVMD_PMD(
 
 				BoneInfo = MLPhysicsInfo->PmdPhysicsInfoDim[ i ].Bone ;
 
-				// ���łɃA�j���̃f�[�^���{�[���ɂ��Ă��Ċ������̃A�j���[�V���������Ă��Ȃ����ǂ����ŏ����𕪊�
+				// すでにアニメのデータがボーンについていて且つ物理のアニメーションがついていないかどうかで処理を分岐
 				if( BoneInfo->Anim != NULL && BoneInfo->SetupPhysicsAnim == 0 )
 				{
-					// ���ɂ���ꍇ�͕Е��� MATRIX3X3�^�A�����Е��� VECTOR�^ �� TRANSLATE �ɂ���
+					// 既にある場合は片方を MATRIX3X3型、もう片方を VECTOR型 の TRANSLATE にする
 					if( BoneInfo->Anim->AnimKeySetFirst->Type == MV1_ANIMKEY_TYPE_VECTOR )
 					{
 						KeyPosSet = BoneInfo->Anim->AnimKeySetFirst ;
@@ -2764,11 +2764,11 @@ static int _MV1LoadModelToVMD_PMD(
 					}
 					KeyMatrixSet = KeyRotSet ;
 
-					// �L�[�p�������̍Ċm��
+					// キー用メモリの再確保
 					KeyMatrixSet->KeyMatrix3x3 = ( MV1_ANIM_KEY_MATRIX3X3 * )ADDMEMAREA( sizeof( MV1_ANIM_KEY_MATRIX3X3 ) * ( ( FPS60 ? VmdData.MaxTime * 2 : VmdData.MaxTime ) + 1 ), &RModel->Mem ) ;
 					if( KeyMatrixSet->KeyMatrix3x3 == NULL )
 					{
-						DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\x4c\x88\x17\x52\xa2\x30\xcb\x30\xe1\x30\xfc\x30\xb7\x30\xe7\x30\xf3\x30\xad\x30\xfc\x30\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : �s��A�j���[�V�����L�[���i�[���郁�����̈�̊m�ۂɎ��s���܂���\n" @*/ )) ;
+						DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\x4c\x88\x17\x52\xa2\x30\xcb\x30\xe1\x30\xfc\x30\xb7\x30\xe7\x30\xf3\x30\xad\x30\xfc\x30\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : 行列アニメーションキーを格納するメモリ領域の確保に失敗しました\n" @*/ )) ;
 						goto ENDLABEL ;
 					}
 					if( BoneInfo->Anim->AnimKeySetFirst->Num != ( int )( VmdData.MaxTime * 2 + 1 ) )
@@ -2791,19 +2791,19 @@ static int _MV1LoadModelToVMD_PMD(
 						KeyPosSet->KeyVector = ( VECTOR * )ADDMEMAREA( sizeof( VECTOR ) * KeyPosSet->Num, &RModel->Mem ) ;
 						if( KeyPosSet->KeyVector == NULL )
 						{
-							DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xa7\x5e\x19\x6a\xa2\x30\xcb\x30\xe1\x30\xfc\x30\xb7\x30\xe7\x30\xf3\x30\xad\x30\xfc\x30\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : ���W�A�j���[�V�����L�[���i�[���郁�����̈�̊m�ۂɎ��s���܂���\n" @*/ )) ;
+							DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xa7\x5e\x19\x6a\xa2\x30\xcb\x30\xe1\x30\xfc\x30\xb7\x30\xe7\x30\xf3\x30\xad\x30\xfc\x30\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : 座標アニメーションキーを格納するメモリ領域の確保に失敗しました\n" @*/ )) ;
 							goto ENDLABEL ;
 						}
 						KeyPosSet->KeyTime = ( float * )ADDMEMAREA( sizeof( float ) * KeyPosSet->Num, &RModel->Mem ) ;
 						if( KeyPosSet->KeyTime == NULL )
 						{
-							DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xa2\x30\xcb\x30\xe1\x30\xfc\x30\xb7\x30\xe7\x30\xf3\x30\xad\x30\xfc\x30\xbf\x30\xa4\x30\xe0\x30\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : �A�j���[�V�����L�[�^�C�����i�[���郁�����̈�̊m�ۂɎ��s���܂���\n" @*/ )) ;
+							DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xa2\x30\xcb\x30\xe1\x30\xfc\x30\xb7\x30\xe7\x30\xf3\x30\xad\x30\xfc\x30\xbf\x30\xa4\x30\xe0\x30\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : アニメーションキータイムを格納するメモリ領域の確保に失敗しました\n" @*/ )) ;
 							goto ENDLABEL ;
 						}
 						KeyMatrixSet->KeyTime = ( float * )ADDMEMAREA( sizeof( float ) * KeyMatrixSet->Num, &RModel->Mem ) ;
 						if( KeyMatrixSet->KeyTime == NULL )
 						{
-							DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xa2\x30\xcb\x30\xe1\x30\xfc\x30\xb7\x30\xe7\x30\xf3\x30\xad\x30\xfc\x30\xbf\x30\xa4\x30\xe0\x30\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : �A�j���[�V�����L�[�^�C�����i�[���郁�����̈�̊m�ۂɎ��s���܂���\n" @*/ )) ;
+							DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xa2\x30\xcb\x30\xe1\x30\xfc\x30\xb7\x30\xe7\x30\xf3\x30\xad\x30\xfc\x30\xbf\x30\xa4\x30\xe0\x30\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : アニメーションキータイムを格納するメモリ領域の確保に失敗しました\n" @*/ )) ;
 							goto ENDLABEL ;
 						}
 					}
@@ -2855,25 +2855,25 @@ static int _MV1LoadModelToVMD_PMD(
 				}
 				else
 				{
-					// �Ȃ��������̃A�j���[�V�������t���Ă���ꍇ�̏���
+					// ないか物理のアニメーションが付いている場合の処理
 
-					// �V���ɃA�j���[�V������ǉ�
+					// 新たにアニメーションを追加
 					BoneInfo->Anim = MV1RAddAnim( RModel, AnimSet ) ;
 					if( BoneInfo->Anim == NULL )
 					{
-						DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\x4c\x88\x17\x52\xa2\x30\xcb\x30\xe1\x30\xfc\x30\xb7\x30\xe7\x30\xf3\x30\x6e\x30\xfd\x8f\xa0\x52\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : �s��A�j���[�V�����̒ǉ��Ɏ��s���܂���\n" @*/ )) ;
+						DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\x4c\x88\x17\x52\xa2\x30\xcb\x30\xe1\x30\xfc\x30\xb7\x30\xe7\x30\xf3\x30\x6e\x30\xfd\x8f\xa0\x52\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : 行列アニメーションの追加に失敗しました\n" @*/ )) ;
 						goto ENDLABEL ;
 					}
 
-					// �Ώۃm�[�h�̃Z�b�g
+					// 対象ノードのセット
 					BoneInfo->Anim->TargetFrameIndex = BoneInfo->Frame->Index ;
 					BoneInfo->Anim->MaxTime = ( float )VmdData.MaxTime ;
 
-					// �A�j���[�V�����L�[�̏����Z�b�g
+					// アニメーションキーの情報をセット
 					KeyMatrixSet = MV1RAddAnimKeySet( RModel, BoneInfo->Anim ) ;
 					if( KeyMatrixSet == NULL )
 					{
-						DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\x4c\x88\x17\x52\xa2\x30\xcb\x30\xe1\x30\xfc\x30\xb7\x30\xe7\x30\xf3\x30\xad\x30\xfc\x30\xbb\x30\xc3\x30\xc8\x30\x6e\x30\xfd\x8f\xa0\x52\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : �s��A�j���[�V�����L�[�Z�b�g�̒ǉ��Ɏ��s���܂���\n" @*/ )) ;
+						DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\x4c\x88\x17\x52\xa2\x30\xcb\x30\xe1\x30\xfc\x30\xb7\x30\xe7\x30\xf3\x30\xad\x30\xfc\x30\xbb\x30\xc3\x30\xc8\x30\x6e\x30\xfd\x8f\xa0\x52\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : 行列アニメーションキーセットの追加に失敗しました\n" @*/ )) ;
 						goto ENDLABEL ;
 					}
 
@@ -2888,13 +2888,13 @@ static int _MV1LoadModelToVMD_PMD(
 					KeyMatrixSet->KeyTime = ( float * )ADDMEMAREA( sizeof( float ) * KeyMatrixSet->Num, &RModel->Mem ) ;
 					if( KeyMatrixSet->KeyTime == NULL )
 					{
-						DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\x4c\x88\x17\x52\xa2\x30\xcb\x30\xe1\x30\xfc\x30\xb7\x30\xe7\x30\xf3\x30\xad\x30\xfc\x30\xbf\x30\xa4\x30\xe0\x30\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : �s��A�j���[�V�����L�[�^�C�����i�[���郁�����̈�̊m�ۂɎ��s���܂���\n" @*/ )) ;
+						DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\x4c\x88\x17\x52\xa2\x30\xcb\x30\xe1\x30\xfc\x30\xb7\x30\xe7\x30\xf3\x30\xad\x30\xfc\x30\xbf\x30\xa4\x30\xe0\x30\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : 行列アニメーションキータイムを格納するメモリ領域の確保に失敗しました\n" @*/ )) ;
 						goto ENDLABEL ;
 					}
 					KeyMatrixSet->KeyMatrix4x4C = ( MV1_ANIM_KEY_MATRIX4X4C * )ADDMEMAREA( sizeof( MV1_ANIM_KEY_MATRIX4X4C ) * KeyMatrixSet->Num, &RModel->Mem ) ;
 					if( KeyMatrixSet->KeyMatrix4x4C == NULL )
 					{
-						DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\x4c\x88\x17\x52\xa2\x30\xcb\x30\xe1\x30\xfc\x30\xb7\x30\xe7\x30\xf3\x30\xad\x30\xfc\x30\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : �s��A�j���[�V�����L�[���i�[���郁�����̈�̊m�ۂɎ��s���܂���\n" @*/ )) ;
+						DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\x4c\x88\x17\x52\xa2\x30\xcb\x30\xe1\x30\xfc\x30\xb7\x30\xe7\x30\xf3\x30\xad\x30\xfc\x30\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : 行列アニメーションキーを格納するメモリ領域の確保に失敗しました\n" @*/ )) ;
 						goto ENDLABEL ;
 					}
 
@@ -2922,13 +2922,13 @@ static int _MV1LoadModelToVMD_PMD(
 					}
 				}
 
-				// �����̃A�j����t�����؋����c��
+				// 物理のアニメを付けた証拠を残す
 				BoneInfo->SetupPhysicsAnim = 1 ;
 			}
 		}
 #endif
 
-		// �h�j�{�[���̉e�����󂯂Ȃ��h�j�{�[���̉e�����󂯂�{�[���̒����ɂ���{�[���̍s��L�[�̏���������
+		// ＩＫボーンの影響を受けないＩＫボーンの影響を受けるボーンの直下にあるボーンの行列キーの準備をする
 		{
 			MV1_ANIMKEYSET_R *KeyMatrixSet ;
 
@@ -2941,10 +2941,10 @@ static int _MV1LoadModelToVMD_PMD(
 				if( BoneInfo->IsPhysics )
 					continue ;
 
-				// ���łɃA�j���̃f�[�^���{�[���ɂ��Ă��邩�ǂ����ŏ����𕪊�
+				// すでにアニメのデータがボーンについているかどうかで処理を分岐
 				if( BoneInfo->Anim != NULL )
 				{
-					// ���ɂ���ꍇ�͕Е��� MATRIX3X3�^�A�����Е��� VECTOR�^ �� TRANSLATE �ɂ���
+					// 既にある場合は片方を MATRIX3X3型、もう片方を VECTOR型 の TRANSLATE にする
 					if( BoneInfo->Anim->AnimKeySetFirst->Type == MV1_ANIMKEY_TYPE_VECTOR )
 					{
 						KeyPosSet = BoneInfo->Anim->AnimKeySetFirst ;
@@ -2957,11 +2957,11 @@ static int _MV1LoadModelToVMD_PMD(
 					}
 					KeyMatrixSet = KeyRotSet ;
 
-					// �L�[�p�������̍Ċm��
+					// キー用メモリの再確保
 					KeyMatrixSet->KeyMatrix3x3 = ( MV1_ANIM_KEY_MATRIX3X3 * )ADDMEMAREA( sizeof( MV1_ANIM_KEY_MATRIX3X3 ) * ( ( FPS60 ? VmdData.MaxTime * 2 : VmdData.MaxTime ) + 1 ), &RModel->Mem ) ;
 					if( KeyMatrixSet->KeyMatrix3x3 == NULL )
 					{
-						DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\x4c\x88\x17\x52\xa2\x30\xcb\x30\xe1\x30\xfc\x30\xb7\x30\xe7\x30\xf3\x30\xad\x30\xfc\x30\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : �s��A�j���[�V�����L�[���i�[���郁�����̈�̊m�ۂɎ��s���܂���\n" @*/ )) ;
+						DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\x4c\x88\x17\x52\xa2\x30\xcb\x30\xe1\x30\xfc\x30\xb7\x30\xe7\x30\xf3\x30\xad\x30\xfc\x30\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : 行列アニメーションキーを格納するメモリ領域の確保に失敗しました\n" @*/ )) ;
 						goto ENDLABEL ;
 					}
 					if( BoneInfo->Anim->AnimKeySetFirst->Num != ( int )( VmdData.MaxTime * 2 + 1 ) )
@@ -2984,19 +2984,19 @@ static int _MV1LoadModelToVMD_PMD(
 						KeyPosSet->KeyVector = ( VECTOR * )ADDMEMAREA( sizeof( VECTOR ) * KeyPosSet->Num, &RModel->Mem ) ;
 						if( KeyPosSet->KeyVector == NULL )
 						{
-							DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xa7\x5e\x19\x6a\xa2\x30\xcb\x30\xe1\x30\xfc\x30\xb7\x30\xe7\x30\xf3\x30\xad\x30\xfc\x30\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : ���W�A�j���[�V�����L�[���i�[���郁�����̈�̊m�ۂɎ��s���܂���\n" @*/ )) ;
+							DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xa7\x5e\x19\x6a\xa2\x30\xcb\x30\xe1\x30\xfc\x30\xb7\x30\xe7\x30\xf3\x30\xad\x30\xfc\x30\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : 座標アニメーションキーを格納するメモリ領域の確保に失敗しました\n" @*/ )) ;
 							goto ENDLABEL ;
 						}
 						KeyPosSet->KeyTime = ( float * )ADDMEMAREA( sizeof( float ) * KeyPosSet->Num, &RModel->Mem ) ;
 						if( KeyPosSet->KeyTime == NULL )
 						{
-							DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xa2\x30\xcb\x30\xe1\x30\xfc\x30\xb7\x30\xe7\x30\xf3\x30\xad\x30\xfc\x30\xbf\x30\xa4\x30\xe0\x30\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : �A�j���[�V�����L�[�^�C�����i�[���郁�����̈�̊m�ۂɎ��s���܂���\n" @*/ )) ;
+							DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xa2\x30\xcb\x30\xe1\x30\xfc\x30\xb7\x30\xe7\x30\xf3\x30\xad\x30\xfc\x30\xbf\x30\xa4\x30\xe0\x30\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : アニメーションキータイムを格納するメモリ領域の確保に失敗しました\n" @*/ )) ;
 							goto ENDLABEL ;
 						}
 						KeyMatrixSet->KeyTime = ( float * )ADDMEMAREA( sizeof( float ) * KeyMatrixSet->Num, &RModel->Mem ) ;
 						if( KeyMatrixSet->KeyTime == NULL )
 						{
-							DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xa2\x30\xcb\x30\xe1\x30\xfc\x30\xb7\x30\xe7\x30\xf3\x30\xad\x30\xfc\x30\xbf\x30\xa4\x30\xe0\x30\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : �A�j���[�V�����L�[�^�C�����i�[���郁�����̈�̊m�ۂɎ��s���܂���\n" @*/ )) ;
+							DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xa2\x30\xcb\x30\xe1\x30\xfc\x30\xb7\x30\xe7\x30\xf3\x30\xad\x30\xfc\x30\xbf\x30\xa4\x30\xe0\x30\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : アニメーションキータイムを格納するメモリ領域の確保に失敗しました\n" @*/ )) ;
 							goto ENDLABEL ;
 						}
 					}
@@ -3048,24 +3048,24 @@ static int _MV1LoadModelToVMD_PMD(
 				}
 				else
 				{
-					// �Ȃ��ꍇ�͂����Œǉ�
+					// ない場合はここで追加
 
 					BoneInfo->Anim = MV1RAddAnim( RModel, AnimSet ) ;
 					if( BoneInfo->Anim == NULL )
 					{
-						DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\x4c\x88\x17\x52\xa2\x30\xcb\x30\xe1\x30\xfc\x30\xb7\x30\xe7\x30\xf3\x30\x6e\x30\xfd\x8f\xa0\x52\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : �s��A�j���[�V�����̒ǉ��Ɏ��s���܂���\n" @*/ )) ;
+						DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\x4c\x88\x17\x52\xa2\x30\xcb\x30\xe1\x30\xfc\x30\xb7\x30\xe7\x30\xf3\x30\x6e\x30\xfd\x8f\xa0\x52\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : 行列アニメーションの追加に失敗しました\n" @*/ )) ;
 						goto ENDLABEL ;
 					}
 
-					// �Ώۃm�[�h�̃Z�b�g
+					// 対象ノードのセット
 					BoneInfo->Anim->TargetFrameIndex = BoneInfo->Frame->Index ;
 					BoneInfo->Anim->MaxTime = ( float )VmdData.MaxTime ;
 
-					// �A�j���[�V�����L�[�̏����Z�b�g
+					// アニメーションキーの情報をセット
 					KeyMatrixSet = MV1RAddAnimKeySet( RModel, BoneInfo->Anim ) ;
 					if( KeyMatrixSet == NULL )
 					{
-						DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\x4c\x88\x17\x52\xa2\x30\xcb\x30\xe1\x30\xfc\x30\xb7\x30\xe7\x30\xf3\x30\xad\x30\xfc\x30\xbb\x30\xc3\x30\xc8\x30\x6e\x30\xfd\x8f\xa0\x52\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : �s��A�j���[�V�����L�[�Z�b�g�̒ǉ��Ɏ��s���܂���\n" @*/ )) ;
+						DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\x4c\x88\x17\x52\xa2\x30\xcb\x30\xe1\x30\xfc\x30\xb7\x30\xe7\x30\xf3\x30\xad\x30\xfc\x30\xbb\x30\xc3\x30\xc8\x30\x6e\x30\xfd\x8f\xa0\x52\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : 行列アニメーションキーセットの追加に失敗しました\n" @*/ )) ;
 						goto ENDLABEL ;
 					}
 
@@ -3080,13 +3080,13 @@ static int _MV1LoadModelToVMD_PMD(
 					KeyMatrixSet->KeyTime = ( float * )ADDMEMAREA( sizeof( float ) * KeyMatrixSet->Num, &RModel->Mem ) ;
 					if( KeyMatrixSet->KeyTime == NULL )
 					{
-						DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\x4c\x88\x17\x52\xa2\x30\xcb\x30\xe1\x30\xfc\x30\xb7\x30\xe7\x30\xf3\x30\xad\x30\xfc\x30\xbf\x30\xa4\x30\xe0\x30\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : �s��A�j���[�V�����L�[�^�C�����i�[���郁�����̈�̊m�ۂɎ��s���܂���\n" @*/ )) ;
+						DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\x4c\x88\x17\x52\xa2\x30\xcb\x30\xe1\x30\xfc\x30\xb7\x30\xe7\x30\xf3\x30\xad\x30\xfc\x30\xbf\x30\xa4\x30\xe0\x30\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : 行列アニメーションキータイムを格納するメモリ領域の確保に失敗しました\n" @*/ )) ;
 						goto ENDLABEL ;
 					}
 					KeyMatrixSet->KeyMatrix4x4C = ( MV1_ANIM_KEY_MATRIX4X4C * )ADDMEMAREA( sizeof( MV1_ANIM_KEY_MATRIX4X4C ) * KeyMatrixSet->Num, &RModel->Mem ) ;
 					if( KeyMatrixSet->KeyMatrix4x4C == NULL )
 					{
-						DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\x4c\x88\x17\x52\xa2\x30\xcb\x30\xe1\x30\xfc\x30\xb7\x30\xe7\x30\xf3\x30\xad\x30\xfc\x30\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : �s��A�j���[�V�����L�[���i�[���郁�����̈�̊m�ۂɎ��s���܂���\n" @*/ )) ;
+						DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\x4c\x88\x17\x52\xa2\x30\xcb\x30\xe1\x30\xfc\x30\xb7\x30\xe7\x30\xf3\x30\xad\x30\xfc\x30\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : 行列アニメーションキーを格納するメモリ領域の確保に失敗しました\n" @*/ )) ;
 						goto ENDLABEL ;
 					}
 
@@ -3116,7 +3116,7 @@ static int _MV1LoadModelToVMD_PMD(
 			}
 		}
 
-		// �R�O�e�o�r�ۑ��w��̏ꍇ�͂����ŃA�j���[�V�����L�[�����
+		// ３０ＦＰＳ保存指定の場合はここでアニメーションキーを削る
 		if( FPS60 == false )
 		{
 			BoneInfo = PmdBoneInfo ;
@@ -3142,7 +3142,7 @@ static int _MV1LoadModelToVMD_PMD(
 
 				if( KeyPosSet->Num != KeyRotSet->Num || KeyPosSet->Num == 1 || KeyPosSet->Num % 2 == 0 ) continue ;
 
-				// �S�t���[���ɃL�[���ł���Ă��Ȃ��ꍇ�͍��Ȃ�
+				// 全フレームにキーが打たれていない場合は削らない
 				for( j = 0 ; j < KeyPosSet->Num ; j ++ )
 				{
 					int RotFrame = _FTOL( KeyRotSet->KeyTime[ j ] * 2.0f ) ;
@@ -3175,29 +3175,29 @@ static int _MV1LoadModelToVMD_PMD(
 			}
 		}
 
-		// �\��A�j���[�V������ǉ�����
+		// 表情アニメーションを追加する
 		if( VmdData.FaceKeySetNum != 0 )
 		{
-			// �A�j���[�V�����̒ǉ�
+			// アニメーションの追加
 			Anim = MV1RAddAnim( RModel, AnimSet ) ;
 			if( Anim == NULL )
 			{
-				DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xa2\x30\xcb\x30\xe1\x30\xfc\x30\xb7\x30\xe7\x30\xf3\x30\x6e\x30\xfd\x8f\xa0\x52\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : �A�j���[�V�����̒ǉ��Ɏ��s���܂���\n" @*/ )) ;
+				DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xa2\x30\xcb\x30\xe1\x30\xfc\x30\xb7\x30\xe7\x30\xf3\x30\x6e\x30\xfd\x8f\xa0\x52\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : アニメーションの追加に失敗しました\n" @*/ )) ;
 				goto ENDLABEL ;
 			}
 
-			// �Ώۃm�[�h�̃Z�b�g
+			// 対象ノードのセット
 			Anim->TargetFrameIndex = 0 ;
 
-			// �ő厞�Ԃ��Z�b�g
+			// 最大時間をセット
 			Anim->MaxTime = 0.0f ;
 
-			// �\��L�[�Z�b�g�̐������J��Ԃ�
+			// 表情キーセットの数だけ繰り返す
 			VmdFaceKeySet = VmdData.FaceKeySet ;
 			Frame = RModel->FrameFirst ; 
 			for( i = 0 ; ( DWORD )i < VmdData.FaceKeySetNum ; i ++, VmdFaceKeySet ++ )
 			{
-				// �ΏۂƂȂ�V�F�C�v�f�[�^�̌���
+				// 対象となるシェイプデータの検索
 				wchar_t VmdFaceKeySetNameW[ 128 ] ;
 				ConvString( VmdFaceKeySet->Name, -1, DX_CHARCODEFORMAT_SHIFTJIS, ( char * )VmdFaceKeySetNameW, sizeof( VmdFaceKeySetNameW ), WCHAR_T_CHARCODEFORMAT ) ;
 
@@ -3208,14 +3208,14 @@ static int _MV1LoadModelToVMD_PMD(
 				}
 				if( j == Frame->ShapeNum ) continue ;
 
-				// �Đ����Ԃ̍X�V
+				// 再生時間の更新
 				if( Anim->MaxTime < ( float )VmdFaceKeySet->MaxFrame ) Anim->MaxTime = ( float )VmdFaceKeySet->MaxFrame ;
 
-				// �A�j���[�V�����L�[�̏����Z�b�g
+				// アニメーションキーの情報をセット
 				KeyFactorSet = MV1RAddAnimKeySet( RModel, Anim ) ;
 				if( KeyFactorSet == NULL )
 				{
-					DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xa2\x30\xcb\x30\xe1\x30\xfc\x30\xb7\x30\xe7\x30\xf3\x30\x68\x88\xc5\x60\xad\x30\xfc\x30\xbb\x30\xc3\x30\xc8\x30\x6e\x30\xfd\x8f\xa0\x52\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : �A�j���[�V�����\��L�[�Z�b�g�̒ǉ��Ɏ��s���܂���\n" @*/ )) ;
+					DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xa2\x30\xcb\x30\xe1\x30\xfc\x30\xb7\x30\xe7\x30\xf3\x30\x68\x88\xc5\x60\xad\x30\xfc\x30\xbb\x30\xc3\x30\xc8\x30\x6e\x30\xfd\x8f\xa0\x52\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : アニメーション表情キーセットの追加に失敗しました\n" @*/ )) ;
 					goto ENDLABEL ;
 				}
 
@@ -3229,19 +3229,19 @@ static int _MV1LoadModelToVMD_PMD(
 				KeyFactorSet->KeyTime = ( float * )ADDMEMAREA( sizeof( float ) * KeyFactorSet->Num, &RModel->Mem ) ;
 				if( KeyFactorSet->KeyTime == NULL )
 				{
-					DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xa2\x30\xcb\x30\xe1\x30\xfc\x30\xb7\x30\xe7\x30\xf3\x30\xad\x30\xfc\x30\xbf\x30\xa4\x30\xe0\x30\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : �A�j���[�V�����L�[�^�C�����i�[���郁�����̈�̊m�ۂɎ��s���܂���\n" @*/ )) ;
+					DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xa2\x30\xcb\x30\xe1\x30\xfc\x30\xb7\x30\xe7\x30\xf3\x30\xad\x30\xfc\x30\xbf\x30\xa4\x30\xe0\x30\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : アニメーションキータイムを格納するメモリ領域の確保に失敗しました\n" @*/ )) ;
 					goto ENDLABEL ;
 				}
 				KeyFactorSet->KeyLinear = ( float * )ADDMEMAREA( sizeof( float ) * KeyFactorSet->Num, &RModel->Mem ) ;
 				if( KeyFactorSet->KeyLinear == NULL )
 				{
-					DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xa2\x30\xcb\x30\xe1\x30\xfc\x30\xb7\x30\xe7\x30\xf3\x30\xad\x30\xfc\x30\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : �A�j���[�V�����L�[���i�[���郁�����̈�̊m�ۂɎ��s���܂���\n" @*/ )) ;
+					DXST_LOGFILEFMT_ADDUTF16LE(( "\x50\x00\x4d\x00\x44\x00\x20\x00\x4c\x00\x6f\x00\x61\x00\x64\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xa2\x30\xcb\x30\xe1\x30\xfc\x30\xb7\x30\xe7\x30\xf3\x30\xad\x30\xfc\x30\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"PMD Load Error : アニメーションキーを格納するメモリ領域の確保に失敗しました\n" @*/ )) ;
 					goto ENDLABEL ;
 				}
 
 				RModel->AnimKeyDataSize += KeyFactorSet->Num * sizeof( float ) * 2 ;
 
-				// �L�[�����Z�b�g
+				// キー情報をセット
 				KeyFactor = KeyFactorSet->KeyLinear ;
 				KeyFactorTime = KeyFactorSet->KeyTime ;
 				VmdFaceKey = VmdFaceKeySet->FirstKey ;
@@ -3254,7 +3254,7 @@ static int _MV1LoadModelToVMD_PMD(
 		}
 	}
 
-	// ���I�Ɋm�ۂ����������̉��
+	// 動的に確保したメモリの解放
 	TerminateVMDBaseData( &VmdData ) ;
 
 #ifndef DX_NON_BULLET_PHYSICS
@@ -3290,12 +3290,12 @@ static int _MV1LoadModelToVMD_PMD(
 		}
 	}
 
-	// ����I��
+	// 正常終了
 	return 0 ;
 
 ENDLABEL :
 
-	// ���I�Ɋm�ۂ����������̉��
+	// 動的に確保したメモリの解放
 	TerminateVMDBaseData( &VmdData ) ;
 
 #ifndef DX_NON_BULLET_PHYSICS
@@ -3325,11 +3325,11 @@ ENDLABEL :
 		}
 	}
 
-	// �G���[
+	// エラー
 	return -1 ;
 }
 
-// �u�l�c�t�@�C����ǂݍ���( -1:�G���[  0�ȏ�:���f���n���h�� )�A�����_�ł̓J��������ǂݍ��ނ���
+// ＶＭＤファイルを読み込む( -1:エラー  0以上:モデルハンドル )、現時点ではカメラ情報を読み込むだけ
 extern int MV1LoadModelToVMD( const MV1_MODEL_LOAD_PARAM *LoadParam, int ASyncThread )
 {
 	MV1_MODEL_R RModel ;
@@ -3337,24 +3337,24 @@ extern int MV1LoadModelToVMD( const MV1_MODEL_LOAD_PARAM *LoadParam, int ASyncTh
 	int ErrorFlag = 1 ;
 	int Result ;
 
-	// �ǂݍ��ݗp�f�[�^�̏�����
+	// 読み込み用データの初期化
 	MV1InitReadModel( &RModel ) ;
 	RModel.MeshFaceRightHand = FALSE ;
 	RModel.TranslateIsBackCulling = TRUE ;
 	
-	// ���f�����ƃt�@�C�������Z�b�g
+	// モデル名とファイル名をセット
 	RModel.FilePath = ( wchar_t * )DXALLOC( ( _WCSLEN( LoadParam->FilePath ) + 1 ) * sizeof( wchar_t ) ) ;
 	RModel.Name     = ( wchar_t * )DXALLOC( ( _WCSLEN( LoadParam->Name     ) + 1 ) * sizeof( wchar_t ) ) ;
 	_WCSCPY( RModel.FilePath, LoadParam->FilePath ) ;
 	_WCSCPY( RModel.Name,     LoadParam->Name ) ;
 
-	// �@��̎��������͎g�p���Ȃ�
+	// 法泉の自動生成は使用しない
 	RModel.AutoCreateNormal = FALSE ;
 
-	// �A�j���f�[�^�̕��������Ȃ�
+	// アニメデータの分解をしない
 	RModel.AnimDataNotDecomposition = TRUE ;
 
-	// �u�l�c�t�@�C���̓ǂݍ���
+	// ＶＭＤファイルの読み込み
 	Result = _MV1LoadModelToVMD_PMD(
 		0,
 		&RModel,
@@ -3374,26 +3374,26 @@ extern int MV1LoadModelToVMD( const MV1_MODEL_LOAD_PARAM *LoadParam, int ASyncTh
 	if( Result != 0 )
 		goto ENDLABEL ;
 
-	// ���f����f�[�^�n���h���̍쐬
+	// モデル基データハンドルの作成
 	NewHandle = MV1LoadModelToReadModel( &LoadParam->GParam, &RModel, LoadParam->CurrentDir, LoadParam->FileReadFunc, ASyncThread ) ;
 	if( NewHandle < 0 ) goto ENDLABEL ;
 
-	// �G���[�t���O��|��
+	// エラーフラグを倒す
 	ErrorFlag = 0 ;
 
 ENDLABEL :
 
-	// �G���[�t���O�������Ă����烂�f���n���h�������
+	// エラーフラグが立っていたらモデルハンドルを解放
 	if( ErrorFlag == 1 && NewHandle != -1 )
 	{
 		MV1SubModelBase( NewHandle ) ;
 		NewHandle = -1 ;
 	}
 
-	// �ǂݍ��ݗp���f�������
+	// 読み込み用モデルを解放
 	MV1TermReadModel( &RModel ) ; 
 
-	// �n���h����Ԃ�
+	// ハンドルを返す
 	return NewHandle ;
 }
 

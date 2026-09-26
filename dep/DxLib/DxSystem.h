@@ -1,6 +1,6 @@
 // -------------------------------------------------------------------------------
 // 
-// 		‚c‚wƒ‰ƒCƒuƒ‰ƒŠ		ƒVƒXƒeƒ€ƒvƒƒOƒ‰ƒ€ƒwƒbƒ_ƒtƒ@ƒCƒ‹
+// 		ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒª		ã‚·ã‚¹ãƒ†ãƒ ãƒ—ãƒ­ã‚°ãƒ©ãƒ ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«
 // 
 // 				Ver 3.25a
 // 
@@ -9,7 +9,7 @@
 #ifndef DX_SYSTEM_H
 #define DX_SYSTEM_H
 
-// ƒCƒ“ƒNƒ‹[ƒh ------------------------------------------------------------------
+// ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ ------------------------------------------------------------------
 #include "DxCompileConfig.h"
 #include "DxLib.h"
 #include "DxStatic.h"
@@ -41,63 +41,63 @@ namespace DxLib
 
 #endif // DX_NON_NAMESPACE
 
-// ƒ}ƒNƒ’è‹` --------------------------------------------------------------------
+// ãƒã‚¯ãƒ­å®šç¾© --------------------------------------------------------------------
 
 
-// \‘¢‘Ì’è‹` --------------------------------------------------------------------
+// æ§‹é€ ä½“å®šç¾© --------------------------------------------------------------------
 
-// ƒVƒXƒeƒ€ƒf[ƒ^\‘¢‘Ì
+// ã‚·ã‚¹ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
 struct DXSYSTEMDATA
 {
-	int						DxLib_InitializeFlag ;				// ‚c‚wƒ‰ƒCƒuƒ‰ƒŠ‚Ì‰Šú‰»‚ªŠ®—¹‚µ‚Ä‚¢‚é‚©ƒtƒ‰ƒO
-	int						DxLib_RunInitializeFlag ;			// ‚c‚wƒ‰ƒCƒuƒ‰ƒŠ‚Ì‰Šú‰»’†‚©Aƒtƒ‰ƒO
+	int						DxLib_InitializeFlag ;				// ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®åˆæœŸåŒ–ãŒå®Œäº†ã—ã¦ã„ã‚‹ã‹ãƒ•ãƒ©ã‚°
+	int						DxLib_RunInitializeFlag ;			// ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®åˆæœŸåŒ–ä¸­ã‹ã€ãƒ•ãƒ©ã‚°
 
-	int						NotWinFlag ;						// ‚c‚wƒ‰ƒCƒuƒ‰ƒŠ‚ÌƒEƒCƒ“ƒhƒEŠÖ˜A‹@”\‚ğg—p‚µ‚È‚¢ƒtƒ‰ƒO
-	int						NotDrawFlag ;						// •`‰æ‹@”\‚ğg—p‚µ‚È‚¢ƒtƒ‰ƒO
-	int						NotSoundFlag ;						// ƒTƒEƒ“ƒh‹@”\‚ğg—p‚µ‚È‚¢ƒtƒ‰ƒO
-	int						NotInputFlag ;						// “ü—Íó‘Ôæ“¾‹@”\‚ğg—p‚µ‚È‚¢ƒtƒ‰ƒO
+	int						NotWinFlag ;						// ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦é–¢é€£æ©Ÿèƒ½ã‚’ä½¿ç”¨ã—ãªã„ãƒ•ãƒ©ã‚°
+	int						NotDrawFlag ;						// æç”»æ©Ÿèƒ½ã‚’ä½¿ç”¨ã—ãªã„ãƒ•ãƒ©ã‚°
+	int						NotSoundFlag ;						// ã‚µã‚¦ãƒ³ãƒ‰æ©Ÿèƒ½ã‚’ä½¿ç”¨ã—ãªã„ãƒ•ãƒ©ã‚°
+	int						NotInputFlag ;						// å…¥åŠ›çŠ¶æ…‹å–å¾—æ©Ÿèƒ½ã‚’ä½¿ç”¨ã—ãªã„ãƒ•ãƒ©ã‚°
 
-	int						EndRequestFlag ;					// I—¹ƒŠƒNƒGƒXƒgƒtƒ‰ƒO
-	int						ASyncLoadFlag ;						// ”ñ“¯Šú“Ç‚İ‚İƒtƒ‰ƒO
+	int						EndRequestFlag ;					// çµ‚äº†ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ•ãƒ©ã‚°
+	int						ASyncLoadFlag ;						// éåŒæœŸèª­ã¿è¾¼ã¿ãƒ•ãƒ©ã‚°
 
-	int						LastErrorCode ;						// ÅŒã‚É”­¶‚µ‚½ƒGƒ‰[‚ÌƒGƒ‰[ƒR[ƒh( DX_ERRORCODE_WIN_24BIT_COLOR ‚È‚Ç )
-	wchar_t					LastErrorMessage[ 4096 ] ;			// ÅŒã‚É”­¶‚µ‚½ƒGƒ‰[‚ÌƒGƒ‰[ƒƒbƒZ[ƒW
+	int						LastErrorCode ;						// æœ€å¾Œã«ç™ºç”Ÿã—ãŸã‚¨ãƒ©ãƒ¼ã®ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰( DX_ERRORCODE_WIN_24BIT_COLOR ãªã© )
+	wchar_t					LastErrorMessage[ 4096 ] ;			// æœ€å¾Œã«ç™ºç”Ÿã—ãŸã‚¨ãƒ©ãƒ¼ã®ã‚¨ãƒ©ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 } ;
 
-// ƒe[ƒuƒ‹-----------------------------------------------------------------------
+// ãƒ†ãƒ¼ãƒ–ãƒ«-----------------------------------------------------------------------
 
-// “à•”‘åˆæ•Ï”éŒ¾ --------------------------------------------------------------
+// å†…éƒ¨å¤§åŸŸå¤‰æ•°å®£è¨€ --------------------------------------------------------------
 
 extern DXSYSTEMDATA DxSysData ;
 
-// ŠÖ”ƒvƒƒgƒ^ƒCƒvéŒ¾-----------------------------------------------------------
+// é–¢æ•°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€-----------------------------------------------------------
 
-// ‰Šú‰»EI—¹ŠÖŒW
-extern	int			DxLib_SysInit( void ) ;													// DxSysData ŠÖŒW‚Ì‰Šú‰»‚ğs‚¤
-extern	int			DxLib_EndRequest( void ) ;												// I—¹ƒŠƒNƒGƒXƒg‚ğs‚¤
-extern	int			DxLib_GetEndRequest( void ) ;											// I—¹ƒŠƒNƒGƒXƒg‚Ìó‘Ô‚ğæ“¾‚·‚é
+// åˆæœŸåŒ–ãƒ»çµ‚äº†é–¢ä¿‚
+extern	int			DxLib_SysInit( void ) ;													// DxSysData é–¢ä¿‚ã®åˆæœŸåŒ–ã‚’è¡Œã†
+extern	int			DxLib_EndRequest( void ) ;												// çµ‚äº†ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚’è¡Œã†
+extern	int			DxLib_GetEndRequest( void ) ;											// çµ‚äº†ãƒªã‚¯ã‚¨ã‚¹ãƒˆã®çŠ¶æ…‹ã‚’å–å¾—ã™ã‚‹
 
-// ƒGƒ‰[ˆ—ŠÖ”
-extern	int			DxLib_SetLastError(    int ErrorCode/* DX_ERRORCODE_WIN_24BIT_COLOR ‚È‚Ç */, const wchar_t *ErrorMessage ) ;			// ƒGƒ‰[ƒR[ƒhEƒƒbƒZ[ƒW‚ğİ’è‚·‚é
+// ã‚¨ãƒ©ãƒ¼å‡¦ç†é–¢æ•°
+extern	int			DxLib_SetLastError(    int ErrorCode/* DX_ERRORCODE_WIN_24BIT_COLOR ãªã© */, const wchar_t *ErrorMessage ) ;			// ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰ãƒ»ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’è¨­å®šã™ã‚‹
 
-extern	int			DxLib_Error(           const wchar_t *ErrorStr ) ;				// ƒ‰ƒCƒuƒ‰ƒŠ‚ÌƒGƒ‰[ˆ—‚ğs‚¤
-extern	int			DxLib_ErrorUTF16LE(    const char    *ErrorStr ) ;				// ƒ‰ƒCƒuƒ‰ƒŠ‚ÌƒGƒ‰[ˆ—‚ğs‚¤( UTF16LE”Å )
-extern	int			DxLib_FmtError(        const wchar_t *FormatString, ... ) ;		// ‘®•t‚«ƒ‰ƒCƒuƒ‰ƒŠ‚ÌƒGƒ‰[ˆ—‚ğs‚¤
-extern	int			DxLib_FmtErrorUTF16LE( const char    *FormatString, ... ) ;		// ‘®•t‚«ƒ‰ƒCƒuƒ‰ƒŠ‚ÌƒGƒ‰[ˆ—‚ğs‚¤( UTF16LE”Å )
+extern	int			DxLib_Error(           const wchar_t *ErrorStr ) ;				// ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®ã‚¨ãƒ©ãƒ¼å‡¦ç†ã‚’è¡Œã†
+extern	int			DxLib_ErrorUTF16LE(    const char    *ErrorStr ) ;				// ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®ã‚¨ãƒ©ãƒ¼å‡¦ç†ã‚’è¡Œã†( UTF16LEç‰ˆ )
+extern	int			DxLib_FmtError(        const wchar_t *FormatString, ... ) ;		// æ›¸å¼ä»˜ããƒ©ã‚¤ãƒ–ãƒ©ãƒªã®ã‚¨ãƒ©ãƒ¼å‡¦ç†ã‚’è¡Œã†
+extern	int			DxLib_FmtErrorUTF16LE( const char    *FormatString, ... ) ;		// æ›¸å¼ä»˜ããƒ©ã‚¤ãƒ–ãƒ©ãƒªã®ã‚¨ãƒ©ãƒ¼å‡¦ç†ã‚’è¡Œã†( UTF16LEç‰ˆ )
 
-// ƒXƒNƒŠ[ƒ“À•W‚ğ‚c‚wƒ‰ƒCƒuƒ‰ƒŠ‰æ–ÊÀ•W‚É•ÏŠ·‚·‚é
+// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³åº§æ¨™ã‚’ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªç”»é¢åº§æ¨™ã«å¤‰æ›ã™ã‚‹
 extern	int			ConvScreenPositionToDxScreenPosition( int ScreenX, int ScreenY, int *DxScreenX, int *DxScreenY ) ;
 
-// ”ñ“¯Šú“Ç‚İ‚İŠÖŒW
-extern	int			GetASyncLoadFlag( void ) ;												// ”ñ“¯Šú“Ç‚İ‚İ‚ğs‚¤‚©‚Ç‚¤‚©‚ğæ“¾‚·‚é
+// éåŒæœŸèª­ã¿è¾¼ã¿é–¢ä¿‚
+extern	int			GetASyncLoadFlag( void ) ;												// éåŒæœŸèª­ã¿è¾¼ã¿ã‚’è¡Œã†ã‹ã©ã†ã‹ã‚’å–å¾—ã™ã‚‹
 
-// ŠÂ‹«ˆË‘¶ŠÖ”
-extern	int			GetClipboardText_PF(					TCHAR   *DestBuffer, int DestBufferBytes ) ;	// ƒNƒŠƒbƒvƒ{[ƒh‚ÉŠi”[‚³‚ê‚Ä‚¢‚éƒeƒLƒXƒgƒf[ƒ^‚ğ“Ç‚İo‚·( DestBuffer:•¶š—ñ‚ğŠi”[‚·‚éƒoƒbƒtƒ@‚Ìæ“ªƒAƒhƒŒƒX   –ß‚è’l  -1:ƒNƒŠƒbƒvƒ{[ƒh‚ÉƒeƒLƒXƒgƒf[ƒ^‚ª–³‚¢  -1ˆÈŠO:ƒNƒŠƒbƒvƒ{[ƒh‚ÉŠi”[‚³‚ê‚Ä‚¢‚é•¶š—ñƒf[ƒ^‚ÌƒTƒCƒY( ’PˆÊ:byte ) ) 
-extern	int			GetClipboardText_WCHAR_T_PF(			wchar_t *DestBuffer, int DestBufferBytes ) ;	// ƒNƒŠƒbƒvƒ{[ƒh‚ÉŠi”[‚³‚ê‚Ä‚¢‚éƒeƒLƒXƒgƒf[ƒ^‚ğ“Ç‚İo‚·( DestBuffer:•¶š—ñ‚ğŠi”[‚·‚éƒoƒbƒtƒ@‚Ìæ“ªƒAƒhƒŒƒX   –ß‚è’l  -1:ƒNƒŠƒbƒvƒ{[ƒh‚ÉƒeƒLƒXƒgƒf[ƒ^‚ª–³‚¢  -1ˆÈŠO:ƒNƒŠƒbƒvƒ{[ƒh‚ÉŠi”[‚³‚ê‚Ä‚¢‚é•¶š—ñƒf[ƒ^‚ÌƒTƒCƒY( ’PˆÊ:byte ) ) 
-extern	int			SetClipboardText_WCHAR_T_PF(			const wchar_t *Text                    ) ;		// ƒNƒŠƒbƒvƒ{[ƒh‚ÉƒeƒLƒXƒgƒf[ƒ^‚ğŠi”[‚·‚é
+// ç’°å¢ƒä¾å­˜é–¢æ•°
+extern	int			GetClipboardText_PF(					TCHAR   *DestBuffer, int DestBufferBytes ) ;	// ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ã«æ ¼ç´ã•ã‚Œã¦ã„ã‚‹ãƒ†ã‚­ã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿å‡ºã™( DestBuffer:æ–‡å­—åˆ—ã‚’æ ¼ç´ã™ã‚‹ãƒãƒƒãƒ•ã‚¡ã®å…ˆé ­ã‚¢ãƒ‰ãƒ¬ã‚¹   æˆ»ã‚Šå€¤  -1:ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ã«ãƒ†ã‚­ã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿ãŒç„¡ã„  -1ä»¥å¤–:ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ã«æ ¼ç´ã•ã‚Œã¦ã„ã‚‹æ–‡å­—åˆ—ãƒ‡ãƒ¼ã‚¿ã®ã‚µã‚¤ã‚º( å˜ä½:byte ) ) 
+extern	int			GetClipboardText_WCHAR_T_PF(			wchar_t *DestBuffer, int DestBufferBytes ) ;	// ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ã«æ ¼ç´ã•ã‚Œã¦ã„ã‚‹ãƒ†ã‚­ã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿å‡ºã™( DestBuffer:æ–‡å­—åˆ—ã‚’æ ¼ç´ã™ã‚‹ãƒãƒƒãƒ•ã‚¡ã®å…ˆé ­ã‚¢ãƒ‰ãƒ¬ã‚¹   æˆ»ã‚Šå€¤  -1:ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ã«ãƒ†ã‚­ã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿ãŒç„¡ã„  -1ä»¥å¤–:ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ã«æ ¼ç´ã•ã‚Œã¦ã„ã‚‹æ–‡å­—åˆ—ãƒ‡ãƒ¼ã‚¿ã®ã‚µã‚¤ã‚º( å˜ä½:byte ) ) 
+extern	int			SetClipboardText_WCHAR_T_PF(			const wchar_t *Text                    ) ;		// ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ã«ãƒ†ã‚­ã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹
 extern	int			MailApp_Send_WCHAR_T_PF(				const wchar_t *MailAddr, const wchar_t *MailCCAddr, const wchar_t *MailBCCAddr, const wchar_t *Subject, const wchar_t *Text ) ;
 
-// wchar_t”ÅŠÖ”
+// wchar_tç‰ˆé–¢æ•°
 extern	int			GetClipboardText_WCHAR_T(		    wchar_t *DestBuffer, int DestBufferBytes = -1 ) ;
 extern	int			SetClipboardText_WCHAR_T(		    const wchar_t *Text ) ;
 extern	int			SetClipboardTextWithStrLen_WCHAR_T( const wchar_t *Text, size_t TextLength ) ;

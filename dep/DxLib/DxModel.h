@@ -1,6 +1,6 @@
 // -------------------------------------------------------------------------------
 // 
-// 		‚c‚wƒ‰ƒCƒuƒ‰ƒŠ		ƒ‚ƒfƒ‹ƒf[ƒ^§ŒäƒvƒƒOƒ‰ƒ€
+// 		ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒª		ãƒ¢ãƒ‡ãƒ«ãƒ‡ãƒ¼ã‚¿åˆ¶å¾¡ãƒ—ãƒ­ã‚°ãƒ©ãƒ 
 // 
 // 				Ver 3.25a
 // 
@@ -15,7 +15,7 @@
 
 #ifndef DX_NON_MODEL
 
-// ƒCƒ“ƒNƒ‹[ƒh ---------------------------------
+// ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ ---------------------------------
 #include "DxLib.h"
 #include "DxStatic.h"
 #include "DxBaseFunc.h"
@@ -31,52 +31,52 @@ namespace DxLib
 
 #endif // DX_NON_NAMESPACE
 
-// ƒ}ƒNƒ’è‹` -----------------------------------
+// ãƒã‚¯ãƒ­å®šç¾© -----------------------------------
 
-#define MV1_ANIMSET_NUM_UNIT				(4)					// ƒAƒjƒ[ƒVƒ‡ƒ“ƒZƒbƒgƒAƒhƒŒƒX’Ç‰Á’PˆÊ
-#define MV1_ANIM_NUM_UNIT					(4)					// ƒAƒjƒ[ƒVƒ‡ƒ“ƒAƒhƒŒƒX’Ç‰Á’PˆÊ
-#define MV1_TRIANGLE_MAX_INDEX				(65500)				// ‚Pƒgƒ‰ƒCƒAƒ“ƒOƒ‹ƒŠƒXƒg•Ó‚è‚ÌÅ‘åƒCƒ“ƒfƒbƒNƒX”
+#define MV1_ANIMSET_NUM_UNIT				(4)					// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚»ãƒƒãƒˆã‚¢ãƒ‰ãƒ¬ã‚¹è¿½åŠ å˜ä½
+#define MV1_ANIM_NUM_UNIT					(4)					// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚¢ãƒ‰ãƒ¬ã‚¹è¿½åŠ å˜ä½
+#define MV1_TRIANGLE_MAX_INDEX				(65500)				// ï¼‘ãƒˆãƒ©ã‚¤ã‚¢ãƒ³ã‚°ãƒ«ãƒªã‚¹ãƒˆè¾ºã‚Šã®æœ€å¤§ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹æ•°
 
-#define MV1_VERTEXBUFFER_MAX_VERTNUM		(65536 * 6)			// ˆê‚Â‚Ì’¸“_ƒoƒbƒtƒ@‚ÉŠi”[‚·‚éÅ‘å’¸“_”
-#define MV1_INDEXBUFFER_MAX_INDEXNUM		(65536 * 12)		// ˆê‚Â‚Ì’¸“_ƒoƒbƒtƒ@‚ÉŠi”[‚·‚éÅ‘åƒCƒ“ƒfƒbƒNƒX”
+#define MV1_VERTEXBUFFER_MAX_VERTNUM		(65536 * 6)			// ä¸€ã¤ã®é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã«æ ¼ç´ã™ã‚‹æœ€å¤§é ‚ç‚¹æ•°
+#define MV1_INDEXBUFFER_MAX_INDEXNUM		(65536 * 12)		// ä¸€ã¤ã®é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã«æ ¼ç´ã™ã‚‹æœ€å¤§ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹æ•°
 
-#define MV1_ADD_LOAD_FUNC_MAXNUM			(128)				// ’Ç‰Á‚Å‚«‚éƒ[ƒhŠÖ”‚ÌÅ‘å”
+#define MV1_ADD_LOAD_FUNC_MAXNUM			(128)				// è¿½åŠ ã§ãã‚‹ãƒ­ãƒ¼ãƒ‰é–¢æ•°ã®æœ€å¤§æ•°
 
-#define MV1_LOADCALC_PHYSICS_GRAVITY_NUM	(256)				// “Ç‚İ‚İ‚É“K—p‚Å‚«‚éd—Í‚Ìí—Ş”
+#define MV1_LOADCALC_PHYSICS_GRAVITY_NUM	(256)				// èª­ã¿è¾¼ã¿æ™‚ã«é©ç”¨ã§ãã‚‹é‡åŠ›ã®ç¨®é¡æ•°
 
-#define MV1_DISABLEPHYSICS_WORD_MAXNUM		(256)				// •¨—‰‰Z–³Œøƒ[ƒh‚ÌÅ‘å”
-#define MV1_DISABLEPHYSICS_WORD_MAXLENGTH	(63)				// •¨—‰‰Z–³Œøƒ[ƒh‚Åg—p‚Å‚«‚é•¶š‚ÌÅ‘å’·
+#define MV1_DISABLEPHYSICS_WORD_MAXNUM		(256)				// ç‰©ç†æ¼”ç®—ç„¡åŠ¹ãƒ¯ãƒ¼ãƒ‰ã®æœ€å¤§æ•°
+#define MV1_DISABLEPHYSICS_WORD_MAXLENGTH	(63)				// ç‰©ç†æ¼”ç®—ç„¡åŠ¹ãƒ¯ãƒ¼ãƒ‰ã§ä½¿ç”¨ã§ãã‚‹æ–‡å­—ã®æœ€å¤§é•·
 
-#define MV1_TRIANGLE_LIST_USE_BONE_MAX_NUM	(54)				// ˆê‚Â‚Ìƒgƒ‰ƒCƒAƒ“ƒOƒ‹ƒŠƒXƒg‚ªg‚¦‚éƒ{[ƒ“‚ÌÅ‘å”
+#define MV1_TRIANGLE_LIST_USE_BONE_MAX_NUM	(54)				// ä¸€ã¤ã®ãƒˆãƒ©ã‚¤ã‚¢ãƒ³ã‚°ãƒ«ãƒªã‚¹ãƒˆãŒä½¿ãˆã‚‹ãƒœãƒ¼ãƒ³ã®æœ€å¤§æ•°
 
-#define MV1_PHYSICS_DEFAULT_GRAVITY			(-9.8f * 12.5f)		// •¨—‰‰Z‚ÌƒfƒtƒHƒ‹ƒg‚Ìd—Í
+#define MV1_PHYSICS_DEFAULT_GRAVITY			(-9.8f * 12.5f)		// ç‰©ç†æ¼”ç®—ã®ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®é‡åŠ›
 
-// ƒtƒŒ[ƒ€‚Ìƒtƒ‰ƒO
-#define MV1_FRAMEFLAG_VISIBLE				(0x00000001)		// •\¦ƒtƒ‰ƒO( 1:•\¦  0:”ñ•\¦ )
-#define MV1_FRAMEFLAG_IGNOREPARENTTRANS		(0x00000002)		// e‚ÌÀ•W•ÏŠ·‚ğ–³‹‚·‚é‚©‚Ç‚¤‚©( 1:–³‹‚·‚é 0:–³‹‚µ‚È‚¢ )
-#define MV1_FRAMEFLAG_PREROTATE				(0x00000004)		// ‘O‰ñ“]‚ª—LŒø‚©‚Ç‚¤‚©( 1:—LŒø  0:–³Œø )
-#define MV1_FRAMEFLAG_POSTROTATE			(0x00000008)		// Œã‰ñ“]‚ª—LŒø‚©‚Ç‚¤‚©( 1:—LŒø  0:–³Œø )
-#define MV1_FRAMEFLAG_TANGENT_BINORMAL		(0x00000010)		// MV1_MESH_NORMAL ‚ÉŠÜ‚Ü‚ê‚é Tangent ‚Æ Binormal ‚ª—LŒø‚È’l‚©‚Ç‚¤‚©( 1:—LŒø‚È’l  0:–³Œø‚È’l )
+// ãƒ•ãƒ¬ãƒ¼ãƒ ã®ãƒ•ãƒ©ã‚°
+#define MV1_FRAMEFLAG_VISIBLE				(0x00000001)		// è¡¨ç¤ºãƒ•ãƒ©ã‚°( 1:è¡¨ç¤º  0:éè¡¨ç¤º )
+#define MV1_FRAMEFLAG_IGNOREPARENTTRANS		(0x00000002)		// è¦ªã®åº§æ¨™å¤‰æ›ã‚’ç„¡è¦–ã™ã‚‹ã‹ã©ã†ã‹( 1:ç„¡è¦–ã™ã‚‹ 0:ç„¡è¦–ã—ãªã„ )
+#define MV1_FRAMEFLAG_PREROTATE				(0x00000004)		// å‰å›è»¢ãŒæœ‰åŠ¹ã‹ã©ã†ã‹( 1:æœ‰åŠ¹  0:ç„¡åŠ¹ )
+#define MV1_FRAMEFLAG_POSTROTATE			(0x00000008)		// å¾Œå›è»¢ãŒæœ‰åŠ¹ã‹ã©ã†ã‹( 1:æœ‰åŠ¹  0:ç„¡åŠ¹ )
+#define MV1_FRAMEFLAG_TANGENT_BINORMAL		(0x00000010)		// MV1_MESH_NORMAL ã«å«ã¾ã‚Œã‚‹ Tangent ã¨ Binormal ãŒæœ‰åŠ¹ãªå€¤ã‹ã©ã†ã‹( 1:æœ‰åŠ¹ãªå€¤  0:ç„¡åŠ¹ãªå€¤ )
 
-// ƒ‰ƒCƒg‚Ìƒ^ƒCƒv
-#define MV1_LIGHT_TYPE_POINT				(0)					// ƒ|ƒCƒ“ƒgƒ‰ƒCƒg
-#define MV1_LIGHT_TYPE_SPOT					(1)					// ƒXƒ|ƒbƒgƒ‰ƒCƒg
-#define MV1_LIGHT_TYPE_DIRECTIONAL			(2)					// ƒfƒBƒŒƒNƒVƒ‡ƒiƒ‹ƒ‰ƒCƒg
+// ãƒ©ã‚¤ãƒˆã®ã‚¿ã‚¤ãƒ—
+#define MV1_LIGHT_TYPE_POINT				(0)					// ãƒã‚¤ãƒ³ãƒˆãƒ©ã‚¤ãƒˆ
+#define MV1_LIGHT_TYPE_SPOT					(1)					// ã‚¹ãƒãƒƒãƒˆãƒ©ã‚¤ãƒˆ
+#define MV1_LIGHT_TYPE_DIRECTIONAL			(2)					// ãƒ‡ã‚£ãƒ¬ã‚¯ã‚·ãƒ§ãƒŠãƒ«ãƒ©ã‚¤ãƒˆ
 
-// ’¸“_ƒ^ƒCƒv
-#define MV1_VERTEX_TYPE_NORMAL				(0)					// „‘ÌƒƒbƒVƒ…—p
-#define MV1_VERTEX_TYPE_SKIN_4BONE			(1)					// ‚P`‚Sƒ{[ƒ“‚ÌƒXƒLƒjƒ“ƒOƒƒbƒVƒ…—p
-#define MV1_VERTEX_TYPE_SKIN_8BONE			(2)					// ‚T`‚Wƒ{[ƒ“‚ÌƒXƒLƒjƒ“ƒOƒƒbƒVƒ…—p
-#define MV1_VERTEX_TYPE_SKIN_FREEBONE		(3)					// ƒ{[ƒ“”–³§ŒÀ‚ÌƒXƒLƒjƒ“ƒOƒƒbƒVƒ…—p
-#define MV1_VERTEX_TYPE_NUM					(4)					// ’¸“_ƒ^ƒCƒv‚Ì”
+// é ‚ç‚¹ã‚¿ã‚¤ãƒ—
+#define MV1_VERTEX_TYPE_NORMAL				(0)					// å‰›ä½“ãƒ¡ãƒƒã‚·ãƒ¥ç”¨
+#define MV1_VERTEX_TYPE_SKIN_4BONE			(1)					// ï¼‘ï½ï¼”ãƒœãƒ¼ãƒ³ã®ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥ç”¨
+#define MV1_VERTEX_TYPE_SKIN_8BONE			(2)					// ï¼•ï½ï¼˜ãƒœãƒ¼ãƒ³ã®ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥ç”¨
+#define MV1_VERTEX_TYPE_SKIN_FREEBONE		(3)					// ãƒœãƒ¼ãƒ³æ•°ç„¡åˆ¶é™ã®ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥ç”¨
+#define MV1_VERTEX_TYPE_NUM					(4)					// é ‚ç‚¹ã‚¿ã‚¤ãƒ—ã®æ•°
 
-// ‰ñ“]ƒ^ƒCƒv
-#define MV1_ROTATE_TYPE_XYZROT				(0)					// X,Y,Z²‰ñ“]
-#define MV1_ROTATE_TYPE_QUATERNION			(1)					// ƒNƒH[ƒ^ƒjƒIƒ“
-#define MV1_ROTATE_TYPE_MATRIX				(2)					// s—ñ
-#define MV1_ROTATE_TYPE_ZAXIS				(3)					// ‚y²•ûŒü+ã•ûŒüƒxƒNƒgƒ‹+”P‚è‰ñ“]w’è
+// å›è»¢ã‚¿ã‚¤ãƒ—
+#define MV1_ROTATE_TYPE_XYZROT				(0)					// X,Y,Zè»¸å›è»¢
+#define MV1_ROTATE_TYPE_QUATERNION			(1)					// ã‚¯ã‚©ãƒ¼ã‚¿ãƒ‹ã‚ªãƒ³
+#define MV1_ROTATE_TYPE_MATRIX				(2)					// è¡Œåˆ—
+#define MV1_ROTATE_TYPE_ZAXIS				(3)					// ï¼ºè»¸æ–¹å‘+ä¸Šæ–¹å‘ãƒ™ã‚¯ãƒˆãƒ«+æ»ã‚Šå›è»¢æŒ‡å®š
 
-// ‚w‚x‚y‰ñ“]ƒI[ƒ_[
+// ï¼¸ï¼¹ï¼ºå›è»¢ã‚ªãƒ¼ãƒ€ãƒ¼
 #define MV1_ROTATE_ORDER_XYZ				(0)					// XYZ
 #define MV1_ROTATE_ORDER_XZY				(1)					// XZY
 #define MV1_ROTATE_ORDER_YZX				(2)					// YZX
@@ -84,46 +84,46 @@ namespace DxLib
 #define MV1_ROTATE_ORDER_ZXY				(4)					// ZXY
 #define MV1_ROTATE_ORDER_ZYX				(5)					// ZYX
 
-// ƒAƒjƒ[ƒVƒ‡ƒ“—v‘f‚Ìƒtƒ‰ƒO
-#define MV1_ANIMVALUE_TRANSLATE				(0x01)				// •½sˆÚ“®
-#define MV1_ANIMVALUE_SCALE					(0x02)				// Šg‘å
-#define MV1_ANIMVALUE_ROTATE				(0x04)				// ‰ñ“]
-#define MV1_ANIMVALUE_QUATERNION_X			(0x08)				// ‰ñ“]( Xƒtƒ@ƒCƒ‹ƒ^ƒCƒvƒNƒH[ƒ^ƒjƒIƒ“ )
-#define MV1_ANIMVALUE_MATRIX				(0x10)				// s—ñ
-#define MV1_ANIMVALUE_QUATERNION_VMD		(0x20)				// ‰ñ“]( VMDƒ^ƒCƒvƒNƒH[ƒ^ƒjƒIƒ“ )
+// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³è¦ç´ ã®ãƒ•ãƒ©ã‚°
+#define MV1_ANIMVALUE_TRANSLATE				(0x01)				// å¹³è¡Œç§»å‹•
+#define MV1_ANIMVALUE_SCALE					(0x02)				// æ‹¡å¤§
+#define MV1_ANIMVALUE_ROTATE				(0x04)				// å›è»¢
+#define MV1_ANIMVALUE_QUATERNION_X			(0x08)				// å›è»¢( Xãƒ•ã‚¡ã‚¤ãƒ«ã‚¿ã‚¤ãƒ—ã‚¯ã‚©ãƒ¼ã‚¿ãƒ‹ã‚ªãƒ³ )
+#define MV1_ANIMVALUE_MATRIX				(0x10)				// è¡Œåˆ—
+#define MV1_ANIMVALUE_QUATERNION_VMD		(0x20)				// å›è»¢( VMDã‚¿ã‚¤ãƒ—ã‚¯ã‚©ãƒ¼ã‚¿ãƒ‹ã‚ªãƒ³ )
 
-// ƒL[ƒ^ƒCƒv
-//#define MV1_KEY_TYPE_STEP					(0)					// ’è”
-//#define MV1_KEY_TYPE_LINEAR				(1)					// üŒ`•âŠÔ
-//#define MV1_KEY_TYPE_SPLINE				(2)					// ƒXƒvƒ‰ƒCƒ“
-//#define MV1_KEY_TYPE_FLAT					(3)					// ƒXƒvƒ‰ƒCƒ“(ŒX‚«‚O)
+// ã‚­ãƒ¼ã‚¿ã‚¤ãƒ—
+//#define MV1_KEY_TYPE_STEP					(0)					// å®šæ•°
+//#define MV1_KEY_TYPE_LINEAR				(1)					// ç·šå½¢è£œé–“
+//#define MV1_KEY_TYPE_SPLINE				(2)					// ã‚¹ãƒ—ãƒ©ã‚¤ãƒ³
+//#define MV1_KEY_TYPE_FLAT					(3)					// ã‚¹ãƒ—ãƒ©ã‚¤ãƒ³(å‚¾ãï¼)
 
-// ƒŒƒCƒ„[ƒuƒŒƒ“ƒhƒpƒ‰ƒ[ƒ^
-#define MV1_LAYERBLEND_TYPE_TRANSLUCENT		(0)					// ƒAƒ‹ƒtƒ@‡¬
-#define MV1_LAYERBLEND_TYPE_ADDITIVE		(1)					// ‰ÁZ
-#define MV1_LAYERBLEND_TYPE_MODULATE		(2)					// æZ
-#define MV1_LAYERBLEND_TYPE_MODULATE2		(3)					// æZ~‚Q
+// ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+#define MV1_LAYERBLEND_TYPE_TRANSLUCENT		(0)					// ã‚¢ãƒ«ãƒ•ã‚¡åˆæˆ
+#define MV1_LAYERBLEND_TYPE_ADDITIVE		(1)					// åŠ ç®—
+#define MV1_LAYERBLEND_TYPE_MODULATE		(2)					// ä¹—ç®—
+#define MV1_LAYERBLEND_TYPE_MODULATE2		(3)					// ä¹—ç®—Ã—ï¼’
 
-// ƒf[ƒ^ƒTƒCƒYw’è¯•Êq
-#define MV1_DATASIZE_VERTEX					(1)					// ’¸“_ƒf[ƒ^
-#define MV1_DATASIZE_STRING					(2)					// •¶š—ñƒf[ƒ^
-#define MV1_DATASIZE_ANIM					(3)					// ƒAƒjƒ[ƒVƒ‡ƒ“ƒf[ƒ^
-//#define MV1_DATASIZE_OTHER				(4)					// ‚»‚Ì‘¼
+// ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºæŒ‡å®šè­˜åˆ¥å­
+#define MV1_DATASIZE_VERTEX					(1)					// é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿
+#define MV1_DATASIZE_STRING					(2)					// æ–‡å­—åˆ—ãƒ‡ãƒ¼ã‚¿
+#define MV1_DATASIZE_ANIM					(3)					// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
+//#define MV1_DATASIZE_OTHER				(4)					// ãã®ä»–
 
 /*
-// ƒeƒNƒXƒ`ƒƒ‚ÌƒAƒhƒŒƒXƒ‚[ƒh
-#define MV1_TEXTURE_ADDRESS_MODE_WRAP		(0)					// ’PƒŒJ‚è•Ô‚µ
-#define MV1_TEXTURE_ADDRESS_MODE_MIRROR		(1)					// ƒ~ƒ‰[ƒŠƒ“ƒO
-#define MV1_TEXTURE_ADDRESS_MODE_CLAMP 		(2)					// ’[‚ÌƒsƒNƒZƒ‹‚ª‘±‚­
+// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ãƒ¢ãƒ¼ãƒ‰
+#define MV1_TEXTURE_ADDRESS_MODE_WRAP		(0)					// å˜ç´”ç¹°ã‚Šè¿”ã—
+#define MV1_TEXTURE_ADDRESS_MODE_MIRROR		(1)					// ãƒŸãƒ©ãƒ¼ãƒªãƒ³ã‚°
+#define MV1_TEXTURE_ADDRESS_MODE_CLAMP 		(2)					// ç«¯ã®ãƒ”ã‚¯ã‚»ãƒ«ãŒç¶šã
 
-// ƒeƒNƒXƒ`ƒƒ‚ÌƒtƒBƒ‹ƒ^ƒŠƒ“ƒOƒ^ƒCƒv
-#define MV1_TEXTURE_FILTER_MODE_POINT		(0)					// Å‹ß“_ƒTƒ“ƒvƒŠƒ“ƒO
-#define MV1_TEXTURE_FILTER_MODE_LINEAR		(1)					// ƒoƒCƒŠƒjƒAƒtƒBƒ‹ƒ^ƒŠƒ“ƒO
-#define MV1_TEXTURE_FILTER_MODE_ANISOTROPIC	(2)					// ˆÙ•û«ƒtƒBƒ‹ƒ^ƒŠƒ“ƒO
+// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ãƒ•ã‚£ãƒ«ã‚¿ãƒªãƒ³ã‚°ã‚¿ã‚¤ãƒ—
+#define MV1_TEXTURE_FILTER_MODE_POINT		(0)					// æœ€è¿‘ç‚¹ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°
+#define MV1_TEXTURE_FILTER_MODE_LINEAR		(1)					// ãƒã‚¤ãƒªãƒ‹ã‚¢ãƒ•ã‚£ãƒ«ã‚¿ãƒªãƒ³ã‚°
+#define MV1_TEXTURE_FILTER_MODE_ANISOTROPIC	(2)					// ç•°æ–¹æ€§ãƒ•ã‚£ãƒ«ã‚¿ãƒªãƒ³ã‚°
 */
 
-// ƒ`ƒFƒbƒN—p‚h‚c
-#define MV1_FRAME_CHECK_ID					(0x5F4D5246)		// ƒtƒŒ[ƒ€‚Ìƒ`ƒFƒbƒN—p‚h‚c
+// ãƒã‚§ãƒƒã‚¯ç”¨ï¼©ï¼¤
+#define MV1_FRAME_CHECK_ID					(0x5F4D5246)		// ãƒ•ãƒ¬ãƒ¼ãƒ ã®ãƒã‚§ãƒƒã‚¯ç”¨ï¼©ï¼¤
 
 #if !defined( BC_COMPILER ) || defined( _DEBUG )
 	#define ADDMEMAREA( size, mem )				AddMemArea( (size), (mem), __FILE__, __LINE__ )
@@ -138,66 +138,66 @@ namespace DxLib
 #define MDFREEMEM( mem )						NS_DxFree( (mem) )
 
 
-// ‚P‚UƒoƒCƒg‹«ŠE‚É‚ ‚í‚¹‚éƒ}ƒNƒ
+// ï¼‘ï¼–ãƒã‚¤ãƒˆå¢ƒç•Œã«ã‚ã‚ã›ã‚‹ãƒã‚¯ãƒ­
 #define ADDR16( addr )		( ( BYTE * )( ( ( DWORD_PTR )( addr ) + 15 ) / 16 * 16 ) )
 
-// ƒ‚ƒfƒ‹Šî–{ƒf[ƒ^ƒnƒ“ƒhƒ‹—LŒø«ƒ`ƒFƒbƒN
+// ãƒ¢ãƒ‡ãƒ«åŸºæœ¬ãƒ‡ãƒ¼ã‚¿ãƒãƒ³ãƒ‰ãƒ«æœ‰åŠ¹æ€§ãƒã‚§ãƒƒã‚¯
 #define MV1BMDLCHK( HAND, MPOINT )			HANDLECHK(       DX_HANDLETYPE_MODEL_BASE, HAND, *( ( HANDLEINFO ** )&MPOINT ) )
 #define MV1BMDLCHK_ASYNC( HAND, MPOINT )	HANDLECHK_ASYNC( DX_HANDLETYPE_MODEL_BASE, HAND, *( ( HANDLEINFO ** )&MPOINT ) )
 
-// ƒ‚ƒfƒ‹ƒnƒ“ƒhƒ‹—LŒø«ƒ`ƒFƒbƒN
+// ãƒ¢ãƒ‡ãƒ«ãƒãƒ³ãƒ‰ãƒ«æœ‰åŠ¹æ€§ãƒã‚§ãƒƒã‚¯
 #define MV1MDLCHK( HAND, MPOINT )			HANDLECHK(       DX_HANDLETYPE_MODEL, HAND, *( ( HANDLEINFO ** )&MPOINT ) )
 #define MV1MDLCHK_ASYNC( HAND, MPOINT )		HANDLECHK_ASYNC( DX_HANDLETYPE_MODEL, HAND, *( ( HANDLEINFO ** )&MPOINT ) )
 
-// ƒgƒ‰ƒCƒAƒ“ƒOƒ‹ƒŠƒXƒgŠîƒf[ƒ^‚ÌŠÂ‹«ˆË‘¶—pî•ñ—pƒoƒbƒtƒ@‚ÌƒTƒCƒY
+// ãƒˆãƒ©ã‚¤ã‚¢ãƒ³ã‚°ãƒ«ãƒªã‚¹ãƒˆåŸºãƒ‡ãƒ¼ã‚¿ã®ç’°å¢ƒä¾å­˜ç”¨æƒ…å ±ç”¨ãƒãƒƒãƒ•ã‚¡ã®ã‚µã‚¤ã‚º
 #define MV1_TRIANGLE_LIST_BASE_PF_BUFFER_SIZE		(16)
 
-// \‘¢‘Ì’è‹` -----------------------------------
+// æ§‹é€ ä½“å®šç¾© -----------------------------------
 
-// ƒgƒ‰ƒCƒAƒ“ƒOƒ‹ƒŠƒXƒg\’z’¸“_ƒ`ƒFƒbƒN—p\‘¢‘Ì
+// ãƒˆãƒ©ã‚¤ã‚¢ãƒ³ã‚°ãƒ«ãƒªã‚¹ãƒˆæ§‹ç¯‰æ™‚é ‚ç‚¹ãƒã‚§ãƒƒã‚¯ç”¨æ§‹é€ ä½“
 struct MV1_MAKEVERTINDEXINFO
 {
 	union
 	{
-		int						VertexIndex ;					// ƒgƒ‰ƒCƒAƒ“ƒOƒ‹ƒŠƒXƒg‚Å‚Ì’¸“_ƒCƒ“ƒfƒbƒNƒX
-		void					*Face ;							// ’¸“_‚ğQÆ‚µ‚Ä‚¢‚é–Ê
+		int						VertexIndex ;					// ãƒˆãƒ©ã‚¤ã‚¢ãƒ³ã‚°ãƒ«ãƒªã‚¹ãƒˆã§ã®é ‚ç‚¹ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+		void					*Face ;							// é ‚ç‚¹ã‚’å‚ç…§ã—ã¦ã„ã‚‹é¢
 	} ;
-	int							TriangleListIndex ;				// ‘®‚·‚éƒgƒ‰ƒCƒAƒ“ƒOƒ‹ƒŠƒXƒg‚ÌƒCƒ“ƒfƒbƒNƒX
-	void						*Mesh ;							// –Ê‚ğ‚ÂƒƒbƒVƒ…
-	struct MV1_MAKEVERTINDEXINFO *Next ;						// Ÿ‚Ìƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	int							TriangleListIndex ;				// å±ã™ã‚‹ãƒˆãƒ©ã‚¤ã‚¢ãƒ³ã‚°ãƒ«ãƒªã‚¹ãƒˆã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+	void						*Mesh ;							// é¢ã‚’æŒã¤ãƒ¡ãƒƒã‚·ãƒ¥
+	struct MV1_MAKEVERTINDEXINFO *Next ;						// æ¬¡ã®ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 } ;
 
 
-// ƒf[ƒ^ˆê’vŒŸ¸—p\‘¢‘Ì
+// ãƒ‡ãƒ¼ã‚¿ä¸€è‡´æ¤œæŸ»ç”¨æ§‹é€ ä½“
 struct DATACMPINFO
 {
-	DWORD					Size ;								// ƒf[ƒ^‚ÌƒTƒCƒY
-	DWORD					Data[ 8 ] ;							// ƒ`ƒFƒbƒN—pƒf[ƒ^
+	DWORD					Size ;								// ãƒ‡ãƒ¼ã‚¿ã®ã‚µã‚¤ã‚º
+	DWORD					Data[ 8 ] ;							// ãƒã‚§ãƒƒã‚¯ç”¨ãƒ‡ãƒ¼ã‚¿
 } ;
 
-// ƒƒ‚ƒŠƒAƒhƒŒƒX•Û‘¶ƒf[ƒ^Œ^
+// ãƒ¡ãƒ¢ãƒªã‚¢ãƒ‰ãƒ¬ã‚¹ä¿å­˜ãƒ‡ãƒ¼ã‚¿å‹
 struct MEMINFO
 {
-	void					*Data ;								// ƒf[ƒ^ƒAƒhƒŒƒX
-	struct MEMINFO			*PrevInfo ;							// ‘O‚Ìƒƒ‚ƒŠƒAƒhƒŒƒX•Û‘¶ƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	struct MEMINFO			*NextInfo ;							// Ÿ‚Ìƒƒ‚ƒŠƒAƒhƒŒƒX•Û‘¶ƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	void					*Data ;								// ãƒ‡ãƒ¼ã‚¿ã‚¢ãƒ‰ãƒ¬ã‚¹
+	struct MEMINFO			*PrevInfo ;							// å‰ã®ãƒ¡ãƒ¢ãƒªã‚¢ãƒ‰ãƒ¬ã‚¹ä¿å­˜ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	struct MEMINFO			*NextInfo ;							// æ¬¡ã®ãƒ¡ãƒ¢ãƒªã‚¢ãƒ‰ãƒ¬ã‚¹ä¿å­˜ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 	int						TotalSize ;
 } ;
 
-// ƒrƒbƒgƒf[ƒ^ƒŠƒXƒg
+// ãƒ“ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ãƒªã‚¹ãƒˆ
 struct BITLIST
 {
-	int						DataNum ;							// —LŒø‚Èƒf[ƒ^‚Ì”
-	int						MaxDataNum ;						// Šm•Û‚³‚ê‚Ä‚¢‚éƒoƒbƒtƒ@‚Ì”
-	int						BitDepth ;							// ƒrƒbƒg[“x
-	int						UnitSize ;							// ƒf[ƒ^ˆê‚Â•Ó‚è‚ÌƒoƒCƒgƒTƒCƒY
-	void					*Data ;								// ƒf[ƒ^–{‘Ì( Šeƒf[ƒ^‚ÌÅIƒoƒCƒg‚Í Press ‚³‚ê‚½ƒf[ƒ^‚©‚É‚æ‚Á‚Ä•Ï‰»( ”ñPress( g—p’†‚©‚Ç‚¤‚©( 1:g—p’† 0:–¢g—p ) ) Press( —§‚Á‚Ä‚¢‚éƒrƒbƒg‚Ì” ) )
-	int						*PressData ;						// ”ñPress:—v‘f‚ğ’Šo‚µ‚½Û‚Ì’ŠoŒã‚Ìí—Ş”Ô†ƒŠƒXƒg  Press:‘Î‰‚·‚éƒf[ƒ^‚ÌoŒ»‰ñ”
+	int						DataNum ;							// æœ‰åŠ¹ãªãƒ‡ãƒ¼ã‚¿ã®æ•°
+	int						MaxDataNum ;						// ç¢ºä¿ã•ã‚Œã¦ã„ã‚‹ãƒãƒƒãƒ•ã‚¡ã®æ•°
+	int						BitDepth ;							// ãƒ“ãƒƒãƒˆæ·±åº¦
+	int						UnitSize ;							// ãƒ‡ãƒ¼ã‚¿ä¸€ã¤è¾ºã‚Šã®ãƒã‚¤ãƒˆã‚µã‚¤ã‚º
+	void					*Data ;								// ãƒ‡ãƒ¼ã‚¿æœ¬ä½“( å„ãƒ‡ãƒ¼ã‚¿ã®æœ€çµ‚ãƒã‚¤ãƒˆã¯ Press ã•ã‚ŒãŸãƒ‡ãƒ¼ã‚¿ã‹ã«ã‚ˆã£ã¦å¤‰åŒ–( éPress( ä½¿ç”¨ä¸­ã‹ã©ã†ã‹( 1:ä½¿ç”¨ä¸­ 0:æœªä½¿ç”¨ ) ) Press( ç«‹ã£ã¦ã„ã‚‹ãƒ“ãƒƒãƒˆã®æ•° ) )
+	int						*PressData ;						// éPress:è¦ç´ ã‚’æŠ½å‡ºã—ãŸéš›ã®æŠ½å‡ºå¾Œã®ç¨®é¡ç•ªå·ãƒªã‚¹ãƒˆ  Press:å¯¾å¿œã™ã‚‹ãƒ‡ãƒ¼ã‚¿ã®å‡ºç¾å›æ•°
 } ;
 
-// 4x4\‘¢‘Ì‚Ì4—ñ–Ú‚ª(0,0,0,1)Œˆ‚ß‘Å‚¿‚Ìs—ñ
-// X‚É•’Ê‚Ì MATRIX ‚Æ‚Í”z—ñ‚Ì—v‘f‚ÌˆÓ–¡‚ªˆêŸŒ³–Ú‚Æ“ñŸŒ³–Ú‚ª‹t
-// MATRIX.m[ s ][ —ñ ],  MATRIX_4X4CT.m[ —ñ ][ s ]
+// 4x4æ§‹é€ ä½“ã®4åˆ—ç›®ãŒ(0,0,0,1)æ±ºã‚æ‰“ã¡ã®è¡Œåˆ—
+// æ›´ã«æ™®é€šã® MATRIX ã¨ã¯é…åˆ—ã®è¦ç´ ã®æ„å‘³ãŒä¸€æ¬¡å…ƒç›®ã¨äºŒæ¬¡å…ƒç›®ãŒé€†
+// MATRIX.m[ è¡Œ ][ åˆ— ],  MATRIX_4X4CT.m[ åˆ— ][ è¡Œ ]
 struct MATRIX_4X4CT_F
 {
 	float					m[ 3 ][ 4 ] ;
@@ -215,1193 +215,1193 @@ union MATRIX_4X4CT
 } ;
 
 
-// ƒRƒŠƒWƒ‡ƒ“—pƒ|ƒŠƒSƒ“î•ñ\‘¢‘Ì
+// ã‚³ãƒªã‚¸ãƒ§ãƒ³ç”¨ãƒãƒªã‚´ãƒ³æƒ…å ±æ§‹é€ ä½“
 struct MV1_COLL_POLYGON
 {
-	MV1_REF_POLYGON			*Polygon ;							// QÆ—pƒ|ƒŠƒSƒ“‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	struct MV1_COLL_POLYGON	*Next ;								// Ÿ‚ÌƒRƒŠƒWƒ‡ƒ“—pƒ|ƒŠƒSƒ“î•ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	MV1_REF_POLYGON			*Polygon ;							// å‚ç…§ç”¨ãƒãƒªã‚´ãƒ³ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	struct MV1_COLL_POLYGON	*Next ;								// æ¬¡ã®ã‚³ãƒªã‚¸ãƒ§ãƒ³ç”¨ãƒãƒªã‚´ãƒ³æƒ…å ±ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 } ;
 
-// ƒRƒŠƒWƒ‡ƒ“—pƒ|ƒŠƒSƒ“î•ñ‚ğŠi”[‚·‚éƒoƒbƒtƒ@\‘¢‘Ì
+// ã‚³ãƒªã‚¸ãƒ§ãƒ³ç”¨ãƒãƒªã‚´ãƒ³æƒ…å ±ã‚’æ ¼ç´ã™ã‚‹ãƒãƒƒãƒ•ã‚¡æ§‹é€ ä½“
 struct MV1_COLL_POLY_BUFFER
 {
-	int						BufferSize ;						// ƒoƒbƒtƒ@‚ÌƒTƒCƒY
-	int						UseSize ;							// g—p‚µ‚Ä‚¢‚é”
-	MV1_COLL_POLYGON		*Buffer ;							// ƒoƒbƒtƒ@
-	struct MV1_COLL_POLY_BUFFER	*Next ;								// Ÿ‚Ìƒoƒbƒtƒ@\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	int						BufferSize ;						// ãƒãƒƒãƒ•ã‚¡ã®ã‚µã‚¤ã‚º
+	int						UseSize ;							// ä½¿ç”¨ã—ã¦ã„ã‚‹æ•°
+	MV1_COLL_POLYGON		*Buffer ;							// ãƒãƒƒãƒ•ã‚¡
+	struct MV1_COLL_POLY_BUFFER	*Next ;								// æ¬¡ã®ãƒãƒƒãƒ•ã‚¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 } ;
 
-// ƒRƒŠƒWƒ‡ƒ“î•ñ\‘¢‘Ì
+// ã‚³ãƒªã‚¸ãƒ§ãƒ³æƒ…å ±æ§‹é€ ä½“
 struct MV1_COLLISION
 {
-	int						XDivNum, YDivNum, ZDivNum ;			// Še²‚Ì•ªŠ„”
-	VECTOR					MinPosition ;						// ˜d‚¤”ÍˆÍ‚ÌÅ¬’l
-	VECTOR					MaxPosition ;						// ˜d‚¤”ÍˆÍ‚ÌÅ‘å’l
-	VECTOR					Size ;								// ˜d‚¤”ÍˆÍ‚ÌƒTƒCƒY
-	VECTOR					UnitSize ;							// Šiqˆê‚Â‚ ‚½‚è‚Ì‘å‚«‚³
-	VECTOR					UnitSizeRev ;						// UnitSize ‚Ì‹t”
-	MV1_COLL_POLYGON		**Polygon ;							// ƒRƒŠƒWƒ‡ƒ“—pƒ|ƒŠƒSƒ“î•ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^”z—ñAƒXƒy[ƒX‚Éˆê‚Â‚àƒ|ƒŠƒSƒ“‚ª‚È‚¢ê‡‚Í NULLAƒCƒ“ƒfƒbƒNƒXZo–@‚Í [ X + Y * XDivNum + Z * ( XDivNum * YDivNum ) ]
-	MV1_COLL_POLY_BUFFER	*FirstBuffer ;						// ƒRƒŠƒWƒ‡ƒ“—pƒ|ƒŠƒSƒ“î•ñŠi”[—pƒoƒbƒtƒ@‚Ìæ’[
-	MV1_COLL_POLY_BUFFER	*LastBuffer ;						// ƒRƒŠƒWƒ‡ƒ“—pƒ|ƒŠƒSƒ“î•ñŠi”[—pƒoƒbƒtƒ@‚Ì––’[
+	int						XDivNum, YDivNum, ZDivNum ;			// å„è»¸ã®åˆ†å‰²æ•°
+	VECTOR					MinPosition ;						// è³„ã†ç¯„å›²ã®æœ€å°å€¤
+	VECTOR					MaxPosition ;						// è³„ã†ç¯„å›²ã®æœ€å¤§å€¤
+	VECTOR					Size ;								// è³„ã†ç¯„å›²ã®ã‚µã‚¤ã‚º
+	VECTOR					UnitSize ;							// æ ¼å­ä¸€ã¤ã‚ãŸã‚Šã®å¤§ãã•
+	VECTOR					UnitSizeRev ;						// UnitSize ã®é€†æ•°
+	MV1_COLL_POLYGON		**Polygon ;							// ã‚³ãƒªã‚¸ãƒ§ãƒ³ç”¨ãƒãƒªã‚´ãƒ³æƒ…å ±ã¸ã®ãƒã‚¤ãƒ³ã‚¿é…åˆ—ã€ã‚¹ãƒšãƒ¼ã‚¹ã«ä¸€ã¤ã‚‚ãƒãƒªã‚´ãƒ³ãŒãªã„å ´åˆã¯ NULLã€ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ç®—å‡ºæ³•ã¯ [ X + Y * XDivNum + Z * ( XDivNum * YDivNum ) ]
+	MV1_COLL_POLY_BUFFER	*FirstBuffer ;						// ã‚³ãƒªã‚¸ãƒ§ãƒ³ç”¨ãƒãƒªã‚´ãƒ³æƒ…å ±æ ¼ç´ç”¨ãƒãƒƒãƒ•ã‚¡ã®å…ˆç«¯
+	MV1_COLL_POLY_BUFFER	*LastBuffer ;						// ã‚³ãƒªã‚¸ãƒ§ãƒ³ç”¨ãƒãƒªã‚´ãƒ³æƒ…å ±æ ¼ç´ç”¨ãƒãƒƒãƒ•ã‚¡ã®æœ«ç«¯
 } ;
 
-// ‰ñ“]î•ñ\‘¢‘Ì
+// å›è»¢æƒ…å ±æ§‹é€ ä½“
 struct MV1_ROTATE
 {
-	int						Type ;								// ‰ñ“]ƒ^ƒCƒv( MV1_ROTATE_TYPE_XYZROT “™ )
+	int						Type ;								// å›è»¢ã‚¿ã‚¤ãƒ—( MV1_ROTATE_TYPE_XYZROT ç­‰ )
 	union
 	{
 		struct
 		{
-			VECTOR			Z ;									// ‚y²‚ÌŒü‚«
-			VECTOR			Up ;								// ã•ûŒü‚ÌŒü‚«
-			float			Twist ;								// ”P‚è‰ñ“]Šp“x
-		} ZAxis ;												// ‚y²•ûŒü{”P‚èŠp“x—p
-		VECTOR				XYZRot ;							// X²‰ñ“]¨Y²‰ñ“]¨Z²‰ñ“]—p
-		FLOAT4				Qt ;								// ƒNƒH[ƒ^ƒjƒIƒ“‰ñ“]—p
-		MATRIX_4X4CT_F		Mat ;								// s—ñ‰ñ“]—p
+			VECTOR			Z ;									// ï¼ºè»¸ã®å‘ã
+			VECTOR			Up ;								// ä¸Šæ–¹å‘ã®å‘ã
+			float			Twist ;								// æ»ã‚Šå›è»¢è§’åº¦
+		} ZAxis ;												// ï¼ºè»¸æ–¹å‘ï¼‹æ»ã‚Šè§’åº¦ç”¨
+		VECTOR				XYZRot ;							// Xè»¸å›è»¢â†’Yè»¸å›è»¢â†’Zè»¸å›è»¢ç”¨
+		FLOAT4				Qt ;								// ã‚¯ã‚©ãƒ¼ã‚¿ãƒ‹ã‚ªãƒ³å›è»¢ç”¨
+		MATRIX_4X4CT_F		Mat ;								// è¡Œåˆ—å›è»¢ç”¨
 	} ;
 } ;
 
-// ƒeƒNƒXƒ`ƒƒŠîƒf[ƒ^\‘¢‘Ì
+// ãƒ†ã‚¯ã‚¹ãƒãƒ£åŸºãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
 struct MV1_TEXTURE_BASE
 {
-	int						NameAllocMem ;						// ƒeƒNƒXƒ`ƒƒ‚Ì–¼‘O‚ğ•Û‘¶‚·‚éƒƒ‚ƒŠ‚ğŠm•Û‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©( TRUE:Šm•Û‚µ‚Ä‚¢‚é  FALSE:‚µ‚Ä‚¢‚È‚¢ )
+	int						NameAllocMem ;						// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®åå‰ã‚’ä¿å­˜ã™ã‚‹ãƒ¡ãƒ¢ãƒªã‚’ç¢ºä¿ã—ã¦ã„ã‚‹ã‹ã©ã†ã‹( TRUE:ç¢ºä¿ã—ã¦ã„ã‚‹  FALSE:ã—ã¦ã„ãªã„ )
 #ifndef UNICODE
-	char					*NameA ;							// ƒeƒNƒXƒ`ƒƒ‚Ì–¼‘O
+	char					*NameA ;							// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®åå‰
 #endif
-	wchar_t					*NameW ;							// ƒeƒNƒXƒ`ƒƒ‚Ì–¼‘O
+	wchar_t					*NameW ;							// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®åå‰
 
-	int						AlphaImageFilePathAllocMem ;		// ƒAƒ‹ƒtƒ@ƒ`ƒƒƒ“ƒlƒ‹—p‰æ‘œ‚Ìƒtƒ@ƒCƒ‹ƒpƒX—p‚Éƒƒ‚ƒŠ‚ğŠm•Û‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©( TRUE:Šm•Û‚µ‚Ä‚¢‚é  FALSE:‚µ‚Ä‚¢‚È‚¢ )
+	int						AlphaImageFilePathAllocMem ;		// ã‚¢ãƒ«ãƒ•ã‚¡ãƒãƒ£ãƒ³ãƒãƒ«ç”¨ç”»åƒã®ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹ç”¨ã«ãƒ¡ãƒ¢ãƒªã‚’ç¢ºä¿ã—ã¦ã„ã‚‹ã‹ã©ã†ã‹( TRUE:ç¢ºä¿ã—ã¦ã„ã‚‹  FALSE:ã—ã¦ã„ãªã„ )
 #ifndef UNICODE
-	char					*AlphaFilePathA ;					// ƒAƒ‹ƒtƒ@ƒ`ƒƒƒ“ƒlƒ‹—p‰æ‘œ‚Ìƒtƒ@ƒCƒ‹ƒpƒX
+	char					*AlphaFilePathA ;					// ã‚¢ãƒ«ãƒ•ã‚¡ãƒãƒ£ãƒ³ãƒãƒ«ç”¨ç”»åƒã®ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹
 #endif
 	wchar_t					*AlphaFilePathW ;
-	void					*AlphaImage ;						// ƒAƒ‹ƒtƒ@ƒ`ƒƒƒ“ƒlƒ‹‰æ‘œ‚Ìƒtƒ@ƒCƒ‹ƒCƒ[ƒW‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	int						AlphaImageSize ;					// ƒAƒ‹ƒtƒ@ƒ`ƒƒƒ“ƒlƒ‹‰æ‘œ‚Ìƒtƒ@ƒCƒ‹ƒCƒ[ƒW‚ÌƒTƒCƒY
+	void					*AlphaImage ;						// ã‚¢ãƒ«ãƒ•ã‚¡ãƒãƒ£ãƒ³ãƒãƒ«ç”»åƒã®ãƒ•ã‚¡ã‚¤ãƒ«ã‚¤ãƒ¡ãƒ¼ã‚¸ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	int						AlphaImageSize ;					// ã‚¢ãƒ«ãƒ•ã‚¡ãƒãƒ£ãƒ³ãƒãƒ«ç”»åƒã®ãƒ•ã‚¡ã‚¤ãƒ«ã‚¤ãƒ¡ãƒ¼ã‚¸ã®ã‚µã‚¤ã‚º
 
-	int						ColorImageFilePathAllocMem ;		// ƒAƒ‹ƒtƒ@ƒ`ƒƒƒ“ƒlƒ‹—p‰æ‘œ‚Ìƒtƒ@ƒCƒ‹ƒpƒX—p‚Éƒƒ‚ƒŠ‚ğŠm•Û‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©( TRUE:Šm•Û‚µ‚Ä‚¢‚é  FALSE:‚µ‚Ä‚¢‚È‚¢ )
+	int						ColorImageFilePathAllocMem ;		// ã‚¢ãƒ«ãƒ•ã‚¡ãƒãƒ£ãƒ³ãƒãƒ«ç”¨ç”»åƒã®ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹ç”¨ã«ãƒ¡ãƒ¢ãƒªã‚’ç¢ºä¿ã—ã¦ã„ã‚‹ã‹ã©ã†ã‹( TRUE:ç¢ºä¿ã—ã¦ã„ã‚‹  FALSE:ã—ã¦ã„ãªã„ )
 #ifndef UNICODE
-	char					*ColorFilePathA ;					// ƒJƒ‰[ƒ`ƒƒƒ“ƒlƒ‹—p‰æ‘œ‚Ìƒtƒ@ƒCƒ‹ƒpƒX
+	char					*ColorFilePathA ;					// ã‚«ãƒ©ãƒ¼ãƒãƒ£ãƒ³ãƒãƒ«ç”¨ç”»åƒã®ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹
 #endif
 	wchar_t					*ColorFilePathW ;
-	void					*ColorImage ;						// ƒJƒ‰[ƒ`ƒƒƒ“ƒlƒ‹—p‰æ‘œ‚Ìƒtƒ@ƒCƒ‹ƒCƒ[ƒW‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	int						ColorImageSize ;					// ƒJƒ‰[ƒ`ƒƒƒ“ƒlƒ‹—p‰æ‘œ‚Ìƒtƒ@ƒCƒ‹ƒCƒ[ƒW‚ÌƒTƒCƒY
+	void					*ColorImage ;						// ã‚«ãƒ©ãƒ¼ãƒãƒ£ãƒ³ãƒãƒ«ç”¨ç”»åƒã®ãƒ•ã‚¡ã‚¤ãƒ«ã‚¤ãƒ¡ãƒ¼ã‚¸ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	int						ColorImageSize ;					// ã‚«ãƒ©ãƒ¼ãƒãƒ£ãƒ³ãƒãƒ«ç”¨ç”»åƒã®ãƒ•ã‚¡ã‚¤ãƒ«ã‚¤ãƒ¡ãƒ¼ã‚¸ã®ã‚µã‚¤ã‚º
 
-	int						Width, Height ;						// •A‚‚³
-	int						SemiTransFlag ;						// ”¼“§–¾—v‘f‚ª‚ ‚é‚©‚Ç‚¤‚©( TRUE:‚ ‚é  FALSE:‚È‚¢ )
-	int						BumpImageFlag ;						// Œ³‚ªƒoƒ“ƒvƒ}ƒbƒv‰æ‘œ‚©( TRUE:ƒoƒ“ƒvƒ}ƒbƒv  FALSE:ˆá‚¤ )
-	float					BumpImageNextPixelLength ;			// ƒoƒ“ƒvƒ}ƒbƒv‰æ‘œ‚Ìê‡‚Ì—×‚ÌƒsƒNƒZƒ‹‚Æ‚Ì‹——£
+	int						Width, Height ;						// å¹…ã€é«˜ã•
+	int						SemiTransFlag ;						// åŠé€æ˜è¦ç´ ãŒã‚ã‚‹ã‹ã©ã†ã‹( TRUE:ã‚ã‚‹  FALSE:ãªã„ )
+	int						BumpImageFlag ;						// å…ƒãŒãƒãƒ³ãƒ—ãƒãƒƒãƒ—ç”»åƒã‹( TRUE:ãƒãƒ³ãƒ—ãƒãƒƒãƒ—  FALSE:é•ã† )
+	float					BumpImageNextPixelLength ;			// ãƒãƒ³ãƒ—ãƒãƒƒãƒ—ç”»åƒã®å ´åˆã®éš£ã®ãƒ”ã‚¯ã‚»ãƒ«ã¨ã®è·é›¢
 
-	int						GraphHandle ;						// ƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹
-	int						IsDefaultTexture ;					// ƒfƒtƒHƒ‹ƒg‚Ì‰æ‘œ‚©‚Ç‚¤‚©( TRUE:ƒfƒtƒHƒ‹ƒg‚Ì‰æ‘œ  FALSE:ƒtƒ@ƒCƒ‹‚©‚ç“Ç‚İ‚ñ‚¾‰æ‘œ )
+	int						GraphHandle ;						// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«
+	int						IsDefaultTexture ;					// ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®ç”»åƒã‹ã©ã†ã‹( TRUE:ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®ç”»åƒ  FALSE:ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰èª­ã¿è¾¼ã‚“ã ç”»åƒ )
 
-	int						UseUserGraphHandle ;				// UserGraphHandle ‚ğg—p‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©	int						UseGraphHandle ;					// GraphHandle ‚ğg—p‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©( TRUE:g—p‚µ‚Ä‚¢‚é  FALSE:‚µ‚Ä‚¢‚È‚¢ )
-	int						UserGraphHandle ;					// ƒ†[ƒU[ƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹
-	int						UserGraphWidth, UserGraphHeight ;	// •A‚‚³
-	int						UserGraphHandleSemiTransFlag ;		// ƒ†[ƒU[ƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚É”¼“§–¾—v‘f‚ª‚ ‚é‚©‚Ç‚¤‚©
+	int						UseUserGraphHandle ;				// UserGraphHandle ã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹ã‹ã©ã†ã‹	int						UseGraphHandle ;					// GraphHandle ã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹ã‹ã©ã†ã‹( TRUE:ä½¿ç”¨ã—ã¦ã„ã‚‹  FALSE:ã—ã¦ã„ãªã„ )
+	int						UserGraphHandle ;					// ãƒ¦ãƒ¼ã‚¶ãƒ¼ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«
+	int						UserGraphWidth, UserGraphHeight ;	// å¹…ã€é«˜ã•
+	int						UserGraphHandleSemiTransFlag ;		// ãƒ¦ãƒ¼ã‚¶ãƒ¼ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã«åŠé€æ˜è¦ç´ ãŒã‚ã‚‹ã‹ã©ã†ã‹
 
-	int						AddressModeU ;						// ƒAƒhƒŒƒXƒ‚[ƒh( DX_TEXADDRESS_WRAP “™ )
-	int						AddressModeV ;						// ƒAƒhƒŒƒXƒ‚[ƒh( DX_TEXADDRESS_WRAP “™ )
-	float					ScaleU ;							// ‚tÀ•W‚ÌƒXƒP[ƒŠƒ“ƒO’l
-	float					ScaleV ;							// ‚uÀ•W‚ÌƒXƒP[ƒŠƒ“ƒO’l
-	int						FilterMode ;						// ƒtƒBƒ‹ƒ^ƒŠƒ“ƒOƒ‚[ƒh( DX_DRAWMODE_BILINEAR “™ )
+	int						AddressModeU ;						// ã‚¢ãƒ‰ãƒ¬ã‚¹ãƒ¢ãƒ¼ãƒ‰( DX_TEXADDRESS_WRAP ç­‰ )
+	int						AddressModeV ;						// ã‚¢ãƒ‰ãƒ¬ã‚¹ãƒ¢ãƒ¼ãƒ‰( DX_TEXADDRESS_WRAP ç­‰ )
+	float					ScaleU ;							// ï¼µåº§æ¨™ã®ã‚¹ã‚±ãƒ¼ãƒªãƒ³ã‚°å€¤
+	float					ScaleV ;							// ï¼¶åº§æ¨™ã®ã‚¹ã‚±ãƒ¼ãƒªãƒ³ã‚°å€¤
+	int						FilterMode ;						// ãƒ•ã‚£ãƒ«ã‚¿ãƒªãƒ³ã‚°ãƒ¢ãƒ¼ãƒ‰( DX_DRAWMODE_BILINEAR ç­‰ )
 
-	int						ReverseFlag ;						// ‰æ‘œ‚ğ”½“]‚·‚é‚©‚Ç‚¤‚©( 1:”½“]‚·‚é  0:”½“]‚µ‚È‚¢ )
-	int						Bmp32AllZeroAlphaToXRGB8Flag ;		// ‚R‚Qƒrƒbƒg‚a‚l‚o‚ÌƒAƒ‹ƒtƒ@’l‚ª‘S•”‚O‚¾‚Á‚½‚ç XRGB8 ‚Æ‚µ‚Äˆµ‚¤‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO
+	int						ReverseFlag ;						// ç”»åƒã‚’åè»¢ã™ã‚‹ã‹ã©ã†ã‹( 1:åè»¢ã™ã‚‹  0:åè»¢ã—ãªã„ )
+	int						Bmp32AllZeroAlphaToXRGB8Flag ;		// ï¼“ï¼’ãƒ“ãƒƒãƒˆï¼¢ï¼­ï¼°ã®ã‚¢ãƒ«ãƒ•ã‚¡å€¤ãŒå…¨éƒ¨ï¼ã ã£ãŸã‚‰ XRGB8 ã¨ã—ã¦æ‰±ã†ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°
 
-	DWORD					UserData[ 2 ] ;						// ŠO•”’è‹`‚Ìî•ñ
+	DWORD					UserData[ 2 ] ;						// å¤–éƒ¨å®šç¾©ã®æƒ…å ±
 } ;
 
-// ƒ}ƒeƒŠƒAƒ‹ƒŒƒCƒ„[\‘¢‘Ì
+// ãƒãƒ†ãƒªã‚¢ãƒ«ãƒ¬ã‚¤ãƒ¤ãƒ¼æ§‹é€ ä½“
 struct MV1_MATERIAL_LAYER
 {
-	int						IsGraphHandleAlpha ;				// GraphHandle ‚É1.0fˆÈŠO‚Ìƒ¿’l‚ªŠÜ‚Ü‚ê‚Ä‚¢‚é‚©‚Ç‚¤‚©( TRUE:ŠÜ‚Ü‚ê‚Ä‚¢‚é  FALSE:ŠÜ‚Ü‚ê‚Ä‚¢‚È‚¢ )
-	int						GraphHandle ;						// Texture ‚Ì‘ã‚í‚è‚Ég—p‚·‚éƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹A0‚Ìê‡‚Í–³Œø
-	int						Texture ;							// ƒ‚ƒfƒ‹ƒeƒNƒXƒ`ƒƒƒCƒ“ƒfƒbƒNƒX( MV1_MODEL_BASE.Textue ”z—ñ‚ÌƒCƒ“ƒfƒbƒNƒX )
-	int						BlendType ;							// ƒuƒŒƒ“ƒhƒ^ƒCƒv( MV1_LAYERBLEND_TYPE_ADDITIVE “™ )
+	int						IsGraphHandleAlpha ;				// GraphHandle ã«1.0fä»¥å¤–ã®Î±å€¤ãŒå«ã¾ã‚Œã¦ã„ã‚‹ã‹ã©ã†ã‹( TRUE:å«ã¾ã‚Œã¦ã„ã‚‹  FALSE:å«ã¾ã‚Œã¦ã„ãªã„ )
+	int						GraphHandle ;						// Texture ã®ä»£ã‚ã‚Šã«ä½¿ç”¨ã™ã‚‹ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã€0ã®å ´åˆã¯ç„¡åŠ¹
+	int						Texture ;							// ãƒ¢ãƒ‡ãƒ«ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹( MV1_MODEL_BASE.Textue é…åˆ—ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ )
+	int						BlendType ;							// ãƒ–ãƒ¬ãƒ³ãƒ‰ã‚¿ã‚¤ãƒ—( MV1_LAYERBLEND_TYPE_ADDITIVE ç­‰ )
 } ;
 
-// ƒ}ƒeƒŠƒAƒ‹Šîƒf[ƒ^\‘¢‘Ì
+// ãƒãƒ†ãƒªã‚¢ãƒ«åŸºãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
 struct MV1_MATERIAL_BASE
 {
 #ifndef UNICODE
-	char					*NameA ;							// –¼‘O
+	char					*NameA ;							// åå‰
 #endif
 	wchar_t					*NameW ;
 
-	int						Type ;								// ƒ}ƒeƒŠƒAƒ‹ƒ^ƒCƒv( DX_MATERIAL_TYPE_NORMAL ‚È‚Ç )
+	int						Type ;								// ãƒãƒ†ãƒªã‚¢ãƒ«ã‚¿ã‚¤ãƒ—( DX_MATERIAL_TYPE_NORMAL ãªã© )
 
-	COLOR_F					Diffuse ;							// ƒfƒBƒtƒ…[ƒYF
-	COLOR_F					Ambient ;							// ƒAƒ“ƒrƒGƒ“ƒgF
-	COLOR_F					Specular ;							// ƒXƒyƒLƒ…ƒ‰[F
-	COLOR_F					Emissive ;							// ƒGƒ~ƒbƒVƒuF
-	float					Power ;								// ƒXƒyƒLƒ…ƒ‰ƒnƒCƒ‰ƒCƒg‚Ìƒpƒ[
-	float					TypeParam[ MATERIAL_TYPEPARAM_MAX_NUM ] ;	// ƒ}ƒeƒŠƒAƒ‹ƒ^ƒCƒv‚Ìƒpƒ‰ƒ[ƒ^( DX_MATERIAL_TYPE_MAT_SPEC_LUMINANCE_TWO_COLOR ‚È‚Ç‚Åg—p )
+	COLOR_F					Diffuse ;							// ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºè‰²
+	COLOR_F					Ambient ;							// ã‚¢ãƒ³ãƒ“ã‚¨ãƒ³ãƒˆè‰²
+	COLOR_F					Specular ;							// ã‚¹ãƒšã‚­ãƒ¥ãƒ©ãƒ¼è‰²
+	COLOR_F					Emissive ;							// ã‚¨ãƒŸãƒƒã‚·ãƒ–è‰²
+	float					Power ;								// ã‚¹ãƒšã‚­ãƒ¥ãƒ©ãƒã‚¤ãƒ©ã‚¤ãƒˆã®ãƒ‘ãƒ¯ãƒ¼
+	float					TypeParam[ MATERIAL_TYPEPARAM_MAX_NUM ] ;	// ãƒãƒ†ãƒªã‚¢ãƒ«ã‚¿ã‚¤ãƒ—ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿( DX_MATERIAL_TYPE_MAT_SPEC_LUMINANCE_TWO_COLOR ãªã©ã§ä½¿ç”¨ )
 
-	int						DiffuseLayerNum ;					// ƒfƒBƒtƒ…[ƒYƒJƒ‰[‚ÌƒŒƒCƒ„[”
-	MV1_MATERIAL_LAYER		DiffuseLayer[ 8 ] ;					// ƒfƒBƒtƒ…[ƒYƒJƒ‰[‚ÌƒŒƒCƒ„[î•ñ( ‚OƒŒƒCƒ„[‚Ì BlendType ‚Í–³‹‚³‚ê‚é )
-	int						SpecularLayerNum ;					// ƒXƒyƒLƒ…ƒ‰ƒ}ƒbƒv‚ÌƒŒƒCƒ„[”
-	MV1_MATERIAL_LAYER		SpecularLayer[ 8 ] ;				// ƒXƒyƒLƒ…ƒ‰ƒ}ƒbƒv‚ÌƒŒƒCƒ„[î•ñ( ‚OƒŒƒCƒ„[‚Ì BlendType ‚Í–³‹‚³‚ê‚é )
-	int						NormalLayerNum ;					// –@üƒ}ƒbƒv‚ÌƒŒƒCƒ„[”
-	MV1_MATERIAL_LAYER		NormalLayer[ 8 ] ;					// –@üƒ}ƒbƒv‚ÌƒŒƒCƒ„[î•ñ( ‚OƒŒƒCƒ„[‚Ì BlendType ‚Í–³‹‚³‚ê‚é )
-	int						EmissiveLayerNum ;					// ©ŒÈ”­Œõƒ}ƒbƒv‚ÌƒŒƒCƒ„[”
-	MV1_MATERIAL_LAYER		EmissiveLayer[ 8 ] ;				// ©ŒÈ”­Œõƒ}ƒbƒv‚ÌƒŒƒCƒ„[î•ñ( ‚OƒŒƒCƒ„[‚Ì BlendType ‚Í–³‹‚³‚ê‚é )
-	int						ShininessLayerNum ;					// ƒ‰ƒtƒlƒXƒ}ƒbƒv‚ÌƒŒƒCƒ„[”
-	MV1_MATERIAL_LAYER		ShininessLayer[ 8 ] ;				// ƒ‰ƒtƒlƒXƒ}ƒbƒv‚ÌƒŒƒCƒ„[î•ñ( ‚OƒŒƒCƒ„[‚Ì BlendType ‚Í–³‹‚³‚ê‚é )
-	int						ReflectionFactorLayerNum ;			// ƒƒ^ƒŠƒbƒNƒ}ƒbƒv‚ÌƒŒƒCƒ„[”
-	MV1_MATERIAL_LAYER		ReflectionFactorLayer[ 8 ] ;		// ƒƒ^ƒŠƒbƒNƒ}ƒbƒv‚ÌƒŒƒCƒ„[î•ñ( ‚OƒŒƒCƒ„[‚Ì BlendType ‚Í–³‹‚³‚ê‚é )
+	int						DiffuseLayerNum ;					// ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚«ãƒ©ãƒ¼ã®ãƒ¬ã‚¤ãƒ¤ãƒ¼æ•°
+	MV1_MATERIAL_LAYER		DiffuseLayer[ 8 ] ;					// ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚«ãƒ©ãƒ¼ã®ãƒ¬ã‚¤ãƒ¤ãƒ¼æƒ…å ±( ï¼ãƒ¬ã‚¤ãƒ¤ãƒ¼ã® BlendType ã¯ç„¡è¦–ã•ã‚Œã‚‹ )
+	int						SpecularLayerNum ;					// ã‚¹ãƒšã‚­ãƒ¥ãƒ©ãƒãƒƒãƒ—ã®ãƒ¬ã‚¤ãƒ¤ãƒ¼æ•°
+	MV1_MATERIAL_LAYER		SpecularLayer[ 8 ] ;				// ã‚¹ãƒšã‚­ãƒ¥ãƒ©ãƒãƒƒãƒ—ã®ãƒ¬ã‚¤ãƒ¤ãƒ¼æƒ…å ±( ï¼ãƒ¬ã‚¤ãƒ¤ãƒ¼ã® BlendType ã¯ç„¡è¦–ã•ã‚Œã‚‹ )
+	int						NormalLayerNum ;					// æ³•ç·šãƒãƒƒãƒ—ã®ãƒ¬ã‚¤ãƒ¤ãƒ¼æ•°
+	MV1_MATERIAL_LAYER		NormalLayer[ 8 ] ;					// æ³•ç·šãƒãƒƒãƒ—ã®ãƒ¬ã‚¤ãƒ¤ãƒ¼æƒ…å ±( ï¼ãƒ¬ã‚¤ãƒ¤ãƒ¼ã® BlendType ã¯ç„¡è¦–ã•ã‚Œã‚‹ )
+	int						EmissiveLayerNum ;					// è‡ªå·±ç™ºå…‰ãƒãƒƒãƒ—ã®ãƒ¬ã‚¤ãƒ¤ãƒ¼æ•°
+	MV1_MATERIAL_LAYER		EmissiveLayer[ 8 ] ;				// è‡ªå·±ç™ºå…‰ãƒãƒƒãƒ—ã®ãƒ¬ã‚¤ãƒ¤ãƒ¼æƒ…å ±( ï¼ãƒ¬ã‚¤ãƒ¤ãƒ¼ã® BlendType ã¯ç„¡è¦–ã•ã‚Œã‚‹ )
+	int						ShininessLayerNum ;					// ãƒ©ãƒ•ãƒã‚¹ãƒãƒƒãƒ—ã®ãƒ¬ã‚¤ãƒ¤ãƒ¼æ•°
+	MV1_MATERIAL_LAYER		ShininessLayer[ 8 ] ;				// ãƒ©ãƒ•ãƒã‚¹ãƒãƒƒãƒ—ã®ãƒ¬ã‚¤ãƒ¤ãƒ¼æƒ…å ±( ï¼ãƒ¬ã‚¤ãƒ¤ãƒ¼ã® BlendType ã¯ç„¡è¦–ã•ã‚Œã‚‹ )
+	int						ReflectionFactorLayerNum ;			// ãƒ¡ã‚¿ãƒªãƒƒã‚¯ãƒãƒƒãƒ—ã®ãƒ¬ã‚¤ãƒ¤ãƒ¼æ•°
+	MV1_MATERIAL_LAYER		ReflectionFactorLayer[ 8 ] ;		// ãƒ¡ã‚¿ãƒªãƒƒã‚¯ãƒãƒƒãƒ—ã®ãƒ¬ã‚¤ãƒ¤ãƒ¼æƒ…å ±( ï¼ãƒ¬ã‚¤ãƒ¤ãƒ¼ã® BlendType ã¯ç„¡è¦–ã•ã‚Œã‚‹ )
 
-	int						DiffuseGradTexture ;				// ( ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚Å‚Ì‚İg—p )ƒfƒBƒtƒ…[ƒYƒJƒ‰[ƒOƒ‰ƒf[ƒVƒ‡ƒ“ƒeƒNƒXƒ`ƒƒƒCƒ“ƒfƒbƒNƒXA“–‚½‚Á‚Ä‚¢‚éƒ‰ƒCƒg‚ÌƒfƒBƒtƒ…[ƒYƒJƒ‰[‚Å‚t’l‚ªŒˆ‚Ü‚é‚à‚ÌAƒfƒtƒHƒ‹ƒgƒeƒNƒXƒ`ƒƒ‚Ìê‡‚Í -1 or -2A0ˆÈã‚Ìê‡‚Í MV1_MODEL_BASE.Textue ”z—ñ‚ÌƒCƒ“ƒfƒbƒNƒX
-	int						SpecularGradTexture ;				// ( ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚Å‚Ì‚İg—p )ƒXƒyƒLƒ…ƒ‰ƒJƒ‰[ƒOƒ‰ƒf[ƒVƒ‡ƒ“ƒeƒNƒXƒ`ƒƒƒCƒ“ƒfƒbƒNƒXA“–‚½‚Á‚Ä‚¢‚éƒ‰ƒCƒg‚ÌƒXƒyƒLƒ…ƒ‰ƒJƒ‰[‚Å‚t’l‚ªŒˆ‚Ü‚é‚à‚ÌAƒfƒtƒHƒ‹ƒgƒeƒNƒXƒ`ƒƒ‚Ìê‡‚Í -1 or -2A0ˆÈã‚Ìê‡‚Í MV1_MODEL_BASE.Textue ”z—ñ‚ÌƒCƒ“ƒfƒbƒNƒX
-	int						SphereMapTexture ;					// ( ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚Å‚Ì‚İg—p )ƒXƒtƒBƒAƒ}ƒbƒvƒeƒNƒXƒ`ƒƒƒCƒ“ƒfƒbƒNƒX
-	int						DiffuseGradBlendType ;				// ( ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚Å‚Ì‚İg—p )ƒfƒBƒtƒ…[ƒYƒOƒ‰ƒf[ƒVƒ‡ƒ“ƒeƒNƒXƒ`ƒƒ‚ÌƒuƒŒƒ“ƒhƒ^ƒCƒv( DX_MATERIAL_BLENDTYPE_TRANSLUCENT ‚È‚Ç )
-	int						SpecularGradBlendType ;				// ( ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚Å‚Ì‚İg—p )ƒXƒyƒLƒ…ƒ‰ƒOƒ‰ƒf[ƒVƒ‡ƒ“ƒeƒNƒXƒ`ƒƒ‚ÌƒuƒŒƒ“ƒhƒ^ƒCƒv( DX_MATERIAL_BLENDTYPE_ADDITIVE ‚È‚Ç )
-	int						SphereMapBlendType ;				// ( ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚Å‚Ì‚İg—p )ƒXƒtƒBƒAƒ}ƒbƒvƒeƒNƒXƒ`ƒƒ‚ÌƒuƒŒƒ“ƒhƒ^ƒCƒv( DX_MATERIAL_BLENDTYPE_ADDITIVE ‚È‚Ç )
-	float					OutLineWidth ;						// ( ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚Å‚Ì‚İg—p )—ÖŠsü‚Ì•
-	float					OutLineDotWidth ;					// ( ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚Å‚Ì‚İg—p )—ÖŠsü‚Ìƒhƒbƒg’PˆÊ‚Å‚Ì•
-	COLOR_F					OutLineColor ;						// ( ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚Å‚Ì‚İg—p )—ÖŠsü‚ÌF
+	int						DiffuseGradTexture ;				// ( ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã§ã®ã¿ä½¿ç”¨ )ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚«ãƒ©ãƒ¼ã‚°ãƒ©ãƒ‡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã€å½“ãŸã£ã¦ã„ã‚‹ãƒ©ã‚¤ãƒˆã®ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚«ãƒ©ãƒ¼ã§ï¼µå€¤ãŒæ±ºã¾ã‚‹ã‚‚ã®ã€ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãƒ†ã‚¯ã‚¹ãƒãƒ£ã®å ´åˆã¯ -1 or -2ã€0ä»¥ä¸Šã®å ´åˆã¯ MV1_MODEL_BASE.Textue é…åˆ—ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+	int						SpecularGradTexture ;				// ( ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã§ã®ã¿ä½¿ç”¨ )ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã‚«ãƒ©ãƒ¼ã‚°ãƒ©ãƒ‡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã€å½“ãŸã£ã¦ã„ã‚‹ãƒ©ã‚¤ãƒˆã®ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã‚«ãƒ©ãƒ¼ã§ï¼µå€¤ãŒæ±ºã¾ã‚‹ã‚‚ã®ã€ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãƒ†ã‚¯ã‚¹ãƒãƒ£ã®å ´åˆã¯ -1 or -2ã€0ä»¥ä¸Šã®å ´åˆã¯ MV1_MODEL_BASE.Textue é…åˆ—ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+	int						SphereMapTexture ;					// ( ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã§ã®ã¿ä½¿ç”¨ )ã‚¹ãƒ•ã‚£ã‚¢ãƒãƒƒãƒ—ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+	int						DiffuseGradBlendType ;				// ( ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã§ã®ã¿ä½¿ç”¨ )ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚°ãƒ©ãƒ‡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ãƒ–ãƒ¬ãƒ³ãƒ‰ã‚¿ã‚¤ãƒ—( DX_MATERIAL_BLENDTYPE_TRANSLUCENT ãªã© )
+	int						SpecularGradBlendType ;				// ( ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã§ã®ã¿ä½¿ç”¨ )ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã‚°ãƒ©ãƒ‡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ãƒ–ãƒ¬ãƒ³ãƒ‰ã‚¿ã‚¤ãƒ—( DX_MATERIAL_BLENDTYPE_ADDITIVE ãªã© )
+	int						SphereMapBlendType ;				// ( ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã§ã®ã¿ä½¿ç”¨ )ã‚¹ãƒ•ã‚£ã‚¢ãƒãƒƒãƒ—ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ãƒ–ãƒ¬ãƒ³ãƒ‰ã‚¿ã‚¤ãƒ—( DX_MATERIAL_BLENDTYPE_ADDITIVE ãªã© )
+	float					OutLineWidth ;						// ( ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã§ã®ã¿ä½¿ç”¨ )è¼ªéƒ­ç·šã®å¹…
+	float					OutLineDotWidth ;					// ( ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã§ã®ã¿ä½¿ç”¨ )è¼ªéƒ­ç·šã®ãƒ‰ãƒƒãƒˆå˜ä½ã§ã®å¹…
+	COLOR_F					OutLineColor ;						// ( ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã§ã®ã¿ä½¿ç”¨ )è¼ªéƒ­ç·šã®è‰²
 
-	int						UseAlphaTest ;						// ƒAƒ‹ƒtƒ@ƒeƒXƒg‚ğg—p‚·‚é‚©‚Ç‚¤‚©
-	int						AlphaFunc ;							// ƒAƒ‹ƒtƒ@ƒeƒXƒgƒ‚[ƒh( ¡‚Ì‚Æ‚±‚ë–¢g—p )
-	int						AlphaRef ;							// ƒAƒ‹ƒtƒ@ƒeƒXƒg‚Ìè‡’l
+	int						UseAlphaTest ;						// ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹
+	int						AlphaFunc ;							// ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆãƒ¢ãƒ¼ãƒ‰( ä»Šã®ã¨ã“ã‚æœªä½¿ç”¨ )
+	int						AlphaRef ;							// ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆã®é–¾å€¤
 
-	int						DrawBlendMode ;						// o—Í‚ÌƒuƒŒƒ“ƒhƒ‚[ƒh( DX_BLENDMODE_NOBLEND “™ )
-	int						DrawBlendParam ;					// o—Í‚ÌƒuƒŒƒ“ƒhƒpƒ‰ƒ[ƒ^
-	INT4					DrawAddColor ;						// o—Í‚Ì‰ÁZƒJƒ‰[
+	int						DrawBlendMode ;						// å‡ºåŠ›æ™‚ã®ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰( DX_BLENDMODE_NOBLEND ç­‰ )
+	int						DrawBlendParam ;					// å‡ºåŠ›æ™‚ã®ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+	INT4					DrawAddColor ;						// å‡ºåŠ›æ™‚ã®åŠ ç®—ã‚«ãƒ©ãƒ¼
 
-	DWORD					UserData[ 4 ] ;						// ŠO•”’è‹`‚Ìî•ñ
+	DWORD					UserData[ 4 ] ;						// å¤–éƒ¨å®šç¾©ã®æƒ…å ±
 } ;
 
-// ƒ‰ƒCƒg\‘¢‘Ì
+// ãƒ©ã‚¤ãƒˆæ§‹é€ ä½“
 struct MV1_LIGHT
 {
 #ifndef UNICODE
-	char					*NameA ;							// –¼‘O
+	char					*NameA ;							// åå‰
 #endif
-	wchar_t					*NameW ;							// –¼‘O
-	int						Index ;								// ƒCƒ“ƒfƒbƒNƒX
+	wchar_t					*NameW ;							// åå‰
+	int						Index ;								// ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 
-	int						FrameIndex ;						// ƒ‰ƒCƒg‚ğ‚Á‚Ä‚¢‚éƒtƒŒ[ƒ€‚ÌƒCƒ“ƒfƒbƒNƒX
-	int						Type ;								// ƒ‰ƒCƒgƒ^ƒCƒv( MV1_LIGHT_TYPE_POINT “™ )
-	COLOR_F					Diffuse ;							// ƒfƒBƒtƒ…[ƒYƒJƒ‰[
-	COLOR_F					Specular ;							// ƒXƒyƒLƒ…ƒ‰ƒJƒ‰[
-	COLOR_F					Ambient ;							// ƒAƒ“ƒrƒGƒ“ƒgƒJƒ‰[
-	float					Range ;								// ƒXƒ|ƒbƒgƒ‰ƒCƒg‚Ì—LŒø‹——£
-	float					Falloff ;							// ƒtƒH[ƒ‹ƒIƒt
-	float					Attenuation0 ;						// ƒ‰ƒCƒgƒpƒ‰ƒ[ƒ^‚O
-	float					Attenuation1 ;						// ƒ‰ƒCƒgƒpƒ‰ƒ[ƒ^‚P
-	float					Attenuation2 ;						// ƒ‰ƒCƒgƒpƒ‰ƒ[ƒ^‚Q
-	float					Theta ;								// ƒXƒ|ƒbƒgƒ‰ƒCƒg‚Ì“à•”ƒR[ƒ“‚ÌŠp“x”ÍˆÍ
-	float					Phi ;								// ƒXƒ|ƒbƒgƒ‰ƒCƒg‚ÌŠO•”ƒR[ƒ“‚ÌŠp“x”ÍˆÍ
+	int						FrameIndex ;						// ãƒ©ã‚¤ãƒˆã‚’æŒã£ã¦ã„ã‚‹ãƒ•ãƒ¬ãƒ¼ãƒ ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+	int						Type ;								// ãƒ©ã‚¤ãƒˆã‚¿ã‚¤ãƒ—( MV1_LIGHT_TYPE_POINT ç­‰ )
+	COLOR_F					Diffuse ;							// ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚«ãƒ©ãƒ¼
+	COLOR_F					Specular ;							// ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã‚«ãƒ©ãƒ¼
+	COLOR_F					Ambient ;							// ã‚¢ãƒ³ãƒ“ã‚¨ãƒ³ãƒˆã‚«ãƒ©ãƒ¼
+	float					Range ;								// ã‚¹ãƒãƒƒãƒˆãƒ©ã‚¤ãƒˆã®æœ‰åŠ¹è·é›¢
+	float					Falloff ;							// ãƒ•ã‚©ãƒ¼ãƒ«ã‚ªãƒ•
+	float					Attenuation0 ;						// ãƒ©ã‚¤ãƒˆãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ï¼
+	float					Attenuation1 ;						// ãƒ©ã‚¤ãƒˆãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ï¼‘
+	float					Attenuation2 ;						// ãƒ©ã‚¤ãƒˆãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ï¼’
+	float					Theta ;								// ã‚¹ãƒãƒƒãƒˆãƒ©ã‚¤ãƒˆã®å†…éƒ¨ã‚³ãƒ¼ãƒ³ã®è§’åº¦ç¯„å›²
+	float					Phi ;								// ã‚¹ãƒãƒƒãƒˆãƒ©ã‚¤ãƒˆã®å¤–éƒ¨ã‚³ãƒ¼ãƒ³ã®è§’åº¦ç¯„å›²
 
-	DWORD					UserData[ 2 ] ;						// ŠO•”’è‹`‚Ìî•ñ
+	DWORD					UserData[ 2 ] ;						// å¤–éƒ¨å®šç¾©ã®æƒ…å ±
 } ;
 
 
 
-// 16bitƒf[ƒ^ƒ^ƒCƒv—p•â•î•ñ\‘¢‘Ì
+// 16bitãƒ‡ãƒ¼ã‚¿ã‚¿ã‚¤ãƒ—ç”¨è£œåŠ©æƒ…å ±æ§‹é€ ä½“
 struct MV1_ANIM_KEY_16BIT
 {
-	BYTE					Min ;								// Å¬’l( bit7:‚O‚©‚Ç‚¤‚©( 0:0ˆÈŠO 1:0 )  bit6:•„†(0:+ 1:-)  bit5:æ”•ûŒü(0:+ 1:-) bit4`0:æ”(Å‘å10‚Ì15æ) ) 
-	BYTE					Unit ;								// 16bit’l‚P•Ó‚è‚Ì’l( bit7:æ”•ûŒü(0:+ 1:-) bit6`4:æ”(Å‘å10‚Ì7æ) bit3`0:æZ‚³‚ê‚é’l( 0`15 ) )
+	BYTE					Min ;								// æœ€å°å€¤( bit7:ï¼ã‹ã©ã†ã‹( 0:0ä»¥å¤– 1:0 )  bit6:ç¬¦å·(0:+ 1:-)  bit5:ä¹—æ•°æ–¹å‘(0:+ 1:-) bit4ï½0:ä¹—æ•°(æœ€å¤§10ã®15ä¹—) ) 
+	BYTE					Unit ;								// 16bitå€¤ï¼‘è¾ºã‚Šã®å€¤( bit7:ä¹—æ•°æ–¹å‘(0:+ 1:-) bit6ï½4:ä¹—æ•°(æœ€å¤§10ã®7ä¹—) bit3ï½0:ä¹—ç®—ã•ã‚Œã‚‹å€¤( 0ï½15 ) )
 } ;
 
-// 16bitƒf[ƒ^ƒ^ƒCƒv—p•â•î•ñ\‘¢‘Ì( float”Å )
+// 16bitãƒ‡ãƒ¼ã‚¿ã‚¿ã‚¤ãƒ—ç”¨è£œåŠ©æƒ…å ±æ§‹é€ ä½“( floatç‰ˆ )
 struct MV1_ANIM_KEY_16BIT_F
 {
-	float					Min ;								// Å¬’l
-	float					Unit ;								// 16bit’l‚P•Ó‚è‚Ì’l
+	float					Min ;								// æœ€å°å€¤
+	float					Unit ;								// 16bitå€¤ï¼‘è¾ºã‚Šã®å€¤
 } ;
 
-// ƒAƒjƒ[ƒVƒ‡ƒ“ƒL[(‚S~‚Ss—ñ‚Ì‚S—ñ–Ú‚ª(0,0,0,1)ŒÅ’è‚Ìs—ñƒ^ƒCƒv)ƒf[ƒ^\‘¢‘Ì
+// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚­ãƒ¼(ï¼”Ã—ï¼”è¡Œåˆ—ã®ï¼”åˆ—ç›®ãŒ(0,0,0,1)å›ºå®šã®è¡Œåˆ—ã‚¿ã‚¤ãƒ—)ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
 struct MV1_ANIM_KEY_MATRIX4X4C
 {
-	float					Matrix[ 4 ][ 3 ] ;					// s—ñ
+	float					Matrix[ 4 ][ 3 ] ;					// è¡Œåˆ—
 } ;
 
-// ƒAƒjƒ[ƒVƒ‡ƒ“ƒL[(‚R~‚Rs—ñƒ^ƒCƒv)ƒf[ƒ^\‘¢‘Ì
+// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚­ãƒ¼(ï¼“Ã—ï¼“è¡Œåˆ—ã‚¿ã‚¤ãƒ—)ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
 struct MV1_ANIM_KEY_MATRIX3X3
 {
-	float					Matrix[ 3 ][ 3 ] ;					// s—ñ
+	float					Matrix[ 3 ][ 3 ] ;					// è¡Œåˆ—
 } ;
 
-// ƒAƒjƒ[ƒVƒ‡ƒ“ƒL[ƒŠƒXƒgŠîƒf[ƒ^\‘¢‘Ì
+// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚­ãƒ¼ãƒªã‚¹ãƒˆåŸºãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
 struct MV1_ANIM_KEYSET_BASE
 {
-	char								Type ;					// ƒL[ƒ^ƒCƒv( MV1_ANIMKEY_TYPE_QUATERNION“™ )
-	char								DataType ;				// ƒf[ƒ^ƒ^ƒCƒv( MV1_ANIMKEY_DATATYPE_ROTATE“™ )
-	char								TimeType ;				// ŠÔƒ^ƒCƒv( MV1_ANIMKEY_TIME_TYPE_KEY “™ )
-	int									TargetShapeIndex ;		// ‘ÎÛ‚ÌƒVƒFƒCƒvƒCƒ“ƒfƒbƒNƒX( DataType ‚ª MV1_ANIMKEY_DATATYPE_SHAPE ‚Ìê‡‚Ì‚İ—LŒø )
+	char								Type ;					// ã‚­ãƒ¼ã‚¿ã‚¤ãƒ—( MV1_ANIMKEY_TYPE_QUATERNIONç­‰ )
+	char								DataType ;				// ãƒ‡ãƒ¼ã‚¿ã‚¿ã‚¤ãƒ—( MV1_ANIMKEY_DATATYPE_ROTATEç­‰ )
+	char								TimeType ;				// æ™‚é–“ã‚¿ã‚¤ãƒ—( MV1_ANIMKEY_TIME_TYPE_KEY ç­‰ )
+	int									TargetShapeIndex ;		// å¯¾è±¡ã®ã‚·ã‚§ã‚¤ãƒ—ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹( DataType ãŒ MV1_ANIMKEY_DATATYPE_SHAPE ã®å ´åˆã®ã¿æœ‰åŠ¹ )
 
-	int									Num ;					// ƒL[‚Ì”
-	float								UnitTime ;				// ’PˆÊŠÔ( TimeType ‚ª MV1_ANIMKEY_TIME_TYPE_ONE ‚Ìê‡‚Ì‚İ—LŒø )
+	int									Num ;					// ã‚­ãƒ¼ã®æ•°
+	float								UnitTime ;				// å˜ä½æ™‚é–“( TimeType ãŒ MV1_ANIMKEY_TIME_TYPE_ONE ã®å ´åˆã®ã¿æœ‰åŠ¹ )
 	union
 	{
-		float							*KeyTime ;				// ƒL[ŠÔ”z—ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^( TimeType ‚ª MV1_ANIMKEY_TIME_TYPE_KEY ‚Ìê‡‚Ì‚İ—LŒø )
-		float							StartTime ;				// ŠJnŠÔ( TimeType ‚ª MV1_ANIMKEY_TIME_TYPE_ONE ‚Ìê‡‚Ì‚İ—LŒø )
+		float							*KeyTime ;				// ã‚­ãƒ¼æ™‚é–“é…åˆ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿( TimeType ãŒ MV1_ANIMKEY_TIME_TYPE_KEY ã®å ´åˆã®ã¿æœ‰åŠ¹ )
+		float							StartTime ;				// é–‹å§‹æ™‚é–“( TimeType ãŒ MV1_ANIMKEY_TIME_TYPE_ONE ã®å ´åˆã®ã¿æœ‰åŠ¹ )
 	} ;
 
 	union
 	{
-		FLOAT4							*KeyFloat4 ;			// float4ŒÂƒL[”z—ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^
-		VECTOR							*KeyVector ;			// ƒxƒNƒ^[ƒL[”z—ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^
-		MV1_ANIM_KEY_MATRIX4X4C			*KeyMatrix4x4C ;		// ‚S—ñ–ÚÈ—ª‚S~‚Ss—ñƒL[”z—ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^
-		MV1_ANIM_KEY_MATRIX3X3			*KeyMatrix3x3 ;			// ‚R‚˜‚Rs—ñƒL[”z—ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^
-		float							*KeyFlat ;				// ƒtƒ‰ƒbƒgƒL[”z—ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^
-		float							*KeyLinear ;			// üŒ`•âŠÔƒL[”z—ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^
+		FLOAT4							*KeyFloat4 ;			// float4å€‹ã‚­ãƒ¼é…åˆ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+		VECTOR							*KeyVector ;			// ãƒ™ã‚¯ã‚¿ãƒ¼ã‚­ãƒ¼é…åˆ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+		MV1_ANIM_KEY_MATRIX4X4C			*KeyMatrix4x4C ;		// ï¼”åˆ—ç›®çœç•¥ï¼”Ã—ï¼”è¡Œåˆ—ã‚­ãƒ¼é…åˆ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+		MV1_ANIM_KEY_MATRIX3X3			*KeyMatrix3x3 ;			// ï¼“ï½˜ï¼“è¡Œåˆ—ã‚­ãƒ¼é…åˆ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+		float							*KeyFlat ;				// ãƒ•ãƒ©ãƒƒãƒˆã‚­ãƒ¼é…åˆ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+		float							*KeyLinear ;			// ç·šå½¢è£œé–“ã‚­ãƒ¼é…åˆ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 	} ;
 
-	DWORD								UserData[ 1 ] ;			// ŠO•”’è‹`‚Ìî•ñ
+	DWORD								UserData[ 1 ] ;			// å¤–éƒ¨å®šç¾©ã®æƒ…å ±
 
 } ;
 
-// ƒAƒjƒ[ƒVƒ‡ƒ“Šîƒf[ƒ^\‘¢‘Ì
+// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³åŸºãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
 struct MV1_ANIM_BASE
 {
-	struct MV1_ANIMSET_BASE	*Container ;						// ‚±‚ÌƒAƒjƒ[ƒVƒ‡ƒ“‚ğ‚Á‚Ä‚¢‚éƒAƒjƒ[ƒVƒ‡ƒ“ƒZƒbƒg‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	struct MV1_ANIMSET_BASE	*Container ;						// ã“ã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚’æŒã£ã¦ã„ã‚‹ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚»ãƒƒãƒˆã¸ã®ãƒã‚¤ãƒ³ã‚¿
 
-	struct MV1_FRAME_BASE	*TargetFrame ;						// ‘ÎÛ‚Æ‚È‚éƒtƒŒ[ƒ€
-	int						TargetFrameIndex ;					// ‘ÎÛ‚Æ‚È‚éƒtƒŒ[ƒ€‚ÌƒCƒ“ƒfƒbƒNƒX
-	float					MaxTime ;							// ŠeƒL[ƒZƒbƒg‚Ì’†‚Åˆê”Ô’·‚¢ƒL[ƒZƒbƒg‚ÌŠÔ’l
-	int						RotateOrder ;						// ‰ñ“]ƒI[ƒ_[( MV1_ROTATE_ORDER_XYZ “™ )
+	struct MV1_FRAME_BASE	*TargetFrame ;						// å¯¾è±¡ã¨ãªã‚‹ãƒ•ãƒ¬ãƒ¼ãƒ 
+	int						TargetFrameIndex ;					// å¯¾è±¡ã¨ãªã‚‹ãƒ•ãƒ¬ãƒ¼ãƒ ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+	float					MaxTime ;							// å„ã‚­ãƒ¼ã‚»ãƒƒãƒˆã®ä¸­ã§ä¸€ç•ªé•·ã„ã‚­ãƒ¼ã‚»ãƒƒãƒˆã®æ™‚é–“å€¤
+	int						RotateOrder ;						// å›è»¢ã‚ªãƒ¼ãƒ€ãƒ¼( MV1_ROTATE_ORDER_XYZ ç­‰ )
 
-	int						KeySetNum ;							// ƒL[ƒZƒbƒg‚Ì”
-	MV1_ANIM_KEYSET_BASE	*KeySet ;							// ƒL[ƒZƒbƒg”z—ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	int						KeySetNum ;							// ã‚­ãƒ¼ã‚»ãƒƒãƒˆã®æ•°
+	MV1_ANIM_KEYSET_BASE	*KeySet ;							// ã‚­ãƒ¼ã‚»ãƒƒãƒˆé…åˆ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 
-	DWORD					UserData[ 2 ] ;						// ŠO•”’è‹`‚Ìî•ñ
+	DWORD					UserData[ 2 ] ;						// å¤–éƒ¨å®šç¾©ã®æƒ…å ±
 } ;
 
-// ƒAƒjƒ[ƒVƒ‡ƒ“ƒZƒbƒgŠîƒf[ƒ^\‘¢‘Ì
+// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚»ãƒƒãƒˆåŸºãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
 struct MV1_ANIMSET_BASE
 {
-	int						NameAllocMem ;						// ƒAƒjƒ[ƒVƒ‡ƒ“‚Ì–¼‘O‚ğ•Û‘¶‚·‚éƒƒ‚ƒŠ‚ğŠm•Û‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©( TRUE:Šm•Û‚µ‚Ä‚¢‚é  FALSE:‚µ‚Ä‚¢‚È‚¢ )
+	int						NameAllocMem ;						// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®åå‰ã‚’ä¿å­˜ã™ã‚‹ãƒ¡ãƒ¢ãƒªã‚’ç¢ºä¿ã—ã¦ã„ã‚‹ã‹ã©ã†ã‹( TRUE:ç¢ºä¿ã—ã¦ã„ã‚‹  FALSE:ã—ã¦ã„ãªã„ )
 #ifndef UNICODE
-	char					*NameA ;							// ƒAƒjƒ[ƒVƒ‡ƒ“ƒZƒbƒg–¼
+	char					*NameA ;							// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚»ãƒƒãƒˆå
 #endif
 	wchar_t					*NameW ;
 
-	DWORD					KeyDataSize ;						// ƒAƒjƒ[ƒVƒ‡ƒ“ƒL[ƒf[ƒ^ƒTƒCƒY
-	int						Index ;								// ƒCƒ“ƒfƒbƒNƒX
-	float					MaxTime ;							// ŠeƒAƒjƒ[ƒVƒ‡ƒ“‚Ì’†‚Åˆê”Ô’·‚¢ƒAƒjƒ[ƒVƒ‡ƒ“‚ÌŠÔ’l
-	int						AnimNum ;							// ƒAƒjƒ[ƒVƒ‡ƒ“‚Ì”
-	MV1_ANIM_BASE			*Anim ;								// ƒAƒjƒ[ƒVƒ‡ƒ“ƒŠƒXƒg
-	int						IsAddAnim ;							// ‰ÁZƒAƒjƒ[ƒVƒ‡ƒ“‚©‚Ç‚¤‚©( 1:‰ÁZƒAƒjƒ[ƒVƒ‡ƒ“  0:â‘Î’lƒAƒjƒ[ƒVƒ‡ƒ“ )
-	int						IsMatrixLinearBlend ;				// ŠeƒL[‚Ì•âŠÔ‚ğs—ñ’PˆÊ‚ÅüŒ`•âŠÔ‚ğü‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO( 1:s—ñ‚ÅüŒ`•âŠÔ  0:—v‘f’PˆÊ‚Å•âŠÔ )
-	int						IsLoopAnim ;						// ƒ‹[ƒv—pƒAƒjƒ[ƒVƒ‡ƒ“‚©‚Ç‚¤‚©( 1:ƒ‹[ƒvƒAƒjƒ[ƒVƒ‡ƒ“  0:’ÊíƒAƒjƒ[ƒVƒ‡ƒ“ )
+	DWORD					KeyDataSize ;						// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚­ãƒ¼ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
+	int						Index ;								// ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+	float					MaxTime ;							// å„ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®ä¸­ã§ä¸€ç•ªé•·ã„ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®æ™‚é–“å€¤
+	int						AnimNum ;							// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®æ•°
+	MV1_ANIM_BASE			*Anim ;								// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒªã‚¹ãƒˆ
+	int						IsAddAnim ;							// åŠ ç®—ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‹ã©ã†ã‹( 1:åŠ ç®—ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³  0:çµ¶å¯¾å€¤ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ )
+	int						IsMatrixLinearBlend ;				// å„ã‚­ãƒ¼ã®è£œé–“ã‚’è¡Œåˆ—å˜ä½ã§ç·šå½¢è£œé–“ã‚’åˆ·ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°( 1:è¡Œåˆ—ã§ç·šå½¢è£œé–“  0:è¦ç´ å˜ä½ã§è£œé–“ )
+	int						IsLoopAnim ;						// ãƒ«ãƒ¼ãƒ—ç”¨ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‹ã©ã†ã‹( 1:ãƒ«ãƒ¼ãƒ—ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³  0:é€šå¸¸ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ )
 
-	DWORD					UserData[ 4 ] ;						// ŠO•”’è‹`‚Ìî•ñ
+	DWORD					UserData[ 4 ] ;						// å¤–éƒ¨å®šç¾©ã®æƒ…å ±
 } ;
 
-// ƒ{[ƒ“”–³§ŒÀƒXƒLƒ“ƒƒbƒVƒ…—pƒuƒŒƒ“ƒhî•ñ
+// ãƒœãƒ¼ãƒ³æ•°ç„¡åˆ¶é™ã‚¹ã‚­ãƒ³ãƒ¡ãƒƒã‚·ãƒ¥ç”¨ãƒ–ãƒ¬ãƒ³ãƒ‰æƒ…å ±
 struct MV1_SKINBONE_BLEND
 {
-	int						Index ;								// g—p‚·‚éƒ{[ƒ“‚ÌƒCƒ“ƒfƒbƒNƒXA-1‚ÅI’[( Model->SkinBone ”z—ñ‚ÌƒCƒ“ƒfƒbƒNƒX )
-	float					W ;									// ‚»‚Ìƒ{[ƒ“‚ÌƒuƒŒƒ“ƒh—¦
+	int						Index ;								// ä½¿ç”¨ã™ã‚‹ãƒœãƒ¼ãƒ³ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã€-1ã§çµ‚ç«¯( Model->SkinBone é…åˆ—ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ )
+	float					W ;									// ãã®ãƒœãƒ¼ãƒ³ã®ãƒ–ãƒ¬ãƒ³ãƒ‰ç‡
 } ;
 
-// ƒ{[ƒ“î•ñ–³‚µÀ•Wƒf[ƒ^( 16ƒoƒCƒg )
+// ãƒœãƒ¼ãƒ³æƒ…å ±ç„¡ã—åº§æ¨™ãƒ‡ãƒ¼ã‚¿( 16ãƒã‚¤ãƒˆ )
 struct MV1_TLIST_NORMAL_POS
 {
-	FLOAT4					Position ;							// ˆÊ’u
-	FLOAT4					Normal ;							// –@ü
+	FLOAT4					Position ;							// ä½ç½®
+	FLOAT4					Normal ;							// æ³•ç·š
 } ;
 
-// ‚Sƒ{[ƒ“ƒXƒLƒjƒ“ƒO—pÀ•Wƒf[ƒ^( 48ƒoƒCƒg )
+// ï¼”ãƒœãƒ¼ãƒ³ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ç”¨åº§æ¨™ãƒ‡ãƒ¼ã‚¿( 48ãƒã‚¤ãƒˆ )
 struct MV1_TLIST_SKIN_POS_4B
 {
-	float					MatrixWeight[ 4 ] ;					// 0  s—ñƒEƒGƒCƒg
-	FLOAT4					Position ;							// 16 ˆÊ’u
-	VECTOR					Normal ;							// 32 –@ü
-	BYTE					MatrixIndex[ 4 ] ;					// 44 s—ñƒCƒ“ƒfƒbƒNƒX
+	float					MatrixWeight[ 4 ] ;					// 0  è¡Œåˆ—ã‚¦ã‚¨ã‚¤ãƒˆ
+	FLOAT4					Position ;							// 16 ä½ç½®
+	VECTOR					Normal ;							// 32 æ³•ç·š
+	BYTE					MatrixIndex[ 4 ] ;					// 44 è¡Œåˆ—ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 } ;
 
-// ‚Wƒ{[ƒ“ƒXƒLƒjƒ“ƒO—pÀ•Wƒf[ƒ^( 64ƒoƒCƒg )
+// ï¼˜ãƒœãƒ¼ãƒ³ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ç”¨åº§æ¨™ãƒ‡ãƒ¼ã‚¿( 64ãƒã‚¤ãƒˆ )
 struct MV1_TLIST_SKIN_POS_8B
 {
-	float					MatrixWeight[ 8 ] ;					// 0  s—ñƒEƒGƒCƒg
-	VECTOR					Normal ;							// 32 –@ü
-	BYTE					MatrixIndex1[ 4 ] ;					// 44 s—ñƒCƒ“ƒfƒbƒNƒX
-	VECTOR					Position ;							// 48 ˆÊ’u
-	BYTE					MatrixIndex2[ 4 ] ;					// 60 s—ñƒCƒ“ƒfƒbƒNƒX
+	float					MatrixWeight[ 8 ] ;					// 0  è¡Œåˆ—ã‚¦ã‚¨ã‚¤ãƒˆ
+	VECTOR					Normal ;							// 32 æ³•ç·š
+	BYTE					MatrixIndex1[ 4 ] ;					// 44 è¡Œåˆ—ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+	VECTOR					Position ;							// 48 ä½ç½®
+	BYTE					MatrixIndex2[ 4 ] ;					// 60 è¡Œåˆ—ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 } ;
 
-// ‚Xƒ{[ƒ“ˆÈãƒXƒLƒjƒ“ƒO—pÀ•Wƒf[ƒ^
+// ï¼™ãƒœãƒ¼ãƒ³ä»¥ä¸Šã‚¹ã‚­ãƒ‹ãƒ³ã‚°ç”¨åº§æ¨™ãƒ‡ãƒ¼ã‚¿
 struct MV1_TLIST_SKIN_POS_FREEB
 {
-	FLOAT4					Position ;							// À•W
-	FLOAT4					Normal ;							// –@ü
-	MV1_SKINBONE_BLEND		MatrixWeight[ 4 ] ;					// s—ñƒEƒGƒCƒg( ‚S‚ÂˆÈã‚Ìê‡‚Í‚±‚ÌŒã‚ë‚É‚à‘±‚­ )
+	FLOAT4					Position ;							// åº§æ¨™
+	FLOAT4					Normal ;							// æ³•ç·š
+	MV1_SKINBONE_BLEND		MatrixWeight[ 4 ] ;					// è¡Œåˆ—ã‚¦ã‚¨ã‚¤ãƒˆ( ï¼”ã¤ä»¥ä¸Šã®å ´åˆã¯ã“ã®å¾Œã‚ã«ã‚‚ç¶šã )
 } ;
 
-// ƒgƒ‰ƒCƒAƒ“ƒOƒ‹ƒŠƒXƒgŠîƒf[ƒ^\‘¢‘Ì
+// ãƒˆãƒ©ã‚¤ã‚¢ãƒ³ã‚°ãƒ«ãƒªã‚¹ãƒˆåŸºãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
 struct MV1_TRIANGLE_LIST_BASE
 {
-	struct MV1_MESH_BASE	*Container ;						// ‚±‚Ìƒgƒ‰ƒCƒAƒ“ƒOƒ‹ƒŠƒXƒg‚ğ‚Á‚Ä‚¢‚éƒƒbƒVƒ…‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	unsigned short			VertexType ;						// ’¸“_ƒ^ƒCƒv( MV1_VERTEX_TYPE_NORMAL ‚È‚Ç )
-	unsigned short			PosUnitSize ;						// ’¸“_À•Wî•ñˆê‚Â•Ó‚è‚Ìƒf[ƒ^ƒTƒCƒY
-	unsigned short			TempUnitSize ;						// ƒeƒ“ƒ|ƒ‰ƒŠ’¸“_ƒoƒbƒtƒ@‚Ì‚P’¸“_•Ó‚è‚ÌƒTƒCƒY
-	int						VertexNum ;							// ’¸“_‚Ì”
-	int						MaxBoneNum ;						// ŠÖ‚í‚éƒ{[ƒ“‚ÌÅ‘å”( MV1_VERTEX_TYPE_SKIN_FREEBONE ‚ÌÛ‚Ég—p )
-	int						UseBoneNum ;						// g—p‚µ‚Ä‚¢‚éƒ{[ƒ“‚Ì”( MV1_VERTEX_TYPE_SKIN_2_4BONE ‚ÌÛ‚Ég—p )
-	int						UseBone[ MV1_TRIANGLE_LIST_USE_BONE_MAX_NUM ] ;	// g—p‚·‚éƒ{[ƒ“‚Ì”z—ñA-1‚Ìê‡‚Íg—p‚µ‚È‚¢‚Æ‚¢‚¤‚±‚Æ( MV1_FRAME.UseSkinBone ”z—ñ‚ÌƒCƒ“ƒfƒbƒNƒX )( MV1_VERTEX_TYPE_SKIN_4BONE, MV1_VERTEX_TYPE_SKIN_8BONE, MV1_VERTEX_TYPE_SKIN_FREE ‚ÌÛ‚Ég—p )
+	struct MV1_MESH_BASE	*Container ;						// ã“ã®ãƒˆãƒ©ã‚¤ã‚¢ãƒ³ã‚°ãƒ«ãƒªã‚¹ãƒˆã‚’æŒã£ã¦ã„ã‚‹ãƒ¡ãƒƒã‚·ãƒ¥ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	unsigned short			VertexType ;						// é ‚ç‚¹ã‚¿ã‚¤ãƒ—( MV1_VERTEX_TYPE_NORMAL ãªã© )
+	unsigned short			PosUnitSize ;						// é ‚ç‚¹åº§æ¨™æƒ…å ±ä¸€ã¤è¾ºã‚Šã®ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
+	unsigned short			TempUnitSize ;						// ãƒ†ãƒ³ãƒãƒ©ãƒªé ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã®ï¼‘é ‚ç‚¹è¾ºã‚Šã®ã‚µã‚¤ã‚º
+	int						VertexNum ;							// é ‚ç‚¹ã®æ•°
+	int						MaxBoneNum ;						// é–¢ã‚ã‚‹ãƒœãƒ¼ãƒ³ã®æœ€å¤§æ•°( MV1_VERTEX_TYPE_SKIN_FREEBONE ã®éš›ã«ä½¿ç”¨ )
+	int						UseBoneNum ;						// ä½¿ç”¨ã—ã¦ã„ã‚‹ãƒœãƒ¼ãƒ³ã®æ•°( MV1_VERTEX_TYPE_SKIN_2_4BONE ã®éš›ã«ä½¿ç”¨ )
+	int						UseBone[ MV1_TRIANGLE_LIST_USE_BONE_MAX_NUM ] ;	// ä½¿ç”¨ã™ã‚‹ãƒœãƒ¼ãƒ³ã®é…åˆ—ã€-1ã®å ´åˆã¯ä½¿ç”¨ã—ãªã„ã¨ã„ã†ã“ã¨( MV1_FRAME.UseSkinBone é…åˆ—ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ )( MV1_VERTEX_TYPE_SKIN_4BONE, MV1_VERTEX_TYPE_SKIN_8BONE, MV1_VERTEX_TYPE_SKIN_FREE ã®éš›ã«ä½¿ç”¨ )
 
-	DWORD					*MeshVertexIndex ;					// À•W’¸“_ƒf[ƒ^‚Ì‘f‚Æ‚È‚Á‚Ä‚¢‚éƒƒbƒVƒ…‚Ì’¸“_ƒf[ƒ^ƒCƒ“ƒfƒbƒNƒX‚Ì”z—ñ( MV1_MESH_BASE.Vertex ‚ÌƒCƒ“ƒfƒbƒNƒXAVertexNum ‚Ì”‚¾‚¯‘¶İ‚·‚é )
-	int						MeshVertexIndexAllocMem ;			// MeshVertexIndex —p‚Éƒƒ‚ƒŠ‚ğŠm•Û‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©( TRUE:Šm•Û‚µ‚Ä‚¢‚é  FALSE:‚µ‚Ä‚¢‚È‚¢ )
+	DWORD					*MeshVertexIndex ;					// åº§æ¨™é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ã®ç´ ã¨ãªã£ã¦ã„ã‚‹ãƒ¡ãƒƒã‚·ãƒ¥ã®é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã®é…åˆ—( MV1_MESH_BASE.Vertex ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã€VertexNum ã®æ•°ã ã‘å­˜åœ¨ã™ã‚‹ )
+	int						MeshVertexIndexAllocMem ;			// MeshVertexIndex ç”¨ã«ãƒ¡ãƒ¢ãƒªã‚’ç¢ºä¿ã—ã¦ã„ã‚‹ã‹ã©ã†ã‹( TRUE:ç¢ºä¿ã—ã¦ã„ã‚‹  FALSE:ã—ã¦ã„ãªã„ )
 
-	BYTE					PFBuffer[ MV1_TRIANGLE_LIST_BASE_PF_BUFFER_SIZE ] ;	// ŠÂ‹«ˆË‘¶ƒf[ƒ^Ši”[—pƒoƒbƒtƒ@( MV1_TRIANGLE_LIST_BASE_PF ‚ğŠi”[‚·‚é )
+	BYTE					PFBuffer[ MV1_TRIANGLE_LIST_BASE_PF_BUFFER_SIZE ] ;	// ç’°å¢ƒä¾å­˜ãƒ‡ãƒ¼ã‚¿æ ¼ç´ç”¨ãƒãƒƒãƒ•ã‚¡( MV1_TRIANGLE_LIST_BASE_PF ã‚’æ ¼ç´ã™ã‚‹ )
 	union
 	{
-		MV1_TLIST_NORMAL_POS     *NormalPosition ;				// ƒ{[ƒ“î•ñ–³‚µ’¸“_À•Wƒf[ƒ^
-		MV1_TLIST_SKIN_POS_4B    *SkinPosition4B ;				// ‚Sƒ{[ƒ“ƒXƒLƒjƒ“ƒOˆ——p’¸“_À•Wƒf[ƒ^
-		MV1_TLIST_SKIN_POS_8B    *SkinPosition8B ;				// ‚Wƒ{[ƒ“ƒXƒLƒjƒ“ƒOˆ——p’¸“_À•Wƒf[ƒ^
-		MV1_TLIST_SKIN_POS_FREEB *SkinPositionFREEB ;			// ‚Xƒ{[ƒ“ˆÈã‚ÌƒXƒLƒjƒ“ƒOˆ——p’¸“_À•Wƒf[ƒ^
+		MV1_TLIST_NORMAL_POS     *NormalPosition ;				// ãƒœãƒ¼ãƒ³æƒ…å ±ç„¡ã—é ‚ç‚¹åº§æ¨™ãƒ‡ãƒ¼ã‚¿
+		MV1_TLIST_SKIN_POS_4B    *SkinPosition4B ;				// ï¼”ãƒœãƒ¼ãƒ³ã‚¹ã‚­ãƒ‹ãƒ³ã‚°å‡¦ç†ç”¨é ‚ç‚¹åº§æ¨™ãƒ‡ãƒ¼ã‚¿
+		MV1_TLIST_SKIN_POS_8B    *SkinPosition8B ;				// ï¼˜ãƒœãƒ¼ãƒ³ã‚¹ã‚­ãƒ‹ãƒ³ã‚°å‡¦ç†ç”¨é ‚ç‚¹åº§æ¨™ãƒ‡ãƒ¼ã‚¿
+		MV1_TLIST_SKIN_POS_FREEB *SkinPositionFREEB ;			// ï¼™ãƒœãƒ¼ãƒ³ä»¥ä¸Šã®ã‚¹ã‚­ãƒ‹ãƒ³ã‚°å‡¦ç†ç”¨é ‚ç‚¹åº§æ¨™ãƒ‡ãƒ¼ã‚¿
 	} ;
-	int						PositionAllocMem ;					// À•Wƒf[ƒ^—p‚Éƒƒ‚ƒŠ‚ğŠm•Û‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©( TRUE:Šm•Û‚µ‚Ä‚¢‚é  FALSE:‚µ‚Ä‚¢‚È‚¢ )
+	int						PositionAllocMem ;					// åº§æ¨™ãƒ‡ãƒ¼ã‚¿ç”¨ã«ãƒ¡ãƒ¢ãƒªã‚’ç¢ºä¿ã—ã¦ã„ã‚‹ã‹ã©ã†ã‹( TRUE:ç¢ºä¿ã—ã¦ã„ã‚‹  FALSE:ã—ã¦ã„ãªã„ )
 
-	unsigned short			IndexNum ;							// ’¸“_ƒCƒ“ƒfƒbƒNƒX‚Ì”
-	unsigned short			*Index ;							// ’¸“_ƒCƒ“ƒfƒbƒNƒX
+	unsigned short			IndexNum ;							// é ‚ç‚¹ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã®æ•°
+	unsigned short			*Index ;							// é ‚ç‚¹ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 
-	unsigned short			ToonOutLineIndexNum ;				// ƒgƒD[ƒ“—ÖŠsü—p’¸“_ƒCƒ“ƒfƒbƒNƒX‚Ì”
-	unsigned short			*ToonOutLineIndex ;					// ƒgƒD[ƒ“—ÖŠsü—p’¸“_ƒCƒ“ƒfƒbƒNƒX
+	unsigned short			ToonOutLineIndexNum ;				// ãƒˆã‚¥ãƒ¼ãƒ³è¼ªéƒ­ç·šç”¨é ‚ç‚¹ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã®æ•°
+	unsigned short			*ToonOutLineIndex ;					// ãƒˆã‚¥ãƒ¼ãƒ³è¼ªéƒ­ç·šç”¨é ‚ç‚¹ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 
-	int						PackDrawMaxNum ;					// “¯•¡”•`‰æ‚ÌÅ‘å”
+	int						PackDrawMaxNum ;					// åŒæ™‚è¤‡æ•°æç”»ã®æœ€å¤§æ•°
 
-	struct MV1_VERTEXBUFFER	*VertexBuffer ;						// g—p‚·‚é’¸“_ƒoƒbƒtƒ@
-	int						VBStartVertex ;						// ƒo[ƒeƒbƒNƒXƒoƒbƒtƒ@ã‚Åg—p‚µ‚Ä‚¢‚é’¸“_‚ÌŠJn”Ô†
-	int						VBStartIndex ;						// ƒo[ƒeƒbƒNƒXƒoƒbƒtƒ@ã‚Åg—p‚µ‚Ä‚¢‚éƒCƒ“ƒfƒbƒNƒX‚ÌŠJn”Ô†
-	int						ToonOutLineVBStartIndex ;			// ƒo[ƒeƒbƒNƒXƒoƒbƒtƒ@ã‚Åg—p‚µ‚Ä‚¢‚éƒgƒD[ƒ“—ÖŠsü—p’¸“_ƒCƒ“ƒfƒbƒNƒX‚ÌŠJn”Ô†
-	int						ObjectDuplicateNum ;				// ƒo[ƒeƒbƒNƒXƒoƒbƒtƒ@‚ÉŠi”[‚³‚ê‚Ä‚¢‚éƒRƒs[‚Ì”
+	struct MV1_VERTEXBUFFER	*VertexBuffer ;						// ä½¿ç”¨ã™ã‚‹é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡
+	int						VBStartVertex ;						// ãƒãƒ¼ãƒ†ãƒƒã‚¯ã‚¹ãƒãƒƒãƒ•ã‚¡ä¸Šã§ä½¿ç”¨ã—ã¦ã„ã‚‹é ‚ç‚¹ã®é–‹å§‹ç•ªå·
+	int						VBStartIndex ;						// ãƒãƒ¼ãƒ†ãƒƒã‚¯ã‚¹ãƒãƒƒãƒ•ã‚¡ä¸Šã§ä½¿ç”¨ã—ã¦ã„ã‚‹ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã®é–‹å§‹ç•ªå·
+	int						ToonOutLineVBStartIndex ;			// ãƒãƒ¼ãƒ†ãƒƒã‚¯ã‚¹ãƒãƒƒãƒ•ã‚¡ä¸Šã§ä½¿ç”¨ã—ã¦ã„ã‚‹ãƒˆã‚¥ãƒ¼ãƒ³è¼ªéƒ­ç·šç”¨é ‚ç‚¹ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã®é–‹å§‹ç•ªå·
+	int						ObjectDuplicateNum ;				// ãƒãƒ¼ãƒ†ãƒƒã‚¯ã‚¹ãƒãƒƒãƒ•ã‚¡ã«æ ¼ç´ã•ã‚Œã¦ã„ã‚‹ã‚³ãƒ”ãƒ¼ã®æ•°
 } ;
 
-// ƒXƒLƒ“ƒƒbƒVƒ…—pƒ{[ƒ“‚ğg—p‚·‚éƒtƒŒ[ƒ€‚Ìî•ñ
+// ã‚¹ã‚­ãƒ³ãƒ¡ãƒƒã‚·ãƒ¥ç”¨ãƒœãƒ¼ãƒ³ã‚’ä½¿ç”¨ã™ã‚‹ãƒ•ãƒ¬ãƒ¼ãƒ ã®æƒ…å ±
 struct MV1_SKIN_BONE_USE_FRAME
 {
-	int						Index ;								// ƒ{[ƒ“‚ğg—p‚µ‚Ä‚¢‚éƒtƒŒ[ƒ€‚ÌƒCƒ“ƒfƒbƒNƒX
-	int						MatrixIndex ;						// ‚±‚Ìƒ{[ƒ“‚ªƒZƒbƒg‚³‚ê‚Ä‚¢‚éƒtƒŒ[ƒ€“àƒCƒ“ƒfƒbƒNƒX( MV1_FRAME_BASE.UseSkinBone ‚ÌƒCƒ“ƒfƒbƒNƒX )
+	int						Index ;								// ãƒœãƒ¼ãƒ³ã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹ãƒ•ãƒ¬ãƒ¼ãƒ ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+	int						MatrixIndex ;						// ã“ã®ãƒœãƒ¼ãƒ³ãŒã‚»ãƒƒãƒˆã•ã‚Œã¦ã„ã‚‹ãƒ•ãƒ¬ãƒ¼ãƒ å†…ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹( MV1_FRAME_BASE.UseSkinBone ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ )
 } ;
 
-// ƒXƒLƒ“ƒƒbƒVƒ…—pƒ{[ƒ“î•ñ
+// ã‚¹ã‚­ãƒ³ãƒ¡ãƒƒã‚·ãƒ¥ç”¨ãƒœãƒ¼ãƒ³æƒ…å ±
 struct MV1_SKIN_BONE
 {
-	MATRIX_4X4CT_F			ModelLocalMatrix ;					// ƒ‚ƒfƒ‹À•W‚©‚çƒ{[ƒ“‚Ìƒ[ƒJƒ‹À•W‚É•ÏŠ·‚·‚é‚½‚ß‚Ìs—ñ
-	int						ModelLocalMatrixIsTranslateOnly ;	// ƒ‚ƒfƒ‹À•W‚©‚çƒ{[ƒ“‚Ìƒ[ƒJƒ‹À•W‚É•ÏŠ·‚·‚é‚½‚ß‚Ìs—ñ‚ª•½sˆÚ“®‚Ì‚İ‚©‚Ç‚¤‚©( 1:•½sˆÚ“®‚Ì‚İ  0:‰ñ“]‚àŠÜ‚Ş )
-	int						BoneFrame ;							// ƒ{[ƒ“‚Æ‚µ‚Äg—p‚·‚éƒtƒŒ[ƒ€
-	int						UseFrameNum ;						// ‚±‚Ìƒ{[ƒ“‚ğg—p‚·‚éƒtƒŒ[ƒ€‚Ì”
-	MV1_SKIN_BONE_USE_FRAME	*UseFrame ;							// ‚±‚Ìƒ{[ƒ“‚ğg—p‚·‚éƒtƒŒ[ƒ€‚Ìî•ñ
+	MATRIX_4X4CT_F			ModelLocalMatrix ;					// ãƒ¢ãƒ‡ãƒ«åº§æ¨™ã‹ã‚‰ãƒœãƒ¼ãƒ³ã®ãƒ­ãƒ¼ã‚«ãƒ«åº§æ¨™ã«å¤‰æ›ã™ã‚‹ãŸã‚ã®è¡Œåˆ—
+	int						ModelLocalMatrixIsTranslateOnly ;	// ãƒ¢ãƒ‡ãƒ«åº§æ¨™ã‹ã‚‰ãƒœãƒ¼ãƒ³ã®ãƒ­ãƒ¼ã‚«ãƒ«åº§æ¨™ã«å¤‰æ›ã™ã‚‹ãŸã‚ã®è¡Œåˆ—ãŒå¹³è¡Œç§»å‹•ã®ã¿ã‹ã©ã†ã‹( 1:å¹³è¡Œç§»å‹•ã®ã¿  0:å›è»¢ã‚‚å«ã‚€ )
+	int						BoneFrame ;							// ãƒœãƒ¼ãƒ³ã¨ã—ã¦ä½¿ç”¨ã™ã‚‹ãƒ•ãƒ¬ãƒ¼ãƒ 
+	int						UseFrameNum ;						// ã“ã®ãƒœãƒ¼ãƒ³ã‚’ä½¿ç”¨ã™ã‚‹ãƒ•ãƒ¬ãƒ¼ãƒ ã®æ•°
+	MV1_SKIN_BONE_USE_FRAME	*UseFrame ;							// ã“ã®ãƒœãƒ¼ãƒ³ã‚’ä½¿ç”¨ã™ã‚‹ãƒ•ãƒ¬ãƒ¼ãƒ ã®æƒ…å ±
 } ;
 
-// ó‘Ô•ÏXŠÇ——pŠî–{î•ñ\‘¢‘Ì
+// çŠ¶æ…‹å¤‰æ›´ç®¡ç†ç”¨åŸºæœ¬æƒ…å ±æ§‹é€ ä½“
 struct MV1_CHANGE_BASE
 {
-	DWORD					Target ;							// ó‘Ô•Ï‰»‚ª”­¶‚µ‚½Û‚É˜_—˜a‚·‚é‚×‚«‘ÎÛ‚ÌŠJnƒƒ‚ƒŠƒAƒhƒŒƒX‚Ö‚ÌƒIƒtƒZƒbƒg( ‚SƒoƒCƒg’PˆÊ )
-	DWORD					*Fill ;								// ó‘Ô•Ï‰»‚ª”­¶‚µ‚½Û‚É˜_—˜a‚·‚éƒtƒ‰ƒOƒf[ƒ^ANULL‚Ìê‡‚Í CheckBit ‚ª Fill ‚Ì‘ã‚í‚è
-	DWORD					Size ;								// ó‘Ô•Ï‰»‚ª”­¶‚µ‚½Û‚É˜_—˜a‚·‚éƒtƒ‰ƒOƒf[ƒ^‚ÌƒTƒCƒY( ‚SƒoƒCƒg’PˆÊ )AFill ‚ª NULL ‚Ìê‡‚Í‚O
-	DWORD					CheckBit ;							// ©•ª‚Ìƒtƒ‰ƒOƒrƒbƒg‚ª—§‚Á‚½ƒrƒbƒgî•ñ
+	DWORD					Target ;							// çŠ¶æ…‹å¤‰åŒ–ãŒç™ºç”Ÿã—ãŸéš›ã«è«–ç†å’Œã™ã‚‹ã¹ãå¯¾è±¡ã®é–‹å§‹ãƒ¡ãƒ¢ãƒªã‚¢ãƒ‰ãƒ¬ã‚¹ã¸ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆ( ï¼”ãƒã‚¤ãƒˆå˜ä½ )
+	DWORD					*Fill ;								// çŠ¶æ…‹å¤‰åŒ–ãŒç™ºç”Ÿã—ãŸéš›ã«è«–ç†å’Œã™ã‚‹ãƒ•ãƒ©ã‚°ãƒ‡ãƒ¼ã‚¿ã€NULLã®å ´åˆã¯ CheckBit ãŒ Fill ã®ä»£ã‚ã‚Š
+	DWORD					Size ;								// çŠ¶æ…‹å¤‰åŒ–ãŒç™ºç”Ÿã—ãŸéš›ã«è«–ç†å’Œã™ã‚‹ãƒ•ãƒ©ã‚°ãƒ‡ãƒ¼ã‚¿ã®ã‚µã‚¤ã‚º( ï¼”ãƒã‚¤ãƒˆå˜ä½ )ã€Fill ãŒ NULL ã®å ´åˆã¯ï¼
+	DWORD					CheckBit ;							// è‡ªåˆ†ã®ãƒ•ãƒ©ã‚°ãƒ“ãƒƒãƒˆãŒç«‹ã£ãŸãƒ“ãƒƒãƒˆæƒ…å ±
 } ;
 
-// ƒƒbƒVƒ…\‘¢‘Ì—p’¸“_ƒf[ƒ^
+// ãƒ¡ãƒƒã‚·ãƒ¥æ§‹é€ ä½“ç”¨é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿
 struct MV1_MESH_POSITION
 {
-	VECTOR					Position ;							// À•W
-	MV1_SKINBONE_BLEND		BoneWeight[ 4 ] ;					// ’¸“_ƒuƒŒƒ“ƒh‚Ìî•ñ( ƒXƒLƒjƒ“ƒOƒƒbƒVƒ…‚Ì‚Æ‚«‚Ì‚İ—LŒøAu‚Sv‚Æ‚µ‚Ä‚¢‚é‚Ì‚Í‰¼‚ÅAÀÛ‚Í MV1_MESH_BASE.MaxBoneBlendNum ‚Ì”‚¾‚¯‘¶İ‚·‚é )
+	VECTOR					Position ;							// åº§æ¨™
+	MV1_SKINBONE_BLEND		BoneWeight[ 4 ] ;					// é ‚ç‚¹ãƒ–ãƒ¬ãƒ³ãƒ‰ã®æƒ…å ±( ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥ã®ã¨ãã®ã¿æœ‰åŠ¹ã€ã€Œï¼”ã€ã¨ã—ã¦ã„ã‚‹ã®ã¯ä»®ã§ã€å®Ÿéš›ã¯ MV1_MESH_BASE.MaxBoneBlendNum ã®æ•°ã ã‘å­˜åœ¨ã™ã‚‹ )
 } ;
 
-// ƒƒbƒVƒ…\‘¢‘Ì—p–@üƒf[ƒ^
+// ãƒ¡ãƒƒã‚·ãƒ¥æ§‹é€ ä½“ç”¨æ³•ç·šãƒ‡ãƒ¼ã‚¿
 struct MV1_MESH_NORMAL
 {
-	VECTOR					Normal ;							// –@ü
-	VECTOR					Tangent ;							// Úü
-	VECTOR					Binormal ;							// ]–@ü
+	VECTOR					Normal ;							// æ³•ç·š
+	VECTOR					Tangent ;							// æ¥ç·š
+	VECTOR					Binormal ;							// å¾“æ³•ç·š
 } ;
 
-// ƒƒbƒVƒ…\‘¢‘Ì—p’¸“_ƒf[ƒ^
+// ãƒ¡ãƒƒã‚·ãƒ¥æ§‹é€ ä½“ç”¨é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿
 struct MV1_MESH_VERTEX
 {
-	DWORD					PositionIndex ;						// g—p‚·‚é’¸“_
-	DWORD					NormalIndex ;						// g—p‚·‚é–@ü
-	COLOR_U8				DiffuseColor ;						// ’¸“_ƒfƒBƒtƒ…[ƒYƒJƒ‰[
-	COLOR_U8				SpecularColor ;						// ’¸“_ƒXƒyƒLƒ…ƒ‰ƒJƒ‰[
-	float					ToonOutLineScale ;					// ƒgƒD[ƒ“‚Ì—ÖŠsü‚Ì•\¦”{—¦
-	float					UVs[ 1 ][ 2 ] ;						// ƒeƒNƒXƒ`ƒƒÀ•W( ‚t‚uƒZƒbƒg‚ªˆê‚Â‚Å‚Í‚È‚©‚Á‚½‚èA‚t‚uƒZƒbƒgˆê‚Â•Ó‚è‚Ì—v‘f”‚ª‚Q‚Â‚Å‚Í‚È‚¢ê‡‚Í“Yš‚Ì’l‚ª•Ï‰»‚·‚éA‚±‚±‚É‘‚©‚ê‚Ä‚¢‚é‚Ì‚Í‚ ‚­‚Ü‚Å‚à‰¼ )
+	DWORD					PositionIndex ;						// ä½¿ç”¨ã™ã‚‹é ‚ç‚¹
+	DWORD					NormalIndex ;						// ä½¿ç”¨ã™ã‚‹æ³•ç·š
+	COLOR_U8				DiffuseColor ;						// é ‚ç‚¹ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚«ãƒ©ãƒ¼
+	COLOR_U8				SpecularColor ;						// é ‚ç‚¹ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã‚«ãƒ©ãƒ¼
+	float					ToonOutLineScale ;					// ãƒˆã‚¥ãƒ¼ãƒ³ã®è¼ªéƒ­ç·šã®è¡¨ç¤ºå€ç‡
+	float					UVs[ 1 ][ 2 ] ;						// ãƒ†ã‚¯ã‚¹ãƒãƒ£åº§æ¨™( ï¼µï¼¶ã‚»ãƒƒãƒˆãŒä¸€ã¤ã§ã¯ãªã‹ã£ãŸã‚Šã€ï¼µï¼¶ã‚»ãƒƒãƒˆä¸€ã¤è¾ºã‚Šã®è¦ç´ æ•°ãŒï¼’ã¤ã§ã¯ãªã„å ´åˆã¯æ·»å­—ã®å€¤ãŒå¤‰åŒ–ã™ã‚‹ã€ã“ã“ã«æ›¸ã‹ã‚Œã¦ã„ã‚‹ã®ã¯ã‚ãã¾ã§ã‚‚ä»® )
 } ;
 
-// ƒƒbƒVƒ…\‘¢‘Ì—p–Êƒf[ƒ^
+// ãƒ¡ãƒƒã‚·ãƒ¥æ§‹é€ ä½“ç”¨é¢ãƒ‡ãƒ¼ã‚¿
 struct MV1_MESH_FACE
 {
-	WORD					VertexType ;						// ’¸“_ƒ^ƒCƒv( MV1_VERTEX_TYPE_NORMAL ‚È‚Ç )
-	WORD					TriangleListIndex ;					// Š‘®‚·‚éƒgƒ‰ƒCƒAƒ“ƒOƒ‹ƒŠƒXƒg”Ô†
-	DWORD					VertexIndex[ 3 ] ;					// –Ê‚ğ\¬‚·‚é’¸“_ƒCƒ“ƒfƒbƒNƒX
+	WORD					VertexType ;						// é ‚ç‚¹ã‚¿ã‚¤ãƒ—( MV1_VERTEX_TYPE_NORMAL ãªã© )
+	WORD					TriangleListIndex ;					// æ‰€å±ã™ã‚‹ãƒˆãƒ©ã‚¤ã‚¢ãƒ³ã‚°ãƒ«ãƒªã‚¹ãƒˆç•ªå·
+	DWORD					VertexIndex[ 3 ] ;					// é¢ã‚’æ§‹æˆã™ã‚‹é ‚ç‚¹ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 } ;
 
-// ƒƒbƒVƒ…Šîƒf[ƒ^\‘¢‘Ì
+// ãƒ¡ãƒƒã‚·ãƒ¥åŸºãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
 struct MV1_MESH_BASE
 {
-	struct MV1_FRAME_BASE	*Container ;						// ‚±‚ÌƒƒbƒVƒ…‚ğ‚Á‚Ä‚¢‚éƒtƒŒ[ƒ€‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	MV1_MATERIAL_BASE		*Material ;							// g—p‚·‚éƒ}ƒeƒŠƒAƒ‹‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	struct MV1_FRAME_BASE	*Container ;						// ã“ã®ãƒ¡ãƒƒã‚·ãƒ¥ã‚’æŒã£ã¦ã„ã‚‹ãƒ•ãƒ¬ãƒ¼ãƒ ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	MV1_MATERIAL_BASE		*Material ;							// ä½¿ç”¨ã™ã‚‹ãƒãƒ†ãƒªã‚¢ãƒ«ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 
-	MV1_CHANGE_BASE			ChangeInfo ;						// ó‘Ô•Ï‰»ŠÇ——pŠî–{î•ñ
+	MV1_CHANGE_BASE			ChangeInfo ;						// çŠ¶æ…‹å¤‰åŒ–ç®¡ç†ç”¨åŸºæœ¬æƒ…å ±
 
-	int						UseVertexDiffuseColor ;				// ’¸“_‚ÌƒfƒBƒtƒ…[ƒYƒJƒ‰[‚ğƒ}ƒeƒŠƒAƒ‹‚ÌƒfƒBƒtƒ…[ƒYƒJƒ‰[‚Ì‘ã‚í‚è‚Ég—p‚·‚é‚©‚Ç‚¤‚©( TRUE:g—p‚·‚é  FALSE:g—p‚µ‚È‚¢ )
-	int						UseVertexSpecularColor ;			// ’¸“_‚ÌƒXƒyƒLƒ…ƒ‰ƒJƒ‰[‚ğƒ}ƒeƒŠƒAƒ‹‚ÌƒXƒyƒLƒ…ƒ‰ƒJƒ‰[‚Ì‘ã‚í‚è‚Ég—p‚·‚é‚©‚Ç‚¤‚©( TRUE:g—p‚·‚é  FALSE:g—p‚µ‚È‚¢ )
-	int						RenderRef ;							// •`‰æ—pQÆƒJƒEƒ“ƒg
-	int						NotOneDiffuseAlpha ;				// ƒfƒBƒtƒ…[ƒYƒJƒ‰[‚ÌƒAƒ‹ƒtƒ@’l‚Å 100% ˆÈŠO‚Ì‚à‚Ì‚ª‚ ‚é‚©‚Ç‚¤‚©( 1:‚ ‚é  0:‚È‚¢ )
+	int						UseVertexDiffuseColor ;				// é ‚ç‚¹ã®ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚«ãƒ©ãƒ¼ã‚’ãƒãƒ†ãƒªã‚¢ãƒ«ã®ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚«ãƒ©ãƒ¼ã®ä»£ã‚ã‚Šã«ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹( TRUE:ä½¿ç”¨ã™ã‚‹  FALSE:ä½¿ç”¨ã—ãªã„ )
+	int						UseVertexSpecularColor ;			// é ‚ç‚¹ã®ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã‚«ãƒ©ãƒ¼ã‚’ãƒãƒ†ãƒªã‚¢ãƒ«ã®ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã‚«ãƒ©ãƒ¼ã®ä»£ã‚ã‚Šã«ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹( TRUE:ä½¿ç”¨ã™ã‚‹  FALSE:ä½¿ç”¨ã—ãªã„ )
+	int						RenderRef ;							// æç”»ç”¨å‚ç…§ã‚«ã‚¦ãƒ³ãƒˆ
+	int						NotOneDiffuseAlpha ;				// ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚«ãƒ©ãƒ¼ã®ã‚¢ãƒ«ãƒ•ã‚¡å€¤ã§ 100% ä»¥å¤–ã®ã‚‚ã®ãŒã‚ã‚‹ã‹ã©ã†ã‹( 1:ã‚ã‚‹  0:ãªã„ )
 
-	VECTOR					MaxPosition ;						// ‚±‚ÌƒƒbƒVƒ…‚ÉŠÜ‚Ü‚ê‚é’¸“_À•W‚ÌÅ‘å’l( ƒƒbƒVƒ…ƒ[ƒJƒ‹À•W )
-	VECTOR					MinPosition ;						// ‚±‚ÌƒƒbƒVƒ…‚ÉŠÜ‚Ü‚ê‚é’¸“_À•W‚ÌÅ¬’l( ƒƒbƒVƒ…ƒ[ƒJƒ‹À•W )
+	VECTOR					MaxPosition ;						// ã“ã®ãƒ¡ãƒƒã‚·ãƒ¥ã«å«ã¾ã‚Œã‚‹é ‚ç‚¹åº§æ¨™ã®æœ€å¤§å€¤( ãƒ¡ãƒƒã‚·ãƒ¥ãƒ­ãƒ¼ã‚«ãƒ«åº§æ¨™ )
+	VECTOR					MinPosition ;						// ã“ã®ãƒ¡ãƒƒã‚·ãƒ¥ã«å«ã¾ã‚Œã‚‹é ‚ç‚¹åº§æ¨™ã®æœ€å°å€¤( ãƒ¡ãƒƒã‚·ãƒ¥ãƒ­ãƒ¼ã‚«ãƒ«åº§æ¨™ )
 
-	int						TriangleListNum ;					// ƒgƒ‰ƒCƒAƒ“ƒOƒ‹ƒŠƒXƒg‚Ì”
-	MV1_TRIANGLE_LIST_BASE	*TriangleList ;						// ƒgƒ‰ƒCƒAƒ“ƒOƒ‹ƒŠƒXƒg‚ÌƒŠƒXƒg‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	int						TriangleListNum ;					// ãƒˆãƒ©ã‚¤ã‚¢ãƒ³ã‚°ãƒ«ãƒªã‚¹ãƒˆã®æ•°
+	MV1_TRIANGLE_LIST_BASE	*TriangleList ;						// ãƒˆãƒ©ã‚¤ã‚¢ãƒ³ã‚°ãƒ«ãƒªã‚¹ãƒˆã®ãƒªã‚¹ãƒˆã¸ã®ãƒã‚¤ãƒ³ã‚¿
 
-	BYTE					Visible ;							// •\¦ƒtƒ‰ƒO( 1:•\¦‚·‚é  0:•\¦‚µ‚È‚¢ )
-	BYTE					BackCulling ;						// ƒoƒbƒNƒJƒŠƒ“ƒO‚ğ‚·‚é‚©‚Ç‚¤‚©( 1:‚·‚é  0:‚µ‚È‚¢ )
-	BYTE					Shape ;								// ƒVƒFƒCƒvƒƒbƒVƒ…‚©‚Ç‚¤‚©( 1:ƒVƒFƒCƒvƒƒbƒVƒ…  0:’ÊíƒƒbƒVƒ… )
-	BYTE					SemiTransState ;					// ”¼“§–¾—v‘f‚ª‚ ‚é‚©‚Ç‚¤‚©( 1:”¼“§–¾—v‘f‚ª‚ ‚é  0:•s“§–¾ )
+	BYTE					Visible ;							// è¡¨ç¤ºãƒ•ãƒ©ã‚°( 1:è¡¨ç¤ºã™ã‚‹  0:è¡¨ç¤ºã—ãªã„ )
+	BYTE					BackCulling ;						// ãƒãƒƒã‚¯ã‚«ãƒªãƒ³ã‚°ã‚’ã™ã‚‹ã‹ã©ã†ã‹( 1:ã™ã‚‹  0:ã—ãªã„ )
+	BYTE					Shape ;								// ã‚·ã‚§ã‚¤ãƒ—ãƒ¡ãƒƒã‚·ãƒ¥ã‹ã©ã†ã‹( 1:ã‚·ã‚§ã‚¤ãƒ—ãƒ¡ãƒƒã‚·ãƒ¥  0:é€šå¸¸ãƒ¡ãƒƒã‚·ãƒ¥ )
+	BYTE					SemiTransState ;					// åŠé€æ˜è¦ç´ ãŒã‚ã‚‹ã‹ã©ã†ã‹( 1:åŠé€æ˜è¦ç´ ãŒã‚ã‚‹  0:ä¸é€æ˜ )
 
-	int						UVSetUnitNum ;						// ˆê‚Â‚ÌÀ•Wƒf[ƒ^‚ÉŠÜ‚Ü‚ê‚éƒeƒNƒXƒ`ƒƒÀ•WƒZƒbƒg‚Ì”
-	int						UVUnitNum ;							// ˆê‚Â‚ÌÀ•Wƒf[ƒ^‚ÉŠÜ‚Ü‚ê‚éƒeƒNƒXƒ`ƒƒÀ•W‚Ì”
+	int						UVSetUnitNum ;						// ä¸€ã¤ã®åº§æ¨™ãƒ‡ãƒ¼ã‚¿ã«å«ã¾ã‚Œã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£åº§æ¨™ã‚»ãƒƒãƒˆã®æ•°
+	int						UVUnitNum ;							// ä¸€ã¤ã®åº§æ¨™ãƒ‡ãƒ¼ã‚¿ã«å«ã¾ã‚Œã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£åº§æ¨™ã®æ•°
 
-	int						TriangleNum ;						// ‚±‚ÌƒƒbƒVƒ…‚ÉŠÜ‚Ü‚ê‚éƒ|ƒŠƒSƒ“‚Ì”
-	int						VertexNum ;							// ’¸“_‚Ì”
-	int						VertUnitSize ;						// ’¸“_ˆê‚Â•Ó‚è‚Ìƒf[ƒ^ƒTƒCƒY
-	MV1_MESH_VERTEX			*Vertex ;							// ’¸“_
-	int						VertexAllocMem ;					// ’¸“_ƒf[ƒ^—p‚Éƒƒ‚ƒŠ‚ğŠm•Û‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©( TRUE:‚µ‚Ä‚¢‚é  FALSE:‚µ‚Ä‚¢‚È‚¢ )
+	int						TriangleNum ;						// ã“ã®ãƒ¡ãƒƒã‚·ãƒ¥ã«å«ã¾ã‚Œã‚‹ãƒãƒªã‚´ãƒ³ã®æ•°
+	int						VertexNum ;							// é ‚ç‚¹ã®æ•°
+	int						VertUnitSize ;						// é ‚ç‚¹ä¸€ã¤è¾ºã‚Šã®ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
+	MV1_MESH_VERTEX			*Vertex ;							// é ‚ç‚¹
+	int						VertexAllocMem ;					// é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ç”¨ã«ãƒ¡ãƒ¢ãƒªã‚’ç¢ºä¿ã—ã¦ã„ã‚‹ã‹ã©ã†ã‹( TRUE:ã—ã¦ã„ã‚‹  FALSE:ã—ã¦ã„ãªã„ )
 
-	int						FaceNum ;							// –Ê‚Ì”
-	MV1_MESH_FACE			*Face ;								// –Ê
+	int						FaceNum ;							// é¢ã®æ•°
+	MV1_MESH_FACE			*Face ;								// é¢
 
-	DWORD					UserData[ 4 ] ;						// ŠO•”’è‹`‚Ìî•ñ
+	DWORD					UserData[ 4 ] ;						// å¤–éƒ¨å®šç¾©ã®æƒ…å ±
 } ;
 
-// ƒVƒFƒCƒv’¸“_Šîƒf[ƒ^\‘¢‘Ì
+// ã‚·ã‚§ã‚¤ãƒ—é ‚ç‚¹åŸºãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
 struct MV1_SHAPE_VERTEX_BASE
 {
-	int						TargetMeshVertex ;					// ‘ÎÛ‚Æ‚È‚é’¸“_”Ô†( MV1_MESH_BASE.Vertex ‚É‘Î‚·‚éƒCƒ“ƒfƒbƒNƒX )
-	VECTOR					Position ;							// À•W( Œ³‚ÌÀ•W‚É‘Î‚·‚é·•ª )
-	VECTOR					Normal ;							// –@ü
+	int						TargetMeshVertex ;					// å¯¾è±¡ã¨ãªã‚‹é ‚ç‚¹ç•ªå·( MV1_MESH_BASE.Vertex ã«å¯¾ã™ã‚‹ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ )
+	VECTOR					Position ;							// åº§æ¨™( å…ƒã®åº§æ¨™ã«å¯¾ã™ã‚‹å·®åˆ† )
+	VECTOR					Normal ;							// æ³•ç·š
 } ;
 
-// ƒVƒFƒCƒvƒƒbƒVƒ…Šîƒf[ƒ^\‘¢‘Ì
+// ã‚·ã‚§ã‚¤ãƒ—ãƒ¡ãƒƒã‚·ãƒ¥åŸºãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
 struct MV1_SHAPE_MESH_BASE
 {
-	MV1_MESH_BASE			*TargetMesh ;						// ‘ÎÛ‚Æ‚È‚éƒƒbƒVƒ…
+	MV1_MESH_BASE			*TargetMesh ;						// å¯¾è±¡ã¨ãªã‚‹ãƒ¡ãƒƒã‚·ãƒ¥
 
-	DWORD					VertexNum ;							// ’¸“_ƒf[ƒ^‚Ì”
-	MV1_SHAPE_VERTEX_BASE	*Vertex ;							// ’¸“_ƒf[ƒ^”z—ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	int						VertexAllocMem ;					// ’¸“_ƒf[ƒ^—p‚Éƒƒ‚ƒŠ‚ğŠm•Û‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©( TRUE:‚µ‚Ä‚¢‚é  FALSE:‚µ‚Ä‚¢‚È‚¢ )
+	DWORD					VertexNum ;							// é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ã®æ•°
+	MV1_SHAPE_VERTEX_BASE	*Vertex ;							// é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿é…åˆ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	int						VertexAllocMem ;					// é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ç”¨ã«ãƒ¡ãƒ¢ãƒªã‚’ç¢ºä¿ã—ã¦ã„ã‚‹ã‹ã©ã†ã‹( TRUE:ã—ã¦ã„ã‚‹  FALSE:ã—ã¦ã„ãªã„ )
 } ;
 
-// ƒVƒFƒCƒvŠîƒf[ƒ^\‘¢‘Ì
+// ã‚·ã‚§ã‚¤ãƒ—åŸºãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
 struct MV1_SHAPE_BASE
 {
-	struct MV1_FRAME_BASE	*Container ;						// ‚±‚ÌƒVƒFƒCƒv‚ğ‚Á‚Ä‚¢‚éƒtƒŒ[ƒ€‚Ìƒ|ƒCƒ“ƒ^
+	struct MV1_FRAME_BASE	*Container ;						// ã“ã®ã‚·ã‚§ã‚¤ãƒ—ã‚’æŒã£ã¦ã„ã‚‹ãƒ•ãƒ¬ãƒ¼ãƒ ã®ãƒã‚¤ãƒ³ã‚¿
 
 #ifndef UNICODE
-	char					*NameA ;							// –¼‘O
+	char					*NameA ;							// åå‰
 #endif
 	wchar_t					*NameW ;
 
-	int						MeshNum ;							// ƒVƒFƒCƒvƒƒbƒVƒ…‚Ì”
-	MV1_SHAPE_MESH_BASE		*Mesh ;								// ƒVƒFƒCƒvƒƒbƒVƒ…”z—ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	int						MeshNum ;							// ã‚·ã‚§ã‚¤ãƒ—ãƒ¡ãƒƒã‚·ãƒ¥ã®æ•°
+	MV1_SHAPE_MESH_BASE		*Mesh ;								// ã‚·ã‚§ã‚¤ãƒ—ãƒ¡ãƒƒã‚·ãƒ¥é…åˆ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 } ;
 
-// •¨—‰‰Z—p„‘Ìƒf[ƒ^\‘¢‘Ì
+// ç‰©ç†æ¼”ç®—ç”¨å‰›ä½“ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
 struct MV1_PHYSICS_RIGIDBODY_BASE
 {
-	int						Index ;								// ƒCƒ“ƒfƒbƒNƒX
+	int						Index ;								// ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 #ifndef UNICODE
-	char					*NameA ;							// –¼‘O
+	char					*NameA ;							// åå‰
 #endif
-	wchar_t					*NameW ;							// –¼‘O
+	wchar_t					*NameW ;							// åå‰
 
-	struct MV1_FRAME_BASE	*TargetFrame ;						// ‘ÎÛ‚Æ‚È‚éƒtƒŒ[ƒ€
+	struct MV1_FRAME_BASE	*TargetFrame ;						// å¯¾è±¡ã¨ãªã‚‹ãƒ•ãƒ¬ãƒ¼ãƒ 
 
-	int						RigidBodyGroupIndex ;				// „‘ÌƒOƒ‹[ƒv”Ô†
-	DWORD					RigidBodyGroupTarget ;				// „‘ÌƒOƒ‹[ƒv‘ÎÛ
-	int						ShapeType ;							// Œ`ó( 0:‹…  1:”   2:ƒJƒvƒZƒ‹ )
-	float					ShapeW ;							// •
-	float					ShapeH ;							// ‚‚³
-	float					ShapeD ;							// ‰œs
-	VECTOR					Position ;							// ˆÊ’u
-	VECTOR					Rotation ;							// ‰ñ“]( ƒ‰ƒWƒAƒ“ )
-	float					RigidBodyWeight ;					// ¿—Ê
-	float					RigidBodyPosDim ;					// ˆÚ“®Œ¸
-	float					RigidBodyRotDim ;					// ‰ñ“]Œ¸
-	float					RigidBodyRecoil ;					// ”½”­—Í
-	float					RigidBodyFriction ;					// –€C—Í
-	int						RigidBodyType ;						// „‘Ìƒ^ƒCƒv( 0:Bone’Ç]  1:•¨—‰‰Z  2:•¨—‰‰Z(BoneˆÊ’u‡‚í‚¹) )
-	int						NoCopyToBone ;						// ƒ{[ƒ“‚Ìs—ñ‚ğ•¨—‚É“K—p‚µ‚È‚¢‚©‚Ç‚¤‚©
+	int						RigidBodyGroupIndex ;				// å‰›ä½“ã‚°ãƒ«ãƒ¼ãƒ—ç•ªå·
+	DWORD					RigidBodyGroupTarget ;				// å‰›ä½“ã‚°ãƒ«ãƒ¼ãƒ—å¯¾è±¡
+	int						ShapeType ;							// å½¢çŠ¶( 0:çƒ  1:ç®±  2:ã‚«ãƒ—ã‚»ãƒ« )
+	float					ShapeW ;							// å¹…
+	float					ShapeH ;							// é«˜ã•
+	float					ShapeD ;							// å¥¥è¡Œ
+	VECTOR					Position ;							// ä½ç½®
+	VECTOR					Rotation ;							// å›è»¢( ãƒ©ã‚¸ã‚¢ãƒ³ )
+	float					RigidBodyWeight ;					// è³ªé‡
+	float					RigidBodyPosDim ;					// ç§»å‹•æ¸›
+	float					RigidBodyRotDim ;					// å›è»¢æ¸›
+	float					RigidBodyRecoil ;					// åç™ºåŠ›
+	float					RigidBodyFriction ;					// æ‘©æ“¦åŠ›
+	int						RigidBodyType ;						// å‰›ä½“ã‚¿ã‚¤ãƒ—( 0:Boneè¿½å¾“  1:ç‰©ç†æ¼”ç®—  2:ç‰©ç†æ¼”ç®—(Boneä½ç½®åˆã‚ã›) )
+	int						NoCopyToBone ;						// ãƒœãƒ¼ãƒ³ã®è¡Œåˆ—ã‚’ç‰©ç†ã«é©ç”¨ã—ãªã„ã‹ã©ã†ã‹
 } ;
 
-// •¨—‰‰Z—p„‘ÌƒWƒ‡ƒCƒ“ƒgƒf[ƒ^\‘¢‘Ì
+// ç‰©ç†æ¼”ç®—ç”¨å‰›ä½“ã‚¸ãƒ§ã‚¤ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
 struct MV1_PHYSICS_JOINT_BASE
 {
-	int						Index ;								// ƒCƒ“ƒfƒbƒNƒX
+	int						Index ;								// ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 #ifndef UNICODE
-	char					*NameA ;							// –¼‘O
+	char					*NameA ;							// åå‰
 #endif
-	wchar_t					*NameW ;							// –¼‘O
+	wchar_t					*NameW ;							// åå‰
 
-	MV1_PHYSICS_RIGIDBODY_BASE	*RigidBodyA ;					// Ú‘±æ„‘Ì‚`
-	MV1_PHYSICS_RIGIDBODY_BASE	*RigidBodyB ;					// Ú‘±æ„‘Ì‚a
-	VECTOR					Position ;							// ˆÊ’u
-	VECTOR					Rotation ;							// ‰ñ“]( ƒ‰ƒWƒAƒ“ )
-	VECTOR					ConstrainPosition1 ;				// ˆÚ“®§ŒÀ’l‚P
-	VECTOR					ConstrainPosition2 ;				// ˆÚ“®§ŒÀ’l‚Q
-	VECTOR					ConstrainRotation1 ;				// ‰ñ“]§ŒÀ’l‚P
-	VECTOR					ConstrainRotation2 ;				// ‰ñ“]§ŒÀ’l‚Q
-	VECTOR					SpringPosition ;					// ‚Î‚ËˆÚ“®’l
-	VECTOR					SpringRotation ;					// ‚Î‚Ë‰ñ“]’l
+	MV1_PHYSICS_RIGIDBODY_BASE	*RigidBodyA ;					// æ¥ç¶šå…ˆå‰›ä½“ï¼¡
+	MV1_PHYSICS_RIGIDBODY_BASE	*RigidBodyB ;					// æ¥ç¶šå…ˆå‰›ä½“ï¼¢
+	VECTOR					Position ;							// ä½ç½®
+	VECTOR					Rotation ;							// å›è»¢( ãƒ©ã‚¸ã‚¢ãƒ³ )
+	VECTOR					ConstrainPosition1 ;				// ç§»å‹•åˆ¶é™å€¤ï¼‘
+	VECTOR					ConstrainPosition2 ;				// ç§»å‹•åˆ¶é™å€¤ï¼’
+	VECTOR					ConstrainRotation1 ;				// å›è»¢åˆ¶é™å€¤ï¼‘
+	VECTOR					ConstrainRotation2 ;				// å›è»¢åˆ¶é™å€¤ï¼’
+	VECTOR					SpringPosition ;					// ã°ã­ç§»å‹•å€¤
+	VECTOR					SpringRotation ;					// ã°ã­å›è»¢å€¤
 } ;
 
-// ƒ‚ƒfƒ‹ŠK‘wŠîƒf[ƒ^\‘¢‘Ì
+// ãƒ¢ãƒ‡ãƒ«éšå±¤åŸºãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
 struct MV1_FRAME_BASE
 {
-	struct MV1_MODEL_BASE	*Container ;						// ‚±‚ÌƒtƒŒ[ƒ€‚ğ‚Á‚Ä‚¢‚éƒ‚ƒfƒ‹‚Ìƒ|ƒCƒ“ƒ^
+	struct MV1_MODEL_BASE	*Container ;						// ã“ã®ãƒ•ãƒ¬ãƒ¼ãƒ ã‚’æŒã£ã¦ã„ã‚‹ãƒ¢ãƒ‡ãƒ«ã®ãƒã‚¤ãƒ³ã‚¿
 
-	int						CheckID ;							// ƒ`ƒFƒbƒN‚h‚c
-	int						CheckNo ;							// ƒ`ƒFƒbƒN”Ô†
+	int						CheckID ;							// ãƒã‚§ãƒƒã‚¯ï¼©ï¼¤
+	int						CheckNo ;							// ãƒã‚§ãƒƒã‚¯ç•ªå·
 
 #ifndef UNICODE
-	char					*NameA ;							// –¼‘O
+	char					*NameA ;							// åå‰
 #endif
 	wchar_t					*NameW ;
-	int						Index ;								// ƒCƒ“ƒfƒbƒNƒX
+	int						Index ;								// ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 
-	MV1_CHANGE_BASE			ChangeDrawMaterialInfo ;			// •`‰æ—pƒ}ƒeƒŠƒAƒ‹ó‘Ô•Ï‰»ŠÇ——pŠî–{î•ñ
-	MV1_CHANGE_BASE			ChangeMatrixInfo ;					// s—ñó‘Ô•Ï‰»ŠÇ——pŠî–{î•ñ
+	MV1_CHANGE_BASE			ChangeDrawMaterialInfo ;			// æç”»ç”¨ãƒãƒ†ãƒªã‚¢ãƒ«çŠ¶æ…‹å¤‰åŒ–ç®¡ç†ç”¨åŸºæœ¬æƒ…å ±
+	MV1_CHANGE_BASE			ChangeMatrixInfo ;					// è¡Œåˆ—çŠ¶æ…‹å¤‰åŒ–ç®¡ç†ç”¨åŸºæœ¬æƒ…å ±
 
-	int						TotalMeshNum ;						// ©•ª‚Ì‰º‘w‚É‚ ‚éƒƒbƒVƒ…‚Ì‘”
-	int						TotalChildNum ;						// ©•ª‚Ì‰º‘w‚É‚ ‚éƒtƒŒ[ƒ€‚Ì”
-	MV1_FRAME_BASE			*Parent ;							// eŠK‘w‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	MV1_FRAME_BASE			*FirstChild ;						// qŠK‘w‚Ö‚Ìƒ|ƒCƒ“ƒ^(æ’[)
-	MV1_FRAME_BASE			*LastChild ;						// qŠK‘w‚Ö‚Ìƒ|ƒCƒ“ƒ^(––’[)
-	MV1_FRAME_BASE			*Prev ;								// ŒZŠK‘w‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	MV1_FRAME_BASE			*Next ;								// ’íŠK‘w‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	int						TotalMeshNum ;						// è‡ªåˆ†ã®ä¸‹å±¤ã«ã‚ã‚‹ãƒ¡ãƒƒã‚·ãƒ¥ã®ç·æ•°
+	int						TotalChildNum ;						// è‡ªåˆ†ã®ä¸‹å±¤ã«ã‚ã‚‹ãƒ•ãƒ¬ãƒ¼ãƒ ã®æ•°
+	MV1_FRAME_BASE			*Parent ;							// è¦ªéšå±¤ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	MV1_FRAME_BASE			*FirstChild ;						// å­éšå±¤ã¸ã®ãƒã‚¤ãƒ³ã‚¿(å…ˆç«¯)
+	MV1_FRAME_BASE			*LastChild ;						// å­éšå±¤ã¸ã®ãƒã‚¤ãƒ³ã‚¿(æœ«ç«¯)
+	MV1_FRAME_BASE			*Prev ;								// å…„éšå±¤ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	MV1_FRAME_BASE			*Next ;								// å¼Ÿéšå±¤ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 
-	int						TransformMatrixType ;				// •ÏŠ·s—ñ‚Ìƒ^ƒCƒv( 0:’PˆÊs—ñ  1:•½sˆÚ“®‚Ì‚İ 2:‚»‚êˆÈŠO )
-	MATRIX_4X4CT_F			TransformMatrix ;					// ‰Šúó‘Ô‚Ìƒ[ƒJƒ‹¨ƒ[ƒ‹ƒhs—ñ
-	MATRIX_4X4CT_F			InverseTransformMatrix ;			// ‰Šúó‘Ô‚Ìƒ[ƒJƒ‹¨ƒ[ƒ‹ƒhs—ñ‚Ì‹ts—ñ
+	int						TransformMatrixType ;				// å¤‰æ›è¡Œåˆ—ã®ã‚¿ã‚¤ãƒ—( 0:å˜ä½è¡Œåˆ—  1:å¹³è¡Œç§»å‹•ã®ã¿ 2:ãã‚Œä»¥å¤– )
+	MATRIX_4X4CT_F			TransformMatrix ;					// åˆæœŸçŠ¶æ…‹ã®ãƒ­ãƒ¼ã‚«ãƒ«â†’ãƒ¯ãƒ¼ãƒ«ãƒ‰è¡Œåˆ—
+	MATRIX_4X4CT_F			InverseTransformMatrix ;			// åˆæœŸçŠ¶æ…‹ã®ãƒ­ãƒ¼ã‚«ãƒ«â†’ãƒ¯ãƒ¼ãƒ«ãƒ‰è¡Œåˆ—ã®é€†è¡Œåˆ—
 
-	int						LocalTransformMatrixType ;			// •ÏŠ·s—ñ‚Ìƒ^ƒCƒv( 0:’PˆÊs—ñ  1:•½sˆÚ“®‚Ì‚İ 2:‚»‚êˆÈŠO )
-	MATRIX_4X4CT_F			LocalTransformMatrix ;				// •ÏŠ·s—ñ
-	bool					LocalTransformMatrixUseScaling ;	// •ÏŠ·s—ñ‚ÅƒXƒP[ƒŠƒ“ƒO‚ğg—p‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO( true:g—p‚µ‚Ä‚¢‚é  false:g—p‚µ‚Ä‚¢‚È‚¢ )
+	int						LocalTransformMatrixType ;			// å¤‰æ›è¡Œåˆ—ã®ã‚¿ã‚¤ãƒ—( 0:å˜ä½è¡Œåˆ—  1:å¹³è¡Œç§»å‹•ã®ã¿ 2:ãã‚Œä»¥å¤– )
+	MATRIX_4X4CT_F			LocalTransformMatrix ;				// å¤‰æ›è¡Œåˆ—
+	bool					LocalTransformMatrixUseScaling ;	// å¤‰æ›è¡Œåˆ—ã§ã‚¹ã‚±ãƒ¼ãƒªãƒ³ã‚°ã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°( true:ä½¿ç”¨ã—ã¦ã„ã‚‹  false:ä½¿ç”¨ã—ã¦ã„ãªã„ )
 
-	VECTOR					Translate ;							// •½sˆÚ“®
-	VECTOR					Scale ;								// ƒXƒP[ƒ‹
-	int						RotateOrder ;						// ‰ñ“]ƒI[ƒ_[( MV1_ROTATE_ORDER_XYZ “™ )
-	VECTOR					Rotate ;							// ‰ñ“](‚R²)
-	FLOAT4					Quaternion ;						// ‰ñ“]( ƒNƒH[ƒ^ƒjƒIƒ“ )
-	int						IgnoreParentTransform ;				// e‚ÌÀ•W•ÏŠ·‚ğ–³‹‚·‚é‚©‚Ç‚¤‚©( 1:–³‹‚·‚é  0:–³‹‚µ‚È‚¢ )
+	VECTOR					Translate ;							// å¹³è¡Œç§»å‹•
+	VECTOR					Scale ;								// ã‚¹ã‚±ãƒ¼ãƒ«
+	int						RotateOrder ;						// å›è»¢ã‚ªãƒ¼ãƒ€ãƒ¼( MV1_ROTATE_ORDER_XYZ ç­‰ )
+	VECTOR					Rotate ;							// å›è»¢(ï¼“è»¸)
+	FLOAT4					Quaternion ;						// å›è»¢( ã‚¯ã‚©ãƒ¼ã‚¿ãƒ‹ã‚ªãƒ³ )
+	int						IgnoreParentTransform ;				// è¦ªã®åº§æ¨™å¤‰æ›ã‚’ç„¡è¦–ã™ã‚‹ã‹ã©ã†ã‹( 1:ç„¡è¦–ã™ã‚‹  0:ç„¡è¦–ã—ãªã„ )
 
-	VECTOR					PreRotate ;							// ‘O‰ñ“]
-	VECTOR					PostRotate ;						// Œã‰ñ“]
+	VECTOR					PreRotate ;							// å‰å›è»¢
+	VECTOR					PostRotate ;						// å¾Œå›è»¢
 
-	VECTOR					MaxPosition ;						// ‚±‚Ìƒm[ƒh‚ÉŠÜ‚Ü‚ê‚éƒƒbƒVƒ…‚Ì’¸“_À•W‚ÌÅ‘å’l( ƒƒbƒVƒ…ƒ[ƒJƒ‹À•W )
-	VECTOR					MinPosition ;						// ‚±‚Ìƒm[ƒh‚ÉŠÜ‚Ü‚ê‚éƒƒbƒVƒ…‚Ì’¸“_À•W‚ÌÅ¬’l( ƒƒbƒVƒ…ƒ[ƒJƒ‹À•W )
-	int						ValidMaxMinPosition ;				// MaxPosition, MinPosition ‚ª—LŒø‚©‚Ç‚¤‚©( 1:—LŒø  0:–³Œø )
+	VECTOR					MaxPosition ;						// ã“ã®ãƒãƒ¼ãƒ‰ã«å«ã¾ã‚Œã‚‹ãƒ¡ãƒƒã‚·ãƒ¥ã®é ‚ç‚¹åº§æ¨™ã®æœ€å¤§å€¤( ãƒ¡ãƒƒã‚·ãƒ¥ãƒ­ãƒ¼ã‚«ãƒ«åº§æ¨™ )
+	VECTOR					MinPosition ;						// ã“ã®ãƒãƒ¼ãƒ‰ã«å«ã¾ã‚Œã‚‹ãƒ¡ãƒƒã‚·ãƒ¥ã®é ‚ç‚¹åº§æ¨™ã®æœ€å°å€¤( ãƒ¡ãƒƒã‚·ãƒ¥ãƒ­ãƒ¼ã‚«ãƒ«åº§æ¨™ )
+	int						ValidMaxMinPosition ;				// MaxPosition, MinPosition ãŒæœ‰åŠ¹ã‹ã©ã†ã‹( 1:æœ‰åŠ¹  0:ç„¡åŠ¹ )
 
-	DWORD					Flag ;								// Šeíƒtƒ‰ƒO( MV1_FRAMEFLAG_VISIBLE ‚È‚Ç )
+	DWORD					Flag ;								// å„ç¨®ãƒ•ãƒ©ã‚°( MV1_FRAMEFLAG_VISIBLE ãªã© )
 
-	int						IsSkinMesh ;						// ‚±‚ÌƒtƒŒ[ƒ€‚ÉŠÜ‚Ü‚ê‚éƒƒbƒVƒ…‚Ì’†‚ÉƒXƒLƒ“ƒƒbƒVƒ…‚ªŠÜ‚Ü‚ê‚é‚©‚Ç‚¤‚©( TRUE:ŠÜ‚Ü‚ê‚é  FALSE:ŠÜ‚Ü‚ê‚È‚¢ )
-	int						TriangleNum ;						// ‚±‚ÌƒtƒŒ[ƒ€‚ÉŠÜ‚Ü‚ê‚éƒ|ƒŠƒSƒ“‚Ì”
-	int						VertexNum ;							// ‚±‚ÌƒtƒŒ[ƒ€‚ÉŠÜ‚Ü‚ê‚é’¸“_ƒf[ƒ^‚Ì”
-	int						MeshNum ;							// ƒƒbƒVƒ…‚Ì”
-	MV1_MESH_BASE			*Mesh ;								// ƒƒbƒVƒ…ƒŠƒXƒg‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	int						IsSkinMesh ;						// ã“ã®ãƒ•ãƒ¬ãƒ¼ãƒ ã«å«ã¾ã‚Œã‚‹ãƒ¡ãƒƒã‚·ãƒ¥ã®ä¸­ã«ã‚¹ã‚­ãƒ³ãƒ¡ãƒƒã‚·ãƒ¥ãŒå«ã¾ã‚Œã‚‹ã‹ã©ã†ã‹( TRUE:å«ã¾ã‚Œã‚‹  FALSE:å«ã¾ã‚Œãªã„ )
+	int						TriangleNum ;						// ã“ã®ãƒ•ãƒ¬ãƒ¼ãƒ ã«å«ã¾ã‚Œã‚‹ãƒãƒªã‚´ãƒ³ã®æ•°
+	int						VertexNum ;							// ã“ã®ãƒ•ãƒ¬ãƒ¼ãƒ ã«å«ã¾ã‚Œã‚‹é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ã®æ•°
+	int						MeshNum ;							// ãƒ¡ãƒƒã‚·ãƒ¥ã®æ•°
+	MV1_MESH_BASE			*Mesh ;								// ãƒ¡ãƒƒã‚·ãƒ¥ãƒªã‚¹ãƒˆã¸ã®ãƒã‚¤ãƒ³ã‚¿
 
-	int						IsCombineMesh ;						// ©•ª‚ğŠÜ‚ßq‚ÌƒtƒŒ[ƒ€‚ÉŠÜ‚Ü‚ê‚éƒƒbƒVƒ…‚à“Z‚ß‚Äˆê‚Â‚É‡¬‚µ‚½ƒƒbƒVƒ…‚ª‘¶İ‚·‚é‚©‚Ç‚¤‚©( TRUE:‘¶İ‚·‚é  FALSE:‘¶İ‚µ‚È‚¢ )
-	MV1_MESH_BASE			*CombineMesh ;						// ©•ª‚ğŠÜ‚ßq‚ÌƒtƒŒ[ƒ€‚ÉŠÜ‚Ü‚ê‚éƒƒbƒVƒ…‚à“Z‚ß‚Äˆê‚Â‚É‡¬‚µ‚½ƒƒbƒVƒ…‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	int						IsCombineMesh ;						// è‡ªåˆ†ã‚’å«ã‚å­ã®ãƒ•ãƒ¬ãƒ¼ãƒ ã«å«ã¾ã‚Œã‚‹ãƒ¡ãƒƒã‚·ãƒ¥ã‚‚çºã‚ã¦ä¸€ã¤ã«åˆæˆã—ãŸãƒ¡ãƒƒã‚·ãƒ¥ãŒå­˜åœ¨ã™ã‚‹ã‹ã©ã†ã‹( TRUE:å­˜åœ¨ã™ã‚‹  FALSE:å­˜åœ¨ã—ãªã„ )
+	MV1_MESH_BASE			*CombineMesh ;						// è‡ªåˆ†ã‚’å«ã‚å­ã®ãƒ•ãƒ¬ãƒ¼ãƒ ã«å«ã¾ã‚Œã‚‹ãƒ¡ãƒƒã‚·ãƒ¥ã‚‚çºã‚ã¦ä¸€ã¤ã«åˆæˆã—ãŸãƒ¡ãƒƒã‚·ãƒ¥ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 
-	int						SkinBoneNum ;						// ‚±‚ÌƒtƒŒ[ƒ€‚ğƒ^[ƒQƒbƒg‚Æ‚·‚éƒ{[ƒ“‚Ì”
-	MV1_SKIN_BONE			*SkinBone ;							// ‚±‚ÌƒtƒŒ[ƒ€‚ğƒ^[ƒQƒbƒg‚Æ‚·‚éÅ‰‚Ìƒ{[ƒ“‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	int						SkinBoneNum ;						// ã“ã®ãƒ•ãƒ¬ãƒ¼ãƒ ã‚’ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã¨ã™ã‚‹ãƒœãƒ¼ãƒ³ã®æ•°
+	MV1_SKIN_BONE			*SkinBone ;							// ã“ã®ãƒ•ãƒ¬ãƒ¼ãƒ ã‚’ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã¨ã™ã‚‹æœ€åˆã®ãƒœãƒ¼ãƒ³ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 
-	int						UseSkinBoneNum ;					// ‚±‚ÌƒtƒŒ[ƒ€‚ªg—p‚µ‚Ä‚¢‚éƒ{[ƒ“‚Ì”
-	MV1_SKIN_BONE			**UseSkinBone ;						// ‚±‚ÌƒtƒŒ[ƒ€‚ªg—p‚µ‚Ä‚¢‚éƒ{[ƒ“‚Ö‚Ìƒ|ƒCƒ“ƒ^‚Ì”z—ñ
+	int						UseSkinBoneNum ;					// ã“ã®ãƒ•ãƒ¬ãƒ¼ãƒ ãŒä½¿ç”¨ã—ã¦ã„ã‚‹ãƒœãƒ¼ãƒ³ã®æ•°
+	MV1_SKIN_BONE			**UseSkinBone ;						// ã“ã®ãƒ•ãƒ¬ãƒ¼ãƒ ãŒä½¿ç”¨ã—ã¦ã„ã‚‹ãƒœãƒ¼ãƒ³ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã®é…åˆ—
 
-	MV1_LIGHT				*Light ;							// ƒ‰ƒCƒgî•ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	MV1_LIGHT				*Light ;							// ãƒ©ã‚¤ãƒˆæƒ…å ±ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 
-	int						MaxBoneBlendNum ;					// ˆê‚Â‚ÌÀ•Wƒf[ƒ^‚Åg—p‚·‚éƒ{[ƒ“ƒEƒGƒCƒgî•ñ‚ÌÅ‘å”
-	float					SmoothingAngle ;					// ©“®–@üŒvZ‚Ìê‡‚ÌƒXƒ€[ƒWƒ“ƒO‚ğs‚¤‚©‚Ç‚¤‚©‚Ìè‡’l( ’PˆÊ‚Íƒ‰ƒWƒAƒ“ )
-	int						AutoCreateNormal ;					// –@ü‚Ì©“®¶¬‚ğg—p‚·‚é‚©‚Ç‚¤‚©( TRUE:g—p‚·‚é  FALSE:g—p‚µ‚È‚¢ )
+	int						MaxBoneBlendNum ;					// ä¸€ã¤ã®åº§æ¨™ãƒ‡ãƒ¼ã‚¿ã§ä½¿ç”¨ã™ã‚‹ãƒœãƒ¼ãƒ³ã‚¦ã‚¨ã‚¤ãƒˆæƒ…å ±ã®æœ€å¤§æ•°
+	float					SmoothingAngle ;					// è‡ªå‹•æ³•ç·šè¨ˆç®—ã®å ´åˆã®ã‚¹ãƒ ãƒ¼ã‚¸ãƒ³ã‚°ã‚’è¡Œã†ã‹ã©ã†ã‹ã®é–¾å€¤( å˜ä½ã¯ãƒ©ã‚¸ã‚¢ãƒ³ )
+	int						AutoCreateNormal ;					// æ³•ç·šã®è‡ªå‹•ç”Ÿæˆã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹( TRUE:ä½¿ç”¨ã™ã‚‹  FALSE:ä½¿ç”¨ã—ãªã„ )
 
-	int						PositionNum ;						// À•W‚Ì”
-	int						PosUnitSize ;						// À•Wƒf[ƒ^ˆê‚Â•Ó‚è‚ÌƒTƒCƒY
-	MV1_MESH_POSITION		*Position ;							// À•W
+	int						PositionNum ;						// åº§æ¨™ã®æ•°
+	int						PosUnitSize ;						// åº§æ¨™ãƒ‡ãƒ¼ã‚¿ä¸€ã¤è¾ºã‚Šã®ã‚µã‚¤ã‚º
+	MV1_MESH_POSITION		*Position ;							// åº§æ¨™
 
-	int						NormalNum ;							// –@ü‚Ì”
-	MV1_MESH_NORMAL			*Normal ;							// –@ü
-	int						NormalAllocMem ;					// –@üƒf[ƒ^—p‚Éƒƒ‚ƒŠ‚ğŠm•Û‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©( TRUE:‚µ‚Ä‚¢‚é  FALSE:‚µ‚Ä‚¢‚È‚¢ )
+	int						NormalNum ;							// æ³•ç·šã®æ•°
+	MV1_MESH_NORMAL			*Normal ;							// æ³•ç·š
+	int						NormalAllocMem ;					// æ³•ç·šãƒ‡ãƒ¼ã‚¿ç”¨ã«ãƒ¡ãƒ¢ãƒªã‚’ç¢ºä¿ã—ã¦ã„ã‚‹ã‹ã©ã†ã‹( TRUE:ã—ã¦ã„ã‚‹  FALSE:ã—ã¦ã„ãªã„ )
 
-	int						ShapeNum ;							// ƒVƒFƒCƒvƒf[ƒ^‚Ì”
-	MV1_SHAPE_BASE			*Shape ;							// ƒVƒFƒCƒv”z—ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	int						ShapeNum ;							// ã‚·ã‚§ã‚¤ãƒ—ãƒ‡ãƒ¼ã‚¿ã®æ•°
+	MV1_SHAPE_BASE			*Shape ;							// ã‚·ã‚§ã‚¤ãƒ—é…åˆ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 
-	MV1_PHYSICS_RIGIDBODY_BASE *PhysicsRigidBody ;				// „‘Ìî•ñ
+	MV1_PHYSICS_RIGIDBODY_BASE *PhysicsRigidBody ;				// å‰›ä½“æƒ…å ±
 
-	DWORD					UserData[ 4 ] ;						// ŠO•”’è‹`‚Ìî•ñ
+	DWORD					UserData[ 4 ] ;						// å¤–éƒ¨å®šç¾©ã®æƒ…å ±
 } ;
 
 
-// ’¸“_ƒoƒbƒtƒ@î•ñ
+// é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡æƒ…å ±
 struct MV1_VERTEXBUFFER
 {
-	int						VertexCount ;						// ’¸“_”
-	int						IndexCount ;						// ƒCƒ“ƒfƒbƒNƒX”
-	void					*VertexBufferL ;					// ’¸“_ƒoƒbƒtƒ@ƒƒbƒN‚ÉƒAƒhƒŒƒX‚ğŠi”[‚·‚éƒ|ƒCƒ“ƒ^
-	void					*IndexBufferL ;						// ƒCƒ“ƒfƒbƒNƒXƒoƒbƒtƒ@ƒƒbƒN‚ÉƒAƒhƒŒƒX‚ğŠi”[‚·‚éƒ|ƒCƒ“ƒ^
-	DWORD					UnitSize ;							// ’¸“_ƒf[ƒ^ˆê‚Â•Ó‚è‚ÌƒTƒCƒY
+	int						VertexCount ;						// é ‚ç‚¹æ•°
+	int						IndexCount ;						// ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹æ•°
+	void					*VertexBufferL ;					// é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ãƒ­ãƒƒã‚¯æ™‚ã«ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’æ ¼ç´ã™ã‚‹ãƒã‚¤ãƒ³ã‚¿
+	void					*IndexBufferL ;						// ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒãƒƒãƒ•ã‚¡ãƒ­ãƒƒã‚¯æ™‚ã«ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’æ ¼ç´ã™ã‚‹ãƒã‚¤ãƒ³ã‚¿
+	DWORD					UnitSize ;							// é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ä¸€ã¤è¾ºã‚Šã®ã‚µã‚¤ã‚º
 
-	struct MV1_VERTEXBUFFER_PF	*PF ;							// ŠÂ‹«ˆË‘¶ƒf[ƒ^
+	struct MV1_VERTEXBUFFER_PF	*PF ;							// ç’°å¢ƒä¾å­˜ãƒ‡ãƒ¼ã‚¿
 
-	struct MV1_VERTEXBUFFER	*DataNext ;							// Ÿ‚Ì’¸“_ƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	struct MV1_VERTEXBUFFER	*DataPrev ;							// ‘O‚Ì’¸“_ƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	struct MV1_VERTEXBUFFER	*DataNext ;							// æ¬¡ã®é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	struct MV1_VERTEXBUFFER	*DataPrev ;							// å‰ã®é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 } ;
 
-// ƒ‚ƒfƒ‹Šîƒf[ƒ^\‘¢‘Ì
+// ãƒ¢ãƒ‡ãƒ«åŸºãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
 struct MV1_MODEL_BASE
 {
-	HANDLEINFO				HandleInfo ;						// ƒnƒ“ƒhƒ‹‹¤’Êƒf[ƒ^
+	HANDLEINFO				HandleInfo ;						// ãƒãƒ³ãƒ‰ãƒ«å…±é€šãƒ‡ãƒ¼ã‚¿
 
-	void					*DataBuffer ;						// ƒtƒŒ[ƒ€‚âƒ}ƒeƒŠƒAƒ‹‚âƒAƒjƒ[ƒVƒ‡ƒ“‚È‚Ç‚ğŠi”[‚·‚éƒoƒbƒtƒ@‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	void					*DataBuffer ;						// ãƒ•ãƒ¬ãƒ¼ãƒ ã‚„ãƒãƒ†ãƒªã‚¢ãƒ«ã‚„ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãªã©ã‚’æ ¼ç´ã™ã‚‹ãƒãƒƒãƒ•ã‚¡ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 
-	DWORD_PTR				AllocMemorySize ;					// ƒƒ‚ƒŠŠm•Û‚Ég—p‚µ‚½ƒTƒCƒY
+	DWORD_PTR				AllocMemorySize ;					// ãƒ¡ãƒ¢ãƒªç¢ºä¿ã«ä½¿ç”¨ã—ãŸã‚µã‚¤ã‚º
 
-	int						UseNum ;							// ‚±‚ÌŠîƒf[ƒ^‚ğg—p‚µ‚Ä‚¢‚éƒ‚ƒfƒ‹ƒf[ƒ^‚Ì”
-	struct MV1_MODEL		*UseFirst, *UseLast ;				// ‚±‚ÌŠîƒf[ƒ^‚ğg—p‚µ‚Ä‚¢‚éƒ‚ƒfƒ‹ƒf[ƒ^‚Ìæ’[‚ÆI’[‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	int						UseNum ;							// ã“ã®åŸºãƒ‡ãƒ¼ã‚¿ã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹ãƒ¢ãƒ‡ãƒ«ãƒ‡ãƒ¼ã‚¿ã®æ•°
+	struct MV1_MODEL		*UseFirst, *UseLast ;				// ã“ã®åŸºãƒ‡ãƒ¼ã‚¿ã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹ãƒ¢ãƒ‡ãƒ«ãƒ‡ãƒ¼ã‚¿ã®å…ˆç«¯ã¨çµ‚ç«¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 
-	int						UsePackDraw ;						// “¯•¡”•`‰æ‚É‘Î‰‚·‚é‚©‚Ç‚¤‚©( TRUE:‘Î‰‚·‚é  FLASE:‘Î‰‚µ‚È‚¢ )
-	int						PackDrawMaxNum ;					// “¯‚És‚¦‚é•`‰æ‚ÌÅ‘å”
-	int						PackDrawMatrixUnitNum ;				// “¯•¡”•`‰æ‚Ìˆê•`‰æ•ª‚Åg—p‚·‚és—ñ‚Ì”
+	int						UsePackDraw ;						// åŒæ™‚è¤‡æ•°æç”»ã«å¯¾å¿œã™ã‚‹ã‹ã©ã†ã‹( TRUE:å¯¾å¿œã™ã‚‹  FLASE:å¯¾å¿œã—ãªã„ )
+	int						PackDrawMaxNum ;					// åŒæ™‚ã«è¡Œãˆã‚‹æç”»ã®æœ€å¤§æ•°
+	int						PackDrawMatrixUnitNum ;				// åŒæ™‚è¤‡æ•°æç”»ã®ä¸€æç”»åˆ†ã§ä½¿ç”¨ã™ã‚‹è¡Œåˆ—ã®æ•°
 
-	int						RightHandType ;						// ‰EèÀ•WŒn‚©‚Ç‚¤‚©( TRUE:‰EèÀ•WŒn  FALSE:¶èÀ•WŒn )
-	int						Ignore32bitBmpAlpha ;				// 32bit‚a‚l‚o‚ÌƒAƒ‹ƒtƒ@¬•ª‚ğ–³‹‚·‚é‚©‚Ç‚¤‚©( TRUE:–³‹‚·‚é FALSE:ƒAƒ‹ƒtƒ@¬•ª‚Æ‚µ‚Äˆµ‚¤ )
-	int						MaterialNumberOrderDraw ;			// Š„‚è“–‚Ä‚ç‚ê‚Ä‚¢‚éƒ}ƒeƒŠƒAƒ‹‚Ì”Ô†‚ª’á‚¢ƒƒbƒVƒ…‚©‚ç•`‰æ‚·‚é‚©‚Ç‚¤‚©( 1:‚·‚é  0:‚µ‚È‚¢ )
+	int						RightHandType ;						// å³æ‰‹åº§æ¨™ç³»ã‹ã©ã†ã‹( TRUE:å³æ‰‹åº§æ¨™ç³»  FALSE:å·¦æ‰‹åº§æ¨™ç³» )
+	int						Ignore32bitBmpAlpha ;				// 32bitï¼¢ï¼­ï¼°ã®ã‚¢ãƒ«ãƒ•ã‚¡æˆåˆ†ã‚’ç„¡è¦–ã™ã‚‹ã‹ã©ã†ã‹( TRUE:ç„¡è¦–ã™ã‚‹ FALSE:ã‚¢ãƒ«ãƒ•ã‚¡æˆåˆ†ã¨ã—ã¦æ‰±ã† )
+	int						MaterialNumberOrderDraw ;			// å‰²ã‚Šå½“ã¦ã‚‰ã‚Œã¦ã„ã‚‹ãƒãƒ†ãƒªã‚¢ãƒ«ã®ç•ªå·ãŒä½ã„ãƒ¡ãƒƒã‚·ãƒ¥ã‹ã‚‰æç”»ã™ã‚‹ã‹ã©ã†ã‹( 1:ã™ã‚‹  0:ã—ãªã„ )
 
-	wchar_t					*Name ;								// ƒ‚ƒfƒ‹‚Ì–¼‘O
-	wchar_t					*FilePath ;							// ƒ‚ƒfƒ‹‚Ìƒtƒ@ƒCƒ‹ƒpƒX
-	wchar_t					*DirectoryPath ;					// ƒ‚ƒfƒ‹‚Ìƒtƒ@ƒCƒ‹‚ª‘¶İ‚·‚éƒfƒBƒŒƒNƒgƒŠƒpƒX( ––’[‚É \ •t‚« )
-	int						RefCount ;							// QÆƒJƒEƒ“ƒg
+	wchar_t					*Name ;								// ãƒ¢ãƒ‡ãƒ«ã®åå‰
+	wchar_t					*FilePath ;							// ãƒ¢ãƒ‡ãƒ«ã®ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹
+	wchar_t					*DirectoryPath ;					// ãƒ¢ãƒ‡ãƒ«ã®ãƒ•ã‚¡ã‚¤ãƒ«ãŒå­˜åœ¨ã™ã‚‹ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªãƒ‘ã‚¹( æœ«ç«¯ã« \ ä»˜ã )
+	int						RefCount ;							// å‚ç…§ã‚«ã‚¦ãƒ³ãƒˆ
 
-	int						ChangeDrawMaterialTableSize ;		// •`‰æƒ}ƒeƒŠƒAƒ‹‚Ì•ÏXî•ñŠÇ——p‚É•K—v‚Èƒf[ƒ^‚Ì‘—e—Ê
-	int						ChangeMatrixTableSize ;				// s—ñ‚Ì•ÏXî•ñŠÇ——p‚É•K—v‚Èƒf[ƒ^‚Ì‘—e—Ê
-	DWORD					*ChangeDrawMaterialTable ;			// •`‰æ—pƒ}ƒeƒŠƒAƒ‹•ÏXŠm”F—pƒrƒbƒgƒf[ƒ^
-	DWORD					*ChangeMatrixTable ;				// s—ñ•ÏXŠm”F—pƒrƒbƒgƒf[ƒ^
+	int						ChangeDrawMaterialTableSize ;		// æç”»ãƒãƒ†ãƒªã‚¢ãƒ«ã®å¤‰æ›´æƒ…å ±ç®¡ç†ç”¨ã«å¿…è¦ãªãƒ‡ãƒ¼ã‚¿ã®ç·å®¹é‡
+	int						ChangeMatrixTableSize ;				// è¡Œåˆ—ã®å¤‰æ›´æƒ…å ±ç®¡ç†ç”¨ã«å¿…è¦ãªãƒ‡ãƒ¼ã‚¿ã®ç·å®¹é‡
+	DWORD					*ChangeDrawMaterialTable ;			// æç”»ç”¨ãƒãƒ†ãƒªã‚¢ãƒ«å¤‰æ›´ç¢ºèªç”¨ãƒ“ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿
+	DWORD					*ChangeMatrixTable ;				// è¡Œåˆ—å¤‰æ›´ç¢ºèªç”¨ãƒ“ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿
 
-	int						FrameNum ;							// ŠK‘wƒf[ƒ^‚Ì”
-	MV1_FRAME_BASE			*Frame ;							// ŠK‘wƒf[ƒ^”z—ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	int						TopFrameNum ;						// ÅãˆÊŠK‘w‚ÌƒtƒŒ[ƒ€‚Ì”
-	MV1_FRAME_BASE			*FirstTopFrame ;					// ÅãˆÊŠK‘w‚ÌÅ‰‚ÌƒtƒŒ[ƒ€‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	MV1_FRAME_BASE			*LastTopFrame ;						// ÅãˆÊŠK‘w‚ÌÅŒã‚ÌƒtƒŒ[ƒ€‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	int						FrameUseSkinBoneNum ;				// ƒtƒŒ[ƒ€‚ªg—p‚µ‚Ä‚¢‚éƒ{[ƒ“‚Ì‘”
-	MV1_SKIN_BONE			**FrameUseSkinBone ;				// ƒtƒŒ[ƒ€‚ªg—p‚µ‚Ä‚¢‚éƒ{[ƒ“‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	int						FrameNum ;							// éšå±¤ãƒ‡ãƒ¼ã‚¿ã®æ•°
+	MV1_FRAME_BASE			*Frame ;							// éšå±¤ãƒ‡ãƒ¼ã‚¿é…åˆ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	int						TopFrameNum ;						// æœ€ä¸Šä½éšå±¤ã®ãƒ•ãƒ¬ãƒ¼ãƒ ã®æ•°
+	MV1_FRAME_BASE			*FirstTopFrame ;					// æœ€ä¸Šä½éšå±¤ã®æœ€åˆã®ãƒ•ãƒ¬ãƒ¼ãƒ ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	MV1_FRAME_BASE			*LastTopFrame ;						// æœ€ä¸Šä½éšå±¤ã®æœ€å¾Œã®ãƒ•ãƒ¬ãƒ¼ãƒ ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	int						FrameUseSkinBoneNum ;				// ãƒ•ãƒ¬ãƒ¼ãƒ ãŒä½¿ç”¨ã—ã¦ã„ã‚‹ãƒœãƒ¼ãƒ³ã®ç·æ•°
+	MV1_SKIN_BONE			**FrameUseSkinBone ;				// ãƒ•ãƒ¬ãƒ¼ãƒ ãŒä½¿ç”¨ã—ã¦ã„ã‚‹ãƒœãƒ¼ãƒ³ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 
-	int						MaterialNum ;						// ƒ}ƒeƒŠƒAƒ‹ƒf[ƒ^‚Ì”
-	MV1_MATERIAL_BASE		*Material ;							// ƒ}ƒeƒŠƒAƒ‹ƒf[ƒ^”z—ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	int						MaterialNum ;						// ãƒãƒ†ãƒªã‚¢ãƒ«ãƒ‡ãƒ¼ã‚¿ã®æ•°
+	MV1_MATERIAL_BASE		*Material ;							// ãƒãƒ†ãƒªã‚¢ãƒ«ãƒ‡ãƒ¼ã‚¿é…åˆ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 
-	int						TextureNum ;						// ƒeƒNƒXƒ`ƒƒ‚Ì”
-	MV1_TEXTURE_BASE		*Texture ;							// ƒeƒNƒXƒ`ƒƒƒf[ƒ^”z—ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	int						TextureAllocMem ;					// ƒeƒNƒXƒ`ƒƒƒf[ƒ^—p‚Éƒƒ‚ƒŠ‚ğŠm•Û‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©( TRUE:‚µ‚Ä‚¢‚é  FALSE:‚µ‚Ä‚¢‚È‚¢ )
+	int						TextureNum ;						// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®æ•°
+	MV1_TEXTURE_BASE		*Texture ;							// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‡ãƒ¼ã‚¿é…åˆ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	int						TextureAllocMem ;					// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‡ãƒ¼ã‚¿ç”¨ã«ãƒ¡ãƒ¢ãƒªã‚’ç¢ºä¿ã—ã¦ã„ã‚‹ã‹ã©ã†ã‹( TRUE:ã—ã¦ã„ã‚‹  FALSE:ã—ã¦ã„ãªã„ )
 
-	int						MeshNum ;							// ƒƒbƒVƒ…ƒf[ƒ^‚Ì”
-	MV1_MESH_BASE			*Mesh ;								// ƒƒbƒVƒ…ƒf[ƒ^”z—ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	int						MeshNum ;							// ãƒ¡ãƒƒã‚·ãƒ¥ãƒ‡ãƒ¼ã‚¿ã®æ•°
+	MV1_MESH_BASE			*Mesh ;								// ãƒ¡ãƒƒã‚·ãƒ¥ãƒ‡ãƒ¼ã‚¿é…åˆ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 
-	int						LightNum ;							// ƒ‰ƒCƒg‚Ì”
-	MV1_LIGHT				*Light ;							// ƒ‰ƒCƒgƒf[ƒ^”z—ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	int						LightNum ;							// ãƒ©ã‚¤ãƒˆã®æ•°
+	MV1_LIGHT				*Light ;							// ãƒ©ã‚¤ãƒˆãƒ‡ãƒ¼ã‚¿é…åˆ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 
-	VECTOR					MaxPosition ;						// ƒfƒtƒHƒ‹ƒgƒ|[ƒY‚Ì’¸“_À•W‚ÌÅ‘å’l( ƒ‚ƒfƒ‹ƒ[ƒJƒ‹À•W )
-	VECTOR					MinPosition ;						// ƒfƒtƒHƒ‹ƒgƒ|[ƒY‚Ì’¸“_À•W‚ÌÅ¬’l( ƒ‚ƒfƒ‹ƒ[ƒJƒ‹À•W )
-	int						ValidMaxMinPosition ;				// MaxPosition, MinPosition ‚ª—LŒø‚©‚Ç‚¤‚©( 1:—LŒø  0:–³Œø )
+	VECTOR					MaxPosition ;						// ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãƒãƒ¼ã‚ºã®é ‚ç‚¹åº§æ¨™ã®æœ€å¤§å€¤( ãƒ¢ãƒ‡ãƒ«ãƒ­ãƒ¼ã‚«ãƒ«åº§æ¨™ )
+	VECTOR					MinPosition ;						// ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãƒãƒ¼ã‚ºã®é ‚ç‚¹åº§æ¨™ã®æœ€å°å€¤( ãƒ¢ãƒ‡ãƒ«ãƒ­ãƒ¼ã‚«ãƒ«åº§æ¨™ )
+	int						ValidMaxMinPosition ;				// MaxPosition, MinPosition ãŒæœ‰åŠ¹ã‹ã©ã†ã‹( 1:æœ‰åŠ¹  0:ç„¡åŠ¹ )
 
-	int						SkinBoneNum ;						// ƒXƒLƒjƒ“ƒOƒƒbƒVƒ…‚Ìƒ{[ƒ“‚Æ‚µ‚Äg—p‚·‚éƒtƒŒ[ƒ€‚Ìî•ñ‚Ì”
-	MV1_SKIN_BONE			*SkinBone ;							// ƒXƒLƒjƒ“ƒOƒƒbƒVƒ…‚Ìƒ{[ƒ“‚Æ‚µ‚Äg—p‚·‚éƒtƒŒ[ƒ€‚Ìî•ñ
-	int						SkinBoneUseFrameNum ;				// ƒXƒLƒjƒ“ƒOƒƒbƒVƒ…‚Ìƒ{[ƒ“‚ğg—p‚·‚éƒtƒŒ[ƒ€‚Ì”
-	MV1_SKIN_BONE_USE_FRAME	*SkinBoneUseFrame ;					// ƒXƒLƒjƒ“ƒOƒƒbƒVƒ…‚Ìƒ{[ƒ“‚ğg—p‚·‚éƒtƒŒ[ƒ€
+	int						SkinBoneNum ;						// ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥ã®ãƒœãƒ¼ãƒ³ã¨ã—ã¦ä½¿ç”¨ã™ã‚‹ãƒ•ãƒ¬ãƒ¼ãƒ ã®æƒ…å ±ã®æ•°
+	MV1_SKIN_BONE			*SkinBone ;							// ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥ã®ãƒœãƒ¼ãƒ³ã¨ã—ã¦ä½¿ç”¨ã™ã‚‹ãƒ•ãƒ¬ãƒ¼ãƒ ã®æƒ…å ±
+	int						SkinBoneUseFrameNum ;				// ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥ã®ãƒœãƒ¼ãƒ³ã‚’ä½¿ç”¨ã™ã‚‹ãƒ•ãƒ¬ãƒ¼ãƒ ã®æ•°
+	MV1_SKIN_BONE_USE_FRAME	*SkinBoneUseFrame ;					// ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥ã®ãƒœãƒ¼ãƒ³ã‚’ä½¿ç”¨ã™ã‚‹ãƒ•ãƒ¬ãƒ¼ãƒ 
 
-	int						ShapeNum ;							// ƒVƒFƒCƒvƒf[ƒ^‚Ì”
-	MV1_SHAPE_BASE			*Shape ;							// ƒVƒFƒCƒvƒf[ƒ^”z—ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	int						ShapeMeshNum ;						// ƒVƒFƒCƒvƒƒbƒVƒ…ƒf[ƒ^‚Ì”
-	MV1_SHAPE_MESH_BASE		*ShapeMesh ;						// ƒVƒFƒCƒvƒƒbƒVƒ…ƒf[ƒ^”z—ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	int						ShapeVertexNum ;					// ƒVƒFƒCƒv’¸“_ƒf[ƒ^‚Ì”
-	MV1_SHAPE_VERTEX_BASE	*ShapeVertex ;						// ƒVƒFƒCƒv’¸“_ƒf[ƒ^”z—ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	int						ShapeTargetMeshVertexNum ;			// ƒVƒFƒCƒv‘ÎÛ‚ÌƒƒbƒVƒ…‚Ì’¸“_‚Ì‘”
+	int						ShapeNum ;							// ã‚·ã‚§ã‚¤ãƒ—ãƒ‡ãƒ¼ã‚¿ã®æ•°
+	MV1_SHAPE_BASE			*Shape ;							// ã‚·ã‚§ã‚¤ãƒ—ãƒ‡ãƒ¼ã‚¿é…åˆ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	int						ShapeMeshNum ;						// ã‚·ã‚§ã‚¤ãƒ—ãƒ¡ãƒƒã‚·ãƒ¥ãƒ‡ãƒ¼ã‚¿ã®æ•°
+	MV1_SHAPE_MESH_BASE		*ShapeMesh ;						// ã‚·ã‚§ã‚¤ãƒ—ãƒ¡ãƒƒã‚·ãƒ¥ãƒ‡ãƒ¼ã‚¿é…åˆ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	int						ShapeVertexNum ;					// ã‚·ã‚§ã‚¤ãƒ—é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ã®æ•°
+	MV1_SHAPE_VERTEX_BASE	*ShapeVertex ;						// ã‚·ã‚§ã‚¤ãƒ—é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿é…åˆ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	int						ShapeTargetMeshVertexNum ;			// ã‚·ã‚§ã‚¤ãƒ—å¯¾è±¡ã®ãƒ¡ãƒƒã‚·ãƒ¥ã®é ‚ç‚¹ã®ç·æ•°
 
-	int						ShapeNormalPositionNum ;			// ƒVƒFƒCƒv—pƒgƒ‰ƒCƒAƒ“ƒOƒ‹ƒŠƒXƒg‚Ìƒ{[ƒ“î•ñ–³‚µÀ•Wƒf[ƒ^‚Ì”
-	int						ShapeSkinPosition4BNum ;			// ƒVƒFƒCƒv—pƒgƒ‰ƒCƒAƒ“ƒOƒ‹ƒŠƒXƒg‚Ì‚Sƒ{[ƒ“ƒXƒLƒjƒ“ƒOƒƒbƒVƒ…À•Wƒf[ƒ^‚Ì”
-	int						ShapeSkinPosition8BNum ;			// ƒVƒFƒCƒv—pƒgƒ‰ƒCƒAƒ“ƒOƒ‹ƒŠƒXƒg‚Ì‚Wƒ{[ƒ“ƒXƒLƒjƒ“ƒOƒƒbƒVƒ…À•Wƒf[ƒ^‚Ì”
-	int						ShapeSkinPositionFREEBSize ;		// ƒVƒFƒCƒv—pƒgƒ‰ƒCƒAƒ“ƒOƒ‹ƒŠƒXƒg‚Ì‚Xƒ{[ƒ“ˆÈãƒXƒLƒjƒ“ƒOƒƒbƒVƒ…À•Wƒf[ƒ^‚ÌƒTƒCƒY
+	int						ShapeNormalPositionNum ;			// ã‚·ã‚§ã‚¤ãƒ—ç”¨ãƒˆãƒ©ã‚¤ã‚¢ãƒ³ã‚°ãƒ«ãƒªã‚¹ãƒˆã®ãƒœãƒ¼ãƒ³æƒ…å ±ç„¡ã—åº§æ¨™ãƒ‡ãƒ¼ã‚¿ã®æ•°
+	int						ShapeSkinPosition4BNum ;			// ã‚·ã‚§ã‚¤ãƒ—ç”¨ãƒˆãƒ©ã‚¤ã‚¢ãƒ³ã‚°ãƒ«ãƒªã‚¹ãƒˆã®ï¼”ãƒœãƒ¼ãƒ³ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥åº§æ¨™ãƒ‡ãƒ¼ã‚¿ã®æ•°
+	int						ShapeSkinPosition8BNum ;			// ã‚·ã‚§ã‚¤ãƒ—ç”¨ãƒˆãƒ©ã‚¤ã‚¢ãƒ³ã‚°ãƒ«ãƒªã‚¹ãƒˆã®ï¼˜ãƒœãƒ¼ãƒ³ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥åº§æ¨™ãƒ‡ãƒ¼ã‚¿ã®æ•°
+	int						ShapeSkinPositionFREEBSize ;		// ã‚·ã‚§ã‚¤ãƒ—ç”¨ãƒˆãƒ©ã‚¤ã‚¢ãƒ³ã‚°ãƒ«ãƒªã‚¹ãƒˆã®ï¼™ãƒœãƒ¼ãƒ³ä»¥ä¸Šã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥åº§æ¨™ãƒ‡ãƒ¼ã‚¿ã®ã‚µã‚¤ã‚º
 
-	int						PhysicsRigidBodyNum ;				// •¨—‰‰Z—p„‘Ìƒf[ƒ^‚Ì”
-	MV1_PHYSICS_RIGIDBODY_BASE *PhysicsRigidBody ;				// •¨—‰‰Z—p„‘Ìƒf[ƒ^”z—ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	int						PhysicsJointNum ;					// •¨—‰‰Z—pƒWƒ‡ƒCƒ“ƒgƒf[ƒ^‚Ì”
-	MV1_PHYSICS_JOINT_BASE	*PhysicsJoint ;						// •¨—‰‰Z—pƒWƒ‡ƒCƒ“ƒgƒf[ƒ^”z—ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	int						PhysicsRigidBodyNum ;				// ç‰©ç†æ¼”ç®—ç”¨å‰›ä½“ãƒ‡ãƒ¼ã‚¿ã®æ•°
+	MV1_PHYSICS_RIGIDBODY_BASE *PhysicsRigidBody ;				// ç‰©ç†æ¼”ç®—ç”¨å‰›ä½“ãƒ‡ãƒ¼ã‚¿é…åˆ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	int						PhysicsJointNum ;					// ç‰©ç†æ¼”ç®—ç”¨ã‚¸ãƒ§ã‚¤ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ã®æ•°
+	MV1_PHYSICS_JOINT_BASE	*PhysicsJoint ;						// ç‰©ç†æ¼”ç®—ç”¨ã‚¸ãƒ§ã‚¤ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿é…åˆ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 
-	int						TriangleListNum ;					// ƒgƒ‰ƒCƒAƒ“ƒOƒ‹ƒŠƒXƒg‚Ì”
-	MV1_TRIANGLE_LIST_BASE	*TriangleList ;						// ƒgƒ‰ƒCƒAƒ“ƒOƒ‹ƒŠƒXƒgƒf[ƒ^”z—ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	int						TriangleListNum ;					// ãƒˆãƒ©ã‚¤ã‚¢ãƒ³ã‚°ãƒ«ãƒªã‚¹ãƒˆã®æ•°
+	MV1_TRIANGLE_LIST_BASE	*TriangleList ;						// ãƒˆãƒ©ã‚¤ã‚¢ãƒ³ã‚°ãƒ«ãƒªã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿é…åˆ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 
-	int						TriangleListMaxVertexNum ;			// ˆê”Ô’¸“_”‚ª‘½‚¢ƒgƒ‰ƒCƒAƒ“ƒOƒ‹ƒŠƒXƒg‚Ì’¸“_”
-	int						TriangleListMinVertexNum ;			// ˆê”Ô’¸“_”‚ª­‚È‚¢ƒgƒ‰ƒCƒAƒ“ƒOƒ‹ƒŠƒXƒg‚Ì’¸“_”
-	int						TriangleListMaxIndexNum ;			// ˆê”ÔƒCƒ“ƒfƒbƒNƒX”‚ª‘½‚¢ƒgƒ‰ƒCƒAƒ“ƒOƒ‹ƒŠƒXƒg‚ÌƒCƒ“ƒfƒbƒNƒX”
-	int						TriangleListMinIndexNum ;			// ˆê”ÔƒCƒ“ƒfƒbƒNƒX”‚ª­‚È‚¢ƒgƒ‰ƒCƒAƒ“ƒOƒ‹ƒŠƒXƒg‚ÌƒCƒ“ƒfƒbƒNƒX”
-	int						TriangleListMaxMatrixNum ;			// ˆê”Ôg—p‚µ‚Ä‚¢‚és—ñ‚Ì”‚ª‘½‚¢ƒgƒ‰ƒCƒAƒ“ƒOƒ‹ƒŠƒXƒg‚Ìs—ñ”
-	int						TriangleListMinMatrixNum ;			// ˆê”Ôg—p‚µ‚Ä‚¢‚és—ñ‚Ì”‚ª­‚È‚¢ƒgƒ‰ƒCƒAƒ“ƒOƒ‹ƒŠƒXƒg‚Ìs—ñ”
+	int						TriangleListMaxVertexNum ;			// ä¸€ç•ªé ‚ç‚¹æ•°ãŒå¤šã„ãƒˆãƒ©ã‚¤ã‚¢ãƒ³ã‚°ãƒ«ãƒªã‚¹ãƒˆã®é ‚ç‚¹æ•°
+	int						TriangleListMinVertexNum ;			// ä¸€ç•ªé ‚ç‚¹æ•°ãŒå°‘ãªã„ãƒˆãƒ©ã‚¤ã‚¢ãƒ³ã‚°ãƒ«ãƒªã‚¹ãƒˆã®é ‚ç‚¹æ•°
+	int						TriangleListMaxIndexNum ;			// ä¸€ç•ªã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹æ•°ãŒå¤šã„ãƒˆãƒ©ã‚¤ã‚¢ãƒ³ã‚°ãƒ«ãƒªã‚¹ãƒˆã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹æ•°
+	int						TriangleListMinIndexNum ;			// ä¸€ç•ªã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹æ•°ãŒå°‘ãªã„ãƒˆãƒ©ã‚¤ã‚¢ãƒ³ã‚°ãƒ«ãƒªã‚¹ãƒˆã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹æ•°
+	int						TriangleListMaxMatrixNum ;			// ä¸€ç•ªä½¿ç”¨ã—ã¦ã„ã‚‹è¡Œåˆ—ã®æ•°ãŒå¤šã„ãƒˆãƒ©ã‚¤ã‚¢ãƒ³ã‚°ãƒ«ãƒªã‚¹ãƒˆã®è¡Œåˆ—æ•°
+	int						TriangleListMinMatrixNum ;			// ä¸€ç•ªä½¿ç”¨ã—ã¦ã„ã‚‹è¡Œåˆ—ã®æ•°ãŒå°‘ãªã„ãƒˆãƒ©ã‚¤ã‚¢ãƒ³ã‚°ãƒ«ãƒªã‚¹ãƒˆã®è¡Œåˆ—æ•°
 
-	int						TriangleListNormalPositionNum ;		// ƒgƒ‰ƒCƒAƒ“ƒOƒ‹ƒŠƒXƒg‚Ìƒ{[ƒ“î•ñ–³‚µÀ•Wƒf[ƒ^‚Ì”
-	int						TriangleListSkinPosition4BNum ;		// ƒgƒ‰ƒCƒAƒ“ƒOƒ‹ƒŠƒXƒg‚Ì‚Sƒ{[ƒ“ƒXƒLƒjƒ“ƒOƒƒbƒVƒ…À•Wƒf[ƒ^‚Ì”
-	int						TriangleListSkinPosition8BNum ;		// ƒgƒ‰ƒCƒAƒ“ƒOƒ‹ƒŠƒXƒg‚Ì‚Wƒ{[ƒ“ƒXƒLƒjƒ“ƒOƒƒbƒVƒ…À•Wƒf[ƒ^‚Ì”
-	int						TriangleListSkinPositionFREEBSize ;	// ƒgƒ‰ƒCƒAƒ“ƒOƒ‹ƒŠƒXƒg‚Ì‚Xƒ{[ƒ“ˆÈãƒXƒLƒjƒ“ƒOƒƒbƒVƒ…À•Wƒf[ƒ^‚ÌƒTƒCƒY
-	int						MeshPositionSize ;					// ƒƒbƒVƒ…À•W‚Ìƒf[ƒ^ƒTƒCƒY
-	int						MeshNormalNum ;						// ƒƒbƒVƒ…–@ü‚Ì”
-	int						MeshVertexSize ;					// ƒƒbƒVƒ…’¸“_î•ñ‚Ìƒf[ƒ^ƒTƒCƒY
-	int						MeshFaceNum ;						// ƒƒbƒVƒ…–Êî•ñ‚Ì”
-	int						MeshVertexIndexNum ;				// ’¸“_ƒCƒ“ƒfƒbƒNƒXƒf[ƒ^‚Ì‘”
-	void					*VertexData ;						// ’¸“_ƒf[ƒ^‚ğŠi”[‚·‚éƒƒ‚ƒŠ—Ìˆæ
-	DWORD					VertexDataSize ;					// ’¸“_ƒf[ƒ^‚ÌƒTƒCƒY
-	MV1_TLIST_NORMAL_POS	*TriangleListNormalPosition ;		// ƒgƒ‰ƒCƒAƒ“ƒOƒ‹ƒŠƒXƒg‚Ìƒ{[ƒ“î•ñ–³‚µÀ•Wƒf[ƒ^
-	MV1_TLIST_SKIN_POS_4B	*TriangleListSkinPosition4B ;		// ƒgƒ‰ƒCƒAƒ“ƒOƒ‹ƒŠƒXƒg‚Ì‚Sƒ{[ƒ“ƒXƒLƒjƒ“ƒOƒƒbƒVƒ…À•Wƒf[ƒ^
-	MV1_TLIST_SKIN_POS_8B	*TriangleListSkinPosition8B ;		// ƒgƒ‰ƒCƒAƒ“ƒOƒ‹ƒŠƒXƒg‚Ì‚Wƒ{[ƒ“ƒXƒLƒjƒ“ƒOƒƒbƒVƒ…À•Wƒf[ƒ^
-	MV1_TLIST_SKIN_POS_FREEB *TriangleListSkinPositionFREEB ;	// ƒgƒ‰ƒCƒAƒ“ƒOƒ‹ƒŠƒXƒg‚Ì‚Xƒ{[ƒ“ˆÈãƒXƒLƒjƒ“ƒOƒƒbƒVƒ…À•Wƒf[ƒ^
-	MV1_MESH_POSITION		*MeshPosition ;						// ƒƒbƒVƒ…À•Wƒf[ƒ^
-	MV1_MESH_NORMAL			*MeshNormal ;						// ƒƒbƒVƒ…–@üƒf[ƒ^
-	MV1_MESH_VERTEX			*MeshVertex ;						// ƒƒbƒVƒ…’¸“_ƒf[ƒ^
-	MV1_MESH_FACE			*MeshFace ;							// ƒƒbƒVƒ…–Êƒf[ƒ^
-	DWORD					*MeshVertexIndex ;					// ƒƒbƒVƒ…—p’¸“_ƒCƒ“ƒfƒbƒNƒXƒf[ƒ^
+	int						TriangleListNormalPositionNum ;		// ãƒˆãƒ©ã‚¤ã‚¢ãƒ³ã‚°ãƒ«ãƒªã‚¹ãƒˆã®ãƒœãƒ¼ãƒ³æƒ…å ±ç„¡ã—åº§æ¨™ãƒ‡ãƒ¼ã‚¿ã®æ•°
+	int						TriangleListSkinPosition4BNum ;		// ãƒˆãƒ©ã‚¤ã‚¢ãƒ³ã‚°ãƒ«ãƒªã‚¹ãƒˆã®ï¼”ãƒœãƒ¼ãƒ³ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥åº§æ¨™ãƒ‡ãƒ¼ã‚¿ã®æ•°
+	int						TriangleListSkinPosition8BNum ;		// ãƒˆãƒ©ã‚¤ã‚¢ãƒ³ã‚°ãƒ«ãƒªã‚¹ãƒˆã®ï¼˜ãƒœãƒ¼ãƒ³ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥åº§æ¨™ãƒ‡ãƒ¼ã‚¿ã®æ•°
+	int						TriangleListSkinPositionFREEBSize ;	// ãƒˆãƒ©ã‚¤ã‚¢ãƒ³ã‚°ãƒ«ãƒªã‚¹ãƒˆã®ï¼™ãƒœãƒ¼ãƒ³ä»¥ä¸Šã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥åº§æ¨™ãƒ‡ãƒ¼ã‚¿ã®ã‚µã‚¤ã‚º
+	int						MeshPositionSize ;					// ãƒ¡ãƒƒã‚·ãƒ¥åº§æ¨™ã®ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
+	int						MeshNormalNum ;						// ãƒ¡ãƒƒã‚·ãƒ¥æ³•ç·šã®æ•°
+	int						MeshVertexSize ;					// ãƒ¡ãƒƒã‚·ãƒ¥é ‚ç‚¹æƒ…å ±ã®ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
+	int						MeshFaceNum ;						// ãƒ¡ãƒƒã‚·ãƒ¥é¢æƒ…å ±ã®æ•°
+	int						MeshVertexIndexNum ;				// é ‚ç‚¹ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿ã®ç·æ•°
+	void					*VertexData ;						// é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹ãƒ¡ãƒ¢ãƒªé ˜åŸŸ
+	DWORD					VertexDataSize ;					// é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ã®ã‚µã‚¤ã‚º
+	MV1_TLIST_NORMAL_POS	*TriangleListNormalPosition ;		// ãƒˆãƒ©ã‚¤ã‚¢ãƒ³ã‚°ãƒ«ãƒªã‚¹ãƒˆã®ãƒœãƒ¼ãƒ³æƒ…å ±ç„¡ã—åº§æ¨™ãƒ‡ãƒ¼ã‚¿
+	MV1_TLIST_SKIN_POS_4B	*TriangleListSkinPosition4B ;		// ãƒˆãƒ©ã‚¤ã‚¢ãƒ³ã‚°ãƒ«ãƒªã‚¹ãƒˆã®ï¼”ãƒœãƒ¼ãƒ³ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥åº§æ¨™ãƒ‡ãƒ¼ã‚¿
+	MV1_TLIST_SKIN_POS_8B	*TriangleListSkinPosition8B ;		// ãƒˆãƒ©ã‚¤ã‚¢ãƒ³ã‚°ãƒ«ãƒªã‚¹ãƒˆã®ï¼˜ãƒœãƒ¼ãƒ³ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥åº§æ¨™ãƒ‡ãƒ¼ã‚¿
+	MV1_TLIST_SKIN_POS_FREEB *TriangleListSkinPositionFREEB ;	// ãƒˆãƒ©ã‚¤ã‚¢ãƒ³ã‚°ãƒ«ãƒªã‚¹ãƒˆã®ï¼™ãƒœãƒ¼ãƒ³ä»¥ä¸Šã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥åº§æ¨™ãƒ‡ãƒ¼ã‚¿
+	MV1_MESH_POSITION		*MeshPosition ;						// ãƒ¡ãƒƒã‚·ãƒ¥åº§æ¨™ãƒ‡ãƒ¼ã‚¿
+	MV1_MESH_NORMAL			*MeshNormal ;						// ãƒ¡ãƒƒã‚·ãƒ¥æ³•ç·šãƒ‡ãƒ¼ã‚¿
+	MV1_MESH_VERTEX			*MeshVertex ;						// ãƒ¡ãƒƒã‚·ãƒ¥é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿
+	MV1_MESH_FACE			*MeshFace ;							// ãƒ¡ãƒƒã‚·ãƒ¥é¢ãƒ‡ãƒ¼ã‚¿
+	DWORD					*MeshVertexIndex ;					// ãƒ¡ãƒƒã‚·ãƒ¥ç”¨é ‚ç‚¹ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿
 
-	float					PhysicsGravity ;					// •¨—‰‰Z‚Åg—p‚·‚éd—Íƒpƒ‰ƒ[ƒ^
+	float					PhysicsGravity ;					// ç‰©ç†æ¼”ç®—ã§ä½¿ç”¨ã™ã‚‹é‡åŠ›ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 
-	int						TriangleListIndexNum ;				// ƒgƒ‰ƒCƒAƒ“ƒOƒ‹ƒŠƒXƒg‚Ì’¸“_ƒCƒ“ƒfƒbƒNƒXƒf[ƒ^‚Ì‘”
-	WORD					*TriangleListIndex ;				// ƒgƒ‰ƒCƒAƒ“ƒOƒ‹ƒŠƒXƒg‚Ì’¸“_ƒCƒ“ƒfƒbƒNƒX‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	int						TriangleListIndexNum ;				// ãƒˆãƒ©ã‚¤ã‚¢ãƒ³ã‚°ãƒ«ãƒªã‚¹ãƒˆã®é ‚ç‚¹ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿ã®ç·æ•°
+	WORD					*TriangleListIndex ;				// ãƒˆãƒ©ã‚¤ã‚¢ãƒ³ã‚°ãƒ«ãƒªã‚¹ãƒˆã®é ‚ç‚¹ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 
-	int						TriangleNum ;						// OŠpŒ`‚Ì”
-	int						TriangleListVertexNum ;				// ƒgƒ‰ƒCƒAƒ“ƒOƒ‹ƒŠƒXƒg‚Ì’¸“_ƒf[ƒ^‚Ì”
+	int						TriangleNum ;						// ä¸‰è§’å½¢ã®æ•°
+	int						TriangleListVertexNum ;				// ãƒˆãƒ©ã‚¤ã‚¢ãƒ³ã‚°ãƒ«ãƒªã‚¹ãƒˆã®é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ã®æ•°
 
 #ifndef UNICODE
-	int						StringSizeA ;						// •¶š—ñ‚ğ•Û‘¶‚·‚éƒoƒbƒtƒ@‚ÌƒTƒCƒY
-	char					*StringBufferA ;					// •¶š—ñ‚ğ•Û‘¶‚·‚éƒoƒbƒtƒ@‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	int						StringSizeA ;						// æ–‡å­—åˆ—ã‚’ä¿å­˜ã™ã‚‹ãƒãƒƒãƒ•ã‚¡ã®ã‚µã‚¤ã‚º
+	char					*StringBufferA ;					// æ–‡å­—åˆ—ã‚’ä¿å­˜ã™ã‚‹ãƒãƒƒãƒ•ã‚¡ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 #endif
-	int						StringSizeW ;						// •¶š—ñ‚ğ•Û‘¶‚·‚éƒoƒbƒtƒ@‚ÌƒTƒCƒY
-	wchar_t					*StringBufferW ;					// •¶š—ñ‚ğ•Û‘¶‚·‚éƒoƒbƒtƒ@‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	int						StringSizeW ;						// æ–‡å­—åˆ—ã‚’ä¿å­˜ã™ã‚‹ãƒãƒƒãƒ•ã‚¡ã®ã‚µã‚¤ã‚º
+	wchar_t					*StringBufferW ;					// æ–‡å­—åˆ—ã‚’ä¿å­˜ã™ã‚‹ãƒãƒƒãƒ•ã‚¡ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 
-	int						AnimKeyDataSize ;					// ƒAƒjƒ[ƒVƒ‡ƒ“ƒL[ƒf[ƒ^‚ÌƒTƒCƒY
-	void					*AnimKeyData ;						// ƒAƒjƒ[ƒVƒ‡ƒ“ƒL[ƒf[ƒ^‚Ìƒoƒbƒtƒ@
+	int						AnimKeyDataSize ;					// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚­ãƒ¼ãƒ‡ãƒ¼ã‚¿ã®ã‚µã‚¤ã‚º
+	void					*AnimKeyData ;						// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚­ãƒ¼ãƒ‡ãƒ¼ã‚¿ã®ãƒãƒƒãƒ•ã‚¡
 
-	int						AnimKeySetNum ;						// ƒAƒjƒ[ƒVƒ‡ƒ“ƒL[ƒZƒbƒg‚Ì”
-	MV1_ANIM_KEYSET_BASE	*AnimKeySet ;						// ƒAƒjƒ[ƒVƒ‡ƒ“ƒL[ƒZƒbƒgƒf[ƒ^”z—ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	int						AnimKeySetNum ;						// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚­ãƒ¼ã‚»ãƒƒãƒˆã®æ•°
+	MV1_ANIM_KEYSET_BASE	*AnimKeySet ;						// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚­ãƒ¼ã‚»ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿é…åˆ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 
-	int						AnimNum ;							// ƒAƒjƒ[ƒVƒ‡ƒ“‚Ì”
-	MV1_ANIM_BASE			*Anim ;								// ƒAƒjƒ[ƒVƒ‡ƒ“ƒf[ƒ^”z—ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	int						AnimNum ;							// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®æ•°
+	MV1_ANIM_BASE			*Anim ;								// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿é…åˆ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 
-	int						AnimSetNum ;						// ƒAƒjƒ[ƒVƒ‡ƒ“ƒZƒbƒg‚Ì”
-	MV1_ANIMSET_BASE		*AnimSet ;							// ƒAƒjƒ[ƒVƒ‡ƒ“ƒZƒbƒgƒf[ƒ^”z—ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	int						AnimSetNum ;						// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚»ãƒƒãƒˆã®æ•°
+	MV1_ANIMSET_BASE		*AnimSet ;							// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚»ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿é…åˆ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 
-	MV1_ANIM_BASE			**AnimTargetFrameTable ;			// ƒtƒŒ[ƒ€‚Ì”~ƒAƒjƒ[ƒVƒ‡ƒ“ƒZƒbƒg‚Ì”‚¾‚¯‘¶İ‚·‚éƒtƒŒ[ƒ€‚ÆƒAƒjƒ[ƒVƒ‡ƒ“‚Ì‘Î‰ƒe[ƒuƒ‹
+	MV1_ANIM_BASE			**AnimTargetFrameTable ;			// ãƒ•ãƒ¬ãƒ¼ãƒ ã®æ•°Ã—ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚»ãƒƒãƒˆã®æ•°ã ã‘å­˜åœ¨ã™ã‚‹ãƒ•ãƒ¬ãƒ¼ãƒ ã¨ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®å¯¾å¿œãƒ†ãƒ¼ãƒ–ãƒ«
 
-	int						TotalVertexBufferNum ;				// ’¸“_ƒoƒbƒtƒ@‚Ì‘”
-	int						SetupVertexBuffer ;					// ’¸“_ƒoƒbƒtƒ@‚ÌƒZƒbƒgƒAƒbƒv‚ªŠ®—¹‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©( TRUE:‚µ‚Ä‚¢‚é  FALSE:‚µ‚Ä‚¢‚È‚¢ )
-	int						VertexBufferNum[ 3 ][ 2 ][ 9 ] ;	// Še’¸“_ƒoƒbƒtƒ@‚Ì”
-	MV1_VERTEXBUFFER		*VertexBufferFirst[ 3 ][ 2 ][ 9 ] ;	// Å‰‚Ì’¸“_ƒoƒbƒtƒ@‚Ö‚Ìƒ|ƒCƒ“ƒ^[ 0:‚Pƒ{[ƒ“—p  1:‚Sƒ{[ƒ“—p  2:‚Wƒ{[ƒ“—p ][ 0:ƒoƒ“ƒvƒ}ƒbƒv–³‚µ  1:ƒoƒ“ƒvƒ}ƒbƒv—L‚è ][ UV ‚Ì” ]
-	MV1_VERTEXBUFFER		*VertexBufferLast[ 3 ][ 2 ][ 9 ] ;	// ––’[‚Ì’¸“_ƒoƒbƒtƒ@‚Ìƒ|ƒCƒ“ƒ^[   0:‚Pƒ{[ƒ“—p  1:‚Sƒ{[ƒ“—p  2:‚Wƒ{[ƒ“—p ][ 0:ƒoƒ“ƒvƒ}ƒbƒv–³‚µ  1:ƒoƒ“ƒvƒ}ƒbƒv—L‚è ][ UV ‚Ì” ]
-	int						ObjectDuplicateNum ;				// Šó–]‚·‚éƒIƒuƒWƒFƒNƒgƒRƒs[‚Ì”
+	int						TotalVertexBufferNum ;				// é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã®ç·æ•°
+	int						SetupVertexBuffer ;					// é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ãŒå®Œäº†ã—ã¦ã„ã‚‹ã‹ã©ã†ã‹( TRUE:ã—ã¦ã„ã‚‹  FALSE:ã—ã¦ã„ãªã„ )
+	int						VertexBufferNum[ 3 ][ 2 ][ 9 ] ;	// å„é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã®æ•°
+	MV1_VERTEXBUFFER		*VertexBufferFirst[ 3 ][ 2 ][ 9 ] ;	// æœ€åˆã®é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã¸ã®ãƒã‚¤ãƒ³ã‚¿[ 0:ï¼‘ãƒœãƒ¼ãƒ³ç”¨  1:ï¼”ãƒœãƒ¼ãƒ³ç”¨  2:ï¼˜ãƒœãƒ¼ãƒ³ç”¨ ][ 0:ãƒãƒ³ãƒ—ãƒãƒƒãƒ—ç„¡ã—  1:ãƒãƒ³ãƒ—ãƒãƒƒãƒ—æœ‰ã‚Š ][ UV ã®æ•° ]
+	MV1_VERTEXBUFFER		*VertexBufferLast[ 3 ][ 2 ][ 9 ] ;	// æœ«ç«¯ã®é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã®ãƒã‚¤ãƒ³ã‚¿[   0:ï¼‘ãƒœãƒ¼ãƒ³ç”¨  1:ï¼”ãƒœãƒ¼ãƒ³ç”¨  2:ï¼˜ãƒœãƒ¼ãƒ³ç”¨ ][ 0:ãƒãƒ³ãƒ—ãƒãƒƒãƒ—ç„¡ã—  1:ãƒãƒ³ãƒ—ãƒãƒƒãƒ—æœ‰ã‚Š ][ UV ã®æ•° ]
+	int						ObjectDuplicateNum ;				// å¸Œæœ›ã™ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚³ãƒ”ãƒ¼ã®æ•°
 
-	MEMINFO					*AddFirstMem ;						// “à—e•ÏX‚ğ‰Á‚¦‚éê‡‚ÉV‚½‚ÉŠm•Û‚µ‚½ƒƒ‚ƒŠ‚ğ‹L‰¯‚µ‚Ä‚¨‚­‚½‚ß‚Ìƒ‚ƒm
+	MEMINFO					*AddFirstMem ;						// å†…å®¹å¤‰æ›´ã‚’åŠ ãˆã‚‹å ´åˆã«æ–°ãŸã«ç¢ºä¿ã—ãŸãƒ¡ãƒ¢ãƒªã‚’è¨˜æ†¶ã—ã¦ãŠããŸã‚ã®ãƒ¢ãƒ
 
-	DWORD					UserData[ 4 ] ;						// ŠO•”’è‹`‚Ìî•ñ
+	DWORD					UserData[ 4 ] ;						// å¤–éƒ¨å®šç¾©ã®æƒ…å ±
 } ;
 
 
 
 
 
-// ƒAƒjƒ[ƒVƒ‡ƒ“ƒL[ƒZƒbƒgÀs—p\‘¢‘Ì
+// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚­ãƒ¼ã‚»ãƒƒãƒˆå®Ÿè¡Œç”¨æ§‹é€ ä½“
 struct MV1_ANIM_KEYSET
 {
-	MV1_ANIM_KEYSET_BASE	*BaseData ;							// ƒL[ƒZƒbƒgŠî–{ƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	MV1_ANIM_KEYSET_BASE	*BaseData ;							// ã‚­ãƒ¼ã‚»ãƒƒãƒˆåŸºæœ¬ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 
-	int						ShapeTargetIndex ;					// ‘ÎÛ‚ÌƒVƒFƒCƒvƒCƒ“ƒfƒbƒNƒX
-	float					ShapeKeyFactor ;					// ƒVƒFƒCƒv‚ÌƒuƒŒƒ“ƒh—¦
-	int						NowKey ;							// Œ»İˆ—‚µ‚Ä‚¢‚éƒL[‚ÌƒCƒ“ƒfƒbƒNƒX
+	int						ShapeTargetIndex ;					// å¯¾è±¡ã®ã‚·ã‚§ã‚¤ãƒ—ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+	float					ShapeKeyFactor ;					// ã‚·ã‚§ã‚¤ãƒ—ã®ãƒ–ãƒ¬ãƒ³ãƒ‰ç‡
+	int						NowKey ;							// ç¾åœ¨å‡¦ç†ã—ã¦ã„ã‚‹ã‚­ãƒ¼ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 } ;
 
-// ƒAƒjƒ[ƒVƒ‡ƒ“Às—p\‘¢‘Ì
+// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³å®Ÿè¡Œç”¨æ§‹é€ ä½“
 struct MV1_ANIM
 {
-	MV1_ANIM_BASE			*BaseData ;							// ƒAƒjƒ[ƒVƒ‡ƒ“Šî–{ƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	struct MV1_FRAME		*Frame ;							// ƒAƒjƒ[ƒVƒ‡ƒ“‚ª’S“–‚µ‚Ä‚¢‚éƒtƒŒ[ƒ€
+	MV1_ANIM_BASE			*BaseData ;							// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³åŸºæœ¬ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	struct MV1_FRAME		*Frame ;							// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãŒæ‹…å½“ã—ã¦ã„ã‚‹ãƒ•ãƒ¬ãƒ¼ãƒ 
 
-	int						ValidFlag ;							// —LŒø‚È—v‘f‚Ìƒrƒbƒg‚ª—§‚Á‚Ä‚¢‚éƒtƒ‰ƒO•Ï”( MV1_ANIMVALUE_TRANSLATE “™ )
-	VECTOR					Scale ;								// Šg‘å’l
-	VECTOR					Translate ;							// •½sˆÚ“®’l
-	int						RotateOrder ;						// ‰ñ“]ƒI[ƒ_[( MV1_ROTATE_ORDER_XYZ “™ )
-	VECTOR					Rotate ;							// ‰ñ“]’l
-	FLOAT4					Quaternion ;						// ‰ñ“]’l( ƒNƒH[ƒ^ƒjƒIƒ“ )
-	MATRIX_4X4CT_F			Matrix ;							// s—ñ
-	float					*ShapeRate ;						// ƒVƒFƒCƒv‚ÌƒuƒŒƒ“ƒh—¦
+	int						ValidFlag ;							// æœ‰åŠ¹ãªè¦ç´ ã®ãƒ“ãƒƒãƒˆãŒç«‹ã£ã¦ã„ã‚‹ãƒ•ãƒ©ã‚°å¤‰æ•°( MV1_ANIMVALUE_TRANSLATE ç­‰ )
+	VECTOR					Scale ;								// æ‹¡å¤§å€¤
+	VECTOR					Translate ;							// å¹³è¡Œç§»å‹•å€¤
+	int						RotateOrder ;						// å›è»¢ã‚ªãƒ¼ãƒ€ãƒ¼( MV1_ROTATE_ORDER_XYZ ç­‰ )
+	VECTOR					Rotate ;							// å›è»¢å€¤
+	FLOAT4					Quaternion ;						// å›è»¢å€¤( ã‚¯ã‚©ãƒ¼ã‚¿ãƒ‹ã‚ªãƒ³ )
+	MATRIX_4X4CT_F			Matrix ;							// è¡Œåˆ—
+	float					*ShapeRate ;						// ã‚·ã‚§ã‚¤ãƒ—ã®ãƒ–ãƒ¬ãƒ³ãƒ‰ç‡
 
-	bool					ValidBlendMatrix ;					// BlendMatrix ‚ª—LŒø‚©‚Ç‚¤‚©
-	MATRIX_4X4CT_F			BlendMatrix ;						// ƒL[ƒZƒbƒg‚Ìó‘Ô‚ğ”½‰f‚µ‚½s—ñ
-	bool					BlendMatrixUseScaling ;				// ƒL[ƒZƒbƒg‚Ìó‘Ô‚ğ”½‰f‚µ‚½s—ñ‚ÅƒXƒP[ƒŠƒ“ƒO‚ªg—p‚³‚ê‚Ä‚¢‚é‚©‚Ç‚¤‚©( true:g—p‚³‚ê‚Ä‚¢‚é  false:g—p‚³‚ê‚Ä‚¢‚È‚¢ )
-	MV1_ANIM_KEYSET			*KeySet ;							// ƒL[ƒZƒbƒg”z—ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	bool					ValidBlendMatrix ;					// BlendMatrix ãŒæœ‰åŠ¹ã‹ã©ã†ã‹
+	MATRIX_4X4CT_F			BlendMatrix ;						// ã‚­ãƒ¼ã‚»ãƒƒãƒˆã®çŠ¶æ…‹ã‚’åæ˜ ã—ãŸè¡Œåˆ—
+	bool					BlendMatrixUseScaling ;				// ã‚­ãƒ¼ã‚»ãƒƒãƒˆã®çŠ¶æ…‹ã‚’åæ˜ ã—ãŸè¡Œåˆ—ã§ã‚¹ã‚±ãƒ¼ãƒªãƒ³ã‚°ãŒä½¿ç”¨ã•ã‚Œã¦ã„ã‚‹ã‹ã©ã†ã‹( true:ä½¿ç”¨ã•ã‚Œã¦ã„ã‚‹  false:ä½¿ç”¨ã•ã‚Œã¦ã„ãªã„ )
+	MV1_ANIM_KEYSET			*KeySet ;							// ã‚­ãƒ¼ã‚»ãƒƒãƒˆé…åˆ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 } ;
 
-// ƒAƒjƒ[ƒVƒ‡ƒ“ƒZƒbƒgÀs—p\‘¢‘Ì
+// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚»ãƒƒãƒˆå®Ÿè¡Œç”¨æ§‹é€ ä½“
 struct MV1_ANIMSET
 {
-	MV1_ANIMSET_BASE		*BaseData ;							// ƒAƒjƒ[ƒVƒ‡ƒ“ƒZƒbƒgŠî–{ƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	MV1_ANIMSET_BASE		*BaseData ;							// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚»ãƒƒãƒˆåŸºæœ¬ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 
-	bool					ParamSetup ;						// ƒpƒ‰ƒ[ƒ^‚ÌƒZƒbƒgƒAƒbƒv‚ªÏ‚ñ‚Å‚¢‚é‚©‚Ç‚¤‚©( true:Ï‚ñ‚Å‚¢‚é  false:Ï‚ñ‚Å‚¢‚È‚¢ )
-	float					NowTime ;							// ƒAƒjƒ[ƒVƒ‡ƒ“‚ÌŒ»İ‚ÌÄ¶ŠÔ
-	MV1_ANIM				*Anim ;								// ƒAƒjƒ[ƒVƒ‡ƒ“”z—ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	bool					ParamSetup ;						// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ãŒæ¸ˆã‚“ã§ã„ã‚‹ã‹ã©ã†ã‹( true:æ¸ˆã‚“ã§ã„ã‚‹  false:æ¸ˆã‚“ã§ã„ãªã„ )
+	float					NowTime ;							// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®ç¾åœ¨ã®å†ç”Ÿæ™‚é–“
+	MV1_ANIM				*Anim ;								// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³é…åˆ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 } ;
 
-// ó‘Ô•ÏXŠÇ—î•ñ\‘¢‘Ì
+// çŠ¶æ…‹å¤‰æ›´ç®¡ç†æƒ…å ±æ§‹é€ ä½“
 struct MV1_CHANGE
 {
-	MV1_CHANGE_BASE			*BaseData ;							// ó‘Ô•ÏXŠÇ—î•ñ‚ÌŠî–{ƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	DWORD					*Target ;							// ó‘Ô•Ï‰»‚ª”­¶‚µ‚½Û‚É˜_—˜a‚·‚é‚×‚«‘ÎÛ‚ÌŠJnƒƒ‚ƒŠƒAƒhƒŒƒX
+	MV1_CHANGE_BASE			*BaseData ;							// çŠ¶æ…‹å¤‰æ›´ç®¡ç†æƒ…å ±ã®åŸºæœ¬ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	DWORD					*Target ;							// çŠ¶æ…‹å¤‰åŒ–ãŒç™ºç”Ÿã—ãŸéš›ã«è«–ç†å’Œã™ã‚‹ã¹ãå¯¾è±¡ã®é–‹å§‹ãƒ¡ãƒ¢ãƒªã‚¢ãƒ‰ãƒ¬ã‚¹
 } ;
 
-// •`‰æ—pƒ}ƒeƒŠƒAƒ‹î•ñ\‘¢‘Ì
+// æç”»ç”¨ãƒãƒ†ãƒªã‚¢ãƒ«æƒ…å ±æ§‹é€ ä½“
 struct MV1_DRAW_MATERIAL
 {
-	BYTE					Visible ;							// •\¦ƒtƒ‰ƒO( 1:•\¦‚·‚é  0:•\¦‚µ‚È‚¢ )
+	BYTE					Visible ;							// è¡¨ç¤ºãƒ•ãƒ©ã‚°( 1:è¡¨ç¤ºã™ã‚‹  0:è¡¨ç¤ºã—ãªã„ )
 
-	bool					UseColorScale ;						// ScaleŒnƒpƒ‰ƒ[ƒ^‚Åg—p‚µ‚Ä‚¢‚é€–Ú‚ª‚ ‚é‚©‚Ç‚¤‚©( true:‚ ‚é false:‚È‚¢ )
-	COLOR_F					DiffuseScale ;						// ƒfƒBƒtƒ…[ƒYF‚ÉæZ‚·‚é’l( ‰Šú’l‚Í‘S—v‘f 1.0f )
-	COLOR_F					AmbientScale ;						// ƒAƒ“ƒrƒGƒ“ƒgF‚ÉæZ‚·‚é’l( ‰Šú’l‚Í‘S—v‘f 1.0f )
-	COLOR_F					SpecularScale ;						// ƒXƒyƒLƒ…ƒ‰F‚ÉæZ‚·‚é’l( ‰Šú’l‚Í‘S—v‘f 1.0f )
-	COLOR_F					EmissiveScale ;						// ƒGƒ~ƒbƒVƒuF‚ÉæZ‚·‚é’l( ‰Šú’l‚Í‘S—v‘f 1.0f )
+	bool					UseColorScale ;						// Scaleç³»ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã§ä½¿ç”¨ã—ã¦ã„ã‚‹é …ç›®ãŒã‚ã‚‹ã‹ã©ã†ã‹( true:ã‚ã‚‹ false:ãªã„ )
+	COLOR_F					DiffuseScale ;						// ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºè‰²ã«ä¹—ç®—ã™ã‚‹å€¤( åˆæœŸå€¤ã¯å…¨è¦ç´  1.0f )
+	COLOR_F					AmbientScale ;						// ã‚¢ãƒ³ãƒ“ã‚¨ãƒ³ãƒˆè‰²ã«ä¹—ç®—ã™ã‚‹å€¤( åˆæœŸå€¤ã¯å…¨è¦ç´  1.0f )
+	COLOR_F					SpecularScale ;						// ã‚¹ãƒšã‚­ãƒ¥ãƒ©è‰²ã«ä¹—ç®—ã™ã‚‹å€¤( åˆæœŸå€¤ã¯å…¨è¦ç´  1.0f )
+	COLOR_F					EmissiveScale ;						// ã‚¨ãƒŸãƒƒã‚·ãƒ–è‰²ã«ä¹—ç®—ã™ã‚‹å€¤( åˆæœŸå€¤ã¯å…¨è¦ç´  1.0f )
 
-	float					OpacityRate ;						// •s“§–¾—¦( ‰Šú’l‚Í 1.0f )
+	float					OpacityRate ;						// ä¸é€æ˜ç‡( åˆæœŸå€¤ã¯ 1.0f )
 } ;
 
-// ƒeƒNƒXƒ`ƒƒ\‘¢‘Ì
+// ãƒ†ã‚¯ã‚¹ãƒãƒ£æ§‹é€ ä½“
 struct MV1_TEXTURE
 {
-	MV1_TEXTURE_BASE		*BaseData ;							// ƒeƒNƒXƒ`ƒƒ‚ÌŠî–{ƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	MV1_TEXTURE_BASE		*BaseData ;							// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®åŸºæœ¬ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 
 #ifndef UNICODE
-	char					*AlphaFilePathA_ ;					// ƒAƒ‹ƒtƒ@ƒ`ƒƒƒ“ƒlƒ‹—p‰æ‘œ‚Ìƒtƒ@ƒCƒ‹ƒpƒX
+	char					*AlphaFilePathA_ ;					// ã‚¢ãƒ«ãƒ•ã‚¡ãƒãƒ£ãƒ³ãƒãƒ«ç”¨ç”»åƒã®ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹
 #endif
 	wchar_t					*AlphaFilePathW_ ;
-	void					*AlphaImage ;						// ƒAƒ‹ƒtƒ@ƒ`ƒƒƒ“ƒlƒ‹‰æ‘œ‚Ìƒtƒ@ƒCƒ‹ƒCƒ[ƒW‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	int						AlphaImageSize ;					// ƒAƒ‹ƒtƒ@ƒ`ƒƒƒ“ƒlƒ‹‰æ‘œ‚Ìƒtƒ@ƒCƒ‹ƒCƒ[ƒW‚ÌƒTƒCƒY
+	void					*AlphaImage ;						// ã‚¢ãƒ«ãƒ•ã‚¡ãƒãƒ£ãƒ³ãƒãƒ«ç”»åƒã®ãƒ•ã‚¡ã‚¤ãƒ«ã‚¤ãƒ¡ãƒ¼ã‚¸ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	int						AlphaImageSize ;					// ã‚¢ãƒ«ãƒ•ã‚¡ãƒãƒ£ãƒ³ãƒãƒ«ç”»åƒã®ãƒ•ã‚¡ã‚¤ãƒ«ã‚¤ãƒ¡ãƒ¼ã‚¸ã®ã‚µã‚¤ã‚º
 
 #ifndef UNICODE
-	char					*ColorFilePathA_ ;					// ƒJƒ‰[ƒ`ƒƒƒ“ƒlƒ‹—p‰æ‘œ‚Ìƒtƒ@ƒCƒ‹ƒpƒX
+	char					*ColorFilePathA_ ;					// ã‚«ãƒ©ãƒ¼ãƒãƒ£ãƒ³ãƒãƒ«ç”¨ç”»åƒã®ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹
 #endif
 	wchar_t					*ColorFilePathW_ ;
-	void					*ColorImage ;						// ƒJƒ‰[ƒ`ƒƒƒ“ƒlƒ‹—p‰æ‘œ‚Ìƒtƒ@ƒCƒ‹ƒCƒ[ƒW‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	int						ColorImageSize ;					// ƒJƒ‰[ƒ`ƒƒƒ“ƒlƒ‹—p‰æ‘œ‚Ìƒtƒ@ƒCƒ‹ƒCƒ[ƒW‚ÌƒTƒCƒY
+	void					*ColorImage ;						// ã‚«ãƒ©ãƒ¼ãƒãƒ£ãƒ³ãƒãƒ«ç”¨ç”»åƒã®ãƒ•ã‚¡ã‚¤ãƒ«ã‚¤ãƒ¡ãƒ¼ã‚¸ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	int						ColorImageSize ;					// ã‚«ãƒ©ãƒ¼ãƒãƒ£ãƒ³ãƒãƒ«ç”¨ç”»åƒã®ãƒ•ã‚¡ã‚¤ãƒ«ã‚¤ãƒ¡ãƒ¼ã‚¸ã®ã‚µã‚¤ã‚º
 
-	int						Width, Height ;						// •A‚‚³
-	int						SemiTransFlag ;						// ”¼“§–¾—v‘f‚ª‚ ‚é‚©‚Ç‚¤‚©( TRUE:‚ ‚é  FALSE:‚È‚¢ )
-	int						BumpImageFlag ;						// Œ³‚ªƒoƒ“ƒvƒ}ƒbƒv‰æ‘œ‚©( TRUE:ƒoƒ“ƒvƒ}ƒbƒv  FALSE:ˆá‚¤ )
-	float					BumpImageNextPixelLength ;			// ƒoƒ“ƒvƒ}ƒbƒv‰æ‘œ‚Ìê‡‚Ì—×‚ÌƒsƒNƒZƒ‹‚Æ‚Ì‹——£
+	int						Width, Height ;						// å¹…ã€é«˜ã•
+	int						SemiTransFlag ;						// åŠé€æ˜è¦ç´ ãŒã‚ã‚‹ã‹ã©ã†ã‹( TRUE:ã‚ã‚‹  FALSE:ãªã„ )
+	int						BumpImageFlag ;						// å…ƒãŒãƒãƒ³ãƒ—ãƒãƒƒãƒ—ç”»åƒã‹( TRUE:ãƒãƒ³ãƒ—ãƒãƒƒãƒ—  FALSE:é•ã† )
+	float					BumpImageNextPixelLength ;			// ãƒãƒ³ãƒ—ãƒãƒƒãƒ—ç”»åƒã®å ´åˆã®éš£ã®ãƒ”ã‚¯ã‚»ãƒ«ã¨ã®è·é›¢
 
-	int						UseGraphHandle ;					// GraphHandle ‚ğg—p‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©( TRUE:g—p‚µ‚Ä‚¢‚é  FALSE:‚µ‚Ä‚¢‚È‚¢ )
-	int						GraphHandle ;						// ƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹
-	int						IsDefaultTexture ;					// ƒfƒtƒHƒ‹ƒg‚Ì‰æ‘œ‚©‚Ç‚¤‚©( TRUE:ƒfƒtƒHƒ‹ƒg‚Ì‰æ‘œ  FALSE:ƒtƒ@ƒCƒ‹‚©‚ç“Ç‚İ‚ñ‚¾‰æ‘œ )
+	int						UseGraphHandle ;					// GraphHandle ã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹ã‹ã©ã†ã‹( TRUE:ä½¿ç”¨ã—ã¦ã„ã‚‹  FALSE:ã—ã¦ã„ãªã„ )
+	int						GraphHandle ;						// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«
+	int						IsDefaultTexture ;					// ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®ç”»åƒã‹ã©ã†ã‹( TRUE:ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®ç”»åƒ  FALSE:ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰èª­ã¿è¾¼ã‚“ã ç”»åƒ )
 
-	int						UseUserGraphHandle ;				// UserGraphHandle ‚ğg—p‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©( TRUE:g—p‚µ‚Ä‚¢‚é  FALSE:‚µ‚Ä‚¢‚È‚¢ )
-	int						UserGraphHandle ;					// ƒ†[ƒU[ƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹
-	int						UserGraphWidth, UserGraphHeight ;	// •A‚‚³
-	int						UserGraphHandleSemiTransFlag ;		// ƒ†[ƒU[ƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚É”¼“§–¾—v‘f‚ª‚ ‚é‚©‚Ç‚¤‚©
+	int						UseUserGraphHandle ;				// UserGraphHandle ã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹ã‹ã©ã†ã‹( TRUE:ä½¿ç”¨ã—ã¦ã„ã‚‹  FALSE:ã—ã¦ã„ãªã„ )
+	int						UserGraphHandle ;					// ãƒ¦ãƒ¼ã‚¶ãƒ¼ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«
+	int						UserGraphWidth, UserGraphHeight ;	// å¹…ã€é«˜ã•
+	int						UserGraphHandleSemiTransFlag ;		// ãƒ¦ãƒ¼ã‚¶ãƒ¼ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã«åŠé€æ˜è¦ç´ ãŒã‚ã‚‹ã‹ã©ã†ã‹
 
-	int						AddressModeU ;						// ƒAƒhƒŒƒXƒ‚[ƒh( DX_TEXADDRESS_WRAP “™ )
-	int						AddressModeV ;						// ƒAƒhƒŒƒXƒ‚[ƒh( DX_TEXADDRESS_WRAP “™ )
-	float					ScaleU ;							// ‚tÀ•W‚ÌƒXƒP[ƒŠƒ“ƒO’l
-	float					ScaleV ;							// ‚uÀ•W‚ÌƒXƒP[ƒŠƒ“ƒO’l
-	int						FilterMode ;						// ƒtƒBƒ‹ƒ^ƒŠƒ“ƒOƒ‚[ƒh( DX_DRAWMODE_BILINEAR “™ )
+	int						AddressModeU ;						// ã‚¢ãƒ‰ãƒ¬ã‚¹ãƒ¢ãƒ¼ãƒ‰( DX_TEXADDRESS_WRAP ç­‰ )
+	int						AddressModeV ;						// ã‚¢ãƒ‰ãƒ¬ã‚¹ãƒ¢ãƒ¼ãƒ‰( DX_TEXADDRESS_WRAP ç­‰ )
+	float					ScaleU ;							// ï¼µåº§æ¨™ã®ã‚¹ã‚±ãƒ¼ãƒªãƒ³ã‚°å€¤
+	float					ScaleV ;							// ï¼¶åº§æ¨™ã®ã‚¹ã‚±ãƒ¼ãƒªãƒ³ã‚°å€¤
+	int						FilterMode ;						// ãƒ•ã‚£ãƒ«ã‚¿ãƒªãƒ³ã‚°ãƒ¢ãƒ¼ãƒ‰( DX_DRAWMODE_BILINEAR ç­‰ )
 
-	int						ReverseFlag ;						// ‰æ‘œ‚ğ”½“]‚·‚é‚©‚Ç‚¤‚©( 1:”½“]‚·‚é  0:”½“]‚µ‚È‚¢ )
-	int						Bmp32AllZeroAlphaToXRGB8Flag ;		// ‚R‚Qƒrƒbƒg‚a‚l‚o‚ÌƒAƒ‹ƒtƒ@’l‚ª‘S•”‚O‚¾‚Á‚½‚ç XRGB8 ‚Æ‚µ‚Äˆµ‚¤‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO
+	int						ReverseFlag ;						// ç”»åƒã‚’åè»¢ã™ã‚‹ã‹ã©ã†ã‹( 1:åè»¢ã™ã‚‹  0:åè»¢ã—ãªã„ )
+	int						Bmp32AllZeroAlphaToXRGB8Flag ;		// ï¼“ï¼’ãƒ“ãƒƒãƒˆï¼¢ï¼­ï¼°ã®ã‚¢ãƒ«ãƒ•ã‚¡å€¤ãŒå…¨éƒ¨ï¼ã ã£ãŸã‚‰ XRGB8 ã¨ã—ã¦æ‰±ã†ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°
 } ;
 
-// ƒ}ƒeƒŠƒAƒ‹ƒf[ƒ^\‘¢‘Ì
+// ãƒãƒ†ãƒªã‚¢ãƒ«ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
 struct MV1_MATERIAL
 {
-	MV1_MATERIAL_BASE		*BaseData ;							// ƒ}ƒeƒŠƒAƒ‹‚ÌŠîƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	MV1_MATERIAL_BASE		*BaseData ;							// ãƒãƒ†ãƒªã‚¢ãƒ«ã®åŸºãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 
-	COLOR_F					Diffuse ;							// ƒfƒBƒtƒ…[ƒYF
-	COLOR_F					Ambient ;							// ƒAƒ“ƒrƒGƒ“ƒgF
-	COLOR_F					Specular ;							// ƒXƒyƒLƒ…ƒ‰[F
-	COLOR_F					Emissive ;							// ƒGƒ~ƒbƒVƒuF
-	float					Power ;								// ƒXƒyƒLƒ…ƒ‰ƒnƒCƒ‰ƒCƒg‚Ìƒpƒ[
-	float					TypeParam[ MATERIAL_TYPEPARAM_MAX_NUM ] ;	// ƒ}ƒeƒŠƒAƒ‹ƒ^ƒCƒv‚Ìƒpƒ‰ƒ[ƒ^( DX_MATERIAL_TYPE_MAT_SPEC_LUMINANCE_TWO_COLOR ‚È‚Ç‚Åg—p )
+	COLOR_F					Diffuse ;							// ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºè‰²
+	COLOR_F					Ambient ;							// ã‚¢ãƒ³ãƒ“ã‚¨ãƒ³ãƒˆè‰²
+	COLOR_F					Specular ;							// ã‚¹ãƒšã‚­ãƒ¥ãƒ©ãƒ¼è‰²
+	COLOR_F					Emissive ;							// ã‚¨ãƒŸãƒƒã‚·ãƒ–è‰²
+	float					Power ;								// ã‚¹ãƒšã‚­ãƒ¥ãƒ©ãƒã‚¤ãƒ©ã‚¤ãƒˆã®ãƒ‘ãƒ¯ãƒ¼
+	float					TypeParam[ MATERIAL_TYPEPARAM_MAX_NUM ] ;	// ãƒãƒ†ãƒªã‚¢ãƒ«ã‚¿ã‚¤ãƒ—ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿( DX_MATERIAL_TYPE_MAT_SPEC_LUMINANCE_TWO_COLOR ãªã©ã§ä½¿ç”¨ )
 
-	int						DiffuseLayerNum ;					// ƒfƒBƒtƒ…[ƒYƒJƒ‰[‚ÌƒŒƒCƒ„[”
-	MV1_MATERIAL_LAYER		DiffuseLayer[ 8 ] ;					// ƒfƒBƒtƒ…[ƒYƒJƒ‰[‚ÌƒŒƒCƒ„[î•ñ( ‚OƒŒƒCƒ„[‚Ì BlendType ‚Í–³‹‚³‚ê‚é )
-	int						SpecularLayerNum ;					// ƒXƒyƒLƒ…ƒ‰ƒ}ƒbƒv‚ÌƒŒƒCƒ„[”
-	MV1_MATERIAL_LAYER		SpecularLayer[ 8 ] ;				// ƒXƒyƒLƒ…ƒ‰ƒ}ƒbƒv‚ÌƒŒƒCƒ„[î•ñ( ‚OƒŒƒCƒ„[‚Ì BlendType ‚Í–³‹‚³‚ê‚é )
+	int						DiffuseLayerNum ;					// ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚«ãƒ©ãƒ¼ã®ãƒ¬ã‚¤ãƒ¤ãƒ¼æ•°
+	MV1_MATERIAL_LAYER		DiffuseLayer[ 8 ] ;					// ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚«ãƒ©ãƒ¼ã®ãƒ¬ã‚¤ãƒ¤ãƒ¼æƒ…å ±( ï¼ãƒ¬ã‚¤ãƒ¤ãƒ¼ã® BlendType ã¯ç„¡è¦–ã•ã‚Œã‚‹ )
+	int						SpecularLayerNum ;					// ã‚¹ãƒšã‚­ãƒ¥ãƒ©ãƒãƒƒãƒ—ã®ãƒ¬ã‚¤ãƒ¤ãƒ¼æ•°
+	MV1_MATERIAL_LAYER		SpecularLayer[ 8 ] ;				// ã‚¹ãƒšã‚­ãƒ¥ãƒ©ãƒãƒƒãƒ—ã®ãƒ¬ã‚¤ãƒ¤ãƒ¼æƒ…å ±( ï¼ãƒ¬ã‚¤ãƒ¤ãƒ¼ã® BlendType ã¯ç„¡è¦–ã•ã‚Œã‚‹ )
 
-	int						DiffuseGradTexture ;				// ( ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚Å‚Ì‚İg—p )ƒfƒBƒtƒ…[ƒYƒJƒ‰[ƒOƒ‰ƒf[ƒVƒ‡ƒ“ƒeƒNƒXƒ`ƒƒƒCƒ“ƒfƒbƒNƒXA“–‚½‚Á‚Ä‚¢‚éƒ‰ƒCƒg‚ÌƒfƒBƒtƒ…[ƒYƒJƒ‰[‚Å‚t’l‚ªŒˆ‚Ü‚é‚à‚Ì( MV1_MODEL_BASE.Textue ”z—ñ‚ÌƒCƒ“ƒfƒbƒNƒX )
-	int						SpecularGradTexture ;				// ( ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚Å‚Ì‚İg—p )ƒXƒyƒLƒ…ƒ‰ƒJƒ‰[ƒOƒ‰ƒf[ƒVƒ‡ƒ“ƒeƒNƒXƒ`ƒƒƒCƒ“ƒfƒbƒNƒXA“–‚½‚Á‚Ä‚¢‚éƒ‰ƒCƒg‚ÌƒXƒyƒLƒ…ƒ‰ƒJƒ‰[‚Å‚t’l‚ªŒˆ‚Ü‚é‚à‚ÌA–³Œø‚Ìê‡‚Í|‚P( MV1_MODEL_BASE.Textue ”z—ñ‚ÌƒCƒ“ƒfƒbƒNƒX )
-	int						SphereMapTexture ;					// ( ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚Å‚Ì‚İg—p )ƒXƒtƒBƒAƒ}ƒbƒvƒeƒNƒXƒ`ƒƒƒCƒ“ƒfƒbƒNƒX
-	int						DiffuseGradBlendType ;				// ( ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚Å‚Ì‚İg—p )ƒfƒBƒtƒ…[ƒYƒOƒ‰ƒf[ƒVƒ‡ƒ“ƒeƒNƒXƒ`ƒƒ‚ÌƒuƒŒƒ“ƒhƒ^ƒCƒv( DX_MATERIAL_BLENDTYPE_TRANSLUCENT ‚È‚Ç )
-	int						SpecularGradBlendType ;				// ( ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚Å‚Ì‚İg—p )ƒXƒyƒLƒ…ƒ‰ƒOƒ‰ƒf[ƒVƒ‡ƒ“ƒeƒNƒXƒ`ƒƒ‚ÌƒuƒŒƒ“ƒhƒ^ƒCƒv( DX_MATERIAL_BLENDTYPE_ADDITIVE ‚È‚Ç )
-	int						SphereMapBlendType ;				// ( ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚Å‚Ì‚İg—p )ƒXƒtƒBƒAƒ}ƒbƒvƒeƒNƒXƒ`ƒƒ‚ÌƒuƒŒƒ“ƒhƒ^ƒCƒv( DX_MATERIAL_BLENDTYPE_ADDITIVE ‚È‚Ç )
-	float					OutLineWidth ;						// ( ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚Å‚Ì‚İg—p )—ÖŠsü‚Ì•( 0.0f ` 1.0f )
-	float					OutLineDotWidth ;					// ( ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚Å‚Ì‚İg—p )—ÖŠsü‚Ìƒhƒbƒg’PˆÊ‚Å‚Ì•
-	COLOR_F					OutLineColor ;						// ( ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚Å‚Ì‚İg—p )—ÖŠsü‚ÌF
+	int						DiffuseGradTexture ;				// ( ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã§ã®ã¿ä½¿ç”¨ )ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚«ãƒ©ãƒ¼ã‚°ãƒ©ãƒ‡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã€å½“ãŸã£ã¦ã„ã‚‹ãƒ©ã‚¤ãƒˆã®ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚«ãƒ©ãƒ¼ã§ï¼µå€¤ãŒæ±ºã¾ã‚‹ã‚‚ã®( MV1_MODEL_BASE.Textue é…åˆ—ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ )
+	int						SpecularGradTexture ;				// ( ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã§ã®ã¿ä½¿ç”¨ )ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã‚«ãƒ©ãƒ¼ã‚°ãƒ©ãƒ‡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã€å½“ãŸã£ã¦ã„ã‚‹ãƒ©ã‚¤ãƒˆã®ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã‚«ãƒ©ãƒ¼ã§ï¼µå€¤ãŒæ±ºã¾ã‚‹ã‚‚ã®ã€ç„¡åŠ¹ã®å ´åˆã¯ï¼ï¼‘( MV1_MODEL_BASE.Textue é…åˆ—ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ )
+	int						SphereMapTexture ;					// ( ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã§ã®ã¿ä½¿ç”¨ )ã‚¹ãƒ•ã‚£ã‚¢ãƒãƒƒãƒ—ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+	int						DiffuseGradBlendType ;				// ( ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã§ã®ã¿ä½¿ç”¨ )ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚°ãƒ©ãƒ‡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ãƒ–ãƒ¬ãƒ³ãƒ‰ã‚¿ã‚¤ãƒ—( DX_MATERIAL_BLENDTYPE_TRANSLUCENT ãªã© )
+	int						SpecularGradBlendType ;				// ( ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã§ã®ã¿ä½¿ç”¨ )ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã‚°ãƒ©ãƒ‡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ãƒ–ãƒ¬ãƒ³ãƒ‰ã‚¿ã‚¤ãƒ—( DX_MATERIAL_BLENDTYPE_ADDITIVE ãªã© )
+	int						SphereMapBlendType ;				// ( ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã§ã®ã¿ä½¿ç”¨ )ã‚¹ãƒ•ã‚£ã‚¢ãƒãƒƒãƒ—ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ãƒ–ãƒ¬ãƒ³ãƒ‰ã‚¿ã‚¤ãƒ—( DX_MATERIAL_BLENDTYPE_ADDITIVE ãªã© )
+	float					OutLineWidth ;						// ( ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã§ã®ã¿ä½¿ç”¨ )è¼ªéƒ­ç·šã®å¹…( 0.0f ï½ 1.0f )
+	float					OutLineDotWidth ;					// ( ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã§ã®ã¿ä½¿ç”¨ )è¼ªéƒ­ç·šã®ãƒ‰ãƒƒãƒˆå˜ä½ã§ã®å¹…
+	COLOR_F					OutLineColor ;						// ( ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã§ã®ã¿ä½¿ç”¨ )è¼ªéƒ­ç·šã®è‰²
 
-	int						UseAlphaTest ;						// ƒAƒ‹ƒtƒ@ƒeƒXƒg‚ğg—p‚·‚é‚©‚Ç‚¤‚©
-	int						AlphaFunc ;							// ƒAƒ‹ƒtƒ@ƒeƒXƒgƒ‚[ƒh( ¡‚Ì‚Æ‚±‚ë–¢g—p )
-	int						AlphaRef ;							// ƒAƒ‹ƒtƒ@ƒeƒXƒg‚Ìè‡’l
+	int						UseAlphaTest ;						// ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹
+	int						AlphaFunc ;							// ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆãƒ¢ãƒ¼ãƒ‰( ä»Šã®ã¨ã“ã‚æœªä½¿ç”¨ )
+	int						AlphaRef ;							// ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆã®é–¾å€¤
 
-	int						DrawBlendMode ;						// o—Í‚ÌƒuƒŒƒ“ƒhƒ‚[ƒh( DX_BLENDMODE_NOBLEND “™ )
-	int						DrawBlendParam ;					// o—Í‚ÌƒuƒŒƒ“ƒhƒpƒ‰ƒ[ƒ^
-	INT4					DrawAddColor ;						// o—Í‚Ì‰ÁZƒJƒ‰[
+	int						DrawBlendMode ;						// å‡ºåŠ›æ™‚ã®ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰( DX_BLENDMODE_NOBLEND ç­‰ )
+	int						DrawBlendParam ;					// å‡ºåŠ›æ™‚ã®ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+	INT4					DrawAddColor ;						// å‡ºåŠ›æ™‚ã®åŠ ç®—ã‚«ãƒ©ãƒ¼
 } ;
 
-// ƒgƒ‰ƒCƒAƒ“ƒOƒ‹ƒŠƒXƒg\‘¢‘Ì
+// ãƒˆãƒ©ã‚¤ã‚¢ãƒ³ã‚°ãƒ«ãƒªã‚¹ãƒˆæ§‹é€ ä½“
 struct MV1_TRIANGLE_LIST
 {
-	struct MV1_MESH				*Container ;					// ‚±‚Ìƒgƒ‰ƒCƒAƒ“ƒOƒ‹ƒŠƒXƒg‚ğ‚Á‚Ä‚¢‚éƒƒbƒVƒ…‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	MV1_TRIANGLE_LIST_BASE		*BaseData ;						// Šîƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	struct MV1_MESH				*Container ;					// ã“ã®ãƒˆãƒ©ã‚¤ã‚¢ãƒ³ã‚°ãƒ«ãƒªã‚¹ãƒˆã‚’æŒã£ã¦ã„ã‚‹ãƒ¡ãƒƒã‚·ãƒ¥ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	MV1_TRIANGLE_LIST_BASE		*BaseData ;						// åŸºãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 
 	union
 	{
-		MV1_TLIST_NORMAL_POS     *NormalPosition ;				// ƒ{[ƒ“î•ñ–³‚µ’¸“_À•Wƒf[ƒ^
-		MV1_TLIST_SKIN_POS_4B    *SkinPosition4B ;				// ‚Sƒ{[ƒ“ƒXƒLƒjƒ“ƒOˆ——p’¸“_À•Wƒf[ƒ^
-		MV1_TLIST_SKIN_POS_8B    *SkinPosition8B ;				// ‚Wƒ{[ƒ“ƒXƒLƒjƒ“ƒOˆ——p’¸“_À•Wƒf[ƒ^
-		MV1_TLIST_SKIN_POS_FREEB *SkinPositionFREEB ;			// ‚Xƒ{[ƒ“ˆÈã‚ÌƒXƒLƒjƒ“ƒOˆ——p’¸“_À•Wƒf[ƒ^
+		MV1_TLIST_NORMAL_POS     *NormalPosition ;				// ãƒœãƒ¼ãƒ³æƒ…å ±ç„¡ã—é ‚ç‚¹åº§æ¨™ãƒ‡ãƒ¼ã‚¿
+		MV1_TLIST_SKIN_POS_4B    *SkinPosition4B ;				// ï¼”ãƒœãƒ¼ãƒ³ã‚¹ã‚­ãƒ‹ãƒ³ã‚°å‡¦ç†ç”¨é ‚ç‚¹åº§æ¨™ãƒ‡ãƒ¼ã‚¿
+		MV1_TLIST_SKIN_POS_8B    *SkinPosition8B ;				// ï¼˜ãƒœãƒ¼ãƒ³ã‚¹ã‚­ãƒ‹ãƒ³ã‚°å‡¦ç†ç”¨é ‚ç‚¹åº§æ¨™ãƒ‡ãƒ¼ã‚¿
+		MV1_TLIST_SKIN_POS_FREEB *SkinPositionFREEB ;			// ï¼™ãƒœãƒ¼ãƒ³ä»¥ä¸Šã®ã‚¹ã‚­ãƒ‹ãƒ³ã‚°å‡¦ç†ç”¨é ‚ç‚¹åº§æ¨™ãƒ‡ãƒ¼ã‚¿
 	} ;
 
-	struct MV1_TRIANGLE_LIST_PF	*PF ;							// ŠÂ‹«ˆË‘¶ƒf[ƒ^
+	struct MV1_TRIANGLE_LIST_PF	*PF ;							// ç’°å¢ƒä¾å­˜ãƒ‡ãƒ¼ã‚¿
 } ;
 
-// ƒVƒFƒCƒv’¸“_ƒf[ƒ^\‘¢‘Ì
+// ã‚·ã‚§ã‚¤ãƒ—é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
 struct MV1_SHAPE_VERTEX
 {
-	VECTOR					Position ;							// À•W
-	VECTOR					Normal ;							// –@ü
+	VECTOR					Position ;							// åº§æ¨™
+	VECTOR					Normal ;							// æ³•ç·š
 } ;
 
-// •¨—‰‰Z—p„‘Ìƒf[ƒ^\‘¢‘Ì
+// ç‰©ç†æ¼”ç®—ç”¨å‰›ä½“ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
 struct MV1_PHYSICS_RIGIDBODY
 {
-	MV1_PHYSICS_RIGIDBODY_BASE *BaseData ;						// Šîƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	struct MV1_FRAME		*TargetFrame ;						// ‘ÎÛ‚Æ‚È‚éƒtƒŒ[ƒ€
+	MV1_PHYSICS_RIGIDBODY_BASE *BaseData ;						// åŸºãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	struct MV1_FRAME		*TargetFrame ;						// å¯¾è±¡ã¨ãªã‚‹ãƒ•ãƒ¬ãƒ¼ãƒ 
 
-	DWORD					BulletInfo[ 160 ] ;					// BULLET_RIGIDBODY_INFO ‚ğŠi”[‚·‚éƒoƒbƒtƒ@
+	DWORD					BulletInfo[ 160 ] ;					// BULLET_RIGIDBODY_INFO ã‚’æ ¼ç´ã™ã‚‹ãƒãƒƒãƒ•ã‚¡
 } ;
 
-// •¨—‰‰Z—p„‘ÌƒWƒ‡ƒCƒ“ƒgƒf[ƒ^\‘¢‘Ì
+// ç‰©ç†æ¼”ç®—ç”¨å‰›ä½“ã‚¸ãƒ§ã‚¤ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
 struct MV1_PHYSICS_JOINT
 {
-	MV1_PHYSICS_JOINT_BASE	*BaseData ;							// Šîƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	MV1_PHYSICS_JOINT_BASE	*BaseData ;							// åŸºãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 
-	DWORD					BulletInfo[ 16 ] ;					// BULLET_JOINT_INFO ‚ğŠi”[‚·‚éƒoƒbƒtƒ@
+	DWORD					BulletInfo[ 16 ] ;					// BULLET_JOINT_INFO ã‚’æ ¼ç´ã™ã‚‹ãƒãƒƒãƒ•ã‚¡
 } ;
 
-// ƒƒbƒVƒ…ƒf[ƒ^\‘¢‘Ì
+// ãƒ¡ãƒƒã‚·ãƒ¥ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
 struct MV1_MESH
 {
-	struct MV1_FRAME		*Container ;						// ‚±‚ÌƒƒbƒVƒ…‚ğ‚Á‚Ä‚¢‚éƒtƒŒ[ƒ€‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	MV1_MESH_BASE			*BaseData ;							// Šîƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	struct MV1_FRAME		*Container ;						// ã“ã®ãƒ¡ãƒƒã‚·ãƒ¥ã‚’æŒã£ã¦ã„ã‚‹ãƒ•ãƒ¬ãƒ¼ãƒ ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	MV1_MESH_BASE			*BaseData ;							// åŸºãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 
-	MV1_MATERIAL			*Material ;							// ƒ}ƒeƒŠƒAƒ‹‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	MV1_CHANGE				DrawMaterialChange ;				// ó‘Ô•Ï‰»ƒ`ƒFƒbƒN—pî•ñ
-	MV1_DRAW_MATERIAL		DrawMaterial ;						// •`‰æ—pƒ}ƒeƒŠƒAƒ‹î•ñ
-	MV1_DRAW_MATERIAL		SetupDrawMaterial ;					// ãˆÊƒtƒŒ[ƒ€‚Ìî•ñ‚àl—¶‚µ‚½•`‰æ—pƒ}ƒeƒŠƒAƒ‹î•ñ
-	bool					SemiTransStateSetupFlag ;			// SemiTransState ‚ÌƒZƒbƒgƒAƒbƒv‚ªÏ‚ñ‚Å‚¢‚é‚©( true:Ï‚ñ‚Å‚¢‚é  false:Ï‚ñ‚Å‚¢‚È‚¢ )
-	bool					SemiTransState ;					// ‚±‚ÌƒƒbƒVƒ…‚É”¼“§–¾—v‘f‚ª‚ ‚é‚©‚Ç‚¤‚©( true:‚ ‚é  false:‚È‚¢ )
+	MV1_MATERIAL			*Material ;							// ãƒãƒ†ãƒªã‚¢ãƒ«ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	MV1_CHANGE				DrawMaterialChange ;				// çŠ¶æ…‹å¤‰åŒ–ãƒã‚§ãƒƒã‚¯ç”¨æƒ…å ±
+	MV1_DRAW_MATERIAL		DrawMaterial ;						// æç”»ç”¨ãƒãƒ†ãƒªã‚¢ãƒ«æƒ…å ±
+	MV1_DRAW_MATERIAL		SetupDrawMaterial ;					// ä¸Šä½ãƒ•ãƒ¬ãƒ¼ãƒ ã®æƒ…å ±ã‚‚è€ƒæ…®ã—ãŸæç”»ç”¨ãƒãƒ†ãƒªã‚¢ãƒ«æƒ…å ±
+	bool					SemiTransStateSetupFlag ;			// SemiTransState ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ãŒæ¸ˆã‚“ã§ã„ã‚‹ã‹( true:æ¸ˆã‚“ã§ã„ã‚‹  false:æ¸ˆã‚“ã§ã„ãªã„ )
+	bool					SemiTransState ;					// ã“ã®ãƒ¡ãƒƒã‚·ãƒ¥ã«åŠé€æ˜è¦ç´ ãŒã‚ã‚‹ã‹ã©ã†ã‹( true:ã‚ã‚‹  false:ãªã„ )
 
-	MV1_SHAPE_VERTEX		*ShapeVertex ;						// ƒVƒFƒCƒvˆ—‚µ‚½’¸“_ƒf[ƒ^( BaseData->Shape ‚ª 1 ‚Ìê‡‚Ì‚İg—p )
-	MV1_TRIANGLE_LIST		*TriangleList ;						// ƒgƒ‰ƒCƒAƒ“ƒOƒ‹ƒŠƒXƒg‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	MV1_SHAPE_VERTEX		*ShapeVertex ;						// ã‚·ã‚§ã‚¤ãƒ—å‡¦ç†ã—ãŸé ‚ç‚¹ãƒ‡ãƒ¼ã‚¿( BaseData->Shape ãŒ 1 ã®å ´åˆã®ã¿ä½¿ç”¨ )
+	MV1_TRIANGLE_LIST		*TriangleList ;						// ãƒˆãƒ©ã‚¤ã‚¢ãƒ³ã‚°ãƒ«ãƒªã‚¹ãƒˆã¸ã®ãƒã‚¤ãƒ³ã‚¿
 
-	int						DrawBlendMode ;						// •`‰æƒuƒŒƒ“ƒhƒ‚[ƒh( -1:‚Ìê‡‚Íƒ}ƒeƒŠƒAƒ‹‚ÌƒfƒtƒHƒ‹ƒg’l )
-	int						DrawBlendParam ;					// •`‰æƒuƒŒƒ“ƒhƒpƒ‰ƒ[ƒ^
+	int						DrawBlendMode ;						// æç”»ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰( -1:ã®å ´åˆã¯ãƒãƒ†ãƒªã‚¢ãƒ«ã®ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå€¤ )
+	int						DrawBlendParam ;					// æç”»ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 
-	bool					SetupRefPolygon[ 2 ] ;				// QÆ—pƒ|ƒŠƒSƒ“ƒŠƒXƒg‚ÌƒZƒbƒgƒAƒbƒv‚ªŠ®—¹‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©( true:Š®—¹‚µ‚Ä‚¢‚é  false:Š®—¹‚µ‚Ä‚¢‚È‚¢ )[ À•W•ÏŠ·‚ ‚è‚©‚Ç‚¤‚©( 1:‚ ‚è 0:‚È‚µ ) ]
-	MV1_REF_POLYGONLIST		*RefPolygon[ 2 ] ;					// QÆ—pƒ|ƒŠƒSƒ“ƒŠƒXƒg( [ À•W•ÏŠ·‚ ‚è‚©‚Ç‚¤‚©( 1:‚ ‚è 0:‚È‚µ ) ] )
+	bool					SetupRefPolygon[ 2 ] ;				// å‚ç…§ç”¨ãƒãƒªã‚´ãƒ³ãƒªã‚¹ãƒˆã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ãŒå®Œäº†ã—ã¦ã„ã‚‹ã‹ã©ã†ã‹( true:å®Œäº†ã—ã¦ã„ã‚‹  false:å®Œäº†ã—ã¦ã„ãªã„ )[ åº§æ¨™å¤‰æ›ã‚ã‚Šã‹ã©ã†ã‹( 1:ã‚ã‚Š 0:ãªã— ) ]
+	MV1_REF_POLYGONLIST		*RefPolygon[ 2 ] ;					// å‚ç…§ç”¨ãƒãƒªã‚´ãƒ³ãƒªã‚¹ãƒˆ( [ åº§æ¨™å¤‰æ›ã‚ã‚Šã‹ã©ã†ã‹( 1:ã‚ã‚Š 0:ãªã— ) ] )
 
-	bool					SetupCollision ;					// ƒRƒŠƒWƒ‡ƒ“î•ñ‚ÌƒZƒbƒgƒAƒbƒv‚ªŠ®—¹‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©( true:Š®—¹‚µ‚Ä‚¢‚é  false:Š®—¹‚µ‚Ä‚¢‚È‚¢ )
-	MV1_COLLISION			*Collision ;						// ƒRƒŠƒWƒ‡ƒ“î•ñ
+	bool					SetupCollision ;					// ã‚³ãƒªã‚¸ãƒ§ãƒ³æƒ…å ±ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ãŒå®Œäº†ã—ã¦ã„ã‚‹ã‹ã©ã†ã‹( true:å®Œäº†ã—ã¦ã„ã‚‹  false:å®Œäº†ã—ã¦ã„ãªã„ )
+	MV1_COLLISION			*Collision ;						// ã‚³ãƒªã‚¸ãƒ§ãƒ³æƒ…å ±
 } ;
 
-// ƒVƒFƒCƒvƒf[ƒ^\‘¢‘Ì
+// ã‚·ã‚§ã‚¤ãƒ—ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
 struct MV1_SHAPE
 {
-	struct MV1_FRAME		*Container ;						// ‚±‚ÌƒVƒFƒCƒv‚ğ‚Á‚Ä‚¢‚éƒtƒŒ[ƒ€‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	MV1_SHAPE_BASE			*BaseData ;							// Šîƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	struct MV1_FRAME		*Container ;						// ã“ã®ã‚·ã‚§ã‚¤ãƒ—ã‚’æŒã£ã¦ã„ã‚‹ãƒ•ãƒ¬ãƒ¼ãƒ ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	MV1_SHAPE_BASE			*BaseData ;							// åŸºãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 
-	int						ShapeRateApplyType ;				// ‰e‹¿—¦“K—pƒ^ƒCƒv( DX_MV1_SHAPERATE_ADD ‚È‚Ç )
-	float					ShapeRate ;							// ‰e‹¿—¦
+	int						ShapeRateApplyType ;				// å½±éŸ¿ç‡é©ç”¨ã‚¿ã‚¤ãƒ—( DX_MV1_SHAPERATE_ADD ãªã© )
+	float					ShapeRate ;							// å½±éŸ¿ç‡
 } ;
 
-// ƒ‚ƒfƒ‹ŠK‘w\‘¢‘Ì
+// ãƒ¢ãƒ‡ãƒ«éšå±¤æ§‹é€ ä½“
 struct MV1_FRAME
 {
-	int						CheckID ;							// ƒ`ƒFƒbƒN‚h‚c( "MFRM" )
+	int						CheckID ;							// ãƒã‚§ãƒƒã‚¯ï¼©ï¼¤( "MFRM" )
 
-	int						ModelHandle ;						// ‚±‚ÌƒtƒŒ[ƒ€‚ğ‚Á‚Ä‚¢‚éƒ‚ƒfƒ‹‚Ìƒnƒ“ƒhƒ‹
-	struct MV1_MODEL		*Container ;						// ‚±‚ÌƒtƒŒ[ƒ€‚ğ‚Á‚Ä‚¢‚éƒ‚ƒfƒ‹‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	int						ModelHandle ;						// ã“ã®ãƒ•ãƒ¬ãƒ¼ãƒ ã‚’æŒã£ã¦ã„ã‚‹ãƒ¢ãƒ‡ãƒ«ã®ãƒãƒ³ãƒ‰ãƒ«
+	struct MV1_MODEL		*Container ;						// ã“ã®ãƒ•ãƒ¬ãƒ¼ãƒ ã‚’æŒã£ã¦ã„ã‚‹ãƒ¢ãƒ‡ãƒ«ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 
-	int						ChildIndex ;						// e‚Ì‰½”Ô–Ú‚Ìq‚©
-	MV1_FRAME_BASE			*BaseData ;							// ŠK‘w‚ÌŠî–{ƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	int						ChildIndex ;						// è¦ªã®ä½•ç•ªç›®ã®å­ã‹
+	MV1_FRAME_BASE			*BaseData ;							// éšå±¤ã®åŸºæœ¬ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 
-	struct MV1_FRAME		*Parent ;							// eŠK‘w‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	struct MV1_FRAME		*Child ;							// qŠK‘w‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	struct MV1_FRAME		*Prev ;								// ŒZŠK‘w‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	struct MV1_FRAME		*Next ;								// ’íŠK‘w‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	int						ChildNum ;							// q‚Ì”
-	struct MV1_FRAME		**ChildList ;						// qƒŠƒXƒg‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	struct MV1_FRAME		*Parent ;							// è¦ªéšå±¤ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	struct MV1_FRAME		*Child ;							// å­éšå±¤ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	struct MV1_FRAME		*Prev ;								// å…„éšå±¤ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	struct MV1_FRAME		*Next ;								// å¼Ÿéšå±¤ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	int						ChildNum ;							// å­ã®æ•°
+	struct MV1_FRAME		**ChildList ;						// å­ãƒªã‚¹ãƒˆã¸ã®ãƒã‚¤ãƒ³ã‚¿
 
-	bool					ValidUserLocalTransformMatrix ;		// ŠO•”w’è‚Ìƒ[ƒJƒ‹s—ñ‚ª—LŒø‚©‚Ç‚¤‚©( true:—LŒø  false:–³Œø )
-	MATRIX_4X4CT			UserLocalTransformMatrix ;			// ŠO•”w’è‚Ìƒ[ƒJƒ‹s—ñ
-	bool					ValidUserLocalWorldTransformMatrix ;// ŠO•”w’è‚Ìƒ[ƒJƒ‹¨ƒ[ƒ‹ƒhs—ñ‚ª—LŒø‚©‚Ç‚¤‚©( true:—LŒø  false:–³Œø )
-	MATRIX_4X4CT			UserLocalWorldTransformMatrix ;		// ŠO•”w’è‚Ìƒ[ƒJƒ‹¨ƒ[ƒ‹ƒhs—ñ
-	MV1_CHANGE				LocalWorldMatrixChange ;			// s—ñ‚Ìó‘Ô•Ï‰»ƒ`ƒFƒbƒN—pî•ñ
-	MATRIX_4X4CT			LocalWorldMatrix ;					// ƒ[ƒJƒ‹¨ƒ[ƒ‹ƒhs—ñ
-	bool					LocalWorldMatrixUseScaling ;		// ƒ[ƒJƒ‹¨ƒ[ƒ‹ƒhs—ñ‚ÅƒXƒP[ƒŠƒ“ƒO‚ªg—p‚³‚ê‚Ä‚¢‚é‚©‚Ç‚¤‚©( true:g—p‚³‚ê‚Ä‚¢‚é  false:g—p‚³‚ê‚Ä‚¢‚È‚¢ )
-	bool					ValidLocalWorldMatrixNM ;			// LocalWorldMatrixNM ‚ª—LŒø‚©‚Ç‚¤‚©( true:—LŒø  false:–³Œø )
-	MATRIX					LocalWorldMatrixNM ;				// ƒ[ƒJƒ‹¨ƒ[ƒ‹ƒhs—ñ( ŒÅ’è‹@”\ƒVƒF[ƒ_[—p )
+	bool					ValidUserLocalTransformMatrix ;		// å¤–éƒ¨æŒ‡å®šã®ãƒ­ãƒ¼ã‚«ãƒ«è¡Œåˆ—ãŒæœ‰åŠ¹ã‹ã©ã†ã‹( true:æœ‰åŠ¹  false:ç„¡åŠ¹ )
+	MATRIX_4X4CT			UserLocalTransformMatrix ;			// å¤–éƒ¨æŒ‡å®šã®ãƒ­ãƒ¼ã‚«ãƒ«è¡Œåˆ—
+	bool					ValidUserLocalWorldTransformMatrix ;// å¤–éƒ¨æŒ‡å®šã®ãƒ­ãƒ¼ã‚«ãƒ«â†’ãƒ¯ãƒ¼ãƒ«ãƒ‰è¡Œåˆ—ãŒæœ‰åŠ¹ã‹ã©ã†ã‹( true:æœ‰åŠ¹  false:ç„¡åŠ¹ )
+	MATRIX_4X4CT			UserLocalWorldTransformMatrix ;		// å¤–éƒ¨æŒ‡å®šã®ãƒ­ãƒ¼ã‚«ãƒ«â†’ãƒ¯ãƒ¼ãƒ«ãƒ‰è¡Œåˆ—
+	MV1_CHANGE				LocalWorldMatrixChange ;			// è¡Œåˆ—ã®çŠ¶æ…‹å¤‰åŒ–ãƒã‚§ãƒƒã‚¯ç”¨æƒ…å ±
+	MATRIX_4X4CT			LocalWorldMatrix ;					// ãƒ­ãƒ¼ã‚«ãƒ«â†’ãƒ¯ãƒ¼ãƒ«ãƒ‰è¡Œåˆ—
+	bool					LocalWorldMatrixUseScaling ;		// ãƒ­ãƒ¼ã‚«ãƒ«â†’ãƒ¯ãƒ¼ãƒ«ãƒ‰è¡Œåˆ—ã§ã‚¹ã‚±ãƒ¼ãƒªãƒ³ã‚°ãŒä½¿ç”¨ã•ã‚Œã¦ã„ã‚‹ã‹ã©ã†ã‹( true:ä½¿ç”¨ã•ã‚Œã¦ã„ã‚‹  false:ä½¿ç”¨ã•ã‚Œã¦ã„ãªã„ )
+	bool					ValidLocalWorldMatrixNM ;			// LocalWorldMatrixNM ãŒæœ‰åŠ¹ã‹ã©ã†ã‹( true:æœ‰åŠ¹  false:ç„¡åŠ¹ )
+	MATRIX					LocalWorldMatrixNM ;				// ãƒ­ãƒ¼ã‚«ãƒ«â†’ãƒ¯ãƒ¼ãƒ«ãƒ‰è¡Œåˆ—( å›ºå®šæ©Ÿèƒ½ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ç”¨ )
 
-	int						TextureAddressTransformUse ;		// ƒeƒNƒXƒ`ƒƒÀ•W•ÏŠ·s—ñ‚ğg—p‚·‚é‚©‚Ç‚¤‚©( TRUE:g—p‚·‚é  FALSE:g—p‚µ‚È‚¢ )
-	MATRIX					TextureAddressTransformMatrix ;		// ƒeƒNƒXƒ`ƒƒÀ•W•ÏŠ·s—ñ
+	int						TextureAddressTransformUse ;		// ãƒ†ã‚¯ã‚¹ãƒãƒ£åº§æ¨™å¤‰æ›è¡Œåˆ—ã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹( TRUE:ä½¿ç”¨ã™ã‚‹  FALSE:ä½¿ç”¨ã—ãªã„ )
+	MATRIX					TextureAddressTransformMatrix ;		// ãƒ†ã‚¯ã‚¹ãƒãƒ£åº§æ¨™å¤‰æ›è¡Œåˆ—
 
-	MATRIX_4X4CT			**UseSkinBoneMatrix ;				// g—p‚µ‚Ä‚¢‚éƒ{[ƒ“‚Ìs—ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^‚Ì”z—ñ
+	MATRIX_4X4CT			**UseSkinBoneMatrix ;				// ä½¿ç”¨ã—ã¦ã„ã‚‹ãƒœãƒ¼ãƒ³ã®è¡Œåˆ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã®é…åˆ—
 
-//	bool					SetupTransformPolygon ;				// ’¸“_•ÏŠ·‚ ‚èƒ|ƒŠƒSƒ“ƒŠƒXƒg‚ÌƒZƒbƒgƒAƒbƒv‚ªŠ®—¹‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©( true:Š®—¹‚µ‚Ä‚¢‚é  false:Š®—¹‚µ‚Ä‚¢‚È‚¢ )
-//	bool					SetupNonTransformPolygon ;			// ’¸“_•ÏŠ·‚È‚µƒ|ƒŠƒSƒ“ƒŠƒXƒg‚ÌƒZƒbƒgƒAƒbƒv‚ªŠ®—¹‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©( true:Š®—¹‚µ‚Ä‚¢‚é  false:Š®—¹‚µ‚Ä‚¢‚È‚¢ )
-//	MV1_REF_POLYGONLIST		*TransformPolygon ;					// ’¸“_•ÏŠ·‚ ‚èƒ|ƒŠƒSƒ“ƒŠƒXƒg
-//	MV1_REF_POLYGONLIST		*NonTransformPolygon ;				// ’¸“_•ÏŠ·‚È‚µƒ|ƒŠƒSƒ“ƒŠƒXƒg
+//	bool					SetupTransformPolygon ;				// é ‚ç‚¹å¤‰æ›ã‚ã‚Šãƒãƒªã‚´ãƒ³ãƒªã‚¹ãƒˆã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ãŒå®Œäº†ã—ã¦ã„ã‚‹ã‹ã©ã†ã‹( true:å®Œäº†ã—ã¦ã„ã‚‹  false:å®Œäº†ã—ã¦ã„ãªã„ )
+//	bool					SetupNonTransformPolygon ;			// é ‚ç‚¹å¤‰æ›ãªã—ãƒãƒªã‚´ãƒ³ãƒªã‚¹ãƒˆã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ãŒå®Œäº†ã—ã¦ã„ã‚‹ã‹ã©ã†ã‹( true:å®Œäº†ã—ã¦ã„ã‚‹  false:å®Œäº†ã—ã¦ã„ãªã„ )
+//	MV1_REF_POLYGONLIST		*TransformPolygon ;					// é ‚ç‚¹å¤‰æ›ã‚ã‚Šãƒãƒªã‚´ãƒ³ãƒªã‚¹ãƒˆ
+//	MV1_REF_POLYGONLIST		*NonTransformPolygon ;				// é ‚ç‚¹å¤‰æ›ãªã—ãƒãƒªã‚´ãƒ³ãƒªã‚¹ãƒˆ
 
-	bool					SetupRefPolygon[ 2 ][ 2 ] ;			// QÆ—pƒ|ƒŠƒSƒ“ƒŠƒXƒg‚ÌƒZƒbƒgƒAƒbƒv‚ªŠ®—¹‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©( true:Š®—¹‚µ‚Ä‚¢‚é  false:Š®—¹‚µ‚Ä‚¢‚È‚¢ )[ À•W•ÏŠ·‚ ‚è‚©‚Ç‚¤‚©( 1:‚ ‚è 0:‚È‚µ ) ][ À•W‚Ì‚İ‚©‚Ç‚¤‚©( 1:À•W‚Ì‚İ 0:‘S—v‘f‚ ‚è ) ]
-	MV1_REF_POLYGONLIST		*RefPolygon[ 2 ][ 2 ] ;				// QÆ—pƒ|ƒŠƒSƒ“ƒŠƒXƒg( [ À•W•ÏŠ·‚ ‚è‚©‚Ç‚¤‚©( 1:‚ ‚è 0:‚È‚µ ) ][ À•W‚Ì‚İ‚©‚Ç‚¤‚©( 1:À•W‚Ì‚İ 0:‘S—v‘f‚ ‚è ) ] )
+	bool					SetupRefPolygon[ 2 ][ 2 ] ;			// å‚ç…§ç”¨ãƒãƒªã‚´ãƒ³ãƒªã‚¹ãƒˆã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ãŒå®Œäº†ã—ã¦ã„ã‚‹ã‹ã©ã†ã‹( true:å®Œäº†ã—ã¦ã„ã‚‹  false:å®Œäº†ã—ã¦ã„ãªã„ )[ åº§æ¨™å¤‰æ›ã‚ã‚Šã‹ã©ã†ã‹( 1:ã‚ã‚Š 0:ãªã— ) ][ åº§æ¨™ã®ã¿ã‹ã©ã†ã‹( 1:åº§æ¨™ã®ã¿ 0:å…¨è¦ç´ ã‚ã‚Š ) ]
+	MV1_REF_POLYGONLIST		*RefPolygon[ 2 ][ 2 ] ;				// å‚ç…§ç”¨ãƒãƒªã‚´ãƒ³ãƒªã‚¹ãƒˆ( [ åº§æ¨™å¤‰æ›ã‚ã‚Šã‹ã©ã†ã‹( 1:ã‚ã‚Š 0:ãªã— ) ][ åº§æ¨™ã®ã¿ã‹ã©ã†ã‹( 1:åº§æ¨™ã®ã¿ 0:å…¨è¦ç´ ã‚ã‚Š ) ] )
 
-	bool					SetupCollision ;					// ƒRƒŠƒWƒ‡ƒ“î•ñ‚ÌƒZƒbƒgƒAƒbƒv‚ªŠ®—¹‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©( true:Š®—¹‚µ‚Ä‚¢‚é  false:Š®—¹‚µ‚Ä‚¢‚È‚¢ )
-	MV1_COLLISION			*Collision ;						// ƒRƒŠƒWƒ‡ƒ“î•ñ
+	bool					SetupCollision ;					// ã‚³ãƒªã‚¸ãƒ§ãƒ³æƒ…å ±ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ãŒå®Œäº†ã—ã¦ã„ã‚‹ã‹ã©ã†ã‹( true:å®Œäº†ã—ã¦ã„ã‚‹  false:å®Œäº†ã—ã¦ã„ãªã„ )
+	MV1_COLLISION			*Collision ;						// ã‚³ãƒªã‚¸ãƒ§ãƒ³æƒ…å ±
 
-	MV1_MESH				*Mesh ;								// ‚±‚ÌƒtƒŒ[ƒ€‚É‘®‚·‚éƒƒbƒVƒ…‚Ö‚Ìƒ|ƒCƒ“ƒ^( ƒƒbƒVƒ…‚Ì”‚Í BaseData->MeshNum )
+	MV1_MESH				*Mesh ;								// ã“ã®ãƒ•ãƒ¬ãƒ¼ãƒ ã«å±ã™ã‚‹ãƒ¡ãƒƒã‚·ãƒ¥ã¸ã®ãƒã‚¤ãƒ³ã‚¿( ãƒ¡ãƒƒã‚·ãƒ¥ã®æ•°ã¯ BaseData->MeshNum )
 
-	MV1_SHAPE				*Shape ;							// ‚±‚ÌƒtƒŒ[ƒ€‚É‘®‚·‚éƒVƒFƒCƒv‚Ö‚Ìƒ|ƒCƒ“ƒ^( ƒVƒFƒCƒv‚Ì”‚Í BaseData->ShapeNum )
+	MV1_SHAPE				*Shape ;							// ã“ã®ãƒ•ãƒ¬ãƒ¼ãƒ ã«å±ã™ã‚‹ã‚·ã‚§ã‚¤ãƒ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿( ã‚·ã‚§ã‚¤ãƒ—ã®æ•°ã¯ BaseData->ShapeNum )
 
-	bool					ShapeChangeFlag ;					// ƒVƒFƒCƒv‚Ìî•ñ‚ª•Ï‰»‚µ‚½‚©Aƒtƒ‰ƒO( true:•Ï‰»‚µ‚½  false:•Ï‰»‚µ‚Ä‚¢‚È‚¢ )
+	bool					ShapeChangeFlag ;					// ã‚·ã‚§ã‚¤ãƒ—ã®æƒ…å ±ãŒå¤‰åŒ–ã—ãŸã‹ã€ãƒ•ãƒ©ã‚°( true:å¤‰åŒ–ã—ãŸ  false:å¤‰åŒ–ã—ã¦ã„ãªã„ )
 
-	MV1_PHYSICS_RIGIDBODY	*PhysicsRigidBody ;					// „‘Ìî•ñ
+	MV1_PHYSICS_RIGIDBODY	*PhysicsRigidBody ;					// å‰›ä½“æƒ…å ±
 
-	MV1_CHANGE				DrawMaterialChange ;				// •`‰æ—pƒ}ƒeƒŠƒAƒ‹‚Ìó‘Ô•Ï‰»ƒ`ƒFƒbƒN—pî•ñ
-	MV1_DRAW_MATERIAL		DrawMaterial ;						// •`‰æ—pƒ}ƒeƒŠƒAƒ‹î•ñ
-	MV1_DRAW_MATERIAL		SetupDrawMaterial ;					// ãˆÊƒtƒŒ[ƒ€‚Ìî•ñ‚àl—¶‚µ‚½•`‰æ—pƒ}ƒeƒŠƒAƒ‹î•ñ
-	bool					SemiTransStateSetupFlag ;			// SemiTransState ‚ÌƒZƒbƒgƒAƒbƒv‚ªÏ‚ñ‚Å‚¢‚é‚©( true:Ï‚ñ‚Å‚¢‚é  false:Ï‚ñ‚Å‚¢‚È‚¢ )
-	bool					SemiTransState ;					// ‚±‚ÌƒtƒŒ[ƒ€‚É”¼“§–¾—v‘f‚ª‚ ‚é‚©‚Ç‚¤‚©( true:‚ ‚é  false:‚È‚¢ )
+	MV1_CHANGE				DrawMaterialChange ;				// æç”»ç”¨ãƒãƒ†ãƒªã‚¢ãƒ«ã®çŠ¶æ…‹å¤‰åŒ–ãƒã‚§ãƒƒã‚¯ç”¨æƒ…å ±
+	MV1_DRAW_MATERIAL		DrawMaterial ;						// æç”»ç”¨ãƒãƒ†ãƒªã‚¢ãƒ«æƒ…å ±
+	MV1_DRAW_MATERIAL		SetupDrawMaterial ;					// ä¸Šä½ãƒ•ãƒ¬ãƒ¼ãƒ ã®æƒ…å ±ã‚‚è€ƒæ…®ã—ãŸæç”»ç”¨ãƒãƒ†ãƒªã‚¢ãƒ«æƒ…å ±
+	bool					SemiTransStateSetupFlag ;			// SemiTransState ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ãŒæ¸ˆã‚“ã§ã„ã‚‹ã‹( true:æ¸ˆã‚“ã§ã„ã‚‹  false:æ¸ˆã‚“ã§ã„ãªã„ )
+	bool					SemiTransState ;					// ã“ã®ãƒ•ãƒ¬ãƒ¼ãƒ ã«åŠé€æ˜è¦ç´ ãŒã‚ã‚‹ã‹ã©ã†ã‹( true:ã‚ã‚‹  false:ãªã„ )
 } ;
 
-// ƒ‚ƒfƒ‹ƒAƒjƒ[ƒVƒ‡ƒ“î•ñ\‘¢‘Ì
+// ãƒ¢ãƒ‡ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³æƒ…å ±æ§‹é€ ä½“
 struct MV1_MODEL_ANIM
 {
-	bool					Use ;								// ‚±‚Ì\‘¢‘Ì‚ª—LŒø‚©‚Ç‚¤‚©( true :—LŒø  false:–³Œø )
-	float					BlendRate ;							// ƒuƒŒƒ“ƒh—¦
-	bool					EnableNowTime ;						// NowTime ‚ª—LŒø‚©‚Ç‚¤‚©( true:—LŒø  false:–³Œø )
-	float					NowTime ;							// ‚±‚ÌƒtƒŒ[ƒ€‚Å‚ÌƒAƒjƒ[ƒVƒ‡ƒ“ƒ^ƒCƒ€
-	MV1_ANIM				*Anim ;								// ƒAƒjƒ[ƒVƒ‡ƒ“î•ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	bool					Use ;								// ã“ã®æ§‹é€ ä½“ãŒæœ‰åŠ¹ã‹ã©ã†ã‹( true :æœ‰åŠ¹  false:ç„¡åŠ¹ )
+	float					BlendRate ;							// ãƒ–ãƒ¬ãƒ³ãƒ‰ç‡
+	bool					EnableNowTime ;						// NowTime ãŒæœ‰åŠ¹ã‹ã©ã†ã‹( true:æœ‰åŠ¹  false:ç„¡åŠ¹ )
+	float					NowTime ;							// ã“ã®ãƒ•ãƒ¬ãƒ¼ãƒ ã§ã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚¿ã‚¤ãƒ 
+	MV1_ANIM				*Anim ;								// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³æƒ…å ±ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 } ;
 
-// ƒ‚ƒfƒ‹ƒAƒjƒ[ƒVƒ‡ƒ“ƒZƒbƒgî•ñ\‘¢‘Ì
+// ãƒ¢ãƒ‡ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚»ãƒƒãƒˆæƒ…å ±æ§‹é€ ä½“
 struct MV1_MODEL_ANIMSET
 {
-	bool					Use ;								// ‚±‚Ì\‘¢‘Ì‚ª—LŒø‚©‚Ç‚¤‚©( true :—LŒø  false:–³Œø )
-	bool					DisableShapeFlag ;					// ƒVƒFƒCƒvƒAƒjƒ[ƒVƒ‡ƒ“‚ğ–³Œø‚É‚·‚é‚©‚Ç‚¤‚©
-	int						BaseDataHandle ;					// ƒ‚ƒfƒ‹Šî–{ƒf[ƒ^ƒnƒ“ƒhƒ‹
-	int						BaseDataAnimIndex ;					// ƒ‚ƒfƒ‹Šî–{ƒf[ƒ^’†‚ÌƒAƒjƒ[ƒVƒ‡ƒ“ƒf[ƒ^‚ÌƒCƒ“ƒfƒbƒNƒX
-	int						UseAnimNum ;						// “K‡‚µ‚Ä‚¢‚éƒAƒjƒ[ƒVƒ‡ƒ“‚Ì”
-	MV1_ANIMSET				*AnimSet ;							// ƒAƒjƒ[ƒVƒ‡ƒ“ƒZƒbƒgî•ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	bool					Use ;								// ã“ã®æ§‹é€ ä½“ãŒæœ‰åŠ¹ã‹ã©ã†ã‹( true :æœ‰åŠ¹  false:ç„¡åŠ¹ )
+	bool					DisableShapeFlag ;					// ã‚·ã‚§ã‚¤ãƒ—ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚’ç„¡åŠ¹ã«ã™ã‚‹ã‹ã©ã†ã‹
+	int						BaseDataHandle ;					// ãƒ¢ãƒ‡ãƒ«åŸºæœ¬ãƒ‡ãƒ¼ã‚¿ãƒãƒ³ãƒ‰ãƒ«
+	int						BaseDataAnimIndex ;					// ãƒ¢ãƒ‡ãƒ«åŸºæœ¬ãƒ‡ãƒ¼ã‚¿ä¸­ã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+	int						UseAnimNum ;						// é©åˆã—ã¦ã„ã‚‹ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®æ•°
+	MV1_ANIMSET				*AnimSet ;							// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚»ãƒƒãƒˆæƒ…å ±ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 } ;
 
-// ƒ‚ƒfƒ‹Às—p\‘¢‘Ì
+// ãƒ¢ãƒ‡ãƒ«å®Ÿè¡Œç”¨æ§‹é€ ä½“
 struct MV1_MODEL
 {
-	HANDLEINFO				HandleInfo ;						// ƒnƒ“ƒhƒ‹‹¤’Êƒf[ƒ^
+	HANDLEINFO				HandleInfo ;						// ãƒãƒ³ãƒ‰ãƒ«å…±é€šãƒ‡ãƒ¼ã‚¿
 
-	void					*DataBuffer ;						// ƒtƒŒ[ƒ€‚âƒ}ƒeƒŠƒAƒ‹‚âƒAƒjƒ[ƒVƒ‡ƒ“‚È‚Ç‚ğŠi”[‚·‚éƒoƒbƒtƒ@‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	void					*DataBuffer ;						// ãƒ•ãƒ¬ãƒ¼ãƒ ã‚„ãƒãƒ†ãƒªã‚¢ãƒ«ã‚„ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãªã©ã‚’æ ¼ç´ã™ã‚‹ãƒãƒƒãƒ•ã‚¡ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 
-	MV1_MODEL				*UseBaseDataNext ;					// “¯‚¶ƒ‚ƒfƒ‹Šî–{ƒf[ƒ^‚ğg—p‚µ‚Ä‚¢‚éŸ‚Ìƒ‚ƒfƒ‹ƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	MV1_MODEL				*UseBaseDataPrev ;					// “¯‚¶ƒ‚ƒfƒ‹Šî–{ƒf[ƒ^‚ğg—p‚µ‚Ä‚¢‚é‘O‚Ìƒ‚ƒfƒ‹ƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	MV1_MODEL				*UseBaseDataNext ;					// åŒã˜ãƒ¢ãƒ‡ãƒ«åŸºæœ¬ãƒ‡ãƒ¼ã‚¿ã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹æ¬¡ã®ãƒ¢ãƒ‡ãƒ«ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	MV1_MODEL				*UseBaseDataPrev ;					// åŒã˜ãƒ¢ãƒ‡ãƒ«åŸºæœ¬ãƒ‡ãƒ¼ã‚¿ã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹å‰ã®ãƒ¢ãƒ‡ãƒ«ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 
-	int						BaseDataHandle ;					// ƒ‚ƒfƒ‹‚ÌŠî–{ƒf[ƒ^‚Ìƒnƒ“ƒhƒ‹
-	MV1_MODEL_BASE			*BaseData ;							// ƒ‚ƒfƒ‹Šî–{ƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	int						BaseDataHandle ;					// ãƒ¢ãƒ‡ãƒ«ã®åŸºæœ¬ãƒ‡ãƒ¼ã‚¿ã®ãƒãƒ³ãƒ‰ãƒ«
+	MV1_MODEL_BASE			*BaseData ;							// ãƒ¢ãƒ‡ãƒ«åŸºæœ¬ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 
-	DWORD					*ChangeDrawMaterialFlag ;			// •`‰æ—pƒ}ƒeƒŠƒAƒ‹•ÏXŠm”F—pƒrƒbƒgƒf[ƒ^
-	DWORD					*ChangeMatrixFlag ;					// s—ñ•ÏXŠm”F—pƒrƒbƒgƒf[ƒ^
-	DWORD					ChangeDrawMaterialFlagSize ;		// •`‰æ—pƒ}ƒeƒŠƒAƒ‹•ÏXŠm”F—pƒrƒbƒgƒf[ƒ^‚ÌƒTƒCƒY( ƒoƒCƒg’PˆÊ )
-	DWORD					ChangeMatrixFlagSize ;				// s—ñ•ÏXŠm”F—pƒrƒbƒgƒf[ƒ^‚ÌƒTƒCƒY( ƒoƒCƒg’PˆÊ )
+	DWORD					*ChangeDrawMaterialFlag ;			// æç”»ç”¨ãƒãƒ†ãƒªã‚¢ãƒ«å¤‰æ›´ç¢ºèªç”¨ãƒ“ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿
+	DWORD					*ChangeMatrixFlag ;					// è¡Œåˆ—å¤‰æ›´ç¢ºèªç”¨ãƒ“ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿
+	DWORD					ChangeDrawMaterialFlagSize ;		// æç”»ç”¨ãƒãƒ†ãƒªã‚¢ãƒ«å¤‰æ›´ç¢ºèªç”¨ãƒ“ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã®ã‚µã‚¤ã‚º( ãƒã‚¤ãƒˆå˜ä½ )
+	DWORD					ChangeMatrixFlagSize ;				// è¡Œåˆ—å¤‰æ›´ç¢ºèªç”¨ãƒ“ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã®ã‚µã‚¤ã‚º( ãƒã‚¤ãƒˆå˜ä½ )
 
-	VECTOR_D				Translation ;						// •½sˆÚ“®’l
-	MV1_ROTATE				Rotation ;							// ‰ñ“]’l
-	VECTOR					Scale ;								// Šg‘å’l
-	MATRIX_4X4CT			Matrix ;							// s—ñ
-	bool					ValidMatrix ;						// s—ñ‚É—LŒø‚È’l‚ª“ü‚Á‚Ä‚¢‚é‚©( true:“ü‚Á‚Ä‚¢‚é  false:“ü‚Á‚Ä‚¢‚È‚¢ )
-	bool					NotUseFrameRotation ;				// ƒtƒŒ[ƒ€‚Ì‰ñ“]—v‘f‚ğg—p‚µ‚È‚¢‚©‚Ç‚¤‚©( PreRotate ‚Æ PostRotate ‚Íg—p‚·‚é )( true:g—p‚µ‚È‚¢  false:g—p‚·‚é )
+	VECTOR_D				Translation ;						// å¹³è¡Œç§»å‹•å€¤
+	MV1_ROTATE				Rotation ;							// å›è»¢å€¤
+	VECTOR					Scale ;								// æ‹¡å¤§å€¤
+	MATRIX_4X4CT			Matrix ;							// è¡Œåˆ—
+	bool					ValidMatrix ;						// è¡Œåˆ—ã«æœ‰åŠ¹ãªå€¤ãŒå…¥ã£ã¦ã„ã‚‹ã‹( true:å…¥ã£ã¦ã„ã‚‹  false:å…¥ã£ã¦ã„ãªã„ )
+	bool					NotUseFrameRotation ;				// ãƒ•ãƒ¬ãƒ¼ãƒ ã®å›è»¢è¦ç´ ã‚’ä½¿ç”¨ã—ãªã„ã‹ã©ã†ã‹( PreRotate ã¨ PostRotate ã¯ä½¿ç”¨ã™ã‚‹ )( true:ä½¿ç”¨ã—ãªã„  false:ä½¿ç”¨ã™ã‚‹ )
 
-	bool					LocalWorldMatrixSetupFlag ;			// ƒ‚ƒfƒ‹‚Æƒ‚ƒfƒ‹’†‚ÌƒtƒŒ[ƒ€‚Ìs—ñ‚ÌƒZƒbƒgƒAƒbƒv‚ªŠ®—¹‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©( true:Š®—¹‚µ‚Ä‚¢‚é  false:‚µ‚Ä‚¢‚È‚¢ )
-	MATRIX_4X4CT			LocalWorldMatrix ;					// ƒ[ƒJƒ‹¨ƒ[ƒ‹ƒhs—ñ
-	bool					LocalWorldMatrixUseScaling ;		// ƒ[ƒJƒ‹¨ƒ[ƒ‹ƒhs—ñ‚ÅƒXƒP[ƒŠƒ“ƒO‚ğg—p‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©( true:g—p‚µ‚Ä‚¢‚é  false:g—p‚µ‚Ä‚¢‚È‚¢ )
+	bool					LocalWorldMatrixSetupFlag ;			// ãƒ¢ãƒ‡ãƒ«ã¨ãƒ¢ãƒ‡ãƒ«ä¸­ã®ãƒ•ãƒ¬ãƒ¼ãƒ ã®è¡Œåˆ—ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ãŒå®Œäº†ã—ã¦ã„ã‚‹ã‹ã©ã†ã‹( true:å®Œäº†ã—ã¦ã„ã‚‹  false:ã—ã¦ã„ãªã„ )
+	MATRIX_4X4CT			LocalWorldMatrix ;					// ãƒ­ãƒ¼ã‚«ãƒ«â†’ãƒ¯ãƒ¼ãƒ«ãƒ‰è¡Œåˆ—
+	bool					LocalWorldMatrixUseScaling ;		// ãƒ­ãƒ¼ã‚«ãƒ«â†’ãƒ¯ãƒ¼ãƒ«ãƒ‰è¡Œåˆ—ã§ã‚¹ã‚±ãƒ¼ãƒªãƒ³ã‚°ã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹ã‹ã©ã†ã‹( true:ä½¿ç”¨ã—ã¦ã„ã‚‹  false:ä½¿ç”¨ã—ã¦ã„ãªã„ )
 
-	MV1_FRAME				*Frame ;							// ƒtƒŒ[ƒ€î•ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	int						TopFrameNum ;						// ÅãˆÊƒtƒŒ[ƒ€‚Ì”
-	MV1_FRAME				**TopFrameList ;					// ÅãˆÊƒtƒŒ[ƒ€ƒŠƒXƒg‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	MATRIX_4X4CT			**SkinBoneUseFrameMatrix ;			// ƒXƒLƒjƒ“ƒOƒƒbƒVƒ…‚ªg—p‚µ‚Ä‚¢‚éƒ{[ƒ“‚Ìs—ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^‚Ì”z—ñ
+	MV1_FRAME				*Frame ;							// ãƒ•ãƒ¬ãƒ¼ãƒ æƒ…å ±ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	int						TopFrameNum ;						// æœ€ä¸Šä½ãƒ•ãƒ¬ãƒ¼ãƒ ã®æ•°
+	MV1_FRAME				**TopFrameList ;					// æœ€ä¸Šä½ãƒ•ãƒ¬ãƒ¼ãƒ ãƒªã‚¹ãƒˆã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	MATRIX_4X4CT			**SkinBoneUseFrameMatrix ;			// ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥ãŒä½¿ç”¨ã—ã¦ã„ã‚‹ãƒœãƒ¼ãƒ³ã®è¡Œåˆ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã®é…åˆ—
 
-	MATRIX_4X4CT			*SkinBoneMatrix ;					// BaseData->SkinBone->ModelLocalMatrix ‚Æ BaseData->SkinBone->Frame ‚ª¦‚·ƒtƒŒ[ƒ€‚Ì LocalWorldMatrix ‚ğæZ‚µ‚½‚à‚Ì‚Ì”z—ñ
+	MATRIX_4X4CT			*SkinBoneMatrix ;					// BaseData->SkinBone->ModelLocalMatrix ã¨ BaseData->SkinBone->Frame ãŒç¤ºã™ãƒ•ãƒ¬ãƒ¼ãƒ ã® LocalWorldMatrix ã‚’ä¹—ç®—ã—ãŸã‚‚ã®ã®é…åˆ—
 
-	int						PackDrawStockNum ;					// “¯•¡”•`‰æ—p‚É—­‚Ü‚Á‚Ä‚¢‚é•`‰æî•ñ‚Ì”
-	MATRIX_4X4CT_F			*PackDrawMatrix ;					// “¯•¡”•`‰æ‚Åg—p‚·‚és—ñ‚Ì”z—ñ
+	int						PackDrawStockNum ;					// åŒæ™‚è¤‡æ•°æç”»ç”¨ã«æºœã¾ã£ã¦ã„ã‚‹æç”»æƒ…å ±ã®æ•°
+	MATRIX_4X4CT_F			*PackDrawMatrix ;					// åŒæ™‚è¤‡æ•°æç”»ã§ä½¿ç”¨ã™ã‚‹è¡Œåˆ—ã®é…åˆ—
 
-	MV1_SHAPE_VERTEX		*ShapeVertex ;						// ƒVƒFƒCƒv’¸“_î•ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	bool					ShapeChangeFlag ;					// ƒVƒFƒCƒv‚Ìî•ñ‚ª•Ï‰»‚µ‚½‚©Aƒtƒ‰ƒO( true:•Ï‰»‚µ‚½  false:•Ï‰»‚µ‚Ä‚¢‚È‚¢ )
-	bool					ShapeDisableFlag ;					// ƒVƒFƒCƒv‚ğg—p‚µ‚È‚¢‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO( true:g—p‚µ‚È‚¢  false:g—p‚·‚é )
+	MV1_SHAPE_VERTEX		*ShapeVertex ;						// ã‚·ã‚§ã‚¤ãƒ—é ‚ç‚¹æƒ…å ±ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	bool					ShapeChangeFlag ;					// ã‚·ã‚§ã‚¤ãƒ—ã®æƒ…å ±ãŒå¤‰åŒ–ã—ãŸã‹ã€ãƒ•ãƒ©ã‚°( true:å¤‰åŒ–ã—ãŸ  false:å¤‰åŒ–ã—ã¦ã„ãªã„ )
+	bool					ShapeDisableFlag ;					// ã‚·ã‚§ã‚¤ãƒ—ã‚’ä½¿ç”¨ã—ãªã„ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°( true:ä½¿ç”¨ã—ãªã„  false:ä½¿ç”¨ã™ã‚‹ )
 
-	MV1_PHYSICS_RIGIDBODY	*PhysicsRigidBody ;					// „‘Ìî•ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	MV1_PHYSICS_JOINT		*PhysicsJoint ;						// ƒWƒ‡ƒCƒ“ƒgî•ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	int						PhysicsResetRequestFlag ;			// ƒŠƒZƒbƒgƒŠƒNƒGƒXƒgƒtƒ‰ƒO
-	int						PrioritizePhysicsOverAnimFlag ;		// •¨—‰‰Z‚ğƒAƒjƒ[ƒVƒ‡ƒ“‚æ‚è—Dæ‚·‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO( TRUE:•¨—‰‰Z‚ğ—Dæ‚·‚é  FALSE:ƒAƒjƒ[ƒVƒ‡ƒ“‚ğ—Dæ‚·‚é )
+	MV1_PHYSICS_RIGIDBODY	*PhysicsRigidBody ;					// å‰›ä½“æƒ…å ±ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	MV1_PHYSICS_JOINT		*PhysicsJoint ;						// ã‚¸ãƒ§ã‚¤ãƒ³ãƒˆæƒ…å ±ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	int						PhysicsResetRequestFlag ;			// ãƒªã‚»ãƒƒãƒˆãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ•ãƒ©ã‚°
+	int						PrioritizePhysicsOverAnimFlag ;		// ç‰©ç†æ¼”ç®—ã‚’ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚ˆã‚Šå„ªå…ˆã™ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°( TRUE:ç‰©ç†æ¼”ç®—ã‚’å„ªå…ˆã™ã‚‹  FALSE:ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚’å„ªå…ˆã™ã‚‹ )
 
-	MV1_TRIANGLE_LIST		*TriangleList ;						// ƒgƒ‰ƒCƒAƒ“ƒOƒ‹ƒŠƒXƒgî•ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	MV1_MESH				*Mesh ;								// ƒƒbƒVƒ…î•ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	MV1_SHAPE				*Shape ;							// ƒVƒFƒCƒvî•ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	MV1_MATERIAL			*Material ;							// ƒ}ƒeƒŠƒAƒ‹î•ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	MV1_TEXTURE				*Texture ;							// ƒeƒNƒXƒ`ƒƒî•ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	int						TextureAllocMem ;					// ƒeƒNƒXƒ`ƒƒƒf[ƒ^—p‚Éƒƒ‚ƒŠ‚ğŠm•Û‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©( TRUE:‚µ‚Ä‚¢‚é  FALSE:‚µ‚Ä‚¢‚È‚¢ )
+	MV1_TRIANGLE_LIST		*TriangleList ;						// ãƒˆãƒ©ã‚¤ã‚¢ãƒ³ã‚°ãƒ«ãƒªã‚¹ãƒˆæƒ…å ±ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	MV1_MESH				*Mesh ;								// ãƒ¡ãƒƒã‚·ãƒ¥æƒ…å ±ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	MV1_SHAPE				*Shape ;							// ã‚·ã‚§ã‚¤ãƒ—æƒ…å ±ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	MV1_MATERIAL			*Material ;							// ãƒãƒ†ãƒªã‚¢ãƒ«æƒ…å ±ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	MV1_TEXTURE				*Texture ;							// ãƒ†ã‚¯ã‚¹ãƒãƒ£æƒ…å ±ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	int						TextureAllocMem ;					// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‡ãƒ¼ã‚¿ç”¨ã«ãƒ¡ãƒ¢ãƒªã‚’ç¢ºä¿ã—ã¦ã„ã‚‹ã‹ã©ã†ã‹( TRUE:ã—ã¦ã„ã‚‹  FALSE:ã—ã¦ã„ãªã„ )
 
-	MV1_TLIST_NORMAL_POS	*ShapeNormalPosition ;				// ƒVƒFƒCƒv—pƒgƒ‰ƒCƒAƒ“ƒOƒ‹ƒŠƒXƒg‚Ìƒ{[ƒ“î•ñ–³‚µÀ•Wƒf[ƒ^
-	MV1_TLIST_SKIN_POS_4B	*ShapeSkinPosition4B ;				// ƒVƒFƒCƒv—pƒgƒ‰ƒCƒAƒ“ƒOƒ‹ƒŠƒXƒg‚Ì‚Sƒ{[ƒ“ƒXƒLƒjƒ“ƒOƒƒbƒVƒ…À•Wƒf[ƒ^
-	MV1_TLIST_SKIN_POS_8B	*ShapeSkinPosition8B ;				// ƒVƒFƒCƒv—pƒgƒ‰ƒCƒAƒ“ƒOƒ‹ƒŠƒXƒg‚Ì‚Wƒ{[ƒ“ƒXƒLƒjƒ“ƒOƒƒbƒVƒ…À•Wƒf[ƒ^
-	MV1_TLIST_SKIN_POS_FREEB *ShapeSkinPositionFREEB ;			// ƒVƒFƒCƒv—pƒgƒ‰ƒCƒAƒ“ƒOƒ‹ƒŠƒXƒg‚Ì‚Xƒ{[ƒ“ˆÈãƒXƒLƒjƒ“ƒOƒƒbƒVƒ…À•Wƒf[ƒ^
+	MV1_TLIST_NORMAL_POS	*ShapeNormalPosition ;				// ã‚·ã‚§ã‚¤ãƒ—ç”¨ãƒˆãƒ©ã‚¤ã‚¢ãƒ³ã‚°ãƒ«ãƒªã‚¹ãƒˆã®ãƒœãƒ¼ãƒ³æƒ…å ±ç„¡ã—åº§æ¨™ãƒ‡ãƒ¼ã‚¿
+	MV1_TLIST_SKIN_POS_4B	*ShapeSkinPosition4B ;				// ã‚·ã‚§ã‚¤ãƒ—ç”¨ãƒˆãƒ©ã‚¤ã‚¢ãƒ³ã‚°ãƒ«ãƒªã‚¹ãƒˆã®ï¼”ãƒœãƒ¼ãƒ³ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥åº§æ¨™ãƒ‡ãƒ¼ã‚¿
+	MV1_TLIST_SKIN_POS_8B	*ShapeSkinPosition8B ;				// ã‚·ã‚§ã‚¤ãƒ—ç”¨ãƒˆãƒ©ã‚¤ã‚¢ãƒ³ã‚°ãƒ«ãƒªã‚¹ãƒˆã®ï¼˜ãƒœãƒ¼ãƒ³ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥åº§æ¨™ãƒ‡ãƒ¼ã‚¿
+	MV1_TLIST_SKIN_POS_FREEB *ShapeSkinPositionFREEB ;			// ã‚·ã‚§ã‚¤ãƒ—ç”¨ãƒˆãƒ©ã‚¤ã‚¢ãƒ³ã‚°ãƒ«ãƒªã‚¹ãƒˆã®ï¼™ãƒœãƒ¼ãƒ³ä»¥ä¸Šã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥åº§æ¨™ãƒ‡ãƒ¼ã‚¿
 
-	bool					SetupRefPolygon[ 2 ][ 2 ] ;			// QÆ—pƒ|ƒŠƒSƒ“ƒŠƒXƒg‚ÌƒZƒbƒgƒAƒbƒv‚ªŠ®—¹‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©( true:Š®—¹‚µ‚Ä‚¢‚é  false:Š®—¹‚µ‚Ä‚¢‚È‚¢ )[ À•W•ÏŠ·‚ ‚è‚©‚Ç‚¤‚©( 1:‚ ‚è 0:‚È‚µ ) ][ À•W‚Ì‚İ‚©‚Ç‚¤‚©( 1:À•W‚Ì‚İ 0:‘S—v‘f‚ ‚è ) ]
-	MV1_REF_POLYGONLIST		*RefPolygon[ 2 ][ 2 ] ;				// QÆ—pƒ|ƒŠƒSƒ“ƒŠƒXƒg( [ À•W•ÏŠ·‚ ‚è‚©‚Ç‚¤‚©( 1:‚ ‚è 0:‚È‚µ ) ][ À•W‚Ì‚İ‚©‚Ç‚¤‚©( 1:À•W‚Ì‚İ 0:‘S—v‘f‚ ‚è ) ] )
+	bool					SetupRefPolygon[ 2 ][ 2 ] ;			// å‚ç…§ç”¨ãƒãƒªã‚´ãƒ³ãƒªã‚¹ãƒˆã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ãŒå®Œäº†ã—ã¦ã„ã‚‹ã‹ã©ã†ã‹( true:å®Œäº†ã—ã¦ã„ã‚‹  false:å®Œäº†ã—ã¦ã„ãªã„ )[ åº§æ¨™å¤‰æ›ã‚ã‚Šã‹ã©ã†ã‹( 1:ã‚ã‚Š 0:ãªã— ) ][ åº§æ¨™ã®ã¿ã‹ã©ã†ã‹( 1:åº§æ¨™ã®ã¿ 0:å…¨è¦ç´ ã‚ã‚Š ) ]
+	MV1_REF_POLYGONLIST		*RefPolygon[ 2 ][ 2 ] ;				// å‚ç…§ç”¨ãƒãƒªã‚´ãƒ³ãƒªã‚¹ãƒˆ( [ åº§æ¨™å¤‰æ›ã‚ã‚Šã‹ã©ã†ã‹( 1:ã‚ã‚Š 0:ãªã— ) ][ åº§æ¨™ã®ã¿ã‹ã©ã†ã‹( 1:åº§æ¨™ã®ã¿ 0:å…¨è¦ç´ ã‚ã‚Š ) ] )
 
-//	bool					SetupTransformPolygon ;				// ’¸“_•ÏŠ·‚ ‚èƒ|ƒŠƒSƒ“ƒŠƒXƒg‚ÌƒZƒbƒgƒAƒbƒv‚ªŠ®—¹‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©( true:Š®—¹‚µ‚Ä‚¢‚é  false:Š®—¹‚µ‚Ä‚¢‚È‚¢ )
-//	bool					SetupNonTransformPolygon ;			// ’¸“_•ÏŠ·‚È‚µƒ|ƒŠƒSƒ“ƒŠƒXƒg‚ÌƒZƒbƒgƒAƒbƒv‚ªŠ®—¹‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©( true:Š®—¹‚µ‚Ä‚¢‚é  false:Š®—¹‚µ‚Ä‚¢‚È‚¢ )
-//	MV1_REF_POLYGONLIST		*TransformPolygon ;					// ’¸“_•ÏŠ·‚ ‚èƒ|ƒŠƒSƒ“ƒŠƒXƒg
-//	MV1_REF_POLYGONLIST		*NonTransformPolygon ;				// ’¸“_•ÏŠ·‚È‚µƒ|ƒŠƒSƒ“ƒŠƒXƒg
+//	bool					SetupTransformPolygon ;				// é ‚ç‚¹å¤‰æ›ã‚ã‚Šãƒãƒªã‚´ãƒ³ãƒªã‚¹ãƒˆã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ãŒå®Œäº†ã—ã¦ã„ã‚‹ã‹ã©ã†ã‹( true:å®Œäº†ã—ã¦ã„ã‚‹  false:å®Œäº†ã—ã¦ã„ãªã„ )
+//	bool					SetupNonTransformPolygon ;			// é ‚ç‚¹å¤‰æ›ãªã—ãƒãƒªã‚´ãƒ³ãƒªã‚¹ãƒˆã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ãŒå®Œäº†ã—ã¦ã„ã‚‹ã‹ã©ã†ã‹( true:å®Œäº†ã—ã¦ã„ã‚‹  false:å®Œäº†ã—ã¦ã„ãªã„ )
+//	MV1_REF_POLYGONLIST		*TransformPolygon ;					// é ‚ç‚¹å¤‰æ›ã‚ã‚Šãƒãƒªã‚´ãƒ³ãƒªã‚¹ãƒˆ
+//	MV1_REF_POLYGONLIST		*NonTransformPolygon ;				// é ‚ç‚¹å¤‰æ›ãªã—ãƒãƒªã‚´ãƒ³ãƒªã‚¹ãƒˆ
 
-	bool					SetupCollision ;					// ƒRƒŠƒWƒ‡ƒ“î•ñ‚ÌƒZƒbƒgƒAƒbƒv‚ªŠ®—¹‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©( true:Š®—¹‚µ‚Ä‚¢‚é  false:Š®—¹‚µ‚Ä‚¢‚È‚¢ )
-	MV1_COLLISION			*Collision ;						// ƒRƒŠƒWƒ‡ƒ“î•ñ
+	bool					SetupCollision ;					// ã‚³ãƒªã‚¸ãƒ§ãƒ³æƒ…å ±ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ãŒå®Œäº†ã—ã¦ã„ã‚‹ã‹ã©ã†ã‹( true:å®Œäº†ã—ã¦ã„ã‚‹  false:å®Œäº†ã—ã¦ã„ãªã„ )
+	MV1_COLLISION			*Collision ;						// ã‚³ãƒªã‚¸ãƒ§ãƒ³æƒ…å ±
 
-	int						AnimSetNum ;						// ƒZƒbƒg‚³‚ê‚Ä‚¢‚éƒAƒjƒ[ƒVƒ‡ƒ“ƒZƒbƒg‚Ì”
-	int						AnimSetMaxNum ;						// Œ»İƒZƒbƒg‚Å‚«‚éƒAƒjƒ[ƒVƒ‡ƒ“ƒZƒbƒg‚ÌÅ‘å”
-	MV1_MODEL_ANIMSET		*AnimSet ;							// ƒAƒjƒ[ƒVƒ‡ƒ“ƒZƒbƒgî•ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^”z—ñ
-	MV1_MODEL_ANIM			*Anim ;								// ƒAƒjƒ[ƒVƒ‡ƒ“î•ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^”z—ñ
-	bool					AnimSetupFlag ;						// ƒAƒjƒ[ƒVƒ‡ƒ“‚Ìƒpƒ‰ƒ[ƒ^‚ğŒ³‚É‚µ‚½s—ñ‚ÌƒZƒbƒgƒAƒbƒv‚ªŠ®—¹‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©( true:Š®—¹‚µ‚Ä‚¢‚é  false:Š®—¹‚µ‚Ä‚¢‚È‚¢ )
+	int						AnimSetNum ;						// ã‚»ãƒƒãƒˆã•ã‚Œã¦ã„ã‚‹ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚»ãƒƒãƒˆã®æ•°
+	int						AnimSetMaxNum ;						// ç¾åœ¨ã‚»ãƒƒãƒˆã§ãã‚‹ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚»ãƒƒãƒˆã®æœ€å¤§æ•°
+	MV1_MODEL_ANIMSET		*AnimSet ;							// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚»ãƒƒãƒˆæƒ…å ±ã¸ã®ãƒã‚¤ãƒ³ã‚¿é…åˆ—
+	MV1_MODEL_ANIM			*Anim ;								// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³æƒ…å ±ã¸ã®ãƒã‚¤ãƒ³ã‚¿é…åˆ—
+	bool					AnimSetupFlag ;						// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’å…ƒã«ã—ãŸè¡Œåˆ—ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ãŒå®Œäº†ã—ã¦ã„ã‚‹ã‹ã©ã†ã‹( true:å®Œäº†ã—ã¦ã„ã‚‹  false:å®Œäº†ã—ã¦ã„ãªã„ )
 
-	MV1_DRAW_MATERIAL		DrawMaterial ;						// •`‰æ—pƒ}ƒeƒŠƒAƒ‹î•ñ
-	bool					SemiTransStateSetupFlag ;			// SemiTransState ‚ÌƒZƒbƒgƒAƒbƒv‚ªÏ‚ñ‚Å‚¢‚é‚©( true:Ï‚ñ‚Å‚¢‚é  false:Ï‚ñ‚Å‚¢‚È‚¢ )
-	bool					SemiTransState ;					// ‚±‚Ìƒ‚ƒfƒ‹‚É”¼“§–¾—v‘f‚ª‚ ‚é‚©‚Ç‚¤‚©( true:‚ ‚é  false:‚È‚¢ )
-	bool					UseDrawMulAlphaColor ;				// ƒAƒ‹ƒtƒ@’l‚ÆæZ‚µ‚½ƒJƒ‰[‚Å•`‰æ‚·‚é‚©‚Ç‚¤‚©( true:æZ‚·‚é  false:æZ‚µ‚È‚¢ )
+	MV1_DRAW_MATERIAL		DrawMaterial ;						// æç”»ç”¨ãƒãƒ†ãƒªã‚¢ãƒ«æƒ…å ±
+	bool					SemiTransStateSetupFlag ;			// SemiTransState ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ãŒæ¸ˆã‚“ã§ã„ã‚‹ã‹( true:æ¸ˆã‚“ã§ã„ã‚‹  false:æ¸ˆã‚“ã§ã„ãªã„ )
+	bool					SemiTransState ;					// ã“ã®ãƒ¢ãƒ‡ãƒ«ã«åŠé€æ˜è¦ç´ ãŒã‚ã‚‹ã‹ã©ã†ã‹( true:ã‚ã‚‹  false:ãªã„ )
+	bool					UseDrawMulAlphaColor ;				// ã‚¢ãƒ«ãƒ•ã‚¡å€¤ã¨ä¹—ç®—ã—ãŸã‚«ãƒ©ãƒ¼ã§æç”»ã™ã‚‹ã‹ã©ã†ã‹( true:ä¹—ç®—ã™ã‚‹  false:ä¹—ç®—ã—ãªã„ )
 
-	int						MeshCategoryHide[ DX_MV1_MESHCATEGORY_NUM ] ;	// ƒJƒeƒSƒŠ•Ê‚ÌƒƒbƒVƒ…”ñ•\¦ƒtƒ‰ƒO
-	int						EnableZBufferFlag ;					// ‚yƒoƒbƒtƒ@‚Ì—LŒøƒtƒ‰ƒO
-	int						WriteZBufferFlag ;					// ‚yƒoƒbƒtƒ@‚ÌXV‚ğs‚¤‚©Aƒtƒ‰ƒO
-	int						ZBufferCmpType ;					// ‚y’l‚Ì”äŠrƒ‚[ƒh
-	int						ZBias ;								// ‚yƒoƒCƒAƒX
+	int						MeshCategoryHide[ DX_MV1_MESHCATEGORY_NUM ] ;	// ã‚«ãƒ†ã‚´ãƒªåˆ¥ã®ãƒ¡ãƒƒã‚·ãƒ¥éè¡¨ç¤ºãƒ•ãƒ©ã‚°
+	int						EnableZBufferFlag ;					// ï¼ºãƒãƒƒãƒ•ã‚¡ã®æœ‰åŠ¹ãƒ•ãƒ©ã‚°
+	int						WriteZBufferFlag ;					// ï¼ºãƒãƒƒãƒ•ã‚¡ã®æ›´æ–°ã‚’è¡Œã†ã‹ã€ãƒ•ãƒ©ã‚°
+	int						ZBufferCmpType ;					// ï¼ºå€¤ã®æ¯”è¼ƒãƒ¢ãƒ¼ãƒ‰
+	int						ZBias ;								// ï¼ºãƒã‚¤ã‚¢ã‚¹
 
-	bool					WireFrame ;							// ƒƒCƒ„[ƒtƒŒ[ƒ€•`‰æ‚ğ‚·‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO
+	bool					WireFrame ;							// ãƒ¯ã‚¤ãƒ¤ãƒ¼ãƒ•ãƒ¬ãƒ¼ãƒ æç”»ã‚’ã™ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°
 
-	int						MaxAnisotropy ;						// ˆÙ•û«ƒtƒBƒ‹ƒ^ƒŠƒ“ƒO‚ÌÅ‘åŸ”
+	int						MaxAnisotropy ;						// ç•°æ–¹æ€§ãƒ•ã‚£ãƒ«ã‚¿ãƒªãƒ³ã‚°ã®æœ€å¤§æ¬¡æ•°
 
-	float					PhysicsGravity ;					// •¨—‰‰Z‚Åg—p‚·‚éd—Íƒpƒ‰ƒ[ƒ^
-	DWORD					BulletPhysicsDataBuffer[ 32 ] ;		// BULLET_PHYSICS ‚ğŠi”[‚·‚éƒoƒbƒtƒ@
+	float					PhysicsGravity ;					// ç‰©ç†æ¼”ç®—ã§ä½¿ç”¨ã™ã‚‹é‡åŠ›ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+	DWORD					BulletPhysicsDataBuffer[ 32 ] ;		// BULLET_PHYSICS ã‚’æ ¼ç´ã™ã‚‹ãƒãƒƒãƒ•ã‚¡
 } ;
 
 
@@ -1410,211 +1410,211 @@ struct MV1_MODEL
 
 
 
-// ƒ‚ƒfƒ‹ƒf[ƒ^ŠÇ——p\‘¢‘Ì
+// ãƒ¢ãƒ‡ãƒ«ãƒ‡ãƒ¼ã‚¿ç®¡ç†ç”¨æ§‹é€ ä½“
 struct MV1_MODEL_MANAGE
 {
-	bool					Initialize ;							// ‰Šú‰»Ï‚İ‚©Aƒtƒ‰ƒO( true:‰Šú‰»Ï‚İ  false:–¢‰Šú‰» )
+	bool					Initialize ;							// åˆæœŸåŒ–æ¸ˆã¿ã‹ã€ãƒ•ãƒ©ã‚°( true:åˆæœŸåŒ–æ¸ˆã¿  false:æœªåˆæœŸåŒ– )
 
-	int						UseOrigShaderFlag ;						// ƒ‚ƒfƒ‹‚Ì•`‰æ‚É SetUseVertexShader, SetUsePixelShader ‚Åw’è‚µ‚½ƒVƒF[ƒ_[‚ğg—p‚·‚é‚©‚Ç‚¤‚©( TRUE:g—p‚·‚é  FALSE:g—p‚µ‚È‚¢( ƒfƒtƒHƒ‹ƒg ) )
-	int						DrawMode ;								// •`‰æƒ‚[ƒh( DX_MV1_DRAWMODE_NORMAL ‚È‚Ç )
-	int						SemiTransDrawMode ;						// ƒ‚ƒfƒ‹‚Ì”¼“§–¾—v‘f‚ª‚ ‚é•”•ª‚É‚Â‚¢‚Ä‚Ì•`‰æƒ‚[ƒh( DX_SEMITRANSDRAWMODE_ALWAYS “™ )
+	int						UseOrigShaderFlag ;						// ãƒ¢ãƒ‡ãƒ«ã®æç”»ã« SetUseVertexShader, SetUsePixelShader ã§æŒ‡å®šã—ãŸã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹( TRUE:ä½¿ç”¨ã™ã‚‹  FALSE:ä½¿ç”¨ã—ãªã„( ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ ) )
+	int						DrawMode ;								// æç”»ãƒ¢ãƒ¼ãƒ‰( DX_MV1_DRAWMODE_NORMAL ãªã© )
+	int						SemiTransDrawMode ;						// ãƒ¢ãƒ‡ãƒ«ã®åŠé€æ˜è¦ç´ ãŒã‚ã‚‹éƒ¨åˆ†ã«ã¤ã„ã¦ã®æç”»ãƒ¢ãƒ¼ãƒ‰( DX_SEMITRANSDRAWMODE_ALWAYS ç­‰ )
 
-	int						LoadModelToReMakeNormal ;				// ƒ‚ƒfƒ‹‚Ì“Ç‚İ‚İˆ—‚Å–@ü‚ÌÄŒvZ‚ğs‚¤‚©‚Ç‚¤‚©( TRUE:s‚¤  FALSE:s‚í‚È‚¢ )
-	float					LoadModelToReMakeNormalSmoothingAngle ;	// ƒ‚ƒfƒ‹‚Ì“Ç‚İ‚İˆ—‚És‚¤–@ò‚ÌÄŒvZ‚Åg—p‚·‚éƒXƒ€[ƒWƒ“ƒOŠp“x( ’PˆÊ‚Íƒ‰ƒWƒAƒ“ )
-	int						LoadModelToIgnoreScaling ;				// ƒ‚ƒfƒ‹‚ğ“Ç‚İ‚ŞÛ‚ÉƒXƒP[ƒŠƒ“ƒOƒf[ƒ^‚ğ–³‹‚·‚é‚©‚Ç‚¤‚©( TRUE:–³‹‚·‚é  FALSE:–³‹‚µ‚È‚¢ )
-	int						LoadModelToPositionOptimize ;			// ƒ‚ƒfƒ‹‚Ì“Ç‚İ‚İˆ—‚ÅÀ•W‚ÌÅ“K‰»ˆ—‚ğs‚¤‚©‚Ç‚¤‚©( TRUE:s‚¤  FALSE:s‚í‚È‚¢ )
-	int						LoadModelToNotEqNormalSideAddZeroAreaPolygon ;	// ƒ‚ƒfƒ‹‚ğ“Ç‚İ‚ŞÛ‚Éƒ|ƒŠƒSƒ“‚Ì•Ó‚ªÚ‚µ‚Ä‚¢‚ÄAŠ‚Â–@ü‚Ì•ûŒü‚ªˆÙ‚È‚é•Ó‚É–ÊÏ‚O‚Ìƒ|ƒŠƒSƒ“‚ğ–„‚ß‚Ş‚©‚Ç‚¤‚©( TRUE:–„‚ß‚Ş@FALSE:–„‚ß‚Ü‚È‚¢( ƒfƒtƒHƒ‹ƒg ) )
-	int						LoadModelToUsePhysicsMode ;				// “Ç‚İ‚Şƒ‚ƒfƒ‹‚Ì•¨—‰‰Zƒ‚[ƒh‚ğİ’è‚·‚é( DX_LOADMODEL_PHYSICS_LOADCALC “™ )
-	int						LoadModelToWorldGravityInitialize ;		// “Ç‚İ‚Şƒ‚ƒfƒ‹‚Ì•¨—‰‰Z‚É“K—p‚·‚éd—Íƒpƒ‰ƒ[ƒ^‚ª‰Šú‰»‚³‚ê‚½‚©‚Ç‚¤‚©
-	float					LoadModelToWorldGravity ;				// “Ç‚İ‚Şƒ‚ƒfƒ‹‚Ì•¨—‰‰Z‚É“K—p‚·‚éd—Íƒpƒ‰ƒ[ƒ^
-	int						LoadModelToPhysicsCalcPrecision ;		// “Ç‚İ‚Şƒ‚ƒfƒ‹‚Ì•¨—‰‰Zƒ‚[ƒh‚ª–‘OŒvZ( DX_LOADMODEL_PHYSICS_LOADCALC )‚¾‚Á‚½ê‡‚É“K—p‚³‚ê‚é•¨—‰‰Z‚ÌŠÔis‚Ì¸“x( 0:60FPS  1:120FPS  2:240FPS  3:480FPS  4:960FPS  5:1920FPS )
-	int						LoadModelToPMD_PMX_AnimationFPSMode ;	// PMD, PMX ‚ğ“Ç‚İ‚ŞÛ‚ÌƒAƒjƒ[ƒVƒ‡ƒ“‚Ì FPS ƒ‚[ƒh( DX_LOADMODEL_PMD_PMX_ANIMATION_FPSMODE_30 “™ )
-	int						LoadModelToDisablePhysicsNameWordNum ;	// “Ç‚İ‚Şƒ‚ƒfƒ‹‚Ì•¨—‰‰Z‚ğ–³Œø‚É‚·‚éƒ[ƒh‚Ì”
-	wchar_t					LoadModelToDisablePhysicsNameWord[ MV1_DISABLEPHYSICS_WORD_MAXNUM ][ MV1_DISABLEPHYSICS_WORD_MAXLENGTH + 1 ] ;	// “Ç‚İ‚Şƒ‚ƒfƒ‹‚Ì•¨—‰‰Z‚ğ“Á’è‚Ìƒ[ƒh‚ªŠÜ‚Ü‚ê‚é„‘Ì‚É‘Î‚µ‚Ä‚Ì‚İ–³Œø‚É‚·‚é
-	char					LoadModelToDisablePhysicsNameWord_ShiftJIS[ MV1_DISABLEPHYSICS_WORD_MAXNUM ][ MV1_DISABLEPHYSICS_WORD_MAXLENGTH + 1 ] ;	// “Ç‚İ‚Şƒ‚ƒfƒ‹‚Ì•¨—‰‰Z‚ğ“Á’è‚Ìƒ[ƒh‚ªŠÜ‚Ü‚ê‚é„‘Ì‚É‘Î‚µ‚Ä‚Ì‚İ–³Œø‚É‚·‚é( ƒVƒtƒgJISƒR[ƒh )
-	int						LoadModelToDisablePhysicsNameWordMode ;	// LoadModelToDisablePhysicsNameWord ‚Ì“K—pƒ‹[ƒ‹( DX_LOADMODEL_PHYSICS_DISABLENAMEWORD_ALWAYS “™ )
-	int						LoadModelToUsePackDraw ;				// “Ç‚İ‚Şƒ‚ƒfƒ‹‚ğˆê“x‚É•¡”‚Ì•`‰æ‚É‘Î‰‚³‚¹‚é‚©‚Ç‚¤‚©( TRUE:‘Î‰‚³‚¹‚é  FALSE:‘Î‰‚³‚¹‚È‚¢ )
-	int						LoadModelToTriangleListUseMaxBoneNum ;	// “Ç‚İ‚Şƒ‚ƒfƒ‹‚Ì‚Ğ‚Æ‚Â‚Ìƒgƒ‰ƒCƒAƒ“ƒOƒ‹ƒŠƒXƒg‚Åg—p‚Å‚«‚éÅ‘åƒ{[ƒ“”
-	int						LoadModelToNotTextureLoad ;				// “Ç‚İ‚Şƒ‚ƒfƒ‹‚ÌƒeƒNƒXƒ`ƒƒ‚ğ“Ç‚İ‚Ü‚È‚¢‚©‚Ç‚¤‚©( FALSE:“Ç‚İ‚Ş  TRUE:“Ç‚İ‚Ü‚È‚¢ )
-	int						LoadModelToIgnoreIK ;					// “Ç‚İ‚Şƒ‚ƒfƒ‹‚ÌIKî•ñ‚ğ–³‹‚·‚é‚©‚Ç‚¤‚©( TRUE:–³‹‚·‚é  FALSE:–³‹‚µ‚È‚¢ )
-	VECTOR					LoadCalcPhysicsWorldGravity[ MV1_LOADCALC_PHYSICS_GRAVITY_NUM ] ;	// “Ç‚İ‚Şƒ‚ƒfƒ‹‚Ì–‘OŒvZ‚Ég—p‚·‚éd—Í
+	int						LoadModelToReMakeNormal ;				// ãƒ¢ãƒ‡ãƒ«ã®èª­ã¿è¾¼ã¿å‡¦ç†ã§æ³•ç·šã®å†è¨ˆç®—ã‚’è¡Œã†ã‹ã©ã†ã‹( TRUE:è¡Œã†  FALSE:è¡Œã‚ãªã„ )
+	float					LoadModelToReMakeNormalSmoothingAngle ;	// ãƒ¢ãƒ‡ãƒ«ã®èª­ã¿è¾¼ã¿å‡¦ç†æ™‚ã«è¡Œã†æ³•æ³‰ã®å†è¨ˆç®—ã§ä½¿ç”¨ã™ã‚‹ã‚¹ãƒ ãƒ¼ã‚¸ãƒ³ã‚°è§’åº¦( å˜ä½ã¯ãƒ©ã‚¸ã‚¢ãƒ³ )
+	int						LoadModelToIgnoreScaling ;				// ãƒ¢ãƒ‡ãƒ«ã‚’èª­ã¿è¾¼ã‚€éš›ã«ã‚¹ã‚±ãƒ¼ãƒªãƒ³ã‚°ãƒ‡ãƒ¼ã‚¿ã‚’ç„¡è¦–ã™ã‚‹ã‹ã©ã†ã‹( TRUE:ç„¡è¦–ã™ã‚‹  FALSE:ç„¡è¦–ã—ãªã„ )
+	int						LoadModelToPositionOptimize ;			// ãƒ¢ãƒ‡ãƒ«ã®èª­ã¿è¾¼ã¿å‡¦ç†ã§åº§æ¨™ã®æœ€é©åŒ–å‡¦ç†ã‚’è¡Œã†ã‹ã©ã†ã‹( TRUE:è¡Œã†  FALSE:è¡Œã‚ãªã„ )
+	int						LoadModelToNotEqNormalSideAddZeroAreaPolygon ;	// ãƒ¢ãƒ‡ãƒ«ã‚’èª­ã¿è¾¼ã‚€éš›ã«ãƒãƒªã‚´ãƒ³ã®è¾ºãŒæ¥ã—ã¦ã„ã¦ã€ä¸”ã¤æ³•ç·šã®æ–¹å‘ãŒç•°ãªã‚‹è¾ºã«é¢ç©ï¼ã®ãƒãƒªã‚´ãƒ³ã‚’åŸ‹ã‚è¾¼ã‚€ã‹ã©ã†ã‹( TRUE:åŸ‹ã‚è¾¼ã‚€ã€€FALSE:åŸ‹ã‚è¾¼ã¾ãªã„( ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ ) )
+	int						LoadModelToUsePhysicsMode ;				// èª­ã¿è¾¼ã‚€ãƒ¢ãƒ‡ãƒ«ã®ç‰©ç†æ¼”ç®—ãƒ¢ãƒ¼ãƒ‰ã‚’è¨­å®šã™ã‚‹( DX_LOADMODEL_PHYSICS_LOADCALC ç­‰ )
+	int						LoadModelToWorldGravityInitialize ;		// èª­ã¿è¾¼ã‚€ãƒ¢ãƒ‡ãƒ«ã®ç‰©ç†æ¼”ç®—ã«é©ç”¨ã™ã‚‹é‡åŠ›ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãŒåˆæœŸåŒ–ã•ã‚ŒãŸã‹ã©ã†ã‹
+	float					LoadModelToWorldGravity ;				// èª­ã¿è¾¼ã‚€ãƒ¢ãƒ‡ãƒ«ã®ç‰©ç†æ¼”ç®—ã«é©ç”¨ã™ã‚‹é‡åŠ›ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+	int						LoadModelToPhysicsCalcPrecision ;		// èª­ã¿è¾¼ã‚€ãƒ¢ãƒ‡ãƒ«ã®ç‰©ç†æ¼”ç®—ãƒ¢ãƒ¼ãƒ‰ãŒäº‹å‰è¨ˆç®—( DX_LOADMODEL_PHYSICS_LOADCALC )ã ã£ãŸå ´åˆã«é©ç”¨ã•ã‚Œã‚‹ç‰©ç†æ¼”ç®—ã®æ™‚é–“é€²è¡Œã®ç²¾åº¦( 0:60FPS  1:120FPS  2:240FPS  3:480FPS  4:960FPS  5:1920FPS )
+	int						LoadModelToPMD_PMX_AnimationFPSMode ;	// PMD, PMX ã‚’èª­ã¿è¾¼ã‚€éš›ã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã® FPS ãƒ¢ãƒ¼ãƒ‰( DX_LOADMODEL_PMD_PMX_ANIMATION_FPSMODE_30 ç­‰ )
+	int						LoadModelToDisablePhysicsNameWordNum ;	// èª­ã¿è¾¼ã‚€ãƒ¢ãƒ‡ãƒ«ã®ç‰©ç†æ¼”ç®—ã‚’ç„¡åŠ¹ã«ã™ã‚‹ãƒ¯ãƒ¼ãƒ‰ã®æ•°
+	wchar_t					LoadModelToDisablePhysicsNameWord[ MV1_DISABLEPHYSICS_WORD_MAXNUM ][ MV1_DISABLEPHYSICS_WORD_MAXLENGTH + 1 ] ;	// èª­ã¿è¾¼ã‚€ãƒ¢ãƒ‡ãƒ«ã®ç‰©ç†æ¼”ç®—ã‚’ç‰¹å®šã®ãƒ¯ãƒ¼ãƒ‰ãŒå«ã¾ã‚Œã‚‹å‰›ä½“ã«å¯¾ã—ã¦ã®ã¿ç„¡åŠ¹ã«ã™ã‚‹
+	char					LoadModelToDisablePhysicsNameWord_ShiftJIS[ MV1_DISABLEPHYSICS_WORD_MAXNUM ][ MV1_DISABLEPHYSICS_WORD_MAXLENGTH + 1 ] ;	// èª­ã¿è¾¼ã‚€ãƒ¢ãƒ‡ãƒ«ã®ç‰©ç†æ¼”ç®—ã‚’ç‰¹å®šã®ãƒ¯ãƒ¼ãƒ‰ãŒå«ã¾ã‚Œã‚‹å‰›ä½“ã«å¯¾ã—ã¦ã®ã¿ç„¡åŠ¹ã«ã™ã‚‹( ã‚·ãƒ•ãƒˆJISã‚³ãƒ¼ãƒ‰ )
+	int						LoadModelToDisablePhysicsNameWordMode ;	// LoadModelToDisablePhysicsNameWord ã®é©ç”¨ãƒ«ãƒ¼ãƒ«( DX_LOADMODEL_PHYSICS_DISABLENAMEWORD_ALWAYS ç­‰ )
+	int						LoadModelToUsePackDraw ;				// èª­ã¿è¾¼ã‚€ãƒ¢ãƒ‡ãƒ«ã‚’ä¸€åº¦ã«è¤‡æ•°ã®æç”»ã«å¯¾å¿œã•ã›ã‚‹ã‹ã©ã†ã‹( TRUE:å¯¾å¿œã•ã›ã‚‹  FALSE:å¯¾å¿œã•ã›ãªã„ )
+	int						LoadModelToTriangleListUseMaxBoneNum ;	// èª­ã¿è¾¼ã‚€ãƒ¢ãƒ‡ãƒ«ã®ã²ã¨ã¤ã®ãƒˆãƒ©ã‚¤ã‚¢ãƒ³ã‚°ãƒ«ãƒªã‚¹ãƒˆã§ä½¿ç”¨ã§ãã‚‹æœ€å¤§ãƒœãƒ¼ãƒ³æ•°
+	int						LoadModelToNotTextureLoad ;				// èª­ã¿è¾¼ã‚€ãƒ¢ãƒ‡ãƒ«ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’èª­ã¿è¾¼ã¾ãªã„ã‹ã©ã†ã‹( FALSE:èª­ã¿è¾¼ã‚€  TRUE:èª­ã¿è¾¼ã¾ãªã„ )
+	int						LoadModelToIgnoreIK ;					// èª­ã¿è¾¼ã‚€ãƒ¢ãƒ‡ãƒ«ã®IKæƒ…å ±ã‚’ç„¡è¦–ã™ã‚‹ã‹ã©ã†ã‹( TRUE:ç„¡è¦–ã™ã‚‹  FALSE:ç„¡è¦–ã—ãªã„ )
+	VECTOR					LoadCalcPhysicsWorldGravity[ MV1_LOADCALC_PHYSICS_GRAVITY_NUM ] ;	// èª­ã¿è¾¼ã‚€ãƒ¢ãƒ‡ãƒ«ã®äº‹å‰è¨ˆç®—ã«ä½¿ç”¨ã™ã‚‹é‡åŠ›
 
-	wchar_t					NotSaveTopFrameName[ 256 ] ;		// •Û‘¶‚ÉœŠO‚·‚éƒgƒbƒvƒtƒŒ[ƒ€–¼
+	wchar_t					NotSaveTopFrameName[ 256 ] ;		// ä¿å­˜æ™‚ã«é™¤å¤–ã™ã‚‹ãƒˆãƒƒãƒ—ãƒ•ãƒ¬ãƒ¼ãƒ å
 
-	int						AnimFilePathValid ;					// AnimFilePath ‚ª—LŒø‚©‚Ç‚¤‚©( TRUE:—LŒø  FALSE:–³Œø )
-	wchar_t					AnimFileName[ 512 ] ;				// ƒAƒjƒ[ƒVƒ‡ƒ“ƒtƒ@ƒCƒ‹‚Ì–¼‘O
-	wchar_t					AnimFileDirPath[ 512 ] ;			// ƒAƒjƒ[ƒVƒ‡ƒ“ƒtƒ@ƒCƒ‹‚ÌƒfƒBƒŒƒNƒgƒŠƒpƒX
+	int						AnimFilePathValid ;					// AnimFilePath ãŒæœ‰åŠ¹ã‹ã©ã†ã‹( TRUE:æœ‰åŠ¹  FALSE:ç„¡åŠ¹ )
+	wchar_t					AnimFileName[ 512 ] ;				// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ•ã‚¡ã‚¤ãƒ«ã®åå‰
+	wchar_t					AnimFileDirPath[ 512 ] ;			// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªãƒ‘ã‚¹
 
-	int						ModelBaseNum ;						// ƒ‚ƒfƒ‹Šî–{ƒf[ƒ^”
-	int						ModelBaseMaxNum ;					// ƒ‚ƒfƒ‹Šî–{ƒf[ƒ^‚ÌŒ»İ‚ÌÅ‘å”
-	int						ModelBaseNextIndex ;				// Ÿ‚Ìƒ‚ƒfƒ‹Šî–{ƒf[ƒ^‚ÌŠi”[‚ğ‚İ‚éƒCƒ“ƒfƒbƒNƒX
-	MV1_MODEL_BASE			**ModelBase ;						// ƒ‚ƒfƒ‹Šî–{ƒf[ƒ^ƒ|ƒCƒ“ƒ^‚Ì”z—ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	int						ModelBaseNum ;						// ãƒ¢ãƒ‡ãƒ«åŸºæœ¬ãƒ‡ãƒ¼ã‚¿æ•°
+	int						ModelBaseMaxNum ;					// ãƒ¢ãƒ‡ãƒ«åŸºæœ¬ãƒ‡ãƒ¼ã‚¿ã®ç¾åœ¨ã®æœ€å¤§æ•°
+	int						ModelBaseNextIndex ;				// æ¬¡ã®ãƒ¢ãƒ‡ãƒ«åŸºæœ¬ãƒ‡ãƒ¼ã‚¿ã®æ ¼ç´ã‚’è©¦ã¿ã‚‹ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+	MV1_MODEL_BASE			**ModelBase ;						// ãƒ¢ãƒ‡ãƒ«åŸºæœ¬ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿ã®é…åˆ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 
-	int						ModelNum ;							// ƒ‚ƒfƒ‹‚Ìƒf[‘½”
-	int						ModelMaxNum ;						// ƒ‚ƒfƒ‹‚ÌŒ»İ‚ÌÅ‘å”
-	int						ModelNextIndex ;					// Ÿ‚Ìƒ‚ƒfƒ‹ƒf[ƒ^‚ÌŠi”[‚ğ‚İ‚éƒCƒ“ƒfƒbƒNƒX
-	int						ModelNextCheckNumber ;				// Ÿ‚Ìƒ‚ƒfƒ‹ƒf[ƒ^‚ÉU‚é”Ô†
-	MV1_MODEL				**Model ;							// ƒ‚ƒfƒ‹ƒ|ƒCƒ“ƒ^‚Ì”z—ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	int						ModelNum ;							// ãƒ¢ãƒ‡ãƒ«ã®ãƒ‡ãƒ¼å¤šæ•°
+	int						ModelMaxNum ;						// ãƒ¢ãƒ‡ãƒ«ã®ç¾åœ¨ã®æœ€å¤§æ•°
+	int						ModelNextIndex ;					// æ¬¡ã®ãƒ¢ãƒ‡ãƒ«ãƒ‡ãƒ¼ã‚¿ã®æ ¼ç´ã‚’è©¦ã¿ã‚‹ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+	int						ModelNextCheckNumber ;				// æ¬¡ã®ãƒ¢ãƒ‡ãƒ«ãƒ‡ãƒ¼ã‚¿ã«æŒ¯ã‚‹ç•ªå·
+	MV1_MODEL				**Model ;							// ãƒ¢ãƒ‡ãƒ«ãƒã‚¤ãƒ³ã‚¿ã®é…åˆ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 
-	int						( *AddLoadFunc[ MV1_ADD_LOAD_FUNC_MAXNUM ] )( const struct MV1_MODEL_LOAD_PARAM *LoadParam ) ;		// ’Ç‰Áƒ‚ƒfƒ‹ƒ[ƒhŠÖ”
-	int						AddLoadFuncNum ;					// ’Ç‰Áƒ‚ƒfƒ‹ƒ[ƒhŠÖ”‚Ì”
+	int						( *AddLoadFunc[ MV1_ADD_LOAD_FUNC_MAXNUM ] )( const struct MV1_MODEL_LOAD_PARAM *LoadParam ) ;		// è¿½åŠ ãƒ¢ãƒ‡ãƒ«ãƒ­ãƒ¼ãƒ‰é–¢æ•°
+	int						AddLoadFuncNum ;					// è¿½åŠ ãƒ¢ãƒ‡ãƒ«ãƒ­ãƒ¼ãƒ‰é–¢æ•°ã®æ•°
 
-	MV1_MESH				**DrawMeshList ;					// •`‰æ‚·‚éƒƒbƒVƒ…‚ÌƒAƒhƒŒƒX”z—ñ‚ğŠi”[‚·‚éƒƒ‚ƒŠ—Ìˆæ
-	int						DrawMeshListSize ;					// •`‰æ‚·‚éƒƒbƒVƒ…‚ÌƒAƒhƒŒƒX”z—ñ‚ğŠi”[‚·‚éƒƒ‚ƒŠ—Ìˆæ‚ÌƒTƒCƒY( ŒÂ”’PˆÊ )
+	MV1_MESH				**DrawMeshList ;					// æç”»ã™ã‚‹ãƒ¡ãƒƒã‚·ãƒ¥ã®ã‚¢ãƒ‰ãƒ¬ã‚¹é…åˆ—ã‚’æ ¼ç´ã™ã‚‹ãƒ¡ãƒ¢ãƒªé ˜åŸŸ
+	int						DrawMeshListSize ;					// æç”»ã™ã‚‹ãƒ¡ãƒƒã‚·ãƒ¥ã®ã‚¢ãƒ‰ãƒ¬ã‚¹é…åˆ—ã‚’æ ¼ç´ã™ã‚‹ãƒ¡ãƒ¢ãƒªé ˜åŸŸã®ã‚µã‚¤ã‚º( å€‹æ•°å˜ä½ )
 
-	int						TexNoneHandle ;						// ƒeƒNƒXƒ`ƒƒ‚ª–³‚¢ƒ‚ƒfƒ‹‚É“\‚éƒeƒNƒXƒ`ƒƒ
-	int						TexNoneBlackHandle ;				// ƒeƒNƒXƒ`ƒƒ‚ª–³‚¢ƒ‚ƒfƒ‹‚É“\‚éƒeƒNƒXƒ`ƒƒ( • )
-	int						ToonDefaultGradTexHandle[ 2 ] ;		// ƒgƒD[ƒ“—pƒOƒ‰ƒf[ƒVƒ‡ƒ“ƒeƒNƒXƒ`ƒƒ‚ª–³‚¢ƒ‚ƒfƒ‹‚É’£‚éƒeƒNƒXƒ`ƒƒ
+	int						TexNoneHandle ;						// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãŒç„¡ã„ãƒ¢ãƒ‡ãƒ«ã«è²¼ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£
+	int						TexNoneBlackHandle ;				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãŒç„¡ã„ãƒ¢ãƒ‡ãƒ«ã«è²¼ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£( é»’ )
+	int						ToonDefaultGradTexHandle[ 2 ] ;		// ãƒˆã‚¥ãƒ¼ãƒ³ç”¨ã‚°ãƒ©ãƒ‡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ†ã‚¯ã‚¹ãƒãƒ£ãŒç„¡ã„ãƒ¢ãƒ‡ãƒ«ã«å¼µã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£
 
-	int						WorldMatrixIsIdentity ;				// ƒ[ƒ‹ƒhs—ñ‚É’PˆÊs—ñ‚ªƒZƒbƒg‚³‚ê‚Ä‚¢‚é‚©‚Ç‚¤‚©( TRUE:‚³‚ê‚Ä‚¢‚é  FALSE:‚³‚ê‚Ä‚¢‚È‚¢ )
-//	MATRIX					OrigLocalWorldMatrix ;				// ‚à‚Æ‚à‚Æİ’è‚³‚ê‚Ä‚¢‚½‚k‚vs—ñ
+	int						WorldMatrixIsIdentity ;				// ãƒ¯ãƒ¼ãƒ«ãƒ‰è¡Œåˆ—ã«å˜ä½è¡Œåˆ—ãŒã‚»ãƒƒãƒˆã•ã‚Œã¦ã„ã‚‹ã‹ã©ã†ã‹( TRUE:ã•ã‚Œã¦ã„ã‚‹  FALSE:ã•ã‚Œã¦ã„ãªã„ )
+//	MATRIX					OrigLocalWorldMatrix ;				// ã‚‚ã¨ã‚‚ã¨è¨­å®šã•ã‚Œã¦ã„ãŸï¼¬ï¼·è¡Œåˆ—
 
-	MV1_MODEL				*PackDrawModel ;					// “¯•¡”•`‰æ‚Ìˆ×‚É•`‰æ‘Ò‹@‚ğ‚µ‚Ä‚¢‚éƒ‚ƒfƒ‹‚ÌƒAƒhƒŒƒX
+	MV1_MODEL				*PackDrawModel ;					// åŒæ™‚è¤‡æ•°æç”»ã®ç‚ºã«æç”»å¾…æ©Ÿã‚’ã—ã¦ã„ã‚‹ãƒ¢ãƒ‡ãƒ«ã®ã‚¢ãƒ‰ãƒ¬ã‚¹
 
-	void *					WorkBuffer ;						// ì‹Æ—pƒoƒbƒtƒ@
-	size_t					WorkBufferSize ;					// ì‹Æ—pƒoƒbƒtƒ@‚ÌƒTƒCƒY
+	void *					WorkBuffer ;						// ä½œæ¥­ç”¨ãƒãƒƒãƒ•ã‚¡
+	size_t					WorkBufferSize ;					// ä½œæ¥­ç”¨ãƒãƒƒãƒ•ã‚¡ã®ã‚µã‚¤ã‚º
 
-	INT4					BackupDrawAddColor ;				// ƒ‚ƒfƒ‹•`‰æ‚ÉŒ³‚Ì‰ÁZƒJƒ‰[‚ğ•Û‘¶‚µ‚Ä‚¨‚­‚½‚ß‚Ì•Ï”
+	INT4					BackupDrawAddColor ;				// ãƒ¢ãƒ‡ãƒ«æç”»æ™‚ã«å…ƒã®åŠ ç®—ã‚«ãƒ©ãƒ¼ã‚’ä¿å­˜ã—ã¦ãŠããŸã‚ã®å¤‰æ•°
 
-	// ƒeƒXƒg—pƒVƒF[ƒ_[
+	// ãƒ†ã‚¹ãƒˆç”¨ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼
 //	D_IDirect3DPixelShader9  *PS_Test ;
 //	D_IDirect3DVertexShader9 *VS_Test ;
 
-//	int						UseBaseVertexShaderIndex ;			// g—p‚·‚é’¸“_ƒVƒF[ƒ_[‚Ìƒ‰ƒCƒgEƒtƒHƒOEƒtƒHƒ“ƒVƒF[ƒfƒBƒ“ƒO‚Ì—L–³‚Ì‚İİ’è‚µ‚½’l
-//	int						UseBasePixelShaderIndex ;			// g—p‚·‚éƒsƒNƒZƒ‹ƒVƒF[ƒ_[‚Ìƒ‰ƒCƒgEƒtƒHƒ“ƒVƒF[ƒfƒBƒ“ƒO‚Ì—L–³‚Ì‚İİ’è‚µ‚½’l
+//	int						UseBaseVertexShaderIndex ;			// ä½¿ç”¨ã™ã‚‹é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ãƒ©ã‚¤ãƒˆãƒ»ãƒ•ã‚©ã‚°ãƒ»ãƒ•ã‚©ãƒ³ã‚·ã‚§ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°ã®æœ‰ç„¡ã®ã¿è¨­å®šã—ãŸå€¤
+//	int						UseBasePixelShaderIndex ;			// ä½¿ç”¨ã™ã‚‹ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ãƒ©ã‚¤ãƒˆãƒ»ãƒ•ã‚©ãƒ³ã‚·ã‚§ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°ã®æœ‰ç„¡ã®ã¿è¨­å®šã—ãŸå€¤
 
-//	MV1_MATERIAL			*SetMaterial ;						// ƒZƒbƒg‚³‚ê‚Ä‚¢‚éƒ}ƒeƒŠƒAƒ‹
+//	MV1_MATERIAL			*SetMaterial ;						// ã‚»ãƒƒãƒˆã•ã‚Œã¦ã„ã‚‹ãƒãƒ†ãƒªã‚¢ãƒ«
 } ;
 
-// “Æ©ƒtƒ@ƒCƒ‹“Ç‚İ‚İŠÖ”‚Ì•Ï”‚ğ‚Ü‚Æ‚ß‚½\‘¢‘Ì
+// ç‹¬è‡ªãƒ•ã‚¡ã‚¤ãƒ«èª­ã¿è¾¼ã¿é–¢æ•°ã®å¤‰æ•°ã‚’ã¾ã¨ã‚ãŸæ§‹é€ ä½“
 struct MV1_FILE_READ_FUNC
 {
-	int						( *Read )( const TCHAR *FilePath, void **FileImageAddr, int *FileSize, void *FileReadFuncData ) ;	// “Æ©ƒtƒ@ƒCƒ‹“Ç‚İ‚İŠÖ”
-	int						( *Release )( void *FileImageAddr, void *FileReadFuncData ) ;										// “Æ©ƒtƒ@ƒCƒ‹‰ğ•úŠÖ”
-	void					*Data ;								// “Æ©ƒtƒ@ƒCƒ‹“Ç‚İ‚İŠÖ”‚É“n‚·ƒf[ƒ^
+	int						( *Read )( const TCHAR *FilePath, void **FileImageAddr, int *FileSize, void *FileReadFuncData ) ;	// ç‹¬è‡ªãƒ•ã‚¡ã‚¤ãƒ«èª­ã¿è¾¼ã¿é–¢æ•°
+	int						( *Release )( void *FileImageAddr, void *FileReadFuncData ) ;										// ç‹¬è‡ªãƒ•ã‚¡ã‚¤ãƒ«è§£æ”¾é–¢æ•°
+	void					*Data ;								// ç‹¬è‡ªãƒ•ã‚¡ã‚¤ãƒ«èª­ã¿è¾¼ã¿é–¢æ•°ã«æ¸¡ã™ãƒ‡ãƒ¼ã‚¿
 } ;
 
-// ƒtƒ@ƒCƒ‹‚©‚çƒ‚ƒfƒ‹ƒnƒ“ƒhƒ‹‚ğì¬‚·‚éˆ—‚É•K—v‚ÈƒOƒ[ƒoƒ‹ƒf[ƒ^‚ğ“Z‚ß‚½‚à‚Ì
+// ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰ãƒ¢ãƒ‡ãƒ«ãƒãƒ³ãƒ‰ãƒ«ã‚’ä½œæˆã™ã‚‹å‡¦ç†ã«å¿…è¦ãªã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿ã‚’çºã‚ãŸã‚‚ã®
 struct MV1LOADMODEL_GPARAM
 {
 	LOADGRAPH_GPARAM		LoadGraphGParam ;
 
-	int						LoadModelToReMakeNormal ;				// ƒ‚ƒfƒ‹‚Ì“Ç‚İ‚İˆ—‚Å–@ü‚ÌÄŒvZ‚ğs‚¤‚©‚Ç‚¤‚©( TRUE:s‚¤  FALSE:s‚í‚È‚¢ )
-	float					LoadModelToReMakeNormalSmoothingAngle ;	// ƒ‚ƒfƒ‹‚Ì“Ç‚İ‚İˆ—‚És‚¤–@ò‚ÌÄŒvZ‚Åg—p‚·‚éƒXƒ€[ƒWƒ“ƒOŠp“x( ’PˆÊ‚Íƒ‰ƒWƒAƒ“ )
-	int						LoadModelToIgnoreScaling ;				// ƒ‚ƒfƒ‹‚ğ“Ç‚İ‚ŞÛ‚ÉƒXƒP[ƒŠƒ“ƒOƒf[ƒ^‚ğ–³‹‚·‚é‚©‚Ç‚¤‚©( TRUE:–³‹‚·‚é  FALSE:–³‹‚µ‚È‚¢ )
-	int						LoadModelToPositionOptimize ;			// ƒ‚ƒfƒ‹‚Ì“Ç‚İ‚İˆ—‚ÅÀ•W‚ÌÅ“K‰»ˆ—‚ğs‚¤‚©‚Ç‚¤‚©( TRUE:s‚¤  FALSE:s‚í‚È‚¢ )
-	int						LoadModelToNotEqNormalSideAddZeroAreaPolygon ;	// ƒ‚ƒfƒ‹‚ğ“Ç‚İ‚ŞÛ‚Éƒ|ƒŠƒSƒ“‚Ì•Ó‚ªÚ‚µ‚Ä‚¢‚ÄAŠ‚Â–@ü‚Ì•ûŒü‚ªˆÙ‚È‚é•Ó‚É–ÊÏ‚O‚Ìƒ|ƒŠƒSƒ“‚ğ–„‚ß‚Ş‚©‚Ç‚¤‚©( TRUE:–„‚ß‚Ş@FALSE:–„‚ß‚Ü‚È‚¢( ƒfƒtƒHƒ‹ƒg ) )
-	int						LoadModelToUsePhysicsMode ;				// “Ç‚İ‚Şƒ‚ƒfƒ‹‚Ì•¨—‰‰Zƒ‚[ƒh‚ğİ’è‚·‚é( DX_LOADMODEL_PHYSICS_LOADCALC “™ )
-	int						LoadModelToWorldGravityInitialize ;		// “Ç‚İ‚Şƒ‚ƒfƒ‹‚Ì•¨—‰‰Z‚É“K—p‚·‚éd—Íƒpƒ‰ƒ[ƒ^‚ª‰Šú‰»‚³‚ê‚½‚©‚Ç‚¤‚©
-	float					LoadModelToWorldGravity ;				// “Ç‚İ‚Şƒ‚ƒfƒ‹‚Ì•¨—‰‰Z‚É“K—p‚·‚éd—Íƒpƒ‰ƒ[ƒ^
-	int						LoadModelToPhysicsCalcPrecision ;		// “Ç‚İ‚Şƒ‚ƒfƒ‹‚Ì•¨—‰‰Zƒ‚[ƒh‚ª–‘OŒvZ( DX_LOADMODEL_PHYSICS_LOADCALC )‚¾‚Á‚½ê‡‚É“K—p‚³‚ê‚é•¨—‰‰Z‚ÌŠÔis‚Ì¸“x( 0:60FPS  1:120FPS  2:240FPS  3:480FPS  4:960FPS  5:1920FPS )
-	int						LoadModelToPMD_PMX_AnimationFPSMode ;	// PMD, PMX ‚ğ“Ç‚İ‚ŞÛ‚ÌƒAƒjƒ[ƒVƒ‡ƒ“‚Ì FPS ƒ‚[ƒh( DX_LOADMODEL_PMD_PMX_ANIMATION_FPSMODE_30 “™ )
-	int						LoadModelToUsePackDraw ;				// “Ç‚İ‚Şƒ‚ƒfƒ‹‚ğˆê“x‚É•¡”‚Ì•`‰æ‚É‘Î‰‚³‚¹‚é‚©‚Ç‚¤‚©( TRUE:‘Î‰‚³‚¹‚é  FALSE:‘Î‰‚³‚¹‚È‚¢ )
-	int						LoadModelToTriangleListUseMaxBoneNum ;	// “Ç‚İ‚Şƒ‚ƒfƒ‹‚Ì‚Ğ‚Æ‚Â‚Ìƒgƒ‰ƒCƒAƒ“ƒOƒ‹ƒŠƒXƒg‚Åg—p‚Å‚«‚éÅ‘åƒ{[ƒ“”
-	int						LoadModelToNotTextureLoad ;				// “Ç‚İ‚Şƒ‚ƒfƒ‹‚ÌƒeƒNƒXƒ`ƒƒ‚ğ“Ç‚İ‚Ü‚È‚¢‚©‚Ç‚¤‚©( FALSE:“Ç‚İ‚Ş  TRUE:“Ç‚İ‚Ü‚È‚¢ )
-	int						LoadModelToIgnoreIK ;					// “Ç‚İ‚Şƒ‚ƒfƒ‹‚ÌIKî•ñ‚ğ–³‹‚·‚é‚©‚Ç‚¤‚©( TRUE:–³‹‚·‚é  FALSE:–³‹‚µ‚È‚¢ )
-	VECTOR					LoadCalcPhysicsWorldGravity[ MV1_LOADCALC_PHYSICS_GRAVITY_NUM ] ;	// “Ç‚İ‚Şƒ‚ƒfƒ‹‚Ì–‘OŒvZ‚Ég—p‚·‚éd—Í
+	int						LoadModelToReMakeNormal ;				// ãƒ¢ãƒ‡ãƒ«ã®èª­ã¿è¾¼ã¿å‡¦ç†ã§æ³•ç·šã®å†è¨ˆç®—ã‚’è¡Œã†ã‹ã©ã†ã‹( TRUE:è¡Œã†  FALSE:è¡Œã‚ãªã„ )
+	float					LoadModelToReMakeNormalSmoothingAngle ;	// ãƒ¢ãƒ‡ãƒ«ã®èª­ã¿è¾¼ã¿å‡¦ç†æ™‚ã«è¡Œã†æ³•æ³‰ã®å†è¨ˆç®—ã§ä½¿ç”¨ã™ã‚‹ã‚¹ãƒ ãƒ¼ã‚¸ãƒ³ã‚°è§’åº¦( å˜ä½ã¯ãƒ©ã‚¸ã‚¢ãƒ³ )
+	int						LoadModelToIgnoreScaling ;				// ãƒ¢ãƒ‡ãƒ«ã‚’èª­ã¿è¾¼ã‚€éš›ã«ã‚¹ã‚±ãƒ¼ãƒªãƒ³ã‚°ãƒ‡ãƒ¼ã‚¿ã‚’ç„¡è¦–ã™ã‚‹ã‹ã©ã†ã‹( TRUE:ç„¡è¦–ã™ã‚‹  FALSE:ç„¡è¦–ã—ãªã„ )
+	int						LoadModelToPositionOptimize ;			// ãƒ¢ãƒ‡ãƒ«ã®èª­ã¿è¾¼ã¿å‡¦ç†ã§åº§æ¨™ã®æœ€é©åŒ–å‡¦ç†ã‚’è¡Œã†ã‹ã©ã†ã‹( TRUE:è¡Œã†  FALSE:è¡Œã‚ãªã„ )
+	int						LoadModelToNotEqNormalSideAddZeroAreaPolygon ;	// ãƒ¢ãƒ‡ãƒ«ã‚’èª­ã¿è¾¼ã‚€éš›ã«ãƒãƒªã‚´ãƒ³ã®è¾ºãŒæ¥ã—ã¦ã„ã¦ã€ä¸”ã¤æ³•ç·šã®æ–¹å‘ãŒç•°ãªã‚‹è¾ºã«é¢ç©ï¼ã®ãƒãƒªã‚´ãƒ³ã‚’åŸ‹ã‚è¾¼ã‚€ã‹ã©ã†ã‹( TRUE:åŸ‹ã‚è¾¼ã‚€ã€€FALSE:åŸ‹ã‚è¾¼ã¾ãªã„( ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ ) )
+	int						LoadModelToUsePhysicsMode ;				// èª­ã¿è¾¼ã‚€ãƒ¢ãƒ‡ãƒ«ã®ç‰©ç†æ¼”ç®—ãƒ¢ãƒ¼ãƒ‰ã‚’è¨­å®šã™ã‚‹( DX_LOADMODEL_PHYSICS_LOADCALC ç­‰ )
+	int						LoadModelToWorldGravityInitialize ;		// èª­ã¿è¾¼ã‚€ãƒ¢ãƒ‡ãƒ«ã®ç‰©ç†æ¼”ç®—ã«é©ç”¨ã™ã‚‹é‡åŠ›ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãŒåˆæœŸåŒ–ã•ã‚ŒãŸã‹ã©ã†ã‹
+	float					LoadModelToWorldGravity ;				// èª­ã¿è¾¼ã‚€ãƒ¢ãƒ‡ãƒ«ã®ç‰©ç†æ¼”ç®—ã«é©ç”¨ã™ã‚‹é‡åŠ›ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+	int						LoadModelToPhysicsCalcPrecision ;		// èª­ã¿è¾¼ã‚€ãƒ¢ãƒ‡ãƒ«ã®ç‰©ç†æ¼”ç®—ãƒ¢ãƒ¼ãƒ‰ãŒäº‹å‰è¨ˆç®—( DX_LOADMODEL_PHYSICS_LOADCALC )ã ã£ãŸå ´åˆã«é©ç”¨ã•ã‚Œã‚‹ç‰©ç†æ¼”ç®—ã®æ™‚é–“é€²è¡Œã®ç²¾åº¦( 0:60FPS  1:120FPS  2:240FPS  3:480FPS  4:960FPS  5:1920FPS )
+	int						LoadModelToPMD_PMX_AnimationFPSMode ;	// PMD, PMX ã‚’èª­ã¿è¾¼ã‚€éš›ã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã® FPS ãƒ¢ãƒ¼ãƒ‰( DX_LOADMODEL_PMD_PMX_ANIMATION_FPSMODE_30 ç­‰ )
+	int						LoadModelToUsePackDraw ;				// èª­ã¿è¾¼ã‚€ãƒ¢ãƒ‡ãƒ«ã‚’ä¸€åº¦ã«è¤‡æ•°ã®æç”»ã«å¯¾å¿œã•ã›ã‚‹ã‹ã©ã†ã‹( TRUE:å¯¾å¿œã•ã›ã‚‹  FALSE:å¯¾å¿œã•ã›ãªã„ )
+	int						LoadModelToTriangleListUseMaxBoneNum ;	// èª­ã¿è¾¼ã‚€ãƒ¢ãƒ‡ãƒ«ã®ã²ã¨ã¤ã®ãƒˆãƒ©ã‚¤ã‚¢ãƒ³ã‚°ãƒ«ãƒªã‚¹ãƒˆã§ä½¿ç”¨ã§ãã‚‹æœ€å¤§ãƒœãƒ¼ãƒ³æ•°
+	int						LoadModelToNotTextureLoad ;				// èª­ã¿è¾¼ã‚€ãƒ¢ãƒ‡ãƒ«ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’èª­ã¿è¾¼ã¾ãªã„ã‹ã©ã†ã‹( FALSE:èª­ã¿è¾¼ã‚€  TRUE:èª­ã¿è¾¼ã¾ãªã„ )
+	int						LoadModelToIgnoreIK ;					// èª­ã¿è¾¼ã‚€ãƒ¢ãƒ‡ãƒ«ã®IKæƒ…å ±ã‚’ç„¡è¦–ã™ã‚‹ã‹ã©ã†ã‹( TRUE:ç„¡è¦–ã™ã‚‹  FALSE:ç„¡è¦–ã—ãªã„ )
+	VECTOR					LoadCalcPhysicsWorldGravity[ MV1_LOADCALC_PHYSICS_GRAVITY_NUM ] ;	// èª­ã¿è¾¼ã‚€ãƒ¢ãƒ‡ãƒ«ã®äº‹å‰è¨ˆç®—ã«ä½¿ç”¨ã™ã‚‹é‡åŠ›
 
-	int						AnimFilePathValid ;					// AnimFilePath ‚ª—LŒø‚©‚Ç‚¤‚©( TRUE:—LŒø  FALSE:–³Œø )
-	wchar_t					AnimFileName[ 512 ] ;				// ƒAƒjƒ[ƒVƒ‡ƒ“ƒtƒ@ƒCƒ‹‚Ì–¼‘O
-	wchar_t					AnimFileDirPath[ 512 ] ;			// ƒAƒjƒ[ƒVƒ‡ƒ“ƒtƒ@ƒCƒ‹‚ÌƒfƒBƒŒƒNƒgƒŠƒpƒX
+	int						AnimFilePathValid ;					// AnimFilePath ãŒæœ‰åŠ¹ã‹ã©ã†ã‹( TRUE:æœ‰åŠ¹  FALSE:ç„¡åŠ¹ )
+	wchar_t					AnimFileName[ 512 ] ;				// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ•ã‚¡ã‚¤ãƒ«ã®åå‰
+	wchar_t					AnimFileDirPath[ 512 ] ;			// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªãƒ‘ã‚¹
 } ;
 
-// ƒ‚ƒfƒ‹ƒf[ƒ^“Ç‚İ‚İˆ—ŠÖ”‚Ìˆø”‚ğ‚Ü‚Æ‚ß‚½\‘¢‘Ì
+// ãƒ¢ãƒ‡ãƒ«ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿å‡¦ç†é–¢æ•°ã®å¼•æ•°ã‚’ã¾ã¨ã‚ãŸæ§‹é€ ä½“
 struct MV1_MODEL_LOAD_PARAM
 {
-	MV1LOADMODEL_GPARAM		GParam ;							// ƒOƒ[ƒoƒ‹ƒpƒ‰ƒ[ƒ^
+	MV1LOADMODEL_GPARAM		GParam ;							// ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 
-	void					*DataBuffer ;						// ƒ‚ƒfƒ‹ƒtƒ@ƒCƒ‹ƒCƒ[ƒW
-	int						DataSize ;							// ƒ‚ƒfƒ‹ƒtƒ@ƒCƒ‹ƒTƒCƒY
-	const wchar_t			*FilePath ;							// ƒtƒ@ƒCƒ‹ƒpƒX
-	const wchar_t			*Name ;								// ƒ‚ƒfƒ‹–¼
-	const wchar_t			*CurrentDir ;						// ƒJƒŒƒ“ƒgƒfƒBƒŒƒNƒgƒŠ
+	void					*DataBuffer ;						// ãƒ¢ãƒ‡ãƒ«ãƒ•ã‚¡ã‚¤ãƒ«ã‚¤ãƒ¡ãƒ¼ã‚¸
+	int						DataSize ;							// ãƒ¢ãƒ‡ãƒ«ãƒ•ã‚¡ã‚¤ãƒ«ã‚µã‚¤ã‚º
+	const wchar_t			*FilePath ;							// ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹
+	const wchar_t			*Name ;								// ãƒ¢ãƒ‡ãƒ«å
+	const wchar_t			*CurrentDir ;						// ã‚«ãƒ¬ãƒ³ãƒˆãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒª
 
-	MV1_FILE_READ_FUNC		*FileReadFunc ;						// “Æ©ƒtƒ@ƒCƒ‹“Ç‚İ‚İŠÖ”‚Ì•Ï”‚ğ‚Ü‚Æ‚ß‚½\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	int						ASyncThread ;						// ”ñ“¯Šú“Ç‚İ‚İƒXƒŒƒbƒh‚Å‚Ì“Ç‚İ‚İ‚©‚Ç‚¤‚©( TRUE:”ñ“¯Šú“Ç‚İ‚İƒXƒŒƒbƒh‚Å‚Ì“Ç‚İ‚İˆ—  FALSE:“¯Šú“Ç‚İ‚İ )
+	MV1_FILE_READ_FUNC		*FileReadFunc ;						// ç‹¬è‡ªãƒ•ã‚¡ã‚¤ãƒ«èª­ã¿è¾¼ã¿é–¢æ•°ã®å¤‰æ•°ã‚’ã¾ã¨ã‚ãŸæ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	int						ASyncThread ;						// éåŒæœŸèª­ã¿è¾¼ã¿ã‚¹ãƒ¬ãƒƒãƒ‰ã§ã®èª­ã¿è¾¼ã¿ã‹ã©ã†ã‹( TRUE:éåŒæœŸèª­ã¿è¾¼ã¿ã‚¹ãƒ¬ãƒƒãƒ‰ã§ã®èª­ã¿è¾¼ã¿å‡¦ç†  FALSE:åŒæœŸèª­ã¿è¾¼ã¿ )
 } ;
 
-// ƒf[ƒ^éŒ¾ -----------------------------------
+// ãƒ‡ãƒ¼ã‚¿å®£è¨€ -----------------------------------
 
 extern MV1_MODEL_MANAGE MV1Man ;
 
-// ŠÖ”ƒvƒƒgƒ^ƒCƒvéŒ¾ -------------------------
+// é–¢æ•°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€ -------------------------
 
-// ƒƒ‚ƒŠŠÇ—Œn
+// ãƒ¡ãƒ¢ãƒªç®¡ç†ç³»
 #if !defined( BC_COMPILER ) || defined( _DEBUG )
-	extern	void		*AddMemArea( size_t Size, MEMINFO **FirstMem, const char *FileName = NULL, int Line = 0 ) ;// ƒƒ‚ƒŠ—Ìˆæ‚ÌŠm•Û
+	extern	void		*AddMemArea( size_t Size, MEMINFO **FirstMem, const char *FileName = NULL, int Line = 0 ) ;// ãƒ¡ãƒ¢ãƒªé ˜åŸŸã®ç¢ºä¿
 #else
-	extern	void		*AddMemArea( size_t Size, MEMINFO **FirstMem ) ;											// ƒƒ‚ƒŠ—Ìˆæ‚ÌŠm•Û
+	extern	void		*AddMemArea( size_t Size, MEMINFO **FirstMem ) ;											// ãƒ¡ãƒ¢ãƒªé ˜åŸŸã®ç¢ºä¿
 #endif
-extern	int				SubMemArea( MEMINFO **FirstMem, void *Buffer ) ;										// ƒƒ‚ƒŠ—Ìˆæ‚Ì‰ğ•ú
-extern	int				ClearMemArea( MEMINFO **FirstMem ) ;													// ‘S‚Ä‚Ìƒƒ‚ƒŠ—Ìˆæ‚Ì‰ğ•ú
+extern	int				SubMemArea( MEMINFO **FirstMem, void *Buffer ) ;										// ãƒ¡ãƒ¢ãƒªé ˜åŸŸã®è§£æ”¾
+extern	int				ClearMemArea( MEMINFO **FirstMem ) ;													// å…¨ã¦ã®ãƒ¡ãƒ¢ãƒªé ˜åŸŸã®è§£æ”¾
 
 
-// ƒrƒbƒgƒf[ƒ^ŠÖŒW
-extern	int				InitBitList( BITLIST *BitList, int BitDepth, int DataNum, MEMINFO **FirstMem ) ;			// ƒrƒbƒgƒf[ƒ^ƒŠƒXƒg‚ğ‰Šú‰»‚·‚é( -1:¸”s  0:¬Œ÷ )
-extern	int				SetBitList( BITLIST *BitList, int Index, int SetBitIndex ) ;								// ƒrƒbƒgƒf[ƒ^ƒŠƒXƒg’†‚Ìw’è‚Ì—v‘f‚Ìƒrƒbƒg‚ğ—§‚Ä‚é
-extern	int				PressBitList( BITLIST *BitListDest, BITLIST *BitListSrc, MEMINFO **FirstMem ) ;				// ƒrƒbƒgƒf[ƒ^ƒŠƒXƒg’†‚Ì’l‚Ìí—Ş‚ğ’Šo‚·‚é( o—Í‘¤‚Í‰Šú‰»‚³‚ê‚Ä‚¢‚é•K—v‚Í–³‚¢ )( -1:¸”s  0:¬Œ÷ )
-extern	int				SearchBitList( BITLIST *BitListTarget, void *Buffer ) ;										// w’è‚Ìƒrƒbƒgƒf[ƒ^‚Éˆê’v‚·‚éƒ^[ƒQƒbƒg‘¤‚Ìƒf[ƒ^ƒCƒ“ƒfƒbƒNƒX‚ğ“¾‚é( -1:ƒGƒ‰[A–”‚Í–³‚©‚Á‚½  -1ˆÈŠO:ƒf[ƒ^ƒCƒ“ƒfƒbƒNƒX )
-extern	int				SearchBitList( BITLIST *BitListTarget, BITLIST *BitListSrc, int SrcIndex ) ;				// ƒ\[ƒX‘¤‚Ìw’è‚Ìƒrƒbƒgƒf[ƒ^‚Éˆê’v‚·‚éƒ^[ƒQƒbƒg‘¤‚Ìƒf[ƒ^ƒCƒ“ƒfƒbƒNƒX‚ğ“¾‚é( -1:ƒGƒ‰[A–”‚Í–³‚©‚Á‚½  -1ˆÈŠO:ƒf[ƒ^ƒCƒ“ƒfƒbƒNƒX )
-extern	int				CmpBitList( BITLIST *BitList1, int Index1, BITLIST *BitList2, int Index2 ) ;				// “ñ‚Â‚Ì—v‘f‚ªˆê’v‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©‚ğæ“¾‚·‚é( 0:ˆê’v‚µ‚Ä‚¢‚é  0:ˆê’v‚µ‚Ä‚¢‚È‚¢ )
-extern	int				GetBitList( BITLIST *BitList, int Index, void *Buffer ) ;									// ƒrƒbƒgƒf[ƒ^ƒŠƒXƒg‚©‚çw’è”Ô†‚Ìƒf[ƒ^‚ğæ“¾‚·‚é
-extern	int				CopyBitList( BITLIST *BitListDest, int Index, void *Buffer ) ;								// w’è‚Ìƒrƒbƒgƒf[ƒ^‚ğw’è‚ÌƒCƒ“ƒfƒbƒNƒX‚ÉƒRƒs[‚·‚é
-extern	int				OrBitList( BITLIST *BitList, int Index, void *Buffer ) ;									// ”CˆÓ‚Ìƒrƒbƒgƒf[ƒ^‚Æƒrƒbƒgƒf[ƒ^ƒŠƒXƒg’†‚Ìw’è‚Ìƒf[ƒ^‚ğ Or ‰‰Z‚·‚é
-extern	int				GetBitCount( void *Buffer, int UnitSize ) ;													// w’è‚Ìƒrƒbƒgƒf[ƒ^’†A‰½ƒrƒbƒg—§‚Á‚Ä‚¢‚é‚©’²‚×‚é
-extern	int				AddBitList( BITLIST *BitListDest, void *Buffer, int RefCount = 1 ) ;						// w’è‚Ìƒrƒbƒgƒf[ƒ^‚ğAƒ^[ƒQƒbƒg‘¤‚Ìƒrƒbƒgƒf[ƒ^‚É‰Á‚¦‚é
-extern	int				AddBitList( BITLIST *BitListDest, BITLIST *BitListSrc, int SrcIndex, int RefCount=1 ) ;		// ƒ\[ƒX‘¤‚Ìw’è‚Ìƒrƒbƒgƒf[ƒ^‚ğAƒ^[ƒQƒbƒg‘¤‚Ìƒrƒbƒgƒf[ƒ^‚É‰Á‚¦‚é
-extern	int				GetBitListNumber( BITLIST *BitList, int Index, WORD *Buffer ) ;								// w’è‚Ìƒrƒbƒgƒf[ƒ^’†‚Å—§‚Á‚Ä‚¢‚éƒrƒbƒg‚ÌƒŠƒXƒg‚ğæ“¾‚·‚é( –ß‚è’l  -1:ƒGƒ‰[  0ˆÈã:—§‚Á‚Ä‚¢‚éƒrƒbƒg‚Ì” )
+// ãƒ“ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿é–¢ä¿‚
+extern	int				InitBitList( BITLIST *BitList, int BitDepth, int DataNum, MEMINFO **FirstMem ) ;			// ãƒ“ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ãƒªã‚¹ãƒˆã‚’åˆæœŸåŒ–ã™ã‚‹( -1:å¤±æ•—  0:æˆåŠŸ )
+extern	int				SetBitList( BITLIST *BitList, int Index, int SetBitIndex ) ;								// ãƒ“ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ãƒªã‚¹ãƒˆä¸­ã®æŒ‡å®šã®è¦ç´ ã®ãƒ“ãƒƒãƒˆã‚’ç«‹ã¦ã‚‹
+extern	int				PressBitList( BITLIST *BitListDest, BITLIST *BitListSrc, MEMINFO **FirstMem ) ;				// ãƒ“ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ãƒªã‚¹ãƒˆä¸­ã®å€¤ã®ç¨®é¡ã‚’æŠ½å‡ºã™ã‚‹( å‡ºåŠ›å´ã¯åˆæœŸåŒ–ã•ã‚Œã¦ã„ã‚‹å¿…è¦ã¯ç„¡ã„ )( -1:å¤±æ•—  0:æˆåŠŸ )
+extern	int				SearchBitList( BITLIST *BitListTarget, void *Buffer ) ;										// æŒ‡å®šã®ãƒ“ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã«ä¸€è‡´ã™ã‚‹ã‚¿ãƒ¼ã‚²ãƒƒãƒˆå´ã®ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’å¾—ã‚‹( -1:ã‚¨ãƒ©ãƒ¼ã€åˆã¯ç„¡ã‹ã£ãŸ  -1ä»¥å¤–:ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ )
+extern	int				SearchBitList( BITLIST *BitListTarget, BITLIST *BitListSrc, int SrcIndex ) ;				// ã‚½ãƒ¼ã‚¹å´ã®æŒ‡å®šã®ãƒ“ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã«ä¸€è‡´ã™ã‚‹ã‚¿ãƒ¼ã‚²ãƒƒãƒˆå´ã®ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’å¾—ã‚‹( -1:ã‚¨ãƒ©ãƒ¼ã€åˆã¯ç„¡ã‹ã£ãŸ  -1ä»¥å¤–:ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ )
+extern	int				CmpBitList( BITLIST *BitList1, int Index1, BITLIST *BitList2, int Index2 ) ;				// äºŒã¤ã®è¦ç´ ãŒä¸€è‡´ã—ã¦ã„ã‚‹ã‹ã©ã†ã‹ã‚’å–å¾—ã™ã‚‹( 0:ä¸€è‡´ã—ã¦ã„ã‚‹  0:ä¸€è‡´ã—ã¦ã„ãªã„ )
+extern	int				GetBitList( BITLIST *BitList, int Index, void *Buffer ) ;									// ãƒ“ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ãƒªã‚¹ãƒˆã‹ã‚‰æŒ‡å®šç•ªå·ã®ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—ã™ã‚‹
+extern	int				CopyBitList( BITLIST *BitListDest, int Index, void *Buffer ) ;								// æŒ‡å®šã®ãƒ“ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã‚’æŒ‡å®šã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã«ã‚³ãƒ”ãƒ¼ã™ã‚‹
+extern	int				OrBitList( BITLIST *BitList, int Index, void *Buffer ) ;									// ä»»æ„ã®ãƒ“ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã¨ãƒ“ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ãƒªã‚¹ãƒˆä¸­ã®æŒ‡å®šã®ãƒ‡ãƒ¼ã‚¿ã‚’ Or æ¼”ç®—ã™ã‚‹
+extern	int				GetBitCount( void *Buffer, int UnitSize ) ;													// æŒ‡å®šã®ãƒ“ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ä¸­ã€ä½•ãƒ“ãƒƒãƒˆç«‹ã£ã¦ã„ã‚‹ã‹èª¿ã¹ã‚‹
+extern	int				AddBitList( BITLIST *BitListDest, void *Buffer, int RefCount = 1 ) ;						// æŒ‡å®šã®ãƒ“ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã‚’ã€ã‚¿ãƒ¼ã‚²ãƒƒãƒˆå´ã®ãƒ“ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã«åŠ ãˆã‚‹
+extern	int				AddBitList( BITLIST *BitListDest, BITLIST *BitListSrc, int SrcIndex, int RefCount=1 ) ;		// ã‚½ãƒ¼ã‚¹å´ã®æŒ‡å®šã®ãƒ“ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã‚’ã€ã‚¿ãƒ¼ã‚²ãƒƒãƒˆå´ã®ãƒ“ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã«åŠ ãˆã‚‹
+extern	int				GetBitListNumber( BITLIST *BitList, int Index, WORD *Buffer ) ;								// æŒ‡å®šã®ãƒ“ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ä¸­ã§ç«‹ã£ã¦ã„ã‚‹ãƒ“ãƒƒãƒˆã®ãƒªã‚¹ãƒˆã‚’å–å¾—ã™ã‚‹( æˆ»ã‚Šå€¤  -1:ã‚¨ãƒ©ãƒ¼  0ä»¥ä¸Š:ç«‹ã£ã¦ã„ã‚‹ãƒ“ãƒƒãƒˆã®æ•° )
 
-// 16bit•â•î•ñŠÖŒW
-extern	BYTE			MV1AnimKey16BitMinFtoB( float Min ) ;													// floatŒ^‚Ì’l‚©‚ç MV1_ANIM_KEY_16BIT\‘¢‘Ì‚Ì Min •Ï”—p‚Ì’l‚ğì¬‚·‚é
-extern	BYTE			MV1AnimKey16BitUnitFtoB( float Unit ) ;													// floatŒ^‚Ì’l‚©‚ç MV1_ANIM_KEY_16BIT\‘¢‘Ì‚Ì Unit •Ï”—p‚Ì’l‚ğì¬‚·‚é
-extern	float			MV1AnimKey16BitMinBtoF( BYTE Min ) ;													// MV1_ANIM_KEY_16BIT\‘¢‘Ì‚Ì Min •Ï”‚Ì’l‚©‚ç floatŒ^‚Ì’l‚ğì¬‚·‚é
-extern	float			MV1AnimKey16BitUnitBtoF( BYTE Unit ) ;													// MV1_ANIM_KEY_16BIT\‘¢‘Ì‚Ì Unit •Ï”‚Ì’l‚©‚ç floatŒ^‚Ì’l‚ğì¬‚·‚é
+// 16bitè£œåŠ©æƒ…å ±é–¢ä¿‚
+extern	BYTE			MV1AnimKey16BitMinFtoB( float Min ) ;													// floatå‹ã®å€¤ã‹ã‚‰ MV1_ANIM_KEY_16BITæ§‹é€ ä½“ã® Min å¤‰æ•°ç”¨ã®å€¤ã‚’ä½œæˆã™ã‚‹
+extern	BYTE			MV1AnimKey16BitUnitFtoB( float Unit ) ;													// floatå‹ã®å€¤ã‹ã‚‰ MV1_ANIM_KEY_16BITæ§‹é€ ä½“ã® Unit å¤‰æ•°ç”¨ã®å€¤ã‚’ä½œæˆã™ã‚‹
+extern	float			MV1AnimKey16BitMinBtoF( BYTE Min ) ;													// MV1_ANIM_KEY_16BITæ§‹é€ ä½“ã® Min å¤‰æ•°ã®å€¤ã‹ã‚‰ floatå‹ã®å€¤ã‚’ä½œæˆã™ã‚‹
+extern	float			MV1AnimKey16BitUnitBtoF( BYTE Unit ) ;													// MV1_ANIM_KEY_16BITæ§‹é€ ä½“ã® Unit å¤‰æ•°ã®å€¤ã‹ã‚‰ floatå‹ã®å€¤ã‚’ä½œæˆã™ã‚‹
 
-// •â•‰‰ZŠÖŒW
-extern	void			ConvertMatrixFToMatrix4x4cF(     MATRIX_4X4CT_F *Out, const MATRIX         *In ) ;		// MATRIX         \‘¢‘Ì‚ğ MATRIX_4X4CT_F \‘¢‘Ì‚É•ÏŠ·‚·‚é
-extern	void			ConvertMatrixDToMatrix4x4cD(     MATRIX_4X4CT_D *Out, const MATRIX_D       *In ) ;		// MATRIX_D       \‘¢‘Ì‚ğ MATRIX_4X4CT_D \‘¢‘Ì‚É•ÏŠ·‚·‚é
-extern	void			ConvertMatrixDToMatrix4x4cF(     MATRIX_4X4CT_F *Out, const MATRIX_D       *In ) ;		// MATRIX_D       \‘¢‘Ì‚ğ MATRIX_4X4CT_F \‘¢‘Ì‚É•ÏŠ·‚·‚é
-extern	void			ConvertMatrixFToMatrix4x4cD(     MATRIX_4X4CT_D *Out, const MATRIX         *In ) ;		// MATRIX         \‘¢‘Ì‚ğ MATRIX_4X4CT_D \‘¢‘Ì‚É•ÏŠ·‚·‚é
-extern	void			ConvertMatrix4x4cFToMatrixF(     MATRIX         *Out, const MATRIX_4X4CT_F *In ) ;		// MATRIX_4X4CT_F \‘¢‘Ì‚ğ MATRIX         \‘¢‘Ì‚É•ÏŠ·‚·‚é
-extern	void			ConvertMatrix4x4cDToMatrixD(     MATRIX_D       *Out, const MATRIX_4X4CT_D *In ) ;		// MATRIX_4X4CT_D \‘¢‘Ì‚ğ MATRIX_D       \‘¢‘Ì‚É•ÏŠ·‚·‚é
-extern	void			ConvertMatrix4x4cDToMatrixF(     MATRIX         *Out, const MATRIX_4X4CT_D *In ) ;		// MATRIX_4X4CT_D \‘¢‘Ì‚ğ MATRIX         \‘¢‘Ì‚É•ÏŠ·‚·‚é
-extern	void			ConvertMatrix4x4cFToMatrixD(     MATRIX_D       *Out, const MATRIX_4X4CT_F *In ) ;		// MATRIX_4X4CT_F \‘¢‘Ì‚ğ MATRIX_D       \‘¢‘Ì‚É•ÏŠ·‚·‚é
-extern	void			ConvertMatrix4x4cFToMatrix4x4cD( MATRIX_4X4CT_D *Out, const MATRIX_4X4CT_F *In ) ;		// MATRIX_4X4CT_F \‘¢‘Ì‚ğ MATRIX_4X4CT_D \‘¢‘Ì‚É•ÏŠ·‚·‚é
-extern	void			ConvertMatrix4x4cDToMatrix4x4cF( MATRIX_4X4CT_F *Out, const MATRIX_4X4CT_D *In ) ;		// MATRIX_4X4CT_F \‘¢‘Ì‚ğ MATRIX_4X4CT_D \‘¢‘Ì‚É•ÏŠ·‚·‚é
-extern	void			ConvertMatrixFToMatrix4x4c(      MATRIX_4X4CT   *Out, const MATRIX         *In ) ;		// MATRIX         \‘¢‘Ì‚ğ MATRIX_4X4CT   \‘¢‘Ì‚É•ÏŠ·‚·‚é
-extern	void			ConvertMatrixDToMatrix4x4c(      MATRIX_4X4CT   *Out, const MATRIX_D       *In ) ;		// MATRIX_D       \‘¢‘Ì‚ğ MATRIX_4X4CT   \‘¢‘Ì‚É•ÏŠ·‚·‚é
-extern	void			ConvertMatrix4x4cToMatrixF(      MATRIX         *Out, const MATRIX_4X4CT   *In ) ;		// MATRIX_4X4CT   \‘¢‘Ì‚ğ MATRIX         \‘¢‘Ì‚É•ÏŠ·‚·‚é
-extern	void			ConvertMatrix4x4cToMatrixD(      MATRIX_D       *Out, const MATRIX_4X4CT   *In ) ;		// MATRIX_4X4CT   \‘¢‘Ì‚ğ MATRIX_D       \‘¢‘Ì‚É•ÏŠ·‚·‚é
-extern	void			ConvertMatrix4x4cToMatrix4x4cF(  MATRIX_4X4CT_F *Out, const MATRIX_4X4CT   *In ) ;		// MATRIX_4X4CT   \‘¢‘Ì‚ğ MATRIX_4X4CT_F \‘¢‘Ì‚É•ÏŠ·‚·‚é
-extern	void			ConvertMatrix4x4cToMatrix4x4cD(  MATRIX_4X4CT_D *Out, const MATRIX_4X4CT   *In ) ;		// MATRIX_4X4CT   \‘¢‘Ì‚ğ MATRIX_4X4CT_D \‘¢‘Ì‚É•ÏŠ·‚·‚é
-extern	void			ConvertMatrix4x4cFToMatrix4x4c(  MATRIX_4X4CT   *Out, const MATRIX_4X4CT_F *In ) ;		// MATRIX_4X4CT_F \‘¢‘Ì‚ğ MATRIX_4X4CT   \‘¢‘Ì‚É•ÏŠ·‚·‚é
-extern	void			ConvertMatrix4x4cDToMatrix4x4c(  MATRIX_4X4CT   *Out, const MATRIX_4X4CT_D *In ) ;		// MATRIX_4X4CT_D \‘¢‘Ì‚ğ MATRIX_4X4CT   \‘¢‘Ì‚É•ÏŠ·‚·‚é
+// è£œåŠ©æ¼”ç®—é–¢ä¿‚
+extern	void			ConvertMatrixFToMatrix4x4cF(     MATRIX_4X4CT_F *Out, const MATRIX         *In ) ;		// MATRIX         æ§‹é€ ä½“ã‚’ MATRIX_4X4CT_F æ§‹é€ ä½“ã«å¤‰æ›ã™ã‚‹
+extern	void			ConvertMatrixDToMatrix4x4cD(     MATRIX_4X4CT_D *Out, const MATRIX_D       *In ) ;		// MATRIX_D       æ§‹é€ ä½“ã‚’ MATRIX_4X4CT_D æ§‹é€ ä½“ã«å¤‰æ›ã™ã‚‹
+extern	void			ConvertMatrixDToMatrix4x4cF(     MATRIX_4X4CT_F *Out, const MATRIX_D       *In ) ;		// MATRIX_D       æ§‹é€ ä½“ã‚’ MATRIX_4X4CT_F æ§‹é€ ä½“ã«å¤‰æ›ã™ã‚‹
+extern	void			ConvertMatrixFToMatrix4x4cD(     MATRIX_4X4CT_D *Out, const MATRIX         *In ) ;		// MATRIX         æ§‹é€ ä½“ã‚’ MATRIX_4X4CT_D æ§‹é€ ä½“ã«å¤‰æ›ã™ã‚‹
+extern	void			ConvertMatrix4x4cFToMatrixF(     MATRIX         *Out, const MATRIX_4X4CT_F *In ) ;		// MATRIX_4X4CT_F æ§‹é€ ä½“ã‚’ MATRIX         æ§‹é€ ä½“ã«å¤‰æ›ã™ã‚‹
+extern	void			ConvertMatrix4x4cDToMatrixD(     MATRIX_D       *Out, const MATRIX_4X4CT_D *In ) ;		// MATRIX_4X4CT_D æ§‹é€ ä½“ã‚’ MATRIX_D       æ§‹é€ ä½“ã«å¤‰æ›ã™ã‚‹
+extern	void			ConvertMatrix4x4cDToMatrixF(     MATRIX         *Out, const MATRIX_4X4CT_D *In ) ;		// MATRIX_4X4CT_D æ§‹é€ ä½“ã‚’ MATRIX         æ§‹é€ ä½“ã«å¤‰æ›ã™ã‚‹
+extern	void			ConvertMatrix4x4cFToMatrixD(     MATRIX_D       *Out, const MATRIX_4X4CT_F *In ) ;		// MATRIX_4X4CT_F æ§‹é€ ä½“ã‚’ MATRIX_D       æ§‹é€ ä½“ã«å¤‰æ›ã™ã‚‹
+extern	void			ConvertMatrix4x4cFToMatrix4x4cD( MATRIX_4X4CT_D *Out, const MATRIX_4X4CT_F *In ) ;		// MATRIX_4X4CT_F æ§‹é€ ä½“ã‚’ MATRIX_4X4CT_D æ§‹é€ ä½“ã«å¤‰æ›ã™ã‚‹
+extern	void			ConvertMatrix4x4cDToMatrix4x4cF( MATRIX_4X4CT_F *Out, const MATRIX_4X4CT_D *In ) ;		// MATRIX_4X4CT_F æ§‹é€ ä½“ã‚’ MATRIX_4X4CT_D æ§‹é€ ä½“ã«å¤‰æ›ã™ã‚‹
+extern	void			ConvertMatrixFToMatrix4x4c(      MATRIX_4X4CT   *Out, const MATRIX         *In ) ;		// MATRIX         æ§‹é€ ä½“ã‚’ MATRIX_4X4CT   æ§‹é€ ä½“ã«å¤‰æ›ã™ã‚‹
+extern	void			ConvertMatrixDToMatrix4x4c(      MATRIX_4X4CT   *Out, const MATRIX_D       *In ) ;		// MATRIX_D       æ§‹é€ ä½“ã‚’ MATRIX_4X4CT   æ§‹é€ ä½“ã«å¤‰æ›ã™ã‚‹
+extern	void			ConvertMatrix4x4cToMatrixF(      MATRIX         *Out, const MATRIX_4X4CT   *In ) ;		// MATRIX_4X4CT   æ§‹é€ ä½“ã‚’ MATRIX         æ§‹é€ ä½“ã«å¤‰æ›ã™ã‚‹
+extern	void			ConvertMatrix4x4cToMatrixD(      MATRIX_D       *Out, const MATRIX_4X4CT   *In ) ;		// MATRIX_4X4CT   æ§‹é€ ä½“ã‚’ MATRIX_D       æ§‹é€ ä½“ã«å¤‰æ›ã™ã‚‹
+extern	void			ConvertMatrix4x4cToMatrix4x4cF(  MATRIX_4X4CT_F *Out, const MATRIX_4X4CT   *In ) ;		// MATRIX_4X4CT   æ§‹é€ ä½“ã‚’ MATRIX_4X4CT_F æ§‹é€ ä½“ã«å¤‰æ›ã™ã‚‹
+extern	void			ConvertMatrix4x4cToMatrix4x4cD(  MATRIX_4X4CT_D *Out, const MATRIX_4X4CT   *In ) ;		// MATRIX_4X4CT   æ§‹é€ ä½“ã‚’ MATRIX_4X4CT_D æ§‹é€ ä½“ã«å¤‰æ›ã™ã‚‹
+extern	void			ConvertMatrix4x4cFToMatrix4x4c(  MATRIX_4X4CT   *Out, const MATRIX_4X4CT_F *In ) ;		// MATRIX_4X4CT_F æ§‹é€ ä½“ã‚’ MATRIX_4X4CT   æ§‹é€ ä½“ã«å¤‰æ›ã™ã‚‹
+extern	void			ConvertMatrix4x4cDToMatrix4x4c(  MATRIX_4X4CT   *Out, const MATRIX_4X4CT_D *In ) ;		// MATRIX_4X4CT_D æ§‹é€ ä½“ã‚’ MATRIX_4X4CT   æ§‹é€ ä½“ã«å¤‰æ›ã™ã‚‹
 
-// ƒf[ƒ^ˆê’vŒŸ¸Œn
-extern	void			MakeDataCmpInfo( DATACMPINFO *CmpInfo, void *Image, int Size ) ;						// ƒoƒCƒiƒŠƒCƒ[ƒW‚©‚çƒf[ƒ^ˆê’vŒŸ¸ƒf[ƒ^‚ğì¬‚·‚é
-extern	int				CheckDataCmpInfo( DATACMPINFO *CmpInfo1, DATACMPINFO *CmpInfo2 ) ;						// “ñ‚Â‚Ìƒ`ƒFƒbƒNƒf[ƒ^‚ªˆê’v‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©‚ğæ“¾‚·‚é( 1:ˆê’v‚µ‚Ä‚¢‚é  0:ˆê’v‚µ‚Ä‚¢‚È‚¢ )
+// ãƒ‡ãƒ¼ã‚¿ä¸€è‡´æ¤œæŸ»ç³»
+extern	void			MakeDataCmpInfo( DATACMPINFO *CmpInfo, void *Image, int Size ) ;						// ãƒã‚¤ãƒŠãƒªã‚¤ãƒ¡ãƒ¼ã‚¸ã‹ã‚‰ãƒ‡ãƒ¼ã‚¿ä¸€è‡´æ¤œæŸ»ãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆã™ã‚‹
+extern	int				CheckDataCmpInfo( DATACMPINFO *CmpInfo1, DATACMPINFO *CmpInfo2 ) ;						// äºŒã¤ã®ãƒã‚§ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ãŒä¸€è‡´ã—ã¦ã„ã‚‹ã‹ã©ã†ã‹ã‚’å–å¾—ã™ã‚‹( 1:ä¸€è‡´ã—ã¦ã„ã‚‹  0:ä¸€è‡´ã—ã¦ã„ãªã„ )
 
-// XVŒŸoî•ñ\’z—pŠÖ”
-extern	void			MV1ChangeInfoSetup( MV1_CHANGE_BASE *ChangeB, void *FillTable, int BitAddress, int FillBitNum ) ;	// ó‘Ô•Ï‰»ŠÇ——p\‘¢‘Ì‚ÌƒZƒbƒgƒAƒbƒv‚ğs‚¤
+// æ›´æ–°æ¤œå‡ºæƒ…å ±æ§‹ç¯‰ç”¨é–¢æ•°
+extern	void			MV1ChangeInfoSetup( MV1_CHANGE_BASE *ChangeB, void *FillTable, int BitAddress, int FillBitNum ) ;	// çŠ¶æ…‹å¤‰åŒ–ç®¡ç†ç”¨æ§‹é€ ä½“ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã‚’è¡Œã†
 
-// ƒ‚ƒfƒ‹“Ç‚İ‚İ•â•Œn
-extern	int				AddVertexInfo( MV1_MAKEVERTINDEXINFO **InfoTable, MV1_MAKEVERTINDEXINFO *InfoBuffer, int *InfoNum, void *DataBuffer, int DataUnitSize, int DataNum, int AddDataIndex, void *AddData ) ;		// MV1_MAKEVERTINDEXINFO ‚ğ—˜—p‚µ‚½‚‘¬“¯ˆêƒf[ƒ^ŒŸõ‚ğ•â•‚·‚éŠÖ”
-extern	int				MV1MakeMeshBinormalsAndTangents( MV1_MESH_BASE *Mesh ) ;								// ƒƒbƒVƒ…‚Ì]–@ü‚ÆÚü‚ğŒvZ‚·‚é
-extern	int				MV1SetupTriangleListPositionAndNormal( MV1_TRIANGLE_LIST_BASE *List ) ;					// ƒgƒ‰ƒCƒAƒ“ƒOƒ‹ƒŠƒXƒg‚ÌÀ•W‚Æ–@üî•ñ‚ÌƒZƒbƒgƒAƒbƒv‚ğs‚¤
-extern	int				MV1SetupShapeTriangleListPositionAndNormal( MV1_TRIANGLE_LIST *TList ) ;				// ƒVƒFƒCƒv—pƒgƒ‰ƒCƒAƒ“ƒOƒ‹ƒŠƒXƒg‚ÌÀ•W‚Æ–@üî•ñ‚ÌƒZƒbƒgƒAƒbƒv‚ğs‚¤
+// ãƒ¢ãƒ‡ãƒ«èª­ã¿è¾¼ã¿è£œåŠ©ç³»
+extern	int				AddVertexInfo( MV1_MAKEVERTINDEXINFO **InfoTable, MV1_MAKEVERTINDEXINFO *InfoBuffer, int *InfoNum, void *DataBuffer, int DataUnitSize, int DataNum, int AddDataIndex, void *AddData ) ;		// MV1_MAKEVERTINDEXINFO ã‚’åˆ©ç”¨ã—ãŸé«˜é€ŸåŒä¸€ãƒ‡ãƒ¼ã‚¿æ¤œç´¢ã‚’è£œåŠ©ã™ã‚‹é–¢æ•°
+extern	int				MV1MakeMeshBinormalsAndTangents( MV1_MESH_BASE *Mesh ) ;								// ãƒ¡ãƒƒã‚·ãƒ¥ã®å¾“æ³•ç·šã¨æ¥ç·šã‚’è¨ˆç®—ã™ã‚‹
+extern	int				MV1SetupTriangleListPositionAndNormal( MV1_TRIANGLE_LIST_BASE *List ) ;					// ãƒˆãƒ©ã‚¤ã‚¢ãƒ³ã‚°ãƒ«ãƒªã‚¹ãƒˆã®åº§æ¨™ã¨æ³•ç·šæƒ…å ±ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã‚’è¡Œã†
+extern	int				MV1SetupShapeTriangleListPositionAndNormal( MV1_TRIANGLE_LIST *TList ) ;				// ã‚·ã‚§ã‚¤ãƒ—ç”¨ãƒˆãƒ©ã‚¤ã‚¢ãƒ³ã‚°ãƒ«ãƒªã‚¹ãƒˆã®åº§æ¨™ã¨æ³•ç·šæƒ…å ±ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã‚’è¡Œã†
 
-// ‹¤’Êƒf[ƒ^Œn
-extern	int				MV1CreateGradationGraph( void ) ;														// ƒOƒ‰ƒf[ƒVƒ‡ƒ“‰æ‘œ‚ğì¬‚·‚é
-extern	int				MV1GetDefaultToonTexture( int Type ) ;													// ƒfƒtƒHƒ‹ƒgƒgƒD[ƒ“ƒeƒNƒXƒ`ƒƒ‚ğæ“¾‚·‚é
-extern	void			MV1SetupTexNoneHandle( void ) ;															// TexNoneHandle ‚ÌƒZƒbƒgƒAƒbƒv‚ğs‚¤
+// å…±é€šãƒ‡ãƒ¼ã‚¿ç³»
+extern	int				MV1CreateGradationGraph( void ) ;														// ã‚°ãƒ©ãƒ‡ãƒ¼ã‚·ãƒ§ãƒ³ç”»åƒã‚’ä½œæˆã™ã‚‹
+extern	int				MV1GetDefaultToonTexture( int Type ) ;													// ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãƒˆã‚¥ãƒ¼ãƒ³ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’å–å¾—ã™ã‚‹
+extern	void			MV1SetupTexNoneHandle( void ) ;															// TexNoneHandle ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã‚’è¡Œã†
 
-// ƒOƒ[ƒoƒ‹‚È‰Šú‰»‚ÆŒãn––
-extern	int				MV1Initialize() ;																		// ƒ‚ƒfƒ‹‹@”\‚Ì‰Šú‰»
-extern	int				MV1Terminate() ;																		// ƒ‚ƒfƒ‹‹@”\‚ÌŒãn––
+// ã‚°ãƒ­ãƒ¼ãƒãƒ«ãªåˆæœŸåŒ–ã¨å¾Œå§‹æœ«
+extern	int				MV1Initialize() ;																		// ãƒ¢ãƒ‡ãƒ«æ©Ÿèƒ½ã®åˆæœŸåŒ–
+extern	int				MV1Terminate() ;																		// ãƒ¢ãƒ‡ãƒ«æ©Ÿèƒ½ã®å¾Œå§‹æœ«
 
-// ƒeƒNƒXƒ`ƒƒ‚Ì’Ç‰Á
+// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®è¿½åŠ 
 extern	int				__MV1LoadTexture(
 							  void **ColorImage, int *ColorImageSize,
 							  void **AlphaImage, int *AlphaImageSize,
@@ -1640,100 +1640,100 @@ extern	int				MV1CreateTextureColorBaseImage(
 										void *ColorFileImage, int ColorFileSize,
 										void *AlphaFileImage, int AlphaFileSize,
 										int BumpImageFlag = FALSE, float BumpImageNextPixelLength = 0.1f,
-										int ReverseFlag = FALSE ) ;												// ƒ‚ƒfƒ‹—pƒeƒNƒXƒ`ƒƒ‚ÌƒJƒ‰[ƒCƒ[ƒW‚ğì¬‚·‚é
-extern	int				MV1ReloadTexture( void ) ;																// ƒeƒNƒXƒ`ƒƒ‚ÌÄ“Ç‚İ‚İ
+										int ReverseFlag = FALSE ) ;												// ãƒ¢ãƒ‡ãƒ«ç”¨ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ã‚«ãƒ©ãƒ¼ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’ä½œæˆã™ã‚‹
+extern	int				MV1ReloadTexture( void ) ;																// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®å†èª­ã¿è¾¼ã¿
 
-// ’Ç‰Áƒ[ƒhŠÖ”ŠÖŒW
-extern	int				MV1AddLoadFunc( int ( *AddLoadFunc )( const MV1_MODEL_LOAD_PARAM *LoadParam ) ) ;		// ƒ‚ƒfƒ‹“Ç‚İ‚İŠÖ”‚ğ’Ç‰Á‚·‚é
-extern	int				MV1SubLoadFunc( int ( *AddLoadFunc )( const MV1_MODEL_LOAD_PARAM *LoadParam ) ) ;		// ƒ‚ƒfƒ‹“Ç‚İ‚İŠÖ”‚ğíœ‚·‚é
+// è¿½åŠ ãƒ­ãƒ¼ãƒ‰é–¢æ•°é–¢ä¿‚
+extern	int				MV1AddLoadFunc( int ( *AddLoadFunc )( const MV1_MODEL_LOAD_PARAM *LoadParam ) ) ;		// ãƒ¢ãƒ‡ãƒ«èª­ã¿è¾¼ã¿é–¢æ•°ã‚’è¿½åŠ ã™ã‚‹
+extern	int				MV1SubLoadFunc( int ( *AddLoadFunc )( const MV1_MODEL_LOAD_PARAM *LoadParam ) ) ;		// ãƒ¢ãƒ‡ãƒ«èª­ã¿è¾¼ã¿é–¢æ•°ã‚’å‰Šé™¤ã™ã‚‹
 
-// ƒ‚ƒfƒ‹Šî–{ƒf[ƒ^ƒnƒ“ƒhƒ‹‚Ì’Ç‰ÁEíœ
-extern	int				MV1InitModelBase( void ) ;																// —LŒø‚Èƒ‚ƒfƒ‹Šî–{ƒf[ƒ^‚ğ‚·‚×‚Äíœ‚·‚é
-extern	int				MV1AddModelBase( int ASyncThread ) ;													// ƒ‚ƒfƒ‹Šî–{ƒf[ƒ^‚ğ’Ç‰Á‚·‚é( -1:ƒGƒ‰[  0ˆÈã:ƒ‚ƒfƒ‹Šî–{ƒf[ƒ^ƒnƒ“ƒhƒ‹ )
-extern	int				MV1SubModelBase( int MBHandle ) ;														// ƒ‚ƒfƒ‹Šî–{ƒf[ƒ^‚ğíœ‚·‚é
-extern	int				MV1CreateCloneModelBase( int SrcMBHandle, int ASyncThread ) ;							// ƒ‚ƒfƒ‹Šî–{ƒf[ƒ^‚ğ•¡»‚·‚é
+// ãƒ¢ãƒ‡ãƒ«åŸºæœ¬ãƒ‡ãƒ¼ã‚¿ãƒãƒ³ãƒ‰ãƒ«ã®è¿½åŠ ãƒ»å‰Šé™¤
+extern	int				MV1InitModelBase( void ) ;																// æœ‰åŠ¹ãªãƒ¢ãƒ‡ãƒ«åŸºæœ¬ãƒ‡ãƒ¼ã‚¿ã‚’ã™ã¹ã¦å‰Šé™¤ã™ã‚‹
+extern	int				MV1AddModelBase( int ASyncThread ) ;													// ãƒ¢ãƒ‡ãƒ«åŸºæœ¬ãƒ‡ãƒ¼ã‚¿ã‚’è¿½åŠ ã™ã‚‹( -1:ã‚¨ãƒ©ãƒ¼  0ä»¥ä¸Š:ãƒ¢ãƒ‡ãƒ«åŸºæœ¬ãƒ‡ãƒ¼ã‚¿ãƒãƒ³ãƒ‰ãƒ« )
+extern	int				MV1SubModelBase( int MBHandle ) ;														// ãƒ¢ãƒ‡ãƒ«åŸºæœ¬ãƒ‡ãƒ¼ã‚¿ã‚’å‰Šé™¤ã™ã‚‹
+extern	int				MV1CreateCloneModelBase( int SrcMBHandle, int ASyncThread ) ;							// ãƒ¢ãƒ‡ãƒ«åŸºæœ¬ãƒ‡ãƒ¼ã‚¿ã‚’è¤‡è£½ã™ã‚‹
 
-extern	int				InitializeModelBaseHandle( HANDLEINFO *HandleInfo ) ;									// ƒ‚ƒfƒ‹Šî–{ƒf[ƒ^ƒnƒ“ƒhƒ‹‚Ì‰Šú‰»
-extern	int				TerminateModelBaseHandle( HANDLEINFO *HandleInfo ) ;									// ƒ‚ƒfƒ‹Šî–{ƒf[ƒ^ƒnƒ“ƒhƒ‹‚ÌŒãn––
+extern	int				InitializeModelBaseHandle( HANDLEINFO *HandleInfo ) ;									// ãƒ¢ãƒ‡ãƒ«åŸºæœ¬ãƒ‡ãƒ¼ã‚¿ãƒãƒ³ãƒ‰ãƒ«ã®åˆæœŸåŒ–
+extern	int				TerminateModelBaseHandle( HANDLEINFO *HandleInfo ) ;									// ãƒ¢ãƒ‡ãƒ«åŸºæœ¬ãƒ‡ãƒ¼ã‚¿ãƒãƒ³ãƒ‰ãƒ«ã®å¾Œå§‹æœ«
 
-// ‰ŠúƒZƒbƒgƒAƒbƒvŒn
-extern	void			MV1SetupInitializeMatrixBase( MV1_MODEL_BASE *ModelBase ) ;								// ‰Šúó‘Ô‚Ì•ÏŠ·s—ñ‚ğƒZƒbƒgƒAƒbƒv‚·‚é
-extern	void			MV1SetupPackDrawInfo( MV1_MODEL_BASE *ModelBase ) ;										// “¯•¡”•`‰æŠÖŒW‚Ìî•ñ‚ğƒZƒbƒgƒAƒbƒv‚·‚é
-extern	void			MV1SetupToonOutLineTriangleList( MV1_TRIANGLE_LIST_BASE *MBTList ) ;					// ƒgƒD[ƒ“—ÖŠsü—p‚ÌƒƒbƒVƒ…‚ğì¬‚·‚é
-extern	void			MV1SetupMeshSemiTransStateBase( MV1_MODEL_BASE *ModelBase ) ;							// ƒ‚ƒfƒ‹’†‚ÌƒƒbƒVƒ…‚Ì”¼“§–¾—v‘f‚ª‚ ‚é‚©‚Ç‚¤‚©‚ğ’²‚×‚é
+// åˆæœŸã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ç³»
+extern	void			MV1SetupInitializeMatrixBase( MV1_MODEL_BASE *ModelBase ) ;								// åˆæœŸçŠ¶æ…‹ã®å¤‰æ›è¡Œåˆ—ã‚’ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã™ã‚‹
+extern	void			MV1SetupPackDrawInfo( MV1_MODEL_BASE *ModelBase ) ;										// åŒæ™‚è¤‡æ•°æç”»é–¢ä¿‚ã®æƒ…å ±ã‚’ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã™ã‚‹
+extern	void			MV1SetupToonOutLineTriangleList( MV1_TRIANGLE_LIST_BASE *MBTList ) ;					// ãƒˆã‚¥ãƒ¼ãƒ³è¼ªéƒ­ç·šç”¨ã®ãƒ¡ãƒƒã‚·ãƒ¥ã‚’ä½œæˆã™ã‚‹
+extern	void			MV1SetupMeshSemiTransStateBase( MV1_MODEL_BASE *ModelBase ) ;							// ãƒ¢ãƒ‡ãƒ«ä¸­ã®ãƒ¡ãƒƒã‚·ãƒ¥ã®åŠé€æ˜è¦ç´ ãŒã‚ã‚‹ã‹ã©ã†ã‹ã‚’èª¿ã¹ã‚‹
 
-// –@üÄŒvZEÀ•WÅ“K‰»
-extern	int				MV1ReMakeNormalBase( int MBHandle, float SmoothingAngle = 89.5f * DX_PI_F / 180.0f, int ASyncThread = FALSE ) ;	// ƒ‚ƒfƒ‹‘S‘Ì‚Ì–@ü‚ğÄŒvZ‚·‚é
-extern	int				MV1ReMakeNormalFrameBase( int MBHandle, int FrameIndex, float SmoothingAngle = 89.5f * DX_PI_F / 180.0f ) ;	// w’èƒtƒŒ[ƒ€‚ª‚ÂƒƒbƒVƒ…‚Ì–@ü‚ğÄŒvZ‚·‚é
-extern	int				MV1PositionOptimizeBase( int MBHandle ) ;												// ƒ‚ƒfƒ‹‘S‘Ì‚ÌÀ•Wî•ñ‚ğÅ“K‰»‚·‚é
-extern	int				MV1PositionOptimizeFrameBase( int MBHandle, int FrameIndex ) ;							// w’èƒtƒŒ[ƒ€‚ª‚ÂƒƒbƒVƒ…‚ÌÀ•Wî•ñ‚ğÅ“K‰»‚·‚é
+// æ³•ç·šå†è¨ˆç®—ãƒ»åº§æ¨™æœ€é©åŒ–
+extern	int				MV1ReMakeNormalBase( int MBHandle, float SmoothingAngle = 89.5f * DX_PI_F / 180.0f, int ASyncThread = FALSE ) ;	// ãƒ¢ãƒ‡ãƒ«å…¨ä½“ã®æ³•ç·šã‚’å†è¨ˆç®—ã™ã‚‹
+extern	int				MV1ReMakeNormalFrameBase( int MBHandle, int FrameIndex, float SmoothingAngle = 89.5f * DX_PI_F / 180.0f ) ;	// æŒ‡å®šãƒ•ãƒ¬ãƒ¼ãƒ ãŒæŒã¤ãƒ¡ãƒƒã‚·ãƒ¥ã®æ³•ç·šã‚’å†è¨ˆç®—ã™ã‚‹
+extern	int				MV1PositionOptimizeBase( int MBHandle ) ;												// ãƒ¢ãƒ‡ãƒ«å…¨ä½“ã®åº§æ¨™æƒ…å ±ã‚’æœ€é©åŒ–ã™ã‚‹
+extern	int				MV1PositionOptimizeFrameBase( int MBHandle, int FrameIndex ) ;							// æŒ‡å®šãƒ•ãƒ¬ãƒ¼ãƒ ãŒæŒã¤ãƒ¡ãƒƒã‚·ãƒ¥ã®åº§æ¨™æƒ…å ±ã‚’æœ€é©åŒ–ã™ã‚‹
 
-// Šî–{ƒf[ƒ^“àƒ}ƒeƒŠƒAƒ‹
-extern	int				MV1GetMaterialNumBase( int MBHandle ) ;													// ƒ‚ƒfƒ‹‚Åg—p‚µ‚Ä‚¢‚éƒ}ƒeƒŠƒAƒ‹‚Ì”‚ğæ“¾‚·‚é
+// åŸºæœ¬ãƒ‡ãƒ¼ã‚¿å†…ãƒãƒ†ãƒªã‚¢ãƒ«
+extern	int				MV1GetMaterialNumBase( int MBHandle ) ;													// ãƒ¢ãƒ‡ãƒ«ã§ä½¿ç”¨ã—ã¦ã„ã‚‹ãƒãƒ†ãƒªã‚¢ãƒ«ã®æ•°ã‚’å–å¾—ã™ã‚‹
 #ifndef UNICODE
-extern	const char *	MV1GetMaterialNameBase( int MBHandle, int MaterialIndex ) ;								// w’è‚Ìƒ}ƒeƒŠƒAƒ‹‚Ì–¼‘O‚ğæ“¾‚·‚é
+extern	const char *	MV1GetMaterialNameBase( int MBHandle, int MaterialIndex ) ;								// æŒ‡å®šã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®åå‰ã‚’å–å¾—ã™ã‚‹
 #endif
-extern	const wchar_t *	MV1GetMaterialNameBaseW( int MBHandle, int MaterialIndex ) ;							// w’è‚Ìƒ}ƒeƒŠƒAƒ‹‚Ì–¼‘O‚ğæ“¾‚·‚é
-extern	int				MV1SetMaterialTypeBase( int MBHandle, int MaterialIndex, int Type ) ;					// w’è‚Ìƒ}ƒeƒŠƒAƒ‹‚Ìƒ^ƒCƒv‚ğ•ÏX‚·‚é( Type : DX_MATERIAL_TYPE_NORMAL ‚È‚Ç )
-extern	int				MV1GetMaterialTypeBase( int MBHandle, int MaterialIndex ) ;								// w’è‚Ìƒ}ƒeƒŠƒAƒ‹‚Ìƒ^ƒCƒv‚ğæ“¾‚·‚é( –ß‚è’l : DX_MATERIAL_TYPE_NORMAL ‚È‚Ç )
-extern	int				MV1SetMaterialTypeParamBase( int MBHandle, int MaterialIndex, va_list ParamList ) ;		// w’è‚Ìƒ}ƒeƒŠƒAƒ‹‚Ìƒ^ƒCƒv•Êƒpƒ‰ƒ[ƒ^‚ğ•ÏX‚·‚é( ƒ}ƒeƒŠƒAƒ‹ƒ^ƒCƒv DX_MATERIAL_TYPE_MAT_SPEC_LUMINANCE_TWO_COLOR ‚È‚Ç‚Åg—p )
-extern	int				MV1SetMaterialTypeParam_Base(    int MHandle, int MaterialIndex, va_list ParamList ) ;	// MV1SetMaterialTypeParam ‚ÌÀˆ—‚ğs‚¤ŠÖ”
-extern	int				MV1SetMaterialTypeParamAll_Base( int MHandle,                    va_list ParamList ) ;	// MV1SetMaterialTypeParamAll ‚ÌÀˆ—‚ğs‚¤ŠÖ”
-extern	COLOR_F			MV1GetMaterialDifColorBase( int MBHandle, int MaterialIndex ) ;							// w’è‚Ìƒ}ƒeƒŠƒAƒ‹‚ÌƒfƒBƒtƒ…[ƒYƒJƒ‰[‚ğæ“¾‚·‚é
-extern	COLOR_F			MV1GetMaterialSpcColorBase( int MBHandle, int MaterialIndex ) ;							// w’è‚Ìƒ}ƒeƒŠƒAƒ‹‚ÌƒXƒyƒLƒ…ƒ‰ƒJƒ‰[‚ğæ“¾‚·‚é
-extern	COLOR_F			MV1GetMaterialEmiColorBase( int MBHandle, int MaterialIndex ) ;							// w’è‚Ìƒ}ƒeƒŠƒAƒ‹‚ÌƒGƒ~ƒbƒVƒuƒJƒ‰[‚ğæ“¾‚·‚é
-extern	COLOR_F			MV1GetMaterialAmbColorBase( int MBHandle, int MaterialIndex ) ;							// w’è‚Ìƒ}ƒeƒŠƒAƒ‹‚ÌƒAƒ“ƒrƒGƒ“ƒgƒJƒ‰[‚ğæ“¾‚·‚é
-extern	float			MV1GetMaterialSpcPowerBase( int MBHandle, int MaterialIndex ) ;							// w’è‚Ìƒ}ƒeƒŠƒAƒ‹‚ÌƒXƒyƒLƒ…ƒ‰‚Ì‹­‚³‚ğæ“¾‚·‚é
-extern	int				MV1SetMaterialDifMapTextureBase( int MBHandle, int MaterialIndex, int TexIndex ) ;		// w’è‚Ìƒ}ƒeƒŠƒAƒ‹‚ÅƒfƒBƒtƒ…[ƒYƒ}ƒbƒv‚Æ‚µ‚Äg—p‚·‚éƒeƒNƒXƒ`ƒƒ‚ğw’è‚·‚é
-extern	int				MV1GetMaterialDifMapTextureBase( int MBHandle, int MaterialIndex ) ;					// w’è‚Ìƒ}ƒeƒŠƒAƒ‹‚ÅƒfƒBƒtƒ…[ƒYƒ}ƒbƒv‚Æ‚µ‚Äg—p‚³‚ê‚Ä‚¢‚éƒeƒNƒXƒ`ƒƒ‚ÌƒCƒ“ƒfƒbƒNƒX‚ğæ“¾‚·‚é
-extern	int				MV1SetMaterialSubDifMapTextureBase( int MBHandle, int MaterialIndex, int TexIndex ) ;	// w’è‚Ìƒ}ƒeƒŠƒAƒ‹‚ÅƒTƒuƒfƒBƒtƒ…[ƒYƒ}ƒbƒv‚Æ‚µ‚Äg—p‚·‚éƒeƒNƒXƒ`ƒƒ‚ğw’è‚·‚é
-extern	int				MV1GetMaterialSubDifMapTextureBase( int MBHandle, int MaterialIndex ) ;					// w’è‚Ìƒ}ƒeƒŠƒAƒ‹‚ÅƒTƒuƒfƒBƒtƒ…[ƒYƒ}ƒbƒv‚Æ‚µ‚Äg—p‚³‚ê‚Ä‚¢‚éƒeƒNƒXƒ`ƒƒ‚ÌƒCƒ“ƒfƒbƒNƒX‚ğæ“¾‚·‚é
-extern	int				MV1SetMaterialSpcMapTextureBase( int MBHandle, int MaterialIndex, int TexIndex ) ;		// w’è‚Ìƒ}ƒeƒŠƒAƒ‹‚ÅƒXƒyƒLƒ…ƒ‰ƒ}ƒbƒv‚Æ‚µ‚Äg—p‚·‚éƒeƒNƒXƒ`ƒƒ‚ğw’è‚·‚é
-extern	int				MV1GetMaterialSpcMapTextureBase( int MBHandle, int MaterialIndex ) ;					// w’è‚Ìƒ}ƒeƒŠƒAƒ‹‚ÅƒXƒyƒLƒ…ƒ‰ƒ}ƒbƒv‚Æ‚µ‚Äg—p‚³‚ê‚Ä‚¢‚éƒeƒNƒXƒ`ƒƒ‚ÌƒCƒ“ƒfƒbƒNƒX‚ğæ“¾‚·‚é
-extern	int				MV1SetMaterialNormalMapTextureBase( int MBHandle, int MaterialIndex, int TexIndex ) ;	// w’è‚Ìƒ}ƒeƒŠƒAƒ‹‚Å–@üƒ}ƒbƒv‚Æ‚µ‚Äg—p‚·‚éƒeƒNƒXƒ`ƒƒ‚ğw’è‚·‚é
-extern	int				MV1GetMaterialNormalMapTextureBase( int MBHandle, int MaterialIndex ) ;					// w’è‚Ìƒ}ƒeƒŠƒAƒ‹‚Å–@üƒ}ƒbƒv‚Æ‚µ‚Äg—p‚³‚ê‚Ä‚¢‚éƒeƒNƒXƒ`ƒƒ‚ÌƒCƒ“ƒfƒbƒNƒX‚ğæ“¾‚·‚é
-extern	int				MV1SetMaterialEmissiveMapTextureBase( int MBHandle, int MaterialIndex, int TexIndex ) ;	// w’è‚Ìƒ}ƒeƒŠƒAƒ‹‚Å©ŒÈ”­Œõƒ}ƒbƒv‚Æ‚µ‚Äg—p‚·‚éƒeƒNƒXƒ`ƒƒ‚ğw’è‚·‚é
-extern	int				MV1GetMaterialEmissiveMapTextureBase( int MBHandle, int MaterialIndex ) ;				// w’è‚Ìƒ}ƒeƒŠƒAƒ‹‚Å©ŒÈ”­Œõƒ}ƒbƒv‚Æ‚µ‚Äg—p‚³‚ê‚Ä‚¢‚éƒeƒNƒXƒ`ƒƒ‚ÌƒCƒ“ƒfƒbƒNƒX‚ğæ“¾‚·‚é
-extern	int				MV1SetMaterialShininessMapTextureBase( int MBHandle, int MaterialIndex, int TexIndex ) ;// w’è‚Ìƒ}ƒeƒŠƒAƒ‹‚Åƒ‰ƒtƒlƒXƒ}ƒbƒv‚Æ‚µ‚Äg—p‚·‚éƒeƒNƒXƒ`ƒƒ‚ğw’è‚·‚é
-extern	int				MV1GetMaterialShininessMapTextureBase( int MBHandle, int MaterialIndex ) ;				// w’è‚Ìƒ}ƒeƒŠƒAƒ‹‚Åƒ‰ƒtƒlƒXƒ}ƒbƒv‚Æ‚µ‚Äg—p‚³‚ê‚Ä‚¢‚éƒeƒNƒXƒ`ƒƒ‚ÌƒCƒ“ƒfƒbƒNƒX‚ğæ“¾‚·‚é
-extern	int				MV1SetMaterialReflectionFactorMapTextureBase( int MBHandle, int MaterialIndex, int TexIndex ) ;	// w’è‚Ìƒ}ƒeƒŠƒAƒ‹‚Åƒƒ^ƒŠƒbƒNƒ}ƒbƒv‚Æ‚µ‚Äg—p‚·‚éƒeƒNƒXƒ`ƒƒ‚ğw’è‚·‚é
-extern	int				MV1GetMaterialReflectionFactorMapTextureBase( int MBHandle, int MaterialIndex ) ;				// w’è‚Ìƒ}ƒeƒŠƒAƒ‹‚Åƒƒ^ƒŠƒbƒNƒ}ƒbƒv‚Æ‚µ‚Äg—p‚³‚ê‚Ä‚¢‚éƒeƒNƒXƒ`ƒƒ‚ÌƒCƒ“ƒfƒbƒNƒX‚ğæ“¾‚·‚é
-extern	int				MV1SetMaterialDifColorBase( int MBHandle, int MaterialIndex, COLOR_F Color ) ;			// w’è‚Ìƒ}ƒeƒŠƒAƒ‹‚ÌƒfƒBƒtƒ…[ƒYƒJƒ‰[‚ğİ’è‚·‚é
-extern	int				MV1SetMaterialSpcColorBase( int MBHandle, int MaterialIndex, COLOR_F Color ) ;			// w’è‚Ìƒ}ƒeƒŠƒAƒ‹‚ÌƒXƒyƒLƒ…ƒ‰ƒJƒ‰[‚ğİ’è‚·‚é
-extern	int				MV1SetMaterialEmiColorBase( int MBHandle, int MaterialIndex, COLOR_F Color ) ;			// w’è‚Ìƒ}ƒeƒŠƒAƒ‹‚ÌƒGƒ~ƒbƒVƒuƒJƒ‰[‚ğİ’è‚·‚é
-extern	int				MV1SetMaterialAmbColorBase( int MBHandle, int MaterialIndex, COLOR_F Color ) ;			// w’è‚Ìƒ}ƒeƒŠƒAƒ‹‚ÌƒAƒ“ƒrƒGƒ“ƒgƒJƒ‰[‚ğİ’è‚·‚é
-extern	int				MV1SetMaterialSpcPowerBase( int MBHandle, int MaterialIndex, float Power ) ;			// w’è‚Ìƒ}ƒeƒŠƒAƒ‹‚ÌƒXƒyƒLƒ…ƒ‰‚Ì‹­‚³‚ğİ’è‚·‚é
-extern	int				MV1SetMaterialDifGradTextureBase( int MBHandle, int MaterialIndex, int TexIndex ) ;		// w’è‚Ìƒ}ƒeƒŠƒAƒ‹‚ÅƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚ÌƒfƒBƒtƒ…[ƒYƒOƒ‰ƒf[ƒVƒ‡ƒ“ƒ}ƒbƒv‚Æ‚µ‚Äg—p‚·‚éƒeƒNƒXƒ`ƒƒ‚ğİ’è‚·‚é
-extern	int				MV1GetMaterialDifGradTextureBase( int MBHandle, int MaterialIndex ) ;					// w’è‚Ìƒ}ƒeƒŠƒAƒ‹‚ÅƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚ÌƒfƒBƒtƒ…[ƒYƒOƒ‰ƒf[ƒVƒ‡ƒ“ƒ}ƒbƒv‚Æ‚µ‚Äg—p‚·‚éƒeƒNƒXƒ`ƒƒ‚ğæ“¾‚·‚é
-extern	int				MV1SetMaterialSpcGradTextureBase( int MBHandle, int MaterialIndex, int TexIndex ) ;		// w’è‚Ìƒ}ƒeƒŠƒAƒ‹‚ÅƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚ÌƒXƒyƒLƒ…ƒ‰ƒOƒ‰ƒf[ƒVƒ‡ƒ“ƒ}ƒbƒv‚Æ‚µ‚Äg—p‚·‚éƒeƒNƒXƒ`ƒƒ‚ğİ’è‚·‚é
-extern	int				MV1GetMaterialSpcGradTextureBase( int MBHandle, int MaterialIndex ) ;					// w’è‚Ìƒ}ƒeƒŠƒAƒ‹‚ÅƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚ÌƒXƒyƒLƒ…ƒ‰ƒOƒ‰ƒf[ƒVƒ‡ƒ“ƒ}ƒbƒv‚Æ‚µ‚Äg—p‚·‚éƒeƒNƒXƒ`ƒƒ‚ğæ“¾‚·‚é
-extern	int				MV1SetMaterialSphereMapTextureBase( int MBHandle, int MaterialIndex, int TexIndex ) ;	// w’è‚Ìƒ}ƒeƒŠƒAƒ‹‚ÅƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚ÌƒXƒtƒBƒAƒ}ƒbƒv‚Æ‚µ‚Äg—p‚·‚éƒeƒNƒXƒ`ƒƒ‚ğİ’è‚·‚é
-extern	int				MV1GetMaterialSphereMapTextureBase( int MBHandle, int MaterialIndex ) ;					// w’è‚Ìƒ}ƒeƒŠƒAƒ‹‚ÅƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚ÌƒXƒtƒBƒAƒ}ƒbƒv‚Æ‚µ‚Äg—p‚·‚éƒeƒNƒXƒ`ƒƒ‚ğæ“¾‚·‚é
-extern	int				MV1SetMaterialDifGradBlendTypeBase( int MBHandle, int MaterialIndex, int BlendType ) ;	// w’è‚Ìƒ}ƒeƒŠƒAƒ‹‚ÌƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚Åg—p‚·‚éƒfƒBƒtƒ…[ƒYƒOƒ‰ƒf[ƒVƒ‡ƒ“ƒ}ƒbƒv‚ÆƒfƒBƒtƒ…[ƒYƒJƒ‰[‚Ì‡¬•û–@‚ğİ’è‚·‚é( DX_MATERIAL_BLENDTYPE_ADDITIVE ‚È‚Ç )
-extern	int				MV1GetMaterialDifGradBlendTypeBase( int MBHandle, int MaterialIndex ) ;					// w’è‚Ìƒ}ƒeƒŠƒAƒ‹‚ÌƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚Åg—p‚·‚éƒfƒBƒtƒ…[ƒYƒOƒ‰ƒf[ƒVƒ‡ƒ“ƒ}ƒbƒv‚ÆƒfƒBƒtƒ…[ƒYƒJƒ‰[‚Ì‡¬•û–@‚ğæ“¾‚·‚é( DX_MATERIAL_BLENDTYPE_ADDITIVE ‚È‚Ç )
-extern	int				MV1SetMaterialSpcGradBlendTypeBase( int MBHandle, int MaterialIndex, int BlendType ) ;	// w’è‚Ìƒ}ƒeƒŠƒAƒ‹‚ÌƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚Åg—p‚·‚éƒXƒyƒLƒ…ƒ‰ƒOƒ‰ƒf[ƒVƒ‡ƒ“ƒ}ƒbƒv‚ÆƒXƒyƒLƒ…ƒ‰ƒJƒ‰[‚Ì‡¬•û–@‚ğİ’è‚·‚é( DX_MATERIAL_BLENDTYPE_ADDITIVE ‚È‚Ç )
-extern	int				MV1GetMaterialSpcGradBlendTypeBase( int MBHandle, int MaterialIndex ) ;					// w’è‚Ìƒ}ƒeƒŠƒAƒ‹‚ÌƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚Åg—p‚·‚éƒXƒyƒLƒ…ƒ‰ƒOƒ‰ƒf[ƒVƒ‡ƒ“ƒ}ƒbƒv‚ÆƒXƒyƒLƒ…ƒ‰ƒJƒ‰[‚Ì‡¬•û–@‚ğæ“¾‚·‚é( DX_MATERIAL_BLENDTYPE_ADDITIVE ‚È‚Ç )
-extern	int				MV1SetMaterialSphereMapBlendTypeBase( int MBHandle, int MaterialIndex, int BlendType ) ;// w’è‚Ìƒ}ƒeƒŠƒAƒ‹‚ÌƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚Åg—p‚·‚éƒXƒtƒBƒAƒ}ƒbƒv‚Ì‡¬•û–@‚ğİ’è‚·‚é( DX_MATERIAL_BLENDTYPE_ADDITIVE ‚È‚Ç )
-extern	int				MV1GetMaterialSphereMapBlendTypeBase( int MBHandle, int MaterialIndex ) ;				// w’è‚Ìƒ}ƒeƒŠƒAƒ‹‚ÌƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚Åg—p‚·‚éƒXƒtƒBƒAƒ}ƒbƒv‚Ì‡¬•û–@‚ğæ“¾‚·‚é( DX_MATERIAL_BLENDTYPE_ADDITIVE ‚È‚Ç )
-extern	int				MV1SetMaterialOutLineWidthBase( int MBHandle, int MaterialIndex, float Width ) ;		// w’è‚Ìƒ}ƒeƒŠƒAƒ‹‚ÌƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚Åg—p‚·‚é—ÖŠsü‚Ì‘¾‚³‚ğİ’è‚·‚é
-extern	float			MV1GetMaterialOutLineWidthBase( int MBHandle, int MaterialIndex ) ;						// w’è‚Ìƒ}ƒeƒŠƒAƒ‹‚ÌƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚Åg—p‚·‚é—ÖŠsü‚Ìƒhƒbƒg’PˆÊ‚Ì‘¾‚³‚ğæ“¾‚·‚é
-extern	int				MV1SetMaterialOutLineDotWidthBase( int MBHandle, int MaterialIndex, float Width ) ;		// w’è‚Ìƒ}ƒeƒŠƒAƒ‹‚ÌƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚Åg—p‚·‚é—ÖŠsü‚Ìƒhƒbƒg’PˆÊ‚Ì‘¾‚³‚ğİ’è‚·‚é
-extern	float			MV1GetMaterialOutLineDotWidthBase( int MBHandle, int MaterialIndex ) ;					// w’è‚Ìƒ}ƒeƒŠƒAƒ‹‚ÌƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚Åg—p‚·‚é—ÖŠsü‚Ì‘¾‚³‚ğæ“¾‚·‚é( 0.0f ` 1.0f )
-extern	int				MV1SetMaterialOutLineColorBase( int MBHandle, int MaterialIndex, COLOR_F Color ) ;		// w’è‚Ìƒ}ƒeƒŠƒAƒ‹‚ÌƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚Åg—p‚·‚é—ÖŠsü‚ÌF‚ğİ’è‚·‚é
-extern	COLOR_F			MV1GetMaterialOutLineColorBase( int MBHandle, int MaterialIndex ) ;						// w’è‚Ìƒ}ƒeƒŠƒAƒ‹‚ÌƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚Åg—p‚·‚é—ÖŠsü‚ÌF‚ğæ“¾‚·‚é
-extern	int				MV1SetMaterialDrawBlendModeBase( int MBHandle, int MaterialIndex, int BlendMode ) ;		// w’è‚Ìƒ}ƒeƒŠƒAƒ‹‚Ì•`‰æƒuƒŒƒ“ƒhƒ‚[ƒh‚ğİ’è‚·‚é( DX_BLENDMODE_ALPHA “™ )
-extern	int				MV1SetMaterialDrawBlendParamBase( int MBHandle, int MaterialIndex, int BlendParam ) ;	// w’è‚Ìƒ}ƒeƒŠƒAƒ‹‚Ì•`‰æƒuƒŒƒ“ƒhƒpƒ‰ƒ[ƒ^‚ğİ’è‚·‚é
-extern	int				MV1GetMaterialDrawBlendModeBase( int MBHandle, int MaterialIndex ) ;					// w’è‚Ìƒ}ƒeƒŠƒAƒ‹‚Ì•`‰æƒuƒŒƒ“ƒhƒ‚[ƒh‚ğæ“¾‚·‚é( DX_BLENDMODE_ALPHA “™ )
-extern	int				MV1GetMaterialDrawBlendParamBase( int MBHandle, int MaterialIndex ) ;					// w’è‚Ìƒ}ƒeƒŠƒAƒ‹‚Ì•`‰æƒuƒŒƒ“ƒhƒpƒ‰ƒ[ƒ^‚ğİ’è‚·‚é
-extern	int				MV1SetMaterialDrawAlphaTestBase( int MBHandle, int MaterialIndex, int Enable, int Mode, int Param ) ;	// w’è‚Ìƒ}ƒeƒŠƒAƒ‹‚Ì•`‰æ‚ÌƒAƒ‹ƒtƒ@ƒeƒXƒg‚Ìİ’è‚ğs‚¤( Enable:ƒ¿ƒeƒXƒg‚ğs‚¤‚©‚Ç‚¤‚©( TRUE:s‚¤  FALSE:s‚í‚È‚¢( ƒfƒtƒHƒ‹ƒg )  Mode:ƒeƒXƒgƒ‚[ƒh( DX_CMP_GREATER“™ )  Param:•`‰æƒAƒ‹ƒtƒ@’l‚Æ‚Ì”äŠr‚Ég—p‚·‚é’l( 0`255 ) )
-extern	int				MV1GetMaterialDrawAlphaTestEnableBase( int MBHandle, int MaterialIndex ) ;				// w’è‚Ìƒ}ƒeƒŠƒAƒ‹‚Ì•`‰æ‚ÌƒAƒ‹ƒtƒ@ƒeƒXƒg‚ğs‚¤‚©‚Ç‚¤‚©‚ğæ“¾‚·‚é( –ß‚è’l  TRUE:ƒAƒ‹ƒtƒ@ƒeƒXƒg‚ğs‚¤  FALSE:ƒAƒ‹ƒtƒ@ƒeƒXƒg‚ğs‚í‚È‚¢ )
-extern	int				MV1GetMaterialDrawAlphaTestModeBase( int MBHandle, int MaterialIndex ) ;				// w’è‚Ìƒ}ƒeƒŠƒAƒ‹‚Ì•`‰æ‚ÌƒAƒ‹ƒtƒ@ƒeƒXƒg‚ÌƒeƒXƒgƒ‚[ƒh‚ğæ“¾‚·‚é( –ß‚è’l  ƒeƒXƒgƒ‚[ƒh( DX_CMP_GREATER“™ ) )
-extern	int				MV1GetMaterialDrawAlphaTestParamBase( int MBHandle, int MaterialIndex ) ;				// w’è‚Ìƒ}ƒeƒŠƒAƒ‹‚Ì•`‰æ‚ÌƒAƒ‹ƒtƒ@ƒeƒXƒg‚Ì•`‰æƒAƒ‹ƒtƒ@’n‚Æ‚Ì”äŠr‚Ég—p‚·‚é’l( 0`255 )‚ğæ“¾‚·‚é
-extern	int				MV1SetMaterialDrawAddColorBase( int MBHandle, int MaterialIndex, int Red, int Green, int Blue ) ;		// w’è‚Ìƒ}ƒeƒŠƒAƒ‹‚Ì•`‰æ‚Ì‰ÁZƒJƒ‰[‚ğİ’è‚·‚é
-extern	int				MV1GetMaterialDrawAddColorBase( int MBHandle, int MaterialIndex, int *Red, int *Green, int *Blue ) ;	// w’è‚Ìƒ}ƒeƒŠƒAƒ‹‚Ì•`‰æ‚Ì‰ÁZƒJƒ‰[‚ğæ“¾‚·‚é
+extern	const wchar_t *	MV1GetMaterialNameBaseW( int MBHandle, int MaterialIndex ) ;							// æŒ‡å®šã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®åå‰ã‚’å–å¾—ã™ã‚‹
+extern	int				MV1SetMaterialTypeBase( int MBHandle, int MaterialIndex, int Type ) ;					// æŒ‡å®šã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®ã‚¿ã‚¤ãƒ—ã‚’å¤‰æ›´ã™ã‚‹( Type : DX_MATERIAL_TYPE_NORMAL ãªã© )
+extern	int				MV1GetMaterialTypeBase( int MBHandle, int MaterialIndex ) ;								// æŒ‡å®šã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®ã‚¿ã‚¤ãƒ—ã‚’å–å¾—ã™ã‚‹( æˆ»ã‚Šå€¤ : DX_MATERIAL_TYPE_NORMAL ãªã© )
+extern	int				MV1SetMaterialTypeParamBase( int MBHandle, int MaterialIndex, va_list ParamList ) ;		// æŒ‡å®šã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®ã‚¿ã‚¤ãƒ—åˆ¥ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’å¤‰æ›´ã™ã‚‹( ãƒãƒ†ãƒªã‚¢ãƒ«ã‚¿ã‚¤ãƒ— DX_MATERIAL_TYPE_MAT_SPEC_LUMINANCE_TWO_COLOR ãªã©ã§ä½¿ç”¨ )
+extern	int				MV1SetMaterialTypeParam_Base(    int MHandle, int MaterialIndex, va_list ParamList ) ;	// MV1SetMaterialTypeParam ã®å®Ÿå‡¦ç†ã‚’è¡Œã†é–¢æ•°
+extern	int				MV1SetMaterialTypeParamAll_Base( int MHandle,                    va_list ParamList ) ;	// MV1SetMaterialTypeParamAll ã®å®Ÿå‡¦ç†ã‚’è¡Œã†é–¢æ•°
+extern	COLOR_F			MV1GetMaterialDifColorBase( int MBHandle, int MaterialIndex ) ;							// æŒ‡å®šã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚«ãƒ©ãƒ¼ã‚’å–å¾—ã™ã‚‹
+extern	COLOR_F			MV1GetMaterialSpcColorBase( int MBHandle, int MaterialIndex ) ;							// æŒ‡å®šã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã‚«ãƒ©ãƒ¼ã‚’å–å¾—ã™ã‚‹
+extern	COLOR_F			MV1GetMaterialEmiColorBase( int MBHandle, int MaterialIndex ) ;							// æŒ‡å®šã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®ã‚¨ãƒŸãƒƒã‚·ãƒ–ã‚«ãƒ©ãƒ¼ã‚’å–å¾—ã™ã‚‹
+extern	COLOR_F			MV1GetMaterialAmbColorBase( int MBHandle, int MaterialIndex ) ;							// æŒ‡å®šã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®ã‚¢ãƒ³ãƒ“ã‚¨ãƒ³ãƒˆã‚«ãƒ©ãƒ¼ã‚’å–å¾—ã™ã‚‹
+extern	float			MV1GetMaterialSpcPowerBase( int MBHandle, int MaterialIndex ) ;							// æŒ‡å®šã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã®å¼·ã•ã‚’å–å¾—ã™ã‚‹
+extern	int				MV1SetMaterialDifMapTextureBase( int MBHandle, int MaterialIndex, int TexIndex ) ;		// æŒ‡å®šã®ãƒãƒ†ãƒªã‚¢ãƒ«ã§ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºãƒãƒƒãƒ—ã¨ã—ã¦ä½¿ç”¨ã™ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’æŒ‡å®šã™ã‚‹
+extern	int				MV1GetMaterialDifMapTextureBase( int MBHandle, int MaterialIndex ) ;					// æŒ‡å®šã®ãƒãƒ†ãƒªã‚¢ãƒ«ã§ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºãƒãƒƒãƒ—ã¨ã—ã¦ä½¿ç”¨ã•ã‚Œã¦ã„ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’å–å¾—ã™ã‚‹
+extern	int				MV1SetMaterialSubDifMapTextureBase( int MBHandle, int MaterialIndex, int TexIndex ) ;	// æŒ‡å®šã®ãƒãƒ†ãƒªã‚¢ãƒ«ã§ã‚µãƒ–ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºãƒãƒƒãƒ—ã¨ã—ã¦ä½¿ç”¨ã™ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’æŒ‡å®šã™ã‚‹
+extern	int				MV1GetMaterialSubDifMapTextureBase( int MBHandle, int MaterialIndex ) ;					// æŒ‡å®šã®ãƒãƒ†ãƒªã‚¢ãƒ«ã§ã‚µãƒ–ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºãƒãƒƒãƒ—ã¨ã—ã¦ä½¿ç”¨ã•ã‚Œã¦ã„ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’å–å¾—ã™ã‚‹
+extern	int				MV1SetMaterialSpcMapTextureBase( int MBHandle, int MaterialIndex, int TexIndex ) ;		// æŒ‡å®šã®ãƒãƒ†ãƒªã‚¢ãƒ«ã§ã‚¹ãƒšã‚­ãƒ¥ãƒ©ãƒãƒƒãƒ—ã¨ã—ã¦ä½¿ç”¨ã™ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’æŒ‡å®šã™ã‚‹
+extern	int				MV1GetMaterialSpcMapTextureBase( int MBHandle, int MaterialIndex ) ;					// æŒ‡å®šã®ãƒãƒ†ãƒªã‚¢ãƒ«ã§ã‚¹ãƒšã‚­ãƒ¥ãƒ©ãƒãƒƒãƒ—ã¨ã—ã¦ä½¿ç”¨ã•ã‚Œã¦ã„ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’å–å¾—ã™ã‚‹
+extern	int				MV1SetMaterialNormalMapTextureBase( int MBHandle, int MaterialIndex, int TexIndex ) ;	// æŒ‡å®šã®ãƒãƒ†ãƒªã‚¢ãƒ«ã§æ³•ç·šãƒãƒƒãƒ—ã¨ã—ã¦ä½¿ç”¨ã™ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’æŒ‡å®šã™ã‚‹
+extern	int				MV1GetMaterialNormalMapTextureBase( int MBHandle, int MaterialIndex ) ;					// æŒ‡å®šã®ãƒãƒ†ãƒªã‚¢ãƒ«ã§æ³•ç·šãƒãƒƒãƒ—ã¨ã—ã¦ä½¿ç”¨ã•ã‚Œã¦ã„ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’å–å¾—ã™ã‚‹
+extern	int				MV1SetMaterialEmissiveMapTextureBase( int MBHandle, int MaterialIndex, int TexIndex ) ;	// æŒ‡å®šã®ãƒãƒ†ãƒªã‚¢ãƒ«ã§è‡ªå·±ç™ºå…‰ãƒãƒƒãƒ—ã¨ã—ã¦ä½¿ç”¨ã™ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’æŒ‡å®šã™ã‚‹
+extern	int				MV1GetMaterialEmissiveMapTextureBase( int MBHandle, int MaterialIndex ) ;				// æŒ‡å®šã®ãƒãƒ†ãƒªã‚¢ãƒ«ã§è‡ªå·±ç™ºå…‰ãƒãƒƒãƒ—ã¨ã—ã¦ä½¿ç”¨ã•ã‚Œã¦ã„ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’å–å¾—ã™ã‚‹
+extern	int				MV1SetMaterialShininessMapTextureBase( int MBHandle, int MaterialIndex, int TexIndex ) ;// æŒ‡å®šã®ãƒãƒ†ãƒªã‚¢ãƒ«ã§ãƒ©ãƒ•ãƒã‚¹ãƒãƒƒãƒ—ã¨ã—ã¦ä½¿ç”¨ã™ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’æŒ‡å®šã™ã‚‹
+extern	int				MV1GetMaterialShininessMapTextureBase( int MBHandle, int MaterialIndex ) ;				// æŒ‡å®šã®ãƒãƒ†ãƒªã‚¢ãƒ«ã§ãƒ©ãƒ•ãƒã‚¹ãƒãƒƒãƒ—ã¨ã—ã¦ä½¿ç”¨ã•ã‚Œã¦ã„ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’å–å¾—ã™ã‚‹
+extern	int				MV1SetMaterialReflectionFactorMapTextureBase( int MBHandle, int MaterialIndex, int TexIndex ) ;	// æŒ‡å®šã®ãƒãƒ†ãƒªã‚¢ãƒ«ã§ãƒ¡ã‚¿ãƒªãƒƒã‚¯ãƒãƒƒãƒ—ã¨ã—ã¦ä½¿ç”¨ã™ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’æŒ‡å®šã™ã‚‹
+extern	int				MV1GetMaterialReflectionFactorMapTextureBase( int MBHandle, int MaterialIndex ) ;				// æŒ‡å®šã®ãƒãƒ†ãƒªã‚¢ãƒ«ã§ãƒ¡ã‚¿ãƒªãƒƒã‚¯ãƒãƒƒãƒ—ã¨ã—ã¦ä½¿ç”¨ã•ã‚Œã¦ã„ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’å–å¾—ã™ã‚‹
+extern	int				MV1SetMaterialDifColorBase( int MBHandle, int MaterialIndex, COLOR_F Color ) ;			// æŒ‡å®šã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚«ãƒ©ãƒ¼ã‚’è¨­å®šã™ã‚‹
+extern	int				MV1SetMaterialSpcColorBase( int MBHandle, int MaterialIndex, COLOR_F Color ) ;			// æŒ‡å®šã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã‚«ãƒ©ãƒ¼ã‚’è¨­å®šã™ã‚‹
+extern	int				MV1SetMaterialEmiColorBase( int MBHandle, int MaterialIndex, COLOR_F Color ) ;			// æŒ‡å®šã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®ã‚¨ãƒŸãƒƒã‚·ãƒ–ã‚«ãƒ©ãƒ¼ã‚’è¨­å®šã™ã‚‹
+extern	int				MV1SetMaterialAmbColorBase( int MBHandle, int MaterialIndex, COLOR_F Color ) ;			// æŒ‡å®šã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®ã‚¢ãƒ³ãƒ“ã‚¨ãƒ³ãƒˆã‚«ãƒ©ãƒ¼ã‚’è¨­å®šã™ã‚‹
+extern	int				MV1SetMaterialSpcPowerBase( int MBHandle, int MaterialIndex, float Power ) ;			// æŒ‡å®šã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã®å¼·ã•ã‚’è¨­å®šã™ã‚‹
+extern	int				MV1SetMaterialDifGradTextureBase( int MBHandle, int MaterialIndex, int TexIndex ) ;		// æŒ‡å®šã®ãƒãƒ†ãƒªã‚¢ãƒ«ã§ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã®ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚°ãƒ©ãƒ‡ãƒ¼ã‚·ãƒ§ãƒ³ãƒãƒƒãƒ—ã¨ã—ã¦ä½¿ç”¨ã™ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’è¨­å®šã™ã‚‹
+extern	int				MV1GetMaterialDifGradTextureBase( int MBHandle, int MaterialIndex ) ;					// æŒ‡å®šã®ãƒãƒ†ãƒªã‚¢ãƒ«ã§ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã®ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚°ãƒ©ãƒ‡ãƒ¼ã‚·ãƒ§ãƒ³ãƒãƒƒãƒ—ã¨ã—ã¦ä½¿ç”¨ã™ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’å–å¾—ã™ã‚‹
+extern	int				MV1SetMaterialSpcGradTextureBase( int MBHandle, int MaterialIndex, int TexIndex ) ;		// æŒ‡å®šã®ãƒãƒ†ãƒªã‚¢ãƒ«ã§ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã®ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã‚°ãƒ©ãƒ‡ãƒ¼ã‚·ãƒ§ãƒ³ãƒãƒƒãƒ—ã¨ã—ã¦ä½¿ç”¨ã™ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’è¨­å®šã™ã‚‹
+extern	int				MV1GetMaterialSpcGradTextureBase( int MBHandle, int MaterialIndex ) ;					// æŒ‡å®šã®ãƒãƒ†ãƒªã‚¢ãƒ«ã§ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã®ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã‚°ãƒ©ãƒ‡ãƒ¼ã‚·ãƒ§ãƒ³ãƒãƒƒãƒ—ã¨ã—ã¦ä½¿ç”¨ã™ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’å–å¾—ã™ã‚‹
+extern	int				MV1SetMaterialSphereMapTextureBase( int MBHandle, int MaterialIndex, int TexIndex ) ;	// æŒ‡å®šã®ãƒãƒ†ãƒªã‚¢ãƒ«ã§ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã®ã‚¹ãƒ•ã‚£ã‚¢ãƒãƒƒãƒ—ã¨ã—ã¦ä½¿ç”¨ã™ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’è¨­å®šã™ã‚‹
+extern	int				MV1GetMaterialSphereMapTextureBase( int MBHandle, int MaterialIndex ) ;					// æŒ‡å®šã®ãƒãƒ†ãƒªã‚¢ãƒ«ã§ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã®ã‚¹ãƒ•ã‚£ã‚¢ãƒãƒƒãƒ—ã¨ã—ã¦ä½¿ç”¨ã™ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’å–å¾—ã™ã‚‹
+extern	int				MV1SetMaterialDifGradBlendTypeBase( int MBHandle, int MaterialIndex, int BlendType ) ;	// æŒ‡å®šã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã§ä½¿ç”¨ã™ã‚‹ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚°ãƒ©ãƒ‡ãƒ¼ã‚·ãƒ§ãƒ³ãƒãƒƒãƒ—ã¨ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚«ãƒ©ãƒ¼ã®åˆæˆæ–¹æ³•ã‚’è¨­å®šã™ã‚‹( DX_MATERIAL_BLENDTYPE_ADDITIVE ãªã© )
+extern	int				MV1GetMaterialDifGradBlendTypeBase( int MBHandle, int MaterialIndex ) ;					// æŒ‡å®šã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã§ä½¿ç”¨ã™ã‚‹ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚°ãƒ©ãƒ‡ãƒ¼ã‚·ãƒ§ãƒ³ãƒãƒƒãƒ—ã¨ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚«ãƒ©ãƒ¼ã®åˆæˆæ–¹æ³•ã‚’å–å¾—ã™ã‚‹( DX_MATERIAL_BLENDTYPE_ADDITIVE ãªã© )
+extern	int				MV1SetMaterialSpcGradBlendTypeBase( int MBHandle, int MaterialIndex, int BlendType ) ;	// æŒ‡å®šã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã§ä½¿ç”¨ã™ã‚‹ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã‚°ãƒ©ãƒ‡ãƒ¼ã‚·ãƒ§ãƒ³ãƒãƒƒãƒ—ã¨ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã‚«ãƒ©ãƒ¼ã®åˆæˆæ–¹æ³•ã‚’è¨­å®šã™ã‚‹( DX_MATERIAL_BLENDTYPE_ADDITIVE ãªã© )
+extern	int				MV1GetMaterialSpcGradBlendTypeBase( int MBHandle, int MaterialIndex ) ;					// æŒ‡å®šã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã§ä½¿ç”¨ã™ã‚‹ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã‚°ãƒ©ãƒ‡ãƒ¼ã‚·ãƒ§ãƒ³ãƒãƒƒãƒ—ã¨ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã‚«ãƒ©ãƒ¼ã®åˆæˆæ–¹æ³•ã‚’å–å¾—ã™ã‚‹( DX_MATERIAL_BLENDTYPE_ADDITIVE ãªã© )
+extern	int				MV1SetMaterialSphereMapBlendTypeBase( int MBHandle, int MaterialIndex, int BlendType ) ;// æŒ‡å®šã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã§ä½¿ç”¨ã™ã‚‹ã‚¹ãƒ•ã‚£ã‚¢ãƒãƒƒãƒ—ã®åˆæˆæ–¹æ³•ã‚’è¨­å®šã™ã‚‹( DX_MATERIAL_BLENDTYPE_ADDITIVE ãªã© )
+extern	int				MV1GetMaterialSphereMapBlendTypeBase( int MBHandle, int MaterialIndex ) ;				// æŒ‡å®šã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã§ä½¿ç”¨ã™ã‚‹ã‚¹ãƒ•ã‚£ã‚¢ãƒãƒƒãƒ—ã®åˆæˆæ–¹æ³•ã‚’å–å¾—ã™ã‚‹( DX_MATERIAL_BLENDTYPE_ADDITIVE ãªã© )
+extern	int				MV1SetMaterialOutLineWidthBase( int MBHandle, int MaterialIndex, float Width ) ;		// æŒ‡å®šã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã§ä½¿ç”¨ã™ã‚‹è¼ªéƒ­ç·šã®å¤ªã•ã‚’è¨­å®šã™ã‚‹
+extern	float			MV1GetMaterialOutLineWidthBase( int MBHandle, int MaterialIndex ) ;						// æŒ‡å®šã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã§ä½¿ç”¨ã™ã‚‹è¼ªéƒ­ç·šã®ãƒ‰ãƒƒãƒˆå˜ä½ã®å¤ªã•ã‚’å–å¾—ã™ã‚‹
+extern	int				MV1SetMaterialOutLineDotWidthBase( int MBHandle, int MaterialIndex, float Width ) ;		// æŒ‡å®šã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã§ä½¿ç”¨ã™ã‚‹è¼ªéƒ­ç·šã®ãƒ‰ãƒƒãƒˆå˜ä½ã®å¤ªã•ã‚’è¨­å®šã™ã‚‹
+extern	float			MV1GetMaterialOutLineDotWidthBase( int MBHandle, int MaterialIndex ) ;					// æŒ‡å®šã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã§ä½¿ç”¨ã™ã‚‹è¼ªéƒ­ç·šã®å¤ªã•ã‚’å–å¾—ã™ã‚‹( 0.0f ï½ 1.0f )
+extern	int				MV1SetMaterialOutLineColorBase( int MBHandle, int MaterialIndex, COLOR_F Color ) ;		// æŒ‡å®šã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã§ä½¿ç”¨ã™ã‚‹è¼ªéƒ­ç·šã®è‰²ã‚’è¨­å®šã™ã‚‹
+extern	COLOR_F			MV1GetMaterialOutLineColorBase( int MBHandle, int MaterialIndex ) ;						// æŒ‡å®šã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã§ä½¿ç”¨ã™ã‚‹è¼ªéƒ­ç·šã®è‰²ã‚’å–å¾—ã™ã‚‹
+extern	int				MV1SetMaterialDrawBlendModeBase( int MBHandle, int MaterialIndex, int BlendMode ) ;		// æŒ‡å®šã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®æç”»ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã‚’è¨­å®šã™ã‚‹( DX_BLENDMODE_ALPHA ç­‰ )
+extern	int				MV1SetMaterialDrawBlendParamBase( int MBHandle, int MaterialIndex, int BlendParam ) ;	// æŒ‡å®šã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®æç”»ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’è¨­å®šã™ã‚‹
+extern	int				MV1GetMaterialDrawBlendModeBase( int MBHandle, int MaterialIndex ) ;					// æŒ‡å®šã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®æç”»ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã‚’å–å¾—ã™ã‚‹( DX_BLENDMODE_ALPHA ç­‰ )
+extern	int				MV1GetMaterialDrawBlendParamBase( int MBHandle, int MaterialIndex ) ;					// æŒ‡å®šã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®æç”»ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’è¨­å®šã™ã‚‹
+extern	int				MV1SetMaterialDrawAlphaTestBase( int MBHandle, int MaterialIndex, int Enable, int Mode, int Param ) ;	// æŒ‡å®šã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®æç”»æ™‚ã®ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆã®è¨­å®šã‚’è¡Œã†( Enable:Î±ãƒ†ã‚¹ãƒˆã‚’è¡Œã†ã‹ã©ã†ã‹( TRUE:è¡Œã†  FALSE:è¡Œã‚ãªã„( ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ )  Mode:ãƒ†ã‚¹ãƒˆãƒ¢ãƒ¼ãƒ‰( DX_CMP_GREATERç­‰ )  Param:æç”»ã‚¢ãƒ«ãƒ•ã‚¡å€¤ã¨ã®æ¯”è¼ƒã«ä½¿ç”¨ã™ã‚‹å€¤( 0ï½255 ) )
+extern	int				MV1GetMaterialDrawAlphaTestEnableBase( int MBHandle, int MaterialIndex ) ;				// æŒ‡å®šã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®æç”»æ™‚ã®ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆã‚’è¡Œã†ã‹ã©ã†ã‹ã‚’å–å¾—ã™ã‚‹( æˆ»ã‚Šå€¤  TRUE:ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆã‚’è¡Œã†  FALSE:ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆã‚’è¡Œã‚ãªã„ )
+extern	int				MV1GetMaterialDrawAlphaTestModeBase( int MBHandle, int MaterialIndex ) ;				// æŒ‡å®šã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®æç”»æ™‚ã®ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆã®ãƒ†ã‚¹ãƒˆãƒ¢ãƒ¼ãƒ‰ã‚’å–å¾—ã™ã‚‹( æˆ»ã‚Šå€¤  ãƒ†ã‚¹ãƒˆãƒ¢ãƒ¼ãƒ‰( DX_CMP_GREATERç­‰ ) )
+extern	int				MV1GetMaterialDrawAlphaTestParamBase( int MBHandle, int MaterialIndex ) ;				// æŒ‡å®šã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®æç”»æ™‚ã®ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆã®æç”»ã‚¢ãƒ«ãƒ•ã‚¡åœ°ã¨ã®æ¯”è¼ƒã«ä½¿ç”¨ã™ã‚‹å€¤( 0ï½255 )ã‚’å–å¾—ã™ã‚‹
+extern	int				MV1SetMaterialDrawAddColorBase( int MBHandle, int MaterialIndex, int Red, int Green, int Blue ) ;		// æŒ‡å®šã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®æç”»æ™‚ã®åŠ ç®—ã‚«ãƒ©ãƒ¼ã‚’è¨­å®šã™ã‚‹
+extern	int				MV1GetMaterialDrawAddColorBase( int MBHandle, int MaterialIndex, int *Red, int *Green, int *Blue ) ;	// æŒ‡å®šã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®æç”»æ™‚ã®åŠ ç®—ã‚«ãƒ©ãƒ¼ã‚’å–å¾—ã™ã‚‹
 
-// Šî–{ƒf[ƒ^“àƒeƒNƒXƒ`ƒƒŠÖŒW
-extern	int				MV1GetTextureNumBase( int MBHandle ) ;													// ƒeƒNƒXƒ`ƒƒ‚Ì”‚ğæ“¾
+// åŸºæœ¬ãƒ‡ãƒ¼ã‚¿å†…ãƒ†ã‚¯ã‚¹ãƒãƒ£é–¢ä¿‚
+extern	int				MV1GetTextureNumBase( int MBHandle ) ;													// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®æ•°ã‚’å–å¾—
 extern	int				MV1AddTextureBase( 
 							int MBHandle,
 							const wchar_t *Name,
@@ -1744,115 +1744,115 @@ extern	int				MV1AddTextureBase(
 							bool ReverseFlag,
 							bool Bmp32AllZeroAlphaToXRGB8Flag,
 							int NotTextureLoad,
-							int ASyncThread ) ;																	// ƒeƒNƒXƒ`ƒƒ‚Ì’Ç‰Á
-extern	int				MV1DeleteTextureBase( int MBHandle, int TexIndex ) ;									// ƒeƒNƒXƒ`ƒƒ‚Ìíœ
+							int ASyncThread ) ;																	// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®è¿½åŠ 
+extern	int				MV1DeleteTextureBase( int MBHandle, int TexIndex ) ;									// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®å‰Šé™¤
 #ifndef UNICODE
-extern	const char *	MV1GetTextureNameBase( int MBHandle, int TexIndex ) ;									// ƒeƒNƒXƒ`ƒƒ‚Ì–¼‘O‚ğæ“¾
+extern	const char *	MV1GetTextureNameBase( int MBHandle, int TexIndex ) ;									// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®åå‰ã‚’å–å¾—
 #endif
-extern	const wchar_t *	MV1GetTextureNameBaseW( int MBHandle, int TexIndex ) ;									// ƒeƒNƒXƒ`ƒƒ‚Ì–¼‘O‚ğæ“¾
-extern	int				MV1SetTextureColorFilePathBaseW( int MBHandle, int TexIndex, const wchar_t *FilePathW ) ;	// ƒJƒ‰[ƒeƒNƒXƒ`ƒƒ‚Ìƒtƒ@ƒCƒ‹ƒpƒX‚ğ•ÏX‚·‚é
-extern	const wchar_t *	MV1GetTextureColorFilePathBaseW( int MBHandle, int TexIndex ) ;							// ƒJƒ‰[ƒeƒNƒXƒ`ƒƒ‚Ìƒtƒ@ƒCƒ‹ƒpƒX‚ğæ“¾
-extern	int				MV1SetTextureAlphaFilePathBaseW( int MBHandle, int TexIndex, const wchar_t *FilePathW ) ;	// ƒAƒ‹ƒtƒ@ƒeƒNƒXƒ`ƒƒ‚Ìƒtƒ@ƒCƒ‹ƒpƒX‚ğ•ÏX‚·‚é
-extern	const wchar_t *	MV1GetTextureAlphaFilePathBaseW( int MBHandle, int TexIndex ) ;							// ƒAƒ‹ƒtƒ@ƒeƒNƒXƒ`ƒƒ‚Ìƒtƒ@ƒCƒ‹ƒpƒX‚ğæ“¾
-extern	int				MV1SetTextureGraphHandleBase( int MBHandle, int TexIndex, int GrHandle, int SemiTransFlag ) ;	// ƒeƒNƒXƒ`ƒƒ‚Åg—p‚·‚éƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ğ•ÏX‚·‚é( GrHandle ‚ğ -1 ‚É‚·‚é‚Æ‰ğœ )
-extern	int				MV1GetTextureGraphHandleBase( int MBHandle, int TexIndex ) ;							// ƒeƒNƒXƒ`ƒƒ‚ÌƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ğæ“¾‚·‚é
-extern	int				MV1SetTextureAddressModeBase( int MBHandle, int TexIndex, int AddrUMode, int AddrVMode ) ;	// ƒeƒNƒXƒ`ƒƒ‚ÌƒAƒhƒŒƒXƒ‚[ƒh‚ğİ’è‚·‚é( AddrUMode ‚Í DX_TEXADDRESS_WRAP “™ )
-extern	int				MV1GetTextureAddressModeUBase( int MBHandle, int TexIndex ) ;							// ƒeƒNƒXƒ`ƒƒ‚Ì‚t’l‚ÌƒAƒhƒŒƒXƒ‚[ƒh‚ğæ“¾‚·‚é( –ß‚è’l:DX_TEXADDRESS_WRAP “™ )
-extern	int				MV1GetTextureAddressModeVBase( int MBHandle, int TexIndex ) ;							// ƒeƒNƒXƒ`ƒƒ‚Ì‚u’l‚ÌƒAƒhƒŒƒXƒ‚[ƒh‚ğæ“¾‚·‚é( –ß‚è’l:DX_TEXADDRESS_WRAP “™ )
-extern	int				MV1GetTextureWidthBase( int MBHandle, int TexIndex ) ;									// ƒeƒNƒXƒ`ƒƒ‚Ì•‚ğæ“¾‚·‚é
-extern	int				MV1GetTextureHeightBase( int MBHandle, int TexIndex ) ;									// ƒeƒNƒXƒ`ƒƒ‚Ì‚‚³‚ğæ“¾‚·‚é
-extern	int				MV1GetTextureSemiTransStateBase( int MBHandle, int TexIndex ) ;							// ƒeƒNƒXƒ`ƒƒ‚É”¼“§–¾—v‘f‚ª‚ ‚é‚©‚Ç‚¤‚©‚ğæ“¾‚·‚é( –ß‚è’l  TRUE:‚ ‚é  FALSE:‚È‚¢ )
-extern	int				MV1SetTextureBumpImageFlagBase( int MBHandle, int TexIndex, int Flag ) ;				// ƒeƒNƒXƒ`ƒƒ‚Åg—p‚µ‚Ä‚¢‚é‰æ‘œ‚ªƒoƒ“ƒvƒ}ƒbƒv‚©‚Ç‚¤‚©‚ğİ’è‚·‚é
-extern	int				MV1GetTextureBumpImageFlagBase( int MBHandle, int TexIndex ) ;							// ƒeƒNƒXƒ`ƒƒ‚ªƒoƒ“ƒvƒ}ƒbƒv‚©‚Ç‚¤‚©‚ğæ“¾‚·‚é( –ß‚è’l  TRUE:ƒoƒ“ƒvƒ}ƒbƒv  FALSE:ˆá‚¤ )
-extern	int				MV1SetTextureBumpImageNextPixelLengthBase( int MBHandle, int TexIndex, float Length ) ;	// ƒoƒ“ƒvƒ}ƒbƒv‰æ‘œ‚Ìê‡‚Ì—×‚ÌƒsƒNƒZƒ‹‚Æ‚Ì‹——£‚ğİ’è‚·‚é
-extern	float			MV1GetTextureBumpImageNextPixelLengthBase( int MBHandle, int TexIndex ) ;				// ƒoƒ“ƒvƒ}ƒbƒv‰æ‘œ‚Ìê‡‚Ì—×‚ÌƒsƒNƒZƒ‹‚Æ‚Ì‹——£‚ğæ“¾‚·‚é
-extern	int				MV1SetTextureSampleFilterModeBase( int MBHandle, int TexIndex, int FilterMode ) ;		// ƒeƒNƒXƒ`ƒƒ‚ÌƒtƒBƒ‹ƒ^ƒŠƒ“ƒOƒ‚[ƒh‚ğİ’è‚·‚é
-extern	int				MV1GetTextureSampleFilterModeBase( int MBHandle, int TexIndex ) ;						// ƒeƒNƒXƒ`ƒƒ‚ÌƒtƒBƒ‹ƒ^ƒŠƒ“ƒOƒ‚[ƒh‚ğæ“¾‚·‚é( –ß‚è’l  DX_DRAWMODE_BILINEAR“™ )
+extern	const wchar_t *	MV1GetTextureNameBaseW( int MBHandle, int TexIndex ) ;									// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®åå‰ã‚’å–å¾—
+extern	int				MV1SetTextureColorFilePathBaseW( int MBHandle, int TexIndex, const wchar_t *FilePathW ) ;	// ã‚«ãƒ©ãƒ¼ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹ã‚’å¤‰æ›´ã™ã‚‹
+extern	const wchar_t *	MV1GetTextureColorFilePathBaseW( int MBHandle, int TexIndex ) ;							// ã‚«ãƒ©ãƒ¼ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹ã‚’å–å¾—
+extern	int				MV1SetTextureAlphaFilePathBaseW( int MBHandle, int TexIndex, const wchar_t *FilePathW ) ;	// ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹ã‚’å¤‰æ›´ã™ã‚‹
+extern	const wchar_t *	MV1GetTextureAlphaFilePathBaseW( int MBHandle, int TexIndex ) ;							// ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹ã‚’å–å¾—
+extern	int				MV1SetTextureGraphHandleBase( int MBHandle, int TexIndex, int GrHandle, int SemiTransFlag ) ;	// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã§ä½¿ç”¨ã™ã‚‹ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã‚’å¤‰æ›´ã™ã‚‹( GrHandle ã‚’ -1 ã«ã™ã‚‹ã¨è§£é™¤ )
+extern	int				MV1GetTextureGraphHandleBase( int MBHandle, int TexIndex ) ;							// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã‚’å–å¾—ã™ã‚‹
+extern	int				MV1SetTextureAddressModeBase( int MBHandle, int TexIndex, int AddrUMode, int AddrVMode ) ;	// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ãƒ¢ãƒ¼ãƒ‰ã‚’è¨­å®šã™ã‚‹( AddrUMode ã¯ DX_TEXADDRESS_WRAP ç­‰ )
+extern	int				MV1GetTextureAddressModeUBase( int MBHandle, int TexIndex ) ;							// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ï¼µå€¤ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ãƒ¢ãƒ¼ãƒ‰ã‚’å–å¾—ã™ã‚‹( æˆ»ã‚Šå€¤:DX_TEXADDRESS_WRAP ç­‰ )
+extern	int				MV1GetTextureAddressModeVBase( int MBHandle, int TexIndex ) ;							// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ï¼¶å€¤ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ãƒ¢ãƒ¼ãƒ‰ã‚’å–å¾—ã™ã‚‹( æˆ»ã‚Šå€¤:DX_TEXADDRESS_WRAP ç­‰ )
+extern	int				MV1GetTextureWidthBase( int MBHandle, int TexIndex ) ;									// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®å¹…ã‚’å–å¾—ã™ã‚‹
+extern	int				MV1GetTextureHeightBase( int MBHandle, int TexIndex ) ;									// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®é«˜ã•ã‚’å–å¾—ã™ã‚‹
+extern	int				MV1GetTextureSemiTransStateBase( int MBHandle, int TexIndex ) ;							// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã«åŠé€æ˜è¦ç´ ãŒã‚ã‚‹ã‹ã©ã†ã‹ã‚’å–å¾—ã™ã‚‹( æˆ»ã‚Šå€¤  TRUE:ã‚ã‚‹  FALSE:ãªã„ )
+extern	int				MV1SetTextureBumpImageFlagBase( int MBHandle, int TexIndex, int Flag ) ;				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã§ä½¿ç”¨ã—ã¦ã„ã‚‹ç”»åƒãŒãƒãƒ³ãƒ—ãƒãƒƒãƒ—ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹
+extern	int				MV1GetTextureBumpImageFlagBase( int MBHandle, int TexIndex ) ;							// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãŒãƒãƒ³ãƒ—ãƒãƒƒãƒ—ã‹ã©ã†ã‹ã‚’å–å¾—ã™ã‚‹( æˆ»ã‚Šå€¤  TRUE:ãƒãƒ³ãƒ—ãƒãƒƒãƒ—  FALSE:é•ã† )
+extern	int				MV1SetTextureBumpImageNextPixelLengthBase( int MBHandle, int TexIndex, float Length ) ;	// ãƒãƒ³ãƒ—ãƒãƒƒãƒ—ç”»åƒã®å ´åˆã®éš£ã®ãƒ”ã‚¯ã‚»ãƒ«ã¨ã®è·é›¢ã‚’è¨­å®šã™ã‚‹
+extern	float			MV1GetTextureBumpImageNextPixelLengthBase( int MBHandle, int TexIndex ) ;				// ãƒãƒ³ãƒ—ãƒãƒƒãƒ—ç”»åƒã®å ´åˆã®éš£ã®ãƒ”ã‚¯ã‚»ãƒ«ã¨ã®è·é›¢ã‚’å–å¾—ã™ã‚‹
+extern	int				MV1SetTextureSampleFilterModeBase( int MBHandle, int TexIndex, int FilterMode ) ;		// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ãƒ•ã‚£ãƒ«ã‚¿ãƒªãƒ³ã‚°ãƒ¢ãƒ¼ãƒ‰ã‚’è¨­å®šã™ã‚‹
+extern	int				MV1GetTextureSampleFilterModeBase( int MBHandle, int TexIndex ) ;						// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ãƒ•ã‚£ãƒ«ã‚¿ãƒªãƒ³ã‚°ãƒ¢ãƒ¼ãƒ‰ã‚’å–å¾—ã™ã‚‹( æˆ»ã‚Šå€¤  DX_DRAWMODE_BILINEARç­‰ )
 
-// ƒƒbƒVƒ…ŠÖŒW
-extern	int				MV1SetMeshUseVertDifColorBase( int MBHandle, int MeshIndex, int UseFlag ) ;				// w’è‚ÌƒƒbƒVƒ…‚Ì’¸“_ƒfƒBƒtƒ…[ƒYƒJƒ‰[‚ğƒ}ƒeƒŠƒAƒ‹‚ÌƒfƒBƒtƒ…[ƒYƒJƒ‰[‚Ì‘ã‚í‚è‚Ég—p‚·‚é‚©‚Ç‚¤‚©‚ğİ’è‚·‚é( TRUE:ƒ}ƒeƒŠƒAƒ‹ƒJƒ‰[‚Ì‘ã‚í‚è‚Ég—p‚·‚é  FALSE:ƒ}ƒeƒŠƒAƒ‹ƒJƒ‰[‚ğg—p‚·‚é )
-extern	int				MV1SetMeshUseVertSpcColorBase( int MBHandle, int MeshIndex, int UseFlag ) ;				// w’è‚ÌƒƒbƒVƒ…‚Ì’¸“_ƒXƒyƒLƒ…ƒ‰ƒJƒ‰[‚ğƒ}ƒeƒŠƒAƒ‹‚ÌƒXƒyƒLƒ…ƒ‰ƒJƒ‰[‚Ì‘ã‚í‚è‚Ég—p‚·‚é‚©‚Ç‚¤‚©‚ğİ’è‚·‚é( TRUE:ƒ}ƒeƒŠƒAƒ‹ƒJƒ‰[‚Ì‘ã‚í‚è‚Ég—p‚·‚é  FALSE:ƒ}ƒeƒŠƒAƒ‹ƒJƒ‰[‚ğg—p‚·‚é )
-extern	int				MV1GetMeshUseVertDifColorBase( int MBHandle, int MeshIndex ) ;							// w’è‚ÌƒƒbƒVƒ…‚Ì’¸“_ƒfƒBƒtƒ…[ƒYƒJƒ‰[‚ğƒ}ƒeƒŠƒAƒ‹‚ÌƒfƒBƒtƒ…[ƒYƒJƒ‰[‚Ì‘ã‚í‚è‚Ég—p‚·‚é‚©‚Ç‚¤‚©‚Ìİ’è‚ğæ“¾‚·‚é( –ß‚è’l  TRUE:ƒ}ƒeƒŠƒAƒ‹ƒJƒ‰[‚Ì‘ã‚í‚è‚Ég—p‚·‚é  FALSE:ƒ}ƒeƒŠƒAƒ‹ƒJƒ‰[‚ğg—p‚·‚é )
-extern	int				MV1GetMeshUseVertSpcColorBase( int MBHandle, int MeshIndex ) ;							// w’è‚ÌƒƒbƒVƒ…‚Ì’¸“_ƒXƒyƒLƒ…ƒ‰ƒJƒ‰[‚ğƒ}ƒeƒŠƒAƒ‹‚ÌƒXƒyƒLƒ…ƒ‰ƒJƒ‰[‚Ì‘ã‚í‚è‚Ég—p‚·‚é‚©‚Ç‚¤‚©‚Ìİ’è‚ğæ“¾‚·‚é( –ß‚è’l  TRUE:ƒ}ƒeƒŠƒAƒ‹ƒJƒ‰[‚Ì‘ã‚í‚è‚Ég—p‚·‚é  FALSE:ƒ}ƒeƒŠƒAƒ‹ƒJƒ‰[‚ğg—p‚·‚é )
-extern	int				MV1GetMeshShapeFlagBase( int MBHandle, int MeshIndex ) ;								// w’è‚ÌƒƒbƒVƒ…‚ªƒVƒFƒCƒvƒƒbƒVƒ…‚©‚Ç‚¤‚©‚ğæ“¾‚·‚é( –ß‚è’l TRUE:ƒVƒFƒCƒvƒƒbƒVƒ…  FALSE:’ÊíƒƒbƒVƒ… )
+// ãƒ¡ãƒƒã‚·ãƒ¥é–¢ä¿‚
+extern	int				MV1SetMeshUseVertDifColorBase( int MBHandle, int MeshIndex, int UseFlag ) ;				// æŒ‡å®šã®ãƒ¡ãƒƒã‚·ãƒ¥ã®é ‚ç‚¹ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚«ãƒ©ãƒ¼ã‚’ãƒãƒ†ãƒªã‚¢ãƒ«ã®ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚«ãƒ©ãƒ¼ã®ä»£ã‚ã‚Šã«ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹( TRUE:ãƒãƒ†ãƒªã‚¢ãƒ«ã‚«ãƒ©ãƒ¼ã®ä»£ã‚ã‚Šã«ä½¿ç”¨ã™ã‚‹  FALSE:ãƒãƒ†ãƒªã‚¢ãƒ«ã‚«ãƒ©ãƒ¼ã‚’ä½¿ç”¨ã™ã‚‹ )
+extern	int				MV1SetMeshUseVertSpcColorBase( int MBHandle, int MeshIndex, int UseFlag ) ;				// æŒ‡å®šã®ãƒ¡ãƒƒã‚·ãƒ¥ã®é ‚ç‚¹ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã‚«ãƒ©ãƒ¼ã‚’ãƒãƒ†ãƒªã‚¢ãƒ«ã®ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã‚«ãƒ©ãƒ¼ã®ä»£ã‚ã‚Šã«ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹( TRUE:ãƒãƒ†ãƒªã‚¢ãƒ«ã‚«ãƒ©ãƒ¼ã®ä»£ã‚ã‚Šã«ä½¿ç”¨ã™ã‚‹  FALSE:ãƒãƒ†ãƒªã‚¢ãƒ«ã‚«ãƒ©ãƒ¼ã‚’ä½¿ç”¨ã™ã‚‹ )
+extern	int				MV1GetMeshUseVertDifColorBase( int MBHandle, int MeshIndex ) ;							// æŒ‡å®šã®ãƒ¡ãƒƒã‚·ãƒ¥ã®é ‚ç‚¹ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚«ãƒ©ãƒ¼ã‚’ãƒãƒ†ãƒªã‚¢ãƒ«ã®ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚«ãƒ©ãƒ¼ã®ä»£ã‚ã‚Šã«ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã®è¨­å®šã‚’å–å¾—ã™ã‚‹( æˆ»ã‚Šå€¤  TRUE:ãƒãƒ†ãƒªã‚¢ãƒ«ã‚«ãƒ©ãƒ¼ã®ä»£ã‚ã‚Šã«ä½¿ç”¨ã™ã‚‹  FALSE:ãƒãƒ†ãƒªã‚¢ãƒ«ã‚«ãƒ©ãƒ¼ã‚’ä½¿ç”¨ã™ã‚‹ )
+extern	int				MV1GetMeshUseVertSpcColorBase( int MBHandle, int MeshIndex ) ;							// æŒ‡å®šã®ãƒ¡ãƒƒã‚·ãƒ¥ã®é ‚ç‚¹ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã‚«ãƒ©ãƒ¼ã‚’ãƒãƒ†ãƒªã‚¢ãƒ«ã®ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã‚«ãƒ©ãƒ¼ã®ä»£ã‚ã‚Šã«ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã®è¨­å®šã‚’å–å¾—ã™ã‚‹( æˆ»ã‚Šå€¤  TRUE:ãƒãƒ†ãƒªã‚¢ãƒ«ã‚«ãƒ©ãƒ¼ã®ä»£ã‚ã‚Šã«ä½¿ç”¨ã™ã‚‹  FALSE:ãƒãƒ†ãƒªã‚¢ãƒ«ã‚«ãƒ©ãƒ¼ã‚’ä½¿ç”¨ã™ã‚‹ )
+extern	int				MV1GetMeshShapeFlagBase( int MBHandle, int MeshIndex ) ;								// æŒ‡å®šã®ãƒ¡ãƒƒã‚·ãƒ¥ãŒã‚·ã‚§ã‚¤ãƒ—ãƒ¡ãƒƒã‚·ãƒ¥ã‹ã©ã†ã‹ã‚’å–å¾—ã™ã‚‹( æˆ»ã‚Šå€¤ TRUE:ã‚·ã‚§ã‚¤ãƒ—ãƒ¡ãƒƒã‚·ãƒ¥  FALSE:é€šå¸¸ãƒ¡ãƒƒã‚·ãƒ¥ )
 
-// ƒVƒFƒCƒvŠÖŒW
-extern	int				MV1GetShapeNumBase( int MBHandle ) ;													// ƒ‚ƒfƒ‹‚ÉŠÜ‚Ü‚ê‚éƒVƒFƒCƒv‚Ì”‚ğæ“¾‚·‚é
-extern	int				MV1SearchShapeBase( int MBHandle, const wchar_t *ShapeName ) ;							// ƒVƒFƒCƒv‚Ì–¼‘O‚©‚çƒ‚ƒfƒ‹’†‚ÌƒVƒFƒCƒv‚ÌƒVƒFƒCƒvƒCƒ“ƒfƒbƒNƒX‚ğæ“¾‚·‚é( –³‚©‚Á‚½ê‡‚Í–ß‚è’l‚ª-1 )
+// ã‚·ã‚§ã‚¤ãƒ—é–¢ä¿‚
+extern	int				MV1GetShapeNumBase( int MBHandle ) ;													// ãƒ¢ãƒ‡ãƒ«ã«å«ã¾ã‚Œã‚‹ã‚·ã‚§ã‚¤ãƒ—ã®æ•°ã‚’å–å¾—ã™ã‚‹
+extern	int				MV1SearchShapeBase( int MBHandle, const wchar_t *ShapeName ) ;							// ã‚·ã‚§ã‚¤ãƒ—ã®åå‰ã‹ã‚‰ãƒ¢ãƒ‡ãƒ«ä¸­ã®ã‚·ã‚§ã‚¤ãƒ—ã®ã‚·ã‚§ã‚¤ãƒ—ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’å–å¾—ã™ã‚‹( ç„¡ã‹ã£ãŸå ´åˆã¯æˆ»ã‚Šå€¤ãŒ-1 )
 #ifndef UNICODE
-extern	const char *	MV1GetShapeNameBaseA( int MBHandle, int ShapeIndex ) ;									// w’èƒVƒFƒCƒv‚Ì–¼‘O‚ğæ“¾‚·‚é
+extern	const char *	MV1GetShapeNameBaseA( int MBHandle, int ShapeIndex ) ;									// æŒ‡å®šã‚·ã‚§ã‚¤ãƒ—ã®åå‰ã‚’å–å¾—ã™ã‚‹
 #endif
-extern	const wchar_t *	MV1GetShapeNameBaseW( int MBHandle, int ShapeIndex ) ;									// w’èƒVƒFƒCƒv‚Ì–¼‘O‚ğæ“¾‚·‚é
-extern	int				MV1GetShapeTargetMeshNumBase( int MBHandle, int ShapeIndex ) ;							// w’èƒVƒFƒCƒv‚ª‘ÎÛ‚Æ‚µ‚Ä‚¢‚éƒƒbƒVƒ…‚Ì”‚ğæ“¾‚·‚é
-extern	int				MV1GetShapeTargetMeshBase( int MBHandle, int ShapeIndex, int Index ) ;					// w’èƒVƒFƒCƒv‚ª‘ÎÛ‚Æ‚µ‚Ä‚¢‚éƒƒbƒVƒ…‚ÌƒƒbƒVƒ…ƒCƒ“ƒfƒbƒNƒX‚ğæ“¾‚·‚é
+extern	const wchar_t *	MV1GetShapeNameBaseW( int MBHandle, int ShapeIndex ) ;									// æŒ‡å®šã‚·ã‚§ã‚¤ãƒ—ã®åå‰ã‚’å–å¾—ã™ã‚‹
+extern	int				MV1GetShapeTargetMeshNumBase( int MBHandle, int ShapeIndex ) ;							// æŒ‡å®šã‚·ã‚§ã‚¤ãƒ—ãŒå¯¾è±¡ã¨ã—ã¦ã„ã‚‹ãƒ¡ãƒƒã‚·ãƒ¥ã®æ•°ã‚’å–å¾—ã™ã‚‹
+extern	int				MV1GetShapeTargetMeshBase( int MBHandle, int ShapeIndex, int Index ) ;					// æŒ‡å®šã‚·ã‚§ã‚¤ãƒ—ãŒå¯¾è±¡ã¨ã—ã¦ã„ã‚‹ãƒ¡ãƒƒã‚·ãƒ¥ã®ãƒ¡ãƒƒã‚·ãƒ¥ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’å–å¾—ã™ã‚‹
 
-// ƒ‚ƒfƒ‹ƒf[ƒ^\’zŠÖŒW
-extern	int				MV1AddModel( int ASyncThread ) ;														// ƒ‚ƒfƒ‹ƒf[ƒ^‚ğ’Ç‰Á‚·‚é( -1:ƒGƒ‰[  0ˆÈã:ƒ‚ƒfƒ‹ƒf[ƒ^ƒnƒ“ƒhƒ‹ )
-extern	int				MV1SubModel( int MV1ModelHandle ) ;														// ƒ‚ƒfƒ‹ƒf[ƒ^‚ğíœ‚·‚é
-extern	int				MV1MakeModel( int MV1ModelHandle, int MV1ModelBaseHandle, int ASyncThread = FALSE ) ;	// ƒ‚ƒfƒ‹Šîƒf[ƒ^‚©‚çƒ‚ƒfƒ‹ƒf[ƒ^‚ğ\’z‚·‚é( -1:ƒGƒ‰[ 0:¬Œ÷ )
+// ãƒ¢ãƒ‡ãƒ«ãƒ‡ãƒ¼ã‚¿æ§‹ç¯‰é–¢ä¿‚
+extern	int				MV1AddModel( int ASyncThread ) ;														// ãƒ¢ãƒ‡ãƒ«ãƒ‡ãƒ¼ã‚¿ã‚’è¿½åŠ ã™ã‚‹( -1:ã‚¨ãƒ©ãƒ¼  0ä»¥ä¸Š:ãƒ¢ãƒ‡ãƒ«ãƒ‡ãƒ¼ã‚¿ãƒãƒ³ãƒ‰ãƒ« )
+extern	int				MV1SubModel( int MV1ModelHandle ) ;														// ãƒ¢ãƒ‡ãƒ«ãƒ‡ãƒ¼ã‚¿ã‚’å‰Šé™¤ã™ã‚‹
+extern	int				MV1MakeModel( int MV1ModelHandle, int MV1ModelBaseHandle, int ASyncThread = FALSE ) ;	// ãƒ¢ãƒ‡ãƒ«åŸºãƒ‡ãƒ¼ã‚¿ã‹ã‚‰ãƒ¢ãƒ‡ãƒ«ãƒ‡ãƒ¼ã‚¿ã‚’æ§‹ç¯‰ã™ã‚‹( -1:ã‚¨ãƒ©ãƒ¼ 0:æˆåŠŸ )
 
-extern	int				MV1GetMaxMinPosition( int MHandle, VECTOR *MaxPosition, VECTOR *MinPosition, int ASyncThread = FALSE ) ;	// ƒ‚ƒfƒ‹‚ÌÅ‘å’¸“_À•W‚ÆÅ¬’¸“_À•W‚ğæ“¾‚·‚é
+extern	int				MV1GetMaxMinPosition( int MHandle, VECTOR *MaxPosition, VECTOR *MinPosition, int ASyncThread = FALSE ) ;	// ãƒ¢ãƒ‡ãƒ«ã®æœ€å¤§é ‚ç‚¹åº§æ¨™ã¨æœ€å°é ‚ç‚¹åº§æ¨™ã‚’å–å¾—ã™ã‚‹
 
-extern	int				InitializeModelHandle( HANDLEINFO *HandleInfo ) ;										// ƒ‚ƒfƒ‹ƒf[ƒ^ƒnƒ“ƒhƒ‹‚Ì‰Šú‰»
-extern	int				TerminateModelHandle( HANDLEINFO *HandleInfo ) ;										// ƒ‚ƒfƒ‹ƒf[ƒ^ƒnƒ“ƒhƒ‹‚ÌŒãn––
+extern	int				InitializeModelHandle( HANDLEINFO *HandleInfo ) ;										// ãƒ¢ãƒ‡ãƒ«ãƒ‡ãƒ¼ã‚¿ãƒãƒ³ãƒ‰ãƒ«ã®åˆæœŸåŒ–
+extern	int				TerminateModelHandle( HANDLEINFO *HandleInfo ) ;										// ãƒ¢ãƒ‡ãƒ«ãƒ‡ãƒ¼ã‚¿ãƒãƒ³ãƒ‰ãƒ«ã®å¾Œå§‹æœ«
 
-// ƒ‚ƒfƒ‹ƒf[ƒ^ŠÖŒW
-extern	int				MV1GetModelBaseHandle( int MHandle ) ;													// ƒ‚ƒfƒ‹ƒnƒ“ƒhƒ‹‚Åg—p‚³‚ê‚Ä‚¢‚éƒ‚ƒfƒ‹Šî–{ƒf[ƒ^ƒnƒ“ƒhƒ‹‚ğæ“¾‚·‚é
-extern	int				MV1GetModelDataSize( int MHandle, int DataType ) ;										// ƒ‚ƒfƒ‹‚Ìƒf[ƒ^ƒTƒCƒY‚ğæ“¾‚·‚é
-extern	int				MV1GetAnimDataSize( int MHandle, const wchar_t *AnimName = NULL, int AnimIndex = -1 ) ;	// ƒAƒjƒ[ƒVƒ‡ƒ“‚Ìƒf[ƒ^ƒTƒCƒY‚ğæ“¾‚·‚é
-extern	int				MV1SetNotUseFrameRotation( int MHandle, int NotUseFrameRotation ) ;						// ƒtƒŒ[ƒ€‚Ì‰ñ“]‚ğg—p‚µ‚È‚¢‚©‚Ç‚¤‚©‚ğİ’è‚·‚é
-extern	int				MV1GetNotUseFrameRotation( int MHandle ) ;												// ƒtƒŒ[ƒ€‚Ì‰ñ“]‚ğg—p‚µ‚È‚¢‚©‚Ç‚¤‚©‚ğæ“¾‚·‚é
+// ãƒ¢ãƒ‡ãƒ«ãƒ‡ãƒ¼ã‚¿é–¢ä¿‚
+extern	int				MV1GetModelBaseHandle( int MHandle ) ;													// ãƒ¢ãƒ‡ãƒ«ãƒãƒ³ãƒ‰ãƒ«ã§ä½¿ç”¨ã•ã‚Œã¦ã„ã‚‹ãƒ¢ãƒ‡ãƒ«åŸºæœ¬ãƒ‡ãƒ¼ã‚¿ãƒãƒ³ãƒ‰ãƒ«ã‚’å–å¾—ã™ã‚‹
+extern	int				MV1GetModelDataSize( int MHandle, int DataType ) ;										// ãƒ¢ãƒ‡ãƒ«ã®ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºã‚’å–å¾—ã™ã‚‹
+extern	int				MV1GetAnimDataSize( int MHandle, const wchar_t *AnimName = NULL, int AnimIndex = -1 ) ;	// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºã‚’å–å¾—ã™ã‚‹
+extern	int				MV1SetNotUseFrameRotation( int MHandle, int NotUseFrameRotation ) ;						// ãƒ•ãƒ¬ãƒ¼ãƒ ã®å›è»¢ã‚’ä½¿ç”¨ã—ãªã„ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹
+extern	int				MV1GetNotUseFrameRotation( int MHandle ) ;												// ãƒ•ãƒ¬ãƒ¼ãƒ ã®å›è»¢ã‚’ä½¿ç”¨ã—ãªã„ã‹ã©ã†ã‹ã‚’å–å¾—ã™ã‚‹
 
-// ƒ‚ƒfƒ‹•`‰æŠÖŒW
-extern	int				MV1DrawPackDrawModel( void ) ;															// “¯•¡”•`‰æ‚Ìˆ×‚É•`‰æ‘Ò‹@‚µ‚Ä‚¢‚éƒ‚ƒfƒ‹‚ğ•`‰æ‚·‚é
-extern	int				MV1_BeginRender( MV1_MODEL *Model ) ;													// ‚R‚cƒ‚ƒfƒ‹‚ÌƒŒƒ“ƒ_ƒŠƒ“ƒO‚Ì€”õ‚ğs‚¤
-extern	int				MV1_EndRender( void ) ;																	// ‚R‚cƒ‚ƒfƒ‹‚ÌƒŒƒ“ƒ_ƒŠƒ“ƒO‚ÌŒãn––‚ğs‚¤
+// ãƒ¢ãƒ‡ãƒ«æç”»é–¢ä¿‚
+extern	int				MV1DrawPackDrawModel( void ) ;															// åŒæ™‚è¤‡æ•°æç”»ã®ç‚ºã«æç”»å¾…æ©Ÿã—ã¦ã„ã‚‹ãƒ¢ãƒ‡ãƒ«ã‚’æç”»ã™ã‚‹
+extern	int				MV1_BeginRender( MV1_MODEL *Model ) ;													// ï¼“ï¼¤ãƒ¢ãƒ‡ãƒ«ã®ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã®æº–å‚™ã‚’è¡Œã†
+extern	int				MV1_EndRender( void ) ;																	// ï¼“ï¼¤ãƒ¢ãƒ‡ãƒ«ã®ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã®å¾Œå§‹æœ«ã‚’è¡Œã†
 
-// ƒ‚ƒfƒ‹•¨—‰‰ZŠÖŒW
-extern	int				MV1PhysicsCalculationBase( int MHandle, float MillisecondTime, int ASyncLoadFlag = FALSE ) ;	// ƒ‚ƒfƒ‹‚Ì•¨—‰‰Z‚ğw’èŠÔ•ªŒo‰ß‚µ‚½‚Æ‰¼’è‚µ‚ÄŒvZ‚·‚é( MillisecondTime ‚Åw’è‚·‚éŠÔ‚Ì’PˆÊ‚Íƒ~ƒŠ•b )
+// ãƒ¢ãƒ‡ãƒ«ç‰©ç†æ¼”ç®—é–¢ä¿‚
+extern	int				MV1PhysicsCalculationBase( int MHandle, float MillisecondTime, int ASyncLoadFlag = FALSE ) ;	// ãƒ¢ãƒ‡ãƒ«ã®ç‰©ç†æ¼”ç®—ã‚’æŒ‡å®šæ™‚é–“åˆ†çµŒéã—ãŸã¨ä»®å®šã—ã¦è¨ˆç®—ã™ã‚‹( MillisecondTime ã§æŒ‡å®šã™ã‚‹æ™‚é–“ã®å˜ä½ã¯ãƒŸãƒªç§’ )
 
 
 
-// ƒ‚ƒfƒ‹‚Ì“Ç‚İ‚İE•Û‘¶E•¡»ŠÖŒW
-extern	int				MV1LoadModelToPMX( const MV1_MODEL_LOAD_PARAM *LoadParam, int ASyncThread = FALSE ) ;	// ‚o‚l‚wƒtƒ@ƒCƒ‹‚ğ“Ç‚İ‚Ş( -1:ƒGƒ‰[  0ˆÈã:ƒ‚ƒfƒ‹ƒnƒ“ƒhƒ‹ )
-extern	int				MV1LoadModelToPMD( const MV1_MODEL_LOAD_PARAM *LoadParam, int ASyncThread = FALSE ) ;	// ‚o‚l‚cƒtƒ@ƒCƒ‹‚ğ“Ç‚İ‚Ş( -1:ƒGƒ‰[  0ˆÈã:ƒ‚ƒfƒ‹ƒnƒ“ƒhƒ‹ )
-extern	int				MV1LoadModelToVMD( const MV1_MODEL_LOAD_PARAM *LoadParam, int ASyncThread = FALSE ) ;	// ‚u‚l‚cƒtƒ@ƒCƒ‹‚ğ“Ç‚İ‚Ş( -1:ƒGƒ‰[  0ˆÈã:ƒ‚ƒfƒ‹ƒnƒ“ƒhƒ‹ )
-extern	int				MV1LoadModelToX(   const MV1_MODEL_LOAD_PARAM *LoadParam, int ASyncThread = FALSE ) ;	// ‚wƒtƒ@ƒCƒ‹‚ğ“Ç‚İ‚Ş( -1:ƒGƒ‰[  0ˆÈã:ƒ‚ƒfƒ‹ƒnƒ“ƒhƒ‹ )
-extern	int				MV1LoadModelToFBX( const MV1_MODEL_LOAD_PARAM *LoadParam, int ASyncThread = FALSE ) ;	// ‚e‚a‚wƒtƒ@ƒCƒ‹‚ğ“Ç‚İ‚Ş( -1:ƒGƒ‰[  0ˆÈã:ƒ‚ƒfƒ‹ƒnƒ“ƒhƒ‹ )
-extern	int				MV1LoadModelToMQO( const MV1_MODEL_LOAD_PARAM *LoadParam, int ASyncThread = FALSE ) ;	// ‚l‚p‚nƒtƒ@ƒCƒ‹‚ğ“Ç‚İ‚Ş( -1:ƒGƒ‰[  0ˆÈã:ƒ‚ƒfƒ‹ƒnƒ“ƒhƒ‹ )
-extern	int				MV1LoadModelToMV1( const MV1_MODEL_LOAD_PARAM *LoadParam, int ASyncThread = FALSE ) ;	// ‚l‚u‚Pƒtƒ@ƒCƒ‹‚ğ“Ç‚İ‚Ş( -1:ƒGƒ‰[  0ˆÈã:ƒ‚ƒfƒ‹ƒnƒ“ƒhƒ‹ )
-extern	int				MV1SetupVertexBufferAll( int ASyncThread = FALSE ) ;									// ’¸“_ƒoƒbƒtƒ@‚ÌƒZƒbƒgƒAƒbƒv‚ğ‚·‚é( -1:ƒGƒ‰[ )
-extern	int				MV1TerminateVertexBufferAll( void ) ;													// ‘S‚Ä‚Ì’¸“_ƒoƒbƒtƒ@‚ÌŒãn––‚ğ‚·‚é( -1:ƒGƒ‰[ )
-extern	const wchar_t *	MV1GetModelFileName( int MHandle ) ;													// ƒ[ƒh‚µ‚½ƒ‚ƒfƒ‹‚Ìƒtƒ@ƒCƒ‹–¼‚ğæ“¾‚·‚é
-extern	const wchar_t *	MV1GetModelDirectoryPath( int MHandle ) ;												// ƒ[ƒh‚µ‚½ƒ‚ƒfƒ‹‚ª‘¶İ‚·‚éƒfƒBƒŒƒNƒgƒŠƒpƒX‚ğæ“¾‚·‚é( ––’[‚É / ‚© \ ‚ª•t‚¢‚Ä‚¢‚Ü‚· )
+// ãƒ¢ãƒ‡ãƒ«ã®èª­ã¿è¾¼ã¿ãƒ»ä¿å­˜ãƒ»è¤‡è£½é–¢ä¿‚
+extern	int				MV1LoadModelToPMX( const MV1_MODEL_LOAD_PARAM *LoadParam, int ASyncThread = FALSE ) ;	// ï¼°ï¼­ï¼¸ãƒ•ã‚¡ã‚¤ãƒ«ã‚’èª­ã¿è¾¼ã‚€( -1:ã‚¨ãƒ©ãƒ¼  0ä»¥ä¸Š:ãƒ¢ãƒ‡ãƒ«ãƒãƒ³ãƒ‰ãƒ« )
+extern	int				MV1LoadModelToPMD( const MV1_MODEL_LOAD_PARAM *LoadParam, int ASyncThread = FALSE ) ;	// ï¼°ï¼­ï¼¤ãƒ•ã‚¡ã‚¤ãƒ«ã‚’èª­ã¿è¾¼ã‚€( -1:ã‚¨ãƒ©ãƒ¼  0ä»¥ä¸Š:ãƒ¢ãƒ‡ãƒ«ãƒãƒ³ãƒ‰ãƒ« )
+extern	int				MV1LoadModelToVMD( const MV1_MODEL_LOAD_PARAM *LoadParam, int ASyncThread = FALSE ) ;	// ï¼¶ï¼­ï¼¤ãƒ•ã‚¡ã‚¤ãƒ«ã‚’èª­ã¿è¾¼ã‚€( -1:ã‚¨ãƒ©ãƒ¼  0ä»¥ä¸Š:ãƒ¢ãƒ‡ãƒ«ãƒãƒ³ãƒ‰ãƒ« )
+extern	int				MV1LoadModelToX(   const MV1_MODEL_LOAD_PARAM *LoadParam, int ASyncThread = FALSE ) ;	// ï¼¸ãƒ•ã‚¡ã‚¤ãƒ«ã‚’èª­ã¿è¾¼ã‚€( -1:ã‚¨ãƒ©ãƒ¼  0ä»¥ä¸Š:ãƒ¢ãƒ‡ãƒ«ãƒãƒ³ãƒ‰ãƒ« )
+extern	int				MV1LoadModelToFBX( const MV1_MODEL_LOAD_PARAM *LoadParam, int ASyncThread = FALSE ) ;	// ï¼¦ï¼¢ï¼¸ãƒ•ã‚¡ã‚¤ãƒ«ã‚’èª­ã¿è¾¼ã‚€( -1:ã‚¨ãƒ©ãƒ¼  0ä»¥ä¸Š:ãƒ¢ãƒ‡ãƒ«ãƒãƒ³ãƒ‰ãƒ« )
+extern	int				MV1LoadModelToMQO( const MV1_MODEL_LOAD_PARAM *LoadParam, int ASyncThread = FALSE ) ;	// ï¼­ï¼±ï¼¯ãƒ•ã‚¡ã‚¤ãƒ«ã‚’èª­ã¿è¾¼ã‚€( -1:ã‚¨ãƒ©ãƒ¼  0ä»¥ä¸Š:ãƒ¢ãƒ‡ãƒ«ãƒãƒ³ãƒ‰ãƒ« )
+extern	int				MV1LoadModelToMV1( const MV1_MODEL_LOAD_PARAM *LoadParam, int ASyncThread = FALSE ) ;	// ï¼­ï¼¶ï¼‘ãƒ•ã‚¡ã‚¤ãƒ«ã‚’èª­ã¿è¾¼ã‚€( -1:ã‚¨ãƒ©ãƒ¼  0ä»¥ä¸Š:ãƒ¢ãƒ‡ãƒ«ãƒãƒ³ãƒ‰ãƒ« )
+extern	int				MV1SetupVertexBufferAll( int ASyncThread = FALSE ) ;									// é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã‚’ã™ã‚‹( -1:ã‚¨ãƒ©ãƒ¼ )
+extern	int				MV1TerminateVertexBufferAll( void ) ;													// å…¨ã¦ã®é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã®å¾Œå§‹æœ«ã‚’ã™ã‚‹( -1:ã‚¨ãƒ©ãƒ¼ )
+extern	const wchar_t *	MV1GetModelFileName( int MHandle ) ;													// ãƒ­ãƒ¼ãƒ‰ã—ãŸãƒ¢ãƒ‡ãƒ«ã®ãƒ•ã‚¡ã‚¤ãƒ«åã‚’å–å¾—ã™ã‚‹
+extern	const wchar_t *	MV1GetModelDirectoryPath( int MHandle ) ;												// ãƒ­ãƒ¼ãƒ‰ã—ãŸãƒ¢ãƒ‡ãƒ«ãŒå­˜åœ¨ã™ã‚‹ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªãƒ‘ã‚¹ã‚’å–å¾—ã™ã‚‹( æœ«ç«¯ã« / ã‹ \ ãŒä»˜ã„ã¦ã„ã¾ã™ )
 
-extern	void			InitMV1LoadModelGParam( MV1LOADMODEL_GPARAM *GParam ) ;									// MV1LOADMODEL_GPARAM ‚Ìƒf[ƒ^‚ğƒZƒbƒg‚·‚é
+extern	void			InitMV1LoadModelGParam( MV1LOADMODEL_GPARAM *GParam ) ;									// MV1LOADMODEL_GPARAM ã®ãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 
-extern	int				MV1LoadModel_UseGParam( MV1LOADMODEL_GPARAM *GParam, const wchar_t *FileName, int ASyncLoadFlag = FALSE ) ;																																																									// MV1LoadModel ‚ÌƒOƒ[ƒoƒ‹•Ï”‚ÉƒAƒNƒZƒX‚µ‚È‚¢ƒo[ƒWƒ‡ƒ“
-extern	int				MV1LoadModelFromMem_UseGParam( MV1LOADMODEL_GPARAM *GParam, void *FileImage, int FileSize, int (* FileReadFunc )( const TCHAR *FilePath, void **FileImageAddr, int *FileSize, void *FileReadFuncData ), int (* FileReleaseFunc )( void *MemoryAddr, void *FileReadFuncData ), void *FileReadFuncData = NULL, int ASyncLoadFlag = FALSE ) ;	// MV1LoadModelFromMem ‚ÌƒOƒ[ƒoƒ‹•Ï”‚ÉƒAƒNƒZƒX‚µ‚È‚¢ƒo[ƒWƒ‡ƒ“
+extern	int				MV1LoadModel_UseGParam( MV1LOADMODEL_GPARAM *GParam, const wchar_t *FileName, int ASyncLoadFlag = FALSE ) ;																																																									// MV1LoadModel ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°ã«ã‚¢ã‚¯ã‚»ã‚¹ã—ãªã„ãƒãƒ¼ã‚¸ãƒ§ãƒ³
+extern	int				MV1LoadModelFromMem_UseGParam( MV1LOADMODEL_GPARAM *GParam, void *FileImage, int FileSize, int (* FileReadFunc )( const TCHAR *FilePath, void **FileImageAddr, int *FileSize, void *FileReadFuncData ), int (* FileReleaseFunc )( void *MemoryAddr, void *FileReadFuncData ), void *FileReadFuncData = NULL, int ASyncLoadFlag = FALSE ) ;	// MV1LoadModelFromMem ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°ã«ã‚¢ã‚¯ã‚»ã‚¹ã—ãªã„ãƒãƒ¼ã‚¸ãƒ§ãƒ³
 
-extern	int				MV1LoadModelDisablePhysicsNameCheck_ShiftJIS( const char *Name, int DisablePhysicsFile ) ;	// •¨—‰‰Z‚ª–³Œø‚È–¼‘O‚©‚Ç‚¤‚©‚ğƒ`ƒFƒbƒN‚·‚é( –ß‚è’l@TRUE:–³Œø  FALSE:—LŒø )( ShiftJISƒR[ƒh”Å )
-extern	int				MV1LoadModelDisablePhysicsNameCheck_WCHAR_T(  const WORD *Name, int DisablePhysicsFile ) ;	// •¨—‰‰Z‚ª–³Œø‚È–¼‘O‚©‚Ç‚¤‚©‚ğƒ`ƒFƒbƒN‚·‚é( –ß‚è’l@TRUE:–³Œø  FALSE:—LŒø )( wchar_t”Å )
+extern	int				MV1LoadModelDisablePhysicsNameCheck_ShiftJIS( const char *Name, int DisablePhysicsFile ) ;	// ç‰©ç†æ¼”ç®—ãŒç„¡åŠ¹ãªåå‰ã‹ã©ã†ã‹ã‚’ãƒã‚§ãƒƒã‚¯ã™ã‚‹( æˆ»ã‚Šå€¤ã€€TRUE:ç„¡åŠ¹  FALSE:æœ‰åŠ¹ )( ShiftJISã‚³ãƒ¼ãƒ‰ç‰ˆ )
+extern	int				MV1LoadModelDisablePhysicsNameCheck_WCHAR_T(  const WORD *Name, int DisablePhysicsFile ) ;	// ç‰©ç†æ¼”ç®—ãŒç„¡åŠ¹ãªåå‰ã‹ã©ã†ã‹ã‚’ãƒã‚§ãƒƒã‚¯ã™ã‚‹( æˆ»ã‚Šå€¤ã€€TRUE:ç„¡åŠ¹  FALSE:æœ‰åŠ¹ )( wchar_tç‰ˆ )
 
-// ƒ‰ƒCƒgŠÖŒW
-extern	int				MV1GetLightNum( int MHandle ) ;															// ƒ‰ƒCƒg‚Ì”‚ğæ“¾‚·‚é
-extern	int				MV1LightSetup( int MHandle ) ;															// ‚Á‚Ä‚¢‚éƒ‰ƒCƒg‚ğƒ‰ƒCƒuƒ‰ƒŠ‚É”½‰f‚³‚¹‚é
+// ãƒ©ã‚¤ãƒˆé–¢ä¿‚
+extern	int				MV1GetLightNum( int MHandle ) ;															// ãƒ©ã‚¤ãƒˆã®æ•°ã‚’å–å¾—ã™ã‚‹
+extern	int				MV1LightSetup( int MHandle ) ;															// æŒã£ã¦ã„ã‚‹ãƒ©ã‚¤ãƒˆã‚’ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã«åæ˜ ã•ã›ã‚‹
 
-// ƒAƒjƒ[ƒVƒ‡ƒ“ŠÖŒW
-extern	int				MV1GetAttachAnimTargetFrameNum( int MHandle, int AttachIndex ) ;						// ƒAƒ^ƒbƒ`‚µ‚Ä‚¢‚éƒAƒjƒ[ƒVƒ‡ƒ“‚ªƒ^[ƒQƒbƒg‚Æ‚·‚éƒtƒŒ[ƒ€‚Ì”‚ğæ“¾‚·‚é
-extern	int				MV1GetAttachAnimTargetFrame( int MHandle, int AttachIndex, int Index ) ;				// ƒAƒ^ƒbƒ`‚µ‚Ä‚¢‚éƒAƒjƒ[ƒVƒ‡ƒ“‚ªƒ^[ƒQƒbƒg‚Æ‚·‚éƒtƒŒ[ƒ€‚ÌƒCƒ“ƒfƒbƒNƒX‚ğŠ“¾‚·‚é
-extern	int				MV1GetAttachAnimTargetFrameToAnimFrameIndex( int MHandle, int AttachIndex, int FrameIndex ) ;	// w’è‚ÌƒtƒŒ[ƒ€‚ªƒAƒ^ƒbƒ`‚µ‚Ä‚¢‚éƒAƒjƒ[ƒVƒ‡ƒ“‚Ì‰½”Ô–Ú‚Ìƒ^[ƒQƒbƒgƒtƒŒ[ƒ€‚©‚ğæ“¾‚·‚é( AnimFrameIndex ‚Æ‚µ‚Äg—p‚·‚é )
+// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³é–¢ä¿‚
+extern	int				MV1GetAttachAnimTargetFrameNum( int MHandle, int AttachIndex ) ;						// ã‚¢ã‚¿ãƒƒãƒã—ã¦ã„ã‚‹ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãŒã‚¿ãƒ¼ã‚²ãƒƒãƒˆã¨ã™ã‚‹ãƒ•ãƒ¬ãƒ¼ãƒ ã®æ•°ã‚’å–å¾—ã™ã‚‹
+extern	int				MV1GetAttachAnimTargetFrame( int MHandle, int AttachIndex, int Index ) ;				// ã‚¢ã‚¿ãƒƒãƒã—ã¦ã„ã‚‹ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãŒã‚¿ãƒ¼ã‚²ãƒƒãƒˆã¨ã™ã‚‹ãƒ•ãƒ¬ãƒ¼ãƒ ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’æ‰€å¾—ã™ã‚‹
+extern	int				MV1GetAttachAnimTargetFrameToAnimFrameIndex( int MHandle, int AttachIndex, int FrameIndex ) ;	// æŒ‡å®šã®ãƒ•ãƒ¬ãƒ¼ãƒ ãŒã‚¢ã‚¿ãƒƒãƒã—ã¦ã„ã‚‹ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®ä½•ç•ªç›®ã®ã‚¿ãƒ¼ã‚²ãƒƒãƒˆãƒ•ãƒ¬ãƒ¼ãƒ ã‹ã‚’å–å¾—ã™ã‚‹( AnimFrameIndex ã¨ã—ã¦ä½¿ç”¨ã™ã‚‹ )
 
-// ƒ‚ƒfƒ‹Šî–{§ŒäŠÖŒW
-extern	VECTOR			MV1GetRotationZAxisZ( int MHandle ) ;													// ƒ‚ƒfƒ‹‚Ì‚y²‚Ì•ûŒü‚ğ“¾‚é
-extern	VECTOR			MV1GetRotationZAxisUp( int MHandle ) ;													// ƒ‚ƒfƒ‹‚Ì‚y²‚Ì•ûŒü‚ğw’è‚µ‚½Û‚Ìã•ûŒüƒxƒNƒgƒ‹‚ğ“¾‚é
-extern	float			MV1GetRotationZAxisTwist( int MHandle ) ;												// ƒ‚ƒfƒ‹‚Ì‚y²‚Ì•ûŒü‚ğw’è‚µ‚½Û‚Ì”P‚èŠp“x‚ğ“¾‚é
+// ãƒ¢ãƒ‡ãƒ«åŸºæœ¬åˆ¶å¾¡é–¢ä¿‚
+extern	VECTOR			MV1GetRotationZAxisZ( int MHandle ) ;													// ãƒ¢ãƒ‡ãƒ«ã®ï¼ºè»¸ã®æ–¹å‘ã‚’å¾—ã‚‹
+extern	VECTOR			MV1GetRotationZAxisUp( int MHandle ) ;													// ãƒ¢ãƒ‡ãƒ«ã®ï¼ºè»¸ã®æ–¹å‘ã‚’æŒ‡å®šã—ãŸéš›ã®ä¸Šæ–¹å‘ãƒ™ã‚¯ãƒˆãƒ«ã‚’å¾—ã‚‹
+extern	float			MV1GetRotationZAxisTwist( int MHandle ) ;												// ãƒ¢ãƒ‡ãƒ«ã®ï¼ºè»¸ã®æ–¹å‘ã‚’æŒ‡å®šã—ãŸéš›ã®æ»ã‚Šè§’åº¦ã‚’å¾—ã‚‹
 
-// ƒgƒ‰ƒCƒAƒ“ƒOƒ‹ƒŠƒXƒgŠÖŒW
-extern	int				MV1GetTriangleListUseBoneFrameNum( int MHandle, int TListIndex ) ;						// w’è‚Ìƒgƒ‰ƒCƒAƒ“ƒOƒ‹ƒŠƒXƒg‚ªg—p‚µ‚Ä‚¢‚éƒ{[ƒ“ƒtƒŒ[ƒ€‚Ì”‚ğæ“¾‚·‚é
-extern	int				MV1GetTriangleListUseBoneFrame( int MHandle, int TListIndex, int Index ) ;				// w’è‚Ìƒgƒ‰ƒCƒAƒ“ƒOƒ‹ƒŠƒXƒg‚ªg—p‚µ‚Ä‚¢‚éƒ{[ƒ“ƒtƒŒ[ƒ€‚ÌƒtƒŒ[ƒ€ƒCƒ“ƒfƒbƒNƒX‚ğæ“¾‚·‚é
+// ãƒˆãƒ©ã‚¤ã‚¢ãƒ³ã‚°ãƒ«ãƒªã‚¹ãƒˆé–¢ä¿‚
+extern	int				MV1GetTriangleListUseBoneFrameNum( int MHandle, int TListIndex ) ;						// æŒ‡å®šã®ãƒˆãƒ©ã‚¤ã‚¢ãƒ³ã‚°ãƒ«ãƒªã‚¹ãƒˆãŒä½¿ç”¨ã—ã¦ã„ã‚‹ãƒœãƒ¼ãƒ³ãƒ•ãƒ¬ãƒ¼ãƒ ã®æ•°ã‚’å–å¾—ã™ã‚‹
+extern	int				MV1GetTriangleListUseBoneFrame( int MHandle, int TListIndex, int Index ) ;				// æŒ‡å®šã®ãƒˆãƒ©ã‚¤ã‚¢ãƒ³ã‚°ãƒ«ãƒªã‚¹ãƒˆãŒä½¿ç”¨ã—ã¦ã„ã‚‹ãƒœãƒ¼ãƒ³ãƒ•ãƒ¬ãƒ¼ãƒ ã®ãƒ•ãƒ¬ãƒ¼ãƒ ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’å–å¾—ã™ã‚‹
 
-// ‹…–ÊüŒ`•âŠÔ‚ğs‚¤
+// çƒé¢ç·šå½¢è£œé–“ã‚’è¡Œã†
 __inline static void _MV1SphereLinear( FLOAT4 *Q1, FLOAT4 *Q2, float t, FLOAT4 *Ret )
 {
 	float Sin1, Cos1, Sin2, Cos2, Sin3, Cos3 ;
@@ -2107,7 +2107,7 @@ __inline void UnSafeMatrix4X4CT_C_EqPlus_C_Mul_S( MATRIX_4X4CT *RST Out, MATRIX_
 	}
 }
 
-// ƒxƒNƒgƒ‹s—ñ‚Æ4x4³•ûs—ñ‚ğæZ‚·‚é( w ‚Í 1 ‚Æ‰¼’è )
+// ãƒ™ã‚¯ãƒˆãƒ«è¡Œåˆ—ã¨4x4æ­£æ–¹è¡Œåˆ—ã‚’ä¹—ç®—ã™ã‚‹( w ã¯ 1 ã¨ä»®å®š )
 __inline void VectorTransform4X4CTF( VECTOR * RST Out, VECTOR * RST InVec, MATRIX_4X4CT_F * RST InMatrix )
 {
 	Out->x = InVec->x * InMatrix->m[ 0 ][ 0 ] + 
@@ -2155,7 +2155,7 @@ __inline void VectorTransform4X4CT( VECTOR * RST Out, VECTOR * RST InVec, MATRIX
 	}
 }
 
-// ƒxƒNƒgƒ‹s—ñ‚Æ4x4³•ûs—ñ‚Ì‰ñ“]¬•ª‚Ì‚İ‚ğæZ‚·‚é( w ‚Í 1 ‚Æ‰¼’è )
+// ãƒ™ã‚¯ãƒˆãƒ«è¡Œåˆ—ã¨4x4æ­£æ–¹è¡Œåˆ—ã®å›è»¢æˆåˆ†ã®ã¿ã‚’ä¹—ç®—ã™ã‚‹( w ã¯ 1 ã¨ä»®å®š )
 __inline void VectorTransformSR4X4CTF( VECTOR * RST Out, VECTOR * RST InVec, MATRIX_4X4CT_F * RST InMatrix )
 {
 	Out->x = InVec->x * InMatrix->m[ 0 ][ 0 ] + 
@@ -2197,19 +2197,19 @@ __inline void VectorTransformSR4X4CT( VECTOR * RST Out, VECTOR * RST InVec, MATR
 	}
 }
 
-// ŠÂ‹«ˆË‘¶ŠÖ”
-extern	int				MV1_Terminate_PF( void ) ;																	// ƒ‚ƒfƒ‹‹@”\‚ÌŒãn––
-extern	int				MV1_TerminateModelBaseHandle_PF( MV1_MODEL_BASE *ModelBase ) ;								// ƒ‚ƒfƒ‹ƒf[ƒ^ƒnƒ“ƒhƒ‹‚ÌŒãn––
-extern	int				MV1_TerminateTriangleListBaseTempBuffer_PF( MV1_TRIANGLE_LIST_BASE *MBTList ) ;				// ƒgƒ‰ƒCƒAƒ“ƒOƒ‹ƒŠƒXƒg‚Ìˆêˆ——p‚Ìƒoƒbƒtƒ@‚ğŠJ•ú‚·‚é
-extern	void			MV1_SetupPackDrawInfo_PF( MV1_MODEL_BASE *ModelBase ) ;										// “¯•¡”•`‰æŠÖŒW‚Ìî•ñ‚ğƒZƒbƒgƒAƒbƒv‚·‚é
-extern	int				MV1_SetupVertexBufferBase_PF( int MV1ModelBaseHandle, int DuplicateNum = 1, int ASyncThread = FALSE ) ;	// ƒ‚ƒfƒ‹Šîƒf[ƒ^‚Ì’¸“_ƒoƒbƒtƒ@‚ÌƒZƒbƒgƒAƒbƒv‚ğ‚·‚é( -1:ƒGƒ‰[ )
-extern	int				MV1_SetupVertexBuffer_PF( int MHandle, int ASyncThread = FALSE ) ;							// ƒ‚ƒfƒ‹ƒf[ƒ^‚Ì’¸“_ƒoƒbƒtƒ@‚ÌƒZƒbƒgƒAƒbƒv‚ğ‚·‚é( -1:ƒGƒ‰[ )
-extern	int				MV1_TerminateVertexBufferBase_PF( int MV1ModelBaseHandle ) ;								// ’¸“_ƒoƒbƒtƒ@‚ÌŒãn––‚ğ‚·‚é( -1:ƒGƒ‰[ )
-extern	int				MV1_TerminateVertexBuffer_PF( int MV1ModelHandle ) ;										// ’¸“_ƒoƒbƒtƒ@‚ÌŒãn––‚ğ‚·‚é( -1:ƒGƒ‰[ )
-extern	int				MV1_SetupShapeVertex_PF( int MHandle ) ;													// ƒVƒFƒCƒvƒf[ƒ^‚ÌƒZƒbƒgƒAƒbƒv‚ğ‚·‚é
-extern	int				MV1_BeginRender_PF( MV1_MODEL *Model ) ;													// ‚R‚cƒ‚ƒfƒ‹‚ÌƒŒƒ“ƒ_ƒŠƒ“ƒO‚Ì€”õ‚ğs‚¤
-extern	int				MV1_EndRender_PF( void ) ;																	// ‚R‚cƒ‚ƒfƒ‹‚ÌƒŒƒ“ƒ_ƒŠƒ“ƒO‚ÌŒãn––‚ğs‚¤
-extern	void			MV1_DrawMesh_PF( MV1_MESH *Mesh, int TriangleListIndex = -1 ) ;								// ƒƒbƒVƒ…•`‰æ•”•ª‚ğ”²‚«o‚µ‚½‚à‚Ì
+// ç’°å¢ƒä¾å­˜é–¢æ•°
+extern	int				MV1_Terminate_PF( void ) ;																	// ãƒ¢ãƒ‡ãƒ«æ©Ÿèƒ½ã®å¾Œå§‹æœ«
+extern	int				MV1_TerminateModelBaseHandle_PF( MV1_MODEL_BASE *ModelBase ) ;								// ãƒ¢ãƒ‡ãƒ«ãƒ‡ãƒ¼ã‚¿ãƒãƒ³ãƒ‰ãƒ«ã®å¾Œå§‹æœ«
+extern	int				MV1_TerminateTriangleListBaseTempBuffer_PF( MV1_TRIANGLE_LIST_BASE *MBTList ) ;				// ãƒˆãƒ©ã‚¤ã‚¢ãƒ³ã‚°ãƒ«ãƒªã‚¹ãƒˆã®ä¸€æ™‚å‡¦ç†ç”¨ã®ãƒãƒƒãƒ•ã‚¡ã‚’é–‹æ”¾ã™ã‚‹
+extern	void			MV1_SetupPackDrawInfo_PF( MV1_MODEL_BASE *ModelBase ) ;										// åŒæ™‚è¤‡æ•°æç”»é–¢ä¿‚ã®æƒ…å ±ã‚’ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã™ã‚‹
+extern	int				MV1_SetupVertexBufferBase_PF( int MV1ModelBaseHandle, int DuplicateNum = 1, int ASyncThread = FALSE ) ;	// ãƒ¢ãƒ‡ãƒ«åŸºãƒ‡ãƒ¼ã‚¿ã®é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã‚’ã™ã‚‹( -1:ã‚¨ãƒ©ãƒ¼ )
+extern	int				MV1_SetupVertexBuffer_PF( int MHandle, int ASyncThread = FALSE ) ;							// ãƒ¢ãƒ‡ãƒ«ãƒ‡ãƒ¼ã‚¿ã®é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã‚’ã™ã‚‹( -1:ã‚¨ãƒ©ãƒ¼ )
+extern	int				MV1_TerminateVertexBufferBase_PF( int MV1ModelBaseHandle ) ;								// é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã®å¾Œå§‹æœ«ã‚’ã™ã‚‹( -1:ã‚¨ãƒ©ãƒ¼ )
+extern	int				MV1_TerminateVertexBuffer_PF( int MV1ModelHandle ) ;										// é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã®å¾Œå§‹æœ«ã‚’ã™ã‚‹( -1:ã‚¨ãƒ©ãƒ¼ )
+extern	int				MV1_SetupShapeVertex_PF( int MHandle ) ;													// ã‚·ã‚§ã‚¤ãƒ—ãƒ‡ãƒ¼ã‚¿ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã‚’ã™ã‚‹
+extern	int				MV1_BeginRender_PF( MV1_MODEL *Model ) ;													// ï¼“ï¼¤ãƒ¢ãƒ‡ãƒ«ã®ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã®æº–å‚™ã‚’è¡Œã†
+extern	int				MV1_EndRender_PF( void ) ;																	// ï¼“ï¼¤ãƒ¢ãƒ‡ãƒ«ã®ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã®å¾Œå§‹æœ«ã‚’è¡Œã†
+extern	void			MV1_DrawMesh_PF( MV1_MESH *Mesh, int TriangleListIndex = -1 ) ;								// ãƒ¡ãƒƒã‚·ãƒ¥æç”»éƒ¨åˆ†ã‚’æŠœãå‡ºã—ãŸã‚‚ã®
 
 
 
@@ -2218,7 +2218,7 @@ extern	void			MV1_DrawMesh_PF( MV1_MESH *Mesh, int TriangleListIndex = -1 ) ;			
 
 
 
-// wchar_t”ÅŠÖ”
+// wchar_tç‰ˆé–¢æ•°
 extern	int				MV1LoadModel_WCHAR_T(						const wchar_t *FileName ) ;
 extern	int				MV1SetLoadModelAnimFilePath_WCHAR_T(		const wchar_t *FileName ) ;
 extern	int				MV1AddLoadModelDisablePhysicsNameWord_WCHAR_T( const wchar_t *Word ) ;
@@ -2245,9 +2245,9 @@ extern	int				MV1GetFrameName2_WCHAR_T(				int MHandle, int FrameIndex, wchar_t 
 extern	int				MV1SearchShape_WCHAR_T(					int MHandle, const wchar_t *ShapeName ) ;
 extern	const wchar_t *	MV1GetShapeName_WCHAR_T(				int MHandle, int ShapeIndex ) ;
 
-// va_list ŠÖ”
-extern	int			MV1SetMaterialTypeParamAll_VaList(		int MHandle,                    va_list VaList ) ;									// ‘S‚Ä‚Ìƒ}ƒeƒŠƒAƒ‹‚Ìƒ^ƒCƒv•Êƒpƒ‰ƒ[ƒ^‚ğ•ÏX‚·‚é( ƒ}ƒeƒŠƒAƒ‹ƒ^ƒCƒv DX_MATERIAL_TYPE_MAT_SPEC_LUMINANCE_TWO_COLOR ‚È‚Ç‚Åg—p )
-extern	int			MV1SetMaterialTypeParam_VaList(			int MHandle, int MaterialIndex, va_list VaList ) ;									// w’è‚Ìƒ}ƒeƒŠƒAƒ‹‚Ìƒ^ƒCƒv•Êƒpƒ‰ƒ[ƒ^‚ğ•ÏX‚·‚é( ƒ}ƒeƒŠƒAƒ‹ƒ^ƒCƒv DX_MATERIAL_TYPE_MAT_SPEC_LUMINANCE_TWO_COLOR ‚È‚Ç‚Åg—p )
+// va_list é–¢æ•°
+extern	int			MV1SetMaterialTypeParamAll_VaList(		int MHandle,                    va_list VaList ) ;									// å…¨ã¦ã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®ã‚¿ã‚¤ãƒ—åˆ¥ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’å¤‰æ›´ã™ã‚‹( ãƒãƒ†ãƒªã‚¢ãƒ«ã‚¿ã‚¤ãƒ— DX_MATERIAL_TYPE_MAT_SPEC_LUMINANCE_TWO_COLOR ãªã©ã§ä½¿ç”¨ )
+extern	int			MV1SetMaterialTypeParam_VaList(			int MHandle, int MaterialIndex, va_list VaList ) ;									// æŒ‡å®šã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®ã‚¿ã‚¤ãƒ—åˆ¥ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’å¤‰æ›´ã™ã‚‹( ãƒãƒ†ãƒªã‚¢ãƒ«ã‚¿ã‚¤ãƒ— DX_MATERIAL_TYPE_MAT_SPEC_LUMINANCE_TWO_COLOR ãªã©ã§ä½¿ç”¨ )
 
 
 
@@ -2269,413 +2269,413 @@ extern	int			MV1SetMaterialTypeParam_VaList(			int MHandle, int MaterialIndex, v
 
 #ifdef DX_THREAD_SAFE
 
-// ƒ‚ƒfƒ‹‚Ì“Ç‚İ‚İE•Û‘¶E•¡»ŠÖŒW
-extern	int			NS_MV1LoadModel( const TCHAR *FileName ) ;												// ƒ‚ƒfƒ‹‚Ì“Ç‚İ‚İ( -1:ƒGƒ‰[  0ˆÈã:ƒ‚ƒfƒ‹ƒnƒ“ƒhƒ‹ )
-extern	int			NS_MV1LoadModelWithStrLen(				const TCHAR *FileName, size_t FileNameLength ) ;					// ƒ‚ƒfƒ‹‚Ì“Ç‚İ‚İ( -1:ƒGƒ‰[  0ˆÈã:ƒ‚ƒfƒ‹ƒnƒ“ƒhƒ‹ )
-extern	int			NS_MV1LoadModelFromMem( const void *FileImage, int FileSize, int (* FileReadFunc )( const TCHAR *FilePath, void **FileImageAddr, int *FileSize, void *FileReadFuncData ), int (* FileReleaseFunc )( void *MemoryAddr, void *FileReadFuncData ), void *FileReadFuncData = NULL ) ;	// ƒƒ‚ƒŠã‚Ìƒ‚ƒfƒ‹ƒtƒ@ƒCƒ‹ƒCƒ[ƒW‚Æ“Æ©‚Ì“Ç‚İ‚İƒ‹[ƒ`ƒ“‚ğg—p‚µ‚Äƒ‚ƒfƒ‹‚ğ“Ç‚İ‚Ş
-extern	int			NS_MV1DeleteModel( int MHandle ) ;														// ƒ‚ƒfƒ‹‚ğíœ‚·‚é
-extern	int			NS_MV1InitModel( void ) ;																		// ‚·‚×‚Ä‚Ìƒ‚ƒfƒ‹‚ğíœ‚·‚é
-extern	int			NS_MV1CreateCloneModel( int SrcMHandle ) ;														// w’è‚Ìƒ‚ƒfƒ‹‚Æ‘S‚­“¯‚¶î•ñ‚ğ‚Â•Ê‚ÌÓÃŞÙƒf[ƒ^ƒnƒ“ƒhƒ‹‚ğì¬‚·‚é( -1:ƒGƒ‰[  0ˆÈã:ƒ‚ƒfƒ‹ƒnƒ“ƒhƒ‹ )
-extern	int			NS_MV1CreateSimpleModel( VERTEX3D *Vertex, int VertexNum, unsigned int *Index, int IndexNum, MATERIALPARAM *Material, int GrHandle ) ;		// w’è‚Ì’¸“_ƒf[ƒ^‚Æƒ}ƒeƒŠƒAƒ‹î•ñAƒeƒNƒXƒ`ƒƒ‚ğg—p‚µ‚½ƒVƒ“ƒvƒ‹‚È‚R‚cƒ‚ƒfƒ‹‚Ìƒnƒ“ƒhƒ‹‚ğì¬‚·‚é
-extern	int			NS_MV1DuplicateModel( int SrcMHandle ) ;												// w’è‚Ìƒ‚ƒfƒ‹‚Æ“¯‚¶ƒ‚ƒfƒ‹Šî–{ƒf[ƒ^‚ğg—p‚µ‚Äƒ‚ƒfƒ‹‚ğì¬‚·‚é( -1:ƒGƒ‰[  0ˆÈã:ƒ‚ƒfƒ‹ƒnƒ“ƒhƒ‹ )
-extern	int			NS_MV1SetLoadModelReMakeNormal( int Flag ) ;											// ƒ‚ƒfƒ‹‚ğ“Ç‚İ‚ŞÛ‚É–@ü‚ÌÄŒvZ‚ğs‚¤‚©‚Ç‚¤‚©‚ğİ’è‚·‚é( TRUE:s‚¤  FALSE:s‚í‚È‚¢ )
-extern	int			NS_MV1SetLoadModelReMakeNormalSmoothingAngle( float SmoothingAngle = 89.5f * DX_PI_F / 180.0f ) ;	// ƒ‚ƒfƒ‹‚ğ“Ç‚İ‚ŞÛ‚És‚¤–@ò‚ÌÄŒvZ‚Åg—p‚·‚éƒXƒ€[ƒWƒ“ƒOŠp“x‚ğİ’è‚·‚é( ’PˆÊ‚Íƒ‰ƒWƒAƒ“ )
-extern	int			NS_MV1SetLoadModelIgnoreScaling(       int Flag ) ;														// ƒ‚ƒfƒ‹‚ğ“Ç‚İ‚ŞÛ‚ÉƒXƒP[ƒŠƒ“ƒOƒf[ƒ^‚ğ–³‹‚·‚é‚©‚Ç‚¤‚©‚ğİ’è‚·‚é( TRUE:–³‹‚·‚é  FALSE:–³‹‚µ‚È‚¢( ƒfƒtƒHƒ‹ƒg ) )
-extern	int			NS_MV1SetLoadModelPositionOptimize( int Flag ) ;										// ƒ‚ƒfƒ‹‚ğ“Ç‚İ‚ŞÛ‚ÉÀ•Wƒf[ƒ^‚ÌÅ“K‰»‚ğs‚¤‚©‚Ç‚¤‚©‚ğİ’è‚·‚é( TRUE:s‚¤  FALSE:s‚í‚È‚¢ )
-extern	int			NS_MV1SetLoadModelNotEqNormalSide_AddZeroAreaPolygon( int Flag ) ;											// ƒ‚ƒfƒ‹‚ğ“Ç‚İ‚ŞÛ‚Éƒ|ƒŠƒSƒ“‚Ì•Ó‚ªÚ‚µ‚Ä‚¢‚ÄAŠ‚Â–@ü‚Ì•ûŒü‚ªˆÙ‚È‚é•Ó‚É–ÊÏ‚O‚Ìƒ|ƒŠƒSƒ“‚ğ–„‚ß‚Ş‚©‚Ç‚¤‚©‚ğİ’è‚·‚é( TRUE:–„‚ß‚Ş@FALSE:–„‚ß‚Ü‚È‚¢( ƒfƒtƒHƒ‹ƒg ) )A( MV1ƒtƒ@ƒCƒ‹‚Ì“Ç‚İ‚İ‚Å‚Í‚±‚ÌŠÖ”‚Ìİ’è‚Í–³‹‚³‚êAƒ|ƒŠƒSƒ“‚Ì–„‚ß‚İ‚ÍÀs‚³‚ê‚Ü‚¹‚ñ )
-extern	int			NS_MV1SetLoadModelUsePhysicsMode( int PhysicsMode /* DX_LOADMODEL_PHYSICS_LOADCALC “™ */ ) ;	// “Ç‚İ‚Şƒ‚ƒfƒ‹‚Ì•¨—‰‰Zƒ‚[ƒh‚ğİ’è‚·‚é
-extern	int			NS_MV1SetLoadModelPhysicsWorldGravity( float Gravity ) ;										// “Ç‚İ‚Şƒ‚ƒfƒ‹‚Ì•¨—‰‰Z‚É“K—p‚·‚éd—Íƒpƒ‰ƒ[ƒ^
-extern	float		NS_MV1GetLoadModelPhysicsWorldGravity( void ) ;															// “Ç‚İ‚Şƒ‚ƒfƒ‹‚Ì•¨—‰‰Z‚É“K—p‚·‚éd—Íƒpƒ‰ƒ[ƒ^‚ğæ“¾‚·‚é
-extern	int			NS_MV1SetLoadCalcPhysicsWorldGravity( int GravityNo, VECTOR Gravity ) ;						// “Ç‚İ‚Şƒ‚ƒfƒ‹‚Ì•¨—‰‰Zƒ‚[ƒh‚ª–‘OŒvZ( DX_LOADMODEL_PHYSICS_LOADCALC )‚¾‚Á‚½ê‡‚É“K—p‚³‚ê‚éd—Í‚Ìİ’è‚ğ‚·‚é
-extern	VECTOR		NS_MV1GetLoadCalcPhysicsWorldGravity( int GravityNo ) ;													// “Ç‚İ‚Şƒ‚ƒfƒ‹‚Ì•¨—‰‰Zƒ‚[ƒh‚ª–‘OŒvZ( DX_LOADMODEL_PHYSICS_LOADCALC )‚¾‚Á‚½ê‡‚É“K—p‚³‚ê‚éd—Í‚ğæ“¾‚·‚é
-extern	int			NS_MV1SetLoadModelPhysicsCalcPrecision( int Precision ) ;												// “Ç‚İ‚Şƒ‚ƒfƒ‹‚Ì•¨—‰‰Zƒ‚[ƒh‚ª–‘OŒvZ( DX_LOADMODEL_PHYSICS_LOADCALC )‚¾‚Á‚½ê‡‚É“K—p‚³‚ê‚é•¨—‰‰Z‚ÌŠÔis‚Ì¸“x‚ğİ’è‚·‚é( 0:60FPS  1:120FPS  2:240FPS  3:480FPS  4:960FPS  5:1920FPS )
-extern	int			NS_MV1SetLoadModel_PMD_PMX_AnimationFPSMode( int FPSMode /* DX_LOADMODEL_PMD_PMX_ANIMATION_FPSMODE_30 “™ */ ) ; // PMD, PMX ƒtƒ@ƒCƒ‹‚ğ“Ç‚İ‚ñ‚¾Û‚ÌƒAƒjƒ[ƒVƒ‡ƒ“‚Ì FPS ƒ‚[ƒh‚ğİ’è‚·‚é
-extern	int			NS_MV1AddLoadModelDisablePhysicsNameWord( const TCHAR *NameWord ) ;											// “Ç‚İ‚Şƒ‚ƒfƒ‹‚Ì•¨—‰‰Z‚ğ“Á’è‚Ì„‘Ì‚Ì‚İ–³Œø‚É‚·‚é‚½‚ß‚Ì–¼‘O‚Ìƒ[ƒh‚ğ’Ç‰Á‚·‚é
-extern	int			NS_MV1AddLoadModelDisablePhysicsNameWordWithStrLen(	const TCHAR *NameWord, size_t NameWordLength ) ;					// “Ç‚İ‚Şƒ‚ƒfƒ‹‚Ì•¨—‰‰Z‚ğ“Á’è‚Ì„‘Ì‚Ì‚İ–³Œø‚É‚·‚é‚½‚ß‚Ì–¼‘O‚Ìƒ[ƒh‚ğ’Ç‰Á‚·‚éA’Ç‰Á‚Å‚«‚éƒ[ƒh•¶š—ñ‚ÌÅ‘å’·‚Í 63 •¶šA’Ç‰Á‚Å‚«‚éƒ[ƒh‚Ì”‚ÍÅ‘å 256 ŒÂ
-extern	int			NS_MV1ResetLoadModelDisablePhysicsNameWord( void ) ;														// MV1AddLoadModelDisablePhysicsNameWord ‚Å’Ç‰Á‚µ‚½„‘Ì‚Ì–³Œøƒ[ƒh‚ğƒŠƒZƒbƒg‚µ‚Ä–³Œøƒ[ƒh–³‚µ‚Ì‰Šúó‘Ô‚É–ß‚·
-extern	int			NS_MV1SetLoadModelDisablePhysicsNameWordMode( int DisableNameWordMode /* DX_LOADMODEL_PHYSICS_DISABLENAMEWORD_ALWAYS “™ */ ) ;	// MV1AddLoadModelDisablePhysicsNameWord ‚Å’Ç‰Á‚µ‚½„‘Ì‚Ì–³Œøƒ[ƒh‚Ì“K—pƒ‹[ƒ‹‚ğ•ÏX‚·‚é
-extern	int			NS_MV1SetLoadModelAnimFilePath( const TCHAR *FileName ) ;										// “Ç‚İ‚Şƒ‚ƒfƒ‹‚É“K—p‚·‚éƒAƒjƒ[ƒVƒ‡ƒ“ƒtƒ@ƒCƒ‹‚ÌƒpƒX‚ğİ’è‚·‚é( Œ»İ‚Í PMD,PMX ‚Ì‚İ‚ÉŒø‰Ê‚ ‚è )
-extern	int			NS_MV1SetLoadModelAnimFilePathWithStrLen(				const TCHAR *FileName, size_t FileNameLength ) ;					// “Ç‚İ‚Şƒ‚ƒfƒ‹‚É“K—p‚·‚éƒAƒjƒ[ƒVƒ‡ƒ“ƒtƒ@ƒCƒ‹‚ÌƒpƒX‚ğİ’è‚·‚éANULL‚ğ“n‚·‚Æİ’èƒŠƒZƒbƒg( Œ»İ‚Í PMD,PMX ‚Ì‚İ‚ÉŒø‰Ê‚ ‚è )
-extern	int			NS_MV1SetLoadModelUsePackDraw(			int Flag ) ;														// “Ç‚İ‚Şƒ‚ƒfƒ‹‚ğ“¯•¡”•`‰æ‚É‘Î‰‚³‚¹‚é‚©‚Ç‚¤‚©‚ğİ’è‚·‚é( TRUE:‘Î‰‚³‚¹‚é  FALSE:‘Î‰‚³‚¹‚È‚¢( ƒfƒtƒHƒ‹ƒg ) )A( u‘Î‰‚³‚¹‚év‚É‚·‚é‚Æ•`‰æ‚ª‚‘¬‚É‚È‚é‰Â”\«‚ª‚ ‚é‘ã‚í‚è‚ÉÁ”ïVRAM‚ª‘‚¦‚Ü‚· )
-extern	int			NS_MV1SetLoadModelTriangleListUseMaxBoneNum( int UseMaxBoneNum ) ;											// “Ç‚İ‚Şƒ‚ƒfƒ‹‚Ì‚Ğ‚Æ‚Â‚Ìƒgƒ‰ƒCƒAƒ“ƒOƒ‹ƒŠƒXƒg‚Åg—p‚Å‚«‚éÅ‘åƒ{[ƒ“”‚ğİ’è‚·‚é( UseMaxBoneNum ‚Åw’è‚Å‚«‚é’l‚Ì”ÍˆÍ‚Í 8 ` 54A 0 ‚ğw’è‚·‚é‚ÆƒfƒtƒHƒ‹ƒg“®ì‚É–ß‚é )
-extern	int			NS_MV1SetLoadModelTextureLoad(							int Flag ) ;														// “Ç‚İ‚Şƒ‚ƒfƒ‹‚Åg—p‚·‚éƒeƒNƒXƒ`ƒƒƒtƒ@ƒCƒ‹‚ğ“Ç‚İ‚Ş‚©‚Ç‚¤‚©‚ğİ’è‚·‚é( TRUE:“Ç‚İ‚Ş(ƒfƒtƒHƒ‹ƒg) FALSE:“Ç‚İ‚Ü‚È‚¢ )
-extern	int			NS_MV1SetLoadModelIgnoreIK(							int IgnoreFlag ) ;													// “Ç‚İ‚Şƒ‚ƒfƒ‹‚ÌIKî•ñ‚ğ–³‹‚·‚é‚©‚Ç‚¤‚©‚ğİ’è‚·‚é( TRUE:–³‹‚·‚é  FALSE:–³‹‚µ‚È‚¢(ƒfƒtƒHƒ‹ƒg) )
+// ãƒ¢ãƒ‡ãƒ«ã®èª­ã¿è¾¼ã¿ãƒ»ä¿å­˜ãƒ»è¤‡è£½é–¢ä¿‚
+extern	int			NS_MV1LoadModel( const TCHAR *FileName ) ;												// ãƒ¢ãƒ‡ãƒ«ã®èª­ã¿è¾¼ã¿( -1:ã‚¨ãƒ©ãƒ¼  0ä»¥ä¸Š:ãƒ¢ãƒ‡ãƒ«ãƒãƒ³ãƒ‰ãƒ« )
+extern	int			NS_MV1LoadModelWithStrLen(				const TCHAR *FileName, size_t FileNameLength ) ;					// ãƒ¢ãƒ‡ãƒ«ã®èª­ã¿è¾¼ã¿( -1:ã‚¨ãƒ©ãƒ¼  0ä»¥ä¸Š:ãƒ¢ãƒ‡ãƒ«ãƒãƒ³ãƒ‰ãƒ« )
+extern	int			NS_MV1LoadModelFromMem( const void *FileImage, int FileSize, int (* FileReadFunc )( const TCHAR *FilePath, void **FileImageAddr, int *FileSize, void *FileReadFuncData ), int (* FileReleaseFunc )( void *MemoryAddr, void *FileReadFuncData ), void *FileReadFuncData = NULL ) ;	// ãƒ¡ãƒ¢ãƒªä¸Šã®ãƒ¢ãƒ‡ãƒ«ãƒ•ã‚¡ã‚¤ãƒ«ã‚¤ãƒ¡ãƒ¼ã‚¸ã¨ç‹¬è‡ªã®èª­ã¿è¾¼ã¿ãƒ«ãƒ¼ãƒãƒ³ã‚’ä½¿ç”¨ã—ã¦ãƒ¢ãƒ‡ãƒ«ã‚’èª­ã¿è¾¼ã‚€
+extern	int			NS_MV1DeleteModel( int MHandle ) ;														// ãƒ¢ãƒ‡ãƒ«ã‚’å‰Šé™¤ã™ã‚‹
+extern	int			NS_MV1InitModel( void ) ;																		// ã™ã¹ã¦ã®ãƒ¢ãƒ‡ãƒ«ã‚’å‰Šé™¤ã™ã‚‹
+extern	int			NS_MV1CreateCloneModel( int SrcMHandle ) ;														// æŒ‡å®šã®ãƒ¢ãƒ‡ãƒ«ã¨å…¨ãåŒã˜æƒ…å ±ã‚’æŒã¤åˆ¥ã®ï¾“ï¾ƒï¾ï¾™ãƒ‡ãƒ¼ã‚¿ãƒãƒ³ãƒ‰ãƒ«ã‚’ä½œæˆã™ã‚‹( -1:ã‚¨ãƒ©ãƒ¼  0ä»¥ä¸Š:ãƒ¢ãƒ‡ãƒ«ãƒãƒ³ãƒ‰ãƒ« )
+extern	int			NS_MV1CreateSimpleModel( VERTEX3D *Vertex, int VertexNum, unsigned int *Index, int IndexNum, MATERIALPARAM *Material, int GrHandle ) ;		// æŒ‡å®šã®é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ã¨ãƒãƒ†ãƒªã‚¢ãƒ«æƒ…å ±ã€ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ä½¿ç”¨ã—ãŸã‚·ãƒ³ãƒ—ãƒ«ãªï¼“ï¼¤ãƒ¢ãƒ‡ãƒ«ã®ãƒãƒ³ãƒ‰ãƒ«ã‚’ä½œæˆã™ã‚‹
+extern	int			NS_MV1DuplicateModel( int SrcMHandle ) ;												// æŒ‡å®šã®ãƒ¢ãƒ‡ãƒ«ã¨åŒã˜ãƒ¢ãƒ‡ãƒ«åŸºæœ¬ãƒ‡ãƒ¼ã‚¿ã‚’ä½¿ç”¨ã—ã¦ãƒ¢ãƒ‡ãƒ«ã‚’ä½œæˆã™ã‚‹( -1:ã‚¨ãƒ©ãƒ¼  0ä»¥ä¸Š:ãƒ¢ãƒ‡ãƒ«ãƒãƒ³ãƒ‰ãƒ« )
+extern	int			NS_MV1SetLoadModelReMakeNormal( int Flag ) ;											// ãƒ¢ãƒ‡ãƒ«ã‚’èª­ã¿è¾¼ã‚€éš›ã«æ³•ç·šã®å†è¨ˆç®—ã‚’è¡Œã†ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹( TRUE:è¡Œã†  FALSE:è¡Œã‚ãªã„ )
+extern	int			NS_MV1SetLoadModelReMakeNormalSmoothingAngle( float SmoothingAngle = 89.5f * DX_PI_F / 180.0f ) ;	// ãƒ¢ãƒ‡ãƒ«ã‚’èª­ã¿è¾¼ã‚€éš›ã«è¡Œã†æ³•æ³‰ã®å†è¨ˆç®—ã§ä½¿ç”¨ã™ã‚‹ã‚¹ãƒ ãƒ¼ã‚¸ãƒ³ã‚°è§’åº¦ã‚’è¨­å®šã™ã‚‹( å˜ä½ã¯ãƒ©ã‚¸ã‚¢ãƒ³ )
+extern	int			NS_MV1SetLoadModelIgnoreScaling(       int Flag ) ;														// ãƒ¢ãƒ‡ãƒ«ã‚’èª­ã¿è¾¼ã‚€éš›ã«ã‚¹ã‚±ãƒ¼ãƒªãƒ³ã‚°ãƒ‡ãƒ¼ã‚¿ã‚’ç„¡è¦–ã™ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹( TRUE:ç„¡è¦–ã™ã‚‹  FALSE:ç„¡è¦–ã—ãªã„( ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ ) )
+extern	int			NS_MV1SetLoadModelPositionOptimize( int Flag ) ;										// ãƒ¢ãƒ‡ãƒ«ã‚’èª­ã¿è¾¼ã‚€éš›ã«åº§æ¨™ãƒ‡ãƒ¼ã‚¿ã®æœ€é©åŒ–ã‚’è¡Œã†ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹( TRUE:è¡Œã†  FALSE:è¡Œã‚ãªã„ )
+extern	int			NS_MV1SetLoadModelNotEqNormalSide_AddZeroAreaPolygon( int Flag ) ;											// ãƒ¢ãƒ‡ãƒ«ã‚’èª­ã¿è¾¼ã‚€éš›ã«ãƒãƒªã‚´ãƒ³ã®è¾ºãŒæ¥ã—ã¦ã„ã¦ã€ä¸”ã¤æ³•ç·šã®æ–¹å‘ãŒç•°ãªã‚‹è¾ºã«é¢ç©ï¼ã®ãƒãƒªã‚´ãƒ³ã‚’åŸ‹ã‚è¾¼ã‚€ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹( TRUE:åŸ‹ã‚è¾¼ã‚€ã€€FALSE:åŸ‹ã‚è¾¼ã¾ãªã„( ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ ) )ã€( MV1ãƒ•ã‚¡ã‚¤ãƒ«ã®èª­ã¿è¾¼ã¿ã§ã¯ã“ã®é–¢æ•°ã®è¨­å®šã¯ç„¡è¦–ã•ã‚Œã€ãƒãƒªã‚´ãƒ³ã®åŸ‹ã‚è¾¼ã¿ã¯å®Ÿè¡Œã•ã‚Œã¾ã›ã‚“ )
+extern	int			NS_MV1SetLoadModelUsePhysicsMode( int PhysicsMode /* DX_LOADMODEL_PHYSICS_LOADCALC ç­‰ */ ) ;	// èª­ã¿è¾¼ã‚€ãƒ¢ãƒ‡ãƒ«ã®ç‰©ç†æ¼”ç®—ãƒ¢ãƒ¼ãƒ‰ã‚’è¨­å®šã™ã‚‹
+extern	int			NS_MV1SetLoadModelPhysicsWorldGravity( float Gravity ) ;										// èª­ã¿è¾¼ã‚€ãƒ¢ãƒ‡ãƒ«ã®ç‰©ç†æ¼”ç®—ã«é©ç”¨ã™ã‚‹é‡åŠ›ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+extern	float		NS_MV1GetLoadModelPhysicsWorldGravity( void ) ;															// èª­ã¿è¾¼ã‚€ãƒ¢ãƒ‡ãƒ«ã®ç‰©ç†æ¼”ç®—ã«é©ç”¨ã™ã‚‹é‡åŠ›ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’å–å¾—ã™ã‚‹
+extern	int			NS_MV1SetLoadCalcPhysicsWorldGravity( int GravityNo, VECTOR Gravity ) ;						// èª­ã¿è¾¼ã‚€ãƒ¢ãƒ‡ãƒ«ã®ç‰©ç†æ¼”ç®—ãƒ¢ãƒ¼ãƒ‰ãŒäº‹å‰è¨ˆç®—( DX_LOADMODEL_PHYSICS_LOADCALC )ã ã£ãŸå ´åˆã«é©ç”¨ã•ã‚Œã‚‹é‡åŠ›ã®è¨­å®šã‚’ã™ã‚‹
+extern	VECTOR		NS_MV1GetLoadCalcPhysicsWorldGravity( int GravityNo ) ;													// èª­ã¿è¾¼ã‚€ãƒ¢ãƒ‡ãƒ«ã®ç‰©ç†æ¼”ç®—ãƒ¢ãƒ¼ãƒ‰ãŒäº‹å‰è¨ˆç®—( DX_LOADMODEL_PHYSICS_LOADCALC )ã ã£ãŸå ´åˆã«é©ç”¨ã•ã‚Œã‚‹é‡åŠ›ã‚’å–å¾—ã™ã‚‹
+extern	int			NS_MV1SetLoadModelPhysicsCalcPrecision( int Precision ) ;												// èª­ã¿è¾¼ã‚€ãƒ¢ãƒ‡ãƒ«ã®ç‰©ç†æ¼”ç®—ãƒ¢ãƒ¼ãƒ‰ãŒäº‹å‰è¨ˆç®—( DX_LOADMODEL_PHYSICS_LOADCALC )ã ã£ãŸå ´åˆã«é©ç”¨ã•ã‚Œã‚‹ç‰©ç†æ¼”ç®—ã®æ™‚é–“é€²è¡Œã®ç²¾åº¦ã‚’è¨­å®šã™ã‚‹( 0:60FPS  1:120FPS  2:240FPS  3:480FPS  4:960FPS  5:1920FPS )
+extern	int			NS_MV1SetLoadModel_PMD_PMX_AnimationFPSMode( int FPSMode /* DX_LOADMODEL_PMD_PMX_ANIMATION_FPSMODE_30 ç­‰ */ ) ; // PMD, PMX ãƒ•ã‚¡ã‚¤ãƒ«ã‚’èª­ã¿è¾¼ã‚“ã éš›ã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã® FPS ãƒ¢ãƒ¼ãƒ‰ã‚’è¨­å®šã™ã‚‹
+extern	int			NS_MV1AddLoadModelDisablePhysicsNameWord( const TCHAR *NameWord ) ;											// èª­ã¿è¾¼ã‚€ãƒ¢ãƒ‡ãƒ«ã®ç‰©ç†æ¼”ç®—ã‚’ç‰¹å®šã®å‰›ä½“ã®ã¿ç„¡åŠ¹ã«ã™ã‚‹ãŸã‚ã®åå‰ã®ãƒ¯ãƒ¼ãƒ‰ã‚’è¿½åŠ ã™ã‚‹
+extern	int			NS_MV1AddLoadModelDisablePhysicsNameWordWithStrLen(	const TCHAR *NameWord, size_t NameWordLength ) ;					// èª­ã¿è¾¼ã‚€ãƒ¢ãƒ‡ãƒ«ã®ç‰©ç†æ¼”ç®—ã‚’ç‰¹å®šã®å‰›ä½“ã®ã¿ç„¡åŠ¹ã«ã™ã‚‹ãŸã‚ã®åå‰ã®ãƒ¯ãƒ¼ãƒ‰ã‚’è¿½åŠ ã™ã‚‹ã€è¿½åŠ ã§ãã‚‹ãƒ¯ãƒ¼ãƒ‰æ–‡å­—åˆ—ã®æœ€å¤§é•·ã¯ 63 æ–‡å­—ã€è¿½åŠ ã§ãã‚‹ãƒ¯ãƒ¼ãƒ‰ã®æ•°ã¯æœ€å¤§ 256 å€‹
+extern	int			NS_MV1ResetLoadModelDisablePhysicsNameWord( void ) ;														// MV1AddLoadModelDisablePhysicsNameWord ã§è¿½åŠ ã—ãŸå‰›ä½“ã®ç„¡åŠ¹ãƒ¯ãƒ¼ãƒ‰ã‚’ãƒªã‚»ãƒƒãƒˆã—ã¦ç„¡åŠ¹ãƒ¯ãƒ¼ãƒ‰ç„¡ã—ã®åˆæœŸçŠ¶æ…‹ã«æˆ»ã™
+extern	int			NS_MV1SetLoadModelDisablePhysicsNameWordMode( int DisableNameWordMode /* DX_LOADMODEL_PHYSICS_DISABLENAMEWORD_ALWAYS ç­‰ */ ) ;	// MV1AddLoadModelDisablePhysicsNameWord ã§è¿½åŠ ã—ãŸå‰›ä½“ã®ç„¡åŠ¹ãƒ¯ãƒ¼ãƒ‰ã®é©ç”¨ãƒ«ãƒ¼ãƒ«ã‚’å¤‰æ›´ã™ã‚‹
+extern	int			NS_MV1SetLoadModelAnimFilePath( const TCHAR *FileName ) ;										// èª­ã¿è¾¼ã‚€ãƒ¢ãƒ‡ãƒ«ã«é©ç”¨ã™ã‚‹ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ‘ã‚¹ã‚’è¨­å®šã™ã‚‹( ç¾åœ¨ã¯ PMD,PMX ã®ã¿ã«åŠ¹æœã‚ã‚Š )
+extern	int			NS_MV1SetLoadModelAnimFilePathWithStrLen(				const TCHAR *FileName, size_t FileNameLength ) ;					// èª­ã¿è¾¼ã‚€ãƒ¢ãƒ‡ãƒ«ã«é©ç”¨ã™ã‚‹ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ‘ã‚¹ã‚’è¨­å®šã™ã‚‹ã€NULLã‚’æ¸¡ã™ã¨è¨­å®šãƒªã‚»ãƒƒãƒˆ( ç¾åœ¨ã¯ PMD,PMX ã®ã¿ã«åŠ¹æœã‚ã‚Š )
+extern	int			NS_MV1SetLoadModelUsePackDraw(			int Flag ) ;														// èª­ã¿è¾¼ã‚€ãƒ¢ãƒ‡ãƒ«ã‚’åŒæ™‚è¤‡æ•°æç”»ã«å¯¾å¿œã•ã›ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹( TRUE:å¯¾å¿œã•ã›ã‚‹  FALSE:å¯¾å¿œã•ã›ãªã„( ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ ) )ã€( ã€Œå¯¾å¿œã•ã›ã‚‹ã€ã«ã™ã‚‹ã¨æç”»ãŒé«˜é€Ÿã«ãªã‚‹å¯èƒ½æ€§ãŒã‚ã‚‹ä»£ã‚ã‚Šã«æ¶ˆè²»VRAMãŒå¢—ãˆã¾ã™ )
+extern	int			NS_MV1SetLoadModelTriangleListUseMaxBoneNum( int UseMaxBoneNum ) ;											// èª­ã¿è¾¼ã‚€ãƒ¢ãƒ‡ãƒ«ã®ã²ã¨ã¤ã®ãƒˆãƒ©ã‚¤ã‚¢ãƒ³ã‚°ãƒ«ãƒªã‚¹ãƒˆã§ä½¿ç”¨ã§ãã‚‹æœ€å¤§ãƒœãƒ¼ãƒ³æ•°ã‚’è¨­å®šã™ã‚‹( UseMaxBoneNum ã§æŒ‡å®šã§ãã‚‹å€¤ã®ç¯„å›²ã¯ 8 ï½ 54ã€ 0 ã‚’æŒ‡å®šã™ã‚‹ã¨ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå‹•ä½œã«æˆ»ã‚‹ )
+extern	int			NS_MV1SetLoadModelTextureLoad(							int Flag ) ;														// èª­ã¿è¾¼ã‚€ãƒ¢ãƒ‡ãƒ«ã§ä½¿ç”¨ã™ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ•ã‚¡ã‚¤ãƒ«ã‚’èª­ã¿è¾¼ã‚€ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹( TRUE:èª­ã¿è¾¼ã‚€(ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ) FALSE:èª­ã¿è¾¼ã¾ãªã„ )
+extern	int			NS_MV1SetLoadModelIgnoreIK(							int IgnoreFlag ) ;													// èª­ã¿è¾¼ã‚€ãƒ¢ãƒ‡ãƒ«ã®IKæƒ…å ±ã‚’ç„¡è¦–ã™ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹( TRUE:ç„¡è¦–ã™ã‚‹  FALSE:ç„¡è¦–ã—ãªã„(ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ) )
 
-// ƒ‚ƒfƒ‹•Û‘¶ŠÖŒW
-extern	int			NS_MV1SaveModelToMV1File( int MHandle, const TCHAR *FileName, int SaveType = MV1_SAVETYPE_NORMAL , int AnimMHandle = -1 , int AnimNameCheck = TRUE , int Normal8BitFlag = 1 , int Position16BitFlag = 1 , int Weight8BitFlag = 0 , int Anim16BitFlag = 1 ) ;		// w’è‚ÌƒpƒX‚Éƒ‚ƒfƒ‹‚ğ•Û‘¶‚·‚é( –ß‚è’l  0:¬Œ÷  -1:ƒƒ‚ƒŠ•s‘«  -2:g‚í‚ê‚Ä‚¢‚È‚¢ƒAƒjƒ[ƒVƒ‡ƒ“‚ª‚ ‚Á‚½ )
-extern	int			NS_MV1SaveModelToMV1FileWithStrLen(	int MHandle, const TCHAR *FileName, size_t FileNameLength, int SaveType = MV1_SAVETYPE_NORMAL , int AnimMHandle = -1 , int AnimNameCheck = TRUE , int Normal8BitFlag = 1 , int Position16BitFlag = 1 , int Weight8BitFlag = 0 , int Anim16BitFlag = 1 ) ;		// w’è‚ÌƒpƒX‚Éƒ‚ƒfƒ‹‚ğ•Û‘¶‚·‚é( –ß‚è’l  0:¬Œ÷  -1:ƒƒ‚ƒŠ•s‘«  -2:g‚í‚ê‚Ä‚¢‚È‚¢ƒAƒjƒ[ƒVƒ‡ƒ“‚ª‚ ‚Á‚½ )
+// ãƒ¢ãƒ‡ãƒ«ä¿å­˜é–¢ä¿‚
+extern	int			NS_MV1SaveModelToMV1File( int MHandle, const TCHAR *FileName, int SaveType = MV1_SAVETYPE_NORMAL , int AnimMHandle = -1 , int AnimNameCheck = TRUE , int Normal8BitFlag = 1 , int Position16BitFlag = 1 , int Weight8BitFlag = 0 , int Anim16BitFlag = 1 ) ;		// æŒ‡å®šã®ãƒ‘ã‚¹ã«ãƒ¢ãƒ‡ãƒ«ã‚’ä¿å­˜ã™ã‚‹( æˆ»ã‚Šå€¤  0:æˆåŠŸ  -1:ãƒ¡ãƒ¢ãƒªä¸è¶³  -2:ä½¿ã‚ã‚Œã¦ã„ãªã„ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãŒã‚ã£ãŸ )
+extern	int			NS_MV1SaveModelToMV1FileWithStrLen(	int MHandle, const TCHAR *FileName, size_t FileNameLength, int SaveType = MV1_SAVETYPE_NORMAL , int AnimMHandle = -1 , int AnimNameCheck = TRUE , int Normal8BitFlag = 1 , int Position16BitFlag = 1 , int Weight8BitFlag = 0 , int Anim16BitFlag = 1 ) ;		// æŒ‡å®šã®ãƒ‘ã‚¹ã«ãƒ¢ãƒ‡ãƒ«ã‚’ä¿å­˜ã™ã‚‹( æˆ»ã‚Šå€¤  0:æˆåŠŸ  -1:ãƒ¡ãƒ¢ãƒªä¸è¶³  -2:ä½¿ã‚ã‚Œã¦ã„ãªã„ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãŒã‚ã£ãŸ )
 #ifndef DX_NON_SAVEFUNCTION
-extern	int			NS_MV1SaveModelToXFile(   int MHandle, const TCHAR *FileName, int SaveType = MV1_SAVETYPE_NORMAL , int AnimMHandle = -1 , int AnimNameCheck = TRUE ) ;	// w’è‚ÌƒpƒX‚Éƒ‚ƒfƒ‹‚ğ‚wƒtƒ@ƒCƒ‹Œ`®‚Å•Û‘¶‚·‚é( –ß‚è’l  0:¬Œ÷  -1:ƒƒ‚ƒŠ•s‘«  -2:g‚í‚ê‚Ä‚¢‚È‚¢ƒAƒjƒ[ƒVƒ‡ƒ“‚ª‚ ‚Á‚½ )
-extern	int			NS_MV1SaveModelToXFileWithStrLen(		int MHandle, const TCHAR *FileName, size_t FileNameLength, int SaveType = MV1_SAVETYPE_NORMAL , int AnimMHandle = -1 , int AnimNameCheck = TRUE ) ;	// w’è‚ÌƒpƒX‚Éƒ‚ƒfƒ‹‚ğ‚wƒtƒ@ƒCƒ‹Œ`®‚Å•Û‘¶‚·‚é( –ß‚è’l  0:¬Œ÷  -1:ƒƒ‚ƒŠ•s‘«  -2:g‚í‚ê‚Ä‚¢‚È‚¢ƒAƒjƒ[ƒVƒ‡ƒ“‚ª‚ ‚Á‚½ )
+extern	int			NS_MV1SaveModelToXFile(   int MHandle, const TCHAR *FileName, int SaveType = MV1_SAVETYPE_NORMAL , int AnimMHandle = -1 , int AnimNameCheck = TRUE ) ;	// æŒ‡å®šã®ãƒ‘ã‚¹ã«ãƒ¢ãƒ‡ãƒ«ã‚’ï¼¸ãƒ•ã‚¡ã‚¤ãƒ«å½¢å¼ã§ä¿å­˜ã™ã‚‹( æˆ»ã‚Šå€¤  0:æˆåŠŸ  -1:ãƒ¡ãƒ¢ãƒªä¸è¶³  -2:ä½¿ã‚ã‚Œã¦ã„ãªã„ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãŒã‚ã£ãŸ )
+extern	int			NS_MV1SaveModelToXFileWithStrLen(		int MHandle, const TCHAR *FileName, size_t FileNameLength, int SaveType = MV1_SAVETYPE_NORMAL , int AnimMHandle = -1 , int AnimNameCheck = TRUE ) ;	// æŒ‡å®šã®ãƒ‘ã‚¹ã«ãƒ¢ãƒ‡ãƒ«ã‚’ï¼¸ãƒ•ã‚¡ã‚¤ãƒ«å½¢å¼ã§ä¿å­˜ã™ã‚‹( æˆ»ã‚Šå€¤  0:æˆåŠŸ  -1:ãƒ¡ãƒ¢ãƒªä¸è¶³  -2:ä½¿ã‚ã‚Œã¦ã„ãªã„ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãŒã‚ã£ãŸ )
 #endif // DX_NON_SAVEFUNCTION
-extern	int			NS_MV1SetNotSaveTopFrameName(			const TCHAR *FrameName ) ;											// MV1SaveModelToMV1File ‚Å•Û‘¶‚ğœŠO‚·‚éƒgƒbƒvƒtƒŒ[ƒ€–¼‚ğİ’è‚·‚é
-extern	int			NS_MV1SetNotSaveTopFrameNameWithStrLen( const TCHAR *FrameName, size_t FrameNameLength ) ;					// MV1SaveModelToMV1File ‚Å•Û‘¶‚ğœŠO‚·‚éƒgƒbƒvƒtƒŒ[ƒ€–¼‚ğİ’è‚·‚é
+extern	int			NS_MV1SetNotSaveTopFrameName(			const TCHAR *FrameName ) ;											// MV1SaveModelToMV1File ã§ä¿å­˜ã‚’é™¤å¤–ã™ã‚‹ãƒˆãƒƒãƒ—ãƒ•ãƒ¬ãƒ¼ãƒ åã‚’è¨­å®šã™ã‚‹
+extern	int			NS_MV1SetNotSaveTopFrameNameWithStrLen( const TCHAR *FrameName, size_t FrameNameLength ) ;					// MV1SaveModelToMV1File ã§ä¿å­˜ã‚’é™¤å¤–ã™ã‚‹ãƒˆãƒƒãƒ—ãƒ•ãƒ¬ãƒ¼ãƒ åã‚’è¨­å®šã™ã‚‹
 
-// ƒ‚ƒfƒ‹•`‰æŠÖŒW
-extern	int			NS_MV1DrawModel( int MHandle ) ;														// ƒ‚ƒfƒ‹‚ğ•`‰æ‚·‚é
-extern	int			NS_MV1DrawFrame( int MHandle, int FrameIndex ) ;										// ƒ‚ƒfƒ‹‚Ìw’è‚ÌƒtƒŒ[ƒ€‚ğ•`‰æ‚·‚é
-extern	int			NS_MV1DrawMesh( int MHandle, int MeshIndex ) ;											// ƒ‚ƒfƒ‹‚Ìw’è‚ÌƒƒbƒVƒ…‚ğ•`‰æ‚·‚é
-extern	int			NS_MV1DrawTriangleList( int MHandle, int TriangleListIndex ) ;									// ƒ‚ƒfƒ‹‚Ìw’è‚Ìƒgƒ‰ƒCƒAƒ“ƒOƒ‹ƒŠƒXƒg‚ğ•`‰æ‚·‚é
-extern	int			NS_MV1DrawModelDebug( int MHandle, unsigned int Color, int IsNormalLine, float NormalLineLength, int IsPolyLine, int IsCollisionBox ) ;	// ƒ‚ƒfƒ‹‚ÌƒfƒoƒbƒO•`‰æ
-//extern	int			NS_MV1DrawAlphaObject( void ) ;														// ƒAƒ‹ƒtƒ@ƒIƒuƒWƒFƒNƒg‚Ì•`‰æ
+// ãƒ¢ãƒ‡ãƒ«æç”»é–¢ä¿‚
+extern	int			NS_MV1DrawModel( int MHandle ) ;														// ãƒ¢ãƒ‡ãƒ«ã‚’æç”»ã™ã‚‹
+extern	int			NS_MV1DrawFrame( int MHandle, int FrameIndex ) ;										// ãƒ¢ãƒ‡ãƒ«ã®æŒ‡å®šã®ãƒ•ãƒ¬ãƒ¼ãƒ ã‚’æç”»ã™ã‚‹
+extern	int			NS_MV1DrawMesh( int MHandle, int MeshIndex ) ;											// ãƒ¢ãƒ‡ãƒ«ã®æŒ‡å®šã®ãƒ¡ãƒƒã‚·ãƒ¥ã‚’æç”»ã™ã‚‹
+extern	int			NS_MV1DrawTriangleList( int MHandle, int TriangleListIndex ) ;									// ãƒ¢ãƒ‡ãƒ«ã®æŒ‡å®šã®ãƒˆãƒ©ã‚¤ã‚¢ãƒ³ã‚°ãƒ«ãƒªã‚¹ãƒˆã‚’æç”»ã™ã‚‹
+extern	int			NS_MV1DrawModelDebug( int MHandle, unsigned int Color, int IsNormalLine, float NormalLineLength, int IsPolyLine, int IsCollisionBox ) ;	// ãƒ¢ãƒ‡ãƒ«ã®ãƒ‡ãƒãƒƒã‚°æç”»
+//extern	int			NS_MV1DrawAlphaObject( void ) ;														// ã‚¢ãƒ«ãƒ•ã‚¡ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®æç”»
 
-// •`‰æİ’èŠÖŒW
-extern	int			NS_MV1SetUseOrigShader( int UseFlag ) ;													// ƒ‚ƒfƒ‹‚Ì•`‰æ‚É SetUseVertexShader, SetUsePixelShader ‚Åw’è‚µ‚½ƒVƒF[ƒ_[‚ğg—p‚·‚é‚©‚Ç‚¤‚©‚ğİ’è‚·‚é( TRUE:g—p‚·‚é  FALSE:g—p‚µ‚È‚¢( ƒfƒtƒHƒ‹ƒg ) )
-extern	int			NS_MV1SetDrawMode( int DrawMode /* DX_MV1_DRAWMODE_NORMAL “™ */ ) ;						// ƒ‚ƒfƒ‹‚Ì•`‰æƒ‚[ƒh‚Ìİ’è
-extern	int			NS_MV1SetSemiTransDrawMode( int DrawMode /* DX_SEMITRANSDRAWMODE_ALWAYS “™ */ ) ;		// ƒ‚ƒfƒ‹‚Ì”¼“§–¾—v‘f‚ª‚ ‚é•”•ª‚É‚Â‚¢‚Ä‚Ì•`‰æƒ‚[ƒh‚ğİ’è‚·‚é
+// æç”»è¨­å®šé–¢ä¿‚
+extern	int			NS_MV1SetUseOrigShader( int UseFlag ) ;													// ãƒ¢ãƒ‡ãƒ«ã®æç”»ã« SetUseVertexShader, SetUsePixelShader ã§æŒ‡å®šã—ãŸã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹( TRUE:ä½¿ç”¨ã™ã‚‹  FALSE:ä½¿ç”¨ã—ãªã„( ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ ) )
+extern	int			NS_MV1SetDrawMode( int DrawMode /* DX_MV1_DRAWMODE_NORMAL ç­‰ */ ) ;						// ãƒ¢ãƒ‡ãƒ«ã®æç”»ãƒ¢ãƒ¼ãƒ‰ã®è¨­å®š
+extern	int			NS_MV1SetSemiTransDrawMode( int DrawMode /* DX_SEMITRANSDRAWMODE_ALWAYS ç­‰ */ ) ;		// ãƒ¢ãƒ‡ãƒ«ã®åŠé€æ˜è¦ç´ ãŒã‚ã‚‹éƒ¨åˆ†ã«ã¤ã„ã¦ã®æç”»ãƒ¢ãƒ¼ãƒ‰ã‚’è¨­å®šã™ã‚‹
 
-// ƒ‚ƒfƒ‹Šî–{§ŒäŠÖŒW
-//extern	int			   MV1SetupMatrix( int MHandle ) ;														// •`‰æ—p‚Ìs—ñ‚ğ\’z‚·‚é
-extern	MATRIX		NS_MV1GetLocalWorldMatrix( int MHandle ) ;												// ƒ‚ƒfƒ‹‚Ìƒ[ƒJƒ‹À•W‚©‚çƒ[ƒ‹ƒhÀ•W‚É•ÏŠ·‚·‚és—ñ‚ğ“¾‚é
-extern	MATRIX_D	NS_MV1GetLocalWorldMatrixD( int MHandle ) ;												// ƒ‚ƒfƒ‹‚Ìƒ[ƒJƒ‹À•W‚©‚çƒ[ƒ‹ƒhÀ•W‚É•ÏŠ·‚·‚és—ñ‚ğ“¾‚é
-extern	int			NS_MV1SetPosition(  int MHandle, VECTOR   Position ) ;									// ƒ‚ƒfƒ‹‚ÌÀ•W‚ğƒZƒbƒg
-extern	int			NS_MV1SetPositionD( int MHandle, VECTOR_D Position ) ;									// ƒ‚ƒfƒ‹‚ÌÀ•W‚ğƒZƒbƒg
-extern	VECTOR		NS_MV1GetPosition(  int MHandle ) ;														// ƒ‚ƒfƒ‹‚ÌÀ•W‚ğæ“¾
-extern	VECTOR_D	NS_MV1GetPositionD( int MHandle ) ;														// ƒ‚ƒfƒ‹‚ÌÀ•W‚ğæ“¾
-extern	int			NS_MV1SetScale( int MHandle, VECTOR Scale ) ;											// ƒ‚ƒfƒ‹‚ÌŠg‘å’l‚ğƒZƒbƒg
-extern	VECTOR		NS_MV1GetScale( int MHandle ) ;															// ƒ‚ƒfƒ‹‚ÌŠg‘å’l‚ğæ“¾
-extern	int			NS_MV1SetRotationXYZ( int MHandle, VECTOR Rotate ) ;									// ƒ‚ƒfƒ‹‚Ì‰ñ“]’l‚ğƒZƒbƒg( X²‰ñ“]¨Y²‰ñ“]¨Z²‰ñ“]•û® )
-extern	VECTOR		NS_MV1GetRotationXYZ( int MHandle ) ;													// ƒ‚ƒfƒ‹‚Ì‰ñ“]’l‚ğæ“¾( X²‰ñ“]¨Y²‰ñ“]¨Z²‰ñ“]•û® )
-extern	int			NS_MV1SetRotationZYAxis( int MHandle, VECTOR ZAxisDirection, VECTOR YAxisDirection, float ZAxisTwistRotate ) ;	// ƒ‚ƒfƒ‹‚Ì‚y²‚Æ‚x²‚ÌŒü‚«‚ğƒZƒbƒg‚·‚é
-extern	int			NS_MV1SetRotationYUseDir( int MHandle, VECTOR Direction, float OffsetYAngle ) ;			// ƒ‚ƒfƒ‹‚Ì‚x²‚Ì‰ñ“]’l‚ğw’è‚ÌƒxƒNƒgƒ‹‚ÌŒü‚«‚ğŒ³‚Éİ’è‚·‚éAƒ‚ƒfƒ‹‚ÍZ²‚Ìƒ}ƒCƒiƒX•ûŒü‚ğŒü‚¢‚Ä‚¢‚é‚±‚Æ‚ğ‘z’è‚·‚é‚Ì‚ÅA‚»‚¤‚Å‚Í‚È‚¢ê‡‚Í OffsetYAngle ‚Å•â³‚·‚éA‚w²‰ñ“]A‚y²‰ñ“]‚Í‚O‚ÅŒÅ’è
-extern	int			NS_MV1SetRotationMatrix( int MHandle, MATRIX Matrix ) ;									// ƒ‚ƒfƒ‹‚Ì‰ñ“]—ps—ñ‚ğƒZƒbƒg‚·‚é
-extern	MATRIX		NS_MV1GetRotationMatrix( int MHandle ) ;												// ƒ‚ƒfƒ‹‚Ì‰ñ“]—ps—ñ‚ğæ“¾‚·‚é
-extern	int			NS_MV1SetMatrix(  int MHandle, MATRIX   Matrix ) ;										// ƒ‚ƒfƒ‹‚Ì•ÏŒ`—ps—ñ‚ğƒZƒbƒg‚·‚é
-extern	int			NS_MV1SetMatrixD( int MHandle, MATRIX_D Matrix ) ;										// ƒ‚ƒfƒ‹‚Ì•ÏŒ`—ps—ñ‚ğƒZƒbƒg‚·‚é
-extern	MATRIX		NS_MV1GetMatrix(  int MHandle ) ;														// ƒ‚ƒfƒ‹‚Ì•ÏŒ`—ps—ñ‚ğæ“¾‚·‚é
-extern	MATRIX_D	NS_MV1GetMatrixD( int MHandle ) ;														// ƒ‚ƒfƒ‹‚Ì•ÏŒ`—ps—ñ‚ğæ“¾‚·‚é
-extern	int			NS_MV1SetVisible( int MHandle, int VisibleFlag ) ;										// ƒ‚ƒfƒ‹‚Ì•\¦A”ñ•\¦ó‘Ô‚ğ•ÏX‚·‚é( TRUE:•\¦  FALSE:”ñ•\¦ )
-extern	int			NS_MV1GetVisible( int MHandle ) ;														// ƒ‚ƒfƒ‹‚Ì•\¦A”ñ•\¦ó‘Ô‚ğæ“¾‚·‚é( TRUE:•\¦  FALSE:”ñ•\¦ )
-extern	int			NS_MV1SetMeshCategoryVisible( int MHandle, int MeshCategory, int VisibleFlag ) ;		// ƒ‚ƒfƒ‹‚ÌƒƒbƒVƒ…‚Ìí—Ş( DX_MV1_MESHCATEGORY_NORMAL ‚È‚Ç )–ˆ‚Ì•\¦A”ñ•\¦‚ğİ’è‚·‚é( TRUE:•\¦  FALSE:”ñ•\¦ )
-extern	int			NS_MV1GetMeshCategoryVisible( int MHandle, int MeshCategory ) ;							// ƒ‚ƒfƒ‹‚ÌƒƒbƒVƒ…‚Ìí—Ş( DX_MV1_MESHCATEGORY_NORMAL ‚È‚Ç )–ˆ‚Ì•\¦A”ñ•\¦‚ğæ“¾‚·‚é( TRUE:•\¦  FALSE:”ñ•\¦ )
-extern	int			NS_MV1SetDifColorScale( int MHandle, COLOR_F Scale ) ;									// ƒ‚ƒfƒ‹‚ÌƒfƒBƒtƒ…[ƒYƒJƒ‰[‚ÌƒXƒP[ƒ‹’l‚ğİ’è‚·‚é( ƒfƒtƒHƒ‹ƒg’l‚Í 1.0f )
-extern	COLOR_F		NS_MV1GetDifColorScale( int MHandle ) ;													// ƒ‚ƒfƒ‹‚ÌƒfƒBƒtƒ…[ƒYƒJƒ‰[‚ÌƒXƒP[ƒ‹’l‚ğæ“¾‚·‚é( ƒfƒtƒHƒ‹ƒg’l‚Í 1.0f )
-extern	int			NS_MV1SetSpcColorScale( int MHandle, COLOR_F Scale ) ;									// ƒ‚ƒfƒ‹‚ÌƒXƒyƒLƒ…ƒ‰ƒJƒ‰[‚ÌƒXƒP[ƒ‹’l‚ğİ’è‚·‚é( ƒfƒtƒHƒ‹ƒg’l‚Í 1.0f )
-extern	COLOR_F		NS_MV1GetSpcColorScale( int MHandle ) ;													// ƒ‚ƒfƒ‹‚ÌƒXƒyƒLƒ…ƒ‰ƒJƒ‰[‚ÌƒXƒP[ƒ‹’l‚ğæ“¾‚·‚é( ƒfƒtƒHƒ‹ƒg’l‚Í 1.0f )
-extern	int			NS_MV1SetEmiColorScale( int MHandle, COLOR_F Scale ) ;									// ƒ‚ƒfƒ‹‚ÌƒGƒ~ƒbƒVƒuƒJƒ‰[‚ÌƒXƒP[ƒ‹’l‚ğİ’è‚·‚é( ƒfƒtƒHƒ‹ƒg’l‚Í 1.0f )
-extern	COLOR_F		NS_MV1GetEmiColorScale( int MHandle ) ;													// ƒ‚ƒfƒ‹‚ÌƒGƒ~ƒbƒVƒuƒJƒ‰[‚ÌƒXƒP[ƒ‹’l‚ğæ“¾‚·‚é( ƒfƒtƒHƒ‹ƒg’l‚Í 1.0f )
-extern	int			NS_MV1SetAmbColorScale( int MHandle, COLOR_F Scale ) ;									// ƒ‚ƒfƒ‹‚ÌƒAƒ“ƒrƒGƒ“ƒgƒJƒ‰[‚ÌƒXƒP[ƒ‹’l‚ğİ’è‚·‚é( ƒfƒtƒHƒ‹ƒg’l‚Í 1.0f )
-extern	COLOR_F		NS_MV1GetAmbColorScale( int MHandle ) ;													// ƒ‚ƒfƒ‹‚ÌƒAƒ“ƒrƒGƒ“ƒgƒJƒ‰[‚ÌƒXƒP[ƒ‹’l‚ğæ“¾‚·‚é( ƒfƒtƒHƒ‹ƒg’l‚Í 1.0f )
-extern	int			NS_MV1GetSemiTransState( int MHandle ) ;												// ƒ‚ƒfƒ‹‚É”¼“§–¾—v‘f‚ª‚ ‚é‚©‚Ç‚¤‚©‚ğæ“¾‚·‚é( –ß‚è’l TRUE:‚ ‚é  FALSE:‚È‚¢ )
-extern	int			NS_MV1SetOpacityRate( int MHandle, float Rate ) ;										// ƒ‚ƒfƒ‹‚Ì•s“§–¾“x‚ğİ’è‚·‚é( •s“§–¾ 1.0f ` “§–¾ 0.0f )
-extern	float		NS_MV1GetOpacityRate( int MHandle ) ;													// ƒ‚ƒfƒ‹‚Ì•s“§–¾“x‚ğæ“¾‚·‚é( •s“§–¾ 1.0f ` “§–¾ 0.0f )
-extern	int			NS_MV1SetUseDrawMulAlphaColor(			int MHandle, int Flag ) ;											// ƒ‚ƒfƒ‹‚ğ•`‰æ‚·‚éÛ‚ÉRGB’l‚É‘Î‚µ‚ÄA’l‚ğæZ‚·‚é‚©‚Ç‚¤‚©‚ğİ’è‚·‚é( •`‰æŒ‹‰Ê‚ªæZÏ‚İƒAƒ‹ƒtƒ@‰æ‘œ‚É‚È‚è‚Ü‚· )( Flag   TRUE:RGB’l‚É‘Î‚µ‚ÄA’l‚ğæZ‚·‚é  FALSE:æZ‚µ‚È‚¢(ƒfƒtƒHƒ‹ƒg) )
-extern	int			NS_MV1GetUseDrawMulAlphaColor(			int MHandle ) ;														// ƒ‚ƒfƒ‹‚ğ•`‰æ‚·‚éÛ‚ÉRGB’l‚É‘Î‚µ‚ÄA’l‚ğæZ‚·‚é‚©‚Ç‚¤‚©‚ğæ“¾‚·‚é( •`‰æŒ‹‰Ê‚ªæZÏ‚İƒAƒ‹ƒtƒ@‰æ‘œ‚É‚È‚è‚Ü‚· )( –ß‚è’l TRUE:RGB’l‚É‘Î‚µ‚ÄA’l‚ğæZ‚·‚é  FALSE:æZ‚µ‚È‚¢(ƒfƒtƒHƒ‹ƒg) )
-extern	int			NS_MV1SetUseZBuffer( int MHandle, int Flag ) ;											// ƒ‚ƒfƒ‹‚ğ•`‰æ‚·‚éÛ‚É‚yƒoƒbƒtƒ@‚ğg—p‚·‚é‚©‚Ç‚¤‚©‚ğİ’è‚·‚é
-extern	int			NS_MV1SetWriteZBuffer( int MHandle, int Flag ) ;										// ƒ‚ƒfƒ‹‚ğ•`‰æ‚·‚éÛ‚É‚yƒoƒbƒtƒ@‚É‘‚«‚İ‚ğs‚¤‚©‚Ç‚¤‚©‚ğİ’è‚·‚é
-extern	int			NS_MV1SetZBufferCmpType( int MHandle, int CmpType /* DX_CMP_NEVER “™ */ ) ;				// ƒ‚ƒfƒ‹‚Ì•`‰æ‚Ì‚y’l‚Ì”äŠrƒ‚[ƒh‚ğİ’è‚·‚é
-extern	int			NS_MV1SetZBias( int MHandle, int Bias ) ;												// ƒ‚ƒfƒ‹‚Ì•`‰æ‚Ì‘‚«‚Ş‚y’l‚ÌƒoƒCƒAƒX‚ğİ’è‚·‚é
-extern	int			NS_MV1SetUseVertDifColor( int MHandle, int UseFlag ) ;									// ƒ‚ƒfƒ‹‚ÌŠÜ‚Ü‚ê‚éƒƒbƒVƒ…‚Ì’¸“_ƒfƒBƒtƒ…[ƒYƒJƒ‰[‚ğƒ}ƒeƒŠƒAƒ‹‚ÌƒfƒBƒtƒ…[ƒYƒJƒ‰[‚Ì‘ã‚í‚è‚Ég—p‚·‚é‚©‚Ç‚¤‚©‚ğİ’è‚·‚é( TRUE:ƒ}ƒeƒŠƒAƒ‹ƒJƒ‰[‚Ì‘ã‚í‚è‚Ég—p‚·‚é  FALSE:ƒ}ƒeƒŠƒAƒ‹ƒJƒ‰[‚ğg—p‚·‚é )
-extern	int			NS_MV1SetUseVertSpcColor( int MHandle, int UseFlag ) ;									// ƒ‚ƒfƒ‹‚ÉŠÜ‚Ü‚ê‚éƒƒbƒVƒ…‚Ì’¸“_ƒXƒyƒLƒ…ƒ‰ƒJƒ‰[‚ğƒ}ƒeƒŠƒAƒ‹‚ÌƒXƒyƒLƒ…ƒ‰ƒJƒ‰[‚Ì‘ã‚í‚è‚Ég—p‚·‚é‚©‚Ç‚¤‚©‚ğİ’è‚·‚é( TRUE:ƒ}ƒeƒŠƒAƒ‹ƒJƒ‰[‚Ì‘ã‚í‚è‚Ég—p‚·‚é  FALSE:ƒ}ƒeƒŠƒAƒ‹ƒJƒ‰[‚ğg—p‚·‚é )
-extern	int			NS_MV1SetSampleFilterMode( int MHandle, int FilterMode ) ;								// ƒ‚ƒfƒ‹‚ÌƒTƒ“ƒvƒ‹ƒtƒBƒ‹ƒ^[ƒ‚[ƒh‚ğ•ÏX‚·‚é
-extern	int			NS_MV1SetMaxAnisotropy( int MHandle, int MaxAnisotropy ) ;								// ƒ‚ƒfƒ‹‚ÌˆÙ•û«ƒtƒBƒ‹ƒ^ƒŠƒ“ƒO‚ÌÅ‘åŸ”‚ğİ’è‚·‚é
-extern	int			NS_MV1SetWireFrameDrawFlag( int MHandle, int Flag ) ;									// ƒ‚ƒfƒ‹‚ğƒƒCƒ„[ƒtƒŒ[ƒ€‚Å•`‰æ‚·‚é‚©‚Ç‚¤‚©‚ğİ’è‚·‚é
-extern	int			NS_MV1RefreshVertColorFromMaterial( int MHandle ) ;										// ƒ‚ƒfƒ‹‚Ì’¸“_ƒJƒ‰[‚ğŒ»İİ’è‚³‚ê‚Ä‚¢‚éƒ}ƒeƒŠƒAƒ‹‚ÌƒJƒ‰[‚É‚·‚é
-extern	int			NS_MV1SetPhysicsWorldGravity(			int MHandle, VECTOR Gravity ) ;										// ƒ‚ƒfƒ‹‚Ì•¨—‰‰Z‚Ìd—Í‚ğİ’è‚·‚é
-extern	int			NS_MV1PhysicsCalculation( int MHandle, float MillisecondTime ) ;						// ƒ‚ƒfƒ‹‚Ì•¨—‰‰Z‚ğw’èŠÔ•ªŒo‰ß‚µ‚½‚Æ‰¼’è‚µ‚ÄŒvZ‚·‚é( MillisecondTime ‚Åw’è‚·‚éŠÔ‚Ì’PˆÊ‚Íƒ~ƒŠ•b )
-extern	int			NS_MV1PhysicsResetState( int MHandle ) ;												// ƒ‚ƒfƒ‹‚Ì•¨—‰‰Z‚Ìó‘Ô‚ğƒŠƒZƒbƒg‚·‚é( ˆÊ’u‚ªƒ[ƒv‚µ‚½‚Æ‚«—p )
-extern	int			NS_MV1SetPrioritizePhysicsOverAnimFlag(	int MHandle, int Flag ) ;											// ƒ‚ƒfƒ‹‚Ì•¨—‰‰Z‚ğƒAƒjƒ[ƒVƒ‡ƒ“‚æ‚è—Dæ‚·‚é‚©‚Ç‚¤‚©‚ğİ’è‚·‚é( TRUE:•¨—‰‰Z‚ğ—Dæ‚·‚é  FALSE:ƒAƒjƒ[ƒVƒ‡ƒ“‚ğ—Dæ‚·‚é( ƒfƒtƒHƒ‹ƒg ) )
-extern	int			NS_MV1SetUseShapeFlag( int MHandle, int Flag ) ;										// ƒ‚ƒfƒ‹‚ÌƒVƒFƒCƒv‹@”\‚ğg—p‚·‚é‚©‚Ç‚¤‚©‚ğİ’è‚·‚é
-extern	int			NS_MV1GetMaterialNumberOrderFlag(		int MHandle ) ;														// ƒ‚ƒfƒ‹‚Ìƒ}ƒeƒŠƒAƒ‹”Ô†‡‚ÉƒƒbƒVƒ…‚ğ•`‰æ‚·‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğæ“¾‚·‚é( TRUE:ƒ}ƒeƒŠƒAƒ‹”Ô†‡‚É•`‰æ  FALSE:•s“§–¾ƒƒbƒVƒ…‚ÌŒã”¼“§–¾ƒƒbƒVƒ… )
-
-
-// ƒAƒjƒ[ƒVƒ‡ƒ“ŠÖŒW
-extern	int			NS_MV1AttachAnim( int MHandle, int AnimIndex, int AnimSrcMHandle = -1, int NameCheck = TRUE ) ;		// ƒAƒjƒ[ƒVƒ‡ƒ“‚ğƒAƒ^ƒbƒ`‚·‚é( –ß‚è’l  -1:ƒGƒ‰[  0ˆÈã:ƒAƒ^ƒbƒ`ƒCƒ“ƒfƒbƒNƒX )
-extern	int			NS_MV1DetachAnim( int MHandle, int AttachIndex ) ;										// ƒAƒjƒ[ƒVƒ‡ƒ“‚ğƒfƒ^ƒbƒ`‚·‚é
-//extern	int			NS_MV1PlayAnim( int MHandle, int AttachIndex, int Loop ) ;							// ƒAƒjƒ[ƒVƒ‡ƒ“‚ğÄ¶‚·‚é
-//extern	int			NS_MV1AnimAddTime( int MHandle, int AttachIndex, float AddTime ) ;					// ƒAƒjƒ[ƒVƒ‡ƒ“‚ği‚ß‚é
-extern	int			NS_MV1SetAttachAnimTime( int MHandle, int AttachIndex, float Time ) ;					// ƒAƒ^ƒbƒ`‚µ‚Ä‚¢‚éƒAƒjƒ[ƒVƒ‡ƒ“‚ÌÄ¶ŠÔ‚ğİ’è‚·‚é
-extern	float		NS_MV1GetAttachAnimTime( int MHandle, int AttachIndex ) ;								// ƒAƒ^ƒbƒ`‚µ‚Ä‚¢‚éƒAƒjƒ[ƒVƒ‡ƒ“‚ÌÄ¶ŠÔ‚ğæ“¾‚·‚é
-extern	float		NS_MV1GetAttachAnimTotalTime( int MHandle, int AttachIndex ) ;							// ƒAƒ^ƒbƒ`‚µ‚Ä‚¢‚éƒAƒjƒ[ƒVƒ‡ƒ“‚Ì‘ŠÔ‚ğ“¾‚é
-extern	int			NS_MV1SetAttachAnimBlendRate( int MHandle, int AttachIndex, float Rate = 1.0f ) ;		// ƒAƒ^ƒbƒ`‚µ‚Ä‚¢‚éƒAƒjƒ[ƒVƒ‡ƒ“‚ÌƒuƒŒƒ“ƒh—¦‚ğİ’è‚·‚é
-extern	float		NS_MV1GetAttachAnimBlendRate( int MHandle, int AttachIndex ) ;							// ƒAƒ^ƒbƒ`‚µ‚Ä‚¢‚éƒAƒjƒ[ƒVƒ‡ƒ“‚ÌƒuƒŒƒ“ƒh—¦‚ğæ“¾‚·‚é
-extern	int			NS_MV1SetAttachAnimBlendRateToFrame( int MHandle, int AttachIndex, int FrameIndex, float Rate, int SetChild ) ;	// ƒAƒ^ƒbƒ`‚µ‚Ä‚¢‚éƒAƒjƒ[ƒVƒ‡ƒ“‚ÌƒuƒŒƒ“ƒh—¦‚ğİ’è‚·‚é( ƒtƒŒ[ƒ€’PˆÊ )
-extern	float		NS_MV1GetAttachAnimBlendRateToFrame( int MHandle, int AttachIndex, int FrameIndex ) ;			// ƒAƒ^ƒbƒ`‚µ‚Ä‚¢‚éƒAƒjƒ[ƒVƒ‡ƒ“‚ÌƒuƒŒƒ“ƒh—¦‚ğİ’è‚·‚é( ƒtƒŒ[ƒ€’PˆÊ )
-extern	int			NS_MV1SetAttachAnimTimeToFrame(		int MHandle, int AttachIndex, int FrameIndex, float Time, int SetChild DEFAULTPARAM( = TRUE ) ) ;	// ƒAƒ^ƒbƒ`‚µ‚Ä‚¢‚éƒAƒjƒ[ƒVƒ‡ƒ“‚ÌÄ¶ŠÔ‚ğİ’è‚·‚é( ƒtƒŒ[ƒ€’PˆÊ )
-extern	float		NS_MV1GetAttachAnimTimeToFrame(		int MHandle, int AttachIndex, int FrameIndex ) ;									// ƒAƒ^ƒbƒ`‚µ‚Ä‚¢‚éƒAƒjƒ[ƒVƒ‡ƒ“‚ÌÄ¶ŠÔ‚ğæ“¾‚·‚é( ƒtƒŒ[ƒ€’PˆÊ )
-extern	int			NS_MV1GetAttachAnim( int MHandle, int AttachIndex ) ;									// ƒAƒ^ƒbƒ`‚µ‚Ä‚¢‚éƒAƒjƒ[ƒVƒ‡ƒ“‚ÌƒAƒjƒ[ƒVƒ‡ƒ“ƒCƒ“ƒfƒbƒNƒX‚ğæ“¾‚·‚é
-extern	int			NS_MV1SetAttachAnimUseShapeFlag( int MHandle, int AttachIndex, int UseFlag ) ;			// ƒAƒ^ƒbƒ`‚µ‚Ä‚¢‚éƒAƒjƒ[ƒVƒ‡ƒ“‚ÌƒVƒFƒCƒv‚ğg—p‚·‚é‚©‚Ç‚¤‚©‚ğİ’è‚·‚é( UseFlag  TRUE:g—p‚·‚é( ƒfƒtƒHƒ‹ƒg )  FALSE:g—p‚µ‚È‚¢ )
-extern	int			NS_MV1GetAttachAnimUseShapeFlag( int MHandle, int AttachIndex ) ;						// ƒAƒ^ƒbƒ`‚µ‚Ä‚¢‚éƒAƒjƒ[ƒVƒ‡ƒ“‚ÌƒVƒFƒCƒv‚ğg—p‚·‚é‚©‚Ç‚¤‚©‚ğæ“¾‚·‚é
-extern	VECTOR		NS_MV1GetAttachAnimFrameLocalPosition( int MHandle, int AttachIndex, int FrameIndex ) ;									// ƒAƒ^ƒbƒ`‚µ‚Ä‚¢‚éƒAƒjƒ[ƒVƒ‡ƒ“‚Ìw’è‚ÌƒtƒŒ[ƒ€‚ÌŒ»İ‚Ìƒ[ƒJƒ‹À•W‚ğæ“¾‚·‚é
-extern	MATRIX		NS_MV1GetAttachAnimFrameLocalMatrix( int MHandle, int AttachIndex, int FrameIndex ) ;									// ƒAƒ^ƒbƒ`‚µ‚Ä‚¢‚éƒAƒjƒ[ƒVƒ‡ƒ“‚Ìw’è‚ÌƒtƒŒ[ƒ€‚ÌŒ»İ‚Ìƒ[ƒJƒ‹•ÏŠ·s—ñ‚ğæ“¾‚·‚é
-
-//extern	int			NS_MV1StopAnim( int MHandle, int AttachIndex ) ;									// ƒAƒjƒ[ƒVƒ‡ƒ“‚ğ~‚ß‚é
-//extern	int			NS_MV1GetAnimState( int MHandle, int AttachIndex ) ;								// ƒAƒjƒ[ƒVƒ‡ƒ“‚ªÄ¶’†‚©‚Ç‚¤‚©‚ğæ“¾‚·‚é( TRUE:Ä¶’†  FALSE:’â~’† )
-extern	int			NS_MV1GetAnimNum( int MHandle ) ;														// ƒAƒjƒ[ƒVƒ‡ƒ“‚Ì”‚ğæ“¾‚·‚é
-extern	const TCHAR *NS_MV1GetAnimName( int MHandle, int AnimIndex ) ;										// w’è”Ô†‚ÌƒAƒjƒ[ƒVƒ‡ƒ“–¼‚ğæ“¾‚·‚é( NULL:ƒGƒ‰[ )
-extern	int			NS_MV1SetAnimName( int MHandle, int AnimIndex, const TCHAR *AnimName ) ;										// w’è”Ô†‚ÌƒAƒjƒ[ƒVƒ‡ƒ“–¼‚ğ•ÏX‚·‚é
-extern	int			NS_MV1SetAnimNameWithStrLen(			int MHandle, int AnimIndex, const TCHAR *AnimName, size_t AnimNameLength ) ;		// w’è”Ô†‚ÌƒAƒjƒ[ƒVƒ‡ƒ“–¼‚ğ•ÏX‚·‚é
-extern	int			NS_MV1GetAnimIndex(					int MHandle, const TCHAR *AnimName                        ) ;						// w’è–¼‚ÌƒAƒjƒ[ƒVƒ‡ƒ“”Ô†‚ğæ“¾‚·‚é( -1:ƒGƒ‰[ )
-extern	int			NS_MV1GetAnimIndexWithStrLen(			int MHandle, const TCHAR *AnimName, size_t AnimNameLength ) ;						// w’è–¼‚ÌƒAƒjƒ[ƒVƒ‡ƒ“”Ô†‚ğæ“¾‚·‚é( -1:ƒGƒ‰[ )
-extern	float		NS_MV1GetAnimTotalTime( int MHandle, int AnimIndex ) ;									// w’è”Ô†‚ÌƒAƒjƒ[ƒVƒ‡ƒ“‚Ì‘ŠÔ‚ğ“¾‚é
-extern	int			NS_MV1GetAnimLoopFlag(					int MHandle, int AnimIndex ) ;														// w’è‚ÌƒAƒjƒ[ƒVƒ‡ƒ“‚ªƒ‹[ƒvƒ^ƒCƒv‚©‚Ç‚¤‚©‚ğæ“¾‚·‚é( –ß‚è’l  TRUE:ƒ‹[ƒvƒ^ƒCƒv  FALSE:’Êíƒ^ƒCƒv )
-extern	int			NS_MV1GetAnimTargetFrameNum( int MHandle, int AnimIndex ) ;								// w’è‚ÌƒAƒjƒ[ƒVƒ‡ƒ“‚ªƒ^[ƒQƒbƒg‚Æ‚·‚éƒtƒŒ[ƒ€‚Ì”‚ğæ“¾‚·‚é
-extern	const TCHAR *NS_MV1GetAnimTargetFrameName( int MHandle, int AnimIndex, int AnimFrameIndex ) ;		// w’è‚ÌƒAƒjƒ[ƒVƒ‡ƒ“‚ªƒ^[ƒQƒbƒg‚Æ‚·‚éƒtƒŒ[ƒ€‚Ì–¼‘O‚ğæ“¾‚·‚é
-extern	int			NS_MV1GetAnimTargetFrame( int MHandle, int AnimIndex, int AnimFrameIndex ) ;			// w’è‚ÌƒAƒjƒ[ƒVƒ‡ƒ“‚ªƒ^[ƒQƒbƒg‚Æ‚·‚éƒtƒŒ[ƒ€‚Ì”Ô†‚ğæ“¾‚·‚é
-extern	int			NS_MV1GetAnimTargetFrameKeySetNum( int MHandle, int AnimIndex, int AnimFrameIndex ) ;	// w’è‚ÌƒAƒjƒ[ƒVƒ‡ƒ“‚ªƒ^[ƒQƒbƒg‚Æ‚·‚éƒtƒŒ[ƒ€—p‚ÌƒAƒjƒ[ƒVƒ‡ƒ“ƒL[ƒZƒbƒg‚Ì”‚ğæ“¾‚·‚é
-extern	int			NS_MV1GetAnimTargetFrameKeySet( int MHandle, int AnimIndex, int AnimFrameIndex, int Index ) ;	// w’è‚ÌƒAƒjƒ[ƒVƒ‡ƒ“‚ªƒ^[ƒQƒbƒg‚Æ‚·‚éƒtƒŒ[ƒ€—p‚ÌƒAƒjƒ[ƒVƒ‡ƒ“ƒL[ƒZƒbƒgƒL[ƒZƒbƒgƒCƒ“ƒfƒbƒNƒX‚ğæ“¾‚·‚é
-
-extern	int			NS_MV1GetAnimKeySetNum( int MHandle ) ;													// ƒ‚ƒfƒ‹‚ÉŠÜ‚Ü‚ê‚éƒAƒjƒ[ƒVƒ‡ƒ“ƒL[ƒZƒbƒg‚Ì‘”‚ğ“¾‚é
-extern	int			NS_MV1GetAnimKeySetType( int MHandle, int AnimKeySetIndex ) ;							// w’è‚ÌƒAƒjƒ[ƒVƒ‡ƒ“ƒL[ƒZƒbƒg‚Ìƒ^ƒCƒv‚ğæ“¾‚·‚é( MV1_ANIMKEY_TYPE_QUATERNION “™ )
-extern	int			NS_MV1GetAnimKeySetDataType( int MHandle, int AnimKeySetIndex ) ;						// w’è‚ÌƒAƒjƒ[ƒVƒ‡ƒ“ƒL[ƒZƒbƒg‚Ìƒf[ƒ^ƒ^ƒCƒv‚ğæ“¾‚·‚é( MV1_ANIMKEY_DATATYPE_ROTATE “™ )
-//extern	float		NS_MV1GetAnimKeySetTotalTime( int MHandle, int AnimKeySetIndex ) ;					// w’è‚ÌƒAƒjƒ[ƒVƒ‡ƒ“ƒL[ƒZƒbƒg‚Ì‘ŠÔ‚ğæ“¾‚·‚é
-extern	int			NS_MV1GetAnimKeySetTimeType( int MHandle, int AnimKeySetIndex ) ;						// w’è‚ÌƒAƒjƒ[ƒVƒ‡ƒ“ƒL[ƒZƒbƒg‚ÌƒL[‚ÌŠÔƒf[ƒ^ƒ^ƒCƒv‚ğæ“¾‚·‚é( MV1_ANIMKEY_TIME_TYPE_ONE “™ )
-extern	int			NS_MV1GetAnimKeySetDataNum( int MHandle, int AnimKeySetIndex ) ;						// w’è‚ÌƒAƒjƒ[ƒVƒ‡ƒ“ƒL[ƒZƒbƒg‚ÌƒL[‚Ì”‚ğæ“¾‚·‚é
-extern	float		NS_MV1GetAnimKeyDataTime( int MHandle, int AnimKeySetIndex, int Index ) ;				// w’è‚ÌƒAƒjƒ[ƒVƒ‡ƒ“ƒL[ƒZƒbƒg‚ÌƒL[‚ÌŠÔ‚ğæ“¾‚·‚é
-extern	int			NS_MV1GetAnimKeyDataIndexFromTime( int MHandle, int AnimKeySetIndex, float Time ) ;									// w’è‚ÌƒAƒjƒ[ƒVƒ‡ƒ“ƒL[ƒZƒbƒg‚Ìw’è‚ÌŠÔ‚Å‚ÌƒL[‚Ì”Ô†‚ğæ“¾‚·‚é
-extern	FLOAT4		NS_MV1GetAnimKeyDataToQuaternion( int MHandle, int AnimKeySetIndex, int Index ) ;		// w’è‚ÌƒAƒjƒ[ƒVƒ‡ƒ“ƒL[ƒZƒbƒg‚ÌƒL[‚ğæ“¾‚·‚éAƒL[ƒ^ƒCƒv‚ª MV1_ANIMKEY_TYPE_QUATERNION ‚Å‚Í–³‚©‚Á‚½ê‡‚Í¸”s‚·‚é
-extern	FLOAT4		NS_MV1GetAnimKeyDataToQuaternionFromTime( int MHandle, int AnimKeySetIndex, float Time ) ;	// w’è‚ÌƒAƒjƒ[ƒVƒ‡ƒ“ƒL[ƒZƒbƒg‚ÌƒL[‚ğæ“¾‚·‚éAƒL[ƒ^ƒCƒv‚ª MV1_ANIMKEY_TYPE_QUATERNION ‚Å‚Í–³‚©‚Á‚½ê‡‚Í¸”s‚·‚é( ŠÔw’è”Å )
-extern	VECTOR		NS_MV1GetAnimKeyDataToVector( int MHandle, int AnimKeySetIndex, int Index ) ;			// w’è‚ÌƒAƒjƒ[ƒVƒ‡ƒ“ƒL[ƒZƒbƒg‚ÌƒL[‚ğæ“¾‚·‚éAƒL[ƒ^ƒCƒv‚ª MV1_ANIMKEY_TYPE_VECTOR ‚Å‚Í–³‚©‚Á‚½ê‡‚Í¸”s‚·‚é
-extern	VECTOR		NS_MV1GetAnimKeyDataToVectorFromTime( int MHandle, int AnimKeySetIndex, float Time ) ;	// w’è‚ÌƒAƒjƒ[ƒVƒ‡ƒ“ƒL[ƒZƒbƒg‚ÌƒL[‚ğæ“¾‚·‚éAƒL[ƒ^ƒCƒv‚ª MV1_ANIMKEY_TYPE_VECTOR ‚Å‚Í–³‚©‚Á‚½ê‡‚Í¸”s‚·‚é( ŠÔw’è”Å )
-extern	MATRIX		NS_MV1GetAnimKeyDataToMatrix( int MHandle, int AnimKeySetIndex, int Index ) ;			// w’è‚ÌƒAƒjƒ[ƒVƒ‡ƒ“ƒL[ƒZƒbƒg‚ÌƒL[‚ğæ“¾‚·‚éAƒL[ƒ^ƒCƒv‚ª MV1_ANIMKEY_TYPE_MATRIX4X4C ‚© MV1_ANIMKEY_TYPE_MATRIX3X3 ‚Å‚Í–³‚©‚Á‚½ê‡‚Í¸”s‚·‚é
-extern	MATRIX		NS_MV1GetAnimKeyDataToMatrixFromTime( int MHandle, int AnimKeySetIndex, float Time ) ;	// w’è‚ÌƒAƒjƒ[ƒVƒ‡ƒ“ƒL[ƒZƒbƒg‚ÌƒL[‚ğæ“¾‚·‚éAƒL[ƒ^ƒCƒv‚ª MV1_ANIMKEY_TYPE_MATRIX4X4C ‚© MV1_ANIMKEY_TYPE_MATRIX3X3 ‚Å‚Í–³‚©‚Á‚½ê‡‚Í¸”s‚·‚é( ŠÔw’è”Å )
-extern	float		NS_MV1GetAnimKeyDataToFlat( int MHandle, int AnimKeySetIndex, int Index ) ;				// w’è‚ÌƒAƒjƒ[ƒVƒ‡ƒ“ƒL[ƒZƒbƒg‚ÌƒL[‚ğæ“¾‚·‚éAƒL[ƒ^ƒCƒv‚ª MV1_ANIMKEY_TYPE_FLAT ‚Å‚Í–³‚©‚Á‚½ê‡‚Í¸”s‚·‚é
-extern	float		NS_MV1GetAnimKeyDataToFlatFromTime( int MHandle, int AnimKeySetIndex, float Time ) ;	// w’è‚ÌƒAƒjƒ[ƒVƒ‡ƒ“ƒL[ƒZƒbƒg‚ÌƒL[‚ğæ“¾‚·‚éAƒL[ƒ^ƒCƒv‚ª MV1_ANIMKEY_TYPE_FLAT ‚Å‚Í–³‚©‚Á‚½ê‡‚Í¸”s‚·‚é( ŠÔw’è”Å )
-extern	float		NS_MV1GetAnimKeyDataToLinear( int MHandle, int AnimKeySetIndex, int Index ) ;			// w’è‚ÌƒAƒjƒ[ƒVƒ‡ƒ“ƒL[ƒZƒbƒg‚ÌƒL[‚ğæ“¾‚·‚éAƒL[ƒ^ƒCƒv‚ª MV1_ANIMKEY_TYPE_LINEAR ‚Å‚Í–³‚©‚Á‚½ê‡‚Í¸”s‚·‚é
-extern	float		NS_MV1GetAnimKeyDataToLinearFromTime( int MHandle, int AnimKeySetIndex, float Time ) ;	// w’è‚ÌƒAƒjƒ[ƒVƒ‡ƒ“ƒL[ƒZƒbƒg‚ÌƒL[‚ğæ“¾‚·‚éAƒL[ƒ^ƒCƒv‚ª MV1_ANIMKEY_TYPE_LINEAR ‚Å‚Í–³‚©‚Á‚½ê‡‚Í¸”s‚·‚é( ŠÔw’è”Å )
-//extern	int			NS_MV1GetAnimKeyDataToBlendKeyType( int MHandle, int AnimKeySetIndex, int Index ) ;	// w’è‚ÌƒAƒjƒ[ƒVƒ‡ƒ“ƒL[ƒZƒbƒg‚ÌƒL[‚ÌƒL[ƒ^ƒCƒv‚ğæ“¾‚·‚éAƒL[ƒ^ƒCƒv‚ª MV1_ANIMKEY_TYPE_BLEND ‚Å‚Í–³‚©‚Á‚½ê‡‚Í¸”s‚·‚é
-//extern	float		NS_MV1GetAnimKeyDataToBlendValue( int MHandle, int AnimKeySetIndex, int Index ) ;	// w’è‚ÌƒAƒjƒ[ƒVƒ‡ƒ“ƒL[ƒZƒbƒg‚ÌƒL[‚Ì’l‚ğæ“¾‚·‚éAƒL[ƒ^ƒCƒv‚ª MV1_ANIMKEY_TYPE_BLEND ‚Å‚Í–³‚©‚Á‚½ê‡‚Í¸”s‚·‚é
-
-// ƒ}ƒeƒŠƒAƒ‹ŠÖŒW
-extern	int			NS_MV1GetMaterialNum( int MHandle ) ;														// ƒ‚ƒfƒ‹‚Åg—p‚µ‚Ä‚¢‚éƒ}ƒeƒŠƒAƒ‹‚Ì”‚ğæ“¾‚·‚é
-extern	const TCHAR *NS_MV1GetMaterialName( int MHandle, int MaterialIndex ) ;									// w’è‚Ìƒ}ƒeƒŠƒAƒ‹‚Ì–¼‘O‚ğæ“¾‚·‚é
-extern	int			NS_MV1SetMaterialType( int MHandle, int MaterialIndex, int Type ) ;							// w’è‚Ìƒ}ƒeƒŠƒAƒ‹‚Ìƒ^ƒCƒv‚ğ•ÏX‚·‚é( Type : DX_MATERIAL_TYPE_NORMAL ‚È‚Ç )
-extern	int			NS_MV1GetMaterialType( int MHandle, int MaterialIndex ) ;									// w’è‚Ìƒ}ƒeƒŠƒAƒ‹‚Ìƒ^ƒCƒv‚ğæ“¾‚·‚é( –ß‚è’l : DX_MATERIAL_TYPE_NORMAL ‚È‚Ç )
-extern	int			NS_MV1SetMaterialTypeParam(			int MHandle, int MaterialIndex, ... ) ;									// w’è‚Ìƒ}ƒeƒŠƒAƒ‹‚Ìƒ^ƒCƒv•Êƒpƒ‰ƒ[ƒ^‚ğ•ÏX‚·‚é( ƒ}ƒeƒŠƒAƒ‹ƒ^ƒCƒv DX_MATERIAL_TYPE_MAT_SPEC_LUMINANCE_TWO_COLOR ‚È‚Ç‚Åg—p )
-extern	int			NS_MV1SetMaterialDifColor( int MHandle, int MaterialIndex, COLOR_F Color ) ;				// w’è‚Ìƒ}ƒeƒŠƒAƒ‹‚ÌƒfƒBƒtƒ…[ƒYƒJƒ‰[‚ğİ’è‚·‚é
-extern	COLOR_F		NS_MV1GetMaterialDifColor( int MHandle, int MaterialIndex ) ;								// w’è‚Ìƒ}ƒeƒŠƒAƒ‹‚ÌƒfƒBƒtƒ…[ƒYƒJƒ‰[‚ğæ“¾‚·‚é
-extern	int			NS_MV1SetMaterialSpcColor( int MHandle, int MaterialIndex, COLOR_F Color ) ;				// w’è‚Ìƒ}ƒeƒŠƒAƒ‹‚ÌƒXƒyƒLƒ…ƒ‰ƒJƒ‰[‚ğİ’è‚·‚é
-extern	COLOR_F		NS_MV1GetMaterialSpcColor( int MHandle, int MaterialIndex ) ;								// w’è‚Ìƒ}ƒeƒŠƒAƒ‹‚ÌƒXƒyƒLƒ…ƒ‰ƒJƒ‰[‚ğæ“¾‚·‚é
-extern	int			NS_MV1SetMaterialEmiColor( int MHandle, int MaterialIndex, COLOR_F Color ) ;				// w’è‚Ìƒ}ƒeƒŠƒAƒ‹‚ÌƒGƒ~ƒbƒVƒuƒJƒ‰[‚ğİ’è‚·‚é
-extern	COLOR_F		NS_MV1GetMaterialEmiColor( int MHandle, int MaterialIndex ) ;								// w’è‚Ìƒ}ƒeƒŠƒAƒ‹‚ÌƒGƒ~ƒbƒVƒuƒJƒ‰[‚ğæ“¾‚·‚é
-extern	int			NS_MV1SetMaterialAmbColor( int MHandle, int MaterialIndex, COLOR_F Color ) ;				// w’è‚Ìƒ}ƒeƒŠƒAƒ‹‚ÌƒAƒ“ƒrƒGƒ“ƒgƒJƒ‰[‚ğİ’è‚·‚é
-extern	COLOR_F		NS_MV1GetMaterialAmbColor( int MHandle, int MaterialIndex ) ;								// w’è‚Ìƒ}ƒeƒŠƒAƒ‹‚ÌƒAƒ“ƒrƒGƒ“ƒgƒJƒ‰[‚ğæ“¾‚·‚é
-extern	int			NS_MV1SetMaterialSpcPower( int MHandle, int MaterialIndex, float Power ) ;					// w’è‚Ìƒ}ƒeƒŠƒAƒ‹‚ÌƒXƒyƒLƒ…ƒ‰‚Ì‹­‚³‚ğİ’è‚·‚é
-extern	float		NS_MV1GetMaterialSpcPower( int MHandle, int MaterialIndex ) ;								// w’è‚Ìƒ}ƒeƒŠƒAƒ‹‚ÌƒXƒyƒLƒ…ƒ‰‚Ì‹­‚³‚ğæ“¾‚·‚é
-extern	int			NS_MV1SetMaterialDifMapTexture( int MHandle, int MaterialIndex, int TexIndex ) ;			// w’è‚Ìƒ}ƒeƒŠƒAƒ‹‚ÅƒfƒBƒtƒ…[ƒYƒ}ƒbƒv‚Æ‚µ‚Äg—p‚·‚éƒeƒNƒXƒ`ƒƒ‚ğw’è‚·‚é
-extern	int			NS_MV1GetMaterialDifMapTexture( int MHandle, int MaterialIndex ) ;							// w’è‚Ìƒ}ƒeƒŠƒAƒ‹‚ÅƒfƒBƒtƒ…[ƒYƒ}ƒbƒv‚Æ‚µ‚Äg—p‚³‚ê‚Ä‚¢‚éƒeƒNƒXƒ`ƒƒ‚ÌƒCƒ“ƒfƒbƒNƒX‚ğæ“¾‚·‚é
-extern	int			NS_MV1SetMaterialSubDifMapTexture(		int MHandle, int MaterialIndex, int TexIndex ) ;	// w’è‚Ìƒ}ƒeƒŠƒAƒ‹‚ÅƒTƒuƒfƒBƒtƒ…[ƒYƒ}ƒbƒv‚Æ‚µ‚Äg—p‚·‚éƒeƒNƒXƒ`ƒƒ‚ğw’è‚·‚é
-extern	int			NS_MV1GetMaterialSubDifMapTexture(		int MHandle, int MaterialIndex ) ;					// w’è‚Ìƒ}ƒeƒŠƒAƒ‹‚ÅƒTƒuƒfƒBƒtƒ…[ƒYƒ}ƒbƒv‚Æ‚µ‚Äg—p‚³‚ê‚Ä‚¢‚éƒeƒNƒXƒ`ƒƒ‚ÌƒCƒ“ƒfƒbƒNƒX‚ğæ“¾‚·‚é
-extern	int			NS_MV1SetMaterialSpcMapTexture( int MHandle, int MaterialIndex, int TexIndex ) ;			// w’è‚Ìƒ}ƒeƒŠƒAƒ‹‚ÅƒXƒyƒLƒ…ƒ‰ƒ}ƒbƒv‚Æ‚µ‚Äg—p‚·‚éƒeƒNƒXƒ`ƒƒ‚ğw’è‚·‚é
-extern	int			NS_MV1GetMaterialSpcMapTexture( int MHandle, int MaterialIndex ) ;							// w’è‚Ìƒ}ƒeƒŠƒAƒ‹‚ÅƒXƒyƒLƒ…ƒ‰ƒ}ƒbƒv‚Æ‚µ‚Äg—p‚³‚ê‚Ä‚¢‚éƒeƒNƒXƒ`ƒƒ‚ÌƒCƒ“ƒfƒbƒNƒX‚ğæ“¾‚·‚é
-extern	int			NS_MV1SetMaterialNormalMapTexture( int MHandle, int MaterialIndex, int TexIndex ) ;			// w’è‚Ìƒ}ƒeƒŠƒAƒ‹‚Å–@üƒ}ƒbƒv‚Æ‚µ‚Äg—p‚·‚éƒeƒNƒXƒ`ƒƒ‚ğw’è‚·‚é
-extern	int			NS_MV1GetMaterialNormalMapTexture( int MHandle, int MaterialIndex ) ;					// w’è‚Ìƒ}ƒeƒŠƒAƒ‹‚Å–@üƒ}ƒbƒv‚Æ‚µ‚Äg—p‚³‚ê‚Ä‚¢‚éƒeƒNƒXƒ`ƒƒ‚ÌƒCƒ“ƒfƒbƒNƒX‚ğæ“¾‚·‚é
-extern	int			NS_MV1SetMaterialEmissiveMapTexture(	int MHandle, int MaterialIndex, int TexIndex ) ;						// w’è‚Ìƒ}ƒeƒŠƒAƒ‹‚ÅƒGƒ~ƒbƒVƒuƒ}ƒbƒv‚Æ‚µ‚Äg—p‚·‚éƒeƒNƒXƒ`ƒƒ‚ğw’è‚·‚é
-extern	int			NS_MV1GetMaterialEmissiveMapTexture(	int MHandle, int MaterialIndex ) ;										// w’è‚Ìƒ}ƒeƒŠƒAƒ‹‚ÅƒGƒ~ƒbƒVƒuƒ}ƒbƒv‚Æ‚µ‚Äg—p‚³‚ê‚Ä‚¢‚éƒeƒNƒXƒ`ƒƒ‚ÌƒCƒ“ƒfƒbƒNƒX‚ğæ“¾‚·‚é
-extern	int			NS_MV1SetMaterialShininessMapTexture(	int MHandle, int MaterialIndex, int TexIndex ) ;						// w’è‚Ìƒ}ƒeƒŠƒAƒ‹‚Åƒ‰ƒtƒlƒXƒ}ƒbƒv‚Æ‚µ‚Äg—p‚·‚éƒeƒNƒXƒ`ƒƒ‚ğw’è‚·‚é
-extern	int			NS_MV1GetMaterialShininessMapTexture(	int MHandle, int MaterialIndex ) ;										// w’è‚Ìƒ}ƒeƒŠƒAƒ‹‚Åƒ‰ƒtƒlƒXƒ}ƒbƒv‚Æ‚µ‚Äg—p‚³‚ê‚Ä‚¢‚éƒeƒNƒXƒ`ƒƒ‚ÌƒCƒ“ƒfƒbƒNƒX‚ğæ“¾‚·‚é
-extern	int			NS_MV1SetMaterialReflectionFactorMapTexture( int MHandle, int MaterialIndex, int TexIndex ) ;					// w’è‚Ìƒ}ƒeƒŠƒAƒ‹‚Åƒƒ^ƒŠƒbƒNƒ}ƒbƒv‚Æ‚µ‚Äg—p‚·‚éƒeƒNƒXƒ`ƒƒ‚ğw’è‚·‚é
-extern	int			NS_MV1GetMaterialReflectionFactorMapTexture( int MHandle, int MaterialIndex ) ;								// w’è‚Ìƒ}ƒeƒŠƒAƒ‹‚Åƒƒ^ƒŠƒbƒNƒ}ƒbƒv‚Æ‚µ‚Äg—p‚³‚ê‚Ä‚¢‚éƒeƒNƒXƒ`ƒƒ‚ÌƒCƒ“ƒfƒbƒNƒX‚ğæ“¾‚·‚é
-//extern	const char *NS_MV1GetMaterialDifMapTexPath( int MHandle, int MaterialIndex ) ;					// w’è‚Ìƒ}ƒeƒŠƒAƒ‹‚ÌƒfƒBƒtƒ…[ƒYƒ}ƒbƒvƒeƒNƒXƒ`ƒƒ‚ÌƒpƒX‚ğæ“¾‚·‚é
-//extern	const char *NS_MV1GetMaterialSpcMapTexPath( int MHandle, int MaterialIndex ) ;					// w’è‚Ìƒ}ƒeƒŠƒAƒ‹‚ÌƒXƒyƒLƒ…ƒ‰ƒ}ƒbƒvƒeƒNƒXƒ`ƒƒ‚ÌƒpƒX‚ğæ“¾‚·‚é
-//extern	const char *NS_MV1GetMaterialNormalMapTexPath( int MHandle, int MaterialIndex ) ;					// w’è‚Ìƒ}ƒeƒŠƒAƒ‹‚Ì–@üƒ}ƒbƒvƒeƒNƒXƒ`ƒƒ‚ÌƒpƒX‚ğæ“¾‚·‚é
-//extern	const char *NS_MV1GetMaterialBumpMapTexPath( int MHandle, int MaterialIndex ) ;						// w’è‚Ìƒ}ƒeƒŠƒAƒ‹‚Ì“Ê‰šƒ}ƒbƒvƒeƒNƒXƒ`ƒƒ‚ÌƒpƒX‚ğæ“¾‚·‚é
-//extern	float		NS_MV1GetMaterialBumpMapNextPixelLength( int MHandle, int MaterialIndex ) ;				// w’è‚Ìƒ}ƒeƒŠƒAƒ‹‚Ì“Ê‰šƒ}ƒbƒvƒeƒNƒXƒ`ƒƒ‚Ì‚PƒsƒNƒZƒ‹•Ó‚è‚Ì‹——£‚ğæ“¾‚·‚é
-//extern	int			NS_MV1SetMaterialDifMapTexPath( int MHandle, int MaterialIndex, const char *TexPath ) ;		// w’è‚Ìƒ}ƒeƒŠƒAƒ‹‚ÌƒfƒBƒtƒ…[ƒYƒ}ƒbƒvƒeƒNƒXƒ`ƒƒ‚ÌƒpƒX‚ğİ’è‚·‚é
-//extern	int			NS_MV1SetMaterialSpcMapTexPath( int MHandle, int MaterialIndex, const char *TexPath ) ;	// w’è‚Ìƒ}ƒeƒŠƒAƒ‹‚ÌƒXƒyƒLƒ…ƒ‰ƒ}ƒbƒvƒeƒNƒXƒ`ƒƒ‚ÌƒpƒX‚ğİ’è‚·‚é
-extern	int			NS_MV1SetMaterialDifGradTexture( int MHandle, int MaterialIndex, int TexIndex ) ;		// w’è‚Ìƒ}ƒeƒŠƒAƒ‹‚ÅƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚ÌƒfƒBƒtƒ…[ƒYƒOƒ‰ƒf[ƒVƒ‡ƒ“ƒ}ƒbƒv‚Æ‚µ‚Äg—p‚·‚éƒeƒNƒXƒ`ƒƒ‚ğİ’è‚·‚é
-extern	int			NS_MV1GetMaterialDifGradTexture( int MHandle, int MaterialIndex ) ;						// w’è‚Ìƒ}ƒeƒŠƒAƒ‹‚ÅƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚ÌƒfƒBƒtƒ…[ƒYƒOƒ‰ƒf[ƒVƒ‡ƒ“ƒ}ƒbƒv‚Æ‚µ‚Äg—p‚·‚éƒeƒNƒXƒ`ƒƒ‚ğæ“¾‚·‚é
-extern	int			NS_MV1SetMaterialSpcGradTexture( int MHandle, int MaterialIndex, int TexIndex ) ;		// w’è‚Ìƒ}ƒeƒŠƒAƒ‹‚ÅƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚ÌƒXƒyƒLƒ…ƒ‰ƒOƒ‰ƒf[ƒVƒ‡ƒ“ƒ}ƒbƒv‚Æ‚µ‚Äg—p‚·‚éƒeƒNƒXƒ`ƒƒ‚ğİ’è‚·‚é
-extern	int			NS_MV1GetMaterialSpcGradTexture( int MHandle, int MaterialIndex ) ;						// w’è‚Ìƒ}ƒeƒŠƒAƒ‹‚ÅƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚ÌƒXƒyƒLƒ…ƒ‰ƒOƒ‰ƒf[ƒVƒ‡ƒ“ƒ}ƒbƒv‚Æ‚µ‚Äg—p‚·‚éƒeƒNƒXƒ`ƒƒ‚ğæ“¾‚·‚é
-extern	int			NS_MV1SetMaterialSphereMapTexture(		int MHandle, int MaterialIndex, int TexIndex ) ;			// w’è‚Ìƒ}ƒeƒŠƒAƒ‹‚ÅƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚ÌƒXƒtƒBƒAƒ}ƒbƒv‚Æ‚µ‚Äg—p‚·‚éƒeƒNƒXƒ`ƒƒ‚ğİ’è‚·‚é
-extern	int			NS_MV1GetMaterialSphereMapTexture(		int MHandle, int MaterialIndex ) ;							// w’è‚Ìƒ}ƒeƒŠƒAƒ‹‚ÅƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚ÌƒXƒtƒBƒAƒ}ƒbƒv‚Æ‚µ‚Äg—p‚·‚éƒeƒNƒXƒ`ƒƒ‚ğæ“¾‚·‚é
-extern	int			NS_MV1SetMaterialDifGradBlendType( int MHandle, int MaterialIndex, int BlendType ) ;	// w’è‚Ìƒ}ƒeƒŠƒAƒ‹‚ÌƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚Åg—p‚·‚éƒfƒBƒtƒ…[ƒYƒOƒ‰ƒf[ƒVƒ‡ƒ“ƒ}ƒbƒv‚ÆƒfƒBƒtƒ…[ƒYƒJƒ‰[‚Ì‡¬•û–@‚ğİ’è‚·‚é( DX_MATERIAL_BLENDTYPE_ADDITIVE ‚È‚Ç )
-extern	int			NS_MV1GetMaterialDifGradBlendType( int MHandle, int MaterialIndex ) ;					// w’è‚Ìƒ}ƒeƒŠƒAƒ‹‚ÌƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚Åg—p‚·‚éƒfƒBƒtƒ…[ƒYƒOƒ‰ƒf[ƒVƒ‡ƒ“ƒ}ƒbƒv‚ÆƒfƒBƒtƒ…[ƒYƒJƒ‰[‚Ì‡¬•û–@‚ğæ“¾‚·‚é( DX_MATERIAL_BLENDTYPE_ADDITIVE ‚È‚Ç )
-extern	int			NS_MV1SetMaterialSpcGradBlendType( int MHandle, int MaterialIndex, int BlendType ) ;	// w’è‚Ìƒ}ƒeƒŠƒAƒ‹‚ÌƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚Åg—p‚·‚éƒXƒyƒLƒ…ƒ‰ƒOƒ‰ƒf[ƒVƒ‡ƒ“ƒ}ƒbƒv‚ÆƒXƒyƒLƒ…ƒ‰ƒJƒ‰[‚Ì‡¬•û–@‚ğİ’è‚·‚é( DX_MATERIAL_BLENDTYPE_ADDITIVE ‚È‚Ç )
-extern	int			NS_MV1GetMaterialSpcGradBlendType( int MHandle, int MaterialIndex ) ;					// w’è‚Ìƒ}ƒeƒŠƒAƒ‹‚ÌƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚Åg—p‚·‚éƒXƒyƒLƒ…ƒ‰ƒOƒ‰ƒf[ƒVƒ‡ƒ“ƒ}ƒbƒv‚ÆƒXƒyƒLƒ…ƒ‰ƒJƒ‰[‚Ì‡¬•û–@‚ğæ“¾‚·‚é( DX_MATERIAL_BLENDTYPE_ADDITIVE ‚È‚Ç )
-extern	int			NS_MV1SetMaterialSphereMapBlendType(	int MHandle, int MaterialIndex, int BlendType ) ;			// w’è‚Ìƒ}ƒeƒŠƒAƒ‹‚ÌƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚Åg—p‚·‚éƒXƒtƒBƒAƒ}ƒbƒv‚Ì‡¬•û–@‚ğİ’è‚·‚é( DX_MATERIAL_BLENDTYPE_ADDITIVE ‚È‚Ç )
-extern	int			NS_MV1GetMaterialSphereMapBlendType(	int MHandle, int MaterialIndex ) ;							// w’è‚Ìƒ}ƒeƒŠƒAƒ‹‚ÌƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚Åg—p‚·‚éƒXƒtƒBƒAƒ}ƒbƒv‚Ì‡¬•û–@‚ğæ“¾‚·‚é( DX_MATERIAL_BLENDTYPE_ADDITIVE ‚È‚Ç )
-extern	int			NS_MV1SetMaterialOutLineWidth( int MHandle, int MaterialIndex, float Width ) ;			// w’è‚Ìƒ}ƒeƒŠƒAƒ‹‚ÌƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚Åg—p‚·‚é—ÖŠsü‚Ì‘¾‚³‚ğİ’è‚·‚é
-extern	float		NS_MV1GetMaterialOutLineWidth( int MHandle, int MaterialIndex ) ;						// w’è‚Ìƒ}ƒeƒŠƒAƒ‹‚ÌƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚Åg—p‚·‚é—ÖŠsü‚Ì‘¾‚³‚ğæ“¾‚·‚é
-extern	int			NS_MV1SetMaterialOutLineDotWidth( int MHandle, int MaterialIndex, float Width ) ;			// w’è‚Ìƒ}ƒeƒŠƒAƒ‹‚ÌƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚Åg—p‚·‚é—ÖŠsü‚Ìƒhƒbƒg’PˆÊ‚Ì‘¾‚³‚ğİ’è‚·‚é
-extern	float		NS_MV1GetMaterialOutLineDotWidth( int MHandle, int MaterialIndex ) ;						// w’è‚Ìƒ}ƒeƒŠƒAƒ‹‚ÌƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚Åg—p‚·‚é—ÖŠsü‚Ìƒhƒbƒg’PˆÊ‚Ì‘¾‚³‚ğæ“¾‚·‚é
-extern	int			NS_MV1SetMaterialOutLineColor( int MHandle, int MaterialIndex, COLOR_F Color ) ;		// w’è‚Ìƒ}ƒeƒŠƒAƒ‹‚ÌƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚Åg—p‚·‚é—ÖŠsü‚ÌF‚ğİ’è‚·‚é
-extern	COLOR_F		NS_MV1GetMaterialOutLineColor( int MHandle, int MaterialIndex ) ;						// w’è‚Ìƒ}ƒeƒŠƒAƒ‹‚ÌƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚Åg—p‚·‚é—ÖŠsü‚ÌF‚ğæ“¾‚·‚é
-extern	int			NS_MV1SetMaterialDrawBlendMode( int MHandle, int MaterialIndex, int BlendMode ) ;		// w’è‚Ìƒ}ƒeƒŠƒAƒ‹‚Ì•`‰æƒuƒŒƒ“ƒhƒ‚[ƒh‚ğİ’è‚·‚é( DX_BLENDMODE_ALPHA “™ )
-extern	int			NS_MV1SetMaterialDrawBlendParam( int MHandle, int MaterialIndex, int BlendParam ) ;		// w’è‚Ìƒ}ƒeƒŠƒAƒ‹‚Ì•`‰æƒuƒŒƒ“ƒhƒpƒ‰ƒ[ƒ^‚ğİ’è‚·‚é
-extern	int			NS_MV1GetMaterialDrawBlendMode( int MHandle, int MaterialIndex ) ;						// w’è‚Ìƒ}ƒeƒŠƒAƒ‹‚Ì•`‰æƒuƒŒƒ“ƒhƒ‚[ƒh‚ğæ“¾‚·‚é( DX_BLENDMODE_ALPHA “™ )
-extern	int			NS_MV1GetMaterialDrawBlendParam( int MHandle, int MaterialIndex ) ;						// w’è‚Ìƒ}ƒeƒŠƒAƒ‹‚Ì•`‰æƒuƒŒƒ“ƒhƒpƒ‰ƒ[ƒ^‚ğİ’è‚·‚é
-extern	int			NS_MV1SetMaterialDrawAlphaTest(		int MHandle, int MaterialIndex,	int Enable, int Mode, int Param ) ;		// w’è‚Ìƒ}ƒeƒŠƒAƒ‹‚Ì•`‰æ‚ÌƒAƒ‹ƒtƒ@ƒeƒXƒg‚Ìİ’è‚ğs‚¤( Enable:ƒ¿ƒeƒXƒg‚ğs‚¤‚©‚Ç‚¤‚©( TRUE:s‚¤  FALSE:s‚í‚È‚¢( ƒfƒtƒHƒ‹ƒg )  Mode:ƒeƒXƒgƒ‚[ƒh( DX_CMP_GREATER“™ )  Param:•`‰æƒAƒ‹ƒtƒ@’l‚Æ‚Ì”äŠr‚Ég—p‚·‚é’l( 0`255 ) )
-extern	int			NS_MV1GetMaterialDrawAlphaTestEnable( int MHandle, int MaterialIndex ) ;										// w’è‚Ìƒ}ƒeƒŠƒAƒ‹‚Ì•`‰æ‚ÌƒAƒ‹ƒtƒ@ƒeƒXƒg‚ğs‚¤‚©‚Ç‚¤‚©‚ğæ“¾‚·‚é( –ß‚è’l  TRUE:ƒAƒ‹ƒtƒ@ƒeƒXƒg‚ğs‚¤  FALSE:ƒAƒ‹ƒtƒ@ƒeƒXƒg‚ğs‚í‚È‚¢ )
-extern	int			NS_MV1GetMaterialDrawAlphaTestMode(	int MHandle, int MaterialIndex ) ;										// w’è‚Ìƒ}ƒeƒŠƒAƒ‹‚Ì•`‰æ‚ÌƒAƒ‹ƒtƒ@ƒeƒXƒg‚ÌƒeƒXƒgƒ‚[ƒh‚ğæ“¾‚·‚é( –ß‚è’l  ƒeƒXƒgƒ‚[ƒh( DX_CMP_GREATER“™ ) )
-extern	int			NS_MV1GetMaterialDrawAlphaTestParam( int MHandle, int MaterialIndex ) ;										// w’è‚Ìƒ}ƒeƒŠƒAƒ‹‚Ì•`‰æ‚ÌƒAƒ‹ƒtƒ@ƒeƒXƒg‚Ì•`‰æƒAƒ‹ƒtƒ@’n‚Æ‚Ì”äŠr‚Ég—p‚·‚é’l( 0`255 )‚ğæ“¾‚·‚é
-extern	int			NS_MV1SetMaterialTypeAll(				int MHandle,                    int Type ) ;						// ‘S‚Ä‚Ìƒ}ƒeƒŠƒAƒ‹‚Ìƒ^ƒCƒv‚ğ•ÏX‚·‚é( Type : DX_MATERIAL_TYPE_NORMAL ‚È‚Ç )
-extern	int			NS_MV1SetMaterialTypeParamAll(			int MHandle,                    ... ) ;									// ‘S‚Ä‚Ìƒ}ƒeƒŠƒAƒ‹‚Ìƒ^ƒCƒv•Êƒpƒ‰ƒ[ƒ^‚ğ•ÏX‚·‚é( ƒ}ƒeƒŠƒAƒ‹ƒ^ƒCƒv DX_MATERIAL_TYPE_MAT_SPEC_LUMINANCE_TWO_COLOR ‚È‚Ç‚Åg—p )
-extern	int			NS_MV1SetMaterialDifGradBlendTypeAll(	int MHandle,                    int BlendType ) ;						// ‘S‚Ä‚Ìƒ}ƒeƒŠƒAƒ‹‚ÌƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚Åg—p‚·‚éƒfƒBƒtƒ…[ƒYƒOƒ‰ƒf[ƒVƒ‡ƒ“ƒ}ƒbƒv‚ÆƒfƒBƒtƒ…[ƒYƒJƒ‰[‚Ì‡¬•û–@‚ğİ’è‚·‚é( DX_MATERIAL_BLENDTYPE_ADDITIVE ‚È‚Ç )
-extern	int			NS_MV1SetMaterialSpcGradBlendTypeAll(	int MHandle,                    int BlendType ) ;						// ‘S‚Ä‚Ìƒ}ƒeƒŠƒAƒ‹‚ÌƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚Åg—p‚·‚éƒXƒyƒLƒ…ƒ‰ƒOƒ‰ƒf[ƒVƒ‡ƒ“ƒ}ƒbƒv‚ÆƒXƒyƒLƒ…ƒ‰ƒJƒ‰[‚Ì‡¬•û–@‚ğİ’è‚·‚é( DX_MATERIAL_BLENDTYPE_ADDITIVE ‚È‚Ç )
-extern	int			NS_MV1SetMaterialSphereMapBlendTypeAll( int MHandle,                    int BlendType ) ;						// ‘S‚Ä‚Ìƒ}ƒeƒŠƒAƒ‹‚ÌƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚Åg—p‚·‚éƒXƒtƒBƒAƒ}ƒbƒv‚Ì‡¬•û–@‚ğİ’è‚·‚é( DX_MATERIAL_BLENDTYPE_ADDITIVE ‚È‚Ç )
-extern	int			NS_MV1SetMaterialOutLineWidthAll(		int MHandle,                    float Width ) ;							// ‘S‚Ä‚Ìƒ}ƒeƒŠƒAƒ‹‚ÌƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚Åg—p‚·‚é—ÖŠsü‚Ì‘¾‚³‚ğİ’è‚·‚é
-extern	int			NS_MV1SetMaterialOutLineDotWidthAll(	int MHandle,                    float Width ) ;							// ‘S‚Ä‚Ìƒ}ƒeƒŠƒAƒ‹‚ÌƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚Åg—p‚·‚é—ÖŠsü‚Ìƒhƒbƒg’PˆÊ‚Ì‘¾‚³‚ğİ’è‚·‚é
-extern	int			NS_MV1SetMaterialOutLineColorAll(		int MHandle,                    COLOR_F Color ) ;						// ‘S‚Ä‚Ìƒ}ƒeƒŠƒAƒ‹‚ÌƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO‚Åg—p‚·‚é—ÖŠsü‚ÌF‚ğİ’è‚·‚é
-extern	int			NS_MV1SetMaterialDrawBlendModeAll(		int MHandle,                    int BlendMode ) ;						// ‘S‚Ä‚Ìƒ}ƒeƒŠƒAƒ‹‚Ì•`‰æƒuƒŒƒ“ƒhƒ‚[ƒh‚ğİ’è‚·‚é( DX_BLENDMODE_ALPHA “™ )
-extern	int			NS_MV1SetMaterialDrawBlendParamAll(	int MHandle,                    int BlendParam ) ;						// ‘S‚Ä‚Ìƒ}ƒeƒŠƒAƒ‹‚Ì•`‰æƒuƒŒƒ“ƒhƒpƒ‰ƒ[ƒ^‚ğİ’è‚·‚é
-extern	int			NS_MV1SetMaterialDrawAlphaTestAll(		int MHandle,                    int Enable, int Mode, int Param ) ;		// ‘S‚Ä‚Ìƒ}ƒeƒŠƒAƒ‹‚Ì•`‰æ‚ÌƒAƒ‹ƒtƒ@ƒeƒXƒg‚Ìİ’è‚ğs‚¤( Enable:ƒ¿ƒeƒXƒg‚ğs‚¤‚©‚Ç‚¤‚©( TRUE:s‚¤  FALSE:s‚í‚È‚¢( ƒfƒtƒHƒ‹ƒg ) ) Mode:ƒeƒXƒgƒ‚[ƒh( DX_CMP_GREATER“™ )  Param:•`‰æƒAƒ‹ƒtƒ@’l‚Æ‚Ì”äŠr‚Ég—p‚·‚é’l( 0`255 ) )
-extern	int			NS_MV1SetMaterialDrawAddColorAll(		int MHandle,                    int Red, int Green, int Blue ) ;		// ‘S‚Ä‚Ìƒ}ƒeƒŠƒAƒ‹‚Ì•`‰æ‚Ì‰ÁZƒJƒ‰[‚ğİ’è‚·‚é
-extern	int			NS_MV1SetMaterialDrawAddColor(			int MHandle, int MaterialIndex, int Red, int Green, int Blue ) ;		// w’è‚Ìƒ}ƒeƒŠƒAƒ‹‚Ì•`‰æ‚Ì‰ÁZƒJƒ‰[‚ğİ’è‚·‚é
-extern	int			NS_MV1GetMaterialDrawAddColor(			int MHandle, int MaterialIndex, int *Red, int *Green, int *Blue ) ;		// w’è‚Ìƒ}ƒeƒŠƒAƒ‹‚Ì•`‰æ‚Ì‰ÁZƒJƒ‰[‚ğæ“¾‚·‚é
-
-// ƒeƒNƒXƒ`ƒƒŠÖŒW
-extern	int			NS_MV1GetTextureNum( int MHandle ) ;													// ƒeƒNƒXƒ`ƒƒ‚Ì”‚ğæ“¾
-extern	const TCHAR *NS_MV1GetTextureName( int MHandle, int TexIndex ) ;										// ƒeƒNƒXƒ`ƒƒ‚Ì–¼‘O‚ğæ“¾
-extern	int			NS_MV1SetTextureColorFilePath( int MHandle, int TexIndex, const TCHAR *FilePath ) ;		// ƒJƒ‰[ƒeƒNƒXƒ`ƒƒ‚Ìƒtƒ@ƒCƒ‹ƒpƒX‚ğ•ÏX‚·‚é
-extern	int			NS_MV1SetTextureColorFilePathWithStrLen(	int MHandle, int TexIndex, const TCHAR *FilePath, size_t FilePathLength ) ;	// ƒJƒ‰[ƒeƒNƒXƒ`ƒƒ‚Ìƒtƒ@ƒCƒ‹ƒpƒX‚ğ•ÏX‚·‚é
-extern	const TCHAR *NS_MV1GetTextureColorFilePath(			int MHandle, int TexIndex ) ;									// ƒJƒ‰[ƒeƒNƒXƒ`ƒƒ‚Ìƒtƒ@ƒCƒ‹ƒpƒX‚ğæ“¾
-extern	int			NS_MV1SetTextureAlphaFilePath(				int MHandle, int TexIndex, const TCHAR *FilePath                        ) ;	// ƒAƒ‹ƒtƒ@ƒeƒNƒXƒ`ƒƒ‚Ìƒtƒ@ƒCƒ‹ƒpƒX‚ğ•ÏX‚·‚é
-extern	int			NS_MV1SetTextureAlphaFilePathWithStrLen(	int MHandle, int TexIndex, const TCHAR *FilePath, size_t FilePathLength ) ;	// ƒAƒ‹ƒtƒ@ƒeƒNƒXƒ`ƒƒ‚Ìƒtƒ@ƒCƒ‹ƒpƒX‚ğ•ÏX‚·‚é
-extern	const TCHAR *NS_MV1GetTextureAlphaFilePath( int MHandle, int TexIndex ) ;							// ƒAƒ‹ƒtƒ@ƒeƒNƒXƒ`ƒƒ‚Ìƒtƒ@ƒCƒ‹ƒpƒX‚ğæ“¾
-extern	int			NS_MV1SetTextureGraphHandle( int MHandle, int TexIndex, int GrHandle, int SemiTransFlag ) ;	// ƒeƒNƒXƒ`ƒƒ‚Åg—p‚·‚éƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ğ•ÏX‚·‚é( GrHandle ‚ğ -1 ‚É‚·‚é‚Æ‰ğœ )
-extern	int			NS_MV1GetTextureGraphHandle( int MHandle, int TexIndex ) ;										// ƒeƒNƒXƒ`ƒƒ‚ÌƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ğæ“¾‚·‚é
-extern	int			NS_MV1SetTextureAddressMode( int MHandle, int TexIndex, int AddrUMode, int AddrVMode ) ;	// ƒeƒNƒXƒ`ƒƒ‚ÌƒAƒhƒŒƒXƒ‚[ƒh‚ğİ’è‚·‚é( AddrUMode ‚Í DX_TEXADDRESS_WRAP “™ )
-extern	int			NS_MV1GetTextureAddressModeU( int MHandle, int TexIndex ) ;								// ƒeƒNƒXƒ`ƒƒ‚Ì‚t’l‚ÌƒAƒhƒŒƒXƒ‚[ƒh‚ğæ“¾‚·‚é( –ß‚è’l:DX_TEXADDRESS_WRAP “™ )
-extern	int			NS_MV1GetTextureAddressModeV( int MHandle, int TexIndex ) ;								// ƒeƒNƒXƒ`ƒƒ‚Ì‚u’l‚ÌƒAƒhƒŒƒXƒ‚[ƒh‚ğæ“¾‚·‚é( –ß‚è’l:DX_TEXADDRESS_WRAP “™ )
-extern	int			NS_MV1GetTextureWidth( int MHandle, int TexIndex ) ;									// ƒeƒNƒXƒ`ƒƒ‚Ì•‚ğæ“¾‚·‚é
-extern	int			NS_MV1GetTextureHeight( int MHandle, int TexIndex ) ;									// ƒeƒNƒXƒ`ƒƒ‚Ì‚‚³‚ğæ“¾‚·‚é
-extern	int			NS_MV1GetTextureSemiTransState( int MHandle, int TexIndex ) ;							// ƒeƒNƒXƒ`ƒƒ‚É”¼“§–¾—v‘f‚ª‚ ‚é‚©‚Ç‚¤‚©‚ğæ“¾‚·‚é( –ß‚è’l  TRUE:‚ ‚é  FALSE:‚È‚¢ )
-extern	int			NS_MV1SetTextureBumpImageFlag( int MHandle, int TexIndex, int Flag ) ;					// ƒeƒNƒXƒ`ƒƒ‚Åg—p‚µ‚Ä‚¢‚é‰æ‘œ‚ªƒoƒ“ƒvƒ}ƒbƒv‚©‚Ç‚¤‚©‚ğİ’è‚·‚é
-extern	int			NS_MV1GetTextureBumpImageFlag( int MHandle, int TexIndex ) ;							// ƒeƒNƒXƒ`ƒƒ‚ªƒoƒ“ƒvƒ}ƒbƒv‚©‚Ç‚¤‚©‚ğæ“¾‚·‚é( –ß‚è’l  TRUE:ƒoƒ“ƒvƒ}ƒbƒv  FALSE:ˆá‚¤ )
-extern	int			NS_MV1SetTextureBumpImageNextPixelLength( int MHandle, int TexIndex, float Length ) ;	// ƒoƒ“ƒvƒ}ƒbƒv‰æ‘œ‚Ìê‡‚Ì—×‚ÌƒsƒNƒZƒ‹‚Æ‚Ì‹——£‚ğİ’è‚·‚é
-extern	float		NS_MV1GetTextureBumpImageNextPixelLength( int MHandle, int TexIndex ) ;					// ƒoƒ“ƒvƒ}ƒbƒv‰æ‘œ‚Ìê‡‚Ì—×‚ÌƒsƒNƒZƒ‹‚Æ‚Ì‹——£‚ğæ“¾‚·‚é
-extern	int			NS_MV1SetTextureSampleFilterMode( int MHandle, int TexIndex, int FilterMode ) ;			// ƒeƒNƒXƒ`ƒƒ‚ÌƒtƒBƒ‹ƒ^ƒŠƒ“ƒOƒ‚[ƒh‚ğİ’è‚·‚é
-extern	int			NS_MV1GetTextureSampleFilterMode( int MHandle, int TexIndex ) ;							// ƒeƒNƒXƒ`ƒƒ‚ÌƒtƒBƒ‹ƒ^ƒŠƒ“ƒOƒ‚[ƒh‚ğæ“¾‚·‚é( –ß‚è’l  DX_DRAWMODE_BILINEAR“™ )
-extern	int			NS_MV1AddTexture(						int MHandle, const TCHAR *Name, const TCHAR *ColorFilePath, const TCHAR *AlphaFilePath DEFAULTPARAM( = NULL ) , void *ColorFileImage DEFAULTPARAM( = NULL ) , void *AlphaFileImage DEFAULTPARAM( = NULL ) , int AddressModeU DEFAULTPARAM( = DX_TEXADDRESS_WRAP ) , int AddressModeV DEFAULTPARAM( = DX_TEXADDRESS_WRAP ) , int FilterMode DEFAULTPARAM( = DX_DRAWMODE_ANISOTROPIC ) , int BumpImageFlag DEFAULTPARAM( = FALSE ) , float BumpImageNextPixelLength DEFAULTPARAM( = 0.1f ) , int ReverseFlag DEFAULTPARAM( = FALSE ) , int Bmp32AllZeroAlphaToXRGB8Flag DEFAULTPARAM( = FALSE ) ) ;	// ƒ‚ƒfƒ‹‚Åg—p‚·‚éƒeƒNƒXƒ`ƒƒ‚ğ’Ç‰Á‚·‚é
-extern	int			NS_MV1AddTextureWithStrLen(				int MHandle, const TCHAR *Name, size_t NameLength, const TCHAR *ColorFilePath, size_t ColorFilePathLength, const TCHAR *AlphaFilePath DEFAULTPARAM( = NULL ) , size_t AlphaFilePathLength DEFAULTPARAM( = 0 ) , void *ColorFileImage DEFAULTPARAM( = NULL ) , void *AlphaFileImage DEFAULTPARAM( = NULL ) , int AddressModeU DEFAULTPARAM( = DX_TEXADDRESS_WRAP ) , int AddressModeV DEFAULTPARAM( = DX_TEXADDRESS_WRAP ) , int FilterMode DEFAULTPARAM( = DX_DRAWMODE_ANISOTROPIC ) , int BumpImageFlag DEFAULTPARAM( = FALSE ) , float BumpImageNextPixelLength DEFAULTPARAM( = 0.1f ) , int ReverseFlag DEFAULTPARAM( = FALSE ) , int Bmp32AllZeroAlphaToXRGB8Flag DEFAULTPARAM( = FALSE ) ) ;	// ƒ‚ƒfƒ‹‚Åg—p‚·‚éƒeƒNƒXƒ`ƒƒ‚ğ’Ç‰Á‚·‚é
-extern	int			NS_MV1AddTextureGraphHandle(				int MHandle, const TCHAR *Name,                    int GrHandle, int SemiTransFlag,                                                                                                                                                                                                                     int AddressModeU DEFAULTPARAM( = DX_TEXADDRESS_WRAP ) , int AddressModeV DEFAULTPARAM( = DX_TEXADDRESS_WRAP ) , int FilterMode DEFAULTPARAM( = DX_DRAWMODE_ANISOTROPIC ) ) ;																																																			// ƒ‚ƒfƒ‹‚Åg—p‚·‚éƒeƒNƒXƒ`ƒƒ‚ğ’Ç‰Á‚·‚é( ƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ğƒeƒNƒXƒ`ƒƒ‚Æ‚µ‚Ä’Ç‰Á )
-extern	int			NS_MV1LoadTexture( const TCHAR *FilePath ) ;													// ‚R‚cƒ‚ƒfƒ‹‚É“\‚è•t‚¯‚é‚Ì‚ÉŒü‚¢‚½‰æ‘œ‚Ì“Ç‚İ‚İ•û®‚Å‰æ‘œ‚ğ“Ç‚İ‚Ş( –ß‚è’l  -1:ƒGƒ‰[  0ˆÈã:ƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹ )
-extern	int			NS_MV1LoadTextureWithStrLen(				const TCHAR *FilePath, size_t FilePathLength ) ;				// ‚R‚cƒ‚ƒfƒ‹‚É“\‚è•t‚¯‚é‚Ì‚ÉŒü‚¢‚½‰æ‘œ‚Ì“Ç‚İ‚İ•û®‚Å‰æ‘œ‚ğ“Ç‚İ‚Ş( –ß‚è’l  -1:ƒGƒ‰[  0ˆÈã:ƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹ )
+// ãƒ¢ãƒ‡ãƒ«åŸºæœ¬åˆ¶å¾¡é–¢ä¿‚
+//extern	int			   MV1SetupMatrix( int MHandle ) ;														// æç”»ç”¨ã®è¡Œåˆ—ã‚’æ§‹ç¯‰ã™ã‚‹
+extern	MATRIX		NS_MV1GetLocalWorldMatrix( int MHandle ) ;												// ãƒ¢ãƒ‡ãƒ«ã®ãƒ­ãƒ¼ã‚«ãƒ«åº§æ¨™ã‹ã‚‰ãƒ¯ãƒ¼ãƒ«ãƒ‰åº§æ¨™ã«å¤‰æ›ã™ã‚‹è¡Œåˆ—ã‚’å¾—ã‚‹
+extern	MATRIX_D	NS_MV1GetLocalWorldMatrixD( int MHandle ) ;												// ãƒ¢ãƒ‡ãƒ«ã®ãƒ­ãƒ¼ã‚«ãƒ«åº§æ¨™ã‹ã‚‰ãƒ¯ãƒ¼ãƒ«ãƒ‰åº§æ¨™ã«å¤‰æ›ã™ã‚‹è¡Œåˆ—ã‚’å¾—ã‚‹
+extern	int			NS_MV1SetPosition(  int MHandle, VECTOR   Position ) ;									// ãƒ¢ãƒ‡ãƒ«ã®åº§æ¨™ã‚’ã‚»ãƒƒãƒˆ
+extern	int			NS_MV1SetPositionD( int MHandle, VECTOR_D Position ) ;									// ãƒ¢ãƒ‡ãƒ«ã®åº§æ¨™ã‚’ã‚»ãƒƒãƒˆ
+extern	VECTOR		NS_MV1GetPosition(  int MHandle ) ;														// ãƒ¢ãƒ‡ãƒ«ã®åº§æ¨™ã‚’å–å¾—
+extern	VECTOR_D	NS_MV1GetPositionD( int MHandle ) ;														// ãƒ¢ãƒ‡ãƒ«ã®åº§æ¨™ã‚’å–å¾—
+extern	int			NS_MV1SetScale( int MHandle, VECTOR Scale ) ;											// ãƒ¢ãƒ‡ãƒ«ã®æ‹¡å¤§å€¤ã‚’ã‚»ãƒƒãƒˆ
+extern	VECTOR		NS_MV1GetScale( int MHandle ) ;															// ãƒ¢ãƒ‡ãƒ«ã®æ‹¡å¤§å€¤ã‚’å–å¾—
+extern	int			NS_MV1SetRotationXYZ( int MHandle, VECTOR Rotate ) ;									// ãƒ¢ãƒ‡ãƒ«ã®å›è»¢å€¤ã‚’ã‚»ãƒƒãƒˆ( Xè»¸å›è»¢â†’Yè»¸å›è»¢â†’Zè»¸å›è»¢æ–¹å¼ )
+extern	VECTOR		NS_MV1GetRotationXYZ( int MHandle ) ;													// ãƒ¢ãƒ‡ãƒ«ã®å›è»¢å€¤ã‚’å–å¾—( Xè»¸å›è»¢â†’Yè»¸å›è»¢â†’Zè»¸å›è»¢æ–¹å¼ )
+extern	int			NS_MV1SetRotationZYAxis( int MHandle, VECTOR ZAxisDirection, VECTOR YAxisDirection, float ZAxisTwistRotate ) ;	// ãƒ¢ãƒ‡ãƒ«ã®ï¼ºè»¸ã¨ï¼¹è»¸ã®å‘ãã‚’ã‚»ãƒƒãƒˆã™ã‚‹
+extern	int			NS_MV1SetRotationYUseDir( int MHandle, VECTOR Direction, float OffsetYAngle ) ;			// ãƒ¢ãƒ‡ãƒ«ã®ï¼¹è»¸ã®å›è»¢å€¤ã‚’æŒ‡å®šã®ãƒ™ã‚¯ãƒˆãƒ«ã®å‘ãã‚’å…ƒã«è¨­å®šã™ã‚‹ã€ãƒ¢ãƒ‡ãƒ«ã¯Zè»¸ã®ãƒã‚¤ãƒŠã‚¹æ–¹å‘ã‚’å‘ã„ã¦ã„ã‚‹ã“ã¨ã‚’æƒ³å®šã™ã‚‹ã®ã§ã€ãã†ã§ã¯ãªã„å ´åˆã¯ OffsetYAngle ã§è£œæ­£ã™ã‚‹ã€ï¼¸è»¸å›è»¢ã€ï¼ºè»¸å›è»¢ã¯ï¼ã§å›ºå®š
+extern	int			NS_MV1SetRotationMatrix( int MHandle, MATRIX Matrix ) ;									// ãƒ¢ãƒ‡ãƒ«ã®å›è»¢ç”¨è¡Œåˆ—ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
+extern	MATRIX		NS_MV1GetRotationMatrix( int MHandle ) ;												// ãƒ¢ãƒ‡ãƒ«ã®å›è»¢ç”¨è¡Œåˆ—ã‚’å–å¾—ã™ã‚‹
+extern	int			NS_MV1SetMatrix(  int MHandle, MATRIX   Matrix ) ;										// ãƒ¢ãƒ‡ãƒ«ã®å¤‰å½¢ç”¨è¡Œåˆ—ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
+extern	int			NS_MV1SetMatrixD( int MHandle, MATRIX_D Matrix ) ;										// ãƒ¢ãƒ‡ãƒ«ã®å¤‰å½¢ç”¨è¡Œåˆ—ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
+extern	MATRIX		NS_MV1GetMatrix(  int MHandle ) ;														// ãƒ¢ãƒ‡ãƒ«ã®å¤‰å½¢ç”¨è¡Œåˆ—ã‚’å–å¾—ã™ã‚‹
+extern	MATRIX_D	NS_MV1GetMatrixD( int MHandle ) ;														// ãƒ¢ãƒ‡ãƒ«ã®å¤‰å½¢ç”¨è¡Œåˆ—ã‚’å–å¾—ã™ã‚‹
+extern	int			NS_MV1SetVisible( int MHandle, int VisibleFlag ) ;										// ãƒ¢ãƒ‡ãƒ«ã®è¡¨ç¤ºã€éè¡¨ç¤ºçŠ¶æ…‹ã‚’å¤‰æ›´ã™ã‚‹( TRUE:è¡¨ç¤º  FALSE:éè¡¨ç¤º )
+extern	int			NS_MV1GetVisible( int MHandle ) ;														// ãƒ¢ãƒ‡ãƒ«ã®è¡¨ç¤ºã€éè¡¨ç¤ºçŠ¶æ…‹ã‚’å–å¾—ã™ã‚‹( TRUE:è¡¨ç¤º  FALSE:éè¡¨ç¤º )
+extern	int			NS_MV1SetMeshCategoryVisible( int MHandle, int MeshCategory, int VisibleFlag ) ;		// ãƒ¢ãƒ‡ãƒ«ã®ãƒ¡ãƒƒã‚·ãƒ¥ã®ç¨®é¡( DX_MV1_MESHCATEGORY_NORMAL ãªã© )æ¯ã®è¡¨ç¤ºã€éè¡¨ç¤ºã‚’è¨­å®šã™ã‚‹( TRUE:è¡¨ç¤º  FALSE:éè¡¨ç¤º )
+extern	int			NS_MV1GetMeshCategoryVisible( int MHandle, int MeshCategory ) ;							// ãƒ¢ãƒ‡ãƒ«ã®ãƒ¡ãƒƒã‚·ãƒ¥ã®ç¨®é¡( DX_MV1_MESHCATEGORY_NORMAL ãªã© )æ¯ã®è¡¨ç¤ºã€éè¡¨ç¤ºã‚’å–å¾—ã™ã‚‹( TRUE:è¡¨ç¤º  FALSE:éè¡¨ç¤º )
+extern	int			NS_MV1SetDifColorScale( int MHandle, COLOR_F Scale ) ;									// ãƒ¢ãƒ‡ãƒ«ã®ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚«ãƒ©ãƒ¼ã®ã‚¹ã‚±ãƒ¼ãƒ«å€¤ã‚’è¨­å®šã™ã‚‹( ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå€¤ã¯ 1.0f )
+extern	COLOR_F		NS_MV1GetDifColorScale( int MHandle ) ;													// ãƒ¢ãƒ‡ãƒ«ã®ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚«ãƒ©ãƒ¼ã®ã‚¹ã‚±ãƒ¼ãƒ«å€¤ã‚’å–å¾—ã™ã‚‹( ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå€¤ã¯ 1.0f )
+extern	int			NS_MV1SetSpcColorScale( int MHandle, COLOR_F Scale ) ;									// ãƒ¢ãƒ‡ãƒ«ã®ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã‚«ãƒ©ãƒ¼ã®ã‚¹ã‚±ãƒ¼ãƒ«å€¤ã‚’è¨­å®šã™ã‚‹( ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå€¤ã¯ 1.0f )
+extern	COLOR_F		NS_MV1GetSpcColorScale( int MHandle ) ;													// ãƒ¢ãƒ‡ãƒ«ã®ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã‚«ãƒ©ãƒ¼ã®ã‚¹ã‚±ãƒ¼ãƒ«å€¤ã‚’å–å¾—ã™ã‚‹( ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå€¤ã¯ 1.0f )
+extern	int			NS_MV1SetEmiColorScale( int MHandle, COLOR_F Scale ) ;									// ãƒ¢ãƒ‡ãƒ«ã®ã‚¨ãƒŸãƒƒã‚·ãƒ–ã‚«ãƒ©ãƒ¼ã®ã‚¹ã‚±ãƒ¼ãƒ«å€¤ã‚’è¨­å®šã™ã‚‹( ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå€¤ã¯ 1.0f )
+extern	COLOR_F		NS_MV1GetEmiColorScale( int MHandle ) ;													// ãƒ¢ãƒ‡ãƒ«ã®ã‚¨ãƒŸãƒƒã‚·ãƒ–ã‚«ãƒ©ãƒ¼ã®ã‚¹ã‚±ãƒ¼ãƒ«å€¤ã‚’å–å¾—ã™ã‚‹( ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå€¤ã¯ 1.0f )
+extern	int			NS_MV1SetAmbColorScale( int MHandle, COLOR_F Scale ) ;									// ãƒ¢ãƒ‡ãƒ«ã®ã‚¢ãƒ³ãƒ“ã‚¨ãƒ³ãƒˆã‚«ãƒ©ãƒ¼ã®ã‚¹ã‚±ãƒ¼ãƒ«å€¤ã‚’è¨­å®šã™ã‚‹( ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå€¤ã¯ 1.0f )
+extern	COLOR_F		NS_MV1GetAmbColorScale( int MHandle ) ;													// ãƒ¢ãƒ‡ãƒ«ã®ã‚¢ãƒ³ãƒ“ã‚¨ãƒ³ãƒˆã‚«ãƒ©ãƒ¼ã®ã‚¹ã‚±ãƒ¼ãƒ«å€¤ã‚’å–å¾—ã™ã‚‹( ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå€¤ã¯ 1.0f )
+extern	int			NS_MV1GetSemiTransState( int MHandle ) ;												// ãƒ¢ãƒ‡ãƒ«ã«åŠé€æ˜è¦ç´ ãŒã‚ã‚‹ã‹ã©ã†ã‹ã‚’å–å¾—ã™ã‚‹( æˆ»ã‚Šå€¤ TRUE:ã‚ã‚‹  FALSE:ãªã„ )
+extern	int			NS_MV1SetOpacityRate( int MHandle, float Rate ) ;										// ãƒ¢ãƒ‡ãƒ«ã®ä¸é€æ˜åº¦ã‚’è¨­å®šã™ã‚‹( ä¸é€æ˜ 1.0f ï½ é€æ˜ 0.0f )
+extern	float		NS_MV1GetOpacityRate( int MHandle ) ;													// ãƒ¢ãƒ‡ãƒ«ã®ä¸é€æ˜åº¦ã‚’å–å¾—ã™ã‚‹( ä¸é€æ˜ 1.0f ï½ é€æ˜ 0.0f )
+extern	int			NS_MV1SetUseDrawMulAlphaColor(			int MHandle, int Flag ) ;											// ãƒ¢ãƒ‡ãƒ«ã‚’æç”»ã™ã‚‹éš›ã«RGBå€¤ã«å¯¾ã—ã¦Aå€¤ã‚’ä¹—ç®—ã™ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹( æç”»çµæœãŒä¹—ç®—æ¸ˆã¿ã‚¢ãƒ«ãƒ•ã‚¡ç”»åƒã«ãªã‚Šã¾ã™ )( Flag   TRUE:RGBå€¤ã«å¯¾ã—ã¦Aå€¤ã‚’ä¹—ç®—ã™ã‚‹  FALSE:ä¹—ç®—ã—ãªã„(ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ) )
+extern	int			NS_MV1GetUseDrawMulAlphaColor(			int MHandle ) ;														// ãƒ¢ãƒ‡ãƒ«ã‚’æç”»ã™ã‚‹éš›ã«RGBå€¤ã«å¯¾ã—ã¦Aå€¤ã‚’ä¹—ç®—ã™ã‚‹ã‹ã©ã†ã‹ã‚’å–å¾—ã™ã‚‹( æç”»çµæœãŒä¹—ç®—æ¸ˆã¿ã‚¢ãƒ«ãƒ•ã‚¡ç”»åƒã«ãªã‚Šã¾ã™ )( æˆ»ã‚Šå€¤ TRUE:RGBå€¤ã«å¯¾ã—ã¦Aå€¤ã‚’ä¹—ç®—ã™ã‚‹  FALSE:ä¹—ç®—ã—ãªã„(ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ) )
+extern	int			NS_MV1SetUseZBuffer( int MHandle, int Flag ) ;											// ãƒ¢ãƒ‡ãƒ«ã‚’æç”»ã™ã‚‹éš›ã«ï¼ºãƒãƒƒãƒ•ã‚¡ã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹
+extern	int			NS_MV1SetWriteZBuffer( int MHandle, int Flag ) ;										// ãƒ¢ãƒ‡ãƒ«ã‚’æç”»ã™ã‚‹éš›ã«ï¼ºãƒãƒƒãƒ•ã‚¡ã«æ›¸ãè¾¼ã¿ã‚’è¡Œã†ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹
+extern	int			NS_MV1SetZBufferCmpType( int MHandle, int CmpType /* DX_CMP_NEVER ç­‰ */ ) ;				// ãƒ¢ãƒ‡ãƒ«ã®æç”»æ™‚ã®ï¼ºå€¤ã®æ¯”è¼ƒãƒ¢ãƒ¼ãƒ‰ã‚’è¨­å®šã™ã‚‹
+extern	int			NS_MV1SetZBias( int MHandle, int Bias ) ;												// ãƒ¢ãƒ‡ãƒ«ã®æç”»æ™‚ã®æ›¸ãè¾¼ã‚€ï¼ºå€¤ã®ãƒã‚¤ã‚¢ã‚¹ã‚’è¨­å®šã™ã‚‹
+extern	int			NS_MV1SetUseVertDifColor( int MHandle, int UseFlag ) ;									// ãƒ¢ãƒ‡ãƒ«ã®å«ã¾ã‚Œã‚‹ãƒ¡ãƒƒã‚·ãƒ¥ã®é ‚ç‚¹ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚«ãƒ©ãƒ¼ã‚’ãƒãƒ†ãƒªã‚¢ãƒ«ã®ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚«ãƒ©ãƒ¼ã®ä»£ã‚ã‚Šã«ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹( TRUE:ãƒãƒ†ãƒªã‚¢ãƒ«ã‚«ãƒ©ãƒ¼ã®ä»£ã‚ã‚Šã«ä½¿ç”¨ã™ã‚‹  FALSE:ãƒãƒ†ãƒªã‚¢ãƒ«ã‚«ãƒ©ãƒ¼ã‚’ä½¿ç”¨ã™ã‚‹ )
+extern	int			NS_MV1SetUseVertSpcColor( int MHandle, int UseFlag ) ;									// ãƒ¢ãƒ‡ãƒ«ã«å«ã¾ã‚Œã‚‹ãƒ¡ãƒƒã‚·ãƒ¥ã®é ‚ç‚¹ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã‚«ãƒ©ãƒ¼ã‚’ãƒãƒ†ãƒªã‚¢ãƒ«ã®ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã‚«ãƒ©ãƒ¼ã®ä»£ã‚ã‚Šã«ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹( TRUE:ãƒãƒ†ãƒªã‚¢ãƒ«ã‚«ãƒ©ãƒ¼ã®ä»£ã‚ã‚Šã«ä½¿ç”¨ã™ã‚‹  FALSE:ãƒãƒ†ãƒªã‚¢ãƒ«ã‚«ãƒ©ãƒ¼ã‚’ä½¿ç”¨ã™ã‚‹ )
+extern	int			NS_MV1SetSampleFilterMode( int MHandle, int FilterMode ) ;								// ãƒ¢ãƒ‡ãƒ«ã®ã‚µãƒ³ãƒ—ãƒ«ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ãƒ¢ãƒ¼ãƒ‰ã‚’å¤‰æ›´ã™ã‚‹
+extern	int			NS_MV1SetMaxAnisotropy( int MHandle, int MaxAnisotropy ) ;								// ãƒ¢ãƒ‡ãƒ«ã®ç•°æ–¹æ€§ãƒ•ã‚£ãƒ«ã‚¿ãƒªãƒ³ã‚°ã®æœ€å¤§æ¬¡æ•°ã‚’è¨­å®šã™ã‚‹
+extern	int			NS_MV1SetWireFrameDrawFlag( int MHandle, int Flag ) ;									// ãƒ¢ãƒ‡ãƒ«ã‚’ãƒ¯ã‚¤ãƒ¤ãƒ¼ãƒ•ãƒ¬ãƒ¼ãƒ ã§æç”»ã™ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹
+extern	int			NS_MV1RefreshVertColorFromMaterial( int MHandle ) ;										// ãƒ¢ãƒ‡ãƒ«ã®é ‚ç‚¹ã‚«ãƒ©ãƒ¼ã‚’ç¾åœ¨è¨­å®šã•ã‚Œã¦ã„ã‚‹ãƒãƒ†ãƒªã‚¢ãƒ«ã®ã‚«ãƒ©ãƒ¼ã«ã™ã‚‹
+extern	int			NS_MV1SetPhysicsWorldGravity(			int MHandle, VECTOR Gravity ) ;										// ãƒ¢ãƒ‡ãƒ«ã®ç‰©ç†æ¼”ç®—ã®é‡åŠ›ã‚’è¨­å®šã™ã‚‹
+extern	int			NS_MV1PhysicsCalculation( int MHandle, float MillisecondTime ) ;						// ãƒ¢ãƒ‡ãƒ«ã®ç‰©ç†æ¼”ç®—ã‚’æŒ‡å®šæ™‚é–“åˆ†çµŒéã—ãŸã¨ä»®å®šã—ã¦è¨ˆç®—ã™ã‚‹( MillisecondTime ã§æŒ‡å®šã™ã‚‹æ™‚é–“ã®å˜ä½ã¯ãƒŸãƒªç§’ )
+extern	int			NS_MV1PhysicsResetState( int MHandle ) ;												// ãƒ¢ãƒ‡ãƒ«ã®ç‰©ç†æ¼”ç®—ã®çŠ¶æ…‹ã‚’ãƒªã‚»ãƒƒãƒˆã™ã‚‹( ä½ç½®ãŒãƒ¯ãƒ¼ãƒ—ã—ãŸã¨ãç”¨ )
+extern	int			NS_MV1SetPrioritizePhysicsOverAnimFlag(	int MHandle, int Flag ) ;											// ãƒ¢ãƒ‡ãƒ«ã®ç‰©ç†æ¼”ç®—ã‚’ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚ˆã‚Šå„ªå…ˆã™ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹( TRUE:ç‰©ç†æ¼”ç®—ã‚’å„ªå…ˆã™ã‚‹  FALSE:ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚’å„ªå…ˆã™ã‚‹( ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ ) )
+extern	int			NS_MV1SetUseShapeFlag( int MHandle, int Flag ) ;										// ãƒ¢ãƒ‡ãƒ«ã®ã‚·ã‚§ã‚¤ãƒ—æ©Ÿèƒ½ã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹
+extern	int			NS_MV1GetMaterialNumberOrderFlag(		int MHandle ) ;														// ãƒ¢ãƒ‡ãƒ«ã®ãƒãƒ†ãƒªã‚¢ãƒ«ç•ªå·é †ã«ãƒ¡ãƒƒã‚·ãƒ¥ã‚’æç”»ã™ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’å–å¾—ã™ã‚‹( TRUE:ãƒãƒ†ãƒªã‚¢ãƒ«ç•ªå·é †ã«æç”»  FALSE:ä¸é€æ˜ãƒ¡ãƒƒã‚·ãƒ¥ã®å¾ŒåŠé€æ˜ãƒ¡ãƒƒã‚·ãƒ¥ )
 
 
-// ƒtƒŒ[ƒ€ŠÖŒW
-extern	int			NS_MV1GetFrameNum( int MHandle ) ;														// ƒtƒŒ[ƒ€‚Ì”‚ğæ“¾‚·‚é
-extern	int			NS_MV1SearchFrame( int MHandle, const TCHAR *FrameName ) ;								// ƒtƒŒ[ƒ€‚Ì–¼‘O‚©‚çƒ‚ƒfƒ‹’†‚ÌƒtƒŒ[ƒ€‚ÌƒtƒŒ[ƒ€ƒCƒ“ƒfƒbƒNƒX‚ğæ“¾‚·‚é( –³‚©‚Á‚½ê‡‚Í–ß‚è’l‚ª-1 )
-extern	int			NS_MV1SearchFrameWithStrLen(			int MHandle, const TCHAR *FrameName, size_t FrameNameLength ) ;			// ƒtƒŒ[ƒ€‚Ì–¼‘O‚©‚çƒ‚ƒfƒ‹’†‚ÌƒtƒŒ[ƒ€‚ÌƒtƒŒ[ƒ€ƒCƒ“ƒfƒbƒNƒX‚ğæ“¾‚·‚é( –³‚©‚Á‚½ê‡‚Í–ß‚è’l‚ª-1 )
-extern	int			NS_MV1SearchFrameChild(				int MHandle, int FrameIndex = -1 , const TCHAR *ChildName = NULL                              ) ;	// ƒtƒŒ[ƒ€‚Ì–¼‘O‚©‚çw’è‚ÌƒtƒŒ[ƒ€‚ÌqƒtƒŒ[ƒ€‚ÌƒtƒŒ[ƒ€ƒCƒ“ƒfƒbƒNƒX‚ğæ“¾‚·‚é( –¼‘Ow’è”Å )( FrameIndex ‚ğ -1 ‚É‚·‚é‚Æe‚ğ‚½‚È‚¢ƒtƒŒ[ƒ€‚ğ ChildIndex ‚Åw’è‚·‚é )( –³‚©‚Á‚½ê‡‚Í–ß‚è’l‚ª-1 )
-extern	int			NS_MV1SearchFrameChildWithStrLen(		int MHandle, int FrameIndex = -1 , const TCHAR *ChildName = NULL , size_t ChildNameLength = 0 ) ;	// ƒtƒŒ[ƒ€‚Ì–¼‘O‚©‚çw’è‚ÌƒtƒŒ[ƒ€‚ÌqƒtƒŒ[ƒ€‚ÌƒtƒŒ[ƒ€ƒCƒ“ƒfƒbƒNƒX‚ğæ“¾‚·‚é( –¼‘Ow’è”Å )( FrameIndex ‚ğ -1 ‚É‚·‚é‚Æe‚ğ‚½‚È‚¢ƒtƒŒ[ƒ€‚ğ ChildIndex ‚Åw’è‚·‚é )( –³‚©‚Á‚½ê‡‚Í–ß‚è’l‚ª-1 )
-extern	const TCHAR *NS_MV1GetFrameName( int MHandle, int FrameIndex ) ;										// w’è‚ÌƒtƒŒ[ƒ€‚Ì–¼‘O‚ğæ“¾‚·‚é( ƒGƒ‰[‚Ìê‡‚Í–ß‚è’l‚ª NULL )
-extern	int			NS_MV1GetFrameName2( int MHandle, int FrameIndex, TCHAR *StrBuffer ) ;						// w’è‚ÌƒtƒŒ[ƒ€‚Ì–¼‘O‚ğæ“¾‚·‚é( –ß‚è’l   -1:ƒGƒ‰[  -1ˆÈŠO:•¶š—ñ‚ÌƒTƒCƒY )
-extern	int			NS_MV1GetFrameParent( int MHandle, int FrameIndex ) ;									// w’è‚ÌƒtƒŒ[ƒ€‚ÌeƒtƒŒ[ƒ€‚ÌƒCƒ“ƒfƒbƒNƒX‚ğ“¾‚é( e‚ª‚¢‚È‚¢ê‡‚Í -2 ‚ª•Ô‚é )
-extern	int			NS_MV1GetFrameChildNum( int MHandle, int FrameIndex = -1 ) ;							// w’è‚ÌƒtƒŒ[ƒ€‚ÌqƒtƒŒ[ƒ€‚Ì”‚ğæ“¾‚·‚é( FrameIndex ‚ğ -1 ‚É‚·‚é‚Æe‚ğ‚½‚È‚¢ƒtƒŒ[ƒ€‚Ì”‚ª•Ô‚Á‚Ä‚­‚é )
-extern	int			NS_MV1GetFrameChild( int MHandle, int FrameIndex = -1, int ChildIndex = 0 ) ;			// w’è‚ÌƒtƒŒ[ƒ€‚ÌqƒtƒŒ[ƒ€‚ÌƒtƒŒ[ƒ€ƒCƒ“ƒfƒbƒNƒX‚ğæ“¾‚·‚é( ”Ô†w’è”Å )( FrameIndex ‚ğ -1 ‚É‚·‚é‚Æe‚ğ‚½‚È‚¢ƒtƒŒ[ƒ€‚ğ ChildIndex ‚Åw’è‚·‚é )( ƒGƒ‰[‚Ìê‡‚Í–ß‚è’l‚ª-1 )
-extern	VECTOR		NS_MV1GetFramePosition(				int MHandle, int FrameIndex ) ;											// w’è‚ÌƒtƒŒ[ƒ€‚ÌÀ•W‚ğæ“¾‚·‚é
-extern	VECTOR_D	NS_MV1GetFramePositionD(				int MHandle, int FrameIndex ) ;											// w’è‚ÌƒtƒŒ[ƒ€‚ÌÀ•W‚ğæ“¾‚·‚é
-extern	MATRIX		NS_MV1GetFrameBaseLocalMatrix(			int MHandle, int FrameIndex ) ;											// w’è‚ÌƒtƒŒ[ƒ€‚Ì‰Šúó‘Ô‚Å‚ÌÀ•W•ÏŠ·s—ñ‚ğæ“¾‚·‚é
-extern	MATRIX_D	NS_MV1GetFrameBaseLocalMatrixD(		int MHandle, int FrameIndex ) ;											// w’è‚ÌƒtƒŒ[ƒ€‚Ì‰Šúó‘Ô‚Å‚ÌÀ•W•ÏŠ·s—ñ‚ğæ“¾‚·‚é
-extern	MATRIX		NS_MV1GetFrameLocalMatrix(				int MHandle, int FrameIndex ) ;											// w’è‚ÌƒtƒŒ[ƒ€‚ÌÀ•W•ÏŠ·s—ñ‚ğæ“¾‚·‚é
-extern	MATRIX_D	NS_MV1GetFrameLocalMatrixD(			int MHandle, int FrameIndex ) ;											// w’è‚ÌƒtƒŒ[ƒ€‚ÌÀ•W•ÏŠ·s—ñ‚ğæ“¾‚·‚é
-extern	MATRIX		NS_MV1GetFrameLocalWorldMatrix(		int MHandle, int FrameIndex ) ;											// w’è‚ÌƒtƒŒ[ƒ€‚Ìƒ[ƒJƒ‹À•W‚©‚çƒ[ƒ‹ƒhÀ•W‚É•ÏŠ·‚·‚és—ñ‚ğ“¾‚é
-extern	MATRIX_D	NS_MV1GetFrameLocalWorldMatrixD(		int MHandle, int FrameIndex ) ;											// w’è‚ÌƒtƒŒ[ƒ€‚Ìƒ[ƒJƒ‹À•W‚©‚çƒ[ƒ‹ƒhÀ•W‚É•ÏŠ·‚·‚és—ñ‚ğ“¾‚é
-extern	int			NS_MV1SetFrameUserLocalMatrix(			int MHandle, int FrameIndex, MATRIX   Matrix ) ;						// w’è‚ÌƒtƒŒ[ƒ€‚ÌÀ•W•ÏŠ·s—ñ‚ğİ’è‚·‚é
-extern	int			NS_MV1SetFrameUserLocalMatrixD(		int MHandle, int FrameIndex, MATRIX_D Matrix ) ;						// w’è‚ÌƒtƒŒ[ƒ€‚ÌÀ•W•ÏŠ·s—ñ‚ğİ’è‚·‚é
-extern	int			NS_MV1ResetFrameUserLocalMatrix(		int MHandle, int FrameIndex ) ;											// w’è‚ÌƒtƒŒ[ƒ€‚ÌÀ•W•ÏŠ·s—ñ‚ğƒfƒtƒHƒ‹ƒg‚É–ß‚·
-extern	int			NS_MV1SetFrameUserLocalWorldMatrix(	int MHandle, int FrameIndex, MATRIX   Matrix ) ;						// w’è‚ÌƒtƒŒ[ƒ€‚ÌÀ•W•ÏŠ·s—ñ( ƒ[ƒJƒ‹À•W‚©‚çƒ[ƒ‹ƒhÀ•W‚É•ÏŠ·‚·‚és—ñ )‚ğİ’è‚·‚é
-extern	int			NS_MV1SetFrameUserLocalWorldMatrixD(	int MHandle, int FrameIndex, MATRIX_D Matrix ) ;						// w’è‚ÌƒtƒŒ[ƒ€‚ÌÀ•W•ÏŠ·s—ñ( ƒ[ƒJƒ‹À•W‚©‚çƒ[ƒ‹ƒhÀ•W‚É•ÏŠ·‚·‚és—ñ )‚ğİ’è‚·‚é
-extern	int			NS_MV1ResetFrameUserLocalWorldMatrix(	int MHandle, int FrameIndex ) ;											// w’è‚ÌƒtƒŒ[ƒ€‚ÌÀ•W•ÏŠ·s—ñ( ƒ[ƒJƒ‹À•W‚©‚çƒ[ƒ‹ƒhÀ•W‚É•ÏŠ·‚·‚és—ñ )‚ğƒfƒtƒHƒ‹ƒg‚É–ß‚·
-extern	VECTOR		NS_MV1GetFrameMaxVertexLocalPosition(	int MHandle, int FrameIndex ) ;											// w’è‚ÌƒtƒŒ[ƒ€‚ª‚ÂƒƒbƒVƒ…’¸“_‚Ìƒ[ƒJƒ‹À•W‚Å‚ÌÅ‘å’l‚ğ“¾‚é
-extern	VECTOR_D	NS_MV1GetFrameMaxVertexLocalPositionD(	int MHandle, int FrameIndex ) ;											// w’è‚ÌƒtƒŒ[ƒ€‚ª‚ÂƒƒbƒVƒ…’¸“_‚Ìƒ[ƒJƒ‹À•W‚Å‚ÌÅ‘å’l‚ğ“¾‚é
-extern	VECTOR		NS_MV1GetFrameMinVertexLocalPosition(	int MHandle, int FrameIndex ) ;											// w’è‚ÌƒtƒŒ[ƒ€‚ª‚ÂƒƒbƒVƒ…’¸“_‚Ìƒ[ƒJƒ‹À•W‚Å‚ÌÅ¬’l‚ğ“¾‚é
-extern	VECTOR_D	NS_MV1GetFrameMinVertexLocalPositionD(	int MHandle, int FrameIndex ) ;											// w’è‚ÌƒtƒŒ[ƒ€‚ª‚ÂƒƒbƒVƒ…’¸“_‚Ìƒ[ƒJƒ‹À•W‚Å‚ÌÅ¬’l‚ğ“¾‚é
-extern	VECTOR		NS_MV1GetFrameAvgVertexLocalPosition(	int MHandle, int FrameIndex ) ;											// w’è‚ÌƒtƒŒ[ƒ€‚ª‚ÂƒƒbƒVƒ…’¸“_‚Ìƒ[ƒJƒ‹À•W‚Å‚Ì•½‹Ï’l‚ğ“¾‚é
-extern	VECTOR_D	NS_MV1GetFrameAvgVertexLocalPositionD(	int MHandle, int FrameIndex ) ;											// w’è‚ÌƒtƒŒ[ƒ€‚ª‚ÂƒƒbƒVƒ…’¸“_‚Ìƒ[ƒJƒ‹À•W‚Å‚Ì•½‹Ï’l‚ğ“¾‚é
-extern	int			NS_MV1GetFrameVertexNum(				int MHandle, int FrameIndex ) ;											// w’è‚ÌƒtƒŒ[ƒ€‚ÉŠÜ‚Ü‚ê‚é’¸“_‚Ì”‚ğæ“¾‚·‚é
-extern	int			NS_MV1GetFrameTriangleNum( int MHandle, int FrameIndex ) ;								// w’è‚ÌƒtƒŒ[ƒ€‚ÉŠÜ‚Ü‚ê‚éƒ|ƒŠƒSƒ“‚Ì”‚ğæ“¾‚·‚é
-extern	int			NS_MV1GetFrameMeshNum( int MHandle, int FrameIndex ) ;									// w’è‚ÌƒtƒŒ[ƒ€‚ª‚ÂƒƒbƒVƒ…‚Ì”‚ğæ“¾‚·‚é
-extern	int			NS_MV1GetFrameMesh( int MHandle, int FrameIndex, int Index ) ;							// w’è‚ÌƒtƒŒ[ƒ€‚ª‚ÂƒƒbƒVƒ…‚ÌƒƒbƒVƒ…ƒCƒ“ƒfƒbƒNƒX‚ğæ“¾‚·‚é
-extern	int			NS_MV1SetFrameVisible( int MHandle, int FrameIndex, int VisibleFlag ) ;					// w’è‚ÌƒtƒŒ[ƒ€‚Ì•\¦A”ñ•\¦ó‘Ô‚ğ•ÏX‚·‚é( TRUE:•\¦  FALSE:”ñ•\¦ )
-extern	int			NS_MV1GetFrameVisible( int MHandle, int FrameIndex ) ;									// w’è‚ÌƒtƒŒ[ƒ€‚Ì•\¦A”ñ•\¦ó‘Ô‚ğæ“¾‚·‚é( TRUE:•\¦  FALSE:”ñ•\¦ )
-extern	int			NS_MV1SetFrameDifColorScale( int MHandle, int FrameIndex, COLOR_F Scale ) ;			// w’è‚ÌƒtƒŒ[ƒ€‚ÌƒfƒBƒtƒ…[ƒYƒJƒ‰[‚ÌƒXƒP[ƒ‹’l‚ğİ’è‚·‚é( ƒfƒtƒHƒ‹ƒg’l‚Í 1.0f )
-extern	int			NS_MV1SetFrameSpcColorScale( int MHandle, int FrameIndex, COLOR_F Scale ) ;		// w’è‚ÌƒtƒŒ[ƒ€‚ÌƒXƒyƒLƒ…ƒ‰ƒJƒ‰[‚ÌƒXƒP[ƒ‹’l‚ğİ’è‚·‚é( ƒfƒtƒHƒ‹ƒg’l‚Í 1.0f )
-extern	int			NS_MV1SetFrameEmiColorScale( int MHandle, int FrameIndex, COLOR_F Scale ) ;		// w’è‚ÌƒtƒŒ[ƒ€‚ÌƒGƒ~ƒbƒVƒuƒJƒ‰[‚ÌƒXƒP[ƒ‹’l‚ğİ’è‚·‚é( ƒfƒtƒHƒ‹ƒg’l‚Í 1.0f )
-extern	int			NS_MV1SetFrameAmbColorScale( int MHandle, int FrameIndex, COLOR_F Scale ) ;			// w’è‚ÌƒtƒŒ[ƒ€‚ÌƒAƒ“ƒrƒGƒ“ƒgƒJƒ‰[‚ÌƒXƒP[ƒ‹’l‚ğİ’è‚·‚é( ƒfƒtƒHƒ‹ƒg’l‚Í 1.0f )
-extern	COLOR_F		NS_MV1GetFrameDifColorScale( int MHandle, int FrameIndex ) ;						// w’è‚ÌƒtƒŒ[ƒ€‚ÌƒfƒBƒtƒ…[ƒYƒJƒ‰[‚ÌƒXƒP[ƒ‹’l‚ğæ“¾‚·‚é( ƒfƒtƒHƒ‹ƒg’l‚Í 1.0f )
-extern	COLOR_F		NS_MV1GetFrameSpcColorScale( int MHandle, int FrameIndex ) ;						// w’è‚ÌƒtƒŒ[ƒ€‚ÌƒXƒyƒLƒ…ƒ‰ƒJƒ‰[‚ÌƒXƒP[ƒ‹’l‚ğæ“¾‚·‚é( ƒfƒtƒHƒ‹ƒg’l‚Í 1.0f )
-extern	COLOR_F		NS_MV1GetFrameEmiColorScale( int MHandle, int FrameIndex ) ;						// w’è‚ÌƒtƒŒ[ƒ€‚ÌƒGƒ~ƒbƒVƒuƒJƒ‰[‚ÌƒXƒP[ƒ‹’l‚ğæ“¾‚·‚é( ƒfƒtƒHƒ‹ƒg’l‚Í 1.0f )
-extern	COLOR_F		NS_MV1GetFrameAmbColorScale( int MHandle, int FrameIndex ) ;						// w’è‚ÌƒtƒŒ[ƒ€‚ÌƒAƒ“ƒrƒGƒ“ƒgƒJƒ‰[‚ÌƒXƒP[ƒ‹’l‚ğæ“¾‚·‚é( ƒfƒtƒHƒ‹ƒg’l‚Í 1.0f )
-extern	int			NS_MV1GetFrameSemiTransState( int MHandle, int FrameIndex ) ;							// w’è‚ÌƒtƒŒ[ƒ€‚É”¼“§–¾—v‘f‚ª‚ ‚é‚©‚Ç‚¤‚©‚ğæ“¾‚·‚é( –ß‚è’l TRUE:‚ ‚é  FALSE:‚È‚¢ )
-extern	int			NS_MV1SetFrameOpacityRate( int MHandle, int FrameIndex, float Rate ) ;					// w’è‚ÌƒtƒŒ[ƒ€‚Ì•s“§–¾“x‚ğİ’è‚·‚é( •s“§–¾ 1.0f ` “§–¾ 0.0f )
-extern	float		NS_MV1GetFrameOpacityRate( int MHandle, int FrameIndex ) ;								// w’è‚ÌƒtƒŒ[ƒ€‚Ì•s“§–¾“x‚ğæ“¾‚·‚é( •s“§–¾ 1.0f ` “§–¾ 0.0f )
-extern	int			NS_MV1SetFrameBaseVisible( int MHandle, int FrameIndex, int VisibleFlag ) ;				// w’è‚ÌƒtƒŒ[ƒ€‚Ì‰Šú•\¦ó‘Ô‚ğİ’è‚·‚é( TRUE:•\¦  FALSE:”ñ•\¦ )
-extern	int			NS_MV1GetFrameBaseVisible( int MHandle, int FrameIndex ) ;								// w’è‚ÌƒtƒŒ[ƒ€‚Ì‰Šú•\¦ó‘Ô‚ğæ“¾‚·‚é( TRUE:•\¦  FALSE:”ñ•\¦ )
-extern	int			NS_MV1SetFrameTextureAddressTransform( int MHandle, int FrameIndex, float TransU, float TransV, float ScaleU, float ScaleV, float RotCenterU, float RotCenterV, float Rotate ) ;	// w’è‚ÌƒtƒŒ[ƒ€‚ÌƒeƒNƒXƒ`ƒƒÀ•W•ÏŠ·ƒpƒ‰ƒ[ƒ^‚ğİ’è‚·‚é
-extern	int			NS_MV1SetFrameTextureAddressTransformMatrix( int MHandle, int FrameIndex, MATRIX Matrix ) ;			// w’è‚ÌƒtƒŒ[ƒ€‚ÌƒeƒNƒXƒ`ƒƒÀ•W•ÏŠ·s—ñ‚ğƒZƒbƒg‚·‚é
-extern	int			NS_MV1ResetFrameTextureAddressTransform( int MHandle, int FrameIndex ) ;							// w’è‚ÌƒtƒŒ[ƒ€‚ÌƒeƒNƒXƒ`ƒƒÀ•W•ÏŠ·ƒpƒ‰ƒ[ƒ^‚ğƒŠƒZƒbƒg‚·‚é
+// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³é–¢ä¿‚
+extern	int			NS_MV1AttachAnim( int MHandle, int AnimIndex, int AnimSrcMHandle = -1, int NameCheck = TRUE ) ;		// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚’ã‚¢ã‚¿ãƒƒãƒã™ã‚‹( æˆ»ã‚Šå€¤  -1:ã‚¨ãƒ©ãƒ¼  0ä»¥ä¸Š:ã‚¢ã‚¿ãƒƒãƒã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ )
+extern	int			NS_MV1DetachAnim( int MHandle, int AttachIndex ) ;										// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚’ãƒ‡ã‚¿ãƒƒãƒã™ã‚‹
+//extern	int			NS_MV1PlayAnim( int MHandle, int AttachIndex, int Loop ) ;							// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚’å†ç”Ÿã™ã‚‹
+//extern	int			NS_MV1AnimAddTime( int MHandle, int AttachIndex, float AddTime ) ;					// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚’é€²ã‚ã‚‹
+extern	int			NS_MV1SetAttachAnimTime( int MHandle, int AttachIndex, float Time ) ;					// ã‚¢ã‚¿ãƒƒãƒã—ã¦ã„ã‚‹ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®å†ç”Ÿæ™‚é–“ã‚’è¨­å®šã™ã‚‹
+extern	float		NS_MV1GetAttachAnimTime( int MHandle, int AttachIndex ) ;								// ã‚¢ã‚¿ãƒƒãƒã—ã¦ã„ã‚‹ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®å†ç”Ÿæ™‚é–“ã‚’å–å¾—ã™ã‚‹
+extern	float		NS_MV1GetAttachAnimTotalTime( int MHandle, int AttachIndex ) ;							// ã‚¢ã‚¿ãƒƒãƒã—ã¦ã„ã‚‹ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®ç·æ™‚é–“ã‚’å¾—ã‚‹
+extern	int			NS_MV1SetAttachAnimBlendRate( int MHandle, int AttachIndex, float Rate = 1.0f ) ;		// ã‚¢ã‚¿ãƒƒãƒã—ã¦ã„ã‚‹ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®ãƒ–ãƒ¬ãƒ³ãƒ‰ç‡ã‚’è¨­å®šã™ã‚‹
+extern	float		NS_MV1GetAttachAnimBlendRate( int MHandle, int AttachIndex ) ;							// ã‚¢ã‚¿ãƒƒãƒã—ã¦ã„ã‚‹ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®ãƒ–ãƒ¬ãƒ³ãƒ‰ç‡ã‚’å–å¾—ã™ã‚‹
+extern	int			NS_MV1SetAttachAnimBlendRateToFrame( int MHandle, int AttachIndex, int FrameIndex, float Rate, int SetChild ) ;	// ã‚¢ã‚¿ãƒƒãƒã—ã¦ã„ã‚‹ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®ãƒ–ãƒ¬ãƒ³ãƒ‰ç‡ã‚’è¨­å®šã™ã‚‹( ãƒ•ãƒ¬ãƒ¼ãƒ å˜ä½ )
+extern	float		NS_MV1GetAttachAnimBlendRateToFrame( int MHandle, int AttachIndex, int FrameIndex ) ;			// ã‚¢ã‚¿ãƒƒãƒã—ã¦ã„ã‚‹ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®ãƒ–ãƒ¬ãƒ³ãƒ‰ç‡ã‚’è¨­å®šã™ã‚‹( ãƒ•ãƒ¬ãƒ¼ãƒ å˜ä½ )
+extern	int			NS_MV1SetAttachAnimTimeToFrame(		int MHandle, int AttachIndex, int FrameIndex, float Time, int SetChild DEFAULTPARAM( = TRUE ) ) ;	// ã‚¢ã‚¿ãƒƒãƒã—ã¦ã„ã‚‹ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®å†ç”Ÿæ™‚é–“ã‚’è¨­å®šã™ã‚‹( ãƒ•ãƒ¬ãƒ¼ãƒ å˜ä½ )
+extern	float		NS_MV1GetAttachAnimTimeToFrame(		int MHandle, int AttachIndex, int FrameIndex ) ;									// ã‚¢ã‚¿ãƒƒãƒã—ã¦ã„ã‚‹ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®å†ç”Ÿæ™‚é–“ã‚’å–å¾—ã™ã‚‹( ãƒ•ãƒ¬ãƒ¼ãƒ å˜ä½ )
+extern	int			NS_MV1GetAttachAnim( int MHandle, int AttachIndex ) ;									// ã‚¢ã‚¿ãƒƒãƒã—ã¦ã„ã‚‹ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’å–å¾—ã™ã‚‹
+extern	int			NS_MV1SetAttachAnimUseShapeFlag( int MHandle, int AttachIndex, int UseFlag ) ;			// ã‚¢ã‚¿ãƒƒãƒã—ã¦ã„ã‚‹ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®ã‚·ã‚§ã‚¤ãƒ—ã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹( UseFlag  TRUE:ä½¿ç”¨ã™ã‚‹( ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ )  FALSE:ä½¿ç”¨ã—ãªã„ )
+extern	int			NS_MV1GetAttachAnimUseShapeFlag( int MHandle, int AttachIndex ) ;						// ã‚¢ã‚¿ãƒƒãƒã—ã¦ã„ã‚‹ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®ã‚·ã‚§ã‚¤ãƒ—ã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã‚’å–å¾—ã™ã‚‹
+extern	VECTOR		NS_MV1GetAttachAnimFrameLocalPosition( int MHandle, int AttachIndex, int FrameIndex ) ;									// ã‚¢ã‚¿ãƒƒãƒã—ã¦ã„ã‚‹ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®æŒ‡å®šã®ãƒ•ãƒ¬ãƒ¼ãƒ ã®ç¾åœ¨ã®ãƒ­ãƒ¼ã‚«ãƒ«åº§æ¨™ã‚’å–å¾—ã™ã‚‹
+extern	MATRIX		NS_MV1GetAttachAnimFrameLocalMatrix( int MHandle, int AttachIndex, int FrameIndex ) ;									// ã‚¢ã‚¿ãƒƒãƒã—ã¦ã„ã‚‹ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®æŒ‡å®šã®ãƒ•ãƒ¬ãƒ¼ãƒ ã®ç¾åœ¨ã®ãƒ­ãƒ¼ã‚«ãƒ«å¤‰æ›è¡Œåˆ—ã‚’å–å¾—ã™ã‚‹
 
-// ƒƒbƒVƒ…ŠÖŒW
-extern	int			NS_MV1GetMeshNum( int MHandle ) ;														// ƒ‚ƒfƒ‹‚ÉŠÜ‚Ü‚ê‚éƒƒbƒVƒ…‚Ì”‚ğæ“¾‚·‚é
-extern	int			NS_MV1GetMeshMaterial( int MHandle, int MeshIndex ) ;									// w’èƒƒbƒVƒ…‚ªg—p‚µ‚Ä‚¢‚éƒ}ƒeƒŠƒAƒ‹‚ÌƒCƒ“ƒfƒbƒNƒX‚ğæ“¾‚·‚é
-extern	int			NS_MV1GetMeshVertexNum( int MHandle, int MeshIndex ) ;									// w’èƒƒbƒVƒ…‚ÉŠÜ‚Ü‚ê‚é’¸“_‚Ì”‚ğæ“¾‚·‚é
-extern	int			NS_MV1GetMeshTriangleNum( int MHandle, int MeshIndex ) ;								// w’èƒƒbƒVƒ…‚ÉŠÜ‚Ü‚ê‚éOŠpŒ`ƒ|ƒŠƒSƒ“‚Ì”‚ğæ“¾‚·‚é
-extern	int			NS_MV1SetMeshVisible( int MHandle, int MeshIndex, int VisibleFlag ) ;					// w’èƒƒbƒVƒ…‚Ì•\¦A”ñ•\¦ó‘Ô‚ğ•ÏX‚·‚é( TRUE:•\¦  FALSE:”ñ•\¦ )
-extern	int			NS_MV1GetMeshVisible( int MHandle, int MeshIndex ) ;									// w’èƒƒbƒVƒ…‚Ì•\¦A”ñ•\¦ó‘Ô‚ğæ“¾‚·‚é( TRUE:•\¦  FALSE:”ñ•\¦ )
-extern	int			NS_MV1SetMeshDifColorScale( int MHandle, int MeshIndex, COLOR_F Scale ) ;			// w’è‚ÌƒƒbƒVƒ…‚ÌƒfƒBƒtƒ…[ƒYƒJƒ‰[‚ÌƒXƒP[ƒ‹’l‚ğİ’è‚·‚é( ƒfƒtƒHƒ‹ƒg’l‚Í 1.0f )
-extern	int			NS_MV1SetMeshSpcColorScale( int MHandle, int MeshIndex, COLOR_F Scale ) ;			// w’è‚ÌƒƒbƒVƒ…‚ÌƒXƒyƒLƒ…ƒ‰ƒJƒ‰[‚ÌƒXƒP[ƒ‹’l‚ğİ’è‚·‚é( ƒfƒtƒHƒ‹ƒg’l‚Í 1.0f )
-extern	int			NS_MV1SetMeshEmiColorScale( int MHandle, int MeshIndex, COLOR_F Scale ) ;			// w’è‚ÌƒƒbƒVƒ…‚ÌƒGƒ~ƒbƒVƒuƒJƒ‰[‚ÌƒXƒP[ƒ‹’l‚ğİ’è‚·‚é( ƒfƒtƒHƒ‹ƒg’l‚Í 1.0f )
-extern	int			NS_MV1SetMeshAmbColorScale( int MHandle, int MeshIndex, COLOR_F Scale ) ;			// w’è‚ÌƒƒbƒVƒ…‚ÌƒAƒ“ƒrƒGƒ“ƒgƒJƒ‰[‚ÌƒXƒP[ƒ‹’l‚ğİ’è‚·‚é( ƒfƒtƒHƒ‹ƒg’l‚Í 1.0f )
-extern	COLOR_F		NS_MV1GetMeshDifColorScale( int MHandle, int MeshIndex ) ;							// w’è‚ÌƒƒbƒVƒ…‚ÌƒfƒBƒtƒ…[ƒYƒJƒ‰[‚ÌƒXƒP[ƒ‹’l‚ğæ“¾‚·‚é( ƒfƒtƒHƒ‹ƒg’l‚Í 1.0f )
-extern	COLOR_F		NS_MV1GetMeshSpcColorScale( int MHandle, int MeshIndex ) ;							// w’è‚ÌƒƒbƒVƒ…‚ÌƒXƒyƒLƒ…ƒ‰ƒJƒ‰[‚ÌƒXƒP[ƒ‹’l‚ğæ“¾‚·‚é( ƒfƒtƒHƒ‹ƒg’l‚Í 1.0f )
-extern	COLOR_F		NS_MV1GetMeshEmiColorScale( int MHandle, int MeshIndex ) ;							// w’è‚ÌƒƒbƒVƒ…‚ÌƒGƒ~ƒbƒVƒuƒJƒ‰[‚ÌƒXƒP[ƒ‹’l‚ğæ“¾‚·‚é( ƒfƒtƒHƒ‹ƒg’l‚Í 1.0f )
-extern	COLOR_F		NS_MV1GetMeshAmbColorScale( int MHandle, int MeshIndex ) ;							// w’è‚ÌƒƒbƒVƒ…‚ÌƒAƒ“ƒrƒGƒ“ƒgƒJƒ‰[‚ÌƒXƒP[ƒ‹’l‚ğæ“¾‚·‚é( ƒfƒtƒHƒ‹ƒg’l‚Í 1.0f )
-extern	int			NS_MV1SetMeshOpacityRate( int MHandle, int MeshIndex, float Rate ) ;					// w’è‚ÌƒƒbƒVƒ…‚Ì•s“§–¾“x‚ğİ’è‚·‚é( •s“§–¾ 1.0f ` “§–¾ 0.0f )
-extern	float		NS_MV1GetMeshOpacityRate( int MHandle, int MeshIndex ) ;								// w’è‚ÌƒƒbƒVƒ…‚Ì•s“§–¾“x‚ğæ“¾‚·‚é( •s“§–¾ 1.0f ` “§–¾ 0.0f )
-extern	int			NS_MV1SetMeshDrawBlendMode( int MHandle, int MeshIndex, int BlendMode ) ;				// w’è‚ÌƒƒbƒVƒ…‚Ì•`‰æƒuƒŒƒ“ƒhƒ‚[ƒh‚ğİ’è‚·‚é( DX_BLENDMODE_ALPHA “™ )
-extern	int			NS_MV1SetMeshDrawBlendParam( int MHandle, int MeshIndex, int BlendParam ) ;				// w’è‚ÌƒƒbƒVƒ…‚Ì•`‰æƒuƒŒƒ“ƒhƒpƒ‰ƒ[ƒ^‚ğİ’è‚·‚é
-extern	int			NS_MV1GetMeshDrawBlendMode( int MHandle, int MeshIndex ) ;								// w’è‚ÌƒƒbƒVƒ…‚Ì•`‰æƒuƒŒƒ“ƒhƒ‚[ƒh‚ğæ“¾‚·‚é( DX_BLENDMODE_ALPHA “™ )
-extern	int			NS_MV1GetMeshDrawBlendParam( int MHandle, int MeshIndex ) ;								// w’è‚ÌƒƒbƒVƒ…‚Ì•`‰æƒuƒŒƒ“ƒhƒpƒ‰ƒ[ƒ^‚ğİ’è‚·‚é
-extern	int			NS_MV1SetMeshBaseVisible( int MHandle, int MeshIndex, int VisibleFlag ) ;				// w’è‚ÌƒƒbƒVƒ…‚Ì‰Šú•\¦ó‘Ô‚ğİ’è‚·‚é( TRUE:•\¦  FALSE:”ñ•\¦ )
-extern	int			NS_MV1GetMeshBaseVisible( int MHandle, int MeshIndex ) ;								// w’è‚ÌƒƒbƒVƒ…‚Ì‰Šú•\¦ó‘Ô‚ğæ“¾‚·‚é( TRUE:•\¦  FALSE:”ñ•\¦ )
-extern	int			NS_MV1SetMeshBackCulling( int MHandle, int MeshIndex, int CullingFlag ) ;				// w’è‚ÌƒƒbƒVƒ…‚ÌƒoƒbƒNƒJƒŠƒ“ƒO‚ğs‚¤‚©‚Ç‚¤‚©‚ğİ’è‚·‚é( DX_CULLING_LEFT “™ )
-extern	int			NS_MV1GetMeshBackCulling( int MHandle, int MeshIndex ) ;								// w’è‚ÌƒƒbƒVƒ…‚ÌƒoƒbƒNƒJƒŠƒ“ƒO‚ğs‚¤‚©‚Ç‚¤‚©‚ğæ“¾‚·‚é( DX_CULLING_LEFT “™ )
-extern	VECTOR		NS_MV1GetMeshMaxPosition( int MHandle, int MeshIndex ) ;								// w’è‚ÌƒƒbƒVƒ…‚ÉŠÜ‚Ü‚ê‚éƒ|ƒŠƒSƒ“‚ÌÅ‘åƒ[ƒJƒ‹À•W‚ğæ“¾‚·‚é
-extern	VECTOR		NS_MV1GetMeshMinPosition( int MHandle, int MeshIndex ) ;								// w’è‚ÌƒƒbƒVƒ…‚ÉŠÜ‚Ü‚ê‚éƒ|ƒŠƒSƒ“‚ÌÅ¬ƒ[ƒJƒ‹À•W‚ğæ“¾‚·‚é
-extern	int			NS_MV1GetMeshTListNum( int MHandle, int MeshIndex ) ;									// w’è‚ÌƒƒbƒVƒ…‚ÉŠÜ‚Ü‚ê‚éƒgƒ‰ƒCƒAƒ“ƒOƒ‹ƒŠƒXƒg‚Ì”‚ğæ“¾‚·‚é
-extern	int			NS_MV1GetMeshTList( int MHandle, int MeshIndex, int Index ) ;							// w’è‚ÌƒƒbƒVƒ…‚ÉŠÜ‚Ü‚ê‚éƒgƒ‰ƒCƒAƒ“ƒOƒ‹ƒŠƒXƒg‚ÌƒCƒ“ƒfƒbƒNƒX‚ğæ“¾‚·‚é
-extern	int			NS_MV1GetMeshSemiTransState( int MHandle, int MeshIndex ) ;								// w’è‚ÌƒƒbƒVƒ…‚É”¼“§–¾—v‘f‚ª‚ ‚é‚©‚Ç‚¤‚©‚ğæ“¾‚·‚é( –ß‚è’l TRUE:‚ ‚é  FALSE:‚È‚¢ )
-extern	int			NS_MV1SetMeshUseVertDifColor( int MHandle, int MeshIndex, int UseFlag ) ;				// w’è‚ÌƒƒbƒVƒ…‚Ì’¸“_ƒfƒBƒtƒ…[ƒYƒJƒ‰[‚ğƒ}ƒeƒŠƒAƒ‹‚ÌƒfƒBƒtƒ…[ƒYƒJƒ‰[‚Ì‘ã‚í‚è‚Ég—p‚·‚é‚©‚Ç‚¤‚©‚ğİ’è‚·‚é( TRUE:ƒ}ƒeƒŠƒAƒ‹ƒJƒ‰[‚Ì‘ã‚í‚è‚Ég—p‚·‚é  FALSE:ƒ}ƒeƒŠƒAƒ‹ƒJƒ‰[‚ğg—p‚·‚é )
-extern	int			NS_MV1SetMeshUseVertSpcColor( int MHandle, int MeshIndex, int UseFlag ) ;			// w’è‚ÌƒƒbƒVƒ…‚Ì’¸“_ƒXƒyƒLƒ…ƒ‰ƒJƒ‰[‚ğƒ}ƒeƒŠƒAƒ‹‚ÌƒXƒyƒLƒ…ƒ‰ƒJƒ‰[‚Ì‘ã‚í‚è‚Ég—p‚·‚é‚©‚Ç‚¤‚©‚ğİ’è‚·‚é( TRUE:ƒ}ƒeƒŠƒAƒ‹ƒJƒ‰[‚Ì‘ã‚í‚è‚Ég—p‚·‚é  FALSE:ƒ}ƒeƒŠƒAƒ‹ƒJƒ‰[‚ğg—p‚·‚é )
-extern	int			NS_MV1GetMeshUseVertDifColor( int MHandle, int MeshIndex ) ;						// w’è‚ÌƒƒbƒVƒ…‚Ì’¸“_ƒfƒBƒtƒ…[ƒYƒJƒ‰[‚ğƒ}ƒeƒŠƒAƒ‹‚ÌƒfƒBƒtƒ…[ƒYƒJƒ‰[‚Ì‘ã‚í‚è‚Ég—p‚·‚é‚©‚Ç‚¤‚©‚Ìİ’è‚ğæ“¾‚·‚é( –ß‚è’l  TRUE:ƒ}ƒeƒŠƒAƒ‹ƒJƒ‰[‚Ì‘ã‚í‚è‚Ég—p‚·‚é  FALSE:ƒ}ƒeƒŠƒAƒ‹ƒJƒ‰[‚ğg—p‚·‚é )
-extern	int			NS_MV1GetMeshUseVertSpcColor( int MHandle, int MeshIndex ) ;						// w’è‚ÌƒƒbƒVƒ…‚Ì’¸“_ƒXƒyƒLƒ…ƒ‰ƒJƒ‰[‚ğƒ}ƒeƒŠƒAƒ‹‚ÌƒXƒyƒLƒ…ƒ‰ƒJƒ‰[‚Ì‘ã‚í‚è‚Ég—p‚·‚é‚©‚Ç‚¤‚©‚Ìİ’è‚ğæ“¾‚·‚é( –ß‚è’l  TRUE:ƒ}ƒeƒŠƒAƒ‹ƒJƒ‰[‚Ì‘ã‚í‚è‚Ég—p‚·‚é  FALSE:ƒ}ƒeƒŠƒAƒ‹ƒJƒ‰[‚ğg—p‚·‚é )
-extern	int			NS_MV1GetMeshShapeFlag(	int MHandle, int MeshIndex ) ;											// w’è‚ÌƒƒbƒVƒ…‚ªƒVƒFƒCƒvƒƒbƒVƒ…‚©‚Ç‚¤‚©‚ğæ“¾‚·‚é
+//extern	int			NS_MV1StopAnim( int MHandle, int AttachIndex ) ;									// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚’æ­¢ã‚ã‚‹
+//extern	int			NS_MV1GetAnimState( int MHandle, int AttachIndex ) ;								// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãŒå†ç”Ÿä¸­ã‹ã©ã†ã‹ã‚’å–å¾—ã™ã‚‹( TRUE:å†ç”Ÿä¸­  FALSE:åœæ­¢ä¸­ )
+extern	int			NS_MV1GetAnimNum( int MHandle ) ;														// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®æ•°ã‚’å–å¾—ã™ã‚‹
+extern	const TCHAR *NS_MV1GetAnimName( int MHandle, int AnimIndex ) ;										// æŒ‡å®šç•ªå·ã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³åã‚’å–å¾—ã™ã‚‹( NULL:ã‚¨ãƒ©ãƒ¼ )
+extern	int			NS_MV1SetAnimName( int MHandle, int AnimIndex, const TCHAR *AnimName ) ;										// æŒ‡å®šç•ªå·ã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³åã‚’å¤‰æ›´ã™ã‚‹
+extern	int			NS_MV1SetAnimNameWithStrLen(			int MHandle, int AnimIndex, const TCHAR *AnimName, size_t AnimNameLength ) ;		// æŒ‡å®šç•ªå·ã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³åã‚’å¤‰æ›´ã™ã‚‹
+extern	int			NS_MV1GetAnimIndex(					int MHandle, const TCHAR *AnimName                        ) ;						// æŒ‡å®šåã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ç•ªå·ã‚’å–å¾—ã™ã‚‹( -1:ã‚¨ãƒ©ãƒ¼ )
+extern	int			NS_MV1GetAnimIndexWithStrLen(			int MHandle, const TCHAR *AnimName, size_t AnimNameLength ) ;						// æŒ‡å®šåã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ç•ªå·ã‚’å–å¾—ã™ã‚‹( -1:ã‚¨ãƒ©ãƒ¼ )
+extern	float		NS_MV1GetAnimTotalTime( int MHandle, int AnimIndex ) ;									// æŒ‡å®šç•ªå·ã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®ç·æ™‚é–“ã‚’å¾—ã‚‹
+extern	int			NS_MV1GetAnimLoopFlag(					int MHandle, int AnimIndex ) ;														// æŒ‡å®šã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãŒãƒ«ãƒ¼ãƒ—ã‚¿ã‚¤ãƒ—ã‹ã©ã†ã‹ã‚’å–å¾—ã™ã‚‹( æˆ»ã‚Šå€¤  TRUE:ãƒ«ãƒ¼ãƒ—ã‚¿ã‚¤ãƒ—  FALSE:é€šå¸¸ã‚¿ã‚¤ãƒ— )
+extern	int			NS_MV1GetAnimTargetFrameNum( int MHandle, int AnimIndex ) ;								// æŒ‡å®šã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãŒã‚¿ãƒ¼ã‚²ãƒƒãƒˆã¨ã™ã‚‹ãƒ•ãƒ¬ãƒ¼ãƒ ã®æ•°ã‚’å–å¾—ã™ã‚‹
+extern	const TCHAR *NS_MV1GetAnimTargetFrameName( int MHandle, int AnimIndex, int AnimFrameIndex ) ;		// æŒ‡å®šã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãŒã‚¿ãƒ¼ã‚²ãƒƒãƒˆã¨ã™ã‚‹ãƒ•ãƒ¬ãƒ¼ãƒ ã®åå‰ã‚’å–å¾—ã™ã‚‹
+extern	int			NS_MV1GetAnimTargetFrame( int MHandle, int AnimIndex, int AnimFrameIndex ) ;			// æŒ‡å®šã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãŒã‚¿ãƒ¼ã‚²ãƒƒãƒˆã¨ã™ã‚‹ãƒ•ãƒ¬ãƒ¼ãƒ ã®ç•ªå·ã‚’å–å¾—ã™ã‚‹
+extern	int			NS_MV1GetAnimTargetFrameKeySetNum( int MHandle, int AnimIndex, int AnimFrameIndex ) ;	// æŒ‡å®šã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãŒã‚¿ãƒ¼ã‚²ãƒƒãƒˆã¨ã™ã‚‹ãƒ•ãƒ¬ãƒ¼ãƒ ç”¨ã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚­ãƒ¼ã‚»ãƒƒãƒˆã®æ•°ã‚’å–å¾—ã™ã‚‹
+extern	int			NS_MV1GetAnimTargetFrameKeySet( int MHandle, int AnimIndex, int AnimFrameIndex, int Index ) ;	// æŒ‡å®šã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãŒã‚¿ãƒ¼ã‚²ãƒƒãƒˆã¨ã™ã‚‹ãƒ•ãƒ¬ãƒ¼ãƒ ç”¨ã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚­ãƒ¼ã‚»ãƒƒãƒˆã‚­ãƒ¼ã‚»ãƒƒãƒˆã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’å–å¾—ã™ã‚‹
 
-// ƒVƒFƒCƒvŠÖŒW
-extern	int			NS_MV1GetShapeNum( int MHandle ) ;															// ƒ‚ƒfƒ‹‚ÉŠÜ‚Ü‚ê‚éƒVƒFƒCƒv‚Ì”‚ğæ“¾‚·‚é
-extern	int			NS_MV1SearchShape( int MHandle, const TCHAR *ShapeName ) ;									// ƒVƒFƒCƒv‚Ì–¼‘O‚©‚çƒ‚ƒfƒ‹’†‚ÌƒVƒFƒCƒv‚ÌƒVƒFƒCƒvƒCƒ“ƒfƒbƒNƒX‚ğæ“¾‚·‚é( –³‚©‚Á‚½ê‡‚Í–ß‚è’l‚ª-1 )
-extern	int			NS_MV1SearchShapeWithStrLen(			int MHandle, const TCHAR *ShapeName, size_t ShapeNameLength ) ;			// ƒVƒFƒCƒv‚Ì–¼‘O‚©‚çƒ‚ƒfƒ‹’†‚ÌƒVƒFƒCƒv‚ÌƒVƒFƒCƒvƒCƒ“ƒfƒbƒNƒX‚ğæ“¾‚·‚é( –³‚©‚Á‚½ê‡‚Í–ß‚è’l‚ª-1 )
-extern	const TCHAR	*NS_MV1GetShapeName( int MHandle, int ShapeIndex ) ;											// w’èƒVƒFƒCƒv‚Ì–¼‘O‚ğæ“¾‚·‚é
-extern	int			NS_MV1GetShapeTargetMeshNum( int MHandle, int ShapeIndex ) ;											// w’èƒVƒFƒCƒv‚ª‘ÎÛ‚Æ‚µ‚Ä‚¢‚éƒƒbƒVƒ…‚Ì”‚ğæ“¾‚·‚é
-extern	int			NS_MV1GetShapeTargetMesh( int MHandle, int ShapeIndex, int Index ) ;								// w’èƒVƒFƒCƒv‚ª‘ÎÛ‚Æ‚µ‚Ä‚¢‚éƒƒbƒVƒ…‚ÌƒƒbƒVƒ…ƒCƒ“ƒfƒbƒNƒX‚ğæ“¾‚·‚é
-extern	int			NS_MV1SetShapeRate( int MHandle, int ShapeIndex, float Rate, int Type ) ;						// w’èƒVƒFƒCƒv‚Ì—LŒø—¦‚ğİ’è‚·‚é( Rate  0.0f:0% ` 1.0f:100% )
-extern	float		NS_MV1GetShapeRate( int MHandle, int ShapeIndex ) ;											// w’èƒVƒFƒCƒv‚Ì—LŒø—¦‚ğæ“¾‚·‚é( –ß‚è’l  0.0f:0% ` 1.0f:100% )
-extern	float		NS_MV1GetShapeApplyRate( int MHandle, int ShapeIndex ) ;											// w’èƒVƒFƒCƒv‚Ì—LŒø—¦‚ğæ“¾‚·‚é( –ß‚è’l  0.0f:0% ` 1.0f:100% )( MV1SetShapeRate ‚Åw’è‚µ‚½’l‚ª‚»‚Ì‚Ü‚Ü–ß‚è’l‚Æ‚È‚é MV1GetShapeRate ‚ÆˆÙ‚È‚èƒAƒjƒ[ƒVƒ‡ƒ“‚ÌƒVƒFƒCƒvî•ñ‚È‚Ç‚à‰Á–¡‚µ‚½’l‚ª–ß‚è’l‚Æ‚È‚è‚Ü‚· )
+extern	int			NS_MV1GetAnimKeySetNum( int MHandle ) ;													// ãƒ¢ãƒ‡ãƒ«ã«å«ã¾ã‚Œã‚‹ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚­ãƒ¼ã‚»ãƒƒãƒˆã®ç·æ•°ã‚’å¾—ã‚‹
+extern	int			NS_MV1GetAnimKeySetType( int MHandle, int AnimKeySetIndex ) ;							// æŒ‡å®šã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚­ãƒ¼ã‚»ãƒƒãƒˆã®ã‚¿ã‚¤ãƒ—ã‚’å–å¾—ã™ã‚‹( MV1_ANIMKEY_TYPE_QUATERNION ç­‰ )
+extern	int			NS_MV1GetAnimKeySetDataType( int MHandle, int AnimKeySetIndex ) ;						// æŒ‡å®šã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚­ãƒ¼ã‚»ãƒƒãƒˆã®ãƒ‡ãƒ¼ã‚¿ã‚¿ã‚¤ãƒ—ã‚’å–å¾—ã™ã‚‹( MV1_ANIMKEY_DATATYPE_ROTATE ç­‰ )
+//extern	float		NS_MV1GetAnimKeySetTotalTime( int MHandle, int AnimKeySetIndex ) ;					// æŒ‡å®šã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚­ãƒ¼ã‚»ãƒƒãƒˆã®ç·æ™‚é–“ã‚’å–å¾—ã™ã‚‹
+extern	int			NS_MV1GetAnimKeySetTimeType( int MHandle, int AnimKeySetIndex ) ;						// æŒ‡å®šã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚­ãƒ¼ã‚»ãƒƒãƒˆã®ã‚­ãƒ¼ã®æ™‚é–“ãƒ‡ãƒ¼ã‚¿ã‚¿ã‚¤ãƒ—ã‚’å–å¾—ã™ã‚‹( MV1_ANIMKEY_TIME_TYPE_ONE ç­‰ )
+extern	int			NS_MV1GetAnimKeySetDataNum( int MHandle, int AnimKeySetIndex ) ;						// æŒ‡å®šã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚­ãƒ¼ã‚»ãƒƒãƒˆã®ã‚­ãƒ¼ã®æ•°ã‚’å–å¾—ã™ã‚‹
+extern	float		NS_MV1GetAnimKeyDataTime( int MHandle, int AnimKeySetIndex, int Index ) ;				// æŒ‡å®šã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚­ãƒ¼ã‚»ãƒƒãƒˆã®ã‚­ãƒ¼ã®æ™‚é–“ã‚’å–å¾—ã™ã‚‹
+extern	int			NS_MV1GetAnimKeyDataIndexFromTime( int MHandle, int AnimKeySetIndex, float Time ) ;									// æŒ‡å®šã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚­ãƒ¼ã‚»ãƒƒãƒˆã®æŒ‡å®šã®æ™‚é–“ã§ã®ã‚­ãƒ¼ã®ç•ªå·ã‚’å–å¾—ã™ã‚‹
+extern	FLOAT4		NS_MV1GetAnimKeyDataToQuaternion( int MHandle, int AnimKeySetIndex, int Index ) ;		// æŒ‡å®šã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚­ãƒ¼ã‚»ãƒƒãƒˆã®ã‚­ãƒ¼ã‚’å–å¾—ã™ã‚‹ã€ã‚­ãƒ¼ã‚¿ã‚¤ãƒ—ãŒ MV1_ANIMKEY_TYPE_QUATERNION ã§ã¯ç„¡ã‹ã£ãŸå ´åˆã¯å¤±æ•—ã™ã‚‹
+extern	FLOAT4		NS_MV1GetAnimKeyDataToQuaternionFromTime( int MHandle, int AnimKeySetIndex, float Time ) ;	// æŒ‡å®šã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚­ãƒ¼ã‚»ãƒƒãƒˆã®ã‚­ãƒ¼ã‚’å–å¾—ã™ã‚‹ã€ã‚­ãƒ¼ã‚¿ã‚¤ãƒ—ãŒ MV1_ANIMKEY_TYPE_QUATERNION ã§ã¯ç„¡ã‹ã£ãŸå ´åˆã¯å¤±æ•—ã™ã‚‹( æ™‚é–“æŒ‡å®šç‰ˆ )
+extern	VECTOR		NS_MV1GetAnimKeyDataToVector( int MHandle, int AnimKeySetIndex, int Index ) ;			// æŒ‡å®šã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚­ãƒ¼ã‚»ãƒƒãƒˆã®ã‚­ãƒ¼ã‚’å–å¾—ã™ã‚‹ã€ã‚­ãƒ¼ã‚¿ã‚¤ãƒ—ãŒ MV1_ANIMKEY_TYPE_VECTOR ã§ã¯ç„¡ã‹ã£ãŸå ´åˆã¯å¤±æ•—ã™ã‚‹
+extern	VECTOR		NS_MV1GetAnimKeyDataToVectorFromTime( int MHandle, int AnimKeySetIndex, float Time ) ;	// æŒ‡å®šã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚­ãƒ¼ã‚»ãƒƒãƒˆã®ã‚­ãƒ¼ã‚’å–å¾—ã™ã‚‹ã€ã‚­ãƒ¼ã‚¿ã‚¤ãƒ—ãŒ MV1_ANIMKEY_TYPE_VECTOR ã§ã¯ç„¡ã‹ã£ãŸå ´åˆã¯å¤±æ•—ã™ã‚‹( æ™‚é–“æŒ‡å®šç‰ˆ )
+extern	MATRIX		NS_MV1GetAnimKeyDataToMatrix( int MHandle, int AnimKeySetIndex, int Index ) ;			// æŒ‡å®šã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚­ãƒ¼ã‚»ãƒƒãƒˆã®ã‚­ãƒ¼ã‚’å–å¾—ã™ã‚‹ã€ã‚­ãƒ¼ã‚¿ã‚¤ãƒ—ãŒ MV1_ANIMKEY_TYPE_MATRIX4X4C ã‹ MV1_ANIMKEY_TYPE_MATRIX3X3 ã§ã¯ç„¡ã‹ã£ãŸå ´åˆã¯å¤±æ•—ã™ã‚‹
+extern	MATRIX		NS_MV1GetAnimKeyDataToMatrixFromTime( int MHandle, int AnimKeySetIndex, float Time ) ;	// æŒ‡å®šã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚­ãƒ¼ã‚»ãƒƒãƒˆã®ã‚­ãƒ¼ã‚’å–å¾—ã™ã‚‹ã€ã‚­ãƒ¼ã‚¿ã‚¤ãƒ—ãŒ MV1_ANIMKEY_TYPE_MATRIX4X4C ã‹ MV1_ANIMKEY_TYPE_MATRIX3X3 ã§ã¯ç„¡ã‹ã£ãŸå ´åˆã¯å¤±æ•—ã™ã‚‹( æ™‚é–“æŒ‡å®šç‰ˆ )
+extern	float		NS_MV1GetAnimKeyDataToFlat( int MHandle, int AnimKeySetIndex, int Index ) ;				// æŒ‡å®šã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚­ãƒ¼ã‚»ãƒƒãƒˆã®ã‚­ãƒ¼ã‚’å–å¾—ã™ã‚‹ã€ã‚­ãƒ¼ã‚¿ã‚¤ãƒ—ãŒ MV1_ANIMKEY_TYPE_FLAT ã§ã¯ç„¡ã‹ã£ãŸå ´åˆã¯å¤±æ•—ã™ã‚‹
+extern	float		NS_MV1GetAnimKeyDataToFlatFromTime( int MHandle, int AnimKeySetIndex, float Time ) ;	// æŒ‡å®šã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚­ãƒ¼ã‚»ãƒƒãƒˆã®ã‚­ãƒ¼ã‚’å–å¾—ã™ã‚‹ã€ã‚­ãƒ¼ã‚¿ã‚¤ãƒ—ãŒ MV1_ANIMKEY_TYPE_FLAT ã§ã¯ç„¡ã‹ã£ãŸå ´åˆã¯å¤±æ•—ã™ã‚‹( æ™‚é–“æŒ‡å®šç‰ˆ )
+extern	float		NS_MV1GetAnimKeyDataToLinear( int MHandle, int AnimKeySetIndex, int Index ) ;			// æŒ‡å®šã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚­ãƒ¼ã‚»ãƒƒãƒˆã®ã‚­ãƒ¼ã‚’å–å¾—ã™ã‚‹ã€ã‚­ãƒ¼ã‚¿ã‚¤ãƒ—ãŒ MV1_ANIMKEY_TYPE_LINEAR ã§ã¯ç„¡ã‹ã£ãŸå ´åˆã¯å¤±æ•—ã™ã‚‹
+extern	float		NS_MV1GetAnimKeyDataToLinearFromTime( int MHandle, int AnimKeySetIndex, float Time ) ;	// æŒ‡å®šã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚­ãƒ¼ã‚»ãƒƒãƒˆã®ã‚­ãƒ¼ã‚’å–å¾—ã™ã‚‹ã€ã‚­ãƒ¼ã‚¿ã‚¤ãƒ—ãŒ MV1_ANIMKEY_TYPE_LINEAR ã§ã¯ç„¡ã‹ã£ãŸå ´åˆã¯å¤±æ•—ã™ã‚‹( æ™‚é–“æŒ‡å®šç‰ˆ )
+//extern	int			NS_MV1GetAnimKeyDataToBlendKeyType( int MHandle, int AnimKeySetIndex, int Index ) ;	// æŒ‡å®šã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚­ãƒ¼ã‚»ãƒƒãƒˆã®ã‚­ãƒ¼ã®ã‚­ãƒ¼ã‚¿ã‚¤ãƒ—ã‚’å–å¾—ã™ã‚‹ã€ã‚­ãƒ¼ã‚¿ã‚¤ãƒ—ãŒ MV1_ANIMKEY_TYPE_BLEND ã§ã¯ç„¡ã‹ã£ãŸå ´åˆã¯å¤±æ•—ã™ã‚‹
+//extern	float		NS_MV1GetAnimKeyDataToBlendValue( int MHandle, int AnimKeySetIndex, int Index ) ;	// æŒ‡å®šã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚­ãƒ¼ã‚»ãƒƒãƒˆã®ã‚­ãƒ¼ã®å€¤ã‚’å–å¾—ã™ã‚‹ã€ã‚­ãƒ¼ã‚¿ã‚¤ãƒ—ãŒ MV1_ANIMKEY_TYPE_BLEND ã§ã¯ç„¡ã‹ã£ãŸå ´åˆã¯å¤±æ•—ã™ã‚‹
 
-// ƒgƒ‰ƒCƒAƒ“ƒOƒ‹ƒŠƒXƒgŠÖŒW
-extern	int			NS_MV1GetTriangleListNum( int MHandle ) ;												// ƒgƒ‰ƒCƒAƒ“ƒOƒ‹ƒŠƒXƒg‚Ì”‚ğæ“¾‚·‚é
-extern	int			NS_MV1GetTriangleListVertexType( int MHandle, int TListIndex ) ;						// w’è‚Ìƒgƒ‰ƒCƒAƒ“ƒOƒ‹ƒŠƒXƒg‚Ì’¸“_ƒf[ƒ^ƒ^ƒCƒv‚ğæ“¾‚·‚é( MV1_VERTEX_TYPE_NORMAL “™ )
-extern	int			NS_MV1GetTriangleListPolygonNum( int MHandle, int TListIndex ) ;						// w’è‚Ìƒgƒ‰ƒCƒAƒ“ƒOƒ‹ƒŠƒXƒg‚ÉŠÜ‚Ü‚ê‚éƒ|ƒŠƒSƒ“‚Ì”‚ğæ“¾‚·‚é
-extern	int			NS_MV1GetTriangleListVertexNum( int MHandle, int TListIndex ) ;							// w’è‚Ìƒgƒ‰ƒCƒAƒ“ƒOƒ‹ƒŠƒXƒg‚ÉŠÜ‚Ü‚ê‚é’¸“_ƒf[ƒ^‚Ì”‚ğæ“¾‚·‚é
-extern	int			NS_MV1GetTriangleListLocalWorldMatrixNum(	int MHandle, int TListIndex ) ;										// w’è‚Ìƒgƒ‰ƒCƒAƒ“ƒOƒ‹ƒŠƒXƒg‚ªg—p‚·‚éÀ•W•ÏŠ·s—ñ‚Ì”‚ğæ“¾‚·‚é
-extern	MATRIX		NS_MV1GetTriangleListLocalWorldMatrix(		int MHandle, int TListIndex, int LWMatrixIndex ) ;					// w’è‚Ìƒgƒ‰ƒCƒAƒ“ƒOƒ‹ƒŠƒXƒg‚ªg—p‚·‚éÀ•W•ÏŠ·s—ñ( ƒ[ƒJƒ‹¨ƒ[ƒ‹ƒh )‚ğæ“¾‚·‚é
-extern	int			NS_MV1GetTriangleListPolygonVertexPosition(	int MHandle, int TListIndex, int PolygonIndex, VECTOR *VertexPositions = NULL , float *MatrixWeights = NULL ) ;	// w’è‚Ìƒgƒ‰ƒCƒAƒ“ƒOƒ‹ƒŠƒXƒg‚Ìw’è‚Ìƒ|ƒŠƒSƒ“‚ªg—p‚µ‚Ä‚¢‚é’¸“_‚ÌÀ•W‚ğæ“¾‚·‚é( –ß‚è’l  ƒGƒ‰[F-1  0ˆÈãFƒ|ƒŠƒSƒ“‚ªg—p‚µ‚Ä‚¢‚é’¸“_‚Ì” )
-extern	int			NS_MV1GetTriangleListUseMaterial(				int MHandle, int TListIndex ) ;														// w’è‚Ìƒgƒ‰ƒCƒAƒ“ƒOƒ‹ƒŠƒXƒg‚ªg—p‚µ‚Ä‚¢‚éƒ}ƒeƒŠƒAƒ‹‚ÌƒCƒ“ƒfƒbƒNƒX‚ğæ“¾‚·‚é
+// ãƒãƒ†ãƒªã‚¢ãƒ«é–¢ä¿‚
+extern	int			NS_MV1GetMaterialNum( int MHandle ) ;														// ãƒ¢ãƒ‡ãƒ«ã§ä½¿ç”¨ã—ã¦ã„ã‚‹ãƒãƒ†ãƒªã‚¢ãƒ«ã®æ•°ã‚’å–å¾—ã™ã‚‹
+extern	const TCHAR *NS_MV1GetMaterialName( int MHandle, int MaterialIndex ) ;									// æŒ‡å®šã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®åå‰ã‚’å–å¾—ã™ã‚‹
+extern	int			NS_MV1SetMaterialType( int MHandle, int MaterialIndex, int Type ) ;							// æŒ‡å®šã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®ã‚¿ã‚¤ãƒ—ã‚’å¤‰æ›´ã™ã‚‹( Type : DX_MATERIAL_TYPE_NORMAL ãªã© )
+extern	int			NS_MV1GetMaterialType( int MHandle, int MaterialIndex ) ;									// æŒ‡å®šã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®ã‚¿ã‚¤ãƒ—ã‚’å–å¾—ã™ã‚‹( æˆ»ã‚Šå€¤ : DX_MATERIAL_TYPE_NORMAL ãªã© )
+extern	int			NS_MV1SetMaterialTypeParam(			int MHandle, int MaterialIndex, ... ) ;									// æŒ‡å®šã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®ã‚¿ã‚¤ãƒ—åˆ¥ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’å¤‰æ›´ã™ã‚‹( ãƒãƒ†ãƒªã‚¢ãƒ«ã‚¿ã‚¤ãƒ— DX_MATERIAL_TYPE_MAT_SPEC_LUMINANCE_TWO_COLOR ãªã©ã§ä½¿ç”¨ )
+extern	int			NS_MV1SetMaterialDifColor( int MHandle, int MaterialIndex, COLOR_F Color ) ;				// æŒ‡å®šã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚«ãƒ©ãƒ¼ã‚’è¨­å®šã™ã‚‹
+extern	COLOR_F		NS_MV1GetMaterialDifColor( int MHandle, int MaterialIndex ) ;								// æŒ‡å®šã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚«ãƒ©ãƒ¼ã‚’å–å¾—ã™ã‚‹
+extern	int			NS_MV1SetMaterialSpcColor( int MHandle, int MaterialIndex, COLOR_F Color ) ;				// æŒ‡å®šã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã‚«ãƒ©ãƒ¼ã‚’è¨­å®šã™ã‚‹
+extern	COLOR_F		NS_MV1GetMaterialSpcColor( int MHandle, int MaterialIndex ) ;								// æŒ‡å®šã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã‚«ãƒ©ãƒ¼ã‚’å–å¾—ã™ã‚‹
+extern	int			NS_MV1SetMaterialEmiColor( int MHandle, int MaterialIndex, COLOR_F Color ) ;				// æŒ‡å®šã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®ã‚¨ãƒŸãƒƒã‚·ãƒ–ã‚«ãƒ©ãƒ¼ã‚’è¨­å®šã™ã‚‹
+extern	COLOR_F		NS_MV1GetMaterialEmiColor( int MHandle, int MaterialIndex ) ;								// æŒ‡å®šã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®ã‚¨ãƒŸãƒƒã‚·ãƒ–ã‚«ãƒ©ãƒ¼ã‚’å–å¾—ã™ã‚‹
+extern	int			NS_MV1SetMaterialAmbColor( int MHandle, int MaterialIndex, COLOR_F Color ) ;				// æŒ‡å®šã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®ã‚¢ãƒ³ãƒ“ã‚¨ãƒ³ãƒˆã‚«ãƒ©ãƒ¼ã‚’è¨­å®šã™ã‚‹
+extern	COLOR_F		NS_MV1GetMaterialAmbColor( int MHandle, int MaterialIndex ) ;								// æŒ‡å®šã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®ã‚¢ãƒ³ãƒ“ã‚¨ãƒ³ãƒˆã‚«ãƒ©ãƒ¼ã‚’å–å¾—ã™ã‚‹
+extern	int			NS_MV1SetMaterialSpcPower( int MHandle, int MaterialIndex, float Power ) ;					// æŒ‡å®šã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã®å¼·ã•ã‚’è¨­å®šã™ã‚‹
+extern	float		NS_MV1GetMaterialSpcPower( int MHandle, int MaterialIndex ) ;								// æŒ‡å®šã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã®å¼·ã•ã‚’å–å¾—ã™ã‚‹
+extern	int			NS_MV1SetMaterialDifMapTexture( int MHandle, int MaterialIndex, int TexIndex ) ;			// æŒ‡å®šã®ãƒãƒ†ãƒªã‚¢ãƒ«ã§ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºãƒãƒƒãƒ—ã¨ã—ã¦ä½¿ç”¨ã™ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’æŒ‡å®šã™ã‚‹
+extern	int			NS_MV1GetMaterialDifMapTexture( int MHandle, int MaterialIndex ) ;							// æŒ‡å®šã®ãƒãƒ†ãƒªã‚¢ãƒ«ã§ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºãƒãƒƒãƒ—ã¨ã—ã¦ä½¿ç”¨ã•ã‚Œã¦ã„ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’å–å¾—ã™ã‚‹
+extern	int			NS_MV1SetMaterialSubDifMapTexture(		int MHandle, int MaterialIndex, int TexIndex ) ;	// æŒ‡å®šã®ãƒãƒ†ãƒªã‚¢ãƒ«ã§ã‚µãƒ–ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºãƒãƒƒãƒ—ã¨ã—ã¦ä½¿ç”¨ã™ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’æŒ‡å®šã™ã‚‹
+extern	int			NS_MV1GetMaterialSubDifMapTexture(		int MHandle, int MaterialIndex ) ;					// æŒ‡å®šã®ãƒãƒ†ãƒªã‚¢ãƒ«ã§ã‚µãƒ–ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºãƒãƒƒãƒ—ã¨ã—ã¦ä½¿ç”¨ã•ã‚Œã¦ã„ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’å–å¾—ã™ã‚‹
+extern	int			NS_MV1SetMaterialSpcMapTexture( int MHandle, int MaterialIndex, int TexIndex ) ;			// æŒ‡å®šã®ãƒãƒ†ãƒªã‚¢ãƒ«ã§ã‚¹ãƒšã‚­ãƒ¥ãƒ©ãƒãƒƒãƒ—ã¨ã—ã¦ä½¿ç”¨ã™ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’æŒ‡å®šã™ã‚‹
+extern	int			NS_MV1GetMaterialSpcMapTexture( int MHandle, int MaterialIndex ) ;							// æŒ‡å®šã®ãƒãƒ†ãƒªã‚¢ãƒ«ã§ã‚¹ãƒšã‚­ãƒ¥ãƒ©ãƒãƒƒãƒ—ã¨ã—ã¦ä½¿ç”¨ã•ã‚Œã¦ã„ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’å–å¾—ã™ã‚‹
+extern	int			NS_MV1SetMaterialNormalMapTexture( int MHandle, int MaterialIndex, int TexIndex ) ;			// æŒ‡å®šã®ãƒãƒ†ãƒªã‚¢ãƒ«ã§æ³•ç·šãƒãƒƒãƒ—ã¨ã—ã¦ä½¿ç”¨ã™ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’æŒ‡å®šã™ã‚‹
+extern	int			NS_MV1GetMaterialNormalMapTexture( int MHandle, int MaterialIndex ) ;					// æŒ‡å®šã®ãƒãƒ†ãƒªã‚¢ãƒ«ã§æ³•ç·šãƒãƒƒãƒ—ã¨ã—ã¦ä½¿ç”¨ã•ã‚Œã¦ã„ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’å–å¾—ã™ã‚‹
+extern	int			NS_MV1SetMaterialEmissiveMapTexture(	int MHandle, int MaterialIndex, int TexIndex ) ;						// æŒ‡å®šã®ãƒãƒ†ãƒªã‚¢ãƒ«ã§ã‚¨ãƒŸãƒƒã‚·ãƒ–ãƒãƒƒãƒ—ã¨ã—ã¦ä½¿ç”¨ã™ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’æŒ‡å®šã™ã‚‹
+extern	int			NS_MV1GetMaterialEmissiveMapTexture(	int MHandle, int MaterialIndex ) ;										// æŒ‡å®šã®ãƒãƒ†ãƒªã‚¢ãƒ«ã§ã‚¨ãƒŸãƒƒã‚·ãƒ–ãƒãƒƒãƒ—ã¨ã—ã¦ä½¿ç”¨ã•ã‚Œã¦ã„ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’å–å¾—ã™ã‚‹
+extern	int			NS_MV1SetMaterialShininessMapTexture(	int MHandle, int MaterialIndex, int TexIndex ) ;						// æŒ‡å®šã®ãƒãƒ†ãƒªã‚¢ãƒ«ã§ãƒ©ãƒ•ãƒã‚¹ãƒãƒƒãƒ—ã¨ã—ã¦ä½¿ç”¨ã™ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’æŒ‡å®šã™ã‚‹
+extern	int			NS_MV1GetMaterialShininessMapTexture(	int MHandle, int MaterialIndex ) ;										// æŒ‡å®šã®ãƒãƒ†ãƒªã‚¢ãƒ«ã§ãƒ©ãƒ•ãƒã‚¹ãƒãƒƒãƒ—ã¨ã—ã¦ä½¿ç”¨ã•ã‚Œã¦ã„ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’å–å¾—ã™ã‚‹
+extern	int			NS_MV1SetMaterialReflectionFactorMapTexture( int MHandle, int MaterialIndex, int TexIndex ) ;					// æŒ‡å®šã®ãƒãƒ†ãƒªã‚¢ãƒ«ã§ãƒ¡ã‚¿ãƒªãƒƒã‚¯ãƒãƒƒãƒ—ã¨ã—ã¦ä½¿ç”¨ã™ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’æŒ‡å®šã™ã‚‹
+extern	int			NS_MV1GetMaterialReflectionFactorMapTexture( int MHandle, int MaterialIndex ) ;								// æŒ‡å®šã®ãƒãƒ†ãƒªã‚¢ãƒ«ã§ãƒ¡ã‚¿ãƒªãƒƒã‚¯ãƒãƒƒãƒ—ã¨ã—ã¦ä½¿ç”¨ã•ã‚Œã¦ã„ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’å–å¾—ã™ã‚‹
+//extern	const char *NS_MV1GetMaterialDifMapTexPath( int MHandle, int MaterialIndex ) ;					// æŒ‡å®šã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºãƒãƒƒãƒ—ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ãƒ‘ã‚¹ã‚’å–å¾—ã™ã‚‹
+//extern	const char *NS_MV1GetMaterialSpcMapTexPath( int MHandle, int MaterialIndex ) ;					// æŒ‡å®šã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®ã‚¹ãƒšã‚­ãƒ¥ãƒ©ãƒãƒƒãƒ—ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ãƒ‘ã‚¹ã‚’å–å¾—ã™ã‚‹
+//extern	const char *NS_MV1GetMaterialNormalMapTexPath( int MHandle, int MaterialIndex ) ;					// æŒ‡å®šã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®æ³•ç·šãƒãƒƒãƒ—ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ãƒ‘ã‚¹ã‚’å–å¾—ã™ã‚‹
+//extern	const char *NS_MV1GetMaterialBumpMapTexPath( int MHandle, int MaterialIndex ) ;						// æŒ‡å®šã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®å‡¸å‡¹ãƒãƒƒãƒ—ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ãƒ‘ã‚¹ã‚’å–å¾—ã™ã‚‹
+//extern	float		NS_MV1GetMaterialBumpMapNextPixelLength( int MHandle, int MaterialIndex ) ;				// æŒ‡å®šã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®å‡¸å‡¹ãƒãƒƒãƒ—ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ï¼‘ãƒ”ã‚¯ã‚»ãƒ«è¾ºã‚Šã®è·é›¢ã‚’å–å¾—ã™ã‚‹
+//extern	int			NS_MV1SetMaterialDifMapTexPath( int MHandle, int MaterialIndex, const char *TexPath ) ;		// æŒ‡å®šã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºãƒãƒƒãƒ—ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ãƒ‘ã‚¹ã‚’è¨­å®šã™ã‚‹
+//extern	int			NS_MV1SetMaterialSpcMapTexPath( int MHandle, int MaterialIndex, const char *TexPath ) ;	// æŒ‡å®šã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®ã‚¹ãƒšã‚­ãƒ¥ãƒ©ãƒãƒƒãƒ—ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ãƒ‘ã‚¹ã‚’è¨­å®šã™ã‚‹
+extern	int			NS_MV1SetMaterialDifGradTexture( int MHandle, int MaterialIndex, int TexIndex ) ;		// æŒ‡å®šã®ãƒãƒ†ãƒªã‚¢ãƒ«ã§ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã®ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚°ãƒ©ãƒ‡ãƒ¼ã‚·ãƒ§ãƒ³ãƒãƒƒãƒ—ã¨ã—ã¦ä½¿ç”¨ã™ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’è¨­å®šã™ã‚‹
+extern	int			NS_MV1GetMaterialDifGradTexture( int MHandle, int MaterialIndex ) ;						// æŒ‡å®šã®ãƒãƒ†ãƒªã‚¢ãƒ«ã§ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã®ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚°ãƒ©ãƒ‡ãƒ¼ã‚·ãƒ§ãƒ³ãƒãƒƒãƒ—ã¨ã—ã¦ä½¿ç”¨ã™ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’å–å¾—ã™ã‚‹
+extern	int			NS_MV1SetMaterialSpcGradTexture( int MHandle, int MaterialIndex, int TexIndex ) ;		// æŒ‡å®šã®ãƒãƒ†ãƒªã‚¢ãƒ«ã§ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã®ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã‚°ãƒ©ãƒ‡ãƒ¼ã‚·ãƒ§ãƒ³ãƒãƒƒãƒ—ã¨ã—ã¦ä½¿ç”¨ã™ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’è¨­å®šã™ã‚‹
+extern	int			NS_MV1GetMaterialSpcGradTexture( int MHandle, int MaterialIndex ) ;						// æŒ‡å®šã®ãƒãƒ†ãƒªã‚¢ãƒ«ã§ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã®ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã‚°ãƒ©ãƒ‡ãƒ¼ã‚·ãƒ§ãƒ³ãƒãƒƒãƒ—ã¨ã—ã¦ä½¿ç”¨ã™ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’å–å¾—ã™ã‚‹
+extern	int			NS_MV1SetMaterialSphereMapTexture(		int MHandle, int MaterialIndex, int TexIndex ) ;			// æŒ‡å®šã®ãƒãƒ†ãƒªã‚¢ãƒ«ã§ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã®ã‚¹ãƒ•ã‚£ã‚¢ãƒãƒƒãƒ—ã¨ã—ã¦ä½¿ç”¨ã™ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’è¨­å®šã™ã‚‹
+extern	int			NS_MV1GetMaterialSphereMapTexture(		int MHandle, int MaterialIndex ) ;							// æŒ‡å®šã®ãƒãƒ†ãƒªã‚¢ãƒ«ã§ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã®ã‚¹ãƒ•ã‚£ã‚¢ãƒãƒƒãƒ—ã¨ã—ã¦ä½¿ç”¨ã™ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’å–å¾—ã™ã‚‹
+extern	int			NS_MV1SetMaterialDifGradBlendType( int MHandle, int MaterialIndex, int BlendType ) ;	// æŒ‡å®šã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã§ä½¿ç”¨ã™ã‚‹ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚°ãƒ©ãƒ‡ãƒ¼ã‚·ãƒ§ãƒ³ãƒãƒƒãƒ—ã¨ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚«ãƒ©ãƒ¼ã®åˆæˆæ–¹æ³•ã‚’è¨­å®šã™ã‚‹( DX_MATERIAL_BLENDTYPE_ADDITIVE ãªã© )
+extern	int			NS_MV1GetMaterialDifGradBlendType( int MHandle, int MaterialIndex ) ;					// æŒ‡å®šã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã§ä½¿ç”¨ã™ã‚‹ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚°ãƒ©ãƒ‡ãƒ¼ã‚·ãƒ§ãƒ³ãƒãƒƒãƒ—ã¨ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚«ãƒ©ãƒ¼ã®åˆæˆæ–¹æ³•ã‚’å–å¾—ã™ã‚‹( DX_MATERIAL_BLENDTYPE_ADDITIVE ãªã© )
+extern	int			NS_MV1SetMaterialSpcGradBlendType( int MHandle, int MaterialIndex, int BlendType ) ;	// æŒ‡å®šã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã§ä½¿ç”¨ã™ã‚‹ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã‚°ãƒ©ãƒ‡ãƒ¼ã‚·ãƒ§ãƒ³ãƒãƒƒãƒ—ã¨ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã‚«ãƒ©ãƒ¼ã®åˆæˆæ–¹æ³•ã‚’è¨­å®šã™ã‚‹( DX_MATERIAL_BLENDTYPE_ADDITIVE ãªã© )
+extern	int			NS_MV1GetMaterialSpcGradBlendType( int MHandle, int MaterialIndex ) ;					// æŒ‡å®šã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã§ä½¿ç”¨ã™ã‚‹ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã‚°ãƒ©ãƒ‡ãƒ¼ã‚·ãƒ§ãƒ³ãƒãƒƒãƒ—ã¨ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã‚«ãƒ©ãƒ¼ã®åˆæˆæ–¹æ³•ã‚’å–å¾—ã™ã‚‹( DX_MATERIAL_BLENDTYPE_ADDITIVE ãªã© )
+extern	int			NS_MV1SetMaterialSphereMapBlendType(	int MHandle, int MaterialIndex, int BlendType ) ;			// æŒ‡å®šã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã§ä½¿ç”¨ã™ã‚‹ã‚¹ãƒ•ã‚£ã‚¢ãƒãƒƒãƒ—ã®åˆæˆæ–¹æ³•ã‚’è¨­å®šã™ã‚‹( DX_MATERIAL_BLENDTYPE_ADDITIVE ãªã© )
+extern	int			NS_MV1GetMaterialSphereMapBlendType(	int MHandle, int MaterialIndex ) ;							// æŒ‡å®šã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã§ä½¿ç”¨ã™ã‚‹ã‚¹ãƒ•ã‚£ã‚¢ãƒãƒƒãƒ—ã®åˆæˆæ–¹æ³•ã‚’å–å¾—ã™ã‚‹( DX_MATERIAL_BLENDTYPE_ADDITIVE ãªã© )
+extern	int			NS_MV1SetMaterialOutLineWidth( int MHandle, int MaterialIndex, float Width ) ;			// æŒ‡å®šã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã§ä½¿ç”¨ã™ã‚‹è¼ªéƒ­ç·šã®å¤ªã•ã‚’è¨­å®šã™ã‚‹
+extern	float		NS_MV1GetMaterialOutLineWidth( int MHandle, int MaterialIndex ) ;						// æŒ‡å®šã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã§ä½¿ç”¨ã™ã‚‹è¼ªéƒ­ç·šã®å¤ªã•ã‚’å–å¾—ã™ã‚‹
+extern	int			NS_MV1SetMaterialOutLineDotWidth( int MHandle, int MaterialIndex, float Width ) ;			// æŒ‡å®šã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã§ä½¿ç”¨ã™ã‚‹è¼ªéƒ­ç·šã®ãƒ‰ãƒƒãƒˆå˜ä½ã®å¤ªã•ã‚’è¨­å®šã™ã‚‹
+extern	float		NS_MV1GetMaterialOutLineDotWidth( int MHandle, int MaterialIndex ) ;						// æŒ‡å®šã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã§ä½¿ç”¨ã™ã‚‹è¼ªéƒ­ç·šã®ãƒ‰ãƒƒãƒˆå˜ä½ã®å¤ªã•ã‚’å–å¾—ã™ã‚‹
+extern	int			NS_MV1SetMaterialOutLineColor( int MHandle, int MaterialIndex, COLOR_F Color ) ;		// æŒ‡å®šã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã§ä½¿ç”¨ã™ã‚‹è¼ªéƒ­ç·šã®è‰²ã‚’è¨­å®šã™ã‚‹
+extern	COLOR_F		NS_MV1GetMaterialOutLineColor( int MHandle, int MaterialIndex ) ;						// æŒ‡å®šã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã§ä½¿ç”¨ã™ã‚‹è¼ªéƒ­ç·šã®è‰²ã‚’å–å¾—ã™ã‚‹
+extern	int			NS_MV1SetMaterialDrawBlendMode( int MHandle, int MaterialIndex, int BlendMode ) ;		// æŒ‡å®šã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®æç”»ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã‚’è¨­å®šã™ã‚‹( DX_BLENDMODE_ALPHA ç­‰ )
+extern	int			NS_MV1SetMaterialDrawBlendParam( int MHandle, int MaterialIndex, int BlendParam ) ;		// æŒ‡å®šã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®æç”»ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’è¨­å®šã™ã‚‹
+extern	int			NS_MV1GetMaterialDrawBlendMode( int MHandle, int MaterialIndex ) ;						// æŒ‡å®šã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®æç”»ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã‚’å–å¾—ã™ã‚‹( DX_BLENDMODE_ALPHA ç­‰ )
+extern	int			NS_MV1GetMaterialDrawBlendParam( int MHandle, int MaterialIndex ) ;						// æŒ‡å®šã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®æç”»ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’è¨­å®šã™ã‚‹
+extern	int			NS_MV1SetMaterialDrawAlphaTest(		int MHandle, int MaterialIndex,	int Enable, int Mode, int Param ) ;		// æŒ‡å®šã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®æç”»æ™‚ã®ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆã®è¨­å®šã‚’è¡Œã†( Enable:Î±ãƒ†ã‚¹ãƒˆã‚’è¡Œã†ã‹ã©ã†ã‹( TRUE:è¡Œã†  FALSE:è¡Œã‚ãªã„( ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ )  Mode:ãƒ†ã‚¹ãƒˆãƒ¢ãƒ¼ãƒ‰( DX_CMP_GREATERç­‰ )  Param:æç”»ã‚¢ãƒ«ãƒ•ã‚¡å€¤ã¨ã®æ¯”è¼ƒã«ä½¿ç”¨ã™ã‚‹å€¤( 0ï½255 ) )
+extern	int			NS_MV1GetMaterialDrawAlphaTestEnable( int MHandle, int MaterialIndex ) ;										// æŒ‡å®šã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®æç”»æ™‚ã®ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆã‚’è¡Œã†ã‹ã©ã†ã‹ã‚’å–å¾—ã™ã‚‹( æˆ»ã‚Šå€¤  TRUE:ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆã‚’è¡Œã†  FALSE:ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆã‚’è¡Œã‚ãªã„ )
+extern	int			NS_MV1GetMaterialDrawAlphaTestMode(	int MHandle, int MaterialIndex ) ;										// æŒ‡å®šã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®æç”»æ™‚ã®ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆã®ãƒ†ã‚¹ãƒˆãƒ¢ãƒ¼ãƒ‰ã‚’å–å¾—ã™ã‚‹( æˆ»ã‚Šå€¤  ãƒ†ã‚¹ãƒˆãƒ¢ãƒ¼ãƒ‰( DX_CMP_GREATERç­‰ ) )
+extern	int			NS_MV1GetMaterialDrawAlphaTestParam( int MHandle, int MaterialIndex ) ;										// æŒ‡å®šã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®æç”»æ™‚ã®ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆã®æç”»ã‚¢ãƒ«ãƒ•ã‚¡åœ°ã¨ã®æ¯”è¼ƒã«ä½¿ç”¨ã™ã‚‹å€¤( 0ï½255 )ã‚’å–å¾—ã™ã‚‹
+extern	int			NS_MV1SetMaterialTypeAll(				int MHandle,                    int Type ) ;						// å…¨ã¦ã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®ã‚¿ã‚¤ãƒ—ã‚’å¤‰æ›´ã™ã‚‹( Type : DX_MATERIAL_TYPE_NORMAL ãªã© )
+extern	int			NS_MV1SetMaterialTypeParamAll(			int MHandle,                    ... ) ;									// å…¨ã¦ã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®ã‚¿ã‚¤ãƒ—åˆ¥ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’å¤‰æ›´ã™ã‚‹( ãƒãƒ†ãƒªã‚¢ãƒ«ã‚¿ã‚¤ãƒ— DX_MATERIAL_TYPE_MAT_SPEC_LUMINANCE_TWO_COLOR ãªã©ã§ä½¿ç”¨ )
+extern	int			NS_MV1SetMaterialDifGradBlendTypeAll(	int MHandle,                    int BlendType ) ;						// å…¨ã¦ã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã§ä½¿ç”¨ã™ã‚‹ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚°ãƒ©ãƒ‡ãƒ¼ã‚·ãƒ§ãƒ³ãƒãƒƒãƒ—ã¨ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚«ãƒ©ãƒ¼ã®åˆæˆæ–¹æ³•ã‚’è¨­å®šã™ã‚‹( DX_MATERIAL_BLENDTYPE_ADDITIVE ãªã© )
+extern	int			NS_MV1SetMaterialSpcGradBlendTypeAll(	int MHandle,                    int BlendType ) ;						// å…¨ã¦ã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã§ä½¿ç”¨ã™ã‚‹ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã‚°ãƒ©ãƒ‡ãƒ¼ã‚·ãƒ§ãƒ³ãƒãƒƒãƒ—ã¨ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã‚«ãƒ©ãƒ¼ã®åˆæˆæ–¹æ³•ã‚’è¨­å®šã™ã‚‹( DX_MATERIAL_BLENDTYPE_ADDITIVE ãªã© )
+extern	int			NS_MV1SetMaterialSphereMapBlendTypeAll( int MHandle,                    int BlendType ) ;						// å…¨ã¦ã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã§ä½¿ç”¨ã™ã‚‹ã‚¹ãƒ•ã‚£ã‚¢ãƒãƒƒãƒ—ã®åˆæˆæ–¹æ³•ã‚’è¨­å®šã™ã‚‹( DX_MATERIAL_BLENDTYPE_ADDITIVE ãªã© )
+extern	int			NS_MV1SetMaterialOutLineWidthAll(		int MHandle,                    float Width ) ;							// å…¨ã¦ã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã§ä½¿ç”¨ã™ã‚‹è¼ªéƒ­ç·šã®å¤ªã•ã‚’è¨­å®šã™ã‚‹
+extern	int			NS_MV1SetMaterialOutLineDotWidthAll(	int MHandle,                    float Width ) ;							// å…¨ã¦ã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã§ä½¿ç”¨ã™ã‚‹è¼ªéƒ­ç·šã®ãƒ‰ãƒƒãƒˆå˜ä½ã®å¤ªã•ã‚’è¨­å®šã™ã‚‹
+extern	int			NS_MV1SetMaterialOutLineColorAll(		int MHandle,                    COLOR_F Color ) ;						// å…¨ã¦ã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã§ä½¿ç”¨ã™ã‚‹è¼ªéƒ­ç·šã®è‰²ã‚’è¨­å®šã™ã‚‹
+extern	int			NS_MV1SetMaterialDrawBlendModeAll(		int MHandle,                    int BlendMode ) ;						// å…¨ã¦ã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®æç”»ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã‚’è¨­å®šã™ã‚‹( DX_BLENDMODE_ALPHA ç­‰ )
+extern	int			NS_MV1SetMaterialDrawBlendParamAll(	int MHandle,                    int BlendParam ) ;						// å…¨ã¦ã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®æç”»ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’è¨­å®šã™ã‚‹
+extern	int			NS_MV1SetMaterialDrawAlphaTestAll(		int MHandle,                    int Enable, int Mode, int Param ) ;		// å…¨ã¦ã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®æç”»æ™‚ã®ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆã®è¨­å®šã‚’è¡Œã†( Enable:Î±ãƒ†ã‚¹ãƒˆã‚’è¡Œã†ã‹ã©ã†ã‹( TRUE:è¡Œã†  FALSE:è¡Œã‚ãªã„( ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ ) ) Mode:ãƒ†ã‚¹ãƒˆãƒ¢ãƒ¼ãƒ‰( DX_CMP_GREATERç­‰ )  Param:æç”»ã‚¢ãƒ«ãƒ•ã‚¡å€¤ã¨ã®æ¯”è¼ƒã«ä½¿ç”¨ã™ã‚‹å€¤( 0ï½255 ) )
+extern	int			NS_MV1SetMaterialDrawAddColorAll(		int MHandle,                    int Red, int Green, int Blue ) ;		// å…¨ã¦ã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®æç”»æ™‚ã®åŠ ç®—ã‚«ãƒ©ãƒ¼ã‚’è¨­å®šã™ã‚‹
+extern	int			NS_MV1SetMaterialDrawAddColor(			int MHandle, int MaterialIndex, int Red, int Green, int Blue ) ;		// æŒ‡å®šã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®æç”»æ™‚ã®åŠ ç®—ã‚«ãƒ©ãƒ¼ã‚’è¨­å®šã™ã‚‹
+extern	int			NS_MV1GetMaterialDrawAddColor(			int MHandle, int MaterialIndex, int *Red, int *Green, int *Blue ) ;		// æŒ‡å®šã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®æç”»æ™‚ã®åŠ ç®—ã‚«ãƒ©ãƒ¼ã‚’å–å¾—ã™ã‚‹
 
-// ƒRƒŠƒWƒ‡ƒ“ŠÖŒW
-extern	int							NS_MV1SetupCollInfo(				int MHandle, int FrameIndex = -1 , int XDivNum = 32 , int YDivNum = 8 , int ZDivNum = 32 , int MeshIndex = -1 ) ;		// ƒRƒŠƒWƒ‡ƒ“î•ñ‚ğ\’z‚·‚é
-extern	int							NS_MV1TerminateCollInfo(			int MHandle, int FrameIndex = -1 , int MeshIndex = -1 ) ;																// ƒRƒŠƒWƒ‡ƒ“î•ñ‚ÌŒãn––
-extern	int							NS_MV1RefreshCollInfo(				int MHandle, int FrameIndex = -1 , int MeshIndex = -1 ) ;																// ƒRƒŠƒWƒ‡ƒ“î•ñ‚ğXV‚·‚é
-extern	MV1_COLL_RESULT_POLY		NS_MV1CollCheck_Line(				int MHandle, int FrameIndex, VECTOR PosStart, VECTOR PosEnd , int MeshIndex = -1 ) ;									// ü‚Æƒ‚ƒfƒ‹‚Ì“–‚½‚è”»’è
-extern	MV1_COLL_RESULT_POLY_DIM	NS_MV1CollCheck_LineDim(			int MHandle, int FrameIndex, VECTOR PosStart, VECTOR PosEnd , int MeshIndex = -1 ) ;									// ü‚Æƒ‚ƒfƒ‹‚Ì“–‚½‚è”»’è( –ß‚è’l‚ª MV1_COLL_RESULT_POLY_DIM )
-extern	MV1_COLL_RESULT_POLY_DIM	NS_MV1CollCheck_Sphere(			int MHandle, int FrameIndex, VECTOR CenterPos, float r , int MeshIndex = -1 ) ;											// ‹…‚Æƒ‚ƒfƒ‹‚Ì“–‚½‚è”»’è
-extern	MV1_COLL_RESULT_POLY_DIM	NS_MV1CollCheck_Capsule(			int MHandle, int FrameIndex, VECTOR Pos1, VECTOR Pos2, float r , int MeshIndex = -1 ) ;									// ƒJƒvƒZƒ‹‚Æƒ‚ƒfƒ‹‚Ì“–‚½‚è”»’è
-extern	MV1_COLL_RESULT_POLY_DIM	NS_MV1CollCheck_Triangle(			int MHandle, int FrameIndex, VECTOR Pos1, VECTOR Pos2, VECTOR Pos3 , int MeshIndex = -1 ) ;								// OŠpŒ`‚Æƒ‚ƒfƒ‹‚Ì“–‚½‚è”»’è
-extern	MV1_COLL_RESULT_POLY		NS_MV1CollCheck_GetResultPoly(		MV1_COLL_RESULT_POLY_DIM ResultPolyDim, int PolyNo ) ;																	// ƒRƒŠƒWƒ‡ƒ“Œ‹‰Êƒ|ƒŠƒSƒ“”z—ñ‚©‚çw’è”Ô†‚Ìƒ|ƒŠƒSƒ“î•ñ‚ğæ“¾‚·‚é
-extern	int							NS_MV1CollResultPolyDimTerminate(	MV1_COLL_RESULT_POLY_DIM ResultPolyDim ) ;																				// ƒRƒŠƒWƒ‡ƒ“Œ‹‰Êƒ|ƒŠƒSƒ“”z—ñ‚ÌŒãn––‚ğ‚·‚é
+// ãƒ†ã‚¯ã‚¹ãƒãƒ£é–¢ä¿‚
+extern	int			NS_MV1GetTextureNum( int MHandle ) ;													// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®æ•°ã‚’å–å¾—
+extern	const TCHAR *NS_MV1GetTextureName( int MHandle, int TexIndex ) ;										// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®åå‰ã‚’å–å¾—
+extern	int			NS_MV1SetTextureColorFilePath( int MHandle, int TexIndex, const TCHAR *FilePath ) ;		// ã‚«ãƒ©ãƒ¼ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹ã‚’å¤‰æ›´ã™ã‚‹
+extern	int			NS_MV1SetTextureColorFilePathWithStrLen(	int MHandle, int TexIndex, const TCHAR *FilePath, size_t FilePathLength ) ;	// ã‚«ãƒ©ãƒ¼ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹ã‚’å¤‰æ›´ã™ã‚‹
+extern	const TCHAR *NS_MV1GetTextureColorFilePath(			int MHandle, int TexIndex ) ;									// ã‚«ãƒ©ãƒ¼ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹ã‚’å–å¾—
+extern	int			NS_MV1SetTextureAlphaFilePath(				int MHandle, int TexIndex, const TCHAR *FilePath                        ) ;	// ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹ã‚’å¤‰æ›´ã™ã‚‹
+extern	int			NS_MV1SetTextureAlphaFilePathWithStrLen(	int MHandle, int TexIndex, const TCHAR *FilePath, size_t FilePathLength ) ;	// ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹ã‚’å¤‰æ›´ã™ã‚‹
+extern	const TCHAR *NS_MV1GetTextureAlphaFilePath( int MHandle, int TexIndex ) ;							// ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹ã‚’å–å¾—
+extern	int			NS_MV1SetTextureGraphHandle( int MHandle, int TexIndex, int GrHandle, int SemiTransFlag ) ;	// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã§ä½¿ç”¨ã™ã‚‹ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã‚’å¤‰æ›´ã™ã‚‹( GrHandle ã‚’ -1 ã«ã™ã‚‹ã¨è§£é™¤ )
+extern	int			NS_MV1GetTextureGraphHandle( int MHandle, int TexIndex ) ;										// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã‚’å–å¾—ã™ã‚‹
+extern	int			NS_MV1SetTextureAddressMode( int MHandle, int TexIndex, int AddrUMode, int AddrVMode ) ;	// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ãƒ¢ãƒ¼ãƒ‰ã‚’è¨­å®šã™ã‚‹( AddrUMode ã¯ DX_TEXADDRESS_WRAP ç­‰ )
+extern	int			NS_MV1GetTextureAddressModeU( int MHandle, int TexIndex ) ;								// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ï¼µå€¤ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ãƒ¢ãƒ¼ãƒ‰ã‚’å–å¾—ã™ã‚‹( æˆ»ã‚Šå€¤:DX_TEXADDRESS_WRAP ç­‰ )
+extern	int			NS_MV1GetTextureAddressModeV( int MHandle, int TexIndex ) ;								// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ï¼¶å€¤ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ãƒ¢ãƒ¼ãƒ‰ã‚’å–å¾—ã™ã‚‹( æˆ»ã‚Šå€¤:DX_TEXADDRESS_WRAP ç­‰ )
+extern	int			NS_MV1GetTextureWidth( int MHandle, int TexIndex ) ;									// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®å¹…ã‚’å–å¾—ã™ã‚‹
+extern	int			NS_MV1GetTextureHeight( int MHandle, int TexIndex ) ;									// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®é«˜ã•ã‚’å–å¾—ã™ã‚‹
+extern	int			NS_MV1GetTextureSemiTransState( int MHandle, int TexIndex ) ;							// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã«åŠé€æ˜è¦ç´ ãŒã‚ã‚‹ã‹ã©ã†ã‹ã‚’å–å¾—ã™ã‚‹( æˆ»ã‚Šå€¤  TRUE:ã‚ã‚‹  FALSE:ãªã„ )
+extern	int			NS_MV1SetTextureBumpImageFlag( int MHandle, int TexIndex, int Flag ) ;					// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã§ä½¿ç”¨ã—ã¦ã„ã‚‹ç”»åƒãŒãƒãƒ³ãƒ—ãƒãƒƒãƒ—ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹
+extern	int			NS_MV1GetTextureBumpImageFlag( int MHandle, int TexIndex ) ;							// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãŒãƒãƒ³ãƒ—ãƒãƒƒãƒ—ã‹ã©ã†ã‹ã‚’å–å¾—ã™ã‚‹( æˆ»ã‚Šå€¤  TRUE:ãƒãƒ³ãƒ—ãƒãƒƒãƒ—  FALSE:é•ã† )
+extern	int			NS_MV1SetTextureBumpImageNextPixelLength( int MHandle, int TexIndex, float Length ) ;	// ãƒãƒ³ãƒ—ãƒãƒƒãƒ—ç”»åƒã®å ´åˆã®éš£ã®ãƒ”ã‚¯ã‚»ãƒ«ã¨ã®è·é›¢ã‚’è¨­å®šã™ã‚‹
+extern	float		NS_MV1GetTextureBumpImageNextPixelLength( int MHandle, int TexIndex ) ;					// ãƒãƒ³ãƒ—ãƒãƒƒãƒ—ç”»åƒã®å ´åˆã®éš£ã®ãƒ”ã‚¯ã‚»ãƒ«ã¨ã®è·é›¢ã‚’å–å¾—ã™ã‚‹
+extern	int			NS_MV1SetTextureSampleFilterMode( int MHandle, int TexIndex, int FilterMode ) ;			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ãƒ•ã‚£ãƒ«ã‚¿ãƒªãƒ³ã‚°ãƒ¢ãƒ¼ãƒ‰ã‚’è¨­å®šã™ã‚‹
+extern	int			NS_MV1GetTextureSampleFilterMode( int MHandle, int TexIndex ) ;							// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ãƒ•ã‚£ãƒ«ã‚¿ãƒªãƒ³ã‚°ãƒ¢ãƒ¼ãƒ‰ã‚’å–å¾—ã™ã‚‹( æˆ»ã‚Šå€¤  DX_DRAWMODE_BILINEARç­‰ )
+extern	int			NS_MV1AddTexture(						int MHandle, const TCHAR *Name, const TCHAR *ColorFilePath, const TCHAR *AlphaFilePath DEFAULTPARAM( = NULL ) , void *ColorFileImage DEFAULTPARAM( = NULL ) , void *AlphaFileImage DEFAULTPARAM( = NULL ) , int AddressModeU DEFAULTPARAM( = DX_TEXADDRESS_WRAP ) , int AddressModeV DEFAULTPARAM( = DX_TEXADDRESS_WRAP ) , int FilterMode DEFAULTPARAM( = DX_DRAWMODE_ANISOTROPIC ) , int BumpImageFlag DEFAULTPARAM( = FALSE ) , float BumpImageNextPixelLength DEFAULTPARAM( = 0.1f ) , int ReverseFlag DEFAULTPARAM( = FALSE ) , int Bmp32AllZeroAlphaToXRGB8Flag DEFAULTPARAM( = FALSE ) ) ;	// ãƒ¢ãƒ‡ãƒ«ã§ä½¿ç”¨ã™ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’è¿½åŠ ã™ã‚‹
+extern	int			NS_MV1AddTextureWithStrLen(				int MHandle, const TCHAR *Name, size_t NameLength, const TCHAR *ColorFilePath, size_t ColorFilePathLength, const TCHAR *AlphaFilePath DEFAULTPARAM( = NULL ) , size_t AlphaFilePathLength DEFAULTPARAM( = 0 ) , void *ColorFileImage DEFAULTPARAM( = NULL ) , void *AlphaFileImage DEFAULTPARAM( = NULL ) , int AddressModeU DEFAULTPARAM( = DX_TEXADDRESS_WRAP ) , int AddressModeV DEFAULTPARAM( = DX_TEXADDRESS_WRAP ) , int FilterMode DEFAULTPARAM( = DX_DRAWMODE_ANISOTROPIC ) , int BumpImageFlag DEFAULTPARAM( = FALSE ) , float BumpImageNextPixelLength DEFAULTPARAM( = 0.1f ) , int ReverseFlag DEFAULTPARAM( = FALSE ) , int Bmp32AllZeroAlphaToXRGB8Flag DEFAULTPARAM( = FALSE ) ) ;	// ãƒ¢ãƒ‡ãƒ«ã§ä½¿ç”¨ã™ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’è¿½åŠ ã™ã‚‹
+extern	int			NS_MV1AddTextureGraphHandle(				int MHandle, const TCHAR *Name,                    int GrHandle, int SemiTransFlag,                                                                                                                                                                                                                     int AddressModeU DEFAULTPARAM( = DX_TEXADDRESS_WRAP ) , int AddressModeV DEFAULTPARAM( = DX_TEXADDRESS_WRAP ) , int FilterMode DEFAULTPARAM( = DX_DRAWMODE_ANISOTROPIC ) ) ;																																																			// ãƒ¢ãƒ‡ãƒ«ã§ä½¿ç”¨ã™ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’è¿½åŠ ã™ã‚‹( ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã‚’ãƒ†ã‚¯ã‚¹ãƒãƒ£ã¨ã—ã¦è¿½åŠ  )
+extern	int			NS_MV1LoadTexture( const TCHAR *FilePath ) ;													// ï¼“ï¼¤ãƒ¢ãƒ‡ãƒ«ã«è²¼ã‚Šä»˜ã‘ã‚‹ã®ã«å‘ã„ãŸç”»åƒã®èª­ã¿è¾¼ã¿æ–¹å¼ã§ç”»åƒã‚’èª­ã¿è¾¼ã‚€( æˆ»ã‚Šå€¤  -1:ã‚¨ãƒ©ãƒ¼  0ä»¥ä¸Š:ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ« )
+extern	int			NS_MV1LoadTextureWithStrLen(				const TCHAR *FilePath, size_t FilePathLength ) ;				// ï¼“ï¼¤ãƒ¢ãƒ‡ãƒ«ã«è²¼ã‚Šä»˜ã‘ã‚‹ã®ã«å‘ã„ãŸç”»åƒã®èª­ã¿è¾¼ã¿æ–¹å¼ã§ç”»åƒã‚’èª­ã¿è¾¼ã‚€( æˆ»ã‚Šå€¤  -1:ã‚¨ãƒ©ãƒ¼  0ä»¥ä¸Š:ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ« )
 
-// QÆ—pƒƒbƒVƒ…ŠÖŒW
-extern	int					NS_MV1SetupReferenceMesh(		int MHandle, int FrameIndex, int IsTransform, int IsPositionOnly = FALSE , int MeshIndex = -1 ) ;						// QÆ—pƒƒbƒVƒ…‚ÌƒZƒbƒgƒAƒbƒv
-extern	int					NS_MV1TerminateReferenceMesh(	int MHandle, int FrameIndex, int IsTransform, int IsPositionOnly = FALSE , int MeshIndex = -1 ) ;						// QÆ—pƒƒbƒVƒ…‚ÌŒãn––
-extern	int					NS_MV1RefreshReferenceMesh(	int MHandle, int FrameIndex, int IsTransform, int IsPositionOnly = FALSE , int MeshIndex = -1 ) ;						// QÆ—pƒƒbƒVƒ…‚ÌXV
-extern	MV1_REF_POLYGONLIST	NS_MV1GetReferenceMesh(		int MHandle, int FrameIndex, int IsTransform, int IsPositionOnly = FALSE , int MeshIndex = -1 ) ;						// QÆ—pƒƒbƒVƒ…‚ğæ“¾‚·‚é
+
+// ãƒ•ãƒ¬ãƒ¼ãƒ é–¢ä¿‚
+extern	int			NS_MV1GetFrameNum( int MHandle ) ;														// ãƒ•ãƒ¬ãƒ¼ãƒ ã®æ•°ã‚’å–å¾—ã™ã‚‹
+extern	int			NS_MV1SearchFrame( int MHandle, const TCHAR *FrameName ) ;								// ãƒ•ãƒ¬ãƒ¼ãƒ ã®åå‰ã‹ã‚‰ãƒ¢ãƒ‡ãƒ«ä¸­ã®ãƒ•ãƒ¬ãƒ¼ãƒ ã®ãƒ•ãƒ¬ãƒ¼ãƒ ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’å–å¾—ã™ã‚‹( ç„¡ã‹ã£ãŸå ´åˆã¯æˆ»ã‚Šå€¤ãŒ-1 )
+extern	int			NS_MV1SearchFrameWithStrLen(			int MHandle, const TCHAR *FrameName, size_t FrameNameLength ) ;			// ãƒ•ãƒ¬ãƒ¼ãƒ ã®åå‰ã‹ã‚‰ãƒ¢ãƒ‡ãƒ«ä¸­ã®ãƒ•ãƒ¬ãƒ¼ãƒ ã®ãƒ•ãƒ¬ãƒ¼ãƒ ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’å–å¾—ã™ã‚‹( ç„¡ã‹ã£ãŸå ´åˆã¯æˆ»ã‚Šå€¤ãŒ-1 )
+extern	int			NS_MV1SearchFrameChild(				int MHandle, int FrameIndex = -1 , const TCHAR *ChildName = NULL                              ) ;	// ãƒ•ãƒ¬ãƒ¼ãƒ ã®åå‰ã‹ã‚‰æŒ‡å®šã®ãƒ•ãƒ¬ãƒ¼ãƒ ã®å­ãƒ•ãƒ¬ãƒ¼ãƒ ã®ãƒ•ãƒ¬ãƒ¼ãƒ ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’å–å¾—ã™ã‚‹( åå‰æŒ‡å®šç‰ˆ )( FrameIndex ã‚’ -1 ã«ã™ã‚‹ã¨è¦ªã‚’æŒãŸãªã„ãƒ•ãƒ¬ãƒ¼ãƒ ã‚’ ChildIndex ã§æŒ‡å®šã™ã‚‹ )( ç„¡ã‹ã£ãŸå ´åˆã¯æˆ»ã‚Šå€¤ãŒ-1 )
+extern	int			NS_MV1SearchFrameChildWithStrLen(		int MHandle, int FrameIndex = -1 , const TCHAR *ChildName = NULL , size_t ChildNameLength = 0 ) ;	// ãƒ•ãƒ¬ãƒ¼ãƒ ã®åå‰ã‹ã‚‰æŒ‡å®šã®ãƒ•ãƒ¬ãƒ¼ãƒ ã®å­ãƒ•ãƒ¬ãƒ¼ãƒ ã®ãƒ•ãƒ¬ãƒ¼ãƒ ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’å–å¾—ã™ã‚‹( åå‰æŒ‡å®šç‰ˆ )( FrameIndex ã‚’ -1 ã«ã™ã‚‹ã¨è¦ªã‚’æŒãŸãªã„ãƒ•ãƒ¬ãƒ¼ãƒ ã‚’ ChildIndex ã§æŒ‡å®šã™ã‚‹ )( ç„¡ã‹ã£ãŸå ´åˆã¯æˆ»ã‚Šå€¤ãŒ-1 )
+extern	const TCHAR *NS_MV1GetFrameName( int MHandle, int FrameIndex ) ;										// æŒ‡å®šã®ãƒ•ãƒ¬ãƒ¼ãƒ ã®åå‰ã‚’å–å¾—ã™ã‚‹( ã‚¨ãƒ©ãƒ¼ã®å ´åˆã¯æˆ»ã‚Šå€¤ãŒ NULL )
+extern	int			NS_MV1GetFrameName2( int MHandle, int FrameIndex, TCHAR *StrBuffer ) ;						// æŒ‡å®šã®ãƒ•ãƒ¬ãƒ¼ãƒ ã®åå‰ã‚’å–å¾—ã™ã‚‹( æˆ»ã‚Šå€¤   -1:ã‚¨ãƒ©ãƒ¼  -1ä»¥å¤–:æ–‡å­—åˆ—ã®ã‚µã‚¤ã‚º )
+extern	int			NS_MV1GetFrameParent( int MHandle, int FrameIndex ) ;									// æŒ‡å®šã®ãƒ•ãƒ¬ãƒ¼ãƒ ã®è¦ªãƒ•ãƒ¬ãƒ¼ãƒ ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’å¾—ã‚‹( è¦ªãŒã„ãªã„å ´åˆã¯ -2 ãŒè¿”ã‚‹ )
+extern	int			NS_MV1GetFrameChildNum( int MHandle, int FrameIndex = -1 ) ;							// æŒ‡å®šã®ãƒ•ãƒ¬ãƒ¼ãƒ ã®å­ãƒ•ãƒ¬ãƒ¼ãƒ ã®æ•°ã‚’å–å¾—ã™ã‚‹( FrameIndex ã‚’ -1 ã«ã™ã‚‹ã¨è¦ªã‚’æŒãŸãªã„ãƒ•ãƒ¬ãƒ¼ãƒ ã®æ•°ãŒè¿”ã£ã¦ãã‚‹ )
+extern	int			NS_MV1GetFrameChild( int MHandle, int FrameIndex = -1, int ChildIndex = 0 ) ;			// æŒ‡å®šã®ãƒ•ãƒ¬ãƒ¼ãƒ ã®å­ãƒ•ãƒ¬ãƒ¼ãƒ ã®ãƒ•ãƒ¬ãƒ¼ãƒ ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’å–å¾—ã™ã‚‹( ç•ªå·æŒ‡å®šç‰ˆ )( FrameIndex ã‚’ -1 ã«ã™ã‚‹ã¨è¦ªã‚’æŒãŸãªã„ãƒ•ãƒ¬ãƒ¼ãƒ ã‚’ ChildIndex ã§æŒ‡å®šã™ã‚‹ )( ã‚¨ãƒ©ãƒ¼ã®å ´åˆã¯æˆ»ã‚Šå€¤ãŒ-1 )
+extern	VECTOR		NS_MV1GetFramePosition(				int MHandle, int FrameIndex ) ;											// æŒ‡å®šã®ãƒ•ãƒ¬ãƒ¼ãƒ ã®åº§æ¨™ã‚’å–å¾—ã™ã‚‹
+extern	VECTOR_D	NS_MV1GetFramePositionD(				int MHandle, int FrameIndex ) ;											// æŒ‡å®šã®ãƒ•ãƒ¬ãƒ¼ãƒ ã®åº§æ¨™ã‚’å–å¾—ã™ã‚‹
+extern	MATRIX		NS_MV1GetFrameBaseLocalMatrix(			int MHandle, int FrameIndex ) ;											// æŒ‡å®šã®ãƒ•ãƒ¬ãƒ¼ãƒ ã®åˆæœŸçŠ¶æ…‹ã§ã®åº§æ¨™å¤‰æ›è¡Œåˆ—ã‚’å–å¾—ã™ã‚‹
+extern	MATRIX_D	NS_MV1GetFrameBaseLocalMatrixD(		int MHandle, int FrameIndex ) ;											// æŒ‡å®šã®ãƒ•ãƒ¬ãƒ¼ãƒ ã®åˆæœŸçŠ¶æ…‹ã§ã®åº§æ¨™å¤‰æ›è¡Œåˆ—ã‚’å–å¾—ã™ã‚‹
+extern	MATRIX		NS_MV1GetFrameLocalMatrix(				int MHandle, int FrameIndex ) ;											// æŒ‡å®šã®ãƒ•ãƒ¬ãƒ¼ãƒ ã®åº§æ¨™å¤‰æ›è¡Œåˆ—ã‚’å–å¾—ã™ã‚‹
+extern	MATRIX_D	NS_MV1GetFrameLocalMatrixD(			int MHandle, int FrameIndex ) ;											// æŒ‡å®šã®ãƒ•ãƒ¬ãƒ¼ãƒ ã®åº§æ¨™å¤‰æ›è¡Œåˆ—ã‚’å–å¾—ã™ã‚‹
+extern	MATRIX		NS_MV1GetFrameLocalWorldMatrix(		int MHandle, int FrameIndex ) ;											// æŒ‡å®šã®ãƒ•ãƒ¬ãƒ¼ãƒ ã®ãƒ­ãƒ¼ã‚«ãƒ«åº§æ¨™ã‹ã‚‰ãƒ¯ãƒ¼ãƒ«ãƒ‰åº§æ¨™ã«å¤‰æ›ã™ã‚‹è¡Œåˆ—ã‚’å¾—ã‚‹
+extern	MATRIX_D	NS_MV1GetFrameLocalWorldMatrixD(		int MHandle, int FrameIndex ) ;											// æŒ‡å®šã®ãƒ•ãƒ¬ãƒ¼ãƒ ã®ãƒ­ãƒ¼ã‚«ãƒ«åº§æ¨™ã‹ã‚‰ãƒ¯ãƒ¼ãƒ«ãƒ‰åº§æ¨™ã«å¤‰æ›ã™ã‚‹è¡Œåˆ—ã‚’å¾—ã‚‹
+extern	int			NS_MV1SetFrameUserLocalMatrix(			int MHandle, int FrameIndex, MATRIX   Matrix ) ;						// æŒ‡å®šã®ãƒ•ãƒ¬ãƒ¼ãƒ ã®åº§æ¨™å¤‰æ›è¡Œåˆ—ã‚’è¨­å®šã™ã‚‹
+extern	int			NS_MV1SetFrameUserLocalMatrixD(		int MHandle, int FrameIndex, MATRIX_D Matrix ) ;						// æŒ‡å®šã®ãƒ•ãƒ¬ãƒ¼ãƒ ã®åº§æ¨™å¤‰æ›è¡Œåˆ—ã‚’è¨­å®šã™ã‚‹
+extern	int			NS_MV1ResetFrameUserLocalMatrix(		int MHandle, int FrameIndex ) ;											// æŒ‡å®šã®ãƒ•ãƒ¬ãƒ¼ãƒ ã®åº§æ¨™å¤‰æ›è¡Œåˆ—ã‚’ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã«æˆ»ã™
+extern	int			NS_MV1SetFrameUserLocalWorldMatrix(	int MHandle, int FrameIndex, MATRIX   Matrix ) ;						// æŒ‡å®šã®ãƒ•ãƒ¬ãƒ¼ãƒ ã®åº§æ¨™å¤‰æ›è¡Œåˆ—( ãƒ­ãƒ¼ã‚«ãƒ«åº§æ¨™ã‹ã‚‰ãƒ¯ãƒ¼ãƒ«ãƒ‰åº§æ¨™ã«å¤‰æ›ã™ã‚‹è¡Œåˆ— )ã‚’è¨­å®šã™ã‚‹
+extern	int			NS_MV1SetFrameUserLocalWorldMatrixD(	int MHandle, int FrameIndex, MATRIX_D Matrix ) ;						// æŒ‡å®šã®ãƒ•ãƒ¬ãƒ¼ãƒ ã®åº§æ¨™å¤‰æ›è¡Œåˆ—( ãƒ­ãƒ¼ã‚«ãƒ«åº§æ¨™ã‹ã‚‰ãƒ¯ãƒ¼ãƒ«ãƒ‰åº§æ¨™ã«å¤‰æ›ã™ã‚‹è¡Œåˆ— )ã‚’è¨­å®šã™ã‚‹
+extern	int			NS_MV1ResetFrameUserLocalWorldMatrix(	int MHandle, int FrameIndex ) ;											// æŒ‡å®šã®ãƒ•ãƒ¬ãƒ¼ãƒ ã®åº§æ¨™å¤‰æ›è¡Œåˆ—( ãƒ­ãƒ¼ã‚«ãƒ«åº§æ¨™ã‹ã‚‰ãƒ¯ãƒ¼ãƒ«ãƒ‰åº§æ¨™ã«å¤‰æ›ã™ã‚‹è¡Œåˆ— )ã‚’ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã«æˆ»ã™
+extern	VECTOR		NS_MV1GetFrameMaxVertexLocalPosition(	int MHandle, int FrameIndex ) ;											// æŒ‡å®šã®ãƒ•ãƒ¬ãƒ¼ãƒ ãŒæŒã¤ãƒ¡ãƒƒã‚·ãƒ¥é ‚ç‚¹ã®ãƒ­ãƒ¼ã‚«ãƒ«åº§æ¨™ã§ã®æœ€å¤§å€¤ã‚’å¾—ã‚‹
+extern	VECTOR_D	NS_MV1GetFrameMaxVertexLocalPositionD(	int MHandle, int FrameIndex ) ;											// æŒ‡å®šã®ãƒ•ãƒ¬ãƒ¼ãƒ ãŒæŒã¤ãƒ¡ãƒƒã‚·ãƒ¥é ‚ç‚¹ã®ãƒ­ãƒ¼ã‚«ãƒ«åº§æ¨™ã§ã®æœ€å¤§å€¤ã‚’å¾—ã‚‹
+extern	VECTOR		NS_MV1GetFrameMinVertexLocalPosition(	int MHandle, int FrameIndex ) ;											// æŒ‡å®šã®ãƒ•ãƒ¬ãƒ¼ãƒ ãŒæŒã¤ãƒ¡ãƒƒã‚·ãƒ¥é ‚ç‚¹ã®ãƒ­ãƒ¼ã‚«ãƒ«åº§æ¨™ã§ã®æœ€å°å€¤ã‚’å¾—ã‚‹
+extern	VECTOR_D	NS_MV1GetFrameMinVertexLocalPositionD(	int MHandle, int FrameIndex ) ;											// æŒ‡å®šã®ãƒ•ãƒ¬ãƒ¼ãƒ ãŒæŒã¤ãƒ¡ãƒƒã‚·ãƒ¥é ‚ç‚¹ã®ãƒ­ãƒ¼ã‚«ãƒ«åº§æ¨™ã§ã®æœ€å°å€¤ã‚’å¾—ã‚‹
+extern	VECTOR		NS_MV1GetFrameAvgVertexLocalPosition(	int MHandle, int FrameIndex ) ;											// æŒ‡å®šã®ãƒ•ãƒ¬ãƒ¼ãƒ ãŒæŒã¤ãƒ¡ãƒƒã‚·ãƒ¥é ‚ç‚¹ã®ãƒ­ãƒ¼ã‚«ãƒ«åº§æ¨™ã§ã®å¹³å‡å€¤ã‚’å¾—ã‚‹
+extern	VECTOR_D	NS_MV1GetFrameAvgVertexLocalPositionD(	int MHandle, int FrameIndex ) ;											// æŒ‡å®šã®ãƒ•ãƒ¬ãƒ¼ãƒ ãŒæŒã¤ãƒ¡ãƒƒã‚·ãƒ¥é ‚ç‚¹ã®ãƒ­ãƒ¼ã‚«ãƒ«åº§æ¨™ã§ã®å¹³å‡å€¤ã‚’å¾—ã‚‹
+extern	int			NS_MV1GetFrameVertexNum(				int MHandle, int FrameIndex ) ;											// æŒ‡å®šã®ãƒ•ãƒ¬ãƒ¼ãƒ ã«å«ã¾ã‚Œã‚‹é ‚ç‚¹ã®æ•°ã‚’å–å¾—ã™ã‚‹
+extern	int			NS_MV1GetFrameTriangleNum( int MHandle, int FrameIndex ) ;								// æŒ‡å®šã®ãƒ•ãƒ¬ãƒ¼ãƒ ã«å«ã¾ã‚Œã‚‹ãƒãƒªã‚´ãƒ³ã®æ•°ã‚’å–å¾—ã™ã‚‹
+extern	int			NS_MV1GetFrameMeshNum( int MHandle, int FrameIndex ) ;									// æŒ‡å®šã®ãƒ•ãƒ¬ãƒ¼ãƒ ãŒæŒã¤ãƒ¡ãƒƒã‚·ãƒ¥ã®æ•°ã‚’å–å¾—ã™ã‚‹
+extern	int			NS_MV1GetFrameMesh( int MHandle, int FrameIndex, int Index ) ;							// æŒ‡å®šã®ãƒ•ãƒ¬ãƒ¼ãƒ ãŒæŒã¤ãƒ¡ãƒƒã‚·ãƒ¥ã®ãƒ¡ãƒƒã‚·ãƒ¥ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’å–å¾—ã™ã‚‹
+extern	int			NS_MV1SetFrameVisible( int MHandle, int FrameIndex, int VisibleFlag ) ;					// æŒ‡å®šã®ãƒ•ãƒ¬ãƒ¼ãƒ ã®è¡¨ç¤ºã€éè¡¨ç¤ºçŠ¶æ…‹ã‚’å¤‰æ›´ã™ã‚‹( TRUE:è¡¨ç¤º  FALSE:éè¡¨ç¤º )
+extern	int			NS_MV1GetFrameVisible( int MHandle, int FrameIndex ) ;									// æŒ‡å®šã®ãƒ•ãƒ¬ãƒ¼ãƒ ã®è¡¨ç¤ºã€éè¡¨ç¤ºçŠ¶æ…‹ã‚’å–å¾—ã™ã‚‹( TRUE:è¡¨ç¤º  FALSE:éè¡¨ç¤º )
+extern	int			NS_MV1SetFrameDifColorScale( int MHandle, int FrameIndex, COLOR_F Scale ) ;			// æŒ‡å®šã®ãƒ•ãƒ¬ãƒ¼ãƒ ã®ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚«ãƒ©ãƒ¼ã®ã‚¹ã‚±ãƒ¼ãƒ«å€¤ã‚’è¨­å®šã™ã‚‹( ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå€¤ã¯ 1.0f )
+extern	int			NS_MV1SetFrameSpcColorScale( int MHandle, int FrameIndex, COLOR_F Scale ) ;		// æŒ‡å®šã®ãƒ•ãƒ¬ãƒ¼ãƒ ã®ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã‚«ãƒ©ãƒ¼ã®ã‚¹ã‚±ãƒ¼ãƒ«å€¤ã‚’è¨­å®šã™ã‚‹( ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå€¤ã¯ 1.0f )
+extern	int			NS_MV1SetFrameEmiColorScale( int MHandle, int FrameIndex, COLOR_F Scale ) ;		// æŒ‡å®šã®ãƒ•ãƒ¬ãƒ¼ãƒ ã®ã‚¨ãƒŸãƒƒã‚·ãƒ–ã‚«ãƒ©ãƒ¼ã®ã‚¹ã‚±ãƒ¼ãƒ«å€¤ã‚’è¨­å®šã™ã‚‹( ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå€¤ã¯ 1.0f )
+extern	int			NS_MV1SetFrameAmbColorScale( int MHandle, int FrameIndex, COLOR_F Scale ) ;			// æŒ‡å®šã®ãƒ•ãƒ¬ãƒ¼ãƒ ã®ã‚¢ãƒ³ãƒ“ã‚¨ãƒ³ãƒˆã‚«ãƒ©ãƒ¼ã®ã‚¹ã‚±ãƒ¼ãƒ«å€¤ã‚’è¨­å®šã™ã‚‹( ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå€¤ã¯ 1.0f )
+extern	COLOR_F		NS_MV1GetFrameDifColorScale( int MHandle, int FrameIndex ) ;						// æŒ‡å®šã®ãƒ•ãƒ¬ãƒ¼ãƒ ã®ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚«ãƒ©ãƒ¼ã®ã‚¹ã‚±ãƒ¼ãƒ«å€¤ã‚’å–å¾—ã™ã‚‹( ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå€¤ã¯ 1.0f )
+extern	COLOR_F		NS_MV1GetFrameSpcColorScale( int MHandle, int FrameIndex ) ;						// æŒ‡å®šã®ãƒ•ãƒ¬ãƒ¼ãƒ ã®ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã‚«ãƒ©ãƒ¼ã®ã‚¹ã‚±ãƒ¼ãƒ«å€¤ã‚’å–å¾—ã™ã‚‹( ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå€¤ã¯ 1.0f )
+extern	COLOR_F		NS_MV1GetFrameEmiColorScale( int MHandle, int FrameIndex ) ;						// æŒ‡å®šã®ãƒ•ãƒ¬ãƒ¼ãƒ ã®ã‚¨ãƒŸãƒƒã‚·ãƒ–ã‚«ãƒ©ãƒ¼ã®ã‚¹ã‚±ãƒ¼ãƒ«å€¤ã‚’å–å¾—ã™ã‚‹( ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå€¤ã¯ 1.0f )
+extern	COLOR_F		NS_MV1GetFrameAmbColorScale( int MHandle, int FrameIndex ) ;						// æŒ‡å®šã®ãƒ•ãƒ¬ãƒ¼ãƒ ã®ã‚¢ãƒ³ãƒ“ã‚¨ãƒ³ãƒˆã‚«ãƒ©ãƒ¼ã®ã‚¹ã‚±ãƒ¼ãƒ«å€¤ã‚’å–å¾—ã™ã‚‹( ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå€¤ã¯ 1.0f )
+extern	int			NS_MV1GetFrameSemiTransState( int MHandle, int FrameIndex ) ;							// æŒ‡å®šã®ãƒ•ãƒ¬ãƒ¼ãƒ ã«åŠé€æ˜è¦ç´ ãŒã‚ã‚‹ã‹ã©ã†ã‹ã‚’å–å¾—ã™ã‚‹( æˆ»ã‚Šå€¤ TRUE:ã‚ã‚‹  FALSE:ãªã„ )
+extern	int			NS_MV1SetFrameOpacityRate( int MHandle, int FrameIndex, float Rate ) ;					// æŒ‡å®šã®ãƒ•ãƒ¬ãƒ¼ãƒ ã®ä¸é€æ˜åº¦ã‚’è¨­å®šã™ã‚‹( ä¸é€æ˜ 1.0f ï½ é€æ˜ 0.0f )
+extern	float		NS_MV1GetFrameOpacityRate( int MHandle, int FrameIndex ) ;								// æŒ‡å®šã®ãƒ•ãƒ¬ãƒ¼ãƒ ã®ä¸é€æ˜åº¦ã‚’å–å¾—ã™ã‚‹( ä¸é€æ˜ 1.0f ï½ é€æ˜ 0.0f )
+extern	int			NS_MV1SetFrameBaseVisible( int MHandle, int FrameIndex, int VisibleFlag ) ;				// æŒ‡å®šã®ãƒ•ãƒ¬ãƒ¼ãƒ ã®åˆæœŸè¡¨ç¤ºçŠ¶æ…‹ã‚’è¨­å®šã™ã‚‹( TRUE:è¡¨ç¤º  FALSE:éè¡¨ç¤º )
+extern	int			NS_MV1GetFrameBaseVisible( int MHandle, int FrameIndex ) ;								// æŒ‡å®šã®ãƒ•ãƒ¬ãƒ¼ãƒ ã®åˆæœŸè¡¨ç¤ºçŠ¶æ…‹ã‚’å–å¾—ã™ã‚‹( TRUE:è¡¨ç¤º  FALSE:éè¡¨ç¤º )
+extern	int			NS_MV1SetFrameTextureAddressTransform( int MHandle, int FrameIndex, float TransU, float TransV, float ScaleU, float ScaleV, float RotCenterU, float RotCenterV, float Rotate ) ;	// æŒ‡å®šã®ãƒ•ãƒ¬ãƒ¼ãƒ ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£åº§æ¨™å¤‰æ›ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’è¨­å®šã™ã‚‹
+extern	int			NS_MV1SetFrameTextureAddressTransformMatrix( int MHandle, int FrameIndex, MATRIX Matrix ) ;			// æŒ‡å®šã®ãƒ•ãƒ¬ãƒ¼ãƒ ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£åº§æ¨™å¤‰æ›è¡Œåˆ—ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
+extern	int			NS_MV1ResetFrameTextureAddressTransform( int MHandle, int FrameIndex ) ;							// æŒ‡å®šã®ãƒ•ãƒ¬ãƒ¼ãƒ ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£åº§æ¨™å¤‰æ›ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ãƒªã‚»ãƒƒãƒˆã™ã‚‹
+
+// ãƒ¡ãƒƒã‚·ãƒ¥é–¢ä¿‚
+extern	int			NS_MV1GetMeshNum( int MHandle ) ;														// ãƒ¢ãƒ‡ãƒ«ã«å«ã¾ã‚Œã‚‹ãƒ¡ãƒƒã‚·ãƒ¥ã®æ•°ã‚’å–å¾—ã™ã‚‹
+extern	int			NS_MV1GetMeshMaterial( int MHandle, int MeshIndex ) ;									// æŒ‡å®šãƒ¡ãƒƒã‚·ãƒ¥ãŒä½¿ç”¨ã—ã¦ã„ã‚‹ãƒãƒ†ãƒªã‚¢ãƒ«ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’å–å¾—ã™ã‚‹
+extern	int			NS_MV1GetMeshVertexNum( int MHandle, int MeshIndex ) ;									// æŒ‡å®šãƒ¡ãƒƒã‚·ãƒ¥ã«å«ã¾ã‚Œã‚‹é ‚ç‚¹ã®æ•°ã‚’å–å¾—ã™ã‚‹
+extern	int			NS_MV1GetMeshTriangleNum( int MHandle, int MeshIndex ) ;								// æŒ‡å®šãƒ¡ãƒƒã‚·ãƒ¥ã«å«ã¾ã‚Œã‚‹ä¸‰è§’å½¢ãƒãƒªã‚´ãƒ³ã®æ•°ã‚’å–å¾—ã™ã‚‹
+extern	int			NS_MV1SetMeshVisible( int MHandle, int MeshIndex, int VisibleFlag ) ;					// æŒ‡å®šãƒ¡ãƒƒã‚·ãƒ¥ã®è¡¨ç¤ºã€éè¡¨ç¤ºçŠ¶æ…‹ã‚’å¤‰æ›´ã™ã‚‹( TRUE:è¡¨ç¤º  FALSE:éè¡¨ç¤º )
+extern	int			NS_MV1GetMeshVisible( int MHandle, int MeshIndex ) ;									// æŒ‡å®šãƒ¡ãƒƒã‚·ãƒ¥ã®è¡¨ç¤ºã€éè¡¨ç¤ºçŠ¶æ…‹ã‚’å–å¾—ã™ã‚‹( TRUE:è¡¨ç¤º  FALSE:éè¡¨ç¤º )
+extern	int			NS_MV1SetMeshDifColorScale( int MHandle, int MeshIndex, COLOR_F Scale ) ;			// æŒ‡å®šã®ãƒ¡ãƒƒã‚·ãƒ¥ã®ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚«ãƒ©ãƒ¼ã®ã‚¹ã‚±ãƒ¼ãƒ«å€¤ã‚’è¨­å®šã™ã‚‹( ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå€¤ã¯ 1.0f )
+extern	int			NS_MV1SetMeshSpcColorScale( int MHandle, int MeshIndex, COLOR_F Scale ) ;			// æŒ‡å®šã®ãƒ¡ãƒƒã‚·ãƒ¥ã®ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã‚«ãƒ©ãƒ¼ã®ã‚¹ã‚±ãƒ¼ãƒ«å€¤ã‚’è¨­å®šã™ã‚‹( ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå€¤ã¯ 1.0f )
+extern	int			NS_MV1SetMeshEmiColorScale( int MHandle, int MeshIndex, COLOR_F Scale ) ;			// æŒ‡å®šã®ãƒ¡ãƒƒã‚·ãƒ¥ã®ã‚¨ãƒŸãƒƒã‚·ãƒ–ã‚«ãƒ©ãƒ¼ã®ã‚¹ã‚±ãƒ¼ãƒ«å€¤ã‚’è¨­å®šã™ã‚‹( ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå€¤ã¯ 1.0f )
+extern	int			NS_MV1SetMeshAmbColorScale( int MHandle, int MeshIndex, COLOR_F Scale ) ;			// æŒ‡å®šã®ãƒ¡ãƒƒã‚·ãƒ¥ã®ã‚¢ãƒ³ãƒ“ã‚¨ãƒ³ãƒˆã‚«ãƒ©ãƒ¼ã®ã‚¹ã‚±ãƒ¼ãƒ«å€¤ã‚’è¨­å®šã™ã‚‹( ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå€¤ã¯ 1.0f )
+extern	COLOR_F		NS_MV1GetMeshDifColorScale( int MHandle, int MeshIndex ) ;							// æŒ‡å®šã®ãƒ¡ãƒƒã‚·ãƒ¥ã®ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚«ãƒ©ãƒ¼ã®ã‚¹ã‚±ãƒ¼ãƒ«å€¤ã‚’å–å¾—ã™ã‚‹( ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå€¤ã¯ 1.0f )
+extern	COLOR_F		NS_MV1GetMeshSpcColorScale( int MHandle, int MeshIndex ) ;							// æŒ‡å®šã®ãƒ¡ãƒƒã‚·ãƒ¥ã®ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã‚«ãƒ©ãƒ¼ã®ã‚¹ã‚±ãƒ¼ãƒ«å€¤ã‚’å–å¾—ã™ã‚‹( ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå€¤ã¯ 1.0f )
+extern	COLOR_F		NS_MV1GetMeshEmiColorScale( int MHandle, int MeshIndex ) ;							// æŒ‡å®šã®ãƒ¡ãƒƒã‚·ãƒ¥ã®ã‚¨ãƒŸãƒƒã‚·ãƒ–ã‚«ãƒ©ãƒ¼ã®ã‚¹ã‚±ãƒ¼ãƒ«å€¤ã‚’å–å¾—ã™ã‚‹( ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå€¤ã¯ 1.0f )
+extern	COLOR_F		NS_MV1GetMeshAmbColorScale( int MHandle, int MeshIndex ) ;							// æŒ‡å®šã®ãƒ¡ãƒƒã‚·ãƒ¥ã®ã‚¢ãƒ³ãƒ“ã‚¨ãƒ³ãƒˆã‚«ãƒ©ãƒ¼ã®ã‚¹ã‚±ãƒ¼ãƒ«å€¤ã‚’å–å¾—ã™ã‚‹( ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå€¤ã¯ 1.0f )
+extern	int			NS_MV1SetMeshOpacityRate( int MHandle, int MeshIndex, float Rate ) ;					// æŒ‡å®šã®ãƒ¡ãƒƒã‚·ãƒ¥ã®ä¸é€æ˜åº¦ã‚’è¨­å®šã™ã‚‹( ä¸é€æ˜ 1.0f ï½ é€æ˜ 0.0f )
+extern	float		NS_MV1GetMeshOpacityRate( int MHandle, int MeshIndex ) ;								// æŒ‡å®šã®ãƒ¡ãƒƒã‚·ãƒ¥ã®ä¸é€æ˜åº¦ã‚’å–å¾—ã™ã‚‹( ä¸é€æ˜ 1.0f ï½ é€æ˜ 0.0f )
+extern	int			NS_MV1SetMeshDrawBlendMode( int MHandle, int MeshIndex, int BlendMode ) ;				// æŒ‡å®šã®ãƒ¡ãƒƒã‚·ãƒ¥ã®æç”»ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã‚’è¨­å®šã™ã‚‹( DX_BLENDMODE_ALPHA ç­‰ )
+extern	int			NS_MV1SetMeshDrawBlendParam( int MHandle, int MeshIndex, int BlendParam ) ;				// æŒ‡å®šã®ãƒ¡ãƒƒã‚·ãƒ¥ã®æç”»ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’è¨­å®šã™ã‚‹
+extern	int			NS_MV1GetMeshDrawBlendMode( int MHandle, int MeshIndex ) ;								// æŒ‡å®šã®ãƒ¡ãƒƒã‚·ãƒ¥ã®æç”»ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã‚’å–å¾—ã™ã‚‹( DX_BLENDMODE_ALPHA ç­‰ )
+extern	int			NS_MV1GetMeshDrawBlendParam( int MHandle, int MeshIndex ) ;								// æŒ‡å®šã®ãƒ¡ãƒƒã‚·ãƒ¥ã®æç”»ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’è¨­å®šã™ã‚‹
+extern	int			NS_MV1SetMeshBaseVisible( int MHandle, int MeshIndex, int VisibleFlag ) ;				// æŒ‡å®šã®ãƒ¡ãƒƒã‚·ãƒ¥ã®åˆæœŸè¡¨ç¤ºçŠ¶æ…‹ã‚’è¨­å®šã™ã‚‹( TRUE:è¡¨ç¤º  FALSE:éè¡¨ç¤º )
+extern	int			NS_MV1GetMeshBaseVisible( int MHandle, int MeshIndex ) ;								// æŒ‡å®šã®ãƒ¡ãƒƒã‚·ãƒ¥ã®åˆæœŸè¡¨ç¤ºçŠ¶æ…‹ã‚’å–å¾—ã™ã‚‹( TRUE:è¡¨ç¤º  FALSE:éè¡¨ç¤º )
+extern	int			NS_MV1SetMeshBackCulling( int MHandle, int MeshIndex, int CullingFlag ) ;				// æŒ‡å®šã®ãƒ¡ãƒƒã‚·ãƒ¥ã®ãƒãƒƒã‚¯ã‚«ãƒªãƒ³ã‚°ã‚’è¡Œã†ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹( DX_CULLING_LEFT ç­‰ )
+extern	int			NS_MV1GetMeshBackCulling( int MHandle, int MeshIndex ) ;								// æŒ‡å®šã®ãƒ¡ãƒƒã‚·ãƒ¥ã®ãƒãƒƒã‚¯ã‚«ãƒªãƒ³ã‚°ã‚’è¡Œã†ã‹ã©ã†ã‹ã‚’å–å¾—ã™ã‚‹( DX_CULLING_LEFT ç­‰ )
+extern	VECTOR		NS_MV1GetMeshMaxPosition( int MHandle, int MeshIndex ) ;								// æŒ‡å®šã®ãƒ¡ãƒƒã‚·ãƒ¥ã«å«ã¾ã‚Œã‚‹ãƒãƒªã‚´ãƒ³ã®æœ€å¤§ãƒ­ãƒ¼ã‚«ãƒ«åº§æ¨™ã‚’å–å¾—ã™ã‚‹
+extern	VECTOR		NS_MV1GetMeshMinPosition( int MHandle, int MeshIndex ) ;								// æŒ‡å®šã®ãƒ¡ãƒƒã‚·ãƒ¥ã«å«ã¾ã‚Œã‚‹ãƒãƒªã‚´ãƒ³ã®æœ€å°ãƒ­ãƒ¼ã‚«ãƒ«åº§æ¨™ã‚’å–å¾—ã™ã‚‹
+extern	int			NS_MV1GetMeshTListNum( int MHandle, int MeshIndex ) ;									// æŒ‡å®šã®ãƒ¡ãƒƒã‚·ãƒ¥ã«å«ã¾ã‚Œã‚‹ãƒˆãƒ©ã‚¤ã‚¢ãƒ³ã‚°ãƒ«ãƒªã‚¹ãƒˆã®æ•°ã‚’å–å¾—ã™ã‚‹
+extern	int			NS_MV1GetMeshTList( int MHandle, int MeshIndex, int Index ) ;							// æŒ‡å®šã®ãƒ¡ãƒƒã‚·ãƒ¥ã«å«ã¾ã‚Œã‚‹ãƒˆãƒ©ã‚¤ã‚¢ãƒ³ã‚°ãƒ«ãƒªã‚¹ãƒˆã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’å–å¾—ã™ã‚‹
+extern	int			NS_MV1GetMeshSemiTransState( int MHandle, int MeshIndex ) ;								// æŒ‡å®šã®ãƒ¡ãƒƒã‚·ãƒ¥ã«åŠé€æ˜è¦ç´ ãŒã‚ã‚‹ã‹ã©ã†ã‹ã‚’å–å¾—ã™ã‚‹( æˆ»ã‚Šå€¤ TRUE:ã‚ã‚‹  FALSE:ãªã„ )
+extern	int			NS_MV1SetMeshUseVertDifColor( int MHandle, int MeshIndex, int UseFlag ) ;				// æŒ‡å®šã®ãƒ¡ãƒƒã‚·ãƒ¥ã®é ‚ç‚¹ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚«ãƒ©ãƒ¼ã‚’ãƒãƒ†ãƒªã‚¢ãƒ«ã®ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚«ãƒ©ãƒ¼ã®ä»£ã‚ã‚Šã«ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹( TRUE:ãƒãƒ†ãƒªã‚¢ãƒ«ã‚«ãƒ©ãƒ¼ã®ä»£ã‚ã‚Šã«ä½¿ç”¨ã™ã‚‹  FALSE:ãƒãƒ†ãƒªã‚¢ãƒ«ã‚«ãƒ©ãƒ¼ã‚’ä½¿ç”¨ã™ã‚‹ )
+extern	int			NS_MV1SetMeshUseVertSpcColor( int MHandle, int MeshIndex, int UseFlag ) ;			// æŒ‡å®šã®ãƒ¡ãƒƒã‚·ãƒ¥ã®é ‚ç‚¹ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã‚«ãƒ©ãƒ¼ã‚’ãƒãƒ†ãƒªã‚¢ãƒ«ã®ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã‚«ãƒ©ãƒ¼ã®ä»£ã‚ã‚Šã«ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹( TRUE:ãƒãƒ†ãƒªã‚¢ãƒ«ã‚«ãƒ©ãƒ¼ã®ä»£ã‚ã‚Šã«ä½¿ç”¨ã™ã‚‹  FALSE:ãƒãƒ†ãƒªã‚¢ãƒ«ã‚«ãƒ©ãƒ¼ã‚’ä½¿ç”¨ã™ã‚‹ )
+extern	int			NS_MV1GetMeshUseVertDifColor( int MHandle, int MeshIndex ) ;						// æŒ‡å®šã®ãƒ¡ãƒƒã‚·ãƒ¥ã®é ‚ç‚¹ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚«ãƒ©ãƒ¼ã‚’ãƒãƒ†ãƒªã‚¢ãƒ«ã®ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚«ãƒ©ãƒ¼ã®ä»£ã‚ã‚Šã«ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã®è¨­å®šã‚’å–å¾—ã™ã‚‹( æˆ»ã‚Šå€¤  TRUE:ãƒãƒ†ãƒªã‚¢ãƒ«ã‚«ãƒ©ãƒ¼ã®ä»£ã‚ã‚Šã«ä½¿ç”¨ã™ã‚‹  FALSE:ãƒãƒ†ãƒªã‚¢ãƒ«ã‚«ãƒ©ãƒ¼ã‚’ä½¿ç”¨ã™ã‚‹ )
+extern	int			NS_MV1GetMeshUseVertSpcColor( int MHandle, int MeshIndex ) ;						// æŒ‡å®šã®ãƒ¡ãƒƒã‚·ãƒ¥ã®é ‚ç‚¹ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã‚«ãƒ©ãƒ¼ã‚’ãƒãƒ†ãƒªã‚¢ãƒ«ã®ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã‚«ãƒ©ãƒ¼ã®ä»£ã‚ã‚Šã«ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã®è¨­å®šã‚’å–å¾—ã™ã‚‹( æˆ»ã‚Šå€¤  TRUE:ãƒãƒ†ãƒªã‚¢ãƒ«ã‚«ãƒ©ãƒ¼ã®ä»£ã‚ã‚Šã«ä½¿ç”¨ã™ã‚‹  FALSE:ãƒãƒ†ãƒªã‚¢ãƒ«ã‚«ãƒ©ãƒ¼ã‚’ä½¿ç”¨ã™ã‚‹ )
+extern	int			NS_MV1GetMeshShapeFlag(	int MHandle, int MeshIndex ) ;											// æŒ‡å®šã®ãƒ¡ãƒƒã‚·ãƒ¥ãŒã‚·ã‚§ã‚¤ãƒ—ãƒ¡ãƒƒã‚·ãƒ¥ã‹ã©ã†ã‹ã‚’å–å¾—ã™ã‚‹
+
+// ã‚·ã‚§ã‚¤ãƒ—é–¢ä¿‚
+extern	int			NS_MV1GetShapeNum( int MHandle ) ;															// ãƒ¢ãƒ‡ãƒ«ã«å«ã¾ã‚Œã‚‹ã‚·ã‚§ã‚¤ãƒ—ã®æ•°ã‚’å–å¾—ã™ã‚‹
+extern	int			NS_MV1SearchShape( int MHandle, const TCHAR *ShapeName ) ;									// ã‚·ã‚§ã‚¤ãƒ—ã®åå‰ã‹ã‚‰ãƒ¢ãƒ‡ãƒ«ä¸­ã®ã‚·ã‚§ã‚¤ãƒ—ã®ã‚·ã‚§ã‚¤ãƒ—ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’å–å¾—ã™ã‚‹( ç„¡ã‹ã£ãŸå ´åˆã¯æˆ»ã‚Šå€¤ãŒ-1 )
+extern	int			NS_MV1SearchShapeWithStrLen(			int MHandle, const TCHAR *ShapeName, size_t ShapeNameLength ) ;			// ã‚·ã‚§ã‚¤ãƒ—ã®åå‰ã‹ã‚‰ãƒ¢ãƒ‡ãƒ«ä¸­ã®ã‚·ã‚§ã‚¤ãƒ—ã®ã‚·ã‚§ã‚¤ãƒ—ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’å–å¾—ã™ã‚‹( ç„¡ã‹ã£ãŸå ´åˆã¯æˆ»ã‚Šå€¤ãŒ-1 )
+extern	const TCHAR	*NS_MV1GetShapeName( int MHandle, int ShapeIndex ) ;											// æŒ‡å®šã‚·ã‚§ã‚¤ãƒ—ã®åå‰ã‚’å–å¾—ã™ã‚‹
+extern	int			NS_MV1GetShapeTargetMeshNum( int MHandle, int ShapeIndex ) ;											// æŒ‡å®šã‚·ã‚§ã‚¤ãƒ—ãŒå¯¾è±¡ã¨ã—ã¦ã„ã‚‹ãƒ¡ãƒƒã‚·ãƒ¥ã®æ•°ã‚’å–å¾—ã™ã‚‹
+extern	int			NS_MV1GetShapeTargetMesh( int MHandle, int ShapeIndex, int Index ) ;								// æŒ‡å®šã‚·ã‚§ã‚¤ãƒ—ãŒå¯¾è±¡ã¨ã—ã¦ã„ã‚‹ãƒ¡ãƒƒã‚·ãƒ¥ã®ãƒ¡ãƒƒã‚·ãƒ¥ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’å–å¾—ã™ã‚‹
+extern	int			NS_MV1SetShapeRate( int MHandle, int ShapeIndex, float Rate, int Type ) ;						// æŒ‡å®šã‚·ã‚§ã‚¤ãƒ—ã®æœ‰åŠ¹ç‡ã‚’è¨­å®šã™ã‚‹( Rate  0.0f:0% ï½ 1.0f:100% )
+extern	float		NS_MV1GetShapeRate( int MHandle, int ShapeIndex ) ;											// æŒ‡å®šã‚·ã‚§ã‚¤ãƒ—ã®æœ‰åŠ¹ç‡ã‚’å–å¾—ã™ã‚‹( æˆ»ã‚Šå€¤  0.0f:0% ï½ 1.0f:100% )
+extern	float		NS_MV1GetShapeApplyRate( int MHandle, int ShapeIndex ) ;											// æŒ‡å®šã‚·ã‚§ã‚¤ãƒ—ã®æœ‰åŠ¹ç‡ã‚’å–å¾—ã™ã‚‹( æˆ»ã‚Šå€¤  0.0f:0% ï½ 1.0f:100% )( MV1SetShapeRate ã§æŒ‡å®šã—ãŸå€¤ãŒãã®ã¾ã¾æˆ»ã‚Šå€¤ã¨ãªã‚‹ MV1GetShapeRate ã¨ç•°ãªã‚Šã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®ã‚·ã‚§ã‚¤ãƒ—æƒ…å ±ãªã©ã‚‚åŠ å‘³ã—ãŸå€¤ãŒæˆ»ã‚Šå€¤ã¨ãªã‚Šã¾ã™ )
+
+// ãƒˆãƒ©ã‚¤ã‚¢ãƒ³ã‚°ãƒ«ãƒªã‚¹ãƒˆé–¢ä¿‚
+extern	int			NS_MV1GetTriangleListNum( int MHandle ) ;												// ãƒˆãƒ©ã‚¤ã‚¢ãƒ³ã‚°ãƒ«ãƒªã‚¹ãƒˆã®æ•°ã‚’å–å¾—ã™ã‚‹
+extern	int			NS_MV1GetTriangleListVertexType( int MHandle, int TListIndex ) ;						// æŒ‡å®šã®ãƒˆãƒ©ã‚¤ã‚¢ãƒ³ã‚°ãƒ«ãƒªã‚¹ãƒˆã®é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ã‚¿ã‚¤ãƒ—ã‚’å–å¾—ã™ã‚‹( MV1_VERTEX_TYPE_NORMAL ç­‰ )
+extern	int			NS_MV1GetTriangleListPolygonNum( int MHandle, int TListIndex ) ;						// æŒ‡å®šã®ãƒˆãƒ©ã‚¤ã‚¢ãƒ³ã‚°ãƒ«ãƒªã‚¹ãƒˆã«å«ã¾ã‚Œã‚‹ãƒãƒªã‚´ãƒ³ã®æ•°ã‚’å–å¾—ã™ã‚‹
+extern	int			NS_MV1GetTriangleListVertexNum( int MHandle, int TListIndex ) ;							// æŒ‡å®šã®ãƒˆãƒ©ã‚¤ã‚¢ãƒ³ã‚°ãƒ«ãƒªã‚¹ãƒˆã«å«ã¾ã‚Œã‚‹é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ã®æ•°ã‚’å–å¾—ã™ã‚‹
+extern	int			NS_MV1GetTriangleListLocalWorldMatrixNum(	int MHandle, int TListIndex ) ;										// æŒ‡å®šã®ãƒˆãƒ©ã‚¤ã‚¢ãƒ³ã‚°ãƒ«ãƒªã‚¹ãƒˆãŒä½¿ç”¨ã™ã‚‹åº§æ¨™å¤‰æ›è¡Œåˆ—ã®æ•°ã‚’å–å¾—ã™ã‚‹
+extern	MATRIX		NS_MV1GetTriangleListLocalWorldMatrix(		int MHandle, int TListIndex, int LWMatrixIndex ) ;					// æŒ‡å®šã®ãƒˆãƒ©ã‚¤ã‚¢ãƒ³ã‚°ãƒ«ãƒªã‚¹ãƒˆãŒä½¿ç”¨ã™ã‚‹åº§æ¨™å¤‰æ›è¡Œåˆ—( ãƒ­ãƒ¼ã‚«ãƒ«â†’ãƒ¯ãƒ¼ãƒ«ãƒ‰ )ã‚’å–å¾—ã™ã‚‹
+extern	int			NS_MV1GetTriangleListPolygonVertexPosition(	int MHandle, int TListIndex, int PolygonIndex, VECTOR *VertexPositions = NULL , float *MatrixWeights = NULL ) ;	// æŒ‡å®šã®ãƒˆãƒ©ã‚¤ã‚¢ãƒ³ã‚°ãƒ«ãƒªã‚¹ãƒˆã®æŒ‡å®šã®ãƒãƒªã‚´ãƒ³ãŒä½¿ç”¨ã—ã¦ã„ã‚‹é ‚ç‚¹ã®åº§æ¨™ã‚’å–å¾—ã™ã‚‹( æˆ»ã‚Šå€¤  ã‚¨ãƒ©ãƒ¼ï¼š-1  0ä»¥ä¸Šï¼šãƒãƒªã‚´ãƒ³ãŒä½¿ç”¨ã—ã¦ã„ã‚‹é ‚ç‚¹ã®æ•° )
+extern	int			NS_MV1GetTriangleListUseMaterial(				int MHandle, int TListIndex ) ;														// æŒ‡å®šã®ãƒˆãƒ©ã‚¤ã‚¢ãƒ³ã‚°ãƒ«ãƒªã‚¹ãƒˆãŒä½¿ç”¨ã—ã¦ã„ã‚‹ãƒãƒ†ãƒªã‚¢ãƒ«ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’å–å¾—ã™ã‚‹
+
+// ã‚³ãƒªã‚¸ãƒ§ãƒ³é–¢ä¿‚
+extern	int							NS_MV1SetupCollInfo(				int MHandle, int FrameIndex = -1 , int XDivNum = 32 , int YDivNum = 8 , int ZDivNum = 32 , int MeshIndex = -1 ) ;		// ã‚³ãƒªã‚¸ãƒ§ãƒ³æƒ…å ±ã‚’æ§‹ç¯‰ã™ã‚‹
+extern	int							NS_MV1TerminateCollInfo(			int MHandle, int FrameIndex = -1 , int MeshIndex = -1 ) ;																// ã‚³ãƒªã‚¸ãƒ§ãƒ³æƒ…å ±ã®å¾Œå§‹æœ«
+extern	int							NS_MV1RefreshCollInfo(				int MHandle, int FrameIndex = -1 , int MeshIndex = -1 ) ;																// ã‚³ãƒªã‚¸ãƒ§ãƒ³æƒ…å ±ã‚’æ›´æ–°ã™ã‚‹
+extern	MV1_COLL_RESULT_POLY		NS_MV1CollCheck_Line(				int MHandle, int FrameIndex, VECTOR PosStart, VECTOR PosEnd , int MeshIndex = -1 ) ;									// ç·šã¨ãƒ¢ãƒ‡ãƒ«ã®å½“ãŸã‚Šåˆ¤å®š
+extern	MV1_COLL_RESULT_POLY_DIM	NS_MV1CollCheck_LineDim(			int MHandle, int FrameIndex, VECTOR PosStart, VECTOR PosEnd , int MeshIndex = -1 ) ;									// ç·šã¨ãƒ¢ãƒ‡ãƒ«ã®å½“ãŸã‚Šåˆ¤å®š( æˆ»ã‚Šå€¤ãŒ MV1_COLL_RESULT_POLY_DIM )
+extern	MV1_COLL_RESULT_POLY_DIM	NS_MV1CollCheck_Sphere(			int MHandle, int FrameIndex, VECTOR CenterPos, float r , int MeshIndex = -1 ) ;											// çƒã¨ãƒ¢ãƒ‡ãƒ«ã®å½“ãŸã‚Šåˆ¤å®š
+extern	MV1_COLL_RESULT_POLY_DIM	NS_MV1CollCheck_Capsule(			int MHandle, int FrameIndex, VECTOR Pos1, VECTOR Pos2, float r , int MeshIndex = -1 ) ;									// ã‚«ãƒ—ã‚»ãƒ«ã¨ãƒ¢ãƒ‡ãƒ«ã®å½“ãŸã‚Šåˆ¤å®š
+extern	MV1_COLL_RESULT_POLY_DIM	NS_MV1CollCheck_Triangle(			int MHandle, int FrameIndex, VECTOR Pos1, VECTOR Pos2, VECTOR Pos3 , int MeshIndex = -1 ) ;								// ä¸‰è§’å½¢ã¨ãƒ¢ãƒ‡ãƒ«ã®å½“ãŸã‚Šåˆ¤å®š
+extern	MV1_COLL_RESULT_POLY		NS_MV1CollCheck_GetResultPoly(		MV1_COLL_RESULT_POLY_DIM ResultPolyDim, int PolyNo ) ;																	// ã‚³ãƒªã‚¸ãƒ§ãƒ³çµæœãƒãƒªã‚´ãƒ³é…åˆ—ã‹ã‚‰æŒ‡å®šç•ªå·ã®ãƒãƒªã‚´ãƒ³æƒ…å ±ã‚’å–å¾—ã™ã‚‹
+extern	int							NS_MV1CollResultPolyDimTerminate(	MV1_COLL_RESULT_POLY_DIM ResultPolyDim ) ;																				// ã‚³ãƒªã‚¸ãƒ§ãƒ³çµæœãƒãƒªã‚´ãƒ³é…åˆ—ã®å¾Œå§‹æœ«ã‚’ã™ã‚‹
+
+// å‚ç…§ç”¨ãƒ¡ãƒƒã‚·ãƒ¥é–¢ä¿‚
+extern	int					NS_MV1SetupReferenceMesh(		int MHandle, int FrameIndex, int IsTransform, int IsPositionOnly = FALSE , int MeshIndex = -1 ) ;						// å‚ç…§ç”¨ãƒ¡ãƒƒã‚·ãƒ¥ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
+extern	int					NS_MV1TerminateReferenceMesh(	int MHandle, int FrameIndex, int IsTransform, int IsPositionOnly = FALSE , int MeshIndex = -1 ) ;						// å‚ç…§ç”¨ãƒ¡ãƒƒã‚·ãƒ¥ã®å¾Œå§‹æœ«
+extern	int					NS_MV1RefreshReferenceMesh(	int MHandle, int FrameIndex, int IsTransform, int IsPositionOnly = FALSE , int MeshIndex = -1 ) ;						// å‚ç…§ç”¨ãƒ¡ãƒƒã‚·ãƒ¥ã®æ›´æ–°
+extern	MV1_REF_POLYGONLIST	NS_MV1GetReferenceMesh(		int MHandle, int FrameIndex, int IsTransform, int IsPositionOnly = FALSE , int MeshIndex = -1 ) ;						// å‚ç…§ç”¨ãƒ¡ãƒƒã‚·ãƒ¥ã‚’å–å¾—ã™ã‚‹
 
 #else // DX_THREAD_SAFE
 
-// ƒ‚ƒfƒ‹‚Ì“Ç‚İ‚İE•Û‘¶E•¡»ŠÖŒW
+// ãƒ¢ãƒ‡ãƒ«ã®èª­ã¿è¾¼ã¿ãƒ»ä¿å­˜ãƒ»è¤‡è£½é–¢ä¿‚
 #define NS_MV1LoadModel											MV1LoadModel
 #define NS_MV1LoadModelWithStrLen								MV1LoadModelWithStrLen
 #define NS_MV1LoadModelFromMem									MV1LoadModelFromMem
@@ -2709,7 +2709,7 @@ extern	MV1_REF_POLYGONLIST	NS_MV1GetReferenceMesh(		int MHandle, int FrameIndex,
 #define NS_MV1SetLoadModelIgnoreIK								MV1SetLoadModelIgnoreIK
 
 
-// ƒ‚ƒfƒ‹•Û‘¶ŠÖŒW
+// ãƒ¢ãƒ‡ãƒ«ä¿å­˜é–¢ä¿‚
 #define NS_MV1SaveModelToMV1File						MV1SaveModelToMV1File
 #define NS_MV1SaveModelToMV1FileWithStrLen				MV1SaveModelToMV1FileWithStrLen
 #ifndef DX_NON_SAVEFUNCTION
@@ -2719,19 +2719,19 @@ extern	MV1_REF_POLYGONLIST	NS_MV1GetReferenceMesh(		int MHandle, int FrameIndex,
 #define NS_MV1SetNotSaveTopFrameName					MV1SetNotSaveTopFrameName
 #define NS_MV1SetNotSaveTopFrameNameWithStrLen			MV1SetNotSaveTopFrameNameWithStrLen
 
-// ƒ‚ƒfƒ‹•`‰æŠÖŒW
+// ãƒ¢ãƒ‡ãƒ«æç”»é–¢ä¿‚
 #define NS_MV1DrawModel									MV1DrawModel
 #define NS_MV1DrawFrame									MV1DrawFrame
 #define NS_MV1DrawMesh									MV1DrawMesh
 #define NS_MV1DrawTriangleList							MV1DrawTriangleList
 #define NS_MV1DrawModelDebug							MV1DrawModelDebug
 
-// •`‰æİ’èŠÖŒW
+// æç”»è¨­å®šé–¢ä¿‚
 #define NS_MV1SetUseOrigShader							MV1SetUseOrigShader
 #define NS_MV1SetDrawMode								MV1SetDrawMode
 #define NS_MV1SetSemiTransDrawMode						MV1SetSemiTransDrawMode
 
-// ƒ‚ƒfƒ‹Šî–{§ŒäŠÖŒW
+// ãƒ¢ãƒ‡ãƒ«åŸºæœ¬åˆ¶å¾¡é–¢ä¿‚
 #define NS_MV1GetLocalWorldMatrix						MV1GetLocalWorldMatrix
 #define NS_MV1GetLocalWorldMatrixD						MV1GetLocalWorldMatrixD
 #define NS_MV1SetPosition								MV1SetPosition
@@ -2787,7 +2787,7 @@ extern	MV1_REF_POLYGONLIST	NS_MV1GetReferenceMesh(		int MHandle, int FrameIndex,
 
 
 
-// ƒAƒjƒ[ƒVƒ‡ƒ“ŠÖŒW
+// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³é–¢ä¿‚
 #define NS_MV1AttachAnim								MV1AttachAnim
 #define NS_MV1DetachAnim								MV1DetachAnim
 #define NS_MV1SetAttachAnimTime							MV1SetAttachAnimTime
@@ -2837,7 +2837,7 @@ extern	MV1_REF_POLYGONLIST	NS_MV1GetReferenceMesh(		int MHandle, int FrameIndex,
 #define NS_MV1GetAnimKeyDataToLinear					MV1GetAnimKeyDataToLinear
 #define NS_MV1GetAnimKeyDataToLinearFromTime			MV1GetAnimKeyDataToLinearFromTime
 
-// ƒ}ƒeƒŠƒAƒ‹ŠÖŒW
+// ãƒãƒ†ãƒªã‚¢ãƒ«é–¢ä¿‚
 #define NS_MV1GetMaterialNum							MV1GetMaterialNum
 #define NS_MV1GetMaterialName							MV1GetMaterialName
 #define NS_MV1SetMaterialType							MV1SetMaterialType
@@ -2908,7 +2908,7 @@ extern	MV1_REF_POLYGONLIST	NS_MV1GetReferenceMesh(		int MHandle, int FrameIndex,
 #define NS_MV1SetMaterialDrawAddColor					MV1SetMaterialDrawAddColor
 #define NS_MV1GetMaterialDrawAddColor					MV1GetMaterialDrawAddColor
 
-// ƒeƒNƒXƒ`ƒƒŠÖŒW
+// ãƒ†ã‚¯ã‚¹ãƒãƒ£é–¢ä¿‚
 #define NS_MV1GetTextureNum								MV1GetTextureNum
 #define NS_MV1GetTextureName							MV1GetTextureName
 #define NS_MV1SetTextureColorFilePath					MV1SetTextureColorFilePath
@@ -2940,7 +2940,7 @@ extern	MV1_REF_POLYGONLIST	NS_MV1GetReferenceMesh(		int MHandle, int FrameIndex,
 #define NS_MV1LoadTextureWithStrLen						MV1LoadTextureWithStrLen
 
 
-// ƒtƒŒ[ƒ€ŠÖŒW
+// ãƒ•ãƒ¬ãƒ¼ãƒ é–¢ä¿‚
 #define NS_MV1GetFrameNum								MV1GetFrameNum
 #define NS_MV1SearchFrame								MV1SearchFrame
 #define NS_MV1SearchFrameWithStrLen						MV1SearchFrameWithStrLen
@@ -2994,7 +2994,7 @@ extern	MV1_REF_POLYGONLIST	NS_MV1GetReferenceMesh(		int MHandle, int FrameIndex,
 #define NS_MV1SetFrameTextureAddressTransformMatrix		MV1SetFrameTextureAddressTransformMatrix
 #define NS_MV1ResetFrameTextureAddressTransform			MV1ResetFrameTextureAddressTransform
 
-// ƒƒbƒVƒ…ŠÖŒW
+// ãƒ¡ãƒƒã‚·ãƒ¥é–¢ä¿‚
 #define NS_MV1GetMeshNum								MV1GetMeshNum
 #define NS_MV1GetMeshMaterial							MV1GetMeshMaterial
 #define NS_MV1GetMeshVertexNum							MV1GetMeshVertexNum
@@ -3030,7 +3030,7 @@ extern	MV1_REF_POLYGONLIST	NS_MV1GetReferenceMesh(		int MHandle, int FrameIndex,
 #define NS_MV1GetMeshUseVertSpcColor					MV1GetMeshUseVertSpcColor
 #define NS_MV1GetMeshShapeFlag							MV1GetMeshShapeFlag
 
-// ƒVƒFƒCƒvŠÖŒW
+// ã‚·ã‚§ã‚¤ãƒ—é–¢ä¿‚
 #define NS_MV1GetShapeNum								MV1GetShapeNum
 #define NS_MV1SearchShape								MV1SearchShape
 #define NS_MV1SearchShapeWithStrLen						MV1SearchShapeWithStrLen
@@ -3041,7 +3041,7 @@ extern	MV1_REF_POLYGONLIST	NS_MV1GetReferenceMesh(		int MHandle, int FrameIndex,
 #define NS_MV1GetShapeRate								MV1GetShapeRate
 #define NS_MV1GetShapeApplyRate							MV1GetShapeApplyRate
 
-// ƒgƒ‰ƒCƒAƒ“ƒOƒ‹ƒŠƒXƒgŠÖŒW
+// ãƒˆãƒ©ã‚¤ã‚¢ãƒ³ã‚°ãƒ«ãƒªã‚¹ãƒˆé–¢ä¿‚
 #define NS_MV1GetTriangleListNum						MV1GetTriangleListNum
 #define NS_MV1GetTriangleListVertexType					MV1GetTriangleListVertexType
 #define NS_MV1GetTriangleListPolygonNum					MV1GetTriangleListPolygonNum
@@ -3051,7 +3051,7 @@ extern	MV1_REF_POLYGONLIST	NS_MV1GetReferenceMesh(		int MHandle, int FrameIndex,
 #define NS_MV1GetTriangleListPolygonVertexPosition		MV1GetTriangleListPolygonVertexPosition
 #define NS_MV1GetTriangleListUseMaterial				MV1GetTriangleListUseMaterial
 
-// ƒRƒŠƒWƒ‡ƒ“ŠÖŒW
+// ã‚³ãƒªã‚¸ãƒ§ãƒ³é–¢ä¿‚
 #define NS_MV1SetupCollInfo								MV1SetupCollInfo
 #define NS_MV1TerminateCollInfo							MV1TerminateCollInfo
 #define NS_MV1RefreshCollInfo							MV1RefreshCollInfo
@@ -3063,7 +3063,7 @@ extern	MV1_REF_POLYGONLIST	NS_MV1GetReferenceMesh(		int MHandle, int FrameIndex,
 #define NS_MV1CollCheck_GetResultPoly					MV1CollCheck_GetResultPoly
 #define NS_MV1CollResultPolyDimTerminate				MV1CollResultPolyDimTerminate
 
-// QÆ—pƒƒbƒVƒ…ŠÖŒW
+// å‚ç…§ç”¨ãƒ¡ãƒƒã‚·ãƒ¥é–¢ä¿‚
 #define NS_MV1SetupReferenceMesh						MV1SetupReferenceMesh
 #define NS_MV1TerminateReferenceMesh					MV1TerminateReferenceMesh
 #define NS_MV1RefreshReferenceMesh						MV1RefreshReferenceMesh

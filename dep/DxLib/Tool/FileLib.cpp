@@ -1,8 +1,8 @@
 // ============================================================================
 //
-//		ƒtƒ@ƒCƒ‹ŠÖŒW‚Ìƒ‰ƒCƒuƒ‰ƒŠ
+//		ãƒ•ã‚¡ã‚¤ãƒ«é–¢ä¿‚ã®ãƒ©ã‚¤ãƒ–ãƒ©ãƒª
 //
-//		Creator			: R“c@I
+//		Creator			: å±±ç”°ã€€å·§
 //		Creation Data	: 09/17/2004
 //
 // ============================================================================
@@ -16,8 +16,8 @@
 
 // define ---------------------------------------
 
-#define PATH_LENGTH		(256)			// ƒpƒXƒoƒbƒtƒ@‚Ì’·‚³
-#define TEXTCHECKSIZE	(0x2000)		// ƒeƒLƒXƒgƒf[ƒ^‚©’²‚×‚éƒTƒCƒY
+#define PATH_LENGTH		(256)			// ãƒ‘ã‚¹ãƒãƒƒãƒ•ã‚¡ã®é•·ã•
+#define TEXTCHECKSIZE	(0x2000)		// ãƒ†ã‚­ã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿ã‹èª¿ã¹ã‚‹ã‚µã‚¤ã‚º
 
 // data type ------------------------------------
 
@@ -25,16 +25,16 @@
 
 // function proto type --------------------------
 
-// ƒtƒ@ƒCƒ‹ƒIƒuƒWƒFƒNƒg—ñ‹“—pŠÖ”( -1:ƒGƒ‰[  0ˆÈã:ƒtƒ@ƒCƒ‹‚Ì” )
-// flist ‚Í NULL ‚Å‚à—Ç‚¢
+// ãƒ•ã‚¡ã‚¤ãƒ«ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆåˆ—æŒ™ç”¨é–¢æ•°( -1:ã‚¨ãƒ©ãƒ¼  0ä»¥ä¸Š:ãƒ•ã‚¡ã‚¤ãƒ«ã®æ•° )
+// flist ã¯ NULL ã§ã‚‚è‰¯ã„
 static int __EnumObject( char *Path, char *CurrentPath, FILE_INFOLIST *FileList,
 							int OmitDirectory, int SubDirectory,
 							char **OmitName, char **OmitExName, char **ValidExName ) ;
 
 // function code --------------------------------
 
-// ƒtƒ@ƒCƒ‹ƒIƒuƒWƒFƒNƒg—ñ‹“—pŠÖ”( -1:ƒGƒ‰[  0ˆÈã:ƒtƒ@ƒCƒ‹‚Ì” )
-// flist ‚Í NULL ‚Å‚à—Ç‚¢
+// ãƒ•ã‚¡ã‚¤ãƒ«ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆåˆ—æŒ™ç”¨é–¢æ•°( -1:ã‚¨ãƒ©ãƒ¼  0ä»¥ä¸Š:ãƒ•ã‚¡ã‚¤ãƒ«ã®æ•° )
+// flist ã¯ NULL ã§ã‚‚è‰¯ã„
 static int __EnumObject( char *Path, char *CurrentPath, FILE_INFOLIST *FileList,
 							int OmitDirectory, int SubDirectory,
 							char **OmitName, char **OmitExName, char **ValidExName )
@@ -46,13 +46,13 @@ static int __EnumObject( char *Path, char *CurrentPath, FILE_INFOLIST *FileList,
 	char *AbsDir ;
 	int RelDirLen, AbsDirLen, StartNum ;
 
-	// ƒfƒBƒŒƒNƒgƒŠƒpƒX‚Ìì¬
+	// ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªãƒ‘ã‚¹ã®ä½œæˆ
 	AbsDir = Path ;
 	AbsDirLen = strlen( AbsDir ) ;
 	strcpy( RelDir, AbsDir + strlen( CurrentPath ) ) ;
 	RelDirLen = strlen( RelDir ) ;
 
-	// ƒtƒ@ƒCƒ‹‚Ì—ñ‹“ŠJn
+	// ãƒ•ã‚¡ã‚¤ãƒ«ã®åˆ—æŒ™é–‹å§‹
 	{
 		char temp[PATH_LENGTH] ;
 
@@ -63,18 +63,18 @@ static int __EnumObject( char *Path, char *CurrentPath, FILE_INFOLIST *FileList,
 			return -1 ;
 	}
 
-	// ƒtƒ@ƒCƒ‹‚Ìî•ñ‚ğ—ñ‹“‚·‚é
+	// ãƒ•ã‚¡ã‚¤ãƒ«ã®æƒ…å ±ã‚’åˆ—æŒ™ã™ã‚‹
 	FileNum = 0 ;
 	if( FileList != NULL ) StartNum = FileList->Num ;
 	do
 	{
-		// ã‚ÌƒtƒHƒ‹ƒ_‚É–ß‚Á‚½‚è‚·‚é‚½‚ß‚ÌƒpƒX‚Í–³‹‚·‚é
+		// ä¸Šã®ãƒ•ã‚©ãƒ«ãƒ€ã«æˆ»ã£ãŸã‚Šã™ã‚‹ãŸã‚ã®ãƒ‘ã‚¹ã¯ç„¡è¦–ã™ã‚‹
 		if( strcmp( FindData.cFileName, "." ) == 0 || strcmp( FindData.cFileName, ".." ) == 0 ) continue ;
 
-		// ƒfƒBƒŒƒNƒgƒŠ‚©‚Ç‚¤‚©‚ğ“¾‚é
+		// ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã‹ã©ã†ã‹ã‚’å¾—ã‚‹
 		IsDirectory = ( FindData.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY ) != 0 ? 1 : 0 ;
 
-		// —LŒøŠg’£qw’è‚ª‚ ‚èA—LŒøŠg’£q‚Å‚Í‚È‚¢ê‡‚Í–³‹‚·‚é
+		// æœ‰åŠ¹æ‹¡å¼µå­æŒ‡å®šãŒã‚ã‚Šã€æœ‰åŠ¹æ‹¡å¼µå­ã§ã¯ãªã„å ´åˆã¯ç„¡è¦–ã™ã‚‹
 		if( ValidExName != NULL && IsDirectory == 0 )
 		{
 			int i ;
@@ -88,7 +88,7 @@ static int __EnumObject( char *Path, char *CurrentPath, FILE_INFOLIST *FileList,
 			if( ValidExName[i] == NULL ) continue ;
 		}
 
-		// œŠOw’è‚ª‚ ‚é•¶š—ñ‚Í–³‹‚·‚é
+		// é™¤å¤–æŒ‡å®šãŒã‚ã‚‹æ–‡å­—åˆ—ã¯ç„¡è¦–ã™ã‚‹
 		if( OmitName != NULL )
 		{
 			int i ;
@@ -97,7 +97,7 @@ static int __EnumObject( char *Path, char *CurrentPath, FILE_INFOLIST *FileList,
 			if( OmitName[i] != NULL ) continue ;
 		}
 
-		// œŠOw’è‚ª‚ ‚éŠg’£q‚ğ‚Âƒtƒ@ƒCƒ‹‚Í–³‹‚·‚é
+		// é™¤å¤–æŒ‡å®šãŒã‚ã‚‹æ‹¡å¼µå­ã‚’æŒã¤ãƒ•ã‚¡ã‚¤ãƒ«ã¯ç„¡è¦–ã™ã‚‹
 		if( OmitExName != NULL && IsDirectory == 0 )
 		{
 			int i ;
@@ -111,30 +111,30 @@ static int __EnumObject( char *Path, char *CurrentPath, FILE_INFOLIST *FileList,
 			if( OmitExName[i] != NULL ) continue ;
 		}
 
-		// ƒfƒBƒŒƒNƒgƒŠ‚Ìê‡‚ÅƒTƒuƒfƒBƒŒƒNƒgƒŠ‚à’²‚×‚éw’è‚ª‚ ‚éê‡‚ÍƒTƒuƒfƒBƒŒƒNƒgƒŠ“à‚à—ñ‹“‚·‚é
+		// ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã®å ´åˆã§ã‚µãƒ–ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã‚‚èª¿ã¹ã‚‹æŒ‡å®šãŒã‚ã‚‹å ´åˆã¯ã‚µãƒ–ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªå†…ã‚‚åˆ—æŒ™ã™ã‚‹
 		if( IsDirectory == 1 && SubDirectory == 1 )
 		{
 			int res ;
 			char tempAbs[PATH_LENGTH], tempRel[PATH_LENGTH] ;
 
-			// â‘ÎƒpƒX‚Ìì¬
+			// çµ¶å¯¾ãƒ‘ã‚¹ã®ä½œæˆ
 			strcpy( tempAbs, AbsDir ) ;
 			strcat( tempAbs, FindData.cFileName ) ;
 			strcat( tempAbs, "\\" ) ;
 
-			// ‘Š‘ÎƒpƒX‚Ìì¬
+			// ç›¸å¯¾ãƒ‘ã‚¹ã®ä½œæˆ
 			strcpy( tempRel, RelDir ) ;
 			strcat( tempRel, FindData.cFileName ) ;
 			strcat( tempRel, "\\" ) ;
 			
-			// —ñ‹“
+			// åˆ—æŒ™
 			res = __EnumObject( tempAbs, CurrentPath, FileList, OmitDirectory, SubDirectory, OmitName, OmitExName, ValidExName ) ;
 			if( res < 0 )
 				goto ERR ;
 			FileNum += res ;
 		}
 
-		// ƒf[ƒ^‚ğŠi”[‚·‚é‚±‚Æ‚ªo—ˆ‚éê‡‚Íƒf[ƒ^‚ğŠi”[‚·‚é
+		// ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹ã“ã¨ãŒå‡ºæ¥ã‚‹å ´åˆã¯ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹
 		if( FileList != NULL &&
 			( IsDirectory == 0 || ( IsDirectory == 1 && OmitDirectory == 0 ) ) )
 		{
@@ -144,18 +144,18 @@ static int __EnumObject( char *Path, char *CurrentPath, FILE_INFOLIST *FileList,
 			info = &FileList->List[FileList->Num] ;
 			memset( info, 0, sizeof( FILE_INFO ) ) ;
 
-			// ‚ğ•Û‘¶
+			// æ™‚åˆ»ã‚’ä¿å­˜
 			info->Date.Create		= ( ( ( LONGLONG )FindData.ftCreationTime	.dwHighDateTime ) << 32 ) + FindData.ftCreationTime		.dwLowDateTime ;
 			info->Date.LastAccess	= ( ( ( LONGLONG )FindData.ftLastAccessTime	.dwHighDateTime ) << 32 ) + FindData.ftLastAccessTime	.dwLowDateTime ;
 			info->Date.LastWrite	= ( ( ( LONGLONG )FindData.ftLastWriteTime	.dwHighDateTime ) << 32 ) + FindData.ftLastWriteTime	.dwLowDateTime ;
 
-			info->Size			= FindData.nFileSizeLow ;		// ƒTƒCƒY‚ğ•Û‘¶
-			info->Attributes	= FindData.dwFileAttributes ;	// ‘®«‚ğ•Û‘¶
+			info->Size			= FindData.nFileSizeLow ;		// ã‚µã‚¤ã‚ºã‚’ä¿å­˜
+			info->Attributes	= FindData.dwFileAttributes ;	// å±æ€§ã‚’ä¿å­˜
 			info->IsDirectory	= (u8)IsDirectory ;
 
-			// ƒpƒXŒn‚Ì•Û‘¶
+			// ãƒ‘ã‚¹ç³»ã®ä¿å­˜
 			{
-				// ƒpƒXŒn‚ğ•Û‘¶‚·‚éƒƒ‚ƒŠ—Ìˆæ‚ÌŠm•Û
+				// ãƒ‘ã‚¹ç³»ã‚’ä¿å­˜ã™ã‚‹ãƒ¡ãƒ¢ãƒªé ˜åŸŸã®ç¢ºä¿
 				FileNameLen = strlen( FindData.cFileName ) ;
 				info->FileName = ( char * )malloc( ( FileNameLen + 1 ) + ( AbsDirLen + 1 ) + ( RelDirLen + 1 ) ) ;
 				if( info->FileName == NULL )
@@ -163,33 +163,33 @@ static int __EnumObject( char *Path, char *CurrentPath, FILE_INFOLIST *FileList,
 				info->RelDirectoryPath = info->FileName + FileNameLen + 1 ;
 				info->AbsDirectoryPath = info->RelDirectoryPath + RelDirLen + 1 ;
 
-				// ƒRƒs[
+				// ã‚³ãƒ”ãƒ¼
 				strcpy( info->FileName, FindData.cFileName ) ;
 				strcpy( info->RelDirectoryPath, RelDir ) ;
 				strcpy( info->AbsDirectoryPath, AbsDir ) ;
 			}
 
-			// ƒtƒ@ƒCƒ‹‚Ì”‚ğ‘‚â‚·
+			// ãƒ•ã‚¡ã‚¤ãƒ«ã®æ•°ã‚’å¢—ã‚„ã™
 			FileList->Num ++ ;
 		}
 
-		// ƒtƒ@ƒCƒ‹‚Ì”‚ğ‘‚â‚·
+		// ãƒ•ã‚¡ã‚¤ãƒ«ã®æ•°ã‚’å¢—ã‚„ã™
 		FileNum ++ ;
 	}
 	while( FindNextFile( FindHandle, &FindData ) != 0 ) ;
 
-	// —ñ‹“I—¹
+	// åˆ—æŒ™çµ‚äº†
 	FindClose( FindHandle ) ;
 	FindHandle = INVALID_HANDLE_VALUE ;
 
-	// I—¹
+	// çµ‚äº†
 	return FileNum ;
 
-	// ƒGƒ‰[ˆ—
+	// ã‚¨ãƒ©ãƒ¼å‡¦ç†
 ERR :
 	if( FindHandle != INVALID_HANDLE_VALUE ) FindClose( FindHandle ) ;
 
-	// Šù‚ÉŠm•Û‚µ‚Ä‚µ‚Ü‚Á‚½ƒƒ‚ƒŠ‚Ì‰ğ•úˆ—
+	// æ—¢ã«ç¢ºä¿ã—ã¦ã—ã¾ã£ãŸãƒ¡ãƒ¢ãƒªã®è§£æ”¾å‡¦ç†
 	if( FileList != NULL )
 	{
 		int i ;
@@ -198,11 +198,11 @@ ERR :
 			if( FileList->List[i].FileName != NULL ) free( FileList->List[i].FileName ) ;
 	}
 
-	// ƒGƒ‰[I—¹
+	// ã‚¨ãƒ©ãƒ¼çµ‚äº†
 	return -1 ;
 }
 
-// ƒf[ƒ^‚ğŠÈˆÕˆÃ†‰»‚·‚éŠÖ”
+// ãƒ‡ãƒ¼ã‚¿ã‚’ç°¡æ˜“æš—å·åŒ–ã™ã‚‹é–¢æ•°
 extern void EasyEncode( void *Data, unsigned int Size )
 {
 	if( Size == 0 ) return ;
@@ -221,11 +221,11 @@ extern void EasyEncode( void *Data, unsigned int Size )
 	tempSize = ( unsigned int )Size ;
 	__asm
 	{
-		// €”õ
+		// æº–å‚™
 		mov edi, tempData
 		mov ecx, tempSize
 
-		// ’l‚ğ”½“]A‰ñ“]4ƒrƒbƒg‚µ‚Ä‘‚«–ß‚·
+		// å€¤ã‚’åè»¢ã€å›è»¢4ãƒ“ãƒƒãƒˆã—ã¦æ›¸ãæˆ»ã™
 LOOP1:
 		mov al, [edi]
 		not al
@@ -233,14 +233,14 @@ LOOP1:
 		mov [edi], al
 		inc edi
 
-		// ƒ‹[ƒvˆ—
+		// ãƒ«ãƒ¼ãƒ—å‡¦ç†
 		dec ecx
 		jnz LOOP1
 	} ;
 #endif
 }
 
-// ƒf[ƒ^‚ğŠÈˆÕˆÃ†‰»‚µ‚Äƒtƒ@ƒCƒ‹‚É‘‚«o‚·ŠÖ”
+// ãƒ‡ãƒ¼ã‚¿ã‚’ç°¡æ˜“æš—å·åŒ–ã—ã¦ãƒ•ã‚¡ã‚¤ãƒ«ã«æ›¸ãå‡ºã™é–¢æ•°
 extern void EasyEncodeFileWrite( void *Data, int Size, FILE *fp )
 {
 	EasyEncode( Data, Size ) ;
@@ -248,14 +248,14 @@ extern void EasyEncodeFileWrite( void *Data, int Size, FILE *fp )
 	EasyEncode( Data, Size ) ;
 }
 
-// ƒf[ƒ^‚ğŠÈˆÕˆÃ†‰»‚µ‚Äƒtƒ@ƒCƒ‹‚©‚ç“Ç‚İ‚ŞŠÖ”
+// ãƒ‡ãƒ¼ã‚¿ã‚’ç°¡æ˜“æš—å·åŒ–ã—ã¦ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰èª­ã¿è¾¼ã‚€é–¢æ•°
 extern void EasyEncodeFileRead( void *Data, int Size, FILE *fp )
 {
 	fread( Data, Size, 1, fp ) ;
 	EasyEncode( Data, Size ) ;
 }
 
-// ƒtƒ@ƒCƒ‹‚Ì“à—e‚ğƒƒ‚ƒŠ‚É“Ç‚İ‚Ş( 0:¬Œ÷  -1:¸”s )
+// ãƒ•ã‚¡ã‚¤ãƒ«ã®å†…å®¹ã‚’ãƒ¡ãƒ¢ãƒªã«èª­ã¿è¾¼ã‚€( 0:æˆåŠŸ  -1:å¤±æ•— )
 extern int LoadFileMem( const char *Path, void **DataBuf, int *Size )
 {
 	FILE *fp = NULL ;
@@ -265,24 +265,24 @@ extern int LoadFileMem( const char *Path, void **DataBuf, int *Size )
 	fp = fopen( Path, "rb" ) ;
 	if( fp == NULL ) goto ERR ;
 
-	// ƒTƒCƒY‚ğ“¾‚é
+	// ã‚µã‚¤ã‚ºã‚’å¾—ã‚‹
 	fseek( fp, 0L, SEEK_END ) ;
 	size = ftell( fp ) ;
 	fseek( fp, 0L, SEEK_SET ) ;
 
-	// ƒƒ‚ƒŠ‚ÌŠm•Û
+	// ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿
 	buf = malloc( size ) ;
 	if( buf == NULL ) goto ERR ;
 
-	// “Ç‚İ‚İ
+	// èª­ã¿è¾¼ã¿
 	fread( buf, size, 1, fp ) ;
 	fclose( fp ) ;
 
-	// ƒZƒbƒg
+	// ã‚»ãƒƒãƒˆ
 	if( DataBuf != NULL ) *DataBuf = buf ;
 	if( Size != NULL ) *Size = size ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 
 ERR :
@@ -292,7 +292,7 @@ ERR :
 	return -1 ;
 }
 
-// ƒtƒ@ƒCƒ‹‚Ì“à—e‚ğƒƒ‚ƒŠ‚É“Ç‚İ‚Ş( 0:¬Œ÷  -1:¸”s )
+// ãƒ•ã‚¡ã‚¤ãƒ«ã®å†…å®¹ã‚’ãƒ¡ãƒ¢ãƒªã«èª­ã¿è¾¼ã‚€( 0:æˆåŠŸ  -1:å¤±æ•— )
 extern int LoadFileMem( const char *Path, void *DataBuf, int *Size )
 {
 	FILE *fp = NULL ;
@@ -301,24 +301,24 @@ extern int LoadFileMem( const char *Path, void *DataBuf, int *Size )
 	fp = fopen( Path, "rb" ) ;
 	if( fp == NULL ) return -1;
 
-	// ƒTƒCƒY‚ğ“¾‚é
+	// ã‚µã‚¤ã‚ºã‚’å¾—ã‚‹
 	fseek( fp, 0L, SEEK_END ) ;
 	size = ftell( fp ) ;
 	fseek( fp, 0L, SEEK_SET ) ;
 
-	// “Ç‚İ‚İ
+	// èª­ã¿è¾¼ã¿
 	if( DataBuf )
 		fread( DataBuf, size, 1, fp ) ;
 	fclose( fp ) ;
 
-	// ƒZƒbƒg
+	// ã‚»ãƒƒãƒˆ
 	if( Size != NULL ) *Size = size ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒƒ‚ƒŠ‚Ì“à—e‚ğƒtƒ@ƒCƒ‹‚É‘‚«o‚· 
+// ãƒ¡ãƒ¢ãƒªã®å†…å®¹ã‚’ãƒ•ã‚¡ã‚¤ãƒ«ã«æ›¸ãå‡ºã™ 
 extern int SaveFileMem( const char *Path, void *Data, int Size )
 {
 	FILE *fp ;
@@ -332,18 +332,18 @@ extern int SaveFileMem( const char *Path, void *Data, int Size )
 }
 
 
-// w’è‚ÌƒfƒBƒŒƒNƒgƒŠ‚ğì¬‚·‚éA’†ŠÔ‚ÌƒfƒBƒŒƒNƒgƒŠ‚à‘¶İ‚µ‚È‚¢ê‡‚Íì¬‚·‚é
-// ÅŒã”ö‚É '\' ‚ª‚ ‚Á‚Ä‚à–³‹‚·‚é
-// ƒhƒ‰ƒCƒu–¼‚ÌŒã‚É '\' ‚ª‚È‚¢ê‡‚Í³í‚É“®ì‚µ‚È‚¢
+// æŒ‡å®šã®ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã‚’ä½œæˆã™ã‚‹ã€ä¸­é–“ã®ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã‚‚å­˜åœ¨ã—ãªã„å ´åˆã¯ä½œæˆã™ã‚‹
+// æœ€å¾Œå°¾ã« '\' ãŒã‚ã£ã¦ã‚‚ç„¡è¦–ã™ã‚‹
+// ãƒ‰ãƒ©ã‚¤ãƒ–åã®å¾Œã« '\' ãŒãªã„å ´åˆã¯æ­£å¸¸ã«å‹•ä½œã—ãªã„
 extern int __CreateDirectory( const char *Path )
 {
 	char dir[MAX_PATH] ;
 
-	// ƒtƒ‹ƒpƒX‚ğ“¾‚é
+	// ãƒ•ãƒ«ãƒ‘ã‚¹ã‚’å¾—ã‚‹
 	ConvertFullPath__( Path, dir, NULL ) ;
 	SetEnMark( dir ) ;
 
-	// w’è‚ÌƒfƒBƒŒƒNƒgƒŠ‚ª‘¶İ‚µ‚½‚ç‰½‚à‚¹‚¸I—¹
+	// æŒ‡å®šã®ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªãŒå­˜åœ¨ã—ãŸã‚‰ä½•ã‚‚ã›ãšçµ‚äº†
 	{
 		WIN32_FIND_DATA FindData ;
 		HANDLE FindHandle ;
@@ -356,7 +356,7 @@ extern int __CreateDirectory( const char *Path )
 		}
 	}
 
-	// ƒfƒBƒŒƒNƒgƒŠ‚ğì¬‚·‚éƒ‹[ƒv
+	// ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã‚’ä½œæˆã™ã‚‹ãƒ«ãƒ¼ãƒ—
 	{
 		char *p ;
 		p = strchr( dir, '\\' ) ;
@@ -370,27 +370,27 @@ extern int __CreateDirectory( const char *Path )
 		}
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
 
-// w’è‚ÌƒpƒX‚ª¦‚µ‚Ä‚¢‚é‚à‚Ì‚ªƒfƒBƒŒƒNƒgƒŠ‚©‚Ç‚¤‚©‚ğ“¾‚é
+// æŒ‡å®šã®ãƒ‘ã‚¹ãŒç¤ºã—ã¦ã„ã‚‹ã‚‚ã®ãŒãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã‹ã©ã†ã‹ã‚’å¾—ã‚‹
 extern int IsDirectory( const char *Path )
 {
 	WIN32_FIND_DATA FindData ;
 	HANDLE FindHandle ;
 	
-	// ƒtƒ@ƒCƒ‹‚Ìî•ñ‚ğ“¾‚é
+	// ãƒ•ã‚¡ã‚¤ãƒ«ã®æƒ…å ±ã‚’å¾—ã‚‹
 	FindHandle = FindFirstFile( Path, &FindData ) ;
 	if( FindHandle == INVALID_HANDLE_VALUE ) return -1 ;
 	FindClose( FindHandle ) ;
 	
-	// ƒfƒBƒŒƒNƒgƒŠ‚©‚Ç‚¤‚©‚ğ•Ô‚·
+	// ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã‹ã©ã†ã‹ã‚’è¿”ã™
 	return ( FindData.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY ) != 0 ? 1 : 0 ;
 }
 
-// w’è‚ÌƒpƒX‚Ìî•ñ‚ğ“¾‚é
+// æŒ‡å®šã®ãƒ‘ã‚¹ã®æƒ…å ±ã‚’å¾—ã‚‹
 extern int CreateFileInfo( const char *Path, FILE_INFO *FileInfoBuffer )
 {
 	FILE_INFO *info ;
@@ -402,7 +402,7 @@ extern int CreateFileInfo( const char *Path, FILE_INFO *FileInfoBuffer )
 	
 	info = FileInfoBuffer ;
 	
-	// ƒfƒBƒŒƒNƒgƒŠƒpƒX‚Ìì¬
+	// ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªãƒ‘ã‚¹ã®ä½œæˆ
 	{
 		ConvertFullPath__( Path, AbsDir ) ;
 		DelChr( AbsDir, '\\' ) ;
@@ -412,55 +412,55 @@ extern int CreateFileInfo( const char *Path, FILE_INFO *FileInfoBuffer )
 		RelDirLen = 0 ;
 	}
 
-	// ƒtƒ@ƒCƒ‹‚Ìî•ñ‚ğ“¾‚é
+	// ãƒ•ã‚¡ã‚¤ãƒ«ã®æƒ…å ±ã‚’å¾—ã‚‹
 	FindHandle = FindFirstFile( Path, &FindData ) ;
 	if( FindHandle == INVALID_HANDLE_VALUE ) return -1 ;
 	FindClose( FindHandle ) ;
 	
-	// ‚Æ‚è‚ ‚¦‚¸—ë‰Šú‰»
+	// ã¨ã‚Šã‚ãˆãšé›¶åˆæœŸåŒ–
 	memset( info, 0, sizeof( FILE_INFO ) ) ;
 
-	// ‚ğ•Û‘¶
+	// æ™‚åˆ»ã‚’ä¿å­˜
 	info->Date.Create		= ( ( ( LONGLONG )FindData.ftCreationTime	.dwHighDateTime ) << 32 ) + FindData.ftCreationTime		.dwLowDateTime ;
 	info->Date.LastAccess	= ( ( ( LONGLONG )FindData.ftLastAccessTime	.dwHighDateTime ) << 32 ) + FindData.ftLastAccessTime	.dwLowDateTime ;
 	info->Date.LastWrite	= ( ( ( LONGLONG )FindData.ftLastWriteTime	.dwHighDateTime ) << 32 ) + FindData.ftLastWriteTime	.dwLowDateTime ;
 
-	info->Size			= FindData.nFileSizeLow ;		// ƒTƒCƒY‚ğ•Û‘¶
-	info->Attributes	= FindData.dwFileAttributes ;	// ‘®«‚ğ•Û‘¶
-	info->IsDirectory	= (u8)(( FindData.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY ) != 0 ? 1 : 0) ;	// ƒfƒBƒŒƒNƒgƒŠ‚©‚Ç‚¤‚©‚ğ•Û‘¶
+	info->Size			= FindData.nFileSizeLow ;		// ã‚µã‚¤ã‚ºã‚’ä¿å­˜
+	info->Attributes	= FindData.dwFileAttributes ;	// å±æ€§ã‚’ä¿å­˜
+	info->IsDirectory	= (u8)(( FindData.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY ) != 0 ? 1 : 0) ;	// ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã‹ã©ã†ã‹ã‚’ä¿å­˜
 
-	// ƒpƒXŒn‚Ì•Û‘¶
+	// ãƒ‘ã‚¹ç³»ã®ä¿å­˜
 	{
 		int FileNameLen ;
 	
-		// ƒpƒXŒn‚ğ•Û‘¶‚·‚éƒƒ‚ƒŠ—Ìˆæ‚ÌŠm•Û
+		// ãƒ‘ã‚¹ç³»ã‚’ä¿å­˜ã™ã‚‹ãƒ¡ãƒ¢ãƒªé ˜åŸŸã®ç¢ºä¿
 		FileNameLen = strlen( FindData.cFileName ) ;
 		info->FileName = ( char * )malloc( ( FileNameLen + 1 ) + ( AbsDirLen + 1 ) + ( RelDirLen + 1 ) ) ;
 		if( info->FileName == NULL ) return -1 ;
 		info->RelDirectoryPath = info->FileName + FileNameLen + 1 ;
 		info->AbsDirectoryPath = info->RelDirectoryPath + RelDirLen + 1 ;
 
-		// ƒRƒs[
+		// ã‚³ãƒ”ãƒ¼
 		strcpy( info->FileName, FindData.cFileName ) ;
 		strcpy( info->RelDirectoryPath, RelDir ) ;
 		strcpy( info->AbsDirectoryPath, AbsDir ) ;
 	}
 	
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒpƒXî•ñ‚ÌŒãn––‚ğs‚¤
+// ãƒ‘ã‚¹æƒ…å ±ã®å¾Œå§‹æœ«ã‚’è¡Œã†
 extern int ReleaseFileInfo( FILE_INFO *FileInfo )
 {
 	if( FileInfo->FileName != NULL ) free( FileInfo->FileName ) ;
 	FileInfo->FileName = NULL ;
 	
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// w’è‚ÌƒpƒX‚Ìƒtƒ@ƒCƒ‹‚Ìƒ^ƒCƒ€ƒXƒ^ƒ“ƒv‚ğ FileInfo ‚ÉŠi”[‚³‚ê‚Ä‚¢‚éƒ^ƒCƒ€ƒXƒ^ƒ“ƒv‚É‚·‚é
+// æŒ‡å®šã®ãƒ‘ã‚¹ã®ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚¿ã‚¤ãƒ ã‚¹ã‚¿ãƒ³ãƒ—ã‚’ FileInfo ã«æ ¼ç´ã•ã‚Œã¦ã„ã‚‹ã‚¿ã‚¤ãƒ ã‚¹ã‚¿ãƒ³ãƒ—ã«ã™ã‚‹
 extern int SetFileTimeStamp( const char *Path, FILE_INFO *FileInfo )
 {
 	HANDLE HFile ;
@@ -483,11 +483,11 @@ extern int SetFileTimeStamp( const char *Path, FILE_INFO *FileInfo )
 	SetFileTime( HFile, &CreateTime, &LastAccessTime, &LastWriteTime ) ;
 	CloseHandle( HFile ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0;
 }
 
-// “ñ‚Â‚Ìƒtƒ@ƒCƒ‹‚Ìƒ^ƒCƒ€ƒXƒ^ƒ“ƒv‚ªˆê’v‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©‚ğ“¾‚é(0:ˆê’v‚µ‚Ä‚¢‚é -1:ˆê’v‚µ‚Ä‚¢‚È‚¢)
+// äºŒã¤ã®ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚¿ã‚¤ãƒ ã‚¹ã‚¿ãƒ³ãƒ—ãŒä¸€è‡´ã—ã¦ã„ã‚‹ã‹ã©ã†ã‹ã‚’å¾—ã‚‹(0:ä¸€è‡´ã—ã¦ã„ã‚‹ -1:ä¸€è‡´ã—ã¦ã„ãªã„)
 extern int CmpFileTimeStamp( FILE_INFO *FileInfo1, FILE_INFO *FileInfo2, bool Create, bool LastAccess, bool LastWrite )
 {
 	if( Create     && FileInfo1->Date.Create     != FileInfo2->Date.Create     ) return -1;
@@ -496,17 +496,17 @@ extern int CmpFileTimeStamp( FILE_INFO *FileInfo1, FILE_INFO *FileInfo2, bool Cr
 	return 0;
 }
 
-// w’è‚ÌƒfƒBƒŒƒNƒgƒŠ‚Ìƒtƒ@ƒCƒ‹ƒŠƒXƒg‚ğæ“¾‚·‚é
-// ƒpƒX•¶š—ñ‚ÌÅŒã‚Éw\x‚ª–³‚­‚Ä‚àí‚ÉÅŒã‚Ì•¶š—ñ‚ğƒfƒBƒŒƒNƒgƒŠ‚Æ”»’f‚·‚é
-// ƒtƒ‹ƒpƒX‚Å‚Í‚È‚¢ê‡‚ÍŒ»İ‚ÌƒJƒŒƒ“ƒgƒfƒBƒŒƒNƒgƒŠ‚©‚ç‚Ì‘Š‘ÎƒpƒX‚Æ‚È‚é
-// FileListInfo ‚ª 0 ‚Å‚Í‚È‚¢ê‡g—pŒã ReleaseFileObjectList ‚ğŒÄ‚Ô•K—v‚ª‚ ‚é
-// SubDirectory ‚ğ 1 ‚É‚·‚é‚ÆƒTƒuƒfƒBƒŒƒNƒgƒŠ“à‚Ìƒtƒ@ƒCƒ‹‚à‘S‚Ä—ñ‹“‚·‚é
-// NULL A‚à‚µ‚­‚Í•¶š‚ªˆê‚Â‚à‚È‚¢•¶š—ñ‚ğ“n‚µ‚½ê‡ƒJƒŒƒ“ƒgƒfƒBƒŒƒNƒgƒŠ‚Ìƒtƒ@ƒCƒ‹‚ª—ñ‹“‚³‚ê‚é
-// OmitDirectory ‚ğ 1 ‚É‚·‚é‚ÆƒfƒBƒŒƒNƒgƒŠ‚Í—ñ‹“‚µ‚È‚¢
-// OmitName ‚ÉœŠO‚µ‚½‚¢ƒtƒ@ƒCƒ‹–¼‚ğ“n‚·‚Æ‚»‚Ì•¶š—ñ‚ğœŠO‚µ‚Ä‚­‚ê‚é( ';'‚Å•¡”‚Ì•¶š—ñ‚ğ˜AŒ‹‰Â”\ )
-// OmitExName ‚ÉœŠO‚µ‚½‚¢Šg’£q‚ğ“n‚·‚Æ‚»‚ÌŠg’£q‚ğ‚Âƒtƒ@ƒCƒ‹‚ğœŠO‚µ‚Ä‚­‚ê‚é( ';'‚Å•¡”‚Ì•¶š—ñ‚ğ˜AŒ‹‰Â”\ )
-// ValidExName ‚É—LŒø‚É‚µ‚½‚¢Šg’£q‚ğ“n‚·‚Æ‚»‚ÌŠg’£q‚ğ‚Âƒtƒ@ƒCƒ‹‚Ì‚İ—ñ‹“‚µ‚Ä‚­‚ê‚é( OmitŒn‚æ‚è‚à—Dæ“x‚ª‚‚¢, ';'‚Å•¡”‚Ì•¶š—ñ‚ğ˜AŒ‹‰Â”\ )
-// –ß‚è’l : -1 = ƒGƒ‰[  0ˆÈã = —ñ‹“‚µ‚½ƒtƒ@ƒCƒ‹‚Ì”
+// æŒ‡å®šã®ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã®ãƒ•ã‚¡ã‚¤ãƒ«ãƒªã‚¹ãƒˆã‚’å–å¾—ã™ã‚‹
+// ãƒ‘ã‚¹æ–‡å­—åˆ—ã®æœ€å¾Œã«ã€\ã€ãŒç„¡ãã¦ã‚‚å¸¸ã«æœ€å¾Œã®æ–‡å­—åˆ—ã‚’ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã¨åˆ¤æ–­ã™ã‚‹
+// ãƒ•ãƒ«ãƒ‘ã‚¹ã§ã¯ãªã„å ´åˆã¯ç¾åœ¨ã®ã‚«ãƒ¬ãƒ³ãƒˆãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã‹ã‚‰ã®ç›¸å¯¾ãƒ‘ã‚¹ã¨ãªã‚‹
+// FileListInfo ãŒ 0 ã§ã¯ãªã„å ´åˆä½¿ç”¨å¾Œ ReleaseFileObjectList ã‚’å‘¼ã¶å¿…è¦ãŒã‚ã‚‹
+// SubDirectory ã‚’ 1 ã«ã™ã‚‹ã¨ã‚µãƒ–ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªå†…ã®ãƒ•ã‚¡ã‚¤ãƒ«ã‚‚å…¨ã¦åˆ—æŒ™ã™ã‚‹
+// NULL ã€ã‚‚ã—ãã¯æ–‡å­—ãŒä¸€ã¤ã‚‚ãªã„æ–‡å­—åˆ—ã‚’æ¸¡ã—ãŸå ´åˆã‚«ãƒ¬ãƒ³ãƒˆãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã®ãƒ•ã‚¡ã‚¤ãƒ«ãŒåˆ—æŒ™ã•ã‚Œã‚‹
+// OmitDirectory ã‚’ 1 ã«ã™ã‚‹ã¨ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã¯åˆ—æŒ™ã—ãªã„
+// OmitName ã«é™¤å¤–ã—ãŸã„ãƒ•ã‚¡ã‚¤ãƒ«åã‚’æ¸¡ã™ã¨ãã®æ–‡å­—åˆ—ã‚’é™¤å¤–ã—ã¦ãã‚Œã‚‹( ';'ã§è¤‡æ•°ã®æ–‡å­—åˆ—ã‚’é€£çµå¯èƒ½ )
+// OmitExName ã«é™¤å¤–ã—ãŸã„æ‹¡å¼µå­ã‚’æ¸¡ã™ã¨ãã®æ‹¡å¼µå­ã‚’æŒã¤ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é™¤å¤–ã—ã¦ãã‚Œã‚‹( ';'ã§è¤‡æ•°ã®æ–‡å­—åˆ—ã‚’é€£çµå¯èƒ½ )
+// ValidExName ã«æœ‰åŠ¹ã«ã—ãŸã„æ‹¡å¼µå­ã‚’æ¸¡ã™ã¨ãã®æ‹¡å¼µå­ã‚’æŒã¤ãƒ•ã‚¡ã‚¤ãƒ«ã®ã¿åˆ—æŒ™ã—ã¦ãã‚Œã‚‹( Omitç³»ã‚ˆã‚Šã‚‚å„ªå…ˆåº¦ãŒé«˜ã„, ';'ã§è¤‡æ•°ã®æ–‡å­—åˆ—ã‚’é€£çµå¯èƒ½ )
+// æˆ»ã‚Šå€¤ : -1 = ã‚¨ãƒ©ãƒ¼  0ä»¥ä¸Š = åˆ—æŒ™ã—ãŸãƒ•ã‚¡ã‚¤ãƒ«ã®æ•°
 extern int CreateFileList( const char *DirectoryPath, FILE_INFOLIST *FileListInfo,
 							int OmitDirectory, int SubDirectory,
 							const char *OmitName, const char *OmitExName, const char *ValidExName )
@@ -516,10 +516,10 @@ extern int CreateFileList( const char *DirectoryPath, FILE_INFOLIST *FileListInf
 	char *OmitStrBuf = NULL, *OmitExStrBuf = NULL, *ValidExStrBuf = NULL ;
 	char *OmitStr[50], *OmitExStr[50], *ValidExStr[100] ;
 	
-	// ƒtƒ‹ƒpƒX‚ğ“¾‚é
+	// ãƒ•ãƒ«ãƒ‘ã‚¹ã‚’å¾—ã‚‹
 	ConvertFullPath__( DirectoryPath, DirPath, NULL ) ;
 	
-	// ƒfƒBƒŒƒNƒgƒŠ‚Å‚Í‚È‚­ƒtƒ@ƒCƒ‹‚¾‚Á‚½‚çŸˆ‚Åˆ—‚µ‚Ä‚µ‚Ü‚¤
+	// ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã§ã¯ãªããƒ•ã‚¡ã‚¤ãƒ«ã ã£ãŸã‚‰æ­¤å‡¦ã§å‡¦ç†ã—ã¦ã—ã¾ã†
 	{
 		int res ;
 		
@@ -541,7 +541,7 @@ extern int CreateFileList( const char *DirectoryPath, FILE_INFOLIST *FileListInf
 		SetEnMark( DirPath ) ;
 	}
 
-	// ‰Šú‰»
+	// åˆæœŸåŒ–
 	FileList.Num = 0 ;
 	FileList.List = NULL ;
 	OmitStrBuf = ( char * )malloc( 1024 ) ;
@@ -551,7 +551,7 @@ extern int CreateFileList( const char *DirectoryPath, FILE_INFOLIST *FileListInf
 	ValidExStrBuf = ( char * )malloc( 1024 ) ;
 	if( ValidExStrBuf == NULL ) goto ERR ;
 
-	// œŠO•¶š—ñƒŠƒXƒg‚Ìì¬
+	// é™¤å¤–æ–‡å­—åˆ—ãƒªã‚¹ãƒˆã®ä½œæˆ
 	if( OmitName != NULL )
 	{
 		int i ;
@@ -573,7 +573,7 @@ extern int CreateFileList( const char *DirectoryPath, FILE_INFOLIST *FileListInf
 	}
 	else OmitStr[0] = NULL ;
 
-	// œŠOŠg’£qƒŠƒXƒg‚Ìì¬
+	// é™¤å¤–æ‹¡å¼µå­ãƒªã‚¹ãƒˆã®ä½œæˆ
 	if( OmitExName != NULL )
 	{
 		int i ;
@@ -595,7 +595,7 @@ extern int CreateFileList( const char *DirectoryPath, FILE_INFOLIST *FileListInf
 	}
 	else OmitExStr[0] = NULL ;
 
-	// —LŒøŠg’£qƒŠƒXƒg‚Ìì¬
+	// æœ‰åŠ¹æ‹¡å¼µå­ãƒªã‚¹ãƒˆã®ä½œæˆ
 	if( ValidExName != NULL )
 	{
 		int i ;
@@ -617,38 +617,38 @@ extern int CreateFileList( const char *DirectoryPath, FILE_INFOLIST *FileListInf
 	}
 	else ValidExStr[0] = NULL ;
 
-	// —ñ‹“—pŠÖ”‚É“Š‚°‚Äƒtƒ@ƒCƒ‹‚Ì”‚ğ“¾‚é
+	// åˆ—æŒ™ç”¨é–¢æ•°ã«æŠ•ã’ã¦ãƒ•ã‚¡ã‚¤ãƒ«ã®æ•°ã‚’å¾—ã‚‹
 	FileList.Num = __EnumObject( DirPath, DirPath, NULL, OmitDirectory, SubDirectory, OmitStr, OmitExStr, ValidExStr[0] != NULL ? ValidExStr : NULL ) ;
 	if( FileList.Num < 0 )
 		goto ERR ;
 
-	// ƒtƒ@ƒCƒ‹ƒŠƒXƒg‚Ìƒf[ƒ^‚ªŠi”[‚Å‚«‚éƒƒ‚ƒŠ—Ìˆæ‚ğŠm•Û
+	// ãƒ•ã‚¡ã‚¤ãƒ«ãƒªã‚¹ãƒˆã®ãƒ‡ãƒ¼ã‚¿ãŒæ ¼ç´ã§ãã‚‹ãƒ¡ãƒ¢ãƒªé ˜åŸŸã‚’ç¢ºä¿
 	FileList.List = ( FILE_INFO * )malloc( FileList.Num * sizeof( FILE_INFO ) ) ;
 	if( FileList.List == NULL )
 		goto ERR ;
 	memset( FileList.List, 0, FileList.Num * sizeof( FILE_INFO ) ) ;
 
-	// ƒtƒ@ƒCƒ‹ƒŠƒXƒg‚Éƒf[ƒ^‚ğŠi”[‚·‚é
+	// ãƒ•ã‚¡ã‚¤ãƒ«ãƒªã‚¹ãƒˆã«ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹
 	FileList.Num = 0 ;
 	if( __EnumObject( DirPath, DirPath, &FileList, OmitDirectory, SubDirectory, OmitStr, OmitExStr, ValidExStr[0] != NULL ? ValidExStr : NULL ) < 0 )
 		goto ERR ;
 
-	// ƒf[ƒ^‚ğŠi”[
+	// ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´
 	if( FileListInfo != NULL ) *FileListInfo = FileList ;
 
-	// œŠO•¶š—ñƒoƒbƒtƒ@‰ğ•ú
+	// é™¤å¤–æ–‡å­—åˆ—ãƒãƒƒãƒ•ã‚¡è§£æ”¾
 	free( OmitStrBuf ) ;
 
-	// œŠOŠg’£qƒoƒbƒtƒ@‰ğ•ú
+	// é™¤å¤–æ‹¡å¼µå­ãƒãƒƒãƒ•ã‚¡è§£æ”¾
 	free( OmitExStrBuf ) ;
 
-	// —LŒøŠg’£qƒoƒbƒtƒ@‰ğ•ú
+	// æœ‰åŠ¹æ‹¡å¼µå­ãƒãƒƒãƒ•ã‚¡è§£æ”¾
 	free( ValidExStrBuf ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return FileList.Num ;
 
-	// ƒGƒ‰[ˆ—
+	// ã‚¨ãƒ©ãƒ¼å‡¦ç†
 ERR :
 	ReleaseFileList( &FileList ) ;
 	if( OmitStrBuf != NULL ) free( OmitStrBuf ) ;
@@ -660,7 +660,7 @@ ERR :
 
 extern int ReleaseFileList( FILE_INFOLIST *DirectoryInfo )
 {
-	// ƒƒ‚ƒŠ‚Ì‰ğ•ú
+	// ãƒ¡ãƒ¢ãƒªã®è§£æ”¾
 	if( DirectoryInfo->List != NULL )
 	{
 		int i ;
@@ -674,16 +674,16 @@ extern int ReleaseFileList( FILE_INFOLIST *DirectoryInfo )
 		DirectoryInfo->List = NULL ;
 	}
 
-	// ƒ[ƒ‰Šú‰»
+	// ã‚¼ãƒ­åˆæœŸåŒ–
 	memset( DirectoryInfo, 0, sizeof( FILE_INFOLIST ) ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// “Á’è‚ÌƒpƒX•¶š—ñ‚©‚çFX‚Èî•ñ‚ğæ“¾‚·‚é
-// ( CurrentDir ‚Íƒtƒ‹ƒpƒX‚Å‚ ‚é•K—v‚ª‚ ‚é(Œê”ö‚Éw\x‚ª‚ ‚Á‚Ä‚à–³‚­‚Ä‚à—Ç‚¢) )
-// ( CurrentDir ‚ª 0 ‚Ìê‡‚ÍÀÛ‚ÌƒJƒŒƒ“ƒgƒfƒBƒŒƒNƒgƒŠ‚ğg—p‚·‚é )
+// ç‰¹å®šã®ãƒ‘ã‚¹æ–‡å­—åˆ—ã‹ã‚‰è‰²ã€…ãªæƒ…å ±ã‚’å–å¾—ã™ã‚‹
+// ( CurrentDir ã¯ãƒ•ãƒ«ãƒ‘ã‚¹ã§ã‚ã‚‹å¿…è¦ãŒã‚ã‚‹(èªå°¾ã«ã€\ã€ãŒã‚ã£ã¦ã‚‚ç„¡ãã¦ã‚‚è‰¯ã„) )
+// ( CurrentDir ãŒ 0 ã®å ´åˆã¯å®Ÿéš›ã®ã‚«ãƒ¬ãƒ³ãƒˆãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã‚’ä½¿ç”¨ã™ã‚‹ )
 extern int AnalyseFilePath(
 	const char *Src,
 	char *FullPath, char *DirPath, char *FileName, char *Name, char *ExeName, const char *CurrentDir )
@@ -702,9 +702,9 @@ extern int AnalyseFilePath(
 	return 0;
 }
 
-// ƒtƒ‹ƒpƒX‚Å‚Í‚È‚¢ƒpƒX•¶š—ñ‚ğƒtƒ‹ƒpƒX‚É•ÏŠ·‚·‚é
-// ( CurrentDir ‚Íƒtƒ‹ƒpƒX‚Å‚ ‚é•K—v‚ª‚ ‚é(Œê”ö‚Éw\x‚ª‚ ‚Á‚Ä‚à–³‚­‚Ä‚à—Ç‚¢) )
-// ( CurrentDir ‚ª NULL ‚Ìê‡‚ÍÀÛ‚ÌƒJƒŒƒ“ƒgƒfƒBƒŒƒNƒgƒŠ‚ğg—p‚·‚é )
+// ãƒ•ãƒ«ãƒ‘ã‚¹ã§ã¯ãªã„ãƒ‘ã‚¹æ–‡å­—åˆ—ã‚’ãƒ•ãƒ«ãƒ‘ã‚¹ã«å¤‰æ›ã™ã‚‹
+// ( CurrentDir ã¯ãƒ•ãƒ«ãƒ‘ã‚¹ã§ã‚ã‚‹å¿…è¦ãŒã‚ã‚‹(èªå°¾ã«ã€\ã€ãŒã‚ã£ã¦ã‚‚ç„¡ãã¦ã‚‚è‰¯ã„) )
+// ( CurrentDir ãŒ NULL ã®å ´åˆã¯å®Ÿéš›ã®ã‚«ãƒ¬ãƒ³ãƒˆãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã‚’ä½¿ç”¨ã™ã‚‹ )
 extern int ConvertFullPath__( const char *Src, char *Dest, const char *CurrentDir )
 {
 	int i, j, k ;
@@ -726,7 +726,7 @@ extern int ConvertFullPath__( const char *Src, char *Dest, const char *CurrentDi
 	j = 0 ;
 	k = 0 ;
 	
-	// Å‰‚Éw\x–”‚Íw/x‚ª‚Q‰ñ˜A‘±‚Å‘±‚¢‚Ä‚¢‚éê‡‚Íƒlƒbƒgƒ[ƒN‚ğ‰î‚µ‚Ä‚¢‚é‚Æ”»’f
+	// æœ€åˆã«ã€\ã€åˆã¯ã€/ã€ãŒï¼’å›é€£ç¶šã§ç¶šã„ã¦ã„ã‚‹å ´åˆã¯ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ã‚’ä»‹ã—ã¦ã„ã‚‹ã¨åˆ¤æ–­
 	if( ( Src[0] == '\\' && Src[1] == '\\' ) ||
 		( Src[0] == '/'  && Src[1] == '/'  ) )
 	{
@@ -737,7 +737,7 @@ extern int ConvertFullPath__( const char *Src, char *Dest, const char *CurrentDi
 		j ++ ;
 	}
 	else
-	// Å‰‚ªw\x–”‚Íw/x‚Ìê‡‚ÍƒJƒŒƒ“ƒgƒhƒ‰ƒCƒu‚Ìƒ‹[ƒgƒfƒBƒŒƒNƒgƒŠ‚Ü‚Å—‚¿‚é
+	// æœ€åˆãŒã€\ã€åˆã¯ã€/ã€ã®å ´åˆã¯ã‚«ãƒ¬ãƒ³ãƒˆãƒ‰ãƒ©ã‚¤ãƒ–ã®ãƒ«ãƒ¼ãƒˆãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã¾ã§è½ã¡ã‚‹
 	if( Src[0] == '\\' )
 	{
 		Dest[0] = CurrentDir[0] ;
@@ -748,7 +748,7 @@ extern int ConvertFullPath__( const char *Src, char *Dest, const char *CurrentDi
 		j = 2 ;
 	}
 	else
-	// ƒhƒ‰ƒCƒu–¼‚ª‘‚©‚ê‚Ä‚¢‚½‚ç‚»‚Ìƒhƒ‰ƒCƒu‚Ö
+	// ãƒ‰ãƒ©ã‚¤ãƒ–åãŒæ›¸ã‹ã‚Œã¦ã„ãŸã‚‰ãã®ãƒ‰ãƒ©ã‚¤ãƒ–ã¸
 	if( Src[1] == ':' )
 	{
 		Dest[0] = Src[0] ;
@@ -761,7 +761,7 @@ extern int ConvertFullPath__( const char *Src, char *Dest, const char *CurrentDi
 		if( Src[i] == '\\' ) i ++ ;
 	}
 	else
-	// ‚»‚êˆÈŠO‚Ìê‡‚ÍƒJƒŒƒ“ƒgƒfƒBƒŒƒNƒgƒŠ
+	// ãã‚Œä»¥å¤–ã®å ´åˆã¯ã‚«ãƒ¬ãƒ³ãƒˆãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒª
 	{
 		strcpy( Dest, CurrentDir ) ;
 		j = strlen( Dest ) ;
@@ -788,7 +788,7 @@ extern int ConvertFullPath__( const char *Src, char *Dest, const char *CurrentDi
 
 		case '\\' :
 		case '/' :
-			// •¶š—ñ‚ª–³‚©‚Á‚½‚çƒXƒLƒbƒv
+			// æ–‡å­—åˆ—ãŒç„¡ã‹ã£ãŸã‚‰ã‚¹ã‚­ãƒƒãƒ—
 			if( k == 0 )
 			{
 				i ++ ;
@@ -796,12 +796,12 @@ extern int ConvertFullPath__( const char *Src, char *Dest, const char *CurrentDi
 			}
 			if( strcmp( iden, "." ) == 0 )
 			{
-				// ‚È‚É‚à‚µ‚È‚¢
+				// ãªã«ã‚‚ã—ãªã„
 			}
 			else
 			if( strcmp( iden, ".." ) == 0 )
 			{
-				// ˆê‚Â‰º‚ÌƒfƒBƒŒƒNƒgƒŠ‚Ö
+				// ä¸€ã¤ä¸‹ã®ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã¸
 				j -- ;
 				while( Dest[j] != '\\' && Dest[j] != '/' && Dest[j] != ':' ) j -- ;
 				if( Dest[j] != ':' ) Dest[j] = '\0' ;
@@ -838,17 +838,17 @@ extern int ConvertFullPath__( const char *Src, char *Dest, const char *CurrentDi
 	}
 	
 END :
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// ƒtƒ@ƒCƒ‹–¼‚àˆê‚É‚È‚Á‚Ä‚¢‚é‚Æ•ª‚©‚Á‚Ä‚¢‚éƒpƒX’†‚©‚çƒtƒ@ƒCƒ‹–¼‚ÆƒfƒBƒŒƒNƒgƒŠƒpƒX‚ğ•ªŠ„‚·‚é
-// ƒtƒ‹ƒpƒX‚Å‚ ‚é•K—v‚Í–³‚¢Aƒtƒ@ƒCƒ‹–¼‚¾‚¯‚Å‚à—Ç‚¢
+// ãƒ•ã‚¡ã‚¤ãƒ«åã‚‚ä¸€ç·’ã«ãªã£ã¦ã„ã‚‹ã¨åˆ†ã‹ã£ã¦ã„ã‚‹ãƒ‘ã‚¹ä¸­ã‹ã‚‰ãƒ•ã‚¡ã‚¤ãƒ«åã¨ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªãƒ‘ã‚¹ã‚’åˆ†å‰²ã™ã‚‹
+// ãƒ•ãƒ«ãƒ‘ã‚¹ã§ã‚ã‚‹å¿…è¦ã¯ç„¡ã„ã€ãƒ•ã‚¡ã‚¤ãƒ«åã ã‘ã§ã‚‚è‰¯ã„
 extern int AnalysisFileNameAndDirPath( const char *Src, char *FileName, char *DirPath )
 {
 	int i, Last ;
 	
-	// ƒtƒ@ƒCƒ‹–¼‚ğ”²‚«o‚·
+	// ãƒ•ã‚¡ã‚¤ãƒ«åã‚’æŠœãå‡ºã™
 	i = 0 ;
 	Last = -1 ;
 	while( Src[i] != '\0' )
@@ -869,7 +869,7 @@ extern int AnalysisFileNameAndDirPath( const char *Src, char *FileName, char *Di
 		else strcpy( FileName, Src ) ;
 	}
 	
-	// ƒfƒBƒŒƒNƒgƒŠƒpƒX‚ğ”²‚«o‚·
+	// ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªãƒ‘ã‚¹ã‚’æŠœãå‡ºã™
 	if( DirPath != NULL )
 	{
 		if( Last != -1 )
@@ -883,19 +883,19 @@ extern int AnalysisFileNameAndDirPath( const char *Src, char *FileName, char *Di
 		}
 	}
 	
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒtƒ@ƒCƒ‹ƒpƒX‚©‚çƒtƒ@ƒCƒ‹–¼‚ÆŠg’£q‚ğæ“¾‚·‚é
+// ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹ã‹ã‚‰ãƒ•ã‚¡ã‚¤ãƒ«åã¨æ‹¡å¼µå­ã‚’å–å¾—ã™ã‚‹
 extern int AnalysisFileNameAndExeName( const char *Src, char *Name, char *ExeName )
 {
 	char FileName[256], *p, ename[128], name[128] ;
 
-	// ƒtƒ@ƒCƒ‹–¼‚Ì‚İ‚ğæ“¾
+	// ãƒ•ã‚¡ã‚¤ãƒ«åã®ã¿ã‚’å–å¾—
 	AnalysisFileNameAndDirPath( Src, FileName, 0 ) ;
 
-	// w.x‚ª‚ ‚é‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+	// ã€.ã€ãŒã‚ã‚‹ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 	if( ( p = strrchr( FileName, '.' ) ) == NULL )
 	{
 		strcpy( name, FileName ) ;
@@ -911,11 +911,11 @@ extern int AnalysisFileNameAndExeName( const char *Src, char *Name, char *ExeNam
 	if( Name != NULL ) strcpy( Name, name ) ;
 	if( ExeName != NULL ) strcpy( ExeName, ename ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒtƒ@ƒCƒ‹ƒpƒX‚ÌŠg’£q‚ğ•Ï‚¦‚½•¶š—ñ‚ğ“¾‚é
+// ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹ã®æ‹¡å¼µå­ã‚’å¤‰ãˆãŸæ–‡å­—åˆ—ã‚’å¾—ã‚‹
 extern int GetChangeExeNamePath( const char *Src, char *Dest, const char *ExeName )
 {
 	char DirPath[256], FileName[128] ;
@@ -925,12 +925,12 @@ extern int GetChangeExeNamePath( const char *Src, char *Dest, const char *ExeNam
 	SetEnMark( DirPath ) ;
 	sprintf( Dest, "%s%s.%s", DirPath, FileName, ExeName ) ;
 	
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
 
-// Œê”ö‚Éw\x‚ª‚Â‚¢‚Ä‚¢‚È‚¢ê‡‚Í•t‚¯‚é
+// èªå°¾ã«ã€\ã€ãŒã¤ã„ã¦ã„ãªã„å ´åˆã¯ä»˜ã‘ã‚‹
 extern void SetEnMark( char *PathBuf )
 {
 	int Len = ( int )strlen( PathBuf ) ;
@@ -942,7 +942,7 @@ extern void SetEnMark( char *PathBuf )
 	}
 }
 
-// Œê”ö‚Éw’è‚Ì•¶š‚ª‚È‚¢ê‡‚Í‚Â‚¯‚é
+// èªå°¾ã«æŒ‡å®šã®æ–‡å­—ãŒãªã„å ´åˆã¯ã¤ã‘ã‚‹
 extern void SetChr( char *PathBuf, char chr )
 {
 	int Len = ( int )strlen( PathBuf ) ;
@@ -954,7 +954,7 @@ extern void SetChr( char *PathBuf, char chr )
 	}
 }
 
-// Œê”ö‚Éw’è‚Ì•¶š‚ª‚ ‚éê‡‚Ííœ‚·‚é
+// èªå°¾ã«æŒ‡å®šã®æ–‡å­—ãŒã‚ã‚‹å ´åˆã¯å‰Šé™¤ã™ã‚‹
 extern void DelChr( char *PathBuf, char chr )
 {
 	int Len = ( int )strlen( PathBuf ) ;
@@ -966,21 +966,21 @@ extern void DelChr( char *PathBuf, char chr )
 }
 
 
-// Šg’£q‚ğ“¾‚é
+// æ‹¡å¼µå­ã‚’å¾—ã‚‹
 extern int GetExName( const char *Path, char *ExNameBuf )
 {
 	char *p ;
 	
-	// ˆê”ÔÅŒã‚É '.' ‚ªo‚é•”•ª‚ğæ“¾‚·‚é
+	// ä¸€ç•ªæœ€å¾Œã« '.' ãŒå‡ºã‚‹éƒ¨åˆ†ã‚’å–å¾—ã™ã‚‹
 	p = strrchr( ( char * )Path, '.' ) ;
 	if( p == NULL ) ExNameBuf[0] = '\0' ;
 	else strcpy( ExNameBuf, p + 1 ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// Šg’£q‚ğ•ÏX‚·‚é
+// æ‹¡å¼µå­ã‚’å¤‰æ›´ã™ã‚‹
 extern int SetExName( const char *Path, char *ExName, char *DestBuf )
 {
 	char *p ;
@@ -988,7 +988,7 @@ extern int SetExName( const char *Path, char *ExName, char *DestBuf )
 	
 	strcpy( tempstr, Path ) ;
 
-	// ˆê”ÔÅŒã‚É '.' ‚ªo‚é•”•ª‚ğæ“¾‚·‚é
+	// ä¸€ç•ªæœ€å¾Œã« '.' ãŒå‡ºã‚‹éƒ¨åˆ†ã‚’å–å¾—ã™ã‚‹
 	p = strrchr( tempstr, '.' ) ;
 	if( p == NULL )
 	{
@@ -1000,21 +1000,21 @@ extern int SetExName( const char *Path, char *ExName, char *DestBuf )
 		strcpy( DestBuf + ( p - tempstr + 1 ), ExName ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
 
-// ƒeƒLƒXƒgƒf[ƒ^‚©‚Ç‚¤‚©‚ğ”»’è‚·‚é( 1:ƒeƒLƒXƒgƒf[ƒ^  0:ƒoƒCƒiƒŠƒf[ƒ^ )
+// ãƒ†ã‚­ã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿ã‹ã©ã†ã‹ã‚’åˆ¤å®šã™ã‚‹( 1:ãƒ†ã‚­ã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿  0:ãƒã‚¤ãƒŠãƒªãƒ‡ãƒ¼ã‚¿ )
 extern int CheckTextData( void *buffer, int size )
 {
 	unsigned char *p ;
 	int len, saerch ;
 	
-	// æ“ª‚W‚j‚a‚Ì‚İŒ©‚é
+	// å…ˆé ­ï¼˜ï¼«ï¼¢ã®ã¿è¦‹ã‚‹
 	saerch = size > TEXTCHECKSIZE ? TEXTCHECKSIZE : size ;
 
-	// I’[•¶š‚ª‚Q‰ñˆÈão‚Ä‚«‚½‚çƒoƒCƒiƒŠƒf[ƒ^
+	// çµ‚ç«¯æ–‡å­—ãŒï¼’å›ä»¥ä¸Šå‡ºã¦ããŸã‚‰ãƒã‚¤ãƒŠãƒªãƒ‡ãƒ¼ã‚¿
 	{
 		int con ;
 	
@@ -1030,7 +1030,7 @@ extern int CheckTextData( void *buffer, int size )
 		}
 	}
 	
-	// ‰üsAƒ^ƒuˆÈŠO‚ÌƒRƒ“ƒgƒ[ƒ‹•¶š‚ªo‚Ä‚«‚½‚çƒoƒCƒiƒŠƒf[ƒ^
+	// æ”¹è¡Œã€ã‚¿ãƒ–ä»¥å¤–ã®ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«æ–‡å­—ãŒå‡ºã¦ããŸã‚‰ãƒã‚¤ãƒŠãƒªãƒ‡ãƒ¼ã‚¿
 	{
 		int con ;
 		
@@ -1046,7 +1046,7 @@ extern int CheckTextData( void *buffer, int size )
 		}
 	}
 	
-	// •¶š‚Å‚Í‚È‚¢ƒR[ƒh‚ªo‚Ä‚«‚½‚çƒoƒCƒiƒŠƒf[ƒ^
+	// æ–‡å­—ã§ã¯ãªã„ã‚³ãƒ¼ãƒ‰ãŒå‡ºã¦ããŸã‚‰ãƒã‚¤ãƒŠãƒªãƒ‡ãƒ¼ã‚¿
 	{
 		p = ( unsigned char * )buffer ;
 		for( len = saerch ; len > 0 ; len --, p ++ )
@@ -1065,11 +1065,11 @@ extern int CheckTextData( void *buffer, int size )
 		}
 	}
 	
-	// Ÿˆ‚É—ˆ‚½‚çƒeƒLƒXƒgƒf[ƒ^
+	// æ­¤å‡¦ã«æ¥ãŸã‚‰ãƒ†ã‚­ã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿
 	return 1 ;
 }
 
-// ƒeƒLƒXƒgƒtƒ@ƒCƒ‹‚©‚Ç‚¤‚©‚ğ”»’è‚·‚é( 1:ƒeƒLƒXƒgƒf[ƒ^  0:ƒoƒCƒiƒŠƒf[ƒ^ )
+// ãƒ†ã‚­ã‚¹ãƒˆãƒ•ã‚¡ã‚¤ãƒ«ã‹ã©ã†ã‹ã‚’åˆ¤å®šã™ã‚‹( 1:ãƒ†ã‚­ã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿  0:ãƒã‚¤ãƒŠãƒªãƒ‡ãƒ¼ã‚¿ )
 extern int CheckTextFile( const char *Path )
 {
 	void *buf ;
@@ -1102,7 +1102,7 @@ extern int CheckTextFile( const char *Path )
 	return res ;
 }
 
-// ‚QƒoƒCƒg•¶š‚©’²‚×‚é( TRUE:‚QƒoƒCƒg•¶š FALSE:‚PƒoƒCƒg•¶š )
+// ï¼’ãƒã‚¤ãƒˆæ–‡å­—ã‹èª¿ã¹ã‚‹( TRUE:ï¼’ãƒã‚¤ãƒˆæ–‡å­— FALSE:ï¼‘ãƒã‚¤ãƒˆæ–‡å­— )
 extern int CheckMultiByteChar( char *Buf )
 {
 	return  ( (unsigned char)*Buf >= 0x81 && (unsigned char)*Buf <= 0x9F ) || ( (unsigned char)*Buf >= 0xE0 && (unsigned char)*Buf <= 0xFC ) ;

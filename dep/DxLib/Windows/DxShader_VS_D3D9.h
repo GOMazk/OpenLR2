@@ -1,61 +1,61 @@
 // -------------------------------------------------------------------------------
 // 
-// 		‚c‚wƒ‰ƒCƒuƒ‰ƒŠ		ƒo[ƒeƒbƒNƒXƒVƒF[ƒ_[ŠÖ˜A’è‹`
+// 		ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒª		ãƒãƒ¼ãƒ†ãƒƒã‚¯ã‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼é–¢é€£å®šç¾©
 // 
 // 				Ver 3.25a
 // 
 // -------------------------------------------------------------------------------
 
-// Float4 Œ^’è”
+// Float4 åž‹å®šæ•°
 #define DX_VS_CONSTF_ZERO_ONE                          0			// x:0.0f y:1.0f
-#define DX_VS_CONSTF_AMBIENT_EMISSIVE                  1			// ƒ}ƒeƒŠƒAƒ‹ƒGƒ~ƒbƒVƒuƒJƒ‰[ + ƒ}ƒeƒŠƒAƒ‹ƒAƒ“ƒrƒGƒ“ƒgƒJƒ‰[ * ƒOƒ[ƒoƒ‹ƒAƒ“ƒrƒGƒ“ƒgƒJƒ‰[
-#define DX_VS_CONSTF_PROJECTION_MAT                    2			// ŽË‰es—ñ‚Ì“]’us—ñ‚Ì’è”ƒAƒhƒŒƒX
-#define DX_VS_CONSTF_VIEW_MAT                          6			// ƒrƒ…[s—ñ‚Ì“]’us—ñ‚Ì’è”ƒAƒhƒŒƒX
-#define DX_VS_CONSTF_FOG                               10			// ƒtƒHƒO—pƒpƒ‰ƒ[ƒ^‚ðŠi”[‚·‚éƒAƒhƒŒƒX( x:end/(end - start)  y:-1/(end - start)  z:density  w:Ž©‘R‘Î”‚Ì’á )
+#define DX_VS_CONSTF_AMBIENT_EMISSIVE                  1			// ãƒžãƒ†ãƒªã‚¢ãƒ«ã‚¨ãƒŸãƒƒã‚·ãƒ–ã‚«ãƒ©ãƒ¼ + ãƒžãƒ†ãƒªã‚¢ãƒ«ã‚¢ãƒ³ãƒ“ã‚¨ãƒ³ãƒˆã‚«ãƒ©ãƒ¼ * ã‚°ãƒ­ãƒ¼ãƒãƒ«ã‚¢ãƒ³ãƒ“ã‚¨ãƒ³ãƒˆã‚«ãƒ©ãƒ¼
+#define DX_VS_CONSTF_PROJECTION_MAT                    2			// å°„å½±è¡Œåˆ—ã®è»¢ç½®è¡Œåˆ—ã®å®šæ•°ã‚¢ãƒ‰ãƒ¬ã‚¹
+#define DX_VS_CONSTF_VIEW_MAT                          6			// ãƒ“ãƒ¥ãƒ¼è¡Œåˆ—ã®è»¢ç½®è¡Œåˆ—ã®å®šæ•°ã‚¢ãƒ‰ãƒ¬ã‚¹
+#define DX_VS_CONSTF_FOG                               10			// ãƒ•ã‚©ã‚°ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹ã‚¢ãƒ‰ãƒ¬ã‚¹( x:end/(end - start)  y:-1/(end - start)  z:density  w:è‡ªç„¶å¯¾æ•°ã®ä½Ž )
 
-#define DX_VS_CONSTF_MATERIAL_START                    11			// ƒ}ƒeƒŠƒAƒ‹‚Ìƒpƒ‰ƒ[ƒ^‚ªŠi”[‚³‚ê‚é’è”ƒAƒhƒŒƒX
-#define DX_VS_CONSTF_MATERIAL_SIZE                     3			// ƒ}ƒeƒŠƒAƒ‹—p‚ÌƒŒƒWƒXƒ^‚Ì”
-#define DX_VS_CONSTF_MAT_DIFFUSE                       0			// ƒ}ƒeƒŠƒAƒ‹‚ÌƒfƒBƒt[ƒYF
-#define DX_VS_CONSTF_MAT_SPECULAR                      1			// ƒ}ƒeƒŠƒAƒ‹‚ÌƒXƒyƒLƒ…ƒ‰[F
-#define DX_VS_CONSTF_MAT_POWER                         2			// ƒ}ƒeƒŠƒAƒ‹‚ÌƒXƒyƒLƒ…ƒ‰ƒnƒCƒ‰ƒCƒg‚Ìƒpƒ[
+#define DX_VS_CONSTF_MATERIAL_START                    11			// ãƒžãƒ†ãƒªã‚¢ãƒ«ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãŒæ ¼ç´ã•ã‚Œã‚‹å®šæ•°ã‚¢ãƒ‰ãƒ¬ã‚¹
+#define DX_VS_CONSTF_MATERIAL_SIZE                     3			// ãƒžãƒ†ãƒªã‚¢ãƒ«ç”¨ã®ãƒ¬ã‚¸ã‚¹ã‚¿ã®æ•°
+#define DX_VS_CONSTF_MAT_DIFFUSE                       0			// ãƒžãƒ†ãƒªã‚¢ãƒ«ã®ãƒ‡ã‚£ãƒ•ãƒ¼ã‚ºè‰²
+#define DX_VS_CONSTF_MAT_SPECULAR                      1			// ãƒžãƒ†ãƒªã‚¢ãƒ«ã®ã‚¹ãƒšã‚­ãƒ¥ãƒ©ãƒ¼è‰²
+#define DX_VS_CONSTF_MAT_POWER                         2			// ãƒžãƒ†ãƒªã‚¢ãƒ«ã®ã‚¹ãƒšã‚­ãƒ¥ãƒ©ãƒã‚¤ãƒ©ã‚¤ãƒˆã®ãƒ‘ãƒ¯ãƒ¼
 
-#define DX_VS_CONSTF_LIGHT_START                       14			// ƒ‰ƒCƒg‚Ìƒpƒ‰ƒ[ƒ^‚ªŠi”[‚³‚ê‚é’è”ƒAƒhƒŒƒX
-#define DX_VS_CONSTF_LIGHT_NUM                         4			// ƒgƒ‰ƒCƒAƒ“ƒOƒ‹ƒŠƒXƒgˆê‚Â‚Å“¯Žž‚ÉŽg—p‚·‚éƒ‰ƒCƒg‚ÌÅ‘å”
-#define DX_VS_CONSTF_LIGHT_UNITSIZE                    7			// ƒ‰ƒCƒgƒpƒ‰ƒ[ƒ^ˆê‚Â•Ó‚è‚ÉŽg—p‚·‚éƒŒƒWƒXƒ^‚Ì”
-#define DX_VS_CONSTF_LGT_POSITION                      0			// ƒ‰ƒCƒg‚ÌˆÊ’u( ƒrƒ…[‹óŠÔ )
-#define DX_VS_CONSTF_LGT_DIRECTION                     1			// ƒ‰ƒCƒg‚Ì•ûŒü( ƒrƒ…[‹óŠÔ )
-#define DX_VS_CONSTF_LGT_DIFFUSE                       2			// ƒ‰ƒCƒg‚ÌƒfƒBƒt[ƒYF
-#define DX_VS_CONSTF_LGT_SPECULAR                      3			// ƒ‰ƒCƒg‚ÌƒXƒyƒLƒ…ƒ‰F
-#define DX_VS_CONSTF_LGT_AMBIENT                       4			// ƒ‰ƒCƒg‚ÌƒAƒ“ƒrƒGƒ“ƒgF‚Æƒ}ƒeƒŠƒAƒ‹‚ÌƒAƒ“ƒrƒGƒ“ƒgƒJƒ‰[‚ðæŽZ‚µ‚½‚à‚Ì
-#define DX_VS_CONSTF_LGT_RANGE_FALLOFF_AT0_AT1         5			// ƒ‰ƒCƒg‚Ì x:—LŒø‹——£‚Ì“ñæ y:ƒtƒH[ƒ‹ƒIƒt z:‹——£Œ¸Šƒpƒ‰ƒ[ƒ^‚O w:‹——£Œ¸Šƒpƒ‰ƒ[ƒ^‚P
-#define DX_VS_CONSTF_LGT_AT2_SPOTP0_SPOTP1             6			// ƒ‰ƒCƒg‚Ì x:‹——£Œ¸Šƒpƒ‰ƒ[ƒ^‚Q y:ƒXƒ|ƒbƒgƒ‰ƒCƒg—pƒpƒ‰ƒ[ƒ^‚O( cos( Phi / 2.0f ) ) z:ƒXƒ|ƒbƒgƒ‰ƒCƒg—pƒpƒ‰ƒ[ƒ^‚P( 1.0f / ( cos( Theta / 2.0f ) - cos( Phi / 2.0f ) ) )
+#define DX_VS_CONSTF_LIGHT_START                       14			// ãƒ©ã‚¤ãƒˆã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãŒæ ¼ç´ã•ã‚Œã‚‹å®šæ•°ã‚¢ãƒ‰ãƒ¬ã‚¹
+#define DX_VS_CONSTF_LIGHT_NUM                         4			// ãƒˆãƒ©ã‚¤ã‚¢ãƒ³ã‚°ãƒ«ãƒªã‚¹ãƒˆä¸€ã¤ã§åŒæ™‚ã«ä½¿ç”¨ã™ã‚‹ãƒ©ã‚¤ãƒˆã®æœ€å¤§æ•°
+#define DX_VS_CONSTF_LIGHT_UNITSIZE                    7			// ãƒ©ã‚¤ãƒˆãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ä¸€ã¤è¾ºã‚Šã«ä½¿ç”¨ã™ã‚‹ãƒ¬ã‚¸ã‚¹ã‚¿ã®æ•°
+#define DX_VS_CONSTF_LGT_POSITION                      0			// ãƒ©ã‚¤ãƒˆã®ä½ç½®( ãƒ“ãƒ¥ãƒ¼ç©ºé–“ )
+#define DX_VS_CONSTF_LGT_DIRECTION                     1			// ãƒ©ã‚¤ãƒˆã®æ–¹å‘( ãƒ“ãƒ¥ãƒ¼ç©ºé–“ )
+#define DX_VS_CONSTF_LGT_DIFFUSE                       2			// ãƒ©ã‚¤ãƒˆã®ãƒ‡ã‚£ãƒ•ãƒ¼ã‚ºè‰²
+#define DX_VS_CONSTF_LGT_SPECULAR                      3			// ãƒ©ã‚¤ãƒˆã®ã‚¹ãƒšã‚­ãƒ¥ãƒ©è‰²
+#define DX_VS_CONSTF_LGT_AMBIENT                       4			// ãƒ©ã‚¤ãƒˆã®ã‚¢ãƒ³ãƒ“ã‚¨ãƒ³ãƒˆè‰²ã¨ãƒžãƒ†ãƒªã‚¢ãƒ«ã®ã‚¢ãƒ³ãƒ“ã‚¨ãƒ³ãƒˆã‚«ãƒ©ãƒ¼ã‚’ä¹—ç®—ã—ãŸã‚‚ã®
+#define DX_VS_CONSTF_LGT_RANGE_FALLOFF_AT0_AT1         5			// ãƒ©ã‚¤ãƒˆã® x:æœ‰åŠ¹è·é›¢ã®äºŒä¹— y:ãƒ•ã‚©ãƒ¼ãƒ«ã‚ªãƒ• z:è·é›¢æ¸›è¡°ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ï¼ w:è·é›¢æ¸›è¡°ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ï¼‘
+#define DX_VS_CONSTF_LGT_AT2_SPOTP0_SPOTP1             6			// ãƒ©ã‚¤ãƒˆã® x:è·é›¢æ¸›è¡°ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ï¼’ y:ã‚¹ãƒãƒƒãƒˆãƒ©ã‚¤ãƒˆç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ï¼( cos( Phi / 2.0f ) ) z:ã‚¹ãƒãƒƒãƒˆãƒ©ã‚¤ãƒˆç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ï¼‘( 1.0f / ( cos( Theta / 2.0f ) - cos( Phi / 2.0f ) ) )
 
-#define DX_VS_CONSTF_TOON_OUTLINE_SIZE                 42			// ƒgƒD[ƒ“ƒŒƒ“ƒ_ƒŠƒ“ƒO—p‚Ì—ÖŠsü‚Ì‘¾‚³
-#define DX_VS_CONSTF_DIF_SPE_SOURCE                    43			// ƒfƒBƒtƒ…[ƒYƒJƒ‰[‚ÆƒXƒyƒLƒ…ƒ‰ƒJƒ‰[‚Ìƒ\[ƒX  x:ƒfƒBƒtƒ…[ƒYƒJƒ‰[( 0.0f:ƒ}ƒeƒŠƒAƒ‹  1.0f:’¸“_ )  y:ƒXƒyƒLƒ…ƒ‰ƒJƒ‰[( 0.0f:ƒ}ƒeƒŠƒAƒ‹  1.0f:’¸“_ )
-#define DX_VS_CONSTF_SHADOWMAP1_LIGHT_VIEW_PROJECTION_MAT 44		// ƒVƒƒƒhƒEƒ}ƒbƒv‚P—p‚Ìƒ‰ƒCƒgƒrƒ…[s—ñ‚Æƒ‰ƒCƒgŽË‰es—ñ‚ðæŽZ‚µ‚½‚à‚Ì
-#define DX_VS_CONSTF_SHADOWMAP2_LIGHT_VIEW_PROJECTION_MAT 48		// ƒVƒƒƒhƒEƒ}ƒbƒv‚Q—p‚Ìƒ‰ƒCƒgƒrƒ…[s—ñ‚Æƒ‰ƒCƒgŽË‰es—ñ‚ðæŽZ‚µ‚½‚à‚Ì
-#define DX_VS_CONSTF_SHADOWMAP3_LIGHT_VIEW_PROJECTION_MAT 52		// ƒVƒƒƒhƒEƒ}ƒbƒv‚R—p‚Ìƒ‰ƒCƒgƒrƒ…[s—ñ‚Æƒ‰ƒCƒgŽË‰es—ñ‚ðæŽZ‚µ‚½‚à‚Ì
+#define DX_VS_CONSTF_TOON_OUTLINE_SIZE                 42			// ãƒˆã‚¥ãƒ¼ãƒ³ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ç”¨ã®è¼ªéƒ­ç·šã®å¤ªã•
+#define DX_VS_CONSTF_DIF_SPE_SOURCE                    43			// ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚«ãƒ©ãƒ¼ã¨ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã‚«ãƒ©ãƒ¼ã®ã‚½ãƒ¼ã‚¹  x:ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚«ãƒ©ãƒ¼( 0.0f:ãƒžãƒ†ãƒªã‚¢ãƒ«  1.0f:é ‚ç‚¹ )  y:ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã‚«ãƒ©ãƒ¼( 0.0f:ãƒžãƒ†ãƒªã‚¢ãƒ«  1.0f:é ‚ç‚¹ )
+#define DX_VS_CONSTF_SHADOWMAP1_LIGHT_VIEW_PROJECTION_MAT 44		// ã‚·ãƒ£ãƒ‰ã‚¦ãƒžãƒƒãƒ—ï¼‘ç”¨ã®ãƒ©ã‚¤ãƒˆãƒ“ãƒ¥ãƒ¼è¡Œåˆ—ã¨ãƒ©ã‚¤ãƒˆå°„å½±è¡Œåˆ—ã‚’ä¹—ç®—ã—ãŸã‚‚ã®
+#define DX_VS_CONSTF_SHADOWMAP2_LIGHT_VIEW_PROJECTION_MAT 48		// ã‚·ãƒ£ãƒ‰ã‚¦ãƒžãƒƒãƒ—ï¼’ç”¨ã®ãƒ©ã‚¤ãƒˆãƒ“ãƒ¥ãƒ¼è¡Œåˆ—ã¨ãƒ©ã‚¤ãƒˆå°„å½±è¡Œåˆ—ã‚’ä¹—ç®—ã—ãŸã‚‚ã®
+#define DX_VS_CONSTF_SHADOWMAP3_LIGHT_VIEW_PROJECTION_MAT 52		// ã‚·ãƒ£ãƒ‰ã‚¦ãƒžãƒƒãƒ—ï¼“ç”¨ã®ãƒ©ã‚¤ãƒˆãƒ“ãƒ¥ãƒ¼è¡Œåˆ—ã¨ãƒ©ã‚¤ãƒˆå°„å½±è¡Œåˆ—ã‚’ä¹—ç®—ã—ãŸã‚‚ã®
 
-#define DX_VS_CONSTF_VERTICAL_FOG                      56			// ‚‚³ƒtƒHƒO—pƒpƒ‰ƒ[ƒ^‚ðŠi”[‚·‚éƒAƒhƒŒƒX( x:end/(end - start)  y:-1/(end - start)  z:density  w:density start )
-#define DX_VS_CONSTF_VERTICAL_FOG_MODE                 57			// ‚‚³ƒtƒHƒO—pƒpƒ‰ƒ[ƒ^‚ðŠi”[‚·‚éƒAƒhƒŒƒX( x:ƒtƒHƒOƒ‚[ƒh )
+#define DX_VS_CONSTF_VERTICAL_FOG                      56			// é«˜ã•ãƒ•ã‚©ã‚°ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹ã‚¢ãƒ‰ãƒ¬ã‚¹( x:end/(end - start)  y:-1/(end - start)  z:density  w:density start )
+#define DX_VS_CONSTF_VERTICAL_FOG_MODE                 57			// é«˜ã•ãƒ•ã‚©ã‚°ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹ã‚¢ãƒ‰ãƒ¬ã‚¹( x:ãƒ•ã‚©ã‚°ãƒ¢ãƒ¼ãƒ‰ )
 
-#define DX_VS_CONSTF_TEXTURE_MATRIX_START              88			// ƒeƒNƒXƒ`ƒƒÀ•W•ÏŠ·s—ñ‚Ì“]’us—ñ‚ªŠi”[‚³‚ê‚é’è”ƒAƒhƒŒƒX
-#define DX_VS_CONSTF_TEXTURE_MATRIX_NUM                3			// ƒeƒNƒXƒ`ƒƒÀ•W•ÏŠ·s—ñ‚Ì“]’us—ñ‚Ì”
-#define DX_VS_CONSTF_TEXTURE_MATRIX_UNITSIZE           2			// ƒeƒNƒXƒ`ƒƒÀ•W•ÏŠ·s—ñ‚Ì“]’us—ñˆê‚Â‚ ‚½‚è‚ÉŽg—p‚³‚ê‚éƒŒƒWƒXƒ^‚Ì”
+#define DX_VS_CONSTF_TEXTURE_MATRIX_START              88			// ãƒ†ã‚¯ã‚¹ãƒãƒ£åº§æ¨™å¤‰æ›è¡Œåˆ—ã®è»¢ç½®è¡Œåˆ—ãŒæ ¼ç´ã•ã‚Œã‚‹å®šæ•°ã‚¢ãƒ‰ãƒ¬ã‚¹
+#define DX_VS_CONSTF_TEXTURE_MATRIX_NUM                3			// ãƒ†ã‚¯ã‚¹ãƒãƒ£åº§æ¨™å¤‰æ›è¡Œåˆ—ã®è»¢ç½®è¡Œåˆ—ã®æ•°
+#define DX_VS_CONSTF_TEXTURE_MATRIX_UNITSIZE           2			// ãƒ†ã‚¯ã‚¹ãƒãƒ£åº§æ¨™å¤‰æ›è¡Œåˆ—ã®è»¢ç½®è¡Œåˆ—ä¸€ã¤ã‚ãŸã‚Šã«ä½¿ç”¨ã•ã‚Œã‚‹ãƒ¬ã‚¸ã‚¹ã‚¿ã®æ•°
 
-#define DX_VS_CONSTF_WORLD_MAT_START                   94			// ƒ[ƒJƒ‹¨ƒ[ƒ‹ƒhs—ñ‚Ì“]’us—ñ‚ªŠi”[‚³‚ê‚é’è”ƒAƒhƒŒƒX
-#define DX_VS_CONSTF_WORLD_MAT_NUM                     54			// ƒgƒ‰ƒCƒAƒ“ƒOƒ‹ƒŠƒXƒgˆê‚Â‚Å“¯Žž‚ÉŽg—p‚·‚éƒ[ƒJƒ‹¨ƒ[ƒ‹ƒhs—ñ‚ÌÅ‘å”
+#define DX_VS_CONSTF_WORLD_MAT_START                   94			// ãƒ­ãƒ¼ã‚«ãƒ«â†’ãƒ¯ãƒ¼ãƒ«ãƒ‰è¡Œåˆ—ã®è»¢ç½®è¡Œåˆ—ãŒæ ¼ç´ã•ã‚Œã‚‹å®šæ•°ã‚¢ãƒ‰ãƒ¬ã‚¹
+#define DX_VS_CONSTF_WORLD_MAT_NUM                     54			// ãƒˆãƒ©ã‚¤ã‚¢ãƒ³ã‚°ãƒ«ãƒªã‚¹ãƒˆä¸€ã¤ã§åŒæ™‚ã«ä½¿ç”¨ã™ã‚‹ãƒ­ãƒ¼ã‚«ãƒ«â†’ãƒ¯ãƒ¼ãƒ«ãƒ‰è¡Œåˆ—ã®æœ€å¤§æ•°
 
-// Bool Œ^’è”
-#define DX_VS_CONSTB_FOG_LINEAR                        0			// üŒ`ƒtƒHƒOŽg—p‚Ì—L–³
-#define DX_VS_CONSTB_FOG_EXP                           1			// Žw”ŠÖ”ƒtƒHƒOŽg—p‚Ì—L–³
-#define DX_VS_CONSTB_FOG_EXP2                          2			// Žw”ŠÖ”ƒtƒHƒO‚QŽg—p‚Ì—L–³
-#define DX_VS_CONSTB_FOG_USE                           3			// ƒtƒHƒOŽg—p‚Ì—L–³
-#define DX_VS_CONSTB_LIGHT_START                       4			// ƒ‰ƒCƒgî•ñ‚ÌŠJŽn’è”ƒAƒhƒŒƒX
-#define DX_VS_CONSTB_LIGHT_NUM                         4			// ƒgƒ‰ƒCƒAƒ“ƒOƒ‹ƒŠƒXƒgˆê‚Â‚Å“¯Žž‚ÉŽg—p‚·‚éƒ‰ƒCƒg‚ÌÅ‘å”
-#define DX_VS_CONSTB_LIGHT_UNITSIZE                    3			// ƒ‰ƒCƒgˆê‚Â“–‚½‚è‚ÉŽg—p‚·‚éƒu[ƒ‹Œ^’è”‚Ì”
-#define DX_VS_CONSTB_LGT_USE                           0			// ƒ‰ƒCƒgŽg—p‚Ì—L–³
-#define DX_VS_CONSTB_LGT_POINT_OR_SPOT                 1			// ƒ|ƒCƒ“ƒgƒ‰ƒCƒg‚©Žá‚µ‚­‚ÍƒXƒ|ƒbƒgƒ‰ƒCƒg‚©‚Ç‚¤‚©
-#define DX_VS_CONSTB_LGT_SPOT                          2			// ƒXƒ|ƒbƒgƒ‰ƒCƒg‚©‚Ç‚¤‚©
+// Bool åž‹å®šæ•°
+#define DX_VS_CONSTB_FOG_LINEAR                        0			// ç·šå½¢ãƒ•ã‚©ã‚°ä½¿ç”¨ã®æœ‰ç„¡
+#define DX_VS_CONSTB_FOG_EXP                           1			// æŒ‡æ•°é–¢æ•°ãƒ•ã‚©ã‚°ä½¿ç”¨ã®æœ‰ç„¡
+#define DX_VS_CONSTB_FOG_EXP2                          2			// æŒ‡æ•°é–¢æ•°ãƒ•ã‚©ã‚°ï¼’ä½¿ç”¨ã®æœ‰ç„¡
+#define DX_VS_CONSTB_FOG_USE                           3			// ãƒ•ã‚©ã‚°ä½¿ç”¨ã®æœ‰ç„¡
+#define DX_VS_CONSTB_LIGHT_START                       4			// ãƒ©ã‚¤ãƒˆæƒ…å ±ã®é–‹å§‹å®šæ•°ã‚¢ãƒ‰ãƒ¬ã‚¹
+#define DX_VS_CONSTB_LIGHT_NUM                         4			// ãƒˆãƒ©ã‚¤ã‚¢ãƒ³ã‚°ãƒ«ãƒªã‚¹ãƒˆä¸€ã¤ã§åŒæ™‚ã«ä½¿ç”¨ã™ã‚‹ãƒ©ã‚¤ãƒˆã®æœ€å¤§æ•°
+#define DX_VS_CONSTB_LIGHT_UNITSIZE                    3			// ãƒ©ã‚¤ãƒˆä¸€ã¤å½“ãŸã‚Šã«ä½¿ç”¨ã™ã‚‹ãƒ–ãƒ¼ãƒ«åž‹å®šæ•°ã®æ•°
+#define DX_VS_CONSTB_LGT_USE                           0			// ãƒ©ã‚¤ãƒˆä½¿ç”¨ã®æœ‰ç„¡
+#define DX_VS_CONSTB_LGT_POINT_OR_SPOT                 1			// ãƒã‚¤ãƒ³ãƒˆãƒ©ã‚¤ãƒˆã‹è‹¥ã—ãã¯ã‚¹ãƒãƒƒãƒˆãƒ©ã‚¤ãƒˆã‹ã©ã†ã‹
+#define DX_VS_CONSTB_LGT_SPOT                          2			// ã‚¹ãƒãƒƒãƒˆãƒ©ã‚¤ãƒˆã‹ã©ã†ã‹
 
 

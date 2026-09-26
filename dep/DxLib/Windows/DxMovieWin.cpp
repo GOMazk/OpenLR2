@@ -1,19 +1,19 @@
 //-----------------------------------------------------------------------------
 // 
-// 		‚c‚wƒ‰ƒCƒuƒ‰ƒŠ		WindowsOS—p“®‰æƒvƒƒOƒ‰ƒ€
+// 		ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒª		WindowsOSç”¨å‹•ç”»ãƒ—ãƒ­ã‚°ãƒ©ãƒ 
 // 
 //  	Ver 3.25a
 // 
 //-----------------------------------------------------------------------------
 
-// ‚c‚wƒ‰ƒCƒuƒ‰ƒŠì¬—p’è‹`
+// ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªä½œæˆæ™‚ç”¨å®šç¾©
 #define DX_MAKE
 
 #include "../DxCompileConfig.h"
 
 #ifndef DX_NON_MOVIE
 
-// ƒCƒ“ƒNƒ‹[ƒh----------------------------------------------------------------
+// ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰----------------------------------------------------------------
 #include "DxMovieWin.h"
 #include "DxWinAPI.h"
 #include "DxFileWin.h"
@@ -30,11 +30,11 @@ namespace DxLib
 
 #endif // DX_NON_NAMESPACE
 
-// ƒ}ƒNƒ’è‹`------------------------------------------------------------------
+// ãƒã‚¯ãƒ­å®šç¾©------------------------------------------------------------------
 
-// Œ^’è‹`----------------------------------------------------------------------
+// å‹å®šç¾©----------------------------------------------------------------------
 
-// ƒf[ƒ^éŒ¾------------------------------------------------------------------
+// ãƒ‡ãƒ¼ã‚¿å®£è¨€------------------------------------------------------------------
 
 #ifndef DX_NON_MEDIA_FOUNDATION
 static GUID *g_MFVideoFormatGUIDTable[ D_MFVIDEOFORMAT_TYPE_UNKNOWN ] =
@@ -95,10 +95,10 @@ static GUID *g_MFVideoFormatGUIDTable[ D_MFVIDEOFORMAT_TYPE_UNKNOWN ] =
 
 #endif // DX_NON_MEDIA_FOUNDATION
 
-// ŠÖ”ƒvƒƒgƒ^ƒCƒvéŒ¾ -------------------------------------------------------
+// é–¢æ•°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€ -------------------------------------------------------
 
 #ifndef DX_NON_MEDIA_FOUNDATION
-// Media Foundation ‚ğg—p‚µ‚½“®‰æƒtƒ@ƒCƒ‹‚ÌƒI[ƒvƒ“‚ğ‚İ‚é
+// Media Foundation ã‚’ä½¿ç”¨ã—ãŸå‹•ç”»ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚ªãƒ¼ãƒ—ãƒ³ã‚’è©¦ã¿ã‚‹
 static int MediaFoundationOpenMovieFile(
 	MOVIEGRAPH * Movie,
 	const wchar_t *FileName,
@@ -108,7 +108,7 @@ static int MediaFoundationOpenMovieFile(
 	int ASyncThread
 ) ;
 
-// ƒJƒŒƒ“ƒgƒtƒŒ[ƒ€‚ÌRGB‰æ‘œ‚ğì¬‚·‚é( –ß‚è’l  1:ì¬‚³‚ê‚½  0:‚³‚ê‚È‚©‚Á‚½ )
+// ã‚«ãƒ¬ãƒ³ãƒˆãƒ•ãƒ¬ãƒ¼ãƒ ã®RGBç”»åƒã‚’ä½œæˆã™ã‚‹( æˆ»ã‚Šå€¤  1:ä½œæˆã•ã‚ŒãŸ  0:ã•ã‚Œãªã‹ã£ãŸ )
 static int MediaFoundationMovie_SetupImage(
 	MOVIEGRAPH * Movie,
 	int BaseImage,
@@ -116,7 +116,7 @@ static int MediaFoundationMovie_SetupImage(
 	int ASyncThread
 ) ;
 
-// Media Foundation ‚ğg—p‚µ‚½“®‰æƒtƒ@ƒCƒ‹‚ÌƒtƒŒ[ƒ€‚ği‚ß‚é
+// Media Foundation ã‚’ä½¿ç”¨ã—ãŸå‹•ç”»ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ•ãƒ¬ãƒ¼ãƒ ã‚’é€²ã‚ã‚‹
 static int MediaFoundationMovie_IncToFrame(
 	MOVIEGRAPH * Movie,
 	int AddFrame,
@@ -125,7 +125,7 @@ static int MediaFoundationMovie_IncToFrame(
 #endif
 
 #ifndef DX_NON_DSHOW_MOVIE
-// DirectShow ‚ğg—p‚µ‚½“®‰æƒtƒ@ƒCƒ‹‚ÌƒI[ƒvƒ“‚ğ‚İ‚é
+// DirectShow ã‚’ä½¿ç”¨ã—ãŸå‹•ç”»ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚ªãƒ¼ãƒ—ãƒ³ã‚’è©¦ã¿ã‚‹
 extern int DirectShowOpenMovieFile(
 	MOVIEGRAPH * Movie,
 	const wchar_t *FileName,
@@ -137,21 +137,21 @@ extern int DirectShowOpenMovieFile(
 ) ;
 #endif
 
-// ƒvƒƒOƒ‰ƒ€------------------------------------------------------------------
+// ãƒ—ãƒ­ã‚°ãƒ©ãƒ ------------------------------------------------------------------
 
-// ƒ€[ƒr[ŠÖ˜A‚ÌŠÇ—ˆ—‚Ì‰Šú‰»‚ÌŠÂ‹«ˆË‘¶ˆ—
+// ãƒ ãƒ¼ãƒ“ãƒ¼é–¢é€£ã®ç®¡ç†å‡¦ç†ã®åˆæœŸåŒ–ã®ç’°å¢ƒä¾å­˜å‡¦ç†
 extern int InitializeMovieManage_PF( void )
 {
 	return 0 ;
 }
 
-// ƒ€[ƒr[ŠÖ˜A‚ÌŠÇ—ˆ—‚ÌŒãn––‚ÌŠÂ‹«ˆË‘¶ˆ—
+// ãƒ ãƒ¼ãƒ“ãƒ¼é–¢é€£ã®ç®¡ç†å‡¦ç†ã®å¾Œå§‹æœ«ã®ç’°å¢ƒä¾å­˜å‡¦ç†
 extern int TerminateMovieManage_PF( void )
 {
 #ifndef DX_NON_MEDIA_FOUNDATION
 	SETUP_WIN_API
 
-	// MFStartup ‚ªŒÄ‚Î‚ê‚Ä‚¢‚½‚ç MFShutdown ‚ğŒÄ‚Ô
+	// MFStartup ãŒå‘¼ã°ã‚Œã¦ã„ãŸã‚‰ MFShutdown ã‚’å‘¼ã¶
 	if( MovieGraphManageData.PF.MFStartupRunFlag )
 	{
 		MovieGraphManageData.PF.MFStartupRunFlag = FALSE ;
@@ -169,7 +169,7 @@ extern int TerminateMovieManage_PF( void )
 
 #ifndef DX_NON_MEDIA_FOUNDATION
 
-// Media Foundation ‚ğg—p‚µ‚½“®‰æƒtƒ@ƒCƒ‹‚ÌƒI[ƒvƒ“‚ğ‚İ‚é
+// Media Foundation ã‚’ä½¿ç”¨ã—ãŸå‹•ç”»ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚ªãƒ¼ãƒ—ãƒ³ã‚’è©¦ã¿ã‚‹
 static int MediaFoundationOpenMovieFile(
 	MOVIEGRAPH * Movie,
 	const wchar_t *FileName,
@@ -198,11 +198,11 @@ static int MediaFoundationOpenMovieFile(
 	Movie->PF.MFYBuffer = NULL ;
 	Movie->PF.MFUVBuffer = NULL ;
 
-	// ÅŒã‚Ì ReadSample ‚ÌŠÔAƒtƒŒ[ƒ€‚ğƒŠƒZƒbƒg
+	// æœ€å¾Œã® ReadSample ã®æ™‚é–“ã€ãƒ•ãƒ¬ãƒ¼ãƒ ã‚’ãƒªã‚»ãƒƒãƒˆ
 	Movie->PF.MFLastReadSampleTimeStamp = -1 ;
 	Movie->PF.MFLastReadSampleFrame = -1 ;
 
-	// Media Foundation ŠÖ˜A‚Ì DLL ‚ª–³‚©‚Á‚½‚çƒGƒ‰[
+	// Media Foundation é–¢é€£ã® DLL ãŒç„¡ã‹ã£ãŸã‚‰ã‚¨ãƒ©ãƒ¼
 	if( WinAPIData.Win32Func.MFPLATDLL == NULL ||
 		WinAPIData.Win32Func.MFREADWRITEDLL == NULL ||
 		WinAPIData.Win32Func.MFStartupFunc == NULL ||
@@ -213,7 +213,7 @@ static int MediaFoundationOpenMovieFile(
 		return -1 ;
 	}
 
-	// ‚Ü‚¾ MFStartup ‚ğŒÄ‚ñ‚Å‚¢‚È‚©‚Á‚½‚çŒÄ‚Ô
+	// ã¾ã  MFStartup ã‚’å‘¼ã‚“ã§ã„ãªã‹ã£ãŸã‚‰å‘¼ã¶
 	if( MovieGraphManageData.PF.MFStartupRunFlag == FALSE )
 	{
 		MovieGraphManageData.PF.MFStartupRunFlag = TRUE ;
@@ -226,10 +226,10 @@ static int MediaFoundationOpenMovieFile(
 		}
 	}
 
-   	// ƒtƒ@ƒCƒ‹–¼•Û‘¶
+   	// ãƒ•ã‚¡ã‚¤ãƒ«åä¿å­˜
 	_WCSCPY_S( Movie->PF.FileName, sizeof( Movie->PF.FileName ), FileName ) ;
 
-	// ƒfƒBƒŒƒNƒgƒŠ‚Ì‹æØ‚è‚ª / ‚É‚È‚Á‚Ä‚¢‚é‰ÓŠ‚ğ \ ‚É’u‚«Š·‚¦‚é
+	// ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã®åŒºåˆ‡ã‚ŠãŒ / ã«ãªã£ã¦ã„ã‚‹ç®‡æ‰€ã‚’ \ ã«ç½®ãæ›ãˆã‚‹
 	{
 		wchar_t *wp ;
 
@@ -242,7 +242,7 @@ static int MediaFoundationOpenMovieFile(
 		}
 	}
 
-	// ƒtƒ@ƒCƒ‹‚ğŠJ‚­
+	// ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‹ã
 	if( WinAPIData.Win32Func.MFCreateSourceReaderFromURLFunc( Movie->PF.FileName, NULL, &Movie->PF.pMFReader ) != S_OK )
 	{
 		DWORD_PTR fp ;
@@ -253,12 +253,12 @@ static int MediaFoundationOpenMovieFile(
 		size_t FileSize ;
 		const DWORD BufferSize = 0x100000 ;
 
-		// Šù‚Éƒeƒ“ƒ|ƒ‰ƒŠƒtƒ@ƒCƒ‹‚ğì¬‚µ‚Ä‚¢‚éê‡‚ÍA
-		// X‚Éƒeƒ“ƒ|ƒ‰ƒŠƒtƒ@ƒCƒ‹‚ğì¬‚·‚é‚±‚Æ‚Í‚µ‚È‚¢
+		// æ—¢ã«ãƒ†ãƒ³ãƒãƒ©ãƒªãƒ•ã‚¡ã‚¤ãƒ«ã‚’ä½œæˆã—ã¦ã„ã‚‹å ´åˆã¯ã€
+		// æ›´ã«ãƒ†ãƒ³ãƒãƒ©ãƒªãƒ•ã‚¡ã‚¤ãƒ«ã‚’ä½œæˆã™ã‚‹ã“ã¨ã¯ã—ãªã„
 		if( Movie->PF.UseTemporaryFile == TRUE )
 			goto ERR ;
 
-		// ƒtƒ@ƒCƒ‹‚ªŠJ‚¯‚È‚©‚Á‚½‚çƒA[ƒJƒCƒu‚³‚ê‚Ä‚¢‚é‰Â”\«‚ª‚ ‚é
+		// ãƒ•ã‚¡ã‚¤ãƒ«ãŒé–‹ã‘ãªã‹ã£ãŸã‚‰ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã•ã‚Œã¦ã„ã‚‹å¯èƒ½æ€§ãŒã‚ã‚‹
 #ifdef UNICODE
 		fp = DX_FOPEN( Movie->PF.FileName ) ;
 #else
@@ -266,14 +266,14 @@ static int MediaFoundationOpenMovieFile(
 #endif
 		if( fp == 0 ) goto ERR ;
 		
-		// ŠJ‚¯‚½ê‡‚Íƒeƒ“ƒ|ƒ‰ƒŠƒtƒ@ƒCƒ‹‚É‘‚«o‚·
+		// é–‹ã‘ãŸå ´åˆã¯ãƒ†ãƒ³ãƒãƒ©ãƒªãƒ•ã‚¡ã‚¤ãƒ«ã«æ›¸ãå‡ºã™
 		{
-			// ƒtƒ@ƒCƒ‹ƒTƒCƒY‚Ìæ“¾
+			// ãƒ•ã‚¡ã‚¤ãƒ«ã‚µã‚¤ã‚ºã®å–å¾—
 			DX_FSEEK( fp, 0L, SEEK_END ) ;
 			FileSize = ( size_t )DX_FTELL( fp ) ;
 			DX_FSEEK( fp, 0L, SEEK_SET ) ;
 
-			// ˆê“I‚Éƒf[ƒ^‚ğŠi”[‚·‚éƒoƒbƒtƒ@‚ğŠm•Û
+			// ä¸€æ™‚çš„ã«ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹ãƒãƒƒãƒ•ã‚¡ã‚’ç¢ºä¿
 			TempBuffer = DXALLOC( BufferSize ) ;
 			if( TempBuffer == NULL )
 			{
@@ -281,7 +281,7 @@ static int MediaFoundationOpenMovieFile(
 				goto ERR ;
 			}
 
-			// ƒeƒ“ƒ|ƒ‰ƒŠƒtƒ@ƒCƒ‹‚Ìì¬
+			// ãƒ†ãƒ³ãƒãƒ©ãƒªãƒ•ã‚¡ã‚¤ãƒ«ã®ä½œæˆ
 			FileHandle = CreateTemporaryFile( Movie->PF.FileName, sizeof( Movie->PF.FileName ) ) ;
 
 			if( FileHandle == NULL )
@@ -292,7 +292,7 @@ static int MediaFoundationOpenMovieFile(
 			}
 			Movie->PF.UseTemporaryFile = TRUE ;
 
-			// ƒeƒ“ƒ|ƒ‰ƒŠƒtƒ@ƒCƒ‹‚Éƒf[ƒ^‚ğ‘‚«o‚·
+			// ãƒ†ãƒ³ãƒãƒ©ãƒªãƒ•ã‚¡ã‚¤ãƒ«ã«ãƒ‡ãƒ¼ã‚¿ã‚’æ›¸ãå‡ºã™
 			CompSize = 0 ;
 			while( CompSize < FileSize )
 			{
@@ -306,32 +306,32 @@ static int MediaFoundationOpenMovieFile(
 				CompSize += MoveSize ;
 			}
 
-			// ƒtƒ@ƒCƒ‹‚ğ•Â‚¶Aƒƒ‚ƒŠ‚ğ‰ğ•ú‚·‚é
+			// ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‰ã˜ã€ãƒ¡ãƒ¢ãƒªã‚’è§£æ”¾ã™ã‚‹
 			DX_FCLOSE( fp ) ;
 			WinAPIData.Win32Func.CloseHandleFunc( FileHandle ) ;
 			DXFREE( TempBuffer ) ;
 		}
 
-		// ‰ü‚ß‚Äƒtƒ@ƒCƒ‹‚ğŠJ‚­
+		// æ”¹ã‚ã¦ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‹ã
 		if( WinAPIData.Win32Func.MFCreateSourceReaderFromURLFunc( Movie->PF.FileName, NULL, &Movie->PF.pMFReader ) != S_OK )
 		{
-			// ƒeƒ“ƒ|ƒ‰ƒŠƒtƒ@ƒCƒ‹‚ğíœ
+			// ãƒ†ãƒ³ãƒãƒ©ãƒªãƒ•ã‚¡ã‚¤ãƒ«ã‚’å‰Šé™¤
 			DeleteFileWFunc( Movie->PF.FileName ) ;
 			goto ERR ;
 		}
 	}
 
-	// ƒtƒ@ƒCƒ‹‚Ìî•ñ‚ğæ“¾‚·‚é
+	// ãƒ•ã‚¡ã‚¤ãƒ«ã®æƒ…å ±ã‚’å–å¾—ã™ã‚‹
 	if( Movie->PF.pMFReader->GetCurrentMediaType(
 			( DWORD )D_MF_SOURCE_READER_FIRST_VIDEO_STREAM, 
 			&Movie->PF.pMFMediaTypeVideoStream ) != S_OK )
 		goto ERR ;
 
-	// ƒTƒCƒY‚Ìæ“¾
+	// ã‚µã‚¤ã‚ºã®å–å¾—
 	if( D_MFGetAttributeSize( Movie->PF.pMFMediaTypeVideoStream, D_MF_MT_FRAME_SIZE, &Movie->PF.MFFrameSizeX, &Movie->PF.MFFrameSizeY ) != S_OK )
 		goto ERR ;
 
-	// ƒTƒCƒY‚Ìæ“¾‚Ì‚İ‚Ìê‡‚Í‚±‚±‚ÅI—¹
+	// ã‚µã‚¤ã‚ºã®å–å¾—ã®ã¿ã®å ´åˆã¯ã“ã“ã§çµ‚äº†
 	if( ImageSizeGetOnly )
 	{
 		if( Width  ) *Width  = ( int )Movie->PF.MFFrameSizeX ;
@@ -340,20 +340,20 @@ static int MediaFoundationOpenMovieFile(
 		return 0 ;
 	}
 
-	// ƒtƒŒ[ƒ€ƒŒ[ƒg‚Ìæ“¾
+	// ãƒ•ãƒ¬ãƒ¼ãƒ ãƒ¬ãƒ¼ãƒˆã®å–å¾—
 	if( D_MFGetAttributeRatio( Movie->PF.pMFMediaTypeVideoStream, D_MF_MT_FRAME_RATE, &Movie->PF.MFFrameRateNumerator, &Movie->PF.MFFrameRateDenominator ) != S_OK )
 		goto ERR ;
 
-	// ƒAƒXƒyƒNƒg”ä‚Ìæ“¾
+	// ã‚¢ã‚¹ãƒšã‚¯ãƒˆæ¯”ã®å–å¾—
 	if( D_MFGetAttributeRatio( Movie->PF.pMFMediaTypeVideoStream, D_MF_MT_PIXEL_ASPECT_RATIO, &Movie->PF.MFAspectRatioX, &Movie->PF.MFAspectRatioY ) != S_OK )
 		goto ERR ;
 
-	// Ä¶ŠÔ‚ğæ“¾
+	// å†ç”Ÿæ™‚é–“ã‚’å–å¾—
 	if( Movie->PF.pMFReader->GetPresentationAttribute( ( DWORD )D_MF_SOURCE_READER_MEDIASOURCE, D_MF_PD_DURATION, &Movie->PF.MFDuration ) != S_OK )
 		goto ERR ;
 	Movie->StopTime = Movie->PF.MFDuration.hVal.QuadPart ;
 
-	// ‘ƒtƒŒ[ƒ€”‚ğZo
+	// ç·ãƒ•ãƒ¬ãƒ¼ãƒ æ•°ã‚’ç®—å‡º
 	{
 		LONGLONG Temp64_1, Temp64_2 ;
 		DWORD Temp128[ 4 ] ;
@@ -365,7 +365,7 @@ static int MediaFoundationOpenMovieFile(
 		Movie->PF.MFTotalFrame = ( int )Temp64_2 ;
 	}
 
-	// o—ÍŒ`®‚ğì¬
+	// å‡ºåŠ›å½¢å¼ã‚’ä½œæˆ
 	WinAPIData.Win32Func.MFCreateMediaTypeFunc( &Movie->PF.pMFMediaTypeOutputVideoStream ) ;
 	Movie->PF.pMFMediaTypeOutputVideoStream->SetGUID( D_MF_MT_MAJOR_TYPE, D_MFMEDIATYPE_VIDEO ) ;
 	Movie->PF.pMFMediaTypeOutputVideoStream->SetGUID( D_MF_MT_SUBTYPE, D_MFVIDEOFORMAT_IYUV ) ;
@@ -376,7 +376,7 @@ static int MediaFoundationOpenMovieFile(
 	Movie->PF.pMFMediaTypeOutputVideoStream->SetUINT32( D_MF_MT_ALL_SAMPLES_INDEPENDENT, TRUE ) ;
 	D_MFSetAttributeRatio( ( D_IMFAttributes * )Movie->PF.pMFMediaTypeOutputVideoStream, D_MF_MT_PIXEL_ASPECT_RATIO, Movie->PF.MFAspectRatioX, Movie->PF.MFAspectRatioY ) ;
 
-	// o—ÍŒ`®‚ğƒZƒbƒg
+	// å‡ºåŠ›å½¢å¼ã‚’ã‚»ãƒƒãƒˆ
 	hr = Movie->PF.pMFReader->SetCurrentMediaType(
 			( DWORD )D_MF_SOURCE_READER_FIRST_VIDEO_STREAM,
 			NULL,
@@ -384,7 +384,7 @@ static int MediaFoundationOpenMovieFile(
 	if( hr != S_OK )
 		goto ERR ;
 
-	// ‚PƒtƒŒ[ƒ€•Ó‚è‚ÌŠÔ‚ğƒZƒbƒg
+	// ï¼‘ãƒ•ãƒ¬ãƒ¼ãƒ è¾ºã‚Šã®æ™‚é–“ã‚’ã‚»ãƒƒãƒˆ
 	if( Movie->PF.MFFrameRateNumerator == 0 )
 	{
 		Movie->PF.FrameTime = 10000000 / 60 ;
@@ -395,16 +395,16 @@ static int MediaFoundationOpenMovieFile(
 		Movie->PF.FrameTime = OneSec * ( D_STREAM_TIME )Movie->PF.MFFrameRateDenominator / Movie->PF.MFFrameRateNumerator ;
 	}
 
-	// Ä¶‘¬“x‚Ì‰Šú‰»
+	// å†ç”Ÿé€Ÿåº¦ã®åˆæœŸåŒ–
 	Movie->PF.MFPlaySpeedRate = 1.0 ;
 
-	// ƒT[ƒtƒFƒXƒ‚[ƒh‚Íƒm[ƒ}ƒ‹
+	// ã‚µãƒ¼ãƒ•ã‚§ã‚¹ãƒ¢ãƒ¼ãƒ‰ã¯ãƒãƒ¼ãƒãƒ«
 	Movie->SurfaceMode = DX_MOVIESURFACE_NORMAL ;
 
-	// ‰æ‘œ\’z‚ÌŒãAƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ÌƒZƒbƒgƒAƒbƒv‚ğI‚¦‚Ä‚¢‚é‚©‚Ìƒtƒ‰ƒO‚ğ“|‚µ‚Ä‚¨‚­
+	// ç”»åƒæ§‹ç¯‰ã®å¾Œã€ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã‚’çµ‚ãˆã¦ã„ã‚‹ã‹ã®ãƒ•ãƒ©ã‚°ã‚’å€’ã—ã¦ãŠã
 	Movie->PF.MFSetupGraphHandleImage = FALSE ;
 
-	// ‰æ‘œƒCƒ[ƒW‚Ìî•ñ‚ğƒZƒbƒg‚·‚é
+	// ç”»åƒã‚¤ãƒ¡ãƒ¼ã‚¸ã®æƒ…å ±ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 	Movie->NowImage.Width        = ( int )Movie->PF.MFFrameSizeX ;
 	Movie->NowImage.Height       = ( int )Movie->PF.MFFrameSizeY ;
 	Movie->NowImage.Pitch        = ( int )( ( Movie->PF.MFFrameSizeX * 4 + 15 ) / 16 * 16 ) ;
@@ -417,7 +417,7 @@ static int MediaFoundationOpenMovieFile(
 	NS_CreateXRGB8ColorData( &Movie->NowImage.ColorData ) ;
 	Movie->UseNowImage = &Movie->NowImage ;
 
-	// Yƒoƒbƒtƒ@‚ÆUVƒoƒbƒtƒ@‚ÌŠm•Û
+	// Yãƒãƒƒãƒ•ã‚¡ã¨UVãƒãƒƒãƒ•ã‚¡ã®ç¢ºä¿
 	Movie->PF.MFYWidth  = Movie->PF.MFFrameSizeX ;
 	Movie->PF.MFYHeight = Movie->PF.MFFrameSizeY ;
 	Movie->PF.MFYStride = ( Movie->PF.MFFrameSizeX + 15 ) / 16 * 16 ;
@@ -439,7 +439,7 @@ static int MediaFoundationOpenMovieFile(
 
 	InitLoadSoundGParam( &GParam ) ;
 
-	// ƒTƒEƒ“ƒhÄ¶—p‚ÉƒTƒEƒ“ƒhƒf[ƒ^‚Æ‚µ‚Ä‚à“Ç‚İ‚İ
+	// ã‚µã‚¦ãƒ³ãƒ‰å†ç”Ÿç”¨ã«ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ã¨ã—ã¦ã‚‚èª­ã¿è¾¼ã¿
 	GParam.NotInitSoundMemDelete = TRUE ;
 #ifndef DX_NON_OGGVORBIS
 	GParam.OggVorbisFromTheoraFile = TRUE ;
@@ -458,18 +458,18 @@ static int MediaFoundationOpenMovieFile(
 	Movie->PF.MFSoundTotalTime = ( int )NS_GetSoundTotalTime( Movie->PF.MFSoundHandle ) ;
 	Movie->PF.MFSoundFrequency = NS_GetFrequencySoundMem( Movie->PF.MFSoundHandle ) ;
 
-	// ƒ‹[ƒvƒ^ƒCƒv‚ÌŒˆ’è( ’·‚¢‚Ù‚¤‚ğŠî€‚É‚·‚é )
+	// ãƒ«ãƒ¼ãƒ—ã‚¿ã‚¤ãƒ—ã®æ±ºå®š( é•·ã„ã»ã†ã‚’åŸºæº–ã«ã™ã‚‹ )
 //	Movie->PF.MFLoopType = Movie->PF.MFSoundTotalTime > Movie->StopTime / 10000 ? 1 : 0 ;
 	Movie->PF.MFLoopType = 0 ;
 
 #else // DX_NON_SOUND
-	// ƒ‹[ƒvƒ^ƒCƒv‚Í“®‰æƒf[ƒ^‡‚í‚¹
+	// ãƒ«ãƒ¼ãƒ—ã‚¿ã‚¤ãƒ—ã¯å‹•ç”»ãƒ‡ãƒ¼ã‚¿åˆã‚ã›
 	Movie->PF.MFLoopType = 0 ;
 #endif // DX_NON_SOUND
 
-	// Å‰‚ÌƒtƒŒ[ƒ€‚ğƒZƒbƒgƒAƒbƒv‚·‚é
+	// æœ€åˆã®ãƒ•ãƒ¬ãƒ¼ãƒ ã‚’ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã™ã‚‹
 	{
-		// ƒCƒ[ƒW‚ªƒZƒbƒgƒAƒbƒv‚³‚ê‚Ä‚¢‚éAƒtƒ‰ƒO‚ğ“|‚·
+		// ã‚¤ãƒ¡ãƒ¼ã‚¸ãŒã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã•ã‚Œã¦ã„ã‚‹ã€ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 		Movie->PF.MFBaseImageSetup = 0 ;
 #ifndef DX_NON_FILTER
 		Movie->PF.MFYUVGrHandleSetup = 0 ;
@@ -485,7 +485,7 @@ static int MediaFoundationOpenMovieFile(
 		}
 	}
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 
 ERR :
@@ -499,7 +499,7 @@ ERR :
 	return -1 ;
 }
 
-// ƒJƒŒƒ“ƒgƒtƒŒ[ƒ€‚ÌRGB‰æ‘œ‚ğì¬‚·‚é( –ß‚è’l  1:ì¬‚³‚ê‚½  0:‚³‚ê‚È‚©‚Á‚½ )
+// ã‚«ãƒ¬ãƒ³ãƒˆãƒ•ãƒ¬ãƒ¼ãƒ ã®RGBç”»åƒã‚’ä½œæˆã™ã‚‹( æˆ»ã‚Šå€¤  1:ä½œæˆã•ã‚ŒãŸ  0:ã•ã‚Œãªã‹ã£ãŸ )
 static int MediaFoundationMovie_SetupImage(
 	MOVIEGRAPH * Movie,
 	int BaseImage,
@@ -521,7 +521,7 @@ static int MediaFoundationMovie_SetupImage(
 	DWORD CurrentLength ;
 	LONGLONG llTimestamp ;
 
-	// Œ»İ‚ÌƒtƒŒ[ƒ€‚Ì‰æ‘œ‚ªƒZƒbƒgƒAƒbƒv‚³‚ê‚Ä‚¢‚ê‚Î‰½‚à‚¹‚¸I—¹
+	// ç¾åœ¨ã®ãƒ•ãƒ¬ãƒ¼ãƒ ã®ç”»åƒãŒã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã•ã‚Œã¦ã„ã‚Œã°ä½•ã‚‚ã›ãšçµ‚äº†
 	if( 
 #ifndef DX_NON_FILTER
 		( ( YUVGrHandle && Movie->PF.MFYUVGrHandleSetup ) || YUVGrHandle == 0 || Movie->PF.MFNotUseYUVGrHandle == TRUE  ) &&
@@ -529,7 +529,7 @@ static int MediaFoundationMovie_SetupImage(
 		( ( BaseImage   && Movie->PF.MFBaseImageSetup   ) || BaseImage   == 0 ) )
 		return 0 ;
 
-	// ƒCƒ[ƒWƒf[ƒ^‚Ì“Ç‚İ‚İ
+	// ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ã®èª­ã¿è¾¼ã¿
 	if( Movie->PF.MFLastReadSampleFrame < Movie->PF.MFCurrentFrame )
 	{
 		for(;;)
@@ -570,7 +570,7 @@ static int MediaFoundationMovie_SetupImage(
 				goto ERR ;
 			}
 
-			// ƒtƒŒ[ƒ€‚ğZo
+			// ãƒ•ãƒ¬ãƒ¼ãƒ ã‚’ç®—å‡º
 			{
 				LONGLONG Temp64_1, Temp64_2 ;
 				DWORD Temp128[ 4 ] ;
@@ -626,7 +626,7 @@ static int MediaFoundationMovie_SetupImage(
 			goto ERR ;
 		}
 
-		// ƒoƒbƒtƒ@‚Éƒf[ƒ^‚ğƒRƒs[‚·‚é
+		// ãƒãƒƒãƒ•ã‚¡ã«ãƒ‡ãƒ¼ã‚¿ã‚’ã‚³ãƒ”ãƒ¼ã™ã‚‹
 		{
 			BYTE *yimage ;
 			BYTE *uimage ;
@@ -637,9 +637,9 @@ static int MediaFoundationMovie_SetupImage(
 			DWORD uvsize ;
 			DWORD totalsize ;
 
-			// ƒCƒ[ƒWƒf[ƒ^‚Ì Stride ‚ğŒŸØ‚·‚é
+			// ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ã® Stride ã‚’æ¤œè¨¼ã™ã‚‹
 
-			// Å‰‚Í stride 16 ‚Ì”{”AcƒTƒCƒY 32 ‚Ì”{”‚ÅŒŸØ
+			// æœ€åˆã¯ stride 16 ã®å€æ•°ã€ç¸¦ã‚µã‚¤ã‚º 32 ã®å€æ•°ã§æ¤œè¨¼
 			ystride  =            ( ( Movie->PF.MFFrameSizeX     + 15 ) / 16 * 16 ) ;
 			uvstride =            ( ( Movie->PF.MFFrameSizeX / 2 +  7 ) /  8 *  8 ) ;
 			ysize    = ystride  * ( ( Movie->PF.MFFrameSizeY     + 31 ) / 32 * 32 ) ;
@@ -647,7 +647,7 @@ static int MediaFoundationMovie_SetupImage(
 			totalsize = ysize + uvsize * 2 ;
 			if( CurrentLength < totalsize )
 			{
-				// stride 16 ‚Ì”{”AcƒTƒCƒY 32 ‚Ì”{”‚Å‚Í‚È‚©‚Á‚½ê‡‚ÍcƒTƒCƒY 16 ‚Ì”{”‚ÅŒŸØ
+				// stride 16 ã®å€æ•°ã€ç¸¦ã‚µã‚¤ã‚º 32 ã®å€æ•°ã§ã¯ãªã‹ã£ãŸå ´åˆã¯ç¸¦ã‚µã‚¤ã‚º 16 ã®å€æ•°ã§æ¤œè¨¼
 				ystride  =            ( ( Movie->PF.MFFrameSizeX     + 15 ) / 16 * 16 ) ;
 				uvstride =            ( ( Movie->PF.MFFrameSizeX / 2 +  7 ) /  8 *  8 ) ;
 				ysize    = ystride  * ( ( Movie->PF.MFFrameSizeY     + 15 ) / 16 * 16 ) ;
@@ -655,7 +655,7 @@ static int MediaFoundationMovie_SetupImage(
 				totalsize = ysize + uvsize * 2 ;
 				if( CurrentLength < totalsize )
 				{
-					// 16 ‚Ì”{”‚Å‚Í‚È‚©‚Á‚½ê‡‚Í 8 ‚Ì”{”‚ÅŒŸØ
+					// 16 ã®å€æ•°ã§ã¯ãªã‹ã£ãŸå ´åˆã¯ 8 ã®å€æ•°ã§æ¤œè¨¼
 					ystride  =            ( ( Movie->PF.MFFrameSizeX     + 7 ) / 8 * 8 ) ;
 					uvstride =            ( ( Movie->PF.MFFrameSizeX / 2 + 3 ) / 4 * 4 ) ;
 					ysize    = ystride  * ( ( Movie->PF.MFFrameSizeY     + 7 ) / 8 * 8 ) ;
@@ -663,7 +663,7 @@ static int MediaFoundationMovie_SetupImage(
 					totalsize = ysize + uvsize * 2 ;
 					if( CurrentLength < totalsize )
 					{
-						// 8 ‚Ì”{”‚Å‚Í‚È‚©‚Á‚½ê‡‚Í 4 ‚Ì”{”‚ğg—p
+						// 8 ã®å€æ•°ã§ã¯ãªã‹ã£ãŸå ´åˆã¯ 4 ã®å€æ•°ã‚’ä½¿ç”¨
 						ystride  =            ( ( Movie->PF.MFFrameSizeX     + 3 ) / 4 * 4 ) ;
 						uvstride =            ( ( Movie->PF.MFFrameSizeX / 2 + 1 ) / 2 * 2 ) ;
 						ysize    = ystride  * ( ( Movie->PF.MFFrameSizeY     + 3 ) / 4 * 4 ) ;
@@ -671,7 +671,7 @@ static int MediaFoundationMovie_SetupImage(
 						totalsize = ysize + uvsize * 2 ;
 						if( CurrentLength < totalsize )
 						{
-							// 4 ‚Ì”{”‚Å‚Í‚È‚©‚Á‚½ê‡‚Í 2 ‚Ì”{”‚ğg—p
+							// 4 ã®å€æ•°ã§ã¯ãªã‹ã£ãŸå ´åˆã¯ 2 ã®å€æ•°ã‚’ä½¿ç”¨
 							ystride  =            ( ( Movie->PF.MFFrameSizeX     + 1 ) / 2 * 2 ) ;
 							uvstride =            ( ( Movie->PF.MFFrameSizeX / 2 + 0 ) / 1 * 1 ) ;
 							ysize    = ystride  * ( ( Movie->PF.MFFrameSizeY     + 1 ) / 2 * 2 ) ;
@@ -679,7 +679,7 @@ static int MediaFoundationMovie_SetupImage(
 							totalsize = ysize + uvsize * 2 ;
 							if( CurrentLength < totalsize )
 							{
-								// 2‚Ì”{”‚Å‚à‘Ê–Ú‚¾‚Á‚½ê‡‚ÍƒGƒ‰[
+								// 2ã®å€æ•°ã§ã‚‚é§„ç›®ã ã£ãŸå ´åˆã¯ã‚¨ãƒ©ãƒ¼
 								pBuffer->Unlock() ;
 								goto ERR ;
 							}
@@ -692,9 +692,9 @@ static int MediaFoundationMovie_SetupImage(
 			uimage = yimage + ysize ;
 			vimage = uimage + uvsize ;
 
-			// YƒCƒ[ƒW‚ğƒRƒs[
+			// Yã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’ã‚³ãƒ”ãƒ¼
 
-			// ystride ‚ªo—Íæ‚Ì stride ‚Æ“™‚µ‚¢ê‡‚Íˆ—‚ğ•ªŠò
+			// ystride ãŒå‡ºåŠ›å…ˆã® stride ã¨ç­‰ã—ã„å ´åˆã¯å‡¦ç†ã‚’åˆ†å²
 			if( ystride == Movie->PF.MFYStride )
 			{
 				_MEMCPY( Movie->PF.MFYBuffer, yimage, ( size_t )( Movie->PF.MFYStride * Movie->PF.MFFrameSizeY ) ) ;
@@ -727,7 +727,7 @@ static int MediaFoundationMovie_SetupImage(
 				}
 			}
 
-			// UVƒCƒ[ƒW‚ğƒRƒs[
+			// UVã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’ã‚³ãƒ”ãƒ¼
 			{
 				DWORD n, m ;
 				DWORD bw ;
@@ -781,14 +781,14 @@ static int MediaFoundationMovie_SetupImage(
 	}
 
 #ifndef DX_NON_FILTER
-	// ƒVƒF[ƒ_[‚ªg—p‚Å‚«‚éê‡‚ÍYUVƒJƒ‰[‚ÌƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ğg—p‚·‚é
+	// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãŒä½¿ç”¨ã§ãã‚‹å ´åˆã¯YUVã‚«ãƒ©ãƒ¼ã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã‚’ä½¿ç”¨ã™ã‚‹
 	if( YUVGrHandle && Movie->PF.MFNotUseYUVGrHandle == FALSE && GetValidShaderVersion() >= 200 )
 	{
 		SETUP_GRAPHHANDLE_GPARAM GParam ;
 		BASEIMAGE BaseImage_ ;
 		RECT SrcRect ;
 
-		// ƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ª‚Ü‚¾ì¬‚³‚ê‚Ä‚¢‚È‚©‚Á‚½‚çì¬‚·‚é
+		// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ãŒã¾ã ä½œæˆã•ã‚Œã¦ã„ãªã‹ã£ãŸã‚‰ä½œæˆã™ã‚‹
 		if( Movie->YGrHandle == -1 )
 		{
 			Graphics_Image_InitSetupGraphHandleGParam( &GParam ) ;
@@ -855,20 +855,20 @@ static int MediaFoundationMovie_SetupImage(
 			ASyncThread
 		) ;
 
-		// ƒZƒbƒgƒAƒbƒvƒtƒ‰ƒO‚ğ—§‚Ä‚é
+		// ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 		Movie->PF.MFYUVGrHandleSetup = 1 ;
 	}
 #endif // DX_NON_FILTER
 
-	// ‚q‚f‚aƒCƒ[ƒW‚ÌƒZƒbƒgƒAƒbƒvw’è‚ª‚ ‚Á‚ÄA‚Ü‚¾ì¬‚³‚ê‚Ä‚¢‚È‚©‚Á‚½‚çì¬‚·‚é
+	// ï¼²ï¼§ï¼¢ã‚¤ãƒ¡ãƒ¼ã‚¸ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—æŒ‡å®šãŒã‚ã£ã¦ã€ã¾ã ä½œæˆã•ã‚Œã¦ã„ãªã‹ã£ãŸã‚‰ä½œæˆã™ã‚‹
 	if( BaseImage && Movie->PF.MFBaseImageSetup == 0 )
 	{
-		// BASEIMAGE ‚Ìê‡
+		// BASEIMAGE ã®å ´åˆ
 		d  = ( unsigned char * )Movie->NowImage.GraphData ;
 		ys = ( unsigned char * )Movie->PF.MFYBuffer ;
 		uvs = ( unsigned char * )Movie->PF.MFUVBuffer ;
 
-		// yuv î•ñ‚ğ rgb ƒf[ƒ^‚É•ÏŠ·
+		// yuv æƒ…å ±ã‚’ rgb ãƒ‡ãƒ¼ã‚¿ã«å¤‰æ›
 		if( Movie->PF.MFYWidth  == Movie->PF.MFUVWidth  * 2 &&
 			Movie->PF.MFYHeight == Movie->PF.MFUVHeight * 2 )
 		{
@@ -937,7 +937,7 @@ static int MediaFoundationMovie_SetupImage(
 			}
 		}
 
-		// ƒZƒbƒgƒAƒbƒvƒtƒ‰ƒO‚ğ—§‚Ä‚é
+		// ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 		Movie->PF.MFBaseImageSetup = 1 ;
 	}
 
@@ -959,7 +959,7 @@ static int MediaFoundationMovie_SetupImage(
 		pBuffer = NULL ;
 	}
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 
 ERR :
@@ -984,25 +984,25 @@ ERR :
 	return -1 ;
 }
 
-// Media Foundation ‚ğg—p‚µ‚½“®‰æƒtƒ@ƒCƒ‹‚ÌƒtƒŒ[ƒ€‚ği‚ß‚é
+// Media Foundation ã‚’ä½¿ç”¨ã—ãŸå‹•ç”»ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ•ãƒ¬ãƒ¼ãƒ ã‚’é€²ã‚ã‚‹
 static int MediaFoundationMovie_IncToFrame(
 	MOVIEGRAPH * Movie,
 	int AddFrame
 )
 {
-	// i‚ß‚éƒtƒŒ[ƒ€”‚ª 0 ‚Ìê‡‚Í‰½‚à‚¹‚¸I—¹
+	// é€²ã‚ã‚‹ãƒ•ãƒ¬ãƒ¼ãƒ æ•°ãŒ 0 ã®å ´åˆã¯ä½•ã‚‚ã›ãšçµ‚äº†
 	if( AddFrame <= 0 )
 	{
 		return 0 ;
 	}
 
-	// ƒJƒŒƒ“ƒgƒtƒŒ[ƒ€‚ğ•ÏX
+	// ã‚«ãƒ¬ãƒ³ãƒˆãƒ•ãƒ¬ãƒ¼ãƒ ã‚’å¤‰æ›´
 	Movie->PF.MFCurrentFrame += AddFrame ;
 
-	// —v‹‚³‚ê‚éƒtƒŒ[ƒ€‚ªƒfƒR[ƒhÏ‚İ‚ÌƒtƒŒ[ƒ€‚æ‚è”Ô†‚ªá‚¢ê‡‚ÍƒZƒbƒgƒAƒbƒvƒtƒ‰ƒO‚ğ“|‚³‚È‚¢
+	// è¦æ±‚ã•ã‚Œã‚‹ãƒ•ãƒ¬ãƒ¼ãƒ ãŒãƒ‡ã‚³ãƒ¼ãƒ‰æ¸ˆã¿ã®ãƒ•ãƒ¬ãƒ¼ãƒ ã‚ˆã‚Šç•ªå·ãŒè‹¥ã„å ´åˆã¯ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ãƒ•ãƒ©ã‚°ã‚’å€’ã•ãªã„
 	if( Movie->PF.MFLastReadSampleFrame < Movie->PF.MFCurrentFrame )
 	{
-		// ƒCƒ[ƒW‚ªƒZƒbƒgƒAƒbƒv‚³‚ê‚Ä‚¢‚éAƒtƒ‰ƒO‚ğ“|‚·
+		// ã‚¤ãƒ¡ãƒ¼ã‚¸ãŒã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã•ã‚Œã¦ã„ã‚‹ã€ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 		Movie->PF.MFBaseImageSetup = 0 ;
 #ifndef DX_NON_FILTER
 		Movie->PF.MFYUVGrHandleSetup = 0 ;
@@ -1018,17 +1018,17 @@ static int MediaFoundationMovie_IncToFrame(
 		}
 	}
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// Media Foundation ‚ğg—p‚·‚é‚©‚Ç‚¤‚©‚ğİ’è‚·‚é( TRUE:g—p‚·‚é( ƒfƒtƒHƒ‹ƒg )  FALSE:g—p‚µ‚È‚¢ )
+// Media Foundation ã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹( TRUE:ä½¿ç”¨ã™ã‚‹( ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ )  FALSE:ä½¿ç”¨ã—ãªã„ )
 extern int NS_SetUseMediaFoundationFlag( int Flag )
 {
-	// ƒtƒ‰ƒO‚ğ•Û‘¶
+	// ãƒ•ãƒ©ã‚°ã‚’ä¿å­˜
 	MovieGraphManageData.PF.DisableMediaFoundation = Flag ? FALSE : TRUE ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
@@ -1036,7 +1036,7 @@ extern int NS_SetUseMediaFoundationFlag( int Flag )
 
 #ifndef DX_NON_DSHOW_MOVIE
 
-// DirectShow ‚ğg—p‚µ‚½“®‰æƒtƒ@ƒCƒ‹‚ÌƒI[ƒvƒ“‚ğ‚İ‚é
+// DirectShow ã‚’ä½¿ç”¨ã—ãŸå‹•ç”»ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚ªãƒ¼ãƒ—ãƒ³ã‚’è©¦ã¿ã‚‹
 extern int DirectShowOpenMovieFile(
 	MOVIEGRAPH * Movie,
 	const wchar_t *FileName,
@@ -1070,18 +1070,18 @@ extern int DirectShowOpenMovieFile(
 	_MEMSET( &Movie->OverlaySrcRect, 0, sizeof( RECT ) ) ;
 	_MEMSET( &Movie->OverlayDestRect, 0, sizeof( RECT ) ) ;
 
-	// ‚à‚µƒI[ƒo[ƒŒƒC‚ªg‚¦‚È‚¢ê‡‚Íƒtƒ‹ƒJƒ‰[‚É‚·‚é
+	// ã‚‚ã—ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ãŒä½¿ãˆãªã„å ´åˆã¯ãƒ•ãƒ«ã‚«ãƒ©ãƒ¼ã«ã™ã‚‹
 	if( SurfaceMode == DX_MOVIESURFACE_OVERLAY  )
 	{
 		SurfaceMode = DX_MOVIESURFACE_FULLCOLOR ;
 	}
 
-	// ‚à‚µ‰æ–Ê‚ª‚R‚QƒrƒbƒgƒJƒ‰[ƒ‚[ƒh‚Åƒtƒ‹ƒJƒ‰[ƒ‚[ƒh‚ğw’è‚µ‚Ä‚«‚½ê‡‚Íƒm[ƒ}ƒ‹‚É‚·‚é
+	// ã‚‚ã—ç”»é¢ãŒï¼“ï¼’ãƒ“ãƒƒãƒˆã‚«ãƒ©ãƒ¼ãƒ¢ãƒ¼ãƒ‰ã§ãƒ•ãƒ«ã‚«ãƒ©ãƒ¼ãƒ¢ãƒ¼ãƒ‰ã‚’æŒ‡å®šã—ã¦ããŸå ´åˆã¯ãƒãƒ¼ãƒãƒ«ã«ã™ã‚‹
 	if( SurfaceMode == DX_MOVIESURFACE_FULLCOLOR && NS_GetColorBitDepth() == 32 ) SurfaceMode = DX_MOVIESURFACE_NORMAL ;
 
 	SurfaceMode = DX_MOVIESURFACE_FULLCOLOR ;
 
-	// ƒOƒ‰ƒtƒBƒbƒNƒrƒ‹ƒ_[ƒIƒuƒWƒFƒNƒg‚Ìì¬
+	// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ“ãƒ«ãƒ€ãƒ¼ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ä½œæˆ
 	if( ( FAILED( WinAPI_CoCreateInstance_ASync(CLSID_FILTERGRAPH, NULL, CLSCTX_INPROC, IID_IGRAPHBUILDER, (void **)&Movie->PF.pGraph, ASyncThread ) ) ) )
 	{
 		_WCSCPY_S( ErStr, sizeof( ErStr ), L"CoCreateInstance Error : CLSID_FilterGraph\n" ) ;
@@ -1099,31 +1099,31 @@ extern int DirectShowOpenMovieFile(
         return hr;
     }
 
-	// BasicAudio ƒCƒ“ƒ^[ƒtƒFƒCƒX‚ğ“¾‚é
+	// BasicAudio ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ã‚¤ã‚¹ã‚’å¾—ã‚‹
 	if( FAILED( Movie->PF.pGraph->QueryInterface( IID_IBASICAUDIO, ( void ** )&Movie->PF.pBasicAudio ) ) )
 	{
 		_WCSCPY_S( ErStr, sizeof( ErStr ), L"QueryInterface Error : IID_IBasicAudio\n" ) ;
 		goto ERROR_R ;
 	}
 
-	// ƒƒfƒBƒAƒRƒ“ƒgƒ[ƒ‰ƒIƒuƒWƒFƒNƒg‚ğæ“¾‚·‚é
+	// ãƒ¡ãƒ‡ã‚£ã‚¢ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å–å¾—ã™ã‚‹
 	if( FAILED( Movie->PF.pGraph->QueryInterface( IID_IMEDIACONTROL, ( void ** )&Movie->PF.pMediaControl ) ) )
 	{
 		_WCSCPY_S( ErStr, sizeof( ErStr ), L"QueryInterface Error : IID_IMediaControl\n" ) ;
 		goto ERROR_R ;
 	}
 
-	// ƒƒfƒBƒAƒV[ƒLƒ“ƒOƒIƒuƒWƒFƒNƒg‚ğæ“¾‚·‚é
+	// ãƒ¡ãƒ‡ã‚£ã‚¢ã‚·ãƒ¼ã‚­ãƒ³ã‚°ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å–å¾—ã™ã‚‹
 	if( FAILED( Movie->PF.pGraph->QueryInterface( IID_IMEDIASEEKING, ( void ** )&Movie->PF.pMediaSeeking ) ) )
 	{
 		_WCSCPY_S( ErStr, sizeof( ErStr ), L"QueryInterface Error : IID_IMediaSeeking\n" ) ;
 		goto ERROR_R ;
 	}
 
-   	// ƒtƒ@ƒCƒ‹–¼•Û‘¶
+   	// ãƒ•ã‚¡ã‚¤ãƒ«åä¿å­˜
 	_WCSCPY_S( Movie->PF.FileName, sizeof( Movie->PF.FileName ), FileName ) ;
 
-	// ƒfƒBƒŒƒNƒgƒŠ‚Ì‹æØ‚è‚ª / ‚É‚È‚Á‚Ä‚¢‚é‰ÓŠ‚ğ \ ‚É’u‚«Š·‚¦‚é
+	// ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã®åŒºåˆ‡ã‚ŠãŒ / ã«ãªã£ã¦ã„ã‚‹ç®‡æ‰€ã‚’ \ ã«ç½®ãæ›ãˆã‚‹
 	{
 		wchar_t *wp ;
 
@@ -1136,14 +1136,14 @@ extern int DirectShowOpenMovieFile(
 		}
 	}
 
-	// ƒGƒ‰[•¶‚ğì¬‚µ‚Ä‚¨‚­
+	// ã‚¨ãƒ©ãƒ¼æ–‡ã‚’ä½œæˆã—ã¦ãŠã
 	_WCSCPY_S( ErStr, sizeof( ErStr ), L"RenderFile faired!\n" ) ;
 
 	_WCSCPY_S( ErStr, sizeof( ErStr ), L"Movie File Open Error : " ) ;
 	_WCSCAT_S( ErStr, sizeof( ErStr ), FileName ) ;
 	_WCSCAT_S( ErStr, sizeof( ErStr ), L"\n" ) ;
 
-	// ƒtƒ@ƒCƒ‹‚ª‚ ‚é‚©Šm”F‚·‚é
+	// ãƒ•ã‚¡ã‚¤ãƒ«ãŒã‚ã‚‹ã‹ç¢ºèªã™ã‚‹
 #ifdef UNICODE
 	fp = DX_FOPEN( Movie->PF.FileName ) ;
 #else
@@ -1154,12 +1154,12 @@ extern int DirectShowOpenMovieFile(
 		goto ERROR_R ;
 	}
 
-	// ƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹“à‚Ìƒtƒ@ƒCƒ‹‚¾‚Á‚½ê‡‚Íƒeƒ“ƒ|ƒ‰ƒŠƒtƒ@ƒCƒ‹‚É‘‚«o‚·
+	// ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«å†…ã®ãƒ•ã‚¡ã‚¤ãƒ«ã ã£ãŸå ´åˆã¯ãƒ†ãƒ³ãƒãƒ©ãƒªãƒ•ã‚¡ã‚¤ãƒ«ã«æ›¸ãå‡ºã™
 	if( DX_FISDXA( fp ) == 1 )
 	{
 		wchar_t lDirPath[ 1024 ], lFileName[ 512 ], lName[ 512 ], lExeName[ 128 ] ;
 
-		// ƒtƒ@ƒCƒ‹–¼‚ğ‰ğÍ
+		// ãƒ•ã‚¡ã‚¤ãƒ«åã‚’è§£æ
 #ifdef UNICODE
 		AnalysisFileNameAndDirPathW_( Movie->PF.FileName, lFileName, sizeof( lFileName ), lDirPath, sizeof( lDirPath ) ) ;
 #else
@@ -1167,20 +1167,20 @@ extern int DirectShowOpenMovieFile(
 #endif
 		AnalysisFileNameAndExeNameW_( lFileName, lName, sizeof( lName ), lExeName, sizeof( lExeName ) ) ;
 
-		// Šù‚Éƒeƒ“ƒ|ƒ‰ƒŠƒtƒ@ƒCƒ‹‚ğì¬‚µ‚Ä‚¢‚éê‡‚ÍA
-		// X‚Éƒeƒ“ƒ|ƒ‰ƒŠƒtƒ@ƒCƒ‹‚ğì¬‚·‚é‚±‚Æ‚Í‚µ‚È‚¢
+		// æ—¢ã«ãƒ†ãƒ³ãƒãƒ©ãƒªãƒ•ã‚¡ã‚¤ãƒ«ã‚’ä½œæˆã—ã¦ã„ã‚‹å ´åˆã¯ã€
+		// æ›´ã«ãƒ†ãƒ³ãƒãƒ©ãƒªãƒ•ã‚¡ã‚¤ãƒ«ã‚’ä½œæˆã™ã‚‹ã“ã¨ã¯ã—ãªã„
 		if( Movie->PF.UseTemporaryFile == TRUE )
 		{
 			DX_FCLOSE( fp ) ;
 			goto ERROR_R ;
 		}
 
-		// ƒtƒ@ƒCƒ‹ƒTƒCƒY‚Ìæ“¾
+		// ãƒ•ã‚¡ã‚¤ãƒ«ã‚µã‚¤ã‚ºã®å–å¾—
 		DX_FSEEK( fp, 0L, SEEK_END ) ;
 		FileSize = ( size_t )DX_FTELL( fp ) ;
 		DX_FSEEK( fp, 0L, SEEK_SET ) ;
 
-		// ˆê“I‚Éƒf[ƒ^‚ğŠi”[‚·‚éƒoƒbƒtƒ@‚ğŠm•Û
+		// ä¸€æ™‚çš„ã«ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹ãƒãƒƒãƒ•ã‚¡ã‚’ç¢ºä¿
 		TempBuffer = DXALLOC( BufferSize ) ;
 		if( TempBuffer == NULL )
 		{
@@ -1188,7 +1188,7 @@ extern int DirectShowOpenMovieFile(
 			goto ERROR_R ;
 		}
 
-		// ƒeƒ“ƒ|ƒ‰ƒŠƒtƒ@ƒCƒ‹‚Ìì¬
+		// ãƒ†ãƒ³ãƒãƒ©ãƒªãƒ•ã‚¡ã‚¤ãƒ«ã®ä½œæˆ
 		FileHandle = CreateTemporaryFile( Movie->PF.FileName, sizeof( Movie->PF.FileName ), lExeName ) ;
 
 		if( FileHandle == NULL )
@@ -1199,7 +1199,7 @@ extern int DirectShowOpenMovieFile(
 		}
 		Movie->PF.UseTemporaryFile = TRUE ;
 
-		// ƒeƒ“ƒ|ƒ‰ƒŠƒtƒ@ƒCƒ‹‚Éƒf[ƒ^‚ğ‘‚«o‚·
+		// ãƒ†ãƒ³ãƒãƒ©ãƒªãƒ•ã‚¡ã‚¤ãƒ«ã«ãƒ‡ãƒ¼ã‚¿ã‚’æ›¸ãå‡ºã™
 		CompSize = 0 ;
 		while( CompSize < FileSize )
 		{
@@ -1213,16 +1213,16 @@ extern int DirectShowOpenMovieFile(
 			CompSize += MoveSize ;
 		}
 
-		// ƒtƒ@ƒCƒ‹‚ğ•Â‚¶Aƒƒ‚ƒŠ‚ğ‰ğ•ú‚·‚é
+		// ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‰ã˜ã€ãƒ¡ãƒ¢ãƒªã‚’è§£æ”¾ã™ã‚‹
 		DX_FCLOSE( fp ) ;
 		WinAPIData.Win32Func.CloseHandleFunc( FileHandle ) ;
 		DXFREE( TempBuffer ) ;
 
-		// ƒtƒ@ƒCƒ‹‚ğŠJ‚­
+		// ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‹ã
 		hr = Movie->PF.pGraph->RenderFile( Movie->PF.FileName, NULL ) ;
 		if( FAILED( hr ) )
 		{
-			// ƒeƒ“ƒ|ƒ‰ƒŠƒtƒ@ƒCƒ‹‚ğíœ
+			// ãƒ†ãƒ³ãƒãƒ©ãƒªãƒ•ã‚¡ã‚¤ãƒ«ã‚’å‰Šé™¤
 			DeleteFileWFunc( Movie->PF.FileName ) ;
 			goto ERROR_R ;
 		}
@@ -1231,7 +1231,7 @@ extern int DirectShowOpenMovieFile(
 	{
 		DX_FCLOSE( fp ) ;
 
-		// •’Ê‚Ìƒtƒ@ƒCƒ‹‚¾‚Á‚½ê‡‚Í•’Ê‚ÉŠJ‚­
+		// æ™®é€šã®ãƒ•ã‚¡ã‚¤ãƒ«ã ã£ãŸå ´åˆã¯æ™®é€šã«é–‹ã
 		hr = Movie->PF.pGraph->RenderFile( Movie->PF.FileName, NULL ) ;
 		if( FAILED( hr ) )
 		{
@@ -1239,15 +1239,15 @@ extern int DirectShowOpenMovieFile(
 		}
 	}
 
-	// I—¹ŠÔ‚ğæ“¾‚·‚é
+	// çµ‚äº†æ™‚é–“ã‚’å–å¾—ã™ã‚‹
 	Movie->PF.pMediaSeeking->GetStopPosition( &Movie->StopTime ) ;
 
-	// ‘ƒtƒŒ[ƒ€”‚ğæ“¾‚·‚é
+	// ç·ãƒ•ãƒ¬ãƒ¼ãƒ æ•°ã‚’å–å¾—ã™ã‚‹
 	Movie->PF.pMediaSeeking->SetTimeFormat( &IID_TIME_FORMAT_FRAME ) ;
 	Movie->PF.pMediaSeeking->GetStopPosition( &Movie->PF.TotalFrame ) ;
 	Movie->PF.pMediaSeeking->SetTimeFormat( &IID_TIME_FORMAT_MEDIA_TIME ) ;
 
-	// ‚PƒtƒŒ[ƒ€‚ ‚½‚è‚ÌŠÔ‚ğ“¾‚é
+	// ï¼‘ãƒ•ãƒ¬ãƒ¼ãƒ ã‚ãŸã‚Šã®æ™‚é–“ã‚’å¾—ã‚‹
 	Movie->PF.pMediaSeeking->GetDuration( &Movie->PF.FrameTime ) ;
 	if( Movie->PF.FrameTime == 0 )
 	{
@@ -1258,7 +1258,7 @@ extern int DirectShowOpenMovieFile(
 		Movie->PF.FrameTime = Movie->StopTime / ( int )Movie->PF.TotalFrame ;
 	}
 
-	// ‰æ‘œƒCƒ[ƒW‚Ìî•ñ‚ğƒZƒbƒg‚·‚é
+	// ç”»åƒã‚¤ãƒ¡ãƒ¼ã‚¸ã®æƒ…å ±ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 	Movie->NowImage.Width        = ( int )Movie->PF.pMovieImage->Width ;
 	Movie->NowImage.Height       = ( int )Movie->PF.pMovieImage->Height ;
 	Movie->NowImage.Pitch        = ( int )Movie->PF.pMovieImage->Pitch ;
@@ -1305,13 +1305,13 @@ extern int DirectShowOpenMovieFile(
 	if( Width  ) *Width  = ( int )Movie->PF.pMovieImage->Width ;
 	if( Height ) *Height = ( int )Movie->PF.pMovieImage->Height ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 
 
 ERROR_R:
 
-	// Šeí‚b‚n‚lƒIƒuƒWƒFƒNƒg‚ğI—¹‚·‚é
+	// å„ç¨®ï¼£ï¼¯ï¼­ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’çµ‚äº†ã™ã‚‹
 	if( pAMStream					){ pAMStream->Release()					; pAMStream = NULL ; }
 
 	if( Movie->PF.pGraph			){ Movie->PF.pGraph->Release()			; Movie->PF.pGraph = NULL ; }
@@ -1326,7 +1326,7 @@ ERROR_R:
 #endif // DX_NON_DSHOW_MOVIE
 
 
-// ƒ€[ƒr[ƒnƒ“ƒhƒ‹‚ÌŒãn––‚ğs‚¤
+// ãƒ ãƒ¼ãƒ“ãƒ¼ãƒãƒ³ãƒ‰ãƒ«ã®å¾Œå§‹æœ«ã‚’è¡Œã†
 extern int TerminateMovieHandle_PF( HANDLEINFO *HandleInfo )
 {
 	MOVIEGRAPH *Movie = ( MOVIEGRAPH * )HandleInfo ;
@@ -1334,7 +1334,7 @@ extern int TerminateMovieHandle_PF( HANDLEINFO *HandleInfo )
 #if !defined( DX_NON_MEDIA_FOUNDATION ) || !defined( DX_NON_DSHOW_MOVIE )
 	SETUP_WIN_API
 
-	// ‚à‚µƒeƒ“ƒ|ƒ‰ƒŠƒtƒ@ƒCƒ‹‚ğg—p‚µ‚Ä‚¢‚½ê‡‚Íƒeƒ“ƒ|ƒ‰ƒŠƒtƒ@ƒCƒ‹‚ğíœ‚·‚é
+	// ã‚‚ã—ãƒ†ãƒ³ãƒãƒ©ãƒªãƒ•ã‚¡ã‚¤ãƒ«ã‚’ä½¿ç”¨ã—ã¦ã„ãŸå ´åˆã¯ãƒ†ãƒ³ãƒãƒ©ãƒªãƒ•ã‚¡ã‚¤ãƒ«ã‚’å‰Šé™¤ã™ã‚‹
 	if( Movie->PF.UseTemporaryFile == TRUE )
 	{
 		DeleteFileWFunc( Movie->PF.FileName ) ;
@@ -1367,18 +1367,18 @@ extern int TerminateMovieHandle_PF( HANDLEINFO *HandleInfo )
 	if( Movie->PF.pMovieImage )		{ delete Movie->PF.pMovieImage ;			Movie->PF.pMovieImage = NULL ; }
 #endif // DX_NON_DSHOW_MOVIE
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
 
-// OpenMovie ‚ÌƒOƒ[ƒoƒ‹•Ï”‚ÉƒAƒNƒZƒX‚µ‚È‚¢ƒo[ƒWƒ‡ƒ“‚ÌŠÂ‹«ˆË‘¶ˆ—
+// OpenMovie ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°ã«ã‚¢ã‚¯ã‚»ã‚¹ã—ãªã„ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã®ç’°å¢ƒä¾å­˜å‡¦ç†
 extern int OpenMovie_UseGParam_PF( MOVIEGRAPH * Movie, OPENMOVIE_GPARAM * /*GParam*/, const wchar_t *FileName, int *Width, int *Height, int SurfaceMode, int ImageSizeGetOnly, int ASyncThread )
 {
 	int Flag = FALSE ;
 
 #ifndef DX_NON_MEDIA_FOUNDATION
-	// Media Foundation ‚É‚æ‚éƒtƒ@ƒCƒ‹‚ÌƒI[ƒvƒ“‚ğ‚İ‚é
+	// Media Foundation ã«ã‚ˆã‚‹ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚ªãƒ¼ãƒ—ãƒ³ã‚’è©¦ã¿ã‚‹
 	if( Flag == FALSE && MovieGraphManageData.PF.DisableMediaFoundation == FALSE )
 	{
 		Movie->PF.UseTemporaryFile = FALSE ;
@@ -1390,7 +1390,7 @@ extern int OpenMovie_UseGParam_PF( MOVIEGRAPH * Movie, OPENMOVIE_GPARAM * /*GPar
 #endif // DX_NON_MEDIA_FOUNDATION
 
 #ifndef DX_NON_DSHOW_MOVIE
-	// DirectShow ‚É‚æ‚éƒtƒ@ƒCƒ‹‚ÌƒI[ƒvƒ“‚ğ‚İ‚é
+	// DirectShow ã«ã‚ˆã‚‹ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚ªãƒ¼ãƒ—ãƒ³ã‚’è©¦ã¿ã‚‹
 	if( Flag == FALSE )
 	{
 		Movie->PF.UseTemporaryFile = FALSE ;
@@ -1406,23 +1406,23 @@ extern int OpenMovie_UseGParam_PF( MOVIEGRAPH * Movie, OPENMOVIE_GPARAM * /*GPar
 		return -1 ;
 	}
 
-	// ¬Œ÷
+	// æˆåŠŸ
 	return 0 ;
 }
 
-// ƒ€[ƒr[—p‚ÌƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹ì¬—p‚Ìƒpƒ‰ƒ[ƒ^‚ğƒJƒXƒ^ƒ}ƒCƒY‚·‚é
+// ãƒ ãƒ¼ãƒ“ãƒ¼ç”¨ã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ä½œæˆç”¨ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ã‚«ã‚¹ã‚¿ãƒã‚¤ã‚ºã™ã‚‹
 extern int OpenMovie_CustomGraphHandleGParam_PF( MOVIEGRAPH * /*Movie*/, struct SETUP_GRAPHHANDLE_GPARAM * /*InitGraphHandleGParam*/ )
 {
 	return 0 ;
 }
 
-// ƒ€[ƒr[‚ÌÄ¶‚ğŠJn‚·‚éˆ—‚ÌŠÂ‹«ˆË‘¶ˆ—
+// ãƒ ãƒ¼ãƒ“ãƒ¼ã®å†ç”Ÿã‚’é–‹å§‹ã™ã‚‹å‡¦ç†ã®ç’°å¢ƒä¾å­˜å‡¦ç†
 extern int PlayMovie__PF( MOVIEGRAPH *Movie, int PlayType, int /*SysPlay*/ )
 {
 #ifndef DX_NON_MEDIA_FOUNDATION
 	if( Movie->PF.pMFReader != NULL )
 	{
-		// ‚PƒtƒŒ[ƒ€–Ú‚ğƒZƒbƒgƒAƒbƒv
+		// ï¼‘ãƒ•ãƒ¬ãƒ¼ãƒ ç›®ã‚’ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 #ifndef DX_NON_FILTER
 		if( GSYS.HardInfo.UseShader )
 		{
@@ -1434,46 +1434,46 @@ extern int PlayMovie__PF( MOVIEGRAPH *Movie, int PlayType, int /*SysPlay*/ )
 			MediaFoundationMovie_SetupImage( Movie, 1, 0, FALSE ) ;
 		}
 
-		// ƒTƒEƒ“ƒh‚ÌÄ¶‚àŠJn‚·‚é
+		// ã‚µã‚¦ãƒ³ãƒ‰ã®å†ç”Ÿã‚‚é–‹å§‹ã™ã‚‹
 #ifndef DX_NON_SOUND
 		NS_PlaySoundMem( Movie->PF.MFSoundHandle, Movie->PF.MFLoopType == 1 ? PlayType : DX_PLAYTYPE_BACK, FALSE ) ;
 #endif // DX_NON_SOUND
 
-		// Ä¶ŠJn‚ÌŠÔ‚ğæ“¾
+		// å†ç”Ÿé–‹å§‹æ™‚ã®æ™‚é–“ã‚’å–å¾—
 		Movie->PF.MFPrevTimeCount = NS_GetNowHiPerformanceCount( FALSE ) ;
 
-		// Ä¶ŠÔ‚ğƒZƒbƒg
+		// å†ç”Ÿæ™‚é–“ã‚’ã‚»ãƒƒãƒˆ
 		Movie->PF.MFPlayNowTime = Movie->PF.MFFrameRateDenominator * ( LONGLONG )Movie->PF.MFCurrentFrame * ( LONGLONG )1000000 / Movie->PF.MFFrameRateNumerator ;
 
-		// ³íI—¹
+		// æ­£å¸¸çµ‚äº†
 		return 0 ;
 	}
 #endif // DX_NON_MEDIA_FOUNDATION
 
 #ifndef DX_NON_DSHOW_MOVIE
-	// DirectShow ‚É‚æ‚éÄ¶‚ğŠJn
+	// DirectShow ã«ã‚ˆã‚‹å†ç”Ÿã‚’é–‹å§‹
 	if( Movie->PF.pMediaControl != NULL )
 	{
 		Movie->PF.pMediaControl->Run() ;
 	}
 #endif // DX_NON_DSHOW_MOVIE
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// ƒ€[ƒr[‚ÌÄ¶‚ğƒXƒgƒbƒv‚·‚éˆ—‚ÌŠÂ‹«ˆË‘¶ˆ—
+// ãƒ ãƒ¼ãƒ“ãƒ¼ã®å†ç”Ÿã‚’ã‚¹ãƒˆãƒƒãƒ—ã™ã‚‹å‡¦ç†ã®ç’°å¢ƒä¾å­˜å‡¦ç†
 extern 	int PauseMovie_PF( MOVIEGRAPH * Movie, int /*SysPause*/ )
 {
 #ifndef DX_NON_MEDIA_FOUNDATION
 	if( Movie->PF.pMFReader != NULL )
 	{
-		// ƒTƒEƒ“ƒh‚ÌÄ¶‚ğ’â~‚·‚é
+		// ã‚µã‚¦ãƒ³ãƒ‰ã®å†ç”Ÿã‚’åœæ­¢ã™ã‚‹
 #ifndef DX_NON_SOUND
 		NS_StopSoundMem( Movie->PF.MFSoundHandle, FALSE ) ;
 #endif // DX_NON_SOUND
 
-		// Œ»İ‚ÌÄ¶ŠÔ•ª‚Ü‚ÅƒtƒŒ[ƒ€‚ği‚ß‚Ä‚¨‚­
+		// ç¾åœ¨ã®å†ç”Ÿæ™‚é–“åˆ†ã¾ã§ãƒ•ãƒ¬ãƒ¼ãƒ ã‚’é€²ã‚ã¦ãŠã
 		UpdateMovie( Movie->HandleInfo.Handle ) ;
 
 		return 0 ;
@@ -1484,10 +1484,10 @@ extern 	int PauseMovie_PF( MOVIEGRAPH * Movie, int /*SysPause*/ )
 #ifndef DX_NON_DSHOW_MOVIE
 	if( Movie->PF.pMediaControl != NULL )
 	{
-		// ’â~
+		// åœæ­¢
 		Movie->PF.pMediaControl->Pause() ;
 
-		// ³íI—¹
+		// æ­£å¸¸çµ‚äº†
 		return 0 ;
 	}
 #endif // DX_NON_DSHOW_MOVIE
@@ -1495,7 +1495,7 @@ extern 	int PauseMovie_PF( MOVIEGRAPH * Movie, int /*SysPause*/ )
 	return -1 ; 
 }
 
-// ƒ€[ƒr[‚ÌÄ¶ˆÊ’u‚ğİ’è‚·‚é(ƒ~ƒŠ•b’PˆÊ)ˆ—‚ÌŠÂ‹«ˆË‘¶ˆ—
+// ãƒ ãƒ¼ãƒ“ãƒ¼ã®å†ç”Ÿä½ç½®ã‚’è¨­å®šã™ã‚‹(ãƒŸãƒªç§’å˜ä½)å‡¦ç†ã®ç’°å¢ƒä¾å­˜å‡¦ç†
 extern int SeekMovie_PF( MOVIEGRAPH * Movie, int Time )
 {
 #ifndef DX_NON_MEDIA_FOUNDATION
@@ -1505,7 +1505,7 @@ extern int SeekMovie_PF( MOVIEGRAPH * Movie, int Time )
 		HRESULT Result ;
 		int NewCurrentFrame ;
 
-		// Ä¶ƒtƒŒ[ƒ€‚ğZo
+		// å†ç”Ÿãƒ•ãƒ¬ãƒ¼ãƒ ã‚’ç®—å‡º
 		{
 			LONGLONG Temp64_1, Temp64_2 ;
 			DWORD Temp128[ 4 ] ;
@@ -1520,13 +1520,13 @@ extern int SeekMovie_PF( MOVIEGRAPH * Movie, int Time )
 			NewCurrentFrame = ( int )Temp64_1 ;
 		}
 
-		// w’è‚ÌƒtƒŒ[ƒ€‚ª‘ƒtƒŒ[ƒ€”‚ğ‰z‚¦‚Ä‚¢‚½‚çƒGƒ‰[
+		// æŒ‡å®šã®ãƒ•ãƒ¬ãƒ¼ãƒ ãŒç·ãƒ•ãƒ¬ãƒ¼ãƒ æ•°ã‚’è¶Šãˆã¦ã„ãŸã‚‰ã‚¨ãƒ©ãƒ¼
 		if( NewCurrentFrame >= Movie->PF.MFTotalFrame )
 		{
 			return -1 ;
 		}
 
-		// Ä¶ˆÊ’u‚Ì•ÏX
+		// å†ç”Ÿä½ç½®ã®å¤‰æ›´
 		_MEMSET( &variant, 0, sizeof( variant ) ) ;
 		variant.vt = D_VT_I8 ;
 		variant.hVal.QuadPart = ( ULONGLONG )Time * 10000 ;
@@ -1536,23 +1536,23 @@ extern int SeekMovie_PF( MOVIEGRAPH * Movie, int Time )
 			return -1 ;
 		}
 
-		// Ä¶ƒtƒŒ[ƒ€‚ğ•ÏX
+		// å†ç”Ÿãƒ•ãƒ¬ãƒ¼ãƒ ã‚’å¤‰æ›´
 		Movie->PF.MFCurrentFrame = NewCurrentFrame ;
 
-		// Ä¶ŠJnƒ^ƒCƒ€‚ğ•ÏX‚·‚é
+		// å†ç”Ÿé–‹å§‹ã‚¿ã‚¤ãƒ ã‚’å¤‰æ›´ã™ã‚‹
 		Movie->PF.MFPlayNowTime = Movie->PF.MFFrameRateDenominator * ( LONGLONG )Movie->PF.MFCurrentFrame * ( LONGLONG )1000000 / Movie->PF.MFFrameRateNumerator ;
 
-		// ÅŒã‚Ì ReadSample ‚ÌŠÔAƒtƒŒ[ƒ€‚ğƒŠƒZƒbƒg
+		// æœ€å¾Œã® ReadSample ã®æ™‚é–“ã€ãƒ•ãƒ¬ãƒ¼ãƒ ã‚’ãƒªã‚»ãƒƒãƒˆ
 		Movie->PF.MFLastReadSampleTimeStamp = -1 ;
 		Movie->PF.MFLastReadSampleFrame = -1 ;
 
-		// ƒCƒ[ƒW‚ªƒZƒbƒgƒAƒbƒv‚³‚ê‚Ä‚¢‚éAƒtƒ‰ƒO‚ğ“|‚·
+		// ã‚¤ãƒ¡ãƒ¼ã‚¸ãŒã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã•ã‚Œã¦ã„ã‚‹ã€ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 		Movie->PF.MFBaseImageSetup = 0 ;
 #ifndef DX_NON_FILTER
 		Movie->PF.MFYUVGrHandleSetup = 0 ;
 #endif // DX_NON_FILTER
 	
-		// Ä¶ˆÊ’u‚ğ•ÏX‚·‚é
+		// å†ç”Ÿä½ç½®ã‚’å¤‰æ›´ã™ã‚‹
 #ifndef DX_NON_SOUND
 		if( Movie->PlayFlag )
 		{
@@ -1565,7 +1565,7 @@ extern int SeekMovie_PF( MOVIEGRAPH * Movie, int Time )
 		}
 #endif // DX_NON_SOUND
 
-		// ƒV[ƒNŒã‚Ì‚PƒtƒŒ[ƒ€–Ú‚ğƒZƒbƒgƒAƒbƒv
+		// ã‚·ãƒ¼ã‚¯å¾Œã®ï¼‘ãƒ•ãƒ¬ãƒ¼ãƒ ç›®ã‚’ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 #ifndef DX_NON_FILTER
 		if( GSYS.HardInfo.UseShader )
 		{
@@ -1591,7 +1591,7 @@ extern int SeekMovie_PF( MOVIEGRAPH * Movie, int Time )
 		Stop = 0 ;
 		Movie->PF.pMediaSeeking->SetPositions( &Now, D_AM_SEEKING_AbsolutePositioning, &Stop, D_AM_SEEKING_NoPositioning ) ;
 
-		// ³íI—¹
+		// æ­£å¸¸çµ‚äº†
 		return 0 ;
 	}
 
@@ -1600,7 +1600,7 @@ extern int SeekMovie_PF( MOVIEGRAPH * Movie, int Time )
 	return -1 ;
 }
 
-// ƒ€[ƒr[‚ÌÄ¶‘¬“x‚ğİ’è‚·‚é( 1.0 = “™”{‘¬  2.0 = ‚Q”{‘¬ )ˆ—‚ÌŠÂ‹«ˆË‘¶ˆ—
+// ãƒ ãƒ¼ãƒ“ãƒ¼ã®å†ç”Ÿé€Ÿåº¦ã‚’è¨­å®šã™ã‚‹( 1.0 = ç­‰å€é€Ÿ  2.0 = ï¼’å€é€Ÿ )å‡¦ç†ã®ç’°å¢ƒä¾å­˜å‡¦ç†
 extern int SetPlaySpeedRateMovie_PF( MOVIEGRAPH * Movie, double SpeedRate )
 {
 #ifndef DX_NON_MEDIA_FOUNDATION
@@ -1626,7 +1626,7 @@ extern int SetPlaySpeedRateMovie_PF( MOVIEGRAPH * Movie, double SpeedRate )
 	{
 		Movie->PF.pMediaSeeking->SetRate( SpeedRate ) ;
 
-		// ³íI—¹
+		// æ­£å¸¸çµ‚äº†
 		return 0 ;
 	}
 
@@ -1635,7 +1635,7 @@ extern int SetPlaySpeedRateMovie_PF( MOVIEGRAPH * Movie, double SpeedRate )
 	return -1 ;
 }
 
-// ƒ€[ƒr[‚ÌÄ¶ó‘Ô‚ğ“¾‚éˆ—‚ÌŠÂ‹«ˆË‘¶ˆ—
+// ãƒ ãƒ¼ãƒ“ãƒ¼ã®å†ç”ŸçŠ¶æ…‹ã‚’å¾—ã‚‹å‡¦ç†ã®ç’°å¢ƒä¾å­˜å‡¦ç†
 extern int GetMovieState_PF( MOVIEGRAPH * Movie )
 {
 #ifndef DX_NON_MEDIA_FOUNDATION
@@ -1664,7 +1664,7 @@ extern int GetMovieState_PF( MOVIEGRAPH * Movie )
 	{
 		Movie->PlayFlag = FALSE ;
 
-		// “à•”ˆê’â~ƒtƒ‰ƒO‚ğ—§‚Ä‚é
+		// å†…éƒ¨ä¸€æ™‚åœæ­¢ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 		Movie->SysPauseFlag = 1 ;
 	}
 #endif // DX_NON_DSHOW_MOVIE
@@ -1672,10 +1672,10 @@ extern int GetMovieState_PF( MOVIEGRAPH * Movie )
 	return Movie->PlayFlag ;
 }
 
-// ƒ€[ƒr[‚Ìƒ{ƒŠƒ…[ƒ€‚ğƒZƒbƒg‚·‚é(0`10000)ˆ—‚ÌŠÂ‹«ˆË‘¶ˆ—
+// ãƒ ãƒ¼ãƒ“ãƒ¼ã®ãƒœãƒªãƒ¥ãƒ¼ãƒ ã‚’ã‚»ãƒƒãƒˆã™ã‚‹(0ï½10000)å‡¦ç†ã®ç’°å¢ƒä¾å­˜å‡¦ç†
 extern int SetMovieVolume_PF( MOVIEGRAPH * Movie, int Volume )
 {
-	// ‰¹—Ê•â³
+	// éŸ³é‡è£œæ­£
 	if( Volume > 10000 )
 	{
 		Volume = 10000 ;
@@ -1689,7 +1689,7 @@ extern int SetMovieVolume_PF( MOVIEGRAPH * Movie, int Volume )
 #ifndef DX_NON_MEDIA_FOUNDATION
 	if( Movie->PF.pMFReader != NULL )
 	{
-		// ƒTƒEƒ“ƒh‚Ì‰¹—Ê‚ğƒZƒbƒg
+		// ã‚µã‚¦ãƒ³ãƒ‰ã®éŸ³é‡ã‚’ã‚»ãƒƒãƒˆ
 #ifndef DX_NON_SOUND
 		NS_SetVolumeSoundMem( Volume, Movie->PF.MFSoundHandle ) ;
 #endif // DX_NON_SOUND
@@ -1703,7 +1703,7 @@ extern int SetMovieVolume_PF( MOVIEGRAPH * Movie, int Volume )
 	{
 		Movie->PF.pBasicAudio->put_Volume( -10000 + Volume ) ;
 
-		// ³íI—¹
+		// æ­£å¸¸çµ‚äº†
 		return 0 ;
 	}
 #endif // DX_NON_DSHOW_MOVIE
@@ -1711,35 +1711,35 @@ extern int SetMovieVolume_PF( MOVIEGRAPH * Movie, int Volume )
 	return -1 ;
 }
 
-// ƒ€[ƒr[‚ÌŠî–{ƒCƒ[ƒWƒf[ƒ^‚ğæ“¾‚·‚éˆ—‚ÌŠÂ‹«ˆË‘¶ˆ—
+// ãƒ ãƒ¼ãƒ“ãƒ¼ã®åŸºæœ¬ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—ã™ã‚‹å‡¦ç†ã®ç’°å¢ƒä¾å­˜å‡¦ç†
 extern	BASEIMAGE *GetMovieBaseImage_PF( MOVIEGRAPH * Movie, int *ImageUpdateFlag, int ImageUpdateFlagSetOnly )
 {
 #ifndef DX_NON_MEDIA_FOUNDATION
 	if( Movie->PF.pMFReader != NULL )
 	{
-		// ƒ€[ƒr[‚ÌƒtƒŒ[ƒ€‚ğXV
+		// ãƒ ãƒ¼ãƒ“ãƒ¼ã®ãƒ•ãƒ¬ãƒ¼ãƒ ã‚’æ›´æ–°
 		UpdateMovie( Movie->HandleInfo.Handle ) ;
 
-		// NowImage ‚Ì“à—e‚ªXV‚³‚ê‚½‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğ‘ã“ü‚·‚é
+		// NowImage ã®å†…å®¹ãŒæ›´æ–°ã•ã‚ŒãŸã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’ä»£å…¥ã™ã‚‹
 		if( ImageUpdateFlag != NULL )
 		{
 			*ImageUpdateFlag = Movie->NowImageUpdateFlag ;
 		}
 		Movie->NowImageUpdateFlag = FALSE ;
 
-		// ImageUpdateFlagSetOnly ‚ª TRUE ‚Ìê‡‚Í‚±‚±‚ÅI—¹
+		// ImageUpdateFlagSetOnly ãŒ TRUE ã®å ´åˆã¯ã“ã“ã§çµ‚äº†
 		if( ImageUpdateFlagSetOnly )
 		{
 			return NULL ;
 		}
 
-		// BaseImage ‚ªƒZƒbƒgƒAƒbƒv‚³‚ê‚Ä‚¢‚È‚©‚Á‚½‚çƒZƒbƒgƒAƒbƒv‚·‚é
+		// BaseImage ãŒã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã•ã‚Œã¦ã„ãªã‹ã£ãŸã‚‰ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã™ã‚‹
 		if( Movie->PF.MFBaseImageSetup == 0 )
 		{
 			MediaFoundationMovie_SetupImage( Movie, 1, 0, FALSE ) ;
 		}
 
-		// ƒAƒhƒŒƒX‚ğ•Ô‚·
+		// ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’è¿”ã™
 		return &Movie->NowImage ;
 	}
 #endif // DX_NON_MEDIA_FOUNDATION
@@ -1747,7 +1747,7 @@ extern	BASEIMAGE *GetMovieBaseImage_PF( MOVIEGRAPH * Movie, int *ImageUpdateFlag
 #ifndef DX_NON_DSHOW_MOVIE
 	if( Movie->PF.pMovieImage != NULL )
 	{
-		// ƒ€[ƒr[‚ÌƒtƒŒ[ƒ€‚ğXV
+		// ãƒ ãƒ¼ãƒ“ãƒ¼ã®ãƒ•ãƒ¬ãƒ¼ãƒ ã‚’æ›´æ–°
 		if( GetMovieState( Movie->HandleInfo.Handle ) == FALSE )
 		{
 			int Time ;
@@ -1768,7 +1768,7 @@ extern	BASEIMAGE *GetMovieBaseImage_PF( MOVIEGRAPH * Movie, int *ImageUpdateFlag
 			UpdateMovie( Movie->HandleInfo.Handle ) ;
 		}
 
-		// NowImage ‚Ì“à—e‚ªXV‚³‚ê‚½‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğ‘ã“ü‚·‚é
+		// NowImage ã®å†…å®¹ãŒæ›´æ–°ã•ã‚ŒãŸã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’ä»£å…¥ã™ã‚‹
 		if( ImageUpdateFlag != NULL )
 		{
 			*ImageUpdateFlag = Movie->NowImageUpdateFlag ;
@@ -1782,13 +1782,13 @@ extern	BASEIMAGE *GetMovieBaseImage_PF( MOVIEGRAPH * Movie, int *ImageUpdateFlag
 	return NULL ;
 }
 
-// ƒ€[ƒr[‚Ì‘ƒtƒŒ[ƒ€”‚ğ“¾‚é
+// ãƒ ãƒ¼ãƒ“ãƒ¼ã®ç·ãƒ•ãƒ¬ãƒ¼ãƒ æ•°ã‚’å¾—ã‚‹
 extern int GetMovieTotalFrame_PF( MOVIEGRAPH * Movie )
 {
 #ifndef DX_NON_MEDIA_FOUNDATION
 	if( Movie->PF.pMFReader != NULL )
 	{
-		// ‘ƒtƒŒ[ƒ€”‚ğ•Ô‚·
+		// ç·ãƒ•ãƒ¬ãƒ¼ãƒ æ•°ã‚’è¿”ã™
 		return Movie->PF.MFTotalFrame ;
 	}
 #endif // DX_NON_MEDIA_FOUNDATION
@@ -1796,7 +1796,7 @@ extern int GetMovieTotalFrame_PF( MOVIEGRAPH * Movie )
 #ifndef DX_NON_DSHOW_MOVIE
 	if( Movie->PF.pMediaSeeking != NULL )
 	{
-		// ƒtƒŒ[ƒ€‚ğ•Ô‚·
+		// ãƒ•ãƒ¬ãƒ¼ãƒ ã‚’è¿”ã™
 		return ( int )Movie->PF.TotalFrame ;
 	}
 #endif // DX_NON_DSHOW_MOVIE
@@ -1804,16 +1804,16 @@ extern int GetMovieTotalFrame_PF( MOVIEGRAPH * Movie )
 	return -1 ;
 }
 
-// ƒ€[ƒr[‚ÌÄ¶ˆÊ’u‚ğæ“¾‚·‚é(ƒ~ƒŠ•b’PˆÊ)ˆ—‚ÌŠÂ‹«ˆË‘¶ˆ—
+// ãƒ ãƒ¼ãƒ“ãƒ¼ã®å†ç”Ÿä½ç½®ã‚’å–å¾—ã™ã‚‹(ãƒŸãƒªç§’å˜ä½)å‡¦ç†ã®ç’°å¢ƒä¾å­˜å‡¦ç†
 extern int TellMovie_PF( MOVIEGRAPH * Movie )
 {
 #ifndef DX_NON_MEDIA_FOUNDATION
 	if( Movie->PF.pMFReader != NULL )
 	{
-		// ƒtƒŒ[ƒ€‚ğXV
+		// ãƒ•ãƒ¬ãƒ¼ãƒ ã‚’æ›´æ–°
 		UpdateMovie( Movie->HandleInfo.Handle ) ;
 
-		// ƒtƒŒ[ƒ€‚©‚çÄ¶ŠÔ‚ğŠ„‚èo‚·
+		// ãƒ•ãƒ¬ãƒ¼ãƒ ã‹ã‚‰å†ç”Ÿæ™‚é–“ã‚’å‰²ã‚Šå‡ºã™
 		return ( int )( ( LONGLONG )Movie->PF.MFFrameRateDenominator * ( LONGLONG )Movie->PF.MFCurrentFrame * 1000 / ( LONGLONG )Movie->PF.MFFrameRateNumerator ) ;
 	}
 #endif // DX_NON_MEDIA_FOUNDATION
@@ -1823,13 +1823,13 @@ extern int TellMovie_PF( MOVIEGRAPH * Movie )
 	{
 		D_STREAM_TIME NowTime ;
 
-		// ŠÔæ“¾
+		// æ™‚é–“å–å¾—
 		if( Movie->PF.pMediaSeeking->GetCurrentPosition( &NowTime ) != S_OK )
 		{
 			return -1 ;
 		}
 
-		// ŠÔ‚ğ•Ô‚·
+		// æ™‚é–“ã‚’è¿”ã™
 		return _DTOL( (double)NowTime / 10000 ) ;
 	}
 #endif // DX_NON_DSHOW_MOVIE
@@ -1837,16 +1837,16 @@ extern int TellMovie_PF( MOVIEGRAPH * Movie )
 	return -1 ;
 }
 
-// ƒ€[ƒr[‚ÌÄ¶ˆÊ’u‚ğæ“¾‚·‚é(ƒtƒŒ[ƒ€’PˆÊ)ˆ—‚ÌŠÂ‹«ˆË‘¶ˆ—
+// ãƒ ãƒ¼ãƒ“ãƒ¼ã®å†ç”Ÿä½ç½®ã‚’å–å¾—ã™ã‚‹(ãƒ•ãƒ¬ãƒ¼ãƒ å˜ä½)å‡¦ç†ã®ç’°å¢ƒä¾å­˜å‡¦ç†
 extern int TellMovieToFrame_PF( MOVIEGRAPH * Movie )
 {
 #ifndef DX_NON_MEDIA_FOUNDATION
 	if( Movie->PF.pMFReader != NULL )
 	{
-		// ƒtƒŒ[ƒ€‚ğXV
+		// ãƒ•ãƒ¬ãƒ¼ãƒ ã‚’æ›´æ–°
 		UpdateMovie( Movie->HandleInfo.Handle ) ;
 
-		// ƒtƒŒ[ƒ€‚ğ•Ô‚·
+		// ãƒ•ãƒ¬ãƒ¼ãƒ ã‚’è¿”ã™
 		return Movie->PF.MFCurrentFrame ;
 	}
 #endif // DX_NON_MEDIA_FOUNDATION
@@ -1856,13 +1856,13 @@ extern int TellMovieToFrame_PF( MOVIEGRAPH * Movie )
 	{
 		D_STREAM_TIME NowTime ;
 
-		// ƒtƒŒ[ƒ€æ“¾
+		// ãƒ•ãƒ¬ãƒ¼ãƒ å–å¾—
 		if( Movie->PF.pMediaSeeking->GetCurrentPosition( &NowTime ) != S_OK )
 		{
 			return -1 ;
 		}
 
-		// ƒtƒŒ[ƒ€‚ğ•Ô‚·
+		// ãƒ•ãƒ¬ãƒ¼ãƒ ã‚’è¿”ã™
 		return _DTOL( ( double )NowTime / Movie->PF.FrameTime ) ;
 	}
 #endif // DX_NON_DSHOW_MOVIE
@@ -1870,7 +1870,7 @@ extern int TellMovieToFrame_PF( MOVIEGRAPH * Movie )
 	return -1 ;
 }
 
-// ƒ€[ƒr[‚ÌÄ¶ˆÊ’u‚ğİ’è‚·‚é(ƒtƒŒ[ƒ€’PˆÊ)ˆ—‚ÌŠÂ‹«ˆË‘¶ˆ—
+// ãƒ ãƒ¼ãƒ“ãƒ¼ã®å†ç”Ÿä½ç½®ã‚’è¨­å®šã™ã‚‹(ãƒ•ãƒ¬ãƒ¼ãƒ å˜ä½)å‡¦ç†ã®ç’°å¢ƒä¾å­˜å‡¦ç†
 extern int SeekMovieToFrame_PF( MOVIEGRAPH * Movie, int Frame )
 {
 #ifndef DX_NON_MEDIA_FOUNDATION
@@ -1879,13 +1879,13 @@ extern int SeekMovieToFrame_PF( MOVIEGRAPH * Movie, int Frame )
 		D_PROPVARIANT variant ;
 		HRESULT Result ;
 
-		// w’è‚ÌƒtƒŒ[ƒ€‚ª‘ƒtƒŒ[ƒ€”ˆÈã‚Ìê‡‚ÍƒGƒ‰[
+		// æŒ‡å®šã®ãƒ•ãƒ¬ãƒ¼ãƒ ãŒç·ãƒ•ãƒ¬ãƒ¼ãƒ æ•°ä»¥ä¸Šã®å ´åˆã¯ã‚¨ãƒ©ãƒ¼
 		if( Frame >= Movie->PF.MFTotalFrame )
 		{
 			return -1 ;
 		}
 
-		// Ä¶ˆÊ’u‚Ì•ÏX
+		// å†ç”Ÿä½ç½®ã®å¤‰æ›´
 		_MEMSET( &variant, 0, sizeof( variant ) ) ;
 		variant.vt = D_VT_I8 ;
 		variant.hVal.QuadPart = ( ULONGLONG )Movie->PF.MFFrameRateDenominator * ( ULONGLONG )Frame * ( ULONGLONG )10000000 / Movie->PF.MFFrameRateNumerator ;
@@ -1895,23 +1895,23 @@ extern int SeekMovieToFrame_PF( MOVIEGRAPH * Movie, int Frame )
 			return -1 ;
 		}
 
-		// Ä¶ƒtƒŒ[ƒ€‚ğƒZƒbƒg
+		// å†ç”Ÿãƒ•ãƒ¬ãƒ¼ãƒ ã‚’ã‚»ãƒƒãƒˆ
 		Movie->PF.MFCurrentFrame = Frame ;
 
-		// Ä¶ŠJnƒ^ƒCƒ€‚ğ•ÏX‚·‚é
+		// å†ç”Ÿé–‹å§‹ã‚¿ã‚¤ãƒ ã‚’å¤‰æ›´ã™ã‚‹
 		Movie->PF.MFPlayNowTime = Movie->PF.MFFrameRateDenominator * ( LONGLONG )Movie->PF.MFCurrentFrame * ( LONGLONG )1000000 / Movie->PF.MFFrameRateNumerator ;
 
-		// ÅŒã‚Ì ReadSample ‚ÌŠÔAƒtƒŒ[ƒ€‚ğƒŠƒZƒbƒg
+		// æœ€å¾Œã® ReadSample ã®æ™‚é–“ã€ãƒ•ãƒ¬ãƒ¼ãƒ ã‚’ãƒªã‚»ãƒƒãƒˆ
 		Movie->PF.MFLastReadSampleTimeStamp = -1 ;
 		Movie->PF.MFLastReadSampleFrame = -1 ;
 
-		// ƒCƒ[ƒW‚ªƒZƒbƒgƒAƒbƒv‚³‚ê‚Ä‚¢‚éAƒtƒ‰ƒO‚ğ“|‚·
+		// ã‚¤ãƒ¡ãƒ¼ã‚¸ãŒã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã•ã‚Œã¦ã„ã‚‹ã€ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 		Movie->PF.MFBaseImageSetup = 0 ;
 #ifndef DX_NON_FILTER
 		Movie->PF.MFYUVGrHandleSetup = 0 ;
 #endif // DX_NON_FILTER
 
-		// Ä¶ˆÊ’u‚ğ•ÏX‚·‚é
+		// å†ç”Ÿä½ç½®ã‚’å¤‰æ›´ã™ã‚‹
 #ifndef DX_NON_SOUND
 		if( Movie->PlayFlag )
 		{
@@ -1939,7 +1939,7 @@ extern int SeekMovieToFrame_PF( MOVIEGRAPH * Movie, int Frame )
 		Stop = 0 ;
 		Movie->PF.pMediaSeeking->SetPositions( &Now, D_AM_SEEKING_AbsolutePositioning, &Stop, D_AM_SEEKING_NoPositioning ) ;
 
-		// ³íI—¹
+		// æ­£å¸¸çµ‚äº†
 		return 0 ;
 	}
 #endif // DX_NON_DSHOW_MOVIE
@@ -1947,7 +1947,7 @@ extern int SeekMovieToFrame_PF( MOVIEGRAPH * Movie, int Frame )
 	return -1 ;
 }
 
-// ƒ€[ƒr[‚Ì‚PƒtƒŒ[ƒ€‚ ‚½‚è‚ÌŠÔ‚ğ“¾‚éˆ—‚ÌŠÂ‹«ˆË‘¶ˆ—
+// ãƒ ãƒ¼ãƒ“ãƒ¼ã®ï¼‘ãƒ•ãƒ¬ãƒ¼ãƒ ã‚ãŸã‚Šã®æ™‚é–“ã‚’å¾—ã‚‹å‡¦ç†ã®ç’°å¢ƒä¾å­˜å‡¦ç†
 extern LONGLONG GetOneFrameTimeMovie_PF( MOVIEGRAPH * Movie )
 {
 #if !defined( DX_NON_DSHOW_MOVIE ) || !defined( DX_NON_MEDIA_FOUNDATION )
@@ -1965,7 +1965,7 @@ extern LONGLONG GetOneFrameTimeMovie_PF( MOVIEGRAPH * Movie )
 
 
 
-// ƒ€[ƒr[‚ÌXV‚ğs‚¤ˆ—‚ÌŠÂ‹«ˆË‘¶ˆ—
+// ãƒ ãƒ¼ãƒ“ãƒ¼ã®æ›´æ–°ã‚’è¡Œã†å‡¦ç†ã®ç’°å¢ƒä¾å­˜å‡¦ç†
 extern int UpdateMovie_PF( MOVIEGRAPH * Movie, int /*AlwaysFlag*/ )
 {
 #ifndef DX_NON_MEDIA_FOUNDATION
@@ -1974,7 +1974,7 @@ extern int UpdateMovie_PF( MOVIEGRAPH * Movie, int /*AlwaysFlag*/ )
 		int NowFrame, AddFrame ;
 		LONGLONG NowTime ;
 
-		// ¡‚ÌÄ¶ŠÔ•ªƒtƒŒ[ƒ€‚ği‚ß‚é
+		// ä»Šã®å†ç”Ÿæ™‚é–“åˆ†ãƒ•ãƒ¬ãƒ¼ãƒ ã‚’é€²ã‚ã‚‹
 		if( Movie->SysPauseFlag == 0 )
 		{
 			LONGLONG Temp64_1, Temp64_2 ;
@@ -1982,7 +1982,7 @@ extern int UpdateMovie_PF( MOVIEGRAPH * Movie, int /*AlwaysFlag*/ )
 
 			NowTime = NS_GetNowHiPerformanceCount( FALSE ) ;
 
-			// Ä¶Ï‚İŠÔ‚ği‚ß‚é
+			// å†ç”Ÿæ¸ˆã¿æ™‚é–“ã‚’é€²ã‚ã‚‹
 			if( Movie->PF.MFPlaySpeedRate < 0.999999999 || Movie->PF.MFPlaySpeedRate > 1.0000000001 )
 			{
 				Temp64_1 = NowTime - Movie->PF.MFPrevTimeCount ;
@@ -2001,7 +2001,7 @@ extern int UpdateMovie_PF( MOVIEGRAPH * Movie, int /*AlwaysFlag*/ )
 
 			Movie->PF.MFPrevTimeCount = NowTime ;
 
-			// Œ»İ‚ÌƒtƒŒ[ƒ€‚ÌZo
+			// ç¾åœ¨ã®ãƒ•ãƒ¬ãƒ¼ãƒ ã®ç®—å‡º
 			{
 				Temp64_1 = Movie->PF.MFPlayNowTime ;
 				Temp64_2 = ( LONGLONG )Movie->PF.MFFrameRateNumerator * 0x10000 / Movie->PF.MFFrameRateDenominator ;
@@ -2013,37 +2013,37 @@ extern int UpdateMovie_PF( MOVIEGRAPH * Movie, int /*AlwaysFlag*/ )
 				NowFrame = ( int )Temp64_1 ;
 			}
 
-			// ƒ‹[ƒvw’è‚ª‚ ‚é‚©‚Ç‚¤‚©‚Å‘ƒtƒŒ[ƒ€”‚ğ’´‚¦‚Ä‚¢‚éê‡‚Ìˆ—‚ğ•ªŠò‚·‚é
+			// ãƒ«ãƒ¼ãƒ—æŒ‡å®šãŒã‚ã‚‹ã‹ã©ã†ã‹ã§ç·ãƒ•ãƒ¬ãƒ¼ãƒ æ•°ã‚’è¶…ãˆã¦ã„ã‚‹å ´åˆã®å‡¦ç†ã‚’åˆ†å²ã™ã‚‹
 			if( Movie->PF.MFTotalFrame <= NowFrame )
 			{
 				if( Movie->PlayType & DX_PLAYTYPE_LOOPBIT )
 				{
-					// ƒ‹[ƒv‚·‚éê‡‚Í‘ƒtƒŒ[ƒ€”‚ÅŠ„‚Á‚½—]‚è‚ğo‚·
+					// ãƒ«ãƒ¼ãƒ—ã™ã‚‹å ´åˆã¯ç·ãƒ•ãƒ¬ãƒ¼ãƒ æ•°ã§å‰²ã£ãŸä½™ã‚Šã‚’å‡ºã™
 					NowFrame %= Movie->PF.MFTotalFrame ;
 				}
 				else
 				{
-					// ƒ‹[ƒv‚µ‚È‚¢ê‡‚ÍÅIƒtƒŒ[ƒ€‚Å~‚Ü‚é
+					// ãƒ«ãƒ¼ãƒ—ã—ãªã„å ´åˆã¯æœ€çµ‚ãƒ•ãƒ¬ãƒ¼ãƒ ã§æ­¢ã¾ã‚‹
 					NowFrame = Movie->PF.MFTotalFrame - 1 ;
 				}
 			}
 
-			// Šó–]‚ÌƒtƒŒ[ƒ€‚ªŒ»İƒoƒbƒtƒ@‚ÉŠi”[‚³‚ê‚Ä‚¢‚éƒtƒŒ[ƒ€‚Æˆá‚¤ê‡‚Íƒoƒbƒtƒ@‚ğXV‚·‚é
+			// å¸Œæœ›ã®ãƒ•ãƒ¬ãƒ¼ãƒ ãŒç¾åœ¨ãƒãƒƒãƒ•ã‚¡ã«æ ¼ç´ã•ã‚Œã¦ã„ã‚‹ãƒ•ãƒ¬ãƒ¼ãƒ ã¨é•ã†å ´åˆã¯ãƒãƒƒãƒ•ã‚¡ã‚’æ›´æ–°ã™ã‚‹
 			if( Movie->PF.MFCurrentFrame != NowFrame )
 			{
 				Movie->NowImageUpdateFlag = TRUE ;
 
-				// ‰ÁZ‚·‚éƒtƒŒ[ƒ€”‚ğZo
+				// åŠ ç®—ã™ã‚‹ãƒ•ãƒ¬ãƒ¼ãƒ æ•°ã‚’ç®—å‡º
 				if( NowFrame < Movie->PF.MFCurrentFrame )
 				{
-					// ƒ‹[ƒv‚·‚éê‡
+					// ãƒ«ãƒ¼ãƒ—ã™ã‚‹å ´åˆ
 					AddFrame = Movie->PF.MFTotalFrame - Movie->PF.MFCurrentFrame + NowFrame ;
 
-					// Ä¶ˆÊ’u‚ğ•ÏX
+					// å†ç”Ÿä½ç½®ã‚’å¤‰æ›´
 					SeekMovieToFrame_PF( Movie, NowFrame ) ;
 
 // #ifndef DX_NON_SOUND
-// 					// ƒ‹[ƒv‚·‚éê‡‚ÅAÄ¶ƒ^ƒCƒv‚ª“®‰æŠî€‚Ìê‡‚ÍƒTƒEƒ“ƒh‚àÄ“xÄ¶‚ğŠJn‚·‚é
+// 					// ãƒ«ãƒ¼ãƒ—ã™ã‚‹å ´åˆã§ã€å†ç”Ÿã‚¿ã‚¤ãƒ—ãŒå‹•ç”»åŸºæº–ã®å ´åˆã¯ã‚µã‚¦ãƒ³ãƒ‰ã‚‚å†åº¦å†ç”Ÿã‚’é–‹å§‹ã™ã‚‹
 // 					if( Movie->PF.MFLoopType == 0 )
 // 					{
 // 						NS_PlaySoundMem( Movie->PF.MFSoundHandle, DX_PLAYTYPE_BACK ) ;
@@ -2054,22 +2054,22 @@ extern int UpdateMovie_PF( MOVIEGRAPH * Movie, int /*AlwaysFlag*/ )
 				{
 					AddFrame = NowFrame - Movie->PF.MFCurrentFrame ;
 
-					// ÅIXVŠÔ‚©‚ç 2ƒtƒŒ[ƒ€•ªˆÈãŠÔ‚ªŒo‰ß‚µ‚Ä‚¢‚È‚¢‚Ì‚É 2ƒtƒŒ[ƒ€i‚Ş‚±‚Æ‚É‚È‚Á‚½ê‡‚Í 1ƒtƒŒ[ƒ€‚É•â³‚·‚é
+					// æœ€çµ‚æ›´æ–°æ™‚é–“ã‹ã‚‰ 2ãƒ•ãƒ¬ãƒ¼ãƒ åˆ†ä»¥ä¸Šæ™‚é–“ãŒçµŒéã—ã¦ã„ãªã„ã®ã« 2ãƒ•ãƒ¬ãƒ¼ãƒ é€²ã‚€ã“ã¨ã«ãªã£ãŸå ´åˆã¯ 1ãƒ•ãƒ¬ãƒ¼ãƒ ã«è£œæ­£ã™ã‚‹
 					if( AddFrame == 2 && ( Movie->RefreshTime - NowTime + ( Movie->PF.FrameTime / 10 ) / 10 ) / ( Movie->PF.FrameTime / 10 ) < 2 )
 					{
 						AddFrame = 1 ;
 					}
 
-					// ƒtƒŒ[ƒ€‚ği‚ß‚é
+					// ãƒ•ãƒ¬ãƒ¼ãƒ ã‚’é€²ã‚ã‚‹
 					MediaFoundationMovie_IncToFrame( Movie, AddFrame ) ;
 				}
 
-				// ÅIXVŠÔ‚ğ•Û‘¶
+				// æœ€çµ‚æ›´æ–°æ™‚é–“ã‚’ä¿å­˜
 				Movie->RefreshTime = NowTime ;
 			}
 			else
 			{
-				// Šó–]‚ÌƒtƒŒ[ƒ€‚àŒ»ƒtƒŒ[ƒ€‚àI’[‚É’B‚µ‚Ä‚¢‚ÄŠ‚Âƒ‹[ƒvw’è‚Å‚à–³‚­ƒTƒEƒ“ƒh‚à–³‚¢ê‡‚Í‚±‚±‚ÅÄ¶I—¹
+				// å¸Œæœ›ã®ãƒ•ãƒ¬ãƒ¼ãƒ ã‚‚ç¾ãƒ•ãƒ¬ãƒ¼ãƒ ã‚‚çµ‚ç«¯ã«é”ã—ã¦ã„ã¦ä¸”ã¤ãƒ«ãƒ¼ãƒ—æŒ‡å®šã§ã‚‚ç„¡ãã‚µã‚¦ãƒ³ãƒ‰ã‚‚ç„¡ã„å ´åˆã¯ã“ã“ã§å†ç”Ÿçµ‚äº†
 				if( NowFrame >= Movie->PF.MFTotalFrame - 1 &&
 					( Movie->PlayType & DX_PLAYTYPE_LOOPBIT ) == 0
 #ifndef DX_NON_SOUND
@@ -2079,7 +2079,7 @@ extern int UpdateMovie_PF( MOVIEGRAPH * Movie, int /*AlwaysFlag*/ )
 				{
 					Movie->PlayFlag = FALSE ;
 
-					// “à•”ˆê’â~ƒtƒ‰ƒO‚ğ—§‚Ä‚é
+					// å†…éƒ¨ä¸€æ™‚åœæ­¢ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 					Movie->SysPauseFlag = 1 ;
 				}
 			}
@@ -2104,12 +2104,12 @@ extern int UpdateMovie_PF( MOVIEGRAPH * Movie, int /*AlwaysFlag*/ )
 			}
 		}
 
-		// ƒCƒ[ƒW‚Ì\’z
+		// ã‚¤ãƒ¡ãƒ¼ã‚¸ã®æ§‹ç¯‰
 		if( Movie->UpdateFunction )
 		{
 			Movie->UpdateFunction( Movie, Movie->UpdateFunctionData ) ;
 
-			// Å‰‚ÌXV‚ªs‚í‚ê‚½ƒtƒ‰ƒO‚ğƒZƒbƒg‚·‚é
+			// æœ€åˆã®æ›´æ–°ãŒè¡Œã‚ã‚ŒãŸãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 			Movie->FirstUpdateFlag = TRUE ;
 		}
 	}
@@ -2182,7 +2182,7 @@ extern int UpdateMovie_PF( MOVIEGRAPH * Movie, int /*AlwaysFlag*/ )
 					BASEIMAGE BaseImage ;
 					RECT SrcRect ;
 
-					// ƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ª‚Ü‚¾ì¬‚³‚ê‚Ä‚¢‚È‚©‚Á‚½‚çì¬‚·‚é
+					// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ãŒã¾ã ä½œæˆã•ã‚Œã¦ã„ãªã‹ã£ãŸã‚‰ä½œæˆã™ã‚‹
 					if( Movie->YGrHandle == -1 )
 					{
 						Graphics_Image_InitSetupGraphHandleGParam( &GParam ) ;
@@ -2269,12 +2269,12 @@ extern int UpdateMovie_PF( MOVIEGRAPH * Movie, int /*AlwaysFlag*/ )
 				}
 				else
 				{
-					// ’â~
+					// åœæ­¢
 					Movie->PF.pMediaControl->Pause() ;
 
 					Movie->PlayFlag = FALSE ;
 
-					// “à•”ˆê’â~ƒtƒ‰ƒO‚ğ—§‚Ä‚é
+					// å†…éƒ¨ä¸€æ™‚åœæ­¢ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 					Movie->SysPauseFlag = 1 ;
 				}
 			}
@@ -2282,7 +2282,7 @@ extern int UpdateMovie_PF( MOVIEGRAPH * Movie, int /*AlwaysFlag*/ )
 	}
 #endif // DX_NON_DSHOW_MOVIE
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 

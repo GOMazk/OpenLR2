@@ -1,6 +1,6 @@
 // -------------------------------------------------------------------------------
 // 
-// 		‚c‚wƒ‰ƒCƒuƒ‰ƒŠ		‚u‚l‚cƒtƒ@ƒCƒ‹ƒf[ƒ^\‘¢‘Ìƒwƒbƒ_
+// 		ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒª		ï¼¶ï¼­ï¼¤ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“ãƒ˜ãƒƒãƒ€
 // 
 // 				Ver 3.25a
 // 
@@ -13,7 +13,7 @@
 
 #ifndef DX_NON_MODEL
 
-// ƒCƒ“ƒNƒ‹[ƒh ---------------------------------
+// ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ ---------------------------------
 #include "DxLib.h"
 #include "DxStatic.h"
 #include "DxModel.h"
@@ -26,34 +26,34 @@ namespace DxLib
 
 #endif // DX_NON_NAMESPACE
 
-// ƒ}ƒNƒ’è‹` -----------------------------------
+// ãƒã‚¯ãƒ­å®šç¾© -----------------------------------
 
-// ƒf[ƒ^Œ^’è‹` ---------------------------------
+// ãƒ‡ãƒ¼ã‚¿å‹å®šç¾© ---------------------------------
 
-// VMDƒL[ƒf[ƒ^( 111byte )
+// VMDã‚­ãƒ¼ãƒ‡ãƒ¼ã‚¿( 111byte )
 struct VMD_KEY
 {
 	BYTE	Data[ 111 ] ;
 /*
-	char	Name[ 15 ] ;						// –¼‘O
-	DWORD	Frame ;								// ƒtƒŒ[ƒ€
-	float	Position[ 3 ] ;						// À•W
-	float	Quaternion[ 4 ] ;					// ƒNƒH[ƒ^ƒjƒIƒ“
-	float	PosXBezier[ 4 ] ;					// À•W‚w—pƒxƒWƒF‹Èüî•ñ
-	float	PosYBezier[ 4 ] ;					// À•W‚x—pƒxƒWƒF‹Èüî•ñ
-	float	PosZBezier[ 4 ] ;					// À•W‚y—pƒxƒWƒF‹Èüî•ñ
-	float	RotBezier[ 4 ] ;					// ‰ñ“]—pƒxƒWƒF‹Èüî•ñ
+	char	Name[ 15 ] ;						// åå‰
+	DWORD	Frame ;								// ãƒ•ãƒ¬ãƒ¼ãƒ 
+	float	Position[ 3 ] ;						// åº§æ¨™
+	float	Quaternion[ 4 ] ;					// ã‚¯ã‚©ãƒ¼ã‚¿ãƒ‹ã‚ªãƒ³
+	float	PosXBezier[ 4 ] ;					// åº§æ¨™ï¼¸ç”¨ãƒ™ã‚¸ã‚§æ›²ç·šæƒ…å ±
+	float	PosYBezier[ 4 ] ;					// åº§æ¨™ï¼¹ç”¨ãƒ™ã‚¸ã‚§æ›²ç·šæƒ…å ±
+	float	PosZBezier[ 4 ] ;					// åº§æ¨™ï¼ºç”¨ãƒ™ã‚¸ã‚§æ›²ç·šæƒ…å ±
+	float	RotBezier[ 4 ] ;					// å›è»¢ç”¨ãƒ™ã‚¸ã‚§æ›²ç·šæƒ…å ±
 */
 } ;
 
-// VMD•\îƒL[ƒf[ƒ^( 23byte )
+// VMDè¡¨æƒ…ã‚­ãƒ¼ãƒ‡ãƒ¼ã‚¿( 23byte )
 struct VMD_FACE_KEY
 {
-	BYTE	Data[ 23 ] ;						// ƒf[ƒ^
+	BYTE	Data[ 23 ] ;						// ãƒ‡ãƒ¼ã‚¿
 /*
-	char	Name[ 15 ] ;						// •\î–¼
-	DWORD	Frame ;								// ƒtƒŒ[ƒ€
-	float	Factor ;							// ƒuƒŒƒ“ƒh—¦
+	char	Name[ 15 ] ;						// è¡¨æƒ…å
+	DWORD	Frame ;								// ãƒ•ãƒ¬ãƒ¼ãƒ 
+	float	Factor ;							// ãƒ–ãƒ¬ãƒ³ãƒ‰ç‡
 */
 } ;
 
@@ -62,18 +62,18 @@ struct VMD_CAMERA_LENGTH
 	DWORD Count;
 };
 
-// VMDƒJƒƒ‰ƒL[ƒf[ƒ^
+// VMDã‚«ãƒ¡ãƒ©ã‚­ãƒ¼ãƒ‡ãƒ¼ã‚¿
 struct VMD_CAMERA 
 {
-	BYTE	Data[ 61 ] ;						// ƒf[ƒ^
+	BYTE	Data[ 61 ] ;						// ãƒ‡ãƒ¼ã‚¿
 /*
-	DWORD	FrameNo;							//  4:  0:ƒtƒŒ[ƒ€”Ô†
-	float	Length;								//  8:  4: -(‹——£)
-	float	Location[3];						// 20:  8:ˆÊ’u
-	float	Rotate[3];							// 32: 20:ƒIƒCƒ‰[Šp // X²‚Í•„†‚ª”½“]‚µ‚Ä‚¢‚é‚Ì‚Å’ˆÓ
-	BYTE	Interpolation[24];					// 56: 32:•âŠÔî•ñ // ‚¨‚»‚ç‚­[6][4](–¢ŒŸØ)
-	DWORD	ViewingAngle;						// 60: 56:Œü‚«
-	BYTE	Perspective;						// 61: 60:Ë‰eƒJƒƒ‰‚©‚Ç‚¤‚© 0:Ë‰eƒJƒƒ‰ 1:³Ë‰eƒJƒƒ‰
+	DWORD	FrameNo;							//  4:  0:ãƒ•ãƒ¬ãƒ¼ãƒ ç•ªå·
+	float	Length;								//  8:  4: -(è·é›¢)
+	float	Location[3];						// 20:  8:ä½ç½®
+	float	Rotate[3];							// 32: 20:ã‚ªã‚¤ãƒ©ãƒ¼è§’ // Xè»¸ã¯ç¬¦å·ãŒåè»¢ã—ã¦ã„ã‚‹ã®ã§æ³¨æ„
+	BYTE	Interpolation[24];					// 56: 32:è£œé–“æƒ…å ± // ãŠãã‚‰ã[6][4](æœªæ¤œè¨¼)
+	DWORD	ViewingAngle;						// 60: 56:å‘ã
+	BYTE	Perspective;						// 61: 60:å°„å½±ã‚«ãƒ¡ãƒ©ã‹ã©ã†ã‹ 0:å°„å½±ã‚«ãƒ¡ãƒ© 1:æ­£å°„å½±ã‚«ãƒ¡ãƒ©
 */
 };
 
@@ -89,111 +89,111 @@ struct VMD_LIGHT
 	DWORD Loc[3];
 }; 
 
-// VMD“Ç‚İ‚±‚İˆ——pƒL[\‘¢‘Ì
+// VMDèª­ã¿ã“ã¿å‡¦ç†ç”¨ã‚­ãƒ¼æ§‹é€ ä½“
 struct VMD_READ_KEY_INFO
 {
-	DWORD	Frame ;								// ƒtƒŒ[ƒ€
-	DWORD	DisablePhysics ;					// •¨—–³Œø
-	float	Position[ 3 ] ;						// À•W
-	float	Quaternion[ 4 ] ;					// ƒNƒH[ƒ^ƒjƒIƒ“
-	int		Linear[ 4 ] ;						// üŒ`‚©‚Ç‚¤‚©
-	float	PosXBezier[ 4 ] ;					// À•W‚w—pƒxƒWƒF‹Èüî•ñ
-	float	PosYBezier[ 4 ] ;					// À•W‚x—pƒxƒWƒF‹Èüî•ñ
-	float	PosZBezier[ 4 ] ;					// À•W‚y—pƒxƒWƒF‹Èüî•ñ
-	float	RotBezier[ 4 ] ;					// ‰ñ“]—pƒxƒWƒF‹Èüî•ñ
-	VECTOR	*MVRPosKey ;						// Zo‚µ‚½À•WƒL[‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	FLOAT4	*MVRRotKey ;						// Zo‚µ‚½‰ñ“]ƒL[‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	float	*MVRDisablePhysicsKey ;				// Zo‚µ‚½•¨—–³ŒøƒL[‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	VMD_READ_KEY_INFO *Prev ;					// ‘O‚ÌƒL[‚Ö‚ÌƒAƒhƒŒƒX
-	VMD_READ_KEY_INFO *Next ;					// Ÿ‚ÌƒL[‚Ö‚ÌƒAƒhƒŒƒX
+	DWORD	Frame ;								// ãƒ•ãƒ¬ãƒ¼ãƒ 
+	DWORD	DisablePhysics ;					// ç‰©ç†ç„¡åŠ¹
+	float	Position[ 3 ] ;						// åº§æ¨™
+	float	Quaternion[ 4 ] ;					// ã‚¯ã‚©ãƒ¼ã‚¿ãƒ‹ã‚ªãƒ³
+	int		Linear[ 4 ] ;						// ç·šå½¢ã‹ã©ã†ã‹
+	float	PosXBezier[ 4 ] ;					// åº§æ¨™ï¼¸ç”¨ãƒ™ã‚¸ã‚§æ›²ç·šæƒ…å ±
+	float	PosYBezier[ 4 ] ;					// åº§æ¨™ï¼¹ç”¨ãƒ™ã‚¸ã‚§æ›²ç·šæƒ…å ±
+	float	PosZBezier[ 4 ] ;					// åº§æ¨™ï¼ºç”¨ãƒ™ã‚¸ã‚§æ›²ç·šæƒ…å ±
+	float	RotBezier[ 4 ] ;					// å›è»¢ç”¨ãƒ™ã‚¸ã‚§æ›²ç·šæƒ…å ±
+	VECTOR	*MVRPosKey ;						// ç®—å‡ºã—ãŸåº§æ¨™ã‚­ãƒ¼ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	FLOAT4	*MVRRotKey ;						// ç®—å‡ºã—ãŸå›è»¢ã‚­ãƒ¼ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	float	*MVRDisablePhysicsKey ;				// ç®—å‡ºã—ãŸç‰©ç†ç„¡åŠ¹ã‚­ãƒ¼ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	VMD_READ_KEY_INFO *Prev ;					// å‰ã®ã‚­ãƒ¼ã¸ã®ã‚¢ãƒ‰ãƒ¬ã‚¹
+	VMD_READ_KEY_INFO *Next ;					// æ¬¡ã®ã‚­ãƒ¼ã¸ã®ã‚¢ãƒ‰ãƒ¬ã‚¹
 } ;
 
-// VMD“Ç‚İ‚İˆ——pƒm[ƒh\‘¢‘Ì
+// VMDèª­ã¿è¾¼ã¿å‡¦ç†ç”¨ãƒãƒ¼ãƒ‰æ§‹é€ ä½“
 struct VMD_READ_NODE_INFO
 {
-	DWORD				KeyNum ;				// ƒL[‚Ì”
-	DWORD				MaxFrame ;				// Å‘åƒtƒŒ[ƒ€”Ô†
-	DWORD				MinFrame ;				// Å¬ƒtƒŒ[ƒ€”Ô†
-	char				Name[ 16 ] ;			// –¼‘O
-	VMD_READ_KEY_INFO	*FirstKey ;				// ƒL[ƒŠƒXƒg‚Ìæ“ª
+	DWORD				KeyNum ;				// ã‚­ãƒ¼ã®æ•°
+	DWORD				MaxFrame ;				// æœ€å¤§ãƒ•ãƒ¬ãƒ¼ãƒ ç•ªå·
+	DWORD				MinFrame ;				// æœ€å°ãƒ•ãƒ¬ãƒ¼ãƒ ç•ªå·
+	char				Name[ 16 ] ;			// åå‰
+	VMD_READ_KEY_INFO	*FirstKey ;				// ã‚­ãƒ¼ãƒªã‚¹ãƒˆã®å…ˆé ­
 } ;
 
-// VMD“Ç‚İ‚±‚İˆ——p•\îƒL[\‘¢‘Ì
+// VMDèª­ã¿ã“ã¿å‡¦ç†ç”¨è¡¨æƒ…ã‚­ãƒ¼æ§‹é€ ä½“
 struct VMD_READ_FACE_KEY_INFO
 {
-	DWORD	Frame ;								// ƒtƒŒ[ƒ€
-	float	Factor ;							// ƒuƒŒƒ“ƒh—¦
-	VMD_READ_FACE_KEY_INFO *Prev ;				// ‘O‚ÌƒL[‚Ö‚ÌƒAƒhƒŒƒX
-	VMD_READ_FACE_KEY_INFO *Next ;				// Ÿ‚ÌƒL[‚Ö‚ÌƒAƒhƒŒƒX
+	DWORD	Frame ;								// ãƒ•ãƒ¬ãƒ¼ãƒ 
+	float	Factor ;							// ãƒ–ãƒ¬ãƒ³ãƒ‰ç‡
+	VMD_READ_FACE_KEY_INFO *Prev ;				// å‰ã®ã‚­ãƒ¼ã¸ã®ã‚¢ãƒ‰ãƒ¬ã‚¹
+	VMD_READ_FACE_KEY_INFO *Next ;				// æ¬¡ã®ã‚­ãƒ¼ã¸ã®ã‚¢ãƒ‰ãƒ¬ã‚¹
 } ;
 
-// VMD“Ç‚İ‚İˆ——p•\î•Êî•ñ\‘¢‘Ì
+// VMDèª­ã¿è¾¼ã¿å‡¦ç†ç”¨è¡¨æƒ…åˆ¥æƒ…å ±æ§‹é€ ä½“
 struct VMD_READ_FACE_KEY_SET_INFO
 {
-	DWORD					KeyNum ;			// ƒL[‚Ì”
-	DWORD					MaxFrame ;			// Å‘åƒtƒŒ[ƒ€”Ô†
-	DWORD					MinFrame ;			// Å¬ƒtƒŒ[ƒ€”Ô†
-	char					Name[ 16 ] ;		// –¼‘O
-	VMD_READ_FACE_KEY_INFO	*FirstKey ;			// ƒL[ƒŠƒXƒg‚Ìæ“ª
+	DWORD					KeyNum ;			// ã‚­ãƒ¼ã®æ•°
+	DWORD					MaxFrame ;			// æœ€å¤§ãƒ•ãƒ¬ãƒ¼ãƒ ç•ªå·
+	DWORD					MinFrame ;			// æœ€å°ãƒ•ãƒ¬ãƒ¼ãƒ ç•ªå·
+	char					Name[ 16 ] ;		// åå‰
+	VMD_READ_FACE_KEY_INFO	*FirstKey ;			// ã‚­ãƒ¼ãƒªã‚¹ãƒˆã®å…ˆé ­
 } ;
 
 
-// VMD“Ç‚İ‚İˆ——pƒJƒƒ‰ƒL[\‘¢‘Ì
+// VMDèª­ã¿è¾¼ã¿å‡¦ç†ç”¨ã‚«ãƒ¡ãƒ©ã‚­ãƒ¼æ§‹é€ ä½“
 struct VMD_READ_CAMERA_KEY_INFO
 {
-	DWORD	Frame;								//  4:  0:ƒtƒŒ[ƒ€”Ô†
-	float	Length;								//  8:  4: -(‹——£)
-	float	Location[3];						// 20:  8:ˆÊ’u
-	float	Rotate[3];							// 32: 20:ƒIƒCƒ‰[Šp // X²‚Í•„†‚ª”½“]‚µ‚Ä‚¢‚é‚Ì‚Å’ˆÓ
-//	BYTE	Interpolation[24];					// 56: 32:•âŠÔî•ñ // ‚¨‚»‚ç‚­[6][4](–¢ŒŸØ)
-	int		Linear[ 6 ] ;						// üŒ`‚©‚Ç‚¤‚©
-	float	PosXBezier[ 4 ] ;					// À•W‚w—pƒxƒWƒF‹Èüî•ñ
-	float	PosYBezier[ 4 ] ;					// À•W‚x—pƒxƒWƒF‹Èüî•ñ
-	float	PosZBezier[ 4 ] ;					// À•W‚y—pƒxƒWƒF‹Èüî•ñ
-	float	RotBezier[ 4 ] ;					// ‰ñ“]—pƒxƒWƒF‹Èüî•ñ
-	float	LenBezier[ 4 ] ;					// ‹——£—pƒxƒWƒF‹Èüî•ñ
-	float	ViewAngBezier[ 4 ] ;				// ‹–ìŠp—pƒxƒWƒF‹Èüî•ñ
-	DWORD	ViewingAngle;						// 60: 56:‹–ìŠp
-	BYTE	Perspective;						// 61: 60:Ë‰eƒJƒƒ‰‚©‚Ç‚¤‚© 0:Ë‰eƒJƒƒ‰ 1:³Ë‰eƒJƒƒ‰
-	VMD_READ_CAMERA_KEY_INFO *Prev ;			// ‘O‚ÌƒL[‚Ö‚ÌƒAƒhƒŒƒX
-	VMD_READ_CAMERA_KEY_INFO *Next ;			// Ÿ‚ÌƒL[‚Ö‚ÌƒAƒhƒŒƒX
+	DWORD	Frame;								//  4:  0:ãƒ•ãƒ¬ãƒ¼ãƒ ç•ªå·
+	float	Length;								//  8:  4: -(è·é›¢)
+	float	Location[3];						// 20:  8:ä½ç½®
+	float	Rotate[3];							// 32: 20:ã‚ªã‚¤ãƒ©ãƒ¼è§’ // Xè»¸ã¯ç¬¦å·ãŒåè»¢ã—ã¦ã„ã‚‹ã®ã§æ³¨æ„
+//	BYTE	Interpolation[24];					// 56: 32:è£œé–“æƒ…å ± // ãŠãã‚‰ã[6][4](æœªæ¤œè¨¼)
+	int		Linear[ 6 ] ;						// ç·šå½¢ã‹ã©ã†ã‹
+	float	PosXBezier[ 4 ] ;					// åº§æ¨™ï¼¸ç”¨ãƒ™ã‚¸ã‚§æ›²ç·šæƒ…å ±
+	float	PosYBezier[ 4 ] ;					// åº§æ¨™ï¼¹ç”¨ãƒ™ã‚¸ã‚§æ›²ç·šæƒ…å ±
+	float	PosZBezier[ 4 ] ;					// åº§æ¨™ï¼ºç”¨ãƒ™ã‚¸ã‚§æ›²ç·šæƒ…å ±
+	float	RotBezier[ 4 ] ;					// å›è»¢ç”¨ãƒ™ã‚¸ã‚§æ›²ç·šæƒ…å ±
+	float	LenBezier[ 4 ] ;					// è·é›¢ç”¨ãƒ™ã‚¸ã‚§æ›²ç·šæƒ…å ±
+	float	ViewAngBezier[ 4 ] ;				// è¦–é‡è§’ç”¨ãƒ™ã‚¸ã‚§æ›²ç·šæƒ…å ±
+	DWORD	ViewingAngle;						// 60: 56:è¦–é‡è§’
+	BYTE	Perspective;						// 61: 60:å°„å½±ã‚«ãƒ¡ãƒ©ã‹ã©ã†ã‹ 0:å°„å½±ã‚«ãƒ¡ãƒ© 1:æ­£å°„å½±ã‚«ãƒ¡ãƒ©
+	VMD_READ_CAMERA_KEY_INFO *Prev ;			// å‰ã®ã‚­ãƒ¼ã¸ã®ã‚¢ãƒ‰ãƒ¬ã‚¹
+	VMD_READ_CAMERA_KEY_INFO *Next ;			// æ¬¡ã®ã‚­ãƒ¼ã¸ã®ã‚¢ãƒ‰ãƒ¬ã‚¹
 } ;
 
-// VMD“Ç‚İ‚İˆ——pƒJƒƒ‰\‘¢‘Ì
+// VMDèª­ã¿è¾¼ã¿å‡¦ç†ç”¨ã‚«ãƒ¡ãƒ©æ§‹é€ ä½“
 struct VMD_READ_CAMERA_INFO
 {
-	DWORD						KeyNum ;		// ƒL[‚Ì”
-	DWORD						MaxFrame ;		// Å‘åƒtƒŒ[ƒ€”Ô†
-	DWORD						MinFrame ;		// Å¬ƒtƒŒ[ƒ€”Ô†
-	VMD_READ_CAMERA_KEY_INFO	*FirstKey ;		// ƒL[ƒŠƒXƒg‚Ìæ“ª
+	DWORD						KeyNum ;		// ã‚­ãƒ¼ã®æ•°
+	DWORD						MaxFrame ;		// æœ€å¤§ãƒ•ãƒ¬ãƒ¼ãƒ ç•ªå·
+	DWORD						MinFrame ;		// æœ€å°ãƒ•ãƒ¬ãƒ¼ãƒ ç•ªå·
+	VMD_READ_CAMERA_KEY_INFO	*FirstKey ;		// ã‚­ãƒ¼ãƒªã‚¹ãƒˆã®å…ˆé ­
 } ;
 
-// VMD“Ç‚İ‚±‚İˆ——p\‘¢‘Ì
+// VMDèª­ã¿ã“ã¿å‡¦ç†ç”¨æ§‹é€ ä½“
 struct VMD_READ_INFO
 {
-	DWORD						NodeNum ;			// ƒm[ƒh‚Ì”
-	VMD_READ_NODE_INFO			*Node ;				// ƒm[ƒh”z—ñ
+	DWORD						NodeNum ;			// ãƒãƒ¼ãƒ‰ã®æ•°
+	VMD_READ_NODE_INFO			*Node ;				// ãƒãƒ¼ãƒ‰é…åˆ—
 
-	DWORD						FaceKeySetNum ;		// •\îƒL[ƒZƒbƒg‚Ì”
-	VMD_READ_FACE_KEY_SET_INFO	*FaceKeySet ;		// •\îƒL[ƒZƒbƒg”z—ñ
+	DWORD						FaceKeySetNum ;		// è¡¨æƒ…ã‚­ãƒ¼ã‚»ãƒƒãƒˆã®æ•°
+	VMD_READ_FACE_KEY_SET_INFO	*FaceKeySet ;		// è¡¨æƒ…ã‚­ãƒ¼ã‚»ãƒƒãƒˆé…åˆ—
 
-	VMD_READ_KEY_INFO			*KeyBuffer ;		// ƒL[ƒoƒbƒtƒ@
-	VMD_READ_FACE_KEY_INFO		*FaceKeyBuffer ;	// •\îƒL[ƒoƒbƒtƒ@
-	VMD_READ_CAMERA_KEY_INFO	*CamKeyBuffer ;		// ƒJƒƒ‰ƒL[ƒoƒbƒtƒ@
+	VMD_READ_KEY_INFO			*KeyBuffer ;		// ã‚­ãƒ¼ãƒãƒƒãƒ•ã‚¡
+	VMD_READ_FACE_KEY_INFO		*FaceKeyBuffer ;	// è¡¨æƒ…ã‚­ãƒ¼ãƒãƒƒãƒ•ã‚¡
+	VMD_READ_CAMERA_KEY_INFO	*CamKeyBuffer ;		// ã‚«ãƒ¡ãƒ©ã‚­ãƒ¼ãƒãƒƒãƒ•ã‚¡
 
-	VMD_READ_CAMERA_INFO		*Camera ;			// ƒJƒƒ‰ƒL[‚Ìî•ñ
+	VMD_READ_CAMERA_INFO		*Camera ;			// ã‚«ãƒ¡ãƒ©ã‚­ãƒ¼ã®æƒ…å ±
 
-	DWORD						MaxTime ;			// ƒAƒjƒ[ƒVƒ‡ƒ“‚Ì‘ŠÔ
+	DWORD						MaxTime ;			// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®ç·æ™‚é–“
 } ;
 
-// ŠÖ”éŒ¾ -------------------------------------
+// é–¢æ•°å®£è¨€ -------------------------------------
 
-// s—ñ‚Ì‰ñ“]•”•ª‚Ì³‹K‰»‚ğs‚¤
+// è¡Œåˆ—ã®å›è»¢éƒ¨åˆ†ã®æ­£è¦åŒ–ã‚’è¡Œã†
 __inline void MV1LoadModelToVMD_NomalizedMatrix( MATRIX *Mat )
 {
 	VECTOR DivSize ;
 
-	// ƒXƒP[ƒŠƒ“ƒO‚ªg—p‚³‚ê‚Ä‚¢‚È‚©‚Á‚½‚çs—ñ‚Ì‰ñ“]•”•ª‚Ì³‹K‰»
+	// ã‚¹ã‚±ãƒ¼ãƒªãƒ³ã‚°ãŒä½¿ç”¨ã•ã‚Œã¦ã„ãªã‹ã£ãŸã‚‰è¡Œåˆ—ã®å›è»¢éƒ¨åˆ†ã®æ­£è¦åŒ–
 	DivSize.x = 1.0f / _SQRT( Mat->m[ 0 ][ 0 ] * Mat->m[ 0 ][ 0 ] + Mat->m[ 0 ][ 1 ] * Mat->m[ 0 ][ 1 ] + Mat->m[ 0 ][ 2 ] * Mat->m[ 0 ][ 2 ] ) ;
 	DivSize.y = 1.0f / _SQRT( Mat->m[ 1 ][ 0 ] * Mat->m[ 1 ][ 0 ] + Mat->m[ 1 ][ 1 ] * Mat->m[ 1 ][ 1 ] + Mat->m[ 1 ][ 2 ] * Mat->m[ 1 ][ 2 ] ) ;
 	DivSize.z = 1.0f / _SQRT( Mat->m[ 2 ][ 0 ] * Mat->m[ 2 ][ 0 ] + Mat->m[ 2 ][ 1 ] * Mat->m[ 2 ][ 1 ] + Mat->m[ 2 ][ 2 ] * Mat->m[ 2 ][ 2 ] ) ;
@@ -211,7 +211,7 @@ __inline void MV1LoadModelToVMD_NomalizedMatrix( MATRIX *Mat )
 	Mat->m[ 2 ][ 2 ] *= DivSize.z ;
 }
 
-// ˆê•”ˆ—‚ğÈ—ª‚·‚és—ñ‚ÌÏ‚ğ‹‚ß‚é
+// ä¸€éƒ¨å‡¦ç†ã‚’çœç•¥ã™ã‚‹è¡Œåˆ—ã®ç©ã‚’æ±‚ã‚ã‚‹
 __inline void MV1LoadModelToVMD_CreateMultiplyMatrix( MATRIX *Out, MATRIX *In1, MATRIX *In2 )
 {
 	Out->m[0][0] = In1->m[0][0] * In2->m[0][0] + In1->m[0][1] * In2->m[1][0] + In1->m[0][2] * In2->m[2][0] ;
@@ -235,7 +235,7 @@ __inline void MV1LoadModelToVMD_CreateMultiplyMatrix( MATRIX *Out, MATRIX *In1, 
 	Out->m[3][3] = 1.0f ;
 }
 
-// ‰ñ“]¬•ª‚¾‚¯‚Ìs—ñ‚ÌÏ‚ğ‹‚ß‚é( ‚R~‚RˆÈŠO‚Ì•”•ª‚É‚Í’l‚à‘ã“ü‚µ‚È‚¢ )
+// å›è»¢æˆåˆ†ã ã‘ã®è¡Œåˆ—ã®ç©ã‚’æ±‚ã‚ã‚‹( ï¼“Ã—ï¼“ä»¥å¤–ã®éƒ¨åˆ†ã«ã¯å€¤ã‚‚ä»£å…¥ã—ãªã„ )
 __inline void MV1LoadModelToVMD_CreateMultiplyMatrixRotOnly( MATRIX *Out, MATRIX *In1, MATRIX *In2 )
 {
 	Out->m[0][0] = In1->m[0][0] * In2->m[0][0] + In1->m[0][1] * In2->m[1][0] + In1->m[0][2] * In2->m[2][0] ;
@@ -251,7 +251,7 @@ __inline void MV1LoadModelToVMD_CreateMultiplyMatrixRotOnly( MATRIX *Out, MATRIX
 	Out->m[2][2] = In1->m[2][0] * In2->m[0][2] + In1->m[2][1] * In2->m[1][2] + In1->m[2][2] * In2->m[2][2] ;
 }
 
-// ğŒ‚ğŒÀ’è‚µ‚½­‚µ‚‘¬‚ÈÀ•W•ÏŠ·ŒvZ
+// æ¡ä»¶ã‚’é™å®šã—ãŸå°‘ã—é«˜é€Ÿãªåº§æ¨™å¤‰æ›è¨ˆç®—
 __inline void MV1LoadModelToVMD_VectorTransform( VECTOR &Out, VECTOR &InVec, MATRIX &InMatrix )
 {
 	Out.x = InVec.x * InMatrix.m[0][0] + InVec.y * InMatrix.m[1][0] + InVec.z * InMatrix.m[2][0] + InMatrix.m[3][0] ;
@@ -259,7 +259,7 @@ __inline void MV1LoadModelToVMD_VectorTransform( VECTOR &Out, VECTOR &InVec, MAT
 	Out.z = InVec.x * InMatrix.m[0][2] + InVec.y * InMatrix.m[1][2] + InVec.z * InMatrix.m[2][2] + InMatrix.m[3][2] ;
 }
 
-// ƒNƒH[ƒ^ƒjƒIƒ“‚ÌæZ
+// ã‚¯ã‚©ãƒ¼ã‚¿ãƒ‹ã‚ªãƒ³ã®ä¹—ç®—
 __inline FLOAT4 QuatMul( FLOAT4 &q1, FLOAT4 &q2 )
 {
 	FLOAT4 res ;
@@ -272,7 +272,7 @@ __inline FLOAT4 QuatMul( FLOAT4 &q1, FLOAT4 &q2 )
 	return res;
 }
 
-// ƒNƒH[ƒ^ƒjƒIƒ“‚Ì³‹K‰»
+// ã‚¯ã‚©ãƒ¼ã‚¿ãƒ‹ã‚ªãƒ³ã®æ­£è¦åŒ–
 __inline FLOAT4 QuatNorm( FLOAT4 &q )
 {
 	FLOAT4 res ;
@@ -287,7 +287,7 @@ __inline FLOAT4 QuatNorm( FLOAT4 &q )
 	return res;
 }
 
-// ƒNƒH[ƒ^ƒjƒIƒ“‚©‚çs—ñ‚É•ÏŠ·
+// ã‚¯ã‚©ãƒ¼ã‚¿ãƒ‹ã‚ªãƒ³ã‹ã‚‰è¡Œåˆ—ã«å¤‰æ›
 __inline void QuatConvertToMatrix( MATRIX &mat, FLOAT4 &q, VECTOR &trans )
 {
 	float sx = q.x * q.x * 2.0f ;
@@ -306,7 +306,7 @@ __inline void QuatConvertToMatrix( MATRIX &mat, FLOAT4 &q, VECTOR &trans )
 	mat.m[3][0] = trans.x ;				mat.m[3][1] = trans.y ;				mat.m[3][2] = trans.z ;				mat.m[3][3] = 1.0f ;
 }
 
-// s—ñ‚©‚çƒNƒH[ƒ^ƒjƒIƒ“‚É•ÏŠ·
+// è¡Œåˆ—ã‹ã‚‰ã‚¯ã‚©ãƒ¼ã‚¿ãƒ‹ã‚ªãƒ³ã«å¤‰æ›
 __inline void QuatConvertFromMatrix( FLOAT4 &q, MATRIX &mat )
 {
 	float s ;
@@ -383,28 +383,28 @@ __inline static void VmdCalcLine( int &Linear, float &Rate, float &RateH, float 
 	}
 }
 
-// ƒNƒH[ƒ^ƒjƒIƒ“‚Ì³‹K‰»
+// ã‚¯ã‚©ãƒ¼ã‚¿ãƒ‹ã‚ªãƒ³ã®æ­£è¦åŒ–
 extern void QuaternionNormalize( FLOAT4 *Out, FLOAT4 *Src ) ;
 
-// ƒNƒH[ƒ^ƒjƒIƒ“‚©‚çXYZ²‰ñ“]‚Ìæ“¾
+// ã‚¯ã‚©ãƒ¼ã‚¿ãƒ‹ã‚ªãƒ³ã‹ã‚‰XYZè»¸å›è»¢ã®å–å¾—
 extern void QuaternionToEuler( VECTOR *Angle, const FLOAT4 *Qt ) ;
 
-// XYZ‰ñ“]’l‚©‚çƒNƒH[ƒ^ƒjƒIƒ“‚Ìì¬
+// XYZå›è»¢å€¤ã‹ã‚‰ã‚¯ã‚©ãƒ¼ã‚¿ãƒ‹ã‚ªãƒ³ã®ä½œæˆ
 extern void QuaternionCreateEuler( FLOAT4 *Qt, const VECTOR *Angle ) ;
 
-// ğŒ‚ğŒÀ’è‚µ‚½­‚µ‚‘¬‚È‹ts—ñŒvZ
+// æ¡ä»¶ã‚’é™å®šã—ãŸå°‘ã—é«˜é€Ÿãªé€†è¡Œåˆ—è¨ˆç®—
 extern void MV1LoadModelToVMD_InverseMatrix( MATRIX &InMatrix, MATRIX &OutMatrix ) ;
 
-// ‚u‚l‚cƒtƒ@ƒCƒ‹‚ÌŠî–{î•ñ‚ğ“Ç‚İ‚Ş( -1:ƒGƒ‰[ )
+// ï¼¶ï¼­ï¼¤ãƒ•ã‚¡ã‚¤ãƒ«ã®åŸºæœ¬æƒ…å ±ã‚’èª­ã¿è¾¼ã‚€( -1:ã‚¨ãƒ©ãƒ¼ )
 extern int LoadVMDBaseData( VMD_READ_INFO *VmdData, void *DataBuffer, int DataSize ) ;
 
-// ‚u‚l‚cƒtƒ@ƒCƒ‹‚ÌŠî–{î•ñ‚ÌŒãn––‚ğ‚·‚é
+// ï¼¶ï¼­ï¼¤ãƒ•ã‚¡ã‚¤ãƒ«ã®åŸºæœ¬æƒ…å ±ã®å¾Œå§‹æœ«ã‚’ã™ã‚‹
 extern int TerminateVMDBaseData( VMD_READ_INFO *VmdData ) ;
 
-// ƒJƒƒ‰‚ÌƒAƒjƒ[ƒVƒ‡ƒ“‚ğ“Ç‚İ‚İ‚æ‚¤ƒf[ƒ^‚É’Ç‰Á‚·‚é
+// ã‚«ãƒ¡ãƒ©ã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚’èª­ã¿è¾¼ã¿ã‚ˆã†ãƒ‡ãƒ¼ã‚¿ã«è¿½åŠ ã™ã‚‹
 extern int SetupVMDCameraAnim( VMD_READ_INFO *VmdData, MV1_MODEL_R *RModel, const wchar_t *Name, MV1_ANIMSET_R *AnimSet ) ;
 
-// VMDƒtƒ@ƒCƒ‹ƒoƒCƒiƒŠ‚ğƒƒ‚ƒŠ‚É“Ç‚İ‚Ş
+// VMDãƒ•ã‚¡ã‚¤ãƒ«ãƒã‚¤ãƒŠãƒªã‚’ãƒ¡ãƒ¢ãƒªã«èª­ã¿è¾¼ã‚€
 extern int LoadFile_VMD(
 	void **					VmdData,
 	int *					FileSize,

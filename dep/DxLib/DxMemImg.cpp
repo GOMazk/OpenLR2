@@ -1,15 +1,15 @@
 // -------------------------------------------------------------------------------
 // 
-// 		�c�w���C�u����		�������C���[�W����p�v���O����
+// 		ＤＸライブラリ		メモリイメージ制御用プログラム
 // 
 // 				Ver 3.25a
 // 
 // -------------------------------------------------------------------------------
 
-// �c�w���C�u�����쐬���p��`
+// ＤＸライブラリ作成時用定義
 #define DX_MAKE
 
-// �C���N���[�h----------------------------------------------------------------
+// インクルード----------------------------------------------------------------
 #include "DxMemImg.h"
 #include "DxLib.h"
 #include "DxStatic.h"
@@ -25,20 +25,20 @@ namespace DxLib
 
 #endif // DX_NON_NAMESPACE
 
-// �}�N����`------------------------------------------------------------------
+// マクロ定義------------------------------------------------------------------
 
-// �f�[�^�錾------------------------------------------------------------------
+// データ宣言------------------------------------------------------------------
 
 MEMIMGMANAGE MemImgManage ;
 
-// �֐��v���g�^�C�v�錾--------------------------------------------------------
+// 関数プロトタイプ宣言--------------------------------------------------------
 
-// �R�[�h----------------------------------------------------------------------
+// コード----------------------------------------------------------------------
 
-// MEMIMG �Ǘ��f�[�^�̏�����
+// MEMIMG 管理データの初期化
 extern int InitializeMemImgManage( void )
 {
-	// ��Z�e�[�u���A�����e�[�u���̍쐬
+	// 乗算テーブル、割合テーブルの作成
 	{
 		int i, j, k ;
 
@@ -71,11 +71,11 @@ extern int InitializeMemImgManage( void )
 		}
 	}
 
-	// �I��
+	// 終了
 	return 0 ;
 }
 
-// �f�t�H���g�̃J���[�^�C�v���Z�b�g����
+// デフォルトのカラータイプをセットする
 extern	int		SetMemImgDefaultColorType( int ColorType )
 {
 	MemImgManage.DefaultColorType = ColorType ;
@@ -83,7 +83,7 @@ extern	int		SetMemImgDefaultColorType( int ColorType )
 	return 0 ;
 }
 
-// MEMIMG�p�̕`��͈͂�ݒ肷��
+// MEMIMG用の描画範囲を設定する
 extern	int		SetMemImgDrawArea( const RECT *DrawArea )
 {
 	MemImgManage.DrawArea = *DrawArea ;
@@ -91,7 +91,7 @@ extern	int		SetMemImgDrawArea( const RECT *DrawArea )
 	return 0 ;
 }
 
-// MEMIMG�p�̃u�����h���[�h�ƃu�����h�p�����[�^�̐ݒ���s��
+// MEMIMG用のブレンドモードとブレンドパラメータの設定を行う
 extern	int		SetMemImgDrawBlendMode( int BlendMode, int BlendParam )
 {
 	MemImgManage.BlendMode = BlendMode ;
@@ -100,7 +100,7 @@ extern	int		SetMemImgDrawBlendMode( int BlendMode, int BlendParam )
 	return 0 ;
 }
 
-// MEMIMG�p�̕`��P�x
+// MEMIMG用の描画輝度
 extern	int		SetMemImgDrawBright( DWORD Bright )
 {
 	MemImgManage.bDrawBright = Bright ;
@@ -108,14 +108,14 @@ extern	int		SetMemImgDrawBright( DWORD Bright )
 	return 0 ;
 }
 
-// �u�����h�O���t�B�b�N�����ɕK�v�ȃe�[�u���̃Z�b�g�A�b�v���s��
+// ブレンドグラフィック処理に必要なテーブルのセットアップを行う
 extern	void	SetBlendGraphParamMemImg( int BorderParam, int BorderRange )
 {
 	int i, p, Length, Adjust ;
 	
 	BorderRange += 1 ;
 
-	// �u�����h�摜��K������ۂɎg�p����u�����h����\�ߌv�Z���Ă���
+	// ブレンド画像を適応する際に使用するブレンド率を予め計算しておく
 	{
 		Length = 256 * 256 / BorderRange ;
 		p = ( Length + 256 ) - ( Length + 256 ) * BorderParam / 256 ;
@@ -143,22 +143,22 @@ extern	void	SetBlendGraphParamMemImg( int BorderParam, int BorderRange )
 	}
 }
 
-// �������摜�f�[�^����������֐�
+// メモリ画像データを処理する関数
 
-// (�⏕�֐�)MEMIMG �\���̂ɉ摜��ǂݍ���( ������Ă񂾏ꍇ InitializeMemImg �͕K�v�Ȃ� )( �߂�l: -1=���s  0=���� )
+// (補助関数)MEMIMG 構造体に画像を読み込む( これを呼んだ場合 InitializeMemImg は必要なし )( 戻り値: -1=失敗  0=成功 )
 extern int LoadImageToMemImg( const wchar_t *FilePath, MEMIMG *MemImg, DWORD TransColor, int ColorType, int UsePaletteFormat )
 {
 	BASEIMAGE BaseImage ;
 	int Res, UseAlpha, UsePalette ;
 	DWORD lTransColor ;
 
-	// �t�@�C���̓ǂݍ���
+	// ファイルの読み込み
 	Res = CreateGraphImage_plus_Alpha_WCHAR_T( FilePath, NULL, 0, LOADIMAGE_TYPE_FILE,
 										 NULL, 0, LOADIMAGE_TYPE_FILE,
 										 &BaseImage, NULL, FALSE, FALSE ) ;
 	if( Res == -1 ) return -1 ;
 	
-	// �t�H�[�}�b�g�̔���
+	// フォーマットの判定
 	if( ColorType == -1 )
 	{
 		ColorType  = MemImgManage.DefaultColorType ;
@@ -167,7 +167,7 @@ extern int LoadImageToMemImg( const wchar_t *FilePath, MEMIMG *MemImg, DWORD Tra
 	UsePalette = BaseImage.ColorData.PixelByte  == 1  ? 1 : 0 ;
 	if( UsePaletteFormat == 0 ) UsePalette = 0 ;
 
-	// ���ߐF�̎Z�o
+	// 透過色の算出
 	if( UsePalette == 1 )
 	{
 		lTransColor = 0 ;
@@ -180,7 +180,7 @@ extern int LoadImageToMemImg( const wchar_t *FilePath, MEMIMG *MemImg, DWORD Tra
 									( int )( ( TransColor >> 0  ) & 0xff ), 255 ) ;
 	}
 
-	// �������C���[�W�f�[�^�̏�����
+	// メモリイメージデータの初期化
 	_MEMSET( MemImg, 0, sizeof( MEMIMG ) ) ;
 	if( InitializeMemImg( MemImg, BaseImage.Width, BaseImage.Height, -1,
 							lTransColor, ColorType, UsePalette, UseAlpha ) == -1 )
@@ -189,21 +189,21 @@ extern int LoadImageToMemImg( const wchar_t *FilePath, MEMIMG *MemImg, DWORD Tra
 		return -1 ;
 	}
 	
-	// �������C���[�W�փf�[�^��]��
+	// メモリイメージへデータを転送
 	BltBaseImageToMemImg( &BaseImage, NULL, MemImg,
 							0, 0,
 							BaseImage.Width, BaseImage.Height,
 							0, 0, TRUE ) ;
 							
-	// ���摜�����
+	// 元画像を解放
 	NS_ReleaseGraphImage( &BaseImage ) ;
 
-	// �I��
+	// 終了
 	return 0 ;
 }
 
 
-// (�⏕�֐�)�`��Ώۗp�̃������摜���쐬����( InitializeMemImg ���ȗ������������̂��́AMemImg�͂O���������Ă����K�v�͖��� )
+// (補助関数)描画対象用のメモリ画像を作成する( InitializeMemImg を簡略化しただけのもの、MemImgは０初期化しておく必要は無い )
 extern int MakeMemImgScreen( MEMIMG *Img, int Width, int Height, int ColorType )
 {
 	_MEMSET( Img, 0, sizeof( MEMIMG ) ) ;
@@ -211,14 +211,14 @@ extern int MakeMemImgScreen( MEMIMG *Img, int Width, int Height, int ColorType )
 	return InitializeMemImg( Img, Width, Height, -1, 0, ColorType, 0, 0, 0 ) ;
 }
 
-// (�⏕�֐�)�y�o�b�t�@�̃������C���[�W���쐬����( InitializeMemImg ���ȗ������������̂��́AMemImg�͂O�N���A���Ă����K�v�͖��� )
+// (補助関数)Ｚバッファのメモリイメージを作成する( InitializeMemImg を簡略化しただけのもの、MemImgは０クリアしておく必要は無い )
 extern int MakeMemImgZBuffer( MEMIMG *Img, int Width, int Height )
 {
 	_MEMSET( Img, 0, sizeof( MEMIMG ) ) ;
 	return InitializeMemImg( Img, Width, Height, -1, 0, 3, 0, 0, 0 ) ;
 }
 
-// (�⏕�֐�)MEMIMG �ԂŃf�[�^�̓]�����s��
+// (補助関数)MEMIMG 間でデータの転送を行う
 extern void BltMemImg( MEMIMG *DestImg, const MEMIMG *SrcImg, const RECT *SrcRect, int DestX, int DestY )
 {
 	POINT DestPos ;
@@ -244,29 +244,29 @@ extern void BltMemImg( MEMIMG *DestImg, const MEMIMG *SrcImg, const RECT *SrcRec
 								0, FALSE, FALSE, FALSE, FALSE ) ;
 }
 
-// ���� MEMIMG �̈ꕔ���g�p���� MEMIMG �̏����쐬����(�h�����������ɂȂ�����h�� MEMIMG ���g�p�s�ɂȂ�)
+// ある MEMIMG の一部を使用する MEMIMG の情報を作成する(派生元が無効になったら派生 MEMIMG も使用不可になる)
 extern void DerivationMemImg( MEMIMG *DestImg, MEMIMG *SrcImg, int SrcX, int SrcY, int Width, int Height )
 {
 	unsigned int Addr ;
 
-	// �͈͂���O��Ă�����G���[
+	// 範囲から外れていたらエラー
 	if( SrcX < 0 ||
 		SrcY < 0 ||
 		( int )SrcImg->Width  < SrcX + Width ||
 		( int )SrcImg->Height < SrcY + Height ) return ;
 
-	// �������t���O�𗧂Ă�
+	// 初期化フラグを立てる
 	DestImg->InitializeCheck = MEMIMG_INITIALIZECODE ;
 
-	// �T�C�Y���Z�b�g
+	// サイズをセット
 	DestImg->Width  = ( unsigned int )Width ;
 	DestImg->Height = ( unsigned int )Height ;
 
-	// �g�p����C���[�W�̃A�h���X���Z�b�g
+	// 使用するイメージのアドレスをセット
 	Addr = SrcX * SrcImg->Base->ColorDataP->PixelByte + SrcY * SrcImg->Base->Pitch ;
 	DestImg->UseImage = SrcImg->UseImage + Addr ;
 
-	// �A���t�@�C���[�W������ꍇ�͂����
+	// アルファイメージがある場合はそれも
 	if( SrcImg->Base->AlphaImage )
 	{
 		DestImg->UseAlphaImage = SrcImg->UseAlphaImage + Addr ;
@@ -276,23 +276,23 @@ extern void DerivationMemImg( MEMIMG *DestImg, MEMIMG *SrcImg, int SrcX, int Src
 		DestImg->UseAlphaImage = NULL ;
 	}
 
-	// ��{���̃A�h���X���Z�b�g
+	// 基本情報のアドレスをセット
 	DestImg->Base = SrcImg->Base ;
 
-	// �Q�Ɛ��𑝂₷
+	// 参照数を増やす
 	SrcImg->Base->RefCount ++ ;
 }
 
-// �������摜������������A�[������������Ă���K�v������( �߂�l: -1=���s  0=���� )
+// メモリ画像を初期化する、ゼロ初期化されている必要がある( 戻り値: -1=失敗  0=成功 )
 extern int InitializeMemImg( MEMIMG *Img, int Width, int Height, int Pitch, DWORD TransColor, int ColorType, int UsePalette, int UseAlpha, int AnalysisFlag, const void *UserImage )
 {
 	int PixelByte, Pow2n, ShftNum, DefPitch ;
 	MEMIMGBASE *Base ;
 
-	// �������摜�����ɏ���������Ă����牽�����Ȃ�
+	// メモリ画像が既に初期化されていたら何もしない
 	if( Img->InitializeCheck == MEMIMG_INITIALIZECODE ) return -1 ;
 
-	// ���ʏ��i�[�p�������̊m��
+	// 共通情報格納用メモリの確保
 	if( Img->Base == NULL )
 	{
 		Img->Base = ( MEMIMGBASE * )DXCALLOC( sizeof( MEMIMGBASE ) ) ;
@@ -300,17 +300,17 @@ extern int InitializeMemImg( MEMIMG *Img, int Width, int Height, int Pitch, DWOR
 	}
 	Base = Img->Base ;
 
-	// �p���b�g���L���������烿�`�����l���͖���
+	// パレットが有効だったらαチャンネルは無理
 	if( UsePalette == 1 ) UseAlpha = 0 ;
 
-	// �y�o�b�t�@���O���[�X�P�[���^�C�v��������p���b�g�����`�����l��������
+	// Ｚバッファかグレースケールタイプだったらパレットもαチャンネルも無理
 	if( ColorType == 2 || ColorType == 3 )
 	{
 		UsePalette = 0 ;
 		UseAlpha = 0 ;
 	}
 	
-	// ��{�f�[�^���Z�b�g
+	// 基本データをセット
 	Base->RefCount          = 1 ;
 	Base->BaseWidth         = Width ;
 	Base->BaseHeight        = Height ;
@@ -323,7 +323,7 @@ extern int InitializeMemImg( MEMIMG *Img, int Width, int Height, int Pitch, DWOR
 	Base->AlphaImageValid   = 0 ;
 	Base->AnalysisDataValid = 0 ;
 
-	// �p���b�g�����i�[���郁�����̈�̊m��
+	// パレット情報を格納するメモリ領域の確保
 	if( UsePalette == 1 )
 	{
 		Base->Palette         = ( unsigned int * )DXCALLOC( sizeof( unsigned int ) * 256 * 2 ) ;
@@ -335,26 +335,26 @@ extern int InitializeMemImg( MEMIMG *Img, int Width, int Height, int Pitch, DWOR
 		Base->OriginalPalette = NULL ;
 	}
 
-	// �s�b�`�̎Z�o
+	// ピッチの算出
 	{
 		const int PixelByteTable[] = { 2, 4, 1, 2 } ;
 
-		// �P�s�N�Z���ӂ�̃o�C�g�����Z�b�g
+		// １ピクセル辺りのバイト数をセット
 		PixelByte = PixelByteTable[ColorType] ;
 		
-		// �p���b�g���L���ȏꍇ�͂P�o�C�g
+		// パレットが有効な場合は１バイト
 		if( UsePalette == 1 ) PixelByte = 1 ;
 		
-		// �P�U�r�b�g�摜�ł����`�����l��������ꍇ�͂S�o�C�g
+		// １６ビット画像でもαチャンネルがある場合は４バイト
 		if( UseAlpha == 1 && ColorType == 0 ) PixelByte = 4 ;
 		
-		// �s�b�`�̎Z�o
+		// ピッチの算出
 		DefPitch = Pitch == -1 ? PixelByte * Width : Pitch ;
 		
-		// �Q�̂���̃s�b�`���Z�o
+		// ２のｎ乗のピッチを算出
 		for( ShftNum = 0, Pow2n = 1 ; Pow2n < DefPitch ; Pow2n += Pow2n, ShftNum ++ ){}
 
-		// �s�b�`�̃Z�b�g(�s�b�`�͎w�肪������΂P�U�̔{���ɂ���)
+		// ピッチのセット(ピッチは指定が無ければ１６の倍数にする)
 		if( Pitch != -1 )
 		{
 			Base->Pitch = ( unsigned int )Pitch ;
@@ -366,11 +366,11 @@ extern int InitializeMemImg( MEMIMG *Img, int Width, int Height, int Pitch, DWOR
 			Base->Pitch = ( Base->Pitch + 15 ) / 16 * 16 ;
 		}
 
-		// �s�b�`���Q�̂��悩�ǂ����𔻒�
+		// ピッチが２のｎ乗かどうかを判定
 		Base->PitchPow2n = Base->Pitch == (DWORD)Pow2n ? ShftNum : -1 ;
 	}
 
-	// �������C���[�W�̃J���[�f�[�^���\�z����
+	// メモリイメージのカラーデータを構築する
 	Base->ColorDataP = GetMemImgColorData( Base->ColorType, Base->UseAlpha, Base->UsePalette ) ;
 /*	switch( Base->ColorType )
 	{
@@ -409,7 +409,7 @@ extern int InitializeMemImg( MEMIMG *Img, int Width, int Height, int Pitch, DWOR
 		break ;
 	}
 */
-	// �C���[�W���i�[���郁�����̈�̊m��
+	// イメージを格納するメモリ領域の確保
 	if( UserImage == NULL )
 	{
 		Base->Image = ( unsigned char *)DXALLOC( Base->BaseHeight * Base->Pitch ) ;
@@ -423,22 +423,22 @@ extern int InitializeMemImg( MEMIMG *Img, int Width, int Height, int Pitch, DWOR
 		Base->UserImageFlag = TRUE ;
 	}
 
-	// ���`�����l����K�������C���[�W���i�[���郁�����̈�̊m��
+	// αチャンネルを適応したイメージを格納するメモリ領域の確保
 	if( Base->UseAlpha != 0 && Base->AlphaImage == NULL && AnalysisFlag != FALSE )
 	{
 		Base->AlphaImage = ( unsigned char *)DXALLOC( Base->BaseHeight * Base->Pitch ) ;
 		if( Base->AlphaImage == NULL ) return -1 ;
 	}
 
-	// ��̓f�[�^���i�[���郁�����̈�̊m��
+	// 解析データを格納するメモリ領域の確保
 	if( Base->ColorType != 2 && Base->AnalysisData == NULL && AnalysisFlag != FALSE )
 	{
-		// �ő�̃f�[�^�ʂ����܂�T�C�Y���m�ۂ���
+		// 最大のデータ量が収まるサイズを確保する
 		Base->AnalysisData = ( unsigned char * )DXALLOC( ( size_t )( Base->BaseHeight * ( Base->BaseWidth + 5 ) ) ) ;
 		if( Base->AnalysisData == NULL ) return -1 ;
 	}
 
-	// �h���f�[�^���Z�b�g
+	// 派生データをセット
 	Img->InitializeCheck = MEMIMG_INITIALIZECODE ;
 	Img->Width           = ( unsigned int )Width ;
 	Img->Height          = ( unsigned int )Height ;
@@ -448,29 +448,29 @@ extern int InitializeMemImg( MEMIMG *Img, int Width, int Height, int Pitch, DWOR
 	return 0 ;
 }
 
-// MEMIMG ���L�����ǂ������擾����
+// MEMIMG が有効かどうかを取得する
 extern int CheckValidMemImg( const MEMIMG *Img )
 {
 	return Img->InitializeCheck == MEMIMG_INITIALIZECODE && Img->Base != NULL ;
 }
 
-// �������摜�̌�n��������
+// メモリ画像の後始末をする
 extern void TerminateMemImg( MEMIMG *Img )
 {
-	// ��n�����I����Ă����牽�����Ȃ�
+	// 後始末が終わっていたら何もいない
 	if( Img->InitializeCheck != MEMIMG_INITIALIZECODE ) return ;
 
-	// ��{�f�[�^�̎Q�Ɛ����f�N�������g����
+	// 基本データの参照数をデクリメントする
 	Img->Base->RefCount -- ;
 
-	// �O���������{�f�[�^�̉��
+	// ０だったら基本データの解放
 	if( Img->Base->RefCount == 0 )
 	{
 		MEMIMGBASE *Base ;
 
 		Base = Img->Base ;
 
-		// �C���[�W�̈�̊J��
+		// イメージ領域の開放
 		if( Base->UserImageFlag == FALSE && Base->Image != NULL ) DXFREE( Base->Image ) ;
 		Base->Image = NULL ;
 
@@ -480,21 +480,21 @@ extern void TerminateMemImg( MEMIMG *Img )
 		if( Base->AnalysisData != NULL ) DXFREE( Base->AnalysisData ) ;
 		Base->AnalysisData = NULL ;
 
-		// �p���b�g�p�������̈�̉��
+		// パレット用メモリ領域の解放
 		if( Base->Palette != NULL ) DXFREE( Base->Palette ) ;
 		Base->Palette = NULL ;
 		Base->OriginalPalette = NULL ;
 
-		// ��{�f�[�^���̂̃������̈�����
+		// 基本データ自体のメモリ領域も解放
 		DXFREE( Base ) ;
 	}
 	Img->Base = NULL ;
 	
-	// �������`�F�b�N�f�[�^�𖳌��ɂ���
+	// 初期化チェックデータを無効にする
 	Img->InitializeCheck = 0 ;
 }
 
-// BASEIMAGE �C���[�W���� MEMIMG �C���[�W�ɉ摜�f�[�^��]������
+// BASEIMAGE イメージから MEMIMG イメージに画像データを転送する
 extern void BltBaseImageToMemImg( const BASEIMAGE *RgbBaseImage, const BASEIMAGE *AlphaBaseImage, MEMIMG *MemImg,
 								 int SrcX, int SrcY,
 								 int Width, int Height,
@@ -517,7 +517,7 @@ extern void BltBaseImageToMemImg( const BASEIMAGE *RgbBaseImage, const BASEIMAGE
 	} ;
 	DWORD ContNum, TransColor ;
 
-	// �����Z�b�g	
+	// 情報をセット	
 	DestPos.x = DestX ;
 	DestPos.y = DestY ;
 	SrcRect.left = SrcX ;
@@ -525,10 +525,10 @@ extern void BltBaseImageToMemImg( const BASEIMAGE *RgbBaseImage, const BASEIMAGE
 	SrcRect.right = SrcX + Width ;
 	SrcRect.bottom = SrcY + Height ;
 
-	// �]��
+	// 転送
 	
 	if( MemImg->Base->ColorType == 3 || MemImg->Base->ColorType == 2 )
-	// �y�o�b�t�@���u�����h�p�摜�̏ꍇ
+	// Ｚバッファかブレンド用画像の場合
 	{
 		NS_GraphColorMatchBltVer2(  MemImg->UseImage,        ( int )MemImg->Base->Pitch, MemImg->Base->ColorDataP,
 									RgbBaseImage->GraphData, ( int )RgbBaseImage->Pitch, &RgbBaseImage->ColorData,
@@ -538,9 +538,9 @@ extern void BltBaseImageToMemImg( const BASEIMAGE *RgbBaseImage, const BASEIMAGE
 									0, TRUE, TRUE, FALSE, FALSE ) ;
 	}
 	else
-	// ����ȊO�̏ꍇ
+	// それ以外の場合
 	{
-		// ���`�����l���̃f�[�^���ʂɂȂ��Ă���ꍇ�͏����𕪊�
+		// αチャンネルのデータが別になっている場合は処理を分岐
 		if( AlphaBaseImage != NULL )
 		{
 			if( NS_GraphColorMatchBltVer2(  MemImg->UseImage,        ( int )MemImg->Base->Pitch, MemImg->Base->ColorDataP,
@@ -562,20 +562,20 @@ extern void BltBaseImageToMemImg( const BASEIMAGE *RgbBaseImage, const BASEIMAGE
 												0, FALSE, FALSE, FALSE, FALSE ) ;
 			if( Result < 0 ) return ;
 
-			// �p���b�g���[�h�̏ꍇ�̓p���b�g�̐���ۑ�
+			// パレットモードの場合はパレットの数を保存
 			if( MemImg->Base->UsePalette == 1 )
 				MemImg->Base->ColorNum = Result + 1 ;
 		}
 	}
 
-	// �p���b�g������ꍇ�̓p���b�g���R�s�[����
+	// パレットがある場合はパレットをコピーする
 	if( MemImg->Base->UsePalette == 1 )
 	{
 		const COLORPALETTEDATA *SrcColor = RgbBaseImage->ColorData.Palette ;
 		DestBP = (BYTE *)MemImg->Base->Palette ;
 
 		if( MemImg->Base->ColorType == 0 )
-		// 16�r�b�g�J���[�̏ꍇ
+		// 16ビットカラーの場合
 		{
 			for( i = 0 ; i < 256 ; i ++, SrcColor ++ )
 			{
@@ -586,7 +586,7 @@ extern void BltBaseImageToMemImg( const BASEIMAGE *RgbBaseImage, const BASEIMAGE
 			_MEMCPY( MemImg->Base->OriginalPalette, MemImg->Base->Palette, 256 * 2 );
 		}
 		else
-		// 32�r�b�g�J���[�̏ꍇ
+		// 32ビットカラーの場合
 		{
 			for( i = 0 ; i < 256 ; i ++, SrcColor ++ )
 			{
@@ -598,13 +598,13 @@ extern void BltBaseImageToMemImg( const BASEIMAGE *RgbBaseImage, const BASEIMAGE
 		}
 	}
 
-	// ���ߐF���g�p���邩�ǂ�����ۑ�
+	// 透過色を使用するかどうかを保存
 	if( ( MemImg->Base->ColorType == 0 || MemImg->Base->ColorType == 1 ) && MemImg->Base->UseAlpha == 0 )
 	{
 		MemImg->Base->UseTransColor = UseTransColorConvAlpha ? 1 : 0 ;
 	}
 
-	// �W���I�ȃJ���[�^�C�v�œ]���T�C�Y���摜�T�C�Y�Ɠ����ꍇ�̂݉�͂��s��
+	// 標準的なカラータイプで転送サイズが画像サイズと同じ場合のみ解析を行う
 	MemImg->Base->AlphaImageValid = 0 ;
 	MemImg->Base->AnalysisDataValid = 0 ;
 	if( (DWORD)Width == MemImg->Width && (DWORD)Height == MemImg->Height &&
@@ -615,7 +615,7 @@ extern void BltBaseImageToMemImg( const BASEIMAGE *RgbBaseImage, const BASEIMAGE
 		TransColor = MemImg->Base->TransColor ;
 
 		if( MemImg->Base->UseAlpha == 1 && MemImg->Base->AlphaImage != NULL )
-		// ���`�����l�����g�p���Ă���ꍇ�̓��`�����l����K��������̃C���[�W�f�[�^���쐬����
+		// αチャンネルを使用している場合はαチャンネルを適応した後のイメージデータを作成する
 		{
 			MemImg->Base->AlphaImageValid = 1 ;
 
@@ -624,7 +624,7 @@ extern void BltBaseImageToMemImg( const BASEIMAGE *RgbBaseImage, const BASEIMAGE
 			AddPitch = ( int )( MemImg->Base->Pitch - MemImg->Width * 4 ) ;
 
 			if( MemImg->Base->ColorType == 0 )
-			// 16bit �^�C�v�̏ꍇ
+			// 16bit タイプの場合
 			{
 				i = ( int )MemImg->Height ;
 				do{
@@ -643,7 +643,7 @@ extern void BltBaseImageToMemImg( const BASEIMAGE *RgbBaseImage, const BASEIMAGE
 				}while( -- i );
 			}
 			else
-			// 32bit �^�C�v�̏ꍇ
+			// 32bit タイプの場合
 			{
 				i = ( int )MemImg->Height ;
 				do{
@@ -668,13 +668,13 @@ extern void BltBaseImageToMemImg( const BASEIMAGE *RgbBaseImage, const BASEIMAGE
 		AddPitch = ( int )( MemImg->Base->Pitch - MemImg->Base->ColorDataP->PixelByte * MemImg->Width ) ;
 
 		if( MemImg->Base->UsePalette == 1 )
-		// �p���b�g���g�p���Ă���ꍇ�̉��
+		// パレットを使用している場合の解析
 		{
 			i = ( int )MemImg->Height ;
 			do{
 				j = Width ;
 				do{
-					// ���ߐF���A�񓧉ߐF���𔻒f������A���h�b�g�����Ă��邩�𒲂ׂ�
+					// 透過色か、非透過色かを判断した後、何ドット続いているかを調べる
 					ContNum = 0 ;
 					if( *( SrcBP ++ ) == TransColor ){
 						while( ( ( (-- j) != 0 ) & ( (++ ContNum) < 64 ) ) && *SrcBP == TransColor ) SrcBP ++ ;
@@ -685,7 +685,7 @@ extern void BltBaseImageToMemImg( const BASEIMAGE *RgbBaseImage, const BASEIMAGE
 					}
 				}while( j != 0 );
 
-				// �s�̏I�[���Z�b�g
+				// 行の終端をセット
 				*( DestBP ++ ) = 3 << 6 ;
 
 				SrcBP += AddPitch ;
@@ -694,16 +694,16 @@ extern void BltBaseImageToMemImg( const BASEIMAGE *RgbBaseImage, const BASEIMAGE
 		else
 		{
 			if( MemImg->Base->UseAlpha == 0 )
-			// ���`�����l���������摜�̏ꍇ
+			// αチャンネルが無い画像の場合
 			{
 				if( MemImg->Base->ColorType == 0 )
-				// 16�r�b�g�̏ꍇ
+				// 16ビットの場合
 				{
 					i = ( int )MemImg->Height ;
 					do{
 						j = Width ;
 						do{
-							// ���ߐF���A�񓧉ߐF���𔻒f������A���h�b�g�����Ă��邩�𒲂ׂ�
+							// 透過色か、非透過色かを判断した後、何ドット続いているかを調べる
 							ContNum = 0 ;
 							if( *( SrcWP ++ ) == TransColor ){
 								while( ( ( (-- j) != 0 ) & ( (++ ContNum) < 64 ) ) && *SrcWP == TransColor ) SrcWP ++ ;
@@ -714,20 +714,20 @@ extern void BltBaseImageToMemImg( const BASEIMAGE *RgbBaseImage, const BASEIMAGE
 							}
 						}while( j != 0 );
 
-						// �s�̏I�[���Z�b�g
+						// 行の終端をセット
 						*( DestBP ++ ) = 3 << 6 ;
 
 						SrcBP += AddPitch ;
 					}while( -- i );
 				}
 				else
-				// 32�r�b�g�̏ꍇ
+				// 32ビットの場合
 				{
 					i = ( int )MemImg->Height ;
 					do{
 						j = Width ;
 						do{
-							// ���ߐF���A�񓧉ߐF���𔻒f������A���h�b�g�����Ă��邩�𒲂ׂ�
+							// 透過色か、非透過色かを判断した後、何ドット続いているかを調べる
 							ContNum = 0 ;
 							if( *( SrcDP ++ ) == TransColor ){
 								while( ( ( (-- j) != 0 ) & ( (++ ContNum) < 64 ) ) && *SrcDP == TransColor ) SrcDP ++ ;
@@ -738,7 +738,7 @@ extern void BltBaseImageToMemImg( const BASEIMAGE *RgbBaseImage, const BASEIMAGE
 							}
 						}while( j != 0 );
 
-						// �s�̏I�[���Z�b�g
+						// 行の終端をセット
 						*( DestBP ++ ) = 3 << 6 ;
 
 						SrcBP += AddPitch ;
@@ -746,42 +746,42 @@ extern void BltBaseImageToMemImg( const BASEIMAGE *RgbBaseImage, const BASEIMAGE
 				}
 			}
 			else
-			// ���`�����l�����L��摜�̏ꍇ
+			// αチャンネルが有る画像の場合
 			{
 				int Alpha ;
 
-				// ���l�Ƃ��ĎQ�Ƃ���A�h���X���Z�b�g
+				// α値として参照するアドレスをセット
 				Alpha = MemImg->Base->ColorType == 0 ? 2 : 3 ;
 
 				i = ( int )MemImg->Height ;
 				do{
 					j = Width ;
 					do{
-						// ���S�������A���������A���ߐF���𔻕ʂ�����A���h�b�g�����Ă��邩�𒲂ׂ�
+						// 完全透明か、半透明か、透過色かを判別した後、何ドット続いているかを調べる
 						ContNum = 0 ;
 						switch( SrcDP ++, SrcBP[Alpha-4] )
 						{
 						case 0 :
-							// ���S�����̏ꍇ
+							// 完全透明の場合
 							while( ( ( (-- j) != 0 ) & ( (++ ContNum) < 64 ) ) && SrcBP[Alpha] == 0 ) SrcDP ++ ;
 							*( DestBP ++ ) = (BYTE)( ( 0 << 6 ) | ( ContNum - 1 ) ) ;
 							break ;
 
 						case 0xff :
-							// ���S�s�����̏ꍇ
+							// 完全不透明の場合
 							while( ( ( (-- j) != 0 ) & ( (++ ContNum) < 64 ) ) && SrcBP[Alpha] == 0xff ) SrcDP ++ ;
 							*( DestBP ++ ) = (BYTE)( ( 1 << 6 ) | ( ContNum - 1 ) ) ;
 							break ;
 
 						default :
-							// �����̏ꍇ
+							// 透明の場合
 							while( ( ( (-- j) != 0 ) & ( (++ ContNum) < 64 ) ) && ( SrcBP[Alpha] != 0x00 && SrcBP[Alpha] != 0xff ) ) SrcDP ++ ;
 							*( DestBP ++ ) = (BYTE)( ( 2 << 6 ) | ( ContNum - 1 ) ) ;
 							break ;
 						}
 					}while( j != 0 );
 
-					// �s�̏I�[���Z�b�g
+					// 行の終端をセット
 					*( DestBP ++ ) = 3 << 6 ;
 
 					SrcBP += AddPitch ;
@@ -791,10 +791,10 @@ extern void BltBaseImageToMemImg( const BASEIMAGE *RgbBaseImage, const BASEIMAGE
 	}
 }
 
-// �w��̃t�H�[�}�b�g�̃J���[�f�[�^�𓾂�
+// 指定のフォーマットのカラーデータを得る
 extern COLORDATA *GetMemImgColorData( int ColorType, int UseAlpha, int UsePalette )
 {
-	// �e�t�H�[�}�b�g�̃J���[�f�[�^�����������Ă��Ȃ������珉�������āA���̃A�h���X��Ԃ�
+	// 各フォーマットのカラーデータを初期化していなかったら初期化して、そのアドレスを返す
 	switch( ColorType )
 	{
 	case 0 :
@@ -927,14 +927,14 @@ extern COLORDATA *GetMemImgColorData( int ColorType, int UseAlpha, int UsePalett
 		}
 	}
 	
-	// �����ɗ�����Ή����Ă��Ȃ��J���[�t�H�[�}�b�g�Ƃ�������
+	// ここに来たら対応していないカラーフォーマットということ
 	return NULL ;
 }
 
 /*
 #ifdef WINDOWS_DESKTOP_OS
 
-// DDPIXELFORMAT�f�[�^���쐬����
+// DDPIXELFORMATデータを作成する
 extern int CreatePixelFormat( D_DDPIXELFORMAT *PixelFormatBuf, int ColorBitDepth,
 								 DWORD RedMask, DWORD GreenMask, DWORD BlueMask, DWORD AlphaMask )
 {
@@ -947,14 +947,14 @@ extern int CreatePixelFormat( D_DDPIXELFORMAT *PixelFormatBuf, int ColorBitDepth
 	PixelFormatBuf->dwBBitMask			= BlueMask ;
 	PixelFormatBuf->dwRGBAlphaBitMask = AlphaMask ;
 
-	// �I��
+	// 終了
 	return 0 ;
 }
 
-// �w��̃t�H�[�}�b�g�̃J���[�f�[�^�𓾂�
+// 指定のフォーマットのカラーデータを得る
 extern D_DDPIXELFORMAT *GetMemImgPixelFormat( int ColorType, int UseAlpha, int UsePalette )
 {
-	// �e�t�H�[�}�b�g�̃J���[�f�[�^�����������Ă��Ȃ������珉�������āA���̃A�h���X��Ԃ�
+	// 各フォーマットのカラーデータを初期化していなかったら初期化して、そのアドレスを返す
 	switch( ColorType )
 	{
 	case 0 :
@@ -1085,26 +1085,26 @@ extern D_DDPIXELFORMAT *GetMemImgPixelFormat( int ColorType, int UseAlpha, int U
 		break ;
 	}
 	
-	// �����ɗ�����Ή����Ă��Ȃ��J���[�t�H�[�}�b�g�Ƃ�������
+	// ここに来たら対応していないカラーフォーマットということ
 	return NULL ;
 }
 
 #endif // WINDOWS_DESKTOP_OS
 */
 
-// MEMIMG �C���[�W���� BASEIMAGE �C���[�W�ɉ摜�f�[�^��]������
+// MEMIMG イメージから BASEIMAGE イメージに画像データを転送する
 extern void BltMemImgToBaseImage( BASEIMAGE *BaseImage, const MEMIMG *MemImg, int SrcX, int SrcY, int Width, int Height, int DestX, int DestY, DWORD TransColor, int TransFlag )
 {
 	POINT DestPos ;
 	RECT SrcRect ;
 
-	// �W���I�ȃJ���[�^�C�v�ȊO�͓]���ł��Ȃ�
+	// 標準的なカラータイプ以外は転送できない
 	if( MemImg->Base->ColorType != 0 && MemImg->Base->ColorType != 1 ) return ;
 
-	// ���`�����l���t���C���[�W��p���b�g�t���C���[�W��]�����邱�Ƃ͏o���Ȃ�
+	// αチャンネル付きイメージやパレット付きイメージを転送することは出来ない
 	if( MemImg->Base->UsePalette == 1 || MemImg->Base->UseAlpha == 1 ) return ;
 	
-	// �����Z�b�g	
+	// 情報をセット	
 	DestPos.x      = DestX ;
 	DestPos.y      = DestY ;
 	SrcRect.left   = SrcX ;
@@ -1112,7 +1112,7 @@ extern void BltMemImgToBaseImage( BASEIMAGE *BaseImage, const MEMIMG *MemImg, in
 	SrcRect.right  = SrcX + Width ;
 	SrcRect.bottom = SrcY + Height ;
 	
-	// �]��
+	// 転送
 	NS_GraphColorMatchBltVer2( 	BaseImage->GraphData, BaseImage->Pitch,           &BaseImage->ColorData,
 								MemImg->UseImage,     ( int )MemImg->Base->Pitch, MemImg->Base->ColorDataP,
 								NULL, 0, NULL,
@@ -1122,7 +1122,7 @@ extern void BltMemImgToBaseImage( BASEIMAGE *BaseImage, const MEMIMG *MemImg, in
 								FALSE, TransFlag, FALSE ) ;
 }
 
-// �C���[�W������������
+// イメージを初期化する
 extern void ClearMemImg( MEMIMG *MemImg, const RECT *FillArea, unsigned int Color )
 {
 	int wtemp, Width, Height, AddPitch ;
@@ -1195,7 +1195,7 @@ extern void ClearMemImg( MEMIMG *MemImg, const RECT *FillArea, unsigned int Colo
 	}
 }
 
-// �C���[�W���̎w����W�̐F���擾
+// イメージ中の指定座標の色を取得
 extern DWORD GetPixelColorMemImg( const MEMIMG *MemImg, int x, int y )
 {
 	switch( MemImg->Base->ColorDataP->PixelByte )

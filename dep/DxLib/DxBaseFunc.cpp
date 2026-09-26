@@ -1,15 +1,15 @@
 // -------------------------------------------------------------------------------
 // 
-// 		�c�w���C�u����		�W���֐��̌݊��֐��v���O����
+// 		ＤＸライブラリ		標準関数の互換関数プログラム
 // 
 // 				Ver 3.25a
 // 
 // -------------------------------------------------------------------------------
 
-// �c�w���C�u�����쐬���p��`
+// ＤＸライブラリ作成時用定義
 #define DX_MAKE
 
-// �C���N���[�h ------------------------------------------------------------------
+// インクルード ------------------------------------------------------------------
 #include "DxBaseFunc.h"
 #include "DxArchive_.h"
 #include "DxLib.h"
@@ -26,26 +26,26 @@ namespace DxLib
 
 #endif // DX_NON_NAMESPACE
 
-// �}�N����` --------------------------------------------------------------------
+// マクロ定義 --------------------------------------------------------------------
 
-// �\���̒�` --------------------------------------------------------------------
+// 構造体定義 --------------------------------------------------------------------
 
-// �e�[�u��-----------------------------------------------------------------------
+// テーブル-----------------------------------------------------------------------
 
-// �������ϐ��錾 --------------------------------------------------------------
+// 内部大域変数宣言 --------------------------------------------------------------
 
 BASEFUNCSYSTEM g_BaseFuncSystem ;
 
-// �֐��v���g�^�C�v�錾-----------------------------------------------------------
+// 関数プロトタイプ宣言-----------------------------------------------------------
 
-// �v���O���� --------------------------------------------------------------------
+// プログラム --------------------------------------------------------------------
 
 extern int _INIT_BASEFUNC( void )
 {
 	int i ;
 	float Sin, Cos ;
 
-	// �T�C���e�[�u���̏�����
+	// サインテーブルの初期化
 	for( i = 0 ; i < SINTABLE_DIV ; i ++ )
 	{
 		_SINCOS( i * DX_PI_F * 2.0f / SINTABLE_DIV, &Sin, &Cos ) ;
@@ -107,7 +107,7 @@ extern int _GET_WCHAR_T_CHARCODEFORMAT( void )
 	return g_BaseFuncSystem.Use_wchar_t_CharCodeFormat ;
 }
 
-// �����񏈗��֐�
+// 文字列処理関数
 extern void _STRCPY( char *Dest, const char *Src )
 {
 	CL_strcpy( CHAR_CHARCODEFORMAT, Dest, Src ) ;
@@ -859,7 +859,7 @@ extern void _MUL128_1( DWORD *Src64_1, DWORD *Src64_2, DWORD *Dest128 )
 #endif
 }
 
-// Src128 �̍ŏ�ʃr�b�g�������Ă���Ɛ���ɏ����ł��Ȃ�
+// Src128 の最上位ビットが立っていると正常に処理できない
 extern void _DIV128_1( DWORD *Src128, DWORD *Div64, DWORD *Dest64 )
 {
 #ifndef DX_NON_INLINE_ASM
@@ -1110,9 +1110,9 @@ LOOPEND:
 
 
 
-// va_list �֐�
+// va_list 関数
 
-// sprintf �Ɠ����̋@�\( �}���`�o�C�g������łł͕����R�[�h�`���Ƃ��� SetUseCharCodeFormat �Őݒ肵���`�����g�p����܂� )
+// sprintf と同等の機能( マルチバイト文字列版では文字コード形式として SetUseCharCodeFormat で設定した形式が使用されます )
 extern int sprintfDx_VaList( TCHAR *Buffer, const TCHAR *FormatString, va_list VaList )
 {
 	int Result ;
@@ -1122,7 +1122,7 @@ extern int sprintfDx_VaList( TCHAR *Buffer, const TCHAR *FormatString, va_list V
 	return Result ;
 }
 
-// snprintf �Ɠ����̋@�\( �}���`�o�C�g������łł͕����R�[�h�`���Ƃ��� SetUseCharCodeFormat �Őݒ肵���`�����g�p����܂� )
+// snprintf と同等の機能( マルチバイト文字列版では文字コード形式として SetUseCharCodeFormat で設定した形式が使用されます )
 extern int snprintfDx_VaList( TCHAR *Buffer, size_t BufferSize, const TCHAR *FormatString, va_list VaList )
 {
 	int Result ;
@@ -1132,7 +1132,7 @@ extern int snprintfDx_VaList( TCHAR *Buffer, size_t BufferSize, const TCHAR *For
 	return Result ;
 }
 
-// sscanf �Ɠ����̋@�\( �}���`�o�C�g������łł͕����R�[�h�`���Ƃ��� SetUseCharCodeFormat �Őݒ肵���`�����g�p����܂� )
+// sscanf と同等の機能( マルチバイト文字列版では文字コード形式として SetUseCharCodeFormat で設定した形式が使用されます )
 extern int sscanfDx_VaList( const TCHAR *String, const TCHAR *FormatString, va_list VaList )
 {
 	int Result ;
@@ -1155,35 +1155,35 @@ extern int sscanfDx_VaList( const TCHAR *String, const TCHAR *FormatString, va_l
 
 
 
-// �����R�[�h�֌W
+// 文字コード関係
 
-// ������̐擪�̕����̃o�C�g�����擾����
-extern int NS_GetCharBytes( int CharCodeFormat /* DX_CHARCODEFORMAT_SHIFTJIS �� */ , const void *String )
+// 文字列の先頭の文字のバイト数を取得する
+extern int NS_GetCharBytes( int CharCodeFormat /* DX_CHARCODEFORMAT_SHIFTJIS 等 */ , const void *String )
 {
 	return GetCharBytes_( ( const char * )String, CharCodeFormat ) ;
 }
 
-// ������̕����R�[�h�`����ʂ̕����R�[�h�`���ɕϊ�����
-extern int NS_ConvertStringCharCodeFormat( int SrcCharCodeFormat /* DX_CHARCODEFORMAT_SHIFTJIS �� */, const void *SrcString, int DestCharCodeFormat /* DX_CHARCODEFORMAT_SHIFTJIS �� */, void *DestStringBuffer )
+// 文字列の文字コード形式を別の文字コード形式に変換する
+extern int NS_ConvertStringCharCodeFormat( int SrcCharCodeFormat /* DX_CHARCODEFORMAT_SHIFTJIS 等 */, const void *SrcString, int DestCharCodeFormat /* DX_CHARCODEFORMAT_SHIFTJIS 等 */, void *DestStringBuffer )
 {
 	return ConvString( ( const char * )SrcString, -1, SrcCharCodeFormat, ( char * )DestStringBuffer, BUFFERBYTES_CANCEL, DestCharCodeFormat ) ;
 }
 
-// ������̈����̕����R�[�h�`����ݒ肷��( ������`��n�֐��Ƃ��̑��ꕔ�֐������� )( UNICODE�łł͖��� )
-extern int NS_SetUseCharCodeFormat( int CharCodeFormat /* DX_CHARCODEFORMAT_SHIFTJIS �� */ )
+// 文字列の引数の文字コード形式を設定する( 文字列描画系関数とその他一部関数を除く )( UNICODE版では無効 )
+extern int NS_SetUseCharCodeFormat( int CharCodeFormat /* DX_CHARCODEFORMAT_SHIFTJIS 等 */ )
 {
 	_SET_CHAR_CHARCODEFORMAT( CharCodeFormat ) ;
 
 	return 0 ;
 }
 
-// ������̈����̕����R�[�h�`�����擾����( �߂�l�F�����R�[�h�`��( DX_CHARCODEFORMAT_SHIFTJIS �� ) )( UNICODE�łł͖��� )
+// 文字列の引数の文字コード形式を取得する( 戻り値：文字コード形式( DX_CHARCODEFORMAT_SHIFTJIS 等 ) )( UNICODE版では無効 )
 extern int NS_GetUseCharCodeFormat( void )
 {
 	return CHAR_CHARCODEFORMAT ;
 }
 
-// wchar_t�^�̕����R�[�h�`�����擾����( �߂�l�F DX_CHARCODEFORMAT_UTF16LE �Ȃ� )
+// wchar_t型の文字コード形式を取得する( 戻り値： DX_CHARCODEFORMAT_UTF16LE など )
 extern int NS_Get_wchar_t_CharCodeFormat( void )
 {
 	return WCHAR_T_CHARCODEFORMAT ;
@@ -1194,9 +1194,9 @@ extern int NS_Get_wchar_t_CharCodeFormat( void )
 
 
 
-// ������֌W
+// 文字列関係
 
-// strcpy �Ɠ����̋@�\( �}���`�o�C�g������łł͕����R�[�h�`���Ƃ��� SetUseCharCodeFormat �Őݒ肵���`�����g�p����܂� )
+// strcpy と同等の機能( マルチバイト文字列版では文字コード形式として SetUseCharCodeFormat で設定した形式が使用されます )
 extern void NS_strcpyDx(   TCHAR *Dest, const TCHAR *Src )
 {
 #ifdef UNICODE
@@ -1206,7 +1206,7 @@ extern void NS_strcpyDx(   TCHAR *Dest, const TCHAR *Src )
 #endif // UNICODE
 }
 
-// strcpy �Ɠ����̋@�\( �}���`�o�C�g������łł͕����R�[�h�`���Ƃ��� SetUseCharCodeFormat �Őݒ肵���`�����g�p����܂� )
+// strcpy と同等の機能( マルチバイト文字列版では文字コード形式として SetUseCharCodeFormat で設定した形式が使用されます )
 extern void NS_strcpy_sDx(   TCHAR *Dest, size_t DestBytes, const TCHAR *Src )
 {
 #ifdef UNICODE
@@ -1216,7 +1216,7 @@ extern void NS_strcpy_sDx(   TCHAR *Dest, size_t DestBytes, const TCHAR *Src )
 #endif // UNICODE
 }
 
-// �ʒu�w��t�� strcpy�APos �̓R�s�[�J�n�ʒu�@( �}���`�o�C�g������łł͕����R�[�h�`���Ƃ��� SetUseCharCodeFormat �Őݒ肵���`�����g�p����܂� )
+// 位置指定付き strcpy、Pos はコピー開始位置　( マルチバイト文字列版では文字コード形式として SetUseCharCodeFormat で設定した形式が使用されます )
 extern void NS_strpcpyDx(    TCHAR *Dest, const TCHAR *Src, int Pos )
 {
 #ifdef UNICODE
@@ -1226,7 +1226,7 @@ extern void NS_strpcpyDx(    TCHAR *Dest, const TCHAR *Src, int Pos )
 #endif // UNICODE
 }
 
-// �ʒu�w��t�� strcpy�APos �̓R�s�[�J�n�ʒu�@( �}���`�o�C�g������łł͕����R�[�h�`���Ƃ��� SetUseCharCodeFormat �Őݒ肵���`�����g�p����܂� )
+// 位置指定付き strcpy、Pos はコピー開始位置　( マルチバイト文字列版では文字コード形式として SetUseCharCodeFormat で設定した形式が使用されます )
 extern void NS_strpcpy_sDx(    TCHAR *Dest, size_t DestBytes, const TCHAR *Src, int Pos )
 {
 #ifdef UNICODE
@@ -1236,7 +1236,7 @@ extern void NS_strpcpy_sDx(    TCHAR *Dest, size_t DestBytes, const TCHAR *Src, 
 #endif // UNICODE
 }
 
-// �ʒu�w��t�� strcpy�APos �̓R�s�[�J�n�ʒu( �S�p������ 1 ���� )�@( �}���`�o�C�g������łł͕����R�[�h�`���Ƃ��� SetUseCharCodeFormat �Őݒ肵���`�����g�p����܂� )
+// 位置指定付き strcpy、Pos はコピー開始位置( 全角文字も 1 扱い )　( マルチバイト文字列版では文字コード形式として SetUseCharCodeFormat で設定した形式が使用されます )
 extern void NS_strpcpy2Dx(   TCHAR *Dest, const TCHAR *Src, int Pos )
 {
 #ifdef UNICODE
@@ -1246,7 +1246,7 @@ extern void NS_strpcpy2Dx(   TCHAR *Dest, const TCHAR *Src, int Pos )
 #endif // UNICODE
 }
 
-// �ʒu�w��t�� strcpy�APos �̓R�s�[�J�n�ʒu( �S�p������ 1 ���� )�@( �}���`�o�C�g������łł͕����R�[�h�`���Ƃ��� SetUseCharCodeFormat �Őݒ肵���`�����g�p����܂� )
+// 位置指定付き strcpy、Pos はコピー開始位置( 全角文字も 1 扱い )　( マルチバイト文字列版では文字コード形式として SetUseCharCodeFormat で設定した形式が使用されます )
 extern void NS_strpcpy2_sDx(   TCHAR *Dest, size_t DestBytes, const TCHAR *Src, int Pos )
 {
 #ifdef UNICODE
@@ -1256,7 +1256,7 @@ extern void NS_strpcpy2_sDx(   TCHAR *Dest, size_t DestBytes, const TCHAR *Src, 
 #endif // UNICODE
 }
 
-// strncpy �Ɠ����̋@�\( �}���`�o�C�g������łł͕����R�[�h�`���Ƃ��� SetUseCharCodeFormat �Őݒ肵���`�����g�p����܂� )
+// strncpy と同等の機能( マルチバイト文字列版では文字コード形式として SetUseCharCodeFormat で設定した形式が使用されます )
 extern void NS_strncpyDx(  TCHAR *Dest, const TCHAR *Src, int Num )
 {
 #ifdef UNICODE
@@ -1266,7 +1266,7 @@ extern void NS_strncpyDx(  TCHAR *Dest, const TCHAR *Src, int Num )
 #endif // UNICODE
 }
 
-// strncpy �Ɠ����̋@�\( �}���`�o�C�g������łł͕����R�[�h�`���Ƃ��� SetUseCharCodeFormat �Őݒ肵���`�����g�p����܂� )
+// strncpy と同等の機能( マルチバイト文字列版では文字コード形式として SetUseCharCodeFormat で設定した形式が使用されます )
 extern void NS_strncpy_sDx(  TCHAR *Dest, size_t DestBytes, const TCHAR *Src, int Num )
 {
 #ifdef UNICODE
@@ -1276,7 +1276,7 @@ extern void NS_strncpy_sDx(  TCHAR *Dest, size_t DestBytes, const TCHAR *Src, in
 #endif // UNICODE
 }
 
-// strncpy �� Num ��������( �S�p������ 1 ���� )�ɂȂ������́A�I�[�ɕK���k����������������( �}���`�o�C�g������łł͕����R�[�h�`���Ƃ��� SetUseCharCodeFormat �Őݒ肵���`�����g�p����܂� )
+// strncpy の Num が文字数( 全角文字も 1 扱い )になったもの、終端に必ずヌル文字が代入される( マルチバイト文字列版では文字コード形式として SetUseCharCodeFormat で設定した形式が使用されます )
 extern void NS_strncpy2Dx( TCHAR *Dest, const TCHAR *Src, int Num )
 {
 #ifdef UNICODE
@@ -1286,7 +1286,7 @@ extern void NS_strncpy2Dx( TCHAR *Dest, const TCHAR *Src, int Num )
 #endif // UNICODE
 }
 
-// strncpy �� Num ��������( �S�p������ 1 ���� )�ɂȂ������́A�I�[�ɕK���k����������������( �}���`�o�C�g������łł͕����R�[�h�`���Ƃ��� SetUseCharCodeFormat �Őݒ肵���`�����g�p����܂� )
+// strncpy の Num が文字数( 全角文字も 1 扱い )になったもの、終端に必ずヌル文字が代入される( マルチバイト文字列版では文字コード形式として SetUseCharCodeFormat で設定した形式が使用されます )
 extern void NS_strncpy2_sDx( TCHAR *Dest, size_t DestBytes, const TCHAR *Src, int Num )
 {
 #ifdef UNICODE
@@ -1296,7 +1296,7 @@ extern void NS_strncpy2_sDx( TCHAR *Dest, size_t DestBytes, const TCHAR *Src, in
 #endif // UNICODE
 }
 
-// strncpy �̕�����̏I�[����̕������w���( �}���`�o�C�g������łł͕����R�[�h�`���Ƃ��� SetUseCharCodeFormat �Őݒ肵���`�����g�p����܂� )
+// strncpy の文字列の終端からの文字数指定版( マルチバイト文字列版では文字コード形式として SetUseCharCodeFormat で設定した形式が使用されます )
 extern void NS_strrncpyDx(   TCHAR *Dest, const TCHAR *Src, int Num )
 {
 #ifdef UNICODE
@@ -1306,7 +1306,7 @@ extern void NS_strrncpyDx(   TCHAR *Dest, const TCHAR *Src, int Num )
 #endif // UNICODE
 }
 
-// strncpy �̕�����̏I�[����̕������w���( �}���`�o�C�g������łł͕����R�[�h�`���Ƃ��� SetUseCharCodeFormat �Őݒ肵���`�����g�p����܂� )
+// strncpy の文字列の終端からの文字数指定版( マルチバイト文字列版では文字コード形式として SetUseCharCodeFormat で設定した形式が使用されます )
 extern void NS_strrncpy_sDx(   TCHAR *Dest, size_t DestBytes, const TCHAR *Src, int Num )
 {
 #ifdef UNICODE
@@ -1316,7 +1316,7 @@ extern void NS_strrncpy_sDx(   TCHAR *Dest, size_t DestBytes, const TCHAR *Src, 
 #endif // UNICODE
 }
 
-// strncpy �̕�����̏I�[����̕�����( �S�p������ 1 ���� )�w��ŁA�I�[�ɕK���k����������������( �}���`�o�C�g������łł͕����R�[�h�`���Ƃ��� SetUseCharCodeFormat �Őݒ肵���`�����g�p����܂� )
+// strncpy の文字列の終端からの文字数( 全角文字も 1 扱い )指定版、終端に必ずヌル文字が代入される( マルチバイト文字列版では文字コード形式として SetUseCharCodeFormat で設定した形式が使用されます )
 extern void NS_strrncpy2Dx(  TCHAR *Dest, const TCHAR *Src, int Num )
 {
 #ifdef UNICODE
@@ -1326,7 +1326,7 @@ extern void NS_strrncpy2Dx(  TCHAR *Dest, const TCHAR *Src, int Num )
 #endif // UNICODE
 }
 
-// strncpy �̕�����̏I�[����̕�����( �S�p������ 1 ���� )�w��ŁA�I�[�ɕK���k����������������( �}���`�o�C�g������łł͕����R�[�h�`���Ƃ��� SetUseCharCodeFormat �Őݒ肵���`�����g�p����܂� )
+// strncpy の文字列の終端からの文字数( 全角文字も 1 扱い )指定版、終端に必ずヌル文字が代入される( マルチバイト文字列版では文字コード形式として SetUseCharCodeFormat で設定した形式が使用されます )
 extern void NS_strrncpy2_sDx(  TCHAR *Dest, size_t DestBytes, const TCHAR *Src, int Num )
 {
 #ifdef UNICODE
@@ -1336,7 +1336,7 @@ extern void NS_strrncpy2_sDx(  TCHAR *Dest, size_t DestBytes, const TCHAR *Src, 
 #endif // UNICODE
 }
 
-// strncpy �̃R�s�[�J�n�ʒu�w��ŁAPos �̓R�s�[�J�n�ʒu�ANum �͕�����( �}���`�o�C�g������łł͕����R�[�h�`���Ƃ��� SetUseCharCodeFormat �Őݒ肵���`�����g�p����܂� )
+// strncpy のコピー開始位置指定版、Pos はコピー開始位置、Num は文字数( マルチバイト文字列版では文字コード形式として SetUseCharCodeFormat で設定した形式が使用されます )
 extern void NS_strpncpyDx(   TCHAR *Dest, const TCHAR *Src, int Pos, int Num )
 {
 #ifdef UNICODE
@@ -1346,7 +1346,7 @@ extern void NS_strpncpyDx(   TCHAR *Dest, const TCHAR *Src, int Pos, int Num )
 #endif // UNICODE
 }
 
-// strncpy �̃R�s�[�J�n�ʒu�w��ŁAPos �̓R�s�[�J�n�ʒu�ANum �͕�����( �}���`�o�C�g������łł͕����R�[�h�`���Ƃ��� SetUseCharCodeFormat �Őݒ肵���`�����g�p����܂� )
+// strncpy のコピー開始位置指定版、Pos はコピー開始位置、Num は文字数( マルチバイト文字列版では文字コード形式として SetUseCharCodeFormat で設定した形式が使用されます )
 extern void NS_strpncpy_sDx(   TCHAR *Dest, size_t DestBytes, const TCHAR *Src, int Pos, int Num )
 {
 #ifdef UNICODE
@@ -1356,7 +1356,7 @@ extern void NS_strpncpy_sDx(   TCHAR *Dest, size_t DestBytes, const TCHAR *Src, 
 #endif // UNICODE
 }
 
-// strncpy �̃R�s�[�J�n�ʒu�w��ŁAPos �̓R�s�[�J�n�ʒu( �S�p������ 1 ���� )�ANum �͕�����( �S�p������ 1 ���� )�A�I�[�ɕK���k����������������( �}���`�o�C�g������łł͕����R�[�h�`���Ƃ��� SetUseCharCodeFormat �Őݒ肵���`�����g�p����܂� )
+// strncpy のコピー開始位置指定版、Pos はコピー開始位置( 全角文字も 1 扱い )、Num は文字数( 全角文字も 1 扱い )、終端に必ずヌル文字が代入される( マルチバイト文字列版では文字コード形式として SetUseCharCodeFormat で設定した形式が使用されます )
 extern void NS_strpncpy2Dx(  TCHAR *Dest, const TCHAR *Src, int Pos, int Num )
 {
 #ifdef UNICODE
@@ -1366,7 +1366,7 @@ extern void NS_strpncpy2Dx(  TCHAR *Dest, const TCHAR *Src, int Pos, int Num )
 #endif // UNICODE
 }
 
-// strncpy �̃R�s�[�J�n�ʒu�w��ŁAPos �̓R�s�[�J�n�ʒu( �S�p������ 1 ���� )�ANum �͕�����( �S�p������ 1 ���� )�A�I�[�ɕK���k����������������( �}���`�o�C�g������łł͕����R�[�h�`���Ƃ��� SetUseCharCodeFormat �Őݒ肵���`�����g�p����܂� )
+// strncpy のコピー開始位置指定版、Pos はコピー開始位置( 全角文字も 1 扱い )、Num は文字数( 全角文字も 1 扱い )、終端に必ずヌル文字が代入される( マルチバイト文字列版では文字コード形式として SetUseCharCodeFormat で設定した形式が使用されます )
 extern void NS_strpncpy2_sDx(  TCHAR *Dest, size_t DestBytes, const TCHAR *Src, int Pos, int Num )
 {
 #ifdef UNICODE
@@ -1376,7 +1376,7 @@ extern void NS_strpncpy2_sDx(  TCHAR *Dest, size_t DestBytes, const TCHAR *Src, 
 #endif // UNICODE
 }
 
-// strcat �Ɠ����̋@�\( �}���`�o�C�g������łł͕����R�[�h�`���Ƃ��� SetUseCharCodeFormat �Őݒ肵���`�����g�p����܂� )
+// strcat と同等の機能( マルチバイト文字列版では文字コード形式として SetUseCharCodeFormat で設定した形式が使用されます )
 extern void NS_strcatDx(   TCHAR *Dest, const TCHAR *Src )
 {
 #ifdef UNICODE
@@ -1386,7 +1386,7 @@ extern void NS_strcatDx(   TCHAR *Dest, const TCHAR *Src )
 #endif // UNICODE
 }
 
-// strcat �Ɠ����̋@�\( �}���`�o�C�g������łł͕����R�[�h�`���Ƃ��� SetUseCharCodeFormat �Őݒ肵���`�����g�p����܂� )
+// strcat と同等の機能( マルチバイト文字列版では文字コード形式として SetUseCharCodeFormat で設定した形式が使用されます )
 extern void NS_strcat_sDx(   TCHAR *Dest, size_t DestBytes, const TCHAR *Src )
 {
 #ifdef UNICODE
@@ -1396,7 +1396,7 @@ extern void NS_strcat_sDx(   TCHAR *Dest, size_t DestBytes, const TCHAR *Src )
 #endif // UNICODE
 }
 
-// strlen �Ɠ����̋@�\( �}���`�o�C�g������łł͕����R�[�h�`���Ƃ��� SetUseCharCodeFormat �Őݒ肵���`�����g�p����܂� )
+// strlen と同等の機能( マルチバイト文字列版では文字コード形式として SetUseCharCodeFormat で設定した形式が使用されます )
 extern size_t NS_strlenDx(   const TCHAR *Str )
 {
 #ifdef UNICODE
@@ -1406,7 +1406,7 @@ extern size_t NS_strlenDx(   const TCHAR *Str )
 #endif // UNICODE
 }
 
-// strlen �̖߂�l��������( �S�p������ 1 ���� )�ɂȂ�������( �}���`�o�C�g������łł͕����R�[�h�`���Ƃ��� SetUseCharCodeFormat �Őݒ肵���`�����g�p����܂� )
+// strlen の戻り値が文字数( 全角文字も 1 扱い )になったもの( マルチバイト文字列版では文字コード形式として SetUseCharCodeFormat で設定した形式が使用されます )
 extern size_t NS_strlen2Dx(  const TCHAR *Str )
 {
 #ifdef UNICODE
@@ -1416,7 +1416,7 @@ extern size_t NS_strlen2Dx(  const TCHAR *Str )
 #endif // UNICODE
 }
 
-// strcmp �Ɠ����̋@�\( �}���`�o�C�g������łł͕����R�[�h�`���Ƃ��� SetUseCharCodeFormat �Őݒ肵���`�����g�p����܂� )
+// strcmp と同等の機能( マルチバイト文字列版では文字コード形式として SetUseCharCodeFormat で設定した形式が使用されます )
 extern int NS_strcmpDx(   const TCHAR *Str1, const TCHAR *Str2 )
 {
 #ifdef UNICODE
@@ -1426,7 +1426,7 @@ extern int NS_strcmpDx(   const TCHAR *Str1, const TCHAR *Str2 )
 #endif // UNICODE
 }
 
-// stricmp �Ɠ����̋@�\( �}���`�o�C�g������łł͕����R�[�h�`���Ƃ��� SetUseCharCodeFormat �Őݒ肵���`�����g�p����܂� )
+// stricmp と同等の機能( マルチバイト文字列版では文字コード形式として SetUseCharCodeFormat で設定した形式が使用されます )
 extern int NS_stricmpDx(  const TCHAR *Str1, const TCHAR *Str2 )
 {
 #ifdef UNICODE
@@ -1436,7 +1436,7 @@ extern int NS_stricmpDx(  const TCHAR *Str1, const TCHAR *Str2 )
 #endif // UNICODE
 }
 
-// strncmp �Ɠ����̋@�\( �}���`�o�C�g������łł͕����R�[�h�`���Ƃ��� SetUseCharCodeFormat �Őݒ肵���`�����g�p����܂� )
+// strncmp と同等の機能( マルチバイト文字列版では文字コード形式として SetUseCharCodeFormat で設定した形式が使用されます )
 extern int NS_strncmpDx(  const TCHAR *Str1, const TCHAR *Str2, int Num )
 {
 #ifdef UNICODE
@@ -1446,7 +1446,7 @@ extern int NS_strncmpDx(  const TCHAR *Str1, const TCHAR *Str2, int Num )
 #endif // UNICODE
 }
 
-// strncmp2 �� Num ��������( �S�p������ 1 ���� )�ɂȂ�������( �}���`�o�C�g������łł͕����R�[�h�`���Ƃ��� SetUseCharCodeFormat �Őݒ肵���`�����g�p����܂� )
+// strncmp2 の Num が文字数( 全角文字も 1 扱い )になったもの( マルチバイト文字列版では文字コード形式として SetUseCharCodeFormat で設定した形式が使用されます )
 extern int NS_strncmp2Dx( const TCHAR *Str1, const TCHAR *Str2, int Num )
 {
 #ifdef UNICODE
@@ -1456,7 +1456,7 @@ extern int NS_strncmp2Dx( const TCHAR *Str1, const TCHAR *Str2, int Num )
 #endif // UNICODE
 }
 
-// strncmp �̔�r�J�n�ʒu�w��ŁAPos ����r�J�n�ʒu�ANum ��������( �}���`�o�C�g������łł͕����R�[�h�`���Ƃ��� SetUseCharCodeFormat �Őݒ肵���`�����g�p����܂� )
+// strncmp の比較開始位置指定版、Pos が比較開始位置、Num が文字数( マルチバイト文字列版では文字コード形式として SetUseCharCodeFormat で設定した形式が使用されます )
 extern int NS_strpncmpDx(   const TCHAR *Str1, const TCHAR *Str2, int Pos, int Num )
 {
 #ifdef UNICODE
@@ -1466,7 +1466,7 @@ extern int NS_strpncmpDx(   const TCHAR *Str1, const TCHAR *Str2, int Pos, int N
 #endif // UNICODE
 }
 
-// strncmp �̔�r�J�n�ʒu�w��ŁAPos ����r�J�n�ʒu( �S�p������ 1 ���� )�ANum ��������( �S�p������ 1 ���� )( �}���`�o�C�g������łł͕����R�[�h�`���Ƃ��� SetUseCharCodeFormat �Őݒ肵���`�����g�p����܂� )
+// strncmp の比較開始位置指定版、Pos が比較開始位置( 全角文字も 1 扱い )、Num が文字数( 全角文字も 1 扱い )( マルチバイト文字列版では文字コード形式として SetUseCharCodeFormat で設定した形式が使用されます )
 extern int NS_strpncmp2Dx(  const TCHAR *Str1, const TCHAR *Str2, int Pos, int Num )
 {
 #ifdef UNICODE
@@ -1476,7 +1476,7 @@ extern int NS_strpncmp2Dx(  const TCHAR *Str1, const TCHAR *Str2, int Pos, int N
 #endif // UNICODE
 }
 
-// ������̎w��̈ʒu�̕����R�[�h���擾����APos �͎擾����ʒu�ACharNums �͕�������������ϐ��̃A�h���X�A�߂�l�͕����R�[�h( �}���`�o�C�g������łł͕����R�[�h�`���Ƃ��� SetUseCharCodeFormat �Őݒ肵���`�����g�p����܂� )
+// 文字列の指定の位置の文字コードを取得する、Pos は取得する位置、CharNums は文字数を代入する変数のアドレス、戻り値は文字コード( マルチバイト文字列版では文字コード形式として SetUseCharCodeFormat で設定した形式が使用されます )
 extern DWORD NS_strgetchrDx(  const TCHAR *Str, int Pos, int *CharNums )
 {
 #ifdef UNICODE
@@ -1486,7 +1486,7 @@ extern DWORD NS_strgetchrDx(  const TCHAR *Str, int Pos, int *CharNums )
 #endif // UNICODE
 }
 
-// ������̎w��̈ʒu�̕����R�[�h���擾����APos �͎擾����ʒu( �S�p������ 1 ���� )�ACharNums �͕�������������ϐ��̃A�h���X�A�߂�l�͕����R�[�h( �}���`�o�C�g������łł͕����R�[�h�`���Ƃ��� SetUseCharCodeFormat �Őݒ肵���`�����g�p����܂� )
+// 文字列の指定の位置の文字コードを取得する、Pos は取得する位置( 全角文字も 1 扱い )、CharNums は文字数を代入する変数のアドレス、戻り値は文字コード( マルチバイト文字列版では文字コード形式として SetUseCharCodeFormat で設定した形式が使用されます )
 extern DWORD NS_strgetchr2Dx( const TCHAR *Str, int Pos, int *CharNums )
 {
 #ifdef UNICODE
@@ -1496,7 +1496,7 @@ extern DWORD NS_strgetchr2Dx( const TCHAR *Str, int Pos, int *CharNums )
 #endif // UNICODE
 }
 
-// ������̎w��̈ʒu�ɕ����R�[�h���������ށAPos �͏������ވʒu�ACharCode �͕����R�[�h�A�߂�l�͏������񂾕�����( �}���`�o�C�g������łł͕����R�[�h�`���Ƃ��� SetUseCharCodeFormat �Őݒ肵���`�����g�p����܂� )
+// 文字列の指定の位置に文字コードを書き込む、Pos は書き込む位置、CharCode は文字コード、戻り値は書き込んだ文字数( マルチバイト文字列版では文字コード形式として SetUseCharCodeFormat で設定した形式が使用されます )
 extern int NS_strputchrDx(  TCHAR *Str, int Pos, DWORD CharCode )
 {
 #ifdef UNICODE
@@ -1506,7 +1506,7 @@ extern int NS_strputchrDx(  TCHAR *Str, int Pos, DWORD CharCode )
 #endif // UNICODE
 }
 
-// ������̎w��̈ʒu�ɕ����R�[�h���������ށAPos �͏������ވʒu( �S�p������ 1 ���� )�ACharCode �͕����R�[�h�A�߂�l�͏������񂾕�����( �}���`�o�C�g������łł͕����R�[�h�`���Ƃ��� SetUseCharCodeFormat �Őݒ肵���`�����g�p����܂� )
+// 文字列の指定の位置に文字コードを書き込む、Pos は書き込む位置( 全角文字も 1 扱い )、CharCode は文字コード、戻り値は書き込んだ文字数( マルチバイト文字列版では文字コード形式として SetUseCharCodeFormat で設定した形式が使用されます )
 extern int NS_strputchr2Dx( TCHAR *Str, int Pos, DWORD CharCode )
 {
 #ifdef UNICODE
@@ -1516,7 +1516,7 @@ extern int NS_strputchr2Dx( TCHAR *Str, int Pos, DWORD CharCode )
 #endif // UNICODE
 }
 
-// ������̎w��̈ʒu�̃A�h���X���擾����APos �͎擾����ʒu�@( �}���`�o�C�g������łł͕����R�[�h�`���Ƃ��� SetUseCharCodeFormat �Őݒ肵���`�����g�p����܂� )
+// 文字列の指定の位置のアドレスを取得する、Pos は取得する位置　( マルチバイト文字列版では文字コード形式として SetUseCharCodeFormat で設定した形式が使用されます )
 extern const TCHAR * NS_strposDx(     const TCHAR *Str, int Pos )
 {
 #ifdef UNICODE
@@ -1526,7 +1526,7 @@ extern const TCHAR * NS_strposDx(     const TCHAR *Str, int Pos )
 #endif // UNICODE
 }
 
-// ������̎w��̈ʒu�̃A�h���X���擾����APos �͎擾����ʒu( �S�p������ 1 ���� )�@( �}���`�o�C�g������łł͕����R�[�h�`���Ƃ��� SetUseCharCodeFormat �Őݒ肵���`�����g�p����܂� )
+// 文字列の指定の位置のアドレスを取得する、Pos は取得する位置( 全角文字も 1 扱い )　( マルチバイト文字列版では文字コード形式として SetUseCharCodeFormat で設定した形式が使用されます )
 extern const TCHAR * NS_strpos2Dx(    const TCHAR *Str, int Pos )
 {
 #ifdef UNICODE
@@ -1536,7 +1536,7 @@ extern const TCHAR * NS_strpos2Dx(    const TCHAR *Str, int Pos )
 #endif // UNICODE
 }
 
-// strstr �Ɠ����̋@�\( �}���`�o�C�g������łł͕����R�[�h�`���Ƃ��� SetUseCharCodeFormat �Őݒ肵���`�����g�p����܂� )
+// strstr と同等の機能( マルチバイト文字列版では文字コード形式として SetUseCharCodeFormat で設定した形式が使用されます )
 extern const TCHAR * NS_strstrDx(   const TCHAR *Str1, const TCHAR *Str2 )
 {
 #ifdef UNICODE
@@ -1546,7 +1546,7 @@ extern const TCHAR * NS_strstrDx(   const TCHAR *Str1, const TCHAR *Str2 )
 #endif // UNICODE
 }
 
-// strstr �̖߂�l��������擪����̕�����( �S�p������ 1 ���� ) �ɂȂ�������( �}���`�o�C�g������łł͕����R�[�h�`���Ƃ��� SetUseCharCodeFormat �Őݒ肵���`�����g�p����܂� )
+// strstr の戻り値が文字列先頭からの文字数( 全角文字も 1 扱い ) になったもの( マルチバイト文字列版では文字コード形式として SetUseCharCodeFormat で設定した形式が使用されます )
 extern int NS_strstr2Dx(    const TCHAR *Str1, const TCHAR *Str2 )
 {
 #ifdef UNICODE
@@ -1556,7 +1556,7 @@ extern int NS_strstr2Dx(    const TCHAR *Str1, const TCHAR *Str2 )
 #endif // UNICODE
 }
 
-// strrstr �Ɠ����̋@�\( �}���`�o�C�g������łł͕����R�[�h�`���Ƃ��� SetUseCharCodeFormat �Őݒ肵���`�����g�p����܂� )
+// strrstr と同等の機能( マルチバイト文字列版では文字コード形式として SetUseCharCodeFormat で設定した形式が使用されます )
 extern const TCHAR * NS_strrstrDx( const TCHAR *Str1, const TCHAR *Str2 )
 {
 #ifdef UNICODE
@@ -1566,7 +1566,7 @@ extern const TCHAR * NS_strrstrDx( const TCHAR *Str1, const TCHAR *Str2 )
 #endif // UNICODE
 }
 
-// strrstr �̖߂�l��������擪����̕�����( �S�p������ 1 ���� ) �ɂȂ�������( �}���`�o�C�g������łł͕����R�[�h�`���Ƃ��� SetUseCharCodeFormat �Őݒ肵���`�����g�p����܂� )
+// strrstr の戻り値が文字列先頭からの文字数( 全角文字も 1 扱い ) になったもの( マルチバイト文字列版では文字コード形式として SetUseCharCodeFormat で設定した形式が使用されます )
 extern int NS_strrstr2Dx(   const TCHAR *Str1, const TCHAR *Str2 )
 {
 #ifdef UNICODE
@@ -1576,7 +1576,7 @@ extern int NS_strrstr2Dx(   const TCHAR *Str1, const TCHAR *Str2 )
 #endif // UNICODE
 }
 
-// strchr �Ɠ����̋@�\( �}���`�o�C�g������łł͕����R�[�h�`���Ƃ��� SetUseCharCodeFormat �Őݒ肵���`�����g�p����܂� )
+// strchr と同等の機能( マルチバイト文字列版では文字コード形式として SetUseCharCodeFormat で設定した形式が使用されます )
 extern const TCHAR * NS_strchrDx(   const TCHAR *Str, DWORD CharCode )
 {
 #ifdef UNICODE
@@ -1586,7 +1586,7 @@ extern const TCHAR * NS_strchrDx(   const TCHAR *Str, DWORD CharCode )
 #endif // UNICODE
 }
 
-// strchr �̖߂�l��������擪����̕�����( �S�p������ 1 ���� ) �ɂȂ�������( �}���`�o�C�g������łł͕����R�[�h�`���Ƃ��� SetUseCharCodeFormat �Őݒ肵���`�����g�p����܂� )
+// strchr の戻り値が文字列先頭からの文字数( 全角文字も 1 扱い ) になったもの( マルチバイト文字列版では文字コード形式として SetUseCharCodeFormat で設定した形式が使用されます )
 extern int NS_strchr2Dx( const TCHAR *Str, DWORD CharCode )
 {
 #ifdef UNICODE
@@ -1596,7 +1596,7 @@ extern int NS_strchr2Dx( const TCHAR *Str, DWORD CharCode )
 #endif // UNICODE
 }
 
-// strrchr �Ɠ����̋@�\( �}���`�o�C�g������łł͕����R�[�h�`���Ƃ��� SetUseCharCodeFormat �Őݒ肵���`�����g�p����܂� )
+// strrchr と同等の機能( マルチバイト文字列版では文字コード形式として SetUseCharCodeFormat で設定した形式が使用されます )
 extern const TCHAR * NS_strrchrDx(  const TCHAR *Str, DWORD CharCode )
 {
 #ifdef UNICODE
@@ -1606,7 +1606,7 @@ extern const TCHAR * NS_strrchrDx(  const TCHAR *Str, DWORD CharCode )
 #endif // UNICODE
 }
 
-// strrchr �̖߂�l��������擪����̕�����( �S�p������ 1 ���� ) �ɂȂ�������( �}���`�o�C�g������łł͕����R�[�h�`���Ƃ��� SetUseCharCodeFormat �Őݒ肵���`�����g�p����܂� )
+// strrchr の戻り値が文字列先頭からの文字数( 全角文字も 1 扱い ) になったもの( マルチバイト文字列版では文字コード形式として SetUseCharCodeFormat で設定した形式が使用されます )
 extern int NS_strrchr2Dx(   const TCHAR *Str, DWORD CharCode )
 {
 #ifdef UNICODE
@@ -1616,7 +1616,7 @@ extern int NS_strrchr2Dx(   const TCHAR *Str, DWORD CharCode )
 #endif // UNICODE
 }
 
-// strupr �Ɠ����̋@�\( �}���`�o�C�g������łł͕����R�[�h�`���Ƃ��� SetUseCharCodeFormat �Őݒ肵���`�����g�p����܂� )
+// strupr と同等の機能( マルチバイト文字列版では文字コード形式として SetUseCharCodeFormat で設定した形式が使用されます )
 extern TCHAR *NS_struprDx(   TCHAR *Str )
 {
 #ifdef UNICODE
@@ -1626,7 +1626,7 @@ extern TCHAR *NS_struprDx(   TCHAR *Str )
 #endif // UNICODE
 }
 
-// vsprintf �Ɠ����̋@�\( �}���`�o�C�g������łł͕����R�[�h�`���Ƃ��� SetUseCharCodeFormat �Őݒ肵���`�����g�p����܂� )
+// vsprintf と同等の機能( マルチバイト文字列版では文字コード形式として SetUseCharCodeFormat で設定した形式が使用されます )
 extern int NS_vsprintfDx( TCHAR *Buffer, const TCHAR *FormatString, va_list Arg )
 {
 #ifdef UNICODE
@@ -1636,7 +1636,7 @@ extern int NS_vsprintfDx( TCHAR *Buffer, const TCHAR *FormatString, va_list Arg 
 #endif // UNICODE
 }
 
-// vsprintf �Ɠ����̋@�\( �}���`�o�C�g������łł͕����R�[�h�`���Ƃ��� SetUseCharCodeFormat �Őݒ肵���`�����g�p����܂� )
+// vsprintf と同等の機能( マルチバイト文字列版では文字コード形式として SetUseCharCodeFormat で設定した形式が使用されます )
 extern int NS_vsnprintfDx( TCHAR *Buffer, size_t BufferSize, const TCHAR *FormatString, va_list Arg )
 {
 #ifdef UNICODE
@@ -1646,7 +1646,7 @@ extern int NS_vsnprintfDx( TCHAR *Buffer, size_t BufferSize, const TCHAR *Format
 #endif // UNICODE
 }
 
-// sprintf �Ɠ����̋@�\( �}���`�o�C�g������łł͕����R�[�h�`���Ƃ��� SetUseCharCodeFormat �Őݒ肵���`�����g�p����܂� )
+// sprintf と同等の機能( マルチバイト文字列版では文字コード形式として SetUseCharCodeFormat で設定した形式が使用されます )
 extern int NS_sprintfDx(  TCHAR *Buffer, const TCHAR *FormatString, ... )
 {
 	int Result ;
@@ -1659,7 +1659,7 @@ extern int NS_sprintfDx(  TCHAR *Buffer, const TCHAR *FormatString, ... )
 	return Result ;
 }
 
-// sprintf �Ɠ����̋@�\( �}���`�o�C�g������łł͕����R�[�h�`���Ƃ��� SetUseCharCodeFormat �Őݒ肵���`�����g�p����܂� )
+// sprintf と同等の機能( マルチバイト文字列版では文字コード形式として SetUseCharCodeFormat で設定した形式が使用されます )
 extern int NS_snprintfDx(  TCHAR *Buffer, size_t BufferSize, const TCHAR *FormatString, ... )
 {
 	int Result ;
@@ -1672,7 +1672,7 @@ extern int NS_snprintfDx(  TCHAR *Buffer, size_t BufferSize, const TCHAR *Format
 	return Result ;
 }
 
-// itoa �Ɠ����̋@�\( �}���`�o�C�g������łł͕����R�[�h�`���Ƃ��� SetUseCharCodeFormat �Őݒ肵���`�����g�p����܂� )
+// itoa と同等の機能( マルチバイト文字列版では文字コード形式として SetUseCharCodeFormat で設定した形式が使用されます )
 extern TCHAR *NS_itoaDx(     int Value, TCHAR *Buffer, int Radix )
 {
 #ifdef UNICODE
@@ -1682,7 +1682,7 @@ extern TCHAR *NS_itoaDx(     int Value, TCHAR *Buffer, int Radix )
 #endif // UNICODE
 }
 
-// itoa_s �Ɠ����̋@�\( �}���`�o�C�g������łł͕����R�[�h�`���Ƃ��� SetUseCharCodeFormat �Őݒ肵���`�����g�p����܂� )
+// itoa_s と同等の機能( マルチバイト文字列版では文字コード形式として SetUseCharCodeFormat で設定した形式が使用されます )
 extern TCHAR *NS_itoa_sDx(     int Value, TCHAR *Buffer, size_t BufferBytes, int Radix )
 {
 #ifdef UNICODE
@@ -1692,7 +1692,7 @@ extern TCHAR *NS_itoa_sDx(     int Value, TCHAR *Buffer, size_t BufferBytes, int
 #endif // UNICODE
 }
 
-// atoi �Ɠ����̋@�\( �}���`�o�C�g������łł͕����R�[�h�`���Ƃ��� SetUseCharCodeFormat �Őݒ肵���`�����g�p����܂� )
+// atoi と同等の機能( マルチバイト文字列版では文字コード形式として SetUseCharCodeFormat で設定した形式が使用されます )
 extern int NS_atoiDx(     const TCHAR *Str )
 {
 #ifdef UNICODE
@@ -1702,7 +1702,7 @@ extern int NS_atoiDx(     const TCHAR *Str )
 #endif // UNICODE
 }
 
-// atof �Ɠ����̋@�\( �}���`�o�C�g������łł͕����R�[�h�`���Ƃ��� SetUseCharCodeFormat �Őݒ肵���`�����g�p����܂� )
+// atof と同等の機能( マルチバイト文字列版では文字コード形式として SetUseCharCodeFormat で設定した形式が使用されます )
 extern double NS_atofDx(     const TCHAR *Str )
 {
 #ifdef UNICODE
@@ -1712,7 +1712,7 @@ extern double NS_atofDx(     const TCHAR *Str )
 #endif // UNICODE
 }
 
-// vsscanf �Ɠ����̋@�\( �}���`�o�C�g������łł͕����R�[�h�`���Ƃ��� SetUseCharCodeFormat �Őݒ肵���`�����g�p����܂� )
+// vsscanf と同等の機能( マルチバイト文字列版では文字コード形式として SetUseCharCodeFormat で設定した形式が使用されます )
 extern int NS_vsscanfDx(  const TCHAR *String, const TCHAR *FormatString, va_list Arg )
 {
 #ifdef UNICODE
@@ -1722,7 +1722,7 @@ extern int NS_vsscanfDx(  const TCHAR *String, const TCHAR *FormatString, va_lis
 #endif // UNICODE
 }
 
-// sscanf �Ɠ����̋@�\( �}���`�o�C�g������łł͕����R�[�h�`���Ƃ��� SetUseCharCodeFormat �Őݒ肵���`�����g�p����܂� )
+// sscanf と同等の機能( マルチバイト文字列版では文字コード形式として SetUseCharCodeFormat で設定した形式が使用されます )
 extern int NS_sscanfDx(   const TCHAR *String, const TCHAR *FormatString, ... )
 {
 	int Result ;

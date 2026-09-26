@@ -1,6 +1,6 @@
 // -------------------------------------------------------------------------------
 // 
-// 		‚c‚wƒ‰ƒCƒuƒ‰ƒŠ		Android—pJavaŠÖŒWƒwƒbƒ_ƒtƒ@ƒCƒ‹
+// 		ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒª		Androidç”¨Javaé–¢ä¿‚ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«
 // 
 // 				Ver 3.25a
 // 
@@ -9,7 +9,7 @@
 #ifndef DX_JAVAANDROID_H
 #define DX_JAVAANDROID_H
 
-// ƒCƒ“ƒNƒ‹[ƒh ------------------------------------------------------------------
+// ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ ------------------------------------------------------------------
 #include "../DxCompileConfig.h"
 #include <android/configuration.h>
 #include <android/native_activity.h>
@@ -21,11 +21,11 @@ namespace DxLib
 
 #endif // DX_NON_NAMESPACE
 
-// ƒ}ƒNƒ’è‹` --------------------------------------------------------------------
+// ãƒã‚¯ãƒ­å®šç¾© --------------------------------------------------------------------
 
 #define JAVAANDR		g_JavaAndroidInfo	
 
-// \‘¢‘Ì’è‹` --------------------------------------------------------------------
+// æ§‹é€ ä½“å®šç¾© --------------------------------------------------------------------
 
 struct DXLIB_JAVA_ANDROID_INFO
 {
@@ -506,63 +506,63 @@ struct DXLIB_JAVA_ANDROID_INFO
 	jstring					fieldstring_AudioManager_PROPERTY_OUTPUT_SAMPLE_RATE ;
 } ;
 
-// ƒe[ƒuƒ‹-----------------------------------------------------------------------
+// ãƒ†ãƒ¼ãƒ–ãƒ«-----------------------------------------------------------------------
 
-// “à•”‘åˆæ•Ï”éŒ¾ --------------------------------------------------------------
+// å†…éƒ¨å¤§åŸŸå¤‰æ•°å®£è¨€ --------------------------------------------------------------
 
 extern DXLIB_JAVA_ANDROID_INFO g_JavaAndroidInfo ;
 
-// ŠÖ”ƒvƒƒgƒ^ƒCƒvéŒ¾-----------------------------------------------------------
+// é–¢æ•°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€-----------------------------------------------------------
 
-// Java ‚ÌƒNƒ‰ƒX‚âƒƒ\ƒbƒh‚ÌQÆ‚ğæ“¾‚·‚é
+// Java ã®ã‚¯ãƒ©ã‚¹ã‚„ãƒ¡ã‚½ãƒƒãƒ‰ã®å‚ç…§ã‚’å–å¾—ã™ã‚‹
 extern int SetupJavaAndroidInfo( JNIEnv *env ) ;
 
-// Java ‚ÌƒNƒ‰ƒX‚âƒƒ\ƒbƒh‚ÌQÆ‚ÌŒãn––‚ğ‚·‚é
+// Java ã®ã‚¯ãƒ©ã‚¹ã‚„ãƒ¡ã‚½ãƒƒãƒ‰ã®å‚ç…§ã®å¾Œå§‹æœ«ã‚’ã™ã‚‹
 extern int TerminateJavaAndroidInfo( JNIEnv *env ) ;
 
-// Java ‚ÌƒNƒ‰ƒX‚ÌƒOƒ[ƒoƒ‹QÆ‚ğæ“¾‚·‚é
+// Java ã®ã‚¯ãƒ©ã‚¹ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«å‚ç…§ã‚’å–å¾—ã™ã‚‹
 extern jclass Java_FindClass_Global( JNIEnv *env, const char *name ) ;
 
-// Java ‚ÌƒXƒ^ƒeƒBƒbƒNƒIƒuƒWƒFƒNƒgƒtƒB[ƒ‹ƒh‚ÌƒOƒ[ƒoƒ‹QÆ‚ğæ“¾‚·‚é
+// Java ã®ã‚¹ã‚¿ãƒ†ã‚£ãƒƒã‚¯ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«å‚ç…§ã‚’å–å¾—ã™ã‚‹
 extern jobject Java_GetStaticObjectField_Global( JNIEnv *env, jclass clazz, jfieldID fieldID ) ;
 
-// Java ‚ÌƒXƒ^ƒeƒBƒbƒN•¶š—ñƒtƒB[ƒ‹ƒh‚ÌƒOƒ[ƒoƒ‹QÆ‚ğæ“¾‚·‚é
+// Java ã®ã‚¹ã‚¿ãƒ†ã‚£ãƒƒã‚¯æ–‡å­—åˆ—ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«å‚ç…§ã‚’å–å¾—ã™ã‚‹
 extern jstring Java_GetStaticStringField_Global( JNIEnv *env, jclass clazz, jfieldID fieldID ) ;
 
-// TCHAR ‚Ì•¶š—ñ‚©‚ç jstring ‚ğì¬‚·‚é( Local Ref )
+// TCHAR ã®æ–‡å­—åˆ—ã‹ã‚‰ jstring ã‚’ä½œæˆã™ã‚‹( Local Ref )
 extern jstring Java_Create_jstring_From_TCHAR( JNIEnv *env, const TCHAR *tchar_string ) ;
 
-// wchar_t ‚Ì•¶š—ñ‚©‚ç jstring ‚ğì¬‚·‚é( Local Ref )
+// wchar_t ã®æ–‡å­—åˆ—ã‹ã‚‰ jstring ã‚’ä½œæˆã™ã‚‹( Local Ref )
 extern jstring Java_Create_jstring_From_wchar_t( JNIEnv *env, const wchar_t *wchar_t_string ) ;
 
-// wchar_t ‚Ì•¶š—ñ‚©‚ç CharSequence ‚ğì¬‚·‚é( Local Ref )
+// wchar_t ã®æ–‡å­—åˆ—ã‹ã‚‰ CharSequence ã‚’ä½œæˆã™ã‚‹( Local Ref )
 extern jobject Java_Create_CharSequence_From_wchar_t( JNIEnv *env, const wchar_t *wchar_t_string ) ;
 
-// jstring ‚©‚ç wchar_t ‚Ì•¶š—ñ‚ğì¬‚·‚é( DXFREE ‚Å‰ğ•ú‚·‚é )
+// jstring ã‹ã‚‰ wchar_t ã®æ–‡å­—åˆ—ã‚’ä½œæˆã™ã‚‹( DXFREE ã§è§£æ”¾ã™ã‚‹ )
 extern int Java_Create_wchar_t_string_From_jstring( JNIEnv *env, jstring _jstring, wchar_t **wchar_t_stringP ) ;
 
-// jstring ‚©‚ç TCHAR ‚Ì•¶š—ñ‚ğì¬‚·‚é( DXFREE ‚Å‰ğ•ú‚·‚é )
+// jstring ã‹ã‚‰ TCHAR ã®æ–‡å­—åˆ—ã‚’ä½œæˆã™ã‚‹( DXFREE ã§è§£æ”¾ã™ã‚‹ )
 extern int Java_Create_TCHAR_string_From_jstring( JNIEnv *env, jstring _jstring, TCHAR **tchar_stringP ) ;
 
-// jstring ‚©‚ç char ‚Ì•¶š—ñ‚ğì¬‚·‚é( DXFREE ‚Å‰ğ•ú‚·‚é )
+// jstring ã‹ã‚‰ char ã®æ–‡å­—åˆ—ã‚’ä½œæˆã™ã‚‹( DXFREE ã§è§£æ”¾ã™ã‚‹ )
 extern int Java_Create_char_string_From_jstring( JNIEnv *env, jstring _jstring, char **char_stringP ) ;
 
-// VECTOR ‚©‚ç’·‚³ 3 ‚Ì float Array ‚ğì¬‚·‚é( Local Ref )
+// VECTOR ã‹ã‚‰é•·ã• 3 ã® float Array ã‚’ä½œæˆã™ã‚‹( Local Ref )
 extern jfloatArray Java_Create_floatArray_From_VECTOR( JNIEnv *env, const struct tagVECTOR *Vector ) ;
 
-// ’·‚³ 3 ˆÈã‚Ì float Array ‚©‚ç VECTOR ‚Ì’l‚ğæ“¾‚·‚é( 0:³íI—¹  -1:ƒGƒ‰[ )
+// é•·ã• 3 ä»¥ä¸Šã® float Array ã‹ã‚‰ VECTOR ã®å€¤ã‚’å–å¾—ã™ã‚‹( 0:æ­£å¸¸çµ‚äº†  -1:ã‚¨ãƒ©ãƒ¼ )
 extern int Java_Get_VECTOR_From_floatArray( JNIEnv *env, jfloatArray floatArray, struct tagVECTOR *Buffer ) ;
 
-// int‚Ì”z—ñ‚©‚ç jlongArray ‚ğì¬‚·‚é
+// intã®é…åˆ—ã‹ã‚‰ jlongArray ã‚’ä½œæˆã™ã‚‹
 extern jlongArray Java_Create_longArray_From_intArray( JNIEnv *env, const int *intArray, int intArrayLength ) ;
 
-// int‚Ì”z—ñ‚©‚ç jintArray ‚ğì¬‚·‚é
+// intã®é…åˆ—ã‹ã‚‰ jintArray ã‚’ä½œæˆã™ã‚‹
 extern jintArray Java_Create_intArray_From_intArray( JNIEnv *env, const int *intArray, int intArrayLength ) ;
 
-// float‚Ì”z—ñ‚©‚ç jfloatArray ‚ğì¬‚·‚é
+// floatã®é…åˆ—ã‹ã‚‰ jfloatArray ã‚’ä½œæˆã™ã‚‹
 extern jfloatArray Java_Create_floatArray_From_floatArray( JNIEnv *env, const int *floatArray, int floatArrayLength ) ;
 
-// double‚Ì”z—ñ‚©‚ç jdoubleArray ‚ğì¬‚·‚é
+// doubleã®é…åˆ—ã‹ã‚‰ jdoubleArray ã‚’ä½œæˆã™ã‚‹
 extern jdoubleArray Java_Create_doubleArray_From_doubleArray( JNIEnv *env, const int *doubleArray, int doubleArrayLength ) ;
 
 #ifndef DX_NON_NAMESPACE

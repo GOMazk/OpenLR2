@@ -1,19 +1,19 @@
 //-----------------------------------------------------------------------------
 // 
-// 		‚c‚wƒ‰ƒCƒuƒ‰ƒŠ		WindowsOS—p•`‰æˆ—ƒvƒƒOƒ‰ƒ€
+// 		ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒª		WindowsOSç”¨æç”»å‡¦ç†ãƒ—ãƒ­ã‚°ãƒ©ãƒ 
 // 
 //  	Ver 3.25a
 // 
 //-----------------------------------------------------------------------------
 
-// ‚c‚wƒ‰ƒCƒuƒ‰ƒŠì¬—p’è‹`
+// ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªä½œæˆæ™‚ç”¨å®šç¾©
 #define DX_MAKE
 
 #include "DxGraphicsWin.h"
 
 #ifndef DX_NON_GRAPHICS
 
-// ƒCƒ“ƒNƒ‹[ƒh ---------------------------------------------------------------
+// ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ ---------------------------------------------------------------
 #include "DxWindow.h"
 #include "DxWinAPI.h"
 #include "DxGuid.h"
@@ -34,28 +34,28 @@ namespace DxLib
 
 #endif // DX_NON_NAMESPACE
 
-// ƒ}ƒNƒ’è‹` -----------------------------------------------------------------
+// ãƒã‚¯ãƒ­å®šç¾© -----------------------------------------------------------------
 
 #ifndef MONITORINFOF_PRIMARY
 	#define MONITORINFOF_PRIMARY        0x00000001
 #endif
 
-// \‘¢‘ÌéŒ¾ -----------------------------------------------------------------
+// æ§‹é€ ä½“å®£è¨€ -----------------------------------------------------------------
 
-// ƒf[ƒ^’è‹` -----------------------------------------------------------------
+// ãƒ‡ãƒ¼ã‚¿å®šç¾© -----------------------------------------------------------------
 
-static int UseGDIFlag ;							// GDI ‚ğg—p‚·‚é‚©‚Ç‚¤‚©
+static int UseGDIFlag ;							// GDI ã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹
 
 GRAPHICSMANAGE_WIN GraphicsManage_Win ; 
 
-// ŠÖ”éŒ¾ -------------------------------------------------------------------
+// é–¢æ•°å®£è¨€ -------------------------------------------------------------------
 
-static int UseChangeDisplaySettings( void ) ;									// ChangeDisplaySettings ‚ğg—p‚µ‚Ä‰æ–Êƒ‚[ƒh‚ğ•ÏX‚·‚é
+static int UseChangeDisplaySettings( void ) ;									// ChangeDisplaySettings ã‚’ä½¿ç”¨ã—ã¦ç”»é¢ãƒ¢ãƒ¼ãƒ‰ã‚’å¤‰æ›´ã™ã‚‹
 
-// ƒvƒƒOƒ‰ƒ€ -----------------------------------------------------------------
+// ãƒ—ãƒ­ã‚°ãƒ©ãƒ  -----------------------------------------------------------------
 
 
-// DirectX ‚ÌƒIƒuƒWƒFƒNƒg‚ğ‰ğ•ú‚·‚é
+// DirectX ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’è§£æ”¾ã™ã‚‹
 extern void Graphics_ReleaseDirectXObject( void )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -77,7 +77,7 @@ extern void Graphics_ReleaseDirectXObject( void )
 	}
 }
 
-// ƒƒbƒZ[ƒWƒ‹[ƒv‚És‚¤‚×‚«ˆ—‚ğÀs‚·‚é
+// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ«ãƒ¼ãƒ—æ™‚ã«è¡Œã†ã¹ãå‡¦ç†ã‚’å®Ÿè¡Œã™ã‚‹
 extern void Graphics_Win_MessageLoop_Process( void )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -89,10 +89,10 @@ extern void Graphics_Win_MessageLoop_Process( void )
 
 #ifndef DX_NON_DIRECT3D9
 	case GRAPHICS_API_DIRECT3D9_WIN32 :
-		// ŠÇ—ƒeƒNƒXƒ`ƒƒ‚Ö‚Ì“]‘——p‚ÌƒVƒXƒeƒ€ƒƒ‚ƒŠƒeƒNƒXƒ`ƒƒ‚Ì’èŠúˆ—‚ğs‚¤
+		// ç®¡ç†ãƒ†ã‚¯ã‚¹ãƒãƒ£ã¸ã®è»¢é€ç”¨ã®ã‚·ã‚¹ãƒ†ãƒ ãƒ¡ãƒ¢ãƒªãƒ†ã‚¯ã‚¹ãƒãƒ£ã®å®šæœŸå‡¦ç†ã‚’è¡Œã†
 		Graphics_D3D9_SysMemTextureProcess() ;
 
-		// ŠÇ—ƒeƒNƒXƒ`ƒƒ‚Ö‚Ì“]‘——p‚ÌƒVƒXƒeƒ€ƒƒ‚ƒŠƒT[ƒtƒFƒX‚Ì’èŠúˆ—‚ğs‚¤
+		// ç®¡ç†ãƒ†ã‚¯ã‚¹ãƒãƒ£ã¸ã®è»¢é€ç”¨ã®ã‚·ã‚¹ãƒ†ãƒ ãƒ¡ãƒ¢ãƒªã‚µãƒ¼ãƒ•ã‚§ã‚¹ã®å®šæœŸå‡¦ç†ã‚’è¡Œã†
 		Graphics_D3D9_SysMemSurfaceProcess() ;
 		break ;
 #endif // DX_NON_DIRECT3D9
@@ -102,7 +102,7 @@ extern void Graphics_Win_MessageLoop_Process( void )
 	}
 }
 
-// WM_ACTIVATE ƒƒbƒZ[ƒW‚Ìˆ—‚ÅAƒEƒCƒ“ƒhƒEƒ‚[ƒh‚ÉƒAƒNƒeƒBƒu‚É‚È‚Á‚½Û‚ÉŒÄ‚Î‚ê‚éŠÖ”
+// WM_ACTIVATE ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®å‡¦ç†ã§ã€ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ¢ãƒ¼ãƒ‰æ™‚ã«ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ãªã£ãŸéš›ã«å‘¼ã°ã‚Œã‚‹é–¢æ•°
 extern void Graphics_Win_WM_ACTIVATE_ActiveProcess( void )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -135,105 +135,105 @@ extern void Graphics_Win_WM_ACTIVATE_ActiveProcess( void )
 
 
 
-// ‰æ‘œ‚©‚çƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ğì¬‚·‚éŠÖ”
+// ç”»åƒã‹ã‚‰ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã‚’ä½œæˆã™ã‚‹é–¢æ•°
 
-// ƒŠƒ\[ƒX‚©‚ç‚a‚l‚oƒtƒ@ƒCƒ‹‚ğ“Ç‚İ‚Ş
+// ãƒªã‚½ãƒ¼ã‚¹ã‹ã‚‰ï¼¢ï¼­ï¼°ãƒ•ã‚¡ã‚¤ãƒ«ã‚’èª­ã¿è¾¼ã‚€
 extern int NS_LoadGraphToResource( int ResourceID )
 {
 	BITMAPINFO *BmpInfo ;
 	void *GraphData ;
 	int NewHandle ;
 
-	// ƒŠƒ\[ƒX‚©‚ç‰æ‘œƒnƒ“ƒhƒ‹ì¬‚É•K—v‚Èƒf[ƒ^‚ğæ“¾‚·‚é
+	// ãƒªã‚½ãƒ¼ã‚¹ã‹ã‚‰ç”»åƒãƒãƒ³ãƒ‰ãƒ«ä½œæˆã«å¿…è¦ãªãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—ã™ã‚‹
 	if( GetBmpImageToResource( ResourceID, &BmpInfo, &GraphData ) == -1 )
 		return -1 ;
 
-	// ƒOƒ‰ƒtƒBƒbƒN‚Ìì¬
+	// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®ä½œæˆ
 	NewHandle = NS_CreateGraphFromBmp( BmpInfo, GraphData, NULL, NULL, TRUE, FALSE ) ;
 
-	// ƒƒ‚ƒŠ‚Ì‰ğ•ú
+	// ãƒ¡ãƒ¢ãƒªã®è§£æ”¾
 	DXFREE( BmpInfo ) ;
 	DXFREE( GraphData ) ;
 
-	// ƒnƒ“ƒhƒ‹‚ğ•Ô‚·
+	// ãƒãƒ³ãƒ‰ãƒ«ã‚’è¿”ã™
 	return NewHandle ;
 }
 
-// ƒŠƒ\[ƒX‚©‚ç‰æ‘œƒf[ƒ^‚ğ•ªŠ„“Ç‚İ‚İ‚·‚é
+// ãƒªã‚½ãƒ¼ã‚¹ã‹ã‚‰ç”»åƒãƒ‡ãƒ¼ã‚¿ã‚’åˆ†å‰²èª­ã¿è¾¼ã¿ã™ã‚‹
 extern int NS_LoadDivGraphToResource( int ResourceID, int AllNum, int XNum, int YNum, int XSize, int YSize, int *HandleArray )
 {
 	BITMAPINFO *BmpInfo ;
 	void *GraphData ;
 
-	// ƒŠƒ\[ƒX‚©‚ç‰æ‘œƒnƒ“ƒhƒ‹ì¬‚É•K—v‚Èƒf[ƒ^‚ğæ“¾‚·‚é
+	// ãƒªã‚½ãƒ¼ã‚¹ã‹ã‚‰ç”»åƒãƒãƒ³ãƒ‰ãƒ«ä½œæˆã«å¿…è¦ãªãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—ã™ã‚‹
 	if( GetBmpImageToResource( ResourceID, &BmpInfo, &GraphData ) == -1 )
 		return -1 ;
 
-	// ƒOƒ‰ƒtƒBƒbƒN‚Ìì¬
+	// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®ä½œæˆ
 	NS_CreateDivGraphFromBmp( BmpInfo, GraphData, AllNum, XNum, YNum, XSize, YSize, HandleArray, TRUE, FALSE, NULL, NULL ) ;
 
-	// ƒƒ‚ƒŠ‚Ì‰ğ•ú
+	// ãƒ¡ãƒ¢ãƒªã®è§£æ”¾
 	DXFREE( BmpInfo ) ;
 	DXFREE( GraphData ) ;
 
-	// ¬Œ÷
+	// æˆåŠŸ
 	return 0 ;
 }
 
-// ƒŠƒ\[ƒX‚©‚ç‰æ‘œƒf[ƒ^‚ğ•ªŠ„“Ç‚İ‚İ‚·‚é
+// ãƒªã‚½ãƒ¼ã‚¹ã‹ã‚‰ç”»åƒãƒ‡ãƒ¼ã‚¿ã‚’åˆ†å‰²èª­ã¿è¾¼ã¿ã™ã‚‹
 extern int NS_LoadDivGraphFToResource( int ResourceID, int AllNum, int XNum, int YNum, float XSize, float YSize, int *HandleArray )
 {
 	BITMAPINFO *BmpInfo ;
 	void *GraphData ;
 
-	// ƒŠƒ\[ƒX‚©‚ç‰æ‘œƒnƒ“ƒhƒ‹ì¬‚É•K—v‚Èƒf[ƒ^‚ğæ“¾‚·‚é
+	// ãƒªã‚½ãƒ¼ã‚¹ã‹ã‚‰ç”»åƒãƒãƒ³ãƒ‰ãƒ«ä½œæˆã«å¿…è¦ãªãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—ã™ã‚‹
 	if( GetBmpImageToResource( ResourceID, &BmpInfo, &GraphData ) == -1 )
 		return -1 ;
 
-	// ƒOƒ‰ƒtƒBƒbƒN‚Ìì¬
+	// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®ä½œæˆ
 	NS_CreateDivGraphFFromBmp( BmpInfo, GraphData, AllNum, XNum, YNum, XSize, YSize, HandleArray, TRUE, FALSE, NULL, NULL ) ;
 
-	// ƒƒ‚ƒŠ‚Ì‰ğ•ú
+	// ãƒ¡ãƒ¢ãƒªã®è§£æ”¾
 	DXFREE( BmpInfo ) ;
 	DXFREE( GraphData ) ;
 
-	// ¬Œ÷
+	// æˆåŠŸ
 	return 0 ;
 }
 
 #ifndef DX_COMPILE_TYPE_C_LANGUAGE
 
-// ƒŠƒ\[ƒX‚©‚çƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‚ğ“Ç‚İ‚Ş
+// ãƒªã‚½ãƒ¼ã‚¹ã‹ã‚‰ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿è¾¼ã‚€
 extern int NS_LoadGraphToResource( const TCHAR *ResourceName, const TCHAR *ResourceType )
 {
 	return NS_LoadGraphToResource2( ResourceName, ResourceType ) ;
 }
 
-// ‰æ‘œƒŠƒ\[ƒX‚©‚çƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ğì¬‚·‚é
+// ç”»åƒãƒªã‚½ãƒ¼ã‚¹ã‹ã‚‰ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã‚’ä½œæˆã™ã‚‹
 extern int NS_LoadGraphToResourceWithStrLen( const TCHAR *ResourceName, size_t ResourceNameLength, const TCHAR *ResourceType, size_t ResourceTypeLength )
 {
 	return NS_LoadGraphToResourceWithStrLen2( ResourceName, ResourceNameLength, ResourceType, ResourceTypeLength ) ;
 }
 
-// ƒŠƒ\[ƒX‚©‚çƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‚ğ•ªŠ„“Ç‚İ‚İ‚·‚é
+// ãƒªã‚½ãƒ¼ã‚¹ã‹ã‚‰ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã‚’åˆ†å‰²èª­ã¿è¾¼ã¿ã™ã‚‹
 extern int NS_LoadDivGraphToResource( const TCHAR *ResourceName, const TCHAR *ResourceType, int AllNum, int XNum, int YNum, int XSize, int YSize, int *HandleArray )
 {
 	return NS_LoadDivGraphToResource2( ResourceName, ResourceType, AllNum, XNum, YNum, XSize, YSize, HandleArray ) ;
 }
 
-// ‰æ‘œƒŠƒ\[ƒX‚ğ•ªŠ„‚µ‚ÄƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ğì¬‚·‚é
+// ç”»åƒãƒªã‚½ãƒ¼ã‚¹ã‚’åˆ†å‰²ã—ã¦ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã‚’ä½œæˆã™ã‚‹
 extern int NS_LoadDivGraphToResourceWithStrLen( const TCHAR *ResourceName, size_t ResourceNameLength, const TCHAR *ResourceType, size_t ResourceTypeLength, int AllNum, int XNum, int YNum, int   XSize, int   YSize, int *HandleArray )
 {
 	return NS_LoadDivGraphToResourceWithStrLen2( ResourceName, ResourceNameLength, ResourceType, ResourceTypeLength, AllNum, XNum, YNum,   XSize,   YSize, HandleArray ) ;
 }
 
-// ƒŠƒ\[ƒX‚©‚çƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‚ğ•ªŠ„“Ç‚İ‚İ‚·‚é
+// ãƒªã‚½ãƒ¼ã‚¹ã‹ã‚‰ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã‚’åˆ†å‰²èª­ã¿è¾¼ã¿ã™ã‚‹
 extern int NS_LoadDivGraphFToResource( const TCHAR *ResourceName, const TCHAR *ResourceType, int AllNum, int XNum, int YNum, float XSize, float YSize, int *HandleArray )
 {
 	return NS_LoadDivGraphFToResource2( ResourceName, ResourceType, AllNum, XNum, YNum, XSize, YSize, HandleArray ) ;
 }
 
-// ‰æ‘œƒŠƒ\[ƒX‚ğ•ªŠ„‚µ‚ÄƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ğì¬‚·‚é( floatŒ^ )
+// ç”»åƒãƒªã‚½ãƒ¼ã‚¹ã‚’åˆ†å‰²ã—ã¦ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã‚’ä½œæˆã™ã‚‹( floatå‹ )
 extern int NS_LoadDivGraphFToResourceWithStrLen( const TCHAR *ResourceName, size_t ResourceNameLength, const TCHAR *ResourceType, size_t ResourceTypeLength, int AllNum, int XNum, int YNum, float XSize, float YSize, int *HandleArray )
 {
 	return NS_LoadDivGraphFToResourceWithStrLen2( ResourceName, ResourceNameLength, ResourceType, ResourceTypeLength, AllNum, XNum, YNum, XSize, YSize, HandleArray ) ;
@@ -241,7 +241,7 @@ extern int NS_LoadDivGraphFToResourceWithStrLen( const TCHAR *ResourceName, size
 
 #endif // DX_COMPILE_TYPE_C_LANGUAGE
 
-// ƒŠƒ\[ƒX‚©‚çƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‚ğ“Ç‚İ‚Ş
+// ãƒªã‚½ãƒ¼ã‚¹ã‹ã‚‰ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿è¾¼ã‚€
 extern int NS_LoadGraphToResource2( const TCHAR *ResourceName, const TCHAR *ResourceType )
 {
 #ifdef UNICODE
@@ -296,7 +296,7 @@ ERR :
 #endif
 }
 
-// ‰æ‘œƒŠƒ\[ƒX‚©‚çƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ğì¬‚·‚é
+// ç”»åƒãƒªã‚½ãƒ¼ã‚¹ã‹ã‚‰ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã‚’ä½œæˆã™ã‚‹
 extern int NS_LoadGraphToResourceWithStrLen2( const TCHAR *ResourceName, size_t ResourceNameLength, const TCHAR *ResourceType, size_t ResourceTypeLength )
 {
 	int Result = -1 ;
@@ -314,26 +314,26 @@ ERR :
 	return Result ;
 }
 
-// ƒŠƒ\[ƒX‚©‚çƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‚ğ“Ç‚İ‚Ş
+// ãƒªã‚½ãƒ¼ã‚¹ã‹ã‚‰ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿è¾¼ã‚€
 extern int LoadGraphToResource_WCHAR_T( const wchar_t *ResourceName, const wchar_t *ResourceType )
 {
 	void *Image ;
 	size_t ImageSize ;
 	int Result ;
 
-	// ƒŠƒ\[ƒX‚Ìî•ñ‚ğæ“¾
+	// ãƒªã‚½ãƒ¼ã‚¹ã®æƒ…å ±ã‚’å–å¾—
 	if( GetResourceInfo_WCHAR_T( ResourceName, ResourceType, &Image, &ImageSize ) < 0 )
 	{
 		return -1 ;
 	}
 
-	// ƒnƒ“ƒhƒ‹‚Ìì¬
+	// ãƒãƒ³ãƒ‰ãƒ«ã®ä½œæˆ
 	Result = NS_CreateGraphFromMem( Image, ( int )ImageSize, NULL, 0, TRUE, FALSE ) ;
 
 	return Result ;
 }
 
-// ƒŠƒ\[ƒX‚©‚çƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‚ğ•ªŠ„“Ç‚İ‚İ‚·‚é
+// ãƒªã‚½ãƒ¼ã‚¹ã‹ã‚‰ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã‚’åˆ†å‰²èª­ã¿è¾¼ã¿ã™ã‚‹
 extern int NS_LoadDivGraphToResource2( const TCHAR *ResourceName, const TCHAR *ResourceType, int AllNum, int XNum, int YNum, int XSize, int YSize, int *HandleArray )
 {
 #ifdef UNICODE
@@ -389,7 +389,7 @@ ERR :
 #endif
 }
 
-// ‰æ‘œƒŠƒ\[ƒX‚ğ•ªŠ„‚µ‚ÄƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ğì¬‚·‚é
+// ç”»åƒãƒªã‚½ãƒ¼ã‚¹ã‚’åˆ†å‰²ã—ã¦ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã‚’ä½œæˆã™ã‚‹
 extern int NS_LoadDivGraphToResourceWithStrLen2( const TCHAR *ResourceName, size_t ResourceNameLength, const TCHAR *ResourceType, size_t ResourceTypeLength, int AllNum, int XNum, int YNum, int   XSize, int   YSize, int *HandleArray )
 {
 	int Result = -1 ;
@@ -407,7 +407,7 @@ ERR :
 	return Result ;
 }
 
-// ƒŠƒ\[ƒX‚©‚çƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‚ğ•ªŠ„“Ç‚İ‚İ‚·‚é
+// ãƒªã‚½ãƒ¼ã‚¹ã‹ã‚‰ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã‚’åˆ†å‰²èª­ã¿è¾¼ã¿ã™ã‚‹
 extern int NS_LoadDivGraphFToResource2( const TCHAR *ResourceName, const TCHAR *ResourceType, int AllNum, int XNum, int YNum, float XSize, float YSize, int *HandleArray )
 {
 #ifdef UNICODE
@@ -463,7 +463,7 @@ ERR :
 #endif
 }
 
-// ‰æ‘œƒŠƒ\[ƒX‚ğ•ªŠ„‚µ‚ÄƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ğì¬‚·‚é( floatŒ^ )
+// ç”»åƒãƒªã‚½ãƒ¼ã‚¹ã‚’åˆ†å‰²ã—ã¦ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã‚’ä½œæˆã™ã‚‹( floatå‹ )
 extern int NS_LoadDivGraphFToResourceWithStrLen2( const TCHAR *ResourceName, size_t ResourceNameLength, const TCHAR *ResourceType, size_t ResourceTypeLength, int AllNum, int XNum, int YNum, float XSize, float YSize, int *HandleArray )
 {
 	int Result = -1 ;
@@ -483,7 +483,7 @@ ERR :
 
 #ifndef DX_NON_DIRECT3D11
 
-// ID3D11Texture2D ‚©‚çƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ğì¬‚·‚é
+// ID3D11Texture2D ã‹ã‚‰ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã‚’ä½œæˆã™ã‚‹
 extern int NS_CreateGraphFromID3D11Texture2D( const void *pID3D11Texture2D )
 {
 	SETUP_GRAPHHANDLE_GPARAM GParam ;
@@ -494,18 +494,18 @@ extern int NS_CreateGraphFromID3D11Texture2D( const void *pID3D11Texture2D )
 
 	CheckActiveState() ;
 
-	// î•ñ‚ğæ“¾
+	// æƒ…å ±ã‚’å–å¾—
 	pTexture2D->GetDesc( &Desc ) ;
 	ColorData = Graphics_D3D11_GetD3DFormatColorData( Desc.Format ) ;
 
-	// ƒnƒ“ƒhƒ‹‚Ìì¬
+	// ãƒãƒ³ãƒ‰ãƒ«ã®ä½œæˆ
 	NewGraphHandle = Graphics_Image_AddHandle( GSYS.CreateImage.CreateGraphHandle <= 0 ? -1 : GSYS.CreateImage.CreateGraphHandle, FALSE ) ;
 	if( NewGraphHandle == -1 )
 	{
 		return -1 ;
 	}
 
-	// ƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‰Šú‰»î•ñ‚ÌƒZƒbƒgƒAƒbƒv
+	// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«åˆæœŸåŒ–æƒ…å ±ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 	{
 		Graphics_Image_InitSetupGraphHandleGParam( &GParam ) ;
 		GParam.CreateImageColorBitDepth				= ColorData->ColorBitDepth ;
@@ -560,33 +560,33 @@ extern int NS_CreateGraphFromID3D11Texture2D( const void *pID3D11Texture2D )
 
 #endif // DX_NON_DIRECT3D11
 
-// ƒŠƒ\[ƒX‚©‚çƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‚ğ•ªŠ„“Ç‚İ‚İ‚·‚é
+// ãƒªã‚½ãƒ¼ã‚¹ã‹ã‚‰ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã‚’åˆ†å‰²èª­ã¿è¾¼ã¿ã™ã‚‹
 extern int LoadDivGraphToResource_WCHAR_T( const wchar_t *ResourceName, const wchar_t *ResourceType, int AllNum, int XNum, int YNum, int XSize, int YSize, int *HandleArray )
 {
 	void *Image ;
 	size_t ImageSize ;
 	int Result ;
 
-	// ƒŠƒ\[ƒX‚Ìî•ñ‚ğæ“¾
+	// ãƒªã‚½ãƒ¼ã‚¹ã®æƒ…å ±ã‚’å–å¾—
 	if( GetResourceInfo_WCHAR_T( ResourceName, ResourceType, &Image, &ImageSize ) < 0 ) return -1 ;
 
-	// ƒnƒ“ƒhƒ‹‚Ìì¬
+	// ãƒãƒ³ãƒ‰ãƒ«ã®ä½œæˆ
 	Result = NS_CreateDivGraphFromMem( Image, ( int )ImageSize, AllNum, XNum, YNum, XSize, YSize, HandleArray, TRUE, FALSE, NULL, 0 ) ;
 
 	return Result ;
 }
 
-// ƒŠƒ\[ƒX‚©‚çƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‚ğ•ªŠ„“Ç‚İ‚İ‚·‚é
+// ãƒªã‚½ãƒ¼ã‚¹ã‹ã‚‰ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã‚’åˆ†å‰²èª­ã¿è¾¼ã¿ã™ã‚‹
 extern int LoadDivGraphFToResource_WCHAR_T( const wchar_t *ResourceName, const wchar_t *ResourceType, int AllNum, int XNum, int YNum, float XSize, float YSize, int *HandleArray )
 {
 	void *Image ;
 	size_t ImageSize ;
 	int Result ;
 
-	// ƒŠƒ\[ƒX‚Ìî•ñ‚ğæ“¾
+	// ãƒªã‚½ãƒ¼ã‚¹ã®æƒ…å ±ã‚’å–å¾—
 	if( GetResourceInfo_WCHAR_T( ResourceName, ResourceType, &Image, &ImageSize ) < 0 ) return -1 ;
 
-	// ƒnƒ“ƒhƒ‹‚Ìì¬
+	// ãƒãƒ³ãƒ‰ãƒ«ã®ä½œæˆ
 	Result = NS_CreateDivGraphFFromMem( Image, ( int )ImageSize, AllNum, XNum, YNum, XSize, YSize, HandleArray, TRUE, FALSE, NULL, 0 ) ;
 
 	return Result ;
@@ -602,20 +602,20 @@ extern int LoadDivGraphFToResource_WCHAR_T( const wchar_t *ResourceName, const w
 
 
 
-// ‰æ‘œî•ñŠÖŒWŠÖ”
+// ç”»åƒæƒ…å ±é–¢ä¿‚é–¢æ•°
 
-// ƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ª‚Â IDirect3DTexture9 ‚ğæ“¾‚·‚é( Direct3D9 ‚ğg—p‚µ‚Ä‚¢‚éê‡‚Ì‚İ—LŒø )( –ß‚è’l‚ğ IDirect3DTexture9 * ‚ÉƒLƒƒƒXƒg‚µ‚Ä‚­‚¾‚³‚¢ )
+// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ãŒæŒã¤ IDirect3DTexture9 ã‚’å–å¾—ã™ã‚‹( Direct3D9 ã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹å ´åˆã®ã¿æœ‰åŠ¹ )( æˆ»ã‚Šå€¤ã‚’ IDirect3DTexture9 * ã«ã‚­ãƒ£ã‚¹ãƒˆã—ã¦ãã ã•ã„ )
 extern	const void*	NS_GetGraphIDirect3DTexture9( int GrHandle )
 {
 	IMAGEDATA *Image ;
 
-	// ‰Šú‰»”»’è
+	// åˆæœŸåŒ–åˆ¤å®š
 	if( DxSysData.DxLib_InitializeFlag == FALSE )
 	{
 		return NULL ;
 	}
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( GRAPHCHK( GrHandle, Image ) )
 	{
 		return NULL ;
@@ -638,18 +638,18 @@ extern	const void*	NS_GetGraphIDirect3DTexture9( int GrHandle )
 	}
 }
 
-// ƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ª‚Â ID3D11Texture2D ‚ğæ“¾‚·‚é( Direct3D11 ‚ğg—p‚µ‚Ä‚¢‚éê‡‚Ì‚İ—LŒø )( –ß‚è’l‚ğ ID3D11Texture2D * ‚ÉƒLƒƒƒXƒg‚µ‚Ä‚­‚¾‚³‚¢ )
+// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ãŒæŒã¤ ID3D11Texture2D ã‚’å–å¾—ã™ã‚‹( Direct3D11 ã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹å ´åˆã®ã¿æœ‰åŠ¹ )( æˆ»ã‚Šå€¤ã‚’ ID3D11Texture2D * ã«ã‚­ãƒ£ã‚¹ãƒˆã—ã¦ãã ã•ã„ )
 extern	const void*	NS_GetGraphID3D11Texture2D( int GrHandle )
 {
 	IMAGEDATA *Image ;
 
-	// ‰Šú‰»”»’è
+	// åˆæœŸåŒ–åˆ¤å®š
 	if( DxSysData.DxLib_InitializeFlag == FALSE )
 	{
 		return NULL ;
 	}
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( GRAPHCHK( GrHandle, Image ) )
 	{
 		return NULL ;
@@ -672,18 +672,18 @@ extern	const void*	NS_GetGraphID3D11Texture2D( int GrHandle )
 	}
 }
 
-// ƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ª‚Â ID3D11RenderTargetView ‚ğæ“¾‚·‚é( Direct3D11 ‚ğg—p‚µ‚Ä‚¢‚ÄAŠ‚Â MakeScreen ‚Åì¬‚µ‚½ƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚Å‚Ì‚İ—LŒø )( –ß‚è’l‚ğ ID3D11RenderTargetView * ‚ÉƒLƒƒƒXƒg‚µ‚Ä‚­‚¾‚³‚¢ )
+// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ãŒæŒã¤ ID3D11RenderTargetView ã‚’å–å¾—ã™ã‚‹( Direct3D11 ã‚’ä½¿ç”¨ã—ã¦ã„ã¦ã€ä¸”ã¤ MakeScreen ã§ä½œæˆã—ãŸã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã§ã®ã¿æœ‰åŠ¹ )( æˆ»ã‚Šå€¤ã‚’ ID3D11RenderTargetView * ã«ã‚­ãƒ£ã‚¹ãƒˆã—ã¦ãã ã•ã„ )
 extern	const void*	NS_GetGraphID3D11RenderTargetView( int GrHandle )
 {
 	IMAGEDATA *Image ;
 
-	// ‰Šú‰»”»’è
+	// åˆæœŸåŒ–åˆ¤å®š
 	if( DxSysData.DxLib_InitializeFlag == FALSE )
 	{
 		return NULL ;
 	}
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( GRAPHCHK( GrHandle, Image ) )
 	{
 		return NULL ;
@@ -706,18 +706,18 @@ extern	const void*	NS_GetGraphID3D11RenderTargetView( int GrHandle )
 	}
 }
 
-// ƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ª‚Â ID3D11DepthStencilView ‚ğæ“¾‚·‚é( Direct3D11 ‚ğg—p‚µ‚Ä‚¢‚ÄAŠ‚Â MakeScreen ‚Åì¬‚µ‚½ƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚Å‚Ì‚İ—LŒø )( –ß‚è’l‚ğ ID3D11DepthStencilView * ‚ÉƒLƒƒƒXƒg‚µ‚Ä‚­‚¾‚³‚¢ )
+// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ãŒæŒã¤ ID3D11DepthStencilView ã‚’å–å¾—ã™ã‚‹( Direct3D11 ã‚’ä½¿ç”¨ã—ã¦ã„ã¦ã€ä¸”ã¤ MakeScreen ã§ä½œæˆã—ãŸã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã§ã®ã¿æœ‰åŠ¹ )( æˆ»ã‚Šå€¤ã‚’ ID3D11DepthStencilView * ã«ã‚­ãƒ£ã‚¹ãƒˆã—ã¦ãã ã•ã„ )
 extern const void* NS_GetGraphID3D11DepthStencilView( int GrHandle )
 {
 	IMAGEDATA *Image ;
 
-	// ‰Šú‰»”»’è
+	// åˆæœŸåŒ–åˆ¤å®š
 	if( DxSysData.DxLib_InitializeFlag == FALSE )
 	{
 		return NULL ;
 	}
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( GRAPHCHK( GrHandle, Image ) )
 	{
 		return NULL ;
@@ -751,9 +751,9 @@ extern const void* NS_GetGraphID3D11DepthStencilView( int GrHandle )
 
 
 
-// İ’èŠÖŒWŠÖ”
+// è¨­å®šé–¢ä¿‚é–¢æ•°
 
-// ƒ_ƒCƒAƒƒOƒ{ƒbƒNƒXƒ‚[ƒh‚ğ•ÏX‚·‚é
+// ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ãƒœãƒƒã‚¯ã‚¹ãƒ¢ãƒ¼ãƒ‰ã‚’å¤‰æ›´ã™ã‚‹
 extern	int		Graphics_Win_SetDialogBoxMode( int Flag )
 {
 #ifndef DX_NON_DIRECT3D9
@@ -763,7 +763,7 @@ extern	int		Graphics_Win_SetDialogBoxMode( int Flag )
 #endif // DX_NON_DIRECT3D9
 }
 
-// — ‰æ–Ê‚Ì“à—e‚ğw’è‚ÌƒEƒCƒ“ƒhƒE‚É“]‘—‚·‚é
+// è£ç”»é¢ã®å†…å®¹ã‚’æŒ‡å®šã®ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã«è»¢é€ã™ã‚‹
 extern int NS_BltBackScreenToWindow( HWND Window, int ClientX, int ClientY )
 {
 	RECT SrcRect, DestRect, WinRect ;
@@ -809,26 +809,26 @@ extern int NS_BltBackScreenToWindow( HWND Window, int ClientX, int ClientY )
 	return NS_BltRectBackScreenToWindow( Window, SrcRect, DestRect ) ;
 }
 
-// — ‰æ–Ê‚Ìw’è‚Ì—Ìˆæ‚ğƒEƒCƒ“ƒhƒE‚ÌƒNƒ‰ƒCƒAƒ“ƒg—Ìˆæ‚Ìw’è‚Ì—Ìˆæ‚É“]‘—‚·‚é
+// è£ç”»é¢ã®æŒ‡å®šã®é ˜åŸŸã‚’ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆé ˜åŸŸã®æŒ‡å®šã®é ˜åŸŸã«è»¢é€ã™ã‚‹
 extern int NS_BltRectBackScreenToWindow( HWND Window, RECT BackScreenRect, RECT WindowClientRect )
 {
-	// ‰Šú‰»”»’è
+	// åˆæœŸåŒ–åˆ¤å®š
 	if( DxSysData.DxLib_InitializeFlag == FALSE || DxLib_GetEndRequest() ) return -1 ;
 
-	// ƒtƒ‹ƒXƒNƒŠ[ƒ“ƒ‚[ƒh‚Å‚Íg—p‚Å‚«‚È‚¢
+	// ãƒ•ãƒ«ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ¢ãƒ¼ãƒ‰ã§ã¯ä½¿ç”¨ã§ããªã„
 	if( NS_GetWindowModeFlag() == FALSE && NS_GetUseFullScreenResolutionMode() != DX_FSRESOLUTIONMODE_BORDERLESS_WINDOW ) return -1 ;
 
-	// Às
+	// å®Ÿè¡Œ
 	return Graphics_BltRectBackScreenToWindow_PF( Window, BackScreenRect, WindowClientRect ) ;
 }
 
-// ScreenFlip ‚Å‰æ‘œ‚ğ“]‘—‚·‚éæ‚ÌƒEƒCƒ“ƒhƒE‚ğİ’è‚·‚é( NULL ‚ğw’è‚·‚é‚Æİ’è‰ğœ )
+// ScreenFlip ã§ç”»åƒã‚’è»¢é€ã™ã‚‹å…ˆã®ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚’è¨­å®šã™ã‚‹( NULL ã‚’æŒ‡å®šã™ã‚‹ã¨è¨­å®šè§£é™¤ )
 extern int NS_SetScreenFlipTargetWindow( HWND TargetWindow, double ScaleX, double ScaleY )
 {
 	return Graphics_SetScreenFlipTargetWindow_PF( TargetWindow, ScaleX, ScaleY ) ;
 }
 
-// ƒfƒXƒNƒgƒbƒv‰æ–Ê‚©‚çw’è—Ìˆæ‚Ì‰æ‘œî•ñ‚ğƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚É“]‘—‚·‚é
+// ãƒ‡ã‚¹ã‚¯ãƒˆãƒƒãƒ—ç”»é¢ã‹ã‚‰æŒ‡å®šé ˜åŸŸã®ç”»åƒæƒ…å ±ã‚’ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã«è»¢é€ã™ã‚‹
 extern int NS_GetDesktopScreenGraph( int x1, int y1, int x2, int y2, int GrHandle, int DestX, int DestY )
 {
 	HWND DesktopHWND ;
@@ -847,23 +847,23 @@ extern int NS_GetDesktopScreenGraph( int x1, int y1, int x2, int y2, int GrHandl
 
 	SETUP_WIN_API
 
-	// •`‰æ‘Ò‹@‚µ‚Ä‚¢‚é•`‰æ•¨‚ğ•`‰æ
+	// æç”»å¾…æ©Ÿã—ã¦ã„ã‚‹æç”»ç‰©ã‚’æç”»
 	DRAWSTOCKINFO
 
-	// ƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ÌƒTƒCƒY‚ğæ“¾
+	// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã®ã‚µã‚¤ã‚ºã‚’å–å¾—
 	if( NS_GetGraphSize( GrHandle, &GraphW, &GraphH ) < 0 )
 	{
 		return -1 ;
 	}
 
-	// ˆø”‚Ìƒ`ƒFƒbƒN
+	// å¼•æ•°ã®ãƒã‚§ãƒƒã‚¯
 	if( x1 >= x2 || y1 >= y2 )
 	{
 		return -1 ;
 	}
 
 #ifndef DX_NON_DIRECT3D11
-	// Direct3D11 ‚Ìê‡‚Í•Êˆ—
+	// Direct3D11 ã®å ´åˆã¯åˆ¥å‡¦ç†
 	if( GRAWIN.Setting.UseGraphicsAPI == GRAPHICS_API_DIRECT3D11_WIN32 )
 	{
 		if( Graphics_Hardware_D3D11_GetDesktopScreenGraph_PF( x1, y1, x2, y2, GrHandle, DestX, DestY ) == 0 )
@@ -873,13 +873,13 @@ extern int NS_GetDesktopScreenGraph( int x1, int y1, int x2, int y2, int GrHandl
 	}
 #endif // DX_NON_DIRECT3D11
 
-	// ƒfƒXƒNƒgƒbƒvƒEƒCƒ“ƒhƒEƒnƒ“ƒhƒ‹‚ğæ“¾
+	// ãƒ‡ã‚¹ã‚¯ãƒˆãƒƒãƒ—ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒãƒ³ãƒ‰ãƒ«ã‚’å–å¾—
 	DesktopHWND = WinAPIData.Win32Func.GetDesktopWindowFunc() ;
 
-	// ƒfƒXƒNƒgƒbƒvƒEƒCƒ“ƒhƒE‚ÌƒfƒoƒCƒXƒRƒ“ƒeƒLƒXƒg‚ğæ“¾
+	// ãƒ‡ã‚¹ã‚¯ãƒˆãƒƒãƒ—ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ãƒ‡ãƒã‚¤ã‚¹ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã‚’å–å¾—
 	DesktopHDC = WinAPIData.Win32Func.GetDCFunc( DesktopHWND ) ;
 
-	// ƒfƒXƒNƒgƒbƒv‚Ì‹éŒ`‚ğæ“¾
+	// ãƒ‡ã‚¹ã‚¯ãƒˆãƒƒãƒ—ã®çŸ©å½¢ã‚’å–å¾—
 //	WinAPIData.Win32Func.GetWindowRectFunc( DesktopHWND, &DesktopRect ) ;
 
 	DesktopRect.left = WinAPIData.Win32Func.GetSystemMetricsFunc( SM_XVIRTUALSCREEN ) ;
@@ -894,7 +894,7 @@ extern int NS_GetDesktopScreenGraph( int x1, int y1, int x2, int y2, int GrHandl
 	DesktopRect.right  = DesktopRect.left + RectW ;
 	DesktopRect.bottom = DesktopRect.top  + RectH ;
 
-	// ƒfƒXƒNƒgƒbƒv‚Ì‹éŒ`‚ğÀƒTƒCƒY‚ğŠg‘å—¦‚É‚ ‚í‚¹‚Ä•â³
+	// ãƒ‡ã‚¹ã‚¯ãƒˆãƒƒãƒ—ã®çŸ©å½¢ã‚’å®Ÿã‚µã‚¤ã‚ºã‚’æ‹¡å¤§ç‡ã«ã‚ã‚ã›ã¦è£œæ­£
 //	DesktopW = WinAPIData.Win32Func.GetDeviceCapsFunc( DesktopHDC, DESKTOPHORZRES ) ;
 //	DesktopH = WinAPIData.Win32Func.GetDeviceCapsFunc( DesktopHDC, DESKTOPVERTRES ) ;
 //	if( DesktopW <= 0 || DesktopH <= 0 )
@@ -910,7 +910,7 @@ extern int NS_GetDesktopScreenGraph( int x1, int y1, int x2, int y2, int GrHandl
 //		DesktopRect.bottom = DesktopRect.bottom * DesktopH / RectH ;
 //	}
 
-	// w’è‚Ì‹éŒ`‚Ì•â³
+	// æŒ‡å®šã®çŸ©å½¢ã®è£œæ­£
 	if( x1 < DesktopRect.left )
 	{
 		DestX += DesktopRect.left - x1 ;
@@ -930,11 +930,11 @@ extern int NS_GetDesktopScreenGraph( int x1, int y1, int x2, int y2, int GrHandl
 		y2 = DesktopRect.bottom ;
 	}
 
-	// æ‚è‚İƒTƒCƒY‚ÌZo
+	// å–ã‚Šè¾¼ã¿ã‚µã‚¤ã‚ºã®ç®—å‡º
 	CaptureW = x2 - x1 ;
 	CaptureH = y2 - y1 ;
 
-	// æ‚è‚İƒTƒCƒYƒ`ƒFƒbƒN
+	// å–ã‚Šè¾¼ã¿ã‚µã‚¤ã‚ºãƒã‚§ãƒƒã‚¯
 	if( CaptureW <= 0 || CaptureH <= 0 )
 	{
 		WinAPIData.Win32Func.ReleaseDCFunc( DesktopHWND, DesktopHDC ) ;
@@ -942,7 +942,7 @@ extern int NS_GetDesktopScreenGraph( int x1, int y1, int x2, int y2, int GrHandl
 		return -1 ;
 	}
 
-	// æ‚è‚İƒTƒCƒY•â³
+	// å–ã‚Šè¾¼ã¿ã‚µã‚¤ã‚ºè£œæ­£
 	if( DestX + CaptureW > GraphW )
 	{
 		CaptureW = GraphW - DestX ;
@@ -954,7 +954,7 @@ extern int NS_GetDesktopScreenGraph( int x1, int y1, int x2, int y2, int GrHandl
 		y2       = y1 + CaptureH ;
 	}
 
-	// Ä“xæ‚è‚İƒTƒCƒYƒ`ƒFƒbƒN
+	// å†åº¦å–ã‚Šè¾¼ã¿ã‚µã‚¤ã‚ºãƒã‚§ãƒƒã‚¯
 	if( CaptureW <= 0 || CaptureH <= 0 )
 	{
 		WinAPIData.Win32Func.ReleaseDCFunc( DesktopHWND, DesktopHDC ) ;
@@ -962,7 +962,7 @@ extern int NS_GetDesktopScreenGraph( int x1, int y1, int x2, int y2, int GrHandl
 		return -1 ;
 	}
 
-	// DIB‚Ìî•ñ‚ğİ’è‚·‚é
+	// DIBã®æƒ…å ±ã‚’è¨­å®šã™ã‚‹
 	_MEMSET( &BitmapInfo, 0, sizeof( BitmapInfo ) ) ;
 	BitmapInfo.bmiHeader.biSize			= sizeof( BITMAPINFOHEADER ) ;
 	BitmapInfo.bmiHeader.biWidth		=  CaptureW ;
@@ -971,19 +971,19 @@ extern int NS_GetDesktopScreenGraph( int x1, int y1, int x2, int y2, int GrHandl
 	BitmapInfo.bmiHeader.biBitCount		= 32 ;
 	BitmapInfo.bmiHeader.biCompression	= BI_RGB ;
 
-	// DIB‚Ìì¬
+	// DIBã®ä½œæˆ
 	hdc			= WinAPIData.Win32Func.GetDCFunc( GetMainWindowHandle() ) ;
 	HBitmap		= WinAPIData.Win32Func.CreateDIBSectionFunc( hdc, &BitmapInfo, DIB_RGB_COLORS, ( void ** )&ImageBuffer, NULL, 0 ) ;
 	HMemDC		= WinAPIData.Win32Func.CreateCompatibleDCFunc( hdc ) ;
 	WinAPIData.Win32Func.SelectObjectFunc( HMemDC, HBitmap ) ;
 	WinAPIData.Win32Func.ReleaseDCFunc( GetMainWindowHandle(), hdc ) ;
 
-	// ƒfƒXƒNƒgƒbƒvƒCƒ[ƒW‚ğ‚ğDIB‚ÉƒRƒs[
+	// ãƒ‡ã‚¹ã‚¯ãƒˆãƒƒãƒ—ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’ã‚’DIBã«ã‚³ãƒ”ãƒ¼
 	WinAPIData.Win32Func.BitBltFunc( HMemDC, 0, 0, CaptureW, CaptureH, DesktopHDC, x1, y1, SRCCOPY ) ;
 	WinAPIData.Win32Func.ReleaseDCFunc( DesktopHWND, DesktopHDC ) ;
 	DesktopHDC = NULL ;
 
-	// ƒfƒXƒNƒgƒbƒvƒCƒ[ƒW‚ğƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚É“]‘—
+	// ãƒ‡ã‚¹ã‚¯ãƒˆãƒƒãƒ—ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã«è»¢é€
 	{
 		RECT SrcRect ;
 
@@ -1000,15 +1000,15 @@ extern int NS_GetDesktopScreenGraph( int x1, int y1, int x2, int y2, int GrHandl
 		NS_BltBmpOrGraphImageToGraph2( NULL, NULL, NULL, FALSE, &CaptureImage, NULL, &SrcRect, DestX, DestY, GrHandle ) ;
 	}
 
-	// DIB‚Ìíœ
+	// DIBã®å‰Šé™¤
 	WinAPIData.Win32Func.DeleteDCFunc( HMemDC ) ;
 	WinAPIData.Win32Func.DeleteObjectFunc( HBitmap ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒfƒXƒNƒgƒbƒv‰æ–Ê‚©‚çw’è—Ìˆæ‚Ì‰æ‘œ‚Ìƒƒ‚ƒŠƒCƒ[ƒW‚Ìæ“ªƒAƒhƒŒƒX‚ÆƒCƒ[ƒW‚Ì•E‚‚³EƒXƒgƒ‰ƒCƒh‚ğæ“¾‚·‚é( ƒCƒ[ƒW‚ÌƒtƒH[ƒ}ƒbƒg‚Í ColorBitDepth = 32( ƒoƒCƒg‡‚Å B8G8R8X8 ‚Ì 32bitƒJƒ‰[ ) ColorBitDepth = 24( ƒoƒCƒg‡‚Å B8G8R8 ‚Ì 24bitƒJƒ‰[ ) )
+// ãƒ‡ã‚¹ã‚¯ãƒˆãƒƒãƒ—ç”»é¢ã‹ã‚‰æŒ‡å®šé ˜åŸŸã®ç”»åƒã®ãƒ¡ãƒ¢ãƒªã‚¤ãƒ¡ãƒ¼ã‚¸ã®å…ˆé ­ã‚¢ãƒ‰ãƒ¬ã‚¹ã¨ã‚¤ãƒ¡ãƒ¼ã‚¸ã®å¹…ãƒ»é«˜ã•ãƒ»ã‚¹ãƒˆãƒ©ã‚¤ãƒ‰ã‚’å–å¾—ã™ã‚‹( ã‚¤ãƒ¡ãƒ¼ã‚¸ã®ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã¯ ColorBitDepth = 32( ãƒã‚¤ãƒˆé †ã§ B8G8R8X8 ã® 32bitã‚«ãƒ©ãƒ¼ ) ColorBitDepth = 24( ãƒã‚¤ãƒˆé †ã§ B8G8R8 ã® 24bitã‚«ãƒ©ãƒ¼ ) )
 extern void *NS_GetDesktopScreenGraphMemImage( int x1, int y1, int x2, int y2, int *Width, int *Height, int *Stride, int ColorBitDepth )
 {
 	HWND DesktopHWND ;
@@ -1024,23 +1024,23 @@ extern void *NS_GetDesktopScreenGraphMemImage( int x1, int y1, int x2, int y2, i
 
 	SETUP_WIN_API
 
-	// •`‰æ‘Ò‹@‚µ‚Ä‚¢‚é•`‰æ•¨‚ğ•`‰æ
+	// æç”»å¾…æ©Ÿã—ã¦ã„ã‚‹æç”»ç‰©ã‚’æç”»
 	DRAWSTOCKINFO
 
-	// ƒJƒ‰[ƒrƒbƒg[“xƒ`ƒFƒbƒN
+	// ã‚«ãƒ©ãƒ¼ãƒ“ãƒƒãƒˆæ·±åº¦ãƒã‚§ãƒƒã‚¯
 	if( ColorBitDepth != 24 && ColorBitDepth != 32 )
 	{
 		return NULL ;
 	}
 
-	// ˆø”‚Ìƒ`ƒFƒbƒN
+	// å¼•æ•°ã®ãƒã‚§ãƒƒã‚¯
 	if( x1 >= x2 || y1 >= y2 )
 	{
 		return NULL ;
 	}
 
 #ifndef DX_NON_DIRECT3D11
-	// Direct3D11 ‚Ìê‡‚Í•Êˆ—
+	// Direct3D11 ã®å ´åˆã¯åˆ¥å‡¦ç†
 	if( GRAWIN.Setting.UseGraphicsAPI == GRAPHICS_API_DIRECT3D11_WIN32 && ( ColorBitDepth == 24 || ColorBitDepth == 32 ) )
 	{
 		void *Result ;
@@ -1052,13 +1052,13 @@ extern void *NS_GetDesktopScreenGraphMemImage( int x1, int y1, int x2, int y2, i
 	}
 #endif // DX_NON_DIRECT3D11
 
-	// ƒfƒXƒNƒgƒbƒvƒEƒCƒ“ƒhƒEƒnƒ“ƒhƒ‹‚ğæ“¾
+	// ãƒ‡ã‚¹ã‚¯ãƒˆãƒƒãƒ—ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒãƒ³ãƒ‰ãƒ«ã‚’å–å¾—
 	DesktopHWND = WinAPIData.Win32Func.GetDesktopWindowFunc() ;
 
-	// ƒfƒXƒNƒgƒbƒvƒEƒCƒ“ƒhƒE‚ÌƒfƒoƒCƒXƒRƒ“ƒeƒLƒXƒg‚ğæ“¾
+	// ãƒ‡ã‚¹ã‚¯ãƒˆãƒƒãƒ—ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ãƒ‡ãƒã‚¤ã‚¹ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã‚’å–å¾—
 	DesktopHDC = WinAPIData.Win32Func.GetDCFunc( DesktopHWND ) ;
 
-	// ƒfƒXƒNƒgƒbƒv‚Ì‹éŒ`‚ğæ“¾
+	// ãƒ‡ã‚¹ã‚¯ãƒˆãƒƒãƒ—ã®çŸ©å½¢ã‚’å–å¾—
 //	WinAPIData.Win32Func.GetWindowRectFunc( DesktopHWND, &DesktopRect ) ;
 
 	DesktopRect.left = WinAPIData.Win32Func.GetSystemMetricsFunc( SM_XVIRTUALSCREEN ) ;
@@ -1073,7 +1073,7 @@ extern void *NS_GetDesktopScreenGraphMemImage( int x1, int y1, int x2, int y2, i
 	DesktopRect.right  = DesktopRect.left + RectW ;
 	DesktopRect.bottom = DesktopRect.top  + RectH ;
 
-	// ƒfƒXƒNƒgƒbƒv‚Ì‹éŒ`‚ğÀƒTƒCƒY‚ğŠg‘å—¦‚É‚ ‚í‚¹‚Ä•â³
+	// ãƒ‡ã‚¹ã‚¯ãƒˆãƒƒãƒ—ã®çŸ©å½¢ã‚’å®Ÿã‚µã‚¤ã‚ºã‚’æ‹¡å¤§ç‡ã«ã‚ã‚ã›ã¦è£œæ­£
 //	DesktopW = WinAPIData.Win32Func.GetDeviceCapsFunc( DesktopHDC, DESKTOPHORZRES ) ;
 //	DesktopH = WinAPIData.Win32Func.GetDeviceCapsFunc( DesktopHDC, DESKTOPVERTRES ) ;
 //	if( DesktopW <= 0 || DesktopH <= 0 )
@@ -1089,7 +1089,7 @@ extern void *NS_GetDesktopScreenGraphMemImage( int x1, int y1, int x2, int y2, i
 //		DesktopRect.bottom = DesktopRect.bottom * DesktopH / RectH ;
 //	}
 
-	// w’è‚Ì‹éŒ`‚Ì•â³
+	// æŒ‡å®šã®çŸ©å½¢ã®è£œæ­£
 	if( x1 < DesktopRect.left )
 	{
 		x1 = DesktopRect.left ;
@@ -1107,11 +1107,11 @@ extern void *NS_GetDesktopScreenGraphMemImage( int x1, int y1, int x2, int y2, i
 		y2 = DesktopRect.bottom ;
 	}
 
-	// æ‚è‚İƒTƒCƒY‚ÌZo
+	// å–ã‚Šè¾¼ã¿ã‚µã‚¤ã‚ºã®ç®—å‡º
 	CaptureW = x2 - x1 ;
 	CaptureH = y2 - y1 ;
 
-	// æ‚è‚İƒTƒCƒYƒ`ƒFƒbƒN
+	// å–ã‚Šè¾¼ã¿ã‚µã‚¤ã‚ºãƒã‚§ãƒƒã‚¯
 	if( CaptureW <= 0 || CaptureH <= 0 )
 	{
 		WinAPIData.Win32Func.ReleaseDCFunc( DesktopHWND, DesktopHDC ) ;
@@ -1119,7 +1119,7 @@ extern void *NS_GetDesktopScreenGraphMemImage( int x1, int y1, int x2, int y2, i
 		return NULL ;
 	}
 
-	// DIB‚Ìî•ñ‚ğİ’è‚·‚é
+	// DIBã®æƒ…å ±ã‚’è¨­å®šã™ã‚‹
 	_MEMSET( &BitmapInfo, 0, sizeof( BitmapInfo ) ) ;
 	BitmapInfo.bmiHeader.biSize			= sizeof( BITMAPINFOHEADER ) ;
 	BitmapInfo.bmiHeader.biWidth		=  CaptureW ;
@@ -1128,7 +1128,7 @@ extern void *NS_GetDesktopScreenGraphMemImage( int x1, int y1, int x2, int y2, i
 	BitmapInfo.bmiHeader.biBitCount		= ( WORD )ColorBitDepth ;
 	BitmapInfo.bmiHeader.biCompression	= BI_RGB ;
 
-	// DIB‚Ìì¬
+	// DIBã®ä½œæˆ
 	hdc = WinAPIData.Win32Func.GetDCFunc( GetMainWindowHandle() ) ;
 	if( WinData.DesktopImageHBitmap == NULL ||
 		CaptureW != WinData.DesktopImageWidth ||
@@ -1148,12 +1148,12 @@ extern void *NS_GetDesktopScreenGraphMemImage( int x1, int y1, int x2, int y2, i
 	OldObj = WinAPIData.Win32Func.SelectObjectFunc( HMemDC, WinData.DesktopImageHBitmap ) ;
 	WinAPIData.Win32Func.ReleaseDCFunc( GetMainWindowHandle(), hdc ) ;
 
-	// ƒfƒXƒNƒgƒbƒvƒCƒ[ƒW‚ğ‚ğDIB‚ÉƒRƒs[
+	// ãƒ‡ã‚¹ã‚¯ãƒˆãƒƒãƒ—ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’ã‚’DIBã«ã‚³ãƒ”ãƒ¼
 	WinAPIData.Win32Func.BitBltFunc( HMemDC, 0, 0, CaptureW, CaptureH, DesktopHDC, x1, y1, SRCCOPY ) ;
 	WinAPIData.Win32Func.ReleaseDCFunc( DesktopHWND, DesktopHDC ) ;
 	DesktopHDC = NULL ;
 
-	// ƒfƒXƒNƒgƒbƒvƒCƒ[ƒW‚Ìî•ñ‚ğ‘ã“ü
+	// ãƒ‡ã‚¹ã‚¯ãƒˆãƒƒãƒ—ã‚¤ãƒ¡ãƒ¼ã‚¸ã®æƒ…å ±ã‚’ä»£å…¥
 	if( Width != NULL )
 	{
 		*Width = CaptureW ;
@@ -1171,15 +1171,15 @@ extern void *NS_GetDesktopScreenGraphMemImage( int x1, int y1, int x2, int y2, i
 		*Stride = Temp ;
 	}
 
-	// DIB‚Ìíœ
+	// DIBã®å‰Šé™¤
 	WinAPIData.Win32Func.SelectObjectFunc( HMemDC, OldObj ) ;
 	WinAPIData.Win32Func.DeleteDCFunc( HMemDC ) ;
 
-	// ƒAƒhƒŒƒX‚ğ•Ô‚·
+	// ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’è¿”ã™
 	return WinData.DesktopImageAddress ;
 }
 
-// w’è‚ÌƒEƒBƒ“ƒhƒE‚Ìw’è—Ìˆæ‚Ì‰æ‘œî•ñ‚ğƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚É“]‘—‚·‚é
+// æŒ‡å®šã®ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®æŒ‡å®šé ˜åŸŸã®ç”»åƒæƒ…å ±ã‚’ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã«è»¢é€ã™ã‚‹
 extern int NS_GetOtherWindowGraph( HWND Window, int x1, int y1, int x2, int y2, int GrHandle, int DestX, int DestY )
 {
 	RECT WindowRect ;
@@ -1196,22 +1196,22 @@ extern int NS_GetOtherWindowGraph( HWND Window, int x1, int y1, int x2, int y2, 
 
 	SETUP_WIN_API
 
-	// •`‰æ‘Ò‹@‚µ‚Ä‚¢‚é•`‰æ•¨‚ğ•`‰æ
+	// æç”»å¾…æ©Ÿã—ã¦ã„ã‚‹æç”»ç‰©ã‚’æç”»
 	DRAWSTOCKINFO
 
-	// ƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ÌƒTƒCƒY‚ğæ“¾
+	// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã®ã‚µã‚¤ã‚ºã‚’å–å¾—
 	if( NS_GetGraphSize( GrHandle, &GraphW, &GraphH ) < 0 )
 	{
 		return -1 ;
 	}
 
-	// ˆø”‚Ìƒ`ƒFƒbƒN
+	// å¼•æ•°ã®ãƒã‚§ãƒƒã‚¯
 	if( x1 >= x2 || y1 >= y2 )
 	{
 		return -1 ;
 	}
 
-	// ƒEƒCƒ“ƒhƒE‚ÌƒfƒoƒCƒXƒRƒ“ƒeƒLƒXƒg‚ğæ“¾
+	// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ãƒ‡ãƒã‚¤ã‚¹ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã‚’å–å¾—
 	WindowHDC = WinAPIData.Win32Func.GetDCFunc( Window ) ;
 
 	WinAPIData.Win32Func.GetClientRectFunc( Window, &WindowRect ) ;
@@ -1219,7 +1219,7 @@ extern int NS_GetOtherWindowGraph( HWND Window, int x1, int y1, int x2, int y2, 
 	RectW = WindowRect.right - WindowRect.left ;
 	RectH = WindowRect.bottom - WindowRect.top ;
 
-	// w’è‚Ì‹éŒ`‚Ì•â³
+	// æŒ‡å®šã®çŸ©å½¢ã®è£œæ­£
 	if( x1 < WindowRect.left )
 	{
 		DestX += WindowRect.left - x1 ;
@@ -1239,11 +1239,11 @@ extern int NS_GetOtherWindowGraph( HWND Window, int x1, int y1, int x2, int y2, 
 		y2 = WindowRect.bottom ;
 	}
 
-	// æ‚è‚İƒTƒCƒY‚ÌZo
+	// å–ã‚Šè¾¼ã¿ã‚µã‚¤ã‚ºã®ç®—å‡º
 	CaptureW = x2 - x1 ;
 	CaptureH = y2 - y1 ;
 
-	// æ‚è‚İƒTƒCƒYƒ`ƒFƒbƒN
+	// å–ã‚Šè¾¼ã¿ã‚µã‚¤ã‚ºãƒã‚§ãƒƒã‚¯
 	if( CaptureW <= 0 || CaptureH <= 0 )
 	{
 		WinAPIData.Win32Func.ReleaseDCFunc( Window, WindowHDC ) ;
@@ -1251,7 +1251,7 @@ extern int NS_GetOtherWindowGraph( HWND Window, int x1, int y1, int x2, int y2, 
 		return -1 ;
 	}
 
-	// æ‚è‚İƒTƒCƒY•â³
+	// å–ã‚Šè¾¼ã¿ã‚µã‚¤ã‚ºè£œæ­£
 	if( DestX + CaptureW > GraphW )
 	{
 		CaptureW = GraphW - DestX ;
@@ -1263,7 +1263,7 @@ extern int NS_GetOtherWindowGraph( HWND Window, int x1, int y1, int x2, int y2, 
 		y2       = y1 + CaptureH ;
 	}
 
-	// Ä“xæ‚è‚İƒTƒCƒYƒ`ƒFƒbƒN
+	// å†åº¦å–ã‚Šè¾¼ã¿ã‚µã‚¤ã‚ºãƒã‚§ãƒƒã‚¯
 	if( CaptureW <= 0 || CaptureH <= 0 )
 	{
 		WinAPIData.Win32Func.ReleaseDCFunc( Window, WindowHDC ) ;
@@ -1271,7 +1271,7 @@ extern int NS_GetOtherWindowGraph( HWND Window, int x1, int y1, int x2, int y2, 
 		return -1 ;
 	}
 
-	// DIB‚Ìî•ñ‚ğİ’è‚·‚é
+	// DIBã®æƒ…å ±ã‚’è¨­å®šã™ã‚‹
 	_MEMSET( &BitmapInfo, 0, sizeof( BitmapInfo ) ) ;
 	BitmapInfo.bmiHeader.biSize			= sizeof( BITMAPINFOHEADER ) ;
 	BitmapInfo.bmiHeader.biWidth		=  CaptureW ;
@@ -1280,14 +1280,14 @@ extern int NS_GetOtherWindowGraph( HWND Window, int x1, int y1, int x2, int y2, 
 	BitmapInfo.bmiHeader.biBitCount		= 32 ;
 	BitmapInfo.bmiHeader.biCompression	= BI_RGB ;
 
-	// DIB‚Ìì¬
+	// DIBã®ä½œæˆ
 	hdc			= WinAPIData.Win32Func.GetDCFunc( GetMainWindowHandle() ) ;
 	HBitmap		= WinAPIData.Win32Func.CreateDIBSectionFunc( hdc, &BitmapInfo, DIB_RGB_COLORS, ( void ** )&ImageBuffer, NULL, 0 ) ;
 	HMemDC		= WinAPIData.Win32Func.CreateCompatibleDCFunc( hdc ) ;
 	WinAPIData.Win32Func.SelectObjectFunc( HMemDC, HBitmap ) ;
 	WinAPIData.Win32Func.ReleaseDCFunc( GetMainWindowHandle(), hdc ) ;
 
-	// ‘ÎÛ‚ÌƒEƒBƒ“ƒhƒE‚ÌƒCƒ[ƒW‚ğ‚ğDIB‚ÉƒRƒs[
+	// å¯¾è±¡ã®ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’ã‚’DIBã«ã‚³ãƒ”ãƒ¼
 	if( WinAPIData.Win32Func.BitBltFunc( HMemDC, 0, 0, CaptureW, CaptureH, WindowHDC, x1, y1, SRCCOPY ) == 0 )
 	{
 		WinAPIData.Win32Func.ReleaseDCFunc( Window, WindowHDC ) ;
@@ -1299,7 +1299,7 @@ extern int NS_GetOtherWindowGraph( HWND Window, int x1, int y1, int x2, int y2, 
 	WinAPIData.Win32Func.ReleaseDCFunc( Window, WindowHDC ) ;
 	WindowHDC = NULL ;
 
-	// ƒfƒXƒNƒgƒbƒvƒCƒ[ƒW‚ğƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚É“]‘—
+	// ãƒ‡ã‚¹ã‚¯ãƒˆãƒƒãƒ—ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã«è»¢é€
 	{
 		RECT SrcRect ;
 
@@ -1316,39 +1316,39 @@ extern int NS_GetOtherWindowGraph( HWND Window, int x1, int y1, int x2, int y2, 
 		NS_BltBmpOrGraphImageToGraph2( NULL, NULL, NULL, FALSE, &CaptureImage, NULL, &SrcRect, DestX, DestY, GrHandle ) ;
 	}
 
-	// DIB‚Ìíœ
+	// DIBã®å‰Šé™¤
 	WinAPIData.Win32Func.DeleteDCFunc( HMemDC ) ;
 	WinAPIData.Win32Func.DeleteObjectFunc( HBitmap ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// g—p‚·‚é DirectDraw ƒfƒoƒCƒX‚ÌƒCƒ“ƒfƒbƒNƒX‚ğİ’è‚·‚é
+// ä½¿ç”¨ã™ã‚‹ DirectDraw ãƒ‡ãƒã‚¤ã‚¹ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’è¨­å®šã™ã‚‹
 extern int NS_SetUseDirectDrawDeviceIndex( int Index )
 {
 	return NS_SetUseDisplayIndex( Index ) ;
 }
 
-// DirectDraw ‚â Direct3D ‚Ì‹¦’²ƒŒƒxƒ‹‚ğƒ}ƒ‹ƒ`ƒXƒŒƒbƒh‘Î‰‚É‚·‚é‚©‚Ç‚¤‚©‚ğƒZƒbƒg‚·‚é
+// DirectDraw ã‚„ Direct3D ã®å”èª¿ãƒ¬ãƒ™ãƒ«ã‚’ãƒãƒ«ãƒã‚¹ãƒ¬ãƒƒãƒ‰å¯¾å¿œã«ã™ã‚‹ã‹ã©ã†ã‹ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern	int		NS_SetMultiThreadFlag( int Flag )
 {
-	// ‰Šú‰»‘O‚Ì‚İg—p‰Â”\ 
+	// åˆæœŸåŒ–å‰ã®ã¿ä½¿ç”¨å¯èƒ½ 
 	if( DxSysData.DxLib_InitializeFlag == TRUE ) return -1 ;
 
 	GRAWIN.Setting.UseMultiThread = Flag ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// VistaˆÈ~‚Ì Windows Aero ‚ğ–³Œø‚É‚·‚é‚©‚Ç‚¤‚©‚ğƒZƒbƒg‚·‚éATRUE:–³Œø‚É‚·‚é  FALSE:—LŒø‚É‚·‚é( DxLib_Init ‚Ì‘O‚ÉŒÄ‚Ô•K—v‚ª‚ ‚è‚Ü‚· )
+// Vistaä»¥é™ã® Windows Aero ã‚’ç„¡åŠ¹ã«ã™ã‚‹ã‹ã©ã†ã‹ã‚’ã‚»ãƒƒãƒˆã™ã‚‹ã€TRUE:ç„¡åŠ¹ã«ã™ã‚‹  FALSE:æœ‰åŠ¹ã«ã™ã‚‹( DxLib_Init ã®å‰ã«å‘¼ã¶å¿…è¦ãŒã‚ã‚Šã¾ã™ )
 extern int NS_SetAeroDisableFlag( int Flag )
 {
 	return Graphics_SetAeroDisableFlag_PF( Flag ) ;
 }
 
-// VistaˆÈ~‚ÌŠÂ‹«‚Å Direct3D9Ex ‚ğg—p‚·‚é‚©‚Ç‚¤‚©‚ğİ’è‚·‚é( TRUE:g—p‚·‚é( ƒfƒtƒHƒ‹ƒg )  FALSE:g—p‚µ‚È‚¢ )
+// Vistaä»¥é™ã®ç’°å¢ƒã§ Direct3D9Ex ã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹( TRUE:ä½¿ç”¨ã™ã‚‹( ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ )  FALSE:ä½¿ç”¨ã—ãªã„ )
 extern int NS_SetUseDirect3D9Ex( int Flag )
 {
 #ifndef DX_NON_DIRECT3D9
@@ -1358,21 +1358,21 @@ extern int NS_SetUseDirect3D9Ex( int Flag )
 #endif // DX_NON_DIRECT3D9
 }
 
-// Direct3D11 ‚ğg—p‚·‚é‚©‚Ç‚¤‚©‚ğİ’è‚·‚é( TRUE:g—p‚·‚é  FALSE:g—p‚µ‚È‚¢ )
+// Direct3D11 ã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹( TRUE:ä½¿ç”¨ã™ã‚‹  FALSE:ä½¿ç”¨ã—ãªã„ )
 extern int NS_SetUseDirect3D11( int Flag )
 {
-	// ‰Šú‰»‘O‚Ì‚İg—p‰Â”\ 
+	// åˆæœŸåŒ–å‰ã®ã¿ä½¿ç”¨å¯èƒ½ 
 	if( DxSysData.DxLib_InitializeFlag == TRUE ) return -1 ;
 
-	// ƒtƒ‰ƒO‚ğ•Û‘¶
+	// ãƒ•ãƒ©ã‚°ã‚’ä¿å­˜
 	GRAWIN.Setting.NotUseDirect3D11 = Flag ? FALSE : TRUE ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// Direct3D11 ‚Åg—p‚·‚éÅ’á‹@”\ƒŒƒxƒ‹‚ğw’è‚·‚éŠÖ”‚Å‚·A®ADX_DIRECT3D_11_FEATURE_LEVEL_11_0 ‚æ‚è’á‚¢‹@”\ƒŒƒxƒ‹‚Å‚Ì³í‚È“®ì‚Í•ÛØ‚µ‚Ü‚¹‚ñ( ƒfƒtƒHƒ‹ƒg‚Í DX_DIRECT3D_11_FEATURE_LEVEL_11_0 )
-extern int NS_SetUseDirect3D11MinFeatureLevel( int Level /* DX_DIRECT3D_11_FEATURE_LEVEL_10_0 ‚È‚Ç */ )
+// Direct3D11 ã§ä½¿ç”¨ã™ã‚‹æœ€ä½æ©Ÿèƒ½ãƒ¬ãƒ™ãƒ«ã‚’æŒ‡å®šã™ã‚‹é–¢æ•°ã§ã™ã€å°šã€DX_DIRECT3D_11_FEATURE_LEVEL_11_0 ã‚ˆã‚Šä½ã„æ©Ÿèƒ½ãƒ¬ãƒ™ãƒ«ã§ã®æ­£å¸¸ãªå‹•ä½œã¯ä¿è¨¼ã—ã¾ã›ã‚“( ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã¯ DX_DIRECT3D_11_FEATURE_LEVEL_11_0 )
+extern int NS_SetUseDirect3D11MinFeatureLevel( int Level /* DX_DIRECT3D_11_FEATURE_LEVEL_10_0 ãªã© */ )
 {
 #ifndef DX_NON_DIRECT3D11
 	return Graphics_D3D11_SetUseDirect3D11MinFeatureLevel_PF( Level ) ;
@@ -1381,16 +1381,16 @@ extern int NS_SetUseDirect3D11MinFeatureLevel( int Level /* DX_DIRECT3D_11_FEATU
 #endif // DX_NON_DIRECT3D11
 }
 
-// g—p‚·‚é Direct3D ‚Ìƒo[ƒWƒ‡ƒ“‚ğİ’è‚·‚é
+// ä½¿ç”¨ã™ã‚‹ Direct3D ã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã‚’è¨­å®šã™ã‚‹
 extern int NS_SetUseDirect3DVersion( int Version )
 {
-	// ‰Šú‰»‘O‚Ì‚İ—LŒø
+	// åˆæœŸåŒ–å‰ã®ã¿æœ‰åŠ¹
 	if( DxSysData.DxLib_InitializeFlag )
 	{
 		return -1 ;
 	}
 
-	// ƒo[ƒWƒ‡ƒ“‚É‚æ‚Á‚Äˆ—‚ğ•ÏX
+	// ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã«ã‚ˆã£ã¦å‡¦ç†ã‚’å¤‰æ›´
 	switch( Version )
 	{
 	case DX_DIRECT3D_NONE :
@@ -1419,11 +1419,11 @@ extern int NS_SetUseDirect3DVersion( int Version )
 		return -1 ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// g—p‚µ‚Ä‚¢‚é Direct3D ‚Ìƒo[ƒWƒ‡ƒ“‚ğæ“¾‚·‚é( DX_DIRECT3D_9 ‚È‚Ç )
+// ä½¿ç”¨ã—ã¦ã„ã‚‹ Direct3D ã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã‚’å–å¾—ã™ã‚‹( DX_DIRECT3D_9 ãªã© )
 extern int NS_GetUseDirect3DVersion( void )
 {
 #ifndef DX_NON_DIRECT3D9
@@ -1450,7 +1450,7 @@ extern int NS_GetUseDirect3DVersion( void )
 	return DX_DIRECT3D_NONE ;
 }
 
-// g—p‚µ‚Ä‚¢‚é Direct3D11 ‚Ì FeatureLevel ( DX_DIRECT3D_11_FEATURE_LEVEL_9_1 “™ )‚ğæ“¾‚·‚é( –ß‚è’l@-1FƒGƒ‰[@-1ˆÈŠOFFeature Level )
+// ä½¿ç”¨ã—ã¦ã„ã‚‹ Direct3D11 ã® FeatureLevel ( DX_DIRECT3D_11_FEATURE_LEVEL_9_1 ç­‰ )ã‚’å–å¾—ã™ã‚‹( æˆ»ã‚Šå€¤ã€€-1ï¼šã‚¨ãƒ©ãƒ¼ã€€-1ä»¥å¤–ï¼šFeature Level )
 extern int NS_GetUseDirect3D11FeatureLevel(	void )
 {
 #ifndef DX_NON_DIRECT3D11
@@ -1465,31 +1465,31 @@ extern int NS_GetUseDirect3D11FeatureLevel(	void )
 #endif // DX_NON_DIRECT3D11
 }
 
-// ‚c‚‰‚’‚…‚ƒ‚”‚c‚’‚‚—‚ğg—p‚·‚é‚©‚Ç‚¤‚©‚ğƒZƒbƒg‚·‚é
+// ï¼¤ï½‰ï½’ï½…ï½ƒï½”ï¼¤ï½’ï½ï½—ã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern int NS_SetUseDirectDrawFlag( int Flag )
 {
-	// ‰Šú‰»‘O‚Ì‚İg—p‰Â”\ 
+	// åˆæœŸåŒ–å‰ã®ã¿ä½¿ç”¨å¯èƒ½ 
 	if( DxSysData.DxLib_InitializeFlag == TRUE ) return -1 ;
 
 	GSYS.Setting.NotUseHardware = !Flag ;
 
-	// DirectDraw ‚ğg—p‚µ‚È‚¢ê‡‚Í Direct3D9 ‚ğg—p‚·‚é‚æ‚¤‚É‚·‚é
+	// DirectDraw ã‚’ä½¿ç”¨ã—ãªã„å ´åˆã¯ Direct3D9 ã‚’ä½¿ç”¨ã™ã‚‹ã‚ˆã†ã«ã™ã‚‹
 	if( Flag == FALSE )
 	{
 		NS_SetUseDirect3DVersion( DX_DIRECT3D_9 ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ‚f‚c‚h•`‰æ‚ğ•K—v‚Æ‚·‚é‚©A‚ğ•ÏX‚·‚é
+// ï¼§ï¼¤ï¼©æç”»ã‚’å¿…è¦ã¨ã™ã‚‹ã‹ã€ã‚’å¤‰æ›´ã™ã‚‹
 extern	int		NS_SetUseGDIFlag( int Flag )
 {
-	// ƒtƒ‰ƒO‚ğ•Û‘¶
+	// ãƒ•ãƒ©ã‚°ã‚’ä¿å­˜
 	UseGDIFlag = Flag ;
 
-	// ƒn[ƒhƒEƒGƒA‚ğg—p‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+	// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 	if( GSYS.Setting.ValidHardware )
 	{
 		switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -1501,10 +1501,10 @@ extern	int		NS_SetUseGDIFlag( int Flag )
 
 #ifndef DX_NON_DIRECT3D9
 		case GRAPHICS_API_DIRECT3D9_WIN32 :
-			// ƒn[ƒhƒEƒGƒAƒŒƒ“ƒ_ƒŠƒ“ƒOƒ‚[ƒh‚Ìê‡
+			// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ãƒ¢ãƒ¼ãƒ‰ã®å ´åˆ
 			if( Direct3DDevice9_IsValid() == 0 ) return 0 ;
 
-			// ƒfƒoƒCƒX‚Ìİ’è
+			// ãƒ‡ãƒã‚¤ã‚¹ã®è¨­å®š
 			if( Flag == FALSE )
 			{
 				Direct3DDevice9_SetDialogBoxMode( FALSE ) ;
@@ -1523,20 +1523,20 @@ extern	int		NS_SetUseGDIFlag( int Flag )
 	}
 	else
 	{
-		// ƒ\ƒtƒgƒEƒGƒAƒŒƒ“ƒ_ƒŠƒ“ƒOƒ‚[ƒh‚Å‚Í“Á‚É‚·‚é‚±‚Æ–³‚µ
+		// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ãƒ¢ãƒ¼ãƒ‰ã§ã¯ç‰¹ã«ã™ã‚‹ã“ã¨ç„¡ã—
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ‚f‚c‚h•`‰æ‚ğ•K—v‚Æ‚·‚é‚©‚Ìó‘Ô‚ğæ“¾‚·‚é
+// ï¼§ï¼¤ï¼©æç”»ã‚’å¿…è¦ã¨ã™ã‚‹ã‹ã®çŠ¶æ…‹ã‚’å–å¾—ã™ã‚‹
 extern int NS_GetUseGDIFlag( void )
 {
 	return UseGDIFlag ;
 }
 
-// ‚c‚‰‚’‚…‚ƒ‚”‚c‚’‚‚—‚ªg—p‚·‚é‚f‚t‚h‚c‚ğİ’è‚·‚é
+// ï¼¤ï½‰ï½’ï½…ï½ƒï½”ï¼¤ï½’ï½ï½—ãŒä½¿ç”¨ã™ã‚‹ï¼§ï¼µï¼©ï¼¤ã‚’è¨­å®šã™ã‚‹
 extern	int		NS_SetDDrawUseGuid( const GUID FAR *Guid )
 {
 #ifndef DX_NON_DIRECT3D9
@@ -1546,14 +1546,14 @@ extern	int		NS_SetDDrawUseGuid( const GUID FAR *Guid )
 #endif // DX_NON_DIRECT3D9
 }
 
-/*–ß‚è’l‚ğ IDirectDraw7 * ‚ÉƒLƒƒƒXƒg‚µ‚Ä‰º‚³‚¢*/			// Œ»İg—p‚µ‚Ä‚¢‚é‚c‚‰‚’‚…‚ƒ‚”‚c‚’‚‚—ƒIƒuƒWƒFƒNƒg‚ÌƒAƒhƒŒƒX‚ğæ“¾‚·‚é
+/*æˆ»ã‚Šå€¤ã‚’ IDirectDraw7 * ã«ã‚­ãƒ£ã‚¹ãƒˆã—ã¦ä¸‹ã•ã„*/			// ç¾åœ¨ä½¿ç”¨ã—ã¦ã„ã‚‹ï¼¤ï½‰ï½’ï½…ï½ƒï½”ï¼¤ï½’ï½ï½—ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å–å¾—ã™ã‚‹
 extern	const void *NS_GetUseDDrawObj( void )
 {
-	// I—¹
+	// çµ‚äº†
 	return DirectDraw7_GetObject() ;
 }
 
-// —LŒø‚È DirectDraw ƒfƒoƒCƒX‚Ì GUID ‚ğæ“¾‚·‚é
+// æœ‰åŠ¹ãª DirectDraw ãƒ‡ãƒã‚¤ã‚¹ã® GUID ã‚’å–å¾—ã™ã‚‹
 extern	const GUID *				NS_GetDirectDrawDeviceGUID( int Number )
 {
 #ifndef DX_NON_DIRECT3D9
@@ -1563,7 +1563,7 @@ extern	const GUID *				NS_GetDirectDrawDeviceGUID( int Number )
 #endif // DX_NON_DIRECT3D9
 }
 
-// —LŒø‚È DirectDraw ƒfƒoƒCƒX‚Ì–¼‘O‚ğ“¾‚é
+// æœ‰åŠ¹ãª DirectDraw ãƒ‡ãƒã‚¤ã‚¹ã®åå‰ã‚’å¾—ã‚‹
 extern	int						NS_GetDirectDrawDeviceDescription( int Number, char *StringBuffer )
 {
 #ifndef DX_NON_DIRECT3D9
@@ -1573,7 +1573,7 @@ extern	int						NS_GetDirectDrawDeviceDescription( int Number, char *StringBuffe
 #endif // DX_NON_DIRECT3D9
 }
 
-// —LŒø‚È DirectDraw ƒfƒoƒCƒX‚Ì”‚ğæ“¾‚·‚é
+// æœ‰åŠ¹ãª DirectDraw ãƒ‡ãƒã‚¤ã‚¹ã®æ•°ã‚’å–å¾—ã™ã‚‹
 extern	int						NS_GetDirectDrawDeviceNum( void )
 {
 #ifndef DX_NON_DIRECT3D9
@@ -1583,7 +1583,7 @@ extern	int						NS_GetDirectDrawDeviceNum( void )
 #endif // DX_NON_DIRECT3D9
 }
 
-// g—p’†‚Ì‚c‚‰‚’‚…‚ƒ‚”‚R‚c‚c‚…‚–‚‰‚ƒ‚…‚XƒIƒuƒWƒFƒNƒg‚ğ“¾‚é
+// ä½¿ç”¨ä¸­ã®ï¼¤ï½‰ï½’ï½…ï½ƒï½”ï¼“ï¼¤ï¼¤ï½…ï½–ï½‰ï½ƒï½…ï¼™ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å¾—ã‚‹
 extern	const void * NS_GetUseDirect3DDevice9( void )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -1603,7 +1603,7 @@ extern	const void * NS_GetUseDirect3DDevice9( void )
 	}
 }
 
-// g—p’†‚ÌƒoƒbƒNƒoƒbƒtƒ@‚ÌDirect3DSurface9ƒIƒuƒWƒFƒNƒg‚ğæ“¾‚·‚é
+// ä½¿ç”¨ä¸­ã®ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã®Direct3DSurface9ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å–å¾—ã™ã‚‹
 extern const void * NS_GetUseDirect3D9BackBufferSurface( void )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -1623,7 +1623,7 @@ extern const void * NS_GetUseDirect3D9BackBufferSurface( void )
 	}
 }
 
-// g—p’†‚ÌID3D11DeviceƒIƒuƒWƒFƒNƒg‚ğæ“¾‚·‚é( –ß‚è’l‚ğ ID3D11Device * ‚ÉƒLƒƒƒXƒg‚µ‚Ä‰º‚³‚¢ )
+// ä½¿ç”¨ä¸­ã®ID3D11Deviceã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å–å¾—ã™ã‚‹( æˆ»ã‚Šå€¤ã‚’ ID3D11Device * ã«ã‚­ãƒ£ã‚¹ãƒˆã—ã¦ä¸‹ã•ã„ )
 extern	const void*	NS_GetUseDirect3D11Device( void )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -1643,7 +1643,7 @@ extern	const void*	NS_GetUseDirect3D11Device( void )
 	}
 }
 
-// g—p’†‚ÌID3D11DeviceContextƒIƒuƒWƒFƒNƒg‚ğæ“¾‚·‚é( –ß‚è’l‚ğ ID3D11DeviceContext * ‚ÉƒLƒƒƒXƒg‚µ‚Ä‰º‚³‚¢ )
+// ä½¿ç”¨ä¸­ã®ID3D11DeviceContextã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å–å¾—ã™ã‚‹( æˆ»ã‚Šå€¤ã‚’ ID3D11DeviceContext * ã«ã‚­ãƒ£ã‚¹ãƒˆã—ã¦ä¸‹ã•ã„ )
 extern	const void*	NS_GetUseDirect3D11DeviceContext( void )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -1663,7 +1663,7 @@ extern	const void*	NS_GetUseDirect3D11DeviceContext( void )
 	}
 }
 
-// g—p’†‚ÌƒoƒbƒNƒoƒbƒtƒ@‚ÌID3D11Texture2DƒIƒuƒWƒFƒNƒg‚ğæ“¾‚·‚é( –ß‚è’l‚ğ ID3D11Texture2D * ‚ÉƒLƒƒƒXƒg‚µ‚Ä‚­‚¾‚³‚¢ )
+// ä½¿ç”¨ä¸­ã®ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã®ID3D11Texture2Dã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å–å¾—ã™ã‚‹( æˆ»ã‚Šå€¤ã‚’ ID3D11Texture2D * ã«ã‚­ãƒ£ã‚¹ãƒˆã—ã¦ãã ã•ã„ )
 extern	const void*	NS_GetUseDirect3D11BackBufferTexture2D( void )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -1683,7 +1683,7 @@ extern	const void*	NS_GetUseDirect3D11BackBufferTexture2D( void )
 	}
 }
 
-// g—p’†‚ÌƒoƒbƒNƒoƒbƒtƒ@‚ÌID3D11RenderTargetViewƒIƒuƒWƒFƒNƒg‚ğæ“¾‚·‚é( –ß‚è’l‚ğ ID3D11RenderTargetView * ‚ÉƒLƒƒƒXƒg‚µ‚Ä‚­‚¾‚³‚¢ )
+// ä½¿ç”¨ä¸­ã®ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã®ID3D11RenderTargetViewã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å–å¾—ã™ã‚‹( æˆ»ã‚Šå€¤ã‚’ ID3D11RenderTargetView * ã«ã‚­ãƒ£ã‚¹ãƒˆã—ã¦ãã ã•ã„ )
 extern	const void*	NS_GetUseDirect3D11BackBufferRenderTargetView( void )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -1703,7 +1703,7 @@ extern	const void*	NS_GetUseDirect3D11BackBufferRenderTargetView( void )
 	}
 }
 
-// g—p’†‚Ì[“xƒXƒeƒ“ƒVƒ‹ƒoƒbƒtƒ@‚ÌID3D11Texture2DƒIƒuƒWƒFƒNƒg‚ğæ“¾‚·‚é( –ß‚è’l‚ğ ID3D11Texture2D * ‚ÉƒLƒƒƒXƒg‚µ‚Ä‚­‚¾‚³‚¢ )
+// ä½¿ç”¨ä¸­ã®æ·±åº¦ã‚¹ãƒ†ãƒ³ã‚·ãƒ«ãƒãƒƒãƒ•ã‚¡ã®ID3D11Texture2Dã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å–å¾—ã™ã‚‹( æˆ»ã‚Šå€¤ã‚’ ID3D11Texture2D * ã«ã‚­ãƒ£ã‚¹ãƒˆã—ã¦ãã ã•ã„ )
 extern	const void*	NS_GetUseDirect3D11DepthStencilTexture2D( void )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -1723,7 +1723,7 @@ extern	const void*	NS_GetUseDirect3D11DepthStencilTexture2D( void )
 	}
 }
 
-// w’è‚Ì ID3D11RenderTargetView ‚ğ•`‰æ‘ÎÛ‚É‚·‚é( pID3D11DepthStencilView ‚ª NULL ‚Ìê‡‚ÍƒfƒtƒHƒ‹ƒg‚Ì[“xƒXƒeƒ“ƒVƒ‹ƒoƒbƒtƒ@‚ğg—p‚·‚é )
+// æŒ‡å®šã® ID3D11RenderTargetView ã‚’æç”»å¯¾è±¡ã«ã™ã‚‹( pID3D11DepthStencilView ãŒ NULL ã®å ´åˆã¯ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®æ·±åº¦ã‚¹ãƒ†ãƒ³ã‚·ãƒ«ãƒãƒƒãƒ•ã‚¡ã‚’ä½¿ç”¨ã™ã‚‹ )
 extern int NS_SetDrawScreen_ID3D11RenderTargetView( const void *pID3D11RenderTargetView, const void *pID3D11DepthStencilView )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -1743,8 +1743,8 @@ extern int NS_SetDrawScreen_ID3D11RenderTargetView( const void *pID3D11RenderTar
 	}
 }
 
-// Direct3D11 ‚ğg—p‚µ‚½ê‡‚Ì SwapEffect ‚ğw’è‚·‚é
-extern int NS_SetUseDirect3D11SwapEffect( int SwapEffect /* DX_SWAP_EFFECT_DISCARD “™ */ )
+// Direct3D11 ã‚’ä½¿ç”¨ã—ãŸå ´åˆã® SwapEffect ã‚’æŒ‡å®šã™ã‚‹
+extern int NS_SetUseDirect3D11SwapEffect( int SwapEffect /* DX_SWAP_EFFECT_DISCARD ç­‰ */ )
 {
 #ifndef DX_NON_DIRECT3D11
 	return Graphics_Hardware_D3D11_SetUseSwapEffect_PF( ( D_DXGI_SWAP_EFFECT )SwapEffect ) ;
@@ -1753,7 +1753,7 @@ extern int NS_SetUseDirect3D11SwapEffect( int SwapEffect /* DX_SWAP_EFFECT_DISCA
 #endif // DX_NON_DIRECT3D11
 }
 
-// ƒ~ƒhƒ‹ƒEƒFƒA“™‚ğg—p‚µ‚½Œã‚É Direct3D ‚â OpenGL ‚Ì‚c‚wƒ‰ƒCƒuƒ‰ƒŠ—p‚Ìİ’è‚ğÄ“xs‚¤‚½‚ß‚ÌŠÖ”
+// ãƒŸãƒ‰ãƒ«ã‚¦ã‚§ã‚¢ç­‰ã‚’ä½¿ç”¨ã—ãŸå¾Œã« Direct3D ã‚„ OpenGL ã®ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªç”¨ã®è¨­å®šã‚’å†åº¦è¡Œã†ãŸã‚ã®é–¢æ•°
 extern int Graphics_Hardware_RefreshSetting_PF( void )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -1773,17 +1773,17 @@ extern int Graphics_Hardware_RefreshSetting_PF( void )
 	}
 }
 
-// Šî–{ƒf[ƒ^‚Éİ’è‚³‚ê‚Ä‚¢‚é‚Q‚cs—ñ‚ğƒn[ƒhƒEƒGƒA‚É”½‰f‚·‚é
+// åŸºæœ¬ãƒ‡ãƒ¼ã‚¿ã«è¨­å®šã•ã‚Œã¦ã„ã‚‹ï¼’ï¼¤è¡Œåˆ—ã‚’ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã«åæ˜ ã™ã‚‹
 extern void Graphics_DrawSetting_ApplyLib2DMatrixToHardware_PF( void )
 {
 }
 
-// Šî–{ƒf[ƒ^‚Éİ’è‚³‚ê‚Ä‚¢‚é‚R‚cs—ñ‚ğƒn[ƒhƒEƒGƒA‚É”½‰f‚·‚é
+// åŸºæœ¬ãƒ‡ãƒ¼ã‚¿ã«è¨­å®šã•ã‚Œã¦ã„ã‚‹ï¼“ï¼¤è¡Œåˆ—ã‚’ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã«åæ˜ ã™ã‚‹
 extern void Graphics_DrawSetting_ApplyLib3DMatrixToHardware_PF( int IgnoreWorldMatrix )
 {
 }
 
-// ‚c‚wƒ‰ƒCƒuƒ‰ƒŠ‚Ì‚c‚‰‚’‚…‚ƒ‚”‚R‚cİ’è‚ğ‚µ‚È‚¨‚·
+// ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®ï¼¤ï½‰ï½’ï½…ï½ƒï½”ï¼“ï¼¤è¨­å®šã‚’ã—ãªãŠã™
 extern int NS_RefreshDxLibDirect3DSetting( void )
 {
 	return Graphics_Hardware_RefreshSetting_PF() ;
@@ -1811,9 +1811,9 @@ extern int NS_RefreshDxLibDirect3DSetting( void )
 
 
 
-// ŠÂ‹«ˆË‘¶‰Šú‰»ŠÖŒW
+// ç’°å¢ƒä¾å­˜åˆæœŸåŒ–é–¢ä¿‚
 
-// ChangeDisplaySettings ‚ğg—p‚µ‚Ä‰æ–Êƒ‚[ƒh‚ğ•ÏX‚·‚é
+// ChangeDisplaySettings ã‚’ä½¿ç”¨ã—ã¦ç”»é¢ãƒ¢ãƒ¼ãƒ‰ã‚’å¤‰æ›´ã™ã‚‹
 static int UseChangeDisplaySettings( void )
 {
 //	HRESULT hr ;
@@ -1826,33 +1826,33 @@ static int UseChangeDisplaySettings( void )
 
 	SETUP_WIN_API
 
-	// Œ³‚Ì‰æ–Ê‚Ì‘å‚«‚³‚ğ“¾‚é
+	// å…ƒã®ç”»é¢ã®å¤§ãã•ã‚’å¾—ã‚‹
 //	NS_GetDefaultState( &DesktopWidth, &DesktopHeight, &DesktopColorBitDepth ) ;
 
-	DXST_LOGFILEFMT_ADDUTF16LE(( "\x3b\x75\x62\x97\xe2\x30\xfc\x30\xc9\x30\x6e\x30\x09\x59\xf4\x66\xe6\x51\x06\x74\x92\x30\x8b\x95\xcb\x59\x57\x30\x7e\x30\x59\x30\x20\x00\x25\x00\x75\x00\x20\x00\x78\x00\x20\x00\x25\x00\x75\x00\x20\x00\x20\x00\x25\x00\x75\x00\x20\x00\x62\x00\x69\x00\x74\x00\x20\x00\x00"/*@ L"‰æ–Êƒ‚[ƒh‚Ì•ÏXˆ—‚ğŠJn‚µ‚Ü‚· %u x %u  %u bit " @*/, GSYS.Screen.MainScreenSizeX, GSYS.Screen.MainScreenSizeY, GSYS.Screen.MainScreenColorBitDepth )) ;
+	DXST_LOGFILEFMT_ADDUTF16LE(( "\x3b\x75\x62\x97\xe2\x30\xfc\x30\xc9\x30\x6e\x30\x09\x59\xf4\x66\xe6\x51\x06\x74\x92\x30\x8b\x95\xcb\x59\x57\x30\x7e\x30\x59\x30\x20\x00\x25\x00\x75\x00\x20\x00\x78\x00\x20\x00\x25\x00\x75\x00\x20\x00\x20\x00\x25\x00\x75\x00\x20\x00\x62\x00\x69\x00\x74\x00\x20\x00\x00"/*@ L"ç”»é¢ãƒ¢ãƒ¼ãƒ‰ã®å¤‰æ›´å‡¦ç†ã‚’é–‹å§‹ã—ã¾ã™ %u x %u  %u bit " @*/, GSYS.Screen.MainScreenSizeX, GSYS.Screen.MainScreenSizeY, GSYS.Screen.MainScreenColorBitDepth )) ;
 	DXST_LOGFILE_TABADD ;
 
-	// ƒtƒ‹ƒXƒNƒŠ[ƒ“ƒ‚[ƒh‚Ìî•ñ‚ğƒZƒbƒgƒAƒbƒv
+	// ãƒ•ãƒ«ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ¢ãƒ¼ãƒ‰ã®æƒ…å ±ã‚’ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 	Graphics_Screen_SetupFullScreenModeInfo() ;
 
-	// ‘Î‰‚µ‚Ä‚¢‚éƒJƒ‰[ƒrƒbƒg[“x‚Í 16 ‚Æ 32 ‚Ì‚İ
+	// å¯¾å¿œã—ã¦ã„ã‚‹ã‚«ãƒ©ãƒ¼ãƒ“ãƒƒãƒˆæ·±åº¦ã¯ 16 ã¨ 32 ã®ã¿
 //	if( GSYS.Screen.MainScreenColorBitDepth != 16 &&
 //		GSYS.Screen.MainScreenColorBitDepth != 32 )
 	if( GSYS.Screen.FullScreenUseDispModeData.ColorBitDepth != 16 &&
 		GSYS.Screen.FullScreenUseDispModeData.ColorBitDepth != 32 )
 	{
-		DXST_LOGFILE_ADDUTF16LE( "\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
-		DXST_LOGFILE_ERRCODE_ADDUTF16LE( DX_ERRORCODE_WIN_NOT_COMPATIBLE_SCREEN_COLOR_MODE, "\x24\xff\x38\xff\xe9\x30\xa4\x30\xd6\x30\xe9\x30\xea\x30\x4c\x30\xfe\x5b\xdc\x5f\x57\x30\x66\x30\x44\x30\x6a\x30\x44\x30\x3b\x75\x62\x97\xab\x30\xe9\x30\xfc\x30\xe2\x30\xfc\x30\xc9\x30\x4c\x30\x07\x63\x9a\x5b\x55\x30\x8c\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"‚c‚wƒ‰ƒCƒuƒ‰ƒŠ‚ª‘Î‰‚µ‚Ä‚¢‚È‚¢‰æ–ÊƒJƒ‰[ƒ‚[ƒh‚ªw’è‚³‚ê‚Ü‚µ‚½\n" @*/ ) ;
+		DXST_LOGFILE_ADDUTF16LE( "\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
+		DXST_LOGFILE_ERRCODE_ADDUTF16LE( DX_ERRORCODE_WIN_NOT_COMPATIBLE_SCREEN_COLOR_MODE, "\x24\xff\x38\xff\xe9\x30\xa4\x30\xd6\x30\xe9\x30\xea\x30\x4c\x30\xfe\x5b\xdc\x5f\x57\x30\x66\x30\x44\x30\x6a\x30\x44\x30\x3b\x75\x62\x97\xab\x30\xe9\x30\xfc\x30\xe2\x30\xfc\x30\xc9\x30\x4c\x30\x07\x63\x9a\x5b\x55\x30\x8c\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªãŒå¯¾å¿œã—ã¦ã„ãªã„ç”»é¢ã‚«ãƒ©ãƒ¼ãƒ¢ãƒ¼ãƒ‰ãŒæŒ‡å®šã•ã‚Œã¾ã—ãŸ\n" @*/ ) ;
 		DXST_LOGFILE_TABSUB ;
 		return -1 ;
 	}
 
-	// ƒfƒBƒXƒvƒŒƒCƒ‚[ƒh‚Ì•ÏX
-	DXST_LOGFILE_ADDUTF16LE( "\x3b\x75\x62\x97\xe3\x89\xcf\x50\xa6\x5e\x92\x30\x09\x59\xf4\x66\x57\x30\x7e\x30\x59\x30\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"‰æ–Ê‰ğ‘œ“x‚ğ•ÏX‚µ‚Ü‚·... " @*/ ) ;
+	// ãƒ‡ã‚£ã‚¹ãƒ—ãƒ¬ã‚¤ãƒ¢ãƒ¼ãƒ‰ã®å¤‰æ›´
+	DXST_LOGFILE_ADDUTF16LE( "\x3b\x75\x62\x97\xe3\x89\xcf\x50\xa6\x5e\x92\x30\x09\x59\xf4\x66\x57\x30\x7e\x30\x59\x30\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"ç”»é¢è§£åƒåº¦ã‚’å¤‰æ›´ã—ã¾ã™... " @*/ ) ;
 
-	// Win32 API ‚ğg‚Á‚Ä‰æ–Êƒ‚[ƒh‚ğ•ÏX‚·‚é
+	// Win32 API ã‚’ä½¿ã£ã¦ç”»é¢ãƒ¢ãƒ¼ãƒ‰ã‚’å¤‰æ›´ã™ã‚‹
 	{
-		// ƒpƒ‰ƒ[ƒ^ƒZƒbƒg
+		// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ
 		_MEMSET( &DevMode, 0, sizeof( DevMode ) ) ;
 		DevMode.dmSize             = sizeof( DevMode ) ;
 		DevMode.dmBitsPerPel       = ( DWORD )GSYS.Screen.MainScreenColorBitDepth ;
@@ -1865,18 +1865,18 @@ static int UseChangeDisplaySettings( void )
 		DevMode.dmPelsWidth        = ( DWORD )GSYS.Screen.FullScreenUseDispModeData.Width ;
 		DevMode.dmPelsHeight       = ( DWORD )GSYS.Screen.FullScreenUseDispModeData.Height ;
 
-		// ‰æ–Êƒ‚[ƒhƒ`ƒFƒ“ƒW
+		// ç”»é¢ãƒ¢ãƒ¼ãƒ‰ãƒã‚§ãƒ³ã‚¸
 		if( WinAPIData.Win32Func.ChangeDisplaySettingsAFunc( &DevMode, CDS_FULLSCREEN ) != DISP_CHANGE_SUCCESSFUL )
 		{
-			// ¸”s‚µ‚½‚çƒŠƒtƒŒƒbƒVƒ…ƒŒ[ƒgw’è–³‚µ‚Å‚à‚¤ˆê“x’§í
+			// å¤±æ•—ã—ãŸã‚‰ãƒªãƒ•ãƒ¬ãƒƒã‚·ãƒ¥ãƒ¬ãƒ¼ãƒˆæŒ‡å®šç„¡ã—ã§ã‚‚ã†ä¸€åº¦æŒ‘æˆ¦
 			GSYS.Screen.MainScreenRefreshRate = 0 ;
 			DevMode.dmDisplayFrequency        = 0 ;
 			DevMode.dmFields                 &= ~DM_DISPLAYFREQUENCY ;
 			if( WinAPIData.Win32Func.ChangeDisplaySettingsAFunc( &DevMode, 0/*CDS_FULLSCREEN*/ ) != DISP_CHANGE_SUCCESSFUL )
 			{
 #if 0
-				// ‚»‚ê‚Å‚à‘Ê–Ú‚ÅAŠ‚Â‰æ–Êƒ‚[ƒh‚ª 320x240 ‚¾‚Á‚½ê‡‚Í
-				// ‹[— 320x240 ƒ‚[ƒh‚Å‚·
+				// ãã‚Œã§ã‚‚é§„ç›®ã§ã€ä¸”ã¤ç”»é¢ãƒ¢ãƒ¼ãƒ‰ãŒ 320x240 ã ã£ãŸå ´åˆã¯
+				// æ“¬ä¼¼ 320x240 ãƒ¢ãƒ¼ãƒ‰ã§è©¦ã™
 				if( GSYS.Screen.MainScreenSizeX == 320 && GSYS.Screen.MainScreenSizeY == 240 )
 				{
 					Graphics_Screen_SetMainScreenSize( 640, 480 ) ;
@@ -1892,7 +1892,7 @@ static int UseChangeDisplaySettings( void )
 				else
 #endif
 				{
-					// ‚»‚ê‚Å‚à‘Ê–Ú‚ÅAŠ‚Âƒ\ƒtƒgƒEƒFƒAƒŒƒ“ƒ_ƒŠƒ“ƒOƒ‚[ƒh‚¾‚Á‚½ê‡‚Í 32bitƒJƒ‰[‚ğ‚·
+					// ãã‚Œã§ã‚‚é§„ç›®ã§ã€ä¸”ã¤ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ãƒ¢ãƒ¼ãƒ‰ã ã£ãŸå ´åˆã¯ 32bitã‚«ãƒ©ãƒ¼ã‚’è©¦ã™
 					if( GSYS.Setting.NotUseHardware )
 					{
 						DevMode.dmBitsPerPel = 32 ;
@@ -1904,7 +1904,7 @@ static int UseChangeDisplaySettings( void )
 					else
 					{
 ERRORLABEL:
-						DXST_LOGFILE_ERRCODE_ADDUTF16LE( DX_ERRORCODE_WIN_FAILED_CHANGE_DISPLAY_SETTINGS, "\x3b\x75\x62\x97\xe2\x30\xfc\x30\xc9\x30\x6e\x30\x09\x59\xf4\x66\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"‰æ–Êƒ‚[ƒh‚Ì•ÏX‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+						DXST_LOGFILE_ERRCODE_ADDUTF16LE( DX_ERRORCODE_WIN_FAILED_CHANGE_DISPLAY_SETTINGS, "\x3b\x75\x62\x97\xe2\x30\xfc\x30\xc9\x30\x6e\x30\x09\x59\xf4\x66\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ç”»é¢ãƒ¢ãƒ¼ãƒ‰ã®å¤‰æ›´ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 						DXST_LOGFILE_TABSUB ;
 						return -1 ;
 					}
@@ -1914,15 +1914,15 @@ ERRORLABEL:
 	}
 
 	GRAWIN.UseChangeDisplaySettings = TRUE ;
-	DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"¬Œ÷‚µ‚Ü‚µ‚½\n" @*/ ) ;
+	DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"æˆåŠŸã—ã¾ã—ãŸ\n" @*/ ) ;
 
-	// 10‰ñ‰æ–Ê‘S‘Ì‚ğ•‚Å“h‚è‚Â‚Ô‚·w’è‚ğc‚·
+	// 10å›ç”»é¢å…¨ä½“ã‚’é»’ã§å¡—ã‚Šã¤ã¶ã™æŒ‡å®šã‚’æ®‹ã™
 	GRAWIN.FullScreenBlackFillCounter = 10 ;
 
 	return 0 ;
 }
 
-// •`‰æˆ—‚ÌŠÂ‹«ˆË‘¶•”•ª‚Ì‰Šú‰»‚ğs‚¤ŠÖ”( Às‰ÓŠ‹æ•Ê‚O )
+// æç”»å‡¦ç†ã®ç’°å¢ƒä¾å­˜éƒ¨åˆ†ã®åˆæœŸåŒ–ã‚’è¡Œã†é–¢æ•°( å®Ÿè¡Œç®‡æ‰€åŒºåˆ¥ï¼ )
 extern int Graphics_Initialize_Timing0_PF( void )
 {
 	int Result ;
@@ -1964,13 +1964,13 @@ extern int Graphics_Initialize_Timing0_PF( void )
 #endif // DX_NON_DIRECT3D9
 	}
 
-	// ƒn[ƒhƒEƒFƒA‹@”\‚ªg—p‚Å‚«‚È‚¢( ‚µ‚È‚¢ )ê‡‚Íƒ\ƒtƒgƒEƒGƒAƒŒƒ“ƒ_ƒŠƒ“ƒOƒ‚[ƒh‚Ìˆ—‚ğs‚¤
+	// ãƒãƒ¼ãƒ‰ã‚¦ã‚§ã‚¢æ©Ÿèƒ½ãŒä½¿ç”¨ã§ããªã„( ã—ãªã„ )å ´åˆã¯ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ãƒ¢ãƒ¼ãƒ‰ã®å‡¦ç†ã‚’è¡Œã†
 	if( Result < 0 )
 	{
-		// DirectDraw7 ‚ğì¬‚·‚é
+		// DirectDraw7 ã‚’ä½œæˆã™ã‚‹
 		DirectDraw7_Create() ;
 
-		// ƒtƒ‹ƒXƒNƒŠ[ƒ“ƒ‚[ƒh‚Ìê‡‚Í‚±‚±‚Å‰æ–Êƒ‚[ƒh‚ğ•ÏX‚·‚é
+		// ãƒ•ãƒ«ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ¢ãƒ¼ãƒ‰ã®å ´åˆã¯ã“ã“ã§ç”»é¢ãƒ¢ãƒ¼ãƒ‰ã‚’å¤‰æ›´ã™ã‚‹
 		if( NS_GetWindowModeFlag() == FALSE && NS_GetUseFullScreenResolutionMode() != DX_FSRESOLUTIONMODE_BORDERLESS_WINDOW )
 		{
 			if( UseChangeDisplaySettings() < 0 )
@@ -1980,15 +1980,15 @@ extern int Graphics_Initialize_Timing0_PF( void )
 			}
 		}
 
-		// ‚u‚r‚x‚m‚b‘Ò‚¿‚ÌŠÔ‚ğæ“¾‚·‚é
+		// ï¼¶ï¼³ï¼¹ï¼®ï¼£å¾…ã¡ã®æ™‚é–“ã‚’å–å¾—ã™ã‚‹
 		DirectDraw7_WaitVSyncInitialize() ;
 	}
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// •`‰æˆ—‚ÌŠÂ‹«ˆË‘¶•”•ª‚Ì‰Šú‰»‚ğs‚¤ŠÖ”( Às‰ÓŠ‹æ•Ê‚P )
+// æç”»å‡¦ç†ã®ç’°å¢ƒä¾å­˜éƒ¨åˆ†ã®åˆæœŸåŒ–ã‚’è¡Œã†é–¢æ•°( å®Ÿè¡Œç®‡æ‰€åŒºåˆ¥ï¼‘ )
 extern int Graphics_Initialize_Timing1_PF( void )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -2015,11 +2015,11 @@ extern int Graphics_Initialize_Timing1_PF( void )
 		break ;
 	}
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒ^‚ğg—p‚·‚éê‡‚ÌŠÂ‹«ˆË‘¶‚Ì‰Šú‰»ˆ—‚ğs‚¤
+// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚¿ã‚’ä½¿ç”¨ã™ã‚‹å ´åˆã®ç’°å¢ƒä¾å­˜ã®åˆæœŸåŒ–å‡¦ç†ã‚’è¡Œã†
 extern	int		Graphics_Hardware_Initialize_PF( void )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -2039,7 +2039,7 @@ extern	int		Graphics_Hardware_Initialize_PF( void )
 	}
 }
 
-// •`‰æˆ—‚ÌŠÂ‹«ˆË‘¶•”•ª‚ÌŒãn––‚ğs‚¤ŠÖ”
+// æç”»å‡¦ç†ã®ç’°å¢ƒä¾å­˜éƒ¨åˆ†ã®å¾Œå§‹æœ«ã‚’è¡Œã†é–¢æ•°
 extern	int		Graphics_Terminate_PF( void )
 {
 	int Result ;
@@ -2064,7 +2064,7 @@ extern	int		Graphics_Terminate_PF( void )
 		break ;
 	}
 
-	// ƒfƒBƒXƒvƒŒƒCî•ñ—p‚ÉŠm•Û‚µ‚½ƒƒ‚ƒŠ‚Ì‰ğ•ú
+	// ãƒ‡ã‚£ã‚¹ãƒ—ãƒ¬ã‚¤æƒ…å ±ç”¨ã«ç¢ºä¿ã—ãŸãƒ¡ãƒ¢ãƒªã®è§£æ”¾
 	if( GSYS.Screen.DisplayInfo )
 	{
 		WinAPIData.Win32Func.HeapFreeFunc( WinAPIData.Win32Func.GetProcessHeapFunc(), 0, GSYS.Screen.DisplayInfo ) ;
@@ -2074,7 +2074,7 @@ extern	int		Graphics_Terminate_PF( void )
 	return Result ;
 }
 
-// ƒOƒ‰ƒtƒBƒbƒNƒXƒVƒXƒeƒ€‚Ì•œ‹AA–”‚Í•ÏX•t‚«‚ÌÄƒZƒbƒgƒAƒbƒv‚ğs‚¤
+// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¹ã‚·ã‚¹ãƒ†ãƒ ã®å¾©å¸°ã€åˆã¯å¤‰æ›´ä»˜ãã®å†ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã‚’è¡Œã†
 extern int Graphics_RestoreOrChangeSetupGraphSystem_PF(
 	int Change,
 	int ScreenSizeX,
@@ -2084,7 +2084,7 @@ extern int Graphics_RestoreOrChangeSetupGraphSystem_PF(
 )
 {
 #ifndef DX_NON_ASYNCLOAD
-	// ”ñ“¯Šú“Ç‚İ‚İ‚Ì“r’†‚Ìê‡‚ÍA”ñ“¯Šú“Ç‚İ‚İ‚ªI—¹‚·‚é‚Ü‚Å‘Ò‚Â
+	// éåŒæœŸèª­ã¿è¾¼ã¿ã®é€”ä¸­ã®å ´åˆã¯ã€éåŒæœŸèª­ã¿è¾¼ã¿ãŒçµ‚äº†ã™ã‚‹ã¾ã§å¾…ã¤
 	while( NS_GetASyncLoadNum() > 0 )
 	{
 		ProcessASyncLoadRequestMainThread() ;
@@ -2099,7 +2099,7 @@ extern int Graphics_RestoreOrChangeSetupGraphSystem_PF(
 	}
 #endif // DX_NON_ASYNCLOAD
 
-	// ƒn[ƒhƒEƒGƒA‚Ì‹@”\‚ğg—p‚·‚é‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+	// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã®æ©Ÿèƒ½ã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 	if( GSYS.Setting.ValidHardware == TRUE )
 	{
 		switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -2120,17 +2120,17 @@ extern int Graphics_RestoreOrChangeSetupGraphSystem_PF(
 	}
 	else
 	{
-		// ƒ\ƒtƒgƒEƒGƒAƒŒƒ“ƒ_ƒŠƒ“ƒOƒ‚[ƒh
+		// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ãƒ¢ãƒ¼ãƒ‰
 
 		if( DxSysData.NotDrawFlag == FALSE )
 		{
-			// DirectDraw7 ‚Ì‰ğ•ú
+			// DirectDraw7 ã®è§£æ”¾
 			DirectDraw7_Release() ;
 		}
 
 		if( Change == TRUE )
 		{
-			// ‰æ–Êƒ‚[ƒh‚ÌƒZƒbƒg
+			// ç”»é¢ãƒ¢ãƒ¼ãƒ‰ã®ã‚»ãƒƒãƒˆ
 			Graphics_Screen_SetMainScreenSize( ScreenSizeX, ScreenSizeY ) ;
 			GSYS.Screen.MainScreenColorBitDepth = ColorBitDepth ;
 			GSYS.Screen.MainScreenRefreshRate   = RefreshRate ;
@@ -2141,13 +2141,13 @@ extern int Graphics_RestoreOrChangeSetupGraphSystem_PF(
 		{
 			GSYS.Screen.FullScreenResolutionModeAct = GSYS.Screen.FullScreenResolutionMode ;
 
-			// DirectDraw7 ‚ğì¬‚·‚é
+			// DirectDraw7 ã‚’ä½œæˆã™ã‚‹
 			if( DirectDraw7_Create() < 0 )
 			{
 				return -1 ;
 			}
 
-			// ƒtƒ‹ƒXƒNƒŠ[ƒ“ƒ‚[ƒh‚Ìê‡‚Í‚±‚±‚Å‰æ–Êƒ‚[ƒh‚ğ•ÏX‚·‚é
+			// ãƒ•ãƒ«ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ¢ãƒ¼ãƒ‰ã®å ´åˆã¯ã“ã“ã§ç”»é¢ãƒ¢ãƒ¼ãƒ‰ã‚’å¤‰æ›´ã™ã‚‹
 			if( NS_GetWindowModeFlag() == FALSE && NS_GetUseFullScreenResolutionMode() != DX_FSRESOLUTIONMODE_BORDERLESS_WINDOW )
 			{
 				if( UseChangeDisplaySettings() < 0 )
@@ -2157,16 +2157,16 @@ extern int Graphics_RestoreOrChangeSetupGraphSystem_PF(
 				}
 			}
 
-			// ‚u‚r‚x‚m‚b‘Ò‚¿‚ÌŠÔ‚ğæ“¾‚·‚é
+			// ï¼¶ï¼³ï¼¹ï¼®ï¼£å¾…ã¡ã®æ™‚é–“ã‚’å–å¾—ã™ã‚‹
 			DirectDraw7_WaitVSyncInitialize() ;
 		}
 	}
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// •`‰æ—pƒfƒoƒCƒX‚ª—LŒø‚©‚Ç‚¤‚©‚ğæ“¾‚·‚é
+// æç”»ç”¨ãƒ‡ãƒã‚¤ã‚¹ãŒæœ‰åŠ¹ã‹ã©ã†ã‹ã‚’å–å¾—ã™ã‚‹
 extern int Graphics_Hardware_CheckValid_PF( void )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -2212,15 +2212,15 @@ extern int Graphics_Hardware_CheckValid_PF( void )
 
 
 
-// ŠÂ‹«ˆË‘¶•`‰æİ’èŠÖŒW
+// ç’°å¢ƒä¾å­˜æç”»è¨­å®šé–¢ä¿‚
 
-// ƒƒCƒ“ƒEƒCƒ“ƒhƒE‚Ì”wŒiF‚ğİ’è‚·‚é( Red,Green,Blue:‚»‚ê‚¼‚ê ‚O`‚Q‚T‚T )
+// ãƒ¡ã‚¤ãƒ³ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®èƒŒæ™¯è‰²ã‚’è¨­å®šã™ã‚‹( Red,Green,Blue:ãã‚Œãã‚Œ ï¼ï½ï¼’ï¼•ï¼• )
 extern	int		Graphics_Hardware_SetBackgroundColor_PF( int /*Red*/, int /*Green*/, int /*Blue*/, int /*Alpha*/  )
 {
 	return 0 ;
 }
 
-// ƒVƒF[ƒ_[•`‰æ‚Å‚Ì•`‰ææ‚ğİ’è‚·‚é
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼æç”»ã§ã®æç”»å…ˆã‚’è¨­å®šã™ã‚‹
 extern	int		Graphics_Hardware_SetRenderTargetToShader_PF( int TargetIndex, int DrawScreen, int SurfaceIndex, int MipLevel )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -2240,7 +2240,7 @@ extern	int		Graphics_Hardware_SetRenderTargetToShader_PF( int TargetIndex, int D
 	}
 }
 
-// SetDrawBright ‚Ìˆø”‚ªˆê‚Â”Å
+// SetDrawBright ã®å¼•æ•°ãŒä¸€ã¤ç‰ˆ
 extern	int		Graphics_Hardware_SetDrawBrightToOneParam_PF( DWORD Bright )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -2260,7 +2260,7 @@ extern	int		Graphics_Hardware_SetDrawBrightToOneParam_PF( DWORD Bright )
 	}
 }
 
-// •`‰æƒuƒŒƒ“ƒhƒ‚[ƒh‚ğƒZƒbƒg‚·‚é
+// æç”»ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern	int		Graphics_Hardware_SetDrawBlendMode_PF( int BlendMode, int BlendParam )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -2280,7 +2280,7 @@ extern	int		Graphics_Hardware_SetDrawBlendMode_PF( int BlendMode, int BlendParam
 	}
 }
 
-// ƒJƒXƒ^ƒ€ƒuƒŒƒ“ƒhƒ‚[ƒh‚ğİ’è‚·‚é
+// ã‚«ã‚¹ã‚¿ãƒ ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã‚’è¨­å®šã™ã‚‹
 extern	int		Graphics_Hardware_SetDrawCustomBlendMode_PF( int BlendEnable, int SrcBlendRGB, int DestBlendRGB, int BlendOpRGB, int SrcBlendA, int DestBlendA, int BlendOpA, int BlendParam )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -2300,7 +2300,7 @@ extern	int		Graphics_Hardware_SetDrawCustomBlendMode_PF( int BlendEnable, int Sr
 	}
 }
 
-// •`‰æ‚ÌƒAƒ‹ƒtƒ@ƒeƒXƒg‚Ìİ’è‚ğs‚¤( TestMode:DX_CMP_GREATER“™( -1:ƒfƒtƒHƒ‹ƒg“®ì‚É–ß‚· )  TestParam:•`‰æƒAƒ‹ƒtƒ@’l‚Æ‚Ì”äŠr‚Ég—p‚·‚é’l )
+// æç”»æ™‚ã®ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆã®è¨­å®šã‚’è¡Œã†( TestMode:DX_CMP_GREATERç­‰( -1:ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå‹•ä½œã«æˆ»ã™ )  TestParam:æç”»ã‚¢ãƒ«ãƒ•ã‚¡å€¤ã¨ã®æ¯”è¼ƒã«ä½¿ç”¨ã™ã‚‹å€¤ )
 extern	int		Graphics_Hardware_SetDrawAlphaTest_PF( int TestMode, int TestParam )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -2320,7 +2320,7 @@ extern	int		Graphics_Hardware_SetDrawAlphaTest_PF( int TestMode, int TestParam )
 	}
 }
 
-// •`‰æƒ‚[ƒh‚ğƒZƒbƒg‚·‚é
+// æç”»ãƒ¢ãƒ¼ãƒ‰ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern	int		Graphics_Hardware_SetDrawMode_PF( int DrawMode )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -2340,7 +2340,7 @@ extern	int		Graphics_Hardware_SetDrawMode_PF( int DrawMode )
 	}
 }
 
-// •`‰æ‹P“x‚ğƒZƒbƒg
+// æç”»è¼åº¦ã‚’ã‚»ãƒƒãƒˆ
 extern	int		Graphics_Hardware_SetDrawBright_PF( int RedBright, int GreenBright, int BlueBright )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -2360,7 +2360,7 @@ extern	int		Graphics_Hardware_SetDrawBright_PF( int RedBright, int GreenBright, 
 	}
 }
 
-// •`‰æ‹P“x‚ğƒZƒbƒg
+// æç”»è¼åº¦ã‚’ã‚»ãƒƒãƒˆ
 extern	int		Graphics_Hardware_SetDrawAddColor_PF( int Red, int Green, int Blue )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -2380,7 +2380,7 @@ extern	int		Graphics_Hardware_SetDrawAddColor_PF( int Red, int Green, int Blue )
 	}
 }
 
-// SetBlendGraphParam ‚Ì‰Â•Ï’·ˆø”ƒpƒ‰ƒ[ƒ^•t‚«
+// SetBlendGraphParam ã®å¯å¤‰é•·å¼•æ•°ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ä»˜ã
 extern	int		Graphics_Hardware_SetBlendGraphParamBase_PF( IMAGEDATA *BlendImage, int BlendType, int *Param )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -2400,7 +2400,7 @@ extern	int		Graphics_Hardware_SetBlendGraphParamBase_PF( IMAGEDATA *BlendImage, 
 	}
 }
 
-// Å‘åˆÙ•û«‚Ì’l‚ğƒZƒbƒg‚·‚é
+// æœ€å¤§ç•°æ–¹æ€§ã®å€¤ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern	int		Graphics_Hardware_SetMaxAnisotropy_PF( int MaxAnisotropy )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -2420,7 +2420,7 @@ extern	int		Graphics_Hardware_SetMaxAnisotropy_PF( int MaxAnisotropy )
 	}
 }
 
-// ƒ[ƒ‹ƒh•ÏŠ·—ps—ñ‚ğƒZƒbƒg‚·‚é
+// ãƒ¯ãƒ¼ãƒ«ãƒ‰å¤‰æ›ç”¨è¡Œåˆ—ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern	int		Graphics_Hardware_SetTransformToWorld_PF( const MATRIX *Matrix )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -2440,7 +2440,7 @@ extern	int		Graphics_Hardware_SetTransformToWorld_PF( const MATRIX *Matrix )
 	}
 }
 
-// ƒrƒ…[•ÏŠ·—ps—ñ‚ğƒZƒbƒg‚·‚é
+// ãƒ“ãƒ¥ãƒ¼å¤‰æ›ç”¨è¡Œåˆ—ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern	int		Graphics_Hardware_SetTransformToView_PF( const MATRIX *Matrix )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -2460,7 +2460,7 @@ extern	int		Graphics_Hardware_SetTransformToView_PF( const MATRIX *Matrix )
 	}
 }
 
-// “Š‰e•ÏŠ·—ps—ñ‚ğƒZƒbƒg‚·‚é
+// æŠ•å½±å¤‰æ›ç”¨è¡Œåˆ—ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern	int		Graphics_Hardware_SetTransformToProjection_PF( const MATRIX *Matrix )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -2480,7 +2480,7 @@ extern	int		Graphics_Hardware_SetTransformToProjection_PF( const MATRIX *Matrix 
 	}
 }
 
-// ƒrƒ…[ƒ|[ƒgs—ñ‚ğƒZƒbƒg‚·‚é
+// ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆè¡Œåˆ—ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern	int		Graphics_Hardware_SetTransformToViewport_PF( const MATRIX *Matrix )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -2500,19 +2500,19 @@ extern	int		Graphics_Hardware_SetTransformToViewport_PF( const MATRIX *Matrix )
 	}
 }
 
-// ƒeƒNƒXƒ`ƒƒƒAƒhƒŒƒXƒ‚[ƒh‚ğİ’è‚·‚é
-extern	int		Graphics_Hardware_SetTextureAddressMode_PF( int Mode /* DX_TEXADDRESS_WRAP “™ */, int Stage )
+// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¢ãƒ‰ãƒ¬ã‚¹ãƒ¢ãƒ¼ãƒ‰ã‚’è¨­å®šã™ã‚‹
+extern	int		Graphics_Hardware_SetTextureAddressMode_PF( int Mode /* DX_TEXADDRESS_WRAP ç­‰ */, int Stage )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
 	{
 #ifndef DX_NON_DIRECT3D11
 	case GRAPHICS_API_DIRECT3D11_WIN32 :
-		return Graphics_Hardware_D3D11_SetTextureAddressMode_PF( Mode /* DX_TEXADDRESS_WRAP “™ */,  Stage ) ;
+		return Graphics_Hardware_D3D11_SetTextureAddressMode_PF( Mode /* DX_TEXADDRESS_WRAP ç­‰ */,  Stage ) ;
 #endif // DX_NON_DIRECT3D11
 
 #ifndef DX_NON_DIRECT3D9
 	case GRAPHICS_API_DIRECT3D9_WIN32 :
-		return Graphics_Hardware_D3D9_SetTextureAddressMode_PF( Mode /* DX_TEXADDRESS_WRAP “™ */,  Stage ) ;
+		return Graphics_Hardware_D3D9_SetTextureAddressMode_PF( Mode /* DX_TEXADDRESS_WRAP ç­‰ */,  Stage ) ;
 #endif // DX_NON_DIRECT3D9
 
 	default :
@@ -2520,7 +2520,7 @@ extern	int		Graphics_Hardware_SetTextureAddressMode_PF( int Mode /* DX_TEXADDRES
 	}
 }
 
-// ƒeƒNƒXƒ`ƒƒƒAƒhƒŒƒXƒ‚[ƒh‚ğİ’è‚·‚é
+// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¢ãƒ‰ãƒ¬ã‚¹ãƒ¢ãƒ¼ãƒ‰ã‚’è¨­å®šã™ã‚‹
 extern	int		Graphics_Hardware_SetTextureAddressModeUV_PF( int ModeU, int ModeV, int Stage )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -2540,7 +2540,7 @@ extern	int		Graphics_Hardware_SetTextureAddressModeUV_PF( int ModeU, int ModeV, 
 	}
 }
 
-// ƒeƒNƒXƒ`ƒƒÀ•W•ÏŠ·s—ñ‚ğƒZƒbƒg‚·‚é
+// ãƒ†ã‚¯ã‚¹ãƒãƒ£åº§æ¨™å¤‰æ›è¡Œåˆ—ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern	int		Graphics_Hardware_SetTextureAddressTransformMatrix_PF( int UseFlag, MATRIX *Matrix, int Sampler )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -2560,7 +2560,7 @@ extern	int		Graphics_Hardware_SetTextureAddressTransformMatrix_PF( int UseFlag, 
 	}
 }
 
-// ƒtƒHƒO‚ğ—LŒø‚É‚·‚é‚©‚Ç‚¤‚©‚ğİ’è‚·‚é( TRUE:—LŒø  FALSE:–³Œø )
+// ãƒ•ã‚©ã‚°ã‚’æœ‰åŠ¹ã«ã™ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹( TRUE:æœ‰åŠ¹  FALSE:ç„¡åŠ¹ )
 extern	int		Graphics_Hardware_SetFogEnable_PF( int Flag )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -2580,19 +2580,19 @@ extern	int		Graphics_Hardware_SetFogEnable_PF( int Flag )
 	}
 }
 
-// ƒtƒHƒOƒ‚[ƒh‚ğİ’è‚·‚é
-extern	int		Graphics_Hardware_SetFogMode_PF( int Mode /* DX_FOGMODE_NONE “™ */ )
+// ãƒ•ã‚©ã‚°ãƒ¢ãƒ¼ãƒ‰ã‚’è¨­å®šã™ã‚‹
+extern	int		Graphics_Hardware_SetFogMode_PF( int Mode /* DX_FOGMODE_NONE ç­‰ */ )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
 	{
 #ifndef DX_NON_DIRECT3D11
 	case GRAPHICS_API_DIRECT3D11_WIN32 :
-		return Graphics_Hardware_D3D11_SetFogMode_PF(  Mode /* DX_FOGMODE_NONE “™ */ ) ;
+		return Graphics_Hardware_D3D11_SetFogMode_PF(  Mode /* DX_FOGMODE_NONE ç­‰ */ ) ;
 #endif // DX_NON_DIRECT3D11
 
 #ifndef DX_NON_DIRECT3D9
 	case GRAPHICS_API_DIRECT3D9_WIN32 :
-		return Graphics_Hardware_D3D9_SetFogMode_PF(  Mode /* DX_FOGMODE_NONE “™ */ ) ;
+		return Graphics_Hardware_D3D9_SetFogMode_PF(  Mode /* DX_FOGMODE_NONE ç­‰ */ ) ;
 #endif // DX_NON_DIRECT3D9
 
 	default :
@@ -2600,7 +2600,7 @@ extern	int		Graphics_Hardware_SetFogMode_PF( int Mode /* DX_FOGMODE_NONE “™ */ )
 	}
 }
 
-// ƒtƒHƒOƒJƒ‰[‚ğ•ÏX‚·‚é
+// ãƒ•ã‚©ã‚°ã‚«ãƒ©ãƒ¼ã‚’å¤‰æ›´ã™ã‚‹
 extern	int		Graphics_Hardware_SetFogColor_PF( DWORD FogColor )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -2620,7 +2620,7 @@ extern	int		Graphics_Hardware_SetFogColor_PF( DWORD FogColor )
 	}
 }
 
-// ƒtƒHƒO‚ªn‚Ü‚é‹——£‚ÆI—¹‚·‚é‹——£‚ğİ’è‚·‚é( 0.0f ` 1.0f )
+// ãƒ•ã‚©ã‚°ãŒå§‹ã¾ã‚‹è·é›¢ã¨çµ‚äº†ã™ã‚‹è·é›¢ã‚’è¨­å®šã™ã‚‹( 0.0f ï½ 1.0f )
 extern	int		Graphics_Hardware_SetFogStartEnd_PF( float start, float end )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -2640,7 +2640,7 @@ extern	int		Graphics_Hardware_SetFogStartEnd_PF( float start, float end )
 	}
 }
 
-// ƒtƒHƒO‚Ì–§“x‚ğİ’è‚·‚é( 0.0f ` 1.0f )
+// ãƒ•ã‚©ã‚°ã®å¯†åº¦ã‚’è¨­å®šã™ã‚‹( 0.0f ï½ 1.0f )
 extern	int		Graphics_Hardware_SetFogDensity_PF( float density )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -2676,7 +2676,7 @@ extern	int		Graphics_Hardware_SetFogDensity_PF( float density )
 
 
 
-// ‚‚³ƒtƒHƒO‚ğ—LŒø‚É‚·‚é‚©‚Ç‚¤‚©‚ğİ’è‚·‚é( TRUE:—LŒø  FALSE:–³Œø )
+// é«˜ã•ãƒ•ã‚©ã‚°ã‚’æœ‰åŠ¹ã«ã™ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹( TRUE:æœ‰åŠ¹  FALSE:ç„¡åŠ¹ )
 extern	int		Graphics_Hardware_SetVerticalFogEnable_PF( int Flag )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -2696,19 +2696,19 @@ extern	int		Graphics_Hardware_SetVerticalFogEnable_PF( int Flag )
 	}
 }
 
-// ‚‚³ƒtƒHƒOƒ‚[ƒh‚ğİ’è‚·‚é
-extern	int		Graphics_Hardware_SetVerticalFogMode_PF( int Mode /* DX_FOGMODE_NONE “™ */ )
+// é«˜ã•ãƒ•ã‚©ã‚°ãƒ¢ãƒ¼ãƒ‰ã‚’è¨­å®šã™ã‚‹
+extern	int		Graphics_Hardware_SetVerticalFogMode_PF( int Mode /* DX_FOGMODE_NONE ç­‰ */ )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
 	{
 #ifndef DX_NON_DIRECT3D11
 	case GRAPHICS_API_DIRECT3D11_WIN32 :
-		return Graphics_Hardware_D3D11_SetVerticalFogMode_PF(  Mode /* DX_FOGMODE_NONE “™ */ ) ;
+		return Graphics_Hardware_D3D11_SetVerticalFogMode_PF(  Mode /* DX_FOGMODE_NONE ç­‰ */ ) ;
 #endif // DX_NON_DIRECT3D11
 
 #ifndef DX_NON_DIRECT3D9
 	case GRAPHICS_API_DIRECT3D9_WIN32 :
-		return Graphics_Hardware_D3D9_SetVerticalFogMode_PF(  Mode /* DX_FOGMODE_NONE “™ */ ) ;
+		return Graphics_Hardware_D3D9_SetVerticalFogMode_PF(  Mode /* DX_FOGMODE_NONE ç­‰ */ ) ;
 #endif // DX_NON_DIRECT3D9
 
 	default :
@@ -2716,7 +2716,7 @@ extern	int		Graphics_Hardware_SetVerticalFogMode_PF( int Mode /* DX_FOGMODE_NONE
 	}
 }
 
-// ‚‚³ƒtƒHƒOƒJƒ‰[‚ğ•ÏX‚·‚é
+// é«˜ã•ãƒ•ã‚©ã‚°ã‚«ãƒ©ãƒ¼ã‚’å¤‰æ›´ã™ã‚‹
 extern	int		Graphics_Hardware_SetVerticalFogColor_PF( DWORD FogColor )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -2736,7 +2736,7 @@ extern	int		Graphics_Hardware_SetVerticalFogColor_PF( DWORD FogColor )
 	}
 }
 
-// ‚‚³ƒtƒHƒO‚ªn‚Ü‚é‹——£‚ÆI—¹‚·‚é‹——£‚ğİ’è‚·‚é( 0.0f ` 1.0f )
+// é«˜ã•ãƒ•ã‚©ã‚°ãŒå§‹ã¾ã‚‹è·é›¢ã¨çµ‚äº†ã™ã‚‹è·é›¢ã‚’è¨­å®šã™ã‚‹( 0.0f ï½ 1.0f )
 extern	int		Graphics_Hardware_SetVerticalFogStartEnd_PF( float start, float end )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -2756,7 +2756,7 @@ extern	int		Graphics_Hardware_SetVerticalFogStartEnd_PF( float start, float end 
 	}
 }
 
-// ‚‚³ƒtƒHƒO‚Ì–§“x‚ğİ’è‚·‚é( 0.0f ` 1.0f )
+// é«˜ã•ãƒ•ã‚©ã‚°ã®å¯†åº¦ã‚’è¨­å®šã™ã‚‹( 0.0f ï½ 1.0f )
 extern	int		Graphics_Hardware_SetVerticalFogDensity_PF( float start, float density )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -2790,7 +2790,7 @@ extern	int		Graphics_Hardware_SetVerticalFogDensity_PF( float start, float densi
 
 
 
-// ƒ[ƒ‹ƒh•ÏŠ·—ps—ñ‚ğƒZƒbƒg‚·‚é
+// ãƒ¯ãƒ¼ãƒ«ãƒ‰å¤‰æ›ç”¨è¡Œåˆ—ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern	int		Graphics_Hardware_DeviceDirect_SetWorldMatrix_PF( const MATRIX *Matrix )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -2810,7 +2810,7 @@ extern	int		Graphics_Hardware_DeviceDirect_SetWorldMatrix_PF( const MATRIX *Matr
 	}
 }
 
-// ƒrƒ…[•ÏŠ·—ps—ñ‚ğƒZƒbƒg‚·‚é
+// ãƒ“ãƒ¥ãƒ¼å¤‰æ›ç”¨è¡Œåˆ—ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern	int		Graphics_Hardware_DeviceDirect_SetViewMatrix_PF( const MATRIX *Matrix )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -2830,7 +2830,7 @@ extern	int		Graphics_Hardware_DeviceDirect_SetViewMatrix_PF( const MATRIX *Matri
 	}
 }
 
-// “Š‰e•ÏŠ·—ps—ñ‚ğƒZƒbƒg‚·‚é
+// æŠ•å½±å¤‰æ›ç”¨è¡Œåˆ—ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern	int		Graphics_Hardware_DeviceDirect_SetProjectionMatrix_PF( const MATRIX *Matrix )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -2850,7 +2850,7 @@ extern	int		Graphics_Hardware_DeviceDirect_SetProjectionMatrix_PF( const MATRIX 
 	}
 }
 
-// Šî–{ƒf[ƒ^‚Éİ’è‚³‚ê‚Ä‚¢‚éƒtƒHƒOî•ñ‚ğƒn[ƒhƒEƒFƒA‚É”½‰f‚·‚é
+// åŸºæœ¬ãƒ‡ãƒ¼ã‚¿ã«è¨­å®šã•ã‚Œã¦ã„ã‚‹ãƒ•ã‚©ã‚°æƒ…å ±ã‚’ãƒãƒ¼ãƒ‰ã‚¦ã‚§ã‚¢ã«åæ˜ ã™ã‚‹
 extern	int		Graphics_Hardware_ApplyLigFogToHardware_PF( void )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -2870,7 +2870,7 @@ extern	int		Graphics_Hardware_ApplyLigFogToHardware_PF( void )
 	}
 }
 
-// ˆÈ‘O‚Ì DrawModiGraph ŠÖ”‚ÌƒR[ƒh‚ğg—p‚·‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğƒZƒbƒg‚·‚é
+// ä»¥å‰ã® DrawModiGraph é–¢æ•°ã®ã‚³ãƒ¼ãƒ‰ã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern	int		Graphics_Hardware_SetUseOldDrawModiGraphCodeFlag_PF( int Flag )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -2890,7 +2890,7 @@ extern	int		Graphics_Hardware_SetUseOldDrawModiGraphCodeFlag_PF( int Flag )
 	}
 }
 
-// •`‰ææ‚É³‚µ‚¢ƒ¿’l‚ğ‘‚«‚Ş‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğXV‚·‚é
+// æç”»å…ˆã«æ­£ã—ã„Î±å€¤ã‚’æ›¸ãè¾¼ã‚€ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’æ›´æ–°ã™ã‚‹
 extern	int		Graphics_Hardware_RefreshAlphaChDrawMode_PF( void )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -2932,9 +2932,9 @@ extern	int		Graphics_Hardware_RefreshAlphaChDrawMode_PF( void )
 
 
 
-// ŠÂ‹«ˆË‘¶İ’èŠÖŒW
+// ç’°å¢ƒä¾å­˜è¨­å®šé–¢ä¿‚
 
-// ƒn[ƒhƒEƒGƒA‚Ì’¸“_‰‰Zˆ—‹@”\‚ğg—p‚·‚é‚©‚Ç‚¤‚©‚ğİ’è‚·‚é
+// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã®é ‚ç‚¹æ¼”ç®—å‡¦ç†æ©Ÿèƒ½ã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹
 extern	int		Graphics_Hardware_SetUseHardwareVertexProcessing_PF( int Flag )
 {
 #ifndef DX_NON_DIRECT3D9
@@ -2944,7 +2944,7 @@ extern	int		Graphics_Hardware_SetUseHardwareVertexProcessing_PF( int Flag )
 #endif // DX_NON_DIRECT3D9
 }
 
-// ƒsƒNƒZƒ‹’PˆÊ‚Åƒ‰ƒCƒeƒBƒ“ƒO‚ğs‚¤‚©‚Ç‚¤‚©‚ğİ’è‚·‚éA—v ShaderModel 3.0( TRUE:ƒsƒNƒZƒ‹’PˆÊ‚Ìƒ‰ƒCƒeƒBƒ“ƒO‚ğs‚¤  FALSE:’¸“_’PˆÊ‚Ìƒ‰ƒCƒeƒBƒ“ƒO‚ğs‚¤( ƒfƒtƒHƒ‹ƒg ) )
+// ãƒ”ã‚¯ã‚»ãƒ«å˜ä½ã§ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ã‚’è¡Œã†ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹ã€è¦ ShaderModel 3.0( TRUE:ãƒ”ã‚¯ã‚»ãƒ«å˜ä½ã®ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ã‚’è¡Œã†  FALSE:é ‚ç‚¹å˜ä½ã®ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ã‚’è¡Œã†( ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ ) )
 extern	int		Graphics_Hardware_SetUsePixelLighting_PF( int Flag )
 {
 #ifndef DX_NON_DIRECT3D11
@@ -2958,7 +2958,7 @@ extern	int		Graphics_Hardware_SetUsePixelLighting_PF( int Flag )
 	return 0 ;
 }
 
-// ƒOƒ‰ƒtƒBƒbƒNƒXƒfƒoƒCƒX‚ªƒƒXƒg‚©‚ç•œ‹A‚µ‚½Û‚ÉŒÄ‚Î‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”‚ğİ’è‚·‚é
+// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¹ãƒ‡ãƒã‚¤ã‚¹ãŒãƒ­ã‚¹ãƒˆã‹ã‚‰å¾©å¸°ã—ãŸéš›ã«å‘¼ã°ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã‚’è¨­å®šã™ã‚‹
 extern	int		Graphics_Hardware_SetGraphicsDeviceRestoreCallbackFunction_PF( void (* Callback )( void *Data ), void *CallbackData )
 {
 #ifndef DX_NON_DIRECT3D11
@@ -2972,7 +2972,7 @@ extern	int		Graphics_Hardware_SetGraphicsDeviceRestoreCallbackFunction_PF( void 
 	return 0 ;
 }
 
-// ƒOƒ‰ƒtƒBƒbƒNƒXƒfƒoƒCƒX‚ªƒƒXƒg‚©‚ç•œ‹A‚·‚é‘O‚ÉŒÄ‚Î‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”‚ğİ’è‚·‚é
+// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¹ãƒ‡ãƒã‚¤ã‚¹ãŒãƒ­ã‚¹ãƒˆã‹ã‚‰å¾©å¸°ã™ã‚‹å‰ã«å‘¼ã°ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã‚’è¨­å®šã™ã‚‹
 extern	int		Graphics_Hardware_SetGraphicsDeviceLostCallbackFunction_PF( void (* Callback )( void *Data ), void *CallbackData )
 {
 #ifndef DX_NON_DIRECT3D11
@@ -2986,7 +2986,7 @@ extern	int		Graphics_Hardware_SetGraphicsDeviceLostCallbackFunction_PF( void (* 
 	return 0 ;
 }
 
-// ’Êí•`‰æ‚ÉƒvƒƒOƒ‰ƒ}ƒuƒ‹ƒVƒF[ƒ_[‚ğg—p‚·‚é‚©‚Ç‚¤‚©‚ğİ’è‚·‚é( TRUE:g—p‚·‚é( ƒfƒtƒHƒ‹ƒg )  FALSE:g—p‚µ‚È‚¢ )
+// é€šå¸¸æç”»ã«ãƒ—ãƒ­ã‚°ãƒ©ãƒãƒ–ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹( TRUE:ä½¿ç”¨ã™ã‚‹( ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ )  FALSE:ä½¿ç”¨ã—ãªã„ )
 extern	int		Graphics_Hardware_SetUseNormalDrawShader_PF( int Flag )
 {
 #ifndef DX_NON_DIRECT3D9
@@ -2996,7 +2996,7 @@ extern	int		Graphics_Hardware_SetUseNormalDrawShader_PF( int Flag )
 #endif // DX_NON_DIRECT3D9
 }
 
-// ƒrƒfƒIƒƒ‚ƒŠ‚Ì—e—Ê‚ğ“¾‚é
+// ãƒ“ãƒ‡ã‚ªãƒ¡ãƒ¢ãƒªã®å®¹é‡ã‚’å¾—ã‚‹
 extern	int		Graphics_Hardware_GetVideoMemorySizeEx_PF( ULONGLONG *TotalSize, ULONGLONG *UseSize )
 {
 	int SuccessTotalSize = FALSE ;
@@ -3015,13 +3015,13 @@ extern	int		Graphics_Hardware_GetVideoMemorySizeEx_PF( ULONGLONG *TotalSize, ULO
 		{
 			AfterRelease = TRUE ;
 
-			// dxgi.DLL ‚Ì“Ç‚İ‚İ
+			// dxgi.DLL ã®èª­ã¿è¾¼ã¿
 			if( DXGI_LoadDLL( FALSE ) < 0 )
 			{
 				return -1 ;
 			}
 
-			// IDXGIFactory ‚Ìì¬
+			// IDXGIFactory ã®ä½œæˆ
 			if( DXGIFactory_Create( FALSE ) < 0 )
 			{
 				return -1 ;
@@ -3032,7 +3032,7 @@ extern	int		Graphics_Hardware_GetVideoMemorySizeEx_PF( ULONGLONG *TotalSize, ULO
 		{
 			int i, j ;
 
-			// ƒfƒBƒXƒvƒŒƒC‚ğ—ñ‹“
+			// ãƒ‡ã‚£ã‚¹ãƒ—ãƒ¬ã‚¤ã‚’åˆ—æŒ™
 			if( GSYS.Screen.DisplayInfo == NULL )
 			{
 				Graphics_SetupDisplayInfo_PF() ;
@@ -3105,10 +3105,10 @@ extern	int		Graphics_Hardware_GetVideoMemorySizeEx_PF( ULONGLONG *TotalSize, ULO
 
 		if( AfterRelease )
 		{
-			// IDXGIFactory ‚Ì‰ğ•ú
+			// IDXGIFactory ã®è§£æ”¾
 			DXGIFactory_Release() ;
 
-			// dxgi.dll ‚Ì‰ğ•ú
+			// dxgi.dll ã®è§£æ”¾
 			DXGI_FreeDLL( FALSE ) ;
 		}
 
@@ -3142,10 +3142,10 @@ extern	int		Graphics_Hardware_GetVideoMemorySizeEx_PF( ULONGLONG *TotalSize, ULO
 #endif // DX_NON_DIRECT3D9
 }
 
-// VistaˆÈ~‚Ì Windows Aero ‚ğ–³Œø‚É‚·‚é‚©‚Ç‚¤‚©‚ğƒZƒbƒg‚·‚éATRUE:–³Œø‚É‚·‚é  FALSE:—LŒø‚É‚·‚é( DxLib_Init ‚Ì‘O‚ÉŒÄ‚Ô•K—v‚ª‚ ‚è‚Ü‚· )
+// Vistaä»¥é™ã® Windows Aero ã‚’ç„¡åŠ¹ã«ã™ã‚‹ã‹ã©ã†ã‹ã‚’ã‚»ãƒƒãƒˆã™ã‚‹ã€TRUE:ç„¡åŠ¹ã«ã™ã‚‹  FALSE:æœ‰åŠ¹ã«ã™ã‚‹( DxLib_Init ã®å‰ã«å‘¼ã¶å¿…è¦ãŒã‚ã‚Šã¾ã™ )
 extern	int		Graphics_SetAeroDisableFlag_PF( int Flag )
 {
-	// ‰Šú‰»‘O‚Ì‚İ—LŒø
+	// åˆæœŸåŒ–å‰ã®ã¿æœ‰åŠ¹
 	if( DxSysData.DxLib_InitializeFlag == TRUE ) return -1 ;
 
 	if( Flag )
@@ -3157,7 +3157,7 @@ extern	int		Graphics_SetAeroDisableFlag_PF( int Flag )
 		GRAWIN.Setting.DisableAeroFlag = 1 ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
@@ -3183,9 +3183,9 @@ extern	int		Graphics_SetAeroDisableFlag_PF( int Flag )
 
 
 
-// ŠÂ‹«ˆË‘¶‰æ–ÊŠÖŒW
+// ç’°å¢ƒä¾å­˜ç”»é¢é–¢ä¿‚
 
-// İ’è‚ÉŠî‚Ã‚¢‚Äg—p‚·‚é‚yƒoƒbƒtƒ@‚ğƒZƒbƒg‚·‚é
+// è¨­å®šã«åŸºã¥ã„ã¦ä½¿ç”¨ã™ã‚‹ï¼ºãƒãƒƒãƒ•ã‚¡ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern	int		Graphics_Hardware_SetupUseZBuffer_PF( void )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -3205,7 +3205,7 @@ extern	int		Graphics_Hardware_SetupUseZBuffer_PF( void )
 	}
 }
 
-// ‰æ–Ê‚Ì‚yƒoƒbƒtƒ@‚Ìó‘Ô‚ğ‰Šú‰»‚·‚é
+// ç”»é¢ã®ï¼ºãƒãƒƒãƒ•ã‚¡ã®çŠ¶æ…‹ã‚’åˆæœŸåŒ–ã™ã‚‹
 extern	int		Graphics_Hardware_ClearDrawScreenZBuffer_PF( const RECT *ClearRect )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -3225,7 +3225,7 @@ extern	int		Graphics_Hardware_ClearDrawScreenZBuffer_PF( const RECT *ClearRect )
 	}
 }
 
-// ‰æ–Ê‚Ìó‘Ô‚ğ‰Šú‰»‚·‚é
+// ç”»é¢ã®çŠ¶æ…‹ã‚’åˆæœŸåŒ–ã™ã‚‹
 extern	int		Graphics_Hardware_ClearDrawScreen_PF( const RECT *ClearRect )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -3245,7 +3245,7 @@ extern	int		Graphics_Hardware_ClearDrawScreen_PF( const RECT *ClearRect )
 	}
 }
 
-// •`‰ææ‰æ–Ê‚ÌƒZƒbƒg
+// æç”»å…ˆç”»é¢ã®ã‚»ãƒƒãƒˆ
 extern	int		Graphics_Hardware_SetDrawScreen_PF( int DrawScreen, int OldScreenSurface, int OldScreenMipLevel, IMAGEDATA *NewTargetImage, IMAGEDATA *OldTargetImage, SHADOWMAPDATA *NewTargetShadowMap, SHADOWMAPDATA *OldTargetShadowMap )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -3265,7 +3265,7 @@ extern	int		Graphics_Hardware_SetDrawScreen_PF( int DrawScreen, int OldScreenSur
 	}
 }
 
-// ’èŠú“I‚É ScreenCopy ‚ğs‚¤ƒR[ƒ‹ƒoƒbƒNŠÖ”
+// å®šæœŸçš„ã« ScreenCopy ã‚’è¡Œã†ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 #define GRAPHICS_SOFTWARE_SCREENFLIPTIMER_ID		(32767)
 #if _MSC_VER > 1200 || defined( DX_GCC_COMPILE_4_9_2 )
 static VOID CALLBACK Graphics_Software_ScreenFlipTimerProc( HWND /*hwnd*/, UINT /*uMsg*/, UINT_PTR /*idEvent*/, DWORD /*dwTime*/ )
@@ -3290,7 +3290,7 @@ static VOID CALLBACK Graphics_Software_ScreenFlipTimerProc( HWND /*hwnd*/, UINT 
 	}
 }
 
-// SetDrawScreen ‚ÌÅŒã‚ÅŒÄ‚Î‚ê‚éŠÖ”
+// SetDrawScreen ã®æœ€å¾Œã§å‘¼ã°ã‚Œã‚‹é–¢æ•°
 extern	int		Graphics_Hardware_SetDrawScreen_Post_PF( int DrawScreen )
 {
 	SETUP_WIN_API
@@ -3319,7 +3319,7 @@ extern	int		Graphics_Hardware_SetDrawScreen_Post_PF( int DrawScreen )
 	}
 }
 
-// •`‰æ‰Â”\—Ìˆæ‚ÌƒZƒbƒg
+// æç”»å¯èƒ½é ˜åŸŸã®ã‚»ãƒƒãƒˆ
 extern	int		Graphics_Hardware_SetDrawArea_PF( int x1, int y1, int x2, int y2 )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -3339,7 +3339,7 @@ extern	int		Graphics_Hardware_SetDrawArea_PF( int x1, int y1, int x2, int y2 )
 	}
 }
 
-// •`‰ææƒoƒbƒtƒ@‚ğƒƒbƒN‚·‚é
+// æç”»å…ˆãƒãƒƒãƒ•ã‚¡ã‚’ãƒ­ãƒƒã‚¯ã™ã‚‹
 extern	int		Graphics_Hardware_LockDrawScreenBuffer_PF( RECT *LockRect, BASEIMAGE *BaseImage, int TargetScreen, IMAGEDATA *TargetImage, int TargetScreenSurface, int TargetScreenMipLevel, int ReadOnly, int TargetScreenTextureNo )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -3359,7 +3359,7 @@ extern	int		Graphics_Hardware_LockDrawScreenBuffer_PF( RECT *LockRect, BASEIMAGE
 	}
 }
 
-// •`‰ææƒoƒbƒtƒ@‚ğƒAƒ“ƒƒbƒN‚·‚é
+// æç”»å…ˆãƒãƒƒãƒ•ã‚¡ã‚’ã‚¢ãƒ³ãƒ­ãƒƒã‚¯ã™ã‚‹
 extern	int		Graphics_Hardware_UnlockDrawScreenBuffer_PF( void )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -3379,7 +3379,7 @@ extern	int		Graphics_Hardware_UnlockDrawScreenBuffer_PF( void )
 	}
 }
 
-// — ‰æ–Ê‚Ì“à—e‚ğ•\‰æ–Ê‚É•`‰æ‚·‚é
+// è£ç”»é¢ã®å†…å®¹ã‚’è¡¨ç”»é¢ã«æç”»ã™ã‚‹
 extern	int		Graphics_Hardware_ScreenCopy_PF( int /*DrawTargetFrontScreenMode_Copy*/ )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -3399,12 +3399,12 @@ extern	int		Graphics_Hardware_ScreenCopy_PF( int /*DrawTargetFrontScreenMode_Cop
 	}
 }
 
-// ƒfƒBƒXƒvƒŒƒC—ñ‹“—p‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+// ãƒ‡ã‚£ã‚¹ãƒ—ãƒ¬ã‚¤åˆ—æŒ™ç”¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 BOOL CALLBACK Graphics_MonitorEnumProc(
-	HMONITOR hMonitor,        // ƒfƒBƒXƒvƒŒƒCƒ‚ƒjƒ^‚Ìƒnƒ“ƒhƒ‹
-	HDC      /*hdcMonitor*/,  // ƒ‚ƒjƒ^‚É“K‚µ‚½ƒfƒoƒCƒXƒRƒ“ƒeƒLƒXƒg‚Ìƒnƒ“ƒhƒ‹
-	LPRECT   /*lprcMonitor*/, // ƒ‚ƒjƒ^ã‚ÌŒğ·•”•ª‚ğ•\‚·’·•ûŒ`—Ìˆæ‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	LPARAM   /*dwData*/       // EnumDisplayMonitors ‚©‚ç“n‚³‚ê‚½ƒf[ƒ^
+	HMONITOR hMonitor,        // ãƒ‡ã‚£ã‚¹ãƒ—ãƒ¬ã‚¤ãƒ¢ãƒ‹ã‚¿ã®ãƒãƒ³ãƒ‰ãƒ«
+	HDC      /*hdcMonitor*/,  // ãƒ¢ãƒ‹ã‚¿ã«é©ã—ãŸãƒ‡ãƒã‚¤ã‚¹ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã®ãƒãƒ³ãƒ‰ãƒ«
+	LPRECT   /*lprcMonitor*/, // ãƒ¢ãƒ‹ã‚¿ä¸Šã®äº¤å·®éƒ¨åˆ†ã‚’è¡¨ã™é•·æ–¹å½¢é ˜åŸŸã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	LPARAM   /*dwData*/       // EnumDisplayMonitors ã‹ã‚‰æ¸¡ã•ã‚ŒãŸãƒ‡ãƒ¼ã‚¿
 )
 {
 	D_MONITORINFOEXW        MonitorInfoEx ;
@@ -3449,11 +3449,11 @@ BOOL CALLBACK Graphics_MonitorEnumProc(
 		if( WinAPIData.Win32Func.GetDpiForMonitorFunc != NULL )
 		{
 			WinAPIData.Win32Func.GetDpiForMonitorFunc( hMonitor, D_MDT_EFFECTIVE_DPI, ( UINT * )&DisplayInfo->XDpi, ( UINT * )&DisplayInfo->YDpi ) ;
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\x4e\x00\x6f\x00\x2e\x00\x25\x00\x64\x00\x20\x00\x20\x00\xe2\x30\xcb\x30\xbf\x30\xfc\x30\x0d\x54\x1a\xff\x25\x00\x73\x00\x00\x30\x25\x00\x64\x00\x78\x00\x25\x00\x64\x00\x00\x30\x25\x00\x64\x00\x62\x00\x69\x00\x74\x00\x00\x30\x25\x00\x64\x00\x48\x00\x7a\x00\x20\x00\x20\x00\x25\x00\x64\x00\x78\x00\x25\x00\x64\x00\x64\x00\x70\x00\x69\x00\x00"/*@ L"No.%d  ƒ‚ƒjƒ^[–¼F%s@%dx%d@%dbit@%dHz  %dx%ddpi" @*/, GSYS.Screen.DisplayNum, DisplayInfo->Name, DisplayInfo->DesktopPixelSizeX, DisplayInfo->DesktopPixelSizeY, DisplayInfo->DesktopColorBitDepth, DisplayInfo->DesktopRefreshRate, DisplayInfo->XDpi, DisplayInfo->YDpi )) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\x4e\x00\x6f\x00\x2e\x00\x25\x00\x64\x00\x20\x00\x20\x00\xe2\x30\xcb\x30\xbf\x30\xfc\x30\x0d\x54\x1a\xff\x25\x00\x73\x00\x00\x30\x25\x00\x64\x00\x78\x00\x25\x00\x64\x00\x00\x30\x25\x00\x64\x00\x62\x00\x69\x00\x74\x00\x00\x30\x25\x00\x64\x00\x48\x00\x7a\x00\x20\x00\x20\x00\x25\x00\x64\x00\x78\x00\x25\x00\x64\x00\x64\x00\x70\x00\x69\x00\x00"/*@ L"No.%d  ãƒ¢ãƒ‹ã‚¿ãƒ¼åï¼š%sã€€%dx%dã€€%dbitã€€%dHz  %dx%ddpi" @*/, GSYS.Screen.DisplayNum, DisplayInfo->Name, DisplayInfo->DesktopPixelSizeX, DisplayInfo->DesktopPixelSizeY, DisplayInfo->DesktopColorBitDepth, DisplayInfo->DesktopRefreshRate, DisplayInfo->XDpi, DisplayInfo->YDpi )) ;
 		}
 		else
 		{
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\x4e\x00\x6f\x00\x2e\x00\x25\x00\x64\x00\x20\x00\x20\x00\xe2\x30\xcb\x30\xbf\x30\xfc\x30\x0d\x54\x1a\xff\x25\x00\x73\x00\x00\x30\x25\x00\x64\x00\x78\x00\x25\x00\x64\x00\x00\x30\x25\x00\x64\x00\x62\x00\x69\x00\x74\x00\x00\x30\x25\x00\x64\x00\x48\x00\x7a\x00\x00"/*@ L"No.%d  ƒ‚ƒjƒ^[–¼F%s@%dx%d@%dbit@%dHz" @*/, GSYS.Screen.DisplayNum, DisplayInfo->Name, DisplayInfo->DesktopPixelSizeX, DisplayInfo->DesktopPixelSizeY, DisplayInfo->DesktopColorBitDepth, DisplayInfo->DesktopRefreshRate )) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\x4e\x00\x6f\x00\x2e\x00\x25\x00\x64\x00\x20\x00\x20\x00\xe2\x30\xcb\x30\xbf\x30\xfc\x30\x0d\x54\x1a\xff\x25\x00\x73\x00\x00\x30\x25\x00\x64\x00\x78\x00\x25\x00\x64\x00\x00\x30\x25\x00\x64\x00\x62\x00\x69\x00\x74\x00\x00\x30\x25\x00\x64\x00\x48\x00\x7a\x00\x00"/*@ L"No.%d  ãƒ¢ãƒ‹ã‚¿ãƒ¼åï¼š%sã€€%dx%dã€€%dbitã€€%dHz" @*/, GSYS.Screen.DisplayNum, DisplayInfo->Name, DisplayInfo->DesktopPixelSizeX, DisplayInfo->DesktopPixelSizeY, DisplayInfo->DesktopColorBitDepth, DisplayInfo->DesktopRefreshRate )) ;
 		}
 	}
 
@@ -3462,7 +3462,7 @@ BOOL CALLBACK Graphics_MonitorEnumProc(
 	return TRUE ;
 }
 
-// ƒfƒBƒXƒvƒŒƒC‚Ìî•ñ‚ğƒZƒbƒgƒAƒbƒv‚·‚é
+// ãƒ‡ã‚£ã‚¹ãƒ—ãƒ¬ã‚¤ã®æƒ…å ±ã‚’ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã™ã‚‹
 extern int Graphics_SetupDisplayInfo_PF( void )
 {
 	DWORD                    i ;
@@ -3477,7 +3477,7 @@ extern int Graphics_SetupDisplayInfo_PF( void )
 
 	SETUP_WIN_API
 
-	DXST_LOGFILEFMT_ADDUTF16LE(( "\xc7\x30\xa3\x30\xb9\x30\xd7\x30\xec\x30\xa4\x30\xc5\x60\x31\x58\x6e\x30\xbb\x30\xc3\x30\xc8\x30\xa2\x30\xc3\x30\xd7\x30\x8b\x95\xcb\x59\x00"/*@ L"ƒfƒBƒXƒvƒŒƒCî•ñ‚ÌƒZƒbƒgƒAƒbƒvŠJn" @*/ )) ;
+	DXST_LOGFILEFMT_ADDUTF16LE(( "\xc7\x30\xa3\x30\xb9\x30\xd7\x30\xec\x30\xa4\x30\xc5\x60\x31\x58\x6e\x30\xbb\x30\xc3\x30\xc8\x30\xa2\x30\xc3\x30\xd7\x30\x8b\x95\xcb\x59\x00"/*@ L"ãƒ‡ã‚£ã‚¹ãƒ—ãƒ¬ã‚¤æƒ…å ±ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—é–‹å§‹" @*/ )) ;
 	DXST_LOGFILE_TABADD ;
 
 	_MEMSET( &OsVersionInfo, 0, sizeof( OsVersionInfo ) ) ;
@@ -3506,12 +3506,12 @@ extern int Graphics_SetupDisplayInfo_PF( void )
 		DisplayDeviceNum       = 1 ;
 	}
 
-	DXST_LOGFILEFMT_ADDUTF16LE(( "\xe2\x30\xcb\x30\xbf\x30\xfc\x30\x6e\x30\x70\x65\x1a\xff\x25\x00\x64\x00\x20\x00\x20\x00\xc7\x30\xa3\x30\xb9\x30\xd7\x30\xec\x30\xa4\x30\xc7\x30\xd0\x30\xa4\x30\xb9\x30\x6e\x30\x70\x65\x1a\xff\x25\x00\x64\x00\x00"/*@ L"ƒ‚ƒjƒ^[‚Ì”F%d  ƒfƒBƒXƒvƒŒƒCƒfƒoƒCƒX‚Ì”F%d" @*/, GSYS.Screen.DisplayNum, DisplayDeviceNum )) ;
+	DXST_LOGFILEFMT_ADDUTF16LE(( "\xe2\x30\xcb\x30\xbf\x30\xfc\x30\x6e\x30\x70\x65\x1a\xff\x25\x00\x64\x00\x20\x00\x20\x00\xc7\x30\xa3\x30\xb9\x30\xd7\x30\xec\x30\xa4\x30\xc7\x30\xd0\x30\xa4\x30\xb9\x30\x6e\x30\x70\x65\x1a\xff\x25\x00\x64\x00\x00"/*@ L"ãƒ¢ãƒ‹ã‚¿ãƒ¼ã®æ•°ï¼š%d  ãƒ‡ã‚£ã‚¹ãƒ—ãƒ¬ã‚¤ãƒ‡ãƒã‚¤ã‚¹ã®æ•°ï¼š%d" @*/, GSYS.Screen.DisplayNum, DisplayDeviceNum )) ;
 
 	GSYS.Screen.DisplayInfo = ( GRAPHICSSYS_DISPLAYINFO * )WinAPIData.Win32Func.HeapAllocFunc( WinAPIData.Win32Func.GetProcessHeapFunc(), 0, sizeof( GRAPHICSSYS_DISPLAYINFO ) * GSYS.Screen.DisplayNum ) ;
 	if( GSYS.Screen.DisplayInfo == NULL )
 	{
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\x5b\x00\xa8\x30\xe9\x30\xfc\x30\x5d\x00\xc7\x30\xa3\x30\xb9\x30\xd7\x30\xec\x30\xa4\x30\xc5\x60\x31\x58\xdd\x4f\x58\x5b\x28\x75\x6e\x30\xe1\x30\xe2\x30\xea\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"[ƒGƒ‰[]ƒfƒBƒXƒvƒŒƒCî•ñ•Û‘¶—p‚Ìƒƒ‚ƒŠŠm•Û‚É¸”s‚µ‚Ü‚µ‚½" @*/ )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\x5b\x00\xa8\x30\xe9\x30\xfc\x30\x5d\x00\xc7\x30\xa3\x30\xb9\x30\xd7\x30\xec\x30\xa4\x30\xc5\x60\x31\x58\xdd\x4f\x58\x5b\x28\x75\x6e\x30\xe1\x30\xe2\x30\xea\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"[ã‚¨ãƒ©ãƒ¼]ãƒ‡ã‚£ã‚¹ãƒ—ãƒ¬ã‚¤æƒ…å ±ä¿å­˜ç”¨ã®ãƒ¡ãƒ¢ãƒªç¢ºä¿ã«å¤±æ•—ã—ã¾ã—ãŸ" @*/ )) ;
 		DXST_LOGFILE_TABSUB ;
 		return -1 ;
 	}
@@ -3549,7 +3549,7 @@ extern int Graphics_SetupDisplayInfo_PF( void )
 
 		GSYS.Screen.PrimaryDisplayIndex = 0 ;
 
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\x4e\x00\x6f\x00\x2e\x00\x25\x00\x64\x00\x20\x00\x20\x00\xe2\x30\xcb\x30\xbf\x30\xfc\x30\x0d\x54\x1a\xff\x25\x00\x73\x00\x00\x30\x25\x00\x64\x00\x78\x00\x25\x00\x64\x00\x00\x30\x25\x00\x64\x00\x62\x00\x69\x00\x74\x00\x00\x30\x25\x00\x64\x00\x48\x00\x7a\x00\x00"/*@ L"No.%d  ƒ‚ƒjƒ^[–¼F%s@%dx%d@%dbit@%dHz" @*/, 0, DisplayInfo->Name, DisplayInfo->DesktopPixelSizeX, DisplayInfo->DesktopPixelSizeY, DisplayInfo->DesktopColorBitDepth, DisplayInfo->DesktopRefreshRate )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\x4e\x00\x6f\x00\x2e\x00\x25\x00\x64\x00\x20\x00\x20\x00\xe2\x30\xcb\x30\xbf\x30\xfc\x30\x0d\x54\x1a\xff\x25\x00\x73\x00\x00\x30\x25\x00\x64\x00\x78\x00\x25\x00\x64\x00\x00\x30\x25\x00\x64\x00\x62\x00\x69\x00\x74\x00\x00\x30\x25\x00\x64\x00\x48\x00\x7a\x00\x00"/*@ L"No.%d  ãƒ¢ãƒ‹ã‚¿ãƒ¼åï¼š%sã€€%dx%dã€€%dbitã€€%dHz" @*/, 0, DisplayInfo->Name, DisplayInfo->DesktopPixelSizeX, DisplayInfo->DesktopPixelSizeY, DisplayInfo->DesktopColorBitDepth, DisplayInfo->DesktopRefreshRate )) ;
 	}
 	
 	for( j = 0 ; j < DisplayDeviceNum ; j ++ )
@@ -3584,9 +3584,9 @@ extern int Graphics_SetupDisplayInfo_PF( void )
 			DeviceName = NULL ;
 		}
 
-//		DXST_LOGFILEFMT_ADDUTF16LE(( "\x4e\x00\x6f\x00\x2e\x00\x25\x00\x64\x00\x20\x00\x20\x00\xc7\x30\xa3\x30\xb9\x30\xd7\x30\xec\x30\xa4\x30\xc7\x30\xd0\x30\xa4\x30\xb9\x30\x0d\x54\x1a\xff\x25\x00\x73\x00\x00"/*@ L"No.%d  ƒfƒBƒXƒvƒŒƒCƒfƒoƒCƒX–¼F%s" @*/, j, DeviceName == NULL ? L"None" : DeviceName )) ;
+//		DXST_LOGFILEFMT_ADDUTF16LE(( "\x4e\x00\x6f\x00\x2e\x00\x25\x00\x64\x00\x20\x00\x20\x00\xc7\x30\xa3\x30\xb9\x30\xd7\x30\xec\x30\xa4\x30\xc7\x30\xd0\x30\xa4\x30\xb9\x30\x0d\x54\x1a\xff\x25\x00\x73\x00\x00"/*@ L"No.%d  ãƒ‡ã‚£ã‚¹ãƒ—ãƒ¬ã‚¤ãƒ‡ãƒã‚¤ã‚¹åï¼š%s" @*/, j, DeviceName == NULL ? L"None" : DeviceName )) ;
 
-		// ”‚ğ”‚¦‚é
+		// æ•°ã‚’æ•°ãˆã‚‹
 		DisplayInfo->ModeNum = 0 ;
 		ModeNum              = 0 ;
 		ModeNum2             = 0 ;
@@ -3598,14 +3598,14 @@ extern int Graphics_SetupDisplayInfo_PF( void )
 				break ;
 			}
 
-			// 16bit ˆÈ‰º‚Ìƒ‚[ƒh‚ÍœŠO‚·‚é
+			// 16bit ä»¥ä¸‹ã®ãƒ¢ãƒ¼ãƒ‰ã¯é™¤å¤–ã™ã‚‹
 			if( DevMode.dmBitsPerPel >= 16 )
 			{
 				ModeNum2 ++ ;
 			}
 		}
 
-		// î•ñ‚ğŠi”[‚·‚éƒƒ‚ƒŠ—Ìˆæ‚ÌŠm•Û
+		// æƒ…å ±ã‚’æ ¼ç´ã™ã‚‹ãƒ¡ãƒ¢ãƒªé ˜åŸŸã®ç¢ºä¿
 		DisplayInfo->ModeData = ( DISPLAYMODEDATA * )WinAPIData.Win32Func.HeapAllocFunc( WinAPIData.Win32Func.GetProcessHeapFunc(), 0, sizeof( DISPLAYMODEDATA ) * ModeNum2 ) ;
 		if( DisplayInfo->ModeData == NULL )
 		{
@@ -3613,7 +3613,7 @@ extern int Graphics_SetupDisplayInfo_PF( void )
 			return -1 ;
 		}
 
-		// î•ñ‚ğæ“¾‚·‚é
+		// æƒ…å ±ã‚’å–å¾—ã™ã‚‹
 		DisplayInfo->ModeNum = 0 ;
 		ModeData = DisplayInfo->ModeData ;
 		for( i = 0 ; i < ModeNum ; i ++ )
@@ -3621,13 +3621,13 @@ extern int Graphics_SetupDisplayInfo_PF( void )
 			_MEMSET( &DevMode, 0, sizeof( DevMode ) ) ;
 			EnumDisplaySettingsWFunc( DeviceName, i, &DevMode ) ;
 
-			// 16bit ˆÈ‰º‚Ìƒ‚[ƒh‚ÍœŠO‚·‚é
+			// 16bit ä»¥ä¸‹ã®ãƒ¢ãƒ¼ãƒ‰ã¯é™¤å¤–ã™ã‚‹
 			if( DevMode.dmBitsPerPel < 16 )
 			{
 				continue ;
 			}
 
-			// d•¡‚·‚éî•ñ‚ÍœŠO‚·‚é
+			// é‡è¤‡ã™ã‚‹æƒ…å ±ã¯é™¤å¤–ã™ã‚‹
 			for( k = 0 ; k < ( DWORD )DisplayInfo->ModeNum ; k ++ )
 			{
 				if( DisplayInfo->ModeData[ k ].Width         == ( int )DevMode.dmPelsWidth &&
@@ -3647,19 +3647,19 @@ extern int Graphics_SetupDisplayInfo_PF( void )
 			ModeData->Height        = ( int )DevMode.dmPelsHeight ;
 			ModeData->ColorBitDepth = ( int )DevMode.dmBitsPerPel ;
 			ModeData->RefreshRate   = ( int )DevMode.dmDisplayFrequency ;
-//			DXST_LOGFILEFMT_ADDUTF16LE(( "\x3b\x75\x62\x97\xe2\x30\xfc\x30\xc9\x30\x4e\x00\x6f\x00\x2e\x00\x25\x00\x64\x00\x20\x00\x20\x00\x25\x00\x64\x00\x78\x00\x25\x00\x64\x00\x20\x00\x25\x00\x64\x00\x62\x00\x69\x00\x74\x00\x20\x00\x25\x00\x64\x00\x48\x00\x7a\x00\x00"/*@ L"‰æ–Êƒ‚[ƒhNo.%d  %dx%d %dbit %dHz" @*/, i, ModeData->Width, ModeData->Height, ModeData->ColorBitDepth, ModeData->RefreshRate )) ;
+//			DXST_LOGFILEFMT_ADDUTF16LE(( "\x3b\x75\x62\x97\xe2\x30\xfc\x30\xc9\x30\x4e\x00\x6f\x00\x2e\x00\x25\x00\x64\x00\x20\x00\x20\x00\x25\x00\x64\x00\x78\x00\x25\x00\x64\x00\x20\x00\x25\x00\x64\x00\x62\x00\x69\x00\x74\x00\x20\x00\x25\x00\x64\x00\x48\x00\x7a\x00\x00"/*@ L"ç”»é¢ãƒ¢ãƒ¼ãƒ‰No.%d  %dx%d %dbit %dHz" @*/, i, ModeData->Width, ModeData->Height, ModeData->ColorBitDepth, ModeData->RefreshRate )) ;
 			ModeData ++ ;
 			DisplayInfo->ModeNum ++ ;
 		}
 	}
 
 	DXST_LOGFILE_TABSUB ;
-	DXST_LOGFILEFMT_ADDUTF16LE(( "\xc7\x30\xa3\x30\xb9\x30\xd7\x30\xec\x30\xa4\x30\xc5\x60\x31\x58\x6e\x30\xbb\x30\xc3\x30\xc8\x30\xa2\x30\xc3\x30\xd7\x30\x8c\x5b\x86\x4e\x00"/*@ L"ƒfƒBƒXƒvƒŒƒCî•ñ‚ÌƒZƒbƒgƒAƒbƒvŠ®—¹" @*/ )) ;
+	DXST_LOGFILEFMT_ADDUTF16LE(( "\xc7\x30\xa3\x30\xb9\x30\xd7\x30\xec\x30\xa4\x30\xc5\x60\x31\x58\x6e\x30\xbb\x30\xc3\x30\xc8\x30\xa2\x30\xc3\x30\xd7\x30\x8c\x5b\x86\x4e\x00"/*@ L"ãƒ‡ã‚£ã‚¹ãƒ—ãƒ¬ã‚¤æƒ…å ±ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—å®Œäº†" @*/ )) ;
 
 	return 0 ;
 }
 
-// ‚’¼“¯ŠúM†‚ğ‘Ò‚Â
+// å‚ç›´åŒæœŸä¿¡å·ã‚’å¾…ã¤
 extern	int		Graphics_Hardware_WaitVSync_PF( int SyncNum )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -3679,18 +3679,18 @@ extern	int		Graphics_Hardware_WaitVSync_PF( int SyncNum )
 	}
 }
 
-// ScreenFlip Às‚É‚u‚r‚x‚m‚b‘Ò‚¿‚ğ‚·‚é‚©‚Ç‚¤‚©‚ğİ’è‚·‚é
+// ScreenFlip å®Ÿè¡Œæ™‚ã«ï¼¶ï¼³ï¼¹ï¼®ï¼£å¾…ã¡ã‚’ã™ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹
 extern	int		Graphics_SetWaitVSyncFlag_PF( int /*Flag*/ )
 {
 	return 0 ;
 }
 
-// — ‰æ–Ê‚Æ•\‰æ–Ê‚ğŒğŠ·‚·‚é
+// è£ç”»é¢ã¨è¡¨ç”»é¢ã‚’äº¤æ›ã™ã‚‹
 extern	int		Graphics_ScreenFlipBase_PF( void )
 {
 	SETUP_WIN_API
 
-	// ƒn[ƒhƒEƒGƒA‹@”\‚ğg‚Á‚Ä‚¢‚é‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+	// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢æ©Ÿèƒ½ã‚’ä½¿ã£ã¦ã„ã‚‹ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 	if( GSYS.Setting.ValidHardware )
 	{
 		switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -3711,7 +3711,7 @@ extern	int		Graphics_ScreenFlipBase_PF( void )
 	}
 	else
 	{
-		// ƒ\ƒtƒgƒEƒGƒAƒŒƒ“ƒ_ƒŠƒ“ƒO‚Ìê‡
+		// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã®å ´åˆ
 		RECT        WindRect ;
 		char        Buffer[ sizeof( BITMAPINFOHEADER ) + sizeof( DWORD ) * 3 + 4 ] ;
 		BITMAPINFO *pBmpInfo ;
@@ -3719,7 +3719,7 @@ extern	int		Graphics_ScreenFlipBase_PF( void )
 		int         DrawScreenWidth ;
 		int         DrawScreenHeight ;
 
-		// ƒEƒCƒ“ƒhƒEƒ‚[ƒh‚Ìê‡‚Í“]‘—æƒEƒCƒ“ƒhƒE‚ÌƒfƒXƒNƒgƒbƒvã‚ÌÀ•W‚ğŠ„‚èo‚·
+		// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ¢ãƒ¼ãƒ‰ã®å ´åˆã¯è»¢é€å…ˆã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ãƒ‡ã‚¹ã‚¯ãƒˆãƒƒãƒ—ä¸Šã®åº§æ¨™ã‚’å‰²ã‚Šå‡ºã™
 		if( NS_GetWindowModeFlag() == TRUE || NS_GetUseFullScreenResolutionMode() == DX_FSRESOLUTIONMODE_BORDERLESS_WINDOW )
 		{
 			int    ClientHeight ;
@@ -3729,7 +3729,7 @@ extern	int		Graphics_ScreenFlipBase_PF( void )
 			WindRect.left   = 0 ;
 			WindRect.top    = 0 ;
 
-			// Œ»İ‚ÌƒEƒCƒ“ƒhƒE‚ÌƒNƒ‰ƒCƒAƒ“ƒg—Ìˆæ‚ÌƒTƒCƒY‚ğ“¾‚é
+			// ç¾åœ¨ã®ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆé ˜åŸŸã®ã‚µã‚¤ã‚ºã‚’å¾—ã‚‹
 			NS_GetWindowSizeExtendRate( &ExRateX, &ExRateY ) ;
 			NS_GetDrawScreenSize( &DrawScreenWidth, &DrawScreenHeight ) ;
 			WindRect.right  = _DTOL( DrawScreenWidth  * ExRateX ) ;
@@ -3756,13 +3756,13 @@ extern	int		Graphics_ScreenFlipBase_PF( void )
 			return 0 ;
 		}
 
-		// ‚u‚r‚x‚m‚b‚ğ‘Ò‚Â	
+		// ï¼¶ï¼³ï¼¹ï¼®ï¼£ã‚’å¾…ã¤	
 		if( GSYS.Screen.NotWaitVSyncFlag == FALSE )
 		{
 			DirectDraw7_LocalWaitVSync() ;
 		}
 
-		// ƒoƒbƒNƒoƒbƒtƒ@‚Ì“§‰ßF‚Ì•”•ª‚ğ“§‰ß‚·‚éƒtƒ‰ƒO‚©AUpdateLayerdWindow ‚ğg—p‚·‚éƒtƒ‰ƒO‚ª—§‚Á‚Ä‚¢‚éê‡‚Íˆ—‚ğ•ªŠò
+		// ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã®é€éè‰²ã®éƒ¨åˆ†ã‚’é€éã™ã‚‹ãƒ•ãƒ©ã‚°ã‹ã€UpdateLayerdWindow ã‚’ä½¿ç”¨ã™ã‚‹ãƒ•ãƒ©ã‚°ãŒç«‹ã£ã¦ã„ã‚‹å ´åˆã¯å‡¦ç†ã‚’åˆ†å²
 		if( WinData.BackBufferTransColorFlag && WinData.UseUpdateLayerdWindowFlag )
 		{
 			BASEIMAGE BackBufferImage ;
@@ -3770,10 +3770,10 @@ extern	int		Graphics_ScreenFlipBase_PF( void )
 			int       OldTargetScreen ;
 			int       OldTargetScreenSurface ;
 
-			// ‚u‚r‚x‚m‚b‚ğ‘Ò‚Â	
+			// ï¼¶ï¼³ï¼¹ï¼®ï¼£ã‚’å¾…ã¤	
 			if( GSYS.Screen.NotWaitVSyncFlag == FALSE ) DirectDraw7_LocalWaitVSync() ;
 
-			// Graphics_Screen_LockDrawScreen ‚ğg‚¤•û–@
+			// Graphics_Screen_LockDrawScreen ã‚’ä½¿ã†æ–¹æ³•
 			OldTargetScreen                           = GSYS.DrawSetting.TargetScreen[ 0 ] ;
 			OldTargetScreenSurface                    = GSYS.DrawSetting.TargetScreenSurface[ 0 ] ;
 			GSYS.DrawSetting.TargetScreen[ 0 ]        = DX_SCREEN_BACK ;
@@ -3795,14 +3795,14 @@ extern	int		Graphics_ScreenFlipBase_PF( void )
 		{
 			MEMIMG *UseScreenMemImg ;
 
-			// ‰æ–Ê‚É“]‘—‚·‚é—Ìˆæ‚ğŒÀ’è‚·‚éê‡‚ÍÅ‰‚ÉƒTƒuƒoƒbƒtƒ@‚É“]‘—‚·‚é
+			// ç”»é¢ã«è»¢é€ã™ã‚‹é ˜åŸŸã‚’é™å®šã™ã‚‹å ´åˆã¯æœ€åˆã«ã‚µãƒ–ãƒãƒƒãƒ•ã‚¡ã«è»¢é€ã™ã‚‹
 			if( GSYS.Screen.ValidGraphDisplayArea )
 			{
 				RECT   SrcRect ;
 				RECT   ClipRect ;
 				MEMIMG BltSrcMemImg ;
 
-				// ƒTƒuƒoƒbƒtƒ@‚É“]‘—‚·‚é—Ìˆæ‚ğİ’è‚·‚é
+				// ã‚µãƒ–ãƒãƒƒãƒ•ã‚¡ã«è»¢é€ã™ã‚‹é ˜åŸŸã‚’è¨­å®šã™ã‚‹
 				ClipRect.left   = 0 ;
 				ClipRect.top    = 0 ;
 				ClipRect.right  = GSYS.Screen.MainScreenSizeX ;
@@ -3816,7 +3816,7 @@ extern	int		Graphics_ScreenFlipBase_PF( void )
 					return -1 ;
 				}
 
-				// ”²‚«o‚·•”•ª‚Ì‚İ‚Ì MEMIMG ‚ğì¬
+				// æŠœãå‡ºã™éƒ¨åˆ†ã®ã¿ã® MEMIMG ã‚’ä½œæˆ
 				DerivationMemImg(
 					&BltSrcMemImg,
 					&GSYS.SoftRender.MainBufferMemImg,
@@ -3826,7 +3826,7 @@ extern	int		Graphics_ScreenFlipBase_PF( void )
 					SrcRect.bottom - SrcRect.top
 				) ;
 
-				// ƒTƒuƒoƒbƒtƒ@‘S‘Ì‚É“]‘—
+				// ã‚µãƒ–ãƒãƒƒãƒ•ã‚¡å…¨ä½“ã«è»¢é€
 				DrawEnlargeMemImg(
 					&GSYS.SoftRender.SubBufferMemImg,
 					&BltSrcMemImg,
@@ -3842,7 +3842,7 @@ extern	int		Graphics_ScreenFlipBase_PF( void )
 				UseScreenMemImg = &GSYS.SoftRender.MainBufferMemImg ;
 			}
 
-			// ƒƒCƒ“ƒEƒCƒ“ƒhƒE‚Ì‚c‚b‚ğæ“¾‚µ‚Ä“]‘—‚·‚é
+			// ãƒ¡ã‚¤ãƒ³ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ï¼¤ï¼£ã‚’å–å¾—ã—ã¦è»¢é€ã™ã‚‹
 			pBmpInfo = ( BITMAPINFO * )Buffer ;
 			_MEMSET( Buffer, 0, sizeof( Buffer ) ) ;
 			pBmpInfo->bmiHeader.biSize               = sizeof( pBmpInfo->bmiHeader ) ;
@@ -3903,7 +3903,7 @@ extern	int		Graphics_ScreenFlipBase_PF( void )
 				( ( DWORD * )&pBmpInfo->bmiColors )[ 1 ] = UseScreenMemImg->Base->ColorDataP->GreenMask ;
 				( ( DWORD * )&pBmpInfo->bmiColors )[ 2 ] = UseScreenMemImg->Base->ColorDataP->BlueMask ;
 
-				// ƒsƒbƒ`‚ª‚P‚UƒoƒCƒg‚Ì”{”‚È‚Ì‚Å•â³
+				// ãƒ”ãƒƒãƒãŒï¼‘ï¼–ãƒã‚¤ãƒˆã®å€æ•°ãªã®ã§è£œæ­£
 				if( UseScreenMemImg->Base->ColorDataP->ColorBitDepth == 16 )
 				{
 					// 16bit
@@ -3918,7 +3918,7 @@ extern	int		Graphics_ScreenFlipBase_PF( void )
 			Dc = WinAPIData.Win32Func.GetDCFunc( GRAWIN.Setting.ScreenFlipTargetWindow ? GRAWIN.Setting.ScreenFlipTargetWindow : GetDisplayWindowHandle() ) ;
 			if( Dc )
 			{
-				// ƒEƒCƒ“ƒhƒEƒ‚[ƒh‚Å‚R‚Q‚O~‚Q‚S‚OƒGƒ~ƒ…ƒŒ[ƒVƒ‡ƒ“ƒ‚[ƒh‚Ìê‡‚Í“]‘—Œ³‚Æ“]‘—æ‚Ìƒpƒ‰ƒ[ƒ^‚ÍŒÅ’è
+				// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ¢ãƒ¼ãƒ‰ã§ï¼“ï¼’ï¼Ã—ï¼’ï¼”ï¼ã‚¨ãƒŸãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ãƒ¢ãƒ¼ãƒ‰ã®å ´åˆã¯è»¢é€å…ƒã¨è»¢é€å…ˆã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¯å›ºå®š
 				if( ( NS_GetWindowModeFlag() || NS_GetUseFullScreenResolutionMode() == DX_FSRESOLUTIONMODE_BORDERLESS_WINDOW ) && GSYS.Screen.Emulation320x240Flag )
 				{
 					WinAPIData.Win32Func.StretchDIBitsFunc(
@@ -3938,17 +3938,17 @@ extern	int		Graphics_ScreenFlipBase_PF( void )
 				{
 					if( NS_GetWindowModeFlag() == FALSE )
 					{
-						// ƒtƒ‹ƒXƒNƒŠ[ƒ“ƒ‚[ƒh‚Ìê‡
+						// ãƒ•ãƒ«ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ¢ãƒ¼ãƒ‰ã®å ´åˆ
 
-						// ‰æ–Ê‘S‘Ì‚ğ•‚­“h‚è‚Â‚Ô‚·w’è‚ª‚ ‚Á‚½‚çÀs‚·‚é
+						// ç”»é¢å…¨ä½“ã‚’é»’ãå¡—ã‚Šã¤ã¶ã™æŒ‡å®šãŒã‚ã£ãŸã‚‰å®Ÿè¡Œã™ã‚‹
 						if( GRAWIN.FullScreenBlackFillCounter > 0 )
 						{
 							GRAWIN.FullScreenBlackFillCounter -- ;
 
-							// ƒEƒCƒ“ƒhƒE‚ÌÀ•W‚ğ¶ã’[‚ÉˆÚ“®‚·‚é
+							// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®åº§æ¨™ã‚’å·¦ä¸Šç«¯ã«ç§»å‹•ã™ã‚‹
 							NS_SetWindowPosition( 0, 0 ) ;
 
-							// ‰æ–Ê‘S‘Ì‚ğ•‚Å“h‚è‚Â‚Ô‚·
+							// ç”»é¢å…¨ä½“ã‚’é»’ã§å¡—ã‚Šã¤ã¶ã™
 							{
 								HBRUSH OldBrush;
 
@@ -3980,7 +3980,7 @@ extern	int		Graphics_ScreenFlipBase_PF( void )
 						case DX_FSRESOLUTIONMODE_MAXIMUM :
 						case DX_FSRESOLUTIONMODE_DESKTOP :
 						case DX_FSRESOLUTIONMODE_BORDERLESS_WINDOW :
-							// “]‘—æ‹éŒ`‚ÌƒZƒbƒgƒAƒbƒv
+							// è»¢é€å…ˆçŸ©å½¢ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 							Graphics_Screen_SetupFullScreenScalingDestRect() ;
 
 //							DXST_LOGFILEFMT_ADDUTF16LE(( L"GSYS.Screen.FullScreenScalingDestRect %d %d %d %d",
@@ -4013,7 +4013,7 @@ extern	int		Graphics_ScreenFlipBase_PF( void )
 						WindowSizeX = WindRect.right  - WindRect.left ;
 						WindowSizeY = WindRect.bottom - WindRect.top ;
 
-						// ƒEƒCƒ“ƒhƒEƒ‚[ƒh‚Ìê‡
+						// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ¢ãƒ¼ãƒ‰ã®å ´åˆ
 						if( GSYS.Screen.MainScreenSizeX == WindowSizeX && GSYS.Screen.MainScreenSizeY == WindowSizeY )
 						{
 							WinAPIData.Win32Func.SetDIBitsToDeviceFunc(
@@ -4050,12 +4050,12 @@ extern	int		Graphics_ScreenFlipBase_PF( void )
 	return 0 ;
 }
 
-// — ‰æ–Ê‚Ìw’è‚Ì—Ìˆæ‚ğƒEƒCƒ“ƒhƒE‚ÌƒNƒ‰ƒCƒAƒ“ƒg—Ìˆæ‚Ìw’è‚Ì—Ìˆæ‚É“]‘—‚·‚é
+// è£ç”»é¢ã®æŒ‡å®šã®é ˜åŸŸã‚’ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆé ˜åŸŸã®æŒ‡å®šã®é ˜åŸŸã«è»¢é€ã™ã‚‹
 extern	int		Graphics_BltRectBackScreenToWindow_PF( HWND Window, RECT BackScreenRect, RECT WindowClientRect )
 {
 	SETUP_WIN_API
 
-	// ‹éŒ`ƒ`ƒFƒbƒN
+	// çŸ©å½¢ãƒã‚§ãƒƒã‚¯
 	if( BackScreenRect.left   == BackScreenRect.right    ||
 		BackScreenRect.top    == BackScreenRect.bottom   ||
 		WindowClientRect.left == WindowClientRect.right  ||
@@ -4064,10 +4064,10 @@ extern	int		Graphics_BltRectBackScreenToWindow_PF( HWND Window, RECT BackScreenR
 		return -1 ;
 	}
 
-	// ƒn[ƒhƒEƒGƒA‹@”\‚ğg‚Á‚Ä‚¢‚é‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+	// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢æ©Ÿèƒ½ã‚’ä½¿ã£ã¦ã„ã‚‹ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 	if( GSYS.Setting.ValidHardware )
 	{
-		// g‚Á‚Ä‚¢‚éê‡
+		// ä½¿ã£ã¦ã„ã‚‹å ´åˆ
 
 		switch( GRAWIN.Setting.UseGraphicsAPI )
 		{
@@ -4087,20 +4087,20 @@ extern	int		Graphics_BltRectBackScreenToWindow_PF( HWND Window, RECT BackScreenR
 	}
 	else
 	{
-		// ƒ\ƒtƒgƒEƒGƒAƒŒƒ“ƒ_ƒŠƒ“ƒO‚Ìê‡
+		// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã®å ´åˆ
 		char Buffer[ sizeof( BITMAPINFOHEADER ) + sizeof( DWORD ) * 3 + 4 ];
 		BITMAPINFO *pBmpInfo;
 		HDC Dc;
 
 		if( CheckValidMemImg( &GSYS.SoftRender.MainBufferMemImg ) == FALSE ) return 0 ;
 
-		// ‚u‚r‚x‚m‚b‚ğ‘Ò‚Â	
+		// ï¼¶ï¼³ï¼¹ï¼®ï¼£ã‚’å¾…ã¤	
 		if( GSYS.Screen.NotWaitVSyncFlag == FALSE )
 		{
 			DirectDraw7_LocalWaitVSync() ;
 		}
 
-		// ƒEƒCƒ“ƒhƒE‚Ì‚c‚b‚ğæ“¾‚µ‚Ä“]‘—‚·‚é
+		// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ï¼¤ï¼£ã‚’å–å¾—ã—ã¦è»¢é€ã™ã‚‹
 		pBmpInfo = (BITMAPINFO *)Buffer ;
 		_MEMSET( Buffer, 0, sizeof( Buffer ) ) ;
 		pBmpInfo->bmiHeader.biSize        = sizeof( pBmpInfo->bmiHeader ) ;
@@ -4128,11 +4128,11 @@ extern	int		Graphics_BltRectBackScreenToWindow_PF( HWND Window, RECT BackScreenR
 		}
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ScreenFlip ‚Å‰æ‘œ‚ğ“]‘—‚·‚éæ‚ÌƒEƒCƒ“ƒhƒE‚ğİ’è‚·‚é( NULL ‚ğw’è‚·‚é‚Æİ’è‰ğœ )
+// ScreenFlip ã§ç”»åƒã‚’è»¢é€ã™ã‚‹å…ˆã®ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚’è¨­å®šã™ã‚‹( NULL ã‚’æŒ‡å®šã™ã‚‹ã¨è¨­å®šè§£é™¤ )
 extern	int		Graphics_SetScreenFlipTargetWindow_PF( HWND TargetWindow, double ScaleX, double ScaleY )
 {
 	GRAWIN.Setting.ScreenFlipTargetWindow = TargetWindow ;
@@ -4156,7 +4156,7 @@ extern	int		Graphics_SetScreenFlipTargetWindow_PF( HWND TargetWindow, double Sca
 	}
 }
 
-// ƒƒCƒ“‰æ–Ê‚Ì‚yƒoƒbƒtƒ@‚Ìİ’è‚ğ•ÏX‚·‚é
+// ãƒ¡ã‚¤ãƒ³ç”»é¢ã®ï¼ºãƒãƒƒãƒ•ã‚¡ã®è¨­å®šã‚’å¤‰æ›´ã™ã‚‹
 extern	int		Graphics_Hardware_SetZBufferMode_PF( int ZBufferSizeX, int ZBufferSizeY, int ZBufferBitDepth )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -4183,7 +4183,7 @@ extern	int		Graphics_Hardware_SetZBufferMode_PF( int ZBufferSizeX, int ZBufferSi
 	}
 }
 
-// •`‰ææ‚yƒoƒbƒtƒ@‚ÌƒZƒbƒg
+// æç”»å…ˆï¼ºãƒãƒƒãƒ•ã‚¡ã®ã‚»ãƒƒãƒˆ
 extern	int		Graphics_Hardware_SetDrawZBuffer_PF( int DrawScreen, IMAGEDATA *Image )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -4203,14 +4203,14 @@ extern	int		Graphics_Hardware_SetDrawZBuffer_PF( int DrawScreen, IMAGEDATA *Imag
 	}
 }
 
-// Œ»İ‚Ì‰æ–Ê‚ÌƒŠƒtƒŒƒbƒVƒ…ƒŒ[ƒg‚ğæ“¾‚·‚é
+// ç¾åœ¨ã®ç”»é¢ã®ãƒªãƒ•ãƒ¬ãƒƒã‚·ãƒ¥ãƒ¬ãƒ¼ãƒˆã‚’å–å¾—ã™ã‚‹
 extern	int		Graphics_GetRefreshRate_PF( void )
 {
 	int RefreshRate = -1 ;
 
 	SETUP_WIN_API
 
-	// ƒŠƒtƒŒƒbƒVƒ…ƒŒ[ƒg‚Ìæ“¾
+	// ãƒªãƒ•ãƒ¬ãƒƒã‚·ãƒ¥ãƒ¬ãƒ¼ãƒˆã®å–å¾—
 //	if( WinData.WindowsVersion >= DX_WINDOWSVERSION_NT31 )
 	{
 		HDC hdc ;
@@ -4249,9 +4249,9 @@ extern	int		Graphics_GetRefreshRate_PF( void )
 
 
 
-// ŠÂ‹«ˆË‘¶î•ñæ“¾ŠÖŒW
+// ç’°å¢ƒä¾å­˜æƒ…å ±å–å¾—é–¢ä¿‚
 
-// GetColor ‚â GetColor2 ‚Åg—p‚·‚éƒJƒ‰[ƒf[ƒ^‚ğæ“¾‚·‚é
+// GetColor ã‚„ GetColor2 ã§ä½¿ç”¨ã™ã‚‹ã‚«ãƒ©ãƒ¼ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—ã™ã‚‹
 extern	const COLORDATA *	Graphics_Hardware_GetMainColorData_PF( void )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -4271,7 +4271,7 @@ extern	const COLORDATA *	Graphics_Hardware_GetMainColorData_PF( void )
 	}
 }
 
-// ƒfƒBƒXƒvƒŒ[‚ÌƒJƒ‰[ƒf[ƒ^ƒ|ƒCƒ“ƒ^‚ğ“¾‚é
+// ãƒ‡ã‚£ã‚¹ãƒ—ãƒ¬ãƒ¼ã®ã‚«ãƒ©ãƒ¼ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿ã‚’å¾—ã‚‹
 extern	const COLORDATA *	Graphics_Hardware_GetDispColorData_PF( void )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -4291,7 +4291,7 @@ extern	const COLORDATA *	Graphics_Hardware_GetDispColorData_PF( void )
 	}
 }
 
-// w’èÀ•W‚ÌF‚ğæ“¾‚·‚é
+// æŒ‡å®šåº§æ¨™ã®è‰²ã‚’å–å¾—ã™ã‚‹
 extern	DWORD				Graphics_Hardware_GetPixel_PF( int x, int y )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -4311,7 +4311,7 @@ extern	DWORD				Graphics_Hardware_GetPixel_PF( int x, int y )
 	}
 }
 
-// w’èÀ•W‚ÌF‚ğæ“¾‚·‚é( floatŒ^ )
+// æŒ‡å®šåº§æ¨™ã®è‰²ã‚’å–å¾—ã™ã‚‹( floatå‹ )
 extern COLOR_F Graphics_Hardware_GetPixelF_PF( int x, int y )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -4355,9 +4355,9 @@ extern COLOR_F Graphics_Hardware_GetPixelF_PF( int x, int y )
 
 
 
-// ŠÂ‹«ˆË‘¶‰æ‘œŠÖŒW
+// ç’°å¢ƒä¾å­˜ç”»åƒé–¢ä¿‚
 
-// YUVƒT[ƒtƒFƒX‚ğg‚Á‚½ Theora “®‰æ‚Ì“à—e‚ğƒOƒ‰ƒtƒBƒbƒNƒXƒnƒ“ƒhƒ‹‚ÌƒeƒNƒXƒ`ƒƒ‚É“]‘—‚·‚é
+// YUVã‚µãƒ¼ãƒ•ã‚§ã‚¹ã‚’ä½¿ã£ãŸ Theora å‹•ç”»ã®å†…å®¹ã‚’ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¹ãƒãƒ³ãƒ‰ãƒ«ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ã«è»¢é€ã™ã‚‹
 extern	int		Graphics_Hardware_UpdateGraphMovie_TheoraYUV_PF( MOVIEGRAPH *Movie, IMAGEDATA *Image )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -4377,7 +4377,7 @@ extern	int		Graphics_Hardware_UpdateGraphMovie_TheoraYUV_PF( MOVIEGRAPH *Movie, 
 	}
 }
 
-// ƒOƒ‰ƒtƒBƒbƒNƒƒ‚ƒŠ—Ìˆæ‚ÌƒƒbƒN
+// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ¡ãƒ¢ãƒªé ˜åŸŸã®ãƒ­ãƒƒã‚¯
 extern	int		Graphics_Hardware_GraphLock_PF( IMAGEDATA *Image, COLORDATA **ColorDataP, int WriteOnly )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -4397,7 +4397,7 @@ extern	int		Graphics_Hardware_GraphLock_PF( IMAGEDATA *Image, COLORDATA **ColorD
 	}
 }
 
-// ƒOƒ‰ƒtƒBƒbƒNƒƒ‚ƒŠ—Ìˆæ‚ÌƒƒbƒN‰ğœ
+// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ¡ãƒ¢ãƒªé ˜åŸŸã®ãƒ­ãƒƒã‚¯è§£é™¤
 extern	int		Graphics_Hardware_GraphUnlock_PF( IMAGEDATA *Image )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -4417,7 +4417,7 @@ extern	int		Graphics_Hardware_GraphUnlock_PF( IMAGEDATA *Image )
 	}
 }
 
-// ƒOƒ‰ƒtƒBƒbƒN‚Ì‚yƒoƒbƒtƒ@‚Ìó‘Ô‚ğ•Ê‚ÌƒOƒ‰ƒtƒBƒbƒN‚Ì‚yƒoƒbƒtƒ@‚ÉƒRƒs[‚·‚é( DestGrHandle ‚à SrcGrHandle ‚à‚yƒoƒbƒtƒ@‚ğ‚Á‚Ä‚¢‚é•`‰æ‰Â”\‰æ‘œ‚ÅAŠ‚ÂƒAƒ“ƒ`ƒGƒCƒŠƒAƒX‰æ‘œ‚Å‚Í‚È‚¢‚±‚Æ‚ªğŒ )
+// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®ï¼ºãƒãƒƒãƒ•ã‚¡ã®çŠ¶æ…‹ã‚’åˆ¥ã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®ï¼ºãƒãƒƒãƒ•ã‚¡ã«ã‚³ãƒ”ãƒ¼ã™ã‚‹( DestGrHandle ã‚‚ SrcGrHandle ã‚‚ï¼ºãƒãƒƒãƒ•ã‚¡ã‚’æŒã£ã¦ã„ã‚‹æç”»å¯èƒ½ç”»åƒã§ã€ä¸”ã¤ã‚¢ãƒ³ãƒã‚¨ã‚¤ãƒªã‚¢ã‚¹ç”»åƒã§ã¯ãªã„ã“ã¨ãŒæ¡ä»¶ )
 extern	int		Graphics_Hardware_CopyGraphZBufferImage_PF( IMAGEDATA *DestImage, IMAGEDATA *SrcImage )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -4437,7 +4437,7 @@ extern	int		Graphics_Hardware_CopyGraphZBufferImage_PF( IMAGEDATA *DestImage, IM
 	}
 }
 
-// ‰æ‘œƒf[ƒ^‚Ì‰Šú‰»
+// ç”»åƒãƒ‡ãƒ¼ã‚¿ã®åˆæœŸåŒ–
 extern	int		Graphics_Hardware_InitGraph_PF( void )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -4457,7 +4457,7 @@ extern	int		Graphics_Hardware_InitGraph_PF( void )
 	}
 }
 
-// ƒOƒ‰ƒtƒBƒbƒN‚ğ“Á’è‚ÌF‚Å“h‚è‚Â‚Ô‚·
+// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚’ç‰¹å®šã®è‰²ã§å¡—ã‚Šã¤ã¶ã™
 extern	int		Graphics_Hardware_FillGraph_PF( IMAGEDATA *Image, int Red, int Green, int Blue, int Alpha, int ASyncThread )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -4477,7 +4477,7 @@ extern	int		Graphics_Hardware_FillGraph_PF( IMAGEDATA *Image, int Red, int Green
 	}
 }
 
-// •`‰æ‰Â”\‰æ‘œ‚âƒoƒbƒNƒoƒbƒtƒ@‚©‚çw’è—Ìˆæ‚ÌƒOƒ‰ƒtƒBƒbƒN‚ğæ“¾‚·‚é
+// æç”»å¯èƒ½ç”»åƒã‚„ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã‹ã‚‰æŒ‡å®šé ˜åŸŸã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚’å–å¾—ã™ã‚‹
 extern	int		Graphics_Hardware_GetDrawScreenGraphBase_PF( IMAGEDATA *Image, IMAGEDATA *TargetImage, int TargetScreen, int TargetScreenSurface, int TargetScreenMipLevel, int TargetScreenWidth, int TargetScreenHeight, int x1, int y1, int x2, int y2, int destX, int destY )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -4497,7 +4497,7 @@ extern	int		Graphics_Hardware_GetDrawScreenGraphBase_PF( IMAGEDATA *Image, IMAGE
 	}
 }
 
-// Graphics_Image_BltBmpOrBaseImageToGraph3 ‚Ì‹@íˆË‘¶•”•ª—pŠÖ”
+// Graphics_Image_BltBmpOrBaseImageToGraph3 ã®æ©Ÿç¨®ä¾å­˜éƒ¨åˆ†ç”¨é–¢æ•°
 extern int Graphics_Hardware_BltBmpOrBaseImageToGraph3_PF(
 	const RECT		*SrcRect,
 	      int		DestX,
@@ -4550,8 +4550,8 @@ extern int Graphics_Hardware_BltBmpOrBaseImageToGraph3_PF(
 	}
 }
 
-// Šî–{ƒCƒ[ƒW‚ÌƒtƒH[ƒ}ƒbƒg‚ğ DX_BASEIMAGE_FORMAT_NORMAL ‚É•ÏŠ·‚·‚é•K—v‚ª‚ ‚é‚©‚Ç‚¤‚©‚ğƒ`ƒFƒbƒN‚·‚é
-// ( RequiredRgbBaseImageConvFlag ‚Æ RequiredAlphaBaseImageConvFlag ‚É“ü‚é’l  TRUE:•ÏŠ·‚·‚é•K—v‚ª‚ ‚é  FALSE:•ÏŠ·‚·‚é•K—v‚Í–³‚¢ )
+// åŸºæœ¬ã‚¤ãƒ¡ãƒ¼ã‚¸ã®ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã‚’ DX_BASEIMAGE_FORMAT_NORMAL ã«å¤‰æ›ã™ã‚‹å¿…è¦ãŒã‚ã‚‹ã‹ã©ã†ã‹ã‚’ãƒã‚§ãƒƒã‚¯ã™ã‚‹
+// ( RequiredRgbBaseImageConvFlag ã¨ RequiredAlphaBaseImageConvFlag ã«å…¥ã‚‹å€¤  TRUE:å¤‰æ›ã™ã‚‹å¿…è¦ãŒã‚ã‚‹  FALSE:å¤‰æ›ã™ã‚‹å¿…è¦ã¯ç„¡ã„ )
 extern	int		Graphics_CheckRequiredNormalImageConv_BaseImageFormat_PF(
 	IMAGEDATA_ORIG *Orig,
 	int             RgbBaseImageFormat,
@@ -4589,7 +4589,7 @@ extern	int		Graphics_CheckRequiredNormalImageConv_BaseImageFormat_PF(
 	}
 }
 
-// ƒIƒŠƒWƒiƒ‹‰æ‘œî•ñ’†‚ÌƒeƒNƒXƒ`ƒƒ‚ğì¬‚·‚é( 0:¬Œ÷  -1:¸”s )
+// ã‚ªãƒªã‚¸ãƒŠãƒ«ç”»åƒæƒ…å ±ä¸­ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ä½œæˆã™ã‚‹( 0:æˆåŠŸ  -1:å¤±æ•— )
 extern int Graphics_Hardware_CreateOrigTexture_PF( IMAGEDATA_ORIG *Orig, int ASyncThread )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -4609,7 +4609,7 @@ extern int Graphics_Hardware_CreateOrigTexture_PF( IMAGEDATA_ORIG *Orig, int ASy
 	}
 }
 
-// ƒIƒŠƒWƒiƒ‹‰æ‘œî•ñ’†‚ÌƒeƒNƒXƒ`ƒƒ‚ğ‰ğ•ú‚·‚é
+// ã‚ªãƒªã‚¸ãƒŠãƒ«ç”»åƒæƒ…å ±ä¸­ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’è§£æ”¾ã™ã‚‹
 extern int Graphics_Hardware_ReleaseOrigTexture_PF( IMAGEDATA_ORIG *Orig )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -4629,7 +4629,7 @@ extern int Graphics_Hardware_ReleaseOrigTexture_PF( IMAGEDATA_ORIG *Orig )
 	}
 }
 
-// w’è‚Ìƒ}ƒ‹ƒ`ƒTƒ“ƒvƒ‹”‚Åg—p‚Å‚«‚éÅ‘åƒNƒIƒŠƒeƒB’l‚ğæ“¾‚·‚é
+// æŒ‡å®šã®ãƒãƒ«ãƒã‚µãƒ³ãƒ—ãƒ«æ•°ã§ä½¿ç”¨ã§ãã‚‹æœ€å¤§ã‚¯ã‚ªãƒªãƒ†ã‚£å€¤ã‚’å–å¾—ã™ã‚‹
 extern int Graphics_Hardware_GetMultiSampleQuality_PF( int Samples )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -4649,7 +4649,7 @@ extern int Graphics_Hardware_GetMultiSampleQuality_PF( int Samples )
 	}
 }
 
-// ì¬‚·‚éƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚Åg—p‚·‚éŠÂ‹«ˆË‘¶‚ÌƒeƒNƒXƒ`ƒƒƒtƒH[ƒ}ƒbƒg‚ğw’è‚·‚é
+// ä½œæˆã™ã‚‹ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã§ä½¿ç”¨ã™ã‚‹ç’°å¢ƒä¾å­˜ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã‚’æŒ‡å®šã™ã‚‹
 extern int Graphics_Hardware_SetUsePlatformTextureFormat_PF( int PlatformTextureFormat )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -4691,9 +4691,9 @@ extern int Graphics_Hardware_SetUsePlatformTextureFormat_PF( int PlatformTexture
 
 
 
-// ŠÂ‹«ˆË‘¶’¸“_ƒoƒbƒtƒ@EƒCƒ“ƒfƒbƒNƒXƒoƒbƒtƒ@ŠÖŒW
+// ç’°å¢ƒä¾å­˜é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ãƒ»ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒãƒƒãƒ•ã‚¡é–¢ä¿‚
 
-// ’¸“_ƒoƒbƒtƒ@ƒnƒ“ƒhƒ‹‚Ì’¸“_ƒoƒbƒtƒ@‚ğì¬‚·‚é
+// é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ãƒãƒ³ãƒ‰ãƒ«ã®é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã‚’ä½œæˆã™ã‚‹
 extern	int		Graphics_Hardware_VertexBuffer_Create_PF( VERTEXBUFFERHANDLEDATA *VertexBuffer )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -4713,7 +4713,7 @@ extern	int		Graphics_Hardware_VertexBuffer_Create_PF( VERTEXBUFFERHANDLEDATA *Ve
 	}
 }
 
-// ’¸“_ƒoƒbƒtƒ@ƒnƒ“ƒhƒ‹‚ÌŒãn––
+// é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ãƒãƒ³ãƒ‰ãƒ«ã®å¾Œå§‹æœ«
 extern	int		Graphics_Hardware_VertexBuffer_Terminate_PF( VERTEXBUFFERHANDLEDATA *VertexBuffer )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -4733,7 +4733,7 @@ extern	int		Graphics_Hardware_VertexBuffer_Terminate_PF( VERTEXBUFFERHANDLEDATA 
 	}
 }
 
-// ’¸“_ƒoƒbƒtƒ@‚É’¸“_ƒf[ƒ^‚ğ“]‘—‚·‚é
+// é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã«é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ã‚’è»¢é€ã™ã‚‹
 extern	int		Graphics_Hardware_VertexBuffer_SetData_PF( VERTEXBUFFERHANDLEDATA *VertexBuffer, int SetIndex, const void *VertexData, int VertexNum )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -4753,7 +4753,7 @@ extern	int		Graphics_Hardware_VertexBuffer_SetData_PF( VERTEXBUFFERHANDLEDATA *V
 	}
 }
 
-// ƒCƒ“ƒfƒbƒNƒXƒoƒbƒtƒ@ƒnƒ“ƒhƒ‹‚ÌƒZƒbƒgƒAƒbƒv‚ğs‚¤
+// ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒãƒƒãƒ•ã‚¡ãƒãƒ³ãƒ‰ãƒ«ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã‚’è¡Œã†
 extern	int		Graphics_Hardware_IndexBuffer_Create_PF( INDEXBUFFERHANDLEDATA *IndexBuffer )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -4773,7 +4773,7 @@ extern	int		Graphics_Hardware_IndexBuffer_Create_PF( INDEXBUFFERHANDLEDATA *Inde
 	}
 }
 
-// ƒCƒ“ƒfƒbƒNƒXƒoƒbƒtƒ@ƒnƒ“ƒhƒ‹‚ÌŒãn––
+// ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒãƒƒãƒ•ã‚¡ãƒãƒ³ãƒ‰ãƒ«ã®å¾Œå§‹æœ«
 extern	int		Graphics_Hardware_IndexBuffer_Terminate_PF( INDEXBUFFERHANDLEDATA *IndexBuffer )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -4793,7 +4793,7 @@ extern	int		Graphics_Hardware_IndexBuffer_Terminate_PF( INDEXBUFFERHANDLEDATA *I
 	}
 }
 
-// ƒCƒ“ƒfƒbƒNƒXƒoƒbƒtƒ@‚ÉƒCƒ“ƒfƒbƒNƒXƒf[ƒ^‚ğ“]‘—‚·‚é
+// ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒãƒƒãƒ•ã‚¡ã«ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿ã‚’è»¢é€ã™ã‚‹
 extern	int		Graphics_Hardware_IndexBuffer_SetData_PF( INDEXBUFFERHANDLEDATA *IndexBuffer, int SetIndex, const void *IndexData, int IndexNum )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -4833,9 +4833,9 @@ extern	int		Graphics_Hardware_IndexBuffer_SetData_PF( INDEXBUFFERHANDLEDATA *Ind
 
 
 
-// ŠÂ‹«ˆË‘¶ƒ‰ƒCƒgŠÖŒW
+// ç’°å¢ƒä¾å­˜ãƒ©ã‚¤ãƒˆé–¢ä¿‚
 
-// ƒ‰ƒCƒeƒBƒ“ƒO‚ğs‚¤‚©‚Ç‚¤‚©‚ğİ’è‚·‚é
+// ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ã‚’è¡Œã†ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹
 extern	int		Graphics_Hardware_Light_SetUse_PF( int Flag )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -4855,7 +4855,7 @@ extern	int		Graphics_Hardware_Light_SetUse_PF( int Flag )
 	}
 }
 
-// ƒOƒ[ƒoƒ‹ƒAƒ“ƒrƒGƒ“ƒgƒ‰ƒCƒgƒJƒ‰[‚ğİ’è‚·‚é
+// ã‚°ãƒ­ãƒ¼ãƒãƒ«ã‚¢ãƒ³ãƒ“ã‚¨ãƒ³ãƒˆãƒ©ã‚¤ãƒˆã‚«ãƒ©ãƒ¼ã‚’è¨­å®šã™ã‚‹
 extern	int		Graphics_Hardware_Light_GlobalAmbient_PF( COLOR_F *Color )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -4875,7 +4875,7 @@ extern	int		Graphics_Hardware_Light_GlobalAmbient_PF( COLOR_F *Color )
 	}
 }
 
-// ƒ‰ƒCƒgƒpƒ‰ƒ[ƒ^‚ğƒZƒbƒg
+// ãƒ©ã‚¤ãƒˆãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆ
 extern	int		Graphics_Hardware_Light_SetState_PF( int LightNumber, LIGHTPARAM *LightParam )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -4895,7 +4895,7 @@ extern	int		Graphics_Hardware_Light_SetState_PF( int LightNumber, LIGHTPARAM *Li
 	}
 }
 
-// ƒ‰ƒCƒg‚Ì—LŒøA–³Œø‚ğ•ÏX
+// ãƒ©ã‚¤ãƒˆã®æœ‰åŠ¹ã€ç„¡åŠ¹ã‚’å¤‰æ›´
 extern	int		Graphics_Hardware_Light_SetEnable_PF( int LightNumber, int EnableState )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -4915,7 +4915,7 @@ extern	int		Graphics_Hardware_Light_SetEnable_PF( int LightNumber, int EnableSta
 	}
 }
 
-// ƒ‰ƒCƒg‚ÌŒvZ‚ÅŠp“xŒ¸Š‚ğs‚í‚È‚¢‚æ‚¤‚É‚·‚é‚©‚Ç‚¤‚©‚ğİ’è‚·‚é
+// ãƒ©ã‚¤ãƒˆã®è¨ˆç®—ã§è§’åº¦æ¸›è¡°ã‚’è¡Œã‚ãªã„ã‚ˆã†ã«ã™ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹
 extern	int		Graphics_Hardware_Light_SetNoAngleAttenuation_PF( int NoAngleAttenuation )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -4935,7 +4935,7 @@ extern	int		Graphics_Hardware_Light_SetNoAngleAttenuation_PF( int NoAngleAttenua
 	}
 }
 
-// ƒ‰ƒCƒg‚ÌŒvZ‚Åƒn[ƒtƒ‰ƒ“ƒo[ƒg‚ğg—p‚·‚é‚©‚Ç‚¤‚©‚ğİ’è‚·‚é
+// ãƒ©ã‚¤ãƒˆã®è¨ˆç®—ã§ãƒãƒ¼ãƒ•ãƒ©ãƒ³ãƒãƒ¼ãƒˆã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹
 extern	int		Graphics_Hardware_Light_SetUseHalfLambert_PF( int UseHalfLambert )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -4979,9 +4979,9 @@ extern	int		Graphics_Hardware_Light_SetUseHalfLambert_PF( int UseHalfLambert )
 
 
 
-// ŠÂ‹«ˆË‘¶ƒVƒƒƒhƒEƒ}ƒbƒvŠÖŒW
+// ç’°å¢ƒä¾å­˜ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—é–¢ä¿‚
 
-// ƒVƒƒƒhƒEƒ}ƒbƒvƒf[ƒ^‚É•K—v‚ÈƒeƒNƒXƒ`ƒƒ‚ğì¬‚·‚é
+// ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ã«å¿…è¦ãªãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ä½œæˆã™ã‚‹
 extern	int		Graphics_Hardware_ShadowMap_CreateTexture_PF( SHADOWMAPDATA *ShadowMap, int ASyncThread )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -5001,7 +5001,7 @@ extern	int		Graphics_Hardware_ShadowMap_CreateTexture_PF( SHADOWMAPDATA *ShadowM
 	}
 }
 
-// ƒVƒƒƒhƒEƒ}ƒbƒvƒf[ƒ^‚É•K—v‚ÈƒeƒNƒXƒ`ƒƒ‚ğ‰ğ•ú‚·‚é
+// ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ã«å¿…è¦ãªãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’è§£æ”¾ã™ã‚‹
 extern	int		Graphics_Hardware_ShadowMap_ReleaseTexture_PF( SHADOWMAPDATA *ShadowMap )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -5021,7 +5021,7 @@ extern	int		Graphics_Hardware_ShadowMap_ReleaseTexture_PF( SHADOWMAPDATA *Shadow
 	}
 }
 
-// ’¸“_ƒVƒF[ƒ_[‚Éİ’è‚·‚éƒVƒƒƒhƒEƒ}ƒbƒv‚Ìî•ñ‚ğXV‚·‚é
+// é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã«è¨­å®šã™ã‚‹ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ã®æƒ…å ±ã‚’æ›´æ–°ã™ã‚‹
 extern	void	Graphics_Hardware_ShadowMap_RefreshVSParam_PF( void )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -5043,7 +5043,7 @@ extern	void	Graphics_Hardware_ShadowMap_RefreshVSParam_PF( void )
 	}
 }
 
-// ƒsƒNƒZƒ‹ƒVƒF[ƒ_[‚Éİ’è‚·‚éƒVƒƒƒhƒEƒ}ƒbƒv‚Ìî•ñ‚ğXV‚·‚é
+// ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã«è¨­å®šã™ã‚‹ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ã®æƒ…å ±ã‚’æ›´æ–°ã™ã‚‹
 extern	void	Graphics_Hardware_ShadowMap_RefreshPSParam_PF( void )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -5065,7 +5065,7 @@ extern	void	Graphics_Hardware_ShadowMap_RefreshPSParam_PF( void )
 	}
 }
 
-// ƒVƒƒƒhƒEƒ}ƒbƒv‚Ö‚Ì•`‰æ‚Ì€”õ‚ğs‚¤
+// ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ã¸ã®æç”»ã®æº–å‚™ã‚’è¡Œã†
 extern	int		Graphics_Hardware_ShadowMap_DrawSetup_PF( SHADOWMAPDATA *ShadowMap )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -5085,7 +5085,7 @@ extern	int		Graphics_Hardware_ShadowMap_DrawSetup_PF( SHADOWMAPDATA *ShadowMap )
 	}
 }
 
-// ƒVƒƒƒhƒEƒ}ƒbƒv‚Ö‚Ì•`‰æ‚ğI—¹‚·‚é
+// ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ã¸ã®æç”»ã‚’çµ‚äº†ã™ã‚‹
 extern	int		Graphics_Hardware_ShadowMap_DrawEnd_PF( SHADOWMAPDATA *ShadowMap )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -5105,7 +5105,7 @@ extern	int		Graphics_Hardware_ShadowMap_DrawEnd_PF( SHADOWMAPDATA *ShadowMap )
 	}
 }
 
-// •`‰æ‚Åg—p‚·‚éƒVƒƒƒhƒEƒ}ƒbƒv‚ğw’è‚·‚é( ƒXƒƒbƒg‚Í‚O‚©‚P‚©‚ğw’è‰Â”\ )
+// æç”»ã§ä½¿ç”¨ã™ã‚‹ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ã‚’æŒ‡å®šã™ã‚‹( ã‚¹ãƒ­ãƒƒãƒˆã¯ï¼ã‹ï¼‘ã‹ã‚’æŒ‡å®šå¯èƒ½ )
 extern int Graphics_Hardware_ShadowMap_SetUse_PF( int SlotIndex, SHADOWMAPDATA *ShadowMap )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -5148,9 +5148,9 @@ extern int Graphics_Hardware_ShadowMap_SetUse_PF( int SlotIndex, SHADOWMAPDATA *
 
 
 
-// ŠÂ‹«ˆË‘¶ƒVƒF[ƒ_[ŠÖŒW
+// ç’°å¢ƒä¾å­˜ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼é–¢ä¿‚
 
-// ƒVƒF[ƒ_[ƒnƒ“ƒhƒ‹‚ğ‰Šú‰»‚·‚é
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒãƒ³ãƒ‰ãƒ«ã‚’åˆæœŸåŒ–ã™ã‚‹
 extern	int		Graphics_Hardware_Shader_Create_PF( int ShaderHandle, int ShaderType, void *Image, int ImageSize, int ImageAfterFree, int ASyncThread )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -5170,7 +5170,7 @@ extern	int		Graphics_Hardware_Shader_Create_PF( int ShaderHandle, int ShaderType
 	}
 }
 
-// ƒVƒF[ƒ_[ƒnƒ“ƒhƒ‹‚ÌŒãn––
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒãƒ³ãƒ‰ãƒ«ã®å¾Œå§‹æœ«
 extern	int		Graphics_Hardware_Shader_TerminateHandle_PF( SHADERHANDLEDATA *Shader )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -5190,7 +5190,7 @@ extern	int		Graphics_Hardware_Shader_TerminateHandle_PF( SHADERHANDLEDATA *Shade
 	}
 }
 
-// g—p‚Å‚«‚éƒVƒF[ƒ_[‚Ìƒo[ƒWƒ‡ƒ“‚ğæ“¾‚·‚é( 0=g‚¦‚È‚¢  200=ƒVƒF[ƒ_[ƒ‚ƒfƒ‹‚QD‚O‚ªg—p‰Â”\  300=ƒVƒF[ƒ_[ƒ‚ƒfƒ‹‚RD‚O‚ªg—p‰Â”\ )
+// ä½¿ç”¨ã§ãã‚‹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã‚’å–å¾—ã™ã‚‹( 0=ä½¿ãˆãªã„  200=ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒ¢ãƒ‡ãƒ«ï¼’ï¼ï¼ãŒä½¿ç”¨å¯èƒ½  300=ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒ¢ãƒ‡ãƒ«ï¼“ï¼ï¼ãŒä½¿ç”¨å¯èƒ½ )
 extern	int		Graphics_Hardware_Shader_GetValidShaderVersion_PF( void )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -5210,7 +5210,7 @@ extern	int		Graphics_Hardware_Shader_GetValidShaderVersion_PF( void )
 	}
 }
 
-// w’è‚Ì–¼‘O‚ğ‚Â’è”‚ªg—p‚·‚éƒVƒF[ƒ_[’è”‚Ì”Ô†‚ğæ“¾‚·‚é
+// æŒ‡å®šã®åå‰ã‚’æŒã¤å®šæ•°ãŒä½¿ç”¨ã™ã‚‹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼å®šæ•°ã®ç•ªå·ã‚’å–å¾—ã™ã‚‹
 extern	int		Graphics_Hardware_Shader_GetConstIndex_PF( const wchar_t *ConstantName, SHADERHANDLEDATA *Shader )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -5230,7 +5230,7 @@ extern	int		Graphics_Hardware_Shader_GetConstIndex_PF( const wchar_t *ConstantNa
 	}
 }
 
-// w’è‚Ì–¼‘O‚ğ‚Â’è”‚ªg—p‚·‚éƒVƒF[ƒ_[’è”‚Ì”‚ğæ“¾‚·‚é
+// æŒ‡å®šã®åå‰ã‚’æŒã¤å®šæ•°ãŒä½¿ç”¨ã™ã‚‹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼å®šæ•°ã®æ•°ã‚’å–å¾—ã™ã‚‹
 extern	int		Graphics_Hardware_Shader_GetConstCount_PF( const wchar_t *ConstantName, SHADERHANDLEDATA *Shader )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -5250,7 +5250,7 @@ extern	int		Graphics_Hardware_Shader_GetConstCount_PF( const wchar_t *ConstantNa
 	}
 }
 
-// w’è‚Ì–¼‘O‚ğ‚Â•‚“®¬”“_’è”‚ÌƒfƒtƒHƒ‹ƒgƒpƒ‰ƒ[ƒ^‚ªŠi”[‚³‚ê‚Ä‚¢‚éƒƒ‚ƒŠƒAƒhƒŒƒX‚ğæ“¾‚·‚é
+// æŒ‡å®šã®åå‰ã‚’æŒã¤æµ®å‹•å°æ•°ç‚¹å®šæ•°ã®ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãŒæ ¼ç´ã•ã‚Œã¦ã„ã‚‹ãƒ¡ãƒ¢ãƒªã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å–å¾—ã™ã‚‹
 extern	const FLOAT4 *Graphics_Hardware_Shader_GetConstDefaultParamF_PF( const wchar_t *ConstantName, SHADERHANDLEDATA *Shader )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -5270,7 +5270,7 @@ extern	const FLOAT4 *Graphics_Hardware_Shader_GetConstDefaultParamF_PF( const wc
 	}
 }
 
-// ƒVƒF[ƒ_[’è”î•ñ‚ğİ’è‚·‚é
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼å®šæ•°æƒ…å ±ã‚’è¨­å®šã™ã‚‹
 extern	int		Graphics_Hardware_Shader_SetConst_PF( int TypeIndex, int SetIndex, int ConstantIndex, const void *Param, int ParamNum, int UpdateUseArea )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -5290,7 +5290,7 @@ extern	int		Graphics_Hardware_Shader_SetConst_PF( int TypeIndex, int SetIndex, i
 	}
 }
 
-// w’è—Ìˆæ‚ÌƒVƒF[ƒ_[’è”î•ñ‚ğƒŠƒZƒbƒg‚·‚é
+// æŒ‡å®šé ˜åŸŸã®ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼å®šæ•°æƒ…å ±ã‚’ãƒªã‚»ãƒƒãƒˆã™ã‚‹
 extern	int		Graphics_Hardware_Shader_ResetConst_PF( int TypeIndex, int SetIndex, int ConstantIndex, int ParamNum )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -5311,7 +5311,7 @@ extern	int		Graphics_Hardware_Shader_ResetConst_PF( int TypeIndex, int SetIndex,
 }
 
 #ifndef DX_NON_MODEL
-// ‚R‚cƒ‚ƒfƒ‹—p‚ÌƒVƒF[ƒ_[ƒR[ƒh‚Ì‰Šú‰»‚ğs‚¤
+// ï¼“ï¼¤ãƒ¢ãƒ‡ãƒ«ç”¨ã®ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚³ãƒ¼ãƒ‰ã®åˆæœŸåŒ–ã‚’è¡Œã†
 extern	int		Graphics_Hardware_Shader_ModelCode_Init_PF( void )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -5354,9 +5354,9 @@ extern	int		Graphics_Hardware_Shader_ModelCode_Init_PF( void )
 
 
 
-// ŠÂ‹«ˆË‘¶ƒVƒF[ƒ_[—p’è”ƒoƒbƒtƒ@ŠÖŒW
+// ç’°å¢ƒä¾å­˜ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ç”¨å®šæ•°ãƒãƒƒãƒ•ã‚¡é–¢ä¿‚
 
-// ƒVƒF[ƒ_[—p’è”ƒoƒbƒtƒ@ƒnƒ“ƒhƒ‹‚ğ‰Šú‰»‚·‚é
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ç”¨å®šæ•°ãƒãƒƒãƒ•ã‚¡ãƒãƒ³ãƒ‰ãƒ«ã‚’åˆæœŸåŒ–ã™ã‚‹
 extern int Graphics_Hardware_ShaderConstantBuffer_Create_PF( int ShaderConstantBufferHandle, int BufferSize, int ASyncThread )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -5376,7 +5376,7 @@ extern int Graphics_Hardware_ShaderConstantBuffer_Create_PF( int ShaderConstantB
 	}
 }
 
-// ƒVƒF[ƒ_[—p’è”ƒoƒbƒtƒ@ƒnƒ“ƒhƒ‹‚ÌŒãn––
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ç”¨å®šæ•°ãƒãƒƒãƒ•ã‚¡ãƒãƒ³ãƒ‰ãƒ«ã®å¾Œå§‹æœ«
 extern int Graphics_Hardware_ShaderConstantBuffer_TerminateHandle_PF( SHADERCONSTANTBUFFERHANDLEDATA *ShaderConstantBuffer )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -5396,7 +5396,7 @@ extern int Graphics_Hardware_ShaderConstantBuffer_TerminateHandle_PF( SHADERCONS
 	}
 }
 
-// ƒVƒF[ƒ_[—p’è”ƒoƒbƒtƒ@ƒnƒ“ƒhƒ‹‚Ì’è”ƒoƒbƒtƒ@‚ÌƒAƒhƒŒƒX‚ğæ“¾‚·‚é
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ç”¨å®šæ•°ãƒãƒƒãƒ•ã‚¡ãƒãƒ³ãƒ‰ãƒ«ã®å®šæ•°ãƒãƒƒãƒ•ã‚¡ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å–å¾—ã™ã‚‹
 extern void *Graphics_Hardware_ShaderConstantBuffer_GetBuffer_PF( SHADERCONSTANTBUFFERHANDLEDATA *ShaderConstantBuffer )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -5416,7 +5416,7 @@ extern void *Graphics_Hardware_ShaderConstantBuffer_GetBuffer_PF( SHADERCONSTANT
 	}
 }
 
-// ƒVƒF[ƒ_[—p’è”ƒoƒbƒtƒ@ƒnƒ“ƒhƒ‹‚Ì’è”ƒoƒbƒtƒ@‚Ö‚Ì•ÏX‚ğ“K—p‚·‚é
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ç”¨å®šæ•°ãƒãƒƒãƒ•ã‚¡ãƒãƒ³ãƒ‰ãƒ«ã®å®šæ•°ãƒãƒƒãƒ•ã‚¡ã¸ã®å¤‰æ›´ã‚’é©ç”¨ã™ã‚‹
 extern int Graphics_Hardware_ShaderConstantBuffer_Update_PF( SHADERCONSTANTBUFFERHANDLEDATA *ShaderConstantBuffer )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -5436,8 +5436,8 @@ extern int Graphics_Hardware_ShaderConstantBuffer_Update_PF( SHADERCONSTANTBUFFE
 	}
 }
 
-// ƒVƒF[ƒ_[—p’è”ƒoƒbƒtƒ@ƒnƒ“ƒhƒ‹‚Ì’è”ƒoƒbƒtƒ@‚ğw’è‚ÌƒVƒF[ƒ_[‚Ìw’è‚ÌƒXƒƒbƒg‚ÉƒZƒbƒg‚·‚é
-extern int Graphics_Hardware_ShaderConstantBuffer_Set_PF( SHADERCONSTANTBUFFERHANDLEDATA *ShaderConstantBuffer, int TargetShader /* DX_SHADERTYPE_VERTEX ‚È‚Ç */, int Slot )
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ç”¨å®šæ•°ãƒãƒƒãƒ•ã‚¡ãƒãƒ³ãƒ‰ãƒ«ã®å®šæ•°ãƒãƒƒãƒ•ã‚¡ã‚’æŒ‡å®šã®ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®æŒ‡å®šã®ã‚¹ãƒ­ãƒƒãƒˆã«ã‚»ãƒƒãƒˆã™ã‚‹
+extern int Graphics_Hardware_ShaderConstantBuffer_Set_PF( SHADERCONSTANTBUFFERHANDLEDATA *ShaderConstantBuffer, int TargetShader /* DX_SHADERTYPE_VERTEX ãªã© */, int Slot )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
 	{
@@ -5481,9 +5481,9 @@ extern int Graphics_Hardware_ShaderConstantBuffer_Set_PF( SHADERCONSTANTBUFFERHA
 
 
 
-// ŠÂ‹«ˆË‘¶•`‰æŠÖŒW
+// ç’°å¢ƒä¾å­˜æç”»é–¢ä¿‚
 
-// ’¸“_ƒoƒbƒtƒ@‚É—­‚Ü‚Á‚½’¸“_ƒf[ƒ^‚ğƒŒƒ“ƒ_ƒŠƒ“ƒO‚·‚é
+// é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã«æºœã¾ã£ãŸé ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ã‚’ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã™ã‚‹
 extern	int		Graphics_Hardware_RenderVertex( int ASyncThread )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -5503,7 +5503,7 @@ extern	int		Graphics_Hardware_RenderVertex( int ASyncThread )
 	}
 }
 
-// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒ^g—p”Å DrawBillboard3D
+// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚¿ä½¿ç”¨ç‰ˆ DrawBillboard3D
 extern	int		Graphics_Hardware_DrawBillboard3D_PF( VECTOR Pos, float cx, float cy, float SizeX, float SizeY, float Angle, IMAGEDATA *Image, IMAGEDATA *BlendImage, int TransFlag, int ReverseXFlag, int ReverseYFlag, int DrawFlag, RECT *DrawArea )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -5523,7 +5523,7 @@ extern	int		Graphics_Hardware_DrawBillboard3D_PF( VECTOR Pos, float cx, float cy
 	}
 }
 
-// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒ^g—p”Å DrawModiBillboard3D
+// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚¿ä½¿ç”¨ç‰ˆ DrawModiBillboard3D
 extern	int		Graphics_Hardware_DrawModiBillboard3D_PF( VECTOR Pos, float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4, IMAGEDATA *Image, IMAGEDATA *BlendImage, int TransFlag, int DrawFlag, RECT *DrawArea )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -5543,7 +5543,7 @@ extern	int		Graphics_Hardware_DrawModiBillboard3D_PF( VECTOR Pos, float x1, floa
 	}
 }
 
-// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒ^g—p”Å DrawGraph
+// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚¿ä½¿ç”¨ç‰ˆ DrawGraph
 extern	int		Graphics_Hardware_DrawGraph_PF( int x, int y, float xf, float yf, IMAGEDATA *Image, IMAGEDATA *BlendImage, int TransFlag, int IntFlag )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -5563,7 +5563,7 @@ extern	int		Graphics_Hardware_DrawGraph_PF( int x, int y, float xf, float yf, IM
 	}
 }
 
-// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒ^g—p”Å DrawExtendGraph
+// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚¿ä½¿ç”¨ç‰ˆ DrawExtendGraph
 extern	int		Graphics_Hardware_DrawExtendGraph_PF( int x1, int y1, int x2, int y2, float x1f, float y1f, float x2f, float y2f, IMAGEDATA *Image, IMAGEDATA *BlendImage, int TransFlag, int IntFlag )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -5583,7 +5583,7 @@ extern	int		Graphics_Hardware_DrawExtendGraph_PF( int x1, int y1, int x2, int y2
 	}
 }
 
-// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒ^g—p”Å DrawRotaGraph
+// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚¿ä½¿ç”¨ç‰ˆ DrawRotaGraph
 extern	int		Graphics_Hardware_DrawRotaGraph_PF( int x, int y, float xf, float yf, double ExRate, double Angle, IMAGEDATA *Image, IMAGEDATA *BlendImage, int TransFlag, int ReverseXFlag, int ReverseYFlag, int IntFlag )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -5603,7 +5603,7 @@ extern	int		Graphics_Hardware_DrawRotaGraph_PF( int x, int y, float xf, float yf
 	}
 }
 
-// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒ^g—p”Å DrawRotaGraphFast
+// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚¿ä½¿ç”¨ç‰ˆ DrawRotaGraphFast
 extern	int		Graphics_Hardware_DrawRotaGraphFast_PF( int x, int y, float xf, float yf, float ExRate, float Angle, IMAGEDATA *Image, IMAGEDATA *BlendImage, int TransFlag, int ReverseXFlag, int ReverseYFlag, int IntFlag )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -5623,7 +5623,7 @@ extern	int		Graphics_Hardware_DrawRotaGraphFast_PF( int x, int y, float xf, floa
 	}
 }
 
-// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒ^g—p”Å DrawModiGraph
+// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚¿ä½¿ç”¨ç‰ˆ DrawModiGraph
 extern	int		Graphics_Hardware_DrawModiGraph_PF( int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4, IMAGEDATA *Image, IMAGEDATA *BlendImage, int TransFlag, bool SimpleDrawFlag )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -5643,7 +5643,7 @@ extern	int		Graphics_Hardware_DrawModiGraph_PF( int x1, int y1, int x2, int y2, 
 	}
 }
 
-// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒ^g—p”Å DrawModiGraphF
+// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚¿ä½¿ç”¨ç‰ˆ DrawModiGraphF
 extern	int		Graphics_Hardware_DrawModiGraphF_PF( float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4, IMAGEDATA *Image, IMAGEDATA *BlendImage, int TransFlag, bool SimpleDrawFlag )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -5663,7 +5663,7 @@ extern	int		Graphics_Hardware_DrawModiGraphF_PF( float x1, float y1, float x2, f
 	}
 }
 
-// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒ^g—p”Å DrawSimpleQuadrangleGraphF
+// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚¿ä½¿ç”¨ç‰ˆ DrawSimpleQuadrangleGraphF
 extern	int		Graphics_Hardware_DrawSimpleQuadrangleGraphF_PF( const GRAPHICS_DRAW_DRAWSIMPLEQUADRANGLEGRAPHF_PARAM *Param, IMAGEDATA *Image, IMAGEDATA *BlendImage )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -5683,7 +5683,7 @@ extern	int		Graphics_Hardware_DrawSimpleQuadrangleGraphF_PF( const GRAPHICS_DRAW
 	}
 }
 
-// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒ^g—p”Å DrawSimpleTriangleGraphF
+// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚¿ä½¿ç”¨ç‰ˆ DrawSimpleTriangleGraphF
 extern	int		Graphics_Hardware_DrawSimpleTriangleGraphF_PF( const GRAPHICS_DRAW_DRAWSIMPLETRIANGLEGRAPHF_PARAM *Param, IMAGEDATA *Image, IMAGEDATA *BlendImage )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -5703,7 +5703,7 @@ extern	int		Graphics_Hardware_DrawSimpleTriangleGraphF_PF( const GRAPHICS_DRAW_D
 	}
 }
 
-// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒ^g—p”Å DrawFillBox
+// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚¿ä½¿ç”¨ç‰ˆ DrawFillBox
 extern	int		Graphics_Hardware_DrawFillBox_PF( int x1, int y1, int x2, int y2, unsigned int Color )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -5723,7 +5723,7 @@ extern	int		Graphics_Hardware_DrawFillBox_PF( int x1, int y1, int x2, int y2, un
 	}
 }
 
-// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒ^g—p”Å DrawLineBox
+// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚¿ä½¿ç”¨ç‰ˆ DrawLineBox
 extern	int		Graphics_Hardware_DrawLineBox_PF( int x1, int y1, int x2, int y2, unsigned int Color, int Thickness )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -5744,7 +5744,7 @@ extern	int		Graphics_Hardware_DrawLineBox_PF( int x1, int y1, int x2, int y2, un
 }
 
 
-// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒ^g—p”Å DrawLine
+// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚¿ä½¿ç”¨ç‰ˆ DrawLine
 extern	int		Graphics_Hardware_DrawLine_PF( int x1, int y1, int x2, int y2, unsigned int Color )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -5764,7 +5764,7 @@ extern	int		Graphics_Hardware_DrawLine_PF( int x1, int y1, int x2, int y2, unsig
 	}
 }
 
-// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒ^g—p”Å DrawLine3D
+// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚¿ä½¿ç”¨ç‰ˆ DrawLine3D
 extern	int		Graphics_Hardware_DrawLine3D_PF( VECTOR Pos1, VECTOR Pos2, unsigned int Color, int DrawFlag, RECT *DrawArea )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -5784,7 +5784,7 @@ extern	int		Graphics_Hardware_DrawLine3D_PF( VECTOR Pos1, VECTOR Pos2, unsigned 
 	}
 }
 
-// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒ^g—p”Å DrawCircle( ‘¾‚³w’è‚ ‚è )
+// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚¿ä½¿ç”¨ç‰ˆ DrawCircle( å¤ªã•æŒ‡å®šã‚ã‚Š )
 extern	int		Graphics_Hardware_DrawCircle_Thickness_PF( int x, int y, int r, unsigned int Color, int Thickness )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -5804,7 +5804,7 @@ extern	int		Graphics_Hardware_DrawCircle_Thickness_PF( int x, int y, int r, unsi
 	}
 }
 
-// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒ^g—p”Å DrawOval( ‘¾‚³w’è‚ ‚è )
+// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚¿ä½¿ç”¨ç‰ˆ DrawOval( å¤ªã•æŒ‡å®šã‚ã‚Š )
 extern	int		Graphics_Hardware_DrawOval_Thickness_PF( int x, int y, int rx, int ry, unsigned int Color, int Thickness )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -5824,7 +5824,7 @@ extern	int		Graphics_Hardware_DrawOval_Thickness_PF( int x, int y, int rx, int r
 	}
 }
 
-// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒ^g—p”Å DrawCircle
+// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚¿ä½¿ç”¨ç‰ˆ DrawCircle
 extern	int		Graphics_Hardware_DrawCircle_PF( int x, int y, int r, unsigned int Color, int FillFlag, int Rx_One_Minus, int Ry_One_Minus )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -5844,7 +5844,7 @@ extern	int		Graphics_Hardware_DrawCircle_PF( int x, int y, int r, unsigned int C
 	}
 }
 
-// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒ^g—p”Å DrawOval
+// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚¿ä½¿ç”¨ç‰ˆ DrawOval
 extern	int		Graphics_Hardware_DrawOval_PF( int x, int y, int rx, int ry, unsigned int Color, int FillFlag, int Rx_One_Minus, int Ry_One_Minus )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -5864,7 +5864,7 @@ extern	int		Graphics_Hardware_DrawOval_PF( int x, int y, int rx, int ry, unsigne
 	}
 }
 
-// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒ^g—p”Å DrawTriangle
+// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚¿ä½¿ç”¨ç‰ˆ DrawTriangle
 extern	int		Graphics_Hardware_DrawTriangle_PF( int x1, int y1, int x2, int y2, int x3, int y3, unsigned int Color, int FillFlag )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -5884,7 +5884,7 @@ extern	int		Graphics_Hardware_DrawTriangle_PF( int x1, int y1, int x2, int y2, i
 	}
 }
 
-// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒ^g—p”Å DrawTriangle3D
+// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚¿ä½¿ç”¨ç‰ˆ DrawTriangle3D
 extern	int		Graphics_Hardware_DrawTriangle3D_PF( VECTOR Pos1, VECTOR Pos2, VECTOR Pos3, unsigned int Color, int FillFlag, int DrawFlag, RECT *DrawArea )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -5904,7 +5904,7 @@ extern	int		Graphics_Hardware_DrawTriangle3D_PF( VECTOR Pos1, VECTOR Pos2, VECTO
 	}
 }
 
-// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒ^g—p”Å DrawQuadrangle
+// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚¿ä½¿ç”¨ç‰ˆ DrawQuadrangle
 extern	int		Graphics_Hardware_DrawQuadrangle_PF( int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4, unsigned int Color, int FillFlag )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -5924,7 +5924,7 @@ extern	int		Graphics_Hardware_DrawQuadrangle_PF( int x1, int y1, int x2, int y2,
 	}
 }
 
-// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒ^g—p”Å DrawQuadrangle
+// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚¿ä½¿ç”¨ç‰ˆ DrawQuadrangle
 extern	int		Graphics_Hardware_DrawQuadrangleF_PF( float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4, unsigned int Color, int FillFlag )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -5944,7 +5944,7 @@ extern	int		Graphics_Hardware_DrawQuadrangleF_PF( float x1, float y1, float x2, 
 	}
 }
 
-// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒ^g—p”Å DrawPixel
+// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚¿ä½¿ç”¨ç‰ˆ DrawPixel
 extern	int		Graphics_Hardware_DrawPixel_PF( int x, int y, unsigned int Color )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -5964,7 +5964,7 @@ extern	int		Graphics_Hardware_DrawPixel_PF( int x, int y, unsigned int Color )
 	}
 }
 
-// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒ^g—p”Å DrawPixel3D
+// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚¿ä½¿ç”¨ç‰ˆ DrawPixel3D
 extern	int		Graphics_Hardware_DrawPixel3D_PF( VECTOR Pos, unsigned int Color, int DrawFlag, RECT *DrawArea )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -5984,7 +5984,7 @@ extern	int		Graphics_Hardware_DrawPixel3D_PF( VECTOR Pos, unsigned int Color, in
 	}
 }
 
-// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒ^g—p”Å DrawPixelSet
+// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚¿ä½¿ç”¨ç‰ˆ DrawPixelSet
 extern	int		Graphics_Hardware_DrawPixelSet_PF( const POINTDATA *PointData, int Num )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -6004,7 +6004,7 @@ extern	int		Graphics_Hardware_DrawPixelSet_PF( const POINTDATA *PointData, int N
 	}
 }
 
-// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒ^g—p”Å DrawLineSet
+// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚¿ä½¿ç”¨ç‰ˆ DrawLineSet
 extern	int		Graphics_Hardware_DrawLineSet_PF( const LINEDATA *LineData, int Num )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -6024,7 +6024,7 @@ extern	int		Graphics_Hardware_DrawLineSet_PF( const LINEDATA *LineData, int Num 
 	}
 }
 
-// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒ^g—p”Å DrawBoxSet
+// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚¿ä½¿ç”¨ç‰ˆ DrawBoxSet
 extern	int		Graphics_Hardware_DrawBoxSet_PF( const RECTDATA *RectData, int Num )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -6273,19 +6273,19 @@ extern	int		Graphics_Hardware_Draw32bitIndexedPrimitive2DUser_PF(               
 	}
 }
 
-// ƒVƒF[ƒ_[‚ğg‚Á‚Ä‚Q‚cƒvƒŠƒ~ƒeƒBƒu‚ğ•`‰æ‚·‚é
-extern	int		Graphics_Hardware_DrawPrimitive2DToShader_PF(        const VERTEX2DSHADER *Vertex, int VertexNum,                                              int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST “™ */ )
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ä½¿ã£ã¦ï¼’ï¼¤ãƒ—ãƒªãƒŸãƒ†ã‚£ãƒ–ã‚’æç”»ã™ã‚‹
+extern	int		Graphics_Hardware_DrawPrimitive2DToShader_PF(        const VERTEX2DSHADER *Vertex, int VertexNum,                                              int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST ç­‰ */ )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
 	{
 #ifndef DX_NON_DIRECT3D11
 	case GRAPHICS_API_DIRECT3D11_WIN32 :
-		return Graphics_D3D11_DrawPrimitive2DToShader(        Vertex,  VertexNum,                                               PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST “™ */ ) ;
+		return Graphics_D3D11_DrawPrimitive2DToShader(        Vertex,  VertexNum,                                               PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST ç­‰ */ ) ;
 #endif // DX_NON_DIRECT3D11
 
 #ifndef DX_NON_DIRECT3D9
 	case GRAPHICS_API_DIRECT3D9_WIN32 :
-		return Graphics_D3D9_DrawPrimitive2DToShader(        Vertex,  VertexNum,                                               PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST “™ */ ) ;
+		return Graphics_D3D9_DrawPrimitive2DToShader(        Vertex,  VertexNum,                                               PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST ç­‰ */ ) ;
 #endif // DX_NON_DIRECT3D9
 
 	default :
@@ -6293,19 +6293,19 @@ extern	int		Graphics_Hardware_DrawPrimitive2DToShader_PF(        const VERTEX2DS
 	}
 }
 
-// ƒVƒF[ƒ_[‚ğg‚Á‚Ä‚R‚cƒvƒŠƒ~ƒeƒBƒu‚ğ•`‰æ‚·‚é
-extern	int		Graphics_Hardware_DrawPrimitive3DToShader_PF(        const VERTEX3DSHADER *Vertex, int VertexNum,                                              int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST “™ */ )
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ä½¿ã£ã¦ï¼“ï¼¤ãƒ—ãƒªãƒŸãƒ†ã‚£ãƒ–ã‚’æç”»ã™ã‚‹
+extern	int		Graphics_Hardware_DrawPrimitive3DToShader_PF(        const VERTEX3DSHADER *Vertex, int VertexNum,                                              int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST ç­‰ */ )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
 	{
 #ifndef DX_NON_DIRECT3D11
 	case GRAPHICS_API_DIRECT3D11_WIN32 :
-		return Graphics_D3D11_DrawPrimitive3DToShader(        Vertex,  VertexNum,                                               PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST “™ */ ) ;
+		return Graphics_D3D11_DrawPrimitive3DToShader(        Vertex,  VertexNum,                                               PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST ç­‰ */ ) ;
 #endif // DX_NON_DIRECT3D11
 
 #ifndef DX_NON_DIRECT3D9
 	case GRAPHICS_API_DIRECT3D9_WIN32 :
-		return Graphics_D3D9_DrawPrimitive3DToShader(        Vertex,  VertexNum,                                               PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST “™ */ ) ;
+		return Graphics_D3D9_DrawPrimitive3DToShader(        Vertex,  VertexNum,                                               PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST ç­‰ */ ) ;
 #endif // DX_NON_DIRECT3D9
 
 	default :
@@ -6313,19 +6313,19 @@ extern	int		Graphics_Hardware_DrawPrimitive3DToShader_PF(        const VERTEX3DS
 	}
 }
 
-// ƒVƒF[ƒ_[‚ğg‚Á‚Ä‚Q‚cƒvƒŠƒ~ƒeƒBƒu‚ğ•`‰æ‚·‚é( ’¸“_ƒCƒ“ƒfƒbƒNƒX‚ğg—p‚·‚é )
-extern	int		Graphics_Hardware_DrawPrimitiveIndexed2DToShader_PF( const VERTEX2DSHADER *Vertex, int VertexNum, const unsigned short *Indices, int IndexNum, int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST “™ */ )
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ä½¿ã£ã¦ï¼’ï¼¤ãƒ—ãƒªãƒŸãƒ†ã‚£ãƒ–ã‚’æç”»ã™ã‚‹( é ‚ç‚¹ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’ä½¿ç”¨ã™ã‚‹ )
+extern	int		Graphics_Hardware_DrawPrimitiveIndexed2DToShader_PF( const VERTEX2DSHADER *Vertex, int VertexNum, const unsigned short *Indices, int IndexNum, int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST ç­‰ */ )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
 	{
 #ifndef DX_NON_DIRECT3D11
 	case GRAPHICS_API_DIRECT3D11_WIN32 :
-		return Graphics_D3D11_DrawPrimitiveIndexed2DToShader( Vertex,  VertexNum, Indices,  IndexNum,  PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST “™ */ ) ;
+		return Graphics_D3D11_DrawPrimitiveIndexed2DToShader( Vertex,  VertexNum, Indices,  IndexNum,  PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST ç­‰ */ ) ;
 #endif // DX_NON_DIRECT3D11
 
 #ifndef DX_NON_DIRECT3D9
 	case GRAPHICS_API_DIRECT3D9_WIN32 :
-		return Graphics_D3D9_DrawPrimitiveIndexed2DToShader( Vertex,  VertexNum, Indices,  IndexNum,  PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST “™ */ ) ;
+		return Graphics_D3D9_DrawPrimitiveIndexed2DToShader( Vertex,  VertexNum, Indices,  IndexNum,  PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST ç­‰ */ ) ;
 #endif // DX_NON_DIRECT3D9
 
 	default :
@@ -6333,19 +6333,19 @@ extern	int		Graphics_Hardware_DrawPrimitiveIndexed2DToShader_PF( const VERTEX2DS
 	}
 }
 
-// ƒVƒF[ƒ_[‚ğg‚Á‚Ä‚Q‚cƒvƒŠƒ~ƒeƒBƒu‚ğ•`‰æ‚·‚é( ’¸“_ƒCƒ“ƒfƒbƒNƒX‚ğg—p‚·‚é )
-extern	int		Graphics_Hardware_DrawPrimitive32bitIndexed2DToShader_PF( const VERTEX2DSHADER *Vertex, int VertexNum, const unsigned int *Indices, int IndexNum, int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST “™ */ )
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ä½¿ã£ã¦ï¼’ï¼¤ãƒ—ãƒªãƒŸãƒ†ã‚£ãƒ–ã‚’æç”»ã™ã‚‹( é ‚ç‚¹ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’ä½¿ç”¨ã™ã‚‹ )
+extern	int		Graphics_Hardware_DrawPrimitive32bitIndexed2DToShader_PF( const VERTEX2DSHADER *Vertex, int VertexNum, const unsigned int *Indices, int IndexNum, int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST ç­‰ */ )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
 	{
 #ifndef DX_NON_DIRECT3D11
 	case GRAPHICS_API_DIRECT3D11_WIN32 :
-		return Graphics_D3D11_DrawPrimitive32bitIndexed2DToShader( Vertex,  VertexNum, Indices,  IndexNum,  PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST “™ */ ) ;
+		return Graphics_D3D11_DrawPrimitive32bitIndexed2DToShader( Vertex,  VertexNum, Indices,  IndexNum,  PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST ç­‰ */ ) ;
 #endif // DX_NON_DIRECT3D11
 
 #ifndef DX_NON_DIRECT3D9
 	case GRAPHICS_API_DIRECT3D9_WIN32 :
-		return Graphics_D3D9_DrawPrimitive32bitIndexed2DToShader( Vertex,  VertexNum, Indices,  IndexNum,  PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST “™ */ ) ;
+		return Graphics_D3D9_DrawPrimitive32bitIndexed2DToShader( Vertex,  VertexNum, Indices,  IndexNum,  PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST ç­‰ */ ) ;
 #endif // DX_NON_DIRECT3D9
 
 	default :
@@ -6353,19 +6353,19 @@ extern	int		Graphics_Hardware_DrawPrimitive32bitIndexed2DToShader_PF( const VERT
 	}
 }
 
-// ƒVƒF[ƒ_[‚ğg‚Á‚Ä‚R‚cƒvƒŠƒ~ƒeƒBƒu‚ğ•`‰æ‚·‚é( ’¸“_ƒCƒ“ƒfƒbƒNƒX‚ğg—p‚·‚é )
-extern	int		Graphics_Hardware_DrawPrimitiveIndexed3DToShader_PF( const VERTEX3DSHADER *Vertex, int VertexNum, const unsigned short *Indices, int IndexNum, int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST “™ */ )
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ä½¿ã£ã¦ï¼“ï¼¤ãƒ—ãƒªãƒŸãƒ†ã‚£ãƒ–ã‚’æç”»ã™ã‚‹( é ‚ç‚¹ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’ä½¿ç”¨ã™ã‚‹ )
+extern	int		Graphics_Hardware_DrawPrimitiveIndexed3DToShader_PF( const VERTEX3DSHADER *Vertex, int VertexNum, const unsigned short *Indices, int IndexNum, int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST ç­‰ */ )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
 	{
 #ifndef DX_NON_DIRECT3D11
 	case GRAPHICS_API_DIRECT3D11_WIN32 :
-		return Graphics_D3D11_DrawPrimitiveIndexed3DToShader( Vertex,  VertexNum, Indices,  IndexNum,  PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST “™ */ ) ;
+		return Graphics_D3D11_DrawPrimitiveIndexed3DToShader( Vertex,  VertexNum, Indices,  IndexNum,  PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST ç­‰ */ ) ;
 #endif // DX_NON_DIRECT3D11
 
 #ifndef DX_NON_DIRECT3D9
 	case GRAPHICS_API_DIRECT3D9_WIN32 :
-		return Graphics_D3D9_DrawPrimitiveIndexed3DToShader( Vertex,  VertexNum, Indices,  IndexNum,  PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST “™ */ ) ;
+		return Graphics_D3D9_DrawPrimitiveIndexed3DToShader( Vertex,  VertexNum, Indices,  IndexNum,  PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST ç­‰ */ ) ;
 #endif // DX_NON_DIRECT3D9
 
 	default :
@@ -6373,19 +6373,19 @@ extern	int		Graphics_Hardware_DrawPrimitiveIndexed3DToShader_PF( const VERTEX3DS
 	}
 }
 
-// ƒVƒF[ƒ_[‚ğg‚Á‚Ä‚R‚cƒvƒŠƒ~ƒeƒBƒu‚ğ•`‰æ‚·‚é( ’¸“_ƒCƒ“ƒfƒbƒNƒX‚ğg—p‚·‚é )
-extern	int		Graphics_Hardware_DrawPrimitive32bitIndexed3DToShader_PF( const VERTEX3DSHADER *Vertex, int VertexNum, const unsigned int *Indices, int IndexNum, int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST “™ */ )
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ä½¿ã£ã¦ï¼“ï¼¤ãƒ—ãƒªãƒŸãƒ†ã‚£ãƒ–ã‚’æç”»ã™ã‚‹( é ‚ç‚¹ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’ä½¿ç”¨ã™ã‚‹ )
+extern	int		Graphics_Hardware_DrawPrimitive32bitIndexed3DToShader_PF( const VERTEX3DSHADER *Vertex, int VertexNum, const unsigned int *Indices, int IndexNum, int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST ç­‰ */ )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
 	{
 #ifndef DX_NON_DIRECT3D11
 	case GRAPHICS_API_DIRECT3D11_WIN32 :
-		return Graphics_D3D11_DrawPrimitive32bitIndexed3DToShader( Vertex,  VertexNum, Indices,  IndexNum,  PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST “™ */ ) ;
+		return Graphics_D3D11_DrawPrimitive32bitIndexed3DToShader( Vertex,  VertexNum, Indices,  IndexNum,  PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST ç­‰ */ ) ;
 #endif // DX_NON_DIRECT3D11
 
 #ifndef DX_NON_DIRECT3D9
 	case GRAPHICS_API_DIRECT3D9_WIN32 :
-		return Graphics_D3D9_DrawPrimitive32bitIndexed3DToShader( Vertex,  VertexNum, Indices,  IndexNum,  PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST “™ */ ) ;
+		return Graphics_D3D9_DrawPrimitive32bitIndexed3DToShader( Vertex,  VertexNum, Indices,  IndexNum,  PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST ç­‰ */ ) ;
 #endif // DX_NON_DIRECT3D9
 
 	default :
@@ -6393,19 +6393,19 @@ extern	int		Graphics_Hardware_DrawPrimitive32bitIndexed3DToShader_PF( const VERT
 	}
 }
 
-// ƒVƒF[ƒ_[‚ğg‚Á‚Ä‚Q‚cƒvƒŠƒ~ƒeƒBƒu‚ğ•`‰æ‚·‚é
-extern	int		Graphics_Hardware_DrawPrimitive2DToShader2_PF(        const VERTEX2D *Vertex, int VertexNum,                                              int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST “™ */ )
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ä½¿ã£ã¦ï¼’ï¼¤ãƒ—ãƒªãƒŸãƒ†ã‚£ãƒ–ã‚’æç”»ã™ã‚‹
+extern	int		Graphics_Hardware_DrawPrimitive2DToShader2_PF(        const VERTEX2D *Vertex, int VertexNum,                                              int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST ç­‰ */ )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
 	{
 #ifndef DX_NON_DIRECT3D11
 	case GRAPHICS_API_DIRECT3D11_WIN32 :
-		return Graphics_D3D11_DrawPrimitive2DToShader2(        Vertex,  VertexNum,                                               PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST “™ */ ) ;
+		return Graphics_D3D11_DrawPrimitive2DToShader2(        Vertex,  VertexNum,                                               PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST ç­‰ */ ) ;
 #endif // DX_NON_DIRECT3D11
 
 #ifndef DX_NON_DIRECT3D9
 	case GRAPHICS_API_DIRECT3D9_WIN32 :
-		return Graphics_D3D9_DrawPrimitive2DToShader2(        Vertex,  VertexNum,                                               PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST “™ */ ) ;
+		return Graphics_D3D9_DrawPrimitive2DToShader2(        Vertex,  VertexNum,                                               PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST ç­‰ */ ) ;
 #endif // DX_NON_DIRECT3D9
 
 	default :
@@ -6413,19 +6413,19 @@ extern	int		Graphics_Hardware_DrawPrimitive2DToShader2_PF(        const VERTEX2D
 	}
 }
 
-// ƒVƒF[ƒ_[‚ğg‚Á‚Ä‚R‚cƒvƒŠƒ~ƒeƒBƒu‚ğ•`‰æ‚·‚é
-extern	int		Graphics_Hardware_DrawPrimitive3DToShader2_PF(        const VERTEX3D *Vertex, int VertexNum,                                              int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST “™ */ )
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ä½¿ã£ã¦ï¼“ï¼¤ãƒ—ãƒªãƒŸãƒ†ã‚£ãƒ–ã‚’æç”»ã™ã‚‹
+extern	int		Graphics_Hardware_DrawPrimitive3DToShader2_PF(        const VERTEX3D *Vertex, int VertexNum,                                              int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST ç­‰ */ )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
 	{
 #ifndef DX_NON_DIRECT3D11
 	case GRAPHICS_API_DIRECT3D11_WIN32 :
-		return Graphics_D3D11_DrawPrimitive3DToShader2(        Vertex,  VertexNum,                                               PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST “™ */ ) ;
+		return Graphics_D3D11_DrawPrimitive3DToShader2(        Vertex,  VertexNum,                                               PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST ç­‰ */ ) ;
 #endif // DX_NON_DIRECT3D11
 
 #ifndef DX_NON_DIRECT3D9
 	case GRAPHICS_API_DIRECT3D9_WIN32 :
-		return Graphics_D3D9_DrawPrimitive3DToShader2(        Vertex,  VertexNum,                                               PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST “™ */ ) ;
+		return Graphics_D3D9_DrawPrimitive3DToShader2(        Vertex,  VertexNum,                                               PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST ç­‰ */ ) ;
 #endif // DX_NON_DIRECT3D9
 
 	default :
@@ -6433,19 +6433,19 @@ extern	int		Graphics_Hardware_DrawPrimitive3DToShader2_PF(        const VERTEX3D
 	}
 }
 
-// ƒVƒF[ƒ_[‚ğg‚Á‚Ä‚Q‚cƒvƒŠƒ~ƒeƒBƒu‚ğ•`‰æ‚·‚é( ’¸“_ƒCƒ“ƒfƒbƒNƒX‚ğg—p‚·‚é )
-extern	int		Graphics_Hardware_DrawPrimitiveIndexed2DToShader2_PF( const VERTEX2D *Vertex, int VertexNum, const unsigned short *Indices, int IndexNum, int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST “™ */ )
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ä½¿ã£ã¦ï¼’ï¼¤ãƒ—ãƒªãƒŸãƒ†ã‚£ãƒ–ã‚’æç”»ã™ã‚‹( é ‚ç‚¹ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’ä½¿ç”¨ã™ã‚‹ )
+extern	int		Graphics_Hardware_DrawPrimitiveIndexed2DToShader2_PF( const VERTEX2D *Vertex, int VertexNum, const unsigned short *Indices, int IndexNum, int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST ç­‰ */ )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
 	{
 #ifndef DX_NON_DIRECT3D11
 	case GRAPHICS_API_DIRECT3D11_WIN32 :
-		return Graphics_D3D11_DrawPrimitiveIndexed2DToShader2( Vertex,  VertexNum, Indices,  IndexNum,  PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST “™ */ ) ;
+		return Graphics_D3D11_DrawPrimitiveIndexed2DToShader2( Vertex,  VertexNum, Indices,  IndexNum,  PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST ç­‰ */ ) ;
 #endif // DX_NON_DIRECT3D11
 
 #ifndef DX_NON_DIRECT3D9
 	case GRAPHICS_API_DIRECT3D9_WIN32 :
-		return Graphics_D3D9_DrawPrimitiveIndexed2DToShader2( Vertex,  VertexNum, Indices,  IndexNum,  PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST “™ */ ) ;
+		return Graphics_D3D9_DrawPrimitiveIndexed2DToShader2( Vertex,  VertexNum, Indices,  IndexNum,  PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST ç­‰ */ ) ;
 #endif // DX_NON_DIRECT3D9
 
 	default :
@@ -6453,19 +6453,19 @@ extern	int		Graphics_Hardware_DrawPrimitiveIndexed2DToShader2_PF( const VERTEX2D
 	}
 }
 
-// ƒVƒF[ƒ_[‚ğg‚Á‚Ä‚Q‚cƒvƒŠƒ~ƒeƒBƒu‚ğ•`‰æ‚·‚é( ’¸“_ƒCƒ“ƒfƒbƒNƒX‚ğg—p‚·‚é )
-extern	int		Graphics_Hardware_DrawPrimitive32bitIndexed2DToShader2_PF( const VERTEX2D *Vertex, int VertexNum, const unsigned int *Indices, int IndexNum, int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST “™ */ )
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ä½¿ã£ã¦ï¼’ï¼¤ãƒ—ãƒªãƒŸãƒ†ã‚£ãƒ–ã‚’æç”»ã™ã‚‹( é ‚ç‚¹ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’ä½¿ç”¨ã™ã‚‹ )
+extern	int		Graphics_Hardware_DrawPrimitive32bitIndexed2DToShader2_PF( const VERTEX2D *Vertex, int VertexNum, const unsigned int *Indices, int IndexNum, int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST ç­‰ */ )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
 	{
 #ifndef DX_NON_DIRECT3D11
 	case GRAPHICS_API_DIRECT3D11_WIN32 :
-		return Graphics_D3D11_DrawPrimitive32bitIndexed2DToShader2( Vertex,  VertexNum, Indices,  IndexNum,  PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST “™ */ ) ;
+		return Graphics_D3D11_DrawPrimitive32bitIndexed2DToShader2( Vertex,  VertexNum, Indices,  IndexNum,  PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST ç­‰ */ ) ;
 #endif // DX_NON_DIRECT3D11
 
 #ifndef DX_NON_DIRECT3D9
 	case GRAPHICS_API_DIRECT3D9_WIN32 :
-		return Graphics_D3D9_DrawPrimitive32bitIndexed2DToShader2( Vertex,  VertexNum, Indices,  IndexNum,  PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST “™ */ ) ;
+		return Graphics_D3D9_DrawPrimitive32bitIndexed2DToShader2( Vertex,  VertexNum, Indices,  IndexNum,  PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST ç­‰ */ ) ;
 #endif // DX_NON_DIRECT3D9
 
 	default :
@@ -6473,19 +6473,19 @@ extern	int		Graphics_Hardware_DrawPrimitive32bitIndexed2DToShader2_PF( const VER
 	}
 }
 
-// ƒVƒF[ƒ_[‚ğg‚Á‚Ä‚R‚cƒvƒŠƒ~ƒeƒBƒu‚ğ•`‰æ‚·‚é( ’¸“_ƒCƒ“ƒfƒbƒNƒX‚ğg—p‚·‚é )
-extern	int		Graphics_Hardware_DrawPrimitiveIndexed3DToShader2_PF( const VERTEX3D *Vertex, int VertexNum, const unsigned short *Indices, int IndexNum, int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST “™ */ )
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ä½¿ã£ã¦ï¼“ï¼¤ãƒ—ãƒªãƒŸãƒ†ã‚£ãƒ–ã‚’æç”»ã™ã‚‹( é ‚ç‚¹ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’ä½¿ç”¨ã™ã‚‹ )
+extern	int		Graphics_Hardware_DrawPrimitiveIndexed3DToShader2_PF( const VERTEX3D *Vertex, int VertexNum, const unsigned short *Indices, int IndexNum, int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST ç­‰ */ )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
 	{
 #ifndef DX_NON_DIRECT3D11
 	case GRAPHICS_API_DIRECT3D11_WIN32 :
-		return Graphics_D3D11_DrawPrimitiveIndexed3DToShader2( Vertex,  VertexNum, Indices,  IndexNum,  PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST “™ */ ) ;
+		return Graphics_D3D11_DrawPrimitiveIndexed3DToShader2( Vertex,  VertexNum, Indices,  IndexNum,  PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST ç­‰ */ ) ;
 #endif // DX_NON_DIRECT3D11
 
 #ifndef DX_NON_DIRECT3D9
 	case GRAPHICS_API_DIRECT3D9_WIN32 :
-		return Graphics_D3D9_DrawPrimitiveIndexed3DToShader2( Vertex,  VertexNum, Indices,  IndexNum,  PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST “™ */ ) ;
+		return Graphics_D3D9_DrawPrimitiveIndexed3DToShader2( Vertex,  VertexNum, Indices,  IndexNum,  PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST ç­‰ */ ) ;
 #endif // DX_NON_DIRECT3D9
 
 	default :
@@ -6493,19 +6493,19 @@ extern	int		Graphics_Hardware_DrawPrimitiveIndexed3DToShader2_PF( const VERTEX3D
 	}
 }
 
-// ƒVƒF[ƒ_[‚ğg‚Á‚Ä‚R‚cƒvƒŠƒ~ƒeƒBƒu‚ğ•`‰æ‚·‚é( ’¸“_ƒCƒ“ƒfƒbƒNƒX‚ğg—p‚·‚é )
-extern	int		Graphics_Hardware_DrawPrimitive32bitIndexed3DToShader2_PF( const VERTEX3D *Vertex, int VertexNum, const unsigned int *Indices, int IndexNum, int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST “™ */ )
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ä½¿ã£ã¦ï¼“ï¼¤ãƒ—ãƒªãƒŸãƒ†ã‚£ãƒ–ã‚’æç”»ã™ã‚‹( é ‚ç‚¹ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’ä½¿ç”¨ã™ã‚‹ )
+extern	int		Graphics_Hardware_DrawPrimitive32bitIndexed3DToShader2_PF( const VERTEX3D *Vertex, int VertexNum, const unsigned int *Indices, int IndexNum, int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST ç­‰ */ )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
 	{
 #ifndef DX_NON_DIRECT3D11
 	case GRAPHICS_API_DIRECT3D11_WIN32 :
-		return Graphics_D3D11_DrawPrimitive32bitIndexed3DToShader2( Vertex,  VertexNum, Indices,  IndexNum,  PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST “™ */ ) ;
+		return Graphics_D3D11_DrawPrimitive32bitIndexed3DToShader2( Vertex,  VertexNum, Indices,  IndexNum,  PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST ç­‰ */ ) ;
 #endif // DX_NON_DIRECT3D11
 
 #ifndef DX_NON_DIRECT3D9
 	case GRAPHICS_API_DIRECT3D9_WIN32 :
-		return Graphics_D3D9_DrawPrimitive32bitIndexed3DToShader2( Vertex,  VertexNum, Indices,  IndexNum,  PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST “™ */ ) ;
+		return Graphics_D3D9_DrawPrimitive32bitIndexed3DToShader2( Vertex,  VertexNum, Indices,  IndexNum,  PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST ç­‰ */ ) ;
 #endif // DX_NON_DIRECT3D9
 
 	default :
@@ -6513,19 +6513,19 @@ extern	int		Graphics_Hardware_DrawPrimitive32bitIndexed3DToShader2_PF( const VER
 	}
 }
 
-// ƒVƒF[ƒ_[‚ğg‚Á‚Ä‚R‚cƒvƒŠƒ~ƒeƒBƒu‚ğ•`‰æ‚·‚é( ’¸“_ƒoƒbƒtƒ@g—p”Å )
-extern	int		Graphics_Hardware_DrawPrimitive3DToShader_UseVertexBuffer2_PF(        int VertexBufHandle,                     int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST “™ */, int StartVertex, int UseVertexNum )
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ä½¿ã£ã¦ï¼“ï¼¤ãƒ—ãƒªãƒŸãƒ†ã‚£ãƒ–ã‚’æç”»ã™ã‚‹( é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ä½¿ç”¨ç‰ˆ )
+extern	int		Graphics_Hardware_DrawPrimitive3DToShader_UseVertexBuffer2_PF(        int VertexBufHandle,                     int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST ç­‰ */, int StartVertex, int UseVertexNum )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
 	{
 #ifndef DX_NON_DIRECT3D11
 	case GRAPHICS_API_DIRECT3D11_WIN32 :
-		return Graphics_D3D11_DrawPrimitive3DToShader_UseVertexBuffer2(         VertexBufHandle,                      PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST “™ */,  StartVertex,  UseVertexNum ) ;
+		return Graphics_D3D11_DrawPrimitive3DToShader_UseVertexBuffer2(         VertexBufHandle,                      PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST ç­‰ */,  StartVertex,  UseVertexNum ) ;
 #endif // DX_NON_DIRECT3D11
 
 #ifndef DX_NON_DIRECT3D9
 	case GRAPHICS_API_DIRECT3D9_WIN32 :
-		return Graphics_D3D9_DrawPrimitive3DToShader_UseVertexBuffer2(         VertexBufHandle,                      PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST “™ */,  StartVertex,  UseVertexNum ) ;
+		return Graphics_D3D9_DrawPrimitive3DToShader_UseVertexBuffer2(         VertexBufHandle,                      PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST ç­‰ */,  StartVertex,  UseVertexNum ) ;
 #endif // DX_NON_DIRECT3D9
 
 	default :
@@ -6533,19 +6533,19 @@ extern	int		Graphics_Hardware_DrawPrimitive3DToShader_UseVertexBuffer2_PF(      
 	}
 }
 
-// ƒVƒF[ƒ_[‚ğg‚Á‚Ä‚R‚cƒvƒŠƒ~ƒeƒBƒu‚ğ•`‰æ‚·‚é( ’¸“_ƒoƒbƒtƒ@‚ÆƒCƒ“ƒfƒbƒNƒXƒoƒbƒtƒ@g—p”Å )
-extern	int		Graphics_Hardware_DrawPrimitiveIndexed3DToShader_UseVertexBuffer2_PF( int VertexBufHandle, int IndexBufHandle, int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST “™ */, int BaseVertex, int StartVertex, int UseVertexNum, int StartIndex, int UseIndexNum )
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ä½¿ã£ã¦ï¼“ï¼¤ãƒ—ãƒªãƒŸãƒ†ã‚£ãƒ–ã‚’æç”»ã™ã‚‹( é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã¨ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒãƒƒãƒ•ã‚¡ä½¿ç”¨ç‰ˆ )
+extern	int		Graphics_Hardware_DrawPrimitiveIndexed3DToShader_UseVertexBuffer2_PF( int VertexBufHandle, int IndexBufHandle, int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST ç­‰ */, int BaseVertex, int StartVertex, int UseVertexNum, int StartIndex, int UseIndexNum )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
 	{
 #ifndef DX_NON_DIRECT3D11
 	case GRAPHICS_API_DIRECT3D11_WIN32 :
-		return Graphics_D3D11_DrawPrimitiveIndexed3DToShader_UseVertexBuffer2(  VertexBufHandle,  IndexBufHandle,  PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST “™ */,  BaseVertex,  StartVertex,  UseVertexNum,  StartIndex,  UseIndexNum ) ;
+		return Graphics_D3D11_DrawPrimitiveIndexed3DToShader_UseVertexBuffer2(  VertexBufHandle,  IndexBufHandle,  PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST ç­‰ */,  BaseVertex,  StartVertex,  UseVertexNum,  StartIndex,  UseIndexNum ) ;
 #endif // DX_NON_DIRECT3D11
 
 #ifndef DX_NON_DIRECT3D9
 	case GRAPHICS_API_DIRECT3D9_WIN32 :
-		return Graphics_D3D9_DrawPrimitiveIndexed3DToShader_UseVertexBuffer2(  VertexBufHandle,  IndexBufHandle,  PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST “™ */,  BaseVertex,  StartVertex,  UseVertexNum,  StartIndex,  UseIndexNum ) ;
+		return Graphics_D3D9_DrawPrimitiveIndexed3DToShader_UseVertexBuffer2(  VertexBufHandle,  IndexBufHandle,  PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST ç­‰ */,  BaseVertex,  StartVertex,  UseVertexNum,  StartIndex,  UseIndexNum ) ;
 #endif // DX_NON_DIRECT3D9
 
 	default :
@@ -6553,7 +6553,7 @@ extern	int		Graphics_Hardware_DrawPrimitiveIndexed3DToShader_UseVertexBuffer2_PF
 	}
 }
 
-// w’è“_‚©‚ç‹«ŠEF‚ª‚ ‚é‚Æ‚±‚ë‚Ü‚Å“h‚è‚Â‚Ô‚·
+// æŒ‡å®šç‚¹ã‹ã‚‰å¢ƒç•Œè‰²ãŒã‚ã‚‹ã¨ã“ã‚ã¾ã§å¡—ã‚Šã¤ã¶ã™
 extern	int		Graphics_Hardware_Paint_PF( int x, int y, unsigned int FillColor, ULONGLONG BoundaryColor )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )

@@ -1,19 +1,19 @@
 // ----------------------------------------------------------------------------
 // 
-// 		‚c‚wƒ‰ƒCƒuƒ‰ƒŠ		Live2D Cubism4 ŠÖŒWƒvƒƒOƒ‰ƒ€
+// 		ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒª		Live2D Cubism4 é–¢ä¿‚ãƒ—ãƒ­ã‚°ãƒ©ãƒ 
 // 
 // 				Ver 3.25a
 // 
 // ----------------------------------------------------------------------------
 
-// ‚c‚wƒ‰ƒCƒuƒ‰ƒŠì¬—p’è‹`
+// ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªä½œæˆæ™‚ç”¨å®šç¾©
 #define DX_MAKE
 
 #include "DxCompileConfig.h"
 
 #ifndef DX_NON_LIVE2D_CUBISM4
 
-// ƒCƒ“ƒNƒ‹[ƒh----------------------------------------------------------------
+// ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰----------------------------------------------------------------
 #include "DxMemory.h"
 #include "DxHandle.h"
 #include "DxLive2DCubism4.h"
@@ -31,92 +31,92 @@ namespace DxLib
 
 #endif // DX_NON_NAMESPACE
 
-// ƒ}ƒNƒ’è‹`------------------------------------------------------------------
+// ãƒã‚¯ãƒ­å®šç¾©------------------------------------------------------------------
 
-// Live2D Cubism4 ƒ‚ƒfƒ‹ƒnƒ“ƒhƒ‹‚Ì—LŒø«ƒ`ƒFƒbƒN
+// Live2D Cubism4 ãƒ¢ãƒ‡ãƒ«ãƒãƒ³ãƒ‰ãƒ«ã®æœ‰åŠ¹æ€§ãƒã‚§ãƒƒã‚¯
 #define LIVE2DCUBISM4MODELCHK( HAND, MPOINT )		HANDLECHK(       DX_HANDLETYPE_LIVE2D_CUBISM4_MODEL, HAND, *( ( HANDLEINFO ** )&MPOINT ) )
 #define LIVE2DCUBISM4MODELCHK_ASYNC( HAND, MPOINT )	HANDLECHK_ASYNC( DX_HANDLETYPE_LIVE2D_CUBISM4_MODEL, HAND, *( ( HANDLEINFO ** )&MPOINT ) )
 
-// \‘¢‘ÌéŒ¾------------------------------------------------------------------
+// æ§‹é€ ä½“å®£è¨€------------------------------------------------------------------
 
-// ŠÖ”éŒ¾--------------------------------------------------------------------
+// é–¢æ•°å®£è¨€--------------------------------------------------------------------
 
-// ƒnƒ“ƒhƒ‹‰Šú‰»EŒãn––
-static	int			Live2DCubism4_Model_InitializeHandle( HANDLEINFO *HandleInfo ) ;						// Live2D Cubism 4 ƒ‚ƒfƒ‹ƒnƒ“ƒhƒ‹‚Ì‰Šú‰»
-static	int			Live2DCubism4_Model_TerminateHandle( HANDLEINFO *HandleInfo ) ;							// Live2D Cubism 4 ƒ‚ƒfƒ‹ƒnƒ“ƒhƒ‹‚ÌŒãn––
+// ãƒãƒ³ãƒ‰ãƒ«åˆæœŸåŒ–ãƒ»å¾Œå§‹æœ«
+static	int			Live2DCubism4_Model_InitializeHandle( HANDLEINFO *HandleInfo ) ;						// Live2D Cubism 4 ãƒ¢ãƒ‡ãƒ«ãƒãƒ³ãƒ‰ãƒ«ã®åˆæœŸåŒ–
+static	int			Live2DCubism4_Model_TerminateHandle( HANDLEINFO *HandleInfo ) ;							// Live2D Cubism 4 ãƒ¢ãƒ‡ãƒ«ãƒãƒ³ãƒ‰ãƒ«ã®å¾Œå§‹æœ«
 
-// ƒf[ƒ^éŒ¾------------------------------------------------------------------
+// ãƒ‡ãƒ¼ã‚¿å®£è¨€------------------------------------------------------------------
 
-// Live2D Cubism4 ƒVƒXƒeƒ€ƒf[ƒ^
+// Live2D Cubism4 ã‚·ã‚¹ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿
 LIVE2DCUBISM4SYSTEMDATA Live2DCubism4SysData ;
 
 // Live2D Cubism 4 DLL
 LIVE2DCUBISM4DLL Live2DCubism4DLLData ;
 
-// ƒvƒƒOƒ‰ƒ€ƒR[ƒh------------------------------------------------------------
+// ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã‚³ãƒ¼ãƒ‰------------------------------------------------------------
 
-// Live2D Cubism4 ŠÖ˜A‚Ì‰Šú‰»‚ÆŒãn––
+// Live2D Cubism4 é–¢é€£ã®åˆæœŸåŒ–ã¨å¾Œå§‹æœ«
 
-// Live2D Cubism4 ‚Ì‰Šú‰»
+// Live2D Cubism4 ã®åˆæœŸåŒ–
 extern int Live2DCubism4_Initialize( void )
 {
-	// Šù‚É‰Šú‰»Ï‚İ‚Ìê‡‚Í‰½‚à‚µ‚È‚¢
+	// æ—¢ã«åˆæœŸåŒ–æ¸ˆã¿ã®å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( LIVE2DSYS.InitializeFlag == TRUE ) return 0 ;
 
-	// Live2D Cubism4 Model ƒnƒ“ƒhƒ‹ŠÇ—î•ñ‚Ì‰Šú‰»
+	// Live2D Cubism4 Model ãƒãƒ³ãƒ‰ãƒ«ç®¡ç†æƒ…å ±ã®åˆæœŸåŒ–
 	InitializeHandleManage( DX_HANDLETYPE_LIVE2D_CUBISM4_MODEL, sizeof( LIVE2DCUBISM4MODEL ), MAX_LIVE2D_CUBISM4_MODEL_NUM, Live2DCubism4_Model_InitializeHandle, Live2DCubism4_Model_TerminateHandle, NULL, L"Live2DModel" ) ;
 
-	//---- static ‰Šú‰» ----
+	//---- static åˆæœŸåŒ– ----
 	D_JsonValue::StaticInitializeNotForClientCall() ;
 
-	// IDManager ‚ğ‰Šú‰»
+	// IDManager ã‚’åˆæœŸåŒ–
 	LIVE2DSYS.s_cubismIdManager = new_D_CubismIdManager() ;
 
-	// ŠÂ‹«ˆË‘¶‚Ì‰Šú‰»
+	// ç’°å¢ƒä¾å­˜ã®åˆæœŸåŒ–
 	if( Live2DCubism4_Initialize_PF() < 0 )
 	{
 		goto ERR ;
 	}
 
-	// ‰Šú‰»Ï‚İƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// åˆæœŸåŒ–æ¸ˆã¿ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	LIVE2DSYS.InitializeFlag = TRUE ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 
-	// ƒGƒ‰[ˆ—
+	// ã‚¨ãƒ©ãƒ¼å‡¦ç†
 ERR:
 	Live2DCubism4_Terminate() ;
 
 	return -1;
 }
 
-// Live2D Cubism4 ‚ÌŒãn––
+// Live2D Cubism4 ã®å¾Œå§‹æœ«
 extern int Live2DCubism4_Terminate( void )
 {
-	// Live2D Cubism4 Model ƒnƒ“ƒhƒ‹‚ğ‰Šú‰»
+	// Live2D Cubism4 Model ãƒãƒ³ãƒ‰ãƒ«ã‚’åˆæœŸåŒ–
 	AllHandleSub( DX_HANDLETYPE_LIVE2D_CUBISM4_MODEL ) ;
 
-	// Live2D Cubism4 Model ƒnƒ“ƒhƒ‹ŠÇ—î•ñ‚ÌŒãn––
+	// Live2D Cubism4 Model ãƒãƒ³ãƒ‰ãƒ«ç®¡ç†æƒ…å ±ã®å¾Œå§‹æœ«
 	TerminateHandleManage( DX_HANDLETYPE_LIVE2D_CUBISM4_MODEL ) ;
 
-	// ŠÂ‹«ˆË‘¶‚ÌŒãn––
+	// ç’°å¢ƒä¾å­˜ã®å¾Œå§‹æœ«
 	if( Live2DCubism4_Terminate_PF() < 0 )
 	{
 		return -1 ;
 	}
 
-	//---- static Œãn–– ----
+	//---- static å¾Œå§‹æœ« ----
 	D_JsonValue::StaticReleaseNotForClientCall() ;
 
-	// IDManager ‚ğíœ
+	// IDManager ã‚’å‰Šé™¤
     delete_D_CubismIdManager( LIVE2DSYS.s_cubismIdManager ) ;
 	LIVE2DSYS.s_cubismIdManager = NULL ;
 
-	//ƒŒƒ“ƒ_ƒ‰‚ÌÃ“IƒŠƒ\[ƒXiƒVƒF[ƒ_ƒvƒƒOƒ‰ƒ€‘¼j‚ğ‰ğ•ú‚·‚é
+	//ãƒ¬ãƒ³ãƒ€ãƒ©ã®é™çš„ãƒªã‚½ãƒ¼ã‚¹ï¼ˆã‚·ã‚§ãƒ¼ãƒ€ãƒ—ãƒ­ã‚°ãƒ©ãƒ ä»–ï¼‰ã‚’è§£æ”¾ã™ã‚‹
 	D_CubismRenderer::StaticRelease() ;
 
-	// ƒVƒF[ƒ_[ƒIƒuƒWƒFƒNƒgƒtƒ@ƒCƒ‹‚c‚w‚`‚ÌŒãn––
+	// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ•ã‚¡ã‚¤ãƒ«ï¼¤ï¼¸ï¼¡ã®å¾Œå§‹æœ«
 	DXA_Terminate( &LIVE2DSYS.ShaderBinDxa ) ;
 	if( LIVE2DSYS.ShaderBinDxaImage )
 	{
@@ -124,10 +124,10 @@ extern int Live2DCubism4_Terminate( void )
 		LIVE2DSYS.ShaderBinDxaImage = NULL ;
 	}
 
-	// ‰Šú‰»Ï‚İƒtƒ‰ƒO‚ğ“|‚·
+	// åˆæœŸåŒ–æ¸ˆã¿ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 	LIVE2DSYS.InitializeFlag = FALSE ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
@@ -138,7 +138,7 @@ extern int Live2DCubism4_Terminate( void )
 
 
 
-// ƒVƒF[ƒ_[DXAƒtƒ@ƒCƒ‹‚ÌƒZƒbƒgƒAƒbƒv
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼DXAãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 extern int Live2DCubism4_SetupShaderCode( int *ShaderCodeBinConvert, BYTE *ShaderCodeBin )
 {
 	int Size ;
@@ -149,7 +149,7 @@ extern int Live2DCubism4_SetupShaderCode( int *ShaderCodeBinConvert, BYTE *Shade
 		Base64ToBin( ShaderCodeBin, ShaderCodeBin ) ;
 	}
 
-	// ƒVƒF[ƒ_[ƒIƒuƒWƒFƒNƒgƒtƒ@ƒCƒ‹‚c‚w‚`‚ğˆ³k‚µ‚½ƒf[ƒ^‚ğ‰ğ“€‚·‚é
+	// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ•ã‚¡ã‚¤ãƒ«ï¼¤ï¼¸ï¼¡ã‚’åœ§ç¸®ã—ãŸãƒ‡ãƒ¼ã‚¿ã‚’è§£å‡ã™ã‚‹
 	Size = DXA_Decode( ShaderCodeBin, NULL ) ;
 	LIVE2DSYS.ShaderBinDxaImage = DXALLOC( ( size_t )Size ) ;
 	if( LIVE2DSYS.ShaderBinDxaImage == NULL )
@@ -159,14 +159,14 @@ extern int Live2DCubism4_SetupShaderCode( int *ShaderCodeBinConvert, BYTE *Shade
 
 	DXA_Decode( ShaderCodeBin, LIVE2DSYS.ShaderBinDxaImage ) ;
 
-	// ‚c‚w‚`ƒtƒ@ƒCƒ‹‚ğƒI[ƒvƒ“‚·‚é
+	// ï¼¤ï¼¸ï¼¡ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ã‚ªãƒ¼ãƒ—ãƒ³ã™ã‚‹
 	DXA_Initialize( &LIVE2DSYS.ShaderBinDxa ) ;
 	if( DXA_OpenArchiveFromMem( &LIVE2DSYS.ShaderBinDxa, LIVE2DSYS.ShaderBinDxaImage, Size, FALSE, FALSE ) != 0 )
 	{
 		goto ERR ;
 	}
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 
 ERR :
@@ -179,7 +179,7 @@ ERR :
 	return -1 ;
 }
 
-// w’è–¼‚ÌƒVƒF[ƒ_[‚ğ“Ç‚İ‚Ş
+// æŒ‡å®šåã®ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’èª­ã¿è¾¼ã‚€
 extern int Live2DCubism4_LoadShaderCode( const char *ShaderName, int ShaderType )
 {
 	int Addr, Size ;
@@ -206,28 +206,28 @@ extern int Live2DCubism4_LoadShaderCode( const char *ShaderName, int ShaderType 
 
 
 
-// ƒnƒ“ƒhƒ‹‰Šú‰»EŒãn––
+// ãƒãƒ³ãƒ‰ãƒ«åˆæœŸåŒ–ãƒ»å¾Œå§‹æœ«
 
-// Live2D Cubism 4 ƒ‚ƒfƒ‹ƒnƒ“ƒhƒ‹‚Ì‰Šú‰»
+// Live2D Cubism 4 ãƒ¢ãƒ‡ãƒ«ãƒãƒ³ãƒ‰ãƒ«ã®åˆæœŸåŒ–
 static int Live2DCubism4_Model_InitializeHandle( HANDLEINFO * HandleInfo )
 {
 	LIVE2DCUBISM4MODEL *Model = ( LIVE2DCUBISM4MODEL * )HandleInfo ;
 
-	// ƒgƒ‰ƒ“ƒXƒŒ[ƒVƒ‡ƒ“ƒpƒ‰ƒ[ƒ^‚ğ‰Šú‰»
+	// ãƒˆãƒ©ãƒ³ã‚¹ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’åˆæœŸåŒ–
 	Model->PosX = 0.0f ;
 	Model->PosY = 0.0f ;
 	Model->ExRateX = 1.0f ;
 	Model->ExRateY = 1.0f ;
 	Model->RotAngle = 0.0f ;
 
-	// ÅŒã‚ÉÄ¶‚µ‚½ƒ‚[ƒVƒ‡ƒ“‚ÌƒOƒ‹[ƒv“à‚Ì”Ô†‚ğ‰Šú‰»
+	// æœ€å¾Œã«å†ç”Ÿã—ãŸãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ã®ã‚°ãƒ«ãƒ¼ãƒ—å†…ã®ç•ªå·ã‚’åˆæœŸåŒ–
 	Model->LastPlayMotionNo = -1 ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// Live2D Cubism 4 ƒ‚ƒfƒ‹ƒnƒ“ƒhƒ‹‚ÌŒãn––
+// Live2D Cubism 4 ãƒ¢ãƒ‡ãƒ«ãƒãƒ³ãƒ‰ãƒ«ã®å¾Œå§‹æœ«
 static int Live2DCubism4_Model_TerminateHandle( HANDLEINFO *HandleInfo )
 {
 	LIVE2DCUBISM4MODEL *Model = ( LIVE2DCUBISM4MODEL * )HandleInfo ;
@@ -235,11 +235,11 @@ static int Live2DCubism4_Model_TerminateHandle( HANDLEINFO *HandleInfo )
 	delete_D_LAppModel( Model->AppModel ) ;
 	Model->AppModel = NULL ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// LIVE2DCUBISM4_LOADMODEL_GPARAM ‚Ìƒf[ƒ^‚ğƒZƒbƒg‚·‚é
+// LIVE2DCUBISM4_LOADMODEL_GPARAM ã®ãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern void Live2DCubism4_InitLoadModelGParam( LIVE2DCUBISM4_LOADMODEL_GPARAM *GParam )
 {
 	_MEMSET( GParam, 0, sizeof( *GParam ) ) ;
@@ -251,7 +251,7 @@ extern void Live2DCubism4_InitLoadModelGParam( LIVE2DCUBISM4_LOADMODEL_GPARAM *G
 
 
 
-// Live2DCubismCore.dll ‚Ìƒtƒ@ƒCƒ‹ƒpƒX‚ğİ’è‚·‚é
+// Live2DCubismCore.dll ã®ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹ã‚’è¨­å®šã™ã‚‹
 extern int NS_Live2D_SetCubism4CoreDLLPath( const TCHAR *CoreDLLFilePath )
 {
 #ifdef UNICODE
@@ -273,7 +273,7 @@ extern int NS_Live2D_SetCubism4CoreDLLPath( const TCHAR *CoreDLLFilePath )
 #endif
 }
 
-// Live2DCubismCore.dll ‚Ìƒtƒ@ƒCƒ‹ƒpƒX‚ğİ’è‚·‚é
+// Live2DCubismCore.dll ã®ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹ã‚’è¨­å®šã™ã‚‹
 extern int NS_Live2D_SetCubism4CoreDLLPathWithStrLen( const TCHAR *CoreDLLFilePath, size_t CoreDLLFilePathLength )
 {
 	int Result ;
@@ -289,7 +289,7 @@ extern int NS_Live2D_SetCubism4CoreDLLPathWithStrLen( const TCHAR *CoreDLLFilePa
 	return Result ;
 }
 
-// Live2DCubismCore.dll ‚Ìƒtƒ@ƒCƒ‹ƒpƒX‚ğİ’è‚·‚é
+// Live2DCubismCore.dll ã®ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹ã‚’è¨­å®šã™ã‚‹
 extern int NS_Live2D_SetCubism3CoreDLLPath( const TCHAR *CoreDLLFilePath )
 {
 #ifdef UNICODE
@@ -311,7 +311,7 @@ extern int NS_Live2D_SetCubism3CoreDLLPath( const TCHAR *CoreDLLFilePath )
 #endif
 }
 
-// Live2DCubismCore.dll ‚Ìƒtƒ@ƒCƒ‹ƒpƒX‚ğİ’è‚·‚é
+// Live2DCubismCore.dll ã®ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹ã‚’è¨­å®šã™ã‚‹
 extern int NS_Live2D_SetCubism3CoreDLLPathWithStrLen( const TCHAR *CoreDLLFilePath, size_t CoreDLLFilePathLength )
 {
 	int Result ;
@@ -329,64 +329,64 @@ extern int NS_Live2D_SetCubism3CoreDLLPathWithStrLen( const TCHAR *CoreDLLFilePa
 
 extern int Live2D_SetCubism4CoreDLLPath_WCHAR_T( const wchar_t *CoreDLLFilePath )
 {
-	// ƒpƒX‚ª’·‚·‚¬‚½‚çƒGƒ‰[
+	// ãƒ‘ã‚¹ãŒé•·ã™ããŸã‚‰ã‚¨ãƒ©ãƒ¼
 	if( CL_strlen( WCHAR_T_CHARCODEFORMAT, ( char * )CoreDLLFilePath ) >= sizeof( LIVE2DDLL.Live2DCubismCoreDLLPath ) / sizeof( wchar_t ) )
 	{
 		return -1 ;
 	}
 
-	// ƒpƒX‚ğ•Û‘¶
+	// ãƒ‘ã‚¹ã‚’ä¿å­˜
 	CL_strcpy( WCHAR_T_CHARCODEFORMAT, ( char * )LIVE2DDLL.Live2DCubismCoreDLLPath, ( char * )CoreDLLFilePath ) ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// Live2D ‚Ì•`‰æˆ—‚ğŠJn
+// Live2D ã®æç”»å‡¦ç†ã‚’é–‹å§‹
 extern int NS_Live2D_RenderBegin( void )
 {
 	int windowWidth, windowHeight ;
 
-	// ‰Šú‰»‚ª‚³‚ê‚Ä‚¢‚È‚¯‚ê‚ÎƒGƒ‰[
+	// åˆæœŸåŒ–ãŒã•ã‚Œã¦ã„ãªã‘ã‚Œã°ã‚¨ãƒ©ãƒ¼
 	if( LIVE2DSYS.InitializeFlag == FALSE )
 	{
 		return -1 ;
 	}
 
-	// Šeí•`‰æİ’èî•ñ‚ğæ“¾
+	// å„ç¨®æç”»è¨­å®šæƒ…å ±ã‚’å–å¾—
 	Graphics_DrawSetting_GetScreenDrawSettingInfo( &LIVE2DSYS.ScreenDrawSettingInfo ) ;
 
-	// D3D11 ƒtƒŒ[ƒ€æ“ªˆ— 
-	// ŠeƒtƒŒ[ƒ€‚Å‚ÌACubism‚Ìˆ—‘O‚ÉƒR[ƒ‹ 
+	// D3D11 ãƒ•ãƒ¬ãƒ¼ãƒ å…ˆé ­å‡¦ç† 
+	// å„ãƒ•ãƒ¬ãƒ¼ãƒ ã§ã®ã€Cubismã®å‡¦ç†å‰ã«ã‚³ãƒ¼ãƒ« 
 	NS_GetGraphSize( NS_GetDrawScreen(), &windowWidth, &windowHeight ) ;
 	D_CubismRenderer_DxLib::StartFrame( windowWidth, windowHeight ) ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// Live2D ‚Ì•`‰æˆ—‚ğI—¹
+// Live2D ã®æç”»å‡¦ç†ã‚’çµ‚äº†
 extern int NS_Live2D_RenderEnd( void )
 {
-	// ‰Šú‰»‚ª‚³‚ê‚Ä‚¢‚È‚¯‚ê‚ÎƒGƒ‰[
+	// åˆæœŸåŒ–ãŒã•ã‚Œã¦ã„ãªã‘ã‚Œã°ã‚¨ãƒ©ãƒ¼
 	if( LIVE2DSYS.InitializeFlag == FALSE )
 	{
 		return -1 ;
 	}
 
-	// D3D11 ƒtƒŒ[ƒ€I—¹ˆ— 
-	// ŠeƒtƒŒ[ƒ€‚Å‚ÌACubism‚Ìˆ—Œã‚ÉƒR[ƒ‹
+	// D3D11 ãƒ•ãƒ¬ãƒ¼ãƒ çµ‚äº†å‡¦ç† 
+	// å„ãƒ•ãƒ¬ãƒ¼ãƒ ã§ã®ã€Cubismã®å‡¦ç†å¾Œã«ã‚³ãƒ¼ãƒ«
 	D_CubismRenderer_DxLib::EndFrame() ;
 
-	// ‚c‚wƒ‰ƒCƒuƒ‰ƒŠ—p‚Ìİ’è‚É–ß‚·
+	// ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªç”¨ã®è¨­å®šã«æˆ»ã™
 	Graphics_Hardware_RefreshSetting_PF() ;
 	Graphics_DrawSetting_SetScreenDrawSettingInfo( &LIVE2DSYS.ScreenDrawSettingInfo ) ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// Live2D ‚Ìƒ‚ƒfƒ‹ƒtƒ@ƒCƒ‹‚ğ“Ç‚İ‚Ş
+// Live2D ã®ãƒ¢ãƒ‡ãƒ«ãƒ•ã‚¡ã‚¤ãƒ«ã‚’èª­ã¿è¾¼ã‚€
 extern int NS_Live2D_LoadModel( const TCHAR *FilePath )
 {
 #ifdef UNICODE
@@ -408,7 +408,7 @@ extern int NS_Live2D_LoadModel( const TCHAR *FilePath )
 #endif
 }
 
-// Live2D ‚Ìƒ‚ƒfƒ‹ƒtƒ@ƒCƒ‹‚ğ“Ç‚İ‚Ş
+// Live2D ã®ãƒ¢ãƒ‡ãƒ«ãƒ•ã‚¡ã‚¤ãƒ«ã‚’èª­ã¿è¾¼ã‚€
 extern int NS_Live2D_LoadModelWithStrLen( const TCHAR *FilePath, size_t FilePathLength )
 {
 	int Result ;
@@ -433,7 +433,7 @@ extern int Live2D_LoadModel_WCHAR_T( const wchar_t *FilePath )
 	return Live2DCubism4_LoadModel_UseGParam( &GParam, FilePath, GetASyncLoadFlag() ) ;
 }
 
-// Live2D_LoadModel ‚ÌÀˆ—ŠÖ”
+// Live2D_LoadModel ã®å®Ÿå‡¦ç†é–¢æ•°
 extern int Live2DCubism4_LoadModel_Static(
 	LIVE2DCUBISM4_LOADMODEL_GPARAM * /*GParam*/,
 	int Live2DModelHandle,
@@ -444,7 +444,7 @@ extern int Live2DCubism4_LoadModel_Static(
 	LIVE2DCUBISM4MODEL * Model ;
 	wchar_t DirPath[ 1024 ], FileName[ 256 ] ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( ASyncThread )
 	{
 		if( LIVE2DCUBISM4MODELCHK_ASYNC( Live2DModelHandle, Model ) )
@@ -456,25 +456,25 @@ extern int Live2DCubism4_LoadModel_Static(
 			return -1 ;
 	}
 
-	// D_LAppModel ‚Ìì¬
+	// D_LAppModel ã®ä½œæˆ
 	Model->AppModel = new_D_LAppModel() ;
 
-	// ƒtƒ@ƒCƒ‹‚Ì“Ç‚İ‚İ
+	// ãƒ•ã‚¡ã‚¤ãƒ«ã®èª­ã¿è¾¼ã¿
 	AnalysisFileNameAndDirPathW_( FilePath, FileName, sizeof( FileName ), DirPath, sizeof( DirPath ) ) ;
 	SetEnMarkW_( DirPath, sizeof( DirPath ) ) ;
 	if( Model->AppModel->LoadAssets( ( BYTE * )DirPath, ( BYTE * )FileName, ASyncThread ) == false )
 	{
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\x4c\x00\x69\x00\x76\x00\x65\x00\x32\x00\x44\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xe2\x30\xc7\x30\xeb\x30\xd5\x30\xa1\x30\xa4\x30\xeb\x30\x20\x00\x25\x00\x73\x00\x20\x00\x6e\x30\xad\x8a\x7f\x30\xbc\x8f\x7f\x30\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"Live2D Error : ƒ‚ƒfƒ‹ƒtƒ@ƒCƒ‹ %s ‚Ì“Ç‚İ‚İ‚É¸”s‚µ‚Ü‚µ‚½" @*/, DirPath )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\x4c\x00\x69\x00\x76\x00\x65\x00\x32\x00\x44\x00\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x3a\x00\x20\x00\xe2\x30\xc7\x30\xeb\x30\xd5\x30\xa1\x30\xa4\x30\xeb\x30\x20\x00\x25\x00\x73\x00\x20\x00\x6e\x30\xad\x8a\x7f\x30\xbc\x8f\x7f\x30\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"Live2D Error : ãƒ¢ãƒ‡ãƒ«ãƒ•ã‚¡ã‚¤ãƒ« %s ã®èª­ã¿è¾¼ã¿ã«å¤±æ•—ã—ã¾ã—ãŸ" @*/, DirPath )) ;
 		return -1 ;
 	}
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
 #ifndef DX_NON_ASYNCLOAD
 
-// Live2D_LoadModel ‚Ì”ñ“¯Šú“Ç‚İ‚İƒXƒŒƒbƒh‚©‚çŒÄ‚Î‚ê‚éŠÖ”
+// Live2D_LoadModel ã®éåŒæœŸèª­ã¿è¾¼ã¿ã‚¹ãƒ¬ãƒƒãƒ‰ã‹ã‚‰å‘¼ã°ã‚Œã‚‹é–¢æ•°
 static void Live2DCubism4_LoadModel_ASync( ASYNCLOADDATA_COMMON *AParam )
 {
 	LIVE2DCUBISM4_LOADMODEL_GPARAM *GParam ;
@@ -503,7 +503,7 @@ static void Live2DCubism4_LoadModel_ASync( ASYNCLOADDATA_COMMON *AParam )
 
 #endif // DX_NON_ASYNCLOAD
 
-// Live2D_LoadModel ‚ÌƒOƒ[ƒoƒ‹•Ï”‚ÉƒAƒNƒZƒX‚µ‚È‚¢ƒo[ƒWƒ‡ƒ“
+// Live2D_LoadModel ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°ã«ã‚¢ã‚¯ã‚»ã‚¹ã—ãªã„ãƒãƒ¼ã‚¸ãƒ§ãƒ³
 extern int Live2DCubism4_LoadModel_UseGParam(
 	LIVE2DCUBISM4_LOADMODEL_GPARAM *GParam,
 	const wchar_t *FilePath,
@@ -531,25 +531,25 @@ extern int Live2DCubism4_LoadModel_UseGParam(
 		ASYNCLOADDATA_COMMON *AParam = NULL ;
 		int Addr ;
 
-		// ƒpƒ‰ƒ[ƒ^‚É•K—v‚Èƒƒ‚ƒŠ‚ÌƒTƒCƒY‚ğZo
+		// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã«å¿…è¦ãªãƒ¡ãƒ¢ãƒªã®ã‚µã‚¤ã‚ºã‚’ç®—å‡º
 		Addr = 0 ;
 		AddASyncLoadParamStruct( NULL, &Addr, GParam, sizeof( *GParam ) ) ;
 		AddASyncLoadParamInt( NULL, &Addr, Live2DModelHandle ) ;
 		AddASyncLoadParamString( NULL, &Addr, FullPath ) ;
 
-		// ƒƒ‚ƒŠ‚ÌŠm•Û
+		// ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿
 		AParam = AllocASyncLoadDataMemory( Addr ) ;
 		if( AParam == NULL )
 			goto ERR ;
 
-		// ˆ—‚É•K—v‚Èî•ñ‚ğƒZƒbƒg
+		// å‡¦ç†ã«å¿…è¦ãªæƒ…å ±ã‚’ã‚»ãƒƒãƒˆ
 		AParam->ProcessFunction = Live2DCubism4_LoadModel_ASync ;
 		Addr = 0 ;
 		AddASyncLoadParamStruct( AParam->Data, &Addr, GParam, sizeof( *GParam ) ) ;
 		AddASyncLoadParamInt( AParam->Data, &Addr, Live2DModelHandle ) ;
 		AddASyncLoadParamString( AParam->Data, &Addr, FullPath ) ;
 
-		// ƒf[ƒ^‚ğ’Ç‰Á
+		// ãƒ‡ãƒ¼ã‚¿ã‚’è¿½åŠ 
 		if( AddASyncLoadData( AParam ) < 0 )
 		{
 			DXFREE( AParam ) ;
@@ -557,7 +557,7 @@ extern int Live2DCubism4_LoadModel_UseGParam(
 			goto ERR ;
 		}
 
-		// ”ñ“¯Šú“Ç‚İ‚İƒJƒEƒ“ƒg‚ğƒCƒ“ƒNƒŠƒƒ“ƒg
+		// éåŒæœŸèª­ã¿è¾¼ã¿ã‚«ã‚¦ãƒ³ãƒˆã‚’ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆ
 		IncASyncLoadCount( Live2DModelHandle, AParam->Index ) ;
 	}
 	else
@@ -574,7 +574,7 @@ extern int Live2DCubism4_LoadModel_UseGParam(
 	}
 #endif // DX_NON_ASYNCLOAD
 
-	// ƒnƒ“ƒhƒ‹‚ğ•Ô‚·
+	// ãƒãƒ³ãƒ‰ãƒ«ã‚’è¿”ã™
 	return Live2DModelHandle ;
 
 ERR :
@@ -588,146 +588,146 @@ ERR :
 	SubHandle( Live2DModelHandle, ASyncLoadFlag, ASyncThread ) ;
 	Live2DModelHandle = -1 ;
 
-	// I—¹
+	// çµ‚äº†
 	return -1 ;
 }
 
-// Live2D ‚Ìƒ‚ƒfƒ‹‚ğíœ‚·‚é
+// Live2D ã®ãƒ¢ãƒ‡ãƒ«ã‚’å‰Šé™¤ã™ã‚‹
 extern int NS_Live2D_DeleteModel( int Live2DModelHandle )
 {
 	return SubHandle( Live2DModelHandle, GetASyncLoadFlag(), FALSE ) ;
 }
 
-// ‚·‚×‚Ä‚Ì Live2D ‚Ìƒ‚ƒfƒ‹‚ğíœ‚·‚é
+// ã™ã¹ã¦ã® Live2D ã®ãƒ¢ãƒ‡ãƒ«ã‚’å‰Šé™¤ã™ã‚‹
 extern int NS_Live2D_InitModel( void )
 {
 	return AllHandleSub( DX_HANDLETYPE_LIVE2D_CUBISM4_MODEL ) ;
 }
 
-// Live2D ‚Ìƒ‚ƒfƒ‹•`‰æ‚Åg—p‚·‚éƒVƒF[ƒ_[‚ğİ’è‚·‚é( ShaderHandle ‚É -1 ‚ğ“n‚·‚Æ‰ğœ )
-extern int NS_Live2D_SetUserShader( int TargetShader /* DX_LIVE2D_SHADER_NORMAL_PIXEL “™ */ , int ShaderHandle )
+// Live2D ã®ãƒ¢ãƒ‡ãƒ«æç”»ã§ä½¿ç”¨ã™ã‚‹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’è¨­å®šã™ã‚‹( ShaderHandle ã« -1 ã‚’æ¸¡ã™ã¨è§£é™¤ )
+extern int NS_Live2D_SetUserShader( int TargetShader /* DX_LIVE2D_SHADER_NORMAL_PIXEL ç­‰ */ , int ShaderHandle )
 {
 	if( TargetShader < 0 || TargetShader >= DX_LIVE2D_SHADER_NUM )
 	{
 		return -1 ;
 	}
 
-	// ƒVƒF[ƒ_[ƒnƒ“ƒhƒ‹‚ğ•Û‘¶
+	// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒãƒ³ãƒ‰ãƒ«ã‚’ä¿å­˜
 	LIVE2DSYS.UserShader[ TargetShader ] = ShaderHandle ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// Live2D ‚Ìƒ‚ƒfƒ‹•`‰æ‚Ì‘O‚ÉŒÄ‚Î‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”‚ğİ’è‚·‚é Callback ‚É NULL ‚ğ“n‚·‚Æİ’è‚ğ‰ğœ )
+// Live2D ã®ãƒ¢ãƒ‡ãƒ«æç”»ã®å‰ã«å‘¼ã°ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã‚’è¨­å®šã™ã‚‹ Callback ã« NULL ã‚’æ¸¡ã™ã¨è¨­å®šã‚’è§£é™¤ )
 extern int NS_Live2D_DrawCallback( void ( *Callback )( int Live2DModelHandle, int TextureIndex, void *UserData ), void *UserData )
 {
-	// ’l‚ğ•Û‘¶
+	// å€¤ã‚’ä¿å­˜
 	LIVE2DSYS.DrawUserCallback = Callback ;
 	LIVE2DSYS.DrawUserCallbackData = UserData ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 
 }
 
-// Live2D ‚Ìƒ‚ƒfƒ‹•`‰æ‚ğ‚·‚éÛ‚ÉA‰æ–ÊƒTƒCƒY‚É‰‚¶‚½ƒXƒP[ƒŠƒ“ƒO‚ğs‚¤‚©‚ğİ’è‚·‚é( UseFlag  TRUE:ƒXƒP[ƒŠƒ“ƒO‚ğs‚¤( ƒfƒtƒHƒ‹ƒg )  FALSE:ƒXƒP[ƒŠƒ“ƒO‚ğs‚í‚È‚¢ )
+// Live2D ã®ãƒ¢ãƒ‡ãƒ«æç”»ã‚’ã™ã‚‹éš›ã«ã€ç”»é¢ã‚µã‚¤ã‚ºã«å¿œã˜ãŸã‚¹ã‚±ãƒ¼ãƒªãƒ³ã‚°ã‚’è¡Œã†ã‹ã‚’è¨­å®šã™ã‚‹( UseFlag  TRUE:ã‚¹ã‚±ãƒ¼ãƒªãƒ³ã‚°ã‚’è¡Œã†( ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ )  FALSE:ã‚¹ã‚±ãƒ¼ãƒªãƒ³ã‚°ã‚’è¡Œã‚ãªã„ )
 extern int NS_Live2D_SetUseAutoScaling( int UseFlag )
 {
-	// ’l‚ğ•Û‘¶
+	// å€¤ã‚’ä¿å­˜
 	LIVE2DSYS.NotUseAutoScaling = UseFlag != 0 ? FALSE : TRUE ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// Live2D ‚Ìƒ‚ƒfƒ‹‚ğ‰æ–Ê‚Ì’†S‚É•`‰æ‚·‚é‚©‚ğİ’è‚·‚é( UseFlag   TRUE:‰æ–Ê‚Ì’†S‚É•`‰æ‚·‚é( ƒfƒtƒHƒ‹ƒg )   FALSE:‰æ–Ê‚Ì’†S‚É•`‰æ‚µ‚È‚¢ )
+// Live2D ã®ãƒ¢ãƒ‡ãƒ«ã‚’ç”»é¢ã®ä¸­å¿ƒã«æç”»ã™ã‚‹ã‹ã‚’è¨­å®šã™ã‚‹( UseFlag   TRUE:ç”»é¢ã®ä¸­å¿ƒã«æç”»ã™ã‚‹( ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ )   FALSE:ç”»é¢ã®ä¸­å¿ƒã«æç”»ã—ãªã„ )
 extern int NS_Live2D_SetUseAutoCentering( int UseFlag )
 {
-	// ’l‚ğ•Û‘¶
+	// å€¤ã‚’ä¿å­˜
 	LIVE2DSYS.NotUseAutoCentering = UseFlag != 0 ? FALSE : TRUE ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// Live2D_Model_SetTranslate ‚Åw’è‚·‚é•½sˆÚ“®’l‚Ì y ‚ÌŒü‚«‚ğ”½“]‚·‚é‚©‚ğİ’è‚·‚é( UseFlag   TRUE:”½“]‚·‚é( ƒfƒtƒHƒ‹ƒg )   FALSE:”½“]‚µ‚È‚¢ )
+// Live2D_Model_SetTranslate ã§æŒ‡å®šã™ã‚‹å¹³è¡Œç§»å‹•å€¤ã® y ã®å‘ãã‚’åè»¢ã™ã‚‹ã‹ã‚’è¨­å®šã™ã‚‹( UseFlag   TRUE:åè»¢ã™ã‚‹( ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ )   FALSE:åè»¢ã—ãªã„ )
 extern int NS_Live2D_SetUseReverseYAxis( int UseFlag )
 {
-	// ’l‚ğ•Û‘¶
+	// å€¤ã‚’ä¿å­˜
 	LIVE2DSYS.NotUseReverseYAxis = UseFlag != 0 ? FALSE : TRUE ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// Live2D ‚Ìƒ‚ƒfƒ‹‚Ìó‘Ô‚ğXV‚·‚é
+// Live2D ã®ãƒ¢ãƒ‡ãƒ«ã®çŠ¶æ…‹ã‚’æ›´æ–°ã™ã‚‹
 extern int NS_Live2D_Model_Update( int Live2DModelHandle, float DeltaTimeSeconds )
 {
 	LIVE2DCUBISM4MODEL * Model ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( LIVE2DCUBISM4MODELCHK( Live2DModelHandle, Model ) )
 		return -1 ;
 
-	// Cubismƒ‚ƒfƒ‹‚ÌXV
+	// Cubismãƒ¢ãƒ‡ãƒ«ã®æ›´æ–°
 	Model->AppModel->Update( DeltaTimeSeconds ) ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// Live2D ‚Ìƒ‚ƒfƒ‹‚ÌˆÊ’u‚ğİ’è‚·‚é
+// Live2D ã®ãƒ¢ãƒ‡ãƒ«ã®ä½ç½®ã‚’è¨­å®šã™ã‚‹
 extern int NS_Live2D_Model_SetTranslate( int Live2DModelHandle, float x, float y )
 {
 	LIVE2DCUBISM4MODEL * Model ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( LIVE2DCUBISM4MODELCHK( Live2DModelHandle, Model ) )
 		return -1 ;
 
-	// ’l‚Ì•Û‘¶
+	// å€¤ã®ä¿å­˜
 	Model->PosX = x ;
 	Model->PosY = y ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// Live2D ‚Ìƒ‚ƒfƒ‹‚ÌŠg‘å—¦‚ğİ’è‚·‚é
+// Live2D ã®ãƒ¢ãƒ‡ãƒ«ã®æ‹¡å¤§ç‡ã‚’è¨­å®šã™ã‚‹
 extern int NS_Live2D_Model_SetExtendRate( int Live2DModelHandle, float ExRateX, float ExRateY )
 {
 	LIVE2DCUBISM4MODEL * Model ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( LIVE2DCUBISM4MODELCHK( Live2DModelHandle, Model ) )
 		return -1 ;
 
-	// ’l‚Ì•Û‘¶
+	// å€¤ã®ä¿å­˜
 	Model->ExRateX = ExRateX ;
 	Model->ExRateY = ExRateY ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// Live2D ‚Ìƒ‚ƒfƒ‹‚Ì‰ñ“]‚ğİ’è‚·‚é
+// Live2D ã®ãƒ¢ãƒ‡ãƒ«ã®å›è»¢ã‚’è¨­å®šã™ã‚‹
 extern int NS_Live2D_Model_SetRotate( int Live2DModelHandle, float RotAngle )
 {
 	LIVE2DCUBISM4MODEL * Model ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( LIVE2DCUBISM4MODELCHK( Live2DModelHandle, Model ) )
 		return -1 ;
 
-	// ’l‚Ì•Û‘¶
+	// å€¤ã®ä¿å­˜
 	Model->RotAngle = RotAngle ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// Live2D ‚Ìƒ‚ƒfƒ‹‚ğ•`‰æ‚·‚é
+// Live2D ã®ãƒ¢ãƒ‡ãƒ«ã‚’æç”»ã™ã‚‹
 extern int NS_Live2D_Model_Draw( int Live2DModelHandle )
 {
 	LIVE2DCUBISM4MODEL * Model ;
@@ -736,17 +736,17 @@ extern int NS_Live2D_Model_Draw( int Live2DModelHandle )
 	D_CubismVector2 OriginInPixels ;
 	float PixelsPerUnit ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( LIVE2DCUBISM4MODELCHK( Live2DModelHandle, Model ) )
 		return -1 ;
 
-	// ƒLƒƒƒ“ƒoƒXƒTƒCƒY‚Ìæ“¾
+	// ã‚­ãƒ£ãƒ³ãƒã‚¹ã‚µã‚¤ã‚ºã®å–å¾—
 	Model->AppModel->_model->GetCanvasInfo( &SizeInPixels, &OriginInPixels, &PixelsPerUnit ) ;
 
-	// •`‰æ‚Ég—p‚µ‚Ä‚¢‚éƒnƒ“ƒhƒ‹‚ğ•Û‘¶
+	// æç”»ã«ä½¿ç”¨ã—ã¦ã„ã‚‹ãƒãƒ³ãƒ‰ãƒ«ã‚’ä¿å­˜
 	LIVE2DSYS.NowDrawLive2DModelHandle = Live2DModelHandle ;
 
-	// “Š‰e—pƒ}ƒgƒŠƒbƒNƒX 
+	// æŠ•å½±ç”¨ãƒãƒˆãƒªãƒƒã‚¯ã‚¹ 
 	D_CubismMatrix44 *projection = new_D_CubismMatrix44() ;
 	NS_GetGraphSize( NS_GetDrawScreen(), &windowWidth, &windowHeight ) ;
 	if( LIVE2DSYS.NotUseAutoScaling )
@@ -792,19 +792,19 @@ extern int NS_Live2D_Model_Draw( int Live2DModelHandle )
 
 	projection->RotateRelative( -Model->RotAngle ) ;
 
-	// •`‰æ
+	// æç”»
 	Model->AppModel->Draw( *projection, LIVE2DSYS.NotUseAutoScaling == FALSE ) ;
 
 	delete_D_CubismMatrix44( projection ) ;
 
-	// •`‰æ‚Ég—p‚µ‚Ä‚¢‚éƒ‚ƒfƒ‹ƒnƒ“ƒhƒ‹‚ğƒŠƒZƒbƒg
+	// æç”»ã«ä½¿ç”¨ã—ã¦ã„ã‚‹ãƒ¢ãƒ‡ãƒ«ãƒãƒ³ãƒ‰ãƒ«ã‚’ãƒªã‚»ãƒƒãƒˆ
 	LIVE2DSYS.NowDrawLive2DModelHandle = 0 ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// Live2D ‚Ìƒ‚ƒfƒ‹‚Ìw’è‚Ìƒ‚[ƒVƒ‡ƒ“‚ğÄ¶‚·‚é
+// Live2D ã®ãƒ¢ãƒ‡ãƒ«ã®æŒ‡å®šã®ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ã‚’å†ç”Ÿã™ã‚‹
 extern int NS_Live2D_Model_StartMotion( int Live2DModelHandle, const TCHAR *group, int no, float fadeInSeconds, float fadeOutSeconds, int isLoopFadeIn, int isLoop )
 {
 #ifdef UNICODE
@@ -826,7 +826,7 @@ extern int NS_Live2D_Model_StartMotion( int Live2DModelHandle, const TCHAR *grou
 #endif
 }
 
-// Live2D ‚Ìƒ‚ƒfƒ‹‚Ìw’è‚Ìƒ‚[ƒVƒ‡ƒ“‚ğÄ¶‚·‚é
+// Live2D ã®ãƒ¢ãƒ‡ãƒ«ã®æŒ‡å®šã®ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ã‚’å†ç”Ÿã™ã‚‹
 extern int NS_Live2D_Model_StartMotionWithStrLen( int Live2DModelHandle, const TCHAR *group, size_t groupLength, int no, float fadeInSeconds, float fadeOutSeconds, int isLoopFadeIn, int isLoop )
 {
 	int Result ;
@@ -847,13 +847,13 @@ extern int Live2D_Model_StartMotion_WCHAR_T( int Live2DModelHandle, const wchar_
 	LIVE2DCUBISM4MODEL * Model ;
 	D_CubismMotionQueueEntryHandle Result ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( LIVE2DCUBISM4MODELCHK( Live2DModelHandle, Model ) )
 	{
 		return -1 ;
 	}
 
-	// ƒ‚[ƒVƒ‡ƒ“‚ÌÄ¶
+	// ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ã®å†ç”Ÿ
 	WCHAR_T_TO_CHAR_STRING_ONE_BEGIN( group, return -1, DX_CHARCODEFORMAT_UTF8 )
 	Result = Model->AppModel->StartMotion( UsegroupBuffer, no, D_CubismMotion_PriorityForce, fadeInSeconds, fadeOutSeconds, isLoopFadeIn != FALSE, isLoop != FALSE ) ;
 	WCHAR_T_TO_CHAR_STRING_END( group )
@@ -867,51 +867,51 @@ extern int Live2D_Model_StartMotion_WCHAR_T( int Live2DModelHandle, const wchar_
 		Model->LastPlayMotionNo = -1 ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return Result == InvalidMotionQueueEntryHandleValue ? -1 : 0 ;
 }
 
-// Live2D ‚Ìƒ‚ƒfƒ‹‚ÅÅŒã‚ÉÄ¶‚µ‚½ƒ‚[ƒVƒ‡ƒ“‚ÌƒOƒ‹[ƒv“à‚Ì”Ô†‚ğæ“¾‚·‚é
+// Live2D ã®ãƒ¢ãƒ‡ãƒ«ã§æœ€å¾Œã«å†ç”Ÿã—ãŸãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ã®ã‚°ãƒ«ãƒ¼ãƒ—å†…ã®ç•ªå·ã‚’å–å¾—ã™ã‚‹
 extern int NS_Live2D_Model_GetLastPlayMotionNo( int Live2DModelHandle )
 {
 	LIVE2DCUBISM4MODEL * Model ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( LIVE2DCUBISM4MODELCHK( Live2DModelHandle, Model ) )
 	{
 		return -1 ;
 	}
 
-	// ÅŒã‚ÉÄ¶‚µ‚½ƒ‚[ƒVƒ‡ƒ“”Ô†‚ğæ“¾‚·‚é
+	// æœ€å¾Œã«å†ç”Ÿã—ãŸãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ç•ªå·ã‚’å–å¾—ã™ã‚‹
 	return Model->LastPlayMotionNo ;
 }
 
-// Live2D ‚Ìƒ‚ƒfƒ‹‚Ìƒ‚[ƒVƒ‡ƒ“Ä¶‚ªI—¹‚µ‚Ä‚¢‚é‚©‚ğæ“¾‚·‚é
+// Live2D ã®ãƒ¢ãƒ‡ãƒ«ã®ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³å†ç”ŸãŒçµ‚äº†ã—ã¦ã„ã‚‹ã‹ã‚’å–å¾—ã™ã‚‹
 extern int NS_Live2D_Model_IsMotionFinished( int Live2DModelHandle )
 {
 	LIVE2DCUBISM4MODEL * Model ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( LIVE2DCUBISM4MODELCHK( Live2DModelHandle, Model ) )
 		return -1 ;
 
-	// ƒ‚[ƒVƒ‡ƒ“‚ÌÄ¶‚ªI—¹‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©•Ô‚·Ä¶
+	// ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ã®å†ç”ŸãŒçµ‚äº†ã—ã¦ã„ã‚‹ã‹ã©ã†ã‹è¿”ã™å†ç”Ÿ
 	return Model->AppModel->_motionManager->IsFinished() ? TRUE : FALSE ;
 }
 
-// Live2D ‚Ìƒ‚ƒfƒ‹‚Ìƒ‚[ƒVƒ‡ƒ“Ä¶ŠÔ‚ğæ“¾‚·‚é
+// Live2D ã®ãƒ¢ãƒ‡ãƒ«ã®ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³å†ç”Ÿæ™‚é–“ã‚’å–å¾—ã™ã‚‹
 extern float NS_Live2D_Model_GetMotionPlayTime( int Live2DModelHandle )
 {
 	LIVE2DCUBISM4MODEL * Model ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( LIVE2DCUBISM4MODELCHK( Live2DModelHandle, Model ) )
 		return -1 ;
 
 	return Model->AppModel->_motionManager->GetMotionPlayTime() ;
 }
 
-// Live2D ‚Ìƒ‚ƒfƒ‹‚Ìw’è‚Ì•\îƒ‚[ƒVƒ‡ƒ“‚ğƒZƒbƒg‚·‚é
+// Live2D ã®ãƒ¢ãƒ‡ãƒ«ã®æŒ‡å®šã®è¡¨æƒ…ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern int NS_Live2D_Model_SetExpression( int Live2DModelHandle, const TCHAR *expressionID )
 {
 #ifdef UNICODE
@@ -933,7 +933,7 @@ extern int NS_Live2D_Model_SetExpression( int Live2DModelHandle, const TCHAR *ex
 #endif
 }
 
-// Live2D ‚Ìƒ‚ƒfƒ‹‚Ìw’è‚Ì•\îƒ‚[ƒVƒ‡ƒ“‚ğƒZƒbƒg‚·‚é
+// Live2D ã®ãƒ¢ãƒ‡ãƒ«ã®æŒ‡å®šã®è¡¨æƒ…ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern int NS_Live2D_Model_SetExpressionWithStrLen(	int Live2DModelHandle, const TCHAR *expressionID, size_t expressionIDLength )
 {
 	int Result ;
@@ -953,18 +953,18 @@ extern int Live2D_Model_SetExpression_WCHAR_T( int Live2DModelHandle, const wcha
 {
 	LIVE2DCUBISM4MODEL * Model ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( LIVE2DCUBISM4MODELCHK( Live2DModelHandle, Model ) )
 		return -1 ;
 
-	// •\îƒ‚[ƒVƒ‡ƒ“‚Ìİ’è
+	// è¡¨æƒ…ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ã®è¨­å®š
 	Model->AppModel->SetExpression( ( BYTE * )expressionID ) ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// w’è‚ÌÀ•W‚ª Live2D ‚Ìƒ‚ƒfƒ‹‚Ìw’è‚Ì“–‚½‚è”»’è‚Ì‹éŒ`”ÍˆÍ“à‚©”»’è‚·‚é( TRUE:‹éŒ`”ÍˆÍ“à  FALSE:‹éŒ`”ÍˆÍŠO )
+// æŒ‡å®šã®åº§æ¨™ãŒ Live2D ã®ãƒ¢ãƒ‡ãƒ«ã®æŒ‡å®šã®å½“ãŸã‚Šåˆ¤å®šã®çŸ©å½¢ç¯„å›²å†…ã‹åˆ¤å®šã™ã‚‹( TRUE:çŸ©å½¢ç¯„å›²å†…  FALSE:çŸ©å½¢ç¯„å›²å¤– )
 extern int NS_Live2D_Model_HitTest( int Live2DModelHandle, const TCHAR *hitAreaName, float x, float y )
 {
 #ifdef UNICODE
@@ -986,7 +986,7 @@ extern int NS_Live2D_Model_HitTest( int Live2DModelHandle, const TCHAR *hitAreaN
 #endif
 }
 
-// w’è‚ÌÀ•W‚ª Live2D ‚Ìƒ‚ƒfƒ‹‚Ìw’è‚Ì“–‚½‚è”»’è‚Ì‹éŒ`”ÍˆÍ“à‚©”»’è‚·‚é( TRUE:‹éŒ`”ÍˆÍ“à  FALSE:‹éŒ`”ÍˆÍŠO )
+// æŒ‡å®šã®åº§æ¨™ãŒ Live2D ã®ãƒ¢ãƒ‡ãƒ«ã®æŒ‡å®šã®å½“ãŸã‚Šåˆ¤å®šã®çŸ©å½¢ç¯„å›²å†…ã‹åˆ¤å®šã™ã‚‹( TRUE:çŸ©å½¢ç¯„å›²å†…  FALSE:çŸ©å½¢ç¯„å›²å¤– )
 extern int NS_Live2D_Model_HitTestWithStrLen( int Live2DModelHandle, const TCHAR *hitAreaName, size_t hitAreaNameLength, float x, float y )
 {
 	int Result ;
@@ -1009,11 +1009,11 @@ extern int Live2D_Model_HitTest_WCHAR_T( int Live2DModelHandle, const wchar_t *h
 	float tx, ty ;
 	bool Result ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( LIVE2DCUBISM4MODELCHK( Live2DModelHandle, Model ) )
 		return -1 ;
 
-	// ƒXƒNƒŠ[ƒ“À•W‚ğLive2DÀ•W‚É•ÏŠ·
+	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³åº§æ¨™ã‚’Live2Dåº§æ¨™ã«å¤‰æ›
 	NS_GetGraphSize( NS_GetDrawScreen(), &windowWidth, &windowHeight ) ;
 	tx = ( ( x - Model->PosX ) - windowWidth  * 0.5f ) /  windowWidth * 2.0f / Model->ExRateX ;
 	ty = ( ( y - Model->PosY ) - windowHeight * 0.5f ) / -windowWidth * 2.0f / Model->ExRateY ;
@@ -1027,7 +1027,7 @@ extern int Live2D_Model_HitTest_WCHAR_T( int Live2DModelHandle, const wchar_t *h
 		tx  = tmp ;
 	}
 
-	// •\îƒ‚[ƒVƒ‡ƒ“‚Ìİ’è
+	// è¡¨æƒ…ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ã®è¨­å®š
 	WCHAR_T_TO_CHAR_STRING_ONE_BEGIN( hitAreaName, return -1, DX_CHARCODEFORMAT_UTF8 )
 	Result = Model->AppModel->HitTest( UsehitAreaNameBuffer, tx, ty ) ;
 	WCHAR_T_TO_CHAR_STRING_END( hitAreaName )
@@ -1035,30 +1035,30 @@ extern int Live2D_Model_HitTest_WCHAR_T( int Live2DModelHandle, const wchar_t *h
 	return Result ? TRUE : FALSE ;
 }
 
-// Live2D ‚Ìƒ‚ƒfƒ‹‚Éİ’è‚³‚ê‚Ä‚¢‚éƒpƒ‰ƒ[ƒ^‚Ì”‚ğæ“¾‚·‚é
+// Live2D ã®ãƒ¢ãƒ‡ãƒ«ã«è¨­å®šã•ã‚Œã¦ã„ã‚‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®æ•°ã‚’å–å¾—ã™ã‚‹
 extern int NS_Live2D_Model_GetParameterCount( int Live2DModelHandle )
 {
 	LIVE2DCUBISM4MODEL * Model ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( LIVE2DCUBISM4MODELCHK( Live2DModelHandle, Model ) )
 		return -1 ;
 
-	// ’l‚ğ•Ô‚·
+	// å€¤ã‚’è¿”ã™
 	return Model->AppModel->GetModel()->GetParameterCount() ;
 }
 
-// Live2D ‚Ìƒ‚ƒfƒ‹‚Éİ’è‚³‚ê‚Ä‚¢‚éƒpƒ‰ƒ[ƒ^‚ÌID‚ğæ“¾‚·‚é
+// Live2D ã®ãƒ¢ãƒ‡ãƒ«ã«è¨­å®šã•ã‚Œã¦ã„ã‚‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®IDã‚’å–å¾—ã™ã‚‹
 extern const TCHAR *NS_Live2D_Model_GetParameterId( int Live2DModelHandle, int index )
 {
 	LIVE2DCUBISM4MODEL * Model ;
 	D_CubismIdHandle IdHandle ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( LIVE2DCUBISM4MODELCHK( Live2DModelHandle, Model ) )
 		return NULL ;
 
-	// ’l‚ğ•Ô‚·
+	// å€¤ã‚’è¿”ã™
 	IdHandle = Model->AppModel->GetModel()->GetParameterId( index ) ;
 #ifdef UNICODE
 	return ( wchar_t * )( IdHandle != NULL ? IdHandle->GetString().GetRawStringW() : NULL ) ;
@@ -1067,7 +1067,7 @@ extern const TCHAR *NS_Live2D_Model_GetParameterId( int Live2DModelHandle, int i
 #endif
 }
 
-// Live2D ‚Ìƒ‚ƒfƒ‹‚Éİ’è‚³‚ê‚Ä‚¢‚éƒpƒ‰ƒ[ƒ^‚ğæ“¾‚·‚é
+// Live2D ã®ãƒ¢ãƒ‡ãƒ«ã«è¨­å®šã•ã‚Œã¦ã„ã‚‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’å–å¾—ã™ã‚‹
 extern float NS_Live2D_Model_GetParameterValue( int Live2DModelHandle, const TCHAR *parameterId )
 {
 #ifdef UNICODE
@@ -1089,7 +1089,7 @@ extern float NS_Live2D_Model_GetParameterValue( int Live2DModelHandle, const TCH
 #endif
 }
 
-// Live2D ‚Ìƒ‚ƒfƒ‹‚Éİ’è‚³‚ê‚Ä‚¢‚éƒpƒ‰ƒ[ƒ^‚ğæ“¾‚·‚é
+// Live2D ã®ãƒ¢ãƒ‡ãƒ«ã«è¨­å®šã•ã‚Œã¦ã„ã‚‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’å–å¾—ã™ã‚‹
 extern float NS_Live2D_Model_GetParameterValueWithStrLen( int Live2DModelHandle, const TCHAR *parameterId, size_t parameterIdLength )
 {
 	float Result ;
@@ -1114,14 +1114,14 @@ extern float Live2D_Model_GetParameterValue_WCHAR_T( int Live2DModelHandle, cons
 	D_CubismModel *CModel ;
 	D_CubismIdHandle IdHandle ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( LIVE2DCUBISM4MODELCHK( Live2DModelHandle, Model ) )
 		return -1.0f ;
 
 	CModel = Model->AppModel->GetModel() ;
 	Count = CModel->GetParameterCount() ;
 
-	// ’l‚ğ•Ô‚·
+	// å€¤ã‚’è¿”ã™
 	WCHAR_T_TO_CHAR_STRING_ONE_BEGIN( parameterId, return -1.0f, DX_CHARCODEFORMAT_UTF8 )
 	IdHandle = LIVE2DSYS.s_cubismIdManager->FindId( UseparameterIdBuffer ) ;
 	if( IdHandle != NULL )
@@ -1140,7 +1140,7 @@ extern float Live2D_Model_GetParameterValue_WCHAR_T( int Live2DModelHandle, cons
 	return Result ;
 }
 
-// Live2D ‚Ìƒ‚ƒfƒ‹‚Éİ’è‚³‚ê‚Ä‚¢‚éƒpƒ‰ƒ[ƒ^‚ğİ’è‚·‚é
+// Live2D ã®ãƒ¢ãƒ‡ãƒ«ã«è¨­å®šã•ã‚Œã¦ã„ã‚‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’è¨­å®šã™ã‚‹
 extern int NS_Live2D_Model_SetParameterValue( int Live2DModelHandle, const TCHAR *parameterId, float value )
 {
 #ifdef UNICODE
@@ -1162,7 +1162,7 @@ extern int NS_Live2D_Model_SetParameterValue( int Live2DModelHandle, const TCHAR
 #endif
 }
 
-// Live2D ‚Ìƒ‚ƒfƒ‹‚Éİ’è‚³‚ê‚Ä‚¢‚éƒpƒ‰ƒ[ƒ^‚ğİ’è‚·‚é
+// Live2D ã®ãƒ¢ãƒ‡ãƒ«ã«è¨­å®šã•ã‚Œã¦ã„ã‚‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’è¨­å®šã™ã‚‹
 extern int NS_Live2D_Model_SetParameterValueWithStrLen( int Live2DModelHandle, const TCHAR *parameterId, size_t parameterIdLength, float value )
 {
 	int Result ;
@@ -1186,14 +1186,14 @@ extern int Live2D_Model_SetParameterValue_WCHAR_T( int Live2DModelHandle, const 
 	D_CubismModel *CModel ;
 	D_CubismIdHandle IdHandle ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( LIVE2DCUBISM4MODELCHK( Live2DModelHandle, Model ) )
 		return -1 ;
 
 	CModel = Model->AppModel->GetModel() ;
 	Count = CModel->GetParameterCount() ;
 
-	// ƒpƒ‰ƒ[ƒ^‚ğİ’è‚·‚é
+	// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’è¨­å®šã™ã‚‹
 	WCHAR_T_TO_CHAR_STRING_ONE_BEGIN( parameterId, return -1, DX_CHARCODEFORMAT_UTF8 )
 	IdHandle = LIVE2DSYS.s_cubismIdManager->FindId( UseparameterIdBuffer ) ;
 	if( IdHandle != NULL )
@@ -1212,25 +1212,25 @@ extern int Live2D_Model_SetParameterValue_WCHAR_T( int Live2DModelHandle, const 
 	return 0 ;
 }
 
-// Live2D ‚Ìƒ‚ƒfƒ‹‚Éİ’è‚³‚ê‚½“–‚½‚è”»’è‚Ì”‚ğæ“¾‚·‚é
+// Live2D ã®ãƒ¢ãƒ‡ãƒ«ã«è¨­å®šã•ã‚ŒãŸå½“ãŸã‚Šåˆ¤å®šã®æ•°ã‚’å–å¾—ã™ã‚‹
 extern int NS_Live2D_Model_GetHitAreasCount( int Live2DModelHandle )
 {
 	LIVE2DCUBISM4MODEL * Model ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( LIVE2DCUBISM4MODELCHK( Live2DModelHandle, Model ) )
 		return -1 ;
 
-	// ’l‚ğ•Ô‚·
+	// å€¤ã‚’è¿”ã™
 	return Model->AppModel->_modelSetting->GetHitAreasCount() ;
 }
 
-// Live2D ‚Ìƒ‚ƒfƒ‹‚Ì“–‚½‚è”»’è‚Éİ’è‚³‚ê‚½–¼‘O‚ğæ“¾‚·‚é
+// Live2D ã®ãƒ¢ãƒ‡ãƒ«ã®å½“ãŸã‚Šåˆ¤å®šã«è¨­å®šã•ã‚ŒãŸåå‰ã‚’å–å¾—ã™ã‚‹
 extern const TCHAR *NS_Live2D_Model_GetHitAreaName( int Live2DModelHandle, int index )
 {
 	LIVE2DCUBISM4MODEL * Model ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( LIVE2DCUBISM4MODELCHK( Live2DModelHandle, Model ) )
 		return NULL ;
 
@@ -1241,12 +1241,12 @@ extern const TCHAR *NS_Live2D_Model_GetHitAreaName( int Live2DModelHandle, int i
 #endif 
 }
 
-// Live2D ‚Ìƒ‚ƒfƒ‹‚Ì•¨—‰‰Zİ’èƒtƒ@ƒCƒ‹‚Ì–¼‘O‚ğæ“¾‚·‚é
+// Live2D ã®ãƒ¢ãƒ‡ãƒ«ã®ç‰©ç†æ¼”ç®—è¨­å®šãƒ•ã‚¡ã‚¤ãƒ«ã®åå‰ã‚’å–å¾—ã™ã‚‹
 extern const TCHAR *NS_Live2D_Model_GetPhysicsFileName( int Live2DModelHandle )
 {
 	LIVE2DCUBISM4MODEL * Model ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( LIVE2DCUBISM4MODELCHK( Live2DModelHandle, Model ) )
 		return NULL ;
 
@@ -1257,12 +1257,12 @@ extern const TCHAR *NS_Live2D_Model_GetPhysicsFileName( int Live2DModelHandle )
 #endif 
 }
 
-// Live2D ‚Ìƒ‚ƒfƒ‹‚Ìƒp[ƒcØ‚è‘Ö‚¦İ’èƒtƒ@ƒCƒ‹‚Ì–¼‘O‚ğæ“¾‚·‚é
+// Live2D ã®ãƒ¢ãƒ‡ãƒ«ã®ãƒ‘ãƒ¼ãƒ„åˆ‡ã‚Šæ›¿ãˆè¨­å®šãƒ•ã‚¡ã‚¤ãƒ«ã®åå‰ã‚’å–å¾—ã™ã‚‹
 extern const TCHAR *NS_Live2D_Model_GetPoseFileName( int Live2DModelHandle )
 {
 	LIVE2DCUBISM4MODEL * Model ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( LIVE2DCUBISM4MODELCHK( Live2DModelHandle, Model ) )
 		return NULL ;
 
@@ -1273,25 +1273,25 @@ extern const TCHAR *NS_Live2D_Model_GetPoseFileName( int Live2DModelHandle )
 #endif 
 }
 
-// Live2D ‚Ìƒ‚ƒfƒ‹‚Ì•\îİ’èƒtƒ@ƒCƒ‹‚Ì”‚ğæ“¾‚·‚é
+// Live2D ã®ãƒ¢ãƒ‡ãƒ«ã®è¡¨æƒ…è¨­å®šãƒ•ã‚¡ã‚¤ãƒ«ã®æ•°ã‚’å–å¾—ã™ã‚‹
 extern int NS_Live2D_Model_GetExpressionCount( int Live2DModelHandle )
 {
 	LIVE2DCUBISM4MODEL * Model ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( LIVE2DCUBISM4MODELCHK( Live2DModelHandle, Model ) )
 		return -1 ;
 
-	// ’l‚ğ•Ô‚·
+	// å€¤ã‚’è¿”ã™
 	return Model->AppModel->_modelSetting->GetExpressionCount() ;
 }
 
-// Live2D ‚Ìƒ‚ƒfƒ‹‚Ì•\îİ’èƒtƒ@ƒCƒ‹‚ğ¯•Ê‚·‚éID‚ğæ“¾‚·‚é
+// Live2D ã®ãƒ¢ãƒ‡ãƒ«ã®è¡¨æƒ…è¨­å®šãƒ•ã‚¡ã‚¤ãƒ«ã‚’è­˜åˆ¥ã™ã‚‹IDã‚’å–å¾—ã™ã‚‹
 extern const TCHAR *NS_Live2D_Model_GetExpressionName( int Live2DModelHandle, int index )
 {
 	LIVE2DCUBISM4MODEL * Model ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( LIVE2DCUBISM4MODELCHK( Live2DModelHandle, Model ) )
 		return NULL ;
 
@@ -1302,12 +1302,12 @@ extern const TCHAR *NS_Live2D_Model_GetExpressionName( int Live2DModelHandle, in
 #endif 
 }
 
-// Live2D ‚Ìƒ‚ƒfƒ‹‚Ì•\îİ’èƒtƒ@ƒCƒ‹‚Ì–¼‘O‚ğæ“¾‚·‚é
+// Live2D ã®ãƒ¢ãƒ‡ãƒ«ã®è¡¨æƒ…è¨­å®šãƒ•ã‚¡ã‚¤ãƒ«ã®åå‰ã‚’å–å¾—ã™ã‚‹
 extern const TCHAR *NS_Live2D_Model_GetExpressionFileName( int Live2DModelHandle, int index )
 {
 	LIVE2DCUBISM4MODEL * Model ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( LIVE2DCUBISM4MODELCHK( Live2DModelHandle, Model ) )
 		return NULL ;
 
@@ -1318,25 +1318,25 @@ extern const TCHAR *NS_Live2D_Model_GetExpressionFileName( int Live2DModelHandle
 #endif 
 }
 
-// Live2D ‚Ìƒ‚ƒfƒ‹‚Ìƒ‚[ƒVƒ‡ƒ“ƒOƒ‹[ƒv‚Ì”‚ğæ“¾‚·‚é
+// Live2D ã®ãƒ¢ãƒ‡ãƒ«ã®ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ã‚°ãƒ«ãƒ¼ãƒ—ã®æ•°ã‚’å–å¾—ã™ã‚‹
 extern int NS_Live2D_Model_GetMotionGroupCount( int Live2DModelHandle )
 {
 	LIVE2DCUBISM4MODEL * Model ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( LIVE2DCUBISM4MODELCHK( Live2DModelHandle, Model ) )
 		return -1 ;
 
-	// ’l‚ğ•Ô‚·
+	// å€¤ã‚’è¿”ã™
 	return Model->AppModel->_modelSetting->GetMotionGroupCount() ;
 }
 
-// Live2D ‚Ìƒ‚ƒfƒ‹‚Ìƒ‚[ƒVƒ‡ƒ“ƒOƒ‹[ƒv‚Ì–¼‘O‚ğæ“¾‚·‚é
+// Live2D ã®ãƒ¢ãƒ‡ãƒ«ã®ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ã‚°ãƒ«ãƒ¼ãƒ—ã®åå‰ã‚’å–å¾—ã™ã‚‹
 extern const TCHAR *NS_Live2D_Model_GetMotionGroupName( int Live2DModelHandle, int index )
 {
 	LIVE2DCUBISM4MODEL * Model ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( LIVE2DCUBISM4MODELCHK( Live2DModelHandle, Model ) )
 		return NULL ;
 
@@ -1347,7 +1347,7 @@ extern const TCHAR *NS_Live2D_Model_GetMotionGroupName( int Live2DModelHandle, i
 #endif 
 }
 
-// Live2D ‚Ìƒ‚ƒfƒ‹‚Ìƒ‚[ƒVƒ‡ƒ“ƒOƒ‹[ƒv‚ÉŠÜ‚Ü‚ê‚éƒ‚[ƒVƒ‡ƒ“‚Ì”‚ğæ“¾‚·‚é
+// Live2D ã®ãƒ¢ãƒ‡ãƒ«ã®ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ã‚°ãƒ«ãƒ¼ãƒ—ã«å«ã¾ã‚Œã‚‹ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ã®æ•°ã‚’å–å¾—ã™ã‚‹
 extern int NS_Live2D_Model_GetMotionCount( int Live2DModelHandle, const TCHAR *groupName )
 {
 #ifdef UNICODE
@@ -1369,7 +1369,7 @@ extern int NS_Live2D_Model_GetMotionCount( int Live2DModelHandle, const TCHAR *g
 #endif
 }
 
-// Live2D ‚Ìƒ‚ƒfƒ‹‚Ìƒ‚[ƒVƒ‡ƒ“ƒOƒ‹[ƒv‚ÉŠÜ‚Ü‚ê‚éƒ‚[ƒVƒ‡ƒ“‚Ì”‚ğæ“¾‚·‚é
+// Live2D ã®ãƒ¢ãƒ‡ãƒ«ã®ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ã‚°ãƒ«ãƒ¼ãƒ—ã«å«ã¾ã‚Œã‚‹ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ã®æ•°ã‚’å–å¾—ã™ã‚‹
 extern int NS_Live2D_Model_GetMotionCountWithStrLen( int Live2DModelHandle, const TCHAR *groupName, size_t groupNameLength )
 {
 	int Result ;
@@ -1390,11 +1390,11 @@ extern int Live2D_Model_GetMotionCount_WCHAR_T( int Live2DModelHandle, const wch
 	LIVE2DCUBISM4MODEL * Model ;
 	int Result ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( LIVE2DCUBISM4MODELCHK( Live2DModelHandle, Model ) )
 		return -1 ;
 
-	// ’l‚ğ•Ô‚·
+	// å€¤ã‚’è¿”ã™
 	WCHAR_T_TO_CHAR_STRING_ONE_BEGIN( groupName, return -1, DX_CHARCODEFORMAT_UTF8 )
 	Result = Model->AppModel->_modelSetting->GetMotionCount( UsegroupNameBuffer ) ;
 	WCHAR_T_TO_CHAR_STRING_END( groupName )
@@ -1402,7 +1402,7 @@ extern int Live2D_Model_GetMotionCount_WCHAR_T( int Live2DModelHandle, const wch
 	return Result ;
 }
 
-// Live2D ‚Ìƒ‚ƒfƒ‹‚ÌƒOƒ‹[ƒv–¼‚ÆƒCƒ“ƒfƒbƒNƒX’l‚©‚çƒ‚[ƒVƒ‡ƒ“ƒtƒ@ƒCƒ‹‚Ì–¼‘O‚ğæ“¾‚·‚é
+// Live2D ã®ãƒ¢ãƒ‡ãƒ«ã®ã‚°ãƒ«ãƒ¼ãƒ—åã¨ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹å€¤ã‹ã‚‰ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ãƒ•ã‚¡ã‚¤ãƒ«ã®åå‰ã‚’å–å¾—ã™ã‚‹
 extern const TCHAR *NS_Live2D_Model_GetMotionFileName( int Live2DModelHandle, const TCHAR *groupName, int index )
 {
 #ifdef UNICODE
@@ -1424,7 +1424,7 @@ extern const TCHAR *NS_Live2D_Model_GetMotionFileName( int Live2DModelHandle, co
 #endif
 }
 
-// Live2D ‚Ìƒ‚ƒfƒ‹‚ÌƒOƒ‹[ƒv–¼‚ÆƒCƒ“ƒfƒbƒNƒX’l‚©‚çƒ‚[ƒVƒ‡ƒ“ƒtƒ@ƒCƒ‹‚Ì–¼‘O‚ğæ“¾‚·‚é
+// Live2D ã®ãƒ¢ãƒ‡ãƒ«ã®ã‚°ãƒ«ãƒ¼ãƒ—åã¨ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹å€¤ã‹ã‚‰ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ãƒ•ã‚¡ã‚¤ãƒ«ã®åå‰ã‚’å–å¾—ã™ã‚‹
 extern const TCHAR *NS_Live2D_Model_GetMotionFileNameWithStrLen( int Live2DModelHandle, const TCHAR *groupName, size_t groupNameLength, int index )
 {
 	const TCHAR *Result ;
@@ -1445,7 +1445,7 @@ extern const TCHAR *Live2D_Model_GetMotionFileName_WCHAR_T( int Live2DModelHandl
 	LIVE2DCUBISM4MODEL * Model ;
 	const TCHAR *Result ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( LIVE2DCUBISM4MODELCHK( Live2DModelHandle, Model ) )
 		return NULL ;
 
@@ -1460,7 +1460,7 @@ extern const TCHAR *Live2D_Model_GetMotionFileName_WCHAR_T( int Live2DModelHandl
 	return Result ;
 }
 
-// Live2D ‚Ìƒ‚ƒfƒ‹‚Ìƒ‚[ƒVƒ‡ƒ“‚É‘Î‰‚·‚éƒTƒEƒ“ƒhƒtƒ@ƒCƒ‹‚Ì–¼‘O‚ğæ“¾‚·‚é
+// Live2D ã®ãƒ¢ãƒ‡ãƒ«ã®ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ã«å¯¾å¿œã™ã‚‹ã‚µã‚¦ãƒ³ãƒ‰ãƒ•ã‚¡ã‚¤ãƒ«ã®åå‰ã‚’å–å¾—ã™ã‚‹
 extern const TCHAR *NS_Live2D_Model_GetMotionSoundFileName( int Live2DModelHandle, const TCHAR *groupName, int index )
 {
 #ifdef UNICODE
@@ -1482,7 +1482,7 @@ extern const TCHAR *NS_Live2D_Model_GetMotionSoundFileName( int Live2DModelHandl
 #endif
 }
 
-// Live2D ‚Ìƒ‚ƒfƒ‹‚Ìƒ‚[ƒVƒ‡ƒ“‚É‘Î‰‚·‚éƒTƒEƒ“ƒhƒtƒ@ƒCƒ‹‚Ì–¼‘O‚ğæ“¾‚·‚é
+// Live2D ã®ãƒ¢ãƒ‡ãƒ«ã®ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ã«å¯¾å¿œã™ã‚‹ã‚µã‚¦ãƒ³ãƒ‰ãƒ•ã‚¡ã‚¤ãƒ«ã®åå‰ã‚’å–å¾—ã™ã‚‹
 extern const TCHAR *NS_Live2D_Model_GetMotionSoundFileNameWithStrLen( int Live2DModelHandle, const TCHAR *groupName, size_t groupNameLength, int index )
 {
 	const TCHAR * Result ;
@@ -1503,7 +1503,7 @@ extern const TCHAR *Live2D_Model_GetMotionSoundFileName_WCHAR_T( int Live2DModel
 	LIVE2DCUBISM4MODEL * Model ;
 	const TCHAR *Result ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( LIVE2DCUBISM4MODELCHK( Live2DModelHandle, Model ) )
 		return NULL ;
 
@@ -1518,7 +1518,7 @@ extern const TCHAR *Live2D_Model_GetMotionSoundFileName_WCHAR_T( int Live2DModel
 	return Result ;
 }
 
-// Live2D ‚Ìƒ‚ƒfƒ‹‚Ìƒ‚[ƒVƒ‡ƒ“ŠJn‚ÌƒtƒF[ƒhƒCƒ“ˆ—ŠÔ‚ğæ“¾‚·‚é
+// Live2D ã®ãƒ¢ãƒ‡ãƒ«ã®ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³é–‹å§‹æ™‚ã®ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³å‡¦ç†æ™‚é–“ã‚’å–å¾—ã™ã‚‹
 extern float NS_Live2D_Model_GetMotionFadeInTimeValue( int Live2DModelHandle, const TCHAR *groupName, int index )
 {
 #ifdef UNICODE
@@ -1540,7 +1540,7 @@ extern float NS_Live2D_Model_GetMotionFadeInTimeValue( int Live2DModelHandle, co
 #endif
 }
 
-// Live2D ‚Ìƒ‚ƒfƒ‹‚Ìƒ‚[ƒVƒ‡ƒ“ŠJn‚ÌƒtƒF[ƒhƒCƒ“ˆ—ŠÔ‚ğæ“¾‚·‚é
+// Live2D ã®ãƒ¢ãƒ‡ãƒ«ã®ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³é–‹å§‹æ™‚ã®ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³å‡¦ç†æ™‚é–“ã‚’å–å¾—ã™ã‚‹
 extern float NS_Live2D_Model_GetMotionFadeInTimeValueWithStrLen( int Live2DModelHandle, const TCHAR *groupName, size_t groupNameLength, int index )
 {
 	float Result ;
@@ -1561,11 +1561,11 @@ extern float Live2D_Model_GetMotionFadeInTimeValue_WCHAR_T(	int Live2DModelHandl
 	LIVE2DCUBISM4MODEL * Model ;
 	float Result ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( LIVE2DCUBISM4MODELCHK( Live2DModelHandle, Model ) )
 		return -1.0f ;
 
-	// ’l‚ğ•Ô‚·
+	// å€¤ã‚’è¿”ã™
 	WCHAR_T_TO_CHAR_STRING_ONE_BEGIN( groupName, return -1.0f, DX_CHARCODEFORMAT_UTF8 )
 	Result = Model->AppModel->_modelSetting->GetMotionFadeInTimeValue( UsegroupNameBuffer, index ) ;
 	WCHAR_T_TO_CHAR_STRING_END( groupName )
@@ -1573,7 +1573,7 @@ extern float Live2D_Model_GetMotionFadeInTimeValue_WCHAR_T(	int Live2DModelHandl
 	return Result ;
 }
 
-// Live2D ‚Ìƒ‚ƒfƒ‹‚Ìƒ‚[ƒVƒ‡ƒ“I—¹‚ÌƒtƒF[ƒhƒAƒEƒgˆ—ŠÔ‚ğæ“¾‚·‚é
+// Live2D ã®ãƒ¢ãƒ‡ãƒ«ã®ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³çµ‚äº†æ™‚ã®ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆå‡¦ç†æ™‚é–“ã‚’å–å¾—ã™ã‚‹
 extern float NS_Live2D_Model_GetMotionFadeOutTimeValue( int Live2DModelHandle, const TCHAR *groupName, int index )
 {
 #ifdef UNICODE
@@ -1595,7 +1595,7 @@ extern float NS_Live2D_Model_GetMotionFadeOutTimeValue( int Live2DModelHandle, c
 #endif
 }
 
-// Live2D ‚Ìƒ‚ƒfƒ‹‚Ìƒ‚[ƒVƒ‡ƒ“I—¹‚ÌƒtƒF[ƒhƒAƒEƒgˆ—ŠÔ‚ğæ“¾‚·‚é
+// Live2D ã®ãƒ¢ãƒ‡ãƒ«ã®ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³çµ‚äº†æ™‚ã®ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆå‡¦ç†æ™‚é–“ã‚’å–å¾—ã™ã‚‹
 extern float NS_Live2D_Model_GetMotionFadeOutTimeValueWithStrLen( int Live2DModelHandle, const TCHAR *groupName, size_t groupNameLength, int index )
 {
 	float Result ;
@@ -1616,11 +1616,11 @@ extern float Live2D_Model_GetMotionFadeOutTimeValue_WCHAR_T( int Live2DModelHand
 	LIVE2DCUBISM4MODEL * Model ;
 	float Result ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( LIVE2DCUBISM4MODELCHK( Live2DModelHandle, Model ) )
 		return -1.0f ;
 
-	// ’l‚ğ•Ô‚·
+	// å€¤ã‚’è¿”ã™
 	WCHAR_T_TO_CHAR_STRING_ONE_BEGIN( groupName, return -1.0f, DX_CHARCODEFORMAT_UTF8 )
 	Result = Model->AppModel->_modelSetting->GetMotionFadeOutTimeValue( UsegroupNameBuffer, index ) ;
 	WCHAR_T_TO_CHAR_STRING_END( groupName )
@@ -1628,12 +1628,12 @@ extern float Live2D_Model_GetMotionFadeOutTimeValue_WCHAR_T( int Live2DModelHand
 	return Result ;
 }
 
-// Live2D ‚Ìƒ‚ƒfƒ‹‚Ìƒ†[ƒUƒf[ƒ^‚Ìƒtƒ@ƒCƒ‹–¼‚ğæ“¾‚·‚é
+// Live2D ã®ãƒ¢ãƒ‡ãƒ«ã®ãƒ¦ãƒ¼ã‚¶ãƒ‡ãƒ¼ã‚¿ã®ãƒ•ã‚¡ã‚¤ãƒ«åã‚’å–å¾—ã™ã‚‹
 extern const TCHAR *NS_Live2D_Model_GetUserDataFile( int Live2DModelHandle )
 {
 	LIVE2DCUBISM4MODEL * Model ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( LIVE2DCUBISM4MODELCHK( Live2DModelHandle, Model ) )
 		return NULL ;
 
@@ -1644,25 +1644,25 @@ extern const TCHAR *NS_Live2D_Model_GetUserDataFile( int Live2DModelHandle )
 #endif 
 }
 
-// Live2D ‚Ìƒ‚ƒfƒ‹‚Ì–Úƒpƒ`‚ÉŠÖ˜A•t‚¯‚ç‚ê‚½ƒpƒ‰ƒ[ƒ^‚Ì”‚ğæ“¾‚·‚é
+// Live2D ã®ãƒ¢ãƒ‡ãƒ«ã®ç›®ãƒ‘ãƒã«é–¢é€£ä»˜ã‘ã‚‰ã‚ŒãŸãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®æ•°ã‚’å–å¾—ã™ã‚‹
 extern int NS_Live2D_Model_GetEyeBlinkParameterCount( int Live2DModelHandle )
 {
 	LIVE2DCUBISM4MODEL * Model ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( LIVE2DCUBISM4MODELCHK( Live2DModelHandle, Model ) )
 		return -1 ;
 
-	// ’l‚ğ•Ô‚·
+	// å€¤ã‚’è¿”ã™
 	return Model->AppModel->_modelSetting->GetEyeBlinkParameterCount() ;
 }
 
-// Live2D ‚Ìƒ‚ƒfƒ‹‚Ì–Úƒpƒ`‚ÉŠÖ˜A•t‚¯‚ç‚ê‚½ƒpƒ‰ƒ[ƒ^‚ÌID‚ğæ“¾‚·‚é
+// Live2D ã®ãƒ¢ãƒ‡ãƒ«ã®ç›®ãƒ‘ãƒã«é–¢é€£ä»˜ã‘ã‚‰ã‚ŒãŸãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®IDã‚’å–å¾—ã™ã‚‹
 extern const TCHAR *NS_Live2D_Model_GetEyeBlinkParameterId( int Live2DModelHandle, int index )
 {
 	LIVE2DCUBISM4MODEL * Model ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( LIVE2DCUBISM4MODELCHK( Live2DModelHandle, Model ) )
 		return NULL ;
 
@@ -1673,25 +1673,25 @@ extern const TCHAR *NS_Live2D_Model_GetEyeBlinkParameterId( int Live2DModelHandl
 #endif 
 }
 
-// Live2D ‚Ìƒ‚ƒfƒ‹‚ÌƒŠƒbƒvƒVƒ“ƒN‚ÉŠÖ˜A•t‚¯‚ç‚ê‚½ƒpƒ‰ƒ[ƒ^‚Ì”‚ğæ“¾‚·‚é
+// Live2D ã®ãƒ¢ãƒ‡ãƒ«ã®ãƒªãƒƒãƒ—ã‚·ãƒ³ã‚¯ã«é–¢é€£ä»˜ã‘ã‚‰ã‚ŒãŸãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®æ•°ã‚’å–å¾—ã™ã‚‹
 extern int NS_Live2D_Model_GetLipSyncParameterCount( int Live2DModelHandle )
 {
 	LIVE2DCUBISM4MODEL * Model ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( LIVE2DCUBISM4MODELCHK( Live2DModelHandle, Model ) )
 		return -1 ;
 
-	// ’l‚ğ•Ô‚·
+	// å€¤ã‚’è¿”ã™
 	return Model->AppModel->_modelSetting->GetLipSyncParameterCount() ;
 }
 
-// Live2D ‚Ìƒ‚ƒfƒ‹‚ÌƒŠƒbƒvƒVƒ“ƒN‚ÉŠÖ˜A•t‚¯‚ç‚ê‚½ƒpƒ‰ƒ[ƒ^‚ÌID‚ğæ“¾‚·‚é
+// Live2D ã®ãƒ¢ãƒ‡ãƒ«ã®ãƒªãƒƒãƒ—ã‚·ãƒ³ã‚¯ã«é–¢é€£ä»˜ã‘ã‚‰ã‚ŒãŸãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®IDã‚’å–å¾—ã™ã‚‹
 extern const TCHAR *NS_Live2D_Model_GetLipSyncParameterId( int Live2DModelHandle, int index )
 {
 	LIVE2DCUBISM4MODEL * Model ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( LIVE2DCUBISM4MODELCHK( Live2DModelHandle, Model ) )
 		return NULL ;
 
@@ -1702,7 +1702,7 @@ extern const TCHAR *NS_Live2D_Model_GetLipSyncParameterId( int Live2DModelHandle
 #endif 
 }
 
-// Live2D ‚Ìƒ‚ƒfƒ‹‚ÌƒLƒƒƒ“ƒoƒX‚Ì‰¡•‚ğæ“¾‚·‚é
+// Live2D ã®ãƒ¢ãƒ‡ãƒ«ã®ã‚­ãƒ£ãƒ³ãƒã‚¹ã®æ¨ªå¹…ã‚’å–å¾—ã™ã‚‹
 extern float NS_Live2D_Model_GetCanvasWidth( int Live2DModelHandle )
 {
 	LIVE2DCUBISM4MODEL * Model ;
@@ -1710,7 +1710,7 @@ extern float NS_Live2D_Model_GetCanvasWidth( int Live2DModelHandle )
 	D_CubismVector2 OriginInPixels ;
 	float PixelsPerUnit ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( LIVE2DCUBISM4MODELCHK( Live2DModelHandle, Model ) )
 		return -1.0f ;
 
@@ -1719,7 +1719,7 @@ extern float NS_Live2D_Model_GetCanvasWidth( int Live2DModelHandle )
 	return SizeInPixels.X ;
 }
 
-// Live2D ‚Ìƒ‚ƒfƒ‹‚ÌƒLƒƒƒ“ƒoƒX‚Ìc•‚ğæ“¾‚·‚é
+// Live2D ã®ãƒ¢ãƒ‡ãƒ«ã®ã‚­ãƒ£ãƒ³ãƒã‚¹ã®ç¸¦å¹…ã‚’å–å¾—ã™ã‚‹
 extern float NS_Live2D_Model_GetCanvasHeight( int Live2DModelHandle )
 {
 	LIVE2DCUBISM4MODEL * Model ;
@@ -1727,7 +1727,7 @@ extern float NS_Live2D_Model_GetCanvasHeight( int Live2DModelHandle )
 	D_CubismVector2 OriginInPixels ;
 	float PixelsPerUnit ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( LIVE2DCUBISM4MODELCHK( Live2DModelHandle, Model ) )
 		return -1.0f ;
 

@@ -1,6 +1,6 @@
 // -------------------------------------------------------------------------------
 // 
-// 		‚c‚wƒ‰ƒCƒuƒ‰ƒŠ		ƒo[ƒeƒbƒNƒXƒVƒF[ƒ_[ŠÖ˜A’è‹`
+// 		ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒª		ãƒãƒ¼ãƒ†ãƒƒã‚¯ã‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼é–¢é€£å®šç¾©
 // 
 // 				Ver 3.25a
 // 
@@ -9,43 +9,43 @@
 #ifndef DX_SHADER_VS_D3D11_H
 #define DX_SHADER_VS_D3D11_H
 
-// ƒCƒ“ƒNƒ‹[ƒh ---------------------------------
+// ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ ---------------------------------
 
 #include "DxShader_Common_D3D11.h"
 
-// ƒ}ƒNƒ’è‹` -----------------------------------
+// ãƒžã‚¯ãƒ­å®šç¾© -----------------------------------
 
-#define DX_D3D11_VS_CONST_TEXTURE_MATRIX_NUM			3			// ƒeƒNƒXƒ`ƒƒÀ•W•ÏŠ·s—ñ‚Ì“]’us—ñ‚Ì”
-#define DX_D3D11_VS_CONST_WORLD_MAT_NUM					54			// ƒgƒ‰ƒCƒAƒ“ƒOƒ‹ƒŠƒXƒgˆê‚Â‚Å“¯Žž‚ÉŽg—p‚·‚éƒ[ƒJƒ‹¨ƒ[ƒ‹ƒhs—ñ‚ÌÅ‘å”
+#define DX_D3D11_VS_CONST_TEXTURE_MATRIX_NUM			3			// ãƒ†ã‚¯ã‚¹ãƒãƒ£åº§æ¨™å¤‰æ›è¡Œåˆ—ã®è»¢ç½®è¡Œåˆ—ã®æ•°
+#define DX_D3D11_VS_CONST_WORLD_MAT_NUM					54			// ãƒˆãƒ©ã‚¤ã‚¢ãƒ³ã‚°ãƒ«ãƒªã‚¹ãƒˆä¸€ã¤ã§åŒæ™‚ã«ä½¿ç”¨ã™ã‚‹ãƒ­ãƒ¼ã‚«ãƒ«â†’ãƒ¯ãƒ¼ãƒ«ãƒ‰è¡Œåˆ—ã®æœ€å¤§æ•°
 
-// ƒf[ƒ^Œ^’è‹` ---------------------------------
+// ãƒ‡ãƒ¼ã‚¿åž‹å®šç¾© ---------------------------------
 
-// Šî–{ƒpƒ‰ƒ[ƒ^
+// åŸºæœ¬ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 struct DX_D3D11_VS_CONST_BUFFER_BASE
 {
-	DX_D3D11_SHADER_FLOAT4		AntiViewportMatrix[ 4 ] ;										// ƒAƒ“ƒ`ƒrƒ…[ƒ|[ƒgs—ñ
-	DX_D3D11_SHADER_FLOAT4		ProjectionMatrix[ 4 ] ;											// ƒrƒ…[@¨@ƒvƒƒWƒFƒNƒVƒ‡ƒ“s—ñ
-	DX_D3D11_SHADER_FLOAT4		ViewMatrix[ 3 ] ;												// ƒ[ƒ‹ƒh@¨@ƒrƒ…[s—ñ
-	DX_D3D11_SHADER_FLOAT4		LocalWorldMatrix[ 3 ] ;											// ƒ[ƒJƒ‹@¨@ƒ[ƒ‹ƒhs—ñ
+	DX_D3D11_SHADER_FLOAT4		AntiViewportMatrix[ 4 ] ;										// ã‚¢ãƒ³ãƒãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆè¡Œåˆ—
+	DX_D3D11_SHADER_FLOAT4		ProjectionMatrix[ 4 ] ;											// ãƒ“ãƒ¥ãƒ¼ã€€â†’ã€€ãƒ—ãƒ­ã‚¸ã‚§ã‚¯ã‚·ãƒ§ãƒ³è¡Œåˆ—
+	DX_D3D11_SHADER_FLOAT4		ViewMatrix[ 3 ] ;												// ãƒ¯ãƒ¼ãƒ«ãƒ‰ã€€â†’ã€€ãƒ“ãƒ¥ãƒ¼è¡Œåˆ—
+	DX_D3D11_SHADER_FLOAT4		LocalWorldMatrix[ 3 ] ;											// ãƒ­ãƒ¼ã‚«ãƒ«ã€€â†’ã€€ãƒ¯ãƒ¼ãƒ«ãƒ‰è¡Œåˆ—
 
-	DX_D3D11_SHADER_FLOAT4		ToonOutLineSize ;												// ƒgƒD[ƒ“‚Ì—ÖŠsü‚Ì‘å‚«‚³
-	DX_D3D11_SHADER_FLOAT		DiffuseSource ;													// ƒfƒBƒtƒ…[ƒYƒJƒ‰[( 0.0f:ƒ}ƒeƒŠƒAƒ‹  1.0f:’¸“_ )
-	DX_D3D11_SHADER_FLOAT		SpecularSource ;												// ƒXƒyƒLƒ…ƒ‰ƒJƒ‰[(   0.0f:ƒ}ƒeƒŠƒAƒ‹  1.0f:’¸“_ )
-	DX_D3D11_SHADER_FLOAT		MulSpecularColor ;												// ƒXƒyƒLƒ…ƒ‰ƒJƒ‰[’l‚ÉæŽZ‚·‚é’l( ƒXƒyƒLƒ…ƒ‰–³Œøˆ—‚ÅŽg—p )
+	DX_D3D11_SHADER_FLOAT4		ToonOutLineSize ;												// ãƒˆã‚¥ãƒ¼ãƒ³ã®è¼ªéƒ­ç·šã®å¤§ãã•
+	DX_D3D11_SHADER_FLOAT		DiffuseSource ;													// ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚«ãƒ©ãƒ¼( 0.0f:ãƒžãƒ†ãƒªã‚¢ãƒ«  1.0f:é ‚ç‚¹ )
+	DX_D3D11_SHADER_FLOAT		SpecularSource ;												// ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã‚«ãƒ©ãƒ¼(   0.0f:ãƒžãƒ†ãƒªã‚¢ãƒ«  1.0f:é ‚ç‚¹ )
+	DX_D3D11_SHADER_FLOAT		MulSpecularColor ;												// ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã‚«ãƒ©ãƒ¼å€¤ã«ä¹—ç®—ã™ã‚‹å€¤( ã‚¹ãƒšã‚­ãƒ¥ãƒ©ç„¡åŠ¹å‡¦ç†ã§ä½¿ç”¨ )
 	DX_D3D11_SHADER_FLOAT		Padding ;
 } ;
 
-// ‚»‚Ì‘¼‚Ìs—ñ
+// ãã®ä»–ã®è¡Œåˆ—
 struct DX_D3D11_VS_CONST_BUFFER_OTHERMATRIX
 {
-	DX_D3D11_SHADER_FLOAT4		ShadowMapLightViewProjectionMatrix[ 3 ][ 4 ] ;					// ƒVƒƒƒhƒEƒ}ƒbƒv—p‚Ìƒ‰ƒCƒgƒrƒ…[s—ñ‚Æƒ‰ƒCƒgŽË‰es—ñ‚ðæŽZ‚µ‚½‚à‚Ì
-	DX_D3D11_SHADER_FLOAT4		TextureMatrix[ DX_D3D11_VS_CONST_TEXTURE_MATRIX_NUM ][ 2 ] ;	// ƒeƒNƒXƒ`ƒƒÀ•W‘€ì—ps—ñ
+	DX_D3D11_SHADER_FLOAT4		ShadowMapLightViewProjectionMatrix[ 3 ][ 4 ] ;					// ã‚·ãƒ£ãƒ‰ã‚¦ãƒžãƒƒãƒ—ç”¨ã®ãƒ©ã‚¤ãƒˆãƒ“ãƒ¥ãƒ¼è¡Œåˆ—ã¨ãƒ©ã‚¤ãƒˆå°„å½±è¡Œåˆ—ã‚’ä¹—ç®—ã—ãŸã‚‚ã®
+	DX_D3D11_SHADER_FLOAT4		TextureMatrix[ DX_D3D11_VS_CONST_TEXTURE_MATRIX_NUM ][ 2 ] ;	// ãƒ†ã‚¯ã‚¹ãƒãƒ£åº§æ¨™æ“ä½œç”¨è¡Œåˆ—
 } ;
 
-// ƒXƒLƒjƒ“ƒOƒƒbƒVƒ…—p‚Ì@ƒ[ƒJƒ‹@¨@ƒ[ƒ‹ƒhs—ñ
+// ã‚¹ã‚­ãƒ‹ãƒ³ã‚°ãƒ¡ãƒƒã‚·ãƒ¥ç”¨ã®ã€€ãƒ­ãƒ¼ã‚«ãƒ«ã€€â†’ã€€ãƒ¯ãƒ¼ãƒ«ãƒ‰è¡Œåˆ—
 struct DX_D3D11_VS_CONST_BUFFER_LOCALWORLDMATRIX
 {
-	DX_D3D11_SHADER_FLOAT4		Matrix[ DX_D3D11_VS_CONST_WORLD_MAT_NUM * 3 ] ;					// ƒ[ƒJƒ‹@¨@ƒ[ƒ‹ƒhs—ñ
+	DX_D3D11_SHADER_FLOAT4		Matrix[ DX_D3D11_VS_CONST_WORLD_MAT_NUM * 3 ] ;					// ãƒ­ãƒ¼ã‚«ãƒ«ã€€â†’ã€€ãƒ¯ãƒ¼ãƒ«ãƒ‰è¡Œåˆ—
 } ;
 
 #endif // DX_SHADER_VS_D3D11_H

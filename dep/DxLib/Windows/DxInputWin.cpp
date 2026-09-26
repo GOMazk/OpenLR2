@@ -1,12 +1,12 @@
 //-----------------------------------------------------------------------------
 // 
-// 		‚c‚wƒ‰ƒCƒuƒ‰ƒŠ		WindowsOS—p“ü—Íî•ñƒvƒƒOƒ‰ƒ€
+// 		ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒª		WindowsOSç”¨å…¥åŠ›æƒ…å ±ãƒ—ãƒ­ã‚°ãƒ©ãƒ 
 // 
 //  	Ver 3.25a
 // 
 //-----------------------------------------------------------------------------
 
-// ‚c‚wƒ‰ƒCƒuƒ‰ƒŠì¬—p’è‹`
+// ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªä½œæˆæ™‚ç”¨å®šç¾©
 #define DX_MAKE
 
 #include "../DxCompileConfig.h"
@@ -14,7 +14,7 @@
 
 #ifndef DX_NON_INPUT
 
-// ƒCƒ“ƒNƒ‹[ƒh----------------------------------------------------------------
+// ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰----------------------------------------------------------------
 #include "DxInputWin.h"
 #include "DxWindow.h"
 #include "DxWinAPI.h"
@@ -30,7 +30,7 @@ namespace DxLib
 
 #endif // DX_NON_NAMESPACE
 
-// ƒ}ƒNƒ’è‹`------------------------------------------------------------------
+// ãƒã‚¯ãƒ­å®šç¾©------------------------------------------------------------------
 
 #define DEADZONE_DIRECTINPUT( ZONE )		(DWORD)( 10000 * (ZONE) / 65536)
 #define DEADZONE_WINMM( ZONE )				(DWORD)(0x8000 * (ZONE) / 65536)
@@ -116,49 +116,49 @@ namespace DxLib
 #define WHEEL_DELTA			(120)
 #endif
 
-// Œ^’è‹`----------------------------------------------------------------------
+// å‹å®šç¾©----------------------------------------------------------------------
 
-// ’è”’è‹` ----------------------------------------------------------------------
+// å®šæ•°å®šç¾© ----------------------------------------------------------------------
 
 //#include "DxInputDef.h"
-// ƒL[ƒ{[ƒhƒfƒoƒCƒX‚Ìƒf[ƒ^ƒtƒH[ƒ}ƒbƒg’è‹` =============
+// ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ãƒ‡ãƒã‚¤ã‚¹ã®ãƒ‡ãƒ¼ã‚¿ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆå®šç¾© =============
 
-// ‚f‚t‚h‚c
+// ï¼§ï¼µï¼©ï¼¤
 extern GUID GUIDDIKEYBOARD ;
 
-// ƒfƒoƒCƒXƒIƒuƒWƒFƒNƒgƒf[ƒ^
+// ãƒ‡ãƒã‚¤ã‚¹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ‡ãƒ¼ã‚¿
 extern D_DIOBJECTDATAFORMAT C_ODFDIKEYBOARD[256] ;
 
-// ƒfƒoƒCƒXƒf[ƒ^ƒtƒH[ƒ}ƒbƒg
+// ãƒ‡ãƒã‚¤ã‚¹ãƒ‡ãƒ¼ã‚¿ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆ
 extern D_DIDATAFORMAT C_DFDIKEYBOARD ;
 
 
-// ƒWƒ‡ƒCƒXƒeƒBƒbƒNƒfƒoƒCƒX‚Ìƒf[ƒ^ƒtƒH[ƒ}ƒbƒg’è‹` =======
+// ã‚¸ãƒ§ã‚¤ã‚¹ãƒ†ã‚£ãƒƒã‚¯ãƒ‡ãƒã‚¤ã‚¹ã®ãƒ‡ãƒ¼ã‚¿ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆå®šç¾© =======
 
-// ‚f‚t‚h‚c
+// ï¼§ï¼µï¼©ï¼¤
 extern GUID GUIDDIJOYSTICK[8] ;
 
-// ƒfƒoƒCƒXƒIƒuƒWƒFƒNƒgƒf[ƒ^
+// ãƒ‡ãƒã‚¤ã‚¹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ‡ãƒ¼ã‚¿
 extern D_DIOBJECTDATAFORMAT C_ODFDIJOYSTICK[44] ;
 
-// ƒfƒoƒCƒXƒf[ƒ^ƒtƒH[ƒ}ƒbƒg
+// ãƒ‡ãƒã‚¤ã‚¹ãƒ‡ãƒ¼ã‚¿ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆ
 extern D_DIDATAFORMAT C_DFDIJOYSTICK ;
 extern D_DIDATAFORMAT C_DFDIJOYSTICK2 ;
 extern D_DIDATAFORMAT C_DFDIMOUSE2 ;
 extern D_DIDATAFORMAT C_DFDIMOUSE ;
 
-// ƒf[ƒ^éŒ¾------------------------------------------------------------------
+// ãƒ‡ãƒ¼ã‚¿å®£è¨€------------------------------------------------------------------
 
-// ƒL[ƒ{[ƒhƒfƒoƒCƒX‚Ìƒf[ƒ^ƒtƒH[ƒ}ƒbƒg’è‹` -----------------------
+// ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ãƒ‡ãƒã‚¤ã‚¹ã®ãƒ‡ãƒ¼ã‚¿ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆå®šç¾© -----------------------
 
-// ‚f‚t‚h‚c
+// ï¼§ï¼µï¼©ï¼¤
 GUID GUIDDIKEYBOARD =
 {
 //	Data1		Data2	Data3	Data4
 	0x55728220,	0xd33c,	0x11cf,	"\xbf\xc7\x44\x45\x53\x54\x00", 
 } ;
 
-// ƒfƒoƒCƒXƒIƒuƒWƒFƒNƒgƒf[ƒ^
+// ãƒ‡ãƒã‚¤ã‚¹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ‡ãƒ¼ã‚¿
 D_DIOBJECTDATAFORMAT C_ODFDIKEYBOARD[256] =
 {
 //		pguid				dwOfs	dwType 		dwFlags
@@ -435,7 +435,7 @@ D_DIOBJECTDATAFORMAT C_ODFDIKEYBOARD[256] =
 	{ 	&GUIDDIKEYBOARD, 	0xff,	0x8000ff0c,	0x0 },
 } ;
 
-// ƒfƒoƒCƒXƒf[ƒ^ƒtƒH[ƒ}ƒbƒg
+// ãƒ‡ãƒã‚¤ã‚¹ãƒ‡ãƒ¼ã‚¿ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆ
 D_DIDATAFORMAT C_DFDIKEYBOARD =
 {
 #ifdef _WIN64
@@ -452,9 +452,9 @@ D_DIDATAFORMAT C_DFDIKEYBOARD =
 } ;
 
 
-// ƒWƒ‡ƒCƒXƒeƒBƒbƒNƒfƒoƒCƒX‚Ìƒf[ƒ^ƒtƒH[ƒ}ƒbƒg’è‹` -----------------
+// ã‚¸ãƒ§ã‚¤ã‚¹ãƒ†ã‚£ãƒƒã‚¯ãƒ‡ãƒã‚¤ã‚¹ã®ãƒ‡ãƒ¼ã‚¿ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆå®šç¾© -----------------
 
-// ‚f‚t‚h‚c
+// ï¼§ï¼µï¼©ï¼¤
 GUID GUID_X_AXIS	= { 0xa36d02e0, 0xc9f3, 0x11cf, "\xbf\xc7\x44\x45\x53\x54\x00" };
 GUID GUID_Y_AXIS	= { 0xa36d02e1,	0xc9f3,	0x11cf,	"\xbf\xc7\x44\x45\x53\x54\x00" };
 GUID GUID_Z_AXIS	= { 0xa36d02e2,	0xc9f3,	0x11cf,	"\xbf\xc7\x44\x45\x53\x54\x00" };
@@ -464,7 +464,7 @@ GUID GUID_RZ_AXIS	= { 0xa36d02e3,	0xc9f3,	0x11cf,	"\xbf\xc7\x44\x45\x53\x54\x00"
 GUID GUID_SLIDER	= { 0xa36d02e4,	0xc9f3,	0x11cf,	"\xbf\xc7\x44\x45\x53\x54\x00" };
 GUID GUID_POV		= { 0xa36d02f2,	0xc9f3,	0x11cf,	"\xbf\xc7\x44\x45\x53\x54\x00" };
 
-// ƒWƒ‡ƒCƒXƒeƒBƒbƒN‚PƒfƒoƒCƒXƒIƒuƒWƒFƒNƒgƒf[ƒ^
+// ã‚¸ãƒ§ã‚¤ã‚¹ãƒ†ã‚£ãƒƒã‚¯ï¼‘ãƒ‡ãƒã‚¤ã‚¹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ‡ãƒ¼ã‚¿
 D_DIOBJECTDATAFORMAT C_ODFDIJOYSTICK[44] =
 {
 //	pguid				dwOfs	dwType		dwFlags
@@ -514,7 +514,7 @@ D_DIOBJECTDATAFORMAT C_ODFDIJOYSTICK[44] =
 	NULL,				0x4f,	0x80ffff0c,	0x000,
 } ;
 
-// ƒWƒ‡ƒCƒXƒeƒBƒbƒN‚PƒfƒoƒCƒXƒf[ƒ^ƒtƒH[ƒ}ƒbƒg
+// ã‚¸ãƒ§ã‚¤ã‚¹ãƒ†ã‚£ãƒƒã‚¯ï¼‘ãƒ‡ãƒã‚¤ã‚¹ãƒ‡ãƒ¼ã‚¿ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆ
 D_DIDATAFORMAT C_DFDIJOYSTICK =
 {
 #ifdef _WIN64
@@ -530,7 +530,7 @@ D_DIDATAFORMAT C_DFDIJOYSTICK =
 	C_ODFDIJOYSTICK, // rgodf
 } ;
 
-// ƒWƒ‡ƒCƒXƒeƒBƒbƒN‚QƒfƒoƒCƒXƒIƒuƒWƒFƒNƒgƒf[ƒ^
+// ã‚¸ãƒ§ã‚¤ã‚¹ãƒ†ã‚£ãƒƒã‚¯ï¼’ãƒ‡ãƒã‚¤ã‚¹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ‡ãƒ¼ã‚¿
 D_DIOBJECTDATAFORMAT C_ODFDIJOYSTICK2[164] =
 {
 //	pguid				dwOfs	dwType		dwFlags
@@ -700,7 +700,7 @@ D_DIOBJECTDATAFORMAT C_ODFDIJOYSTICK2[164] =
 	&GUID_SLIDER,		0x1c,	0x80ffff03,	0x400,
 } ;
 
-// ƒWƒ‡ƒCƒXƒeƒBƒbƒN‚QƒfƒoƒCƒXƒf[ƒ^ƒtƒH[ƒ}ƒbƒg
+// ã‚¸ãƒ§ã‚¤ã‚¹ãƒ†ã‚£ãƒƒã‚¯ï¼’ãƒ‡ãƒã‚¤ã‚¹ãƒ‡ãƒ¼ã‚¿ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆ
 D_DIDATAFORMAT C_DFDIJOYSTICK2 =
 {
 #ifdef _WIN64
@@ -788,131 +788,131 @@ D_DIDATAFORMAT C_DFDIMOUSE =
 	C_ODFDIMOUSE,
 } ;
 
-const static unsigned short __KeyMap[][3 /* 0:Windows‰¼‘zƒL[ƒR[ƒh  1:DirectInputƒL[ƒR[ƒh  2:DirectInputg—p‚Ég—p‚·‚é‚©”Û‚© */ ] =
+const static unsigned short __KeyMap[][3 /* 0:Windowsä»®æƒ³ã‚­ãƒ¼ã‚³ãƒ¼ãƒ‰  1:DirectInputã‚­ãƒ¼ã‚³ãƒ¼ãƒ‰  2:DirectInputä½¿ç”¨æ™‚ã«ä½¿ç”¨ã™ã‚‹ã‹å¦ã‹ */ ] =
 {
-	'A',			D_DIK_A,			0,	// ‚`ƒL[
-	'B',			D_DIK_B,			0,	// ‚aƒL[
-	'C',			D_DIK_C,			0,	// ‚bƒL[
-	'D',			D_DIK_D,			0,	// ‚cƒL[
-	'E',			D_DIK_E,			0,	// ‚dƒL[
-	'F',			D_DIK_F,			0,	// ‚eƒL[
-	'G',			D_DIK_G,			0,	// ‚fƒL[
-	'H',			D_DIK_H,			0,	// ‚gƒL[
-	'I',			D_DIK_I,			0,	// ‚hƒL[
-	'J',			D_DIK_J,			0,	// ‚iƒL[
-	'K',			D_DIK_K,			0,	// ‚jƒL[
-	'L',			D_DIK_L,			0,	// ‚kƒL[
-	'M',			D_DIK_M,			0,	// ‚lƒL[
-	'N',			D_DIK_N,			0,	// ‚mƒL[
-	'O',			D_DIK_O,			0,	// ‚nƒL[
-	'P',			D_DIK_P,			0,	// ‚oƒL[
-	'Q',			D_DIK_Q,			0,	// ‚pƒL[
-	'R',			D_DIK_R,			0,	// ‚qƒL[
-	'S',			D_DIK_S,			0,	// ‚rƒL[
-	'T',			D_DIK_T,			0,	// ‚sƒL[
-	'U',			D_DIK_U,			0,	// ‚tƒL[
-	'V',			D_DIK_V,			0,	// ‚uƒL[
-	'W',			D_DIK_W,			0,	// ‚vƒL[
-	'X',			D_DIK_X,			0,	// ‚wƒL[
-	'Y',			D_DIK_Y,			0,	// ‚xƒL[
-	'Z',			D_DIK_Z,			0,	// ‚yƒL[
-	'0',			D_DIK_0,			0,	// ‚OƒL[
-	'1',			D_DIK_1,			0,	// ‚PƒL[
-	'2',			D_DIK_2,			0,	// ‚QƒL[
-	'3',			D_DIK_3,			0,	// ‚RƒL[
-	'4',			D_DIK_4,			0,	// ‚SƒL[
-	'5',			D_DIK_5,			0,	// ‚TƒL[
-	'6',			D_DIK_6,			0,	// ‚UƒL[
-	'7',			D_DIK_7,			0,	// ‚VƒL[
-	'8',			D_DIK_8,			0,	// ‚WƒL[
-	'9',			D_DIK_9,			0,	// ‚XƒL[
+	'A',			D_DIK_A,			0,	// ï¼¡ã‚­ãƒ¼
+	'B',			D_DIK_B,			0,	// ï¼¢ã‚­ãƒ¼
+	'C',			D_DIK_C,			0,	// ï¼£ã‚­ãƒ¼
+	'D',			D_DIK_D,			0,	// ï¼¤ã‚­ãƒ¼
+	'E',			D_DIK_E,			0,	// ï¼¥ã‚­ãƒ¼
+	'F',			D_DIK_F,			0,	// ï¼¦ã‚­ãƒ¼
+	'G',			D_DIK_G,			0,	// ï¼§ã‚­ãƒ¼
+	'H',			D_DIK_H,			0,	// ï¼¨ã‚­ãƒ¼
+	'I',			D_DIK_I,			0,	// ï¼©ã‚­ãƒ¼
+	'J',			D_DIK_J,			0,	// ï¼ªã‚­ãƒ¼
+	'K',			D_DIK_K,			0,	// ï¼«ã‚­ãƒ¼
+	'L',			D_DIK_L,			0,	// ï¼¬ã‚­ãƒ¼
+	'M',			D_DIK_M,			0,	// ï¼­ã‚­ãƒ¼
+	'N',			D_DIK_N,			0,	// ï¼®ã‚­ãƒ¼
+	'O',			D_DIK_O,			0,	// ï¼¯ã‚­ãƒ¼
+	'P',			D_DIK_P,			0,	// ï¼°ã‚­ãƒ¼
+	'Q',			D_DIK_Q,			0,	// ï¼±ã‚­ãƒ¼
+	'R',			D_DIK_R,			0,	// ï¼²ã‚­ãƒ¼
+	'S',			D_DIK_S,			0,	// ï¼³ã‚­ãƒ¼
+	'T',			D_DIK_T,			0,	// ï¼´ã‚­ãƒ¼
+	'U',			D_DIK_U,			0,	// ï¼µã‚­ãƒ¼
+	'V',			D_DIK_V,			0,	// ï¼¶ã‚­ãƒ¼
+	'W',			D_DIK_W,			0,	// ï¼·ã‚­ãƒ¼
+	'X',			D_DIK_X,			0,	// ï¼¸ã‚­ãƒ¼
+	'Y',			D_DIK_Y,			0,	// ï¼¹ã‚­ãƒ¼
+	'Z',			D_DIK_Z,			0,	// ï¼ºã‚­ãƒ¼
+	'0',			D_DIK_0,			0,	// ï¼ã‚­ãƒ¼
+	'1',			D_DIK_1,			0,	// ï¼‘ã‚­ãƒ¼
+	'2',			D_DIK_2,			0,	// ï¼’ã‚­ãƒ¼
+	'3',			D_DIK_3,			0,	// ï¼“ã‚­ãƒ¼
+	'4',			D_DIK_4,			0,	// ï¼”ã‚­ãƒ¼
+	'5',			D_DIK_5,			0,	// ï¼•ã‚­ãƒ¼
+	'6',			D_DIK_6,			0,	// ï¼–ã‚­ãƒ¼
+	'7',			D_DIK_7,			0,	// ï¼—ã‚­ãƒ¼
+	'8',			D_DIK_8,			0,	// ï¼˜ã‚­ãƒ¼
+	'9',			D_DIK_9,			0,	// ï¼™ã‚­ãƒ¼
 
-	VK_LEFT,		D_DIK_LEFT,			1,	// ¶ƒL[
-	VK_UP,			D_DIK_UP,			1,	// ãƒL[
-	VK_RIGHT,		D_DIK_RIGHT,		1,	// ‰EƒL[
-	VK_DOWN,		D_DIK_DOWN,			1,	// ‰ºƒL[
+	VK_LEFT,		D_DIK_LEFT,			1,	// å·¦ã‚­ãƒ¼
+	VK_UP,			D_DIK_UP,			1,	// ä¸Šã‚­ãƒ¼
+	VK_RIGHT,		D_DIK_RIGHT,		1,	// å³ã‚­ãƒ¼
+	VK_DOWN,		D_DIK_DOWN,			1,	// ä¸‹ã‚­ãƒ¼
 
-	VK_OEM_PLUS,	D_DIK_SEMICOLON,	0,	// GƒL[
-	VK_OEM_1,		D_DIK_COLON,		0,	// FƒL[
-	VK_OEM_4,		D_DIK_LBRACKET,		0,	// mƒL[
-	VK_OEM_6,		D_DIK_RBRACKET,		0,	// nƒL[
-	VK_OEM_3,		D_DIK_AT,			0,	// —ƒL[
-	VK_OEM_102,		D_DIK_BACKSLASH,	0,	// _ƒL[
-	VK_OEM_COMMA,	D_DIK_COMMA,		0,	// CƒL[
-	VK_OEM_7,		D_DIK_PREVTRACK,	0,	// OƒL[
-	VK_OEM_8,		D_DIK_GRAVE,		0,	// `ƒL[
+	VK_OEM_PLUS,	D_DIK_SEMICOLON,	0,	// ï¼›ã‚­ãƒ¼
+	VK_OEM_1,		D_DIK_COLON,		0,	// ï¼šã‚­ãƒ¼
+	VK_OEM_4,		D_DIK_LBRACKET,		0,	// ï¼»ã‚­ãƒ¼
+	VK_OEM_6,		D_DIK_RBRACKET,		0,	// ï¼½ã‚­ãƒ¼
+	VK_OEM_3,		D_DIK_AT,			0,	// ï¼ ã‚­ãƒ¼
+	VK_OEM_102,		D_DIK_BACKSLASH,	0,	// ï¼¼ã‚­ãƒ¼
+	VK_OEM_COMMA,	D_DIK_COMMA,		0,	// ï¼Œã‚­ãƒ¼
+	VK_OEM_7,		D_DIK_PREVTRACK,	0,	// ï¼¾ã‚­ãƒ¼
+	VK_OEM_8,		D_DIK_GRAVE,		0,	// `ã‚­ãƒ¼
 
-	VK_OEM_MINUS,	D_DIK_MINUS,		0,	// |ƒL[
-	VK_OEM_5,		D_DIK_YEN,			0,	// ƒL[
-	VK_OEM_PERIOD,	D_DIK_PERIOD,		0,	// DƒL[
-	VK_OEM_2,		D_DIK_SLASH,		0,	// ^ƒL[
+	VK_OEM_MINUS,	D_DIK_MINUS,		0,	// ï¼ã‚­ãƒ¼
+	VK_OEM_5,		D_DIK_YEN,			0,	// ï¿¥ã‚­ãƒ¼
+	VK_OEM_PERIOD,	D_DIK_PERIOD,		0,	// ï¼ã‚­ãƒ¼
+	VK_OEM_2,		D_DIK_SLASH,		0,	// ï¼ã‚­ãƒ¼
 
-	VK_DELETE,		D_DIK_DELETE,		0,	// ƒfƒŠ[ƒgƒL[
+	VK_DELETE,		D_DIK_DELETE,		0,	// ãƒ‡ãƒªãƒ¼ãƒˆã‚­ãƒ¼
 
-	VK_ESCAPE,		D_DIK_ESCAPE,		0,	// ƒGƒXƒP[ƒvƒL[
-	VK_SPACE,		D_DIK_SPACE,		0,	// ƒXƒy[ƒXƒL[
+	VK_ESCAPE,		D_DIK_ESCAPE,		0,	// ã‚¨ã‚¹ã‚±ãƒ¼ãƒ—ã‚­ãƒ¼
+	VK_SPACE,		D_DIK_SPACE,		0,	// ã‚¹ãƒšãƒ¼ã‚¹ã‚­ãƒ¼
 
-	VK_BACK, 		D_DIK_BACK,			0,	// ƒoƒbƒNƒXƒy[ƒXƒL[
-	VK_TAB, 		D_DIK_TAB,			0,	// ƒ^ƒuƒL[
-	VK_RETURN,		D_DIK_RETURN,		0,	// ƒGƒ“ƒ^[ƒL[
+	VK_BACK, 		D_DIK_BACK,			0,	// ãƒãƒƒã‚¯ã‚¹ãƒšãƒ¼ã‚¹ã‚­ãƒ¼
+	VK_TAB, 		D_DIK_TAB,			0,	// ã‚¿ãƒ–ã‚­ãƒ¼
+	VK_RETURN,		D_DIK_RETURN,		0,	// ã‚¨ãƒ³ã‚¿ãƒ¼ã‚­ãƒ¼
 
-	VK_NUMLOCK,		D_DIK_NUMLOCK,		1,	// ƒeƒ“ƒL[NumLockƒL[
-	VK_NUMPAD0,		D_DIK_NUMPAD0,		1,	// ƒeƒ“ƒL[‚O
-	VK_NUMPAD1,		D_DIK_NUMPAD1,		1,	// ƒeƒ“ƒL[‚P
-	VK_NUMPAD2,		D_DIK_NUMPAD2,		1,	// ƒeƒ“ƒL[‚Q
-	VK_NUMPAD3,		D_DIK_NUMPAD3,		1,	// ƒeƒ“ƒL[‚R
-	VK_NUMPAD4,		D_DIK_NUMPAD4,		1,	// ƒeƒ“ƒL[‚S
-	VK_NUMPAD5,		D_DIK_NUMPAD5,		1,	// ƒeƒ“ƒL[‚T
-	VK_NUMPAD6,		D_DIK_NUMPAD6,		1,	// ƒeƒ“ƒL[‚U
-	VK_NUMPAD7,		D_DIK_NUMPAD7,		1,	// ƒeƒ“ƒL[‚V
-	VK_NUMPAD8,		D_DIK_NUMPAD8,		1,	// ƒeƒ“ƒL[‚W
-	VK_NUMPAD9,		D_DIK_NUMPAD9,		1,	// ƒeƒ“ƒL[‚X
-	VK_MULTIPLY,	D_DIK_MULTIPLY,		1,	// ƒeƒ“ƒL[–ƒL[
-	VK_ADD,			D_DIK_ADD,			1,	// ƒeƒ“ƒL[{ƒL[
-	VK_SUBTRACT,	D_DIK_SUBTRACT,		1,	// ƒeƒ“ƒL[|ƒL[
-	VK_DECIMAL,		D_DIK_DECIMAL,		1,	// ƒeƒ“ƒL[DƒL[
-	VK_DIVIDE,		D_DIK_DIVIDE,		1,	// ƒeƒ“ƒL[^ƒL[
+	VK_NUMLOCK,		D_DIK_NUMLOCK,		1,	// ãƒ†ãƒ³ã‚­ãƒ¼NumLockã‚­ãƒ¼
+	VK_NUMPAD0,		D_DIK_NUMPAD0,		1,	// ãƒ†ãƒ³ã‚­ãƒ¼ï¼
+	VK_NUMPAD1,		D_DIK_NUMPAD1,		1,	// ãƒ†ãƒ³ã‚­ãƒ¼ï¼‘
+	VK_NUMPAD2,		D_DIK_NUMPAD2,		1,	// ãƒ†ãƒ³ã‚­ãƒ¼ï¼’
+	VK_NUMPAD3,		D_DIK_NUMPAD3,		1,	// ãƒ†ãƒ³ã‚­ãƒ¼ï¼“
+	VK_NUMPAD4,		D_DIK_NUMPAD4,		1,	// ãƒ†ãƒ³ã‚­ãƒ¼ï¼”
+	VK_NUMPAD5,		D_DIK_NUMPAD5,		1,	// ãƒ†ãƒ³ã‚­ãƒ¼ï¼•
+	VK_NUMPAD6,		D_DIK_NUMPAD6,		1,	// ãƒ†ãƒ³ã‚­ãƒ¼ï¼–
+	VK_NUMPAD7,		D_DIK_NUMPAD7,		1,	// ãƒ†ãƒ³ã‚­ãƒ¼ï¼—
+	VK_NUMPAD8,		D_DIK_NUMPAD8,		1,	// ãƒ†ãƒ³ã‚­ãƒ¼ï¼˜
+	VK_NUMPAD9,		D_DIK_NUMPAD9,		1,	// ãƒ†ãƒ³ã‚­ãƒ¼ï¼™
+	VK_MULTIPLY,	D_DIK_MULTIPLY,		1,	// ãƒ†ãƒ³ã‚­ãƒ¼ï¼Šã‚­ãƒ¼
+	VK_ADD,			D_DIK_ADD,			1,	// ãƒ†ãƒ³ã‚­ãƒ¼ï¼‹ã‚­ãƒ¼
+	VK_SUBTRACT,	D_DIK_SUBTRACT,		1,	// ãƒ†ãƒ³ã‚­ãƒ¼ï¼ã‚­ãƒ¼
+	VK_DECIMAL,		D_DIK_DECIMAL,		1,	// ãƒ†ãƒ³ã‚­ãƒ¼ï¼ã‚­ãƒ¼
+	VK_DIVIDE,		D_DIK_DIVIDE,		1,	// ãƒ†ãƒ³ã‚­ãƒ¼ï¼ã‚­ãƒ¼
 
-	VK_RETURN,		D_DIK_NUMPADENTER,	1,	// ƒeƒ“ƒL[‚ÌƒGƒ“ƒ^[ƒL[
-//	VK_NUMPADENTER,	D_DIK_NUMPADENTER,	1,	// ƒeƒ“ƒL[‚ÌƒGƒ“ƒ^[ƒL[
+	VK_RETURN,		D_DIK_NUMPADENTER,	1,	// ãƒ†ãƒ³ã‚­ãƒ¼ã®ã‚¨ãƒ³ã‚¿ãƒ¼ã‚­ãƒ¼
+//	VK_NUMPADENTER,	D_DIK_NUMPADENTER,	1,	// ãƒ†ãƒ³ã‚­ãƒ¼ã®ã‚¨ãƒ³ã‚¿ãƒ¼ã‚­ãƒ¼
 
-	VK_LSHIFT,		D_DIK_LSHIFT,		1,	// ¶ƒVƒtƒgƒL[
-	VK_RSHIFT,		D_DIK_RSHIFT,		1,	// ‰EƒVƒtƒgƒL[
-	VK_LCONTROL,	D_DIK_LCONTROL,		1,	// ¶ƒRƒ“ƒgƒ[ƒ‹ƒL[
-	VK_RCONTROL,	D_DIK_RCONTROL,		1,	// ‰EƒRƒ“ƒgƒ[ƒ‹ƒL[
-	VK_PRIOR,		D_DIK_PGUP,			1,	// ‚o‚‚‡‚…‚t‚oƒL[
-	VK_NEXT,		D_DIK_PGDN,			1,	// ‚o‚‚‡‚…‚c‚‚—‚ƒL[
-	VK_END,			D_DIK_END,			1,	// ƒGƒ“ƒhƒL[
-	VK_HOME,		D_DIK_HOME,			1,	// ƒz[ƒ€ƒL[
-	VK_INSERT,		D_DIK_INSERT,		1,	// ƒCƒ“ƒT[ƒgƒL[
+	VK_LSHIFT,		D_DIK_LSHIFT,		1,	// å·¦ã‚·ãƒ•ãƒˆã‚­ãƒ¼
+	VK_RSHIFT,		D_DIK_RSHIFT,		1,	// å³ã‚·ãƒ•ãƒˆã‚­ãƒ¼
+	VK_LCONTROL,	D_DIK_LCONTROL,		1,	// å·¦ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã‚­ãƒ¼
+	VK_RCONTROL,	D_DIK_RCONTROL,		1,	// å³ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã‚­ãƒ¼
+	VK_PRIOR,		D_DIK_PGUP,			1,	// ï¼°ï½ï½‡ï½…ï¼µï¼°ã‚­ãƒ¼
+	VK_NEXT,		D_DIK_PGDN,			1,	// ï¼°ï½ï½‡ï½…ï¼¤ï½ï½—ï½ã‚­ãƒ¼
+	VK_END,			D_DIK_END,			1,	// ã‚¨ãƒ³ãƒ‰ã‚­ãƒ¼
+	VK_HOME,		D_DIK_HOME,			1,	// ãƒ›ãƒ¼ãƒ ã‚­ãƒ¼
+	VK_INSERT,		D_DIK_INSERT,		1,	// ã‚¤ãƒ³ã‚µãƒ¼ãƒˆã‚­ãƒ¼
 
-	VK_LMENU,		D_DIK_LALT,			1,	// ¶‚`‚k‚sƒL[
-	VK_RMENU,		D_DIK_RALT,			1,	// ‰E‚`‚k‚sƒL[
-	VK_SCROLL,		D_DIK_SCROLL,		1,	// ScrollLockƒL[
-	VK_APPS,		D_DIK_APPS,			1,	// ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒƒjƒ…[ƒL[
-	VK_CAPITAL,		D_DIK_CAPSLOCK,		1,	// CaspLockƒL[
-	VK_SNAPSHOT,	D_DIK_SYSRQ,		1,	// PrintScreenƒL[
-	VK_PAUSE,		D_DIK_PAUSE,		1,	// PauseBreakƒL[
-	VK_LWIN,		D_DIK_LWIN,			1,	// ¶‚v‚‰‚ƒL[
-	VK_RWIN,		D_DIK_RWIN,			1,	// ‰E‚v‚‰‚ƒL[
+	VK_LMENU,		D_DIK_LALT,			1,	// å·¦ï¼¡ï¼¬ï¼´ã‚­ãƒ¼
+	VK_RMENU,		D_DIK_RALT,			1,	// å³ï¼¡ï¼¬ï¼´ã‚­ãƒ¼
+	VK_SCROLL,		D_DIK_SCROLL,		1,	// ScrollLockã‚­ãƒ¼
+	VK_APPS,		D_DIK_APPS,			1,	// ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚­ãƒ¼
+	VK_CAPITAL,		D_DIK_CAPSLOCK,		1,	// CaspLockã‚­ãƒ¼
+	VK_SNAPSHOT,	D_DIK_SYSRQ,		1,	// PrintScreenã‚­ãƒ¼
+	VK_PAUSE,		D_DIK_PAUSE,		1,	// PauseBreakã‚­ãƒ¼
+	VK_LWIN,		D_DIK_LWIN,			1,	// å·¦ï¼·ï½‰ï½ã‚­ãƒ¼
+	VK_RWIN,		D_DIK_RWIN,			1,	// å³ï¼·ï½‰ï½ã‚­ãƒ¼
 
-	VK_OEM_ENLW,	D_DIK_KANJI,		1,	// ”¼Šp^‘SŠpƒL[
-	VK_CONVERT,		D_DIK_CONVERT,		1,	// •ÏŠ·ƒL[
-	VK_NONCONVERT,	D_DIK_NOCONVERT,	1,	// –³•ÏŠ·ƒL[
-	VK_OEM_COPY,	D_DIK_KANA,			0,	// ƒJƒiƒL[
+	VK_OEM_ENLW,	D_DIK_KANJI,		1,	// åŠè§’ï¼å…¨è§’ã‚­ãƒ¼
+	VK_CONVERT,		D_DIK_CONVERT,		1,	// å¤‰æ›ã‚­ãƒ¼
+	VK_NONCONVERT,	D_DIK_NOCONVERT,	1,	// ç„¡å¤‰æ›ã‚­ãƒ¼
+	VK_OEM_COPY,	D_DIK_KANA,			0,	// ã‚«ãƒŠã‚­ãƒ¼
 
-	VK_F1,			D_DIK_F1,			1,	// ‚e‚PƒL[
-	VK_F2,			D_DIK_F2,			1,	// ‚e‚QƒL[
-	VK_F3,			D_DIK_F3,			1,	// ‚e‚RƒL[
-	VK_F4,			D_DIK_F4,			1,	// ‚e‚SƒL[
-	VK_F5,			D_DIK_F5,			1,	// ‚e‚TƒL[
-	VK_F6,			D_DIK_F6,			1,	// ‚e‚UƒL[
-	VK_F7,			D_DIK_F7,			1,	// ‚e‚VƒL[
-	VK_F8,			D_DIK_F8,			1,	// ‚e‚WƒL[
-	VK_F9,			D_DIK_F9,			1,	// ‚e‚XƒL[
-	VK_F10,			D_DIK_F10,			1,	// ‚e‚P‚OƒL[
-	VK_F11,			D_DIK_F11,			1,	// ‚e‚P‚PƒL[
-	VK_F12,			D_DIK_F12,			1,	// ‚e‚P‚QƒL[
+	VK_F1,			D_DIK_F1,			1,	// ï¼¦ï¼‘ã‚­ãƒ¼
+	VK_F2,			D_DIK_F2,			1,	// ï¼¦ï¼’ã‚­ãƒ¼
+	VK_F3,			D_DIK_F3,			1,	// ï¼¦ï¼“ã‚­ãƒ¼
+	VK_F4,			D_DIK_F4,			1,	// ï¼¦ï¼”ã‚­ãƒ¼
+	VK_F5,			D_DIK_F5,			1,	// ï¼¦ï¼•ã‚­ãƒ¼
+	VK_F6,			D_DIK_F6,			1,	// ï¼¦ï¼–ã‚­ãƒ¼
+	VK_F7,			D_DIK_F7,			1,	// ï¼¦ï¼—ã‚­ãƒ¼
+	VK_F8,			D_DIK_F8,			1,	// ï¼¦ï¼˜ã‚­ãƒ¼
+	VK_F9,			D_DIK_F9,			1,	// ï¼¦ï¼™ã‚­ãƒ¼
+	VK_F10,			D_DIK_F10,			1,	// ï¼¦ï¼‘ï¼ã‚­ãƒ¼
+	VK_F11,			D_DIK_F11,			1,	// ï¼¦ï¼‘ï¼‘ã‚­ãƒ¼
+	VK_F12,			D_DIK_F12,			1,	// ï¼¦ï¼‘ï¼’ã‚­ãƒ¼
 
 	0xffff,			0xffff,
 } ;
@@ -932,15 +932,15 @@ WORD XInputButtonToDirectInputButtonNo[ XINPUT_TO_DIRECTINPUT_BUTTONNUM ] =
 	D_XINPUT_GAMEPAD_RIGHT_THUMB
 } ;
 
-// ŠÖ”ƒvƒƒgƒ^ƒCƒvéŒ¾ -------------------------------------------------------
+// é–¢æ•°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€ -------------------------------------------------------
 
-// ƒWƒ‡ƒCƒpƒbƒh—ñ‹“—pƒR[ƒ‹ƒoƒbƒNŠÖ”
+// ã‚¸ãƒ§ã‚¤ãƒ‘ãƒƒãƒ‰åˆ—æŒ™ç”¨ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 BOOL FAR PASCAL EnumJoypadProc( const D_DIDEVICEINSTANCEW *pdinst , LPVOID pvRef ) ;
 
-// // ƒWƒ‡ƒCƒpƒbƒh—ñ‹“—pƒR[ƒ‹ƒoƒbƒNŠÖ”( Ú‘±ƒ`ƒFƒbƒN—p )
+// // ã‚¸ãƒ§ã‚¤ãƒ‘ãƒƒãƒ‰åˆ—æŒ™ç”¨ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°( æ¥ç¶šãƒã‚§ãƒƒã‚¯ç”¨ )
 // BOOL FAR PASCAL EnumJoypadCheckCallback( const D_DIDEVICEINSTANCEW *pdinst , LPVOID pvRef ) ;
 
-// ƒvƒƒOƒ‰ƒ€------------------------------------------------------------------
+// ãƒ—ãƒ­ã‚°ãƒ©ãƒ ------------------------------------------------------------------
 
 BOOL CALLBACK EffectEnumCallBack( const D_DIEFFECTINFOW * Info, void * Data )
 {
@@ -1107,10 +1107,10 @@ LCleanup:
     return bIsXinputDevice ;
 }
 
-// // ƒWƒ‡ƒCƒpƒbƒh—ñ‹“—pƒR[ƒ‹ƒoƒbƒNŠÖ”( Ú‘±ƒ`ƒFƒbƒN—p )
+// // ã‚¸ãƒ§ã‚¤ãƒ‘ãƒƒãƒ‰åˆ—æŒ™ç”¨ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°( æ¥ç¶šãƒã‚§ãƒƒã‚¯ç”¨ )
 // BOOL FAR PASCAL EnumJoypadCheckCallback( const D_DIDEVICEINSTANCEW *pdinst , LPVOID pvRef )
 // {
-// 	// Instance GUID ‚ÌˆÙ‚È‚é•¨‚ªŒŸo‚³‚ê‚½‚ç—ñ‹“ƒXƒgƒbƒv
+// 	// Instance GUID ã®ç•°ãªã‚‹ç‰©ãŒæ¤œå‡ºã•ã‚ŒãŸã‚‰åˆ—æŒ™ã‚¹ãƒˆãƒƒãƒ—
 // 	if( _MEMCMP( &pdinst->guidInstance, &InputSysData.PF.PadInstanceGUID[ InputSysData.PF.PadInstanceGUIDNum ], sizeof( GUID ) ) != 0 )
 // 	{
 // 		InputSysData.PF.PadInstanceGUIDNum = -1 ;
@@ -1121,7 +1121,7 @@ LCleanup:
 // 	return D_DIENUM_CONTINUE ;
 // }
 
-// ƒWƒ‡ƒCƒpƒbƒh—ñ‹“—pƒR[ƒ‹ƒoƒbƒNŠÖ”
+// ã‚¸ãƒ§ã‚¤ãƒ‘ãƒƒãƒ‰åˆ—æŒ™ç”¨ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 BOOL FAR PASCAL EnumJoypadProc( const D_DIDEVICEINSTANCEW *pdinst , LPVOID /*pvRef*/ )
 {
 	HRESULT hr ;
@@ -1135,13 +1135,13 @@ BOOL FAR PASCAL EnumJoypadProc( const D_DIDEVICEINSTANCEW *pdinst , LPVOID /*pvR
 
 	SETUP_WIN_API
 
-//	// GUID ‚Ìî•ñ‚ğ•Û‘¶‚·‚é
+//	// GUID ã®æƒ…å ±ã‚’ä¿å­˜ã™ã‚‹
 //	InputSysData.PF.PadInstanceGUID[ InputSysData.PF.PadInstanceGUIDNum ] = pdinst->guidInstance ;
 //	InputSysData.PF.PadInstanceGUIDNum ++ ;
 
 	pad = &InputSysData.Pad[ InputSysData.PadNum ] ;
 
-	DXST_LOGFILEFMT_ADDUTF16LE(( "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x20\x00\xfe\x5b\xdc\x5f\x65\x51\x9b\x52\xc5\x88\x6e\x7f\x92\x30\x1c\x69\xfa\x51\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"DirectInput ‘Î‰“ü—Í‘•’u‚ğŒŸo‚µ‚Ü‚µ‚½" @*/ )) ;
+	DXST_LOGFILEFMT_ADDUTF16LE(( "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x20\x00\xfe\x5b\xdc\x5f\x65\x51\x9b\x52\xc5\x88\x6e\x7f\x92\x30\x1c\x69\xfa\x51\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"DirectInput å¯¾å¿œå…¥åŠ›è£…ç½®ã‚’æ¤œå‡ºã—ã¾ã—ãŸ" @*/ )) ;
 	DXST_LOGFILE_TABADD ;
 
 	DXST_LOGFILE_TABADD ;
@@ -1160,58 +1160,58 @@ BOOL FAR PASCAL EnumJoypadProc( const D_DIDEVICEINSTANCEW *pdinst , LPVOID /*pvR
 		pdinst->guidInstance.Data4[ 6 ], pdinst->guidInstance.Data4[ 7 ] )) ;
 	DXST_LOGFILE_TABSUB ;
 
-	// ƒWƒ‡ƒCƒXƒeƒBƒbƒNƒfƒoƒCƒX‚Ìì¬
+	// ã‚¸ãƒ§ã‚¤ã‚¹ãƒ†ã‚£ãƒƒã‚¯ãƒ‡ãƒã‚¤ã‚¹ã®ä½œæˆ
 	pad->PF.XInputDeviceNo = -1 ;
 	if( InputSysData.PF.UseDirectInput8Flag == TRUE )
 	{
-		DXST_LOGFILE_ADDUTF16LE( "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x44\x00\x65\x00\x76\x00\x69\x00\x63\x00\x65\x00\x38\x00\x20\x00\x6e\x30\x5c\x4f\x10\x62\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"DirectInputDevice8 ‚Ìì¬... " @*/ ) ;
+		DXST_LOGFILE_ADDUTF16LE( "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x44\x00\x65\x00\x76\x00\x69\x00\x63\x00\x65\x00\x38\x00\x20\x00\x6e\x30\x5c\x4f\x10\x62\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"DirectInputDevice8 ã®ä½œæˆ... " @*/ ) ;
 		hr = InputSysData.PF.DirectInputObject->CreateDevice( pdinst->guidInstance, ( D_IDirectInputDevice ** )&Joystick , NULL ) ;
 		if( hr != D_DI_OK )
 		{
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\x31\x59\x57\x65\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x43\x00\x6f\x00\x64\x00\x65\x00\x20\x00\x3a\x00\x30\x00\x78\x00\x25\x00\x30\x00\x38\x00\x78\x00\x00"/*@ L"¸”s Error Code :0x%08x" @*/, hr )) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\x31\x59\x57\x65\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x43\x00\x6f\x00\x64\x00\x65\x00\x20\x00\x3a\x00\x30\x00\x78\x00\x25\x00\x30\x00\x38\x00\x78\x00\x00"/*@ L"å¤±æ•— Error Code :0x%08x" @*/, hr )) ;
 			DXST_LOGFILE_TABSUB ;
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\x1c\x69\xfa\x51\x57\x30\x5f\x30\x20\x00\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x20\x00\xfe\x5b\xdc\x5f\x65\x51\x9b\x52\xc5\x88\x6e\x7f\x6e\x30\x1d\x52\x1f\x67\x16\x53\x92\x30\x2d\x4e\xad\x65\x57\x30\x7e\x30\x59\x30\x00"/*@ L"ŒŸo‚µ‚½ DirectInput ‘Î‰“ü—Í‘•’u‚Ì‰Šú‰»‚ğ’†’f‚µ‚Ü‚·" @*/ )) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\x1c\x69\xfa\x51\x57\x30\x5f\x30\x20\x00\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x20\x00\xfe\x5b\xdc\x5f\x65\x51\x9b\x52\xc5\x88\x6e\x7f\x6e\x30\x1d\x52\x1f\x67\x16\x53\x92\x30\x2d\x4e\xad\x65\x57\x30\x7e\x30\x59\x30\x00"/*@ L"æ¤œå‡ºã—ãŸ DirectInput å¯¾å¿œå…¥åŠ›è£…ç½®ã®åˆæœŸåŒ–ã‚’ä¸­æ–­ã—ã¾ã™" @*/ )) ;
 			return D_DIENUM_CONTINUE ;
 		}
-		DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"¬Œ÷\n" @*/ ) ;
+		DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"æˆåŠŸ\n" @*/ ) ;
 	}
 	else
 	{
-		DXST_LOGFILE_ADDUTF16LE( "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x44\x00\x65\x00\x76\x00\x69\x00\x63\x00\x65\x00\x37\x00\x20\x00\x6e\x30\x5c\x4f\x10\x62\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"DirectInputDevice7 ‚Ìì¬... " @*/ ) ;
+		DXST_LOGFILE_ADDUTF16LE( "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x44\x00\x65\x00\x76\x00\x69\x00\x63\x00\x65\x00\x37\x00\x20\x00\x6e\x30\x5c\x4f\x10\x62\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"DirectInputDevice7 ã®ä½œæˆ... " @*/ ) ;
 		hr = InputSysData.PF.DirectInputObject->CreateDeviceEx( pdinst->guidInstance, IID_IDIRECTINPUTDEVICE7, ( void ** )&Joystick , NULL ) ;
 		if( hr != D_DI_OK )
 		{
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\x31\x59\x57\x65\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x43\x00\x6f\x00\x64\x00\x65\x00\x20\x00\x3a\x00\x30\x00\x78\x00\x25\x00\x30\x00\x38\x00\x78\x00\x00"/*@ L"¸”s Error Code :0x%08x" @*/, hr )) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\x31\x59\x57\x65\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x43\x00\x6f\x00\x64\x00\x65\x00\x20\x00\x3a\x00\x30\x00\x78\x00\x25\x00\x30\x00\x38\x00\x78\x00\x00"/*@ L"å¤±æ•— Error Code :0x%08x" @*/, hr )) ;
 			DXST_LOGFILE_TABSUB ;
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\x1c\x69\xfa\x51\x57\x30\x5f\x30\x20\x00\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x20\x00\xfe\x5b\xdc\x5f\x65\x51\x9b\x52\xc5\x88\x6e\x7f\x6e\x30\x1d\x52\x1f\x67\x16\x53\x92\x30\x2d\x4e\xad\x65\x57\x30\x7e\x30\x59\x30\x00"/*@ L"ŒŸo‚µ‚½ DirectInput ‘Î‰“ü—Í‘•’u‚Ì‰Šú‰»‚ğ’†’f‚µ‚Ü‚·" @*/ )) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\x1c\x69\xfa\x51\x57\x30\x5f\x30\x20\x00\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x20\x00\xfe\x5b\xdc\x5f\x65\x51\x9b\x52\xc5\x88\x6e\x7f\x6e\x30\x1d\x52\x1f\x67\x16\x53\x92\x30\x2d\x4e\xad\x65\x57\x30\x7e\x30\x59\x30\x00"/*@ L"æ¤œå‡ºã—ãŸ DirectInput å¯¾å¿œå…¥åŠ›è£…ç½®ã®åˆæœŸåŒ–ã‚’ä¸­æ–­ã—ã¾ã™" @*/ )) ;
 			return D_DIENUM_CONTINUE ;
 		}
-		DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"¬Œ÷\n" @*/ ) ;
+		DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"æˆåŠŸ\n" @*/ ) ;
 	}
 
-	// GUID ‚Ì•Û‘¶
+	// GUID ã®ä¿å­˜
 	pad->PF.InstanceGUID = pdinst->guidInstance ;
 	pad->PF.ProductGUID = pdinst->guidProduct ;
 
-	// î•ñ•\¦
+	// æƒ…å ±è¡¨ç¤º
 	{
 		D_DIDEVICEINSTANCEW State ;
 
 
 		_MEMSET( &State, 0, sizeof( State ) ) ;
 		State.dwSize = sizeof( State ) ;
-		DXST_LOGFILE_ADDUTF16LE( "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x44\x00\x65\x00\x76\x00\x69\x00\x63\x00\x65\x00\x20\x00\x6e\x30\xc5\x60\x31\x58\x92\x30\xd6\x53\x97\x5f\x57\x30\x7e\x30\x59\x30\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"DirectInputDevice ‚Ìî•ñ‚ğæ“¾‚µ‚Ü‚·... " @*/ ) ;
+		DXST_LOGFILE_ADDUTF16LE( "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x44\x00\x65\x00\x76\x00\x69\x00\x63\x00\x65\x00\x20\x00\x6e\x30\xc5\x60\x31\x58\x92\x30\xd6\x53\x97\x5f\x57\x30\x7e\x30\x59\x30\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"DirectInputDevice ã®æƒ…å ±ã‚’å–å¾—ã—ã¾ã™... " @*/ ) ;
 		hr = Joystick->GetDeviceInfo( &State ) ;
 		if( hr != D_DI_OK )
 		{
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\x31\x59\x57\x65\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x43\x00\x6f\x00\x64\x00\x65\x00\x20\x00\x3a\x00\x25\x00\x30\x00\x38\x00\x78\x00\x00"/*@ L"¸”s ErrorCode :%08x" @*/, hr )) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\x31\x59\x57\x65\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x43\x00\x6f\x00\x64\x00\x65\x00\x20\x00\x3a\x00\x25\x00\x30\x00\x38\x00\x78\x00\x00"/*@ L"å¤±æ•— ErrorCode :%08x" @*/, hr )) ;
 			DXST_LOGFILE_TABSUB ;
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\x1c\x69\xfa\x51\x57\x30\x5f\x30\x20\x00\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x20\x00\xfe\x5b\xdc\x5f\x65\x51\x9b\x52\xc5\x88\x6e\x7f\x6e\x30\x1d\x52\x1f\x67\x16\x53\x92\x30\x2d\x4e\xad\x65\x57\x30\x7e\x30\x59\x30\x00"/*@ L"ŒŸo‚µ‚½ DirectInput ‘Î‰“ü—Í‘•’u‚Ì‰Šú‰»‚ğ’†’f‚µ‚Ü‚·" @*/ )) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\x1c\x69\xfa\x51\x57\x30\x5f\x30\x20\x00\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x20\x00\xfe\x5b\xdc\x5f\x65\x51\x9b\x52\xc5\x88\x6e\x7f\x6e\x30\x1d\x52\x1f\x67\x16\x53\x92\x30\x2d\x4e\xad\x65\x57\x30\x7e\x30\x59\x30\x00"/*@ L"æ¤œå‡ºã—ãŸ DirectInput å¯¾å¿œå…¥åŠ›è£…ç½®ã®åˆæœŸåŒ–ã‚’ä¸­æ–­ã—ã¾ã™" @*/ )) ;
 			Joystick->Release() ;
 			Joystick = NULL ;
 			return D_DIENUM_CONTINUE ;
 		}
-		DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"¬Œ÷\n" @*/ ) ;
+		DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"æˆåŠŸ\n" @*/ ) ;
 
 		_WCSCPY_S( pad->PF.InstanceName, sizeof( pad->PF.InstanceName ), State.tszInstanceName );
 		_WCSCPY_S( pad->PF.ProductName,  sizeof( pad->PF.ProductName  ), State.tszProductName  );
@@ -1221,45 +1221,45 @@ BOOL FAR PASCAL EnumJoypadProc( const D_DIDEVICEINSTANCEW *pdinst , LPVOID /*pvR
 		DXST_LOGFILEFMT_ADDW(( L"Device Instance Name : %s", State.tszInstanceName )) ;
 		DXST_LOGFILE_TABSUB ;
 
-		// Xbox360 ƒRƒ“ƒgƒ[ƒ‰–”‚Í Xbox One ƒRƒ“ƒgƒ[ƒ‰‚Ìê‡‚ÅAXInput‚ÅŒŸo‚³‚ê‚Ä‚¢‚½‚ç’e‚­
+		// Xbox360 ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©åˆã¯ Xbox One ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ã®å ´åˆã§ã€XInputã§æ¤œå‡ºã•ã‚Œã¦ã„ãŸã‚‰å¼¾ã
 		if( InputSysData.PF.UseXboxControllerDirectInputFlag == FALSE )
 		{
 			WCHAR tszInstanceNameUPR[ MAX_PATH ] ;
 			int Flag = FALSE;
 
-			// ¬•¶š‚ğ‘å•¶š‚É‚µ‚½ƒRƒ“ƒgƒ[ƒ‰–¼‚ğì¬
+			// å°æ–‡å­—ã‚’å¤§æ–‡å­—ã«ã—ãŸã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©åã‚’ä½œæˆ
 			_WCSCPY( tszInstanceNameUPR, State.tszInstanceName ) ;
 			_WCSUPR( tszInstanceNameUPR ) ;
 
-			// Xbox360 ƒRƒ“ƒgƒ[ƒ‰–”‚Í XboxOne ƒRƒ“ƒgƒ[ƒ‰‚©’²‚×‚é
-			DXST_LOGFILE_ADDUTF16LE( "\x1c\x69\xfa\x51\x57\x30\x5f\x30\x20\x00\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x20\x00\xfe\x5b\xdc\x5f\x65\x51\x9b\x52\xc5\x88\x6e\x7f\x4c\x30\x20\x00\x58\x00\x62\x00\x6f\x00\x78\x00\x33\x00\x36\x00\x30\x00\xb3\x30\xf3\x30\xc8\x30\xed\x30\xfc\x30\xe9\x30\xfc\x30\x4b\x30\xba\x78\x8d\x8a\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"ŒŸo‚µ‚½ DirectInput ‘Î‰“ü—Í‘•’u‚ª Xbox360ƒRƒ“ƒgƒ[ƒ‰[‚©Šm”F... " @*/ ) ;
+			// Xbox360 ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©åˆã¯ XboxOne ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ã‹èª¿ã¹ã‚‹
+			DXST_LOGFILE_ADDUTF16LE( "\x1c\x69\xfa\x51\x57\x30\x5f\x30\x20\x00\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x20\x00\xfe\x5b\xdc\x5f\x65\x51\x9b\x52\xc5\x88\x6e\x7f\x4c\x30\x20\x00\x58\x00\x62\x00\x6f\x00\x78\x00\x33\x00\x36\x00\x30\x00\xb3\x30\xf3\x30\xc8\x30\xed\x30\xfc\x30\xe9\x30\xfc\x30\x4b\x30\xba\x78\x8d\x8a\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"æ¤œå‡ºã—ãŸ DirectInput å¯¾å¿œå…¥åŠ›è£…ç½®ãŒ Xbox360ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼ã‹ç¢ºèª... " @*/ ) ;
 			if( _WCSSTR( tszInstanceNameUPR, L"XBOX 360 FOR WINDOWS" ) != NULL )
 			{
-				DXST_LOGFILE_ADDUTF16LE( "\x00\x4e\xf4\x81\x0a\x00\x00"/*@ L"ˆê’v\n" @*/ ) ;
+				DXST_LOGFILE_ADDUTF16LE( "\x00\x4e\xf4\x81\x0a\x00\x00"/*@ L"ä¸€è‡´\n" @*/ ) ;
 				Flag = TRUE ;
 				goto XINPUT_CHECK_END ;
 			}
-			DXST_LOGFILE_ADDUTF16LE( "\x0d\x4e\x00\x4e\xf4\x81\x0a\x00\x00"/*@ L"•sˆê’v\n" @*/ ) ;
+			DXST_LOGFILE_ADDUTF16LE( "\x0d\x4e\x00\x4e\xf4\x81\x0a\x00\x00"/*@ L"ä¸ä¸€è‡´\n" @*/ ) ;
 
-			DXST_LOGFILE_ADDUTF16LE( "\x1c\x69\xfa\x51\x57\x30\x5f\x30\x20\x00\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x20\x00\xfe\x5b\xdc\x5f\x65\x51\x9b\x52\xc5\x88\x6e\x7f\x4c\x30\x20\x00\x58\x00\x62\x00\x6f\x00\x78\x00\x4f\x00\x6e\x00\x65\x00\xb3\x30\xf3\x30\xc8\x30\xed\x30\xfc\x30\xe9\x30\xfc\x30\x4b\x30\xba\x78\x8d\x8a\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"ŒŸo‚µ‚½ DirectInput ‘Î‰“ü—Í‘•’u‚ª XboxOneƒRƒ“ƒgƒ[ƒ‰[‚©Šm”F... " @*/ ) ;
+			DXST_LOGFILE_ADDUTF16LE( "\x1c\x69\xfa\x51\x57\x30\x5f\x30\x20\x00\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x20\x00\xfe\x5b\xdc\x5f\x65\x51\x9b\x52\xc5\x88\x6e\x7f\x4c\x30\x20\x00\x58\x00\x62\x00\x6f\x00\x78\x00\x4f\x00\x6e\x00\x65\x00\xb3\x30\xf3\x30\xc8\x30\xed\x30\xfc\x30\xe9\x30\xfc\x30\x4b\x30\xba\x78\x8d\x8a\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"æ¤œå‡ºã—ãŸ DirectInput å¯¾å¿œå…¥åŠ›è£…ç½®ãŒ XboxOneã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼ã‹ç¢ºèª... " @*/ ) ;
 			if( _WCSSTR( tszInstanceNameUPR, L"XBOX ONE FOR WINDOWS" ) != NULL )
 			{
-				DXST_LOGFILE_ADDUTF16LE( "\x00\x4e\xf4\x81\x0a\x00\x00"/*@ L"ˆê’v\n" @*/ ) ;
+				DXST_LOGFILE_ADDUTF16LE( "\x00\x4e\xf4\x81\x0a\x00\x00"/*@ L"ä¸€è‡´\n" @*/ ) ;
 				Flag = TRUE ;
 				goto XINPUT_CHECK_END ;
 			}
-			DXST_LOGFILE_ADDUTF16LE( "\x0d\x4e\x00\x4e\xf4\x81\x0a\x00\x00"/*@ L"•sˆê’v\n" @*/ ) ;
+			DXST_LOGFILE_ADDUTF16LE( "\x0d\x4e\x00\x4e\xf4\x81\x0a\x00\x00"/*@ L"ä¸ä¸€è‡´\n" @*/ ) ;
 
 			if( WinData.WindowsVersion >= DX_WINDOWSVERSION_10 )
 			{
-				DXST_LOGFILE_ADDUTF16LE( "\x1c\x69\xfa\x51\x57\x30\x5f\x30\x20\x00\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x20\x00\xfe\x5b\xdc\x5f\x65\x51\x9b\x52\xc5\x88\x6e\x7f\x4c\x30\x20\x00\x58\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x20\x00\xfe\x5b\xdc\x5f\xb3\x30\xf3\x30\xc8\x30\xed\x30\xfc\x30\xe9\x30\xfc\x30\x4b\x30\xba\x78\x8d\x8a\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"ŒŸo‚µ‚½ DirectInput ‘Î‰“ü—Í‘•’u‚ª XInput ‘Î‰ƒRƒ“ƒgƒ[ƒ‰[‚©Šm”F... " @*/ ) ;
+				DXST_LOGFILE_ADDUTF16LE( "\x1c\x69\xfa\x51\x57\x30\x5f\x30\x20\x00\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x20\x00\xfe\x5b\xdc\x5f\x65\x51\x9b\x52\xc5\x88\x6e\x7f\x4c\x30\x20\x00\x58\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x20\x00\xfe\x5b\xdc\x5f\xb3\x30\xf3\x30\xc8\x30\xed\x30\xfc\x30\xe9\x30\xfc\x30\x4b\x30\xba\x78\x8d\x8a\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"æ¤œå‡ºã—ãŸ DirectInput å¯¾å¿œå…¥åŠ›è£…ç½®ãŒ XInput å¯¾å¿œã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼ã‹ç¢ºèª... " @*/ ) ;
 				if( IsXInputDevice( &pdinst->guidProduct ) )
 				{
-					DXST_LOGFILE_ADDUTF16LE( "\x00\x4e\xf4\x81\x0a\x00\x00"/*@ L"ˆê’v\n" @*/ ) ;
+					DXST_LOGFILE_ADDUTF16LE( "\x00\x4e\xf4\x81\x0a\x00\x00"/*@ L"ä¸€è‡´\n" @*/ ) ;
 					Flag = TRUE ;
 					goto XINPUT_CHECK_END ;
 				}
-				DXST_LOGFILE_ADDUTF16LE( "\x0d\x4e\x00\x4e\xf4\x81\x0a\x00\x00"/*@ L"•sˆê’v\n" @*/ ) ;
+				DXST_LOGFILE_ADDUTF16LE( "\x0d\x4e\x00\x4e\xf4\x81\x0a\x00\x00"/*@ L"ä¸ä¸€è‡´\n" @*/ ) ;
 			}
 
 		XINPUT_CHECK_END:
@@ -1274,7 +1274,7 @@ BOOL FAR PASCAL EnumJoypadProc( const D_DIDEVICEINSTANCEW *pdinst , LPVOID /*pvR
 				if( i != InputSysData.PadNum )
 				{
 					DXST_LOGFILE_TABSUB ;
-					DXST_LOGFILEFMT_ADDUTF16LE(( "\x1c\x69\xfa\x51\x57\x30\x5f\x30\x20\x00\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x20\x00\xfe\x5b\xdc\x5f\x65\x51\x9b\x52\xc5\x88\x6e\x7f\x6e\x30\x1d\x52\x1f\x67\x16\x53\x92\x30\x2d\x4e\xad\x65\x57\x30\x7e\x30\x59\x30\x00"/*@ L"ŒŸo‚µ‚½ DirectInput ‘Î‰“ü—Í‘•’u‚Ì‰Šú‰»‚ğ’†’f‚µ‚Ü‚·" @*/ )) ;
+					DXST_LOGFILEFMT_ADDUTF16LE(( "\x1c\x69\xfa\x51\x57\x30\x5f\x30\x20\x00\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x20\x00\xfe\x5b\xdc\x5f\x65\x51\x9b\x52\xc5\x88\x6e\x7f\x6e\x30\x1d\x52\x1f\x67\x16\x53\x92\x30\x2d\x4e\xad\x65\x57\x30\x7e\x30\x59\x30\x00"/*@ L"æ¤œå‡ºã—ãŸ DirectInput å¯¾å¿œå…¥åŠ›è£…ç½®ã®åˆæœŸåŒ–ã‚’ä¸­æ–­ã—ã¾ã™" @*/ )) ;
 					Joystick->Release() ;
 					Joystick = NULL ;
 					return D_DIENUM_CONTINUE ;
@@ -1283,135 +1283,135 @@ BOOL FAR PASCAL EnumJoypadProc( const D_DIDEVICEINSTANCEW *pdinst , LPVOID /*pvR
 		}
 	}
 	
-	// ƒWƒ‡ƒCƒXƒpƒbƒh‚Ìƒf[ƒ^Œ`®‚ğİ’è
-	DXST_LOGFILE_ADDUTF16LE( "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x44\x00\x65\x00\x76\x00\x69\x00\x63\x00\x65\x00\x20\x00\x6e\x30\xc7\x30\xfc\x30\xbf\x30\x62\x5f\x0f\x5f\x6b\x30\x20\x00\x4a\x00\x4f\x00\x59\x00\x53\x00\x54\x00\x49\x00\x43\x00\x4b\x00\x20\x00\x62\x5f\x0f\x5f\x92\x30\x2d\x8a\x9a\x5b\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"DirectInputDevice ‚Ìƒf[ƒ^Œ`®‚É JOYSTICK Œ`®‚ğİ’è... " @*/ ) ;
+	// ã‚¸ãƒ§ã‚¤ã‚¹ãƒ‘ãƒƒãƒ‰ã®ãƒ‡ãƒ¼ã‚¿å½¢å¼ã‚’è¨­å®š
+	DXST_LOGFILE_ADDUTF16LE( "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x44\x00\x65\x00\x76\x00\x69\x00\x63\x00\x65\x00\x20\x00\x6e\x30\xc7\x30\xfc\x30\xbf\x30\x62\x5f\x0f\x5f\x6b\x30\x20\x00\x4a\x00\x4f\x00\x59\x00\x53\x00\x54\x00\x49\x00\x43\x00\x4b\x00\x20\x00\x62\x5f\x0f\x5f\x92\x30\x2d\x8a\x9a\x5b\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"DirectInputDevice ã®ãƒ‡ãƒ¼ã‚¿å½¢å¼ã« JOYSTICK å½¢å¼ã‚’è¨­å®š... " @*/ ) ;
 //	hr = Joystick->SetDataFormat( &c_dfDIJoystick ) ;
 	hr = Joystick->SetDataFormat( &C_DFDIJOYSTICK ) ;
 	if( hr != D_DI_OK )
 	{
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\x31\x59\x57\x65\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x43\x00\x6f\x00\x64\x00\x65\x00\x20\x00\x3a\x00\x30\x00\x78\x00\x25\x00\x30\x00\x38\x00\x78\x00\x00"/*@ L"¸”s Error Code :0x%08x" @*/, hr )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\x31\x59\x57\x65\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x43\x00\x6f\x00\x64\x00\x65\x00\x20\x00\x3a\x00\x30\x00\x78\x00\x25\x00\x30\x00\x38\x00\x78\x00\x00"/*@ L"å¤±æ•— Error Code :0x%08x" @*/, hr )) ;
 		DXST_LOGFILE_TABSUB ;
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\x1c\x69\xfa\x51\x57\x30\x5f\x30\x20\x00\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x20\x00\xfe\x5b\xdc\x5f\x65\x51\x9b\x52\xc5\x88\x6e\x7f\x6e\x30\x1d\x52\x1f\x67\x16\x53\x92\x30\x2d\x4e\xad\x65\x57\x30\x7e\x30\x59\x30\x00"/*@ L"ŒŸo‚µ‚½ DirectInput ‘Î‰“ü—Í‘•’u‚Ì‰Šú‰»‚ğ’†’f‚µ‚Ü‚·" @*/ )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\x1c\x69\xfa\x51\x57\x30\x5f\x30\x20\x00\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x20\x00\xfe\x5b\xdc\x5f\x65\x51\x9b\x52\xc5\x88\x6e\x7f\x6e\x30\x1d\x52\x1f\x67\x16\x53\x92\x30\x2d\x4e\xad\x65\x57\x30\x7e\x30\x59\x30\x00"/*@ L"æ¤œå‡ºã—ãŸ DirectInput å¯¾å¿œå…¥åŠ›è£…ç½®ã®åˆæœŸåŒ–ã‚’ä¸­æ–­ã—ã¾ã™" @*/ )) ;
 		Joystick->Release() ;
 		Joystick = NULL ;
 		return D_DIENUM_CONTINUE ;
 	}
-	DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"¬Œ÷\n" @*/ ) ;
+	DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"æˆåŠŸ\n" @*/ ) ;
 
-	// ƒWƒ‡ƒCƒpƒbƒh‚Ì‹¦’²ƒŒƒxƒ‹‚ğİ’è‚·‚é
+	// ã‚¸ãƒ§ã‚¤ãƒ‘ãƒƒãƒ‰ã®å”èª¿ãƒ¬ãƒ™ãƒ«ã‚’è¨­å®šã™ã‚‹
 	if( InputSysData.NoUseVibrationFlag )
 	{
-		DXST_LOGFILE_ADDUTF16LE( "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x44\x00\x65\x00\x76\x00\x69\x00\x63\x00\x65\x00\x20\x00\x6e\x30\x54\x53\xbf\x8a\xec\x30\xd9\x30\xeb\x30\x6b\x30\x20\x00\x44\x00\x49\x00\x53\x00\x43\x00\x4c\x00\x5f\x00\x42\x00\x41\x00\x43\x00\x4b\x00\x47\x00\x52\x00\x4f\x00\x55\x00\x4e\x00\x44\x00\x20\x00\x7c\x00\x20\x00\x44\x00\x49\x00\x53\x00\x43\x00\x4c\x00\x5f\x00\x4e\x00\x4f\x00\x4e\x00\x45\x00\x58\x00\x43\x00\x4c\x00\x55\x00\x53\x00\x49\x00\x56\x00\x45\x00\x20\x00\x92\x30\x2d\x8a\x9a\x5b\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"DirectInputDevice ‚Ì‹¦’²ƒŒƒxƒ‹‚É DISCL_BACKGROUND | DISCL_NONEXCLUSIVE ‚ğİ’è... " @*/ ) ;
+		DXST_LOGFILE_ADDUTF16LE( "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x44\x00\x65\x00\x76\x00\x69\x00\x63\x00\x65\x00\x20\x00\x6e\x30\x54\x53\xbf\x8a\xec\x30\xd9\x30\xeb\x30\x6b\x30\x20\x00\x44\x00\x49\x00\x53\x00\x43\x00\x4c\x00\x5f\x00\x42\x00\x41\x00\x43\x00\x4b\x00\x47\x00\x52\x00\x4f\x00\x55\x00\x4e\x00\x44\x00\x20\x00\x7c\x00\x20\x00\x44\x00\x49\x00\x53\x00\x43\x00\x4c\x00\x5f\x00\x4e\x00\x4f\x00\x4e\x00\x45\x00\x58\x00\x43\x00\x4c\x00\x55\x00\x53\x00\x49\x00\x56\x00\x45\x00\x20\x00\x92\x30\x2d\x8a\x9a\x5b\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"DirectInputDevice ã®å”èª¿ãƒ¬ãƒ™ãƒ«ã« DISCL_BACKGROUND | DISCL_NONEXCLUSIVE ã‚’è¨­å®š... " @*/ ) ;
 		hr = Joystick->SetCooperativeLevel( NS_GetMainWindowHandle(), D_DISCL_BACKGROUND | D_DISCL_NONEXCLUSIVE ) ;
 	}
 	else
 	{
-		DXST_LOGFILE_ADDUTF16LE( "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x44\x00\x65\x00\x76\x00\x69\x00\x63\x00\x65\x00\x20\x00\x6e\x30\x54\x53\xbf\x8a\xec\x30\xd9\x30\xeb\x30\x6b\x30\x20\x00\x44\x00\x49\x00\x53\x00\x43\x00\x4c\x00\x5f\x00\x46\x00\x4f\x00\x52\x00\x45\x00\x47\x00\x52\x00\x4f\x00\x55\x00\x4e\x00\x44\x00\x20\x00\x7c\x00\x20\x00\x44\x00\x49\x00\x53\x00\x43\x00\x4c\x00\x5f\x00\x45\x00\x58\x00\x43\x00\x4c\x00\x55\x00\x53\x00\x49\x00\x56\x00\x45\x00\x20\x00\x92\x30\x2d\x8a\x9a\x5b\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"DirectInputDevice ‚Ì‹¦’²ƒŒƒxƒ‹‚É DISCL_FOREGROUND | DISCL_EXCLUSIVE ‚ğİ’è... " @*/ ) ;
+		DXST_LOGFILE_ADDUTF16LE( "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x44\x00\x65\x00\x76\x00\x69\x00\x63\x00\x65\x00\x20\x00\x6e\x30\x54\x53\xbf\x8a\xec\x30\xd9\x30\xeb\x30\x6b\x30\x20\x00\x44\x00\x49\x00\x53\x00\x43\x00\x4c\x00\x5f\x00\x46\x00\x4f\x00\x52\x00\x45\x00\x47\x00\x52\x00\x4f\x00\x55\x00\x4e\x00\x44\x00\x20\x00\x7c\x00\x20\x00\x44\x00\x49\x00\x53\x00\x43\x00\x4c\x00\x5f\x00\x45\x00\x58\x00\x43\x00\x4c\x00\x55\x00\x53\x00\x49\x00\x56\x00\x45\x00\x20\x00\x92\x30\x2d\x8a\x9a\x5b\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"DirectInputDevice ã®å”èª¿ãƒ¬ãƒ™ãƒ«ã« DISCL_FOREGROUND | DISCL_EXCLUSIVE ã‚’è¨­å®š... " @*/ ) ;
 		hr = Joystick->SetCooperativeLevel( NS_GetMainWindowHandle(), D_DISCL_FOREGROUND | D_DISCL_EXCLUSIVE ) ;
 		if( hr != D_DI_OK )
 		{
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\x31\x59\x57\x65\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x43\x00\x6f\x00\x64\x00\x65\x00\x20\x00\x3a\x00\x30\x00\x78\x00\x25\x00\x30\x00\x38\x00\x78\x00\x00"/*@ L"¸”s Error Code :0x%08x" @*/, hr )) ;
-			DXST_LOGFILE_ADDUTF16LE( "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x44\x00\x65\x00\x76\x00\x69\x00\x63\x00\x65\x00\x20\x00\x6e\x30\x54\x53\xbf\x8a\xec\x30\xd9\x30\xeb\x30\x6b\x30\x20\x00\x44\x00\x49\x00\x53\x00\x43\x00\x4c\x00\x5f\x00\x42\x00\x41\x00\x43\x00\x4b\x00\x47\x00\x52\x00\x4f\x00\x55\x00\x4e\x00\x44\x00\x20\x00\x7c\x00\x20\x00\x44\x00\x49\x00\x53\x00\x43\x00\x4c\x00\x5f\x00\x4e\x00\x4f\x00\x4e\x00\x45\x00\x58\x00\x43\x00\x4c\x00\x55\x00\x53\x00\x49\x00\x56\x00\x45\x00\x20\x00\x92\x30\x2d\x8a\x9a\x5b\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"DirectInputDevice ‚Ì‹¦’²ƒŒƒxƒ‹‚É DISCL_BACKGROUND | DISCL_NONEXCLUSIVE ‚ğİ’è... " @*/ ) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\x31\x59\x57\x65\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x43\x00\x6f\x00\x64\x00\x65\x00\x20\x00\x3a\x00\x30\x00\x78\x00\x25\x00\x30\x00\x38\x00\x78\x00\x00"/*@ L"å¤±æ•— Error Code :0x%08x" @*/, hr )) ;
+			DXST_LOGFILE_ADDUTF16LE( "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x44\x00\x65\x00\x76\x00\x69\x00\x63\x00\x65\x00\x20\x00\x6e\x30\x54\x53\xbf\x8a\xec\x30\xd9\x30\xeb\x30\x6b\x30\x20\x00\x44\x00\x49\x00\x53\x00\x43\x00\x4c\x00\x5f\x00\x42\x00\x41\x00\x43\x00\x4b\x00\x47\x00\x52\x00\x4f\x00\x55\x00\x4e\x00\x44\x00\x20\x00\x7c\x00\x20\x00\x44\x00\x49\x00\x53\x00\x43\x00\x4c\x00\x5f\x00\x4e\x00\x4f\x00\x4e\x00\x45\x00\x58\x00\x43\x00\x4c\x00\x55\x00\x53\x00\x49\x00\x56\x00\x45\x00\x20\x00\x92\x30\x2d\x8a\x9a\x5b\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"DirectInputDevice ã®å”èª¿ãƒ¬ãƒ™ãƒ«ã« DISCL_BACKGROUND | DISCL_NONEXCLUSIVE ã‚’è¨­å®š... " @*/ ) ;
 			hr = Joystick->SetCooperativeLevel( NS_GetMainWindowHandle(), D_DISCL_BACKGROUND | D_DISCL_NONEXCLUSIVE ) ;
 		}
 	}
 	if( hr != D_DI_OK )
 	{
 //		Joystick->Release() ;
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\x31\x59\x57\x65\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x43\x00\x6f\x00\x64\x00\x65\x00\x20\x00\x3a\x00\x30\x00\x78\x00\x25\x00\x30\x00\x38\x00\x78\x00\x00"/*@ L"¸”s Error Code :0x%08x" @*/, hr )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\x31\x59\x57\x65\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x43\x00\x6f\x00\x64\x00\x65\x00\x20\x00\x3a\x00\x30\x00\x78\x00\x25\x00\x30\x00\x38\x00\x78\x00\x00"/*@ L"å¤±æ•— Error Code :0x%08x" @*/, hr )) ;
 //		return D_DIENUM_CONTINUE ;
 	}
 	else
 	{
-		DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"¬Œ÷\n" @*/ ) ;
+		DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"æˆåŠŸ\n" @*/ ) ;
 	}
 
-	// ‚w‚Ì”ÍˆÍ‚ğİ’è
+	// ï¼¸ã®ç¯„å›²ã‚’è¨­å®š
 	diprg.diph.dwSize		= sizeof( diprg ) ;
 	diprg.diph.dwHeaderSize	= sizeof( diprg.diph ) ;
 	diprg.diph.dwObj		= D_DIJOFS_X ;
 	diprg.diph.dwHow		= D_DIPH_BYOFFSET ;
 	diprg.lMin				= -DIRINPUT_MAX ;
 	diprg.lMax				= +DIRINPUT_MAX ;
-	DXST_LOGFILE_ADDUTF16LE( "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x44\x00\x65\x00\x76\x00\x69\x00\x63\x00\x65\x00\x20\x00\x4b\x30\x89\x30\xd6\x53\x97\x5f\x59\x30\x8b\x30\x20\x00\x58\x00\xf8\x8e\x20\x00\x6e\x30\x24\x50\x6e\x30\xc4\x7b\xf2\x56\x92\x30\x2d\x8a\x9a\x5b\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"DirectInputDevice ‚©‚çæ“¾‚·‚é X² ‚Ì’l‚Ì”ÍˆÍ‚ğİ’è... " @*/ ) ;
+	DXST_LOGFILE_ADDUTF16LE( "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x44\x00\x65\x00\x76\x00\x69\x00\x63\x00\x65\x00\x20\x00\x4b\x30\x89\x30\xd6\x53\x97\x5f\x59\x30\x8b\x30\x20\x00\x58\x00\xf8\x8e\x20\x00\x6e\x30\x24\x50\x6e\x30\xc4\x7b\xf2\x56\x92\x30\x2d\x8a\x9a\x5b\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"DirectInputDevice ã‹ã‚‰å–å¾—ã™ã‚‹ Xè»¸ ã®å€¤ã®ç¯„å›²ã‚’è¨­å®š... " @*/ ) ;
 	hr = Joystick->SetProperty( D_DIPROP_RANGE , &diprg.diph ) ;
 	if( hr != D_DI_OK )
 	{
 //		Joystick->Release() ;
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\x31\x59\x57\x65\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x43\x00\x6f\x00\x64\x00\x65\x00\x20\x00\x3a\x00\x30\x00\x78\x00\x25\x00\x30\x00\x38\x00\x78\x00\x00"/*@ L"¸”s Error Code :0x%08x" @*/, hr )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\x31\x59\x57\x65\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x43\x00\x6f\x00\x64\x00\x65\x00\x20\x00\x3a\x00\x30\x00\x78\x00\x25\x00\x30\x00\x38\x00\x78\x00\x00"/*@ L"å¤±æ•— Error Code :0x%08x" @*/, hr )) ;
 //		return D_DIENUM_CONTINUE ;
 	}
 	else
 	{
-		DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"¬Œ÷\n" @*/ ) ;
+		DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"æˆåŠŸ\n" @*/ ) ;
 	}
 
-	// ‚x‚Ì”ÍˆÍ‚ğİ’è
+	// ï¼¹ã®ç¯„å›²ã‚’è¨­å®š
 	diprg.diph.dwObj		= D_DIJOFS_Y ;
-	DXST_LOGFILE_ADDUTF16LE( "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x44\x00\x65\x00\x76\x00\x69\x00\x63\x00\x65\x00\x20\x00\x4b\x30\x89\x30\xd6\x53\x97\x5f\x59\x30\x8b\x30\x20\x00\x59\x00\xf8\x8e\x20\x00\x6e\x30\x24\x50\x6e\x30\xc4\x7b\xf2\x56\x92\x30\x2d\x8a\x9a\x5b\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"DirectInputDevice ‚©‚çæ“¾‚·‚é Y² ‚Ì’l‚Ì”ÍˆÍ‚ğİ’è... " @*/ ) ;
+	DXST_LOGFILE_ADDUTF16LE( "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x44\x00\x65\x00\x76\x00\x69\x00\x63\x00\x65\x00\x20\x00\x4b\x30\x89\x30\xd6\x53\x97\x5f\x59\x30\x8b\x30\x20\x00\x59\x00\xf8\x8e\x20\x00\x6e\x30\x24\x50\x6e\x30\xc4\x7b\xf2\x56\x92\x30\x2d\x8a\x9a\x5b\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"DirectInputDevice ã‹ã‚‰å–å¾—ã™ã‚‹ Yè»¸ ã®å€¤ã®ç¯„å›²ã‚’è¨­å®š... " @*/ ) ;
 	hr = Joystick->SetProperty( D_DIPROP_RANGE , &diprg.diph ) ;
 	if( hr != D_DI_OK )
 	{
 //		Joystick->Release() ;
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\x31\x59\x57\x65\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x43\x00\x6f\x00\x64\x00\x65\x00\x20\x00\x3a\x00\x30\x00\x78\x00\x25\x00\x30\x00\x38\x00\x78\x00\x00"/*@ L"¸”s Error Code :0x%08x" @*/, hr )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\x31\x59\x57\x65\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x43\x00\x6f\x00\x64\x00\x65\x00\x20\x00\x3a\x00\x30\x00\x78\x00\x25\x00\x30\x00\x38\x00\x78\x00\x00"/*@ L"å¤±æ•— Error Code :0x%08x" @*/, hr )) ;
 //		return D_DIENUM_CONTINUE ;
 	}
 	else
 	{
-		DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"¬Œ÷\n" @*/ ) ;
+		DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"æˆåŠŸ\n" @*/ ) ;
 	}
 
-	// ‚y‚Ì”ÍˆÍ‚ğİ’è
+	// ï¼ºã®ç¯„å›²ã‚’è¨­å®š
 	diprg.diph.dwObj		= D_DIJOFS_Z ;
-	DXST_LOGFILE_ADDUTF16LE( "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x44\x00\x65\x00\x76\x00\x69\x00\x63\x00\x65\x00\x20\x00\x4b\x30\x89\x30\xd6\x53\x97\x5f\x59\x30\x8b\x30\x20\x00\x5a\x00\xf8\x8e\x20\x00\x6e\x30\x24\x50\x6e\x30\xc4\x7b\xf2\x56\x92\x30\x2d\x8a\x9a\x5b\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"DirectInputDevice ‚©‚çæ“¾‚·‚é Z² ‚Ì’l‚Ì”ÍˆÍ‚ğİ’è... " @*/ ) ;
+	DXST_LOGFILE_ADDUTF16LE( "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x44\x00\x65\x00\x76\x00\x69\x00\x63\x00\x65\x00\x20\x00\x4b\x30\x89\x30\xd6\x53\x97\x5f\x59\x30\x8b\x30\x20\x00\x5a\x00\xf8\x8e\x20\x00\x6e\x30\x24\x50\x6e\x30\xc4\x7b\xf2\x56\x92\x30\x2d\x8a\x9a\x5b\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"DirectInputDevice ã‹ã‚‰å–å¾—ã™ã‚‹ Zè»¸ ã®å€¤ã®ç¯„å›²ã‚’è¨­å®š... " @*/ ) ;
 	Joystick->SetProperty( D_DIPROP_RANGE , &diprg.diph ) ;
 	if( hr != D_DI_OK )
 	{
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\x31\x59\x57\x65\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x43\x00\x6f\x00\x64\x00\x65\x00\x20\x00\x3a\x00\x30\x00\x78\x00\x25\x00\x30\x00\x38\x00\x78\x00\x00"/*@ L"¸”s Error Code :0x%08x" @*/, hr )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\x31\x59\x57\x65\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x43\x00\x6f\x00\x64\x00\x65\x00\x20\x00\x3a\x00\x30\x00\x78\x00\x25\x00\x30\x00\x38\x00\x78\x00\x00"/*@ L"å¤±æ•— Error Code :0x%08x" @*/, hr )) ;
 	}
 	else
 	{
-		DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"¬Œ÷\n" @*/ ) ;
+		DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"æˆåŠŸ\n" @*/ ) ;
 	}
 
-	// ‚q‚w‚q‚x‚q‚y‚Ì”ÍˆÍ‚ğİ’è
+	// ï¼²ï¼¸ï¼²ï¼¹ï¼²ï¼ºã®ç¯„å›²ã‚’è¨­å®š
 	diprg.diph.dwObj		= D_DIJOFS_RX ;
-	DXST_LOGFILE_ADDUTF16LE( "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x44\x00\x65\x00\x76\x00\x69\x00\x63\x00\x65\x00\x20\x00\x4b\x30\x89\x30\xd6\x53\x97\x5f\x59\x30\x8b\x30\x20\x00\x52\x00\x78\x00\xf8\x8e\x20\x00\x6e\x30\x24\x50\x6e\x30\xc4\x7b\xf2\x56\x92\x30\x2d\x8a\x9a\x5b\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"DirectInputDevice ‚©‚çæ“¾‚·‚é Rx² ‚Ì’l‚Ì”ÍˆÍ‚ğİ’è... " @*/ ) ;
+	DXST_LOGFILE_ADDUTF16LE( "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x44\x00\x65\x00\x76\x00\x69\x00\x63\x00\x65\x00\x20\x00\x4b\x30\x89\x30\xd6\x53\x97\x5f\x59\x30\x8b\x30\x20\x00\x52\x00\x78\x00\xf8\x8e\x20\x00\x6e\x30\x24\x50\x6e\x30\xc4\x7b\xf2\x56\x92\x30\x2d\x8a\x9a\x5b\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"DirectInputDevice ã‹ã‚‰å–å¾—ã™ã‚‹ Rxè»¸ ã®å€¤ã®ç¯„å›²ã‚’è¨­å®š... " @*/ ) ;
 	Joystick->SetProperty( D_DIPROP_RANGE , &diprg.diph ) ;
 	if( hr != D_DI_OK )
 	{
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\x31\x59\x57\x65\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x43\x00\x6f\x00\x64\x00\x65\x00\x20\x00\x3a\x00\x30\x00\x78\x00\x25\x00\x30\x00\x38\x00\x78\x00\x00"/*@ L"¸”s Error Code :0x%08x" @*/, hr )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\x31\x59\x57\x65\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x43\x00\x6f\x00\x64\x00\x65\x00\x20\x00\x3a\x00\x30\x00\x78\x00\x25\x00\x30\x00\x38\x00\x78\x00\x00"/*@ L"å¤±æ•— Error Code :0x%08x" @*/, hr )) ;
 	}
 	else
 	{
-		DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"¬Œ÷\n" @*/ ) ;
+		DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"æˆåŠŸ\n" @*/ ) ;
 	}
 
 	diprg.diph.dwObj		= D_DIJOFS_RY ;
-	DXST_LOGFILE_ADDUTF16LE( "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x44\x00\x65\x00\x76\x00\x69\x00\x63\x00\x65\x00\x20\x00\x4b\x30\x89\x30\xd6\x53\x97\x5f\x59\x30\x8b\x30\x20\x00\x52\x00\x79\x00\xf8\x8e\x20\x00\x6e\x30\x24\x50\x6e\x30\xc4\x7b\xf2\x56\x92\x30\x2d\x8a\x9a\x5b\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"DirectInputDevice ‚©‚çæ“¾‚·‚é Ry² ‚Ì’l‚Ì”ÍˆÍ‚ğİ’è... " @*/ ) ;
+	DXST_LOGFILE_ADDUTF16LE( "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x44\x00\x65\x00\x76\x00\x69\x00\x63\x00\x65\x00\x20\x00\x4b\x30\x89\x30\xd6\x53\x97\x5f\x59\x30\x8b\x30\x20\x00\x52\x00\x79\x00\xf8\x8e\x20\x00\x6e\x30\x24\x50\x6e\x30\xc4\x7b\xf2\x56\x92\x30\x2d\x8a\x9a\x5b\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"DirectInputDevice ã‹ã‚‰å–å¾—ã™ã‚‹ Ryè»¸ ã®å€¤ã®ç¯„å›²ã‚’è¨­å®š... " @*/ ) ;
 	Joystick->SetProperty( D_DIPROP_RANGE , &diprg.diph ) ;
 	if( hr != D_DI_OK )
 	{
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\x31\x59\x57\x65\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x43\x00\x6f\x00\x64\x00\x65\x00\x20\x00\x3a\x00\x30\x00\x78\x00\x25\x00\x30\x00\x38\x00\x78\x00\x00"/*@ L"¸”s Error Code :0x%08x" @*/, hr )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\x31\x59\x57\x65\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x43\x00\x6f\x00\x64\x00\x65\x00\x20\x00\x3a\x00\x30\x00\x78\x00\x25\x00\x30\x00\x38\x00\x78\x00\x00"/*@ L"å¤±æ•— Error Code :0x%08x" @*/, hr )) ;
 	}
 	else
 	{
-		DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"¬Œ÷\n" @*/ ) ;
+		DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"æˆåŠŸ\n" @*/ ) ;
 	}
 
 	diprg.diph.dwObj		= D_DIJOFS_RZ ;
-	DXST_LOGFILE_ADDUTF16LE( "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x44\x00\x65\x00\x76\x00\x69\x00\x63\x00\x65\x00\x20\x00\x4b\x30\x89\x30\xd6\x53\x97\x5f\x59\x30\x8b\x30\x20\x00\x52\x00\x7a\x00\xf8\x8e\x20\x00\x6e\x30\x24\x50\x6e\x30\xc4\x7b\xf2\x56\x92\x30\x2d\x8a\x9a\x5b\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"DirectInputDevice ‚©‚çæ“¾‚·‚é Rz² ‚Ì’l‚Ì”ÍˆÍ‚ğİ’è... " @*/ ) ;
+	DXST_LOGFILE_ADDUTF16LE( "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x44\x00\x65\x00\x76\x00\x69\x00\x63\x00\x65\x00\x20\x00\x4b\x30\x89\x30\xd6\x53\x97\x5f\x59\x30\x8b\x30\x20\x00\x52\x00\x7a\x00\xf8\x8e\x20\x00\x6e\x30\x24\x50\x6e\x30\xc4\x7b\xf2\x56\x92\x30\x2d\x8a\x9a\x5b\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"DirectInputDevice ã‹ã‚‰å–å¾—ã™ã‚‹ Rzè»¸ ã®å€¤ã®ç¯„å›²ã‚’è¨­å®š... " @*/ ) ;
 	Joystick->SetProperty( D_DIPROP_RANGE , &diprg.diph ) ;
 	if( hr != D_DI_OK )
 	{
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\x31\x59\x57\x65\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x43\x00\x6f\x00\x64\x00\x65\x00\x20\x00\x3a\x00\x30\x00\x78\x00\x25\x00\x30\x00\x38\x00\x78\x00\x00"/*@ L"¸”s Error Code :0x%08x" @*/, hr )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\x31\x59\x57\x65\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x43\x00\x6f\x00\x64\x00\x65\x00\x20\x00\x3a\x00\x30\x00\x78\x00\x25\x00\x30\x00\x38\x00\x78\x00\x00"/*@ L"å¤±æ•— Error Code :0x%08x" @*/, hr )) ;
 	}
 	else
 	{
-		DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"¬Œ÷\n" @*/ ) ;
+		DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"æˆåŠŸ\n" @*/ ) ;
 	}
 
-	// ƒfƒtƒHƒ‹ƒg‚Ìƒfƒbƒhƒ][ƒ“‚ªİ’è‚³‚ê‚Ä‚¢‚È‚©‚Á‚½‚çİ’è‚·‚é
+	// ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®ãƒ‡ãƒƒãƒ‰ã‚¾ãƒ¼ãƒ³ãŒè¨­å®šã•ã‚Œã¦ã„ãªã‹ã£ãŸã‚‰è¨­å®šã™ã‚‹
 	if( InputSysData.EnablePadDefaultDeadZone == FALSE )
 	{
 		InputSysData.EnablePadDefaultDeadZone = TRUE ;
@@ -1419,145 +1419,145 @@ BOOL FAR PASCAL EnumJoypadProc( const D_DIDEVICEINSTANCEW *pdinst , LPVOID /*pvR
 		InputSysData.PadDefaultDeadZoneD = PAD_DEFAULT_DEADZONE_D ;
 	}
 
-	// –³Œøƒ][ƒ“‚ÌƒZƒbƒg
+	// ç„¡åŠ¹ã‚¾ãƒ¼ãƒ³ã®ã‚»ãƒƒãƒˆ
 	pad->DeadZone = InputSysData.PadDefaultDeadZone ;
 	pad->DeadZoneD = InputSysData.PadDefaultDeadZoneD ;
 
-	// ƒ{ƒ^ƒ“‚Ì”‚ğƒZƒbƒg
+	// ãƒœã‚¿ãƒ³ã®æ•°ã‚’ã‚»ãƒƒãƒˆ
 	_MEMSET( &Caps, 0, sizeof( Caps ) ) ;
 	Caps.dwSize = sizeof( Caps ) ;
-	DXST_LOGFILE_ADDUTF16LE( "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x44\x00\x65\x00\x76\x00\x69\x00\x63\x00\x65\x00\x20\x00\x6e\x30\xdc\x30\xbf\x30\xf3\x30\x6e\x30\x70\x65\x92\x30\xd6\x53\x97\x5f\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"DirectInputDevice ‚Ìƒ{ƒ^ƒ“‚Ì”‚ğæ“¾... " @*/ ) ;
+	DXST_LOGFILE_ADDUTF16LE( "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x44\x00\x65\x00\x76\x00\x69\x00\x63\x00\x65\x00\x20\x00\x6e\x30\xdc\x30\xbf\x30\xf3\x30\x6e\x30\x70\x65\x92\x30\xd6\x53\x97\x5f\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"DirectInputDevice ã®ãƒœã‚¿ãƒ³ã®æ•°ã‚’å–å¾—... " @*/ ) ;
 	hr = Joystick->GetCapabilities( &Caps ) ;
 	if( hr != D_DI_OK )
 	{
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\x31\x59\x57\x65\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x43\x00\x6f\x00\x64\x00\x65\x00\x20\x00\x3a\x00\x30\x00\x78\x00\x25\x00\x30\x00\x38\x00\x78\x00\x00"/*@ L"¸”s Error Code :0x%08x" @*/, hr )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\x31\x59\x57\x65\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x43\x00\x6f\x00\x64\x00\x65\x00\x20\x00\x3a\x00\x30\x00\x78\x00\x25\x00\x30\x00\x38\x00\x78\x00\x00"/*@ L"å¤±æ•— Error Code :0x%08x" @*/, hr )) ;
 		DXST_LOGFILE_TABSUB ;
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\x1c\x69\xfa\x51\x57\x30\x5f\x30\x20\x00\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x20\x00\xfe\x5b\xdc\x5f\x65\x51\x9b\x52\xc5\x88\x6e\x7f\x6e\x30\x1d\x52\x1f\x67\x16\x53\x92\x30\x2d\x4e\xad\x65\x57\x30\x7e\x30\x59\x30\x00"/*@ L"ŒŸo‚µ‚½ DirectInput ‘Î‰“ü—Í‘•’u‚Ì‰Šú‰»‚ğ’†’f‚µ‚Ü‚·" @*/ )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\x1c\x69\xfa\x51\x57\x30\x5f\x30\x20\x00\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x20\x00\xfe\x5b\xdc\x5f\x65\x51\x9b\x52\xc5\x88\x6e\x7f\x6e\x30\x1d\x52\x1f\x67\x16\x53\x92\x30\x2d\x4e\xad\x65\x57\x30\x7e\x30\x59\x30\x00"/*@ L"æ¤œå‡ºã—ãŸ DirectInput å¯¾å¿œå…¥åŠ›è£…ç½®ã®åˆæœŸåŒ–ã‚’ä¸­æ–­ã—ã¾ã™" @*/ )) ;
 		Joystick->Release() ;
 		Joystick = NULL ;
 		return D_DIENUM_CONTINUE ;
 	}
 	pad->Buttons = ( int )Caps.dwButtons ;
-	DXST_LOGFILEFMT_ADDUTF16LE(( "\x10\x62\x9f\x52\x00\x30\xdc\x30\xbf\x30\xf3\x30\x6e\x30\x70\x65\x6f\x30\x20\x00\x25\x00\x64\x00\x20\x00\x0b\x50\x67\x30\x59\x30\x00"/*@ L"¬Œ÷@ƒ{ƒ^ƒ“‚Ì”‚Í %d ŒÂ‚Å‚·" @*/, pad->Buttons )) ;
+	DXST_LOGFILEFMT_ADDUTF16LE(( "\x10\x62\x9f\x52\x00\x30\xdc\x30\xbf\x30\xf3\x30\x6e\x30\x70\x65\x6f\x30\x20\x00\x25\x00\x64\x00\x20\x00\x0b\x50\x67\x30\x59\x30\x00"/*@ L"æˆåŠŸã€€ãƒœã‚¿ãƒ³ã®æ•°ã¯ %d å€‹ã§ã™" @*/, pad->Buttons )) ;
 
-	// ‚w‚Ì–³Œøƒ][ƒ“‚ğİ’è
+	// ï¼¸ã®ç„¡åŠ¹ã‚¾ãƒ¼ãƒ³ã‚’è¨­å®š
 	dipdw.diph.dwSize		= sizeof( dipdw ) ;
 	dipdw.diph.dwHeaderSize	= sizeof( dipdw.diph ) ;
 	dipdw.diph.dwObj		= D_DIJOFS_X ;
 	dipdw.diph.dwHow		= D_DIPH_BYOFFSET ;
 	dipdw.dwData			= DEADZONE_DIRECTINPUT( pad->DeadZone ) ;
-	DXST_LOGFILE_ADDUTF16LE( "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x44\x00\x65\x00\x76\x00\x69\x00\x63\x00\x65\x00\x20\x00\x6e\x30\x20\x00\x58\x00\xf8\x8e\x20\x00\x6e\x30\xc7\x30\xc3\x30\xc9\x30\xbe\x30\xfc\x30\xf3\x30\x92\x30\x2d\x8a\x9a\x5b\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"DirectInputDevice ‚Ì X² ‚Ìƒfƒbƒhƒ][ƒ“‚ğİ’è... " @*/ ) ;
+	DXST_LOGFILE_ADDUTF16LE( "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x44\x00\x65\x00\x76\x00\x69\x00\x63\x00\x65\x00\x20\x00\x6e\x30\x20\x00\x58\x00\xf8\x8e\x20\x00\x6e\x30\xc7\x30\xc3\x30\xc9\x30\xbe\x30\xfc\x30\xf3\x30\x92\x30\x2d\x8a\x9a\x5b\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"DirectInputDevice ã® Xè»¸ ã®ãƒ‡ãƒƒãƒ‰ã‚¾ãƒ¼ãƒ³ã‚’è¨­å®š... " @*/ ) ;
 	hr = Joystick->SetProperty( D_DIPROP_DEADZONE , &dipdw.diph ) ;
 	if( hr != D_DI_OK )
 	{
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\x31\x59\x57\x65\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x43\x00\x6f\x00\x64\x00\x65\x00\x20\x00\x3a\x00\x30\x00\x78\x00\x25\x00\x30\x00\x38\x00\x78\x00\x00"/*@ L"¸”s Error Code :0x%08x" @*/, hr )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\x31\x59\x57\x65\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x43\x00\x6f\x00\x64\x00\x65\x00\x20\x00\x3a\x00\x30\x00\x78\x00\x25\x00\x30\x00\x38\x00\x78\x00\x00"/*@ L"å¤±æ•— Error Code :0x%08x" @*/, hr )) ;
 	}
 	else
 	{
-		DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"¬Œ÷\n" @*/ ) ;
+		DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"æˆåŠŸ\n" @*/ ) ;
 	}
 
-	// ‚x‚Ì–³Œøƒ][ƒ“‚ğİ’è
+	// ï¼¹ã®ç„¡åŠ¹ã‚¾ãƒ¼ãƒ³ã‚’è¨­å®š
 	dipdw.diph.dwObj		= D_DIJOFS_Y ;
-	DXST_LOGFILE_ADDUTF16LE( "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x44\x00\x65\x00\x76\x00\x69\x00\x63\x00\x65\x00\x20\x00\x6e\x30\x20\x00\x59\x00\xf8\x8e\x20\x00\x6e\x30\xc7\x30\xc3\x30\xc9\x30\xbe\x30\xfc\x30\xf3\x30\x92\x30\x2d\x8a\x9a\x5b\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"DirectInputDevice ‚Ì Y² ‚Ìƒfƒbƒhƒ][ƒ“‚ğİ’è... " @*/ ) ;
+	DXST_LOGFILE_ADDUTF16LE( "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x44\x00\x65\x00\x76\x00\x69\x00\x63\x00\x65\x00\x20\x00\x6e\x30\x20\x00\x59\x00\xf8\x8e\x20\x00\x6e\x30\xc7\x30\xc3\x30\xc9\x30\xbe\x30\xfc\x30\xf3\x30\x92\x30\x2d\x8a\x9a\x5b\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"DirectInputDevice ã® Yè»¸ ã®ãƒ‡ãƒƒãƒ‰ã‚¾ãƒ¼ãƒ³ã‚’è¨­å®š... " @*/ ) ;
 	hr = Joystick->SetProperty( D_DIPROP_DEADZONE , &dipdw.diph ) ;
 	if( hr != D_DI_OK )
 	{
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\x31\x59\x57\x65\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x43\x00\x6f\x00\x64\x00\x65\x00\x20\x00\x3a\x00\x30\x00\x78\x00\x25\x00\x30\x00\x38\x00\x78\x00\x00"/*@ L"¸”s Error Code :0x%08x" @*/, hr )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\x31\x59\x57\x65\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x43\x00\x6f\x00\x64\x00\x65\x00\x20\x00\x3a\x00\x30\x00\x78\x00\x25\x00\x30\x00\x38\x00\x78\x00\x00"/*@ L"å¤±æ•— Error Code :0x%08x" @*/, hr )) ;
 	}
 	else
 	{
-		DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"¬Œ÷\n" @*/ ) ;
+		DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"æˆåŠŸ\n" @*/ ) ;
 	}
 
-	// ‚y‚Ì–³Œøƒ][ƒ“‚ğİ’è
+	// ï¼ºã®ç„¡åŠ¹ã‚¾ãƒ¼ãƒ³ã‚’è¨­å®š
 	dipdw.diph.dwObj		= D_DIJOFS_Z ;
-	DXST_LOGFILE_ADDUTF16LE( "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x44\x00\x65\x00\x76\x00\x69\x00\x63\x00\x65\x00\x20\x00\x6e\x30\x20\x00\x5a\x00\xf8\x8e\x20\x00\x6e\x30\xc7\x30\xc3\x30\xc9\x30\xbe\x30\xfc\x30\xf3\x30\x92\x30\x2d\x8a\x9a\x5b\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"DirectInputDevice ‚Ì Z² ‚Ìƒfƒbƒhƒ][ƒ“‚ğİ’è... " @*/ ) ;
+	DXST_LOGFILE_ADDUTF16LE( "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x44\x00\x65\x00\x76\x00\x69\x00\x63\x00\x65\x00\x20\x00\x6e\x30\x20\x00\x5a\x00\xf8\x8e\x20\x00\x6e\x30\xc7\x30\xc3\x30\xc9\x30\xbe\x30\xfc\x30\xf3\x30\x92\x30\x2d\x8a\x9a\x5b\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"DirectInputDevice ã® Zè»¸ ã®ãƒ‡ãƒƒãƒ‰ã‚¾ãƒ¼ãƒ³ã‚’è¨­å®š... " @*/ ) ;
 	Joystick->SetProperty( D_DIPROP_DEADZONE , &dipdw.diph ) ;
 	if( hr != D_DI_OK )
 	{
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\x31\x59\x57\x65\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x43\x00\x6f\x00\x64\x00\x65\x00\x20\x00\x3a\x00\x30\x00\x78\x00\x25\x00\x30\x00\x38\x00\x78\x00\x00"/*@ L"¸”s Error Code :0x%08x" @*/, hr )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\x31\x59\x57\x65\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x43\x00\x6f\x00\x64\x00\x65\x00\x20\x00\x3a\x00\x30\x00\x78\x00\x25\x00\x30\x00\x38\x00\x78\x00\x00"/*@ L"å¤±æ•— Error Code :0x%08x" @*/, hr )) ;
 	}
 	else
 	{
-		DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"¬Œ÷\n" @*/ ) ;
+		DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"æˆåŠŸ\n" @*/ ) ;
 	}
 
-	// ‚q‚w‚q‚x‚q‚y‚Ì–³Œøƒ][ƒ“‚ğİ’è
+	// ï¼²ï¼¸ï¼²ï¼¹ï¼²ï¼ºã®ç„¡åŠ¹ã‚¾ãƒ¼ãƒ³ã‚’è¨­å®š
 	dipdw.diph.dwObj		= D_DIJOFS_RX ;
-	DXST_LOGFILE_ADDUTF16LE( "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x44\x00\x65\x00\x76\x00\x69\x00\x63\x00\x65\x00\x20\x00\x6e\x30\x20\x00\x52\x00\x78\x00\xf8\x8e\x20\x00\x6e\x30\xc7\x30\xc3\x30\xc9\x30\xbe\x30\xfc\x30\xf3\x30\x92\x30\x2d\x8a\x9a\x5b\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"DirectInputDevice ‚Ì Rx² ‚Ìƒfƒbƒhƒ][ƒ“‚ğİ’è... " @*/ ) ;
+	DXST_LOGFILE_ADDUTF16LE( "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x44\x00\x65\x00\x76\x00\x69\x00\x63\x00\x65\x00\x20\x00\x6e\x30\x20\x00\x52\x00\x78\x00\xf8\x8e\x20\x00\x6e\x30\xc7\x30\xc3\x30\xc9\x30\xbe\x30\xfc\x30\xf3\x30\x92\x30\x2d\x8a\x9a\x5b\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"DirectInputDevice ã® Rxè»¸ ã®ãƒ‡ãƒƒãƒ‰ã‚¾ãƒ¼ãƒ³ã‚’è¨­å®š... " @*/ ) ;
 	Joystick->SetProperty( D_DIPROP_DEADZONE , &dipdw.diph ) ;
 	if( hr != D_DI_OK )
 	{
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\x31\x59\x57\x65\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x43\x00\x6f\x00\x64\x00\x65\x00\x20\x00\x3a\x00\x30\x00\x78\x00\x25\x00\x30\x00\x38\x00\x78\x00\x00"/*@ L"¸”s Error Code :0x%08x" @*/, hr )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\x31\x59\x57\x65\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x43\x00\x6f\x00\x64\x00\x65\x00\x20\x00\x3a\x00\x30\x00\x78\x00\x25\x00\x30\x00\x38\x00\x78\x00\x00"/*@ L"å¤±æ•— Error Code :0x%08x" @*/, hr )) ;
 	}
 	else
 	{
-		DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"¬Œ÷\n" @*/ ) ;
+		DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"æˆåŠŸ\n" @*/ ) ;
 	}
 
 	dipdw.diph.dwObj		= D_DIJOFS_RY ;
-	DXST_LOGFILE_ADDUTF16LE( "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x44\x00\x65\x00\x76\x00\x69\x00\x63\x00\x65\x00\x20\x00\x6e\x30\x20\x00\x52\x00\x79\x00\xf8\x8e\x20\x00\x6e\x30\xc7\x30\xc3\x30\xc9\x30\xbe\x30\xfc\x30\xf3\x30\x92\x30\x2d\x8a\x9a\x5b\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"DirectInputDevice ‚Ì Ry² ‚Ìƒfƒbƒhƒ][ƒ“‚ğİ’è... " @*/ ) ;
+	DXST_LOGFILE_ADDUTF16LE( "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x44\x00\x65\x00\x76\x00\x69\x00\x63\x00\x65\x00\x20\x00\x6e\x30\x20\x00\x52\x00\x79\x00\xf8\x8e\x20\x00\x6e\x30\xc7\x30\xc3\x30\xc9\x30\xbe\x30\xfc\x30\xf3\x30\x92\x30\x2d\x8a\x9a\x5b\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"DirectInputDevice ã® Ryè»¸ ã®ãƒ‡ãƒƒãƒ‰ã‚¾ãƒ¼ãƒ³ã‚’è¨­å®š... " @*/ ) ;
 	Joystick->SetProperty( D_DIPROP_DEADZONE , &dipdw.diph ) ;
 	if( hr != D_DI_OK )
 	{
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\x31\x59\x57\x65\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x43\x00\x6f\x00\x64\x00\x65\x00\x20\x00\x3a\x00\x30\x00\x78\x00\x25\x00\x30\x00\x38\x00\x78\x00\x00"/*@ L"¸”s Error Code :0x%08x" @*/, hr )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\x31\x59\x57\x65\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x43\x00\x6f\x00\x64\x00\x65\x00\x20\x00\x3a\x00\x30\x00\x78\x00\x25\x00\x30\x00\x38\x00\x78\x00\x00"/*@ L"å¤±æ•— Error Code :0x%08x" @*/, hr )) ;
 	}
 	else
 	{
-		DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"¬Œ÷\n" @*/ ) ;
+		DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"æˆåŠŸ\n" @*/ ) ;
 	}
 
 	dipdw.diph.dwObj		= D_DIJOFS_RZ ;
-	DXST_LOGFILE_ADDUTF16LE( "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x44\x00\x65\x00\x76\x00\x69\x00\x63\x00\x65\x00\x20\x00\x6e\x30\x20\x00\x52\x00\x7a\x00\xf8\x8e\x20\x00\x6e\x30\xc7\x30\xc3\x30\xc9\x30\xbe\x30\xfc\x30\xf3\x30\x92\x30\x2d\x8a\x9a\x5b\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"DirectInputDevice ‚Ì Rz² ‚Ìƒfƒbƒhƒ][ƒ“‚ğİ’è... " @*/ ) ;
+	DXST_LOGFILE_ADDUTF16LE( "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x44\x00\x65\x00\x76\x00\x69\x00\x63\x00\x65\x00\x20\x00\x6e\x30\x20\x00\x52\x00\x7a\x00\xf8\x8e\x20\x00\x6e\x30\xc7\x30\xc3\x30\xc9\x30\xbe\x30\xfc\x30\xf3\x30\x92\x30\x2d\x8a\x9a\x5b\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"DirectInputDevice ã® Rzè»¸ ã®ãƒ‡ãƒƒãƒ‰ã‚¾ãƒ¼ãƒ³ã‚’è¨­å®š... " @*/ ) ;
 	Joystick->SetProperty( D_DIPROP_DEADZONE , &dipdw.diph ) ;
 	if( hr != D_DI_OK )
 	{
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\x31\x59\x57\x65\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x43\x00\x6f\x00\x64\x00\x65\x00\x20\x00\x3a\x00\x30\x00\x78\x00\x25\x00\x30\x00\x38\x00\x78\x00\x00"/*@ L"¸”s Error Code :0x%08x" @*/, hr )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\x31\x59\x57\x65\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x43\x00\x6f\x00\x64\x00\x65\x00\x20\x00\x3a\x00\x30\x00\x78\x00\x25\x00\x30\x00\x38\x00\x78\x00\x00"/*@ L"å¤±æ•— Error Code :0x%08x" @*/, hr )) ;
 	}
 	else
 	{
-		DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"¬Œ÷\n" @*/ ) ;
+		DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"æˆåŠŸ\n" @*/ ) ;
 	}
 
-	// ƒtƒH[ƒXƒtƒF[ƒhƒoƒbƒNƒIƒuƒWƒFƒNƒg‚Ìì¬(PSƒpƒbƒh‘z’è)
+	// ãƒ•ã‚©ãƒ¼ã‚¹ãƒ•ã‚§ãƒ¼ãƒ‰ãƒãƒƒã‚¯ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ä½œæˆ(PSãƒ‘ãƒƒãƒ‰æƒ³å®š)
 	{
 		DWORD dwAxes[2] = { 0/*D_DIJOFS_X*/, 4/*D_DIJOFS_Y*/ } ;
 		LONG lDirection[2] = { 0, 0 } ;
 
 //		Joystick->EnumEffects( EffectEnumCallBack, NULL, D_DIEFT_ALL ) ;
 
-		// ‰E‘¤ƒ‚[ƒ^[—p(èŒ³‚Ìƒpƒbƒh‚Å‚Í‰½ŒÌ‚© GUID_SINE ƒGƒtƒFƒNƒg‚Í‰Eƒ‚[ƒ^[‚É‚È‚Á‚Ä‚½)
+		// å³å´ãƒ¢ãƒ¼ã‚¿ãƒ¼ç”¨(æ‰‹å…ƒã®ãƒ‘ãƒƒãƒ‰ã§ã¯ä½•æ•…ã‹ GUID_SINE ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã¯å³ãƒ¢ãƒ¼ã‚¿ãƒ¼ã«ãªã£ã¦ãŸ)
 		{
-			D_DIPERIODIC diPeriodic ;	// ƒ^ƒCƒvŒÅ—Lƒpƒ‰ƒ[ƒ^
-			D_DIENVELOPE diEnvelope ;	// ƒGƒ“ƒxƒ[ƒv
-			D_DIEFFECT diEffect ;		// ”Ä—pƒpƒ‰ƒ[ƒ^
+			D_DIPERIODIC diPeriodic ;	// ã‚¿ã‚¤ãƒ—å›ºæœ‰ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+			D_DIENVELOPE diEnvelope ;	// ã‚¨ãƒ³ãƒ™ãƒ­ãƒ¼ãƒ—
+			D_DIEFFECT diEffect ;		// æ±ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 
 			_MEMSET( &diEffect, 0, sizeof( diEffect ) ) ;
 			_MEMSET( &diEnvelope, 0, sizeof( diEnvelope ) ) ;
 			_MEMSET( &diPeriodic, 0, sizeof( diPeriodic ) ) ;
 
-			// Ÿ‚Éƒ^ƒCƒvŒÅ—Lƒpƒ‰ƒ[ƒ^‚ğ‰Šú‰»‚·‚éBŸ‚Ì—á‚Ì‚æ‚¤‚È’l‚ğİ’è‚·‚é‚ÆA1/20 •büŠú‚Ì‘S—ÍüŠú“IƒGƒtƒFƒNƒg‚ğ¶¬‚·‚é‚±‚Æ‚É‚È‚éB
+			// æ¬¡ã«ã‚¿ã‚¤ãƒ—å›ºæœ‰ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’åˆæœŸåŒ–ã™ã‚‹ã€‚æ¬¡ã®ä¾‹ã®ã‚ˆã†ãªå€¤ã‚’è¨­å®šã™ã‚‹ã¨ã€1/20 ç§’å‘¨æœŸã®å…¨åŠ›å‘¨æœŸçš„ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’ç”Ÿæˆã™ã‚‹ã“ã¨ã«ãªã‚‹ã€‚
 
 			diPeriodic.dwMagnitude	= D_DI_FFNOMINALMAX ;
 			diPeriodic.lOffset		= 0;
 			diPeriodic.dwPhase		= 0;
 			diPeriodic.dwPeriod		= (DWORD) (1.5 * D_DI_SECONDS);
-			// ƒ`ƒF[ƒ“ƒ\[‚Ìƒ‚[ƒ^[‚ªn“®‚µ‚æ‚¤‚Æ‚µ‚ÄA’Z‚¢ŠÔŠP‚Ì‚æ‚¤‚È‘›‰¹‚ğo‚µAŸ‘æ‚É‚»‚ê‚ª~‚ñ‚Å‚¢‚­‚Æ‚¢‚¤ƒGƒtƒFƒNƒg‚ğ“¾‚é‚½‚ß‚ÉAƒGƒ“ƒxƒ[ƒv‚É”¼•bŠÔ‚ÌƒAƒ^ƒbƒNŠÔ‚Æ 1 •bŠÔ‚ÌƒtƒF[ƒhŠÔ‚ğİ’è‚·‚éB‚±‚¤‚µ‚ÄA’ZŠúŠÔ‚ÌˆÛŠúŠÔ’l‚ª“¾‚ç‚ê‚éB
+			// ãƒã‚§ãƒ¼ãƒ³ã‚½ãƒ¼ã®ãƒ¢ãƒ¼ã‚¿ãƒ¼ãŒå§‹å‹•ã—ã‚ˆã†ã¨ã—ã¦ã€çŸ­ã„é–“å’³ã®ã‚ˆã†ãªé¨’éŸ³ã‚’å‡ºã—ã€æ¬¡ç¬¬ã«ãã‚ŒãŒæ­¢ã‚“ã§ã„ãã¨ã„ã†ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’å¾—ã‚‹ãŸã‚ã«ã€ã‚¨ãƒ³ãƒ™ãƒ­ãƒ¼ãƒ—ã«åŠç§’é–“ã®ã‚¢ã‚¿ãƒƒã‚¯æ™‚é–“ã¨ 1 ç§’é–“ã®ãƒ•ã‚§ãƒ¼ãƒ‰æ™‚é–“ã‚’è¨­å®šã™ã‚‹ã€‚ã“ã†ã—ã¦ã€çŸ­æœŸé–“ã®ç¶­æŒæœŸé–“å€¤ãŒå¾—ã‚‰ã‚Œã‚‹ã€‚
 
 			diEnvelope.dwSize			= sizeof(D_DIENVELOPE);
 			diEnvelope.dwAttackLevel	= 0;
 			diEnvelope.dwAttackTime		= (DWORD) (0.5 * D_DI_SECONDS);
 			diEnvelope.dwFadeLevel		= 0;
 			diEnvelope.dwFadeTime		= (DWORD) (1.0 * D_DI_SECONDS);
-			// Ÿ‚ÉAŠî–{“IƒGƒtƒFƒNƒgƒpƒ‰ƒ[ƒ^‚ğİ’è‚·‚éB‚±‚ê‚ç‚Ìƒpƒ‰ƒ[ƒ^‚É‚ÍA•ûŒü‚ÆƒfƒoƒCƒX ƒIƒuƒWƒFƒNƒg (ƒ{ƒ^ƒ“‚Æ²) ‚Ì¯•Ê•û–@‚ğŒˆ’è‚·‚éƒtƒ‰ƒOAƒGƒtƒFƒNƒg‚ÌƒTƒ“ƒvƒ‹üŠú‚ÆƒQƒCƒ“A‚¨‚æ‚Ñ‚³‚«‚Ù‚Ç€”õ‚µ‚½‘¼‚Ìƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^‚ªŠÜ‚Ü‚ê‚éB‚³‚ç‚ÉAƒWƒ‡ƒCƒXƒeƒBƒbƒN‚Ì”­Ëƒ{ƒ^ƒ“‚ÉƒGƒtƒFƒNƒg‚ğŠ„‚è•t‚¯‚ÄAƒ{ƒ^ƒ“‚ğ‰Ÿ‚¹‚ÎƒGƒtƒFƒNƒg‚ª©“®“I‚ÉÄ¶‚·‚é‚æ‚¤‚É‚·‚éB
+			// æ¬¡ã«ã€åŸºæœ¬çš„ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’è¨­å®šã™ã‚‹ã€‚ã“ã‚Œã‚‰ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã«ã¯ã€æ–¹å‘ã¨ãƒ‡ãƒã‚¤ã‚¹ ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ (ãƒœã‚¿ãƒ³ã¨è»¸) ã®è­˜åˆ¥æ–¹æ³•ã‚’æ±ºå®šã™ã‚‹ãƒ•ãƒ©ã‚°ã€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®ã‚µãƒ³ãƒ—ãƒ«å‘¨æœŸã¨ã‚²ã‚¤ãƒ³ã€ãŠã‚ˆã³ã•ãã»ã©æº–å‚™ã—ãŸä»–ã®ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿ãŒå«ã¾ã‚Œã‚‹ã€‚ã•ã‚‰ã«ã€ã‚¸ãƒ§ã‚¤ã‚¹ãƒ†ã‚£ãƒƒã‚¯ã®ç™ºå°„ãƒœã‚¿ãƒ³ã«ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’å‰²ã‚Šä»˜ã‘ã¦ã€ãƒœã‚¿ãƒ³ã‚’æŠ¼ã›ã°ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãŒè‡ªå‹•çš„ã«å†ç”Ÿã™ã‚‹ã‚ˆã†ã«ã™ã‚‹ã€‚
 
 			diEffect.dwSize						= sizeof(D_DIEFFECT);
 			diEffect.dwFlags					= D_DIEFF_POLAR | D_DIEFF_OBJECTOFFSETS;
 			diEffect.dwDuration					= INFINITE ;
  
-			diEffect.dwSamplePeriod				= 0;               // ƒfƒtƒHƒ‹ƒg’l
-			diEffect.dwGain						= D_DI_FFNOMINALMAX;         // ƒXƒP[ƒŠƒ“ƒO‚È‚µ
+			diEffect.dwSamplePeriod				= 0;               // ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå€¤
+			diEffect.dwGain						= D_DI_FFNOMINALMAX;         // ã‚¹ã‚±ãƒ¼ãƒªãƒ³ã‚°ãªã—
 			diEffect.dwTriggerButton			= D_DIEB_NOTRIGGER ; // D_DIJOFS_BUTTON( 0 );
 			diEffect.dwTriggerRepeatInterval	= 0;
 			diEffect.cAxes						= 2;
@@ -1566,29 +1566,29 @@ BOOL FAR PASCAL EnumJoypadProc( const D_DIDEVICEINSTANCEW *pdinst , LPVOID /*pvR
 			diEffect.lpEnvelope					= &diEnvelope;
 			diEffect.cbTypeSpecificParams		= sizeof(diPeriodic);
 			diEffect.lpvTypeSpecificParams		= &diPeriodic;
-			// ƒZƒbƒgƒAƒbƒv‚Í‚±‚±‚Ü‚ÅB‚â‚Á‚ÆƒGƒtƒFƒNƒg‚ğ¶¬‚Å‚«‚éB
+			// ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã¯ã“ã“ã¾ã§ã€‚ã‚„ã£ã¨ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’ç”Ÿæˆã§ãã‚‹ã€‚
 
 			pad->Effect[ DINPUTPAD_MOTOR_RIGHT ].PF.DIEffect = NULL ;
 			if( InputSysData.NoUseVibrationFlag == FALSE )
 			{
-				DXST_LOGFILE_ADDUTF16LE( "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x44\x00\x65\x00\x76\x00\x69\x00\x63\x00\x65\x00\x20\x00\x6e\x30\x20\x00\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x45\x00\x66\x00\x66\x00\x65\x00\x63\x00\x74\x00\x20\x00\x4e\x00\x6f\x00\x2e\x00\x30\x00\x20\x00\x92\x30\x5c\x4f\x10\x62\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"DirectInputDevice ‚Ì DirectInputEffect No.0 ‚ğì¬... " @*/ ) ;
+				DXST_LOGFILE_ADDUTF16LE( "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x44\x00\x65\x00\x76\x00\x69\x00\x63\x00\x65\x00\x20\x00\x6e\x30\x20\x00\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x45\x00\x66\x00\x66\x00\x65\x00\x63\x00\x74\x00\x20\x00\x4e\x00\x6f\x00\x2e\x00\x30\x00\x20\x00\x92\x30\x5c\x4f\x10\x62\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"DirectInputDevice ã® DirectInputEffect No.0 ã‚’ä½œæˆ... " @*/ ) ;
 				hr = Joystick->CreateEffect(
-								 GUID_SINE,     // —ñ‹“‚©‚ç‚Ì GUID
-								 &diEffect,      // ƒf[ƒ^‚ÌêŠ
-								 &pad->Effect[ DINPUTPAD_MOTOR_RIGHT ].PF.DIEffect,  // ƒCƒ“ƒ^[ƒtƒFƒCƒX ƒ|ƒCƒ“ƒ^‚ğ’u‚­êŠ
-								 NULL ) ;          // W‡‰»‚È‚µ
+								 GUID_SINE,     // åˆ—æŒ™ã‹ã‚‰ã® GUID
+								 &diEffect,      // ãƒ‡ãƒ¼ã‚¿ã®å ´æ‰€
+								 &pad->Effect[ DINPUTPAD_MOTOR_RIGHT ].PF.DIEffect,  // ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ã‚¤ã‚¹ ãƒã‚¤ãƒ³ã‚¿ã‚’ç½®ãå ´æ‰€
+								 NULL ) ;          // é›†åˆåŒ–ãªã—
 				if( hr != D_DI_OK )
 				{
-					DXST_LOGFILEFMT_ADDUTF16LE(( "\x31\x59\x57\x65\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x43\x00\x6f\x00\x64\x00\x65\x00\x20\x00\x3a\x00\x30\x00\x78\x00\x25\x00\x30\x00\x38\x00\x78\x00\x00"/*@ L"¸”s Error Code :0x%08x" @*/, hr )) ;
+					DXST_LOGFILEFMT_ADDUTF16LE(( "\x31\x59\x57\x65\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x43\x00\x6f\x00\x64\x00\x65\x00\x20\x00\x3a\x00\x30\x00\x78\x00\x25\x00\x30\x00\x38\x00\x78\x00\x00"/*@ L"å¤±æ•— Error Code :0x%08x" @*/, hr )) ;
 				}
 				else
 				{
-					DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"¬Œ÷\n" @*/ ) ;
+					DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"æˆåŠŸ\n" @*/ ) ;
 				}
 			}
 		}
 
-		// ¶‘¤ƒ‚[ƒ^[İ’è(èŒ³‚Ìƒpƒbƒh‚Å‚Í‰½ŒÌ‚© GUID_CONSTANTFORCE ƒGƒtƒFƒNƒg‚Í‰Eƒ‚[ƒ^[‚É‚È‚Á‚Ä‚½)
+		// å·¦å´ãƒ¢ãƒ¼ã‚¿ãƒ¼è¨­å®š(æ‰‹å…ƒã®ãƒ‘ãƒƒãƒ‰ã§ã¯ä½•æ•…ã‹ GUID_CONSTANTFORCE ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã¯å³ãƒ¢ãƒ¼ã‚¿ãƒ¼ã«ãªã£ã¦ãŸ)
 		{
 			DWORD    rgdwAxes[2] = { 0/*D_DIJOFS_X*/, 4/*D_DIJOFS_Y*/ };
 			LONG     rglDirection[2] = { 0, 0 };
@@ -1614,25 +1614,25 @@ BOOL FAR PASCAL EnumJoypadProc( const D_DIDEVICEINSTANCEW *pdinst , LPVOID /*pvR
 			pad->Effect[ DINPUTPAD_MOTOR_LEFT ].PF.DIEffect = NULL ;
 			if( InputSysData.NoUseVibrationFlag == FALSE )
 			{
-				DXST_LOGFILE_ADDUTF16LE( "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x44\x00\x65\x00\x76\x00\x69\x00\x63\x00\x65\x00\x20\x00\x6e\x30\x20\x00\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x45\x00\x66\x00\x66\x00\x65\x00\x63\x00\x74\x00\x20\x00\x4e\x00\x6f\x00\x2e\x00\x31\x00\x20\x00\x92\x30\x5c\x4f\x10\x62\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"DirectInputDevice ‚Ì DirectInputEffect No.1 ‚ğì¬... " @*/ ) ;
+				DXST_LOGFILE_ADDUTF16LE( "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x44\x00\x65\x00\x76\x00\x69\x00\x63\x00\x65\x00\x20\x00\x6e\x30\x20\x00\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x45\x00\x66\x00\x66\x00\x65\x00\x63\x00\x74\x00\x20\x00\x4e\x00\x6f\x00\x2e\x00\x31\x00\x20\x00\x92\x30\x5c\x4f\x10\x62\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"DirectInputDevice ã® DirectInputEffect No.1 ã‚’ä½œæˆ... " @*/ ) ;
 				hr = Joystick->CreateEffect(
-								 GUID_CONSTANTFORCE,	// —ñ‹“‚©‚ç‚Ì GUID
-								 &eff,					// ƒf[ƒ^‚ÌêŠ
-								 &pad->Effect[ DINPUTPAD_MOTOR_LEFT ].PF.DIEffect,  // ƒCƒ“ƒ^[ƒtƒFƒCƒX ƒ|ƒCƒ“ƒ^‚ğ’u‚­êŠ
-								 NULL					// W‡‰»‚È‚µ
+								 GUID_CONSTANTFORCE,	// åˆ—æŒ™ã‹ã‚‰ã® GUID
+								 &eff,					// ãƒ‡ãƒ¼ã‚¿ã®å ´æ‰€
+								 &pad->Effect[ DINPUTPAD_MOTOR_LEFT ].PF.DIEffect,  // ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ã‚¤ã‚¹ ãƒã‚¤ãƒ³ã‚¿ã‚’ç½®ãå ´æ‰€
+								 NULL					// é›†åˆåŒ–ãªã—
 				) ;
 				if( hr != D_DI_OK )
 				{
-					DXST_LOGFILEFMT_ADDUTF16LE(( "\x31\x59\x57\x65\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x43\x00\x6f\x00\x64\x00\x65\x00\x20\x00\x3a\x00\x30\x00\x78\x00\x25\x00\x30\x00\x38\x00\x78\x00\x00"/*@ L"¸”s Error Code :0x%08x" @*/, hr )) ;
+					DXST_LOGFILEFMT_ADDUTF16LE(( "\x31\x59\x57\x65\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x43\x00\x6f\x00\x64\x00\x65\x00\x20\x00\x3a\x00\x30\x00\x78\x00\x25\x00\x30\x00\x38\x00\x78\x00\x00"/*@ L"å¤±æ•— Error Code :0x%08x" @*/, hr )) ;
 				}
 				else
 				{
-					DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"¬Œ÷\n" @*/ ) ;
+					DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"æˆåŠŸ\n" @*/ ) ;
 				}
 			}
 		}
 
-		// U“®ŠÖŒW‚Ìİ’è‚Ì‰Šú‰»‚ğs‚¤
+		// æŒ¯å‹•é–¢ä¿‚ã®è¨­å®šã®åˆæœŸåŒ–ã‚’è¡Œã†
 		for( i = 0 ; i < DINPUTPAD_MOTOR_NUM ; i ++ )
 		{
 			pad->Effect[ i ].PlayFlag  = FALSE ;
@@ -1651,90 +1651,90 @@ BOOL FAR PASCAL EnumJoypadProc( const D_DIDEVICEINSTANCEW *pdinst , LPVOID /*pvR
 //		pad->EffectPlayStateRight	= FALSE ;
 	}
 
-	// •Ï‰»’Ê’m—p‚ÌƒCƒxƒ“ƒg‚ğì¬EƒAƒ^ƒbƒ`‚·‚é
-	DXST_LOGFILE_ADDUTF16LE( "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x44\x00\x65\x00\x76\x00\x69\x00\x63\x00\x65\x00\x20\x00\x6e\x30\x1a\x90\xe5\x77\xe6\x51\x06\x74\x28\x75\x6e\x30\x20\x00\x45\x00\x76\x00\x65\x00\x6e\x00\x74\x00\x20\x00\x92\x30\x5c\x4f\x10\x62\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"DirectInputDevice ‚Ì’Ê’mˆ——p‚Ì Event ‚ğì¬... " @*/ ) ;
+	// å¤‰åŒ–é€šçŸ¥ç”¨ã®ã‚¤ãƒ™ãƒ³ãƒˆã‚’ä½œæˆãƒ»ã‚¢ã‚¿ãƒƒãƒã™ã‚‹
+	DXST_LOGFILE_ADDUTF16LE( "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x44\x00\x65\x00\x76\x00\x69\x00\x63\x00\x65\x00\x20\x00\x6e\x30\x1a\x90\xe5\x77\xe6\x51\x06\x74\x28\x75\x6e\x30\x20\x00\x45\x00\x76\x00\x65\x00\x6e\x00\x74\x00\x20\x00\x92\x30\x5c\x4f\x10\x62\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"DirectInputDevice ã®é€šçŸ¥å‡¦ç†ç”¨ã® Event ã‚’ä½œæˆ... " @*/ ) ;
 	Event = WinAPIData.Win32Func.CreateEventAFunc( NULL, TRUE, FALSE, NULL ) ;
 	if( Event == NULL )
 	{
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\x31\x59\x57\x65\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x43\x00\x6f\x00\x64\x00\x65\x00\x20\x00\x3a\x00\x30\x00\x78\x00\x25\x00\x30\x00\x38\x00\x78\x00\x00"/*@ L"¸”s Error Code :0x%08x" @*/, hr )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\x31\x59\x57\x65\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x43\x00\x6f\x00\x64\x00\x65\x00\x20\x00\x3a\x00\x30\x00\x78\x00\x25\x00\x30\x00\x38\x00\x78\x00\x00"/*@ L"å¤±æ•— Error Code :0x%08x" @*/, hr )) ;
 		DXST_LOGFILE_TABSUB ;
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\x1c\x69\xfa\x51\x57\x30\x5f\x30\x20\x00\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x20\x00\xfe\x5b\xdc\x5f\x65\x51\x9b\x52\xc5\x88\x6e\x7f\x6e\x30\x1d\x52\x1f\x67\x16\x53\x92\x30\x2d\x4e\xad\x65\x57\x30\x7e\x30\x59\x30\x00"/*@ L"ŒŸo‚µ‚½ DirectInput ‘Î‰“ü—Í‘•’u‚Ì‰Šú‰»‚ğ’†’f‚µ‚Ü‚·" @*/ )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\x1c\x69\xfa\x51\x57\x30\x5f\x30\x20\x00\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x20\x00\xfe\x5b\xdc\x5f\x65\x51\x9b\x52\xc5\x88\x6e\x7f\x6e\x30\x1d\x52\x1f\x67\x16\x53\x92\x30\x2d\x4e\xad\x65\x57\x30\x7e\x30\x59\x30\x00"/*@ L"æ¤œå‡ºã—ãŸ DirectInput å¯¾å¿œå…¥åŠ›è£…ç½®ã®åˆæœŸåŒ–ã‚’ä¸­æ–­ã—ã¾ã™" @*/ )) ;
 		Joystick->Release() ;
 		Joystick = NULL ;
 		return D_DIENUM_CONTINUE ;
 	}
-	DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"¬Œ÷\n" @*/ ) ;
+	DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"æˆåŠŸ\n" @*/ ) ;
 
-	DXST_LOGFILE_ADDUTF16LE( "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x44\x00\x65\x00\x76\x00\x69\x00\x63\x00\x65\x00\x20\x00\x6e\x30\x1a\x90\xe5\x77\xe6\x51\x06\x74\x28\x75\x6e\x30\x20\x00\x45\x00\x76\x00\x65\x00\x6e\x00\x74\x00\x20\x00\x92\x30\x20\x00\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x44\x00\x65\x00\x76\x00\x69\x00\x63\x00\x65\x00\x20\x00\x6b\x30\x2d\x8a\x9a\x5b\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"DirectInputDevice ‚Ì’Ê’mˆ——p‚Ì Event ‚ğ DirectInputDevice ‚Éİ’è... " @*/ ) ;
+	DXST_LOGFILE_ADDUTF16LE( "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x44\x00\x65\x00\x76\x00\x69\x00\x63\x00\x65\x00\x20\x00\x6e\x30\x1a\x90\xe5\x77\xe6\x51\x06\x74\x28\x75\x6e\x30\x20\x00\x45\x00\x76\x00\x65\x00\x6e\x00\x74\x00\x20\x00\x92\x30\x20\x00\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x44\x00\x65\x00\x76\x00\x69\x00\x63\x00\x65\x00\x20\x00\x6b\x30\x2d\x8a\x9a\x5b\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"DirectInputDevice ã®é€šçŸ¥å‡¦ç†ç”¨ã® Event ã‚’ DirectInputDevice ã«è¨­å®š... " @*/ ) ;
 	hr = Joystick->SetEventNotification( Event ) ;
 	if( hr != D_DI_POLLEDDEVICE && hr != D_DI_OK )
 	{
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\x31\x59\x57\x65\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x43\x00\x6f\x00\x64\x00\x65\x00\x20\x00\x3a\x00\x30\x00\x78\x00\x25\x00\x30\x00\x38\x00\x78\x00\x00"/*@ L"¸”s Error Code :0x%08x" @*/, hr )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\x31\x59\x57\x65\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x43\x00\x6f\x00\x64\x00\x65\x00\x20\x00\x3a\x00\x30\x00\x78\x00\x25\x00\x30\x00\x38\x00\x78\x00\x00"/*@ L"å¤±æ•— Error Code :0x%08x" @*/, hr )) ;
 		DXST_LOGFILE_TABSUB ;
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\x1c\x69\xfa\x51\x57\x30\x5f\x30\x20\x00\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x20\x00\xfe\x5b\xdc\x5f\x65\x51\x9b\x52\xc5\x88\x6e\x7f\x6e\x30\x1d\x52\x1f\x67\x16\x53\x92\x30\x2d\x4e\xad\x65\x57\x30\x7e\x30\x59\x30\x00"/*@ L"ŒŸo‚µ‚½ DirectInput ‘Î‰“ü—Í‘•’u‚Ì‰Šú‰»‚ğ’†’f‚µ‚Ü‚·" @*/ )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\x1c\x69\xfa\x51\x57\x30\x5f\x30\x20\x00\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x20\x00\xfe\x5b\xdc\x5f\x65\x51\x9b\x52\xc5\x88\x6e\x7f\x6e\x30\x1d\x52\x1f\x67\x16\x53\x92\x30\x2d\x4e\xad\x65\x57\x30\x7e\x30\x59\x30\x00"/*@ L"æ¤œå‡ºã—ãŸ DirectInput å¯¾å¿œå…¥åŠ›è£…ç½®ã®åˆæœŸåŒ–ã‚’ä¸­æ–­ã—ã¾ã™" @*/ )) ;
 		Joystick->Release() ;
 		Joystick = NULL ;
 		return D_DIENUM_CONTINUE ;
 	}
-	DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"¬Œ÷\n" @*/ ) ;
+	DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"æˆåŠŸ\n" @*/ ) ;
 
-	// ƒfƒoƒCƒX‚ÌƒAƒNƒZƒXŒ ‚ğæ“¾‚·‚é
-	DXST_LOGFILE_ADDUTF16LE(  "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x44\x00\x65\x00\x76\x00\x69\x00\x63\x00\x65\x00\x20\x00\x6e\x30\xa2\x30\xaf\x30\xbb\x30\xb9\x30\x29\x6a\x92\x30\xd6\x53\x97\x5f\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"DirectInputDevice ‚ÌƒAƒNƒZƒXŒ ‚ğæ“¾... " @*/ ) ;
+	// ãƒ‡ãƒã‚¤ã‚¹ã®ã‚¢ã‚¯ã‚»ã‚¹æ¨©ã‚’å–å¾—ã™ã‚‹
+	DXST_LOGFILE_ADDUTF16LE(  "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x44\x00\x65\x00\x76\x00\x69\x00\x63\x00\x65\x00\x20\x00\x6e\x30\xa2\x30\xaf\x30\xbb\x30\xb9\x30\x29\x6a\x92\x30\xd6\x53\x97\x5f\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"DirectInputDevice ã®ã‚¢ã‚¯ã‚»ã‚¹æ¨©ã‚’å–å¾—... " @*/ ) ;
 	hr = Joystick->Acquire() ;
 	if( hr != D_DI_OK )
 	{
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\x31\x59\x57\x65\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x43\x00\x6f\x00\x64\x00\x65\x00\x20\x00\x3a\x00\x30\x00\x78\x00\x25\x00\x30\x00\x38\x00\x78\x00\x00"/*@ L"¸”s Error Code :0x%08x" @*/, hr )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\x31\x59\x57\x65\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x43\x00\x6f\x00\x64\x00\x65\x00\x20\x00\x3a\x00\x30\x00\x78\x00\x25\x00\x30\x00\x38\x00\x78\x00\x00"/*@ L"å¤±æ•— Error Code :0x%08x" @*/, hr )) ;
 
-		// ƒfƒoƒCƒX‚Ìæ“¾‚É¸”s‚µ‚½‚ç‹¦’²ƒŒƒxƒ‹‚ğã‚­‚µ‚ÄÄ“x‚·
-		DXST_LOGFILE_ADDUTF16LE(  "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x44\x00\x65\x00\x76\x00\x69\x00\x63\x00\x65\x00\x20\x00\x6e\x30\x54\x53\xbf\x8a\xec\x30\xd9\x30\xeb\x30\x92\x30\x20\x00\x44\x00\x49\x00\x53\x00\x43\x00\x4c\x00\x5f\x00\x42\x00\x41\x00\x43\x00\x4b\x00\x47\x00\x52\x00\x4f\x00\x55\x00\x4e\x00\x44\x00\x20\x00\x7c\x00\x20\x00\x44\x00\x49\x00\x53\x00\x43\x00\x4c\x00\x5f\x00\x4e\x00\x4f\x00\x4e\x00\x45\x00\x58\x00\x43\x00\x4c\x00\x55\x00\x53\x00\x49\x00\x56\x00\x45\x00\x20\x00\x6b\x30\x09\x59\xf4\x66\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"DirectInputDevice ‚Ì‹¦’²ƒŒƒxƒ‹‚ğ DISCL_BACKGROUND | DISCL_NONEXCLUSIVE ‚É•ÏX... " @*/ ) ;
+		// ãƒ‡ãƒã‚¤ã‚¹ã®å–å¾—ã«å¤±æ•—ã—ãŸã‚‰å”èª¿ãƒ¬ãƒ™ãƒ«ã‚’å¼±ãã—ã¦å†åº¦è©¦ã™
+		DXST_LOGFILE_ADDUTF16LE(  "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x44\x00\x65\x00\x76\x00\x69\x00\x63\x00\x65\x00\x20\x00\x6e\x30\x54\x53\xbf\x8a\xec\x30\xd9\x30\xeb\x30\x92\x30\x20\x00\x44\x00\x49\x00\x53\x00\x43\x00\x4c\x00\x5f\x00\x42\x00\x41\x00\x43\x00\x4b\x00\x47\x00\x52\x00\x4f\x00\x55\x00\x4e\x00\x44\x00\x20\x00\x7c\x00\x20\x00\x44\x00\x49\x00\x53\x00\x43\x00\x4c\x00\x5f\x00\x4e\x00\x4f\x00\x4e\x00\x45\x00\x58\x00\x43\x00\x4c\x00\x55\x00\x53\x00\x49\x00\x56\x00\x45\x00\x20\x00\x6b\x30\x09\x59\xf4\x66\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"DirectInputDevice ã®å”èª¿ãƒ¬ãƒ™ãƒ«ã‚’ DISCL_BACKGROUND | DISCL_NONEXCLUSIVE ã«å¤‰æ›´... " @*/ ) ;
 		hr = Joystick->SetCooperativeLevel( NS_GetMainWindowHandle(), D_DISCL_BACKGROUND | D_DISCL_NONEXCLUSIVE ) ;
 		if( hr != D_DI_OK )
 		{
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\x31\x59\x57\x65\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x43\x00\x6f\x00\x64\x00\x65\x00\x20\x00\x3a\x00\x30\x00\x78\x00\x25\x00\x30\x00\x38\x00\x78\x00\x00"/*@ L"¸”s Error Code :0x%08x" @*/, hr )) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\x31\x59\x57\x65\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x43\x00\x6f\x00\x64\x00\x65\x00\x20\x00\x3a\x00\x30\x00\x78\x00\x25\x00\x30\x00\x38\x00\x78\x00\x00"/*@ L"å¤±æ•— Error Code :0x%08x" @*/, hr )) ;
 			DXST_LOGFILE_TABSUB ;
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\x1c\x69\xfa\x51\x57\x30\x5f\x30\x20\x00\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x20\x00\xfe\x5b\xdc\x5f\x65\x51\x9b\x52\xc5\x88\x6e\x7f\x6e\x30\x1d\x52\x1f\x67\x16\x53\x92\x30\x2d\x4e\xad\x65\x57\x30\x7e\x30\x59\x30\x00"/*@ L"ŒŸo‚µ‚½ DirectInput ‘Î‰“ü—Í‘•’u‚Ì‰Šú‰»‚ğ’†’f‚µ‚Ü‚·" @*/ )) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\x1c\x69\xfa\x51\x57\x30\x5f\x30\x20\x00\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x20\x00\xfe\x5b\xdc\x5f\x65\x51\x9b\x52\xc5\x88\x6e\x7f\x6e\x30\x1d\x52\x1f\x67\x16\x53\x92\x30\x2d\x4e\xad\x65\x57\x30\x7e\x30\x59\x30\x00"/*@ L"æ¤œå‡ºã—ãŸ DirectInput å¯¾å¿œå…¥åŠ›è£…ç½®ã®åˆæœŸåŒ–ã‚’ä¸­æ–­ã—ã¾ã™" @*/ )) ;
 			Joystick->Release() ;
 			Joystick = NULL ;
 			return D_DIENUM_CONTINUE ;
 		}
-		DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"¬Œ÷\n" @*/ ) ;
+		DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"æˆåŠŸ\n" @*/ ) ;
 
-		DXST_LOGFILE_ADDUTF16LE(  "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x44\x00\x65\x00\x76\x00\x69\x00\x63\x00\x65\x00\x20\x00\x6e\x30\xa2\x30\xaf\x30\xbb\x30\xb9\x30\x29\x6a\x92\x30\xd6\x53\x97\x5f\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"DirectInputDevice ‚ÌƒAƒNƒZƒXŒ ‚ğæ“¾... " @*/ ) ;
+		DXST_LOGFILE_ADDUTF16LE(  "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x44\x00\x65\x00\x76\x00\x69\x00\x63\x00\x65\x00\x20\x00\x6e\x30\xa2\x30\xaf\x30\xbb\x30\xb9\x30\x29\x6a\x92\x30\xd6\x53\x97\x5f\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"DirectInputDevice ã®ã‚¢ã‚¯ã‚»ã‚¹æ¨©ã‚’å–å¾—... " @*/ ) ;
 		hr = Joystick->Acquire() ;
 		if( hr != D_DI_OK )
 		{
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\x31\x59\x57\x65\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x43\x00\x6f\x00\x64\x00\x65\x00\x20\x00\x3a\x00\x30\x00\x78\x00\x25\x00\x30\x00\x38\x00\x78\x00\x00"/*@ L"¸”s Error Code :0x%08x" @*/, hr )) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\x31\x59\x57\x65\x20\x00\x45\x00\x72\x00\x72\x00\x6f\x00\x72\x00\x20\x00\x43\x00\x6f\x00\x64\x00\x65\x00\x20\x00\x3a\x00\x30\x00\x78\x00\x25\x00\x30\x00\x38\x00\x78\x00\x00"/*@ L"å¤±æ•— Error Code :0x%08x" @*/, hr )) ;
 			DXST_LOGFILE_TABSUB ;
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\x1c\x69\xfa\x51\x57\x30\x5f\x30\x20\x00\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x20\x00\xfe\x5b\xdc\x5f\x65\x51\x9b\x52\xc5\x88\x6e\x7f\x6e\x30\x1d\x52\x1f\x67\x16\x53\x92\x30\x2d\x4e\xad\x65\x57\x30\x7e\x30\x59\x30\x00"/*@ L"ŒŸo‚µ‚½ DirectInput ‘Î‰“ü—Í‘•’u‚Ì‰Šú‰»‚ğ’†’f‚µ‚Ü‚·" @*/ )) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\x1c\x69\xfa\x51\x57\x30\x5f\x30\x20\x00\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x20\x00\xfe\x5b\xdc\x5f\x65\x51\x9b\x52\xc5\x88\x6e\x7f\x6e\x30\x1d\x52\x1f\x67\x16\x53\x92\x30\x2d\x4e\xad\x65\x57\x30\x7e\x30\x59\x30\x00"/*@ L"æ¤œå‡ºã—ãŸ DirectInput å¯¾å¿œå…¥åŠ›è£…ç½®ã®åˆæœŸåŒ–ã‚’ä¸­æ–­ã—ã¾ã™" @*/ )) ;
 			Joystick->Release() ;
 			Joystick = NULL ;
 			return D_DIENUM_CONTINUE ;
 		}
 	}
-	DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"¬Œ÷\n" @*/ ) ;
+	DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"æˆåŠŸ\n" @*/ ) ;
 
-	// ƒCƒxƒ“ƒgƒnƒ“ƒhƒ‹‚ğ•Û‘¶
+	// ã‚¤ãƒ™ãƒ³ãƒˆãƒãƒ³ãƒ‰ãƒ«ã‚’ä¿å­˜
 	pad->PF.Event = Event ;
 
-	// ƒWƒ‡ƒCƒpƒbƒhƒfƒoƒCƒX‚ÌƒAƒhƒŒƒX‚ğ•Û‘¶
+	// ã‚¸ãƒ§ã‚¤ãƒ‘ãƒƒãƒ‰ãƒ‡ãƒã‚¤ã‚¹ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ä¿å­˜
 	pad->PF.Device = Joystick ;
 
-	// ƒXƒe[ƒ^ƒX‚ğ‰Šú‰»
+	// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚’åˆæœŸåŒ–
 	_MEMSET( &pad->State, 0, sizeof( D_DIJOYSTATE ) ) ;
 
-	DXST_LOGFILEFMT_ADDUTF16LE(( "\x1c\x69\xfa\x51\x57\x30\x5f\x30\x20\x00\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x20\x00\xfe\x5b\xdc\x5f\x65\x51\x9b\x52\xc5\x88\x6e\x7f\x92\x30\x65\x51\x9b\x52\xca\x30\xf3\x30\xd0\x30\xfc\x30\x20\x00\x25\x00\x64\x00\x20\x00\x67\x30\x7b\x76\x32\x93\x57\x30\x7e\x30\x59\x30\x00"/*@ L"ŒŸo‚µ‚½ DirectInput ‘Î‰“ü—Í‘•’u‚ğ“ü—Íƒiƒ“ƒo[ %d ‚Å“o˜^‚µ‚Ü‚·" @*/, InputSysData.PadNum )) ;
+	DXST_LOGFILEFMT_ADDUTF16LE(( "\x1c\x69\xfa\x51\x57\x30\x5f\x30\x20\x00\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x20\x00\xfe\x5b\xdc\x5f\x65\x51\x9b\x52\xc5\x88\x6e\x7f\x92\x30\x65\x51\x9b\x52\xca\x30\xf3\x30\xd0\x30\xfc\x30\x20\x00\x25\x00\x64\x00\x20\x00\x67\x30\x7b\x76\x32\x93\x57\x30\x7e\x30\x59\x30\x00"/*@ L"æ¤œå‡ºã—ãŸ DirectInput å¯¾å¿œå…¥åŠ›è£…ç½®ã‚’å…¥åŠ›ãƒŠãƒ³ãƒãƒ¼ %d ã§ç™»éŒ²ã—ã¾ã™" @*/, InputSysData.PadNum )) ;
 
-	// ƒWƒ‡ƒCƒpƒbƒh‚Ì”‚ğ‘‚â‚·
+	// ã‚¸ãƒ§ã‚¤ãƒ‘ãƒƒãƒ‰ã®æ•°ã‚’å¢—ã‚„ã™
 	InputSysData.PadNum ++ ;
 
-	// I—¹
+	// çµ‚äº†
 	DXST_LOGFILE_TABSUB ;
-	DXST_LOGFILE_ADDUTF16LE( "\x1c\x69\xfa\x51\x57\x30\x5f\x30\x20\x00\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x20\x00\xfe\x5b\xdc\x5f\x65\x51\x9b\x52\xc5\x88\x6e\x7f\x6e\x30\x1d\x52\x1f\x67\x16\x53\x6f\x30\x63\x6b\x38\x5e\x6b\x30\x42\x7d\x86\x4e\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ŒŸo‚µ‚½ DirectInput ‘Î‰“ü—Í‘•’u‚Ì‰Šú‰»‚Í³í‚ÉI—¹‚µ‚Ü‚µ‚½\n" @*/ ) ;
+	DXST_LOGFILE_ADDUTF16LE( "\x1c\x69\xfa\x51\x57\x30\x5f\x30\x20\x00\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x20\x00\xfe\x5b\xdc\x5f\x65\x51\x9b\x52\xc5\x88\x6e\x7f\x6e\x30\x1d\x52\x1f\x67\x16\x53\x6f\x30\x63\x6b\x38\x5e\x6b\x30\x42\x7d\x86\x4e\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"æ¤œå‡ºã—ãŸ DirectInput å¯¾å¿œå…¥åŠ›è£…ç½®ã®åˆæœŸåŒ–ã¯æ­£å¸¸ã«çµ‚äº†ã—ã¾ã—ãŸ\n" @*/ ) ;
 	return ( InputSysData.PadNum != MAX_JOYPAD_NUM ) ? D_DIENUM_CONTINUE : D_DIENUM_STOP ;
 }
 
 
-// “ü—ÍƒVƒXƒeƒ€‚ğ‰Šú‰»‚·‚éˆ—‚ÌŠÂ‹«ˆË‘¶ˆ—
+// å…¥åŠ›ã‚·ã‚¹ãƒ†ãƒ ã‚’åˆæœŸåŒ–ã™ã‚‹å‡¦ç†ã®ç’°å¢ƒä¾å­˜å‡¦ç†
 extern int InitializeInputSystem_PF_Timing0( void )
 {
 	HRESULT hr = 0 ;
@@ -1742,22 +1742,22 @@ extern int InitializeInputSystem_PF_Timing0( void )
 	int KeyToJoypadInput[ MAX_JOYPAD_NUM ][ 32 ][ 4 ] ;
 	static int NowInitialize = FALSE ;
 
-	// ‰Šú‰»”»’è
+	// åˆæœŸåŒ–åˆ¤å®š
 	if( InputSysData.PF.DirectInputObject != NULL )
 	{
 		return 0 ;
 	}
 
-	// Šù‚É‰Šú‰»ˆ—‚ªŠJn‚³‚ê‚Ä‚¢‚éê‡‚à‰½‚à‚¹‚¸‚ÉI—¹
+	// æ—¢ã«åˆæœŸåŒ–å‡¦ç†ãŒé–‹å§‹ã•ã‚Œã¦ã„ã‚‹å ´åˆã‚‚ä½•ã‚‚ã›ãšã«çµ‚äº†
 	if( NowInitialize )
 	{
 		return 0 ;
 	}
 
-	// ‰Šú‰»’†ƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// åˆæœŸåŒ–ä¸­ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	NowInitialize = TRUE ;
 
-	// ƒ[ƒ‰Šú‰»
+	// ã‚¼ãƒ­åˆæœŸåŒ–
 	int	   InitializeFlag								= InputSysData.InitializeFlag ;
 	int    NoUseXInputFlag								= InputSysData.PF.NoUseXInputFlag ;
 	int    NoUseDirectInputFlag							= InputSysData.PF.NoUseDirectInputFlag ;
@@ -1788,10 +1788,10 @@ extern int InitializeInputSystem_PF_Timing0( void )
 	InputSysData.InitializeFlag							= InitializeFlag ;
 	_MEMCPY( InputSysData.KeyToJoypadInput, KeyToJoypadInput, sizeof( InputSysData.KeyToJoypadInput ) ) ;
 
-	// ‹­§“I‚É DirectInput8 ‚ğg—p‚·‚é‚æ‚¤‚É‚·‚é
+	// å¼·åˆ¶çš„ã« DirectInput8 ã‚’ä½¿ç”¨ã™ã‚‹ã‚ˆã†ã«ã™ã‚‹
 	InputSysData.PF.UseDirectInput8Flag = TRUE ;
 
-	// ‚w‚h‚‚‚•‚”‚ğg—p‚µ‚È‚¢ƒtƒ‰ƒO‚ª—§‚Á‚Ä‚¢‚È‚©‚Á‚½‚ç‚w‚h‚‚‚•‚”‚Ì‚c‚k‚k‚ğ“Ç‚İ‚Ş
+	// ï¼¸ï¼©ï½ï½ï½•ï½”ã‚’ä½¿ç”¨ã—ãªã„ãƒ•ãƒ©ã‚°ãŒç«‹ã£ã¦ã„ãªã‹ã£ãŸã‚‰ï¼¸ï¼©ï½ï½ï½•ï½”ã®ï¼¤ï¼¬ï¼¬ã‚’èª­ã¿è¾¼ã‚€
 	if( InputSysData.PF.NoUseXInputFlag == FALSE )
 	{
 		const wchar_t *XInputDllFileName[] = 
@@ -1802,7 +1802,7 @@ extern int InitializeInputSystem_PF_Timing0( void )
 			NULL
 		} ;
 
-		DXST_LOGFILE_ADDUTF16LE( "\x58\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x20\x00\x44\x00\x4c\x00\x4c\x00\x20\x00\x6e\x30\xad\x8a\x7f\x30\xbc\x8f\x7f\x30\x2d\x4e\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"XInput DLL ‚Ì“Ç‚İ‚İ’†... " @*/ ) ;
+		DXST_LOGFILE_ADDUTF16LE( "\x58\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x20\x00\x44\x00\x4c\x00\x4c\x00\x20\x00\x6e\x30\xad\x8a\x7f\x30\xbc\x8f\x7f\x30\x2d\x4e\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"XInput DLL ã®èª­ã¿è¾¼ã¿ä¸­... " @*/ ) ;
 		for( i = 0 ; XInputDllFileName[ i ] != NULL ; i ++ )
 		{
 			InputSysData.PF.XInputDLL = LoadLibraryW( XInputDllFileName[ i ] ) ;
@@ -1812,81 +1812,81 @@ extern int InitializeInputSystem_PF_Timing0( void )
 
 		if( InputSysData.PF.XInputDLL == NULL )
 		{
-			DXST_LOGFILE_ADDUTF16LE( "\x31\x59\x57\x65\x01\x30\x58\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x6f\x30\x7f\x4f\x28\x75\x57\x30\x7e\x30\x5b\x30\x93\x30\x0a\x00\x00"/*@ L"¸”sAXInput‚Íg—p‚µ‚Ü‚¹‚ñ\n" @*/ ) ;
+			DXST_LOGFILE_ADDUTF16LE( "\x31\x59\x57\x65\x01\x30\x58\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x6f\x30\x7f\x4f\x28\x75\x57\x30\x7e\x30\x5b\x30\x93\x30\x0a\x00\x00"/*@ L"å¤±æ•—ã€XInputã¯ä½¿ç”¨ã—ã¾ã›ã‚“\n" @*/ ) ;
 		}
 		else
 		{
-			DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"¬Œ÷\n" @*/ ) ;
+			DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"æˆåŠŸ\n" @*/ ) ;
 
 			InputSysData.PF.XInputGetStateFunc = ( DWORD ( WINAPI * )( DWORD, D_XINPUT_STATE*     ) )GetProcAddress( InputSysData.PF.XInputDLL, "XInputGetState" ) ;
 			InputSysData.PF.XInputSetStateFunc = ( DWORD ( WINAPI * )( DWORD, D_XINPUT_VIBRATION* ) )GetProcAddress( InputSysData.PF.XInputDLL, "XInputSetState" ) ;
 		}
 	}
 
-	// ‚c‚‰‚’‚…‚ƒ‚”‚h‚‚‚•‚” ‚ğg—p‚·‚é‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+	// ï¼¤ï½‰ï½’ï½…ï½ƒï½”ï¼©ï½ï½ï½•ï½” ã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 START:
 	if( InputSysData.PF.NoUseDirectInputFlag == FALSE )
 	{
-		// DirectInput ‚ğg—p‚·‚éê‡
+		// DirectInput ã‚’ä½¿ç”¨ã™ã‚‹å ´åˆ
 
-		DXST_LOGFILE_ADDUTF16LE( "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\xa2\x95\xc2\x4f\x1d\x52\x1f\x67\x16\x53\xe6\x51\x06\x74\x0a\x00\x00"/*@ L"DirectInputŠÖŒW‰Šú‰»ˆ—\n" @*/ ) ;
+		DXST_LOGFILE_ADDUTF16LE( "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\xa2\x95\xc2\x4f\x1d\x52\x1f\x67\x16\x53\xe6\x51\x06\x74\x0a\x00\x00"/*@ L"DirectInputé–¢ä¿‚åˆæœŸåŒ–å‡¦ç†\n" @*/ ) ;
 		DXST_LOGFILE_TABADD ;
 
-		// ‚c‚‰‚’‚…‚ƒ‚”‚h‚‚‚•‚”ƒIƒuƒWƒFƒNƒg‚ğì¬‚·‚é
+		// ï¼¤ï½‰ï½’ï½…ï½ƒï½”ï¼©ï½ï½ï½•ï½”ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ä½œæˆã™ã‚‹
 		if( InputSysData.PF.UseDirectInput8Flag == FALSE )
 		{
-			DXST_LOGFILE_ADDUTF16LE( "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x37\x00\x20\x00\x6e\x30\xd6\x53\x97\x5f\x2d\x4e\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"DirectInput7 ‚Ìæ“¾’†... " @*/ ) ;
+			DXST_LOGFILE_ADDUTF16LE( "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x37\x00\x20\x00\x6e\x30\xd6\x53\x97\x5f\x2d\x4e\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"DirectInput7 ã®å–å¾—ä¸­... " @*/ ) ;
 			hr = WinAPIData.Win32Func.CoCreateInstanceFunc( CLSID_DIRECTINPUT , NULL, CLSCTX_INPROC_SERVER, IID_IDIRECTINPUT7, ( LPVOID * )&InputSysData.PF.DirectInputObject ) ;
 			if( !FAILED( hr ) )
 			{
-				DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"¬Œ÷\n" @*/ ) ;
+				DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"æˆåŠŸ\n" @*/ ) ;
 				DXST_LOGFILE_TABADD ;
-				DXST_LOGFILE_ADDUTF16LE( "\x15\x5f\x4d\x30\x9a\x7d\x4d\x30\x1d\x52\x1f\x67\x16\x53\xe6\x51\x06\x74\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"ˆø‚«‘±‚«‰Šú‰»ˆ—... " @*/ ) ;
+				DXST_LOGFILE_ADDUTF16LE( "\x15\x5f\x4d\x30\x9a\x7d\x4d\x30\x1d\x52\x1f\x67\x16\x53\xe6\x51\x06\x74\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"å¼•ãç¶šãåˆæœŸåŒ–å‡¦ç†... " @*/ ) ;
 				hr = InputSysData.PF.DirectInputObject->Initialize( GetModuleHandleWFunc( NULL ), 0x700 ) ;
 				if( FAILED( hr ) ) 
 				{
-					DXST_LOGFILE_ADDUTF16LE( "\x1d\x52\x1f\x67\x16\x53\x6b\x30\x31\x59\x57\x65\x02\x30\x00"/*@ L"‰Šú‰»‚É¸”sB" @*/ ) ;
+					DXST_LOGFILE_ADDUTF16LE( "\x1d\x52\x1f\x67\x16\x53\x6b\x30\x31\x59\x57\x65\x02\x30\x00"/*@ L"åˆæœŸåŒ–ã«å¤±æ•—ã€‚" @*/ ) ;
 					InputSysData.PF.DirectInputObject->Release() ;
 					InputSysData.PF.DirectInputObject = NULL ;
 					goto ER1 ;
 				}
-				DXST_LOGFILE_ADDUTF16LE( "\x1d\x52\x1f\x67\x16\x53\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"‰Šú‰»¬Œ÷\n" @*/ ) ;
+				DXST_LOGFILE_ADDUTF16LE( "\x1d\x52\x1f\x67\x16\x53\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"åˆæœŸåŒ–æˆåŠŸ\n" @*/ ) ;
 				DXST_LOGFILE_TABSUB ;
 			}
 			else
 			{
-				DXST_LOGFILE_ADDUTF16LE( "\xd6\x53\x97\x5f\x6b\x30\x31\x59\x57\x65\x02\x30\x0a\x00\x00"/*@ L"æ“¾‚É¸”sB\n" @*/ ) ;
-				DXST_LOGFILEFMT_ADDUTF16LE(( "\xa8\x30\xe9\x30\xfc\x30\xb3\x30\xfc\x30\xc9\x30\x20\x00\x30\x00\x78\x00\x25\x00\x78\x00\x0a\x00\x00"/*@ L"ƒGƒ‰[ƒR[ƒh 0x%x\n" @*/, hr ));
+				DXST_LOGFILE_ADDUTF16LE( "\xd6\x53\x97\x5f\x6b\x30\x31\x59\x57\x65\x02\x30\x0a\x00\x00"/*@ L"å–å¾—ã«å¤±æ•—ã€‚\n" @*/ ) ;
+				DXST_LOGFILEFMT_ADDUTF16LE(( "\xa8\x30\xe9\x30\xfc\x30\xb3\x30\xfc\x30\xc9\x30\x20\x00\x30\x00\x78\x00\x25\x00\x78\x00\x0a\x00\x00"/*@ L"ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰ 0x%x\n" @*/, hr ));
 			}
 		}
 
 		if( InputSysData.PF.DirectInputObject == NULL )
 		{
 ER1:
-			DXST_LOGFILE_ADDUTF16LE( "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x38\x00\x20\x00\x6e\x30\xd6\x53\x97\x5f\x92\x30\x66\x8a\x7f\x30\x7e\x30\x59\x30\x2e\x00\x2e\x00\x2e\x00\x00"/*@ L"DirectInput8 ‚Ìæ“¾‚ğ‚İ‚Ü‚·..." @*/ ) ;
+			DXST_LOGFILE_ADDUTF16LE( "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x38\x00\x20\x00\x6e\x30\xd6\x53\x97\x5f\x92\x30\x66\x8a\x7f\x30\x7e\x30\x59\x30\x2e\x00\x2e\x00\x2e\x00\x00"/*@ L"DirectInput8 ã®å–å¾—ã‚’è©¦ã¿ã¾ã™..." @*/ ) ;
 			hr = WinAPIData.Win32Func.CoCreateInstanceFunc( CLSID_DIRECTINPUT8 , NULL, CLSCTX_INPROC_SERVER, IID_IDIRECTINPUT8, ( LPVOID * )&InputSysData.PF.DirectInputObject ) ;
 			if( !FAILED( hr ) )
 			{
-				DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"¬Œ÷\n" @*/ ) ;
+				DXST_LOGFILE_ADDUTF16LE( "\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"æˆåŠŸ\n" @*/ ) ;
 				DXST_LOGFILE_TABADD ;
-				DXST_LOGFILE_ADDUTF16LE( "\x15\x5f\x4d\x30\x9a\x7d\x4d\x30\x1d\x52\x1f\x67\x16\x53\xe6\x51\x06\x74\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"ˆø‚«‘±‚«‰Šú‰»ˆ—... " @*/ ) ;
+				DXST_LOGFILE_ADDUTF16LE( "\x15\x5f\x4d\x30\x9a\x7d\x4d\x30\x1d\x52\x1f\x67\x16\x53\xe6\x51\x06\x74\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"å¼•ãç¶šãåˆæœŸåŒ–å‡¦ç†... " @*/ ) ;
 				hr = InputSysData.PF.DirectInputObject->Initialize( GetModuleHandleWFunc( NULL ) , 0x800 ) ;
 				if( FAILED( hr ) ) 
 				{
-					DXST_LOGFILE_ADDUTF16LE( "\x1d\x52\x1f\x67\x16\x53\x6b\x30\x31\x59\x57\x65\x02\x30\x00"/*@ L"‰Šú‰»‚É¸”sB" @*/ ) ;
+					DXST_LOGFILE_ADDUTF16LE( "\x1d\x52\x1f\x67\x16\x53\x6b\x30\x31\x59\x57\x65\x02\x30\x00"/*@ L"åˆæœŸåŒ–ã«å¤±æ•—ã€‚" @*/ ) ;
 					InputSysData.PF.DirectInputObject->Release() ;
 					InputSysData.PF.DirectInputObject = NULL ;
 					goto ER2;
 				}
-				DXST_LOGFILE_ADDUTF16LE( "\x1d\x52\x1f\x67\x16\x53\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"‰Šú‰»¬Œ÷\n" @*/ ) ;
+				DXST_LOGFILE_ADDUTF16LE( "\x1d\x52\x1f\x67\x16\x53\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"åˆæœŸåŒ–æˆåŠŸ\n" @*/ ) ;
 				InputSysData.PF.UseDirectInput8Flag = TRUE;
 				DXST_LOGFILE_TABSUB ;
 			}
 			else
 			{
-				DXST_LOGFILE_ADDUTF16LE( "\xd6\x53\x97\x5f\x6b\x30\x31\x59\x57\x65\x02\x30\x00"/*@ L"æ“¾‚É¸”sB" @*/ ) ;
+				DXST_LOGFILE_ADDUTF16LE( "\xd6\x53\x97\x5f\x6b\x30\x31\x59\x57\x65\x02\x30\x00"/*@ L"å–å¾—ã«å¤±æ•—ã€‚" @*/ ) ;
 ER2:
-				DXST_LOGFILE_ADDUTF16LE( "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x20\x00\x92\x30\x7f\x4f\x28\x75\x57\x30\x7e\x30\x5b\x30\x93\x30\x02\x30\x0a\x00\x00"/*@ L"DirectInput ‚ğg—p‚µ‚Ü‚¹‚ñB\n" @*/ ) ;
+				DXST_LOGFILE_ADDUTF16LE( "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x20\x00\x92\x30\x7f\x4f\x28\x75\x57\x30\x7e\x30\x5b\x30\x93\x30\x02\x30\x0a\x00\x00"/*@ L"DirectInput ã‚’ä½¿ç”¨ã—ã¾ã›ã‚“ã€‚\n" @*/ ) ;
 				DXST_LOGFILE_TABSUB ;
 
 				if( InputSysData.PF.DirectInputObject ) InputSysData.PF.DirectInputObject->Release() ;
@@ -1897,20 +1897,20 @@ ER2:
 			}
 		}
 
-		// ƒƒCƒ“ƒEƒCƒ“ƒhƒE‚ğƒAƒNƒeƒBƒu‚É‚·‚é
+		// ãƒ¡ã‚¤ãƒ³ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚’ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ã™ã‚‹
 		// WinAPIData.Win32Func.BringWindowToTopFunc( NS_GetMainWindowHandle() ) ;
 
-		// ƒAƒNƒeƒBƒu‚É‚È‚é‚Ü‚Å‘Ò‚Â
+		// ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ãªã‚‹ã¾ã§å¾…ã¤
 		NS_ProcessMessage() ;
 
-		// ƒWƒ‡ƒCƒpƒbƒhƒfƒoƒCƒX‚ğ‰Šú‰»‚·‚é
+		// ã‚¸ãƒ§ã‚¤ãƒ‘ãƒƒãƒ‰ãƒ‡ãƒã‚¤ã‚¹ã‚’åˆæœŸåŒ–ã™ã‚‹
 		SetupJoypad() ;
 
-		// ƒ}ƒEƒXƒfƒoƒCƒX‚ğ‰Šú‰»‚·‚é
+		// ãƒã‚¦ã‚¹ãƒ‡ãƒã‚¤ã‚¹ã‚’åˆæœŸåŒ–ã™ã‚‹
 		InputSysData.PF.MouseDeviceObject = NULL ;
 		{
-			// ƒ}ƒEƒXƒfƒoƒCƒX‚ğì¬‚·‚é
-			DXST_LOGFILE_ADDUTF16LE( "\xde\x30\xa6\x30\xb9\x30\xc7\x30\xd0\x30\xa4\x30\xb9\x30\x6e\x30\x1d\x52\x1f\x67\x16\x53\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"ƒ}ƒEƒXƒfƒoƒCƒX‚Ì‰Šú‰»... " @*/ ) ; 
+			// ãƒã‚¦ã‚¹ãƒ‡ãƒã‚¤ã‚¹ã‚’ä½œæˆã™ã‚‹
+			DXST_LOGFILE_ADDUTF16LE( "\xde\x30\xa6\x30\xb9\x30\xc7\x30\xd0\x30\xa4\x30\xb9\x30\x6e\x30\x1d\x52\x1f\x67\x16\x53\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"ãƒã‚¦ã‚¹ãƒ‡ãƒã‚¤ã‚¹ã®åˆæœŸåŒ–... " @*/ ) ; 
 			if( InputSysData.PF.UseDirectInput8Flag == TRUE )
 			{
 				hr = InputSysData.PF.DirectInputObject->CreateDevice( GUID_SYSMOUSE, ( D_IDirectInputDevice ** )&InputSysData.PF.MouseDeviceObject , NULL ) ;
@@ -1925,7 +1925,7 @@ ER2:
 				goto MOUSEDEVICEINITEND ;
 			}
 
-			// ƒ}ƒEƒXƒfƒoƒCƒX‚Ìƒf[ƒ^Œ`®‚ğİ’è‚·‚é
+			// ãƒã‚¦ã‚¹ãƒ‡ãƒã‚¤ã‚¹ã®ãƒ‡ãƒ¼ã‚¿å½¢å¼ã‚’è¨­å®šã™ã‚‹
 			hr = InputSysData.PF.MouseDeviceObject->SetDataFormat( &C_DFDIMOUSE2 ) ;
 			if( hr != D_DI_OK )
 			{
@@ -1934,7 +1934,7 @@ ER2:
 				goto MOUSEDEVICEINITEND ;
 			}
 
-			// ƒ}ƒEƒX‚Ì‹¦’²ƒŒƒxƒ‹‚ğİ’è‚·‚é
+			// ãƒã‚¦ã‚¹ã®å”èª¿ãƒ¬ãƒ™ãƒ«ã‚’è¨­å®šã™ã‚‹
 	//		hr = InputSysData.PF.MouseDeviceObject->SetCooperativeLevel( NS_GetMainWindowHandle(), D_DISCL_EXCLUSIVE | D_DISCL_FOREGROUND ) ;
 			hr = InputSysData.PF.MouseDeviceObject->SetCooperativeLevel( NS_GetMainWindowHandle(), D_DISCL_NONEXCLUSIVE | D_DISCL_BACKGROUND ) ;
 	//		hr = InputSysData.PF.MouseDeviceObject->SetCooperativeLevel( NS_GetMainWindowHandle(), D_DISCL_NONEXCLUSIVE | D_DISCL_FOREGROUND ) ;
@@ -1945,25 +1945,25 @@ ER2:
 				goto MOUSEDEVICEINITEND ;
 			}
 
-			DXST_LOGFILE_ADDUTF16LE( "\x1d\x52\x1f\x67\x16\x53\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"‰Šú‰»¬Œ÷\n" @*/ ) ;
+			DXST_LOGFILE_ADDUTF16LE( "\x1d\x52\x1f\x67\x16\x53\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"åˆæœŸåŒ–æˆåŠŸ\n" @*/ ) ;
 
 MOUSEDEVICEINITEND:
 			if( InputSysData.PF.MouseDeviceObject == NULL )
 			{
-				DXST_LOGFILE_ADDUTF16LE( "\xde\x30\xa6\x30\xb9\x30\xc7\x30\xd0\x30\xa4\x30\xb9\x30\x6e\x30\xd6\x53\x97\x5f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ƒ}ƒEƒXƒfƒoƒCƒX‚Ìæ“¾‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ; 
+				DXST_LOGFILE_ADDUTF16LE( "\xde\x30\xa6\x30\xb9\x30\xc7\x30\xd0\x30\xa4\x30\xb9\x30\x6e\x30\xd6\x53\x97\x5f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ãƒã‚¦ã‚¹ãƒ‡ãƒã‚¤ã‚¹ã®å–å¾—ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ; 
 			}
 
 			InputSysData.KeyInputGetTime = ( int )WinAPIData.Win32Func.timeGetTimeFunc() ;
 		}
 
-		// ƒL[ƒ{[ƒhƒfƒoƒCƒX‚ğ‰Šú‰»‚·‚é
+		// ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ãƒ‡ãƒã‚¤ã‚¹ã‚’åˆæœŸåŒ–ã™ã‚‹
 		InputSysData.PF.KeyboardDeviceObject = NULL ;
 		if( InputSysData.PF.KeyboardNotUseDirectInputFlag == FALSE )
 		{
 			HANDLE Event ;
 
-			// ƒL[ƒ{[ƒhƒfƒoƒCƒX‚ğì¬‚·‚é
-			DXST_LOGFILE_ADDUTF16LE( "\xad\x30\xfc\x30\xdc\x30\xfc\x30\xc9\x30\xc7\x30\xd0\x30\xa4\x30\xb9\x30\x6e\x30\x1d\x52\x1f\x67\x16\x53\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"ƒL[ƒ{[ƒhƒfƒoƒCƒX‚Ì‰Šú‰»... " @*/ ) ; 
+			// ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ãƒ‡ãƒã‚¤ã‚¹ã‚’ä½œæˆã™ã‚‹
+			DXST_LOGFILE_ADDUTF16LE( "\xad\x30\xfc\x30\xdc\x30\xfc\x30\xc9\x30\xc7\x30\xd0\x30\xa4\x30\xb9\x30\x6e\x30\x1d\x52\x1f\x67\x16\x53\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ãƒ‡ãƒã‚¤ã‚¹ã®åˆæœŸåŒ–... " @*/ ) ; 
 			if( InputSysData.PF.UseDirectInput8Flag == TRUE )
 			{
 				hr = InputSysData.PF.DirectInputObject->CreateDevice( GUID_SYSKEYBOARD, ( D_IDirectInputDevice ** )&InputSysData.PF.KeyboardDeviceObject , NULL ) ;
@@ -1977,7 +1977,7 @@ MOUSEDEVICEINITEND:
 				goto KEYBOARDDEVICEINITEND ;
 			}
 
-			// ƒL[ƒ{[ƒhƒfƒoƒCƒX‚Ìƒf[ƒ^Œ`®‚ğİ’è‚·‚é
+			// ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ãƒ‡ãƒã‚¤ã‚¹ã®ãƒ‡ãƒ¼ã‚¿å½¢å¼ã‚’è¨­å®šã™ã‚‹
 			hr = InputSysData.PF.KeyboardDeviceObject->SetDataFormat( &C_DFDIKEYBOARD ) ;
 			if( hr != D_DI_OK )
 			{
@@ -1986,7 +1986,7 @@ MOUSEDEVICEINITEND:
 				goto KEYBOARDDEVICEINITEND ;
 			}
 
-			// ƒL[ƒ{[ƒh‚Ì‹¦’²ƒŒƒxƒ‹‚ğİ’è‚·‚é
+			// ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ã®å”èª¿ãƒ¬ãƒ™ãƒ«ã‚’è¨­å®šã™ã‚‹
 			if( InputSysData.PF.KeyExclusiveCooperativeLevelFlag )
 			{
 				hr = InputSysData.PF.KeyboardDeviceObject->SetCooperativeLevel( NS_GetMainWindowHandle(), D_DISCL_EXCLUSIVE | D_DISCL_FOREGROUND ) ;
@@ -2008,7 +2008,7 @@ MOUSEDEVICEINITEND:
 				goto KEYBOARDDEVICEINITEND ;
 			}
 
-			// ƒoƒbƒtƒ@‚ğİ’è‚µ‚Ä‚İ‚é
+			// ãƒãƒƒãƒ•ã‚¡ã‚’è¨­å®šã—ã¦ã¿ã‚‹
 			{
 				D_DIPROPDWORD DIProp ;
 
@@ -2019,16 +2019,16 @@ MOUSEDEVICEINITEND:
 				DIProp.dwData = 100 ;
 				if( InputSysData.PF.KeyboardDeviceObject->SetProperty( D_DIPROP_BUFFERSIZE, &DIProp.diph ) != D_DI_OK )
 				{
-					DXST_LOGFILE_ADDUTF16LE( "\xad\x30\xfc\x30\xdc\x30\xfc\x30\xc9\x30\x6e\x30\xd7\x30\xed\x30\xd1\x30\xc6\x30\xa3\x30\x2d\x8a\x9a\x5b\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ƒL[ƒ{[ƒh‚ÌƒvƒƒpƒeƒBİ’è‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+					DXST_LOGFILE_ADDUTF16LE( "\xad\x30\xfc\x30\xdc\x30\xfc\x30\xc9\x30\x6e\x30\xd7\x30\xed\x30\xd1\x30\xc6\x30\xa3\x30\x2d\x8a\x9a\x5b\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ã®ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£è¨­å®šã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 				}
 			}
 
-			// •Ï‰»’Ê’m—p‚ÌƒCƒxƒ“ƒg‚ğì¬EƒAƒ^ƒbƒ`‚·‚é
+			// å¤‰åŒ–é€šçŸ¥ç”¨ã®ã‚¤ãƒ™ãƒ³ãƒˆã‚’ä½œæˆãƒ»ã‚¢ã‚¿ãƒƒãƒã™ã‚‹
 			Event = WinAPIData.Win32Func.CreateEventAFunc( NULL, TRUE, FALSE, NULL ) ;
 			hr = InputSysData.PF.KeyboardDeviceObject->SetEventNotification( Event ) ;
 			if( hr != D_DI_POLLEDDEVICE && hr != D_DI_OK )
 			{
-				DXST_LOGFILE_ADDUTF16LE( "\xad\x30\xfc\x30\xdc\x30\xfc\x30\xc9\x30\xa4\x30\xd9\x30\xf3\x30\xc8\x30\x6e\x30\xbb\x30\xc3\x30\xc8\x30\xa2\x30\xc3\x30\xd7\x30\x4c\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ƒL[ƒ{[ƒhƒCƒxƒ“ƒg‚ÌƒZƒbƒgƒAƒbƒv‚ª¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+				DXST_LOGFILE_ADDUTF16LE( "\xad\x30\xfc\x30\xdc\x30\xfc\x30\xc9\x30\xa4\x30\xd9\x30\xf3\x30\xc8\x30\x6e\x30\xbb\x30\xc3\x30\xc8\x30\xa2\x30\xc3\x30\xd7\x30\x4c\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ã‚¤ãƒ™ãƒ³ãƒˆã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ãŒå¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 
 				InputSysData.PF.KeyboardDeviceObject->Release() ;
 				InputSysData.PF.KeyboardDeviceObject = NULL ;
@@ -2036,7 +2036,7 @@ MOUSEDEVICEINITEND:
 			}
 			InputSysData.PF.KeyEvent = Event ;
 
-			// ƒL[ƒ{[ƒh‚ÌƒfƒoƒCƒX‚ğæ“¾‚·‚é
+			// ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ã®ãƒ‡ãƒã‚¤ã‚¹ã‚’å–å¾—ã™ã‚‹
 			hr = InputSysData.PF.KeyboardDeviceObject->Acquire() ;
 			if( hr != D_DI_OK )
 			{
@@ -2049,12 +2049,12 @@ MOUSEDEVICEINITEND:
 				}
 			}
 
-			DXST_LOGFILE_ADDUTF16LE( "\x1d\x52\x1f\x67\x16\x53\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"‰Šú‰»¬Œ÷\n" @*/ ) ;
+			DXST_LOGFILE_ADDUTF16LE( "\x1d\x52\x1f\x67\x16\x53\x10\x62\x9f\x52\x0a\x00\x00"/*@ L"åˆæœŸåŒ–æˆåŠŸ\n" @*/ ) ;
 
 KEYBOARDDEVICEINITEND:
 			if( InputSysData.PF.KeyboardDeviceObject == NULL )
 			{
-				DXST_LOGFILE_ADDUTF16LE( "\xad\x30\xfc\x30\xdc\x30\xfc\x30\xc9\x30\xc7\x30\xd0\x30\xa4\x30\xb9\x30\x6e\x30\xd6\x53\x97\x5f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ƒL[ƒ{[ƒhƒfƒoƒCƒX‚Ìæ“¾‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ; 
+				DXST_LOGFILE_ADDUTF16LE( "\xad\x30\xfc\x30\xdc\x30\xfc\x30\xc9\x30\xc7\x30\xd0\x30\xa4\x30\xb9\x30\x6e\x30\xd6\x53\x97\x5f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ãƒ‡ãƒã‚¤ã‚¹ã®å–å¾—ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ; 
 			}
 
 			InputSysData.KeyInputGetTime = ( int )WinAPIData.Win32Func.timeGetTimeFunc() ;
@@ -2062,21 +2062,21 @@ KEYBOARDDEVICEINITEND:
 		
 
 		DXST_LOGFILE_TABSUB ;
-		DXST_LOGFILE_ADDUTF16LE( "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x20\x00\xa2\x95\x23\x90\x6e\x30\x1d\x52\x1f\x67\x16\x53\x6f\x30\x63\x6b\x38\x5e\x6b\x30\x42\x7d\x86\x4e\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"DirectInput ŠÖ˜A‚Ì‰Šú‰»‚Í³í‚ÉI—¹‚µ‚Ü‚µ‚½\n" @*/ ) ;
+		DXST_LOGFILE_ADDUTF16LE( "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x20\x00\xa2\x95\x23\x90\x6e\x30\x1d\x52\x1f\x67\x16\x53\x6f\x30\x63\x6b\x38\x5e\x6b\x30\x42\x7d\x86\x4e\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"DirectInput é–¢é€£ã®åˆæœŸåŒ–ã¯æ­£å¸¸ã«çµ‚äº†ã—ã¾ã—ãŸ\n" @*/ ) ;
 	}
 	else
 	{
-		// DirectInput ‚ğg—p‚µ‚È‚¢ê‡
+		// DirectInput ã‚’ä½¿ç”¨ã—ãªã„å ´åˆ
 		JOYCAPSW joycaps ;
 		DXST_LOGFILE_TABADD ;
 
-		// ƒAƒNƒeƒBƒu‚É‚È‚é‚Ü‚Å‘Ò‚Â
+		// ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ãªã‚‹ã¾ã§å¾…ã¤
 		NS_ProcessMessage() ;
 
-		// XInput‚ğ‰Šú‰»‚·‚é
+		// XInputã‚’åˆæœŸåŒ–ã™ã‚‹
 		SetupJoypad() ;
 
-		// ƒpƒbƒh‚Ì”‚ğ’²‚×‚é
+		// ãƒ‘ãƒƒãƒ‰ã®æ•°ã‚’èª¿ã¹ã‚‹
 		for( i = 0 ; i < MAX_JOYPAD_NUM ; i ++ )
 		{
 			_MEMSET( &joycaps, 0, sizeof( joycaps ) ) ;
@@ -2092,14 +2092,14 @@ KEYBOARDDEVICEINITEND:
 			InputSysData.PadNum ++ ;
 		}
 
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\xd1\x30\xc3\x30\xc9\x30\x6e\x30\x70\x65\x6f\x30\x20\x00\x25\x00\x64\x00\x20\x00\x0b\x50\x67\x30\x59\x30\x0a\x00\x00"/*@ L"ƒpƒbƒh‚Ì”‚Í %d ŒÂ‚Å‚·\n" @*/, InputSysData.PadNum ));
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\xd1\x30\xc3\x30\xc9\x30\x6e\x30\x70\x65\x6f\x30\x20\x00\x25\x00\x64\x00\x20\x00\x0b\x50\x67\x30\x59\x30\x0a\x00\x00"/*@ L"ãƒ‘ãƒƒãƒ‰ã®æ•°ã¯ %d å€‹ã§ã™\n" @*/, InputSysData.PadNum ));
 
 		DXST_LOGFILE_TABSUB ;
 		InputSysData.PF.DirectInputObject = (D_IDirectInput7 *)(DWORD_PTR)0xffffffff ;
-		DXST_LOGFILE_ADDUTF16LE( "\x65\x51\x9b\x52\xa2\x95\x23\x90\x6e\x30\x1d\x52\x1f\x67\x16\x53\x92\x30\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"“ü—ÍŠÖ˜A‚Ì‰Šú‰»‚ğ‚µ‚Ü‚µ‚½\n" @*/ ) ;
+		DXST_LOGFILE_ADDUTF16LE( "\x65\x51\x9b\x52\xa2\x95\x23\x90\x6e\x30\x1d\x52\x1f\x67\x16\x53\x92\x30\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"å…¥åŠ›é–¢é€£ã®åˆæœŸåŒ–ã‚’ã—ã¾ã—ãŸ\n" @*/ ) ;
 	}
 
-	// ƒL[ƒ{[ƒh‚ÆƒWƒ‡ƒCƒpƒbƒh‚Ì“ü—Í‚ÌƒfƒtƒHƒ‹ƒg‚Ì‘Î‰•\‚ğİ’è‚·‚é
+	// ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ã¨ã‚¸ãƒ§ã‚¤ãƒ‘ãƒƒãƒ‰ã®å…¥åŠ›ã®ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®å¯¾å¿œè¡¨ã‚’è¨­å®šã™ã‚‹
 	if( InputSysData.KeyToJoypadInputInitializeFlag == FALSE )
 	{
 		InputSysData.KeyToJoypadInputInitializeFlag = TRUE ;
@@ -2132,17 +2132,17 @@ KEYBOARDDEVICEINITEND:
 		InputSysData.KeyToJoypadInput[ 0 ][ 13 ][ 0 ] = D_DIK_SPACE;
 	}
 
-	// ‰Šú‰»’†ƒtƒ‰ƒO‚ğ“|‚·
+	// åˆæœŸåŒ–ä¸­ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 	NowInitialize = FALSE ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// “ü—ÍƒVƒXƒeƒ€‚ÌŒãn––‚ğ‚·‚éˆ—‚ÌŠÂ‹«ˆË‘¶ˆ—
+// å…¥åŠ›ã‚·ã‚¹ãƒ†ãƒ ã®å¾Œå§‹æœ«ã‚’ã™ã‚‹å‡¦ç†ã®ç’°å¢ƒä¾å­˜å‡¦ç†
 extern int TerminateInputSystem_PF_Timing0( void )
 {
-	// ‰Šú‰»”»’è
+	// åˆæœŸåŒ–åˆ¤å®š
 	if( InputSysData.PF.DirectInputObject == NULL )
 	{
 		return 0 ;
@@ -2150,16 +2150,16 @@ extern int TerminateInputSystem_PF_Timing0( void )
 
 	SETUP_WIN_API
 
-	// ‚c‚‰‚’‚…‚ƒ‚”‚h‚‚‚•‚” ‚ğg—p‚µ‚Ä‚¢‚½‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+	// ï¼¤ï½‰ï½’ï½…ï½ƒï½”ï¼©ï½ï½ï½•ï½” ã‚’ä½¿ç”¨ã—ã¦ã„ãŸã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 	if( InputSysData.PF.DirectInputObject != (D_IDirectInput7 *)(DWORD_PTR)0xffffffff )
 	{
-		// DirectInput ‚ğg—p‚µ‚½ê‡
-		DXST_LOGFILE_ADDUTF16LE( "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x20\x00\xa2\x95\x23\x90\x6e\x30\x42\x7d\x86\x4e\xe6\x51\x06\x74\x2e\x00\x2e\x00\x2e\x00\x20\x00\x8c\x5b\x86\x4e\x0a\x00\x00"/*@ L"DirectInput ŠÖ˜A‚ÌI—¹ˆ—... Š®—¹\n" @*/ ) ;
+		// DirectInput ã‚’ä½¿ç”¨ã—ãŸå ´åˆ
+		DXST_LOGFILE_ADDUTF16LE( "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x20\x00\xa2\x95\x23\x90\x6e\x30\x42\x7d\x86\x4e\xe6\x51\x06\x74\x2e\x00\x2e\x00\x2e\x00\x20\x00\x8c\x5b\x86\x4e\x0a\x00\x00"/*@ L"DirectInput é–¢é€£ã®çµ‚äº†å‡¦ç†... å®Œäº†\n" @*/ ) ;
 
-		// ƒWƒ‡ƒCƒpƒbƒhƒfƒoƒCƒX‚Ì‰ğ•ú
+		// ã‚¸ãƒ§ã‚¤ãƒ‘ãƒƒãƒ‰ãƒ‡ãƒã‚¤ã‚¹ã®è§£æ”¾
 		TerminateJoypad() ;
 
-		// ƒL[ƒ{[ƒhƒfƒoƒCƒX‚Ì‰ğ•ú
+		// ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ãƒ‡ãƒã‚¤ã‚¹ã®è§£æ”¾
 		if( InputSysData.PF.KeyboardDeviceObject != NULL )
 		{
 			InputSysData.PF.KeyboardDeviceObject->SetEventNotification( NULL ) ;
@@ -2169,7 +2169,7 @@ extern int TerminateInputSystem_PF_Timing0( void )
 			WinAPIData.Win32Func.CloseHandleFunc( InputSysData.PF.KeyEvent ) ;
 		}
 
-		// ƒ}ƒEƒXƒfƒoƒCƒX‚Ì‰ğ•ú
+		// ãƒã‚¦ã‚¹ãƒ‡ãƒã‚¤ã‚¹ã®è§£æ”¾
 		if( InputSysData.PF.MouseDeviceObject != NULL )
 		{
 			InputSysData.PF.MouseDeviceObject->Unacquire() ;
@@ -2177,14 +2177,14 @@ extern int TerminateInputSystem_PF_Timing0( void )
 			InputSysData.PF.MouseDeviceObject = NULL ;
 		}
 
-		// ‚c‚‰‚’‚…‚ƒ‚”‚h‚‚‚•‚”ƒIƒuƒWƒFƒNƒg‚Ì‰ğ•ú
+		// ï¼¤ï½‰ï½’ï½…ï½ƒï½”ï¼©ï½ï½ï½•ï½”ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®è§£æ”¾
 		if( InputSysData.PF.DirectInputObject != NULL )
 		{
 			InputSysData.PF.DirectInputObject->Release() ;
 			InputSysData.PF.DirectInputObject = NULL ;
 		}
 
-		// ‚w‚h‚‚‚•‚”‚ÌŒãn––ˆ—
+		// ï¼¸ï¼©ï½ï½ï½•ï½”ã®å¾Œå§‹æœ«å‡¦ç†
 		if( InputSysData.PF.XInputDLL )
 		{
 			FreeLibrary( InputSysData.PF.XInputDLL ) ;
@@ -2195,51 +2195,51 @@ extern int TerminateInputSystem_PF_Timing0( void )
 	}
 	else
 	{
-		// DirectInput ‚ğg—p‚µ‚È‚©‚Á‚½ê‡
-		DXST_LOGFILE_ADDUTF16LE( "\x65\x51\x9b\x52\xa2\x95\x23\x90\x6e\x30\x42\x7d\x86\x4e\xe6\x51\x06\x74\x2e\x00\x2e\x00\x2e\x00\x20\x00\x8c\x5b\x86\x4e\x0a\x00\x00"/*@ L"“ü—ÍŠÖ˜A‚ÌI—¹ˆ—... Š®—¹\n" @*/ ) ;
+		// DirectInput ã‚’ä½¿ç”¨ã—ãªã‹ã£ãŸå ´åˆ
+		DXST_LOGFILE_ADDUTF16LE( "\x65\x51\x9b\x52\xa2\x95\x23\x90\x6e\x30\x42\x7d\x86\x4e\xe6\x51\x06\x74\x2e\x00\x2e\x00\x2e\x00\x20\x00\x8c\x5b\x86\x4e\x0a\x00\x00"/*@ L"å…¥åŠ›é–¢é€£ã®çµ‚äº†å‡¦ç†... å®Œäº†\n" @*/ ) ;
 
 		InputSysData.PF.DirectInputObject = NULL ;
 	}
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// ©“®‰Šú‰»‚ğs‚¤ŠÂ‹«ˆË‘¶ˆ—
+// è‡ªå‹•åˆæœŸåŒ–ã‚’è¡Œã†ç’°å¢ƒä¾å­˜å‡¦ç†
 extern int AutoInitialize_PF( void )
 {
-	// ƒEƒCƒ“ƒhƒE‚ªƒNƒ[ƒY‚³‚ê‚é‘O‚È‚ç‰Šú‰»‚ğs‚¤
+	// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãŒã‚¯ãƒ­ãƒ¼ã‚ºã•ã‚Œã‚‹å‰ãªã‚‰åˆæœŸåŒ–ã‚’è¡Œã†
 	if( NS_GetWindowCloseFlag() == FALSE )
 	{
 		return InitializeInputSystem() ;
 	}
 
-	// ‚»‚êˆÈŠO‚Ìê‡‚Í’ÊíI—¹
+	// ãã‚Œä»¥å¤–ã®å ´åˆã¯é€šå¸¸çµ‚äº†
 	return 0 ;
 }
 
-// ƒWƒ‡ƒCƒpƒbƒh‚ÌƒZƒbƒgƒAƒbƒv‚ÌŠÂ‹«ˆË‘¶ˆ—
+// ã‚¸ãƒ§ã‚¤ãƒ‘ãƒƒãƒ‰ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã®ç’°å¢ƒä¾å­˜å‡¦ç†
 extern int SetupJoypad_PF( void )
 {
-	// ‰Šú‰»”»’è
+	// åˆæœŸåŒ–åˆ¤å®š
 	if( InputSysData.PF.NoUseDirectInputFlag == FALSE && ( InputSysData.PF.DirectInputObject == NULL || InputSysData.PF.DirectInputObject == (D_IDirectInput7 *)(DWORD_PTR)0xffffffff ) )
 	{
 		return -1 ;
 	}
 
-	// Šù‚É‰Šú‰»‚³‚ê‚Ä‚¢‚½ê‡‚ğl‚¦‚ÄŒãn––‚ğÅ‰‚És‚¤
+	// æ—¢ã«åˆæœŸåŒ–ã•ã‚Œã¦ã„ãŸå ´åˆã‚’è€ƒãˆã¦å¾Œå§‹æœ«ã‚’æœ€åˆã«è¡Œã†
 	TerminateJoypad() ;
 
-	// ƒWƒ‡ƒCƒpƒbƒhƒfƒoƒCƒX‚ğ‰Šú‰»‚·‚é
-	DXST_LOGFILE_ADDUTF16LE( "\xb8\x30\xe7\x30\xa4\x30\xd1\x30\xc3\x30\xc9\x30\x6e\x30\x1d\x52\x1f\x67\x16\x53\x2e\x00\x2e\x00\x2e\x00\x20\x00\x0a\x00\x00"/*@ L"ƒWƒ‡ƒCƒpƒbƒh‚Ì‰Šú‰»... \n" @*/ ) ;
+	// ã‚¸ãƒ§ã‚¤ãƒ‘ãƒƒãƒ‰ãƒ‡ãƒã‚¤ã‚¹ã‚’åˆæœŸåŒ–ã™ã‚‹
+	DXST_LOGFILE_ADDUTF16LE( "\xb8\x30\xe7\x30\xa4\x30\xd1\x30\xc3\x30\xc9\x30\x6e\x30\x1d\x52\x1f\x67\x16\x53\x2e\x00\x2e\x00\x2e\x00\x20\x00\x0a\x00\x00"/*@ L"ã‚¸ãƒ§ã‚¤ãƒ‘ãƒƒãƒ‰ã®åˆæœŸåŒ–... \n" @*/ ) ;
 	DXST_LOGFILE_TABADD ;
 	InputSysData.PadNum = 0 ;
 	InputSysData.PF.XInputPadNum = 0 ;
 
-	DXST_LOGFILEFMT_ADDUTF16LE(( "\x58\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x20\x00\xfe\x5b\xdc\x5f\xb3\x30\xf3\x30\xc8\x30\xed\x30\xfc\x30\xe9\x30\xfc\x30\x6e\x30\xc1\x30\xa7\x30\xc3\x30\xaf\x30\x92\x30\x8b\x95\xcb\x59\x57\x30\x7e\x30\x59\x30\x00"/*@ L"XInput ‘Î‰ƒRƒ“ƒgƒ[ƒ‰[‚Ìƒ`ƒFƒbƒN‚ğŠJn‚µ‚Ü‚·" @*/ )) ;
+	DXST_LOGFILEFMT_ADDUTF16LE(( "\x58\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x20\x00\xfe\x5b\xdc\x5f\xb3\x30\xf3\x30\xc8\x30\xed\x30\xfc\x30\xe9\x30\xfc\x30\x6e\x30\xc1\x30\xa7\x30\xc3\x30\xaf\x30\x92\x30\x8b\x95\xcb\x59\x57\x30\x7e\x30\x59\x30\x00"/*@ L"XInput å¯¾å¿œã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼ã®ãƒã‚§ãƒƒã‚¯ã‚’é–‹å§‹ã—ã¾ã™" @*/ )) ;
 	DXST_LOGFILE_TABADD ;
 
-	// XInput ‚Åæ“¾‚Å‚«‚éƒpƒbƒh‚ğæ‚ÉŒŸo
+	// XInput ã§å–å¾—ã§ãã‚‹ãƒ‘ãƒƒãƒ‰ã‚’å…ˆã«æ¤œå‡º
 	if( InputSysData.PF.XInputDLL != NULL )
 	{
 		DWORD i ;
@@ -2250,20 +2250,20 @@ extern int SetupJoypad_PF( void )
 		pad = &InputSysData.Pad[ InputSysData.PadNum ] ;
 		for( i = 0 ; i < 4 ; i ++ )
 		{
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\x58\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x20\x00\xfe\x5b\xdc\x5f\xb3\x30\xf3\x30\xc8\x30\xed\x30\xfc\x30\xe9\x30\xfc\x30\x20\x00\x4e\x00\x6f\x00\x2e\x00\x25\x00\x64\x00\x20\x00\x92\x30\xc1\x30\xa7\x30\xc3\x30\xaf\x30\x00"/*@ L"XInput ‘Î‰ƒRƒ“ƒgƒ[ƒ‰[ No.%d ‚ğƒ`ƒFƒbƒN" @*/, i )) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\x58\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x20\x00\xfe\x5b\xdc\x5f\xb3\x30\xf3\x30\xc8\x30\xed\x30\xfc\x30\xe9\x30\xfc\x30\x20\x00\x4e\x00\x6f\x00\x2e\x00\x25\x00\x64\x00\x20\x00\x92\x30\xc1\x30\xa7\x30\xc3\x30\xaf\x30\x00"/*@ L"XInput å¯¾å¿œã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼ No.%d ã‚’ãƒã‚§ãƒƒã‚¯" @*/, i )) ;
 
 			if( InputSysData.PF.XInputGetStateFunc( i, &state ) != ERROR_SUCCESS )
 			{
-				DXST_LOGFILEFMT_ADDUTF16LE(( "\x58\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x20\x00\xfe\x5b\xdc\x5f\xb3\x30\xf3\x30\xc8\x30\xed\x30\xfc\x30\xe9\x30\xfc\x30\x20\x00\x4e\x00\x6f\x00\x2e\x00\x25\x00\x64\x00\x20\x00\x6e\x30\xa5\x63\x9a\x7d\x6f\x30\xba\x78\x8d\x8a\x67\x30\x4d\x30\x7e\x30\x5b\x30\x93\x30\x67\x30\x57\x30\x5f\x30\x00"/*@ L"XInput ‘Î‰ƒRƒ“ƒgƒ[ƒ‰[ No.%d ‚ÌÚ‘±‚ÍŠm”F‚Å‚«‚Ü‚¹‚ñ‚Å‚µ‚½" @*/, i )) ;
+				DXST_LOGFILEFMT_ADDUTF16LE(( "\x58\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x20\x00\xfe\x5b\xdc\x5f\xb3\x30\xf3\x30\xc8\x30\xed\x30\xfc\x30\xe9\x30\xfc\x30\x20\x00\x4e\x00\x6f\x00\x2e\x00\x25\x00\x64\x00\x20\x00\x6e\x30\xa5\x63\x9a\x7d\x6f\x30\xba\x78\x8d\x8a\x67\x30\x4d\x30\x7e\x30\x5b\x30\x93\x30\x67\x30\x57\x30\x5f\x30\x00"/*@ L"XInput å¯¾å¿œã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼ No.%d ã®æ¥ç¶šã¯ç¢ºèªã§ãã¾ã›ã‚“ã§ã—ãŸ" @*/, i )) ;
 				continue ;
 			}
 
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\x58\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x20\x00\xfe\x5b\xdc\x5f\xb3\x30\xf3\x30\xc8\x30\xed\x30\xfc\x30\xe9\x30\xfc\x30\x20\x00\x4e\x00\x6f\x00\x2e\x00\x25\x00\x64\x00\x20\x00\x6e\x30\xa5\x63\x9a\x7d\x92\x30\xba\x78\x8d\x8a\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"XInput ‘Î‰ƒRƒ“ƒgƒ[ƒ‰[ No.%d ‚ÌÚ‘±‚ğŠm”F‚µ‚Ü‚µ‚½" @*/, i )) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\x58\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x20\x00\xfe\x5b\xdc\x5f\xb3\x30\xf3\x30\xc8\x30\xed\x30\xfc\x30\xe9\x30\xfc\x30\x20\x00\x4e\x00\x6f\x00\x2e\x00\x25\x00\x64\x00\x20\x00\x6e\x30\xa5\x63\x9a\x7d\x92\x30\xba\x78\x8d\x8a\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"XInput å¯¾å¿œã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼ No.%d ã®æ¥ç¶šã‚’ç¢ºèªã—ã¾ã—ãŸ" @*/, i )) ;
 
-			// XInput ‚Å‚ÌƒfƒoƒCƒX”Ô†‚ğ•Û‘¶
+			// XInput ã§ã®ãƒ‡ãƒã‚¤ã‚¹ç•ªå·ã‚’ä¿å­˜
 			pad->PF.XInputDeviceNo = ( int )i ;
 
-			// ƒfƒtƒHƒ‹ƒg‚Ìƒfƒbƒhƒ][ƒ“‚ªİ’è‚³‚ê‚Ä‚¢‚È‚©‚Á‚½‚çİ’è‚·‚é
+			// ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®ãƒ‡ãƒƒãƒ‰ã‚¾ãƒ¼ãƒ³ãŒè¨­å®šã•ã‚Œã¦ã„ãªã‹ã£ãŸã‚‰è¨­å®šã™ã‚‹
 			if( InputSysData.EnablePadDefaultDeadZone == FALSE )
 			{
 				InputSysData.EnablePadDefaultDeadZone = TRUE ;
@@ -2271,14 +2271,14 @@ extern int SetupJoypad_PF( void )
 				InputSysData.PadDefaultDeadZoneD = PAD_DEFAULT_DEADZONE_D ;
 			}
 
-			// –³Œøƒ][ƒ“‚ÌƒZƒbƒg
+			// ç„¡åŠ¹ã‚¾ãƒ¼ãƒ³ã®ã‚»ãƒƒãƒˆ
 			pad->DeadZone = InputSysData.PadDefaultDeadZone ;
 			pad->DeadZoneD = InputSysData.PadDefaultDeadZoneD ;
 
-			// ƒ{ƒ^ƒ“‚Ì”‚ğƒZƒbƒg
+			// ãƒœã‚¿ãƒ³ã®æ•°ã‚’ã‚»ãƒƒãƒˆ
 			pad->Buttons = 16 ;
 
-			// U“®ŠÖŒW‚Ìİ’è‚Ì‰Šú‰»‚ğs‚¤
+			// æŒ¯å‹•é–¢ä¿‚ã®è¨­å®šã®åˆæœŸåŒ–ã‚’è¡Œã†
 			for( j = 0 ; j < DINPUTPAD_MOTOR_NUM ; j ++ )
 			{
 				pad->Effect[ j ].PF.DIEffect   = NULL ;
@@ -2297,15 +2297,15 @@ extern int SetupJoypad_PF( void )
 //			pad->EffectPlayStateLeft	= FALSE ;
 //			pad->EffectPlayStateRight	= FALSE ;
 
-			// ƒXƒe[ƒ^ƒX‚ğ‰Šú‰»
+			// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚’åˆæœŸåŒ–
 			_MEMSET( &pad->State, 0, sizeof( D_DIJOYSTATE ) ) ;
 			_MEMSET( &pad->XInputState, 0, sizeof( pad->XInputState ) ) ;
 
-			// –¼‘O‚ğİ’è
+			// åå‰ã‚’è¨­å®š
 			_WCSCPY_S( pad->PF.InstanceName, sizeof( pad->PF.InstanceName ), L"Controller (XBOX 360 For Windows)" );
 			_WCSCPY_S( pad->PF.ProductName,  sizeof( pad->PF.ProductName  ), L"Controller (XBOX 360 For Windows)" );
 
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\x58\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x20\x00\xfe\x5b\xdc\x5f\xb3\x30\xf3\x30\xc8\x30\xed\x30\xfc\x30\xe9\x30\xfc\x30\x20\x00\x4e\x00\x6f\x00\x2e\x00\x25\x00\x64\x00\x20\x00\x92\x30\x65\x51\x9b\x52\xca\x30\xf3\x30\xd0\x30\xfc\x30\x20\x00\x25\x00\x64\x00\x20\x00\x67\x30\x7b\x76\x32\x93\x57\x30\x7e\x30\x59\x30\x00"/*@ L"XInput ‘Î‰ƒRƒ“ƒgƒ[ƒ‰[ No.%d ‚ğ“ü—Íƒiƒ“ƒo[ %d ‚Å“o˜^‚µ‚Ü‚·" @*/, i, InputSysData.PadNum )) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\x58\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x20\x00\xfe\x5b\xdc\x5f\xb3\x30\xf3\x30\xc8\x30\xed\x30\xfc\x30\xe9\x30\xfc\x30\x20\x00\x4e\x00\x6f\x00\x2e\x00\x25\x00\x64\x00\x20\x00\x92\x30\x65\x51\x9b\x52\xca\x30\xf3\x30\xd0\x30\xfc\x30\x20\x00\x25\x00\x64\x00\x20\x00\x67\x30\x7b\x76\x32\x93\x57\x30\x7e\x30\x59\x30\x00"/*@ L"XInput å¯¾å¿œã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼ No.%d ã‚’å…¥åŠ›ãƒŠãƒ³ãƒãƒ¼ %d ã§ç™»éŒ²ã—ã¾ã™" @*/, i, InputSysData.PadNum )) ;
 
 			pad ++ ;
 			InputSysData.PadNum ++ ;
@@ -2314,35 +2314,35 @@ extern int SetupJoypad_PF( void )
 	}
 
 	DXST_LOGFILE_TABSUB ;
-	DXST_LOGFILEFMT_ADDUTF16LE(( "\x58\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x20\x00\xfe\x5b\xdc\x5f\xb3\x30\xf3\x30\xc8\x30\xed\x30\xfc\x30\xe9\x30\xfc\x30\x6e\x30\xc1\x30\xa7\x30\xc3\x30\xaf\x30\x8c\x5b\x86\x4e\x00"/*@ L"XInput ‘Î‰ƒRƒ“ƒgƒ[ƒ‰[‚Ìƒ`ƒFƒbƒNŠ®—¹" @*/ )) ;
+	DXST_LOGFILEFMT_ADDUTF16LE(( "\x58\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x20\x00\xfe\x5b\xdc\x5f\xb3\x30\xf3\x30\xc8\x30\xed\x30\xfc\x30\xe9\x30\xfc\x30\x6e\x30\xc1\x30\xa7\x30\xc3\x30\xaf\x30\x8c\x5b\x86\x4e\x00"/*@ L"XInput å¯¾å¿œã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼ã®ãƒã‚§ãƒƒã‚¯å®Œäº†" @*/ )) ;
 
-	// ‚c‚‰‚’‚…‚ƒ‚”‚h‚‚‚•‚” ‚ğg—p‚·‚éê‡‚Í ‚c‚‰‚’‚…‚ƒ‚”‚h‚‚‚•‚” ‚ÌƒWƒ‡ƒCƒpƒbƒh‚àŒŸo
+	// ï¼¤ï½‰ï½’ï½…ï½ƒï½”ï¼©ï½ï½ï½•ï½” ã‚’ä½¿ç”¨ã™ã‚‹å ´åˆã¯ ï¼¤ï½‰ï½’ï½…ï½ƒï½”ï¼©ï½ï½ï½•ï½” ã®ã‚¸ãƒ§ã‚¤ãƒ‘ãƒƒãƒ‰ã‚‚æ¤œå‡º
 	if( InputSysData.PF.NoUseDirectInputFlag == FALSE )
 	{
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x20\x00\xfe\x5b\xdc\x5f\xb8\x30\xe7\x30\xa4\x30\xd1\x30\xc3\x30\xc9\x30\x6e\x30\x17\x52\x19\x63\x92\x30\x8b\x95\xcb\x59\x57\x30\x7e\x30\x59\x30\x00"/*@ L"DirectInput ‘Î‰ƒWƒ‡ƒCƒpƒbƒh‚Ì—ñ‹“‚ğŠJn‚µ‚Ü‚·" @*/ )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x20\x00\xfe\x5b\xdc\x5f\xb8\x30\xe7\x30\xa4\x30\xd1\x30\xc3\x30\xc9\x30\x6e\x30\x17\x52\x19\x63\x92\x30\x8b\x95\xcb\x59\x57\x30\x7e\x30\x59\x30\x00"/*@ L"DirectInput å¯¾å¿œã‚¸ãƒ§ã‚¤ãƒ‘ãƒƒãƒ‰ã®åˆ—æŒ™ã‚’é–‹å§‹ã—ã¾ã™" @*/ )) ;
 		DXST_LOGFILE_TABADD ;
 
 	//	InputSysData.PF.PadInstanceGUIDNum = 0 ;
 		InputSysData.PF.DirectInputObject->EnumDevices( D_DIDEVTYPE_JOYSTICK, EnumJoypadProc, NULL, D_DIEDFL_ATTACHEDONLY ) ;
 
 		DXST_LOGFILE_TABSUB ;
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x20\x00\xfe\x5b\xdc\x5f\xb8\x30\xe7\x30\xa4\x30\xd1\x30\xc3\x30\xc9\x30\x6e\x30\x17\x52\x19\x63\x42\x7d\x86\x4e\x00"/*@ L"DirectInput ‘Î‰ƒWƒ‡ƒCƒpƒbƒh‚Ì—ñ‹“I—¹" @*/ )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x49\x00\x6e\x00\x70\x00\x75\x00\x74\x00\x20\x00\xfe\x5b\xdc\x5f\xb8\x30\xe7\x30\xa4\x30\xd1\x30\xc3\x30\xc9\x30\x6e\x30\x17\x52\x19\x63\x42\x7d\x86\x4e\x00"/*@ L"DirectInput å¯¾å¿œã‚¸ãƒ§ã‚¤ãƒ‘ãƒƒãƒ‰ã®åˆ—æŒ™çµ‚äº†" @*/ )) ;
 
 		DXST_LOGFILE_TABSUB ;
 	}
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// ƒWƒ‡ƒCƒpƒbƒh‚ÌŒãn––‚ğs‚¤ˆ—‚ÌŠÂ‹«ˆË‘¶ˆ—
+// ã‚¸ãƒ§ã‚¤ãƒ‘ãƒƒãƒ‰ã®å¾Œå§‹æœ«ã‚’è¡Œã†å‡¦ç†ã®ç’°å¢ƒä¾å­˜å‡¦ç†
 extern int TerminateJoypad_PF( void )
 {
 	int i ;
 	int j ;
 	INPUTPADDATA *pad ;
 
-	// ƒWƒ‡ƒCƒpƒbƒhƒfƒoƒCƒX‚Ì‰ğ•ú
+	// ã‚¸ãƒ§ã‚¤ãƒ‘ãƒƒãƒ‰ãƒ‡ãƒã‚¤ã‚¹ã®è§£æ”¾
 	pad = InputSysData.Pad ;
 	for( i = 0 ; i < InputSysData.PadNum ; i ++ , pad ++ )
 	{
@@ -2373,11 +2373,11 @@ extern int TerminateJoypad_PF( void )
 
 	InputSysData.PadNum = 0 ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// “ü—Íó‘Ô‚ÌXV‚ÌŠÂ‹«ˆË‘¶ˆ—
+// å…¥åŠ›çŠ¶æ…‹ã®æ›´æ–°ã®ç’°å¢ƒä¾å­˜å‡¦ç†
 extern int UpdateKeyboardInputState_PF( int UseProcessMessage )
 {
 	unsigned char KeyBuffer[256] ;
@@ -2386,30 +2386,30 @@ extern int UpdateKeyboardInputState_PF( int UseProcessMessage )
 
 	SETUP_WIN_API
 
-	// ƒL[ƒ{[ƒh“ü—Íˆ—‚É DirectInput ‚ğg—p‚·‚é‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+	// ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰å…¥åŠ›å‡¦ç†ã« DirectInput ã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 	if( InputSysData.PF.NoUseDirectInputFlag          == TRUE ||
 		InputSysData.PF.KeyboardNotUseDirectInputFlag == TRUE ||
 		InputSysData.PF.KeyboardDeviceObject          == NULL ||
 		( InputSysData.PF.UseDirectInputFlag == FALSE && WinData.WindowsVersion >= DX_WINDOWSVERSION_VISTA ) )
 	{
-		// ƒƒCƒ“ƒXƒŒƒbƒhˆÈŠO‚©‚çŒÄ‚Î‚ê‚½ê‡‚Í‰½‚à‚¹‚¸‚ÉI—¹
+		// ãƒ¡ã‚¤ãƒ³ã‚¹ãƒ¬ãƒƒãƒ‰ä»¥å¤–ã‹ã‚‰å‘¼ã°ã‚ŒãŸå ´åˆã¯ä½•ã‚‚ã›ãšã«çµ‚äº†
 		if( WinAPIData.Win32Func.GetCurrentThreadIdFunc() != WinData.MainThreadID )
 		{
 			goto ENDFUNCTION ;
 		}
 
-		// ‚Ü‚¾‘O‰ñ‚Ìæ“¾‚©‚ç 1msec ‚àŒo‰ß‚µ‚Ä‚¢‚È‚¢ê‡‚ÍˆÈ‘O‚Ìó‘Ô‚ğ•Ô‚·
+		// ã¾ã å‰å›ã®å–å¾—ã‹ã‚‰ 1msec ã‚‚çµŒéã—ã¦ã„ãªã„å ´åˆã¯ä»¥å‰ã®çŠ¶æ…‹ã‚’è¿”ã™
 		Time = ( int )WinAPIData.Win32Func.timeGetTimeFunc() ;
 		if( InputSysData.KeyInputGetTime == Time ) goto ENDFUNCTION ;
 		InputSysData.KeyInputGetTime = Time ;
 
-		// ƒL[“ü—Í‚ÌƒƒbƒZ[ƒW‚ª—ˆ‚Ä‚¢‚é‰Â”\«‚ª‚ ‚é‚Ì‚ÅAƒƒbƒZ[ƒWˆ—‚ğs‚¤
+		// ã‚­ãƒ¼å…¥åŠ›ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãŒæ¥ã¦ã„ã‚‹å¯èƒ½æ€§ãŒã‚ã‚‹ã®ã§ã€ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å‡¦ç†ã‚’è¡Œã†
 		if( UseProcessMessage != FALSE && NS_ProcessMessage() != 0 )
 		{
 			goto ENDFUNCTION ;
 		}
 
-		// •W€‚`‚o‚h‚Å“ü—Íó‘Ô‚ğæ“¾‚·‚é
+		// æ¨™æº–ï¼¡ï¼°ï¼©ã§å…¥åŠ›çŠ¶æ…‹ã‚’å–å¾—ã™ã‚‹
 		WinAPIData.Win32Func.GetKeyboardStateFunc( KeyBuffer ) ;
 		_MEMSET( &InputSysData.KeyInputBuf, 0, sizeof( InputSysData.KeyInputBuf ) ) ;
 		for( i = 0 ; __KeyMap[i][0] != 0xffff ; i ++ )
@@ -2427,26 +2427,26 @@ extern int UpdateKeyboardInputState_PF( int UseProcessMessage )
 	}
 	else
 	{
-		// ‚Ü‚¾‘O‰ñ‚Ìæ“¾‚©‚ç 1msec ‚àŒo‰ß‚µ‚Ä‚¢‚È‚¢ê‡‚ÍˆÈ‘O‚Ìó‘Ô‚ğ•Ô‚·
+		// ã¾ã å‰å›ã®å–å¾—ã‹ã‚‰ 1msec ã‚‚çµŒéã—ã¦ã„ãªã„å ´åˆã¯ä»¥å‰ã®çŠ¶æ…‹ã‚’è¿”ã™
 		Time = ( int )WinAPIData.Win32Func.timeGetTimeFunc() ;
 		if( InputSysData.KeyInputGetTime == Time && WinAPIData.Win32Func.WaitForSingleObjectFunc( InputSysData.PF.KeyEvent, 0 ) != WAIT_OBJECT_0 )
 		{
 			goto ENDFUNCTION ;
 		}
 
-		// ƒL[“ü—Í‚ÌƒƒbƒZ[ƒW‚ª—ˆ‚Ä‚¢‚é‰Â”\«‚ª‚ ‚é‚Ì‚ÅAƒƒbƒZ[ƒWˆ—‚ğs‚¤
+		// ã‚­ãƒ¼å…¥åŠ›ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãŒæ¥ã¦ã„ã‚‹å¯èƒ½æ€§ãŒã‚ã‚‹ã®ã§ã€ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å‡¦ç†ã‚’è¡Œã†
 		if( UseProcessMessage != FALSE && NS_ProcessMessage() != 0 )
 		{
 			goto ENDFUNCTION ;
 		}
 
-		// ‰Šú‰»”»’è
+		// åˆæœŸåŒ–åˆ¤å®š
 		if( InputSysData.PF.DirectInputObject == NULL )
 		{
 			goto ENDFUNCTION ;
 		}
 
-		// ƒXƒe[ƒ^ƒXæ“¾AƒƒXƒg‚µ‚Ä‚¢‚½‚çÄæ“¾
+		// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹å–å¾—ã€ãƒ­ã‚¹ãƒˆã—ã¦ã„ãŸã‚‰å†å–å¾—
 		hr = InputSysData.PF.KeyboardDeviceObject->GetDeviceState( sizeof( InputSysData.KeyInputBuf ) , ( LPVOID )InputSysData.KeyInputBuf ) ;
 //		if( hr == DIERR_INPUTLOST )
 		if( hr != D_DI_OK )
@@ -2464,20 +2464,20 @@ extern int UpdateKeyboardInputState_PF( int UseProcessMessage )
 
 		InputSysData.KeyInputGetTime = Time ;
 		
-		// ƒCƒxƒ“ƒg‚ğƒŠƒZƒbƒg
+		// ã‚¤ãƒ™ãƒ³ãƒˆã‚’ãƒªã‚»ãƒƒãƒˆ
 		if( WinAPIData.Win32Func.WaitForSingleObjectFunc( InputSysData.PF.KeyEvent, 0 ) == WAIT_OBJECT_0 ) WinAPIData.Win32Func.ResetEventFunc( InputSysData.PF.KeyEvent ) ;
 
-		// ‰EƒVƒtƒgƒL[‚ğ•W€‚`‚o‚h‚©‚çæ‚é
+		// å³ã‚·ãƒ•ãƒˆã‚­ãƒ¼ã‚’æ¨™æº–ï¼¡ï¼°ï¼©ã‹ã‚‰å–ã‚‹
 		WinAPIData.Win32Func.GetKeyboardStateFunc( KeyBuffer ) ;
 		InputSysData.KeyInputBuf[ KEY_INPUT_RSHIFT ] = KeyBuffer[ VK_RSHIFT ] ;
 
-		// ******* ‚c‚‰‚’‚…‚ƒ‚”‚h‚‚‚•‚”‚ªM—p‚Å‚«‚È‚¢‚Ì‚ÅAˆê•”‚ÌƒL[‚ğœ‚«•W€‚`‚o‚h‚ÅƒL[ó‘Ô‚ğæ“¾ ******* //
+		// ******* ï¼¤ï½‰ï½’ï½…ï½ƒï½”ï¼©ï½ï½ï½•ï½”ãŒä¿¡ç”¨ã§ããªã„ã®ã§ã€ä¸€éƒ¨ã®ã‚­ãƒ¼ã‚’é™¤ãæ¨™æº–ï¼¡ï¼°ï¼©ã§ã‚­ãƒ¼çŠ¶æ…‹ã‚’å–å¾— ******* //
 /*		if( InputSysData.PF.KeyExclusiveCooperativeLevelFlag == FALSE )
 		{
-			//ƒƒCƒ“ƒXƒŒƒbƒhˆÈŠO‚¾‚Á‚½‚ç‚±‚Ìˆ—‚ğs‚í‚È‚¢
+			//ãƒ¡ã‚¤ãƒ³ã‚¹ãƒ¬ãƒƒãƒ‰ä»¥å¤–ã ã£ãŸã‚‰ã“ã®å‡¦ç†ã‚’è¡Œã‚ãªã„
 			if( WinData.MainThreadID == WinAPIData.Win32Func.GetCurrentThreadIdFunc() )
 			{
-				// •W€‚`‚o‚h‚Å“ü—Íó‘Ô‚ğæ“¾‚·‚é
+				// æ¨™æº–ï¼¡ï¼°ï¼©ã§å…¥åŠ›çŠ¶æ…‹ã‚’å–å¾—ã™ã‚‹
 				WinAPIData.Win32Func.GetKeyboardStateFunc( KeyBuffer ) ;
 				for( i = 0 ; __KeyMap[i][0] != 0xffff ; i ++ )
 					if( __KeyMap[i][2] != 1 )
@@ -2493,7 +2493,7 @@ ENDFUNCTION:
 	return Result ;
 }
 
-// ƒpƒbƒh‚Ì“ü—Íó‘Ô‚ÌXV‚ÌŠÂ‹«ˆË‘¶ˆ—
+// ãƒ‘ãƒƒãƒ‰ã®å…¥åŠ›çŠ¶æ…‹ã®æ›´æ–°ã®ç’°å¢ƒä¾å­˜å‡¦ç†
 extern int UpdateJoypadInputState_PF( int PadNo )
 {
 	INPUTPADDATA *pad = &InputSysData.Pad[ PadNo ] ;
@@ -2504,26 +2504,26 @@ extern int UpdateJoypadInputState_PF( int PadNo )
 
 	SETUP_WIN_API
 
-	// DirectInput ‚ğg—p‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+	// DirectInput ã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 	if( InputSysData.PF.NoUseDirectInputFlag == TRUE && pad->PF.XInputDeviceNo < 0 )
 	{
-		// DirectInput ‚ğg—p‚µ‚È‚¢ê‡
+		// DirectInput ã‚’ä½¿ç”¨ã—ãªã„å ´åˆ
 
-		// ‘O‰ñ‚Ìæ“¾‚©‚ç 1msec ‚àŒo‰ß‚µ‚Ä‚¢‚È‚¢ê‡‚ÍˆÈ‘O‚Ìó‘Ô‚ğ•Ô‚·
+		// å‰å›ã®å–å¾—ã‹ã‚‰ 1msec ã‚‚çµŒéã—ã¦ã„ãªã„å ´åˆã¯ä»¥å‰ã®çŠ¶æ…‹ã‚’è¿”ã™
 		Time = ( int )WinAPIData.Win32Func.timeGetTimeFunc() ;
 		if( pad->GetTime == Time ) return 0 ;
 		pad->GetTime = Time ;
 
-		// “ü—Íó‘Ô‚ğæ“¾‚·‚é
+		// å…¥åŠ›çŠ¶æ…‹ã‚’å–å¾—ã™ã‚‹
 		_MEMSET( &joyex, 0, sizeof( joyex ) ) ;
 		joyex.dwSize  = sizeof( JOYINFOEX ) ;
 		joyex.dwFlags = JOY_RETURNALL ;
 		if( WinAPIData.Win32Func.joyGetPosExFunc( ( UINT )PadNo - InputSysData.PF.XInputPadNum, &joyex ) != JOYERR_NOERROR )
 		{
-			// æ“¾‚Å‚«‚È‚©‚Á‚½ê‡‚ÍÚ‘±‚³‚ê‚Ä‚¢‚È‚¢‚Æ‚¢‚¤‚±‚Æ‚È‚Ì‚Åî•ñ‚ğƒ[ƒ‚Å–„‚ß‚Ä‚¨‚­
+			// å–å¾—ã§ããªã‹ã£ãŸå ´åˆã¯æ¥ç¶šã•ã‚Œã¦ã„ãªã„ã¨ã„ã†ã“ã¨ãªã®ã§æƒ…å ±ã‚’ã‚¼ãƒ­ã§åŸ‹ã‚ã¦ãŠã
 			_MEMSET( &pad->State, 0, sizeof( pad->State ) ) ;
 
-			// POV ‚Í -1 ‚É‚µ‚Ä‚¨‚­
+			// POV ã¯ -1 ã«ã—ã¦ãŠã
 			for( i = 0 ; i < 4 ; i ++ )
 			{
 				pad->State.POV[ i ] = 0xffffffff ;
@@ -2531,7 +2531,7 @@ extern int UpdateJoypadInputState_PF( int PadNo )
 		}
 		else
 		{
-			// ƒ}ƒ‹ƒ`ƒƒfƒBƒA‚`‚o‚h—p‚Ì“ü—Í’l‚ğ DirectInput —p‚É•ÏŠ·‚·‚é
+			// ãƒãƒ«ãƒãƒ¡ãƒ‡ã‚£ã‚¢ï¼¡ï¼°ï¼©ç”¨ã®å…¥åŠ›å€¤ã‚’ DirectInput ç”¨ã«å¤‰æ›ã™ã‚‹
 
 			switch( joyex.dwXpos )
 			{
@@ -2655,9 +2655,9 @@ extern int UpdateJoypadInputState_PF( int PadNo )
 	else
 	if( pad->PF.XInputDeviceNo < 0 )
 	{
-		// DirectInput ‚ğg—p‚·‚éê‡
+		// DirectInput ã‚’ä½¿ç”¨ã™ã‚‹å ´åˆ
 
-		// ‘O‰ñ‚Ìæ“¾‚©‚ç 1msec ‚àŒo‰ß‚µ‚Ä‚¢‚È‚¢ê‡‚ÍˆÈ‘O‚Ìó‘Ô‚ğ•Ô‚·
+		// å‰å›ã®å–å¾—ã‹ã‚‰ 1msec ã‚‚çµŒéã—ã¦ã„ãªã„å ´åˆã¯ä»¥å‰ã®çŠ¶æ…‹ã‚’è¿”ã™
 		Time = ( int )WinAPIData.Win32Func.timeGetTimeFunc() ;
 		if( pad->GetTime == Time && WinAPIData.Win32Func.WaitForSingleObjectFunc( pad->PF.Event, 0 ) != WAIT_OBJECT_0 )
 		{
@@ -2665,7 +2665,7 @@ extern int UpdateJoypadInputState_PF( int PadNo )
 		}
 		pad->GetTime = Time ;
 
-		// “ü—Íƒf[ƒ^‚Ìƒ|[ƒŠƒ“ƒO
+		// å…¥åŠ›ãƒ‡ãƒ¼ã‚¿ã®ãƒãƒ¼ãƒªãƒ³ã‚°
 		pad->PF.Device->Poll() ;
 
 		hr = pad->PF.Device->GetDeviceState( sizeof( D_DIJOYSTATE ) , &InputState ) ;
@@ -2772,16 +2772,16 @@ extern int UpdateJoypadInputState_PF( int PadNo )
 			pad->State.Buttons[ 31 ] = InputState.rgbButtons[ 31 ] ;
 		}
 
-		// ƒCƒxƒ“ƒg‚ÌƒŠƒZƒbƒg
+		// ã‚¤ãƒ™ãƒ³ãƒˆã®ãƒªã‚»ãƒƒãƒˆ
 		if( WinAPIData.Win32Func.WaitForSingleObjectFunc( pad->PF.Event, 0 ) == WAIT_OBJECT_0 ) WinAPIData.Win32Func.ResetEventFunc( pad->PF.Event ) ;
 	}
 	else
 	{
 		D_XINPUT_STATE XInputState ;
 
-		// XInput ‚ğg—p‚·‚éê‡
+		// XInput ã‚’ä½¿ç”¨ã™ã‚‹å ´åˆ
 
-		// ‘O‰ñ‚Ìæ“¾‚©‚ç 1msec ‚àŒo‰ß‚µ‚Ä‚¢‚È‚¢ê‡‚ÍˆÈ‘O‚Ìó‘Ô‚ğ•Ô‚·
+		// å‰å›ã®å–å¾—ã‹ã‚‰ 1msec ã‚‚çµŒéã—ã¦ã„ãªã„å ´åˆã¯ä»¥å‰ã®çŠ¶æ…‹ã‚’è¿”ã™
 		Time = ( int )WinAPIData.Win32Func.timeGetTimeFunc() ;
 		if( pad->GetTime == Time ) return 0 ;
 		pad->GetTime = Time ;
@@ -2789,10 +2789,10 @@ extern int UpdateJoypadInputState_PF( int PadNo )
 		if( InputSysData.PF.XInputGetStateFunc == NULL ||
 			InputSysData.PF.XInputGetStateFunc( ( DWORD )pad->PF.XInputDeviceNo, &XInputState ) != ERROR_SUCCESS )
 		{
-			// æ“¾‚Å‚«‚È‚©‚Á‚½ê‡‚ÍÚ‘±‚³‚ê‚Ä‚¢‚È‚¢‚Æ‚¢‚¤‚±‚Æ‚È‚Ì‚Åî•ñ‚ğƒ[ƒ‚Å–„‚ß‚Ä‚¨‚­
+			// å–å¾—ã§ããªã‹ã£ãŸå ´åˆã¯æ¥ç¶šã•ã‚Œã¦ã„ãªã„ã¨ã„ã†ã“ã¨ãªã®ã§æƒ…å ±ã‚’ã‚¼ãƒ­ã§åŸ‹ã‚ã¦ãŠã
 			_MEMSET( &pad->XInputState, 0, sizeof( pad->XInputState ) ) ;
 
-			// POV ‚Í -1 ‚É‚µ‚Ä‚¨‚­
+			// POV ã¯ -1 ã«ã—ã¦ãŠã
 			for( i = 0 ; i < 4 ; i ++ )
 			{
 				pad->State.POV[ i ] = 0xffffffff ;
@@ -2802,7 +2802,7 @@ extern int UpdateJoypadInputState_PF( int PadNo )
 		{
 			WORD Buttons ;
 
-			// XInput—p‚Ì“ü—Í’l‚ğ•Û‘¶
+			// XInputç”¨ã®å…¥åŠ›å€¤ã‚’ä¿å­˜
 			pad->XInputState.Buttons[ 0  ] = ( unsigned char )( ( XInputState.Gamepad.wButtons >> 0 ) & 1 ) ;
 			pad->XInputState.Buttons[ 1  ] = ( unsigned char )( ( XInputState.Gamepad.wButtons >> 1 ) & 1 ) ;
 			pad->XInputState.Buttons[ 2  ] = ( unsigned char )( ( XInputState.Gamepad.wButtons >> 2 ) & 1 ) ;
@@ -2826,7 +2826,7 @@ extern int UpdateJoypadInputState_PF( int PadNo )
 			pad->XInputState.ThumbRX       = XInputState.Gamepad.sThumbRX ;
 			pad->XInputState.ThumbRY       = XInputState.Gamepad.sThumbRY ;
 
-			// XInput—p‚Ì“ü—Í’l‚ğ DirectInput —p‚É•ÏŠ·‚·‚é
+			// XInputç”¨ã®å…¥åŠ›å€¤ã‚’ DirectInput ç”¨ã«å¤‰æ›ã™ã‚‹
 
 			switch( XInputState.Gamepad.sThumbLX )
 			{
@@ -2903,11 +2903,11 @@ extern int UpdateJoypadInputState_PF( int PadNo )
 		}
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒpƒbƒhƒGƒtƒFƒNƒg‚ÌÄ¶ó‘Ô‚ğXV‚·‚éŠÖ”‚ÌŠÂ‹«ˆË‘¶ˆ—
+// ãƒ‘ãƒƒãƒ‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®å†ç”ŸçŠ¶æ…‹ã‚’æ›´æ–°ã™ã‚‹é–¢æ•°ã®ç’°å¢ƒä¾å­˜å‡¦ç†
 extern int RefreshEffectPlayState_PF( int AlwaysRunFlag )
 {
 	int                 i ;
@@ -2923,20 +2923,20 @@ extern int RefreshEffectPlayState_PF( int AlwaysRunFlag )
 	D_XINPUT_VIBRATION  VibState ;
 	int                 AlwaysRunFlag_ = NS_GetAlwaysRunFlag() || AlwaysRunFlag ;
 
-	// ‰Šú‰»”»’è
+	// åˆæœŸåŒ–åˆ¤å®š
 	if( InputSysData.PF.NoUseDirectInputFlag == FALSE && ( InputSysData.PF.DirectInputObject == NULL || InputSysData.PF.DirectInputObject == (D_IDirectInput7 *)(DWORD_PTR)0xffffffff ) )
 		return 0 ;
 
-	// U“®‚ª–³Œø‚Èê‡‚Í‰½‚à‚µ‚È‚¢
+	// æŒ¯å‹•ãŒç„¡åŠ¹ãªå ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( InputSysData.NoUseVibrationFlag && AlwaysRunFlag == FALSE )
 		return 0 ;
 
-	// ƒpƒbƒhƒfƒoƒCƒX‚ÌÄæ“¾
+	// ãƒ‘ãƒƒãƒ‰ãƒ‡ãƒã‚¤ã‚¹ã®å†å–å¾—
 	num  = InputSysData.PadNum ;
 	Pad  = InputSysData.Pad ;
 	time = NS_GetNowCount( FALSE ) ;
 
-	// ƒGƒtƒFƒNƒg\‘¢‘Ì‚Ì‰Šú‰»
+	// ã‚¨ãƒ•ã‚§ã‚¯ãƒˆæ§‹é€ ä½“ã®åˆæœŸåŒ–
 	_MEMSET( &eff, 0, sizeof( eff ) ) ;
 	eff.dwSize                = sizeof( D_DIEFFECT ) ;
 	eff.dwFlags               = D_DIEFF_CARTESIAN | D_DIEFF_OBJECTOFFSETS ;
@@ -2945,15 +2945,15 @@ extern int RefreshEffectPlayState_PF( int AlwaysRunFlag )
 	eff.lpvTypeSpecificParams = &cf ;
 	eff.dwStartDelay          = 0 ;
 
-	// ƒ\ƒtƒg‚ªƒAƒNƒeƒBƒu‚Èê‡
+	// ã‚½ãƒ•ãƒˆãŒã‚¢ã‚¯ãƒ†ã‚£ãƒ–ãªå ´åˆ
 	for( i = 0 ; i < num ; i ++, Pad ++ )
 	{
-		// XInput ‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+		// XInput ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 		if( Pad->PF.XInputDeviceNo >= 0 )
 		{
-			// XInput ‚Ìê‡
+			// XInput ã®å ´åˆ
 
-			// ƒ\ƒtƒg‚ª”ñƒAƒNƒeƒBƒu‚Å‚à“®ì‚·‚éİ’è‚É‚È‚Á‚Ä‚¢‚é‚©Aƒ\ƒtƒg‚ÌƒAƒNƒeƒBƒuó‘Ô‚Ìê‡‚ÍU“®‚ğs‚¤
+			// ã‚½ãƒ•ãƒˆãŒéã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã§ã‚‚å‹•ä½œã™ã‚‹è¨­å®šã«ãªã£ã¦ã„ã‚‹ã‹ã€ã‚½ãƒ•ãƒˆã®ã‚¢ã‚¯ãƒ†ã‚£ãƒ–çŠ¶æ…‹ã®å ´åˆã¯æŒ¯å‹•ã‚’è¡Œã†
 			if( ( NS_GetActiveFlag() == TRUE || AlwaysRunFlag_ ) && InputSysData.NoUseVibrationFlag == FALSE )
 			{
 				VibState.wLeftMotorSpeed  = 0 ;
@@ -2994,18 +2994,18 @@ extern int RefreshEffectPlayState_PF( int AlwaysRunFlag )
 
 				if( InputSysData.PF.XInputSetStateFunc != NULL && ( Flag == 1 || AlwaysRunFlag_ ) )
 				{
-					// U“®—L‚è‚Ìê‡‚Æ–³‚µ‚Ìê‡‚Åˆ—‚ğ•ªŠò
+					// æŒ¯å‹•æœ‰ã‚Šã®å ´åˆã¨ç„¡ã—ã®å ´åˆã§å‡¦ç†ã‚’åˆ†å²
 					if( VibState.wLeftMotorSpeed == 0 &&
 						VibState.wRightMotorSpeed == 0 )
 					{
-						// U“®–³‚µ‚Ìê‡‚Íˆê“x‚Å‚à–³‚µ‚ğİ’è‚µ‚Ä‚¢‚½ê‡‚Í‰½‚à‚µ‚È‚¢
+						// æŒ¯å‹•ç„¡ã—ã®å ´åˆã¯ä¸€åº¦ã§ã‚‚ç„¡ã—ã‚’è¨­å®šã—ã¦ã„ãŸå ´åˆã¯ä½•ã‚‚ã—ãªã„
 						if( Pad->PF.EnableSetVibState == FALSE ||
 							Pad->PF.SetVibState.wLeftMotorSpeed != VibState.wLeftMotorSpeed ||
 							Pad->PF.SetVibState.wRightMotorSpeed != VibState.wRightMotorSpeed )
 						{
 							InputSysData.PF.XInputSetStateFunc( ( DWORD )Pad->PF.XInputDeviceNo, &VibState ) ;
 
-							// ƒpƒ‰ƒ[ƒ^‚ğ•Û‘¶
+							// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ä¿å­˜
 							Pad->PF.EnableSetVibState = TRUE ;
 							Pad->PF.SetVibState = VibState ;
 
@@ -3014,10 +3014,10 @@ extern int RefreshEffectPlayState_PF( int AlwaysRunFlag )
 					}
 					else
 					{
-						// U“®—L‚è‚Ìê‡‚Í•K‚¸İ’è‚·‚é
+						// æŒ¯å‹•æœ‰ã‚Šã®å ´åˆã¯å¿…ãšè¨­å®šã™ã‚‹
 						InputSysData.PF.XInputSetStateFunc( ( DWORD )Pad->PF.XInputDeviceNo, &VibState ) ;
 
-						// ƒpƒ‰ƒ[ƒ^‚ğ•Û‘¶
+						// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ä¿å­˜
 						Pad->PF.EnableSetVibState = TRUE ;
 						Pad->PF.SetVibState = VibState ;
 
@@ -3027,7 +3027,7 @@ extern int RefreshEffectPlayState_PF( int AlwaysRunFlag )
 			}
 			else
 			{
-				// ƒ\ƒtƒg‚ª”ñƒAƒNƒeƒBƒu‚Èê‡
+				// ã‚½ãƒ•ãƒˆãŒéã‚¢ã‚¯ãƒ†ã‚£ãƒ–ãªå ´åˆ
 				VibState.wLeftMotorSpeed  = 0 ;
 				VibState.wRightMotorSpeed = 0 ;
 				Flag = 0 ;
@@ -3046,14 +3046,14 @@ extern int RefreshEffectPlayState_PF( int AlwaysRunFlag )
 
 				if( InputSysData.PF.XInputSetStateFunc != NULL && Flag == 1 )
 				{
-					// ’l‚É•ÏX‚ª‚ ‚éê‡‚Ì‚İİ’è‚·‚é
+					// å€¤ã«å¤‰æ›´ãŒã‚ã‚‹å ´åˆã®ã¿è¨­å®šã™ã‚‹
 					if( Pad->PF.EnableSetVibState == FALSE ||
 						Pad->PF.SetVibState.wLeftMotorSpeed != VibState.wLeftMotorSpeed ||
 						Pad->PF.SetVibState.wRightMotorSpeed != VibState.wRightMotorSpeed )
 					{
 						InputSysData.PF.XInputSetStateFunc( ( DWORD )Pad->PF.XInputDeviceNo, &VibState ) ;
 
-						// ƒpƒ‰ƒ[ƒ^‚ğ•Û‘¶
+						// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ä¿å­˜
 						Pad->PF.EnableSetVibState = TRUE ;
 						Pad->PF.SetVibState = VibState ;
 
@@ -3064,11 +3064,11 @@ extern int RefreshEffectPlayState_PF( int AlwaysRunFlag )
 		}
 		else
 		{
-			// DirectInput ‚Ìê‡
+			// DirectInput ã®å ´åˆ
 
 			if( Pad->PF.Device == NULL ) continue ;
 
-			// ƒ\ƒtƒg‚ÌƒAƒNƒeƒBƒuó‘Ô‚Ìê‡‚ÍU“®‚ğs‚¤
+			// ã‚½ãƒ•ãƒˆã®ã‚¢ã‚¯ãƒ†ã‚£ãƒ–çŠ¶æ…‹ã®å ´åˆã¯æŒ¯å‹•ã‚’è¡Œã†
 			if( NS_GetActiveFlag() == TRUE && InputSysData.NoUseVibrationFlag == FALSE )
 			{
 				for( j = 0 ; j < DINPUTPAD_MOTOR_NUM ; j ++ )
@@ -3139,7 +3139,7 @@ extern int RefreshEffectPlayState_PF( int AlwaysRunFlag )
 			}
 			else
 			{
-				// ƒ\ƒtƒg‚ª”ñƒAƒNƒeƒBƒu‚Èê‡
+				// ã‚½ãƒ•ãƒˆãŒéã‚¢ã‚¯ãƒ†ã‚£ãƒ–ãªå ´åˆ
 				for( j = 0 ; j < DINPUTPAD_MOTOR_NUM ; j ++ )
 				{
 					if( Pad->Effect[ j ].PF.DIEffect == NULL )
@@ -3174,17 +3174,17 @@ extern int RefreshEffectPlayState_PF( int AlwaysRunFlag )
 		}
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// w’è‚Ìƒpƒbƒh‚ªU“®‚É‘Î‰‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©‚ğæ“¾‚·‚é( TRUE:‘Î‰‚µ‚Ä‚¢‚é  FALSE:‘Î‰‚µ‚Ä‚¢‚È‚¢ )
+// æŒ‡å®šã®ãƒ‘ãƒƒãƒ‰ãŒæŒ¯å‹•ã«å¯¾å¿œã—ã¦ã„ã‚‹ã‹ã©ã†ã‹ã‚’å–å¾—ã™ã‚‹( TRUE:å¯¾å¿œã—ã¦ã„ã‚‹  FALSE:å¯¾å¿œã—ã¦ã„ãªã„ )
 extern int CheckJoypadVibrationEnable_PF( INPUTPADDATA *pad, int EffectIndex )
 {
 	return ( pad->PF.XInputDeviceNo >= 0 || ( pad->PF.Device != NULL && pad->Effect[ EffectIndex ].PF.DIEffect != NULL ) ) ? TRUE : FALSE ;
 }
 
-// w’è‚Ì“ü—ÍƒfƒoƒCƒX‚ª XInput ‚É‘Î‰‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©‚ğæ“¾‚·‚éˆ—‚ÌŠÂ‹«ˆË‘¶ˆ—( –ß‚è’l  TRUE:XInput‘Î‰‚Ì“ü—ÍƒfƒoƒCƒX  FALSE:XInput”ñ‘Î‰‚Ì“ü—ÍƒfƒoƒCƒX   -1:ƒGƒ‰[ )( DX_INPUT_KEY ‚â DX_INPUT_KEY_PAD1 ‚È‚ÇAƒL[ƒ{[ƒh‚ª—‚Şƒ^ƒCƒv‚ğ InputType ‚É“n‚·‚ÆƒGƒ‰[‚Æ‚È‚è -1 ‚ğ•Ô‚· )‚ÌŠÂ‹«ˆË‘¶ˆ—
+// æŒ‡å®šã®å…¥åŠ›ãƒ‡ãƒã‚¤ã‚¹ãŒ XInput ã«å¯¾å¿œã—ã¦ã„ã‚‹ã‹ã©ã†ã‹ã‚’å–å¾—ã™ã‚‹å‡¦ç†ã®ç’°å¢ƒä¾å­˜å‡¦ç†( æˆ»ã‚Šå€¤  TRUE:XInputå¯¾å¿œã®å…¥åŠ›ãƒ‡ãƒã‚¤ã‚¹  FALSE:XInputéå¯¾å¿œã®å…¥åŠ›ãƒ‡ãƒã‚¤ã‚¹   -1:ã‚¨ãƒ©ãƒ¼ )( DX_INPUT_KEY ã‚„ DX_INPUT_KEY_PAD1 ãªã©ã€ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ãŒçµ¡ã‚€ã‚¿ã‚¤ãƒ—ã‚’ InputType ã«æ¸¡ã™ã¨ã‚¨ãƒ©ãƒ¼ã¨ãªã‚Š -1 ã‚’è¿”ã™ )ã®ç’°å¢ƒä¾å­˜å‡¦ç†
 extern int CheckJoypadXInput_PF( int InputType )
 {
 	INPUTPADDATA *pad ;
@@ -3195,7 +3195,7 @@ extern int CheckJoypadXInput_PF( int InputType )
 	return pad->PF.XInputDeviceNo < 0 ? FALSE : TRUE ;
 }
 
-// ƒWƒ‡ƒCƒpƒbƒh‚Ìƒ^ƒCƒv‚ğæ“¾‚·‚é( –ß‚è’l  -1:ƒGƒ‰[  0ˆÈã:ƒWƒ‡ƒCƒpƒbƒhƒ^ƒCƒv( DX_PADTYPE_XBOX_360 ‚È‚Ç ) )
+// ã‚¸ãƒ§ã‚¤ãƒ‘ãƒƒãƒ‰ã®ã‚¿ã‚¤ãƒ—ã‚’å–å¾—ã™ã‚‹( æˆ»ã‚Šå€¤  -1:ã‚¨ãƒ©ãƒ¼  0ä»¥ä¸Š:ã‚¸ãƒ§ã‚¤ãƒ‘ãƒƒãƒ‰ã‚¿ã‚¤ãƒ—( DX_PADTYPE_XBOX_360 ãªã© ) )
 extern int GetJoypadType_PF( int InputType )
 {
 	D_DIDEVICEINSTANCEW inst ;
@@ -3258,19 +3258,19 @@ extern int GetJoypadType_PF( int InputType )
 	return DX_PADTYPE_OTHER ;
 }
 
-// ƒ}ƒEƒX‚Ìƒ{ƒ^ƒ“‚Ìó‘Ô‚ğ“¾‚éˆ—‚ÌŠÂ‹«ˆË‘¶ˆ—
+// ãƒã‚¦ã‚¹ã®ãƒœã‚¿ãƒ³ã®çŠ¶æ…‹ã‚’å¾—ã‚‹å‡¦ç†ã®ç’°å¢ƒä¾å­˜å‡¦ç†
 extern int GetMouseInput_PF( void )
 {
 	D_DIMOUSESTATE2 input ;
 	HRESULT hr ;
 	int res ;
 
-	// DirectInput ‚ğg—p‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
-	// ( ”ñƒAƒNƒeƒBƒu‚Ìê‡‚à DirectInput ‚ğg—p‚µ‚È‚¢ )
+	// DirectInput ã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
+	// ( éã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã®å ´åˆã‚‚ DirectInput ã‚’ä½¿ç”¨ã—ãªã„ )
 	if( CheckUseDirectInputMouse( TRUE ) == FALSE ||
 		( InputSysData.PF.DirectInputMouseMode == 0 && NS_GetActiveFlag() == FALSE ) )
 	{
-		// DirectInput ‚ğg—p‚µ‚È‚¢ê‡
+		// DirectInput ã‚’ä½¿ç”¨ã—ãªã„å ´åˆ
 		UpdateKeyboardInputState() ;
 		if( InputSysData.MouseInputBufValidFlag == TRUE )
 		{
@@ -3304,7 +3304,7 @@ extern int GetMouseInput_PF( void )
 	}
 	else
 	{
-		// DirectInput ‚ğg—p‚·‚éê‡
+		// DirectInput ã‚’ä½¿ç”¨ã™ã‚‹å ´åˆ
 
 		hr = InputSysData.PF.MouseDeviceObject->GetDeviceState( sizeof( D_DIMOUSESTATE2 ), (LPVOID)&input ) ;
 		if( hr != D_DI_OK )
@@ -3333,12 +3333,12 @@ extern int GetMouseInput_PF( void )
 	return res ;
 }
 
-// ‚’¼ƒ}ƒEƒXƒzƒC[ƒ‹‚Ì‰ñ“]—Ê‚ğæ“¾‚·‚é
+// å‚ç›´ãƒã‚¦ã‚¹ãƒ›ã‚¤ãƒ¼ãƒ«ã®å›è»¢é‡ã‚’å–å¾—ã™ã‚‹
 extern int GetMouseWheelRotVol_PF( int CounterReset )
 {
 	int Vol ;
 
-	// DirectInput ‚ğg—p‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+	// DirectInput ã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 	if( CheckUseDirectInputMouse() == FALSE )
 	{
 		Vol = WinData.MouseMoveZ / WHEEL_DELTA ;
@@ -3355,7 +3355,7 @@ extern int GetMouseWheelRotVol_PF( int CounterReset )
 	return Vol ;
 }
 
-// …•½ƒ}ƒEƒXƒzƒC[ƒ‹‚Ì‰ñ“]—Ê‚ğæ“¾‚·‚é
+// æ°´å¹³ãƒã‚¦ã‚¹ãƒ›ã‚¤ãƒ¼ãƒ«ã®å›è»¢é‡ã‚’å–å¾—ã™ã‚‹
 extern int GetMouseHWheelRotVol_PF( int CounterReset )
 {
 	int Vol ;
@@ -3369,12 +3369,12 @@ extern int GetMouseHWheelRotVol_PF( int CounterReset )
 	return Vol ;
 }
 
-// ‚’¼ƒ}ƒEƒXƒzƒC[ƒ‹‚Ì‰ñ“]—Ê‚ğæ“¾‚·‚é( –ß‚è’l‚ª float Œ^ )
+// å‚ç›´ãƒã‚¦ã‚¹ãƒ›ã‚¤ãƒ¼ãƒ«ã®å›è»¢é‡ã‚’å–å¾—ã™ã‚‹( æˆ»ã‚Šå€¤ãŒ float å‹ )
 extern float GetMouseWheelRotVolF_PF( int CounterReset )
 {
 	float Vol ;
 
-	// DirectInput ‚ğg—p‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+	// DirectInput ã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 	if( CheckUseDirectInputMouse() == FALSE )
 	{
 		Vol = ( float )WinData.MouseMoveZ / WHEEL_DELTA ;
@@ -3391,7 +3391,7 @@ extern float GetMouseWheelRotVolF_PF( int CounterReset )
 	return Vol ;
 }
 
-// …•½ƒ}ƒEƒXƒzƒC[ƒ‹‚Ì‰ñ“]—Ê‚ğæ“¾‚·‚é( –ß‚è’l‚ª float Œ^ )
+// æ°´å¹³ãƒã‚¦ã‚¹ãƒ›ã‚¤ãƒ¼ãƒ«ã®å›è»¢é‡ã‚’å–å¾—ã™ã‚‹( æˆ»ã‚Šå€¤ãŒ float å‹ )
 extern float GetMouseHWheelRotVolF_PF( int CounterReset )
 {
 	float Vol ;
@@ -3405,18 +3405,18 @@ extern float GetMouseHWheelRotVolF_PF( int CounterReset )
 	return Vol ;
 }
 
-// ƒWƒ‡ƒCƒpƒbƒh‚Ì–³Œøƒ][ƒ“‚Ìİ’è‚ğs‚¤ŠÖ”‚ÌŠÂ‹«ˆË‘¶ˆ—
+// ã‚¸ãƒ§ã‚¤ãƒ‘ãƒƒãƒ‰ã®ç„¡åŠ¹ã‚¾ãƒ¼ãƒ³ã®è¨­å®šã‚’è¡Œã†é–¢æ•°ã®ç’°å¢ƒä¾å­˜å‡¦ç†
 extern int SetJoypadDeadZone_PF( INPUTPADDATA *pad )
 {
 	D_DIPROPDWORD dipdw ;
 
-	// ƒGƒ‰[ƒ`ƒFƒbƒN
+	// ã‚¨ãƒ©ãƒ¼ãƒã‚§ãƒƒã‚¯
 	if( pad->PF.Device == NULL  )
 	{
 		return 0 ;
 	}
 
-	// ‚w‚Ì–³Œøƒ][ƒ“‚ğİ’è
+	// ï¼¸ã®ç„¡åŠ¹ã‚¾ãƒ¼ãƒ³ã‚’è¨­å®š
 	dipdw.diph.dwSize		= sizeof( dipdw ) ;
 	dipdw.diph.dwHeaderSize	= sizeof( dipdw.diph ) ;
 	dipdw.diph.dwObj		= D_DIJOFS_X ;
@@ -3424,50 +3424,50 @@ extern int SetJoypadDeadZone_PF( INPUTPADDATA *pad )
 	dipdw.dwData			= 10000 * pad->DeadZone / 65536 ;
 	pad->PF.Device->SetProperty( D_DIPROP_DEADZONE , &dipdw.diph ) ;
 
-	// ‚x‚Ì–³Œøƒ][ƒ“‚ğİ’è
+	// ï¼¹ã®ç„¡åŠ¹ã‚¾ãƒ¼ãƒ³ã‚’è¨­å®š
 	dipdw.diph.dwObj		= D_DIJOFS_Y ;
 	pad->PF.Device->SetProperty( D_DIPROP_DEADZONE , &dipdw.diph ) ;
 
-	// ‚y‚Ì–³Œøƒ][ƒ“‚ğİ’è
+	// ï¼ºã®ç„¡åŠ¹ã‚¾ãƒ¼ãƒ³ã‚’è¨­å®š
 	dipdw.diph.dwObj		= D_DIJOFS_Z ;
 	pad->PF.Device->SetProperty( D_DIPROP_DEADZONE , &dipdw.diph ) ;
 
-	// ‚w‰ñ“]‚Ì–³Œøƒ][ƒ“‚ğİ’è
+	// ï¼¸å›è»¢ã®ç„¡åŠ¹ã‚¾ãƒ¼ãƒ³ã‚’è¨­å®š
 	dipdw.diph.dwObj		= D_DIJOFS_RX ;
 	pad->PF.Device->SetProperty( D_DIPROP_DEADZONE , &dipdw.diph ) ;
 
-	// ‚x‰ñ“]‚Ì–³Œøƒ][ƒ“‚ğİ’è
+	// ï¼¹å›è»¢ã®ç„¡åŠ¹ã‚¾ãƒ¼ãƒ³ã‚’è¨­å®š
 	dipdw.diph.dwObj		= D_DIJOFS_RY ;
 	pad->PF.Device->SetProperty( D_DIPROP_DEADZONE , &dipdw.diph ) ;
 
-	// ‚y‰ñ“]‚Ì–³Œøƒ][ƒ“‚ğİ’è
+	// ï¼ºå›è»¢ã®ç„¡åŠ¹ã‚¾ãƒ¼ãƒ³ã‚’è¨­å®š
 	dipdw.diph.dwObj		= D_DIJOFS_RZ ;
 	pad->PF.Device->SetProperty( D_DIPROP_DEADZONE , &dipdw.diph ) ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// ƒL[ƒ{[ƒh‚Ì‹¦’²ƒŒƒxƒ‹‚ğ”r‘¼ƒŒƒxƒ‹‚É‚·‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğƒZƒbƒg‚·‚é
+// ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ã®å”èª¿ãƒ¬ãƒ™ãƒ«ã‚’æ’ä»–ãƒ¬ãƒ™ãƒ«ã«ã™ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern int NS_SetKeyExclusiveCooperativeLevelFlag( int Flag )
 {
 	int hr ;
 
-	// ‰Šú‰»‚³‚ê‚Ä‚¢‚È‚©‚Á‚½‚çƒtƒ‰ƒO‚¾‚¯•Û‘¶‚µ‚ÄI—¹
+	// åˆæœŸåŒ–ã•ã‚Œã¦ã„ãªã‹ã£ãŸã‚‰ãƒ•ãƒ©ã‚°ã ã‘ä¿å­˜ã—ã¦çµ‚äº†
 	if( InputSysData.PF.KeyboardDeviceObject == NULL )
 	{
 		InputSysData.PF.KeyExclusiveCooperativeLevelFlag = Flag ;
 		return 0 ;
 	}
 
-	// ó‘Ô‚ª“¯‚¶‚¾‚Á‚½‚ç‰½‚à‚¹‚¸I—¹
+	// çŠ¶æ…‹ãŒåŒã˜ã ã£ãŸã‚‰ä½•ã‚‚ã›ãšçµ‚äº†
 	if( InputSysData.PF.KeyExclusiveCooperativeLevelFlag == Flag )
 		return 0 ;
 
-	// ˆê“xƒAƒNƒZƒXŒ ‚ğ‰ğ•ú‚·‚é
+	// ä¸€åº¦ã‚¢ã‚¯ã‚»ã‚¹æ¨©ã‚’è§£æ”¾ã™ã‚‹
 	InputSysData.PF.KeyboardDeviceObject->Unacquire() ;
 
-	// ‹¦’²ƒŒƒxƒ‹‚ğƒZƒbƒg
+	// å”èª¿ãƒ¬ãƒ™ãƒ«ã‚’ã‚»ãƒƒãƒˆ
 	if( Flag )
 	{
 		hr = InputSysData.PF.KeyboardDeviceObject->SetCooperativeLevel( NS_GetMainWindowHandle(), D_DISCL_EXCLUSIVE | D_DISCL_FOREGROUND ) ;
@@ -3481,72 +3481,72 @@ extern int NS_SetKeyExclusiveCooperativeLevelFlag( int Flag )
 		hr = InputSysData.PF.KeyboardDeviceObject->SetCooperativeLevel( NS_GetMainWindowHandle(), D_DISCL_NONEXCLUSIVE | D_DISCL_BACKGROUND ) ;
 	}
 
-	// ƒAƒNƒZƒXŒ ‚ğæ“¾‚·‚é
+	// ã‚¢ã‚¯ã‚»ã‚¹æ¨©ã‚’å–å¾—ã™ã‚‹
 	hr = InputSysData.PF.KeyboardDeviceObject->Acquire() ;
 	if( hr != D_DI_OK )
 	{
 		hr = InputSysData.PF.KeyboardDeviceObject->Acquire() ;
 		if( hr != D_DI_OK )
 		{
-			DXST_LOGFILE_ADDUTF16LE( "\xad\x30\xfc\x30\xdc\x30\xfc\x30\xc9\x30\xc7\x30\xd0\x30\xa4\x30\xb9\x30\x6e\x30\xd6\x53\x97\x5f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"ƒL[ƒ{[ƒhƒfƒoƒCƒX‚Ìæ“¾‚É¸”s‚µ‚Ü‚µ‚½" @*/ ) ;
+			DXST_LOGFILE_ADDUTF16LE( "\xad\x30\xfc\x30\xdc\x30\xfc\x30\xc9\x30\xc7\x30\xd0\x30\xa4\x30\xb9\x30\x6e\x30\xd6\x53\x97\x5f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ãƒ‡ãƒã‚¤ã‚¹ã®å–å¾—ã«å¤±æ•—ã—ã¾ã—ãŸ" @*/ ) ;
 			return -1 ;
 		}
 	}
 
-	// ƒtƒ‰ƒO‚ğ•Û‘¶‚·‚é
+	// ãƒ•ãƒ©ã‚°ã‚’ä¿å­˜ã™ã‚‹
 	InputSysData.PF.KeyExclusiveCooperativeLevelFlag = Flag ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒL[ƒ{[ƒh‚Ì“ü—Íˆ—‚É DirectInput ‚ğg‚í‚È‚¢‚©Aƒtƒ‰ƒO‚ğƒZƒbƒg‚·‚é
+// ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ã®å…¥åŠ›å‡¦ç†ã« DirectInput ã‚’ä½¿ã‚ãªã„ã‹ã€ãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern int NS_SetKeyboardNotDirectInputFlag( int Flag )
 {
 	InputSysData.PF.KeyboardNotUseDirectInputFlag = Flag ? TRUE : FALSE ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// “ü—Íˆ—‚É DirectInput ‚ğg—p‚·‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğƒZƒbƒg‚·‚é
+// å…¥åŠ›å‡¦ç†ã« DirectInput ã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern int NS_SetUseDirectInputFlag( int Flag )
 {
 	InputSysData.PF.NoUseDirectInputFlag = !Flag ;
 	InputSysData.PF.UseDirectInputFlag = Flag ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒ}ƒEƒX‚Ì“ü—Íˆ—‚É DirectInput ‚ğg—p‚·‚éê‡‚Ì“®ìƒ‚[ƒh‚ğİ’è‚·‚é( 0:ƒEƒBƒ“ƒhƒE‚ªƒAƒNƒeƒBƒu‚Èê‡‚Ì‚İ DirectInput ‚ğg—p‚·‚é  1:ƒEƒBƒ“ƒhƒE‚ÌƒAƒNƒeƒBƒuó‘Ô‚ÉŠÖŒW‚È‚­ DirectInput ‚ğg—p‚·‚é )
+// ãƒã‚¦ã‚¹ã®å…¥åŠ›å‡¦ç†ã« DirectInput ã‚’ä½¿ç”¨ã™ã‚‹å ´åˆã®å‹•ä½œãƒ¢ãƒ¼ãƒ‰ã‚’è¨­å®šã™ã‚‹( 0:ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãŒã‚¢ã‚¯ãƒ†ã‚£ãƒ–ãªå ´åˆã®ã¿ DirectInput ã‚’ä½¿ç”¨ã™ã‚‹  1:ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ã‚¢ã‚¯ãƒ†ã‚£ãƒ–çŠ¶æ…‹ã«é–¢ä¿‚ãªã DirectInput ã‚’ä½¿ç”¨ã™ã‚‹ )
 extern int NS_SetDirectInputMouseMode( int Mode )
 {
 	InputSysData.PF.DirectInputMouseMode = Mode ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// Xbox360ƒRƒ“ƒgƒ[ƒ‰‚Ì“ü—Íˆ—‚É XInput ‚ğg—p‚·‚é‚©‚Ç‚¤‚©‚ğİ’è‚·‚é( TRUE:XInput ‚ğg—p‚·‚é( ƒfƒtƒHƒ‹ƒg )@@FALSE:XInput ‚ğg—p‚µ‚È‚¢ )
+// Xbox360ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ã®å…¥åŠ›å‡¦ç†ã« XInput ã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹( TRUE:XInput ã‚’ä½¿ç”¨ã™ã‚‹( ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ )ã€€ã€€FALSE:XInput ã‚’ä½¿ç”¨ã—ãªã„ )
 extern int NS_SetUseXInputFlag(	int Flag )
 {
 	InputSysData.PF.NoUseXInputFlag = !Flag ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// Xbox360ƒRƒ“ƒgƒ[ƒ‰‚â Xbox OneƒRƒ“ƒgƒ[ƒ‰‚ğ DirectInputƒRƒ“ƒgƒ[ƒ‰‚Æ‚µ‚Ä‚àŒŸo‚·‚é‚©‚Ç‚¤‚©‚ğİ’è‚·‚é( TRUE:DirectInputƒRƒ“ƒgƒ[ƒ‰‚Æ‚µ‚Ä‚àŒŸo‚·‚é  FALSE:DirectInputƒRƒ“ƒgƒ[ƒ‰‚Æ‚µ‚Ä‚ÍŒŸo‚µ‚È‚¢(ƒfƒtƒHƒ‹ƒg) )ADxLib_Init ‚ÌŒÄ‚Ño‚µ‘O‚Å‚Ì‚İÀs‰Â”\@
+// Xbox360ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ã‚„ Xbox Oneã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ã‚’ DirectInputã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ã¨ã—ã¦ã‚‚æ¤œå‡ºã™ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹( TRUE:DirectInputã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ã¨ã—ã¦ã‚‚æ¤œå‡ºã™ã‚‹  FALSE:DirectInputã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ã¨ã—ã¦ã¯æ¤œå‡ºã—ãªã„(ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ) )ã€DxLib_Init ã®å‘¼ã³å‡ºã—å‰ã§ã®ã¿å®Ÿè¡Œå¯èƒ½ã€€
 extern int NS_SetUseXboxControllerDirectInputFlag( int Flag )
 {
 	InputSysData.PF.UseXboxControllerDirectInputFlag = Flag ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒWƒ‡ƒCƒpƒbƒh‚Ì‚f‚tI‚c‚ğ“¾‚é
+// ã‚¸ãƒ§ã‚¤ãƒ‘ãƒƒãƒ‰ã®ï¼§ï¼µIï¼¤ã‚’å¾—ã‚‹
 extern int NS_GetJoypadGUID( int PadIndex, GUID *GuidInstanceBuffer, GUID *GuidProductBuffer )
 {
 	D_DIDEVICEINSTANCEW inst ;
@@ -3565,7 +3565,7 @@ extern int NS_GetJoypadGUID( int PadIndex, GUID *GuidInstanceBuffer, GUID *GuidP
 	return 0 ;
 }
 
-// ƒWƒ‡ƒCƒpƒbƒh‚ÌƒfƒoƒCƒX“o˜^–¼‚Æ»•i“o˜^–¼‚ğæ“¾‚·‚é
+// ã‚¸ãƒ§ã‚¤ãƒ‘ãƒƒãƒ‰ã®ãƒ‡ãƒã‚¤ã‚¹ç™»éŒ²åã¨è£½å“ç™»éŒ²åã‚’å–å¾—ã™ã‚‹
 extern int NS_GetJoypadName( int InputType, TCHAR *InstanceNameBuffer, TCHAR *ProductNameBuffer )
 {
 #ifdef UNICODE
@@ -3591,34 +3591,34 @@ extern int NS_GetJoypadName( int InputType, TCHAR *InstanceNameBuffer, TCHAR *Pr
 #endif
 }
 
-// ƒWƒ‡ƒCƒpƒbƒh‚ÌƒfƒoƒCƒX“o˜^–¼‚Æ»•i“o˜^–¼‚ğæ“¾‚·‚é
+// ã‚¸ãƒ§ã‚¤ãƒ‘ãƒƒãƒ‰ã®ãƒ‡ãƒã‚¤ã‚¹ç™»éŒ²åã¨è£½å“ç™»éŒ²åã‚’å–å¾—ã™ã‚‹
 extern int GetJoypadName_WCHAR_T( int InputType, wchar_t *InstanceNameBuffer, wchar_t *ProductNameBuffer )
 {
 	int JoypadNum = ( InputType & ~DX_INPUT_KEY ) - 1 ;
 	INPUTPADDATA *pad = &InputSysData.Pad[ JoypadNum ] ;
 
-	// ƒ\ƒtƒg‚ª”ñƒAƒNƒeƒBƒu‚Ìê‡‚ÍƒAƒNƒeƒBƒu‚É‚È‚é‚Ü‚Å‘Ò‚Â
+	// ã‚½ãƒ•ãƒˆãŒéã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã®å ´åˆã¯ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ãªã‚‹ã¾ã§å¾…ã¤
 	CheckActiveState() ;
 	
-	// ‰Šú‰»‚³‚ê‚Ä‚¢‚È‚©‚Á‚½‚çğŒ•t‚«‚Å‰Šú‰»‚ğs‚¤
+	// åˆæœŸåŒ–ã•ã‚Œã¦ã„ãªã‹ã£ãŸã‚‰æ¡ä»¶ä»˜ãã§åˆæœŸåŒ–ã‚’è¡Œã†
 	if( InputSysData.InitializeFlag == FALSE )
 	{
 		return AutoInitialize_PF() ;
 	}
 
-	// ƒGƒ‰[ƒ`ƒFƒbƒN
+	// ã‚¨ãƒ©ãƒ¼ãƒã‚§ãƒƒã‚¯
 	if( JoypadNum < 0 || JoypadNum >= InputSysData.PadNum || ( pad->PF.Device == NULL && pad->PF.XInputDeviceNo < 0 ) )
 		return -1 ;
 
-	// –¼‘O‚ğƒRƒs[
+	// åå‰ã‚’ã‚³ãƒ”ãƒ¼
 	if( InstanceNameBuffer != NULL ) _WCSCPY( InstanceNameBuffer, pad->PF.InstanceName ) ;
 	if( ProductNameBuffer  != NULL ) _WCSCPY( ProductNameBuffer,  pad->PF.ProductName  ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0;
 }
 
-// ‚c‚wƒ‰ƒCƒuƒ‰ƒŠ‚ÌƒL[ƒR[ƒh‚©‚ç Windows ‚Ì‰¼‘zƒL[ƒR[ƒh‚ğæ“¾‚·‚é
+// ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®ã‚­ãƒ¼ã‚³ãƒ¼ãƒ‰ã‹ã‚‰ Windows ã®ä»®æƒ³ã‚­ãƒ¼ã‚³ãƒ¼ãƒ‰ã‚’å–å¾—ã™ã‚‹
 extern int NS_ConvertKeyCodeToVirtualKey( int KeyCode )
 {
 	int i ;
@@ -3631,7 +3631,7 @@ extern int NS_ConvertKeyCodeToVirtualKey( int KeyCode )
 	return __KeyMap[i][0] ;
 }
 
-//  Windows ‚Ì‰¼‘zƒL[ƒR[ƒh( VK_LEFT ‚È‚Ç ) ‚É‘Î‰‚·‚é‚c‚wƒ‰ƒCƒuƒ‰ƒŠ‚ÌƒL[ƒR[ƒh( KEY_INPUT_A ‚È‚Ç )‚ğæ“¾‚·‚é( VirtualKey:•ÏŠ·‚µ‚½‚¢Windows‚Ì‰¼‘zƒL[ƒR[ƒh@–ß‚è’lF‚c‚wƒ‰ƒCƒuƒ‰ƒŠ‚ÌƒL[ƒR[ƒh )
+//  Windows ã®ä»®æƒ³ã‚­ãƒ¼ã‚³ãƒ¼ãƒ‰( VK_LEFT ãªã© ) ã«å¯¾å¿œã™ã‚‹ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®ã‚­ãƒ¼ã‚³ãƒ¼ãƒ‰( KEY_INPUT_A ãªã© )ã‚’å–å¾—ã™ã‚‹( VirtualKey:å¤‰æ›ã—ãŸã„Windowsã®ä»®æƒ³ã‚­ãƒ¼ã‚³ãƒ¼ãƒ‰ã€€æˆ»ã‚Šå€¤ï¼šï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®ã‚­ãƒ¼ã‚³ãƒ¼ãƒ‰ )
 extern int NS_ConvertVirtualKeyToKeyCode( int VirtualKey )
 {
 	int i ;
@@ -3644,7 +3644,7 @@ extern int NS_ConvertVirtualKeyToKeyCode( int VirtualKey )
 	return __KeyMap[i][1] ;
 }
 
-// ƒL[ƒ{[ƒh‚Ìƒoƒbƒtƒ@‚©‚çƒf[ƒ^‚ğæ“¾‚·‚éˆ—(ƒoƒbƒtƒ@‚ğ‹ó‚É‚·‚é‚¾‚¯‚¾‚¯‚ÇEEE)
+// ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ã®ãƒãƒƒãƒ•ã‚¡ã‹ã‚‰ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—ã™ã‚‹å‡¦ç†(ãƒãƒƒãƒ•ã‚¡ã‚’ç©ºã«ã™ã‚‹ã ã‘ã ã‘ã©ãƒ»ãƒ»ãƒ»)
 extern int KeyboradBufferProcess( void )
 {
 	D_DIDEVICEOBJECTDATA_DX7 data7[5] ;
@@ -3665,27 +3665,27 @@ extern int KeyboradBufferProcess( void )
 		{
 			if( InputSysData.PF.KeyboardDeviceObject->GetDeviceData( sizeof( D_DIDEVICEOBJECTDATA_DX8 ), data8, &num, 0 ) != D_DI_OK ) return 0 ;
 		}
-//		if( num != 0 ) DXST_LOGFILEFMT_ADDW(( L"‰Ÿ‚³‚ê‚½‚©—£‚³‚ê‚½‚©‚µ‚½ƒL[:0x%x  0x%x \n", data[0].dwOfs, data[0].dwData & 0xff )) ;
+//		if( num != 0 ) DXST_LOGFILEFMT_ADDW(( L"æŠ¼ã•ã‚ŒãŸã‹é›¢ã•ã‚ŒãŸã‹ã—ãŸã‚­ãƒ¼:0x%x  0x%x \n", data[0].dwOfs, data[0].dwData & 0xff )) ;
 	}
 	
 	return 0 ;
 }
 
-// ‚c‚‰‚’‚…‚ƒ‚”‚h‚‚‚•‚”ƒfƒoƒCƒX‚Ìæ“¾ó‘Ô‚ğXV‚·‚é
+// ï¼¤ï½‰ï½’ï½…ï½ƒï½”ï¼©ï½ï½ï½•ï½”ãƒ‡ãƒã‚¤ã‚¹ã®å–å¾—çŠ¶æ…‹ã‚’æ›´æ–°ã™ã‚‹
 extern int RefreshInputDeviceAcquireState( void )
 {
 	int i, num ;
 	INPUTPADDATA *Pad ;
 	HRESULT hr ;
 
-	// ‰Šú‰»”»’è
+	// åˆæœŸåŒ–åˆ¤å®š
 	if( InputSysData.PF.DirectInputObject == NULL && NS_GetWindowCloseFlag() == FALSE )
 		return 0 ;
 
-	// DirectInput ‚ğg—p‚µ‚Ä‚¢‚È‚¢ê‡‚Í‰½‚à‚¹‚¸I—¹
+	// DirectInput ã‚’ä½¿ç”¨ã—ã¦ã„ãªã„å ´åˆã¯ä½•ã‚‚ã›ãšçµ‚äº†
 	if( InputSysData.PF.DirectInputObject == (D_IDirectInput7 *)(DWORD_PTR)0xffffffff ) return 0 ;
 
-	// ƒpƒbƒhƒfƒoƒCƒX‚ÌÄæ“¾
+	// ãƒ‘ãƒƒãƒ‰ãƒ‡ãƒã‚¤ã‚¹ã®å†å–å¾—
 	num = InputSysData.PadNum ;
 	Pad = InputSysData.Pad ;
 	for( i = 0 ; i < num ; i ++, Pad ++ )
@@ -3694,7 +3694,7 @@ extern int RefreshInputDeviceAcquireState( void )
 		{
 			Pad->PF.Device->Unacquire() ;
 
-			// ƒ\ƒtƒg‚ÌƒAƒNƒeƒBƒuó‘Ô‚É‚æ‚Á‚Ä‹¦’²ƒŒƒxƒ‹‚ğ•ÏX
+			// ã‚½ãƒ•ãƒˆã®ã‚¢ã‚¯ãƒ†ã‚£ãƒ–çŠ¶æ…‹ã«ã‚ˆã£ã¦å”èª¿ãƒ¬ãƒ™ãƒ«ã‚’å¤‰æ›´
 			if( InputSysData.NoUseVibrationFlag == FALSE && NS_GetActiveFlag() == TRUE )
 			{
 				hr = Pad->PF.Device->SetCooperativeLevel( NS_GetMainWindowHandle(), D_DISCL_FOREGROUND | D_DISCL_EXCLUSIVE ) ;
@@ -3708,28 +3708,28 @@ extern int RefreshInputDeviceAcquireState( void )
 				Pad->PF.Device->SetCooperativeLevel( NS_GetMainWindowHandle(), D_DISCL_BACKGROUND | D_DISCL_NONEXCLUSIVE ) ;
 			}
 
-			// ƒAƒNƒZƒXŒ ‚Ìæ“¾
+			// ã‚¢ã‚¯ã‚»ã‚¹æ¨©ã®å–å¾—
 			if( Pad->PF.Device->Acquire() != D_DI_OK )
 			{
-				// ƒAƒNƒZƒXŒ ‚Ìæ“¾‚É¸”s‚µ‚½‚ç‹¦’²ƒŒƒxƒ‹‚ğ‰º‚°‚é
+				// ã‚¢ã‚¯ã‚»ã‚¹æ¨©ã®å–å¾—ã«å¤±æ•—ã—ãŸã‚‰å”èª¿ãƒ¬ãƒ™ãƒ«ã‚’ä¸‹ã’ã‚‹
 				Pad->PF.Device->SetCooperativeLevel( NS_GetMainWindowHandle(), D_DISCL_BACKGROUND | D_DISCL_NONEXCLUSIVE ) ;
 				Pad->PF.Device->Acquire() ;
 			}
 		}
 	}
 
-	// ƒL[ƒ{[ƒhƒfƒoƒCƒX‚ÌÄæ“¾
+	// ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ãƒ‡ãƒã‚¤ã‚¹ã®å†å–å¾—
 	if( InputSysData.PF.KeyboardDeviceObject != NULL )
 	{
 		InputSysData.PF.KeyboardDeviceObject->Unacquire() ;
 		InputSysData.PF.KeyboardDeviceObject->Acquire() ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒ}ƒEƒX‚Ìî•ñæ“¾‚É‚c‚‰‚’‚…‚ƒ‚”‚h‚‚‚•‚”‚ğg—p‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©‚ğæ“¾‚·‚é( –ß‚è’l  TRUE:DirectInput‚ğg—p‚µ‚Ä‚¢‚é  FALSE:DirectInput‚ğg—p‚µ‚Ä‚¢‚È‚¢ )
+// ãƒã‚¦ã‚¹ã®æƒ…å ±å–å¾—ã«ï¼¤ï½‰ï½’ï½…ï½ƒï½”ï¼©ï½ï½ï½•ï½”ã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹ã‹ã©ã†ã‹ã‚’å–å¾—ã™ã‚‹( æˆ»ã‚Šå€¤  TRUE:DirectInputã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹  FALSE:DirectInputã‚’ä½¿ç”¨ã—ã¦ã„ãªã„ )
 extern	int CheckUseDirectInputMouse( int /*IsButton*/ )
 {
 	if( InputSysData.PF.NoUseDirectInputFlag == TRUE ||
@@ -3742,7 +3742,7 @@ extern	int CheckUseDirectInputMouse( int /*IsButton*/ )
 	return TRUE ;
 }
 
-// ‚c‚‰‚’‚…‚ƒ‚”‚h‚‚‚•‚”‚ğg—p‚µ‚½ƒ}ƒEƒXƒzƒC[ƒ‹‚ÌˆÚ“®’l‚ğæ“¾‚·‚é
+// ï¼¤ï½‰ï½’ï½…ï½ƒï½”ï¼©ï½ï½ï½•ï½”ã‚’ä½¿ç”¨ã—ãŸãƒã‚¦ã‚¹ãƒ›ã‚¤ãƒ¼ãƒ«ã®ç§»å‹•å€¤ã‚’å–å¾—ã™ã‚‹
 extern	int GetDirectInputMouseMoveZ( int CounterReset )
 {
 	int Result ;
@@ -3758,7 +3758,7 @@ extern	int GetDirectInputMouseMoveZ( int CounterReset )
 	return Result ;
 }
 
-// ‚c‚‰‚’‚…‚ƒ‚”‚h‚‚‚•‚”‚ğg—p‚µ‚½ƒ}ƒEƒXƒzƒC[ƒ‹‚ÌˆÚ“®’l‚ğæ“¾‚·‚é( float”Å )
+// ï¼¤ï½‰ï½’ï½…ï½ƒï½”ï¼©ï½ï½ï½•ï½”ã‚’ä½¿ç”¨ã—ãŸãƒã‚¦ã‚¹ãƒ›ã‚¤ãƒ¼ãƒ«ã®ç§»å‹•å€¤ã‚’å–å¾—ã™ã‚‹( floatç‰ˆ )
 extern	float GetDirectInputMouseMoveZF( int CounterReset )
 {
 	float Result ;

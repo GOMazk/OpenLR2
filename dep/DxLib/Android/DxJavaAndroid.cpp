@@ -1,17 +1,17 @@
 // -------------------------------------------------------------------------------
 // 
-// 		‚c‚wƒ‰ƒCƒuƒ‰ƒŠ		Android—pJavaŠÖŒWƒvƒƒOƒ‰ƒ€
+// 		ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒª		Androidç”¨Javaé–¢ä¿‚ãƒ—ãƒ­ã‚°ãƒ©ãƒ 
 // 
 // 				Ver 3.25a
 // 
 // -------------------------------------------------------------------------------
 
-// ‚c‚wƒ‰ƒCƒuƒ‰ƒŠì¬—p’è‹`
+// ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªä½œæˆæ™‚ç”¨å®šç¾©
 #define DX_MAKE
 
 #include "../DxCompileConfig.h"
 
-// ƒCƒ“ƒNƒ‹[ƒh ------------------------------------------------------------------
+// ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ ------------------------------------------------------------------
 #include "DxJavaAndroid.h"
 #include "DxBaseFuncAndroid.h"
 #include "DxSystemAndroid.h"
@@ -31,7 +31,7 @@ namespace DxLib
 
 #endif // DX_NON_NAMESPACE
 
-// ƒ}ƒNƒ’è‹` --------------------------------------------------------------------
+// ãƒã‚¯ãƒ­å®šç¾© --------------------------------------------------------------------
 
 #define LOGI(...) ((void)__android_log_print(ANDROID_LOG_INFO, "AndroidProject1.NativeActivity", __VA_ARGS__))
 #define LOGW(...) ((void)__android_log_print(ANDROID_LOG_WARN, "AndroidProject1.NativeActivity", __VA_ARGS__))
@@ -43,19 +43,19 @@ namespace DxLib
 #  define LOGV(...)  ((void)0)
 #endif
 
-// \‘¢‘Ì’è‹` --------------------------------------------------------------------
+// æ§‹é€ ä½“å®šç¾© --------------------------------------------------------------------
 
 DXLIB_JAVA_ANDROID_INFO g_JavaAndroidInfo ;
 
-// ƒe[ƒuƒ‹-----------------------------------------------------------------------
+// ãƒ†ãƒ¼ãƒ–ãƒ«-----------------------------------------------------------------------
 
-// “à•”‘åˆæ•Ï”éŒ¾ --------------------------------------------------------------
+// å†…éƒ¨å¤§åŸŸå¤‰æ•°å®£è¨€ --------------------------------------------------------------
 
-// ŠÖ”ƒvƒƒgƒ^ƒCƒvéŒ¾-----------------------------------------------------------
+// é–¢æ•°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€-----------------------------------------------------------
 
-// ƒvƒƒOƒ‰ƒ€ --------------------------------------------------------------------
+// ãƒ—ãƒ­ã‚°ãƒ©ãƒ  --------------------------------------------------------------------
 
-// UTF16LE ‚Ì‘®•¶š—ñ‚Æ UTF8 ‚Ìƒpƒ‰ƒ[ƒ^•¶š—ñ‚ğƒƒOo—Í‚·‚é
+// UTF16LE ã®æ›¸å¼æ–‡å­—åˆ—ã¨ UTF8 ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ–‡å­—åˆ—ã‚’ãƒ­ã‚°å‡ºåŠ›ã™ã‚‹
 static void JavaAndroid_LogAddUTF8( const char *UTF16LEFormatStr, const char *UTF8Str )
 {
 	char TempStr[ 1024 ] ;
@@ -64,7 +64,7 @@ static void JavaAndroid_LogAddUTF8( const char *UTF16LEFormatStr, const char *UT
 	DXST_LOGFILEFMT_ADDUTF16LE(( UTF16LEFormatStr, TempStr )) ;
 }
 
-// Java ‚ÌƒNƒ‰ƒX‚ÌƒOƒ[ƒoƒ‹QÆ‚ğæ“¾‚·‚é
+// Java ã®ã‚¯ãƒ©ã‚¹ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«å‚ç…§ã‚’å–å¾—ã™ã‚‹
 extern jclass Java_FindClass_Global( JNIEnv *env, const char *name )
 {
 	jclass class_local = env->FindClass( name ) ;
@@ -80,7 +80,7 @@ extern jclass Java_FindClass_Global( JNIEnv *env, const char *name )
 	return class_global ;
 }
 
-// Java ‚ÌƒXƒ^ƒeƒBƒbƒNƒIƒuƒWƒFƒNƒgƒtƒB[ƒ‹ƒh‚ÌƒOƒ[ƒoƒ‹QÆ‚ğæ“¾‚·‚é
+// Java ã®ã‚¹ã‚¿ãƒ†ã‚£ãƒƒã‚¯ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«å‚ç…§ã‚’å–å¾—ã™ã‚‹
 extern jobject Java_GetStaticObjectField_Global( JNIEnv *env, jclass clazz, jfieldID fieldID )
 {
 	jobject fieldobject_local = env->GetStaticObjectField( clazz, fieldID ) ;
@@ -96,7 +96,7 @@ extern jobject Java_GetStaticObjectField_Global( JNIEnv *env, jclass clazz, jfie
 	return fieldobject_global ;
 }
 
-// Java ‚ÌƒXƒ^ƒeƒBƒbƒN•¶š—ñƒtƒB[ƒ‹ƒh‚ÌƒOƒ[ƒoƒ‹QÆ‚ğæ“¾‚·‚é
+// Java ã®ã‚¹ã‚¿ãƒ†ã‚£ãƒƒã‚¯æ–‡å­—åˆ—ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«å‚ç…§ã‚’å–å¾—ã™ã‚‹
 extern jstring Java_GetStaticStringField_Global( JNIEnv *env, jclass clazz, jfieldID fieldID )
 {
 	jobject fieldobject_local = env->GetStaticObjectField( clazz, fieldID ) ;
@@ -112,7 +112,7 @@ extern jstring Java_GetStaticStringField_Global( JNIEnv *env, jclass clazz, jfie
 	return ( jstring )fieldobject_global ;
 }
 
-// TCHAR ‚Ì•¶š—ñ‚©‚ç jstring ‚ğì¬‚·‚é( Local Ref )
+// TCHAR ã®æ–‡å­—åˆ—ã‹ã‚‰ jstring ã‚’ä½œæˆã™ã‚‹( Local Ref )
 extern jstring Java_Create_jstring_From_TCHAR( JNIEnv *env, const TCHAR *tchar_string )
 {
 	char UTF16LE_String[ 1024 * 2 ] ;
@@ -133,7 +133,7 @@ extern jstring Java_Create_jstring_From_TCHAR( JNIEnv *env, const TCHAR *tchar_s
 	return env->NewString( ( jchar * )UTF16LE_String, ( jsize )UTF16LE_StringLength ) ;
 }
 
-// wchar_t ‚Ì•¶š—ñ‚©‚ç jstring ‚ğì¬‚·‚é( Local Ref )
+// wchar_t ã®æ–‡å­—åˆ—ã‹ã‚‰ jstring ã‚’ä½œæˆã™ã‚‹( Local Ref )
 extern jstring Java_Create_jstring_From_wchar_t( JNIEnv *env, const wchar_t *wchar_t_string )
 {
 	char UTF16LE_String[ 1024 * 2 ] ;
@@ -154,7 +154,7 @@ extern jstring Java_Create_jstring_From_wchar_t( JNIEnv *env, const wchar_t *wch
 	return env->NewString( ( jchar * )UTF16LE_String, ( jsize )UTF16LE_StringLength ) ;
 }
 
-// wchar_t ‚Ì•¶š—ñ‚©‚ç CharSequence ‚ğì¬‚·‚é( Local Ref )
+// wchar_t ã®æ–‡å­—åˆ—ã‹ã‚‰ CharSequence ã‚’ä½œæˆã™ã‚‹( Local Ref )
 extern jobject Java_Create_CharSequence_From_wchar_t( JNIEnv *env, const wchar_t *wchar_t_string )
 {
 	char UTF16LE_String[ 1024 * 2 ] ;
@@ -193,109 +193,109 @@ END :
 	return jobject_Result ;
 }
 
-// jstring ‚©‚ç wchar_t ‚Ì•¶š—ñ‚ğì¬‚·‚é( DXFREE ‚Å‰ğ•ú‚·‚é )
+// jstring ã‹ã‚‰ wchar_t ã®æ–‡å­—åˆ—ã‚’ä½œæˆã™ã‚‹( DXFREE ã§è§£æ”¾ã™ã‚‹ )
 extern int Java_Create_wchar_t_string_From_jstring( JNIEnv *env, jstring _jstring, wchar_t **wchar_t_stringP )
 {
 	const char *utf8_charp = NULL ;
 	int CharNum = 0 ;
 	size_t BufferBytes = 0 ;
 
-	// ƒ|ƒCƒ“ƒ^‚ğ‰Šú‰»
+	// ãƒã‚¤ãƒ³ã‚¿ã‚’åˆæœŸåŒ–
 	*wchar_t_stringP = NULL ;
 
-	// UTF-8 ‚Ì•¶š—ñ‚ğæ“¾
+	// UTF-8 ã®æ–‡å­—åˆ—ã‚’å–å¾—
 	utf8_charp = env->GetStringUTFChars( _jstring, NULL ) ;
 	if( utf8_charp == NULL )
 	{
 		return -1 ;
 	}
 
-	// •¶š”‚ğæ“¾
+	// æ–‡å­—æ•°ã‚’å–å¾—
 	CharNum = CL_strlen( DX_CHARCODEFORMAT_UTF8, utf8_charp ) ;
 
-	// ƒƒ‚ƒŠ‚ÌŠm•Û
+	// ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿
 	BufferBytes = ( CharNum + 1 ) * sizeof( wchar_t ) * 2 ;
 	*wchar_t_stringP = ( wchar_t * )DXALLOC( BufferBytes ) ;
 
-	// UTF-8 ‚ğ wchar_t ‚É•ÏŠ·
+	// UTF-8 ã‚’ wchar_t ã«å¤‰æ›
 	ConvString( utf8_charp, -1, DX_CHARCODEFORMAT_UTF8, ( char * )*wchar_t_stringP, BufferBytes, WCHAR_T_CHARCODEFORMAT ) ;
 
-	// UTF-8 ‚Ì•¶š—ñ‚ğ‰ğ•ú
+	// UTF-8 ã®æ–‡å­—åˆ—ã‚’è§£æ”¾
 	env->ReleaseStringUTFChars( _jstring, utf8_charp ) ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// jstring ‚©‚ç TCHAR ‚Ì•¶š—ñ‚ğì¬‚·‚é( DXFREE ‚Å‰ğ•ú‚·‚é )
+// jstring ã‹ã‚‰ TCHAR ã®æ–‡å­—åˆ—ã‚’ä½œæˆã™ã‚‹( DXFREE ã§è§£æ”¾ã™ã‚‹ )
 extern int Java_Create_TCHAR_string_From_jstring( JNIEnv *env, jstring _jstring, TCHAR **tchar_stringP )
 {
 	const char *utf8_charp = NULL ;
 	int CharNum = 0 ;
 	size_t BufferBytes = 0 ;
 
-	// ƒ|ƒCƒ“ƒ^‚ğ‰Šú‰»
+	// ãƒã‚¤ãƒ³ã‚¿ã‚’åˆæœŸåŒ–
 	*tchar_stringP = NULL ;
 
-	// UTF-8 ‚Ì•¶š—ñ‚ğæ“¾
+	// UTF-8 ã®æ–‡å­—åˆ—ã‚’å–å¾—
 	utf8_charp = env->GetStringUTFChars( _jstring, NULL ) ;
 	if( utf8_charp == NULL )
 	{
 		return -1 ;
 	}
 
-	// •¶š”‚ğæ“¾
+	// æ–‡å­—æ•°ã‚’å–å¾—
 	CharNum = CL_strlen( DX_CHARCODEFORMAT_UTF8, utf8_charp ) ;
 
-	// ƒƒ‚ƒŠ‚ÌŠm•Û
+	// ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿
 	BufferBytes = ( CharNum + 1 ) * sizeof( TCHAR ) * 6 ;
 	*tchar_stringP = ( TCHAR * )DXALLOC( BufferBytes ) ;
 
-	// UTF-8 ‚ğ TCHAR ‚É•ÏŠ·
+	// UTF-8 ã‚’ TCHAR ã«å¤‰æ›
 	ConvString( utf8_charp, -1, DX_CHARCODEFORMAT_UTF8, ( char * )*tchar_stringP, BufferBytes, _TCHARCODEFORMAT ) ;
 
-	// UTF-8 ‚Ì•¶š—ñ‚ğ‰ğ•ú
+	// UTF-8 ã®æ–‡å­—åˆ—ã‚’è§£æ”¾
 	env->ReleaseStringUTFChars( _jstring, utf8_charp ) ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// jstring ‚©‚ç char ‚Ì•¶š—ñ‚ğì¬‚·‚é( DXFREE ‚Å‰ğ•ú‚·‚é )
+// jstring ã‹ã‚‰ char ã®æ–‡å­—åˆ—ã‚’ä½œæˆã™ã‚‹( DXFREE ã§è§£æ”¾ã™ã‚‹ )
 extern int Java_Create_char_string_From_jstring( JNIEnv *env, jstring _jstring, char **char_stringP )
 {
 	const char *utf8_charp = NULL ;
 	int CharNum = 0 ;
 	size_t BufferBytes = 0 ;
 
-	// ƒ|ƒCƒ“ƒ^‚ğ‰Šú‰»
+	// ãƒã‚¤ãƒ³ã‚¿ã‚’åˆæœŸåŒ–
 	*char_stringP = NULL ;
 
-	// UTF-8 ‚Ì•¶š—ñ‚ğæ“¾
+	// UTF-8 ã®æ–‡å­—åˆ—ã‚’å–å¾—
 	utf8_charp = env->GetStringUTFChars( _jstring, NULL ) ;
 	if( utf8_charp == NULL )
 	{
 		return -1 ;
 	}
 
-	// •¶š”‚ğæ“¾
+	// æ–‡å­—æ•°ã‚’å–å¾—
 	CharNum = CL_strlen( DX_CHARCODEFORMAT_UTF8, utf8_charp ) ;
 
-	// ƒƒ‚ƒŠ‚ÌŠm•Û
+	// ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿
 	BufferBytes = ( CharNum + 1 ) * sizeof( char ) * 6 ;
 	*char_stringP = ( char * )DXALLOC( BufferBytes ) ;
 
-	// UTF-8 ‚ğ char ‚É•ÏŠ·
+	// UTF-8 ã‚’ char ã«å¤‰æ›
 	ConvString( utf8_charp, -1, DX_CHARCODEFORMAT_UTF8, ( char * )*char_stringP, BufferBytes, CHAR_CHARCODEFORMAT ) ;
 
-	// UTF-8 ‚Ì•¶š—ñ‚ğ‰ğ•ú
+	// UTF-8 ã®æ–‡å­—åˆ—ã‚’è§£æ”¾
 	env->ReleaseStringUTFChars( _jstring, utf8_charp ) ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// VECTOR ‚©‚ç’·‚³ 3 ‚Ì float Array ‚ğì¬‚·‚é( Local Ref )
+// VECTOR ã‹ã‚‰é•·ã• 3 ã® float Array ã‚’ä½œæˆã™ã‚‹( Local Ref )
 extern jfloatArray Java_Create_floatArray_From_VECTOR( JNIEnv *env, const VECTOR *Vector )
 {
 	jfloat *jfloat_Element = NULL ;
@@ -323,7 +323,7 @@ extern jfloatArray Java_Create_floatArray_From_VECTOR( JNIEnv *env, const VECTOR
 	return jfloatArray_Result ;
 }
 
-// ’·‚³ 3 ˆÈã‚Ì float Array ‚©‚ç VECTOR ‚Ì’l‚ğæ“¾‚·‚é( 0:³íI—¹  -1:ƒGƒ‰[ )
+// é•·ã• 3 ä»¥ä¸Šã® float Array ã‹ã‚‰ VECTOR ã®å€¤ã‚’å–å¾—ã™ã‚‹( 0:æ­£å¸¸çµ‚äº†  -1:ã‚¨ãƒ©ãƒ¼ )
 extern int Java_Get_VECTOR_From_floatArray( JNIEnv *env, jfloatArray floatArray, VECTOR *Buffer )
 {
 	jfloat *jfloat_Element = NULL ;
@@ -348,7 +348,7 @@ extern int Java_Get_VECTOR_From_floatArray( JNIEnv *env, jfloatArray floatArray,
 	return 0 ;
 }
 
-// int‚Ì”z—ñ‚©‚ç jlongArray ‚ğì¬‚·‚é
+// intã®é…åˆ—ã‹ã‚‰ jlongArray ã‚’ä½œæˆã™ã‚‹
 extern jlongArray Java_Create_longArray_From_intArray( JNIEnv *env, const int *intArray, int intArrayLength )
 {
 	jlong *jlong_Element = NULL ;
@@ -383,7 +383,7 @@ extern jlongArray Java_Create_longArray_From_intArray( JNIEnv *env, const int *i
 	return jlongArray_Result ;
 }
 
-// int‚Ì”z—ñ‚©‚ç jintArray ‚ğì¬‚·‚é
+// intã®é…åˆ—ã‹ã‚‰ jintArray ã‚’ä½œæˆã™ã‚‹
 extern jintArray Java_Create_intArray_From_intArray( JNIEnv *env, const int *intArray, int intArrayLength )
 {
 	jint *jint_Element = NULL ;
@@ -418,7 +418,7 @@ extern jintArray Java_Create_intArray_From_intArray( JNIEnv *env, const int *int
 	return jintArray_Result ;
 }
 
-// float‚Ì”z—ñ‚©‚ç jfloatArray ‚ğì¬‚·‚é
+// floatã®é…åˆ—ã‹ã‚‰ jfloatArray ã‚’ä½œæˆã™ã‚‹
 extern jfloatArray Java_Create_floatArray_From_floatArray( JNIEnv *env, const int *floatArray, int floatArrayLength )
 {
 	jfloat *jfloat_Element = NULL ;
@@ -453,7 +453,7 @@ extern jfloatArray Java_Create_floatArray_From_floatArray( JNIEnv *env, const in
 	return jfloatArray_Result ;
 }
 
-// double‚Ì”z—ñ‚©‚ç jdoubleArray ‚ğì¬‚·‚é
+// doubleã®é…åˆ—ã‹ã‚‰ jdoubleArray ã‚’ä½œæˆã™ã‚‹
 extern jdoubleArray Java_Create_doubleArray_From_doubleArray( JNIEnv *env, const int *doubleArray, int doubleArrayLength )
 {
 	jdouble *jdouble_Element = NULL ;
@@ -488,13 +488,13 @@ extern jdoubleArray Java_Create_doubleArray_From_doubleArray( JNIEnv *env, const
 	return jdoubleArray_Result ;
 }
 
-// Java ‚ÌƒNƒ‰ƒX‚âƒƒ\ƒbƒh‚ÌQÆ‚ğæ“¾‚·‚é
+// Java ã®ã‚¯ãƒ©ã‚¹ã‚„ãƒ¡ã‚½ãƒƒãƒ‰ã®å‚ç…§ã‚’å–å¾—ã™ã‚‹
 #define FINDCLASS( obj, name )			\
 	{\
 		obj = Java_FindClass_Global( env, name ) ;\
 		if( obj == NULL )\
 		{\
-			JavaAndroid_LogAddUTF8( "\x4a\x00\x61\x00\x76\x00\x61\x00\x20\x00\x43\x00\x6c\x00\x61\x00\x73\x00\x73\x00\x20\x00\x25\x00\x73\x00\x20\x00\x6e\x30\xd6\x53\x97\x5f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"Java Class %s ‚Ìæ“¾‚É¸”s‚µ‚Ü‚µ‚½" @*/, name ) ;\
+			JavaAndroid_LogAddUTF8( "\x4a\x00\x61\x00\x76\x00\x61\x00\x20\x00\x43\x00\x6c\x00\x61\x00\x73\x00\x73\x00\x20\x00\x25\x00\x73\x00\x20\x00\x6e\x30\xd6\x53\x97\x5f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"Java Class %s ã®å–å¾—ã«å¤±æ•—ã—ã¾ã—ãŸ" @*/, name ) ;\
 			TerminateJavaAndroidInfo( env ) ;\
 			return -1 ;\
 		}\
@@ -505,7 +505,7 @@ extern jdoubleArray Java_Create_doubleArray_From_doubleArray( JNIEnv *env, const
 		obj = env->GetMethodID( class_, name, sig ) ;\
 		if( obj == NULL )\
 		{\
-			JavaAndroid_LogAddUTF8( "\x4a\x00\x61\x00\x76\x00\x61\x00\x20\x00\x4d\x00\x65\x00\x74\x00\x68\x00\x6f\x00\x64\x00\x20\x00\x25\x00\x73\x00\x20\x00\x6e\x30\xd6\x53\x97\x5f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"Java Method %s ‚Ìæ“¾‚É¸”s‚µ‚Ü‚µ‚½" @*/, name ) ;\
+			JavaAndroid_LogAddUTF8( "\x4a\x00\x61\x00\x76\x00\x61\x00\x20\x00\x4d\x00\x65\x00\x74\x00\x68\x00\x6f\x00\x64\x00\x20\x00\x25\x00\x73\x00\x20\x00\x6e\x30\xd6\x53\x97\x5f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"Java Method %s ã®å–å¾—ã«å¤±æ•—ã—ã¾ã—ãŸ" @*/, name ) ;\
 			TerminateJavaAndroidInfo( env ) ;\
 			return -1 ;\
 		}\
@@ -516,7 +516,7 @@ extern jdoubleArray Java_Create_doubleArray_From_doubleArray( JNIEnv *env, const
 		obj = env->GetStaticMethodID( class_, name, sig ) ;\
 		if( obj == NULL )\
 		{\
-			JavaAndroid_LogAddUTF8( "\x4a\x00\x61\x00\x76\x00\x61\x00\x20\x00\x53\x00\x74\x00\x61\x00\x74\x00\x69\x00\x63\x00\x20\x00\x4d\x00\x65\x00\x74\x00\x68\x00\x6f\x00\x64\x00\x20\x00\x25\x00\x73\x00\x20\x00\x6e\x30\xd6\x53\x97\x5f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"Java Static Method %s ‚Ìæ“¾‚É¸”s‚µ‚Ü‚µ‚½" @*/, name ) ;\
+			JavaAndroid_LogAddUTF8( "\x4a\x00\x61\x00\x76\x00\x61\x00\x20\x00\x53\x00\x74\x00\x61\x00\x74\x00\x69\x00\x63\x00\x20\x00\x4d\x00\x65\x00\x74\x00\x68\x00\x6f\x00\x64\x00\x20\x00\x25\x00\x73\x00\x20\x00\x6e\x30\xd6\x53\x97\x5f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"Java Static Method %s ã®å–å¾—ã«å¤±æ•—ã—ã¾ã—ãŸ" @*/, name ) ;\
 			TerminateJavaAndroidInfo( env ) ;\
 			return -1 ;\
 		}\
@@ -527,7 +527,7 @@ extern jdoubleArray Java_Create_doubleArray_From_doubleArray( JNIEnv *env, const
 		obj = env->GetFieldID( class_, name, sig ) ;\
 		if( obj == NULL )\
 		{\
-			JavaAndroid_LogAddUTF8( "\x4a\x00\x61\x00\x76\x00\x61\x00\x20\x00\x46\x00\x69\x00\x65\x00\x6c\x00\x64\x00\x20\x00\x25\x00\x73\x00\x20\x00\x6e\x30\xd6\x53\x97\x5f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"Java Field %s ‚Ìæ“¾‚É¸”s‚µ‚Ü‚µ‚½" @*/, name ) ;\
+			JavaAndroid_LogAddUTF8( "\x4a\x00\x61\x00\x76\x00\x61\x00\x20\x00\x46\x00\x69\x00\x65\x00\x6c\x00\x64\x00\x20\x00\x25\x00\x73\x00\x20\x00\x6e\x30\xd6\x53\x97\x5f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"Java Field %s ã®å–å¾—ã«å¤±æ•—ã—ã¾ã—ãŸ" @*/, name ) ;\
 			TerminateJavaAndroidInfo( env ) ;\
 			return -1 ;\
 		}\
@@ -538,7 +538,7 @@ extern jdoubleArray Java_Create_doubleArray_From_doubleArray( JNIEnv *env, const
 		obj = env->GetStaticFieldID( class_, name, sig ) ;\
 		if( obj == NULL )\
 		{\
-			JavaAndroid_LogAddUTF8( "\x4a\x00\x61\x00\x76\x00\x61\x00\x20\x00\x53\x00\x74\x00\x61\x00\x74\x00\x69\x00\x63\x00\x20\x00\x46\x00\x69\x00\x65\x00\x6c\x00\x64\x00\x20\x00\x25\x00\x73\x00\x20\x00\x6e\x30\xd6\x53\x97\x5f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"Java Static Field %s ‚Ìæ“¾‚É¸”s‚µ‚Ü‚µ‚½" @*/, name ) ;\
+			JavaAndroid_LogAddUTF8( "\x4a\x00\x61\x00\x76\x00\x61\x00\x20\x00\x53\x00\x74\x00\x61\x00\x74\x00\x69\x00\x63\x00\x20\x00\x46\x00\x69\x00\x65\x00\x6c\x00\x64\x00\x20\x00\x25\x00\x73\x00\x20\x00\x6e\x30\xd6\x53\x97\x5f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"Java Static Field %s ã®å–å¾—ã«å¤±æ•—ã—ã¾ã—ãŸ" @*/, name ) ;\
 			TerminateJavaAndroidInfo( env ) ;\
 			return -1 ;\
 		}\
@@ -549,7 +549,7 @@ extern jdoubleArray Java_Create_doubleArray_From_doubleArray( JNIEnv *env, const
 		obj = Java_GetStaticObjectField_Global( env, class_, field_ ) ;\
 		if( obj == NULL )\
 		{\
-			JavaAndroid_LogAddUTF8( "\x4a\x00\x61\x00\x76\x00\x61\x00\x20\x00\x53\x00\x74\x00\x61\x00\x74\x00\x69\x00\x63\x00\x20\x00\x4f\x00\x62\x00\x6a\x00\x65\x00\x63\x00\x74\x00\x20\x00\x46\x00\x69\x00\x65\x00\x6c\x00\x64\x00\x20\x00\x25\x00\x73\x00\x20\x00\x6e\x30\xd6\x53\x97\x5f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"Java Static Object Field %s ‚Ìæ“¾‚É¸”s‚µ‚Ü‚µ‚½" @*/, name ) ;\
+			JavaAndroid_LogAddUTF8( "\x4a\x00\x61\x00\x76\x00\x61\x00\x20\x00\x53\x00\x74\x00\x61\x00\x74\x00\x69\x00\x63\x00\x20\x00\x4f\x00\x62\x00\x6a\x00\x65\x00\x63\x00\x74\x00\x20\x00\x46\x00\x69\x00\x65\x00\x6c\x00\x64\x00\x20\x00\x25\x00\x73\x00\x20\x00\x6e\x30\xd6\x53\x97\x5f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"Java Static Object Field %s ã®å–å¾—ã«å¤±æ•—ã—ã¾ã—ãŸ" @*/, name ) ;\
 			TerminateJavaAndroidInfo( env ) ;\
 			return -1 ;\
 		}\
@@ -560,7 +560,7 @@ extern jdoubleArray Java_Create_doubleArray_From_doubleArray( JNIEnv *env, const
 		obj = Java_GetStaticStringField_Global( env, class_, field_ ) ;\
 		if( obj == NULL )\
 		{\
-			JavaAndroid_LogAddUTF8( "\x4a\x00\x61\x00\x76\x00\x61\x00\x20\x00\x53\x00\x74\x00\x61\x00\x74\x00\x69\x00\x63\x00\x20\x00\x53\x00\x74\x00\x72\x00\x69\x00\x6e\x00\x67\x00\x20\x00\x46\x00\x69\x00\x65\x00\x6c\x00\x64\x00\x20\x00\x25\x00\x73\x00\x20\x00\x6e\x30\xd6\x53\x97\x5f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"Java Static String Field %s ‚Ìæ“¾‚É¸”s‚µ‚Ü‚µ‚½" @*/, name ) ;\
+			JavaAndroid_LogAddUTF8( "\x4a\x00\x61\x00\x76\x00\x61\x00\x20\x00\x53\x00\x74\x00\x61\x00\x74\x00\x69\x00\x63\x00\x20\x00\x53\x00\x74\x00\x72\x00\x69\x00\x6e\x00\x67\x00\x20\x00\x46\x00\x69\x00\x65\x00\x6c\x00\x64\x00\x20\x00\x25\x00\x73\x00\x20\x00\x6e\x30\xd6\x53\x97\x5f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"Java Static String Field %s ã®å–å¾—ã«å¤±æ•—ã—ã¾ã—ãŸ" @*/, name ) ;\
 			TerminateJavaAndroidInfo( env ) ;\
 			return -1 ;\
 		}\
@@ -580,7 +580,7 @@ extern int SetupJavaAndroidInfo( JNIEnv *env )
 		return -1 ;
 	}
 
-	// APIƒŒƒxƒ‹‚¾‚¯æ‚Éæ“¾‚·‚é
+	// APIãƒ¬ãƒ™ãƒ«ã ã‘å…ˆã«å–å¾—ã™ã‚‹
 	FINDCLASS( JAVAANDR.class_Build_VERSION, "android/os/Build$VERSION" ) ;
 	GETSTATICFIELD( JAVAANDR.fieldID_Build_VERSION_SDK_INT, JAVAANDR.class_Build_VERSION, "SDK_INT", "I" ) ;
 	JAVAANDR.fieldint_Build_VERSION_SDK_INT = env->GetStaticIntField( JAVAANDR.class_Build_VERSION, JAVAANDR.fieldID_Build_VERSION_SDK_INT ) ;
@@ -1164,7 +1164,7 @@ extern int SetupJavaAndroidInfo( JNIEnv *env )
 
 	JAVAANDR.InitializeFlag = TRUE ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 #undef FINDCLASS
@@ -1173,7 +1173,7 @@ extern int SetupJavaAndroidInfo( JNIEnv *env )
 #undef GETFIELD
 #undef GETSTATICFIELD
 
-// Java ‚ÌƒNƒ‰ƒX‚âƒƒ\ƒbƒh‚ÌQÆ‚ÌŒãn––‚ğ‚·‚é
+// Java ã®ã‚¯ãƒ©ã‚¹ã‚„ãƒ¡ã‚½ãƒƒãƒ‰ã®å‚ç…§ã®å¾Œå§‹æœ«ã‚’ã™ã‚‹
 #define JAVA_DELETE_GLOBAL_REF( object )\
 	if( object != NULL )\
 	{\

@@ -1,6 +1,6 @@
 // -------------------------------------------------------------------------------
 // 
-// 		‚c‚wƒ‰ƒCƒuƒ‰ƒŠ		ƒsƒNƒZƒ‹ƒVƒF[ƒ_[ŠÖ˜A’è‹`
+// 		ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒª		ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼é–¢é€£å®šç¾©
 // 
 // 				Ver 3.25a
 // 
@@ -9,52 +9,52 @@
 #ifndef DX_SHADER_PS_D3D11_H
 #define DX_SHADER_PS_D3D11_H
 
-// ƒCƒ“ƒNƒ‹[ƒh ---------------------------------
+// ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ ---------------------------------
 
 #include "DxShader_Common_D3D11.h"
 
-// ƒ}ƒNƒ’è‹` -----------------------------------
+// ãƒžã‚¯ãƒ­å®šç¾© -----------------------------------
 
-#define DX_VERTEXLIGHTING_LIGHT_NUM			(3)		// ’¸“_’PˆÊƒ‰ƒCƒeƒBƒ“ƒO‚Å“¯Žž‚ÉŽg—p‚Å‚«‚éƒ‰ƒCƒg‚ÌÅ‘å”
-#define DX_PIXELLIGHTING_LIGHT_NUM			(6)		// ƒsƒNƒZƒ‹’PˆÊƒ‰ƒCƒeƒBƒ“ƒO‚Å“¯Žž‚ÉŽg—p‚Å‚«‚éƒ‰ƒCƒg‚ÌÅ‘å”
+#define DX_VERTEXLIGHTING_LIGHT_NUM			(3)		// é ‚ç‚¹å˜ä½ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ã§åŒæ™‚ã«ä½¿ç”¨ã§ãã‚‹ãƒ©ã‚¤ãƒˆã®æœ€å¤§æ•°
+#define DX_PIXELLIGHTING_LIGHT_NUM			(6)		// ãƒ”ã‚¯ã‚»ãƒ«å˜ä½ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ã§åŒæ™‚ã«ä½¿ç”¨ã§ãã‚‹ãƒ©ã‚¤ãƒˆã®æœ€å¤§æ•°
 
-#define DX_D3D11_PS_CONST_FILTER_SIZE		(1280)	// ƒtƒBƒ‹ƒ^[—p’è”ƒoƒbƒtƒ@‚ÌƒTƒCƒY
+#define DX_D3D11_PS_CONST_FILTER_SIZE		(1280)	// ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ç”¨å®šæ•°ãƒãƒƒãƒ•ã‚¡ã®ã‚µã‚¤ã‚º
 
-// ƒf[ƒ^Œ^’è‹` ---------------------------------
+// ãƒ‡ãƒ¼ã‚¿åž‹å®šç¾© ---------------------------------
 
-// ƒVƒƒƒhƒEƒ}ƒbƒvƒpƒ‰ƒ[ƒ^
+// ã‚·ãƒ£ãƒ‰ã‚¦ãƒžãƒƒãƒ—ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 struct DX_D3D11_PS_CONST_SHADOWMAP
 {
-	DX_D3D11_SHADER_FLOAT		AdjustDepth ;			// è‡’l[“x•â³’l
-	DX_D3D11_SHADER_FLOAT		GradationParam ;		// ƒOƒ‰ƒf[ƒVƒ‡ƒ“”ÍˆÍ
-	DX_D3D11_SHADER_FLOAT		Enable_Light0 ;			// ƒ‰ƒCƒg‚O‚Ö‚Ì“K—pî•ñ
-	DX_D3D11_SHADER_FLOAT		Enable_Light1 ;			// ƒ‰ƒCƒg‚P‚Ö‚Ì“K—pî•ñ
+	DX_D3D11_SHADER_FLOAT		AdjustDepth ;			// é–¾å€¤æ·±åº¦è£œæ­£å€¤
+	DX_D3D11_SHADER_FLOAT		GradationParam ;		// ã‚°ãƒ©ãƒ‡ãƒ¼ã‚·ãƒ§ãƒ³ç¯„å›²
+	DX_D3D11_SHADER_FLOAT		Enable_Light0 ;			// ãƒ©ã‚¤ãƒˆï¼ã¸ã®é©ç”¨æƒ…å ±
+	DX_D3D11_SHADER_FLOAT		Enable_Light1 ;			// ãƒ©ã‚¤ãƒˆï¼‘ã¸ã®é©ç”¨æƒ…å ±
 
-	DX_D3D11_SHADER_FLOAT		Enable_Light2 ;			// ƒ‰ƒCƒg‚Q‚Ö‚Ì“K—pî•ñ
-	DX_D3D11_SHADER_FLOAT3		Padding ;				// ƒpƒfƒBƒ“ƒO
+	DX_D3D11_SHADER_FLOAT		Enable_Light2 ;			// ãƒ©ã‚¤ãƒˆï¼’ã¸ã®é©ç”¨æƒ…å ±
+	DX_D3D11_SHADER_FLOAT3		Padding ;				// ãƒ‘ãƒ‡ã‚£ãƒ³ã‚°
 } ;
 
-// ’è”ƒoƒbƒtƒ@ƒsƒNƒZƒ‹ƒVƒF[ƒ_[Šî–{ƒpƒ‰ƒ[ƒ^
+// å®šæ•°ãƒãƒƒãƒ•ã‚¡ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼åŸºæœ¬ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 struct DX_D3D11_PS_CONST_BUFFER_BASE
 {
-	DX_D3D11_SHADER_FLOAT4		FactorColor ;			// ƒAƒ‹ƒtƒ@’l“™
+	DX_D3D11_SHADER_FLOAT4		FactorColor ;			// ã‚¢ãƒ«ãƒ•ã‚¡å€¤ç­‰
 
-	DX_D3D11_SHADER_FLOAT		MulAlphaColor ;			// ƒJƒ‰[‚ÉƒAƒ‹ƒtƒ@’l‚ðæŽZ‚·‚é‚©‚Ç‚¤‚©( 0.0f:æŽZ‚µ‚È‚¢  1.0f:æŽZ‚·‚é )
-	DX_D3D11_SHADER_FLOAT		AlphaTestRef ;			// ƒAƒ‹ƒtƒ@ƒeƒXƒg‚ÅŽg—p‚·‚é”äŠr’l
+	DX_D3D11_SHADER_FLOAT		MulAlphaColor ;			// ã‚«ãƒ©ãƒ¼ã«ã‚¢ãƒ«ãƒ•ã‚¡å€¤ã‚’ä¹—ç®—ã™ã‚‹ã‹ã©ã†ã‹( 0.0f:ä¹—ç®—ã—ãªã„  1.0f:ä¹—ç®—ã™ã‚‹ )
+	DX_D3D11_SHADER_FLOAT		AlphaTestRef ;			// ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆã§ä½¿ç”¨ã™ã‚‹æ¯”è¼ƒå€¤
 	DX_D3D11_SHADER_FLOAT2		Padding1 ;
 
-	DX_D3D11_SHADER_INT			AlphaTestCmpMode ;		// ƒAƒ‹ƒtƒ@ƒeƒXƒg”äŠrƒ‚[ƒh( DX_CMP_NEVER ‚È‚Ç )
-	DX_D3D11_SHADER_INT			NoLightAngleAttenuation ;	// ƒ‰ƒCƒg‚ÌŠp“xŒ¸Š‚ðs‚í‚È‚¢‚©( 0:Œ¸Š‚ðs‚¤   1:Œ¸Š‚ðs‚í‚È‚¢ )
-	DX_D3D11_SHADER_INT			UseHalfLambert ;		// ƒn[ƒtƒ‰ƒ“ƒo[ƒg‚ðŽg—p‚·‚é‚©( 0:Žg—p‚µ‚È‚¢   1:Žg—p‚·‚é )
+	DX_D3D11_SHADER_INT			AlphaTestCmpMode ;		// ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆæ¯”è¼ƒãƒ¢ãƒ¼ãƒ‰( DX_CMP_NEVER ãªã© )
+	DX_D3D11_SHADER_INT			NoLightAngleAttenuation ;	// ãƒ©ã‚¤ãƒˆã®è§’åº¦æ¸›è¡°ã‚’è¡Œã‚ãªã„ã‹( 0:æ¸›è¡°ã‚’è¡Œã†   1:æ¸›è¡°ã‚’è¡Œã‚ãªã„ )
+	DX_D3D11_SHADER_INT			UseHalfLambert ;		// ãƒãƒ¼ãƒ•ãƒ©ãƒ³ãƒãƒ¼ãƒˆã‚’ä½¿ç”¨ã™ã‚‹ã‹( 0:ä½¿ç”¨ã—ãªã„   1:ä½¿ç”¨ã™ã‚‹ )
 	DX_D3D11_SHADER_INT			Padding2 ;
 
-	DX_D3D11_SHADER_FLOAT4		IgnoreTextureColor ;	// ƒeƒNƒXƒ`ƒƒƒJƒ‰[–³Ž‹ˆ——pƒJƒ‰[
+	DX_D3D11_SHADER_FLOAT4		IgnoreTextureColor ;	// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚«ãƒ©ãƒ¼ç„¡è¦–å‡¦ç†ç”¨ã‚«ãƒ©ãƒ¼
 
-	DX_D3D11_SHADER_FLOAT4		DrawAddColor ;			// ‰ÁŽZ‚·‚éF
+	DX_D3D11_SHADER_FLOAT4		DrawAddColor ;			// åŠ ç®—ã™ã‚‹è‰²
 } ;
 
 
-// ’è”ƒoƒbƒtƒ@ƒVƒƒƒhƒEƒ}ƒbƒvƒpƒ‰ƒ[ƒ^
+// å®šæ•°ãƒãƒƒãƒ•ã‚¡ã‚·ãƒ£ãƒ‰ã‚¦ãƒžãƒƒãƒ—ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 struct DX_D3D11_PS_CONST_BUFFER_SHADOWMAP
 {
 	DX_D3D11_PS_CONST_SHADOWMAP	Data[ 3 ] ;

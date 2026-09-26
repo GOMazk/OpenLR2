@@ -1,15 +1,15 @@
 // ----------------------------------------------------------------------------
 // 
-// 		‚c‚wƒ‰ƒCƒuƒ‰ƒŠ		‚a‚‚“‚…‚h‚‚‚‡‚…ƒvƒƒOƒ‰ƒ€
+// 		ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒª		ï¼¢ï½ï½“ï½…ï¼©ï½ï½ï½‡ï½…ãƒ—ãƒ­ã‚°ãƒ©ãƒ 
 // 
 // 				Ver 3.25a
 // 
 // ----------------------------------------------------------------------------
 
-// ‚c‚wƒ‰ƒCƒuƒ‰ƒŠì¬—p’è‹`
+// ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªä½œæˆæ™‚ç”¨å®šç¾©
 #define DX_MAKE
 
-// ƒCƒ“ƒNƒ‹[ƒh----------------------------------------------------------------
+// ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰----------------------------------------------------------------
 #include "DxBaseImage.h"
 #include "DxMemory.h"
 #include "DxBaseFunc.h"
@@ -51,7 +51,7 @@ namespace DxLib
 
 #endif // DX_NON_NAMESPACE
 
-// ƒ}ƒNƒ’è‹`------------------------------------------------------------------
+// ãƒã‚¯ãƒ­å®šç¾©------------------------------------------------------------------
 
 #define BI_DDPF_ALPHAPIXELS						(0x00000001l)
 #define BI_DDPF_ALPHA							(0x00000002l)
@@ -139,52 +139,52 @@ namespace DxLib
 #define BI_DDSCAPS2_ADDITIONALPRIMARY			(0x80000000L)
 
 #define DDS_RESOURCE_MISC_TEXTURECUBE			(0x00000004)
-#define DDS_ALPHA_MODE_UNKNOWN					(0x0)			// ƒAƒ‹ƒtƒ@ƒ`ƒƒƒlƒ‹‚ÌƒRƒ“ƒeƒ“ƒc‚Í•s–¾‚Å‚·B‚±‚ê‚ÍƒŒƒKƒV[ƒtƒ@ƒCƒ‹‚Ì’l‚ÅA’Êí‚ÍuƒXƒgƒŒ[ƒgvƒAƒ‹ƒtƒ@‚ÆŒ©‚È‚³‚ê‚Ü‚·B
-#define DDS_ALPHA_MODE_STRAIGHT					(0x1)			// ƒAƒ‹ƒtƒ@ƒ`ƒƒƒlƒ‹ƒRƒ“ƒeƒ“ƒc‚Í‚·‚×‚ÄƒXƒgƒŒ[ƒgƒAƒ‹ƒtƒ@‚ğg—p‚·‚é‚à‚Ì‚Æ‘z’è‚³‚ê‚Ü‚·B
-#define DDS_ALPHA_MODE_PREMULTIPLIED			(0x2)			// ƒAƒ‹ƒtƒ@ƒ`ƒƒƒlƒ‹ƒRƒ“ƒeƒ“ƒc‚ÍA–‘OæZ‚³‚ê‚½ƒAƒ‹ƒtƒ@‚ğg—p‚µ‚Ä‚¢‚Ü‚·B‚±‚Ìî•ñ‚ğ¦‚·—Bˆê‚ÌƒŒƒKƒV[ƒtƒ@ƒCƒ‹Œ`®‚ÍAuDX2v‚¨‚æ‚ÑuDX4v‚Å‚·B
-#define DDS_ALPHA_MODE_OPAQUE					(0x3)			// ƒAƒ‹ƒtƒ@ƒ`ƒƒƒlƒ‹ƒRƒ“ƒeƒ“ƒc‚Í‚·‚×‚ÄŠ®‘S‚É•s“§–¾‚Éİ’è‚³‚ê‚Ü‚·B
-#define DDS_ALPHA_MODE_CUSTOM					(0x4)			// ƒAƒ‹ƒtƒ@ƒ`ƒƒƒlƒ‹ƒRƒ“ƒeƒ“ƒc‚ÍA4”Ô–Ú‚Ìƒ`ƒƒƒlƒ‹‚Æ‚µ‚Äg—p‚³‚ê‚Ä‚¨‚èA“§–¾“xiƒXƒgƒŒ[ƒg‚Ü‚½‚Í–‘OæZj‚ğ•\‚·‚±‚Æ‚ğˆÓ}‚µ‚Ä‚¢‚Ü‚¹‚ñB
+#define DDS_ALPHA_MODE_UNKNOWN					(0x0)			// ã‚¢ãƒ«ãƒ•ã‚¡ãƒãƒ£ãƒãƒ«ã®ã‚³ãƒ³ãƒ†ãƒ³ãƒ„ã¯ä¸æ˜ã§ã™ã€‚ã“ã‚Œã¯ãƒ¬ã‚¬ã‚·ãƒ¼ãƒ•ã‚¡ã‚¤ãƒ«ã®å€¤ã§ã€é€šå¸¸ã¯ã€Œã‚¹ãƒˆãƒ¬ãƒ¼ãƒˆã€ã‚¢ãƒ«ãƒ•ã‚¡ã¨è¦‹ãªã•ã‚Œã¾ã™ã€‚
+#define DDS_ALPHA_MODE_STRAIGHT					(0x1)			// ã‚¢ãƒ«ãƒ•ã‚¡ãƒãƒ£ãƒãƒ«ã‚³ãƒ³ãƒ†ãƒ³ãƒ„ã¯ã™ã¹ã¦ã‚¹ãƒˆãƒ¬ãƒ¼ãƒˆã‚¢ãƒ«ãƒ•ã‚¡ã‚’ä½¿ç”¨ã™ã‚‹ã‚‚ã®ã¨æƒ³å®šã•ã‚Œã¾ã™ã€‚
+#define DDS_ALPHA_MODE_PREMULTIPLIED			(0x2)			// ã‚¢ãƒ«ãƒ•ã‚¡ãƒãƒ£ãƒãƒ«ã‚³ãƒ³ãƒ†ãƒ³ãƒ„ã¯ã€äº‹å‰ä¹—ç®—ã•ã‚ŒãŸã‚¢ãƒ«ãƒ•ã‚¡ã‚’ä½¿ç”¨ã—ã¦ã„ã¾ã™ã€‚ã“ã®æƒ…å ±ã‚’ç¤ºã™å”¯ä¸€ã®ãƒ¬ã‚¬ã‚·ãƒ¼ãƒ•ã‚¡ã‚¤ãƒ«å½¢å¼ã¯ã€ã€ŒDX2ã€ãŠã‚ˆã³ã€ŒDX4ã€ã§ã™ã€‚
+#define DDS_ALPHA_MODE_OPAQUE					(0x3)			// ã‚¢ãƒ«ãƒ•ã‚¡ãƒãƒ£ãƒãƒ«ã‚³ãƒ³ãƒ†ãƒ³ãƒ„ã¯ã™ã¹ã¦å®Œå…¨ã«ä¸é€æ˜ã«è¨­å®šã•ã‚Œã¾ã™ã€‚
+#define DDS_ALPHA_MODE_CUSTOM					(0x4)			// ã‚¢ãƒ«ãƒ•ã‚¡ãƒãƒ£ãƒãƒ«ã‚³ãƒ³ãƒ†ãƒ³ãƒ„ã¯ã€4ç•ªç›®ã®ãƒãƒ£ãƒãƒ«ã¨ã—ã¦ä½¿ç”¨ã•ã‚Œã¦ãŠã‚Šã€é€æ˜åº¦ï¼ˆã‚¹ãƒˆãƒ¬ãƒ¼ãƒˆã¾ãŸã¯äº‹å‰ä¹—ç®—ï¼‰ã‚’è¡¨ã™ã“ã¨ã‚’æ„å›³ã—ã¦ã„ã¾ã›ã‚“ã€‚
 
-// \‘¢‘ÌéŒ¾------------------------------------------------------------------
+// æ§‹é€ ä½“å®£è¨€------------------------------------------------------------------
 
-// DDSƒtƒ@ƒCƒ‹ƒwƒbƒ_
+// DDSãƒ•ã‚¡ã‚¤ãƒ«ãƒ˜ãƒƒãƒ€
 struct DDSFILEHEADER
 {
 	DWORD	dwMagic ;					// "DDS"
-	DWORD	dwSize ;					// ‚±‚±‚©‚ç”‚¦‚éƒwƒbƒ_‚ÌƒTƒCƒY( 124 )
-	DWORD	dwFlags ;					// D_DDSURFACEDESC2.dwFlags ‚Æ“¯‚¶‚à‚Ì
-	DWORD	dwHeight ;					// ‰æ‘œ‚Ì‚‚³
-	DWORD	dwWidth ;					// ‰æ‘œ‚Ì•
-	DWORD	dwPitchOrLinearSize ;		// ‰¡1 line ‚Ì byte ” (pitch)
-										// ‚Ü‚½‚Í 1–Ê•ª‚Ì byte ” (linearsize)
-	DWORD	dwDepth ;					// ‰æ‘œ‚Ì‰œs‚« z size (Volume Texture —p)
-	DWORD	dwMipMapCount ;				// ŠÜ‚Ü‚ê‚Ä‚¢‚é mipmap ƒŒƒxƒ‹”
-	DWORD	dwReserved1[ 11 ] ;			// —\–ñ‚P
-	DWORD	dwPfSize ;					// ƒsƒNƒZƒ‹ƒtƒH[ƒ}ƒbƒgƒTƒCƒY( 32 )
-	DWORD	dwPfFlags ;					// D_DDPIXELFORMAT.dwFlags ‚Æ“¯‚¶‚à‚Ì
+	DWORD	dwSize ;					// ã“ã“ã‹ã‚‰æ•°ãˆã‚‹ãƒ˜ãƒƒãƒ€ã®ã‚µã‚¤ã‚º( 124 )
+	DWORD	dwFlags ;					// D_DDSURFACEDESC2.dwFlags ã¨åŒã˜ã‚‚ã®
+	DWORD	dwHeight ;					// ç”»åƒã®é«˜ã•
+	DWORD	dwWidth ;					// ç”»åƒã®å¹…
+	DWORD	dwPitchOrLinearSize ;		// æ¨ª1 line ã® byte æ•° (pitch)
+										// ã¾ãŸã¯ 1é¢åˆ†ã® byte æ•° (linearsize)
+	DWORD	dwDepth ;					// ç”»åƒã®å¥¥è¡Œã z size (Volume Texture ç”¨)
+	DWORD	dwMipMapCount ;				// å«ã¾ã‚Œã¦ã„ã‚‹ mipmap ãƒ¬ãƒ™ãƒ«æ•°
+	DWORD	dwReserved1[ 11 ] ;			// äºˆç´„ï¼‘
+	DWORD	dwPfSize ;					// ãƒ”ã‚¯ã‚»ãƒ«ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã‚µã‚¤ã‚º( 32 )
+	DWORD	dwPfFlags ;					// D_DDPIXELFORMAT.dwFlags ã¨åŒã˜ã‚‚ã®
 	DWORD	dwFourCC ;					// FourCC
-	DWORD	dwRGBBitCount ;				// ƒJƒ‰[ƒrƒbƒg[“x
-	DWORD	dwRBitMask ;				// Ôƒ}ƒXƒN
-	DWORD	dwGBitMask ;				// —Îƒ}ƒXƒN
-	DWORD	dwBBitMask ;				// Âƒ}ƒXƒN
-	DWORD	dwRGBAlphaBitMask ;			// ƒ¿ƒ}ƒXƒN
-	DWORD	dwCaps ;					// BI_DDSCAPS2.dwCaps ‚Æ“¯‚¶‚à‚Ì
-	DWORD	dwCaps2 ;					// BI_DDSCAPS2.dwCaps2 ‚Æ“¯‚¶‚à‚Ì
-	DWORD	dwReservedCaps[ 2 ] ;		// —\–ñ‚Q
-	DWORD	dwReserved2 ;				// —\–ñ‚R
+	DWORD	dwRGBBitCount ;				// ã‚«ãƒ©ãƒ¼ãƒ“ãƒƒãƒˆæ·±åº¦
+	DWORD	dwRBitMask ;				// èµ¤ãƒã‚¹ã‚¯
+	DWORD	dwGBitMask ;				// ç·‘ãƒã‚¹ã‚¯
+	DWORD	dwBBitMask ;				// é’ãƒã‚¹ã‚¯
+	DWORD	dwRGBAlphaBitMask ;			// Î±ãƒã‚¹ã‚¯
+	DWORD	dwCaps ;					// BI_DDSCAPS2.dwCaps ã¨åŒã˜ã‚‚ã®
+	DWORD	dwCaps2 ;					// BI_DDSCAPS2.dwCaps2 ã¨åŒã˜ã‚‚ã®
+	DWORD	dwReservedCaps[ 2 ] ;		// äºˆç´„ï¼’
+	DWORD	dwReserved2 ;				// äºˆç´„ï¼“
 } ;
 
-// DDSƒtƒ@ƒCƒ‹Šg’£ƒwƒbƒ_
+// DDSãƒ•ã‚¡ã‚¤ãƒ«æ‹¡å¼µãƒ˜ãƒƒãƒ€
 struct DDS_HEADER_DXT10
 {
 	DWORD	dwFormat ;					// DXGI_FORMAT
 	DWORD	dwResourceDimension ;		// D3D11_RESOURCE_DIMENSION
-	DWORD	dwMiscFlag ;				// ‚»‚Ì‘¼ƒtƒ‰ƒO( DDS_RESOURCE_MISC_TEXTURECUBE( 0x04 )‚ÅƒLƒ…[ƒuƒ}ƒbƒv
-	DWORD	dwArraySize ;				// ƒLƒ…[ƒuƒ}ƒbƒv‚Ìê‡‚Ì”z—ñ’·
-	DWORD	dwMiscFlag2 ;				// DDS_ALPHA_MODE_UNKNOWN “™
+	DWORD	dwMiscFlag ;				// ãã®ä»–ãƒ•ãƒ©ã‚°( DDS_RESOURCE_MISC_TEXTURECUBE( 0x04 )ã§ã‚­ãƒ¥ãƒ¼ãƒ–ãƒãƒƒãƒ—
+	DWORD	dwArraySize ;				// ã‚­ãƒ¥ãƒ¼ãƒ–ãƒãƒƒãƒ—ã®å ´åˆã®é…åˆ—é•·
+	DWORD	dwMiscFlag2 ;				// DDS_ALPHA_MODE_UNKNOWN ç­‰
 } ;
 
-// ƒJƒ‰[ƒtƒH[ƒ}ƒbƒgƒe[ƒuƒ‹\‘¢‘Ì
+// ã‚«ãƒ©ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆãƒ†ãƒ¼ãƒ–ãƒ«æ§‹é€ ä½“
 struct DDSCOLORTABLE
 {
 	DWORD Type ;
@@ -194,29 +194,29 @@ struct DDSCOLORTABLE
 	DWORD RedMask, GreenMask, BlueMask, AlphaMask ;
 } ;
 
-// ŠÖ”éŒ¾--------------------------------------------------------------------
+// é–¢æ•°å®£è¨€--------------------------------------------------------------------
 
-// ‰æ‘œ“Ç‚İ‚İŠÖ”
-static	int LoadBmpImage( STREAMDATA *Stream, BASEIMAGE *BaseImage, int GetFormatOnly ) ;					// ‚a‚l‚o‰æ‘œ‚Ì“Ç‚İ‚±‚İ
-static	int LoadArgbImage( STREAMDATA *Src, BASEIMAGE *BaseImage, int GetFormatOnly ) ;						// ‚`‚q‚f‚a‰æ‘œ‚Ì“Ç‚İ‚±‚İ
-static	int LoadDxLibBaseImage( STREAMDATA *Stream, BASEIMAGE *BaseImage, int GetFormatOnly ) ;				// BASEIMAGE‰æ‘œ‚Ì“Ç‚İ‚±‚İ
+// ç”»åƒèª­ã¿è¾¼ã¿é–¢æ•°
+static	int LoadBmpImage( STREAMDATA *Stream, BASEIMAGE *BaseImage, int GetFormatOnly ) ;					// ï¼¢ï¼­ï¼°ç”»åƒã®èª­ã¿ã“ã¿
+static	int LoadArgbImage( STREAMDATA *Src, BASEIMAGE *BaseImage, int GetFormatOnly ) ;						// ï¼¡ï¼²ï¼§ï¼¢ç”»åƒã®èª­ã¿ã“ã¿
+static	int LoadDxLibBaseImage( STREAMDATA *Stream, BASEIMAGE *BaseImage, int GetFormatOnly ) ;				// BASEIMAGEç”»åƒã®èª­ã¿ã“ã¿
 
 #ifndef DX_NON_TGA
-static	int LoadTargaImage( STREAMDATA *Src, BASEIMAGE *BaseImage, int GetFormatOnly ) ;					// ‚s‚f‚`‰æ‘œ‚Ì“Ç‚İ‚±‚İ
+static	int LoadTargaImage( STREAMDATA *Src, BASEIMAGE *BaseImage, int GetFormatOnly ) ;					// ï¼´ï¼§ï¼¡ç”»åƒã®èª­ã¿ã“ã¿
 #endif
 
-		int LoadDDSImage( STREAMDATA *Src, BASEIMAGE *BaseImage, int GetFormatOnly ) ;						// ‚c‚c‚r‰æ‘œ‚Ì“Ç‚İ‚±‚İ
+		int LoadDDSImage( STREAMDATA *Src, BASEIMAGE *BaseImage, int GetFormatOnly ) ;						// ï¼¤ï¼¤ï¼³ç”»åƒã®èª­ã¿ã“ã¿
 
-// ƒAƒ‹ƒtƒ@ƒ}ƒXƒN—p‚Ìƒtƒ@ƒCƒ‹ƒpƒX‚ğì¬‚·‚é
+// ã‚¢ãƒ«ãƒ•ã‚¡ãƒã‚¹ã‚¯ç”¨ã®ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹ã‚’ä½œæˆã™ã‚‹
 static int CreateAlphaMaskFilePath(  const wchar_t *Path, wchar_t *Dest, size_t BufferBytes ) ;
 static int CreateAlphaMaskFilePathT( const TCHAR   *Path, TCHAR   *Dest, size_t BufferBytes ) ;
 
-// ƒf[ƒ^éŒ¾------------------------------------------------------------------
+// ãƒ‡ãƒ¼ã‚¿å®£è¨€------------------------------------------------------------------
 
 BYTE YUVLimitTable[ 512 * 2 + 256 ] ;
 int YUVTable[ 5 ][ 256 ] ;		// 0:rv  1:gu   2:gv   3:bu   4:y
 
-// ‰æ‘œ“Ç‚İ‚İŠÖ””z—ñ
+// ç”»åƒèª­ã¿è¾¼ã¿é–¢æ•°é…åˆ—
 int ( *DefaultImageLoadFunc[] )( STREAMDATA *Src, BASEIMAGE *BaseImage, int GetFormatOnly ) =
 {
 	LoadBmpImage ,
@@ -241,9 +241,9 @@ int ( *DefaultImageLoadFunc[] )( STREAMDATA *Src, BASEIMAGE *BaseImage, int GetF
 
 BASEIMAGEMANAGE BaseImageManage ;
 
-// ƒvƒƒOƒ‰ƒ€ƒR[ƒh------------------------------------------------------------
+// ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã‚³ãƒ¼ãƒ‰------------------------------------------------------------
 
-// CREATEBASEIMAGETYPE2_GPARAM ‚Ìƒf[ƒ^‚ğƒZƒbƒg‚·‚é
+// CREATEBASEIMAGETYPE2_GPARAM ã®ãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern void InitCreateBaseImageType2GParam( CREATEBASEIMAGETYPE2_GPARAM *GParam, int GetFormatOnly )
 {
 	int i ;
@@ -257,7 +257,7 @@ extern void InitCreateBaseImageType2GParam( CREATEBASEIMAGETYPE2_GPARAM *GParam,
 	GParam->GetFormatOnly         = GetFormatOnly ;
 }
 
-// LOADBASEIMAGE_GPARAM ‚Ìƒf[ƒ^‚ğƒZƒbƒg‚·‚é
+// LOADBASEIMAGE_GPARAM ã®ãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern void InitLoadBaseImageGParam( LOADBASEIMAGE_GPARAM *GParam, int GetFormatOnly )
 {
 	InitCreateBaseImageType2GParam( &GParam->CreateGraphImageType2GParam, GetFormatOnly ) ;
@@ -273,7 +273,7 @@ extern void InitLoadBaseImageGParam( LOADBASEIMAGE_GPARAM *GParam, int GetFormat
 
 #ifndef DX_NON_JPEGREAD
 
-// JPEGƒtƒ@ƒCƒ‹‚Ì Exifî•ñ‚ğæ“¾‚·‚éAExifBuffer ‚ğ NULL ‚É“n‚·‚ÆA–ß‚è’l‚Ìî•ñ‚ÌƒTƒCƒY‚Ì‚İæ“¾‚Å‚«‚Ü‚·( –ß‚è’l  -1:ƒGƒ‰[  -1ˆÈŠOFExifî•ñ‚ÌƒTƒCƒY )
+// JPEGãƒ•ã‚¡ã‚¤ãƒ«ã® Exifæƒ…å ±ã‚’å–å¾—ã™ã‚‹ã€ExifBuffer ã‚’ NULL ã«æ¸¡ã™ã¨ã€æˆ»ã‚Šå€¤ã®æƒ…å ±ã®ã‚µã‚¤ã‚ºã®ã¿å–å¾—ã§ãã¾ã™( æˆ»ã‚Šå€¤  -1:ã‚¨ãƒ©ãƒ¼  -1ä»¥å¤–ï¼šExifæƒ…å ±ã®ã‚µã‚¤ã‚º )
 extern int NS_ReadJpegExif( const TCHAR *JpegFilePath, BYTE *ExifBuffer, size_t ExifBufferSize )
 {
 #ifdef UNICODE
@@ -295,7 +295,7 @@ extern int NS_ReadJpegExif( const TCHAR *JpegFilePath, BYTE *ExifBuffer, size_t 
 #endif
 }
 
-// JPEGƒtƒ@ƒCƒ‹‚Ì Exifî•ñ‚ğæ“¾‚·‚éAExifBuffer ‚ğ NULL ‚É“n‚·‚ÆA–ß‚è’l‚Ìî•ñ‚ÌƒTƒCƒY‚Ì‚İæ“¾‚Å‚«‚Ü‚·( –ß‚è’l  -1:ƒGƒ‰[  -1ˆÈŠOFExifî•ñ‚ÌƒTƒCƒY )
+// JPEGãƒ•ã‚¡ã‚¤ãƒ«ã® Exifæƒ…å ±ã‚’å–å¾—ã™ã‚‹ã€ExifBuffer ã‚’ NULL ã«æ¸¡ã™ã¨ã€æˆ»ã‚Šå€¤ã®æƒ…å ±ã®ã‚µã‚¤ã‚ºã®ã¿å–å¾—ã§ãã¾ã™( æˆ»ã‚Šå€¤  -1:ã‚¨ãƒ©ãƒ¼  -1ä»¥å¤–ï¼šExifæƒ…å ±ã®ã‚µã‚¤ã‚º )
 extern int NS_ReadJpegExifWithStrLen( const TCHAR *JpegFilePath, size_t JpegFilePathLength, BYTE *ExifBuffer, size_t ExifBufferSize )
 {
 	int Result ;
@@ -320,7 +320,7 @@ extern int ReadJpegExif_WCHAR_T( const wchar_t *FilePath, const void *FileImage,
 
 	InitLoadBaseImageGParam( &GParam, FALSE ) ;
 
-	// ƒtƒ@ƒCƒ‹‚ğŠJ‚­
+	// ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‹ã
 	if( FilePath != NULL )
 	{
 		fp = GParam.StreamDataShred2.Open( FilePath, FALSE, TRUE, FALSE ) ;
@@ -359,11 +359,11 @@ extern int ReadJpegExif_WCHAR_T( const wchar_t *FilePath, const void *FileImage,
 
 #endif // DX_NON_JPEGREAD
 
-// Šî–{ƒCƒ[ƒWƒf[ƒ^‚Ìƒ[ƒh{‚c‚h‚aŠÖŒW
+// åŸºæœ¬ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ã®ãƒ­ãƒ¼ãƒ‰ï¼‹ï¼¤ï¼©ï¼¢é–¢ä¿‚
 
 #ifndef DX_NON_SAVEFUNCTION
 
-// Šî–{‰æ‘œƒf[ƒ^‚ğ‚a‚l‚o‰æ‘œ‚Æ‚µ‚Ä•Û‘¶‚·‚é
+// åŸºæœ¬ç”»åƒãƒ‡ãƒ¼ã‚¿ã‚’ï¼¢ï¼­ï¼°ç”»åƒã¨ã—ã¦ä¿å­˜ã™ã‚‹
 extern int NS_SaveBaseImageToBmp( const TCHAR *FilePath, const BASEIMAGE *BaseImage )
 {
 #ifdef UNICODE
@@ -385,7 +385,7 @@ extern int NS_SaveBaseImageToBmp( const TCHAR *FilePath, const BASEIMAGE *BaseIm
 #endif
 }
 
-// Šî–{ƒCƒ[ƒWƒf[ƒ^‚ğ‚a‚l‚o‰æ‘œ‚Æ‚µ‚Ä•Û‘¶‚·‚é
+// åŸºæœ¬ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ã‚’ï¼¢ï¼­ï¼°ç”»åƒã¨ã—ã¦ä¿å­˜ã™ã‚‹
 extern int NS_SaveBaseImageToBmpWithStrLen( const TCHAR *FilePath, size_t FilePathLength, const BASEIMAGE *BaseImage )
 {
 	int Result ;
@@ -401,7 +401,7 @@ extern int NS_SaveBaseImageToBmpWithStrLen( const TCHAR *FilePath, size_t FilePa
 	return Result ;
 }
 
-// Šî–{‰æ‘œƒf[ƒ^‚ğ‚a‚l‚o‰æ‘œ‚Æ‚µ‚Ä•Û‘¶‚·‚é
+// åŸºæœ¬ç”»åƒãƒ‡ãƒ¼ã‚¿ã‚’ï¼¢ï¼­ï¼°ç”»åƒã¨ã—ã¦ä¿å­˜ã™ã‚‹
 extern int SaveBaseImageToBmp_WCHAR_T( const wchar_t *FilePath, const BASEIMAGE *BaseImage )
 {
 	BITMAPFILEHEADER BmpHead ;
@@ -413,35 +413,35 @@ extern int SaveBaseImageToBmp_WCHAR_T( const wchar_t *FilePath, const BASEIMAGE 
 	int WidthByte ;
 	DWORD_PTR fp ;
 
-	// ƒtƒ@ƒCƒ‹ƒwƒbƒ_‚ÉŠî–{ƒf[ƒ^‚ğƒZƒbƒg
+	// ãƒ•ã‚¡ã‚¤ãƒ«ãƒ˜ãƒƒãƒ€ã«åŸºæœ¬ãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆ
 	_MEMSET( &BmpHead, 0, sizeof( BmpHead ) ) ;
 	( ( BYTE * )&BmpHead.bfType )[ 0 ] = 'B' ;
 	( ( BYTE * )&BmpHead.bfType )[ 1 ] = 'M' ;
 	BmpHead.bfOffBits	= sizeof( BmpHead ) + sizeof( BITMAPINFOHEADER ) ;
 	BmpHead.bfSize		= BmpHead.bfOffBits ;
 
-	// F”‚²‚Æ‚Éˆ—‚ğ•ÏX‚·‚é
+	// è‰²æ•°ã”ã¨ã«å‡¦ç†ã‚’å¤‰æ›´ã™ã‚‹
 	switch( BaseImage->ColorData.ColorBitDepth )
 	{
 	case 8:
-		// ƒpƒŒƒbƒg•Û‘¶—pƒƒ‚ƒŠ‚ğŠÜ‚ß‚½ƒTƒCƒY‚Ìƒƒ‚ƒŠ‚ğŠm•Û‚·‚é
+		// ãƒ‘ãƒ¬ãƒƒãƒˆä¿å­˜ç”¨ãƒ¡ãƒ¢ãƒªã‚’å«ã‚ãŸã‚µã‚¤ã‚ºã®ãƒ¡ãƒ¢ãƒªã‚’ç¢ºä¿ã™ã‚‹
 		BmpInfo = ( BITMAPINFO * )DXCALLOC( sizeof( BITMAPINFO ) + sizeof( RGBQUAD ) * 256 ) ;
 		if( BmpInfo == NULL )
 		{
-			DXST_LOGFILE_ADDUTF16LE( "\x42\x00\x49\x00\x54\x00\x4d\x00\x41\x00\x50\x00\x49\x00\x4e\x00\x46\x00\x4f\x00\xcb\x69\x20\x90\x53\x4f\x28\x75\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"BITMAPINFO\‘¢‘Ì—pƒƒ‚ƒŠ‚ÌŠm•Û‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ; goto END ;
+			DXST_LOGFILE_ADDUTF16LE( "\x42\x00\x49\x00\x54\x00\x4d\x00\x41\x00\x50\x00\x49\x00\x4e\x00\x46\x00\x4f\x00\xcb\x69\x20\x90\x53\x4f\x28\x75\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"BITMAPINFOæ§‹é€ ä½“ç”¨ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ; goto END ;
 		}
 
-		// ‚Pƒ‰ƒCƒ““–‚½‚è‚Ìƒf[ƒ^—Ê‚ğZo
+		// ï¼‘ãƒ©ã‚¤ãƒ³å½“ãŸã‚Šã®ãƒ‡ãƒ¼ã‚¿é‡ã‚’ç®—å‡º
 		WidthByte = ( BaseImage->Width + 3 ) / 4 * 4 ; 
 
-		// ƒOƒ‰ƒtƒBƒbƒN•Û‘¶ƒƒ‚ƒŠ‚ÌŠm•Û
+		// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ä¿å­˜ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿
 		DIBBuf = ( BYTE * )DXCALLOC( ( size_t )( WidthByte * BaseImage->Height ) ) ;
 		if( DIBBuf == NULL )
 		{
-			DXST_LOGFILE_ADDUTF16LE( "\xb0\x30\xe9\x30\xd5\x30\xa3\x30\xc3\x30\xaf\x30\xdd\x4f\x58\x5b\x28\x75\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ƒOƒ‰ƒtƒBƒbƒN•Û‘¶—pƒƒ‚ƒŠ‚ÌŠm•Û‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ; goto END ;
+			DXST_LOGFILE_ADDUTF16LE( "\xb0\x30\xe9\x30\xd5\x30\xa3\x30\xc3\x30\xaf\x30\xdd\x4f\x58\x5b\x28\x75\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ä¿å­˜ç”¨ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ; goto END ;
 		}
 
-		// ƒpƒŒƒbƒg‚Ì•Û‘¶
+		// ãƒ‘ãƒ¬ãƒƒãƒˆã®ä¿å­˜
 		{
 			RGBQUAD *Bgb = BmpInfo->bmiColors ;
 			const COLORPALETTEDATA *Pal = BaseImage->ColorData.Palette ;
@@ -455,13 +455,13 @@ extern int SaveBaseImageToBmp_WCHAR_T( const wchar_t *FilePath, const BASEIMAGE 
 			}
 		}
 
-		// ƒCƒ[ƒWƒf[ƒ^‚Ìæ“ªˆÊ’u‚ğ•ÏX
+		// ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ã®å…ˆé ­ä½ç½®ã‚’å¤‰æ›´
 		BmpHead.bfOffBits += sizeof( RGBQUAD ) * 256 ;
 
-		// ƒtƒ@ƒCƒ‹‚Ì‘ƒTƒCƒY‚ğƒZƒbƒg
+		// ãƒ•ã‚¡ã‚¤ãƒ«ã®ç·ã‚µã‚¤ã‚ºã‚’ã‚»ãƒƒãƒˆ
 		BmpHead.bfSize += sizeof( RGBQUAD ) * 256 + WidthByte * BaseImage->Height ;
 
-		// BITMAPINFO‚Éƒf[ƒ^‚ğ‘‚«‚Ş
+		// BITMAPINFOã«ãƒ‡ãƒ¼ã‚¿ã‚’æ›¸ãè¾¼ã‚€
 		BmpInfo->bmiHeader.biBitCount = 8 ;
 		BmpInfo->bmiHeader.biSize = sizeof( BmpInfo->bmiHeader ) ;
 		BmpInfo->bmiHeader.biWidth = BaseImage->Width ;
@@ -469,31 +469,31 @@ extern int SaveBaseImageToBmp_WCHAR_T( const wchar_t *FilePath, const BASEIMAGE 
 		BmpInfo->bmiHeader.biPlanes = 1 ;
 		BmpInfo->bmiHeader.biCompression = 0L ;
 		
-		// ƒCƒ[ƒW‚ğƒoƒbƒtƒ@‚É“]‘—
+		// ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’ãƒãƒƒãƒ•ã‚¡ã«è»¢é€
 		for( i = 0, y = BaseImage->Height - 1 ; y > -1 ; y --, i ++ )
 		{
 			_MEMCPY( DIBBuf + WidthByte * i, ( BYTE * )BaseImage->GraphData + BaseImage->Pitch * y, ( size_t )BaseImage->Width ) ;
 		}
 
-		// ƒtƒ@ƒCƒ‹‚É‘‚«o‚µ
+		// ãƒ•ã‚¡ã‚¤ãƒ«ã«æ›¸ãå‡ºã—
 		{
 			WriteOnlyFileAccessDelete( FilePath ) ;
 			fp = WriteOnlyFileAccessOpen( FilePath ) ;
 			if( fp == 0 ) 
 			{
-				DXST_LOGFILE_ADDUTF16LE( "\x22\xff\x2d\xff\x30\xff\xbb\x30\xfc\x30\xd6\x30\x28\x75\xd5\x30\xa1\x30\xa4\x30\xeb\x30\x6e\x30\xaa\x30\xfc\x30\xd7\x30\xf3\x30\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"‚a‚l‚oƒZ[ƒu—pƒtƒ@ƒCƒ‹‚ÌƒI[ƒvƒ“‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ; goto END ;
+				DXST_LOGFILE_ADDUTF16LE( "\x22\xff\x2d\xff\x30\xff\xbb\x30\xfc\x30\xd6\x30\x28\x75\xd5\x30\xa1\x30\xa4\x30\xeb\x30\x6e\x30\xaa\x30\xfc\x30\xd7\x30\xf3\x30\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ï¼¢ï¼­ï¼°ã‚»ãƒ¼ãƒ–ç”¨ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚ªãƒ¼ãƒ—ãƒ³ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ; goto END ;
 			}
 
-			// ƒtƒ@ƒCƒ‹ƒwƒbƒ_‚Ì‘‚«o‚µ
+			// ãƒ•ã‚¡ã‚¤ãƒ«ãƒ˜ãƒƒãƒ€ã®æ›¸ãå‡ºã—
 			WriteOnlyFileAccessWrite( fp, &BmpHead, sizeof( BmpHead ) ) ;
 			
-			// ƒCƒ“ƒtƒHƒwƒbƒ_‚Ì‘‚«o‚µ
+			// ã‚¤ãƒ³ãƒ•ã‚©ãƒ˜ãƒƒãƒ€ã®æ›¸ãå‡ºã—
 			WriteOnlyFileAccessWrite( fp, BmpInfo, sizeof( BmpInfo->bmiHeader ) + sizeof( RGBQUAD ) * 256 ) ;
 
-			// ƒCƒ[ƒW‚Ì‘‚«o‚µ
+			// ã‚¤ãƒ¡ãƒ¼ã‚¸ã®æ›¸ãå‡ºã—
 			WriteOnlyFileAccessWrite( fp, DIBBuf, ( DWORD )( WidthByte * BaseImage->Height ) ) ;
 
-			// I—¹
+			// çµ‚äº†
 			WriteOnlyFileAccessClose( fp ) ;
 		}
 		break ;
@@ -502,27 +502,27 @@ extern int SaveBaseImageToBmp_WCHAR_T( const wchar_t *FilePath, const BASEIMAGE 
 	case 24 :
 	case 16 :
 		{
-			// ƒpƒŒƒbƒg•Û‘¶—pƒƒ‚ƒŠ‚ğŠÜ‚ß‚½ƒTƒCƒY‚Ìƒƒ‚ƒŠ‚ğŠm•Û‚·‚é
+			// ãƒ‘ãƒ¬ãƒƒãƒˆä¿å­˜ç”¨ãƒ¡ãƒ¢ãƒªã‚’å«ã‚ãŸã‚µã‚¤ã‚ºã®ãƒ¡ãƒ¢ãƒªã‚’ç¢ºä¿ã™ã‚‹
 			BmpInfo = ( BITMAPINFO * )DXCALLOC( sizeof( BITMAPINFO ) ) ;
 			if( BmpInfo == NULL )
 			{
-				DXST_LOGFILE_ADDUTF16LE( "\x42\x00\x49\x00\x54\x00\x4d\x00\x41\x00\x50\x00\x49\x00\x4e\x00\x46\x00\x4f\x00\xcb\x69\x20\x90\x53\x4f\x28\x75\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"BITMAPINFO\‘¢‘Ì—pƒƒ‚ƒŠ‚ÌŠm•Û‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ; goto END ;
+				DXST_LOGFILE_ADDUTF16LE( "\x42\x00\x49\x00\x54\x00\x4d\x00\x41\x00\x50\x00\x49\x00\x4e\x00\x46\x00\x4f\x00\xcb\x69\x20\x90\x53\x4f\x28\x75\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"BITMAPINFOæ§‹é€ ä½“ç”¨ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ; goto END ;
 			}
 
-			// ‚Pƒ‰ƒCƒ““–‚½‚è‚Ìƒf[ƒ^—Ê‚ğZo
+			// ï¼‘ãƒ©ã‚¤ãƒ³å½“ãŸã‚Šã®ãƒ‡ãƒ¼ã‚¿é‡ã‚’ç®—å‡º
 			WidthByte = ( BaseImage->Width * 3 + 3 ) / 4 * 4 ; 
 
-			// ƒOƒ‰ƒtƒBƒbƒN•Û‘¶ƒƒ‚ƒŠ‚ÌŠm•Û
+			// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ä¿å­˜ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿
 			DIBBuf = ( BYTE * )DXCALLOC( ( size_t )( WidthByte * BaseImage->Height ) ) ;
 			if( DIBBuf == NULL ) 
 			{
-				DXST_LOGFILE_ADDUTF16LE( "\xb0\x30\xe9\x30\xd5\x30\xa3\x30\xc3\x30\xaf\x30\xdd\x4f\x58\x5b\x28\x75\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ƒOƒ‰ƒtƒBƒbƒN•Û‘¶—pƒƒ‚ƒŠ‚ÌŠm•Û‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ; goto END ;
+				DXST_LOGFILE_ADDUTF16LE( "\xb0\x30\xe9\x30\xd5\x30\xa3\x30\xc3\x30\xaf\x30\xdd\x4f\x58\x5b\x28\x75\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ä¿å­˜ç”¨ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ; goto END ;
 			}
 
-			// ƒtƒ@ƒCƒ‹‚Ì‘ƒTƒCƒY‚ğƒZƒbƒg
+			// ãƒ•ã‚¡ã‚¤ãƒ«ã®ç·ã‚µã‚¤ã‚ºã‚’ã‚»ãƒƒãƒˆ
 			BmpHead.bfSize += WidthByte * BaseImage->Height ;
 
-			// BITMAPINFO‚Éƒf[ƒ^‚ğ‘‚«‚Ş
+			// BITMAPINFOã«ãƒ‡ãƒ¼ã‚¿ã‚’æ›¸ãè¾¼ã‚€
 			BmpInfo->bmiHeader.biBitCount    = 24 ;
 			BmpInfo->bmiHeader.biSize        = sizeof( BmpInfo->bmiHeader ) ;
 			BmpInfo->bmiHeader.biWidth       = BaseImage->Width ;
@@ -530,7 +530,7 @@ extern int SaveBaseImageToBmp_WCHAR_T( const wchar_t *FilePath, const BASEIMAGE 
 			BmpInfo->bmiHeader.biPlanes      = 1 ;
 			BmpInfo->bmiHeader.biCompression = 0L ;
 			
-			// ƒCƒ[ƒW‚ğƒoƒbƒtƒ@‚É“]‘—
+			// ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’ãƒãƒƒãƒ•ã‚¡ã«è»¢é€
 			if( BaseImage->ColorData.BlueMask  == 0x00ff0000 &&
 				BaseImage->ColorData.GreenMask == 0x0000ff00 &&
 				BaseImage->ColorData.RedMask   == 0x000000ff &&
@@ -651,25 +651,25 @@ extern int SaveBaseImageToBmp_WCHAR_T( const wchar_t *FilePath, const BASEIMAGE 
 			}
 		}
 
-		// ƒtƒ@ƒCƒ‹‚É‘‚«o‚µ
+		// ãƒ•ã‚¡ã‚¤ãƒ«ã«æ›¸ãå‡ºã—
 		{
 			WriteOnlyFileAccessDelete( FilePath ) ;
 			fp = WriteOnlyFileAccessOpen( FilePath ) ;
 			if( fp == 0 ) 
 			{
-				DXST_LOGFILE_ADDUTF16LE( "\x22\xff\x2d\xff\x30\xff\xbb\x30\xfc\x30\xd6\x30\x28\x75\xd5\x30\xa1\x30\xa4\x30\xeb\x30\x6e\x30\xaa\x30\xfc\x30\xd7\x30\xf3\x30\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"‚a‚l‚oƒZ[ƒu—pƒtƒ@ƒCƒ‹‚ÌƒI[ƒvƒ“‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ; goto END ;
+				DXST_LOGFILE_ADDUTF16LE( "\x22\xff\x2d\xff\x30\xff\xbb\x30\xfc\x30\xd6\x30\x28\x75\xd5\x30\xa1\x30\xa4\x30\xeb\x30\x6e\x30\xaa\x30\xfc\x30\xd7\x30\xf3\x30\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ï¼¢ï¼­ï¼°ã‚»ãƒ¼ãƒ–ç”¨ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚ªãƒ¼ãƒ—ãƒ³ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ; goto END ;
 			}
 
-			// ƒtƒ@ƒCƒ‹ƒwƒbƒ_‚Ì‘‚«o‚µ
+			// ãƒ•ã‚¡ã‚¤ãƒ«ãƒ˜ãƒƒãƒ€ã®æ›¸ãå‡ºã—
 			WriteOnlyFileAccessWrite( fp, &BmpHead, sizeof( BmpHead ) ) ;
 			
-			// ƒCƒ“ƒtƒHƒwƒbƒ_‚Ì‘‚«o‚µ
+			// ã‚¤ãƒ³ãƒ•ã‚©ãƒ˜ãƒƒãƒ€ã®æ›¸ãå‡ºã—
 			WriteOnlyFileAccessWrite( fp, BmpInfo, sizeof( BmpInfo->bmiHeader ) ) ;
 
-			// ƒCƒ[ƒW‚Ì‘‚«o‚µ
+			// ã‚¤ãƒ¡ãƒ¼ã‚¸ã®æ›¸ãå‡ºã—
 			WriteOnlyFileAccessWrite( fp, DIBBuf, ( DWORD )( WidthByte * BaseImage->Height ) ) ;
 
-			// I—¹
+			// çµ‚äº†
 			WriteOnlyFileAccessClose( fp ) ;
 		}
 		break ;
@@ -678,15 +678,15 @@ extern int SaveBaseImageToBmp_WCHAR_T( const wchar_t *FilePath, const BASEIMAGE 
 	Ret = 0 ;
 END:
 
-	// ƒƒ‚ƒŠ‚Ì‰ğ•ú
+	// ãƒ¡ãƒ¢ãƒªã®è§£æ”¾
 	if( BmpInfo ) DXFREE( BmpInfo ) ;
 	if( DIBBuf  ) DXFREE( DIBBuf ) ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return Ret ;
 }
 
-// Šî–{‰æ‘œƒf[ƒ^‚ğ‚c‚c‚r‰æ‘œ‚Æ‚µ‚Ä•Û‘¶‚·‚é
+// åŸºæœ¬ç”»åƒãƒ‡ãƒ¼ã‚¿ã‚’ï¼¤ï¼¤ï¼³ç”»åƒã¨ã—ã¦ä¿å­˜ã™ã‚‹
 extern int NS_SaveBaseImageToDds( const TCHAR *FilePath, const BASEIMAGE *BaseImage )
 {
 #ifdef UNICODE
@@ -708,7 +708,7 @@ extern int NS_SaveBaseImageToDds( const TCHAR *FilePath, const BASEIMAGE *BaseIm
 #endif
 }
 
-// Šî–{ƒCƒ[ƒWƒf[ƒ^‚ğ‚c‚c‚r‰æ‘œ‚Æ‚µ‚Ä•Û‘¶‚·‚é
+// åŸºæœ¬ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ã‚’ï¼¤ï¼¤ï¼³ç”»åƒã¨ã—ã¦ä¿å­˜ã™ã‚‹
 extern int NS_SaveBaseImageToDdsWithStrLen( const TCHAR *FilePath, size_t FilePathLength, const BASEIMAGE *BaseImage )
 {
 	int Result ;
@@ -724,7 +724,7 @@ extern int NS_SaveBaseImageToDdsWithStrLen( const TCHAR *FilePath, size_t FilePa
 	return Result ;
 }
 
-// Šî–{‰æ‘œƒf[ƒ^‚ğ‚c‚c‚r‰æ‘œ‚Æ‚µ‚Ä•Û‘¶‚·‚é
+// åŸºæœ¬ç”»åƒãƒ‡ãƒ¼ã‚¿ã‚’ï¼¤ï¼¤ï¼³ç”»åƒã¨ã—ã¦ä¿å­˜ã™ã‚‹
 extern int SaveBaseImageToDds_WCHAR_T( const wchar_t *FilePath, const BASEIMAGE *BaseImage, int CubeMapFlag , int MipMapCount )
 {
 	int Ret = -1 ;
@@ -733,20 +733,20 @@ extern int SaveBaseImageToDds_WCHAR_T( const wchar_t *FilePath, const BASEIMAGE 
 
 	_MEMSET( &DDSHead, 0, sizeof( DDSHead ) ) ;
 
-	// ƒ}ƒWƒbƒNƒiƒ“ƒo[wDDS x‚ÌƒZƒbƒg
+	// ãƒã‚¸ãƒƒã‚¯ãƒŠãƒ³ãƒãƒ¼ã€DDS ã€ã®ã‚»ãƒƒãƒˆ
 	( ( BYTE * )&DDSHead.dwMagic )[ 0 ] = 'D' ;
 	( ( BYTE * )&DDSHead.dwMagic )[ 1 ] = 'D' ;
 	( ( BYTE * )&DDSHead.dwMagic )[ 2 ] = 'S' ;
 	( ( BYTE * )&DDSHead.dwMagic )[ 3 ] = ' ' ;
 
-	// ƒwƒbƒ_‚ÌƒTƒCƒY‚ğƒZƒbƒg
+	// ãƒ˜ãƒƒãƒ€ã®ã‚µã‚¤ã‚ºã‚’ã‚»ãƒƒãƒˆ
 	DDSHead.dwSize = 124 ;
 
-	// ƒtƒ‰ƒO‚ğƒZƒbƒg
+	// ãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆ
 	DDSHead.dwFlags  = BI_DDSD_CAPS | BI_DDSD_HEIGHT | BI_DDSD_WIDTH | BI_DDSD_PITCH | BI_DDSD_PIXELFORMAT ;
 	DDSHead.dwCaps = BI_DDSCAPS_TEXTURE ;
 
-	// ƒ~ƒbƒvƒ}ƒbƒv‚Ìî•ñ‚ğƒZƒbƒg
+	// ãƒŸãƒƒãƒ—ãƒãƒƒãƒ—ã®æƒ…å ±ã‚’ã‚»ãƒƒãƒˆ
 	if( MipMapCount > 1 )
 	{
 		DDSHead.dwCaps |= BI_DDSCAPS_MIPMAP | BI_DDSCAPS_COMPLEX ;
@@ -754,31 +754,31 @@ extern int SaveBaseImageToDds_WCHAR_T( const wchar_t *FilePath, const BASEIMAGE 
 		DDSHead.dwMipMapCount = MipMapCount ;
 	}
 
-	// ƒLƒ…[ƒuƒ}ƒbƒv‚Ìî•ñ‚ğƒZƒbƒg
+	// ã‚­ãƒ¥ãƒ¼ãƒ–ãƒãƒƒãƒ—ã®æƒ…å ±ã‚’ã‚»ãƒƒãƒˆ
 	if( CubeMapFlag )
 	{
 		DDSHead.dwCaps2 |= BI_DDSCAPS2_CUBEMAP | BI_DDSCAPS2_CUBEMAP_ALLFACES ;
 	}
 
-	// •‚Æ‚‚³‚ğƒZƒbƒg
+	// å¹…ã¨é«˜ã•ã‚’ã‚»ãƒƒãƒˆ
 	DDSHead.dwWidth  = ( DWORD )BaseImage->Width ;
 	DDSHead.dwHeight = ( DWORD )BaseImage->Height ;
 
-	// ƒsƒbƒ`‚ğƒZƒbƒg
+	// ãƒ”ãƒƒãƒã‚’ã‚»ãƒƒãƒˆ
 	DDSHead.dwPitchOrLinearSize = ( DWORD )( BaseImage->Width * BaseImage->ColorData.PixelByte ) ;
 
-	// ƒsƒNƒZƒ‹ƒtƒH[ƒ}ƒbƒg‚ÌƒTƒCƒY‚ğƒZƒbƒg
+	// ãƒ”ã‚¯ã‚»ãƒ«ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®ã‚µã‚¤ã‚ºã‚’ã‚»ãƒƒãƒˆ
 	DDSHead.dwPfSize = 32 ;
 
-	// Floatƒ^ƒCƒv‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+	// Floatã‚¿ã‚¤ãƒ—ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 	if( BaseImage->ColorData.FloatTypeFlag )
 	{
-		// Floatƒ^ƒCƒv‚Ìê‡
+		// Floatã‚¿ã‚¤ãƒ—ã®å ´åˆ
 
-		// ƒtƒ‰ƒO‚ğƒZƒbƒg
+		// ãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆ
 		DDSHead.dwPfFlags = BI_DDPF_FOURCC ;
 
-		// ƒ^ƒCƒv‚É‚ ‚Á‚½ FourCC ‚ğƒZƒbƒg‚·‚é
+		// ã‚¿ã‚¤ãƒ—ã«ã‚ã£ãŸ FourCC ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 		switch( BaseImage->ColorData.ChannelBitDepth )
 		{
 		case 16 :
@@ -797,7 +797,7 @@ extern int SaveBaseImageToDds_WCHAR_T( const wchar_t *FilePath, const BASEIMAGE 
 				break ;
 
 			default :
-				DXST_LOGFILE_ADDUTF16LE( "\x24\xff\x24\xff\x33\xff\xbb\x30\xfc\x30\xd6\x30\xa8\x30\xe9\x30\xfc\x30\x1a\xff\x5e\x97\xfe\x5b\xdc\x5f\x6e\x30\x66\x00\x6c\x00\x6f\x00\x61\x00\x74\x00\x8b\x57\xc1\x30\xe3\x30\xf3\x30\xcd\x30\xeb\x30\x70\x65\x67\x30\x59\x30\x0a\x00\x00"/*@ L"‚c‚c‚rƒZ[ƒuƒGƒ‰[F”ñ‘Î‰‚ÌfloatŒ^ƒ`ƒƒƒ“ƒlƒ‹”‚Å‚·\n" @*/ ) ; goto END ;
+				DXST_LOGFILE_ADDUTF16LE( "\x24\xff\x24\xff\x33\xff\xbb\x30\xfc\x30\xd6\x30\xa8\x30\xe9\x30\xfc\x30\x1a\xff\x5e\x97\xfe\x5b\xdc\x5f\x6e\x30\x66\x00\x6c\x00\x6f\x00\x61\x00\x74\x00\x8b\x57\xc1\x30\xe3\x30\xf3\x30\xcd\x30\xeb\x30\x70\x65\x67\x30\x59\x30\x0a\x00\x00"/*@ L"ï¼¤ï¼¤ï¼³ã‚»ãƒ¼ãƒ–ã‚¨ãƒ©ãƒ¼ï¼šéå¯¾å¿œã®floatå‹ãƒãƒ£ãƒ³ãƒãƒ«æ•°ã§ã™\n" @*/ ) ; goto END ;
 				break ;
 			}
 			break ;
@@ -818,24 +818,24 @@ extern int SaveBaseImageToDds_WCHAR_T( const wchar_t *FilePath, const BASEIMAGE 
 				break ;
 
 			default :
-				DXST_LOGFILE_ADDUTF16LE( "\x24\xff\x24\xff\x33\xff\xbb\x30\xfc\x30\xd6\x30\xa8\x30\xe9\x30\xfc\x30\x1a\xff\x5e\x97\xfe\x5b\xdc\x5f\x6e\x30\x66\x00\x6c\x00\x6f\x00\x61\x00\x74\x00\x8b\x57\xc1\x30\xe3\x30\xf3\x30\xcd\x30\xeb\x30\x70\x65\x67\x30\x59\x30\x0a\x00\x00"/*@ L"‚c‚c‚rƒZ[ƒuƒGƒ‰[F”ñ‘Î‰‚ÌfloatŒ^ƒ`ƒƒƒ“ƒlƒ‹”‚Å‚·\n" @*/ ) ; goto END ;
+				DXST_LOGFILE_ADDUTF16LE( "\x24\xff\x24\xff\x33\xff\xbb\x30\xfc\x30\xd6\x30\xa8\x30\xe9\x30\xfc\x30\x1a\xff\x5e\x97\xfe\x5b\xdc\x5f\x6e\x30\x66\x00\x6c\x00\x6f\x00\x61\x00\x74\x00\x8b\x57\xc1\x30\xe3\x30\xf3\x30\xcd\x30\xeb\x30\x70\x65\x67\x30\x59\x30\x0a\x00\x00"/*@ L"ï¼¤ï¼¤ï¼³ã‚»ãƒ¼ãƒ–ã‚¨ãƒ©ãƒ¼ï¼šéå¯¾å¿œã®floatå‹ãƒãƒ£ãƒ³ãƒãƒ«æ•°ã§ã™\n" @*/ ) ; goto END ;
 				break ;
 			}
 			break ;
 
 		default :
-			DXST_LOGFILE_ADDUTF16LE( "\x24\xff\x24\xff\x33\xff\xbb\x30\xfc\x30\xd6\x30\xa8\x30\xe9\x30\xfc\x30\x1a\xff\x5e\x97\xfe\x5b\xdc\x5f\x6e\x30\x66\x00\x6c\x00\x6f\x00\x61\x00\x74\x00\x8b\x57\xd3\x30\xc3\x30\xc8\x30\x70\x65\x67\x30\x59\x30\x0a\x00\x00"/*@ L"‚c‚c‚rƒZ[ƒuƒGƒ‰[F”ñ‘Î‰‚ÌfloatŒ^ƒrƒbƒg”‚Å‚·\n" @*/ ) ; goto END ;
+			DXST_LOGFILE_ADDUTF16LE( "\x24\xff\x24\xff\x33\xff\xbb\x30\xfc\x30\xd6\x30\xa8\x30\xe9\x30\xfc\x30\x1a\xff\x5e\x97\xfe\x5b\xdc\x5f\x6e\x30\x66\x00\x6c\x00\x6f\x00\x61\x00\x74\x00\x8b\x57\xd3\x30\xc3\x30\xc8\x30\x70\x65\x67\x30\x59\x30\x0a\x00\x00"/*@ L"ï¼¤ï¼¤ï¼³ã‚»ãƒ¼ãƒ–ã‚¨ãƒ©ãƒ¼ï¼šéå¯¾å¿œã®floatå‹ãƒ“ãƒƒãƒˆæ•°ã§ã™\n" @*/ ) ; goto END ;
 			break ;
 		}
 	}
 	else
-	// ®”Œ^‚Å1ƒ`ƒƒƒ“ƒlƒ‹‚Ìƒrƒbƒg”‚ª16‚Ìê‡‚Íˆ—‚ğ•ªŠò
+	// æ•´æ•°å‹ã§1ãƒãƒ£ãƒ³ãƒãƒ«ã®ãƒ“ãƒƒãƒˆæ•°ãŒ16ã®å ´åˆã¯å‡¦ç†ã‚’åˆ†å²
 	if( BaseImage->ColorData.ChannelBitDepth == 16 )
 	{
-		// ƒtƒ‰ƒO‚ğƒZƒbƒg
+		// ãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆ
 		DDSHead.dwPfFlags = BI_DDPF_FOURCC ;
 
-		// ƒ^ƒCƒv‚É‚ ‚Á‚½ FourCC ‚ğƒZƒbƒg‚·‚é
+		// ã‚¿ã‚¤ãƒ—ã«ã‚ã£ãŸ FourCC ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 		switch( BaseImage->ColorData.ChannelNum )
 		{
 		case 1 :
@@ -851,18 +851,18 @@ extern int SaveBaseImageToDds_WCHAR_T( const wchar_t *FilePath, const BASEIMAGE 
 			break ;
 
 		default :
-			DXST_LOGFILE_ADDUTF16LE( "\x24\xff\x24\xff\x33\xff\xbb\x30\xfc\x30\xd6\x30\xa8\x30\xe9\x30\xfc\x30\x1a\xff\x5e\x97\xfe\x5b\xdc\x5f\x6e\x30\x74\x65\x70\x65\x8b\x57\x31\x00\xc1\x30\xe3\x30\xf3\x30\xcd\x30\xeb\x30\x31\x00\x36\x00\xd3\x30\xc3\x30\xc8\x30\x6e\x30\x8b\x57\xc1\x30\xe3\x30\xf3\x30\xcd\x30\xeb\x30\x70\x65\x67\x30\x59\x30\x0a\x00\x00"/*@ L"‚c‚c‚rƒZ[ƒuƒGƒ‰[F”ñ‘Î‰‚Ì®”Œ^1ƒ`ƒƒƒ“ƒlƒ‹16ƒrƒbƒg‚ÌŒ^ƒ`ƒƒƒ“ƒlƒ‹”‚Å‚·\n" @*/ ) ; goto END ;
+			DXST_LOGFILE_ADDUTF16LE( "\x24\xff\x24\xff\x33\xff\xbb\x30\xfc\x30\xd6\x30\xa8\x30\xe9\x30\xfc\x30\x1a\xff\x5e\x97\xfe\x5b\xdc\x5f\x6e\x30\x74\x65\x70\x65\x8b\x57\x31\x00\xc1\x30\xe3\x30\xf3\x30\xcd\x30\xeb\x30\x31\x00\x36\x00\xd3\x30\xc3\x30\xc8\x30\x6e\x30\x8b\x57\xc1\x30\xe3\x30\xf3\x30\xcd\x30\xeb\x30\x70\x65\x67\x30\x59\x30\x0a\x00\x00"/*@ L"ï¼¤ï¼¤ï¼³ã‚»ãƒ¼ãƒ–ã‚¨ãƒ©ãƒ¼ï¼šéå¯¾å¿œã®æ•´æ•°å‹1ãƒãƒ£ãƒ³ãƒãƒ«16ãƒ“ãƒƒãƒˆã®å‹ãƒãƒ£ãƒ³ãƒãƒ«æ•°ã§ã™\n" @*/ ) ; goto END ;
 			break ;
 		}
 	}
 	else
-	// ®”Œ^‚Å1ƒ`ƒƒƒ“ƒlƒ‹‚Ìƒrƒbƒg”‚ª8‚Ìê‡‚Íˆ—‚ğ•ªŠò
+	// æ•´æ•°å‹ã§1ãƒãƒ£ãƒ³ãƒãƒ«ã®ãƒ“ãƒƒãƒˆæ•°ãŒ8ã®å ´åˆã¯å‡¦ç†ã‚’åˆ†å²
 	if( BaseImage->ColorData.ChannelBitDepth == 8 )
 	{
-		// ƒtƒ‰ƒO‚ğƒZƒbƒg
+		// ãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆ
 		DDSHead.dwPfFlags = BI_DDPF_RGB ;
 
-		// ƒ^ƒCƒv‚É‡‚Á‚½ƒsƒNƒZƒ‹ƒtƒH[ƒ}ƒbƒg‚ğƒZƒbƒg‚·‚é
+		// ã‚¿ã‚¤ãƒ—ã«åˆã£ãŸãƒ”ã‚¯ã‚»ãƒ«ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 		switch( BaseImage->ColorData.ChannelNum )
 		{
 		case 1 :
@@ -900,40 +900,40 @@ extern int SaveBaseImageToDds_WCHAR_T( const wchar_t *FilePath, const BASEIMAGE 
 	}
 	else
 	{
-		// ’ÊíŒ^( ®”Œ^ƒ^ƒCƒv‚Ìê‡ )
+		// é€šå¸¸å‹( æ•´æ•°å‹ã‚¿ã‚¤ãƒ—ã®å ´åˆ )
 
-		// ƒtƒ‰ƒO‚ğƒZƒbƒg
+		// ãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆ
 		DDSHead.dwPfFlags = BI_DDPF_RGB ;
 
-		// ƒAƒ‹ƒtƒ@ƒrƒbƒg‚ª‘¶İ‚·‚éê‡‚Í BI_DDPF_ALPHAPIXELS ‚Æ BI_DDSCAPS_ALPHA ‚à’Ç‰Á
+		// ã‚¢ãƒ«ãƒ•ã‚¡ãƒ“ãƒƒãƒˆãŒå­˜åœ¨ã™ã‚‹å ´åˆã¯ BI_DDPF_ALPHAPIXELS ã¨ BI_DDSCAPS_ALPHA ã‚‚è¿½åŠ 
 		if( BaseImage->ColorData.AlphaWidth != 0 )
 		{
 			DDSHead.dwCaps    |= BI_DDSCAPS_ALPHA ;
 			DDSHead.dwPfFlags |= BI_DDPF_ALPHAPIXELS ;
 		}
 
-		// ƒrƒbƒg”‚ğƒZƒbƒg
+		// ãƒ“ãƒƒãƒˆæ•°ã‚’ã‚»ãƒƒãƒˆ
 		DDSHead.dwRGBBitCount = BaseImage->ColorData.ColorBitDepth ;
 
-		// RGBA‚Ìƒ}ƒXƒN‚ğƒZƒbƒg
+		// RGBAã®ãƒã‚¹ã‚¯ã‚’ã‚»ãƒƒãƒˆ
 		DDSHead.dwRBitMask        = BaseImage->ColorData.RedMask ;
 		DDSHead.dwGBitMask        = BaseImage->ColorData.GreenMask ;
 		DDSHead.dwBBitMask        = BaseImage->ColorData.BlueMask ;
 		DDSHead.dwRGBAlphaBitMask = BaseImage->ColorData.AlphaMask ;
 	}
 
-	// ƒtƒ@ƒCƒ‹‚ğŠJ‚­
+	// ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‹ã
 	WriteOnlyFileAccessDelete( FilePath ) ;
 	fp = WriteOnlyFileAccessOpen( FilePath ) ;
 	if( fp == 0 ) 
 	{
-		DXST_LOGFILE_ADDUTF16LE( "\x24\xff\x24\xff\x33\xff\xbb\x30\xfc\x30\xd6\x30\x28\x75\xd5\x30\xa1\x30\xa4\x30\xeb\x30\x6e\x30\xaa\x30\xfc\x30\xd7\x30\xf3\x30\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"‚c‚c‚rƒZ[ƒu—pƒtƒ@ƒCƒ‹‚ÌƒI[ƒvƒ“‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ; goto END ;
+		DXST_LOGFILE_ADDUTF16LE( "\x24\xff\x24\xff\x33\xff\xbb\x30\xfc\x30\xd6\x30\x28\x75\xd5\x30\xa1\x30\xa4\x30\xeb\x30\x6e\x30\xaa\x30\xfc\x30\xd7\x30\xf3\x30\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ï¼¤ï¼¤ï¼³ã‚»ãƒ¼ãƒ–ç”¨ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚ªãƒ¼ãƒ—ãƒ³ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ; goto END ;
 	}
 
-	// ƒwƒbƒ_‚Ì‘‚«o‚µ
+	// ãƒ˜ãƒƒãƒ€ã®æ›¸ãå‡ºã—
 	WriteOnlyFileAccessWrite( fp, &DDSHead, 128 ) ;
 
-	// ƒCƒ[ƒW‚Ì‘‚«o‚µAƒ~ƒbƒvƒ}ƒbƒv‚ ‚è‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+	// ã‚¤ãƒ¡ãƒ¼ã‚¸ã®æ›¸ãå‡ºã—ã€ãƒŸãƒƒãƒ—ãƒãƒƒãƒ—ã‚ã‚Šã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 	{
 		int i ;
 		int j ;
@@ -981,13 +981,13 @@ extern int SaveBaseImageToDds_WCHAR_T( const wchar_t *FilePath, const BASEIMAGE 
 		}
 	}
 
-	// I—¹
+	// çµ‚äº†
 	WriteOnlyFileAccessClose( fp ) ;
 
 	Ret = 0 ;
 END:
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return Ret ;
 }
 
@@ -1004,7 +1004,7 @@ extern int NS_SaveBaseImageToJpeg( const TCHAR *pFilePath, BASEIMAGE *BaseImage,
 #endif
 }
 
-// Šî–{ƒCƒ[ƒWƒf[ƒ^‚ğ‚i‚o‚d‚f‰æ‘œ‚Æ‚µ‚Ä•Û‘¶‚·‚é
+// åŸºæœ¬ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ã‚’ï¼ªï¼°ï¼¥ï¼§ç”»åƒã¨ã—ã¦ä¿å­˜ã™ã‚‹
 extern int NS_SaveBaseImageToJpegWithStrLen( const TCHAR *FilePath, size_t FilePathLength, BASEIMAGE *BaseImage, int Quality, int Sample2x1 )
 {
 #ifndef DX_NON_JPEGREAD
@@ -1044,7 +1044,7 @@ extern int NS_SaveBaseImageToPng( const TCHAR *pFilePath, BASEIMAGE *BaseImage, 
 #endif
 }
 
-// Šî–{ƒCƒ[ƒWƒf[ƒ^‚ğ‚o‚m‚f‰æ‘œ‚Æ‚µ‚Ä•Û‘¶‚·‚é
+// åŸºæœ¬ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ã‚’ï¼°ï¼®ï¼§ç”»åƒã¨ã—ã¦ä¿å­˜ã™ã‚‹
 extern int NS_SaveBaseImageToPngWithStrLen( const TCHAR *FilePath, size_t FilePathLength, BASEIMAGE *BaseImage, int CompressionLevel )
 {
 #ifndef DX_NON_PNGREAD
@@ -1073,7 +1073,7 @@ extern int SaveBaseImageToPng_WCHAR_T( const wchar_t *pFilePath, BASEIMAGE *Base
 
 #endif // DX_NON_SAVEFUNCTION
 
-// “o˜^‚³‚ê‚Ä‚¢‚éŠeíƒOƒ‰ƒtƒBƒbƒNƒ[ƒ_ŠÖ”‚©‚çA‚a‚l‚oƒf[ƒ^‚à‚µ‚­‚Í GraphImageƒf[ƒ^‚ğ\’z‚·‚é
+// ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹å„ç¨®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ­ãƒ¼ãƒ€é–¢æ•°ã‹ã‚‰ã€ï¼¢ï¼­ï¼°ãƒ‡ãƒ¼ã‚¿ã‚‚ã—ãã¯ GraphImageãƒ‡ãƒ¼ã‚¿ã‚’æ§‹ç¯‰ã™ã‚‹
 extern int CreateGraphImageOrDIBGraph_UseGParam(
 	LOADBASEIMAGE_GPARAM *GParam,
 	const wchar_t *FileName,
@@ -1095,7 +1095,7 @@ extern int CreateGraphImageOrDIBGraph_UseGParam(
 	LONGLONG FileBytes ;
 	void *FileImage = NULL ;
 
-	// ƒo[ƒWƒ‡ƒ“‚S‚Ì“Ç‚İ‚İŠÖ”‚ÉŠ|‚¯‚é
+	// ãƒãƒ¼ã‚¸ãƒ§ãƒ³ï¼”ã®èª­ã¿è¾¼ã¿é–¢æ•°ã«æ›ã‘ã‚‹
 	{
 		if( DataImageType == LOADIMAGE_TYPE_FILE )
 		{
@@ -1105,7 +1105,7 @@ extern int CreateGraphImageOrDIBGraph_UseGParam(
 				return -1 ;
 			}
 
-			// Å‰‚Éƒƒ‚ƒŠ‚É‚Ü‚é‚²‚Æ“Ç‚İ‚Ş
+			// æœ€åˆã«ãƒ¡ãƒ¢ãƒªã«ã¾ã‚‹ã”ã¨èª­ã¿è¾¼ã‚€
 			GParam->StreamDataShred2.Seek( fp, 0, SEEK_END ) ;
 			FileBytes = GParam->StreamDataShred2.Tell( fp ) ;
 			GParam->StreamDataShred2.Seek( fp, 0, SEEK_SET ) ;
@@ -1123,19 +1123,19 @@ extern int CreateGraphImageOrDIBGraph_UseGParam(
 				return -1 ;
 			}
 
-			// ‰½ŒÌ‚©’¼Ú‘ã“ü‚·‚é‚Æ Android ‚ÅƒNƒ‰ƒbƒVƒ…‚·‚éc
+			// ä½•æ•…ã‹ç›´æ¥ä»£å…¥ã™ã‚‹ã¨ Android ã§ã‚¯ãƒ©ãƒƒã‚·ãƒ¥ã™ã‚‹â€¦
 //			Src.ReadShred = GParam->MemStreamDataShred ;
 			_MEMCPY( &Src.ReadShred, &GParam->MemStreamDataShred, sizeof( GParam->MemStreamDataShred ) ) ;
 
 // 			Src.DataPoint = fp ;
 // 
-// 			// ‰½ŒÌ‚©’¼Ú‘ã“ü‚·‚é‚Æ Android ‚ÅƒNƒ‰ƒbƒVƒ…‚·‚éc
+// 			// ä½•æ•…ã‹ç›´æ¥ä»£å…¥ã™ã‚‹ã¨ Android ã§ã‚¯ãƒ©ãƒƒã‚·ãƒ¥ã™ã‚‹â€¦
 // //			Src.ReadShred = GParam->FileStreamDataShred ;
 // 			_MEMCPY( &Src.ReadShred, &GParam->FileStreamDataShred, sizeof( GParam->FileStreamDataShred ) ) ;
 		}
 		else
 		{
-			// ƒf[ƒ^‚ª‚È‚¢ê‡‚ÍƒGƒ‰[
+			// ãƒ‡ãƒ¼ã‚¿ãŒãªã„å ´åˆã¯ã‚¨ãƒ©ãƒ¼
 			if( DataImage == NULL )
 			{
 				return -1 ;
@@ -1146,7 +1146,7 @@ extern int CreateGraphImageOrDIBGraph_UseGParam(
 			{
 				return -1 ;
 			}
-			// ‰½ŒÌ‚©’¼Ú‘ã“ü‚·‚é‚Æ Android ‚ÅƒNƒ‰ƒbƒVƒ…‚·‚éc
+			// ä½•æ•…ã‹ç›´æ¥ä»£å…¥ã™ã‚‹ã¨ Android ã§ã‚¯ãƒ©ãƒƒã‚·ãƒ¥ã™ã‚‹â€¦
 //			Src.ReadShred = GParam->MemStreamDataShred ;
 			_MEMCPY( &Src.ReadShred, &GParam->MemStreamDataShred, sizeof( GParam->MemStreamDataShred ) ) ;
 		}
@@ -1162,37 +1162,37 @@ extern int CreateGraphImageOrDIBGraph_UseGParam(
 			goto END ;
 		}
 	}
-	// ‚±‚±‚É‚«‚½‚ç“Ç‚İ‚ß‚È‚©‚Á‚½‚Æ‚¢‚¤‚±‚Æ‚È‚Ì‚ÅƒGƒ‰[
+	// ã“ã“ã«ããŸã‚‰èª­ã¿è¾¼ã‚ãªã‹ã£ãŸã¨ã„ã†ã“ã¨ãªã®ã§ã‚¨ãƒ©ãƒ¼
 	goto ERR ;
 
 END :
 	if( GParam->CreateGraphImageType2GParam.GetFormatOnly )
 	{
-		// ƒtƒH[ƒ}ƒbƒg‚ğæ“¾‚·‚é‚¾‚¯‚Ìê‡‚Íƒf[ƒ^‚ğƒRƒs[‚µ‚ÄI—¹
+		// ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã‚’å–å¾—ã™ã‚‹ã ã‘ã®å ´åˆã¯ãƒ‡ãƒ¼ã‚¿ã‚’ã‚³ãƒ”ãƒ¼ã—ã¦çµ‚äº†
 		*BaseImage = GraphI ;
 	}
 	else
 	{
-		// ”½“]ƒtƒ‰ƒO‚ª—§‚Á‚Ä‚¢‚½‚çƒOƒ‰ƒtƒBƒbƒN‚ğ”½“]‚³‚¹‚é
+		// åè»¢ãƒ•ãƒ©ã‚°ãŒç«‹ã£ã¦ã„ãŸã‚‰ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚’åè»¢ã•ã›ã‚‹
 		if( ReverseFlag == TRUE )
 		{
-			// ‰æ‘œƒtƒH[ƒ}ƒbƒg‚ª DX_BASEIMAGE_FORMAT_NORMAL ˆÈŠO‚¾‚Á‚½ê‡‚Í DX_BASEIMAGE_FORMAT_NORMAL ‚É•ÏŠ·‚·‚é
+			// ç”»åƒãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆãŒ DX_BASEIMAGE_FORMAT_NORMAL ä»¥å¤–ã ã£ãŸå ´åˆã¯ DX_BASEIMAGE_FORMAT_NORMAL ã«å¤‰æ›ã™ã‚‹
 			NS_ConvertNormalFormatBaseImage( &GraphI, TRUE ) ;
 
-			// ”½“]
+			// åè»¢
 			NS_ReverseGraphImage( &GraphI ) ;
 		}
 
-		// ‚à‚µ ConvertNormalFormatBaseImage ƒtƒ‰ƒO‚ª—§‚Á‚Ä‚¢‚½‚ç•ÏŠ·‚·‚é
+		// ã‚‚ã— ConvertNormalFormatBaseImage ãƒ•ãƒ©ã‚°ãŒç«‹ã£ã¦ã„ãŸã‚‰å¤‰æ›ã™ã‚‹
 		if( GParam->ConvertNormalFormat )
 		{
 			NS_ConvertNormalFormatBaseImage( &GraphI, TRUE ) ;
 		}
 
-		// ‚à‚µæZÏ‚İƒAƒ‹ƒtƒ@‰æ‘œ‚Ö‚Ì•ÏŠ·‚Ìƒtƒ‰ƒO‚ª—§‚Á‚Ä‚¢‚½‚ç•ÏŠ·‚·‚é
+		// ã‚‚ã—ä¹—ç®—æ¸ˆã¿ã‚¢ãƒ«ãƒ•ã‚¡ç”»åƒã¸ã®å¤‰æ›ã®ãƒ•ãƒ©ã‚°ãŒç«‹ã£ã¦ã„ãŸã‚‰å¤‰æ›ã™ã‚‹
 		if( GParam->ConvertPremultipliedAlpha )
 		{
-			// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ª–³‚­AŠ‚ÂƒAƒ‹ƒtƒ@ƒeƒXƒg‚ª—LŒø‚Èê‡‚Í“§‰ßF•”•ª‚ğ^‚Á•‚É‚·‚é
+			// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãŒç„¡ãã€ä¸”ã¤ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆãŒæœ‰åŠ¹ãªå ´åˆã¯é€éè‰²éƒ¨åˆ†ã‚’çœŸã£é»’ã«ã™ã‚‹
 			if( GraphI.ColorData.AlphaWidth == 0 && GParam->AlphaTestImageCreateFlag == TRUE && NotUseTransColor == FALSE )
 			{
 				DWORD i ;
@@ -1200,14 +1200,14 @@ END :
 				DWORD *p ;
 				DWORD TransColor ;
 
-				// ƒtƒH[ƒ}ƒbƒg‚ª•W€ƒtƒH[ƒ}ƒbƒg‚Å‚Í‚È‚©‚Á‚½‚ç•W€ƒtƒH[ƒ}ƒbƒg‚É•ÏŠ·‚·‚é
+				// ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆãŒæ¨™æº–ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã§ã¯ãªã‹ã£ãŸã‚‰æ¨™æº–ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã«å¤‰æ›ã™ã‚‹
 				if( GraphI.ColorData.Format != DX_BASEIMAGE_FORMAT_NORMAL )
 				{
 					if( NS_ConvertNormalFormatBaseImage( &GraphI, TRUE ) < 0 )
 						return -1 ;
 				}
 
-				// ARGB8 ˆÈŠO‚Ìê‡‚à ARGB8 ‚É•ÏŠ·‚·‚é
+				// ARGB8 ä»¥å¤–ã®å ´åˆã‚‚ ARGB8 ã«å¤‰æ›ã™ã‚‹
 				if( GraphI.ColorData.ColorBitDepth != 32 ||
 					GraphI.ColorData.PixelByte != 4 ||
 					GraphI.ColorData.FloatTypeFlag != FALSE ||
@@ -1239,7 +1239,7 @@ END :
 			}
 			else
 			{
-				// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ª•’Ê‚Éİ‚éê‡‚Í•’Ê‚ÉƒRƒ“ƒo[ƒg
+				// Î±ãƒãƒ£ãƒ³ãƒãƒ«ãŒæ™®é€šã«åœ¨ã‚‹å ´åˆã¯æ™®é€šã«ã‚³ãƒ³ãƒãƒ¼ãƒˆ
 				if( NS_ConvertPremulAlphaBaseImage( &GraphI ) < 0 )
 				{
 					DXFREE( GraphI.GraphData ) ;
@@ -1248,33 +1248,33 @@ END :
 			}
 		}
 
-		// ƒ[ƒh‚µ‚½ƒf[ƒ^‚Ìƒ^ƒCƒv‚ªw’è‚Æˆá‚Á‚Ä‚¢‚½‚ç•ÏŠ·‚ğŠ|‚¯‚é
+		// ãƒ­ãƒ¼ãƒ‰ã—ãŸãƒ‡ãƒ¼ã‚¿ã®ã‚¿ã‚¤ãƒ—ãŒæŒ‡å®šã¨é•ã£ã¦ã„ãŸã‚‰å¤‰æ›ã‚’æ›ã‘ã‚‹
 		if( BmpFlag != FALSE )
 		{
 #ifndef WINDOWS_DESKTOP_OS
 			DXFREE( GraphI.GraphData ) ;
 			goto ERR ;
 #else
-			// ‚a‚l‚oƒf[ƒ^ ‚ğ—~‚µ‚©‚Á‚½ê‡‚Í GraphImage ƒf[ƒ^‚ğ ‚a‚l‚o ƒf[ƒ^‚É•ÏŠ·‚·‚é
+			// ï¼¢ï¼­ï¼°ãƒ‡ãƒ¼ã‚¿ ã‚’æ¬²ã—ã‹ã£ãŸå ´åˆã¯ GraphImage ãƒ‡ãƒ¼ã‚¿ã‚’ ï¼¢ï¼­ï¼° ãƒ‡ãƒ¼ã‚¿ã«å¤‰æ›ã™ã‚‹
 
-			// ‰æ‘œƒtƒH[ƒ}ƒbƒg‚ª DX_BASEIMAGE_FORMAT_NORMAL ˆÈŠO‚¾‚Á‚½ê‡‚Í DX_BASEIMAGE_FORMAT_NORMAL ‚É•ÏŠ·‚·‚é
+			// ç”»åƒãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆãŒ DX_BASEIMAGE_FORMAT_NORMAL ä»¥å¤–ã ã£ãŸå ´åˆã¯ DX_BASEIMAGE_FORMAT_NORMAL ã«å¤‰æ›ã™ã‚‹
 			NS_ConvertNormalFormatBaseImage( &GraphI, TRUE ) ;
 
-			// BITMAPINFO \‘¢‘Ì‚Ìî•ñ‚ğŠi”[‚·‚éƒƒ‚ƒŠ—Ìˆæ‚ÌŠm•Û
+			// BITMAPINFO æ§‹é€ ä½“ã®æƒ…å ±ã‚’æ ¼ç´ã™ã‚‹ãƒ¡ãƒ¢ãƒªé ˜åŸŸã®ç¢ºä¿
 			if( ( *BmpInfo = ( BITMAPINFO * )DXALLOC( sizeof( BITMAPINFO ) + sizeof( RGBQUAD ) * 256 ) ) == NULL )
 			{
 				DXFREE( GraphI.GraphData ) ;
 				goto ERR ;
 			}
 
-			// •ÏŠ·
+			// å¤‰æ›
 			if( ( hr = NS_ConvGraphImageToBitmap( &GraphI, *BmpInfo, GraphData, FALSE, FALSE ) ) == -1 )
 			{
 				DXFREE( GraphI.GraphData ) ;
 				DXFREE( *BmpInfo ) ;
 			}
 
-			// ƒRƒs[‚ªs‚í‚ê‚½ê‡‚Í‚à‚Æ‚ÌƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‚ğ‰ğ•ú‚·‚é
+			// ã‚³ãƒ”ãƒ¼ãŒè¡Œã‚ã‚ŒãŸå ´åˆã¯ã‚‚ã¨ã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã‚’è§£æ”¾ã™ã‚‹
 			if( hr == 1 )
 			{
 				DXFREE( GraphI.GraphData ) ;
@@ -1283,23 +1283,23 @@ END :
 		}
 		else
 		{
-			// w’è’Ê‚è‚Ìƒf[ƒ^‚ğ“Ç‚İ‚ß‚Ä‚¢‚½ê‡‚Íƒf[ƒ^‚ğƒRƒs[‚µ‚ÄI—¹
+			// æŒ‡å®šé€šã‚Šã®ãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿è¾¼ã‚ã¦ã„ãŸå ´åˆã¯ãƒ‡ãƒ¼ã‚¿ã‚’ã‚³ãƒ”ãƒ¼ã—ã¦çµ‚äº†
 			*BaseImage = GraphI ;
 		}
 	}
 
-	// ‚à‚µƒtƒ@ƒCƒ‹ƒCƒ[ƒW‚Ìê‡‚Íƒtƒ@ƒCƒ‹‚ğ•Â‚¶‚é
+	// ã‚‚ã—ãƒ•ã‚¡ã‚¤ãƒ«ã‚¤ãƒ¡ãƒ¼ã‚¸ã®å ´åˆã¯ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‰ã˜ã‚‹
 	if( DataImageType == LOADIMAGE_TYPE_FILE )
 	{
 		DXFREE( FileImage ) ;
 //		GParam->StreamDataShred2.Close( fp ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 
 ERR:
-	// ‚à‚µƒtƒ@ƒCƒ‹ƒCƒ[ƒW‚Ìê‡‚Íƒtƒ@ƒCƒ‹‚ğ•Â‚¶‚é
+	// ã‚‚ã—ãƒ•ã‚¡ã‚¤ãƒ«ã‚¤ãƒ¡ãƒ¼ã‚¸ã®å ´åˆã¯ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‰ã˜ã‚‹
 	if( DataImageType == LOADIMAGE_TYPE_FILE )
 	{
 		if( FileImage != NULL )
@@ -1314,7 +1314,7 @@ ERR:
 	return -1 ;
 }
 
-// “o˜^‚³‚ê‚Ä‚¢‚éŠeíƒOƒ‰ƒtƒBƒbƒNƒ[ƒ_ŠÖ”‚©‚çA‚a‚l‚oƒf[ƒ^‚à‚µ‚­‚Í GraphImageƒf[ƒ^‚ğ\’z‚·‚é
+// ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹å„ç¨®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ­ãƒ¼ãƒ€é–¢æ•°ã‹ã‚‰ã€ï¼¢ï¼­ï¼°ãƒ‡ãƒ¼ã‚¿ã‚‚ã—ãã¯ GraphImageãƒ‡ãƒ¼ã‚¿ã‚’æ§‹ç¯‰ã™ã‚‹
 extern int NS_CreateGraphImageOrDIBGraph(
 	const TCHAR *FileName,
 	const void *DataImage, int DataImageSize, int DataImageType,
@@ -1347,8 +1347,8 @@ extern int NS_CreateGraphImageOrDIBGraph(
 #endif
 }
 
-// ‰æ‘œƒtƒ@ƒCƒ‹á‚µ‚­‚Íƒƒ‚ƒŠã‚É“WŠJ‚³‚ê‚½‰æ‘œƒtƒ@ƒCƒ‹ƒCƒ[ƒW‚ğ“Ç‚İ‚İAŠî–{ƒCƒ[ƒWƒf[ƒ^á‚µ‚­‚Í‚a‚l‚oƒf[ƒ^‚ğ\’z‚·‚é
-extern int NS_CreateGraphImageOrDIBGraphWithStrLen( const TCHAR *FileName, size_t FileNameLength, const void *DataImage, int DataImageSize, int DataImageType /* LOADIMAGE_TYPE_FILE “™ */ , int BmpFlag, int ReverseFlag, BASEIMAGE *BaseImage, BITMAPINFO **BmpInfo, void **GraphData )
+// ç”»åƒãƒ•ã‚¡ã‚¤ãƒ«è‹¥ã—ãã¯ãƒ¡ãƒ¢ãƒªä¸Šã«å±•é–‹ã•ã‚ŒãŸç”»åƒãƒ•ã‚¡ã‚¤ãƒ«ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’èª­ã¿è¾¼ã¿ã€åŸºæœ¬ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿è‹¥ã—ãã¯ï¼¢ï¼­ï¼°ãƒ‡ãƒ¼ã‚¿ã‚’æ§‹ç¯‰ã™ã‚‹
+extern int NS_CreateGraphImageOrDIBGraphWithStrLen( const TCHAR *FileName, size_t FileNameLength, const void *DataImage, int DataImageSize, int DataImageType /* LOADIMAGE_TYPE_FILE ç­‰ */ , int BmpFlag, int ReverseFlag, BASEIMAGE *BaseImage, BITMAPINFO **BmpInfo, void **GraphData )
 {
 	int Result ;
 #ifdef UNICODE
@@ -1373,7 +1373,7 @@ extern int NS_CreateGraphImageOrDIBGraphWithStrLen( const TCHAR *FileName, size_
 	return Result ;
 }
 
-// “o˜^‚³‚ê‚Ä‚¢‚éŠeíƒOƒ‰ƒtƒBƒbƒNƒ[ƒ_ŠÖ”‚©‚çA‚a‚l‚oƒf[ƒ^‚à‚µ‚­‚Í GraphImageƒf[ƒ^‚ğ\’z‚·‚é
+// ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹å„ç¨®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ­ãƒ¼ãƒ€é–¢æ•°ã‹ã‚‰ã€ï¼¢ï¼­ï¼°ãƒ‡ãƒ¼ã‚¿ã‚‚ã—ãã¯ GraphImageãƒ‡ãƒ¼ã‚¿ã‚’æ§‹ç¯‰ã™ã‚‹
 extern int CreateGraphImageOrDIBGraph_WCHAR_T(
 	const wchar_t *FileName,
 	const void *DataImage, int DataImageSize, int DataImageType,
@@ -1393,7 +1393,7 @@ extern int CreateGraphImageOrDIBGraph_WCHAR_T(
 	) ;
 }
 
-// ‰æ‘œƒtƒ@ƒCƒ‹‚Ì‰¡ƒsƒNƒZƒ‹”‚ÆcƒsƒNƒZƒ‹”‚ğæ“¾‚·‚é
+// ç”»åƒãƒ•ã‚¡ã‚¤ãƒ«ã®æ¨ªãƒ”ã‚¯ã‚»ãƒ«æ•°ã¨ç¸¦ãƒ”ã‚¯ã‚»ãƒ«æ•°ã‚’å–å¾—ã™ã‚‹
 extern int NS_GetImageSize_File( const TCHAR *FileName, int *SizeX, int *SizeY )
 {
 #ifdef UNICODE
@@ -1411,7 +1411,7 @@ extern int NS_GetImageSize_File( const TCHAR *FileName, int *SizeX, int *SizeY )
 #endif
 }
 
-// ‰æ‘œƒtƒ@ƒCƒ‹‚Ì‰¡ƒsƒNƒZƒ‹”‚ÆcƒsƒNƒZƒ‹”‚ğæ“¾‚·‚é
+// ç”»åƒãƒ•ã‚¡ã‚¤ãƒ«ã®æ¨ªãƒ”ã‚¯ã‚»ãƒ«æ•°ã¨ç¸¦ãƒ”ã‚¯ã‚»ãƒ«æ•°ã‚’å–å¾—ã™ã‚‹
 extern int NS_GetImageSize_FileWithStrLen( const TCHAR *FileName, size_t FileNameLength, int *SizeX, int *SizeY )
 {
 	int Result ;
@@ -1427,7 +1427,7 @@ extern int NS_GetImageSize_FileWithStrLen( const TCHAR *FileName, size_t FileNam
 	return Result ;
 }
 
-// ‰æ‘œƒtƒ@ƒCƒ‹‚Ì‰¡ƒsƒNƒZƒ‹”‚ÆcƒsƒNƒZƒ‹”‚ğæ“¾‚·‚é
+// ç”»åƒãƒ•ã‚¡ã‚¤ãƒ«ã®æ¨ªãƒ”ã‚¯ã‚»ãƒ«æ•°ã¨ç¸¦ãƒ”ã‚¯ã‚»ãƒ«æ•°ã‚’å–å¾—ã™ã‚‹
 extern int GetImageSize_File_WCHAR_T( const wchar_t *FileName, int *SizeX, int *SizeY )
 {
 	LOADBASEIMAGE_GPARAM GParam ;
@@ -1446,7 +1446,7 @@ extern int GetImageSize_File_WCHAR_T( const wchar_t *FileName, int *SizeX, int *
 	{
 #ifndef DX_NON_MOVIE
 
-		// ƒ€[ƒr[ƒOƒ‰ƒtƒBƒbƒN‚Æ‚µ‚Äˆµ‚¨‚¤‚Æ‚µ‚Ä‚İ‚é
+		// ãƒ ãƒ¼ãƒ“ãƒ¼ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã¨ã—ã¦æ‰±ãŠã†ã¨ã—ã¦ã¿ã‚‹
 		return GetMovieImageSize_File_WCHAR_T( FileName, SizeX, SizeY ) ;
 
 #else // DX_NON_MOVIE
@@ -1469,7 +1469,7 @@ extern int GetImageSize_File_WCHAR_T( const wchar_t *FileName, int *SizeX, int *
 	return 0 ;
 }
 
-// ƒƒ‚ƒŠã‚É“WŠJ‚³‚ê‚½‰æ‘œƒtƒ@ƒCƒ‹‚Ì‰¡ƒsƒNƒZƒ‹”‚ÆcƒsƒNƒZƒ‹”‚ğæ“¾‚·‚é
+// ãƒ¡ãƒ¢ãƒªä¸Šã«å±•é–‹ã•ã‚ŒãŸç”»åƒãƒ•ã‚¡ã‚¤ãƒ«ã®æ¨ªãƒ”ã‚¯ã‚»ãƒ«æ•°ã¨ç¸¦ãƒ”ã‚¯ã‚»ãƒ«æ•°ã‚’å–å¾—ã™ã‚‹
 extern int NS_GetImageSize_Mem( const void *FileImage, int FileImageSize, int *SizeX, int *SizeY )
 {
 	LOADBASEIMAGE_GPARAM GParam ;
@@ -1488,7 +1488,7 @@ extern int NS_GetImageSize_Mem( const void *FileImage, int FileImageSize, int *S
 	{
 #ifndef DX_NON_MOVIE
 
-		// ƒ€[ƒr[ƒOƒ‰ƒtƒBƒbƒN‚Æ‚µ‚Äˆµ‚¨‚¤‚Æ‚µ‚Ä‚İ‚é
+		// ãƒ ãƒ¼ãƒ“ãƒ¼ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã¨ã—ã¦æ‰±ãŠã†ã¨ã—ã¦ã¿ã‚‹
 		return NS_GetMovieImageSize_Mem( FileImage, FileImageSize, SizeX, SizeY ) ;
 
 #else // DX_NON_MOVIE
@@ -1511,22 +1511,22 @@ extern int NS_GetImageSize_Mem( const void *FileImage, int FileImageSize, int *S
 	return 0 ;
 }
 
-// CreateGraphImageType2 ‚ÌƒOƒ[ƒoƒ‹•Ï”‚ÉƒAƒNƒZƒX‚µ‚È‚¢ƒo[ƒWƒ‡ƒ“
+// CreateGraphImageType2 ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°ã«ã‚¢ã‚¯ã‚»ã‚¹ã—ãªã„ãƒãƒ¼ã‚¸ãƒ§ãƒ³
 extern int CreateGraphImageType2_UseGParam( CREATEBASEIMAGETYPE2_GPARAM *GParam, STREAMDATA *Src, BASEIMAGE *Dest )
 {
 	int i ;
 
-	// o—Íæ‚ğ—ë‰Šú‰»
+	// å‡ºåŠ›å…ˆã‚’é›¶åˆæœŸåŒ–
 	_MEMSET( Dest, 0, sizeof( BASEIMAGE ) ) ;
 
-	// æ‚¸ƒ†[ƒU[’è‹`ŠÖ”‚ÉŠš‚Ü‚¹‚é
+	// å…ˆãšãƒ¦ãƒ¼ã‚¶ãƒ¼å®šç¾©é–¢æ•°ã«å™›ã¾ã›ã‚‹
 	for( i = 0 ; i < GParam->UserImageLoadFuncNum4 ; i ++ )
 	{
 		STSEEK( Src, 0, STREAM_SEEKTYPE_SET ) ;
 		_MEMSET( Dest, 0, sizeof( BASEIMAGE ) ) ;
 		if( GParam->UserImageLoadFunc4[i]( Src, Dest ) == 0 ) break ;
 	}
-	// “Ç‚İ‚ß‚Ä‚¢‚½‚çI—¹
+	// èª­ã¿è¾¼ã‚ã¦ã„ãŸã‚‰çµ‚äº†
 	if( i != GParam->UserImageLoadFuncNum4 )
 	{
 		return 0 ;
@@ -1534,59 +1534,59 @@ extern int CreateGraphImageType2_UseGParam( CREATEBASEIMAGETYPE2_GPARAM *GParam,
 
 	if( BASEIM.PlatformLoadFunctionAfterFlag == FALSE )
 	{
-		// ŠÂ‹«ˆË‘¶‚ÌƒfƒtƒHƒ‹ƒgŠÖ”‚ğŠš‚Ü‚¹‚é
+		// ç’°å¢ƒä¾å­˜ã®ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆé–¢æ•°ã‚’å™›ã¾ã›ã‚‹
 		for( i = 0 ; DefaultImageLoadFunc_PF[ i ] != NULL ; i ++ )
 		{
 			STSEEK( Src, 0, STREAM_SEEKTYPE_SET ) ;
 			_MEMSET( Dest, 0, sizeof( BASEIMAGE ) ) ;
 			if( DefaultImageLoadFunc_PF[ i ]( Src, Dest, GParam->GetFormatOnly ) == 0 ) break ;
 		}
-		// “Ç‚İ‚ß‚Ä‚¢‚½‚çI—¹
+		// èª­ã¿è¾¼ã‚ã¦ã„ãŸã‚‰çµ‚äº†
 		if( DefaultImageLoadFunc_PF[ i ] != NULL )
 		{
 			return 0 ;
 		}
 	}
 
-	// Ÿ‚ÉƒfƒtƒHƒ‹ƒgŠÖ”‚ğŠš‚Ü‚¹‚é
+	// æ¬¡ã«ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆé–¢æ•°ã‚’å™›ã¾ã›ã‚‹
 	for( i = 0 ; DefaultImageLoadFunc[i] != NULL ; i ++ )
 	{
 		STSEEK( Src, 0, STREAM_SEEKTYPE_SET ) ;
 		_MEMSET( Dest, 0, sizeof( BASEIMAGE ) ) ;
 		if( DefaultImageLoadFunc[i]( Src, Dest, GParam->GetFormatOnly ) == 0 ) break ;
 	}
-	// “Ç‚İ‚ß‚Ä‚¢‚½‚çI—¹
+	// èª­ã¿è¾¼ã‚ã¦ã„ãŸã‚‰çµ‚äº†
 	if( DefaultImageLoadFunc[ i ] != NULL )
 	{
 		return 0 ;
 	}
 
-	// ŠÂ‹«ˆË‘¶‚ÌƒfƒtƒHƒ‹ƒgŠÖ”‚ğŒã‚©‚çÀs‚·‚éİ’è‚Å‚Í‚È‚©‚Á‚½ê‡‚Í‚±‚±‚ÅI—¹
+	// ç’°å¢ƒä¾å­˜ã®ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆé–¢æ•°ã‚’å¾Œã‹ã‚‰å®Ÿè¡Œã™ã‚‹è¨­å®šã§ã¯ãªã‹ã£ãŸå ´åˆã¯ã“ã“ã§çµ‚äº†
 	if( BASEIM.PlatformLoadFunctionAfterFlag == FALSE )
 	{
 		return -1 ;
 	}
 	else
 	{
-		// Œã‚©‚çŠÂ‹«ˆË‘¶‚ÌƒfƒtƒHƒ‹ƒgŠÖ”‚ğŠš‚Ü‚¹‚é
+		// å¾Œã‹ã‚‰ç’°å¢ƒä¾å­˜ã®ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆé–¢æ•°ã‚’å™›ã¾ã›ã‚‹
 		for( i = 0 ; DefaultImageLoadFunc_PF[ i ] != NULL ; i ++ )
 		{
 			STSEEK( Src, 0, STREAM_SEEKTYPE_SET ) ;
 			_MEMSET( Dest, 0, sizeof( BASEIMAGE ) ) ;
 			if( DefaultImageLoadFunc_PF[ i ]( Src, Dest, GParam->GetFormatOnly ) == 0 ) break ;
 		}
-		// “Ç‚İ‚ß‚Ä‚¢‚½‚çI—¹
+		// èª­ã¿è¾¼ã‚ã¦ã„ãŸã‚‰çµ‚äº†
 		if( DefaultImageLoadFunc_PF[ i ] != NULL )
 		{
 			return 0 ;
 		}
 
-		// I—¹
+		// çµ‚äº†
 		return DefaultImageLoadFunc_PF[i] == NULL ? -1 : 0 ;
 	}
 }
 
-// ”Ä—p“Ç‚İ‚İˆ—‚É‚æ‚éƒOƒ‰ƒtƒBƒbƒNƒCƒ[ƒW\’zŠÖ”( 0:¬Œ÷  -1:¸”s )
+// æ±ç”¨èª­ã¿è¾¼ã¿å‡¦ç†ã«ã‚ˆã‚‹ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¤ãƒ¡ãƒ¼ã‚¸æ§‹ç¯‰é–¢æ•°( 0:æˆåŠŸ  -1:å¤±æ•— )
 extern int NS_CreateGraphImageType2( STREAMDATA *Src, BASEIMAGE *Dest )
 {
 	CREATEBASEIMAGETYPE2_GPARAM GParam ;
@@ -1598,14 +1598,14 @@ extern int NS_CreateGraphImageType2( STREAMDATA *Src, BASEIMAGE *Dest )
 
 #ifdef WINDOWS_DESKTOP_OS
 
-// ‚c‚h‚aƒOƒ‰ƒtƒBƒbƒN‚ğì¬‚·‚é
+// ï¼¤ï¼©ï¼¢ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚’ä½œæˆã™ã‚‹
 extern HBITMAP NS_CreateDIBGraph( const TCHAR *FileName, int ReverseFlag, COLORDATA *SrcColor )
 {
-	// ƒo[ƒWƒ‡ƒ“‚Q‚É“n‚·
+	// ãƒãƒ¼ã‚¸ãƒ§ãƒ³ï¼’ã«æ¸¡ã™
 	return NS_CreateDIBGraphVer2( FileName, NULL, 0, LOADIMAGE_TYPE_FILE, ReverseFlag, SrcColor ) ;
 }
 
-// ‰æ‘œƒtƒ@ƒCƒ‹‚©‚ç‚c‚h‚aƒf[ƒ^‚ğì¬‚·‚é
+// ç”»åƒãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰ï¼¤ï¼©ï¼¢ãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆã™ã‚‹
 extern HBITMAP NS_CreateDIBGraphWithStrLen( const TCHAR *FileName, size_t FileNameLength, int ReverseFlag, COLORDATA *SrcColor )
 {
 	HBITMAP Result ;
@@ -1615,14 +1615,14 @@ extern HBITMAP NS_CreateDIBGraphWithStrLen( const TCHAR *FileName, size_t FileNa
 	return Result ;
 }
 
-// ‚c‚h‚aƒOƒ‰ƒtƒBƒbƒN‚ğì¬‚·‚é
+// ï¼¤ï¼©ï¼¢ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚’ä½œæˆã™ã‚‹
 extern HBITMAP CreateDIBGraph_WCHAR_T( const wchar_t *FileName, int ReverseFlag, COLORDATA *SrcColor )
 {
-	// ƒo[ƒWƒ‡ƒ“‚Q‚É“n‚·
+	// ãƒãƒ¼ã‚¸ãƒ§ãƒ³ï¼’ã«æ¸¡ã™
 	return CreateDIBGraphVer2_WCHAR_T( FileName, NULL, 0, LOADIMAGE_TYPE_FILE, ReverseFlag, SrcColor ) ;
 }
 
-// ‚c‚h‚aƒOƒ‰ƒtƒBƒbƒN‚ğì¬‚·‚é(ƒo[ƒWƒ‡ƒ“‚Q)
+// ï¼¤ï¼©ï¼¢ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚’ä½œæˆã™ã‚‹(ãƒãƒ¼ã‚¸ãƒ§ãƒ³ï¼’)
 extern HBITMAP NS_CreateDIBGraphVer2( const TCHAR *FileName, const void *MemImage, int MemImageSize, int ImageType, int ReverseFlag, COLORDATA *SrcColor )
 {
 #ifdef UNICODE
@@ -1644,7 +1644,7 @@ extern HBITMAP NS_CreateDIBGraphVer2( const TCHAR *FileName, const void *MemImag
 #endif
 }
 
-// ‰æ‘œƒtƒ@ƒCƒ‹á‚µ‚­‚Íƒƒ‚ƒŠã‚É“WŠJ‚³‚ê‚½‰æ‘œƒtƒ@ƒCƒ‹ƒCƒ[ƒW‚©‚ç‚c‚h‚aƒf[ƒ^‚ğì¬‚·‚é
+// ç”»åƒãƒ•ã‚¡ã‚¤ãƒ«è‹¥ã—ãã¯ãƒ¡ãƒ¢ãƒªä¸Šã«å±•é–‹ã•ã‚ŒãŸç”»åƒãƒ•ã‚¡ã‚¤ãƒ«ã‚¤ãƒ¡ãƒ¼ã‚¸ã‹ã‚‰ï¼¤ï¼©ï¼¢ãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆã™ã‚‹
 extern HBITMAP NS_CreateDIBGraphVer2WithStrLen( const TCHAR *FileName, size_t FileNameLength, const void *MemImage, int MemImageSize, int ImageType, int ReverseFlag, COLORDATA *SrcColor )
 {
 	HBITMAP Result ;
@@ -1660,48 +1660,48 @@ extern HBITMAP NS_CreateDIBGraphVer2WithStrLen( const TCHAR *FileName, size_t Fi
 	return Result ;
 }
 
-// ‚c‚h‚aƒOƒ‰ƒtƒBƒbƒN‚ğì¬‚·‚é(ƒo[ƒWƒ‡ƒ“‚Q)
+// ï¼¤ï¼©ï¼¢ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚’ä½œæˆã™ã‚‹(ãƒãƒ¼ã‚¸ãƒ§ãƒ³ï¼’)
 extern HBITMAP CreateDIBGraphVer2_WCHAR_T( const wchar_t *FileName, const void *MemImage, int MemImageSize, int ImageType, int ReverseFlag, COLORDATA *SrcColor )
 {
 	void *GraphData = NULL ;
 	BITMAPINFO *BmpInfo = NULL ;
 	HBITMAP Bmp ;
 
-	// ƒtƒ@ƒCƒ‹‚Ì“Ç‚İ‚İ
+	// ãƒ•ã‚¡ã‚¤ãƒ«ã®èª­ã¿è¾¼ã¿
 	if( CreateGraphImageOrDIBGraph_WCHAR_T( FileName, MemImage, MemImageSize, ImageType, TRUE, FALSE, FALSE, NULL, &BmpInfo, &GraphData ) == -1 )
 	{
 		return NULL ;
 	}
 
-	// HBITMAP ‚Ìì¬
+	// HBITMAP ã®ä½œæˆ
 	Bmp = NS_CreateDIBGraphToMem( BmpInfo, GraphData, ReverseFlag, SrcColor ) ;
 
-	// ƒf[ƒ^‚Ì‰ğ•ú
+	// ãƒ‡ãƒ¼ã‚¿ã®è§£æ”¾
 	DXFREE( GraphData ) ;
 	DXFREE( BmpInfo ) ;
 
-	// ƒnƒ“ƒhƒ‹‚ğ•Ô‚·
+	// ãƒãƒ³ãƒ‰ãƒ«ã‚’è¿”ã™
 	return Bmp ;
 }
 
 #endif // WINDOWS_DESKTOP_OS
 
-// ƒtƒ‹ƒJƒ‰[Œ`®‚ÌBITMAPINFO\‘¢‘Ì‚ğì¬‚·‚é
+// ãƒ•ãƒ«ã‚«ãƒ©ãƒ¼å½¢å¼ã®BITMAPINFOæ§‹é€ ä½“ã‚’ä½œæˆã™ã‚‹
 extern int NS_CreateBmpInfo( BITMAPINFO *BmpInfo, int Width, int Height, int Pitch, const void *SrcGrData, void **DestGrData )
 {
 	BYTE *DestData, *SrcData ;
 	int i ;
 	int DPitch, SPitch ;
 
-	// ƒsƒbƒ`ì¬
+	// ãƒ”ãƒƒãƒä½œæˆ
 	SPitch = ( Pitch == 0 ) ? Width * 3 : Pitch ;
 	DPitch = Width * 3 ;
 	DPitch = ( ( DPitch + 3 ) / 4 ) * 4 ;
 
-	// ƒLƒƒƒXƒg
+	// ã‚­ãƒ£ã‚¹ãƒˆ
 	SrcData = ( BYTE * )SrcGrData ;
 
-	// ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‚ğ•¡»
+	// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã‚’è¤‡è£½
 	if( ( *DestGrData = ( BYTE *)DXCALLOC( ( size_t )( Height * DPitch ) ) ) == NULL ) return -1 ;
 	DestData = ( BYTE * )*DestGrData ;
 	if( DPitch == SPitch )
@@ -1714,7 +1714,7 @@ extern int NS_CreateBmpInfo( BITMAPINFO *BmpInfo, int Width, int Height, int Pit
 			_MEMCPY( DestData, SrcData, ( size_t )SPitch ) ;
 	}
 
-	// BITMAPINFO\‘¢‘Ì‚ÌƒZƒbƒg
+	// BITMAPINFOæ§‹é€ ä½“ã®ã‚»ãƒƒãƒˆ
 	_MEMSET( BmpInfo, 0, sizeof( *BmpInfo ) ) ;
 	BmpInfo->bmiHeader.biSize	= sizeof( BITMAPINFOHEADER ) ;
 	BmpInfo->bmiHeader.biWidth	= Width ;
@@ -1722,11 +1722,11 @@ extern int NS_CreateBmpInfo( BITMAPINFO *BmpInfo, int Width, int Height, int Pit
 	BmpInfo->bmiHeader.biPlanes	= 1 ;
 	BmpInfo->bmiHeader.biBitCount= 24 ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// BASEIMAGE \‘¢‘Ì‚Ì‰æ‘œî•ñ‚©‚çw’è‚ÌÀ•W‚Ìƒtƒ‹ƒJƒ‰[ƒR[ƒh‚ğæ“¾‚·‚é
+// BASEIMAGE æ§‹é€ ä½“ã®ç”»åƒæƒ…å ±ã‹ã‚‰æŒ‡å®šã®åº§æ¨™ã®ãƒ•ãƒ«ã‚«ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰ã‚’å–å¾—ã™ã‚‹
 extern unsigned int NS_GetGraphImageFullColorCode( const BASEIMAGE *GraphImage, int x, int y )
 {
 	BYTE *gp ;
@@ -1745,17 +1745,17 @@ extern unsigned int NS_GetGraphImageFullColorCode( const BASEIMAGE *GraphImage, 
 	case 4 : src = *((DWORD *)gp) ; break ;
 	}
 
-	// ƒtƒ‹ƒJƒ‰[‚ÌFƒR[ƒh‚ğì¬	
+	// ãƒ•ãƒ«ã‚«ãƒ©ãƒ¼ã®è‰²ã‚³ãƒ¼ãƒ‰ã‚’ä½œæˆ	
 	code  = ( ( src & cr->RedMask   ) >> cr->RedLoc   ) << ( 16 + ( 8 - cr->RedWidth   ) ) ;
 	code |= ( ( src & cr->GreenMask ) >> cr->GreenLoc ) << (  8 + ( 8 - cr->GreenWidth ) ) ;
 	code |= ( ( src & cr->BlueMask  ) >> cr->BlueLoc  ) << (  0 + ( 8 - cr->BlueWidth  ) ) ;
 	if( cr->AlphaWidth != 0 ) code |= ( ( src & cr->AlphaMask ) >> cr->AlphaLoc ) << ( 24 + ( 8 - cr->AlphaWidth ) ) ;
 
-	// FƒR[ƒh‚ğ•Ô‚·
+	// è‰²ã‚³ãƒ¼ãƒ‰ã‚’è¿”ã™
 	return code ;
 }
 
-// ƒAƒ‹ƒtƒ@ƒ}ƒXƒN—p‚Ìƒtƒ@ƒCƒ‹ƒpƒX‚ğì¬‚·‚é
+// ã‚¢ãƒ«ãƒ•ã‚¡ãƒã‚¹ã‚¯ç”¨ã®ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹ã‚’ä½œæˆã™ã‚‹
 static int CreateAlphaMaskFilePath( const wchar_t *Path, wchar_t *Dest, size_t BufferBytes )
 {
 	int   i, j ;
@@ -1763,7 +1763,7 @@ static int CreateAlphaMaskFilePath( const wchar_t *Path, wchar_t *Dest, size_t B
 	DWORD CharCode ;
 	int   CharBytes ;
 
-	// ˆê”ÔŒã‚ë‚Ì . ‚ÌˆÊ’u‚ğ’²‚×‚é
+	// ä¸€ç•ªå¾Œã‚ã® . ã®ä½ç½®ã‚’èª¿ã¹ã‚‹
 	LastPoint = -1 ;
 	i = 0 ;
 	for(;;)
@@ -1782,7 +1782,7 @@ static int CreateAlphaMaskFilePath( const wchar_t *Path, wchar_t *Dest, size_t B
 		i += CharBytes ;
 	}
 
-	// ƒAƒ‹ƒtƒ@ƒ}ƒXƒN—pƒtƒ@ƒCƒ‹ƒl[ƒ€‚Ìì¬
+	// ã‚¢ãƒ«ãƒ•ã‚¡ãƒã‚¹ã‚¯ç”¨ãƒ•ã‚¡ã‚¤ãƒ«ãƒãƒ¼ãƒ ã®ä½œæˆ
 	i = 0 ;
 	for(;;)
 	{
@@ -1811,7 +1811,7 @@ static int CreateAlphaMaskFilePathT( const TCHAR *Path, TCHAR *Dest, size_t Buff
 	DWORD CharCode ;
 	int   CharBytes ;
 
-	// ˆê”ÔŒã‚ë‚Ì . ‚ÌˆÊ’u‚ğ’²‚×‚é
+	// ä¸€ç•ªå¾Œã‚ã® . ã®ä½ç½®ã‚’èª¿ã¹ã‚‹
 	LastPoint = -1 ;
 	i = 0 ;
 	for(;;)
@@ -1830,7 +1830,7 @@ static int CreateAlphaMaskFilePathT( const TCHAR *Path, TCHAR *Dest, size_t Buff
 		i += CharBytes ;
 	}
 
-	// ƒAƒ‹ƒtƒ@ƒ}ƒXƒN—pƒtƒ@ƒCƒ‹ƒl[ƒ€‚Ìì¬
+	// ã‚¢ãƒ«ãƒ•ã‚¡ãƒã‚¹ã‚¯ç”¨ãƒ•ã‚¡ã‚¤ãƒ«ãƒãƒ¼ãƒ ã®ä½œæˆ
 	i = 0 ;
 	for(;;)
 	{
@@ -1852,7 +1852,7 @@ static int CreateAlphaMaskFilePathT( const TCHAR *Path, TCHAR *Dest, size_t Buff
 	return 0 ;
 }
 
-// CreateGraphImage_plus_Alpha ‚ÌƒOƒ[ƒoƒ‹•Ï”‚ÉƒAƒNƒZƒX‚µ‚È‚¢ƒo[ƒWƒ‡ƒ“
+// CreateGraphImage_plus_Alpha ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°ã«ã‚¢ã‚¯ã‚»ã‚¹ã—ãªã„ãƒãƒ¼ã‚¸ãƒ§ãƒ³
 extern int CreateGraphImage_plus_Alpha_UseGParam(
 	LOADBASEIMAGE_GPARAM *GParam,
 	const wchar_t *FileName,
@@ -1870,7 +1870,7 @@ extern int CreateGraphImage_plus_Alpha_UseGParam(
 {
 	int Result ;
 
-	// ‚q‚f‚aƒCƒ[ƒW‚Ì“Ç‚İ‚İ
+	// ï¼²ï¼§ï¼¢ã‚¤ãƒ¡ãƒ¼ã‚¸ã®èª­ã¿è¾¼ã¿
 	if( CreateGraphImageOrDIBGraph_UseGParam( GParam, FileName, RgbImage, RgbImageSize, RgbImageType, FALSE, ReverseFlag, NotUseTransColor, RgbGraphImage, NULL, NULL ) == -1 )
 	{
 		return -1 ;
@@ -1881,29 +1881,29 @@ extern int CreateGraphImage_plus_Alpha_UseGParam(
 		switch( AlphaImageType )
 		{
 		case LOADIMAGE_TYPE_MEM :
-			// ƒƒ‚ƒŠã‚ÌƒAƒ‹ƒtƒ@ƒ}ƒbƒvƒCƒ[ƒW‚Ì“Ç‚İ‚İ
+			// ãƒ¡ãƒ¢ãƒªä¸Šã®ã‚¢ãƒ«ãƒ•ã‚¡ãƒãƒƒãƒ—ã‚¤ãƒ¡ãƒ¼ã‚¸ã®èª­ã¿è¾¼ã¿
 
-			// “Ç‚İ‚İB¸”s‚µ‚½‚ç RGB ‚¾‚¯æ“¾‚Å‚«‚½‚Æ‚¢‚¤‚±‚ÆA¬Œ÷‚µ‚½‚ç Alpha ‚àæ“¾‚Å‚«‚½‚Æ‚¢‚¤‚±‚Æ
+			// èª­ã¿è¾¼ã¿ã€‚å¤±æ•—ã—ãŸã‚‰ RGB ã ã‘å–å¾—ã§ããŸã¨ã„ã†ã“ã¨ã€æˆåŠŸã—ãŸã‚‰ Alpha ã‚‚å–å¾—ã§ããŸã¨ã„ã†ã“ã¨
 			Result = CreateGraphImageOrDIBGraph_UseGParam( GParam, NULL, AlphaImage, AlphaImageSize, AlphaImageType, FALSE, ReverseFlag, FALSE, AlphaGraphImage, NULL, NULL ) == -1 ? 1 : 0 ;
 			return Result ;
 
 		case LOADIMAGE_TYPE_FILE :
-			// ƒtƒ@ƒCƒ‹ã‚ÌƒAƒ‹ƒtƒ@ƒ}ƒbƒvƒCƒ[ƒW‚Ì“Ç‚İ‚İ
+			// ãƒ•ã‚¡ã‚¤ãƒ«ä¸Šã®ã‚¢ãƒ«ãƒ•ã‚¡ãƒãƒƒãƒ—ã‚¤ãƒ¡ãƒ¼ã‚¸ã®èª­ã¿è¾¼ã¿
 			wchar_t AlphaName[FILEPATH_MAX] ;
 			CreateAlphaMaskFilePath( FileName, AlphaName, sizeof( AlphaName ) ) ;
 
-			// “Ç‚İ‚İB¸”s‚µ‚½‚ç RGB ‚¾‚¯æ“¾‚Å‚«‚½‚Æ‚¢‚¤‚±‚ÆA¬Œ÷‚µ‚½‚ç Alpha ‚àæ“¾‚Å‚«‚½‚Æ‚¢‚¤‚±‚Æ
+			// èª­ã¿è¾¼ã¿ã€‚å¤±æ•—ã—ãŸã‚‰ RGB ã ã‘å–å¾—ã§ããŸã¨ã„ã†ã“ã¨ã€æˆåŠŸã—ãŸã‚‰ Alpha ã‚‚å–å¾—ã§ããŸã¨ã„ã†ã“ã¨
 			Result = CreateGraphImageOrDIBGraph_UseGParam( GParam, AlphaName, NULL, 0, AlphaImageType, FALSE, ReverseFlag, FALSE, AlphaGraphImage, NULL, NULL ) == -1 ? 1 : 0 ;
 			return Result ;
 		}
 	}
 
-	// ‚±‚±‚Ö—ˆ‚½‚Æ‚¢‚¤‚±‚Æ‚Í RGB ‚¾‚¯æ“¾‚Å‚«‚½‚Æ‚¢‚¤‚±‚Æ
+	// ã“ã“ã¸æ¥ãŸã¨ã„ã†ã“ã¨ã¯ RGB ã ã‘å–å¾—ã§ããŸã¨ã„ã†ã“ã¨
 	return 1 ;
 }
 
-// ŠeíƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‚©‚çƒOƒ‰ƒtƒBƒbƒNƒCƒ[ƒWƒf[ƒ^‚ÆƒAƒ‹ƒtƒ@ƒ}ƒbƒv—pƒCƒ[ƒWƒf[ƒ^‚ğ\’z‚·‚é
-// Ret:  0:RGB‚ÆAlpha‚Ç‚¿‚ç‚àæ“¾  1:RGB‚Ì‚İæ“¾  -1:‚Ç‚¿‚ç‚àæ“¾‚Å‚«‚È‚©‚Á‚½
+// å„ç¨®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ã¨ã‚¢ãƒ«ãƒ•ã‚¡ãƒãƒƒãƒ—ç”¨ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ã‚’æ§‹ç¯‰ã™ã‚‹
+// Ret:  0:RGBã¨Alphaã©ã¡ã‚‰ã‚‚å–å¾—  1:RGBã®ã¿å–å¾—  -1:ã©ã¡ã‚‰ã‚‚å–å¾—ã§ããªã‹ã£ãŸ
 extern int NS_CreateGraphImage_plus_Alpha(
 	const TCHAR *FileName,
 	const void *RgbImage,
@@ -1956,7 +1956,7 @@ extern int NS_CreateGraphImage_plus_Alpha(
 #endif
 }
 
-// ‰æ‘œƒtƒ@ƒCƒ‹á‚µ‚­‚Íƒƒ‚ƒŠã‚É“WŠJ‚³‚ê‚½‰æ‘œƒtƒ@ƒCƒ‹ƒCƒ[ƒW‚ğ“Ç‚İ‚İAŠî–{ƒCƒ[ƒWƒf[ƒ^‚ğ\’z‚·‚é
+// ç”»åƒãƒ•ã‚¡ã‚¤ãƒ«è‹¥ã—ãã¯ãƒ¡ãƒ¢ãƒªä¸Šã«å±•é–‹ã•ã‚ŒãŸç”»åƒãƒ•ã‚¡ã‚¤ãƒ«ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’èª­ã¿è¾¼ã¿ã€åŸºæœ¬ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ã‚’æ§‹ç¯‰ã™ã‚‹
 extern int NS_CreateGraphImage_plus_AlphaWithStrLen( const TCHAR *FileName, size_t FileNameLength, const void *RgbImage, int RgbImageSize, int RgbImageType, const void *AlphaImage, int AlphaImageSize, int AlphaImageType, BASEIMAGE *RgbGraphImage, BASEIMAGE *AlphaGraphImage, int ReverseFlag )
 {
 	int Result ;
@@ -1996,8 +1996,8 @@ extern int NS_CreateGraphImage_plus_AlphaWithStrLen( const TCHAR *FileName, size
 	return Result ;
 }
 
-// ŠeíƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‚©‚çƒOƒ‰ƒtƒBƒbƒNƒCƒ[ƒWƒf[ƒ^‚ÆƒAƒ‹ƒtƒ@ƒ}ƒbƒv—pƒCƒ[ƒWƒf[ƒ^‚ğ\’z‚·‚é
-// Ret:  0:RGB‚ÆAlpha‚Ç‚¿‚ç‚àæ“¾  1:RGB‚Ì‚İæ“¾  -1:‚Ç‚¿‚ç‚àæ“¾‚Å‚«‚È‚©‚Á‚½
+// å„ç¨®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ã¨ã‚¢ãƒ«ãƒ•ã‚¡ãƒãƒƒãƒ—ç”¨ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ã‚’æ§‹ç¯‰ã™ã‚‹
+// Ret:  0:RGBã¨Alphaã©ã¡ã‚‰ã‚‚å–å¾—  1:RGBã®ã¿å–å¾—  -1:ã©ã¡ã‚‰ã‚‚å–å¾—ã§ããªã‹ã£ãŸ
 extern int CreateGraphImage_plus_Alpha_WCHAR_T(
 	const wchar_t *FileName,
 	const void *RgbImage,
@@ -2032,7 +2032,7 @@ extern int CreateGraphImage_plus_Alpha_WCHAR_T(
 
 
 
-// w’è‚Ì GraphImage ‚ğ¶‰E”½“]‚·‚é
+// æŒ‡å®šã® GraphImage ã‚’å·¦å³åè»¢ã™ã‚‹
 extern int NS_ReverseGraphImage( BASEIMAGE *GraphImage )
 {
 	int height, width, pitch, i ;
@@ -2138,7 +2138,7 @@ extern int NS_ReverseGraphImage( BASEIMAGE *GraphImage )
 		break ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;	
 }
 
@@ -2148,7 +2148,7 @@ extern int NS_ReverseGraphImage( BASEIMAGE *GraphImage )
 
 #ifdef WINDOWS_DESKTOP_OS
 
-// ‚c‚h‚aƒOƒ‰ƒtƒBƒbƒN‚ğì¬‚·‚é
+// ï¼¤ï¼©ï¼¢ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚’ä½œæˆã™ã‚‹
 extern int NS_CreateDIBGraphVer2_plus_Alpha( const TCHAR *FileName, const void *MemImage, int MemImageSize, const void *AlphaImage, int AlphaImageSize, int ImageType, HBITMAP *RGBBmp, HBITMAP *AlphaBmp, int ReverseFlag, COLORDATA *SrcColor )
 {
 #ifdef UNICODE
@@ -2170,7 +2170,7 @@ extern int NS_CreateDIBGraphVer2_plus_Alpha( const TCHAR *FileName, const void *
 #endif
 }
 
-// ‰æ‘œƒtƒ@ƒCƒ‹á‚µ‚­‚Íƒƒ‚ƒŠã‚É“WŠJ‚³‚ê‚½‰æ‘œƒtƒ@ƒCƒ‹ƒCƒ[ƒW‚©‚ç‚c‚h‚aƒf[ƒ^‚Æƒ}ƒXƒN—p‚c‚h‚aƒf[ƒ^‚ğì¬‚·‚é
+// ç”»åƒãƒ•ã‚¡ã‚¤ãƒ«è‹¥ã—ãã¯ãƒ¡ãƒ¢ãƒªä¸Šã«å±•é–‹ã•ã‚ŒãŸç”»åƒãƒ•ã‚¡ã‚¤ãƒ«ã‚¤ãƒ¡ãƒ¼ã‚¸ã‹ã‚‰ï¼¤ï¼©ï¼¢ãƒ‡ãƒ¼ã‚¿ã¨ãƒã‚¹ã‚¯ç”¨ï¼¤ï¼©ï¼¢ãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆã™ã‚‹
 extern int NS_CreateDIBGraphVer2_plus_AlphaWithStrLen( const TCHAR *FileName, size_t FileNameLength, const void *MemImage, int MemImageSize, const void *AlphaImage, int AlphaImageSize, int ImageType, HBITMAP *RGBBmp, HBITMAP *AlphaBmp, int ReverseFlag, COLORDATA *SrcColor )
 {
 	int Result ;
@@ -2186,19 +2186,19 @@ extern int NS_CreateDIBGraphVer2_plus_AlphaWithStrLen( const TCHAR *FileName, si
 	return Result ;
 }
 
-// ‚c‚h‚aƒOƒ‰ƒtƒBƒbƒN‚ğì¬‚·‚é
+// ï¼¤ï¼©ï¼¢ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚’ä½œæˆã™ã‚‹
 extern int CreateDIBGraphVer2_plus_Alpha_WCHAR_T( const wchar_t *FileName, const void *MemImage, int MemImageSize, const void *AlphaImage, int AlphaImageSize, int ImageType, HBITMAP *RGBBmp, HBITMAP *AlphaBmp, int ReverseFlag, COLORDATA *SrcColor )
 {
 	int Result = -1 ;
 
-	// ƒCƒ[ƒWƒ^ƒCƒv‚É‚æ‚Á‚Äˆ—‚ğ•ªŠò
+	// ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¿ã‚¤ãƒ—ã«ã‚ˆã£ã¦å‡¦ç†ã‚’åˆ†å²
 	switch( ImageType )
 	{
-	case LOADIMAGE_TYPE_FILE :		// ƒtƒ@ƒCƒ‹ƒCƒ[ƒW‚Ìê‡
-		Result = CreateDIBGraph_plus_Alpha_WCHAR_T( FileName, RGBBmp, AlphaBmp, ReverseFlag, SrcColor ) ;		// ƒo[ƒWƒ‡ƒ“‚P‚É“Š‚°‚é
+	case LOADIMAGE_TYPE_FILE :		// ãƒ•ã‚¡ã‚¤ãƒ«ã‚¤ãƒ¡ãƒ¼ã‚¸ã®å ´åˆ
+		Result = CreateDIBGraph_plus_Alpha_WCHAR_T( FileName, RGBBmp, AlphaBmp, ReverseFlag, SrcColor ) ;		// ãƒãƒ¼ã‚¸ãƒ§ãƒ³ï¼‘ã«æŠ•ã’ã‚‹
 		break ;
 
-	case LOADIMAGE_TYPE_MEM :		// ƒƒ‚ƒŠƒCƒ[ƒW‚Ìê‡
+	case LOADIMAGE_TYPE_MEM :		// ãƒ¡ãƒ¢ãƒªã‚¤ãƒ¡ãƒ¼ã‚¸ã®å ´åˆ
 		*RGBBmp = CreateDIBGraphVer2_WCHAR_T( NULL, MemImage, MemImageSize, LOADIMAGE_TYPE_MEM, ReverseFlag, SrcColor ) ;
 		if( *RGBBmp == NULL )
 		{
@@ -2212,11 +2212,11 @@ extern int CreateDIBGraphVer2_plus_Alpha_WCHAR_T( const wchar_t *FileName, const
 		break ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return Result ;
 }
 
-// ‚c‚h‚aƒOƒ‰ƒtƒBƒbƒN‚ğƒƒ‚ƒŠƒCƒ[ƒW‚©‚çì¬‚·‚é
+// ï¼¤ï¼©ï¼¢ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚’ãƒ¡ãƒ¢ãƒªã‚¤ãƒ¡ãƒ¼ã‚¸ã‹ã‚‰ä½œæˆã™ã‚‹
 extern HBITMAP NS_CreateDIBGraphToMem( const BITMAPINFO *BmpInfo, const void *GraphData, int ReverseFlag, COLORDATA *SrcColor )
 {
 	HDC hdc ;
@@ -2229,7 +2229,7 @@ extern HBITMAP NS_CreateDIBGraphToMem( const BITMAPINFO *BmpInfo, const void *Gr
 
 	SETUP_WIN_API
 
-	// ƒsƒbƒ`‚ÌZo
+	// ãƒ”ãƒƒãƒã®ç®—å‡º
 	{
 		int Byte ; 
 		
@@ -2238,11 +2238,11 @@ extern HBITMAP NS_CreateDIBGraphToMem( const BITMAPINFO *BmpInfo, const void *Gr
 		SrcWidthByte = Byte + ( Byte % 4 != 0 ? ( 4 - Byte % 4 ) : 0 ) ;
 	}
 
-	// ‚c‚h‚aƒOƒ‰ƒtƒBƒbƒN‚Ìì¬
+	// ï¼¤ï¼©ï¼¢ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®ä½œæˆ
 	{
 		hdc = WinAPIData.Win32Func.CreateCompatibleDCFunc( NULL ) ;
 
-		// ‚c‚h‚aƒf[ƒ^‚ğì¬‚·‚é
+		// ï¼¤ï¼©ï¼¢ãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆã™ã‚‹
 		{
 			BITMAPINFO *BmpInfo2 ;
 			int PlusByte = 0 ;
@@ -2265,14 +2265,14 @@ extern HBITMAP NS_CreateDIBGraphToMem( const BITMAPINFO *BmpInfo, const void *Gr
 
 			if( ( BmpInfo2 = ( BITMAPINFO * )DXALLOC( sizeof( BITMAPINFOHEADER ) + PlusByte ) ) == NULL )
 			{
-				DXST_LOGFILE_ADDUTF16LE( "\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x20\x00\x69\x00\x6e\x00\x20\x00\x43\x00\x72\x00\x65\x00\x61\x00\x74\x00\x65\x00\x44\x00\x49\x00\x42\x00\x47\x00\x72\x00\x61\x00\x70\x00\x68\x00\x20\x00\x0a\x00\x00"/*@ L"ƒƒ‚ƒŠ‚ÌŠm•Û‚É¸”s‚µ‚Ü‚µ‚½ in CreateDIBGraph \n" @*/ ) ;	
+				DXST_LOGFILE_ADDUTF16LE( "\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x20\x00\x69\x00\x6e\x00\x20\x00\x43\x00\x72\x00\x65\x00\x61\x00\x74\x00\x65\x00\x44\x00\x49\x00\x42\x00\x47\x00\x72\x00\x61\x00\x70\x00\x68\x00\x20\x00\x0a\x00\x00"/*@ L"ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿ã«å¤±æ•—ã—ã¾ã—ãŸ in CreateDIBGraph \n" @*/ ) ;	
 
-				// ƒƒ‚ƒŠ‚Ì‰ğ•ú
+				// ãƒ¡ãƒ¢ãƒªã®è§£æ”¾
 				WinAPIData.Win32Func.DeleteDCFunc( hdc ) ;
 				return NULL ;
 			}
 
-			// BITMAPINFOHEADER ‚ğİ’è
+			// BITMAPINFOHEADER ã‚’è¨­å®š
 			_MEMSET( BmpInfo2, 0, sizeof( BITMAPINFOHEADER ) ) ;
 			BmpInfo2->bmiHeader.biSize	= sizeof( BITMAPINFOHEADER ) ;
 			BmpInfo2->bmiHeader.biWidth  = BmpInfo->bmiHeader.biWidth ;
@@ -2345,9 +2345,9 @@ extern HBITMAP NS_CreateDIBGraphToMem( const BITMAPINFO *BmpInfo, const void *Gr
 //			_MEMCPY( BmpInfo2, BmpInfo, sizeof( BITMAPINFOHEADER ) + PlusByte ) ;
 			if( ( Bmp = WinAPIData.Win32Func.CreateDIBSectionFunc( hdc, BmpInfo2, DIB_RGB_COLORS, &Data, NULL, 0 ) ) == NULL )
 			{
-				DXST_LOGFILE_ADDUTF16LE( "\x24\xff\x29\xff\x22\xff\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x33\x00\x0a\x00\x00"/*@ L"‚c‚h‚a‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½3\n" @*/ ) ;	
+				DXST_LOGFILE_ADDUTF16LE( "\x24\xff\x29\xff\x22\xff\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x33\x00\x0a\x00\x00"/*@ L"ï¼¤ï¼©ï¼¢ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ3\n" @*/ ) ;	
 
-				// ƒƒ‚ƒŠ‚Ì‰ğ•ú
+				// ãƒ¡ãƒ¢ãƒªã®è§£æ”¾
 				DXFREE( BmpInfo2 ) ;
 				WinAPIData.Win32Func.DeleteDCFunc( hdc ) ;
 				return NULL ;
@@ -2356,15 +2356,15 @@ extern HBITMAP NS_CreateDIBGraphToMem( const BITMAPINFO *BmpInfo, const void *Gr
 			DXFREE( BmpInfo2 ) ;
 		}
 
-		// ƒrƒbƒgƒ}ƒbƒv‚Ìî•ñ‚ğæ“¾
+		// ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã®æƒ…å ±ã‚’å–å¾—
 		WinAPIData.Win32Func.GetObjectAFunc( Bmp, sizeof( bm ), &bm ) ;
 		bm.bmWidthBytes = ( ( bm.bmWidthBytes + 3 ) / 4 ) * 4 ;
 
-		// ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‚ğƒRƒs[‚·‚é
+		// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã‚’ã‚³ãƒ”ãƒ¼ã™ã‚‹
 		{
 			if( Data == NULL )
 			{
-				DXST_LOGFILE_ADDUTF16LE( "\x24\xff\x29\xff\x22\xff\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x32\x00\x0a\x00\x00"/*@ L"‚c‚h‚a‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½2\n" @*/ ) ;
+				DXST_LOGFILE_ADDUTF16LE( "\x24\xff\x29\xff\x22\xff\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x32\x00\x0a\x00\x00"/*@ L"ï¼¤ï¼©ï¼¢ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ2\n" @*/ ) ;
 				return NULL ;
 			}
 			
@@ -2397,11 +2397,11 @@ extern HBITMAP NS_CreateDIBGraphToMem( const BITMAPINFO *BmpInfo, const void *Gr
 		WinAPIData.Win32Func.DeleteDCFunc( hdc ) ;
 	}
 
-	// ‚a‚l‚oƒnƒ“ƒhƒ‹‚ğ•Ô‚·
+	// ï¼¢ï¼­ï¼°ãƒãƒ³ãƒ‰ãƒ«ã‚’è¿”ã™
 	return Bmp ;
 }
 
-// ƒtƒ@ƒCƒ‹‚©‚ç‚c‚h‚aƒOƒ‰ƒtƒBƒbƒN‚Æƒ}ƒXƒNƒOƒ‰ƒtƒBƒbƒN‚ğì¬‚·‚é
+// ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰ï¼¤ï¼©ï¼¢ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã¨ãƒã‚¹ã‚¯ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚’ä½œæˆã™ã‚‹
 extern int NS_CreateDIBGraph_plus_Alpha( const TCHAR *FileName, HBITMAP *RGBBmp, HBITMAP *AlphaBmp, int ReverseFlag, COLORDATA *SrcColor )
 {
 #ifdef UNICODE
@@ -2423,7 +2423,7 @@ extern int NS_CreateDIBGraph_plus_Alpha( const TCHAR *FileName, HBITMAP *RGBBmp,
 #endif
 }
 
-// ‰æ‘œƒtƒ@ƒCƒ‹‚©‚ç‚c‚h‚aƒf[ƒ^‚Æƒ}ƒXƒN—p‚c‚h‚aƒf[ƒ^‚ğì¬‚·‚é
+// ç”»åƒãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰ï¼¤ï¼©ï¼¢ãƒ‡ãƒ¼ã‚¿ã¨ãƒã‚¹ã‚¯ç”¨ï¼¤ï¼©ï¼¢ãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆã™ã‚‹
 extern int NS_CreateDIBGraph_plus_AlphaWithStrLen( const TCHAR *FileName, size_t FileNameLength, HBITMAP *RGBBmp, HBITMAP *AlphaBmp, int ReverseFlag , COLORDATA *SrcColor)
 {
 	int Result ;
@@ -2439,42 +2439,42 @@ extern int NS_CreateDIBGraph_plus_AlphaWithStrLen( const TCHAR *FileName, size_t
 	return Result ;
 }
 
-// ƒtƒ@ƒCƒ‹‚©‚ç‚c‚h‚aƒOƒ‰ƒtƒBƒbƒN‚Æƒ}ƒXƒNƒOƒ‰ƒtƒBƒbƒN‚ğì¬‚·‚é
+// ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰ï¼¤ï¼©ï¼¢ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã¨ãƒã‚¹ã‚¯ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚’ä½œæˆã™ã‚‹
 extern int CreateDIBGraph_plus_Alpha_WCHAR_T( const wchar_t *FileName, HBITMAP *RGBBmp, HBITMAP *AlphaBmp, int ReverseFlag, COLORDATA *SrcColor )
 {
 	wchar_t AlphaFileName[ 256 ] ;
 
-	// ƒOƒ‰ƒtƒBƒbƒN‚Ì“Ç‚İ‚±‚İ
+	// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®èª­ã¿ã“ã¿
 	*RGBBmp = CreateDIBGraph_WCHAR_T( FileName, ReverseFlag, SrcColor ) ;
 	if( *RGBBmp == NULL )
 	{
 		return -1 ;
 	}
 
-	// ƒAƒ‹ƒtƒ@ƒ}ƒXƒN‚Ì“Ç‚İ‚±‚İ
+	// ã‚¢ãƒ«ãƒ•ã‚¡ãƒã‚¹ã‚¯ã®èª­ã¿ã“ã¿
 	if( AlphaBmp )
 	{
 		CreateAlphaMaskFilePath( FileName, AlphaFileName, sizeof( AlphaFileName ) ) ;
 		*AlphaBmp = CreateDIBGraph_WCHAR_T( AlphaFileName, ReverseFlag, SrcColor ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ‚a‚l‚o ‚ğ GraphImage ‚É•ÏŠ·‚·‚é( Ret 0:³íI—¹  1:ƒRƒs[‚ğs‚Á‚½  -1:ƒGƒ‰[ )
+// ï¼¢ï¼­ï¼° ã‚’ GraphImage ã«å¤‰æ›ã™ã‚‹( Ret 0:æ­£å¸¸çµ‚äº†  1:ã‚³ãƒ”ãƒ¼ã‚’è¡Œã£ãŸ  -1:ã‚¨ãƒ©ãƒ¼ )
 extern int NS_ConvBitmapToGraphImage( const BITMAPINFO *BmpInfo, void *GraphData, BASEIMAGE *GraphImage, int CopyFlag )
 {
 	const BITMAPINFOHEADER *BInfo = &BmpInfo->bmiHeader ;
 
-	// o—Íæ‚ğ—ë‰Šú‰»
+	// å‡ºåŠ›å…ˆã‚’é›¶åˆæœŸåŒ–
 	_MEMSET( GraphImage, 0, sizeof( BASEIMAGE ) ) ;
 
-	// ƒwƒbƒ_î•ñ‚ğƒZƒbƒg‚·‚é
+	// ãƒ˜ãƒƒãƒ€æƒ…å ±ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 	GraphImage->Width = BInfo->biWidth ;
 	GraphImage->Height = _ABS( BInfo->biHeight ) ;
 
-	// ƒpƒŒƒbƒgƒJƒ‰[‚¾‚Á‚½‚èAˆ³k‚³‚ê‚Ä‚¢‚½‚è”½“]ƒrƒbƒgƒ}ƒbƒv‚¾‚Á‚½‚è‚·‚éê‡‚Í‚Q‚SƒrƒbƒgƒJƒ‰[‚Ö‚Ì•ÏŠ·ˆ—‚ğs‚¤
+	// ãƒ‘ãƒ¬ãƒƒãƒˆã‚«ãƒ©ãƒ¼ã ã£ãŸã‚Šã€åœ§ç¸®ã•ã‚Œã¦ã„ãŸã‚Šåè»¢ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã ã£ãŸã‚Šã™ã‚‹å ´åˆã¯ï¼’ï¼”ãƒ“ãƒƒãƒˆã‚«ãƒ©ãƒ¼ã¸ã®å¤‰æ›å‡¦ç†ã‚’è¡Œã†
 	if( BmpInfo->bmiHeader.biHeight >= 0 || 
 		BInfo->biBitCount <= 8 || ( BInfo->biBitCount != 16 && BInfo->biBitCount != 24 && BInfo->biBitCount != 32 ) ||
 		( BInfo->biCompression != BI_RGB && BInfo->biCompression != BI_BITFIELDS ) )
@@ -2487,14 +2487,14 @@ extern int NS_ConvBitmapToGraphImage( const BITMAPINFO *BmpInfo, void *GraphData
 
 		SETUP_WIN_API
 
-		// •ÏŠ·ˆ—‚Ég—p‚·‚é‚c‚b‚Ìì¬
+		// å¤‰æ›å‡¦ç†ã«ä½¿ç”¨ã™ã‚‹ï¼¤ï¼£ã®ä½œæˆ
 		hdc = WinAPIData.Win32Func.CreateCompatibleDCFunc( NULL ) ;
 
-		// ‚Q‚SƒrƒbƒgƒJƒ‰[‚c‚h‚aƒf[ƒ^‚ğì¬‚·‚é
+		// ï¼’ï¼”ãƒ“ãƒƒãƒˆã‚«ãƒ©ãƒ¼ï¼¤ï¼©ï¼¢ãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆã™ã‚‹
 		{
 			BITMAPINFO BmpInfo2 ;
 
-			// ƒrƒbƒgƒ}ƒbƒvƒCƒ“ƒtƒHƒwƒbƒ_‚ğİ’è
+			// ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚¤ãƒ³ãƒ•ã‚©ãƒ˜ãƒƒãƒ€ã‚’è¨­å®š
 			_MEMSET( &BmpInfo2, 0, sizeof( BITMAPINFOHEADER ) ) ;
 			BmpInfo2.bmiHeader.biSize	= sizeof( BITMAPINFOHEADER ) ;
 			BmpInfo2.bmiHeader.biWidth  = BmpInfo->bmiHeader.biWidth ;
@@ -2506,17 +2506,17 @@ extern int NS_ConvBitmapToGraphImage( const BITMAPINFO *BmpInfo, void *GraphData
 			Bmp = WinAPIData.Win32Func.CreateDIBSectionFunc( hdc, &BmpInfo2, DIB_RGB_COLORS, &Data, NULL, 0 ) ;
 			if( Bmp == NULL || Data == NULL )
 			{
-				DXST_LOGFILE_ADDUTF16LE( "\x24\xff\x29\xff\x22\xff\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x33\x00\x0a\x00\x00"/*@ L"‚c‚h‚a‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½3\n" @*/ ) ;	
+				DXST_LOGFILE_ADDUTF16LE( "\x24\xff\x29\xff\x22\xff\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x33\x00\x0a\x00\x00"/*@ L"ï¼¤ï¼©ï¼¢ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ3\n" @*/ ) ;	
 				WinAPIData.Win32Func.DeleteDCFunc( hdc ) ;
 				return -1 ;
 			}
 		}
 
-		// ƒrƒbƒgƒ}ƒbƒv‚Ìî•ñ‚ğæ“¾
+		// ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã®æƒ…å ±ã‚’å–å¾—
 		WinAPIData.Win32Func.GetObjectAFunc( Bmp, sizeof( bm ), &bm ) ;
 		bm.bmWidthBytes += bm.bmWidthBytes % 4 ? 4 - bm.bmWidthBytes % 4 : 0 ;
 
-		// ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‚Q‚Sƒrƒbƒg‚É•ÏŠ·‚µ‚Â‚ÂƒRƒs[‚·‚é
+		// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ï¼’ï¼”ãƒ“ãƒƒãƒˆã«å¤‰æ›ã—ã¤ã¤ã‚³ãƒ”ãƒ¼ã™ã‚‹
 		Height = _ABS(bm.bmHeight) ;
 		{
 			HBITMAP OldBmp ;
@@ -2528,34 +2528,34 @@ extern int NS_ConvBitmapToGraphImage( const BITMAPINFO *BmpInfo, void *GraphData
 			WinAPIData.Win32Func.SelectObjectFunc( hdc, ( HGDIOBJ )OldBmp ) ;
 		}
 
-		// •s—v‚É‚È‚Á‚½‚c‚b‚Ìíœ
+		// ä¸è¦ã«ãªã£ãŸï¼¤ï¼£ã®å‰Šé™¤
 		WinAPIData.Win32Func.DeleteDCFunc( hdc ) ;
 
-		// ‚Q‚SƒrƒbƒgƒJƒ‰[‰»‚µ‚½ƒOƒ‰ƒtƒBƒbƒN‚ğŠi”[‚·‚éƒƒ‚ƒŠ—Ìˆæ‚ÌŠm•Û
+		// ï¼’ï¼”ãƒ“ãƒƒãƒˆã‚«ãƒ©ãƒ¼åŒ–ã—ãŸã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚’æ ¼ç´ã™ã‚‹ãƒ¡ãƒ¢ãƒªé ˜åŸŸã®ç¢ºä¿
 		GraphImage->GraphData = DXALLOC( ( size_t )( Height * bm.bmWidthBytes ) ) ;
 		if( GraphImage->GraphData == NULL )
 		{
-			DXST_LOGFILE_ADDUTF16LE( "\x12\xff\x14\xff\xd3\x30\xc3\x30\xc8\x30\xab\x30\xe9\x30\xfc\x30\x16\x53\x57\x30\x5f\x30\xb0\x30\xe9\x30\xd5\x30\xa3\x30\xc3\x30\xaf\x30\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"‚Q‚SƒrƒbƒgƒJƒ‰[‰»‚µ‚½ƒOƒ‰ƒtƒBƒbƒN‚ğŠi”[‚·‚éƒƒ‚ƒŠ—Ìˆæ‚ÌŠm•Û‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;	
+			DXST_LOGFILE_ADDUTF16LE( "\x12\xff\x14\xff\xd3\x30\xc3\x30\xc8\x30\xab\x30\xe9\x30\xfc\x30\x16\x53\x57\x30\x5f\x30\xb0\x30\xe9\x30\xd5\x30\xa3\x30\xc3\x30\xaf\x30\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ï¼’ï¼”ãƒ“ãƒƒãƒˆã‚«ãƒ©ãƒ¼åŒ–ã—ãŸã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚’æ ¼ç´ã™ã‚‹ãƒ¡ãƒ¢ãƒªé ˜åŸŸã®ç¢ºä¿ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;	
 			return -1 ;
 		}
 		
-		// ‚Q‚SƒrƒbƒgƒJƒ‰[‰»‚µ‚½ƒOƒ‰ƒtƒBƒbƒN‚Ìƒf[ƒ^‚ğê—p‚Ì—Ìˆæ‚É“]‘—
+		// ï¼’ï¼”ãƒ“ãƒƒãƒˆã‚«ãƒ©ãƒ¼åŒ–ã—ãŸã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®ãƒ‡ãƒ¼ã‚¿ã‚’å°‚ç”¨ã®é ˜åŸŸã«è»¢é€
 		_MEMCPY( GraphImage->GraphData, bm.bmBits, ( size_t )( Height * bm.bmWidthBytes ) ) ;
 
-		// •ÏŠ·—p‚Éì¬‚µ‚½‚c‚h‚a‚Ìíœ
+		// å¤‰æ›ç”¨ã«ä½œæˆã—ãŸï¼¤ï¼©ï¼¢ã®å‰Šé™¤
 		WinAPIData.Win32Func.DeleteObjectFunc( Bmp ) ;
 		
-		// ƒtƒ‹ƒJƒ‰[—p‚ÌƒJƒ‰[î•ñ‚ğƒZƒbƒg‚·‚é
+		// ãƒ•ãƒ«ã‚«ãƒ©ãƒ¼ç”¨ã®ã‚«ãƒ©ãƒ¼æƒ…å ±ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 		NS_CreateFullColorData( &GraphImage->ColorData ) ;
 		
-		// ƒsƒbƒ`‚ğƒZƒbƒg
+		// ãƒ”ãƒƒãƒã‚’ã‚»ãƒƒãƒˆ
 		GraphImage->Pitch = bm.bmWidthBytes ;
 		
-		// ƒRƒs[ƒtƒ‰ƒO‚ğ—§‚Ä‚é
+		// ã‚³ãƒ”ãƒ¼ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 		CopyFlag = TRUE ;
 	}
 	else
-	// ˆ³kƒ^ƒCƒv‚ªƒrƒbƒgƒtƒB[ƒ‹ƒh‚¾‚Á‚½ê‡‚Íê—p‚Ìˆ—‚ğs‚¤
+	// åœ§ç¸®ã‚¿ã‚¤ãƒ—ãŒãƒ“ãƒƒãƒˆãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã ã£ãŸå ´åˆã¯å°‚ç”¨ã®å‡¦ç†ã‚’è¡Œã†
 	if( BInfo->biCompression == BI_BITFIELDS ) 
 	{
 		unsigned int *Mask ;
@@ -2564,19 +2564,19 @@ extern int NS_ConvBitmapToGraphImage( const BITMAPINFO *BmpInfo, void *GraphData
 		Mask = (unsigned int *)BmpInfo->bmiColors ;
 		Color = &GraphImage->ColorData ;
 
-		// ƒJƒ‰[ƒrƒbƒg[“x‚ğƒZƒbƒg
+		// ã‚«ãƒ©ãƒ¼ãƒ“ãƒƒãƒˆæ·±åº¦ã‚’ã‚»ãƒƒãƒˆ
 		Color->ColorBitDepth = ( unsigned char )BInfo->biBitCount ;
 		Color->PixelByte     = ( unsigned char )( Color->ColorBitDepth / 8 ) ;
 
-		// ƒsƒbƒ`‚ğZo
+		// ãƒ”ãƒƒãƒã‚’ç®—å‡º
 		GraphImage->Pitch = GraphImage->Width * Color->PixelByte ;
 		GraphImage->Pitch = GraphImage->Pitch + ( GraphImage->Pitch % 4 != 0 ? ( 4 - GraphImage->Pitch % 4 ) : 0 ) ;
 		
-		// ƒrƒbƒgƒtƒB[ƒ‹ƒh‚ğ’²‚×‚ÄA‚q‚f‚aŠeF‚Ìƒrƒbƒgƒ}ƒXƒN‚ğæ“¾‚·‚é
+		// ãƒ“ãƒƒãƒˆãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚’èª¿ã¹ã¦ã€ï¼²ï¼§ï¼¢å„è‰²ã®ãƒ“ãƒƒãƒˆãƒã‚¹ã‚¯ã‚’å–å¾—ã™ã‚‹
 		{
 			int i, j, w ;
 		
-			// ‚q¬•ª‚ğ’²‚×‚é
+			// ï¼²æˆåˆ†ã‚’èª¿ã¹ã‚‹
 			j = 1 ;
 			for( i = 0 ; i < 32 && ( *Mask & j ) == 0 ; i ++, j <<= 1 ){}
 			Color->RedLoc = ( unsigned char )i ;
@@ -2586,7 +2586,7 @@ extern int NS_ConvBitmapToGraphImage( const BITMAPINFO *BmpInfo, void *GraphData
 			
 			Mask ++ ;
 			
-			// ‚f¬•ª‚ğ’²‚×‚é
+			// ï¼§æˆåˆ†ã‚’èª¿ã¹ã‚‹
 			j = 1 ;
 			for( i = 0 ; i < 32 && ( *Mask & j ) == 0 ; i ++, j <<= 1 ){}
 			Color->GreenLoc = ( unsigned char )i ;
@@ -2596,7 +2596,7 @@ extern int NS_ConvBitmapToGraphImage( const BITMAPINFO *BmpInfo, void *GraphData
 			
 			Mask ++ ;
 			
-			// ‚a¬•ª‚ğ’²‚×‚é
+			// ï¼¢æˆåˆ†ã‚’èª¿ã¹ã‚‹
 			j = 1 ;
 			for( i = 0 ; i < 32 && ( *Mask & j ) == 0 ; i ++, j <<= 1 ){}
 			Color->BlueLoc = ( unsigned char )i ;
@@ -2604,23 +2604,23 @@ extern int NS_ConvBitmapToGraphImage( const BITMAPINFO *BmpInfo, void *GraphData
 			Color->BlueWidth = ( unsigned char )w ;
 			Color->BlueMask = *Mask ;
 			
-			// ƒAƒ‹ƒtƒ@¬•ª‚Í‚È‚µ
+			// ã‚¢ãƒ«ãƒ•ã‚¡æˆåˆ†ã¯ãªã—
 			Color->AlphaWidth = 0 ;
 			Color->AlphaLoc = 0 ;
 			Color->AlphaMask = 0 ;
 
-			// NoneMask ‚ğƒZƒbƒg‚·‚é
+			// NoneMask ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 			NS_SetColorDataNoneMask( Color ) ;
 		}
 		
-		// ƒRƒs[ƒtƒ‰ƒO‚ª—§‚Á‚Ä‚¢‚½‚çƒf[ƒ^‚ğƒRƒs[‚·‚é
+		// ã‚³ãƒ”ãƒ¼ãƒ•ãƒ©ã‚°ãŒç«‹ã£ã¦ã„ãŸã‚‰ãƒ‡ãƒ¼ã‚¿ã‚’ã‚³ãƒ”ãƒ¼ã™ã‚‹
 		if( CopyFlag == TRUE )
 		{
-			// ƒRƒs[‚µ‚½ƒf[ƒ^‚ğŠi”[‚·‚éƒƒ‚ƒŠ—Ìˆæ‚ÌŠm•Û
+			// ã‚³ãƒ”ãƒ¼ã—ãŸãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹ãƒ¡ãƒ¢ãƒªé ˜åŸŸã®ç¢ºä¿
 			GraphImage->GraphData = DXALLOC( ( size_t )( GraphImage->Pitch * GraphImage->Height ) ) ;
 			if( GraphImage->GraphData == NULL ) return -1 ;
 			
-			// ƒf[ƒ^‚ÌƒRƒs[
+			// ãƒ‡ãƒ¼ã‚¿ã®ã‚³ãƒ”ãƒ¼
 			_MEMCPY( GraphImage->GraphData, GraphData, ( size_t )( GraphImage->Pitch * GraphImage->Height ) ) ;
 		}
 		else
@@ -2629,51 +2629,51 @@ extern int NS_ConvBitmapToGraphImage( const BITMAPINFO *BmpInfo, void *GraphData
 		}
 	}
 	else
-	// ˆ³kƒ^ƒCƒv‚ª–³ˆ³k‚¾‚Á‚½ê‡‚Í’Êí‚Ìˆ—‚ğs‚¤
+	// åœ§ç¸®ã‚¿ã‚¤ãƒ—ãŒç„¡åœ§ç¸®ã ã£ãŸå ´åˆã¯é€šå¸¸ã®å‡¦ç†ã‚’è¡Œã†
 	if( BInfo->biCompression == BI_RGB && ( BInfo->biBitCount == 16 || BInfo->biBitCount == 24 ) ) 
 	{
 		COLORDATA * Color ;
 
 		Color = &GraphImage->ColorData ;
 
-		// ƒJƒ‰[ƒrƒbƒg[“x‚ğƒZƒbƒg
+		// ã‚«ãƒ©ãƒ¼ãƒ“ãƒƒãƒˆæ·±åº¦ã‚’ã‚»ãƒƒãƒˆ
 		Color->ColorBitDepth = ( unsigned char )BInfo->biBitCount ;
 		Color->PixelByte     = ( unsigned char )( Color->ColorBitDepth / 8 ) ;
 
-		// ƒsƒbƒ`‚ğZo
+		// ãƒ”ãƒƒãƒã‚’ç®—å‡º
 		GraphImage->Pitch = GraphImage->Width * Color->PixelByte ;
 		GraphImage->Pitch = GraphImage->Pitch + ( GraphImage->Pitch % 4 != 0 ? ( 4 - GraphImage->Pitch % 4 ) : 0 ) ;
 		
-		// ƒJƒ‰[ƒrƒbƒg[“x‚²‚Æ‚ÉƒJƒ‰[ƒ}ƒXƒN‚ğ–„‚ß‚é
+		// ã‚«ãƒ©ãƒ¼ãƒ“ãƒƒãƒˆæ·±åº¦ã”ã¨ã«ã‚«ãƒ©ãƒ¼ãƒã‚¹ã‚¯ã‚’åŸ‹ã‚ã‚‹
 		switch( BInfo->biBitCount )
 		{
-		case 16 :		// ‚P‚UƒrƒbƒgƒJƒ‰[‚¾‚Á‚½ê‡‚Í‚q‚T‚f‚T‚a‚T
+		case 16 :		// ï¼‘ï¼–ãƒ“ãƒƒãƒˆã‚«ãƒ©ãƒ¼ã ã£ãŸå ´åˆã¯ï¼²ï¼•ï¼§ï¼•ï¼¢ï¼•
 			Color->RedWidth = 5 ; Color->RedLoc = 10 ; Color->RedMask = 0x7c00 ;
 			Color->GreenWidth = 5 ; Color->GreenLoc = 5 ; Color->GreenMask = 0x3e0 ;
 			Color->BlueWidth = 5 ; Color->BlueLoc = 0 ; Color->BlueMask = 0x1f ;
 			break ;
 			
-		case 24 :		// ‚Q‚SƒrƒbƒgƒJƒ‰[‚¾‚Á‚½ê‡‚Í‚q‚W‚f‚W‚a‚W
+		case 24 :		// ï¼’ï¼”ãƒ“ãƒƒãƒˆã‚«ãƒ©ãƒ¼ã ã£ãŸå ´åˆã¯ï¼²ï¼˜ï¼§ï¼˜ï¼¢ï¼˜
 			Color->RedWidth = 8 ; Color->RedLoc = 16 ; Color->RedMask = 0xff0000 ;
 			Color->GreenWidth = 8 ; Color->GreenLoc = 8 ; Color->GreenMask = 0xff00 ;
 			Color->BlueWidth = 8 ; Color->BlueLoc = 0 ; Color->BlueMask = 0xff ;
 			break ;
 		}
 
-		// ƒAƒ‹ƒtƒ@‚Í–³‚µ		
+		// ã‚¢ãƒ«ãƒ•ã‚¡ã¯ç„¡ã—		
 		Color->AlphaWidth = 0 ; Color->AlphaLoc = 0 ; Color->AlphaMask = 0 ;
 
-		// NoneMask ‚ğƒZƒbƒg‚·‚é
+		// NoneMask ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 		NS_SetColorDataNoneMask( Color ) ;
 		
-		// ƒRƒs[ƒtƒ‰ƒO‚ª—§‚Á‚Ä‚¢‚½‚çƒf[ƒ^‚ğƒRƒs[‚·‚é
+		// ã‚³ãƒ”ãƒ¼ãƒ•ãƒ©ã‚°ãŒç«‹ã£ã¦ã„ãŸã‚‰ãƒ‡ãƒ¼ã‚¿ã‚’ã‚³ãƒ”ãƒ¼ã™ã‚‹
 		if( CopyFlag == TRUE )
 		{
-			// ƒRƒs[‚µ‚½ƒf[ƒ^‚ğŠi”[‚·‚éƒƒ‚ƒŠ—Ìˆæ‚ÌŠm•Û
+			// ã‚³ãƒ”ãƒ¼ã—ãŸãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹ãƒ¡ãƒ¢ãƒªé ˜åŸŸã®ç¢ºä¿
 			GraphImage->GraphData = DXALLOC( ( size_t )( GraphImage->Pitch * GraphImage->Height ) ) ;
 			if( GraphImage->GraphData == NULL ) return -1 ;
 			
-			// ƒf[ƒ^‚ÌƒRƒs[
+			// ãƒ‡ãƒ¼ã‚¿ã®ã‚³ãƒ”ãƒ¼
 			_MEMCPY( GraphImage->GraphData, GraphData, ( size_t )( GraphImage->Pitch * GraphImage->Height ) ) ;
 		}
 		else
@@ -2682,23 +2682,23 @@ extern int NS_ConvBitmapToGraphImage( const BITMAPINFO *BmpInfo, void *GraphData
 		}
 	}
 	else
-	// ¡‚Ü‚Å‚Ìˆ—‚ÉŠY“–‚µ‚È‚©‚Á‚½‚çƒGƒ‰[
+	// ä»Šã¾ã§ã®å‡¦ç†ã«è©²å½“ã—ãªã‹ã£ãŸã‚‰ã‚¨ãƒ©ãƒ¼
 	return -1 ;	
 		
-	// ƒRƒs[‚µ‚½‚©‚Ç‚¤‚©‚ğ•Ô‚·
+	// ã‚³ãƒ”ãƒ¼ã—ãŸã‹ã©ã†ã‹ã‚’è¿”ã™
 	return CopyFlag ;
 }
 
-// GraphImage ‚ğ ‚a‚l‚o ‚É•ÏŠ·‚·‚é(ƒAƒ‹ƒtƒ@ƒf[ƒ^‚Í‚ ‚Á‚Ä‚à–³‹‚³‚ê‚é)( Ret 0:³íI—¹  1:ƒRƒs[‚ğs‚Á‚½  -1:ƒGƒ‰[ )
+// GraphImage ã‚’ ï¼¢ï¼­ï¼° ã«å¤‰æ›ã™ã‚‹(ã‚¢ãƒ«ãƒ•ã‚¡ãƒ‡ãƒ¼ã‚¿ã¯ã‚ã£ã¦ã‚‚ç„¡è¦–ã•ã‚Œã‚‹)( Ret 0:æ­£å¸¸çµ‚äº†  1:ã‚³ãƒ”ãƒ¼ã‚’è¡Œã£ãŸ  -1:ã‚¨ãƒ©ãƒ¼ )
 extern int NS_ConvGraphImageToBitmap( const BASEIMAGE *GraphImage, BITMAPINFO *BmpInfo, void **GraphData, int CopyFlag, int FullColorConv )
 {
 	const COLORDATA *SrcColor ;
 	int Pitch, i ;
 
-	// ‚WƒrƒbƒgƒJƒ‰[‚Ìê‡
+	// ï¼˜ãƒ“ãƒƒãƒˆã‚«ãƒ©ãƒ¼ã®å ´åˆ
 	if( GraphImage->ColorData.ColorBitDepth == 8 && FullColorConv == FALSE )
 	{
-		// ‚WƒrƒbƒgƒJƒ‰[‚Ì BITMAPINFOHEADER ‚Ìî•ñ‚ğ‹l‚ß‚é
+		// ï¼˜ãƒ“ãƒƒãƒˆã‚«ãƒ©ãƒ¼ã® BITMAPINFOHEADER ã®æƒ…å ±ã‚’è©°ã‚ã‚‹
 		_MEMSET( BmpInfo, 0, sizeof( *BmpInfo ) ) ;
 		BmpInfo->bmiHeader.biSize	= sizeof( BITMAPINFOHEADER ) ;
 		BmpInfo->bmiHeader.biWidth	= GraphImage->Width ;
@@ -2707,22 +2707,22 @@ extern int NS_ConvGraphImageToBitmap( const BASEIMAGE *GraphImage, BITMAPINFO *B
 		BmpInfo->bmiHeader.biBitCount= 8 ;
 		BmpInfo->bmiHeader.biCompression = BI_RGB ;
 
-		// ƒpƒŒƒbƒg‚ÌƒRƒs[
+		// ãƒ‘ãƒ¬ãƒƒãƒˆã®ã‚³ãƒ”ãƒ¼
 		_MEMCPY( BmpInfo->bmiColors, GraphImage->ColorData.Palette, sizeof( DWORD ) * 256 ) ;
 
-		// ƒsƒbƒ`‚ÌZo
+		// ãƒ”ãƒƒãƒã®ç®—å‡º
 		Pitch = ( ( GraphImage->Width + 3 ) / 4 ) * 4 ;
 
-		// ƒRƒs[ƒtƒ‰ƒO‚ª—§‚Á‚Ä‚¢‚é‚©Aƒsƒbƒ`‚ª‚S‚Ì”{”‚Å‚Í‚È‚¢ê‡‚Í“à—e‚ğƒRƒs[‚·‚é
+		// ã‚³ãƒ”ãƒ¼ãƒ•ãƒ©ã‚°ãŒç«‹ã£ã¦ã„ã‚‹ã‹ã€ãƒ”ãƒƒãƒãŒï¼”ã®å€æ•°ã§ã¯ãªã„å ´åˆã¯å†…å®¹ã‚’ã‚³ãƒ”ãƒ¼ã™ã‚‹
 		if( CopyFlag == TRUE || Pitch != GraphImage->Pitch )
 		{
 			BYTE *Src, *Dest ;
 
-			// •ÏŠ·‚µ‚½ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‚ğŠi”[‚·‚éƒoƒbƒtƒ@‚ÌŠm•Û
+			// å¤‰æ›ã—ãŸã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹ãƒãƒƒãƒ•ã‚¡ã®ç¢ºä¿
 			*GraphData = DXALLOC( ( size_t )( GraphImage->Height * Pitch ) ) ;
 			if( *GraphData == NULL ) return -1 ;
 
-			// ƒf[ƒ^‚ÌƒRƒs[
+			// ãƒ‡ãƒ¼ã‚¿ã®ã‚³ãƒ”ãƒ¼
 			Src  = (BYTE *)GraphImage->GraphData ;
 			Dest = (BYTE *)*GraphData ; 
 			for( i = 0 ; i < GraphImage->Height ; i ++, Src += GraphImage->Pitch, Dest += Pitch )
@@ -2730,20 +2730,20 @@ extern int NS_ConvGraphImageToBitmap( const BASEIMAGE *GraphImage, BITMAPINFO *B
 				_MEMCPY( Dest, Src, ( size_t )GraphImage->Width ) ;
 			}
 		 							
-			// ƒRƒs[ƒtƒ‰ƒO‚ğ—§‚Ä‚é
+			// ã‚³ãƒ”ãƒ¼ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 			CopyFlag = TRUE ;
 		}
 		else
-		// ‚»‚êˆÈŠO‚Ìê‡‚ÍƒAƒhƒŒƒX‚ğ‚»‚Ì‚Ü‚ÜƒZƒbƒg‚·‚é
+		// ãã‚Œä»¥å¤–ã®å ´åˆã¯ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ãã®ã¾ã¾ã‚»ãƒƒãƒˆã™ã‚‹
 		{
-			// ƒRƒs[‚ğ‚µ‚È‚¢ê‡‚ÍAƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^‚ğ GraphData ‚É‘ã“ü‚µ‚ÄI‚í‚è
+			// ã‚³ãƒ”ãƒ¼ã‚’ã—ãªã„å ´åˆã¯ã€ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿ã‚’ GraphData ã«ä»£å…¥ã—ã¦çµ‚ã‚ã‚Š
 			*GraphData = GraphImage->GraphData ;
 		}
 	}
 	else
-	// ‚»‚êˆÈŠO‚Ìê‡
+	// ãã‚Œä»¥å¤–ã®å ´åˆ
 	{
-		// ‚Q‚SƒrƒbƒgƒJƒ‰[‚Ì BITMAPINFOHEADER ‚Ìî•ñ‚ğ‹l‚ß‚é
+		// ï¼’ï¼”ãƒ“ãƒƒãƒˆã‚«ãƒ©ãƒ¼ã® BITMAPINFOHEADER ã®æƒ…å ±ã‚’è©°ã‚ã‚‹
 		_MEMSET( BmpInfo, 0, sizeof( *BmpInfo ) ) ;
 		BmpInfo->bmiHeader.biSize	= sizeof( BITMAPINFOHEADER ) ;
 		BmpInfo->bmiHeader.biWidth	= GraphImage->Width ;
@@ -2751,12 +2751,12 @@ extern int NS_ConvGraphImageToBitmap( const BASEIMAGE *GraphImage, BITMAPINFO *B
 		BmpInfo->bmiHeader.biPlanes	= 1 ;
 		BmpInfo->bmiHeader.biBitCount= 24 ;
 
-		// •ÏŠ·Œã‚Ìƒsƒbƒ`‚ÌZo
+		// å¤‰æ›å¾Œã®ãƒ”ãƒƒãƒã®ç®—å‡º
 		SrcColor = &GraphImage->ColorData ;
 		Pitch = GraphImage->Width * 3 ;
 		Pitch = ( ( Pitch + 3 ) / 4 ) * 4 ;
 
-		// ƒJƒ‰[ƒtƒH[ƒ}ƒbƒg‚ª‚Q‚SƒrƒbƒgƒJƒ‰[ˆÈŠO‚¾‚Á‚½ê‡‚©AƒRƒs[ƒtƒ‰ƒO‚ª—§‚Á‚Ä‚¢‚éê‡‚Í‚Q‚SƒrƒbƒgƒJƒ‰[‚É•ÏŠ·‚·‚é
+		// ã‚«ãƒ©ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆãŒï¼’ï¼”ãƒ“ãƒƒãƒˆã‚«ãƒ©ãƒ¼ä»¥å¤–ã ã£ãŸå ´åˆã‹ã€ã‚³ãƒ”ãƒ¼ãƒ•ãƒ©ã‚°ãŒç«‹ã£ã¦ã„ã‚‹å ´åˆã¯ï¼’ï¼”ãƒ“ãƒƒãƒˆã‚«ãƒ©ãƒ¼ã«å¤‰æ›ã™ã‚‹
 		SrcColor = &GraphImage->ColorData ;
 		if( SrcColor->ColorBitDepth != 24 || CopyFlag == TRUE || 
 			SrcColor->RedMask != 0xff0000 || SrcColor->GreenMask != 0xff00 || SrcColor->BlueMask != 0xff )
@@ -2765,14 +2765,14 @@ extern int NS_ConvGraphImageToBitmap( const BASEIMAGE *GraphImage, BITMAPINFO *B
 			POINT DestPoint ;
 			RECT SrcRect ;
 		
-			// •ÏŠ·‚µ‚½ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‚ğŠi”[‚·‚éƒoƒbƒtƒ@‚ÌŠm•Û
+			// å¤‰æ›ã—ãŸã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹ãƒãƒƒãƒ•ã‚¡ã®ç¢ºä¿
 			*GraphData = DXALLOC( ( size_t )( GraphImage->Height * Pitch ) ) ;
 			if( *GraphData == NULL ) return -1 ;
 			
-			// •ÏŠ·æ‚ÌƒtƒH[ƒ}ƒbƒg‚ğƒZƒbƒg
+			// å¤‰æ›å…ˆã®ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã‚’ã‚»ãƒƒãƒˆ
 			NS_CreateFullColorData( &SrcColor_ ) ;
 			
-			// •ÏŠ·ˆ—‚ğs‚¤
+			// å¤‰æ›å‡¦ç†ã‚’è¡Œã†
 			DestPoint.y = DestPoint.x = 0 ;
 			SrcRect.left = SrcRect.top = 0 ;
 			SrcRect.right = GraphImage->Width ; SrcRect.bottom = GraphImage->Height ;
@@ -2783,21 +2783,21 @@ extern int NS_ConvGraphImageToBitmap( const BASEIMAGE *GraphImage, BITMAPINFO *B
 		 								FALSE, 0,
 		 								DX_SHAVEDMODE_NONE, FALSE, FALSE, FALSE, FALSE ) ;
 		 							
-			// ƒRƒs[ƒtƒ‰ƒO‚ğ—§‚Ä‚é
+			// ã‚³ãƒ”ãƒ¼ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 			CopyFlag = TRUE ;
 		}
 		else
-		// ƒRƒs[‚ğ‚µ‚È‚¢ê‡‚ÍAƒsƒbƒ`‚ª‚ ‚Á‚Ä‚¢‚È‚¢ê‡‚Ì‚İŠÈˆÕ“]‘—ˆ—‚ğs‚¤
+		// ã‚³ãƒ”ãƒ¼ã‚’ã—ãªã„å ´åˆã¯ã€ãƒ”ãƒƒãƒãŒã‚ã£ã¦ã„ãªã„å ´åˆã®ã¿ç°¡æ˜“è»¢é€å‡¦ç†ã‚’è¡Œã†
 		if( Pitch != GraphImage->Pitch )
 		{
-			// ƒRƒs[ƒtƒ‰ƒO‚ğ—§‚Ä‚é
+			// ã‚³ãƒ”ãƒ¼ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 			CopyFlag = TRUE ;
 			
-			// •ÏŠ·‚µ‚½ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‚ğŠi”[‚·‚éƒoƒbƒtƒ@‚ÌŠm•Û
+			// å¤‰æ›ã—ãŸã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹ãƒãƒƒãƒ•ã‚¡ã®ç¢ºä¿
 			*GraphData = DXALLOC( ( size_t )( GraphImage->Height * Pitch ) ) ;
 			if( *GraphData == NULL ) return -1 ;
 			
-			// “]‘—ˆ—
+			// è»¢é€å‡¦ç†
 			{
 				int j ;
 				BYTE *Src, *Dest ;
@@ -2811,14 +2811,14 @@ extern int NS_ConvGraphImageToBitmap( const BASEIMAGE *GraphImage, BITMAPINFO *B
 			}
 		}
 		else
-		// ƒsƒbƒ`‚à‚ ‚Á‚Ä‚¢‚éê‡‚Í•ÏŠ·ˆ—‚ğs‚¤•K—v‚Í–³‚¢
+		// ãƒ”ãƒƒãƒã‚‚ã‚ã£ã¦ã„ã‚‹å ´åˆã¯å¤‰æ›å‡¦ç†ã‚’è¡Œã†å¿…è¦ã¯ç„¡ã„
 		{
-			// ƒRƒs[‚ğ‚µ‚È‚¢ê‡‚ÍAƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^‚ğ GraphData ‚É‘ã“ü‚µ‚ÄI‚í‚è
+			// ã‚³ãƒ”ãƒ¼ã‚’ã—ãªã„å ´åˆã¯ã€ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿ã‚’ GraphData ã«ä»£å…¥ã—ã¦çµ‚ã‚ã‚Š
 			*GraphData = GraphImage->GraphData ;
 		}
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return CopyFlag ;
 }
 
@@ -2833,64 +2833,64 @@ extern int NS_ConvGraphImageToBitmap( const BASEIMAGE *GraphImage, BITMAPINFO *B
 
 
 
-// ƒ†[ƒU[’è‹`‚ÌƒOƒ‰ƒtƒBƒbƒNƒ[ƒhŠÖ”Ver4‚ğ“o˜^‚·‚é
+// ãƒ¦ãƒ¼ã‚¶ãƒ¼å®šç¾©ã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ­ãƒ¼ãƒ‰é–¢æ•°Ver4ã‚’ç™»éŒ²ã™ã‚‹
 extern int NS_AddUserGraphLoadFunction4( int ( *UserLoadFunc )( STREAMDATA *Src, BASEIMAGE *BaseImage ) )
 {
 	int i ;
 
-	// “¯‚¶ŠÖ”‚ª“o˜^‚³‚ê‚Ä‚¢‚È‚¢‚©’²‚×‚é
+	// åŒã˜é–¢æ•°ãŒç™»éŒ²ã•ã‚Œã¦ã„ãªã„ã‹èª¿ã¹ã‚‹
 	for( i = 0 ; i < MAX_USERIMAGEREAD_FUNCNUM ; i ++ )
 	{
 		if( BASEIM.UserImageLoadFunc4[ i ] == UserLoadFunc ) break ; 
 	}
 	if( i != MAX_USERIMAGEREAD_FUNCNUM ) return -1 ;
 
-	// g‚í‚ê‚Ä‚¢‚È‚¢ƒ|ƒCƒ“ƒ^•Ï”‚ğ’T‚·
+	// ä½¿ã‚ã‚Œã¦ã„ãªã„ãƒã‚¤ãƒ³ã‚¿å¤‰æ•°ã‚’æ¢ã™
 	for( i = 0 ; i < MAX_USERIMAGEREAD_FUNCNUM ; i ++ )
 	{
 		if( BASEIM.UserImageLoadFunc4[ i ] == NULL ) break ; 
 	}
 	if( i == MAX_USERIMAGEREAD_FUNCNUM ) return -1 ;
 
-	// “o˜^
+	// ç™»éŒ²
 	BASEIM.UserImageLoadFunc4[ i ] = UserLoadFunc ;
 
-	// ƒ[ƒ_[‚Ì”‚ğ‘‚â‚·
+	// ãƒ­ãƒ¼ãƒ€ãƒ¼ã®æ•°ã‚’å¢—ã‚„ã™
 	BASEIM.UserImageLoadFuncNum4 ++ ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒ†[ƒU[’è‹`‚ÌƒOƒ‰ƒtƒBƒbƒNƒ[ƒhŠÖ”Ver4‚ğ“o˜^‚©‚ç–•Á‚·‚é
+// ãƒ¦ãƒ¼ã‚¶ãƒ¼å®šç¾©ã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ­ãƒ¼ãƒ‰é–¢æ•°Ver4ã‚’ç™»éŒ²ã‹ã‚‰æŠ¹æ¶ˆã™ã‚‹
 extern int NS_SubUserGraphLoadFunction4( int ( *UserLoadFunc )( STREAMDATA *Src, BASEIMAGE *BaseImage ) )
 {
 	int i ;
 
-	// w’è‚ÌƒOƒ‰ƒtƒBƒbƒNƒ[ƒhŠÖ”‚ğ’T‚·
+	// æŒ‡å®šã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ­ãƒ¼ãƒ‰é–¢æ•°ã‚’æ¢ã™
 	for( i = 0 ; i < MAX_USERIMAGEREAD_FUNCNUM ; i ++ )
 	{
 		if( BASEIM.UserImageLoadFunc4[ i ] == UserLoadFunc ) break ;
 	}
 	if( i == MAX_USERIMAGEREAD_FUNCNUM ) return -1 ;
 
-	// ƒf[ƒ^‚ğ–•Á
+	// ãƒ‡ãƒ¼ã‚¿ã‚’æŠ¹æ¶ˆ
 	BASEIM.UserImageLoadFunc4[ i ] = NULL ;
 	
-	// ƒf[ƒ^‚Ì”‚ğŒ¸‚ç‚·
+	// ãƒ‡ãƒ¼ã‚¿ã®æ•°ã‚’æ¸›ã‚‰ã™
 	BASEIM.UserImageLoadFuncNum4 -- ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// 32bit bmp ‰æ‘œ‚Ì‚`¬•ª‚ª‚·‚×‚Ä‚O‚¾‚Á‚½‚ç‚`¬•ª‚ğ–³‹‚·‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğƒZƒbƒg‚·‚é
+// 32bit bmp ç”»åƒã®ï¼¡æˆåˆ†ãŒã™ã¹ã¦ï¼ã ã£ãŸã‚‰ï¼¡æˆåˆ†ã‚’ç„¡è¦–ã™ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern int SetBmp32AllZeroAlphaToXRGB8( int Flag )
 {
-	// ƒtƒ‰ƒO‚ğ•Û‘¶‚·‚é
+	// ãƒ•ãƒ©ã‚°ã‚’ä¿å­˜ã™ã‚‹
 	BASEIM.Bmp32AllZeroAlphaToXRGB8 = Flag ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
@@ -2903,9 +2903,9 @@ extern int SetBmp32AllZeroAlphaToXRGB8( int Flag )
 
 
 
-// •W€‰æ‘œ“Ç‚İ‚İŠÖ”
+// æ¨™æº–ç”»åƒèª­ã¿è¾¼ã¿é–¢æ•°
 
-// ‚a‚l‚o‰æ‘œ‚Ì“Ç‚İ‚±‚İ
+// ï¼¢ï¼­ï¼°ç”»åƒã®èª­ã¿ã“ã¿
 static int LoadBmpImage( STREAMDATA *Stream, BASEIMAGE *BaseImage, int GetFormatOnly )
 {
 	DWORD_PTR			sp ;
@@ -2929,57 +2929,57 @@ static int LoadBmpImage( STREAMDATA *Stream, BASEIMAGE *BaseImage, int GetFormat
 	sstr = &Stream->ReadShred ;
 	sp   = Stream->DataPoint ;
 
-	// ƒtƒ@ƒCƒ‹ƒTƒCƒY‚ğ“¾‚é
+	// ãƒ•ã‚¡ã‚¤ãƒ«ã‚µã‚¤ã‚ºã‚’å¾—ã‚‹
 	sstr->Seek( sp, 0, STREAM_SEEKTYPE_END ) ;
 	FileSize = ( size_t )sstr->Tell( sp ) ;
 	sstr->Seek( sp, 0, STREAM_SEEKTYPE_SET ) ;
 	
-	if( sstr->Read( &BmpFileHeader, sizeof( BmpFileHeader ), 1, sp ) <= 0 ) goto ERR ;		// ƒtƒ@ƒCƒ‹ƒwƒbƒ_[•”•ª‚ğ“Ç‚İ‚±‚Ş
-	if( _MEMCMP( &BmpFileHeader.bfType, "BM", 2 ) ) goto ERR ;								// ‚h‚cŒŸ¸
-	if( sstr->Read( &BmpInfoT, sizeof( BITMAPINFO ), 1, sp ) <= 0 ) goto ERR ;				// BITMAPINFO‚ğ“Ç‚İ‚±‚Ş
+	if( sstr->Read( &BmpFileHeader, sizeof( BmpFileHeader ), 1, sp ) <= 0 ) goto ERR ;		// ãƒ•ã‚¡ã‚¤ãƒ«ãƒ˜ãƒƒãƒ€ãƒ¼éƒ¨åˆ†ã‚’èª­ã¿ã“ã‚€
+	if( _MEMCMP( &BmpFileHeader.bfType, "BM", 2 ) ) goto ERR ;								// ï¼©ï¼¤æ¤œæŸ»
+	if( sstr->Read( &BmpInfoT, sizeof( BITMAPINFO ), 1, sp ) <= 0 ) goto ERR ;				// BITMAPINFOã‚’èª­ã¿ã“ã‚€
 
-	// ƒJƒ‰[ƒrƒbƒg”‚ª‚WˆÈ‰º‚Ì‚ÍƒpƒŒƒbƒg‚ğ“Ç‚Ş
+	// ã‚«ãƒ©ãƒ¼ãƒ“ãƒƒãƒˆæ•°ãŒï¼˜ä»¥ä¸‹ã®æ™‚ã¯ãƒ‘ãƒ¬ãƒƒãƒˆã‚’èª­ã‚€
 	if( BmpInfoT.bmiHeader.biBitCount <= 8 )
 	{
-		// ‚a‚l‚o‚h‚m‚e‚n\‘¢‘Ì‚ÌŠi”[—pƒƒ‚ƒŠ‚ğŠm•Û
+		// ï¼¢ï¼­ï¼°ï¼©ï¼®ï¼¦ï¼¯æ§‹é€ ä½“ã®æ ¼ç´ç”¨ãƒ¡ãƒ¢ãƒªã‚’ç¢ºä¿
 		if( ( BmpInfo2 = ( BITMAPINFO * )DXCALLOC( sizeof( BITMAPINFO ) + 256 * sizeof( RGBQUAD ) ) ) == NULL ) goto ERR ;
 
-		// ‚a‚l‚o‚h‚m‚e‚n\‘¢‘Ì‚Ì“à—e‚ğƒRƒs[
+		// ï¼¢ï¼­ï¼°ï¼©ï¼®ï¼¦ï¼¯æ§‹é€ ä½“ã®å†…å®¹ã‚’ã‚³ãƒ”ãƒ¼
 		_MEMCPY( BmpInfo2, &BmpInfoT, sizeof( BITMAPINFO ) ) ;
 
-		// c‚è‚ÌƒJƒ‰[ƒpƒŒƒbƒg‚Ì“Ç‚İ‚±‚İ
+		// æ®‹ã‚Šã®ã‚«ãƒ©ãƒ¼ãƒ‘ãƒ¬ãƒƒãƒˆã®èª­ã¿ã“ã¿
 		if( ( sstr->Read( ( ( BYTE * )BmpInfo2 ) + sizeof( BITMAPINFO ), 1, ( ( 1 << BmpInfoT.bmiHeader.biBitCount ) - 1 ) * sizeof( RGBQUAD ), sp ) ) <= 0 ) goto ERR ;
 	}
 	else
-	// ƒJƒ‰[ƒrƒbƒg”‚ª‚R‚Q‚©‚P‚U‚ÅƒJƒ‰[ƒ}ƒXƒNg—p‚Ìˆ—
+	// ã‚«ãƒ©ãƒ¼ãƒ“ãƒƒãƒˆæ•°ãŒï¼“ï¼’ã‹ï¼‘ï¼–ã§ã‚«ãƒ©ãƒ¼ãƒã‚¹ã‚¯ä½¿ç”¨æ™‚ã®å‡¦ç†
 	if( BmpInfoT.bmiHeader.biBitCount == 16 || BmpInfoT.bmiHeader.biBitCount == 32 || BmpInfoT.bmiHeader.biCompression == BI_BITFIELDS )
 	{
-		// ‚a‚l‚o‚h‚m‚e‚n\‘¢‘Ì‚ÌŠi”[—pƒƒ‚ƒŠ‚ğŠm•Û
+		// ï¼¢ï¼­ï¼°ï¼©ï¼®ï¼¦ï¼¯æ§‹é€ ä½“ã®æ ¼ç´ç”¨ãƒ¡ãƒ¢ãƒªã‚’ç¢ºä¿
 		if( ( BmpInfo2 = ( BITMAPINFO * )DXCALLOC( sizeof( BITMAPINFOHEADER ) + sizeof( RGBQUAD ) * 3 ) ) == NULL ) goto ERR ;
 
-		// ‚a‚l‚o‚h‚m‚e‚n‚g‚d‚`‚c‚d‚q\‘¢‘Ì‚Ì“à—e‚ğƒRƒs[
+		// ï¼¢ï¼­ï¼°ï¼©ï¼®ï¼¦ï¼¯ï¼¨ï¼¥ï¼¡ï¼¤ï¼¥ï¼²æ§‹é€ ä½“ã®å†…å®¹ã‚’ã‚³ãƒ”ãƒ¼
 		_MEMCPY( BmpInfo2, &BmpInfoT, sizeof( BITMAPINFO ) ) ;
 
-		// ƒJƒ‰[ƒ}ƒXƒN‚Ì“Ç‚İ‚±‚İ
+		// ã‚«ãƒ©ãƒ¼ãƒã‚¹ã‚¯ã®èª­ã¿ã“ã¿
 		if( BmpInfoT.bmiHeader.biCompression == BI_BITFIELDS )
 		{
 			if( ( sstr->Read( ( ( BYTE * )BmpInfo2 ) + sizeof( BITMAPINFO ), sizeof( RGBQUAD ) * 2, 1, sp ) ) <= 0 ) goto ERR ;
 		}
 	}
 	else
-	// ‚»‚êˆÈŠO‚Ìê‡‚Ìˆ—
+	// ãã‚Œä»¥å¤–ã®å ´åˆã®å‡¦ç†
 	{
-		// ‚a‚l‚o‚h‚m‚e‚n\‘¢‘Ì‚ÌŠi”[—pƒƒ‚ƒŠ‚ğŠm•Û
+		// ï¼¢ï¼­ï¼°ï¼©ï¼®ï¼¦ï¼¯æ§‹é€ ä½“ã®æ ¼ç´ç”¨ãƒ¡ãƒ¢ãƒªã‚’ç¢ºä¿
 		if( ( BmpInfo2 = ( BITMAPINFO * )DXCALLOC( sizeof( BITMAPINFO ) ) ) == NULL ) goto ERR ;
 
-		// ‚a‚l‚o‚h‚m‚e‚n‚g‚d‚`‚c‚d‚q\‘¢‘Ì‚Ì“à—e‚ğƒRƒs[
+		// ï¼¢ï¼­ï¼°ï¼©ï¼®ï¼¦ï¼¯ï¼¨ï¼¥ï¼¡ï¼¤ï¼¥ï¼²æ§‹é€ ä½“ã®å†…å®¹ã‚’ã‚³ãƒ”ãƒ¼
 		_MEMCPY( BmpInfo2, &BmpInfoT, sizeof( BITMAPINFO ) ) ;
 	}
 
-	// ƒtƒ@ƒCƒ‹ƒ|ƒCƒ“ƒ^‚ğ‘€ì
+	// ãƒ•ã‚¡ã‚¤ãƒ«ãƒã‚¤ãƒ³ã‚¿ã‚’æ“ä½œ
 	sstr->Seek( sp, BmpFileHeader.bfOffBits, STREAM_SEEKTYPE_SET ) ;
 
-	// ƒCƒ[ƒWƒTƒCƒY‚ğŒvZ‚·‚é
+	// ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚µã‚¤ã‚ºã‚’è¨ˆç®—ã™ã‚‹
 	{
 		Pitch = BmpInfoT.bmiHeader.biWidth * BmpInfoT.bmiHeader.biBitCount / 8 ;
 		if( ( BmpInfoT.bmiHeader.biWidth * BmpInfoT.bmiHeader.biBitCount ) % 8 != 0 ) Pitch ++ ;
@@ -2987,32 +2987,32 @@ static int LoadBmpImage( STREAMDATA *Stream, BASEIMAGE *BaseImage, int GetFormat
 		DataSize = Pitch * _ABS( BmpInfoT.bmiHeader.biHeight ) ;
 	}
 
-	// ƒtƒ@ƒCƒ‹‚Ìc‚è‚Ì•”•ª‚ğƒƒ‚ƒŠ‚É“Ç‚İ‚Ş
+	// ãƒ•ã‚¡ã‚¤ãƒ«ã®æ®‹ã‚Šã®éƒ¨åˆ†ã‚’ãƒ¡ãƒ¢ãƒªã«èª­ã¿è¾¼ã‚€
 	if( GetFormatOnly == FALSE )
 	{
 		ImageSize = ( size_t )( FileSize - sstr->Tell( sp ) ) ;
 		
-		// c‚è‚Ì•”•ª‚ğŠi”[‚·‚éƒƒ‚ƒŠ—Ìˆæ‚ÌŠm•Û
+		// æ®‹ã‚Šã®éƒ¨åˆ†ã‚’æ ¼ç´ã™ã‚‹ãƒ¡ãƒ¢ãƒªé ˜åŸŸã®ç¢ºä¿
 		GData = (BYTE *)DXALLOC( ImageSize ) ;
 		if( GData == NULL ) goto ERR ;
 
-		// “Ç‚İ‚İ
+		// èª­ã¿è¾¼ã¿
 		if( sstr->Read( GData, 1, ImageSize, sp ) <= 0 ) goto ERR ;
 	}
 
-	// Œ`®‚É‚æ‚Á‚Äˆ—‚ğ•ªŠò
+	// å½¢å¼ã«ã‚ˆã£ã¦å‡¦ç†ã‚’åˆ†å²
 	if( BmpInfo2->bmiHeader.biCompression == BI_RLE8 )
 	{
-		// ‚WƒrƒbƒgƒpƒŒƒbƒgˆ³kŒ`®
+		// ï¼˜ãƒ“ãƒƒãƒˆãƒ‘ãƒ¬ãƒƒãƒˆåœ§ç¸®å½¢å¼
 
 		if( GetFormatOnly == FALSE )
 		{
-			// ƒfƒR[ƒhŒã‚Ìƒf[ƒ^‚ğŠi”[‚·‚éƒƒ‚ƒŠ—Ìˆæ‚ÌŠm•Û
+			// ãƒ‡ã‚³ãƒ¼ãƒ‰å¾Œã®ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹ãƒ¡ãƒ¢ãƒªé ˜åŸŸã®ç¢ºä¿
 			DecodeBuf = (BYTE *)DXALLOC( ( size_t )DataSize ) ;	
 			if( DecodeBuf == NULL ) goto ERR ;
 			_MEMSET( DecodeBuf, 0, ( size_t )DataSize ) ;
 			
-			// ‰ğ“€€”õ
+			// è§£å‡æº–å‚™
 			if( BmpInfo2->bmiHeader.biHeight < 0 )
 			{
 				Dest         = DecodeBuf ;
@@ -3025,50 +3025,50 @@ static int LoadBmpImage( STREAMDATA *Stream, BASEIMAGE *BaseImage, int GetFormat
 			}
 			Src = GData ;
 			
-			// ‰ğ“€ŠJn
+			// è§£å‡é–‹å§‹
 			DestT = Dest ;
 			for(;;)
 			{
-				// ‚PƒoƒCƒg–Ú‚ÌƒR[ƒh‚É‚æ‚Á‚Äˆ—‚ğ•ªŠò
+				// ï¼‘ãƒã‚¤ãƒˆç›®ã®ã‚³ãƒ¼ãƒ‰ã«ã‚ˆã£ã¦å‡¦ç†ã‚’åˆ†å²
 				if( Src[0] != 0 )
 				{
-					// ˜A‘±“WŠJƒ‚[ƒh
+					// é€£ç¶šå±•é–‹ãƒ¢ãƒ¼ãƒ‰
 
-					// ‚QƒoƒCƒg–Ú‚Ì’l‚ª‚PƒoƒCƒg–Ú‚Ì”’l•ª‚¾‚¯“WŠJ‚³‚ê‚é
+					// ï¼’ãƒã‚¤ãƒˆç›®ã®å€¤ãŒï¼‘ãƒã‚¤ãƒˆç›®ã®æ•°å€¤åˆ†ã ã‘å±•é–‹ã•ã‚Œã‚‹
 					_MEMSET( DestT, Src[1], Src[0] ) ;
 
-					// À•W‚ğ‚¸‚ç‚·
+					// åº§æ¨™ã‚’ãšã‚‰ã™
 					DestT += Src[0] ;
 				}
 				else
 				{
-					// ƒR[ƒh‰»ƒ‚[ƒh
+					// ã‚³ãƒ¼ãƒ‰åŒ–ãƒ¢ãƒ¼ãƒ‰
 
-					// ƒGƒXƒP[ƒvƒR[ƒh‚É‚æ‚Á‚Äˆ—‚ğ•ªŠò
+					// ã‚¨ã‚¹ã‚±ãƒ¼ãƒ—ã‚³ãƒ¼ãƒ‰ã«ã‚ˆã£ã¦å‡¦ç†ã‚’åˆ†å²
 					switch( Src[1] )
 					{
-					case 0 :	// ‚O‚¾‚Á‚½‚çs‚ÌI’[AƒAƒhƒŒƒX‚ğ•ÏX‚·‚é
+					case 0 :	// ï¼ã ã£ãŸã‚‰è¡Œã®çµ‚ç«¯ã€ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å¤‰æ›´ã™ã‚‹
 						Dest += DestAddPitch ;
 						DestT = Dest ;
 						break ;
 
-					case 1 :	// ‚P‚¾‚Á‚½‚çƒCƒ[ƒWƒf[ƒ^‚ÌI’[
+					case 1 :	// ï¼‘ã ã£ãŸã‚‰ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ã®çµ‚ç«¯
 						goto RLE8END ;
 
-					case 2 :	// ‚Q‚¾‚Á‚½‚çŒ»İ‚ÌƒAƒhƒŒƒX‚ğ•ÏX‚·‚é
+					case 2 :	// ï¼’ã ã£ãŸã‚‰ç¾åœ¨ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å¤‰æ›´ã™ã‚‹
 						Dest  += *((char *)&Src[3]) * DestAddPitch ;
 						DestT  = Dest + *((char *)&Src[2]) ;
 						Src   += 2 ;
 						break ;
 
 					default :
-						// ‚»‚êˆÈŠO‚Ìê‡‚Í”ñˆ³k“WŠJ
+						// ãã‚Œä»¥å¤–ã®å ´åˆã¯éåœ§ç¸®å±•é–‹
 						_MEMCPY( DestT, Src + 2, Src[1] ) ;
 
-						// ƒAƒhƒŒƒX‚ğ•ÏX‚·‚é
+						// ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å¤‰æ›´ã™ã‚‹
 						DestT += Src[1] ;
 						Src   += Src[1] ;
-						Src    = (BYTE *)( ( (DWORD_PTR)Src + 1 ) / 2 * 2 ) ;	// Src ‚ÌƒAƒhƒŒƒX‚Í•K‚¸‚Q‚Ì”{”
+						Src    = (BYTE *)( ( (DWORD_PTR)Src + 1 ) / 2 * 2 ) ;	// Src ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã¯å¿…ãšï¼’ã®å€æ•°
 						break ;
 					}
 				}
@@ -3081,14 +3081,14 @@ static int LoadBmpImage( STREAMDATA *Stream, BASEIMAGE *BaseImage, int GetFormat
 			GData = NULL ;
 		}
 		
-		// BASEIMAGE ‚Ìƒwƒbƒ_‚ğ\’z
+		// BASEIMAGE ã®ãƒ˜ãƒƒãƒ€ã‚’æ§‹ç¯‰
 		{
 			BaseImage->GraphData = GetFormatOnly == FALSE ? DecodeBuf : NULL ;
 			BaseImage->Width     = BmpInfo2->bmiHeader.biWidth ;
 			BaseImage->Height    = _ABS( BmpInfo2->bmiHeader.biHeight ) ;
 			BaseImage->Pitch     = Pitch ;
 
-			// ƒJƒ‰[î•ñ‚ÌƒZƒbƒg
+			// ã‚«ãƒ©ãƒ¼æƒ…å ±ã®ã‚»ãƒƒãƒˆ
 			NS_CreatePaletteColorData( &BaseImage->ColorData ) ;
 			_MEMCPY( BaseImage->ColorData.Palette, BmpInfo2->bmiColors, 256 * sizeof( RGBQUAD ) ) ;
 			for( i = 0 ; i < 256 ; i ++ )
@@ -3098,20 +3098,20 @@ static int LoadBmpImage( STREAMDATA *Stream, BASEIMAGE *BaseImage, int GetFormat
 	else
 	if( BmpInfo2->bmiHeader.biCompression == BI_RLE4 )
 	{
-		// ‚SƒrƒbƒgƒpƒŒƒbƒgˆ³kŒ`®
-		// ‚WƒrƒbƒgƒpƒŒƒbƒgŒ`®‚É•ÏŠ·‚µ‚È‚ª‚ç‰ğ“€
+		// ï¼”ãƒ“ãƒƒãƒˆãƒ‘ãƒ¬ãƒƒãƒˆåœ§ç¸®å½¢å¼
+		// ï¼˜ãƒ“ãƒƒãƒˆãƒ‘ãƒ¬ãƒƒãƒˆå½¢å¼ã«å¤‰æ›ã—ãªãŒã‚‰è§£å‡
 
 		Pitch    = ( BmpInfo2->bmiHeader.biWidth + 3 ) / 4 * 4 ;
 		DataSize = Pitch * _ABS( BmpInfo2->bmiHeader.biHeight ) ;
 
 		if( GetFormatOnly == FALSE )
 		{
-			// ƒfƒR[ƒhŒã‚Ìƒf[ƒ^‚ğŠi”[‚·‚éƒƒ‚ƒŠ—Ìˆæ‚ÌŠm•Û
+			// ãƒ‡ã‚³ãƒ¼ãƒ‰å¾Œã®ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹ãƒ¡ãƒ¢ãƒªé ˜åŸŸã®ç¢ºä¿
 			DecodeBuf = (BYTE *)DXALLOC( ( size_t )DataSize ) ;	
 			if( DecodeBuf == NULL ) goto ERR ;
 			_MEMSET( DecodeBuf, 0, ( size_t )DataSize ) ;
 
-			// ‰ğ“€€”õ
+			// è§£å‡æº–å‚™
 			if( BmpInfo2->bmiHeader.biHeight < 0 )
 			{
 				Dest         = DecodeBuf ;
@@ -3124,18 +3124,18 @@ static int LoadBmpImage( STREAMDATA *Stream, BASEIMAGE *BaseImage, int GetFormat
 			}
 			Src = GData ;
 			
-			// ‰ğ“€ŠJn
+			// è§£å‡é–‹å§‹
 			DestT = Dest ;
 			for(;;)
 			{
-				// ‚PƒoƒCƒg–Ú‚ÌƒR[ƒh‚É‚æ‚Á‚Äˆ—‚ğ•ªŠò
+				// ï¼‘ãƒã‚¤ãƒˆç›®ã®ã‚³ãƒ¼ãƒ‰ã«ã‚ˆã£ã¦å‡¦ç†ã‚’åˆ†å²
 				if( Src[0] != 0 )
 				{
-					// ˜A‘±“WŠJƒ‚[ƒh
+					// é€£ç¶šå±•é–‹ãƒ¢ãƒ¼ãƒ‰
 
-					// ‚QƒoƒCƒg–Ú‚Ì’l(‚QƒsƒNƒZƒ‹•ª(ãˆÊ4bit‚ª‚PƒsƒNƒZƒ‹–Ú))‚ª
-					// ‚PƒoƒCƒg–Ú‚Ì”•ª‚¾‚¯“WŠJ‚³‚ê‚é(ƒsƒNƒZƒ‹’PˆÊ)
-					// ‚Â‚Ü‚è 07 13 ‚Æ‚ ‚Á‚½‚ç 01 03 01 03 01 03 01 ‚Æ“WŠJ‚³‚ê‚é 
+					// ï¼’ãƒã‚¤ãƒˆç›®ã®å€¤(ï¼’ãƒ”ã‚¯ã‚»ãƒ«åˆ†(ä¸Šä½4bitãŒï¼‘ãƒ”ã‚¯ã‚»ãƒ«ç›®))ãŒ
+					// ï¼‘ãƒã‚¤ãƒˆç›®ã®æ•°åˆ†ã ã‘å±•é–‹ã•ã‚Œã‚‹(ãƒ”ã‚¯ã‚»ãƒ«å˜ä½)
+					// ã¤ã¾ã‚Š 07 13 ã¨ã‚ã£ãŸã‚‰ 01 03 01 03 01 03 01 ã¨å±•é–‹ã•ã‚Œã‚‹ 
 					Loop = Src[0] ;
 					Num  = ( WORD )( ( ( Src[1] & 0xf0 ) >> 4 ) | ( ( Src[1] & 0x0f ) << 8 ) ) ;
 					
@@ -3156,30 +3156,30 @@ static int LoadBmpImage( STREAMDATA *Stream, BASEIMAGE *BaseImage, int GetFormat
 				}
 				else
 				{
-					// ƒR[ƒh‰»ƒ‚[ƒh
+					// ã‚³ãƒ¼ãƒ‰åŒ–ãƒ¢ãƒ¼ãƒ‰
 
-					// ƒGƒXƒP[ƒvƒR[ƒh‚É‚æ‚Á‚Äˆ—‚ğ•ªŠò
+					// ã‚¨ã‚¹ã‚±ãƒ¼ãƒ—ã‚³ãƒ¼ãƒ‰ã«ã‚ˆã£ã¦å‡¦ç†ã‚’åˆ†å²
 					switch( Src[1] )
 					{
 					case 0 :
-						// ‚O‚¾‚Á‚½‚çs‚ÌI’[AƒAƒhƒŒƒX‚ğ•ÏX‚·‚é
+						// ï¼ã ã£ãŸã‚‰è¡Œã®çµ‚ç«¯ã€ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å¤‰æ›´ã™ã‚‹
 						Dest  += DestAddPitch ;
 						DestT  = Dest ;
 						break ;
 
 					case 1 :
-						// ‚P‚¾‚Á‚½‚çƒCƒ[ƒWƒf[ƒ^‚ÌI’[
+						// ï¼‘ã ã£ãŸã‚‰ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ã®çµ‚ç«¯
 						goto RLE4END ;
 
 					case 2 :
-						// ‚Q‚¾‚Á‚½‚çŒ»İ‚ÌƒAƒhƒŒƒX‚ğ•ÏX‚·‚é
+						// ï¼’ã ã£ãŸã‚‰ç¾åœ¨ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å¤‰æ›´ã™ã‚‹
 						Dest  += *((char *)&Src[3]) * DestAddPitch ;
 						DestT  = Dest + *((char *)&Src[2]) ;
 						Src   += 2 ;
 						break ;
 
 					default :
-						// ‚»‚êˆÈŠO‚Ìê‡‚Í”ñˆ³k“WŠJ
+						// ãã‚Œä»¥å¤–ã®å ´åˆã¯éåœ§ç¸®å±•é–‹
 						Loop = Src[1] ;
 						Src += 2 ;
 						Loop2 = Loop / 2 ;
@@ -3209,14 +3209,14 @@ static int LoadBmpImage( STREAMDATA *Stream, BASEIMAGE *BaseImage, int GetFormat
 			GData = NULL ;
 		}
 
-		// BASEIMAGE ‚Ìƒwƒbƒ_‚ğ\’z
+		// BASEIMAGE ã®ãƒ˜ãƒƒãƒ€ã‚’æ§‹ç¯‰
 		{
 			BaseImage->GraphData = DecodeBuf ;
 			BaseImage->Width     = BmpInfo2->bmiHeader.biWidth ;
 			BaseImage->Height    = _ABS( BmpInfo2->bmiHeader.biHeight ) ;
 			BaseImage->Pitch     = Pitch ;
 
-			// ƒJƒ‰[î•ñ‚ÌƒZƒbƒg
+			// ã‚«ãƒ©ãƒ¼æƒ…å ±ã®ã‚»ãƒƒãƒˆ
 			NS_CreatePaletteColorData( &BaseImage->ColorData ) ;
 			_MEMCPY( BaseImage->ColorData.Palette, BmpInfo2->bmiColors, 16 * sizeof( RGBQUAD ) ) ;
 			for( i = 0 ; i < 16 ; i ++ )
@@ -3226,7 +3226,7 @@ static int LoadBmpImage( STREAMDATA *Stream, BASEIMAGE *BaseImage, int GetFormat
 	else
 	if( BmpInfo2->bmiHeader.biCompression == BI_RGB && BmpInfo2->bmiHeader.biBitCount == 1 )
 	{
-		// ‚QFƒJƒ‰[‚Ìê‡‚Í‚Q‚T‚UFƒJƒ‰[‚É•ÏŠ·‚·‚é
+		// ï¼’è‰²ã‚«ãƒ©ãƒ¼ã®å ´åˆã¯ï¼’ï¼•ï¼–è‰²ã‚«ãƒ©ãƒ¼ã«å¤‰æ›ã™ã‚‹
 		int nt, qt, NokoriNum, MultiNum, Width, DestPitch ;
 		int SrcAddPitch ;
 
@@ -3242,16 +3242,16 @@ static int LoadBmpImage( STREAMDATA *Stream, BASEIMAGE *BaseImage, int GetFormat
 			MultiNum  = Width / 8 ;
 			NokoriNum = Width - MultiNum * 8 ;
 
-			// ã‰º”½“]‚ª•K—v‚Èê‡‚Í‚»‚Ìˆ—‚à‚±‚±‚Å‚·‚é
+			// ä¸Šä¸‹åè»¢ãŒå¿…è¦ãªå ´åˆã¯ãã®å‡¦ç†ã‚‚ã“ã“ã§ã™ã‚‹
 			if( BmpInfo2->bmiHeader.biHeight > 0 )
 			{
-				// ã‰º”½“]‚·‚éê‡
+				// ä¸Šä¸‹åè»¢ã™ã‚‹å ´åˆ
 				Src         = (BYTE *)GData + Pitch * ( Height - 1 ) ;
 				SrcAddPitch = ( Pitch - Width / 8 ) - Pitch * 2 ;
 			}
 			else
 			{
-				// ã‰º”½“]‚µ‚È‚¢ê‡
+				// ä¸Šä¸‹åè»¢ã—ãªã„å ´åˆ
 				SrcAddPitch = Pitch - Width / 8 ;
 				Src         = (BYTE *)GData ;
 			}
@@ -3328,14 +3328,14 @@ static int LoadBmpImage( STREAMDATA *Stream, BASEIMAGE *BaseImage, int GetFormat
 			Buf   = NULL ;
 		}
 
-		// BASEIMAGE ‚Ìƒwƒbƒ_‚ğ\’z
+		// BASEIMAGE ã®ãƒ˜ãƒƒãƒ€ã‚’æ§‹ç¯‰
 		{
 			BaseImage->GraphData = GData ;
 			BaseImage->Width     = BmpInfo2->bmiHeader.biWidth ;
 			BaseImage->Height    = _ABS( BmpInfo2->bmiHeader.biHeight ) ;
 			BaseImage->Pitch     = DestPitch ;
 
-			// ƒJƒ‰[î•ñ‚ÌƒZƒbƒg
+			// ã‚«ãƒ©ãƒ¼æƒ…å ±ã®ã‚»ãƒƒãƒˆ
 			NS_CreatePaletteColorData( &BaseImage->ColorData ) ;
 			BaseImage->ColorData.MaxPaletteNo = 15 ;
 			_MEMCPY( BaseImage->ColorData.Palette, BmpInfo2->bmiColors, 2 * sizeof( RGBQUAD ) ) ;
@@ -3346,7 +3346,7 @@ static int LoadBmpImage( STREAMDATA *Stream, BASEIMAGE *BaseImage, int GetFormat
 	else
 	if( BmpInfo2->bmiHeader.biCompression == BI_RGB && BmpInfo2->bmiHeader.biBitCount == 4 )
 	{
-		// ‚P‚UFƒJƒ‰[‚Ìê‡‚Í‚Q‚T‚UFƒJƒ‰[‚É•ÏŠ·‚·‚é
+		// ï¼‘ï¼–è‰²ã‚«ãƒ©ãƒ¼ã®å ´åˆã¯ï¼’ï¼•ï¼–è‰²ã‚«ãƒ©ãƒ¼ã«å¤‰æ›ã™ã‚‹
 	
 		int nt, qt, NokoriNum, QwordNum, Width, DestPitch ;
 		int SrcAddPitch ;
@@ -3364,16 +3364,16 @@ static int LoadBmpImage( STREAMDATA *Stream, BASEIMAGE *BaseImage, int GetFormat
 			QwordNum  = Width / 8 ;
 			NokoriNum = Width - QwordNum * 8 ;
 
-			// ã‰º”½“]‚ª•K—v‚Èê‡‚Í‚»‚Ìˆ—‚à‚±‚±‚Å‚·‚é
+			// ä¸Šä¸‹åè»¢ãŒå¿…è¦ãªå ´åˆã¯ãã®å‡¦ç†ã‚‚ã“ã“ã§ã™ã‚‹
 			if( BmpInfo2->bmiHeader.biHeight > 0 )
 			{
-				// ã‰º”½“]‚·‚éê‡
+				// ä¸Šä¸‹åè»¢ã™ã‚‹å ´åˆ
 				Src         = (BYTE *)GData + Pitch * ( Height - 1 ) ;
 				SrcAddPitch = ( Pitch - Width / 2 ) - Pitch * 2 ;
 			}
 			else
 			{
-				// ã‰º”½“]‚µ‚È‚¢ê‡
+				// ä¸Šä¸‹åè»¢ã—ãªã„å ´åˆ
 				SrcAddPitch = Pitch - Width / 2 ;
 				Src         = (BYTE *)GData ;
 			}
@@ -3429,14 +3429,14 @@ static int LoadBmpImage( STREAMDATA *Stream, BASEIMAGE *BaseImage, int GetFormat
 			Buf   = NULL ;
 		}
 
-		// BASEIMAGE ‚Ìƒwƒbƒ_‚ğ\’z
+		// BASEIMAGE ã®ãƒ˜ãƒƒãƒ€ã‚’æ§‹ç¯‰
 		{
 			BaseImage->GraphData = GData ;
 			BaseImage->Width     = BmpInfo2->bmiHeader.biWidth ;
 			BaseImage->Height    = _ABS( BmpInfo2->bmiHeader.biHeight ) ;
 			BaseImage->Pitch     = DestPitch ;
 
-			// ƒJƒ‰[î•ñ‚ÌƒZƒbƒg
+			// ã‚«ãƒ©ãƒ¼æƒ…å ±ã®ã‚»ãƒƒãƒˆ
 			NS_CreatePaletteColorData( &BaseImage->ColorData ) ;
 			BaseImage->ColorData.MaxPaletteNo = 15 ;
 			_MEMCPY( BaseImage->ColorData.Palette, BmpInfo2->bmiColors, 16 * sizeof( RGBQUAD ) ) ;
@@ -3448,11 +3448,11 @@ static int LoadBmpImage( STREAMDATA *Stream, BASEIMAGE *BaseImage, int GetFormat
 	if( BmpInfo2->bmiHeader.biCompression == BI_RGB &&
 		( BmpInfo2->bmiHeader.biBitCount == 32 ||  BmpInfo2->bmiHeader.biBitCount == 24 || BmpInfo2->bmiHeader.biBitCount == 8 ) )
 	{
-		// ‚R‚QƒrƒbƒgƒJƒ‰[‚a‚l‚o‚©‚Q‚Sƒrƒbƒgƒtƒ‹ƒJƒ‰[‚a‚l‚o‚©‚WƒrƒbƒgƒpƒŒƒbƒgƒJƒ‰[‚Ìê‡
+		// ï¼“ï¼’ãƒ“ãƒƒãƒˆã‚«ãƒ©ãƒ¼ï¼¢ï¼­ï¼°ã‹ï¼’ï¼”ãƒ“ãƒƒãƒˆãƒ•ãƒ«ã‚«ãƒ©ãƒ¼ï¼¢ï¼­ï¼°ã‹ï¼˜ãƒ“ãƒƒãƒˆãƒ‘ãƒ¬ãƒƒãƒˆã‚«ãƒ©ãƒ¼ã®å ´åˆ
 
 		if( GetFormatOnly == FALSE )
 		{
-			// ã‰º”½“]‚µ‚Ä‚¢‚éê‡‚Íã‰º”½“]‚ğs‚¤
+			// ä¸Šä¸‹åè»¢ã—ã¦ã„ã‚‹å ´åˆã¯ä¸Šä¸‹åè»¢ã‚’è¡Œã†
 			if( BmpInfo2->bmiHeader.biHeight > 0 )
 			{
 				Height = BmpInfo2->bmiHeader.biHeight ;
@@ -3476,7 +3476,7 @@ static int LoadBmpImage( STREAMDATA *Stream, BASEIMAGE *BaseImage, int GetFormat
 			}
 		}
 		
-		// BASEIMAGE ‚Ìƒwƒbƒ_‚ğ\’z
+		// BASEIMAGE ã®ãƒ˜ãƒƒãƒ€ã‚’æ§‹ç¯‰
 		{
 			BaseImage->GraphData = GData ;
 			BaseImage->Width     = BmpInfo2->bmiHeader.biWidth ;
@@ -3485,9 +3485,9 @@ static int LoadBmpImage( STREAMDATA *Stream, BASEIMAGE *BaseImage, int GetFormat
 			
 			if( BmpInfo2->bmiHeader.biBitCount == 8 )
 			{
-				// ‚WƒrƒbƒgƒJƒ‰[‚Ìê‡
+				// ï¼˜ãƒ“ãƒƒãƒˆã‚«ãƒ©ãƒ¼ã®å ´åˆ
 				
-				// ƒJƒ‰[î•ñ‚ÌƒZƒbƒg
+				// ã‚«ãƒ©ãƒ¼æƒ…å ±ã®ã‚»ãƒƒãƒˆ
 				NS_CreatePaletteColorData( &BaseImage->ColorData ) ;
 				_MEMCPY( BaseImage->ColorData.Palette, BmpInfo2->bmiColors, ( BmpInfo2->bmiHeader.biBitCount == 8 ? 256 : 16 ) * sizeof( RGBQUAD ) ) ;
 				for( i = 0 ; i < 256 ; i ++ )
@@ -3496,19 +3496,19 @@ static int LoadBmpImage( STREAMDATA *Stream, BASEIMAGE *BaseImage, int GetFormat
 			else
 			if( BmpInfo2->bmiHeader.biBitCount == 24 )
 			{
-				// ‚Q‚SƒrƒbƒgƒJƒ‰[‚Ìê‡
+				// ï¼’ï¼”ãƒ“ãƒƒãƒˆã‚«ãƒ©ãƒ¼ã®å ´åˆ
 				
-				// ƒtƒ‹ƒJƒ‰[—p‚ÌƒJƒ‰[î•ñ‚ğƒZƒbƒg‚·‚é
+				// ãƒ•ãƒ«ã‚«ãƒ©ãƒ¼ç”¨ã®ã‚«ãƒ©ãƒ¼æƒ…å ±ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 				NS_CreateFullColorData( &BaseImage->ColorData ) ;
 			}
 			else
 			{
-				// ‚R‚QƒrƒbƒgƒJƒ‰[‚Ìê‡
+				// ï¼“ï¼’ãƒ“ãƒƒãƒˆã‚«ãƒ©ãƒ¼ã®å ´åˆ
 				
-				// ‚R‚QƒrƒbƒgƒJƒ‰[—p‚ÌƒJƒ‰[î•ñ‚ğƒZƒbƒg‚·‚é
+				// ï¼“ï¼’ãƒ“ãƒƒãƒˆã‚«ãƒ©ãƒ¼ç”¨ã®ã‚«ãƒ©ãƒ¼æƒ…å ±ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 				if( BASEIM.Bmp32AllZeroAlphaToXRGB8 )
 				{
-					// ‚·‚×‚Ä‚ÌƒAƒ‹ƒtƒ@’l‚ª‚O‚¾‚Á‚½‚çƒAƒ‹ƒtƒ@‚È‚µ‚Æ”»’f‚·‚é
+					// ã™ã¹ã¦ã®ã‚¢ãƒ«ãƒ•ã‚¡å€¤ãŒï¼ã ã£ãŸã‚‰ã‚¢ãƒ«ãƒ•ã‚¡ãªã—ã¨åˆ¤æ–­ã™ã‚‹
 					DWORD PixelNum ;
 					PixelNum = ( DWORD )( BmpInfo2->bmiHeader.biWidth * BaseImage->Height ) ;
 					for( i = 0 ; ( DWORD )i < PixelNum ; i ++ )
@@ -3533,13 +3533,13 @@ static int LoadBmpImage( STREAMDATA *Stream, BASEIMAGE *BaseImage, int GetFormat
 	{
 		int Process = -1 ;
 
-		// ‚»‚êˆÈŠO‚ÌƒtƒH[ƒ}ƒbƒg‚Ìê‡‚Íˆê•”‚ÌƒJƒ‰[‚¾‚¯‘Î‰
+		// ãã‚Œä»¥å¤–ã®ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®å ´åˆã¯ä¸€éƒ¨ã®ã‚«ãƒ©ãƒ¼ã ã‘å¯¾å¿œ
 		if( ( ( BmpInfoT.bmiHeader.biBitCount == 32 || BmpInfoT.bmiHeader.biBitCount == 16 ) && BmpInfoT.bmiHeader.biCompression == BI_BITFIELDS ) ||
 			( BmpInfoT.bmiHeader.biBitCount == 16 && BmpInfoT.bmiHeader.biCompression == BI_RGB ) )
 		{
 			int Format = -1 ;
 
-			// R8G8B8X8 –”‚Í R5G6B5 –”‚Í X1R5G5B5
+			// R8G8B8X8 åˆã¯ R5G6B5 åˆã¯ X1R5G5B5
 			if( BmpInfoT.bmiHeader.biBitCount == 16 && BmpInfoT.bmiHeader.biCompression == BI_RGB )
 			{
 				Format = 555 ;
@@ -3577,7 +3577,7 @@ static int LoadBmpImage( STREAMDATA *Stream, BASEIMAGE *BaseImage, int GetFormat
 			{
 				if( GetFormatOnly == FALSE )
 				{
-					// ã‰º”½“]‚µ‚Ä‚¢‚éê‡‚Íã‰º”½“]‚ğs‚¤
+					// ä¸Šä¸‹åè»¢ã—ã¦ã„ã‚‹å ´åˆã¯ä¸Šä¸‹åè»¢ã‚’è¡Œã†
 					if( BmpInfo2->bmiHeader.biHeight > 0 )
 					{
 						Height = BmpInfo2->bmiHeader.biHeight ;
@@ -3601,14 +3601,14 @@ static int LoadBmpImage( STREAMDATA *Stream, BASEIMAGE *BaseImage, int GetFormat
 					}
 				}
 
-				// BASEIMAGE ‚Ìƒwƒbƒ_‚ğ\’z
+				// BASEIMAGE ã®ãƒ˜ãƒƒãƒ€ã‚’æ§‹ç¯‰
 				{
 					BaseImage->GraphData = GData ;
 					BaseImage->Width     = BmpInfo2->bmiHeader.biWidth ;
 					BaseImage->Height    = _ABS(BmpInfo2->bmiHeader.biHeight) ;
 					BaseImage->Pitch     = Pitch ;
 			
-					// ƒJƒ‰[î•ñ‚ğƒZƒbƒg‚·‚é
+					// ã‚«ãƒ©ãƒ¼æƒ…å ±ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 					NS_CreateXRGB8ColorData( &BaseImage->ColorData ) ;
 					switch( Format )
 					{
@@ -3709,7 +3709,7 @@ static int LoadBmpImage( STREAMDATA *Stream, BASEIMAGE *BaseImage, int GetFormat
 
 #else // WINDOWS_DESKTOP_OS
 
-			// ‚»‚êˆÈŠO‚ÌƒtƒH[ƒ}ƒbƒg‚Ìê‡‚Í‚Q‚SƒrƒbƒgƒJƒ‰[‚a‚l‚o‚É•ÏŠ·‚·‚é
+			// ãã‚Œä»¥å¤–ã®ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®å ´åˆã¯ï¼’ï¼”ãƒ“ãƒƒãƒˆã‚«ãƒ©ãƒ¼ï¼¢ï¼­ï¼°ã«å¤‰æ›ã™ã‚‹
 
 			BITMAP bm ;
 			HBITMAP OldBmp ;
@@ -3719,14 +3719,14 @@ static int LoadBmpImage( STREAMDATA *Stream, BASEIMAGE *BaseImage, int GetFormat
 			{
 				SETUP_WIN_API
 
-				// •ÏŠ·ˆ—‚Ég—p‚·‚é‚c‚b‚Ìì¬
+				// å¤‰æ›å‡¦ç†ã«ä½¿ç”¨ã™ã‚‹ï¼¤ï¼£ã®ä½œæˆ
 				hdc = WinAPIData.Win32Func.CreateCompatibleDCFunc( NULL ) ;
 
-				// ‚c‚h‚aƒf[ƒ^‚ğì¬‚·‚é
+				// ï¼¤ï¼©ï¼¢ãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆã™ã‚‹
 				{
 					BITMAPINFO BmpInfo3 ;
 
-					// •ÏŠ·Œã‚Ìƒrƒbƒgƒ}ƒbƒvƒCƒ“ƒtƒHƒwƒbƒ_‚ğİ’è
+					// å¤‰æ›å¾Œã®ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚¤ãƒ³ãƒ•ã‚©ãƒ˜ãƒƒãƒ€ã‚’è¨­å®š
 					_MEMSET( &BmpInfo3, 0, sizeof( BITMAPINFOHEADER ) ) ;
 					BmpInfo3.bmiHeader.biSize        = sizeof( BITMAPINFOHEADER ) ;
 					BmpInfo3.bmiHeader.biWidth       = BmpInfo2->bmiHeader.biWidth ;
@@ -3738,16 +3738,16 @@ static int LoadBmpImage( STREAMDATA *Stream, BASEIMAGE *BaseImage, int GetFormat
 					Bmp = WinAPIData.Win32Func.CreateDIBSectionFunc( hdc, &BmpInfo3, DIB_RGB_COLORS, &Data, NULL, 0 ) ;
 					if( Bmp == NULL || Data == NULL )
 					{
-						DXST_LOGFILE_ADDUTF16LE( "\x24\xff\x29\xff\x22\xff\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x33\x00\x0a\x00\x00"/*@ L"‚c‚h‚a‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½3\n" @*/ ) ;
+						DXST_LOGFILE_ADDUTF16LE( "\x24\xff\x29\xff\x22\xff\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x33\x00\x0a\x00\x00"/*@ L"ï¼¤ï¼©ï¼¢ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ3\n" @*/ ) ;
 						goto ERR ;
 					}
 				}
 
-				// ƒrƒbƒgƒ}ƒbƒv‚Ìî•ñ‚ğæ“¾
+				// ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã®æƒ…å ±ã‚’å–å¾—
 				WinAPIData.Win32Func.GetObjectAFunc( Bmp, sizeof( bm ), &bm ) ;
 				bm.bmWidthBytes = ( bm.bmWidthBytes + 3 ) / 4 * 4 ;
 
-				// ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‚Q‚Sƒrƒbƒg‚É•ÏŠ·‚µ‚Â‚ÂƒRƒs[‚·‚é
+				// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ï¼’ï¼”ãƒ“ãƒƒãƒˆã«å¤‰æ›ã—ã¤ã¤ã‚³ãƒ”ãƒ¼ã™ã‚‹
 				Height = _ABS( bm.bmHeight ) ;
 				OldBmp = ( HBITMAP )WinAPIData.Win32Func.SelectObjectFunc( hdc, ( HGDIOBJ )Bmp ) ;
 				WinAPIData.Win32Func.SetDIBitsToDeviceFunc(
@@ -3757,26 +3757,26 @@ static int LoadBmpImage( STREAMDATA *Stream, BASEIMAGE *BaseImage, int GetFormat
 					GData, BmpInfo2, DIB_RGB_COLORS ) ;
 				WinAPIData.Win32Func.SelectObjectFunc( hdc, ( HGDIOBJ )OldBmp ) ;
 
-				// •s—v‚É‚È‚Á‚½‚c‚b‚Ìíœ
+				// ä¸è¦ã«ãªã£ãŸï¼¤ï¼£ã®å‰Šé™¤
 				WinAPIData.Win32Func.DeleteDCFunc( hdc ) ;
 				hdc = NULL ;
 			
-				// •ÏŠ·‘O‚Ìƒf[ƒ^‚ğ‰ğ•ú
+				// å¤‰æ›å‰ã®ãƒ‡ãƒ¼ã‚¿ã‚’è§£æ”¾
 				DXFREE( GData ) ;
 				GData = NULL ;
 			
-				// ‚Q‚SƒrƒbƒgƒJƒ‰[‰»‚µ‚½ƒOƒ‰ƒtƒBƒbƒN‚ğŠi”[‚·‚éƒƒ‚ƒŠ—Ìˆæ‚ÌŠm•Û
+				// ï¼’ï¼”ãƒ“ãƒƒãƒˆã‚«ãƒ©ãƒ¼åŒ–ã—ãŸã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚’æ ¼ç´ã™ã‚‹ãƒ¡ãƒ¢ãƒªé ˜åŸŸã®ç¢ºä¿
 				GData = (BYTE *)DXALLOC( ( size_t )( Height * bm.bmWidthBytes ) ) ;
 				if( GData == NULL )
 				{
-					DXST_LOGFILE_ADDUTF16LE( "\x12\xff\x14\xff\xd3\x30\xc3\x30\xc8\x30\xab\x30\xe9\x30\xfc\x30\x16\x53\x57\x30\x5f\x30\xb0\x30\xe9\x30\xd5\x30\xa3\x30\xc3\x30\xaf\x30\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"‚Q‚SƒrƒbƒgƒJƒ‰[‰»‚µ‚½ƒOƒ‰ƒtƒBƒbƒN‚ğŠi”[‚·‚éƒƒ‚ƒŠ—Ìˆæ‚ÌŠm•Û‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;	
+					DXST_LOGFILE_ADDUTF16LE( "\x12\xff\x14\xff\xd3\x30\xc3\x30\xc8\x30\xab\x30\xe9\x30\xfc\x30\x16\x53\x57\x30\x5f\x30\xb0\x30\xe9\x30\xd5\x30\xa3\x30\xc3\x30\xaf\x30\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ï¼’ï¼”ãƒ“ãƒƒãƒˆã‚«ãƒ©ãƒ¼åŒ–ã—ãŸã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚’æ ¼ç´ã™ã‚‹ãƒ¡ãƒ¢ãƒªé ˜åŸŸã®ç¢ºä¿ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;	
 					goto ERR ;
 				}
 			
-				// ‚Q‚SƒrƒbƒgƒJƒ‰[‰»‚µ‚½ƒOƒ‰ƒtƒBƒbƒN‚Ìƒf[ƒ^‚ğê—p‚Ì—Ìˆæ‚É“]‘—
+				// ï¼’ï¼”ãƒ“ãƒƒãƒˆã‚«ãƒ©ãƒ¼åŒ–ã—ãŸã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®ãƒ‡ãƒ¼ã‚¿ã‚’å°‚ç”¨ã®é ˜åŸŸã«è»¢é€
 				_MEMCPY( GData, bm.bmBits, ( size_t )( Height * bm.bmWidthBytes ) ) ;
 			
-				// •ÏŠ·—p‚Éì¬‚µ‚½‚c‚h‚a‚Ìíœ
+				// å¤‰æ›ç”¨ã«ä½œæˆã—ãŸï¼¤ï¼©ï¼¢ã®å‰Šé™¤
 				WinAPIData.Win32Func.DeleteObjectFunc( Bmp ) ;
 				Bmp = NULL ;
 
@@ -3787,25 +3787,25 @@ static int LoadBmpImage( STREAMDATA *Stream, BASEIMAGE *BaseImage, int GetFormat
 				BaseImage->Pitch     = 0 ;
 			}
 	
-			// BASEIMAGE ‚Ìƒwƒbƒ_‚ğ\’z
+			// BASEIMAGE ã®ãƒ˜ãƒƒãƒ€ã‚’æ§‹ç¯‰
 			{
-				// ƒwƒbƒ_î•ñ‚ğƒZƒbƒg‚·‚é
+				// ãƒ˜ãƒƒãƒ€æƒ…å ±ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 				BaseImage->GraphData = GData ;
 				BaseImage->Width     = BmpInfo2->bmiHeader.biWidth ;
 				BaseImage->Height    = _ABS(BmpInfo2->bmiHeader.biHeight) ;
 
-				// ƒtƒ‹ƒJƒ‰[—p‚ÌƒJƒ‰[î•ñ‚ğƒZƒbƒg‚·‚é
+				// ãƒ•ãƒ«ã‚«ãƒ©ãƒ¼ç”¨ã®ã‚«ãƒ©ãƒ¼æƒ…å ±ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 				NS_CreateFullColorData( &BaseImage->ColorData ) ;
 			}
 #endif // WINDOWS_DESKTOP_OS
 		}
 	}
 
-	// BITMAPINFOHEADER î•ñ‚ğŠi”[‚µ‚Ä‚¢‚½ƒƒ‚ƒŠ‚ğ‰ğ•ú
+	// BITMAPINFOHEADER æƒ…å ±ã‚’æ ¼ç´ã—ã¦ã„ãŸãƒ¡ãƒ¢ãƒªã‚’è§£æ”¾
 	DXFREE( BmpInfo2 ) ;
 	BmpInfo2 = NULL ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 
 ERR :
@@ -3819,13 +3819,13 @@ ERR :
 	if( hdc != NULL ) WinAPIData.Win32Func.DeleteDCFunc( hdc ) ;
 #endif // WINDOWS_DESKTOP_OS
 
-	// ƒGƒ‰[I—¹
+	// ã‚¨ãƒ©ãƒ¼çµ‚äº†
 	return -1 ; 
 }
 
 
 
-// ƒsƒNƒZƒ‹‚Ì•À‚Ñ•û‚ğ‹­‚­å’£
+// ãƒ”ã‚¯ã‚»ãƒ«ã®ä¸¦ã³æ–¹ã‚’å¼·ãä¸»å¼µ
 typedef struct
 {
     union
@@ -3841,7 +3841,7 @@ typedef struct
 } ArgbHeader ;
 
 
-// ‚`‚q‚f‚a‰æ‘œ‚Ì“Ç‚İ‚±‚İ
+// ï¼¡ï¼²ï¼§ï¼¢ç”»åƒã®èª­ã¿ã“ã¿
 static int LoadArgbImage( STREAMDATA *Src, BASEIMAGE *BaseImage, int GetFormatOnly )
 {
 	ArgbHeader Head ;
@@ -3855,12 +3855,12 @@ static int LoadArgbImage( STREAMDATA *Src, BASEIMAGE *BaseImage, int GetFormatOn
 	sstr = &Src->ReadShred ;
 	sp = Src->DataPoint ;
 
-	if( sstr->Read( &Head, sizeof( Head ), 1, sp ) <= 0 ) return -1	;						// ƒwƒbƒ_‚Ì“Ç‚İ‚İ
-	if( _MEMCMP( Head.abyIdentifier, "BGRA", 4 ) != 0 ) return -1 ;							// ‚h‚cŒŸ¸
-	if( Head.dwPixelFormat != 0x10101010 && Head.dwPixelFormat != 0x08080808 ) return -1 ;	// ƒsƒNƒZƒ‹ƒtƒH[ƒ}ƒbƒg‚ÌŒŸ¸
+	if( sstr->Read( &Head, sizeof( Head ), 1, sp ) <= 0 ) return -1	;						// ãƒ˜ãƒƒãƒ€ã®èª­ã¿è¾¼ã¿
+	if( _MEMCMP( Head.abyIdentifier, "BGRA", 4 ) != 0 ) return -1 ;							// ï¼©ï¼¤æ¤œæŸ»
+	if( Head.dwPixelFormat != 0x10101010 && Head.dwPixelFormat != 0x08080808 ) return -1 ;	// ãƒ”ã‚¯ã‚»ãƒ«ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®æ¤œæŸ»
 	P64Flag = Head.dwPixelFormat == 0x10101010 ;
 
-	// ƒTƒCƒY‚Ìæ“¾
+	// ã‚µã‚¤ã‚ºã®å–å¾—
 	Width		= ( int )Head.dwWidth ;
 	Height		= ( int )Head.dwHeight ;
 	PixelByte	= P64Flag ? 8 : 4 ;
@@ -3868,20 +3868,20 @@ static int LoadArgbImage( STREAMDATA *Src, BASEIMAGE *BaseImage, int GetFormatOn
 
 	if( GetFormatOnly == FALSE )
 	{
-		// ƒOƒ‰ƒtƒBƒbƒN‚ğŠi”[‚·‚éƒƒ‚ƒŠ—Ìˆæ‚ÌŠm•Û
+		// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚’æ ¼ç´ã™ã‚‹ãƒ¡ãƒ¢ãƒªé ˜åŸŸã®ç¢ºä¿
 		GraphPoint = DXALLOC( ( size_t )( Width * Height * 4 ) ) ;
 		if( GraphPoint == NULL )
 		{
 			goto ERR ;
 		}
 		
-		// ƒOƒ‰ƒtƒBƒbƒN‚Ì“Ç‚İ‚İ
+		// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®èª­ã¿è¾¼ã¿
 		if( P64Flag == TRUE )
 		{
 			unsigned int *GraphP ;
 			int i, j ;
 		
-			// ‚R‚QƒrƒbƒgƒJƒ‰[‚É•ÏŠ·‚µ‚È‚ª‚ç“Ç‚İ‚İ
+			// ï¼“ï¼’ãƒ“ãƒƒãƒˆã‚«ãƒ©ãƒ¼ã«å¤‰æ›ã—ãªãŒã‚‰èª­ã¿è¾¼ã¿
 			TempBuf = ( BYTE * )DXALLOC( ( size_t )Pitch ) ;
 			if( TempBuf == NULL ) goto ERR ;
 			
@@ -3902,25 +3902,25 @@ static int LoadArgbImage( STREAMDATA *Src, BASEIMAGE *BaseImage, int GetFormatOn
 				}
 			}
 			
-			// ƒeƒ“ƒ|ƒ‰ƒŠƒoƒbƒtƒ@‚ğ‰ğ•ú
+			// ãƒ†ãƒ³ãƒãƒ©ãƒªãƒãƒƒãƒ•ã‚¡ã‚’è§£æ”¾
 			DXFREE( TempBuf ) ;
 			TempBuf = NULL ;
 		}
 		else
 		{
-			// ‚»‚Ì‚Ü‚Üƒƒ‚ƒŠ—Ìˆæ‚É“Ç‚İ‚İ
+			// ãã®ã¾ã¾ãƒ¡ãƒ¢ãƒªé ˜åŸŸã«èª­ã¿è¾¼ã¿
 			if( sstr->Read( GraphPoint, ( size_t )( Width * Height * 4 ), 1, sp ) <= 0 ) goto ERR ;
 		}
 	}
 
-	// BASEIMAGE \‘¢‘Ì‚Ìî•ñ‚ğ–„‚ß‚é
+	// BASEIMAGE æ§‹é€ ä½“ã®æƒ…å ±ã‚’åŸ‹ã‚ã‚‹
 	{
 		BaseImage->GraphData = GraphPoint ;
 		BaseImage->Width = Width ;
 		BaseImage->Height = Height ;
 		BaseImage->Pitch = Width * 4 ;
 
-		// ƒJƒ‰[î•ñ‚ğƒZƒbƒg‚·‚é
+		// ã‚«ãƒ©ãƒ¼æƒ…å ±ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 		NS_CreateFullColorData( &BaseImage->ColorData ) ;
 		BaseImage->ColorData.ColorBitDepth = 32 ;
 		BaseImage->ColorData.PixelByte = 4 ;
@@ -3929,7 +3929,7 @@ static int LoadArgbImage( STREAMDATA *Src, BASEIMAGE *BaseImage, int GetFormatOn
 		BaseImage->ColorData.AlphaWidth = 8 ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 
 ERR :
@@ -3948,47 +3948,47 @@ ERR :
 
 
 
-// BASEIMAGE‰æ‘œ‚Ì“Ç‚İ‚±‚İ
+// BASEIMAGEç”»åƒã®èª­ã¿ã“ã¿
 
-/* BASEIMAGE‰æ‘œƒtƒH[ƒ}ƒbƒg
+/* BASEIMAGEç”»åƒãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆ
 
 4byte "DBIM"
 
-4byte Width											•
-4byte Height										‚‚³
-4byte Pitch											ƒsƒbƒ`
-4byte MipMapCount									ƒ~ƒbƒvƒ}ƒbƒv‚Ì”
-4byte GraphDataCount								ƒOƒ‰ƒtƒBƒbƒNƒCƒ[ƒW‚Ì”
-4byte ImageAddr										ƒCƒ[ƒWƒf[ƒ^‚ªŠi”[‚³‚ê‚Ä‚¢‚éƒAƒhƒŒƒX(ƒoƒCƒg’PˆÊ)
-8byte ImageBytes									ƒCƒ[ƒWƒf[ƒ^‚ÌƒTƒCƒY(ƒoƒCƒg”)
+4byte Width											å¹…
+4byte Height										é«˜ã•
+4byte Pitch											ãƒ”ãƒƒãƒ
+4byte MipMapCount									ãƒŸãƒƒãƒ—ãƒãƒƒãƒ—ã®æ•°
+4byte GraphDataCount								ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¤ãƒ¡ãƒ¼ã‚¸ã®æ•°
+4byte ImageAddr										ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ãŒæ ¼ç´ã•ã‚Œã¦ã„ã‚‹ã‚¢ãƒ‰ãƒ¬ã‚¹(ãƒã‚¤ãƒˆå˜ä½)
+8byte ImageBytes									ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ã®ã‚µã‚¤ã‚º(ãƒã‚¤ãƒˆæ•°)
 
-1byte Format										ƒtƒH[ƒ}ƒbƒg( DX_BASEIMAGE_FORMAT_NORMAL “™ )
-1byte ChannelNum									ƒ`ƒƒƒ“ƒlƒ‹”
-1byte ChannelBitDepth								‚Pƒ`ƒƒƒ“ƒlƒ‹•Ó‚è‚Ìƒrƒbƒg[“x
-1byte FloatTypeFlag									•‚“®¬”“_Œ^‚©‚Ç‚¤‚©( TRUE:•‚“®¬”“_Œ^  FALSE:®”Œ^ )
-1byte PixelByte										‚PƒsƒNƒZƒ‹‚ ‚½‚è‚ÌƒoƒCƒg”
+1byte Format										ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆ( DX_BASEIMAGE_FORMAT_NORMAL ç­‰ )
+1byte ChannelNum									ãƒãƒ£ãƒ³ãƒãƒ«æ•°
+1byte ChannelBitDepth								ï¼‘ãƒãƒ£ãƒ³ãƒãƒ«è¾ºã‚Šã®ãƒ“ãƒƒãƒˆæ·±åº¦
+1byte FloatTypeFlag									æµ®å‹•å°æ•°ç‚¹å‹ã‹ã©ã†ã‹( TRUE:æµ®å‹•å°æ•°ç‚¹å‹  FALSE:æ•´æ•°å‹ )
+1byte PixelByte										ï¼‘ãƒ”ã‚¯ã‚»ãƒ«ã‚ãŸã‚Šã®ãƒã‚¤ãƒˆæ•°
 
-< Format ‚ª DX_BASEIMAGE_FORMAT_NORMAL Š‚Â ChannelNum –”‚Í ChannelBitDepth ‚ª 0 ‚Ì‚Ì‚İ‘¶İ >
+< Format ãŒ DX_BASEIMAGE_FORMAT_NORMAL ä¸”ã¤ ChannelNum åˆã¯ ChannelBitDepth ãŒ 0 ã®æ™‚ã®ã¿å­˜åœ¨ >
 
-1byte ColorBitDepth									ƒrƒbƒg[“x
-1byte NoneLoc,  NoneWidth							g‚í‚ê‚Ä‚¢‚È‚¢ƒrƒbƒg‚ÌƒAƒhƒŒƒX‚Æ•
-1byte RedWidth, GreenWidth, BlueWidth, AlphaWidth 	ŠeF‚Ìƒrƒbƒg•
-1byte RedLoc,   GreenLoc  , BlueLoc  , AlphaLoc   	ŠeF‚Ì”z’u‚³‚ê‚Ä‚¢‚éƒrƒbƒgƒAƒhƒŒƒX
-4byte RedMask , GreenMask , BlueMask , AlphaMask  	ŠeF‚Ìƒrƒbƒgƒ}ƒXƒN
-4byte NoneMask										g‚í‚ê‚Ä‚¢‚È‚¢ƒrƒbƒg‚Ìƒ}ƒXƒN
+1byte ColorBitDepth									ãƒ“ãƒƒãƒˆæ·±åº¦
+1byte NoneLoc,  NoneWidth							ä½¿ã‚ã‚Œã¦ã„ãªã„ãƒ“ãƒƒãƒˆã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã¨å¹…
+1byte RedWidth, GreenWidth, BlueWidth, AlphaWidth 	å„è‰²ã®ãƒ“ãƒƒãƒˆå¹…
+1byte RedLoc,   GreenLoc  , BlueLoc  , AlphaLoc   	å„è‰²ã®é…ç½®ã•ã‚Œã¦ã„ã‚‹ãƒ“ãƒƒãƒˆã‚¢ãƒ‰ãƒ¬ã‚¹
+4byte RedMask , GreenMask , BlueMask , AlphaMask  	å„è‰²ã®ãƒ“ãƒƒãƒˆãƒã‚¹ã‚¯
+4byte NoneMask										ä½¿ã‚ã‚Œã¦ã„ãªã„ãƒ“ãƒƒãƒˆã®ãƒã‚¹ã‚¯
 
-< Format ‚ª DX_BASEIMAGE_FORMAT_NORMAL Š‚Â ChannelNum –”‚Í ChannelBitDepth ‚ª 0 Š‚Â ColorBitDepth ‚ª 8 ˆÈ‰º‚Ìê‡‚Ì‚İ‘¶İ >
+< Format ãŒ DX_BASEIMAGE_FORMAT_NORMAL ä¸”ã¤ ChannelNum åˆã¯ ChannelBitDepth ãŒ 0 ä¸”ã¤ ColorBitDepth ãŒ 8 ä»¥ä¸‹ã®å ´åˆã®ã¿å­˜åœ¨ >
 
-4byte MaxPaletteNo									g—p‚µ‚Ä‚¢‚éƒpƒŒƒbƒg”Ô†‚ÌÅ‘å’l( 0 ‚Ìê‡‚Í 255 ‚Æ‚İ‚È‚· )
+4byte MaxPaletteNo									ä½¿ç”¨ã—ã¦ã„ã‚‹ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·ã®æœ€å¤§å€¤( 0 ã®å ´åˆã¯ 255 ã¨ã¿ãªã™ )
 
-< Format ‚ª DX_BASEIMAGE_FORMAT_NORMAL Š‚Â ChannelNum –”‚Í ChannelBitDepth ‚ª 0 Š‚Â ColorBitDepth ‚ª 8 ˆÈ‰º‚Ìê‡‚Ì‚İ
-  ƒpƒŒƒbƒg‚Ì”‚¾‚¯‘¶İ@ColorBitDepth  8=256ŒÂ  4=16ŒÂ  1=2ŒÂ >
-1byte  Blue											ƒpƒŒƒbƒg‚ÌÂ¬•ª
-1byte  Green										ƒpƒŒƒbƒg‚Ì—Î¬•ª
-1byte  Red											ƒpƒŒƒbƒg‚ÌÔ¬•ª
-1byte  Alpha										ƒpƒŒƒbƒg‚ÌƒAƒ‹ƒtƒ@¬•ª
+< Format ãŒ DX_BASEIMAGE_FORMAT_NORMAL ä¸”ã¤ ChannelNum åˆã¯ ChannelBitDepth ãŒ 0 ä¸”ã¤ ColorBitDepth ãŒ 8 ä»¥ä¸‹ã®å ´åˆã®ã¿
+  ãƒ‘ãƒ¬ãƒƒãƒˆã®æ•°ã ã‘å­˜åœ¨ã€€ColorBitDepth  8=256å€‹  4=16å€‹  1=2å€‹ >
+1byte  Blue											ãƒ‘ãƒ¬ãƒƒãƒˆã®é’æˆåˆ†
+1byte  Green										ãƒ‘ãƒ¬ãƒƒãƒˆã®ç·‘æˆåˆ†
+1byte  Red											ãƒ‘ãƒ¬ãƒƒãƒˆã®èµ¤æˆåˆ†
+1byte  Alpha										ãƒ‘ãƒ¬ãƒƒãƒˆã®ã‚¢ãƒ«ãƒ•ã‚¡æˆåˆ†
 
-< ˆÈ~‚É ImageBytes ‚ÌƒTƒCƒY‚ÌƒCƒ[ƒWƒf[ƒ^‚ª‘¶İ ( ImageAddr ‚ÌˆÊ’u‚©‚ç‚È‚Ì‚ÅAã‹Lƒf[ƒ^‚Ì’¼Œã‚Æ‚ÍŒÀ‚ç‚È‚¢ >
+< ä»¥é™ã« ImageBytes ã®ã‚µã‚¤ã‚ºã®ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ãŒå­˜åœ¨ ( ImageAddr ã®ä½ç½®ã‹ã‚‰ãªã®ã§ã€ä¸Šè¨˜ãƒ‡ãƒ¼ã‚¿ã®ç›´å¾Œã¨ã¯é™ã‚‰ãªã„ >
 
 */
 static	int LoadDxLibBaseImage( STREAMDATA *Stream, BASEIMAGE *BaseImage, int GetFormatOnly )
@@ -4002,8 +4002,8 @@ static	int LoadDxLibBaseImage( STREAMDATA *Stream, BASEIMAGE *BaseImage, int Get
 	sstr = &Stream->ReadShred ;
 	sp = Stream->DataPoint ;
 
-	if( sstr->Read( ID, 4, 1, sp ) <= 0 ) return -1	;						// ƒwƒbƒ_‚Ì“Ç‚İ‚İ
-	if( _MEMCMP( ID, "DBIM", 4 ) != 0 ) return -1 ;							// ‚h‚cŒŸ¸
+	if( sstr->Read( ID, 4, 1, sp ) <= 0 ) return -1	;						// ãƒ˜ãƒƒãƒ€ã®èª­ã¿è¾¼ã¿
+	if( _MEMCMP( ID, "DBIM", 4 ) != 0 ) return -1 ;							// ï¼©ï¼¤æ¤œæŸ»
 
 	_MEMSET( BaseImage, 0, sizeof( BASEIMAGE ) ) ;
 
@@ -4067,7 +4067,7 @@ static	int LoadDxLibBaseImage( STREAMDATA *Stream, BASEIMAGE *BaseImage, int Get
 		}
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
@@ -4090,82 +4090,82 @@ static	int LoadDxLibBaseImage( STREAMDATA *Stream, BASEIMAGE *BaseImage, int Get
 // #pragma pack(push,1)
 // #endif
 // 
-// // ‚s‚f‚`‰æ‘œ‚Ìƒwƒbƒ_
+// // ï¼´ï¼§ï¼¡ç”»åƒã®ãƒ˜ãƒƒãƒ€
 // typedef struct _tagTGAHEADER
 // {
-// 	BYTE ImageIDLength ;	// 0:ƒCƒ[ƒW‚h‚c‚Ì’·‚³(ƒoƒCƒg)
-// 	BYTE UseColorMap ;		// 1:ƒJƒ‰[ƒ}ƒbƒv‚Ì—L–³@0:–³‚µ  1:‚ ‚è
-// 	BYTE ImageType ;		// 2:‰æ‘œŒ`® 
-// 							// 	  0:ƒCƒ[ƒW–³‚µ
-// 							//    1:ƒCƒ“ƒfƒbƒNƒXƒJƒ‰[( 256F ) ”ñˆ³k
-// 							//	  2:‚q‚f‚aƒJƒ‰[ ”ñˆ³k
-// 							//	  3:‚QŠK’²ƒJƒ‰[ ”ñˆ³k
-// 							//	  9:ƒCƒ“ƒfƒbƒNƒXƒJƒ‰[ RLEˆ³k
-// 							//	  10:‚q‚f‚aƒJƒ‰[ RLEˆ³k
-// 							//	  11:‚QŠK’²ƒJƒ‰[ RLEˆ³k
-// 	WORD PaletteOrigin ;	// 3:ƒJƒ‰[ƒpƒŒƒbƒg‚ÌŠJn”Ô†
-// 	WORD PaletteLength ;	// 5:ƒJƒ‰[ƒpƒŒƒbƒg‚ÌŒÂ”
-// 	BYTE PaletteBitDepth ;	// 7:ƒJƒ‰[ƒpƒŒƒbƒgˆê‚Â‚Ìƒrƒbƒg”( 16:16ƒrƒbƒg  24:24ƒrƒbƒg  32:32ƒrƒbƒg )
-// 	WORD XOrigin ;			// 8:‰æ‘œ‚Ì”z’u¶ã‚wÀ•W( ‚Ù‚Ú0 ? )
-// 	WORD YOrigin ;			// 10:‰æ‘œ‚Ì”z’u¶ã‚xÀ•W( ‚Ù‚Ú0 ? )
-// 	WORD Width ;			// 12:‰æ‘œ‚Ì•
-// 	WORD Height ;			// 14:‰æ‘œ‚Ì‚‚³
-// 	BYTE ColorBitDepth ;	// 16:F[“x( 16:16ƒrƒbƒg  24:24ƒrƒbƒg  32:32ƒrƒbƒg )
-// 	BYTE Descriptor ;		// 17:‚»‚Ì‘¼‚Ìî•ñ
-// 							//     bit 0`3 ‘®«( 16bit‰æ‘œ‚È‚ç 0 –”‚Í 1, 24bit‰æ‘œ‚È‚ç 0, 32bit‰æ‘œ‚È‚ç 8 )
-// 							//     bit 4 Ši”[•ûŒü( 0:¶‚©‚ç‰E  1:‰E‚©‚ç¶ )
-// 							//     bit 5 Ši”[•ûŒü( 0:‰º‚©‚çã  1:ã‚©‚ç‰º )
-// 							//     bit 6, 7  –¢g—p
+// 	BYTE ImageIDLength ;	// 0:ã‚¤ãƒ¡ãƒ¼ã‚¸ï¼©ï¼¤ã®é•·ã•(ãƒã‚¤ãƒˆ)
+// 	BYTE UseColorMap ;		// 1:ã‚«ãƒ©ãƒ¼ãƒãƒƒãƒ—ã®æœ‰ç„¡ã€€0:ç„¡ã—  1:ã‚ã‚Š
+// 	BYTE ImageType ;		// 2:ç”»åƒå½¢å¼ 
+// 							// 	  0:ã‚¤ãƒ¡ãƒ¼ã‚¸ç„¡ã—
+// 							//    1:ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚«ãƒ©ãƒ¼( 256è‰² ) éåœ§ç¸®
+// 							//	  2:ï¼²ï¼§ï¼¢ã‚«ãƒ©ãƒ¼ éåœ§ç¸®
+// 							//	  3:ï¼’éšèª¿ã‚«ãƒ©ãƒ¼ éåœ§ç¸®
+// 							//	  9:ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚«ãƒ©ãƒ¼ RLEåœ§ç¸®
+// 							//	  10:ï¼²ï¼§ï¼¢ã‚«ãƒ©ãƒ¼ RLEåœ§ç¸®
+// 							//	  11:ï¼’éšèª¿ã‚«ãƒ©ãƒ¼ RLEåœ§ç¸®
+// 	WORD PaletteOrigin ;	// 3:ã‚«ãƒ©ãƒ¼ãƒ‘ãƒ¬ãƒƒãƒˆã®é–‹å§‹ç•ªå·
+// 	WORD PaletteLength ;	// 5:ã‚«ãƒ©ãƒ¼ãƒ‘ãƒ¬ãƒƒãƒˆã®å€‹æ•°
+// 	BYTE PaletteBitDepth ;	// 7:ã‚«ãƒ©ãƒ¼ãƒ‘ãƒ¬ãƒƒãƒˆä¸€ã¤ã®ãƒ“ãƒƒãƒˆæ•°( 16:16ãƒ“ãƒƒãƒˆ  24:24ãƒ“ãƒƒãƒˆ  32:32ãƒ“ãƒƒãƒˆ )
+// 	WORD XOrigin ;			// 8:ç”»åƒã®é…ç½®å·¦ä¸Šï¼¸åº§æ¨™( ã»ã¼0 ? )
+// 	WORD YOrigin ;			// 10:ç”»åƒã®é…ç½®å·¦ä¸Šï¼¹åº§æ¨™( ã»ã¼0 ? )
+// 	WORD Width ;			// 12:ç”»åƒã®å¹…
+// 	WORD Height ;			// 14:ç”»åƒã®é«˜ã•
+// 	BYTE ColorBitDepth ;	// 16:è‰²æ·±åº¦( 16:16ãƒ“ãƒƒãƒˆ  24:24ãƒ“ãƒƒãƒˆ  32:32ãƒ“ãƒƒãƒˆ )
+// 	BYTE Descriptor ;		// 17:ãã®ä»–ã®æƒ…å ±
+// 							//     bit 0ï½3 å±æ€§( 16bitç”»åƒãªã‚‰ 0 åˆã¯ 1, 24bitç”»åƒãªã‚‰ 0, 32bitç”»åƒãªã‚‰ 8 )
+// 							//     bit 4 æ ¼ç´æ–¹å‘( 0:å·¦ã‹ã‚‰å³  1:å³ã‹ã‚‰å·¦ )
+// 							//     bit 5 æ ¼ç´æ–¹å‘( 0:ä¸‹ã‹ã‚‰ä¸Š  1:ä¸Šã‹ã‚‰ä¸‹ )
+// 							//     bit 6, 7  æœªä½¿ç”¨
 // } _TGAHEADER ;
 // 
-// // ‚s‚f‚`‰æ‘œ‚Ìƒtƒbƒ^
+// // ï¼´ï¼§ï¼¡ç”»åƒã®ãƒ•ãƒƒã‚¿
 // typedef struct _tagTGAFOOTER
 // {
-// 	DWORD ExtensionOffset ;		// Šg’£î•ñ‚ÌƒAƒhƒŒƒX( 0:–³‚¢ )
-// 	DWORD DeveloperOffset ;		// ŠJ”­Ò—Ìˆæ(?)‚ÌƒAƒhƒŒƒX( 0:–³‚¢ )
-// 	char Signature[18] ;		// ƒtƒbƒ^‚©‚Ç‚¤‚©‚ğ’²‚×‚é‚½‚ß‚Ì‚h‚c( "TRUEVISION-XFILE" )
+// 	DWORD ExtensionOffset ;		// æ‹¡å¼µæƒ…å ±ã®ã‚¢ãƒ‰ãƒ¬ã‚¹( 0:ç„¡ã„ )
+// 	DWORD DeveloperOffset ;		// é–‹ç™ºè€…é ˜åŸŸ(?)ã®ã‚¢ãƒ‰ãƒ¬ã‚¹( 0:ç„¡ã„ )
+// 	char Signature[18] ;		// ãƒ•ãƒƒã‚¿ã‹ã©ã†ã‹ã‚’èª¿ã¹ã‚‹ãŸã‚ã®ï¼©ï¼¤( "TRUEVISION-XFILE" )
 // } _TGAFOOTER ;
 // 
-// // ‚s‚f‚`‰æ‘œ‚Ìƒ^ƒO
+// // ï¼´ï¼§ï¼¡ç”»åƒã®ã‚¿ã‚°
 // typedef struct _tagTGATAG
 // {
-// 	WORD  TagNumber ;	// ƒ^ƒO”Ô†
-// 	DWORD DataOffset ;	// ‚s‚f‚`‚ÌÀƒf[ƒ^‚Ì‚ ‚éƒAƒhƒŒƒX
-// 	DWORD DataSize ;	// ‚s‚f‚`‚ÌÀƒf[ƒ^‚ÌƒTƒCƒY
+// 	WORD  TagNumber ;	// ã‚¿ã‚°ç•ªå·
+// 	DWORD DataOffset ;	// ï¼´ï¼§ï¼¡ã®å®Ÿãƒ‡ãƒ¼ã‚¿ã®ã‚ã‚‹ã‚¢ãƒ‰ãƒ¬ã‚¹
+// 	DWORD DataSize ;	// ï¼´ï¼§ï¼¡ã®å®Ÿãƒ‡ãƒ¼ã‚¿ã®ã‚µã‚¤ã‚º
 // } _TGATAG ;
 // 
-// // ‚s‚f‚`‰æ‘œ‚ÌŠg’£î•ñ
+// // ï¼´ï¼§ï¼¡ç”»åƒã®æ‹¡å¼µæƒ…å ±
 // typedef struct _tagTGAEXTENSION
 // {
-// 	WORD 		Size ;				// ƒtƒbƒ^( 495ŒÅ’è )
-// 	BYTE 		Creator[41] ;		// ìÒ–¼( –¢g—p‚Í 0 ‚Å–„‚ß‚é )
-// 	BYTE 		Comment[4][81] ;	// ìÒ–¼‚âA‚»‚Ì‚Ù‚©‚Ìî•ñ
-// 	WORD		CreationDateMonth ;	// ì¬“ú  Œ 1`12
-// 	WORD		CreationDateDay ;	// ì¬“ú  “ú 1`31
-// 	WORD		CreationDateYear ;	// ì¬“ú  ”N 4Œ…( 2004“™ )
-// 	WORD		CreationDateHour ;	// ì¬“ú   0`23
-// 	WORD		CreationDateMinute ;// ì¬“ú  •ª 0`59
-// 	WORD		CreationDateSecond ;// ì¬“ú  •b 0`59
-// 	BYTE 		JobName[41] ;		// d––¼( –¢g—p‚Í 0 ‚Å–„‚ß‚é )
-// 	WORD		CreationTimeHours ;	// ì¬   0`65535
-// 	WORD		CreationTimeMinute ;// ì¬  •ª 0`59
-// 	WORD		CreationTimeSecond ;// ì¬  •b 0`59
-// 	BYTE		SoftID[41] ;		// ƒ\ƒtƒgƒEƒGƒA‚Ì‚h‚c( –¢g—p‚Í 0 ‚Å–„‚ß‚é )
-// 	WORD		VersionNumber ;		// ƒo[ƒWƒ‡ƒ“ƒiƒ“ƒo[( 1.01 ‚¾‚Á‚½‚ç 101 )
-// 	BYTE		VersionRot ;		// ƒƒbƒg( ƒAƒXƒL[ƒR[ƒh )
-// 	DWORD		ColorKey ;			// ƒJƒ‰[ƒL[
-// 	WORD		AcpectX ;			// ƒhƒbƒg‚ÌƒAƒXƒyƒNƒg”ä X (0:–³Œø)
-// 	WORD		AcpectY ;			// ƒhƒbƒg‚ÌƒAƒXƒyƒNƒg”ä Y (0:–³Œø)
-// 	WORD		GammaN ;			// ƒKƒ“ƒ}’l 0.0 ` 10.0
-// 	WORD		GammaD ;			// ƒKƒ“ƒ}’l ( 0:ƒKƒ“ƒ}w’è–³‚µ )
-// 	DWORD		ColorTableOffset ;	// ƒJƒ‰[ƒRƒŒƒNƒVƒ‡ƒ“ƒe[ƒuƒ‹‚ÌˆÊ’u (0:È—ª)
-// 	DWORD		StampTableOffset ;	// ƒXƒ^ƒ“ƒvƒe[ƒuƒ‹‚ÌˆÊ’u (0:È—ª)
-// 	DWORD		ScanTableOffset ;	// ƒXƒLƒƒƒ“ƒe[ƒuƒ‹‚ÌˆÊ’u (0:È—ª)
-// 	BYTE		AttributeType ;		// ƒAƒgƒŠƒrƒ…[ƒgƒ^ƒCƒv
-// 									//	0:ƒ¿ƒf[ƒ^–³‚µ
-// 									//	1,2:ƒ¿ƒf[ƒ^–³Œø
-// 									//	3:ƒ¿—LŒø
-// 									//	4:pre-multiplied ‚Èƒ¿ƒf[ƒ^
+// 	WORD 		Size ;				// ãƒ•ãƒƒã‚¿( 495å›ºå®š )
+// 	BYTE 		Creator[41] ;		// ä½œè€…å( æœªä½¿ç”¨æ™‚ã¯ 0 ã§åŸ‹ã‚ã‚‹ )
+// 	BYTE 		Comment[4][81] ;	// ä½œè€…åã‚„æ™‚åˆ»ã€ãã®ã»ã‹ã®æƒ…å ±
+// 	WORD		CreationDateMonth ;	// ä½œæˆæ—¥  æœˆ 1ï½12
+// 	WORD		CreationDateDay ;	// ä½œæˆæ—¥  æ—¥ 1ï½31
+// 	WORD		CreationDateYear ;	// ä½œæˆæ—¥  å¹´ 4æ¡( 2004ç­‰ )
+// 	WORD		CreationDateHour ;	// ä½œæˆæ—¥  æ™‚ 0ï½23
+// 	WORD		CreationDateMinute ;// ä½œæˆæ—¥  åˆ† 0ï½59
+// 	WORD		CreationDateSecond ;// ä½œæˆæ—¥  ç§’ 0ï½59
+// 	BYTE 		JobName[41] ;		// ä»•äº‹å( æœªä½¿ç”¨æ™‚ã¯ 0 ã§åŸ‹ã‚ã‚‹ )
+// 	WORD		CreationTimeHours ;	// ä½œæˆæ™‚åˆ»  æ™‚ 0ï½65535
+// 	WORD		CreationTimeMinute ;// ä½œæˆæ™‚åˆ»  åˆ† 0ï½59
+// 	WORD		CreationTimeSecond ;// ä½œæˆæ™‚åˆ»  ç§’ 0ï½59
+// 	BYTE		SoftID[41] ;		// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã®ï¼©ï¼¤( æœªä½¿ç”¨æ™‚ã¯ 0 ã§åŸ‹ã‚ã‚‹ )
+// 	WORD		VersionNumber ;		// ãƒãƒ¼ã‚¸ãƒ§ãƒ³ãƒŠãƒ³ãƒãƒ¼( 1.01 ã ã£ãŸã‚‰ 101 )
+// 	BYTE		VersionRot ;		// ãƒ­ãƒƒãƒˆ( ã‚¢ã‚¹ã‚­ãƒ¼ã‚³ãƒ¼ãƒ‰ )
+// 	DWORD		ColorKey ;			// ã‚«ãƒ©ãƒ¼ã‚­ãƒ¼
+// 	WORD		AcpectX ;			// ãƒ‰ãƒƒãƒˆã®ã‚¢ã‚¹ãƒšã‚¯ãƒˆæ¯” X (0:ç„¡åŠ¹)
+// 	WORD		AcpectY ;			// ãƒ‰ãƒƒãƒˆã®ã‚¢ã‚¹ãƒšã‚¯ãƒˆæ¯” Y (0:ç„¡åŠ¹)
+// 	WORD		GammaN ;			// ã‚¬ãƒ³ãƒå€¤ 0.0 ï½ 10.0
+// 	WORD		GammaD ;			// ã‚¬ãƒ³ãƒå€¤ ( 0:ã‚¬ãƒ³ãƒæŒ‡å®šç„¡ã— )
+// 	DWORD		ColorTableOffset ;	// ã‚«ãƒ©ãƒ¼ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ãƒ†ãƒ¼ãƒ–ãƒ«ã®ä½ç½® (0:çœç•¥)
+// 	DWORD		StampTableOffset ;	// ã‚¹ã‚¿ãƒ³ãƒ—ãƒ†ãƒ¼ãƒ–ãƒ«ã®ä½ç½® (0:çœç•¥)
+// 	DWORD		ScanTableOffset ;	// ã‚¹ã‚­ãƒ£ãƒ³ãƒ†ãƒ¼ãƒ–ãƒ«ã®ä½ç½® (0:çœç•¥)
+// 	BYTE		AttributeType ;		// ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆã‚¿ã‚¤ãƒ—
+// 									//	0:Î±ãƒ‡ãƒ¼ã‚¿ç„¡ã—
+// 									//	1,2:Î±ãƒ‡ãƒ¼ã‚¿ç„¡åŠ¹
+// 									//	3:Î±æœ‰åŠ¹
+// 									//	4:pre-multiplied ãªÎ±ãƒ‡ãƒ¼ã‚¿
 // } _TGAEXTENSION ;
 // 
 // #ifndef DX_GCC_COMPILE
@@ -4178,7 +4178,7 @@ static	int LoadDxLibBaseImage( STREAMDATA *Stream, BASEIMAGE *BaseImage, int Get
 #define TGAHEADER_SIZE			(18)
 #define TGAFOOTER_SIZE			(26)
 
-// TGA Footer ‚ÌƒVƒOƒlƒ`ƒƒ "TRUEVISION-XFILE."
+// TGA Footer ã®ã‚·ã‚°ãƒãƒãƒ£ "TRUEVISION-XFILE."
 BYTE TGA_Footer_Signature[ 18 ] =
 {
 	0x54, 0x52, 0x55, 0x45, 0x56, 0x49, 0x53, 0x49,
@@ -4186,7 +4186,7 @@ BYTE TGA_Footer_Signature[ 18 ] =
 	0x2E, 0x00
 } ;
 
-// ‚s‚f‚`‰æ‘œ‚Ì“Ç‚İ‚±‚İ
+// ï¼´ï¼§ï¼¡ç”»åƒã®èª­ã¿ã“ã¿
 static int LoadTargaImage( STREAMDATA *Src, BASEIMAGE *BaseImage, int GetFormatOnly )
 {
 //	_TGAHEADER head ;
@@ -4203,34 +4203,34 @@ static int LoadTargaImage( STREAMDATA *Src, BASEIMAGE *BaseImage, int GetFormatO
 	BYTE FooterBuffer[ TGAFOOTER_SIZE ] ;
 
 	// TGAHEADER
- 	BYTE ImageIDLength ;		// 0:ƒCƒ[ƒW‚h‚c‚Ì’·‚³(ƒoƒCƒg)
- 	BYTE UseColorMap ;			// 1:ƒJƒ‰[ƒ}ƒbƒv‚Ì—L–³@0:–³‚µ  1:‚ ‚è
- 	BYTE ImageType ;			// 2:‰æ‘œŒ`® 
- 								// 	  0:ƒCƒ[ƒW–³‚µ
- 								//    1:ƒCƒ“ƒfƒbƒNƒXƒJƒ‰[( 256F ) ”ñˆ³k
- 								//	  2:‚q‚f‚aƒJƒ‰[ ”ñˆ³k
- 								//	  3:‚QŠK’²ƒJƒ‰[ ”ñˆ³k
- 								//	  9:ƒCƒ“ƒfƒbƒNƒXƒJƒ‰[ RLEˆ³k
- 								//	  10:‚q‚f‚aƒJƒ‰[ RLEˆ³k
- 								//	  11:‚QŠK’²ƒJƒ‰[ RLEˆ³k
- 	WORD PaletteOrigin ;		// 3:ƒJƒ‰[ƒpƒŒƒbƒg‚ÌŠJn”Ô†
- 	WORD PaletteLength ;		// 5:ƒJƒ‰[ƒpƒŒƒbƒg‚ÌŒÂ”
- 	BYTE PaletteBitDepth ;		// 7:ƒJƒ‰[ƒpƒŒƒbƒgˆê‚Â‚Ìƒrƒbƒg”( 16:16ƒrƒbƒg  24:24ƒrƒbƒg  32:32ƒrƒbƒg )
- 	WORD XOrigin ;				// 8:‰æ‘œ‚Ì”z’u¶ã‚wÀ•W( ‚Ù‚Ú0 ? )
- 	WORD YOrigin ;				// 10:‰æ‘œ‚Ì”z’u¶ã‚xÀ•W( ‚Ù‚Ú0 ? )
- 	WORD Width ;				// 12:‰æ‘œ‚Ì•
- 	WORD Height ;				// 14:‰æ‘œ‚Ì‚‚³
- 	BYTE ColorBitDepth ;		// 16:F[“x( 16:16ƒrƒbƒg  24:24ƒrƒbƒg  32:32ƒrƒbƒg )
- 	BYTE Descriptor ;			// 17:‚»‚Ì‘¼‚Ìî•ñ
- 								//     bit 0`3 ‘®«( 16bit‰æ‘œ‚È‚ç 0 –”‚Í 1, 24bit‰æ‘œ‚È‚ç 0, 32bit‰æ‘œ‚È‚ç 8 )
- 								//     bit 4 Ši”[•ûŒü( 0:¶‚©‚ç‰E  1:‰E‚©‚ç¶ )
- 								//     bit 5 Ši”[•ûŒü( 0:‰º‚©‚çã  1:ã‚©‚ç‰º )
- 								//     bit 6, 7  –¢g—p
+ 	BYTE ImageIDLength ;		// 0:ã‚¤ãƒ¡ãƒ¼ã‚¸ï¼©ï¼¤ã®é•·ã•(ãƒã‚¤ãƒˆ)
+ 	BYTE UseColorMap ;			// 1:ã‚«ãƒ©ãƒ¼ãƒãƒƒãƒ—ã®æœ‰ç„¡ã€€0:ç„¡ã—  1:ã‚ã‚Š
+ 	BYTE ImageType ;			// 2:ç”»åƒå½¢å¼ 
+ 								// 	  0:ã‚¤ãƒ¡ãƒ¼ã‚¸ç„¡ã—
+ 								//    1:ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚«ãƒ©ãƒ¼( 256è‰² ) éåœ§ç¸®
+ 								//	  2:ï¼²ï¼§ï¼¢ã‚«ãƒ©ãƒ¼ éåœ§ç¸®
+ 								//	  3:ï¼’éšèª¿ã‚«ãƒ©ãƒ¼ éåœ§ç¸®
+ 								//	  9:ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚«ãƒ©ãƒ¼ RLEåœ§ç¸®
+ 								//	  10:ï¼²ï¼§ï¼¢ã‚«ãƒ©ãƒ¼ RLEåœ§ç¸®
+ 								//	  11:ï¼’éšèª¿ã‚«ãƒ©ãƒ¼ RLEåœ§ç¸®
+ 	WORD PaletteOrigin ;		// 3:ã‚«ãƒ©ãƒ¼ãƒ‘ãƒ¬ãƒƒãƒˆã®é–‹å§‹ç•ªå·
+ 	WORD PaletteLength ;		// 5:ã‚«ãƒ©ãƒ¼ãƒ‘ãƒ¬ãƒƒãƒˆã®å€‹æ•°
+ 	BYTE PaletteBitDepth ;		// 7:ã‚«ãƒ©ãƒ¼ãƒ‘ãƒ¬ãƒƒãƒˆä¸€ã¤ã®ãƒ“ãƒƒãƒˆæ•°( 16:16ãƒ“ãƒƒãƒˆ  24:24ãƒ“ãƒƒãƒˆ  32:32ãƒ“ãƒƒãƒˆ )
+ 	WORD XOrigin ;				// 8:ç”»åƒã®é…ç½®å·¦ä¸Šï¼¸åº§æ¨™( ã»ã¼0 ? )
+ 	WORD YOrigin ;				// 10:ç”»åƒã®é…ç½®å·¦ä¸Šï¼¹åº§æ¨™( ã»ã¼0 ? )
+ 	WORD Width ;				// 12:ç”»åƒã®å¹…
+ 	WORD Height ;				// 14:ç”»åƒã®é«˜ã•
+ 	BYTE ColorBitDepth ;		// 16:è‰²æ·±åº¦( 16:16ãƒ“ãƒƒãƒˆ  24:24ãƒ“ãƒƒãƒˆ  32:32ãƒ“ãƒƒãƒˆ )
+ 	BYTE Descriptor ;			// 17:ãã®ä»–ã®æƒ…å ±
+ 								//     bit 0ï½3 å±æ€§( 16bitç”»åƒãªã‚‰ 0 åˆã¯ 1, 24bitç”»åƒãªã‚‰ 0, 32bitç”»åƒãªã‚‰ 8 )
+ 								//     bit 4 æ ¼ç´æ–¹å‘( 0:å·¦ã‹ã‚‰å³  1:å³ã‹ã‚‰å·¦ )
+ 								//     bit 5 æ ¼ç´æ–¹å‘( 0:ä¸‹ã‹ã‚‰ä¸Š  1:ä¸Šã‹ã‚‰ä¸‹ )
+ 								//     bit 6, 7  æœªä½¿ç”¨
 
 	// TGAFOOTER
- 	DWORD ExtensionOffset ;		// Šg’£î•ñ‚ÌƒAƒhƒŒƒX( 0:–³‚¢ )
- 	DWORD DeveloperOffset ;		// ŠJ”­Ò—Ìˆæ(?)‚ÌƒAƒhƒŒƒX( 0:–³‚¢ )
-// 	char Signature[ 18 ] ;		// ƒtƒbƒ^‚©‚Ç‚¤‚©‚ğ’²‚×‚é‚½‚ß‚Ì‚h‚c( "TRUEVISION-XFILE" )
+ 	DWORD ExtensionOffset ;		// æ‹¡å¼µæƒ…å ±ã®ã‚¢ãƒ‰ãƒ¬ã‚¹( 0:ç„¡ã„ )
+ 	DWORD DeveloperOffset ;		// é–‹ç™ºè€…é ˜åŸŸ(?)ã®ã‚¢ãƒ‰ãƒ¬ã‚¹( 0:ç„¡ã„ )
+// 	char Signature[ 18 ] ;		// ãƒ•ãƒƒã‚¿ã‹ã©ã†ã‹ã‚’èª¿ã¹ã‚‹ãŸã‚ã®ï¼©ï¼¤( "TRUEVISION-XFILE" )
 	
 	usealpha = 1 ;
 	data = NULL ;
@@ -4241,7 +4241,7 @@ static int LoadTargaImage( STREAMDATA *Src, BASEIMAGE *BaseImage, int GetFormatO
 	sstr = &Src->ReadShred ;
 	sp = Src->DataPoint ;
 	
-	// ƒtƒbƒ^‚ğ“Ç‚İ‚Ş
+	// ãƒ•ãƒƒã‚¿ã‚’èª­ã¿è¾¼ã‚€
 	{
 		int FailedFlag = FALSE ;
 
@@ -4267,36 +4267,36 @@ static int LoadTargaImage( STREAMDATA *Src, BASEIMAGE *BaseImage, int GetFormatO
 
 		if( FailedFlag )
 		{
-			// ƒtƒbƒ^[‚È‚µ		
+			// ãƒ•ãƒƒã‚¿ãƒ¼ãªã—		
 			validfooter = 0 ;
 		
-			// ƒtƒ@ƒCƒ‹‚Ìæ“ª‚©‚ç“Ç‚İ‚Ş
+			// ãƒ•ã‚¡ã‚¤ãƒ«ã®å…ˆé ­ã‹ã‚‰èª­ã¿è¾¼ã‚€
 			sstr->Seek( sp, 0, SEEK_SET ) ;
 	/*	
-			// ƒ¿‚Ì—L–³‚¾‚¯Œ©‚é
+			// Î±ã®æœ‰ç„¡ã ã‘è¦‹ã‚‹
 			sstr->Seek( sp, foot.ExtensionOffset, SEEK_SET ) ;
 			if( sstr->Read( &ext, sizeof( ext ), 1, sp ) <= 0 ) return -1 ;
 			usealpha = ext.AttributeType == 3 ? 3 : 0 ;
 	
-			// ƒf[ƒ^‚Ì‚ ‚éˆÊ’u‚ğæ“¾
+			// ãƒ‡ãƒ¼ã‚¿ã®ã‚ã‚‹ä½ç½®ã‚’å–å¾—
 			sstr->Seek( sp, foot.DeveloperOffset, SEEK_SET ) ;
 			if( sstr->Read( &tag, sizeof( tag ), 1, sp ) <= 0 ) return -1 ;
 		
-			// Àƒf[ƒ^‚Ì‚ ‚éˆÊ’u‚ÖˆÚ“®
+			// å®Ÿãƒ‡ãƒ¼ã‚¿ã®ã‚ã‚‹ä½ç½®ã¸ç§»å‹•
 			sstr->Seek( sp, tag.DataOffset, SEEK_SET ) ;
 	*/
 		}
 		else
 		{
-			// ƒtƒbƒ^[‚ ‚è
+			// ãƒ•ãƒƒã‚¿ãƒ¼ã‚ã‚Š
 			validfooter = 1 ;
 		
-			// ƒtƒ@ƒCƒ‹‚Ìæ“ª‚©‚ç“Ç‚İ‚Ş
+			// ãƒ•ã‚¡ã‚¤ãƒ«ã®å…ˆé ­ã‹ã‚‰èª­ã¿è¾¼ã‚€
 			sstr->Seek( sp, 0, SEEK_SET ) ;
 		}
 	}
 
-	// ƒwƒbƒ_‚ğ“Ç‚İ‚Ş
+	// ãƒ˜ãƒƒãƒ€ã‚’èª­ã¿è¾¼ã‚€
 	if( sstr->Read( HeaderBuffer, TGAHEADER_SIZE, 1, sp ) != 1 )
 	{
 		return -1 ;
@@ -4314,7 +4314,7 @@ static int LoadTargaImage( STREAMDATA *Src, BASEIMAGE *BaseImage, int GetFormatO
 	READ_MEM_1BYTE( &ColorBitDepth	, &HeaderBuffer[ 16 ] ) ;
 	READ_MEM_1BYTE( &Descriptor		, &HeaderBuffer[ 17 ] ) ;
 
-	// ID‚ÌƒTƒCƒY•ª‚¾‚¯“Ç‚İ‚İˆÊ’u‚ğ•ÏX‚·‚é
+	// IDã®ã‚µã‚¤ã‚ºåˆ†ã ã‘èª­ã¿è¾¼ã¿ä½ç½®ã‚’å¤‰æ›´ã™ã‚‹
 	if( ImageIDLength != 0 )
 	{
 		sstr->Seek( sp, ImageIDLength, SEEK_CUR ) ;
@@ -4333,13 +4333,13 @@ static int LoadTargaImage( STREAMDATA *Src, BASEIMAGE *BaseImage, int GetFormatO
 //	DXST_LOGFILEFMT_ADDW(( L"Descriptor:%x",		head.Descriptor			)) ;
 //	DXST_LOGFILEFMT_ADDW(( L"ValidFooter:%d",		validfooter				)) ;
 
-	// ƒJƒ‰[ƒpƒŒƒbƒgƒOƒ‰ƒtƒBƒbƒN‚ğg—p‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©’²‚×‚é
+	// ã‚«ãƒ©ãƒ¼ãƒ‘ãƒ¬ãƒƒãƒˆã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹ã‹ã©ã†ã‹èª¿ã¹ã‚‹
 	pal = ImageType == 1 || ImageType == 9 ? 1 : 0 ;
 
-	// F[“x‚ğ“¾‚é
+	// è‰²æ·±åº¦ã‚’å¾—ã‚‹
 	colordepth = pal == 1 ? PaletteBitDepth : ColorBitDepth ;
 	
-	// ƒf[ƒ^‚ª‚s‚f‚`‚©’²‚×‚é
+	// ãƒ‡ãƒ¼ã‚¿ãŒï¼´ï¼§ï¼¡ã‹èª¿ã¹ã‚‹
 	if( /*ImageIDLength != 0 ||*/
 		( ImageType >= 4 && ImageType <= 8 ) ||
 		ImageType	> 11 ||
@@ -4352,7 +4352,7 @@ static int LoadTargaImage( STREAMDATA *Src, BASEIMAGE *BaseImage, int GetFormatO
 		return -1 ;
 	}
 
-	// ‘Î‰‚µ‚Ä‚¢‚È‚¢Œ`®‚Í’e‚­( ‚QŠK’²Œ`®‚Æ–¢’m‚ÌŒ`® )
+	// å¯¾å¿œã—ã¦ã„ãªã„å½¢å¼ã¯å¼¾ã( ï¼’éšèª¿å½¢å¼ã¨æœªçŸ¥ã®å½¢å¼ )
 	if(	ImageType == 0 ||
 		ImageType == 3 ||
 		ImageType == 11 ||
@@ -4361,7 +4361,7 @@ static int LoadTargaImage( STREAMDATA *Src, BASEIMAGE *BaseImage, int GetFormatO
 		return -1 ;
 	}
 
-	// ƒ‰ƒ“ƒŒƒ“ƒOƒXˆ³kƒf[ƒ^‚©‚Ç‚¤‚©’²‚×‚é
+	// ãƒ©ãƒ³ãƒ¬ãƒ³ã‚°ã‚¹åœ§ç¸®ãƒ‡ãƒ¼ã‚¿ã‹ã©ã†ã‹èª¿ã¹ã‚‹
 	rle = 0 ;
 	switch( ImageType )
 	{
@@ -4374,20 +4374,20 @@ static int LoadTargaImage( STREAMDATA *Src, BASEIMAGE *BaseImage, int GetFormatO
 	case 11 : rle = 1 ; break ;
 	}
 	
-	// ƒCƒ[ƒW‚ÌŠi”[•ûŒü‚ğƒZƒbƒg‚·‚é
+	// ã‚¤ãƒ¡ãƒ¼ã‚¸ã®æ ¼ç´æ–¹å‘ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 	rightleft = ( Descriptor >> 4 ) & 1 ? 1 : 0 ;
 	bottomtop = ( Descriptor >> 5 ) & 1 ? 0 : 1 ;
 
-	// ƒCƒ[ƒW‚Ìƒf[ƒ^ƒTƒCƒY‚ğ“¾‚é
+	// ã‚¤ãƒ¡ãƒ¼ã‚¸ã®ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºã‚’å¾—ã‚‹
 	pixelbyte = colordepth / 8 ;
 	pitch     = pixelbyte * Width ;
 	datasize  = pitch * Height ;
 
-	// ƒ¿•t‚«‚Å 32 ƒrƒbƒgˆÈŠO‚¾‚Á‚½‚ç‚¨èã‚°
+	// Î±ä»˜ãã§ 32 ãƒ“ãƒƒãƒˆä»¥å¤–ã ã£ãŸã‚‰ãŠæ‰‹ä¸Šã’
 	if( ( ( usealpha & 1 ) == 1 && colordepth != 32 ) && 
 		( ( usealpha & 2 ) == 2 && colordepth != 16 ) ) goto ERR ;
 
-	// BASEIMAGE \‘¢‘Ì‚Ìî•ñ‚ğ–„‚ß‚é
+	// BASEIMAGE æ§‹é€ ä½“ã®æƒ…å ±ã‚’åŸ‹ã‚ã‚‹
 	{
 		COLORDATA *cr ;
 	
@@ -4447,40 +4447,40 @@ static int LoadTargaImage( STREAMDATA *Src, BASEIMAGE *BaseImage, int GetFormatO
 	
 	if( GetFormatOnly == FALSE )
 	{
-		// ‰æ‘œƒf[ƒ^‚ğŠi”[‚·‚éƒƒ‚ƒŠ—Ìˆæ‚ğŠm•Û
+		// ç”»åƒãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹ãƒ¡ãƒ¢ãƒªé ˜åŸŸã‚’ç¢ºä¿
 		data = ( BYTE * )DXALLOC( ( size_t )datasize ) ;
 		if( data == NULL ) goto ERR ;
 		
-		// ƒpƒŒƒbƒgƒOƒ‰ƒtƒBƒbƒN‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+		// ãƒ‘ãƒ¬ãƒƒãƒˆã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 		if( pal == 1 )
 		{
-			// ƒpƒŒƒbƒgƒJƒ‰[‚Å‚ ‚éê‡
+			// ãƒ‘ãƒ¬ãƒƒãƒˆã‚«ãƒ©ãƒ¼ã§ã‚ã‚‹å ´åˆ
 			
-			// ƒpƒŒƒbƒg‚ğ“Ç‚İ‚Ş
+			// ãƒ‘ãƒ¬ãƒƒãƒˆã‚’èª­ã¿è¾¼ã‚€
 			palette = ( BYTE * )DXALLOC( ( size_t )( 256 * pixelbyte ) ) ;
 			if( palette == NULL ) goto ERR ;
 			_MEMSET( palette, 0, ( size_t )( 256 * pixelbyte ) ) ;
 			if( sstr->Read( palette + PaletteOrigin * pixelbyte, ( size_t )( PaletteLength * pixelbyte ), 1, sp ) <= 0 ) goto ERR ;
 			
-			// ‰æ‘œ‚ªˆ³k‚³‚ê‚Ä‚¢‚é‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+			// ç”»åƒãŒåœ§ç¸®ã•ã‚Œã¦ã„ã‚‹ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 			if( rle == 0 )
 			{
-				// ”ñˆ³k
+				// éåœ§ç¸®
 				
 				unsigned int destpixel ;
 				BYTE *src ;
 
-				// ‘SƒsƒNƒZƒ‹”‚ğ“¾‚é
+				// å…¨ãƒ”ã‚¯ã‚»ãƒ«æ•°ã‚’å¾—ã‚‹
 				destpixel = ( unsigned int )( Width * Height ) ;
 				
-				// ƒf[ƒ^‚ğ“Ç‚İ‚Şƒƒ‚ƒŠ‚ğŠm•Û‚·‚é
+				// ãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿è¾¼ã‚€ãƒ¡ãƒ¢ãƒªã‚’ç¢ºä¿ã™ã‚‹
 				temp = ( BYTE * )DXALLOC( destpixel ) ;
 				if( temp == NULL ) goto ERR ;
 				
-				// ƒf[ƒ^‚ğ“Ç‚İ‚Ş
+				// ãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿è¾¼ã‚€
 				if( sstr->Read( temp, destpixel, 1, sp ) <= 0 ) goto ERR ;
 				
-				// ƒpƒŒƒbƒgƒf[ƒ^‚ğŒ³‚Éƒf[ƒ^‚ğ“WŠJ‚·‚é
+				// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã‚’å…ƒã«ãƒ‡ãƒ¼ã‚¿ã‚’å±•é–‹ã™ã‚‹
 				src = temp ;
 				switch( colordepth )
 				{
@@ -4529,16 +4529,16 @@ static int LoadTargaImage( STREAMDATA *Src, BASEIMAGE *BaseImage, int GetFormatO
 			}
 			else
 			{
-				// ˆ³k
+				// åœ§ç¸®
 				
 				DWORD pos, size, destpixel ;
 				int loopnum ;
 				BYTE *src ;
 				
-				// ‘SƒsƒNƒZƒ‹”‚ğ“¾‚é
+				// å…¨ãƒ”ã‚¯ã‚»ãƒ«æ•°ã‚’å¾—ã‚‹
 				destpixel = ( DWORD )( Width * Height ) ;
 				
-				// ˆ³kƒf[ƒ^‚ğŠÜ‚Şƒf[ƒ^‚ğß‘€–³‚­“Ç‚İ‚Ş
+				// åœ§ç¸®ãƒ‡ãƒ¼ã‚¿ã‚’å«ã‚€ãƒ‡ãƒ¼ã‚¿ã‚’ç¯€æ“ç„¡ãèª­ã¿è¾¼ã‚€
 				pos = ( DWORD )sstr->Tell( sp ) ;
 				sstr->Seek( sp, -TGAFOOTER_SIZE, SEEK_END ) ;
 				size = ( DWORD )( sstr->Tell( sp ) - pos ) ;
@@ -4547,7 +4547,7 @@ static int LoadTargaImage( STREAMDATA *Src, BASEIMAGE *BaseImage, int GetFormatO
 				if( temp == NULL ) goto ERR ;
 				if( sstr->Read( temp, size, 1, sp ) <= 0 ) goto ERR ;
 				
-				// ƒpƒŒƒbƒg‚Æˆ³kƒf[ƒ^‚ğŒ³‚É“WŠJ‚·‚é
+				// ãƒ‘ãƒ¬ãƒƒãƒˆã¨åœ§ç¸®ãƒ‡ãƒ¼ã‚¿ã‚’å…ƒã«å±•é–‹ã™ã‚‹
 				src = temp ;
 				switch( colordepth )
 				{
@@ -4559,17 +4559,17 @@ static int LoadTargaImage( STREAMDATA *Src, BASEIMAGE *BaseImage, int GetFormatO
 						dest = (WORD *)data ;
 						do
 						{
-							loopnum = ( *src & 0x7f ) + 1 ;	// ƒ‹[ƒv‰ñ”‚ğ“¾‚é( ‰ºˆÊ 7bit ‚ªƒ‹[ƒv‰ñ” - 1 )
-							destpixel -= loopnum ;	// ˆ—‚·‚éƒsƒNƒZƒ‹”‚ğŒ¸Z
-							if( *src++ & 0x80 ) 	// “¯‚¶F‚ª‘±‚¢‚Ä‚¢‚é‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò( 8bit  1:“¯ƒR[ƒh“WŠJ  0:’Êí“WŠJ )
+							loopnum = ( *src & 0x7f ) + 1 ;	// ãƒ«ãƒ¼ãƒ—å›æ•°ã‚’å¾—ã‚‹( ä¸‹ä½ 7bit ãŒãƒ«ãƒ¼ãƒ—å›æ•° - 1 )
+							destpixel -= loopnum ;	// å‡¦ç†ã™ã‚‹ãƒ”ã‚¯ã‚»ãƒ«æ•°ã‚’æ¸›ç®—
+							if( *src++ & 0x80 ) 	// åŒã˜è‰²ãŒç¶šã„ã¦ã„ã‚‹ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²( 8bit  1:åŒã‚³ãƒ¼ãƒ‰å±•é–‹  0:é€šå¸¸å±•é–‹ )
 							{
-								// FƒR[ƒh‚ğæ“¾E“WŠJ
+								// è‰²ã‚³ãƒ¼ãƒ‰ã‚’å–å¾—ãƒ»å±•é–‹
 								WORD cr = palW[*src++] ;	
 								do	*dest++ = cr ;	while( --loopnum ) ;
 							}
 							else
 							{
-								// FƒR[ƒh‚ğæ“¾E“WŠJ
+								// è‰²ã‚³ãƒ¼ãƒ‰ã‚’å–å¾—ãƒ»å±•é–‹
 								do	*dest++ = palW[*src++] ;	while( --loopnum ) ;
 							}
 						}while( destpixel ) ;
@@ -4584,11 +4584,11 @@ static int LoadTargaImage( STREAMDATA *Src, BASEIMAGE *BaseImage, int GetFormatO
 						dest = data ;
 						do
 						{
-							loopnum = ( *src & 0x7f ) + 1 ;	// ƒ‹[ƒv‰ñ”‚ğ“¾‚é( ‰ºˆÊ 7bit ‚ªƒ‹[ƒv‰ñ” - 1 )
-							destpixel -= loopnum ;	// ˆ—‚·‚éƒsƒNƒZƒ‹”‚ğŒ¸Z
-							if( *src++ & 0x80 ) 	// “¯‚¶F‚ª‘±‚¢‚Ä‚¢‚é‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò( 8bit  1:“¯ƒR[ƒh“WŠJ  0:’Êí“WŠJ )
+							loopnum = ( *src & 0x7f ) + 1 ;	// ãƒ«ãƒ¼ãƒ—å›æ•°ã‚’å¾—ã‚‹( ä¸‹ä½ 7bit ãŒãƒ«ãƒ¼ãƒ—å›æ•° - 1 )
+							destpixel -= loopnum ;	// å‡¦ç†ã™ã‚‹ãƒ”ã‚¯ã‚»ãƒ«æ•°ã‚’æ¸›ç®—
+							if( *src++ & 0x80 ) 	// åŒã˜è‰²ãŒç¶šã„ã¦ã„ã‚‹ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²( 8bit  1:åŒã‚³ãƒ¼ãƒ‰å±•é–‹  0:é€šå¸¸å±•é–‹ )
 							{
-								// FƒR[ƒh‚ğæ“¾E“WŠJ
+								// è‰²ã‚³ãƒ¼ãƒ‰ã‚’å–å¾—ãƒ»å±•é–‹
 								BYTE cr[ 3 ] ;
 								cr[ 0 ] = palette[( *src * 3 ) + 0] ;
 								cr[ 1 ] = palette[( *src * 3 ) + 1] ;
@@ -4604,7 +4604,7 @@ static int LoadTargaImage( STREAMDATA *Src, BASEIMAGE *BaseImage, int GetFormatO
 							}
 							else
 							{
-								// FƒR[ƒh‚ğæ“¾E“WŠJ
+								// è‰²ã‚³ãƒ¼ãƒ‰ã‚’å–å¾—ãƒ»å±•é–‹
 								do
 								{
 									dest[0] = palette[( *src * 3 ) + 0] ;
@@ -4627,17 +4627,17 @@ static int LoadTargaImage( STREAMDATA *Src, BASEIMAGE *BaseImage, int GetFormatO
 						dest = (DWORD *)data ;
 						do
 						{
-							loopnum = ( *src & 0x7f ) + 1 ;	// ƒ‹[ƒv‰ñ”‚ğ“¾‚é( ‰ºˆÊ 7bit ‚ªƒ‹[ƒv‰ñ” - 1 )
-							destpixel -= loopnum ;	// ˆ—‚·‚éƒsƒNƒZƒ‹”‚ğŒ¸Z
-							if( *src++ & 0x80 ) 	// “¯‚¶F‚ª‘±‚¢‚Ä‚¢‚é‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò( 8bit  1:“¯ƒR[ƒh“WŠJ  0:’Êí“WŠJ )
+							loopnum = ( *src & 0x7f ) + 1 ;	// ãƒ«ãƒ¼ãƒ—å›æ•°ã‚’å¾—ã‚‹( ä¸‹ä½ 7bit ãŒãƒ«ãƒ¼ãƒ—å›æ•° - 1 )
+							destpixel -= loopnum ;	// å‡¦ç†ã™ã‚‹ãƒ”ã‚¯ã‚»ãƒ«æ•°ã‚’æ¸›ç®—
+							if( *src++ & 0x80 ) 	// åŒã˜è‰²ãŒç¶šã„ã¦ã„ã‚‹ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²( 8bit  1:åŒã‚³ãƒ¼ãƒ‰å±•é–‹  0:é€šå¸¸å±•é–‹ )
 							{
-								// FƒR[ƒh‚ğæ“¾E“WŠJ
+								// è‰²ã‚³ãƒ¼ãƒ‰ã‚’å–å¾—ãƒ»å±•é–‹
 								DWORD cr = palD[*src++] ;	
 								do	*dest++ = cr ;	while( --loopnum ) ;
 							}
 							else
 							{
-								// FƒR[ƒh‚ğæ“¾E“WŠJ
+								// è‰²ã‚³ãƒ¼ãƒ‰ã‚’å–å¾—ãƒ»å±•é–‹
 								do	*dest++ = palD[*src++] ; while( --loopnum ) ;
 							}
 						}while( destpixel ) ;
@@ -4646,7 +4646,7 @@ static int LoadTargaImage( STREAMDATA *Src, BASEIMAGE *BaseImage, int GetFormatO
 				}
 			}
 			
-			// ƒpƒŒƒbƒg‰æ‘œ‚ÆƒpƒŒƒbƒgî•ñ‚ğ‰ğ•ú‚·‚é
+			// ãƒ‘ãƒ¬ãƒƒãƒˆç”»åƒã¨ãƒ‘ãƒ¬ãƒƒãƒˆæƒ…å ±ã‚’è§£æ”¾ã™ã‚‹
 			DXFREE( temp ) ;
 			DXFREE( palette ) ;
 			temp = NULL ;
@@ -4654,24 +4654,24 @@ static int LoadTargaImage( STREAMDATA *Src, BASEIMAGE *BaseImage, int GetFormatO
 		}
 		else
 		{
-			// ƒpƒŒƒbƒgƒJƒ‰[‚Å‚Í‚È‚¢ê‡
+			// ãƒ‘ãƒ¬ãƒƒãƒˆã‚«ãƒ©ãƒ¼ã§ã¯ãªã„å ´åˆ
 			
-			// ˆ³kƒf[ƒ^‚©‚Ç‚¤‚©‚É‚æ‚Á‚Äˆ—‚ğ•ªŠò
+			// åœ§ç¸®ãƒ‡ãƒ¼ã‚¿ã‹ã©ã†ã‹ã«ã‚ˆã£ã¦å‡¦ç†ã‚’åˆ†å²
 			if( rle == 0 )
 			{
-				// ”ñˆ³k
+				// éåœ§ç¸®
 
-				// •’Ê‚Éƒf[ƒ^‚ğ“Ç‚İ‚Ş
+				// æ™®é€šã«ãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿è¾¼ã‚€
 				if( sstr->Read( data, ( size_t )datasize, 1, sp ) <= 0 ) goto ERR ;
 			}
 			else
 			{
-				// ˆ³k
+				// åœ§ç¸®
 			
 				BYTE *src, *dest ;
 				int size, pos, destpixel, loopnum ;
 				
-				// ˆ³kƒf[ƒ^‚ğŠÜ‚Şƒf[ƒ^‚ğß‘€–³‚­“Ç‚İ‚Ş
+				// åœ§ç¸®ãƒ‡ãƒ¼ã‚¿ã‚’å«ã‚€ãƒ‡ãƒ¼ã‚¿ã‚’ç¯€æ“ç„¡ãèª­ã¿è¾¼ã‚€
 				pos = ( int )sstr->Tell( sp ) ;
 				sstr->Seek( sp, validfooter ? -TGAFOOTER_SIZE : 0, SEEK_END ) ;
 				size = ( int )( sstr->Tell( sp ) - pos ) ;
@@ -4680,23 +4680,23 @@ static int LoadTargaImage( STREAMDATA *Src, BASEIMAGE *BaseImage, int GetFormatO
 				if( temp == NULL ) goto ERR ;
 				if( sstr->Read( temp, ( size_t )size, 1, sp ) <= 0 ) goto ERR ;
 				
-				// “WŠJˆ—
+				// å±•é–‹å‡¦ç†
 				dest      = data ;
 				src       = temp ;
 				destpixel = Width * Height ;
 				
-				// ƒrƒbƒg[“x‚É‚æ‚Á‚Äˆ—‚ğ•ªŠò
+				// ãƒ“ãƒƒãƒˆæ·±åº¦ã«ã‚ˆã£ã¦å‡¦ç†ã‚’åˆ†å²
 				switch( ColorBitDepth )
 				{
 				case 16 :
 					do
 					{
-						loopnum    = ( GET_MEM_BYTE( src ) & 0x7f ) + 1 ;	// ƒ‹[ƒv‰ñ”‚ğ“¾‚é( ‰ºˆÊ 7bit ‚ªƒ‹[ƒv‰ñ” - 1 )
-						destpixel -= loopnum ;	// ˆ—ƒsƒNƒZƒ‹”•ªŒ¸‚ç‚·
-						if( GET_MEM_BYTE( src ) & 0x80 )		// “¯‚¶F‚ª‘±‚¢‚Ä‚¢‚é‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò( 8bit  1:“¯ƒR[ƒh“WŠJ  0:’Êí“WŠJ )
+						loopnum    = ( GET_MEM_BYTE( src ) & 0x7f ) + 1 ;	// ãƒ«ãƒ¼ãƒ—å›æ•°ã‚’å¾—ã‚‹( ä¸‹ä½ 7bit ãŒãƒ«ãƒ¼ãƒ—å›æ•° - 1 )
+						destpixel -= loopnum ;	// å‡¦ç†ãƒ”ã‚¯ã‚»ãƒ«æ•°åˆ†æ¸›ã‚‰ã™
+						if( GET_MEM_BYTE( src ) & 0x80 )		// åŒã˜è‰²ãŒç¶šã„ã¦ã„ã‚‹ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²( 8bit  1:åŒã‚³ãƒ¼ãƒ‰å±•é–‹  0:é€šå¸¸å±•é–‹ )
 						{
 							src ++ ;
-							do	// FƒR[ƒh‚ğæ“¾E“WŠJ
+							do	// è‰²ã‚³ãƒ¼ãƒ‰ã‚’å–å¾—ãƒ»å±•é–‹
 							{
 								READ_MEM_2BYTE( dest, src ) ;
 								dest += 2 ;
@@ -4706,7 +4706,7 @@ static int LoadTargaImage( STREAMDATA *Src, BASEIMAGE *BaseImage, int GetFormatO
 						else
 						{
 							src ++ ;
-							do	// FƒR[ƒh‚ğæ“¾E“WŠJ
+							do	// è‰²ã‚³ãƒ¼ãƒ‰ã‚’å–å¾—ãƒ»å±•é–‹
 							{
 								READ_MEM_2BYTE( dest, src ) ;
 								dest += 2 ;
@@ -4719,12 +4719,12 @@ static int LoadTargaImage( STREAMDATA *Src, BASEIMAGE *BaseImage, int GetFormatO
 				case 24 :
 					do
 					{
-						loopnum = ( GET_MEM_BYTE( src ) & 0x7f ) + 1 ;	// ƒ‹[ƒv‰ñ”‚ğ“¾‚é( ‰ºˆÊ 7bit ‚ªƒ‹[ƒv‰ñ” - 1 )
-						destpixel -= loopnum ;	// ˆ—ƒsƒNƒZƒ‹”•ªŒ¸‚ç‚·
-						if( GET_MEM_BYTE( src ) & 0x80 )		// “¯‚¶F‚ª‘±‚¢‚Ä‚¢‚é‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò( 8bit  1:“¯ƒR[ƒh“WŠJ  0:’Êí“WŠJ )
+						loopnum = ( GET_MEM_BYTE( src ) & 0x7f ) + 1 ;	// ãƒ«ãƒ¼ãƒ—å›æ•°ã‚’å¾—ã‚‹( ä¸‹ä½ 7bit ãŒãƒ«ãƒ¼ãƒ—å›æ•° - 1 )
+						destpixel -= loopnum ;	// å‡¦ç†ãƒ”ã‚¯ã‚»ãƒ«æ•°åˆ†æ¸›ã‚‰ã™
+						if( GET_MEM_BYTE( src ) & 0x80 )		// åŒã˜è‰²ãŒç¶šã„ã¦ã„ã‚‹ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²( 8bit  1:åŒã‚³ãƒ¼ãƒ‰å±•é–‹  0:é€šå¸¸å±•é–‹ )
 						{
 							src ++ ;
-							do	// FƒR[ƒh‚ğæ“¾E“WŠJ
+							do	// è‰²ã‚³ãƒ¼ãƒ‰ã‚’å–å¾—ãƒ»å±•é–‹
 							{
 								READ_MEM_3BYTE( dest, src ) ;
 								dest += 3 ;
@@ -4734,7 +4734,7 @@ static int LoadTargaImage( STREAMDATA *Src, BASEIMAGE *BaseImage, int GetFormatO
 						else
 						{
 							src ++ ;
-							do	// FƒR[ƒh‚ğæ“¾E“WŠJ
+							do	// è‰²ã‚³ãƒ¼ãƒ‰ã‚’å–å¾—ãƒ»å±•é–‹
 							{
 								READ_MEM_3BYTE( dest, src ) ;
 								dest += 3 ;
@@ -4747,12 +4747,12 @@ static int LoadTargaImage( STREAMDATA *Src, BASEIMAGE *BaseImage, int GetFormatO
 				case 32 :
 					do
 					{
-						loopnum = ( GET_MEM_BYTE( src ) & 0x7f ) + 1 ;	// ƒ‹[ƒv‰ñ”‚ğ“¾‚é( ‰ºˆÊ 7bit ‚ªƒ‹[ƒv‰ñ” - 1 )
-						destpixel -= loopnum ;	// ˆ—ƒsƒNƒZƒ‹”•ªŒ¸‚ç‚·
-						if( GET_MEM_BYTE( src ) & 0x80 )		// “¯‚¶F‚ª‘±‚¢‚Ä‚¢‚é‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò( 8bit  1:“¯ƒR[ƒh“WŠJ  0:’Êí“WŠJ )
+						loopnum = ( GET_MEM_BYTE( src ) & 0x7f ) + 1 ;	// ãƒ«ãƒ¼ãƒ—å›æ•°ã‚’å¾—ã‚‹( ä¸‹ä½ 7bit ãŒãƒ«ãƒ¼ãƒ—å›æ•° - 1 )
+						destpixel -= loopnum ;	// å‡¦ç†ãƒ”ã‚¯ã‚»ãƒ«æ•°åˆ†æ¸›ã‚‰ã™
+						if( GET_MEM_BYTE( src ) & 0x80 )		// åŒã˜è‰²ãŒç¶šã„ã¦ã„ã‚‹ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²( 8bit  1:åŒã‚³ãƒ¼ãƒ‰å±•é–‹  0:é€šå¸¸å±•é–‹ )
 						{
 							src ++ ;
-							do	// FƒR[ƒh‚ğæ“¾E“WŠJ
+							do	// è‰²ã‚³ãƒ¼ãƒ‰ã‚’å–å¾—ãƒ»å±•é–‹
 							{
 								READ_MEM_4BYTE( dest, src ) ;
 								dest += 4 ;
@@ -4762,7 +4762,7 @@ static int LoadTargaImage( STREAMDATA *Src, BASEIMAGE *BaseImage, int GetFormatO
 						else
 						{
 							src ++ ;
-							do	// FƒR[ƒh‚ğæ“¾E“WŠJ
+							do	// è‰²ã‚³ãƒ¼ãƒ‰ã‚’å–å¾—ãƒ»å±•é–‹
 							{
 								READ_MEM_4BYTE( dest, src ) ;
 								dest += 4 ;
@@ -4773,20 +4773,20 @@ static int LoadTargaImage( STREAMDATA *Src, BASEIMAGE *BaseImage, int GetFormatO
 					break ;
 				}
 				
-				// ˆ³kƒf[ƒ^‚ğ‰ğ•ú
+				// åœ§ç¸®ãƒ‡ãƒ¼ã‚¿ã‚’è§£æ”¾
 				DXFREE( temp ) ;
 				temp = NULL ;
 			}
 		}
 
-		// ƒf[ƒ^‚ÌŠi”[•ûŒü‚ª‚c‚wƒ‰ƒCƒuƒ‰ƒŠ‚ª–]‚Ş‚à‚Ì‚Æ“¯‚¶ê‡‚ÍŸˆ‚ÅI—¹
+		// ãƒ‡ãƒ¼ã‚¿ã®æ ¼ç´æ–¹å‘ãŒï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªãŒæœ›ã‚€ã‚‚ã®ã¨åŒã˜å ´åˆã¯æ­¤å‡¦ã§çµ‚äº†
 		if( rightleft == 0 && bottomtop == 0 )
 		{
 			BaseImage->GraphData = data ;
 		}
 		else
 		{
-			// ƒf[ƒ^‚ÌŠi”[•ûŒü‚ª‚c‚wƒ‰ƒCƒuƒ‰ƒŠ‚ª–]‚Ş‚à‚Ì‚Æˆá‚¤ê‡‚Í’u‚«Š·‚¦ˆ—‚ğs‚¤
+			// ãƒ‡ãƒ¼ã‚¿ã®æ ¼ç´æ–¹å‘ãŒï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªãŒæœ›ã‚€ã‚‚ã®ã¨é•ã†å ´åˆã¯ç½®ãæ›ãˆå‡¦ç†ã‚’è¡Œã†
 			
 			BYTE *dest, *src ;
 			int i, j, addx, addy ;
@@ -4843,7 +4843,7 @@ static int LoadTargaImage( STREAMDATA *Src, BASEIMAGE *BaseImage, int GetFormatO
 				break ;
 			}
 
-			// ƒCƒ[ƒW‚Ìƒ|ƒCƒ“ƒ^‚ğ•Ô‚µ‚ÄI—¹
+			// ã‚¤ãƒ¡ãƒ¼ã‚¸ã®ãƒã‚¤ãƒ³ã‚¿ã‚’è¿”ã—ã¦çµ‚äº†
 			BaseImage->GraphData = buf ;
 			DXFREE( data ) ;
 			data = NULL ;
@@ -4872,7 +4872,7 @@ ERR :
 
 
 
-// ƒJƒ‰[ƒtƒH[ƒ}ƒbƒgƒe[ƒuƒ‹
+// ã‚«ãƒ©ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆãƒ†ãƒ¼ãƒ–ãƒ«
 static DDSCOLORTABLE _DDSColorTable[] =
 {
 	{
@@ -5040,7 +5040,7 @@ static DDSCOLORTABLE _DDSColorTable[] =
 	} ,
 
 	{
-		0xffffffff,		// I’[
+		0xffffffff,		// çµ‚ç«¯
 		0xff,
 		0xff,
 		0xff,
@@ -5048,7 +5048,7 @@ static DDSCOLORTABLE _DDSColorTable[] =
 	} ,
 } ;
 
-// ‚c‚c‚r‰æ‘œ‚Ì“Ç‚İ‚±‚İ
+// ï¼¤ï¼¤ï¼³ç”»åƒã®èª­ã¿ã“ã¿
 int LoadDDSImage( STREAMDATA *Src, BASEIMAGE *BaseImage, int GetFormatOnly )
 {
 	DWORD_PTR       sp ;
@@ -5073,23 +5073,23 @@ int LoadDDSImage( STREAMDATA *Src, BASEIMAGE *BaseImage, int GetFormatOnly )
 	data = NULL ;
 	dxtformat = 0 ;
 
-	// ‚c‚c‚r¯•Ê•¶š—ñ‚Ìƒ`ƒFƒbƒN
+	// ï¼¤ï¼¤ï¼³è­˜åˆ¥æ–‡å­—åˆ—ã®ãƒã‚§ãƒƒã‚¯
 	if( sstr->Read( magic, 4, 1, sp ) <= 0 ) return -1 ;
 	if( _MEMCMP( magic, "DDS", ( int )_STRLEN( "DDS" ) ) != 0 ) return -1 ;
 
-	// ƒwƒbƒ_ƒTƒCƒY‚ğæ“¾
+	// ãƒ˜ãƒƒãƒ€ã‚µã‚¤ã‚ºã‚’å–å¾—
 	if( sstr->Read( &headsize, 4, 1, sp ) <= 0 ) return -1 ;
 
-	// ƒtƒH[ƒ}ƒbƒg‚Ìæ“¾
+	// ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®å–å¾—
 	if( sstr->Read( &head.dwFlags, headsize - 4, 1, sp ) <= 0 ) return -1 ;
 
-	// ƒtƒH[ƒ}ƒbƒg‚Ìæ“¾
+	// ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®å–å¾—
 	{
 		int formatget ;
 		
 		formatget = 0 ;
 	
-		// DirectX8 ˆÈ~‚ÌƒtƒH[ƒ}ƒbƒg’è‹`‚ğ’²‚×‚é
+		// DirectX8 ä»¥é™ã®ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆå®šç¾©ã‚’èª¿ã¹ã‚‹
 		if( head.dwPfFlags == BI_DDPF_FOURCC )
 		{
 			DDSCOLORTABLE *table ;
@@ -5097,13 +5097,13 @@ int LoadDDSImage( STREAMDATA *Src, BASEIMAGE *BaseImage, int GetFormatOnly )
 			for( 	table = _DDSColorTable ;
 					table->Type != 0xffffffff && table->Type != head.dwFourCC ;
 					table ++ ){}
-			// Œ©‚Â‚¯‚½‚çƒtƒH[ƒ}ƒbƒg‚ğƒZƒbƒg‚·‚é
+			// è¦‹ã¤ã‘ãŸã‚‰ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 			if( table->Type != 0xffffffff )
 			{
-				// Float ƒ^ƒCƒv‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+				// Float ã‚¿ã‚¤ãƒ—ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 				if( table->IsFloat )
 				{
-					// Floatƒ^ƒCƒv
+					// Floatã‚¿ã‚¤ãƒ—
 					_MEMSET( &BaseImage->ColorData, 0, sizeof( BaseImage->ColorData ) ) ;
 					BaseImage->ColorData.Format				= DX_BASEIMAGE_FORMAT_NORMAL ;
 					BaseImage->ColorData.ChannelBitDepth	= ( unsigned char )table->BitDepth ;
@@ -5114,7 +5114,7 @@ int LoadDDSImage( STREAMDATA *Src, BASEIMAGE *BaseImage, int GetFormatOnly )
 				else
 				if( table->BitDepth == 16 && table->ChannelNum > 0 )
 				{
-					// ®”Œ^‚Ì1ƒ`ƒƒƒ“ƒlƒ‹16ƒrƒbƒgƒ^ƒCƒv
+					// æ•´æ•°å‹ã®1ãƒãƒ£ãƒ³ãƒãƒ«16ãƒ“ãƒƒãƒˆã‚¿ã‚¤ãƒ—
 
 					_MEMSET( &BaseImage->ColorData, 0, sizeof( BaseImage->ColorData ) ) ;
 					BaseImage->ColorData.Format				= DX_BASEIMAGE_FORMAT_NORMAL ;
@@ -5125,7 +5125,7 @@ int LoadDDSImage( STREAMDATA *Src, BASEIMAGE *BaseImage, int GetFormatOnly )
 				}
 				else
 				{
-					// ®”’lƒ^ƒCƒv
+					// æ•´æ•°å€¤ã‚¿ã‚¤ãƒ—
 					NS_CreateColorData( &BaseImage->ColorData, table->BitDepth,
 										table->RedMask, table->GreenMask, table->BlueMask, table->AlphaMask, 0, 0, FALSE ) ;
 				}
@@ -5133,17 +5133,17 @@ int LoadDDSImage( STREAMDATA *Src, BASEIMAGE *BaseImage, int GetFormatOnly )
 			}
 		}
 	
-		// DXTƒtƒH[ƒ}ƒbƒg‚©‚Ç‚¤‚©‚ğ’²‚×‚é
+		// DXTãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã‹ã©ã†ã‹ã‚’èª¿ã¹ã‚‹
 		dxtpacketsize = 0 ;
 		if( formatget == 0 && ( head.dwPfFlags & BI_DDPF_FOURCC ) != 0 )
 		{
 			_MEMSET( &BaseImage->ColorData, 0, sizeof( COLORDATA ) ) ;
 			if( head.dwFourCC == MAKEFOURCC( 'D', 'X', '1', '0' ) )
 			{
-				// Šg’£ƒwƒbƒ_‚Ì“Ç‚İ‚İ
+				// æ‹¡å¼µãƒ˜ãƒƒãƒ€ã®èª­ã¿è¾¼ã¿
 				if( sstr->Read( &dx10head, 20, 1, sp ) <= 0 ) return -1 ;
 
-				// BC7 ‚Ì‚İ‘Î‰
+				// BC7 ã®ã¿å¯¾å¿œ
 				if( dx10head.dwFormat == 98 /* D_DXGI_FORMAT_BC7_UNORM */ )
 				{
 					dxtformat = DX_BASEIMAGE_FORMAT_BC7_UNORM ;
@@ -5196,12 +5196,12 @@ int LoadDDSImage( STREAMDATA *Src, BASEIMAGE *BaseImage, int GetFormatOnly )
 
 		if( formatget == 0 )
 		{
-			// ‚q‚f‚aˆÈŠO‚ÌƒtƒH[ƒ}ƒbƒgA‚q‚f‚a‚R‚Â‘µ‚Á‚Ä‚È‚¢ƒtƒH[ƒ}ƒbƒgA
-			// ‹y‚ÑƒpƒŒƒbƒg‰æ‘œ‚Íó‚¯•t‚¯‚È‚¢
+			// ï¼²ï¼§ï¼¢ä»¥å¤–ã®ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã€ï¼²ï¼§ï¼¢ï¼“ã¤æƒã£ã¦ãªã„ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã€
+			// åŠã³ãƒ‘ãƒ¬ãƒƒãƒˆç”»åƒã¯å—ã‘ä»˜ã‘ãªã„
 			if( ( ( head.dwPfFlags & ( BI_DDPF_RGB | BI_DDPF_ALPHAPIXELS ) ) == ( BI_DDPF_RGB | BI_DDPF_ALPHAPIXELS ) ) || 
 				( ( head.dwPfFlags & BI_DDPF_RGB ) == BI_DDPF_RGB ) )
 			{
-				// ƒJƒ‰[ƒtƒH[ƒ}ƒbƒg‚ÌƒZƒbƒg
+				// ã‚«ãƒ©ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®ã‚»ãƒƒãƒˆ
 				if( head.dwRGBBitCount == 8 && head.dwRBitMask == 0xff )
 				{
 					NS_CreateColorData( &BaseImage->ColorData, ( int )head.dwRGBBitCount,
@@ -5223,11 +5223,11 @@ int LoadDDSImage( STREAMDATA *Src, BASEIMAGE *BaseImage, int GetFormatOnly )
 			}
 		}
 		
-		// ƒtƒH[ƒ}ƒbƒg‚ğŒ©‚Â‚¯‚Ä‚¢‚È‚©‚Á‚½‚ç‚±‚±‚ÅI—¹
+		// ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã‚’è¦‹ã¤ã‘ã¦ã„ãªã‹ã£ãŸã‚‰ã“ã“ã§çµ‚äº†
 		if( formatget == 0 ) return -1 ;
 	}
 
-	// ƒ~ƒbƒvƒ}ƒbƒv‚Ìî•ñ‚ğæ“¾‚·‚é
+	// ãƒŸãƒƒãƒ—ãƒãƒƒãƒ—ã®æƒ…å ±ã‚’å–å¾—ã™ã‚‹
 	if( ( head.dwFlags & BI_DDSD_MIPMAPCOUNT ) && ( head.dwCaps & ( BI_DDSCAPS_MIPMAP | BI_DDSCAPS_COMPLEX ) ) == ( BI_DDSCAPS_MIPMAP | BI_DDSCAPS_COMPLEX ) )
 	{
 		mipcount = ( int )head.dwMipMapCount ;
@@ -5237,7 +5237,7 @@ int LoadDDSImage( STREAMDATA *Src, BASEIMAGE *BaseImage, int GetFormatOnly )
 		mipcount = 0 ;
 	}
 
-	// ƒLƒ…[ƒuƒ}ƒbƒv‚Ìî•ñ‚ğæ“¾‚·‚é
+	// ã‚­ãƒ¥ãƒ¼ãƒ–ãƒãƒƒãƒ—ã®æƒ…å ±ã‚’å–å¾—ã™ã‚‹
 	if( ( head.dwCaps2 & BI_DDSCAPS2_CUBEMAP ) != 0 && ( head.dwCaps2 & BI_DDSCAPS2_CUBEMAP_ALLFACES ) == BI_DDSCAPS2_CUBEMAP_ALLFACES )
 	{
 		imagenum = CUBEMAP_SURFACE_NUM ;
@@ -5247,13 +5247,13 @@ int LoadDDSImage( STREAMDATA *Src, BASEIMAGE *BaseImage, int GetFormatOnly )
 		imagenum = 1 ;
 	}
 
-	// ‚c‚w‚s‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+	// ï¼¤ï¼¸ï¼´ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 	if( dxtformat != 0 )
 	{
-		// ‹¤’Ê‚ÌƒJƒ‰[ƒtƒH[ƒ}ƒbƒg‚ğƒZƒbƒg
+		// å…±é€šã®ã‚«ãƒ©ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã‚’ã‚»ãƒƒãƒˆ
 		NS_CreateColorData( &BaseImage->ColorData, 32, 0x00ff0000, 0x0000ff00, 0x000000ff, 0xff000000, 0, 0, FALSE ) ;
 
-		// ƒf[ƒ^‚Ì“Ç‚İ‚İ
+		// ãƒ‡ãƒ¼ã‚¿ã®èª­ã¿è¾¼ã¿
 		if( GetFormatOnly == FALSE )
 		{
 			DWORD TempWidth, TempHeight ;
@@ -5291,7 +5291,7 @@ int LoadDDSImage( STREAMDATA *Src, BASEIMAGE *BaseImage, int GetFormatOnly )
 			}
 		}
 
-		// Fƒrƒbƒg[“x‚Í‚PƒsƒNƒZƒ‹•Ó‚è‚É•K—v‚Èƒrƒbƒg”
+		// è‰²ãƒ“ãƒƒãƒˆæ·±åº¦ã¯ï¼‘ãƒ”ã‚¯ã‚»ãƒ«è¾ºã‚Šã«å¿…è¦ãªãƒ“ãƒƒãƒˆæ•°
 		BaseImage->ColorData.ColorBitDepth   = ( unsigned char )( dxtformat == DX_BASEIMAGE_FORMAT_DXT1 ? 4 : 8 ) ;
 		BaseImage->ColorData.Format          = ( unsigned char )dxtformat ;
 		BaseImage->ColorData.ChannelNum      = 0 ;
@@ -5301,11 +5301,11 @@ int LoadDDSImage( STREAMDATA *Src, BASEIMAGE *BaseImage, int GetFormatOnly )
 	}
 	else
 	{
-		// ’Êí‚Ì‰æ‘œ‚Ìê‡
+		// é€šå¸¸ã®ç”»åƒã®å ´åˆ
 
 		if( GetFormatOnly == FALSE )
 		{
-			// ƒsƒbƒ`‚ÌZo
+			// ãƒ”ãƒƒãƒã®ç®—å‡º
 			if( head.dwFlags & BI_DDSD_PITCH )
 			{
 				pitch = ( int )head.dwPitchOrLinearSize ;
@@ -5316,7 +5316,7 @@ int LoadDDSImage( STREAMDATA *Src, BASEIMAGE *BaseImage, int GetFormatOnly )
 				pitch = ( int )( head.dwWidth * BaseImage->ColorData.PixelByte ) ;
 			}
 			
-			// ƒf[ƒ^‚Ì“Ç‚İ‚İ
+			// ãƒ‡ãƒ¼ã‚¿ã®èª­ã¿è¾¼ã¿
 			size = ( int )( head.dwHeight * pitch ) ;
 			if( mipcount > 1 )
 			{
@@ -5381,7 +5381,7 @@ int LoadDDSImage( STREAMDATA *Src, BASEIMAGE *BaseImage, int GetFormatOnly )
 		}
 	}
 
-	// BASEIMAGE \‘¢‘Ì‚Ìî•ñ‚ğ–„‚ß‚é
+	// BASEIMAGE æ§‹é€ ä½“ã®æƒ…å ±ã‚’åŸ‹ã‚ã‚‹
 	{
 		BaseImage->GraphData      = data ;
 		BaseImage->Width          = ( int )head.dwWidth ;
@@ -5391,7 +5391,7 @@ int LoadDDSImage( STREAMDATA *Src, BASEIMAGE *BaseImage, int GetFormatOnly )
 		BaseImage->GraphDataCount = imagenum == 1 ? 0 : imagenum ; 
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
@@ -5416,37 +5416,37 @@ int LoadDDSImage( STREAMDATA *Src, BASEIMAGE *BaseImage, int GetFormatOnly )
 
 
 
-// Šî–{ƒCƒ[ƒWƒf[ƒ^‹@”\ŒöŠJ—pŠÖ”
+// åŸºæœ¬ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿æ©Ÿèƒ½å…¬é–‹ç”¨é–¢æ•°
 
-// ‰Šú‰»AŒãn––
+// åˆæœŸåŒ–ã€å¾Œå§‹æœ«
 
-// Šî–{ƒCƒ[ƒWŠÇ—î•ñ‚Ì‰Šú‰»
+// åŸºæœ¬ã‚¤ãƒ¡ãƒ¼ã‚¸ç®¡ç†æƒ…å ±ã®åˆæœŸåŒ–
 extern int InitializeBaseImageManage( void )
 {
-	// Šù‚É‰Šú‰»‚³‚ê‚Ä‚¢‚½‚ç‰½‚à‚µ‚È‚¢
+	// æ—¢ã«åˆæœŸåŒ–ã•ã‚Œã¦ã„ãŸã‚‰ä½•ã‚‚ã—ãªã„
 	if( BASEIM.InitializeFlag == TRUE )
 	{
 		return -1 ;
 	}
 
-	// ŠÂ‹«ˆË‘¶‚Ì‰Šú‰»ˆ—‚ğs‚¤
+	// ç’°å¢ƒä¾å­˜ã®åˆæœŸåŒ–å‡¦ç†ã‚’è¡Œã†
 	if( InitializeBaseImageManage_PF() != 0 )
 	{
 		return -1 ;
 	}
 
-	// YUV‚ğRGB ‚É•ÏŠ·‚·‚éˆ—‚Åg—p‚·‚éƒe[ƒuƒ‹‚ğ‰Šú‰»
+	// YUVã‚’RGB ã«å¤‰æ›ã™ã‚‹å‡¦ç†ã§ä½¿ç”¨ã™ã‚‹ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’åˆæœŸåŒ–
 	{
 		int i , Num ;
 
-		// ƒŠƒ~ƒbƒgƒe[ƒuƒ‹‚Ì\’z
+		// ãƒªãƒŸãƒƒãƒˆãƒ†ãƒ¼ãƒ–ãƒ«ã®æ§‹ç¯‰
 		for( i = 0 ; i < 512 * 2 + 256 ; i ++ )
 		{
 			Num = i - 512 ;
 			YUVLimitTable[ i ] = ( BYTE )( Num < 0 ? 0 : ( Num > 255 ? 255 : Num ) ) ;
 		}
 
-		// YUV•ÏŠ·ƒe[ƒuƒ‹‚Ì\’z
+		// YUVå¤‰æ›ãƒ†ãƒ¼ãƒ–ãƒ«ã®æ§‹ç¯‰
 		for( i = 0 ; i < 256 ; i ++ )
 		{
 			YUVTable[ YUV_RV ][ i ] =   ( int )( 1.596f * 16384 ) * ( i - 128 ) ;
@@ -5457,7 +5457,7 @@ extern int InitializeBaseImageManage( void )
 		}
 	}
 
-	// RGB’l‚ğPMA’l‚É•ÏŠ·‚·‚éˆ——p‚Ìƒe[ƒuƒ‹‚ÆPMA’l‚ğRGB’l‚É•ÏŠ·‚·‚éˆ——p‚Ìƒe[ƒuƒ‹‚ğì¬
+	// RGBå€¤ã‚’PMAå€¤ã«å¤‰æ›ã™ã‚‹å‡¦ç†ç”¨ã®ãƒ†ãƒ¼ãƒ–ãƒ«ã¨PMAå€¤ã‚’RGBå€¤ã«å¤‰æ›ã™ã‚‹å‡¦ç†ç”¨ã®ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’ä½œæˆ
 	{
 		DWORD i, j ;
 		DWORD tmp ;
@@ -5481,34 +5481,34 @@ extern int InitializeBaseImageManage( void )
 		}
 	}
 
-	// ‰Šú‰»ƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// åˆæœŸåŒ–ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	BASEIM.InitializeFlag = TRUE ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// Šî–{ƒCƒ[ƒWŠÇ—î•ñ‚ÌŒãn––
+// åŸºæœ¬ã‚¤ãƒ¡ãƒ¼ã‚¸ç®¡ç†æƒ…å ±ã®å¾Œå§‹æœ«
 extern int TerminateBaseImageManage( void )
 {
-	// Šù‚ÉŒãn––‚³‚ê‚Ä‚¢‚½‚ç‰½‚à‚µ‚È‚¢
+	// æ—¢ã«å¾Œå§‹æœ«ã•ã‚Œã¦ã„ãŸã‚‰ä½•ã‚‚ã—ãªã„
 	if( BASEIM.InitializeFlag == FALSE )
 	{
 		return -1 ;
 	}
 
-	// ŠÂ‹«ˆË‘¶‚ÌŒãn––ˆ—‚ğs‚¤
+	// ç’°å¢ƒä¾å­˜ã®å¾Œå§‹æœ«å‡¦ç†ã‚’è¡Œã†
 	if( TerminateBaseImageManage_PF() != 0 )
 	{
 		return -1 ;
 	}
 
-	// ¡‚Ì‚Æ‚±‚ë‰½‚à‚·‚é‚±‚Æ‚È‚µ
+	// ä»Šã®ã¨ã“ã‚ä½•ã‚‚ã™ã‚‹ã“ã¨ãªã—
 
-	// ‰Šú‰»ƒtƒ‰ƒO‚ğ“|‚·
+	// åˆæœŸåŒ–ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 	BASEIM.InitializeFlag = FALSE ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
@@ -5528,15 +5528,15 @@ extern int TerminateBaseImageManage( void )
 
 
 
-//Šî–{ƒCƒ[ƒWƒf[ƒ^\‘¢‘ÌŠÖŒW
+//åŸºæœ¬ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“é–¢ä¿‚
 
-// ŠeíƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‚©‚çŠî–{ƒCƒ[ƒWƒf[ƒ^‚ğ\’z‚·‚é
+// å„ç¨®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰åŸºæœ¬ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ã‚’æ§‹ç¯‰ã™ã‚‹
 extern int NS_CreateBaseImage(  const TCHAR *FileName, const void *FileImage, int FileImageSize, int DataType, BASEIMAGE *BaseImage, int ReverseFlag )
 {
 	return NS_CreateGraphImageOrDIBGraph( FileName, FileImage, FileImageSize, DataType, FALSE, ReverseFlag, BaseImage, NULL, NULL ) ;
 }
 
-// ‰æ‘œƒtƒ@ƒCƒ‹á‚µ‚­‚Íƒƒ‚ƒŠã‚É“WŠJ‚³‚ê‚½‰æ‘œƒtƒ@ƒCƒ‹ƒCƒ[ƒW‚©‚çŠî–{ƒCƒ[ƒWƒf[ƒ^‚ğ\’z‚·‚é
+// ç”»åƒãƒ•ã‚¡ã‚¤ãƒ«è‹¥ã—ãã¯ãƒ¡ãƒ¢ãƒªä¸Šã«å±•é–‹ã•ã‚ŒãŸç”»åƒãƒ•ã‚¡ã‚¤ãƒ«ã‚¤ãƒ¡ãƒ¼ã‚¸ã‹ã‚‰åŸºæœ¬ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ã‚’æ§‹ç¯‰ã™ã‚‹
 extern int NS_CreateBaseImageWithStrLen( const TCHAR *FileName, size_t FileNameLength, const void *FileImage, int FileImageSize, int DataType /*=LOADIMAGE_TYPE_FILE*/ , BASEIMAGE *BaseImage,  int ReverseFlag )
 {
 	int Result ;
@@ -5546,25 +5546,25 @@ extern int NS_CreateBaseImageWithStrLen( const TCHAR *FileName, size_t FileNameL
 	return Result ;
 }
 
-// ŠeíƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‚©‚çŠî–{ƒCƒ[ƒWƒf[ƒ^‚ğ\’z‚·‚é
+// å„ç¨®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰åŸºæœ¬ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ã‚’æ§‹ç¯‰ã™ã‚‹
 extern int CreateBaseImage_WCHAR_T(  const wchar_t *FileName, const void *FileImage, int FileImageSize, int DataType, BASEIMAGE *BaseImage, int ReverseFlag )
 {
 	return CreateGraphImageOrDIBGraph_WCHAR_T( FileName, FileImage, FileImageSize, DataType, FALSE, ReverseFlag, FALSE, BaseImage, NULL, NULL ) ;
 }
 
-// CreateBaseImage ‚Ì‹Œ–¼Ì
+// CreateBaseImage ã®æ—§åç§°
 extern int NS_CreateGraphImage( const TCHAR *FileName, const void *DataImage, int DataImageSize, int DataImageType, BASEIMAGE *GraphImage, int ReverseFlag )
 {
 	return NS_CreateGraphImageOrDIBGraph( FileName, DataImage, DataImageSize, DataImageType, FALSE, ReverseFlag, GraphImage, NULL, NULL ) ;
 }
 
-// ‰æ‘œƒtƒ@ƒCƒ‹‚©‚çŠî–{ƒCƒ[ƒWƒf[ƒ^‚ğ\’z‚·‚é
+// ç”»åƒãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰åŸºæœ¬ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ã‚’æ§‹ç¯‰ã™ã‚‹
 extern int NS_CreateBaseImageToFile( const TCHAR *FileName,               BASEIMAGE *BaseImage, int ReverseFlag )
 {
 	return NS_CreateBaseImage( FileName, NULL, 0, LOADIMAGE_TYPE_FILE, BaseImage, ReverseFlag ) ;
 }
 
-// ‰æ‘œƒtƒ@ƒCƒ‹‚©‚çŠî–{ƒCƒ[ƒWƒf[ƒ^‚ğ\’z‚·‚é
+// ç”»åƒãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰åŸºæœ¬ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ã‚’æ§‹ç¯‰ã™ã‚‹
 extern int NS_CreateBaseImageToFileWithStrLen( const TCHAR *FileName, size_t FileNameLength, BASEIMAGE *BaseImage, int ReverseFlag )
 {
 	int Result ;
@@ -5574,19 +5574,19 @@ extern int NS_CreateBaseImageToFileWithStrLen( const TCHAR *FileName, size_t Fil
 	return Result ;
 }
 
-// ‰æ‘œƒtƒ@ƒCƒ‹‚©‚çŠî–{ƒCƒ[ƒWƒf[ƒ^‚ğ\’z‚·‚é
+// ç”»åƒãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰åŸºæœ¬ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ã‚’æ§‹ç¯‰ã™ã‚‹
 extern int CreateBaseImageToFile_WCHAR_T( const wchar_t *FileName,               BASEIMAGE *BaseImage, int ReverseFlag )
 {
 	return CreateBaseImage_WCHAR_T( FileName, NULL, 0, LOADIMAGE_TYPE_FILE, BaseImage, ReverseFlag ) ;
 }
 
-// ƒƒ‚ƒŠã‚É“WŠJ‚³‚ê‚½‰æ‘œƒtƒ@ƒCƒ‹‚©‚çŠî–{ƒCƒ[ƒWƒf[ƒ^‚ğ\’z‚·‚é
+// ãƒ¡ãƒ¢ãƒªä¸Šã«å±•é–‹ã•ã‚ŒãŸç”»åƒãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰åŸºæœ¬ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ã‚’æ§‹ç¯‰ã™ã‚‹
 extern int NS_CreateBaseImageToMem(  const void *FileImage, int FileImageSize, BASEIMAGE *BaseImage, int ReverseFlag )
 {
 	return NS_CreateBaseImage( NULL, FileImage, FileImageSize, LOADIMAGE_TYPE_MEM, BaseImage, ReverseFlag ) ;
 }
 
-// ‚`‚q‚f‚aŠeƒ`ƒƒƒ“ƒlƒ‹ 32bit •‚“®¬”“_Œ^ ƒJƒ‰[‚ÌŠî–{ƒCƒ[ƒWƒf[ƒ^‚ğì¬‚·‚é
+// ï¼¡ï¼²ï¼§ï¼¢å„ãƒãƒ£ãƒ³ãƒãƒ« 32bit æµ®å‹•å°æ•°ç‚¹å‹ ã‚«ãƒ©ãƒ¼ã®åŸºæœ¬ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆã™ã‚‹
 extern int NS_CreateARGBF32ColorBaseImage( int SizeX, int SizeY, BASEIMAGE *BaseImage )
 {
 	NS_CreateARGBF32ColorData( &BaseImage->ColorData );
@@ -5599,11 +5599,11 @@ extern int NS_CreateARGBF32ColorBaseImage( int SizeX, int SizeY, BASEIMAGE *Base
 	BaseImage->MipMapCount    = 0 ;
 	BaseImage->GraphDataCount = 0 ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0;
 }
 
-// ‚`‚q‚f‚aŠeƒ`ƒƒƒ“ƒlƒ‹ 16bit •‚“®¬”“_Œ^ ƒJƒ‰[‚ÌŠî–{ƒCƒ[ƒWƒf[ƒ^‚ğì¬‚·‚é
+// ï¼¡ï¼²ï¼§ï¼¢å„ãƒãƒ£ãƒ³ãƒãƒ« 16bit æµ®å‹•å°æ•°ç‚¹å‹ ã‚«ãƒ©ãƒ¼ã®åŸºæœ¬ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆã™ã‚‹
 extern int NS_CreateARGBF16ColorBaseImage( int SizeX, int SizeY, BASEIMAGE *BaseImage )
 {
 	NS_CreateARGBF16ColorData( &BaseImage->ColorData );
@@ -5616,11 +5616,11 @@ extern int NS_CreateARGBF16ColorBaseImage( int SizeX, int SizeY, BASEIMAGE *Base
 	BaseImage->MipMapCount    = 0 ;
 	BaseImage->GraphDataCount = 0 ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0;
 }
 
-// ‚`‚q‚f‚a‚WƒJƒ‰[‚Ì‹ó‚ÌŠî–{ƒCƒ[ƒWƒf[ƒ^‚ğì¬‚·‚é
+// ï¼¡ï¼²ï¼§ï¼¢ï¼˜ã‚«ãƒ©ãƒ¼ã®ç©ºã®åŸºæœ¬ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆã™ã‚‹
 extern int NS_CreateARGB8ColorBaseImage( int SizeX, int SizeY, BASEIMAGE *BaseImage )
 {
 	NS_CreateARGB8ColorData( &BaseImage->ColorData );
@@ -5633,11 +5633,11 @@ extern int NS_CreateARGB8ColorBaseImage( int SizeX, int SizeY, BASEIMAGE *BaseIm
 	BaseImage->MipMapCount    = 0 ;
 	BaseImage->GraphDataCount = 0 ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0;
 }
 
-// ‚w‚q‚f‚a‚WƒJƒ‰[‚Ì‹ó‚ÌŠî–{ƒCƒ[ƒWƒf[ƒ^‚ğì¬‚·‚é
+// ï¼¸ï¼²ï¼§ï¼¢ï¼˜ã‚«ãƒ©ãƒ¼ã®ç©ºã®åŸºæœ¬ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆã™ã‚‹
 extern int NS_CreateXRGB8ColorBaseImage( int SizeX, int SizeY, BASEIMAGE *BaseImage )
 {
 	NS_CreateXRGB8ColorData( &BaseImage->ColorData );
@@ -5650,11 +5650,11 @@ extern int NS_CreateXRGB8ColorBaseImage( int SizeX, int SizeY, BASEIMAGE *BaseIm
 	BaseImage->MipMapCount = 0 ;
 	BaseImage->GraphDataCount = 0 ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0;
 }
 
-// ‚q‚f‚a‚`‚WƒJƒ‰[‚ÌŠî–{ƒCƒ[ƒWƒf[ƒ^‚ğì¬‚·‚é
+// ï¼²ï¼§ï¼¢ï¼¡ï¼˜ã‚«ãƒ©ãƒ¼ã®åŸºæœ¬ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆã™ã‚‹
 extern int NS_CreateRGBA8ColorBaseImage( int SizeX, int SizeY, BASEIMAGE *BaseImage )
 {
 	NS_CreateRGBA8ColorData( &BaseImage->ColorData );
@@ -5667,11 +5667,11 @@ extern int NS_CreateRGBA8ColorBaseImage( int SizeX, int SizeY, BASEIMAGE *BaseIm
 	BaseImage->MipMapCount = 0 ;
 	BaseImage->GraphDataCount = 0 ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0;
 }
 
-// ‚`‚a‚f‚q‚WƒJƒ‰[‚ÌŠî–{ƒCƒ[ƒWƒf[ƒ^‚ğì¬‚·‚é
+// ï¼¡ï¼¢ï¼§ï¼²ï¼˜ã‚«ãƒ©ãƒ¼ã®åŸºæœ¬ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆã™ã‚‹
 extern int NS_CreateABGR8ColorBaseImage( int SizeX, int SizeY, BASEIMAGE *BaseImage )
 {
 	NS_CreateABGR8ColorData( &BaseImage->ColorData );
@@ -5684,11 +5684,11 @@ extern int NS_CreateABGR8ColorBaseImage( int SizeX, int SizeY, BASEIMAGE *BaseIm
 	BaseImage->MipMapCount = 0 ;
 	BaseImage->GraphDataCount = 0 ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0;
 }
 
-// ‚a‚f‚q‚`‚WƒJƒ‰[‚ÌŠî–{ƒCƒ[ƒWƒf[ƒ^‚ğì¬‚·‚é
+// ï¼¢ï¼§ï¼²ï¼¡ï¼˜ã‚«ãƒ©ãƒ¼ã®åŸºæœ¬ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆã™ã‚‹
 extern int NS_CreateBGRA8ColorBaseImage( int SizeX, int SizeY, BASEIMAGE *BaseImage )
 {
 	NS_CreateBGRA8ColorData( &BaseImage->ColorData );
@@ -5701,11 +5701,11 @@ extern int NS_CreateBGRA8ColorBaseImage( int SizeX, int SizeY, BASEIMAGE *BaseIm
 	BaseImage->MipMapCount = 0 ;
 	BaseImage->GraphDataCount = 0 ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0;
 }
 
-// ‚`‚q‚f‚a‚SƒJƒ‰[‚Ì‹ó‚ÌŠî–{ƒCƒ[ƒWƒf[ƒ^‚ğì¬‚·‚é
+// ï¼¡ï¼²ï¼§ï¼¢ï¼”ã‚«ãƒ©ãƒ¼ã®ç©ºã®åŸºæœ¬ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆã™ã‚‹
 extern int NS_CreateARGB4ColorBaseImage( int SizeX, int SizeY, BASEIMAGE *BaseImage )
 {
 	NS_CreateARGB4ColorData( &BaseImage->ColorData );
@@ -5718,11 +5718,11 @@ extern int NS_CreateARGB4ColorBaseImage( int SizeX, int SizeY, BASEIMAGE *BaseIm
 	BaseImage->MipMapCount = 0 ;
 	BaseImage->GraphDataCount = 0 ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0;
 }
 
-// ‚`‚P‚q‚T‚f‚T‚a‚TƒJƒ‰[‚ÌŠî–{ƒCƒ[ƒWƒf[ƒ^‚ğì¬‚·‚é
+// ï¼¡ï¼‘ï¼²ï¼•ï¼§ï¼•ï¼¢ï¼•ã‚«ãƒ©ãƒ¼ã®åŸºæœ¬ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆã™ã‚‹
 extern int NS_CreateA1R5G5B5ColorBaseImage( int SizeX, int SizeY, BASEIMAGE *BaseImage )
 {
 	NS_CreateA1R5G5B5ColorData( &BaseImage->ColorData );
@@ -5735,11 +5735,11 @@ extern int NS_CreateA1R5G5B5ColorBaseImage( int SizeX, int SizeY, BASEIMAGE *Bas
 	BaseImage->MipMapCount = 0 ;
 	BaseImage->GraphDataCount = 0 ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0;
 }
 
-// ‚w‚P‚q‚T‚f‚T‚a‚TƒJƒ‰[‚ÌŠî–{ƒCƒ[ƒWƒf[ƒ^‚ğì¬‚·‚é
+// ï¼¸ï¼‘ï¼²ï¼•ï¼§ï¼•ï¼¢ï¼•ã‚«ãƒ©ãƒ¼ã®åŸºæœ¬ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆã™ã‚‹
 extern int NS_CreateX1R5G5B5ColorBaseImage( int SizeX, int SizeY, BASEIMAGE *BaseImage )
 {
 	NS_CreateX1R5G5B5ColorData( &BaseImage->ColorData );
@@ -5752,11 +5752,11 @@ extern int NS_CreateX1R5G5B5ColorBaseImage( int SizeX, int SizeY, BASEIMAGE *Bas
 	BaseImage->MipMapCount = 0 ;
 	BaseImage->GraphDataCount = 0 ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0;
 }
 
-// ‚q‚T‚f‚T‚a‚T‚`‚PƒJƒ‰[‚ÌŠî–{ƒCƒ[ƒWƒf[ƒ^‚ğì¬‚·‚é
+// ï¼²ï¼•ï¼§ï¼•ï¼¢ï¼•ï¼¡ï¼‘ã‚«ãƒ©ãƒ¼ã®åŸºæœ¬ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆã™ã‚‹
 extern int NS_CreateR5G5B5A1ColorBaseImage( int SizeX, int SizeY, BASEIMAGE *BaseImage )
 {
 	NS_CreateR5G5B5A1ColorData( &BaseImage->ColorData );
@@ -5769,11 +5769,11 @@ extern int NS_CreateR5G5B5A1ColorBaseImage( int SizeX, int SizeY, BASEIMAGE *Bas
 	BaseImage->MipMapCount = 0 ;
 	BaseImage->GraphDataCount = 0 ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0;
 }
 
-// ‚q‚T‚f‚U‚a‚TƒJƒ‰[‚ÌŠî–{ƒCƒ[ƒWƒf[ƒ^‚ğì¬‚·‚é
+// ï¼²ï¼•ï¼§ï¼–ï¼¢ï¼•ã‚«ãƒ©ãƒ¼ã®åŸºæœ¬ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆã™ã‚‹
 extern int NS_CreateR5G6B5ColorBaseImage( int SizeX, int SizeY, BASEIMAGE *BaseImage )
 {
 	NS_CreateR5G6B5ColorData( &BaseImage->ColorData );
@@ -5786,11 +5786,11 @@ extern int NS_CreateR5G6B5ColorBaseImage( int SizeX, int SizeY, BASEIMAGE *BaseI
 	BaseImage->MipMapCount = 0 ;
 	BaseImage->GraphDataCount = 0 ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0;
 }
 
-// ‚q‚f‚a‚WƒJƒ‰[‚Ì‹ó‚ÌŠî–{ƒCƒ[ƒWƒf[ƒ^‚ğì¬‚·‚é
+// ï¼²ï¼§ï¼¢ï¼˜ã‚«ãƒ©ãƒ¼ã®ç©ºã®åŸºæœ¬ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆã™ã‚‹
 extern int NS_CreateRGB8ColorBaseImage( int SizeX, int SizeY, BASEIMAGE *BaseImage )
 {
 	NS_CreateFullColorData( &BaseImage->ColorData );
@@ -5803,11 +5803,11 @@ extern int NS_CreateRGB8ColorBaseImage( int SizeX, int SizeY, BASEIMAGE *BaseIma
 	BaseImage->MipMapCount = 0 ;
 	BaseImage->GraphDataCount = 0 ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0;
 }
 
-// ƒpƒŒƒbƒg‚WƒrƒbƒgƒJƒ‰[‚Ì‹ó‚ÌŠî–{ƒCƒ[ƒWƒf[ƒ^‚ğì¬‚·‚é
+// ãƒ‘ãƒ¬ãƒƒãƒˆï¼˜ãƒ“ãƒƒãƒˆã‚«ãƒ©ãƒ¼ã®ç©ºã®åŸºæœ¬ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆã™ã‚‹
 extern int NS_CreatePAL8ColorBaseImage( int SizeX, int SizeY, BASEIMAGE *BaseImage, int UseAlpha )
 {
 	NS_CreatePal8ColorData( &BaseImage->ColorData, UseAlpha );
@@ -5820,11 +5820,11 @@ extern int NS_CreatePAL8ColorBaseImage( int SizeX, int SizeY, BASEIMAGE *BaseIma
 	BaseImage->MipMapCount = 0 ;
 	BaseImage->GraphDataCount = 0 ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0;
 }
 
-// w’è‚ÌƒJƒ‰[ƒtƒH[ƒ}ƒbƒg‚ÌŠk‚ÌŠî–{ƒCƒ[ƒWƒf[ƒ^‚ğì¬‚·‚é
+// æŒ‡å®šã®ã‚«ãƒ©ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®æ®»ã®åŸºæœ¬ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆã™ã‚‹
 extern int NS_CreateColorDataBaseImage( int SizeX, int SizeY, const COLORDATA *ColorData, BASEIMAGE *BaseImage )
 {
 	BaseImage->ColorData = *ColorData ;
@@ -5837,11 +5837,11 @@ extern int NS_CreateColorDataBaseImage( int SizeX, int SizeY, const COLORDATA *C
 	BaseImage->MipMapCount = 0 ;
 	BaseImage->GraphDataCount = 0 ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0;
 }
 
-// Šî–{ƒCƒ[ƒWƒf[ƒ^‚ÌƒCƒ[ƒWƒTƒCƒY‚ğæ“¾‚·‚é( byte’PˆÊ )
+// åŸºæœ¬ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ã®ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚µã‚¤ã‚ºã‚’å–å¾—ã™ã‚‹( byteå˜ä½ )
 extern int NS_GetBaseImageGraphDataSize( const BASEIMAGE *BaseImage )
 {
 	int BaseImageSize ;
@@ -5913,34 +5913,34 @@ extern int NS_GetBaseImageGraphDataSize( const BASEIMAGE *BaseImage )
 	return TotalSize ;
 }
 
-// Šî–{ƒCƒ[ƒWƒf[ƒ^‚Ìw’è‚Ì•”•ª‚¾‚¯‚ğg‚¤Šî–{ƒCƒ[ƒWƒf[ƒ^‚Ìî•ñ‚ğì¬‚·‚é
+// åŸºæœ¬ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ã®æŒ‡å®šã®éƒ¨åˆ†ã ã‘ã‚’ä½¿ã†åŸºæœ¬ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ã®æƒ…å ±ã‚’ä½œæˆã™ã‚‹
 extern int NS_DerivationBaseImage( const BASEIMAGE *BaseImage, int x1, int y1, int x2, int y2, BASEIMAGE *NewBaseImage )
 {
-	// À•WƒGƒ‰[ƒ`ƒFƒbƒN
+	// åº§æ¨™ã‚¨ãƒ©ãƒ¼ãƒã‚§ãƒƒã‚¯
 	if( x1 < 0 || y1 < 0 || x1 >= x2 || y1 >= y2 ||
 		x2 > BaseImage->Width || y2 > BaseImage->Height )
 	{
 		return -1 ;
 	}
 
-	// •W€ƒtƒH[ƒ}ƒbƒg{MipMap”ñg—p‚Ì‚İ‘Î‰
+	// æ¨™æº–ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆï¼‹MipMapéä½¿ç”¨ã®ã¿å¯¾å¿œ
 	if( BaseImage->ColorData.Format != DX_BASEIMAGE_FORMAT_NORMAL ||
 		BaseImage->MipMapCount != 1 )
 	{
 		return -1 ;
 	}
 
-	// î•ñ‚ğƒZƒbƒg
+	// æƒ…å ±ã‚’ã‚»ãƒƒãƒˆ
 	*NewBaseImage = *BaseImage ;
 	NewBaseImage->Width  = x2 - x1 ;
 	NewBaseImage->Height = y2 - y1 ;
 	NewBaseImage->GraphData = ( BYTE * )BaseImage->GraphData + x1 * BaseImage->ColorData.PixelByte + y1 * BaseImage->Pitch ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// Šî–{ƒCƒ[ƒWƒf[ƒ^‚ÌŒãn––‚ğs‚¤
+// åŸºæœ¬ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ã®å¾Œå§‹æœ«ã‚’è¡Œã†
 extern int NS_ReleaseBaseImage(  BASEIMAGE *GraphImage )
 {
 	if( GraphImage->GraphData != NULL )
@@ -5950,17 +5950,17 @@ extern int NS_ReleaseBaseImage(  BASEIMAGE *GraphImage )
 	}
 	_MEMSET( GraphImage, 0, sizeof( BASEIMAGE ) ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ReleaseBaseImage ‚Ì‹Œ–¼Ì
+// ReleaseBaseImage ã®æ—§åç§°
 extern int NS_ReleaseGraphImage( BASEIMAGE *GraphImage )
 {
 	return NS_ReleaseBaseImage( GraphImage ) ;
 }
 
-// DX_BASEIMAGE_FORMAT_NORMAL ˆÈŠO‚ÌŒ`®‚ÌƒCƒ[ƒWƒf[ƒ^‚ğ DX_BASEIMAGE_FORMAT_NORMAL Œ`®‚ÌƒCƒ[ƒW‚É•ÏŠ·‚·‚é
+// DX_BASEIMAGE_FORMAT_NORMAL ä»¥å¤–ã®å½¢å¼ã®ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ã‚’ DX_BASEIMAGE_FORMAT_NORMAL å½¢å¼ã®ã‚¤ãƒ¡ãƒ¼ã‚¸ã«å¤‰æ›ã™ã‚‹
 extern int NS_ConvertNormalFormatBaseImage( BASEIMAGE *BaseImage, int ReleaseOrigGraphData )
 {
 	void *NewBuffer ;
@@ -5970,11 +5970,11 @@ extern int NS_ConvertNormalFormatBaseImage( BASEIMAGE *BaseImage, int ReleaseOri
 	BYTE C[ 4 ][ 4 ], A[ 8 ] ;
 	DWORD GraphNum ;
 
-	// Å‰‚©‚çŒ`®‚ª DX_BASEIMAGE_FORMAT_NORMAL ‚¾‚Á‚½‚ç‰½‚à‚¹‚¸‚ÉI—¹
+	// æœ€åˆã‹ã‚‰å½¢å¼ãŒ DX_BASEIMAGE_FORMAT_NORMAL ã ã£ãŸã‚‰ä½•ã‚‚ã›ãšã«çµ‚äº†
 	if( BaseImage->ColorData.Format == DX_BASEIMAGE_FORMAT_NORMAL )
 		return 0 ;
 
-	// ”ñ‘Î‰‚Ìˆ³kŒ`®‚Ìê‡‚ÍƒGƒ‰[
+	// éå¯¾å¿œã®åœ§ç¸®å½¢å¼ã®å ´åˆã¯ã‚¨ãƒ©ãƒ¼
 	if( BaseImage->ColorData.Format != DX_BASEIMAGE_FORMAT_DXT1 &&
 		BaseImage->ColorData.Format != DX_BASEIMAGE_FORMAT_DXT2 &&
 		BaseImage->ColorData.Format != DX_BASEIMAGE_FORMAT_DXT3 &&
@@ -5984,24 +5984,24 @@ extern int NS_ConvertNormalFormatBaseImage( BASEIMAGE *BaseImage, int ReleaseOri
 		return -1 ;
 	}
 
-	// ƒf[ƒ^‚Ì”‚ğƒZƒbƒg
+	// ãƒ‡ãƒ¼ã‚¿ã®æ•°ã‚’ã‚»ãƒƒãƒˆ
 	GraphNum = ( DWORD )( BaseImage->GraphDataCount == 0 ? 1 : 6 ) ;
 
-	// ƒ~ƒbƒvƒ}ƒbƒv‚Ì–³Œø‰»
+	// ãƒŸãƒƒãƒ—ãƒãƒƒãƒ—ã®ç„¡åŠ¹åŒ–
 	BaseImage->MipMapCount = 0 ;
 
-	// V‚µ‚¢ƒf[ƒ^‚ğŠi”[‚·‚éƒƒ‚ƒŠ—Ìˆæ‚ÌŠm•Û
+	// æ–°ã—ã„ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹ãƒ¡ãƒ¢ãƒªé ˜åŸŸã®ç¢ºä¿
 	NewPixelByte = 4 ;
 	NewPitch = ( BaseImage->Width + 3 ) / 4 * 4 * NewPixelByte ;
 	NewImageSize = ( BaseImage->Height + 3 ) / 4 * 4 * NewPitch ;
 	NewBuffer = DXALLOC( NewImageSize * GraphNum ) ;
 	if( NewBuffer == NULL )
 	{
-		// ƒƒ‚ƒŠ‚ªŠm•Û‚Å‚«‚È‚©‚Á‚½‚çƒGƒ‰[
+		// ãƒ¡ãƒ¢ãƒªãŒç¢ºä¿ã§ããªã‹ã£ãŸã‚‰ã‚¨ãƒ©ãƒ¼
 		return -1 ;
 	}
 
-	// ƒtƒH[ƒ}ƒbƒg‚É‚æ‚Á‚Äˆ—‚ğ•ªŠò
+	// ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã«ã‚ˆã£ã¦å‡¦ç†ã‚’åˆ†å²
 	pw = ( DWORD )( ( BaseImage->Width  + 3 ) / 4 ) ;
 	ph = ( DWORD )( ( BaseImage->Height + 3 ) / 4 ) ;
 	for( k = 0 ; k < GraphNum ; k ++ )
@@ -6029,7 +6029,7 @@ extern int NS_ConvertNormalFormatBaseImage( BASEIMAGE *BaseImage, int ReleaseOri
 
 					if( ( ( WORD * )srcd )[ 0 ] > ( ( WORD * )srcd )[ 1 ] )
 					{
-						// “§‰ßF‚È‚µ
+						// é€éè‰²ãªã—
 						C[ 2 ][ 0 ] = ( BYTE )( ( C[ 0 ][ 0 ] * 2 + C[ 1 ][ 0 ] ) / 3 ) ;
 						C[ 2 ][ 1 ] = ( BYTE )( ( C[ 0 ][ 1 ] * 2 + C[ 1 ][ 1 ] ) / 3 ) ;
 						C[ 2 ][ 2 ] = ( BYTE )( ( C[ 0 ][ 2 ] * 2 + C[ 1 ][ 2 ] ) / 3 ) ;
@@ -6042,7 +6042,7 @@ extern int NS_ConvertNormalFormatBaseImage( BASEIMAGE *BaseImage, int ReleaseOri
 					}
 					else
 					{
-						// “§‰ßF‚ ‚è
+						// é€éè‰²ã‚ã‚Š
 						C[ 2 ][ 0 ] = ( BYTE )( ( C[ 0 ][ 0 ] + C[ 1 ][ 0 ] ) / 2 ) ;
 						C[ 2 ][ 1 ] = ( BYTE )( ( C[ 0 ][ 1 ] + C[ 1 ][ 1 ] ) / 2 ) ;
 						C[ 2 ][ 2 ] = ( BYTE )( ( C[ 0 ][ 2 ] + C[ 1 ][ 2 ] ) / 2 ) ;
@@ -6091,7 +6091,7 @@ extern int NS_ConvertNormalFormatBaseImage( BASEIMAGE *BaseImage, int ReleaseOri
 
 					srcd += 8 ;
 
-					// ƒJƒ‰[‚Ìˆ—
+					// ã‚«ãƒ©ãƒ¼ã®å‡¦ç†
 					{
 						C[ 0 ][ 0 ] = ( BYTE )( ( ( ( ( WORD * )srcd )[ 0 ] >>  0 ) & 31 ) * 255 / 31 ) ; 
 						C[ 0 ][ 1 ] = ( BYTE )( ( ( ( ( WORD * )srcd )[ 0 ] >>  5 ) & 63 ) * 255 / 63 ) ; 
@@ -6139,7 +6139,7 @@ extern int NS_ConvertNormalFormatBaseImage( BASEIMAGE *BaseImage, int ReleaseOri
 					}
 					srcd -= 8 ;
 
-					// ƒAƒ‹ƒtƒ@ƒ`ƒƒƒ“ƒlƒ‹‚ÌƒZƒbƒg
+					// ã‚¢ãƒ«ãƒ•ã‚¡ãƒãƒ£ãƒ³ãƒãƒ«ã®ã‚»ãƒƒãƒˆ
 					{
 						code = *( ( DWORD * )srcd ) ;
 						dstb[  3 ] = ( BYTE )( ( ( code >>  0 ) & 15 ) * 255 / 15 ) ;
@@ -6168,7 +6168,7 @@ extern int NS_ConvertNormalFormatBaseImage( BASEIMAGE *BaseImage, int ReleaseOri
 					}
 					srcd += 16 ;
 
-					// ƒAƒ‹ƒtƒ@ƒ`ƒƒƒ“ƒlƒ‹‚Ì”½“K‰
+					// ã‚¢ãƒ«ãƒ•ã‚¡ãƒãƒ£ãƒ³ãƒãƒ«ã®åé©å¿œ
 					{
 						dstb -= NewPitch * 3 ;
 						if( dstb[ 3 ] == 0 )
@@ -6396,7 +6396,7 @@ extern int NS_ConvertNormalFormatBaseImage( BASEIMAGE *BaseImage, int ReleaseOri
 
 					srcd += 8 ;
 
-					// ƒJƒ‰[‚Ìˆ—
+					// ã‚«ãƒ©ãƒ¼ã®å‡¦ç†
 					{
 						C[ 0 ][ 0 ] = ( BYTE )( ( ( ( ( WORD * )srcd )[ 0 ] >>  0 ) & 31 ) * 255 / 31 ) ; 
 						C[ 0 ][ 1 ] = ( BYTE )( ( ( ( ( WORD * )srcd )[ 0 ] >>  5 ) & 63 ) * 255 / 63 ) ; 
@@ -6444,7 +6444,7 @@ extern int NS_ConvertNormalFormatBaseImage( BASEIMAGE *BaseImage, int ReleaseOri
 					}
 					srcd -= 8 ;
 
-					// ƒAƒ‹ƒtƒ@ƒ`ƒƒƒ“ƒlƒ‹‚ÌƒZƒbƒg
+					// ã‚¢ãƒ«ãƒ•ã‚¡ãƒãƒ£ãƒ³ãƒãƒ«ã®ã‚»ãƒƒãƒˆ
 					{
 						code = *( ( DWORD * )srcd ) ;
 						dstb[  3 ] = ( BYTE )( ( ( code >>  0 ) & 15 ) * 255 / 15 ) ;
@@ -6487,7 +6487,7 @@ extern int NS_ConvertNormalFormatBaseImage( BASEIMAGE *BaseImage, int ReleaseOri
 
 					srcd += 8 ;
 
-					// ƒJƒ‰[‚Ìˆ—
+					// ã‚«ãƒ©ãƒ¼ã®å‡¦ç†
 					{
 						C[ 0 ][ 0 ] = ( BYTE )( ( ( ( ( WORD * )srcd )[ 0 ] >>  0 ) & 31 ) * 255 / 31 ) ;
 						C[ 0 ][ 1 ] = ( BYTE )( ( ( ( ( WORD * )srcd )[ 0 ] >>  5 ) & 63 ) * 255 / 63 ) ;
@@ -6536,7 +6536,7 @@ extern int NS_ConvertNormalFormatBaseImage( BASEIMAGE *BaseImage, int ReleaseOri
 
 					srcd -= 8 ;
 
-					// ƒAƒ‹ƒtƒ@ƒ`ƒƒƒ“ƒlƒ‹‚ÌƒZƒbƒg
+					// ã‚¢ãƒ«ãƒ•ã‚¡ãƒãƒ£ãƒ³ãƒãƒ«ã®ã‚»ãƒƒãƒˆ
 					{
 						A[ 0 ] = srcd[ 0 ] ;
 						A[ 1 ] = srcd[ 1 ] ;
@@ -6586,7 +6586,7 @@ extern int NS_ConvertNormalFormatBaseImage( BASEIMAGE *BaseImage, int ReleaseOri
 					}
 					srcd += 16 ;
 
-					// ƒAƒ‹ƒtƒ@ƒ`ƒƒƒ“ƒlƒ‹‚Ì”½“K‰
+					// ã‚¢ãƒ«ãƒ•ã‚¡ãƒãƒ£ãƒ³ãƒãƒ«ã®åé©å¿œ
 					{
 						DWORD p ;
 						dstb -= NewPitch * 3 ;
@@ -6719,7 +6719,7 @@ extern int NS_ConvertNormalFormatBaseImage( BASEIMAGE *BaseImage, int ReleaseOri
 
 					srcd += 8 ;
 
-					// ƒJƒ‰[‚Ìˆ—
+					// ã‚«ãƒ©ãƒ¼ã®å‡¦ç†
 					{
 						C[ 0 ][ 0 ] = ( BYTE )( ( ( ( ( WORD * )srcd )[ 0 ] >>  0 ) & 31 ) * 255 / 31 ) ;
 						C[ 0 ][ 1 ] = ( BYTE )( ( ( ( ( WORD * )srcd )[ 0 ] >>  5 ) & 63 ) * 255 / 63 ) ;
@@ -6767,7 +6767,7 @@ extern int NS_ConvertNormalFormatBaseImage( BASEIMAGE *BaseImage, int ReleaseOri
 					}
 					srcd -= 8 ;
 
-					// ƒAƒ‹ƒtƒ@ƒ`ƒƒƒ“ƒlƒ‹‚ÌƒZƒbƒg
+					// ã‚¢ãƒ«ãƒ•ã‚¡ãƒãƒ£ãƒ³ãƒãƒ«ã®ã‚»ãƒƒãƒˆ
 					{
 						A[ 0 ] = srcd[ 0 ] ;
 						A[ 1 ] = srcd[ 1 ] ;
@@ -6822,42 +6822,42 @@ extern int NS_ConvertNormalFormatBaseImage( BASEIMAGE *BaseImage, int ReleaseOri
 		}
 	}
 
-	// ¡‚Ü‚Å‚Ìƒf[ƒ^‚ğ‰ğ•ú‚µ‚ÄV‚µ‚¢ƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^‚ğƒZƒbƒg
+	// ä»Šã¾ã§ã®ãƒ‡ãƒ¼ã‚¿ã‚’è§£æ”¾ã—ã¦æ–°ã—ã„ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿ã‚’ã‚»ãƒƒãƒˆ
 	if( ReleaseOrigGraphData )
 	{
 		DXFREE( BaseImage->GraphData ) ;
 	}
 	BaseImage->GraphData = NewBuffer ;
 
-	// ƒJƒ‰[ƒf[ƒ^‚Í ARGB8 ‚É‚·‚é
+	// ã‚«ãƒ©ãƒ¼ãƒ‡ãƒ¼ã‚¿ã¯ ARGB8 ã«ã™ã‚‹
 	NS_CreateARGB8ColorData( &BaseImage->ColorData ) ;
 
-	// ƒsƒbƒ`‚àV‚µ‚¢‰æ‘œ‚Å‚Ìƒsƒbƒ`‚ğƒZƒbƒg‚·‚é
+	// ãƒ”ãƒƒãƒã‚‚æ–°ã—ã„ç”»åƒã§ã®ãƒ”ãƒƒãƒã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 	BaseImage->Pitch = ( int )NewPitch ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// ’Êí‚Ìƒ¿ƒ`ƒƒƒ“ƒlƒ‹•t‚«‰æ‘œ‚ğæZÏ‚İƒ¿ƒ`ƒƒƒ“ƒlƒ‹•t‚«‰æ‘œ‚É•ÏŠ·‚·‚é( ƒsƒNƒZƒ‹ƒtƒH[ƒ}ƒbƒg‚ª ARGB8 ˆÈŠO‚Ìê‡‚Í ARGB8 ‚É•ÏŠ·‚³‚ê‚Ü‚· )
+// é€šå¸¸ã®Î±ãƒãƒ£ãƒ³ãƒãƒ«ä»˜ãç”»åƒã‚’ä¹—ç®—æ¸ˆã¿Î±ãƒãƒ£ãƒ³ãƒãƒ«ä»˜ãç”»åƒã«å¤‰æ›ã™ã‚‹( ãƒ”ã‚¯ã‚»ãƒ«ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆãŒ ARGB8 ä»¥å¤–ã®å ´åˆã¯ ARGB8 ã«å¤‰æ›ã•ã‚Œã¾ã™ )
 extern int NS_ConvertPremulAlphaBaseImage( BASEIMAGE *BaseImage )
 {
 	DWORD i ;
 	DWORD j ;
 	BYTE *p ;
 
-	// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚Ì–³‚¢‰æ‘œƒtƒH[ƒ}ƒbƒg‚Ìê‡‚Í‰½‚à‚µ‚È‚¢
+	// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã®ç„¡ã„ç”»åƒãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( BaseImage->ColorData.AlphaWidth == 0 )
 		return 0 ;
 
-	// ƒtƒH[ƒ}ƒbƒg‚ª•W€ƒtƒH[ƒ}ƒbƒg‚Å‚Í‚È‚©‚Á‚½‚ç•W€ƒtƒH[ƒ}ƒbƒg‚É•ÏŠ·‚·‚é
+	// ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆãŒæ¨™æº–ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã§ã¯ãªã‹ã£ãŸã‚‰æ¨™æº–ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã«å¤‰æ›ã™ã‚‹
 	if( BaseImage->ColorData.Format != DX_BASEIMAGE_FORMAT_NORMAL )
 	{
 		if( NS_ConvertNormalFormatBaseImage( BaseImage, TRUE ) < 0 )
 			return -1 ;
 	}
 
-	// ARGB8 ˆÈŠO‚Ìê‡‚à ARGB8 ‚É•ÏŠ·‚·‚é
+	// ARGB8 ä»¥å¤–ã®å ´åˆã‚‚ ARGB8 ã«å¤‰æ›ã™ã‚‹
 	if( BaseImage->ColorData.ColorBitDepth != 32 ||
 		BaseImage->ColorData.PixelByte != 4 ||
 		BaseImage->ColorData.FloatTypeFlag != FALSE ||
@@ -6888,11 +6888,11 @@ extern int NS_ConvertPremulAlphaBaseImage( BASEIMAGE *BaseImage )
 		}
 	}
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// æZÏ‚İƒ¿ƒ`ƒƒƒ“ƒlƒ‹•t‚«‰æ‘œ‚ğ’Êí‚Ìƒ¿ƒ`ƒƒƒ“ƒlƒ‹•t‚«‰æ‘œ‚É•ÏŠ·‚·‚é( ƒsƒNƒZƒ‹ƒtƒH[ƒ}ƒbƒg‚ª ARGB8 ˆÈŠO‚Ìê‡‚Í ARGB8 ‚É•ÏŠ·‚³‚ê‚Ü‚· )
+// ä¹—ç®—æ¸ˆã¿Î±ãƒãƒ£ãƒ³ãƒãƒ«ä»˜ãç”»åƒã‚’é€šå¸¸ã®Î±ãƒãƒ£ãƒ³ãƒãƒ«ä»˜ãç”»åƒã«å¤‰æ›ã™ã‚‹( ãƒ”ã‚¯ã‚»ãƒ«ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆãŒ ARGB8 ä»¥å¤–ã®å ´åˆã¯ ARGB8 ã«å¤‰æ›ã•ã‚Œã¾ã™ )
 extern int NS_ConvertInterpAlphaBaseImage( BASEIMAGE *BaseImage )
 {
 	DWORD i ;
@@ -6900,11 +6900,11 @@ extern int NS_ConvertInterpAlphaBaseImage( BASEIMAGE *BaseImage )
 //	DWORD tmp ;
 	BYTE *p ;
 
-	// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚Ì–³‚¢‰æ‘œƒtƒH[ƒ}ƒbƒg‚Ìê‡‚Í‰½‚à‚µ‚È‚¢
+	// Î±ãƒãƒ£ãƒ³ãƒãƒ«ã®ç„¡ã„ç”»åƒãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( BaseImage->ColorData.AlphaWidth == 0 )
 		return 0 ;
 
-	// ƒtƒH[ƒ}ƒbƒg‚ª•W€ƒtƒH[ƒ}ƒbƒg‚Å‚Í‚È‚©‚Á‚½‚ç•W€ƒtƒH[ƒ}ƒbƒg‚É•ÏŠ·‚·‚é
+	// ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆãŒæ¨™æº–ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã§ã¯ãªã‹ã£ãŸã‚‰æ¨™æº–ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã«å¤‰æ›ã™ã‚‹
 	if( BaseImage->ColorData.Format != DX_BASEIMAGE_FORMAT_NORMAL )
 	{
 		if( NS_ConvertNormalFormatBaseImage( BaseImage, TRUE ) < 0 )
@@ -6912,7 +6912,7 @@ extern int NS_ConvertInterpAlphaBaseImage( BASEIMAGE *BaseImage )
 	}
 	else
 	{
-		// ARGB8 ˆÈŠO‚Ìê‡‚à ARGB8 ‚É•ÏŠ·‚·‚é
+		// ARGB8 ä»¥å¤–ã®å ´åˆã‚‚ ARGB8 ã«å¤‰æ›ã™ã‚‹
 		if( BaseImage->ColorData.ColorBitDepth != 32 ||
 			BaseImage->ColorData.PixelByte != 4 ||
 			BaseImage->ColorData.FloatTypeFlag != FALSE ||
@@ -6953,19 +6953,19 @@ extern int NS_ConvertInterpAlphaBaseImage( BASEIMAGE *BaseImage )
 		}
 	}
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
 #ifdef WINDOWS_DESKTOP_OS
 
-// Šî–{ƒCƒ[ƒW‚ğg—p‚µ‚Ä UpdateLayerdWindow ‚ğs‚¤
+// åŸºæœ¬ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’ä½¿ç”¨ã—ã¦ UpdateLayerdWindow ã‚’è¡Œã†
 extern int NS_UpdateLayerdWindowForBaseImage( const BASEIMAGE *BaseImage )
 {
 	return UpdateBackBufferTransColorWindow( BaseImage, NULL, NULL, TRUE, FALSE ) ;
 }
 
-// Šî–{ƒCƒ[ƒWƒf[ƒ^‚Ìw’è‚Ì”ÍˆÍ‚ğg—p‚µ‚Ä UpdateLayerdWindow ‚ğs‚¤
+// åŸºæœ¬ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ã®æŒ‡å®šã®ç¯„å›²ã‚’ä½¿ç”¨ã—ã¦ UpdateLayerdWindow ã‚’è¡Œã†
 extern int NS_UpdateLayerdWindowForBaseImageRect( const BASEIMAGE *BaseImage, int x1, int y1, int x2, int y2 )
 {
 	RECT SrcRect ;
@@ -6978,15 +6978,15 @@ extern int NS_UpdateLayerdWindowForBaseImageRect( const BASEIMAGE *BaseImage, in
 	return UpdateBackBufferTransColorWindow( BaseImage, &SrcRect, NULL, TRUE, FALSE ) ;
 }
 
-// æZÏ‚İƒAƒ‹ƒtƒ@‚ÌŠî–{ƒCƒ[ƒW‚ğg—p‚µ‚Ä UpdateLayerdWindow ‚ğs‚¤
+// ä¹—ç®—æ¸ˆã¿ã‚¢ãƒ«ãƒ•ã‚¡ã®åŸºæœ¬ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’ä½¿ç”¨ã—ã¦ UpdateLayerdWindow ã‚’è¡Œã†
 extern int NS_UpdateLayerdWindowForPremultipliedAlphaBaseImage( const BASEIMAGE *BaseImage )
 {
 	return UpdateBackBufferTransColorWindow( BaseImage, NULL, NULL, TRUE, TRUE ) ;
 }
 
-// ƒfƒXƒNƒgƒbƒvƒLƒƒƒvƒ`ƒƒ
+// ãƒ‡ã‚¹ã‚¯ãƒˆãƒƒãƒ—ã‚­ãƒ£ãƒ—ãƒãƒ£
 
-// ƒfƒXƒNƒgƒbƒv‚Ìw’è‚Ì—Ìˆæ‚ğŠî–{ƒCƒ[ƒWƒf[ƒ^‚É“]‘—‚·‚é
+// ãƒ‡ã‚¹ã‚¯ãƒˆãƒƒãƒ—ã®æŒ‡å®šã®é ˜åŸŸã‚’åŸºæœ¬ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ã«è»¢é€ã™ã‚‹
 extern int NS_GetDesktopScreenBaseImage( int x1, int y1, int x2, int y2, BASEIMAGE *BaseImage, int DestX, int DestY )
 {
 	HWND DesktopHWND ;
@@ -7000,7 +7000,7 @@ extern int NS_GetDesktopScreenBaseImage( int x1, int y1, int x2, int y2, BASEIMA
 	HDC HMemDC ;
 	BASEIMAGE CaptureImage ;
 
-	// ˆø”‚Ìƒ`ƒFƒbƒN
+	// å¼•æ•°ã®ãƒã‚§ãƒƒã‚¯
 	if( x1 >= x2 || y1 >= y2 )
 	{
 		return -1 ;
@@ -7009,7 +7009,7 @@ extern int NS_GetDesktopScreenBaseImage( int x1, int y1, int x2, int y2, BASEIMA
 	SETUP_WIN_API
 
 #ifndef DX_NON_DIRECT3D11
-	// Direct3D11 ‚Ìê‡‚Í•Êˆ—
+	// Direct3D11 ã®å ´åˆã¯åˆ¥å‡¦ç†
 	if( GRAWIN.Setting.UseGraphicsAPI == GRAPHICS_API_DIRECT3D11_WIN32 )
 	{
 		if( Graphics_Hardware_D3D11_GetDesktopScreenBaseImage_PF( x1, y1, x2, y2, BaseImage, DestX, DestY ) == 0 )
@@ -7019,17 +7019,17 @@ extern int NS_GetDesktopScreenBaseImage( int x1, int y1, int x2, int y2, BASEIMA
 	}
 #endif // DX_NON_DIRECT3D11
 
-	// ƒfƒXƒNƒgƒbƒvƒEƒCƒ“ƒhƒEƒnƒ“ƒhƒ‹‚ğæ“¾
+	// ãƒ‡ã‚¹ã‚¯ãƒˆãƒƒãƒ—ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒãƒ³ãƒ‰ãƒ«ã‚’å–å¾—
 	DesktopHWND = WinAPIData.Win32Func.GetDesktopWindowFunc() ;
 
-	// ƒfƒXƒNƒgƒbƒv‚Ì‹éŒ`‚ğæ“¾
+	// ãƒ‡ã‚¹ã‚¯ãƒˆãƒƒãƒ—ã®çŸ©å½¢ã‚’å–å¾—
 	WinAPIData.Win32Func.GetWindowRectFunc( DesktopHWND, &DesktopRect ) ;
 
-	// ƒfƒXƒNƒgƒbƒv‚ÌƒTƒCƒY‚ğæ“¾
+	// ãƒ‡ã‚¹ã‚¯ãƒˆãƒƒãƒ—ã®ã‚µã‚¤ã‚ºã‚’å–å¾—
 	DesktopW = DesktopRect.right  - DesktopRect.left ;
 	DesktopH = DesktopRect.bottom - DesktopRect.top ;
 
-//	// w’è‚Ì‹éŒ`‚Ì•â³
+//	// æŒ‡å®šã®çŸ©å½¢ã®è£œæ­£
 //	if( x1 < DesktopRect.left )
 //	{
 //		DestX += DesktopRect.left - x1 ;
@@ -7049,17 +7049,17 @@ extern int NS_GetDesktopScreenBaseImage( int x1, int y1, int x2, int y2, BASEIMA
 //		y2 = DesktopRect.bottom ;
 //	}
 
-	// æ‚è‚İƒTƒCƒY‚ÌZo
+	// å–ã‚Šè¾¼ã¿ã‚µã‚¤ã‚ºã®ç®—å‡º
 	CaptureW = x2 - x1 ;
 	CaptureH = y2 - y1 ;
 
-	// æ‚è‚İƒTƒCƒYƒ`ƒFƒbƒN
+	// å–ã‚Šè¾¼ã¿ã‚µã‚¤ã‚ºãƒã‚§ãƒƒã‚¯
 	if( CaptureW <= 0 || CaptureH <= 0 )
 	{
 		return -1 ;
 	}
 
-	// æ‚è‚İƒTƒCƒY•â³
+	// å–ã‚Šè¾¼ã¿ã‚µã‚¤ã‚ºè£œæ­£
 	if( DestX + CaptureW > BaseImage->Width )
 	{
 		CaptureW = BaseImage->Width - DestX ;
@@ -7071,13 +7071,13 @@ extern int NS_GetDesktopScreenBaseImage( int x1, int y1, int x2, int y2, BASEIMA
 		y2       = y1 + CaptureH ;
 	}
 
-	// Ä“xæ‚è‚İƒTƒCƒYƒ`ƒFƒbƒN
+	// å†åº¦å–ã‚Šè¾¼ã¿ã‚µã‚¤ã‚ºãƒã‚§ãƒƒã‚¯
 	if( CaptureW <= 0 || CaptureH <= 0 )
 	{
 		return -1 ;
 	}
 
-	// DIB‚Ìî•ñ‚ğİ’è‚·‚é
+	// DIBã®æƒ…å ±ã‚’è¨­å®šã™ã‚‹
 	_MEMSET( &BitmapInfo, 0, sizeof( BitmapInfo ) ) ;
 	BitmapInfo.bmiHeader.biSize			= sizeof( BITMAPINFOHEADER ) ;
 	BitmapInfo.bmiHeader.biWidth		=  CaptureW ;
@@ -7086,19 +7086,19 @@ extern int NS_GetDesktopScreenBaseImage( int x1, int y1, int x2, int y2, BASEIMA
 	BitmapInfo.bmiHeader.biBitCount		= 32 ;
 	BitmapInfo.bmiHeader.biCompression	= BI_RGB ;
 
-	// DIB‚Ìì¬
+	// DIBã®ä½œæˆ
 	hdc			= WinAPIData.Win32Func.GetDCFunc( GetMainWindowHandle() ) ;
 	HBitmap		= WinAPIData.Win32Func.CreateDIBSectionFunc( hdc, &BitmapInfo, DIB_RGB_COLORS, ( void ** )&ImageBuffer, NULL, 0 ) ;
 	HMemDC		= WinAPIData.Win32Func.CreateCompatibleDCFunc( hdc ) ;
 	WinAPIData.Win32Func.SelectObjectFunc( HMemDC, HBitmap ) ;
 	WinAPIData.Win32Func.ReleaseDCFunc( GetMainWindowHandle(), hdc ) ;
 
-	// ƒfƒXƒNƒgƒbƒvƒCƒ[ƒW‚ğ‚ğDIB‚ÉƒRƒs[
+	// ãƒ‡ã‚¹ã‚¯ãƒˆãƒƒãƒ—ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’ã‚’DIBã«ã‚³ãƒ”ãƒ¼
 	hdc = WinAPIData.Win32Func.GetDCFunc( DesktopHWND ) ;
 	WinAPIData.Win32Func.BitBltFunc( HMemDC, 0, 0, CaptureW, CaptureH, hdc, x1, y1, SRCCOPY ) ;
 	WinAPIData.Win32Func.ReleaseDCFunc( DesktopHWND, hdc ) ;
 
-	// ƒfƒXƒNƒgƒbƒvƒCƒ[ƒW‚ğŠî–{ƒCƒ[ƒWƒf[ƒ^‚É“]‘—
+	// ãƒ‡ã‚¹ã‚¯ãƒˆãƒƒãƒ—ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’åŸºæœ¬ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ã«è»¢é€
 	_MEMSET( &CaptureImage, 0, sizeof( CaptureImage ) ) ;
 	NS_CreateXRGB8ColorData( &CaptureImage.ColorData ) ;
 	CaptureImage.Width		= CaptureW ;
@@ -7107,15 +7107,15 @@ extern int NS_GetDesktopScreenBaseImage( int x1, int y1, int x2, int y2, BASEIMA
 	CaptureImage.GraphData	= ( void * )ImageBuffer ;
 	NS_BltBaseImage2( DestX, DestY, &CaptureImage, BaseImage ) ;
 
-	// DIB‚Ìíœ
+	// DIBã®å‰Šé™¤
 	WinAPIData.Win32Func.DeleteDCFunc( HMemDC ) ;
 	WinAPIData.Win32Func.DeleteObjectFunc( HBitmap ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// æZÏ‚İƒAƒ‹ƒtƒ@‚ÌŠî–{ƒCƒ[ƒWƒf[ƒ^‚Ìw’è‚Ì”ÍˆÍ‚ğg—p‚µ‚Ä UpdateLayerdWindow ‚ğs‚¤
+// ä¹—ç®—æ¸ˆã¿ã‚¢ãƒ«ãƒ•ã‚¡ã®åŸºæœ¬ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ã®æŒ‡å®šã®ç¯„å›²ã‚’ä½¿ç”¨ã—ã¦ UpdateLayerdWindow ã‚’è¡Œã†
 extern int NS_UpdateLayerdWindowForPremultipliedAlphaBaseImageRect( const BASEIMAGE *BaseImage, int x1, int y1, int x2, int y2 )
 {
 	RECT SrcRect ;
@@ -7130,7 +7130,7 @@ extern int NS_UpdateLayerdWindowForPremultipliedAlphaBaseImageRect( const BASEIM
 
 #endif // WINDOWS_DESKTOP_OS
 
-// Šî–{ƒCƒ[ƒWƒf[ƒ^‚ğw’è‚ÌF‚Å“h‚è‚Â‚Ô‚·
+// åŸºæœ¬ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ã‚’æŒ‡å®šã®è‰²ã§å¡—ã‚Šã¤ã¶ã™
 extern int NS_FillBaseImage( BASEIMAGE *BaseImage, int r, int g, int b, int a )
 {
 	unsigned int Color;
@@ -7186,11 +7186,11 @@ extern int NS_FillBaseImage( BASEIMAGE *BaseImage, int r, int g, int b, int a )
 		break;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0;
 }
 
-// Šî–{ƒCƒ[ƒWƒf[ƒ^‚Ìw’è‚Ì—Ìˆæ‚ğw’è‚ÌF‚Å“h‚è‚Â‚Ô‚·
+// åŸºæœ¬ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ã®æŒ‡å®šã®é ˜åŸŸã‚’æŒ‡å®šã®è‰²ã§å¡—ã‚Šã¤ã¶ã™
 extern int NS_FillRectBaseImage( BASEIMAGE *BaseImage, int x, int y, int w, int h, int r, int g, int b, int a )
 {
 	DWORD	Color;
@@ -7274,11 +7274,11 @@ extern int NS_FillRectBaseImage( BASEIMAGE *BaseImage, int x, int y, int w, int 
 		break;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0;
 }
 
-// Šî–{ƒCƒ[ƒWƒf[ƒ^‚Ìw’è‚Ì—Ìˆæ‚ğ‚OƒNƒŠƒA‚·‚é
+// åŸºæœ¬ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ã®æŒ‡å®šã®é ˜åŸŸã‚’ï¼ã‚¯ãƒªã‚¢ã™ã‚‹
 extern int NS_ClearRectBaseImage( BASEIMAGE *BaseImage, int x, int y, int w, int h )
 {
 	int i, FillByte, Pitch ;
@@ -7320,11 +7320,11 @@ extern int NS_ClearRectBaseImage( BASEIMAGE *BaseImage, int x, int y, int w, int
 		_MEMSET( Dest, 0, ( size_t )FillByte ) ;
 	}
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// Šî–{ƒCƒ[ƒWƒf[ƒ^‚ÌƒpƒŒƒbƒg‚ğæ“¾‚·‚é
+// åŸºæœ¬ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ã®ãƒ‘ãƒ¬ãƒƒãƒˆã‚’å–å¾—ã™ã‚‹
 extern int NS_GetPaletteBaseImage( const BASEIMAGE *BaseImage, int PaletteNo, int *r, int *g, int *b, int *a )
 {
 	const COLORPALETTEDATA *Palette ;
@@ -7337,11 +7337,11 @@ extern int NS_GetPaletteBaseImage( const BASEIMAGE *BaseImage, int PaletteNo, in
 	if( b ) *b = Palette->Blue ;
 	if( a ) *a = Palette->Alpha ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// Šî–{ƒCƒ[ƒWƒf[ƒ^‚ÌƒpƒŒƒbƒg‚ğƒZƒbƒg‚·‚é
+// åŸºæœ¬ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ã®ãƒ‘ãƒ¬ãƒƒãƒˆã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern int NS_SetPaletteBaseImage( BASEIMAGE *BaseImage, int PaletteNo, int  r, int  g, int  b, int  a )
 {
 	COLORPALETTEDATA *Palette ;
@@ -7354,22 +7354,22 @@ extern int NS_SetPaletteBaseImage( BASEIMAGE *BaseImage, int PaletteNo, int  r, 
 	Palette->Blue  = ( unsigned char )b ;
 	Palette->Alpha = ( unsigned char )a ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// Šî–{ƒCƒ[ƒWƒf[ƒ^‚Ìw’è‚ÌÀ•W‚ÌFƒR[ƒh‚ğ•ÏX‚·‚é(ƒpƒŒƒbƒg‰æ‘œ—p)
+// åŸºæœ¬ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ã®æŒ‡å®šã®åº§æ¨™ã®è‰²ã‚³ãƒ¼ãƒ‰ã‚’å¤‰æ›´ã™ã‚‹(ãƒ‘ãƒ¬ãƒƒãƒˆç”»åƒç”¨)
 extern int NS_SetPixelPalCodeBaseImage( BASEIMAGE *BaseImage, int x, int y, int palNo )
 {
 	unsigned int Color;
 	BYTE *p;
 
-	// ƒtƒH[ƒ}ƒbƒg‚ª•W€ƒtƒH[ƒ}ƒbƒg‚Å‚Í‚È‚¢‚©AƒpƒŒƒbƒgŒ`®‚Å‚Í‚È‚©‚Á‚½‚çƒGƒ‰[
+	// ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆãŒæ¨™æº–ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã§ã¯ãªã„ã‹ã€ãƒ‘ãƒ¬ãƒƒãƒˆå½¢å¼ã§ã¯ãªã‹ã£ãŸã‚‰ã‚¨ãƒ©ãƒ¼
 	if( BaseImage->ColorData.Format != DX_BASEIMAGE_FORMAT_NORMAL ||
 		BaseImage->ColorData.PixelByte != 1 )
 		return -1 ;
 
-	// ‚Í‚İo‚µ”»’è
+	// ã¯ã¿å‡ºã—åˆ¤å®š
 	if( ( DWORD )BaseImage->Width <= ( DWORD )x || ( DWORD )BaseImage->Height <= ( DWORD )y )
 		return -1 ;
 
@@ -7395,21 +7395,21 @@ extern int NS_SetPixelPalCodeBaseImage( BASEIMAGE *BaseImage, int x, int y, int 
 		break;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0;
 }
 
-// Šî–{ƒCƒ[ƒWƒf[ƒ^‚Ìw’è‚ÌÀ•W‚ÌFƒR[ƒh‚ğæ“¾‚·‚é(ƒpƒŒƒbƒg‰æ‘œ—p)
+// åŸºæœ¬ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ã®æŒ‡å®šã®åº§æ¨™ã®è‰²ã‚³ãƒ¼ãƒ‰ã‚’å–å¾—ã™ã‚‹(ãƒ‘ãƒ¬ãƒƒãƒˆç”»åƒç”¨)
 extern int NS_GetPixelPalCodeBaseImage( const BASEIMAGE *BaseImage, int x, int y )
 {
 	BYTE *p;
 
-	// ƒtƒH[ƒ}ƒbƒg‚ª•W€ƒtƒH[ƒ}ƒbƒg‚Å‚Í‚È‚¢‚©AƒpƒŒƒbƒgŒ`®‚Å‚Í‚È‚©‚Á‚½‚çƒGƒ‰[
+	// ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆãŒæ¨™æº–ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã§ã¯ãªã„ã‹ã€ãƒ‘ãƒ¬ãƒƒãƒˆå½¢å¼ã§ã¯ãªã‹ã£ãŸã‚‰ã‚¨ãƒ©ãƒ¼
 	if( BaseImage->ColorData.Format != DX_BASEIMAGE_FORMAT_NORMAL ||
 		BaseImage->ColorData.PixelByte != 1 )
 		return 0xffffffff ;
 
-	// ‚Í‚İo‚µ”»’è
+	// ã¯ã¿å‡ºã—åˆ¤å®š
 	if( ( DWORD )BaseImage->Width <= ( DWORD )x || ( DWORD )BaseImage->Height <= ( DWORD )y )
 		return 0xffffffff ;
 
@@ -7430,24 +7430,24 @@ extern int NS_GetPixelPalCodeBaseImage( const BASEIMAGE *BaseImage, int x, int y
 		return ( int )( *( ( DWORD * )p + x ) ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0xffffffff;
 }
 
-// Šî–{ƒCƒ[ƒWƒf[ƒ^‚Ìw’è‚ÌÀ•W‚ÌF‚ğ•ÏX‚·‚é(ŠeF—v‘f‚Í‚O`‚Q‚T‚T)
+// åŸºæœ¬ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ã®æŒ‡å®šã®åº§æ¨™ã®è‰²ã‚’å¤‰æ›´ã™ã‚‹(å„è‰²è¦ç´ ã¯ï¼ï½ï¼’ï¼•ï¼•)
 extern int NS_SetPixelBaseImage( BASEIMAGE *BaseImage, int x, int y, int  r, int  g, int  b, int  a )
 {
 	unsigned int Color;
 	BYTE *p;
 
-	// ƒtƒH[ƒ}ƒbƒg‚ª•W€ƒtƒH[ƒ}ƒbƒg‚Å‚Í‚È‚©‚Á‚½‚ç•W€ƒtƒH[ƒ}ƒbƒg‚É•ÏŠ·‚·‚é
+	// ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆãŒæ¨™æº–ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã§ã¯ãªã‹ã£ãŸã‚‰æ¨™æº–ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã«å¤‰æ›ã™ã‚‹
 	if( BaseImage->ColorData.Format != DX_BASEIMAGE_FORMAT_NORMAL )
 	{
 		if( NS_ConvertNormalFormatBaseImage( BaseImage, TRUE ) < 0 )
 			return -1 ;
 	}
 
-	// ‚Í‚İo‚µ”»’è
+	// ã¯ã¿å‡ºã—åˆ¤å®š
 	if( ( DWORD )BaseImage->Width <= ( DWORD )x || ( DWORD )BaseImage->Height <= ( DWORD )y )
 		return -1 ;
 
@@ -7522,24 +7522,24 @@ extern int NS_SetPixelBaseImage( BASEIMAGE *BaseImage, int x, int y, int  r, int
 		}
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0;
 }
 
-// Šî–{ƒCƒ[ƒWƒf[ƒ^‚Ìw’è‚ÌÀ•W‚ÌF‚ğ•ÏX‚·‚é(ŠeF—v‘f‚Í•‚“®¬”“_”)
+// åŸºæœ¬ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ã®æŒ‡å®šã®åº§æ¨™ã®è‰²ã‚’å¤‰æ›´ã™ã‚‹(å„è‰²è¦ç´ ã¯æµ®å‹•å°æ•°ç‚¹æ•°)
 extern int NS_SetPixelBaseImageF( BASEIMAGE *BaseImage, int x, int y, float  r, float  g, float  b, float  a )
 {
 	unsigned int Color ;
 	BYTE *p ;
 
-	// ƒtƒH[ƒ}ƒbƒg‚ª•W€ƒtƒH[ƒ}ƒbƒg‚Å‚Í‚È‚©‚Á‚½‚ç•W€ƒtƒH[ƒ}ƒbƒg‚É•ÏŠ·‚·‚é
+	// ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆãŒæ¨™æº–ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã§ã¯ãªã‹ã£ãŸã‚‰æ¨™æº–ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã«å¤‰æ›ã™ã‚‹
 	if( BaseImage->ColorData.Format != DX_BASEIMAGE_FORMAT_NORMAL )
 	{
 		if( NS_ConvertNormalFormatBaseImage( BaseImage, TRUE ) < 0 )
 			return -1 ;
 	}
 
-	// ‚Í‚İo‚µ”»’è
+	// ã¯ã¿å‡ºã—åˆ¤å®š
 	if( ( DWORD )BaseImage->Width <= ( DWORD )x || ( DWORD )BaseImage->Height <= ( DWORD )y )
 		return -1 ;
 
@@ -7619,25 +7619,25 @@ extern int NS_SetPixelBaseImageF( BASEIMAGE *BaseImage, int x, int y, float  r, 
 		}
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0;
 }
 
-// Šî–{ƒCƒ[ƒWƒf[ƒ^‚Ìw’è‚ÌÀ•W‚ÌF‚ğæ“¾‚·‚é(ŠeF—v‘f‚Í‚O`‚Q‚T‚T)
+// åŸºæœ¬ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ã®æŒ‡å®šã®åº§æ¨™ã®è‰²ã‚’å–å¾—ã™ã‚‹(å„è‰²è¦ç´ ã¯ï¼ï½ï¼’ï¼•ï¼•)
 extern int NS_GetPixelBaseImage( const BASEIMAGE *BaseImage, int x, int y, int *r, int *g, int *b, int *a )
 {
 	unsigned int Color;
 	const BYTE *p;
 	const COLORPALETTEDATA *Pal ;
 
-	// ƒtƒH[ƒ}ƒbƒg‚ª•W€ƒtƒH[ƒ}ƒbƒg‚Å‚Í‚È‚©‚Á‚½‚ç•W€ƒtƒH[ƒ}ƒbƒg‚É•ÏŠ·‚·‚é
+	// ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆãŒæ¨™æº–ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã§ã¯ãªã‹ã£ãŸã‚‰æ¨™æº–ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã«å¤‰æ›ã™ã‚‹
 	if( BaseImage->ColorData.Format != DX_BASEIMAGE_FORMAT_NORMAL )
 	{
 		if( NS_ConvertNormalFormatBaseImage( ( BASEIMAGE * )BaseImage, TRUE ) < 0 )
 			return -1 ;
 	}
 
-	// ‚Í‚İo‚µ”»’è
+	// ã¯ã¿å‡ºã—åˆ¤å®š
 	if( ( DWORD )BaseImage->Width <= ( DWORD )x || ( DWORD )BaseImage->Height <= ( DWORD )y )
 		return -1 ;
 
@@ -7702,7 +7702,7 @@ extern int NS_GetPixelBaseImage( const BASEIMAGE *BaseImage, int x, int y, int *
 				if( b ) *b = Pal->Blue ;
 				if( a ) *a = Pal->Alpha ;
 
-				// ƒpƒŒƒbƒgƒJƒ‰[‚Í‚±‚±‚ÅI—¹
+				// ãƒ‘ãƒ¬ãƒƒãƒˆã‚«ãƒ©ãƒ¼ã¯ã“ã“ã§çµ‚äº†
 				return 0 ;
 
 		case 2: Color = *((WORD *)(p + x * 2)); break;
@@ -7721,11 +7721,11 @@ extern int NS_GetPixelBaseImage( const BASEIMAGE *BaseImage, int x, int y, int *
 		NS_GetColor5( &BaseImage->ColorData, Color, r, g, b, a );
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0;
 }
 
-// Šî–{ƒCƒ[ƒWƒf[ƒ^‚Ìw’è‚ÌÀ•W‚ÌF‚ğæ“¾‚·‚é(ŠeF—v‘f‚Í•‚“®¬”“_”)
+// åŸºæœ¬ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ã®æŒ‡å®šã®åº§æ¨™ã®è‰²ã‚’å–å¾—ã™ã‚‹(å„è‰²è¦ç´ ã¯æµ®å‹•å°æ•°ç‚¹æ•°)
 extern int NS_GetPixelBaseImageF( const BASEIMAGE *BaseImage, int x, int y, float *r, float *g, float *b, float *a )
 {
 	unsigned int Color;
@@ -7733,14 +7733,14 @@ extern int NS_GetPixelBaseImageF( const BASEIMAGE *BaseImage, int x, int y, floa
 	const COLORPALETTEDATA *Pal ;
 	int ir, ig, ib, ia ;
 
-	// ƒtƒH[ƒ}ƒbƒg‚ª•W€ƒtƒH[ƒ}ƒbƒg‚Å‚Í‚È‚©‚Á‚½‚ç•W€ƒtƒH[ƒ}ƒbƒg‚É•ÏŠ·‚·‚é
+	// ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆãŒæ¨™æº–ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã§ã¯ãªã‹ã£ãŸã‚‰æ¨™æº–ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã«å¤‰æ›ã™ã‚‹
 	if( BaseImage->ColorData.Format != DX_BASEIMAGE_FORMAT_NORMAL )
 	{
 		if( NS_ConvertNormalFormatBaseImage( ( BASEIMAGE * )BaseImage, TRUE ) < 0 )
 			return -1 ;
 	}
 
-	// ‚Í‚İo‚µ”»’è
+	// ã¯ã¿å‡ºã—åˆ¤å®š
 	if( ( DWORD )BaseImage->Width <= ( DWORD )x || ( DWORD )BaseImage->Height <= ( DWORD )y )
 		return -1 ;
 
@@ -7805,7 +7805,7 @@ extern int NS_GetPixelBaseImageF( const BASEIMAGE *BaseImage, int x, int y, floa
 				if( b ) *b = Pal->Blue  / 255.0f ;
 				if( a ) *a = Pal->Alpha / 255.0f ;
 
-				// ƒpƒŒƒbƒgƒJƒ‰[‚Í‚±‚±‚ÅI—¹
+				// ãƒ‘ãƒ¬ãƒƒãƒˆã‚«ãƒ©ãƒ¼ã¯ã“ã“ã§çµ‚äº†
 				return 0 ;
 
 		case 2: Color = *((WORD *)(p + x * 2)); break;
@@ -7828,18 +7828,18 @@ extern int NS_GetPixelBaseImageF( const BASEIMAGE *BaseImage, int x, int y, floa
 		if( a ) *a = ia / 255.0f ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0;
 }
 
-// Šî–{ƒCƒ[ƒWƒf[ƒ^‚Ìw’è‚ÌÀ•W‚Éü‚ğ•`‰æ‚·‚é(ŠeF—v‘f‚Í‚O`‚Q‚T‚T)
+// åŸºæœ¬ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ã®æŒ‡å®šã®åº§æ¨™ã«ç·šã‚’æç”»ã™ã‚‹(å„è‰²è¦ç´ ã¯ï¼ï½ï¼’ï¼•ï¼•)
 extern int NS_DrawLineBaseImage( BASEIMAGE *BaseImage, int x1, int y1, int x2, int y2, int r, int g, int b, int a )
 {
 	unsigned int Color;
 	BYTE *p;
 	int c, w, h, adx, ady, x, y ;
 
-	// ƒtƒH[ƒ}ƒbƒg‚ª•W€ƒtƒH[ƒ}ƒbƒg‚Å‚Í‚È‚©‚Á‚½‚ç•W€ƒtƒH[ƒ}ƒbƒg‚É•ÏŠ·‚·‚é
+	// ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆãŒæ¨™æº–ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã§ã¯ãªã‹ã£ãŸã‚‰æ¨™æº–ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã«å¤‰æ›ã™ã‚‹
 	if( BaseImage->ColorData.Format != DX_BASEIMAGE_FORMAT_NORMAL )
 	{
 		if( NS_ConvertNormalFormatBaseImage( BaseImage, TRUE ) < 0 )
@@ -8132,7 +8132,7 @@ extern int NS_DrawLineBaseImage( BASEIMAGE *BaseImage, int x1, int y1, int x2, i
 		break;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0;
 }
 
@@ -8285,7 +8285,7 @@ extern int NS_DrawLineBaseImage( BASEIMAGE *BaseImage, int x1, int y1, int x2, i
 #define DRAWCIRCLEMEMIMG_DRAW_DWORD		*( ( DWORD * )DrawBP ) = ( DWORD )Color ;
 
 
-// Šî–{ƒCƒ[ƒWƒf[ƒ^‚Ìw’è‚ÌÀ•W‚É‰~‚ğ•`‰æ‚·‚é(ŠeF—v‘f‚Í‚O`‚Q‚T‚T)
+// åŸºæœ¬ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ã®æŒ‡å®šã®åº§æ¨™ã«å††ã‚’æç”»ã™ã‚‹(å„è‰²è¦ç´ ã¯ï¼ï½ï¼’ï¼•ï¼•)
 extern int NS_DrawCircleBaseImage( BASEIMAGE *BaseImage, int x, int y, int radius, int r, int g, int b, int a, int FillFlag )
 {
 	unsigned int Color ;
@@ -8297,24 +8297,24 @@ extern int NS_DrawCircleBaseImage( BASEIMAGE *BaseImage, int x, int y, int radiu
 	BYTE  *DrawBP ;
 	BYTE  *DestBP ;
 
-	// •`‰æ—Ìˆæ‚ÌƒZƒbƒg
+	// æç”»é ˜åŸŸã®ã‚»ãƒƒãƒˆ
 	DrawArea.left   = 0 ;
 	DrawArea.top    = 0 ;
 	DrawArea.right  = BaseImage->Width  - 1 ;
 	DrawArea.bottom = BaseImage->Height - 1 ;
 
-	// “]‘—æ‚ÌƒAƒhƒŒƒX‚ğƒZƒbƒg
+	// è»¢é€å…ˆã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ã‚»ãƒƒãƒˆ
 	DestBP    = ( BYTE *)BaseImage->GraphData ;
 	DestPitch = BaseImage->Pitch ;
 
-	// ‰Šú’lƒZƒbƒg
+	// åˆæœŸå€¤ã‚»ãƒƒãƒˆ
 	Dx = radius ;
 	Dy = 0 ;
 	F = -2 * radius + 3 ;
 
 	Color = NS_GetColor3( &BaseImage->ColorData, r, g, b, a ) ;
 
-	// “h‚è‚Â‚Ô‚·‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+	// å¡—ã‚Šã¤ã¶ã™ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 	if( FillFlag )
 	{
 		LineDrawBuf = (BYTE *)DXCALLOC( ( size_t )( DrawArea.bottom + 1 ) ) ;
@@ -8364,11 +8364,11 @@ extern int NS_DrawCircleBaseImage( BASEIMAGE *BaseImage, int x, int y, int radiu
 		}
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// Šî–{ƒCƒ[ƒWƒf[ƒ^‚ğ“]‘—‚·‚é
+// åŸºæœ¬ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ã‚’è»¢é€ã™ã‚‹
 #ifndef DX_COMPILE_TYPE_C_LANGUAGE
 extern int NS_BltBaseImage( int DestX, int DestY, BASEIMAGE *SrcBaseImage, BASEIMAGE *DestBaseImage )
 {
@@ -8380,7 +8380,7 @@ extern int NS_BltBaseImage2( int DestX, int DestY, BASEIMAGE *SrcBaseImage, BASE
 	return NS_BltBaseImage( 0, 0, SrcBaseImage->Width, SrcBaseImage->Height, DestX, DestY, SrcBaseImage, DestBaseImage ) ;
 }
 
-// Šî–{ƒCƒ[ƒWƒf[ƒ^‚ğŠg‘å“]‘—‚·‚é
+// åŸºæœ¬ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ã‚’æ‹¡å¤§è»¢é€ã™ã‚‹
 extern int ScalingBltBaseImage(
 				int SrcX1,  int SrcY1,  int SrcX2,  int SrcY2,  BASEIMAGE *SrcBaseImage,
 				int DestX1, int DestY1, int DestX2, int DestY2, BASEIMAGE *DestBaseImage, int Bilinear )
@@ -8399,7 +8399,7 @@ extern int ScalingBltBaseImage(
 	DWORD a11, a12, a21, a22 ;
 	DWORD dr, dg, db, da ;
 
-	// “]‘—Œ³À•W‚Æ“]‘—æÀ•W‚ÌŒŸ¸
+	// è»¢é€å…ƒåº§æ¨™ã¨è»¢é€å…ˆåº§æ¨™ã®æ¤œæŸ»
 	if( SrcX2 <= SrcX1 || SrcY2 <= SrcY1 ||
 		SrcX1 < 0 || SrcX1 >= SrcBaseImage->Width  ||
 		SrcY1 < 0 || SrcY1 >= SrcBaseImage->Height ||
@@ -8412,26 +8412,26 @@ extern int ScalingBltBaseImage(
 		DestY2 <= 0 || DestY2 > DestBaseImage->Height )
 		return -1 ;
 
-	// “]‘—ƒTƒCƒY‚ğZo
+	// è»¢é€ã‚µã‚¤ã‚ºã‚’ç®—å‡º
 	SrcWidth   = ( DWORD )( SrcX2  - SrcX1  ) ;
 	SrcHeight  = ( DWORD )( SrcY2  - SrcY1  ) ;
 	DestWidth  = ( DWORD )( DestX2 - DestX1 ) ;
 	DestHeight = ( DWORD )( DestY2 - DestY1 ) ;
 
-	// “]‘—Œ³‚Æ“]‘—æ‚ÌƒTƒCƒY‚ª“™‚µ‚¢ê‡‚Í’Êí‚Ì“]‘—‚ğs‚¤
+	// è»¢é€å…ƒã¨è»¢é€å…ˆã®ã‚µã‚¤ã‚ºãŒç­‰ã—ã„å ´åˆã¯é€šå¸¸ã®è»¢é€ã‚’è¡Œã†
 	if( SrcWidth == DestWidth && SrcHeight == DestHeight )
 	{
 		return NS_BltBaseImage( SrcX1, SrcY1, ( int )SrcWidth, ( int )SrcHeight, DestX1, DestY1, SrcBaseImage, DestBaseImage ) ;
 	}
 
-	// ‚Pƒhƒbƒg•Ó‚è‚Ì•Ï‰»’l‚ÌŠ„‚èo‚µ
+	// ï¼‘ãƒ‰ãƒƒãƒˆè¾ºã‚Šã®å¤‰åŒ–å€¤ã®å‰²ã‚Šå‡ºã—
 	AddSrcX = ( SrcWidth  << 16 ) / DestWidth  ;
 	AddSrcY = ( SrcHeight << 16 ) / DestHeight ;
 
-	// ƒoƒCƒŠƒjƒA•âŠÔ‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+	// ãƒã‚¤ãƒªãƒ‹ã‚¢è£œé–“ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 	if( Bilinear == TRUE )
 	{
-		// ƒoƒCƒŠƒjƒA•âŠÔ‚Ìê‡
+		// ãƒã‚¤ãƒªãƒ‹ã‚¢è£œé–“ã®å ´åˆ
 		SrcY = ( DWORD )( SrcY1 << 16 ) ;
 		for( i = 0 ; i < DestHeight ; i ++, SrcY += AddSrcY )
 		{
@@ -8465,7 +8465,7 @@ extern int ScalingBltBaseImage(
 	}
 	else
 	{
-		// ƒoƒCƒŠƒjƒA•âŠÔ‚¶‚á‚È‚¢ê‡
+		// ãƒã‚¤ãƒªãƒ‹ã‚¢è£œé–“ã˜ã‚ƒãªã„å ´åˆ
 		SrcY = ( DWORD )( SrcY1 << 16 ) ;
 		for( i = 0 ; i < DestHeight ; i ++, SrcY += AddSrcY )
 		{
@@ -8480,31 +8480,31 @@ extern int ScalingBltBaseImage(
 		}
 	}
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// Šî–{ƒCƒ[ƒWƒf[ƒ^‚ğ“]‘—‚·‚é
+// åŸºæœ¬ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ã‚’è»¢é€ã™ã‚‹
 extern int NS_BltBaseImage( int SrcX, int SrcY, int SrcSizeX, int SrcSizeY, int DestX, int DestY, BASEIMAGE *SrcBaseImage, BASEIMAGE *DestBaseImage )
 {
 	POINT DestPoint;
 	RECT SrcRect;
 
-	// ƒtƒH[ƒ}ƒbƒg‚ª•W€ƒtƒH[ƒ}ƒbƒg‚Å‚Í‚È‚©‚Á‚½‚ç•W€ƒtƒH[ƒ}ƒbƒg‚É•ÏŠ·‚·‚é
+	// ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆãŒæ¨™æº–ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã§ã¯ãªã‹ã£ãŸã‚‰æ¨™æº–ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã«å¤‰æ›ã™ã‚‹
 	if( SrcBaseImage->ColorData.Format != DX_BASEIMAGE_FORMAT_NORMAL )
 	{
 		if( NS_ConvertNormalFormatBaseImage( SrcBaseImage, TRUE ) < 0 )
 			return -1 ;
 	}
 
-	// ƒtƒH[ƒ}ƒbƒg‚ª•W€ƒtƒH[ƒ}ƒbƒg‚Å‚Í‚È‚©‚Á‚½‚ç•W€ƒtƒH[ƒ}ƒbƒg‚É•ÏŠ·‚·‚é
+	// ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆãŒæ¨™æº–ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã§ã¯ãªã‹ã£ãŸã‚‰æ¨™æº–ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã«å¤‰æ›ã™ã‚‹
 	if( DestBaseImage->ColorData.Format != DX_BASEIMAGE_FORMAT_NORMAL )
 	{
 		if( NS_ConvertNormalFormatBaseImage( DestBaseImage, TRUE ) < 0 )
 			return -1 ;
 	}
 
-	// ƒTƒCƒY•â³
+	// ã‚µã‚¤ã‚ºè£œæ­£
 	if( SrcX  < 0 ){ SrcSizeX += SrcX  ; DestX -= SrcX;  SrcX  = 0 ; }
 	if( SrcY  < 0 ){ SrcSizeY += SrcY  ; DestY -= SrcY;  SrcY  = 0 ; }
 	if( DestX < 0 ){ SrcSizeX += DestX ; SrcX  -= DestX; DestX = 0 ; }
@@ -8515,7 +8515,7 @@ extern int NS_BltBaseImage( int SrcX, int SrcY, int SrcSizeX, int SrcSizeY, int 
 	if( SrcBaseImage->Height  < SrcY  + SrcSizeY ) SrcSizeY = SrcBaseImage->Height  - SrcY;
 	if( SrcSizeX <= 0 || SrcSizeY <= 0 ) return 0;
 
-	// “]‘—
+	// è»¢é€
 	DestPoint.x    = DestX;
 	DestPoint.y    = DestY;
 	SrcRect.left   = SrcX;
@@ -8530,31 +8530,31 @@ extern int NS_BltBaseImage( int SrcX, int SrcY, int SrcSizeX, int SrcSizeY, int 
 		FALSE, 0,
 		DX_SHAVEDMODE_NONE, FALSE, FALSE, FALSE, TRUE ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0;
 }
 
-// Šî–{ƒCƒ[ƒWƒf[ƒ^‚ğ“§‰ßFˆ—•t‚«‚Å“]‘—‚·‚é
+// åŸºæœ¬ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ã‚’é€éè‰²å‡¦ç†ä»˜ãã§è»¢é€ã™ã‚‹
 extern	int		NS_BltBaseImageWithTransColor( int SrcX, int SrcY, int SrcSizeX, int SrcSizeY, int DestX, int DestY, BASEIMAGE *SrcBaseImage, BASEIMAGE *DestBaseImage, int Tr, int Tg, int Tb, int Ta )
 {
 	POINT DestPoint;
 	RECT SrcRect;
 
-	// ƒtƒH[ƒ}ƒbƒg‚ª•W€ƒtƒH[ƒ}ƒbƒg‚Å‚Í‚È‚©‚Á‚½‚ç•W€ƒtƒH[ƒ}ƒbƒg‚É•ÏŠ·‚·‚é
+	// ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆãŒæ¨™æº–ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã§ã¯ãªã‹ã£ãŸã‚‰æ¨™æº–ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã«å¤‰æ›ã™ã‚‹
 	if( SrcBaseImage->ColorData.Format != DX_BASEIMAGE_FORMAT_NORMAL )
 	{
 		if( NS_ConvertNormalFormatBaseImage( SrcBaseImage, TRUE ) < 0 )
 			return -1 ;
 	}
 
-	// ƒtƒH[ƒ}ƒbƒg‚ª•W€ƒtƒH[ƒ}ƒbƒg‚Å‚Í‚È‚©‚Á‚½‚ç•W€ƒtƒH[ƒ}ƒbƒg‚É•ÏŠ·‚·‚é
+	// ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆãŒæ¨™æº–ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã§ã¯ãªã‹ã£ãŸã‚‰æ¨™æº–ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã«å¤‰æ›ã™ã‚‹
 	if( DestBaseImage->ColorData.Format != DX_BASEIMAGE_FORMAT_NORMAL )
 	{
 		if( NS_ConvertNormalFormatBaseImage( DestBaseImage, TRUE ) < 0 )
 			return -1 ;
 	}
 
-	// ƒTƒCƒY•â³
+	// ã‚µã‚¤ã‚ºè£œæ­£
 	if( SrcX  < 0 ){ SrcSizeX += SrcX  ; DestX -= SrcX;  SrcX  = 0 ; }
 	if( SrcY  < 0 ){ SrcSizeY += SrcY  ; DestY -= SrcY;  SrcY  = 0 ; }
 	if( DestX < 0 ){ SrcSizeX += DestX ; SrcX  -= DestX; DestX = 0 ; }
@@ -8565,13 +8565,13 @@ extern	int		NS_BltBaseImageWithTransColor( int SrcX, int SrcY, int SrcSizeX, int
 	if( SrcBaseImage->Height  < SrcY  + SrcSizeY ) SrcSizeY = SrcBaseImage->Height  - SrcY;
 	if( SrcSizeX <= 0 || SrcSizeY <= 0 ) return 0;
 
-	// “§‰ßF’l•â³
+	// é€éè‰²å€¤è£œæ­£
 	if( Tr < 0 ) Tr = 0 ; else if( Tr > 255 ) Tr = 255 ;
 	if( Tg < 0 ) Tg = 0 ; else if( Tg > 255 ) Tg = 255 ;
 	if( Tb < 0 ) Tb = 0 ; else if( Tb > 255 ) Tb = 255 ;
 	if( Ta < 0 ) Ta = 0 ; else if( Ta > 255 ) Ta = 255 ;
 
-	// “]‘—
+	// è»¢é€
 	DestPoint.x    = DestX;
 	DestPoint.y    = DestY;
 	SrcRect.left   = SrcX;
@@ -8586,11 +8586,11 @@ extern	int		NS_BltBaseImageWithTransColor( int SrcX, int SrcY, int SrcSizeX, int
 		FALSE, ( ( DWORD )Ta << 24 ) | ( ( DWORD )Tr << 16 ) | ( ( DWORD )Tg << 8 ) | ( ( DWORD )Tb ),
 		DX_SHAVEDMODE_NONE, FALSE, FALSE, TRUE, TRUE ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0;
 }
 
-// Šî–{ƒCƒ[ƒWƒf[ƒ^‚ğƒAƒ‹ƒtƒ@’l‚ÌƒuƒŒƒ“ƒh‚ğl—¶‚µ‚½ã‚Å“]‘—‚·‚é( o—Íæ‚ª ARGB8 Œ`®ˆÈŠO‚Ìê‡‚ÍƒGƒ‰[‚É‚È‚è‚Ü‚· )
+// åŸºæœ¬ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ã‚’ã‚¢ãƒ«ãƒ•ã‚¡å€¤ã®ãƒ–ãƒ¬ãƒ³ãƒ‰ã‚’è€ƒæ…®ã—ãŸä¸Šã§è»¢é€ã™ã‚‹( å‡ºåŠ›å…ˆãŒ ARGB8 å½¢å¼ä»¥å¤–ã®å ´åˆã¯ã‚¨ãƒ©ãƒ¼ã«ãªã‚Šã¾ã™ )
 extern int NS_BltBaseImageWithAlphaBlend( int SrcX, int SrcY, int SrcSizeX, int SrcSizeY, int DestX, int DestY, BASEIMAGE *SrcBaseImage, BASEIMAGE *DestBaseImage, int Opacity )
 {
 	DWORD Width, Height ;
@@ -8598,21 +8598,21 @@ extern int NS_BltBaseImageWithAlphaBlend( int SrcX, int SrcY, int SrcSizeX, int 
 	BYTE *Dest, *Src ;
 	BASEIMAGE TempBaseImage, *UseSrcBaseImage ;
 
-	// ƒtƒH[ƒ}ƒbƒg‚ª•W€ƒtƒH[ƒ}ƒbƒg‚Å‚Í‚È‚©‚Á‚½‚ç•W€ƒtƒH[ƒ}ƒbƒg‚É•ÏŠ·‚·‚é
+	// ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆãŒæ¨™æº–ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã§ã¯ãªã‹ã£ãŸã‚‰æ¨™æº–ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã«å¤‰æ›ã™ã‚‹
 	if( SrcBaseImage->ColorData.Format != DX_BASEIMAGE_FORMAT_NORMAL )
 	{
 		if( NS_ConvertNormalFormatBaseImage( SrcBaseImage, TRUE ) < 0 )
 			return -1 ;
 	}
 
-	// ƒtƒH[ƒ}ƒbƒg‚ª•W€ƒtƒH[ƒ}ƒbƒg‚Å‚Í‚È‚©‚Á‚½‚ç•W€ƒtƒH[ƒ}ƒbƒg‚É•ÏŠ·‚·‚é
+	// ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆãŒæ¨™æº–ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã§ã¯ãªã‹ã£ãŸã‚‰æ¨™æº–ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã«å¤‰æ›ã™ã‚‹
 	if( DestBaseImage->ColorData.Format != DX_BASEIMAGE_FORMAT_NORMAL )
 	{
 		if( NS_ConvertNormalFormatBaseImage( DestBaseImage, TRUE ) < 0 )
 			return -1 ;
 	}
 
-	// o—Íæ‚ª ARGB8 ˆÈŠO‚Ìê‡‚ÍƒGƒ‰[
+	// å‡ºåŠ›å…ˆãŒ ARGB8 ä»¥å¤–ã®å ´åˆã¯ã‚¨ãƒ©ãƒ¼
 	if( DestBaseImage->ColorData.AlphaMask != 0xff000000 ||
 		DestBaseImage->ColorData.RedMask   != 0x00ff0000 ||
 		DestBaseImage->ColorData.GreenMask != 0x0000ff00 ||
@@ -8621,11 +8621,11 @@ extern int NS_BltBaseImageWithAlphaBlend( int SrcX, int SrcY, int SrcSizeX, int 
 		return -1 ;
 	}
 
-	// “§–¾“x‚ªÅ‘å‚Ì‚Æ‚«‚Í‰½‚à‚¹‚¸‚ÉI—¹
+	// é€æ˜åº¦ãŒæœ€å¤§ã®ã¨ãã¯ä½•ã‚‚ã›ãšã«çµ‚äº†
 	if( Opacity == 0 )
 		return 0 ;
 
-	// “]‘—Œ³‚ª‚R‚QƒrƒbƒgƒtƒH[ƒ}ƒbƒgˆÈŠO‚Ìê‡‚Í‚R‚QƒrƒbƒgƒtƒH[ƒ}ƒbƒg‚É•ÏX‚·‚é
+	// è»¢é€å…ƒãŒï¼“ï¼’ãƒ“ãƒƒãƒˆãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆä»¥å¤–ã®å ´åˆã¯ï¼“ï¼’ãƒ“ãƒƒãƒˆãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã«å¤‰æ›´ã™ã‚‹
 	if( SrcBaseImage->ColorData.PixelByte != 4 )
 	{
 		if( SrcBaseImage->ColorData.AlphaWidth != 0 )
@@ -8644,7 +8644,7 @@ extern int NS_BltBaseImageWithAlphaBlend( int SrcX, int SrcY, int SrcSizeX, int 
 		UseSrcBaseImage = SrcBaseImage ;
 	}
 
-	// ƒTƒCƒY•â³
+	// ã‚µã‚¤ã‚ºè£œæ­£
 	if( SrcX  < 0 ){ SrcSizeX += SrcX  ; DestX -= SrcX;  SrcX  = 0 ; }
 	if( SrcY  < 0 ){ SrcSizeY += SrcY  ; DestY -= SrcY;  SrcY  = 0 ; }
 	if( DestX < 0 ){ SrcSizeX += DestX ; SrcX  -= DestX; DestX = 0 ; }
@@ -8663,7 +8663,7 @@ extern int NS_BltBaseImageWithAlphaBlend( int SrcX, int SrcY, int SrcSizeX, int 
 	Src  = ( BYTE * )UseSrcBaseImage->GraphData + SrcX * UseSrcBaseImage->ColorData.PixelByte + SrcY * UseSrcBaseImage->Pitch ;
 	Dest = ( BYTE * )DestBaseImage->GraphData + DestX * DestBaseImage->ColorData.PixelByte + DestY * DestBaseImage->Pitch ;
 
-	// “]‘—Œ³‚ÌƒtƒH[ƒ}ƒbƒg‚É‚æ‚Á‚Äˆ—‚ğ•ªŠò
+	// è»¢é€å…ƒã®ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã«ã‚ˆã£ã¦å‡¦ç†ã‚’åˆ†å²
 	if( SrcBaseImage->ColorData.AlphaMask == 0xff000000 &&
 		SrcBaseImage->ColorData.RedMask   == 0x00ff0000 &&
 		SrcBaseImage->ColorData.GreenMask == 0x0000ff00 &&
@@ -8751,11 +8751,11 @@ extern int NS_BltBaseImageWithAlphaBlend( int SrcX, int SrcY, int SrcSizeX, int 
 		NS_ReleaseBaseImage( &TempBaseImage ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// Šî–{ƒCƒ[ƒWƒf[ƒ^‚Ì¶‰E‚ğ”½“]‚·‚é
+// åŸºæœ¬ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ã®å·¦å³ã‚’åè»¢ã™ã‚‹
 extern int NS_ReverseBaseImageH( BASEIMAGE *BaseImage )
 {
 	BYTE TempB ;
@@ -8765,18 +8765,18 @@ extern int NS_ReverseBaseImageH( BASEIMAGE *BaseImage )
 	DWORD w ,h ;
 	BYTE *Src, *Dest ;
 
-	// ˆ³kƒtƒH[ƒ}ƒbƒg‚Í”½“]‚Å‚«‚È‚¢
+	// åœ§ç¸®ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã¯åè»¢ã§ããªã„
 	if( BaseImage->ColorData.Format != DX_BASEIMAGE_FORMAT_NORMAL )
 		return -1 ;
 
-	// …•½“]‘—ƒ‹[ƒv‚Ì”‚ğZo
+	// æ°´å¹³è»¢é€ãƒ«ãƒ¼ãƒ—ã®æ•°ã‚’ç®—å‡º
 	loopnum = ( DWORD )( BaseImage->Width / 2 ) ;
 
-	// î•ñ‚ğƒ[ƒJƒ‹•Ï”‚É‘ã“ü
+	// æƒ…å ±ã‚’ãƒ­ãƒ¼ã‚«ãƒ«å¤‰æ•°ã«ä»£å…¥
 	w = ( DWORD )BaseImage->Width ;
 	h = ( DWORD )BaseImage->Height ;
 
-	// ƒoƒCƒg”‚É‚æ‚Á‚Äˆ—‚ğ•ªŠò
+	// ãƒã‚¤ãƒˆæ•°ã«ã‚ˆã£ã¦å‡¦ç†ã‚’åˆ†å²
 	switch( BaseImage->ColorData.PixelByte )
 	{
 	case 1 :
@@ -8839,11 +8839,11 @@ extern int NS_ReverseBaseImageH( BASEIMAGE *BaseImage )
 		break ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// Šî–{ƒCƒ[ƒWƒf[ƒ^‚Ìã‰º‚ğ”½“]‚·‚é
+// åŸºæœ¬ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ã®ä¸Šä¸‹ã‚’åè»¢ã™ã‚‹
 extern int NS_ReverseBaseImageV( BASEIMAGE *BaseImage )
 {
 	BYTE TempB ;
@@ -8853,18 +8853,18 @@ extern int NS_ReverseBaseImageV( BASEIMAGE *BaseImage )
 	DWORD w ,h ;
 	BYTE *Src, *Dest ;
 
-	// ˆ³kƒtƒH[ƒ}ƒbƒg‚Í”½“]‚Å‚«‚È‚¢
+	// åœ§ç¸®ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã¯åè»¢ã§ããªã„
 	if( BaseImage->ColorData.Format != DX_BASEIMAGE_FORMAT_NORMAL )
 		return -1 ;
 
-	// ‚’¼“]‘—ƒ‹[ƒv‚Ì”‚ğZo
+	// å‚ç›´è»¢é€ãƒ«ãƒ¼ãƒ—ã®æ•°ã‚’ç®—å‡º
 	loopnum = ( DWORD )( BaseImage->Height / 2 ) ;
 
-	// î•ñ‚ğƒ[ƒJƒ‹•Ï”‚É‘ã“ü
+	// æƒ…å ±ã‚’ãƒ­ãƒ¼ã‚«ãƒ«å¤‰æ•°ã«ä»£å…¥
 	w = ( DWORD )BaseImage->Width ;
 	h = ( DWORD )BaseImage->Height ;
 
-	// ƒoƒCƒg”‚É‚æ‚Á‚Äˆ—‚ğ•ªŠò
+	// ãƒã‚¤ãƒˆæ•°ã«ã‚ˆã£ã¦å‡¦ç†ã‚’åˆ†å²
 	switch( BaseImage->ColorData.PixelByte )
 	{
 	case 1 :
@@ -8927,11 +8927,11 @@ extern int NS_ReverseBaseImageV( BASEIMAGE *BaseImage )
 		break ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// Šî–{ƒCƒ[ƒWƒf[ƒ^‚Ìã‰º¶‰E‚ğ”½“]‚·‚é
+// åŸºæœ¬ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ã®ä¸Šä¸‹å·¦å³ã‚’åè»¢ã™ã‚‹
 extern int NS_ReverseBaseImage( BASEIMAGE *BaseImage )
 {
 	BYTE TempB ;
@@ -8941,18 +8941,18 @@ extern int NS_ReverseBaseImage( BASEIMAGE *BaseImage )
 	DWORD w ,h ;
 	BYTE *Src, *Dest ;
 
-	// ˆ³kƒtƒH[ƒ}ƒbƒg‚Í”½“]‚Å‚«‚È‚¢
+	// åœ§ç¸®ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã¯åè»¢ã§ããªã„
 	if( BaseImage->ColorData.Format != DX_BASEIMAGE_FORMAT_NORMAL )
 		return -1 ;
 
-	// ‚’¼“]‘—ƒ‹[ƒv‚Ì”‚ğZo
+	// å‚ç›´è»¢é€ãƒ«ãƒ¼ãƒ—ã®æ•°ã‚’ç®—å‡º
 	loopnum = ( DWORD )( BaseImage->Height / 2 ) ;
 
-	// î•ñ‚ğƒ[ƒJƒ‹•Ï”‚É‘ã“ü
+	// æƒ…å ±ã‚’ãƒ­ãƒ¼ã‚«ãƒ«å¤‰æ•°ã«ä»£å…¥
 	w = ( DWORD )BaseImage->Width ;
 	h = ( DWORD )BaseImage->Height ;
 
-	// ƒoƒCƒg”‚É‚æ‚Á‚Äˆ—‚ğ•ªŠò
+	// ãƒã‚¤ãƒˆæ•°ã«ã‚ˆã£ã¦å‡¦ç†ã‚’åˆ†å²
 	switch( BaseImage->ColorData.PixelByte )
 	{
 	case 1 :
@@ -9015,17 +9015,17 @@ extern int NS_ReverseBaseImage( BASEIMAGE *BaseImage )
 		break ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// Šî–{ƒCƒ[ƒWƒf[ƒ^‚ÉŠÜ‚Ü‚ê‚éƒsƒNƒZƒ‹‚ÌƒAƒ‹ƒtƒ@’l‚ğƒ`ƒFƒbƒN‚·‚é
-// –ß‚è’l
-// -1:ƒGƒ‰[
-// 0:‰æ‘œ‚ÉƒAƒ‹ƒtƒ@¬•ª‚ª–³‚¢
-// 1:‰æ‘œ‚ÉƒAƒ‹ƒtƒ@¬•ª‚ª‚ ‚èA‚·‚×‚ÄÅ‘å(255)’l
-// 2:‰æ‘œ‚ÉƒAƒ‹ƒtƒ@¬•ª‚ª‚ ‚èA‘¶İ‚·‚éƒAƒ‹ƒtƒ@’l‚ÍÅ¬(0)‚ÆÅ‘å(255)‚à‚µ‚­‚ÍÅ¬(0)‚Ì‚İ
-// 3:‰æ‘œ‚ÉƒAƒ‹ƒtƒ@¬•ª‚ª‚ ‚èAÅ¬‚ÆÅ‘åˆÈŠO‚Ì’†ŠÔ‚Ì’l‚ª‚ ‚é
+// åŸºæœ¬ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ã«å«ã¾ã‚Œã‚‹ãƒ”ã‚¯ã‚»ãƒ«ã®ã‚¢ãƒ«ãƒ•ã‚¡å€¤ã‚’ãƒã‚§ãƒƒã‚¯ã™ã‚‹
+// æˆ»ã‚Šå€¤
+// -1:ã‚¨ãƒ©ãƒ¼
+// 0:ç”»åƒã«ã‚¢ãƒ«ãƒ•ã‚¡æˆåˆ†ãŒç„¡ã„
+// 1:ç”»åƒã«ã‚¢ãƒ«ãƒ•ã‚¡æˆåˆ†ãŒã‚ã‚Šã€ã™ã¹ã¦æœ€å¤§(255)å€¤
+// 2:ç”»åƒã«ã‚¢ãƒ«ãƒ•ã‚¡æˆåˆ†ãŒã‚ã‚Šã€å­˜åœ¨ã™ã‚‹ã‚¢ãƒ«ãƒ•ã‚¡å€¤ã¯æœ€å°(0)ã¨æœ€å¤§(255)ã‚‚ã—ãã¯æœ€å°(0)ã®ã¿
+// 3:ç”»åƒã«ã‚¢ãƒ«ãƒ•ã‚¡æˆåˆ†ãŒã‚ã‚Šã€æœ€å°ã¨æœ€å¤§ä»¥å¤–ã®ä¸­é–“ã®å€¤ãŒã‚ã‚‹
 extern int NS_CheckPixelAlphaBaseImage( const BASEIMAGE *BaseImage )
 {
 	int i, j ;
@@ -9038,11 +9038,11 @@ extern int NS_CheckPixelAlphaBaseImage( const BASEIMAGE *BaseImage )
 	int Result ;
 	DWORD A ;
 
-	// ƒtƒH[ƒ}ƒbƒg‚ª•W€ƒtƒH[ƒ}ƒbƒg‚Å‚Í‚È‚©‚Á‚½‚çƒGƒ‰[
+	// ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆãŒæ¨™æº–ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã§ã¯ãªã‹ã£ãŸã‚‰ã‚¨ãƒ©ãƒ¼
 	if( BaseImage->ColorData.Format != DX_BASEIMAGE_FORMAT_NORMAL )
 		return -1 ;
 
-	// ‰æ‘œ‚ÉƒAƒ‹ƒtƒ@¬•ª‚ª‚È‚¯‚ê‚Î‚±‚±‚ÅI—¹
+	// ç”»åƒã«ã‚¢ãƒ«ãƒ•ã‚¡æˆåˆ†ãŒãªã‘ã‚Œã°ã“ã“ã§çµ‚äº†
 	if( BaseImage->ColorData.AlphaWidth == 0 )
 		return 0 ;
 
@@ -9130,11 +9130,11 @@ extern int NS_CheckPixelAlphaBaseImage( const BASEIMAGE *BaseImage )
 		break ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return Result ;
 }
 
-// Šî–{ƒCƒ[ƒWƒf[ƒ^‚Åg—p‚³‚ê‚Ä‚¢‚éƒpƒŒƒbƒg”Ô†‚ÌÅ‘å’l‚ğæ“¾‚·‚é( ƒpƒŒƒbƒg‰æ‘œ‚Å‚Í–³‚¢ê‡‚Í -1 ‚ª•Ô‚é )
+// åŸºæœ¬ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ã§ä½¿ç”¨ã•ã‚Œã¦ã„ã‚‹ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·ã®æœ€å¤§å€¤ã‚’å–å¾—ã™ã‚‹( ãƒ‘ãƒ¬ãƒƒãƒˆç”»åƒã§ã¯ç„¡ã„å ´åˆã¯ -1 ãŒè¿”ã‚‹ )
 extern int NS_GetBaseImageUseMaxPaletteNo( const BASEIMAGE *BaseImage )
 {
 	int i, j ;
@@ -9144,11 +9144,11 @@ extern int NS_GetBaseImageUseMaxPaletteNo( const BASEIMAGE *BaseImage )
 	BYTE *p, *lp ;
 	BYTE MaxPaletteNo ;
 
-	// ƒtƒH[ƒ}ƒbƒg‚ª•W€ƒtƒH[ƒ}ƒbƒg‚Å‚Í‚È‚©‚Á‚½‚çƒGƒ‰[
+	// ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆãŒæ¨™æº–ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã§ã¯ãªã‹ã£ãŸã‚‰ã‚¨ãƒ©ãƒ¼
 	if( BaseImage->ColorData.Format != DX_BASEIMAGE_FORMAT_NORMAL )
 		return -1 ;
 
-	// ƒpƒŒƒbƒgƒJƒ‰[‚Å–³‚¢ê‡‚àƒGƒ‰[
+	// ãƒ‘ãƒ¬ãƒƒãƒˆã‚«ãƒ©ãƒ¼ã§ç„¡ã„å ´åˆã‚‚ã‚¨ãƒ©ãƒ¼
 	if( BaseImage->ColorData.PixelByte != 1 )
 		return -1 ;
 
@@ -9162,7 +9162,7 @@ extern int NS_GetBaseImageUseMaxPaletteNo( const BASEIMAGE *BaseImage )
 		p = lp ;
 		for( j = 0 ; j < Width ; j ++, p ++ )
 		{
-			// Å‘å’l‚ª‚ ‚Á‚½‚ç‚»‚±‚ÅI—¹
+			// æœ€å¤§å€¤ãŒã‚ã£ãŸã‚‰ãã“ã§çµ‚äº†
 			if( *p == 255 )
 			{
 				return 255 ;
@@ -9175,11 +9175,11 @@ extern int NS_GetBaseImageUseMaxPaletteNo( const BASEIMAGE *BaseImage )
 		}
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return ( int )MaxPaletteNo ;
 }
 
-// ‚Q•ª‚Ì‚PƒXƒP[ƒŠƒ“ƒO‚µ‚È‚ª‚çƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^ŠÔ“]‘—‚ğs‚¤A‚»‚Ì‚½‚ßŠï””{”‚Ì“]‘—‹éŒ`‚Íw’è‚Å‚«‚È‚¢
+// ï¼’åˆ†ã®ï¼‘ã‚¹ã‚±ãƒ¼ãƒªãƒ³ã‚°ã—ãªãŒã‚‰ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿é–“è»¢é€ã‚’è¡Œã†ã€ãã®ãŸã‚å¥‡æ•°å€æ•°ã®è»¢é€çŸ©å½¢ã¯æŒ‡å®šã§ããªã„
 extern int GraphHalfScaleBlt( const COLORDATA *ColorData,
 								       void *DestGraphData, int DestPitch,
 		 						 const void *SrcGraphData, int SrcPitch,
@@ -9191,7 +9191,7 @@ extern int GraphHalfScaleBlt( const COLORDATA *ColorData,
 	DWORD rm, gm, bm, am, rl, gl, bl, al, bitdepth, bltw, blth ;
 	BYTE *src, *dst ;
 
-	// ƒTƒCƒY‚ª‚PˆÈŠO‚ÌŠï”‚¾‚Á‚½‚çƒGƒ‰[
+	// ã‚µã‚¤ã‚ºãŒï¼‘ä»¥å¤–ã®å¥‡æ•°ã ã£ãŸã‚‰ã‚¨ãƒ©ãƒ¼
 	if( ( SrcWidth  != 1 && ( SrcWidth  & 1 ) ) ||
 		( SrcHeight != 1 && ( SrcHeight & 1 ) ) )
 		return -1 ;
@@ -9210,10 +9210,10 @@ extern int GraphHalfScaleBlt( const COLORDATA *ColorData,
 	bitdepth = ColorData->ColorBitDepth ;
 	pbyte = ColorData->PixelByte ;
 
-	// c‰¡‚Ç‚¿‚ç‚©‚ÌƒTƒCƒY‚ª 1 ‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+	// ç¸¦æ¨ªã©ã¡ã‚‰ã‹ã®ã‚µã‚¤ã‚ºãŒ 1 ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 	if( SrcWidth == 1 && SrcHeight == 1 )
 	{
-		// c‚à‰¡‚à‚P‚Ìê‡
+		// ç¸¦ã‚‚æ¨ªã‚‚ï¼‘ã®å ´åˆ
 		src = ( BYTE * )SrcGraphData + SrcX * pbyte + SrcY * SrcPitch ;
 		dst = ( BYTE * )DestGraphData + DestX * pbyte + DestY * DestPitch ;
 		switch( bitdepth )
@@ -9230,7 +9230,7 @@ extern int GraphHalfScaleBlt( const COLORDATA *ColorData,
 	else
 	if( SrcWidth == 1 )
 	{
-		// ‰¡‚ª‚P‚Ìê‡
+		// æ¨ªãŒï¼‘ã®å ´åˆ
 		for( i = 0 ; i < blth ; i ++ )
 		{
 			src = ( BYTE * )SrcGraphData + SrcX * pbyte + ( SrcY + ( i << 1 ) ) * SrcPitch ;
@@ -9272,7 +9272,7 @@ extern int GraphHalfScaleBlt( const COLORDATA *ColorData,
 	else
 	if( SrcHeight == 1 )
 	{
-		// c‚ª‚P‚Ìê‡
+		// ç¸¦ãŒï¼‘ã®å ´åˆ
 		for( j = 0 ; j < bltw ; j ++ )
 		{
 			src = ( BYTE * )SrcGraphData + ( SrcX + ( j << 1 ) ) * pbyte + SrcY * SrcPitch ;
@@ -9313,7 +9313,7 @@ extern int GraphHalfScaleBlt( const COLORDATA *ColorData,
 	}
 	else
 	{
-		// c‰¡‚Ç‚¿‚ç‚à‚P‚Å‚Í‚È‚¢ê‡
+		// ç¸¦æ¨ªã©ã¡ã‚‰ã‚‚ï¼‘ã§ã¯ãªã„å ´åˆ
 		for( i = 0 ; i < blth ; i ++ )
 		{
 			for( j = 0 ; j < bltw ; j ++ )
@@ -9360,11 +9360,11 @@ extern int GraphHalfScaleBlt( const COLORDATA *ColorData,
 		}
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// g‚í‚ê‚Ä‚¢‚È‚¢ƒrƒbƒg‚ğw’è‚Ì’l‚Å–„‚ß‚é
+// ä½¿ã‚ã‚Œã¦ã„ãªã„ãƒ“ãƒƒãƒˆã‚’æŒ‡å®šã®å€¤ã§åŸ‹ã‚ã‚‹
 extern int NoneMaskFill( RECT *Rect, void *ImageData, int Pitch, COLORDATA *ColorData, unsigned int Fill )
 {
 	DWORD Width, Height;
@@ -9372,20 +9372,20 @@ extern int NoneMaskFill( RECT *Rect, void *ImageData, int Pitch, COLORDATA *Colo
 	BYTE *DestP;
 	DWORD PixelByte, FillColor;
 
-	// g‚í‚ê‚Ä‚¢‚È‚¢ƒrƒbƒg‚ª‚È‚¢ê‡‚Í‰½‚à‚µ‚È‚¢
+	// ä½¿ã‚ã‚Œã¦ã„ãªã„ãƒ“ãƒƒãƒˆãŒãªã„å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( ColorData->NoneMask == 0 ) return 0;
 
-	// ˆ—‹éŒ`‚ÌƒTƒCƒY‚ğ“¾‚é
+	// å‡¦ç†çŸ©å½¢ã®ã‚µã‚¤ã‚ºã‚’å¾—ã‚‹
 	RectAdjust( Rect );
 	GetRectSize( Rect, ( int * )&Width, ( int * )&Height );
 
-	// “]‘—ˆ—‚Ì€”õ
+	// è»¢é€å‡¦ç†ã®æº–å‚™
 	PixelByte = ColorData->PixelByte;
 	DestP     = ( BYTE * )ImageData + Rect->left * PixelByte + Rect->top * Pitch;
 	AddPitch  = Pitch - Width * PixelByte;
 	FillColor = Fill << ColorData->NoneLoc;
 
-	// “]‘—
+	// è»¢é€
 #ifdef DX_NON_INLINE_ASM
 	int i ;
 	switch( PixelByte )
@@ -9506,7 +9506,7 @@ extern int NoneMaskFill( RECT *Rect, void *ImageData, int Pitch, COLORDATA *Colo
 	return 0;
 }
 
-// YV12 ƒtƒH[ƒ}ƒbƒg‚ÌƒCƒ[ƒW‚ğ XRGB32 ‚Ìƒrƒbƒgƒ}ƒbƒvƒCƒ[ƒW‚É•ÏŠ·‚·‚é
+// YV12 ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’ XRGB32 ã®ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚¤ãƒ¡ãƒ¼ã‚¸ã«å¤‰æ›ã™ã‚‹
 extern int ConvertYV12ToXRGB32( void *YV12Image, int Width, int Height, BASEIMAGE *DestBaseImage )
 {
 	int i, j ;
@@ -9585,11 +9585,11 @@ extern int ConvertYV12ToXRGB32( void *YV12Image, int Width, int Height, BASEIMAG
 		}
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// NV11 ƒtƒH[ƒ}ƒbƒg‚ÌƒCƒ[ƒW‚ğ XRGB32 ‚Ìƒrƒbƒgƒ}ƒbƒvƒCƒ[ƒW‚É•ÏŠ·‚·‚é
+// NV11 ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’ XRGB32 ã®ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚¤ãƒ¡ãƒ¼ã‚¸ã«å¤‰æ›ã™ã‚‹
 extern int ConvertNV11ToXRGB32( void *NV11Image, int Width, int Height, BASEIMAGE *DestBaseImage )
 {
 	int i, j ;
@@ -9658,11 +9658,11 @@ extern int ConvertNV11ToXRGB32( void *NV11Image, int Width, int Height, BASEIMAG
 		}
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// NV12 ƒtƒH[ƒ}ƒbƒg‚ÌƒCƒ[ƒW‚ğ XRGB32 ‚Ìƒrƒbƒgƒ}ƒbƒvƒCƒ[ƒW‚É•ÏŠ·‚·‚é
+// NV12 ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’ XRGB32 ã®ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚¤ãƒ¡ãƒ¼ã‚¸ã«å¤‰æ›ã™ã‚‹
 extern int ConvertNV12ToXRGB32( void *NV12Image, int Width, int Height, BASEIMAGE *DestBaseImage )
 {
 	int i, j ;
@@ -9736,11 +9736,11 @@ extern int ConvertNV12ToXRGB32( void *NV12Image, int Width, int Height, BASEIMAG
 		}
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// YUY2 ƒtƒH[ƒ}ƒbƒg‚ÌƒCƒ[ƒW‚ğ XRGB32 ‚Ìƒrƒbƒgƒ}ƒbƒvƒCƒ[ƒW‚É•ÏŠ·‚·‚é
+// YUY2 ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’ XRGB32 ã®ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚¤ãƒ¡ãƒ¼ã‚¸ã«å¤‰æ›ã™ã‚‹
 extern int ConvertYUY2ToXRGB32( void *YUY2Image, int Width, int Height, BASEIMAGE *DestBaseImage )
 {
 	int i, j ;
@@ -9787,11 +9787,11 @@ extern int ConvertYUY2ToXRGB32( void *YUY2Image, int Width, int Height, BASEIMAG
 		}
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// UYVY ƒtƒH[ƒ}ƒbƒg‚ÌƒCƒ[ƒW‚ğ XRGB32 ‚Ìƒrƒbƒgƒ}ƒbƒvƒCƒ[ƒW‚É•ÏŠ·‚·‚é
+// UYVY ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’ XRGB32 ã®ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚¤ãƒ¡ãƒ¼ã‚¸ã«å¤‰æ›ã™ã‚‹
 extern int ConvertUYVYToXRGB32( void *UYVYImage, int Width, int Height, BASEIMAGE *DestBaseImage )
 {
 	int i, j ;
@@ -9838,11 +9838,11 @@ extern int ConvertUYVYToXRGB32( void *UYVYImage, int Width, int Height, BASEIMAG
 		}
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// YVYU ƒtƒH[ƒ}ƒbƒg‚ÌƒCƒ[ƒW‚ğ XRGB32 ‚Ìƒrƒbƒgƒ}ƒbƒvƒCƒ[ƒW‚É•ÏŠ·‚·‚é
+// YVYU ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’ XRGB32 ã®ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚¤ãƒ¡ãƒ¼ã‚¸ã«å¤‰æ›ã™ã‚‹
 extern int ConvertYVYUToXRGB32( void *YVYUImage, int Width, int Height, BASEIMAGE *DestBaseImage )
 {
 	int i, j ;
@@ -9889,11 +9889,11 @@ extern int ConvertYVYUToXRGB32( void *YVYUImage, int Width, int Height, BASEIMAG
 		}
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// YV12 ƒtƒH[ƒ}ƒbƒg‚ÌƒCƒ[ƒW‚ğ Y¬•ª‚ÆUV¬•ª‚ÌƒCƒ[ƒW‚É•ª—£‚·‚é
+// YV12 ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’ Yæˆåˆ†ã¨UVæˆåˆ†ã®ã‚¤ãƒ¡ãƒ¼ã‚¸ã«åˆ†é›¢ã™ã‚‹
 extern int ConvertYV12ToYPlane_UVPlane( void *YV12Image, int Width, int Height, void *YBuffer, void *UVBuffer )
 {
 	int i, j ;
@@ -9954,11 +9954,11 @@ extern int ConvertYV12ToYPlane_UVPlane( void *YV12Image, int Width, int Height, 
 		}
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// NV11 ƒtƒH[ƒ}ƒbƒg‚ÌƒCƒ[ƒW‚ğ Y¬•ª‚ÆUV¬•ª‚ÌƒCƒ[ƒW‚É•ª—£‚·‚é
+// NV11 ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’ Yæˆåˆ†ã¨UVæˆåˆ†ã®ã‚¤ãƒ¡ãƒ¼ã‚¸ã«åˆ†é›¢ã™ã‚‹
 extern int ConvertNV11ToYPlane_UVPlane( void *NV11Image, int Width, int Height, void *YBuffer, void *UVBuffer )
 {
 	int i, j ;
@@ -10010,11 +10010,11 @@ extern int ConvertNV11ToYPlane_UVPlane( void *NV11Image, int Width, int Height, 
 		}
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// NV12 ƒtƒH[ƒ}ƒbƒg‚ÌƒCƒ[ƒW‚ğ Y¬•ª‚ÆUV¬•ª‚ÌƒCƒ[ƒW‚É•ª—£‚·‚é
+// NV12 ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’ Yæˆåˆ†ã¨UVæˆåˆ†ã®ã‚¤ãƒ¡ãƒ¼ã‚¸ã«åˆ†é›¢ã™ã‚‹
 extern int ConvertNV12ToYPlane_UVPlane( void *NV12Image, int Width, int Height, void *YBuffer, void *UVBuffer )
 {
 	int i, j ;
@@ -10071,11 +10071,11 @@ extern int ConvertNV12ToYPlane_UVPlane( void *NV12Image, int Width, int Height, 
 		}
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// YUY2 ƒtƒH[ƒ}ƒbƒg‚ÌƒCƒ[ƒW‚ğ Y¬•ª‚ÆUV¬•ª‚ÌƒCƒ[ƒW‚É•ª—£‚·‚é
+// YUY2 ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’ Yæˆåˆ†ã¨UVæˆåˆ†ã®ã‚¤ãƒ¡ãƒ¼ã‚¸ã«åˆ†é›¢ã™ã‚‹
 extern int ConvertYUY2ToYPlane_UVPlane( void *YUY2Image, int Width, int Height, void *YBuffer, void *UVBuffer )
 {
 	int i, j ;
@@ -10118,11 +10118,11 @@ extern int ConvertYUY2ToYPlane_UVPlane( void *YUY2Image, int Width, int Height, 
 		}
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// UYVY ƒtƒH[ƒ}ƒbƒg‚ÌƒCƒ[ƒW‚ğ Y¬•ª‚ÆUV¬•ª‚ÌƒCƒ[ƒW‚É•ª—£‚·‚é
+// UYVY ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’ Yæˆåˆ†ã¨UVæˆåˆ†ã®ã‚¤ãƒ¡ãƒ¼ã‚¸ã«åˆ†é›¢ã™ã‚‹
 extern int ConvertUYVYToYPlane_UVPlane( void *UYVYImage, int Width, int Height, void *YBuffer, void *UVBuffer )
 {
 	int i, j ;
@@ -10165,11 +10165,11 @@ extern int ConvertUYVYToYPlane_UVPlane( void *UYVYImage, int Width, int Height, 
 		}
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// YVYU ƒtƒH[ƒ}ƒbƒg‚ÌƒCƒ[ƒW‚ğ Y¬•ª‚ÆUV¬•ª‚ÌƒCƒ[ƒW‚É•ª—£‚·‚é
+// YVYU ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’ Yæˆåˆ†ã¨UVæˆåˆ†ã®ã‚¤ãƒ¡ãƒ¼ã‚¸ã«åˆ†é›¢ã™ã‚‹
 extern int ConvertYVYUToYPlane_UVPlane( void *YVYUImage, int Width, int Height, void *YBuffer, void *UVBuffer )
 {
 	int i, j ;
@@ -10212,11 +10212,11 @@ extern int ConvertYVYUToYPlane_UVPlane( void *YVYUImage, int Width, int Height, 
 		}
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// 16ŠK’²ƒfƒBƒUs—ñ‚Ìƒe[ƒuƒ‹
+// 16éšèª¿ãƒ‡ã‚£ã‚¶è¡Œåˆ—ã®ãƒ†ãƒ¼ãƒ–ãƒ«
 static int DitherTable[16] = {
 	 0,  8,  2, 10,
 	12,  4, 14,  6,
@@ -10235,7 +10235,7 @@ static int DitherTable[16] = {
     5,   7, 10, 12
 */
 
-// ƒJƒ‰[ƒ}ƒbƒ`ƒ“ƒO‚µ‚È‚ª‚çƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^ŠÔ“]‘—‚ğs‚¤ Ver2
+// ã‚«ãƒ©ãƒ¼ãƒãƒƒãƒãƒ³ã‚°ã—ãªãŒã‚‰ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿é–“è»¢é€ã‚’è¡Œã† Ver2
 extern int NS_GraphColorMatchBltVer2( void *DestGraphData,       int DestPitch,  const COLORDATA *DestColorData,
 									  const void *SrcGraphData,  int SrcPitch,   const COLORDATA *SrcColorData,
 									  const void *AlphaMask,     int AlphaPitch, const COLORDATA *AlphaColorData,
@@ -10253,33 +10253,33 @@ extern int NS_GraphColorMatchBltVer2( void *DestGraphData,       int DestPitch, 
 	DColor = *DestColorData ;
 	if( AlphaColorData != NULL ) AColor = *AlphaColorData ; else _MEMSET( &AColor, 0, sizeof( AColor ) ) ;
 
-	// “]‘—Œ³‚Æ“]‘—æ‚Ì‚Ç‚¿‚ç‚©‚ª•‚“®¬”“_Œ^‚©‚Ç‚¤‚©‚ğƒZƒbƒg
+	// è»¢é€å…ƒã¨è»¢é€å…ˆã®ã©ã¡ã‚‰ã‹ãŒæµ®å‹•å°æ•°ç‚¹å‹ã‹ã©ã†ã‹ã‚’ã‚»ãƒƒãƒˆ
 	FloatTypeFlag = SColor.FloatTypeFlag != 0 || DColor.FloatTypeFlag != 0 ? TRUE : FALSE ;
 
-	// ƒAƒ‹ƒtƒ@ƒ`ƒƒƒ“ƒlƒ‹‚ğˆ—‚·‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğƒZƒbƒg‚·‚é
+	// ã‚¢ãƒ«ãƒ•ã‚¡ãƒãƒ£ãƒ³ãƒãƒ«ã‚’å‡¦ç†ã™ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 	AlphaFlag = DColor.AlphaWidth != 0 && ( AlphaMask != NULL || SColor.AlphaWidth != 0 ) ;
 	
-	// ƒAƒ‹ƒtƒ@ƒ`ƒƒƒ“ƒlƒ‹ƒf[ƒ^‚ÍƒAƒ‹ƒtƒ@ƒ}ƒXƒN‚©‚çæ‚é‚©ƒ\[ƒXƒOƒ‰ƒtƒBƒbƒNã‚©‚çæ‚é‚©‚Ìƒtƒ‰ƒO‚ğƒZƒbƒg
+	// ã‚¢ãƒ«ãƒ•ã‚¡ãƒãƒ£ãƒ³ãƒãƒ«ãƒ‡ãƒ¼ã‚¿ã¯ã‚¢ãƒ«ãƒ•ã‚¡ãƒã‚¹ã‚¯ã‹ã‚‰å–ã‚‹ã‹ã‚½ãƒ¼ã‚¹ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ä¸Šã‹ã‚‰å–ã‚‹ã‹ã®ãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆ
 	AlphaMaskFlag = DColor.AlphaWidth != 0 && AlphaMask != NULL && SColor.AlphaWidth == 0 ;
 
-	// “§‰ßFƒAƒ‹ƒtƒ@ƒeƒXƒgˆ—‚ÍAƒAƒ‹ƒtƒ@ƒ}ƒXƒNA‚Ü‚½‚ÍƒAƒ‹ƒtƒ@ƒ`ƒƒƒ“ƒlƒ‹‚ª‚ ‚éê‡A
-	// ‚à‚µ‚­‚Í“]‘—æƒOƒ‰ƒtƒBƒbƒN‚ÌƒtƒH[ƒ}ƒbƒg‚ªƒAƒ‹ƒtƒ@‚È‚µ‚¾‚Á‚½ê‡‚Í‹­§“I‚É‚n‚e‚e‚É‚È‚é
-	// –”AÔ¬•ª‚ğƒ¿¬•ª‚É•ÏŠ·‚·‚éw’è‚ª‚ ‚éê‡‚à‚n‚e‚e‚É‚È‚é
+	// é€éè‰²ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆå‡¦ç†ã¯ã€ã‚¢ãƒ«ãƒ•ã‚¡ãƒã‚¹ã‚¯ã€ã¾ãŸã¯ã‚¢ãƒ«ãƒ•ã‚¡ãƒãƒ£ãƒ³ãƒãƒ«ãŒã‚ã‚‹å ´åˆã€
+	// ã‚‚ã—ãã¯è»¢é€å…ˆã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆãŒã‚¢ãƒ«ãƒ•ã‚¡ãªã—ã ã£ãŸå ´åˆã¯å¼·åˆ¶çš„ã«ï¼¯ï¼¦ï¼¦ã«ãªã‚‹
+	// åˆã€èµ¤æˆåˆ†ã‚’Î±æˆåˆ†ã«å¤‰æ›ã™ã‚‹æŒ‡å®šãŒã‚ã‚‹å ´åˆã‚‚ï¼¯ï¼¦ï¼¦ã«ãªã‚‹
 	if( AlphaFlag == TRUE || DColor.AlphaWidth == 0 || RedIsAlphaFlag == TRUE  ) TransColorAlphaTestFlag = FALSE ;
 
-	// ”½“]ƒtƒ‰ƒO‚ª‚ ‚éê‡‚Í“§‰ßFˆ—‚Í–³‚µ
+	// åè»¢ãƒ•ãƒ©ã‚°ãŒã‚ã‚‹å ´åˆã¯é€éè‰²å‡¦ç†ã¯ç„¡ã—
 	if( ReverseFlag ) TransColorNoMoveFlag = FALSE ;
 
-	// “]‘—ƒTƒCƒY‚ğƒZƒbƒg
+	// è»¢é€ã‚µã‚¤ã‚ºã‚’ã‚»ãƒƒãƒˆ
 	BltWidth = SrcRect->right - SrcRect->left ;
 	BltHeight = SrcRect->bottom - SrcRect->top ;
 	if( BltWidth == 0 || BltHeight == 0 ) return -1 ;
 
-	// ®”Œ^‚Å1ƒ`ƒƒƒ“ƒlƒ‹•Ó‚è16ƒrƒbƒg‚ÌƒtƒH[ƒ}ƒbƒg‚Ìê‡‚Í•ªŠò
+	// æ•´æ•°å‹ã§1ãƒãƒ£ãƒ³ãƒãƒ«è¾ºã‚Š16ãƒ“ãƒƒãƒˆã®ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®å ´åˆã¯åˆ†å²
 	if( ( SColor.FloatTypeFlag == FALSE && SColor.ChannelBitDepth == 16 ) ||
 		( DColor.FloatTypeFlag == FALSE && DColor.ChannelBitDepth == 16 ) )
 	{
-		// “]‘—Œ³‚Æ“]‘—æ‚ÌƒtƒH[ƒ}ƒbƒg‚ª‘S‚­“¯‚¶‚Å“Áê‚Èˆ—‚à–³‚¢ê‡‚Í’Pƒ“]‘—‚ğs‚¤
+		// è»¢é€å…ƒã¨è»¢é€å…ˆã®ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆãŒå…¨ãåŒã˜ã§ç‰¹æ®Šãªå‡¦ç†ã‚‚ç„¡ã„å ´åˆã¯å˜ç´”è»¢é€ã‚’è¡Œã†
 		if( TransColorAlphaTestFlag == FALSE &&
 			AlphaMaskFlag           == FALSE &&
 			AlphaOnlyFlag           == FALSE &&
@@ -10294,18 +10294,18 @@ extern int NS_GraphColorMatchBltVer2( void *DestGraphData,       int DestPitch, 
 			DWORD DwMoveSetNum ;
 			DWORD MoveLineByte ;
 
-			// ‚Pƒ‰ƒCƒ““–‚½‚è‚Ì“]‘—ƒTƒCƒY‚ğƒZƒbƒg
+			// ï¼‘ãƒ©ã‚¤ãƒ³å½“ãŸã‚Šã®è»¢é€ã‚µã‚¤ã‚ºã‚’ã‚»ãƒƒãƒˆ
 			MoveLineByte = ( DWORD )( BltWidth * DColor.PixelByte ) ;
 
-			// “]‘—Œ³AæƒAƒhƒŒƒXƒZƒbƒg
+			// è»¢é€å…ƒã€å…ˆã‚¢ãƒ‰ãƒ¬ã‚¹ã‚»ãƒƒãƒˆ
 			DestP = ( BYTE * )DestGraphData + DestPoint.y  * DestPitch + DestPoint.x   * DColor.PixelByte ;
 			SrcP  = ( BYTE * )SrcGraphData  + SrcRect->top * SrcPitch  + SrcRect->left * SColor.PixelByte ;
 
-			// ‚Pƒ‰ƒCƒ““]‘—ŒãAŸ‚Ì“]‘—Œ³ƒAƒhƒŒƒX‚Ü‚Å‚ÌƒoƒCƒg”ŒvZ
+			// ï¼‘ãƒ©ã‚¤ãƒ³è»¢é€å¾Œã€æ¬¡ã®è»¢é€å…ƒã‚¢ãƒ‰ãƒ¬ã‚¹ã¾ã§ã®ãƒã‚¤ãƒˆæ•°è¨ˆç®—
 			DestAddPitch = ( DWORD )( DestPitch - MoveLineByte ) ;
 			SrcAddPitch  = ( DWORD )( SrcPitch  - MoveLineByte ) ;
 
-			// ‚SƒoƒCƒg“]‘—‰½‰ñ•ª‚ ‚é‚©Zo
+			// ï¼”ãƒã‚¤ãƒˆè»¢é€ä½•å›åˆ†ã‚ã‚‹ã‹ç®—å‡º
 			DwMoveSetNum = MoveLineByte / 4 ;
 
 			DWORD i ;
@@ -10324,14 +10324,14 @@ extern int NS_GraphColorMatchBltVer2( void *DestGraphData,       int DestPitch, 
 			}while( -- BltHeight != 0 ) ;
 		}
 
-		// ’á‘¬“]‘—‚ğs‚¤
+		// ä½é€Ÿè»¢é€ã‚’è¡Œã†
 		goto NORMALMOVE ;
 	}
 
-	// •‚“®¬”“_Œ^‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+	// æµ®å‹•å°æ•°ç‚¹å‹ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 	if( FloatTypeFlag )
 	{
-		// “]‘—Œ³‚Æ“]‘—æ‚ÌƒtƒH[ƒ}ƒbƒg‚ª‘S‚­“¯‚¶‚Å“Áê‚Èˆ—‚à–³‚¢ê‡‚Í’Pƒ“]‘—‚ğs‚¤
+		// è»¢é€å…ƒã¨è»¢é€å…ˆã®ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆãŒå…¨ãåŒã˜ã§ç‰¹æ®Šãªå‡¦ç†ã‚‚ç„¡ã„å ´åˆã¯å˜ç´”è»¢é€ã‚’è¡Œã†
 		if( TransColorAlphaTestFlag == FALSE &&
 			AlphaMaskFlag           == FALSE &&
 			AlphaOnlyFlag           == FALSE &&
@@ -10346,18 +10346,18 @@ extern int NS_GraphColorMatchBltVer2( void *DestGraphData,       int DestPitch, 
 			DWORD DwMoveSetNum ;
 			DWORD MoveLineByte ;
 
-			// ‚Pƒ‰ƒCƒ““–‚½‚è‚Ì“]‘—ƒTƒCƒY‚ğƒZƒbƒg
+			// ï¼‘ãƒ©ã‚¤ãƒ³å½“ãŸã‚Šã®è»¢é€ã‚µã‚¤ã‚ºã‚’ã‚»ãƒƒãƒˆ
 			MoveLineByte = ( DWORD )( BltWidth * DColor.PixelByte ) ;
 
-			// “]‘—Œ³AæƒAƒhƒŒƒXƒZƒbƒg
+			// è»¢é€å…ƒã€å…ˆã‚¢ãƒ‰ãƒ¬ã‚¹ã‚»ãƒƒãƒˆ
 			DestP = ( BYTE * )DestGraphData + DestPoint.y  * DestPitch + DestPoint.x   * DColor.PixelByte ;
 			SrcP  = ( BYTE * )SrcGraphData  + SrcRect->top * SrcPitch  + SrcRect->left * SColor.PixelByte ;
 
-			// ‚Pƒ‰ƒCƒ““]‘—ŒãAŸ‚Ì“]‘—Œ³ƒAƒhƒŒƒX‚Ü‚Å‚ÌƒoƒCƒg”ŒvZ
+			// ï¼‘ãƒ©ã‚¤ãƒ³è»¢é€å¾Œã€æ¬¡ã®è»¢é€å…ƒã‚¢ãƒ‰ãƒ¬ã‚¹ã¾ã§ã®ãƒã‚¤ãƒˆæ•°è¨ˆç®—
 			DestAddPitch = ( DWORD )( DestPitch - MoveLineByte ) ;
 			SrcAddPitch  = ( DWORD )( SrcPitch  - MoveLineByte ) ;
 
-			// ‚SƒoƒCƒg“]‘—‰½‰ñ•ª‚ ‚é‚©Zo
+			// ï¼”ãƒã‚¤ãƒˆè»¢é€ä½•å›åˆ†ã‚ã‚‹ã‹ç®—å‡º
 			DwMoveSetNum = MoveLineByte / 4 ;
 
 			DWORD i ;
@@ -10376,20 +10376,20 @@ extern int NS_GraphColorMatchBltVer2( void *DestGraphData,       int DestPitch, 
 			}while( -- BltHeight != 0 ) ;
 		}
 
-		// ’á‘¬“]‘—‚ğs‚¤
+		// ä½é€Ÿè»¢é€ã‚’è¡Œã†
 		goto NORMALMOVE ;
 	}
 
-	// “]‘—æ‚ª 4bit ‚Ìê‡
+	// è»¢é€å…ˆãŒ 4bit ã®å ´åˆ
 	if( DestColorData->ColorBitDepth == 4 )
 	{
-		// “]‘—Œ³‚Í 8bit ‚É‚µ‚©‘Î‰‚µ‚È‚¢
+		// è»¢é€å…ƒã¯ 8bit ã«ã—ã‹å¯¾å¿œã—ãªã„
 		if( SrcColorData->ColorBitDepth != 8 )
 		{
 			return -1 ;
 		}
 
-		// x²•ûŒü‚Ì“]‘—ˆÊ’u‚ª‚Q‚Ì”{”‚Å‚Í‚È‚¢ê‡‚ÍƒGƒ‰[
+		// xè»¸æ–¹å‘ã®è»¢é€ä½ç½®ãŒï¼’ã®å€æ•°ã§ã¯ãªã„å ´åˆã¯ã‚¨ãƒ©ãƒ¼
 		if( DestPoint.x % 2 != 0 )
 		{
 			return -1 ;
@@ -10435,7 +10435,7 @@ extern int NS_GraphColorMatchBltVer2( void *DestGraphData,       int DestPitch, 
 		return 0 ;
 	}
 
-	// ‚WƒrƒbƒgƒJƒ‰[“¯m‚ÌƒJƒ‰[ƒ}ƒbƒ`w’è‚Ìê‡‚ÍƒpƒŒƒbƒg‚ªˆê’v‚µ‚Ä‚¢‚È‚¢ê‡‚Í’á‘¬“]‘—ˆ—‚ğs‚¤
+	// ï¼˜ãƒ“ãƒƒãƒˆã‚«ãƒ©ãƒ¼åŒå£«ã®ã‚«ãƒ©ãƒ¼ãƒãƒƒãƒæŒ‡å®šã®å ´åˆã¯ãƒ‘ãƒ¬ãƒƒãƒˆãŒä¸€è‡´ã—ã¦ã„ãªã„å ´åˆã¯ä½é€Ÿè»¢é€å‡¦ç†ã‚’è¡Œã†
 	if( Pal8ColorMatch && DestColorData->ColorBitDepth == 8 && SrcColorData->ColorBitDepth == 8 && ReverseFlag == FALSE )
 	{
 		if( _MEMCMP( DestColorData->Palette, SrcColorData->Palette, sizeof( SrcColorData->Palette ) ) != 0 )
@@ -10458,7 +10458,7 @@ extern int NS_GraphColorMatchBltVer2( void *DestGraphData,       int DestPitch, 
 		}
 	}
 
-	// “]‘—æ‚ª‚Wƒrƒbƒg‚ÅA“]‘—Œ³‚ª‚WƒrƒbƒgˆÈŠO‚¾‚Á‚½ê‡‚Í’á‘¬“]‘—
+	// è»¢é€å…ˆãŒï¼˜ãƒ“ãƒƒãƒˆã§ã€è»¢é€å…ƒãŒï¼˜ãƒ“ãƒƒãƒˆä»¥å¤–ã ã£ãŸå ´åˆã¯ä½é€Ÿè»¢é€
 	if( DestColorData->ColorBitDepth == 8 && SrcColorData->ColorBitDepth != 8 && RedIsAlphaFlag == FALSE && ReverseFlag == FALSE )
 	{
 		int i, j ;
@@ -10519,17 +10519,17 @@ extern int NS_GraphColorMatchBltVer2( void *DestGraphData,       int DestPitch, 
 		return 0 ;
 	}
 
-	// “]‘—æ‚ª‚Wƒrƒbƒg‚¾‚Á‚½‚çˆ—‚ğ•ªŠò
+	// è»¢é€å…ˆãŒï¼˜ãƒ“ãƒƒãƒˆã ã£ãŸã‚‰å‡¦ç†ã‚’åˆ†å²
 	if( DestColorData->ColorBitDepth == 8 && AlphaOnlyFlag == FALSE && TransColorNoMoveFlag == FALSE && RedIsAlphaFlag == FALSE && ReverseFlag == FALSE )
 	{
 		BYTE *DestP, *SrcP ;
 		int SrcAddPitch, DestAddPitch ;
 		DWORD MaxColorNumber ;
 
-		// “]‘—Œ³‚ª‚WƒrƒbƒgˆÈŠO‚¾‚Á‚½‚çƒGƒ‰[
+		// è»¢é€å…ƒãŒï¼˜ãƒ“ãƒƒãƒˆä»¥å¤–ã ã£ãŸã‚‰ã‚¨ãƒ©ãƒ¼
 		if( SrcColorData->ColorBitDepth != 8 ) return -1 ;
 	
-		// ƒJƒ‰[ƒ}ƒbƒ`ƒ“ƒO‚Ís‚í‚¸A‚½‚¾“]‘—‚·‚é‚¾‚¯
+		// ã‚«ãƒ©ãƒ¼ãƒãƒƒãƒãƒ³ã‚°ã¯è¡Œã‚ãšã€ãŸã è»¢é€ã™ã‚‹ã ã‘
 		DestP = (BYTE *)DestGraphData + DestPitch * DestPoint.y + DestPoint.x ;
 		SrcP = (BYTE *)SrcGraphData + SrcPitch * SrcRect->top + SrcRect->left ;
 		
@@ -10581,12 +10581,12 @@ extern int NS_GraphColorMatchBltVer2( void *DestGraphData,       int DestPitch, 
 			POPF
 		}
 #endif
-		// g—p‚µ‚Ä‚¢‚éF”‚ğ•Ô‚·
+		// ä½¿ç”¨ã—ã¦ã„ã‚‹è‰²æ•°ã‚’è¿”ã™
 		return ( int )MaxColorNumber ;
 	}
 
-	// “§‰ßFƒAƒ‹ƒtƒ@ƒeƒXƒgƒtƒ‰ƒO‚ª“|‚ê‚Ä‚¢‚ÄƒsƒNƒZƒ‹ƒtƒH[ƒ}ƒbƒg‚ª“¯‚¶
-	// ‚¾‚Á‚½ê‡‚Í‚‘¬“]‘—ƒvƒƒOƒ‰ƒ€‚ğ‘–‚ç‚¹‚é
+	// é€éè‰²ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆãƒ•ãƒ©ã‚°ãŒå€’ã‚Œã¦ã„ã¦ãƒ”ã‚¯ã‚»ãƒ«ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆãŒåŒã˜
+	// ã ã£ãŸå ´åˆã¯é«˜é€Ÿè»¢é€ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã‚’èµ°ã‚‰ã›ã‚‹
 	if( TransColorAlphaTestFlag == FALSE &&
 		AlphaMaskFlag           == FALSE &&
 		AlphaOnlyFlag           == FALSE &&
@@ -10599,33 +10599,33 @@ extern int NS_GraphColorMatchBltVer2( void *DestGraphData,       int DestPitch, 
 		DColor.BlueMask         == SColor.BlueMask      &&
 		DColor.AlphaMask        == SColor.AlphaMask )
 	{
-		// ‚‘¬“]‘—ˆ—ƒvƒƒOƒ‰ƒ€
+		// é«˜é€Ÿè»¢é€å‡¦ç†ãƒ—ãƒ­ã‚°ãƒ©ãƒ 
 
 		BYTE *DestP, *SrcP ;
 		int SrcAddPitch, DestAddPitch ;
 		int DwMoveSetNum, NokoriMoveSetNum ;
 		int MoveLineByte, ColorBitDepth ;
 
-		// ‚Pƒ‰ƒCƒ““–‚½‚è‚Ì“]‘—ƒTƒCƒY‚ğƒZƒbƒg
+		// ï¼‘ãƒ©ã‚¤ãƒ³å½“ãŸã‚Šã®è»¢é€ã‚µã‚¤ã‚ºã‚’ã‚»ãƒƒãƒˆ
 		MoveLineByte = BltWidth * DColor.PixelByte ;
 		
-		// ”½“]“]‘—‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+		// åè»¢è»¢é€ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 		if( ReverseFlag == FALSE )
 		{
-			// “]‘—Œ³AæƒAƒhƒŒƒXƒZƒbƒg
+			// è»¢é€å…ƒã€å…ˆã‚¢ãƒ‰ãƒ¬ã‚¹ã‚»ãƒƒãƒˆ
 			DestP = ( BYTE * )DestGraphData + DestPoint.y  * DestPitch + DestPoint.x   * DColor.PixelByte ;
 			SrcP  = ( BYTE * )SrcGraphData  + SrcRect->top * SrcPitch  + SrcRect->left * SColor.PixelByte ;
 
-			// ‚Pƒ‰ƒCƒ““]‘—ŒãAŸ‚Ì“]‘—Œ³ƒAƒhƒŒƒX‚Ü‚Å‚ÌƒoƒCƒg”ŒvZ
+			// ï¼‘ãƒ©ã‚¤ãƒ³è»¢é€å¾Œã€æ¬¡ã®è»¢é€å…ƒã‚¢ãƒ‰ãƒ¬ã‚¹ã¾ã§ã®ãƒã‚¤ãƒˆæ•°è¨ˆç®—
 			DestAddPitch = DestPitch - MoveLineByte ;
 			SrcAddPitch  = SrcPitch  - MoveLineByte ;
 
-			// “§‰ßFˆ—‚ğs‚¤‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+			// é€éè‰²å‡¦ç†ã‚’è¡Œã†ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 			if( TransColorNoMoveFlag == TRUE )
 			{
-				// “§‰ßFˆ—‚ğs‚¤ê‡
+				// é€éè‰²å‡¦ç†ã‚’è¡Œã†å ´åˆ
 
-				// Fƒrƒbƒg”‚ğƒZƒbƒg
+				// è‰²ãƒ“ãƒƒãƒˆæ•°ã‚’ã‚»ãƒƒãƒˆ
 				ColorBitDepth = DColor.ColorBitDepth ;
 
 #ifdef DX_NON_INLINE_ASM
@@ -10712,7 +10712,7 @@ extern int NS_GraphColorMatchBltVer2( void *DestGraphData,       int DestPitch, 
 					break ;
 				}
 #else
-				// “]‘—ˆ—
+				// è»¢é€å‡¦ç†
 				_asm{
 					PUSHA
 					PUSHF
@@ -10819,11 +10819,11 @@ extern int NS_GraphColorMatchBltVer2( void *DestGraphData,       int DestPitch, 
 			}
 			else
 			{
-				// ‚SƒoƒCƒg“]‘—‰½‰ñA‚»‚ÌŒã‚ ‚Ü‚é“]‘—•ª‚ª‰½ƒsƒNƒZƒ‹•ª‚ ‚é‚©Zo
+				// ï¼”ãƒã‚¤ãƒˆè»¢é€ä½•å›ã€ãã®å¾Œã‚ã¾ã‚‹è»¢é€åˆ†ãŒä½•ãƒ”ã‚¯ã‚»ãƒ«åˆ†ã‚ã‚‹ã‹ç®—å‡º
 				DwMoveSetNum = MoveLineByte / 4 ;
 				NokoriMoveSetNum = ( MoveLineByte - DwMoveSetNum * 4 ) / DColor.PixelByte ;
 
-				// Fƒrƒbƒg”‚ğƒZƒbƒg
+				// è‰²ãƒ“ãƒƒãƒˆæ•°ã‚’ã‚»ãƒƒãƒˆ
 				ColorBitDepth = DColor.ColorBitDepth ;
 
 #ifdef DX_NON_INLINE_ASM
@@ -10962,7 +10962,7 @@ extern int NS_GraphColorMatchBltVer2( void *DestGraphData,       int DestPitch, 
 					break ;
 				}
 #else
-				// “]‘—ˆ—
+				// è»¢é€å‡¦ç†
 				_asm{
 					PUSHA
 					PUSHF
@@ -11056,17 +11056,17 @@ extern int NS_GraphColorMatchBltVer2( void *DestGraphData,       int DestPitch, 
 		}
 		else
 		{
-			// ”½“]“]‘—
+			// åè»¢è»¢é€
 
-			// “]‘—Œ³AæƒAƒhƒŒƒXƒZƒbƒg
+			// è»¢é€å…ƒã€å…ˆã‚¢ãƒ‰ãƒ¬ã‚¹ã‚»ãƒƒãƒˆ
 			DestP = ( BYTE * )DestGraphData + DestPoint.y  * DestPitch + ( ( BltWidth - 1 ) + DestPoint.x ) * DColor.PixelByte ;
 			SrcP  = ( BYTE * )SrcGraphData  + SrcRect->top * SrcPitch  + SrcRect->left                      * SColor.PixelByte ;
 
-			// ‚Pƒ‰ƒCƒ““]‘—ŒãAŸ‚Ì“]‘—Œ³ƒAƒhƒŒƒX‚Ü‚Å‚ÌƒoƒCƒg”ŒvZ
+			// ï¼‘ãƒ©ã‚¤ãƒ³è»¢é€å¾Œã€æ¬¡ã®è»¢é€å…ƒã‚¢ãƒ‰ãƒ¬ã‚¹ã¾ã§ã®ãƒã‚¤ãƒˆæ•°è¨ˆç®—
 			DestAddPitch = DestPitch + MoveLineByte ;
 			SrcAddPitch = SrcPitch - MoveLineByte ;
 
-			// Fƒrƒbƒg”‚ğƒZƒbƒg
+			// è‰²ãƒ“ãƒƒãƒˆæ•°ã‚’ã‚»ãƒƒãƒˆ
 			ColorBitDepth = DColor.ColorBitDepth ;
 
 #ifdef DX_NON_INLINE_ASM
@@ -11135,7 +11135,7 @@ extern int NS_GraphColorMatchBltVer2( void *DestGraphData,       int DestPitch, 
 				break ;
 			}
 #else
-			// “]‘—ˆ—
+			// è»¢é€å‡¦ç†
 			_asm{
 				PUSHA
 				MOV		EDI, DestP
@@ -11207,14 +11207,14 @@ extern int NS_GraphColorMatchBltVer2( void *DestGraphData,       int DestPitch, 
 			}
 #endif
 		}
-		// I—¹
+		// çµ‚äº†
 		return 0 ;
 	}
 	else
-	// “§‰ßFˆ—‚ğs‚¤ê‡
+	// é€éè‰²å‡¦ç†ã‚’è¡Œã†å ´åˆ
 	if( TransColorNoMoveFlag == TRUE )
 	{
-		// Src‚ª XRGB32 Dest ‚ª ARGB32 ‚Ìê‡‚Í‚¿‚å‚Á‚Æ‚‘¬‚È“]‘—
+		// SrcãŒ XRGB32 Dest ãŒ ARGB32 ã®å ´åˆã¯ã¡ã‚‡ã£ã¨é«˜é€Ÿãªè»¢é€
 		if( AlphaOnlyFlag == FALSE &&
 			AlphaMaskFlag == FALSE &&
 			AlphaFlag == FALSE &&
@@ -11239,15 +11239,15 @@ extern int NS_GraphColorMatchBltVer2( void *DestGraphData,       int DestPitch, 
 
 			TColor = TransColor & 0x00ffffff;
 
-			// Šeƒoƒbƒtƒ@‚Ö‚ÌƒAƒhƒŒƒX‚ğƒZƒbƒg
+			// å„ãƒãƒƒãƒ•ã‚¡ã¸ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ã‚»ãƒƒãƒˆ
 			DBuf = ( BYTE * )DestGraphData + DestPoint.y  * DestPitch + DestPoint.x   * DColor.PixelByte ;
 			SBuf = ( BYTE * )SrcGraphData  + SrcRect->top * SrcPitch  + SrcRect->left * SColor.PixelByte ;
 
-			// ‚Pƒ‰ƒCƒ““]‘—‚·‚é“x‚É‰ÁZ‚·‚é’lƒZƒbƒg
+			// ï¼‘ãƒ©ã‚¤ãƒ³è»¢é€ã™ã‚‹åº¦ã«åŠ ç®—ã™ã‚‹å€¤ã‚»ãƒƒãƒˆ
 			DestPitch2 = ( DWORD )( DestPitch - BltWidth * DColor.PixelByte ) ;
 			SrcPitch2  = ( DWORD )( SrcPitch  - BltWidth * SColor.PixelByte ) ;
 
-			// “]‘—
+			// è»¢é€
 			if( BltHeight != 0 && BltWidth != 0 )
 			{
 				i = ( DWORD )BltHeight ;
@@ -11269,15 +11269,15 @@ extern int NS_GraphColorMatchBltVer2( void *DestGraphData,       int DestPitch, 
 				}while( -- i ) ;
 			}
 
-			// I—¹
+			// çµ‚äº†
 			return 0 ;
 		}
 
 		goto NORMALMOVE ;
 	}
 	else
-	// ƒAƒ‹ƒtƒ@ƒ`ƒƒƒ“ƒlƒ‹‚ğ“§‰ßFƒeƒXƒgƒAƒ‹ƒtƒ@‚©‚çæ‚èA‚³‚ç‚É‚»‚êˆÈŠO‚ÌƒtƒH[ƒ}ƒbƒg‚ª“¯‚¶‚Ìê‡‚Í
-	// ­‚µ‚‘¬‚È“]‘—ˆ—‚ğs‚¤
+	// ã‚¢ãƒ«ãƒ•ã‚¡ãƒãƒ£ãƒ³ãƒãƒ«ã‚’é€éè‰²ãƒ†ã‚¹ãƒˆã‚¢ãƒ«ãƒ•ã‚¡ã‹ã‚‰å–ã‚Šã€ã•ã‚‰ã«ãã‚Œä»¥å¤–ã®ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆãŒåŒã˜ã®å ´åˆã¯
+	// å°‘ã—é«˜é€Ÿãªè»¢é€å‡¦ç†ã‚’è¡Œã†
 	if( ( DColor.AlphaWidth != 0 && TransColorAlphaTestFlag == TRUE ) && 
 		AlphaOnlyFlag == FALSE && RedIsAlphaFlag == FALSE &&
 		DColor.RedMask       == SColor.RedMask &&
@@ -11290,16 +11290,16 @@ extern int NS_GraphColorMatchBltVer2( void *DestGraphData,       int DestPitch, 
 		DWORD DestPitch2, SrcPitch2 ;
 		int DestAdd ;
 
-		// “§‰ßFƒR[ƒh‚ğ“¾‚é
+		// é€éè‰²ã‚³ãƒ¼ãƒ‰ã‚’å¾—ã‚‹
 		TColor = NS_GetColor3( &DColor,
 									( int )( ( TransColor & 0xff0000 ) >> 16 ),
 									( int )( ( TransColor & 0x00ff00 ) >>  8 ),
 									( int )( ( TransColor & 0x0000ff )       ), 255 ) ;
 
-		// ‚q‚f‚a‚Ì”½“]ƒ}ƒXƒN‚ğì¬‚·‚é
+		// ï¼²ï¼§ï¼¢ã®åè»¢ãƒã‚¹ã‚¯ã‚’ä½œæˆã™ã‚‹
 		NRGBMask = ~( DColor.RedMask | DColor.GreenMask | DColor.BlueMask ) ;
 
-		// ”½“]“]‘—‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+		// åè»¢è»¢é€ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 		if( ReverseFlag == TRUE )
 		{
 			DestPitch2 = ( DWORD )( DestPitch + BltWidth * DColor.PixelByte ) ;
@@ -11313,17 +11313,17 @@ extern int NS_GraphColorMatchBltVer2( void *DestGraphData,       int DestPitch, 
 			DBuf       = ( BYTE * )DestGraphData + DestPoint.y * DestPitch + DestPoint.x * DColor.PixelByte ;
 		}
 
-		// Šeƒoƒbƒtƒ@‚Ö‚ÌƒAƒhƒŒƒX‚ğƒZƒbƒg
+		// å„ãƒãƒƒãƒ•ã‚¡ã¸ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ã‚»ãƒƒãƒˆ
 		SBuf = ( BYTE * )SrcGraphData + SrcRect->top * SrcPitch + SrcRect->left * SColor.PixelByte ;
 
-		// ‚Pƒ‰ƒCƒ““]‘—‚·‚é“x‚É‰ÁZ‚·‚é’lƒZƒbƒg
+		// ï¼‘ãƒ©ã‚¤ãƒ³è»¢é€ã™ã‚‹åº¦ã«åŠ ç®—ã™ã‚‹å€¤ã‚»ãƒƒãƒˆ
 		SrcPitch2 = ( DWORD )( SrcPitch - BltWidth * SColor.PixelByte ) ;
 		
-		// ƒJƒ‰[ƒrƒbƒg”‚É‚æ‚Á‚Äˆ—‚ğ•ªŠò
+		// ã‚«ãƒ©ãƒ¼ãƒ“ãƒƒãƒˆæ•°ã«ã‚ˆã£ã¦å‡¦ç†ã‚’åˆ†å²
 		switch( DColor.ColorBitDepth )
 		{
-		case 8 :		// ‚WƒrƒbƒgƒJƒ‰[
-			// “]‘—ˆ—
+		case 8 :		// ï¼˜ãƒ“ãƒƒãƒˆã‚«ãƒ©ãƒ¼
+			// è»¢é€å‡¦ç†
 			{
 				BYTE Color, Trans ;
 				int i, j ;
@@ -11344,8 +11344,8 @@ extern int NS_GraphColorMatchBltVer2( void *DestGraphData,       int DestPitch, 
 			}
 			break ;
 
-		case 16 :		// ‚P‚UƒrƒbƒgƒJƒ‰[
-			// “]‘—ˆ—
+		case 16 :		// ï¼‘ï¼–ãƒ“ãƒƒãƒˆã‚«ãƒ©ãƒ¼
+			// è»¢é€å‡¦ç†
 			{
 				WORD Color, Trans ;
 				int i, j ;
@@ -11366,8 +11366,8 @@ extern int NS_GraphColorMatchBltVer2( void *DestGraphData,       int DestPitch, 
 			}
 			break ;
 			
-		case 24 :		// ‚Q‚SƒrƒbƒgƒJƒ‰[
-			// “]‘—ˆ—
+		case 24 :		// ï¼’ï¼”ãƒ“ãƒƒãƒˆã‚«ãƒ©ãƒ¼
+			// è»¢é€å‡¦ç†
 			{
 				unsigned int Color, Trans ;
 				int i, j ;
@@ -11389,8 +11389,8 @@ extern int NS_GraphColorMatchBltVer2( void *DestGraphData,       int DestPitch, 
 			}
 			break ;
 
-		case 32 :		// ‚R‚QƒrƒbƒgƒJƒ‰[
-			// “]‘—ˆ—
+		case 32 :		// ï¼“ï¼’ãƒ“ãƒƒãƒˆã‚«ãƒ©ãƒ¼
+			// è»¢é€å‡¦ç†
 			{
 				unsigned int Color, Trans, NRgbMask ;
 				int i, j ;
@@ -11414,11 +11414,11 @@ extern int NS_GraphColorMatchBltVer2( void *DestGraphData,       int DestPitch, 
 			break ;
 		}
 
-		// I—¹
+		// çµ‚äº†
 		return 0 ;
 	}
 
-	// ‚æ‚­‚ ‚éğŒ‚Å‚Ì‚İ­‚µ‚‘¬‚È“]‘—ˆ—‚ğs‚¤
+	// ã‚ˆãã‚ã‚‹æ¡ä»¶ã§ã®ã¿å°‘ã—é«˜é€Ÿãªè»¢é€å‡¦ç†ã‚’è¡Œã†
 	if( 
 		ImageShavedMode == DX_SHAVEDMODE_NONE &&
 		AlphaOnlyFlag   == FALSE &&
@@ -14497,7 +14497,7 @@ extern int NS_GraphColorMatchBltVer2( void *DestGraphData,       int DestPitch, 
 
 NORMALMOVE:
 
-	// ‚¢‚¸‚ê‚É‚à‘Î‰‚µ‚Ä‚¢‚È‚¢ê‡‚Í•’Ê‚Ì“]‘—ˆ—‚ğs‚¤
+	// ã„ãšã‚Œã«ã‚‚å¯¾å¿œã—ã¦ã„ãªã„å ´åˆã¯æ™®é€šã®è»¢é€å‡¦ç†ã‚’è¡Œã†
 	{
 		DWORD DitherTableRed[16], DitherTableBlue[16], DitherTableGreen[16], DitherTableAlpha[16] ;
 		DWORD DiffMaskRed = 0, DiffMaskGreen = 0, DiffMaskBlue = 0, DiffMaskAlpha = 0 ;
@@ -14513,8 +14513,8 @@ NORMALMOVE:
 		DWORD *SrcPalette, *AlphaPalette ;
 		DWORD SrcValidMask ;
 
-		// •‚“®¬”“_ƒtƒH[ƒ}ƒbƒg‚Ìê‡‚Í 32bit ARGB‚Æ‚·‚é
-		// 1ƒ`ƒƒƒ“ƒlƒ‹‚ª16ƒrƒbƒg‚Ì®”Œ^‚¾‚Á‚½ê‡‚à‰¼‚É 32bit ARGB ‚Æ‚·‚é
+		// æµ®å‹•å°æ•°ç‚¹ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®å ´åˆã¯ 32bit ARGBã¨ã™ã‚‹
+		// 1ãƒãƒ£ãƒ³ãƒãƒ«ãŒ16ãƒ“ãƒƒãƒˆã®æ•´æ•°å‹ã ã£ãŸå ´åˆã‚‚ä»®ã« 32bit ARGB ã¨ã™ã‚‹
 		if( SColor.FloatTypeFlag != 0 ||
 			( SColor.FloatTypeFlag == 0 && SColor.ChannelBitDepth == 16 ) )
 		{
@@ -14536,21 +14536,21 @@ NORMALMOVE:
 			DColor.AlphaMask = 0xff000000 ; DColor.AlphaLoc = 24 ; DColor.AlphaWidth = 8 ;
 		}
 
-		// ƒOƒ‰ƒtƒBƒbƒN—ò‰»ŠÉ˜aˆ—ƒ‚[ƒh‚ğƒ[ƒJƒ‹•Ï”‚É—‚Æ‚·
+		// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯åŠ£åŒ–ç·©å’Œå‡¦ç†ãƒ¢ãƒ¼ãƒ‰ã‚’ãƒ­ãƒ¼ã‚«ãƒ«å¤‰æ•°ã«è½ã¨ã™
 		GraphShavedFlag = ( BYTE )(
 							( SColor.RedWidth   != DColor.RedWidth   ) || 
 							( SColor.GreenWidth != DColor.GreenWidth ) || 
 							( SColor.RedWidth   != DColor.RedWidth   ) ) ; 
 		if( AlphaMaskFlag && AColor.RedWidth != DColor.AlphaWidth ) GraphShavedFlag = TRUE;
 
-		// “]‘—æ‚ª•‚“®¬”“_Œ^‚Ìê‡‚©1ƒ`ƒƒƒ“ƒlƒ‹‚ª16ƒrƒbƒg‚Ì®”Œ^‚Ìê‡‚ÍƒOƒ‰ƒtƒBƒbƒN—ò‰»ŠÉ˜aˆ—‚Íg—p‚Å‚«‚È‚¢
+		// è»¢é€å…ˆãŒæµ®å‹•å°æ•°ç‚¹å‹ã®å ´åˆã‹1ãƒãƒ£ãƒ³ãƒãƒ«ãŒ16ãƒ“ãƒƒãƒˆã®æ•´æ•°å‹ã®å ´åˆã¯ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯åŠ£åŒ–ç·©å’Œå‡¦ç†ã¯ä½¿ç”¨ã§ããªã„
 		if( DColor.FloatTypeFlag != 0 || 
 			( DColor.FloatTypeFlag == 0 && DColor.ChannelBitDepth == 16 ) )
 		{
 			GraphShavedFlag = FALSE ;
 		}
 
-		// “§‰ßF‚âƒAƒ‹ƒtƒ@ƒeƒXƒg‚âƒAƒ‹ƒtƒ@ƒ}ƒXƒN‚Í•‚“®¬”“_‰æ‘œ‚â1ƒ`ƒƒƒ“ƒlƒ‹‚ª16ƒrƒbƒg‚Ì®”Œ^‚Ìê‡‚Íg—p‚Å‚«‚È‚¢
+		// é€éè‰²ã‚„ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆã‚„ã‚¢ãƒ«ãƒ•ã‚¡ãƒã‚¹ã‚¯ã¯æµ®å‹•å°æ•°ç‚¹ç”»åƒã‚„1ãƒãƒ£ãƒ³ãƒãƒ«ãŒ16ãƒ“ãƒƒãƒˆã®æ•´æ•°å‹ã®å ´åˆã¯ä½¿ç”¨ã§ããªã„
 		if( SColor.FloatTypeFlag != 0 || DColor.FloatTypeFlag != 0 ||
 			( SColor.FloatTypeFlag == 0 && SColor.ChannelBitDepth == 16 ) ||
 			( DColor.FloatTypeFlag == 0 && DColor.ChannelBitDepth == 16 ) )
@@ -14560,11 +14560,11 @@ NORMALMOVE:
 			AlphaMaskFlag = FALSE ;
 		}
 
-		// ƒpƒŒƒbƒgƒZƒbƒg
+		// ãƒ‘ãƒ¬ãƒƒãƒˆã‚»ãƒƒãƒˆ
 		SrcPalette = (DWORD *)SColor.Palette ;
 		AlphaPalette = (DWORD *)AColor.Palette ;
 
-		// F”‚ğƒZƒbƒg
+		// è‰²æ•°ã‚’ã‚»ãƒƒãƒˆ
 		SrcColorBitDepth = 0 ;
 		if( SColor.FloatTypeFlag != 0 )
 		{
@@ -14593,7 +14593,7 @@ NORMALMOVE:
 			}
 		}
 
-		// “]‘—Œ³‚Ì—LŒøƒrƒbƒg‚ÌƒZƒbƒg
+		// è»¢é€å…ƒã®æœ‰åŠ¹ãƒ“ãƒƒãƒˆã®ã‚»ãƒƒãƒˆ
 		SrcValidMask = SColor.RedMask | SColor.GreenMask | SColor.BlueMask | SColor.AlphaMask ;
 		if( TransColorAlphaTestFlag == FALSE )
 		{
@@ -14605,7 +14605,7 @@ NORMALMOVE:
 			case 8  : TransColor &= 0xff       ; break ;
 			}
 
-			// “§‰ßF‚ÌƒZƒbƒeƒBƒ“ƒO
+			// é€éè‰²ã®ã‚»ãƒƒãƒ†ã‚£ãƒ³ã‚°
 			if( SColor.ColorBitDepth != 8 )
 			{
 				TransColor &= SrcValidMask ;
@@ -14649,7 +14649,7 @@ NORMALMOVE:
 		case  8 : AlphaColorBitDepth = 3 ; break ;
 		}
 
-		// F•‚ªˆá‚Á‚½ê‡‚ÍŒ¸FŠÉ˜aƒŒƒ“ƒ_ƒŠƒ“ƒOˆ—‚ğs‚¤
+		// è‰²å¹…ãŒé•ã£ãŸå ´åˆã¯æ¸›è‰²ç·©å’Œãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°å‡¦ç†ã‚’è¡Œã†
 		if( GraphShavedFlag == TRUE )
 		{
 			DWORD DiffRed, DiffGreen, DiffBlue, DiffAlpha ;
@@ -14665,7 +14665,7 @@ NORMALMOVE:
 			DiffBlue  = ( DWORD )( 1 << GWBlue  ) ;
 			DiffAlpha = ( DWORD )( 1 << GWAlpha ) ;
 
-			// Œ¸FŠÉ˜aƒ‚[ƒh‚ªƒfƒBƒUƒŠƒ“ƒO‚¾‚Á‚½ê‡‚Íƒe[ƒuƒ‹‚ğ–„‚ß‚é
+			// æ¸›è‰²ç·©å’Œãƒ¢ãƒ¼ãƒ‰ãŒãƒ‡ã‚£ã‚¶ãƒªãƒ³ã‚°ã ã£ãŸå ´åˆã¯ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’åŸ‹ã‚ã‚‹
 			if( ImageShavedMode == DX_SHAVEDMODE_DITHER )
 			{
 				for( i = 0 ; i < 16 ; i ++ )
@@ -14699,7 +14699,7 @@ NORMALMOVE:
 		
 //		DXST_LOGFILEFMT_ADDW(( L"GWAlpha:%d   GAlphaMask:%x   AlphaMask:%x", GWAlpha, GAlphaMask, AlphaMask )) ;
 
-		// ƒJƒ‰[ƒL[‚ğæ“¾
+		// ã‚«ãƒ©ãƒ¼ã‚­ãƒ¼ã‚’å–å¾—
 		if( TransColorAlphaTestFlag )
 		{
 			unsigned int Color ;
@@ -14722,7 +14722,7 @@ NORMALMOVE:
 			}
 		}
 
-		// ‚Pƒ‰ƒCƒ““]‘—‚·‚é“x‚É‰ÁZ‚·‚é’lƒZƒbƒg
+		// ï¼‘ãƒ©ã‚¤ãƒ³è»¢é€ã™ã‚‹åº¦ã«åŠ ç®—ã™ã‚‹å€¤ã‚»ãƒƒãƒˆ
 		if( ReverseFlag == FALSE )
 		{
 			DestPitch2  = ( DWORD )( DestPitch  - BltWidth * DColor.PixelByte ) ;
@@ -14736,7 +14736,7 @@ NORMALMOVE:
 			AlphaPitch2 = ( DWORD )( AlphaPitch - BltWidth * AColor.PixelByte ) ;
 		}
 
-		// “]‘—ˆ—
+		// è»¢é€å‡¦ç†
 		{
 			BYTE *DBuf, *SBuf, *ABuf ;
 			DWORD DestColor = 0, SrcColor  = 0, AlphaColor = 0, NoneMask = 0 ;
@@ -14744,10 +14744,10 @@ NORMALMOVE:
 			float SrcColorR_F = 0, SrcColorG_F = 0, SrcColorB_F = 0, SrcColorA_F = 0 ;
 			int i, j, DestAdd ;
 
-			// –³Œøƒrƒbƒg‚ğƒZƒbƒg
+			// ç„¡åŠ¹ãƒ“ãƒƒãƒˆã‚’ã‚»ãƒƒãƒˆ
 			NoneMask = DColor.NoneMask ;
 			
-			// ”½“]“]‘—‚©‚Ç‚¤‚©‚ÅA“]‘—æ‚Ì‰ŠúƒAƒhƒŒƒX‚È‚Ç‚ğ•ÏX
+			// åè»¢è»¢é€ã‹ã©ã†ã‹ã§ã€è»¢é€å…ˆã®åˆæœŸã‚¢ãƒ‰ãƒ¬ã‚¹ãªã©ã‚’å¤‰æ›´
 			if( ReverseFlag == TRUE )
 			{
 				DBuf = ( BYTE * )DestGraphData + DestPoint.y * DestPitch + DestPoint.x * DColor.PixelByte + ( BltWidth - 1 ) * DColor.PixelByte ;
@@ -14759,7 +14759,7 @@ NORMALMOVE:
 				DestAdd = DColor.PixelByte ;
 			}
 			
-			// “]‘—æˆÈŠO‚Ìƒf[ƒ^‚Í’Êí’Ê‚è
+			// è»¢é€å…ˆä»¥å¤–ã®ãƒ‡ãƒ¼ã‚¿ã¯é€šå¸¸é€šã‚Š
 			SBuf = ( BYTE * )SrcGraphData + SrcRect->top * SrcPitch   + SrcRect->left * SColor.PixelByte ;
 			ABuf = ( BYTE * )AlphaMask    + SrcRect->top * AlphaPitch + SrcRect->left * AColor.PixelByte ;
 
@@ -14767,7 +14767,7 @@ NORMALMOVE:
 			{
 				for( j = 0 ; j < BltWidth ; j ++, DBuf += DestAdd, SBuf += SColor.PixelByte, ABuf += AColor.PixelByte )
 				{
-					// ƒJƒ‰[‚ğ“¾‚é
+					// ã‚«ãƒ©ãƒ¼ã‚’å¾—ã‚‹
 					switch( SrcColorBitDepth )
 					{
 					case 0 :	SrcColor = ( DWORD )( *( ( WORD  * )SBuf ) ) ; break ; 
@@ -14878,7 +14878,7 @@ NORMALMOVE:
 						}
 					}
 
-					// “§‰ßFˆ—
+					// é€éè‰²å‡¦ç†
 					if( TransColorNoMoveFlag )
 					{
 						if( SrcColorBitDepth != 3 )
@@ -14890,7 +14890,7 @@ NORMALMOVE:
 						if( SrcColor == TransColor ) continue ;
 					}
 
-					// ƒAƒ‹ƒtƒ@ƒ}ƒXƒN‚©‚çƒAƒ‹ƒtƒ@’l‚ğæ‚éê‡‚ÍƒAƒ‹ƒtƒ@’l‚à
+					// ã‚¢ãƒ«ãƒ•ã‚¡ãƒã‚¹ã‚¯ã‹ã‚‰ã‚¢ãƒ«ãƒ•ã‚¡å€¤ã‚’å–ã‚‹å ´åˆã¯ã‚¢ãƒ«ãƒ•ã‚¡å€¤ã‚‚
 					if( AlphaMaskFlag == TRUE )
 					{
 						switch( AlphaColorBitDepth )
@@ -14902,7 +14902,7 @@ NORMALMOVE:
 						}
 					}
 
-					// Œ¸Fˆ—
+					// æ¸›è‰²å‡¦ç†
 					if( DColor.FloatTypeFlag == FALSE )
 					{
 						DWORD Red, Blue, Green, Alpha ;
@@ -14957,7 +14957,7 @@ NORMALMOVE:
 									( Alpha << DColor.AlphaLoc ) ;
 					}
 
-					// ‰æ‘œ—ò‰»ŠÉ˜aˆ—
+					// ç”»åƒåŠ£åŒ–ç·©å’Œå‡¦ç†
 					if( GraphShavedFlag )
 					{
 						DWORD Red, Green, Blue, Alpha ;
@@ -14969,14 +14969,14 @@ NORMALMOVE:
 
 						switch( ImageShavedMode )
 						{
-						case DX_SHAVEDMODE_DITHER :		// ƒfƒBƒUƒŠƒ“ƒO‚É‚æ‚éŠÉ˜aˆ—
+						case DX_SHAVEDMODE_DITHER :		// ãƒ‡ã‚£ã‚¶ãƒªãƒ³ã‚°ã«ã‚ˆã‚‹ç·©å’Œå‡¦ç†
 							Red   += ( ( SrcColor & DiffMaskRed   ) > DitherTableRed  [ ( ( i & 3 ) << 2 ) + ( j & 3 ) ] ) << DColor.RedLoc ;
 							Green += ( ( SrcColor & DiffMaskGreen ) > DitherTableGreen[ ( ( i & 3 ) << 2 ) + ( j & 3 ) ] ) << DColor.GreenLoc ;
 							Blue  += ( ( SrcColor & DiffMaskBlue  ) > DitherTableBlue [ ( ( i & 3 ) << 2 ) + ( j & 3 ) ] ) << DColor.BlueLoc ;
 							Alpha += ( ( SrcColor & DiffMaskAlpha ) > DitherTableAlpha[ ( ( i & 3 ) << 2 ) + ( j & 3 ) ] ) << DColor.AlphaLoc ;
 							break ;
 
-						case DX_SHAVEDMODE_DIFFUS :		// Œë·ŠgU‚É‚æ‚éŠÉ˜aˆ—
+						case DX_SHAVEDMODE_DIFFUS :		// èª¤å·®æ‹¡æ•£ã«ã‚ˆã‚‹ç·©å’Œå‡¦ç†
 							GRed   += SrcColor & DiffMaskRed ;
 							GGreen += SrcColor & DiffMaskGreen ;
 							GBlue  += SrcColor & DiffMaskBlue ;
@@ -15002,7 +15002,7 @@ NORMALMOVE:
 						DestColor = ( DestColor & ARGBMask ) | Red | Blue | Green | Alpha ;
 					}
 
-					// “]‘—
+					// è»¢é€
 					switch( DestColorBitDepth )
 					{
 					case 0 :	*( ( WORD  * )DBuf ) = ( WORD )( DestColor | NoneMask ) ; break ; 
@@ -15036,7 +15036,7 @@ NORMALMOVE:
 		}
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
@@ -15050,7 +15050,7 @@ NORMALMOVE:
 
 
 
-// Fî•ñæ“¾ŠÖŒW
+// è‰²æƒ…å ±å–å¾—é–¢ä¿‚
 extern COLOR_F NS_GetColorF( float Red, float Green, float Blue, float Alpha )
 {
 	COLOR_F Ret = { Red,  Green,  Blue,  Alpha } ;
@@ -15063,13 +15063,13 @@ extern COLOR_U8 NS_GetColorU8( int Red, int Green, int Blue, int Alpha )
 	return Ret ;
 }
 
-// DrawPixel “™‚Ì•`‰æŠÖ”‚Åg—p‚·‚éƒJƒ‰[’l‚ğæ“¾‚·‚é
+// DrawPixel ç­‰ã®æç”»é–¢æ•°ã§ä½¿ç”¨ã™ã‚‹ã‚«ãƒ©ãƒ¼å€¤ã‚’å–å¾—ã™ã‚‹
 extern	unsigned int	NS_GetColor( int Red, int Green, int Blue )
 {
 #ifndef DX_NON_GRAPHICS
 	const COLORDATA *ColorData ;
 
-	// Fî•ñ‚ğ•Ô‚·
+	// è‰²æƒ…å ±ã‚’è¿”ã™
 	if( GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )
 	{
 //		ColorData = Graphics_Hardware_GetMainColorData_PF() ;
@@ -15089,7 +15089,7 @@ extern	unsigned int	NS_GetColor( int Red, int Green, int Blue )
 #endif // DX_NON_GRAPHICS
 }
 
-// ƒJƒ‰[’l‚©‚çÔA—ÎAÂAƒAƒ‹ƒtƒ@‚Ì’l‚ğæ“¾‚·‚é
+// ã‚«ãƒ©ãƒ¼å€¤ã‹ã‚‰èµ¤ã€ç·‘ã€é’ã€ã‚¢ãƒ«ãƒ•ã‚¡ã®å€¤ã‚’å–å¾—ã™ã‚‹
 extern	int		NS_GetColor2( unsigned int Color, int *Red, int *Green, int *Blue )
 {
 #ifndef DX_NON_GRAPHICS
@@ -15098,7 +15098,7 @@ extern	int		NS_GetColor2( unsigned int Color, int *Red, int *Green, int *Blue )
 	int MaxGreen ;
 	int MaxBlue ;
 
-	// Fî•ñ‚ğ•Ô‚·
+	// è‰²æƒ…å ±ã‚’è¿”ã™
 	if( GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )
 	{
 //		ColorData = Graphics_Hardware_GetMainColorData_PF() ;
@@ -15117,19 +15117,19 @@ extern	int		NS_GetColor2( unsigned int Color, int *Red, int *Green, int *Blue )
 	MaxGreen	= ( 1 << ColorData->GreenWidth ) - 1 ;
 	MaxBlue		= ( 1 << ColorData->BlueWidth  ) - 1 ; 
 
-	// Fî•ñ‚ğŠi”[‚·‚é
+	// è‰²æƒ…å ±ã‚’æ ¼ç´ã™ã‚‹
 	*Red	= ( int )( ( ( Color & ColorData->RedMask   ) >> ColorData->RedLoc   ) * 255 / MaxRed   ) ;
 	*Green	= ( int )( ( ( Color & ColorData->GreenMask ) >> ColorData->GreenLoc ) * 255 / MaxGreen ) ;
 	*Blue	= ( int )( ( ( Color & ColorData->BlueMask  ) >> ColorData->BlueLoc  ) * 255 / MaxBlue  ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 #else // DX_NON_GRAPHICS
 	return -1 ;
 #endif // DX_NON_GRAPHICS
 }
 
-// w’è‚ÌƒsƒNƒZƒ‹ƒtƒH[ƒ}ƒbƒg‚É‘Î‰‚µ‚½ƒJƒ‰[’l‚ğ“¾‚é
+// æŒ‡å®šã®ãƒ”ã‚¯ã‚»ãƒ«ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã«å¯¾å¿œã—ãŸã‚«ãƒ©ãƒ¼å€¤ã‚’å¾—ã‚‹
 extern unsigned int NS_GetColor3( const COLORDATA * ColorData, int Red, int Green, int Blue, int Alpha )
 {
 	if( ColorData->ChannelNum == 1 &&
@@ -15156,7 +15156,7 @@ extern unsigned int NS_GetColor3( const COLORDATA * ColorData, int Red, int Gree
 		return ( unsigned int )Red | ( unsigned int )( Green << 8 ) | ( unsigned int )( Blue << 16 ) | ( unsigned int )( Alpha << 24 ) ;
 	}
 	else
-	// 8ƒrƒbƒgƒJƒ‰[‚Ìê‡‚ÍƒpƒŒƒbƒg‚©‚çˆê”Ô‹ß‚¢F‚ğ’T‚·
+	// 8ãƒ“ãƒƒãƒˆã‚«ãƒ©ãƒ¼ã®å ´åˆã¯ãƒ‘ãƒ¬ãƒƒãƒˆã‹ã‚‰ä¸€ç•ªè¿‘ã„è‰²ã‚’æ¢ã™
 	if( ColorData->PixelByte == 1 )
 	{
 		int RedData, BlueData, GreenData ;
@@ -15166,7 +15166,7 @@ extern unsigned int NS_GetColor3( const COLORDATA * ColorData, int Red, int Gree
 		int i ;
 		const COLORPALETTEDATA *PalData ;
 
-		// ˆê”Ô‹ß‚¢F‚ğ•Ô‚·
+		// ä¸€ç•ªè¿‘ã„è‰²ã‚’è¿”ã™
 		PalData = ColorData->Palette ;
 		for( i = 0 ; i < 256 ; i ++, PalData ++ )
 		{
@@ -15186,7 +15186,7 @@ extern unsigned int NS_GetColor3( const COLORDATA * ColorData, int Red, int Gree
 	}
 	else
 	{
-		// Fî•ñ‚ğ•Ô‚·
+		// è‰²æƒ…å ±ã‚’è¿”ã™
 		return ColorData->NoneMask +
 				( ( ( BYTE )Red   >> ( 8 - ColorData->RedWidth   ) ) << ColorData->RedLoc   ) +
 				( ( ( BYTE )Green >> ( 8 - ColorData->GreenWidth ) ) << ColorData->GreenLoc ) +
@@ -15195,13 +15195,13 @@ extern unsigned int NS_GetColor3( const COLORDATA * ColorData, int Red, int Gree
 	}
 }
 
-// w’è‚ÌƒJƒ‰[ƒtƒH[ƒ}ƒbƒg‚ÌƒJƒ‰[’l‚ğ•Ê‚ÌƒJƒ‰[ƒtƒH[ƒ}ƒbƒg‚ÌƒJƒ‰[’l‚É•ÏŠ·‚·‚é
+// æŒ‡å®šã®ã‚«ãƒ©ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®ã‚«ãƒ©ãƒ¼å€¤ã‚’åˆ¥ã®ã‚«ãƒ©ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®ã‚«ãƒ©ãƒ¼å€¤ã«å¤‰æ›ã™ã‚‹
 extern unsigned int NS_GetColor4( const COLORDATA * DestColorData, const COLORDATA * SrcColorData, unsigned int SrcColor )
 {
 	unsigned int Red, Blue, Green, Alpha ;
 	unsigned int i ;
 
-	// ƒtƒH[ƒ}ƒbƒg‚ª“¯‚¶ê‡‚Í‰½‚à‚¹‚¸‚É•Ô‚·
+	// ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆãŒåŒã˜å ´åˆã¯ä½•ã‚‚ã›ãšã«è¿”ã™
 	if( SrcColorData->ColorBitDepth == DestColorData->ColorBitDepth &&
 		SrcColorData->RedMask       == DestColorData->RedMask       &&
 		SrcColorData->GreenMask     == DestColorData->GreenMask     &&
@@ -15273,7 +15273,7 @@ extern unsigned int NS_GetColor4( const COLORDATA * DestColorData, const COLORDA
 			Alpha = DestColorData->AlphaMask >> DestColorData->AlphaLoc ;
 		}
 
-		// ’l‚ğ•Ô‚·
+		// å€¤ã‚’è¿”ã™
 		return DestColorData->NoneMask |
 					( Red   << DestColorData->RedLoc ) |
 					( Blue  << DestColorData->BlueLoc ) |
@@ -15282,17 +15282,17 @@ extern unsigned int NS_GetColor4( const COLORDATA * DestColorData, const COLORDA
 	}
 }
 
-// w’è‚ÌƒJƒ‰[ƒtƒH[ƒ}ƒbƒg‚ÌƒJƒ‰[’l‚ğÔA—ÎAÂAƒAƒ‹ƒtƒ@‚Ì’l‚ğæ“¾‚·‚é
+// æŒ‡å®šã®ã‚«ãƒ©ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®ã‚«ãƒ©ãƒ¼å€¤ã‚’èµ¤ã€ç·‘ã€é’ã€ã‚¢ãƒ«ãƒ•ã‚¡ã®å€¤ã‚’å–å¾—ã™ã‚‹
 extern int NS_GetColor5( const COLORDATA * ColorData, unsigned int Color, int *Red, int *Green, int *Blue, int *Alpha )
 {
 	DWORD MaxRed, MaxGreen, MaxBlue, MaxAlpha ;
 
-	// Šeƒrƒbƒg‚ª‚Wƒrƒbƒg‚¾‚Á‚½‚çŠÈ—ªˆ—
+	// å„ãƒ“ãƒƒãƒˆãŒï¼˜ãƒ“ãƒƒãƒˆã ã£ãŸã‚‰ç°¡ç•¥å‡¦ç†
 	if( ColorData->RedWidth   == 8 &&
 		ColorData->GreenWidth == 8 &&
 		ColorData->BlueWidth  == 8 )
 	{
-		// Fî•ñ‚ğŠi”[‚·‚é
+		// è‰²æƒ…å ±ã‚’æ ¼ç´ã™ã‚‹
 		if( Red   != NULL )	*Red	= ( int )( ( Color & ColorData->RedMask   ) >> ColorData->RedLoc   ) ;
 		if( Green != NULL )	*Green	= ( int )( ( Color & ColorData->GreenMask ) >> ColorData->GreenLoc ) ;
 		if( Blue  != NULL )	*Blue	= ( int )( ( Color & ColorData->BlueMask  ) >> ColorData->BlueLoc  ) ;
@@ -15312,24 +15312,24 @@ extern int NS_GetColor5( const COLORDATA * ColorData, unsigned int Color, int *R
 	}
 	else
 	{
-		// ‚WƒrƒbƒgˆÈã‚¾‚Á‚½ê‡‚Ìˆ—
+		// ï¼˜ãƒ“ãƒƒãƒˆä»¥ä¸Šã ã£ãŸå ´åˆã®å‡¦ç†
 		MaxRed		= ( DWORD )( ( 1 << ColorData->RedWidth		) - 1 ) ;
 		MaxGreen	= ( DWORD )( ( 1 << ColorData->GreenWidth	) - 1 ) ;
 		MaxBlue		= ( DWORD )( ( 1 << ColorData->BlueWidth	) - 1 ) ;
 		MaxAlpha	= ( DWORD )( ( 1 << ColorData->AlphaWidth	) - 1 ) ;
 
-		// Fî•ñ‚ğŠi”[‚·‚é
+		// è‰²æƒ…å ±ã‚’æ ¼ç´ã™ã‚‹
 		if( Red   != NULL )	*Red	= ( int )( ( ( Color & ColorData->RedMask	) >> ColorData->RedLoc		) * 255 / MaxRed   ) ;
 		if( Green != NULL )	*Green	= ( int )( ( ( Color & ColorData->GreenMask	) >> ColorData->GreenLoc	) * 255 / MaxGreen ) ;
 		if( Blue  != NULL )	*Blue	= ( int )( ( ( Color & ColorData->BlueMask	) >> ColorData->BlueLoc		) * 255 / MaxBlue  ) ;
 		if( Alpha != NULL ) *Alpha	= ( int )( ColorData->AlphaWidth != 0 ? ( ( Color & ColorData->AlphaMask	) >> ColorData->AlphaLoc ) * 255 / MaxAlpha : 0 ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒpƒŒƒbƒgƒJƒ‰[‚ÌƒJƒ‰[î•ñ‚ğ\’z‚·‚é
+// ãƒ‘ãƒ¬ãƒƒãƒˆã‚«ãƒ©ãƒ¼ã®ã‚«ãƒ©ãƒ¼æƒ…å ±ã‚’æ§‹ç¯‰ã™ã‚‹
 extern int NS_CreatePaletteColorData( COLORDATA * ColorDataBuf )
 {
 	ColorDataBuf->Format = DX_BASEIMAGE_FORMAT_NORMAL ;
@@ -15358,16 +15358,16 @@ extern int NS_CreatePaletteColorData( COLORDATA * ColorDataBuf )
 	ColorDataBuf->BlueMask = 0x000000ff ;
 	ColorDataBuf->BlueWidth = 8 ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ‚`‚q‚f‚aŠeƒ`ƒƒƒ“ƒlƒ‹ 32bit •‚“®¬”“_Œ^ƒJƒ‰[‚ÌƒJƒ‰[ƒtƒH[ƒ}ƒbƒg‚ğ\’z‚·‚é
+// ï¼¡ï¼²ï¼§ï¼¢å„ãƒãƒ£ãƒ³ãƒãƒ« 32bit æµ®å‹•å°æ•°ç‚¹å‹ã‚«ãƒ©ãƒ¼ã®ã‚«ãƒ©ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã‚’æ§‹ç¯‰ã™ã‚‹
 extern int NS_CreateARGBF32ColorData( COLORDATA *ColorDataBuf )
 {
 	_MEMSET( ColorDataBuf, 0, sizeof( COLORDATA ) ) ;
 
-	// ƒf[ƒ^‚ÌƒZƒbƒg
+	// ãƒ‡ãƒ¼ã‚¿ã®ã‚»ãƒƒãƒˆ
 	ColorDataBuf->Format = DX_BASEIMAGE_FORMAT_NORMAL ;
 
 	ColorDataBuf->ChannelBitDepth = ( unsigned char )32 ;
@@ -15375,16 +15375,16 @@ extern int NS_CreateARGBF32ColorData( COLORDATA *ColorDataBuf )
 	ColorDataBuf->FloatTypeFlag   = ( unsigned char )TRUE ;
 	ColorDataBuf->PixelByte       = ( unsigned char )( ColorDataBuf->ChannelBitDepth * ColorDataBuf->ChannelNum / 8 ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ‚`‚q‚f‚aŠeƒ`ƒƒƒ“ƒlƒ‹ 16bit •‚“®¬”“_Œ^ƒJƒ‰[‚ÌƒJƒ‰[ƒtƒH[ƒ}ƒbƒg‚ğ\’z‚·‚é
+// ï¼¡ï¼²ï¼§ï¼¢å„ãƒãƒ£ãƒ³ãƒãƒ« 16bit æµ®å‹•å°æ•°ç‚¹å‹ã‚«ãƒ©ãƒ¼ã®ã‚«ãƒ©ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã‚’æ§‹ç¯‰ã™ã‚‹
 extern int NS_CreateARGBF16ColorData( COLORDATA *ColorDataBuf )
 {
 	_MEMSET( ColorDataBuf, 0, sizeof( COLORDATA ) ) ;
 
-	// ƒf[ƒ^‚ÌƒZƒbƒg
+	// ãƒ‡ãƒ¼ã‚¿ã®ã‚»ãƒƒãƒˆ
 	ColorDataBuf->Format = DX_BASEIMAGE_FORMAT_NORMAL ;
 
 	ColorDataBuf->ChannelBitDepth = ( unsigned char )16 ;
@@ -15392,11 +15392,11 @@ extern int NS_CreateARGBF16ColorData( COLORDATA *ColorDataBuf )
 	ColorDataBuf->FloatTypeFlag   = ( unsigned char )TRUE ;
 	ColorDataBuf->PixelByte       = ( unsigned char )( ColorDataBuf->ChannelBitDepth * ColorDataBuf->ChannelNum / 8 ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ‚w‚q‚f‚a‚WƒJƒ‰[‚ÌƒJƒ‰[î•ñ‚ğ\’z‚·‚é
+// ï¼¸ï¼²ï¼§ï¼¢ï¼˜ã‚«ãƒ©ãƒ¼ã®ã‚«ãƒ©ãƒ¼æƒ…å ±ã‚’æ§‹ç¯‰ã™ã‚‹
 extern	int NS_CreateXRGB8ColorData( COLORDATA * ColorDataBuf )
 {
 	ColorDataBuf->Format = DX_BASEIMAGE_FORMAT_NORMAL ;
@@ -15427,11 +15427,11 @@ extern	int NS_CreateXRGB8ColorData( COLORDATA * ColorDataBuf )
 	ColorDataBuf->BlueMask = 0x000000ff ;
 	ColorDataBuf->BlueWidth = 8 ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ‚`‚q‚f‚a‚WƒJƒ‰[‚ÌƒJƒ‰[î•ñ‚ğ\’z‚·‚é
+// ï¼¡ï¼²ï¼§ï¼¢ï¼˜ã‚«ãƒ©ãƒ¼ã®ã‚«ãƒ©ãƒ¼æƒ…å ±ã‚’æ§‹ç¯‰ã™ã‚‹
 extern	int NS_CreateARGB8ColorData( COLORDATA * ColorDataBuf )
 {
 	ColorDataBuf->Format = DX_BASEIMAGE_FORMAT_NORMAL ;
@@ -15462,11 +15462,11 @@ extern	int NS_CreateARGB8ColorData( COLORDATA * ColorDataBuf )
 	ColorDataBuf->BlueMask = 0x000000ff ;
 	ColorDataBuf->BlueWidth = 8 ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ‚q‚f‚a‚`‚WƒJƒ‰[‚ÌƒJƒ‰[ƒtƒH[ƒ}ƒbƒg‚ğ\’z‚·‚é
+// ï¼²ï¼§ï¼¢ï¼¡ï¼˜ã‚«ãƒ©ãƒ¼ã®ã‚«ãƒ©ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã‚’æ§‹ç¯‰ã™ã‚‹
 extern	int NS_CreateRGBA8ColorData( COLORDATA *ColorDataBuf )
 {
 	ColorDataBuf->Format = DX_BASEIMAGE_FORMAT_NORMAL ;
@@ -15497,11 +15497,11 @@ extern	int NS_CreateRGBA8ColorData( COLORDATA *ColorDataBuf )
 	ColorDataBuf->BlueMask = 0x0000ff00 ;
 	ColorDataBuf->BlueWidth = 8 ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ‚`‚a‚f‚q‚WƒJƒ‰[‚ÌƒJƒ‰[ƒtƒH[ƒ}ƒbƒg‚ğ\’z‚·‚é
+// ï¼¡ï¼¢ï¼§ï¼²ï¼˜ã‚«ãƒ©ãƒ¼ã®ã‚«ãƒ©ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã‚’æ§‹ç¯‰ã™ã‚‹
 extern	int NS_CreateABGR8ColorData( COLORDATA *ColorDataBuf )
 {
 	ColorDataBuf->Format = DX_BASEIMAGE_FORMAT_NORMAL ;
@@ -15532,11 +15532,11 @@ extern	int NS_CreateABGR8ColorData( COLORDATA *ColorDataBuf )
 	ColorDataBuf->BlueMask = 0x00ff0000 ;
 	ColorDataBuf->BlueWidth = 8 ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ‚a‚f‚q‚`‚WƒJƒ‰[‚ÌƒJƒ‰[ƒtƒH[ƒ}ƒbƒg‚ğ\’z‚·‚é
+// ï¼¢ï¼§ï¼²ï¼¡ï¼˜ã‚«ãƒ©ãƒ¼ã®ã‚«ãƒ©ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã‚’æ§‹ç¯‰ã™ã‚‹
 extern	int NS_CreateBGRA8ColorData( COLORDATA *ColorDataBuf )
 {
 	ColorDataBuf->Format = DX_BASEIMAGE_FORMAT_NORMAL ;
@@ -15567,11 +15567,11 @@ extern	int NS_CreateBGRA8ColorData( COLORDATA *ColorDataBuf )
 	ColorDataBuf->BlueMask = 0xff000000 ;
 	ColorDataBuf->BlueWidth = 8 ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ‚a‚f‚q‚WƒJƒ‰[‚ÌƒJƒ‰[ƒtƒH[ƒ}ƒbƒg‚ğ\’z‚·‚é
+// ï¼¢ï¼§ï¼²ï¼˜ã‚«ãƒ©ãƒ¼ã®ã‚«ãƒ©ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã‚’æ§‹ç¯‰ã™ã‚‹
 extern	int NS_CreateBGR8ColorData( COLORDATA *ColorDataBuf )
 {
 	ColorDataBuf->Format = DX_BASEIMAGE_FORMAT_NORMAL ;
@@ -15602,11 +15602,11 @@ extern	int NS_CreateBGR8ColorData( COLORDATA *ColorDataBuf )
 	ColorDataBuf->BlueMask = 0x00ff0000 ;
 	ColorDataBuf->BlueWidth = 8 ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ‚`‚q‚f‚a‚SƒJƒ‰[‚ÌƒJƒ‰[î•ñ‚ğ\’z‚·‚é
+// ï¼¡ï¼²ï¼§ï¼¢ï¼”ã‚«ãƒ©ãƒ¼ã®ã‚«ãƒ©ãƒ¼æƒ…å ±ã‚’æ§‹ç¯‰ã™ã‚‹
 extern	int NS_CreateARGB4ColorData( COLORDATA * ColorDataBuf )
 {
 	ColorDataBuf->Format = DX_BASEIMAGE_FORMAT_NORMAL ;
@@ -15635,11 +15635,11 @@ extern	int NS_CreateARGB4ColorData( COLORDATA * ColorDataBuf )
 	ColorDataBuf->BlueMask = 0x0000000f ;
 	ColorDataBuf->BlueWidth = 4 ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ‚`‚P‚q‚T‚f‚T‚a‚TƒJƒ‰[‚ÌƒJƒ‰[ƒtƒH[ƒ}ƒbƒg‚ğ\’z‚·‚é
+// ï¼¡ï¼‘ï¼²ï¼•ï¼§ï¼•ï¼¢ï¼•ã‚«ãƒ©ãƒ¼ã®ã‚«ãƒ©ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã‚’æ§‹ç¯‰ã™ã‚‹
 extern int NS_CreateA1R5G5B5ColorData( COLORDATA *ColorDataBuf )
 {
 	ColorDataBuf->Format = DX_BASEIMAGE_FORMAT_NORMAL ;
@@ -15668,11 +15668,11 @@ extern int NS_CreateA1R5G5B5ColorData( COLORDATA *ColorDataBuf )
 	ColorDataBuf->BlueMask = 0x0000001f ;
 	ColorDataBuf->BlueWidth = 5 ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ‚w‚P‚q‚T‚f‚T‚a‚TƒJƒ‰[‚ÌƒJƒ‰[ƒtƒH[ƒ}ƒbƒg‚ğ\’z‚·‚é
+// ï¼¸ï¼‘ï¼²ï¼•ï¼§ï¼•ï¼¢ï¼•ã‚«ãƒ©ãƒ¼ã®ã‚«ãƒ©ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã‚’æ§‹ç¯‰ã™ã‚‹
 extern int NS_CreateX1R5G5B5ColorData( COLORDATA *ColorDataBuf )
 {
 	ColorDataBuf->Format = DX_BASEIMAGE_FORMAT_NORMAL ;
@@ -15701,11 +15701,11 @@ extern int NS_CreateX1R5G5B5ColorData( COLORDATA *ColorDataBuf )
 	ColorDataBuf->BlueMask = 0x0000001f ;
 	ColorDataBuf->BlueWidth = 5 ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ‚q‚T‚f‚T‚a‚T‚`‚PƒJƒ‰[‚ÌƒJƒ‰[ƒtƒH[ƒ}ƒbƒg‚ğ\’z‚·‚é
+// ï¼²ï¼•ï¼§ï¼•ï¼¢ï¼•ï¼¡ï¼‘ã‚«ãƒ©ãƒ¼ã®ã‚«ãƒ©ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã‚’æ§‹ç¯‰ã™ã‚‹
 extern int NS_CreateR5G5B5A1ColorData( COLORDATA *ColorDataBuf )
 {
 	ColorDataBuf->Format = DX_BASEIMAGE_FORMAT_NORMAL ;
@@ -15734,11 +15734,11 @@ extern int NS_CreateR5G5B5A1ColorData( COLORDATA *ColorDataBuf )
 	ColorDataBuf->BlueMask = 0x0000003e ;
 	ColorDataBuf->BlueWidth = 5 ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ‚q‚T‚f‚U‚a‚TƒJƒ‰[‚ÌƒJƒ‰[ƒtƒH[ƒ}ƒbƒg‚ğ\’z‚·‚é
+// ï¼²ï¼•ï¼§ï¼–ï¼¢ï¼•ã‚«ãƒ©ãƒ¼ã®ã‚«ãƒ©ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã‚’æ§‹ç¯‰ã™ã‚‹
 extern int NS_CreateR5G6B5ColorData( COLORDATA *ColorDataBuf )
 {
 	ColorDataBuf->Format = DX_BASEIMAGE_FORMAT_NORMAL ;
@@ -15767,11 +15767,11 @@ extern int NS_CreateR5G6B5ColorData( COLORDATA *ColorDataBuf )
 	ColorDataBuf->BlueMask = 0x0000001f ;
 	ColorDataBuf->BlueWidth = 5 ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒtƒ‹ƒJƒ‰[‚c‚h‚a‚ÌƒJƒ‰[î•ñ‚ğ\’z‚·‚é
+// ãƒ•ãƒ«ã‚«ãƒ©ãƒ¼ï¼¤ï¼©ï¼¢ã®ã‚«ãƒ©ãƒ¼æƒ…å ±ã‚’æ§‹ç¯‰ã™ã‚‹
 extern	int	NS_CreateFullColorData( COLORDATA * ColorDataBuf )
 {
 	ColorDataBuf->Format = DX_BASEIMAGE_FORMAT_NORMAL ;
@@ -15800,11 +15800,11 @@ extern	int	NS_CreateFullColorData( COLORDATA * ColorDataBuf )
 	ColorDataBuf->BlueMask = 0x0000ff ;
 	ColorDataBuf->BlueWidth = 8 ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒOƒŒ[ƒXƒP[ƒ‹‚ÌƒJƒ‰[î•ñ‚ğ\’z‚·‚é
+// ã‚°ãƒ¬ãƒ¼ã‚¹ã‚±ãƒ¼ãƒ«ã®ã‚«ãƒ©ãƒ¼æƒ…å ±ã‚’æ§‹ç¯‰ã™ã‚‹
 extern int NS_CreateGrayColorData( COLORDATA * ColorDataBuf )
 {
 	int i ;
@@ -15843,11 +15843,11 @@ extern int NS_CreateGrayColorData( COLORDATA * ColorDataBuf )
 		ColorDataBuf->Palette[i].Alpha = 0 ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒpƒŒƒbƒg‚Q‚T‚UF‚ÌƒJƒ‰[î•ñ‚ğ\’z‚·‚é
+// ãƒ‘ãƒ¬ãƒƒãƒˆï¼’ï¼•ï¼–è‰²ã®ã‚«ãƒ©ãƒ¼æƒ…å ±ã‚’æ§‹ç¯‰ã™ã‚‹
 extern int NS_CreatePal8ColorData( COLORDATA * ColorDataBuf, int UseAlpha )
 {
 	int i ;
@@ -15910,11 +15910,11 @@ extern int NS_CreatePal8ColorData( COLORDATA * ColorDataBuf, int UseAlpha )
 		}
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒJƒ‰[ƒf[ƒ^‚ğì¬‚·‚é	
+// ã‚«ãƒ©ãƒ¼ãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆã™ã‚‹	
 extern int NS_CreateColorData( COLORDATA * ColorDataBuf, int ColorBitDepth,
 							 DWORD RedMask, DWORD GreenMask, DWORD BlueMask, DWORD AlphaMask,
 							 int ChannelNum, int ChannelBitDepth, int FloatTypeFlag )
@@ -15924,7 +15924,7 @@ extern int NS_CreateColorData( COLORDATA * ColorDataBuf, int ColorBitDepth,
 
 	_MEMSET( ColorDataBuf, 0, sizeof( COLORDATA ) ) ;
 
-	// ƒf[ƒ^‚ÌƒZƒbƒg
+	// ãƒ‡ãƒ¼ã‚¿ã®ã‚»ãƒƒãƒˆ
 	ColorDataBuf->Format = DX_BASEIMAGE_FORMAT_NORMAL ;
 
 	if( ChannelNum != 0 && ChannelBitDepth != 0 )
@@ -15950,7 +15950,7 @@ extern int NS_CreateColorData( COLORDATA * ColorDataBuf, int ColorBitDepth,
 		ColorDataBuf->NoneMask     &= ~( RedMask | GreenMask | BlueMask | AlphaMask );
 		NoneMask = ColorDataBuf->NoneMask;
 		
-		// ÔFƒ}ƒXƒN‚Ì‰ğÍ
+		// èµ¤è‰²ãƒã‚¹ã‚¯ã®è§£æ
 		if( RedMask == 0 )
 		{
 			ColorDataBuf->RedLoc = ColorDataBuf->RedWidth = 0 ;
@@ -15963,7 +15963,7 @@ extern int NS_CreateColorData( COLORDATA * ColorDataBuf, int ColorBitDepth,
 			for( i = 0 ; ( RedMask & j ) != 0 ; j <<= 1, i ++ ){} ColorDataBuf->RedWidth = ( unsigned char )i ;
 		}
 
-		// —ÎFƒ}ƒXƒN‚Ì‰ğÍ
+		// ç·‘è‰²ãƒã‚¹ã‚¯ã®è§£æ
 		if( GreenMask == 0 )
 		{
 			ColorDataBuf->GreenLoc = ColorDataBuf->GreenWidth = 0 ;
@@ -15976,7 +15976,7 @@ extern int NS_CreateColorData( COLORDATA * ColorDataBuf, int ColorBitDepth,
 			for( i = 0 ; ( GreenMask & j ) != 0 ; j <<= 1, i ++ ){} ColorDataBuf->GreenWidth = ( unsigned char )i ;
 		}
 
-		// ÂFƒ}ƒXƒN‚Ì‰ğÍ
+		// é’è‰²ãƒã‚¹ã‚¯ã®è§£æ
 		if( BlueMask == 0 )
 		{
 			ColorDataBuf->BlueLoc = ColorDataBuf->BlueWidth = 0 ;
@@ -15989,7 +15989,7 @@ extern int NS_CreateColorData( COLORDATA * ColorDataBuf, int ColorBitDepth,
 			for( i = 0 ; ( BlueMask & j ) != 0 ; j <<= 1, i ++ ){} ColorDataBuf->BlueWidth = ( unsigned char )i ;
 		}
 
-		// ƒAƒ‹ƒtƒ@ƒ}ƒXƒN‚Ì‰ğÍ
+		// ã‚¢ãƒ«ãƒ•ã‚¡ãƒã‚¹ã‚¯ã®è§£æ
 		if( AlphaMask == 0 )
 		{
 			ColorDataBuf->AlphaLoc = ColorDataBuf->AlphaWidth = 0 ;
@@ -16002,7 +16002,7 @@ extern int NS_CreateColorData( COLORDATA * ColorDataBuf, int ColorBitDepth,
 			for( i = 0 ; ( AlphaMask & j ) != 0 ; j <<= 1, i ++ ){} ColorDataBuf->AlphaWidth = ( unsigned char )i ;
 		}
 
-		// g‚í‚ê‚Ä‚¢‚È‚¢ƒ}ƒXƒN‚Ì‰ğÍ
+		// ä½¿ã‚ã‚Œã¦ã„ãªã„ãƒã‚¹ã‚¯ã®è§£æ
 		if( NoneMask == 0 )
 		{
 			ColorDataBuf->NoneLoc = ColorDataBuf->NoneWidth = 0 ;
@@ -16015,15 +16015,15 @@ extern int NS_CreateColorData( COLORDATA * ColorDataBuf, int ColorBitDepth,
 			for( i = 0 ; ( NoneMask & j ) != 0 ; j <<= 1, i ++ ){} ColorDataBuf->NoneWidth = ( unsigned char )i ;
 		}
 
-		// NoneMask ‚ÌƒZƒbƒg
+		// NoneMask ã®ã‚»ãƒƒãƒˆ
 //		NS_SetColorDataNoneMask( ColorDataBuf ) ;
 	}
 	
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// NoneMask ˆÈŠO‚Ì—v‘f‚ğ–„‚ß‚½ COLORDATA \‘¢‘Ì‚Ìî•ñ‚ğŒ³‚É NoneMask ‚ğƒZƒbƒg‚·‚é
+// NoneMask ä»¥å¤–ã®è¦ç´ ã‚’åŸ‹ã‚ãŸ COLORDATA æ§‹é€ ä½“ã®æƒ…å ±ã‚’å…ƒã« NoneMask ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern void NS_SetColorDataNoneMask( COLORDATA * ColorData )
 {
 	if( ColorData->AlphaWidth + ColorData->RedWidth + ColorData->GreenWidth + ColorData->BlueWidth != ColorData->ColorBitDepth )
@@ -16044,7 +16044,7 @@ extern void NS_SetColorDataNoneMask( COLORDATA * ColorData )
 	}
 }
 
-// “ñ‚Â‚ÌƒJƒ‰[ƒf[ƒ^‚ª“™‚µ‚¢‚©‚Ç‚¤‚©’²‚×‚é( TRUE:“™‚µ‚¢  FALSE:“™‚µ‚­‚È‚¢ )
+// äºŒã¤ã®ã‚«ãƒ©ãƒ¼ãƒ‡ãƒ¼ã‚¿ãŒç­‰ã—ã„ã‹ã©ã†ã‹èª¿ã¹ã‚‹( TRUE:ç­‰ã—ã„  FALSE:ç­‰ã—ããªã„ )
 extern int NS_CmpColorData( const COLORDATA * ColorData1, const COLORDATA * ColorData2 )
 {
 	if( ColorData1->Format != ColorData2->Format ) return FALSE ;
@@ -16063,56 +16063,56 @@ extern int NS_CmpColorData( const COLORDATA * ColorData1, const COLORDATA * Colo
 			ColorData1->AlphaMask 		== ColorData2->AlphaMask ? TRUE : FALSE ;
 }
 
-// ‚‘¬“Ç‚İ‚İƒ‹[ƒ`ƒ“‚ğg‚¤‚©”Û‚©‚Ìƒtƒ‰ƒO‚ğƒZƒbƒg‚·‚é
+// é«˜é€Ÿèª­ã¿è¾¼ã¿ãƒ«ãƒ¼ãƒãƒ³ã‚’ä½¿ã†ã‹å¦ã‹ã®ãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern int NS_SetUseFastLoadFlag( int Flag )
 {
-	// ƒtƒ‰ƒO‚ğƒZƒbƒg‚·‚é
+	// ãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 	BASEIM.LowLoadFlag = Flag == TRUE ? FALSE : TRUE ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒOƒ‰ƒtƒBƒbƒNŒ¸F‚Ì‰æ‘œ—ò‰»ŠÉ˜aˆ—ƒ‚[ƒh‚Ìæ“¾
+// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯æ¸›è‰²æ™‚ã®ç”»åƒåŠ£åŒ–ç·©å’Œå‡¦ç†ãƒ¢ãƒ¼ãƒ‰ã®å–å¾—
 extern int NS_GetGraphDataShavedMode( void )
 {
 	return BASEIM.ImageShavedMode ;
 }
 
-// ƒOƒ‰ƒtƒBƒbƒNŒ¸F‚Ì‰æ‘œ—ò‰»ŠÉ˜aˆ—ƒ‚[ƒh‚Ì•ÏX
+// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯æ¸›è‰²æ™‚ã®ç”»åƒåŠ£åŒ–ç·©å’Œå‡¦ç†ãƒ¢ãƒ¼ãƒ‰ã®å¤‰æ›´
 extern int NS_SetGraphDataShavedMode( int ShavedMode )
 {
 	BASEIM.ImageShavedMode = ShavedMode ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ‰æ‘œƒtƒ@ƒCƒ‹“Ç‚İ‚İ‚ÉæZÏ‚İƒAƒ‹ƒtƒ@‰æ‘œ‚É•ÏŠ·‚·‚é‚©‚Ç‚¤‚©‚ğİ’è‚·‚é( TRUE:•ÏŠ·ˆ—‚ğs‚¤  FALSE:•ÏŠ·ˆ—‚ğs‚í‚È‚¢( ƒfƒtƒHƒ‹ƒg ) )
+// ç”»åƒãƒ•ã‚¡ã‚¤ãƒ«èª­ã¿è¾¼ã¿æ™‚ã«ä¹—ç®—æ¸ˆã¿ã‚¢ãƒ«ãƒ•ã‚¡ç”»åƒã«å¤‰æ›ã™ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹( TRUE:å¤‰æ›å‡¦ç†ã‚’è¡Œã†  FALSE:å¤‰æ›å‡¦ç†ã‚’è¡Œã‚ãªã„( ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ ) )
 extern int NS_SetUsePremulAlphaConvertLoad( int UseFlag )
 {
 	BASEIM.ConvertPremultipliedAlpha = UseFlag ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ‰æ‘œƒtƒ@ƒCƒ‹“Ç‚İ‚İ‚ÉæZÏ‚İƒAƒ‹ƒtƒ@‰æ‘œ‚É•ÏŠ·‚·‚é‚©‚Ç‚¤‚©‚ğæ“¾‚·‚é( TRUE:•ÏŠ·ˆ—‚ğs‚¤  FALSE:•ÏŠ·ˆ—‚ğs‚í‚È‚¢( ƒfƒtƒHƒ‹ƒg ) )
+// ç”»åƒãƒ•ã‚¡ã‚¤ãƒ«èª­ã¿è¾¼ã¿æ™‚ã«ä¹—ç®—æ¸ˆã¿ã‚¢ãƒ«ãƒ•ã‚¡ç”»åƒã«å¤‰æ›ã™ã‚‹ã‹ã©ã†ã‹ã‚’å–å¾—ã™ã‚‹( TRUE:å¤‰æ›å‡¦ç†ã‚’è¡Œã†  FALSE:å¤‰æ›å‡¦ç†ã‚’è¡Œã‚ãªã„( ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ ) )
 extern int NS_GetUsePremulAlphaConvertLoad( void )
 {
 	return BASEIM.ConvertPremultipliedAlpha ;
 }
 
-// ‰æ‘œƒtƒ@ƒCƒ‹“Ç‚İ‚İ‚É DX_BASEIMAGE_FORMAT_NORMAL ˆÈŠO‚ÌŒ`®‚ÌƒCƒ[ƒW‚ğ DX_BASEIMAGE_FORMAT_NORMAL Œ`®‚ÌƒCƒ[ƒW‚É•ÏŠ·‚·‚é‚©‚Ç‚¤‚©‚ğİ’è‚·‚é( TRUE:•ÏŠ·ˆ—‚ğs‚¤  FALSE:•ÏŠ·ˆ—‚ğs‚È‚í‚È‚¢( ƒfƒtƒHƒ‹ƒg ) )
+// ç”»åƒãƒ•ã‚¡ã‚¤ãƒ«èª­ã¿è¾¼ã¿æ™‚ã« DX_BASEIMAGE_FORMAT_NORMAL ä»¥å¤–ã®å½¢å¼ã®ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’ DX_BASEIMAGE_FORMAT_NORMAL å½¢å¼ã®ã‚¤ãƒ¡ãƒ¼ã‚¸ã«å¤‰æ›ã™ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹( TRUE:å¤‰æ›å‡¦ç†ã‚’è¡Œã†  FALSE:å¤‰æ›å‡¦ç†ã‚’è¡Œãªã‚ãªã„( ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ ) )
 extern int NS_SetUseConvertNormalFormatLoad( int UseFlag )
 {
 	BASEIM.ConvertNormalFormat = UseFlag ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ‰æ‘œƒtƒ@ƒCƒ‹“Ç‚İ‚İ‚É DX_BASEIMAGE_FORMAT_NORMAL ˆÈŠO‚ÌŒ`®‚ÌƒCƒ[ƒW‚ğ DX_BASEIMAGE_FORMAT_NORMAL Œ`®‚ÌƒCƒ[ƒW‚É•ÏŠ·‚·‚é‚©‚Ç‚¤‚©‚ğæ“¾‚·‚é( TRUE:•ÏŠ·ˆ—‚ğs‚¤  FALSE:•ÏŠ·ˆ—‚ğs‚È‚í‚È‚¢( ƒfƒtƒHƒ‹ƒg ) )
+// ç”»åƒãƒ•ã‚¡ã‚¤ãƒ«èª­ã¿è¾¼ã¿æ™‚ã« DX_BASEIMAGE_FORMAT_NORMAL ä»¥å¤–ã®å½¢å¼ã®ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’ DX_BASEIMAGE_FORMAT_NORMAL å½¢å¼ã®ã‚¤ãƒ¡ãƒ¼ã‚¸ã«å¤‰æ›ã™ã‚‹ã‹ã©ã†ã‹ã‚’å–å¾—ã™ã‚‹( TRUE:å¤‰æ›å‡¦ç†ã‚’è¡Œã†  FALSE:å¤‰æ›å‡¦ç†ã‚’è¡Œãªã‚ãªã„( ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ ) )
 extern int NS_GetUseConvertNormalFormatLoad( void )
 {
 	return BASEIM.ConvertNormalFormat ;

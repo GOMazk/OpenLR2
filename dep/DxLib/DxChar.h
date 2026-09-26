@@ -1,6 +1,6 @@
 // -------------------------------------------------------------------------------
 // 
-// 		‚c‚wƒ‰ƒCƒuƒ‰ƒŠ		•¶ŽšƒR[ƒhŠÖŒWƒvƒƒOƒ‰ƒ€ƒwƒbƒ_ƒtƒ@ƒCƒ‹
+// 		ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒª		æ–‡å­—ã‚³ãƒ¼ãƒ‰é–¢ä¿‚ãƒ—ãƒ­ã‚°ãƒ©ãƒ ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«
 // 
 // 				Ver 3.25a
 // 
@@ -9,7 +9,7 @@
 #ifndef DXCHAR_H
 #define DXCHAR_H
 
-// ƒCƒ“ƒNƒ‹[ƒh ------------------------------------------------------------------
+// ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ ------------------------------------------------------------------
 #include "DxCompileConfig.h"
 #include "DxLib.h"
 #include "DxStatic.h"
@@ -21,89 +21,89 @@ namespace DxLib
 
 #endif // DX_NON_NAMESPACE
 
-// ƒ}ƒNƒ’è‹` --------------------------------------------------------------------
+// ãƒžã‚¯ãƒ­å®šç¾© --------------------------------------------------------------------
 
-// BufferBytes ƒLƒƒƒ“ƒZƒ‹—pƒ}ƒNƒ
+// BufferBytes ã‚­ãƒ£ãƒ³ã‚»ãƒ«ç”¨ãƒžã‚¯ãƒ­
 #define BUFFERBYTES_CANCEL					(0x7fffffff)
 
-// ƒVƒtƒgJIS‚QƒoƒCƒg•¶Žš”»’è
+// ã‚·ãƒ•ãƒˆJISï¼’ãƒã‚¤ãƒˆæ–‡å­—åˆ¤å®š
 #define CHECK_SHIFTJIS_2BYTE( x )			( ( BYTE )( ( ( ( BYTE )(x) ) ^ 0x20) - ( BYTE )0xa1 ) < 0x3c )
 
-// UTF16LEƒTƒƒQ[ƒgƒyƒA”»’è( ƒŠƒgƒ‹ƒGƒ“ƒfƒBƒAƒ“ŠÂ‹«—p )
+// UTF16LEã‚µãƒ­ã‚²ãƒ¼ãƒˆãƒšã‚¢åˆ¤å®š( ãƒªãƒˆãƒ«ã‚¨ãƒ³ãƒ‡ã‚£ã‚¢ãƒ³ç’°å¢ƒç”¨ )
 #define CHECK_CPU_LE_UTF16LE_4BYTE( x )		( ( ( x ) & 0xfc00 ) == 0xd800 )
 
-// UTF16LEƒTƒƒQ[ƒgƒyƒA”»’è( ƒrƒbƒOƒGƒ“ƒfƒBƒAƒ“ŠÂ‹«—p )
+// UTF16LEã‚µãƒ­ã‚²ãƒ¼ãƒˆãƒšã‚¢åˆ¤å®š( ãƒ“ãƒƒã‚°ã‚¨ãƒ³ãƒ‡ã‚£ã‚¢ãƒ³ç’°å¢ƒç”¨ )
 #define CHECK_CPU_BE_UTF16LE_4BYTE( x )		( ( ( ( ( ( ( WORD )( x ) ) >> 8 ) & 0xff ) | ( ( ( WORD )( x ) << 8 ) & 0xff00 ) ) & 0xfc00 ) == 0xd800 )
 
-// UTF16BEƒTƒƒQ[ƒgƒyƒA”»’è( ƒŠƒgƒ‹ƒGƒ“ƒfƒBƒAƒ“ŠÂ‹«—p )
+// UTF16BEã‚µãƒ­ã‚²ãƒ¼ãƒˆãƒšã‚¢åˆ¤å®š( ãƒªãƒˆãƒ«ã‚¨ãƒ³ãƒ‡ã‚£ã‚¢ãƒ³ç’°å¢ƒç”¨ )
 #define CHECK_CPU_LE_UTF16BE_4BYTE( x )		CHECK_CPU_BE_UTF16LE_4BYTE( x )
 
-// UTF16BEƒTƒƒQ[ƒgƒyƒA”»’è( ƒrƒbƒOƒGƒ“ƒfƒBƒAƒ“ŠÂ‹«—p )
+// UTF16BEã‚µãƒ­ã‚²ãƒ¼ãƒˆãƒšã‚¢åˆ¤å®š( ãƒ“ãƒƒã‚°ã‚¨ãƒ³ãƒ‡ã‚£ã‚¢ãƒ³ç’°å¢ƒç”¨ )
 #define CHECK_CPU_BE_UTF16BE_4BYTE( x )		CHECK_CPU_LE_UTF16LE_4BYTE( x )
 
-// wchar_t ƒTƒƒQ[ƒgƒyƒA”»’è( UTF-32 or UTF-16 ‘z’è )
+// wchar_t ã‚µãƒ­ã‚²ãƒ¼ãƒˆãƒšã‚¢åˆ¤å®š( UTF-32 or UTF-16 æƒ³å®š )
 #ifdef WCHAR_T_BE
 	#define CHECK_WCHAR_T_DOUBLE( x )	( sizeof( wchar_t ) == 2 && ( ( ( WORD )( x ) & 0x00fc ) == 0x00d8 ) )
 #else
 	#define CHECK_WCHAR_T_DOUBLE( x )	( sizeof( wchar_t ) == 2 && ( ( ( WORD )( x ) & 0xfc00 ) == 0xd800 ) )
 #endif
 
-// \‘¢‘Ì’è‹` --------------------------------------------------------------------
+// æ§‹é€ ä½“å®šç¾© --------------------------------------------------------------------
 
-// UTF-16‚ÆŠe•¶ŽšƒR[ƒh‚Ì‘Î‰ž•\‚Ìî•ñ
+// UTF-16ã¨å„æ–‡å­—ã‚³ãƒ¼ãƒ‰ã®å¯¾å¿œè¡¨ã®æƒ…å ±
 struct CHARCODETABLEINFO
 {
-	WORD				MultiByteToUTF16[ 0x10000 ] ;		// Še•¶ŽšƒR[ƒh‚©‚çUTF-16‚É•ÏŠ·‚·‚é‚½‚ß‚Ìƒe[ƒuƒ‹
-	WORD				UTF16ToMultiByte[ 0x10000 ] ;		// UTF-16‚©‚çŠe•¶ŽšƒR[ƒh‚É•ÏŠ·‚·‚é‚½‚ß‚Ìƒe[ƒuƒ‹
+	WORD				MultiByteToUTF16[ 0x10000 ] ;		// å„æ–‡å­—ã‚³ãƒ¼ãƒ‰ã‹ã‚‰UTF-16ã«å¤‰æ›ã™ã‚‹ãŸã‚ã®ãƒ†ãƒ¼ãƒ–ãƒ«
+	WORD				UTF16ToMultiByte[ 0x10000 ] ;		// UTF-16ã‹ã‚‰å„æ–‡å­—ã‚³ãƒ¼ãƒ‰ã«å¤‰æ›ã™ã‚‹ãŸã‚ã®ãƒ†ãƒ¼ãƒ–ãƒ«
 } ;
 
-// •¶ŽšƒR[ƒhˆ—ŠÖŒW‚ÅŽg—p‚·‚éî•ñ
+// æ–‡å­—ã‚³ãƒ¼ãƒ‰å‡¦ç†é–¢ä¿‚ã§ä½¿ç”¨ã™ã‚‹æƒ…å ±
 struct CHARCODESYSTEM
 {
-	int					InitializeFlag ;							// ‰Šú‰»ˆ—‚ðs‚Á‚½‚©‚Ç‚¤‚©( TRUE:s‚Á‚½  FALSE:s‚Á‚Ä‚¢‚È‚¢ )
+	int					InitializeFlag ;							// åˆæœŸåŒ–å‡¦ç†ã‚’è¡Œã£ãŸã‹ã©ã†ã‹( TRUE:è¡Œã£ãŸ  FALSE:è¡Œã£ã¦ã„ãªã„ )
 
-	int					InitializeCharCodeCP932InfoFlag ;			// Shift-JIS‚Ì•¶ŽšƒR[ƒhî•ñ‚Ì‰Šú‰»ˆ—‚ðs‚Á‚½‚©‚Ç‚¤‚©( TRUE:s‚Á‚½  FALSE:s‚Á‚Ä‚¢‚È‚¢ )
-	CHARCODETABLEINFO	CharCodeCP932Info ;							// Shift-JIS‚Ì•¶ŽšƒR[ƒhî•ñ
+	int					InitializeCharCodeCP932InfoFlag ;			// Shift-JISã®æ–‡å­—ã‚³ãƒ¼ãƒ‰æƒ…å ±ã®åˆæœŸåŒ–å‡¦ç†ã‚’è¡Œã£ãŸã‹ã©ã†ã‹( TRUE:è¡Œã£ãŸ  FALSE:è¡Œã£ã¦ã„ãªã„ )
+	CHARCODETABLEINFO	CharCodeCP932Info ;							// Shift-JISã®æ–‡å­—ã‚³ãƒ¼ãƒ‰æƒ…å ±
 
-	int					InitializeCharCodeCP936InfoFlag ;			// GB2312‚Ì•¶ŽšƒR[ƒhî•ñ‚Ì‰Šú‰»ˆ—‚ðs‚Á‚½‚©‚Ç‚¤‚©( TRUE:s‚Á‚½  FALSE:s‚Á‚Ä‚¢‚È‚¢ )
-	CHARCODETABLEINFO	CharCodeCP936Info ;							// GB2312‚Ì•¶ŽšƒR[ƒhî•ñ
+	int					InitializeCharCodeCP936InfoFlag ;			// GB2312ã®æ–‡å­—ã‚³ãƒ¼ãƒ‰æƒ…å ±ã®åˆæœŸåŒ–å‡¦ç†ã‚’è¡Œã£ãŸã‹ã©ã†ã‹( TRUE:è¡Œã£ãŸ  FALSE:è¡Œã£ã¦ã„ãªã„ )
+	CHARCODETABLEINFO	CharCodeCP936Info ;							// GB2312ã®æ–‡å­—ã‚³ãƒ¼ãƒ‰æƒ…å ±
 
-	int					InitializeCharCodeCP949InfoFlag ;			// UHC‚Ì•¶ŽšƒR[ƒhî•ñ‚Ì‰Šú‰»ˆ—‚ðs‚Á‚½‚©‚Ç‚¤‚©( TRUE:s‚Á‚½  FALSE:s‚Á‚Ä‚¢‚È‚¢ )
-	CHARCODETABLEINFO	CharCodeCP949Info ;							// UHC‚Ì•¶ŽšƒR[ƒhî•ñ
+	int					InitializeCharCodeCP949InfoFlag ;			// UHCã®æ–‡å­—ã‚³ãƒ¼ãƒ‰æƒ…å ±ã®åˆæœŸåŒ–å‡¦ç†ã‚’è¡Œã£ãŸã‹ã©ã†ã‹( TRUE:è¡Œã£ãŸ  FALSE:è¡Œã£ã¦ã„ãªã„ )
+	CHARCODETABLEINFO	CharCodeCP949Info ;							// UHCã®æ–‡å­—ã‚³ãƒ¼ãƒ‰æƒ…å ±
 
-	int					InitializeCharCodeCP950InfoFlag ;			// BIG5‚Ì•¶ŽšƒR[ƒhî•ñ‚Ì‰Šú‰»ˆ—‚ðs‚Á‚½‚©‚Ç‚¤‚©( TRUE:s‚Á‚½  FALSE:s‚Á‚Ä‚¢‚È‚¢ )
-	CHARCODETABLEINFO	CharCodeCP950Info ;							// BIG5‚Ì•¶ŽšƒR[ƒhî•ñ
+	int					InitializeCharCodeCP950InfoFlag ;			// BIG5ã®æ–‡å­—ã‚³ãƒ¼ãƒ‰æƒ…å ±ã®åˆæœŸåŒ–å‡¦ç†ã‚’è¡Œã£ãŸã‹ã©ã†ã‹( TRUE:è¡Œã£ãŸ  FALSE:è¡Œã£ã¦ã„ãªã„ )
+	CHARCODETABLEINFO	CharCodeCP950Info ;							// BIG5ã®æ–‡å­—ã‚³ãƒ¼ãƒ‰æƒ…å ±
 
-	int					InitializeCharCodeCP1252InfoFlag ;			// ‰¢•¶(ƒ‰ƒeƒ“•¶Žš‚Ì•¶ŽšƒR[ƒh)‚Ì•¶ŽšƒR[ƒhî•ñ‚Ì‰Šú‰»ˆ—‚ðs‚Á‚½‚©‚Ç‚¤‚©( TRUE:s‚Á‚½  FALSE:s‚Á‚Ä‚¢‚È‚¢ )
-	CHARCODETABLEINFO	CharCodeCP1252Info ;						// ‰¢•¶(ƒ‰ƒeƒ“•¶Žš‚Ì•¶ŽšƒR[ƒh)‚Ì•¶ŽšƒR[ƒhî•ñ
+	int					InitializeCharCodeCP1252InfoFlag ;			// æ¬§æ–‡(ãƒ©ãƒ†ãƒ³æ–‡å­—ã®æ–‡å­—ã‚³ãƒ¼ãƒ‰)ã®æ–‡å­—ã‚³ãƒ¼ãƒ‰æƒ…å ±ã®åˆæœŸåŒ–å‡¦ç†ã‚’è¡Œã£ãŸã‹ã©ã†ã‹( TRUE:è¡Œã£ãŸ  FALSE:è¡Œã£ã¦ã„ãªã„ )
+	CHARCODETABLEINFO	CharCodeCP1252Info ;						// æ¬§æ–‡(ãƒ©ãƒ†ãƒ³æ–‡å­—ã®æ–‡å­—ã‚³ãƒ¼ãƒ‰)ã®æ–‡å­—ã‚³ãƒ¼ãƒ‰æƒ…å ±
 
-	int					InitializeCharCodeISO_IEC_8859_15InfoFlag ;	// ‰¢•¶(ƒ‰ƒeƒ“•¶Žš‚Ì•¶ŽšƒR[ƒh)‚Ì•¶ŽšƒR[ƒhî•ñ‚Ì‰Šú‰»ˆ—‚ðs‚Á‚½‚©‚Ç‚¤‚©( TRUE:s‚Á‚½  FALSE:s‚Á‚Ä‚¢‚È‚¢ )
-	CHARCODETABLEINFO	CharCodeISO_IEC_8859_15Info ;				// ‰¢•¶(ƒ‰ƒeƒ“•¶Žš‚Ì•¶ŽšƒR[ƒh)‚Ì•¶ŽšƒR[ƒhî•ñ
+	int					InitializeCharCodeISO_IEC_8859_15InfoFlag ;	// æ¬§æ–‡(ãƒ©ãƒ†ãƒ³æ–‡å­—ã®æ–‡å­—ã‚³ãƒ¼ãƒ‰)ã®æ–‡å­—ã‚³ãƒ¼ãƒ‰æƒ…å ±ã®åˆæœŸåŒ–å‡¦ç†ã‚’è¡Œã£ãŸã‹ã©ã†ã‹( TRUE:è¡Œã£ãŸ  FALSE:è¡Œã£ã¦ã„ãªã„ )
+	CHARCODETABLEINFO	CharCodeISO_IEC_8859_15Info ;				// æ¬§æ–‡(ãƒ©ãƒ†ãƒ³æ–‡å­—ã®æ–‡å­—ã‚³ãƒ¼ãƒ‰)ã®æ–‡å­—ã‚³ãƒ¼ãƒ‰æƒ…å ±
 } ;
 
-// ƒe[ƒuƒ‹-----------------------------------------------------------------------
+// ãƒ†ãƒ¼ãƒ–ãƒ«-----------------------------------------------------------------------
 
-// “à•”‘åˆæ•Ï”éŒ¾ --------------------------------------------------------------
+// å†…éƒ¨å¤§åŸŸå¤‰æ•°å®£è¨€ --------------------------------------------------------------
 
 extern CHARCODESYSTEM g_CharCodeSystem ;
 
-// ŠÖ”ƒvƒƒgƒ^ƒCƒvéŒ¾-----------------------------------------------------------
+// é–¢æ•°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€-----------------------------------------------------------
 
-extern	int				InitCharCode( void ) ;																					// •¶ŽšƒR[ƒhŠÖ˜Aˆ—‚Ì‰Šú‰»‚ðs‚¤
+extern	int				InitCharCode( void ) ;																					// æ–‡å­—ã‚³ãƒ¼ãƒ‰é–¢é€£å‡¦ç†ã®åˆæœŸåŒ–ã‚’è¡Œã†
 
-extern	int				GetCharCodeFormatUnitSize(	int CharCodeFormat ) ;														// Žw’è‚Ì•¶ŽšƒR[ƒhŒ`Ž®‚Ìî•ñÅ­ƒTƒCƒY‚ðŽæ“¾‚·‚é( –ß‚è’lFƒoƒCƒg” )
-extern	int				GetCharBytes_(			const char *CharCode, int CharCodeFormat ) ;									// ‚P•¶Žš‚ÌƒoƒCƒg”‚ðŽæ“¾‚·‚é( –ß‚è’lF‚P•¶Žš‚ÌƒoƒCƒg” )
-extern	DWORD			GetCharCode(			const char *CharCode, int CharCodeFormat, int *CharBytes ) ;					// ‚P•¶Žš‚Ì•¶ŽšƒR[ƒh‚Æ•¶Žš‚ÌƒoƒCƒg”‚ðŽæ“¾‚·‚é
-extern	int				PutCharCode(			DWORD CharCode, int CharCodeFormat, char *Dest, size_t BufferBytes ) ;			// •¶ŽšƒR[ƒh‚ð’Êí‚Ì•¶Žš—ñ‚É•ÏŠ·‚·‚éAI’[‚Éƒkƒ‹•¶Žš‚Í‘‚«ž‚Ü‚È‚¢( –ß‚è’lF‘‚«ž‚ñ‚¾ƒoƒCƒg” )
-extern	DWORD			ConvCharCode(			DWORD SrcCharCode, int SrcCharCodeFormat, int DestCharCodeFormat ) ;			// •¶ŽšƒR[ƒh‚ðŽw’è‚Ì•¶ŽšƒR[ƒhŒ`Ž®‚Ì•¶Žš‚É•ÏŠ·‚·‚é
-extern	int				ConvCharCodeString(		const DWORD *Src, int SrcCharCodeFormat, DWORD *Dest, size_t BufferBytes, int DestCharCodeFormat ) ;	// ‚P•¶Žš‚SƒoƒCƒg‚Ì”z—ñ‚ðA•Ê•¶ŽšƒR[ƒhŒ`Ž®‚Ì‚P•¶Žš‚SƒoƒCƒg‚Ì”z—ñ‚É•ÏŠ·‚·‚é( –ß‚è’lF•ÏŠ·Œã‚ÌƒTƒCƒYAƒkƒ‹•¶ŽšŠÜ‚Þ( ’PˆÊFƒoƒCƒg ) )
-extern	int				StringToCharCodeString( const char  *Src, int SrcCharCodeFormat, DWORD *Dest, size_t BufferBytes  ) ;	// •¶Žš—ñ‚ð‚P•¶Žš‚SƒoƒCƒg‚Ì”z—ñ‚É•ÏŠ·‚·‚é( –ß‚è’lF•ÏŠ·Œã‚ÌƒTƒCƒYAƒkƒ‹•¶ŽšŠÜ‚Þ( ’PˆÊFƒoƒCƒg ) )
-extern	int				CharCodeStringToString( const DWORD *Src, char *Dest, size_t BufferBytes, int DestCharCodeFormat ) ;	// ‚P•¶Žš‚SƒoƒCƒg‚Ì”z—ñ‚ð•¶Žš—ñ‚É•ÏŠ·‚·‚é( –ß‚è’lF•ÏŠ·Œã‚ÌƒTƒCƒYAƒkƒ‹•¶ŽšŠÜ‚Þ( ’PˆÊFƒoƒCƒg ) )
-extern	int				ConvString(				const char *Src, int SrcStrLength, int SrcCharCodeFormat, char *Dest, size_t BufferBytes, int DestCharCodeFormat ) ;		// •¶Žš—ñ‚ðŽw’è‚Ì•¶ŽšƒR[ƒhŒ`Ž®‚Ì•¶Žš—ñ‚É•ÏŠ·‚·‚é( –ß‚è’lF•ÏŠ·Œã‚ÌƒTƒCƒYAƒkƒ‹•¶ŽšŠÜ‚Þ( ’PˆÊFƒoƒCƒg ) )
-extern	int				GetStringCharNum(		const char *String, int CharCodeFormat ) ;										// •¶Žš—ñ‚ÉŠÜ‚Ü‚ê‚é•¶Žš”‚ðŽæ“¾‚·‚é
-extern	const char *	GetStringCharAddress(	const char *String, int CharCodeFormat, int Index ) ;							// Žw’è”Ô†‚Ì•¶Žš‚ÌƒAƒhƒŒƒX‚ðŽæ“¾‚·‚é
-extern	DWORD			GetStringCharCode(		const char *String, int CharCodeFormat, int Index ) ;							// Žw’è”Ô†‚Ì•¶Žš‚ÌƒR[ƒh‚ðŽæ“¾‚·‚é
-extern	DWORD			CheckCharCodeFormat(	const char *String, int CharCodeFormat, int *IsAllSuccess ) ;					// Žw’è‚Ì•¶ŽšƒR[ƒh‚É“K‡‚·‚é•¶Žš‚Ì”‚ðŽæ“¾‚·‚é
+extern	int				GetCharCodeFormatUnitSize(	int CharCodeFormat ) ;														// æŒ‡å®šã®æ–‡å­—ã‚³ãƒ¼ãƒ‰å½¢å¼ã®æƒ…å ±æœ€å°‘ã‚µã‚¤ã‚ºã‚’å–å¾—ã™ã‚‹( æˆ»ã‚Šå€¤ï¼šãƒã‚¤ãƒˆæ•° )
+extern	int				GetCharBytes_(			const char *CharCode, int CharCodeFormat ) ;									// ï¼‘æ–‡å­—ã®ãƒã‚¤ãƒˆæ•°ã‚’å–å¾—ã™ã‚‹( æˆ»ã‚Šå€¤ï¼šï¼‘æ–‡å­—ã®ãƒã‚¤ãƒˆæ•° )
+extern	DWORD			GetCharCode(			const char *CharCode, int CharCodeFormat, int *CharBytes ) ;					// ï¼‘æ–‡å­—ã®æ–‡å­—ã‚³ãƒ¼ãƒ‰ã¨æ–‡å­—ã®ãƒã‚¤ãƒˆæ•°ã‚’å–å¾—ã™ã‚‹
+extern	int				PutCharCode(			DWORD CharCode, int CharCodeFormat, char *Dest, size_t BufferBytes ) ;			// æ–‡å­—ã‚³ãƒ¼ãƒ‰ã‚’é€šå¸¸ã®æ–‡å­—åˆ—ã«å¤‰æ›ã™ã‚‹ã€çµ‚ç«¯ã«ãƒŒãƒ«æ–‡å­—ã¯æ›¸ãè¾¼ã¾ãªã„( æˆ»ã‚Šå€¤ï¼šæ›¸ãè¾¼ã‚“ã ãƒã‚¤ãƒˆæ•° )
+extern	DWORD			ConvCharCode(			DWORD SrcCharCode, int SrcCharCodeFormat, int DestCharCodeFormat ) ;			// æ–‡å­—ã‚³ãƒ¼ãƒ‰ã‚’æŒ‡å®šã®æ–‡å­—ã‚³ãƒ¼ãƒ‰å½¢å¼ã®æ–‡å­—ã«å¤‰æ›ã™ã‚‹
+extern	int				ConvCharCodeString(		const DWORD *Src, int SrcCharCodeFormat, DWORD *Dest, size_t BufferBytes, int DestCharCodeFormat ) ;	// ï¼‘æ–‡å­—ï¼”ãƒã‚¤ãƒˆã®é…åˆ—ã‚’ã€åˆ¥æ–‡å­—ã‚³ãƒ¼ãƒ‰å½¢å¼ã®ï¼‘æ–‡å­—ï¼”ãƒã‚¤ãƒˆã®é…åˆ—ã«å¤‰æ›ã™ã‚‹( æˆ»ã‚Šå€¤ï¼šå¤‰æ›å¾Œã®ã‚µã‚¤ã‚ºã€ãƒŒãƒ«æ–‡å­—å«ã‚€( å˜ä½ï¼šãƒã‚¤ãƒˆ ) )
+extern	int				StringToCharCodeString( const char  *Src, int SrcCharCodeFormat, DWORD *Dest, size_t BufferBytes  ) ;	// æ–‡å­—åˆ—ã‚’ï¼‘æ–‡å­—ï¼”ãƒã‚¤ãƒˆã®é…åˆ—ã«å¤‰æ›ã™ã‚‹( æˆ»ã‚Šå€¤ï¼šå¤‰æ›å¾Œã®ã‚µã‚¤ã‚ºã€ãƒŒãƒ«æ–‡å­—å«ã‚€( å˜ä½ï¼šãƒã‚¤ãƒˆ ) )
+extern	int				CharCodeStringToString( const DWORD *Src, char *Dest, size_t BufferBytes, int DestCharCodeFormat ) ;	// ï¼‘æ–‡å­—ï¼”ãƒã‚¤ãƒˆã®é…åˆ—ã‚’æ–‡å­—åˆ—ã«å¤‰æ›ã™ã‚‹( æˆ»ã‚Šå€¤ï¼šå¤‰æ›å¾Œã®ã‚µã‚¤ã‚ºã€ãƒŒãƒ«æ–‡å­—å«ã‚€( å˜ä½ï¼šãƒã‚¤ãƒˆ ) )
+extern	int				ConvString(				const char *Src, int SrcStrLength, int SrcCharCodeFormat, char *Dest, size_t BufferBytes, int DestCharCodeFormat ) ;		// æ–‡å­—åˆ—ã‚’æŒ‡å®šã®æ–‡å­—ã‚³ãƒ¼ãƒ‰å½¢å¼ã®æ–‡å­—åˆ—ã«å¤‰æ›ã™ã‚‹( æˆ»ã‚Šå€¤ï¼šå¤‰æ›å¾Œã®ã‚µã‚¤ã‚ºã€ãƒŒãƒ«æ–‡å­—å«ã‚€( å˜ä½ï¼šãƒã‚¤ãƒˆ ) )
+extern	int				GetStringCharNum(		const char *String, int CharCodeFormat ) ;										// æ–‡å­—åˆ—ã«å«ã¾ã‚Œã‚‹æ–‡å­—æ•°ã‚’å–å¾—ã™ã‚‹
+extern	const char *	GetStringCharAddress(	const char *String, int CharCodeFormat, int Index ) ;							// æŒ‡å®šç•ªå·ã®æ–‡å­—ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å–å¾—ã™ã‚‹
+extern	DWORD			GetStringCharCode(		const char *String, int CharCodeFormat, int Index ) ;							// æŒ‡å®šç•ªå·ã®æ–‡å­—ã®ã‚³ãƒ¼ãƒ‰ã‚’å–å¾—ã™ã‚‹
+extern	DWORD			CheckCharCodeFormat(	const char *String, int CharCodeFormat, int *IsAllSuccess ) ;					// æŒ‡å®šã®æ–‡å­—ã‚³ãƒ¼ãƒ‰ã«é©åˆã™ã‚‹æ–‡å­—ã®æ•°ã‚’å–å¾—ã™ã‚‹
 
 extern	void			CL_strcpy(            int CharCodeFormat, char *Dest,                     const char *Src ) ;
 extern	void			CL_strcpy_s(          int CharCodeFormat, char *Dest, size_t BufferBytes, const char *Src ) ;

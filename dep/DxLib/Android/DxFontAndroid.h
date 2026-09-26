@@ -1,6 +1,6 @@
 // -------------------------------------------------------------------------------
 // 
-// 		‚c‚wƒ‰ƒCƒuƒ‰ƒŠ		Android—pƒtƒHƒ“ƒgŠÖŒWƒvƒƒOƒ‰ƒ€ƒwƒbƒ_ƒtƒ@ƒCƒ‹
+// 		ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒª		Androidç”¨ãƒ•ã‚©ãƒ³ãƒˆé–¢ä¿‚ãƒ—ãƒ­ã‚°ãƒ©ãƒ ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«
 // 
 // 				Ver 3.25a
 // 
@@ -13,7 +13,7 @@
 
 #ifndef DX_NON_FONT
 
-// ƒCƒ“ƒNƒ‹[ƒh ------------------------------------------------------------------
+// ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ ------------------------------------------------------------------
 #include "../DxFile.h"
 #include <jni.h>
 
@@ -24,47 +24,47 @@ namespace DxLib
 
 #endif // DX_NON_NAMESPACE
 
-// ƒ}ƒNƒ’è‹` --------------------------------------------------------------------
+// ãƒã‚¯ãƒ­å®šç¾© --------------------------------------------------------------------
 
 #define FSYSANDR			FontSystemAndroid
 
-// \‘¢‘Ì’è‹` --------------------------------------------------------------------
+// æ§‹é€ ä½“å®šç¾© --------------------------------------------------------------------
 
-// Android—p ƒtƒHƒ“ƒgƒLƒƒƒbƒVƒ…‚ÌŠÂ‹«ˆË‘¶ŠÇ—ƒf[ƒ^
+// Androidç”¨ ãƒ•ã‚©ãƒ³ãƒˆã‚­ãƒ£ãƒƒã‚·ãƒ¥ã®ç’°å¢ƒä¾å­˜ç®¡ç†ãƒ‡ãƒ¼ã‚¿
 struct FONTMANAGE_PF
 {
-	int						ReferenceNumUp ;						// JavaƒIƒuƒWƒFƒNƒg‚ÌQÆ”‚ğ‘‚â‚µ‚Ä‚¢‚é‚©
+	int						ReferenceNumUp ;						// Javaã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®å‚ç…§æ•°ã‚’å¢—ã‚„ã—ã¦ã„ã‚‹ã‹
 
-	jobject					object_Bitmap ;							// •¶š‚Ìo—ÍŒ‹‰Ê‚ğˆê“I‚É•Û‘¶‚·‚é Bitmap
-	jobject					object_Canvas ;							// •¶š‚Ìo—Í‚ğs‚¤‚½‚ß‚Ì Canvas
-	jobject					object_Paint ;							// •¶š‚Ìo—Í‚ğs‚¤‚½‚ß‚Ì Paint
-	jobject					object_Typeface ;						// •¶š‚ÌƒtƒHƒ“ƒgƒ^ƒCƒv‚È‚Ç‚ğw’è‚·‚é‚½‚ß‚Ì Typeface
-	jobject					object_OldTypeface ;					// Paint ‚ÉÅ‰‚©‚çİ’è‚³‚ê‚Ä‚¢‚½ Typeface
+	jobject					object_Bitmap ;							// æ–‡å­—ã®å‡ºåŠ›çµæœã‚’ä¸€æ™‚çš„ã«ä¿å­˜ã™ã‚‹ Bitmap
+	jobject					object_Canvas ;							// æ–‡å­—ã®å‡ºåŠ›ã‚’è¡Œã†ãŸã‚ã® Canvas
+	jobject					object_Paint ;							// æ–‡å­—ã®å‡ºåŠ›ã‚’è¡Œã†ãŸã‚ã® Paint
+	jobject					object_Typeface ;						// æ–‡å­—ã®ãƒ•ã‚©ãƒ³ãƒˆã‚¿ã‚¤ãƒ—ãªã©ã‚’æŒ‡å®šã™ã‚‹ãŸã‚ã® Typeface
+	jobject					object_OldTypeface ;					// Paint ã«æœ€åˆã‹ã‚‰è¨­å®šã•ã‚Œã¦ã„ãŸ Typeface
 
-	jint					BitmapSizeX ;							// •¶š‚Ìo—ÍŒ‹‰Ê‚ğˆê“I‚É•Û‘¶‚·‚é Bitmap ‚ÌƒTƒCƒYX
-	jint					BitmapSizeY ;							// •¶š‚Ìo—ÍŒ‹‰Ê‚ğˆê“I‚É•Û‘¶‚·‚é Bitmap ‚ÌƒTƒCƒYY
-	jintArray				intArray_ClearBitmapBuffer ;			// •¶š‚Ìo—ÍŒ‹‰Ê‚Ì Bitmap ‚ğƒNƒŠƒA‚·‚é‚½‚ß‚Ì int”z—ñ
-	jintArray				intArray_BitmapBuffer ;					// •¶š‚Ìo—ÍŒ‹‰Ê‚ğæ“¾‚·‚é‚½‚ß‚Ì int”z—ñ
-	void					*ImageBuffer ;							// •¶š‚Ìo—ÍŒ‹‰Ê‚ğƒeƒNƒXƒ`ƒƒ‚É“]‘—‚·‚éŒ`‚É‚µ‚½‚à‚Ì‚ğ•Û‘¶‚·‚é‚½‚ß‚Ìƒoƒbƒtƒ@
+	jint					BitmapSizeX ;							// æ–‡å­—ã®å‡ºåŠ›çµæœã‚’ä¸€æ™‚çš„ã«ä¿å­˜ã™ã‚‹ Bitmap ã®ã‚µã‚¤ã‚ºX
+	jint					BitmapSizeY ;							// æ–‡å­—ã®å‡ºåŠ›çµæœã‚’ä¸€æ™‚çš„ã«ä¿å­˜ã™ã‚‹ Bitmap ã®ã‚µã‚¤ã‚ºY
+	jintArray				intArray_ClearBitmapBuffer ;			// æ–‡å­—ã®å‡ºåŠ›çµæœã® Bitmap ã‚’ã‚¯ãƒªã‚¢ã™ã‚‹ãŸã‚ã® inté…åˆ—
+	jintArray				intArray_BitmapBuffer ;					// æ–‡å­—ã®å‡ºåŠ›çµæœã‚’å–å¾—ã™ã‚‹ãŸã‚ã® inté…åˆ—
+	void					*ImageBuffer ;							// æ–‡å­—ã®å‡ºåŠ›çµæœã‚’ãƒ†ã‚¯ã‚¹ãƒãƒ£ã«è»¢é€ã™ã‚‹å½¢ã«ã—ãŸã‚‚ã®ã‚’ä¿å­˜ã™ã‚‹ãŸã‚ã®ãƒãƒƒãƒ•ã‚¡
 
-	float					PaintFontMetrics_ascent ;				// g—p‚·‚éƒtƒHƒ“ƒg‚Ì ascent
-	float					PaintFontMetrics_bottom ;				// g—p‚·‚éƒtƒHƒ“ƒg‚Ì bottom
-	float					PaintFontMetrics_descent ;				// g—p‚·‚éƒtƒHƒ“ƒg‚Ì descent
-	float					PaintFontMetrics_leading ;				// g—p‚·‚éƒtƒHƒ“ƒg‚Ì leading
-	float					PaintFontMetrics_top ;					// g—p‚·‚éƒtƒHƒ“ƒg‚Ì top
+	float					PaintFontMetrics_ascent ;				// ä½¿ç”¨ã™ã‚‹ãƒ•ã‚©ãƒ³ãƒˆã® ascent
+	float					PaintFontMetrics_bottom ;				// ä½¿ç”¨ã™ã‚‹ãƒ•ã‚©ãƒ³ãƒˆã® bottom
+	float					PaintFontMetrics_descent ;				// ä½¿ç”¨ã™ã‚‹ãƒ•ã‚©ãƒ³ãƒˆã® descent
+	float					PaintFontMetrics_leading ;				// ä½¿ç”¨ã™ã‚‹ãƒ•ã‚©ãƒ³ãƒˆã® leading
+	float					PaintFontMetrics_top ;					// ä½¿ç”¨ã™ã‚‹ãƒ•ã‚©ãƒ³ãƒˆã® top
 } ;
 
-// Android—p ƒtƒHƒ“ƒgƒVƒXƒeƒ€—p\‘¢‘Ì
+// Androidç”¨ ãƒ•ã‚©ãƒ³ãƒˆã‚·ã‚¹ãƒ†ãƒ ç”¨æ§‹é€ ä½“
 struct FONTSYSTEM_ANDR
 {
 	int						Dummy ;
 } ;
 
-// “à•”‘åˆæ•Ï”éŒ¾ --------------------------------------------------------------
+// å†…éƒ¨å¤§åŸŸå¤‰æ•°å®£è¨€ --------------------------------------------------------------
 
 extern FONTSYSTEM_ANDR FontSystemAndroid ;
 
-// ŠÖ”ƒvƒƒgƒ^ƒCƒvéŒ¾-----------------------------------------------------------
+// é–¢æ•°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€-----------------------------------------------------------
 
 #ifndef DX_NON_NAMESPACE
 

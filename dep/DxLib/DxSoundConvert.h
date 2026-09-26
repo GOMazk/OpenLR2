@@ -1,6 +1,6 @@
 // -------------------------------------------------------------------------------
 // 
-// 		�c�w���C�u����		�T�E���h�f�[�^�ϊ��v���O�����w�b�_�t�@�C��
+// 		ＤＸライブラリ		サウンドデータ変換プログラムヘッダファイル
 // 
 // 				Ver 3.25a
 // 
@@ -13,7 +13,7 @@
 
 #ifndef DX_NON_SOUND
 
-// �C���N���[�h ------------------------------------------------------------------
+// インクルード ------------------------------------------------------------------
 
 #include "DxLib.h"
 
@@ -42,15 +42,15 @@ namespace DxLib
 
 #endif // DX_NON_NAMESPACE
 
-// �}�N����` --------------------------------------------------------------------
+// マクロ定義 --------------------------------------------------------------------
 
-// �����^�C�v
-#define SOUND_METHODTYPE_NORMAL				(0)		// �ʏ�̏���(���ʂȏ����͋��܂Ȃ�)
-#define SOUND_METHODTYPE_OGG				(1)		// �n�f�f���g�p
-#define SOUND_METHODTYPE_OPUS				(2)		// Opus���g�p
-#define SOUND_METHODTYPE_DEFAULT_NUM		(3)		// ���Ɉˑ����Ȃ������^�C�v�̐�
+// 処理タイプ
+#define SOUND_METHODTYPE_NORMAL				(0)		// 通常の処理(特別な処理は挟まない)
+#define SOUND_METHODTYPE_OGG				(1)		// ＯＧＧを使用
+#define SOUND_METHODTYPE_OPUS				(2)		// Opusを使用
+#define SOUND_METHODTYPE_DEFAULT_NUM		(3)		// 環境に依存しない処理タイプの数
 
-// �`�����N�h�c�Z�b�g�}�N��
+// チャンクＩＤセットマクロ
 #define RIFFCHUNKID( C1 , C2 , C3 , C4 )	( DWORD )( ((( DWORD )C4)<<24) | ((( DWORD )C3)<<16) | ((( DWORD )C2)<<8) | (C1) ) 
 
 #ifndef WAVE_FORMAT_IEEE_FLOAT
@@ -61,95 +61,95 @@ namespace DxLib
 #define WAVE_FORMAT_PCM				0x0001
 #endif
 
-// �\���̒�` --------------------------------------------------------------------
+// 構造体定義 --------------------------------------------------------------------
 
-// RIFF�`�����N�f�[�^
+// RIFFチャンクデータ
 struct ___RIFFCHUNK
 {
 	DWORD						fcc ;
 	DWORD						 cb ;
 } ;
 
-// �v�`�u�d�f�[�^�ϊ��p�\����
+// ＷＡＶＥデータ変換用構造体
 struct SOUNDCONV_WAVE
 {
-	BYTE						*SrcBuffer ;		// �ϊ����̃f�[�^
-	ULONGLONG					SrcBufferSize ;		// �ϊ����o�b�t�@�̃f�[�^�T�C�Y
-	ULONGLONG					SrcSampleNum ;		// �ϊ����o�b�t�@�̃T���v����
-	LONGLONG					LoopStart, LoopEnd ;	// ���[�v���
-	WAVEFORMATEX				SrcFormat ;			// �ϊ����o�b�t�@�̃t�H�[�}�b�g
+	BYTE						*SrcBuffer ;		// 変換元のデータ
+	ULONGLONG					SrcBufferSize ;		// 変換元バッファのデータサイズ
+	ULONGLONG					SrcSampleNum ;		// 変換元バッファのサンプル数
+	LONGLONG					LoopStart, LoopEnd ;	// ループ情報
+	WAVEFORMATEX				SrcFormat ;			// 変換元バッファのフォーマット
 } ;
 
-// �����f�[�^�ϊ������p�\����
+// 音声データ変換処理用構造体
 struct SOUNDCONV
 {
-	int							InitializeFlag ;		// ����������Ă���ꍇ�ɗ��t���O
-	int							EndFlag ;				// �ϊ����I�������痧�t���O
+	int							InitializeFlag ;		// 初期化されている場合に立つフラグ
+	int							EndFlag ;				// 変換が終了したら立つフラグ
 	
-	int 						MethodType ;			// �����^�C�v( SOUND_METHODTYPE_NORMAL �� )
-	STREAMDATA 					Stream ;				// �f�[�^�ǂݍ��ݗp�X�g���[���f�[�^
+	int 						MethodType ;			// 処理タイプ( SOUND_METHODTYPE_NORMAL 等 )
+	STREAMDATA 					Stream ;				// データ読み込み用ストリームデータ
 
-	LONGLONG					HeaderPos ;				// �w�b�_�̂���ʒu
-	LONGLONG					HeaderSize ;			// �w�b�_�̃T�C�Y
-	LONGLONG					DataPos ;				// ���f�[�^�̂���ʒu
-	LONGLONG					DataSize ;				// ���f�[�^�̃T�C�Y
+	LONGLONG					HeaderPos ;				// ヘッダのある位置
+	LONGLONG					HeaderSize ;			// ヘッダのサイズ
+	LONGLONG					DataPos ;				// 実データのある位置
+	LONGLONG					DataSize ;				// 実データのサイズ
 
-	WAVEFORMATEX				OutFormat ;				// �ϊ���̃t�H�[�}�b�g
+	WAVEFORMATEX				OutFormat ;				// 変換後のフォーマット
 
-	char						ConvFunctionBuffer[ 1024 ] ;	// MethodType �ʃf�[�^�ۑ��p�o�b�t�@�̈�
+	char						ConvFunctionBuffer[ 1024 ] ;	// MethodType 別データ保存用バッファ領域
 
-	void						*DestData ;				// �ϊ���̃f�[�^���ꎞ�I�ɕۑ����郁�����̈�
-	LONGLONG					DestDataSize ;			// �ϊ���̃f�[�^���ꎞ�I�ɕۑ����郁�����̈�̃T�C�Y
-	LONGLONG					DestDataValidSize ;		// �ϊ���̃f�[�^�̗L���ȃT�C�Y
-	LONGLONG					DestDataCompSize ;		// �ϊ���̃f�[�^���ꎞ�I�ɕۑ����郁�����̈撆�̓]���ς݂̃T�C�Y
-	LONGLONG					DestDataCompSizeAll ;	// �ϊ��J�n���猻�݂Ɏ���܂łɓ]�������f�[�^�̃T�C�Y
+	void						*DestData ;				// 変換後のデータを一時的に保存するメモリ領域
+	LONGLONG					DestDataSize ;			// 変換後のデータを一時的に保存するメモリ領域のサイズ
+	LONGLONG					DestDataValidSize ;		// 変換後のデータの有効なサイズ
+	LONGLONG					DestDataCompSize ;		// 変換後のデータを一時的に保存するメモリ領域中の転送済みのサイズ
+	LONGLONG					DestDataCompSizeAll ;	// 変換開始から現在に至るまでに転送したデータのサイズ
 
-	LONGLONG					SeekLockPosition ;		// �\��V�[�N�ʒu(�`�b�l�^�C�v�Ń��[�v����ꍇ�ׂ̈̃f�[�^)
+	LONGLONG					SeekLockPosition ;		// 予約シーク位置(ＡＣＭタイプでループする場合の為のデータ)
 #ifndef DX_NON_OGGVORBIS
-	int							OggVorbisBitDepth ;			// �n�����u�����������g�p���̃r�b�g�[�x(1:8bit 2:16bit)
-	int							OggVorbisFromTheoraFile ;	// Ogg Theora �t�@�C������ Vorbis �f�[�^���Q�Ƃ��邩�ǂ����̃t���O( TRUE:Theora �t�@�C������ Vorbis �f�[�^���Q�Ƃ��� )
+	int							OggVorbisBitDepth ;			// ＯｇｇＶｏｒｂｉｓ使用時のビット深度(1:8bit 2:16bit)
+	int							OggVorbisFromTheoraFile ;	// Ogg Theora ファイル中の Vorbis データを参照するかどうかのフラグ( TRUE:Theora ファイル中の Vorbis データを参照する )
 #endif
 } ;
 
-// �T�E���h�ϊ������S�̂Ŏg�p����f�[�^�\����
+// サウンド変換処理全体で使用するデータ構造体
 struct SOUNDCONVERTDATA
 {
-	int							InitializeFlag ;				// �������t���O
+	int							InitializeFlag ;				// 初期化フラグ
 } ;
 
-// �������ϐ��錾 --------------------------------------------------------------
+// 内部大域変数宣言 --------------------------------------------------------------
 
 extern SOUNDCONVERTDATA GSoundConvertData ;
 
-// �֐��v���g�^�C�v�錾-----------------------------------------------------------
+// 関数プロトタイプ宣言-----------------------------------------------------------
 
-// �������E�I���֐�
-extern	int InitializeSoundConvert( void ) ;														// �T�E���h�f�[�^�ϊ������̏��������s��
-extern	int TerminateSoundConvert( void ) ;															// �T�E���h�f�[�^�ϊ������̏I���������s��
+// 初期化・終了関数
+extern	int InitializeSoundConvert( void ) ;														// サウンドデータ変換処理の初期化を行う
+extern	int TerminateSoundConvert( void ) ;															// サウンドデータ変換処理の終了処理を行う
 
-// �t�H�[�}�b�g�ϊ��p
-extern	int      SetupSoundConvert( SOUNDCONV *SoundConv, STREAMDATA *Stream, int DisableReadSoundFunctionMask = 0, int OggVorbisBitDepth = 2, int OggVorbisFromTheoraFile = FALSE ) ;	// �ϊ������̃Z�b�g�A�b�v( [��] -1:�G���[ )
-//extern int     SetTimeSoundConvert(          SOUNDCONV *SoundConv, int Time ) ;							// �ϊ������̈ʒu��ύX����( �~���b�P�� )
-extern	int      SetSampleTimeSoundConvert(    SOUNDCONV *SoundConv, LONGLONG SampleTime ) ;				// �ϊ������̈ʒu��ύX����( �T���v���P�� )
-extern	int      SetupSeekPosSoundConvert(     SOUNDCONV *SoundConv, LONGLONG SeekPos ) ;					// �V�[�N�\��̈ʒu���Z�b�g���Ă���(�`�b�l�ׂ̈�)
-extern	size_t   RunSoundConvert(              SOUNDCONV *SoundConv, void *DestBuffer, size_t DestSize ) ;	// �w��̃T�C�Y��������������( [��] -1:�G���[  0�ȏ�:�ϊ������T�C�Y )
-extern	int      TerminateSoundConvert(        SOUNDCONV *SoundConv ) ;										// �ϊ������̌�n�����s��
-extern	int      GetOutSoundFormatInfo(        SOUNDCONV *SoundConv, WAVEFORMATEX *OutWaveFormat ) ;		// �ϊ���̉����`�����擾( [��] -1:�G���[  0�ȏ�:�ϊ���̃T�C�Y )
-extern	int      GetSoundConvertLoopAreaInfo(  SOUNDCONV *SoundConv, LONGLONG *LoopStartPos, LONGLONG *LoopEndPos ) ;	// ���[�v�����擾( [��] -1:�G���[ )
-extern	int      GetSoundConvertEndState(      SOUNDCONV *SoundConv ) ;										// �ϊ��������I�����Ă��邩�ǂ������擾����( [��] TRUE:�I������  FALSE:�܂��I�����Ă��Ȃ� )
-extern	LONGLONG GetSoundConvertDestSize_Fast( SOUNDCONV *SoundConv ) ;										// �ϊ���̑�}�̃f�[�^�T�C�Y�𓾂�
-extern	int      SoundConvertFast(             SOUNDCONV *SoundConv, WAVEFORMATEX *FormatP, void **DestBufferP, size_t *DestSizeP ) ;	// �����Ȉꊇ�ϊ�
+// フォーマット変換用
+extern	int      SetupSoundConvert( SOUNDCONV *SoundConv, STREAMDATA *Stream, int DisableReadSoundFunctionMask = 0, int OggVorbisBitDepth = 2, int OggVorbisFromTheoraFile = FALSE ) ;	// 変換処理のセットアップ( [戻] -1:エラー )
+//extern int     SetTimeSoundConvert(          SOUNDCONV *SoundConv, int Time ) ;							// 変換処理の位置を変更する( ミリ秒単位 )
+extern	int      SetSampleTimeSoundConvert(    SOUNDCONV *SoundConv, LONGLONG SampleTime ) ;				// 変換処理の位置を変更する( サンプル単位 )
+extern	int      SetupSeekPosSoundConvert(     SOUNDCONV *SoundConv, LONGLONG SeekPos ) ;					// シーク予定の位置をセットしておく(ＡＣＭの為に)
+extern	size_t   RunSoundConvert(              SOUNDCONV *SoundConv, void *DestBuffer, size_t DestSize ) ;	// 指定のサイズ分だけ音声を解凍( [戻] -1:エラー  0以上:変換したサイズ )
+extern	int      TerminateSoundConvert(        SOUNDCONV *SoundConv ) ;										// 変換処理の後始末を行う
+extern	int      GetOutSoundFormatInfo(        SOUNDCONV *SoundConv, WAVEFORMATEX *OutWaveFormat ) ;		// 変換後の音声形式を取得( [戻] -1:エラー  0以上:変換後のサイズ )
+extern	int      GetSoundConvertLoopAreaInfo(  SOUNDCONV *SoundConv, LONGLONG *LoopStartPos, LONGLONG *LoopEndPos ) ;	// ループ情報を取得( [戻] -1:エラー )
+extern	int      GetSoundConvertEndState(      SOUNDCONV *SoundConv ) ;										// 変換処理が終了しているかどうかを取得する( [戻] TRUE:終了した  FALSE:まだ終了していない )
+extern	LONGLONG GetSoundConvertDestSize_Fast( SOUNDCONV *SoundConv ) ;										// 変換後の大凡のデータサイズを得る
+extern	int      SoundConvertFast(             SOUNDCONV *SoundConv, WAVEFORMATEX *FormatP, void **DestBufferP, size_t *DestSizeP ) ;	// 高速な一括変換
 
 
-// ���ˑ��������E�I���֐�
-extern	int      InitializeSoundConvert_PF( void ) ;														// �T�E���h�f�[�^�ϊ������̊��ˑ��̏��������s��
-extern	int      TerminateSoundConvert_PF( void ) ;															// �T�E���h�f�[�^�ϊ������̊��ˑ��̏I���������s��
+// 環境依存初期化・終了関数
+extern	int      InitializeSoundConvert_PF( void ) ;														// サウンドデータ変換処理の環境依存の初期化を行う
+extern	int      TerminateSoundConvert_PF( void ) ;															// サウンドデータ変換処理の環境依存の終了処理を行う
 
-extern	int      SetupSoundConvert_PF( SOUNDCONV *SoundConv, STREAMDATA *Stream, int DisableReadSoundFunctionMask ) ;	// (���ˑ�����)�ϊ������̃Z�b�g�A�b�v( [��] -1:�G���[ )
-extern	int      SetSampleTimeSoundConvert_PF(    SOUNDCONV *SoundConv, LONGLONG SampleTime ) ;				// (���ˑ�����)�ϊ������̈ʒu��ύX����( �T���v���P�� )
-extern	int      ConvertProcessSoundConvert_PF(   SOUNDCONV *SoundConv ) ;									// (���ˑ�����)�ϊ���̃o�b�t�@�Ƀf�[�^���[����
-extern	int      TerminateSoundConvert_PF(        SOUNDCONV *SoundConv ) ;									// (���ˑ�����)�ϊ������̌�n�����s��
-extern	LONGLONG GetSoundConvertDestSize_Fast_PF( SOUNDCONV *SoundConv ) ;									// (���ˑ�����)�ϊ���̑�}�̃f�[�^�T�C�Y�𓾂�
+extern	int      SetupSoundConvert_PF( SOUNDCONV *SoundConv, STREAMDATA *Stream, int DisableReadSoundFunctionMask ) ;	// (環境依存処理)変換処理のセットアップ( [戻] -1:エラー )
+extern	int      SetSampleTimeSoundConvert_PF(    SOUNDCONV *SoundConv, LONGLONG SampleTime ) ;				// (環境依存処理)変換処理の位置を変更する( サンプル単位 )
+extern	int      ConvertProcessSoundConvert_PF(   SOUNDCONV *SoundConv ) ;									// (環境依存処理)変換後のバッファにデータを補充する
+extern	int      TerminateSoundConvert_PF(        SOUNDCONV *SoundConv ) ;									// (環境依存処理)変換処理の後始末を行う
+extern	LONGLONG GetSoundConvertDestSize_Fast_PF( SOUNDCONV *SoundConv ) ;									// (環境依存処理)変換後の大凡のデータサイズを得る
 
 #ifndef DX_NON_NAMESPACE
 

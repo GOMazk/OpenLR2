@@ -1,6 +1,6 @@
 // -------------------------------------------------------------------------------
 // 
-// 		‚c‚wƒ‰ƒCƒuƒ‰ƒŠ		”ñ“¯Šú“Ç‚İ‚İˆ—ƒvƒƒOƒ‰ƒ€ƒwƒbƒ_ƒtƒ@ƒCƒ‹
+// 		ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒª		éåŒæœŸèª­ã¿è¾¼ã¿å‡¦ç†ãƒ—ãƒ­ã‚°ãƒ©ãƒ ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«
 // 
 // 				Ver 3.25a
 // 
@@ -9,7 +9,7 @@
 #ifndef DXASYNCLOAD_H
 #define DXASYNCLOAD_H
 
-// ƒCƒ“ƒNƒ‹[ƒh ------------------------------------------------------------------
+// ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ ------------------------------------------------------------------
 #include "DxCompileConfig.h"
 
 #ifndef DX_NON_ASYNCLOAD
@@ -24,125 +24,125 @@ namespace DxLib
 
 #endif // DX_NON_NAMESPACE
 
-// ƒ}ƒNƒ’è‹` --------------------------------------------------------------------
+// ãƒã‚¯ãƒ­å®šç¾© --------------------------------------------------------------------
 
-// ”ñ“¯Šú“Ç‚İ‚İˆ—‚ÌƒWƒ‡ƒuƒ^ƒCƒv
-#define ASYNCLOAD_JOBTYPE_ADD_DATA					(0)		// ƒf[ƒ^’Ç‰Á
-#define ASYNCLOAD_JOBTYPE_DEL_DATA					(1)		// ƒf[ƒ^íœ
-#define ASYNCLOAD_JOBTYPE_ERROR_DATA				(2)		// ƒf[ƒ^ƒGƒ‰[
-#define ASYNCLOAD_JOBTYPE_RELEASE_OTHER_THREAD		(3)		// ‚»‚Ì‘¼ƒXƒŒƒbƒh’S“–ˆµ‚¢‚Ì‰ğœ
+// éåŒæœŸèª­ã¿è¾¼ã¿å‡¦ç†ã®ã‚¸ãƒ§ãƒ–ã‚¿ã‚¤ãƒ—
+#define ASYNCLOAD_JOBTYPE_ADD_DATA					(0)		// ãƒ‡ãƒ¼ã‚¿è¿½åŠ 
+#define ASYNCLOAD_JOBTYPE_DEL_DATA					(1)		// ãƒ‡ãƒ¼ã‚¿å‰Šé™¤
+#define ASYNCLOAD_JOBTYPE_ERROR_DATA				(2)		// ãƒ‡ãƒ¼ã‚¿ã‚¨ãƒ©ãƒ¼
+#define ASYNCLOAD_JOBTYPE_RELEASE_OTHER_THREAD		(3)		// ãã®ä»–ã‚¹ãƒ¬ãƒƒãƒ‰æ‹…å½“æ‰±ã„ã®è§£é™¤
 
-// ”ñ“¯Šú“Ç‚İ‚İƒf[ƒ^‚ÌÅ‘åƒXƒgƒbƒN”
+// éåŒæœŸèª­ã¿è¾¼ã¿ãƒ‡ãƒ¼ã‚¿ã®æœ€å¤§ã‚¹ãƒˆãƒƒã‚¯æ•°
 #define ASYNCLOADDATA_MAXNUM				(32768)
 
-// ”ñ“¯Šú“Ç‚İ‚İƒXƒŒƒbƒh‚ÌÅ‘å”
+// éåŒæœŸèª­ã¿è¾¼ã¿ã‚¹ãƒ¬ãƒƒãƒ‰ã®æœ€å¤§æ•°
 #define ASYNCLOADTHREAD_MAXNUM				(32)
 
-// \‘¢‘Ì’è‹` --------------------------------------------------------------------
+// æ§‹é€ ä½“å®šç¾© --------------------------------------------------------------------
 
-// ”ñ“¯Šú“Ç‚İ‚İˆ——p‹¤’Êƒf[ƒ^\‘¢‘Ì
+// éåŒæœŸèª­ã¿è¾¼ã¿å‡¦ç†ç”¨å…±é€šãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
 struct ASYNCLOADDATA_COMMON
 {
-	int						Index ;								// ”ñ“¯Šú“Ç‚İ‚İƒf[ƒ^‚Ì”z—ñ”Ô†
-	int						Run ;								// “Ç‚İ‚İˆ—‚ğŠJn‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©
-	volatile int			*DeleteOneSetAddr ;					// íœ‚³‚ê‚é‚É 1 ‚ğ‘ã“ü‚·‚éƒAƒhƒŒƒX
-	int						StartTime ;							// ƒf[ƒ^‚ğ“o˜^‚µ‚½Û‚ÌŠÔ
+	int						Index ;								// éåŒæœŸèª­ã¿è¾¼ã¿ãƒ‡ãƒ¼ã‚¿ã®é…åˆ—ç•ªå·
+	int						Run ;								// èª­ã¿è¾¼ã¿å‡¦ç†ã‚’é–‹å§‹ã—ã¦ã„ã‚‹ã‹ã©ã†ã‹
+	volatile int			*DeleteOneSetAddr ;					// å‰Šé™¤ã•ã‚Œã‚‹æ™‚ã« 1 ã‚’ä»£å…¥ã™ã‚‹ã‚¢ãƒ‰ãƒ¬ã‚¹
+	int						StartTime ;							// ãƒ‡ãƒ¼ã‚¿ã‚’ç™»éŒ²ã—ãŸéš›ã®æ™‚é–“
 	void					( *ProcessFunction )( struct ASYNCLOADDATA_COMMON *Data ) ;
 	BYTE					Data[ 4 ] ;
 } ;
 
-// ƒƒCƒ“ƒXƒŒƒbƒh‚Ö‚Ìˆ—ˆË—Šƒf[ƒ^\‘¢‘Ì
+// ãƒ¡ã‚¤ãƒ³ã‚¹ãƒ¬ãƒƒãƒ‰ã¸ã®å‡¦ç†ä¾é ¼ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
 struct ASYNCLOAD_MAINTHREAD_REQUESTINFO
 {
-	int						( *Function )( struct ASYNCLOAD_MAINTHREAD_REQUESTINFO *Info ) ;		// ˆË—Šˆ—‚ğs‚¤ŠÖ”
-	int						ThreadNo ;																// ˆË—Š‚ğo‚µ‚½ƒXƒŒƒbƒh‚Ì”Ô†
-	volatile int			Result ;																// ˆ—Œ‹‰Ê
-	volatile DWORD_PTR		Data[ 16 ] ;															// ŠÖ”‚Åg—p‚·‚éî•ñ
+	int						( *Function )( struct ASYNCLOAD_MAINTHREAD_REQUESTINFO *Info ) ;		// ä¾é ¼å‡¦ç†ã‚’è¡Œã†é–¢æ•°
+	int						ThreadNo ;																// ä¾é ¼ã‚’å‡ºã—ãŸã‚¹ãƒ¬ãƒƒãƒ‰ã®ç•ªå·
+	volatile int			Result ;																// å‡¦ç†çµæœ
+	volatile DWORD_PTR		Data[ 16 ] ;															// é–¢æ•°ã§ä½¿ç”¨ã™ã‚‹æƒ…å ±
 } ;
 
-// ”ñ“¯Šú“Ç‚İ‚İƒXƒŒƒbƒh‚É•K—v‚Èî•ñ‚ğ“Z‚ß‚½\‘¢‘Ì
+// éåŒæœŸèª­ã¿è¾¼ã¿ã‚¹ãƒ¬ãƒƒãƒ‰ã«å¿…è¦ãªæƒ…å ±ã‚’çºã‚ãŸæ§‹é€ ä½“
 struct ASYNCLOADTHREADINFO
 {
-	THREAD_INFO				ThreadInfo ;						// ƒXƒŒƒbƒh‚Ìî•ñ
-	DWORD					ExitFlag ;							// ƒXƒŒƒbƒh‚ªI—¹‚É—§‚Ä‚éƒtƒ‰ƒO
-	int						JobFlag ;							// Œ»İd–‚ğ‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO
-	int						MainThreadRequest ;					// ƒƒCƒ“ƒXƒŒƒbƒh‚Ö‚ÌƒŠƒNƒGƒXƒg‚ğs‚Á‚Ä‚¢‚éÅ’†‚©‚Ìƒtƒ‰ƒO
-	int						MainThreadRequestSuspend ;			// ƒƒCƒ“ƒXƒŒƒbƒh‚Ö‚ÌƒŠƒNƒGƒXƒg‚ğs‚¤‚½‚ß‚ÉƒXƒŒƒbƒh‚ª~‚Ü‚Á‚Ä‚¢‚é‚©‚Ìƒtƒ‰ƒO
-	int						SuspendFlag ;						// ƒXƒŒƒbƒh‚ª‚Æ‚Ü‚Á‚Ä‚¢‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO
-	int						SuspendStartTime ;					// ƒXƒŒƒbƒh‚ª‚Æ‚Ü‚Á‚½‚Æ‚«‚ÌŠÔ
-	struct ASYNCLOADDATA_COMMON *Data ;							// ˆ—’†‚Ìƒf[ƒ^
+	THREAD_INFO				ThreadInfo ;						// ã‚¹ãƒ¬ãƒƒãƒ‰ã®æƒ…å ±
+	DWORD					ExitFlag ;							// ã‚¹ãƒ¬ãƒƒãƒ‰ãŒçµ‚äº†æ™‚ã«ç«‹ã¦ã‚‹ãƒ•ãƒ©ã‚°
+	int						JobFlag ;							// ç¾åœ¨ä»•äº‹ã‚’ã—ã¦ã„ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°
+	int						MainThreadRequest ;					// ãƒ¡ã‚¤ãƒ³ã‚¹ãƒ¬ãƒƒãƒ‰ã¸ã®ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚’è¡Œã£ã¦ã„ã‚‹æœ€ä¸­ã‹ã®ãƒ•ãƒ©ã‚°
+	int						MainThreadRequestSuspend ;			// ãƒ¡ã‚¤ãƒ³ã‚¹ãƒ¬ãƒƒãƒ‰ã¸ã®ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚’è¡Œã†ãŸã‚ã«ã‚¹ãƒ¬ãƒƒãƒ‰ãŒæ­¢ã¾ã£ã¦ã„ã‚‹ã‹ã®ãƒ•ãƒ©ã‚°
+	int						SuspendFlag ;						// ã‚¹ãƒ¬ãƒƒãƒ‰ãŒã¨ã¾ã£ã¦ã„ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°
+	int						SuspendStartTime ;					// ã‚¹ãƒ¬ãƒƒãƒ‰ãŒã¨ã¾ã£ãŸã¨ãã®æ™‚é–“
+	struct ASYNCLOADDATA_COMMON *Data ;							// å‡¦ç†ä¸­ã®ãƒ‡ãƒ¼ã‚¿
 } ;
 
-// ”ñ“¯Šú“Ç‚İ‚İˆ—‚ªg—p‚·‚éƒOƒ[ƒoƒ‹ƒf[ƒ^‚Ì\‘¢‘Ì
+// éåŒæœŸèª­ã¿è¾¼ã¿å‡¦ç†ãŒä½¿ç”¨ã™ã‚‹ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿ã®æ§‹é€ ä½“
 struct ASYNCLOADDATA
 {
-	int						InitializeFlag ;								// ‰Šú‰»ƒtƒ‰ƒO
+	int						InitializeFlag ;								// åˆæœŸåŒ–ãƒ•ãƒ©ã‚°
 
-	DWORD_PTR				MainThreadID ;									// ƒƒCƒ“ƒXƒŒƒbƒh‚Ì‚h‚c
-	int						ThreadEndRequestFlag ;							// ”ñ“¯Šú“Ç‚İ‚İˆ—‚ÌI—¹‚ğ‘£‚·ƒtƒ‰ƒO
-	int						ThreadNum ;										// ”ñ“¯Šú“Ç‚İ‚İˆ—‚ğs‚¤ƒXƒŒƒbƒh‚Ì”
-	int						ThreadMaxResumeNum ;							// ”ñ“¯Šú“Ç‚İ‚İˆ—‚ğ“¯‚És‚¤ƒXƒŒƒbƒh‚Ì”
-	ASYNCLOADTHREADINFO		Thread[ ASYNCLOADTHREAD_MAXNUM + 1 ] ;			// ”ñ“¯Šú“Ç‚İ‚İˆ—‚ğs‚¤ƒXƒŒƒbƒh‚Ìî•ñ
-	volatile int			ThreadResumeNum ;								// “®ì‚µ‚Ä‚¢‚é”ñ“¯Šú“Ç‚İ‚İƒXƒŒƒbƒh‚Ì”
-	DX_CRITICAL_SECTION		CriticalSection ;								// ”ñ“¯Šú“Ç‚İ‚İˆ—‘S”Ê( ”ñ“¯Šú“Ç‚İ‚İƒXƒŒƒbƒh‚Ö‚ÌƒƒbƒZ[ƒW{”ñ“¯Šú“Ç‚İ‚İƒf[ƒ^ƒAƒNƒZƒXg—p )‚Åg—p‚·‚éƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“
+	DWORD_PTR				MainThreadID ;									// ãƒ¡ã‚¤ãƒ³ã‚¹ãƒ¬ãƒƒãƒ‰ã®ï¼©ï¼¤
+	int						ThreadEndRequestFlag ;							// éåŒæœŸèª­ã¿è¾¼ã¿å‡¦ç†ã®çµ‚äº†ã‚’ä¿ƒã™ãƒ•ãƒ©ã‚°
+	int						ThreadNum ;										// éåŒæœŸèª­ã¿è¾¼ã¿å‡¦ç†ã‚’è¡Œã†ã‚¹ãƒ¬ãƒƒãƒ‰ã®æ•°
+	int						ThreadMaxResumeNum ;							// éåŒæœŸèª­ã¿è¾¼ã¿å‡¦ç†ã‚’åŒæ™‚ã«è¡Œã†ã‚¹ãƒ¬ãƒƒãƒ‰ã®æ•°
+	ASYNCLOADTHREADINFO		Thread[ ASYNCLOADTHREAD_MAXNUM + 1 ] ;			// éåŒæœŸèª­ã¿è¾¼ã¿å‡¦ç†ã‚’è¡Œã†ã‚¹ãƒ¬ãƒƒãƒ‰ã®æƒ…å ±
+	volatile int			ThreadResumeNum ;								// å‹•ä½œã—ã¦ã„ã‚‹éåŒæœŸèª­ã¿è¾¼ã¿ã‚¹ãƒ¬ãƒƒãƒ‰ã®æ•°
+	DX_CRITICAL_SECTION		CriticalSection ;								// éåŒæœŸèª­ã¿è¾¼ã¿å‡¦ç†å…¨èˆ¬( éåŒæœŸèª­ã¿è¾¼ã¿ã‚¹ãƒ¬ãƒƒãƒ‰ã¸ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ï¼‹éåŒæœŸèª­ã¿è¾¼ã¿ãƒ‡ãƒ¼ã‚¿ã‚¢ã‚¯ã‚»ã‚¹æ™‚ä½¿ç”¨ )ã§ä½¿ç”¨ã™ã‚‹ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³
 
-	ASYNCLOAD_MAINTHREAD_REQUESTINFO	*MainThreadRequestInfo[ ASYNCLOADTHREAD_MAXNUM + 1 ] ;	// ƒƒCƒ“ƒXƒŒƒbƒh‚Ö‚Ìˆ—ˆË—Š
-	volatile int						MainThreadRequestInfoNum ;								// ƒƒCƒ“ƒXƒŒƒbƒh‚Ö‚Ìˆ—ˆË—Š‚Ì”
-	volatile int						MainThreadRequestSuspendThreadNum ;						// ƒƒCƒ“ƒXƒŒƒbƒh‚Ö‚Ìˆ—ˆË—Š‚ğ‚µ‚Ä‚¢‚é‚©‚ç~‚Ü‚Á‚Ä‚¢‚éƒXƒŒƒbƒh‚Ì”
+	ASYNCLOAD_MAINTHREAD_REQUESTINFO	*MainThreadRequestInfo[ ASYNCLOADTHREAD_MAXNUM + 1 ] ;	// ãƒ¡ã‚¤ãƒ³ã‚¹ãƒ¬ãƒƒãƒ‰ã¸ã®å‡¦ç†ä¾é ¼
+	volatile int						MainThreadRequestInfoNum ;								// ãƒ¡ã‚¤ãƒ³ã‚¹ãƒ¬ãƒƒãƒ‰ã¸ã®å‡¦ç†ä¾é ¼ã®æ•°
+	volatile int						MainThreadRequestSuspendThreadNum ;						// ãƒ¡ã‚¤ãƒ³ã‚¹ãƒ¬ãƒƒãƒ‰ã¸ã®å‡¦ç†ä¾é ¼ã‚’ã—ã¦ã„ã‚‹ã‹ã‚‰æ­¢ã¾ã£ã¦ã„ã‚‹ã‚¹ãƒ¬ãƒƒãƒ‰ã®æ•°
 
-	ASYNCLOADDATA_COMMON	*Data[ ASYNCLOADDATA_MAXNUM ] ;					// ”ñ“¯Šú“Ç‚İ‚İƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^”z—ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	int						DataNum ;										// ”ñ“¯Šú“Ç‚İ‚İƒf[ƒ^‚Ì”
-	int						DataArea ;										// ”ñ“¯Šú“Ç‚İ‚İƒf[ƒ^‚ª‚ ‚é”ÍˆÍ
+	ASYNCLOADDATA_COMMON	*Data[ ASYNCLOADDATA_MAXNUM ] ;					// éåŒæœŸèª­ã¿è¾¼ã¿ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿é…åˆ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	int						DataNum ;										// éåŒæœŸèª­ã¿è¾¼ã¿ãƒ‡ãƒ¼ã‚¿ã®æ•°
+	int						DataArea ;										// éåŒæœŸèª­ã¿è¾¼ã¿ãƒ‡ãƒ¼ã‚¿ãŒã‚ã‚‹ç¯„å›²
 
-	volatile int			MainThread_RunDataIndex_Enable ;				// ƒƒCƒ“ƒXƒŒƒbƒh‚©‚çÀs‚ğw’è‚³‚ê‚½”ñ“¯Šú“Ç‚İ‚İƒf[ƒ^‚ÌƒCƒ“ƒfƒbƒNƒX‚ª—LŒø‚©‚Ç‚¤‚©
-	volatile int			MainThread_RunDataIndex ;						// ƒƒCƒ“ƒXƒŒƒbƒh‚©‚çÀs‚ğw’è‚³‚ê‚½”ñ“¯Šú“Ç‚İ‚İƒf[ƒ^‚ÌƒCƒ“ƒfƒbƒNƒX
+	volatile int			MainThread_RunDataIndex_Enable ;				// ãƒ¡ã‚¤ãƒ³ã‚¹ãƒ¬ãƒƒãƒ‰ã‹ã‚‰å®Ÿè¡Œã‚’æŒ‡å®šã•ã‚ŒãŸéåŒæœŸèª­ã¿è¾¼ã¿ãƒ‡ãƒ¼ã‚¿ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãŒæœ‰åŠ¹ã‹ã©ã†ã‹
+	volatile int			MainThread_RunDataIndex ;						// ãƒ¡ã‚¤ãƒ³ã‚¹ãƒ¬ãƒƒãƒ‰ã‹ã‚‰å®Ÿè¡Œã‚’æŒ‡å®šã•ã‚ŒãŸéåŒæœŸèª­ã¿è¾¼ã¿ãƒ‡ãƒ¼ã‚¿ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 } ;
 
-// “à•”‘åˆæ•Ï”éŒ¾ --------------------------------------------------------------
+// å†…éƒ¨å¤§åŸŸå¤‰æ•°å®£è¨€ --------------------------------------------------------------
 
-// ”ñ“¯Šú“Ç‚İ‚İˆ—‚ªg—p‚·‚éƒOƒ[ƒoƒ‹ƒf[ƒ^
+// éåŒæœŸèª­ã¿è¾¼ã¿å‡¦ç†ãŒä½¿ç”¨ã™ã‚‹ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
 extern ASYNCLOADDATA GASyncLoadData ;
 
-// ŠÖ”ƒvƒƒgƒ^ƒCƒvéŒ¾-----------------------------------------------------------
+// é–¢æ•°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€-----------------------------------------------------------
 
-// ”ñ“¯Šú“Ç‚İ‚İˆ—‚Ì‰Šú‰»‚ÆŒãn––
-extern	int		InitializeASyncLoad( DWORD_PTR MainThreadID ) ;										// ”ñ“¯Šú“Ç‚İ‚İˆ—‚Ì‰Šú‰»
-extern	int		SetupASyncLoadThread( int ProcessorNum ) ;											// ”ñ“¯Šú“Ç‚İ‚İˆ—‚ğs‚¤ƒXƒŒƒbƒh‚ğ—§‚Ä‚é
-extern	int		CloseASyncLoadThread( void ) ;														// ”ñ“¯Šú“Ç‚İ‚İˆ—‚ÌƒXƒŒƒbƒh‚ğ•Â‚¶‚é
-extern	int		TerminateASyncLoad( void ) ;														// ”ñ“¯Šú“Ç‚İ‚İˆ—‚ÌŒãn––
+// éåŒæœŸèª­ã¿è¾¼ã¿å‡¦ç†ã®åˆæœŸåŒ–ã¨å¾Œå§‹æœ«
+extern	int		InitializeASyncLoad( DWORD_PTR MainThreadID ) ;										// éåŒæœŸèª­ã¿è¾¼ã¿å‡¦ç†ã®åˆæœŸåŒ–
+extern	int		SetupASyncLoadThread( int ProcessorNum ) ;											// éåŒæœŸèª­ã¿è¾¼ã¿å‡¦ç†ã‚’è¡Œã†ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’ç«‹ã¦ã‚‹
+extern	int		CloseASyncLoadThread( void ) ;														// éåŒæœŸèª­ã¿è¾¼ã¿å‡¦ç†ã®ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’é–‰ã˜ã‚‹
+extern	int		TerminateASyncLoad( void ) ;														// éåŒæœŸèª­ã¿è¾¼ã¿å‡¦ç†ã®å¾Œå§‹æœ«
 
 
-// ”ñ“¯Šú“Ç‚İ‚İŠÖŒW
-extern	ASYNCLOADDATA_COMMON *AllocASyncLoadDataMemory( int AddAllocSize ) ;						// ”ñ“¯Šú“Ç‚İ‚İƒf[ƒ^‚ğŠi”[‚·‚éƒƒ‚ƒŠ—Ìˆæ‚ğŠm•Û‚·‚é
-extern	void		AddASyncLoadParamStruct( BYTE *Data, int *Addr, const void *Param, int Size ) ;	// ”ñ“¯Šú“Ç‚İ‚İƒf[ƒ^‚Ìƒpƒ‰ƒ[ƒ^‚É\‘¢‘Ìƒpƒ‰ƒ[ƒ^‚ğ’Ç‰Á
-extern	void		AddASyncLoadParamConstVoidP( BYTE *Data, int *Addr, const void *Param ) ;		// ”ñ“¯Šú“Ç‚İ‚İƒf[ƒ^‚Ìƒpƒ‰ƒ[ƒ^‚É void Œ^ƒ|ƒCƒ“ƒ^‚Ìƒpƒ‰ƒ[ƒ^‚ğ’Ç‰Á
-extern	void		AddASyncLoadParamDWORD_PTR( BYTE *Data, int *Addr, DWORD_PTR Param ) ;			// ”ñ“¯Šú“Ç‚İ‚İƒf[ƒ^‚Ìƒpƒ‰ƒ[ƒ^‚É DWORD_PTR Œ^‚Ìƒpƒ‰ƒ[ƒ^‚ğ’Ç‰Á
-extern	void		AddASyncLoadParamSize_t( BYTE *Data, int *Addr, size_t Param ) ;				// ”ñ“¯Šú“Ç‚İ‚İƒf[ƒ^‚Ìƒpƒ‰ƒ[ƒ^‚É size_t Œ^‚Ìƒpƒ‰ƒ[ƒ^‚ğ’Ç‰Á
-extern	void		AddASyncLoadParamLONGLONG( BYTE *Data, int *Addr, LONGLONG Param ) ;			// ”ñ“¯Šú“Ç‚İ‚İƒf[ƒ^‚Ìƒpƒ‰ƒ[ƒ^‚É LONGLONG Œ^‚Ìƒpƒ‰ƒ[ƒ^‚ğ’Ç‰Á
-extern	void		AddASyncLoadParamInt( BYTE *Data, int *Addr, int Param ) ;						// ”ñ“¯Šú“Ç‚İ‚İƒf[ƒ^‚Ìƒpƒ‰ƒ[ƒ^‚É int Œ^‚Ìƒpƒ‰ƒ[ƒ^‚ğ’Ç‰Á
-extern	void		AddASyncLoadParamByte( BYTE *Data, int *Addr, BYTE Param ) ;					// ”ñ“¯Šú“Ç‚İ‚İƒf[ƒ^‚Ìƒpƒ‰ƒ[ƒ^‚É BYTE Œ^‚Ìƒpƒ‰ƒ[ƒ^‚ğ’Ç‰Á
-extern	void		AddASyncLoadParamFloat( BYTE *Data, int *Addr, float Param ) ;					// ”ñ“¯Šú“Ç‚İ‚İƒf[ƒ^‚Ìƒpƒ‰ƒ[ƒ^‚É float Œ^‚Ìƒpƒ‰ƒ[ƒ^‚ğ’Ç‰Á
-extern	void		AddASyncLoadParamString( BYTE *Data, int *Addr, const wchar_t *Param ) ;		// ”ñ“¯Šú“Ç‚İ‚İƒf[ƒ^‚Ìƒpƒ‰ƒ[ƒ^‚É•¶š—ñƒpƒ‰ƒ[ƒ^‚ğ’Ç‰Á
-extern	void *		GetASyncLoadParamStruct( BYTE *Data, int *Addr ) ;								// ”ñ“¯Šú“Ç‚İ‚İƒf[ƒ^‚Ìƒpƒ‰ƒ[ƒ^‚©‚ç\‘¢‘Ìƒpƒ‰ƒ[ƒ^‚ğæ“¾
-extern	void *		GetASyncLoadParamVoidP( BYTE *Data, int *Addr ) ;								// ”ñ“¯Šú“Ç‚İ‚İƒf[ƒ^‚Ìƒpƒ‰ƒ[ƒ^‚©‚ç void Œ^ƒ|ƒCƒ“ƒ^‚Ìƒpƒ‰ƒ[ƒ^‚ğæ“¾
-extern	DWORD_PTR	GetASyncLoadParamDWORD_PTR( BYTE *Data, int *Addr ) ;							// ”ñ“¯Šú“Ç‚İ‚İƒf[ƒ^‚Ìƒpƒ‰ƒ[ƒ^‚©‚ç DWORD_PTR Œ^‚Ìƒpƒ‰ƒ[ƒ^‚ğæ“¾
-extern	size_t		GetASyncLoadParamSize_t( BYTE *Data, int *Addr ) ;								// ”ñ“¯Šú“Ç‚İ‚İƒf[ƒ^‚Ìƒpƒ‰ƒ[ƒ^‚©‚ç size_t Œ^‚Ìƒpƒ‰ƒ[ƒ^‚ğæ“¾
-extern	LONGLONG	GetASyncLoadParamLONGLONG( BYTE *Data, int *Addr ) ;							// ”ñ“¯Šú“Ç‚İ‚İƒf[ƒ^‚Ìƒpƒ‰ƒ[ƒ^‚©‚ç LONGLONG Œ^‚Ìƒpƒ‰ƒ[ƒ^‚ğæ“¾
-extern	int			GetASyncLoadParamInt( BYTE *Data, int *Addr ) ;									// ”ñ“¯Šú“Ç‚İ‚İƒf[ƒ^‚Ìƒpƒ‰ƒ[ƒ^‚©‚ç int Œ^‚Ìƒpƒ‰ƒ[ƒ^‚ğæ“¾
-extern	BYTE		GetASyncLoadParamByte( BYTE *Data, int *Addr ) ;								// ”ñ“¯Šú“Ç‚İ‚İƒf[ƒ^‚Ìƒpƒ‰ƒ[ƒ^‚©‚ç BYTE Œ^‚Ìƒpƒ‰ƒ[ƒ^‚ğæ“¾
-extern	float		GetASyncLoadParamFloat( BYTE *Data, int *Addr ) ;								// ”ñ“¯Šú“Ç‚İ‚İƒf[ƒ^‚Ìƒpƒ‰ƒ[ƒ^‚©‚ç float Œ^‚Ìƒpƒ‰ƒ[ƒ^‚ğæ“¾
-extern	wchar_t *	GetASyncLoadParamString( BYTE *Data, int *Addr ) ;								// ”ñ“¯Šú“Ç‚İ‚İƒf[ƒ^‚Ìƒpƒ‰ƒ[ƒ^‚©‚ç•¶š—ñƒpƒ‰ƒ[ƒ^‚ğæ“¾
-extern	int			AddASyncLoadData( ASYNCLOADDATA_COMMON *ASyncData ) ;							// ”ñ“¯Šú“Ç‚İ‚İƒf[ƒ^‚ğ’Ç‰Á‚·‚é
-extern	int			DeleteASyncLoadData( int DeleteIndex, int MainThread = FALSE ) ;				// w’è‚Ì”ñ“¯Šú“Ç‚İ‚İƒf[ƒ^‚ğíœ‚·‚é
-extern	int			MainThreadProcessASyncLoadData( int Index ) ;									// w’è‚Ì”ñ“¯Šú“Ç‚İ‚İƒf[ƒ^‚ğƒƒCƒ“ƒXƒŒƒbƒh‚ÅÀs‚·‚éAƒƒCƒ“ƒXƒŒƒbƒh‚Å‚Ì‚İg—p‰Â”\( –ß‚è’l  0:³íI—¹  -1:ƒGƒ‰[ )
-extern	int			ProcessASyncLoad( int ThreadNumber ) ;											// ”ñ“¯Šú“Ç‚İ‚İ‚Ìˆ—‚ğs‚¤
-extern	int			CheckMainThread( void ) ;														// Œ»İ‚ÌƒXƒŒƒbƒh‚ªƒƒCƒ“ƒXƒŒƒbƒh‚©‚Ç‚¤‚©‚ğæ“¾‚·‚é( TRUE:ƒƒCƒ“ƒXƒŒƒbƒh  FALSE:‚»‚êˆÈŠO‚ÌƒXƒŒƒbƒh )
+// éåŒæœŸèª­ã¿è¾¼ã¿é–¢ä¿‚
+extern	ASYNCLOADDATA_COMMON *AllocASyncLoadDataMemory( int AddAllocSize ) ;						// éåŒæœŸèª­ã¿è¾¼ã¿ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹ãƒ¡ãƒ¢ãƒªé ˜åŸŸã‚’ç¢ºä¿ã™ã‚‹
+extern	void		AddASyncLoadParamStruct( BYTE *Data, int *Addr, const void *Param, int Size ) ;	// éåŒæœŸèª­ã¿è¾¼ã¿ãƒ‡ãƒ¼ã‚¿ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã«æ§‹é€ ä½“ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’è¿½åŠ 
+extern	void		AddASyncLoadParamConstVoidP( BYTE *Data, int *Addr, const void *Param ) ;		// éåŒæœŸèª­ã¿è¾¼ã¿ãƒ‡ãƒ¼ã‚¿ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã« void å‹ãƒã‚¤ãƒ³ã‚¿ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’è¿½åŠ 
+extern	void		AddASyncLoadParamDWORD_PTR( BYTE *Data, int *Addr, DWORD_PTR Param ) ;			// éåŒæœŸèª­ã¿è¾¼ã¿ãƒ‡ãƒ¼ã‚¿ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã« DWORD_PTR å‹ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’è¿½åŠ 
+extern	void		AddASyncLoadParamSize_t( BYTE *Data, int *Addr, size_t Param ) ;				// éåŒæœŸèª­ã¿è¾¼ã¿ãƒ‡ãƒ¼ã‚¿ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã« size_t å‹ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’è¿½åŠ 
+extern	void		AddASyncLoadParamLONGLONG( BYTE *Data, int *Addr, LONGLONG Param ) ;			// éåŒæœŸèª­ã¿è¾¼ã¿ãƒ‡ãƒ¼ã‚¿ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã« LONGLONG å‹ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’è¿½åŠ 
+extern	void		AddASyncLoadParamInt( BYTE *Data, int *Addr, int Param ) ;						// éåŒæœŸèª­ã¿è¾¼ã¿ãƒ‡ãƒ¼ã‚¿ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã« int å‹ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’è¿½åŠ 
+extern	void		AddASyncLoadParamByte( BYTE *Data, int *Addr, BYTE Param ) ;					// éåŒæœŸèª­ã¿è¾¼ã¿ãƒ‡ãƒ¼ã‚¿ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã« BYTE å‹ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’è¿½åŠ 
+extern	void		AddASyncLoadParamFloat( BYTE *Data, int *Addr, float Param ) ;					// éåŒæœŸèª­ã¿è¾¼ã¿ãƒ‡ãƒ¼ã‚¿ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã« float å‹ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’è¿½åŠ 
+extern	void		AddASyncLoadParamString( BYTE *Data, int *Addr, const wchar_t *Param ) ;		// éåŒæœŸèª­ã¿è¾¼ã¿ãƒ‡ãƒ¼ã‚¿ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã«æ–‡å­—åˆ—ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’è¿½åŠ 
+extern	void *		GetASyncLoadParamStruct( BYTE *Data, int *Addr ) ;								// éåŒæœŸèª­ã¿è¾¼ã¿ãƒ‡ãƒ¼ã‚¿ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‹ã‚‰æ§‹é€ ä½“ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’å–å¾—
+extern	void *		GetASyncLoadParamVoidP( BYTE *Data, int *Addr ) ;								// éåŒæœŸèª­ã¿è¾¼ã¿ãƒ‡ãƒ¼ã‚¿ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‹ã‚‰ void å‹ãƒã‚¤ãƒ³ã‚¿ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’å–å¾—
+extern	DWORD_PTR	GetASyncLoadParamDWORD_PTR( BYTE *Data, int *Addr ) ;							// éåŒæœŸèª­ã¿è¾¼ã¿ãƒ‡ãƒ¼ã‚¿ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‹ã‚‰ DWORD_PTR å‹ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’å–å¾—
+extern	size_t		GetASyncLoadParamSize_t( BYTE *Data, int *Addr ) ;								// éåŒæœŸèª­ã¿è¾¼ã¿ãƒ‡ãƒ¼ã‚¿ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‹ã‚‰ size_t å‹ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’å–å¾—
+extern	LONGLONG	GetASyncLoadParamLONGLONG( BYTE *Data, int *Addr ) ;							// éåŒæœŸèª­ã¿è¾¼ã¿ãƒ‡ãƒ¼ã‚¿ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‹ã‚‰ LONGLONG å‹ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’å–å¾—
+extern	int			GetASyncLoadParamInt( BYTE *Data, int *Addr ) ;									// éåŒæœŸèª­ã¿è¾¼ã¿ãƒ‡ãƒ¼ã‚¿ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‹ã‚‰ int å‹ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’å–å¾—
+extern	BYTE		GetASyncLoadParamByte( BYTE *Data, int *Addr ) ;								// éåŒæœŸèª­ã¿è¾¼ã¿ãƒ‡ãƒ¼ã‚¿ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‹ã‚‰ BYTE å‹ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’å–å¾—
+extern	float		GetASyncLoadParamFloat( BYTE *Data, int *Addr ) ;								// éåŒæœŸèª­ã¿è¾¼ã¿ãƒ‡ãƒ¼ã‚¿ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‹ã‚‰ float å‹ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’å–å¾—
+extern	wchar_t *	GetASyncLoadParamString( BYTE *Data, int *Addr ) ;								// éåŒæœŸèª­ã¿è¾¼ã¿ãƒ‡ãƒ¼ã‚¿ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‹ã‚‰æ–‡å­—åˆ—ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’å–å¾—
+extern	int			AddASyncLoadData( ASYNCLOADDATA_COMMON *ASyncData ) ;							// éåŒæœŸèª­ã¿è¾¼ã¿ãƒ‡ãƒ¼ã‚¿ã‚’è¿½åŠ ã™ã‚‹
+extern	int			DeleteASyncLoadData( int DeleteIndex, int MainThread = FALSE ) ;				// æŒ‡å®šã®éåŒæœŸèª­ã¿è¾¼ã¿ãƒ‡ãƒ¼ã‚¿ã‚’å‰Šé™¤ã™ã‚‹
+extern	int			MainThreadProcessASyncLoadData( int Index ) ;									// æŒ‡å®šã®éåŒæœŸèª­ã¿è¾¼ã¿ãƒ‡ãƒ¼ã‚¿ã‚’ãƒ¡ã‚¤ãƒ³ã‚¹ãƒ¬ãƒƒãƒ‰ã§å®Ÿè¡Œã™ã‚‹ã€ãƒ¡ã‚¤ãƒ³ã‚¹ãƒ¬ãƒƒãƒ‰ã§ã®ã¿ä½¿ç”¨å¯èƒ½( æˆ»ã‚Šå€¤  0:æ­£å¸¸çµ‚äº†  -1:ã‚¨ãƒ©ãƒ¼ )
+extern	int			ProcessASyncLoad( int ThreadNumber ) ;											// éåŒæœŸèª­ã¿è¾¼ã¿ã®å‡¦ç†ã‚’è¡Œã†
+extern	int			CheckMainThread( void ) ;														// ç¾åœ¨ã®ã‚¹ãƒ¬ãƒƒãƒ‰ãŒãƒ¡ã‚¤ãƒ³ã‚¹ãƒ¬ãƒƒãƒ‰ã‹ã©ã†ã‹ã‚’å–å¾—ã™ã‚‹( TRUE:ãƒ¡ã‚¤ãƒ³ã‚¹ãƒ¬ãƒƒãƒ‰  FALSE:ãã‚Œä»¥å¤–ã®ã‚¹ãƒ¬ãƒƒãƒ‰ )
 
-extern	int			ResumeASyncLoadThread( int AddMaxThreadNum = 0 ) ;								// Q‚Ä‚¢‚éƒXƒŒƒbƒh‚ğˆê‚Â‹N‚±‚·
+extern	int			ResumeASyncLoadThread( int AddMaxThreadNum = 0 ) ;								// å¯ã¦ã„ã‚‹ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’ä¸€ã¤èµ·ã“ã™
 
-extern	int			ProcessASyncLoadRequestMainThread( void ) ;										// ”ñ“¯Šú“Ç‚İ‚İƒXƒŒƒbƒh‚©‚çƒƒCƒ“ƒXƒŒƒbƒh‚Ö‚Ìˆ—ˆË—Š‚ğˆ—‚·‚é
+extern	int			ProcessASyncLoadRequestMainThread( void ) ;										// éåŒæœŸèª­ã¿è¾¼ã¿ã‚¹ãƒ¬ãƒƒãƒ‰ã‹ã‚‰ãƒ¡ã‚¤ãƒ³ã‚¹ãƒ¬ãƒƒãƒ‰ã¸ã®å‡¦ç†ä¾é ¼ã‚’å‡¦ç†ã™ã‚‹
 
-extern	int			AddASyncLoadRequestMainThreadInfo( ASYNCLOAD_MAINTHREAD_REQUESTINFO *Info ) ;	// ƒƒCƒ“ƒXƒŒƒbƒh‚Åˆ—‚µ‚Ä‚Ù‚µ‚¢ƒf[ƒ^‚Ìî•ñ‚ğ’Ç‰Á‚·‚é
+extern	int			AddASyncLoadRequestMainThreadInfo( ASYNCLOAD_MAINTHREAD_REQUESTINFO *Info ) ;	// ãƒ¡ã‚¤ãƒ³ã‚¹ãƒ¬ãƒƒãƒ‰ã§å‡¦ç†ã—ã¦ã»ã—ã„ãƒ‡ãƒ¼ã‚¿ã®æƒ…å ±ã‚’è¿½åŠ ã™ã‚‹
 
 #ifndef DX_NON_NAMESPACE
 

@@ -1,19 +1,19 @@
 // ----------------------------------------------------------------------------
 // 
-// 		‚c‚wƒ‰ƒCƒuƒ‰ƒŠ		•`‰æƒvƒƒOƒ‰ƒ€
+// 		ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒª		æç”»ãƒ—ãƒ­ã‚°ãƒ©ãƒ 
 // 
 // 				Ver 3.25a
 // 
 // ----------------------------------------------------------------------------
 
-// ‚c‚wƒ‰ƒCƒuƒ‰ƒŠì¬—p’è‹`
+// ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªä½œæˆæ™‚ç”¨å®šç¾©
 #define DX_MAKE
 
 #include "DxGraphics.h"
 
 #ifndef DX_NON_GRAPHICS
 
-// ƒCƒ“ƒNƒ‹[ƒh----------------------------------------------------------------
+// ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰----------------------------------------------------------------
 #include "DxLib.h"
 #include "DxStatic.h"
 #include "DxFile.h"
@@ -68,39 +68,39 @@ namespace DxLib
 
 #endif // DX_NON_NAMESPACE
 
-// ƒ}ƒNƒ’è‹` -----------------------------------------------------------------
+// ãƒã‚¯ãƒ­å®šç¾© -----------------------------------------------------------------
 
-// ƒNƒŠƒbƒsƒ“ƒOƒtƒ‰ƒO
-#define CLIP_XP							(0x01)				// X+•ûŒü‚ÉƒNƒŠƒbƒv
-#define CLIP_XM							(0x02)				// X-•ûŒü‚ÉƒNƒŠƒbƒv
-#define CLIP_YP							(0x04)				// Y+•ûŒü‚ÉƒNƒŠƒbƒv
-#define CLIP_YM							(0x08)				// Y-•ûŒü‚ÉƒNƒŠƒbƒv
-#define CLIP_ZP							(0x10)				// Z+•ûŒü‚ÉƒNƒŠƒbƒv
-#define CLIP_ZM							(0x20)				// Z-•ûŒü‚ÉƒNƒŠƒbƒv
+// ã‚¯ãƒªãƒƒãƒ”ãƒ³ã‚°ãƒ•ãƒ©ã‚°
+#define CLIP_XP							(0x01)				// X+æ–¹å‘ã«ã‚¯ãƒªãƒƒãƒ—
+#define CLIP_XM							(0x02)				// X-æ–¹å‘ã«ã‚¯ãƒªãƒƒãƒ—
+#define CLIP_YP							(0x04)				// Y+æ–¹å‘ã«ã‚¯ãƒªãƒƒãƒ—
+#define CLIP_YM							(0x08)				// Y-æ–¹å‘ã«ã‚¯ãƒªãƒƒãƒ—
+#define CLIP_ZP							(0x10)				// Z+æ–¹å‘ã«ã‚¯ãƒªãƒƒãƒ—
+#define CLIP_ZM							(0x20)				// Z-æ–¹å‘ã«ã‚¯ãƒªãƒƒãƒ—
 
-// ƒVƒƒƒhƒEƒ}ƒbƒv‚Ì‰Šú[“x•â³’l
+// ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ã®åˆæœŸæ·±åº¦è£œæ­£å€¤
 #define DEFAULT_SHADOWMAP_ADJUST_DEPTH		( 0.002f )
 #define DEFAULT_SHADOWMAP_GRADATION_RANGE	( 0.0007f )
 #define DEFAULT_SHADOWMAP_BLUR_PARAM		( 0 )
 
-// ƒeƒNƒXƒ`ƒƒƒsƒNƒZƒ‹ƒtƒH[ƒ}ƒbƒg‚ÌƒrƒbƒgƒfƒvƒXƒCƒ“ƒfƒbƒNƒX’è‹`
+// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ”ã‚¯ã‚»ãƒ«ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®ãƒ“ãƒƒãƒˆãƒ‡ãƒ—ã‚¹ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹å®šç¾©
 #define TEX_BITDEPTH_16				(0)
 #define TEX_BITDEPTH_32 			(1)
 #define PIXELBYTE( x )				( x == TEX_BITDEPTH_16 ? 2 : 4 )
 
-// ƒeƒNƒXƒ`ƒƒ[‚Ì•ªŠ„—LŒø‚ÌÅ‘åƒTƒCƒY‚ÆÅ¬ƒTƒCƒY
+// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã®åˆ†å‰²æœ‰åŠ¹æ™‚ã®æœ€å¤§ã‚µã‚¤ã‚ºã¨æœ€å°ã‚µã‚¤ã‚º
 #define MIN_TEXTURE_SIZE			(1)
 
-// ƒAƒ“ƒ`ƒGƒCƒŠƒAƒX•t‚«‚Ìü•`‰æ—p‚ÌƒeƒNƒXƒ`ƒƒ‚ÌƒTƒCƒY
+// ã‚¢ãƒ³ãƒã‚¨ã‚¤ãƒªã‚¢ã‚¹ä»˜ãã®ç·šæç”»ç”¨ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ã‚µã‚¤ã‚º
 #define LINE_TEX_SIZE				(8)
 
-// ƒAƒ“ƒ`ƒGƒCƒŠƒAƒX•t‚«‚Ìü‹éŒ`•`‰æ—p‚ÌƒeƒNƒXƒ`ƒƒ‚ÌƒTƒCƒY
+// ã‚¢ãƒ³ãƒã‚¨ã‚¤ãƒªã‚¢ã‚¹ä»˜ãã®ç·šçŸ©å½¢æç”»ç”¨ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ã‚µã‚¤ã‚º
 #define LINEBOX_TEX_SIZE			(16)
 
-// ‰~‚ğŒ`¬‚·‚éÀ•W‚ÌÅ‘å”
+// å††ã‚’å½¢æˆã™ã‚‹åº§æ¨™ã®æœ€å¤§æ•°
 #define CIRCLE_MAX_POSNUM			(256)
 
-// ‚R‚QƒrƒbƒgFƒJƒ‰[’l‚Ìì¬
+// ï¼“ï¼’ãƒ“ãƒƒãƒˆè‰²ã‚«ãƒ©ãƒ¼å€¤ã®ä½œæˆ
 #define SETUP32BITCOLOR( Color, FColor )		\
 {\
 	int cr, cg, cb ;\
@@ -131,7 +131,7 @@ namespace DxLib
 	}\
 }
 
-// ƒAƒ“ƒ`ƒGƒCƒŠƒAƒX}Œ`•`‰æ‚Ì’èŒ^‘Oˆ—
+// ã‚¢ãƒ³ãƒã‚¨ã‚¤ãƒªã‚¢ã‚¹å›³å½¢æç”»ã®å®šå‹å‰å‡¦ç†
 #define AA_DRAW_BEGIN		\
 	int OldDrawMode = -1 ;\
 	int OldBlendMode = -1 ;\
@@ -167,13 +167,13 @@ namespace DxLib
 		}\
 	}
 
-// ƒAƒ“ƒ`ƒGƒCƒŠƒAƒX}Œ`•`‰æ‚Ì’èŒ^‘Oˆ—‚»‚Ì‚Q
+// ã‚¢ãƒ³ãƒã‚¨ã‚¤ãƒªã‚¢ã‚¹å›³å½¢æç”»ã®å®šå‹å‰å‡¦ç†ãã®ï¼’
 #define AA_DRAW_BEGIN_2		\
 	DWORD FColor ;\
 	SETUP32BITCOLOR( Color, FColor ) ;\
 	Graphics_DrawSetting_SetDrawBrightToOneParam( FColor ) ;
 
-// ƒAƒ“ƒ`ƒGƒCƒŠƒAƒX}Œ`•`‰æ‚Ì’èŒ^Œãˆ—
+// ã‚¢ãƒ³ãƒã‚¨ã‚¤ãƒªã‚¢ã‚¹å›³å½¢æç”»ã®å®šå‹å¾Œå‡¦ç†
 #define AA_DRAW_END		\
 	if( GSYS.DrawSetting.AADrawInfoValid == FALSE )\
 	{\
@@ -188,7 +188,7 @@ namespace DxLib
 	}\
 	Graphics_DrawSetting_SetDrawBrightToOneParam( OrigColor ) ;
 
-// ƒpƒŒƒbƒg‚ª‚ ‚é‰æ‘œ‚Ì—LŒø«ƒ`ƒFƒbƒN
+// ãƒ‘ãƒ¬ãƒƒãƒˆãŒã‚ã‚‹ç”»åƒã®æœ‰åŠ¹æ€§ãƒã‚§ãƒƒã‚¯
 #define PALETTEIMAGECHK( HAND, MEMIMG )														\
 {																							\
 	IMAGEDATA *Image ;																	\
@@ -200,7 +200,7 @@ namespace DxLib
 	if( MEMIMG->Base->UsePalette == 0 ) return -1;											\
 }
 
-// ƒ‰ƒCƒgƒnƒ“ƒhƒ‹‚Ì—LŒø«ƒ`ƒFƒbƒN
+// ãƒ©ã‚¤ãƒˆãƒãƒ³ãƒ‰ãƒ«ã®æœ‰åŠ¹æ€§ãƒã‚§ãƒƒã‚¯
 #define LIGHTCHK( HAND, LPOINT, ERR )										\
 	if( ( ( (HAND) & DX_HANDLEERROR_MASK ) != 0 ) ||											\
 		( ( (HAND) & DX_HANDLETYPE_MASK ) != DX_HANDLETYPE_MASK_LIGHT ) ||							\
@@ -211,7 +211,7 @@ namespace DxLib
 		return (ERR) ;																			\
 	}
 
-// “Ç‚İ‚İ‚Ì“§‰ßF•ÏXˆ—
+// èª­ã¿è¾¼ã¿æ™‚ã®é€éè‰²å¤‰æ›´å‡¦ç†
 #define LUTRANS_START( Img )	\
 	int _TransColor = GSYS.CreateImage.TransColor ; \
 	if( GSYS.CreateImage.LeftUpColorIsTransColorFlag == TRUE )\
@@ -220,7 +220,7 @@ namespace DxLib
 		BASEIM.TransColor = GSYS.CreateImage.TransColor ;\
 	}
 
-// “Ç‚İ‚İ‚Ì“§‰ßF•ÏXˆ—
+// èª­ã¿è¾¼ã¿æ™‚ã®é€éè‰²å¤‰æ›´å‡¦ç†
 #define LUTRANS_GPARAM( GParam, Img )	\
 	if( GParam->LeftUpColorIsTransColorFlag == TRUE ) GParam->InitHandleGParam.TransColor = NS_GetGraphImageFullColorCode( Img, 0, 0 ) & 0xffffff ;
 
@@ -240,7 +240,7 @@ namespace DxLib
 	GSYS.CreateImage.TransColor = _TransColor ;	\
 	BASEIM.TransColor = _TransColor ;
 
-// æZÏ‚İƒAƒ‹ƒtƒ@‚ÌƒuƒŒƒ“ƒhƒ‚[ƒh‚©‚Ç‚¤‚©‚Ìæ“¾
+// ä¹—ç®—æ¸ˆã¿ã‚¢ãƒ«ãƒ•ã‚¡ã®ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã‹ã©ã†ã‹ã®å–å¾—
 #define IS_PMA_DRAWBLENDMODE			\
 	( (	GSYS.DrawSetting.BlendMode == DX_BLENDMODE_PMA_ALPHA	||	\
 		GSYS.DrawSetting.BlendMode == DX_BLENDMODE_PMA_ADD		||	\
@@ -249,9 +249,9 @@ namespace DxLib
 		GSYS.DrawSetting.BlendMode == DX_BLENDMODE_PMA_ALPHA_X4	||	\
 		GSYS.DrawSetting.BlendMode == DX_BLENDMODE_PMA_ADD_X4	) ? TRUE : FALSE )
 
-// \‘¢‘ÌéŒ¾ -----------------------------------------------------------------
+// æ§‹é€ ä½“å®£è¨€ -----------------------------------------------------------------
 
-// ‰æ‘œ“Ç‚İ‚İˆ—‚É•K—v‚È•Ï”‚ğ“Z‚ß‚½‚à‚Ì
+// ç”»åƒèª­ã¿è¾¼ã¿å‡¦ç†ã«å¿…è¦ãªå¤‰æ•°ã‚’çºã‚ãŸã‚‚ã®
 struct CREATEGRAPH_LOADBASEIMAGE_PARAM
 {
 	int						UseTempBaseImage ;
@@ -262,16 +262,16 @@ struct CREATEGRAPH_LOADBASEIMAGE_PARAM
 	BASEIMAGE *				UseAlphaBaseImage ;
 } ;
 
-// ’l‚Ì‘å‚«‚¢À•W’l‚ğg‚Á‚½•`‰æ‚É‚æ‚éŒvZ¸“x‚Ì’á‰º‚ğ—}‚¦‚éˆ—‚Ås‚¤s—ñİ’è‚Å•K—v‚Èî•ñ
+// å€¤ã®å¤§ãã„åº§æ¨™å€¤ã‚’ä½¿ã£ãŸæç”»ã«ã‚ˆã‚‹è¨ˆç®—ç²¾åº¦ã®ä½ä¸‹ã‚’æŠ‘ãˆã‚‹å‡¦ç†ã§è¡Œã†è¡Œåˆ—è¨­å®šã§å¿…è¦ãªæƒ…å ±
 struct LARGE3DPOSITIONSUPPORT_DRAWINFO
 {
 	MATRIX_D				BackupWorldMatrix ;
 	MATRIX_D				BackupViewMatrix ;
 } ;
 
-// ƒf[ƒ^’è‹` -----------------------------------------------------------------
+// ãƒ‡ãƒ¼ã‚¿å®šç¾© -----------------------------------------------------------------
 
-// 8x8 ‚Ì ƒAƒ“ƒ`ƒGƒCƒŠƒAƒX•t‚«‚Ìü•`‰æ—p‚Ì‰æ‘œî•ñ
+// 8x8 ã® ã‚¢ãƒ³ãƒã‚¨ã‚¤ãƒªã‚¢ã‚¹ä»˜ãã®ç·šæç”»ç”¨ã®ç”»åƒæƒ…å ±
 static BYTE LineTexTga8x8TextureImage[ 64 ] = 
 {
 	0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
@@ -284,7 +284,7 @@ static BYTE LineTexTga8x8TextureImage[ 64 ] =
 	0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
 } ;
 
-// 16x16 ‚Ì ƒAƒ“ƒ`ƒGƒCƒŠƒAƒX•t‚«‚Ìü‹éŒ`•`‰æ—p‚Ì‰æ‘œî•ñ
+// 16x16 ã® ã‚¢ãƒ³ãƒã‚¨ã‚¤ãƒªã‚¢ã‚¹ä»˜ãã®ç·šçŸ©å½¢æç”»ç”¨ã®ç”»åƒæƒ…å ±
 static BYTE LineBoxTexTga16x16TextureImage[ 16 * 16 ] = 
 {
 	0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
@@ -305,7 +305,7 @@ static BYTE LineBoxTexTga16x16TextureImage[ 16 * 16 ] =
 	0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
 } ;
 
-// 8x8 ‚Ì ƒAƒ“ƒ`ƒGƒCƒŠƒAƒX•t‚«‚Ìü•`‰æ—p‚Ì‰æ‘œî•ñ
+// 8x8 ã® ã‚¢ãƒ³ãƒã‚¨ã‚¤ãƒªã‚¢ã‚¹ä»˜ãã®ç·šæç”»ç”¨ã®ç”»åƒæƒ…å ±
 static BYTE LineOneThicknessTexTga8x8TextureImage[ 64 ] = 
 {
 	0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
@@ -318,7 +318,7 @@ static BYTE LineOneThicknessTexTga8x8TextureImage[ 64 ] =
 	0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
 } ;
 
-// 16x16 ‚Ì ƒAƒ“ƒ`ƒGƒCƒŠƒAƒX•t‚«‚Ìü‹éŒ`•`‰æ—p‚Ì‰æ‘œî•ñ
+// 16x16 ã® ã‚¢ãƒ³ãƒã‚¨ã‚¤ãƒªã‚¢ã‚¹ä»˜ãã®ç·šçŸ©å½¢æç”»ç”¨ã®ç”»åƒæƒ…å ±
 static BYTE LineBoxOneThicknessTexTga16x16TextureImage[ 16 * 16 ] = 
 {
 	0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
@@ -339,7 +339,7 @@ static BYTE LineBoxOneThicknessTexTga16x16TextureImage[ 16 * 16 ] =
 	0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
 } ;
 
-// 4x4‚Ìƒ‰ƒ“ƒ_ƒ€‚È•ûŒü‚É‰ñ“]‚³‚¹‚é‚½‚ß‚ÌƒmƒCƒYƒeƒNƒXƒ`ƒƒ‰æ‘œî•ñ( floatƒ^ƒCƒv )
+// 4x4ã®ãƒ©ãƒ³ãƒ€ãƒ ãªæ–¹å‘ã«å›è»¢ã•ã›ã‚‹ãŸã‚ã®ãƒã‚¤ã‚ºãƒ†ã‚¯ã‚¹ãƒãƒ£ç”»åƒæƒ…å ±( floatã‚¿ã‚¤ãƒ— )
 static BYTE RandomKernelRotationTextureImage[ 4 * 4 * 4 ] = 
 {
 	0x77,0x8b,0x12,0xbf,
@@ -360,26 +360,16 @@ static BYTE RandomKernelRotationTextureImage[ 4 * 4 * 4 ] =
 	0x53,0x6b,0x3e,0x3f,
 } ;
 
-// •`‰æü‚è‚ÌŠî–{“I‚Èî•ñ
+// æç”»å‘¨ã‚Šã®åŸºæœ¬çš„ãªæƒ…å ±
 GRAPHICSSYSTEMDATA GraphicsSysData ;
 
-// ŠÖ”éŒ¾ -------------------------------------------------------------------
+// é–¢æ•°å®£è¨€ -------------------------------------------------------------------
 
-// ‰æ‘œŠÖŒWŠÖ”
-__inline static int		Graphics_Image_CheckBlendGraphSize( IMAGEDATA *GraphData ) ;		// ƒuƒŒƒ“ƒh‰æ‘œ‚Æ‚Ì‘å‚«‚³ƒ`ƒFƒbƒN
-		 static void	Graphics_Image_DefaultRestoreGraphFunction( void ) ;				// ƒfƒtƒHƒ‹ƒg‚ÌƒOƒ‰ƒtƒBƒbƒN•œ‹ŒŠÖ”
-		 static void	Graphics_Image_CreateGraph_LoadBaseImage(      LOADGRAPH_PARAM *Param, CREATEGRAPH_LOADBASEIMAGE_PARAM *LParam ) ;		// CreateGraph ‚Æ CreateDivGraph ‚Ì‹¤’Ê‚·‚é BASEIMAGE \’z•”•ª‚ğŠÖ”‰»‚µ‚½‚à‚Ì
-		 static void	Graphics_Image_CreateGraph_TerminateBaseImage( LOADGRAPH_PARAM *Param, CREATEGRAPH_LOADBASEIMAGE_PARAM *LParam ) ;		// CreateGraph ‚Æ CreateDivGraph ‚Ì‹¤’Ê‚·‚é BASEIMAGE Œãn––•”•ª‚ğŠÖ”‰»‚µ‚½‚à‚Ì
-
-
-
-
-
-
-
-// ‰æ–ÊŠÖŒWŠÖ”
-static int Graphics_Screen_CheckDisplaySetting( int ScreenSizeX, int ScreenSizeY, int ColorBitDepth ) ;		// w’è‚Ì‰ğ‘œ“x‚ª‘Î‰‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©‚ğ’²‚×‚éŠÖ”
-static void Graphics_Screen_UpdateFlipTime( void ) ;														// ScreenFlipTime‚ÌXV
+// ç”»åƒé–¢ä¿‚é–¢æ•°
+__inline static int		Graphics_Image_CheckBlendGraphSize( IMAGEDATA *GraphData ) ;		// ãƒ–ãƒ¬ãƒ³ãƒ‰ç”»åƒã¨ã®å¤§ãã•ãƒã‚§ãƒƒã‚¯
+		 static void	Graphics_Image_DefaultRestoreGraphFunction( void ) ;				// ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯å¾©æ—§é–¢æ•°
+		 static void	Graphics_Image_CreateGraph_LoadBaseImage(      LOADGRAPH_PARAM *Param, CREATEGRAPH_LOADBASEIMAGE_PARAM *LParam ) ;		// CreateGraph ã¨ CreateDivGraph ã®å…±é€šã™ã‚‹ BASEIMAGE æ§‹ç¯‰éƒ¨åˆ†ã‚’é–¢æ•°åŒ–ã—ãŸã‚‚ã®
+		 static void	Graphics_Image_CreateGraph_TerminateBaseImage( LOADGRAPH_PARAM *Param, CREATEGRAPH_LOADBASEIMAGE_PARAM *LParam ) ;		// CreateGraph ã¨ CreateDivGraph ã®å…±é€šã™ã‚‹ BASEIMAGE å¾Œå§‹æœ«éƒ¨åˆ†ã‚’é–¢æ•°åŒ–ã—ãŸã‚‚ã®
 
 
 
@@ -387,12 +377,22 @@ static void Graphics_Screen_UpdateFlipTime( void ) ;														// ScreenFlipT
 
 
 
-// •`‰æŠÖŒWŠÖ”
-__inline static void	Graphics_Draw_VectorTransformToBillboard( VECTOR *Vector, VECTOR *Position ) ;										// ƒrƒ‹ƒ{[ƒh—p‚Ìs—ñŒvZ
+// ç”»é¢é–¢ä¿‚é–¢æ•°
+static int Graphics_Screen_CheckDisplaySetting( int ScreenSizeX, int ScreenSizeY, int ColorBitDepth ) ;		// æŒ‡å®šã®è§£åƒåº¦ãŒå¯¾å¿œã—ã¦ã„ã‚‹ã‹ã©ã†ã‹ã‚’èª¿ã¹ã‚‹é–¢æ•°
+static void Graphics_Screen_UpdateFlipTime( void ) ;														// ScreenFlipTimeã®æ›´æ–°
+
+
+
+
+
+
+
+// æç”»é–¢ä¿‚é–¢æ•°
+__inline static void	Graphics_Draw_VectorTransformToBillboard( VECTOR *Vector, VECTOR *Position ) ;										// ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ç”¨ã®è¡Œåˆ—è¨ˆç®—
 		 static int		Graphics_Draw_ModiGraphBase( int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4, int GrHandle, int TransFlag, bool SimpleDrawFlag ) ;
 		 static int		Graphics_Draw_ModiGraphFBase( float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4, int GrHandle, int TransFlag, bool SimpleDrawFlag ) ;
-		 static void	Graphics_Draw_BeginLarge3DPositionSupportDraw( LARGE3DPOSITIONSUPPORT_DRAWINFO *DrawInfo, VECTOR_D BasePosition ) ;	// ’l‚Ì‘å‚«‚¢À•W’l‚ğg‚Á‚½•`‰æ‚É‚æ‚éŒvZ¸“x‚Ì’á‰º‚ğ—}‚¦‚éˆ×‚Ìˆ—‚ğs‚¤
-		 static void	Graphics_Draw_EndLarge3DPositionSupportDraw( const LARGE3DPOSITIONSUPPORT_DRAWINFO *DrawInfo ) ;					// ’l‚Ì‘å‚«‚¢À•W’l‚ğg‚Á‚½•`‰æ‚É‚æ‚éŒvZ¸“x‚Ì’á‰º‚ğ—}‚¦‚éˆ×‚Ìˆ—‚Ås‚Á‚½•ÏX‚ğŒ³‚É–ß‚·
+		 static void	Graphics_Draw_BeginLarge3DPositionSupportDraw( LARGE3DPOSITIONSUPPORT_DRAWINFO *DrawInfo, VECTOR_D BasePosition ) ;	// å€¤ã®å¤§ãã„åº§æ¨™å€¤ã‚’ä½¿ã£ãŸæç”»ã«ã‚ˆã‚‹è¨ˆç®—ç²¾åº¦ã®ä½ä¸‹ã‚’æŠ‘ãˆã‚‹ç‚ºã®å‡¦ç†ã‚’è¡Œã†
+		 static void	Graphics_Draw_EndLarge3DPositionSupportDraw( const LARGE3DPOSITIONSUPPORT_DRAWINFO *DrawInfo ) ;					// å€¤ã®å¤§ãã„åº§æ¨™å€¤ã‚’ä½¿ã£ãŸæç”»ã«ã‚ˆã‚‹è¨ˆç®—ç²¾åº¦ã®ä½ä¸‹ã‚’æŠ‘ãˆã‚‹ç‚ºã®å‡¦ç†ã§è¡Œã£ãŸå¤‰æ›´ã‚’å…ƒã«æˆ»ã™
 
 
 
@@ -401,9 +401,9 @@ __inline static void	Graphics_Draw_VectorTransformToBillboard( VECTOR *Vector, V
 
 
 
-// ƒn[ƒhƒEƒFƒAƒAƒNƒZƒ‰ƒŒ[ƒ^g—pƒŒƒ“ƒ_ƒŠƒ“ƒOŠÖŒWŠÖ”
-static int	Graphics_Hardware_DrawChipMap( int Sx, int Sy, int XNum, int YNum, const int *MapData, int MapDataPitch, int ChipTypeNum, const int *ChipGrHandle, int TransFlag ) ;	// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒ^g—p”Å DrawChipMap
-static int	Graphics_Hardware_DrawTile( int x1, int y1, int x2, int y2, int Tx, int Ty, double ExtRate, double Angle, IMAGEDATA *Image, IMAGEDATA *BlendImage, int TransFlag ) ;	// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒ^g—p”Å DrawTile
+// ãƒãƒ¼ãƒ‰ã‚¦ã‚§ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚¿ä½¿ç”¨ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°é–¢ä¿‚é–¢æ•°
+static int	Graphics_Hardware_DrawChipMap( int Sx, int Sy, int XNum, int YNum, const int *MapData, int MapDataPitch, int ChipTypeNum, const int *ChipGrHandle, int TransFlag ) ;	// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚¿ä½¿ç”¨ç‰ˆ DrawChipMap
+static int	Graphics_Hardware_DrawTile( int x1, int y1, int x2, int y2, int Tx, int Ty, double ExtRate, double Angle, IMAGEDATA *Image, IMAGEDATA *BlendImage, int TransFlag ) ;	// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚¿ä½¿ç”¨ç‰ˆ DrawTile
 
 
 
@@ -412,35 +412,35 @@ static int	Graphics_Hardware_DrawTile( int x1, int y1, int x2, int y2, int Tx, i
 
 
 
-// ƒ\ƒtƒgƒEƒGƒAƒŒƒ“ƒ_ƒŠƒ“ƒOŠÖ”
-static int	Graphics_Software_Initialize( void ) ;																										// ƒ\ƒtƒgƒEƒGƒAƒŒƒ“ƒ_ƒŠƒ“ƒO‚Ì‰Šú‰»‚ğs‚¤
-static int	Graphics_Software_Terminate( void ) ;																										// ƒ\ƒtƒgƒEƒGƒAƒŒƒ“ƒ_ƒŠƒ“ƒO‚ÌŒãn––‚ğs‚¤
-static int  Graphics_Software_DrawGraph(            int x,  int y,                                                                  IMAGEDATA *Image, int TransFlag ) ;						// ƒ\ƒtƒgƒEƒGƒAƒŒƒ“ƒ_ƒŠƒ“ƒO”Å DrawGraph
-static int  Graphics_Software_DrawExtendGraph(      int x1, int y1, int x2, int y2,                                                 IMAGEDATA *Image, int TransFlag ) ;						// ƒ\ƒtƒgƒEƒGƒAƒŒƒ“ƒ_ƒŠƒ“ƒO”Å DrawExtendGraph
-static int  Graphics_Software_DrawRotaGraph(        float x, float y, double ExRate, double Angle,                                  IMAGEDATA *Image, int TransFlag, int ReverseXFlag, int ReverseYFlag ) ;		// ƒ\ƒtƒgƒEƒGƒAƒŒƒ“ƒ_ƒŠƒ“ƒO”Å DrawRotaGraph
-static int  Graphics_Software_DrawRotaGraphFast(    float x, float y, float  ExRate, float  Angle,                                  IMAGEDATA *Image, int TransFlag, int ReverseXFlag, int ReverseYFlag ) ;		// ƒ\ƒtƒgƒEƒGƒAƒŒƒ“ƒ_ƒŠƒ“ƒO”Å DrawRotaGraphFast
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°é–¢æ•°
+static int	Graphics_Software_Initialize( void ) ;																										// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã®åˆæœŸåŒ–ã‚’è¡Œã†
+static int	Graphics_Software_Terminate( void ) ;																										// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã®å¾Œå§‹æœ«ã‚’è¡Œã†
+static int  Graphics_Software_DrawGraph(            int x,  int y,                                                                  IMAGEDATA *Image, int TransFlag ) ;						// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ç‰ˆ DrawGraph
+static int  Graphics_Software_DrawExtendGraph(      int x1, int y1, int x2, int y2,                                                 IMAGEDATA *Image, int TransFlag ) ;						// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ç‰ˆ DrawExtendGraph
+static int  Graphics_Software_DrawRotaGraph(        float x, float y, double ExRate, double Angle,                                  IMAGEDATA *Image, int TransFlag, int ReverseXFlag, int ReverseYFlag ) ;		// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ç‰ˆ DrawRotaGraph
+static int  Graphics_Software_DrawRotaGraphFast(    float x, float y, float  ExRate, float  Angle,                                  IMAGEDATA *Image, int TransFlag, int ReverseXFlag, int ReverseYFlag ) ;		// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ç‰ˆ DrawRotaGraphFast
 static int  Graphics_Software_DrawPoly(             DX_POINTDATA *p,                                                                IMAGEDATA *Image, int TransFlag, unsigned int Color ) ;
-static int  Graphics_Software_DrawModiGraph(        int   x1, int   y1, int   x2, int   y2, int   x3, int   y3, int   x4, int   y4, IMAGEDATA *Image, int TransFlag ) ;						// ƒ\ƒtƒgƒEƒGƒAƒŒƒ“ƒ_ƒŠƒ“ƒO”Å DrawModiGraph
-static int  Graphics_Software_DrawModiGraphF(       float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4, IMAGEDATA *Image, int TransFlag ) ;						// ƒ\ƒtƒgƒEƒGƒAƒŒƒ“ƒ_ƒŠƒ“ƒO”Å DrawModiGraphF
-static int  Graphics_Software_DrawChipMap(          int Sx, int Sy, int XNum, int YNum, const int *MapData, int MapDataPitch, int ChipTypeNum, const int *ChipGrHandle, int TransFlag ) ;	// ƒ\ƒtƒgƒEƒGƒAƒŒƒ“ƒ_ƒŠƒ“ƒO”Å DrawChipMap
-static int  Graphics_Software_DrawTile(             int x1, int y1, int x2, int y2, int Tx, int Ty, double ExtRate, double Angle,   IMAGEDATA *Image, int TransFlag ) ;						// ƒ\ƒtƒgƒEƒGƒAƒŒƒ“ƒ_ƒŠƒ“ƒO”Å DrawTile
-static int  Graphics_Software_DrawFillBox(          int x1, int y1, int x2, int y2,                                 unsigned int Color ) ;						// ƒ\ƒtƒgƒEƒGƒAƒŒƒ“ƒ_ƒŠƒ“ƒO”Å DrawFillBox
-static int  Graphics_Software_DrawLineBox(          int x1, int y1, int x2, int y2,                                 unsigned int Color, int Thickness ) ;		// ƒ\ƒtƒgƒEƒGƒAƒŒƒ“ƒ_ƒŠƒ“ƒO”Å DrawLineBox
-static int  Graphics_Software_DrawLine(             int x1, int y1, int x2, int y2,                                 unsigned int Color ) ;						// ƒ\ƒtƒgƒEƒGƒAƒŒƒ“ƒ_ƒŠƒ“ƒO”Å DrawLine
-static int  Graphics_Software_DrawCircle_Thickness( int x, int y, int r,                                            unsigned int Color, int Thickness ) ;		// ƒ\ƒtƒgƒEƒGƒAƒŒƒ“ƒ_ƒŠƒ“ƒO”Å DrawCircle( ‘¾‚³w’è‚ ‚è )
-static int  Graphics_Software_DrawOval_Thickness(   int x, int y, int rx, int ry,                                   unsigned int Color, int Thickness ) ;		// ƒ\ƒtƒgƒEƒGƒAƒŒƒ“ƒ_ƒŠƒ“ƒO”Å DrawOval( ‘¾‚³w’è‚ ‚è )
-static int  Graphics_Software_DrawCircle(           int x, int y, int r,                                            unsigned int Color, int FillFlag, int Rx_One_Minus = FALSE, int Ry_One_Minus = FALSE ) ;		// ƒ\ƒtƒgƒEƒGƒAƒŒƒ“ƒ_ƒŠƒ“ƒO”Å DrawCircle
-static int  Graphics_Software_DrawOval(             int x, int y, int rx, int ry,                                   unsigned int Color, int FillFlag, int Rx_One_Minus = FALSE, int Ry_One_Minus = FALSE ) ;		// ƒ\ƒtƒgƒEƒGƒAƒŒƒ“ƒ_ƒŠƒ“ƒO”Å DrawOval
-static int  Graphics_Software_DrawTriangle(         int x1, int y1, int x2, int y2, int x3, int y3,                 unsigned int Color, int FillFlag ) ;		// ƒ\ƒtƒgƒEƒGƒAƒŒƒ“ƒ_ƒŠƒ“ƒO”Å DrawTriangle
-static int  Graphics_Software_DrawQuadrangle(       int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4, unsigned int Color, int FillFlag ) ;		// ƒ\ƒtƒgƒEƒGƒAƒŒƒ“ƒ_ƒŠƒ“ƒO”Å DrawQuadrangle
-static int  Graphics_Software_DrawPixel(            int x, int y,                                                   unsigned int Color ) ;						// ƒ\ƒtƒgƒEƒGƒAƒŒƒ“ƒ_ƒŠƒ“ƒO”Å DrawPixel
-static int  Graphics_Software_DrawPixelSet(         const POINTDATA *PointData, int Num ) ;																// ƒ\ƒtƒgƒEƒGƒAƒŒƒ“ƒ_ƒŠƒ“ƒO”Å DrawPixelSet
-static int  Graphics_Software_DrawLineSet(          const LINEDATA  *LineData,  int Num ) ;																// ƒ\ƒtƒgƒEƒGƒAƒŒƒ“ƒ_ƒŠƒ“ƒO”Å DrawLineSet
-static int  Graphics_Software_DrawBoxSet(           const RECTDATA  *RectData,  int Num ) ;																// ƒ\ƒtƒgƒEƒGƒAƒŒƒ“ƒ_ƒŠƒ“ƒO”Å DrawBoxSet
+static int  Graphics_Software_DrawModiGraph(        int   x1, int   y1, int   x2, int   y2, int   x3, int   y3, int   x4, int   y4, IMAGEDATA *Image, int TransFlag ) ;						// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ç‰ˆ DrawModiGraph
+static int  Graphics_Software_DrawModiGraphF(       float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4, IMAGEDATA *Image, int TransFlag ) ;						// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ç‰ˆ DrawModiGraphF
+static int  Graphics_Software_DrawChipMap(          int Sx, int Sy, int XNum, int YNum, const int *MapData, int MapDataPitch, int ChipTypeNum, const int *ChipGrHandle, int TransFlag ) ;	// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ç‰ˆ DrawChipMap
+static int  Graphics_Software_DrawTile(             int x1, int y1, int x2, int y2, int Tx, int Ty, double ExtRate, double Angle,   IMAGEDATA *Image, int TransFlag ) ;						// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ç‰ˆ DrawTile
+static int  Graphics_Software_DrawFillBox(          int x1, int y1, int x2, int y2,                                 unsigned int Color ) ;						// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ç‰ˆ DrawFillBox
+static int  Graphics_Software_DrawLineBox(          int x1, int y1, int x2, int y2,                                 unsigned int Color, int Thickness ) ;		// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ç‰ˆ DrawLineBox
+static int  Graphics_Software_DrawLine(             int x1, int y1, int x2, int y2,                                 unsigned int Color ) ;						// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ç‰ˆ DrawLine
+static int  Graphics_Software_DrawCircle_Thickness( int x, int y, int r,                                            unsigned int Color, int Thickness ) ;		// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ç‰ˆ DrawCircle( å¤ªã•æŒ‡å®šã‚ã‚Š )
+static int  Graphics_Software_DrawOval_Thickness(   int x, int y, int rx, int ry,                                   unsigned int Color, int Thickness ) ;		// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ç‰ˆ DrawOval( å¤ªã•æŒ‡å®šã‚ã‚Š )
+static int  Graphics_Software_DrawCircle(           int x, int y, int r,                                            unsigned int Color, int FillFlag, int Rx_One_Minus = FALSE, int Ry_One_Minus = FALSE ) ;		// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ç‰ˆ DrawCircle
+static int  Graphics_Software_DrawOval(             int x, int y, int rx, int ry,                                   unsigned int Color, int FillFlag, int Rx_One_Minus = FALSE, int Ry_One_Minus = FALSE ) ;		// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ç‰ˆ DrawOval
+static int  Graphics_Software_DrawTriangle(         int x1, int y1, int x2, int y2, int x3, int y3,                 unsigned int Color, int FillFlag ) ;		// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ç‰ˆ DrawTriangle
+static int  Graphics_Software_DrawQuadrangle(       int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4, unsigned int Color, int FillFlag ) ;		// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ç‰ˆ DrawQuadrangle
+static int  Graphics_Software_DrawPixel(            int x, int y,                                                   unsigned int Color ) ;						// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ç‰ˆ DrawPixel
+static int  Graphics_Software_DrawPixelSet(         const POINTDATA *PointData, int Num ) ;																// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ç‰ˆ DrawPixelSet
+static int  Graphics_Software_DrawLineSet(          const LINEDATA  *LineData,  int Num ) ;																// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ç‰ˆ DrawLineSet
+static int  Graphics_Software_DrawBoxSet(           const RECTDATA  *RectData,  int Num ) ;																// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ç‰ˆ DrawBoxSet
 
 
 
-__inline	static DWORD GetDiffuseColor( void )															// Œ»İ‚ÌƒfƒBƒtƒ…[ƒYƒJƒ‰[‚ğ“¾‚é
+__inline	static DWORD GetDiffuseColor( void )															// ç¾åœ¨ã®ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚«ãƒ©ãƒ¼ã‚’å¾—ã‚‹
 			{
 				return  ( ( DWORD )GSYS.DrawSetting.DrawBright.Red   << 16 ) |
 						( ( DWORD )GSYS.DrawSetting.DrawBright.Green << 8  ) |
@@ -448,32 +448,32 @@ __inline	static DWORD GetDiffuseColor( void )															// Œ»İ‚ÌƒfƒBƒtƒ…[ƒ
 						( ( ( GSYS.DrawSetting.BlendMode != DX_BLENDMODE_NOBLEND || GSYS.DrawSetting.UseNoBlendModeParam ) ? ( DWORD )GSYS.DrawSetting.BlendParam : 255 ) << 24 ) ;
 			}
 
-// ƒvƒƒOƒ‰ƒ€ -----------------------------------------------------------------
+// ãƒ—ãƒ­ã‚°ãƒ©ãƒ  -----------------------------------------------------------------
 
-// ‰æ‘œŠÖŒWŠÖ”
+// ç”»åƒé–¢ä¿‚é–¢æ•°
 
-// ƒuƒŒƒ“ƒh‰æ‘œ‚Æ‚Ì‘å‚«‚³ƒ`ƒFƒbƒN
+// ãƒ–ãƒ¬ãƒ³ãƒ‰ç”»åƒã¨ã®å¤§ãã•ãƒã‚§ãƒƒã‚¯
 __inline static int Graphics_Image_CheckBlendGraphSize( IMAGEDATA *GraphData )
 {
 	IMAGEDATA *BlendData ;
 
-	// ƒn[ƒhƒEƒGƒA‚ğg—p‚·‚éê‡‚Í‘å‚«‚³‚Ì§ŒÀ–³‚µ
+	// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚’ä½¿ç”¨ã™ã‚‹å ´åˆã¯å¤§ãã•ã®åˆ¶é™ç„¡ã—
 	if( GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )
 		return 0 ;
 
-	// ƒ\ƒtƒgƒEƒGƒA‚Ìê‡‚ÍƒuƒŒƒ“ƒh‰æ‘œÀ•Wƒ‚[ƒh‚Í DX_BLENDGRAPH_POSMODE_DRAWGRAPH ‚Ì‚İ‘Î‰
+	// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã®å ´åˆã¯ãƒ–ãƒ¬ãƒ³ãƒ‰ç”»åƒåº§æ¨™ãƒ¢ãƒ¼ãƒ‰ã¯ DX_BLENDGRAPH_POSMODE_DRAWGRAPH ã®ã¿å¯¾å¿œ
 	if( GSYS.DrawSetting.BlendGraphPosMode != DX_BLENDGRAPH_POSMODE_DRAWGRAPH )
 		return -1 ;
 
 	if( GRAPHCHK( GSYS.DrawSetting.BlendGraph, BlendData ) )
 		return -1 ;
 
-	// ƒuƒŒƒ“ƒh‰æ‘œ‚æ‚è‚à‘å‚«‚©‚Á‚½‚çƒAƒEƒg
+	// ãƒ–ãƒ¬ãƒ³ãƒ‰ç”»åƒã‚ˆã‚Šã‚‚å¤§ãã‹ã£ãŸã‚‰ã‚¢ã‚¦ãƒˆ
 	return ( ( BlendData->WidthI  - GraphData->WidthI  ) |
 		     ( BlendData->HeightI - GraphData->HeightI ) ) & 0x80000000 ? -1 : 0 ;
 }
 
-// ƒfƒtƒHƒ‹ƒg‚ÌƒOƒ‰ƒtƒBƒbƒN•œ‹ŒŠÖ”
+// ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯å¾©æ—§é–¢æ•°
 static void Graphics_Image_DefaultRestoreGraphFunction( void )
 {
 	IMAGEDATA *Image ;
@@ -497,9 +497,9 @@ static void Graphics_Image_DefaultRestoreGraphFunction( void )
 	_MEMSET( &FileRgbImage, 0, sizeof( FileRgbImage ) ) ;
 	_MEMSET( &MemRgbImage, 0, sizeof( MemRgbImage ) ) ;
 
-	DXST_LOGFILE_ADDUTF16LE( "\xb0\x30\xe9\x30\xd5\x30\xa3\x30\xc3\x30\xaf\x30\x92\x30\xa9\x5f\x30\x5e\x57\x30\x7e\x30\x59\x30\x0a\x00\x00"/*@ L"ƒOƒ‰ƒtƒBƒbƒN‚ğ•œ‹A‚µ‚Ü‚·\n" @*/ ) ;
+	DXST_LOGFILE_ADDUTF16LE( "\xb0\x30\xe9\x30\xd5\x30\xa3\x30\xc3\x30\xaf\x30\x92\x30\xa9\x5f\x30\x5e\x57\x30\x7e\x30\x59\x30\x0a\x00\x00"/*@ L"ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚’å¾©å¸°ã—ã¾ã™\n" @*/ ) ;
 
-	// ‚·‚×‚Ä‚ÌƒOƒ‰ƒtƒBƒbƒN‚ğŒŸØ
+	// ã™ã¹ã¦ã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚’æ¤œè¨¼
 	ImageDataArea  = HandleManageArray[ DX_HANDLETYPE_GRAPH ].AreaMax ;
 	FileBackImage  = NULL ;
 	FileRgbLoad    = FALSE ;
@@ -509,7 +509,7 @@ static void Graphics_Image_DefaultRestoreGraphFunction( void )
 	MemAlphaLoad   = FALSE ;
 	if( HandleManageArray[ DX_HANDLETYPE_GRAPH ].InitializeFlag )
 	{
-		// •œ‹Aƒtƒ‰ƒO‚ğ“|‚·
+		// å¾©å¸°ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 		for( i = HandleManageArray[ DX_HANDLETYPE_GRAPH ].AreaMin ; i <= ImageDataArea ; i ++ )
 		{
 			Image = ( IMAGEDATA * )HandleManageArray[ DX_HANDLETYPE_GRAPH ].Handle[ i ] ;
@@ -523,13 +523,13 @@ static void Graphics_Image_DefaultRestoreGraphFunction( void )
 			Image = ( IMAGEDATA * )HandleManageArray[ DX_HANDLETYPE_GRAPH ].Handle[ i ] ;
 			if( Image == NULL || Image->ReadBase == NULL ) continue ;
 
-			// Šù‚É•œ‹A‚µ‚Ä‚¢‚½‚ç‰½‚à‚¹‚¸‚ÉŸ‚Ö
+			// æ—¢ã«å¾©å¸°ã—ã¦ã„ãŸã‚‰ä½•ã‚‚ã›ãšã«æ¬¡ã¸
 			if( Image->Orig->RestoreFlag )
 			{
 				continue ;
 			}
 
-			// ‚c‚w‚sŒnƒtƒH[ƒ}ƒbƒg‚©‚ğ’²‚×‚Ä‚¨‚­
+			// ï¼¤ï¼¸ï¼´ç³»ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã‹ã‚’èª¿ã¹ã¦ãŠã
 			IsDXT = 
 				( Image->Orig->ColorFormat == DX_GRAPHICSIMAGE_FORMAT_3D_DXT1 ||
 				  Image->Orig->ColorFormat == DX_GRAPHICSIMAGE_FORMAT_3D_DXT2 ||
@@ -539,10 +539,10 @@ static void Graphics_Image_DefaultRestoreGraphFunction( void )
 				  Image->Orig->ColorFormat == DX_GRAPHICSIMAGE_FORMAT_3D_BC7_UNORM ||
 				  Image->Orig->ColorFormat == DX_GRAPHICSIMAGE_FORMAT_3D_BC7_UNORM_SRGB ) ? TRUE : FALSE ;
 
-			// ƒtƒ@ƒCƒ‹‚©‚ç“Ç‚İ‚ñ‚¾ê‡‚Íƒtƒ@ƒCƒ‹‚©‚ç‰æ‘œ‚ğ•œŒ³‚·‚é
+			// ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰èª­ã¿è¾¼ã‚“ã å ´åˆã¯ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰ç”»åƒã‚’å¾©å…ƒã™ã‚‹
 			if( Image->ReadBase->FileName )
 			{
-				// ˆê‚Â‘O‚ÌƒOƒ‰ƒtƒBƒbƒN‚ÆƒpƒX‚Æƒtƒ@ƒCƒ‹‚ª“¯‚¶ê‡‚Í“Ç‚İ‚İ‚ğ‚µ‚È‚¢
+				// ä¸€ã¤å‰ã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã¨ãƒ‘ã‚¹ã¨ãƒ•ã‚¡ã‚¤ãƒ«ãŒåŒã˜å ´åˆã¯èª­ã¿è¾¼ã¿ã‚’ã—ãªã„
 				if( FileBackImage == NULL ||
 					FileRgbLoad == FALSE ||
 					FileBackImage->ReadBase->FileName == NULL ||
@@ -550,7 +550,7 @@ static void Graphics_Image_DefaultRestoreGraphFunction( void )
 					Image->ReadBase->ReverseFlag != FileBackImage->ReadBase->ReverseFlag ||
 					Image->ReadBase->ConvertPremultipliedAlpha != FileBackImage->ReadBase->ConvertPremultipliedAlpha )
 				{
-					// BASEIMAGE ‚ÌŒãn––
+					// BASEIMAGE ã®å¾Œå§‹æœ«
 					if( FileRgbLoad == TRUE )
 					{
 						NS_ReleaseGraphImage( &FileRgbImage ) ;
@@ -562,10 +562,10 @@ static void Graphics_Image_DefaultRestoreGraphFunction( void )
 						FileAlphaLoad = FALSE ;
 					}
 
-					// ‰æ‘œ‚ğƒtƒ@ƒCƒ‹‚©‚çƒ[ƒh‚µ‚½ê‡‚Í‰æ‘œ‚ğƒ[ƒh‚·‚é
-		//			DXST_LOGFILEFMT_ADDW(( L"i:%d ƒtƒ‹ƒpƒX:%s ‚ªƒ[ƒh‚Å‚«‚Ü‚¹‚ñ‚Å‚µ‚½", i, Image->FilePath )) ;
-		//			DXST_LOGFILEFMT_ADDW(( L"ƒtƒ@ƒCƒ‹:%s ‚ğƒ[ƒh‚µ‚Ü‚·", Image->FilePath->String )) ;
-		//			DXST_LOGFILEFMT_ADDW(( L"”½“]ƒtƒ‰ƒO:%d  ƒtƒ@ƒCƒ‹:%s ‚ğƒ[ƒh‚µ‚Ü‚·", Image->ReadBase->ReverseFlag, Image->ReadBase->FileName )) ;
+					// ç”»åƒã‚’ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰ãƒ­ãƒ¼ãƒ‰ã—ãŸå ´åˆã¯ç”»åƒã‚’ãƒ­ãƒ¼ãƒ‰ã™ã‚‹
+		//			DXST_LOGFILEFMT_ADDW(( L"i:%d ãƒ•ãƒ«ãƒ‘ã‚¹:%s ãŒãƒ­ãƒ¼ãƒ‰ã§ãã¾ã›ã‚“ã§ã—ãŸ", i, Image->FilePath )) ;
+		//			DXST_LOGFILEFMT_ADDW(( L"ãƒ•ã‚¡ã‚¤ãƒ«:%s ã‚’ãƒ­ãƒ¼ãƒ‰ã—ã¾ã™", Image->FilePath->String )) ;
+		//			DXST_LOGFILEFMT_ADDW(( L"åè»¢ãƒ•ãƒ©ã‚°:%d  ãƒ•ã‚¡ã‚¤ãƒ«:%s ã‚’ãƒ­ãƒ¼ãƒ‰ã—ã¾ã™", Image->ReadBase->ReverseFlag, Image->ReadBase->FileName )) ;
 					InitLoadBaseImageGParam( &LoadBaseImageGParam, FALSE ) ;
 					LoadBaseImageGParam.ConvertPremultipliedAlpha = Image->ReadBase->ConvertPremultipliedAlpha ;
 					LoadHr = CreateGraphImage_plus_Alpha_UseGParam(
@@ -591,10 +591,10 @@ static void Graphics_Image_DefaultRestoreGraphFunction( void )
 					if( LoadHr == 0 ) FileAlphaLoad = TRUE ;
 				}
 
-				// ƒtƒH[ƒ}ƒbƒg‚ª‚c‚w‚sŒn‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+				// ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆãŒï¼¤ï¼¸ï¼´ç³»ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 				if( IsDXT )
 				{
-					// ‚c‚w‚sŒn‚Ìê‡‚Í‰æ‘œ‘S‘Ì‚ğ“]‘—
+					// ï¼¤ï¼¸ï¼´ç³»ã®å ´åˆã¯ç”»åƒå…¨ä½“ã‚’è»¢é€
 					SrcRect.left   = 0 ;
 					SrcRect.top    = 0 ;
 					SrcRect.right  = FileRgbImage.Width ;
@@ -611,12 +611,12 @@ static void Graphics_Image_DefaultRestoreGraphFunction( void )
 						TRUE
 					) ;
 
-					// •œ‹Aƒtƒ‰ƒO‚ğ—§‚Ä‚é
+					// å¾©å¸°ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 					Image->Orig->RestoreFlag = TRUE ;
 				}
 				else
 				{
-					// ƒOƒ‰ƒtƒBƒbƒN‚Ì“]‘—
+					// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®è»¢é€
 			//		DXST_LOGFILEFMT_ADDW(( L"UseFileX:%d UseFileY:%d", Image->UseFileX, Image->UseFileY )) ;
 					Graphics_Image_BltBmpOrGraphImageToGraphBase(
 						&FileRgbImage,
@@ -631,10 +631,10 @@ static void Graphics_Image_DefaultRestoreGraphFunction( void )
 				FileBackImage = Image ;
 			}
 			else
-			// ƒƒ‚ƒŠ‚©‚ç“Ç‚İ‚ñ‚¾ê‡‚Íƒƒ‚ƒŠ‚©‚ç‰æ‘œ‚ğ•œŒ³‚·‚é
+			// ãƒ¡ãƒ¢ãƒªã‹ã‚‰èª­ã¿è¾¼ã‚“ã å ´åˆã¯ãƒ¡ãƒ¢ãƒªã‹ã‚‰ç”»åƒã‚’å¾©å…ƒã™ã‚‹
 			if( Image->ReadBase->MemImage )
 			{
-				// ˆê‚Â‘O‚ÌƒOƒ‰ƒtƒBƒbƒN‚Æƒƒ‚ƒŠƒAƒhƒŒƒX‚ª“¯‚¶ê‡‚Í“Ç‚İ‚İ‚ğ‚µ‚È‚¢
+				// ä¸€ã¤å‰ã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã¨ãƒ¡ãƒ¢ãƒªã‚¢ãƒ‰ãƒ¬ã‚¹ãŒåŒã˜å ´åˆã¯èª­ã¿è¾¼ã¿ã‚’ã—ãªã„
 				if( MemBackImage == NULL ||
 					MemRgbLoad == FALSE ||
 					Image->ReadBase->MemImage != MemBackImage->ReadBase->MemImage ||
@@ -642,7 +642,7 @@ static void Graphics_Image_DefaultRestoreGraphFunction( void )
 					Image->ReadBase->ReverseFlag != MemBackImage->ReadBase->ReverseFlag ||
 					Image->ReadBase->ConvertPremultipliedAlpha != MemBackImage->ReadBase->ConvertPremultipliedAlpha )
 				{
-					// BASEIMAGE ‚ÌŒãn––
+					// BASEIMAGE ã®å¾Œå§‹æœ«
 					if( MemRgbLoad == TRUE )
 					{
 						NS_ReleaseGraphImage( &MemRgbImage ) ;
@@ -654,7 +654,7 @@ static void Graphics_Image_DefaultRestoreGraphFunction( void )
 						MemAlphaLoad = FALSE ;
 					}
 
-					// ‰æ‘œ‚ğƒƒ‚ƒŠ‚©‚çƒ[ƒh‚µ‚½ê‡‚Í‰æ‘œ‚ğƒ[ƒh‚·‚é
+					// ç”»åƒã‚’ãƒ¡ãƒ¢ãƒªã‹ã‚‰ãƒ­ãƒ¼ãƒ‰ã—ãŸå ´åˆã¯ç”»åƒã‚’ãƒ­ãƒ¼ãƒ‰ã™ã‚‹
 					InitLoadBaseImageGParam( &LoadBaseImageGParam, FALSE ) ;
 					LoadBaseImageGParam.ConvertPremultipliedAlpha = Image->ReadBase->ConvertPremultipliedAlpha ;
 					LoadHr = CreateGraphImage_plus_Alpha_UseGParam(
@@ -672,7 +672,7 @@ static void Graphics_Image_DefaultRestoreGraphFunction( void )
 								Image->ReadBase->NotUseTransColor ) ;
 					if( LoadHr == -1 )
 					{
-						DXST_LOGFILEFMT_ADDUTF16LE(( "\xe1\x30\xe2\x30\xea\x30\x4b\x30\x89\x30\x6e\x30\x3b\x75\xcf\x50\xc7\x30\xfc\x30\xbf\x30\x6e\x30\xed\x30\xfc\x30\x4c\x30\x67\x30\x4d\x30\x7e\x30\x5b\x30\x93\x30\x67\x30\x57\x30\x5f\x30\x00"/*@ L"ƒƒ‚ƒŠ‚©‚ç‚Ì‰æ‘œƒf[ƒ^‚Ìƒ[‚ª‚Å‚«‚Ü‚¹‚ñ‚Å‚µ‚½" @*/ )) ;
+						DXST_LOGFILEFMT_ADDUTF16LE(( "\xe1\x30\xe2\x30\xea\x30\x4b\x30\x89\x30\x6e\x30\x3b\x75\xcf\x50\xc7\x30\xfc\x30\xbf\x30\x6e\x30\xed\x30\xfc\x30\x4c\x30\x67\x30\x4d\x30\x7e\x30\x5b\x30\x93\x30\x67\x30\x57\x30\x5f\x30\x00"/*@ L"ãƒ¡ãƒ¢ãƒªã‹ã‚‰ã®ç”»åƒãƒ‡ãƒ¼ã‚¿ã®ãƒ­ãƒ¼ãŒã§ãã¾ã›ã‚“ã§ã—ãŸ" @*/ )) ;
 						goto R2 ;
 					}
 
@@ -680,10 +680,10 @@ static void Graphics_Image_DefaultRestoreGraphFunction( void )
 					if( LoadHr == 0 ) MemAlphaLoad = TRUE ;
 				}
 
-				// ƒtƒH[ƒ}ƒbƒg‚ª‚c‚w‚sŒn‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+				// ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆãŒï¼¤ï¼¸ï¼´ç³»ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 				if( IsDXT )
 				{
-					// ‚c‚w‚sŒn‚Ìê‡‚Í‰æ‘œ‘S‘Ì‚ğ“]‘—
+					// ï¼¤ï¼¸ï¼´ç³»ã®å ´åˆã¯ç”»åƒå…¨ä½“ã‚’è»¢é€
 					SrcRect.left   = 0 ;
 					SrcRect.top    = 0 ;
 					SrcRect.right  = MemRgbImage.Width ;
@@ -700,12 +700,12 @@ static void Graphics_Image_DefaultRestoreGraphFunction( void )
 						TRUE
 					) ;
 
-					// •œ‹Aƒtƒ‰ƒO‚ğ—§‚Ä‚é
+					// å¾©å¸°ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 					Image->Orig->RestoreFlag = TRUE ;
 				}
 				else
 				{
-					// ƒOƒ‰ƒtƒBƒbƒN‚Ì“]‘—
+					// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®è»¢é€
 					Graphics_Image_BltBmpOrGraphImageToGraphBase( 
 						&MemRgbImage,
 						MemAlphaLoad == TRUE ? &MemAlphaImage : NULL,
@@ -719,13 +719,13 @@ static void Graphics_Image_DefaultRestoreGraphFunction( void )
 				MemBackImage = Image ;
 			}
 			else
-			// BaseImage ‚©‚ç“Ç‚İ‚ñ‚¾ê‡‚Í BaseImage ‚©‚ç‰æ‘œ‚ğ•œŒ³‚·‚é
+			// BaseImage ã‹ã‚‰èª­ã¿è¾¼ã‚“ã å ´åˆã¯ BaseImage ã‹ã‚‰ç”»åƒã‚’å¾©å…ƒã™ã‚‹
 			if( Image->ReadBase->BaseImage )
 			{
-				// ƒtƒH[ƒ}ƒbƒg‚ª‚c‚w‚sŒn‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+				// ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆãŒï¼¤ï¼¸ï¼´ç³»ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 				if( IsDXT )
 				{
-					// ‚c‚w‚sŒn‚Ìê‡‚Í‰æ‘œ‘S‘Ì‚ğ“]‘—
+					// ï¼¤ï¼¸ï¼´ç³»ã®å ´åˆã¯ç”»åƒå…¨ä½“ã‚’è»¢é€
 					SrcRect.left   = 0 ;
 					SrcRect.top    = 0 ;
 					SrcRect.right  = Image->ReadBase->BaseImage->Width ;
@@ -742,12 +742,12 @@ static void Graphics_Image_DefaultRestoreGraphFunction( void )
 						TRUE
 					) ;
 
-					// •œ‹Aƒtƒ‰ƒO‚ğ—§‚Ä‚é
+					// å¾©å¸°ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 					Image->Orig->RestoreFlag = TRUE ;
 				}
 				else
 				{
-					// ƒOƒ‰ƒtƒBƒbƒN‚Ì“]‘—
+					// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®è»¢é€
 					Graphics_Image_BltBmpOrGraphImageToGraphBase( 
 						Image->ReadBase->BaseImage,
 						Image->ReadBase->AlphaBaseImage,
@@ -761,7 +761,7 @@ static void Graphics_Image_DefaultRestoreGraphFunction( void )
 		}
 	}
 
-	// GraphImage ‚ÌŒãn––
+	// GraphImage ã®å¾Œå§‹æœ«
 	if( FileRgbLoad == TRUE )
 	{
 		NS_ReleaseGraphImage( &FileRgbImage ) ;
@@ -783,10 +783,10 @@ static void Graphics_Image_DefaultRestoreGraphFunction( void )
 		MemAlphaLoad = FALSE ;
 	}
 
-	DXST_LOGFILE_ADDUTF16LE( "\xb0\x30\xe9\x30\xd5\x30\xa3\x30\xc3\x30\xaf\x30\x6e\x30\xa9\x5f\x30\x5e\x4c\x30\x8c\x5b\x86\x4e\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ƒOƒ‰ƒtƒBƒbƒN‚Ì•œ‹A‚ªŠ®—¹‚µ‚Ü‚µ‚½\n" @*/ ) ;
+	DXST_LOGFILE_ADDUTF16LE( "\xb0\x30\xe9\x30\xd5\x30\xa3\x30\xc3\x30\xaf\x30\x6e\x30\xa9\x5f\x30\x5e\x4c\x30\x8c\x5b\x86\x4e\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®å¾©å¸°ãŒå®Œäº†ã—ã¾ã—ãŸ\n" @*/ ) ;
 }
 
-// CreateGraph ‚Æ CreateDivGraph ‚Ì‹¤’Ê‚·‚é BASEIMAGE \’z•”•ª‚ğŠÖ”‰»‚µ‚½‚à‚Ì
+// CreateGraph ã¨ CreateDivGraph ã®å…±é€šã™ã‚‹ BASEIMAGE æ§‹ç¯‰éƒ¨åˆ†ã‚’é–¢æ•°åŒ–ã—ãŸã‚‚ã®
 static void Graphics_Image_CreateGraph_LoadBaseImage(
 	 LOADGRAPH_PARAM *Param,
 	 CREATEGRAPH_LOADBASEIMAGE_PARAM *LParam
@@ -801,7 +801,7 @@ static void Graphics_Image_CreateGraph_LoadBaseImage(
 
 	if( Param->FileName != NULL )
 	{
-		// ƒtƒ@ƒCƒ‹‚©‚ç“Ç‚İ‚Şê‡
+		// ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰èª­ã¿è¾¼ã‚€å ´åˆ
 		LParam->LoadHr = CreateGraphImage_plus_Alpha_UseGParam(
 					&Param->GParam.LoadBaseImageGParam,
 					Param->FileName,
@@ -826,7 +826,7 @@ static void Graphics_Image_CreateGraph_LoadBaseImage(
 	else
 	if( Param->RgbMemImage != NULL )
 	{
-		// ƒƒ‚ƒŠã‚Ìƒtƒ@ƒCƒ‹ƒCƒ[ƒW‚©‚ç“Ç‚İ‚Şê‡
+		// ãƒ¡ãƒ¢ãƒªä¸Šã®ãƒ•ã‚¡ã‚¤ãƒ«ã‚¤ãƒ¡ãƒ¼ã‚¸ã‹ã‚‰èª­ã¿è¾¼ã‚€å ´åˆ
 		LParam->LoadHr = CreateGraphImage_plus_Alpha_UseGParam(
 					&Param->GParam.LoadBaseImageGParam,
 					NULL,
@@ -855,7 +855,7 @@ static void Graphics_Image_CreateGraph_LoadBaseImage(
 		int RgbCopyHr ;
 		int AlphaCopyHr ;
 
-		// BMP ‚©‚ç“Ç‚İ‚Şê‡
+		// BMP ã‹ã‚‰èª­ã¿è¾¼ã‚€å ´åˆ
 		RgbCopyHr = NS_ConvBitmapToGraphImage( Param->RgbBmpInfo, Param->RgbBmpImage, &LParam->TempRgbBaseImage, TRUE ) ;
 		if( RgbCopyHr == -1 )
 			return ;
@@ -883,7 +883,7 @@ static void Graphics_Image_CreateGraph_LoadBaseImage(
 	else
 	if( Param->RgbBaseImage != NULL )
 	{
-		// Šî–{ƒCƒ[ƒW‚©‚ç“Ç‚İ‚Şê‡
+		// åŸºæœ¬ã‚¤ãƒ¡ãƒ¼ã‚¸ã‹ã‚‰èª­ã¿è¾¼ã‚€å ´åˆ
 		LParam->UseRgbBaseImage   = Param->RgbBaseImage ;
 		LParam->UseAlphaBaseImage = Param->AlphaBaseImage ;
 
@@ -892,7 +892,7 @@ static void Graphics_Image_CreateGraph_LoadBaseImage(
 
 	if( LParam->LoadHr >= 0 )
 	{
-		// ”½“]ƒtƒ‰ƒO‚ª—§‚Á‚Ä‚¢‚½‚çƒCƒ[ƒW‚ğ”½“]‚·‚é
+		// åè»¢ãƒ•ãƒ©ã‚°ãŒç«‹ã£ã¦ã„ãŸã‚‰ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’åè»¢ã™ã‚‹
 		if( Param->ReverseFlag == TRUE )
 		{
 			NS_ReverseGraphImage( LParam->UseRgbBaseImage ) ;
@@ -901,13 +901,13 @@ static void Graphics_Image_CreateGraph_LoadBaseImage(
 	}
 }
 
-// CreateGraph ‚Æ CreateDivGraph ‚Ì‹¤’Ê‚·‚é BASEIMAGE Œãn––•”•ª‚ğŠÖ”‰»‚µ‚½‚à‚Ì
+// CreateGraph ã¨ CreateDivGraph ã®å…±é€šã™ã‚‹ BASEIMAGE å¾Œå§‹æœ«éƒ¨åˆ†ã‚’é–¢æ•°åŒ–ã—ãŸã‚‚ã®
 static void Graphics_Image_CreateGraph_TerminateBaseImage(
 	LOADGRAPH_PARAM *Param,
 	CREATEGRAPH_LOADBASEIMAGE_PARAM *LParam
 )
 {
-	// “Ç‚İ‚ñ‚¾ƒOƒ‰ƒtƒBƒbƒN‚ÌŒãn––‚ğ‚·‚é
+	// èª­ã¿è¾¼ã‚“ã ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®å¾Œå§‹æœ«ã‚’ã™ã‚‹
 	if( LParam->UseTempBaseImage )
 	{
 		NS_ReleaseGraphImage( &LParam->TempRgbBaseImage ) ;
@@ -915,7 +915,7 @@ static void Graphics_Image_CreateGraph_TerminateBaseImage(
 	}
 	else
 	{
-		// ”½“]ƒtƒ‰ƒO‚ª—§‚Á‚Ä‚¢‚½‚çƒCƒ[ƒW‚ğŒ³‚É–ß‚·
+		// åè»¢ãƒ•ãƒ©ã‚°ãŒç«‹ã£ã¦ã„ãŸã‚‰ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’å…ƒã«æˆ»ã™
 		if( Param->ReverseFlag == TRUE )
 		{
 			NS_ReverseGraphImage( LParam->UseRgbBaseImage ) ;
@@ -944,9 +944,9 @@ static void Graphics_Image_CreateGraph_TerminateBaseImage(
 
 
 
-// ‰æ–ÊŠÖŒWŠÖ”
+// ç”»é¢é–¢ä¿‚é–¢æ•°
 
-// w’è‚Ì‰ğ‘œ“x‚ª‘Î‰‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©‚ğ’²‚×‚éŠÖ”
+// æŒ‡å®šã®è§£åƒåº¦ãŒå¯¾å¿œã—ã¦ã„ã‚‹ã‹ã©ã†ã‹ã‚’èª¿ã¹ã‚‹é–¢æ•°
 static int Graphics_Screen_CheckDisplaySetting( int ScreenSizeX, int ScreenSizeY, int ColorBitDepth )
 {
 	int Num, i ;
@@ -989,9 +989,9 @@ static int Graphics_Screen_CheckDisplaySetting( int ScreenSizeX, int ScreenSizeY
 
 
 
-// •`‰æŠÖŒWŠÖ”
+// æç”»é–¢ä¿‚é–¢æ•°
 
-// ƒrƒ‹ƒ{[ƒh—p‚Ìs—ñŒvZ
+// ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ç”¨ã®è¡Œåˆ—è¨ˆç®—
 __inline static void Graphics_Draw_VectorTransformToBillboard( VECTOR *Vector, VECTOR *Position )
 {
 	VECTOR invec = *Vector ;
@@ -1029,10 +1029,10 @@ static int Graphics_Draw_ModiGraphBase( int x1, int y1, int x2, int y2, int x3, 
 	if( /* GSYS.NotDrawFlag || */ GSYS.DrawSetting.NotDrawFlagInSetDrawArea )
 		return 0 ;
 
-	// ƒ\ƒtƒg‚ª”ñƒAƒNƒeƒBƒu‚Ìê‡‚ÍƒAƒNƒeƒBƒu‚É‚È‚é‚Ü‚Å‘Ò‚Â
+	// ã‚½ãƒ•ãƒˆãŒéã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã®å ´åˆã¯ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ãªã‚‹ã¾ã§å¾…ã¤
 	CheckActiveState() ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( GRAPHCHK( GrHandle, Image ) )
 		return -1 ;
 	BlendImage = NULL ;
@@ -1040,7 +1040,7 @@ static int Graphics_Draw_ModiGraphBase( int x1, int y1, int x2, int y2, int x3, 
 	{
 		GRAPHCHK( GSYS.DrawSetting.BlendGraph, BlendImage ) ;
 
-		// ƒuƒŒƒ“ƒhƒeƒNƒXƒ`ƒƒ‚ğg—p‚·‚éê‡A•`‰æ‰æ‘œ‚æ‚è‚à¬‚³‚©‚Á‚½‚çƒGƒ‰[
+		// ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ä½¿ç”¨ã™ã‚‹å ´åˆã€æç”»ç”»åƒã‚ˆã‚Šã‚‚å°ã•ã‹ã£ãŸã‚‰ã‚¨ãƒ©ãƒ¼
 		if( Graphics_Image_CheckBlendGraphSize( Image ) ) return -1 ;
 	}
 
@@ -1049,11 +1049,11 @@ static int Graphics_Draw_ModiGraphBase( int x1, int y1, int x2, int y2, int x3, 
 		UpdateMovie( Image->Orig->MovieHandle, FALSE ) ;
 #endif
 
-	// ‚Q‚cs—ñ‚ğƒn[ƒhƒEƒGƒA‚É”½‰f‚·‚é
+	// ï¼’ï¼¤è¡Œåˆ—ã‚’ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã«åæ˜ ã™ã‚‹
 	if( GSYS.DrawSetting.MatchHardware_2DMatrix == FALSE && GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )
 		Graphics_DrawSetting_ApplyLib2DMatrixToHardware() ;
 
-	// •`‰æ
+	// æç”»
 	DRAW_DEF(
 		Graphics_Hardware_DrawModiGraph_PF( x1, y1, x2, y2, x4, y4, x3, y3, Image, BlendImage, TransFlag, SimpleDrawFlag ),
 		Graphics_Software_DrawModiGraph(    x1, y1, x2, y2, x4, y4, x3, y3, Image,             TransFlag                 ),
@@ -1062,7 +1062,7 @@ static int Graphics_Draw_ModiGraphBase( int x1, int y1, int x2, int y2, int x3, 
 		Image->Orig->FormatDesc.TextureFlag
 	)
 
-	// I—¹
+	// çµ‚äº†
 	return Ret ;
 }
 
@@ -1096,10 +1096,10 @@ static int Graphics_Draw_ModiGraphFBase( float x1, float y1, float x2, float y2,
 	if( /* GSYS.NotDrawFlag || */ GSYS.DrawSetting.NotDrawFlagInSetDrawArea )
 		return 0 ;
 
-	// ƒ\ƒtƒg‚ª”ñƒAƒNƒeƒBƒu‚Ìê‡‚ÍƒAƒNƒeƒBƒu‚É‚È‚é‚Ü‚Å‘Ò‚Â
+	// ã‚½ãƒ•ãƒˆãŒéã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã®å ´åˆã¯ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ãªã‚‹ã¾ã§å¾…ã¤
 	CheckActiveState() ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( GRAPHCHK( GrHandle, Image ) )
 		return -1 ;
 	BlendImage = NULL ;
@@ -1107,7 +1107,7 @@ static int Graphics_Draw_ModiGraphFBase( float x1, float y1, float x2, float y2,
 	{
 		GRAPHCHK( GSYS.DrawSetting.BlendGraph, BlendImage ) ;
 
-		// ƒuƒŒƒ“ƒhƒeƒNƒXƒ`ƒƒ‚ğg—p‚·‚éê‡A•`‰æ‰æ‘œ‚æ‚è‚à¬‚³‚©‚Á‚½‚çƒGƒ‰[
+		// ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ä½¿ç”¨ã™ã‚‹å ´åˆã€æç”»ç”»åƒã‚ˆã‚Šã‚‚å°ã•ã‹ã£ãŸã‚‰ã‚¨ãƒ©ãƒ¼
 		if( Graphics_Image_CheckBlendGraphSize( Image ) ) return -1 ;
 	}
 
@@ -1116,11 +1116,11 @@ static int Graphics_Draw_ModiGraphFBase( float x1, float y1, float x2, float y2,
 		UpdateMovie( Image->Orig->MovieHandle, FALSE ) ;
 #endif
 
-	// ‚Q‚cs—ñ‚ğƒn[ƒhƒEƒGƒA‚É”½‰f‚·‚é
+	// ï¼’ï¼¤è¡Œåˆ—ã‚’ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã«åæ˜ ã™ã‚‹
 	if( GSYS.DrawSetting.MatchHardware_2DMatrix == FALSE && GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )
 		Graphics_DrawSetting_ApplyLib2DMatrixToHardware() ;
 
-	// •`‰æ
+	// æç”»
 	DRAW_DEF(
 		Graphics_Hardware_DrawModiGraphF_PF( x1, y1, x2, y2, x4, y4, x3, y3, Image, BlendImage, TransFlag, SimpleDrawFlag ),
 		Graphics_Software_DrawModiGraphF(    x1, y1, x2, y2, x4, y4, x3, y3, Image,             TransFlag                 ),
@@ -1129,7 +1129,7 @@ static int Graphics_Draw_ModiGraphFBase( float x1, float y1, float x2, float y2,
 		Image->Orig->FormatDesc.TextureFlag
 	)
 
-	// I—¹
+	// çµ‚äº†
 	return Ret ;
 }
 
@@ -1137,7 +1137,7 @@ static int Graphics_Draw_ModiGraphFBase( float x1, float y1, float x2, float y2,
 
 
 
-// ’l‚Ì‘å‚«‚¢À•W’l‚ğg‚Á‚½•`‰æ‚É‚æ‚éŒvZ¸“x‚Ì’á‰º‚ğ—}‚¦‚éˆ×‚Ìˆ—‚ğs‚¤
+// å€¤ã®å¤§ãã„åº§æ¨™å€¤ã‚’ä½¿ã£ãŸæç”»ã«ã‚ˆã‚‹è¨ˆç®—ç²¾åº¦ã®ä½ä¸‹ã‚’æŠ‘ãˆã‚‹ç‚ºã®å‡¦ç†ã‚’è¡Œã†
 static void	Graphics_Draw_BeginLarge3DPositionSupportDraw( LARGE3DPOSITIONSUPPORT_DRAWINFO *DrawInfo, VECTOR_D BasePosition )
 {
 	MATRIX_D TranslateMatrix ;
@@ -1153,7 +1153,7 @@ static void	Graphics_Draw_BeginLarge3DPositionSupportDraw( LARGE3DPOSITIONSUPPOR
 	NS_SetTransformToViewD( &IdentityMatrix ) ;
 }
 
-// ’l‚Ì‘å‚«‚¢À•W’l‚ğg‚Á‚½•`‰æ‚É‚æ‚éŒvZ¸“x‚Ì’á‰º‚ğ—}‚¦‚éˆ×‚Ìˆ—‚Ås‚Á‚½•ÏX‚ğŒ³‚É–ß‚·
+// å€¤ã®å¤§ãã„åº§æ¨™å€¤ã‚’ä½¿ã£ãŸæç”»ã«ã‚ˆã‚‹è¨ˆç®—ç²¾åº¦ã®ä½ä¸‹ã‚’æŠ‘ãˆã‚‹ç‚ºã®å‡¦ç†ã§è¡Œã£ãŸå¤‰æ›´ã‚’å…ƒã«æˆ»ã™
 static void	Graphics_Draw_EndLarge3DPositionSupportDraw( const LARGE3DPOSITIONSUPPORT_DRAWINFO *DrawInfo )
 {
 	NS_SetTransformToWorldD( &DrawInfo->BackupWorldMatrix ) ;
@@ -1181,9 +1181,9 @@ static void	Graphics_Draw_EndLarge3DPositionSupportDraw( const LARGE3DPOSITIONSU
 
 
 
-// ƒn[ƒhƒEƒFƒAƒAƒNƒZƒ‰ƒŒ[ƒ^g—pƒŒƒ“ƒ_ƒŠƒ“ƒOŠÖŒWŠÖ”
+// ãƒãƒ¼ãƒ‰ã‚¦ã‚§ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚¿ä½¿ç”¨ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°é–¢ä¿‚é–¢æ•°
 
-// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒ^g—p”Å DrawChipMap
+// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚¿ä½¿ç”¨ç‰ˆ DrawChipMap
 static int	Graphics_Hardware_DrawChipMap( int Sx, int Sy, int XNum, int YNum, const int *MapData, int MapDataPitch, int /*ChipTypeNum*/, const int *ChipGrHandle, int TransFlag )
 {
 	IMAGEDATA *Image ;
@@ -1195,7 +1195,7 @@ static int	Graphics_Hardware_DrawChipMap( int Sx, int Sy, int XNum, int YNum, co
 
 	if( Graphics_Hardware_CheckValid_PF() == 0 ) return -1 ;
 
-	// •`‰æ‚Ì€”õ
+	// æç”»ã®æº–å‚™
 	if( GRAPHCHK( ChipGrHandle[ 0 ], Image ) )
 		return -1 ;
 	BlendImage = NULL ;
@@ -1209,7 +1209,7 @@ static int	Graphics_Hardware_DrawChipMap( int Sx, int Sy, int XNum, int YNum, co
 	HeightI = Image->HeightI ;
 	HeightF = Image->HeightF ;
 
-	// •’Ê‚É for •¶‚Åƒ‹[ƒv•`‰æ
+	// æ™®é€šã« for æ–‡ã§ãƒ«ãƒ¼ãƒ—æç”»
 	yI = Sy ;
 	yF = ( float )Sy ;
 	MP = MapData ;
@@ -1229,20 +1229,20 @@ static int	Graphics_Hardware_DrawChipMap( int Sx, int Sy, int XNum, int YNum, co
 		MP += MapDataPitch - XNum ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
 /*
-x1,y1,x2,y2@‰æ–Ê’†Aƒ^ƒCƒ‹“\‚è‚µ‚½‚¢—Ìˆæ
-Tx,Ty@@@@•ÏˆÊ@@@@@@@@@@@@Œ³‰æ‘œ’†‚ÌA‚Ç‚±‚ÌÀ•W‚©‚çƒ^ƒCƒ‹“\‚è‚ğŠJn‚·‚é‚©B
-ExtRate@@@‰æ‘œ‚ÌŠg‘å—¦@@@@@@@@‚±‚ê‚ğu1v‚É‚·‚é‚ÆAŒ³‰æ‘œ‚Ì‚Ü‚Ü‚Ì‘å‚«‚³‚Åƒ^ƒCƒ‹“\‚è‚·‚éB
-Angle@@@@‰æ‘œ‚Ì‰ñ“]Šp“x@@@@@@@‚±‚ê‚ğu0v‚É‚·‚é‚ÆA‰ñ“]‚È‚µ‚Åƒ^ƒCƒ‹“\‚è‚·‚éB
-GrHandle@@ ‰æ‘œ‚Ìƒnƒ“ƒhƒ‹
-TransFlag@@“§‰ßƒtƒ‰ƒO
+x1,y1,x2,y2ã€€ç”»é¢ä¸­ã€ã‚¿ã‚¤ãƒ«è²¼ã‚Šã—ãŸã„é ˜åŸŸ
+Tx,Tyã€€ã€€ã€€ã€€å¤‰ä½ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€å…ƒç”»åƒä¸­ã®ã€ã©ã“ã®åº§æ¨™ã‹ã‚‰ã‚¿ã‚¤ãƒ«è²¼ã‚Šã‚’é–‹å§‹ã™ã‚‹ã‹ã€‚
+ExtRateã€€ã€€ã€€ç”»åƒã®æ‹¡å¤§ç‡ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã“ã‚Œã‚’ã€Œ1ã€ã«ã™ã‚‹ã¨ã€å…ƒç”»åƒã®ã¾ã¾ã®å¤§ãã•ã§ã‚¿ã‚¤ãƒ«è²¼ã‚Šã™ã‚‹ã€‚
+Angleã€€ã€€ã€€ã€€ç”»åƒã®å›è»¢è§’åº¦ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã“ã‚Œã‚’ã€Œ0ã€ã«ã™ã‚‹ã¨ã€å›è»¢ãªã—ã§ã‚¿ã‚¤ãƒ«è²¼ã‚Šã™ã‚‹ã€‚
+GrHandleã€€ã€€ ç”»åƒã®ãƒãƒ³ãƒ‰ãƒ«
+TransFlagã€€ã€€é€éãƒ•ãƒ©ã‚°
 */
 
-// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒ^g—p”Å DrawTile
+// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚¿ä½¿ç”¨ç‰ˆ DrawTile
 static int	Graphics_Hardware_DrawTile( int x1, int y1, int x2, int y2, int Tx, int Ty, double ExtRate, double Angle, IMAGEDATA *Image, IMAGEDATA *BlendImage, int TransFlag )
 {
 	double MaxLength ;
@@ -1262,7 +1262,7 @@ static int	Graphics_Hardware_DrawTile( int x1, int y1, int x2, int y2, int Tx, i
 	Tx %= Image->WidthI ;
 	Ty %= Image->HeightI ;
 
-	// i‚Ş’l‚ğŒvZ
+	// é€²ã‚€å€¤ã‚’è¨ˆç®—
 	_SINCOS_PLATFORM( FAngle, &Sin, &Cos ) ;
 	xAddX = Image->WidthI  * Cos * FExtRate ;
 	xAddY = Image->HeightI * Sin * FExtRate ;
@@ -1271,14 +1271,14 @@ static int	Graphics_Hardware_DrawTile( int x1, int y1, int x2, int y2, int Tx, i
 	yAddX = Image->WidthI  * Cos2 * FExtRate ;
 	yAddY = Image->HeightI * Sin2 * FExtRate ;
 
-	// •`‰æ•‚ğ“¾‚é
+	// æç”»å¹…ã‚’å¾—ã‚‹
 	Width = (float)( x2 - x1 ) ;
 	Height = (float)( y2 - y1 ) ;
 
-	// Å‘å’·‚ğ“¾‚é
+	// æœ€å¤§é•·ã‚’å¾—ã‚‹
 	MaxLength = _SQRT( Width * Width + Height * Height ) ;
 
-	// •`‰æŒÂ”‚ğ“¾‚é
+	// æç”»å€‹æ•°ã‚’å¾—ã‚‹
 	{
 		int k ;
 
@@ -1287,19 +1287,19 @@ static int	Graphics_Hardware_DrawTile( int x1, int y1, int x2, int y2, int Tx, i
 		if( Num % 2 == 0 ) Num ++ ;
 	}
 
-	// •`‰æ’†S“_‚ğ“¾‚é
+	// æç”»ä¸­å¿ƒç‚¹ã‚’å¾—ã‚‹
 	CenX = x1 + Width / 2 ;
 	CenY = y1 + Height / 2 ;
 
-	// •`‰æ‰Â”\”ÍˆÍ‚ğ•ÏX‚·‚é
+	// æç”»å¯èƒ½ç¯„å›²ã‚’å¤‰æ›´ã™ã‚‹
 	DrawRect = GSYS.DrawSetting.DrawArea ;
 	NS_SetDrawArea( x1, y1, x2, y2 ) ;
 
-	// ‚Q‚cs—ñ‚ğƒn[ƒhƒEƒGƒA‚É”½‰f‚·‚é
+	// ï¼’ï¼¤è¡Œåˆ—ã‚’ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã«åæ˜ ã™ã‚‹
 	if( GSYS.DrawSetting.MatchHardware_2DMatrix == FALSE && GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )
 		Graphics_DrawSetting_ApplyLib2DMatrixToHardware() ;
 
-	// •`‰æŠJnÀ•W‚ğ“¾‚é
+	// æç”»é–‹å§‹åº§æ¨™ã‚’å¾—ã‚‹
 	BaseX = ( -Tx - ( Num * Image->WidthI  ) / 2 ) * FExtRate ;
 	BaseY = ( -Ty - ( Num * Image->HeightI ) / 2 ) * FExtRate ;
 
@@ -1307,7 +1307,7 @@ static int	Graphics_Hardware_DrawTile( int x1, int y1, int x2, int y2, int Tx, i
 	BaseY = BaseX * Sin + BaseY * Cos + CenY ;
 	BaseX = f + CenX ;
 
-	// •`‰æŠJn
+	// æç”»é–‹å§‹
 	for( i = 0 ; i < Num ; i ++, BaseX += yAddX, BaseY += yAddY )
 	{
 		x = BaseX ;
@@ -1323,10 +1323,10 @@ static int	Graphics_Hardware_DrawTile( int x1, int y1, int x2, int y2, int Tx, i
 		}
 	}
 
-	// •`‰æ‰Â”\”ÍˆÍ‚ğŒ³‚É–ß‚·
+	// æç”»å¯èƒ½ç¯„å›²ã‚’å…ƒã«æˆ»ã™
 	NS_SetDrawArea( DrawRect.left, DrawRect.top, DrawRect.right, DrawRect.bottom ) ;
 
-	// ‚Q‚cs—ñ‚ğƒn[ƒhƒEƒGƒA‚É”½‰f‚·‚é
+	// ï¼’ï¼¤è¡Œåˆ—ã‚’ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã«åæ˜ ã™ã‚‹
 	if( GSYS.DrawSetting.MatchHardware_2DMatrix == FALSE && GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )
 		Graphics_DrawSetting_ApplyLib2DMatrixToHardware() ;
 
@@ -1357,38 +1357,38 @@ static int	Graphics_Hardware_DrawTile( int x1, int y1, int x2, int y2, int Tx, i
 
 
 
-// ƒ\ƒtƒgƒEƒGƒAƒŒƒ“ƒ_ƒŠƒ“ƒOŠÖ”
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°é–¢æ•°
 
-// ƒ\ƒtƒgƒEƒGƒAƒŒƒ“ƒ_ƒŠƒ“ƒO‚Ì‰Šú‰»‚ğs‚¤
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã®åˆæœŸåŒ–ã‚’è¡Œã†
 static int Graphics_Software_Initialize( void )
 {
-	// ƒƒCƒ“‰æ–Ê—p MEMIMG ‚Ìì¬
+	// ãƒ¡ã‚¤ãƒ³ç”»é¢ç”¨ MEMIMG ã®ä½œæˆ
 	if( MakeMemImgScreen(
 		&GSYS.SoftRender.MainBufferMemImg,
 		GSYS.Screen.MainScreenSizeX,
 		GSYS.Screen.MainScreenSizeY,
 		GSYS.Screen.MainScreenColorBitDepth == 16 ? 0 : 1 ) < 0 )
 	{
-		return DXST_LOGFILE_ADDUTF16LE( "\xee\x4e\x3b\x75\x62\x97\x28\x75\x6e\x30\x20\x00\x4d\x00\x45\x00\x4d\x00\x49\x00\x4d\x00\x47\x00\x20\x00\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"‰¼‰æ–Ê—p‚Ì MEMIMG ‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+		return DXST_LOGFILE_ADDUTF16LE( "\xee\x4e\x3b\x75\x62\x97\x28\x75\x6e\x30\x20\x00\x4d\x00\x45\x00\x4d\x00\x49\x00\x4d\x00\x47\x00\x20\x00\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ä»®ç”»é¢ç”¨ã® MEMIMG ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 	}
 
-	// UserScreenImage ‚ª‚ ‚éê‡‚ÍƒAƒhƒŒƒX‚ğ“ü‚ê‘Ö‚¦‚Ä‚¨‚­
+	// UserScreenImage ãŒã‚ã‚‹å ´åˆã¯ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å…¥ã‚Œæ›¿ãˆã¦ãŠã
 	if( GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode && GSYS.Setting.ValidHardware == FALSE )
 	{
 		GSYS.SoftRender.MainBufferMemImg.UseImage = ( unsigned char * )GSYS.Screen.UserScreenImage ;
 	}
 
-	// •â•‰æ–Ê—p MEMIMG ‚Ìì¬
+	// è£œåŠ©ç”»é¢ç”¨ MEMIMG ã®ä½œæˆ
 	if( MakeMemImgScreen(
 		&GSYS.SoftRender.SubBufferMemImg,
 		GSYS.Screen.MainScreenSizeX,
 		GSYS.Screen.MainScreenSizeY,
 		GSYS.Screen.MainScreenColorBitDepth == 16 ? 0 : 1 ) < 0 )
 	{
-		return DXST_LOGFILE_ADDUTF16LE( "\xdc\x88\xa9\x52\x28\x75\x6e\x30\x20\x00\x4d\x00\x45\x00\x4d\x00\x49\x00\x4d\x00\x47\x00\x20\x00\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"•â•—p‚Ì MEMIMG ‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+		return DXST_LOGFILE_ADDUTF16LE( "\xdc\x88\xa9\x52\x28\x75\x6e\x30\x20\x00\x4d\x00\x45\x00\x4d\x00\x49\x00\x4d\x00\x47\x00\x20\x00\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"è£œåŠ©ç”¨ã® MEMIMG ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 	}
 
-	// ƒtƒHƒ“ƒg‚Ì”¼“§–¾•`‰æ—pƒAƒ‹ƒtƒ@‚Â‚«‰æ‘œ‚Ìì¬
+	// ãƒ•ã‚©ãƒ³ãƒˆã®åŠé€æ˜æç”»ç”¨ã‚¢ãƒ«ãƒ•ã‚¡ã¤ãç”»åƒã®ä½œæˆ
 	_MEMSET( &GSYS.SoftRender.FontScreenMemImgAlpha, 0, sizeof( MEMIMG ) ) ;
 	_MEMSET( &GSYS.SoftRender.FontScreenMemImgNormal, 0, sizeof( MEMIMG ) ) ;
 	InitializeMemImg(
@@ -1408,43 +1408,43 @@ static int Graphics_Software_Initialize( void )
 		GSYS.Screen.MainScreenColorBitDepth == 16 ? 0 : 1,
 		FALSE, TRUE, FALSE, NULL ) ;
 
-	// ƒoƒbƒtƒ@‚ÌƒNƒŠƒA
+	// ãƒãƒƒãƒ•ã‚¡ã®ã‚¯ãƒªã‚¢
 	ClearMemImg( &GSYS.SoftRender.MainBufferMemImg, NULL, NS_GetColor3( GSYS.SoftRender.MainBufferMemImg.Base->ColorDataP, GSYS.Screen.BackgroundRed, GSYS.Screen.BackgroundGreen, GSYS.Screen.BackgroundBlue, GSYS.Screen.BackgroundAlpha ) ) ;
 
-	// •`‰æ‘ÎÛ‚ÌƒZƒbƒg
+	// æç”»å¯¾è±¡ã®ã‚»ãƒƒãƒˆ
 	GSYS.SoftRender.TargetMemImg = &GSYS.SoftRender.MainBufferMemImg ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒAƒŒƒ“ƒ_ƒŠƒ“ƒO‚ÌŒãn––‚ğs‚¤
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã®å¾Œå§‹æœ«ã‚’è¡Œã†
 static int	Graphics_Software_Terminate( void )
 {
-	// ƒƒCƒ“ƒoƒbƒtƒ@‚Ì‰ğ•ú
+	// ãƒ¡ã‚¤ãƒ³ãƒãƒƒãƒ•ã‚¡ã®è§£æ”¾
 	TerminateMemImg( &GSYS.SoftRender.MainBufferMemImg ) ;
 
-	// ƒTƒuƒoƒbƒtƒ@‚Ì‰ğ•ú
+	// ã‚µãƒ–ãƒãƒƒãƒ•ã‚¡ã®è§£æ”¾
 	TerminateMemImg( &GSYS.SoftRender.SubBufferMemImg ) ;
 
-	// ƒtƒHƒ“ƒg‚Ì”¼“§–¾•`‰æ—pƒAƒ‹ƒtƒ@‚Â‚«‰æ‘œ‚Ì‰ğ•ú
+	// ãƒ•ã‚©ãƒ³ãƒˆã®åŠé€æ˜æç”»ç”¨ã‚¢ãƒ«ãƒ•ã‚¡ã¤ãç”»åƒã®è§£æ”¾
 	TerminateMemImg( &GSYS.SoftRender.FontScreenMemImgNormal ) ;
 	TerminateMemImg( &GSYS.SoftRender.FontScreenMemImgAlpha ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒAƒŒƒ“ƒ_ƒŠƒ“ƒO”Å DrawGraph
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ç‰ˆ DrawGraph
 static int  Graphics_Software_DrawGraph( int x, int y, IMAGEDATA *Image, int TransFlag )
 {
 	DrawMemImg( GSYS.SoftRender.TargetMemImg, &Image->Soft.MemImg, x, y, TransFlag, GSYS.SoftRender.BlendMemImg ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒAƒŒƒ“ƒ_ƒŠƒ“ƒO”Å DrawExtendGraph
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ç‰ˆ DrawExtendGraph
 static int  Graphics_Software_DrawExtendGraph( int x1, int y1, int x2, int y2, IMAGEDATA *Image, int TransFlag )
 {
 	RECT Rect ;
@@ -1456,27 +1456,27 @@ static int  Graphics_Software_DrawExtendGraph( int x1, int y1, int x2, int y2, I
 
 	DrawEnlargeMemImg( GSYS.SoftRender.TargetMemImg, &Image->Soft.MemImg, &Rect, TransFlag, GSYS.SoftRender.BlendMemImg ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒAƒŒƒ“ƒ_ƒŠƒ“ƒO”Å DrawRotaGraph
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ç‰ˆ DrawRotaGraph
 static int  Graphics_Software_DrawRotaGraph( float x, float y, double ExRate, double Angle, IMAGEDATA *Image, int TransFlag, int ReverseXFlag, int ReverseYFlag )
 {
 	DrawRotationMemImg( GSYS.SoftRender.TargetMemImg, &Image->Soft.MemImg,
 		_FTOL( x ), _FTOL( y ), ( float )Angle, ( float )ExRate, ( float )ExRate, TransFlag, ReverseXFlag, ReverseYFlag, GSYS.SoftRender.BlendMemImg ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒAƒŒƒ“ƒ_ƒŠƒ“ƒO”Å DrawRotaGraphFast
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ç‰ˆ DrawRotaGraphFast
 static int  Graphics_Software_DrawRotaGraphFast( float x, float y, float ExRate, float Angle, IMAGEDATA *Image, int TransFlag, int ReverseXFlag, int ReverseYFlag )
 {
 	DrawRotationMemImg( GSYS.SoftRender.TargetMemImg, &Image->Soft.MemImg,
 		_FTOL( x ), _FTOL( y ), Angle, ExRate, ExRate, TransFlag, ReverseXFlag, ReverseYFlag, GSYS.SoftRender.BlendMemImg ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
@@ -1485,11 +1485,11 @@ static int	Graphics_Software_DrawPoly( DX_POINTDATA *p, IMAGEDATA *Image, int Tr
 	DrawBasicPolygonMemImg( GSYS.SoftRender.TargetMemImg, Image ? &Image->Soft.MemImg : NULL, 
 							p, TransFlag, GSYS.SoftRender.BlendMemImg, Color ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒAƒŒƒ“ƒ_ƒŠƒ“ƒO”Å DrawModiGraph
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ç‰ˆ DrawModiGraph
 static int  Graphics_Software_DrawModiGraph( int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4, IMAGEDATA *Image, int TransFlag )
 {
 	DX_POINTDATA p[4] ;
@@ -1502,17 +1502,17 @@ static int  Graphics_Software_DrawModiGraph( int x1, int y1, int x2, int y2, int
 	Graphics_Software_DrawPoly( &p[0], Image, TransFlag, 0 ) ;
 	Graphics_Software_DrawPoly( &p[1], Image, TransFlag, 0 ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒAƒŒƒ“ƒ_ƒŠƒ“ƒO”Å DrawModiGraphF
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ç‰ˆ DrawModiGraphF
 static int  Graphics_Software_DrawModiGraphF( float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4, IMAGEDATA *Image, int TransFlag )
 {
 	return Graphics_Software_DrawModiGraph( _FTOL( x1 ), _FTOL( y1 ), _FTOL( x2 ), _FTOL( y2 ), _FTOL( x3 ), _FTOL( y3 ), _FTOL( x4 ), _FTOL( y4 ), Image, TransFlag ) ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒAƒŒƒ“ƒ_ƒŠƒ“ƒO”Å DrawChipMap
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ç‰ˆ DrawChipMap
 static int	Graphics_Software_DrawChipMap( int Sx, int Sy, int XNum, int YNum, const int *MapData, int MapDataPitch, int /*ChipTypeNum*/, const int *ChipGrHandle, int TransFlag )
 {
 	int x, y, i, j, Width, Height, Pitch2 ;
@@ -1527,7 +1527,7 @@ static int	Graphics_Software_DrawChipMap( int Sx, int Sy, int XNum, int YNum, co
 
 	Pitch2 = MapDataPitch - XNum ;
 
-	// •’Ê‚É for •¶‚Åƒ‹[ƒv•`‰æ
+	// æ™®é€šã« for æ–‡ã§ãƒ«ãƒ¼ãƒ—æç”»
 	y = Sy ;
 	MP = MapData ;
 	for( i = 0 ; i < YNum ; i ++, y += Height )
@@ -1545,11 +1545,11 @@ static int	Graphics_Software_DrawChipMap( int Sx, int Sy, int XNum, int YNum, co
 		MP += Pitch2 ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒAƒŒƒ“ƒ_ƒŠƒ“ƒO”Å DrawTile
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ç‰ˆ DrawTile
 static int	Graphics_Software_DrawTile( int x1, int y1, int x2, int y2, int Tx, int Ty, double ExtRate, double Angle, IMAGEDATA *Image, int TransFlag )
 {
 	double MaxLength ;
@@ -1573,7 +1573,7 @@ static int	Graphics_Software_DrawTile( int x1, int y1, int x2, int y2, int Tx, i
 //	Sin = (float)sin( Angle ) ;
 //	Cos = (float)cos( Angle ) ;
 
-	// i‚Ş’l‚ğŒvZ
+	// é€²ã‚€å€¤ã‚’è¨ˆç®—
 	xAddX = Image->WidthI * Cos * FExtRate ;
 	xAddY = Image->WidthI * Sin * FExtRate ;
 
@@ -1581,14 +1581,14 @@ static int	Graphics_Software_DrawTile( int x1, int y1, int x2, int y2, int Tx, i
 	yAddX = Image->HeightI * Cos2 * FExtRate ;
 	yAddY = Image->HeightI * Sin2 * FExtRate ;
 
-	// •`‰æ•‚ğ“¾‚é
+	// æç”»å¹…ã‚’å¾—ã‚‹
 	Width = (float)( x2 - x1 ) ;
 	Height = (float)( y2 - y1 ) ;
 
-	// Å‘å’·‚ğ“¾‚é
+	// æœ€å¤§é•·ã‚’å¾—ã‚‹
 	MaxLength = _SQRT( Width * Width + Height * Height ) ;
 
-	// •`‰æŒÂ”‚ğ“¾‚é
+	// æç”»å€‹æ•°ã‚’å¾—ã‚‹
 	{
 		int k ;
 
@@ -1597,15 +1597,15 @@ static int	Graphics_Software_DrawTile( int x1, int y1, int x2, int y2, int Tx, i
 		if( Num % 2 == 0 ) Num ++ ;
 	}
 
-	// •`‰æ’†S“_‚ğ“¾‚é
+	// æç”»ä¸­å¿ƒç‚¹ã‚’å¾—ã‚‹
 	CenX = x1 + Width / 2 ;
 	CenY = y1 + Height / 2 ;
 
-	// •`‰æ‰Â”\”ÍˆÍ‚ğ•ÏX‚·‚é
+	// æç”»å¯èƒ½ç¯„å›²ã‚’å¤‰æ›´ã™ã‚‹
 	DrawRect = GSYS.DrawSetting.DrawArea ;
 	NS_SetDrawArea( x1, y1, x2, y2 ) ;
 
-	// •`‰æŠJnÀ•W‚ğ“¾‚é
+	// æç”»é–‹å§‹åº§æ¨™ã‚’å¾—ã‚‹
 	BaseX = ( -Tx - ( Num * Image->WidthI  ) / 2 ) * FExtRate ;
 	BaseY = ( -Ty - ( Num * Image->HeightI ) / 2 ) * FExtRate ;
 
@@ -1613,7 +1613,7 @@ static int	Graphics_Software_DrawTile( int x1, int y1, int x2, int y2, int Tx, i
 	BaseY = BaseX * Sin + BaseY * Cos + CenY ;
 	BaseX = f + CenX ;
 
-	// •`‰æŠJn
+	// æç”»é–‹å§‹
 	for( i = 0 ; i < Num ; i ++, BaseX += yAddX, BaseY += yAddY )
 	{
 		x = BaseX ;
@@ -1644,13 +1644,13 @@ static int	Graphics_Software_DrawTile( int x1, int y1, int x2, int y2, int Tx, i
 		}
 	}
 
-	// •`‰æ‰Â”\”ÍˆÍ‚ğŒ³‚É–ß‚·
+	// æç”»å¯èƒ½ç¯„å›²ã‚’å…ƒã«æˆ»ã™
 	NS_SetDrawArea( DrawRect.left, DrawRect.top, DrawRect.right, DrawRect.bottom ) ;
 
 	return 0 ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒAƒŒƒ“ƒ_ƒŠƒ“ƒO”Å DrawFillBox
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ç‰ˆ DrawFillBox
 static int  Graphics_Software_DrawFillBox( int x1, int y1, int x2, int y2, unsigned int Color )
 {
 	RECT DestRect ;
@@ -1662,11 +1662,11 @@ static int  Graphics_Software_DrawFillBox( int x1, int y1, int x2, int y2, unsig
 
 	DrawFillBoxMemImg( GSYS.SoftRender.TargetMemImg, &DestRect, Color ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒAƒŒƒ“ƒ_ƒŠƒ“ƒO”Å DrawLineBox
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ç‰ˆ DrawLineBox
 static int  Graphics_Software_DrawLineBox( int x1, int y1, int x2, int y2, unsigned int Color, int Thickness )
 {
 	LINEDATA Line[4] ;
@@ -1681,16 +1681,16 @@ static int  Graphics_Software_DrawLineBox( int x1, int y1, int x2, int y2, unsig
 	return Graphics_Software_DrawLineSet( Line, 4 ) ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒAƒŒƒ“ƒ_ƒŠƒ“ƒO”Å DrawLine
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ç‰ˆ DrawLine
 static int	Graphics_Software_DrawLine( int x1, int y1, int x2, int y2, unsigned int Color )
 {
 	DrawLineMemImg( GSYS.SoftRender.TargetMemImg, x1, y1, x2, y2, Color ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒAƒŒƒ“ƒ_ƒŠƒ“ƒO”Å DrawCircle( ‘¾‚³w’è‚ ‚è )
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ç‰ˆ DrawCircle( å¤ªã•æŒ‡å®šã‚ã‚Š )
 static int	Graphics_Software_DrawCircle_Thickness( int x, int y, int r, unsigned int Color, int Thickness )
 {
 	int i ;
@@ -1700,7 +1700,7 @@ static int	Graphics_Software_DrawCircle_Thickness( int x, int y, int r, unsigned
 
 	DrawRect = GSYS.DrawSetting.DrawArea ;
 
-	// ‰~‚ÌÀ•W‚ğ‘ã“ü‚·‚éƒoƒbƒtƒ@‚ğæ“¾
+	// å††ã®åº§æ¨™ã‚’ä»£å…¥ã™ã‚‹ãƒãƒƒãƒ•ã‚¡ã‚’å–å¾—
 	if( Graphics_Other_AllocCommonBuffer( 1, sizeof( short ) * 5 * DrawRect.bottom ) < 0 )
 	{
 		return -1 ;
@@ -1708,10 +1708,10 @@ static int	Graphics_Software_DrawCircle_Thickness( int x, int y, int r, unsigned
 	CirclePos = ( short (*)[ 5 ] )GSYS.Resource.CommonBuffer[ 1 ] ;
 	_MEMSET( CirclePos, 0, sizeof( short ) * 5 * DrawRect.bottom ) ;
 
-	// ‰~‚ÌÀ•WƒŠƒXƒgì¬
+	// å††ã®åº§æ¨™ãƒªã‚¹ãƒˆä½œæˆ
 	Graphics_Draw_GetCircle_ThicknessDrawPosition( x, y, r, Thickness, CirclePos ) ;
 
-	// •`‰æˆ—
+	// æç”»å‡¦ç†
 	for( i = DrawRect.top ; i < DrawRect.bottom ; i ++ )
 	{
 		if( CirclePos[ i ][ 4 ] == 0 )
@@ -1739,11 +1739,11 @@ static int	Graphics_Software_DrawCircle_Thickness( int x, int y, int r, unsigned
 		}
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒAƒŒƒ“ƒ_ƒŠƒ“ƒO”Å DrawOval( ‘¾‚³w’è‚ ‚è )
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ç‰ˆ DrawOval( å¤ªã•æŒ‡å®šã‚ã‚Š )
 static int	Graphics_Software_DrawOval_Thickness( int x, int y, int rx, int ry, unsigned int Color, int Thickness )
 {
 	int i ;
@@ -1753,7 +1753,7 @@ static int	Graphics_Software_DrawOval_Thickness( int x, int y, int rx, int ry, u
 
 	DrawRect = GSYS.DrawSetting.DrawArea ;
 
-	// ‰~‚ÌÀ•W‚ğ‘ã“ü‚·‚éƒoƒbƒtƒ@‚ğæ“¾
+	// å††ã®åº§æ¨™ã‚’ä»£å…¥ã™ã‚‹ãƒãƒƒãƒ•ã‚¡ã‚’å–å¾—
 	if( Graphics_Other_AllocCommonBuffer( 1, sizeof( short ) * 5 * DrawRect.bottom ) < 0 )
 	{
 		return -1 ;
@@ -1761,13 +1761,13 @@ static int	Graphics_Software_DrawOval_Thickness( int x, int y, int rx, int ry, u
 	CirclePos = ( short (*)[ 5 ] )GSYS.Resource.CommonBuffer[ 1 ] ;
 	_MEMSET( CirclePos, 0, sizeof( short ) * 5 * DrawRect.bottom ) ;
 
-	// ‰~‚ÌÀ•WƒŠƒXƒgì¬
+	// å††ã®åº§æ¨™ãƒªã‚¹ãƒˆä½œæˆ
 	if( Graphics_Draw_GetOval_ThicknessDrawPosition( x, y, rx, ry, Thickness, CirclePos ) < 0 )
 	{
 		return -1 ;
 	}
 
-	// •`‰æˆ—
+	// æç”»å‡¦ç†
 	for( i = DrawRect.top ; i < DrawRect.bottom ; i ++ )
 	{
 		if( CirclePos[ i ][ 4 ] == 0 )
@@ -1795,35 +1795,35 @@ static int	Graphics_Software_DrawOval_Thickness( int x, int y, int rx, int ry, u
 		}
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒAƒŒƒ“ƒ_ƒŠƒ“ƒO”Å DrawCircle
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ç‰ˆ DrawCircle
 static int	Graphics_Software_DrawCircle( int x, int y, int r, unsigned int Color, int FillFlag, int Rx_One_Minus, int Ry_One_Minus )
 {
 	DrawCircleMemImg( GSYS.SoftRender.TargetMemImg, x, y, r, Color, FillFlag, Rx_One_Minus, Ry_One_Minus ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒAƒŒƒ“ƒ_ƒŠƒ“ƒO”Å DrawOval
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ç‰ˆ DrawOval
 static int	Graphics_Software_DrawOval( int x, int y, int rx, int ry, unsigned int Color, int FillFlag, int Rx_One_Minus, int Ry_One_Minus )
 {
 	DrawOvalMemImg( GSYS.SoftRender.TargetMemImg, x, y, rx, ry, Color, FillFlag, Rx_One_Minus, Ry_One_Minus ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒAƒŒƒ“ƒ_ƒŠƒ“ƒO”Å DrawTriangle
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ç‰ˆ DrawTriangle
 static int	Graphics_Software_DrawTriangle( int x1, int y1, int x2, int y2, int x3, int y3, unsigned int Color, int FillFlag )
 {
-	// “h‚è‚Â‚Ô‚µ‚©‚»‚¤‚Å‚È‚¢‚©‚Åˆ—‚ğ•ªŠò
+	// å¡—ã‚Šã¤ã¶ã—ã‹ãã†ã§ãªã„ã‹ã§å‡¦ç†ã‚’åˆ†å²
 	if( FillFlag == TRUE )
 	{
-		// “h‚è‚Â‚Ô‚µ‚Ìê‡
+		// å¡—ã‚Šã¤ã¶ã—ã®å ´åˆ
 		DX_POINTDATA p[3] ;
 
 		p[0].x = x1 ;		p[0].y = y1 ;
@@ -1845,13 +1845,13 @@ static int	Graphics_Software_DrawTriangle( int x1, int y1, int x2, int y2, int x
 	}
 }
 
-// ƒ\ƒtƒgƒEƒGƒAƒŒƒ“ƒ_ƒŠƒ“ƒO”Å DrawQuadrangle
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ç‰ˆ DrawQuadrangle
 static int	Graphics_Software_DrawQuadrangle( int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4, unsigned int Color, int FillFlag )
 {
-	// “h‚è‚Â‚Ô‚µ‚©‚»‚¤‚Å‚È‚¢‚©‚Åˆ—‚ğ•ªŠò
+	// å¡—ã‚Šã¤ã¶ã—ã‹ãã†ã§ãªã„ã‹ã§å‡¦ç†ã‚’åˆ†å²
 	if( FillFlag == TRUE )
 	{
-		// “h‚è‚Â‚Ô‚µ‚Ìê‡
+		// å¡—ã‚Šã¤ã¶ã—ã®å ´åˆ
 
 		DX_POINTDATA p[3] ;
 
@@ -1880,40 +1880,40 @@ static int	Graphics_Software_DrawQuadrangle( int x1, int y1, int x2, int y2, int
 }
 
 
-// ƒ\ƒtƒgƒEƒGƒAƒŒƒ“ƒ_ƒŠƒ“ƒO”Å DrawPixel
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ç‰ˆ DrawPixel
 static int	Graphics_Software_DrawPixel( int x, int y, unsigned int Color )
 {
 	DrawPixelMemImg( GSYS.SoftRender.TargetMemImg, x, y, Color ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
 
-// ƒ\ƒtƒgƒEƒGƒAƒŒƒ“ƒ_ƒŠƒ“ƒO”Å DrawPixelSet
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ç‰ˆ DrawPixelSet
 static int	Graphics_Software_DrawPixelSet( const POINTDATA *PointData, int Num )
 {
 	DrawPixelSetMemImg( GSYS.SoftRender.TargetMemImg, PointData, Num ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒAƒŒƒ“ƒ_ƒŠƒ“ƒO”Å DrawLineSet
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ç‰ˆ DrawLineSet
 static int	Graphics_Software_DrawLineSet( const LINEDATA *LineData, int Num )
 {
 	DrawLineSetMemImg( GSYS.SoftRender.TargetMemImg, LineData, Num ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒAƒŒƒ“ƒ_ƒŠƒ“ƒO”Å DrawBoxSet
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ç‰ˆ DrawBoxSet
 static int  Graphics_Software_DrawBoxSet( const RECTDATA *RectData, int Num )
 {
 	DrawBoxSetMemImg( GSYS.SoftRender.TargetMemImg, RectData, Num ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
@@ -1935,9 +1935,9 @@ static int  Graphics_Software_DrawBoxSet( const RECTDATA *RectData, int Num )
 
 
 
-// ƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹ì¬ŠÖŒWŠÖ”
+// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ä½œæˆé–¢ä¿‚é–¢æ•°
 
-// ‹ó‚ÌƒOƒ‰ƒtƒBƒbƒN‚ğì¬
+// ç©ºã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚’ä½œæˆ
 extern	int NS_MakeGraph( int SizeX, int SizeY, int NotUse3DFlag )
 {
 	SETUP_GRAPHHANDLE_GPARAM GParam ;
@@ -1947,12 +1947,12 @@ extern	int NS_MakeGraph( int SizeX, int SizeY, int NotUse3DFlag )
 	return Graphics_Image_MakeGraph_UseGParam( &GParam, SizeX, SizeY, NotUse3DFlag, FALSE, 0, GetASyncLoadFlag() ) ;
 }
 
-// •`‰æ‰Â”\‚È‰æ–Ê‚ğì¬
+// æç”»å¯èƒ½ãªç”»é¢ã‚’ä½œæˆ
 extern int NS_MakeScreen( int SizeX, int SizeY, int UseAlphaChannel )
 {
 	SETUP_GRAPHHANDLE_GPARAM GParam ;
 
-	// ƒ\ƒtƒgƒEƒGƒAƒŒƒ“ƒ_ƒŠƒ“ƒOƒ‚[ƒh‚Å‚ÍƒAƒ‹ƒtƒ@ƒ`ƒƒƒ“ƒlƒ‹•t‚«‚Ì•`‰æ‰Â”\‰æ‘œ‚Íì‚ê‚È‚¢
+	// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ãƒ¢ãƒ¼ãƒ‰ã§ã¯ã‚¢ãƒ«ãƒ•ã‚¡ãƒãƒ£ãƒ³ãƒãƒ«ä»˜ãã®æç”»å¯èƒ½ç”»åƒã¯ä½œã‚Œãªã„
 	if( UseAlphaChannel && NS_GetScreenMemToSystemMemFlag() == TRUE )
 		return -1 ;
 
@@ -1963,36 +1963,36 @@ extern int NS_MakeScreen( int SizeX, int SizeY, int UseAlphaChannel )
 	return Graphics_Image_MakeGraph_UseGParam( &GParam, SizeX, SizeY, FALSE, FALSE, 0, GetASyncLoadFlag() ) ;
 }
 
-// w’è‚ÌƒOƒ‰ƒtƒBƒbƒN‚Ìw’è•”•ª‚¾‚¯‚ğ”²‚«o‚µ‚ÄV‚½‚ÈƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ğì¬‚·‚é
+// æŒ‡å®šã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®æŒ‡å®šéƒ¨åˆ†ã ã‘ã‚’æŠœãå‡ºã—ã¦æ–°ãŸãªã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã‚’ä½œæˆã™ã‚‹
 extern int NS_DerivationGraph( int SrcX, int SrcY, int Width, int Height, int SrcGraphHandle )
 {
 	return Graphics_Image_DerivationGraph_UseGParam( FALSE, SrcX, ( float )SrcX, SrcY, ( float )SrcY, Width, ( float )Width, Height, ( float )Height, SrcGraphHandle, FALSE, FALSE ) ;
 }
 
-// w’è‚ÌƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚Ìw’è•”•ª‚¾‚¯‚ğ”²‚«o‚µ‚ÄV‚½‚ÈƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ğì¬‚·‚é( float”Å )
+// æŒ‡å®šã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã®æŒ‡å®šéƒ¨åˆ†ã ã‘ã‚’æŠœãå‡ºã—ã¦æ–°ãŸãªã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã‚’ä½œæˆã™ã‚‹( floatç‰ˆ )
 extern int NS_DerivationGraphF( float SrcX, float SrcY, float Width, float Height, int SrcGraphHandle )
 {
 	return Graphics_Image_DerivationGraph_UseGParam( TRUE, _FTOL( SrcX ), SrcX, _FTOL( SrcY ), SrcY, _FTOL( Width ), Width, _FTOL( Height ), Height, SrcGraphHandle, FALSE, FALSE ) ;
 }
 
-// w’è‚ÌƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‚ğíœ‚·‚é
+// æŒ‡å®šã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã‚’å‰Šé™¤ã™ã‚‹
 extern	int NS_DeleteGraph( int GrHandle )
 {
 	return SubHandle( GrHandle, GetASyncLoadFlag(), FALSE ) ;
 }
 
-// w’è‚ÌƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ÆA“¯‚¶ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‚©‚ç”h¶‚µ‚Ä‚¢‚éƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹( DerivationGraph ‚Å”h¶‚µ‚½ƒnƒ“ƒhƒ‹ALoadDivGraph “Ç‚İ‚ñ‚Åì¬‚³‚ê‚½•¡”‚Ìƒnƒ“ƒhƒ‹ )‚ğˆê“x‚Éíœ‚·‚é
+// æŒ‡å®šã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã¨ã€åŒã˜ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰æ´¾ç”Ÿã—ã¦ã„ã‚‹ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«( DerivationGraph ã§æ´¾ç”Ÿã—ãŸãƒãƒ³ãƒ‰ãƒ«ã€LoadDivGraph èª­ã¿è¾¼ã‚“ã§ä½œæˆã•ã‚ŒãŸè¤‡æ•°ã®ãƒãƒ³ãƒ‰ãƒ« )ã‚’ä¸€åº¦ã«å‰Šé™¤ã™ã‚‹
 extern	int NS_DeleteSharingGraph( int GrHandle )
 {
 	IMAGEDATA_ORIG *Orig ;
 	IMAGEDATA *Image, **TmpImage ;
 	bool BreakFlag ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( GRAPHCHK( GrHandle, Image ) )
 		return -1 ;
 
-	// “¯‚¶ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‚©‚ç”h¶‚µ‚Ä‚¢‚éƒnƒ“ƒhƒ‹‚ğ‘S‚Äíœ‚·‚é
+	// åŒã˜ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰æ´¾ç”Ÿã—ã¦ã„ã‚‹ãƒãƒ³ãƒ‰ãƒ«ã‚’å…¨ã¦å‰Šé™¤ã™ã‚‹
 	Orig = Image->Orig ;
 	BreakFlag = false ;
 	for( TmpImage = ( IMAGEDATA ** )&HandleManageArray[ DX_HANDLETYPE_GRAPH ].Handle[ HandleManageArray[ DX_HANDLETYPE_GRAPH ].AreaMin ] ; ; TmpImage ++ )
@@ -2007,47 +2007,47 @@ extern	int NS_DeleteSharingGraph( int GrHandle )
 		}
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// —LŒø‚ÈƒOƒ‰ƒtƒBƒbƒN‚Ì”‚ğæ“¾‚·‚é
+// æœ‰åŠ¹ãªã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®æ•°ã‚’å–å¾—ã™ã‚‹
 extern	int NS_GetGraphNum( void )
 {
 	return HandleManageArray[ DX_HANDLETYPE_GRAPH ].Num ;
 }
 
-// ƒOƒ‰ƒtƒBƒbƒN‚ğ“Á’è‚ÌF‚Å“h‚è‚Â‚Ô‚·
+// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚’ç‰¹å®šã®è‰²ã§å¡—ã‚Šã¤ã¶ã™
 extern	int NS_FillGraph( int GrHandle, int Red, int Green, int Blue, int Alpha )
 {
 	return Graphics_Image_FillGraph_UseGParam( GrHandle, Red, Green, Blue, Alpha, FALSE ) ;
 }
 
-// ƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚Ìw’è‚Ì”ÍˆÍ‚ğw’è‚ÌF‚Å“h‚è‚Â‚Ô‚·
+// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã®æŒ‡å®šã®ç¯„å›²ã‚’æŒ‡å®šã®è‰²ã§å¡—ã‚Šã¤ã¶ã™
 extern int NS_FillRectGraph( int GrHandle, int x, int y, int Width, int Height, int Red, int Green, int Blue, int Alpha )
 {
 	IMAGEDATA *Image ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( GRAPHCHK( GrHandle, Image ) )
 	{
 		return -1 ;
 	}
 
-	// ”ÍˆÍƒ`ƒFƒbƒN
+	// ç¯„å›²ãƒã‚§ãƒƒã‚¯
 	if( x < 0 || x + Width  > Image->WidthI  ||
 		y < 0 || y + Height > Image->HeightI )
 	{
 		return -1 ;
 	}
 
-	// ’l‚Ì•â³
+	// å€¤ã®è£œæ­£
 	if( Red   < 0 ) Red   = 0 ; else if( Red   > 255 ) Red   = 255 ;
 	if( Green < 0 ) Green = 0 ; else if( Green > 255 ) Green = 255 ;
 	if( Blue  < 0 ) Blue  = 0 ; else if( Blue  > 255 ) Blue  = 255 ;
 	if( Alpha < 0 ) Alpha = 0 ; else if( Alpha > 255 ) Alpha = 255 ;
 
-	// ”h¶‰æ‘œ‚Å‚Í‚È‚­AŠ‚Â‘S‘Ì‚Ìê‡‚Í FillGraph ‚ğg—p‚·‚é
+	// æ´¾ç”Ÿç”»åƒã§ã¯ãªãã€ä¸”ã¤å…¨ä½“ã®å ´åˆã¯ FillGraph ã‚’ä½¿ç”¨ã™ã‚‹
 	if( Image->WidthI       == Width &&
 		Image->HeightI      == Height &&
 		Image->Orig->Width  == Image->WidthI &&
@@ -2056,37 +2056,37 @@ extern int NS_FillRectGraph( int GrHandle, int x, int y, int Width, int Height, 
 		return NS_FillGraph( GrHandle, Red, Green, Blue, Alpha ) ;
 	}
 
-	// ƒeƒNƒXƒ`ƒƒ‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+	// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 	if( Image->Orig->FormatDesc.TextureFlag )
 	{
-		// •`‰æ‘ÎÛ‚É‚Å‚«‚éA”h¶‰æ‘œ‚Å‚Í‚È‚¢‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+		// æç”»å¯¾è±¡ã«ã§ãã‚‹ã€æ´¾ç”Ÿç”»åƒã§ã¯ãªã„ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 		if( Image->Orig->FormatDesc.DrawValidFlag &&
 			Image->Orig->Width  == Image->WidthI &&
 			Image->Orig->Height == Image->HeightI )
 		{
 			SCREENDRAWSETTINGINFO ScreenDrawSettingInfo ;
 
-			// •`‰æ‘ÎÛ‚É‚Å‚«‚éê‡‚Í SetDrawScreen ‚ğg—p‚µ‚Ä’¼Ú•`‰æ‚·‚é
+			// æç”»å¯¾è±¡ã«ã§ãã‚‹å ´åˆã¯ SetDrawScreen ã‚’ä½¿ç”¨ã—ã¦ç›´æ¥æç”»ã™ã‚‹
 
-			// Šeí•`‰æİ’èî•ñ‚ğæ“¾
+			// å„ç¨®æç”»è¨­å®šæƒ…å ±ã‚’å–å¾—
 			Graphics_DrawSetting_GetScreenDrawSettingInfo( &ScreenDrawSettingInfo ) ;
 
-			// •`‰ææ‚ğ•ÏX
+			// æç”»å…ˆã‚’å¤‰æ›´
 			NS_SetDrawScreen( GrHandle ) ;
 			NS_SetDrawArea( 0, 0, Image->WidthI, Image->HeightI ) ;
 
-			// •`‰æƒuƒŒƒ“ƒhƒ‚[ƒh‚ğ•ÏX
+			// æç”»ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã‚’å¤‰æ›´
 			NS_SetDrawBlendMode( DX_BLENDMODE_SRCCOLOR, Alpha ) ;
 
-			// •`‰æ
+			// æç”»
 			NS_DrawBox( x, y, x + Width, y + Height, GetColor( Red, Green, Blue ), TRUE, 1 ) ;
 
-			// •`‰æİ’èî•ñ‚ğŒ³‚É–ß‚·
+			// æç”»è¨­å®šæƒ…å ±ã‚’å…ƒã«æˆ»ã™
 			Graphics_DrawSetting_SetScreenDrawSettingInfo( &ScreenDrawSettingInfo ) ;
 		}
 		else
 		{
-			// •`‰æ‘ÎÛ‚É‚Å‚«‚È‚¢ê‡‚Í BASEIMAGE ‚ğg—p‚·‚é
+			// æç”»å¯¾è±¡ã«ã§ããªã„å ´åˆã¯ BASEIMAGE ã‚’ä½¿ç”¨ã™ã‚‹
 			BASEIMAGE TempImage ;
 
 			if( NS_CreateARGB8ColorBaseImage( Width, Height, &TempImage ) == 0 )
@@ -2112,9 +2112,9 @@ extern int NS_FillRectGraph( int GrHandle, int x, int y, int Width, int Height, 
 	{
 		RECT Rect ;
 
-		// ƒeƒNƒXƒ`ƒƒ‚Å‚Í‚È‚¢ê‡
+		// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã§ã¯ãªã„å ´åˆ
 
-		// DrawFillBoxMemImg ‚Å“h‚è‚Â‚Ô‚·
+		// DrawFillBoxMemImg ã§å¡—ã‚Šã¤ã¶ã™
 		Rect.left   = x ;
 		Rect.top    = y ;
 		Rect.right  = x + Width ;
@@ -2122,27 +2122,27 @@ extern int NS_FillRectGraph( int GrHandle, int x, int y, int Width, int Height, 
 		DrawFillBoxMemImg( &Image->Soft.MemImg, &Rect, NS_GetColor( Red, Green, Blue ) ) ; 
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ‰ğ•ú‚É—§‚Ä‚éƒtƒ‰ƒO‚Ìƒ|ƒCƒ“ƒ^‚ğƒZƒbƒg‚·‚é
+// è§£æ”¾æ™‚ã«ç«‹ã¦ã‚‹ãƒ•ãƒ©ã‚°ã®ãƒã‚¤ãƒ³ã‚¿ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern	int NS_SetGraphLostFlag( int GrHandle, int *LostFlag )
 {
 	IMAGEDATA *Image ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( GRAPHCHK( GrHandle, Image ) )
 		return -1 ;
 
 	Image->LostFlag = LostFlag ;
 	if( LostFlag != NULL ) *LostFlag = FALSE ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// InitGraph ‚ÅƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ğíœ‚·‚é‚©‚Ç‚¤‚©‚ğƒ`ƒFƒbƒN‚·‚éŠÖ”
+// InitGraph ã§ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã‚’å‰Šé™¤ã™ã‚‹ã‹ã©ã†ã‹ã‚’ãƒã‚§ãƒƒã‚¯ã™ã‚‹é–¢æ•°
 static int DeleteCancelCheckInitGraphFunction( HANDLEINFO *HandleInfo )
 {
 	IMAGEDATA *Image = ( IMAGEDATA * )HandleInfo ;
@@ -2150,30 +2150,30 @@ static int DeleteCancelCheckInitGraphFunction( HANDLEINFO *HandleInfo )
 	return Image->NotInitGraphDelete || ( Image->NotInitGraphDeleteUser && GSYS.TerminateNowFlag == FALSE ) ;
 }
 
-// ‰æ‘œƒf[ƒ^‚Ì‰Šú‰»
+// ç”»åƒãƒ‡ãƒ¼ã‚¿ã®åˆæœŸåŒ–
 extern	int NS_InitGraph( void )
 {
 	int Result ;
 
-	// ƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ğ‘S‚Äíœ
+	// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã‚’å…¨ã¦å‰Šé™¤
 	Result = AllHandleSub( DX_HANDLETYPE_GRAPH, DeleteCancelCheckInitGraphFunction ) ;
 
-	// ƒVƒƒƒhƒEƒ}ƒbƒvƒnƒ“ƒhƒ‹‚à‘S‚Äíœ
+	// ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ãƒãƒ³ãƒ‰ãƒ«ã‚‚å…¨ã¦å‰Šé™¤
 	Result = AllHandleSub( DX_HANDLETYPE_SHADOWMAP ) ;
 
-	// ŠÂ‹«ˆË‘¶ˆ—
+	// ç’°å¢ƒä¾å­˜å‡¦ç†
 	Graphics_Hardware_InitGraph_PF() ;
 
-	// I—¹
+	// çµ‚äº†
 	return Result ;
 }
 
-// ƒtƒ@ƒCƒ‹‚©‚ç“Ç‚İ‚ñ‚¾‰æ‘œî•ñ‚ğÄ“x“Ç‚İ‚Ş
+// ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰èª­ã¿è¾¼ã‚“ã ç”»åƒæƒ…å ±ã‚’å†åº¦èª­ã¿è¾¼ã‚€
 extern	int NS_ReloadFileGraphAll( void )
 {
 	Graphics_Image_DefaultRestoreGraphFunction() ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
@@ -2198,14 +2198,14 @@ extern	int NS_ReloadFileGraphAll( void )
 
 
 
-// ƒVƒƒƒhƒEƒ}ƒbƒvƒnƒ“ƒhƒ‹ŠÖŒWŠÖ”
+// ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ãƒãƒ³ãƒ‰ãƒ«é–¢ä¿‚é–¢æ•°
 
-// ƒVƒƒƒhƒEƒ}ƒbƒvƒnƒ“ƒhƒ‹‚ğì¬‚·‚é
+// ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ãƒãƒ³ãƒ‰ãƒ«ã‚’ä½œæˆã™ã‚‹
 extern int NS_MakeShadowMap( int SizeX, int SizeY )
 {
 	SETUP_SHADOWMAPHANDLE_GPARAM GParam ;
 
-	// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒ^‚ª–³Œø‚¾‚Á‚½‚çƒGƒ‰[
+	// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚¿ãŒç„¡åŠ¹ã ã£ãŸã‚‰ã‚¨ãƒ©ãƒ¼
 	if( Graphics_Hardware_CheckValid_PF() == 0 )
 		return -1 ;
 
@@ -2214,13 +2214,13 @@ extern int NS_MakeShadowMap( int SizeX, int SizeY )
 	return Graphics_ShadowMap_MakeShadowMap_UseGParam( &GParam, SizeX, SizeY, GetASyncLoadFlag() ) ;
 }
 
-// ƒVƒƒƒhƒEƒ}ƒbƒvƒnƒ“ƒhƒ‹‚ğíœ‚·‚é
+// ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ãƒãƒ³ãƒ‰ãƒ«ã‚’å‰Šé™¤ã™ã‚‹
 extern int NS_DeleteShadowMap( int SmHandle )
 {
 	return SubHandle( SmHandle, GetASyncLoadFlag(), FALSE ) ;
 }
 
-// ƒVƒƒƒhƒEƒ}ƒbƒv‚ª‘z’è‚·‚éƒ‰ƒCƒg‚Ì•ûŒü‚ğİ’è‚·‚é
+// ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ãŒæƒ³å®šã™ã‚‹ãƒ©ã‚¤ãƒˆã®æ–¹å‘ã‚’è¨­å®šã™ã‚‹
 extern int NS_SetShadowMapLightDirection( int SmHandle, VECTOR Direction )
 {
 	VECTOR xvec ;
@@ -2228,11 +2228,11 @@ extern int NS_SetShadowMapLightDirection( int SmHandle, VECTOR Direction )
 	VECTOR zvec ;
 	SHADOWMAPDATA *ShadowMap ;
 
-	// ƒAƒhƒŒƒX‚Ìæ“¾
+	// ã‚¢ãƒ‰ãƒ¬ã‚¹ã®å–å¾—
 	if( SHADOWMAPCHK( SmHandle, ShadowMap ) )
 		return -1 ;
 
-	// ƒ‰ƒCƒgƒxƒNƒgƒ‹•ûŒü‚É‰ñ“]‚·‚é‚½‚ß‚Ìs—ñ‚ğì¬
+	// ãƒ©ã‚¤ãƒˆãƒ™ã‚¯ãƒˆãƒ«æ–¹å‘ã«å›è»¢ã™ã‚‹ãŸã‚ã®è¡Œåˆ—ã‚’ä½œæˆ
 	zvec = VNorm( Direction ) ;
 	yvec = VGet( 0.0f, 1.0f, 0.0f ) ;
 	xvec = VCross( yvec, zvec ) ;
@@ -2255,31 +2255,31 @@ extern int NS_SetShadowMapLightDirection( int SmHandle, VECTOR Direction )
 	ShadowMap->ShadowMapViewMatrix.m[ 1 ][ 2 ] = ShadowMap->LightMatrix.m[ 1 ][ 2 ] = zvec.y ;
 	ShadowMap->ShadowMapViewMatrix.m[ 2 ][ 2 ] = ShadowMap->LightMatrix.m[ 2 ][ 2 ] = zvec.z ;
 
-	// ƒ‰ƒCƒg‚Ì•ûŒü‚ğ•Û‘¶
+	// ãƒ©ã‚¤ãƒˆã®æ–¹å‘ã‚’ä¿å­˜
 	ShadowMap->LightDirection = Direction ;
 
-	// ‚à‚µƒVƒƒƒhƒEƒ}ƒbƒv‚Ö‚Ì•`‰æ€”õÏ‚İ‚Ìê‡‚ÍƒVƒƒƒhƒEƒ}ƒbƒv‚Ö‚Ì•`‰æ‚É•K—v‚Ès—ñ‚ğXV‚·‚é
+	// ã‚‚ã—ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ã¸ã®æç”»æº–å‚™æ¸ˆã¿ã®å ´åˆã¯ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ã¸ã®æç”»ã«å¿…è¦ãªè¡Œåˆ—ã‚’æ›´æ–°ã™ã‚‹
 	if( ShadowMap->DrawSetupFlag )
 	{
-		// s—ñ‚ÌXV
+		// è¡Œåˆ—ã®æ›´æ–°
 		Graphics_ShadowMap_RefreshMatrix( ShadowMap ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒVƒƒƒhƒEƒ}ƒbƒv‚Ö‚Ì•`‰æ‚Ì€”õ‚ğs‚¤
+// ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ã¸ã®æç”»ã®æº–å‚™ã‚’è¡Œã†
 extern int NS_ShadowMap_DrawSetup( int SmHandle )
 {
 	int i ;
 	SHADOWMAPDATA *ShadowMap ;
 
-	// ƒAƒhƒŒƒX‚Ìæ“¾
+	// ã‚¢ãƒ‰ãƒ¬ã‚¹ã®å–å¾—
 	if( SHADOWMAPCHK( SmHandle, ShadowMap ) )
 		return -1 ;
 
-	// •`‰æ‚Åg—p‚·‚éƒVƒƒƒhƒEƒ}ƒbƒv‚Éİ’è‚³‚ê‚Ä‚¢‚½‚ç‰ğœ
+	// æç”»ã§ä½¿ç”¨ã™ã‚‹ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ã«è¨­å®šã•ã‚Œã¦ã„ãŸã‚‰è§£é™¤
 	for( i = 0 ; i < MAX_USE_SHADOWMAP_NUM ; i ++ )
 	{
 		if( GSYS.DrawSetting.ShadowMap[ i ] == SmHandle )
@@ -2288,17 +2288,17 @@ extern int NS_ShadowMap_DrawSetup( int SmHandle )
 		}
 	}
 
-	// Šù‚É•`‰æ€”õ‚ªŠ®—¹‚µ‚Ä‚¢‚éê‡‚Í‰½‚à‚µ‚È‚¢
+	// æ—¢ã«æç”»æº–å‚™ãŒå®Œäº†ã—ã¦ã„ã‚‹å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( ShadowMap->DrawSetupFlag == TRUE )
 		return -1 ;
 
-	// •Ê‚ÌƒVƒƒƒhƒEƒ}ƒbƒv‚É‘Î‚·‚é•`‰æ€”õ‚ªŠ®—¹‚µ‚Ä‚¢‚½‚çA‚»‚¿‚ç‚Ì•`‰æŠ®—¹ó‘Ô‚ğ‰ğœ‚·‚é
+	// åˆ¥ã®ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ã«å¯¾ã™ã‚‹æç”»æº–å‚™ãŒå®Œäº†ã—ã¦ã„ãŸã‚‰ã€ãã¡ã‚‰ã®æç”»å®Œäº†çŠ¶æ…‹ã‚’è§£é™¤ã™ã‚‹
 	if( GSYS.DrawSetting.ShadowMapDraw == TRUE )
 	{
 		NS_ShadowMap_DrawEnd() ;
 	}
 
-	// Œ³X‚Ì•`‰æ‘ÎÛ‚ğ•Û‘¶
+	// å…ƒã€…ã®æç”»å¯¾è±¡ã‚’ä¿å­˜
 	for( i = 0 ; i < DX_RENDERTARGET_COUNT ; i ++ )
 	{
 		ShadowMap->RenderTargetScreen[ i ]         = GSYS.DrawSetting.TargetScreen[ i ] ;
@@ -2306,15 +2306,15 @@ extern int NS_ShadowMap_DrawSetup( int SmHandle )
 		ShadowMap->RenderTargetScreenMipLevel[ i ] = GSYS.DrawSetting.TargetScreenMipLevel[ i ] ;
 	}
 
-	// ƒ}ƒXƒN‚ğg—p‚·‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğ•Û‘¶
+	// ãƒã‚¹ã‚¯ã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’ä¿å­˜
 #ifndef DX_NON_MASK
 	ShadowMap->RenderMaskUseFlag          = MASKD.MaskUseFlag ;
 #endif
 
-	// ƒtƒHƒO‚ğg—p‚·‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğ•Û‘¶
+	// ãƒ•ã‚©ã‚°ã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’ä¿å­˜
 	ShadowMap->RenderFogEnable            = GSYS.DrawSetting.FogEnable ;
 
-	// Œ»İ‚Ì•`‰æÀ•WŒvZ—p‚Ìî•ñ‚ğ•Û‘¶
+	// ç¾åœ¨ã®æç”»åº§æ¨™è¨ˆç®—ç”¨ã®æƒ…å ±ã‚’ä¿å­˜
 	ShadowMap->RenderCameraPosition       = GSYS.Camera.Position ;
 	ShadowMap->RenderCameraTarget         = GSYS.Camera.Target ;
 	ShadowMap->RenderCameraUp             = GSYS.Camera.Up ;
@@ -2333,7 +2333,7 @@ extern int NS_ShadowMap_DrawSetup( int SmHandle )
 	ShadowMap->RenderProjSize             = GSYS.DrawSetting.ProjSize ;
 	ShadowMap->RenderProjMatrix           = GSYS.DrawSetting.ProjMatrix ;
 
-	// •`‰æ”ÍˆÍ‚ªİ’è‚³‚ê‚Ä‚¢‚È‚¢ê‡‚Ég—p‚·‚é•`‰æ”ÍˆÍ‚ğZo‚·‚é
+	// æç”»ç¯„å›²ãŒè¨­å®šã•ã‚Œã¦ã„ãªã„å ´åˆã«ä½¿ç”¨ã™ã‚‹æç”»ç¯„å›²ã‚’ç®—å‡ºã™ã‚‹
 	{
 		VECTOR AddXVecP ;
 		VECTOR AddXVecM ;
@@ -2342,7 +2342,7 @@ extern int NS_ShadowMap_DrawSetup( int SmHandle )
 		VECTOR AddZVecP ;
 		VECTOR AddZVecM ;
 
-		// •`‰æ”ÍˆÍ‚É“ü‚ê‚é—Ìˆæ‚Í‹‘ä‚ÌŒã•û‚Q”{A¶‰EEã‰º‚PD‚T”{A‚É‚·‚é
+		// æç”»ç¯„å›²ã«å…¥ã‚Œã‚‹é ˜åŸŸã¯è¦–éŒå°ã®å¾Œæ–¹ï¼’å€ã€å·¦å³ãƒ»ä¸Šä¸‹ï¼‘ï¼ï¼•å€ã€ã«ã™ã‚‹
 		AddXVecP = VSub( NS_ConvScreenPosToWorldPos( VGet( GSYS.DrawSetting.DrawAreaF.right,                           0.0f, 1.0f ) ), NS_ConvScreenPosToWorldPos( VGet( GSYS.DrawSetting.DrawAreaF.left,                              0.0f, 1.0f ) ) ) ;
 		AddYVecP = VSub( NS_ConvScreenPosToWorldPos( VGet(                             0.0f, GSYS.DrawSetting.DrawAreaF.top, 1.0f ) ), NS_ConvScreenPosToWorldPos( VGet(                            0.0f, GSYS.DrawSetting.DrawAreaF.bottom, 1.0f ) ) ) ;
 		AddZVecP = VSub( NS_ConvScreenPosToWorldPos( VGet(                             0.0f,                           0.0f, 1.0f ) ), NS_ConvScreenPosToWorldPos( VGet(                            0.0f,                              0.0f, 0.0f ) ) ) ;
@@ -2357,7 +2357,7 @@ extern int NS_ShadowMap_DrawSetup( int SmHandle )
 	//	AddZVecP = VScale( AddZVecP, 0.5f ) ;
 	//	AddZVecM = VScale( AddZVecM, 0.5f ) ;
 
-		// ƒ‰ƒCƒgƒxƒNƒgƒ‹•ûŒü‚Éƒrƒ…[ƒNƒŠƒbƒvÀ•W‚ğ‰ñ“]‚µ‚ÄAÅ‘å’l‚ÆÅ¬’l‚ğZo
+		// ãƒ©ã‚¤ãƒˆãƒ™ã‚¯ãƒˆãƒ«æ–¹å‘ã«ãƒ“ãƒ¥ãƒ¼ã‚¯ãƒªãƒƒãƒ—åº§æ¨™ã‚’å›è»¢ã—ã¦ã€æœ€å¤§å€¤ã¨æœ€å°å€¤ã‚’ç®—å‡º
 		for( i = 0 ; i < 8 ; i ++ )
 		{
 			ShadowMap->DefaultViewClipPos[ i ] = VConvDtoF( ( ( VECTOR_D * )GSYS.DrawSetting.ViewClipPos )[ i ] ) ;
@@ -2390,14 +2390,14 @@ extern int NS_ShadowMap_DrawSetup( int SmHandle )
 	}
 
 #ifndef DX_NON_MASK
-	// ƒ}ƒXƒN‰æ–Ê‚ğg—p‚µ‚È‚¢İ’è‚É•ÏX
+	// ãƒã‚¹ã‚¯ç”»é¢ã‚’ä½¿ç”¨ã—ãªã„è¨­å®šã«å¤‰æ›´
 	NS_SetUseMaskScreenFlag( FALSE ) ;
 #endif
 
-	// ƒtƒHƒO‚ğg—p‚µ‚È‚¢İ’è‚É•ÏX
+	// ãƒ•ã‚©ã‚°ã‚’ä½¿ç”¨ã—ãªã„è¨­å®šã«å¤‰æ›´
 	NS_SetFogEnable( FALSE ) ;
 
-	// •`‰æ‘ÎÛ‚ğƒVƒƒƒhƒEƒ}ƒbƒv‚É•ÏX
+	// æç”»å¯¾è±¡ã‚’ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ã«å¤‰æ›´
 	GSYS.DrawSetting.ShadowMapDrawSetupRequest = TRUE ;
 	NS_SetDrawScreen( SmHandle ) ;
 	for( i = 1 ; i < DX_RENDERTARGET_COUNT ; i ++ )
@@ -2405,16 +2405,16 @@ extern int NS_ShadowMap_DrawSetup( int SmHandle )
 		NS_SetRenderTargetToShader( i, -1, 0, 0 ) ;
 	}
 
-	// ƒVƒƒƒhƒEƒ}ƒbƒv‚Ö‚ÌƒŒƒ“ƒ_ƒŠƒ“ƒO‚É•K—v‚Ès—ñ‚ÌƒZƒbƒgƒAƒbƒv
+	// ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ã¸ã®ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã«å¿…è¦ãªè¡Œåˆ—ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 	Graphics_ShadowMap_RefreshMatrix( ShadowMap ) ;
 
-	// •`‰æ€”õ‚ğ‚µ‚Ä‚ ‚éƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// æç”»æº–å‚™ã‚’ã—ã¦ã‚ã‚‹ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	ShadowMap->DrawSetupFlag = TRUE ;
 
-	// ŠÂ‹«ˆË‘¶ˆ—
+	// ç’°å¢ƒä¾å­˜å‡¦ç†
 	Graphics_Hardware_ShadowMap_DrawSetup_PF( ShadowMap ) ;
 
-	// ‰æ–Ê‚ğÅ[“x‚ÅƒNƒŠƒA
+	// ç”»é¢ã‚’æœ€æ·±åº¦ã§ã‚¯ãƒªã‚¢
 	{
 		int Red, Green, Blue, Alpha, Enable ;
 
@@ -2434,53 +2434,53 @@ extern int NS_ShadowMap_DrawSetup( int SmHandle )
 		GSYS.Screen.EnableBackgroundColor = Enable ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒVƒƒƒhƒEƒ}ƒbƒv‚Ö‚Ì•`‰æ‚ğI—¹‚·‚é
+// ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ã¸ã®æç”»ã‚’çµ‚äº†ã™ã‚‹
 extern int NS_ShadowMap_DrawEnd( void )
 {
 	SHADOWMAPDATA *ShadowMap ;
 	int i ;
 
-	// •`‰æ€”õ‚ğ‚µ‚Ä‚¢‚È‚¢ê‡‚Í‰½‚à‚µ‚È‚¢
+	// æç”»æº–å‚™ã‚’ã—ã¦ã„ãªã„å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( GSYS.DrawSetting.ShadowMapDraw == FALSE )
 		return -1 ;
 
-	// ƒAƒhƒŒƒX‚Ìæ“¾
+	// ã‚¢ãƒ‰ãƒ¬ã‚¹ã®å–å¾—
 	if( SHADOWMAPCHK( GSYS.DrawSetting.ShadowMapDrawHandle, ShadowMap ) )
 	{
 		GSYS.DrawSetting.ShadowMapDraw = FALSE ;
 		return -1 ;
 	}
 
-	// •`‰æ€”õ‚ğ‚µ‚Ä‚¢‚È‚¢ê‡‚Í‰½‚à‚µ‚È‚¢
+	// æç”»æº–å‚™ã‚’ã—ã¦ã„ãªã„å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( ShadowMap->DrawSetupFlag == FALSE )
 		return -1 ;
 
-	// •`‰æ€”õŠ®—¹Ï‚İƒtƒ‰ƒO‚ğ“|‚·
+	// æç”»æº–å‚™å®Œäº†æ¸ˆã¿ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 	ShadowMap->DrawSetupFlag = FALSE ;
 
-	// ƒVƒƒƒhƒEƒ}ƒbƒv‚É‘Î‚·‚é•`‰æ‚Å‚ ‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğ“|‚·
+	// ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ã«å¯¾ã™ã‚‹æç”»ã§ã‚ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 	GSYS.DrawSetting.ShadowMapDraw = FALSE ;
 	GSYS.DrawSetting.ShadowMapDrawHandle = 0 ;
 
-	// •`‰ææ‚ğŒ³‚É–ß‚·
+	// æç”»å…ˆã‚’å…ƒã«æˆ»ã™
 	for( i = 0 ; i < DX_RENDERTARGET_COUNT ; i ++ )
 	{
 		NS_SetRenderTargetToShader( i, ShadowMap->RenderTargetScreen[ i ], ShadowMap->RenderTargetScreenSurface[ i ], ShadowMap->RenderTargetScreenMipLevel[ i ] ) ; 
 	}
 
 #ifndef DX_NON_MASK
-	// ƒ}ƒXƒN‰æ–Ê‚ğg—p‚·‚éİ’è‚ğŒ³‚É–ß‚·
+	// ãƒã‚¹ã‚¯ç”»é¢ã‚’ä½¿ç”¨ã™ã‚‹è¨­å®šã‚’å…ƒã«æˆ»ã™
 	NS_SetUseMaskScreenFlag( ShadowMap->RenderMaskUseFlag ) ;
 #endif
 
-	// ƒtƒHƒO‚ğg—p‚·‚éİ’è‚ğŒ³‚É–ß‚·
+	// ãƒ•ã‚©ã‚°ã‚’ä½¿ç”¨ã™ã‚‹è¨­å®šã‚’å…ƒã«æˆ»ã™
 	NS_SetFogEnable( ShadowMap->RenderFogEnable ) ;
 
-	// ƒJƒƒ‰İ’è‚ğŒ³‚É–ß‚·
+	// ã‚«ãƒ¡ãƒ©è¨­å®šã‚’å…ƒã«æˆ»ã™
 	GSYS.Camera.Position      = ShadowMap->RenderCameraPosition ;
 	GSYS.Camera.Target        = ShadowMap->RenderCameraTarget ;
 	GSYS.Camera.Up            = ShadowMap->RenderCameraUp ;
@@ -2491,7 +2491,7 @@ extern int NS_ShadowMap_DrawEnd( void )
 	NS_SetTransformToViewD( &ShadowMap->RenderCameraMatrix ) ;
 	NS_SetCameraScreenCenterD( ShadowMap->RenderCameraScreenCenterX, ShadowMap->RenderCameraScreenCenterY ) ;
 
-	// Ë‰eƒpƒ‰ƒ[ƒ^‚ğƒŠƒZƒbƒg
+	// å°„å½±ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ãƒªã‚»ãƒƒãƒˆ
 	GSYS.DrawSetting.ProjectionMatrixMode = ShadowMap->RenderProjectionMatrixMode ;
 	GSYS.DrawSetting.ProjNear             = ShadowMap->RenderProjNear ;
 	GSYS.DrawSetting.ProjFar              = ShadowMap->RenderProjFar ;
@@ -2501,12 +2501,12 @@ extern int NS_ShadowMap_DrawEnd( void )
 	GSYS.DrawSetting.ProjMatrix           = ShadowMap->RenderProjMatrix ;
 	Graphics_DrawSetting_SetTransformToProjection_Direct( &GSYS.DrawSetting.ProjMatrix ) ;
 
-	// ŠÂ‹«ˆË‘¶ˆ—
+	// ç’°å¢ƒä¾å­˜å‡¦ç†
 	Graphics_Hardware_ShadowMap_DrawEnd_PF( ShadowMap ) ;
 
 #ifndef DX_NON_FILTER
 
-	// ƒVƒƒƒhƒEƒ}ƒbƒv‚Éƒuƒ‰[‚ğŠ|‚¯‚é
+	// ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ã«ãƒ–ãƒ©ãƒ¼ã‚’æ›ã‘ã‚‹
 	if( ShadowMap->BlurParam > 0 )
 	{
 		NS_GraphFilter( ShadowMap->HandleInfo.Handle, DX_GRAPH_FILTER_GAUSS, 8, ShadowMap->BlurParam ) ;
@@ -2514,68 +2514,68 @@ extern int NS_ShadowMap_DrawEnd( void )
 
 #endif // DX_NON_FILTER
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// •`‰æ‚Åg—p‚·‚éƒVƒƒƒhƒEƒ}ƒbƒv‚ğw’è‚·‚éAƒXƒƒbƒg‚Í‚O‚©‚P‚©‚ğw’è‰Â”\ASmHandle ‚É -1 ‚ğ“n‚·‚Æw’è‚ÌƒXƒƒbƒg‚ÌƒVƒƒƒhƒEƒ}ƒbƒv‚ğ‰ğœ
+// æç”»ã§ä½¿ç”¨ã™ã‚‹ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ã‚’æŒ‡å®šã™ã‚‹ã€ã‚¹ãƒ­ãƒƒãƒˆã¯ï¼ã‹ï¼‘ã‹ã‚’æŒ‡å®šå¯èƒ½ã€SmHandle ã« -1 ã‚’æ¸¡ã™ã¨æŒ‡å®šã®ã‚¹ãƒ­ãƒƒãƒˆã®ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ã‚’è§£é™¤
 extern int NS_SetUseShadowMap( int SlotIndex, int SmHandle )
 {
 	SHADOWMAPDATA *ShadowMap = NULL ;
 
-	// ƒXƒƒbƒg‚ÌƒCƒ“ƒfƒbƒNƒX‚ª•s³‚Èê‡‚ÍƒGƒ‰[
+	// ã‚¹ãƒ­ãƒƒãƒˆã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãŒä¸æ­£ãªå ´åˆã¯ã‚¨ãƒ©ãƒ¼
 	if( SlotIndex < 0 || SlotIndex >= MAX_USE_SHADOWMAP_NUM )
 		return -1 ;
 
-	// ƒnƒ“ƒhƒ‹’l‚ªƒ}ƒCƒiƒX‚Ì’l‚Ìê‡‚Í‰ğœ
+	// ãƒãƒ³ãƒ‰ãƒ«å€¤ãŒãƒã‚¤ãƒŠã‚¹ã®å€¤ã®å ´åˆã¯è§£é™¤
 	if( SmHandle < 0 )
 	{
-		// —LŒø‚ÈƒVƒƒƒhƒEƒ}ƒbƒv‚ğİ’è‚µ‚Ä‚¢‚é”‚ğXV
+		// æœ‰åŠ¹ãªã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ã‚’è¨­å®šã—ã¦ã„ã‚‹æ•°ã‚’æ›´æ–°
 		if( GSYS.DrawSetting.ShadowMap[ SlotIndex ] != 0 )
 		{
 			GSYS.DrawSetting.UseShadowMapNum -- ;
 		}
 
-		// ƒnƒ“ƒhƒ‹’l‚ğƒŠƒZƒbƒg
+		// ãƒãƒ³ãƒ‰ãƒ«å€¤ã‚’ãƒªã‚»ãƒƒãƒˆ
 		GSYS.DrawSetting.ShadowMap[ SlotIndex ] = 0 ;
 	}
 	else
 	{
-		// ƒAƒhƒŒƒX‚Ìæ“¾
+		// ã‚¢ãƒ‰ãƒ¬ã‚¹ã®å–å¾—
 		if( SHADOWMAPCHK( SmHandle, ShadowMap ) )
 			return -1 ;
 
-		// —LŒø‚ÈƒVƒƒƒhƒEƒ}ƒbƒv‚ğİ’è‚µ‚Ä‚¢‚é”‚ğXV
+		// æœ‰åŠ¹ãªã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ã‚’è¨­å®šã—ã¦ã„ã‚‹æ•°ã‚’æ›´æ–°
 		if( GSYS.DrawSetting.ShadowMap[ SlotIndex ] == 0 )
 		{
 			GSYS.DrawSetting.UseShadowMapNum ++ ;
 		}
 
-		// ƒnƒ“ƒhƒ‹’l‚Ì•Û‘¶
+		// ãƒãƒ³ãƒ‰ãƒ«å€¤ã®ä¿å­˜
 		GSYS.DrawSetting.ShadowMap[ SlotIndex ] = SmHandle ;
 	}
 
-	// ŠÂ‹«ˆË‘¶ˆ—
+	// ç’°å¢ƒä¾å­˜å‡¦ç†
 	Graphics_Hardware_ShadowMap_SetUse_PF( SlotIndex, ShadowMap ) ;
 
-	// ƒVƒF[ƒ_[‚Ìƒpƒ‰ƒ[ƒ^‚É”½‰f
+	// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã«åæ˜ 
 	Graphics_ShadowMap_RefreshVSParam() ;
 	Graphics_ShadowMap_RefreshPSParam() ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒVƒƒƒhƒEƒ}ƒbƒv‚É•`‰æ‚·‚éÛ‚Ì”ÍˆÍ‚ğİ’è‚·‚é( ‚±‚ÌŠÖ”‚Å•`‰æ”ÍˆÍ‚ğİ’è‚µ‚È‚¢ê‡‚Í‹‘ä‚ğŠg‘å‚µ‚½”ÍˆÍ‚ª•`‰æ”ÍˆÍ‚Æ‚È‚é )
+// ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ã«æç”»ã™ã‚‹éš›ã®ç¯„å›²ã‚’è¨­å®šã™ã‚‹( ã“ã®é–¢æ•°ã§æç”»ç¯„å›²ã‚’è¨­å®šã—ãªã„å ´åˆã¯è¦–éŒå°ã‚’æ‹¡å¤§ã—ãŸç¯„å›²ãŒæç”»ç¯„å›²ã¨ãªã‚‹ )
 extern int NS_SetShadowMapDrawArea( int SmHandle, VECTOR MinPosition, VECTOR MaxPosition )
 {
 	SHADOWMAPDATA *ShadowMap ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( SHADOWMAPCHK( SmHandle, ShadowMap ) )
 		return -1 ;
 
-	// À•W‚ğ•Û‘¶
+	// åº§æ¨™ã‚’ä¿å­˜
 	if( MinPosition.x < MaxPosition.x )
 	{
 		ShadowMap->DrawAreaMinPosition.x = MinPosition.x ;
@@ -2609,7 +2609,7 @@ extern int NS_SetShadowMapDrawArea( int SmHandle, VECTOR MinPosition, VECTOR Max
 		ShadowMap->DrawAreaMaxPosition.z = MinPosition.z ;
 	}
 
-	// •‚ª–³‚¢ê‡‚Í–³Œø
+	// å¹…ãŒç„¡ã„å ´åˆã¯ç„¡åŠ¹
 	if( ShadowMap->DrawAreaMaxPosition.x - ShadowMap->DrawAreaMinPosition.x < 0.00000001f ||
 		ShadowMap->DrawAreaMaxPosition.y - ShadowMap->DrawAreaMinPosition.y < 0.00000001f ||
 		ShadowMap->DrawAreaMaxPosition.z - ShadowMap->DrawAreaMinPosition.z < 0.00000001f )
@@ -2617,10 +2617,10 @@ extern int NS_SetShadowMapDrawArea( int SmHandle, VECTOR MinPosition, VECTOR Max
 		return -1 ;
 	}
 
-	// ƒtƒ‰ƒO‚ğ—LŒø‚Éİ’è
+	// ãƒ•ãƒ©ã‚°ã‚’æœ‰åŠ¹ã«è¨­å®š
 	ShadowMap->EnableDrawArea = TRUE ;
 
-	// ƒVƒƒƒhƒEƒ}ƒbƒv‚É•`‰æ‚·‚é”ÍˆÍ‚ÌÀ•W‚ğXV
+	// ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ã«æç”»ã™ã‚‹ç¯„å›²ã®åº§æ¨™ã‚’æ›´æ–°
 	ShadowMap->DrawAreaViewClipPos[ 0 ].x = ShadowMap->DrawAreaMinPosition.x ;
 	ShadowMap->DrawAreaViewClipPos[ 0 ].y = ShadowMap->DrawAreaMinPosition.y ;
 	ShadowMap->DrawAreaViewClipPos[ 0 ].z = ShadowMap->DrawAreaMinPosition.z ;
@@ -2653,60 +2653,60 @@ extern int NS_SetShadowMapDrawArea( int SmHandle, VECTOR MinPosition, VECTOR Max
 	ShadowMap->DrawAreaViewClipPos[ 7 ].y = ShadowMap->DrawAreaMaxPosition.y ;
 	ShadowMap->DrawAreaViewClipPos[ 7 ].z = ShadowMap->DrawAreaMaxPosition.z ;
 
-	// ‚à‚µƒVƒƒƒhƒEƒ}ƒbƒv‚Ö‚Ì•`‰æ€”õÏ‚İ‚Ìê‡‚ÍƒVƒƒƒhƒEƒ}ƒbƒv‚Ö‚Ì•`‰æ‚É•K—v‚Ès—ñ‚ğXV‚·‚é
+	// ã‚‚ã—ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ã¸ã®æç”»æº–å‚™æ¸ˆã¿ã®å ´åˆã¯ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ã¸ã®æç”»ã«å¿…è¦ãªè¡Œåˆ—ã‚’æ›´æ–°ã™ã‚‹
 	if( ShadowMap->DrawSetupFlag )
 	{
-		// s—ñ‚ÌXV
+		// è¡Œåˆ—ã®æ›´æ–°
 		Graphics_ShadowMap_RefreshMatrix( ShadowMap ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// SetShadowMapDrawArea ‚Ìİ’è‚ğ‰ğœ‚·‚é
+// SetShadowMapDrawArea ã®è¨­å®šã‚’è§£é™¤ã™ã‚‹
 extern int NS_ResetShadowMapDrawArea( int SmHandle )
 {
 	SHADOWMAPDATA *ShadowMap ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( SHADOWMAPCHK( SmHandle, ShadowMap ) )
 		return -1 ;
 
-	// Šù‚Éİ’è‚ª‰ğœ‚³‚ê‚Ä‚¢‚½‚ç‰½‚à‚µ‚È‚¢
+	// æ—¢ã«è¨­å®šãŒè§£é™¤ã•ã‚Œã¦ã„ãŸã‚‰ä½•ã‚‚ã—ãªã„
 	if( ShadowMap->EnableDrawArea == FALSE )
 	{
 		return 0 ;
 	}
 
-	// ƒtƒ‰ƒO‚ğ“|‚·
+	// ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 	ShadowMap->EnableDrawArea = FALSE ;
 
-	// ‚à‚µƒVƒƒƒhƒEƒ}ƒbƒv‚Ö‚Ì•`‰æ€”õÏ‚İ‚Ìê‡‚ÍƒVƒƒƒhƒEƒ}ƒbƒv‚Ö‚Ì•`‰æ‚É•K—v‚Ès—ñ‚ğXV‚·‚é
+	// ã‚‚ã—ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ã¸ã®æç”»æº–å‚™æ¸ˆã¿ã®å ´åˆã¯ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ã¸ã®æç”»ã«å¿…è¦ãªè¡Œåˆ—ã‚’æ›´æ–°ã™ã‚‹
 	if( ShadowMap->DrawSetupFlag )
 	{
-		// s—ñ‚ÌXV
+		// è¡Œåˆ—ã®æ›´æ–°
 		Graphics_ShadowMap_RefreshMatrix( ShadowMap ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒVƒƒƒhƒEƒ}ƒbƒv‚ğg—p‚µ‚½•`‰æ‚Ì•â³[“x‚ğİ’è‚·‚é
+// ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ã‚’ä½¿ç”¨ã—ãŸæç”»æ™‚ã®è£œæ­£æ·±åº¦ã‚’è¨­å®šã™ã‚‹
 extern int NS_SetShadowMapAdjustDepth( int SmHandle, float Depth )
 {
 	SHADOWMAPDATA *ShadowMap ;
 	int i ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( SHADOWMAPCHK( SmHandle, ShadowMap ) )
 		return -1 ;
 
-	// •â³’l‚ğ•Û‘¶‚·‚é
+	// è£œæ­£å€¤ã‚’ä¿å­˜ã™ã‚‹
 	ShadowMap->AdjustDepth = Depth ;
 
-	// Šù‚ÉƒVƒƒƒhƒEƒ}ƒbƒv‚ğg—p’†‚Ìê‡‚Í•â³’l‚ğ•ÏX‚·‚é
+	// æ—¢ã«ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ã‚’ä½¿ç”¨ä¸­ã®å ´åˆã¯è£œæ­£å€¤ã‚’å¤‰æ›´ã™ã‚‹
 	for( i = 0 ; i < MAX_USE_SHADOWMAP_NUM ; i ++ )
 	{
 		if( GSYS.DrawSetting.ShadowMap[ i ] == SmHandle )
@@ -2716,59 +2716,59 @@ extern int NS_SetShadowMapAdjustDepth( int SmHandle, float Depth )
 		}
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒVƒƒƒhƒEƒ}ƒbƒvì¬‚â“K—p‚Ég—p‚·‚éƒrƒ…[s—ñ‚ÆË‰es—ñ‚ğæZ‚µ‚½s—ñ‚ğæ“¾‚·‚é
+// ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ä½œæˆæ™‚ã‚„é©ç”¨æ™‚ã«ä½¿ç”¨ã™ã‚‹ãƒ“ãƒ¥ãƒ¼è¡Œåˆ—ã¨å°„å½±è¡Œåˆ—ã‚’ä¹—ç®—ã—ãŸè¡Œåˆ—ã‚’å–å¾—ã™ã‚‹
 extern int NS_GetShadowMapViewProjectionMatrix( int SmHandle, MATRIX *MatrixBuffer )
 {
 	SHADOWMAPDATA *ShadowMap ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( SHADOWMAPCHK( SmHandle, ShadowMap ) )
 		return -1 ;
 
-	// s—ñ‚ğ•Û‘¶‚·‚é
+	// è¡Œåˆ—ã‚’ä¿å­˜ã™ã‚‹
 	if( MatrixBuffer != NULL )
 	{
 		*MatrixBuffer = ShadowMap->ShadowMapViewProjectionMatrix ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒVƒƒƒhƒEƒ}ƒbƒv‚É“K—p‚·‚é‚Ú‚©‚µ“x‡‚¢‚ğİ’è‚·‚é
+// ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ã«é©ç”¨ã™ã‚‹ã¼ã‹ã—åº¦åˆã„ã‚’è¨­å®šã™ã‚‹
 extern int NS_SetShadowMapBlurParam( int SmHandle, int Param )
 {
 	SHADOWMAPDATA *ShadowMap ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( SHADOWMAPCHK( SmHandle, ShadowMap ) )
 		return -1 ;
 
-	// •â³’l‚ğ•Û‘¶‚·‚é
+	// è£œæ­£å€¤ã‚’ä¿å­˜ã™ã‚‹
 	ShadowMap->BlurParam = Param ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒVƒƒƒhƒEƒ}ƒbƒv‚ğg—p‚µ‚½•`‰æ‚Ì‰e‚ğƒOƒ‰ƒf[ƒVƒ‡ƒ“‚³‚¹‚é”ÍˆÍ‚ğİ’è‚·‚é
+// ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ã‚’ä½¿ç”¨ã—ãŸæç”»æ™‚ã®å½±ã‚’ã‚°ãƒ©ãƒ‡ãƒ¼ã‚·ãƒ§ãƒ³ã•ã›ã‚‹ç¯„å›²ã‚’è¨­å®šã™ã‚‹
 extern int NS_SetShadowMapGradationParam( int SmHandle, float Param )
 {
 	SHADOWMAPDATA *ShadowMap ;
 	int i ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( SHADOWMAPCHK( SmHandle, ShadowMap ) )
 		return -1 ;
 
-	// ƒOƒ‰ƒf[ƒVƒ‡ƒ“‚³‚¹‚é”ÍˆÍ‚ğ•Û‘¶‚·‚é
+	// ã‚°ãƒ©ãƒ‡ãƒ¼ã‚·ãƒ§ãƒ³ã•ã›ã‚‹ç¯„å›²ã‚’ä¿å­˜ã™ã‚‹
 	ShadowMap->GradationParam = Param ;
 
-	// Šù‚ÉƒVƒƒƒhƒEƒ}ƒbƒv‚ğg—p’†‚Ìê‡‚Í•â³’l‚ğ•ÏX‚·‚é
+	// æ—¢ã«ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ã‚’ä½¿ç”¨ä¸­ã®å ´åˆã¯è£œæ­£å€¤ã‚’å¤‰æ›´ã™ã‚‹
 	for( i = 0 ; i < MAX_USE_SHADOWMAP_NUM ; i ++ )
 	{
 		if( GSYS.DrawSetting.ShadowMap[ i ] == SmHandle )
@@ -2778,11 +2778,11 @@ extern int NS_SetShadowMapGradationParam( int SmHandle, float Param )
 		}
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒVƒƒƒhƒEƒ}ƒbƒv‚ğ‰æ–Ê‚ÉƒeƒXƒg•`‰æ‚·‚é
+// ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ã‚’ç”»é¢ã«ãƒ†ã‚¹ãƒˆæç”»ã™ã‚‹
 #define SETDRAWRECTCODE_DRAWSHADOWMAP\
 	if( x1 < x2 ){ DrawRect.left = x1 ; DrawRect.right = x2; }\
 	if( y1 < y2 ){ DrawRect.top = y1 ; DrawRect.bottom = y2; }\
@@ -2799,7 +2799,7 @@ extern int NS_TestDrawShadowMap( int SmHandle, int x1, int y1, int x2, int y2 )
 
 	CheckActiveState() ;
 
-	// ƒAƒhƒŒƒX‚Ìæ“¾
+	// ã‚¢ãƒ‰ãƒ¬ã‚¹ã®å–å¾—
 	if( SHADOWMAPCHK( SmHandle, ShadowMap ) )
 		return -1 ;
 
@@ -2839,7 +2839,7 @@ extern int NS_TestDrawShadowMap( int SmHandle, int x1, int y1, int x2, int y2 )
 	DrawVert[ 4 ] = DrawVert[ 2 ] ;
 	DrawVert[ 5 ] = DrawVert[ 1 ] ;
 
-	// ‚Q‚cs—ñ‚ğƒn[ƒhƒEƒGƒA‚É”½‰f‚·‚é
+	// ï¼’ï¼¤è¡Œåˆ—ã‚’ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã«åæ˜ ã™ã‚‹
 	if( GSYS.DrawSetting.MatchHardware_2DMatrix == FALSE && GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )
 		Graphics_DrawSetting_ApplyLib2DMatrixToHardware() ;
 
@@ -2851,7 +2851,7 @@ extern int NS_TestDrawShadowMap( int SmHandle, int x1, int y1, int x2, int y2 )
 		Flag
 	)
 
-	// I—¹
+	// çµ‚äº†
 	return Ret ;
 }
 
@@ -2880,9 +2880,9 @@ extern int NS_TestDrawShadowMap( int SmHandle, int x1, int y1, int x2, int y2 )
 
 
 
-// ƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚Ö‚Ì‰æ‘œ“]‘—ŠÖ”
+// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã¸ã®ç”»åƒè»¢é€é–¢æ•°
 
-// ‰æ‘œƒf[ƒ^‚Ì“]‘—
+// ç”»åƒãƒ‡ãƒ¼ã‚¿ã®è»¢é€
 extern	int NS_BltBmpToGraph( const COLORDATA *BmpColorData, HBITMAP RgbBmp, HBITMAP AlphaBmp, int CopyPointX, int CopyPointY, int GrHandle )
 {
 	return NS_BltBmpOrGraphImageToGraph( BmpColorData, RgbBmp, AlphaBmp,
@@ -2890,7 +2890,7 @@ extern	int NS_BltBmpToGraph( const COLORDATA *BmpColorData, HBITMAP RgbBmp, HBIT
 											CopyPointX, CopyPointY, GrHandle ) ;
 }
 
-// •ªŠ„‰æ‘œ‚Ö‚Ì‚a‚l‚o‚Ì“]‘—
+// åˆ†å‰²ç”»åƒã¸ã®ï¼¢ï¼­ï¼°ã®è»¢é€
 extern	int NS_BltBmpToDivGraph( const COLORDATA *BmpColorData, HBITMAP RgbBmp, HBITMAP AlphaBmp, int AllNum, int XNum, int YNum, int Width, int Height, const int *GrHandle, int ReverseFlag )
 {
 	return NS_BltBmpOrGraphImageToDivGraph( BmpColorData, RgbBmp, AlphaBmp,
@@ -2898,7 +2898,7 @@ extern	int NS_BltBmpToDivGraph( const COLORDATA *BmpColorData, HBITMAP RgbBmp, H
 												AllNum, XNum, YNum, Width, Height, GrHandle, ReverseFlag ) ;
 }
 
-// ‚a‚l‚o ‚© GraphImage ‚ğ‰æ‘œ‚É“]‘—
+// ï¼¢ï¼­ï¼° ã‹ GraphImage ã‚’ç”»åƒã«è»¢é€
 extern int NS_BltBmpOrGraphImageToGraph(
 	const COLORDATA	*BmpColorData,
 	      HBITMAP	RgbBmp,
@@ -2920,7 +2920,7 @@ extern int NS_BltBmpOrGraphImageToGraph(
 
 	if( GSYS.InitializeFlag == FALSE ) return -1 ;
 
-	// Bitmap ‚Ìê‡‚ÍABASEIMAGE ‚Ìî•ñ‚ğì¬‚·‚é
+	// Bitmap ã®å ´åˆã¯ã€BASEIMAGE ã®æƒ…å ±ã‚’ä½œæˆã™ã‚‹
 	if( BmpFlag )
 	{
 #ifdef WINDOWS_DESKTOP_OS
@@ -2983,7 +2983,7 @@ extern int NS_BltBmpOrGraphImageToGraph(
 	return Result ;
 }
 
-// ‚a‚l‚o ‚© GraphImage ‚ğ‰æ‘œ‚É“]‘—
+// ï¼¢ï¼­ï¼° ã‹ GraphImage ã‚’ç”»åƒã«è»¢é€
 extern	int NS_BltBmpOrGraphImageToGraph2(
 	const COLORDATA	*BmpColorData,
 	      HBITMAP	RgbBmp,
@@ -3003,7 +3003,7 @@ extern	int NS_BltBmpOrGraphImageToGraph2(
 	BASEIMAGE		TempBaseAlpha = { 0 } ;
 #endif // WINDOWS_DESKTOP_OS
 
-	// Bitmap ‚Ìê‡‚ÍABASEIMAGE ‚Ìî•ñ‚ğì¬‚·‚é
+	// Bitmap ã®å ´åˆã¯ã€BASEIMAGE ã®æƒ…å ±ã‚’ä½œæˆã™ã‚‹
 	if( BmpFlag )
 	{
 #ifdef WINDOWS_DESKTOP_OS
@@ -3042,7 +3042,7 @@ extern	int NS_BltBmpOrGraphImageToGraph2(
 #endif // WINDOWS_DESKTOP_OS
 	}
 
-	// ‰æ‘œ‚Ì“]‘—
+	// ç”»åƒã®è»¢é€
 	return Graphics_Image_BltBmpOrGraphImageToGraph2Base(
 				RgbBaseImage,
 				AlphaBaseImage,
@@ -3053,7 +3053,7 @@ extern	int NS_BltBmpOrGraphImageToGraph2(
 				GSYS.CreateImage.NotUseTransColor ? FALSE : TRUE ) ;
 }
 
-// •ªŠ„‰æ‘œ‚Ö‚Ì ‚a‚l‚o ‚© GraphImage ‚Ì“]‘—
+// åˆ†å‰²ç”»åƒã¸ã® ï¼¢ï¼­ï¼° ã‹ GraphImage ã®è»¢é€
 extern	int NS_BltBmpOrGraphImageToDivGraph(
 	const COLORDATA	*BmpColorData,
 	      HBITMAP	RgbBmp,
@@ -3080,7 +3080,7 @@ extern	int NS_BltBmpOrGraphImageToDivGraph(
 
 	if( GSYS.InitializeFlag == FALSE ) return -1 ;
 
-	// Bitmap ‚Ìê‡‚ÍABASEIMAGE ‚Ìî•ñ‚ğì¬‚·‚é
+	// Bitmap ã®å ´åˆã¯ã€BASEIMAGE ã®æƒ…å ±ã‚’ä½œæˆã™ã‚‹
 	if( BmpFlag )
 	{
 #ifdef WINDOWS_DESKTOP_OS
@@ -3119,7 +3119,7 @@ extern	int NS_BltBmpOrGraphImageToDivGraph(
 #endif // WINDOWS_DESKTOP_OS
 	}
 
-	// “]‘—ˆ—
+	// è»¢é€å‡¦ç†
 	Result = Graphics_Image_BltBmpOrGraphImageToDivGraphBase(
 		RgbBaseImage,
 		AlphaBaseImage,
@@ -3137,7 +3137,7 @@ extern	int NS_BltBmpOrGraphImageToDivGraph(
 		FALSE
 	) ;
 
-	// Å‰‚Ì‰æ‘œ‚Éƒtƒ@ƒCƒ‹î•ñ‚ğƒZƒbƒg
+	// æœ€åˆã®ç”»åƒã«ãƒ•ã‚¡ã‚¤ãƒ«æƒ…å ±ã‚’ã‚»ãƒƒãƒˆ
 	if( BmpFlag )
 	{
 		Graphics_Image_SetGraphBaseInfo( GrHandle[ 0 ], NULL, BmpColorData, RgbBmp, AlphaBmp, NULL, 0, NULL, 0, NULL, NULL, FALSE, FALSE, FALSE, -1, FALSE ) ;
@@ -3151,11 +3151,11 @@ extern	int NS_BltBmpOrGraphImageToDivGraph(
 		Graphics_Image_SetGraphBaseInfo( GrHandle[ i ], NULL, NULL, NULL, NULL, NULL, 0, NULL, 0, NULL, NULL, FALSE, FALSE, FALSE, GrHandle[ 0 ], FALSE ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return Result ;
 }
 
-// •ªŠ„‰æ‘œ‚Ö‚Ì ‚a‚l‚o ‚© GraphImage ‚Ì“]‘—
+// åˆ†å‰²ç”»åƒã¸ã® ï¼¢ï¼­ï¼° ã‹ GraphImage ã®è»¢é€
 extern	int NS_BltBmpOrGraphImageToDivGraphF(
 	const COLORDATA	*BmpColorData,
 	      HBITMAP	RgbBmp,
@@ -3182,7 +3182,7 @@ extern	int NS_BltBmpOrGraphImageToDivGraphF(
 
 	if( GSYS.InitializeFlag == FALSE ) return -1 ;
 
-	// Bitmap ‚Ìê‡‚ÍABASEIMAGE ‚Ìî•ñ‚ğì¬‚·‚é
+	// Bitmap ã®å ´åˆã¯ã€BASEIMAGE ã®æƒ…å ±ã‚’ä½œæˆã™ã‚‹
 	if( BmpFlag )
 	{
 #ifdef WINDOWS_DESKTOP_OS
@@ -3221,7 +3221,7 @@ extern	int NS_BltBmpOrGraphImageToDivGraphF(
 #endif // WINDOWS_DESKTOP_OS
 	}
 
-	// “]‘—ˆ—
+	// è»¢é€å‡¦ç†
 	Result = Graphics_Image_BltBmpOrGraphImageToDivGraphBase(
 		RgbBaseImage,
 		AlphaBaseImage,
@@ -3239,7 +3239,7 @@ extern	int NS_BltBmpOrGraphImageToDivGraphF(
 		FALSE
 	) ;
 
-	// Å‰‚Ì‰æ‘œ‚Éƒtƒ@ƒCƒ‹î•ñ‚ğƒZƒbƒg
+	// æœ€åˆã®ç”»åƒã«ãƒ•ã‚¡ã‚¤ãƒ«æƒ…å ±ã‚’ã‚»ãƒƒãƒˆ
 	if( BmpFlag )
 	{
 		Graphics_Image_SetGraphBaseInfo( GrHandle[ 0 ], NULL, BmpColorData, RgbBmp, AlphaBmp, NULL, 0, NULL, 0, NULL, NULL, FALSE, FALSE, FALSE, -1, FALSE ) ;
@@ -3253,7 +3253,7 @@ extern	int NS_BltBmpOrGraphImageToDivGraphF(
 		Graphics_Image_SetGraphBaseInfo( GrHandle[ i ], NULL, NULL, NULL, NULL, NULL, 0, NULL, 0, NULL, NULL, FALSE, FALSE, FALSE, GrHandle[ 0 ], FALSE ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return Result ;
 }
 
@@ -3275,9 +3275,9 @@ extern	int NS_BltBmpOrGraphImageToDivGraphF(
 
 
 
-// ‰æ‘œ‚©‚çƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ğì¬‚·‚éŠÖ”
+// ç”»åƒã‹ã‚‰ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã‚’ä½œæˆã™ã‚‹é–¢æ•°
 
-// ‰æ‘œ‚ğ“Ç‚İ‚±‚Ş
+// ç”»åƒã‚’èª­ã¿ã“ã‚€
 extern int NS_LoadBmpToGraph( const TCHAR *FileName, int TextureFlag, int ReverseFlag, int SurfaceMode )
 {
 #ifdef UNICODE
@@ -3299,7 +3299,7 @@ extern int NS_LoadBmpToGraph( const TCHAR *FileName, int TextureFlag, int Revers
 #endif
 }
 
-// ‰æ‘œƒtƒ@ƒCƒ‹‚©‚çƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ğì¬‚·‚é
+// ç”»åƒãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã‚’ä½œæˆã™ã‚‹
 extern int NS_LoadBmpToGraphWithStrLen( const TCHAR *FileName, size_t FileNameLength, int TextureFlag, int ReverseFlag, int SurfaceMode )
 {
 	int Result ;
@@ -3315,7 +3315,7 @@ extern int NS_LoadBmpToGraphWithStrLen( const TCHAR *FileName, size_t FileNameLe
 	return Result ;
 }
 
-// ‰æ‘œ‚ğ“Ç‚İ‚±‚Ş
+// ç”»åƒã‚’èª­ã¿ã“ã‚€
 extern int LoadBmpToGraph_WCHAR_T( const wchar_t *FileName, int TextureFlag, int ReverseFlag, int SurfaceMode )
 {
 	LOADGRAPH_GPARAM GParam ;
@@ -3325,13 +3325,13 @@ extern int LoadBmpToGraph_WCHAR_T( const wchar_t *FileName, int TextureFlag, int
 	return Graphics_Image_LoadBmpToGraph_UseGParam( &GParam, FALSE, -1, FileName, TextureFlag, ReverseFlag, SurfaceMode, GetASyncLoadFlag() ) ;
 }
 
-// ‚a‚l‚oƒtƒ@ƒCƒ‹‚Ìƒƒ‚ƒŠ‚Ö‚Ì“Ç‚İ‚±‚İiƒtƒ‰ƒO‚Â‚«)
+// ï¼¢ï¼­ï¼°ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ¡ãƒ¢ãƒªã¸ã®èª­ã¿ã“ã¿ï¼ˆãƒ•ãƒ©ã‚°ã¤ã)
 extern int NS_LoadGraph( const TCHAR *GraphName, int NotUse3DFlag )
 {
 	return NS_LoadBmpToGraph( GraphName, !NotUse3DFlag, FALSE, DX_MOVIESURFACE_NORMAL ) ;
 }
 
-// ‰æ‘œƒtƒ@ƒCƒ‹‚©‚çƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ğì¬‚·‚é
+// ç”»åƒãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã‚’ä½œæˆã™ã‚‹
 extern int NS_LoadGraphWithStrLen( const TCHAR *FileName, size_t FileNameLength, int NotUse3DFlag )
 {
 	int Result ;
@@ -3341,19 +3341,19 @@ extern int NS_LoadGraphWithStrLen( const TCHAR *FileName, size_t FileNameLength,
 	return Result ;
 }
 
-// ‚a‚l‚oƒtƒ@ƒCƒ‹‚Ìƒƒ‚ƒŠ‚Ö‚Ì“Ç‚İ‚±‚İiƒtƒ‰ƒO‚Â‚«)
+// ï¼¢ï¼­ï¼°ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ¡ãƒ¢ãƒªã¸ã®èª­ã¿ã“ã¿ï¼ˆãƒ•ãƒ©ã‚°ã¤ã)
 extern int LoadGraph_WCHAR_T( const wchar_t *GraphName, int NotUse3DFlag )
 {
 	return LoadBmpToGraph_WCHAR_T( GraphName, !NotUse3DFlag, FALSE ) ;
 }
 
-// ‚a‚l‚oƒtƒ@ƒCƒ‹‚Ìƒƒ‚ƒŠ‚Ö‚Ì”½“]“Ç‚İ‚±‚İiƒtƒ‰ƒO‚Â‚«)
+// ï¼¢ï¼­ï¼°ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ¡ãƒ¢ãƒªã¸ã®åè»¢èª­ã¿ã“ã¿ï¼ˆãƒ•ãƒ©ã‚°ã¤ã)
 extern int NS_LoadReverseGraph( const TCHAR *GraphName, int NotUse3DFlag )
 {
 	return NS_LoadBmpToGraph( GraphName, !NotUse3DFlag, TRUE, DX_MOVIESURFACE_NORMAL ) ;
 }
 
-// ‰æ‘œƒtƒ@ƒCƒ‹‚ğ”½“]‚µ‚½‚à‚Ì‚ÅƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ğì¬‚·‚é
+// ç”»åƒãƒ•ã‚¡ã‚¤ãƒ«ã‚’åè»¢ã—ãŸã‚‚ã®ã§ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã‚’ä½œæˆã™ã‚‹
 extern int NS_LoadReverseGraphWithStrLen( const TCHAR *FileName, size_t FileNameLength, int NotUse3DFlag )
 {
 	int Result ;
@@ -3363,19 +3363,19 @@ extern int NS_LoadReverseGraphWithStrLen( const TCHAR *FileName, size_t FileName
 	return Result ;
 }
 
-// ‚a‚l‚oƒtƒ@ƒCƒ‹‚Ìƒƒ‚ƒŠ‚Ö‚Ì”½“]“Ç‚İ‚±‚İiƒtƒ‰ƒO‚Â‚«)
+// ï¼¢ï¼­ï¼°ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ¡ãƒ¢ãƒªã¸ã®åè»¢èª­ã¿ã“ã¿ï¼ˆãƒ•ãƒ©ã‚°ã¤ã)
 extern int LoadReverseGraph_WCHAR_T( const wchar_t *GraphName, int NotUse3DFlag )
 {
 	return LoadBmpToGraph_WCHAR_T( GraphName, !NotUse3DFlag, TRUE ) ;
 }
 
-// ‚a‚l‚o‚Ì•ªŠ„“Ç‚İ‚±‚İiƒtƒ‰ƒO‚Â‚«j
+// ï¼¢ï¼­ï¼°ã®åˆ†å‰²èª­ã¿ã“ã¿ï¼ˆãƒ•ãƒ©ã‚°ã¤ãï¼‰
 extern int NS_LoadDivGraph( const TCHAR *FileName, int AllNum, int XNum, int YNum, int XSize, int YSize, int *HandleArray, int NotUse3DFlag, int XStride, int YStride )
 {
 	return NS_LoadDivBmpToGraph( FileName, AllNum, XNum, YNum, XSize, YSize, HandleArray, !NotUse3DFlag, FALSE, XStride, YStride ) ;
 }
 
-// ‰æ‘œƒtƒ@ƒCƒ‹‚ğ•ªŠ„‚µ‚ÄƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ğì¬‚·‚é
+// ç”»åƒãƒ•ã‚¡ã‚¤ãƒ«ã‚’åˆ†å‰²ã—ã¦ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã‚’ä½œæˆã™ã‚‹
 extern int NS_LoadDivGraphWithStrLen( const TCHAR *FileName, size_t FileNameLength, int AllNum, int XNum, int YNum, int XSize, int YSize, int *HandleArray, int NotUse3DFlag, int XStride, int YStride )
 {
 	int Result ;
@@ -3385,13 +3385,13 @@ extern int NS_LoadDivGraphWithStrLen( const TCHAR *FileName, size_t FileNameLeng
 	return Result ;
 }
 
-// ‚a‚l‚o‚Ì•ªŠ„“Ç‚İ‚±‚İiƒtƒ‰ƒO‚Â‚«j
+// ï¼¢ï¼­ï¼°ã®åˆ†å‰²èª­ã¿ã“ã¿ï¼ˆãƒ•ãƒ©ã‚°ã¤ãï¼‰
 extern int NS_LoadDivGraphF( const TCHAR *FileName, int AllNum, int XNum, int YNum, float XSize, float YSize, int *HandleArray, int NotUse3DFlag, float XStride, float YStride )
 {
 	return NS_LoadDivBmpToGraphF( FileName, AllNum, XNum, YNum, XSize, YSize, HandleArray, !NotUse3DFlag, FALSE, XStride, YStride ) ;
 }
 
-// ‰æ‘œƒtƒ@ƒCƒ‹‚ğ•ªŠ„‚µ‚ÄƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ğì¬‚·‚é
+// ç”»åƒãƒ•ã‚¡ã‚¤ãƒ«ã‚’åˆ†å‰²ã—ã¦ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã‚’ä½œæˆã™ã‚‹
 extern int NS_LoadDivGraphFWithStrLen( const TCHAR *FileName, size_t FileNameLength, int AllNum, int XNum, int YNum, float XSize, float YSize, int *HandleArray, int NotUse3DFlag, float XStride, float YStride )
 {
 	int Result ;
@@ -3401,7 +3401,7 @@ extern int NS_LoadDivGraphFWithStrLen( const TCHAR *FileName, size_t FileNameLen
 	return Result ;
 }
 
-// ‚a‚l‚o‚Ì•ªŠ„“Ç‚İ‚±‚İ
+// ï¼¢ï¼­ï¼°ã®åˆ†å‰²èª­ã¿ã“ã¿
 extern int NS_LoadDivBmpToGraph( const TCHAR *FileName, int AllNum, int XNum, int YNum, int SizeX, int SizeY, int *HandleArray, int TextureFlag, int ReverseFlag, int XStride, int YStride )
 {
 #ifdef UNICODE
@@ -3423,7 +3423,7 @@ extern int NS_LoadDivBmpToGraph( const TCHAR *FileName, int AllNum, int XNum, in
 #endif
 }
 
-// ‰æ‘œƒtƒ@ƒCƒ‹‚ğ•ªŠ„‚µ‚ÄƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ğì¬‚·‚é
+// ç”»åƒãƒ•ã‚¡ã‚¤ãƒ«ã‚’åˆ†å‰²ã—ã¦ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã‚’ä½œæˆã™ã‚‹
 extern int NS_LoadDivBmpToGraphWithStrLen( const TCHAR *FileName, size_t FileNameLength, int AllNum, int XNum, int YNum, int SizeX, int SizeY, int *HandleArray, int TextureFlag, int ReverseFlag, int XStride, int YStride )
 {
 	int Result ;
@@ -3439,7 +3439,7 @@ extern int NS_LoadDivBmpToGraphWithStrLen( const TCHAR *FileName, size_t FileNam
 	return Result ;
 }
 
-// ‚a‚l‚o‚Ì•ªŠ„“Ç‚İ‚±‚İ
+// ï¼¢ï¼­ï¼°ã®åˆ†å‰²èª­ã¿ã“ã¿
 extern int NS_LoadDivBmpToGraphF( const TCHAR *FileName, int AllNum, int XNum, int YNum, float SizeX, float SizeY, int *HandleArray, int TextureFlag, int ReverseFlag, float XStride, float YStride )
 {
 #ifdef UNICODE
@@ -3461,7 +3461,7 @@ extern int NS_LoadDivBmpToGraphF( const TCHAR *FileName, int AllNum, int XNum, i
 #endif
 }
 
-// ‰æ‘œƒtƒ@ƒCƒ‹‚ğ•ªŠ„‚µ‚ÄƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ğì¬‚·‚é
+// ç”»åƒãƒ•ã‚¡ã‚¤ãƒ«ã‚’åˆ†å‰²ã—ã¦ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã‚’ä½œæˆã™ã‚‹
 extern int NS_LoadDivBmpToGraphFWithStrLen( const TCHAR *FileName, size_t FileNameLength, int AllNum, int XNum, int YNum, float SizeX, float SizeY, int *HandleArray, int TextureFlag, int ReverseFlag, float XStride, float YStride )
 {
 	int Result ;
@@ -3477,7 +3477,7 @@ extern int NS_LoadDivBmpToGraphFWithStrLen( const TCHAR *FileName, size_t FileNa
 	return Result ;
 }
 
-// ‚a‚l‚o‚Ì•ªŠ„“Ç‚İ‚±‚İ
+// ï¼¢ï¼­ï¼°ã®åˆ†å‰²èª­ã¿ã“ã¿
 extern int LoadDivBmpToGraph_WCHAR_T( const wchar_t *FileName, int AllNum, int XNum, int YNum, int IsFloat, int SizeXI, float SizeXF, int SizeYI, float SizeYF, int *HandleArray, int TextureFlag, int ReverseFlag, int XStrideI, float XStrideF, int YStrideI, float YStrideF )
 {
 	LOADGRAPH_GPARAM GParam ;
@@ -3487,13 +3487,13 @@ extern int LoadDivBmpToGraph_WCHAR_T( const wchar_t *FileName, int AllNum, int X
 	return Graphics_Image_LoadDivBmpToGraph_UseGParam( &GParam, FALSE, FileName, AllNum, XNum, YNum, IsFloat, SizeXI, SizeXF, SizeYI, SizeYF, HandleArray, TextureFlag, ReverseFlag, XStrideI, XStrideF, YStrideI, YStrideF, GetASyncLoadFlag(), FALSE ) ;
 }
 
-// ‚a‚l‚o‚Ì”½“]•ªŠ„“Ç‚İ‚±‚İiƒtƒ‰ƒO‚Â‚«j
+// ï¼¢ï¼­ï¼°ã®åè»¢åˆ†å‰²èª­ã¿ã“ã¿ï¼ˆãƒ•ãƒ©ã‚°ã¤ãï¼‰
 extern int NS_LoadReverseDivGraph( const TCHAR *FileName, int AllNum, int XNum, int YNum, int XSize, int YSize, int *HandleArray, int NotUse3DFlag, int XStride, int YStride )
 {
 	return NS_LoadDivBmpToGraph( FileName, AllNum, XNum, YNum, XSize, YSize, HandleArray, !NotUse3DFlag, TRUE, XStride, YStride ) ;
 }
 
-// ‰æ‘œƒtƒ@ƒCƒ‹‚ğ”½“]‚µ‚½‚à‚Ì‚ğ•ªŠ„‚µ‚ÄƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ğì¬‚·‚é
+// ç”»åƒãƒ•ã‚¡ã‚¤ãƒ«ã‚’åè»¢ã—ãŸã‚‚ã®ã‚’åˆ†å‰²ã—ã¦ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã‚’ä½œæˆã™ã‚‹
 extern int NS_LoadReverseDivGraphWithStrLen( const TCHAR *FileName, size_t FileNameLength, int AllNum, int XNum, int YNum, int XSize, int YSize, int *HandleArray, int NotUse3DFlag, int XStride, int YStride )
 {
 	int Result ;
@@ -3503,13 +3503,13 @@ extern int NS_LoadReverseDivGraphWithStrLen( const TCHAR *FileName, size_t FileN
 	return Result ;
 }
 
-// ‚a‚l‚o‚Ì”½“]•ªŠ„“Ç‚İ‚±‚İiƒtƒ‰ƒO‚Â‚«j
+// ï¼¢ï¼­ï¼°ã®åè»¢åˆ†å‰²èª­ã¿ã“ã¿ï¼ˆãƒ•ãƒ©ã‚°ã¤ãï¼‰
 extern int NS_LoadReverseDivGraphF( const TCHAR *FileName, int AllNum, int XNum, int YNum, float XSize, float YSize, int *HandleArray, int NotUse3DFlag, float XStride, float YStride )
 {
 	return NS_LoadDivBmpToGraphF( FileName, AllNum, XNum, YNum, XSize, YSize, HandleArray, !NotUse3DFlag, TRUE, XStride, YStride ) ;
 }
 
-// ‰æ‘œƒtƒ@ƒCƒ‹‚ğ”½“]‚µ‚½‚à‚Ì‚ğ•ªŠ„‚µ‚ÄƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ğì¬‚·‚é
+// ç”»åƒãƒ•ã‚¡ã‚¤ãƒ«ã‚’åè»¢ã—ãŸã‚‚ã®ã‚’åˆ†å‰²ã—ã¦ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã‚’ä½œæˆã™ã‚‹
 extern int NS_LoadReverseDivGraphFWithStrLen( const TCHAR *FileName, size_t FileNameLength, int AllNum, int XNum, int YNum, float XSize, float YSize, int *HandleArray, int NotUse3DFlag, float XStride, float YStride )
 {
 	int Result ;
@@ -3519,7 +3519,7 @@ extern int NS_LoadReverseDivGraphFWithStrLen( const TCHAR *FileName, size_t File
 	return Result ;
 }
 
-// ‰æ‘œƒtƒ@ƒCƒ‹‚©‚çƒuƒŒƒ“ƒh—p‰æ‘œ‚ğ“Ç‚İ‚Ş
+// ç”»åƒãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰ãƒ–ãƒ¬ãƒ³ãƒ‰ç”¨ç”»åƒã‚’èª­ã¿è¾¼ã‚€
 extern int NS_LoadBlendGraph( const TCHAR *FileName )
 {
 #ifdef UNICODE
@@ -3541,7 +3541,7 @@ extern int NS_LoadBlendGraph( const TCHAR *FileName )
 #endif
 }
 
-// ‰æ‘œƒtƒ@ƒCƒ‹‚©‚çƒuƒŒƒ“ƒh—pƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ğì¬‚·‚é
+// ç”»åƒãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰ãƒ–ãƒ¬ãƒ³ãƒ‰ç”¨ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã‚’ä½œæˆã™ã‚‹
 extern int NS_LoadBlendGraphWithStrLen( const TCHAR *FileName, size_t FileNameLength )
 {
 	int Result ;
@@ -3557,7 +3557,7 @@ extern int NS_LoadBlendGraphWithStrLen( const TCHAR *FileName, size_t FileNameLe
 	return Result ;
 }
 
-// ‰æ‘œƒtƒ@ƒCƒ‹‚©‚çƒuƒŒƒ“ƒh—p‰æ‘œ‚ğ“Ç‚İ‚Ş
+// ç”»åƒãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰ãƒ–ãƒ¬ãƒ³ãƒ‰ç”¨ç”»åƒã‚’èª­ã¿è¾¼ã‚€
 extern int LoadBlendGraph_WCHAR_T( const wchar_t *FileName )
 {
 	int Result, UseBlendGraphFlag ;
@@ -3572,7 +3572,7 @@ extern int LoadBlendGraph_WCHAR_T( const wchar_t *FileName )
 	return Result ;
 }
 
-// ƒƒ‚ƒŠã‚ÌƒOƒ‰ƒtƒBƒbƒNƒCƒ[ƒW‚©‚çƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ğì¬‚·‚é
+// ãƒ¡ãƒ¢ãƒªä¸Šã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¤ãƒ¡ãƒ¼ã‚¸ã‹ã‚‰ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã‚’ä½œæˆã™ã‚‹
 extern int NS_CreateGraphFromMem( const void *MemImage, int MemImageSize, const void *AlphaImage, int AlphaImageSize, int TextureFlag, int ReverseFlag )
 {
 	LOADGRAPH_GPARAM GParam ;
@@ -3582,7 +3582,7 @@ extern int NS_CreateGraphFromMem( const void *MemImage, int MemImageSize, const 
 	return Graphics_Image_CreateGraphFromMem_UseGParam( &GParam, FALSE, -1, MemImage, MemImageSize, AlphaImage, AlphaImageSize, TextureFlag, ReverseFlag, GetASyncLoadFlag() ) ;
 }
 
-// ƒƒ‚ƒŠã‚ÌƒOƒ‰ƒtƒBƒbƒNƒCƒ[ƒW‚©‚çŠù‘¶‚ÌƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚Éƒf[ƒ^‚ğ“]‘—‚·‚é
+// ãƒ¡ãƒ¢ãƒªä¸Šã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¤ãƒ¡ãƒ¼ã‚¸ã‹ã‚‰æ—¢å­˜ã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã«ãƒ‡ãƒ¼ã‚¿ã‚’è»¢é€ã™ã‚‹
 extern int NS_ReCreateGraphFromMem( const void *MemImage, int MemImageSize, int GrHandle, const void *AlphaImage, int AlphaImageSize, int TextureFlag, int ReverseFlag )
 {
 	LOADGRAPH_GPARAM GParam ;
@@ -3592,7 +3592,7 @@ extern int NS_ReCreateGraphFromMem( const void *MemImage, int MemImageSize, int 
 	return Graphics_Image_CreateGraphFromMem_UseGParam( &GParam, TRUE, GrHandle, MemImage, MemImageSize, AlphaImage, AlphaImageSize, TextureFlag, ReverseFlag, GetASyncLoadFlag() ) ;
 }
 
-// ƒƒ‚ƒŠã‚ÌƒOƒ‰ƒtƒBƒbƒNƒCƒ[ƒW‚©‚ç•ªŠ„ƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ğì¬‚·‚é
+// ãƒ¡ãƒ¢ãƒªä¸Šã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¤ãƒ¡ãƒ¼ã‚¸ã‹ã‚‰åˆ†å‰²ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã‚’ä½œæˆã™ã‚‹
 extern int NS_CreateDivGraphFromMem( const void *MemImage, int MemImageSize, int AllNum, int XNum, int YNum, int SizeX, int SizeY, int *HandleArray,int TextureFlag, int ReverseFlag, const void *AlphaImage, int AlphaImageSize )
 {
 	LOADGRAPH_GPARAM GParam ;
@@ -3602,7 +3602,7 @@ extern int NS_CreateDivGraphFromMem( const void *MemImage, int MemImageSize, int
 	return Graphics_Image_CreateDivGraphFromMem_UseGParam( &GParam, FALSE, MemImage, MemImageSize, AllNum, XNum, YNum, FALSE, SizeX, ( float )SizeX, SizeY, ( float )SizeY, HandleArray, TextureFlag, ReverseFlag, AlphaImage, AlphaImageSize, GetASyncLoadFlag(), FALSE ) ;
 }
 
-// ƒƒ‚ƒŠã‚ÌƒOƒ‰ƒtƒBƒbƒNƒCƒ[ƒW‚©‚ç•ªŠ„ƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ğì¬‚·‚é
+// ãƒ¡ãƒ¢ãƒªä¸Šã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¤ãƒ¡ãƒ¼ã‚¸ã‹ã‚‰åˆ†å‰²ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã‚’ä½œæˆã™ã‚‹
 extern int NS_CreateDivGraphFFromMem( const void *MemImage, int MemImageSize, int AllNum, int XNum, int YNum, float SizeX, float SizeY, int *HandleArray,int TextureFlag, int ReverseFlag, const void *AlphaImage, int AlphaImageSize )
 {
 	LOADGRAPH_GPARAM GParam ;
@@ -3612,7 +3612,7 @@ extern int NS_CreateDivGraphFFromMem( const void *MemImage, int MemImageSize, in
 	return Graphics_Image_CreateDivGraphFromMem_UseGParam( &GParam, FALSE, MemImage, MemImageSize, AllNum, XNum, YNum, TRUE, _FTOL( SizeX ), SizeX, _FTOL( SizeY ), SizeY, HandleArray, TextureFlag, ReverseFlag, AlphaImage, AlphaImageSize, GetASyncLoadFlag(), FALSE ) ;
 }
 
-// ƒƒ‚ƒŠã‚ÌƒOƒ‰ƒtƒBƒbƒNƒCƒ[ƒW‚©‚çŠù‘¶‚Ì•ªŠ„ƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚Éƒf[ƒ^‚ğ“]‘—‚·‚é
+// ãƒ¡ãƒ¢ãƒªä¸Šã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¤ãƒ¡ãƒ¼ã‚¸ã‹ã‚‰æ—¢å­˜ã®åˆ†å‰²ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã«ãƒ‡ãƒ¼ã‚¿ã‚’è»¢é€ã™ã‚‹
 extern int NS_ReCreateDivGraphFromMem( const void *MemImage, int MemImageSize, int AllNum, int XNum, int YNum, int SizeX, int SizeY, const int *HandleArray,int TextureFlag, int ReverseFlag, const void *AlphaImage, int AlphaImageSize )
 {
 	LOADGRAPH_GPARAM GParam ;
@@ -3622,7 +3622,7 @@ extern int NS_ReCreateDivGraphFromMem( const void *MemImage, int MemImageSize, i
 	return Graphics_Image_CreateDivGraphFromMem_UseGParam( &GParam, TRUE, MemImage, MemImageSize, AllNum, XNum, YNum, FALSE, SizeX, ( float )SizeX, SizeY, ( float )SizeY, ( int * )HandleArray, TextureFlag, ReverseFlag, AlphaImage, AlphaImageSize, GetASyncLoadFlag(), FALSE ) ;
 }
 
-// ƒƒ‚ƒŠã‚ÌƒOƒ‰ƒtƒBƒbƒNƒCƒ[ƒW‚©‚çŠù‘¶‚Ì•ªŠ„ƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚Éƒf[ƒ^‚ğ“]‘—‚·‚é
+// ãƒ¡ãƒ¢ãƒªä¸Šã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¤ãƒ¡ãƒ¼ã‚¸ã‹ã‚‰æ—¢å­˜ã®åˆ†å‰²ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã«ãƒ‡ãƒ¼ã‚¿ã‚’è»¢é€ã™ã‚‹
 extern int NS_ReCreateDivGraphFFromMem( const void *MemImage, int MemImageSize, int AllNum, int XNum, int YNum, float SizeX, float SizeY, const int *HandleArray,int TextureFlag, int ReverseFlag, const void *AlphaImage, int AlphaImageSize )
 {
 	LOADGRAPH_GPARAM GParam ;
@@ -3632,7 +3632,7 @@ extern int NS_ReCreateDivGraphFFromMem( const void *MemImage, int MemImageSize, 
 	return Graphics_Image_CreateDivGraphFromMem_UseGParam( &GParam, TRUE, MemImage, MemImageSize, AllNum, XNum, YNum, TRUE, _FTOL( SizeX ), SizeX, _FTOL( SizeY ), SizeY, ( int * )HandleArray, TextureFlag, ReverseFlag, AlphaImage, AlphaImageSize, GetASyncLoadFlag(), FALSE ) ;
 }
 
-// ƒrƒbƒgƒ}ƒbƒvƒf[ƒ^‚©‚çƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ğì¬‚·‚é
+// ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã‚’ä½œæˆã™ã‚‹
 extern int NS_CreateGraphFromBmp( const BITMAPINFO *BmpInfo, const void *GraphData, const BITMAPINFO *AlphaInfo, const void *AlphaData, int TextureFlag, int ReverseFlag )
 {
 	LOADGRAPH_GPARAM GParam ;
@@ -3642,7 +3642,7 @@ extern int NS_CreateGraphFromBmp( const BITMAPINFO *BmpInfo, const void *GraphDa
 	return Graphics_Image_CreateGraphFromBmp_UseGParam( &GParam, FALSE, -1, BmpInfo, GraphData, AlphaInfo, AlphaData, TextureFlag, ReverseFlag, GetASyncLoadFlag() ) ;
 }
 
-// ƒrƒbƒgƒ}ƒbƒvƒf[ƒ^‚©‚çŠù‘¶‚ÌƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚Éƒf[ƒ^‚ğ“]‘—‚·‚é
+// ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰æ—¢å­˜ã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã«ãƒ‡ãƒ¼ã‚¿ã‚’è»¢é€ã™ã‚‹
 extern int NS_ReCreateGraphFromBmp( const BITMAPINFO *BmpInfo, const void *GraphData, int GrHandle, const BITMAPINFO *AlphaInfo, const void *AlphaData, int TextureFlag, int ReverseFlag )
 {
 	LOADGRAPH_GPARAM GParam ;
@@ -3652,7 +3652,7 @@ extern int NS_ReCreateGraphFromBmp( const BITMAPINFO *BmpInfo, const void *Graph
 	return Graphics_Image_CreateGraphFromBmp_UseGParam( &GParam, TRUE, GrHandle, BmpInfo, GraphData, AlphaInfo, AlphaData, TextureFlag, ReverseFlag, GetASyncLoadFlag() ) ;
 }
 
-// ƒrƒbƒgƒ}ƒbƒvƒf[ƒ^‚©‚ç•ªŠ„ƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ğì¬‚·‚é
+// ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰åˆ†å‰²ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã‚’ä½œæˆã™ã‚‹
 extern int NS_CreateDivGraphFromBmp( const BITMAPINFO *BmpInfo, const void *GraphData, int AllNum, int XNum, int YNum, int SizeX, int SizeY, int *HandleArray, int TextureFlag, int ReverseFlag, const BITMAPINFO *AlphaInfo, const void *AlphaData )
 {
 	LOADGRAPH_GPARAM GParam ;
@@ -3662,7 +3662,7 @@ extern int NS_CreateDivGraphFromBmp( const BITMAPINFO *BmpInfo, const void *Grap
 	return Graphics_Image_CreateDivGraphFromBmp_UseGParam( &GParam, FALSE, BmpInfo, GraphData, AllNum, XNum, YNum, FALSE, SizeX, ( float )SizeX, SizeY, ( float )SizeY, HandleArray, TextureFlag, ReverseFlag, AlphaInfo, AlphaData, GetASyncLoadFlag() ) ;
 }
 
-// ƒrƒbƒgƒ}ƒbƒvƒf[ƒ^‚©‚ç•ªŠ„ƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ğì¬‚·‚é
+// ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰åˆ†å‰²ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã‚’ä½œæˆã™ã‚‹
 extern int NS_CreateDivGraphFFromBmp( const BITMAPINFO *BmpInfo, const void *GraphData, int AllNum, int XNum, int YNum, float SizeX, float SizeY, int *HandleArray, int TextureFlag, int ReverseFlag, const BITMAPINFO *AlphaInfo, const void *AlphaData )
 {
 	LOADGRAPH_GPARAM GParam ;
@@ -3672,7 +3672,7 @@ extern int NS_CreateDivGraphFFromBmp( const BITMAPINFO *BmpInfo, const void *Gra
 	return Graphics_Image_CreateDivGraphFromBmp_UseGParam( &GParam, FALSE, BmpInfo, GraphData, AllNum, XNum, YNum, TRUE, _FTOL( SizeX ), SizeX, _FTOL( SizeY ), SizeY, HandleArray, TextureFlag, ReverseFlag, AlphaInfo, AlphaData, GetASyncLoadFlag() ) ;
 }
 
-// ƒrƒbƒgƒ}ƒbƒvƒf[ƒ^‚©‚çŠù‘¶‚Ì•ªŠ„ƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚Éƒf[ƒ^‚ğ“]‘—‚·‚é
+// ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰æ—¢å­˜ã®åˆ†å‰²ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã«ãƒ‡ãƒ¼ã‚¿ã‚’è»¢é€ã™ã‚‹
 extern int NS_ReCreateDivGraphFromBmp( const BITMAPINFO *BmpInfo, const void *GraphData, int AllNum, int XNum, int YNum, int SizeX, int SizeY, const int *HandleArray,int TextureFlag, int ReverseFlag, const BITMAPINFO *AlphaInfo, const void *AlphaData )
 {
 	LOADGRAPH_GPARAM GParam ;
@@ -3682,7 +3682,7 @@ extern int NS_ReCreateDivGraphFromBmp( const BITMAPINFO *BmpInfo, const void *Gr
 	return Graphics_Image_CreateDivGraphFromBmp_UseGParam( &GParam, TRUE, BmpInfo, GraphData, AllNum, XNum, YNum, FALSE, SizeX, ( float )SizeX, SizeY, ( float )SizeY, ( int * )HandleArray, TextureFlag, ReverseFlag, AlphaInfo, AlphaData, GetASyncLoadFlag() ) ;
 }
 
-// ƒrƒbƒgƒ}ƒbƒvƒf[ƒ^‚©‚çŠù‘¶‚Ì•ªŠ„ƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚Éƒf[ƒ^‚ğ“]‘—‚·‚é
+// ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰æ—¢å­˜ã®åˆ†å‰²ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã«ãƒ‡ãƒ¼ã‚¿ã‚’è»¢é€ã™ã‚‹
 extern int NS_ReCreateDivGraphFFromBmp( const BITMAPINFO *BmpInfo, const void *GraphData, int AllNum, int XNum, int YNum, float SizeX, float SizeY, const int *HandleArray,int TextureFlag, int ReverseFlag, const BITMAPINFO *AlphaInfo, const void *AlphaData )
 {
 	LOADGRAPH_GPARAM GParam ;
@@ -3692,7 +3692,7 @@ extern int NS_ReCreateDivGraphFFromBmp( const BITMAPINFO *BmpInfo, const void *G
 	return Graphics_Image_CreateDivGraphFromBmp_UseGParam( &GParam, TRUE, BmpInfo, GraphData, AllNum, XNum, YNum, TRUE, _FTOL( SizeX ), SizeX, _FTOL( SizeY ), SizeY, ( int * )HandleArray, TextureFlag, ReverseFlag, AlphaInfo, AlphaData, GetASyncLoadFlag() ) ;
 }
 
-// GraphImage ƒf[ƒ^‚©‚çƒTƒCƒY‚ğŠ„‚èo‚µA‚»‚ê‚É‡‚Á‚½ƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ğì¬‚·‚é
+// GraphImage ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰ã‚µã‚¤ã‚ºã‚’å‰²ã‚Šå‡ºã—ã€ãã‚Œã«åˆã£ãŸã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã‚’ä½œæˆã™ã‚‹
 extern int NS_CreateDXGraph( const BASEIMAGE *RgbBaseImage, const BASEIMAGE *AlphaBaseImage, int TextureFlag )
 {
 	SETUP_GRAPHHANDLE_GPARAM GParam ;
@@ -3703,7 +3703,7 @@ extern int NS_CreateDXGraph( const BASEIMAGE *RgbBaseImage, const BASEIMAGE *Alp
 
 	Graphics_Image_InitSetupGraphHandleGParam( &GParam ) ;
 
-	// ƒnƒ“ƒhƒ‹‚Ìì¬
+	// ãƒãƒ³ãƒ‰ãƒ«ã®ä½œæˆ
 	NewGraphHandle = Graphics_Image_AddHandle( GParam.CreateGraphHandle <= 0 ? -1 : GParam.CreateGraphHandle, FALSE ) ;
 	if( NewGraphHandle == -1 )
 	{
@@ -3720,81 +3720,81 @@ extern int NS_CreateDXGraph( const BASEIMAGE *RgbBaseImage, const BASEIMAGE *Alp
 	return NewGraphHandle ;
 }
 
-// GraphImageƒf[ƒ^‚©‚çƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ğì¬‚·‚é
+// GraphImageãƒ‡ãƒ¼ã‚¿ã‹ã‚‰ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã‚’ä½œæˆã™ã‚‹
 extern int NS_CreateGraphFromGraphImage( const BASEIMAGE *BaseImage, int TextureFlag, int ReverseFlag )
 {
 	return NS_CreateGraphFromGraphImage2( BaseImage, NULL, TextureFlag, ReverseFlag ) ;
 }
 
-// GraphImageƒf[ƒ^‚©‚çŠù‘¶‚ÌƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚Éƒf[ƒ^‚ğ“]‘—‚·‚é
+// GraphImageãƒ‡ãƒ¼ã‚¿ã‹ã‚‰æ—¢å­˜ã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã«ãƒ‡ãƒ¼ã‚¿ã‚’è»¢é€ã™ã‚‹
 extern int NS_ReCreateGraphFromGraphImage( const BASEIMAGE *BaseImage, int GrHandle, int TextureFlag, int ReverseFlag )
 {
 	return NS_ReCreateGraphFromGraphImage2( BaseImage, NULL, GrHandle, TextureFlag, ReverseFlag ) ;
 }
 
-// GraphImageƒf[ƒ^‚©‚ç•ªŠ„ƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ğì¬‚·‚é
+// GraphImageãƒ‡ãƒ¼ã‚¿ã‹ã‚‰åˆ†å‰²ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã‚’ä½œæˆã™ã‚‹
 extern int NS_CreateDivGraphFromGraphImage( BASEIMAGE *BaseImage, int AllNum, int XNum, int YNum, int SizeX, int SizeY, int *HandleArray,int TextureFlag, int ReverseFlag )
 {
 	return NS_CreateDivGraphFromGraphImage2( BaseImage, NULL, AllNum, XNum, YNum, SizeX, SizeY, HandleArray, TextureFlag, ReverseFlag ) ;
 }
 
-// GraphImageƒf[ƒ^‚©‚ç•ªŠ„ƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ğì¬‚·‚é
+// GraphImageãƒ‡ãƒ¼ã‚¿ã‹ã‚‰åˆ†å‰²ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã‚’ä½œæˆã™ã‚‹
 extern int NS_CreateDivGraphFFromGraphImage( BASEIMAGE *BaseImage, int AllNum, int XNum, int YNum, float SizeX, float SizeY, int *HandleArray,int TextureFlag, int ReverseFlag )
 {
 	return NS_CreateDivGraphFFromGraphImage2( BaseImage, NULL, AllNum, XNum, YNum, SizeX, SizeY, HandleArray, TextureFlag, ReverseFlag ) ;
 }
 
-// GraphImageƒf[ƒ^‚©‚çŠù‘¶‚Ì•ªŠ„ƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚Éƒf[ƒ^‚ğ“]‘—‚·‚é
+// GraphImageãƒ‡ãƒ¼ã‚¿ã‹ã‚‰æ—¢å­˜ã®åˆ†å‰²ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã«ãƒ‡ãƒ¼ã‚¿ã‚’è»¢é€ã™ã‚‹
 extern int NS_ReCreateDivGraphFromGraphImage( BASEIMAGE *BaseImage, int AllNum, int XNum, int YNum, int SizeX, int SizeY, const int *HandleArray,int TextureFlag, int ReverseFlag )
 {
 	return NS_ReCreateDivGraphFromGraphImage2( BaseImage, NULL, AllNum, XNum, YNum, SizeX, SizeY, HandleArray, TextureFlag, ReverseFlag ) ;
 }
 
-// GraphImageƒf[ƒ^‚©‚çŠù‘¶‚Ì•ªŠ„ƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚Éƒf[ƒ^‚ğ“]‘—‚·‚é
+// GraphImageãƒ‡ãƒ¼ã‚¿ã‹ã‚‰æ—¢å­˜ã®åˆ†å‰²ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã«ãƒ‡ãƒ¼ã‚¿ã‚’è»¢é€ã™ã‚‹
 extern int NS_ReCreateDivGraphFFromGraphImage( BASEIMAGE *BaseImage, int AllNum, int XNum, int YNum, float SizeX, float SizeY, const int *HandleArray,int TextureFlag, int ReverseFlag )
 {
 	return NS_ReCreateDivGraphFFromGraphImage2( BaseImage, NULL, AllNum, XNum, YNum, SizeX, SizeY, HandleArray, TextureFlag, ReverseFlag ) ;
 }
 
 #ifndef DX_COMPILE_TYPE_C_LANGUAGE
-// GraphImageƒf[ƒ^‚©‚çƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ğì¬‚·‚é
+// GraphImageãƒ‡ãƒ¼ã‚¿ã‹ã‚‰ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã‚’ä½œæˆã™ã‚‹
 extern int NS_CreateGraphFromGraphImage( const BASEIMAGE *BaseImage, const BASEIMAGE *AlphaBaseImage, int TextureFlag, int ReverseFlag )
 {
 	return NS_CreateGraphFromGraphImage2( BaseImage, AlphaBaseImage, TextureFlag, ReverseFlag ) ;
 }
 
-// GraphImageƒf[ƒ^‚©‚çŠù‘¶‚ÌƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚Éƒf[ƒ^‚ğ“]‘—‚·‚é
+// GraphImageãƒ‡ãƒ¼ã‚¿ã‹ã‚‰æ—¢å­˜ã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã«ãƒ‡ãƒ¼ã‚¿ã‚’è»¢é€ã™ã‚‹
 extern int NS_ReCreateGraphFromGraphImage( const BASEIMAGE *BaseImage, const BASEIMAGE *AlphaBaseImage, int GrHandle, int TextureFlag, int ReverseFlag )
 {
 	return NS_ReCreateGraphFromGraphImage2( BaseImage, AlphaBaseImage, GrHandle, TextureFlag, ReverseFlag ) ;
 }
 
-// GraphImageƒf[ƒ^‚©‚ç•ªŠ„ƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ğì¬‚·‚é
+// GraphImageãƒ‡ãƒ¼ã‚¿ã‹ã‚‰åˆ†å‰²ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã‚’ä½œæˆã™ã‚‹
 extern int NS_CreateDivGraphFromGraphImage( BASEIMAGE *BaseImage, const BASEIMAGE *AlphaBaseImage, int AllNum, int XNum, int YNum, int SizeX, int SizeY, int *HandleArray,int TextureFlag, int ReverseFlag )
 {
 	return NS_CreateDivGraphFromGraphImage2( BaseImage, AlphaBaseImage, AllNum, XNum, YNum, SizeX, SizeY, HandleArray, TextureFlag, ReverseFlag ) ;
 }
 
-// GraphImageƒf[ƒ^‚©‚ç•ªŠ„ƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ğì¬‚·‚é
+// GraphImageãƒ‡ãƒ¼ã‚¿ã‹ã‚‰åˆ†å‰²ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã‚’ä½œæˆã™ã‚‹
 extern int NS_CreateDivGraphFFromGraphImage( BASEIMAGE *BaseImage, const BASEIMAGE *AlphaBaseImage, int AllNum, int XNum, int YNum, float SizeX, float SizeY, int *HandleArray,int TextureFlag, int ReverseFlag )
 {
 	return NS_CreateDivGraphFFromGraphImage2( BaseImage, AlphaBaseImage, AllNum, XNum, YNum, SizeX, SizeY, HandleArray, TextureFlag, ReverseFlag ) ;
 }
 
-// GraphImageƒf[ƒ^‚©‚çŠù‘¶‚Ì•ªŠ„ƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚Éƒf[ƒ^‚ğ“]‘—‚·‚é
+// GraphImageãƒ‡ãƒ¼ã‚¿ã‹ã‚‰æ—¢å­˜ã®åˆ†å‰²ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã«ãƒ‡ãƒ¼ã‚¿ã‚’è»¢é€ã™ã‚‹
 extern int NS_ReCreateDivGraphFromGraphImage( BASEIMAGE *BaseImage, const BASEIMAGE *AlphaBaseImage, int AllNum, int XNum, int YNum, int SizeX, int SizeY, const int *HandleArray,int TextureFlag, int ReverseFlag )
 {
 	return NS_ReCreateDivGraphFromGraphImage2( BaseImage, AlphaBaseImage, AllNum, XNum, YNum, SizeX, SizeY, HandleArray, TextureFlag, ReverseFlag ) ;
 }
 
-// GraphImageƒf[ƒ^‚©‚çŠù‘¶‚Ì•ªŠ„ƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚Éƒf[ƒ^‚ğ“]‘—‚·‚é
+// GraphImageãƒ‡ãƒ¼ã‚¿ã‹ã‚‰æ—¢å­˜ã®åˆ†å‰²ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã«ãƒ‡ãƒ¼ã‚¿ã‚’è»¢é€ã™ã‚‹
 extern int NS_ReCreateDivGraphFFromGraphImage( BASEIMAGE *BaseImage, const BASEIMAGE *AlphaBaseImage, int AllNum, int XNum, int YNum, float SizeX, float SizeY, const int *HandleArray,int TextureFlag, int ReverseFlag )
 {
 	return NS_ReCreateDivGraphFFromGraphImage2( BaseImage, AlphaBaseImage, AllNum, XNum, YNum, SizeX, SizeY, HandleArray, TextureFlag, ReverseFlag ) ;
 }
 #endif // DX_COMPILE_TYPE_C_LANGUAGE
 
-// GraphImageƒf[ƒ^‚©‚çƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ğì¬‚·‚é
+// GraphImageãƒ‡ãƒ¼ã‚¿ã‹ã‚‰ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã‚’ä½œæˆã™ã‚‹
 extern int NS_CreateGraphFromGraphImage2( const BASEIMAGE *BaseImage, const BASEIMAGE *AlphaBaseImage, int TextureFlag, int ReverseFlag )
 {
 	LOADGRAPH_GPARAM GParam ;
@@ -3804,7 +3804,7 @@ extern int NS_CreateGraphFromGraphImage2( const BASEIMAGE *BaseImage, const BASE
 	return Graphics_Image_CreateGraphFromGraphImage_UseGParam( &GParam, FALSE, -1, BaseImage, AlphaBaseImage, TextureFlag, ReverseFlag, GetASyncLoadFlag() ) ; 
 }
 
-// GraphImageƒf[ƒ^‚©‚çŠù‘¶‚ÌƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚Éƒf[ƒ^‚ğ“]‘—‚·‚é
+// GraphImageãƒ‡ãƒ¼ã‚¿ã‹ã‚‰æ—¢å­˜ã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã«ãƒ‡ãƒ¼ã‚¿ã‚’è»¢é€ã™ã‚‹
 extern int NS_ReCreateGraphFromGraphImage2( const BASEIMAGE *BaseImage, const BASEIMAGE *AlphaBaseImage, int GrHandle, int TextureFlag, int ReverseFlag )
 {
 	LOADGRAPH_GPARAM GParam ;
@@ -3814,7 +3814,7 @@ extern int NS_ReCreateGraphFromGraphImage2( const BASEIMAGE *BaseImage, const BA
 	return Graphics_Image_CreateGraphFromGraphImage_UseGParam( &GParam, TRUE, GrHandle, BaseImage, AlphaBaseImage, TextureFlag, ReverseFlag, GetASyncLoadFlag() ) ;
 }
 
-// GraphImageƒf[ƒ^‚©‚ç•ªŠ„ƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ğì¬‚·‚é
+// GraphImageãƒ‡ãƒ¼ã‚¿ã‹ã‚‰åˆ†å‰²ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã‚’ä½œæˆã™ã‚‹
 extern int NS_CreateDivGraphFromGraphImage2( BASEIMAGE *BaseImage, const BASEIMAGE *AlphaBaseImage, int AllNum, int XNum, int YNum, int SizeX, int SizeY, int *HandleArray,int TextureFlag, int ReverseFlag )
 {
 	LOADGRAPH_GPARAM GParam ;
@@ -3824,7 +3824,7 @@ extern int NS_CreateDivGraphFromGraphImage2( BASEIMAGE *BaseImage, const BASEIMA
 	return Graphics_Image_CreateDivGraphFromGraphImage_UseGParam( &GParam, FALSE, BaseImage, AlphaBaseImage, AllNum, XNum, YNum, FALSE, SizeX, ( float )SizeX, SizeY, ( float )SizeY, HandleArray, TextureFlag, ReverseFlag, GetASyncLoadFlag() ) ;
 }
 
-// GraphImageƒf[ƒ^‚©‚ç•ªŠ„ƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ğì¬‚·‚é
+// GraphImageãƒ‡ãƒ¼ã‚¿ã‹ã‚‰åˆ†å‰²ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã‚’ä½œæˆã™ã‚‹
 extern int NS_CreateDivGraphFFromGraphImage2( BASEIMAGE *BaseImage, const BASEIMAGE *AlphaBaseImage, int AllNum, int XNum, int YNum, float SizeX, float SizeY, int *HandleArray,int TextureFlag, int ReverseFlag )
 {
 	LOADGRAPH_GPARAM GParam ;
@@ -3834,7 +3834,7 @@ extern int NS_CreateDivGraphFFromGraphImage2( BASEIMAGE *BaseImage, const BASEIM
 	return Graphics_Image_CreateDivGraphFromGraphImage_UseGParam( &GParam, FALSE, BaseImage, AlphaBaseImage, AllNum, XNum, YNum, TRUE, _FTOL( SizeX ), SizeX, _FTOL( SizeY ), SizeY, HandleArray, TextureFlag, ReverseFlag, GetASyncLoadFlag() ) ;
 }
 
-// GraphImageƒf[ƒ^‚©‚çŠù‘¶‚Ì•ªŠ„ƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚Éƒf[ƒ^‚ğ“]‘—‚·‚é
+// GraphImageãƒ‡ãƒ¼ã‚¿ã‹ã‚‰æ—¢å­˜ã®åˆ†å‰²ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã«ãƒ‡ãƒ¼ã‚¿ã‚’è»¢é€ã™ã‚‹
 extern int NS_ReCreateDivGraphFromGraphImage2( BASEIMAGE *BaseImage, const BASEIMAGE *AlphaBaseImage, int AllNum, int XNum, int YNum, int SizeX, int SizeY, const int *HandleArray,int TextureFlag, int ReverseFlag )
 {
 	LOADGRAPH_GPARAM GParam ;
@@ -3844,7 +3844,7 @@ extern int NS_ReCreateDivGraphFromGraphImage2( BASEIMAGE *BaseImage, const BASEI
 	return Graphics_Image_CreateDivGraphFromGraphImage_UseGParam( &GParam, TRUE, BaseImage, AlphaBaseImage, AllNum, XNum, YNum, FALSE, SizeX, ( float )SizeX, SizeY, ( float )SizeY, ( int * )HandleArray, TextureFlag, ReverseFlag, GetASyncLoadFlag() ) ;
 }
 
-// GraphImageƒf[ƒ^‚©‚çŠù‘¶‚Ì•ªŠ„ƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚Éƒf[ƒ^‚ğ“]‘—‚·‚é
+// GraphImageãƒ‡ãƒ¼ã‚¿ã‹ã‚‰æ—¢å­˜ã®åˆ†å‰²ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã«ãƒ‡ãƒ¼ã‚¿ã‚’è»¢é€ã™ã‚‹
 extern int NS_ReCreateDivGraphFFromGraphImage2( BASEIMAGE *BaseImage, const BASEIMAGE *AlphaBaseImage, int AllNum, int XNum, int YNum, float SizeX, float SizeY, const int *HandleArray,int TextureFlag, int ReverseFlag )
 {
 	LOADGRAPH_GPARAM GParam ;
@@ -3854,7 +3854,7 @@ extern int NS_ReCreateDivGraphFFromGraphImage2( BASEIMAGE *BaseImage, const BASE
 	return Graphics_Image_CreateDivGraphFromGraphImage_UseGParam( &GParam, TRUE, BaseImage, AlphaBaseImage, AllNum, XNum, YNum, TRUE, _FTOL( SizeX ), SizeX, _FTOL( SizeY ), SizeY, ( int * )HandleArray, TextureFlag, ReverseFlag, GetASyncLoadFlag() ) ;
 }
 
-// ƒƒ‚ƒŠã‚ÌƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‚©‚çƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ğì¬‚·‚é
+// ãƒ¡ãƒ¢ãƒªä¸Šã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã‚’ä½œæˆã™ã‚‹
 extern int NS_CreateGraph( int Width, int Height, int Pitch, const void *GraphData, const void *AlphaData, int GrHandle )
 {
 	BITMAPINFO	BmpInfo ;
@@ -3863,7 +3863,7 @@ extern int NS_CreateGraph( int Width, int Height, int Pitch, const void *GraphDa
 	int DPitch, SPitch ;
 	int NewGraph ;
 
-	// ƒsƒbƒ`ì¬
+	// ãƒ”ãƒƒãƒä½œæˆ
 	{
 		int Byte ; 
 		
@@ -3873,29 +3873,29 @@ extern int NS_CreateGraph( int Width, int Height, int Pitch, const void *GraphDa
 		DPitch = ( ( Byte + 3 ) / 4 ) * 4 ;
 	}
 
-	// ‚à‚µƒsƒbƒ`‚ª“¯‚¶‚È‚çƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‚ğƒRƒs[‚·‚é•K—v‚È‚µ
+	// ã‚‚ã—ãƒ”ãƒƒãƒãŒåŒã˜ãªã‚‰ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã‚’ã‚³ãƒ”ãƒ¼ã™ã‚‹å¿…è¦ãªã—
 	AData = NULL ;
 	if( SPitch != DPitch )
 	{
-		// RGBƒf[ƒ^‚Ìì¬
+		// RGBãƒ‡ãƒ¼ã‚¿ã®ä½œæˆ
 		{
-			// ƒLƒƒƒXƒg
+			// ã‚­ãƒ£ã‚¹ãƒˆ
 			SData = ( BYTE * )GraphData ;
 
-			// ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‚ğ•¡»
+			// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã‚’è¤‡è£½
 			if( ( DestData = DData = ( BYTE *)DXCALLOC( ( size_t )( Height * DPitch ) ) ) == NULL ) return -1 ;
 			for( i = 0 ; i < Height ; i ++, SData += SPitch, DData += DPitch )
 				_MEMCPY( DData, SData, ( size_t )SPitch ) ;
 			DData = DestData ;
 		}
 
-		// ƒAƒ‹ƒtƒ@ƒf[ƒ^‚Ìì¬
+		// ã‚¢ãƒ«ãƒ•ã‚¡ãƒ‡ãƒ¼ã‚¿ã®ä½œæˆ
 		if( AlphaData != NULL )
 		{
-			// ƒLƒƒƒXƒg
+			// ã‚­ãƒ£ã‚¹ãƒˆ
 			SData = ( BYTE * )AlphaData ;
 
-			// ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‚ğ•¡»
+			// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã‚’è¤‡è£½
 			if( ( DestData = AData = ( BYTE *)DXCALLOC( ( size_t )( Height * DPitch ) ) ) == NULL ) return -1 ;
 			for( i = 0 ; i < Height ; i ++, SData += SPitch, AData += DPitch )
 				_MEMCPY( AData, SData, ( size_t )SPitch ) ;
@@ -3908,7 +3908,7 @@ extern int NS_CreateGraph( int Width, int Height, int Pitch, const void *GraphDa
 		AData = ( BYTE * )AlphaData ;
 	}
 
-	// VƒOƒ‰ƒtƒBƒbƒN‚ğì¬
+	// æ–°ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚’ä½œæˆ
 	_MEMSET( &BmpInfo, 0, sizeof( BmpInfo ) ) ;
 	BmpInfo.bmiHeader.biSize	= sizeof( BITMAPINFOHEADER ) ;
 	BmpInfo.bmiHeader.biWidth	= Width ;
@@ -3926,18 +3926,18 @@ extern int NS_CreateGraph( int Width, int Height, int Pitch, const void *GraphDa
 		NewGraph = NS_CreateGraphFromBmp( &BmpInfo, DData, AData != NULL ? &BmpInfo : NULL, AData, TRUE, FALSE ) ;
 	}
 
-	// ƒƒ‚ƒŠ‚ğ‰ğ•ú
+	// ãƒ¡ãƒ¢ãƒªã‚’è§£æ”¾
 	if( SPitch != DPitch )
 	{
 		DXFREE( DData ) ;
 		DXFREE( AData ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return NewGraph ;
 }
 
-// ƒƒ‚ƒŠã‚ÌƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‚©‚ç•ªŠ„ƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ğì¬‚·‚é
+// ãƒ¡ãƒ¢ãƒªä¸Šã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰åˆ†å‰²ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã‚’ä½œæˆã™ã‚‹
 extern int NS_CreateDivGraph( int Width, int Height, int Pitch, const void *GraphData, int AllNum, int XNum, int YNum, int SizeX, int SizeY, int *HandleArray, const void *AlphaData )
 {
 	BITMAPINFO	BmpInfo ;
@@ -3945,7 +3945,7 @@ extern int NS_CreateDivGraph( int Width, int Height, int Pitch, const void *Grap
 	int i, Result ;
 	int DPitch, SPitch ;
 
-	// ƒsƒbƒ`ì¬
+	// ãƒ”ãƒƒãƒä½œæˆ
 	{
 		int Byte ; 
 		
@@ -3955,29 +3955,29 @@ extern int NS_CreateDivGraph( int Width, int Height, int Pitch, const void *Grap
 		DPitch = ( ( Byte + 3 ) / 4 ) * 4 ;
 	}
 
-	// ‚à‚µƒsƒbƒ`‚ª“¯‚¶‚È‚çƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‚ğƒRƒs[‚·‚é•K—v‚È‚µ
+	// ã‚‚ã—ãƒ”ãƒƒãƒãŒåŒã˜ãªã‚‰ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã‚’ã‚³ãƒ”ãƒ¼ã™ã‚‹å¿…è¦ãªã—
 	AData = NULL ;
 	if( SPitch != DPitch )
 	{
-		// RGBƒf[ƒ^‚Ìì¬
+		// RGBãƒ‡ãƒ¼ã‚¿ã®ä½œæˆ
 		{
-			// ƒLƒƒƒXƒg
+			// ã‚­ãƒ£ã‚¹ãƒˆ
 			SData = ( BYTE * )GraphData ;
 
-			// ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‚ğ•¡»
+			// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã‚’è¤‡è£½
 			if( ( DestData = DData = ( BYTE *)DXCALLOC( ( size_t )( Height * DPitch ) ) ) == NULL ) return -1 ;
 			for( i = 0 ; i < Height ; i ++, SData += SPitch, DData += DPitch )
 				_MEMCPY( DData, SData, ( size_t )SPitch ) ;
 			DData = DestData ;
 		}
 
-		// ƒAƒ‹ƒtƒ@ƒf[ƒ^‚Ìì¬
+		// ã‚¢ãƒ«ãƒ•ã‚¡ãƒ‡ãƒ¼ã‚¿ã®ä½œæˆ
 		if( AlphaData != NULL )
 		{
-			// ƒLƒƒƒXƒg
+			// ã‚­ãƒ£ã‚¹ãƒˆ
 			SData = ( BYTE * )AlphaData ;
 
-			// ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‚ğ•¡»
+			// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã‚’è¤‡è£½
 			if( ( DestData = AData = ( BYTE *)DXCALLOC( ( size_t )( Height * DPitch ) ) ) == NULL ) return -1 ;
 			for( i = 0 ; i < Height ; i ++, SData += SPitch, AData += DPitch )
 				_MEMCPY( AData, SData, ( size_t )SPitch ) ;
@@ -3990,7 +3990,7 @@ extern int NS_CreateDivGraph( int Width, int Height, int Pitch, const void *Grap
 		AData = ( BYTE * )AlphaData ;
 	}
 
-	// VƒOƒ‰ƒtƒBƒbƒN‚ğì¬
+	// æ–°ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚’ä½œæˆ
 	_MEMSET( &BmpInfo, 0, sizeof( BmpInfo ) ) ;
 	BmpInfo.bmiHeader.biSize	= sizeof( BITMAPINFOHEADER ) ;
 	BmpInfo.bmiHeader.biWidth	= Width ;
@@ -4000,18 +4000,18 @@ extern int NS_CreateDivGraph( int Width, int Height, int Pitch, const void *Grap
 
 	Result = NS_CreateDivGraphFromBmp( &BmpInfo, DData, AllNum, XNum, YNum, SizeX, SizeY, HandleArray, TRUE, FALSE, &BmpInfo, AData ) ;
 
-	// ƒƒ‚ƒŠ‚ğ‰ğ•ú
+	// ãƒ¡ãƒ¢ãƒªã‚’è§£æ”¾
 	if( SPitch != DPitch )
 	{
 		DXFREE( DData ) ;
 		DXFREE( AData ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return Result ;
 }
 
-// ƒƒ‚ƒŠã‚ÌƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‚©‚ç•ªŠ„ƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ğì¬‚·‚é
+// ãƒ¡ãƒ¢ãƒªä¸Šã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰åˆ†å‰²ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã‚’ä½œæˆã™ã‚‹
 extern int NS_CreateDivGraphF( int Width, int Height, int Pitch, const void *GraphData, int AllNum, int XNum, int YNum, float SizeX, float SizeY, int *HandleArray, const void *AlphaData )
 {
 	BITMAPINFO	BmpInfo ;
@@ -4019,7 +4019,7 @@ extern int NS_CreateDivGraphF( int Width, int Height, int Pitch, const void *Gra
 	int i, Result ;
 	int DPitch, SPitch ;
 
-	// ƒsƒbƒ`ì¬
+	// ãƒ”ãƒƒãƒä½œæˆ
 	{
 		int Byte ; 
 		
@@ -4029,29 +4029,29 @@ extern int NS_CreateDivGraphF( int Width, int Height, int Pitch, const void *Gra
 		DPitch = ( ( Byte + 3 ) / 4 ) * 4 ;
 	}
 
-	// ‚à‚µƒsƒbƒ`‚ª“¯‚¶‚È‚çƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‚ğƒRƒs[‚·‚é•K—v‚È‚µ
+	// ã‚‚ã—ãƒ”ãƒƒãƒãŒåŒã˜ãªã‚‰ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã‚’ã‚³ãƒ”ãƒ¼ã™ã‚‹å¿…è¦ãªã—
 	AData = NULL ;
 	if( SPitch != DPitch )
 	{
-		// RGBƒf[ƒ^‚Ìì¬
+		// RGBãƒ‡ãƒ¼ã‚¿ã®ä½œæˆ
 		{
-			// ƒLƒƒƒXƒg
+			// ã‚­ãƒ£ã‚¹ãƒˆ
 			SData = ( BYTE * )GraphData ;
 
-			// ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‚ğ•¡»
+			// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã‚’è¤‡è£½
 			if( ( DestData = DData = ( BYTE *)DXCALLOC( ( size_t )( Height * DPitch ) ) ) == NULL ) return -1 ;
 			for( i = 0 ; i < Height ; i ++, SData += SPitch, DData += DPitch )
 				_MEMCPY( DData, SData, ( size_t )SPitch ) ;
 			DData = DestData ;
 		}
 
-		// ƒAƒ‹ƒtƒ@ƒf[ƒ^‚Ìì¬
+		// ã‚¢ãƒ«ãƒ•ã‚¡ãƒ‡ãƒ¼ã‚¿ã®ä½œæˆ
 		if( AlphaData != NULL )
 		{
-			// ƒLƒƒƒXƒg
+			// ã‚­ãƒ£ã‚¹ãƒˆ
 			SData = ( BYTE * )AlphaData ;
 
-			// ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‚ğ•¡»
+			// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã‚’è¤‡è£½
 			if( ( DestData = AData = ( BYTE *)DXCALLOC( ( size_t )( Height * DPitch ) ) ) == NULL ) return -1 ;
 			for( i = 0 ; i < Height ; i ++, SData += SPitch, AData += DPitch )
 				_MEMCPY( AData, SData, ( size_t )SPitch ) ;
@@ -4064,7 +4064,7 @@ extern int NS_CreateDivGraphF( int Width, int Height, int Pitch, const void *Gra
 		AData = ( BYTE * )AlphaData ;
 	}
 
-	// VƒOƒ‰ƒtƒBƒbƒN‚ğì¬
+	// æ–°ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚’ä½œæˆ
 	_MEMSET( &BmpInfo, 0, sizeof( BmpInfo ) ) ;
 	BmpInfo.bmiHeader.biSize	= sizeof( BITMAPINFOHEADER ) ;
 	BmpInfo.bmiHeader.biWidth	= Width ;
@@ -4074,18 +4074,18 @@ extern int NS_CreateDivGraphF( int Width, int Height, int Pitch, const void *Gra
 
 	Result = NS_CreateDivGraphFFromBmp( &BmpInfo, DData, AllNum, XNum, YNum, SizeX, SizeY, HandleArray, TRUE, FALSE, &BmpInfo, AData ) ;
 
-	// ƒƒ‚ƒŠ‚ğ‰ğ•ú
+	// ãƒ¡ãƒ¢ãƒªã‚’è§£æ”¾
 	if( SPitch != DPitch )
 	{
 		DXFREE( DData ) ;
 		DXFREE( AData ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return Result ;
 }
 
-// ƒƒ‚ƒŠã‚ÌƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‚©‚çƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ğÄì¬‚·‚é
+// ãƒ¡ãƒ¢ãƒªä¸Šã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã‚’å†ä½œæˆã™ã‚‹
 extern int NS_ReCreateGraph( int Width, int Height, int Pitch, const void *GraphData, int GrHandle, const void *AlphaData )
 {
 	return NS_CreateGraph( Width, Height, Pitch, GraphData, AlphaData, GrHandle ) ;
@@ -4093,13 +4093,13 @@ extern int NS_ReCreateGraph( int Width, int Height, int Pitch, const void *Graph
 
 #ifndef DX_NON_SOFTIMAGE
 
-// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤ƒCƒ[ƒW‚©‚çƒuƒŒƒ“ƒh—p‰æ‘œƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ğì¬‚·‚é
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†ã‚¤ãƒ¡ãƒ¼ã‚¸ã‹ã‚‰ãƒ–ãƒ¬ãƒ³ãƒ‰ç”¨ç”»åƒã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã‚’ä½œæˆã™ã‚‹
 extern	int		NS_CreateBlendGraphFromSoftImage( int SIHandle )
 {
 	SOFTIMAGE *SoftImg ;
 	LOADGRAPH_GPARAM GParam ;
 
-	// ƒAƒhƒŒƒX‚Ìæ“¾
+	// ã‚¢ãƒ‰ãƒ¬ã‚¹ã®å–å¾—
 	if( SFTIMGCHK( SIHandle, SoftImg ) )
 		return -1 ;
 
@@ -4109,96 +4109,96 @@ extern	int		NS_CreateBlendGraphFromSoftImage( int SIHandle )
 	return Graphics_Image_CreateGraphFromGraphImage_UseGParam( &GParam, FALSE, -1, &SoftImg->BaseImage, NULL, TRUE, FALSE, GetASyncLoadFlag() ) ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤ƒCƒ[ƒW‚©‚çƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ğì¬‚·‚é
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†ã‚¤ãƒ¡ãƒ¼ã‚¸ã‹ã‚‰ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã‚’ä½œæˆã™ã‚‹
 extern	int		NS_CreateGraphFromSoftImage( int SIHandle )
 {
 	SOFTIMAGE *SoftImg ;
 
-	// ƒAƒhƒŒƒX‚Ìæ“¾
+	// ã‚¢ãƒ‰ãƒ¬ã‚¹ã®å–å¾—
 	if( SFTIMGCHK( SIHandle, SoftImg ) )
 		return -1 ;
 
 	return NS_CreateGraphFromBaseImage( &SoftImg->BaseImage ) ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤ƒCƒ[ƒW‚Ìw’è‚Ì—Ìˆæ‚ğg‚Á‚ÄƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ğì¬‚·‚é( -1:ƒGƒ‰[  -1ˆÈŠO:ƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹ )
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†ã‚¤ãƒ¡ãƒ¼ã‚¸ã®æŒ‡å®šã®é ˜åŸŸã‚’ä½¿ã£ã¦ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã‚’ä½œæˆã™ã‚‹( -1:ã‚¨ãƒ©ãƒ¼  -1ä»¥å¤–:ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ« )
 extern	int		NS_CreateGraphFromRectSoftImage( int SIHandle, int x, int y, int SizeX, int SizeY )
 {
 	SOFTIMAGE *SoftImg ;
 
-	// ƒAƒhƒŒƒX‚Ìæ“¾
+	// ã‚¢ãƒ‰ãƒ¬ã‚¹ã®å–å¾—
 	if( SFTIMGCHK( SIHandle, SoftImg ) )
 		return -1 ;
 
 	return NS_CreateGraphFromRectBaseImage( &SoftImg->BaseImage, x, y, SizeX, SizeY ) ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤ƒCƒ[ƒW‚©‚çŠù‘¶‚ÌƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚É‰æ‘œƒf[ƒ^‚ğ“]‘—‚·‚é
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†ã‚¤ãƒ¡ãƒ¼ã‚¸ã‹ã‚‰æ—¢å­˜ã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã«ç”»åƒãƒ‡ãƒ¼ã‚¿ã‚’è»¢é€ã™ã‚‹
 extern	int		NS_ReCreateGraphFromSoftImage( int SIHandle, int GrHandle )
 {
 	SOFTIMAGE *SoftImg ;
 
-	// ƒAƒhƒŒƒX‚Ìæ“¾
+	// ã‚¢ãƒ‰ãƒ¬ã‚¹ã®å–å¾—
 	if( SFTIMGCHK( SIHandle, SoftImg ) )
 		return -1 ;
 
 	return NS_ReCreateGraphFromBaseImage( &SoftImg->BaseImage, GrHandle ) ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤ƒCƒ[ƒW‚©‚çŠù‘¶‚ÌƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚É‰æ‘œƒf[ƒ^‚ğ“]‘—‚·‚é
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†ã‚¤ãƒ¡ãƒ¼ã‚¸ã‹ã‚‰æ—¢å­˜ã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã«ç”»åƒãƒ‡ãƒ¼ã‚¿ã‚’è»¢é€ã™ã‚‹
 extern	int		NS_ReCreateGraphFromRectSoftImage( int SIHandle, int x, int y, int SizeX, int SizeY, int GrHandle )
 {
 	SOFTIMAGE *SoftImg ;
 
-	// ƒAƒhƒŒƒX‚Ìæ“¾
+	// ã‚¢ãƒ‰ãƒ¬ã‚¹ã®å–å¾—
 	if( SFTIMGCHK( SIHandle, SoftImg ) )
 		return -1 ;
 
 	return NS_ReCreateGraphFromRectBaseImage( &SoftImg->BaseImage, x, y, SizeX, SizeY, GrHandle ) ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤ƒCƒ[ƒW‚©‚ç•ªŠ„ƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ğì¬‚·‚é
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†ã‚¤ãƒ¡ãƒ¼ã‚¸ã‹ã‚‰åˆ†å‰²ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã‚’ä½œæˆã™ã‚‹
 extern	int		NS_CreateDivGraphFromSoftImage( int SIHandle, int AllNum, int XNum, int YNum, int SizeX, int SizeY, int *HandleArray )
 {
 	SOFTIMAGE *SoftImg ;
 
-	// ƒAƒhƒŒƒX‚Ìæ“¾
+	// ã‚¢ãƒ‰ãƒ¬ã‚¹ã®å–å¾—
 	if( SFTIMGCHK( SIHandle, SoftImg ) )
 		return -1 ;
 
 	return NS_CreateDivGraphFromBaseImage( &SoftImg->BaseImage, AllNum, XNum, YNum, SizeX, SizeY, HandleArray ) ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤ƒCƒ[ƒW‚©‚ç•ªŠ„ƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ğì¬‚·‚é
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†ã‚¤ãƒ¡ãƒ¼ã‚¸ã‹ã‚‰åˆ†å‰²ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã‚’ä½œæˆã™ã‚‹
 extern	int		NS_CreateDivGraphFFromSoftImage( int SIHandle, int AllNum, int XNum, int YNum, float SizeX, float SizeY, int *HandleArray )
 {
 	SOFTIMAGE *SoftImg ;
 
-	// ƒAƒhƒŒƒX‚Ìæ“¾
+	// ã‚¢ãƒ‰ãƒ¬ã‚¹ã®å–å¾—
 	if( SFTIMGCHK( SIHandle, SoftImg ) )
 		return -1 ;
 
 	return NS_CreateDivGraphFFromBaseImage( &SoftImg->BaseImage, AllNum, XNum, YNum, SizeX, SizeY, HandleArray ) ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤ƒCƒ[ƒW‚©‚çŠù‘¶‚Ì•ªŠ„ƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚Éƒf[ƒ^‚ğ“]‘—‚·‚é
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†ã‚¤ãƒ¡ãƒ¼ã‚¸ã‹ã‚‰æ—¢å­˜ã®åˆ†å‰²ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã«ãƒ‡ãƒ¼ã‚¿ã‚’è»¢é€ã™ã‚‹
 extern	int		NS_ReCreateDivGraphFromSoftImage( int SIHandle, int AllNum, int XNum, int YNum, int   SizeX, int   SizeY, const int *HandleArray )
 {
 	SOFTIMAGE *SoftImg ;
 
-	// ƒAƒhƒŒƒX‚Ìæ“¾
+	// ã‚¢ãƒ‰ãƒ¬ã‚¹ã®å–å¾—
 	if( SFTIMGCHK( SIHandle, SoftImg ) )
 		return -1 ;
 
 	return NS_ReCreateDivGraphFromBaseImage( &SoftImg->BaseImage, AllNum, XNum, YNum, SizeX, SizeY, HandleArray ) ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒA‚Åˆµ‚¤ƒCƒ[ƒW‚©‚çŠù‘¶‚Ì•ªŠ„ƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚Éƒf[ƒ^‚ğ“]‘—‚·‚é( float”Å )
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã§æ‰±ã†ã‚¤ãƒ¡ãƒ¼ã‚¸ã‹ã‚‰æ—¢å­˜ã®åˆ†å‰²ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã«ãƒ‡ãƒ¼ã‚¿ã‚’è»¢é€ã™ã‚‹( floatç‰ˆ )
 extern	int		NS_ReCreateDivGraphFFromSoftImage( int SIHandle, int AllNum, int XNum, int YNum, float SizeX, float SizeY, const int *HandleArray )
 {
 	SOFTIMAGE *SoftImg ;
 
-	// ƒAƒhƒŒƒX‚Ìæ“¾
+	// ã‚¢ãƒ‰ãƒ¬ã‚¹ã®å–å¾—
 	if( SFTIMGCHK( SIHandle, SoftImg ) )
 		return -1 ;
 
@@ -4207,24 +4207,24 @@ extern	int		NS_ReCreateDivGraphFFromSoftImage( int SIHandle, int AllNum, int XNu
 
 #endif // DX_NON_SOFTIMAGE
 
-// Šî–{ƒCƒ[ƒWƒf[ƒ^‚©‚çƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ğì¬‚·‚é
+// åŸºæœ¬ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã‚’ä½œæˆã™ã‚‹
 extern	int		NS_CreateGraphFromBaseImage( const BASEIMAGE *BaseImage )
 {
 	return NS_CreateGraphFromGraphImage( BaseImage, TRUE, FALSE ) ;
 }
 
-// Šî–{ƒCƒ[ƒW‚Ìw’è‚Ì—Ìˆæ‚ğg‚Á‚ÄƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ğì¬‚·‚é
+// åŸºæœ¬ã‚¤ãƒ¡ãƒ¼ã‚¸ã®æŒ‡å®šã®é ˜åŸŸã‚’ä½¿ã£ã¦ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã‚’ä½œæˆã™ã‚‹
 extern	int		NS_CreateGraphFromRectBaseImage( const BASEIMAGE *BaseImage, int x, int y, int SizeX, int SizeY )
 {
 	BASEIMAGE DummyImage ;
 
-	// ˆÊ’u‚âƒTƒCƒY‚ª•s³‚¾‚Á‚½‚çƒGƒ‰[
+	// ä½ç½®ã‚„ã‚µã‚¤ã‚ºãŒä¸æ­£ã ã£ãŸã‚‰ã‚¨ãƒ©ãƒ¼
 	if( SizeX <= 0 || SizeY <= 0 ||
 		x < 0 || x + SizeX >  BaseImage->Width ||
 		y < 0 || y + SizeY >  BaseImage->Height ) 
 		return -1 ;
 
-	// ƒ_ƒ~[‚ÌŠî–{ƒCƒ[ƒW‚ğ‚Å‚Á‚¿ã‚°‚ÄƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ğì¬‚·‚é
+	// ãƒ€ãƒŸãƒ¼ã®åŸºæœ¬ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’ã§ã£ã¡ä¸Šã’ã¦ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã‚’ä½œæˆã™ã‚‹
 	DummyImage.ColorData = BaseImage->ColorData ;
 	DummyImage.Width = SizeX ;
 	DummyImage.Height = SizeY ;
@@ -4235,24 +4235,24 @@ extern	int		NS_CreateGraphFromRectBaseImage( const BASEIMAGE *BaseImage, int x, 
 	return NS_CreateGraphFromBaseImage( &DummyImage ) ;
 }
 
-// Šî–{ƒCƒ[ƒWƒf[ƒ^‚©‚çŠù‘¶‚ÌƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚É‰æ‘œƒf[ƒ^‚ğ“]‘—‚·‚é
+// åŸºæœ¬ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰æ—¢å­˜ã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã«ç”»åƒãƒ‡ãƒ¼ã‚¿ã‚’è»¢é€ã™ã‚‹
 extern	int		NS_ReCreateGraphFromBaseImage( const BASEIMAGE *BaseImage, int GrHandle )
 {
 	return NS_ReCreateGraphFromGraphImage( BaseImage, GrHandle, TRUE, FALSE ) ;
 }
 
-// Šî–{ƒCƒ[ƒW‚Ìw’è‚Ì—Ìˆæ‚ğg‚Á‚ÄŠù‘¶‚ÌƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚É‰æ‘œƒf[ƒ^‚ğ“]‘—‚·‚é
+// åŸºæœ¬ã‚¤ãƒ¡ãƒ¼ã‚¸ã®æŒ‡å®šã®é ˜åŸŸã‚’ä½¿ã£ã¦æ—¢å­˜ã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã«ç”»åƒãƒ‡ãƒ¼ã‚¿ã‚’è»¢é€ã™ã‚‹
 extern	int		NS_ReCreateGraphFromRectBaseImage( const BASEIMAGE *BaseImage, int x, int y, int SizeX, int SizeY, int GrHandle )
 {
 	BASEIMAGE DummyImage ;
 
-	// ˆÊ’u‚âƒTƒCƒY‚ª•s³‚¾‚Á‚½‚çƒGƒ‰[
+	// ä½ç½®ã‚„ã‚µã‚¤ã‚ºãŒä¸æ­£ã ã£ãŸã‚‰ã‚¨ãƒ©ãƒ¼
 	if( SizeX <= 0 || SizeY <= 0 ||
 		x < 0 || x + SizeX >  BaseImage->Width ||
 		y < 0 || y + SizeY >  BaseImage->Height ) 
 		return -1 ;
 
-	// ƒ_ƒ~[‚ÌŠî–{ƒCƒ[ƒW‚ğ‚Å‚Á‚¿ã‚°‚ÄƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ğì¬‚·‚é
+	// ãƒ€ãƒŸãƒ¼ã®åŸºæœ¬ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’ã§ã£ã¡ä¸Šã’ã¦ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã‚’ä½œæˆã™ã‚‹
 	DummyImage.ColorData = BaseImage->ColorData ;
 	DummyImage.Width = SizeX ;
 	DummyImage.Height = SizeY ;
@@ -4263,31 +4263,31 @@ extern	int		NS_ReCreateGraphFromRectBaseImage( const BASEIMAGE *BaseImage, int x
 	return NS_ReCreateGraphFromGraphImage( &DummyImage, GrHandle, TRUE, FALSE ) ;
 }
 
-// Šî–{ƒCƒ[ƒWƒf[ƒ^‚©‚ç•ªŠ„ƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ğì¬‚·‚é
+// åŸºæœ¬ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰åˆ†å‰²ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã‚’ä½œæˆã™ã‚‹
 extern int NS_CreateDivGraphFromBaseImage( BASEIMAGE *BaseImage, int AllNum, int XNum, int YNum, int SizeX, int SizeY, int *HandleArray )
 {
 	return NS_CreateDivGraphFromGraphImage( BaseImage,  AllNum,  XNum,  YNum,  SizeX,  SizeY, HandleArray, TRUE, FALSE ) ;
 }
 
-// Šî–{ƒCƒ[ƒWƒf[ƒ^‚©‚ç•ªŠ„ƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ğì¬‚·‚é
+// åŸºæœ¬ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰åˆ†å‰²ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã‚’ä½œæˆã™ã‚‹
 extern int NS_CreateDivGraphFFromBaseImage( BASEIMAGE *BaseImage, int AllNum, int XNum, int YNum, float SizeX, float SizeY, int *HandleArray )
 {
 	return NS_CreateDivGraphFFromGraphImage( BaseImage,  AllNum,  XNum,  YNum,  SizeX,  SizeY, HandleArray, TRUE, FALSE ) ;
 }
 
-// Šî–{ƒCƒ[ƒWƒf[ƒ^‚©‚çŠù‘¶‚Ì•ªŠ„ƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚Éƒf[ƒ^‚ğ“]‘—‚·‚é
+// åŸºæœ¬ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰æ—¢å­˜ã®åˆ†å‰²ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã«ãƒ‡ãƒ¼ã‚¿ã‚’è»¢é€ã™ã‚‹
 extern int NS_ReCreateDivGraphFromBaseImage( BASEIMAGE *BaseImage, int AllNum, int XNum, int YNum, int   SizeX, int   SizeY, const int *HandleArray )
 {
 	return NS_ReCreateDivGraphFromGraphImage( BaseImage, AllNum, XNum, YNum, SizeX, SizeY, HandleArray, TRUE, FALSE ) ;
 }
 
-// Šî–{ƒCƒ[ƒWƒf[ƒ^‚©‚çŠù‘¶‚Ì•ªŠ„ƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚Éƒf[ƒ^‚ğ“]‘—‚·‚é( float”Å )
+// åŸºæœ¬ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰æ—¢å­˜ã®åˆ†å‰²ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã«ãƒ‡ãƒ¼ã‚¿ã‚’è»¢é€ã™ã‚‹( floatç‰ˆ )
 extern int NS_ReCreateDivGraphFFromBaseImage( BASEIMAGE *BaseImage, int AllNum, int XNum, int YNum, float SizeX, float SizeY, const int *HandleArray )
 {
 	return NS_ReCreateDivGraphFFromGraphImage( BaseImage, AllNum, XNum, YNum, SizeX, SizeY, HandleArray, TRUE, FALSE ) ;
 }
 
-// ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‚Ö‚ÌƒOƒ‰ƒtƒBƒbƒN‚Ì“Ç‚İ‚İ
+// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã¸ã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®èª­ã¿è¾¼ã¿
 extern int NS_ReloadGraph( const TCHAR *FileName, int GrHandle, int ReverseFlag )
 {
 #ifdef UNICODE
@@ -4309,7 +4309,7 @@ extern int NS_ReloadGraph( const TCHAR *FileName, int GrHandle, int ReverseFlag 
 #endif
 }
 
-// ‰æ‘œƒtƒ@ƒCƒ‹‚©‚çƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚Ö‰æ‘œƒf[ƒ^‚ğ“]‘—‚·‚é
+// ç”»åƒãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã¸ç”»åƒãƒ‡ãƒ¼ã‚¿ã‚’è»¢é€ã™ã‚‹
 extern int NS_ReloadGraphWithStrLen( const TCHAR *FileName, size_t FileNameLength, int GrHandle, int ReverseFlag )
 {
 	int Result ;
@@ -4325,7 +4325,7 @@ extern int NS_ReloadGraphWithStrLen( const TCHAR *FileName, size_t FileNameLengt
 	return Result ;
 }
 
-// ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‚Ö‚ÌƒOƒ‰ƒtƒBƒbƒN‚Ì“Ç‚İ‚İ
+// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã¸ã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®èª­ã¿è¾¼ã¿
 extern int ReloadGraph_WCHAR_T( const wchar_t *FileName, int GrHandle, int ReverseFlag )
 {
 	LOADGRAPH_GPARAM GParam ;
@@ -4335,7 +4335,7 @@ extern int ReloadGraph_WCHAR_T( const wchar_t *FileName, int GrHandle, int Rever
 	return Graphics_Image_LoadBmpToGraph_UseGParam( &GParam, TRUE, GrHandle, FileName, TRUE, ReverseFlag, DX_MOVIESURFACE_NORMAL, GetASyncLoadFlag() ) ;
 }
 
-// ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‚Ö‚ÌƒOƒ‰ƒtƒBƒbƒN‚Ì•ªŠ„“Ç‚İ‚İ
+// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã¸ã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®åˆ†å‰²èª­ã¿è¾¼ã¿
 extern int NS_ReloadDivGraph( const TCHAR *FileName, int AllNum, int XNum, int YNum, int XSize, int YSize, const int *HandleArray, int ReverseFlag )
 {
 #ifdef UNICODE
@@ -4357,7 +4357,7 @@ extern int NS_ReloadDivGraph( const TCHAR *FileName, int AllNum, int XNum, int Y
 #endif
 }
 
-// ‰æ‘œƒtƒ@ƒCƒ‹‚©‚çƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚½‚¿‚Ö‰æ‘œƒf[ƒ^‚ğ•ªŠ„“]‘—‚·‚é
+// ç”»åƒãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ãŸã¡ã¸ç”»åƒãƒ‡ãƒ¼ã‚¿ã‚’åˆ†å‰²è»¢é€ã™ã‚‹
 extern int NS_ReloadDivGraphWithStrLen( const TCHAR *FileName, size_t FileNameLength, int AllNum, int XNum, int YNum, int   XSize, int   YSize, const int *HandleArray, int ReverseFlag )
 {
 	int Result ;
@@ -4373,7 +4373,7 @@ extern int NS_ReloadDivGraphWithStrLen( const TCHAR *FileName, size_t FileNameLe
 	return Result ;
 }
 
-// ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‚Ö‚ÌƒOƒ‰ƒtƒBƒbƒN‚Ì•ªŠ„“Ç‚İ‚İ
+// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã¸ã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®åˆ†å‰²èª­ã¿è¾¼ã¿
 extern int NS_ReloadDivGraphF( const TCHAR *FileName, int AllNum, int XNum, int YNum, float XSize, float YSize, const int *HandleArray, int ReverseFlag )
 {
 #ifdef UNICODE
@@ -4395,7 +4395,7 @@ extern int NS_ReloadDivGraphF( const TCHAR *FileName, int AllNum, int XNum, int 
 #endif
 }
 
-// ‰æ‘œƒtƒ@ƒCƒ‹‚©‚çƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚½‚¿‚Ö‰æ‘œƒf[ƒ^‚ğ•ªŠ„“]‘—‚·‚é( float”Å )
+// ç”»åƒãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ãŸã¡ã¸ç”»åƒãƒ‡ãƒ¼ã‚¿ã‚’åˆ†å‰²è»¢é€ã™ã‚‹( floatç‰ˆ )
 extern int NS_ReloadDivGraphFWithStrLen( const TCHAR *FileName, size_t FileNameLength, int AllNum, int XNum, int YNum, float XSize, float YSize, const int *HandleArray, int ReverseFlag )
 {
 	int Result ;
@@ -4411,7 +4411,7 @@ extern int NS_ReloadDivGraphFWithStrLen( const TCHAR *FileName, size_t FileNameL
 	return Result ;
 }
 
-// ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‚Ö‚ÌƒOƒ‰ƒtƒBƒbƒN‚Ì•ªŠ„“Ç‚İ‚İ
+// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã¸ã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®åˆ†å‰²èª­ã¿è¾¼ã¿
 extern int ReloadDivGraph_WCHAR_T( const wchar_t *FileName, int AllNum, int XNum, int YNum, int IsFloat, int XSizeI, float XSizeF, int YSizeI, float YSizeF, const int *HandleArray, int ReverseFlag )
 {
 	LOADGRAPH_GPARAM GParam ;
@@ -4421,13 +4421,13 @@ extern int ReloadDivGraph_WCHAR_T( const wchar_t *FileName, int AllNum, int XNum
 	return Graphics_Image_LoadDivBmpToGraph_UseGParam( &GParam, TRUE, FileName, AllNum, XNum, YNum, IsFloat, XSizeI, XSizeF, YSizeI, YSizeF, ( int * )HandleArray, TRUE, ReverseFlag, GetASyncLoadFlag(), FALSE ) ;
 }
 
-// ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‚Ö‚ÌƒOƒ‰ƒtƒBƒbƒN‚Ì”½“]“Ç‚İ‚İ
+// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã¸ã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®åè»¢èª­ã¿è¾¼ã¿
 extern int NS_ReloadReverseGraph( const TCHAR *FileName, int GrHandle )
 {
 	return NS_ReloadGraph( FileName, GrHandle, TRUE ) ;
 }
 
-// ReloadGraph ‚Ì‰æ‘œ”½“]ˆ—’Ç‰Á”Å
+// ReloadGraph ã®ç”»åƒåè»¢å‡¦ç†è¿½åŠ ç‰ˆ
 extern int NS_ReloadReverseGraphWithStrLen( const TCHAR *FileName, size_t FileNameLength, int GrHandle )
 {
 	int Result ;
@@ -4437,19 +4437,19 @@ extern int NS_ReloadReverseGraphWithStrLen( const TCHAR *FileName, size_t FileNa
 	return Result ;
 }
 
-// ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‚Ö‚ÌƒOƒ‰ƒtƒBƒbƒN‚Ì”½“]“Ç‚İ‚İ
+// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã¸ã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®åè»¢èª­ã¿è¾¼ã¿
 extern int ReloadReverseGraph_WCHAR_T( const wchar_t *FileName, int GrHandle )
 {
 	return ReloadGraph_WCHAR_T( FileName, GrHandle, TRUE ) ;
 }
 
-// ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‚Ö‚ÌƒOƒ‰ƒtƒBƒbƒN‚Ì”½“]•ªŠ„“Ç‚İ‚İ
+// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã¸ã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®åè»¢åˆ†å‰²èª­ã¿è¾¼ã¿
 extern int NS_ReloadReverseDivGraph( const TCHAR *FileName, int AllNum, int XNum, int YNum, int XSize, int YSize, const int *HandleArray )
 {
 	return NS_ReloadDivGraph( FileName, AllNum, XNum, YNum, XSize, YSize, HandleArray, TRUE ) ;
 }
 
-// ReloadDivGraph ‚Ì‰æ‘œ”½“]ˆ—’Ç‰Á”Å
+// ReloadDivGraph ã®ç”»åƒåè»¢å‡¦ç†è¿½åŠ ç‰ˆ
 extern int NS_ReloadReverseDivGraphWithStrLen( const TCHAR *FileName, size_t FileNameLength, int AllNum, int XNum, int YNum, int   XSize, int   YSize, const int *HandleArray )
 {
 	int Result ;
@@ -4459,13 +4459,13 @@ extern int NS_ReloadReverseDivGraphWithStrLen( const TCHAR *FileName, size_t Fil
 	return Result ;
 }
 
-// ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‚Ö‚ÌƒOƒ‰ƒtƒBƒbƒN‚Ì”½“]•ªŠ„“Ç‚İ‚İ
+// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã¸ã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®åè»¢åˆ†å‰²èª­ã¿è¾¼ã¿
 extern int NS_ReloadReverseDivGraphF( const TCHAR *FileName, int AllNum, int XNum, int YNum, float XSize, float YSize, const int *HandleArray )
 {
 	return NS_ReloadDivGraphF( FileName, AllNum, XNum, YNum, XSize, YSize, HandleArray, TRUE ) ;
 }
 
-// ReloadDivGraph ‚Ì‰æ‘œ”½“]ˆ—’Ç‰Á”Å( float”Å )
+// ReloadDivGraph ã®ç”»åƒåè»¢å‡¦ç†è¿½åŠ ç‰ˆ( floatç‰ˆ )
 extern int NS_ReloadReverseDivGraphFWithStrLen( const TCHAR *FileName, size_t FileNameLength, int AllNum, int XNum, int YNum, float XSize, float YSize, const int *HandleArray )
 {
 	int Result ;
@@ -4498,86 +4498,86 @@ extern int NS_ReloadReverseDivGraphFWithStrLen( const TCHAR *FileName, size_t Fi
 
 
 
-// ƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹ì¬İ’èŒWŠÖ”
+// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ä½œæˆæ™‚è¨­å®šä¿‚é–¢æ•°
 
-// SetCreateGraphColorBitDepth ‚Ì‹Œ–¼Ì
+// SetCreateGraphColorBitDepth ã®æ—§åç§°
 extern int NS_SetGraphColorBitDepth( int ColorBitDepth )
 {
 	return NS_SetCreateGraphColorBitDepth( ColorBitDepth ) ;
 }
 
-// GetCreateGraphColorBitDepth ‚Ì‹Œ–¼Ì
+// GetCreateGraphColorBitDepth ã®æ—§åç§°
 extern int NS_GetGraphColorBitDepth( void )
 {
 	return NS_GetCreateGraphColorBitDepth() ;
 }
 
-// ì¬‚·‚éƒOƒ‰ƒtƒBƒbƒN‚ÌF[“x‚ğİ’è‚·‚é
+// ä½œæˆã™ã‚‹ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®è‰²æ·±åº¦ã‚’è¨­å®šã™ã‚‹
 extern int NS_SetCreateGraphColorBitDepth( int BitDepth )
 {
-	// ’l‚ğ•Û‘¶‚·‚é
+	// å€¤ã‚’ä¿å­˜ã™ã‚‹
 	GSYS.CreateImage.ColorBitDepth = BitDepth ;
 	
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ì¬‚·‚éƒOƒ‰ƒtƒBƒbƒN‚ÌF[“x‚ğæ“¾‚·‚é
+// ä½œæˆã™ã‚‹ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®è‰²æ·±åº¦ã‚’å–å¾—ã™ã‚‹
 extern int NS_GetCreateGraphColorBitDepth( void )
 {
 	return GSYS.CreateImage.ColorBitDepth ;
 }
 
-// ì¬‚·‚éƒOƒ‰ƒtƒBƒbƒN‚Ì‚Pƒ`ƒƒƒ“ƒlƒ‹•Ó‚è‚Ìƒrƒbƒg[“x‚ğİ’è‚·‚é
+// ä½œæˆã™ã‚‹ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®ï¼‘ãƒãƒ£ãƒ³ãƒãƒ«è¾ºã‚Šã®ãƒ“ãƒƒãƒˆæ·±åº¦ã‚’è¨­å®šã™ã‚‹
 extern int NS_SetCreateGraphChannelBitDepth( int BitDepth )
 {
-	// ’l‚ğ•Û‘¶‚·‚é
+	// å€¤ã‚’ä¿å­˜ã™ã‚‹
 	GSYS.CreateImage.ChannelBitDepth = BitDepth ;
 	
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ì¬‚·‚éƒOƒ‰ƒtƒBƒbƒN‚Ì‚Pƒ`ƒƒƒ“ƒlƒ‹•Ó‚è‚Ìƒrƒbƒg[“x‚ğæ“¾‚·‚é
+// ä½œæˆã™ã‚‹ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®ï¼‘ãƒãƒ£ãƒ³ãƒãƒ«è¾ºã‚Šã®ãƒ“ãƒƒãƒˆæ·±åº¦ã‚’å–å¾—ã™ã‚‹
 extern int NS_GetCreateGraphChannelBitDepth( void )
 {
 	return GSYS.CreateImage.ChannelBitDepth ;
 }
 
-// ì¬‚·‚éƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ğ InitGraph() ‚Åíœ‚³‚ê‚é‚©‚ğİ’è‚·‚é( Flag  TRUE:InitGraph‚Åíœ‚³‚ê‚é(ƒfƒtƒHƒ‹ƒg)  FALSE:InitGraph‚Åíœ‚³‚ê‚È‚¢ )
+// ä½œæˆã™ã‚‹ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã‚’ InitGraph() ã§å‰Šé™¤ã•ã‚Œã‚‹ã‹ã‚’è¨­å®šã™ã‚‹( Flag  TRUE:InitGraphã§å‰Šé™¤ã•ã‚Œã‚‹(ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ)  FALSE:InitGraphã§å‰Šé™¤ã•ã‚Œãªã„ )
 extern int NS_SetCreateGraphInitGraphDelete( int Flag )
 {
-	// ’l‚ğ•Û‘¶‚·‚é
+	// å€¤ã‚’ä¿å­˜ã™ã‚‹
 	GSYS.CreateImage.NotInitGraphDeleteUserFlag = Flag != FALSE ? FALSE : TRUE ;
 	
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ì¬‚·‚éƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ğ InitGraph() ‚Åíœ‚³‚ê‚é‚©‚ğæ“¾‚·‚é( Flag  TRUE:InitGraph‚Åíœ‚³‚ê‚é(ƒfƒtƒHƒ‹ƒg)  FALSE:InitGraph‚Åíœ‚³‚ê‚È‚¢ )
+// ä½œæˆã™ã‚‹ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã‚’ InitGraph() ã§å‰Šé™¤ã•ã‚Œã‚‹ã‹ã‚’å–å¾—ã™ã‚‹( Flag  TRUE:InitGraphã§å‰Šé™¤ã•ã‚Œã‚‹(ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ)  FALSE:InitGraphã§å‰Šé™¤ã•ã‚Œãªã„ )
 extern int NS_GetCreateGraphInitGraphDelete( void )
 {
 	return GSYS.CreateImage.NotInitGraphDeleteUserFlag != FALSE ? FALSE : TRUE ;
 }
 
-// ì¬‚·‚éƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚Ìƒnƒ“ƒhƒ‹’l‚ğİ’è‚·‚é( ‘¶İ‚µ‚È‚¢ƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚Ì’l‚Ìê‡‚Ì‚İ—LŒø )
+// ä½œæˆã™ã‚‹ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã®ãƒãƒ³ãƒ‰ãƒ«å€¤ã‚’è¨­å®šã™ã‚‹( å­˜åœ¨ã—ãªã„ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã®å€¤ã®å ´åˆã®ã¿æœ‰åŠ¹ )
 extern int NS_SetCreateGraphHandle( int GrHandle )
 {
-	// ’l‚ğ•Û‘¶‚·‚é
+	// å€¤ã‚’ä¿å­˜ã™ã‚‹
 	GSYS.CreateImage.CreateGraphHandle = GrHandle ;
 	
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ì¬‚·‚éƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚Ìƒnƒ“ƒhƒ‹’l‚ğæ“¾‚·‚é
+// ä½œæˆã™ã‚‹ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã®ãƒãƒ³ãƒ‰ãƒ«å€¤ã‚’å–å¾—ã™ã‚‹
 extern int NS_GetCreateGraphHandle( void )
 {
-	// ’l‚ğ•Ô‚·
+	// å€¤ã‚’è¿”ã™
 	return GSYS.CreateImage.CreateGraphHandle ;
 }
 
-// ì¬‚·‚éƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚Ìƒnƒ“ƒhƒ‹’l‚ğİ’è‚·‚éALoadDivGraph “™‚Ì•ªŠ„‰æ‘œ“Ç‚İ‚İ—pAHandleArray ‚É NULL ‚ğ“n‚·‚Æİ’è‰ğœ( ‘¶İ‚µ‚È‚¢ƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚Ì’l‚Ìê‡‚Ì‚İ—LŒø )
+// ä½œæˆã™ã‚‹ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã®ãƒãƒ³ãƒ‰ãƒ«å€¤ã‚’è¨­å®šã™ã‚‹ã€LoadDivGraph ç­‰ã®åˆ†å‰²ç”»åƒèª­ã¿è¾¼ã¿ç”¨ã€HandleArray ã« NULL ã‚’æ¸¡ã™ã¨è¨­å®šè§£é™¤( å­˜åœ¨ã—ãªã„ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã®å€¤ã®å ´åˆã®ã¿æœ‰åŠ¹ )
 extern int NS_SetCreateDivGraphHandle( const int *HandleArray, int HandleNum )
 {
 	if( GSYS.CreateImage.CreateDivGraphHandle != NULL )
@@ -4592,7 +4592,7 @@ extern int NS_SetCreateDivGraphHandle( const int *HandleArray, int HandleNum )
 		GSYS.CreateImage.CreateDivGraphHandle = ( int * )DXALLOC( sizeof( int ) * HandleNum ) ;
 		if( GSYS.CreateImage.CreateDivGraphHandle == NULL )
 		{
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\x53\x00\x65\x00\x74\x00\x43\x00\x72\x00\x65\x00\x61\x00\x74\x00\x65\x00\x44\x00\x69\x00\x76\x00\x47\x00\x72\x00\x61\x00\x70\x00\x68\x00\x48\x00\x61\x00\x6e\x00\x64\x00\x6c\x00\x65\x00\x20\x00\x6e\x30\x4d\x91\x17\x52\x24\x50\xdd\x4f\x58\x5b\x28\x75\xe1\x30\xe2\x30\xea\x30\x20\x00\x25\x00\x64\x00\x62\x00\x79\x00\x74\x00\x65\x00\x20\x00\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"SetCreateDivGraphHandle ‚Ì”z—ñ’l•Û‘¶—pƒƒ‚ƒŠ %dbyte ‚ÌŠm•Û‚É¸”s‚µ‚Ü‚µ‚½" @*/, sizeof( int ) * HandleNum )) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\x53\x00\x65\x00\x74\x00\x43\x00\x72\x00\x65\x00\x61\x00\x74\x00\x65\x00\x44\x00\x69\x00\x76\x00\x47\x00\x72\x00\x61\x00\x70\x00\x68\x00\x48\x00\x61\x00\x6e\x00\x64\x00\x6c\x00\x65\x00\x20\x00\x6e\x30\x4d\x91\x17\x52\x24\x50\xdd\x4f\x58\x5b\x28\x75\xe1\x30\xe2\x30\xea\x30\x20\x00\x25\x00\x64\x00\x62\x00\x79\x00\x74\x00\x65\x00\x20\x00\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"SetCreateDivGraphHandle ã®é…åˆ—å€¤ä¿å­˜ç”¨ãƒ¡ãƒ¢ãƒª %dbyte ã®ç¢ºä¿ã«å¤±æ•—ã—ã¾ã—ãŸ" @*/, sizeof( int ) * HandleNum )) ;
 			return -1 ;
 		}
 
@@ -4600,11 +4600,11 @@ extern int NS_SetCreateDivGraphHandle( const int *HandleArray, int HandleNum )
 		GSYS.CreateImage.CreateDivGraphHandleNum = HandleNum ;
 	}
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// ì¬‚·‚éƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚Ìƒnƒ“ƒhƒ‹’l‚ğæ“¾‚·‚éALoadDivGraph “™‚Ì•ªŠ„‰æ‘œ“Ç‚İ‚İ—pA–ß‚è’l‚Í SetCreateDivGraphHandle ‚Ìˆø” HandleNum ‚É“n‚µ‚½’lAHandleArray ‚ğ NULL ‚É‚·‚é‚±‚Æ‚ª‰Â”\@
+// ä½œæˆã™ã‚‹ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã®ãƒãƒ³ãƒ‰ãƒ«å€¤ã‚’å–å¾—ã™ã‚‹ã€LoadDivGraph ç­‰ã®åˆ†å‰²ç”»åƒèª­ã¿è¾¼ã¿ç”¨ã€æˆ»ã‚Šå€¤ã¯ SetCreateDivGraphHandle ã®å¼•æ•° HandleNum ã«æ¸¡ã—ãŸå€¤ã€HandleArray ã‚’ NULL ã«ã™ã‚‹ã“ã¨ãŒå¯èƒ½ã€€
 extern int NS_GetCreateDivGraphHandle( int *HandleArray )
 {
 	if( HandleArray != NULL && GSYS.CreateImage.CreateDivGraphHandle != NULL && GSYS.CreateImage.CreateDivGraphHandleNum > 0 )
@@ -4612,241 +4612,241 @@ extern int NS_GetCreateDivGraphHandle( int *HandleArray )
 		_MEMCPY( HandleArray, GSYS.CreateImage.CreateDivGraphHandle, sizeof( int ) * GSYS.CreateImage.CreateDivGraphHandleNum ) ;
 	}
 
-	// İ’è‚³‚ê‚Ä‚¢‚é”‚ğ•Ô‚·
+	// è¨­å®šã•ã‚Œã¦ã„ã‚‹æ•°ã‚’è¿”ã™
 	return GSYS.CreateImage.CreateDivGraphHandleNum ;
 }
 
-// •`‰æ‰Â”\‚ÈƒOƒ‰ƒtƒBƒbƒN‚ğì¬‚·‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğƒZƒbƒg‚·‚é( TRUE:ì¬‚·‚é  FALSE:ì¬‚µ‚È‚¢ )
+// æç”»å¯èƒ½ãªã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚’ä½œæˆã™ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆã™ã‚‹( TRUE:ä½œæˆã™ã‚‹  FALSE:ä½œæˆã—ãªã„ )
 extern int NS_SetDrawValidGraphCreateFlag( int Flag )
 {
-	// ƒtƒ‰ƒO‚ğ•Û‘¶‚·‚é
+	// ãƒ•ãƒ©ã‚°ã‚’ä¿å­˜ã™ã‚‹
 	GSYS.CreateImage.DrawValidFlag = Flag ;
 	
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// •`‰æ‰Â”\‚ÈƒOƒ‰ƒtƒBƒbƒN‚ğì¬‚·‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğæ“¾‚·‚é
+// æç”»å¯èƒ½ãªã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚’ä½œæˆã™ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’å–å¾—ã™ã‚‹
 extern int NS_GetDrawValidGraphCreateFlag( void )
 {
 	return GSYS.CreateImage.DrawValidFlag ;
 }
 
-// SetDrawValidGraphCreateFlag ‚Ì‹Œ–¼Ì
+// SetDrawValidGraphCreateFlag ã®æ—§åç§°
 extern int NS_SetDrawValidFlagOf3DGraph( int Flag )
 {
 	return NS_SetDrawValidGraphCreateFlag( Flag ) ;
 }
 
-// ‰æ‘œ¶ã‚ÌF‚ğ“§‰ßF‚É‚·‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğƒZƒbƒg‚·‚é
+// ç”»åƒå·¦ä¸Šã®è‰²ã‚’é€éè‰²ã«ã™ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern int NS_SetLeftUpColorIsTransColorFlag( int Flag )
 {
-	// ƒtƒ‰ƒO‚ğƒZƒbƒg‚·‚é
+	// ãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 	GSYS.CreateImage.LeftUpColorIsTransColorFlag = Flag ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// “Ç‚İ‚Ş‰æ‘œ‚ªƒpƒŒƒbƒg‰æ‘œ‚Ìê‡AƒpƒŒƒbƒg‰æ‘œ‚Æ‚µ‚Äg—p‚Å‚«‚éê‡‚ÍƒpƒŒƒbƒg‰æ‘œ‚Æ‚µ‚Äg—p‚·‚é‚©‚Ç‚¤‚©‚ğİ’è‚·‚é( TRUE:ƒpƒŒƒbƒg‰æ‘œ‚Æ‚µ‚Äg—p‚Å‚«‚éê‡‚ÍƒpƒŒƒbƒg‰æ‘œ‚Æ‚µ‚Äg—p‚·‚é( ƒfƒtƒHƒ‹ƒg )  FALSE:ƒpƒŒƒbƒg‰æ‘œ‚Æ‚µ‚Äg—p‚Å‚«‚éê‡‚àƒpƒŒƒbƒg‰æ‘œ‚Æ‚µ‚Ä‚Íg—p‚µ‚È‚¢( ’Êíƒ^ƒCƒv‚Ì‰æ‘œ‚É•ÏŠ·‚µ‚Äg—p‚·‚é ) )
+// èª­ã¿è¾¼ã‚€ç”»åƒãŒãƒ‘ãƒ¬ãƒƒãƒˆç”»åƒã®å ´åˆã€ãƒ‘ãƒ¬ãƒƒãƒˆç”»åƒã¨ã—ã¦ä½¿ç”¨ã§ãã‚‹å ´åˆã¯ãƒ‘ãƒ¬ãƒƒãƒˆç”»åƒã¨ã—ã¦ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹( TRUE:ãƒ‘ãƒ¬ãƒƒãƒˆç”»åƒã¨ã—ã¦ä½¿ç”¨ã§ãã‚‹å ´åˆã¯ãƒ‘ãƒ¬ãƒƒãƒˆç”»åƒã¨ã—ã¦ä½¿ç”¨ã™ã‚‹( ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ )  FALSE:ãƒ‘ãƒ¬ãƒƒãƒˆç”»åƒã¨ã—ã¦ä½¿ç”¨ã§ãã‚‹å ´åˆã‚‚ãƒ‘ãƒ¬ãƒƒãƒˆç”»åƒã¨ã—ã¦ã¯ä½¿ç”¨ã—ãªã„( é€šå¸¸ã‚¿ã‚¤ãƒ—ã®ç”»åƒã«å¤‰æ›ã—ã¦ä½¿ç”¨ã™ã‚‹ ) )
 extern int NS_SetUsePaletteGraphFlag( int Flag )
 {
-	// ƒtƒ‰ƒO‚ğƒZƒbƒg‚·‚é
+	// ãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 	GSYS.CreateImage.NotUsePaletteGraphFlag = Flag ? FALSE : TRUE ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒuƒŒƒ“ƒhˆ——p‰æ‘œ‚ğì¬‚·‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğƒZƒbƒg‚·‚é
+// ãƒ–ãƒ¬ãƒ³ãƒ‰å‡¦ç†ç”¨ç”»åƒã‚’ä½œæˆã™ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern int NS_SetUseBlendGraphCreateFlag( int Flag )
 {
-	// ƒtƒ‰ƒO‚ğ•Û‘¶‚·‚é
+	// ãƒ•ãƒ©ã‚°ã‚’ä¿å­˜ã™ã‚‹
 	GSYS.CreateImage.BlendImageFlag = Flag ;
 	
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒuƒŒƒ“ƒhˆ——p‰æ‘œ‚ğì¬‚·‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğæ“¾‚·‚é
+// ãƒ–ãƒ¬ãƒ³ãƒ‰å‡¦ç†ç”¨ç”»åƒã‚’ä½œæˆã™ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’å–å¾—ã™ã‚‹
 extern int NS_GetUseBlendGraphCreateFlag( void )
 {
 	return GSYS.CreateImage.BlendImageFlag ;
 }
 
-// ƒAƒ‹ƒtƒ@ƒeƒXƒg‚ğg—p‚·‚éƒOƒ‰ƒtƒBƒbƒN‚ğì¬‚·‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğƒZƒbƒg‚·‚é
+// ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆã‚’ä½¿ç”¨ã™ã‚‹ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚’ä½œæˆã™ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern int NS_SetUseAlphaTestGraphCreateFlag( int Flag )
 {
-	// ƒtƒ‰ƒO‚ğƒZƒbƒg‚·‚é
+	// ãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 	GSYS.CreateImage.AlphaTestFlag = Flag ;
 	BASEIM.AlphaTestImageCreateFlag = Flag ;
 	
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒAƒ‹ƒtƒ@ƒeƒXƒg‚ğg—p‚·‚éƒOƒ‰ƒtƒBƒbƒN‚ğì¬‚·‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğæ“¾‚·‚é
+// ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆã‚’ä½¿ç”¨ã™ã‚‹ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚’ä½œæˆã™ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’å–å¾—ã™ã‚‹
 extern int NS_GetUseAlphaTestGraphCreateFlag( void )
 {
 	return GSYS.CreateImage.AlphaTestFlag ;
 }
 
-// SetUseAlphaTestGraphCreateFlag ‚Ì‹Œ–¼Ì
+// SetUseAlphaTestGraphCreateFlag ã®æ—§åç§°
 extern int NS_SetUseAlphaTestFlag( int Flag )
 {
 	return NS_SetUseAlphaTestGraphCreateFlag( Flag ) ;
 }
 
-// GetUseAlphaTestGraphCreateFlag ‚Ì‹Œ–¼Ì
+// GetUseAlphaTestGraphCreateFlag ã®æ—§åç§°
 extern int NS_GetUseAlphaTestFlag( void )
 {
 	return NS_GetUseAlphaTestGraphCreateFlag() ;
 }
 
-// ƒLƒ…[ƒuƒ}ƒbƒvƒeƒNƒXƒ`ƒƒ‚ğì¬‚·‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğİ’è‚·‚é
+// ã‚­ãƒ¥ãƒ¼ãƒ–ãƒãƒƒãƒ—ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ä½œæˆã™ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’è¨­å®šã™ã‚‹
 extern int NS_SetCubeMapTextureCreateFlag( int Flag )
 {
 	GSYS.CreateImage.CubeMapFlag = Flag == FALSE ? FALSE : TRUE ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// ƒLƒ…[ƒuƒ}ƒbƒvƒeƒNƒXƒ`ƒƒ‚ğì¬‚·‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğæ“¾‚·‚é
+// ã‚­ãƒ¥ãƒ¼ãƒ–ãƒãƒƒãƒ—ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ä½œæˆã™ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’å–å¾—ã™ã‚‹
 extern int NS_GetCubeMapTextureCreateFlag( void )
 {
 	return 	GSYS.CreateImage.CubeMapFlag ;
 }
 
-// SetDrawBlendMode ŠÖ”‚Ì‘æˆêˆø”‚É DX_BLENDMODE_NOBLEND ‚ğ‘ã“ü‚µ‚½Û‚ÉAƒfƒtƒHƒ‹ƒg‚Å‚Í‘æ“ñˆø”‚Í“à•”‚Å‚Q‚T‚T‚ğw’è‚µ‚½‚±‚Æ‚É‚È‚é‚ªA‚»‚Ì©“®‚Q‚T‚T‰»‚ğ‚µ‚È‚¢‚©‚Ç‚¤‚©‚ğİ’è‚·‚é( TRUE:‚µ‚È‚¢(‘æ“ñˆø”‚Ì’l‚ªg—p‚³‚ê‚é)   FALSE:‚·‚é(‘æ“ñˆø”‚Ì’l‚Í–³‹‚³‚ê‚Ä 255 ‚ªí‚Ég—p‚³‚ê‚é)(ƒfƒtƒHƒ‹ƒg) )ƒ¿ƒ`ƒƒƒ“ƒlƒ‹•t‚«‰æ‘œ‚É‘Î‚µ‚Ä•`‰æ‚ğs‚¤ê‡‚Ì‚İˆÓ–¡‚ª‚ ‚éŠÖ”
+// SetDrawBlendMode é–¢æ•°ã®ç¬¬ä¸€å¼•æ•°ã« DX_BLENDMODE_NOBLEND ã‚’ä»£å…¥ã—ãŸéš›ã«ã€ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã§ã¯ç¬¬äºŒå¼•æ•°ã¯å†…éƒ¨ã§ï¼’ï¼•ï¼•ã‚’æŒ‡å®šã—ãŸã“ã¨ã«ãªã‚‹ãŒã€ãã®è‡ªå‹•ï¼’ï¼•ï¼•åŒ–ã‚’ã—ãªã„ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹( TRUE:ã—ãªã„(ç¬¬äºŒå¼•æ•°ã®å€¤ãŒä½¿ç”¨ã•ã‚Œã‚‹)   FALSE:ã™ã‚‹(ç¬¬äºŒå¼•æ•°ã®å€¤ã¯ç„¡è¦–ã•ã‚Œã¦ 255 ãŒå¸¸ã«ä½¿ç”¨ã•ã‚Œã‚‹)(ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ) )Î±ãƒãƒ£ãƒ³ãƒãƒ«ä»˜ãç”»åƒã«å¯¾ã—ã¦æç”»ã‚’è¡Œã†å ´åˆã®ã¿æ„å‘³ãŒã‚ã‚‹é–¢æ•°
 extern int NS_SetUseNoBlendModeParam( int Flag )
 {
 	GSYS.DrawSetting.UseNoBlendModeParam = Flag ;
 
-	// İ’è‚ª•ÏX‚³‚ê‚½‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// è¨­å®šãŒå¤‰æ›´ã•ã‚ŒãŸã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	GSYS.ChangeSettingFlag = TRUE ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// •`‰æ‰Â”\‚Èƒ¿ƒ`ƒƒƒ“ƒlƒ‹•t‚«‰æ‘œ‚ğì¬‚·‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğƒZƒbƒg‚·‚é,SetDrawValidGraphCreateFlag ŠÖ”‚Å•`‰æ‰Â”\‰æ‘œ‚ğì¬‚·‚é‚æ‚¤‚Éİ’è‚³‚ê‚Ä‚¢‚È‚¢‚ÆŒø‰Ê‚ª‚È‚¢( TRUE:ƒ¿ƒ`ƒƒƒ“ƒlƒ‹•t‚« FALSE:ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚È‚µ )
+// æç”»å¯èƒ½ãªÎ±ãƒãƒ£ãƒ³ãƒãƒ«ä»˜ãç”»åƒã‚’ä½œæˆã™ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆã™ã‚‹,SetDrawValidGraphCreateFlag é–¢æ•°ã§æç”»å¯èƒ½ç”»åƒã‚’ä½œæˆã™ã‚‹ã‚ˆã†ã«è¨­å®šã•ã‚Œã¦ã„ãªã„ã¨åŠ¹æœãŒãªã„( TRUE:Î±ãƒãƒ£ãƒ³ãƒãƒ«ä»˜ã FALSE:Î±ãƒãƒ£ãƒ³ãƒãƒ«ãªã— )
 extern int NS_SetDrawValidAlphaChannelGraphCreateFlag( int Flag )
 {
-	// ƒtƒ‰ƒO‚ğ•Û‘¶‚·‚é
+	// ãƒ•ãƒ©ã‚°ã‚’ä¿å­˜ã™ã‚‹
 	GSYS.CreateImage.DrawValidAlphaFlag = Flag ;
 	
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// •`‰æ‰Â”\‚Èƒ¿ƒ`ƒƒƒ“ƒlƒ‹•t‚«‰æ‘œ‚ğì¬‚·‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğæ“¾‚·‚é
+// æç”»å¯èƒ½ãªÎ±ãƒãƒ£ãƒ³ãƒãƒ«ä»˜ãç”»åƒã‚’ä½œæˆã™ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’å–å¾—ã™ã‚‹
 extern int NS_GetDrawValidAlphaChannelGraphCreateFlag( void )
 {
-	// ƒtƒ‰ƒO‚ğ•Ô‚·
+	// ãƒ•ãƒ©ã‚°ã‚’è¿”ã™
 	return GSYS.CreateImage.DrawValidAlphaFlag ;
 }
 
-// •`‰æ‰Â”\‚È•‚“®¬”“_Œ^‚Ì‰æ‘œ‚ğì¬‚·‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğƒZƒbƒg‚·‚é,SetDrawValidGraphCreateFlag ŠÖ”‚Å•`‰æ‰Â”\‰æ‘œ‚ğì¬‚·‚é‚æ‚¤‚Éİ’è‚³‚ê‚Ä‚¢‚È‚¢‚ÆŒø‰Ê‚ª‚È‚¢A‚f‚o‚t‚ª FloatŒ^‚Ì‰æ‘œ‚É‘Î‰‚µ‚Ä‚¢‚È‚¢ê‡‚Í¸”s‚·‚é( TRUE:FloatŒ^ FALSE:IntŒ^ )
+// æç”»å¯èƒ½ãªæµ®å‹•å°æ•°ç‚¹å‹ã®ç”»åƒã‚’ä½œæˆã™ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆã™ã‚‹,SetDrawValidGraphCreateFlag é–¢æ•°ã§æç”»å¯èƒ½ç”»åƒã‚’ä½œæˆã™ã‚‹ã‚ˆã†ã«è¨­å®šã•ã‚Œã¦ã„ãªã„ã¨åŠ¹æœãŒãªã„ã€ï¼§ï¼°ï¼µãŒ Floatå‹ã®ç”»åƒã«å¯¾å¿œã—ã¦ã„ãªã„å ´åˆã¯å¤±æ•—ã™ã‚‹( TRUE:Floatå‹ FALSE:Intå‹ )
 extern int NS_SetDrawValidFloatTypeGraphCreateFlag( int Flag )
 {
-	// ƒtƒ‰ƒO‚ğ•Û‘¶‚·‚é
+	// ãƒ•ãƒ©ã‚°ã‚’ä¿å­˜ã™ã‚‹
 	GSYS.CreateImage.DrawValidFloatTypeFlag = Flag ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// •`‰æ‰Â”\‚È•‚“®¬”“_Œ^‚Ì‰æ‘œ‚ğì¬‚·‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğæ“¾‚·‚é
+// æç”»å¯èƒ½ãªæµ®å‹•å°æ•°ç‚¹å‹ã®ç”»åƒã‚’ä½œæˆã™ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’å–å¾—ã™ã‚‹
 extern int NS_GetDrawValidFloatTypeGraphCreateFlag( void )
 {
-	// ƒtƒ‰ƒO‚ğ•Ô‚·
+	// ãƒ•ãƒ©ã‚°ã‚’è¿”ã™
 	return GSYS.CreateImage.DrawValidFloatTypeFlag ;
 }
 
-// •`‰æ‰Â”\‰æ‘œ‚ğì¬‚·‚éÛ‚Éê—p‚Ì‚yƒoƒbƒtƒ@‚àì¬‚·‚é‚©‚Ç‚¤‚©‚ğİ’è‚·‚é( ƒfƒtƒHƒ‹ƒg‚Å‚Í TRUE( ì¬‚·‚é ) )
+// æç”»å¯èƒ½ç”»åƒã‚’ä½œæˆã™ã‚‹éš›ã«å°‚ç”¨ã®ï¼ºãƒãƒƒãƒ•ã‚¡ã‚‚ä½œæˆã™ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹( ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã§ã¯ TRUE( ä½œæˆã™ã‚‹ ) )
 extern int NS_SetDrawValidGraphCreateZBufferFlag( int Flag )
 {
-	// ƒtƒ‰ƒO‚ğ•Û‘¶‚·‚é
+	// ãƒ•ãƒ©ã‚°ã‚’ä¿å­˜ã™ã‚‹
 	GSYS.CreateImage.NotDrawValidCreateZBufferFlag = Flag ? FALSE : TRUE ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// •`‰æ‰Â”\‰æ‘œ‚ğì¬‚·‚éÛ‚Éê—p‚Ì‚yƒoƒbƒtƒ@‚àì¬‚·‚é‚©‚Ç‚¤‚©‚ğæ“¾‚·‚é
+// æç”»å¯èƒ½ç”»åƒã‚’ä½œæˆã™ã‚‹éš›ã«å°‚ç”¨ã®ï¼ºãƒãƒƒãƒ•ã‚¡ã‚‚ä½œæˆã™ã‚‹ã‹ã©ã†ã‹ã‚’å–å¾—ã™ã‚‹
 extern int NS_GetDrawValidGraphCreateZBufferFlag( void )
 {
-	// ƒtƒ‰ƒO‚ğ•Ô‚·
+	// ãƒ•ãƒ©ã‚°ã‚’è¿”ã™
 	return GSYS.CreateImage.NotDrawValidCreateZBufferFlag ? FALSE : TRUE ;
 }
 
-// SetDrawScreen ‚Ìˆø”‚Æ‚µ‚Ä“n‚¹‚é( •`‰æ‘ÎÛ‚Æ‚µ‚Äg—p‚Å‚«‚é )ƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚É“K—p‚·‚é‚yƒoƒbƒtƒ@‚Ìƒrƒbƒg[“x‚ğİ’è‚·‚é( BitDepth:ƒrƒbƒg[“x( w’è‰Â”\‚È’l‚Í 16, 24, 32 ‚Ì‰½‚ê‚©( SetDrawValidGraphCreateFlag ŠÖ”‚Å•`‰æ‘ÎÛ‚Æ‚µ‚Äg—p‚Å‚«‚éƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ğì¬‚·‚é‚æ‚¤‚Éİ’è‚³‚ê‚Ä‚¢‚È‚¢‚ÆŒø‰Ê‚ ‚è‚Ü‚¹‚ñ )
+// SetDrawScreen ã®å¼•æ•°ã¨ã—ã¦æ¸¡ã›ã‚‹( æç”»å¯¾è±¡ã¨ã—ã¦ä½¿ç”¨ã§ãã‚‹ )ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã«é©ç”¨ã™ã‚‹ï¼ºãƒãƒƒãƒ•ã‚¡ã®ãƒ“ãƒƒãƒˆæ·±åº¦ã‚’è¨­å®šã™ã‚‹( BitDepth:ãƒ“ãƒƒãƒˆæ·±åº¦( æŒ‡å®šå¯èƒ½ãªå€¤ã¯ 16, 24, 32 ã®ä½•ã‚Œã‹( SetDrawValidGraphCreateFlag é–¢æ•°ã§æç”»å¯¾è±¡ã¨ã—ã¦ä½¿ç”¨ã§ãã‚‹ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã‚’ä½œæˆã™ã‚‹ã‚ˆã†ã«è¨­å®šã•ã‚Œã¦ã„ãªã„ã¨åŠ¹æœã‚ã‚Šã¾ã›ã‚“ )
 extern int NS_SetCreateDrawValidGraphZBufferBitDepth( int BitDepth )
 {
-	// ƒrƒbƒg[“x‚ğ•Û‘¶‚·‚é
+	// ãƒ“ãƒƒãƒˆæ·±åº¦ã‚’ä¿å­˜ã™ã‚‹
 	GSYS.CreateImage.DrawValidZBufferBitDepth = BitDepth ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// SetDrawScreen ‚Ìˆø”‚Æ‚µ‚Ä“n‚¹‚é( •`‰æ‘ÎÛ‚Æ‚µ‚Äg—p‚Å‚«‚é )ƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚É“K—p‚·‚é‚yƒoƒbƒtƒ@‚Ìƒrƒbƒg[“x‚ğæ“¾‚·‚é
+// SetDrawScreen ã®å¼•æ•°ã¨ã—ã¦æ¸¡ã›ã‚‹( æç”»å¯¾è±¡ã¨ã—ã¦ä½¿ç”¨ã§ãã‚‹ )ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã«é©ç”¨ã™ã‚‹ï¼ºãƒãƒƒãƒ•ã‚¡ã®ãƒ“ãƒƒãƒˆæ·±åº¦ã‚’å–å¾—ã™ã‚‹
 extern int NS_GetCreateDrawValidGraphZBufferBitDepth( void )
 {
-	// ƒrƒbƒg[“x‚ğ•Ô‚·
+	// ãƒ“ãƒƒãƒˆæ·±åº¦ã‚’è¿”ã™
 	return GSYS.CreateImage.DrawValidZBufferBitDepth == 0 ? 16 : GSYS.CreateImage.DrawValidZBufferBitDepth ;
 }
 
-// SetDrawScreen ‚Ìˆø”‚Æ‚µ‚Ä“n‚¹‚é( •`‰æ‘ÎÛ‚Æ‚µ‚Äg—p‚Å‚«‚é )ƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚É“K—p‚·‚éMipMap‚ÌƒŒƒxƒ‹‚ğİ’è‚·‚é
+// SetDrawScreen ã®å¼•æ•°ã¨ã—ã¦æ¸¡ã›ã‚‹( æç”»å¯¾è±¡ã¨ã—ã¦ä½¿ç”¨ã§ãã‚‹ )ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã«é©ç”¨ã™ã‚‹MipMapã®ãƒ¬ãƒ™ãƒ«ã‚’è¨­å®šã™ã‚‹
 extern int NS_SetCreateDrawValidGraphMipLevels( int MipLevels )
 {
-	// ƒ`ƒƒƒ“ƒlƒ‹”‚ğ•Û‘¶‚·‚é
+	// ãƒãƒ£ãƒ³ãƒãƒ«æ•°ã‚’ä¿å­˜ã™ã‚‹
 	GSYS.CreateImage.DrawValidMipLevels = MipLevels ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// SetDrawScreen ‚Ìˆø”‚Æ‚µ‚Ä“n‚¹‚é( •`‰æ‘ÎÛ‚Æ‚µ‚Äg—p‚Å‚«‚é )ƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚É“K—p‚·‚éMipMap‚ÌƒŒƒxƒ‹‚ğæ“¾‚·‚é
+// SetDrawScreen ã®å¼•æ•°ã¨ã—ã¦æ¸¡ã›ã‚‹( æç”»å¯¾è±¡ã¨ã—ã¦ä½¿ç”¨ã§ãã‚‹ )ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã«é©ç”¨ã™ã‚‹MipMapã®ãƒ¬ãƒ™ãƒ«ã‚’å–å¾—ã™ã‚‹
 extern int NS_GetCreateDrawValidGraphMipLevels( void )
 {
-	// ƒ`ƒƒƒ“ƒlƒ‹”‚ğ•Ô‚·
+	// ãƒãƒ£ãƒ³ãƒãƒ«æ•°ã‚’è¿”ã™
 	return GSYS.CreateImage.DrawValidMipLevels ;
 }
 
-// ì¬‚·‚é•`‰æ‰Â”\‚È‰æ‘œ‚Ìƒ`ƒƒƒ“ƒlƒ‹”‚ğİ’è‚·‚é,SetDrawValidGraphCreateFlag ŠÖ”‚Å•`‰æ‰Â”\‰æ‘œ‚ğì¬‚·‚é‚æ‚¤‚Éİ’è‚³‚ê‚Ä‚¢‚È‚¢‚ÆŒø‰Ê‚ª‚È‚¢
+// ä½œæˆã™ã‚‹æç”»å¯èƒ½ãªç”»åƒã®ãƒãƒ£ãƒ³ãƒãƒ«æ•°ã‚’è¨­å®šã™ã‚‹,SetDrawValidGraphCreateFlag é–¢æ•°ã§æç”»å¯èƒ½ç”»åƒã‚’ä½œæˆã™ã‚‹ã‚ˆã†ã«è¨­å®šã•ã‚Œã¦ã„ãªã„ã¨åŠ¹æœãŒãªã„
 extern int NS_SetCreateDrawValidGraphChannelNum( int ChannelNum )
 {
-	// ƒ`ƒƒƒ“ƒlƒ‹”‚ğ•Û‘¶‚·‚é
+	// ãƒãƒ£ãƒ³ãƒãƒ«æ•°ã‚’ä¿å­˜ã™ã‚‹
 	GSYS.CreateImage.DrawValidChannelNum = ChannelNum ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ì¬‚·‚é•`‰æ‰Â”\‚È‰æ‘œ‚Ìƒ`ƒƒƒ“ƒlƒ‹”‚ğæ“¾‚·‚é
+// ä½œæˆã™ã‚‹æç”»å¯èƒ½ãªç”»åƒã®ãƒãƒ£ãƒ³ãƒãƒ«æ•°ã‚’å–å¾—ã™ã‚‹
 extern int NS_GetCreateDrawValidGraphChannelNum( void )
 {
-	// ƒ`ƒƒƒ“ƒlƒ‹”‚ğ•Ô‚·
+	// ãƒãƒ£ãƒ³ãƒãƒ«æ•°ã‚’è¿”ã™
 	return GSYS.CreateImage.DrawValidChannelNum ;
 }
 
-// SetDrawScreen ‚Ìˆø”‚Æ‚µ‚Ä“n‚¹‚é( •`‰æ‘ÎÛ‚Æ‚µ‚Äg—p‚Å‚«‚é )ƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚É“K—p‚·‚éƒ}ƒ‹ƒ`ƒTƒ“ƒvƒŠƒ“ƒO( ƒAƒ“ƒ`ƒGƒCƒŠƒAƒVƒ“ƒO )İ’è‚ğs‚¤( Samples:ƒ}ƒ‹ƒ`ƒTƒ“ƒvƒ‹ˆ—‚Ég—p‚·‚éƒhƒbƒg”( ‘½‚¢‚Ù‚Çd‚­‚È‚è‚Ü‚· )  Quality:ƒ}ƒ‹ƒ`ƒTƒ“ƒvƒ‹ˆ—‚Ì•i¿ )
+// SetDrawScreen ã®å¼•æ•°ã¨ã—ã¦æ¸¡ã›ã‚‹( æç”»å¯¾è±¡ã¨ã—ã¦ä½¿ç”¨ã§ãã‚‹ )ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã«é©ç”¨ã™ã‚‹ãƒãƒ«ãƒã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°( ã‚¢ãƒ³ãƒã‚¨ã‚¤ãƒªã‚¢ã‚·ãƒ³ã‚° )è¨­å®šã‚’è¡Œã†( Samples:ãƒãƒ«ãƒã‚µãƒ³ãƒ—ãƒ«å‡¦ç†ã«ä½¿ç”¨ã™ã‚‹ãƒ‰ãƒƒãƒˆæ•°( å¤šã„ã»ã©é‡ããªã‚Šã¾ã™ )  Quality:ãƒãƒ«ãƒã‚µãƒ³ãƒ—ãƒ«å‡¦ç†ã®å“è³ª )
 extern int NS_SetCreateDrawValidGraphMultiSample( int Samples, int Quality )
 {
 	if( Samples > 16 )
 		Samples = 16 ;
 
-	// ƒpƒ‰ƒ[ƒ^‚ğ•Û‘¶‚·‚é
+	// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ä¿å­˜ã™ã‚‹
 	GSYS.CreateImage.DrawValidMSSamples = Samples ;
 	GSYS.CreateImage.DrawValidMSQuality = Quality ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// SetDrawScreen ‚Ìˆø”‚Æ‚µ‚Ä“n‚¹‚é( •`‰æ‘ÎÛ‚Æ‚µ‚Äg—p‚Å‚«‚é )ƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚É“K—p‚·‚éƒ}ƒ‹ƒ`ƒTƒ“ƒvƒŠƒ“ƒO( ƒAƒ“ƒ`ƒGƒCƒŠƒAƒVƒ“ƒO )İ’è‚ğæ“¾‚·‚é( Samples:ƒ}ƒ‹ƒ`ƒTƒ“ƒvƒ‹ˆ—‚Ég—p‚·‚éƒhƒbƒg”( ‘½‚¢‚Ù‚Çd‚­‚È‚è‚Ü‚· )  Quality:ƒ}ƒ‹ƒ`ƒTƒ“ƒvƒ‹ˆ—‚Ì•i¿ )
+// SetDrawScreen ã®å¼•æ•°ã¨ã—ã¦æ¸¡ã›ã‚‹( æç”»å¯¾è±¡ã¨ã—ã¦ä½¿ç”¨ã§ãã‚‹ )ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã«é©ç”¨ã™ã‚‹ãƒãƒ«ãƒã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°( ã‚¢ãƒ³ãƒã‚¨ã‚¤ãƒªã‚¢ã‚·ãƒ³ã‚° )è¨­å®šã‚’å–å¾—ã™ã‚‹( Samples:ãƒãƒ«ãƒã‚µãƒ³ãƒ—ãƒ«å‡¦ç†ã«ä½¿ç”¨ã™ã‚‹ãƒ‰ãƒƒãƒˆæ•°( å¤šã„ã»ã©é‡ããªã‚Šã¾ã™ )  Quality:ãƒãƒ«ãƒã‚µãƒ³ãƒ—ãƒ«å‡¦ç†ã®å“è³ª )
 extern int NS_GetCreateDrawValidGraphMultiSample( int *Samples, int *Quality )
 {
 	if( Samples != NULL )
@@ -4859,32 +4859,32 @@ extern int NS_GetCreateDrawValidGraphMultiSample( int *Samples, int *Quality )
 		*Quality = GSYS.CreateImage.DrawValidMSQuality ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// •`‰æ‰Â”\‚È‰æ‘œ‚Ìƒ}ƒ‹ƒ`ƒTƒ“ƒvƒŠƒ“ƒOİ’è‚ğs‚¤
+// æç”»å¯èƒ½ãªç”»åƒã®ãƒãƒ«ãƒã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°è¨­å®šã‚’è¡Œã†
 extern int NS_SetDrawValidMultiSample( int Samples, int Quality )
 {
 	return NS_SetCreateDrawValidGraphMultiSample( Samples, Quality ) ;
 }
 
-// w’è‚Ìƒ}ƒ‹ƒ`ƒTƒ“ƒvƒ‹”‚Åg—p‚Å‚«‚éÅ‘åƒNƒIƒŠƒeƒB’l‚ğæ“¾‚·‚é
+// æŒ‡å®šã®ãƒãƒ«ãƒã‚µãƒ³ãƒ—ãƒ«æ•°ã§ä½¿ç”¨ã§ãã‚‹æœ€å¤§ã‚¯ã‚ªãƒªãƒ†ã‚£å€¤ã‚’å–å¾—ã™ã‚‹
 extern int NS_GetMultiSampleQuality( int Samples )
 {
 	return Graphics_Hardware_GetMultiSampleQuality_PF( Samples ) ;
 }
 
-// “§‰ßF‹@”\‚ğg—p‚·‚é‚©‚Ç‚¤‚©‚ğİ’è‚·‚é
+// é€éè‰²æ©Ÿèƒ½ã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹
 extern int NS_SetUseTransColor( int Flag )
 {
 	GSYS.CreateImage.NotUseTransColor = !Flag;
 
-	// I—¹
+	// çµ‚äº†
 	return 0;
 }
 
-// “§‰ßF‹@”\‚ğg—p‚·‚é‚±‚Æ‚ğ‘O’ñ‚Æ‚µ‚½‰æ‘œ‚Ì“Ç‚İ‚İˆ—‚ğs‚¤‚©‚Ç‚¤‚©‚ğİ’è‚·‚é( TRUE ‚É‚·‚é‚Æ SetDrawMode( DX_DRAWMODE_BILINEAR ); ‚ğ‚µ‚½ó‘Ô‚Å DrawGraphF “™‚Ì•‚“®¬”“_Œ^À•W‚ğó‚¯æ‚éŠÖ”‚Å¬”“_ˆÈ‰º‚Ì’l‚ğw’è‚µ‚½ê‡‚É”­¶‚·‚é•`‰æŒ‹‰Ê‚Ì•s©‘R‚ğŠÉ˜a‚·‚éŒø‰Ê‚ª‚ ‚é ( ƒfƒtƒHƒ‹ƒg‚Í FALSE ) )
+// é€éè‰²æ©Ÿèƒ½ã‚’ä½¿ç”¨ã™ã‚‹ã“ã¨ã‚’å‰æã¨ã—ãŸç”»åƒã®èª­ã¿è¾¼ã¿å‡¦ç†ã‚’è¡Œã†ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹( TRUE ã«ã™ã‚‹ã¨ SetDrawMode( DX_DRAWMODE_BILINEAR ); ã‚’ã—ãŸçŠ¶æ…‹ã§ DrawGraphF ç­‰ã®æµ®å‹•å°æ•°ç‚¹å‹åº§æ¨™ã‚’å—ã‘å–ã‚‹é–¢æ•°ã§å°æ•°ç‚¹ä»¥ä¸‹ã®å€¤ã‚’æŒ‡å®šã—ãŸå ´åˆã«ç™ºç”Ÿã™ã‚‹æç”»çµæœã®ä¸è‡ªç„¶ã‚’ç·©å’Œã™ã‚‹åŠ¹æœãŒã‚ã‚‹ ( ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã¯ FALSE ) )
 extern int NS_SetUseTransColorGraphCreateFlag( int Flag )
 {
 	GSYS.CreateImage.UseTransColorFlag = Flag;
@@ -4892,79 +4892,79 @@ extern int NS_SetUseTransColorGraphCreateFlag( int Flag )
 	return 0;
 }
 
-// SetUseAlphaChannelGraphCreateFlag ‚Ì‹Œ–¼Ì
+// SetUseAlphaChannelGraphCreateFlag ã®æ—§åç§°
 extern int NS_SetUseGraphAlphaChannel( int Flag )
 {
 	return NS_SetUseAlphaChannelGraphCreateFlag( Flag ) ;
 }
 
-// GetUseAlphaChannelGraphCreateFlag ‚Ì‹Œ–¼Ì
+// GetUseAlphaChannelGraphCreateFlag ã®æ—§åç§°
 extern int NS_GetUseGraphAlphaChannel( void )
 {
 	return NS_GetUseAlphaChannelGraphCreateFlag() ;
 }
 
-// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹•t‚«ƒOƒ‰ƒtƒBƒbƒN‚ğì¬‚·‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğƒZƒbƒg‚·‚é( TRUE:ƒ¿ƒ`ƒƒƒ“ƒlƒ‹•t‚«   FALSE:ƒ¿ƒ`ƒƒƒ“ƒlƒ‹–³‚µ )
+// Î±ãƒãƒ£ãƒ³ãƒãƒ«ä»˜ãã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚’ä½œæˆã™ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆã™ã‚‹( TRUE:Î±ãƒãƒ£ãƒ³ãƒãƒ«ä»˜ã   FALSE:Î±ãƒãƒ£ãƒ³ãƒãƒ«ç„¡ã— )
 extern int NS_SetUseAlphaChannelGraphCreateFlag( int Flag )
 {
-	// ƒtƒ‰ƒO‚ğ•Û‘¶‚·‚é
+	// ãƒ•ãƒ©ã‚°ã‚’ä¿å­˜ã™ã‚‹
 	GSYS.CreateImage.AlphaChannelFlag = Flag ;
 	
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹•t‚«ƒOƒ‰ƒtƒBƒbƒN‚ğì¬‚·‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğæ“¾‚·‚é( TRUE:ƒ¿ƒ`ƒƒƒ“ƒlƒ‹•t‚«   FALSE:ƒ¿ƒ`ƒƒƒ“ƒlƒ‹–³‚µ )
+// Î±ãƒãƒ£ãƒ³ãƒãƒ«ä»˜ãã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚’ä½œæˆã™ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’å–å¾—ã™ã‚‹( TRUE:Î±ãƒãƒ£ãƒ³ãƒãƒ«ä»˜ã   FALSE:Î±ãƒãƒ£ãƒ³ãƒãƒ«ç„¡ã— )
 extern int NS_GetUseAlphaChannelGraphCreateFlag( void )
 {
 	return GSYS.CreateImage.AlphaChannelFlag ;
 }
 
-// ”ñŠÇ—ƒeƒNƒXƒ`ƒƒ‚ğg—p‚·‚é‚©A‚Ìƒtƒ‰ƒO‚ğƒZƒbƒg( TRUE:g—p‚·‚é  FALSE:g—p‚µ‚È‚¢ )
+// éç®¡ç†ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ä½¿ç”¨ã™ã‚‹ã‹ã€ã®ãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆ( TRUE:ä½¿ç”¨ã™ã‚‹  FALSE:ä½¿ç”¨ã—ãªã„ )
 extern int NS_SetUseNotManageTextureFlag( int Flag )
 {
 	GSYS.CreateImage.NotUseManagedTextureFlag = Flag ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ”ñŠÇ—ƒeƒNƒXƒ`ƒƒ‚ğg—p‚·‚é‚©A‚Ìƒtƒ‰ƒO‚ğæ“¾‚·‚é( TRUE:g—p‚·‚é  FALSE:g—p‚µ‚È‚¢ )
+// éç®¡ç†ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ä½¿ç”¨ã™ã‚‹ã‹ã€ã®ãƒ•ãƒ©ã‚°ã‚’å–å¾—ã™ã‚‹( TRUE:ä½¿ç”¨ã™ã‚‹  FALSE:ä½¿ç”¨ã—ãªã„ )
 extern int NS_GetUseNotManageTextureFlag( void )
 {
 	return GSYS.CreateImage.NotUseManagedTextureFlag ;
 }
 
-// ì¬‚·‚éƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚Åg—p‚·‚éŠÂ‹«ˆË‘¶‚ÌƒeƒNƒXƒ`ƒƒƒtƒH[ƒ}ƒbƒg‚ğw’è‚·‚é( Direct3D9ŠÂ‹«‚È‚ç DX_TEXTUREFORMAT_DIRECT3D9_R8G8B8 ‚È‚ÇA0 ‚ğ“n‚·‚Æ‰ğœ )
+// ä½œæˆã™ã‚‹ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã§ä½¿ç”¨ã™ã‚‹ç’°å¢ƒä¾å­˜ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã‚’æŒ‡å®šã™ã‚‹( Direct3D9ç’°å¢ƒãªã‚‰ DX_TEXTUREFORMAT_DIRECT3D9_R8G8B8 ãªã©ã€0 ã‚’æ¸¡ã™ã¨è§£é™¤ )
 extern int NS_SetUsePlatformTextureFormat( int PlatformTextureFormat )
 {
 	GSYS.CreateImage.PlatformTextureFormat = PlatformTextureFormat ;
 
-	// ŠÂ‹«ˆË‘¶ˆ—‚ğÀs‚·‚é
+	// ç’°å¢ƒä¾å­˜å‡¦ç†ã‚’å®Ÿè¡Œã™ã‚‹
 	Graphics_Hardware_SetUsePlatformTextureFormat_PF( PlatformTextureFormat ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ì¬‚·‚éƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚Åg—p‚·‚éŠÂ‹«ˆË‘¶‚ÌƒeƒNƒXƒ`ƒƒƒtƒH[ƒ}ƒbƒg‚ğæ“¾‚·‚é
+// ä½œæˆã™ã‚‹ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã§ä½¿ç”¨ã™ã‚‹ç’°å¢ƒä¾å­˜ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã‚’å–å¾—ã™ã‚‹
 extern int NS_GetUsePlatformTextureFormat( void )
 {
 	return GSYS.CreateImage.PlatformTextureFormat ;
 }
 
-// ƒOƒ‰ƒtƒBƒbƒN‚Éİ’è‚·‚é“§‰ßF‚ğƒZƒbƒg‚·‚é
+// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã«è¨­å®šã™ã‚‹é€éè‰²ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern int NS_SetTransColor( int Red, int Green, int Blue )
 {
 	if( NS_GetColorBitDepth() == 8 ) return 0 ;
 	GSYS.CreateImage.TransColor = ( DWORD)( ( ( ( BYTE )Red ) << 16 ) | ( ( ( BYTE )Green ) << 8 ) | ( ( BYTE )Blue ) ) ;
 	BASEIM.TransColor = GSYS.CreateImage.TransColor ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// “§‰ßF‚ğ“¾‚é
+// é€éè‰²ã‚’å¾—ã‚‹
 extern int NS_GetTransColor( int *Red, int *Green, int *Blue )
 {
 	DWORD TransColor ;
@@ -4977,29 +4977,29 @@ extern int NS_GetTransColor( int *Red, int *Green, int *Blue )
 	*Green = ( int )( ( TransColor >> 8  ) & 0xff ) ;
 	*Blue  = ( int )(   TransColor         & 0xff ) ;
  
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// •K—v‚È‚çƒOƒ‰ƒtƒBƒbƒN‚Ì•ªŠ„‚ğs‚¤‚©Aƒtƒ‰ƒO‚ÌƒZƒbƒg
+// å¿…è¦ãªã‚‰ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®åˆ†å‰²ã‚’è¡Œã†ã‹ã€ãƒ•ãƒ©ã‚°ã®ã‚»ãƒƒãƒˆ
 extern	int		NS_SetUseDivGraphFlag( int Flag ) 
 {
 	GSYS.CreateImage.NotUseDivFlag = !Flag ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// LoadGraph ‚È‚Ç‚ÌÛ‚Éƒtƒ@ƒCƒ‹–¼‚Ì––”ö‚É _a ‚ª•t‚¢‚½ƒAƒ‹ƒtƒ@ƒ`ƒƒƒ“ƒlƒ‹—p‚Ì‰æ‘œƒtƒ@ƒCƒ‹‚ğ’Ç‰Á‚Å“Ç‚İ‚Şˆ—‚ğs‚¤‚©‚Ç‚¤‚©‚ğİ’è‚·‚é( TRUE:s‚¤( ƒfƒtƒHƒ‹ƒg )  FALSE:s‚í‚È‚¢ )
+// LoadGraph ãªã©ã®éš›ã«ãƒ•ã‚¡ã‚¤ãƒ«åã®æœ«å°¾ã« _a ãŒä»˜ã„ãŸã‚¢ãƒ«ãƒ•ã‚¡ãƒãƒ£ãƒ³ãƒãƒ«ç”¨ã®ç”»åƒãƒ•ã‚¡ã‚¤ãƒ«ã‚’è¿½åŠ ã§èª­ã¿è¾¼ã‚€å‡¦ç†ã‚’è¡Œã†ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹( TRUE:è¡Œã†( ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ )  FALSE:è¡Œã‚ãªã„ )
 extern	int		NS_SetUseAlphaImageLoadFlag( int Flag )
 {
 	GSYS.CreateImage.NotUseAlphaImageLoadFlag = Flag ? FALSE : TRUE ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// g—p‚·‚éƒeƒNƒXƒ`ƒƒ[‚ÌÅ‘åƒTƒCƒY‚ğƒZƒbƒg(0‚ÅƒfƒtƒHƒ‹ƒg)
+// ä½¿ç”¨ã™ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã®æœ€å¤§ã‚µã‚¤ã‚ºã‚’ã‚»ãƒƒãƒˆ(0ã§ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ)
 extern	int		NS_SetUseMaxTextureSize( int Size )
 {
 	int i ;
@@ -5010,65 +5010,65 @@ extern	int		NS_SetUseMaxTextureSize( int Size )
 		return 0 ;
 	}
 	
-	// w’è‚ÌƒTƒCƒY‚ªû‚Ü‚éÅ¬‚Ì‚Q‚Ì‚æ‚ÌƒTƒCƒY‚ğ‹‚ß‚é
+	// æŒ‡å®šã®ã‚µã‚¤ã‚ºãŒåã¾ã‚‹æœ€å°ã®ï¼’ã®ï½ä¹—ã®ã‚µã‚¤ã‚ºã‚’æ±‚ã‚ã‚‹
 	for( i = MIN_TEXTURE_SIZE ; i < Size ; i <<= 1 ){}
 
-	// Å‘åƒTƒCƒY‚æ‚è‘å‚«‚©‚Á‚½‚ç•â³
+	// æœ€å¤§ã‚µã‚¤ã‚ºã‚ˆã‚Šå¤§ãã‹ã£ãŸã‚‰è£œæ­£
 	if( Size > GSYS.HardInfo.MaxTextureSize ) Size = GSYS.HardInfo.MaxTextureSize ; 
 	
-	// ’l‚ğƒZƒbƒg
+	// å€¤ã‚’ã‚»ãƒƒãƒˆ
 	GSYS.CreateImage.UserMaxTextureSize = i ;
 	
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ‰æ‘œ‚ğì¬‚·‚éÛ‚Ég—p‚µ‚½‰æ‘œƒf[ƒ^‚ÌƒoƒbƒNƒAƒbƒv‚ğ‚µ‚ÄƒfƒoƒCƒXƒƒXƒg‚Ég—p‚·‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğƒZƒbƒg‚·‚é( TRUE:ƒoƒbƒNƒAƒbƒv‚ğ‚·‚é( ƒfƒtƒHƒ‹ƒg )  FALSE:ƒoƒbƒNƒAƒbƒv‚ğ‚µ‚È‚¢ )
+// ç”»åƒã‚’ä½œæˆã™ã‚‹éš›ã«ä½¿ç”¨ã—ãŸç”»åƒãƒ‡ãƒ¼ã‚¿ã®ãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—ã‚’ã—ã¦ãƒ‡ãƒã‚¤ã‚¹ãƒ­ã‚¹ãƒˆæ™‚ã«ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆã™ã‚‹( TRUE:ãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—ã‚’ã™ã‚‹( ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ )  FALSE:ãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—ã‚’ã—ãªã„ )
 extern int NS_SetUseGraphBaseDataBackup( int Flag )
 {
 	GSYS.CreateImage.NotGraphBaseDataBackupFlag = Flag ? FALSE : TRUE ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ‰æ‘œ‚ğì¬‚·‚éÛ‚Ég—p‚µ‚½‰æ‘œƒf[ƒ^‚ÌƒoƒbƒNƒAƒbƒv‚ğ‚µ‚ÄƒfƒoƒCƒXƒƒXƒg‚Ég—p‚·‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğæ“¾‚·‚é
+// ç”»åƒã‚’ä½œæˆã™ã‚‹éš›ã«ä½¿ç”¨ã—ãŸç”»åƒãƒ‡ãƒ¼ã‚¿ã®ãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—ã‚’ã—ã¦ãƒ‡ãƒã‚¤ã‚¹ãƒ­ã‚¹ãƒˆæ™‚ã«ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’å–å¾—ã™ã‚‹
 extern int NS_GetUseGraphBaseDataBackup( void )
 {
 	return GSYS.CreateImage.NotGraphBaseDataBackupFlag ? FALSE : TRUE ;
 }
 
-// ƒVƒXƒeƒ€ƒƒ‚ƒŠã‚ÉƒOƒ‰ƒtƒBƒbƒN‚ğì¬‚·‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğƒZƒbƒg‚·‚é( TRUE:ƒVƒXƒeƒ€ƒƒ‚ƒŠã‚Éì¬  FALSE:‚u‚q‚`‚lã‚Éì¬ )
+// ã‚·ã‚¹ãƒ†ãƒ ãƒ¡ãƒ¢ãƒªä¸Šã«ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚’ä½œæˆã™ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆã™ã‚‹( TRUE:ã‚·ã‚¹ãƒ†ãƒ ãƒ¡ãƒ¢ãƒªä¸Šã«ä½œæˆ  FALSE:ï¼¶ï¼²ï¼¡ï¼­ä¸Šã«ä½œæˆ )
 extern	int NS_SetUseSystemMemGraphCreateFlag( int /* Flag */ )
 {
-	// ƒtƒ‰ƒO‚ğ•Û‘¶‚·‚é
+	// ãƒ•ãƒ©ã‚°ã‚’ä¿å­˜ã™ã‚‹
 //	GSYS.SystemMemImageCreateFlag = Flag ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒVƒXƒeƒ€ƒƒ‚ƒŠã‚ÉƒOƒ‰ƒtƒBƒbƒN‚ğì¬‚·‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğæ“¾‚·‚é( TRUE:ƒVƒXƒeƒ€ƒƒ‚ƒŠã‚Éì¬  FALSE:‚u‚q‚`‚lã‚Éì¬ )
+// ã‚·ã‚¹ãƒ†ãƒ ãƒ¡ãƒ¢ãƒªä¸Šã«ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚’ä½œæˆã™ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’å–å¾—ã™ã‚‹( TRUE:ã‚·ã‚¹ãƒ†ãƒ ãƒ¡ãƒ¢ãƒªä¸Šã«ä½œæˆ  FALSE:ï¼¶ï¼²ï¼¡ï¼­ä¸Šã«ä½œæˆ )
 extern int NS_GetUseSystemMemGraphCreateFlag( void )
 {
 //	return GSYS.SystemMemImageCreateFlag ;
 	return FALSE ;
 }
 
-// LoadDivGraph Œn‚Ì•ªŠ„‰æ‘œ“Ç‚İ‚İŠÖ”‚ÅƒTƒCƒY‚Ìƒ`ƒFƒbƒN‚ğs‚¤‚©‚Ç‚¤‚©‚ğİ’è‚·‚é( Flag:TRUE( ƒ`ƒFƒbƒN‚ğs‚¤(ƒfƒtƒHƒ‹ƒg) )  FALSE:ƒ`ƒFƒbƒN‚ğs‚í‚È‚¢ )
+// LoadDivGraph ç³»ã®åˆ†å‰²ç”»åƒèª­ã¿è¾¼ã¿é–¢æ•°ã§ã‚µã‚¤ã‚ºã®ãƒã‚§ãƒƒã‚¯ã‚’è¡Œã†ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹( Flag:TRUE( ãƒã‚§ãƒƒã‚¯ã‚’è¡Œã†(ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ) )  FALSE:ãƒã‚§ãƒƒã‚¯ã‚’è¡Œã‚ãªã„ )
 extern int NS_SetUseLoadDivGraphSizeCheckFlag( int Flag )
 {
-	// ƒtƒ‰ƒO‚ğ•Û‘¶
+	// ãƒ•ãƒ©ã‚°ã‚’ä¿å­˜
 	GSYS.CreateImage.NotUseLoadDivGraphSizeCheck = Flag ? FALSE : TRUE ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// LoadDivGraph Œn‚Ì•ªŠ„‰æ‘œ“Ç‚İ‚İŠÖ”‚ÅƒTƒCƒY‚Ìƒ`ƒFƒbƒN‚ğs‚¤‚©‚Ç‚¤‚©‚Ìİ’è‚ğæ“¾‚·‚é
+// LoadDivGraph ç³»ã®åˆ†å‰²ç”»åƒèª­ã¿è¾¼ã¿é–¢æ•°ã§ã‚µã‚¤ã‚ºã®ãƒã‚§ãƒƒã‚¯ã‚’è¡Œã†ã‹ã©ã†ã‹ã®è¨­å®šã‚’å–å¾—ã™ã‚‹
 extern int NS_GetUseLoadDivGraphSizeCheckFlag( void )
 {
-	// ƒtƒ‰ƒO‚ğ•Ô‚·
+	// ãƒ•ãƒ©ã‚°ã‚’è¿”ã™
 	return GSYS.CreateImage.NotUseLoadDivGraphSizeCheck ;
 }
 
@@ -5097,33 +5097,33 @@ extern int NS_GetUseLoadDivGraphSizeCheckFlag( void )
 
 
 
-// ‰æ‘œî•ñŠÖŒWŠÖ”
+// ç”»åƒæƒ…å ±é–¢ä¿‚é–¢æ•°
 
-// w’è‚Ì‰æ‘œ‚Ì‚`‚q‚f‚a‚W‚Ìƒtƒ‹ƒJƒ‰[ƒCƒ[ƒW‚ğæ“¾‚·‚é
+// æŒ‡å®šã®ç”»åƒã®ï¼¡ï¼²ï¼§ï¼¢ï¼˜ã®ãƒ•ãƒ«ã‚«ãƒ©ãƒ¼ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’å–å¾—ã™ã‚‹
 extern const unsigned int *NS_GetFullColorImage( int GrHandle )
 {
 	IMAGEDATA *Image ;
 
 //	if( GSYS.NotDrawFlag ) return 0 ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( GRAPHCHK( GrHandle, Image ) )
 		return NULL ;
 
-	// ƒtƒ‹ƒJƒ‰[ƒCƒ[ƒW‚ğŠi”[‚·‚éƒƒ‚ƒŠ—Ìˆæ‚ğ‚Ü‚¾Šm•Û‚µ‚Ä‚¢‚È‚¢ê‡‚ÍŠm•Û‚·‚é
+	// ãƒ•ãƒ«ã‚«ãƒ©ãƒ¼ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’æ ¼ç´ã™ã‚‹ãƒ¡ãƒ¢ãƒªé ˜åŸŸã‚’ã¾ã ç¢ºä¿ã—ã¦ã„ãªã„å ´åˆã¯ç¢ºä¿ã™ã‚‹
 	if( Image->FullColorImage == NULL )
 	{
 		Image->FullColorImage = ( DWORD * )DXALLOC( ( size_t )( Image->WidthI * 4 * Image->HeightI ) ) ;
 		if( Image->FullColorImage == NULL )
 		{
-			DXST_LOGFILE_ADDUTF16LE( "\xd5\x30\xeb\x30\xab\x30\xe9\x30\xfc\x30\x6e\x30\x3b\x75\xcf\x50\xa4\x30\xe1\x30\xfc\x30\xb8\x30\xc7\x30\xfc\x30\xbf\x30\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x92\x30\xba\x78\xdd\x4f\xfa\x51\x65\x67\x7e\x30\x5b\x30\x93\x30\x67\x30\x57\x30\x5f\x30\x02\x30\x0a\x00\x00"/*@ L"ƒtƒ‹ƒJƒ‰[‚Ì‰æ‘œƒCƒ[ƒWƒf[ƒ^‚ğŠi”[‚·‚éƒƒ‚ƒŠ—Ìˆæ‚ğŠm•Ûo—ˆ‚Ü‚¹‚ñ‚Å‚µ‚½B\n" @*/ ) ;
+			DXST_LOGFILE_ADDUTF16LE( "\xd5\x30\xeb\x30\xab\x30\xe9\x30\xfc\x30\x6e\x30\x3b\x75\xcf\x50\xa4\x30\xe1\x30\xfc\x30\xb8\x30\xc7\x30\xfc\x30\xbf\x30\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x92\x30\xba\x78\xdd\x4f\xfa\x51\x65\x67\x7e\x30\x5b\x30\x93\x30\x67\x30\x57\x30\x5f\x30\x02\x30\x0a\x00\x00"/*@ L"ãƒ•ãƒ«ã‚«ãƒ©ãƒ¼ã®ç”»åƒã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹ãƒ¡ãƒ¢ãƒªé ˜åŸŸã‚’ç¢ºä¿å‡ºæ¥ã¾ã›ã‚“ã§ã—ãŸã€‚\n" @*/ ) ;
 			return NULL;
 		}
 	}
 
 #ifndef DX_NON_MOVIE
 
-	// ƒ€[ƒr[‚Ìê‡‚Íˆ—‚ğ•ªŠò
+	// ãƒ ãƒ¼ãƒ“ãƒ¼ã®å ´åˆã¯å‡¦ç†ã‚’åˆ†å²
 	if( Image->Orig->MovieHandle >= 0 )
 	{
 		MOVIEGRAPH * Movie ;
@@ -5131,12 +5131,12 @@ extern const unsigned int *NS_GetFullColorImage( int GrHandle )
 		if( Movie == NULL ) return NULL ;
 		static BASEIMAGE Dest ;
 
-		// ƒT[ƒtƒFƒXƒ‚[ƒh‚ªƒI[ƒo[ƒŒƒC‚Ìê‡‚Í–³—
+		// ã‚µãƒ¼ãƒ•ã‚§ã‚¹ãƒ¢ãƒ¼ãƒ‰ãŒã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ã®å ´åˆã¯ç„¡ç†
 		if( Movie->SurfaceMode == DX_MOVIESURFACE_OVERLAY ) return NULL ;
 
-		// ‚»‚êˆÈŠO‚Ìê‡‚Íƒ€[ƒr[‚©‚ç’¼Úƒf[ƒ^‚ğæ“¾‚·‚é
+		// ãã‚Œä»¥å¤–ã®å ´åˆã¯ãƒ ãƒ¼ãƒ“ãƒ¼ã‹ã‚‰ç›´æ¥ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—ã™ã‚‹
 
-		// ƒ€[ƒr[‚ÌƒtƒŒ[ƒ€‚ğXV
+		// ãƒ ãƒ¼ãƒ“ãƒ¼ã®ãƒ•ãƒ¬ãƒ¼ãƒ ã‚’æ›´æ–°
 		if( NS_GetMovieStateToGraph( GrHandle ) == FALSE )
 		{
 			int Time ;
@@ -5152,14 +5152,14 @@ extern const unsigned int *NS_GetFullColorImage( int GrHandle )
 //			UpdateMovieToGraph( GrHandle ) ;
 		}
 
-		// “]‘—æŠî–{ƒCƒ[ƒWƒf[ƒ^‚Ìî•ñ‚ğ€”õ‚·‚é
+		// è»¢é€å…ˆåŸºæœ¬ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ã®æƒ…å ±ã‚’æº–å‚™ã™ã‚‹
 		CreateARGB8ColorData( &Dest.ColorData ) ;
 		Dest.Width     = Image->WidthI ;
 		Dest.Height    = Image->HeightI ;
 		Dest.GraphData = Image->FullColorImage ;
 		Dest.Pitch     = Image->WidthI * 4 ;
 
-		// “]‘—
+		// è»¢é€
 		BltBaseImage( 0, 0, Image->WidthI, Image->HeightI, 0, 0, &Movie->NowImage, &Dest ) ;
 	}
 	else
@@ -5167,25 +5167,25 @@ extern const unsigned int *NS_GetFullColorImage( int GrHandle )
 	{
 	}
 
-	// ƒCƒ[ƒW‚Ìƒ|ƒCƒ“ƒ^‚ğ•Ô‚·
+	// ã‚¤ãƒ¡ãƒ¼ã‚¸ã®ãƒã‚¤ãƒ³ã‚¿ã‚’è¿”ã™
 	return (unsigned int *)Image->FullColorImage ;
 }
 
-// ƒOƒ‰ƒtƒBƒbƒNƒƒ‚ƒŠ—Ìˆæ‚ÌƒƒbƒN
+// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ¡ãƒ¢ãƒªé ˜åŸŸã®ãƒ­ãƒƒã‚¯
 extern int NS_GraphLock( int GrHandle, int *PitchBuf, void **DataPointBuf, COLORDATA **ColorDataPP, int WriteOnly )
 {
-	// ‰æ‘œ‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+	// ç”»åƒã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 	if( ( DWORD )GrHandle == DX_SCREEN_BACK || ( DWORD )GrHandle == DX_SCREEN_FRONT )
 	{
-		// ƒn[ƒhƒEƒGƒA‚ğg—p‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+		// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 		if( GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )
 		{
-			// ƒn[ƒhƒEƒGƒA‚Å‚ÌƒƒbƒN‚Í‘Î‰‚µ‚Ä‚¢‚È‚¢
+			// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã§ã®ãƒ­ãƒƒã‚¯ã¯å¯¾å¿œã—ã¦ã„ãªã„
 			return -1 ;
 		}
 		else
 		{
-			// ƒ\ƒtƒgƒEƒGƒA‚Ìê‡‚Í‰æ–ÊƒCƒ[ƒW‚Ìî•ñ‚ğ•Ô‚·
+			// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã®å ´åˆã¯ç”»é¢ã‚¤ãƒ¡ãƒ¼ã‚¸ã®æƒ…å ±ã‚’è¿”ã™
 			if( ColorDataPP  ) *ColorDataPP  =        GSYS.SoftRender.MainBufferMemImg.Base->ColorDataP ;
 			if( PitchBuf     ) *PitchBuf     = ( int )GSYS.SoftRender.MainBufferMemImg.Base->Pitch ;
 			if( DataPointBuf ) *DataPointBuf =        GSYS.SoftRender.MainBufferMemImg.UseImage ;
@@ -5195,64 +5195,64 @@ extern int NS_GraphLock( int GrHandle, int *PitchBuf, void **DataPointBuf, COLOR
 	{
 		IMAGEDATA *Image ;
 
-		// ƒGƒ‰[”»’è
+		// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 		if( GRAPHCHK( GrHandle, Image ) )
 			return -1 ;
 
-		// Šù‚ÉƒƒbƒN‚µ‚Ä‚ ‚Á‚½‚çƒGƒ‰[
+		// æ—¢ã«ãƒ­ãƒƒã‚¯ã—ã¦ã‚ã£ãŸã‚‰ã‚¨ãƒ©ãƒ¼
 		if( Image->LockFlag == TRUE ) return -1 ;
 
-		// ƒƒbƒNƒtƒ‰ƒO‚ğ—§‚Ä‚é
+		// ãƒ­ãƒƒã‚¯ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 		Image->LockFlag = TRUE ;
 
-		// ƒeƒNƒXƒ`ƒƒ‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+		// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 		if( Image->Orig->FormatDesc.TextureFlag )
 		{
 			COLORDATA *ColorData ;
 
-			// ƒeƒNƒXƒ`ƒƒ‚Ìê‡
+			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®å ´åˆ
 			if( Graphics_Hardware_GraphLock_PF( Image, &ColorData, WriteOnly ) < 0 )
 			{
 				return -1 ;
 			}
 
-			// î•ñ‚ÌŠi”[
+			// æƒ…å ±ã®æ ¼ç´
 			if( PitchBuf     ) *PitchBuf     = ( int )Image->LockImagePitch ;
 			if( DataPointBuf ) *DataPointBuf = ( void * )Image->LockImage ;
 			if( ColorDataPP  ) *ColorDataPP  = ColorData ;
 		}
 		else
 		{
-			// ƒeƒNƒXƒ`ƒƒ‚Å‚Í‚È‚¢ê‡
+			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã§ã¯ãªã„å ´åˆ
 			if( PitchBuf     ) *PitchBuf     = ( int )Image->Soft.MemImg.Base->Pitch ;
 			if( DataPointBuf ) *DataPointBuf =        Image->Soft.MemImg.UseImage ;
 			if( ColorDataPP  ) *ColorDataPP  =        Image->Soft.MemImg.Base->ColorDataP ;
 		}
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒOƒ‰ƒtƒBƒbƒNƒƒ‚ƒŠ—Ìˆæ‚ÌƒƒbƒN‰ğœ
+// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ¡ãƒ¢ãƒªé ˜åŸŸã®ãƒ­ãƒƒã‚¯è§£é™¤
 extern	int NS_GraphUnLock( int GrHandle )
 {
 	IMAGEDATA *Image ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( GRAPHCHK( GrHandle, Image ) )
 		return -1 ;
 
-	// ƒƒbƒN‚µ‚Ä‚È‚©‚Á‚½‚çƒGƒ‰[
+	// ãƒ­ãƒƒã‚¯ã—ã¦ãªã‹ã£ãŸã‚‰ã‚¨ãƒ©ãƒ¼
 	if( Image->LockFlag == FALSE ) return -1 ;
 
-	// ƒƒbƒNƒtƒ‰ƒO‚ğ“|‚·
+	// ãƒ­ãƒƒã‚¯ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 	Image->LockFlag = FALSE ;
 
-	// ƒeƒNƒXƒ`ƒƒ‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+	// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 	if( Image->Orig->FormatDesc.TextureFlag )
 	{
-		// ƒeƒNƒXƒ`ƒƒ‚Ìê‡
+		// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®å ´åˆ
 		if( Graphics_Hardware_GraphUnlock_PF( Image ) < 0 )
 		{
 			return -1 ;
@@ -5260,32 +5260,32 @@ extern	int NS_GraphUnLock( int GrHandle )
 	}
 	else
 	{
-		// ƒeƒNƒXƒ`ƒƒ‚Å‚Í‚È‚¢ê‡
+		// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã§ã¯ãªã„å ´åˆ
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒOƒ‰ƒtƒBƒbƒN‚É‚yƒoƒbƒtƒ@‚ğg—p‚·‚é‚©‚Ç‚¤‚©‚ğİ’è‚·‚é
+// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã«ï¼ºãƒãƒƒãƒ•ã‚¡ã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹
 extern	int NS_SetUseGraphZBuffer( int GrHandle, int UseFlag, int BitDepth )
 {
 	IMAGEDATA *Image ;
 	int DepthIndex ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( GRAPHCHK( GrHandle, Image ) )
 		return -1 ;
 
-	// ƒeƒNƒXƒ`ƒƒ‚Å‚Í‚È‚¢ê‡‚Í‰½‚à‚µ‚È‚¢
+	// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã§ã¯ãªã„å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( Image->Orig->FormatDesc.TextureFlag == FALSE )
 		return -1 ;
 
-	// •`‰æ‰Â”\‚Å‚Í‚È‚¢ê‡‚à‰½‚à‚µ‚È‚¢
+	// æç”»å¯èƒ½ã§ã¯ãªã„å ´åˆã‚‚ä½•ã‚‚ã—ãªã„
 	if( Image->Orig->FormatDesc.DrawValidFlag == FALSE )
 		return -1 ;
 
-	// ƒrƒbƒg[“x‚ÌƒZƒbƒg
+	// ãƒ“ãƒƒãƒˆæ·±åº¦ã®ã‚»ãƒƒãƒˆ
 	if( Image->Orig->ZBufferFlag == TRUE && BitDepth < 0 )
 	{
 		DepthIndex = Image->Orig->ZBufferBitDepthIndex ;
@@ -5301,52 +5301,52 @@ extern	int NS_SetUseGraphZBuffer( int GrHandle, int UseFlag, int BitDepth )
 		}
 	}
 
-	// ‚yƒoƒbƒtƒ@‚ğg‚¤ƒtƒ‰ƒO‚Æƒrƒbƒg[“x‚ª“¯‚¶‚¾‚Á‚½‚ç‰½‚à‚µ‚È‚¢
+	// ï¼ºãƒãƒƒãƒ•ã‚¡ã‚’ä½¿ã†ãƒ•ãƒ©ã‚°ã¨ãƒ“ãƒƒãƒˆæ·±åº¦ãŒåŒã˜ã ã£ãŸã‚‰ä½•ã‚‚ã—ãªã„
 	if( Image->Orig->ZBufferFlag == UseFlag && Image->Orig->ZBufferBitDepthIndex == DepthIndex )
 		return 0 ;
 
-	// ƒtƒ‰ƒO‚ğ•Û‘¶
+	// ãƒ•ãƒ©ã‚°ã‚’ä¿å­˜
 	Image->Orig->ZBufferFlag = UseFlag ;
 
-	// ƒrƒbƒg[“xƒCƒ“ƒfƒbƒNƒX‚ğ•Û‘¶
+	// ãƒ“ãƒƒãƒˆæ·±åº¦ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’ä¿å­˜
 	Image->Orig->ZBufferBitDepthIndex = DepthIndex ;
 
-	// ƒeƒNƒXƒ`ƒƒ‚Ìì‚è’¼‚µ
+	// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ä½œã‚Šç›´ã—
 	Graphics_Hardware_CreateOrigTexture_PF( Image->Orig ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒOƒ‰ƒtƒBƒbƒN‚Ì‚yƒoƒbƒtƒ@‚Ìó‘Ô‚ğ•Ê‚ÌƒOƒ‰ƒtƒBƒbƒN‚Ì‚yƒoƒbƒtƒ@‚ÉƒRƒs[‚·‚é( DestGrHandle ‚à SrcGrHandle ‚à‚yƒoƒbƒtƒ@‚ğ‚Á‚Ä‚¢‚é•`‰æ‰Â”\‰æ‘œ‚ÅAŠ‚ÂƒAƒ“ƒ`ƒGƒCƒŠƒAƒX‰æ‘œ‚Å‚Í‚È‚¢‚±‚Æ‚ªğŒ )
+// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®ï¼ºãƒãƒƒãƒ•ã‚¡ã®çŠ¶æ…‹ã‚’åˆ¥ã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®ï¼ºãƒãƒƒãƒ•ã‚¡ã«ã‚³ãƒ”ãƒ¼ã™ã‚‹( DestGrHandle ã‚‚ SrcGrHandle ã‚‚ï¼ºãƒãƒƒãƒ•ã‚¡ã‚’æŒã£ã¦ã„ã‚‹æç”»å¯èƒ½ç”»åƒã§ã€ä¸”ã¤ã‚¢ãƒ³ãƒã‚¨ã‚¤ãƒªã‚¢ã‚¹ç”»åƒã§ã¯ãªã„ã“ã¨ãŒæ¡ä»¶ )
 extern int NS_CopyGraphZBufferImage( int DestGrHandle, int SrcGrHandle )
 {
 	IMAGEDATA *SrcImage ;
 	IMAGEDATA *DestImage ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( GRAPHCHK( SrcGrHandle, SrcImage ) )
 		return -1 ;
 
 	if( GRAPHCHK( DestGrHandle, DestImage ) )
 		return -1 ;
 
-	// ƒeƒNƒXƒ`ƒƒ‚Å‚Í‚È‚¢ê‡‚Í‰½‚à‚µ‚È‚¢
+	// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã§ã¯ãªã„å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( SrcImage->Orig->FormatDesc.TextureFlag == FALSE ||
 		DestImage->Orig->FormatDesc.TextureFlag == FALSE )
 		return -1 ;
 
-	// ŠÂ‹«ˆË‘¶ˆ—
+	// ç’°å¢ƒä¾å­˜å‡¦ç†
 	if( Graphics_Hardware_CopyGraphZBufferImage_PF( DestImage, SrcImage ) < 0 )
 	{
 		return -1 ;
 	}
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// ƒOƒ‰ƒtƒBƒbƒNƒXƒfƒoƒCƒX‚ÌƒfƒoƒCƒXƒƒXƒg”­¶‚Éw’è‚ÌƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ğíœ‚·‚é‚©‚Ç‚¤‚©‚ğİ’è‚·‚é( TRUE:ƒfƒoƒCƒXƒƒXƒg‚Éíœ‚·‚é  FALSE:ƒfƒoƒCƒXƒƒXƒg‚ª”­¶‚µ‚Ä‚àíœ‚µ‚È‚¢ )
+// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¹ãƒ‡ãƒã‚¤ã‚¹ã®ãƒ‡ãƒã‚¤ã‚¹ãƒ­ã‚¹ãƒˆç™ºç”Ÿæ™‚ã«æŒ‡å®šã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã‚’å‰Šé™¤ã™ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹( TRUE:ãƒ‡ãƒã‚¤ã‚¹ãƒ­ã‚¹ãƒˆæ™‚ã«å‰Šé™¤ã™ã‚‹  FALSE:ãƒ‡ãƒã‚¤ã‚¹ãƒ­ã‚¹ãƒˆãŒç™ºç”Ÿã—ã¦ã‚‚å‰Šé™¤ã—ãªã„ )
 extern int NS_SetDeviceLostDeleteGraphFlag(	int GrHandle, int DeleteFlag )
 {
 	IMAGEDATA *Image ;
@@ -5359,7 +5359,7 @@ extern int NS_SetDeviceLostDeleteGraphFlag(	int GrHandle, int DeleteFlag )
 	return 0 ;
 }
 
-// ƒOƒ‰ƒtƒBƒbƒN‚ÌƒTƒCƒY‚ğ“¾‚é
+// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®ã‚µã‚¤ã‚ºã‚’å¾—ã‚‹
 extern	int NS_GetGraphSize( int GrHandle, int *SizeXBuf, int *SizeYBuf )
 {
 	IMAGEDATA *Image ;
@@ -5374,7 +5374,7 @@ extern	int NS_GetGraphSize( int GrHandle, int *SizeXBuf, int *SizeYBuf )
 		break ;
 
 	default :
-		// ƒGƒ‰[”»’è
+		// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 		if( !GRAPHCHK( GrHandle, Image ) )
 		{
 			if( SizeXBuf ) *SizeXBuf = Image->WidthI ;
@@ -5396,7 +5396,7 @@ extern	int NS_GetGraphSize( int GrHandle, int *SizeXBuf, int *SizeYBuf )
 	return 0 ;
 }
 
-// ƒOƒ‰ƒtƒBƒbƒN‚ÌƒTƒCƒY‚ğ“¾‚é( floatŒ^ )
+// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®ã‚µã‚¤ã‚ºã‚’å¾—ã‚‹( floatå‹ )
 extern	int NS_GetGraphSizeF( int GrHandle, float *SizeXBuf, float *SizeYBuf )
 {
 	IMAGEDATA *Image ;
@@ -5411,7 +5411,7 @@ extern	int NS_GetGraphSizeF( int GrHandle, float *SizeXBuf, float *SizeYBuf )
 		break ;
 
 	default :
-		// ƒGƒ‰[”»’è
+		// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 		if( !GRAPHCHK( GrHandle, Image ) )
 		{
 			if( SizeXBuf ) *SizeXBuf = Image->WidthF ;
@@ -5433,18 +5433,18 @@ extern	int NS_GetGraphSizeF( int GrHandle, float *SizeXBuf, float *SizeYBuf )
 	return 0 ;
 }
 
-// ƒOƒ‰ƒtƒBƒbƒN‚Ég—p‚³‚ê‚Ä‚¢‚éƒeƒNƒXƒ`ƒƒ[‚ÌƒTƒCƒY‚ğ“¾‚é
+// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã«ä½¿ç”¨ã•ã‚Œã¦ã„ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã®ã‚µã‚¤ã‚ºã‚’å¾—ã‚‹
 extern int NS_GetGraphTextureSize( int GrHandle, int *SizeXBuf, int *SizeYBuf )
 {
 	IMAGEDATA *Image = NULL ;
 	SHADOWMAPDATA *ShadowMap = NULL ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( GRAPHCHK(     GrHandle, Image    ) &&
 		SHADOWMAPCHK( GrHandle, ShadowMap ) )
 		return -1 ;
 
-	// ƒVƒƒƒhƒEƒ}ƒbƒv‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+	// ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 	if( ShadowMap != NULL )
 	{
 		if( SizeXBuf ) *SizeXBuf = ShadowMap->BaseSizeX ;
@@ -5452,7 +5452,7 @@ extern int NS_GetGraphTextureSize( int GrHandle, int *SizeXBuf, int *SizeYBuf )
 	}
 	else
 	{
-		// ƒeƒNƒXƒ`ƒƒ‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+		// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 		if( Image->Orig->FormatDesc.TextureFlag )
 		{
 			if( SizeXBuf ) *SizeXBuf = Image->Orig->Hard.Tex[ 0 ].TexWidth ;
@@ -5465,16 +5465,16 @@ extern int NS_GetGraphTextureSize( int GrHandle, int *SizeXBuf, int *SizeYBuf )
 		}
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// LoadDivGraph ‚â DerivationGraph ‚ÅŒ³‰æ‘œ‚Ìˆê•”•ª‚ğg—p‚µ‚Ä‚¢‚éê‡‚ÉAw’è‚ÌƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ªg—p‚µ‚Ä‚¢‚éŒ³‰æ‘œ‚Ì”ÍˆÍ‚ğæ“¾‚·‚é
+// LoadDivGraph ã‚„ DerivationGraph ã§å…ƒç”»åƒã®ä¸€éƒ¨åˆ†ã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹å ´åˆã«ã€æŒ‡å®šã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ãŒä½¿ç”¨ã—ã¦ã„ã‚‹å…ƒç”»åƒã®ç¯„å›²ã‚’å–å¾—ã™ã‚‹
 extern int NS_GetGraphUseBaseGraphArea( int GrHandle, int *UseX, int *UseY, int *UseSizeX, int *UseSizeY )
 {
 	IMAGEDATA *Image = NULL ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( GRAPHCHK( GrHandle, Image ) )
 	{
 		return -1 ;
@@ -5485,28 +5485,28 @@ extern int NS_GetGraphUseBaseGraphArea( int GrHandle, int *UseX, int *UseY, int 
 	if( UseSizeX ) *UseSizeX = Image->WidthI ;
 	if( UseSizeY ) *UseSizeY = Image->HeightI ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒOƒ‰ƒtƒBƒbƒN‚ª‚Âƒ~ƒbƒvƒ}ƒbƒvƒŒƒxƒ‹‚Ì”‚ğæ“¾‚·‚é
+// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãŒæŒã¤ãƒŸãƒƒãƒ—ãƒãƒƒãƒ—ãƒ¬ãƒ™ãƒ«ã®æ•°ã‚’å–å¾—ã™ã‚‹
 extern int NS_GetGraphMipmapCount( int GrHandle )
 {
 	IMAGEDATA *Image ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( GRAPHCHK( GrHandle, Image ) )
 		return -1 ;
 
-	// ƒn[ƒhƒEƒFƒA‚ğg—p‚µ‚Ä‚¢‚È‚¢ê‡‚Í‚P
+	// ãƒãƒ¼ãƒ‰ã‚¦ã‚§ã‚¢ã‚’ä½¿ç”¨ã—ã¦ã„ãªã„å ´åˆã¯ï¼‘
 	if( Image->Orig->FormatDesc.TextureFlag == FALSE )
 		return 1 ;
 
-	// ƒ~ƒbƒvƒ}ƒbƒv‚Ì”‚ğ•Ô‚·
+	// ãƒŸãƒƒãƒ—ãƒãƒƒãƒ—ã®æ•°ã‚’è¿”ã™
 	return Image->Orig->Hard.MipMapCount ;
 }
 
-// ƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ª‰æ‘œƒtƒ@ƒCƒ‹‚©‚ç“Ç‚İ‚Ü‚ê‚Ä‚¢‚½ê‡A‚»‚Ì‰æ‘œ‚Ìƒtƒ@ƒCƒ‹ƒpƒX‚ğæ“¾‚·‚é
+// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ãŒç”»åƒãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰èª­ã¿è¾¼ã¾ã‚Œã¦ã„ãŸå ´åˆã€ãã®ç”»åƒã®ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹ã‚’å–å¾—ã™ã‚‹
 extern int NS_GetGraphFilePath( int GrHandle, TCHAR *FilePathBuffer )
 {
 #ifdef UNICODE
@@ -5515,67 +5515,67 @@ extern int NS_GetGraphFilePath( int GrHandle, TCHAR *FilePathBuffer )
 	IMAGEDATA *Image ;
 	TCHAR TempBuffer[ 2048 ] ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( GRAPHCHK( GrHandle, Image ) )
 	{
 		return -1 ;
 	}
 
-	// ‰æ‘œƒtƒ@ƒCƒ‹ƒpƒX‚ª–³‚¢ê‡‚ÍƒGƒ‰[
+	// ç”»åƒãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹ãŒç„¡ã„å ´åˆã¯ã‚¨ãƒ©ãƒ¼
 	if( Image->ReadBase->FileName == NULL )
 	{
 		return -1 ;
 	}
 
-	// ‰æ‘œƒtƒ@ƒCƒ‹ƒpƒX‚ğƒRƒs[
+	// ç”»åƒãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹ã‚’ã‚³ãƒ”ãƒ¼
 	ConvString( ( const char * )Image->ReadBase->FileName, -1, WCHAR_T_CHARCODEFORMAT, TempBuffer, sizeof( TempBuffer ), _TCHARCODEFORMAT ) ;
 	if( FilePathBuffer != NULL )
 	{
 		_TSTRCPY( FilePathBuffer, TempBuffer ) ;
 	}
 
-	// ³íI—¹‚Ìê‡‚Í•¶š—ñƒTƒCƒY‚ğ•Ô‚·
+	// æ­£å¸¸çµ‚äº†ã®å ´åˆã¯æ–‡å­—åˆ—ã‚µã‚¤ã‚ºã‚’è¿”ã™
 	return ( int )_TSTRLEN( TempBuffer ) ;
 #endif
 }
 
-// ƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ª‰æ‘œƒtƒ@ƒCƒ‹‚©‚ç“Ç‚İ‚Ü‚ê‚Ä‚¢‚½ê‡A‚»‚Ì‰æ‘œ‚Ìƒtƒ@ƒCƒ‹ƒpƒX‚ğæ“¾‚·‚é
+// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ãŒç”»åƒãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰èª­ã¿è¾¼ã¾ã‚Œã¦ã„ãŸå ´åˆã€ãã®ç”»åƒã®ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹ã‚’å–å¾—ã™ã‚‹
 extern int GetGraphFilePath_WCHAR_T( int GrHandle, wchar_t *FilePathBuffer )
 {
 	IMAGEDATA *Image ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( GRAPHCHK( GrHandle, Image ) )
 		return -1 ;
 
-	// ‰æ‘œƒtƒ@ƒCƒ‹ƒpƒX‚ª–³‚¢ê‡‚ÍƒGƒ‰[
+	// ç”»åƒãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹ãŒç„¡ã„å ´åˆã¯ã‚¨ãƒ©ãƒ¼
 	if( Image->ReadBase->FileName == NULL )
 		return -1 ;
 
-	// ‰æ‘œƒtƒ@ƒCƒ‹ƒpƒX‚ğƒRƒs[
+	// ç”»åƒãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹ã‚’ã‚³ãƒ”ãƒ¼
 	if( FilePathBuffer != NULL )
 	{
 		_WCSCPY( FilePathBuffer, Image->ReadBase->FileName ) ;
 	}
 
-	// ³íI—¹‚Ìê‡‚Í•¶š—ñƒTƒCƒY‚ğ•Ô‚·
+	// æ­£å¸¸çµ‚äº†ã®å ´åˆã¯æ–‡å­—åˆ—ã‚µã‚¤ã‚ºã‚’è¿”ã™
 	return ( int )_WCSLEN( Image->ReadBase->FileName ) ;
 }
 
-// w’è‚ÌƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ª•`‰æ‘ÎÛ‚É‚Å‚«‚é( SetDrawScreen ‚Ìˆø”‚É“n‚¹‚é )ƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚©‚Ç‚¤‚©‚ğæ“¾‚·‚é( –ß‚è’l@TRUE:•`‰æ‘ÎÛ‚É‚Å‚«‚éƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹@FALSE:•`‰æ‘ÎÛ‚É‚Å‚«‚È‚¢ƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹ )
+// æŒ‡å®šã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ãŒæç”»å¯¾è±¡ã«ã§ãã‚‹( SetDrawScreen ã®å¼•æ•°ã«æ¸¡ã›ã‚‹ )ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã‹ã©ã†ã‹ã‚’å–å¾—ã™ã‚‹( æˆ»ã‚Šå€¤ã€€TRUE:æç”»å¯¾è±¡ã«ã§ãã‚‹ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã€€FALSE:æç”»å¯¾è±¡ã«ã§ããªã„ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ« )
 extern int NS_CheckDrawValidGraph( int GrHandle )
 {
 	IMAGEDATA *Image ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( GRAPHCHK( GrHandle, Image ) )
 		return -1 ;
 
-	// •`‰æ‘ÎÛ‚É‚Å‚«‚é‚©‚Ç‚¤‚©‚ğ•Ô‚·
+	// æç”»å¯¾è±¡ã«ã§ãã‚‹ã‹ã©ã†ã‹ã‚’è¿”ã™
 	return Image->Orig->FormatDesc.DrawValidFlag ;
 }
 
-// ƒJƒ‰[ƒf[ƒ^‚ğ“¾‚é
+// ã‚«ãƒ©ãƒ¼ãƒ‡ãƒ¼ã‚¿ã‚’å¾—ã‚‹
 extern const COLORDATA * NS_GetTexColorData( int AlphaCh, int AlphaTest, int ColorBitDepth, int DrawValid )
 {
 	IMAGEFORMATDESC Format ;
@@ -5592,20 +5592,20 @@ extern const COLORDATA * NS_GetTexColorData( int AlphaCh, int AlphaTest, int Col
 }
 
 #ifndef DX_COMPILE_TYPE_C_LANGUAGE
-// ƒtƒH[ƒ}ƒbƒg‚ÉŠî‚Ã‚¢‚½ƒJƒ‰[ƒf[ƒ^‚ğ“¾‚é
+// ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã«åŸºã¥ã„ãŸã‚«ãƒ©ãƒ¼ãƒ‡ãƒ¼ã‚¿ã‚’å¾—ã‚‹
 extern const COLORDATA * NS_GetTexColorData( const IMAGEFORMATDESC *Format )
 {
 	return NS_GetTexColorData2( Format ) ;
 }
 
-// w’è‚ÌƒtƒH[ƒ}ƒbƒgƒCƒ“ƒfƒbƒNƒX‚ÌƒJƒ‰[ƒf[ƒ^‚ğ“¾‚é
+// æŒ‡å®šã®ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã®ã‚«ãƒ©ãƒ¼ãƒ‡ãƒ¼ã‚¿ã‚’å¾—ã‚‹
 extern const COLORDATA * NS_GetTexColorData( int FormatIndex )
 {
 	return NS_GetTexColorData3( FormatIndex ) ;
 }
 #endif // DX_COMPILE_TYPE_C_LANGUAGE
 
-// ƒtƒH[ƒ}ƒbƒg‚ÉŠî‚Ã‚¢‚½ƒJƒ‰[ƒf[ƒ^‚ğ“¾‚é
+// ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã«åŸºã¥ã„ãŸã‚«ãƒ©ãƒ¼ãƒ‡ãƒ¼ã‚¿ã‚’å¾—ã‚‹
 extern const COLORDATA * NS_GetTexColorData2( const IMAGEFORMATDESC *Format )
 {
 	const COLORDATA * Result ;
@@ -5615,16 +5615,16 @@ extern const COLORDATA * NS_GetTexColorData2( const IMAGEFORMATDESC *Format )
 	return Result ;
 }
 
-// w’è‚ÌƒtƒH[ƒ}ƒbƒgƒCƒ“ƒfƒbƒNƒX‚ÌƒJƒ‰[ƒf[ƒ^‚ğ“¾‚é
+// æŒ‡å®šã®ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã®ã‚«ãƒ©ãƒ¼ãƒ‡ãƒ¼ã‚¿ã‚’å¾—ã‚‹
 extern const COLORDATA * NS_GetTexColorData3( int FormatIndex )
 {
 	static int Initialize = FALSE ;
 	static COLORDATA ColorData[ DX_GRAPHICSIMAGE_FORMAT_3D_NUM ] ;
 
-	// ’l‚ª”ÍˆÍŠO‚¾‚Á‚½‚çƒGƒ‰[
+	// å€¤ãŒç¯„å›²å¤–ã ã£ãŸã‚‰ã‚¨ãƒ©ãƒ¼
 	if( FormatIndex >= DX_GRAPHICSIMAGE_FORMAT_3D_NUM ) return NULL ;
 
-	// Å‰‚É—ˆ‚½‚Æ‚«‚É‰Šú‰»
+	// æœ€åˆã«æ¥ãŸã¨ãã«åˆæœŸåŒ–
 	if( Initialize == FALSE )
 	{
 		Initialize = TRUE ;
@@ -5685,30 +5685,30 @@ extern const COLORDATA * NS_GetTexColorData3( int FormatIndex )
 		ColorData[ DX_GRAPHICSIMAGE_FORMAT_3D_PLATFORM3      ].Format = DX_BASEIMAGE_FORMAT_PLATFORM3 ;      ColorData[ DX_GRAPHICSIMAGE_FORMAT_3D_PLATFORM3      ].ColorBitDepth = 8 ;
 	}
 
-	// ƒJƒ‰[ƒtƒH[ƒ}ƒbƒg‚ğ•Ô‚·
+	// ã‚«ãƒ©ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã‚’è¿”ã™
 	return &ColorData[ FormatIndex ] ;
 }
 
-// ƒOƒ‰ƒtƒBƒbƒN‚Ég—p‚³‚ê‚éÅ‘åƒeƒNƒXƒ`ƒƒƒTƒCƒY‚ğæ“¾‚·‚é
+// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã«ä½¿ç”¨ã•ã‚Œã‚‹æœ€å¤§ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚µã‚¤ã‚ºã‚’å–å¾—ã™ã‚‹
 extern int NS_GetMaxGraphTextureSize( int *SizeX, int *SizeY )
 {
 	if( SizeX != NULL ) *SizeX = GSYS.HardInfo.MaxTextureWidth ;
 	if( SizeY != NULL ) *SizeY = GSYS.HardInfo.MaxTextureHeight ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒOƒ‰ƒtƒBƒbƒN•œŒ³ŠÖ”‚Ì—L–³‚ğæ“¾	
+// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯å¾©å…ƒé–¢æ•°ã®æœ‰ç„¡ã‚’å–å¾—	
 extern	int NS_GetValidRestoreShredPoint( void )
 {
 	return GSYS.Setting.GraphRestoreShred != NULL ;
 }
 
-// ‚±‚ê‚©‚çV‚½‚ÉƒOƒ‰ƒtƒBƒbƒN‚ğì¬‚·‚éê‡‚Ég—p‚·‚éƒJƒ‰[î•ñ‚ğæ“¾‚·‚é
+// ã“ã‚Œã‹ã‚‰æ–°ãŸã«ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚’ä½œæˆã™ã‚‹å ´åˆã«ä½¿ç”¨ã™ã‚‹ã‚«ãƒ©ãƒ¼æƒ…å ±ã‚’å–å¾—ã™ã‚‹
 extern	int NS_GetCreateGraphColorData( COLORDATA * /*ColorData*/, IMAGEFORMATDESC * /*Format*/ )
 {
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
@@ -5734,19 +5734,19 @@ extern	int NS_GetCreateGraphColorData( COLORDATA * /*ColorData*/, IMAGEFORMATDES
 
 
 
-// ‰æ‘œƒpƒŒƒbƒg‘€ìŠÖŒWŠÖ”
+// ç”»åƒãƒ‘ãƒ¬ãƒƒãƒˆæ“ä½œé–¢ä¿‚é–¢æ•°
 
-// ƒƒ‚ƒŠã‚É“Ç‚İ‚ñ‚¾‰æ‘œ‚ÌƒpƒŒƒbƒg‚ğæ“¾‚·‚é(ƒtƒ‹ƒJƒ‰[‰æ‘œ‚Ìê‡‚Í–³Œø)
+// ãƒ¡ãƒ¢ãƒªä¸Šã«èª­ã¿è¾¼ã‚“ã ç”»åƒã®ãƒ‘ãƒ¬ãƒƒãƒˆã‚’å–å¾—ã™ã‚‹(ãƒ•ãƒ«ã‚«ãƒ©ãƒ¼ç”»åƒã®å ´åˆã¯ç„¡åŠ¹)
 extern	int		NS_GetGraphPalette( int GrHandle, int ColorIndex, int *Red, int *Green, int *Blue )
 {
 	MEMIMG *MemImg ;
 	unsigned int Color;
 
-	// ƒGƒ‰[ƒ`ƒFƒbƒN
+	// ã‚¨ãƒ©ãƒ¼ãƒã‚§ãƒƒã‚¯
 	if( ColorIndex < 0 || ColorIndex > 255 ) return -1 ;
 	PALETTEIMAGECHK( GrHandle, MemImg );
 	
-	// ƒpƒŒƒbƒg‚ğæ“¾‚·‚é
+	// ãƒ‘ãƒ¬ãƒƒãƒˆã‚’å–å¾—ã™ã‚‹
 	switch( MemImg->Base->ColorType )
 	{
 	case 0: Color = ((WORD  *)MemImg->Base->Palette)[ ColorIndex ]; break;
@@ -5755,21 +5755,21 @@ extern	int		NS_GetGraphPalette( int GrHandle, int ColorIndex, int *Red, int *Gre
 	}
 	NS_GetColor5( MemImg->Base->ColorDataP, Color, Red, Green, Blue, NULL ) ;
 	
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒƒ‚ƒŠã‚É“Ç‚İ‚ñ‚¾‰æ‘œ‚Ì SetGraphPalette ‚Å•ÏX‚·‚é‘O‚ÌƒpƒŒƒbƒg‚ğæ“¾‚·‚é
+// ãƒ¡ãƒ¢ãƒªä¸Šã«èª­ã¿è¾¼ã‚“ã ç”»åƒã® SetGraphPalette ã§å¤‰æ›´ã™ã‚‹å‰ã®ãƒ‘ãƒ¬ãƒƒãƒˆã‚’å–å¾—ã™ã‚‹
 extern  int		NS_GetGraphOriginalPalette( int GrHandle, int ColorIndex, int *Red, int *Green, int *Blue )
 {
 	MEMIMG *MemImg ;
 	unsigned int Color ;
 	
-	// ƒGƒ‰[ƒ`ƒFƒbƒN
+	// ã‚¨ãƒ©ãƒ¼ãƒã‚§ãƒƒã‚¯
 	if( ColorIndex < 0 || ColorIndex > 255 ) return -1 ;
 	PALETTEIMAGECHK( GrHandle, MemImg );
 
-	// ƒpƒŒƒbƒg‚ğæ“¾‚·‚é
+	// ãƒ‘ãƒ¬ãƒƒãƒˆã‚’å–å¾—ã™ã‚‹
 	switch( MemImg->Base->ColorType )
 	{
 	case 0: Color = ((WORD  *)MemImg->Base->OriginalPalette)[ColorIndex]; break;
@@ -5778,22 +5778,22 @@ extern  int		NS_GetGraphOriginalPalette( int GrHandle, int ColorIndex, int *Red,
 	}
 	NS_GetColor5( MemImg->Base->ColorDataP, Color, Red, Green, Blue, NULL ) ;
 	
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒƒ‚ƒŠã‚É“Ç‚İ‚ñ‚¾‰æ‘œ‚ÌƒpƒŒƒbƒg‚ğ•ÏX‚·‚é(ƒtƒ‹ƒJƒ‰[‰æ‘œ‚Ìê‡‚Í–³Œø)
+// ãƒ¡ãƒ¢ãƒªä¸Šã«èª­ã¿è¾¼ã‚“ã ç”»åƒã®ãƒ‘ãƒ¬ãƒƒãƒˆã‚’å¤‰æ›´ã™ã‚‹(ãƒ•ãƒ«ã‚«ãƒ©ãƒ¼ç”»åƒã®å ´åˆã¯ç„¡åŠ¹)
 extern	int		NS_SetGraphPalette( int GrHandle, int ColorIndex, unsigned int Color )
 {
 	MEMIMG *MemImg ;
 	int Red, Green, Blue ;
 	COLORDATA *ColorData ;
 
-	// ƒGƒ‰[ƒ`ƒFƒbƒN
+	// ã‚¨ãƒ©ãƒ¼ãƒã‚§ãƒƒã‚¯
 	if( ColorIndex < 0 || ColorIndex > 255 ) return -1 ;
 	PALETTEIMAGECHK( GrHandle, MemImg );
 
-	// FƒR[ƒh‚ğƒZƒbƒg‚·‚é
+	// è‰²ã‚³ãƒ¼ãƒ‰ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 	NS_GetColor2( Color, &Red, &Green, &Blue ) ;
 	ColorData = MemImg->Base->ColorDataP ;
 	Color = ColorData->NoneMask +
@@ -5806,20 +5806,20 @@ extern	int		NS_SetGraphPalette( int GrHandle, int ColorIndex, unsigned int Color
 	case 1: ((DWORD *)MemImg->Base->Palette)[ColorIndex] = (DWORD)Color; break;
 	}
 	
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// SetGraphPalette ‚Å•ÏX‚µ‚½ƒpƒŒƒbƒg‚ğ‘S‚ÄŒ³‚É–ß‚·
+// SetGraphPalette ã§å¤‰æ›´ã—ãŸãƒ‘ãƒ¬ãƒƒãƒˆã‚’å…¨ã¦å…ƒã«æˆ»ã™
 extern int NS_ResetGraphPalette( int GrHandle )
 {
 	MEMIMG *MemImg ;
 	int Size;
 	
-	// ƒGƒ‰[ƒ`ƒFƒbƒN
+	// ã‚¨ãƒ©ãƒ¼ãƒã‚§ãƒƒã‚¯
 	PALETTEIMAGECHK( GrHandle, MemImg );
 
-	// Œ³‚ÌƒpƒŒƒbƒg‚ğƒRƒs[‚·‚é
+	// å…ƒã®ãƒ‘ãƒ¬ãƒƒãƒˆã‚’ã‚³ãƒ”ãƒ¼ã™ã‚‹
 	switch( MemImg->Base->ColorType )
 	{
 	case 0 : Size = 1 ; break ;
@@ -5828,7 +5828,7 @@ extern int NS_ResetGraphPalette( int GrHandle )
 	}
 	_MEMCPY( MemImg->Base->Palette, MemImg->Base->OriginalPalette, ( size_t )( MemImg->Base->ColorNum << Size ) ) ;
 	
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
@@ -5856,9 +5856,9 @@ extern int NS_ResetGraphPalette( int GrHandle )
 
 
 
-// }Œ`•`‰æŠÖ”
+// å›³å½¢æç”»é–¢æ•°
 
-// ‘¾‚³w’è•t‚«ü‚Ì•`‰æ
+// å¤ªã•æŒ‡å®šä»˜ãç·šã®æç”»
 static int DrawLine_Thickness( int x1, int y1, int x2, int y2, unsigned int Color, int Thickness )
 {
 	VECTOR v, p1, p2;
@@ -5889,7 +5889,7 @@ static int DrawLine_Thickness( int x1, int y1, int x2, int y2, unsigned int Colo
 
 	CheckActiveState() ;
 
-	// ‚Q‚cs—ñ‚ğƒn[ƒhƒEƒGƒA‚É”½‰f‚·‚é
+	// ï¼’ï¼¤è¡Œåˆ—ã‚’ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã«åæ˜ ã™ã‚‹
 	if( GSYS.DrawSetting.MatchHardware_2DMatrix == FALSE && GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )
 		Graphics_DrawSetting_ApplyLib2DMatrixToHardware() ;
 
@@ -5935,11 +5935,11 @@ static int DrawLine_Thickness( int x1, int y1, int x2, int y2, unsigned int Colo
 			_FTOL( y1 - v.y ), Color, TRUE ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0;
 }
 
-// ü‚ğ•`‰æ
+// ç·šã‚’æç”»
 #define SETDRAWRECTCODE\
 	SETRECT( DrawRect, x1, y1, x2, y2 ) ;\
 	if( x1 > x2 ){ DrawRect.left = x2 ; DrawRect.right  = x1; }\
@@ -5955,7 +5955,7 @@ extern	int NS_DrawLine( int x1, int y1, int x2, int y2, unsigned int Color, int 
 	int Ret = -1 ;
 	int Flag ;
 
-	// ‘¾‚³‚ª‚PˆÈã‚Ìê‡‚Í‘¾‚³w’è•t‚«ü•`‰æ‚ğs‚¤
+	// å¤ªã•ãŒï¼‘ä»¥ä¸Šã®å ´åˆã¯å¤ªã•æŒ‡å®šä»˜ãç·šæç”»ã‚’è¡Œã†
 	if( Thickness > 1 )
 		return DrawLine_Thickness( x1, y1, x2, y2, Color, Thickness ) ;
 
@@ -5966,7 +5966,7 @@ extern	int NS_DrawLine( int x1, int y1, int x2, int y2, unsigned int Color, int 
 
 	CheckActiveState() ;
 
-	// ‚Q‚cs—ñ‚ğƒn[ƒhƒEƒGƒA‚É”½‰f‚·‚é
+	// ï¼’ï¼¤è¡Œåˆ—ã‚’ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã«åæ˜ ã™ã‚‹
 	if( GSYS.DrawSetting.MatchHardware_2DMatrix == FALSE && GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )
 		Graphics_DrawSetting_ApplyLib2DMatrixToHardware() ;
 
@@ -5978,13 +5978,13 @@ extern	int NS_DrawLine( int x1, int y1, int x2, int y2, unsigned int Color, int 
 		Flag
 	)
 
-	// I—¹
+	// çµ‚äº†
 	return Ret ;
 }
 
 #undef SETDRAWRECTCODE
 
-// ü‚ğ•`‰æ‚·‚é( ƒAƒ“ƒ`ƒGƒCƒŠƒAƒX•t‚« )
+// ç·šã‚’æç”»ã™ã‚‹( ã‚¢ãƒ³ãƒã‚¨ã‚¤ãƒªã‚¢ã‚¹ä»˜ã )
 extern int NS_DrawLineAA( float x1, float y1, float x2, float y2, unsigned int Color, float Thickness )
 {
 	int GrHandle ;
@@ -6169,12 +6169,12 @@ extern int NS_DrawLineAA( float x1, float y1, float x2, float y2, unsigned int C
 
 	AA_DRAW_END
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
 
-// lŠpŒ`‚Ì•`‰æ
+// å››è§’å½¢ã®æç”»
 extern	int NS_DrawBox( int x1, int y1, int x2, int y2, unsigned int Color, int FillFlag, int LineThickness )
 {
 	int Ret ;
@@ -6182,11 +6182,11 @@ extern	int NS_DrawBox( int x1, int y1, int x2, int y2, unsigned int Color, int F
 	if( FillFlag )	Ret = NS_DrawFillBox( x1, y1, x2, y2, Color ) ;
 	else			Ret = NS_DrawLineBox( x1, y1, x2, y2, Color, LineThickness ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return Ret ;
 }
 
-// lŠpŒ`‚Ì•`‰æ( ƒAƒ“ƒ`ƒGƒCƒŠƒAƒX•t‚« )
+// å››è§’å½¢ã®æç”»( ã‚¢ãƒ³ãƒã‚¨ã‚¤ãƒªã‚¢ã‚¹ä»˜ã )
 static int DrawBoxLineAA( float x1, float y1, float x2, float y2, unsigned int Color, float LineThickness )
 {
 	int GrHandle ;
@@ -6207,7 +6207,7 @@ static int DrawBoxLineAA( float x1, float y1, float x2, float y2, unsigned int C
 		return 0 ;
 	}
 
-	// ”½“]ˆ—
+	// åè»¢å‡¦ç†
 	{
 		float bx, by ;
 
@@ -6397,11 +6397,11 @@ static int DrawBoxLineAA( float x1, float y1, float x2, float y2, unsigned int C
 
 	Graphics_DrawSetting_SetDrawBrightToOneParam( OrigColor ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// lŠpŒ`‚Ì•`‰æ‚·‚é( ƒAƒ“ƒ`ƒGƒCƒŠƒAƒX•t‚« )
+// å››è§’å½¢ã®æç”»ã™ã‚‹( ã‚¢ãƒ³ãƒã‚¨ã‚¤ãƒªã‚¢ã‚¹ä»˜ã )
 static int DrawBoxFillAA( float x1, float y1, float x2, float y2, unsigned int Color )
 {
 	int GrHandle ;
@@ -6419,7 +6419,7 @@ static int DrawBoxFillAA( float x1, float y1, float x2, float y2, unsigned int C
 		return 0 ;
 	}
 
-	// ”½“]ˆ—
+	// åè»¢å‡¦ç†
 	{
 		float b ;
 
@@ -6481,11 +6481,11 @@ static int DrawBoxFillAA( float x1, float y1, float x2, float y2, unsigned int C
 
 	Graphics_DrawSetting_SetDrawBrightToOneParam( OrigColor ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// lŠpŒ`‚Ì•`‰æ‚·‚é( ƒAƒ“ƒ`ƒGƒCƒŠƒAƒX•t‚« )
+// å››è§’å½¢ã®æç”»ã™ã‚‹( ã‚¢ãƒ³ãƒã‚¨ã‚¤ãƒªã‚¢ã‚¹ä»˜ã )
 extern int NS_DrawBoxAA( float x1, float y1, float x2, float y2, unsigned int Color, int FillFlag, float LineThickness )
 {
 	if( FillFlag == FALSE )
@@ -6498,7 +6498,7 @@ extern int NS_DrawBoxAA( float x1, float y1, float x2, float y2, unsigned int Co
 	}
 }
 
-// ’†g‚Ì‚ ‚élŠp‚ğ•`‰æ
+// ä¸­èº«ã®ã‚ã‚‹å››è§’ã‚’æç”»
 #define SETDRAWRECTCODE\
 	if( x1 < x2 ){ DrawRect.left = x1 ; DrawRect.right = x2; }\
 	if( y1 < y2 ){ DrawRect.top = y1 ; DrawRect.bottom = y2; }\
@@ -6518,11 +6518,11 @@ extern	int NS_DrawFillBox( int x1, int y1, int x2, int y2, unsigned int Color )
 
 	CheckActiveState() ;
 
-	// ‚Q‚cs—ñ‚ğƒn[ƒhƒEƒGƒA‚É”½‰f‚·‚é
+	// ï¼’ï¼¤è¡Œåˆ—ã‚’ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã«åæ˜ ã™ã‚‹
 	if( GSYS.DrawSetting.MatchHardware_2DMatrix == FALSE && GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )
 		Graphics_DrawSetting_ApplyLib2DMatrixToHardware() ;
 
-	// •`‰æ
+	// æç”»
 	DRAW_DEF(
 		Graphics_Hardware_DrawFillBox_PF( x1, y1, x2, y2, Color ),
 		Graphics_Software_DrawFillBox(    x1, y1, x2, y2, Color ),
@@ -6531,11 +6531,11 @@ extern	int NS_DrawFillBox( int x1, int y1, int x2, int y2, unsigned int Color )
 		Flag
 	)
 
-	// I—¹
+	// çµ‚äº†
 	return Ret ;
 }
 
-// lŠpŒ`‚Ì•`‰æ 
+// å››è§’å½¢ã®æç”» 
 extern	int NS_DrawLineBox( int x1, int y1, int x2, int y2, unsigned int Color, int LineThickness )
 {
 	int Ret = -1 ;
@@ -6548,11 +6548,11 @@ extern	int NS_DrawLineBox( int x1, int y1, int x2, int y2, unsigned int Color, i
 
 	CheckActiveState() ;
 
-	// ‚Q‚cs—ñ‚ğƒn[ƒhƒEƒGƒA‚É”½‰f‚·‚é
+	// ï¼’ï¼¤è¡Œåˆ—ã‚’ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã«åæ˜ ã™ã‚‹
 	if( GSYS.DrawSetting.MatchHardware_2DMatrix == FALSE && GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )
 		Graphics_DrawSetting_ApplyLib2DMatrixToHardware() ;
 
-	// •`‰æ
+	// æç”»
 	DRAW_DEF(
 		Graphics_Hardware_DrawLineBox_PF( x1, y1, x2, y2, Color, LineThickness ),
 		Graphics_Software_DrawLineBox(    x1, y1, x2, y2, Color, LineThickness ),
@@ -6561,13 +6561,13 @@ extern	int NS_DrawLineBox( int x1, int y1, int x2, int y2, unsigned int Color, i
 		Flag
 	)
 
-	// I—¹
+	// çµ‚äº†
 	return Ret ;
 }
 
 #undef SETDRAWRECTCODE
 
-// ‰~‚ğ•`‚­
+// å††ã‚’æã
 #define SETDRAWRECTCODE\
 	SETRECT( DrawRect, x - r - 1, y - r - 1, x + r + 1, y + r + 1 )\
 	DRAWRECT_DRAWAREA_CLIP
@@ -6585,11 +6585,11 @@ extern	int NS_DrawCircle( int x, int y, int r, unsigned int Color, int FillFlag,
 
 	if( r < 0 ) return 0 ;
 
-	// ‚Q‚cs—ñ‚ğƒn[ƒhƒEƒGƒA‚É”½‰f‚·‚é
+	// ï¼’ï¼¤è¡Œåˆ—ã‚’ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã«åæ˜ ã™ã‚‹
 	if( GSYS.DrawSetting.MatchHardware_2DMatrix == FALSE && GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )
 		Graphics_DrawSetting_ApplyLib2DMatrixToHardware() ;
 
-	// •`‰æ
+	// æç”»
 	if( Thickness == 1 )
 	{
 		DRAW_DEF(
@@ -6611,12 +6611,12 @@ extern	int NS_DrawCircle( int x, int y, int r, unsigned int Color, int FillFlag,
 		)
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return Ret ;
 }
 #undef SETDRAWRECTCODE
 
-// ‰~‚ğ•`‰æ‚·‚é( ƒAƒ“ƒ`ƒGƒCƒŠƒAƒX•t‚« )
+// å††ã‚’æç”»ã™ã‚‹( ã‚¢ãƒ³ãƒã‚¨ã‚¤ãƒªã‚¢ã‚¹ä»˜ã )
 static int DrawCircleLineAA( float x, float y, float r, int posnum, unsigned int Color, float LineThickness, double Angle )
 {
 	int GrHandle ;
@@ -6747,11 +6747,11 @@ static int DrawCircleLineAA( float x, float y, float r, int posnum, unsigned int
 
 	Graphics_DrawSetting_SetDrawBrightToOneParam( OrigColor ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ‰~‚ğ•`‰æ‚·‚é( ƒAƒ“ƒ`ƒGƒCƒŠƒAƒX•t‚« )
+// å††ã‚’æç”»ã™ã‚‹( ã‚¢ãƒ³ãƒã‚¨ã‚¤ãƒªã‚¢ã‚¹ä»˜ã )
 static int DrawCircleFillAA( float x, float y, float r, int posnum, unsigned int Color, double Angle )
 {
 	int GrHandle ;
@@ -6840,11 +6840,11 @@ static int DrawCircleFillAA( float x, float y, float r, int posnum, unsigned int
 
 	Graphics_DrawSetting_SetDrawBrightToOneParam( OrigColor ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ‰~‚ğ•`‰æ‚·‚é( ƒAƒ“ƒ`ƒGƒCƒŠƒAƒX•t‚« )
+// å††ã‚’æç”»ã™ã‚‹( ã‚¢ãƒ³ãƒã‚¨ã‚¤ãƒªã‚¢ã‚¹ä»˜ã )
 extern int NS_DrawCircleAA( float x, float y, float r, int posnum, unsigned int Color, int FillFlag, float LineThickness, double Angle )
 {
 	if( FillFlag == FALSE )
@@ -6857,7 +6857,7 @@ extern int NS_DrawCircleAA( float x, float y, float r, int posnum, unsigned int 
 	}
 }
 
-// ‘È‰~‚ğ•`‚­
+// æ¥•å††ã‚’æã
 #define SETDRAWRECTCODE\
 	SETRECT( DrawRect, x - rx - 1, y - ry - 1, x + rx + 1, y + ry + 1 )\
 	DRAWRECT_DRAWAREA_CLIP
@@ -6875,11 +6875,11 @@ extern	int NS_DrawOval( int x, int y, int rx, int ry, unsigned int Color, int Fi
 
 	if( rx <= 0 || ry <= 0 ) return 0 ;
 
-	// ‚Q‚cs—ñ‚ğƒn[ƒhƒEƒGƒA‚É”½‰f‚·‚é
+	// ï¼’ï¼¤è¡Œåˆ—ã‚’ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã«åæ˜ ã™ã‚‹
 	if( GSYS.DrawSetting.MatchHardware_2DMatrix == FALSE && GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )
 		Graphics_DrawSetting_ApplyLib2DMatrixToHardware() ;
 
-	// •`‰æ
+	// æç”»
 	if( Thickness == 1 )
 	{
 		DRAW_DEF(
@@ -6901,12 +6901,12 @@ extern	int NS_DrawOval( int x, int y, int rx, int ry, unsigned int Color, int Fi
 		)
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return Ret ;
 }
 #undef SETDRAWRECTCODE
 
-// ‘È‰~‚ğ•`‚­
+// æ¥•å††ã‚’æã
 #define SETDRAWRECTCODE\
 	SETRECT( DrawRect, x1 - 1, y1 - 1, x2 + 1, y2 + 1 )\
 	DRAWRECT_DRAWAREA_CLIP
@@ -6938,11 +6938,11 @@ extern	int NS_DrawOval_Rect( int x1, int y1, int x2, int y2, unsigned int Color,
 	Rx_One_Minus = ( w == rx * 2 ) ? TRUE : FALSE ;
 	Ry_One_Minus = ( h == ry * 2 ) ? TRUE : FALSE ;
 
-	// ‚Q‚cs—ñ‚ğƒn[ƒhƒEƒGƒA‚É”½‰f‚·‚é
+	// ï¼’ï¼¤è¡Œåˆ—ã‚’ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã«åæ˜ ã™ã‚‹
 	if( GSYS.DrawSetting.MatchHardware_2DMatrix == FALSE && GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )
 		Graphics_DrawSetting_ApplyLib2DMatrixToHardware() ;
 
-	// •`‰æ
+	// æç”»
 	if( rx == ry )
 	{
 		DRAW_DEF(
@@ -6964,12 +6964,12 @@ extern	int NS_DrawOval_Rect( int x1, int y1, int x2, int y2, unsigned int Color,
 		)
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return Ret ;
 }
 #undef SETDRAWRECTCODE
 
-// ‘È‰~‚ğ•`‰æ‚·‚é( ƒAƒ“ƒ`ƒGƒCƒŠƒAƒX•t‚« )
+// æ¥•å††ã‚’æç”»ã™ã‚‹( ã‚¢ãƒ³ãƒã‚¨ã‚¤ãƒªã‚¢ã‚¹ä»˜ã )
 static int DrawOvalLineAA( float x, float y, float rx, float ry, int posnum, unsigned int Color, float LineThickness )
 {
 	int GrHandle ;
@@ -7109,11 +7109,11 @@ static int DrawOvalLineAA( float x, float y, float rx, float ry, int posnum, uns
 
 	Graphics_DrawSetting_SetDrawBrightToOneParam( OrigColor ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ‘È‰~‚ğ•`‰æ‚·‚é( ƒAƒ“ƒ`ƒGƒCƒŠƒAƒX•t‚« )
+// æ¥•å††ã‚’æç”»ã™ã‚‹( ã‚¢ãƒ³ãƒã‚¨ã‚¤ãƒªã‚¢ã‚¹ä»˜ã )
 static int DrawOvalFillAA( float x, float y, float rx, float ry, int posnum, unsigned int Color )
 {
 	int GrHandle ;
@@ -7206,11 +7206,11 @@ static int DrawOvalFillAA( float x, float y, float rx, float ry, int posnum, uns
 
 	Graphics_DrawSetting_SetDrawBrightToOneParam( OrigColor ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ‘È‰~‚ğ•`‰æ‚·‚é( ƒAƒ“ƒ`ƒGƒCƒŠƒAƒX•t‚« )
+// æ¥•å††ã‚’æç”»ã™ã‚‹( ã‚¢ãƒ³ãƒã‚¨ã‚¤ãƒªã‚¢ã‚¹ä»˜ã )
 extern int NS_DrawOvalAA( float x, float y, float rx, float ry, int posnum, unsigned int Color, int FillFlag, float LineThickness )
 {
 	if( FillFlag == FALSE )
@@ -7223,7 +7223,7 @@ extern int NS_DrawOvalAA( float x, float y, float rx, float ry, int posnum, unsi
 	}
 }
 
-// OŠpŒ`‚Ì•`‰æ
+// ä¸‰è§’å½¢ã®æç”»
 #define SETDRAWRECTCODE\
 	int x[ 3 ], y[ 3 ], MaxX, MaxY, MinX, MinY ;\
 	int i, ix, iy ;\
@@ -7256,11 +7256,11 @@ extern	int NS_DrawTriangle( int x1, int y1, int x2, int y2, int x3, int y3, unsi
 
 	CheckActiveState() ;
 
-	// ‚Q‚cs—ñ‚ğƒn[ƒhƒEƒGƒA‚É”½‰f‚·‚é
+	// ï¼’ï¼¤è¡Œåˆ—ã‚’ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã«åæ˜ ã™ã‚‹
 	if( GSYS.DrawSetting.MatchHardware_2DMatrix == FALSE && GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )
 		Graphics_DrawSetting_ApplyLib2DMatrixToHardware() ;
 
-	// •`‰æ
+	// æç”»
 	DRAW_DEF(
 		Graphics_Hardware_DrawTriangle_PF( x1, y1, x2, y2, x3, y3, Color, FillFlag ),
 		Graphics_Software_DrawTriangle(    x1, y1, x2, y2, x3, y3, Color, FillFlag ),
@@ -7269,13 +7269,13 @@ extern	int NS_DrawTriangle( int x1, int y1, int x2, int y2, int x3, int y3, unsi
 		Flag
 	)
 
-	// I—¹
+	// çµ‚äº†
 	return Ret ;
 }
 
 #undef SETDRAWRECTCODE
 
-// OŠpŒ`‚Ì•`‰æ‚·‚é( ƒAƒ“ƒ`ƒGƒCƒŠƒAƒX•t‚« )
+// ä¸‰è§’å½¢ã®æç”»ã™ã‚‹( ã‚¢ãƒ³ãƒã‚¨ã‚¤ãƒªã‚¢ã‚¹ä»˜ã )
 static int DrawTriangleLineAA( float x1, float y1, float x2, float y2, float x3, float y3, unsigned int Color, float LineThickness )
 {
 	int GrHandle ;
@@ -7950,11 +7950,11 @@ END :
 		return NS_DrawTriangle( _FTOL( x1 ), _FTOL( y1 ), _FTOL( x2 ), _FTOL( y2 ), _FTOL( x3 ), _FTOL( y3 ), Color, FALSE ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// OŠpŒ`‚Ì•`‰æ‚·‚é( ƒAƒ“ƒ`ƒGƒCƒŠƒAƒX•t‚« )
+// ä¸‰è§’å½¢ã®æç”»ã™ã‚‹( ã‚¢ãƒ³ãƒã‚¨ã‚¤ãƒªã‚¢ã‚¹ä»˜ã )
 static int DrawTriangleFillAA( float x1, float y1, float x2, float y2, float x3, float y3, unsigned int Color )
 {
 	int GrHandle ;
@@ -8201,11 +8201,11 @@ END :
 		return NS_DrawTriangle( _FTOL( x1 ), _FTOL( y1 ), _FTOL( x2 ), _FTOL( y2 ), _FTOL( x3 ), _FTOL( y3 ), Color, TRUE ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// OŠpŒ`‚ğ•`‰æ‚·‚é( ƒAƒ“ƒ`ƒGƒCƒŠƒAƒX•t‚« )
+// ä¸‰è§’å½¢ã‚’æç”»ã™ã‚‹( ã‚¢ãƒ³ãƒã‚¨ã‚¤ãƒªã‚¢ã‚¹ä»˜ã )
 extern int NS_DrawTriangleAA( float x1, float y1, float x2, float y2, float x3, float y3, unsigned int Color, int FillFlag, float LineThickness )
 {
 	if( FillFlag == FALSE )
@@ -8218,7 +8218,7 @@ extern int NS_DrawTriangleAA( float x1, float y1, float x2, float y2, float x3, 
 	}
 }
 
-// lŠpŒ`‚Ì•`‰æ
+// å››è§’å½¢ã®æç”»
 #define SETDRAWRECTCODE\
 	int x[ 4 ], y[ 4 ], MaxX, MaxY, MinX, MinY ;\
 	int i, ix, iy ;\
@@ -8251,11 +8251,11 @@ extern	int NS_DrawQuadrangle( int x1, int y1, int x2, int y2, int x3, int y3, in
 
 	CheckActiveState() ;
 
-	// ‚Q‚cs—ñ‚ğƒn[ƒhƒEƒGƒA‚É”½‰f‚·‚é
+	// ï¼’ï¼¤è¡Œåˆ—ã‚’ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã«åæ˜ ã™ã‚‹
 	if( GSYS.DrawSetting.MatchHardware_2DMatrix == FALSE && GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )
 		Graphics_DrawSetting_ApplyLib2DMatrixToHardware() ;
 
-	// •`‰æ
+	// æç”»
 	DRAW_DEF(
 		Graphics_Hardware_DrawQuadrangle_PF( x1, y1, x2, y2, x3, y3, x4, y4, Color, FillFlag ),
 		Graphics_Software_DrawQuadrangle(    x1, y1, x2, y2, x3, y3, x4, y4, Color, FillFlag ),
@@ -8264,13 +8264,13 @@ extern	int NS_DrawQuadrangle( int x1, int y1, int x2, int y2, int x3, int y3, in
 		Flag
 	)
 
-	// I—¹
+	// çµ‚äº†
 	return Ret ;
 }
 
 #undef SETDRAWRECTCODE
 
-// lŠpŒ`‚ğ•`‰æ‚·‚é( ƒAƒ“ƒ`ƒGƒCƒŠƒAƒX•t‚« )
+// å››è§’å½¢ã‚’æç”»ã™ã‚‹( ã‚¢ãƒ³ãƒã‚¨ã‚¤ãƒªã‚¢ã‚¹ä»˜ã )
 static int DrawQuadrangleLineAA( float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4, unsigned int Color, float LineThickness )
 {
 	int GrHandle ;
@@ -9064,11 +9064,11 @@ END :
 		return NS_DrawQuadrangle( _FTOL( x1 ), _FTOL( y1 ), _FTOL( x2 ), _FTOL( y2 ), _FTOL( x3 ), _FTOL( y3 ), _FTOL( x4 ), _FTOL( y4 ), Color, FALSE ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// lŠpŒ`‚ğ•`‰æ‚·‚é( ƒAƒ“ƒ`ƒGƒCƒŠƒAƒX•t‚« )
+// å››è§’å½¢ã‚’æç”»ã™ã‚‹( ã‚¢ãƒ³ãƒã‚¨ã‚¤ãƒªã‚¢ã‚¹ä»˜ã )
 static int DrawQuadrangleFillAA( float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4, unsigned int Color )
 {
 	int GrHandle ;
@@ -9349,11 +9349,11 @@ static int DrawQuadrangleFillAA( float x1, float y1, float x2, float y2, float x
 		return NS_DrawQuadrangle( _FTOL( x1 ), _FTOL( y1 ), _FTOL( x2 ), _FTOL( y2 ), _FTOL( x3 ), _FTOL( y3 ), _FTOL( x4 ), _FTOL( y4 ), Color, TRUE ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// lŠpŒ`‚ğ•`‰æ‚·‚é( ƒAƒ“ƒ`ƒGƒCƒŠƒAƒX•t‚« )
+// å››è§’å½¢ã‚’æç”»ã™ã‚‹( ã‚¢ãƒ³ãƒã‚¨ã‚¤ãƒªã‚¢ã‚¹ä»˜ã )
 extern int NS_DrawQuadrangleAA( float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4, unsigned int Color, int FillFlag, float LineThickness )
 {
 	if( FillFlag == FALSE )
@@ -9366,7 +9366,7 @@ extern int NS_DrawQuadrangleAA( float x1, float y1, float x2, float y2, float x3
 	}
 }
 
-// Šp‚ÌŠÛ‚¢lŠpŒ`‚ğ•`‰æ‚·‚é
+// è§’ã®ä¸¸ã„å››è§’å½¢ã‚’æç”»ã™ã‚‹
 extern int NS_DrawRoundRect( int x1, int y1, int x2, int y2, int rx, int ry, unsigned int Color, int FillFlag )
 {
 	RECT  BackupDrawRect ;
@@ -9375,13 +9375,13 @@ extern int NS_DrawRoundRect( int x1, int y1, int x2, int y2, int rx, int ry, uns
 	int   DrawSizeY ;
 	int   Temp ;
 
-	// À•W•ÏŠ·‚ª‚³‚ê‚éê‡‚ÍƒAƒ“ƒ`ƒGƒCƒŠƒAƒX”Å‚ğg—p‚·‚é
+	// åº§æ¨™å¤‰æ›ãŒã•ã‚Œã‚‹å ´åˆã¯ã‚¢ãƒ³ãƒã‚¨ã‚¤ãƒªã‚¢ã‚¹ç‰ˆã‚’ä½¿ç”¨ã™ã‚‹
 	if( GSYS.DrawSetting.Valid2DMatrix )
 	{
 		return NS_DrawRoundRectAA( ( float )x1, ( float )y1, ( float )x2, ( float )y2, ( float )rx, ( float )ry, 16, Color, FillFlag, 1.0f ) ;
 	}
 
-	// •`‰æ‹éŒ`‚ğ•Û‘¶
+	// æç”»çŸ©å½¢ã‚’ä¿å­˜
 	BackupDrawRect  = GSYS.DrawSetting.DrawArea ;
 	BackupDrawRectF = GSYS.DrawSetting.DrawAreaF ;
 
@@ -9478,16 +9478,16 @@ extern int NS_DrawRoundRect( int x1, int y1, int x2, int y2, int rx, int ry, uns
 	GSYS.DrawSetting.DrawAreaF.bottom = ( float )GSYS.DrawSetting.DrawArea.bottom ;
 	NS_DrawOval( x2 - rx - 1, y2 - ry - 1, rx, ry, Color, FillFlag, 1 ) ;
 
-	// •`‰æ‹éŒ`‚ğŒ³‚É–ß‚·
+	// æç”»çŸ©å½¢ã‚’å…ƒã«æˆ»ã™
 	GSYS.DrawSetting.DrawArea = BackupDrawRect ;
 	SetMemImgDrawArea( &BackupDrawRect ) ;
 	GSYS.DrawSetting.DrawAreaF = BackupDrawRectF ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// Šp‚ÌŠÛ‚¢lŠpŒ`‚ğ•`‰æ‚·‚é( ƒAƒ“ƒ`ƒGƒCƒŠƒAƒX•t‚« )
+// è§’ã®ä¸¸ã„å››è§’å½¢ã‚’æç”»ã™ã‚‹( ã‚¢ãƒ³ãƒã‚¨ã‚¤ãƒªã‚¢ã‚¹ä»˜ã )
 static int DrawRoundRectLineAA( float x1, float y1, float x2, float y2, float rx, float ry, int posnum, unsigned int Color, float LineThickness )
 {
 	int GrHandle ;
@@ -9810,11 +9810,11 @@ static int DrawRoundRectLineAA( float x1, float y1, float x2, float y2, float rx
 
 	Graphics_DrawSetting_SetDrawBrightToOneParam( OrigColor ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// Šp‚ÌŠÛ‚¢lŠpŒ`‚ğ•`‰æ‚·‚é( ƒAƒ“ƒ`ƒGƒCƒŠƒAƒX•t‚« )
+// è§’ã®ä¸¸ã„å››è§’å½¢ã‚’æç”»ã™ã‚‹( ã‚¢ãƒ³ãƒã‚¨ã‚¤ãƒªã‚¢ã‚¹ä»˜ã )
 static int DrawRoundRectFillAA( float x1, float y1, float x2, float y2, float rx, float ry, int posnum, unsigned int Color )
 {
 	int GrHandle ;
@@ -10095,11 +10095,11 @@ static int DrawRoundRectFillAA( float x1, float y1, float x2, float y2, float rx
 
 	Graphics_DrawSetting_SetDrawBrightToOneParam( OrigColor ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// Šp‚ÌŠÛ‚¢lŠpŒ`‚ğ•`‰æ‚·‚é( ƒAƒ“ƒ`ƒGƒCƒŠƒAƒX•t‚« )
+// è§’ã®ä¸¸ã„å››è§’å½¢ã‚’æç”»ã™ã‚‹( ã‚¢ãƒ³ãƒã‚¨ã‚¤ãƒªã‚¢ã‚¹ä»˜ã )
 extern int NS_DrawRoundRectAA( float x1, float y1, float x2, float y2, float rx, float ry, int posnum, unsigned int Color, int FillFlag, float LineThickness )
 {
 	float Temp ;
@@ -10163,7 +10163,7 @@ extern int NS_DrawRoundRectAA( float x1, float y1, float x2, float y2, float rx,
 	}
 }
 
-// DrawTriangleAA ‚È‚Ç‚ÌƒAƒ“ƒ`ƒGƒCƒŠƒAƒX•t‚«}Œ`•`‰æ‚Ì€”õ‚ğs‚¤
+// DrawTriangleAA ãªã©ã®ã‚¢ãƒ³ãƒã‚¨ã‚¤ãƒªã‚¢ã‚¹ä»˜ãå›³å½¢æç”»ã®æº–å‚™ã‚’è¡Œã†
 extern int NS_BeginAADraw( void )
 {
 	if( GSYS.DrawSetting.AADrawInfoValid )
@@ -10180,11 +10180,11 @@ extern int NS_BeginAADraw( void )
 
 	GSYS.DrawSetting.AADrawInfoValid = TRUE ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// DrawTriangleAA ‚È‚Ç‚ÌƒAƒ“ƒ`ƒGƒCƒŠƒAƒX•t‚«}Œ`•`‰æ‚ÌŒãn––‚ğs‚¤
+// DrawTriangleAA ãªã©ã®ã‚¢ãƒ³ãƒã‚¨ã‚¤ãƒªã‚¢ã‚¹ä»˜ãå›³å½¢æç”»ã®å¾Œå§‹æœ«ã‚’è¡Œã†
 extern int NS_EndAADraw( void )
 {
 	if( GSYS.DrawSetting.AADrawInfoValid == FALSE )
@@ -10201,11 +10201,11 @@ extern int NS_EndAADraw( void )
 
 	AA_DRAW_END
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// “_‚ğ•`‰æ‚·‚é
+// ç‚¹ã‚’æç”»ã™ã‚‹
 #define SETDRAWRECTCODE\
 	SETRECT( DrawRect, x, y, x + 1, y + 1 )\
 	DRAWRECT_DRAWAREA_CLIP
@@ -10221,11 +10221,11 @@ extern 	int NS_DrawPixel( int x, int y, unsigned int Color )
 
 	CheckActiveState() ;
 
-	// ‚Q‚cs—ñ‚ğƒn[ƒhƒEƒGƒA‚É”½‰f‚·‚é
+	// ï¼’ï¼¤è¡Œåˆ—ã‚’ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã«åæ˜ ã™ã‚‹
 	if( GSYS.DrawSetting.MatchHardware_2DMatrix == FALSE && GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )
 		Graphics_DrawSetting_ApplyLib2DMatrixToHardware() ;
 
-	// •`‰æ
+	// æç”»
 //	if( GSYS.DrawSetting.NotUseBasicGraphDraw3DDeviceMethodFlag ) Flag = FALSE ;
 	DRAW_DEF(
 		Graphics_Hardware_DrawPixel_PF( x, y, Color ),
@@ -10235,21 +10235,21 @@ extern 	int NS_DrawPixel( int x, int y, unsigned int Color )
 		Flag
 	)
 
-	// I—¹
+	// çµ‚äº†
 	return Ret ;
 }
 #undef SETDRAWRECTCODE
 
-// w’è“_‚©‚ç‹«ŠEF‚ª‚ ‚é‚Æ‚±‚ë‚Ü‚Å“h‚è‚Â‚Ô‚·
+// æŒ‡å®šç‚¹ã‹ã‚‰å¢ƒç•Œè‰²ãŒã‚ã‚‹ã¨ã“ã‚ã¾ã§å¡—ã‚Šã¤ã¶ã™
 extern int NS_Paint( int x, int y, unsigned int FillColor, ULONGLONG BoundaryColor )
 {
-	// ƒn[ƒhƒEƒFƒA‚ğg—p‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+	// ãƒãƒ¼ãƒ‰ã‚¦ã‚§ã‚¢ã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 	if( GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )
 	{
-		// ƒn[ƒhƒEƒGƒA‚Ì‹@”\‚ğg—p‚µ‚Ä‚¢‚éê‡
+		// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã®æ©Ÿèƒ½ã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹å ´åˆ
 		if( Graphics_Hardware_Paint_PF( x, y, FillColor, BoundaryColor ) == 2 )
 		{
-			// ‚Q‚ª•Ô‚Á‚Ä‚«‚½‚çƒfƒtƒHƒ‹ƒg‚Ìˆ—‚ğs‚¤
+			// ï¼’ãŒè¿”ã£ã¦ããŸã‚‰ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®å‡¦ç†ã‚’è¡Œã†
 
 			MEMIMG          MemImg ;
 			BASEIMAGE       ScreenImage ;
@@ -10262,11 +10262,11 @@ extern int NS_Paint( int x, int y, unsigned int FillColor, ULONGLONG BoundaryCol
 			int				Red, Green, Blue ;
 //			const COLORDATA *HardwareMainColorData ;
 
-			// ‰æ–Ê‚ÌƒCƒ[ƒW‚ğæ“¾
+			// ç”»é¢ã®ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’å–å¾—
 			NS_CreateXRGB8ColorBaseImage( GSYS.DrawSetting.DrawSizeX, GSYS.DrawSetting.DrawSizeY, &ScreenImage ) ;
 			NS_GetDrawScreenBaseImage( 0, 0, GSYS.DrawSetting.DrawSizeX, GSYS.DrawSetting.DrawSizeY, &ScreenImage ) ;
 
-			// Paint ˆ——p‚Ì MEMIMG ‚ğƒZƒbƒgƒAƒbƒv‚·‚é
+			// Paint å‡¦ç†ç”¨ã® MEMIMG ã‚’ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã™ã‚‹
 			_MEMSET( &MemImg, 0, sizeof( MEMIMG ) ) ;
 			InitializeMemImg(
 				&MemImg,
@@ -10277,7 +10277,7 @@ extern int NS_Paint( int x, int y, unsigned int FillColor, ULONGLONG BoundaryCol
 				1,
 				FALSE, FALSE, FALSE, ScreenImage.GraphData ) ;
 
-			// Paint ˆ—‚ğs‚¤
+			// Paint å‡¦ç†ã‚’è¡Œã†
 			MemImageColorData     = GetMemImgColorData( 1, FALSE, FALSE ) ;
 //			HardwareMainColorData = Graphics_Hardware_GetMainColorData_PF() ;
 //			FillColor             = NS_GetColor4( MemImageColorData, HardwareMainColorData, FillColor ) ;
@@ -10291,10 +10291,10 @@ extern int NS_Paint( int x, int y, unsigned int FillColor, ULONGLONG BoundaryCol
 			}
 			PaintMemImg( &MemImg, x, y, FillColor, BoundaryColor ) ;
 
-			// MEMIMG ‚ÌŒãn––
+			// MEMIMG ã®å¾Œå§‹æœ«
 			TerminateMemImg( &MemImg ) ;
 
-			// ‰æ–Ê‚ÉƒyƒCƒ“ƒgŒã‚Ì‰æ‘œ‚ğ•`‰æ
+			// ç”»é¢ã«ãƒšã‚¤ãƒ³ãƒˆå¾Œã®ç”»åƒã‚’æç”»
 			DrawBlendMode  = GSYS.DrawSetting.BlendMode ;
 			DrawBlendParam = GSYS.DrawSetting.BlendParam ;
 			DrawMode       = GSYS.DrawSetting.DrawMode ;
@@ -10315,7 +10315,7 @@ extern int NS_Paint( int x, int y, unsigned int FillColor, ULONGLONG BoundaryCol
 
 			NS_ReleaseBaseImage( &ScreenImage ) ;
 
-			// ³íI—¹
+			// æ­£å¸¸çµ‚äº†
 			return 0 ;
 		}
 	}
@@ -10324,9 +10324,9 @@ extern int NS_Paint( int x, int y, unsigned int FillColor, ULONGLONG BoundaryCol
 		MEMIMG *Img ;
 		IMAGEDATA *Image ;
 
-		// ƒn[ƒhƒEƒGƒA‚Ì‹@”\‚ğg—p‚µ‚Ä‚¢‚È‚¢ê‡
+		// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã®æ©Ÿèƒ½ã‚’ä½¿ç”¨ã—ã¦ã„ãªã„å ´åˆ
 
-		// ƒGƒ‰[”»’è
+		// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 		if( GRAPHCHKFULL( GSYS.DrawSetting.TargetScreen[ 0 ], Image ) )
 			Image = NULL ;
 
@@ -10342,11 +10342,11 @@ extern int NS_Paint( int x, int y, unsigned int FillColor, ULONGLONG BoundaryCol
 		PaintMemImg( Img, x, y, FillColor, BoundaryColor ) ;
 	}
 	
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// “_‚ÌW‡‚ğ•`‚­
+// ç‚¹ã®é›†åˆã‚’æã
 #define SETDRAWRECTCODE\
 	SETRECT( DrawRect, 0, 0, GSYS.DrawSetting.DrawSizeX, GSYS.DrawSetting.DrawSizeY )\
 	DRAWRECT_DRAWAREA_CLIP
@@ -10362,11 +10362,11 @@ extern 	int NS_DrawPixelSet( const POINTDATA *PointData, int Num )
 
 	CheckActiveState() ;
 
-	// ‚Q‚cs—ñ‚ğƒn[ƒhƒEƒGƒA‚É”½‰f‚·‚é
+	// ï¼’ï¼¤è¡Œåˆ—ã‚’ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã«åæ˜ ã™ã‚‹
 	if( GSYS.DrawSetting.MatchHardware_2DMatrix == FALSE && GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )
 		Graphics_DrawSetting_ApplyLib2DMatrixToHardware() ;
 
-	// •`‰æ
+	// æç”»
 	DRAW_DEF(
 		Graphics_Hardware_DrawPixelSet_PF( PointData, Num  ),
 		Graphics_Software_DrawPixelSet(    PointData, Num  ),
@@ -10375,12 +10375,12 @@ extern 	int NS_DrawPixelSet( const POINTDATA *PointData, int Num )
 		Flag
 	)
 
-	// I—¹
+	// çµ‚äº†
 	return Ret ;
 }
 #undef SETDRAWRECTCODE
 
-// ü‚ÌW‡‚ğ•`‚­
+// ç·šã®é›†åˆã‚’æã
 #define SETDRAWRECTCODE\
 	SETRECT( DrawRect, 0, 0, GSYS.DrawSetting.DrawSizeX, GSYS.DrawSetting.DrawSizeY )\
 	DRAWRECT_DRAWAREA_CLIP
@@ -10396,11 +10396,11 @@ extern	int NS_DrawLineSet( const LINEDATA *LineData, int Num )
 
 	CheckActiveState() ;
 
-	// ‚Q‚cs—ñ‚ğƒn[ƒhƒEƒGƒA‚É”½‰f‚·‚é
+	// ï¼’ï¼¤è¡Œåˆ—ã‚’ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã«åæ˜ ã™ã‚‹
 	if( GSYS.DrawSetting.MatchHardware_2DMatrix == FALSE && GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )
 		Graphics_DrawSetting_ApplyLib2DMatrixToHardware() ;
 
-	// •`‰æ
+	// æç”»
 	DRAW_DEF(
 		Graphics_Hardware_DrawLineSet_PF( LineData, Num ),
 		Graphics_Software_DrawLineSet(    LineData, Num ),
@@ -10409,12 +10409,12 @@ extern	int NS_DrawLineSet( const LINEDATA *LineData, int Num )
 		Flag
 	)
 
-	// I—¹
+	// çµ‚äº†
 	return Ret ;
 }
 #undef SETDRAWRECTCODE
 
-// ‹éŒ`‚ÌW‡‚ğ•`‰æ‚·‚é
+// çŸ©å½¢ã®é›†åˆã‚’æç”»ã™ã‚‹
 #define SETDRAWRECTCODE\
 	SETRECT( DrawRect, 0, 0, GSYS.DrawSetting.DrawSizeX, GSYS.DrawSetting.DrawSizeY )\
 	DRAWRECT_DRAWAREA_CLIP
@@ -10430,11 +10430,11 @@ extern int NS_DrawBoxSet( const RECTDATA *RectData, int Num )
 
 	CheckActiveState() ;
 
-	// ‚Q‚cs—ñ‚ğƒn[ƒhƒEƒGƒA‚É”½‰f‚·‚é
+	// ï¼’ï¼¤è¡Œåˆ—ã‚’ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã«åæ˜ ã™ã‚‹
 	if( GSYS.DrawSetting.MatchHardware_2DMatrix == FALSE && GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )
 		Graphics_DrawSetting_ApplyLib2DMatrixToHardware() ;
 
-	// •`‰æ
+	// æç”»
 	DRAW_DEF(
 		Graphics_Hardware_DrawBoxSet_PF( RectData, Num ),
 		Graphics_Software_DrawBoxSet(    RectData, Num ),
@@ -10443,33 +10443,33 @@ extern int NS_DrawBoxSet( const RECTDATA *RectData, int Num )
 		Flag
 	)
 
-	// I—¹
+	// çµ‚äº†
 	return Ret ;
 }
 #undef SETDRAWRECTCODE
 
-// ‚R‚c‚Ì“_‚ğ•`‰æ‚·‚é
+// ï¼“ï¼¤ã®ç‚¹ã‚’æç”»ã™ã‚‹
 extern int NS_DrawPixel3D( VECTOR Pos, unsigned int Color )
 {
 	LARGE3DPOSITIONSUPPORT_DRAWINFO Large3DPosDrawInfo ;
 	int Ret ;
 	int Flag ;
 
-	// ‰Šú‰»”»’è
+	// åˆæœŸåŒ–åˆ¤å®š
 	if( DxSysData.DxLib_InitializeFlag == FALSE ) return -1 ;
 
-	// ”ñ•`‰æİ’è‚ª‚³‚ê‚Ä‚¢‚éê‡‚Í‰½‚à‚¹‚¸I—¹
+	// éæç”»è¨­å®šãŒã•ã‚Œã¦ã„ã‚‹å ´åˆã¯ä½•ã‚‚ã›ãšçµ‚äº†
 	if( /* GSYS.NotDrawFlag || */ GSYS.DrawSetting.NotDrawFlagInSetDrawArea )
 		return 0 ;
 
-	// ƒuƒŒƒ“ƒhƒeƒNƒXƒ`ƒƒ‚Íg—p‚Å‚«‚È‚¢
+	// ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ†ã‚¯ã‚¹ãƒãƒ£ã¯ä½¿ç”¨ã§ããªã„
 	if( GSYS.DrawSetting.BlendGraph > 0 )
 		return -1 ;
 
-	// ƒ\ƒtƒg‚ª”ñƒAƒNƒeƒBƒu‚Ìê‡‚ÍƒAƒNƒeƒBƒu‚É‚È‚é‚Ü‚Å‘Ò‚Â
+	// ã‚½ãƒ•ãƒˆãŒéã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã®å ´åˆã¯ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ãªã‚‹ã¾ã§å¾…ã¤
 	CheckActiveState() ;
 
-	// ‚R‚cs—ñ‚ğƒn[ƒhƒEƒGƒA‚É”½‰f‚·‚é
+	// ï¼“ï¼¤è¡Œåˆ—ã‚’ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã«åæ˜ ã™ã‚‹
 	if( GSYS.DrawSetting.MatchHardware3DMatrix == FALSE && GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )
 		Graphics_DrawSetting_ApplyLib3DMatrixToHardware() ;
 
@@ -10482,7 +10482,7 @@ extern int NS_DrawPixel3D( VECTOR Pos, unsigned int Color )
 
 	Flag = GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE ;
 
-	// •`‰æ
+	// æç”»
 	DRAW_DEF(
 		Graphics_Hardware_DrawPixel3D_PF( Pos, Color, TRUE, NULL ),
 		0,
@@ -10496,11 +10496,11 @@ extern int NS_DrawPixel3D( VECTOR Pos, unsigned int Color )
 		Graphics_Draw_EndLarge3DPositionSupportDraw( &Large3DPosDrawInfo ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return Ret ;
 }
 
-// ‚R‚c‚Ì“_‚ğ•`‰æ‚·‚é
+// ï¼“ï¼¤ã®ç‚¹ã‚’æç”»ã™ã‚‹
 extern int NS_DrawPixel3DD( VECTOR_D Pos, unsigned int Color )
 {
 	LARGE3DPOSITIONSUPPORT_DRAWINFO Large3DPosDrawInfo ;
@@ -10508,18 +10508,18 @@ extern int NS_DrawPixel3DD( VECTOR_D Pos, unsigned int Color )
 	int Ret ;
 	int Flag ;
 
-	// ‰Šú‰»”»’è
+	// åˆæœŸåŒ–åˆ¤å®š
 	if( DxSysData.DxLib_InitializeFlag == FALSE ) return -1 ;
 
-	// ”ñ•`‰æİ’è‚ª‚³‚ê‚Ä‚¢‚éê‡‚Í‰½‚à‚¹‚¸I—¹
+	// éæç”»è¨­å®šãŒã•ã‚Œã¦ã„ã‚‹å ´åˆã¯ä½•ã‚‚ã›ãšçµ‚äº†
 	if( /* GSYS.NotDrawFlag || */ GSYS.DrawSetting.NotDrawFlagInSetDrawArea )
 		return 0 ;
 
-	// ƒuƒŒƒ“ƒhƒeƒNƒXƒ`ƒƒ‚Íg—p‚Å‚«‚È‚¢
+	// ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ†ã‚¯ã‚¹ãƒãƒ£ã¯ä½¿ç”¨ã§ããªã„
 	if( GSYS.DrawSetting.BlendGraph > 0 )
 		return -1 ;
 
-	// ƒ\ƒtƒg‚ª”ñƒAƒNƒeƒBƒu‚Ìê‡‚ÍƒAƒNƒeƒBƒu‚É‚È‚é‚Ü‚Å‘Ò‚Â
+	// ã‚½ãƒ•ãƒˆãŒéã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã®å ´åˆã¯ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ãªã‚‹ã¾ã§å¾…ã¤
 	CheckActiveState() ;
 
 	if( GSYS.DrawSetting.Large3DPositionSupport )
@@ -10533,11 +10533,11 @@ extern int NS_DrawPixel3DD( VECTOR_D Pos, unsigned int Color )
 
 	Flag = GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE ;
 
-	// ‚R‚cs—ñ‚ğƒn[ƒhƒEƒGƒA‚É”½‰f‚·‚é
+	// ï¼“ï¼¤è¡Œåˆ—ã‚’ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã«åæ˜ ã™ã‚‹
 	if( GSYS.DrawSetting.MatchHardware3DMatrix == FALSE && GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )
 		Graphics_DrawSetting_ApplyLib3DMatrixToHardware() ;
 
-	// •`‰æ
+	// æç”»
 	DRAW_DEF(
 		Graphics_Hardware_DrawPixel3D_PF( PosF, Color, TRUE, NULL ),
 		0,
@@ -10551,25 +10551,25 @@ extern int NS_DrawPixel3DD( VECTOR_D Pos, unsigned int Color )
 		Graphics_Draw_EndLarge3DPositionSupportDraw( &Large3DPosDrawInfo ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return Ret ;
 }
 
-// ‚R‚c‚Ìü•ª‚ğ•`‰æ‚·‚é
+// ï¼“ï¼¤ã®ç·šåˆ†ã‚’æç”»ã™ã‚‹
 extern int NS_DrawLine3D( VECTOR Pos1, VECTOR Pos2, unsigned int Color )
 {
 	LARGE3DPOSITIONSUPPORT_DRAWINFO Large3DPosDrawInfo ;
 	int Ret ;
 	int Flag ;
 
-	// ‰Šú‰»”»’è
+	// åˆæœŸåŒ–åˆ¤å®š
 	if( DxSysData.DxLib_InitializeFlag == FALSE ) return -1 ;
 
-	// ”ñ•`‰æİ’è‚ª‚³‚ê‚Ä‚¢‚éê‡‚Í‰½‚à‚¹‚¸I—¹
+	// éæç”»è¨­å®šãŒã•ã‚Œã¦ã„ã‚‹å ´åˆã¯ä½•ã‚‚ã›ãšçµ‚äº†
 	if( /* GSYS.NotDrawFlag || */ GSYS.DrawSetting.NotDrawFlagInSetDrawArea )
 		return 0 ;
 
-	// ƒuƒŒƒ“ƒhƒeƒNƒXƒ`ƒƒ‚Íg—p‚Å‚«‚È‚¢
+	// ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ†ã‚¯ã‚¹ãƒãƒ£ã¯ä½¿ç”¨ã§ããªã„
 	if( GSYS.DrawSetting.BlendGraph > 0 )
 		return -1 ;
 
@@ -10583,14 +10583,14 @@ extern int NS_DrawLine3D( VECTOR Pos1, VECTOR Pos2, unsigned int Color )
 
 	Flag = GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE ;
 
-	// ƒ\ƒtƒg‚ª”ñƒAƒNƒeƒBƒu‚Ìê‡‚ÍƒAƒNƒeƒBƒu‚É‚È‚é‚Ü‚Å‘Ò‚Â
+	// ã‚½ãƒ•ãƒˆãŒéã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã®å ´åˆã¯ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ãªã‚‹ã¾ã§å¾…ã¤
 	CheckActiveState() ;
 
-	// ‚R‚cs—ñ‚ğƒn[ƒhƒEƒGƒA‚É”½‰f‚·‚é
+	// ï¼“ï¼¤è¡Œåˆ—ã‚’ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã«åæ˜ ã™ã‚‹
 	if( GSYS.DrawSetting.MatchHardware3DMatrix == FALSE && GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )
 		Graphics_DrawSetting_ApplyLib3DMatrixToHardware() ;
 
-	// •`‰æ
+	// æç”»
 	DRAW_DEF(
 		Graphics_Hardware_DrawLine3D_PF( Pos1, Pos2, Color, TRUE, NULL ),
 		0,
@@ -10604,11 +10604,11 @@ extern int NS_DrawLine3D( VECTOR Pos1, VECTOR Pos2, unsigned int Color )
 		Graphics_Draw_EndLarge3DPositionSupportDraw( &Large3DPosDrawInfo ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return Ret ;
 }
 
-// ‚R‚c‚Ìü•ª‚ğ•`‰æ‚·‚é
+// ï¼“ï¼¤ã®ç·šåˆ†ã‚’æç”»ã™ã‚‹
 extern int NS_DrawLine3DD( VECTOR_D Pos1, VECTOR_D Pos2, unsigned int Color )
 {
 	LARGE3DPOSITIONSUPPORT_DRAWINFO Large3DPosDrawInfo ;
@@ -10616,14 +10616,14 @@ extern int NS_DrawLine3DD( VECTOR_D Pos1, VECTOR_D Pos2, unsigned int Color )
 	int Ret ;
 	int Flag ;
 
-	// ‰Šú‰»”»’è
+	// åˆæœŸåŒ–åˆ¤å®š
 	if( DxSysData.DxLib_InitializeFlag == FALSE ) return -1 ;
 
-	// ”ñ•`‰æİ’è‚ª‚³‚ê‚Ä‚¢‚éê‡‚Í‰½‚à‚¹‚¸I—¹
+	// éæç”»è¨­å®šãŒã•ã‚Œã¦ã„ã‚‹å ´åˆã¯ä½•ã‚‚ã›ãšçµ‚äº†
 	if( /* GSYS.NotDrawFlag || */ GSYS.DrawSetting.NotDrawFlagInSetDrawArea )
 		return 0 ;
 
-	// ƒuƒŒƒ“ƒhƒeƒNƒXƒ`ƒƒ‚Íg—p‚Å‚«‚È‚¢
+	// ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ†ã‚¯ã‚¹ãƒãƒ£ã¯ä½¿ç”¨ã§ããªã„
 	if( GSYS.DrawSetting.BlendGraph > 0 )
 		return -1 ;
 
@@ -10640,14 +10640,14 @@ extern int NS_DrawLine3DD( VECTOR_D Pos1, VECTOR_D Pos2, unsigned int Color )
 
 	Flag = GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE ;
 
-	// ƒ\ƒtƒg‚ª”ñƒAƒNƒeƒBƒu‚Ìê‡‚ÍƒAƒNƒeƒBƒu‚É‚È‚é‚Ü‚Å‘Ò‚Â
+	// ã‚½ãƒ•ãƒˆãŒéã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã®å ´åˆã¯ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ãªã‚‹ã¾ã§å¾…ã¤
 	CheckActiveState() ;
 
-	// ‚R‚cs—ñ‚ğƒn[ƒhƒEƒGƒA‚É”½‰f‚·‚é
+	// ï¼“ï¼¤è¡Œåˆ—ã‚’ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã«åæ˜ ã™ã‚‹
 	if( GSYS.DrawSetting.MatchHardware3DMatrix == FALSE && GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )
 		Graphics_DrawSetting_ApplyLib3DMatrixToHardware() ;
 
-	// •`‰æ
+	// æç”»
 	DRAW_DEF(
 		Graphics_Hardware_DrawLine3D_PF( Pos1F, Pos2F, Color, TRUE, NULL ),
 		0,
@@ -10661,28 +10661,28 @@ extern int NS_DrawLine3DD( VECTOR_D Pos1, VECTOR_D Pos2, unsigned int Color )
 		Graphics_Draw_EndLarge3DPositionSupportDraw( &Large3DPosDrawInfo ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return Ret ;
 }
 
-// ‚R‚c‚ÌOŠpŒ`‚ğ•`‰æ‚·‚é
+// ï¼“ï¼¤ã®ä¸‰è§’å½¢ã‚’æç”»ã™ã‚‹
 extern int NS_DrawTriangle3D( VECTOR Pos1, VECTOR Pos2, VECTOR Pos3, unsigned int Color, int FillFlag )
 {
 	LARGE3DPOSITIONSUPPORT_DRAWINFO Large3DPosDrawInfo ;
 	int Ret ;
 	int Flag ;
 
-	// ‰Šú‰»”»’è
+	// åˆæœŸåŒ–åˆ¤å®š
 	if( DxSysData.DxLib_InitializeFlag == FALSE ) return -1 ;
 
-	// ”ñ•`‰æİ’è‚ª‚³‚ê‚Ä‚¢‚éê‡‚Í‰½‚à‚¹‚¸I—¹
+	// éæç”»è¨­å®šãŒã•ã‚Œã¦ã„ã‚‹å ´åˆã¯ä½•ã‚‚ã›ãšçµ‚äº†
 	if( /* GSYS.NotDrawFlag || */ GSYS.DrawSetting.NotDrawFlagInSetDrawArea )
 		return 0 ;
 
-	// ƒ\ƒtƒg‚ª”ñƒAƒNƒeƒBƒu‚Ìê‡‚ÍƒAƒNƒeƒBƒu‚É‚È‚é‚Ü‚Å‘Ò‚Â
+	// ã‚½ãƒ•ãƒˆãŒéã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã®å ´åˆã¯ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ãªã‚‹ã¾ã§å¾…ã¤
 	CheckActiveState() ;
 
-	// ƒuƒŒƒ“ƒhƒeƒNƒXƒ`ƒƒ‚Íg—p‚Å‚«‚È‚¢
+	// ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ†ã‚¯ã‚¹ãƒãƒ£ã¯ä½¿ç”¨ã§ããªã„
 	if( GSYS.DrawSetting.BlendGraph > 0 )
 		return -1 ;
 
@@ -10697,11 +10697,11 @@ extern int NS_DrawTriangle3D( VECTOR Pos1, VECTOR Pos2, VECTOR Pos3, unsigned in
 
 	Flag = GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE ;
 
-	// ‚R‚cs—ñ‚ğƒn[ƒhƒEƒGƒA‚É”½‰f‚·‚é
+	// ï¼“ï¼¤è¡Œåˆ—ã‚’ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã«åæ˜ ã™ã‚‹
 	if( GSYS.DrawSetting.MatchHardware3DMatrix == FALSE && GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )
 		Graphics_DrawSetting_ApplyLib3DMatrixToHardware() ;
 
-	// •`‰æ
+	// æç”»
 	DRAW_DEF(
 		Graphics_Hardware_DrawTriangle3D_PF( Pos1, Pos2, Pos3, Color, FillFlag, TRUE, NULL ),
 		0,
@@ -10715,11 +10715,11 @@ extern int NS_DrawTriangle3D( VECTOR Pos1, VECTOR Pos2, VECTOR Pos3, unsigned in
 		Graphics_Draw_EndLarge3DPositionSupportDraw( &Large3DPosDrawInfo ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return Ret ;
 }
 
-// ‚R‚c‚ÌOŠpŒ`‚ğ•`‰æ‚·‚é
+// ï¼“ï¼¤ã®ä¸‰è§’å½¢ã‚’æç”»ã™ã‚‹
 extern int NS_DrawTriangle3DD( VECTOR_D Pos1, VECTOR_D Pos2, VECTOR_D Pos3, unsigned int Color, int FillFlag )
 {
 	LARGE3DPOSITIONSUPPORT_DRAWINFO Large3DPosDrawInfo ;
@@ -10727,17 +10727,17 @@ extern int NS_DrawTriangle3DD( VECTOR_D Pos1, VECTOR_D Pos2, VECTOR_D Pos3, unsi
 	int Flag ;
 	VECTOR Pos1F, Pos2F, Pos3F ;
 
-	// ‰Šú‰»”»’è
+	// åˆæœŸåŒ–åˆ¤å®š
 	if( DxSysData.DxLib_InitializeFlag == FALSE ) return -1 ;
 
-	// ”ñ•`‰æİ’è‚ª‚³‚ê‚Ä‚¢‚éê‡‚Í‰½‚à‚¹‚¸I—¹
+	// éæç”»è¨­å®šãŒã•ã‚Œã¦ã„ã‚‹å ´åˆã¯ä½•ã‚‚ã›ãšçµ‚äº†
 	if( /* GSYS.NotDrawFlag || */ GSYS.DrawSetting.NotDrawFlagInSetDrawArea )
 		return 0 ;
 
-	// ƒ\ƒtƒg‚ª”ñƒAƒNƒeƒBƒu‚Ìê‡‚ÍƒAƒNƒeƒBƒu‚É‚È‚é‚Ü‚Å‘Ò‚Â
+	// ã‚½ãƒ•ãƒˆãŒéã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã®å ´åˆã¯ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ãªã‚‹ã¾ã§å¾…ã¤
 	CheckActiveState() ;
 
-	// ƒuƒŒƒ“ƒhƒeƒNƒXƒ`ƒƒ‚Íg—p‚Å‚«‚È‚¢
+	// ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ†ã‚¯ã‚¹ãƒãƒ£ã¯ä½¿ç”¨ã§ããªã„
 	if( GSYS.DrawSetting.BlendGraph > 0 )
 		return -1 ;
 
@@ -10756,11 +10756,11 @@ extern int NS_DrawTriangle3DD( VECTOR_D Pos1, VECTOR_D Pos2, VECTOR_D Pos3, unsi
 
 	Flag = GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE ;
 
-	// ‚R‚cs—ñ‚ğƒn[ƒhƒEƒGƒA‚É”½‰f‚·‚é
+	// ï¼“ï¼¤è¡Œåˆ—ã‚’ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã«åæ˜ ã™ã‚‹
 	if( GSYS.DrawSetting.MatchHardware3DMatrix == FALSE && GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )
 		Graphics_DrawSetting_ApplyLib3DMatrixToHardware() ;
 
-	// •`‰æ
+	// æç”»
 	DRAW_DEF(
 		Graphics_Hardware_DrawTriangle3D_PF( Pos1F, Pos2F, Pos3F, Color, FillFlag, TRUE, NULL ),
 		0,
@@ -10774,17 +10774,17 @@ extern int NS_DrawTriangle3DD( VECTOR_D Pos1, VECTOR_D Pos2, VECTOR_D Pos3, unsi
 		Graphics_Draw_EndLarge3DPositionSupportDraw( &Large3DPosDrawInfo ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return Ret ;
 }
 
-// ‚R‚c‚Ì—§•û‘Ì‚ğ•`‰æ‚·‚é
+// ï¼“ï¼¤ã®ç«‹æ–¹ä½“ã‚’æç”»ã™ã‚‹
 extern int NS_DrawCube3D( VECTOR Pos1, VECTOR Pos2, unsigned int DifColor, unsigned int SpcColor, int FillFlag )
 {
 	return NS_DrawCube3DD( VConvFtoD( Pos1 ), VConvFtoD( Pos2 ), DifColor, SpcColor, FillFlag ) ;
 }
 
-// ‚R‚c‚Ì—§•û‘Ì‚ğ•`‰æ‚·‚é
+// ï¼“ï¼¤ã®ç«‹æ–¹ä½“ã‚’æç”»ã™ã‚‹
 extern int NS_DrawCube3DD( VECTOR_D Pos1, VECTOR_D Pos2, unsigned int DifColor, unsigned int SpcColor, int FillFlag )
 {
 	LARGE3DPOSITIONSUPPORT_DRAWINFO Large3DPosDrawInfo ;
@@ -10815,7 +10815,7 @@ extern int NS_DrawCube3DD( VECTOR_D Pos1, VECTOR_D Pos2, unsigned int DifColor, 
 		VERTEX3D Vertex[ 6 ][ 4 ] ;
 		int i, dr, dg, db, a, sr, sg, sb ;
 
-		// ’¸“_ƒf[ƒ^‚Ìì¬
+		// é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ã®ä½œæˆ
 		NS_GetColor2( DifColor, &dr, &dg, &db ) ;
 		NS_GetColor2( SpcColor, &sr, &sg, &sb ) ;
 		a = GSYS.DrawSetting.BlendMode == DX_BLENDMODE_NOBLEND ? 255 : GSYS.DrawSetting.BlendParam ;
@@ -10920,7 +10920,7 @@ extern int NS_DrawCube3DD( VECTOR_D Pos1, VECTOR_D Pos2, unsigned int DifColor, 
 		VERTEX3D Vertex[ 8 ] ;
 		int i, dr, dg, db, a, sr, sg, sb ;
 
-		// ’¸“_ƒf[ƒ^‚Ìì¬
+		// é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ã®ä½œæˆ
 		NS_GetColor2( DifColor, &dr, &dg, &db ) ;
 		NS_GetColor2( SpcColor, &sr, &sg, &sb ) ;
 		a = GSYS.DrawSetting.BlendMode == DX_BLENDMODE_NOBLEND ? 255 : GSYS.DrawSetting.BlendParam ;
@@ -10971,11 +10971,11 @@ extern int NS_DrawCube3DD( VECTOR_D Pos1, VECTOR_D Pos2, unsigned int DifColor, 
 		Graphics_Draw_EndLarge3DPositionSupportDraw( &Large3DPosDrawInfo ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ‚R‚c‚Ì—§•û‘Ì‚ÌW‡‚ğ•`‰æ‚·‚é
+// ï¼“ï¼¤ã®ç«‹æ–¹ä½“ã®é›†åˆã‚’æç”»ã™ã‚‹
 extern int NS_DrawCubeSet3D( CUBEDATA *CubeDataArray, int Num, int FillFlag )
 {
 	int i, j, k ;
@@ -10984,7 +10984,7 @@ extern int NS_DrawCubeSet3D( CUBEDATA *CubeDataArray, int Num, int FillFlag )
 
 	if( GSYS.Light.ProcessDisable == FALSE && FillFlag == TRUE )
 	{
-		// w’è‚Ì”‚Ì’¸“_‚ğû‚ß‚ç‚ê‚éƒoƒbƒtƒ@‚ªŠm•Û‚³‚ê‚Ä‚¢‚È‚©‚Á‚½‚çŠm•Û
+		// æŒ‡å®šã®æ•°ã®é ‚ç‚¹ã‚’åã‚ã‚‰ã‚Œã‚‹ãƒãƒƒãƒ•ã‚¡ãŒç¢ºä¿ã•ã‚Œã¦ã„ãªã‹ã£ãŸã‚‰ç¢ºä¿
 		if( GSYS.Resource.DrawCubeSet3DWorkVertexBufferSize[ 1 ] < Num &&
 			GSYS.Resource.DrawCubeSet3DWorkVertexBufferSize[ 1 ] < 2730 )
 		{
@@ -11003,7 +11003,7 @@ extern int NS_DrawCubeSet3D( CUBEDATA *CubeDataArray, int Num, int FillFlag )
 				GSYS.Resource.DrawCubeSet3DWorkVertexBuffer[ 1 ] = ( VERTEX3D * )DXREALLOC( GSYS.Resource.DrawCubeSet3DWorkVertexBuffer[ 1 ], GSYS.Resource.DrawCubeSet3DWorkVertexBufferSize[ 1 ] * sizeof( VERTEX3D ) * 24 ) ;
 			}
 
-			// ’¸“_ƒf[ƒ^‚ÌŒÅ’è’l‚ğƒZƒbƒg
+			// é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ã®å›ºå®šå€¤ã‚’ã‚»ãƒƒãƒˆ
 			Vertex = GSYS.Resource.DrawCubeSet3DWorkVertexBuffer[ 1 ] ;
 			for( i = 0 ; i < GSYS.Resource.DrawCubeSet3DWorkVertexBufferSize[ 1 ] ; i ++ )
 			{
@@ -11077,7 +11077,7 @@ extern int NS_DrawCubeSet3D( CUBEDATA *CubeDataArray, int Num, int FillFlag )
 			}
 		}
 
-		// w’è‚Ì”‚ÌƒCƒ“ƒfƒbƒNƒX‚ğû‚ß‚ç‚ê‚éƒoƒbƒtƒ@‚ªŠm•Û‚³‚ê‚Ä‚¢‚È‚©‚Á‚½‚çŠm•Û
+		// æŒ‡å®šã®æ•°ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’åã‚ã‚‰ã‚Œã‚‹ãƒãƒƒãƒ•ã‚¡ãŒç¢ºä¿ã•ã‚Œã¦ã„ãªã‹ã£ãŸã‚‰ç¢ºä¿
 		if( GSYS.Resource.DrawCubeSet3DWorkIndexBufferSize[ 2 ] < Num &&
 			GSYS.Resource.DrawCubeSet3DWorkIndexBufferSize[ 2 ] < 2730 )
 		{
@@ -11096,7 +11096,7 @@ extern int NS_DrawCubeSet3D( CUBEDATA *CubeDataArray, int Num, int FillFlag )
 				GSYS.Resource.DrawCubeSet3DWorkIndexBuffer[ 2 ] = ( WORD * )DXREALLOC( GSYS.Resource.DrawCubeSet3DWorkIndexBuffer[ 2 ], GSYS.Resource.DrawCubeSet3DWorkIndexBufferSize[ 2 ] * sizeof( WORD ) * 36 ) ;
 			}
 
-			// ƒCƒ“ƒfƒbƒNƒX‚ÌŒÅ’è’l‚ğƒZƒbƒg
+			// ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã®å›ºå®šå€¤ã‚’ã‚»ãƒƒãƒˆ
 			Index = GSYS.Resource.DrawCubeSet3DWorkIndexBuffer[ 2 ] ;
 			j = 0 ;
 			for( i = 0 ; i < GSYS.Resource.DrawCubeSet3DWorkIndexBufferSize[ 2 ] ; i ++ )
@@ -11119,12 +11119,12 @@ extern int NS_DrawCubeSet3D( CUBEDATA *CubeDataArray, int Num, int FillFlag )
 			}
 		}
 
-		// —§•û‘Ì‚Ì”‚¾‚¯ŒJ‚è•Ô‚µ
+		// ç«‹æ–¹ä½“ã®æ•°ã ã‘ç¹°ã‚Šè¿”ã—
 		Vertex = GSYS.Resource.DrawCubeSet3DWorkVertexBuffer[ 1 ] ;
 		j = 0 ;
 		for( k = 0 ; k < Num ; k ++, CubeDataArray ++ )
 		{
-			// ’¸“_ƒf[ƒ^‚Ìì¬
+			// é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ã®ä½œæˆ
 			Vertex[ 0 ].pos.x = CubeDataArray->Pos1.x ; Vertex[ 0 ].pos.y = CubeDataArray->Pos2.y ; Vertex[ 0 ].pos.z = CubeDataArray->Pos1.z ;
 			Vertex[ 1 ].pos.x = CubeDataArray->Pos2.x ; Vertex[ 1 ].pos.y = CubeDataArray->Pos2.y ; Vertex[ 1 ].pos.z = CubeDataArray->Pos1.z ;
 			Vertex[ 2 ].pos.x = CubeDataArray->Pos1.x ; Vertex[ 2 ].pos.y = CubeDataArray->Pos1.y ; Vertex[ 2 ].pos.z = CubeDataArray->Pos1.z ;
@@ -11161,7 +11161,7 @@ extern int NS_DrawCubeSet3D( CUBEDATA *CubeDataArray, int Num, int FillFlag )
 				Vertex[ i ].spc = CubeDataArray->SpcColor ;
 			}
 
-			// ’¸“_ƒf[ƒ^‚ªˆê”t‚É‚È‚Á‚½‚ç•`‰æ
+			// é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ãŒä¸€æ¯ã«ãªã£ãŸã‚‰æç”»
 			j ++ ;
 			if( j >= 2730 )
 			{
@@ -11179,7 +11179,7 @@ extern int NS_DrawCubeSet3D( CUBEDATA *CubeDataArray, int Num, int FillFlag )
 			}
 		}
 
-		// ’¸“_ƒf[ƒ^‚ªc‚Á‚Ä‚¢‚½‚ç•`‰æ
+		// é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ãŒæ®‹ã£ã¦ã„ãŸã‚‰æç”»
 		if( j > 0 )
 		{
 			NS_DrawPrimitiveIndexed3D(
@@ -11190,7 +11190,7 @@ extern int NS_DrawCubeSet3D( CUBEDATA *CubeDataArray, int Num, int FillFlag )
 	}
 	else
 	{
-		// w’è‚Ì”‚Ì’¸“_‚ğû‚ß‚ç‚ê‚éƒoƒbƒtƒ@‚ªŠm•Û‚³‚ê‚Ä‚¢‚È‚©‚Á‚½‚çŠm•Û
+		// æŒ‡å®šã®æ•°ã®é ‚ç‚¹ã‚’åã‚ã‚‰ã‚Œã‚‹ãƒãƒƒãƒ•ã‚¡ãŒç¢ºä¿ã•ã‚Œã¦ã„ãªã‹ã£ãŸã‚‰ç¢ºä¿
 		if( GSYS.Resource.DrawCubeSet3DWorkVertexBufferSize[ 0 ] < Num &&
 			GSYS.Resource.DrawCubeSet3DWorkVertexBufferSize[ 0 ] < 8191 )
 		{
@@ -11209,7 +11209,7 @@ extern int NS_DrawCubeSet3D( CUBEDATA *CubeDataArray, int Num, int FillFlag )
 				GSYS.Resource.DrawCubeSet3DWorkVertexBuffer[ 0 ] = ( VERTEX3D * )DXREALLOC( GSYS.Resource.DrawCubeSet3DWorkVertexBuffer[ 0 ], GSYS.Resource.DrawCubeSet3DWorkVertexBufferSize[ 0 ] * sizeof( VERTEX3D ) * 8 ) ;
 			}
 
-			// ’¸“_ƒf[ƒ^‚ÌŒÅ’è’l‚ğƒZƒbƒg
+			// é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ã®å›ºå®šå€¤ã‚’ã‚»ãƒƒãƒˆ
 			Vertex = GSYS.Resource.DrawCubeSet3DWorkVertexBuffer[ 0 ] ;
 			for( i = 0 ; i < GSYS.Resource.DrawCubeSet3DWorkVertexBufferSize[ 0 ] ; i ++ )
 			{
@@ -11236,7 +11236,7 @@ extern int NS_DrawCubeSet3D( CUBEDATA *CubeDataArray, int Num, int FillFlag )
 
 		if( FillFlag == TRUE )
 		{
-			// w’è‚Ì”‚ÌƒCƒ“ƒfƒbƒNƒX‚ğû‚ß‚ç‚ê‚éƒoƒbƒtƒ@‚ªŠm•Û‚³‚ê‚Ä‚¢‚È‚©‚Á‚½‚çŠm•Û
+			// æŒ‡å®šã®æ•°ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’åã‚ã‚‰ã‚Œã‚‹ãƒãƒƒãƒ•ã‚¡ãŒç¢ºä¿ã•ã‚Œã¦ã„ãªã‹ã£ãŸã‚‰ç¢ºä¿
 			if( GSYS.Resource.DrawCubeSet3DWorkIndexBufferSize[ 1 ] < Num &&
 				GSYS.Resource.DrawCubeSet3DWorkIndexBufferSize[ 1 ] < 8191 )
 			{
@@ -11255,7 +11255,7 @@ extern int NS_DrawCubeSet3D( CUBEDATA *CubeDataArray, int Num, int FillFlag )
 					GSYS.Resource.DrawCubeSet3DWorkIndexBuffer[ 1 ] = ( WORD * )DXREALLOC( GSYS.Resource.DrawCubeSet3DWorkIndexBuffer[ 1 ], GSYS.Resource.DrawCubeSet3DWorkIndexBufferSize[ 1 ] * sizeof( WORD ) * 36 ) ;
 				}
 
-				// ƒCƒ“ƒfƒbƒNƒX‚ÌŒÅ’è’l‚ğƒZƒbƒg
+				// ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã®å›ºå®šå€¤ã‚’ã‚»ãƒƒãƒˆ
 				Index = GSYS.Resource.DrawCubeSet3DWorkIndexBuffer[ 1 ] ;
 				j = 0 ;
 				for( i = 0 ; i < GSYS.Resource.DrawCubeSet3DWorkIndexBufferSize[ 1 ] ; i ++ )
@@ -11280,7 +11280,7 @@ extern int NS_DrawCubeSet3D( CUBEDATA *CubeDataArray, int Num, int FillFlag )
 		}
 		else
 		{
-			// w’è‚Ì”‚ÌƒCƒ“ƒfƒbƒNƒX‚ğû‚ß‚ç‚ê‚éƒoƒbƒtƒ@‚ªŠm•Û‚³‚ê‚Ä‚¢‚È‚©‚Á‚½‚çŠm•Û
+			// æŒ‡å®šã®æ•°ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’åã‚ã‚‰ã‚Œã‚‹ãƒãƒƒãƒ•ã‚¡ãŒç¢ºä¿ã•ã‚Œã¦ã„ãªã‹ã£ãŸã‚‰ç¢ºä¿
 			if( GSYS.Resource.DrawCubeSet3DWorkIndexBufferSize[ 2 ] < Num &&
 				GSYS.Resource.DrawCubeSet3DWorkIndexBufferSize[ 2 ] < 8191 )
 			{
@@ -11299,7 +11299,7 @@ extern int NS_DrawCubeSet3D( CUBEDATA *CubeDataArray, int Num, int FillFlag )
 					GSYS.Resource.DrawCubeSet3DWorkIndexBuffer[ 2 ] = ( WORD * )DXREALLOC( GSYS.Resource.DrawCubeSet3DWorkIndexBuffer[ 2 ], GSYS.Resource.DrawCubeSet3DWorkIndexBufferSize[ 2 ] * sizeof( WORD ) * 24 ) ;
 				}
 
-				// ƒCƒ“ƒfƒbƒNƒX‚ÌŒÅ’è’l‚ğƒZƒbƒg
+				// ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã®å›ºå®šå€¤ã‚’ã‚»ãƒƒãƒˆ
 				Index = GSYS.Resource.DrawCubeSet3DWorkIndexBuffer[ 2 ] ;
 				j = 0 ;
 				for( i = 0 ; i < GSYS.Resource.DrawCubeSet3DWorkIndexBufferSize[ 2 ] ; i ++ )
@@ -11323,12 +11323,12 @@ extern int NS_DrawCubeSet3D( CUBEDATA *CubeDataArray, int Num, int FillFlag )
 			}
 		}
 
-		// —§•û‘Ì‚Ì”‚¾‚¯ŒJ‚è•Ô‚µ
+		// ç«‹æ–¹ä½“ã®æ•°ã ã‘ç¹°ã‚Šè¿”ã—
 		Vertex = GSYS.Resource.DrawCubeSet3DWorkVertexBuffer[ 0 ] ;
 		j = 0 ;
 		for( k = 0 ; k < Num ; k ++, CubeDataArray ++ )
 		{
-			// ’¸“_ƒf[ƒ^‚Ìì¬
+			// é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ã®ä½œæˆ
 			Vertex[ 0 ].pos.x = CubeDataArray->Pos1.x ; Vertex[ 0 ].pos.y = CubeDataArray->Pos2.y ; Vertex[ 0 ].pos.z = CubeDataArray->Pos2.z ;
 			Vertex[ 1 ].pos.x = CubeDataArray->Pos2.x ; Vertex[ 1 ].pos.y = CubeDataArray->Pos2.y ; Vertex[ 1 ].pos.z = CubeDataArray->Pos2.z ;
 			Vertex[ 2 ].pos.x = CubeDataArray->Pos2.x ; Vertex[ 2 ].pos.y = CubeDataArray->Pos2.y ; Vertex[ 2 ].pos.z = CubeDataArray->Pos1.z ;
@@ -11347,7 +11347,7 @@ extern int NS_DrawCubeSet3D( CUBEDATA *CubeDataArray, int Num, int FillFlag )
 			Vertex[ 6 ].dif = CubeDataArray->DifColor ;	Vertex[ 6 ].spc = CubeDataArray->SpcColor ;
 			Vertex[ 7 ].dif = CubeDataArray->DifColor ;	Vertex[ 7 ].spc = CubeDataArray->SpcColor ;
 
-			// ’¸“_ƒf[ƒ^‚ªˆê”t‚É‚È‚Á‚½‚ç•`‰æ
+			// é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ãŒä¸€æ¯ã«ãªã£ãŸã‚‰æç”»
 			j ++ ;
 			if( j >= 8191 )
 			{
@@ -11375,7 +11375,7 @@ extern int NS_DrawCubeSet3D( CUBEDATA *CubeDataArray, int Num, int FillFlag )
 			}
 		}
 
-		// ’¸“_ƒf[ƒ^‚ªc‚Á‚Ä‚¢‚½‚ç•`‰æ
+		// é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ãŒæ®‹ã£ã¦ã„ãŸã‚‰æç”»
 		if( j > 0 )
 		{
 			if( FillFlag == TRUE )
@@ -11395,17 +11395,17 @@ extern int NS_DrawCubeSet3D( CUBEDATA *CubeDataArray, int Num, int FillFlag )
 		}
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ‚R‚c‚Ì‹…‘Ì‚ğ•`‰æ‚·‚é
+// ï¼“ï¼¤ã®çƒä½“ã‚’æç”»ã™ã‚‹
 extern int NS_DrawSphere3D( VECTOR CenterPos, float r, int DivNum, unsigned int DifColor, unsigned int SpcColor, int FillFlag )
 {
 	return NS_DrawSphere3DD( VConvFtoD( CenterPos ), r, DivNum, DifColor, SpcColor, FillFlag ) ;
 }
 
-// ‚R‚c‚Ì‹…‘Ì‚ğ•`‰æ‚·‚é
+// ï¼“ï¼¤ã®çƒä½“ã‚’æç”»ã™ã‚‹
 extern int NS_DrawSphere3DD( VECTOR_D CenterPos, double r, int DivNum, unsigned int DifColor, unsigned int SpcColor, int FillFlag )
 {
 	VERTEX3D *Vertex, *vert ;
@@ -11449,7 +11449,7 @@ extern int NS_DrawSphere3DD( VECTOR_D CenterPos, double r, int DivNum, unsigned 
 	SinCosTable2 = SinCosTable1 + CirVertNumV * 2 ;
 	Index = ( WORD * )( SinCosTable2 + CirVertNumH * 2 ) ;
 
-	// ’¸“_ƒf[ƒ^‚Ìì¬
+	// é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ã®ä½œæˆ
 	t1 = SinCosTable1 ;
 	t2 = SinCosTable2 ;
 	for( i = 0 ; i < CirVertNumH ; i ++, t2 += 2 )
@@ -11532,7 +11532,7 @@ extern int NS_DrawSphere3DD( VECTOR_D CenterPos, double r, int DivNum, unsigned 
 
 	vert ++ ;
 
-	// “h‚è‚Â‚Ô‚·‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+	// å¡—ã‚Šã¤ã¶ã™ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 	if( FillFlag )
 	{
 		ind = Index ;
@@ -11624,7 +11624,7 @@ extern int NS_DrawSphere3DD( VECTOR_D CenterPos, double r, int DivNum, unsigned 
 		NS_DrawPrimitiveIndexed3D( Vertex, vertnum, Index, indexnum, DX_PRIMTYPE_LINELIST, DX_NONE_GRAPH, TRUE ) ;
 	}
 
-	// ƒƒ‚ƒŠ‚Ì‰ğ•ú
+	// ãƒ¡ãƒ¢ãƒªã®è§£æ”¾
 	DXFREE( Vertex ) ;
 
 	if( GSYS.DrawSetting.Large3DPositionSupport )
@@ -11632,17 +11632,17 @@ extern int NS_DrawSphere3DD( VECTOR_D CenterPos, double r, int DivNum, unsigned 
 		Graphics_Draw_EndLarge3DPositionSupportDraw( &Large3DPosDrawInfo ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ‚R‚c‚ÌƒJƒvƒZƒ‹‚ğ•`‰æ
+// ï¼“ï¼¤ã®ã‚«ãƒ—ã‚»ãƒ«ã‚’æç”»
 extern int NS_DrawCapsule3D( VECTOR Pos1, VECTOR Pos2, float r, int DivNum, unsigned int DifColor, unsigned int SpcColor, int FillFlag )
 {
 	return NS_DrawCapsule3DD( VConvFtoD( Pos1 ), VConvFtoD( Pos2 ), r, DivNum, DifColor, SpcColor, FillFlag ) ;
 }
 
-// ‚R‚c‚ÌƒJƒvƒZƒ‹‚ğ•`‰æ
+// ï¼“ï¼¤ã®ã‚«ãƒ—ã‚»ãƒ«ã‚’æç”»
 extern int NS_DrawCapsule3DD( VECTOR_D Pos1, VECTOR_D Pos2, double r, int DivNum, unsigned int DifColor, unsigned int SpcColor, int FillFlag )
 {
 	VERTEX3D *Vertex, *vert1, *vert2 ;
@@ -11723,7 +11723,7 @@ extern int NS_DrawCapsule3DD( VECTOR_D Pos1, VECTOR_D Pos2, double r, int DivNum
 	ettopind     = ( CirVertNumV - 1 ) * CirVertNumH ;
 	etbotind     = CirVertNumV * CirVertNumH ;
 
-	// ’¸“_ƒf[ƒ^‚Ìì¬
+	// é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ã®ä½œæˆ
 	t1 = SinCosTable1 ;
 	t2 = SinCosTable2 ;
 	for( i = 0 ; i < CirVertNumH ; i ++, t2 += 2 )
@@ -11846,7 +11846,7 @@ extern int NS_DrawCapsule3DD( VECTOR_D Pos1, VECTOR_D Pos2, double r, int DivNum
 		vert1->norm.z = x * xvf.z + y * yvf.z + z * zvf.z ;
 	}
 
-	// “h‚è‚Â‚Ô‚·‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+	// å¡—ã‚Šã¤ã¶ã™ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 	if( FillFlag )
 	{
 		ind = Index ;
@@ -11862,7 +11862,7 @@ extern int NS_DrawCapsule3DD( VECTOR_D Pos1, VECTOR_D Pos2, double r, int DivNum
 
 		ind += 3 ;
 
-		// ã•”‚Ì‹…•”•ª‚ÌƒCƒ“ƒfƒbƒNƒXƒŠƒXƒg‚ğì¬
+		// ä¸Šéƒ¨ã®çƒéƒ¨åˆ†ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒªã‚¹ãƒˆã‚’ä½œæˆ
 		k = 0 ;
 		for( i = 0 ; i < CirVertNumV - 1 ; i ++, k += CirVertNumH )
 		{
@@ -11887,7 +11887,7 @@ extern int NS_DrawCapsule3DD( VECTOR_D Pos1, VECTOR_D Pos2, double r, int DivNum
 			ind += 6 ;
 		}
 
-		// ’†S‚Ì‰~’Œ•”•ª‚ÌƒCƒ“ƒfƒbƒNƒXƒŠƒXƒg‚ğì¬
+		// ä¸­å¿ƒã®å††æŸ±éƒ¨åˆ†ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒªã‚¹ãƒˆã‚’ä½œæˆ
 		for( i = 0 ; i < CirVertNumH - 1 ; i ++, ind += 6 )
 		{
 			ind[ 0 ] = ( WORD )( ettopind + i ) ;
@@ -11909,7 +11909,7 @@ extern int NS_DrawCapsule3DD( VECTOR_D Pos1, VECTOR_D Pos2, double r, int DivNum
 		ind += 6 ;
 		k += CirVertNumH ;
 
-		// ‰º•”‚Ì‹…•”•ª‚ÌƒCƒ“ƒfƒbƒNƒXƒŠƒXƒg‚ğì¬
+		// ä¸‹éƒ¨ã®çƒéƒ¨åˆ†ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒªã‚¹ãƒˆã‚’ä½œæˆ
 		for( i = 0 ; i < CirVertNumV - 1 ; i ++, k += CirVertNumH )
 		{
 			for( j = 0 ; j < CirVertNumH - 1 ; j ++, ind += 6 )
@@ -11983,7 +11983,7 @@ extern int NS_DrawCapsule3DD( VECTOR_D Pos1, VECTOR_D Pos2, double r, int DivNum
 		NS_DrawPrimitiveIndexed3D( Vertex, vertnum, Index, indexnum, DX_PRIMTYPE_LINELIST, DX_NONE_GRAPH, TRUE ) ;
 	}
 
-	// ƒƒ‚ƒŠ‚Ì‰ğ•ú
+	// ãƒ¡ãƒ¢ãƒªã®è§£æ”¾
 	DXFREE( Vertex ) ;
 
 	if( GSYS.DrawSetting.Large3DPositionSupport )
@@ -11991,17 +11991,17 @@ extern int NS_DrawCapsule3DD( VECTOR_D Pos1, VECTOR_D Pos2, double r, int DivNum
 		Graphics_Draw_EndLarge3DPositionSupportDraw( &Large3DPosDrawInfo ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ‚R‚c‚Ì‰~’Œ‚ğ•`‰æ‚·‚é
+// ï¼“ï¼¤ã®å††æŸ±ã‚’æç”»ã™ã‚‹
 extern int NS_DrawCylinder3D( VECTOR Pos1, VECTOR Pos2, float r, int DivNum, unsigned int DifColor, unsigned int SpcColor, int FillFlag )
 {
 	return NS_DrawCylinder3DD( VConvFtoD( Pos1 ), VConvFtoD( Pos2 ), r, DivNum, DifColor, SpcColor, FillFlag ) ;
 }
 
-// ‚R‚c‚Ì‰~’Œ‚ğ•`‰æ‚·‚é
+// ï¼“ï¼¤ã®å††æŸ±ã‚’æç”»ã™ã‚‹
 extern int NS_DrawCylinder3DD( VECTOR_D Pos1, VECTOR_D Pos2, double r, int DivNum, unsigned int DifColor, unsigned int SpcColor, int FillFlag )
 {
 	VERTEX3D *Vertex, *vert1, *vert2, *vert3, *vert4 ;
@@ -12064,7 +12064,7 @@ extern int NS_DrawCylinder3DD( VECTOR_D Pos1, VECTOR_D Pos2, double r, int DivNu
 	SinCosTable = ( float * )( Vertex + vertnum ) ;
 	Index       = ( WORD * )( SinCosTable + CirVertNum * 2 ) ;
 
-	// ’¸“_ƒf[ƒ^‚Ìì¬
+	// é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ã®ä½œæˆ
 	t = SinCosTable ;
 	for( i = 0 ; i < CirVertNum ; i ++, t += 2 )
 	{
@@ -12106,7 +12106,7 @@ extern int NS_DrawCylinder3DD( VECTOR_D Pos1, VECTOR_D Pos2, double r, int DivNu
 		vert4->su = 0.0f ; vert4->sv = 0.0f ;
 	}
 
-	// “h‚è‚Â‚Ô‚·‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+	// å¡—ã‚Šã¤ã¶ã™ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 	if( FillFlag )
 	{
 		ind = Index ;
@@ -12217,7 +12217,7 @@ extern int NS_DrawCylinder3DD( VECTOR_D Pos1, VECTOR_D Pos2, double r, int DivNu
 		NS_DrawPrimitiveIndexed3D( Vertex, vertnum, Index, indexnum, DX_PRIMTYPE_LINELIST, DX_NONE_GRAPH, TRUE ) ;
 	}
 
-	// ƒƒ‚ƒŠ‚Ì‰ğ•ú
+	// ãƒ¡ãƒ¢ãƒªã®è§£æ”¾
 	DXFREE( Vertex ) ;
 
 	if( GSYS.DrawSetting.Large3DPositionSupport )
@@ -12225,17 +12225,17 @@ extern int NS_DrawCylinder3DD( VECTOR_D Pos1, VECTOR_D Pos2, double r, int DivNu
 		Graphics_Draw_EndLarge3DPositionSupportDraw( &Large3DPosDrawInfo ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ‚R‚c‚Ì“›‚ğ•`‰æ‚·‚é
+// ï¼“ï¼¤ã®ç­’ã‚’æç”»ã™ã‚‹
 extern int NS_DrawTube3D( VECTOR Pos1, VECTOR Pos2, float r1, float r2, int DivNum, unsigned int DifColor, unsigned int SpcColor, int FillFlag )
 {
 	return NS_DrawTube3DD( VConvFtoD( Pos1 ), VConvFtoD( Pos2 ), r1, r2, DivNum, DifColor, SpcColor, FillFlag ) ;
 }
 
-// ‚R‚c‚Ì“›‚ğ•`‰æ‚·‚é
+// ï¼“ï¼¤ã®ç­’ã‚’æç”»ã™ã‚‹
 extern int NS_DrawTube3DD( VECTOR_D Pos1, VECTOR_D Pos2, double r1, double r2, int DivNum, unsigned int DifColor, unsigned int SpcColor, int FillFlag )
 {
 	VERTEX3D *Vertex, *vert1, *vert2, *vert3, *vert4, *vert5, *vert6, *vert7, *vert8 ;
@@ -12306,7 +12306,7 @@ extern int NS_DrawTube3DD( VECTOR_D Pos1, VECTOR_D Pos2, double r1, double r2, i
 	SinCosTable = ( float * )( Vertex + vertnum ) ;
 	Index       = ( WORD * )( SinCosTable + CirVertNum * 2 ) ;
 
-	// ’¸“_ƒf[ƒ^‚Ìì¬
+	// é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ã®ä½œæˆ
 	t = SinCosTable ;
 	for( i = 0 ; i < CirVertNum ; i ++, t += 2 )
 	{
@@ -12376,7 +12376,7 @@ extern int NS_DrawTube3DD( VECTOR_D Pos1, VECTOR_D Pos2, double r1, double r2, i
 		vert8->su = 0.0f ; vert8->sv = 0.0f ;
 	}
 
-	// “h‚è‚Â‚Ô‚·‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+	// å¡—ã‚Šã¤ã¶ã™ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 	if( FillFlag )
 	{
 		ind = Index ;
@@ -12541,7 +12541,7 @@ extern int NS_DrawTube3DD( VECTOR_D Pos1, VECTOR_D Pos2, double r1, double r2, i
 		NS_DrawPrimitiveIndexed3D( Vertex, vertnum, Index, indexnum, DX_PRIMTYPE_LINELIST, DX_NONE_GRAPH, TRUE ) ;
 	}
 
-	// ƒƒ‚ƒŠ‚Ì‰ğ•ú
+	// ãƒ¡ãƒ¢ãƒªã®è§£æ”¾
 	DXFREE( Vertex ) ;
 
 	if( GSYS.DrawSetting.Large3DPositionSupport )
@@ -12549,17 +12549,17 @@ extern int NS_DrawTube3DD( VECTOR_D Pos1, VECTOR_D Pos2, double r1, double r2, i
 		Graphics_Draw_EndLarge3DPositionSupportDraw( &Large3DPosDrawInfo ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ‚R‚c‚Ì‰~‚ğ•`‰æ‚·‚é
+// ï¼“ï¼¤ã®å††éŒã‚’æç”»ã™ã‚‹
 extern int NS_DrawCone3D( VECTOR TopPos, VECTOR BottomPos, float r, int DivNum, unsigned int DifColor, unsigned int SpcColor, int FillFlag )
 {
 	return NS_DrawCone3DD( VConvFtoD( TopPos ), VConvFtoD( BottomPos ), r, DivNum, DifColor, SpcColor, FillFlag ) ;
 }
 
-// ‚R‚c‚Ì‰~‚ğ•`‰æ‚·‚é
+// ï¼“ï¼¤ã®å††éŒã‚’æç”»ã™ã‚‹
 extern int NS_DrawCone3DD( VECTOR_D TopPos, VECTOR_D BottomPos, double r, int DivNum, unsigned int DifColor, unsigned int SpcColor, int FillFlag )
 {
 	VERTEX3D *Vertex, *vert1, *vert2, *vert3 ;
@@ -12621,7 +12621,7 @@ extern int NS_DrawCone3DD( VECTOR_D TopPos, VECTOR_D BottomPos, double r, int Di
 	SinCosTable = ( float * )( Vertex + vertnum ) ;
 	Index       = ( WORD * )( SinCosTable + CirVertNum * 2 ) ;
 
-	// ’¸“_ƒf[ƒ^‚Ìì¬
+	// é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ã®ä½œæˆ
 	t = SinCosTable ;
 	for( i = 0 ; i < CirVertNum ; i ++, t += 2 )
 	{
@@ -12655,7 +12655,7 @@ extern int NS_DrawCone3DD( VECTOR_D TopPos, VECTOR_D BottomPos, double r, int Di
 		vert3->su = 0.0f ; vert3->sv = 0.0f ;
 	}
 
-	// “h‚è‚Â‚Ô‚·‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+	// å¡—ã‚Šã¤ã¶ã™ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 	if( FillFlag )
 	{
 		ind = Index ;
@@ -12717,7 +12717,7 @@ extern int NS_DrawCone3DD( VECTOR_D TopPos, VECTOR_D BottomPos, double r, int Di
 		NS_DrawPrimitiveIndexed3D( Vertex, vertnum, Index, indexnum, DX_PRIMTYPE_LINELIST, DX_NONE_GRAPH, TRUE ) ;
 	}
 
-	// ƒƒ‚ƒŠ‚Ì‰ğ•ú
+	// ãƒ¡ãƒ¢ãƒªã®è§£æ”¾
 	DXFREE( Vertex ) ;
 
 	if( GSYS.DrawSetting.Large3DPositionSupport )
@@ -12725,7 +12725,7 @@ extern int NS_DrawCone3DD( VECTOR_D TopPos, VECTOR_D BottomPos, double r, int Di
 		Graphics_Draw_EndLarge3DPositionSupportDraw( &Large3DPosDrawInfo ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
@@ -12754,9 +12754,9 @@ extern int NS_DrawCone3DD( VECTOR_D TopPos, VECTOR_D BottomPos, double r, int Di
 
 
 
-// ‰æ‘œ•`‰æŠÖ”
+// ç”»åƒæç”»é–¢æ•°
 
-// ‚a‚l‚oƒtƒ@ƒCƒ‹‚ğ“Ç‚İ‚±‚ñ‚Å‰æ–Ê‚É•`‰æ‚·‚é
+// ï¼¢ï¼­ï¼°ãƒ•ã‚¡ã‚¤ãƒ«ã‚’èª­ã¿ã“ã‚“ã§ç”»é¢ã«æç”»ã™ã‚‹
 extern	int NS_LoadGraphScreen( int x, int y, const TCHAR *GraphName, int TransFlag )
 {
 #ifdef UNICODE
@@ -12778,7 +12778,7 @@ extern	int NS_LoadGraphScreen( int x, int y, const TCHAR *GraphName, int TransFl
 #endif
 }
 
-// ‰æ‘œƒtƒ@ƒCƒ‹‚ğ“Ç‚İ‚±‚ñ‚Å‰æ–Ê‚É•`‰æ‚·‚é
+// ç”»åƒãƒ•ã‚¡ã‚¤ãƒ«ã‚’èª­ã¿ã“ã‚“ã§ç”»é¢ã«æç”»ã™ã‚‹
 extern int NS_LoadGraphScreenWithStrLen( int x, int y, const TCHAR *GraphName, size_t GraphNameLength, int TransFlag )
 {
 	int Result ;
@@ -12794,7 +12794,7 @@ extern int NS_LoadGraphScreenWithStrLen( int x, int y, const TCHAR *GraphName, s
 	return Result ;
 }
 
-// ‚a‚l‚oƒtƒ@ƒCƒ‹‚ğ“Ç‚İ‚±‚ñ‚Å‰æ–Ê‚É•`‰æ‚·‚é
+// ï¼¢ï¼­ï¼°ãƒ•ã‚¡ã‚¤ãƒ«ã‚’èª­ã¿ã“ã‚“ã§ç”»é¢ã«æç”»ã™ã‚‹
 extern	int LoadGraphScreen_WCHAR_T( int x, int y, const wchar_t *GraphName, int TransFlag )
 {
 	int GrHandle ;
@@ -12802,7 +12802,7 @@ extern	int LoadGraphScreen_WCHAR_T( int x, int y, const wchar_t *GraphName, int 
 	
 //	if( GSYS.NotDrawFlag ) return 0 ;
 
-	// ƒOƒ‰ƒtƒBƒbƒN‚ğ“Ç‚İ‚±‚Ş
+	// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚’èª­ã¿ã“ã‚€
 	Graphics_Image_InitLoadGraphGParam( &GParam ) ;
 	GrHandle = Graphics_Image_LoadBmpToGraph_UseGParam( &GParam, FALSE, -1, GraphName, TRUE, FALSE, DX_MOVIESURFACE_NORMAL, FALSE ) ;
 	if( GrHandle < 0 )
@@ -12810,17 +12810,17 @@ extern	int LoadGraphScreen_WCHAR_T( int x, int y, const wchar_t *GraphName, int 
 		return -1 ;
 	}
 
-	// ƒOƒ‰ƒtƒBƒbƒN‚Ì•`‰æ
+	// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®æç”»
 	NS_DrawGraph( x, y, GrHandle, TransFlag ) ;
 
-	// ƒOƒ‰ƒtƒBƒbƒN‚Ìíœ
+	// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®å‰Šé™¤
 	SubHandle( GrHandle, FALSE, FALSE ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒOƒ‰ƒtƒBƒbƒN‚Ì•`‰æ
+// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®æç”»
 #define SETDRAWRECTCODE\
 	SETRECT( DrawRect, x, y, x + Image->WidthI, y + Image->HeightI )\
 	DRAWRECT_DRAWAREA_CLIP
@@ -12830,17 +12830,17 @@ extern	int NS_DrawGraph( int x, int y, int GrHandle, int TransFlag )
 	IMAGEDATA *BlendImage ;
 	int Ret ;
 
-	// ‰Šú‰»”»’è
+	// åˆæœŸåŒ–åˆ¤å®š
 	if( DxSysData.DxLib_InitializeFlag == FALSE ) return -1 ;
 
-	// ”ñ•`‰æİ’è‚ª‚³‚ê‚Ä‚¢‚éê‡‚Í‰½‚à‚¹‚¸I—¹
+	// éæç”»è¨­å®šãŒã•ã‚Œã¦ã„ã‚‹å ´åˆã¯ä½•ã‚‚ã›ãšçµ‚äº†
 	if( /* GSYS.NotDrawFlag || */ GSYS.DrawSetting.NotDrawFlagInSetDrawArea )
 		return 0 ;
 
-	// ƒ\ƒtƒg‚ª”ñƒAƒNƒeƒBƒu‚Ìê‡‚ÍƒAƒNƒeƒBƒu‚É‚È‚é‚Ü‚Å‘Ò‚Â
+	// ã‚½ãƒ•ãƒˆãŒéã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã®å ´åˆã¯ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ãªã‚‹ã¾ã§å¾…ã¤
 	CheckActiveState() ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( GRAPHCHK( GrHandle, Image ) )
 		return -1 ;
 	BlendImage = NULL ;
@@ -12848,7 +12848,7 @@ extern	int NS_DrawGraph( int x, int y, int GrHandle, int TransFlag )
 	{
 		GRAPHCHK( GSYS.DrawSetting.BlendGraph, BlendImage ) ;
 
-		// ƒuƒŒƒ“ƒhƒeƒNƒXƒ`ƒƒ‚ğg—p‚·‚éê‡A•`‰æ‰æ‘œ‚æ‚è‚à¬‚³‚©‚Á‚½‚çƒGƒ‰[
+		// ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ä½¿ç”¨ã™ã‚‹å ´åˆã€æç”»ç”»åƒã‚ˆã‚Šã‚‚å°ã•ã‹ã£ãŸã‚‰ã‚¨ãƒ©ãƒ¼
 		if( Graphics_Image_CheckBlendGraphSize( Image ) ) return -1 ;
 	}
 
@@ -12857,11 +12857,11 @@ extern	int NS_DrawGraph( int x, int y, int GrHandle, int TransFlag )
 		UpdateMovie( Image->Orig->MovieHandle, FALSE ) ;
 #endif
 
-	// ‚Q‚cs—ñ‚ğƒn[ƒhƒEƒGƒA‚É”½‰f‚·‚é
+	// ï¼’ï¼¤è¡Œåˆ—ã‚’ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã«åæ˜ ã™ã‚‹
 	if( GSYS.DrawSetting.MatchHardware_2DMatrix == FALSE && GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )
 		Graphics_DrawSetting_ApplyLib2DMatrixToHardware() ;
 
-	// •`‰æ
+	// æç”»
 	DRAW_DEF( 
 		Graphics_Hardware_DrawGraph_PF( x, y, ( float )x, ( float )y, Image, BlendImage, TransFlag, TRUE ),
 		Graphics_Software_DrawGraph(    x, y,                         Image,             TransFlag       ),
@@ -12870,11 +12870,11 @@ extern	int NS_DrawGraph( int x, int y, int GrHandle, int TransFlag )
 		Image->Orig->FormatDesc.TextureFlag
 	)
 
-	// I—¹
+	// çµ‚äº†
 	return Ret ;
 }
 
-// ƒOƒ‰ƒtƒBƒbƒN‚Ì•`‰æ
+// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®æç”»
 extern	int NS_DrawGraphF( float xf, float yf, int GrHandle, int TransFlag )
 {
 	IMAGEDATA *Image ;
@@ -12888,10 +12888,10 @@ extern	int NS_DrawGraphF( float xf, float yf, int GrHandle, int TransFlag )
 	if( /* GSYS.NotDrawFlag || */ GSYS.DrawSetting.NotDrawFlagInSetDrawArea )
 		return 0 ;
 
-	// ƒ\ƒtƒg‚ª”ñƒAƒNƒeƒBƒu‚Ìê‡‚ÍƒAƒNƒeƒBƒu‚É‚È‚é‚Ü‚Å‘Ò‚Â
+	// ã‚½ãƒ•ãƒˆãŒéã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã®å ´åˆã¯ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ãªã‚‹ã¾ã§å¾…ã¤
 	CheckActiveState() ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( GRAPHCHK( GrHandle, Image ) )
 		return -1 ;
 	BlendImage = NULL ;
@@ -12899,7 +12899,7 @@ extern	int NS_DrawGraphF( float xf, float yf, int GrHandle, int TransFlag )
 	{
 		GRAPHCHK( GSYS.DrawSetting.BlendGraph, BlendImage ) ;
 
-		// ƒuƒŒƒ“ƒhƒeƒNƒXƒ`ƒƒ‚ğg—p‚·‚éê‡A•`‰æ‰æ‘œ‚æ‚è‚à¬‚³‚©‚Á‚½‚çƒGƒ‰[
+		// ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ä½¿ç”¨ã™ã‚‹å ´åˆã€æç”»ç”»åƒã‚ˆã‚Šã‚‚å°ã•ã‹ã£ãŸã‚‰ã‚¨ãƒ©ãƒ¼
 		if( Graphics_Image_CheckBlendGraphSize( Image ) ) return -1 ;
 	}
 
@@ -12908,11 +12908,11 @@ extern	int NS_DrawGraphF( float xf, float yf, int GrHandle, int TransFlag )
 		UpdateMovie( Image->Orig->MovieHandle, FALSE ) ;
 #endif
 
-	// ‚Q‚cs—ñ‚ğƒn[ƒhƒEƒGƒA‚É”½‰f‚·‚é
+	// ï¼’ï¼¤è¡Œåˆ—ã‚’ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã«åæ˜ ã™ã‚‹
 	if( GSYS.DrawSetting.MatchHardware_2DMatrix == FALSE && GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )
 		Graphics_DrawSetting_ApplyLib2DMatrixToHardware() ;
 
-	// •`‰æ
+	// æç”»
 	DRAW_DEF(
 		Graphics_Hardware_DrawGraph_PF( x, y, xf, yf, Image, BlendImage, TransFlag, FALSE ),
 		Graphics_Software_DrawGraph(    x, y,         Image,             TransFlag        ),
@@ -12921,12 +12921,12 @@ extern	int NS_DrawGraphF( float xf, float yf, int GrHandle, int TransFlag )
 		Image->Orig->FormatDesc.TextureFlag
 	)
 
-	// I—¹
+	// çµ‚äº†
 	return Ret ;
 }
 #undef SETDRAWRECTCODE
 
-// ƒOƒ‰ƒtƒBƒbƒN‚ÌŠg‘åk¬•`‰æ
+// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®æ‹¡å¤§ç¸®å°æç”»
 #define SETDRAWRECTCODE\
 	SETRECT( DrawRect, x1, y1, x2, y2 ) ;\
 	if( x1 > x2 ){ DrawRect.left = x2 ; DrawRect.right = x1; }\
@@ -12942,10 +12942,10 @@ extern	int NS_DrawExtendGraph( int x1, int y1, int x2, int y2, int GrHandle, int
 	if( /* GSYS.NotDrawFlag || */ GSYS.DrawSetting.NotDrawFlagInSetDrawArea )
 		return 0 ;
 
-	// ƒ\ƒtƒg‚ª”ñƒAƒNƒeƒBƒu‚Ìê‡‚ÍƒAƒNƒeƒBƒu‚É‚È‚é‚Ü‚Å‘Ò‚Â
+	// ã‚½ãƒ•ãƒˆãŒéã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã®å ´åˆã¯ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ãªã‚‹ã¾ã§å¾…ã¤
 	CheckActiveState() ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( GRAPHCHK( GrHandle, Image ) )
 		return -1 ;
 	BlendImage = NULL ;
@@ -12953,7 +12953,7 @@ extern	int NS_DrawExtendGraph( int x1, int y1, int x2, int y2, int GrHandle, int
 	{
 		GRAPHCHK( GSYS.DrawSetting.BlendGraph, BlendImage ) ;
 
-		// ƒuƒŒƒ“ƒhƒeƒNƒXƒ`ƒƒ‚ğg—p‚·‚éê‡A•`‰æ‰æ‘œ‚æ‚è‚à¬‚³‚©‚Á‚½‚çƒGƒ‰[
+		// ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ä½¿ç”¨ã™ã‚‹å ´åˆã€æç”»ç”»åƒã‚ˆã‚Šã‚‚å°ã•ã‹ã£ãŸã‚‰ã‚¨ãƒ©ãƒ¼
 		if( Graphics_Image_CheckBlendGraphSize( Image ) ) return -1 ;
 	}
 
@@ -12962,11 +12962,11 @@ extern	int NS_DrawExtendGraph( int x1, int y1, int x2, int y2, int GrHandle, int
 		UpdateMovie( Image->Orig->MovieHandle, FALSE ) ;
 #endif
 
-	// ‚Q‚cs—ñ‚ğƒn[ƒhƒEƒGƒA‚É”½‰f‚·‚é
+	// ï¼’ï¼¤è¡Œåˆ—ã‚’ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã«åæ˜ ã™ã‚‹
 	if( GSYS.DrawSetting.MatchHardware_2DMatrix == FALSE && GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )
 		Graphics_DrawSetting_ApplyLib2DMatrixToHardware() ;
 
-	// ƒeƒNƒXƒ`ƒƒ‚Ìê‡‚Æ‚»‚êˆÈŠO‚Åˆ—‚ğ•ªŠò
+	// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®å ´åˆã¨ãã‚Œä»¥å¤–ã§å‡¦ç†ã‚’åˆ†å²
 	DRAW_DEF(
 		Graphics_Hardware_DrawExtendGraph_PF( x1, y1, x2, y2, (float)x1, (float)y1, (float)x2, (float)y2, Image, BlendImage, TransFlag, TRUE ),
 		Graphics_Software_DrawExtendGraph(    x1, y1, x2, y2,                                             Image,             TransFlag       ),
@@ -12975,11 +12975,11 @@ extern	int NS_DrawExtendGraph( int x1, int y1, int x2, int y2, int GrHandle, int
 		Image->Orig->FormatDesc.TextureFlag
 	)
 
-	// I—¹
+	// çµ‚äº†
 	return Ret ;
 }
 
-// ƒOƒ‰ƒtƒBƒbƒN‚ÌŠg‘åk¬•`‰æ
+// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®æ‹¡å¤§ç¸®å°æç”»
 extern	int NS_DrawExtendGraphF( float x1f, float y1f, float x2f, float y2f, int GrHandle, int TransFlag )
 {
 	IMAGEDATA *Image ;
@@ -12995,10 +12995,10 @@ extern	int NS_DrawExtendGraphF( float x1f, float y1f, float x2f, float y2f, int 
 	if( /* GSYS.NotDrawFlag || */ GSYS.DrawSetting.NotDrawFlagInSetDrawArea )
 		return 0 ;
 
-	// ƒ\ƒtƒg‚ª”ñƒAƒNƒeƒBƒu‚Ìê‡‚ÍƒAƒNƒeƒBƒu‚É‚È‚é‚Ü‚Å‘Ò‚Â
+	// ã‚½ãƒ•ãƒˆãŒéã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã®å ´åˆã¯ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ãªã‚‹ã¾ã§å¾…ã¤
 	CheckActiveState() ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( GRAPHCHK( GrHandle, Image ) )
 		return -1 ;
 	BlendImage = NULL ;
@@ -13006,7 +13006,7 @@ extern	int NS_DrawExtendGraphF( float x1f, float y1f, float x2f, float y2f, int 
 	{
 		GRAPHCHK( GSYS.DrawSetting.BlendGraph, BlendImage ) ;
 
-		// ƒuƒŒƒ“ƒhƒeƒNƒXƒ`ƒƒ‚ğg—p‚·‚éê‡A•`‰æ‰æ‘œ‚æ‚è‚à¬‚³‚©‚Á‚½‚çƒGƒ‰[
+		// ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ä½¿ç”¨ã™ã‚‹å ´åˆã€æç”»ç”»åƒã‚ˆã‚Šã‚‚å°ã•ã‹ã£ãŸã‚‰ã‚¨ãƒ©ãƒ¼
 		if( Graphics_Image_CheckBlendGraphSize( Image ) ) return -1 ;
 	}
 
@@ -13015,11 +13015,11 @@ extern	int NS_DrawExtendGraphF( float x1f, float y1f, float x2f, float y2f, int 
 		UpdateMovie( Image->Orig->MovieHandle, FALSE ) ;
 #endif
 
-	// ‚Q‚cs—ñ‚ğƒn[ƒhƒEƒGƒA‚É”½‰f‚·‚é
+	// ï¼’ï¼¤è¡Œåˆ—ã‚’ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã«åæ˜ ã™ã‚‹
 	if( GSYS.DrawSetting.MatchHardware_2DMatrix == FALSE && GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )
 		Graphics_DrawSetting_ApplyLib2DMatrixToHardware() ;
 
-	// •`‰æ
+	// æç”»
 	DRAW_DEF(
 		Graphics_Hardware_DrawExtendGraph_PF( x1, y1, x2, y2, x1f, y1f, x2f, y2f, Image, BlendImage, TransFlag, FALSE ),
 		Graphics_Software_DrawExtendGraph(    x1, y1, x2, y2,                     Image,             TransFlag        ),
@@ -13028,13 +13028,13 @@ extern	int NS_DrawExtendGraphF( float x1f, float y1f, float x2f, float y2f, int 
 		Image->Orig->FormatDesc.TextureFlag
 	)
 
-	// I—¹
+	// çµ‚äº†
 	return Ret ;
 }
 
 #undef SETDRAWRECTCODE
 
-// ƒOƒ‰ƒtƒBƒbƒN‚Ì‰ñ“]•`‰æ
+// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®å›è»¢æç”»
 #define SETDRAWRECTCODE\
 	int Width, Height ;\
 	int i ;\
@@ -13092,10 +13092,10 @@ extern	int NS_DrawRotaGraph( int x, int y, double ExRate, double Angle, int GrHa
 	if( /* GSYS.NotDrawFlag || */ GSYS.DrawSetting.NotDrawFlagInSetDrawArea )
 		return 0 ;
 
-	// ƒ\ƒtƒg‚ª”ñƒAƒNƒeƒBƒu‚Ìê‡‚ÍƒAƒNƒeƒBƒu‚É‚È‚é‚Ü‚Å‘Ò‚Â
+	// ã‚½ãƒ•ãƒˆãŒéã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã®å ´åˆã¯ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ãªã‚‹ã¾ã§å¾…ã¤
 	CheckActiveState() ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( GRAPHCHK( GrHandle, Image ) )
 		return -1 ;
 	BlendImage = NULL ;
@@ -13103,7 +13103,7 @@ extern	int NS_DrawRotaGraph( int x, int y, double ExRate, double Angle, int GrHa
 	{
 		GRAPHCHK( GSYS.DrawSetting.BlendGraph, BlendImage ) ;
 
-		// ƒuƒŒƒ“ƒhƒeƒNƒXƒ`ƒƒ‚ğg—p‚·‚éê‡A•`‰æ‰æ‘œ‚æ‚è‚à¬‚³‚©‚Á‚½‚çƒGƒ‰[
+		// ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ä½¿ç”¨ã™ã‚‹å ´åˆã€æç”»ç”»åƒã‚ˆã‚Šã‚‚å°ã•ã‹ã£ãŸã‚‰ã‚¨ãƒ©ãƒ¼
 		if( Graphics_Image_CheckBlendGraphSize( Image ) ) return -1 ;
 	}
 
@@ -13112,11 +13112,11 @@ extern	int NS_DrawRotaGraph( int x, int y, double ExRate, double Angle, int GrHa
 		UpdateMovie( Image->Orig->MovieHandle, FALSE ) ;
 #endif
 
-	// ‚Q‚cs—ñ‚ğƒn[ƒhƒEƒGƒA‚É”½‰f‚·‚é
+	// ï¼’ï¼¤è¡Œåˆ—ã‚’ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã«åæ˜ ã™ã‚‹
 	if( GSYS.DrawSetting.MatchHardware_2DMatrix == FALSE && GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )
 		Graphics_DrawSetting_ApplyLib2DMatrixToHardware() ;
 
-	// •`‰æ
+	// æç”»
 	DRAW_DEF(
 		Graphics_Hardware_DrawRotaGraph_PF( x, y, (float)x, (float)y, ExRate, Angle, Image, BlendImage, TransFlag, ReverseXFlag, ReverseYFlag, TRUE ),
 		Graphics_Software_DrawRotaGraph(          (float)x, (float)y, ExRate, Angle, Image,             TransFlag, ReverseXFlag, ReverseYFlag       ),
@@ -13125,11 +13125,11 @@ extern	int NS_DrawRotaGraph( int x, int y, double ExRate, double Angle, int GrHa
 		Image->Orig->FormatDesc.TextureFlag
 	)
 
-	// I—¹
+	// çµ‚äº†
 	return Ret ;
 }
 
-// ƒOƒ‰ƒtƒBƒbƒN‚Ì‰ñ“]•`‰æ
+// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®å›è»¢æç”»
 extern	int NS_DrawRotaGraphF( float xf, float yf, double ExRate, double Angle, int GrHandle, int TransFlag, int ReverseXFlag, int ReverseYFlag )
 {
 	IMAGEDATA *Image ;
@@ -13143,10 +13143,10 @@ extern	int NS_DrawRotaGraphF( float xf, float yf, double ExRate, double Angle, i
 	if( /* GSYS.NotDrawFlag || */ GSYS.DrawSetting.NotDrawFlagInSetDrawArea )
 		return 0 ;
 
-	// ƒ\ƒtƒg‚ª”ñƒAƒNƒeƒBƒu‚Ìê‡‚ÍƒAƒNƒeƒBƒu‚É‚È‚é‚Ü‚Å‘Ò‚Â
+	// ã‚½ãƒ•ãƒˆãŒéã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã®å ´åˆã¯ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ãªã‚‹ã¾ã§å¾…ã¤
 	CheckActiveState() ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( GRAPHCHK( GrHandle, Image ) )
 		return -1 ;
 	BlendImage = NULL ;
@@ -13154,7 +13154,7 @@ extern	int NS_DrawRotaGraphF( float xf, float yf, double ExRate, double Angle, i
 	{
 		GRAPHCHK( GSYS.DrawSetting.BlendGraph, BlendImage ) ;
 
-		// ƒuƒŒƒ“ƒhƒeƒNƒXƒ`ƒƒ‚ğg—p‚·‚éê‡A•`‰æ‰æ‘œ‚æ‚è‚à¬‚³‚©‚Á‚½‚çƒGƒ‰[
+		// ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ä½¿ç”¨ã™ã‚‹å ´åˆã€æç”»ç”»åƒã‚ˆã‚Šã‚‚å°ã•ã‹ã£ãŸã‚‰ã‚¨ãƒ©ãƒ¼
 		if( Graphics_Image_CheckBlendGraphSize( Image ) ) return -1 ;
 	}
 
@@ -13163,11 +13163,11 @@ extern	int NS_DrawRotaGraphF( float xf, float yf, double ExRate, double Angle, i
 		UpdateMovie( Image->Orig->MovieHandle, FALSE ) ;
 #endif
 
-	// ‚Q‚cs—ñ‚ğƒn[ƒhƒEƒGƒA‚É”½‰f‚·‚é
+	// ï¼’ï¼¤è¡Œåˆ—ã‚’ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã«åæ˜ ã™ã‚‹
 	if( GSYS.DrawSetting.MatchHardware_2DMatrix == FALSE && GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )
 		Graphics_DrawSetting_ApplyLib2DMatrixToHardware() ;
 
-	// •`‰æ
+	// æç”»
 	DRAW_DEF(
 		Graphics_Hardware_DrawRotaGraph_PF( x, y, xf, yf, ExRate, Angle, Image, BlendImage, TransFlag, ReverseXFlag, ReverseYFlag, FALSE ),
 		Graphics_Software_DrawRotaGraph(          xf, yf, ExRate, Angle, Image,             TransFlag, ReverseXFlag, ReverseYFlag        ),
@@ -13176,13 +13176,13 @@ extern	int NS_DrawRotaGraphF( float xf, float yf, double ExRate, double Angle, i
 		Image->Orig->FormatDesc.TextureFlag
 	)
 
-	// I—¹
+	// çµ‚äº†
 	return Ret ;
 }
 
 #undef SETDRAWRECTCODE
 
-// ƒOƒ‰ƒtƒBƒbƒN‚Ì‰ñ“]•`‰æ
+// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®å›è»¢æç”»
 #define SETDRAWRECTCODE\
 	int Width, Height ;\
 	int i ;\
@@ -13237,10 +13237,10 @@ extern	int NS_DrawRotaGraphFast( int x, int y, float ExRate, float Angle, int Gr
 	if( /* GSYS.NotDrawFlag || */ GSYS.DrawSetting.NotDrawFlagInSetDrawArea )
 		return 0 ;
 
-	// ƒ\ƒtƒg‚ª”ñƒAƒNƒeƒBƒu‚Ìê‡‚ÍƒAƒNƒeƒBƒu‚É‚È‚é‚Ü‚Å‘Ò‚Â
+	// ã‚½ãƒ•ãƒˆãŒéã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã®å ´åˆã¯ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ãªã‚‹ã¾ã§å¾…ã¤
 	CheckActiveState() ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( GRAPHCHK( GrHandle, Image ) )
 		return -1 ;
 	BlendImage = NULL ;
@@ -13248,7 +13248,7 @@ extern	int NS_DrawRotaGraphFast( int x, int y, float ExRate, float Angle, int Gr
 	{
 		GRAPHCHK( GSYS.DrawSetting.BlendGraph, BlendImage ) ;
 
-		// ƒuƒŒƒ“ƒhƒeƒNƒXƒ`ƒƒ‚ğg—p‚·‚éê‡A•`‰æ‰æ‘œ‚æ‚è‚à¬‚³‚©‚Á‚½‚çƒGƒ‰[
+		// ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ä½¿ç”¨ã™ã‚‹å ´åˆã€æç”»ç”»åƒã‚ˆã‚Šã‚‚å°ã•ã‹ã£ãŸã‚‰ã‚¨ãƒ©ãƒ¼
 		if( Graphics_Image_CheckBlendGraphSize( Image ) ) return -1 ;
 	}
 
@@ -13257,11 +13257,11 @@ extern	int NS_DrawRotaGraphFast( int x, int y, float ExRate, float Angle, int Gr
 		UpdateMovie( Image->Orig->MovieHandle, FALSE ) ;
 #endif
 
-	// ‚Q‚cs—ñ‚ğƒn[ƒhƒEƒGƒA‚É”½‰f‚·‚é
+	// ï¼’ï¼¤è¡Œåˆ—ã‚’ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã«åæ˜ ã™ã‚‹
 	if( GSYS.DrawSetting.MatchHardware_2DMatrix == FALSE && GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )
 		Graphics_DrawSetting_ApplyLib2DMatrixToHardware() ;
 
-	// •`‰æ
+	// æç”»
 	DRAW_DEF(
 		Graphics_Hardware_DrawRotaGraphFast_PF( x, y, (float)x, (float)y, ExRate, Angle, Image, BlendImage, TransFlag, ReverseXFlag, ReverseYFlag, TRUE ),
 		Graphics_Software_DrawRotaGraphFast(          (float)x, (float)y, ExRate, Angle, Image,             TransFlag, ReverseXFlag, ReverseYFlag       ),
@@ -13270,11 +13270,11 @@ extern	int NS_DrawRotaGraphFast( int x, int y, float ExRate, float Angle, int Gr
 		Image->Orig->FormatDesc.TextureFlag
 	)
 
-	// I—¹
+	// çµ‚äº†
 	return Ret ;
 }
 
-// ƒOƒ‰ƒtƒBƒbƒN‚Ì‰ñ“]•`‰æA‚‘¬”Å
+// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®å›è»¢æç”»ã€é«˜é€Ÿç‰ˆ
 extern	int NS_DrawRotaGraphFastF( float xf, float yf, float ExRate, float Angle, int GrHandle, int TransFlag, int ReverseXFlag, int ReverseYFlag )
 {
 	IMAGEDATA *Image ;
@@ -13288,10 +13288,10 @@ extern	int NS_DrawRotaGraphFastF( float xf, float yf, float ExRate, float Angle,
 	if( /* GSYS.NotDrawFlag || */ GSYS.DrawSetting.NotDrawFlagInSetDrawArea )
 		return 0 ;
 
-	// ƒ\ƒtƒg‚ª”ñƒAƒNƒeƒBƒu‚Ìê‡‚ÍƒAƒNƒeƒBƒu‚É‚È‚é‚Ü‚Å‘Ò‚Â
+	// ã‚½ãƒ•ãƒˆãŒéã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã®å ´åˆã¯ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ãªã‚‹ã¾ã§å¾…ã¤
 	CheckActiveState() ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( GRAPHCHK( GrHandle, Image ) )
 		return -1 ;
 	BlendImage = NULL ;
@@ -13299,7 +13299,7 @@ extern	int NS_DrawRotaGraphFastF( float xf, float yf, float ExRate, float Angle,
 	{
 		GRAPHCHK( GSYS.DrawSetting.BlendGraph, BlendImage ) ;
 
-		// ƒuƒŒƒ“ƒhƒeƒNƒXƒ`ƒƒ‚ğg—p‚·‚éê‡A•`‰æ‰æ‘œ‚æ‚è‚à¬‚³‚©‚Á‚½‚çƒGƒ‰[
+		// ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ä½¿ç”¨ã™ã‚‹å ´åˆã€æç”»ç”»åƒã‚ˆã‚Šã‚‚å°ã•ã‹ã£ãŸã‚‰ã‚¨ãƒ©ãƒ¼
 		if( Graphics_Image_CheckBlendGraphSize( Image ) ) return -1 ;
 	}
 
@@ -13308,11 +13308,11 @@ extern	int NS_DrawRotaGraphFastF( float xf, float yf, float ExRate, float Angle,
 		UpdateMovie( Image->Orig->MovieHandle, FALSE ) ;
 #endif
 
-	// ‚Q‚cs—ñ‚ğƒn[ƒhƒEƒGƒA‚É”½‰f‚·‚é
+	// ï¼’ï¼¤è¡Œåˆ—ã‚’ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã«åæ˜ ã™ã‚‹
 	if( GSYS.DrawSetting.MatchHardware_2DMatrix == FALSE && GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )
 		Graphics_DrawSetting_ApplyLib2DMatrixToHardware() ;
 
-	// •`‰æ
+	// æç”»
 	DRAW_DEF(
 		Graphics_Hardware_DrawRotaGraphFast_PF( x, y, xf, yf, ExRate, Angle, Image, BlendImage, TransFlag, ReverseXFlag, ReverseYFlag, FALSE ),
 		Graphics_Software_DrawRotaGraphFast(          xf, yf, ExRate, Angle, Image,             TransFlag, ReverseXFlag, ReverseYFlag        ),
@@ -13321,13 +13321,13 @@ extern	int NS_DrawRotaGraphFastF( float xf, float yf, float ExRate, float Angle,
 		Image->Orig->FormatDesc.TextureFlag
 	)
 
-	// I—¹
+	// çµ‚äº†
 	return Ret ;
 }
 
 #undef SETDRAWRECTCODE
 
-// ƒOƒ‰ƒtƒBƒbƒN‚Ì‰ñ“]•`‰æ‚Q
+// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®å›è»¢æç”»ï¼’
 extern	int NS_DrawRotaGraph2( int x, int y, int cx, int cy, double ExtRate, double Angle, int GrHandle, int TransFlag, int ReverseXFlag, int ReverseYFlag )
 {
 	int w, h ;
@@ -13344,7 +13344,7 @@ extern	int NS_DrawRotaGraph2( int x, int y, int cx, int cy, double ExtRate, doub
 	}
 }
 
-// ƒOƒ‰ƒtƒBƒbƒN‚Ì‰ñ“]•`‰æ‚QA‚‘¬”Å
+// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®å›è»¢æç”»ï¼’ã€é«˜é€Ÿç‰ˆ
 extern	int NS_DrawRotaGraphFast2( int x, int y, int cx, int cy, float ExtRate, float Angle, int GrHandle, int TransFlag, int ReverseXFlag, int ReverseYFlag )
 {
 	int w, h ;
@@ -13362,30 +13362,30 @@ extern	int NS_DrawRotaGraphFast2( int x, int y, int cx, int cy, float ExtRate, f
 }
 
 
-// ‰æ‘œ‚Ì©—R•ÏŒ`•`‰æ
+// ç”»åƒã®è‡ªç”±å¤‰å½¢æç”»
 extern	int NS_DrawModiGraph( int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4, int GrHandle, int TransFlag )
 {
 	return Graphics_Draw_ModiGraphBase( x1, y1, x2, y2, x3, y3, x4, y4, GrHandle, TransFlag, false ) ;
 }
 
-// ‰æ‘œ‚Ì¶‰E”½“]•`‰æ
+// ç”»åƒã®å·¦å³åè»¢æç”»
 extern	int NS_DrawTurnGraph( int x, int y, int GrHandle, int TransFlag )
 {
 	IMAGEDATA *Image ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( GRAPHCHK( GrHandle, Image ) )
 		return -1 ;
 
 	return NS_DrawExtendGraph( Image->WidthI + x, y, x, y + Image->HeightI, GrHandle, TransFlag ) ;
 }
 
-// ‰æ‘œ‚Ì”½“]•`‰æ
+// ç”»åƒã®åè»¢æç”»
 extern int NS_DrawReverseGraph( int x, int y, int GrHandle, int TransFlag, int ReverseXFlag, int ReverseYFlag )
 {
 	IMAGEDATA *Image ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( GRAPHCHK( GrHandle, Image ) )
 		return -1 ;
 
@@ -13412,7 +13412,7 @@ extern int NS_DrawReverseGraph( int x, int y, int GrHandle, int TransFlag, int R
 
 
 
-// ƒOƒ‰ƒtƒBƒbƒN‚Ì‰ñ“]•`‰æ‚Q
+// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®å›è»¢æç”»ï¼’
 extern	int NS_DrawRotaGraph2F( float xf, float yf, float cxf, float cyf, double ExtRate, double Angle, int GrHandle, int TransFlag, int ReverseXFlag, int ReverseYFlag )
 {
 	int w, h ;
@@ -13468,7 +13468,7 @@ extern	int NS_DrawRotaGraph2F( float xf, float yf, float cxf, float cyf, double 
 }
 
 
-// ƒOƒ‰ƒtƒBƒbƒN‚Ì‰ñ“]•`‰æ‚R
+// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®å›è»¢æç”»ï¼“
 static int DrawRotaGraph3F_Base( float xf, float yf, float cxf, float cyf, double ExtRateX, double ExtRateY, double Angle, int GrHandle, int TransFlag, int ReverseXFlag, int ReverseYFlag, int IntFlag )
 {
 	int w, h ;
@@ -13589,7 +13589,7 @@ static int DrawRotaGraph3F_Base( float xf, float yf, float cxf, float cyf, doubl
 	}
 }
 
-// ƒOƒ‰ƒtƒBƒbƒN‚Ì‰ñ“]•`‰æ‚R
+// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®å›è»¢æç”»ï¼“
 extern	int NS_DrawRotaGraph3( int x, int y, int cx, int cy, double ExtRateX, double ExtRateY, double Angle, int GrHandle, int TransFlag, int ReverseXFlag, int ReverseYFlag )
 {
 	if( Angle == 0.0 && ExtRateX == 1.0 && ExtRateY == 1.0 )
@@ -13611,7 +13611,7 @@ extern	int NS_DrawRotaGraph3F( float xf, float yf, float cxf, float cyf, double 
 	return DrawRotaGraph3F_Base( xf, yf, cxf, cyf, ExtRateX, ExtRateY, Angle, GrHandle, TransFlag, ReverseXFlag, ReverseYFlag, FALSE ) ;
 }
 
-// ƒOƒ‰ƒtƒBƒbƒN‚Ì‰ñ“]•`‰æ‚Q(‚‘¬”Å)
+// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®å›è»¢æç”»ï¼’(é«˜é€Ÿç‰ˆ)
 extern	int NS_DrawRotaGraphFast2F( float xf, float yf, float cxf, float cyf, float ExtRate, float Angle, int GrHandle, int TransFlag, int ReverseXFlag, int ReverseYFlag )
 {
 	int w, h ;
@@ -13667,7 +13667,7 @@ extern	int NS_DrawRotaGraphFast2F( float xf, float yf, float cxf, float cyf, flo
 }
 
 
-// ƒOƒ‰ƒtƒBƒbƒN‚Ì‰ñ“]•`‰æ‚R(‚‘¬”Å)
+// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®å›è»¢æç”»ï¼“(é«˜é€Ÿç‰ˆ)
 static int DrawRotaGraphFast3F_Base( float xf, float yf, float cxf, float cyf, float ExtRateX, float ExtRateY, float Angle, int GrHandle, int TransFlag, int ReverseXFlag, int ReverseYFlag, int IntFlag )
 {
 	int w, h ;
@@ -13788,7 +13788,7 @@ static int DrawRotaGraphFast3F_Base( float xf, float yf, float cxf, float cyf, f
 	}
 }
 
-// ƒOƒ‰ƒtƒBƒbƒN‚Ì‰ñ“]•`‰æ‚RA‚‘¬”Å
+// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®å›è»¢æç”»ï¼“ã€é«˜é€Ÿç‰ˆ
 extern	int NS_DrawRotaGraphFast3( int x, int y, int cx, int cy, float ExtRateX, float ExtRateY, float Angle, int GrHandle, int TransFlag, int ReverseXFlag, int ReverseYFlag )
 {
 	if( Angle == 0.0f && ExtRateX == 1.0f && ExtRateY == 1.0f )
@@ -13805,37 +13805,37 @@ extern	int NS_DrawRotaGraphFast3( int x, int y, int cx, int cy, float ExtRateX, 
 	}
 }
 
-// ƒOƒ‰ƒtƒBƒbƒN‚Ì‰ñ“]•`‰æ‚R(‚‘¬”Å)
+// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®å›è»¢æç”»ï¼“(é«˜é€Ÿç‰ˆ)
 extern	int NS_DrawRotaGraphFast3F( float xf, float yf, float cxf, float cyf, float ExtRateX, float ExtRateY, float Angle, int GrHandle, int TransFlag, int ReverseXFlag, int ReverseYFlag )
 {
 	return DrawRotaGraphFast3F_Base( xf, yf, cxf, cyf, ExtRateX, ExtRateY, Angle, GrHandle, TransFlag, ReverseXFlag, ReverseYFlag, FALSE ) ;
 }
 
-// ‰æ‘œ‚Ì©—R•ÏŒ`•`‰æ( float ”Å )
+// ç”»åƒã®è‡ªç”±å¤‰å½¢æç”»( float ç‰ˆ )
 extern	int NS_DrawModiGraphF( float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4, int GrHandle, int TransFlag )
 {
 	return Graphics_Draw_ModiGraphFBase( x1, y1, x2, y2, x3, y3, x4, y4, GrHandle, TransFlag, false ) ;
 }
 
 
-// ‰æ‘œ‚Ì¶‰E”½“]•`‰æ
+// ç”»åƒã®å·¦å³åè»¢æç”»
 extern	int NS_DrawTurnGraphF( float xf, float yf, int GrHandle, int TransFlag )
 {
 	IMAGEDATA *Image ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( GRAPHCHK( GrHandle, Image ) )
 		return -1 ;
 
 	return NS_DrawExtendGraphF( Image->WidthF + xf, yf, xf, yf + Image->HeightF, GrHandle, TransFlag ) ;
 }
 
-// ‰æ‘œ‚Ì”½“]•`‰æ( À•Ww’è‚ª float ”Å )
+// ç”»åƒã®åè»¢æç”»( åº§æ¨™æŒ‡å®šãŒ float ç‰ˆ )
 extern int NS_DrawReverseGraphF( float xf, float yf, int GrHandle, int TransFlag, int ReverseXFlag, int ReverseYFlag )
 {
 	IMAGEDATA *Image ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( GRAPHCHK( GrHandle, Image ) )
 		return -1 ;
 
@@ -13859,7 +13859,7 @@ extern int NS_DrawReverseGraphF( float xf, float yf, int GrHandle, int TransFlag
 	}
 }
 
-// ƒ`ƒbƒvƒOƒ‰ƒtƒBƒbƒN‚ğg‚Á‚½ƒ}ƒbƒv•`‰æ
+// ãƒãƒƒãƒ—ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚’ä½¿ã£ãŸãƒãƒƒãƒ—æç”»
 #define SETDRAWRECTCODE\
 	SETRECT( DrawRect, Sx, Sy, Sx + XNum * Image->WidthI , Sy + YNum * Image->HeightI )\
 	DRAWRECT_DRAWAREA_CLIP
@@ -13871,18 +13871,18 @@ extern	int NS_DrawChipMap( int Sx, int Sy, int XNum, int YNum, const int *MapDat
 	if( /* GSYS.NotDrawFlag || */ GSYS.DrawSetting.NotDrawFlagInSetDrawArea )
 		return 0 ;
 
-	// ƒ\ƒtƒg‚ª”ñƒAƒNƒeƒBƒu‚Ìê‡‚ÍƒAƒNƒeƒBƒu‚É‚È‚é‚Ü‚Å‘Ò‚Â
+	// ã‚½ãƒ•ãƒˆãŒéã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã®å ´åˆã¯ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ãªã‚‹ã¾ã§å¾…ã¤
 	CheckActiveState() ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( GRAPHCHK( ChipGrHandle[0], Image ) )
 		return -1 ;
 
-	// ‚Q‚cs—ñ‚ğƒn[ƒhƒEƒGƒA‚É”½‰f‚·‚é
+	// ï¼’ï¼¤è¡Œåˆ—ã‚’ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã«åæ˜ ã™ã‚‹
 	if( GSYS.DrawSetting.MatchHardware_2DMatrix == FALSE && GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )
 		Graphics_DrawSetting_ApplyLib2DMatrixToHardware() ;
 
-	// •`‰æ
+	// æç”»
 	DRAW_DEF(
 		Graphics_Hardware_DrawChipMap( Sx, Sy, XNum, YNum, MapData, MapDataPitch, ChipTypeNum, ChipGrHandle, TransFlag ),
 		Graphics_Software_DrawChipMap( Sx, Sy, XNum, YNum, MapData, MapDataPitch, ChipTypeNum, ChipGrHandle, TransFlag ),
@@ -13891,7 +13891,7 @@ extern	int NS_DrawChipMap( int Sx, int Sy, int XNum, int YNum, const int *MapDat
 		Image->Orig->FormatDesc.TextureFlag
 	)
 
-	// I—¹
+	// çµ‚äº†
 	return Ret ;
 }
 #undef SETDRAWRECTCODE
@@ -13903,24 +13903,24 @@ extern	int NS_DrawChipMap( int MapWidth, int MapHeight, const int *MapData, int 
 }
 #endif // DX_COMPILE_TYPE_C_LANGUAGE
 
-// ƒ`ƒbƒvƒOƒ‰ƒtƒBƒbƒN‚ğg‚Á‚½ƒ}ƒbƒv•`‰æ
-// int MapWidth, MapHeight : ƒ}ƒbƒvƒf[ƒ^‘S‘Ì‚Ì•‚Æ‚‚³
-// int *MapData : ƒ}ƒbƒvƒf[ƒ^‚ªŠi”[‚³‚ê‚½ƒAƒhƒŒƒX
-// int ChipTypeNum : ƒ}ƒbƒv‚Ég‚¤ƒ`ƒbƒv‚Ìí—Ş‚Ì”
-// int *ChipGrHandle : ƒ`ƒbƒv‚ÌƒOƒ‰ƒtƒBƒbƒN”z—ñ‚ÌƒAƒhƒŒƒX
-// int TransFlag : “§‰ßFˆ—‚Ì—L–³
-// int MapDrawX, MapDrawY : •`‰æ‚·‚éƒ}ƒbƒv‚Ì‹N“_‚Æ‚È‚é¶ãÀ•W
-// int MapDrawWidth, MapDrawHeight : ‹N“_À•W‚©‚ç•`‰æ‚·‚éƒ}ƒbƒv‚Ì•‚Æ‚‚³
-// int ScreenX, ScreenY : ƒ}ƒbƒv‚ğ•`‰æ‚·‚é‰æ–Êã‚ÌÀ•W
+// ãƒãƒƒãƒ—ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚’ä½¿ã£ãŸãƒãƒƒãƒ—æç”»
+// int MapWidth, MapHeight : ãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿å…¨ä½“ã®å¹…ã¨é«˜ã•
+// int *MapData : ãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ãŒæ ¼ç´ã•ã‚ŒãŸã‚¢ãƒ‰ãƒ¬ã‚¹
+// int ChipTypeNum : ãƒãƒƒãƒ—ã«ä½¿ã†ãƒãƒƒãƒ—ã®ç¨®é¡ã®æ•°
+// int *ChipGrHandle : ãƒãƒƒãƒ—ã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯é…åˆ—ã®ã‚¢ãƒ‰ãƒ¬ã‚¹
+// int TransFlag : é€éè‰²å‡¦ç†ã®æœ‰ç„¡
+// int MapDrawX, MapDrawY : æç”»ã™ã‚‹ãƒãƒƒãƒ—ã®èµ·ç‚¹ã¨ãªã‚‹å·¦ä¸Šåº§æ¨™
+// int MapDrawWidth, MapDrawHeight : èµ·ç‚¹åº§æ¨™ã‹ã‚‰æç”»ã™ã‚‹ãƒãƒƒãƒ—ã®å¹…ã¨é«˜ã•
+// int ScreenX, ScreenY : ãƒãƒƒãƒ—ã‚’æç”»ã™ã‚‹ç”»é¢ä¸Šã®åº§æ¨™
 extern	int NS_DrawChipMap2( int MapWidth, int MapHeight, const int *MapData, int ChipTypeNum, const int *ChipGrHandle, int TransFlag, int MapDrawPointX, int MapDrawPointY, int MapDrawWidth, int MapDrawHeight, int ScreenX, int ScreenY )
 {
 	int Width, Height ;
 	int Result ;
 	
-	// ƒ`ƒbƒvƒOƒ‰ƒtƒBƒbƒN‚ÌƒTƒCƒY‚ğ“¾‚é
+	// ãƒãƒƒãƒ—ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®ã‚µã‚¤ã‚ºã‚’å¾—ã‚‹
 	NS_GetGraphSize( ChipGrHandle[0], &Width, &Height ) ;
 
-	// ƒ}ƒbƒvî•ñ‚ª‚Í‚İo‚éê‡‚Ì•â³ˆ—
+	// ãƒãƒƒãƒ—æƒ…å ±ãŒã¯ã¿å‡ºã‚‹å ´åˆã®è£œæ­£å‡¦ç†
 	if( MapDrawPointX + MapDrawWidth > MapWidth ) 
 		MapDrawWidth -= ( MapDrawPointX + MapDrawWidth ) - MapWidth ;
 
@@ -13940,14 +13940,14 @@ extern	int NS_DrawChipMap2( int MapWidth, int MapHeight, const int *MapData, int
 		MapDrawPointY = 0 ;
 	}
 
-	// ƒ}ƒbƒv‚ğ•`‚­
+	// ãƒãƒƒãƒ—ã‚’æã
 	Result = NS_DrawChipMap( ScreenX, ScreenY, MapDrawWidth, MapDrawHeight,
 							 MapData + MapDrawPointX + MapDrawPointY * MapWidth, ChipTypeNum, MapWidth, ChipGrHandle, TransFlag ) ;
 						 
 	return Result ;
 }
 
-// ƒOƒ‰ƒtƒBƒbƒN‚ğw’è—Ìˆæ‚Éƒ^ƒCƒ‹ó‚É•`‰æ‚·‚é
+// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚’æŒ‡å®šé ˜åŸŸã«ã‚¿ã‚¤ãƒ«çŠ¶ã«æç”»ã™ã‚‹
 #define SETDRAWRECTCODE\
 	SETRECT( DrawRect, x1, y1, x2, y2 )\
 	DRAWRECT_DRAWAREA_CLIP
@@ -13957,10 +13957,10 @@ extern	int NS_DrawTile( int x1, int y1, int x2, int y2, int Tx, int Ty, double E
 	IMAGEDATA *BlendImage ;
 	int Ret = -1 ;
 
-	// ƒ\ƒtƒg‚ª”ñƒAƒNƒeƒBƒu‚Ìê‡‚ÍƒAƒNƒeƒBƒu‚É‚È‚é‚Ü‚Å‘Ò‚Â
+	// ã‚½ãƒ•ãƒˆãŒéã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã®å ´åˆã¯ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ãªã‚‹ã¾ã§å¾…ã¤
 	CheckActiveState() ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( GRAPHCHK( GrHandle, Image ) )
 		return -1 ;
 	if( x1 == x2 || y1 == y2 ) return 0 ;
@@ -13971,7 +13971,7 @@ extern	int NS_DrawTile( int x1, int y1, int x2, int y2, int Tx, int Ty, double E
 		GRAPHCHK( GSYS.DrawSetting.BlendGraph, BlendImage ) ;
 	}
 
-	// •`‰æ
+	// æç”»
 	DRAW_DEF(
 		Graphics_Hardware_DrawTile( x1, y1, x2, y2, Tx, Ty, ExtRate, Angle, Image, BlendImage, TransFlag ),
 		Graphics_Software_DrawTile( x1, y1, x2, y2, Tx, Ty, ExtRate, Angle, Image,             TransFlag ),
@@ -13980,31 +13980,31 @@ extern	int NS_DrawTile( int x1, int y1, int x2, int y2, int Tx, int Ty, double E
 		Image->Orig->FormatDesc.TextureFlag
 	)
 
-	// I—¹
+	// çµ‚äº†
 	return Ret ;
 }
 #undef SETDRAWRECTCODE
 
-// ƒOƒ‰ƒtƒBƒbƒN‚Ìw’è‹éŒ`•”•ª‚Ì‚İ‚ğ•`‰æ
+// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®æŒ‡å®šçŸ©å½¢éƒ¨åˆ†ã®ã¿ã‚’æç”»
 extern	int NS_DrawRectGraph( int DestX, int DestY, int SrcX, int SrcY, int Width, int Height, int GraphHandle, int TransFlag, int ReverseXFlag, int ReverseYFlag )
 {
 	RECT  BackupDrawRect ;
 	RECTF BackupDrawRectF ;
 	int hr = 0 ;
 
-	// ƒTƒCƒY”»’è
+	// ã‚µã‚¤ã‚ºåˆ¤å®š
 	if( Width <= 0 || Height <= 0 )
 		return -1 ;
 
-	// À•W•ÏŠ·‚ªs‚í‚ê‚éê‡‚ÍØ‚èæ‚Á‚½ƒOƒ‰ƒtƒBƒbƒN‚ğì¬‚µ‚Ä•`‰æ
+	// åº§æ¨™å¤‰æ›ãŒè¡Œã‚ã‚Œã‚‹å ´åˆã¯åˆ‡ã‚Šå–ã£ãŸã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚’ä½œæˆã—ã¦æç”»
 	if( GSYS.DrawSetting.Valid2DMatrix )
 	{
 		int TempHandle ;
 
-		// Ø‚èæ‚Á‚½ƒOƒ‰ƒtƒBƒbƒN‚ğì¬
+		// åˆ‡ã‚Šå–ã£ãŸã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚’ä½œæˆ
 		TempHandle = Graphics_Image_DerivationGraph_UseGParam( FALSE, SrcX, ( float )SrcX, SrcY, ( float )SrcY, Width, ( float )Width, Height, ( float )Height, GraphHandle, TRUE, FALSE ) ;
 
-		// •`‰æ
+		// æç”»
 		if( ReverseXFlag == FALSE && ReverseYFlag == FALSE )
 		{
 			NS_DrawGraph( DestX, DestY, TempHandle, TransFlag ) ;
@@ -14014,14 +14014,14 @@ extern	int NS_DrawRectGraph( int DestX, int DestY, int SrcX, int SrcY, int Width
 			NS_DrawReverseGraph( DestX, DestY, TempHandle, TransFlag, ReverseXFlag, ReverseYFlag ) ;
 		}
 
-		// íœ
+		// å‰Šé™¤
 		Graphics_Image_TempDerivationGraph_Terminate() ;
 
-		// I—¹
+		// çµ‚äº†
 		return 0 ;
 	}
 
-	// w’è‹éŒ`‚¾‚¯‚µ‚©•`‰æo—ˆ‚È‚¢‚æ‚¤‚É‚·‚é
+	// æŒ‡å®šçŸ©å½¢ã ã‘ã—ã‹æç”»å‡ºæ¥ãªã„ã‚ˆã†ã«ã™ã‚‹
 	BackupDrawRect  = GSYS.DrawSetting.DrawArea ;
 	BackupDrawRectF = GSYS.DrawSetting.DrawAreaF ;
 	SETRECT( GSYS.DrawSetting.DrawArea, DestX, DestY, DestX + Width, DestY + Height ) ;
@@ -14035,12 +14035,12 @@ extern	int NS_DrawRectGraph( int DestX, int DestY, int SrcX, int SrcY, int Width
 	GSYS.DrawSetting.DrawAreaF.right  = ( float )GSYS.DrawSetting.DrawArea.right ;
 	GSYS.DrawSetting.DrawAreaF.bottom = ( float )GSYS.DrawSetting.DrawArea.bottom ;
 
-	// ƒOƒ‰ƒtƒBƒbƒN‚Ì•`‰æ
+	// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®æç”»
 	if( ReverseXFlag || ReverseYFlag )
 	{
 		IMAGEDATA *Image ;
 
-		// ƒGƒ‰[”»’è
+		// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 		if( GRAPHCHK( GraphHandle, Image ) )
 		{
 			hr = -1 ;
@@ -14069,17 +14069,17 @@ extern	int NS_DrawRectGraph( int DestX, int DestY, int SrcX, int SrcY, int Width
 
 END :
 
-	// •`‰æ‹éŒ`‚ğŒ³‚É–ß‚·
+	// æç”»çŸ©å½¢ã‚’å…ƒã«æˆ»ã™
 #ifndef DX_NON_MASK
 	if( MASKD.MaskValidFlag )
 	{
-		// ƒ}ƒXƒN‚ğg—p‚µ‚Ä‚¢‚éê‡‚Íƒ}ƒXƒNˆ—“à•”‚ÅFX•ÏX‚ª‰Á‚¦‚ç‚ê‚Ä‚¢‚é‚Ì‚Å’Êí‚Ì SetDrawArea ‚ğg—p‚·‚é
+		// ãƒã‚¹ã‚¯ã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹å ´åˆã¯ãƒã‚¹ã‚¯å‡¦ç†å†…éƒ¨ã§è‰²ã€…å¤‰æ›´ãŒåŠ ãˆã‚‰ã‚Œã¦ã„ã‚‹ã®ã§é€šå¸¸ã® SetDrawArea ã‚’ä½¿ç”¨ã™ã‚‹
 		NS_SetDrawArea( BackupDrawRect.left, BackupDrawRect.top, BackupDrawRect.right, BackupDrawRect.bottom ) ;
 	}
 	else 
 #endif
 	{
-		// ƒ}ƒXƒN‚ğg—p‚µ‚Ä‚¢‚È‚¢ê‡‚ÍŠÈˆÕ“I‚Èİ’è•œ‹Aˆ—
+		// ãƒã‚¹ã‚¯ã‚’ä½¿ç”¨ã—ã¦ã„ãªã„å ´åˆã¯ç°¡æ˜“çš„ãªè¨­å®šå¾©å¸°å‡¦ç†
 		GSYS.DrawSetting.DrawArea = BackupDrawRect ;
 		if( GSYS.Setting.ValidHardware == FALSE || GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode )
 		{
@@ -14088,11 +14088,11 @@ END :
 		GSYS.DrawSetting.DrawAreaF = BackupDrawRectF ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return hr ;
 }
 
-// ƒOƒ‰ƒtƒBƒbƒN‚Ìw’è‹éŒ`•”•ª‚Ì‚İ‚ğŠg‘å•`‰æ
+// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®æŒ‡å®šçŸ©å½¢éƒ¨åˆ†ã®ã¿ã‚’æ‹¡å¤§æç”»
 extern	int NS_DrawRectExtendGraph( int DestX1, int DestY1, int DestX2, int DestY2, int SrcX, int SrcY, int SrcWidth, int SrcHeight, int GraphHandle, int TransFlag )
 {
 	RECT MotoDrawRect ;
@@ -14104,15 +14104,15 @@ extern	int NS_DrawRectExtendGraph( int DestX1, int DestY1, int DestX2, int DestY
 	double exX, exY ;
 	IMAGEDATA *Image ;
 
-	// ƒTƒCƒY”»’è
+	// ã‚µã‚¤ã‚ºåˆ¤å®š
 	if( SrcWidth <= 0 || SrcHeight <= 0 )
 		return -1 ;
 	
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( GRAPHCHK( GraphHandle, Image ) )
 		return -1 ;
 
-	// ”½“]”»’è
+	// åè»¢åˆ¤å®š
 	{
 		if( DestX2 < DestX1 )
 		{
@@ -14135,25 +14135,25 @@ extern	int NS_DrawRectExtendGraph( int DestX1, int DestY1, int DestX2, int DestY
 		}
 	}
 
-	// À•W•ÏŠ·‚ªs‚í‚ê‚éê‡‚ÍØ‚èæ‚Á‚½ƒOƒ‰ƒtƒBƒbƒN‚ğì¬‚µ‚Ä•`‰æ
+	// åº§æ¨™å¤‰æ›ãŒè¡Œã‚ã‚Œã‚‹å ´åˆã¯åˆ‡ã‚Šå–ã£ãŸã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚’ä½œæˆã—ã¦æç”»
 	if( GSYS.DrawSetting.Valid2DMatrix )
 	{
 		int TempHandle ;
 
-		// Ø‚èæ‚Á‚½ƒOƒ‰ƒtƒBƒbƒN‚ğì¬
+		// åˆ‡ã‚Šå–ã£ãŸã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚’ä½œæˆ
 		TempHandle = Graphics_Image_DerivationGraph_UseGParam( FALSE, SrcX, ( float )SrcX, SrcY, ( float )SrcY, SrcWidth, ( float )SrcWidth, SrcHeight, ( float )SrcHeight, GraphHandle, TRUE, FALSE ) ;
 
-		// •`‰æ
+		// æç”»
 		NS_DrawExtendGraph( DestX1, DestY1, DestX2, DestY2, TempHandle, TransFlag ) ;
 
-		// íœ
+		// å‰Šé™¤
 		Graphics_Image_TempDerivationGraph_Terminate() ;
 
-		// I—¹
+		// çµ‚äº†
 		return 0 ;
 	}
 
-	// w’è‹éŒ`‚¾‚¯‚µ‚©•`‰æo—ˆ‚È‚¢‚æ‚¤‚É‚·‚é
+	// æŒ‡å®šçŸ©å½¢ã ã‘ã—ã‹æç”»å‡ºæ¥ãªã„ã‚ˆã†ã«ã™ã‚‹
 	MotoDrawRect = GSYS.DrawSetting.DrawArea ;
 	MotoDrawRectF = GSYS.DrawSetting.DrawAreaF ;
 	SETRECT( GSYS.DrawSetting.DrawArea, DestX1, DestY1, DestX2, DestY2 ) ;
@@ -14164,7 +14164,7 @@ extern	int NS_DrawRectExtendGraph( int DestX1, int DestY1, int DestX2, int DestY
 	GSYS.DrawSetting.DrawAreaF.right  = (float)GSYS.DrawSetting.DrawArea.right ;
 	GSYS.DrawSetting.DrawAreaF.bottom = (float)GSYS.DrawSetting.DrawArea.bottom ;
 
-	// ƒOƒ‰ƒtƒBƒbƒN‚Ì•`‰æ
+	// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®æç”»
 	{
 		DestWidth = DestX2 - DestX1 ;
 		DestHeight = DestY2 - DestY1 ;
@@ -14194,12 +14194,12 @@ extern	int NS_DrawRectExtendGraph( int DestX1, int DestY1, int DestX2, int DestY
 		hr = NS_DrawExtendGraph( x1, y1, x2, y2, GraphHandle, TransFlag ) ;
 	}
 
-	// •`‰æ‹éŒ`‚ğŒ³‚É–ß‚·
+	// æç”»çŸ©å½¢ã‚’å…ƒã«æˆ»ã™
 	GSYS.DrawSetting.DrawArea = MotoDrawRect ;
 	SetMemImgDrawArea( &MotoDrawRect ) ;
 	GSYS.DrawSetting.DrawAreaF = MotoDrawRectF ;
 
-	// I—¹
+	// çµ‚äº†
 	return hr ;
 }
 
@@ -14207,20 +14207,20 @@ extern	int NS_DrawRectRotaGraph( int X, int Y, int SrcX, int SrcY, int Width, in
 {
 	int TempHandle ;
 
-	// ƒTƒCƒY”»’è
+	// ã‚µã‚¤ã‚ºåˆ¤å®š
 	if( Width <= 0 || Height <= 0 )
 		return -1 ;
 
-	// Ø‚èæ‚Á‚½ƒOƒ‰ƒtƒBƒbƒN‚ğì¬
+	// åˆ‡ã‚Šå–ã£ãŸã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚’ä½œæˆ
 	TempHandle = Graphics_Image_DerivationGraph_UseGParam( FALSE, SrcX, ( float )SrcX, SrcY, ( float )SrcY, Width, ( float )Width, Height, ( float )Height, GraphHandle, TRUE, FALSE ) ;
 
-	// ‰ñ“]•`‰æ
+	// å›è»¢æç”»
 	NS_DrawRotaGraph( X, Y, ExtRate, Angle, TempHandle, TransFlag, ReverseXFlag, ReverseYFlag ) ;
 
-	// íœ
+	// å‰Šé™¤
 	Graphics_Image_TempDerivationGraph_Terminate() ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
@@ -14228,20 +14228,20 @@ extern int NS_DrawRectRotaGraph2( int x, int y, int SrcX, int SrcY, int Width, i
 {
 	int TempHandle ;
 
-	// ƒTƒCƒY”»’è
+	// ã‚µã‚¤ã‚ºåˆ¤å®š
 	if( Width <= 0 || Height <= 0 )
 		return -1 ;
 
-	// Ø‚èæ‚Á‚½ƒOƒ‰ƒtƒBƒbƒN‚ğì¬
+	// åˆ‡ã‚Šå–ã£ãŸã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚’ä½œæˆ
 	TempHandle = Graphics_Image_DerivationGraph_UseGParam( FALSE, SrcX, ( float )SrcX, SrcY, ( float )SrcY, Width, ( float )Width, Height, ( float )Height, GraphHandle, TRUE, FALSE ) ;
 
-	// ‰ñ“]•`‰æ
+	// å›è»¢æç”»
 	NS_DrawRotaGraph2( x, y, cx, cy, ExtRate, Angle, TempHandle, TransFlag, ReverseXFlag, ReverseYFlag ) ;
 
-	// íœ
+	// å‰Šé™¤
 	Graphics_Image_TempDerivationGraph_Terminate() ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
@@ -14249,20 +14249,20 @@ extern int NS_DrawRectRotaGraph3(  int x,   int y,   int SrcX, int SrcY, int Wid
 {
 	int TempHandle ;
 
-	// ƒTƒCƒY”»’è
+	// ã‚µã‚¤ã‚ºåˆ¤å®š
 	if( Width <= 0 || Height <= 0 )
 		return -1 ;
 
-	// Ø‚èæ‚Á‚½ƒOƒ‰ƒtƒBƒbƒN‚ğì¬
+	// åˆ‡ã‚Šå–ã£ãŸã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚’ä½œæˆ
 	TempHandle = Graphics_Image_DerivationGraph_UseGParam( FALSE, SrcX, ( float )SrcX, SrcY, ( float )SrcY, Width, ( float )Width, Height, ( float )Height, GraphHandle, TRUE, FALSE ) ;
 
-	// ‰ñ“]•`‰æ
+	// å›è»¢æç”»
 	NS_DrawRotaGraph3( x, y, cx, cy, ExtRateX, ExtRateY, Angle, TempHandle, TransFlag, ReverseXFlag, ReverseYFlag ) ;
 
-	// íœ
+	// å‰Šé™¤
 	Graphics_Image_TempDerivationGraph_Terminate() ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
@@ -14270,20 +14270,20 @@ extern	int NS_DrawRectRotaGraphFast( int X, int Y, int SrcX, int SrcY, int Width
 {
 	int TempHandle ;
 
-	// ƒTƒCƒY”»’è
+	// ã‚µã‚¤ã‚ºåˆ¤å®š
 	if( Width <= 0 || Height <= 0 )
 		return -1 ;
 
-	// Ø‚èæ‚Á‚½ƒOƒ‰ƒtƒBƒbƒN‚ğì¬
+	// åˆ‡ã‚Šå–ã£ãŸã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚’ä½œæˆ
 	TempHandle = Graphics_Image_DerivationGraph_UseGParam( FALSE, SrcX, ( float )SrcX, SrcY, ( float )SrcY, Width, ( float )Width, Height, ( float )Height, GraphHandle, TRUE, FALSE ) ;
 
-	// ‰ñ“]•`‰æ
+	// å›è»¢æç”»
 	NS_DrawRotaGraphFast( X, Y, ExtRate, Angle, TempHandle, TransFlag, ReverseXFlag, ReverseYFlag ) ;
 
-	// íœ
+	// å‰Šé™¤
 	Graphics_Image_TempDerivationGraph_Terminate() ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
@@ -14291,20 +14291,20 @@ extern int NS_DrawRectRotaGraphFast2( int x, int y, int SrcX, int SrcY, int Widt
 {
 	int TempHandle ;
 
-	// ƒTƒCƒY”»’è
+	// ã‚µã‚¤ã‚ºåˆ¤å®š
 	if( Width <= 0 || Height <= 0 )
 		return -1 ;
 
-	// Ø‚èæ‚Á‚½ƒOƒ‰ƒtƒBƒbƒN‚ğì¬
+	// åˆ‡ã‚Šå–ã£ãŸã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚’ä½œæˆ
 	TempHandle = Graphics_Image_DerivationGraph_UseGParam( FALSE, SrcX, ( float )SrcX, SrcY, ( float )SrcY, Width, ( float )Width, Height, ( float )Height, GraphHandle, TRUE, FALSE ) ;
 
-	// ‰ñ“]•`‰æ
+	// å›è»¢æç”»
 	NS_DrawRotaGraphFast2( x, y, cx, cy, ExtRate, Angle, TempHandle, TransFlag, ReverseXFlag, ReverseYFlag ) ;
 
-	// íœ
+	// å‰Šé™¤
 	Graphics_Image_TempDerivationGraph_Terminate() ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
@@ -14312,46 +14312,46 @@ extern int NS_DrawRectRotaGraphFast3(  int x,   int y,   int SrcX, int SrcY, int
 {
 	int TempHandle ;
 
-	// ƒTƒCƒY”»’è
+	// ã‚µã‚¤ã‚ºåˆ¤å®š
 	if( Width <= 0 || Height <= 0 )
 		return -1 ;
 
-	// Ø‚èæ‚Á‚½ƒOƒ‰ƒtƒBƒbƒN‚ğì¬
+	// åˆ‡ã‚Šå–ã£ãŸã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚’ä½œæˆ
 	TempHandle = Graphics_Image_DerivationGraph_UseGParam( FALSE, SrcX, ( float )SrcX, SrcY, ( float )SrcY, Width, ( float )Width, Height, ( float )Height, GraphHandle, TRUE, FALSE ) ;
 
-	// ‰ñ“]•`‰æ
+	// å›è»¢æç”»
 	NS_DrawRotaGraphFast3( x, y, cx, cy, ExtRateX, ExtRateY, Angle, TempHandle, TransFlag, ReverseXFlag, ReverseYFlag ) ;
 
-	// íœ
+	// å‰Šé™¤
 	Graphics_Image_TempDerivationGraph_Terminate() ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ‰æ‘œ‚Ìw’è‹éŒ`•”•ª‚Ì‚İ‚ğ©—R•ÏŒ`•`‰æ
+// ç”»åƒã®æŒ‡å®šçŸ©å½¢éƒ¨åˆ†ã®ã¿ã‚’è‡ªç”±å¤‰å½¢æç”»
 extern int NS_DrawRectModiGraph( int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4, int SrcX, int SrcY, int Width, int Height, int GraphHandle, int TransFlag )
 {
 	int TempHandle ;
 
-	// ƒTƒCƒY”»’è
+	// ã‚µã‚¤ã‚ºåˆ¤å®š
 	if( Width <= 0 || Height <= 0 )
 		return -1 ;
 
-	// Ø‚èæ‚Á‚½ƒOƒ‰ƒtƒBƒbƒN‚ğì¬
+	// åˆ‡ã‚Šå–ã£ãŸã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚’ä½œæˆ
 	TempHandle = Graphics_Image_DerivationGraph_UseGParam( FALSE, SrcX, ( float )SrcX, SrcY, ( float )SrcY, Width, ( float )Width, Height, ( float )Height, GraphHandle, TRUE, FALSE ) ;
 
-	// ©—R•ÏŒ`•`‰æ
+	// è‡ªç”±å¤‰å½¢æç”»
 	NS_DrawModiGraph( x1, y1, x2, y2, x3, y3, x4, y4, TempHandle, TransFlag ) ;
 
-	// íœ
+	// å‰Šé™¤
 	Graphics_Image_TempDerivationGraph_Terminate() ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒOƒ‰ƒtƒBƒbƒN‚Ìw’è‹éŒ`•”•ª‚Ì‚İ‚ğ•`‰æ
+// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®æŒ‡å®šçŸ©å½¢éƒ¨åˆ†ã®ã¿ã‚’æç”»
 extern int NS_DrawRectGraphF( float DestX, float DestY, int SrcX, int SrcY, int SrcWidth, int SrcHeight, int GraphHandle, int TransFlag, int ReverseXFlag, int ReverseYFlag )
 {
 	IMAGEDATA *Image ;
@@ -14359,7 +14359,7 @@ extern int NS_DrawRectGraphF( float DestX, float DestY, int SrcX, int SrcY, int 
 	GRAPHICS_DRAW_DRAWSIMPLEQUADRANGLEGRAPHF_PARAM Param ;
 	GRAPHICS_DRAW_DRAWSIMPLEANGLEGRAPHF_VERTEX Vertex[ 4 ] ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( GRAPHCHK( GraphHandle, Image ) )
 		return -1 ;
 
@@ -14453,7 +14453,7 @@ extern int NS_DrawRectGraphF( float DestX, float DestY, int SrcX, int SrcY, int 
 	return 0 ;
 }
 
-// ƒOƒ‰ƒtƒBƒbƒN‚Ìw’è‹éŒ`•”•ª‚Ì‚İ‚ğ•`‰æ
+// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®æŒ‡å®šçŸ©å½¢éƒ¨åˆ†ã®ã¿ã‚’æç”»
 extern int NS_DrawRectGraphF2( float DestX, float DestY, float SrcX, float SrcY, float SrcWidth, float SrcHeight, int GraphHandle, int TransFlag, int ReverseXFlag, int ReverseYFlag )
 {
 	IMAGEDATA *Image ;
@@ -14461,7 +14461,7 @@ extern int NS_DrawRectGraphF2( float DestX, float DestY, float SrcX, float SrcY,
 	GRAPHICS_DRAW_DRAWSIMPLEQUADRANGLEGRAPHF_PARAM Param ;
 	GRAPHICS_DRAW_DRAWSIMPLEANGLEGRAPHF_VERTEX Vertex[ 4 ] ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( GRAPHCHK( GraphHandle, Image ) )
 		return -1 ;
 
@@ -14555,29 +14555,29 @@ extern int NS_DrawRectGraphF2( float DestX, float DestY, float SrcX, float SrcY,
 	return 0 ;
 }
 
-// ƒOƒ‰ƒtƒBƒbƒN‚Ìw’è‹éŒ`•”•ª‚Ì‚İ‚ğŠg‘å•`‰æ
+// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®æŒ‡å®šçŸ©å½¢éƒ¨åˆ†ã®ã¿ã‚’æ‹¡å¤§æç”»
 extern int NS_DrawRectExtendGraphF( float DestX1, float DestY1, float DestX2, float DestY2, int SrcX, int SrcY, int SrcWidth, int SrcHeight, int GraphHandle, int TransFlag )
 {
 	int TempHandle ;
 
-	// ƒTƒCƒY”»’è
+	// ã‚µã‚¤ã‚ºåˆ¤å®š
 	if( SrcWidth <= 0 || SrcHeight <= 0 )
 		return -1 ;
 
-	// Ø‚èæ‚Á‚½ƒOƒ‰ƒtƒBƒbƒN‚ğì¬
+	// åˆ‡ã‚Šå–ã£ãŸã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚’ä½œæˆ
 	TempHandle = Graphics_Image_DerivationGraph_UseGParam( FALSE, SrcX, ( float )SrcX, SrcY, ( float )SrcY, SrcWidth, ( float )SrcWidth, SrcHeight, ( float )SrcHeight, GraphHandle, TRUE, FALSE ) ;
 
-	// Šg‘å•`‰æ
+	// æ‹¡å¤§æç”»
 	NS_DrawExtendGraphF( DestX1, DestY1, DestX2, DestY2, TempHandle, TransFlag ) ;
 
-	// íœ
+	// å‰Šé™¤
 	Graphics_Image_TempDerivationGraph_Terminate() ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ‰æ‘œ‚Ìw’è‹éŒ`•”•ª‚Ì‚İ‚ğŠg‘å•`‰æ( À•Ww’è‚ª float ”Å( ‰æ‘œ“àÀ•W‚Ìw’è‚à float ”Å ) )
+// ç”»åƒã®æŒ‡å®šçŸ©å½¢éƒ¨åˆ†ã®ã¿ã‚’æ‹¡å¤§æç”»( åº§æ¨™æŒ‡å®šãŒ float ç‰ˆ( ç”»åƒå†…åº§æ¨™ã®æŒ‡å®šã‚‚ float ç‰ˆ ) )
 extern int NS_DrawRectExtendGraphF2( float DestX1, float DestY1, float DestX2, float DestY2, float SrcX, float SrcY, float SrcWidth, float SrcHeight, int GraphHandle, int TransFlag )
 {
 	IMAGEDATA *Image ;
@@ -14585,7 +14585,7 @@ extern int NS_DrawRectExtendGraphF2( float DestX1, float DestY1, float DestX2, f
 	GRAPHICS_DRAW_DRAWSIMPLEQUADRANGLEGRAPHF_PARAM Param ;
 	GRAPHICS_DRAW_DRAWSIMPLEANGLEGRAPHF_VERTEX Vertex[ 4 ] ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( GRAPHCHK( GraphHandle, Image ) )
 		return -1 ;
 
@@ -14637,20 +14637,20 @@ extern int NS_DrawRectRotaGraphF( float X, float Y, int SrcX, int SrcY, int Widt
 {
 	int TempHandle ;
 
-	// ƒTƒCƒY”»’è
+	// ã‚µã‚¤ã‚ºåˆ¤å®š
 	if( Width <= 0 || Height <= 0 )
 		return -1 ;
 
-	// Ø‚èæ‚Á‚½ƒOƒ‰ƒtƒBƒbƒN‚ğì¬
+	// åˆ‡ã‚Šå–ã£ãŸã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚’ä½œæˆ
 	TempHandle = Graphics_Image_DerivationGraph_UseGParam( FALSE, SrcX, ( float )SrcX, SrcY, ( float )SrcY, Width, ( float )Width, Height, ( float )Height, GraphHandle, TRUE, FALSE ) ;
 
-	// ‰ñ“]•`‰æ
+	// å›è»¢æç”»
 	NS_DrawRotaGraphF( X, Y, ExtRate, Angle, TempHandle, TransFlag, ReverseXFlag, ReverseYFlag ) ;
 
-	// íœ
+	// å‰Šé™¤
 	Graphics_Image_TempDerivationGraph_Terminate() ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
@@ -14658,20 +14658,20 @@ extern int NS_DrawRectRotaGraph2F( float x, float y, int SrcX, int SrcY, int Wid
 {
 	int TempHandle ;
 
-	// ƒTƒCƒY”»’è
+	// ã‚µã‚¤ã‚ºåˆ¤å®š
 	if( Width <= 0 || Height <= 0 )
 		return -1 ;
 
-	// Ø‚èæ‚Á‚½ƒOƒ‰ƒtƒBƒbƒN‚ğì¬
+	// åˆ‡ã‚Šå–ã£ãŸã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚’ä½œæˆ
 	TempHandle = Graphics_Image_DerivationGraph_UseGParam( FALSE, SrcX, ( float )SrcX, SrcY, ( float )SrcY, Width, ( float )Width, Height, ( float )Height, GraphHandle, TRUE, FALSE ) ;
 
-	// ‰ñ“]•`‰æ
+	// å›è»¢æç”»
 	NS_DrawRotaGraph2F( x, y, cxf, cyf, ExtRate, Angle, TempHandle, TransFlag, ReverseXFlag, ReverseYFlag ) ;
 
-	// íœ
+	// å‰Šé™¤
 	Graphics_Image_TempDerivationGraph_Terminate() ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
@@ -14679,20 +14679,20 @@ extern int NS_DrawRectRotaGraph3F( float x, float y, int SrcX, int SrcY, int Wid
 {
 	int TempHandle ;
 
-	// ƒTƒCƒY”»’è
+	// ã‚µã‚¤ã‚ºåˆ¤å®š
 	if( Width <= 0 || Height <= 0 )
 		return -1 ;
 
-	// Ø‚èæ‚Á‚½ƒOƒ‰ƒtƒBƒbƒN‚ğì¬
+	// åˆ‡ã‚Šå–ã£ãŸã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚’ä½œæˆ
 	TempHandle = Graphics_Image_DerivationGraph_UseGParam( FALSE, SrcX, ( float )SrcX, SrcY, ( float )SrcY, Width, ( float )Width, Height, ( float )Height, GraphHandle, TRUE, FALSE ) ;
 
-	// ‰ñ“]•`‰æ
+	// å›è»¢æç”»
 	NS_DrawRotaGraph3F( x, y, cxf, cyf, ExtRateX, ExtRateY, Angle, TempHandle, TransFlag, ReverseXFlag, ReverseYFlag ) ;
 
-	// íœ
+	// å‰Šé™¤
 	Graphics_Image_TempDerivationGraph_Terminate() ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
@@ -14700,20 +14700,20 @@ extern int NS_DrawRectRotaGraphFastF( float X, float Y, int SrcX, int SrcY, int 
 {
 	int TempHandle ;
 
-	// ƒTƒCƒY”»’è
+	// ã‚µã‚¤ã‚ºåˆ¤å®š
 	if( Width <= 0 || Height <= 0 )
 		return -1 ;
 
-	// Ø‚èæ‚Á‚½ƒOƒ‰ƒtƒBƒbƒN‚ğì¬
+	// åˆ‡ã‚Šå–ã£ãŸã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚’ä½œæˆ
 	TempHandle = Graphics_Image_DerivationGraph_UseGParam( FALSE, SrcX, ( float )SrcX, SrcY, ( float )SrcY, Width, ( float )Width, Height, ( float )Height, GraphHandle, TRUE, FALSE ) ;
 
-	// ‰ñ“]•`‰æ
+	// å›è»¢æç”»
 	NS_DrawRotaGraphFastF( X, Y, ExtRate, Angle, TempHandle, TransFlag, ReverseXFlag, ReverseYFlag ) ;
 
-	// íœ
+	// å‰Šé™¤
 	Graphics_Image_TempDerivationGraph_Terminate() ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
@@ -14721,20 +14721,20 @@ extern int NS_DrawRectRotaGraphFast2F( float x, float y, int SrcX, int SrcY, int
 {
 	int TempHandle ;
 
-	// ƒTƒCƒY”»’è
+	// ã‚µã‚¤ã‚ºåˆ¤å®š
 	if( Width <= 0 || Height <= 0 )
 		return -1 ;
 
-	// Ø‚èæ‚Á‚½ƒOƒ‰ƒtƒBƒbƒN‚ğì¬
+	// åˆ‡ã‚Šå–ã£ãŸã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚’ä½œæˆ
 	TempHandle = Graphics_Image_DerivationGraph_UseGParam( FALSE, SrcX, ( float )SrcX, SrcY, ( float )SrcY, Width, ( float )Width, Height, ( float )Height, GraphHandle, TRUE, FALSE ) ;
 
-	// ‰ñ“]•`‰æ
+	// å›è»¢æç”»
 	NS_DrawRotaGraphFast2F( x, y, cxf, cyf, ExtRate, Angle, TempHandle, TransFlag, ReverseXFlag, ReverseYFlag ) ;
 
-	// íœ
+	// å‰Šé™¤
 	Graphics_Image_TempDerivationGraph_Terminate() ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
@@ -14742,46 +14742,46 @@ extern int NS_DrawRectRotaGraphFast3F( float x, float y, int SrcX, int SrcY, int
 {
 	int TempHandle ;
 
-	// ƒTƒCƒY”»’è
+	// ã‚µã‚¤ã‚ºåˆ¤å®š
 	if( Width <= 0 || Height <= 0 )
 		return -1 ;
 
-	// Ø‚èæ‚Á‚½ƒOƒ‰ƒtƒBƒbƒN‚ğì¬
+	// åˆ‡ã‚Šå–ã£ãŸã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚’ä½œæˆ
 	TempHandle = Graphics_Image_DerivationGraph_UseGParam( FALSE, SrcX, ( float )SrcX, SrcY, ( float )SrcY, Width, ( float )Width, Height, ( float )Height, GraphHandle, TRUE, FALSE ) ;
 
-	// ‰ñ“]•`‰æ
+	// å›è»¢æç”»
 	NS_DrawRotaGraphFast3F( x, y, cxf, cyf, ExtRateX, ExtRateY, Angle, TempHandle, TransFlag, ReverseXFlag, ReverseYFlag ) ;
 
-	// íœ
+	// å‰Šé™¤
 	Graphics_Image_TempDerivationGraph_Terminate() ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ‰æ‘œ‚Ìw’è‹éŒ`•”•ª‚Ì‚İ‚ğ©—R•ÏŒ`•`‰æ( À•Ww’è‚ª float ”Å )
+// ç”»åƒã®æŒ‡å®šçŸ©å½¢éƒ¨åˆ†ã®ã¿ã‚’è‡ªç”±å¤‰å½¢æç”»( åº§æ¨™æŒ‡å®šãŒ float ç‰ˆ )
 extern int NS_DrawRectModiGraphF( float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4, int SrcX, int SrcY, int Width, int Height,         int GraphHandle, int TransFlag )
 {
 	int TempHandle ;
 
-	// ƒTƒCƒY”»’è
+	// ã‚µã‚¤ã‚ºåˆ¤å®š
 	if( Width <= 0 || Height <= 0 )
 		return -1 ;
 
-	// Ø‚èæ‚Á‚½ƒOƒ‰ƒtƒBƒbƒN‚ğì¬
+	// åˆ‡ã‚Šå–ã£ãŸã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚’ä½œæˆ
 	TempHandle = Graphics_Image_DerivationGraph_UseGParam( FALSE, SrcX, ( float )SrcX, SrcY, ( float )SrcY, Width, ( float )Width, Height, ( float )Height, GraphHandle, TRUE, FALSE ) ;
 
-	// ©—R•ÏŒ`•`‰æ
+	// è‡ªç”±å¤‰å½¢æç”»
 	NS_DrawModiGraphF( x1, y1, x2, y2, x3, y3, x4, y4, TempHandle, TransFlag ) ;
 
-	// íœ
+	// å‰Šé™¤
 	Graphics_Image_TempDerivationGraph_Terminate() ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒuƒŒƒ“ƒh‰æ‘œ‚Æ‡¬‚µ‚Ä‰æ‘œ‚ğ•`‰æ‚·‚é
+// ãƒ–ãƒ¬ãƒ³ãƒ‰ç”»åƒã¨åˆæˆã—ã¦ç”»åƒã‚’æç”»ã™ã‚‹
 extern	int NS_DrawBlendGraph( int x, int y, int GrHandle, int TransFlag, int BlendGraph, int BorderParam, int BorderRange )
 {
 	int B_BlendGraph, B_BorderParam, B_BorderRange ;
@@ -14794,11 +14794,11 @@ extern	int NS_DrawBlendGraph( int x, int y, int GrHandle, int TransFlag, int Ble
 	NS_DrawGraph( x, y, GrHandle, TransFlag ) ;
 	NS_SetBlendGraph( B_BlendGraph, B_BorderParam, B_BorderRange ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒuƒŒƒ“ƒh‰æ‘œ‚Æ‡¬‚µ‚Ä‰æ‘œ‚ğ“™”{•`‰æ‚·‚é( À•Ww’è‚ª float ”Å )
+// ãƒ–ãƒ¬ãƒ³ãƒ‰ç”»åƒã¨åˆæˆã—ã¦ç”»åƒã‚’ç­‰å€æç”»ã™ã‚‹( åº§æ¨™æŒ‡å®šãŒ float ç‰ˆ )
 extern	int NS_DrawBlendGraphF( float x, float y, int GrHandle, int TransFlag, int BlendGraph, int BorderParam, int BorderRange )
 {
 	int B_BlendGraph, B_BorderParam, B_BorderRange ;
@@ -14811,11 +14811,11 @@ extern	int NS_DrawBlendGraphF( float x, float y, int GrHandle, int TransFlag, in
 	NS_DrawGraphF( x, y, GrHandle, TransFlag ) ;
 	NS_SetBlendGraph( B_BlendGraph, B_BorderParam, B_BorderRange ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒuƒŒƒ“ƒh‰æ‘œ‚Æ‡¬‚µ‚Ä‰æ‘œ‚ğ•`‰æ‚·‚é( ƒuƒŒƒ“ƒh‰æ‘œ‚Ì‹N“_À•W‚ğw’è‚·‚é”Å )
+// ãƒ–ãƒ¬ãƒ³ãƒ‰ç”»åƒã¨åˆæˆã—ã¦ç”»åƒã‚’æç”»ã™ã‚‹( ãƒ–ãƒ¬ãƒ³ãƒ‰ç”»åƒã®èµ·ç‚¹åº§æ¨™ã‚’æŒ‡å®šã™ã‚‹ç‰ˆ )
 extern	int NS_DrawBlendGraphPos( int x, int y, int GrHandle, int TransFlag, int bx, int by, int BlendGraph, int BorderParam, int BorderRange )
 {
 	int B_BlendGraph, B_BorderParam, B_BorderRange, B_PosX, B_PosY ;
@@ -14832,11 +14832,11 @@ extern	int NS_DrawBlendGraphPos( int x, int y, int GrHandle, int TransFlag, int 
 	NS_SetBlendGraphPosition( B_PosX, B_PosY ) ;
 	NS_SetBlendGraph( B_BlendGraph, B_BorderParam, B_BorderRange ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// DrawCircleGauge ŠÖ”‚Ì•â•ŠÖ”
+// DrawCircleGauge é–¢æ•°ã®è£œåŠ©é–¢æ•°
 static void DrawCircleGaugePolygon(
 	int GraphHandle,
 	float CenterX,
@@ -14871,7 +14871,7 @@ static void DrawCircleGaugePolygon(
 	NS_DrawPolygon( vert, 1, GraphHandle, TRUE, FALSE );
 }
 
-// ‰~ƒOƒ‰ƒt“I‚È•`‰æ‚ğs‚¤
+// å††ã‚°ãƒ©ãƒ•çš„ãªæç”»ã‚’è¡Œã†
 int NS_DrawCircleGauge( int CenterX, int CenterY, double Percent, int GrHandle, double StartPercent , double Scale, int ReverseX, int ReverseY )
 {
 	VECTOR vertex[3] ;
@@ -14906,7 +14906,7 @@ int NS_DrawCircleGauge( int CenterX, int CenterY, double Percent, int GrHandle, 
 		return -1 ;
 	}
 
-	// ƒJƒŠƒ“ƒO–³‚µ‚Éİ’è
+	// ã‚«ãƒªãƒ³ã‚°ç„¡ã—ã«è¨­å®š
 	CullMode = NS_GetUseBackCulling() ;
 	NS_SetUseBackCulling( DX_CULLING_NONE ) ;
 
@@ -15009,7 +15009,7 @@ int NS_DrawCircleGauge( int CenterX, int CenterY, double Percent, int GrHandle, 
 	RectClipping_Inline( &GaugeDrawRect, &DrawRect ) ;
 	NS_SetDrawArea( GaugeDrawRect.left, GaugeDrawRect.top, GaugeDrawRect.right, GaugeDrawRect.bottom ) ; 
 
-	// 90“x•ª“›•`‰æ
+	// 90åº¦åˆ†ç­’æç”»
 	for( i = 0 ; i < 12 ; i ++ )
 	{
 		StartRad = DX_PI_F * 0.5f * ( i - 4 ) ;
@@ -15023,17 +15023,17 @@ int NS_DrawCircleGauge( int CenterX, int CenterY, double Percent, int GrHandle, 
 		}
 	}
 
-	// ƒJƒŠƒ“ƒOİ’è‚ğŒ³‚É–ß‚·
+	// ã‚«ãƒªãƒ³ã‚°è¨­å®šã‚’å…ƒã«æˆ»ã™
 	NS_SetUseBackCulling( CullMode ) ;
 
-	// •`‰æ‰Â”\”ÍˆÍ‚ğŒ³‚É–ß‚·
+	// æç”»å¯èƒ½ç¯„å›²ã‚’å…ƒã«æˆ»ã™
 	NS_SetDrawArea( DrawRect.left, DrawRect.top, DrawRect.right, DrawRect.bottom ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0;
 }
 
-// ‰~ƒOƒ‰ƒt“I‚È•`‰æ‚ğs‚¤
+// å††ã‚°ãƒ©ãƒ•çš„ãªæç”»ã‚’è¡Œã†
 int NS_DrawCircleGaugeF( float CenterX, float CenterY, double Percent, int GrHandle, double StartPercent , double Scale, int ReverseX, int ReverseY )
 {
 	VECTOR vertex[3] ;
@@ -15068,7 +15068,7 @@ int NS_DrawCircleGaugeF( float CenterX, float CenterY, double Percent, int GrHan
 		return -1 ;
 	}
 
-	// ƒJƒŠƒ“ƒO–³‚µ‚Éİ’è
+	// ã‚«ãƒªãƒ³ã‚°ç„¡ã—ã«è¨­å®š
 	CullMode = NS_GetUseBackCulling() ;
 	NS_SetUseBackCulling( DX_CULLING_NONE ) ;
 
@@ -15171,7 +15171,7 @@ int NS_DrawCircleGaugeF( float CenterX, float CenterY, double Percent, int GrHan
 	RectClipping_Inline( &GaugeDrawRect, &DrawRect ) ;
 	NS_SetDrawArea( GaugeDrawRect.left, GaugeDrawRect.top, GaugeDrawRect.right, GaugeDrawRect.bottom ) ; 
 
-	// 90“x•ª“›•`‰æ
+	// 90åº¦åˆ†ç­’æç”»
 	for( i = 0 ; i < 12 ; i ++ )
 	{
 		StartRad = DX_PI_F * 0.5f * ( i - 4 ) ;
@@ -15185,13 +15185,13 @@ int NS_DrawCircleGaugeF( float CenterX, float CenterY, double Percent, int GrHan
 		}
 	}
 
-	// ƒJƒŠƒ“ƒOİ’è‚ğŒ³‚É–ß‚·
+	// ã‚«ãƒªãƒ³ã‚°è¨­å®šã‚’å…ƒã«æˆ»ã™
 	NS_SetUseBackCulling( CullMode ) ;
 
-	// •`‰æ‰Â”\”ÍˆÍ‚ğŒ³‚É–ß‚·
+	// æç”»å¯èƒ½ç¯„å›²ã‚’å…ƒã«æˆ»ã™
 	NS_SetDrawArea( DrawRect.left, DrawRect.top, DrawRect.right, DrawRect.bottom ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0;
 }
 
@@ -15235,233 +15235,233 @@ static void FASTCALL DrawZBuffer_Post( void )
 	NS_SetWriteZBuffer3D( DrawZBuffer_Static.WriteZBufferFlag3D );
 }
 
-// ‚yƒoƒbƒtƒ@‚É‘Î‚µ‚Ä‰æ‘œ‚Ì•`‰æ‚ğs‚¤
+// ï¼ºãƒãƒƒãƒ•ã‚¡ã«å¯¾ã—ã¦ç”»åƒã®æç”»ã‚’è¡Œã†
 extern	int NS_DrawGraphToZBuffer( int X, int Y, int GrHandle, int WriteZMode )
 {
 	DrawZBuffer_Pre( WriteZMode );
 	NS_DrawGraph( X, Y, GrHandle, TRUE );
 	DrawZBuffer_Post();
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ‚yƒoƒbƒtƒ@‚É‘Î‚µ‚Ä‰æ‘œ‚Ì¶‰E”½“]•`‰æ
-extern	int NS_DrawTurnGraphToZBuffer( int x, int y, int GrHandle, int WriteZMode /* DX_ZWRITE_MASK “™ */ )
+// ï¼ºãƒãƒƒãƒ•ã‚¡ã«å¯¾ã—ã¦ç”»åƒã®å·¦å³åè»¢æç”»
+extern	int NS_DrawTurnGraphToZBuffer( int x, int y, int GrHandle, int WriteZMode /* DX_ZWRITE_MASK ç­‰ */ )
 {
 	DrawZBuffer_Pre( WriteZMode );
 	NS_DrawTurnGraph( x, y, GrHandle, TRUE );
 	DrawZBuffer_Post();
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ‚yƒoƒbƒtƒ@‚É‘Î‚µ‚Ä‰æ‘œ‚Ì”½“]•`‰æ
-extern int NS_DrawReverseGraphToZBuffer( int x, int y, int GrHandle, int WriteZMode /* DX_ZWRITE_MASK “™ */ , int ReverseXFlag, int ReverseYFlag )
+// ï¼ºãƒãƒƒãƒ•ã‚¡ã«å¯¾ã—ã¦ç”»åƒã®åè»¢æç”»
+extern int NS_DrawReverseGraphToZBuffer( int x, int y, int GrHandle, int WriteZMode /* DX_ZWRITE_MASK ç­‰ */ , int ReverseXFlag, int ReverseYFlag )
 {
 	DrawZBuffer_Pre( WriteZMode );
 	NS_DrawReverseGraph( x, y, GrHandle, TRUE, ReverseXFlag, ReverseYFlag );
 	DrawZBuffer_Post();
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ‚yƒoƒbƒtƒ@‚É‘Î‚µ‚Ä‰æ‘œ‚ÌŠg‘åk¬•`‰æ
-extern	int NS_DrawExtendGraphToZBuffer( int x1, int y1, int x2, int y2, int GrHandle, int WriteZMode /* DX_ZWRITE_MASK “™ */ )
+// ï¼ºãƒãƒƒãƒ•ã‚¡ã«å¯¾ã—ã¦ç”»åƒã®æ‹¡å¤§ç¸®å°æç”»
+extern	int NS_DrawExtendGraphToZBuffer( int x1, int y1, int x2, int y2, int GrHandle, int WriteZMode /* DX_ZWRITE_MASK ç­‰ */ )
 {
 	DrawZBuffer_Pre( WriteZMode );
 	NS_DrawExtendGraph( x1, y1, x2, y2, GrHandle, TRUE );
 	DrawZBuffer_Post();
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ‚yƒoƒbƒtƒ@‚É‘Î‚µ‚Ä‰æ‘œ‚Ì‰ñ“]•`‰æ
-extern	int NS_DrawRotaGraphToZBuffer( int x, int y, double ExRate, double Angle, int GrHandle, int WriteZMode /* DX_ZWRITE_MASK “™ */, int ReverseXFlag, int ReverseYFlag )
+// ï¼ºãƒãƒƒãƒ•ã‚¡ã«å¯¾ã—ã¦ç”»åƒã®å›è»¢æç”»
+extern	int NS_DrawRotaGraphToZBuffer( int x, int y, double ExRate, double Angle, int GrHandle, int WriteZMode /* DX_ZWRITE_MASK ç­‰ */, int ReverseXFlag, int ReverseYFlag )
 {
 	DrawZBuffer_Pre( WriteZMode );
 	NS_DrawRotaGraph(  x,  y,  ExRate,  Angle,  GrHandle,  TRUE, ReverseXFlag, ReverseYFlag );
 	DrawZBuffer_Post();
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ‚yƒoƒbƒtƒ@‚É‘Î‚µ‚Ä‰æ‘œ‚Ì‰ñ“]•`‰æ‚Q
-extern	int NS_DrawRotaGraph2ToZBuffer(  int x, int y, int cx, int cy, double ExtRate,                   double Angle, int GrHandle, int WriteZMode /* DX_ZWRITE_MASK “™ */ , int ReverseXFlag, int ReverseYFlag )
+// ï¼ºãƒãƒƒãƒ•ã‚¡ã«å¯¾ã—ã¦ç”»åƒã®å›è»¢æç”»ï¼’
+extern	int NS_DrawRotaGraph2ToZBuffer(  int x, int y, int cx, int cy, double ExtRate,                   double Angle, int GrHandle, int WriteZMode /* DX_ZWRITE_MASK ç­‰ */ , int ReverseXFlag, int ReverseYFlag )
 {
 	DrawZBuffer_Pre( WriteZMode );
 	NS_DrawRotaGraph2( x,  y,  cx,  cy,  ExtRate,  Angle,  GrHandle,  TRUE, ReverseXFlag, ReverseYFlag ) ;
 	DrawZBuffer_Post();
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ‚yƒoƒbƒtƒ@‚É‘Î‚µ‚Ä‰æ‘œ‚Ì‰ñ“]•`‰æ‚R
-extern	int NS_DrawRotaGraph3ToZBuffer(  int x, int y, int cx, int cy, double ExtRateX, double ExtRateY, double Angle, int GrHandle, int WriteZMode /* DX_ZWRITE_MASK “™ */ , int ReverseXFlag, int ReverseYFlag )
+// ï¼ºãƒãƒƒãƒ•ã‚¡ã«å¯¾ã—ã¦ç”»åƒã®å›è»¢æç”»ï¼“
+extern	int NS_DrawRotaGraph3ToZBuffer(  int x, int y, int cx, int cy, double ExtRateX, double ExtRateY, double Angle, int GrHandle, int WriteZMode /* DX_ZWRITE_MASK ç­‰ */ , int ReverseXFlag, int ReverseYFlag )
 {
 	DrawZBuffer_Pre( WriteZMode );
 	NS_DrawRotaGraph3(   x,  y,  cx,  cy,  ExtRateX,  ExtRateY,  Angle,  GrHandle, TRUE, ReverseXFlag, ReverseYFlag );
 	DrawZBuffer_Post();
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ‚yƒoƒbƒtƒ@‚É‘Î‚µ‚Ä‰æ‘œ‚Ì‰ñ“]•`‰æA‚‘¬”Å
-extern	int NS_DrawRotaGraphFastToZBuffer( int x, int y, float ExRate, float Angle, int GrHandle, int WriteZMode /* DX_ZWRITE_MASK “™ */, int ReverseXFlag, int ReverseYFlag )
+// ï¼ºãƒãƒƒãƒ•ã‚¡ã«å¯¾ã—ã¦ç”»åƒã®å›è»¢æç”»ã€é«˜é€Ÿç‰ˆ
+extern	int NS_DrawRotaGraphFastToZBuffer( int x, int y, float ExRate, float Angle, int GrHandle, int WriteZMode /* DX_ZWRITE_MASK ç­‰ */, int ReverseXFlag, int ReverseYFlag )
 {
 	DrawZBuffer_Pre( WriteZMode );
 	NS_DrawRotaGraphFast(  x,  y,  ExRate,  Angle,  GrHandle,  TRUE, ReverseXFlag, ReverseYFlag );
 	DrawZBuffer_Post();
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ‚yƒoƒbƒtƒ@‚É‘Î‚µ‚Ä‰æ‘œ‚Ì‰ñ“]•`‰æ‚QA‚‘¬”Å
-extern	int NS_DrawRotaGraphFast2ToZBuffer(  int x, int y, int cx, int cy, float ExtRate,                   float Angle, int GrHandle, int WriteZMode /* DX_ZWRITE_MASK “™ */ , int ReverseXFlag, int ReverseYFlag )
+// ï¼ºãƒãƒƒãƒ•ã‚¡ã«å¯¾ã—ã¦ç”»åƒã®å›è»¢æç”»ï¼’ã€é«˜é€Ÿç‰ˆ
+extern	int NS_DrawRotaGraphFast2ToZBuffer(  int x, int y, int cx, int cy, float ExtRate,                   float Angle, int GrHandle, int WriteZMode /* DX_ZWRITE_MASK ç­‰ */ , int ReverseXFlag, int ReverseYFlag )
 {
 	DrawZBuffer_Pre( WriteZMode );
 	NS_DrawRotaGraphFast2( x,  y,  cx,  cy,  ExtRate,  Angle,  GrHandle,  TRUE, ReverseXFlag, ReverseYFlag ) ;
 	DrawZBuffer_Post();
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ‚yƒoƒbƒtƒ@‚É‘Î‚µ‚Ä‰æ‘œ‚Ì‰ñ“]•`‰æ‚RA‚‘¬”Å
-extern	int NS_DrawRotaGraphFast3ToZBuffer(  int x, int y, int cx, int cy, float ExtRateX, float ExtRateY, float Angle, int GrHandle, int WriteZMode /* DX_ZWRITE_MASK “™ */ , int ReverseXFlag, int ReverseYFlag )
+// ï¼ºãƒãƒƒãƒ•ã‚¡ã«å¯¾ã—ã¦ç”»åƒã®å›è»¢æç”»ï¼“ã€é«˜é€Ÿç‰ˆ
+extern	int NS_DrawRotaGraphFast3ToZBuffer(  int x, int y, int cx, int cy, float ExtRateX, float ExtRateY, float Angle, int GrHandle, int WriteZMode /* DX_ZWRITE_MASK ç­‰ */ , int ReverseXFlag, int ReverseYFlag )
 {
 	DrawZBuffer_Pre( WriteZMode );
 	NS_DrawRotaGraphFast3(   x,  y,  cx,  cy,  ExtRateX,  ExtRateY,  Angle,  GrHandle, TRUE, ReverseXFlag, ReverseYFlag );
 	DrawZBuffer_Post();
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ‚yƒoƒbƒtƒ@‚É‘Î‚µ‚Ä‰æ‘œ‚Ì©—R•ÏŒ`•`‰æ
-extern	int NS_DrawModiGraphToZBuffer( int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4, int GrHandle, int WriteZMode /* DX_ZWRITE_MASK “™ */ )
+// ï¼ºãƒãƒƒãƒ•ã‚¡ã«å¯¾ã—ã¦ç”»åƒã®è‡ªç”±å¤‰å½¢æç”»
+extern	int NS_DrawModiGraphToZBuffer( int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4, int GrHandle, int WriteZMode /* DX_ZWRITE_MASK ç­‰ */ )
 {
 	DrawZBuffer_Pre( WriteZMode );
 	NS_DrawModiGraph(  x1,  y1,  x2,  y2,  x3,  y3,  x4,  y4,  GrHandle,  TRUE );
 	DrawZBuffer_Post();
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ‚yƒoƒbƒtƒ@‚É‘Î‚µ‚Ä‹éŒ`‚Ì•`‰æ‚ğs‚¤
-extern int NS_DrawBoxToZBuffer( int x1, int y1, int x2, int y2, int FillFlag, int WriteZMode /* DX_ZWRITE_MASK “™ */ )
+// ï¼ºãƒãƒƒãƒ•ã‚¡ã«å¯¾ã—ã¦çŸ©å½¢ã®æç”»ã‚’è¡Œã†
+extern int NS_DrawBoxToZBuffer( int x1, int y1, int x2, int y2, int FillFlag, int WriteZMode /* DX_ZWRITE_MASK ç­‰ */ )
 {
 	DrawZBuffer_Pre( WriteZMode );
 	NS_DrawBox( x1, y1, x2, y2, NS_GetColor(255,255,255), FillFlag, 1 );
 	DrawZBuffer_Post();
 
-	// I—¹
+	// çµ‚äº†
 	return 0;
 }
 
-// ‚yƒoƒbƒtƒ@‚É‘Î‚µ‚Ä‰~‚Ì•`‰æ‚ğs‚¤
-extern int NS_DrawCircleToZBuffer( int x, int y, int r, int FillFlag, int WriteZMode /* DX_ZWRITE_MASK “™ */ )
+// ï¼ºãƒãƒƒãƒ•ã‚¡ã«å¯¾ã—ã¦å††ã®æç”»ã‚’è¡Œã†
+extern int NS_DrawCircleToZBuffer( int x, int y, int r, int FillFlag, int WriteZMode /* DX_ZWRITE_MASK ç­‰ */ )
 {
 	DrawZBuffer_Pre( WriteZMode );
 	NS_DrawCircle( x, y, r, GetColor(255,255,255), FillFlag, 1 );
 	DrawZBuffer_Post();
 
-	// I—¹
+	// çµ‚äº†
 	return 0;
 }
 
-// ‚yƒoƒbƒtƒ@‚É‘Î‚µ‚ÄOŠpŒ`‚ğ•`‰æ‚·‚é
-extern int NS_DrawTriangleToZBuffer( int x1, int y1, int x2, int y2, int x3, int y3, int FillFlag, int WriteZMode /* DX_ZWRITE_MASK “™ */ )
+// ï¼ºãƒãƒƒãƒ•ã‚¡ã«å¯¾ã—ã¦ä¸‰è§’å½¢ã‚’æç”»ã™ã‚‹
+extern int NS_DrawTriangleToZBuffer( int x1, int y1, int x2, int y2, int x3, int y3, int FillFlag, int WriteZMode /* DX_ZWRITE_MASK ç­‰ */ )
 {
 	DrawZBuffer_Pre( WriteZMode );
 	NS_DrawTriangle( x1, y1, x2, y2, x3, y3, GetColor(255,255,255), FillFlag ) ;
 	DrawZBuffer_Post();
 
-	// I—¹
+	// çµ‚äº†
 	return 0;
 }
 
-// ‚yƒoƒbƒtƒ@‚É‘Î‚µ‚ÄlŠpŒ`‚ğ•`‰æ‚·‚é
-extern int NS_DrawQuadrangleToZBuffer(  int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4, int FillFlag, int WriteZMode /* DX_ZWRITE_MASK “™ */ )
+// ï¼ºãƒãƒƒãƒ•ã‚¡ã«å¯¾ã—ã¦å››è§’å½¢ã‚’æç”»ã™ã‚‹
+extern int NS_DrawQuadrangleToZBuffer(  int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4, int FillFlag, int WriteZMode /* DX_ZWRITE_MASK ç­‰ */ )
 {
 	DrawZBuffer_Pre( WriteZMode );
 	NS_DrawQuadrangle( x1, y1, x2, y2, x3, y3, x4, y4, GetColor(255,255,255), FillFlag ) ;
 	DrawZBuffer_Post();
 
-	// I—¹
+	// çµ‚äº†
 	return 0;
 }
 
-// ‚yƒoƒbƒtƒ@‚É‘Î‚µ‚ÄŠp‚ÌŠÛ‚¢lŠpŒ`‚ğ•`‰æ‚·‚é
-extern int NS_DrawRoundRectToZBuffer(   int x1, int y1, int x2, int y2, int rx, int ry, int FillFlag, int WriteZMode /* DX_ZWRITE_MASK “™ */ )
+// ï¼ºãƒãƒƒãƒ•ã‚¡ã«å¯¾ã—ã¦è§’ã®ä¸¸ã„å››è§’å½¢ã‚’æç”»ã™ã‚‹
+extern int NS_DrawRoundRectToZBuffer(   int x1, int y1, int x2, int y2, int rx, int ry, int FillFlag, int WriteZMode /* DX_ZWRITE_MASK ç­‰ */ )
 {
 	DrawZBuffer_Pre( WriteZMode );
 	NS_DrawRoundRect( x1, y1, x2, y2, rx, ry, GetColor(255,255,255), FillFlag ) ;
 	DrawZBuffer_Post();
 
-	// I—¹
+	// çµ‚äº†
 	return 0;
 }
 
-// ‚Q‚cƒ|ƒŠƒSƒ“‚ğ•`‰æ‚·‚é
+// ï¼’ï¼¤ãƒãƒªã‚´ãƒ³ã‚’æç”»ã™ã‚‹
 extern	int NS_DrawPolygon( const VERTEX *Vertex, int PolygonNum, int GrHandle, int TransFlag, int UVScaling )
 {
 	return NS_DrawPolygonBase( Vertex, PolygonNum * 3, DX_PRIMTYPE_TRIANGLELIST, GrHandle, TransFlag,  UVScaling ) ;
 }
 
-// ‚Q‚cƒ|ƒŠƒSƒ“‚ğ•`‰æ‚·‚é
+// ï¼’ï¼¤ãƒãƒªã‚´ãƒ³ã‚’æç”»ã™ã‚‹
 extern int NS_DrawPolygon2D( const VERTEX2D *Vertex, int PolygonNum, int GrHandle, int TransFlag )
 {
 	return NS_DrawPrimitive2D( Vertex, PolygonNum * 3, DX_PRIMTYPE_TRIANGLELIST, GrHandle, TransFlag ) ;
 }
 
 #ifndef DX_COMPILE_TYPE_C_LANGUAGE
-// ‚R‚cƒ|ƒŠƒSƒ“‚ğ•`‰æ‚·‚é
+// ï¼“ï¼¤ãƒãƒªã‚´ãƒ³ã‚’æç”»ã™ã‚‹
 extern	int NS_DrawPolygon3D( const VERTEX_3D *Vertex, int PolygonNum, int GrHandle, int TransFlag )
 {
 	return NS_DrawPolygon3D2( Vertex, PolygonNum, GrHandle, TransFlag ) ;
 }
 #endif // DX_COMPILE_TYPE_C_LANGUAGE
 
-// ‚R‚cƒ|ƒŠƒSƒ“‚ğ•`‰æ‚·‚é
+// ï¼“ï¼¤ãƒãƒªã‚´ãƒ³ã‚’æç”»ã™ã‚‹
 extern	int NS_DrawPolygon3D2( const VERTEX_3D *Vertex, int PolygonNum, int GrHandle, int TransFlag )
 {
 	return NS_DrawPolygon3DBase( Vertex, PolygonNum * 3, DX_PRIMTYPE_TRIANGLELIST, GrHandle, TransFlag ) ;
 }
 
-// ‚Q‚cƒ|ƒŠƒSƒ“‚ğ•`‰æ‚·‚é( ’¸“_ƒCƒ“ƒfƒbƒNƒX‚ğg—p )
+// ï¼’ï¼¤ãƒãƒªã‚´ãƒ³ã‚’æç”»ã™ã‚‹( é ‚ç‚¹ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’ä½¿ç”¨ )
 extern int NS_DrawPolygonIndexed2D( const VERTEX2D  *Vertex, int VertexNum, const unsigned short *Indices, int PolygonNum, int GrHandle, int TransFlag )
 {
 	return NS_DrawPrimitiveIndexed2D( Vertex, VertexNum, Indices, PolygonNum * 3, DX_PRIMTYPE_TRIANGLELIST, GrHandle, TransFlag ) ;
 }
 
-// ‚Q‚cƒ|ƒŠƒSƒ“‚ğ•`‰æ‚·‚é( ’¸“_ƒCƒ“ƒfƒbƒNƒX‚ğg—p )
+// ï¼’ï¼¤ãƒãƒªã‚´ãƒ³ã‚’æç”»ã™ã‚‹( é ‚ç‚¹ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’ä½¿ç”¨ )
 extern int NS_DrawPolygon32bitIndexed2D( const VERTEX2D  *Vertex, int VertexNum, const unsigned int *Indices, int PolygonNum, int GrHandle, int TransFlag )
 {
 	return NS_DrawPrimitive32bitIndexed2D( Vertex, VertexNum, Indices, PolygonNum * 3, DX_PRIMTYPE_TRIANGLELIST, GrHandle, TransFlag ) ;
 }
 
-// ‚R‚cƒ|ƒŠƒSƒ“‚ğ•`‰æ‚·‚é(ƒCƒ“ƒfƒbƒNƒX)
+// ï¼“ï¼¤ãƒãƒªã‚´ãƒ³ã‚’æç”»ã™ã‚‹(ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹)
 extern int NS_DrawPolygonIndexed3D( const VERTEX3D *Vertex, int VertexNum, const unsigned short *Indices, int PolygonNum, int GrHandle, int TransFlag )
 {
 	return NS_DrawPrimitiveIndexed3D( Vertex, VertexNum, Indices, PolygonNum * 3, DX_PRIMTYPE_TRIANGLELIST, GrHandle, TransFlag ) ;
 }
 
-// ‚R‚cƒ|ƒŠƒSƒ“‚ğ•`‰æ‚·‚é(ƒCƒ“ƒfƒbƒNƒX)
+// ï¼“ï¼¤ãƒãƒªã‚´ãƒ³ã‚’æç”»ã™ã‚‹(ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹)
 extern int NS_DrawPolygon32bitIndexed3D( const VERTEX3D *Vertex, int VertexNum, const unsigned int *Indices, int PolygonNum, int GrHandle, int TransFlag )
 {
 	return NS_DrawPrimitive32bitIndexed3D( Vertex, VertexNum, Indices, PolygonNum * 3, DX_PRIMTYPE_TRIANGLELIST, GrHandle, TransFlag ) ;
 }
 
-// ‚R‚cƒ|ƒŠƒSƒ“‚ğ•`‰æ‚·‚é(ƒCƒ“ƒfƒbƒNƒX)
+// ï¼“ï¼¤ãƒãƒªã‚´ãƒ³ã‚’æç”»ã™ã‚‹(ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹)
 extern	int NS_DrawPolygonIndexed3DBase( const VERTEX_3D *Vertex, int VertexNum, const unsigned short *Indices, int IndexNum, int PrimitiveType, int GrHandle, int TransFlag )
 {
 	IMAGEDATA *Image ;
@@ -15470,10 +15470,10 @@ extern	int NS_DrawPolygonIndexed3DBase( const VERTEX_3D *Vertex, int VertexNum, 
 
 	Ret = -1;
 
-	// ƒ\ƒtƒg‚ª”ñƒAƒNƒeƒBƒu‚Ìê‡‚ÍƒAƒNƒeƒBƒu‚É‚È‚é‚Ü‚Å‘Ò‚Â
+	// ã‚½ãƒ•ãƒˆãŒéã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã®å ´åˆã¯ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ãªã‚‹ã¾ã§å¾…ã¤
 	CheckActiveState() ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	Image = NULL ;
 	if( ( DWORD )GrHandle != DX_NONE_GRAPH )
 	{
@@ -15494,11 +15494,11 @@ extern	int NS_DrawPolygonIndexed3DBase( const VERTEX_3D *Vertex, int VertexNum, 
 	}
 #endif
 
-	// ‚R‚cs—ñ‚ğƒn[ƒhƒEƒGƒA‚É”½‰f‚·‚é
+	// ï¼“ï¼¤è¡Œåˆ—ã‚’ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã«åæ˜ ã™ã‚‹
 	if( GSYS.DrawSetting.MatchHardware3DMatrix == FALSE && GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )
 		Graphics_DrawSetting_ApplyLib3DMatrixToHardware() ;
 
-	// F‚Ì•ÏŠ·‚ª•K—v‚Èê‡‚Í‚±‚±‚Åˆ—‚·‚é
+	// è‰²ã®å¤‰æ›ãŒå¿…è¦ãªå ´åˆã¯ã“ã“ã§å‡¦ç†ã™ã‚‹
 	if( GSYS.DrawSetting.DrawBright.Red   != 255 ||
 		GSYS.DrawSetting.DrawBright.Green != 255 ||
 		GSYS.DrawSetting.DrawBright.Blue  != 255 ||
@@ -15509,14 +15509,14 @@ extern	int NS_DrawPolygonIndexed3DBase( const VERTEX_3D *Vertex, int VertexNum, 
 		VERTEX_3D *dv ;
 		unsigned int Size ;
 
-		// ƒe[ƒuƒ‹‚ğ—pˆÓ‚·‚é
+		// ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’ç”¨æ„ã™ã‚‹
 		RedTable   = MemImgManage.RateTable[GSYS.DrawSetting.DrawBright.Red] ;
 		GreenTable = MemImgManage.RateTable[GSYS.DrawSetting.DrawBright.Green] ;
 		BlueTable  = MemImgManage.RateTable[GSYS.DrawSetting.DrawBright.Blue] ;
 		AlphaTable = MemImgManage.RateTable[GSYS.DrawSetting.BlendParam] ;
 		if( GSYS.DrawSetting.BlendMode == DX_BLENDMODE_NOBLEND ) AlphaTable = MemImgManage.RateTable[255] ;
 
-		// ’¸“_ƒf[ƒ^‚ğŠi”[‚·‚éƒƒ‚ƒŠ—Ìˆæ‚ª‘«‚è‚È‚¢ê‡‚ÍŠm•Û‚·‚é
+		// é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹ãƒ¡ãƒ¢ãƒªé ˜åŸŸãŒè¶³ã‚Šãªã„å ´åˆã¯ç¢ºä¿ã™ã‚‹
 		Size = sizeof( VERTEX_3D ) * VertexNum ;
 		if( GSYS.Resource.TempVertexBufferSize < ( int )Size )
 		{
@@ -15531,7 +15531,7 @@ extern	int NS_DrawPolygonIndexed3DBase( const VERTEX_3D *Vertex, int VertexNum, 
 			GSYS.Resource.TempVertexBufferSize = ( int )Size ;
 		}
 
-		// ˆêƒoƒbƒtƒ@‚É•ÏŠ·‚µ‚È‚ª‚ç“]‘—
+		// ä¸€æ™‚ãƒãƒƒãƒ•ã‚¡ã«å¤‰æ›ã—ãªãŒã‚‰è»¢é€
 		sv = Vertex;
 		dv = ( VERTEX_3D * )GSYS.Resource.TempVertexBuffer ;
 		for( i = 0 ; i < VertexNum ; i ++, sv ++, dv ++ )
@@ -15562,7 +15562,7 @@ extern	int NS_DrawPolygonIndexed3DBase( const VERTEX_3D *Vertex, int VertexNum, 
 	return Ret ;
 }
 
-// ‚R‚cƒ|ƒŠƒSƒ“‚ğ•`‰æ‚·‚é(ƒCƒ“ƒfƒbƒNƒX)
+// ï¼“ï¼¤ãƒãƒªã‚´ãƒ³ã‚’æç”»ã™ã‚‹(ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹)
 extern	int NS_DrawPolygon32bitIndexed3DBase( const VERTEX_3D *Vertex, int VertexNum, const unsigned int *Indices, int IndexNum, int PrimitiveType, int GrHandle, int TransFlag )
 {
 	IMAGEDATA *Image ;
@@ -15571,10 +15571,10 @@ extern	int NS_DrawPolygon32bitIndexed3DBase( const VERTEX_3D *Vertex, int Vertex
 
 	Ret = -1;
 
-	// ƒ\ƒtƒg‚ª”ñƒAƒNƒeƒBƒu‚Ìê‡‚ÍƒAƒNƒeƒBƒu‚É‚È‚é‚Ü‚Å‘Ò‚Â
+	// ã‚½ãƒ•ãƒˆãŒéã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã®å ´åˆã¯ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ãªã‚‹ã¾ã§å¾…ã¤
 	CheckActiveState() ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	Image = NULL ;
 	if( ( DWORD )GrHandle != DX_NONE_GRAPH )
 	{
@@ -15595,11 +15595,11 @@ extern	int NS_DrawPolygon32bitIndexed3DBase( const VERTEX_3D *Vertex, int Vertex
 	}
 #endif
 
-	// ‚R‚cs—ñ‚ğƒn[ƒhƒEƒGƒA‚É”½‰f‚·‚é
+	// ï¼“ï¼¤è¡Œåˆ—ã‚’ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã«åæ˜ ã™ã‚‹
 	if( GSYS.DrawSetting.MatchHardware3DMatrix == FALSE && GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )
 		Graphics_DrawSetting_ApplyLib3DMatrixToHardware() ;
 
-	// F‚Ì•ÏŠ·‚ª•K—v‚Èê‡‚Í‚±‚±‚Åˆ—‚·‚é
+	// è‰²ã®å¤‰æ›ãŒå¿…è¦ãªå ´åˆã¯ã“ã“ã§å‡¦ç†ã™ã‚‹
 	if( GSYS.DrawSetting.DrawBright.Red   != 255 ||
 		GSYS.DrawSetting.DrawBright.Green != 255 ||
 		GSYS.DrawSetting.DrawBright.Blue  != 255 ||
@@ -15610,14 +15610,14 @@ extern	int NS_DrawPolygon32bitIndexed3DBase( const VERTEX_3D *Vertex, int Vertex
 		VERTEX_3D *dv ;
 		unsigned int Size ;
 
-		// ƒe[ƒuƒ‹‚ğ—pˆÓ‚·‚é
+		// ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’ç”¨æ„ã™ã‚‹
 		RedTable   = MemImgManage.RateTable[GSYS.DrawSetting.DrawBright.Red] ;
 		GreenTable = MemImgManage.RateTable[GSYS.DrawSetting.DrawBright.Green] ;
 		BlueTable  = MemImgManage.RateTable[GSYS.DrawSetting.DrawBright.Blue] ;
 		AlphaTable = MemImgManage.RateTable[GSYS.DrawSetting.BlendParam] ;
 		if( GSYS.DrawSetting.BlendMode == DX_BLENDMODE_NOBLEND ) AlphaTable = MemImgManage.RateTable[255] ;
 
-		// ’¸“_ƒf[ƒ^‚ğŠi”[‚·‚éƒƒ‚ƒŠ—Ìˆæ‚ª‘«‚è‚È‚¢ê‡‚ÍŠm•Û‚·‚é
+		// é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹ãƒ¡ãƒ¢ãƒªé ˜åŸŸãŒè¶³ã‚Šãªã„å ´åˆã¯ç¢ºä¿ã™ã‚‹
 		Size = sizeof( VERTEX_3D ) * VertexNum ;
 		if( GSYS.Resource.TempVertexBufferSize < ( int )Size )
 		{
@@ -15632,7 +15632,7 @@ extern	int NS_DrawPolygon32bitIndexed3DBase( const VERTEX_3D *Vertex, int Vertex
 			GSYS.Resource.TempVertexBufferSize = ( int )Size ;
 		}
 
-		// ˆêƒoƒbƒtƒ@‚É•ÏŠ·‚µ‚È‚ª‚ç“]‘—
+		// ä¸€æ™‚ãƒãƒƒãƒ•ã‚¡ã«å¤‰æ›ã—ãªãŒã‚‰è»¢é€
 		sv = Vertex;
 		dv = ( VERTEX_3D * )GSYS.Resource.TempVertexBuffer ;
 		for( i = 0 ; i < VertexNum ; i ++, sv ++, dv ++ )
@@ -15663,7 +15663,7 @@ extern	int NS_DrawPolygon32bitIndexed3DBase( const VERTEX_3D *Vertex, int Vertex
 	return Ret ;
 }
 
-// ‚R‚cƒ|ƒŠƒSƒ“‚ğ•`‰æ‚·‚é
+// ï¼“ï¼¤ãƒãƒªã‚´ãƒ³ã‚’æç”»ã™ã‚‹
 extern	int NS_DrawPolygon3DBase( const VERTEX_3D *Vertex, int VertexNum, int PrimitiveType, int GrHandle, int TransFlag )
 {
 	IMAGEDATA *Image ;
@@ -15672,10 +15672,10 @@ extern	int NS_DrawPolygon3DBase( const VERTEX_3D *Vertex, int VertexNum, int Pri
 
 	Ret = -1;
 
-	// ƒ\ƒtƒg‚ª”ñƒAƒNƒeƒBƒu‚Ìê‡‚ÍƒAƒNƒeƒBƒu‚É‚È‚é‚Ü‚Å‘Ò‚Â
+	// ã‚½ãƒ•ãƒˆãŒéã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã®å ´åˆã¯ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ãªã‚‹ã¾ã§å¾…ã¤
 	CheckActiveState() ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	Image = NULL ;
 	if( ( DWORD )GrHandle != DX_NONE_GRAPH )
 	{
@@ -15696,11 +15696,11 @@ extern	int NS_DrawPolygon3DBase( const VERTEX_3D *Vertex, int VertexNum, int Pri
 	}
 #endif
 
-	// ‚R‚cs—ñ‚ğƒn[ƒhƒEƒGƒA‚É”½‰f‚·‚é
+	// ï¼“ï¼¤è¡Œåˆ—ã‚’ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã«åæ˜ ã™ã‚‹
 	if( GSYS.DrawSetting.MatchHardware3DMatrix == FALSE && GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )
 		Graphics_DrawSetting_ApplyLib3DMatrixToHardware() ;
 
-	// F‚Ì•ÏŠ·‚ª•K—v‚Èê‡‚Í‚±‚±‚Åˆ—‚·‚é
+	// è‰²ã®å¤‰æ›ãŒå¿…è¦ãªå ´åˆã¯ã“ã“ã§å‡¦ç†ã™ã‚‹
 	if( GSYS.DrawSetting.DrawBright.Red   != 255 ||
 		GSYS.DrawSetting.DrawBright.Green != 255 ||
 		GSYS.DrawSetting.DrawBright.Blue  != 255 ||
@@ -15711,14 +15711,14 @@ extern	int NS_DrawPolygon3DBase( const VERTEX_3D *Vertex, int VertexNum, int Pri
 		VERTEX_3D *dv ;
 		unsigned int Size ;
 
-		// ƒe[ƒuƒ‹‚ğ—pˆÓ‚·‚é
+		// ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’ç”¨æ„ã™ã‚‹
 		RedTable   = MemImgManage.RateTable[GSYS.DrawSetting.DrawBright.Red] ;
 		GreenTable = MemImgManage.RateTable[GSYS.DrawSetting.DrawBright.Green] ;
 		BlueTable  = MemImgManage.RateTable[GSYS.DrawSetting.DrawBright.Blue] ;
 		AlphaTable = MemImgManage.RateTable[GSYS.DrawSetting.BlendParam] ;
 		if( GSYS.DrawSetting.BlendMode == DX_BLENDMODE_NOBLEND ) AlphaTable = MemImgManage.RateTable[255] ;
 
-		// ’¸“_ƒf[ƒ^‚ğŠi”[‚·‚éƒƒ‚ƒŠ—Ìˆæ‚ª‘«‚è‚È‚¢ê‡‚ÍŠm•Û‚·‚é
+		// é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹ãƒ¡ãƒ¢ãƒªé ˜åŸŸãŒè¶³ã‚Šãªã„å ´åˆã¯ç¢ºä¿ã™ã‚‹
 		Size = sizeof( VERTEX_3D ) * VertexNum ;
 		if( GSYS.Resource.TempVertexBufferSize < ( int )Size )
 		{
@@ -15733,7 +15733,7 @@ extern	int NS_DrawPolygon3DBase( const VERTEX_3D *Vertex, int VertexNum, int Pri
 			GSYS.Resource.TempVertexBufferSize = ( int )Size ;
 		}
 
-		// ˆêƒoƒbƒtƒ@‚É•ÏŠ·‚µ‚È‚ª‚ç“]‘—
+		// ä¸€æ™‚ãƒãƒƒãƒ•ã‚¡ã«å¤‰æ›ã—ãªãŒã‚‰è»¢é€
 		sv = Vertex;
 		dv = ( VERTEX_3D * )GSYS.Resource.TempVertexBuffer ;
 		for( i = 0 ; i < VertexNum ; i ++, sv ++, dv ++ )
@@ -15764,13 +15764,13 @@ extern	int NS_DrawPolygon3DBase( const VERTEX_3D *Vertex, int VertexNum, int Pri
 	return Ret ;
 }
 
-// ‚R‚cƒ|ƒŠƒSƒ“‚ğ•`‰æ‚·‚é
+// ï¼“ï¼¤ãƒãƒªã‚´ãƒ³ã‚’æç”»ã™ã‚‹
 extern int NS_DrawPolygon3D( const VERTEX3D *Vertex, int PolygonNum, int GrHandle, int TransFlag )
 {
 	return NS_DrawPrimitive3D( Vertex, PolygonNum * 3, DX_PRIMTYPE_TRIANGLELIST, GrHandle, TransFlag ) ;
 }
 
-// ‚Q‚cƒ|ƒŠƒSƒ“‚ğ•`‰æ‚·‚é
+// ï¼’ï¼¤ãƒãƒªã‚´ãƒ³ã‚’æç”»ã™ã‚‹
 #define SETDRAWRECTCODE\
 	float MinX, MinY, MaxX, MaxY ;\
 	const VERTEX_2D *Vert ;\
@@ -15805,10 +15805,10 @@ extern	int NS_DrawPolygonBase( const VERTEX *Vertex, int VertexNum, int Primitiv
 
 	Ret = -1;
 
-	// ƒ\ƒtƒg‚ª”ñƒAƒNƒeƒBƒu‚Ìê‡‚ÍƒAƒNƒeƒBƒu‚É‚È‚é‚Ü‚Å‘Ò‚Â
+	// ã‚½ãƒ•ãƒˆãŒéã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã®å ´åˆã¯ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ãªã‚‹ã¾ã§å¾…ã¤
 	CheckActiveState() ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	Image = NULL ;
 	if( ( DWORD )GrHandle != DX_NONE_GRAPH )
 	{
@@ -15817,7 +15817,7 @@ extern	int NS_DrawPolygonBase( const VERTEX *Vertex, int VertexNum, int Primitiv
 
 		Flag = Image->Orig->FormatDesc.TextureFlag ;
 
-		// ‰æ‘œ‚ÌƒTƒCƒY‚ªÅ‰‚©‚ç‚Q‚Ì‚æ‚¾‚Á‚½‚ç‚t‚u•â³‚Í‚µ‚È‚¢
+		// ç”»åƒã®ã‚µã‚¤ã‚ºãŒæœ€åˆã‹ã‚‰ï¼’ã®ï½ä¹—ã ã£ãŸã‚‰ï¼µï¼¶è£œæ­£ã¯ã—ãªã„
 		if( UVScaling )
 		{
 			if( Image->Orig->FormatDesc.TextureFlag == FALSE ||
@@ -15843,7 +15843,7 @@ extern	int NS_DrawPolygonBase( const VERTEX *Vertex, int VertexNum, int Primitiv
 	}
 #endif
 
-	// UVƒXƒP[ƒŠƒ“ƒO‚ğs‚¤ê‡‚Í‚±‚±‚Åƒf[ƒ^‚ğZo‚·‚é
+	// UVã‚¹ã‚±ãƒ¼ãƒªãƒ³ã‚°ã‚’è¡Œã†å ´åˆã¯ã“ã“ã§ãƒ‡ãƒ¼ã‚¿ã‚’ç®—å‡ºã™ã‚‹
 	if( UVScaling )
 	{
 		UPos   = Image->Hard.Draw->UsePosXF / Image->Hard.Draw->Tex->TexWidth ;
@@ -15852,24 +15852,24 @@ extern	int NS_DrawPolygonBase( const VERTEX *Vertex, int VertexNum, int Primitiv
 		VScale = Image->Hard.Draw->HeightF  / Image->Hard.Draw->Tex->TexHeight ;
 	}
 
-	// ’¸“_‚Ìo—Íæ‚ğŠm•Û‚·‚é
+	// é ‚ç‚¹ã®å‡ºåŠ›å…ˆã‚’ç¢ºä¿ã™ã‚‹
 	TransVert = ( VERTEX_2D * )DXALLOC( sizeof( VERTEX_2D ) * VertexNum ) ;
 	if( TransVert == NULL ) return -1 ;
 
-	// ’¸“_•ÏŠ·‚ğs‚¤
+	// é ‚ç‚¹å¤‰æ›ã‚’è¡Œã†
 	if( GSYS.DrawSetting.DrawBright.Red != 255 || GSYS.DrawSetting.DrawBright.Green != 255 || GSYS.DrawSetting.DrawBright.Blue != 255 ||
 		( GSYS.DrawSetting.BlendMode != DX_BLENDMODE_NOBLEND && GSYS.DrawSetting.BlendParam != 255 ) )
 	{
 		DWORD *RedTable, *GreenTable, *BlueTable, *AlphaTable ;
 
-		// ƒe[ƒuƒ‹‚ğ—pˆÓ‚·‚é
+		// ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’ç”¨æ„ã™ã‚‹
 		RedTable   = MemImgManage.RateTable[GSYS.DrawSetting.DrawBright.Red] ;
 		GreenTable = MemImgManage.RateTable[GSYS.DrawSetting.DrawBright.Green] ;
 		BlueTable  = MemImgManage.RateTable[GSYS.DrawSetting.DrawBright.Blue] ;
 		AlphaTable = MemImgManage.RateTable[GSYS.DrawSetting.BlendParam] ;
 		if( GSYS.DrawSetting.BlendMode == DX_BLENDMODE_NOBLEND ) AlphaTable = MemImgManage.RateTable[255] ;
 
-		// ’¸“_•ÏŠ·‚·‚é
+		// é ‚ç‚¹å¤‰æ›ã™ã‚‹
 		if( UVScaling )
 		{
 			DestP = TransVert ;
@@ -15907,7 +15907,7 @@ extern	int NS_DrawPolygonBase( const VERTEX *Vertex, int VertexNum, int Primitiv
 	}
 	else
 	{
-		// ’¸“_•ÏŠ·‚·‚é
+		// é ‚ç‚¹å¤‰æ›ã™ã‚‹
 		if( UVScaling )
 		{
 			DestP = TransVert ;
@@ -15938,7 +15938,7 @@ extern	int NS_DrawPolygonBase( const VERTEX *Vertex, int VertexNum, int Primitiv
 		}
 	}
 
-	// ‚Q‚cs—ñ‚ğƒn[ƒhƒEƒGƒA‚É”½‰f‚·‚é
+	// ï¼’ï¼¤è¡Œåˆ—ã‚’ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã«åæ˜ ã™ã‚‹
 	if( GSYS.DrawSetting.MatchHardware_2DMatrix == FALSE && GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )
 		Graphics_DrawSetting_ApplyLib2DMatrixToHardware() ;
 
@@ -15956,13 +15956,13 @@ extern	int NS_DrawPolygonBase( const VERTEX *Vertex, int VertexNum, int Primitiv
 		TransVert = NULL ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return Ret ;
 }
 
 #undef SETDRAWRECTCODE
 
-// ‚Q‚cƒvƒŠƒ~ƒeƒBƒu‚ğ•`‰æ‚·‚é
+// ï¼’ï¼¤ãƒ—ãƒªãƒŸãƒ†ã‚£ãƒ–ã‚’æç”»ã™ã‚‹
 extern int NS_DrawPrimitive2D( const VERTEX2D *Vertex, int VertexNum, int PrimitiveType, int GrHandle, int TransFlag )
 {
 	IMAGEDATA *Image ;
@@ -15971,10 +15971,10 @@ extern int NS_DrawPrimitive2D( const VERTEX2D *Vertex, int VertexNum, int Primit
 
 	Ret = -1;
 
-	// ƒ\ƒtƒg‚ª”ñƒAƒNƒeƒBƒu‚Ìê‡‚ÍƒAƒNƒeƒBƒu‚É‚È‚é‚Ü‚Å‘Ò‚Â
+	// ã‚½ãƒ•ãƒˆãŒéã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã®å ´åˆã¯ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ãªã‚‹ã¾ã§å¾…ã¤
 	CheckActiveState() ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	Image = NULL ;
 	if( ( DWORD )GrHandle != DX_NONE_GRAPH )
 	{
@@ -15995,7 +15995,7 @@ extern int NS_DrawPrimitive2D( const VERTEX2D *Vertex, int VertexNum, int Primit
 	}
 #endif
 
-	// F‚Ì•ÏŠ·‚ª•K—v‚Èê‡‚Í‚±‚±‚Åˆ—‚·‚é
+	// è‰²ã®å¤‰æ›ãŒå¿…è¦ãªå ´åˆã¯ã“ã“ã§å‡¦ç†ã™ã‚‹
 	if( GSYS.DrawSetting.DrawBright.Red   != 255 ||
 		GSYS.DrawSetting.DrawBright.Green != 255 ||
 		GSYS.DrawSetting.DrawBright.Blue  != 255 ||
@@ -16006,14 +16006,14 @@ extern int NS_DrawPrimitive2D( const VERTEX2D *Vertex, int VertexNum, int Primit
 		VERTEX2D *dv ;
 		unsigned int Size ;
 
-		// ƒe[ƒuƒ‹‚ğ—pˆÓ‚·‚é
+		// ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’ç”¨æ„ã™ã‚‹
 		RedTable   = MemImgManage.RateTable[GSYS.DrawSetting.DrawBright.Red] ;
 		GreenTable = MemImgManage.RateTable[GSYS.DrawSetting.DrawBright.Green] ;
 		BlueTable  = MemImgManage.RateTable[GSYS.DrawSetting.DrawBright.Blue] ;
 		AlphaTable = MemImgManage.RateTable[GSYS.DrawSetting.BlendParam] ;
 		if( GSYS.DrawSetting.BlendMode == DX_BLENDMODE_NOBLEND ) AlphaTable = MemImgManage.RateTable[255] ;
 
-		// ’¸“_ƒf[ƒ^‚ğŠi”[‚·‚éƒƒ‚ƒŠ—Ìˆæ‚ª‘«‚è‚È‚¢ê‡‚ÍŠm•Û‚·‚é
+		// é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹ãƒ¡ãƒ¢ãƒªé ˜åŸŸãŒè¶³ã‚Šãªã„å ´åˆã¯ç¢ºä¿ã™ã‚‹
 		Size = sizeof( VERTEX2D ) * VertexNum ;
 		if( GSYS.Resource.TempVertexBufferSize < ( int )Size )
 		{
@@ -16028,7 +16028,7 @@ extern int NS_DrawPrimitive2D( const VERTEX2D *Vertex, int VertexNum, int Primit
 			GSYS.Resource.TempVertexBufferSize = ( int )Size ;
 		}
 
-		// ˆêƒoƒbƒtƒ@‚É•ÏŠ·‚µ‚È‚ª‚ç“]‘—
+		// ä¸€æ™‚ãƒãƒƒãƒ•ã‚¡ã«å¤‰æ›ã—ãªãŒã‚‰è»¢é€
 		sv = Vertex;
 		dv = ( VERTEX2D * )GSYS.Resource.TempVertexBuffer ;
 		for( i = 0 ; i < VertexNum ; i ++, sv ++, dv ++ )
@@ -16049,7 +16049,7 @@ extern int NS_DrawPrimitive2D( const VERTEX2D *Vertex, int VertexNum, int Primit
 		UseVertex = Vertex ;
 	}
 
-	// ‚Q‚cs—ñ‚ğƒn[ƒhƒEƒGƒA‚É”½‰f‚·‚é
+	// ï¼’ï¼¤è¡Œåˆ—ã‚’ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã«åæ˜ ã™ã‚‹
 	if( GSYS.DrawSetting.MatchHardware_2DMatrix == FALSE && GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )
 		Graphics_DrawSetting_ApplyLib2DMatrixToHardware() ;
 	
@@ -16064,7 +16064,7 @@ extern int NS_DrawPrimitive2D( const VERTEX2D *Vertex, int VertexNum, int Primit
 	return Ret ;
 }
 
-// ‚R‚cƒ|ƒŠƒSƒ“‚ğ•`‰æ‚·‚é
+// ï¼“ï¼¤ãƒãƒªã‚´ãƒ³ã‚’æç”»ã™ã‚‹
 extern int NS_DrawPrimitive3D( const VERTEX3D *Vertex, int VertexNum, int PrimitiveType, int GrHandle, int TransFlag )
 {
 	IMAGEDATA *Image ;
@@ -16073,10 +16073,10 @@ extern int NS_DrawPrimitive3D( const VERTEX3D *Vertex, int VertexNum, int Primit
 
 	Ret = -1;
 
-	// ƒ\ƒtƒg‚ª”ñƒAƒNƒeƒBƒu‚Ìê‡‚ÍƒAƒNƒeƒBƒu‚É‚È‚é‚Ü‚Å‘Ò‚Â
+	// ã‚½ãƒ•ãƒˆãŒéã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã®å ´åˆã¯ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ãªã‚‹ã¾ã§å¾…ã¤
 	CheckActiveState() ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	Image = NULL ;
 	if( ( DWORD )GrHandle != DX_NONE_GRAPH )
 	{
@@ -16097,11 +16097,11 @@ extern int NS_DrawPrimitive3D( const VERTEX3D *Vertex, int VertexNum, int Primit
 	}
 #endif
 
-	// ‚R‚cs—ñ‚ğƒn[ƒhƒEƒGƒA‚É”½‰f‚·‚é
+	// ï¼“ï¼¤è¡Œåˆ—ã‚’ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã«åæ˜ ã™ã‚‹
 	if( GSYS.DrawSetting.MatchHardware3DMatrix == FALSE && GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )
 		Graphics_DrawSetting_ApplyLib3DMatrixToHardware() ;
 
-	// F‚Ì•ÏŠ·‚ª•K—v‚Èê‡‚Í‚±‚±‚Åˆ—‚·‚é
+	// è‰²ã®å¤‰æ›ãŒå¿…è¦ãªå ´åˆã¯ã“ã“ã§å‡¦ç†ã™ã‚‹
 	if( GSYS.DrawSetting.DrawBright.Red   != 255 ||
 		GSYS.DrawSetting.DrawBright.Green != 255 ||
 		GSYS.DrawSetting.DrawBright.Blue  != 255 ||
@@ -16112,14 +16112,14 @@ extern int NS_DrawPrimitive3D( const VERTEX3D *Vertex, int VertexNum, int Primit
 		VERTEX3D *dv ;
 		unsigned int Size ;
 
-		// ƒe[ƒuƒ‹‚ğ—pˆÓ‚·‚é
+		// ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’ç”¨æ„ã™ã‚‹
 		RedTable   = MemImgManage.RateTable[GSYS.DrawSetting.DrawBright.Red] ;
 		GreenTable = MemImgManage.RateTable[GSYS.DrawSetting.DrawBright.Green] ;
 		BlueTable  = MemImgManage.RateTable[GSYS.DrawSetting.DrawBright.Blue] ;
 		AlphaTable = MemImgManage.RateTable[GSYS.DrawSetting.BlendParam] ;
 		if( GSYS.DrawSetting.BlendMode == DX_BLENDMODE_NOBLEND ) AlphaTable = MemImgManage.RateTable[255] ;
 
-		// ’¸“_ƒf[ƒ^‚ğŠi”[‚·‚éƒƒ‚ƒŠ—Ìˆæ‚ª‘«‚è‚È‚¢ê‡‚ÍŠm•Û‚·‚é
+		// é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹ãƒ¡ãƒ¢ãƒªé ˜åŸŸãŒè¶³ã‚Šãªã„å ´åˆã¯ç¢ºä¿ã™ã‚‹
 		Size = sizeof( VERTEX3D ) * VertexNum ;
 		if( GSYS.Resource.TempVertexBufferSize < ( int )Size )
 		{
@@ -16134,7 +16134,7 @@ extern int NS_DrawPrimitive3D( const VERTEX3D *Vertex, int VertexNum, int Primit
 			GSYS.Resource.TempVertexBufferSize = ( int )Size ;
 		}
 
-		// ˆêƒoƒbƒtƒ@‚É•ÏŠ·‚µ‚È‚ª‚ç“]‘—
+		// ä¸€æ™‚ãƒãƒƒãƒ•ã‚¡ã«å¤‰æ›ã—ãªãŒã‚‰è»¢é€
 		sv = Vertex;
 		dv = ( VERTEX3D * )GSYS.Resource.TempVertexBuffer ;
 		for( i = 0 ; i < VertexNum ; i ++, sv ++, dv ++ )
@@ -16172,7 +16172,7 @@ extern int NS_DrawPrimitive3D( const VERTEX3D *Vertex, int VertexNum, int Primit
 	return Ret ;
 }
 
-// ‚Q‚cƒvƒŠƒ~ƒeƒBƒu‚ğ•`‰æ‚·‚é(ƒCƒ“ƒfƒbƒNƒX)
+// ï¼’ï¼¤ãƒ—ãƒªãƒŸãƒ†ã‚£ãƒ–ã‚’æç”»ã™ã‚‹(ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹)
 extern int NS_DrawPrimitiveIndexed2D( const VERTEX2D *Vertex, int VertexNum, const unsigned short *Indices, int IndexNum, int PrimitiveType, int GrHandle, int TransFlag )
 {
 	IMAGEDATA *Image ;
@@ -16181,10 +16181,10 @@ extern int NS_DrawPrimitiveIndexed2D( const VERTEX2D *Vertex, int VertexNum, con
 
 	Ret = -1;
 
-	// ƒ\ƒtƒg‚ª”ñƒAƒNƒeƒBƒu‚Ìê‡‚ÍƒAƒNƒeƒBƒu‚É‚È‚é‚Ü‚Å‘Ò‚Â
+	// ã‚½ãƒ•ãƒˆãŒéã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã®å ´åˆã¯ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ãªã‚‹ã¾ã§å¾…ã¤
 	CheckActiveState() ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	Image = NULL ;
 	if( ( DWORD )GrHandle != DX_NONE_GRAPH )
 	{
@@ -16205,11 +16205,11 @@ extern int NS_DrawPrimitiveIndexed2D( const VERTEX2D *Vertex, int VertexNum, con
 	}
 #endif
 
-	// ‚R‚cs—ñ‚ğƒn[ƒhƒEƒGƒA‚É”½‰f‚·‚é
+	// ï¼“ï¼¤è¡Œåˆ—ã‚’ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã«åæ˜ ã™ã‚‹
 	if( GSYS.DrawSetting.MatchHardware3DMatrix == FALSE && GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )
 		Graphics_DrawSetting_ApplyLib3DMatrixToHardware() ;
 
-	// F‚Ì•ÏŠ·‚ª•K—v‚Èê‡‚Í‚±‚±‚Åˆ—‚·‚é
+	// è‰²ã®å¤‰æ›ãŒå¿…è¦ãªå ´åˆã¯ã“ã“ã§å‡¦ç†ã™ã‚‹
 	if( GSYS.DrawSetting.DrawBright.Red   != 255 ||
 		GSYS.DrawSetting.DrawBright.Green != 255 ||
 		GSYS.DrawSetting.DrawBright.Blue  != 255 ||
@@ -16220,14 +16220,14 @@ extern int NS_DrawPrimitiveIndexed2D( const VERTEX2D *Vertex, int VertexNum, con
 		VERTEX2D *dv ;
 		unsigned int Size ;
 
-		// ƒe[ƒuƒ‹‚ğ—pˆÓ‚·‚é
+		// ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’ç”¨æ„ã™ã‚‹
 		RedTable   = MemImgManage.RateTable[GSYS.DrawSetting.DrawBright.Red] ;
 		GreenTable = MemImgManage.RateTable[GSYS.DrawSetting.DrawBright.Green] ;
 		BlueTable  = MemImgManage.RateTable[GSYS.DrawSetting.DrawBright.Blue] ;
 		AlphaTable = MemImgManage.RateTable[GSYS.DrawSetting.BlendParam] ;
 		if( GSYS.DrawSetting.BlendMode == DX_BLENDMODE_NOBLEND ) AlphaTable = MemImgManage.RateTable[255] ;
 
-		// ’¸“_ƒf[ƒ^‚ğŠi”[‚·‚éƒƒ‚ƒŠ—Ìˆæ‚ª‘«‚è‚È‚¢ê‡‚ÍŠm•Û‚·‚é
+		// é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹ãƒ¡ãƒ¢ãƒªé ˜åŸŸãŒè¶³ã‚Šãªã„å ´åˆã¯ç¢ºä¿ã™ã‚‹
 		Size = sizeof( VERTEX2D ) * VertexNum ;
 		if( GSYS.Resource.TempVertexBufferSize < ( int )Size )
 		{
@@ -16242,7 +16242,7 @@ extern int NS_DrawPrimitiveIndexed2D( const VERTEX2D *Vertex, int VertexNum, con
 			GSYS.Resource.TempVertexBufferSize = ( int )Size ;
 		}
 
-		// ˆêƒoƒbƒtƒ@‚É•ÏŠ·‚µ‚È‚ª‚ç“]‘—
+		// ä¸€æ™‚ãƒãƒƒãƒ•ã‚¡ã«å¤‰æ›ã—ãªãŒã‚‰è»¢é€
 		sv = Vertex;
 		dv = ( VERTEX2D * )GSYS.Resource.TempVertexBuffer ;
 		for( i = 0 ; i < VertexNum ; i ++, sv ++, dv ++ )
@@ -16263,7 +16263,7 @@ extern int NS_DrawPrimitiveIndexed2D( const VERTEX2D *Vertex, int VertexNum, con
 		UseVertex = Vertex ;
 	}
 
-	// ‚Q‚cs—ñ‚ğƒn[ƒhƒEƒGƒA‚É”½‰f‚·‚é
+	// ï¼’ï¼¤è¡Œåˆ—ã‚’ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã«åæ˜ ã™ã‚‹
 	if( GSYS.DrawSetting.MatchHardware_2DMatrix == FALSE && GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )
 		Graphics_DrawSetting_ApplyLib2DMatrixToHardware() ;
 	
@@ -16278,7 +16278,7 @@ extern int NS_DrawPrimitiveIndexed2D( const VERTEX2D *Vertex, int VertexNum, con
 	return Ret ;
 }
 
-// ‚Q‚cƒvƒŠƒ~ƒeƒBƒu‚ğ•`‰æ‚·‚é(ƒCƒ“ƒfƒbƒNƒX)
+// ï¼’ï¼¤ãƒ—ãƒªãƒŸãƒ†ã‚£ãƒ–ã‚’æç”»ã™ã‚‹(ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹)
 extern int NS_DrawPrimitive32bitIndexed2D( const VERTEX2D *Vertex, int VertexNum, const unsigned int *Indices, int IndexNum, int PrimitiveType, int GrHandle, int TransFlag )
 {
 	IMAGEDATA *Image ;
@@ -16287,10 +16287,10 @@ extern int NS_DrawPrimitive32bitIndexed2D( const VERTEX2D *Vertex, int VertexNum
 
 	Ret = -1;
 
-	// ƒ\ƒtƒg‚ª”ñƒAƒNƒeƒBƒu‚Ìê‡‚ÍƒAƒNƒeƒBƒu‚É‚È‚é‚Ü‚Å‘Ò‚Â
+	// ã‚½ãƒ•ãƒˆãŒéã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã®å ´åˆã¯ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ãªã‚‹ã¾ã§å¾…ã¤
 	CheckActiveState() ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	Image = NULL ;
 	if( ( DWORD )GrHandle != DX_NONE_GRAPH )
 	{
@@ -16311,11 +16311,11 @@ extern int NS_DrawPrimitive32bitIndexed2D( const VERTEX2D *Vertex, int VertexNum
 	}
 #endif
 
-	// ‚R‚cs—ñ‚ğƒn[ƒhƒEƒGƒA‚É”½‰f‚·‚é
+	// ï¼“ï¼¤è¡Œåˆ—ã‚’ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã«åæ˜ ã™ã‚‹
 	if( GSYS.DrawSetting.MatchHardware3DMatrix == FALSE && GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )
 		Graphics_DrawSetting_ApplyLib3DMatrixToHardware() ;
 
-	// F‚Ì•ÏŠ·‚ª•K—v‚Èê‡‚Í‚±‚±‚Åˆ—‚·‚é
+	// è‰²ã®å¤‰æ›ãŒå¿…è¦ãªå ´åˆã¯ã“ã“ã§å‡¦ç†ã™ã‚‹
 	if( GSYS.DrawSetting.DrawBright.Red   != 255 ||
 		GSYS.DrawSetting.DrawBright.Green != 255 ||
 		GSYS.DrawSetting.DrawBright.Blue  != 255 ||
@@ -16326,14 +16326,14 @@ extern int NS_DrawPrimitive32bitIndexed2D( const VERTEX2D *Vertex, int VertexNum
 		VERTEX2D *dv ;
 		unsigned int Size ;
 
-		// ƒe[ƒuƒ‹‚ğ—pˆÓ‚·‚é
+		// ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’ç”¨æ„ã™ã‚‹
 		RedTable   = MemImgManage.RateTable[GSYS.DrawSetting.DrawBright.Red] ;
 		GreenTable = MemImgManage.RateTable[GSYS.DrawSetting.DrawBright.Green] ;
 		BlueTable  = MemImgManage.RateTable[GSYS.DrawSetting.DrawBright.Blue] ;
 		AlphaTable = MemImgManage.RateTable[GSYS.DrawSetting.BlendParam] ;
 		if( GSYS.DrawSetting.BlendMode == DX_BLENDMODE_NOBLEND ) AlphaTable = MemImgManage.RateTable[255] ;
 
-		// ’¸“_ƒf[ƒ^‚ğŠi”[‚·‚éƒƒ‚ƒŠ—Ìˆæ‚ª‘«‚è‚È‚¢ê‡‚ÍŠm•Û‚·‚é
+		// é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹ãƒ¡ãƒ¢ãƒªé ˜åŸŸãŒè¶³ã‚Šãªã„å ´åˆã¯ç¢ºä¿ã™ã‚‹
 		Size = sizeof( VERTEX2D ) * VertexNum ;
 		if( GSYS.Resource.TempVertexBufferSize < ( int )Size )
 		{
@@ -16348,7 +16348,7 @@ extern int NS_DrawPrimitive32bitIndexed2D( const VERTEX2D *Vertex, int VertexNum
 			GSYS.Resource.TempVertexBufferSize = ( int )Size ;
 		}
 
-		// ˆêƒoƒbƒtƒ@‚É•ÏŠ·‚µ‚È‚ª‚ç“]‘—
+		// ä¸€æ™‚ãƒãƒƒãƒ•ã‚¡ã«å¤‰æ›ã—ãªãŒã‚‰è»¢é€
 		sv = Vertex;
 		dv = ( VERTEX2D * )GSYS.Resource.TempVertexBuffer ;
 		for( i = 0 ; i < VertexNum ; i ++, sv ++, dv ++ )
@@ -16369,7 +16369,7 @@ extern int NS_DrawPrimitive32bitIndexed2D( const VERTEX2D *Vertex, int VertexNum
 		UseVertex = Vertex ;
 	}
 
-	// ‚Q‚cs—ñ‚ğƒn[ƒhƒEƒGƒA‚É”½‰f‚·‚é
+	// ï¼’ï¼¤è¡Œåˆ—ã‚’ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã«åæ˜ ã™ã‚‹
 	if( GSYS.DrawSetting.MatchHardware_2DMatrix == FALSE && GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )
 		Graphics_DrawSetting_ApplyLib2DMatrixToHardware() ;
 	
@@ -16384,7 +16384,7 @@ extern int NS_DrawPrimitive32bitIndexed2D( const VERTEX2D *Vertex, int VertexNum
 	return Ret ;
 }
 
-// ‚R‚cƒ|ƒŠƒSƒ“‚ğ•`‰æ‚·‚é(ƒCƒ“ƒfƒbƒNƒX)
+// ï¼“ï¼¤ãƒãƒªã‚´ãƒ³ã‚’æç”»ã™ã‚‹(ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹)
 extern int NS_DrawPrimitiveIndexed3D( const VERTEX3D *Vertex, int VertexNum, const unsigned short *Indices, int IndexNum, int PrimitiveType, int GrHandle, int TransFlag )
 {
 	IMAGEDATA *Image ;
@@ -16393,10 +16393,10 @@ extern int NS_DrawPrimitiveIndexed3D( const VERTEX3D *Vertex, int VertexNum, con
 
 	Ret = -1;
 
-	// ƒ\ƒtƒg‚ª”ñƒAƒNƒeƒBƒu‚Ìê‡‚ÍƒAƒNƒeƒBƒu‚É‚È‚é‚Ü‚Å‘Ò‚Â
+	// ã‚½ãƒ•ãƒˆãŒéã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã®å ´åˆã¯ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ãªã‚‹ã¾ã§å¾…ã¤
 	CheckActiveState() ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	Image = NULL ;
 	if( ( DWORD )GrHandle != DX_NONE_GRAPH )
 	{
@@ -16417,11 +16417,11 @@ extern int NS_DrawPrimitiveIndexed3D( const VERTEX3D *Vertex, int VertexNum, con
 	}
 #endif
 
-	// ‚R‚cs—ñ‚ğƒn[ƒhƒEƒGƒA‚É”½‰f‚·‚é
+	// ï¼“ï¼¤è¡Œåˆ—ã‚’ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã«åæ˜ ã™ã‚‹
 	if( GSYS.DrawSetting.MatchHardware3DMatrix == FALSE && GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )
 		Graphics_DrawSetting_ApplyLib3DMatrixToHardware() ;
 
-	// F‚Ì•ÏŠ·‚ª•K—v‚Èê‡‚Í‚±‚±‚Åˆ—‚·‚é
+	// è‰²ã®å¤‰æ›ãŒå¿…è¦ãªå ´åˆã¯ã“ã“ã§å‡¦ç†ã™ã‚‹
 	if( GSYS.DrawSetting.DrawBright.Red   != 255 ||
 		GSYS.DrawSetting.DrawBright.Green != 255 ||
 		GSYS.DrawSetting.DrawBright.Blue  != 255 ||
@@ -16432,14 +16432,14 @@ extern int NS_DrawPrimitiveIndexed3D( const VERTEX3D *Vertex, int VertexNum, con
 		VERTEX3D *dv ;
 		unsigned int Size ;
 
-		// ƒe[ƒuƒ‹‚ğ—pˆÓ‚·‚é
+		// ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’ç”¨æ„ã™ã‚‹
 		RedTable   = MemImgManage.RateTable[GSYS.DrawSetting.DrawBright.Red] ;
 		GreenTable = MemImgManage.RateTable[GSYS.DrawSetting.DrawBright.Green] ;
 		BlueTable  = MemImgManage.RateTable[GSYS.DrawSetting.DrawBright.Blue] ;
 		AlphaTable = MemImgManage.RateTable[GSYS.DrawSetting.BlendParam] ;
 		if( GSYS.DrawSetting.BlendMode == DX_BLENDMODE_NOBLEND ) AlphaTable = MemImgManage.RateTable[255] ;
 
-		// ’¸“_ƒf[ƒ^‚ğŠi”[‚·‚éƒƒ‚ƒŠ—Ìˆæ‚ª‘«‚è‚È‚¢ê‡‚ÍŠm•Û‚·‚é
+		// é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹ãƒ¡ãƒ¢ãƒªé ˜åŸŸãŒè¶³ã‚Šãªã„å ´åˆã¯ç¢ºä¿ã™ã‚‹
 		Size = sizeof( VERTEX3D ) * VertexNum ;
 		if( GSYS.Resource.TempVertexBufferSize < ( int )Size )
 		{
@@ -16454,7 +16454,7 @@ extern int NS_DrawPrimitiveIndexed3D( const VERTEX3D *Vertex, int VertexNum, con
 			GSYS.Resource.TempVertexBufferSize = ( int )Size ;
 		}
 
-		// ˆêƒoƒbƒtƒ@‚É•ÏŠ·‚µ‚È‚ª‚ç“]‘—
+		// ä¸€æ™‚ãƒãƒƒãƒ•ã‚¡ã«å¤‰æ›ã—ãªãŒã‚‰è»¢é€
 		sv = Vertex;
 		dv = ( VERTEX3D * )GSYS.Resource.TempVertexBuffer ;
 		for( i = 0 ; i < VertexNum ; i ++, sv ++, dv ++ )
@@ -16492,7 +16492,7 @@ extern int NS_DrawPrimitiveIndexed3D( const VERTEX3D *Vertex, int VertexNum, con
 	return Ret ;
 }
 
-// ‚R‚cƒ|ƒŠƒSƒ“‚ğ•`‰æ‚·‚é(ƒCƒ“ƒfƒbƒNƒX)
+// ï¼“ï¼¤ãƒãƒªã‚´ãƒ³ã‚’æç”»ã™ã‚‹(ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹)
 extern int NS_DrawPrimitive32bitIndexed3D( const VERTEX3D *Vertex, int VertexNum, const unsigned int *Indices, int IndexNum, int PrimitiveType, int GrHandle, int TransFlag )
 {
 	IMAGEDATA *Image ;
@@ -16501,10 +16501,10 @@ extern int NS_DrawPrimitive32bitIndexed3D( const VERTEX3D *Vertex, int VertexNum
 
 	Ret = -1;
 
-	// ƒ\ƒtƒg‚ª”ñƒAƒNƒeƒBƒu‚Ìê‡‚ÍƒAƒNƒeƒBƒu‚É‚È‚é‚Ü‚Å‘Ò‚Â
+	// ã‚½ãƒ•ãƒˆãŒéã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã®å ´åˆã¯ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ãªã‚‹ã¾ã§å¾…ã¤
 	CheckActiveState() ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	Image = NULL ;
 	if( ( DWORD )GrHandle != DX_NONE_GRAPH )
 	{
@@ -16525,11 +16525,11 @@ extern int NS_DrawPrimitive32bitIndexed3D( const VERTEX3D *Vertex, int VertexNum
 	}
 #endif
 
-	// ‚R‚cs—ñ‚ğƒn[ƒhƒEƒGƒA‚É”½‰f‚·‚é
+	// ï¼“ï¼¤è¡Œåˆ—ã‚’ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã«åæ˜ ã™ã‚‹
 	if( GSYS.DrawSetting.MatchHardware3DMatrix == FALSE && GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )
 		Graphics_DrawSetting_ApplyLib3DMatrixToHardware() ;
 
-	// F‚Ì•ÏŠ·‚ª•K—v‚Èê‡‚Í‚±‚±‚Åˆ—‚·‚é
+	// è‰²ã®å¤‰æ›ãŒå¿…è¦ãªå ´åˆã¯ã“ã“ã§å‡¦ç†ã™ã‚‹
 	if( GSYS.DrawSetting.DrawBright.Red   != 255 ||
 		GSYS.DrawSetting.DrawBright.Green != 255 ||
 		GSYS.DrawSetting.DrawBright.Blue  != 255 ||
@@ -16540,14 +16540,14 @@ extern int NS_DrawPrimitive32bitIndexed3D( const VERTEX3D *Vertex, int VertexNum
 		VERTEX3D *dv ;
 		unsigned int Size ;
 
-		// ƒe[ƒuƒ‹‚ğ—pˆÓ‚·‚é
+		// ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’ç”¨æ„ã™ã‚‹
 		RedTable   = MemImgManage.RateTable[GSYS.DrawSetting.DrawBright.Red] ;
 		GreenTable = MemImgManage.RateTable[GSYS.DrawSetting.DrawBright.Green] ;
 		BlueTable  = MemImgManage.RateTable[GSYS.DrawSetting.DrawBright.Blue] ;
 		AlphaTable = MemImgManage.RateTable[GSYS.DrawSetting.BlendParam] ;
 		if( GSYS.DrawSetting.BlendMode == DX_BLENDMODE_NOBLEND ) AlphaTable = MemImgManage.RateTable[255] ;
 
-		// ’¸“_ƒf[ƒ^‚ğŠi”[‚·‚éƒƒ‚ƒŠ—Ìˆæ‚ª‘«‚è‚È‚¢ê‡‚ÍŠm•Û‚·‚é
+		// é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹ãƒ¡ãƒ¢ãƒªé ˜åŸŸãŒè¶³ã‚Šãªã„å ´åˆã¯ç¢ºä¿ã™ã‚‹
 		Size = sizeof( VERTEX3D ) * VertexNum ;
 		if( GSYS.Resource.TempVertexBufferSize < ( int )Size )
 		{
@@ -16562,7 +16562,7 @@ extern int NS_DrawPrimitive32bitIndexed3D( const VERTEX3D *Vertex, int VertexNum
 			GSYS.Resource.TempVertexBufferSize = ( int )Size ;
 		}
 
-		// ˆêƒoƒbƒtƒ@‚É•ÏŠ·‚µ‚È‚ª‚ç“]‘—
+		// ä¸€æ™‚ãƒãƒƒãƒ•ã‚¡ã«å¤‰æ›ã—ãªãŒã‚‰è»¢é€
 		sv = Vertex;
 		dv = ( VERTEX3D * )GSYS.Resource.TempVertexBuffer ;
 		for( i = 0 ; i < VertexNum ; i ++, sv ++, dv ++ )
@@ -16600,14 +16600,14 @@ extern int NS_DrawPrimitive32bitIndexed3D( const VERTEX3D *Vertex, int VertexNum
 	return Ret ;
 }
 
-// ’¸“_ƒoƒbƒtƒ@‚ğg—p‚µ‚Ä‚R‚cƒ|ƒŠƒSƒ“‚ğ•`‰æ‚·‚é
+// é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã‚’ä½¿ç”¨ã—ã¦ï¼“ï¼¤ãƒãƒªã‚´ãƒ³ã‚’æç”»ã™ã‚‹
 extern int NS_DrawPolygon3D_UseVertexBuffer( int VertexBufHandle, int GrHandle, int TransFlag )
 {
 	return NS_DrawPrimitive3D_UseVertexBuffer( VertexBufHandle, DX_PRIMTYPE_TRIANGLELIST, GrHandle, TransFlag ) ;
 }
 
-// ’¸“_ƒoƒbƒtƒ@‚ğg—p‚µ‚Ä‚R‚cƒvƒŠƒ~ƒeƒBƒu‚ğ•`‰æ‚·‚é
-extern int NS_DrawPrimitive3D_UseVertexBuffer( int VertexBufHandle, int PrimitiveType  /* DX_PRIMTYPE_TRIANGLELIST “™ */, int GrHandle, int TransFlag )
+// é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã‚’ä½¿ç”¨ã—ã¦ï¼“ï¼¤ãƒ—ãƒªãƒŸãƒ†ã‚£ãƒ–ã‚’æç”»ã™ã‚‹
+extern int NS_DrawPrimitive3D_UseVertexBuffer( int VertexBufHandle, int PrimitiveType  /* DX_PRIMTYPE_TRIANGLELIST ç­‰ */, int GrHandle, int TransFlag )
 {
 	IMAGEDATA *Image ;
 	VERTEXBUFFERHANDLEDATA *VertexBuffer ;
@@ -16615,10 +16615,10 @@ extern int NS_DrawPrimitive3D_UseVertexBuffer( int VertexBufHandle, int Primitiv
 
 	Ret = -1;
 
-	// ƒ\ƒtƒg‚ª”ñƒAƒNƒeƒBƒu‚Ìê‡‚ÍƒAƒNƒeƒBƒu‚É‚È‚é‚Ü‚Å‘Ò‚Â
+	// ã‚½ãƒ•ãƒˆãŒéã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã®å ´åˆã¯ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ãªã‚‹ã¾ã§å¾…ã¤
 	CheckActiveState() ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	Image = NULL ;
 	if( ( DWORD )GrHandle != DX_NONE_GRAPH )
 	{
@@ -16642,7 +16642,7 @@ extern int NS_DrawPrimitive3D_UseVertexBuffer( int VertexBufHandle, int Primitiv
 	}
 #endif
 
-	// ‚R‚cs—ñ‚ğƒn[ƒhƒEƒGƒA‚É”½‰f‚·‚é
+	// ï¼“ï¼¤è¡Œåˆ—ã‚’ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã«åæ˜ ã™ã‚‹
 	if( GSYS.DrawSetting.MatchHardware3DMatrix == FALSE && GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )
 		Graphics_DrawSetting_ApplyLib3DMatrixToHardware() ;
 
@@ -16657,8 +16657,8 @@ extern int NS_DrawPrimitive3D_UseVertexBuffer( int VertexBufHandle, int Primitiv
 	return Ret ;
 }
 
-// ’¸“_ƒoƒbƒtƒ@‚ğg—p‚µ‚Ä‚R‚cƒvƒŠƒ~ƒeƒBƒu‚ğ•`‰æ‚·‚é
-extern int NS_DrawPrimitive3D_UseVertexBuffer2( int VertexBufHandle, int PrimitiveType  /* DX_PRIMTYPE_TRIANGLELIST “™ */, int StartVertex, int UseVertexNum, int GrHandle, int TransFlag )
+// é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã‚’ä½¿ç”¨ã—ã¦ï¼“ï¼¤ãƒ—ãƒªãƒŸãƒ†ã‚£ãƒ–ã‚’æç”»ã™ã‚‹
+extern int NS_DrawPrimitive3D_UseVertexBuffer2( int VertexBufHandle, int PrimitiveType  /* DX_PRIMTYPE_TRIANGLELIST ç­‰ */, int StartVertex, int UseVertexNum, int GrHandle, int TransFlag )
 {
 	IMAGEDATA *Image ;
 	VERTEXBUFFERHANDLEDATA *VertexBuffer ;
@@ -16666,10 +16666,10 @@ extern int NS_DrawPrimitive3D_UseVertexBuffer2( int VertexBufHandle, int Primiti
 
 	Ret = -1;
 
-	// ƒ\ƒtƒg‚ª”ñƒAƒNƒeƒBƒu‚Ìê‡‚ÍƒAƒNƒeƒBƒu‚É‚È‚é‚Ü‚Å‘Ò‚Â
+	// ã‚½ãƒ•ãƒˆãŒéã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã®å ´åˆã¯ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ãªã‚‹ã¾ã§å¾…ã¤
 	CheckActiveState() ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	Image = NULL ;
 	if( ( DWORD )GrHandle != DX_NONE_GRAPH )
 	{
@@ -16693,7 +16693,7 @@ extern int NS_DrawPrimitive3D_UseVertexBuffer2( int VertexBufHandle, int Primiti
 	}
 #endif
 
-	// ‚R‚cs—ñ‚ğƒn[ƒhƒEƒGƒA‚É”½‰f‚·‚é
+	// ï¼“ï¼¤è¡Œåˆ—ã‚’ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã«åæ˜ ã™ã‚‹
 	if( GSYS.DrawSetting.MatchHardware3DMatrix == FALSE && GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )
 		Graphics_DrawSetting_ApplyLib3DMatrixToHardware() ;
 
@@ -16708,14 +16708,14 @@ extern int NS_DrawPrimitive3D_UseVertexBuffer2( int VertexBufHandle, int Primiti
 	return Ret ;
 }
 
-// ’¸“_ƒoƒbƒtƒ@‚ÆƒCƒ“ƒfƒbƒNƒXƒoƒbƒtƒ@‚ğg—p‚µ‚Ä‚R‚cƒ|ƒŠƒSƒ“‚ğ•`‰æ‚·‚é
+// é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã¨ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒãƒƒãƒ•ã‚¡ã‚’ä½¿ç”¨ã—ã¦ï¼“ï¼¤ãƒãƒªã‚´ãƒ³ã‚’æç”»ã™ã‚‹
 extern int NS_DrawPolygonIndexed3D_UseVertexBuffer( int VertexBufHandle, int IndexBufHandle, int GrHandle, int TransFlag )
 {
 	return NS_DrawPrimitiveIndexed3D_UseVertexBuffer( VertexBufHandle, IndexBufHandle, DX_PRIMTYPE_TRIANGLELIST, GrHandle, TransFlag ) ;
 }
 
-// ’¸“_ƒoƒbƒtƒ@‚ÆƒCƒ“ƒfƒbƒNƒXƒoƒbƒtƒ@‚ğg—p‚µ‚Ä‚R‚cƒvƒŠƒ~ƒeƒBƒu‚ğ•`‰æ‚·‚é
-extern int NS_DrawPrimitiveIndexed3D_UseVertexBuffer( int VertexBufHandle, int IndexBufHandle, int PrimitiveType  /* DX_PRIMTYPE_TRIANGLELIST “™ */, int GrHandle, int TransFlag )
+// é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã¨ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒãƒƒãƒ•ã‚¡ã‚’ä½¿ç”¨ã—ã¦ï¼“ï¼¤ãƒ—ãƒªãƒŸãƒ†ã‚£ãƒ–ã‚’æç”»ã™ã‚‹
+extern int NS_DrawPrimitiveIndexed3D_UseVertexBuffer( int VertexBufHandle, int IndexBufHandle, int PrimitiveType  /* DX_PRIMTYPE_TRIANGLELIST ç­‰ */, int GrHandle, int TransFlag )
 {
 	IMAGEDATA *Image ;
 	VERTEXBUFFERHANDLEDATA *VertexBuffer ;
@@ -16724,10 +16724,10 @@ extern int NS_DrawPrimitiveIndexed3D_UseVertexBuffer( int VertexBufHandle, int I
 
 	Ret = -1;
 
-	// ƒ\ƒtƒg‚ª”ñƒAƒNƒeƒBƒu‚Ìê‡‚ÍƒAƒNƒeƒBƒu‚É‚È‚é‚Ü‚Å‘Ò‚Â
+	// ã‚½ãƒ•ãƒˆãŒéã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã®å ´åˆã¯ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ãªã‚‹ã¾ã§å¾…ã¤
 	CheckActiveState() ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	Image = NULL ;
 	if( ( DWORD )GrHandle != DX_NONE_GRAPH )
 	{
@@ -16753,7 +16753,7 @@ extern int NS_DrawPrimitiveIndexed3D_UseVertexBuffer( int VertexBufHandle, int I
 	}
 #endif
 
-	// ‚R‚cs—ñ‚ğƒn[ƒhƒEƒGƒA‚É”½‰f‚·‚é
+	// ï¼“ï¼¤è¡Œåˆ—ã‚’ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã«åæ˜ ã™ã‚‹
 	if( GSYS.DrawSetting.MatchHardware3DMatrix == FALSE && GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )
 		Graphics_DrawSetting_ApplyLib3DMatrixToHardware() ;
 
@@ -16768,8 +16768,8 @@ extern int NS_DrawPrimitiveIndexed3D_UseVertexBuffer( int VertexBufHandle, int I
 	return Ret ;
 }
 
-// ’¸“_ƒoƒbƒtƒ@‚ÆƒCƒ“ƒfƒbƒNƒXƒoƒbƒtƒ@‚ğg—p‚µ‚Ä‚R‚cƒvƒŠƒ~ƒeƒBƒu‚ğ•`‰æ‚·‚é
-extern int NS_DrawPrimitiveIndexed3D_UseVertexBuffer2( int VertexBufHandle, int IndexBufHandle, int PrimitiveType  /* DX_PRIMTYPE_TRIANGLELIST “™ */, int BaseVertex, int StartVertex, int UseVertexNum, int StartIndex, int UseIndexNum, int GrHandle, int TransFlag )
+// é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã¨ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒãƒƒãƒ•ã‚¡ã‚’ä½¿ç”¨ã—ã¦ï¼“ï¼¤ãƒ—ãƒªãƒŸãƒ†ã‚£ãƒ–ã‚’æç”»ã™ã‚‹
+extern int NS_DrawPrimitiveIndexed3D_UseVertexBuffer2( int VertexBufHandle, int IndexBufHandle, int PrimitiveType  /* DX_PRIMTYPE_TRIANGLELIST ç­‰ */, int BaseVertex, int StartVertex, int UseVertexNum, int StartIndex, int UseIndexNum, int GrHandle, int TransFlag )
 {
 	IMAGEDATA *Image ;
 	VERTEXBUFFERHANDLEDATA *VertexBuffer ;
@@ -16778,10 +16778,10 @@ extern int NS_DrawPrimitiveIndexed3D_UseVertexBuffer2( int VertexBufHandle, int 
 
 	Ret = -1;
 
-	// ƒ\ƒtƒg‚ª”ñƒAƒNƒeƒBƒu‚Ìê‡‚ÍƒAƒNƒeƒBƒu‚É‚È‚é‚Ü‚Å‘Ò‚Â
+	// ã‚½ãƒ•ãƒˆãŒéã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã®å ´åˆã¯ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ãªã‚‹ã¾ã§å¾…ã¤
 	CheckActiveState() ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	Image = NULL ;
 	if( ( DWORD )GrHandle != DX_NONE_GRAPH )
 	{
@@ -16807,7 +16807,7 @@ extern int NS_DrawPrimitiveIndexed3D_UseVertexBuffer2( int VertexBufHandle, int 
 	}
 #endif
 
-	// ‚R‚cs—ñ‚ğƒn[ƒhƒEƒGƒA‚É”½‰f‚·‚é
+	// ï¼“ï¼¤è¡Œåˆ—ã‚’ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã«åæ˜ ã™ã‚‹
 	if( GSYS.DrawSetting.MatchHardware3DMatrix == FALSE && GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )
 		Graphics_DrawSetting_ApplyLib3DMatrixToHardware() ;
 
@@ -16822,7 +16822,7 @@ extern int NS_DrawPrimitiveIndexed3D_UseVertexBuffer2( int VertexBufHandle, int 
 	return Ret ;
 }
 
-// ƒOƒ‰ƒtƒBƒbƒN‚Ì‚R‚c•`‰æ
+// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®ï¼“ï¼¤æç”»
 #define SETDRAWRECTCODE\
 	float MinX, MinY, MaxX, MaxY ;\
 \
@@ -16854,10 +16854,10 @@ extern	int NS_DrawGraph3D( float x, float y, float z, int GrHandle, int TransFla
 	if( /* GSYS.NotDrawFlag || */ GSYS.DrawSetting.NotDrawFlagInSetDrawArea )
 		return 0 ;
 
-	// ƒ\ƒtƒg‚ª”ñƒAƒNƒeƒBƒu‚Ìê‡‚ÍƒAƒNƒeƒBƒu‚É‚È‚é‚Ü‚Å‘Ò‚Â
+	// ã‚½ãƒ•ãƒˆãŒéã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã®å ´åˆã¯ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ãªã‚‹ã¾ã§å¾…ã¤
 	CheckActiveState() ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( GRAPHCHK( GrHandle, Image ) )
 		return -1 ;
 
@@ -16869,23 +16869,23 @@ extern	int NS_DrawGraph3D( float x, float y, float z, int GrHandle, int TransFla
 	}
 #endif
 
-	// ‚Q‚cs—ñ‚ğƒn[ƒhƒEƒGƒA‚É”½‰f‚·‚é
+	// ï¼’ï¼¤è¡Œåˆ—ã‚’ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã«åæ˜ ã™ã‚‹
 	if( GSYS.DrawSetting.MatchHardware_2DMatrix == FALSE && GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )
 		Graphics_DrawSetting_ApplyLib2DMatrixToHardware() ;
 
-	// À•W•ÏŠ·‚ğs‚¤
+	// åº§æ¨™å¤‰æ›ã‚’è¡Œã†
 	{
 		MATRIX *TransMatrix ;
 
 		TransMatrix = &GSYS.DrawSetting.Blend3DMatrixF ;
 
-		// ’¸“_î•ñ‚ğƒZƒbƒg‚·‚é
+		// é ‚ç‚¹æƒ…å ±ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 		{
 			VECTOR SrcVec[4], Pos ;
 			VERTEX_2D DestVec[4] ;
 			float SizeX, SizeY ;
 			
-			// ƒrƒ‹ƒ{[ƒh‚Ì‚S’¸“_‚ğ“¾‚é
+			// ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã®ï¼”é ‚ç‚¹ã‚’å¾—ã‚‹
 			SizeX = Image->WidthF  * 0.5f ;
 			SizeY = Image->HeightF * 0.5f ;
 			Pos.x = x ;	Pos.y = y ;	Pos.z = z ;
@@ -16894,13 +16894,13 @@ extern	int NS_DrawGraph3D( float x, float y, float z, int GrHandle, int TransFla
 			SrcVec[2].x = -SizeX ;	SrcVec[2].y = -SizeY ;	SrcVec[2].z = 0.0F ;
 			SrcVec[3].x =  SizeX ;	SrcVec[3].y = -SizeY ;	SrcVec[3].z = 0.0F ;
 
-			// À•W•ÏŠ·
+			// åº§æ¨™å¤‰æ›
 			for( i = 0 ; i < 4 ; i ++ )
 			{
-				// ƒrƒ‹ƒ{[ƒhÀ•W‚ğƒ[ƒ‹ƒhÀ•W‚Ö•ÏŠ·
+				// ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰åº§æ¨™ã‚’ãƒ¯ãƒ¼ãƒ«ãƒ‰åº§æ¨™ã¸å¤‰æ›
 				Graphics_Draw_VectorTransformToBillboard( &SrcVec[i], &Pos ) ;
 
-				// ƒXƒNƒŠ[ƒ“À•W‚É•ÏŠ·
+				// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³åº§æ¨™ã«å¤‰æ›
 				DestVec[i].rhw = 1.0F ;
 				VectorTransform4( &DestVec[i].pos,  &DestVec[i].rhw,
 								  &SrcVec[i],       &DestVec[i].rhw, TransMatrix ) ;
@@ -16910,7 +16910,7 @@ extern	int NS_DrawGraph3D( float x, float y, float z, int GrHandle, int TransFla
 				DestVec[i].pos.z *= DestVec[i].rhw ;
 			}
 									            
-			// ’¸“_î•ñ‚ÌƒZƒbƒg
+			// é ‚ç‚¹æƒ…å ±ã®ã‚»ãƒƒãƒˆ
 			TransVert[0].pos = DestVec[0].pos ;
 			TransVert[1].pos = DestVec[1].pos ;
 			TransVert[2].pos = DestVec[2].pos ;
@@ -16938,7 +16938,7 @@ extern	int NS_DrawGraph3D( float x, float y, float z, int GrHandle, int TransFla
 		}
 	}
 
-	// •`‰æ
+	// æç”»
 	DRAW_DEF(
 		Graphics_Hardware_DrawPrimitive2D_PF( TransVert, 6, DX_PRIMTYPE_TRIANGLELIST, Image, TransFlag, TRUE, TRUE, FALSE, FALSE, 0, FALSE ),
 		0,
@@ -16947,11 +16947,11 @@ extern	int NS_DrawGraph3D( float x, float y, float z, int GrHandle, int TransFla
 		Image->Orig->FormatDesc.TextureFlag
 	)
 
-	// I—¹
+	// çµ‚äº†
 	return Ret ;
 }
 
-// ƒOƒ‰ƒtƒBƒbƒN‚ÌŠg‘å‚R‚c•`‰æ
+// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®æ‹¡å¤§ï¼“ï¼¤æç”»
 extern	int NS_DrawExtendGraph3D( float x, float y, float z, double ExRateX, double ExRateY, int GrHandle, int TransFlag )
 {
 	IMAGEDATA *Image ;
@@ -16961,10 +16961,10 @@ extern	int NS_DrawExtendGraph3D( float x, float y, float z, double ExRateX, doub
 	if( /* GSYS.NotDrawFlag || */ GSYS.DrawSetting.NotDrawFlagInSetDrawArea )
 		return 0 ;
 
-	// ƒ\ƒtƒg‚ª”ñƒAƒNƒeƒBƒu‚Ìê‡‚ÍƒAƒNƒeƒBƒu‚É‚È‚é‚Ü‚Å‘Ò‚Â
+	// ã‚½ãƒ•ãƒˆãŒéã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã®å ´åˆã¯ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ãªã‚‹ã¾ã§å¾…ã¤
 	CheckActiveState() ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( GRAPHCHK( GrHandle, Image ) )
 		return -1 ;
 
@@ -16976,23 +16976,23 @@ extern	int NS_DrawExtendGraph3D( float x, float y, float z, double ExRateX, doub
 	}
 #endif
 
-	// ‚Q‚cs—ñ‚ğƒn[ƒhƒEƒGƒA‚É”½‰f‚·‚é
+	// ï¼’ï¼¤è¡Œåˆ—ã‚’ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã«åæ˜ ã™ã‚‹
 	if( GSYS.DrawSetting.MatchHardware_2DMatrix == FALSE && GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )
 		Graphics_DrawSetting_ApplyLib2DMatrixToHardware() ;
 
-	// À•W•ÏŠ·‚ğs‚¤
+	// åº§æ¨™å¤‰æ›ã‚’è¡Œã†
 	{
 		MATRIX *TransMatrix ;
 
 		TransMatrix = &GSYS.DrawSetting.Blend3DMatrixF ;
 
-		// ’¸“_î•ñ‚ğƒZƒbƒg‚·‚é
+		// é ‚ç‚¹æƒ…å ±ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 		{
 			VECTOR SrcVec[4], Pos ;
 			VERTEX_2D DestVec[4] ;
 			float SizeX, SizeY ;
 			
-			// ƒrƒ‹ƒ{[ƒh‚Ì‚S’¸“_‚ğ“¾‚é
+			// ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã®ï¼”é ‚ç‚¹ã‚’å¾—ã‚‹
 			SizeX = Image->WidthF  * ( float )ExRateX * 0.5F ;
 			SizeY = Image->HeightF * ( float )ExRateY * 0.5F ;
 			Pos.x = x ;	Pos.y = y ;	Pos.z = z ;
@@ -17001,13 +17001,13 @@ extern	int NS_DrawExtendGraph3D( float x, float y, float z, double ExRateX, doub
 			SrcVec[2].x = -SizeX ;	SrcVec[2].y = -SizeY ;	SrcVec[2].z = 0.0F ;
 			SrcVec[3].x =  SizeX ;	SrcVec[3].y = -SizeY ;	SrcVec[3].z = 0.0F ;
 
-			// À•W•ÏŠ·
+			// åº§æ¨™å¤‰æ›
 			for( i = 0 ; i < 4 ; i ++ )
 			{
-				// ƒrƒ‹ƒ{[ƒhÀ•W‚ğƒ[ƒ‹ƒhÀ•W‚Ö•ÏŠ·
+				// ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰åº§æ¨™ã‚’ãƒ¯ãƒ¼ãƒ«ãƒ‰åº§æ¨™ã¸å¤‰æ›
 				Graphics_Draw_VectorTransformToBillboard( &SrcVec[i], &Pos ) ;
 
-				// ƒXƒNƒŠ[ƒ“À•W‚É•ÏŠ·
+				// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³åº§æ¨™ã«å¤‰æ›
 				DestVec[i].rhw = 1.0F ;
 				VectorTransform4( &DestVec[i].pos,  &DestVec[i].rhw,
 									      &SrcVec[i],  &DestVec[i].rhw, TransMatrix ) ;
@@ -17017,7 +17017,7 @@ extern	int NS_DrawExtendGraph3D( float x, float y, float z, double ExRateX, doub
 				DestVec[i].pos.z *= DestVec[i].rhw ;
 			}
 									            
-			// ’¸“_î•ñ‚ÌƒZƒbƒg
+			// é ‚ç‚¹æƒ…å ±ã®ã‚»ãƒƒãƒˆ
 			TransVert[0].pos = DestVec[0].pos ;
 			TransVert[1].pos = DestVec[1].pos ;
 			TransVert[2].pos = DestVec[2].pos ;
@@ -17045,7 +17045,7 @@ extern	int NS_DrawExtendGraph3D( float x, float y, float z, double ExRateX, doub
 		}
 	}
 
-	// •`‰æ
+	// æç”»
 	DRAW_DEF(
 		Graphics_Hardware_DrawPrimitive2D_PF( TransVert, 6, DX_PRIMTYPE_TRIANGLELIST, Image, TransFlag, TRUE, TRUE, FALSE, FALSE, 0, FALSE ),
 		0,
@@ -17054,11 +17054,11 @@ extern	int NS_DrawExtendGraph3D( float x, float y, float z, double ExRateX, doub
 		Image->Orig->FormatDesc.TextureFlag
 	)
 
-	// I—¹
+	// çµ‚äº†
 	return Ret ;
 }
 
-// ƒOƒ‰ƒtƒBƒbƒN‚Ì‰ñ“]‚R‚c•`‰æ
+// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®å›è»¢ï¼“ï¼¤æç”»
 extern	int NS_DrawRotaGraph3D( float x, float y, float z, double ExRate, double Angle, int GrHandle, int TransFlag, int ReverseXFlag, int ReverseYFlag )
 {
 	IMAGEDATA *Image ;
@@ -17073,10 +17073,10 @@ extern	int NS_DrawRotaGraph3D( float x, float y, float z, double ExRate, double 
 	if( /* GSYS.NotDrawFlag || */ GSYS.DrawSetting.NotDrawFlagInSetDrawArea )
 		return 0 ;
 
-	// ƒ\ƒtƒg‚ª”ñƒAƒNƒeƒBƒu‚Ìê‡‚ÍƒAƒNƒeƒBƒu‚É‚È‚é‚Ü‚Å‘Ò‚Â
+	// ã‚½ãƒ•ãƒˆãŒéã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã®å ´åˆã¯ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ãªã‚‹ã¾ã§å¾…ã¤
 	CheckActiveState() ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( GRAPHCHK( GrHandle, Image ) )
 		return -1 ;
 
@@ -17088,27 +17088,27 @@ extern	int NS_DrawRotaGraph3D( float x, float y, float z, double ExRate, double 
 	}
 #endif
 
-	// ‚Q‚cs—ñ‚ğƒn[ƒhƒEƒGƒA‚É”½‰f‚·‚é
+	// ï¼’ï¼¤è¡Œåˆ—ã‚’ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã«åæ˜ ã™ã‚‹
 	if( GSYS.DrawSetting.MatchHardware_2DMatrix == FALSE && GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )
 		Graphics_DrawSetting_ApplyLib2DMatrixToHardware() ;
 
-	// À•W•ÏŠ·‚ğs‚¤
+	// åº§æ¨™å¤‰æ›ã‚’è¡Œã†
 	{
 		MATRIX *TransMatrix ;
 
 		TransMatrix = &GSYS.DrawSetting.Blend3DMatrixF ;
 
-		// ’¸“_î•ñ‚ğƒZƒbƒg‚·‚é
+		// é ‚ç‚¹æƒ…å ±ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 		{
 			VECTOR SrcVec[4], Pos ;
 			VERTEX_2D DestVec[4]/*, VectBuf */ ;
 			float SizeX, SizeY ;
 
-			// ”½“]‚ğl—¶‚µ‚½‰¡•ûŒü‚ÌŠg‘å—¦‚ğƒZƒbƒg
+			// åè»¢ã‚’è€ƒæ…®ã—ãŸæ¨ªæ–¹å‘ã®æ‹¡å¤§ç‡ã‚’ã‚»ãƒƒãƒˆ
 			ExtendRateX = ( ( ReverseXFlag == TRUE ) ? -1.0f : 1.0f ) * ExtendRate ;
 			ExtendRateY = ( ( ReverseYFlag == TRUE ) ? -1.0f : 1.0f ) * ExtendRate ;
 
-			// ƒrƒ‹ƒ{[ƒh‚Ì‚S’¸“_‚ğ“¾‚é
+			// ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã®ï¼”é ‚ç‚¹ã‚’å¾—ã‚‹
 			{
 				SizeX = Image->WidthF  * 0.5F * ExtendRateX ;
 				SizeY = Image->HeightF * 0.5F * ExtendRateY ;
@@ -17118,7 +17118,7 @@ extern	int NS_DrawRotaGraph3D( float x, float y, float z, double ExRate, double 
 				SrcVec[2].x = -SizeX ;	SrcVec[2].y = -SizeY ;	SrcVec[2].z = 0.0F ;
 				SrcVec[3].x =  SizeX ;	SrcVec[3].y = -SizeY ;	SrcVec[3].z = 0.0F ;
 
-				// ‰ñ“]
+				// å›è»¢
 				_SINCOS_PLATFORM( (float)Angle, &Sin, &Cos ) ;
 				for( i = 0 ; i < 4 ; i ++ )
 				{
@@ -17130,13 +17130,13 @@ extern	int NS_DrawRotaGraph3D( float x, float y, float z, double ExRate, double 
 				}
 			}
 
-			// À•W•ÏŠ·
+			// åº§æ¨™å¤‰æ›
 			for( i = 0 ; i < 4 ; i ++ )
 			{
-				// ƒrƒ‹ƒ{[ƒhÀ•W‚ğƒ[ƒ‹ƒhÀ•W‚Ö•ÏŠ·
+				// ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰åº§æ¨™ã‚’ãƒ¯ãƒ¼ãƒ«ãƒ‰åº§æ¨™ã¸å¤‰æ›
 				Graphics_Draw_VectorTransformToBillboard( &SrcVec[i], &Pos ) ;
 
-				// ƒXƒNƒŠ[ƒ“À•W‚É•ÏŠ·
+				// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³åº§æ¨™ã«å¤‰æ›
 				DestVec[i].rhw = 1.0F ;
 				VectorTransform4( &DestVec[i].pos,  &DestVec[i].rhw,
 									      &SrcVec[i],  &DestVec[i].rhw, TransMatrix ) ;
@@ -17146,7 +17146,7 @@ extern	int NS_DrawRotaGraph3D( float x, float y, float z, double ExRate, double 
 				DestVec[i].pos.z *= DestVec[i].rhw ;
 			}
 									            
-			// ’¸“_î•ñ‚ÌƒZƒbƒg
+			// é ‚ç‚¹æƒ…å ±ã®ã‚»ãƒƒãƒˆ
 			TransVert[0].pos = DestVec[0].pos ;
 			TransVert[1].pos = DestVec[1].pos ;
 			TransVert[2].pos = DestVec[2].pos ;
@@ -17174,7 +17174,7 @@ extern	int NS_DrawRotaGraph3D( float x, float y, float z, double ExRate, double 
 		}
 	}
 
-	// •`‰æ
+	// æç”»
 	DRAW_DEF(
 		Graphics_Hardware_DrawPrimitive2D_PF( TransVert, 6, DX_PRIMTYPE_TRIANGLELIST, Image, TransFlag, TRUE, TRUE, FALSE, FALSE, 0, FALSE ),
 		0,
@@ -17183,11 +17183,11 @@ extern	int NS_DrawRotaGraph3D( float x, float y, float z, double ExRate, double 
 		Image->Orig->FormatDesc.TextureFlag
 	)
 
-	// I—¹
+	// çµ‚äº†
 	return Ret ;
 }
 
-// ƒOƒ‰ƒtƒBƒbƒN‚Ì‰ñ“]‚R‚c•`‰æ(‰ñ“]’†Sw’èŒ^)
+// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®å›è»¢ï¼“ï¼¤æç”»(å›è»¢ä¸­å¿ƒæŒ‡å®šå‹)
 extern	int NS_DrawRota2Graph3D( float x, float y, float z, float cx, float cy, double ExtRateX, double ExtRateY, double Angle, int GrHandle, int TransFlag, int ReverseXFlag, int ReverseYFlag )
 {
 	IMAGEDATA *Image ;
@@ -17201,10 +17201,10 @@ extern	int NS_DrawRota2Graph3D( float x, float y, float z, float cx, float cy, d
 	if( /* GSYS.NotDrawFlag || */ GSYS.DrawSetting.NotDrawFlagInSetDrawArea )
 		return 0 ;
 
-	// ƒ\ƒtƒg‚ª”ñƒAƒNƒeƒBƒu‚Ìê‡‚ÍƒAƒNƒeƒBƒu‚É‚È‚é‚Ü‚Å‘Ò‚Â
+	// ã‚½ãƒ•ãƒˆãŒéã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã®å ´åˆã¯ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ãªã‚‹ã¾ã§å¾…ã¤
 	CheckActiveState() ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( GRAPHCHK( GrHandle, Image ) )
 		return -1 ;
 
@@ -17216,23 +17216,23 @@ extern	int NS_DrawRota2Graph3D( float x, float y, float z, float cx, float cy, d
 	}
 #endif
 
-	// ‚Q‚cs—ñ‚ğƒn[ƒhƒEƒGƒA‚É”½‰f‚·‚é
+	// ï¼’ï¼¤è¡Œåˆ—ã‚’ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã«åæ˜ ã™ã‚‹
 	if( GSYS.DrawSetting.MatchHardware_2DMatrix == FALSE && GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )
 		Graphics_DrawSetting_ApplyLib2DMatrixToHardware() ;
 
-	// À•W•ÏŠ·‚ğs‚¤
+	// åº§æ¨™å¤‰æ›ã‚’è¡Œã†
 	{
 		MATRIX *TransMatrix ;
 
 		TransMatrix = &GSYS.DrawSetting.Blend3DMatrixF ;
 
-		// ’¸“_î•ñ‚ğƒZƒbƒg‚·‚é
+		// é ‚ç‚¹æƒ…å ±ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 		{
 			VECTOR SrcVec[4], Pos ;
 			VERTEX_2D DestVec[4]/* , VectBuf */ ;
 			float SizeX, SizeY ;
 			
-			// ƒrƒ‹ƒ{[ƒh‚Ì‚S’¸“_‚ğ“¾‚é
+			// ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã®ï¼”é ‚ç‚¹ã‚’å¾—ã‚‹
 			{
 				SizeX = Image->WidthF ;
 				SizeY = Image->HeightF ;
@@ -17268,7 +17268,7 @@ extern	int NS_DrawRota2Graph3D( float x, float y, float z, float cx, float cy, d
 					SrcVec[3].x = ( -cx + SizeX ) * ExtendRateX ;	SrcVec[3].y =   -cy           * ExtendRateY ;	SrcVec[3].z = 0.0F ;
 				}
 
-				// ‰ñ“]
+				// å›è»¢
 				_SINCOS_PLATFORM( (float)Angle, &Sin, &Cos ) ;
 				for( i = 0 ; i < 4 ; i ++ )
 				{
@@ -17280,13 +17280,13 @@ extern	int NS_DrawRota2Graph3D( float x, float y, float z, float cx, float cy, d
 				}
 			}
 
-			// À•W•ÏŠ·
+			// åº§æ¨™å¤‰æ›
 			for( i = 0 ; i < 4 ; i ++ )
 			{
-				// ƒrƒ‹ƒ{[ƒhÀ•W‚ğƒ[ƒ‹ƒhÀ•W‚Ö•ÏŠ·
+				// ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰åº§æ¨™ã‚’ãƒ¯ãƒ¼ãƒ«ãƒ‰åº§æ¨™ã¸å¤‰æ›
 				Graphics_Draw_VectorTransformToBillboard( &SrcVec[i], &Pos ) ;
 
-				// ƒXƒNƒŠ[ƒ“À•W‚É•ÏŠ·
+				// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³åº§æ¨™ã«å¤‰æ›
 				DestVec[i].rhw = 1.0F ;
 				VectorTransform4( &DestVec[i].pos,  &DestVec[i].rhw,
 									      &SrcVec[i],  &DestVec[i].rhw, TransMatrix ) ;
@@ -17296,7 +17296,7 @@ extern	int NS_DrawRota2Graph3D( float x, float y, float z, float cx, float cy, d
 				DestVec[i].pos.z *= DestVec[i].rhw ;
 			}
 									            
-			// ’¸“_î•ñ‚ÌƒZƒbƒg
+			// é ‚ç‚¹æƒ…å ±ã®ã‚»ãƒƒãƒˆ
 			TransVert[0].pos = DestVec[0].pos ;
 			TransVert[1].pos = DestVec[1].pos ;
 			TransVert[2].pos = DestVec[2].pos ;
@@ -17327,7 +17327,7 @@ extern	int NS_DrawRota2Graph3D( float x, float y, float z, float cx, float cy, d
 		}
 	}
 
-	// •`‰æ
+	// æç”»
 	DRAW_DEF(
 		Graphics_Hardware_DrawPrimitive2D_PF( TransVert, 6, DX_PRIMTYPE_TRIANGLELIST, Image, TransFlag, TRUE, TRUE, FALSE, FALSE, 0, FALSE ),
 		0,
@@ -17336,30 +17336,30 @@ extern	int NS_DrawRota2Graph3D( float x, float y, float z, float cx, float cy, d
 		Image->Orig->FormatDesc.TextureFlag
 	)
 
-	// I—¹
+	// çµ‚äº†
 	return Ret ;
 }
 
 #undef SETDRAWRECTCODE
 
-// ƒOƒ‰ƒtƒBƒbƒN‚Ì©—R•ÏŒ`‚R‚c•`‰æ
+// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®è‡ªç”±å¤‰å½¢ï¼“ï¼¤æç”»
 extern int NS_DrawModiBillboard3D( VECTOR Pos, float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4, int GrHandle, int TransFlag )
 {
 	IMAGEDATA *Image ;
 	IMAGEDATA *BlendImage ;
 	int Ret ;
 
-	// ‰Šú‰»”»’è
+	// åˆæœŸåŒ–åˆ¤å®š
 	if( DxSysData.DxLib_InitializeFlag == FALSE ) return -1 ;
 
-	// ”ñ•`‰æİ’è‚ª‚³‚ê‚Ä‚¢‚éê‡‚Í‰½‚à‚¹‚¸I—¹
+	// éæç”»è¨­å®šãŒã•ã‚Œã¦ã„ã‚‹å ´åˆã¯ä½•ã‚‚ã›ãšçµ‚äº†
 	if( /* GSYS.NotDrawFlag || */ GSYS.DrawSetting.NotDrawFlagInSetDrawArea )
 		return 0 ;
 
-	// ƒ\ƒtƒg‚ª”ñƒAƒNƒeƒBƒu‚Ìê‡‚ÍƒAƒNƒeƒBƒu‚É‚È‚é‚Ü‚Å‘Ò‚Â
+	// ã‚½ãƒ•ãƒˆãŒéã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã®å ´åˆã¯ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ãªã‚‹ã¾ã§å¾…ã¤
 	CheckActiveState() ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( GRAPHCHK( GrHandle, Image ) )
 		return -1 ;
 	BlendImage = NULL ;
@@ -17367,16 +17367,16 @@ extern int NS_DrawModiBillboard3D( VECTOR Pos, float x1, float y1, float x2, flo
 	{
 		GRAPHCHK( GSYS.DrawSetting.BlendGraph, BlendImage ) ;
 
-		// ƒuƒŒƒ“ƒhƒeƒNƒXƒ`ƒƒ‚ğg—p‚·‚éê‡A•`‰æ‰æ‘œ‚æ‚è‚à¬‚³‚©‚Á‚½‚çƒGƒ‰[
+		// ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ä½¿ç”¨ã™ã‚‹å ´åˆã€æç”»ç”»åƒã‚ˆã‚Šã‚‚å°ã•ã‹ã£ãŸã‚‰ã‚¨ãƒ©ãƒ¼
 		if( Graphics_Image_CheckBlendGraphSize( Image ) ) return -1 ;
 
-		// ‚Q‚cs—ñ‚ğƒn[ƒhƒEƒGƒA‚É”½‰f‚·‚é
+		// ï¼’ï¼¤è¡Œåˆ—ã‚’ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã«åæ˜ ã™ã‚‹
 		if( GSYS.DrawSetting.MatchHardware_2DMatrix == FALSE && GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )
 			Graphics_DrawSetting_ApplyLib2DMatrixToHardware() ;
 	}
 	else
 	{
-		// ‚R‚cs—ñ‚ğƒn[ƒhƒEƒGƒA‚É”½‰f‚·‚é
+		// ï¼“ï¼¤è¡Œåˆ—ã‚’ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã«åæ˜ ã™ã‚‹
 		if( GSYS.DrawSetting.MatchHardware3DMatrix == FALSE && GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )
 			Graphics_DrawSetting_ApplyLib3DMatrixToHardware() ;
 	}
@@ -17386,7 +17386,7 @@ extern int NS_DrawModiBillboard3D( VECTOR Pos, float x1, float y1, float x2, flo
 		UpdateMovie( Image->Orig->MovieHandle, FALSE ) ;
 #endif
 
-	// •`‰æ
+	// æç”»
 	DRAW_DEF(
 		Graphics_Hardware_DrawModiBillboard3D_PF( Pos, x1, y1, x2, y2, x3, y3, x4, y4, Image, BlendImage, TransFlag ),
 		0,
@@ -17395,28 +17395,28 @@ extern int NS_DrawModiBillboard3D( VECTOR Pos, float x1, float y1, float x2, flo
 		Image->Orig->FormatDesc.TextureFlag
 	)
 
-	// I—¹
+	// çµ‚äº†
 	return Ret ;
 }
 
-// ‚R‚c‹óŠÔã‚ÉƒOƒ‰ƒtƒBƒbƒN‚ğ•`‰æ
+// ï¼“ï¼¤ç©ºé–“ä¸Šã«ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚’æç”»
 extern int NS_DrawBillboard3D( VECTOR Pos, float cx, float cy, float Size, float Angle, int GrHandle, int TransFlag, int ReverseXFlag, int ReverseYFlag )
 {
 	IMAGEDATA *Image ;
 	IMAGEDATA *BlendImage ;
 	int Ret ;
 
-	// ‰Šú‰»”»’è
+	// åˆæœŸåŒ–åˆ¤å®š
 	if( DxSysData.DxLib_InitializeFlag == FALSE ) return -1 ;
 
-	// ”ñ•`‰æİ’è‚ª‚³‚ê‚Ä‚¢‚éê‡‚Í‰½‚à‚¹‚¸I—¹
+	// éæç”»è¨­å®šãŒã•ã‚Œã¦ã„ã‚‹å ´åˆã¯ä½•ã‚‚ã›ãšçµ‚äº†
 	if( /* GSYS.NotDrawFlag || */ GSYS.DrawSetting.NotDrawFlagInSetDrawArea )
 		return 0 ;
 
-	// ƒ\ƒtƒg‚ª”ñƒAƒNƒeƒBƒu‚Ìê‡‚ÍƒAƒNƒeƒBƒu‚É‚È‚é‚Ü‚Å‘Ò‚Â
+	// ã‚½ãƒ•ãƒˆãŒéã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã®å ´åˆã¯ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ãªã‚‹ã¾ã§å¾…ã¤
 	CheckActiveState() ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( GRAPHCHK( GrHandle, Image ) )
 		return -1 ;
 	BlendImage = NULL ;
@@ -17424,16 +17424,16 @@ extern int NS_DrawBillboard3D( VECTOR Pos, float cx, float cy, float Size, float
 	{
 		GRAPHCHK( GSYS.DrawSetting.BlendGraph, BlendImage ) ;
 
-		// ƒuƒŒƒ“ƒhƒeƒNƒXƒ`ƒƒ‚ğg—p‚·‚éê‡A•`‰æ‰æ‘œ‚æ‚è‚à¬‚³‚©‚Á‚½‚çƒGƒ‰[
+		// ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ä½¿ç”¨ã™ã‚‹å ´åˆã€æç”»ç”»åƒã‚ˆã‚Šã‚‚å°ã•ã‹ã£ãŸã‚‰ã‚¨ãƒ©ãƒ¼
 		if( Graphics_Image_CheckBlendGraphSize( Image ) ) return -1 ;
 
-		// ‚Q‚cs—ñ‚ğƒn[ƒhƒEƒGƒA‚É”½‰f‚·‚é
+		// ï¼’ï¼¤è¡Œåˆ—ã‚’ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã«åæ˜ ã™ã‚‹
 		if( GSYS.DrawSetting.MatchHardware_2DMatrix == FALSE && GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )
 			Graphics_DrawSetting_ApplyLib2DMatrixToHardware() ;
 	}
 	else
 	{
-		// ‚R‚cs—ñ‚ğƒn[ƒhƒEƒGƒA‚É”½‰f‚·‚é
+		// ï¼“ï¼¤è¡Œåˆ—ã‚’ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã«åæ˜ ã™ã‚‹
 		if( GSYS.DrawSetting.MatchHardware3DMatrix == FALSE && GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )
 			Graphics_DrawSetting_ApplyLib3DMatrixToHardware() ;
 	}
@@ -17443,7 +17443,7 @@ extern int NS_DrawBillboard3D( VECTOR Pos, float cx, float cy, float Size, float
 		UpdateMovie( Image->Orig->MovieHandle, FALSE ) ;
 #endif
 
-	// •`‰æ
+	// æç”»
 	DRAW_DEF(
 		Graphics_Hardware_DrawBillboard3D_PF( Pos, cx, cy, Size, Size * ( float )Image->HeightF / ( float )Image->WidthF, Angle, Image, BlendImage, TransFlag, ReverseXFlag, ReverseYFlag ),
 		0,
@@ -17452,29 +17452,29 @@ extern int NS_DrawBillboard3D( VECTOR Pos, float cx, float cy, float Size, float
 		Image->Orig->FormatDesc.TextureFlag
 	)
 
-	// I—¹
+	// çµ‚äº†
 	return Ret ;
 }
 
-// ‚R‚c‹óŠÔã‚É‰æ‘œ‚ğ•`‰æ( ‰æ‘œ“à‹éŒ`w’è‚ ‚è )
+// ï¼“ï¼¤ç©ºé–“ä¸Šã«ç”»åƒã‚’æç”»( ç”»åƒå†…çŸ©å½¢æŒ‡å®šã‚ã‚Š )
 extern int NS_DrawRectBillboard3D( VECTOR Pos, int SrcX, int SrcY, int SrcWidth, int SrcHeight, float cx, float cy, float Size, float Angle, int GrHandle, int TransFlag, int ReverseXFlag, int ReverseYFlag )
 {
 	int TempHandle ;
 
-	// ƒTƒCƒY”»’è
+	// ã‚µã‚¤ã‚ºåˆ¤å®š
 	if( SrcWidth <= 0 || SrcHeight <= 0 )
 		return -1 ;
 
-	// Ø‚èæ‚Á‚½ƒOƒ‰ƒtƒBƒbƒN‚ğì¬
+	// åˆ‡ã‚Šå–ã£ãŸã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚’ä½œæˆ
 	TempHandle = Graphics_Image_DerivationGraph_UseGParam( FALSE, SrcX, ( float )SrcX, SrcY, ( float )SrcY, SrcWidth, ( float )SrcWidth, SrcHeight, ( float )SrcHeight, GrHandle, TRUE, FALSE ) ;
 
-	// ‰ñ“]•`‰æ
+	// å›è»¢æç”»
 	DrawBillboard3D( Pos, cx, cy, Size, Angle, TempHandle, TransFlag, ReverseXFlag, ReverseYFlag ) ;
 
-	// íœ
+	// å‰Šé™¤
 	Graphics_Image_TempDerivationGraph_Terminate() ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
@@ -17501,44 +17501,44 @@ extern int NS_DrawRectBillboard3D( VECTOR Pos, int SrcX, int SrcY, int SrcWidth,
 
 
 
-// •`‰æİ’èŠÖŒWŠÖ”
+// æç”»è¨­å®šé–¢ä¿‚é–¢æ•°
 
-// •`‰æƒ‚[ƒh‚ğƒZƒbƒg‚·‚é
+// æç”»ãƒ¢ãƒ¼ãƒ‰ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern	int NS_SetDrawMode( int DrawMode )
 {
 	if( /* GSYS.NotDrawFlag || */ DrawMode == GSYS.DrawSetting.DrawMode )
 		return 0 ;
 
-	// •`‰æƒ‚[ƒh‚Ì•Û‘¶
+	// æç”»ãƒ¢ãƒ¼ãƒ‰ã®ä¿å­˜
 	GSYS.DrawSetting.DrawMode = DrawMode ;
 	GSYS.ChangeSettingFlag = TRUE ;
 
-	// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒVƒ‡ƒ“‚Ìİ’è‚É”½‰f
+	// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ã®è¨­å®šã«åæ˜ 
 	if( GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )
 	{
 		Graphics_Hardware_SetDrawMode_PF( DrawMode ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// •`‰æƒ‚[ƒh‚ğæ“¾‚·‚é
+// æç”»ãƒ¢ãƒ¼ãƒ‰ã‚’å–å¾—ã™ã‚‹
 extern int NS_GetDrawMode( void )
 {
 	return GSYS.DrawSetting.DrawMode ;
 }
 
-// •`‰æƒuƒŒƒ“ƒhƒ‚[ƒh‚ğƒZƒbƒg‚·‚é
+// æç”»ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern	int NS_SetDrawBlendMode( int BlendMode, int BlendParam )
 {
 	if( /* GSYS.NotDrawFlag || */ ( GSYS.DrawSetting.BlendMode == BlendMode && GSYS.DrawSetting.BlendParam == BlendParam ) )
 		return 0 ;
 
-	// ƒ\ƒtƒg‚ª”ñƒAƒNƒeƒBƒu‚Ìê‡‚ÍƒAƒNƒeƒBƒu‚É‚È‚é‚Ü‚Å‘Ò‚Â
+	// ã‚½ãƒ•ãƒˆãŒéã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã®å ´åˆã¯ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ãªã‚‹ã¾ã§å¾…ã¤
 	CheckActiveState() ;
 
-	// ƒuƒŒƒ“ƒhƒ‚[ƒh‚Ì•Û‘¶
+	// ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã®ä¿å­˜
 	if( GSYS.DrawSetting.BlendMode != BlendMode )
 	{
 		GSYS.DrawSetting.BlendMode = BlendMode ;
@@ -17550,28 +17550,28 @@ extern	int NS_SetDrawBlendMode( int BlendMode, int BlendParam )
 	GSYS.DrawSetting.BlendParam = BlendParam ;
 	SetMemImgDrawBlendMode( GSYS.DrawSetting.BlendMode, GSYS.DrawSetting.BlendParam ) ;
 
-	// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒVƒ‡ƒ“‚Ìİ’è‚É”½‰f
+	// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ã®è¨­å®šã«åæ˜ 
 	if( GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )
 	{
 		Graphics_Hardware_SetDrawBlendMode_PF( BlendMode, BlendParam ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// •`‰æƒuƒŒƒ“ƒhƒ‚[ƒh‚ğæ“¾‚·‚é
+// æç”»ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã‚’å–å¾—ã™ã‚‹
 extern int NS_GetDrawBlendMode( int *BlendMode, int *BlendParam )
 {
 	if( BlendMode	!= NULL ) *BlendMode =	GSYS.DrawSetting.BlendMode ;
 	if( BlendParam	!= NULL ) *BlendParam =	GSYS.DrawSetting.BlendParam ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒJƒXƒ^ƒ€ƒuƒŒƒ“ƒhƒ‚[ƒh‚ğİ’è‚·‚é
-extern int NS_SetDrawCustomBlendMode( int BlendEnable, int SrcBlendRGB /* DX_BLEND_SRC_COLOR “™ */, int DestBlendRGB /* DX_BLEND_SRC_COLOR “™ */, int BlendOpRGB /* DX_BLENDOP_ADD “™ */, int SrcBlendA /* DX_BLEND_SRC_COLOR “™ */, int DestBlendA /* DX_BLEND_SRC_COLOR “™ */, int BlendOpA /* DX_BLENDOP_ADD “™ */, int BlendParam )
+// ã‚«ã‚¹ã‚¿ãƒ ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã‚’è¨­å®šã™ã‚‹
+extern int NS_SetDrawCustomBlendMode( int BlendEnable, int SrcBlendRGB /* DX_BLEND_SRC_COLOR ç­‰ */, int DestBlendRGB /* DX_BLEND_SRC_COLOR ç­‰ */, int BlendOpRGB /* DX_BLENDOP_ADD ç­‰ */, int SrcBlendA /* DX_BLEND_SRC_COLOR ç­‰ */, int DestBlendA /* DX_BLEND_SRC_COLOR ç­‰ */, int BlendOpA /* DX_BLENDOP_ADD ç­‰ */, int BlendParam )
 {
 	if( GSYS.DrawSetting.BlendMode		== DX_BLENDMODE_CUSTOM	&&
 		GSYS.DrawSetting.BlendEnable	== BlendEnable			&&
@@ -17586,10 +17586,10 @@ extern int NS_SetDrawCustomBlendMode( int BlendEnable, int SrcBlendRGB /* DX_BLE
 		return 0 ;
 	}
 
-	// ƒ\ƒtƒg‚ª”ñƒAƒNƒeƒBƒu‚Ìê‡‚ÍƒAƒNƒeƒBƒu‚É‚È‚é‚Ü‚Å‘Ò‚Â
+	// ã‚½ãƒ•ãƒˆãŒéã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã®å ´åˆã¯ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ãªã‚‹ã¾ã§å¾…ã¤
 	CheckActiveState() ;
 
-	// ƒuƒŒƒ“ƒhƒ‚[ƒh‚Ì•Û‘¶
+	// ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã®ä¿å­˜
 	if( GSYS.DrawSetting.BlendMode		!= DX_BLENDMODE_CUSTOM	||
 		GSYS.DrawSetting.BlendEnable	!= BlendEnable			||
 		GSYS.DrawSetting.BlendRGBSrc	!= SrcBlendRGB			||
@@ -17614,17 +17614,17 @@ extern int NS_SetDrawCustomBlendMode( int BlendEnable, int SrcBlendRGB /* DX_BLE
 	if( BlendParam < 0	 ) BlendParam = 0 ;
 	GSYS.DrawSetting.BlendParam = BlendParam ;
 
-	// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒVƒ‡ƒ“‚Ìİ’è‚É”½‰f
+	// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ã®è¨­å®šã«åæ˜ 
 	if( GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )
 	{
 		Graphics_Hardware_SetDrawCustomBlendMode_PF( BlendEnable, SrcBlendRGB, DestBlendRGB, BlendOpRGB, SrcBlendA, DestBlendA, BlendOpA, BlendParam ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒJƒXƒ^ƒ€ƒuƒŒƒ“ƒhƒ‚[ƒh‚ğæ“¾‚·‚é
+// ã‚«ã‚¹ã‚¿ãƒ ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã‚’å–å¾—ã™ã‚‹
 extern int NS_GetDrawCustomBlendMode( int *BlendEnable, int *SrcBlendRGB, int *DestBlendRGB, int *BlendOpRGB, int *SrcBlendA, int *DestBlendA, int *BlendOpA, int *BlendParam )
 {
 	if( BlendEnable		!= NULL ) *BlendEnable	= GSYS.DrawSetting.BlendEnable ;
@@ -17636,53 +17636,53 @@ extern int NS_GetDrawCustomBlendMode( int *BlendEnable, int *SrcBlendRGB, int *D
 	if( BlendOpA		!= NULL ) *BlendOpA		= GSYS.DrawSetting.BlendAOp ;
 	if( BlendParam		!= NULL ) *BlendParam	= GSYS.DrawSetting.BlendParam ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// •`‰æ‚ÌƒAƒ‹ƒtƒ@ƒeƒXƒg‚Ìİ’è‚ğs‚¤( TestMode:DX_CMP_GREATER“™( -1:ƒfƒtƒHƒ‹ƒg“®ì‚É–ß‚· )  TestParam:•`‰æƒAƒ‹ƒtƒ@’l‚Æ‚Ì”äŠr‚Ég—p‚·‚é’l )
+// æç”»æ™‚ã®ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆã®è¨­å®šã‚’è¡Œã†( TestMode:DX_CMP_GREATERç­‰( -1:ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå‹•ä½œã«æˆ»ã™ )  TestParam:æç”»ã‚¢ãƒ«ãƒ•ã‚¡å€¤ã¨ã®æ¯”è¼ƒã«ä½¿ç”¨ã™ã‚‹å€¤ )
 extern	int	NS_SetDrawAlphaTest( int TestMode, int TestParam )
 {
 	if( /* GSYS.NotDrawFlag || */ ( GSYS.DrawSetting.AlphaTestMode == TestMode && GSYS.DrawSetting.AlphaTestParam == TestParam ) )
 		return 0 ;
 
-	// ƒ\ƒtƒg‚ª”ñƒAƒNƒeƒBƒu‚Ìê‡‚ÍƒAƒNƒeƒBƒu‚É‚È‚é‚Ü‚Å‘Ò‚Â
+	// ã‚½ãƒ•ãƒˆãŒéã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã®å ´åˆã¯ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ãªã‚‹ã¾ã§å¾…ã¤
 	CheckActiveState() ;
 
-	// ƒAƒ‹ƒtƒ@ƒeƒXƒgƒpƒ‰ƒ[ƒ^‚ğ•Û‘¶
+	// ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ä¿å­˜
 	GSYS.DrawSetting.AlphaTestMode = TestMode ;
 	if( TestParam > 255 ) TestParam = 255 ;
 	if( TestParam < 0	 ) TestParam = 0 ;
 	GSYS.DrawSetting.AlphaTestParam = TestParam ;
 	GSYS.ChangeSettingFlag = TRUE ;
 
-	// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒVƒ‡ƒ“‚Ìİ’è‚É”½‰f
+	// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ã®è¨­å®šã«åæ˜ 
 	if( GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )
 	{
 		Graphics_Hardware_SetDrawAlphaTest_PF( TestMode, TestParam ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// •`‰æ‚ÌƒAƒ‹ƒtƒ@ƒeƒXƒg‚Ìİ’è‚ğæ“¾‚·‚é( TestMode:ƒeƒXƒgƒ‚[ƒh( DX_CMP_GREATER“™ -1‚ÅƒfƒtƒHƒ‹ƒg“®ì‚É–ß‚· )  TestParam:•`‰æƒAƒ‹ƒtƒ@’l‚Æ‚Ì”äŠr‚Ég—p‚·‚é’l( 0`255 ) )
+// æç”»æ™‚ã®ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆã®è¨­å®šã‚’å–å¾—ã™ã‚‹( TestMode:ãƒ†ã‚¹ãƒˆãƒ¢ãƒ¼ãƒ‰( DX_CMP_GREATERç­‰ -1ã§ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå‹•ä½œã«æˆ»ã™ )  TestParam:æç”»ã‚¢ãƒ«ãƒ•ã‚¡å€¤ã¨ã®æ¯”è¼ƒã«ä½¿ç”¨ã™ã‚‹å€¤( 0ï½255 ) )
 extern	int NS_GetDrawAlphaTest( int *TestMode, int *TestParam )
 {
 	if( TestMode  != NULL ) *TestMode  = GSYS.DrawSetting.AlphaTestMode ;
 	if( TestParam != NULL ) *TestParam = GSYS.DrawSetting.AlphaTestParam ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// •`‰æˆ—‚É•`‰æ‚·‚é‰æ‘œ‚ÆƒuƒŒƒ“ƒh‚·‚éƒ¿ƒ`ƒƒƒ“ƒlƒ‹•t‚«‰æ‘œ‚ğƒZƒbƒg‚·‚é
+// æç”»å‡¦ç†æ™‚ã«æç”»ã™ã‚‹ç”»åƒã¨ãƒ–ãƒ¬ãƒ³ãƒ‰ã™ã‚‹Î±ãƒãƒ£ãƒ³ãƒãƒ«ä»˜ãç”»åƒã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern	int NS_SetBlendGraph( int BlendGraph, int BorderParam, int BorderRange )
 {
 	return NS_SetBlendGraphParam( BlendGraph, DX_BLENDGRAPHTYPE_WIPE, BorderParam, BorderRange ) ;
 }
 
-// •`‰æˆ—‚É•`‰æ‚·‚é‰æ‘œ‚ÆƒuƒŒƒ“ƒh‚·‚é‰æ‘œ‚ÌƒuƒŒƒ“ƒhİ’è‚ğs‚¤
+// æç”»å‡¦ç†æ™‚ã«æç”»ã™ã‚‹ç”»åƒã¨ãƒ–ãƒ¬ãƒ³ãƒ‰ã™ã‚‹ç”»åƒã®ãƒ–ãƒ¬ãƒ³ãƒ‰è¨­å®šã‚’è¡Œã†
 extern	int NS_SetBlendGraphParam( int BlendGraph, int BlendType, ... )
 {
 	int Result ;
@@ -17702,36 +17702,36 @@ extern	int NS_SetBlendGraphParam( int BlendGraph, int BlendType, ... )
 	return Result ;
 }
 
-// ƒuƒŒƒ“ƒh‰æ‘œ‚Ì‹N“_À•W‚ğƒZƒbƒg‚·‚é
+// ãƒ–ãƒ¬ãƒ³ãƒ‰ç”»åƒã®èµ·ç‚¹åº§æ¨™ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern	int NS_SetBlendGraphPosition( int x, int y )
 {
-	// ¡‚Ü‚Å‚Æ’l‚ª“¯‚¶ê‡‚Í‰½‚à‚¹‚¸I—¹
+	// ä»Šã¾ã§ã¨å€¤ãŒåŒã˜å ´åˆã¯ä½•ã‚‚ã›ãšçµ‚äº†
 	if( GSYS.DrawSetting.BlendGraphX == x && GSYS.DrawSetting.BlendGraphY == y ) return 0 ;
 
-	// À•W‚ğ•Û‘¶
+	// åº§æ¨™ã‚’ä¿å­˜
 	GSYS.DrawSetting.BlendGraphX = x ;
 	GSYS.DrawSetting.BlendGraphY = y ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒuƒŒƒ“ƒh‰æ‘œ‚Ì“K‰À•Wƒ‚[ƒh‚ğİ’è‚·‚é
-extern int NS_SetBlendGraphPositionMode( int BlendGraphPositionMode /* DX_BLENDGRAPH_POSMODE_DRAWGRAPH ‚È‚Ç */ )
+// ãƒ–ãƒ¬ãƒ³ãƒ‰ç”»åƒã®é©å¿œåº§æ¨™ãƒ¢ãƒ¼ãƒ‰ã‚’è¨­å®šã™ã‚‹
+extern int NS_SetBlendGraphPositionMode( int BlendGraphPositionMode /* DX_BLENDGRAPH_POSMODE_DRAWGRAPH ãªã© */ )
 {
 	if( BlendGraphPositionMode < 0 || BlendGraphPositionMode >= DX_BLENDGRAPH_POSMODE_NUM )
 	{
 		return -1 ;
 	}
 
-	// À•Wƒ‚[ƒh‚ğ•Û‘¶
+	// åº§æ¨™ãƒ¢ãƒ¼ãƒ‰ã‚’ä¿å­˜
 	GSYS.DrawSetting.BlendGraphPosMode = BlendGraphPositionMode ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// •`‰æ‹P“x‚ğƒZƒbƒg
+// æç”»è¼åº¦ã‚’ã‚»ãƒƒãƒˆ
 extern	int NS_SetDrawBright( int RedBright, int GreenBright, int BlueBright )
 {
 	if( GSYS.DrawSetting.DrawBright.Red   == RedBright  &&
@@ -17757,12 +17757,12 @@ extern	int NS_SetDrawBright( int RedBright, int GreenBright, int BlueBright )
 		else if( BlueBright  < 0   ) BlueBright  = 0   ;
 	}
 
-	// ‹P“x‚ğ•Û‘¶
+	// è¼åº¦ã‚’ä¿å­˜
 	GSYS.DrawSetting.DrawBright.Red   = ( BYTE )RedBright   ;
 	GSYS.DrawSetting.DrawBright.Green = ( BYTE )GreenBright ;
 	GSYS.DrawSetting.DrawBright.Blue  = ( BYTE )BlueBright  ;
 
-	// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒVƒ‡ƒ“‚Ìİ’è‚É”½‰f
+	// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ã®è¨­å®šã«åæ˜ 
 	if( GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )
 	{
 		Graphics_Hardware_SetDrawBright_PF( RedBright, GreenBright, BlueBright ) ;
@@ -17772,22 +17772,22 @@ extern	int NS_SetDrawBright( int RedBright, int GreenBright, int BlueBright )
 		SetMemImgDrawBright( GSYS.DrawSetting.bDrawBright ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// •`‰æ‹P“x‚ğæ“¾‚·‚é
+// æç”»è¼åº¦ã‚’å–å¾—ã™ã‚‹
 extern int NS_GetDrawBright( int *Red, int *Green, int *Blue )
 {
 	if( Red		!= NULL ) *Red =	GSYS.DrawSetting.DrawBright.Red ;
 	if( Green	!= NULL ) *Green =	GSYS.DrawSetting.DrawBright.Green ;
 	if( Blue	!= NULL ) *Blue =	GSYS.DrawSetting.DrawBright.Blue ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// •`‰æƒJƒ‰[‚É‰ÁZ‚·‚éF‚ğİ’è‚·‚é
+// æç”»ã‚«ãƒ©ãƒ¼ã«åŠ ç®—ã™ã‚‹è‰²ã‚’è¨­å®šã™ã‚‹
 extern int NS_SetDrawAddColor( int Red, int Green, int Blue )
 {
 	if( GSYS.DrawSetting.DrawAddColorI.x == Red  &&
@@ -17797,10 +17797,10 @@ extern int NS_SetDrawAddColor( int Red, int Green, int Blue )
 		return 0 ;
 	}
 
-	// •`‰æ‘Ò‹@‚µ‚Ä‚¢‚é•`‰æ•¨‚ğ•`‰æ
+	// æç”»å¾…æ©Ÿã—ã¦ã„ã‚‹æç”»ç‰©ã‚’æç”»
 	DRAWSTOCKINFO
 
-	// ‹P“x‚ğ•Û‘¶
+	// è¼åº¦ã‚’ä¿å­˜
 	GSYS.DrawSetting.DrawAddColorI.x = Red   ;
 	GSYS.DrawSetting.DrawAddColorI.y = Green ;
 	GSYS.DrawSetting.DrawAddColorI.z = Blue  ;
@@ -17808,304 +17808,304 @@ extern int NS_SetDrawAddColor( int Red, int Green, int Blue )
 	GSYS.DrawSetting.DrawAddColorF.g = Green / 255.0f ;
 	GSYS.DrawSetting.DrawAddColorF.b = Blue  / 255.0f ;
 
-	// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒVƒ‡ƒ“‚Ìİ’è‚É”½‰f
+	// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ã®è¨­å®šã«åæ˜ 
 	if( GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )
 	{
 		Graphics_Hardware_SetDrawAddColor_PF( Red, Green, Blue ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// •`‰æƒJƒ‰[‚É‰ÁZ‚·‚éF‚ğæ“¾‚·‚é
+// æç”»ã‚«ãƒ©ãƒ¼ã«åŠ ç®—ã™ã‚‹è‰²ã‚’å–å¾—ã™ã‚‹
 extern int NS_GetDrawAddColor( int *Red, int *Green, int *Blue )
 {
 	if( Red		!= NULL ) *Red =	GSYS.DrawSetting.DrawAddColorI.x ;
 	if( Green	!= NULL ) *Green =	GSYS.DrawSetting.DrawAddColorI.y ;
 	if( Blue	!= NULL ) *Blue =	GSYS.DrawSetting.DrawAddColorI.z ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// •`‰ææ‚ÌƒAƒ‹ƒtƒ@ƒ`ƒƒƒ“ƒlƒ‹‚Ì“à—e‚ğ‘‚«Š·‚¦‚é‚©‚ğİ’è‚·‚é( FALSE:‘‚«Š·‚¦‚È‚¢  TRUE:‘‚«Š·‚¦‚é( ƒfƒtƒHƒ‹ƒg ) )
+// æç”»å…ˆã®ã‚¢ãƒ«ãƒ•ã‚¡ãƒãƒ£ãƒ³ãƒãƒ«ã®å†…å®¹ã‚’æ›¸ãæ›ãˆã‚‹ã‹ã‚’è¨­å®šã™ã‚‹( FALSE:æ›¸ãæ›ãˆãªã„  TRUE:æ›¸ãæ›ãˆã‚‹( ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ ) )
 extern int NS_SetWriteAlphaChannelFlag( int Flag )
 {
-	// RGB‚ÌƒuƒŒƒ“ƒhİ’è‚Æ‚Í•Ê‚ÉƒAƒ‹ƒtƒ@ƒ`ƒƒƒ“ƒlƒ‹‚ÌƒuƒŒƒ“ƒhİ’è‚ªs‚¦‚È‚¢ê‡‚Í‰½‚à‚µ‚È‚¢‚ÅI—¹
+	// RGBã®ãƒ–ãƒ¬ãƒ³ãƒ‰è¨­å®šã¨ã¯åˆ¥ã«ã‚¢ãƒ«ãƒ•ã‚¡ãƒãƒ£ãƒ³ãƒãƒ«ã®ãƒ–ãƒ¬ãƒ³ãƒ‰è¨­å®šãŒè¡Œãˆãªã„å ´åˆã¯ä½•ã‚‚ã—ãªã„ã§çµ‚äº†
 	if( GSYS.HardInfo.SeparateAlphaBlendEnable == FALSE )
 	{
 		return -1 ;
 	}
 
-	// İ’è‚ª•Ï‰»‚µ‚È‚¢ê‡‚Í‰½‚à‚µ‚È‚¢‚ÅI—¹
+	// è¨­å®šãŒå¤‰åŒ–ã—ãªã„å ´åˆã¯ä½•ã‚‚ã—ãªã„ã§çµ‚äº†
 	if( GSYS.DrawSetting.NotWriteAlphaChannelFlag == ( Flag ? FALSE : TRUE ) )
 	{
 		return 0 ;
 	}
 
-	// İ’è‚ğ•Û‘¶
+	// è¨­å®šã‚’ä¿å­˜
 	GSYS.DrawSetting.NotWriteAlphaChannelFlag = Flag ? FALSE : TRUE ;
 	GSYS.ChangeSettingFlag = TRUE ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// •`‰ææ‚ÌƒAƒ‹ƒtƒ@ƒ`ƒƒƒ“ƒlƒ‹‚Ì“à—e‚ğ‘‚«Š·‚¦‚é‚©‚ğæ“¾‚·‚é( FALSE:‘‚«Š·‚¦‚È‚¢  TRUE:‘‚«Š·‚¦‚é( ƒfƒtƒHƒ‹ƒg ) )
+// æç”»å…ˆã®ã‚¢ãƒ«ãƒ•ã‚¡ãƒãƒ£ãƒ³ãƒãƒ«ã®å†…å®¹ã‚’æ›¸ãæ›ãˆã‚‹ã‹ã‚’å–å¾—ã™ã‚‹( FALSE:æ›¸ãæ›ãˆãªã„  TRUE:æ›¸ãæ›ãˆã‚‹( ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ ) )
 extern int NS_GetWriteAlphaChannelFlag( void )
 {
 	return GSYS.DrawSetting.NotWriteAlphaChannelFlag ? FALSE : TRUE ;
 }
 
-// •`‰ææ‚ÌƒAƒ‹ƒtƒ@ƒ`ƒƒƒ“ƒlƒ‹‚Ì“à—e‚ğ‘‚«Š·‚¦‚È‚¢‚±‚Æ‚ª‚Å‚«‚é‚©‚Ç‚¤‚©‚ğæ“¾‚·‚é( TRUE:‘‚«Š·‚¦‚È‚¢‚±‚Æ‚ª‚Å‚«‚é  FALSE:‘‚«Š·‚¦‚È‚¢‚±‚Æ‚ª‚Å‚«‚È‚¢ )
+// æç”»å…ˆã®ã‚¢ãƒ«ãƒ•ã‚¡ãƒãƒ£ãƒ³ãƒãƒ«ã®å†…å®¹ã‚’æ›¸ãæ›ãˆãªã„ã“ã¨ãŒã§ãã‚‹ã‹ã©ã†ã‹ã‚’å–å¾—ã™ã‚‹( TRUE:æ›¸ãæ›ãˆãªã„ã“ã¨ãŒã§ãã‚‹  FALSE:æ›¸ãæ›ãˆãªã„ã“ã¨ãŒã§ããªã„ )
 extern int NS_CheckSeparateAlphaBlendEnable( void )
 {
 	return GSYS.HardInfo.SeparateAlphaBlendEnable ;
 }
 
-// •`‰æ‚·‚é‰æ‘œ‚ÌF¬•ª‚ğ–³‹‚·‚é‚©‚Ç‚¤‚©‚ğw’è‚·‚é( EnableFlag:‚±‚Ì‹@”\‚ğg‚¤‚©‚Ç‚¤‚©( TRUE:g‚¤  FALSE:g‚í‚È‚¢ ) )
+// æç”»ã™ã‚‹ç”»åƒã®è‰²æˆåˆ†ã‚’ç„¡è¦–ã™ã‚‹ã‹ã©ã†ã‹ã‚’æŒ‡å®šã™ã‚‹( EnableFlag:ã“ã®æ©Ÿèƒ½ã‚’ä½¿ã†ã‹ã©ã†ã‹( TRUE:ä½¿ã†  FALSE:ä½¿ã‚ãªã„ ) )
 extern int NS_SetIgnoreDrawGraphColor( int EnableFlag )
 {
 	if( GSYS.DrawSetting.IgnoreGraphColorFlag == EnableFlag )
 		return 0 ;
 
-	// İ’è‚ğ•Û‘¶
+	// è¨­å®šã‚’ä¿å­˜
 	GSYS.DrawSetting.IgnoreGraphColorFlag = EnableFlag ;
 	GSYS.ChangeSettingFlag = TRUE ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// •`‰æ‚·‚é‰æ‘œ‚ÌF¬•ª‚ğ–³‹‚·‚é‚©‚Ç‚¤‚©‚ğæ“¾‚·‚é( –ß‚è’l ‚±‚Ì‹@”\‚ğg‚¤‚©‚Ç‚¤‚©( TRUE:g‚¤  FALSE:g‚í‚È‚¢ ) )
+// æç”»ã™ã‚‹ç”»åƒã®è‰²æˆåˆ†ã‚’ç„¡è¦–ã™ã‚‹ã‹ã©ã†ã‹ã‚’å–å¾—ã™ã‚‹( æˆ»ã‚Šå€¤ ã“ã®æ©Ÿèƒ½ã‚’ä½¿ã†ã‹ã©ã†ã‹( TRUE:ä½¿ã†  FALSE:ä½¿ã‚ãªã„ ) )
 extern int NS_GetIgnoreDrawGraphColor( void )
 {
 	return GSYS.DrawSetting.IgnoreGraphColorFlag ;
 }
 
-// Å‘åˆÙ•û«‚Ì’l‚ğƒZƒbƒg‚·‚é
+// æœ€å¤§ç•°æ–¹æ€§ã®å€¤ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern int NS_SetMaxAnisotropy( int MaxAnisotropy )
 {
 	if( /* GSYS.NotDrawFlag || */ MaxAnisotropy == GSYS.DrawSetting.MaxAnisotropy )
 		return 0 ;
 
-	// Å‘åˆÙ•û«‚Ì•Û‘¶
+	// æœ€å¤§ç•°æ–¹æ€§ã®ä¿å­˜
 	GSYS.DrawSetting.MaxAnisotropy = MaxAnisotropy ;
 	GSYS.ChangeSettingFlag = TRUE ;
 
-	// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒVƒ‡ƒ“‚Ìİ’è‚É”½‰f
+	// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ã®è¨­å®šã«åæ˜ 
 	if( GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )
 	{
 		Graphics_Hardware_SetMaxAnisotropy_PF( MaxAnisotropy ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// Å‘åˆÙ•û«’l‚ğæ“¾‚·‚é
+// æœ€å¤§ç•°æ–¹æ€§å€¤ã‚’å–å¾—ã™ã‚‹
 extern int NS_GetMaxAnisotropy( void )
 {
-	// Å‘åˆÙ•û«’l‚ğ•Ô‚·
+	// æœ€å¤§ç•°æ–¹æ€§å€¤ã‚’è¿”ã™
 	return GSYS.DrawSetting.MaxAnisotropy ;
 }
 
-// ‚R‚cˆ—‚Åg—p‚·‚éÀ•W’l‚ª 10000000.0f ‚È‚Ç‚Ì‘å‚«‚È’l‚É‚È‚Á‚Ä‚à•`‰æ‚Ì•ö‚ê‚ğ¬‚³‚­—}‚¦‚éˆ—‚ğg—p‚·‚é‚©‚Ç‚¤‚©‚ğİ’è‚·‚éADxLib_Init ‚ÌŒÄ‚Ño‚µ‘O‚Å‚Ì‚İg—p‰Â”\( TRUE:•`‰æ‚Ì•ö‚ê‚ğ—}‚¦‚éˆ—‚ğg—p‚·‚é( CPU•‰‰×‚ªã‚ª‚è‚Ü‚· )@@FALSE:•`‰æ‚Ì•ö‚ê‚ğ—}‚¦‚éˆ—‚Íg—p‚µ‚È‚¢( ƒfƒtƒHƒ‹ƒg ) )
+// ï¼“ï¼¤å‡¦ç†ã§ä½¿ç”¨ã™ã‚‹åº§æ¨™å€¤ãŒ 10000000.0f ãªã©ã®å¤§ããªå€¤ã«ãªã£ã¦ã‚‚æç”»ã®å´©ã‚Œã‚’å°ã•ãæŠ‘ãˆã‚‹å‡¦ç†ã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹ã€DxLib_Init ã®å‘¼ã³å‡ºã—å‰ã§ã®ã¿ä½¿ç”¨å¯èƒ½( TRUE:æç”»ã®å´©ã‚Œã‚’æŠ‘ãˆã‚‹å‡¦ç†ã‚’ä½¿ç”¨ã™ã‚‹( CPUè² è·ãŒä¸ŠãŒã‚Šã¾ã™ )ã€€ã€€FALSE:æç”»ã®å´©ã‚Œã‚’æŠ‘ãˆã‚‹å‡¦ç†ã¯ä½¿ç”¨ã—ãªã„( ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ ) )
 extern int NS_SetUseLarge3DPositionSupport( int UseFlag )
 {
-	// ‰Šú‰»‘O‚Ì‚İ—LŒø
+	// åˆæœŸåŒ–å‰ã®ã¿æœ‰åŠ¹
 	if( DxSysData.DxLib_InitializeFlag )
 	{
 		return -1 ;
 	}
 
-	// ƒtƒ‰ƒO‚ğ•Û‘¶
+	// ãƒ•ãƒ©ã‚°ã‚’ä¿å­˜
 	GSYS.DrawSetting.Large3DPositionSupport = UseFlag ;
 
 #ifdef WINDOWS_DESKTOP_OS
-	// TRUE ‚Ìê‡‚Í SetUseFPUPreserveFlag ‚à—LŒø‚É‚·‚é
+	// TRUE ã®å ´åˆã¯ SetUseFPUPreserveFlag ã‚‚æœ‰åŠ¹ã«ã™ã‚‹
 	NS_SetUseFPUPreserveFlag( TRUE ) ;
 #endif // WINDOWS_DESKTOP_OS
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
 
-// ‚yƒoƒbƒtƒ@‚ğ—LŒø‚É‚·‚é‚©Aƒtƒ‰ƒO‚ğƒZƒbƒg‚·‚é
+// ï¼ºãƒãƒƒãƒ•ã‚¡ã‚’æœ‰åŠ¹ã«ã™ã‚‹ã‹ã€ãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern	int NS_SetUseZBufferFlag( int Flag )
 {
 	if( GSYS.DrawSetting.EnableZBufferFlag2D == Flag &&
 		GSYS.DrawSetting.EnableZBufferFlag3D == Flag ) return 0 ;
 
-	// •`‰æ‘Ò‹@‚µ‚Ä‚¢‚é•`‰æ•¨‚ğ•`‰æ
+	// æç”»å¾…æ©Ÿã—ã¦ã„ã‚‹æç”»ç‰©ã‚’æç”»
 	DRAWSTOCKINFO
 
 	GSYS.DrawSetting.EnableZBufferFlag2D = Flag ;
 	GSYS.DrawSetting.EnableZBufferFlag3D = Flag ;
 
-	// İ’è‚ª•ÏX‚³‚ê‚½‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// è¨­å®šãŒå¤‰æ›´ã•ã‚ŒãŸã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	GSYS.ChangeSettingFlag = TRUE ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ‚yƒoƒbƒtƒ@‚É‘‚«‚İ‚ğs‚¤‚©Aƒtƒ‰ƒO‚ğƒZƒbƒg‚·‚é
+// ï¼ºãƒãƒƒãƒ•ã‚¡ã«æ›¸ãè¾¼ã¿ã‚’è¡Œã†ã‹ã€ãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern	int NS_SetWriteZBufferFlag( int Flag )
 {
 	if( GSYS.DrawSetting.WriteZBufferFlag2D == Flag &&
 		GSYS.DrawSetting.WriteZBufferFlag3D == Flag ) return 0 ;
 
-	// •`‰æ‘Ò‹@‚µ‚Ä‚¢‚é•`‰æ•¨‚ğ•`‰æ
+	// æç”»å¾…æ©Ÿã—ã¦ã„ã‚‹æç”»ç‰©ã‚’æç”»
 	DRAWSTOCKINFO
 
 	GSYS.DrawSetting.WriteZBufferFlag2D = Flag ;
 	GSYS.DrawSetting.WriteZBufferFlag3D = Flag ;
 
-	// İ’è‚ª•ÏX‚³‚ê‚½‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// è¨­å®šãŒå¤‰æ›´ã•ã‚ŒãŸã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	GSYS.ChangeSettingFlag = TRUE ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ‚y’l‚Ì”äŠrƒ‚[ƒh‚ğƒZƒbƒg‚·‚é
-extern	int NS_SetZBufferCmpType( int CmpType /* DX_CMP_NEVER “™ */ )
+// ï¼ºå€¤ã®æ¯”è¼ƒãƒ¢ãƒ¼ãƒ‰ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
+extern	int NS_SetZBufferCmpType( int CmpType /* DX_CMP_NEVER ç­‰ */ )
 {
 	if( GSYS.DrawSetting.ZBufferCmpType2D == CmpType &&
 		GSYS.DrawSetting.ZBufferCmpType3D == CmpType ) return 0 ;
 
-	// •`‰æ‘Ò‹@‚µ‚Ä‚¢‚é•`‰æ•¨‚ğ•`‰æ
+	// æç”»å¾…æ©Ÿã—ã¦ã„ã‚‹æç”»ç‰©ã‚’æç”»
 	DRAWSTOCKINFO
 
 	GSYS.DrawSetting.ZBufferCmpType2D = CmpType ;
 	GSYS.DrawSetting.ZBufferCmpType3D = CmpType ;
 
-	// İ’è‚ª•ÏX‚³‚ê‚½‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// è¨­å®šãŒå¤‰æ›´ã•ã‚ŒãŸã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	GSYS.ChangeSettingFlag = TRUE ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ‚yƒoƒCƒAƒX‚ğƒZƒbƒg‚·‚é
+// ï¼ºãƒã‚¤ã‚¢ã‚¹ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern	int NS_SetZBias( int Bias )
 {
 	if( GSYS.DrawSetting.ZBias2D == Bias &&
 		GSYS.DrawSetting.ZBias3D == Bias ) return 0 ;
 
-	// •`‰æ‘Ò‹@‚µ‚Ä‚¢‚é•`‰æ•¨‚ğ•`‰æ
+	// æç”»å¾…æ©Ÿã—ã¦ã„ã‚‹æç”»ç‰©ã‚’æç”»
 	DRAWSTOCKINFO
 
 	GSYS.DrawSetting.ZBias2D = Bias ;
 	GSYS.DrawSetting.ZBias3D = Bias ;
 
-	// İ’è‚ª•ÏX‚³‚ê‚½‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// è¨­å®šãŒå¤‰æ›´ã•ã‚ŒãŸã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	GSYS.ChangeSettingFlag = TRUE ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ‚yƒoƒbƒtƒ@‚ğ—LŒø‚É‚·‚é‚©Aƒtƒ‰ƒO‚ğƒZƒbƒg‚·‚é( ‚R‚c}Œ`•`‰æ‚Ì‚İ‚É‰e‹¿ )
+// ï¼ºãƒãƒƒãƒ•ã‚¡ã‚’æœ‰åŠ¹ã«ã™ã‚‹ã‹ã€ãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆã™ã‚‹( ï¼“ï¼¤å›³å½¢æç”»ã®ã¿ã«å½±éŸ¿ )
 extern int NS_SetUseZBuffer3D( int Flag )
 {
 	if( GSYS.DrawSetting.EnableZBufferFlag3D == Flag ) return 0 ;
 
-	// •`‰æ‘Ò‹@‚µ‚Ä‚¢‚é•`‰æ•¨‚ğ•`‰æ
+	// æç”»å¾…æ©Ÿã—ã¦ã„ã‚‹æç”»ç‰©ã‚’æç”»
 	DRAWSTOCKINFO
 
 	GSYS.DrawSetting.EnableZBufferFlag3D = Flag ;
 
-	// İ’è‚ª•ÏX‚³‚ê‚½‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// è¨­å®šãŒå¤‰æ›´ã•ã‚ŒãŸã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	GSYS.ChangeSettingFlag = TRUE ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ‚yƒoƒbƒtƒ@‚É‘‚«‚İ‚ğs‚¤‚©Aƒtƒ‰ƒO‚ğƒZƒbƒg‚·‚é( ‚R‚c}Œ`•`‰æ‚Ì‚İ‚É‰e‹¿ )
+// ï¼ºãƒãƒƒãƒ•ã‚¡ã«æ›¸ãè¾¼ã¿ã‚’è¡Œã†ã‹ã€ãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆã™ã‚‹( ï¼“ï¼¤å›³å½¢æç”»ã®ã¿ã«å½±éŸ¿ )
 extern int NS_SetWriteZBuffer3D( int Flag )
 {
 	if( GSYS.DrawSetting.WriteZBufferFlag3D == Flag ) return 0 ;
 
-	// •`‰æ‘Ò‹@‚µ‚Ä‚¢‚é•`‰æ•¨‚ğ•`‰æ
+	// æç”»å¾…æ©Ÿã—ã¦ã„ã‚‹æç”»ç‰©ã‚’æç”»
 	DRAWSTOCKINFO
 
 	GSYS.DrawSetting.WriteZBufferFlag3D = Flag ;
 
-	// İ’è‚ª•ÏX‚³‚ê‚½‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// è¨­å®šãŒå¤‰æ›´ã•ã‚ŒãŸã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	GSYS.ChangeSettingFlag = TRUE ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ‚y’l‚Ì”äŠrƒ‚[ƒh‚ğƒZƒbƒg‚·‚é( ‚R‚c}Œ`•`‰æ‚Ì‚İ‚É‰e‹¿ )
-extern int NS_SetZBufferCmpType3D( int CmpType /* DX_CMP_NEVER “™ */ )
+// ï¼ºå€¤ã®æ¯”è¼ƒãƒ¢ãƒ¼ãƒ‰ã‚’ã‚»ãƒƒãƒˆã™ã‚‹( ï¼“ï¼¤å›³å½¢æç”»ã®ã¿ã«å½±éŸ¿ )
+extern int NS_SetZBufferCmpType3D( int CmpType /* DX_CMP_NEVER ç­‰ */ )
 {
 	if( GSYS.DrawSetting.ZBufferCmpType3D == CmpType ) return 0 ;
 
-	// •`‰æ‘Ò‹@‚µ‚Ä‚¢‚é•`‰æ•¨‚ğ•`‰æ
+	// æç”»å¾…æ©Ÿã—ã¦ã„ã‚‹æç”»ç‰©ã‚’æç”»
 	DRAWSTOCKINFO
 
 	GSYS.DrawSetting.ZBufferCmpType3D = CmpType ;
 
-	// İ’è‚ª•ÏX‚³‚ê‚½‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// è¨­å®šãŒå¤‰æ›´ã•ã‚ŒãŸã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	GSYS.ChangeSettingFlag = TRUE ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ‚yƒoƒCƒAƒX‚ğƒZƒbƒg‚·‚é( ‚R‚c}Œ`•`‰æ‚Ì‚İ‚É‰e‹¿ )
+// ï¼ºãƒã‚¤ã‚¢ã‚¹ã‚’ã‚»ãƒƒãƒˆã™ã‚‹( ï¼“ï¼¤å›³å½¢æç”»ã®ã¿ã«å½±éŸ¿ )
 extern int NS_SetZBias3D( int Bias )
 {
 	if( GSYS.DrawSetting.ZBias3D == Bias ) return 0 ;
 
-	// •`‰æ‘Ò‹@‚µ‚Ä‚¢‚é•`‰æ•¨‚ğ•`‰æ
+	// æç”»å¾…æ©Ÿã—ã¦ã„ã‚‹æç”»ç‰©ã‚’æç”»
 	DRAWSTOCKINFO
 
 	GSYS.DrawSetting.ZBias3D = Bias ;
 
-	// İ’è‚ª•ÏX‚³‚ê‚½‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// è¨­å®šãŒå¤‰æ›´ã•ã‚ŒãŸã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	GSYS.ChangeSettingFlag = TRUE ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ‚Q‚c•`‰æ‚É‚yƒoƒbƒtƒ@‚É‘‚«‚Ş‚y’l‚ğ•ÏX‚·‚é
+// ï¼’ï¼¤æç”»æ™‚ã«ï¼ºãƒãƒƒãƒ•ã‚¡ã«æ›¸ãè¾¼ã‚€ï¼ºå€¤ã‚’å¤‰æ›´ã™ã‚‹
 extern int NS_SetDrawZ( float Z )
 {
 	GSYS.DrawSetting.DrawZ = Z;
 
-	// I—¹
+	// çµ‚äº†
 	return 0;
 }
 
-// ‚yƒoƒbƒtƒ@‚É‘‚«‚Ş‚y’l‚ğ•W€•û®‚Æ”½“]‚µ‚½’l( ƒŠƒo[ƒX‚y )‚É‚·‚é‚©‚Ç‚¤‚©‚ğİ’è‚·‚éADxLib_InitÀs‘O‚Ì‚İg—p‰Â”\( TRUE:”½“]‚µ‚½’l‚É‚·‚é@FALSE:’Êí‚Ì’l‚É‚·‚é( ƒfƒtƒHƒ‹ƒg ) )
+// ï¼ºãƒãƒƒãƒ•ã‚¡ã«æ›¸ãè¾¼ã‚€ï¼ºå€¤ã‚’æ¨™æº–æ–¹å¼ã¨åè»¢ã—ãŸå€¤( ãƒªãƒãƒ¼ã‚¹ï¼º )ã«ã™ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹ã€DxLib_Initå®Ÿè¡Œå‰ã®ã¿ä½¿ç”¨å¯èƒ½( TRUE:åè»¢ã—ãŸå€¤ã«ã™ã‚‹ã€€FALSE:é€šå¸¸ã®å€¤ã«ã™ã‚‹( ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ ) )
 extern int NS_SetUseReversedZ( int Flag )
 {
-	// ‰Šú‰»‘O‚Ì‚İ—LŒø
+	// åˆæœŸåŒ–å‰ã®ã¿æœ‰åŠ¹
 	if( DxSysData.DxLib_InitializeFlag != FALSE )
 	{
 		return -1 ;
 	}
 
-	// ’l‚ğ•Û‘¶
+	// å€¤ã‚’ä¿å­˜
 	GSYS.DrawSetting.UseReversedZFlag = Flag ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
 
 
 
-// •`‰æ‰Â”\—Ìˆæ‚ÌƒZƒbƒg
+// æç”»å¯èƒ½é ˜åŸŸã®ã‚»ãƒƒãƒˆ
 extern	int NS_SetDrawArea( int x1, int y1, int x2, int y2 )
 {
 //	const char *HandleString = NULL ;
@@ -18115,22 +18115,22 @@ extern	int NS_SetDrawArea( int x1, int y1, int x2, int y2 )
 
 //	if( GSYS.NotDrawFlag ) return 0 ;
 
-	// •`‰æ‘Ò‹@‚µ‚Ä‚¢‚é•`‰æ•¨‚ğ•`‰æ
+	// æç”»å¾…æ©Ÿã—ã¦ã„ã‚‹æç”»ç‰©ã‚’æç”»
 	DRAWSTOCKINFO
 
-	// ƒtƒ‹ƒXƒNƒŠ[ƒ“ƒ}ƒXƒNˆ—‚ğs‚Á‚Ä‚¢‚éê‡‚Íƒ}ƒXƒN•`‰æ‚ÌŒ‹‰Ê‚ğ”½‰f‚³‚¹‚é
+	// ãƒ•ãƒ«ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒã‚¹ã‚¯å‡¦ç†ã‚’è¡Œã£ã¦ã„ã‚‹å ´åˆã¯ãƒã‚¹ã‚¯æç”»ã®çµæœã‚’åæ˜ ã•ã›ã‚‹
 	MASK_FULLSCREEN_MASKUPDATE
 
-	// ƒ\ƒtƒg‚ª”ñƒAƒNƒeƒBƒu‚Ìê‡‚ÍƒAƒNƒeƒBƒu‚É‚È‚é‚Ü‚Å‘Ò‚Â
+	// ã‚½ãƒ•ãƒˆãŒéã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã®å ´åˆã¯ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ãªã‚‹ã¾ã§å¾…ã¤
 //	CheckActiveState() ;
 
-	// ƒIƒŠƒWƒiƒ‹‚Ì•`‰æƒGƒŠƒA‚ğ•Û‘¶
+	// ã‚ªãƒªã‚¸ãƒŠãƒ«ã®æç”»ã‚¨ãƒªã‚¢ã‚’ä¿å­˜
 	GSYS.DrawSetting.OriginalDrawRect.left   = x1 ;
 	GSYS.DrawSetting.OriginalDrawRect.top    = y1 ;
 	GSYS.DrawSetting.OriginalDrawRect.right  = x2 ;
 	GSYS.DrawSetting.OriginalDrawRect.bottom = y2 ;
 	
-	// •`‰ææ‚Ì•`‰æ‰Â”\ƒTƒCƒY‚ğæ“¾
+	// æç”»å…ˆã®æç”»å¯èƒ½ã‚µã‚¤ã‚ºã‚’å–å¾—
 	switch( ( DWORD )GSYS.DrawSetting.TargetScreen[ 0 ] )
 	{
 	case DX_SCREEN_BACK :
@@ -18147,7 +18147,7 @@ extern	int NS_SetDrawArea( int x1, int y1, int x2, int y2 )
 
 	default :
 //		HandleString = "Image Buffer" ;
-		// ƒGƒ‰[”»’è
+		// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 		if( !GRAPHCHK( GSYS.DrawSetting.TargetScreen[ 0 ], Image ) )
 		{
 			Graphics_Image_CalcMipSize( Image->WidthI, Image->HeightI, GSYS.DrawSetting.TargetScreenMipLevel[ 0 ], &SizeX, &SizeY ) ;
@@ -18165,7 +18165,7 @@ extern	int NS_SetDrawArea( int x1, int y1, int x2, int y2 )
 		break ;
 	}
 
-	// ¶‰E‹t•â³‚Æ‚Í‚İo‚µ•â³
+	// å·¦å³é€†è£œæ­£ã¨ã¯ã¿å‡ºã—è£œæ­£
 	if( x1 > x2 ){ Buf = x1 ; x1 = x2 ; x2 = Buf ; }
 	if( y1 > y2 ){ Buf = y1 ; y1 = y2 ; y2 = Buf ; }
 
@@ -18179,18 +18179,18 @@ extern	int NS_SetDrawArea( int x1, int y1, int x2, int y2 )
 	if( y2 < 0 )		y2 = 0 ;
 	if( y2 > SizeY )	y2 = SizeY ;
 
-	// •`‰æ‰Â”\‹éŒ`ƒZƒbƒg
+	// æç”»å¯èƒ½çŸ©å½¢ã‚»ãƒƒãƒˆ
 	GSYS.DrawSetting.DrawAreaF.left   = ( float )( GSYS.DrawSetting.DrawArea.left   = x1 ) ;
 	GSYS.DrawSetting.DrawAreaF.top    = ( float )( GSYS.DrawSetting.DrawArea.top    = y1 ) ;
 	GSYS.DrawSetting.DrawAreaF.right  = ( float )( GSYS.DrawSetting.DrawArea.right  = x2 ) ;
 	GSYS.DrawSetting.DrawAreaF.bottom = ( float )( GSYS.DrawSetting.DrawArea.bottom = y2 ) ;
 	SetMemImgDrawArea( &GSYS.DrawSetting.DrawArea ) ;
 
-	// •`‰æ‰Â”\ƒtƒ‰ƒO‚ğƒZƒbƒg‚·‚é
+	// æç”»å¯èƒ½ãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 	GSYS.DrawSetting.NotDrawFlagInSetDrawArea = x1 == x2 || y1 == y2 ;
 	if( GSYS.DrawSetting.NotDrawFlagInSetDrawArea == FALSE )
 	{
-		// Direct3D ‚Ìƒrƒ…[ƒ|[ƒgs—ñ‚ÌXV
+		// Direct3D ã®ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆè¡Œåˆ—ã®æ›´æ–°
 		if( GSYS.HardInfo.ScreenAxisYReverse ||
 			( GSYS.HardInfo.ScreenAxisYReverse_OnlyDrawValidGraph &&
 			  (
@@ -18223,28 +18223,28 @@ extern	int NS_SetDrawArea( int x1, int y1, int x2, int y2 )
 		ConvertMatrixDtoF( &GSYS.DrawSetting.Direct3DViewportMatrixAntiF, &GSYS.DrawSetting.Direct3DViewportMatrixAnti ) ;
 		ConvertMatrixDtoF( &GSYS.DrawSetting.Direct3DViewportMatrixF,     &GSYS.DrawSetting.Direct3DViewportMatrix ) ;
 
-		// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒ^‚ğg—p‚·‚éê‡‚Ìˆ—
+		// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚¿ã‚’ä½¿ç”¨ã™ã‚‹å ´åˆã®å‡¦ç†
 		if( GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )
 		{
 			Graphics_Hardware_SetDrawArea_PF( x1, y1, x2, y2 ) ;
 		}
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// •`‰æ‰Â”\—Ìˆæ‚ğ“¾‚é
+// æç”»å¯èƒ½é ˜åŸŸã‚’å¾—ã‚‹
 extern int NS_GetDrawArea( RECT *Rect )
 {
-	// ƒZƒbƒg
+	// ã‚»ãƒƒãƒˆ
 	*Rect = GSYS.DrawSetting.DrawArea ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// •`‰æ‰Â”\—Ìˆæ‚ğ•`‰æ‘ÎÛ‰æ–Ê‘S‘Ì‚É‚·‚é
+// æç”»å¯èƒ½é ˜åŸŸã‚’æç”»å¯¾è±¡ç”»é¢å…¨ä½“ã«ã™ã‚‹
 extern int NS_SetDrawAreaFull( void )
 {
 	int Width, Height ;
@@ -18253,33 +18253,33 @@ extern int NS_SetDrawAreaFull( void )
 	return NS_SetDrawArea( 0, 0, Width, Height ) ;
 }
 
-// ‚R‚c•`‰æ‚ÌƒXƒP[ƒ‹‚ğƒZƒbƒg‚·‚é
+// ï¼“ï¼¤æç”»ã®ã‚¹ã‚±ãƒ¼ãƒ«ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern int NS_SetDraw3DScale( float Scale )
 {
-	// ƒXƒP[ƒ‹’l‚ğ•â³
+	// ã‚¹ã‚±ãƒ¼ãƒ«å€¤ã‚’è£œæ­£
 	if( Scale < 0.00001f && Scale > -0.00001f )
 		Scale = 1.0f ;
 
-	// ƒXƒP[ƒ‹’l‚ğ•Û‘¶
+	// ã‚¹ã‚±ãƒ¼ãƒ«å€¤ã‚’ä¿å­˜
 	GSYS.DrawSetting.Draw3DScale = Scale ;
 
-	// Á¸“_‚ÌÄŒvZ
+	// æ¶ˆå¤±ç‚¹ã®å†è¨ˆç®—
 	NS_SetCameraScreenCenterD( GSYS.Camera.ScreenCenterX, GSYS.Camera.ScreenCenterY ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// SetRestoreGraphCallback ‚Ì‹Œ–¼
+// SetRestoreGraphCallback ã®æ—§å
 extern int NS_SetRestoreShredPoint( void (* ShredPoint )( void ) )
 {
 	return NS_SetRestoreGraphCallback( ShredPoint ) ;
 }
 
-// ƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹•œŒ³ŠÖ”‚Ì“o˜^
+// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«å¾©å…ƒé–¢æ•°ã®ç™»éŒ²
 extern	int NS_SetRestoreGraphCallback( void (* Callback )( void ) )
 {
-	// ƒOƒ‰ƒtƒBƒbƒN•œŒ³ƒXƒŒƒbƒhƒAƒhƒŒƒX‚Ì“o˜^
+	// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯å¾©å…ƒã‚¹ãƒ¬ãƒƒãƒ‰ã‚¢ãƒ‰ãƒ¬ã‚¹ã®ç™»éŒ²
 	if( Callback == NULL )
 	{
 		GSYS.Setting.GraphRestoreShred = Graphics_Image_DefaultRestoreGraphFunction ;
@@ -18289,20 +18289,20 @@ extern	int NS_SetRestoreGraphCallback( void (* Callback )( void ) )
 		GSYS.Setting.GraphRestoreShred = Callback ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒOƒ‰ƒtƒBƒbƒN•œŒ³ŠÖ”‚ÌÀs
+// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯å¾©å…ƒé–¢æ•°ã®å®Ÿè¡Œ
 extern	int NS_RunRestoreShred( void )
 {
 #ifndef DX_NON_ASYNCLOAD
-	// ”ñ“¯Šú“Ç‚İ‚İ‚Íˆê“I‚É–³Œø‚É‚·‚é
+	// éåŒæœŸèª­ã¿è¾¼ã¿ã¯ä¸€æ™‚çš„ã«ç„¡åŠ¹ã«ã™ã‚‹
 	int UseASyncThread = GetASyncLoadFlag() ;
 	NS_SetUseASyncLoadFlag( FALSE ) ;
 #endif
 
-	// ƒOƒ‰ƒtƒBƒbƒN•œŒ³ƒXƒŒƒbƒh‚ÌÀs
+	// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯å¾©å…ƒã‚¹ãƒ¬ãƒƒãƒ‰ã®å®Ÿè¡Œ
 	if( GSYS.Setting.GraphRestoreShred == NULL )
 	{
 		Graphics_Image_DefaultRestoreGraphFunction() ;
@@ -18313,99 +18313,99 @@ extern	int NS_RunRestoreShred( void )
 	}
 
 #ifndef DX_NON_MODEL
-	// ƒ‚ƒfƒ‹‚ÌƒeƒNƒXƒ`ƒƒ‚ğÄ“Ç‚İ‚İ
+	// ãƒ¢ãƒ‡ãƒ«ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’å†èª­ã¿è¾¼ã¿
 	MV1ReloadTexture() ;
 #endif
 
 #ifndef DX_NON_FONT
-	// ƒtƒHƒ“ƒgƒnƒ“ƒhƒ‹‚ª‚ÂƒLƒƒƒbƒVƒ…‚ğ‰Šú‰»
+	// ãƒ•ã‚©ãƒ³ãƒˆãƒãƒ³ãƒ‰ãƒ«ãŒæŒã¤ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã‚’åˆæœŸåŒ–
 	InitCacheFontToHandle() ;
 #endif
 
 #ifndef DX_NON_ASYNCLOAD
-	// ”ñ“¯Šú“Ç‚İ‚İ‚Ìİ’è‚ğŒ³‚É–ß‚·
+	// éåŒæœŸèª­ã¿è¾¼ã¿ã®è¨­å®šã‚’å…ƒã«æˆ»ã™
 	NS_SetUseASyncLoadFlag( UseASyncThread ) ;
 #endif
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒOƒ‰ƒtƒBƒbƒNƒXƒfƒoƒCƒX‚ªƒƒXƒg‚©‚ç•œ‹A‚µ‚½Û‚ÉŒÄ‚Î‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”‚ğİ’è‚·‚é
+// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¹ãƒ‡ãƒã‚¤ã‚¹ãŒãƒ­ã‚¹ãƒˆã‹ã‚‰å¾©å¸°ã—ãŸéš›ã«å‘¼ã°ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã‚’è¨­å®šã™ã‚‹
 extern int NS_SetGraphicsDeviceRestoreCallbackFunction( void (* Callback )( void *Data ), void *CallbackData )
 {
 	return Graphics_Hardware_SetGraphicsDeviceRestoreCallbackFunction_PF( Callback, CallbackData ) ;
 }
 
-// ƒOƒ‰ƒtƒBƒbƒNƒXƒfƒoƒCƒX‚ªƒƒXƒg‚©‚ç•œ‹A‚·‚é‘O‚ÉŒÄ‚Î‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”‚ğİ’è‚·‚é
+// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¹ãƒ‡ãƒã‚¤ã‚¹ãŒãƒ­ã‚¹ãƒˆã‹ã‚‰å¾©å¸°ã™ã‚‹å‰ã«å‘¼ã°ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã‚’è¨­å®šã™ã‚‹
 extern int NS_SetGraphicsDeviceLostCallbackFunction( void (* Callback )( void *Data ), void *CallbackData )
 {
 	return Graphics_Hardware_SetGraphicsDeviceLostCallbackFunction_PF( Callback, CallbackData ) ;
 }
 
-// ‚Q‚c•`‰æ‚Ég—p‚³‚ê‚é•ÏŠ·s—ñ‚ğİ’è‚·‚é( g—p‚³‚ê‚é‚Ì‚Í3s2—ñ‚Ì‚İ )
+// ï¼’ï¼¤æç”»ã«ä½¿ç”¨ã•ã‚Œã‚‹å¤‰æ›è¡Œåˆ—ã‚’è¨­å®šã™ã‚‹( ä½¿ç”¨ã•ã‚Œã‚‹ã®ã¯3è¡Œ2åˆ—ã®ã¿ )
 extern int NS_SetTransformTo2D( const MATRIX *Matrix )
 {
-	// •`‰æ‘Ò‹@‚µ‚Ä‚¢‚é•`‰æ•¨‚ğ•`‰æ
+	// æç”»å¾…æ©Ÿã—ã¦ã„ã‚‹æç”»ç‰©ã‚’æç”»
 	DRAWSTOCKINFO
 
-	// ƒf[ƒ^‚ğ•Û‘¶
+	// ãƒ‡ãƒ¼ã‚¿ã‚’ä¿å­˜
 	GSYS.DrawSetting.Valid2DMatrix = TRUE ;
 	GSYS.DrawSetting._2DMatrixF = *Matrix ;
 	ConvertMatrixFtoD( &GSYS.DrawSetting._2DMatrix, &GSYS.DrawSetting._2DMatrixF ) ;
 	GSYS.DrawSetting.MatchHardware_2DMatrix = FALSE ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ‚Q‚c•`‰æ‚Ég—p‚³‚ê‚é•ÏŠ·s—ñ‚ğİ’è‚·‚é( g—p‚³‚ê‚é‚Ì‚Í3s2—ñ‚Ì‚İ )
+// ï¼’ï¼¤æç”»ã«ä½¿ç”¨ã•ã‚Œã‚‹å¤‰æ›è¡Œåˆ—ã‚’è¨­å®šã™ã‚‹( ä½¿ç”¨ã•ã‚Œã‚‹ã®ã¯3è¡Œ2åˆ—ã®ã¿ )
 extern int NS_SetTransformTo2DD( const MATRIX_D *Matrix )
 {
-	// •`‰æ‘Ò‹@‚µ‚Ä‚¢‚é•`‰æ•¨‚ğ•`‰æ
+	// æç”»å¾…æ©Ÿã—ã¦ã„ã‚‹æç”»ç‰©ã‚’æç”»
 	DRAWSTOCKINFO
 
-	// ƒf[ƒ^‚ğ•Û‘¶
+	// ãƒ‡ãƒ¼ã‚¿ã‚’ä¿å­˜
 	GSYS.DrawSetting.Valid2DMatrix = TRUE ;
 	GSYS.DrawSetting._2DMatrix = *Matrix ;
 	ConvertMatrixDtoF( &GSYS.DrawSetting._2DMatrixF, &GSYS.DrawSetting._2DMatrix ) ;
 	GSYS.DrawSetting.MatchHardware_2DMatrix = FALSE ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ‚Q‚c•`‰æ—p‚Ég—p‚·‚é•ÏŠ·s—ñ‚Ìİ’è‚ğ‰Šúó‘Ô‚É–ß‚·
+// ï¼’ï¼¤æç”»ç”¨ã«ä½¿ç”¨ã™ã‚‹å¤‰æ›è¡Œåˆ—ã®è¨­å®šã‚’åˆæœŸçŠ¶æ…‹ã«æˆ»ã™
 extern int NS_ResetTransformTo2D( void )
 {
-	// •`‰æ‘Ò‹@‚µ‚Ä‚¢‚é•`‰æ•¨‚ğ•`‰æ
+	// æç”»å¾…æ©Ÿã—ã¦ã„ã‚‹æç”»ç‰©ã‚’æç”»
 	DRAWSTOCKINFO
 
-	// ƒf[ƒ^‚ğ•Û‘¶
+	// ãƒ‡ãƒ¼ã‚¿ã‚’ä¿å­˜
 	GSYS.DrawSetting.Valid2DMatrix = FALSE ;
 	CreateIdentityMatrixD( &GSYS.DrawSetting._2DMatrix ) ;
 	CreateIdentityMatrix(  &GSYS.DrawSetting._2DMatrixF ) ;
 	GSYS.DrawSetting.MatchHardware_2DMatrix = FALSE ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒ[ƒ‹ƒh•ÏŠ·—ps—ñ‚ğƒZƒbƒg‚·‚é
+// ãƒ¯ãƒ¼ãƒ«ãƒ‰å¤‰æ›ç”¨è¡Œåˆ—ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern	int NS_SetTransformToWorld( const MATRIX *Matrix )
 {
-	// •`‰æ‘Ò‹@‚µ‚Ä‚¢‚é•`‰æ•¨‚ğ•`‰æ
+	// æç”»å¾…æ©Ÿã—ã¦ã„ã‚‹æç”»ç‰©ã‚’æç”»
 	DRAWSTOCKINFO
 
-	// ƒf[ƒ^‚ğ•Û‘¶
+	// ãƒ‡ãƒ¼ã‚¿ã‚’ä¿å­˜
 	GSYS.DrawSetting.WorldMatrixF = *Matrix ;
 	ConvertMatrixFtoD( &GSYS.DrawSetting.WorldMatrix, &GSYS.DrawSetting.WorldMatrixF ) ;
 	GSYS.DrawSetting.ValidBlend3DMatrix = FALSE ;
 
-	// ‘S‚Ä‚Ì‚R‚cs—ñ‚ğŠ|‚¯‡‚í‚¹‚½s—ñ‚ğXV
+	// å…¨ã¦ã®ï¼“ï¼¤è¡Œåˆ—ã‚’æ›ã‘åˆã‚ã›ãŸè¡Œåˆ—ã‚’æ›´æ–°
 	Graphics_DrawSetting_RefreshBlend3DTransformMatrix() ;
 
-	// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒVƒ‡ƒ“‚Éİ’è
+	// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ã«è¨­å®š
 	if( GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )
 	{
 		Graphics_Hardware_SetTransformToWorld_PF( &GSYS.DrawSetting.WorldMatrixF ) ;
@@ -18413,25 +18413,25 @@ extern	int NS_SetTransformToWorld( const MATRIX *Matrix )
 		GSYS.DrawSetting.MatchHardwareWorldMatrix = TRUE ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒ[ƒ‹ƒh•ÏŠ·—ps—ñ‚ğƒZƒbƒg‚·‚é
+// ãƒ¯ãƒ¼ãƒ«ãƒ‰å¤‰æ›ç”¨è¡Œåˆ—ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern	int NS_SetTransformToWorldD( const MATRIX_D *Matrix )
 {
-	// •`‰æ‘Ò‹@‚µ‚Ä‚¢‚é•`‰æ•¨‚ğ•`‰æ
+	// æç”»å¾…æ©Ÿã—ã¦ã„ã‚‹æç”»ç‰©ã‚’æç”»
 	DRAWSTOCKINFO
 
-	// ƒf[ƒ^‚ğ•Û‘¶
+	// ãƒ‡ãƒ¼ã‚¿ã‚’ä¿å­˜
 	GSYS.DrawSetting.WorldMatrix = *Matrix ;
 	ConvertMatrixDtoF( &GSYS.DrawSetting.WorldMatrixF, &GSYS.DrawSetting.WorldMatrix ) ;
 	GSYS.DrawSetting.ValidBlend3DMatrix = FALSE ;
 
-	// ‘S‚Ä‚Ì‚R‚cs—ñ‚ğŠ|‚¯‡‚í‚¹‚½s—ñ‚ğXV
+	// å…¨ã¦ã®ï¼“ï¼¤è¡Œåˆ—ã‚’æ›ã‘åˆã‚ã›ãŸè¡Œåˆ—ã‚’æ›´æ–°
 	Graphics_DrawSetting_RefreshBlend3DTransformMatrix() ;
 
-	// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒVƒ‡ƒ“‚Éİ’è
+	// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ã«è¨­å®š
 	if( GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )
 	{
 		Graphics_Hardware_SetTransformToWorld_PF( &GSYS.DrawSetting.WorldMatrixF ) ;
@@ -18439,43 +18439,43 @@ extern	int NS_SetTransformToWorldD( const MATRIX_D *Matrix )
 		GSYS.DrawSetting.MatchHardwareWorldMatrix = TRUE ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒ[ƒ‹ƒhs—ñ‚ğæ“¾‚·‚é
+// ãƒ¯ãƒ¼ãƒ«ãƒ‰è¡Œåˆ—ã‚’å–å¾—ã™ã‚‹
 extern	int NS_GetTransformToWorldMatrix( MATRIX *MatBuf )
 {
 	ConvertMatrixDtoF( MatBuf, &GSYS.DrawSetting.WorldMatrix ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒ[ƒ‹ƒhs—ñ‚ğæ“¾‚·‚é
+// ãƒ¯ãƒ¼ãƒ«ãƒ‰è¡Œåˆ—ã‚’å–å¾—ã™ã‚‹
 extern	int NS_GetTransformToWorldMatrixD( MATRIX_D *MatBuf )
 {
 	*MatBuf = GSYS.DrawSetting.WorldMatrix ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒrƒ…[•ÏŠ·—ps—ñ‚ğƒZƒbƒg‚·‚é
+// ãƒ“ãƒ¥ãƒ¼å¤‰æ›ç”¨è¡Œåˆ—ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern	int NS_SetTransformToView( const MATRIX *Matrix )
 {
-	// •`‰æ‘Ò‹@‚µ‚Ä‚¢‚é•`‰æ•¨‚ğ•`‰æ
+	// æç”»å¾…æ©Ÿã—ã¦ã„ã‚‹æç”»ç‰©ã‚’æç”»
 	DRAWSTOCKINFO
 
-	// ƒf[ƒ^‚ğ•Û‘¶
+	// ãƒ‡ãƒ¼ã‚¿ã‚’ä¿å­˜
 	GSYS.DrawSetting.ViewMatrixF      = *Matrix ;
 	ConvertMatrixFtoD( &GSYS.DrawSetting.ViewMatrix, &GSYS.DrawSetting.ViewMatrixF ) ;
 	GSYS.DrawSetting.ValidBlend3DMatrix = FALSE ;
 
-	// ‘S‚Ä‚Ì‚R‚cs—ñ‚ğŠ|‚¯‡‚í‚¹‚½s—ñ‚ğXV
+	// å…¨ã¦ã®ï¼“ï¼¤è¡Œåˆ—ã‚’æ›ã‘åˆã‚ã›ãŸè¡Œåˆ—ã‚’æ›´æ–°
 	Graphics_DrawSetting_RefreshBlend3DTransformMatrix() ;
 
-	// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒVƒ‡ƒ“‚Éİ’è
+	// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ã«è¨­å®š
 	if( GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )
 	{
 		Graphics_Hardware_SetTransformToView_PF( &GSYS.DrawSetting.ViewMatrixF ) ;
@@ -18483,25 +18483,25 @@ extern	int NS_SetTransformToView( const MATRIX *Matrix )
 		GSYS.DrawSetting.MatchHardwareViewMatrix = TRUE ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒrƒ…[•ÏŠ·—ps—ñ‚ğƒZƒbƒg‚·‚é
+// ãƒ“ãƒ¥ãƒ¼å¤‰æ›ç”¨è¡Œåˆ—ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern	int NS_SetTransformToViewD( const MATRIX_D *Matrix )
 {
-	// •`‰æ‘Ò‹@‚µ‚Ä‚¢‚é•`‰æ•¨‚ğ•`‰æ
+	// æç”»å¾…æ©Ÿã—ã¦ã„ã‚‹æç”»ç‰©ã‚’æç”»
 	DRAWSTOCKINFO
 
-	// ƒf[ƒ^‚ğ•Û‘¶
+	// ãƒ‡ãƒ¼ã‚¿ã‚’ä¿å­˜
 	GSYS.DrawSetting.ViewMatrix       = *Matrix ;
 	ConvertMatrixDtoF( &GSYS.DrawSetting.ViewMatrixF, &GSYS.DrawSetting.ViewMatrix ) ;
 	GSYS.DrawSetting.ValidBlend3DMatrix = FALSE ;
 
-	// ‘S‚Ä‚Ì‚R‚cs—ñ‚ğŠ|‚¯‡‚í‚¹‚½s—ñ‚ğXV
+	// å…¨ã¦ã®ï¼“ï¼¤è¡Œåˆ—ã‚’æ›ã‘åˆã‚ã›ãŸè¡Œåˆ—ã‚’æ›´æ–°
 	Graphics_DrawSetting_RefreshBlend3DTransformMatrix() ;
 
-	// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒVƒ‡ƒ“‚Éİ’è
+	// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ã«è¨­å®š
 	if( GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )
 	{
 		Graphics_Hardware_SetTransformToView_PF( &GSYS.DrawSetting.ViewMatrixF ) ;
@@ -18509,73 +18509,73 @@ extern	int NS_SetTransformToViewD( const MATRIX_D *Matrix )
 		GSYS.DrawSetting.MatchHardwareViewMatrix = TRUE ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒrƒ…[s—ñ‚ğæ“¾‚·‚é
+// ãƒ“ãƒ¥ãƒ¼è¡Œåˆ—ã‚’å–å¾—ã™ã‚‹
 extern	int NS_GetTransformToViewMatrix( MATRIX *MatBuf )
 {
 	ConvertMatrixDtoF( MatBuf, &GSYS.DrawSetting.ViewMatrix ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒrƒ…[s—ñ‚ğæ“¾‚·‚é
+// ãƒ“ãƒ¥ãƒ¼è¡Œåˆ—ã‚’å–å¾—ã™ã‚‹
 extern	int NS_GetTransformToViewMatrixD( MATRIX_D *MatBuf )
 {
 	*MatBuf = GSYS.DrawSetting.ViewMatrix ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// Ë‰es—ñ‚ğİ’è‚·‚é
+// å°„å½±è¡Œåˆ—ã‚’è¨­å®šã™ã‚‹
 extern int NS_SetTransformToProjection( const MATRIX *Matrix )
 {
 	return NS_SetupCamera_ProjectionMatrix( *Matrix ) ;
 }
 
-// Ë‰es—ñ‚ğİ’è‚·‚é
+// å°„å½±è¡Œåˆ—ã‚’è¨­å®šã™ã‚‹
 extern int NS_SetTransformToProjectionD( const MATRIX_D *Matrix )
 {
 	return NS_SetupCamera_ProjectionMatrixD( *Matrix ) ;
 }
 
-// Ë‰es—ñ‚ğæ“¾‚·‚é
+// å°„å½±è¡Œåˆ—ã‚’å–å¾—ã™ã‚‹
 extern	int NS_GetTransformToProjectionMatrix( MATRIX *MatBuf )
 {
 	*MatBuf = GSYS.DrawSetting.ProjectionMatrixF ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// Ë‰es—ñ‚ğæ“¾‚·‚é
+// å°„å½±è¡Œåˆ—ã‚’å–å¾—ã™ã‚‹
 extern	int NS_GetTransformToProjectionMatrixD( MATRIX_D *MatBuf )
 {
 	*MatBuf = GSYS.DrawSetting.ProjectionMatrix ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒrƒ…[ƒ|[ƒgs—ñ‚ğƒZƒbƒg‚·‚é
+// ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆè¡Œåˆ—ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern	int NS_SetTransformToViewport( const MATRIX *Matrix )
 {
-	// •`‰æ‘Ò‹@‚µ‚Ä‚¢‚é•`‰æ•¨‚ğ•`‰æ
+	// æç”»å¾…æ©Ÿã—ã¦ã„ã‚‹æç”»ç‰©ã‚’æç”»
 	DRAWSTOCKINFO
 
-	// ƒf[ƒ^‚ğ•Û‘¶
+	// ãƒ‡ãƒ¼ã‚¿ã‚’ä¿å­˜
 	GSYS.DrawSetting.ViewportMatrixF   = *Matrix ;
 	ConvertMatrixFtoD( &GSYS.DrawSetting.ViewportMatrix, &GSYS.DrawSetting.ViewportMatrixF ) ;
 	GSYS.DrawSetting.ValidBlend3DMatrix = FALSE ;
 
-	// ‘S‚Ä‚Ì‚R‚cs—ñ‚ğŠ|‚¯‡‚í‚¹‚½s—ñ‚ğXV
+	// å…¨ã¦ã®ï¼“ï¼¤è¡Œåˆ—ã‚’æ›ã‘åˆã‚ã›ãŸè¡Œåˆ—ã‚’æ›´æ–°
 	Graphics_DrawSetting_RefreshBlend3DTransformMatrix() ;
 
-	// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒVƒ‡ƒ“‚Éİ’è
+	// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ã«è¨­å®š
 	if( GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )
 	{
 		Graphics_Hardware_SetTransformToViewport_PF( &GSYS.DrawSetting.ViewportMatrixF ) ;
@@ -18583,25 +18583,25 @@ extern	int NS_SetTransformToViewport( const MATRIX *Matrix )
 		GSYS.DrawSetting.MatchHardwareViewMatrix = TRUE ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒrƒ…[ƒ|[ƒgs—ñ‚ğƒZƒbƒg‚·‚é
+// ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆè¡Œåˆ—ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern	int NS_SetTransformToViewportD( const MATRIX_D *Matrix )
 {
-	// •`‰æ‘Ò‹@‚µ‚Ä‚¢‚é•`‰æ•¨‚ğ•`‰æ
+	// æç”»å¾…æ©Ÿã—ã¦ã„ã‚‹æç”»ç‰©ã‚’æç”»
 	DRAWSTOCKINFO
 
-	// ƒf[ƒ^‚ğ•Û‘¶
+	// ãƒ‡ãƒ¼ã‚¿ã‚’ä¿å­˜
 	GSYS.DrawSetting.ViewportMatrix   = *Matrix ;
 	ConvertMatrixDtoF( &GSYS.DrawSetting.ViewportMatrixF, &GSYS.DrawSetting.ViewportMatrix ) ;
 	GSYS.DrawSetting.ValidBlend3DMatrix = FALSE ;
 
-	// ‘S‚Ä‚Ì‚R‚cs—ñ‚ğŠ|‚¯‡‚í‚¹‚½s—ñ‚ğXV
+	// å…¨ã¦ã®ï¼“ï¼¤è¡Œåˆ—ã‚’æ›ã‘åˆã‚ã›ãŸè¡Œåˆ—ã‚’æ›´æ–°
 	Graphics_DrawSetting_RefreshBlend3DTransformMatrix() ;
 
-	// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒVƒ‡ƒ“‚Éİ’è
+	// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ã«è¨­å®š
 	if( GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )
 	{
 		Graphics_Hardware_SetTransformToViewport_PF( &GSYS.DrawSetting.ViewportMatrixF ) ;
@@ -18609,47 +18609,47 @@ extern	int NS_SetTransformToViewportD( const MATRIX_D *Matrix )
 		GSYS.DrawSetting.MatchHardwareViewMatrix = TRUE ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒrƒ…[ƒ|[ƒgs—ñ‚ğæ“¾‚·‚é
+// ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆè¡Œåˆ—ã‚’å–å¾—ã™ã‚‹
 extern	int NS_GetTransformToViewportMatrix( MATRIX *MatBuf )
 {
 	*MatBuf = GSYS.DrawSetting.ViewportMatrixF ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒrƒ…[ƒ|[ƒgs—ñ‚ğæ“¾‚·‚é
+// ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆè¡Œåˆ—ã‚’å–å¾—ã™ã‚‹
 extern	int NS_GetTransformToViewportMatrixD( MATRIX_D *MatBuf )
 {
 	*MatBuf = GSYS.DrawSetting.ViewportMatrix ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// Direct3D‚Å©“®“K—p‚³‚ê‚éƒrƒ…[ƒ|[ƒgs—ñ‚ğæ“¾‚·‚é
+// Direct3Dã§è‡ªå‹•é©ç”¨ã•ã‚Œã‚‹ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆè¡Œåˆ—ã‚’å–å¾—ã™ã‚‹
 extern	int NS_GetTransformToAPIViewportMatrix( MATRIX *MatBuf )
 {
 	*MatBuf = GSYS.DrawSetting.Direct3DViewportMatrixF ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// Direct3D‚Å©“®“K—p‚³‚ê‚éƒrƒ…[ƒ|[ƒgs—ñ‚ğæ“¾‚·‚é
+// Direct3Dã§è‡ªå‹•é©ç”¨ã•ã‚Œã‚‹ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆè¡Œåˆ—ã‚’å–å¾—ã™ã‚‹
 extern	int NS_GetTransformToAPIViewportMatrixD( MATRIX_D *MatBuf )
 {
 	*MatBuf = GSYS.DrawSetting.Direct3DViewportMatrix ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒfƒtƒHƒ‹ƒg‚Ì•ÏŠ·s—ñ‚ğƒZƒbƒg‚·‚é
+// ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®å¤‰æ›è¡Œåˆ—ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 #define FOV				(60.0 * DX_PI / 180.0)
 #define NEARZ			(0.0)
 #define FARZ			(1000.0)
@@ -18659,11 +18659,11 @@ extern	int NS_SetDefTransformMatrix( void )
 	MATRIX_D mat ;
 	double D ;
 	
-	// ƒ[ƒ‹ƒh•ÏŠ·s—ñ‚Í’PˆÊs—ñ
+	// ãƒ¯ãƒ¼ãƒ«ãƒ‰å¤‰æ›è¡Œåˆ—ã¯å˜ä½è¡Œåˆ—
 	CreateIdentityMatrixD( &mat ) ;
 	NS_SetTransformToWorldD( &mat ) ;
 
-	// ƒrƒ…[ƒ|[ƒgs—ñ‚ÌƒZƒbƒg
+	// ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆè¡Œåˆ—ã®ã‚»ãƒƒãƒˆ
 	CreateViewportMatrixD(
 		&mat,
 		( double )GSYS.DrawSetting.DrawSizeX / 2,
@@ -18673,7 +18673,7 @@ extern	int NS_SetDefTransformMatrix( void )
 	) ;
 	NS_SetTransformToViewportD( &mat ) ;
 
-	// ƒrƒ…[s—ñ‚Í z = 0.0 ‚Ì‚É’š“xƒXƒNƒŠ[ƒ“‘S‘Ì‚ªÊ‚éˆÊ’u‚Æ•ûŒü‚ğ‚ÂƒJƒƒ‰‚ğ
+	// ãƒ“ãƒ¥ãƒ¼è¡Œåˆ—ã¯ z = 0.0 ã®æ™‚ã«ä¸åº¦ã‚¹ã‚¯ãƒªãƒ¼ãƒ³å…¨ä½“ãŒå†™ã‚‹ä½ç½®ã¨æ–¹å‘ã‚’æŒã¤ã‚«ãƒ¡ãƒ©ã‚’
 	{
 		VECTOR_D up, at, eye ;
 		int w, h ;
@@ -18697,15 +18697,15 @@ extern	int NS_SetDefTransformMatrix( void )
 		NS_SetTransformToViewD( &mat ) ;
 	}
 
-	// ƒvƒƒWƒFƒNƒVƒ‡ƒ“s—ñ‚Í•’Ê‚É
+	// ãƒ—ãƒ­ã‚¸ã‚§ã‚¯ã‚·ãƒ§ãƒ³è¡Œåˆ—ã¯æ™®é€šã«
 	CreatePerspectiveFovMatrixD( &mat, FOV, D * 0.1, D + FARZ, -1.0f ) ;
 	NS_SetTransformToProjectionD( &mat ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒ[ƒJƒ‹À•W‚©‚ç‰æ–ÊÀ•W‚ğæ“¾‚·‚é
+// ãƒ­ãƒ¼ã‚«ãƒ«åº§æ¨™ã‹ã‚‰ç”»é¢åº§æ¨™ã‚’å–å¾—ã™ã‚‹
 extern	int NS_GetTransformPosition( VECTOR *LocalPos, float *x, float *y )
 {
 	float w ;
@@ -18713,7 +18713,7 @@ extern	int NS_GetTransformPosition( VECTOR *LocalPos, float *x, float *y )
 
 	if( LocalPos == NULL ) return -1 ;
 
-	// À•W•ÏŠ·
+	// åº§æ¨™å¤‰æ›
 	w = 1.0F ;
 	VectorTransform4(
 		&ScreenPos, &w,
@@ -18722,7 +18722,7 @@ extern	int NS_GetTransformPosition( VECTOR *LocalPos, float *x, float *y )
 	) ;
 	w = 1.0F / w ;
 
-	// ‚y’l‚ª‚OˆÈ‰º‚Ìê‡‚Í³í‚È‚w‚x’l‚Í“±‚¯‚È‚¢‚Ì‚ÅƒGƒ‰[
+	// ï¼ºå€¤ãŒï¼ä»¥ä¸‹ã®å ´åˆã¯æ­£å¸¸ãªï¼¸ï¼¹å€¤ã¯å°ã‘ãªã„ã®ã§ã‚¨ãƒ©ãƒ¼
 	if( ScreenPos.z * w < 0.0F )
 	{
 		return -1 ;
@@ -18738,11 +18738,11 @@ extern	int NS_GetTransformPosition( VECTOR *LocalPos, float *x, float *y )
 		*y = ScreenPos.y * w ;
 	}
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// ƒ[ƒJƒ‹À•W‚©‚ç‰æ–ÊÀ•W‚ğæ“¾‚·‚é
+// ãƒ­ãƒ¼ã‚«ãƒ«åº§æ¨™ã‹ã‚‰ç”»é¢åº§æ¨™ã‚’å–å¾—ã™ã‚‹
 extern	int NS_GetTransformPositionD( VECTOR_D *LocalPos, double *x, double *y )
 {
 	double w ;
@@ -18750,7 +18750,7 @@ extern	int NS_GetTransformPositionD( VECTOR_D *LocalPos, double *x, double *y )
 
 	if( LocalPos == NULL ) return -1 ;
 
-	// À•W•ÏŠ·
+	// åº§æ¨™å¤‰æ›
 	w = 1.0 ;
 	VectorTransform4D(
 		&ScreenPos, &w,
@@ -18759,7 +18759,7 @@ extern	int NS_GetTransformPositionD( VECTOR_D *LocalPos, double *x, double *y )
 	) ;
 	w = 1.0 / w ;
 
-	// ‚y’l‚ª‚OˆÈ‰º‚Ìê‡‚Í³í‚È‚w‚x’l‚Í“±‚¯‚È‚¢‚Ì‚ÅƒGƒ‰[
+	// ï¼ºå€¤ãŒï¼ä»¥ä¸‹ã®å ´åˆã¯æ­£å¸¸ãªï¼¸ï¼¹å€¤ã¯å°ã‘ãªã„ã®ã§ã‚¨ãƒ©ãƒ¼
 	if( ScreenPos.z * w < 0.0 )
 	{
 		return -1 ;
@@ -18775,17 +18775,17 @@ extern	int NS_GetTransformPositionD( VECTOR_D *LocalPos, double *x, double *y )
 		*y = ScreenPos.y * w ;
 	}
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// ƒ[ƒ‹ƒh‹óŠÔã‚Ìƒrƒ‹ƒ{[ƒh‚ÌƒTƒCƒY‚©‚çƒXƒNƒŠ[ƒ“‚É“Š‰e‚µ‚½ê‡‚ÌƒsƒNƒZƒ‹’PˆÊ‚ÌƒTƒCƒY‚ğæ“¾‚·‚é
+// ãƒ¯ãƒ¼ãƒ«ãƒ‰ç©ºé–“ä¸Šã®ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã®ã‚µã‚¤ã‚ºã‹ã‚‰ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã«æŠ•å½±ã—ãŸå ´åˆã®ãƒ”ã‚¯ã‚»ãƒ«å˜ä½ã®ã‚µã‚¤ã‚ºã‚’å–å¾—ã™ã‚‹
 extern float NS_GetBillboardPixelSize( VECTOR WorldPos, float WorldSize )
 {
 	return ( float )NS_GetBillboardPixelSizeD( VConvFtoD( WorldPos ), WorldSize ) ;
 }
 
-// ƒ[ƒ‹ƒh‹óŠÔã‚Ìƒrƒ‹ƒ{[ƒh‚ÌƒTƒCƒY‚©‚çƒXƒNƒŠ[ƒ“‚É“Š‰e‚µ‚½ê‡‚ÌƒsƒNƒZƒ‹’PˆÊ‚ÌƒTƒCƒY‚ğæ“¾‚·‚é
+// ãƒ¯ãƒ¼ãƒ«ãƒ‰ç©ºé–“ä¸Šã®ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã®ã‚µã‚¤ã‚ºã‹ã‚‰ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã«æŠ•å½±ã—ãŸå ´åˆã®ãƒ”ã‚¯ã‚»ãƒ«å˜ä½ã®ã‚µã‚¤ã‚ºã‚’å–å¾—ã™ã‚‹
 extern double NS_GetBillboardPixelSizeD( VECTOR_D WorldPos, double WorldSize )
 {
 	VECTOR_D ScreenPos, ScreenLeft, ScreenRightDirection ;
@@ -18796,13 +18796,13 @@ extern double NS_GetBillboardPixelSizeD( VECTOR_D WorldPos, double WorldSize )
 	return VSubD( ScreenPos, ScreenLeft ).x * 2.0 ;
 }
 
-// ƒ[ƒ‹ƒhÀ•W‚ğƒJƒƒ‰À•W‚É•ÏŠ·‚·‚é
+// ãƒ¯ãƒ¼ãƒ«ãƒ‰åº§æ¨™ã‚’ã‚«ãƒ¡ãƒ©åº§æ¨™ã«å¤‰æ›ã™ã‚‹
 extern VECTOR NS_ConvWorldPosToViewPos( VECTOR WorldPos )
 {
 	return VConvDtoF( NS_ConvWorldPosToViewPosD( VConvFtoD( WorldPos ) ) ) ;
 }
 
-// ƒ[ƒ‹ƒhÀ•W‚ğƒJƒƒ‰À•W‚É•ÏŠ·‚·‚é
+// ãƒ¯ãƒ¼ãƒ«ãƒ‰åº§æ¨™ã‚’ã‚«ãƒ¡ãƒ©åº§æ¨™ã«å¤‰æ›ã™ã‚‹
 extern VECTOR_D NS_ConvWorldPosToViewPosD( VECTOR_D WorldPos )
 {
 	VECTOR_D ViewPos ;
@@ -18812,23 +18812,23 @@ extern VECTOR_D NS_ConvWorldPosToViewPosD( VECTOR_D WorldPos )
 	return ViewPos ;
 }
 
-// ƒ[ƒ‹ƒhÀ•W‚ğƒXƒNƒŠ[ƒ“À•W‚É•ÏŠ·‚·‚é
+// ãƒ¯ãƒ¼ãƒ«ãƒ‰åº§æ¨™ã‚’ã‚¹ã‚¯ãƒªãƒ¼ãƒ³åº§æ¨™ã«å¤‰æ›ã™ã‚‹
 extern VECTOR NS_ConvWorldPosToScreenPos( VECTOR WorldPos )
 {
 	float w ;
 	VECTOR ScreenPos ;
 
-	// À•W•ÏŠ·
+	// åº§æ¨™å¤‰æ›
 	w = 1.0F ;
 	VectorTransform4( &ScreenPos, &w, &WorldPos, &w, &GSYS.DrawSetting.Blend3DMatrixF ) ;
 
-	// ‰æ–ÊÀ•W‚ğ•Ô‚·
+	// ç”»é¢åº§æ¨™ã‚’è¿”ã™
 	w = 1.0F / w ;
 	ScreenPos.x *= w ;
 	ScreenPos.y *= w ;
 	ScreenPos.z *= w ;
 
-	// ƒŠƒo[ƒX‚y‚ª—LŒø‚Èê‡‚ÍƒXƒNƒŠ[ƒ“À•W‚ğ”½“]‚·‚é
+	// ãƒªãƒãƒ¼ã‚¹ï¼ºãŒæœ‰åŠ¹ãªå ´åˆã¯ã‚¹ã‚¯ãƒªãƒ¼ãƒ³åº§æ¨™ã‚’åè»¢ã™ã‚‹
 	if( GSYS.DrawSetting.UseReversedZFlag )
 	{
 		ScreenPos.z = 1.0f - ScreenPos.z ;
@@ -18837,23 +18837,23 @@ extern VECTOR NS_ConvWorldPosToScreenPos( VECTOR WorldPos )
 	return ScreenPos ;
 }
 
-// ƒ[ƒ‹ƒhÀ•W‚ğƒXƒNƒŠ[ƒ“À•W‚É•ÏŠ·‚·‚é
+// ãƒ¯ãƒ¼ãƒ«ãƒ‰åº§æ¨™ã‚’ã‚¹ã‚¯ãƒªãƒ¼ãƒ³åº§æ¨™ã«å¤‰æ›ã™ã‚‹
 extern VECTOR_D NS_ConvWorldPosToScreenPosD( VECTOR_D WorldPos )
 {
 	double   w ;
 	VECTOR_D ScreenPos ;
 
-	// À•W•ÏŠ·
+	// åº§æ¨™å¤‰æ›
 	w = 1.0 ;
 	VectorTransform4D( &ScreenPos, &w, &WorldPos, &w, &GSYS.DrawSetting.Blend3DMatrix ) ;
 
-	// ‰æ–ÊÀ•W‚ğ•Ô‚·
+	// ç”»é¢åº§æ¨™ã‚’è¿”ã™
 	w = 1.0 / w ;
 	ScreenPos.x *= w ;
 	ScreenPos.y *= w ;
 	ScreenPos.z *= w ;
 
-	// ƒŠƒo[ƒX‚y‚ª—LŒø‚Èê‡‚ÍƒXƒNƒŠ[ƒ“À•W‚ğ”½“]‚·‚é
+	// ãƒªãƒãƒ¼ã‚¹ï¼ºãŒæœ‰åŠ¹ãªå ´åˆã¯ã‚¹ã‚¯ãƒªãƒ¼ãƒ³åº§æ¨™ã‚’åè»¢ã™ã‚‹
 	if( GSYS.DrawSetting.UseReversedZFlag )
 	{
 		ScreenPos.z = 1.0 - ScreenPos.z ;
@@ -18862,14 +18862,14 @@ extern VECTOR_D NS_ConvWorldPosToScreenPosD( VECTOR_D WorldPos )
 	return ScreenPos ;
 }
 
-// ƒ[ƒ‹ƒhÀ•W‚ğƒXƒNƒŠ[ƒ“À•W‚É•ÏŠ·‚·‚éAÅŒã‚Ì‚w‚x‚yÀ•W‚ğ‚v‚ÅŠ„‚é‘O‚Ì’l‚ğ“¾‚é
+// ãƒ¯ãƒ¼ãƒ«ãƒ‰åº§æ¨™ã‚’ã‚¹ã‚¯ãƒªãƒ¼ãƒ³åº§æ¨™ã«å¤‰æ›ã™ã‚‹ã€æœ€å¾Œã®ï¼¸ï¼¹ï¼ºåº§æ¨™ã‚’ï¼·ã§å‰²ã‚‹å‰ã®å€¤ã‚’å¾—ã‚‹
 extern FLOAT4 NS_ConvWorldPosToScreenPosPlusW( VECTOR WorldPos )
 {
 	VECTOR ScreenPos ;
 	float w ;
 	FLOAT4 Result ;
 
-	// À•W•ÏŠ·
+	// åº§æ¨™å¤‰æ›
 	w = 1.0f ;
 	VectorTransform4( &ScreenPos, &w, &WorldPos, &w, &GSYS.DrawSetting.Blend3DMatrixF ) ;
 
@@ -18881,14 +18881,14 @@ extern FLOAT4 NS_ConvWorldPosToScreenPosPlusW( VECTOR WorldPos )
 	return Result ;
 }
 
-// ƒ[ƒ‹ƒhÀ•W‚ğƒXƒNƒŠ[ƒ“À•W‚É•ÏŠ·‚·‚éAÅŒã‚Ì‚w‚x‚yÀ•W‚ğ‚v‚ÅŠ„‚é‘O‚Ì’l‚ğ“¾‚é
+// ãƒ¯ãƒ¼ãƒ«ãƒ‰åº§æ¨™ã‚’ã‚¹ã‚¯ãƒªãƒ¼ãƒ³åº§æ¨™ã«å¤‰æ›ã™ã‚‹ã€æœ€å¾Œã®ï¼¸ï¼¹ï¼ºåº§æ¨™ã‚’ï¼·ã§å‰²ã‚‹å‰ã®å€¤ã‚’å¾—ã‚‹
 extern DOUBLE4 NS_ConvWorldPosToScreenPosPlusWD( VECTOR_D WorldPos )
 {
 	VECTOR_D ScreenPos ;
 	double   w ;
 	DOUBLE4 Result ;
 
-	// À•W•ÏŠ·
+	// åº§æ¨™å¤‰æ›
 	w = 1.0 ;
 	VectorTransform4D( &ScreenPos, &w, &WorldPos, &w, &GSYS.DrawSetting.Blend3DMatrix ) ;
 
@@ -18900,19 +18900,19 @@ extern DOUBLE4 NS_ConvWorldPosToScreenPosPlusWD( VECTOR_D WorldPos )
 	return Result ;
 }
 
-// ƒXƒNƒŠ[ƒ“À•W‚ğƒ[ƒ‹ƒhÀ•W‚É•ÏŠ·‚·‚é
+// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³åº§æ¨™ã‚’ãƒ¯ãƒ¼ãƒ«ãƒ‰åº§æ¨™ã«å¤‰æ›ã™ã‚‹
 extern VECTOR NS_ConvScreenPosToWorldPos( VECTOR ScreenPos )
 {
 	float w ;
 	VECTOR WorldPos ;
 
-	// ƒŠƒo[ƒX‚y‚ª—LŒø‚Èê‡‚ÍƒXƒNƒŠ[ƒ“À•W‚ğ”½“]‚·‚é
+	// ãƒªãƒãƒ¼ã‚¹ï¼ºãŒæœ‰åŠ¹ãªå ´åˆã¯ã‚¹ã‚¯ãƒªãƒ¼ãƒ³åº§æ¨™ã‚’åè»¢ã™ã‚‹
 	if( GSYS.DrawSetting.UseReversedZFlag )
 	{
 		ScreenPos.z = 1.0f - ScreenPos.z ;
 	}
 
-	// ƒuƒŒƒ“ƒhs—ñ‚Ì‹ts—ñ‚ª—LŒø‚Å‚Í‚È‚©‚Á‚½‚ç‹ts—ñ‚ğ\’z‚·‚é
+	// ãƒ–ãƒ¬ãƒ³ãƒ‰è¡Œåˆ—ã®é€†è¡Œåˆ—ãŒæœ‰åŠ¹ã§ã¯ãªã‹ã£ãŸã‚‰é€†è¡Œåˆ—ã‚’æ§‹ç¯‰ã™ã‚‹
 	if( GSYS.DrawSetting.ValidInverseBlend3DMatrix == FALSE )
 	{
 		if( CreateInverseMatrixD( &GSYS.DrawSetting.InverseBlend3DMatrix, &GSYS.DrawSetting.Blend3DMatrix ) < 0 )
@@ -18923,11 +18923,11 @@ extern VECTOR NS_ConvScreenPosToWorldPos( VECTOR ScreenPos )
 		GSYS.DrawSetting.ValidInverseBlend3DMatrix = TRUE ;
 	}
 
-	// À•W•ÏŠ·
+	// åº§æ¨™å¤‰æ›
 	w = 1.0F ;
 	VectorTransform4( &WorldPos, &w, &ScreenPos, &w, &GSYS.DrawSetting.InverseBlend3DMatrixF ) ;
 
-	// ƒ[ƒ‹ƒhÀ•W‚ğ•Ô‚·
+	// ãƒ¯ãƒ¼ãƒ«ãƒ‰åº§æ¨™ã‚’è¿”ã™
 	w = 1.0F / w ;
 	WorldPos.x *= w ;
 	WorldPos.y *= w ;
@@ -18935,19 +18935,19 @@ extern VECTOR NS_ConvScreenPosToWorldPos( VECTOR ScreenPos )
 	return WorldPos ;
 }
 
-// ƒXƒNƒŠ[ƒ“À•W‚ğƒ[ƒ‹ƒhÀ•W‚É•ÏŠ·‚·‚é
+// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³åº§æ¨™ã‚’ãƒ¯ãƒ¼ãƒ«ãƒ‰åº§æ¨™ã«å¤‰æ›ã™ã‚‹
 extern VECTOR_D NS_ConvScreenPosToWorldPosD( VECTOR_D ScreenPos )
 {
 	double w ;
 	VECTOR_D WorldPos ;
 
-	// ƒŠƒo[ƒX‚y‚ª—LŒø‚Èê‡‚ÍƒXƒNƒŠ[ƒ“À•W‚ğ”½“]‚·‚é
+	// ãƒªãƒãƒ¼ã‚¹ï¼ºãŒæœ‰åŠ¹ãªå ´åˆã¯ã‚¹ã‚¯ãƒªãƒ¼ãƒ³åº§æ¨™ã‚’åè»¢ã™ã‚‹
 	if( GSYS.DrawSetting.UseReversedZFlag )
 	{
 		ScreenPos.z = 1.0 - ScreenPos.z ;
 	}
 
-	// ƒuƒŒƒ“ƒhs—ñ‚Ì‹ts—ñ‚ª—LŒø‚Å‚Í‚È‚©‚Á‚½‚ç‹ts—ñ‚ğ\’z‚·‚é
+	// ãƒ–ãƒ¬ãƒ³ãƒ‰è¡Œåˆ—ã®é€†è¡Œåˆ—ãŒæœ‰åŠ¹ã§ã¯ãªã‹ã£ãŸã‚‰é€†è¡Œåˆ—ã‚’æ§‹ç¯‰ã™ã‚‹
 	if( GSYS.DrawSetting.ValidInverseBlend3DMatrix == FALSE )
 	{
 		if( CreateInverseMatrixD( &GSYS.DrawSetting.InverseBlend3DMatrix, &GSYS.DrawSetting.Blend3DMatrix ) < 0 )
@@ -18958,11 +18958,11 @@ extern VECTOR_D NS_ConvScreenPosToWorldPosD( VECTOR_D ScreenPos )
 		GSYS.DrawSetting.ValidInverseBlend3DMatrix = TRUE ;
 	}
 
-	// À•W•ÏŠ·
+	// åº§æ¨™å¤‰æ›
 	w = 1.0 ;
 	VectorTransform4D( &WorldPos, &w, &ScreenPos, &w, &GSYS.DrawSetting.InverseBlend3DMatrix ) ;
 
-	// ƒ[ƒ‹ƒhÀ•W‚ğ•Ô‚·
+	// ãƒ¯ãƒ¼ãƒ«ãƒ‰åº§æ¨™ã‚’è¿”ã™
 	w = 1.0 / w ;
 	WorldPos.x *= w ;
 	WorldPos.y *= w ;
@@ -18970,25 +18970,25 @@ extern VECTOR_D NS_ConvScreenPosToWorldPosD( VECTOR_D ScreenPos )
 	return WorldPos ;
 }
 
-// ƒXƒNƒŠ[ƒ“À•W‚ğƒ[ƒ‹ƒhÀ•W‚É•ÏŠ·‚·‚é( ZÀ•W‚ªüŒ` )
+// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³åº§æ¨™ã‚’ãƒ¯ãƒ¼ãƒ«ãƒ‰åº§æ¨™ã«å¤‰æ›ã™ã‚‹( Zåº§æ¨™ãŒç·šå½¢ )
 extern VECTOR NS_ConvScreenPosToWorldPos_ZLinear( VECTOR ScreenPos )
 {
 	return VConvDtoF( NS_ConvScreenPosToWorldPos_ZLinearD( VConvFtoD( ScreenPos ) ) ) ;
 }
 
-// ƒXƒNƒŠ[ƒ“À•W‚ğƒ[ƒ‹ƒhÀ•W‚É•ÏŠ·‚·‚é( ZÀ•W‚ªüŒ` )
+// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³åº§æ¨™ã‚’ãƒ¯ãƒ¼ãƒ«ãƒ‰åº§æ¨™ã«å¤‰æ›ã™ã‚‹( Zåº§æ¨™ãŒç·šå½¢ )
 extern VECTOR_D NS_ConvScreenPosToWorldPos_ZLinearD( VECTOR_D ScreenPos )
 {
 	double w, inz ;
 	VECTOR_D WorldPos ;
 
-	// ƒŠƒo[ƒX‚y‚ª—LŒø‚Èê‡‚ÍƒXƒNƒŠ[ƒ“À•W‚ğ”½“]‚·‚é
+	// ãƒªãƒãƒ¼ã‚¹ï¼ºãŒæœ‰åŠ¹ãªå ´åˆã¯ã‚¹ã‚¯ãƒªãƒ¼ãƒ³åº§æ¨™ã‚’åè»¢ã™ã‚‹
 	if( GSYS.DrawSetting.UseReversedZFlag )
 	{
 		ScreenPos.z = 1.0 - ScreenPos.z ;
 	}
 
-	// ƒuƒŒƒ“ƒhs—ñ‚Ì‹ts—ñ‚ª—LŒø‚Å‚Í‚È‚©‚Á‚½‚ç‹ts—ñ‚ğ\’z‚·‚é
+	// ãƒ–ãƒ¬ãƒ³ãƒ‰è¡Œåˆ—ã®é€†è¡Œåˆ—ãŒæœ‰åŠ¹ã§ã¯ãªã‹ã£ãŸã‚‰é€†è¡Œåˆ—ã‚’æ§‹ç¯‰ã™ã‚‹
 	if( GSYS.DrawSetting.ValidInverseBlend3DMatrix == FALSE )
 	{
 		if( CreateInverseMatrixD( &GSYS.DrawSetting.InverseBlend3DMatrix, &GSYS.DrawSetting.Blend3DMatrix ) < 0 )
@@ -18999,7 +18999,7 @@ extern VECTOR_D NS_ConvScreenPosToWorldPos_ZLinearD( VECTOR_D ScreenPos )
 		GSYS.DrawSetting.ValidInverseBlend3DMatrix = TRUE ;
 	}
 
-	// ƒXƒNƒŠ[ƒ“À•W‚ğƒ[ƒ‹ƒhÀ•W‚É•ÏŠ·‚·‚éÛ‚Ég—p‚·‚és—ñ‚ª—LŒø‚Å‚Í‚È‚©‚Á‚½‚ç\’z‚·‚é
+	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³åº§æ¨™ã‚’ãƒ¯ãƒ¼ãƒ«ãƒ‰åº§æ¨™ã«å¤‰æ›ã™ã‚‹éš›ã«ä½¿ç”¨ã™ã‚‹è¡Œåˆ—ãŒæœ‰åŠ¹ã§ã¯ãªã‹ã£ãŸã‚‰æ§‹ç¯‰ã™ã‚‹
 	if( GSYS.DrawSetting.ValidConvScreenPosToWorldPosMatrix == FALSE )
 	{
 		MATRIX_D TempMatrix ;
@@ -19012,7 +19012,7 @@ extern VECTOR_D NS_ConvScreenPosToWorldPos_ZLinearD( VECTOR_D ScreenPos )
 		GSYS.DrawSetting.ValidConvScreenPosToWorldPosMatrix = TRUE ;
 	}
 
-	// VectorTransform4 ‚É“n‚·‚×‚« z ’l‚ğ‹‚ß‚é
+	// VectorTransform4 ã«æ¸¡ã™ã¹ã z å€¤ã‚’æ±‚ã‚ã‚‹
 	{
 		double k1, k2, resz, testz, minz, maxz, sa, target, sikii_plus, sikii_minus ;
 		int num ;
@@ -19050,12 +19050,12 @@ extern VECTOR_D NS_ConvScreenPosToWorldPos_ZLinearD( VECTOR_D ScreenPos )
 		inz = testz ;
 	}
 
-	// À•W•ÏŠ·
+	// åº§æ¨™å¤‰æ›
 	w = 1.0 ;
 	ScreenPos.z = inz ;
 	VectorTransform4D( &WorldPos, &w, &ScreenPos, &w, &GSYS.DrawSetting.InverseBlend3DMatrix ) ;
 
-	// ƒ[ƒ‹ƒhÀ•W‚ğ•Ô‚·
+	// ãƒ¯ãƒ¼ãƒ«ãƒ‰åº§æ¨™ã‚’è¿”ã™
 	w = 1.0 / w ;
 	WorldPos.x *= w ;
 	WorldPos.y *= w ;
@@ -19065,32 +19065,32 @@ extern VECTOR_D NS_ConvScreenPosToWorldPos_ZLinearD( VECTOR_D ScreenPos )
 
 
 
-// ƒ|ƒŠƒSƒ“ƒJƒŠƒ“ƒO‚Ì—LŒøA–³Œø‚ğƒZƒbƒg‚·‚é
+// ãƒãƒªã‚´ãƒ³ã‚«ãƒªãƒ³ã‚°ã®æœ‰åŠ¹ã€ç„¡åŠ¹ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern int NS_SetUseCullingFlag( int Flag )
 {
 	if( GSYS.DrawSetting.CullMode == Flag ) return 0 ;
 
-	// ƒJƒŠƒ“ƒOƒ‚[ƒh‚Ìƒtƒ‰ƒO‚ğ•Û‘¶
+	// ã‚«ãƒªãƒ³ã‚°ãƒ¢ãƒ¼ãƒ‰ã®ãƒ•ãƒ©ã‚°ã‚’ä¿å­˜
 	GSYS.DrawSetting.CullMode = Flag ;
 	GSYS.ChangeSettingFlag = TRUE ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒ|ƒŠƒSƒ“ƒJƒŠƒ“ƒO‚Ì—LŒøA–³Œø‚ğƒZƒbƒg‚·‚é
+// ãƒãƒªã‚´ãƒ³ã‚«ãƒªãƒ³ã‚°ã®æœ‰åŠ¹ã€ç„¡åŠ¹ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern int NS_SetUseBackCulling( int Flag )
 {
 	return NS_SetUseCullingFlag( Flag ) ;
 }
 
-// ƒ|ƒŠƒSƒ“ƒJƒŠƒ“ƒOƒ‚[ƒh‚ğæ“¾‚·‚é
+// ãƒãƒªã‚´ãƒ³ã‚«ãƒªãƒ³ã‚°ãƒ¢ãƒ¼ãƒ‰ã‚’å–å¾—ã™ã‚‹
 extern int NS_GetUseBackCulling( void )
 {
 	return GSYS.DrawSetting.CullMode ;
 }
 
-// ‰EèÀ•WŒn‚ÌƒNƒŠƒbƒsƒ“ƒOˆ—‚ğs‚¤‚©‚ğİ’è‚·‚é( TRUE:‰EèÀ•WŒn‚ÌƒNƒŠƒbƒsƒ“ƒOˆ—‚ğs‚¤  FALSE:¶èÀ•WŒn‚ÌƒNƒŠƒbƒsƒ“ƒOˆ—‚ğs‚¤( ƒfƒtƒHƒ‹ƒg ) )
+// å³æ‰‹åº§æ¨™ç³»ã®ã‚¯ãƒªãƒƒãƒ”ãƒ³ã‚°å‡¦ç†ã‚’è¡Œã†ã‹ã‚’è¨­å®šã™ã‚‹( TRUE:å³æ‰‹åº§æ¨™ç³»ã®ã‚¯ãƒªãƒƒãƒ”ãƒ³ã‚°å‡¦ç†ã‚’è¡Œã†  FALSE:å·¦æ‰‹åº§æ¨™ç³»ã®ã‚¯ãƒªãƒƒãƒ”ãƒ³ã‚°å‡¦ç†ã‚’è¡Œã†( ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ ) )
 extern int NS_SetUseRightHandClippingProcess( int Flag )
 {
 	Flag = Flag == FALSE ? FALSE : TRUE ;
@@ -19100,25 +19100,25 @@ extern int NS_SetUseRightHandClippingProcess( int Flag )
 		return 0 ;
 	}
 
-	// ƒtƒ‰ƒO‚ğ•Û‘¶
+	// ãƒ•ãƒ©ã‚°ã‚’ä¿å­˜
 	GSYS.DrawSetting.UseRightHandClippingProcess = Flag ;
 
-	// ƒNƒŠƒbƒsƒ“ƒOs—ñ‚ğXV
+	// ã‚¯ãƒªãƒƒãƒ”ãƒ³ã‚°è¡Œåˆ—ã‚’æ›´æ–°
 	Graphics_DrawSetting_RefreshBlend3DTransformMatrix() ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ‰EèÀ•WŒn‚ÌƒNƒŠƒbƒsƒ“ƒOˆ—‚ğs‚¤‚©‚ğæ“¾‚·‚é( TRUE:‰EèÀ•WŒn‚ÌƒNƒŠƒbƒsƒ“ƒOˆ—‚ğs‚¤  FALSE:¶èÀ•WŒn‚ÌƒNƒŠƒbƒsƒ“ƒOˆ—‚ğs‚¤( ƒfƒtƒHƒ‹ƒg ) )
+// å³æ‰‹åº§æ¨™ç³»ã®ã‚¯ãƒªãƒƒãƒ”ãƒ³ã‚°å‡¦ç†ã‚’è¡Œã†ã‹ã‚’å–å¾—ã™ã‚‹( TRUE:å³æ‰‹åº§æ¨™ç³»ã®ã‚¯ãƒªãƒƒãƒ”ãƒ³ã‚°å‡¦ç†ã‚’è¡Œã†  FALSE:å·¦æ‰‹åº§æ¨™ç³»ã®ã‚¯ãƒªãƒƒãƒ”ãƒ³ã‚°å‡¦ç†ã‚’è¡Œã†( ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ ) )
 extern int NS_GetUseRightHandClippingProcess( void )
 {
 	return GSYS.DrawSetting.UseRightHandClippingProcess ;
 }
 
 
-// ƒeƒNƒXƒ`ƒƒƒAƒhƒŒƒXƒ‚[ƒh‚ğİ’è‚·‚é
-extern	int NS_SetTextureAddressMode( int Mode /* DX_TEXADDRESS_WRAP “™ */, int Stage )
+// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¢ãƒ‰ãƒ¬ã‚¹ãƒ¢ãƒ¼ãƒ‰ã‚’è¨­å®šã™ã‚‹
+extern	int NS_SetTextureAddressMode( int Mode /* DX_TEXADDRESS_WRAP ç­‰ */, int Stage )
 {
 	int i ;
 
@@ -19139,7 +19139,7 @@ extern	int NS_SetTextureAddressMode( int Mode /* DX_TEXADDRESS_WRAP “™ */, int S
 			return 0 ;
 		}
 
-		// •`‰æ‘Ò‹@‚µ‚Ä‚¢‚é•`‰æ•¨‚ğ•`‰æ
+		// æç”»å¾…æ©Ÿã—ã¦ã„ã‚‹æç”»ç‰©ã‚’æç”»
 		DRAWSTOCKINFO
 
 		for( i = 0 ; i < USE_TEXTURESTAGE_NUM ; i ++ )
@@ -19158,7 +19158,7 @@ extern	int NS_SetTextureAddressMode( int Mode /* DX_TEXADDRESS_WRAP “™ */, int S
 			GSYS.DrawSetting.TexAddressModeV[ Stage ] == Mode &&
 			GSYS.DrawSetting.TexAddressModeW[ Stage ] == Mode ) return 0;
 
-		// •`‰æ‘Ò‹@‚µ‚Ä‚¢‚é•`‰æ•¨‚ğ•`‰æ
+		// æç”»å¾…æ©Ÿã—ã¦ã„ã‚‹æç”»ç‰©ã‚’æç”»
 		DRAWSTOCKINFO
 
 		GSYS.DrawSetting.TexAddressModeU[ Stage ] = Mode ;
@@ -19167,17 +19167,17 @@ extern	int NS_SetTextureAddressMode( int Mode /* DX_TEXADDRESS_WRAP “™ */, int S
 		GSYS.ChangeSettingFlag = TRUE ;
 	}
 
-	// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒVƒ‡ƒ“‚Éİ’è
+	// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ã«è¨­å®š
 	if( GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )
 	{
 		Graphics_Hardware_SetTextureAddressMode_PF( Mode, Stage ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒeƒNƒXƒ`ƒƒƒAƒhƒŒƒXƒ‚[ƒh‚ğİ’è‚·‚é
+// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¢ãƒ‰ãƒ¬ã‚¹ãƒ¢ãƒ¼ãƒ‰ã‚’è¨­å®šã™ã‚‹
 extern	int NS_SetTextureAddressModeUV( int ModeU, int ModeV, int Stage )
 {
 	int i ;
@@ -19198,7 +19198,7 @@ extern	int NS_SetTextureAddressModeUV( int ModeU, int ModeV, int Stage )
 			return 0 ;
 		}
 
-		// •`‰æ‘Ò‹@‚µ‚Ä‚¢‚é•`‰æ•¨‚ğ•`‰æ
+		// æç”»å¾…æ©Ÿã—ã¦ã„ã‚‹æç”»ç‰©ã‚’æç”»
 		DRAWSTOCKINFO
 
 		for( i = 0 ; i < USE_TEXTURESTAGE_NUM ; i ++ )
@@ -19215,7 +19215,7 @@ extern	int NS_SetTextureAddressModeUV( int ModeU, int ModeV, int Stage )
 		if( GSYS.DrawSetting.TexAddressModeU[ Stage ] == ModeU &&
 			GSYS.DrawSetting.TexAddressModeV[ Stage ] == ModeV ) return 0;
 
-		// •`‰æ‘Ò‹@‚µ‚Ä‚¢‚é•`‰æ•¨‚ğ•`‰æ
+		// æç”»å¾…æ©Ÿã—ã¦ã„ã‚‹æç”»ç‰©ã‚’æç”»
 		DRAWSTOCKINFO
 
 		GSYS.DrawSetting.TexAddressModeU[ Stage ] = ModeU ;
@@ -19223,17 +19223,17 @@ extern	int NS_SetTextureAddressModeUV( int ModeU, int ModeV, int Stage )
 		GSYS.ChangeSettingFlag = TRUE ;
 	}
 
-	// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒVƒ‡ƒ“‚Éİ’è
+	// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ã«è¨­å®š
 	if( GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )
 	{
 		Graphics_Hardware_SetTextureAddressModeUV_PF( ModeU, ModeV, Stage ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒeƒNƒXƒ`ƒƒÀ•W•ÏŠ·ƒpƒ‰ƒ[ƒ^‚ğƒZƒbƒg‚·‚é
+// ãƒ†ã‚¯ã‚¹ãƒãƒ£åº§æ¨™å¤‰æ›ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern int NS_SetTextureAddressTransform( float TransU, float TransV, float ScaleU, float ScaleV, float RotCenterU, float RotCenterV, float Rotate )
 {
 	MATRIX Transform, Temp1, Temp2, Temp3 ;
@@ -19269,16 +19269,16 @@ extern int NS_SetTextureAddressTransform( float TransU, float TransV, float Scal
 		UseFlag = TRUE ;
 	}
 
-	// Œ³‚©‚çg—p‚µ‚È‚¢ê‡‚Í‰½‚à‚µ‚È‚¢
+	// å…ƒã‹ã‚‰ä½¿ç”¨ã—ãªã„å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( GSYS.DrawSetting.TextureAddressTransformUse == UseFlag && UseFlag == FALSE )
 		return 0 ;
 
-	// İ’è‚ğ•Û‘¶
+	// è¨­å®šã‚’ä¿å­˜
 	GSYS.DrawSetting.TextureAddressTransformUse = UseFlag ;
 	GSYS.DrawSetting.TextureAddressTransformMatrix = Transform ;
 //	GSYS.DrawSetting.TextureMatrixValid = FALSE ;
 
-	// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒVƒ‡ƒ“‚Éİ’è
+	// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ã«è¨­å®š
 	if( GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )
 	{
 		Graphics_Hardware_SetTextureAddressTransformMatrix_PF( UseFlag, &Transform ) ;
@@ -19286,20 +19286,20 @@ extern int NS_SetTextureAddressTransform( float TransU, float TransV, float Scal
 		GSYS.DrawSetting.MatchHardwareTextureAddressTransformMatrix = TRUE ;
 	}
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// ƒeƒNƒXƒ`ƒƒÀ•W•ÏŠ·s—ñ‚ğƒZƒbƒg‚·‚é
+// ãƒ†ã‚¯ã‚¹ãƒãƒ£åº§æ¨™å¤‰æ›è¡Œåˆ—ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern int NS_SetTextureAddressTransformMatrix( MATRIX Matrix )
 {
-	// İ’è‚ğ•Û‘¶
+	// è¨­å®šã‚’ä¿å­˜
 	GSYS.DrawSetting.TextureAddressTransformUse    = TRUE ;
 //	GSYS.DrawSetting.TextureMatrixValid     = TRUE ;
 //	GSYS.TextureMatrix          = Matrix ;
 	GSYS.DrawSetting.TextureAddressTransformMatrix = Matrix ;
 
-	// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒVƒ‡ƒ“‚Éİ’è
+	// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ã«è¨­å®š
 	if( GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )
 	{
 		Graphics_Hardware_SetTextureAddressTransformMatrix_PF( TRUE, &Matrix ) ;
@@ -19307,92 +19307,92 @@ extern int NS_SetTextureAddressTransformMatrix( MATRIX Matrix )
 		GSYS.DrawSetting.MatchHardwareTextureAddressTransformMatrix = TRUE ;
 	}
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// ƒeƒNƒXƒ`ƒƒÀ•W•ÏŠ·ƒpƒ‰ƒ[ƒ^‚ğƒŠƒZƒbƒg‚·‚é
+// ãƒ†ã‚¯ã‚¹ãƒãƒ£åº§æ¨™å¤‰æ›ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ãƒªã‚»ãƒƒãƒˆã™ã‚‹
 extern int NS_ResetTextureAddressTransform( void )
 {
 	return NS_SetTextureAddressTransform( 0.0f, 0.0f, 1.0f, 1.0f, 0.0f, 0.0f, 0.0f ) ;
 }
 
-// ƒtƒHƒO‚ğ—LŒø‚É‚·‚é‚©‚Ç‚¤‚©‚ğİ’è‚·‚é( TRUE:—LŒø  FALSE:–³Œø )
+// ãƒ•ã‚©ã‚°ã‚’æœ‰åŠ¹ã«ã™ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹( TRUE:æœ‰åŠ¹  FALSE:ç„¡åŠ¹ )
 extern int NS_SetFogEnable( int Flag )
 {
 	if( GSYS.DrawSetting.FogEnable == Flag ) return 0;
 
-	// •`‰æ‘Ò‹@‚µ‚Ä‚¢‚é•`‰æ•¨‚ğ•`‰æ
+	// æç”»å¾…æ©Ÿã—ã¦ã„ã‚‹æç”»ç‰©ã‚’æç”»
 	DRAWSTOCKINFO
 
 	GSYS.DrawSetting.FogEnable = Flag ;
 	GSYS.ChangeSettingFlag     = TRUE ;
 
-	// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒVƒ‡ƒ“‚Éİ’è
+	// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ã«è¨­å®š
 	if( GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )
 	{
 		Graphics_Hardware_SetFogEnable_PF( Flag ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒtƒHƒO‚ª—LŒø‚©‚Ç‚¤‚©‚ğæ“¾‚·‚é( TRUE:—LŒø  FALSE:–³Œø )
+// ãƒ•ã‚©ã‚°ãŒæœ‰åŠ¹ã‹ã©ã†ã‹ã‚’å–å¾—ã™ã‚‹( TRUE:æœ‰åŠ¹  FALSE:ç„¡åŠ¹ )
 extern int NS_GetFogEnable( void )
 {
 	return GSYS.DrawSetting.FogEnable ;
 }
 
-// ƒtƒHƒOƒ‚[ƒh‚ğİ’è‚·‚é
-extern	int NS_SetFogMode( int Mode /* DX_FOGMODE_NONE “™ */ )
+// ãƒ•ã‚©ã‚°ãƒ¢ãƒ¼ãƒ‰ã‚’è¨­å®šã™ã‚‹
+extern	int NS_SetFogMode( int Mode /* DX_FOGMODE_NONE ç­‰ */ )
 {
 	if( GSYS.DrawSetting.FogMode == Mode ) return 0;
 
-	// •`‰æ‘Ò‹@‚µ‚Ä‚¢‚é•`‰æ•¨‚ğ•`‰æ
+	// æç”»å¾…æ©Ÿã—ã¦ã„ã‚‹æç”»ç‰©ã‚’æç”»
 	DRAWSTOCKINFO
 
 	GSYS.DrawSetting.FogMode = Mode ;
 
-	// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒVƒ‡ƒ“‚Éİ’è
+	// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ã«è¨­å®š
 	if( GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )
 	{
 		Graphics_Hardware_SetFogMode_PF( Mode ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒtƒHƒOƒ‚[ƒh‚ğæ“¾‚·‚é
+// ãƒ•ã‚©ã‚°ãƒ¢ãƒ¼ãƒ‰ã‚’å–å¾—ã™ã‚‹
 extern int NS_GetFogMode( void )
 {
 	return GSYS.DrawSetting.FogMode ;
 }
 
-// ƒtƒHƒOƒJƒ‰[‚ğ•ÏX‚·‚é
+// ãƒ•ã‚©ã‚°ã‚«ãƒ©ãƒ¼ã‚’å¤‰æ›´ã™ã‚‹
 extern	int NS_SetFogColor( int r, int g, int b )
 {
 	DWORD color = ( DWORD )( ( ( 0xff ) << 24 ) | ( ( r & 0xff ) << 16 ) | ( ( g & 0xff ) << 8 ) | ( b & 0xff ) ) ;
 
 	if( GSYS.DrawSetting.FogColor == color ) return 0;
 
-	// •`‰æ‘Ò‹@‚µ‚Ä‚¢‚é•`‰æ•¨‚ğ•`‰æ
+	// æç”»å¾…æ©Ÿã—ã¦ã„ã‚‹æç”»ç‰©ã‚’æç”»
 	DRAWSTOCKINFO
 
 	GSYS.DrawSetting.FogColor = color ;
 
-	// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒVƒ‡ƒ“‚Éİ’è
+	// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ã«è¨­å®š
 	if( GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )
 	{
 		Graphics_Hardware_SetFogColor_PF( color ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒtƒHƒOƒJƒ‰[‚ğæ“¾‚·‚é
+// ãƒ•ã‚©ã‚°ã‚«ãƒ©ãƒ¼ã‚’å–å¾—ã™ã‚‹
 extern	int NS_GetFogColor( int *r, int *g, int *b )
 {
 	if( r != NULL )
@@ -19413,28 +19413,28 @@ extern	int NS_GetFogColor( int *r, int *g, int *b )
 	return 0 ;
 }
 
-// ƒtƒHƒO‚ªn‚Ü‚é‹——£‚ÆI—¹‚·‚é‹——£‚ğİ’è‚·‚é( 0.0f ` 1.0f )
+// ãƒ•ã‚©ã‚°ãŒå§‹ã¾ã‚‹è·é›¢ã¨çµ‚äº†ã™ã‚‹è·é›¢ã‚’è¨­å®šã™ã‚‹( 0.0f ï½ 1.0f )
 extern	int	NS_SetFogStartEnd( float start, float end )
 {
 	if( GSYS.DrawSetting.FogStart == start && GSYS.DrawSetting.FogEnd == end ) return 0 ;
 
-	// •`‰æ‘Ò‹@‚µ‚Ä‚¢‚é•`‰æ•¨‚ğ•`‰æ
+	// æç”»å¾…æ©Ÿã—ã¦ã„ã‚‹æç”»ç‰©ã‚’æç”»
 	DRAWSTOCKINFO
 
 	GSYS.DrawSetting.FogStart = start ;
 	GSYS.DrawSetting.FogEnd = end ;
 
-	// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒVƒ‡ƒ“‚Éİ’è
+	// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ã«è¨­å®š
 	if( GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )
 	{
 		Graphics_Hardware_SetFogStartEnd_PF( start, end ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒtƒHƒO‚ªn‚Ü‚é‹——£‚ÆI—¹‚·‚é‹——£‚ğæ“¾‚·‚é( 0.0f ` 1.0f )
+// ãƒ•ã‚©ã‚°ãŒå§‹ã¾ã‚‹è·é›¢ã¨çµ‚äº†ã™ã‚‹è·é›¢ã‚’å–å¾—ã™ã‚‹( 0.0f ï½ 1.0f )
 extern	int NS_GetFogStartEnd( float *start, float *end )
 {
 	if( start != NULL )
@@ -19450,108 +19450,108 @@ extern	int NS_GetFogStartEnd( float *start, float *end )
 	return 0 ;
 }
 
-// ƒtƒHƒO‚Ì–§“x‚ğİ’è‚·‚é( 0.0f ` 1.0f )
+// ãƒ•ã‚©ã‚°ã®å¯†åº¦ã‚’è¨­å®šã™ã‚‹( 0.0f ï½ 1.0f )
 extern	int	NS_SetFogDensity( float density )
 {
 	if( GSYS.DrawSetting.FogDensity == density ) return 0;
 
-	// •`‰æ‘Ò‹@‚µ‚Ä‚¢‚é•`‰æ•¨‚ğ•`‰æ
+	// æç”»å¾…æ©Ÿã—ã¦ã„ã‚‹æç”»ç‰©ã‚’æç”»
 	DRAWSTOCKINFO
 
 	GSYS.DrawSetting.FogDensity = density ;
 
-	// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒVƒ‡ƒ“‚Éİ’è
+	// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ã«è¨­å®š
 	if( GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )
 	{
 		Graphics_Hardware_SetFogDensity_PF( density ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒtƒHƒO‚Ì–§“x‚ğæ“¾‚·‚é( 0.0f ` 1.0f )
+// ãƒ•ã‚©ã‚°ã®å¯†åº¦ã‚’å–å¾—ã™ã‚‹( 0.0f ï½ 1.0f )
 extern float NS_GetFogDensity( void )
 {
 	return GSYS.DrawSetting.FogDensity ;
 }
 
-// ‚‚³ƒtƒHƒO‚ğ—LŒø‚É‚·‚é‚©‚Ç‚¤‚©‚ğİ’è‚·‚é( TRUE:—LŒø  FALSE:–³Œø )
+// é«˜ã•ãƒ•ã‚©ã‚°ã‚’æœ‰åŠ¹ã«ã™ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹( TRUE:æœ‰åŠ¹  FALSE:ç„¡åŠ¹ )
 extern int NS_SetVerticalFogEnable( int Flag )
 {
 	if( GSYS.DrawSetting.VerticalFogEnable == Flag ) return 0;
 
-	// •`‰æ‘Ò‹@‚µ‚Ä‚¢‚é•`‰æ•¨‚ğ•`‰æ
+	// æç”»å¾…æ©Ÿã—ã¦ã„ã‚‹æç”»ç‰©ã‚’æç”»
 	DRAWSTOCKINFO
 
 	GSYS.DrawSetting.VerticalFogEnable = Flag ;
 	GSYS.ChangeSettingFlag     = TRUE ;
 
-	// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒVƒ‡ƒ“‚Éİ’è
+	// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ã«è¨­å®š
 	if( GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )
 	{
 		Graphics_Hardware_SetVerticalFogEnable_PF( Flag ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ‚‚³ƒtƒHƒO‚ª—LŒø‚©‚Ç‚¤‚©‚ğæ“¾‚·‚é( TRUE:—LŒø  FALSE:–³Œø )
+// é«˜ã•ãƒ•ã‚©ã‚°ãŒæœ‰åŠ¹ã‹ã©ã†ã‹ã‚’å–å¾—ã™ã‚‹( TRUE:æœ‰åŠ¹  FALSE:ç„¡åŠ¹ )
 extern int NS_GetVerticalFogEnable( void )
 {
 	return GSYS.DrawSetting.VerticalFogEnable ;
 }
 
-// ‚‚³ƒtƒHƒOƒ‚[ƒh‚ğİ’è‚·‚é
-extern int NS_SetVerticalFogMode( int Mode /* DX_FOGMODE_NONE “™ */ )
+// é«˜ã•ãƒ•ã‚©ã‚°ãƒ¢ãƒ¼ãƒ‰ã‚’è¨­å®šã™ã‚‹
+extern int NS_SetVerticalFogMode( int Mode /* DX_FOGMODE_NONE ç­‰ */ )
 {
 	if( GSYS.DrawSetting.VerticalFogMode == Mode ) return 0;
 
-	// •`‰æ‘Ò‹@‚µ‚Ä‚¢‚é•`‰æ•¨‚ğ•`‰æ
+	// æç”»å¾…æ©Ÿã—ã¦ã„ã‚‹æç”»ç‰©ã‚’æç”»
 	DRAWSTOCKINFO
 
 	GSYS.DrawSetting.VerticalFogMode = Mode ;
 
-	// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒVƒ‡ƒ“‚Éİ’è
+	// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ã«è¨­å®š
 	if( GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )
 	{
 		Graphics_Hardware_SetVerticalFogMode_PF( Mode ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ‚‚³ƒtƒHƒOƒ‚[ƒh‚ğæ“¾‚·‚é
+// é«˜ã•ãƒ•ã‚©ã‚°ãƒ¢ãƒ¼ãƒ‰ã‚’å–å¾—ã™ã‚‹
 extern int NS_GetVerticalFogMode( void )
 {
 	return GSYS.DrawSetting.VerticalFogMode ;
 }
 
-// ‚‚³ƒtƒHƒOƒJƒ‰[‚ğİ’è‚·‚é
+// é«˜ã•ãƒ•ã‚©ã‚°ã‚«ãƒ©ãƒ¼ã‚’è¨­å®šã™ã‚‹
 extern int NS_SetVerticalFogColor( int  r, int  g, int  b )
 {
 	DWORD color = ( DWORD )( ( ( 0xff ) << 24 ) | ( ( r & 0xff ) << 16 ) | ( ( g & 0xff ) << 8 ) | ( b & 0xff ) ) ;
 
 	if( GSYS.DrawSetting.VerticalFogColor == color ) return 0;
 
-	// •`‰æ‘Ò‹@‚µ‚Ä‚¢‚é•`‰æ•¨‚ğ•`‰æ
+	// æç”»å¾…æ©Ÿã—ã¦ã„ã‚‹æç”»ç‰©ã‚’æç”»
 	DRAWSTOCKINFO
 
 	GSYS.DrawSetting.VerticalFogColor = color ;
 
-	// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒVƒ‡ƒ“‚Éİ’è
+	// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ã«è¨­å®š
 	if( GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )
 	{
 		Graphics_Hardware_SetVerticalFogColor_PF( color ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ‚‚³ƒtƒHƒOƒJƒ‰[‚ğæ“¾‚·‚é
+// é«˜ã•ãƒ•ã‚©ã‚°ã‚«ãƒ©ãƒ¼ã‚’å–å¾—ã™ã‚‹
 extern int NS_GetVerticalFogColor( int *r, int *g, int *b )
 {
 	if( r != NULL )
@@ -19572,28 +19572,28 @@ extern int NS_GetVerticalFogColor( int *r, int *g, int *b )
 	return 0 ;
 }
 
-// ‚‚³ƒtƒHƒO‚ªn‚Ü‚é‹——£‚ÆI—¹‚·‚é‹——£‚ğİ’è‚·‚é( 0.0f ` 1.0f )
+// é«˜ã•ãƒ•ã‚©ã‚°ãŒå§‹ã¾ã‚‹è·é›¢ã¨çµ‚äº†ã™ã‚‹è·é›¢ã‚’è¨­å®šã™ã‚‹( 0.0f ï½ 1.0f )
 extern int NS_SetVerticalFogStartEnd( float  start, float  end )
 {
 	if( GSYS.DrawSetting.VerticalFogStart == start && GSYS.DrawSetting.VerticalFogEnd == end ) return 0 ;
 
-	// •`‰æ‘Ò‹@‚µ‚Ä‚¢‚é•`‰æ•¨‚ğ•`‰æ
+	// æç”»å¾…æ©Ÿã—ã¦ã„ã‚‹æç”»ç‰©ã‚’æç”»
 	DRAWSTOCKINFO
 
 	GSYS.DrawSetting.VerticalFogStart = start ;
 	GSYS.DrawSetting.VerticalFogEnd = end ;
 
-	// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒVƒ‡ƒ“‚Éİ’è
+	// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ã«è¨­å®š
 	if( GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )
 	{
 		Graphics_Hardware_SetVerticalFogStartEnd_PF( start, end ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ‚‚³ƒtƒHƒO‚ªn‚Ü‚é‹——£‚ÆI—¹‚·‚é‹——£‚ğæ“¾‚·‚é( 0.0f ` 1.0f )
+// é«˜ã•ãƒ•ã‚©ã‚°ãŒå§‹ã¾ã‚‹è·é›¢ã¨çµ‚äº†ã™ã‚‹è·é›¢ã‚’å–å¾—ã™ã‚‹( 0.0f ï½ 1.0f )
 extern int NS_GetVerticalFogStartEnd( float *start, float *end )
 {
 	if( start != NULL )
@@ -19609,27 +19609,27 @@ extern int NS_GetVerticalFogStartEnd( float *start, float *end )
 	return 0 ;
 }
 
-// ‚‚³ƒtƒHƒO‚ªn‚Ü‚éˆ—‚Æ–§“x‚ğİ’è‚·‚é( 0.0f ` 1.0f )
+// é«˜ã•ãƒ•ã‚©ã‚°ãŒå§‹ã¾ã‚‹å‡¦ç†ã¨å¯†åº¦ã‚’è¨­å®šã™ã‚‹( 0.0f ï½ 1.0f )
 extern int NS_SetVerticalFogDensity( float start, float density )
 {
 	if( GSYS.DrawSetting.VerticalFogDensity == density ) return 0;
 
-	// •`‰æ‘Ò‹@‚µ‚Ä‚¢‚é•`‰æ•¨‚ğ•`‰æ
+	// æç”»å¾…æ©Ÿã—ã¦ã„ã‚‹æç”»ç‰©ã‚’æç”»
 	DRAWSTOCKINFO
 
 	GSYS.DrawSetting.VerticalFogDensity = density ;
 
-	// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒVƒ‡ƒ“‚Éİ’è
+	// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ã«è¨­å®š
 	if( GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )
 	{
 		Graphics_Hardware_SetVerticalFogDensity_PF( start, density ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ‚‚³ƒtƒHƒO‚Ìn‚Ü‚éˆ—‚Æ–§“x‚ğæ“¾‚·‚é( 0.0f ` 1.0f )
+// é«˜ã•ãƒ•ã‚©ã‚°ã®å§‹ã¾ã‚‹å‡¦ç†ã¨å¯†åº¦ã‚’å–å¾—ã™ã‚‹( 0.0f ï½ 1.0f )
 extern int NS_GetVerticalFogDensity( float *start, float *density )
 {
 	if( start   != NULL ) *start   = GSYS.DrawSetting.VerticalFogDensityStart ;
@@ -19663,28 +19663,28 @@ extern int NS_GetVerticalFogDensity( float *start, float *density )
 
 
 
-// ‰æ–ÊŠÖŒWŠÖ”
+// ç”»é¢é–¢ä¿‚é–¢æ•°
 
 #ifndef DX_COMPILE_TYPE_C_LANGUAGE
-// w’èÀ•W‚ÌF‚ğæ“¾‚·‚é
+// æŒ‡å®šåº§æ¨™ã®è‰²ã‚’å–å¾—ã™ã‚‹
 extern unsigned int NS_GetPixel( int x, int y )
 {
 	return NS_GetPixelDX( x, y ) ;
 }
 #endif // DX_COMPILE_TYPE_C_LANGUAGE
 
-// w’èÀ•W‚ÌF‚ğæ“¾‚·‚é
+// æŒ‡å®šåº§æ¨™ã®è‰²ã‚’å–å¾—ã™ã‚‹
 extern unsigned int NS_GetPixelDX( int x, int y )
 {
 	unsigned int Ret = 0xffffffff ;
 
-	// •`‰æÀ•Wƒ`ƒFƒbƒN
+	// æç”»åº§æ¨™ãƒã‚§ãƒƒã‚¯
 	if( x < 0 || y < 0 || x >= GSYS.DrawSetting.DrawSizeX || y >= GSYS.DrawSetting.DrawSizeY ) return 0xffffffff ;
 
-	// ƒn[ƒhƒEƒGƒA‹@”\‚ğg—p‚·‚é‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+	// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢æ©Ÿèƒ½ã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 	if( GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )
 	{
-		// ƒn[ƒhƒEƒFƒA‚ğg—p‚·‚éê‡
+		// ãƒãƒ¼ãƒ‰ã‚¦ã‚§ã‚¢ã‚’ä½¿ç”¨ã™ã‚‹å ´åˆ
 
 		Ret = Graphics_Hardware_GetPixel_PF( x, y ) ;
 	}
@@ -19693,13 +19693,13 @@ extern unsigned int NS_GetPixelDX( int x, int y )
 		MEMIMG    *Img ;
 		IMAGEDATA *Image ;
 
-		// ƒn[ƒhƒEƒFƒA‚ğg—p‚µ‚È‚¢ê‡
+		// ãƒãƒ¼ãƒ‰ã‚¦ã‚§ã‚¢ã‚’ä½¿ç”¨ã—ãªã„å ´åˆ
 
-		// ƒGƒ‰[”»’è
+		// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 		if( GRAPHCHKFULL( GSYS.DrawSetting.TargetScreen[ 0 ], Image ) )
 			Image = NULL ;
 
-		// •`‰ææ‚É‚æ‚Á‚Äˆ—‚ğ•ªŠò
+		// æç”»å…ˆã«ã‚ˆã£ã¦å‡¦ç†ã‚’åˆ†å²
 		if( Image )
 		{
 			Img = &Image->Soft.MemImg ;
@@ -19716,28 +19716,28 @@ extern unsigned int NS_GetPixelDX( int x, int y )
 		}
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return Ret ;
 }
 
-// w’èÀ•W‚ÌF‚ğæ“¾‚·‚é( floatŒ^ )
+// æŒ‡å®šåº§æ¨™ã®è‰²ã‚’å–å¾—ã™ã‚‹( floatå‹ )
 extern COLOR_F NS_GetPixelF( int x, int y )
 {
-	// •`‰æÀ•Wƒ`ƒFƒbƒN
+	// æç”»åº§æ¨™ãƒã‚§ãƒƒã‚¯
 	if( x < 0 || y < 0 || x >= GSYS.DrawSetting.DrawSizeX || y >= GSYS.DrawSetting.DrawSizeY )
 	{
 		return NS_GetColorF( -1.0f, -1.0f, -1.0f, -1.0f ) ;
 	}
 
-	// ƒn[ƒhƒEƒGƒA‹@”\‚ğg—p‚·‚é‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+	// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢æ©Ÿèƒ½ã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 	if( GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )
 	{
-		// ƒn[ƒhƒEƒFƒA‚ğg—p‚·‚éê‡
+		// ãƒãƒ¼ãƒ‰ã‚¦ã‚§ã‚¢ã‚’ä½¿ç”¨ã™ã‚‹å ´åˆ
 		return Graphics_Hardware_GetPixelF_PF( x, y ) ;
 	}
 	else
 	{
-		// ƒn[ƒhƒEƒFƒA‚ğg—p‚µ‚È‚¢ê‡
+		// ãƒãƒ¼ãƒ‰ã‚¦ã‚§ã‚¢ã‚’ä½¿ç”¨ã—ãªã„å ´åˆ
 		unsigned int Color = NS_GetPixelDX( x, y ) ;
 		COLOR_F Result ;
 		int ri, gi, bi, ai ;
@@ -19753,29 +19753,29 @@ extern COLOR_F NS_GetPixelF( int x, int y )
 	}
 }
 
-// ƒƒCƒ“ƒEƒCƒ“ƒhƒE‚ÌƒoƒbƒNƒOƒ‰ƒEƒ“ƒhƒJƒ‰[‚ğİ’è‚·‚é
+// ãƒ¡ã‚¤ãƒ³ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ãƒãƒƒã‚¯ã‚°ãƒ©ã‚¦ãƒ³ãƒ‰ã‚«ãƒ©ãƒ¼ã‚’è¨­å®šã™ã‚‹
 extern int NS_SetBackgroundColor( int Red, int Green, int Blue, int Alpha )
 {
-	// F‚Ì•Û‘¶
+	// è‰²ã®ä¿å­˜
 	GSYS.Screen.BackgroundRed   = Red ;
 	GSYS.Screen.BackgroundGreen = Green ;
 	GSYS.Screen.BackgroundBlue  = Blue ;
 	GSYS.Screen.BackgroundAlpha = Alpha ;
 
-	// ƒoƒbƒNƒOƒ‰ƒEƒ“ƒhƒJƒ‰[‚ª—LŒø‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// ãƒãƒƒã‚¯ã‚°ãƒ©ã‚¦ãƒ³ãƒ‰ã‚«ãƒ©ãƒ¼ãŒæœ‰åŠ¹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	GSYS.Screen.EnableBackgroundColor = TRUE ;
 
-	// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒVƒ‡ƒ“‚Éİ’è
+	// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ã«è¨­å®š
 	if( GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )
 	{
 		Graphics_Hardware_SetBackgroundColor_PF( Red, Green, Blue, Alpha ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0;
 }
 
-// ƒƒCƒ“ƒEƒCƒ“ƒhƒE‚ÌƒoƒbƒNƒOƒ‰ƒEƒ“ƒhƒJƒ‰[‚ğæ“¾‚·‚é
+// ãƒ¡ã‚¤ãƒ³ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ãƒãƒƒã‚¯ã‚°ãƒ©ã‚¦ãƒ³ãƒ‰ã‚«ãƒ©ãƒ¼ã‚’å–å¾—ã™ã‚‹
 extern int NS_GetBackgroundColor( int *Red, int *Green, int *Blue, int *Alpha )
 {
 	if( Red != NULL )
@@ -19798,44 +19798,44 @@ extern int NS_GetBackgroundColor( int *Red, int *Green, int *Blue, int *Alpha )
 		*Alpha = GSYS.Screen.BackgroundAlpha ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0;
 }
 
-// ƒAƒNƒeƒBƒu‚É‚È‚Á‚Ä‚¢‚é‰æ–Ê‚©‚çw’è—Ìˆæ‚ÌƒOƒ‰ƒtƒBƒbƒN‚ğæ“¾‚·‚é
+// ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ãªã£ã¦ã„ã‚‹ç”»é¢ã‹ã‚‰æŒ‡å®šé ˜åŸŸã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚’å–å¾—ã™ã‚‹
 extern	int NS_GetDrawScreenGraph( int x1, int y1, int x2, int y2, int GrHandle, int /*UseClientFlag*/ )
 {
 	IMAGEDATA *Image ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( GRAPHCHK( GrHandle, Image ) )
 		return -1 ;
 
-	// æ‚è‚İƒTƒCƒY‚Æ‰æ‘œƒTƒCƒY‚ªˆá‚¤ê‡‚ÍƒGƒ‰[
+	// å–ã‚Šè¾¼ã¿ã‚µã‚¤ã‚ºã¨ç”»åƒã‚µã‚¤ã‚ºãŒé•ã†å ´åˆã¯ã‚¨ãƒ©ãƒ¼
 	if( Image->WidthI != x2 - x1 || Image->HeightI != y2 - y1 ) return -1 ;
 
 	return Graphics_Image_GetDrawScreenGraphBase( GSYS.DrawSetting.TargetScreen[ 0 ], GSYS.DrawSetting.TargetScreenSurface[ 0 ], GSYS.DrawSetting.TargetScreenMipLevel[ 0 ], x1, y1, x2, y2, 0, 0, GrHandle ) ;
 }
 
-// •`‰æ‰Â”\‰æ‘œ‚©‚çw’è—Ìˆæ‚ÌƒOƒ‰ƒtƒBƒbƒN‚ğæ“¾‚·‚é
+// æç”»å¯èƒ½ç”»åƒã‹ã‚‰æŒ‡å®šé ˜åŸŸã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚’å–å¾—ã™ã‚‹
 extern int NS_BltDrawValidGraph( int TargetDrawValidGrHandle, int x1, int y1, int x2, int y2, int DestX, int DestY, int DestGrHandle )
 {
 	IMAGEDATA *Image ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( GRAPHCHK( TargetDrawValidGrHandle, Image ) )
 		return -1 ;
 
 	return Graphics_Image_GetDrawScreenGraphBase( TargetDrawValidGrHandle, 0, 0, x1, y1, x2, y2, DestX, DestY, DestGrHandle ) ;
 }
 
-// — ‰æ–Ê‚Æ•\‰æ–Ê‚ğŒğŠ·‚·‚é
+// è£ç”»é¢ã¨è¡¨ç”»é¢ã‚’äº¤æ›ã™ã‚‹
 extern int NS_ScreenFlip( void )
 {
 	return Graphics_Screen_FlipBase() ;
 }
 
-// ScreenCopy ‚Ìƒx[ƒXŠÖ”
+// ScreenCopy ã®ãƒ™ãƒ¼ã‚¹é–¢æ•°
 extern int Graphics_Screen_ScreenCopyBase( int DrawTargetFrontScreenMode_Copy )
 {
 	if( GSYS.Setting.ValidHardware )
@@ -19843,11 +19843,11 @@ extern int Graphics_Screen_ScreenCopyBase( int DrawTargetFrontScreenMode_Copy )
 		Graphics_Hardware_ScreenCopy_PF( DrawTargetFrontScreenMode_Copy ) ;
 	}
 
-	// ƒtƒŠƒbƒv
+	// ãƒ•ãƒªãƒƒãƒ—
 	return Graphics_Screen_FlipBase() ;
 }
 
-// w’è‚Ì‹éŒ`—Ìˆæ‚ÉÅ‚à‹ß‚¢ƒfƒBƒXƒvƒŒƒC‚ğ•Ô‚·
+// æŒ‡å®šã®çŸ©å½¢é ˜åŸŸã«æœ€ã‚‚è¿‘ã„ãƒ‡ã‚£ã‚¹ãƒ—ãƒ¬ã‚¤ã‚’è¿”ã™
 extern const GRAPHICSSYS_DISPLAYINFO *Graphics_GetRectMatchDisplayInfo( const RECT *Rect )
 {
 	int i ;
@@ -19904,8 +19904,8 @@ extern const GRAPHICSSYS_DISPLAYINFO *Graphics_GetRectMatchDisplayInfo( const RE
 	return MaxMatchIndex < 0 ? NULL : &GSYS.Screen.DisplayInfo[ MaxMatchIndex ] ;
 }
 
-// SetUserScreenImage ‚Åw’è‚·‚éƒsƒNƒZƒ‹ƒtƒH[ƒ}ƒbƒg‚Ì COLORDATA ‚ğæ“¾‚·‚é
-extern COLORDATA *Graphics_Screen_UserScreenPixelFormatColorData( int PixelFormat /* DX_USER_SCREEN_PIXEL_FORMAT_R5G6B5 “™ */ )
+// SetUserScreenImage ã§æŒ‡å®šã™ã‚‹ãƒ”ã‚¯ã‚»ãƒ«ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã® COLORDATA ã‚’å–å¾—ã™ã‚‹
+extern COLORDATA *Graphics_Screen_UserScreenPixelFormatColorData( int PixelFormat /* DX_USER_SCREEN_PIXEL_FORMAT_R5G6B5 ç­‰ */ )
 {
 	volatile static int InitializeFlag = FALSE ;
 	static COLORDATA R5G6B5_ColorData ;
@@ -19935,35 +19935,35 @@ extern COLORDATA *Graphics_Screen_UserScreenPixelFormatColorData( int PixelForma
 	return NULL ;
 }
 
-// — ‰æ–Ê‚Ì“à—e‚ğ•\‰æ–Ê‚É•`‰æ‚·‚é
+// è£ç”»é¢ã®å†…å®¹ã‚’è¡¨ç”»é¢ã«æç”»ã™ã‚‹
 extern int NS_ScreenCopy( void )
 {
 	return Graphics_Screen_ScreenCopyBase( FALSE ) ;
 }
 
-// ‚’¼“¯ŠúM†‚ğ‘Ò‚Â
+// å‚ç›´åŒæœŸä¿¡å·ã‚’å¾…ã¤
 extern	int		NS_WaitVSync( int SyncNum )
 {
 	return Graphics_Hardware_WaitVSync_PF( SyncNum ) ;
 }
 
-// ‰æ–Ê‚Ìó‘Ô‚ğ‰Šú‰»‚·‚é
+// ç”»é¢ã®çŠ¶æ…‹ã‚’åˆæœŸåŒ–ã™ã‚‹
 extern	int NS_ClearDrawScreen( const RECT *ClearRect )
 {
 //	HRESULT hr ;
 //	RECT Rect ;
 
-	// ƒtƒ‹ƒXƒNƒŠ[ƒ“ƒ}ƒXƒNˆ—‚ğs‚Á‚Ä‚¢‚éê‡‚Íƒ}ƒXƒN•`‰æ‚ÌŒ‹‰Ê‚ğ”½‰f‚³‚¹‚é
+	// ãƒ•ãƒ«ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒã‚¹ã‚¯å‡¦ç†ã‚’è¡Œã£ã¦ã„ã‚‹å ´åˆã¯ãƒã‚¹ã‚¯æç”»ã®çµæœã‚’åæ˜ ã•ã›ã‚‹
 	MASK_FULLSCREEN_MASKUPDATE
 
-	// ƒ`ƒFƒbƒN
+	// ãƒã‚§ãƒƒã‚¯
 	if( ClearRect && ( ClearRect->left < 0 || ClearRect->top < 0 ) )
 		ClearRect = NULL ;
 
-	// ƒn[ƒhƒEƒGƒA‹@”\‚ğg‚Á‚Ä‚¢‚é‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+	// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢æ©Ÿèƒ½ã‚’ä½¿ã£ã¦ã„ã‚‹ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 	if( GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )
 	{
-		// ƒn[ƒhƒEƒGƒA‚Ì‹@”\‚ğg‚Á‚Ä‚¢‚éê‡
+		// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã®æ©Ÿèƒ½ã‚’ä½¿ã£ã¦ã„ã‚‹å ´åˆ
 		Graphics_Hardware_ClearDrawScreen_PF( ClearRect ) ;
 	}
 	else
@@ -19971,49 +19971,49 @@ extern	int NS_ClearDrawScreen( const RECT *ClearRect )
 		IMAGEDATA *Image = NULL ;
 		MEMIMG    *ClearTarget ;
 
-		// ƒ\ƒtƒgƒEƒGƒAƒŒƒ“ƒ_ƒŠƒ“ƒO‚Ìê‡
+		// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã®å ´åˆ
 
-		// •`‰ææ‰æ‘œ‚Ì‰æ‘œî•ñ‚ğæ“¾
+		// æç”»å…ˆç”»åƒã®ç”»åƒæƒ…å ±ã‚’å–å¾—
 		GRAPHCHKFULL( GSYS.DrawSetting.TargetScreen[ 0 ], Image ) ;
 
-		// •`‰æ‰Â”\‰æ‘œ‚Ìê‡‚Í‚»‚Ì‰æ‘œ‚ğƒNƒŠƒA
+		// æç”»å¯èƒ½ç”»åƒã®å ´åˆã¯ãã®ç”»åƒã‚’ã‚¯ãƒªã‚¢
 		ClearTarget = Image ? &Image->Soft.MemImg : &GSYS.SoftRender.MainBufferMemImg ;
 		ClearMemImg( ClearTarget, ClearRect, NS_GetColor3( ClearTarget->Base->ColorDataP, GSYS.Screen.BackgroundRed, GSYS.Screen.BackgroundGreen, GSYS.Screen.BackgroundBlue, GSYS.Screen.BackgroundAlpha ) ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ‰æ–Ê‚Ì‚yƒoƒbƒtƒ@‚Ìó‘Ô‚ğ‰Šú‰»‚·‚é
+// ç”»é¢ã®ï¼ºãƒãƒƒãƒ•ã‚¡ã®çŠ¶æ…‹ã‚’åˆæœŸåŒ–ã™ã‚‹
 extern int NS_ClearDrawScreenZBuffer( const RECT *ClearRect )
 {
-	// ƒ`ƒFƒbƒN
+	// ãƒã‚§ãƒƒã‚¯
 	if( ClearRect && ( ClearRect->left < 0 || ClearRect->top < 0 ) )
 		ClearRect = NULL ;
 
-	// ƒn[ƒhƒEƒGƒA‹@”\‚ğg‚Á‚Ä‚¢‚é‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+	// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢æ©Ÿèƒ½ã‚’ä½¿ã£ã¦ã„ã‚‹ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 	if( GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )
 	{
-		// ƒn[ƒhƒEƒGƒA‚Ì‹@”\‚ğg‚Á‚Ä‚¢‚éê‡
+		// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã®æ©Ÿèƒ½ã‚’ä½¿ã£ã¦ã„ã‚‹å ´åˆ
 		Graphics_Hardware_ClearDrawScreenZBuffer_PF( ClearRect ) ;
 	}
 	else
 	{
-		// ƒ\ƒtƒgƒEƒGƒAƒŒƒ“ƒ_ƒŠƒ“ƒO‚Ìê‡‚Í‰½‚à‚µ‚È‚¢
+		// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã®å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ‰æ–Ê‚Ìó‘Ô‚ğ‰Šú‰»‚·‚é(ClearDrawScreen‚Ì‹Œ–¼Ì)
+// ç”»é¢ã®çŠ¶æ…‹ã‚’åˆæœŸåŒ–ã™ã‚‹(ClearDrawScreenã®æ—§åç§°)
 extern int NS_ClsDrawScreen( void )
 {
 	return NS_ClearDrawScreen( NULL ) ;
 }
 
-// •`‰ææ‰æ–Ê‚ÌƒZƒbƒg
+// æç”»å…ˆç”»é¢ã®ã‚»ãƒƒãƒˆ
 extern	int NS_SetDrawScreen( int DrawScreen )
 {
 	int OldScreen ;
@@ -20030,16 +20030,16 @@ extern	int NS_SetDrawScreen( int DrawScreen )
 	
 	if( GSYS.InitializeFlag == FALSE ) return -1 ;
 
-	// ƒ\ƒtƒg‚ª”ñƒAƒNƒeƒBƒu‚Ìê‡‚ÍƒAƒNƒeƒBƒu‚É‚È‚é‚Ü‚Å‘Ò‚Â
+	// ã‚½ãƒ•ãƒˆãŒéã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã®å ´åˆã¯ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ãªã‚‹ã¾ã§å¾…ã¤
 	CheckActiveState() ;
 
-	// ƒOƒ‰ƒtƒBƒbƒN•`‰ææ‚ª¡‚Ü‚Å‚Æ“¯‚¶‚¾‚Á‚½ê‡‰½‚à‚¹‚¸I—¹
+	// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯æç”»å…ˆãŒä»Šã¾ã§ã¨åŒã˜ã ã£ãŸå ´åˆä½•ã‚‚ã›ãšçµ‚äº†
 //	if( DrawScreen == GSYS.DrawSetting.TargetScreen[ 0 ] && GSYS.DrawSetting.TargetScreenSurface == 0 ) return 0 ;
 
-	// ‰æ‘œî•ñ‚Ìæ“¾
+	// ç”»åƒæƒ…å ±ã®å–å¾—
 	if( GSYS.DrawSetting.ShadowMapDrawSetupRequest )
 	{
-		// ƒAƒhƒŒƒX‚Ìæ“¾
+		// ã‚¢ãƒ‰ãƒ¬ã‚¹ã®å–å¾—
 		if( SHADOWMAPCHK( DrawScreen, ShadowMap ) )
 			return -1 ;
 	}
@@ -20048,7 +20048,7 @@ extern	int NS_SetDrawScreen( int DrawScreen )
 		Image = NULL ;
 		if( !GRAPHCHKFULL( DrawScreen, Image ) )
 		{
-			// ‰æ‘œ‚¾‚Á‚½ê‡‚Í•`‰æ‰Â”\‚Å‚Í–³‚¢ê‡‚ÍƒGƒ‰[
+			// ç”»åƒã ã£ãŸå ´åˆã¯æç”»å¯èƒ½ã§ã¯ç„¡ã„å ´åˆã¯ã‚¨ãƒ©ãƒ¼
 			if( Image->Orig->FormatDesc.DrawValidFlag == FALSE )
 				return -1 ;
 		}
@@ -20061,7 +20061,7 @@ extern	int NS_SetDrawScreen( int DrawScreen )
 		}
 	}
 
-	// ¡‚Ü‚Å‚Ì•`‰ææ‚Ì‰æ‘œî•ñ‚Ìæ“¾
+	// ä»Šã¾ã§ã®æç”»å…ˆã®ç”»åƒæƒ…å ±ã®å–å¾—
 	if( GRAPHCHKFULL( GSYS.DrawSetting.TargetScreen[ 0 ], OldImage ) )
 	{
 		OldImage = NULL ;
@@ -20071,7 +20071,7 @@ extern	int NS_SetDrawScreen( int DrawScreen )
 		}
 	}
 
-	// w’è‚µ‚½ƒXƒNƒŠ[ƒ“‚ª–³Œø‚¾‚Á‚½‚ç‰½‚à‚¹‚¸I—¹
+	// æŒ‡å®šã—ãŸã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãŒç„¡åŠ¹ã ã£ãŸã‚‰ä½•ã‚‚ã›ãšçµ‚äº†
 	if( ( DWORD )DrawScreen != DX_SCREEN_FRONT && ( DWORD )DrawScreen != DX_SCREEN_BACK &&
 		( DWORD )DrawScreen != DX_SCREEN_WORK  && ( DWORD )DrawScreen != DX_SCREEN_TEMPFRONT &&
 		ShadowMap == NULL &&
@@ -20082,24 +20082,24 @@ extern	int NS_SetDrawScreen( int DrawScreen )
 		return -1 ;
 	}
 
-	// ¡‚Ü‚Å‚Ì‰æ–Ê‚ª•\‰æ–Ê‚¾‚Á‚½ê‡‚Íˆê“x ScreenCopy ‚ğs‚¤
+	// ä»Šã¾ã§ã®ç”»é¢ãŒè¡¨ç”»é¢ã ã£ãŸå ´åˆã¯ä¸€åº¦ ScreenCopy ã‚’è¡Œã†
 	if( ( DWORD )GSYS.DrawSetting.TargetScreen[ 0 ] == DX_SCREEN_FRONT )
 	{
 		Graphics_Screen_ScreenCopyBase( TRUE ) ;
 	}
 
-	// ƒVƒƒƒhƒEƒ}ƒbƒv‚Ö‚Ì•`‰æİ’è‚ª‚³‚ê‚Ä‚¢‚½‚ç‰ğœ
+	// ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ã¸ã®æç”»è¨­å®šãŒã•ã‚Œã¦ã„ãŸã‚‰è§£é™¤
 	if( GSYS.DrawSetting.ShadowMapDraw )
 	{
 		NS_ShadowMap_DrawEnd() ;
 	}
 
 #ifndef DX_NON_MASK
-	// ƒ}ƒXƒN‚ğg—pI—¹‚·‚éè‘±‚«‚ğæ‚é
+	// ãƒã‚¹ã‚¯ã‚’ä½¿ç”¨çµ‚äº†ã™ã‚‹æ‰‹ç¶šãã‚’å–ã‚‹
 	MaskUseFlag = MASKD.MaskUseFlag ;
 	NS_SetUseMaskScreenFlag( FALSE ) ;
 
-	// •`‰ææ‚ÌƒTƒCƒY‚Åƒ}ƒXƒN‰æ–Ê‚ğì¬‚µ‚È‚¨‚·
+	// æç”»å…ˆã®ã‚µã‚¤ã‚ºã§ãƒã‚¹ã‚¯ç”»é¢ã‚’ä½œæˆã—ãªãŠã™
 	if( GSYS.DrawSetting.ShadowMapDrawSetupRequest == FALSE && MASKD.CreateMaskFlag )
 	{
 		int w, h ;
@@ -20108,7 +20108,7 @@ extern	int NS_SetDrawScreen( int DrawScreen )
 	}
 #endif
 
-	// •`‰ææ‚ğ•Û‘¶
+	// æç”»å…ˆã‚’ä¿å­˜
 	OldScreen                                  = GSYS.DrawSetting.TargetScreen[ 0 ] ;
 	OldScreenSurface                           = GSYS.DrawSetting.TargetScreenSurface[ 0 ] ;
 	OldScreenMipLevel                          = GSYS.DrawSetting.TargetScreenMipLevel[ 0 ] ;
@@ -20116,51 +20116,51 @@ extern	int NS_SetDrawScreen( int DrawScreen )
 	GSYS.DrawSetting.TargetScreenSurface[ 0 ]  = 0 ;
 	GSYS.DrawSetting.TargetScreenMipLevel[ 0 ] = 0 ;
 
-	// •`‰æ‰Â”\ƒTƒCƒY‚Ìæ“¾
+	// æç”»å¯èƒ½ã‚µã‚¤ã‚ºã®å–å¾—
 	NS_GetGraphSize( DrawScreen, &GSYS.DrawSetting.DrawSizeX, &GSYS.DrawSetting.DrawSizeY ) ;
 
-	// •`‰ææ‚É³‚µ‚¢ƒ¿’l‚ğ‘‚«‚Ş‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğXV‚·‚é
+	// æç”»å…ˆã«æ­£ã—ã„Î±å€¤ã‚’æ›¸ãè¾¼ã‚€ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’æ›´æ–°ã™ã‚‹
 	Graphics_DrawSetting_RefreshAlphaChDrawMode() ;
 
-	// ‚R‚c•`‰æŠÖŒW‚Ì•`‰ææ‚ğƒZƒbƒg
+	// ï¼“ï¼¤æç”»é–¢ä¿‚ã®æç”»å…ˆã‚’ã‚»ãƒƒãƒˆ
 	if( GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )
 	{
-		// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒ^‚ğg—p‚·‚éê‡‚Ìˆ—
+		// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚¿ã‚’ä½¿ç”¨ã™ã‚‹å ´åˆã®å‡¦ç†
 		Graphics_Hardware_SetDrawScreen_PF( DrawScreen, OldScreenSurface, OldScreenMipLevel, Image, OldImage, ShadowMap, OldShadowMap ) ;
 	}
 	else
 	{
-		// ƒ\ƒtƒgƒEƒGƒAƒŒƒ“ƒ_ƒŠƒ“ƒO‚Ìê‡‚Ìˆ—
+		// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã®å ´åˆã®å‡¦ç†
 
-		// •`‰ææ‚ÌŒˆ’è
+		// æç”»å…ˆã®æ±ºå®š
 #ifndef DX_NON_MASK
 		if( MASKD.MaskValidFlag )
 		{
-			// ƒ}ƒXƒN‚ª—LŒø‚Èê‡‚Íƒ}ƒXƒN‚ğ•`‰ææ‚É‚·‚é
+			// ãƒã‚¹ã‚¯ãŒæœ‰åŠ¹ãªå ´åˆã¯ãƒã‚¹ã‚¯ã‚’æç”»å…ˆã«ã™ã‚‹
 			GSYS.SoftRender.TargetMemImg = &MASKD.MaskDrawMemImg ;
 		}
 		else
 #endif
 		{
-			// ‰æ‘œ‚ª•`‰æ‘ÎÛ‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+			// ç”»åƒãŒæç”»å¯¾è±¡ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 			if( Image != NULL )
 			{
-				// ƒAƒ‹ƒtƒ@ƒ`ƒƒƒ“ƒlƒ‹•t‚«‚Ì‰æ‘œ‚Ìê‡‚Í•`‰æ‘ÎÛ‚É‚Å‚«‚È‚¢
+				// ã‚¢ãƒ«ãƒ•ã‚¡ãƒãƒ£ãƒ³ãƒãƒ«ä»˜ãã®ç”»åƒã®å ´åˆã¯æç”»å¯¾è±¡ã«ã§ããªã„
 				if( Image->Soft.MemImg.Base->UseAlpha == TRUE )
 					return -1 ;
 
-				// •`‰æ‰Â”\‰æ‘œ‚ğ•`‰ææ‚É
+				// æç”»å¯èƒ½ç”»åƒã‚’æç”»å…ˆã«
 				GSYS.SoftRender.TargetMemImg = &Image->Soft.MemImg ;
 			}
 			else
 			{
-				// ƒƒCƒ“ƒoƒbƒtƒ@‚ğ•`‰ææ‚É
+				// ãƒ¡ã‚¤ãƒ³ãƒãƒƒãƒ•ã‚¡ã‚’æç”»å…ˆã«
 				GSYS.SoftRender.TargetMemImg = &GSYS.SoftRender.MainBufferMemImg ;
 			}
 		}
 	}
 
-	// ‚Q‚c•`‰æ—p‚Ìs—ñ‚ğì¬
+	// ï¼’ï¼¤æç”»ç”¨ã®è¡Œåˆ—ã‚’ä½œæˆ
 //	{
 //		CreateViewportMatrix(
 //			&GSYS.DrawSetting.ViewportMatrix2D,
@@ -20177,7 +20177,7 @@ extern	int NS_SetDrawScreen( int DrawScreen )
 //		GSYS.DrawSetting.ProjectionMatrix2D.m[ 3 ][ 1 ] =  1.0f ;
 //	}
 
-	// •`‰æ—Ìˆæ‚ğXV
+	// æç”»é ˜åŸŸã‚’æ›´æ–°
 	{
 		RECT SrcRect ;
 		int NewWidth = 0, NewHeight = 0, OldWidth = 0, OldHeight = 0 ;
@@ -20220,25 +20220,25 @@ extern	int NS_SetDrawScreen( int DrawScreen )
 		}
 	}
 		
-	// ‚R‚c•`‰æˆ——p‚Ìs—ñİ’è‚Ì‰Šú‰»‚ğs‚¤
+	// ï¼“ï¼¤æç”»å‡¦ç†ç”¨ã®è¡Œåˆ—è¨­å®šã®åˆæœŸåŒ–ã‚’è¡Œã†
 	if( GSYS.DrawSetting.SetDrawScreenNoSettingResetFlag == FALSE || GSYS.DrawSetting.ShadowMapDrawSetupRequest )
 	{
 		MATRIX mat ;
 		float D ;
 
-		// ƒhƒbƒgƒAƒXƒyƒNƒg‚ğ‚PD‚O‚É–ß‚·
+		// ãƒ‰ãƒƒãƒˆã‚¢ã‚¹ãƒšã‚¯ãƒˆã‚’ï¼‘ï¼ï¼ã«æˆ»ã™
 		NS_SetCameraDotAspect( 1.0f ) ;
 
-		// ƒ[ƒ‹ƒh•ÏŠ·s—ñ‚Í’PˆÊs—ñ
+		// ãƒ¯ãƒ¼ãƒ«ãƒ‰å¤‰æ›è¡Œåˆ—ã¯å˜ä½è¡Œåˆ—
 		CreateIdentityMatrix( &mat ) ;
 		NS_SetTransformToWorld( &mat ) ;
 
-		// ƒ‰ƒCƒuƒ‰ƒŠŠÇ—‚Ìƒrƒ…[ƒ|[ƒgs—ñ‚ğXV
+		// ãƒ©ã‚¤ãƒ–ãƒ©ãƒªç®¡ç†ã®ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆè¡Œåˆ—ã‚’æ›´æ–°
 		GSYS.Camera.ScreenCenterX = ( double )GSYS.DrawSetting.DrawSizeX / 2.0 ;
 		GSYS.Camera.ScreenCenterY = ( double )GSYS.DrawSetting.DrawSizeY / 2.0 ;
 		NS_SetCameraScreenCenterD( GSYS.Camera.ScreenCenterX, GSYS.Camera.ScreenCenterY ) ;
 
-		// ƒrƒ…[s—ñ‚Í z = 0.0 ‚Ì‚É’š“xƒXƒNƒŠ[ƒ“‘S‘Ì‚ªÊ‚éˆÊ’u‚Æ•ûŒü‚ğ‚ÂƒJƒƒ‰‚ğ
+		// ãƒ“ãƒ¥ãƒ¼è¡Œåˆ—ã¯ z = 0.0 ã®æ™‚ã«ä¸åº¦ã‚¹ã‚¯ãƒªãƒ¼ãƒ³å…¨ä½“ãŒå†™ã‚‹ä½ç½®ã¨æ–¹å‘ã‚’æŒã¤ã‚«ãƒ¡ãƒ©ã‚’
 		{
 			VECTOR up, at, eye ;
 
@@ -20261,93 +20261,93 @@ extern	int NS_SetDrawScreen( int DrawScreen )
 //				NS_SetTransformToView( &mat ) ;
 		}
 
-		// ƒvƒƒWƒFƒNƒVƒ‡ƒ“s—ñ‚Í•’Ê‚É
+		// ãƒ—ãƒ­ã‚¸ã‚§ã‚¯ã‚·ãƒ§ãƒ³è¡Œåˆ—ã¯æ™®é€šã«
 		NS_SetupCamera_Perspective( DEFAULT_FOV ) ;
 		NS_SetCameraNearFar( D * 0.1f + DEFAULT_NEAR, D + DEFAULT_FAR ) ;
 	}
 
 #ifndef DX_NON_MASK
-	// ƒ}ƒXƒN‚ğg—p‚·‚éè‘±‚«‚ğæ‚é
+	// ãƒã‚¹ã‚¯ã‚’ä½¿ç”¨ã™ã‚‹æ‰‹ç¶šãã‚’å–ã‚‹
 	NS_SetUseMaskScreenFlag( MaskUseFlag ) ;
 #endif
 
-	// ƒVƒƒƒhƒEƒ}ƒbƒv‚É‘Î‚·‚é•`‰æ€”õƒŠƒNƒGƒXƒg‚¾‚Á‚½ê‡‚ÍƒŠƒNƒGƒXƒgƒtƒ‰ƒO‚ğ“|‚µA•`‰æ€”õó‘Ô‚ğ•Û‘¶‚·‚é
+	// ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ã«å¯¾ã™ã‚‹æç”»æº–å‚™ãƒªã‚¯ã‚¨ã‚¹ãƒˆã ã£ãŸå ´åˆã¯ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ•ãƒ©ã‚°ã‚’å€’ã—ã€æç”»æº–å‚™çŠ¶æ…‹ã‚’ä¿å­˜ã™ã‚‹
 	if( GSYS.DrawSetting.ShadowMapDrawSetupRequest )
 	{
 		GSYS.DrawSetting.ShadowMapDrawSetupRequest = FALSE ;
 
-		// ƒVƒƒƒhƒEƒ}ƒbƒv‚É‘Î‚·‚é•`‰æ‚Å‚ ‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğ—§‚Ä‚é
+		// ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ã«å¯¾ã™ã‚‹æç”»ã§ã‚ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 		GSYS.DrawSetting.ShadowMapDraw = TRUE ;
 
-		// ƒVƒƒƒhƒEƒ}ƒbƒv‚É‘Î‚·‚é•`‰æ‚Ìê‡‚ÌA‘ÎÛ‚Æ‚È‚éƒVƒƒƒhƒEƒ}ƒbƒv‚Ìƒnƒ“ƒhƒ‹‚ğ•Û‘¶
+		// ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ã«å¯¾ã™ã‚‹æç”»ã®å ´åˆã®ã€å¯¾è±¡ã¨ãªã‚‹ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ã®ãƒãƒ³ãƒ‰ãƒ«ã‚’ä¿å­˜
 		GSYS.DrawSetting.ShadowMapDrawHandle = DrawScreen ;
 	}
 
-	// SetDrawScreen ‚ÌŒã‚És‚¤ŠÂ‹«ˆË‘¶ˆ—‚ğÀs‚·‚é
+	// SetDrawScreen ã®å¾Œã«è¡Œã†ç’°å¢ƒä¾å­˜å‡¦ç†ã‚’å®Ÿè¡Œã™ã‚‹
 	Graphics_Hardware_SetDrawScreen_Post_PF( DrawScreen ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// •`‰ææ‰æ–Ê‚Ìæ“¾
+// æç”»å…ˆç”»é¢ã®å–å¾—
 extern int NS_GetDrawScreen( void )
 {
 	return GSYS.DrawSetting.TargetScreen[ 0 ] ;
 }
 
-// ƒAƒNƒeƒBƒu‚É‚È‚Á‚Ä‚¢‚éƒOƒ‰ƒtƒBƒbƒN‚Ìƒnƒ“ƒhƒ‹‚ğ“¾‚é
+// ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ãªã£ã¦ã„ã‚‹ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®ãƒãƒ³ãƒ‰ãƒ«ã‚’å¾—ã‚‹
 extern int NS_GetActiveGraph( void )
 {
 	return NS_GetDrawScreen() ;
 }
 
-// SetDrawScreen ‚ğÀs‚µ‚½Û‚ÉƒJƒƒ‰‚â•`‰æ”ÍˆÍ‚Ìİ’è‚ğƒŠƒZƒbƒg‚·‚é‚©‚ğİ’è‚·‚é( UseFlag  TRUE:ƒŠƒZƒbƒg‚·‚é( ƒfƒtƒHƒ‹ƒg )  FALSE:ƒŠƒZƒbƒg‚µ‚È‚¢ )
+// SetDrawScreen ã‚’å®Ÿè¡Œã—ãŸéš›ã«ã‚«ãƒ¡ãƒ©ã‚„æç”»ç¯„å›²ã®è¨­å®šã‚’ãƒªã‚»ãƒƒãƒˆã™ã‚‹ã‹ã‚’è¨­å®šã™ã‚‹( UseFlag  TRUE:ãƒªã‚»ãƒƒãƒˆã™ã‚‹( ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ )  FALSE:ãƒªã‚»ãƒƒãƒˆã—ãªã„ )
 extern	int NS_SetUseSetDrawScreenSettingReset( int UseFlag )
 {
 	GSYS.DrawSetting.SetDrawScreenNoSettingResetFlag = UseFlag ? FALSE : TRUE ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// SetDrawScreen ‚ğÀs‚µ‚½Û‚ÉƒJƒƒ‰‚â•`‰æ”ÍˆÍ‚Ìİ’è‚ğƒŠƒZƒbƒg‚·‚é‚©‚ğæ“¾‚·‚é
+// SetDrawScreen ã‚’å®Ÿè¡Œã—ãŸéš›ã«ã‚«ãƒ¡ãƒ©ã‚„æç”»ç¯„å›²ã®è¨­å®šã‚’ãƒªã‚»ãƒƒãƒˆã™ã‚‹ã‹ã‚’å–å¾—ã™ã‚‹
 extern	int NS_GetUseSetDrawScreenSettingReset( void )
 {
 	return GSYS.DrawSetting.SetDrawScreenNoSettingResetFlag ? FALSE : TRUE ;
 }
 
-// •`‰ææ‚yƒoƒbƒtƒ@‚ÌƒZƒbƒg
+// æç”»å…ˆï¼ºãƒãƒƒãƒ•ã‚¡ã®ã‚»ãƒƒãƒˆ
 extern	int	NS_SetDrawZBuffer( int DrawScreen )
 {
 	IMAGEDATA *Image ;
 	
 	if( GSYS.InitializeFlag == FALSE ) return -1 ;
 
-	// ƒ\ƒtƒg‚ª”ñƒAƒNƒeƒBƒu‚Ìê‡‚ÍƒAƒNƒeƒBƒu‚É‚È‚é‚Ü‚Å‘Ò‚Â
+	// ã‚½ãƒ•ãƒˆãŒéã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã®å ´åˆã¯ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ãªã‚‹ã¾ã§å¾…ã¤
 	CheckActiveState() ;
 
-	// ‰æ‘œî•ñ‚Ìæ“¾
+	// ç”»åƒæƒ…å ±ã®å–å¾—
 	Image = NULL ;
 	GRAPHCHKFULL( DrawScreen, Image ) ;
 
-	// ŠÂ‹«ˆË‘¶ˆ—
+	// ç’°å¢ƒä¾å­˜å‡¦ç†
 	if( Graphics_Hardware_SetDrawZBuffer_PF( DrawScreen, Image ) < 0 )
 	{
 		return -1 ;
 	}
 
-	// •`‰ææ‚yƒoƒbƒtƒ@‚Ìƒnƒ“ƒhƒ‹‚ğ•Û‘¶
+	// æç”»å…ˆï¼ºãƒãƒƒãƒ•ã‚¡ã®ãƒãƒ³ãƒ‰ãƒ«ã‚’ä¿å­˜
 	GSYS.DrawSetting.TargetZBuffer = DrawScreen ;
 
-	// •`‰ææ‚yƒoƒbƒtƒ@‚ğXV
+	// æç”»å…ˆï¼ºãƒãƒƒãƒ•ã‚¡ã‚’æ›´æ–°
 	Graphics_Screen_SetupUseZBuffer() ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ‰æ–Êƒ‚[ƒh‚ÌƒZƒbƒg
+// ç”»é¢ãƒ¢ãƒ¼ãƒ‰ã®ã‚»ãƒƒãƒˆ
 extern int NS_SetGraphMode( int ScreenSizeX, int ScreenSizeY, int ColorBitDepth, int RefreshRate )
 {
 	int Width ;
@@ -20362,14 +20362,14 @@ extern int NS_SetGraphMode( int ScreenSizeX, int ScreenSizeY, int ColorBitDepth,
 		ColorBitDepth = DEFAULT_COLOR_BITDEPTH ;
 	}
 
-	// ‚R‚Q‚O~‚Q‚S‚O‚Ì‰æ–Ê‚ğƒGƒ~ƒ…ƒŒ[ƒVƒ‡ƒ“‚·‚éƒtƒ‰ƒO‚ª—§‚Á‚Ä‚¢‚éê‡‚Í‹­§“I‚É‰ğ‘œ“x‚ğ‚R‚Q‚O~‚Q‚S‚O‚É‚·‚é
+	// ï¼“ï¼’ï¼Ã—ï¼’ï¼”ï¼ã®ç”»é¢ã‚’ã‚¨ãƒŸãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ã™ã‚‹ãƒ•ãƒ©ã‚°ãŒç«‹ã£ã¦ã„ã‚‹å ´åˆã¯å¼·åˆ¶çš„ã«è§£åƒåº¦ã‚’ï¼“ï¼’ï¼Ã—ï¼’ï¼”ï¼ã«ã™ã‚‹
 	if( GSYS.Screen.Emulation320x240Flag )
 	{
 		ScreenSizeX = 320 ;
 		ScreenSizeY = 240 ;
 	}
 
-	// ƒGƒ‰[ƒ`ƒFƒbƒN
+	// ã‚¨ãƒ©ãƒ¼ãƒã‚§ãƒƒã‚¯
 	if( ScreenSizeX <= 0 ||
 		ScreenSizeY <= 0 ||
 		( ColorBitDepth != 0 && ColorBitDepth != 8 && ColorBitDepth != 16 && ColorBitDepth != 32 ) )
@@ -20377,7 +20377,7 @@ extern int NS_SetGraphMode( int ScreenSizeX, int ScreenSizeY, int ColorBitDepth,
 		return DX_CHANGESCREEN_RETURN ;
 	}
 
-	// ƒ‚ƒjƒ^‚ª‘Î‰‚µ‚Ä‚¢‚é‰ğ‘œ“x‚Å‚Í–³‚­AŠ‚Âƒ‚ƒjƒ^‚ª‘Î‰‚µ‚Ä‚¢‚éÅ‘å‰ğ‘œ“x‚æ‚è‚à‘å‚«‚¢‰ğ‘œ“x‚ªw’è‚³‚ê‚½ê‡‚ÍƒGƒ‰[
+	// ãƒ¢ãƒ‹ã‚¿ãŒå¯¾å¿œã—ã¦ã„ã‚‹è§£åƒåº¦ã§ã¯ç„¡ãã€ä¸”ã¤ãƒ¢ãƒ‹ã‚¿ãŒå¯¾å¿œã—ã¦ã„ã‚‹æœ€å¤§è§£åƒåº¦ã‚ˆã‚Šã‚‚å¤§ãã„è§£åƒåº¦ãŒæŒ‡å®šã•ã‚ŒãŸå ´åˆã¯ã‚¨ãƒ©ãƒ¼
 //	if( Graphics_Screen_CheckDisplaySetting( ScreenSizeX, ScreenSizeY, ColorBitDepth ) == FALSE )
 //	{
 //		NS_GetDisplayMaxResolution( &MaxScreenSizeX, &MaxScreenSizeY ) ;
@@ -20387,7 +20387,7 @@ extern int NS_SetGraphMode( int ScreenSizeX, int ScreenSizeY, int ColorBitDepth,
 //		}
 //	}
 
-	// ‰Šú‰»‘O‚Ìê‡‚Íİ’è’l‚¾‚¯•Û‘¶‚·‚é
+	// åˆæœŸåŒ–å‰ã®å ´åˆã¯è¨­å®šå€¤ã ã‘ä¿å­˜ã™ã‚‹
 	if( DxSysData.DxLib_InitializeFlag == FALSE )
 	{
 		Graphics_Screen_SetMainScreenSize( ScreenSizeX, ScreenSizeY ) ;
@@ -20397,16 +20397,16 @@ extern int NS_SetGraphMode( int ScreenSizeX, int ScreenSizeY, int ColorBitDepth,
 		return 0 ;
 	}
 
-	// Œ³‚Ì’l‚ğæ‚Á‚Ä‚¨‚­
+	// å…ƒã®å€¤ã‚’å–ã£ã¦ãŠã
 	Width	= GSYS.Screen.MainScreenSizeX ;
 	Height	= GSYS.Screen.MainScreenSizeY ;
 	CDepth	= GSYS.Screen.MainScreenColorBitDepth ;
 	RRate	= GSYS.Screen.MainScreenRefreshRate ;
 
-	// ‰æ–Êƒ‚[ƒh‚ğ•ÏX
+	// ç”»é¢ãƒ¢ãƒ¼ãƒ‰ã‚’å¤‰æ›´
 	Graphics_Screen_ChangeMode( ScreenSizeX, ScreenSizeY, ColorBitDepth, FALSE, RefreshRate, FALSE ) ;
 
-	// –ß‚è’l‚ÌƒZƒbƒg
+	// æˆ»ã‚Šå€¤ã®ã‚»ãƒƒãƒˆ
 	if( ScreenSizeX == GSYS.Screen.MainScreenSizeX &&
 		ScreenSizeY == GSYS.Screen.MainScreenSizeY 
 #ifdef WINDOWS_DESKTOP_OS
@@ -20460,21 +20460,21 @@ extern int NS_SetGraphMode( int ScreenSizeX, int ScreenSizeY, int ColorBitDepth,
 	}
 }
 
-// ‰æ–Ê‚Ìƒƒ‚ƒŠƒCƒ[ƒW‚ğƒZƒbƒg‚·‚é( DxLib_Init ‚Ì‘O‚ÅŒÄ‚Ô•K—v‚ª‚ ‚é( DxLib_Init ‚Ì‘O‚Éˆê“x‚Å‚àŒÄ‚ñ‚Å‚¢‚ê‚ÎADxLib_Init Œã‚Í Image ‚ÌƒAƒhƒŒƒX‚Ì‚İ‚Ì•ÏX–Ú“I‚ÅŒÄ‚Ô‚±‚Æ‚Í‰Â”\ )APixelFormat ‚É DX_USER_SCREEN_PIXEL_FORMAT_R5G6B5 –”‚Í DX_USER_SCREEN_PIXEL_FORMAT_X8R8G8B8 ‚Ì“ñ‚ÂˆÈŠO‚ğw’è‚µ‚½ê‡‚Í‚c‚wƒ‰ƒCƒuƒ‰ƒŠ‚Ì•`‰æŠÖ”‚ÍˆêØg—p‚Å‚«‚È‚­‚È‚è‚Ü‚· )
-extern int NS_SetUserScreenImage( void *Image, int PixelFormat /* DX_USER_SCREEN_PIXEL_FORMAT_R5G6B5 “™ */ )
+// ç”»é¢ã®ãƒ¡ãƒ¢ãƒªã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’ã‚»ãƒƒãƒˆã™ã‚‹( DxLib_Init ã®å‰ã§å‘¼ã¶å¿…è¦ãŒã‚ã‚‹( DxLib_Init ã®å‰ã«ä¸€åº¦ã§ã‚‚å‘¼ã‚“ã§ã„ã‚Œã°ã€DxLib_Init å¾Œã¯ Image ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã®ã¿ã®å¤‰æ›´ç›®çš„ã§å‘¼ã¶ã“ã¨ã¯å¯èƒ½ )ã€PixelFormat ã« DX_USER_SCREEN_PIXEL_FORMAT_R5G6B5 åˆã¯ DX_USER_SCREEN_PIXEL_FORMAT_X8R8G8B8 ã®äºŒã¤ä»¥å¤–ã‚’æŒ‡å®šã—ãŸå ´åˆã¯ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®æç”»é–¢æ•°ã¯ä¸€åˆ‡ä½¿ç”¨ã§ããªããªã‚Šã¾ã™ )
+extern int NS_SetUserScreenImage( void *Image, int PixelFormat /* DX_USER_SCREEN_PIXEL_FORMAT_R5G6B5 ç­‰ */ )
 {
-	// ‰ŠúŒã‚Ìê‡‚ÍA‰Šú‰»‘O‚ÉŠù‚É’l‚ğİ’è‚³‚ê‚Ä‚¢‚ÄAŠ‚ÂƒsƒNƒZƒ‹ƒtƒH[ƒ}ƒbƒg‚ªˆê’v‚µ‚Ä‚¢‚éê‡‚Ì‚İİ’è‚ğ•ÏX‚·‚é
+	// åˆæœŸå¾Œã®å ´åˆã¯ã€åˆæœŸåŒ–å‰ã«æ—¢ã«å€¤ã‚’è¨­å®šã•ã‚Œã¦ã„ã¦ã€ä¸”ã¤ãƒ”ã‚¯ã‚»ãƒ«ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆãŒä¸€è‡´ã—ã¦ã„ã‚‹å ´åˆã®ã¿è¨­å®šã‚’å¤‰æ›´ã™ã‚‹
 	if( DxSysData.DxLib_InitializeFlag == TRUE &&
 		( GSYS.Screen.UserScreenImage == NULL || GSYS.Screen.UserScreenImagePixelFormat != PixelFormat ) )
 	{
 		return -1 ;
 	}
 
-	// ’l‚ğ•Û‘¶‚·‚é
+	// å€¤ã‚’ä¿å­˜ã™ã‚‹
 	GSYS.Screen.UserScreenImage = Image ;
 	GSYS.Screen.UserScreenImagePixelFormat = PixelFormat ;
 
-	// ƒ\ƒtƒgƒEƒFƒAƒŒƒ“ƒ_ƒŠƒ“ƒOƒ‚[ƒh‚É‘Î‰‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©‚ğ”»’è
+	// ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ãƒ¢ãƒ¼ãƒ‰ã«å¯¾å¿œã—ã¦ã„ã‚‹ã‹ã©ã†ã‹ã‚’åˆ¤å®š
 	if( PixelFormat == DX_USER_SCREEN_PIXEL_FORMAT_R5G6B5 ||
 		PixelFormat == DX_USER_SCREEN_PIXEL_FORMAT_X8R8G8B8 )
 	{
@@ -20485,7 +20485,7 @@ extern int NS_SetUserScreenImage( void *Image, int PixelFormat /* DX_USER_SCREEN
 		GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode = FALSE ;
 	}
 
-	// ƒ\ƒtƒgƒEƒFƒAƒŒƒ“ƒ_ƒŠƒ“ƒOƒ‚[ƒh‚ğg—p‚µ‚Ä‚¢‚éê‡‚ÍƒAƒhƒŒƒX‚àXV
+	// ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ãƒ¢ãƒ¼ãƒ‰ã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹å ´åˆã¯ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚‚æ›´æ–°
 	if( GSYS.SoftRender.MainBufferMemImg.InitializeCheck )
 	{
 		if( GSYS.Screen.UserScreenImage == NULL || GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )
@@ -20498,31 +20498,31 @@ extern int NS_SetUserScreenImage( void *Image, int PixelFormat /* DX_USER_SCREEN
 		}
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒtƒ‹ƒXƒNƒŠ[ƒ“‰ğ‘œ“xƒ‚[ƒh‚ğİ’è‚·‚é
-extern int NS_SetFullScreenResolutionMode( int ResolutionMode /* DX_FSRESOLUTIONMODE_NATIVE “™ */ )
+// ãƒ•ãƒ«ã‚¹ã‚¯ãƒªãƒ¼ãƒ³è§£åƒåº¦ãƒ¢ãƒ¼ãƒ‰ã‚’è¨­å®šã™ã‚‹
+extern int NS_SetFullScreenResolutionMode( int ResolutionMode /* DX_FSRESOLUTIONMODE_NATIVE ç­‰ */ )
 {
-	// ‰ŠúŒã‚Ìê‡‚Í‰½‚à‚¹‚¸I—¹
+	// åˆæœŸå¾Œã®å ´åˆã¯ä½•ã‚‚ã›ãšçµ‚äº†
 //	if( DxSysData.DxLib_InitializeFlag == TRUE )
 //	{
 //		return -1 ;
 //	}
 
-	// ¡‚Ü‚Å‚Æİ’è‚ª“¯‚¶ê‡‚Í‰½‚à‚¹‚¸I—¹
+	// ä»Šã¾ã§ã¨è¨­å®šãŒåŒã˜å ´åˆã¯ä½•ã‚‚ã›ãšçµ‚äº†
 	if( GSYS.Screen.FullScreenResolutionMode == ResolutionMode )
 	{
 		return 0 ;
 	}
 
-	// ƒtƒ‹ƒXƒNƒŠ[ƒ“‰ğ‘œ“xƒ‚[ƒh‚ğ•Û‘¶‚·‚é
+	// ãƒ•ãƒ«ã‚¹ã‚¯ãƒªãƒ¼ãƒ³è§£åƒåº¦ãƒ¢ãƒ¼ãƒ‰ã‚’ä¿å­˜ã™ã‚‹
 	GSYS.Screen.FullScreenResolutionMode    = ResolutionMode ;
 	GSYS.Screen.FullScreenResolutionModeAct = ResolutionMode ;
 
 #ifdef WINDOWS_DESKTOP_OS
-	// ƒtƒ‹ƒXƒNƒŠ[ƒ“ƒ‚[ƒh‚Ìê‡‚Íİ’è‚Ì•ÏX‚ğ“K—p‚·‚é
+	// ãƒ•ãƒ«ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ¢ãƒ¼ãƒ‰ã®å ´åˆã¯è¨­å®šã®å¤‰æ›´ã‚’é©ç”¨ã™ã‚‹
 	if( NS_GetWindowModeFlag() == FALSE )
 	{
 		SetWindowStyle() ;
@@ -20530,11 +20530,11 @@ extern int NS_SetFullScreenResolutionMode( int ResolutionMode /* DX_FSRESOLUTION
 	}
 #endif // WINDOWS_DESKTOP_OS
 	
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒtƒ‹ƒXƒNƒŠ[ƒ“‰ğ‘œ“xƒ‚[ƒh‚ğæ“¾‚·‚é( UseResolutionMode ‚ÍÀÛ‚Ég—p‚³‚ê‚Ä‚¢‚é‰ğ‘œ“xƒ‚[ƒh( —á‚¦‚Î DX_FSRESOLUTIONMODE_NATIVE ‚ğw’è‚µ‚Ä‚¢‚Ä‚àƒ‚ƒjƒ^‚ªw’è‚Ì‰ğ‘œ“x‚É‘Î‰‚µ‚Ä‚¢‚È‚¢ê‡‚Í UseResolutionMode ‚ª DX_FSRESOLUTIONMODE_DESKTOP ‚â DX_FSRESOLUTIONMODE_MAXIMUM ‚É‚È‚è‚Ü‚· ) )
+// ãƒ•ãƒ«ã‚¹ã‚¯ãƒªãƒ¼ãƒ³è§£åƒåº¦ãƒ¢ãƒ¼ãƒ‰ã‚’å–å¾—ã™ã‚‹( UseResolutionMode ã¯å®Ÿéš›ã«ä½¿ç”¨ã•ã‚Œã¦ã„ã‚‹è§£åƒåº¦ãƒ¢ãƒ¼ãƒ‰( ä¾‹ãˆã° DX_FSRESOLUTIONMODE_NATIVE ã‚’æŒ‡å®šã—ã¦ã„ã¦ã‚‚ãƒ¢ãƒ‹ã‚¿ãŒæŒ‡å®šã®è§£åƒåº¦ã«å¯¾å¿œã—ã¦ã„ãªã„å ´åˆã¯ UseResolutionMode ãŒ DX_FSRESOLUTIONMODE_DESKTOP ã‚„ DX_FSRESOLUTIONMODE_MAXIMUM ã«ãªã‚Šã¾ã™ ) )
 extern int NS_GetFullScreenResolutionMode( int *ResolutionMode, int *UseResolutionMode )
 {
 	if( ResolutionMode != NULL )
@@ -20547,68 +20547,68 @@ extern int NS_GetFullScreenResolutionMode( int *ResolutionMode, int *UseResoluti
 		*UseResolutionMode = GSYS.Screen.FullScreenResolutionModeAct ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒtƒ‹ƒXƒNƒŠ[ƒ“‰ğ‘œ“xƒ‚[ƒh‚ğæ“¾‚·‚é( GetFullScreenResolutionMode ‚Ì UseResolutionMode ‚Åæ“¾‚Å‚«‚é’l‚ğ•Ô‚·ŠÖ” )
+// ãƒ•ãƒ«ã‚¹ã‚¯ãƒªãƒ¼ãƒ³è§£åƒåº¦ãƒ¢ãƒ¼ãƒ‰ã‚’å–å¾—ã™ã‚‹( GetFullScreenResolutionMode ã® UseResolutionMode ã§å–å¾—ã§ãã‚‹å€¤ã‚’è¿”ã™é–¢æ•° )
 extern int NS_GetUseFullScreenResolutionMode( void )
 {
 	return GSYS.Screen.FullScreenResolutionModeAct ;
 }
 
-// ƒtƒ‹ƒXƒNƒŠ[ƒ“ƒ‚[ƒh‚Ì‰æ–ÊŠg‘åƒ‚[ƒh‚ğİ’è‚·‚é
-extern int NS_SetFullScreenScalingMode( int ScalingMode /* DX_FSSCALINGMODE_NEAREST “™ */ , int FitScaling )
+// ãƒ•ãƒ«ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ¢ãƒ¼ãƒ‰æ™‚ã®ç”»é¢æ‹¡å¤§ãƒ¢ãƒ¼ãƒ‰ã‚’è¨­å®šã™ã‚‹
+extern int NS_SetFullScreenScalingMode( int ScalingMode /* DX_FSSCALINGMODE_NEAREST ç­‰ */ , int FitScaling )
 {
-	// ƒtƒ‹ƒXƒNƒŠ[ƒ“ƒXƒP[ƒŠƒ“ƒOƒ‚[ƒh‚ğ•Û‘¶‚·‚é
+	// ãƒ•ãƒ«ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚¹ã‚±ãƒ¼ãƒªãƒ³ã‚°ãƒ¢ãƒ¼ãƒ‰ã‚’ä¿å­˜ã™ã‚‹
 	GSYS.Screen.FullScreenScalingMode = ScalingMode ;
 
-	// ƒQ[ƒ€‰æ–Ê‚Ì‰ğ‘œ“x‚Æƒtƒ‹ƒXƒNƒŠ[ƒ“‰æ–Ê‚Ì‰ğ‘œ“x‚ªˆÙ‚È‚Á‚½ê‡‚Éƒtƒ‹ƒXƒNƒŠ[ƒ“‰æ–Êˆê”t‚ÉŠg‘å‚µ‚Ä•\¦‚·‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğ•Û‘¶‚·‚é
+	// ã‚²ãƒ¼ãƒ ç”»é¢ã®è§£åƒåº¦ã¨ãƒ•ãƒ«ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ç”»é¢ã®è§£åƒåº¦ãŒç•°ãªã£ãŸå ´åˆã«ãƒ•ãƒ«ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ç”»é¢ä¸€æ¯ã«æ‹¡å¤§ã—ã¦è¡¨ç¤ºã™ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’ä¿å­˜ã™ã‚‹
 	GSYS.Screen.FullScreenFitScalingFlag = FitScaling ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ‚U‚S‚O‚˜‚S‚W‚O‚Ì‰æ–Ê‚Å‚R‚Q‚O‚˜‚Q‚S‚O‚Ì‰æ–Ê‰ğ‘œ“x‚É‚·‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğƒZƒbƒg‚·‚éA‚U‚S‚O‚˜‚S‚W‚OˆÈŠO‚Ì‰ğ‘œ“x‚Å‚Í–³Œø( TRUE:—LŒø  FALSE:–³Œø )
+// ï¼–ï¼”ï¼ï½˜ï¼”ï¼˜ï¼ã®ç”»é¢ã§ï¼“ï¼’ï¼ï½˜ï¼’ï¼”ï¼ã®ç”»é¢è§£åƒåº¦ã«ã™ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆã™ã‚‹ã€ï¼–ï¼”ï¼ï½˜ï¼”ï¼˜ï¼ä»¥å¤–ã®è§£åƒåº¦ã§ã¯ç„¡åŠ¹( TRUE:æœ‰åŠ¹  FALSE:ç„¡åŠ¹ )
 extern int NS_SetEmulation320x240( int Flag )
 {
-	// ‰ŠúŒã‚Ìê‡‚Í‰½‚à‚¹‚¸I—¹
+	// åˆæœŸå¾Œã®å ´åˆã¯ä½•ã‚‚ã›ãšçµ‚äº†
 	if( DxSysData.DxLib_InitializeFlag == TRUE )
 	{
 		return -1 ;
 	}
 
-	// ƒtƒ‰ƒO‚ğ•Û‘¶
+	// ãƒ•ãƒ©ã‚°ã‚’ä¿å­˜
 	GSYS.Screen.Emulation320x240Flag = Flag;
 
-	// ƒtƒ‰ƒO‚ª TRUE ‚Ìê‡‚Í‰æ–Êƒ‚[ƒh‚ğ 320x240 ‚ÉAƒXƒP[ƒŠƒ“ƒOƒ‚[ƒh‚ğ DX_FSSCALINGMODE_NEAREST ‚Éİ’è‚·‚é
+	// ãƒ•ãƒ©ã‚°ãŒ TRUE ã®å ´åˆã¯ç”»é¢ãƒ¢ãƒ¼ãƒ‰ã‚’ 320x240 ã«ã€ã‚¹ã‚±ãƒ¼ãƒªãƒ³ã‚°ãƒ¢ãƒ¼ãƒ‰ã‚’ DX_FSSCALINGMODE_NEAREST ã«è¨­å®šã™ã‚‹
 	if( Flag != FALSE )
 	{
 		NS_SetGraphMode( 320, 240, GSYS.Screen.MainScreenColorBitDepth, GSYS.Screen.MainScreenRefreshRate ) ;
 		NS_SetFullScreenScalingMode( DX_FSSCALINGMODE_NEAREST, FALSE ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0;
 }
 
-// ‰æ–Ê—p‚Ì‚yƒoƒbƒtƒ@‚ÌƒTƒCƒY‚ğİ’è‚·‚é
+// ç”»é¢ç”¨ã®ï¼ºãƒãƒƒãƒ•ã‚¡ã®ã‚µã‚¤ã‚ºã‚’è¨­å®šã™ã‚‹
 extern int NS_SetZBufferSize( int ZBufferSizeX, int ZBufferSizeY )
 {
 	return Graphics_Screen_SetZBufferMode( ZBufferSizeX, ZBufferSizeY, -1 ) ;
 }
 
-// ‰æ–Ê—p‚Ì‚yƒoƒbƒtƒ@‚Ìƒrƒbƒg[“x‚ğİ’è‚·‚é( 16 or 24 or 32 )
+// ç”»é¢ç”¨ã®ï¼ºãƒãƒƒãƒ•ã‚¡ã®ãƒ“ãƒƒãƒˆæ·±åº¦ã‚’è¨­å®šã™ã‚‹( 16 or 24 or 32 )
 extern int NS_SetZBufferBitDepth( int BitDepth )
 {
 	return Graphics_Screen_SetZBufferMode( -1, -1, BitDepth ) ;
 }
 
-// ‚u‚r‚x‚m‚b‘Ò‚¿‚ğ‚·‚é‚©‚Ìƒtƒ‰ƒOƒZƒbƒg
+// ï¼¶ï¼³ï¼¹ï¼®ï¼£å¾…ã¡ã‚’ã™ã‚‹ã‹ã®ãƒ•ãƒ©ã‚°ã‚»ãƒƒãƒˆ
 extern int NS_SetWaitVSyncFlag( int Flag )
 {
-	// DxLib_Init ‚ÌŒÄo‚µŒã‚Ì SetWaitVSyncFlag ‚ÌÀs‚É‘Î‰‚µ‚Ä‚¨‚ç‚¸AŠ‚Â‰ŠúŒã‚Ìê‡‚Í‰½‚à‚¹‚¸I—¹
+	// DxLib_Init ã®å‘¼å‡ºã—å¾Œã® SetWaitVSyncFlag ã®å®Ÿè¡Œã«å¯¾å¿œã—ã¦ãŠã‚‰ãšã€ä¸”ã¤åˆæœŸå¾Œã®å ´åˆã¯ä½•ã‚‚ã›ãšçµ‚äº†
 	if( GSYS.HardInfo.UseOfSetWaitVSyncFlagIsSupportedEvenAfterDxLib_Init == FALSE &&
 		DxSysData.DxLib_InitializeFlag == TRUE )
 	{
@@ -20617,7 +20617,7 @@ extern int NS_SetWaitVSyncFlag( int Flag )
 
 	GSYS.Screen.NotWaitVSyncFlag = !Flag ;
 
-	// ŠÂ‹«ˆË‘¶ŠÖ”‚ğŒÄ‚Ô
+	// ç’°å¢ƒä¾å­˜é–¢æ•°ã‚’å‘¼ã¶
 	Graphics_SetWaitVSyncFlag_PF( Flag ) ;
 
 //	if( DxSysData.DxLib_InitializeFlag == FALSE )
@@ -20628,41 +20628,41 @@ extern int NS_SetWaitVSyncFlag( int Flag )
 	return 0 ;
 }
 
-// ‚u‚r‚x‚m‚b‘Ò‚¿‚ğ‚·‚éİ’è‚É‚È‚Á‚Ä‚¢‚é‚©‚Ç‚¤‚©‚ğæ“¾‚·‚é
+// ï¼¶ï¼³ï¼¹ï¼®ï¼£å¾…ã¡ã‚’ã™ã‚‹è¨­å®šã«ãªã£ã¦ã„ã‚‹ã‹ã©ã†ã‹ã‚’å–å¾—ã™ã‚‹
 extern int NS_GetWaitVSyncFlag( void )
 {
 	return !GSYS.Screen.NotWaitVSyncFlag ;
 }
 
-// ‰æ–Ê‚Ìƒtƒ‹ƒXƒNƒŠ[ƒ“ƒAƒ“ƒ`ƒGƒCƒŠƒAƒXƒ‚[ƒh‚Ìİ’è‚ğ‚·‚é
+// ç”»é¢ã®ãƒ•ãƒ«ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚¢ãƒ³ãƒã‚¨ã‚¤ãƒªã‚¢ã‚¹ãƒ¢ãƒ¼ãƒ‰ã®è¨­å®šã‚’ã™ã‚‹
 extern int NS_SetFullSceneAntiAliasingMode( int Samples, int Quality )
 {
-	// İ’è‚Å‚«‚é‚Ì‚Í‰Šú‰»‘O‚Ì‚İ
+	// è¨­å®šã§ãã‚‹ã®ã¯åˆæœŸåŒ–å‰ã®ã¿
 	if( DxSysData.DxLib_InitializeFlag == TRUE )
 		return 0 ;
 
 	GSYS.Setting.FSAAMultiSampleCount   = Samples ;
 	GSYS.Setting.FSAAMultiSampleQuality = Quality ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ScreenFlip ‚É•\‰æ–Ê‘S‘Ì‚É“]‘—‚·‚é— ‰æ–Ê‚Ì—Ìˆæ‚ğİ’è‚·‚é( DxLib_Init ‚Ì‘O‚Å‚Ì‚İg—p‰Â”\ )
+// ScreenFlip æ™‚ã«è¡¨ç”»é¢å…¨ä½“ã«è»¢é€ã™ã‚‹è£ç”»é¢ã®é ˜åŸŸã‚’è¨­å®šã™ã‚‹( DxLib_Init ã®å‰ã§ã®ã¿ä½¿ç”¨å¯èƒ½ )
 extern int NS_SetGraphDisplayArea( int x1, int y1, int x2, int y2 )
 {
-	// ‰ŠúŒã‚Ìê‡‚Í‰½‚à‚¹‚¸I—¹
+	// åˆæœŸå¾Œã®å ´åˆã¯ä½•ã‚‚ã›ãšçµ‚äº†
 	if( DxSysData.DxLib_InitializeFlag == TRUE )
 		return -1 ;
 
-	// ƒpƒ‰ƒ[ƒ^ƒ`ƒFƒbƒN
+	// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒã‚§ãƒƒã‚¯
 	if( x1 >= x2 || y1 >= y2 )
 	{
 		GSYS.Screen.ValidGraphDisplayArea = FALSE ;
 		return -1 ;
 	}
 
-	// ƒpƒ‰ƒ[ƒ^•Û‘¶
+	// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ä¿å­˜
 	GSYS.Screen.GraphDisplayArea.left   = x1 ;
 	GSYS.Screen.GraphDisplayArea.right  = x2 ;
 	GSYS.Screen.GraphDisplayArea.top    = y1 ;
@@ -20670,11 +20670,11 @@ extern int NS_SetGraphDisplayArea( int x1, int y1, int x2, int y2 )
 
 	GSYS.Screen.ValidGraphDisplayArea   = TRUE ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ‰æ–Êƒ‚[ƒh•ÏX( ‚ÆƒEƒCƒ“ƒhƒEƒ‚[ƒh•ÏX )‚ÉƒOƒ‰ƒtƒBƒbƒNƒXƒVƒXƒeƒ€‚Ìİ’è‚âƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ğƒŠƒZƒbƒg‚·‚é‚©‚Ç‚¤‚©‚ğİ’è‚·‚é( TRUE:ƒŠƒZƒbƒg‚·‚é  FALSE:ƒŠƒZƒbƒg‚µ‚È‚¢ )
+// ç”»é¢ãƒ¢ãƒ¼ãƒ‰å¤‰æ›´æ™‚( ã¨ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ¢ãƒ¼ãƒ‰å¤‰æ›´æ™‚ )ã«ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¹ã‚·ã‚¹ãƒ†ãƒ ã®è¨­å®šã‚„ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã‚’ãƒªã‚»ãƒƒãƒˆã™ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹( TRUE:ãƒªã‚»ãƒƒãƒˆã™ã‚‹  FALSE:ãƒªã‚»ãƒƒãƒˆã—ãªã„ )
 extern int NS_SetChangeScreenModeGraphicsSystemResetFlag( int Flag )
 {
 	GSYS.Setting.ChangeScreenModeNotGraphicsSystemFlag = Flag ? FALSE : TRUE ;
@@ -20682,7 +20682,7 @@ extern int NS_SetChangeScreenModeGraphicsSystemResetFlag( int Flag )
 	return 0 ;
 }
 
-// Œ»İ‚Ì‰æ–Ê‚Ì‘å‚«‚³‚ÆƒJƒ‰[ƒrƒbƒg”‚ğ“¾‚é 
+// ç¾åœ¨ã®ç”»é¢ã®å¤§ãã•ã¨ã‚«ãƒ©ãƒ¼ãƒ“ãƒƒãƒˆæ•°ã‚’å¾—ã‚‹ 
 extern	int NS_GetScreenState( int *SizeX, int *SizeY, int *ColorBitDepth )
 {
 	if( SizeX ) *SizeX = GSYS.Screen.MainScreenSizeX ;
@@ -20690,46 +20690,46 @@ extern	int NS_GetScreenState( int *SizeX, int *SizeY, int *ColorBitDepth )
 
 	if( ColorBitDepth ) *ColorBitDepth = GSYS.Screen.MainScreenColorBitDepth ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// •`‰æƒTƒCƒY‚ğæ“¾‚·‚é
+// æç”»ã‚µã‚¤ã‚ºã‚’å–å¾—ã™ã‚‹
 extern int NS_GetDrawScreenSize( int *XBuf, int *YBuf )
 {
 	if( XBuf ) *XBuf = GSYS.Screen.MainScreenSizeX_Result == 0 ? DEFAULT_SCREEN_SIZE_X : GSYS.Screen.MainScreenSizeX_Result ;
 	if( YBuf ) *YBuf = GSYS.Screen.MainScreenSizeY_Result == 0 ? DEFAULT_SCREEN_SIZE_Y : GSYS.Screen.MainScreenSizeY_Result ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// g—pFƒrƒbƒg”‚ğ•Ô‚·
+// ä½¿ç”¨è‰²ãƒ“ãƒƒãƒˆæ•°ã‚’è¿”ã™
 extern int NS_GetScreenBitDepth( void )
 {
-	// I—¹
+	// çµ‚äº†
 	return NS_GetColorBitDepth() ;
 }
 
-// ‰æ–Ê‚ÌFƒrƒbƒg[“x‚ğ“¾‚é
+// ç”»é¢ã®è‰²ãƒ“ãƒƒãƒˆæ·±åº¦ã‚’å¾—ã‚‹
 extern int NS_GetColorBitDepth( void )
 {
-	// I—¹
+	// çµ‚äº†
 	return GSYS.Screen.MainScreenColorBitDepth == 0 ? DEFAULT_COLOR_BITDEPTH : GSYS.Screen.MainScreenColorBitDepth ;
 }
 
-// ‰æ–Êƒ‚[ƒh‚ª•ÏX‚³‚ê‚Ä‚¢‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğæ“¾‚·‚é
+// ç”»é¢ãƒ¢ãƒ¼ãƒ‰ãŒå¤‰æ›´ã•ã‚Œã¦ã„ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’å–å¾—ã™ã‚‹
 extern int NS_GetChangeDisplayFlag( void )
 {
 #ifdef WINDOWS_DESKTOP_OS
-	// I—¹
+	// çµ‚äº†
 	return NS_GetWindowModeFlag() == FALSE && NS_GetUseFullScreenResolutionMode() != DX_FSRESOLUTIONMODE_BORDERLESS_WINDOW ;
 #else // WINDOWS_DESKTOP_OS
 	return FALSE ;
 #endif // WINDOWS_DESKTOP_OS
 }
 
-// ƒrƒfƒIƒƒ‚ƒŠ‚Ì—e—Ê‚ğ“¾‚é
+// ãƒ“ãƒ‡ã‚ªãƒ¡ãƒ¢ãƒªã®å®¹é‡ã‚’å¾—ã‚‹
 extern int NS_GetVideoMemorySize( int *AllSize, int *FreeSize )
 {
 	ULONGLONG TotalSize, UseSize ;
@@ -20753,22 +20753,22 @@ extern int NS_GetVideoMemorySize( int *AllSize, int *FreeSize )
 	return 0 ;
 }
 
-// ƒrƒfƒIƒƒ‚ƒŠ‚Ì—e—Ê‚ğ“¾‚é( 64bit”Å )
+// ãƒ“ãƒ‡ã‚ªãƒ¡ãƒ¢ãƒªã®å®¹é‡ã‚’å¾—ã‚‹( 64bitç‰ˆ )
 extern int NS_GetVideoMemorySizeEx(	ULONGLONG *TotalSize, ULONGLONG *UseSize )
 {
 	return Graphics_Hardware_GetVideoMemorySizeEx_PF( TotalSize, UseSize ) ;
 }
 
-// Œ»İ‚Ì‰æ–Ê‚ÌƒŠƒtƒŒƒbƒVƒ…ƒŒ[ƒg‚ğæ“¾‚·‚é
+// ç¾åœ¨ã®ç”»é¢ã®ãƒªãƒ•ãƒ¬ãƒƒã‚·ãƒ¥ãƒ¬ãƒ¼ãƒˆã‚’å–å¾—ã™ã‚‹
 extern int NS_GetRefreshRate( void )
 {
 	return Graphics_GetRefreshRate_PF() ;
 }
 
-// ƒfƒBƒXƒvƒŒƒC‚Ì”‚ğæ“¾
+// ãƒ‡ã‚£ã‚¹ãƒ—ãƒ¬ã‚¤ã®æ•°ã‚’å–å¾—
 extern int NS_GetDisplayNum( void )
 {
-	// ƒfƒBƒXƒvƒŒƒCî•ñ‚ÌƒZƒbƒgƒAƒbƒv‚ªs‚í‚ê‚Ä‚¢‚È‚¢ê‡‚ÍƒZƒbƒgƒAƒbƒv‚ğ‚·‚é
+	// ãƒ‡ã‚£ã‚¹ãƒ—ãƒ¬ã‚¤æƒ…å ±ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ãŒè¡Œã‚ã‚Œã¦ã„ãªã„å ´åˆã¯ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã‚’ã™ã‚‹
 	if( GSYS.Screen.DisplayInfo == NULL )
 	{
 		if( Graphics_SetupDisplayInfo_PF() < 0 )
@@ -20780,10 +20780,10 @@ extern int NS_GetDisplayNum( void )
 	return GSYS.Screen.DisplayNum ;
 }
 
-// ƒfƒBƒXƒvƒŒƒC‚ÌƒfƒXƒNƒgƒbƒvã‚Å‚Ì‹éŒ`ˆÊ’u‚ğæ“¾‚·‚é
+// ãƒ‡ã‚£ã‚¹ãƒ—ãƒ¬ã‚¤ã®ãƒ‡ã‚¹ã‚¯ãƒˆãƒƒãƒ—ä¸Šã§ã®çŸ©å½¢ä½ç½®ã‚’å–å¾—ã™ã‚‹
 extern int NS_GetDisplayInfo( int DisplayIndex, int *DesktopRectX, int *DesktopRectY, int *DesktopSizeX, int *DesktopSizeY, int *IsPrimary, int *DesktopRefreshRate )
 {
-	// ƒfƒBƒXƒvƒŒƒCî•ñ‚ÌƒZƒbƒgƒAƒbƒv‚ªs‚í‚ê‚Ä‚¢‚È‚¢ê‡‚ÍƒZƒbƒgƒAƒbƒv‚ğ‚·‚é
+	// ãƒ‡ã‚£ã‚¹ãƒ—ãƒ¬ã‚¤æƒ…å ±ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ãŒè¡Œã‚ã‚Œã¦ã„ãªã„å ´åˆã¯ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã‚’ã™ã‚‹
 	if( GSYS.Screen.DisplayInfo == NULL )
 	{
 		if( Graphics_SetupDisplayInfo_PF() < 0 )
@@ -20808,10 +20808,10 @@ extern int NS_GetDisplayInfo( int DisplayIndex, int *DesktopRectX, int *DesktopR
 }
 
 
-// •ÏX‰Â”\‚ÈƒfƒBƒXƒvƒŒƒCƒ‚[ƒh‚Ì”‚ğæ“¾‚·‚é
+// å¤‰æ›´å¯èƒ½ãªãƒ‡ã‚£ã‚¹ãƒ—ãƒ¬ã‚¤ãƒ¢ãƒ¼ãƒ‰ã®æ•°ã‚’å–å¾—ã™ã‚‹
 extern int NS_GetDisplayModeNum( int DisplayIndex )
 {
-	// ƒfƒBƒXƒvƒŒƒCî•ñ‚ÌƒZƒbƒgƒAƒbƒv‚ªs‚í‚ê‚Ä‚¢‚È‚¢ê‡‚ÍƒZƒbƒgƒAƒbƒv‚ğ‚·‚é
+	// ãƒ‡ã‚£ã‚¹ãƒ—ãƒ¬ã‚¤æƒ…å ±ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ãŒè¡Œã‚ã‚Œã¦ã„ãªã„å ´åˆã¯ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã‚’ã™ã‚‹
 	if( GSYS.Screen.DisplayInfo == NULL )
 	{
 		if( Graphics_SetupDisplayInfo_PF() < 0 )
@@ -20828,12 +20828,12 @@ extern int NS_GetDisplayModeNum( int DisplayIndex )
 	return GSYS.Screen.DisplayInfo[ DisplayIndex ].ModeNum ;
 }
 
-// •ÏX‰Â”\‚ÈƒfƒBƒXƒvƒŒƒCƒ‚[ƒh‚Ìî•ñ‚ğæ“¾‚·‚é( ModeIndex ‚Í 0 ` GetDisplayModeNum ‚Ì–ß‚è’l-1 )
+// å¤‰æ›´å¯èƒ½ãªãƒ‡ã‚£ã‚¹ãƒ—ãƒ¬ã‚¤ãƒ¢ãƒ¼ãƒ‰ã®æƒ…å ±ã‚’å–å¾—ã™ã‚‹( ModeIndex ã¯ 0 ï½ GetDisplayModeNum ã®æˆ»ã‚Šå€¤-1 )
 extern DISPLAYMODEDATA NS_GetDisplayMode( int ModeIndex, int DisplayIndex )
 {
 	static DISPLAYMODEDATA ErrorResult = { -1, -1, -1, -1 } ;
 
-	// ƒfƒBƒXƒvƒŒƒCî•ñ‚ÌƒZƒbƒgƒAƒbƒv‚ªs‚í‚ê‚Ä‚¢‚È‚¢ê‡‚ÍƒZƒbƒgƒAƒbƒv‚ğ‚·‚é
+	// ãƒ‡ã‚£ã‚¹ãƒ—ãƒ¬ã‚¤æƒ…å ±ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ãŒè¡Œã‚ã‚Œã¦ã„ãªã„å ´åˆã¯ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã‚’ã™ã‚‹
 	if( GSYS.Screen.DisplayInfo == NULL )
 	{
 		if( Graphics_SetupDisplayInfo_PF() < 0 )
@@ -20855,20 +20855,20 @@ extern DISPLAYMODEDATA NS_GetDisplayMode( int ModeIndex, int DisplayIndex )
 	return GSYS.Screen.DisplayInfo[ DisplayIndex ].ModeData[ ModeIndex ] ;
 }
 
-// ƒtƒ‹ƒXƒNƒŠ[ƒ“ƒ‚[ƒh‚Å‹N“®‚µ‚Ä‚¢‚éê‡‚Ìg—p‚µ‚Ä‚¢‚éƒfƒBƒXƒvƒŒƒCƒ‚[ƒh‚Ìî•ñ‚ğæ“¾‚·‚é
+// ãƒ•ãƒ«ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ¢ãƒ¼ãƒ‰ã§èµ·å‹•ã—ã¦ã„ã‚‹å ´åˆã®ä½¿ç”¨ã—ã¦ã„ã‚‹ãƒ‡ã‚£ã‚¹ãƒ—ãƒ¬ã‚¤ãƒ¢ãƒ¼ãƒ‰ã®æƒ…å ±ã‚’å–å¾—ã™ã‚‹
 extern DISPLAYMODEDATA NS_GetFullScreenUseDisplayMode( void )
 {
 	static DISPLAYMODEDATA ErrorResult = { -1, -1, -1, -1 } ;
 
 #ifdef WINDOWS_DESKTOP_OS
-	// ƒtƒ‹ƒXƒNƒŠ[ƒ“ƒ‚[ƒh‚Å‚Í‚È‚©‚Á‚½‚çƒGƒ‰[
+	// ãƒ•ãƒ«ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ¢ãƒ¼ãƒ‰ã§ã¯ãªã‹ã£ãŸã‚‰ã‚¨ãƒ©ãƒ¼
 	if( NS_GetWindowModeFlag() == TRUE || NS_GetUseFullScreenResolutionMode() == DX_FSRESOLUTIONMODE_BORDERLESS_WINDOW )
 	{
 		return ErrorResult ;
 	}
 #endif // WINDOWS_DESKTOP_OS
 
-	// ƒtƒ‹ƒXƒNƒŠ[ƒ“ƒ‚[ƒh‚Åg—p‚·‚éƒfƒBƒXƒvƒŒƒCƒ‚[ƒh‚Ìî•ñ‚ğƒZƒbƒgƒAƒbƒv‚·‚é
+	// ãƒ•ãƒ«ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ¢ãƒ¼ãƒ‰ã§ä½¿ç”¨ã™ã‚‹ãƒ‡ã‚£ã‚¹ãƒ—ãƒ¬ã‚¤ãƒ¢ãƒ¼ãƒ‰ã®æƒ…å ±ã‚’ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã™ã‚‹
 	if( GSYS.Screen.FullScreenUseDispModeData.Width == 0 )
 	{
 		Graphics_Screen_SetupFullScreenModeInfo() ;
@@ -20877,7 +20877,7 @@ extern DISPLAYMODEDATA NS_GetFullScreenUseDisplayMode( void )
 	return GSYS.Screen.FullScreenUseDispModeData ;
 }
 
-// ƒfƒBƒXƒvƒŒƒC‚ÌÅ‘å‰ğ‘œ“x‚ğæ“¾‚·‚é
+// ãƒ‡ã‚£ã‚¹ãƒ—ãƒ¬ã‚¤ã®æœ€å¤§è§£åƒåº¦ã‚’å–å¾—ã™ã‚‹
 extern int NS_GetDisplayMaxResolution( int *SizeX, int *SizeY, int DisplayIndex )
 {
 	int MaxSizeX ;
@@ -20885,7 +20885,7 @@ extern int NS_GetDisplayMaxResolution( int *SizeX, int *SizeY, int DisplayIndex 
 	DISPLAYMODEDATA *DisplayModeData ;
 	int i ;
 
-	// ƒfƒBƒXƒvƒŒƒCî•ñ‚ÌƒZƒbƒgƒAƒbƒv‚ªs‚í‚ê‚Ä‚¢‚È‚¢ê‡‚ÍƒZƒbƒgƒAƒbƒv‚ğ‚·‚é
+	// ãƒ‡ã‚£ã‚¹ãƒ—ãƒ¬ã‚¤æƒ…å ±ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ãŒè¡Œã‚ã‚Œã¦ã„ãªã„å ´åˆã¯ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã‚’ã™ã‚‹
 	if( GSYS.Screen.DisplayInfo == NULL )
 	{
 		if( Graphics_SetupDisplayInfo_PF() < 0 )
@@ -20899,7 +20899,7 @@ extern int NS_GetDisplayMaxResolution( int *SizeX, int *SizeY, int DisplayIndex 
 		return -1 ;
 	}
 
-	// Å‘å‚Ì–ÊÏ‚ğ‚Â‰ğ‘œ“x‚ğ’²‚×‚é
+	// æœ€å¤§ã®é¢ç©ã‚’æŒã¤è§£åƒåº¦ã‚’èª¿ã¹ã‚‹
 	MaxSizeX = 0 ;
 	MaxSizeY = 0 ;
 	DisplayModeData = GSYS.Screen.DisplayInfo[ DisplayIndex ].ModeData ;
@@ -20912,7 +20912,7 @@ extern int NS_GetDisplayMaxResolution( int *SizeX, int *SizeY, int DisplayIndex 
 		}
 	}
 
-	// ƒTƒCƒY‚ğ•Û‘¶
+	// ã‚µã‚¤ã‚ºã‚’ä¿å­˜
 	if( SizeX != NULL )
 	{
 		*SizeX = MaxSizeX ;
@@ -20923,11 +20923,11 @@ extern int NS_GetDisplayMaxResolution( int *SizeX, int *SizeY, int DisplayIndex 
 		*SizeY = MaxSizeY ;
 	}
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// ƒfƒBƒXƒvƒŒ[‚ÌƒJƒ‰[ƒf[ƒ^ƒ|ƒCƒ“ƒ^‚ğ“¾‚é
+// ãƒ‡ã‚£ã‚¹ãƒ—ãƒ¬ãƒ¼ã®ã‚«ãƒ©ãƒ¼ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿ã‚’å¾—ã‚‹
 extern	const COLORDATA *NS_GetDispColorData( void )
 {
 	if( GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )
@@ -20940,13 +20940,13 @@ extern	const COLORDATA *NS_GetDispColorData( void )
 	}
 }
 
-// “¯‚É•`‰æ‚ğs‚¤‚±‚Æ‚ª‚Å‚«‚é‰æ–Ê‚Ì”‚ğæ“¾‚·‚é
+// åŒæ™‚ã«æç”»ã‚’è¡Œã†ã“ã¨ãŒã§ãã‚‹ç”»é¢ã®æ•°ã‚’å–å¾—ã™ã‚‹
 extern int NS_GetMultiDrawScreenNum( void )
 {
 	return GSYS.HardInfo.RenderTargetNum ;
 }
 
-// DrawGraphF “™‚Ì•‚“®¬”“_’l‚ÅÀ•W‚ğw’è‚·‚éŠÖ”‚É‚¨‚¯‚éÀ•Wƒ^ƒCƒv‚ğæ“¾‚·‚é( –ß‚è’l : DX_DRAWFLOATCOORDTYPE_DIRECT3D9 ‚È‚Ç )
+// DrawGraphF ç­‰ã®æµ®å‹•å°æ•°ç‚¹å€¤ã§åº§æ¨™ã‚’æŒ‡å®šã™ã‚‹é–¢æ•°ã«ãŠã‘ã‚‹åº§æ¨™ã‚¿ã‚¤ãƒ—ã‚’å–å¾—ã™ã‚‹( æˆ»ã‚Šå€¤ : DX_DRAWFLOATCOORDTYPE_DIRECT3D9 ãªã© )
 extern int NS_GetDrawFloatCoordType( void )
 {
 	return GSYS.HardInfo.DrawFloatCoordType ;
@@ -20976,79 +20976,79 @@ extern int NS_GetDrawFloatCoordType( void )
 
 
 
-// ‚»‚Ì‘¼İ’èŠÖŒWŠÖ”
+// ãã®ä»–è¨­å®šé–¢ä¿‚é–¢æ•°
 
-// ’Êí•`‰æ‚ÉƒvƒƒOƒ‰ƒ}ƒuƒ‹ƒVƒF[ƒ_[‚ğg—p‚·‚é‚©‚Ç‚¤‚©‚ğİ’è‚·‚é( TRUE:g—p‚·‚é( ƒfƒtƒHƒ‹ƒg )  FALSE:g—p‚µ‚È‚¢ )
+// é€šå¸¸æç”»ã«ãƒ—ãƒ­ã‚°ãƒ©ãƒãƒ–ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹( TRUE:ä½¿ç”¨ã™ã‚‹( ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ )  FALSE:ä½¿ç”¨ã—ãªã„ )
 extern	int		NS_SetUseNormalDrawShader( int Flag )
 {
 	return Graphics_Hardware_SetUseNormalDrawShader_PF( Flag ) ;
 }
 
-// ƒ\ƒtƒgƒEƒGƒAƒŒƒ“ƒ_ƒŠƒ“ƒOƒ‚[ƒh‚ğg—p‚·‚é‚©‚Ç‚¤‚©‚ğƒZƒbƒg‚·‚é
+// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ãƒ¢ãƒ¼ãƒ‰ã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern int NS_SetUseSoftwareRenderModeFlag( int Flag )
 {
 	return NS_SetScreenMemToVramFlag( Flag == TRUE ? FALSE : TRUE ) ;
 }
 
-// ‚R‚c‹@”\‚ğg‚í‚È‚¢ƒtƒ‰ƒO‚ÌƒZƒbƒg
+// ï¼“ï¼¤æ©Ÿèƒ½ã‚’ä½¿ã‚ãªã„ãƒ•ãƒ©ã‚°ã®ã‚»ãƒƒãƒˆ
 extern	int		NS_SetNotUse3DFlag( int Flag )
 {
-	// ‰Šú‰»‘O‚Ì‚İg—p‰Â”\@
+	// åˆæœŸåŒ–å‰ã®ã¿ä½¿ç”¨å¯èƒ½ã€€
 	if( DxSysData.DxLib_InitializeFlag == TRUE ) return -1 ;
 
 	GSYS.Setting.NotUseHardware = Flag ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ‚R‚c‹@”\‚ğg‚¤‚©A‚Ìƒtƒ‰ƒO‚ğƒZƒbƒg
+// ï¼“ï¼¤æ©Ÿèƒ½ã‚’ä½¿ã†ã‹ã€ã®ãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆ
 extern	int NS_SetUse3DFlag( int Flag )
 {
-	// ‰Šú‰»‘O‚Ì‚İ—LŒø
+	// åˆæœŸåŒ–å‰ã®ã¿æœ‰åŠ¹
 	if( DxSysData.DxLib_InitializeFlag == TRUE ) return -1 ;
 
 	GSYS.Setting.NotUseHardware = !Flag ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// •`‰æ‚É‚R‚c‹@”\‚ğg‚¤‚©ƒtƒ‰ƒO‚ğæ“¾
+// æç”»ã«ï¼“ï¼¤æ©Ÿèƒ½ã‚’ä½¿ã†ã‹ãƒ•ãƒ©ã‚°ã‚’å–å¾—
 extern	int NS_GetUse3DFlag( void )
 {
-	// ‰Šú‰»‘O‚Ìê‡‚Í SetUse3DFlag ‚Åİ’è‚µ‚½“à—e‚ğ‚»‚Ì‚Ü‚Ü•Ô‚·
+	// åˆæœŸåŒ–å‰ã®å ´åˆã¯ SetUse3DFlag ã§è¨­å®šã—ãŸå†…å®¹ã‚’ãã®ã¾ã¾è¿”ã™
 	if( DxSysData.DxLib_InitializeFlag == FALSE )
 	{
 		return !GSYS.Setting.NotUseHardware ;
 	}
 	else
 	{
-		// ‰Šú‰»Œê‚Ìê‡‚Í ValidHardware ‚Ì“à—e‚ğ•Ô‚·
+		// åˆæœŸåŒ–èªã®å ´åˆã¯ ValidHardware ã®å†…å®¹ã‚’è¿”ã™
 		return GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE ;
 	}
 }
 
-// ‰æ–Êƒf[ƒ^‚ğ‚u‚q‚`‚l‚É’u‚­‚©Aƒtƒ‰ƒO
+// ç”»é¢ãƒ‡ãƒ¼ã‚¿ã‚’ï¼¶ï¼²ï¼¡ï¼­ã«ç½®ãã‹ã€ãƒ•ãƒ©ã‚°
 extern	int		NS_SetScreenMemToVramFlag( int Flag )
 {
-	// ‰Šú‰»‘O‚Ì‚İŒÄ‚Ño‚¹‚é
+	// åˆæœŸåŒ–å‰ã®ã¿å‘¼ã³å‡ºã›ã‚‹
 	if( DxSysData.DxLib_InitializeFlag == TRUE ) return -1 ;
 
 	GSYS.Setting.NotUseHardware = !Flag ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ‰æ–ÊƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‚ªƒVƒXƒeƒ€ƒƒ‚ƒŠ‚É‘¶İ‚·‚é‚©ƒtƒ‰ƒO‚Ìæ“¾
+// ç”»é¢ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ãŒã‚·ã‚¹ãƒ†ãƒ ãƒ¡ãƒ¢ãƒªã«å­˜åœ¨ã™ã‚‹ã‹ãƒ•ãƒ©ã‚°ã®å–å¾—
 extern	int						NS_GetScreenMemToSystemMemFlag( void )
 {
-	// I—¹
+	// çµ‚äº†
 	return GSYS.Setting.ValidHardware == FALSE || GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode ;
 }
 
-// ’Êíg—p‚µ‚È‚¢
+// é€šå¸¸ä½¿ç”¨ã—ãªã„
 extern int NS_SetWindowDrawRect( const RECT * /* DrawRect */ )
 {
 //	GSYS.WindowDrawRect = *DrawRect ;
@@ -21056,53 +21056,53 @@ extern int NS_SetWindowDrawRect( const RECT * /* DrawRect */ )
 	return 0 ;
 }
 
-// ‚c‚wƒ‰ƒCƒuƒ‰ƒŠ‚ÌƒOƒ‰ƒtƒBƒbƒNŠÖ˜A‚Ì•œ‹Aˆ—‚ğs‚¤
+// ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯é–¢é€£ã®å¾©å¸°å‡¦ç†ã‚’è¡Œã†
 extern	int NS_RestoreGraphSystem( void )
 {
 	Graphics_RestoreOrChangeSetupGraphSystem( FALSE ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒn[ƒhƒEƒGƒA‚Ì’¸“_‰‰Zˆ—‹@”\‚ğg—p‚·‚é‚©‚Ç‚¤‚©‚ğİ’è‚·‚é
+// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã®é ‚ç‚¹æ¼”ç®—å‡¦ç†æ©Ÿèƒ½ã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹
 extern	int NS_SetUseHardwareVertexProcessing( int Flag )
 {
 	return Graphics_Hardware_SetUseHardwareVertexProcessing_PF( Flag ) ;
 }
 
-// ƒsƒNƒZƒ‹’PˆÊ‚Åƒ‰ƒCƒeƒBƒ“ƒO‚ğs‚¤‚©‚Ç‚¤‚©‚ğİ’è‚·‚éA—v ShaderModel 3.0( TRUE:ƒsƒNƒZƒ‹’PˆÊ‚Ìƒ‰ƒCƒeƒBƒ“ƒO‚ğs‚¤  FALSE:’¸“_’PˆÊ‚Ìƒ‰ƒCƒeƒBƒ“ƒO‚ğs‚¤( ƒfƒtƒHƒ‹ƒg ) )
+// ãƒ”ã‚¯ã‚»ãƒ«å˜ä½ã§ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ã‚’è¡Œã†ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹ã€è¦ ShaderModel 3.0( TRUE:ãƒ”ã‚¯ã‚»ãƒ«å˜ä½ã®ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ã‚’è¡Œã†  FALSE:é ‚ç‚¹å˜ä½ã®ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°ã‚’è¡Œã†( ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ ) )
 extern int NS_SetUsePixelLighting( int Flag )
 {
 	return Graphics_Hardware_SetUsePixelLighting_PF( Flag ) ;
 }
 
-// ˆÈ‘O‚Ì DrawModiGraph ŠÖ”‚ÌƒR[ƒh‚ğg—p‚·‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğƒZƒbƒg‚·‚é
+// ä»¥å‰ã® DrawModiGraph é–¢æ•°ã®ã‚³ãƒ¼ãƒ‰ã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern int NS_SetUseOldDrawModiGraphCodeFlag( int Flag )
 {
 	return Graphics_Hardware_SetUseOldDrawModiGraphCodeFlag_PF( Flag ) ;
 }
 
-// ‚u‚q‚`‚l‚ğg—p‚·‚é‚©‚Ìƒtƒ‰ƒO‚ğƒZƒbƒg‚·‚é
+// ï¼¶ï¼²ï¼¡ï¼­ã‚’ä½¿ç”¨ã™ã‚‹ã‹ã®ãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern	int NS_SetUseVramFlag( int Flag )
 {
 	return NS_SetUseSystemMemGraphCreateFlag( Flag == TRUE ? FALSE : TRUE ) ;
 }
 
-// ‚Q‚cƒOƒ‰ƒtƒBƒbƒNƒT[ƒtƒFƒXì¬‚ÉƒVƒXƒeƒ€ƒƒ‚ƒŠ[‚ğg—p‚·‚é‚©‚Ìƒtƒ‰ƒOæ“¾
+// ï¼’ï¼¤ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚µãƒ¼ãƒ•ã‚§ã‚¹ä½œæˆæ™‚ã«ã‚·ã‚¹ãƒ†ãƒ ãƒ¡ãƒ¢ãƒªãƒ¼ã‚’ä½¿ç”¨ã™ã‚‹ã‹ã®ãƒ•ãƒ©ã‚°å–å¾—
 extern	int NS_GetUseVramFlag( void )
 {
 	return NS_GetUseSystemMemGraphCreateFlag() == TRUE ? FALSE : TRUE ;
 }
 
-// ŠÈ—ª‰»ƒuƒŒƒ“ƒhˆ—‚ğs‚¤‚©”Û‚©‚Ìƒtƒ‰ƒO‚ğƒZƒbƒg‚·‚é
+// ç°¡ç•¥åŒ–ãƒ–ãƒ¬ãƒ³ãƒ‰å‡¦ç†ã‚’è¡Œã†ã‹å¦ã‹ã®ãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern	int		NS_SetBasicBlendFlag( int /*Flag*/ )
 {
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ’Pƒ}Œ`‚Ì•`‰æ‚É‚R‚cƒfƒoƒCƒX‚Ì‹@”\‚ğg—p‚·‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğƒZƒbƒg‚·‚é
+// å˜ç´”å›³å½¢ã®æç”»ã«ï¼“ï¼¤ãƒ‡ãƒã‚¤ã‚¹ã®æ©Ÿèƒ½ã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern int NS_SetUseBasicGraphDraw3DDeviceMethodFlag( int /* Flag */ )
 {
 //	GSYS.DrawSetting.NotUseBasicGraphDraw3DDeviceMethodFlag = !Flag ;
@@ -21110,7 +21110,7 @@ extern int NS_SetUseBasicGraphDraw3DDeviceMethodFlag( int /* Flag */ )
 	return 0 ;
 }
 
-// ‚c‚wƒ‰ƒCƒuƒ‰ƒŠ‚ÌƒEƒCƒ“ƒhƒE‚ğ•\¦‚·‚éƒfƒBƒXƒvƒŒƒCƒfƒoƒCƒX‚ğİ’è‚·‚é( -1 ‚ğw’è‚·‚é‚Æƒ}ƒEƒXƒJ[ƒ\ƒ‹‚ª‚ ‚éƒfƒBƒXƒvƒŒƒCƒfƒoƒCƒX‚É‚c‚wƒ‰ƒCƒuƒ‰ƒŠ‚ÌƒEƒCƒ“ƒhƒE‚ğ•\¦‚·‚é )
+// ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚’è¡¨ç¤ºã™ã‚‹ãƒ‡ã‚£ã‚¹ãƒ—ãƒ¬ã‚¤ãƒ‡ãƒã‚¤ã‚¹ã‚’è¨­å®šã™ã‚‹( -1 ã‚’æŒ‡å®šã™ã‚‹ã¨ãƒã‚¦ã‚¹ã‚«ãƒ¼ã‚½ãƒ«ãŒã‚ã‚‹ãƒ‡ã‚£ã‚¹ãƒ—ãƒ¬ã‚¤ãƒ‡ãƒã‚¤ã‚¹ã«ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚’è¡¨ç¤ºã™ã‚‹ )
 extern int NS_SetUseDisplayIndex( int Index )
 {
 	if( GSYS.Screen.DisplayInfo == NULL )
@@ -21118,7 +21118,7 @@ extern int NS_SetUseDisplayIndex( int Index )
 		Graphics_SetupDisplayInfo_PF() ;
 	}
 
-	// ’l‚ªƒ}ƒCƒiƒX‚Ìê‡‚Íƒ}ƒEƒXƒ|ƒCƒ“ƒ^‚Ì‚ ‚éƒfƒBƒXƒvƒŒƒCƒfƒoƒCƒX‚É‚·‚é
+	// å€¤ãŒãƒã‚¤ãƒŠã‚¹ã®å ´åˆã¯ãƒã‚¦ã‚¹ãƒã‚¤ãƒ³ã‚¿ã®ã‚ã‚‹ãƒ‡ã‚£ã‚¹ãƒ—ãƒ¬ã‚¤ãƒ‡ãƒã‚¤ã‚¹ã«ã™ã‚‹
 	if( Index < 0 )
 	{
 #ifdef WINDOWS_DESKTOP_OS
@@ -21127,7 +21127,7 @@ extern int NS_SetUseDisplayIndex( int Index )
 
 		SETUP_WIN_API
 
-		// ƒXƒNƒŠ[ƒ“ã‚Å‚ÌˆÊ’u‚©‚çƒfƒBƒXƒvƒŒƒC”Ô†‚ğŠ„‚èo‚·
+		// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ä¸Šã§ã®ä½ç½®ã‹ã‚‰ãƒ‡ã‚£ã‚¹ãƒ—ãƒ¬ã‚¤ç•ªå·ã‚’å‰²ã‚Šå‡ºã™
 		WinAPIData.Win32Func.GetCursorPosFunc( &MousePos ) ;
 
 		for( i = 0 ; i < GSYS.Screen.DisplayNum ; i ++ )
@@ -21158,10 +21158,10 @@ extern int NS_SetUseDisplayIndex( int Index )
 	return 0 ;
 }
 
-// ’¸“_ƒoƒbƒtƒ@‚É—­‚Ü‚Á‚½’¸“_ƒf[ƒ^‚ğ“f‚«o‚·
+// é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã«æºœã¾ã£ãŸé ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ã‚’åãå‡ºã™
 extern int NS_RenderVertex( void )
 {
-	// •`‰æ‘Ò‹@‚µ‚Ä‚¢‚é•`‰æ•¨‚ğ•`‰æ
+	// æç”»å¾…æ©Ÿã—ã¦ã„ã‚‹æç”»ç‰©ã‚’æç”»
 	DRAWSTOCKINFO
 
 	return 0 ;
@@ -21192,15 +21192,15 @@ extern int NS_RenderVertex( void )
 
 
 
-// •`‰æƒpƒtƒH[ƒ}ƒ“ƒXŠÖŒWŠÖ”
+// æç”»ãƒ‘ãƒ•ã‚©ãƒ¼ãƒãƒ³ã‚¹é–¢ä¿‚é–¢æ•°
 
-// ‘OX‰ñ‚Ì ScreenFlip ŒÄ‚Ño‚µ‚©‚çA‘O‰ñ‚Ì ScreenFlip ŒÄ‚Ño‚µ‚Ü‚Å‚ÌŠÔ‚És‚í‚ê‚½•`‰æƒR[ƒ‹‚Ì‰ñ”‚ğæ“¾‚·‚é
+// å‰ã€…å›ã® ScreenFlip å‘¼ã³å‡ºã—ã‹ã‚‰ã€å‰å›ã® ScreenFlip å‘¼ã³å‡ºã—ã¾ã§ã®é–“ã«è¡Œã‚ã‚ŒãŸæç”»ã‚³ãƒ¼ãƒ«ã®å›æ•°ã‚’å–å¾—ã™ã‚‹
 extern int NS_GetDrawCallCount( void )
 {
 	return GSYS.PerformanceInfo.PrevFrameDrawCallCount ;
 }
 
-// ƒtƒŒ[ƒ€ƒŒ[ƒg( ‚P•bŠÔ‚ÉŒÄ‚Î‚ê‚é ScreenFlip ‚Ì‰ñ” )‚ğæ“¾‚·‚é
+// ãƒ•ãƒ¬ãƒ¼ãƒ ãƒ¬ãƒ¼ãƒˆ( ï¼‘ç§’é–“ã«å‘¼ã°ã‚Œã‚‹ ScreenFlip ã®å›æ•° )ã‚’å–å¾—ã™ã‚‹
 extern float NS_GetFPS( void )
 {
 #if defined( _MSC_VER ) && _MSC_VER == 1200
@@ -21233,13 +21233,13 @@ extern float NS_GetFPS( void )
 
 
 
-// •`‰ææ‰æ–Ê•Û‘¶ŠÖ”
+// æç”»å…ˆç”»é¢ä¿å­˜é–¢æ•°
 
 #ifndef DX_NON_SAVEFUNCTION
 
-// Jpeg_Quality         = 0:’á‰æ¿`100:‚‰æ¿
-// Png_CompressionLevel = 0:–³ˆ³k`  9:Å‚ˆ³k
-// Œ»İ•`‰æ‘ÎÛ‚É‚È‚Á‚Ä‚¢‚é‰æ–Ê‚ğ•Û‘¶‚·‚é
+// Jpeg_Quality         = 0:ä½ç”»è³ªï½100:é«˜ç”»è³ª
+// Png_CompressionLevel = 0:ç„¡åœ§ç¸®ï½  9:æœ€é«˜åœ§ç¸®
+// ç¾åœ¨æç”»å¯¾è±¡ã«ãªã£ã¦ã„ã‚‹ç”»é¢ã‚’ä¿å­˜ã™ã‚‹
 extern int NS_SaveDrawScreen( int x1, int y1, int x2, int y2, const TCHAR *FileName, int SaveType, int Jpeg_Quality, int Jpeg_Sample2x1, int Png_CompressionLevel )
 {
 #ifdef UNICODE
@@ -21261,7 +21261,7 @@ extern int NS_SaveDrawScreen( int x1, int y1, int x2, int y2, const TCHAR *FileN
 #endif
 }
 
-// Œ»İ•`‰æ‘ÎÛ‚É‚È‚Á‚Ä‚¢‚é‰æ–Ê‚ğƒtƒ@ƒCƒ‹‚Å•Û‘¶‚·‚é
+// ç¾åœ¨æç”»å¯¾è±¡ã«ãªã£ã¦ã„ã‚‹ç”»é¢ã‚’ãƒ•ã‚¡ã‚¤ãƒ«ã§ä¿å­˜ã™ã‚‹
 extern int NS_SaveDrawScreenWithStrLen( int x1, int y1, int x2, int y2, const TCHAR *FileName, size_t FileNameLength, int SaveType, int Jpeg_Quality, int Jpeg_Sample2x1, int Png_CompressionLevel )
 {
 	int Result ;
@@ -21277,9 +21277,9 @@ extern int NS_SaveDrawScreenWithStrLen( int x1, int y1, int x2, int y2, const TC
 	return Result ;
 }
 
-// Jpeg_Quality         = 0:’á‰æ¿`100:‚‰æ¿
-// Png_CompressionLevel = 0:–³ˆ³k`  9:Å‚ˆ³k
-// Œ»İ•`‰æ‘ÎÛ‚É‚È‚Á‚Ä‚¢‚é‰æ–Ê‚ğ•Û‘¶‚·‚é
+// Jpeg_Quality         = 0:ä½ç”»è³ªï½100:é«˜ç”»è³ª
+// Png_CompressionLevel = 0:ç„¡åœ§ç¸®ï½  9:æœ€é«˜åœ§ç¸®
+// ç¾åœ¨æç”»å¯¾è±¡ã«ãªã£ã¦ã„ã‚‹ç”»é¢ã‚’ä¿å­˜ã™ã‚‹
 extern int SaveDrawScreen_WCHAR_T( int x1, int y1, int x2, int y2, const wchar_t *FileName, int SaveType, int Jpeg_Quality, int Jpeg_Sample2x1, int Png_CompressionLevel )
 {
 	BASEIMAGE BaseImage ;
@@ -21288,13 +21288,13 @@ extern int SaveDrawScreen_WCHAR_T( int x1, int y1, int x2, int y2, const wchar_t
 	BASEIMAGE TempBaseImage ;
 	BASEIMAGE *UseBaseImage ;
 
-	// ƒTƒCƒY‚ª•s³‚Èê‡‚Í‰½‚à‚¹‚¸‚ÉI—¹
+	// ã‚µã‚¤ã‚ºãŒä¸æ­£ãªå ´åˆã¯ä½•ã‚‚ã›ãšã«çµ‚äº†
 	if( x1 >= x2 || y1 >= y2 || x1 < 0 || y1 < 0 || x2 > GSYS.DrawSetting.DrawSizeX || y2 > GSYS.DrawSetting.DrawSizeY )
 	{
 		return -1 ;
 	}
 
-	// •`‰ææ‚ğƒƒbƒN
+	// æç”»å…ˆã‚’ãƒ­ãƒƒã‚¯
 	LockRect.left   = x1 ;
 	LockRect.top    = y1 ;
 	LockRect.right  = x2 ;
@@ -21304,7 +21304,7 @@ extern int SaveDrawScreen_WCHAR_T( int x1, int y1, int x2, int y2, const wchar_t
 		return -1 ;
 	}
 
-	// ƒCƒ[ƒW‚ªã‰º”½“]‚µ‚Ä‚¢‚éê‡‚Í‚±‚±‚Åã‰º”½“]‚·‚é
+	// ã‚¤ãƒ¡ãƒ¼ã‚¸ãŒä¸Šä¸‹åè»¢ã—ã¦ã„ã‚‹å ´åˆã¯ã“ã“ã§ä¸Šä¸‹åè»¢ã™ã‚‹
 	_MEMSET( &TempBaseImage, 0, sizeof( TempBaseImage ) ) ;
 	if( GSYS.HardInfo.MainScreenImageYReverse &&
 		( ( DWORD )GSYS.DrawSetting.TargetScreen[ 0 ] == DX_SCREEN_BACK ||
@@ -21321,7 +21321,7 @@ extern int SaveDrawScreen_WCHAR_T( int x1, int y1, int x2, int y2, const wchar_t
 		UseBaseImage = &BaseImage ;
 	}
 
-	// •Û‘¶Œ`®‚É‚æ‚Á‚Äˆ—‚ğ•ÏX‚·‚é
+	// ä¿å­˜å½¢å¼ã«ã‚ˆã£ã¦å‡¦ç†ã‚’å¤‰æ›´ã™ã‚‹
 	switch( SaveType )
 	{
 	case DX_IMAGESAVETYPE_JPEG:
@@ -21345,26 +21345,26 @@ extern int SaveDrawScreen_WCHAR_T( int x1, int y1, int x2, int y2, const wchar_t
 		break ;
 	}
 
-	// •`‰ææ‚ğƒAƒ“ƒƒbƒN
+	// æç”»å…ˆã‚’ã‚¢ãƒ³ãƒ­ãƒƒã‚¯
 	Graphics_Screen_UnlockDrawScreen() ;
 
-	// ƒeƒ“ƒ|ƒ‰ƒŠƒCƒ[ƒW‚ğ‰ğ•ú
+	// ãƒ†ãƒ³ãƒãƒ©ãƒªã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’è§£æ”¾
 	if( UseTempBaseImage )
 	{
 		NS_ReleaseBaseImage( &TempBaseImage ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// Œ»İ•`‰æ‘ÎÛ‚É‚È‚Á‚Ä‚¢‚é‰æ–Ê‚ğ‚a‚l‚oŒ`®‚Å•Û‘¶‚·‚é
+// ç¾åœ¨æç”»å¯¾è±¡ã«ãªã£ã¦ã„ã‚‹ç”»é¢ã‚’ï¼¢ï¼­ï¼°å½¢å¼ã§ä¿å­˜ã™ã‚‹
 extern int NS_SaveDrawScreenToBMP( int x1, int y1, int x2, int y2, const TCHAR *FileName )
 {
 	return NS_SaveDrawScreen( x1, y1, x2, y2, FileName, DX_IMAGESAVETYPE_BMP, 80, TRUE, -1 );
 }
 
-// Œ»İ•`‰æ‘ÎÛ‚É‚È‚Á‚Ä‚¢‚é‰æ–Ê‚ğ‚a‚l‚oŒ`®‚Å•Û‘¶‚·‚é
+// ç¾åœ¨æç”»å¯¾è±¡ã«ãªã£ã¦ã„ã‚‹ç”»é¢ã‚’ï¼¢ï¼­ï¼°å½¢å¼ã§ä¿å­˜ã™ã‚‹
 extern int NS_SaveDrawScreenToBMPWithStrLen( int x1, int y1, int x2, int y2, const TCHAR *FileName, size_t FileNameLength )
 {
 	int Result ;
@@ -21374,19 +21374,19 @@ extern int NS_SaveDrawScreenToBMPWithStrLen( int x1, int y1, int x2, int y2, con
 	return Result ;
 }
 
-// Œ»İ•`‰æ‘ÎÛ‚É‚È‚Á‚Ä‚¢‚é‰æ–Ê‚ğ‚a‚l‚oŒ`®‚Å•Û‘¶‚·‚é
+// ç¾åœ¨æç”»å¯¾è±¡ã«ãªã£ã¦ã„ã‚‹ç”»é¢ã‚’ï¼¢ï¼­ï¼°å½¢å¼ã§ä¿å­˜ã™ã‚‹
 extern int SaveDrawScreenToBMP_WCHAR_T( int x1, int y1, int x2, int y2, const wchar_t *FileName )
 {
 	return SaveDrawScreen_WCHAR_T( x1, y1, x2, y2, FileName, DX_IMAGESAVETYPE_BMP );
 }
 
-// Œ»İ•`‰æ‘ÎÛ‚É‚È‚Á‚Ä‚¢‚é‰æ–Ê‚ğ‚c‚c‚rŒ`®‚Å•Û‘¶‚·‚é
+// ç¾åœ¨æç”»å¯¾è±¡ã«ãªã£ã¦ã„ã‚‹ç”»é¢ã‚’ï¼¤ï¼¤ï¼³å½¢å¼ã§ä¿å­˜ã™ã‚‹
 extern int NS_SaveDrawScreenToDDS(  int x1, int y1, int x2, int y2, const TCHAR *FileName )
 {
 	return NS_SaveDrawScreen( x1, y1, x2, y2, FileName, DX_IMAGESAVETYPE_DDS, 80, TRUE, -1 );
 }
 
-// Œ»İ•`‰æ‘ÎÛ‚É‚È‚Á‚Ä‚¢‚é‰æ–Ê‚ğ‚c‚c‚rŒ`®‚Å•Û‘¶‚·‚é
+// ç¾åœ¨æç”»å¯¾è±¡ã«ãªã£ã¦ã„ã‚‹ç”»é¢ã‚’ï¼¤ï¼¤ï¼³å½¢å¼ã§ä¿å­˜ã™ã‚‹
 extern int NS_SaveDrawScreenToDDSWithStrLen( int x1, int y1, int x2, int y2, const TCHAR *FileName, size_t FileNameLength )
 {
 	int Result ;
@@ -21396,19 +21396,19 @@ extern int NS_SaveDrawScreenToDDSWithStrLen( int x1, int y1, int x2, int y2, con
 	return Result ;
 }
 
-// Œ»İ•`‰æ‘ÎÛ‚É‚È‚Á‚Ä‚¢‚é‰æ–Ê‚ğ‚a‚l‚oŒ`®‚Å•Û‘¶‚·‚é
+// ç¾åœ¨æç”»å¯¾è±¡ã«ãªã£ã¦ã„ã‚‹ç”»é¢ã‚’ï¼¢ï¼­ï¼°å½¢å¼ã§ä¿å­˜ã™ã‚‹
 extern int SaveDrawScreenToDDS_WCHAR_T( int x1, int y1, int x2, int y2, const wchar_t *FileName )
 {
 	return SaveDrawScreen_WCHAR_T( x1, y1, x2, y2, FileName, DX_IMAGESAVETYPE_DDS );
 }
 
-// Œ»İ•`‰æ‘ÎÛ‚É‚È‚Á‚Ä‚¢‚é‰æ–Ê‚ğ‚i‚o‚d‚fŒ`®‚Å•Û‘¶‚·‚é Quality = ‰æ¿A’l‚ª‘å‚«‚¢‚Ù‚Ç’áˆ³k‚‰æ¿,0`100 
+// ç¾åœ¨æç”»å¯¾è±¡ã«ãªã£ã¦ã„ã‚‹ç”»é¢ã‚’ï¼ªï¼°ï¼¥ï¼§å½¢å¼ã§ä¿å­˜ã™ã‚‹ Quality = ç”»è³ªã€å€¤ãŒå¤§ãã„ã»ã©ä½åœ§ç¸®é«˜ç”»è³ª,0ï½100 
 extern int NS_SaveDrawScreenToJPEG( int x1, int y1, int x2, int y2, const TCHAR *FileName, int Quality, int Sample2x1 )
 {
 	return NS_SaveDrawScreen( x1, y1, x2, y2, FileName, DX_IMAGESAVETYPE_JPEG, Quality, Sample2x1, -1 );
 }
 
-// Œ»İ•`‰æ‘ÎÛ‚É‚È‚Á‚Ä‚¢‚é‰æ–Ê‚ğ‚i‚o‚d‚fŒ`®‚Å•Û‘¶‚·‚é Quality = ‰æ¿A’l‚ª‘å‚«‚¢‚Ù‚Ç’áˆ³k‚‰æ¿,0`100 
+// ç¾åœ¨æç”»å¯¾è±¡ã«ãªã£ã¦ã„ã‚‹ç”»é¢ã‚’ï¼ªï¼°ï¼¥ï¼§å½¢å¼ã§ä¿å­˜ã™ã‚‹ Quality = ç”»è³ªã€å€¤ãŒå¤§ãã„ã»ã©ä½åœ§ç¸®é«˜ç”»è³ª,0ï½100 
 extern int NS_SaveDrawScreenToJPEGWithStrLen( int x1, int y1, int x2, int y2, const TCHAR *FileName, size_t FileNameLength, int Quality, int Sample2x1 )
 {
 	int Result ;
@@ -21418,19 +21418,19 @@ extern int NS_SaveDrawScreenToJPEGWithStrLen( int x1, int y1, int x2, int y2, co
 	return Result ;
 }
 
-// Œ»İ•`‰æ‘ÎÛ‚É‚È‚Á‚Ä‚¢‚é‰æ–Ê‚ğ‚i‚o‚d‚fŒ`®‚Å•Û‘¶‚·‚é Quality = ‰æ¿A’l‚ª‘å‚«‚¢‚Ù‚Ç’áˆ³k‚‰æ¿,0`100 
+// ç¾åœ¨æç”»å¯¾è±¡ã«ãªã£ã¦ã„ã‚‹ç”»é¢ã‚’ï¼ªï¼°ï¼¥ï¼§å½¢å¼ã§ä¿å­˜ã™ã‚‹ Quality = ç”»è³ªã€å€¤ãŒå¤§ãã„ã»ã©ä½åœ§ç¸®é«˜ç”»è³ª,0ï½100 
 extern int SaveDrawScreenToJPEG_WCHAR_T( int x1, int y1, int x2, int y2, const wchar_t *FileName, int Quality, int Sample2x1 )
 {
 	return SaveDrawScreen_WCHAR_T( x1, y1, x2, y2, FileName, DX_IMAGESAVETYPE_JPEG, Quality, Sample2x1 );
 }
 
-// Œ»İ•`‰æ‘ÎÛ‚É‚È‚Á‚Ä‚¢‚é‰æ–Ê‚ğ‚o‚m‚fŒ`®‚Å•Û‘¶‚·‚é CompressionLevel = ˆ³k—¦A’l‚ª‘å‚«‚¢‚Ù‚Ç‚ˆ³k—¦‚•‰‰×A‚O‚Í–³ˆ³k,0`9
+// ç¾åœ¨æç”»å¯¾è±¡ã«ãªã£ã¦ã„ã‚‹ç”»é¢ã‚’ï¼°ï¼®ï¼§å½¢å¼ã§ä¿å­˜ã™ã‚‹ CompressionLevel = åœ§ç¸®ç‡ã€å€¤ãŒå¤§ãã„ã»ã©é«˜åœ§ç¸®ç‡é«˜è² è·ã€ï¼ã¯ç„¡åœ§ç¸®,0ï½9
 extern int NS_SaveDrawScreenToPNG( int x1, int y1, int x2, int y2, const TCHAR *FileName, int CompressionLevel )
 {
 	return NS_SaveDrawScreen( x1, y1, x2, y2, FileName, DX_IMAGESAVETYPE_PNG, 80, TRUE, CompressionLevel );
 }
 
-// Œ»İ•`‰æ‘ÎÛ‚É‚È‚Á‚Ä‚¢‚é‰æ–Ê‚ğ‚o‚m‚fŒ`®‚Å•Û‘¶‚·‚é CompressionLevel = ˆ³k—¦A’l‚ª‘å‚«‚¢‚Ù‚Ç‚ˆ³k—¦‚•‰‰×A‚O‚Í–³ˆ³k,0`9
+// ç¾åœ¨æç”»å¯¾è±¡ã«ãªã£ã¦ã„ã‚‹ç”»é¢ã‚’ï¼°ï¼®ï¼§å½¢å¼ã§ä¿å­˜ã™ã‚‹ CompressionLevel = åœ§ç¸®ç‡ã€å€¤ãŒå¤§ãã„ã»ã©é«˜åœ§ç¸®ç‡é«˜è² è·ã€ï¼ã¯ç„¡åœ§ç¸®,0ï½9
 extern int NS_SaveDrawScreenToPNGWithStrLen( int x1, int y1, int x2, int y2, const TCHAR *FileName, size_t FileNameLength, int CompressionLevel )
 {
 	int Result ;
@@ -21440,17 +21440,17 @@ extern int NS_SaveDrawScreenToPNGWithStrLen( int x1, int y1, int x2, int y2, con
 	return Result ;
 }
 
-// Œ»İ•`‰æ‘ÎÛ‚É‚È‚Á‚Ä‚¢‚é‰æ–Ê‚ğ‚o‚m‚fŒ`®‚Å•Û‘¶‚·‚é CompressionLevel = ˆ³k—¦A’l‚ª‘å‚«‚¢‚Ù‚Ç‚ˆ³k—¦‚•‰‰×A‚O‚Í–³ˆ³k,0`9
+// ç¾åœ¨æç”»å¯¾è±¡ã«ãªã£ã¦ã„ã‚‹ç”»é¢ã‚’ï¼°ï¼®ï¼§å½¢å¼ã§ä¿å­˜ã™ã‚‹ CompressionLevel = åœ§ç¸®ç‡ã€å€¤ãŒå¤§ãã„ã»ã©é«˜åœ§ç¸®ç‡é«˜è² è·ã€ï¼ã¯ç„¡åœ§ç¸®,0ï½9
 extern int SaveDrawScreenToPNG_WCHAR_T( int x1, int y1, int x2, int y2, const wchar_t *FileName, int CompressionLevel )
 {
 	return SaveDrawScreen_WCHAR_T( x1, y1, x2, y2, FileName, DX_IMAGESAVETYPE_PNG, 80, CompressionLevel );
 }
 
-// •`‰æ‘ÎÛ‚É‚Å‚«‚éƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹•Û‘¶ŠÖ”
-// Jpeg_Quality         = 0:’á‰æ¿`100:‚‰æ¿
-// Png_CompressionLevel = 0:–³ˆ³k`  9:Å‚ˆ³k
+// æç”»å¯¾è±¡ã«ã§ãã‚‹ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ä¿å­˜é–¢æ•°
+// Jpeg_Quality         = 0:ä½ç”»è³ªï½100:é«˜ç”»è³ª
+// Png_CompressionLevel = 0:ç„¡åœ§ç¸®ï½  9:æœ€é«˜åœ§ç¸®
 
-// •`‰æ‘ÎÛ‚É‚Å‚«‚éƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ğƒtƒ@ƒCƒ‹‚Å•Û‘¶‚·‚é
+// æç”»å¯¾è±¡ã«ã§ãã‚‹ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã‚’ãƒ•ã‚¡ã‚¤ãƒ«ã§ä¿å­˜ã™ã‚‹
 extern int NS_SaveDrawValidGraph( int GrHandle, int x1, int y1, int x2, int y2, const TCHAR *FileName, int SaveType, int Jpeg_Quality, int Jpeg_Sample2x1, int Png_CompressionLevel )
 {
 #ifdef UNICODE
@@ -21472,7 +21472,7 @@ extern int NS_SaveDrawValidGraph( int GrHandle, int x1, int y1, int x2, int y2, 
 #endif
 }
 
-// •`‰æ‘ÎÛ‚É‚Å‚«‚éƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ğƒtƒ@ƒCƒ‹‚Å•Û‘¶‚·‚é
+// æç”»å¯¾è±¡ã«ã§ãã‚‹ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã‚’ãƒ•ã‚¡ã‚¤ãƒ«ã§ä¿å­˜ã™ã‚‹
 extern int NS_SaveDrawValidGraphWithStrLen( int GrHandle, int x1, int y1, int x2, int y2, const TCHAR *FileName, size_t FileNameLength, int SaveType, int Jpeg_Quality, int Jpeg_Sample2x1, int Png_CompressionLevel )
 {
 	int Result ;
@@ -21499,7 +21499,7 @@ extern int SaveDrawValidGraph_WCHAR_T( int GrHandle, int x1, int y1, int x2, int
 		return -1 ;
 	}
 
-	// ƒTƒCƒY‚ª‰æ–Ê‚¢‚Á‚Ï‚¢‚ÅA‚©‚Â DDS ƒtƒ@ƒCƒ‹‚Å‚Ì•Û‘¶‚ÅAƒeƒNƒXƒ`ƒƒ‚Ìê‡‚Íê—p‚Ìˆ—‚ğs‚¤
+	// ã‚µã‚¤ã‚ºãŒç”»é¢ã„ã£ã±ã„ã§ã€ã‹ã¤ DDS ãƒ•ã‚¡ã‚¤ãƒ«ã§ã®ä¿å­˜ã§ã€ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®å ´åˆã¯å°‚ç”¨ã®å‡¦ç†ã‚’è¡Œã†
 	if( x1 == 0 && y1 == 0 && x2 == Image->WidthI && y2 == Image->HeightI &&
 		SaveType == DX_IMAGESAVETYPE_DDS && Image->Orig->FormatDesc.TextureFlag == TRUE )
 	{
@@ -21521,7 +21521,7 @@ extern int SaveDrawValidGraph_WCHAR_T( int GrHandle, int x1, int y1, int x2, int
 		BaseImageDim = ( BASEIMAGE * )DXALLOC( sizeof( BASEIMAGE ) * BaseImageNum ) ;
 		if( BaseImageDim == NULL )
 		{
-			DXST_LOGFILE_ADDUTF16LE( "\xcf\x63\x3b\x75\xfe\x5b\x61\x8c\x6b\x30\x67\x30\x4d\x30\x8b\x30\xb0\x30\xe9\x30\xd5\x30\xa3\x30\xc3\x30\xaf\x30\xcf\x30\xf3\x30\xc9\x30\xeb\x30\xdd\x4f\x58\x5b\xe6\x51\x06\x74\x67\x30\x7f\x4f\x28\x75\x59\x30\x8b\x30\x20\x00\x42\x00\x41\x00\x53\x00\x45\x00\x49\x00\x4d\x00\x41\x00\x47\x00\x45\x00\x20\x00\xcb\x69\x20\x90\x53\x4f\x4d\x91\x17\x52\x92\x30\xdd\x4f\x58\x5b\x59\x30\x8b\x30\x5f\x30\x81\x30\x6e\x30\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"•`‰æ‘ÎÛ‚É‚Å‚«‚éƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹•Û‘¶ˆ—‚Åg—p‚·‚é BASEIMAGE \‘¢‘Ì”z—ñ‚ğ•Û‘¶‚·‚é‚½‚ß‚Ìƒƒ‚ƒŠ‚ÌŠm•Û‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+			DXST_LOGFILE_ADDUTF16LE( "\xcf\x63\x3b\x75\xfe\x5b\x61\x8c\x6b\x30\x67\x30\x4d\x30\x8b\x30\xb0\x30\xe9\x30\xd5\x30\xa3\x30\xc3\x30\xaf\x30\xcf\x30\xf3\x30\xc9\x30\xeb\x30\xdd\x4f\x58\x5b\xe6\x51\x06\x74\x67\x30\x7f\x4f\x28\x75\x59\x30\x8b\x30\x20\x00\x42\x00\x41\x00\x53\x00\x45\x00\x49\x00\x4d\x00\x41\x00\x47\x00\x45\x00\x20\x00\xcb\x69\x20\x90\x53\x4f\x4d\x91\x17\x52\x92\x30\xdd\x4f\x58\x5b\x59\x30\x8b\x30\x5f\x30\x81\x30\x6e\x30\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"æç”»å¯¾è±¡ã«ã§ãã‚‹ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ä¿å­˜å‡¦ç†ã§ä½¿ç”¨ã™ã‚‹ BASEIMAGE æ§‹é€ ä½“é…åˆ—ã‚’ä¿å­˜ã™ã‚‹ãŸã‚ã®ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 			return -1 ;
 		}
 		_MEMSET( BaseImageDim, 0, sizeof( BASEIMAGE ) * BaseImageNum ) ;
@@ -21535,7 +21535,7 @@ extern int SaveDrawValidGraph_WCHAR_T( int GrHandle, int x1, int y1, int x2, int
 
 				Graphics_Image_CalcMipSize( Image->WidthI, Image->HeightI, j, &Width, &Height ) ;
 
-				// •`‰æ‘ÎÛ‚É‚Å‚«‚éƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ğƒƒbƒN
+				// æç”»å¯¾è±¡ã«ã§ãã‚‹ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã‚’ãƒ­ãƒƒã‚¯
 				LockRect.left   = 0 ;
 				LockRect.top    = 0 ;
 				LockRect.right  = Width ;
@@ -21553,7 +21553,7 @@ extern int SaveDrawValidGraph_WCHAR_T( int GrHandle, int x1, int y1, int x2, int
 					return -1 ;
 				}
 
-				// ‰æ‘œ‚Ì•¡»
+				// ç”»åƒã®è¤‡è£½
 				if( NS_CreateColorDataBaseImage( BaseImage.Width, BaseImage.Height, &BaseImage.ColorData, &BaseImageDim[ k ] ) < 0 )
 				{
 					DXFREE( BaseImageDim ) ;
@@ -21564,17 +21564,17 @@ extern int SaveDrawValidGraph_WCHAR_T( int GrHandle, int x1, int y1, int x2, int
 						NS_ReleaseBaseImage( &BaseImageDim[ i ] ) ;
 					}
 
-					DXST_LOGFILE_ADDUTF16LE( "\xcf\x63\x3b\x75\xfe\x5b\x61\x8c\x6b\x30\x67\x30\x4d\x30\x8b\x30\xb0\x30\xe9\x30\xd5\x30\xa3\x30\xc3\x30\xaf\x30\xcf\x30\xf3\x30\xc9\x30\xeb\x30\xdd\x4f\x58\x5b\xe6\x51\x06\x74\x67\x30\x7f\x4f\x28\x75\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"•`‰æ‘ÎÛ‚É‚Å‚«‚éƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹•Û‘¶ˆ—‚Åg—p‚·‚éƒƒ‚ƒŠ‚ÌŠm•Û‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+					DXST_LOGFILE_ADDUTF16LE( "\xcf\x63\x3b\x75\xfe\x5b\x61\x8c\x6b\x30\x67\x30\x4d\x30\x8b\x30\xb0\x30\xe9\x30\xd5\x30\xa3\x30\xc3\x30\xaf\x30\xcf\x30\xf3\x30\xc9\x30\xeb\x30\xdd\x4f\x58\x5b\xe6\x51\x06\x74\x67\x30\x7f\x4f\x28\x75\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"æç”»å¯¾è±¡ã«ã§ãã‚‹ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ä¿å­˜å‡¦ç†ã§ä½¿ç”¨ã™ã‚‹ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 					return -1 ;
 				}
 				BltBaseImage2( 0, 0, &BaseImage, &BaseImageDim[ k ] ) ;
 
-				// •`‰ææ‚ğƒAƒ“ƒƒbƒN
+				// æç”»å…ˆã‚’ã‚¢ãƒ³ãƒ­ãƒƒã‚¯
 				Graphics_Screen_UnlockDrawScreen() ;
 			}
 		}
 
-		// ƒtƒ@ƒCƒ‹‚Ì•Û‘¶
+		// ãƒ•ã‚¡ã‚¤ãƒ«ã®ä¿å­˜
 		Result = SaveBaseImageToDds_WCHAR_T( FileName, BaseImageDim, CubeMapFlag, MipMapCount ) ;
 
 		for( i = 0 ; i < k ; i ++ )
@@ -21588,13 +21588,13 @@ extern int SaveDrawValidGraph_WCHAR_T( int GrHandle, int x1, int y1, int x2, int
 		return Result ;
 	}
 
-	// ƒTƒCƒY‚ª•s³‚Èê‡‚Í‰½‚à‚¹‚¸‚ÉI—¹
+	// ã‚µã‚¤ã‚ºãŒä¸æ­£ãªå ´åˆã¯ä½•ã‚‚ã›ãšã«çµ‚äº†
 	if( x1 >= x2 || y1 >= y2 || x1 < 0 || y1 < 0 || x2 > Image->WidthI || y2 > Image->HeightI )
 	{
 		return -1 ;
 	}
 
-	// •`‰æ‘ÎÛ‚É‚Å‚«‚éƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ğƒƒbƒN
+	// æç”»å¯¾è±¡ã«ã§ãã‚‹ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã‚’ãƒ­ãƒƒã‚¯
 	LockRect.left   = x1 ;
 	LockRect.top    = y1 ;
 	LockRect.right  = x2 ;
@@ -21604,7 +21604,7 @@ extern int SaveDrawValidGraph_WCHAR_T( int GrHandle, int x1, int y1, int x2, int
 		return -1 ;
 	}
 
-	// •Û‘¶Œ`®‚É‚æ‚Á‚Äˆ—‚ğ•ÏX‚·‚é
+	// ä¿å­˜å½¢å¼ã«ã‚ˆã£ã¦å‡¦ç†ã‚’å¤‰æ›´ã™ã‚‹
 	switch( SaveType )
 	{
 	case DX_IMAGESAVETYPE_JPEG:
@@ -21628,20 +21628,20 @@ extern int SaveDrawValidGraph_WCHAR_T( int GrHandle, int x1, int y1, int x2, int
 		break ;
 	}
 
-	// •`‰ææ‚ğƒAƒ“ƒƒbƒN
+	// æç”»å…ˆã‚’ã‚¢ãƒ³ãƒ­ãƒƒã‚¯
 	Graphics_Screen_UnlockDrawScreen() ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// •`‰æ‘ÎÛ‚É‚Å‚«‚éƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ğ‚a‚l‚oŒ`®‚Å•Û‘¶‚·‚é
+// æç”»å¯¾è±¡ã«ã§ãã‚‹ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã‚’ï¼¢ï¼­ï¼°å½¢å¼ã§ä¿å­˜ã™ã‚‹
 extern int NS_SaveDrawValidGraphToBMP(  int GrHandle, int x1, int y1, int x2, int y2, const TCHAR *FileName )
 {
 	return NS_SaveDrawValidGraph( GrHandle, x1, y1, x2, y2, FileName, DX_IMAGESAVETYPE_BMP, 80, TRUE, -1 );
 }
 
-// •`‰æ‘ÎÛ‚É‚Å‚«‚éƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ğ‚a‚l‚oŒ`®‚Å•Û‘¶‚·‚é
+// æç”»å¯¾è±¡ã«ã§ãã‚‹ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã‚’ï¼¢ï¼­ï¼°å½¢å¼ã§ä¿å­˜ã™ã‚‹
 extern int NS_SaveDrawValidGraphToBMPWithStrLen( int GrHandle, int x1, int y1, int x2, int y2, const TCHAR *FileName, size_t FileNameLength )
 {
 	int Result ;
@@ -21656,13 +21656,13 @@ extern int SaveDrawValidGraphToBMP_WCHAR_T(  int GrHandle, int x1, int y1, int x
 	return SaveDrawValidGraph_WCHAR_T( GrHandle, x1, y1, x2, y2, FileName, DX_IMAGESAVETYPE_BMP );
 }
 
-// •`‰æ‘ÎÛ‚É‚Å‚«‚éƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ğ‚c‚c‚rŒ`®‚Å•Û‘¶‚·‚é
+// æç”»å¯¾è±¡ã«ã§ãã‚‹ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã‚’ï¼¤ï¼¤ï¼³å½¢å¼ã§ä¿å­˜ã™ã‚‹
 extern int NS_SaveDrawValidGraphToDDS(  int GrHandle, int x1, int y1, int x2, int y2, const TCHAR *FileName )
 {
 	return NS_SaveDrawValidGraph( GrHandle, x1, y1, x2, y2, FileName, DX_IMAGESAVETYPE_DDS, 80, TRUE, -1 );
 }
 
-// •`‰æ‘ÎÛ‚É‚Å‚«‚éƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ğ‚c‚c‚rŒ`®‚Å•Û‘¶‚·‚é
+// æç”»å¯¾è±¡ã«ã§ãã‚‹ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã‚’ï¼¤ï¼¤ï¼³å½¢å¼ã§ä¿å­˜ã™ã‚‹
 extern int NS_SaveDrawValidGraphToDDSWithStrLen( int GrHandle, int x1, int y1, int x2, int y2, const TCHAR *FileName, size_t FileNameLength )
 {
 	int Result ;
@@ -21677,13 +21677,13 @@ extern int SaveDrawValidGraphToDDS_WCHAR_T(  int GrHandle, int x1, int y1, int x
 	return SaveDrawValidGraph_WCHAR_T( GrHandle, x1, y1, x2, y2, FileName, DX_IMAGESAVETYPE_DDS );
 }
 
-// •`‰æ‘ÎÛ‚É‚Å‚«‚éƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ğ‚i‚o‚d‚fŒ`®‚Å•Û‘¶‚·‚é Quality = ‰æ¿A’l‚ª‘å‚«‚¢‚Ù‚Ç’áˆ³k‚‰æ¿,0`100 
+// æç”»å¯¾è±¡ã«ã§ãã‚‹ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã‚’ï¼ªï¼°ï¼¥ï¼§å½¢å¼ã§ä¿å­˜ã™ã‚‹ Quality = ç”»è³ªã€å€¤ãŒå¤§ãã„ã»ã©ä½åœ§ç¸®é«˜ç”»è³ª,0ï½100 
 extern int NS_SaveDrawValidGraphToJPEG( int GrHandle, int x1, int y1, int x2, int y2, const TCHAR *FileName, int Quality , int Sample2x1 )
 {
 	return NS_SaveDrawValidGraph( GrHandle, x1, y1, x2, y2, FileName, DX_IMAGESAVETYPE_JPEG, Quality, Sample2x1, -1 );
 }
 
-// •`‰æ‘ÎÛ‚É‚Å‚«‚éƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ğ‚i‚o‚d‚fŒ`®‚Å•Û‘¶‚·‚é Quality = ‰æ¿A’l‚ª‘å‚«‚¢‚Ù‚Ç’áˆ³k‚‰æ¿,0`100 
+// æç”»å¯¾è±¡ã«ã§ãã‚‹ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã‚’ï¼ªï¼°ï¼¥ï¼§å½¢å¼ã§ä¿å­˜ã™ã‚‹ Quality = ç”»è³ªã€å€¤ãŒå¤§ãã„ã»ã©ä½åœ§ç¸®é«˜ç”»è³ª,0ï½100 
 extern int NS_SaveDrawValidGraphToJPEGWithStrLen( int GrHandle, int x1, int y1, int x2, int y2, const TCHAR *FileName, size_t FileNameLength, int Quality, int Sample2x1 )
 {
 	int Result ;
@@ -21698,13 +21698,13 @@ extern int SaveDrawValidGraphToJPEG_WCHAR_T( int GrHandle, int x1, int y1, int x
 	return SaveDrawValidGraph_WCHAR_T( GrHandle, x1, y1, x2, y2, FileName, DX_IMAGESAVETYPE_JPEG, Quality, Sample2x1 );
 }
 
-// •`‰æ‘ÎÛ‚É‚Å‚«‚éƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ğ‚o‚m‚fŒ`®‚Å•Û‘¶‚·‚é CompressionLevel = ˆ³k—¦A’l‚ª‘å‚«‚¢‚Ù‚Ç‚ˆ³k—¦‚•‰‰×A‚O‚Í–³ˆ³k,0`9
+// æç”»å¯¾è±¡ã«ã§ãã‚‹ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã‚’ï¼°ï¼®ï¼§å½¢å¼ã§ä¿å­˜ã™ã‚‹ CompressionLevel = åœ§ç¸®ç‡ã€å€¤ãŒå¤§ãã„ã»ã©é«˜åœ§ç¸®ç‡é«˜è² è·ã€ï¼ã¯ç„¡åœ§ç¸®,0ï½9
 extern int NS_SaveDrawValidGraphToPNG(  int GrHandle, int x1, int y1, int x2, int y2, const TCHAR *FileName, int CompressionLevel )
 {
 	return NS_SaveDrawValidGraph( GrHandle, x1, y1, x2, y2, FileName, DX_IMAGESAVETYPE_PNG, 80, TRUE, CompressionLevel );
 }
 
-// •`‰æ‘ÎÛ‚É‚Å‚«‚éƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ğ‚o‚m‚fŒ`®‚Å•Û‘¶‚·‚é CompressionLevel = ˆ³k—¦A’l‚ª‘å‚«‚¢‚Ù‚Ç‚ˆ³k—¦‚•‰‰×A‚O‚Í–³ˆ³k,0`9
+// æç”»å¯¾è±¡ã«ã§ãã‚‹ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã‚’ï¼°ï¼®ï¼§å½¢å¼ã§ä¿å­˜ã™ã‚‹ CompressionLevel = åœ§ç¸®ç‡ã€å€¤ãŒå¤§ãã„ã»ã©é«˜åœ§ç¸®ç‡é«˜è² è·ã€ï¼ã¯ç„¡åœ§ç¸®,0ï½9
 extern int NS_SaveDrawValidGraphToPNGWithStrLen( int GrHandle, int x1, int y1, int x2, int y2, const TCHAR *FileName, size_t FileNameLength, int CompressionLevel )
 {
 	int Result ;
@@ -21745,175 +21745,175 @@ extern int SaveDrawValidGraphToPNG_WCHAR_T( int GrHandle, int x1, int y1, int x2
 
 
 
-// ’¸“_ƒoƒbƒtƒ@ŠÖŒWŠÖ”
+// é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡é–¢ä¿‚é–¢æ•°
 
-// ’¸“_ƒoƒbƒtƒ@‚ğì¬‚·‚é( -1:ƒGƒ‰[  0ˆÈã:’¸“_ƒoƒbƒtƒ@ƒnƒ“ƒhƒ‹ )
-extern int NS_CreateVertexBuffer( int VertexNum, int VertexType /* DX_VERTEX_TYPE_NORMAL_3D “™ */ )
+// é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã‚’ä½œæˆã™ã‚‹( -1:ã‚¨ãƒ©ãƒ¼  0ä»¥ä¸Š:é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ãƒãƒ³ãƒ‰ãƒ« )
+extern int NS_CreateVertexBuffer( int VertexNum, int VertexType /* DX_VERTEX_TYPE_NORMAL_3D ç­‰ */ )
 {
 	return Graphics_VertexBuffer_Create( VertexNum, VertexType, GetASyncLoadFlag() ) ;
 }
 
-// ’¸“_ƒoƒbƒtƒ@‚ğíœ‚·‚é
+// é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã‚’å‰Šé™¤ã™ã‚‹
 extern int NS_DeleteVertexBuffer( int VertexBufHandle )
 {
 	return SubHandle( VertexBufHandle, GetASyncLoadFlag(), FALSE ) ;
 }
 
-// ‚·‚×‚Ä‚Ì’¸“_ƒoƒbƒtƒ@‚ğíœ‚·‚é
+// ã™ã¹ã¦ã®é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã‚’å‰Šé™¤ã™ã‚‹
 extern int NS_InitVertexBuffer()
 {
 	return AllHandleSub( DX_HANDLETYPE_VERTEX_BUFFER ) ;
 }
 
-// ’¸“_ƒoƒbƒtƒ@‚É’¸“_ƒf[ƒ^‚ğ“]‘—‚·‚é
+// é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã«é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ã‚’è»¢é€ã™ã‚‹
 extern int NS_SetVertexBufferData( int SetIndex, const void *VertexData, int VertexNum, int VertexBufHandle )
 {
 	VERTEXBUFFERHANDLEDATA *VertexBuffer ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( VERTEXBUFFERCHK( VertexBufHandle, VertexBuffer ) )
 		return -1 ;
 
-	// ƒGƒ‰[ƒ`ƒFƒbƒN
+	// ã‚¨ãƒ©ãƒ¼ãƒã‚§ãƒƒã‚¯
 	if( VertexBuffer->Num < SetIndex + VertexNum || SetIndex < 0 )
 		return -1 ;
 
-	// ƒVƒXƒeƒ€ƒƒ‚ƒŠ‚Ìƒoƒbƒtƒ@‚Ö‚à“]‘—
+	// ã‚·ã‚¹ãƒ†ãƒ ãƒ¡ãƒ¢ãƒªã®ãƒãƒƒãƒ•ã‚¡ã¸ã‚‚è»¢é€
 	_MEMCPY( ( BYTE * )VertexBuffer->Buffer + SetIndex * VertexBuffer->UnitSize, VertexData, ( size_t )( VertexNum * VertexBuffer->UnitSize ) ) ;
 
-	// ŠÂ‹«ˆË‘¶‚Ì’¸“_ƒf[ƒ^“]‘—ˆ—
+	// ç’°å¢ƒä¾å­˜ã®é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿è»¢é€å‡¦ç†
 	if( Graphics_Hardware_VertexBuffer_SetData_PF( VertexBuffer, SetIndex, VertexData, VertexNum ) < 0 )
 	{
 		return -1 ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ’¸“_ƒoƒbƒtƒ@ƒnƒ“ƒhƒ‹‚Ì’¸“_ƒoƒbƒtƒ@‚ÌƒAƒhƒŒƒX‚ğæ“¾‚·‚é
+// é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ãƒãƒ³ãƒ‰ãƒ«ã®é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å–å¾—ã™ã‚‹
 extern void *NS_GetBufferVertexBuffer( int VertexBufHandle )
 {
 	VERTEXBUFFERHANDLEDATA *VertexBuffer ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( VERTEXBUFFERCHK( VertexBufHandle, VertexBuffer ) )
 		return NULL ;
 
-	// ƒAƒhƒŒƒX‚ğ•Ô‚·
+	// ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’è¿”ã™
 	return VertexBuffer->Buffer ;
 }
 
-// ’¸“_ƒoƒbƒtƒ@ƒnƒ“ƒhƒ‹‚Ì’¸“_ƒoƒbƒtƒ@‚Ö‚Ì•ÏX‚ğ“K—p‚·‚é( GetBufferVertexBuffer ‚Åæ“¾‚µ‚½ƒoƒbƒtƒ@‚Ö‚Ì•ÏX‚ğ”½‰f‚·‚é )
+// é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ãƒãƒ³ãƒ‰ãƒ«ã®é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã¸ã®å¤‰æ›´ã‚’é©ç”¨ã™ã‚‹( GetBufferVertexBuffer ã§å–å¾—ã—ãŸãƒãƒƒãƒ•ã‚¡ã¸ã®å¤‰æ›´ã‚’åæ˜ ã™ã‚‹ )
 extern int NS_UpdateVertexBuffer( int VertexBufHandle, int UpdateStartIndex, int UpdateVertexNum )
 {
 	VERTEXBUFFERHANDLEDATA *VertexBuffer ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( VERTEXBUFFERCHK( VertexBufHandle, VertexBuffer ) )
 		return -1 ;
 
-	// ƒGƒ‰[ƒ`ƒFƒbƒN
+	// ã‚¨ãƒ©ãƒ¼ãƒã‚§ãƒƒã‚¯
 	if( VertexBuffer->Num < UpdateStartIndex + UpdateVertexNum || UpdateStartIndex < 0 )
 		return -1 ;
 
-	// ŠÂ‹«ˆË‘¶‚Ì’¸“_ƒf[ƒ^“]‘—ˆ—
+	// ç’°å¢ƒä¾å­˜ã®é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿è»¢é€å‡¦ç†
 	if( Graphics_Hardware_VertexBuffer_SetData_PF( VertexBuffer, UpdateStartIndex, ( BYTE * )VertexBuffer->Buffer + UpdateStartIndex * VertexBuffer->UnitSize, UpdateVertexNum ) < 0 )
 	{
 		return -1 ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒCƒ“ƒfƒbƒNƒXƒoƒbƒtƒ@‚ğì¬‚·‚é( -1:ƒGƒ‰[@0ˆÈãFƒCƒ“ƒfƒbƒNƒXƒoƒbƒtƒ@ƒnƒ“ƒhƒ‹ )
-extern int NS_CreateIndexBuffer( int IndexNum, int IndexType /* DX_INDEX_TYPE_16BIT “™ */  )
+// ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒãƒƒãƒ•ã‚¡ã‚’ä½œæˆã™ã‚‹( -1:ã‚¨ãƒ©ãƒ¼ã€€0ä»¥ä¸Šï¼šã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒãƒƒãƒ•ã‚¡ãƒãƒ³ãƒ‰ãƒ« )
+extern int NS_CreateIndexBuffer( int IndexNum, int IndexType /* DX_INDEX_TYPE_16BIT ç­‰ */  )
 {
 	return Graphics_IndexBuffer_Create( IndexNum, IndexType, GetASyncLoadFlag() ) ;
 }
 
-// ƒCƒ“ƒfƒbƒNƒXƒoƒbƒtƒ@‚ğíœ‚·‚é
+// ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒãƒƒãƒ•ã‚¡ã‚’å‰Šé™¤ã™ã‚‹
 extern int NS_DeleteIndexBuffer( int IndexBufHandle )
 {
 	return SubHandle( IndexBufHandle, GetASyncLoadFlag(), FALSE ) ;
 }
 
-// ‚·‚×‚Ä‚ÌƒCƒ“ƒfƒbƒNƒXƒoƒbƒtƒ@‚ğíœ‚·‚é
+// ã™ã¹ã¦ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒãƒƒãƒ•ã‚¡ã‚’å‰Šé™¤ã™ã‚‹
 extern int NS_InitIndexBuffer()
 {
 	return AllHandleSub( DX_HANDLETYPE_INDEX_BUFFER ) ;
 }
 
-// ƒCƒ“ƒfƒbƒNƒXƒoƒbƒtƒ@‚ÉƒCƒ“ƒfƒbƒNƒXƒf[ƒ^‚ğ“]‘—‚·‚é
+// ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒãƒƒãƒ•ã‚¡ã«ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿ã‚’è»¢é€ã™ã‚‹
 extern int NS_SetIndexBufferData( int SetIndex, const void *IndexData, int IndexNum, int IndexBufHandle )
 {
 	INDEXBUFFERHANDLEDATA *IndexBuffer ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( INDEXBUFFERCHK( IndexBufHandle, IndexBuffer ) )
 		return -1 ;
 
-	// ƒGƒ‰[ƒ`ƒFƒbƒN
+	// ã‚¨ãƒ©ãƒ¼ãƒã‚§ãƒƒã‚¯
 	if( IndexBuffer->Num < SetIndex + IndexNum || SetIndex < 0 )
 		return -1 ;
 
-	// ƒVƒXƒeƒ€ƒƒ‚ƒŠ‚Ìƒoƒbƒtƒ@‚Ö‚à“]‘—
+	// ã‚·ã‚¹ãƒ†ãƒ ãƒ¡ãƒ¢ãƒªã®ãƒãƒƒãƒ•ã‚¡ã¸ã‚‚è»¢é€
 	_MEMCPY( ( BYTE * )IndexBuffer->Buffer + SetIndex * IndexBuffer->UnitSize, IndexData, ( size_t )( IndexNum * IndexBuffer->UnitSize ) ) ;
 
-	// ŠÂ‹«ˆË‘¶‚ÌƒCƒ“ƒfƒbƒNƒXƒf[ƒ^“]‘—ˆ—
+	// ç’°å¢ƒä¾å­˜ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿è»¢é€å‡¦ç†
 	if( Graphics_Hardware_IndexBuffer_SetData_PF( IndexBuffer, SetIndex, IndexData, IndexNum ) < 0 )
 	{
 		return -1 ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒCƒ“ƒfƒbƒNƒXƒoƒbƒtƒ@ƒnƒ“ƒhƒ‹‚ÌƒCƒ“ƒfƒbƒNƒXƒoƒbƒtƒ@‚ÌƒAƒhƒŒƒX‚ğæ“¾‚·‚é
+// ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒãƒƒãƒ•ã‚¡ãƒãƒ³ãƒ‰ãƒ«ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒãƒƒãƒ•ã‚¡ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å–å¾—ã™ã‚‹
 extern void * NS_GetBufferIndexBuffer( int IndexBufHandle )
 {
 	INDEXBUFFERHANDLEDATA *IndexBuffer ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( INDEXBUFFERCHK( IndexBufHandle, IndexBuffer ) )
 		return NULL ;
 
-	// ƒAƒhƒŒƒX‚ğ•Ô‚·
+	// ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’è¿”ã™
 	return IndexBuffer->Buffer ;
 }
 
-// ƒCƒ“ƒfƒbƒNƒXƒoƒbƒtƒ@ƒnƒ“ƒhƒ‹‚ÌƒCƒ“ƒfƒbƒNƒXƒoƒbƒtƒ@‚Ö‚Ì•ÏX‚ğ“K—p‚·‚é( GetBufferIndexBuffer ‚Åæ“¾‚µ‚½ƒoƒbƒtƒ@‚Ö‚Ì•ÏX‚ğ”½‰f‚·‚é )
+// ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒãƒƒãƒ•ã‚¡ãƒãƒ³ãƒ‰ãƒ«ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒãƒƒãƒ•ã‚¡ã¸ã®å¤‰æ›´ã‚’é©ç”¨ã™ã‚‹( GetBufferIndexBuffer ã§å–å¾—ã—ãŸãƒãƒƒãƒ•ã‚¡ã¸ã®å¤‰æ›´ã‚’åæ˜ ã™ã‚‹ )
 extern int NS_UpdateIndexBuffer( int IndexBufHandle, int UpdateStartIndex, int UpdateIndexNum )
 {
 	INDEXBUFFERHANDLEDATA *IndexBuffer ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( INDEXBUFFERCHK( IndexBufHandle, IndexBuffer ) )
 		return -1 ;
 
-	// ƒGƒ‰[ƒ`ƒFƒbƒN
+	// ã‚¨ãƒ©ãƒ¼ãƒã‚§ãƒƒã‚¯
 	if( IndexBuffer->Num < UpdateStartIndex + UpdateIndexNum || UpdateStartIndex < 0 )
 		return -1 ;
 
-	// ŠÂ‹«ˆË‘¶‚ÌƒCƒ“ƒfƒbƒNƒXƒf[ƒ^“]‘—ˆ—
+	// ç’°å¢ƒä¾å­˜ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿è»¢é€å‡¦ç†
 	if( Graphics_Hardware_IndexBuffer_SetData_PF( IndexBuffer, UpdateStartIndex, ( BYTE * )IndexBuffer->Buffer + UpdateStartIndex * IndexBuffer->UnitSize, UpdateIndexNum ) < 0 )
 	{
 		return -1 ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒOƒ‰ƒtƒBƒbƒNƒXƒfƒoƒCƒX‚ª‘Î‰‚µ‚Ä‚¢‚éˆê“x‚É•`‰æ‚Å‚«‚éƒvƒŠƒ~ƒeƒBƒu‚ÌÅ‘å”‚ğæ“¾‚·‚é
+// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¹ãƒ‡ãƒã‚¤ã‚¹ãŒå¯¾å¿œã—ã¦ã„ã‚‹ä¸€åº¦ã«æç”»ã§ãã‚‹ãƒ—ãƒªãƒŸãƒ†ã‚£ãƒ–ã®æœ€å¤§æ•°ã‚’å–å¾—ã™ã‚‹
 extern int NS_GetMaxPrimitiveCount( void )
 {
 	return GSYS.HardInfo.MaxPrimitiveCount ;
 }
 
-// ƒOƒ‰ƒtƒBƒbƒNƒXƒfƒoƒCƒX‚ª‘Î‰‚µ‚Ä‚¢‚éˆê“x‚Ég—p‚·‚é‚±‚Æ‚Ì‚Å‚«‚éÅ‘å’¸“_”‚ğæ“¾‚·‚é
+// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¹ãƒ‡ãƒã‚¤ã‚¹ãŒå¯¾å¿œã—ã¦ã„ã‚‹ä¸€åº¦ã«ä½¿ç”¨ã™ã‚‹ã“ã¨ã®ã§ãã‚‹æœ€å¤§é ‚ç‚¹æ•°ã‚’å–å¾—ã™ã‚‹
 extern int NS_GetMaxVertexIndex( void )
 {
 	return GSYS.HardInfo.MaxVertexIndex ;
@@ -21940,15 +21940,15 @@ extern int NS_GetMaxVertexIndex( void )
 
 
 
-// ƒVƒF[ƒ_[ŠÖŒWŠÖ”
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼é–¢ä¿‚é–¢æ•°
 
-// g—p‚Å‚«‚éƒVƒF[ƒ_[‚Ìƒo[ƒWƒ‡ƒ“‚ğæ“¾‚·‚é( 0=g‚¦‚È‚¢  200=ƒVƒF[ƒ_[ƒ‚ƒfƒ‹‚QD‚O‚ªg—p‰Â”\  300=ƒVƒF[ƒ_[ƒ‚ƒfƒ‹‚RD‚O‚ªg—p‰Â”\ )
+// ä½¿ç”¨ã§ãã‚‹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã‚’å–å¾—ã™ã‚‹( 0=ä½¿ãˆãªã„  200=ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒ¢ãƒ‡ãƒ«ï¼’ï¼ï¼ãŒä½¿ç”¨å¯èƒ½  300=ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒ¢ãƒ‡ãƒ«ï¼“ï¼ï¼ãŒä½¿ç”¨å¯èƒ½ )
 extern int NS_GetValidShaderVersion( void )
 {
 	return Graphics_Hardware_Shader_GetValidShaderVersion_PF() ;
 }
 
-// ’¸“_ƒVƒF[ƒ_[ƒoƒCƒiƒŠ‚ğƒtƒ@ƒCƒ‹‚©‚ç“Ç‚İ‚İ’¸“_ƒVƒF[ƒ_[ƒnƒ“ƒhƒ‹‚ğì¬‚·‚é( –ß‚è’l -1:ƒGƒ‰[  -1ˆÈŠO:ƒVƒF[ƒ_[ƒnƒ“ƒhƒ‹ )
+// é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒã‚¤ãƒŠãƒªã‚’ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰èª­ã¿è¾¼ã¿é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒãƒ³ãƒ‰ãƒ«ã‚’ä½œæˆã™ã‚‹( æˆ»ã‚Šå€¤ -1:ã‚¨ãƒ©ãƒ¼  -1ä»¥å¤–:ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒãƒ³ãƒ‰ãƒ« )
 extern int NS_LoadVertexShader( const TCHAR *FileName )
 {
 #ifdef UNICODE
@@ -21970,7 +21970,7 @@ extern int NS_LoadVertexShader( const TCHAR *FileName )
 #endif
 }
 
-// ’¸“_ƒVƒF[ƒ_[ƒoƒCƒiƒŠ‚ğƒtƒ@ƒCƒ‹‚©‚ç“Ç‚İ‚İ’¸“_ƒVƒF[ƒ_[ƒnƒ“ƒhƒ‹‚ğì¬‚·‚é( –ß‚è’l -1:ƒGƒ‰[  -1ˆÈŠO:ƒVƒF[ƒ_[ƒnƒ“ƒhƒ‹ )
+// é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒã‚¤ãƒŠãƒªã‚’ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰èª­ã¿è¾¼ã¿é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒãƒ³ãƒ‰ãƒ«ã‚’ä½œæˆã™ã‚‹( æˆ»ã‚Šå€¤ -1:ã‚¨ãƒ©ãƒ¼  -1ä»¥å¤–:ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒãƒ³ãƒ‰ãƒ« )
 extern int NS_LoadVertexShaderWithStrLen( const TCHAR *FileName, size_t FileNameLength )
 {
 	int Result ;
@@ -21986,13 +21986,13 @@ extern int NS_LoadVertexShaderWithStrLen( const TCHAR *FileName, size_t FileName
 	return Result ;
 }
 
-// ’¸“_ƒVƒF[ƒ_[ƒoƒCƒiƒŠ‚ğƒtƒ@ƒCƒ‹‚©‚ç“Ç‚İ‚İ’¸“_ƒVƒF[ƒ_[ƒnƒ“ƒhƒ‹‚ğì¬‚·‚é( –ß‚è’l -1:ƒGƒ‰[  -1ˆÈŠO:ƒVƒF[ƒ_[ƒnƒ“ƒhƒ‹ )
+// é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒã‚¤ãƒŠãƒªã‚’ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰èª­ã¿è¾¼ã¿é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒãƒ³ãƒ‰ãƒ«ã‚’ä½œæˆã™ã‚‹( æˆ»ã‚Šå€¤ -1:ã‚¨ãƒ©ãƒ¼  -1ä»¥å¤–:ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒãƒ³ãƒ‰ãƒ« )
 extern int LoadVertexShader_WCHAR_T( const wchar_t *FileName )
 {
 	return Graphics_Shader_LoadShader_UseGParam( DX_SHADERTYPE_VERTEX, FileName, GetASyncLoadFlag() ) ;
 }
 
-// ƒWƒIƒƒgƒŠƒoƒCƒiƒŠ‚ğƒtƒ@ƒCƒ‹‚©‚ç“Ç‚İ‚İƒWƒIƒƒgƒŠƒnƒ“ƒhƒ‹‚ğì¬‚·‚é( –ß‚è’l -1:ƒGƒ‰[  -1ˆÈŠO:ƒVƒF[ƒ_[ƒnƒ“ƒhƒ‹ )
+// ã‚¸ã‚ªãƒ¡ãƒˆãƒªãƒã‚¤ãƒŠãƒªã‚’ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰èª­ã¿è¾¼ã¿ã‚¸ã‚ªãƒ¡ãƒˆãƒªãƒãƒ³ãƒ‰ãƒ«ã‚’ä½œæˆã™ã‚‹( æˆ»ã‚Šå€¤ -1:ã‚¨ãƒ©ãƒ¼  -1ä»¥å¤–:ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒãƒ³ãƒ‰ãƒ« )
 extern int NS_LoadGeometryShader( const TCHAR *FileName )
 {
 #ifdef UNICODE
@@ -22014,7 +22014,7 @@ extern int NS_LoadGeometryShader( const TCHAR *FileName )
 #endif
 }
 
-// ƒWƒIƒƒgƒŠƒoƒCƒiƒŠ‚ğƒtƒ@ƒCƒ‹‚©‚ç“Ç‚İ‚İƒWƒIƒƒgƒŠƒnƒ“ƒhƒ‹‚ğì¬‚·‚é( –ß‚è’l -1:ƒGƒ‰[  -1ˆÈŠO:ƒVƒF[ƒ_[ƒnƒ“ƒhƒ‹ )
+// ã‚¸ã‚ªãƒ¡ãƒˆãƒªãƒã‚¤ãƒŠãƒªã‚’ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰èª­ã¿è¾¼ã¿ã‚¸ã‚ªãƒ¡ãƒˆãƒªãƒãƒ³ãƒ‰ãƒ«ã‚’ä½œæˆã™ã‚‹( æˆ»ã‚Šå€¤ -1:ã‚¨ãƒ©ãƒ¼  -1ä»¥å¤–:ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒãƒ³ãƒ‰ãƒ« )
 extern int NS_LoadGeometryShaderWithStrLen( const TCHAR *FileName, size_t FileNameLength )
 {
 	int Result ;
@@ -22030,13 +22030,13 @@ extern int NS_LoadGeometryShaderWithStrLen( const TCHAR *FileName, size_t FileNa
 	return Result ;
 }
 
-// ƒWƒIƒƒgƒŠƒoƒCƒiƒŠ‚ğƒtƒ@ƒCƒ‹‚©‚ç“Ç‚İ‚İƒWƒIƒƒgƒŠƒnƒ“ƒhƒ‹‚ğì¬‚·‚é( –ß‚è’l -1:ƒGƒ‰[  -1ˆÈŠO:ƒVƒF[ƒ_[ƒnƒ“ƒhƒ‹ )
+// ã‚¸ã‚ªãƒ¡ãƒˆãƒªãƒã‚¤ãƒŠãƒªã‚’ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰èª­ã¿è¾¼ã¿ã‚¸ã‚ªãƒ¡ãƒˆãƒªãƒãƒ³ãƒ‰ãƒ«ã‚’ä½œæˆã™ã‚‹( æˆ»ã‚Šå€¤ -1:ã‚¨ãƒ©ãƒ¼  -1ä»¥å¤–:ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒãƒ³ãƒ‰ãƒ« )
 extern int LoadGeometryShader_WCHAR_T( const wchar_t *FileName )
 {
 	return Graphics_Shader_LoadShader_UseGParam( DX_SHADERTYPE_GEOMETRY, FileName, GetASyncLoadFlag() ) ;
 }
 
-// ƒsƒNƒZƒ‹ƒVƒF[ƒ_[ƒoƒCƒiƒŠ‚ğƒtƒ@ƒCƒ‹‚©‚ç“Ç‚İ‚İƒsƒNƒZƒ‹ƒVƒF[ƒ_[ƒnƒ“ƒhƒ‹‚ğì¬‚·‚é( –ß‚è’l -1:ƒGƒ‰[  -1ˆÈŠO:ƒVƒF[ƒ_[ƒnƒ“ƒhƒ‹ )
+// ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒã‚¤ãƒŠãƒªã‚’ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰èª­ã¿è¾¼ã¿ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒãƒ³ãƒ‰ãƒ«ã‚’ä½œæˆã™ã‚‹( æˆ»ã‚Šå€¤ -1:ã‚¨ãƒ©ãƒ¼  -1ä»¥å¤–:ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒãƒ³ãƒ‰ãƒ« )
 extern int NS_LoadPixelShader( const TCHAR *FileName )
 {
 #ifdef UNICODE
@@ -22058,7 +22058,7 @@ extern int NS_LoadPixelShader( const TCHAR *FileName )
 #endif
 }
 
-// ƒsƒNƒZƒ‹ƒVƒF[ƒ_[ƒoƒCƒiƒŠ‚ğƒtƒ@ƒCƒ‹‚©‚ç“Ç‚İ‚İƒsƒNƒZƒ‹ƒVƒF[ƒ_[ƒnƒ“ƒhƒ‹‚ğì¬‚·‚é( –ß‚è’l -1:ƒGƒ‰[  -1ˆÈŠO:ƒVƒF[ƒ_[ƒnƒ“ƒhƒ‹ )
+// ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒã‚¤ãƒŠãƒªã‚’ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰èª­ã¿è¾¼ã¿ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒãƒ³ãƒ‰ãƒ«ã‚’ä½œæˆã™ã‚‹( æˆ»ã‚Šå€¤ -1:ã‚¨ãƒ©ãƒ¼  -1ä»¥å¤–:ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒãƒ³ãƒ‰ãƒ« )
 extern int NS_LoadPixelShaderWithStrLen( const TCHAR *FileName, size_t FileNameLength )
 {
 	int Result ;
@@ -22074,37 +22074,37 @@ extern int NS_LoadPixelShaderWithStrLen( const TCHAR *FileName, size_t FileNameL
 	return Result ;
 }
 
-// ƒsƒNƒZƒ‹ƒVƒF[ƒ_[ƒoƒCƒiƒŠ‚ğƒtƒ@ƒCƒ‹‚©‚ç“Ç‚İ‚İƒsƒNƒZƒ‹ƒVƒF[ƒ_[ƒnƒ“ƒhƒ‹‚ğì¬‚·‚é( –ß‚è’l -1:ƒGƒ‰[  -1ˆÈŠO:ƒVƒF[ƒ_[ƒnƒ“ƒhƒ‹ )
+// ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒã‚¤ãƒŠãƒªã‚’ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰èª­ã¿è¾¼ã¿ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒãƒ³ãƒ‰ãƒ«ã‚’ä½œæˆã™ã‚‹( æˆ»ã‚Šå€¤ -1:ã‚¨ãƒ©ãƒ¼  -1ä»¥å¤–:ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒãƒ³ãƒ‰ãƒ« )
 extern int LoadPixelShader_WCHAR_T( const wchar_t *FileName )
 {
 	return Graphics_Shader_LoadShader_UseGParam( DX_SHADERTYPE_PIXEL, FileName, GetASyncLoadFlag() ) ;
 }
 
-// ƒƒ‚ƒŠ‹óŠÔã‚É‘¶İ‚·‚é’¸“_ƒVƒF[ƒ_[ƒoƒCƒiƒŠ‚©‚ç’¸“_ƒVƒF[ƒ_[ƒnƒ“ƒhƒ‹‚ğì¬‚·‚é( –ß‚è’l -1:ƒGƒ‰[  -1ˆÈŠO:ƒVƒF[ƒ_[ƒnƒ“ƒhƒ‹ )
+// ãƒ¡ãƒ¢ãƒªç©ºé–“ä¸Šã«å­˜åœ¨ã™ã‚‹é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒã‚¤ãƒŠãƒªã‹ã‚‰é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒãƒ³ãƒ‰ãƒ«ã‚’ä½œæˆã™ã‚‹( æˆ»ã‚Šå€¤ -1:ã‚¨ãƒ©ãƒ¼  -1ä»¥å¤–:ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒãƒ³ãƒ‰ãƒ« )
 extern int NS_LoadVertexShaderFromMem( const void *ImageAddress, int ImageSize )
 {
 	return Graphics_Shader_CreateHandle_UseGParam( DX_SHADERTYPE_VERTEX, ( void * )ImageAddress, ImageSize, FALSE, GetASyncLoadFlag() ) ;
 }
 
-// ƒƒ‚ƒŠ‹óŠÔã‚É‘¶İ‚·‚éƒWƒIƒƒgƒŠƒVƒF[ƒ_[ƒoƒCƒiƒŠ‚©‚çƒWƒIƒƒgƒŠƒVƒF[ƒ_[ƒnƒ“ƒhƒ‹‚ğì¬‚·‚é( –ß‚è’l -1:ƒGƒ‰[  -1ˆÈŠO:ƒVƒF[ƒ_[ƒnƒ“ƒhƒ‹ )
+// ãƒ¡ãƒ¢ãƒªç©ºé–“ä¸Šã«å­˜åœ¨ã™ã‚‹ã‚¸ã‚ªãƒ¡ãƒˆãƒªã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒã‚¤ãƒŠãƒªã‹ã‚‰ã‚¸ã‚ªãƒ¡ãƒˆãƒªã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒãƒ³ãƒ‰ãƒ«ã‚’ä½œæˆã™ã‚‹( æˆ»ã‚Šå€¤ -1:ã‚¨ãƒ©ãƒ¼  -1ä»¥å¤–:ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒãƒ³ãƒ‰ãƒ« )
 extern int NS_LoadGeometryShaderFromMem( const void *ImageAddress, int ImageSize )
 {
 	return Graphics_Shader_CreateHandle_UseGParam( DX_SHADERTYPE_GEOMETRY, ( void * )ImageAddress, ImageSize, FALSE, GetASyncLoadFlag() ) ;
 }
 
-// ƒƒ‚ƒŠ‹óŠÔã‚É‘¶İ‚·‚éƒsƒNƒZƒ‹ƒVƒF[ƒ_[ƒoƒCƒiƒŠ‚©‚çƒsƒNƒZƒ‹ƒVƒF[ƒ_[ƒnƒ“ƒhƒ‹‚ğì¬‚·‚é( –ß‚è’l -1:ƒGƒ‰[  -1ˆÈŠO:ƒVƒF[ƒ_[ƒnƒ“ƒhƒ‹ )
+// ãƒ¡ãƒ¢ãƒªç©ºé–“ä¸Šã«å­˜åœ¨ã™ã‚‹ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒã‚¤ãƒŠãƒªã‹ã‚‰ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒãƒ³ãƒ‰ãƒ«ã‚’ä½œæˆã™ã‚‹( æˆ»ã‚Šå€¤ -1:ã‚¨ãƒ©ãƒ¼  -1ä»¥å¤–:ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒãƒ³ãƒ‰ãƒ« )
 extern int NS_LoadPixelShaderFromMem( const void *ImageAddress, int ImageSize )
 {
 	return Graphics_Shader_CreateHandle_UseGParam( DX_SHADERTYPE_PIXEL, ( void * )ImageAddress, ImageSize, FALSE, GetASyncLoadFlag() ) ;
 }
 
-// ƒVƒF[ƒ_[ƒnƒ“ƒhƒ‹‚Ìíœ
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒãƒ³ãƒ‰ãƒ«ã®å‰Šé™¤
 extern int NS_DeleteShader( int ShaderHandle )
 {
 	return SubHandle( ShaderHandle, GetASyncLoadFlag(), FALSE ) ;
 }
 
-// ƒVƒF[ƒ_[ƒnƒ“ƒhƒ‹‚ğ‘S‚Äíœ‚·‚é
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒãƒ³ãƒ‰ãƒ«ã‚’å…¨ã¦å‰Šé™¤ã™ã‚‹
 extern int NS_InitShader( void )
 {
 	if( GSYS.InitializeFlag == FALSE ) return 0 ;
@@ -22112,7 +22112,7 @@ extern int NS_InitShader( void )
 	return AllHandleSub( DX_HANDLETYPE_SHADER ) ;
 }
 
-// w’è‚Ì–¼‘O‚ğ‚Â’è”‚ªg—p‚·‚éƒVƒF[ƒ_[’è”‚Ì”Ô†‚ğæ“¾‚·‚é
+// æŒ‡å®šã®åå‰ã‚’æŒã¤å®šæ•°ãŒä½¿ç”¨ã™ã‚‹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼å®šæ•°ã®ç•ªå·ã‚’å–å¾—ã™ã‚‹
 extern int NS_GetConstIndexToShader( const TCHAR *ConstantName, int ShaderHandle )
 {
 #ifdef UNICODE
@@ -22133,7 +22133,7 @@ extern int NS_GetConstIndexToShader( const TCHAR *ConstantName, int ShaderHandle
 	return Result ;
 #endif
 }
-// w’è‚Ì–¼‘O‚ğ‚Â’è”‚ªg—p‚·‚éƒVƒF[ƒ_[’è”‚Ì”Ô†‚ğæ“¾‚·‚é
+// æŒ‡å®šã®åå‰ã‚’æŒã¤å®šæ•°ãŒä½¿ç”¨ã™ã‚‹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼å®šæ•°ã®ç•ªå·ã‚’å–å¾—ã™ã‚‹
 extern int NS_GetConstIndexToShaderWithStrLen( const TCHAR *ConstantName, size_t ConstantNameLength, int ShaderHandle )
 {
 	int Result ;
@@ -22150,22 +22150,22 @@ extern int NS_GetConstIndexToShaderWithStrLen( const TCHAR *ConstantName, size_t
 }
 
 
-// w’è‚Ì–¼‘O‚ğ‚Â’è”‚ªg—p‚·‚éƒVƒF[ƒ_[’è”‚Ì”Ô†‚ğæ“¾‚·‚é
+// æŒ‡å®šã®åå‰ã‚’æŒã¤å®šæ•°ãŒä½¿ç”¨ã™ã‚‹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼å®šæ•°ã®ç•ªå·ã‚’å–å¾—ã™ã‚‹
 extern int GetConstIndexToShader_WCHAR_T( const wchar_t *ConstantName, int ShaderHandle )
 {
 	SHADERHANDLEDATA *Shader ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( SHADERCHK( ShaderHandle, Shader ) )
 	{
 		return -1 ;
 	}
 
-	// ŠÂ‹«ˆË‘¶ˆ—
+	// ç’°å¢ƒä¾å­˜å‡¦ç†
 	return Graphics_Hardware_Shader_GetConstIndex_PF( ConstantName, Shader ) ;
 }
 
-// w’è‚Ì–¼‘O‚ğ‚Â’è”‚ªg—p‚·‚éƒVƒF[ƒ_[’è”‚Ì”‚ğæ“¾‚·‚é
+// æŒ‡å®šã®åå‰ã‚’æŒã¤å®šæ•°ãŒä½¿ç”¨ã™ã‚‹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼å®šæ•°ã®æ•°ã‚’å–å¾—ã™ã‚‹
 extern int NS_GetConstCountToShader( const TCHAR *ConstantName, int ShaderHandle )
 {
 #ifdef UNICODE
@@ -22187,7 +22187,7 @@ extern int NS_GetConstCountToShader( const TCHAR *ConstantName, int ShaderHandle
 #endif
 }
 
-// w’è‚Ì–¼‘O‚ğ‚Â’è”‚ªg—p‚·‚éƒVƒF[ƒ_[’è”‚Ì”‚ğæ“¾‚·‚é
+// æŒ‡å®šã®åå‰ã‚’æŒã¤å®šæ•°ãŒä½¿ç”¨ã™ã‚‹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼å®šæ•°ã®æ•°ã‚’å–å¾—ã™ã‚‹
 extern int NS_GetConstCountToShaderWithStrLen( const TCHAR *ConstantName, size_t ConstantNameLength, int ShaderHandle )
 {
 	int Result ;
@@ -22203,20 +22203,20 @@ extern int NS_GetConstCountToShaderWithStrLen( const TCHAR *ConstantName, size_t
 	return Result ;
 }
 
-// w’è‚Ì–¼‘O‚ğ‚Â’è”‚ªg—p‚·‚éƒVƒF[ƒ_[’è”‚Ì”‚ğæ“¾‚·‚é
+// æŒ‡å®šã®åå‰ã‚’æŒã¤å®šæ•°ãŒä½¿ç”¨ã™ã‚‹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼å®šæ•°ã®æ•°ã‚’å–å¾—ã™ã‚‹
 extern int GetConstCountToShader_WCHAR_T( const wchar_t *ConstantName, int ShaderHandle )
 {
 	SHADERHANDLEDATA *Shader ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( SHADERCHK( ShaderHandle, Shader ) )
 		return -1 ;
 
-	// ŠÂ‹«ˆË‘¶ˆ—
+	// ç’°å¢ƒä¾å­˜å‡¦ç†
 	return Graphics_Hardware_Shader_GetConstCount_PF( ConstantName, Shader ) ;
 }
 
-// w’è‚Ì–¼‘O‚ğ‚Â•‚“®¬”“_’è”‚ÌƒfƒtƒHƒ‹ƒgƒpƒ‰ƒ[ƒ^‚ªŠi”[‚³‚ê‚Ä‚¢‚éƒƒ‚ƒŠƒAƒhƒŒƒX‚ğæ“¾‚·‚é
+// æŒ‡å®šã®åå‰ã‚’æŒã¤æµ®å‹•å°æ•°ç‚¹å®šæ•°ã®ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãŒæ ¼ç´ã•ã‚Œã¦ã„ã‚‹ãƒ¡ãƒ¢ãƒªã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å–å¾—ã™ã‚‹
 extern	const FLOAT4 *NS_GetConstDefaultParamFToShader( const TCHAR *ConstantName, int ShaderHandle )
 {
 #ifdef UNICODE
@@ -22238,7 +22238,7 @@ extern	const FLOAT4 *NS_GetConstDefaultParamFToShader( const TCHAR *ConstantName
 #endif
 }
 
-// w’è‚Ì–¼‘O‚ğ‚Â•‚“®¬”“_”’è”‚ÌƒfƒtƒHƒ‹ƒgƒpƒ‰ƒ[ƒ^‚ªŠi”[‚³‚ê‚Ä‚¢‚éƒƒ‚ƒŠƒAƒhƒŒƒX‚ğæ“¾‚·‚é
+// æŒ‡å®šã®åå‰ã‚’æŒã¤æµ®å‹•å°æ•°ç‚¹æ•°å®šæ•°ã®ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãŒæ ¼ç´ã•ã‚Œã¦ã„ã‚‹ãƒ¡ãƒ¢ãƒªã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å–å¾—ã™ã‚‹
 extern const FLOAT4 *NS_GetConstDefaultParamFToShaderWithStrLen( const TCHAR *ConstantName, size_t ConstantNameLength, int ShaderHandle )
 {
 	const FLOAT4 *Result ;
@@ -22254,114 +22254,114 @@ extern const FLOAT4 *NS_GetConstDefaultParamFToShaderWithStrLen( const TCHAR *Co
 	return Result ;
 }
 
-// w’è‚Ì–¼‘O‚ğ‚Â•‚“®¬”“_’è”‚ÌƒfƒtƒHƒ‹ƒgƒpƒ‰ƒ[ƒ^‚ªŠi”[‚³‚ê‚Ä‚¢‚éƒƒ‚ƒŠƒAƒhƒŒƒX‚ğæ“¾‚·‚é
+// æŒ‡å®šã®åå‰ã‚’æŒã¤æµ®å‹•å°æ•°ç‚¹å®šæ•°ã®ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãŒæ ¼ç´ã•ã‚Œã¦ã„ã‚‹ãƒ¡ãƒ¢ãƒªã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å–å¾—ã™ã‚‹
 extern	const FLOAT4 *GetConstDefaultParamFToShader_WCHAR_T( const wchar_t *ConstantName, int ShaderHandle )
 {
 	SHADERHANDLEDATA *Shader ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( SHADERCHK( ShaderHandle, Shader ) )
 		return NULL ;
 
-	// ŠÂ‹«ˆË‘¶ˆ—
+	// ç’°å¢ƒä¾å­˜å‡¦ç†
 	return Graphics_Hardware_Shader_GetConstDefaultParamF_PF( ConstantName, Shader ) ;
 }
 
-// ’¸“_ƒVƒF[ƒ_[‚Ì float Œ^’è”‚ğİ’è‚·‚é
+// é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã® float å‹å®šæ•°ã‚’è¨­å®šã™ã‚‹
 extern int NS_SetVSConstSF( int ConstantIndex, float Param )
 {
 	FLOAT4 ParamF4 ;
 
-	// ƒVƒF[ƒ_[‚ªg‚¦‚È‚¢ê‡‚Í‰½‚à‚µ‚È‚¢
+	// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãŒä½¿ãˆãªã„å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( GSYS.HardInfo.UseShader == FALSE )
 		return 0 ;
 
-	// ”ÍˆÍ‰z‚¦ƒ`ƒFƒbƒN
+	// ç¯„å›²è¶Šãˆãƒã‚§ãƒƒã‚¯
 	if( ConstantIndex < 0 || ConstantIndex >= 256 )
 		return -1 ;
 
-	// ’è”XV
+	// å®šæ•°æ›´æ–°
 	ParamF4.x = Param ;
 	ParamF4.y = Param ;
 	ParamF4.z = Param ;
 	ParamF4.w = Param ;
 	NS_SetVSConstF( ConstantIndex, ParamF4 ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ’¸“_ƒVƒF[ƒ_[‚Ì float Œ^’è”‚ğİ’è‚·‚é
+// é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã® float å‹å®šæ•°ã‚’è¨­å®šã™ã‚‹
 extern int NS_SetVSConstF( int ConstantIndex, FLOAT4 Param )
 {
-	// ƒVƒF[ƒ_[‚ªg‚¦‚È‚¢ê‡‚Í‰½‚à‚µ‚È‚¢
+	// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãŒä½¿ãˆãªã„å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( GSYS.HardInfo.UseShader == FALSE )
 		return 0 ;
 
-	// ”ÍˆÍ‰z‚¦ƒ`ƒFƒbƒN
+	// ç¯„å›²è¶Šãˆãƒã‚§ãƒƒã‚¯
 	if( ConstantIndex < 0 || ConstantIndex >= 256 )
 		return -1 ;
 
-	// ’è”XV
+	// å®šæ•°æ›´æ–°
 	Graphics_Hardware_Shader_SetConst_PF( DX_SHADERCONSTANTTYPE_VS_FLOAT, DX_SHADERCONSTANTSET_USER, ConstantIndex, &Param, 1, TRUE ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ’¸“_ƒVƒF[ƒ_[‚Ì float Œ^’è”‚És—ñ‚ğİ’è‚·‚é
+// é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã® float å‹å®šæ•°ã«è¡Œåˆ—ã‚’è¨­å®šã™ã‚‹
 extern	int			NS_SetVSConstFMtx( int ConstantIndex, MATRIX Param )
 {
-	// ƒVƒF[ƒ_[‚ªg‚¦‚È‚¢ê‡‚Í‰½‚à‚µ‚È‚¢
+	// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãŒä½¿ãˆãªã„å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( GSYS.HardInfo.UseShader == FALSE )
 		return 0 ;
 
-	// ”ÍˆÍ‰z‚¦ƒ`ƒFƒbƒN
+	// ç¯„å›²è¶Šãˆãƒã‚§ãƒƒã‚¯
 	if( ConstantIndex < 0 || ConstantIndex + 4 > 256 )
 		return -1 ;
 
-	// ’è”XV
+	// å®šæ•°æ›´æ–°
 	Graphics_Hardware_Shader_SetConst_PF( DX_SHADERCONSTANTTYPE_VS_FLOAT, DX_SHADERCONSTANTSET_USER, ConstantIndex, ( FLOAT4 * )&Param, 4, TRUE ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ’¸“_ƒVƒF[ƒ_[‚Ì float Œ^’è”‚É“]’u‚µ‚½s—ñ‚ğİ’è‚·‚é
+// é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã® float å‹å®šæ•°ã«è»¢ç½®ã—ãŸè¡Œåˆ—ã‚’è¨­å®šã™ã‚‹
 extern	int			NS_SetVSConstFMtxT( int ConstantIndex, MATRIX Param )
 {
 	MATRIX Transpose ;
 
-	// ƒVƒF[ƒ_[‚ªg‚¦‚È‚¢ê‡‚Í‰½‚à‚µ‚È‚¢
+	// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãŒä½¿ãˆãªã„å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( GSYS.HardInfo.UseShader == FALSE )
 		return 0 ;
 
-	// ”ÍˆÍ‰z‚¦ƒ`ƒFƒbƒN
+	// ç¯„å›²è¶Šãˆãƒã‚§ãƒƒã‚¯
 	if( ConstantIndex < 0 || ConstantIndex + 4 > 256 )
 		return -1 ;
 
-	// ’è”XV
+	// å®šæ•°æ›´æ–°
 	CreateTransposeMatrix( &Transpose, &Param ) ;
 	NS_SetVSConstFMtx( ConstantIndex, Transpose ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ’¸“_ƒVƒF[ƒ_[‚Ì int Œ^’è”‚ğİ’è‚·‚é
+// é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã® int å‹å®šæ•°ã‚’è¨­å®šã™ã‚‹
 extern	int			NS_SetVSConstSI( int ConstantIndex, int Param )
 {
 	INT4 ParamI4 ;
 
-	// ƒVƒF[ƒ_[‚ªg‚¦‚È‚¢ê‡‚Í‰½‚à‚µ‚È‚¢
+	// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãŒä½¿ãˆãªã„å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( GSYS.HardInfo.UseShader == FALSE )
 		return 0 ;
 
-	// ”ÍˆÍ‰z‚¦ƒ`ƒFƒbƒN
+	// ç¯„å›²è¶Šãˆãƒã‚§ãƒƒã‚¯
 	if( ConstantIndex < 0 || ConstantIndex >= 16 )
 		return -1 ;
 
-	// ’è”XV
+	// å®šæ•°æ›´æ–°
 	ParamI4.x = Param ;
 	ParamI4.y = Param ;
 	ParamI4.z = Param ;
@@ -22369,57 +22369,57 @@ extern	int			NS_SetVSConstSI( int ConstantIndex, int Param )
 	return NS_SetVSConstI( ConstantIndex, ParamI4 ) ;
 }
 
-// ’¸“_ƒVƒF[ƒ_[‚Ì int Œ^’è”‚ğİ’è‚·‚é
+// é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã® int å‹å®šæ•°ã‚’è¨­å®šã™ã‚‹
 extern	int			NS_SetVSConstI( int ConstantIndex, INT4 Param )
 {
-	// ƒVƒF[ƒ_[‚ªg‚¦‚È‚¢ê‡‚Í‰½‚à‚µ‚È‚¢
+	// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãŒä½¿ãˆãªã„å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( GSYS.HardInfo.UseShader == FALSE )
 		return 0 ;
 
-	// ”ÍˆÍ‰z‚¦ƒ`ƒFƒbƒN
+	// ç¯„å›²è¶Šãˆãƒã‚§ãƒƒã‚¯
 	if( ConstantIndex < 0 || ConstantIndex >= 16 )
 		return -1 ;
 
-	// ’è”XV
+	// å®šæ•°æ›´æ–°
 	Graphics_Hardware_Shader_SetConst_PF( DX_SHADERCONSTANTTYPE_VS_INT, DX_SHADERCONSTANTSET_USER, ConstantIndex, &Param, 1, TRUE ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ’¸“_ƒVƒF[ƒ_[‚Ì BOOL Œ^’è”‚ğİ’è‚·‚é
+// é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã® BOOL å‹å®šæ•°ã‚’è¨­å®šã™ã‚‹
 extern	int			NS_SetVSConstB( int ConstantIndex, BOOL Param )
 {
-	// ƒVƒF[ƒ_[‚ªg‚¦‚È‚¢ê‡‚Í‰½‚à‚µ‚È‚¢
+	// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãŒä½¿ãˆãªã„å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( GSYS.HardInfo.UseShader == FALSE )
 		return 0 ;
 
-	// ”ÍˆÍ‰z‚¦ƒ`ƒFƒbƒN
+	// ç¯„å›²è¶Šãˆãƒã‚§ãƒƒã‚¯
 	if( ConstantIndex < 0 || ConstantIndex >= 16 )
 		return -1 ;
 
-	// ’è”XV
+	// å®šæ•°æ›´æ–°
 	Graphics_Hardware_Shader_SetConst_PF( DX_SHADERCONSTANTTYPE_VS_BOOL, DX_SHADERCONSTANTSET_USER, ConstantIndex, &Param, 1, TRUE ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ’¸“_ƒVƒF[ƒ_[‚Ì float Œ^’è”‚ğİ’è‚·‚é( ”z—ñ‚ğg‚Á‚Ä˜A”ÔƒCƒ“ƒfƒbƒNƒX‚Éˆê“x‚Éİ’è )
+// é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã® float å‹å®šæ•°ã‚’è¨­å®šã™ã‚‹( é…åˆ—ã‚’ä½¿ã£ã¦é€£ç•ªã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã«ä¸€åº¦ã«è¨­å®š )
 extern	int			NS_SetVSConstSFArray( int ConstantIndex, const float *ParamArray, int ParamNum )
 {
 	FLOAT4 ParamArrayF4[ 256 ] ;
 	int i ;
 
-	// ƒVƒF[ƒ_[‚ªg‚¦‚È‚¢ê‡‚Í‰½‚à‚µ‚È‚¢
+	// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãŒä½¿ãˆãªã„å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( GSYS.HardInfo.UseShader == FALSE )
 		return 0 ;
 
-	// ”ÍˆÍ‰z‚¦ƒ`ƒFƒbƒN
+	// ç¯„å›²è¶Šãˆãƒã‚§ãƒƒã‚¯
 	if( ConstantIndex < 0 || ConstantIndex + ParamNum > 256 )
 		return -1 ;
 
-	// ”z—ñ‚Éƒf[ƒ^‚ğƒZƒbƒg
+	// é…åˆ—ã«ãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆ
 	for( i = 0 ; i < ParamNum ; i ++ )
 	{
 		ParamArrayF4[ i ].x = ParamArray[ i ] ;
@@ -22428,64 +22428,64 @@ extern	int			NS_SetVSConstSFArray( int ConstantIndex, const float *ParamArray, i
 		ParamArrayF4[ i ].w = ParamArray[ i ] ;
 	}
 
-	// ’è”XV
+	// å®šæ•°æ›´æ–°
 	Graphics_Hardware_Shader_SetConst_PF( DX_SHADERCONSTANTTYPE_VS_FLOAT, DX_SHADERCONSTANTSET_USER, ConstantIndex, ParamArrayF4, ParamNum, TRUE ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ’¸“_ƒVƒF[ƒ_[‚Ì float Œ^’è”‚ğİ’è‚·‚é( ”z—ñ‚ğg‚Á‚Ä˜A”ÔƒCƒ“ƒfƒbƒNƒX‚Éˆê“x‚Éİ’è )
+// é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã® float å‹å®šæ•°ã‚’è¨­å®šã™ã‚‹( é…åˆ—ã‚’ä½¿ã£ã¦é€£ç•ªã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã«ä¸€åº¦ã«è¨­å®š )
 extern	int			NS_SetVSConstFArray( int ConstantIndex, const FLOAT4 *ParamArray, int ParamNum )
 {
-	// ƒVƒF[ƒ_[‚ªg‚¦‚È‚¢ê‡‚Í‰½‚à‚µ‚È‚¢
+	// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãŒä½¿ãˆãªã„å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( GSYS.HardInfo.UseShader == FALSE )
 		return 0 ;
 
-	// ”ÍˆÍ‰z‚¦ƒ`ƒFƒbƒN
+	// ç¯„å›²è¶Šãˆãƒã‚§ãƒƒã‚¯
 	if( ConstantIndex < 0 || ConstantIndex + ParamNum > 256 )
 		return -1 ;
 
-	// ’è”XV
+	// å®šæ•°æ›´æ–°
 	Graphics_Hardware_Shader_SetConst_PF( DX_SHADERCONSTANTTYPE_VS_FLOAT, DX_SHADERCONSTANTSET_USER, ConstantIndex, ParamArray, ParamNum, TRUE ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ’¸“_ƒVƒF[ƒ_[‚Ì float Œ^’è”‚És—ñ‚ğİ’è‚·‚é( ”z—ñ‚ğg‚Á‚Ä˜A”ÔƒCƒ“ƒfƒbƒNƒX‚Éˆê“x‚Éİ’è )
+// é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã® float å‹å®šæ•°ã«è¡Œåˆ—ã‚’è¨­å®šã™ã‚‹( é…åˆ—ã‚’ä½¿ã£ã¦é€£ç•ªã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã«ä¸€åº¦ã«è¨­å®š )
 extern	int			NS_SetVSConstFMtxArray( int ConstantIndex, const MATRIX *ParamArray, int ParamNum )
 {
-	// ƒVƒF[ƒ_[‚ªg‚¦‚È‚¢ê‡‚Í‰½‚à‚µ‚È‚¢
+	// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãŒä½¿ãˆãªã„å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( GSYS.HardInfo.UseShader == FALSE )
 		return 0 ;
 
-	// ”ÍˆÍ‰z‚¦ƒ`ƒFƒbƒN
+	// ç¯„å›²è¶Šãˆãƒã‚§ãƒƒã‚¯
 	if( ConstantIndex < 0 || ConstantIndex + ParamNum * 4 > 256 )
 		return -1 ;
 
-	// ’è”XV
+	// å®šæ•°æ›´æ–°
 	Graphics_Hardware_Shader_SetConst_PF( DX_SHADERCONSTANTTYPE_VS_FLOAT, DX_SHADERCONSTANTSET_USER, ConstantIndex, ParamArray, ParamNum * 4, TRUE ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ’¸“_ƒVƒF[ƒ_[‚Ì float Œ^’è”‚É“]’u‚µ‚½s—ñ‚ğİ’è‚·‚é( ”z—ñ‚ğg‚Á‚Ä˜A”ÔƒCƒ“ƒfƒbƒNƒX‚Éˆê“x‚Éİ’è )
+// é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã® float å‹å®šæ•°ã«è»¢ç½®ã—ãŸè¡Œåˆ—ã‚’è¨­å®šã™ã‚‹( é…åˆ—ã‚’ä½¿ã£ã¦é€£ç•ªã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã«ä¸€åº¦ã«è¨­å®š )
 extern	int			NS_SetVSConstFMtxTArray( int ConstantIndex, const MATRIX *ParamArray, int ParamNum )
 {
 	MATRIX Transpose[ 256 / 4 ] ;
 	int i ;
 
-	// ƒVƒF[ƒ_[‚ªg‚¦‚È‚¢ê‡‚Í‰½‚à‚µ‚È‚¢
+	// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãŒä½¿ãˆãªã„å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( GSYS.HardInfo.UseShader == FALSE )
 		return 0 ;
 
-	// ”ÍˆÍ‰z‚¦ƒ`ƒFƒbƒN
+	// ç¯„å›²è¶Šãˆãƒã‚§ãƒƒã‚¯
 	if( ConstantIndex < 0 || ConstantIndex + ParamNum * 4 > 256 )
 		return -1 ;
 
-	// ’è”XV
+	// å®šæ•°æ›´æ–°
 	for( i = 0 ; i < ParamNum ; i ++ )
 	{
 		Transpose[ i ].m[ 0 ][ 0 ] = ParamArray[ i ].m[ 0 ][ 0 ] ;
@@ -22510,25 +22510,25 @@ extern	int			NS_SetVSConstFMtxTArray( int ConstantIndex, const MATRIX *ParamArra
 	}
 	Graphics_Hardware_Shader_SetConst_PF( DX_SHADERCONSTANTTYPE_VS_FLOAT, DX_SHADERCONSTANTSET_USER, ConstantIndex, Transpose, ParamNum * 4, TRUE ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ’¸“_ƒVƒF[ƒ_[‚Ì int Œ^’è”‚ğİ’è‚·‚é( ”z—ñ‚ğg‚Á‚Ä˜A”ÔƒCƒ“ƒfƒbƒNƒX‚Éˆê“x‚Éİ’è )
+// é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã® int å‹å®šæ•°ã‚’è¨­å®šã™ã‚‹( é…åˆ—ã‚’ä½¿ã£ã¦é€£ç•ªã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã«ä¸€åº¦ã«è¨­å®š )
 extern	int			NS_SetVSConstSIArray( int ConstantIndex, const int *ParamArray, int ParamNum )
 {
 	INT4 ParamArrayI4[ 16 ] ;
 	int i ;
 
-	// ƒVƒF[ƒ_[‚ªg‚¦‚È‚¢ê‡‚Í‰½‚à‚µ‚È‚¢
+	// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãŒä½¿ãˆãªã„å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( GSYS.HardInfo.UseShader == FALSE )
 		return 0 ;
 
-	// ”ÍˆÍ‰z‚¦ƒ`ƒFƒbƒN
+	// ç¯„å›²è¶Šãˆãƒã‚§ãƒƒã‚¯
 	if( ConstantIndex < 0 || ConstantIndex + ParamNum > 16 )
 		return -1 ;
 
-	// ”z—ñ‚ÌƒZƒbƒg
+	// é…åˆ—ã®ã‚»ãƒƒãƒˆ
 	for( i = 0 ; i < ParamNum ; i ++ )
 	{
 		ParamArrayI4[ i ].x = ParamArray[ i ] ;
@@ -22537,260 +22537,260 @@ extern	int			NS_SetVSConstSIArray( int ConstantIndex, const int *ParamArray, int
 		ParamArrayI4[ i ].w = ParamArray[ i ] ;
 	}
 
-	// ’è”XV
+	// å®šæ•°æ›´æ–°
 	Graphics_Hardware_Shader_SetConst_PF( DX_SHADERCONSTANTTYPE_VS_INT, DX_SHADERCONSTANTSET_USER, ConstantIndex, ParamArrayI4, ParamNum, TRUE ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ’¸“_ƒVƒF[ƒ_[‚Ì int Œ^’è”‚ğİ’è‚·‚é( ”z—ñ‚ğg‚Á‚Ä˜A”ÔƒCƒ“ƒfƒbƒNƒX‚Éˆê“x‚Éİ’è )
+// é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã® int å‹å®šæ•°ã‚’è¨­å®šã™ã‚‹( é…åˆ—ã‚’ä½¿ã£ã¦é€£ç•ªã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã«ä¸€åº¦ã«è¨­å®š )
 extern	int			NS_SetVSConstIArray( int ConstantIndex, const INT4 *ParamArray, int ParamNum )
 {
-	// ƒVƒF[ƒ_[‚ªg‚¦‚È‚¢ê‡‚Í‰½‚à‚µ‚È‚¢
+	// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãŒä½¿ãˆãªã„å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( GSYS.HardInfo.UseShader == FALSE )
 		return 0 ;
 
-	// ”ÍˆÍ‰z‚¦ƒ`ƒFƒbƒN
+	// ç¯„å›²è¶Šãˆãƒã‚§ãƒƒã‚¯
 	if( ConstantIndex < 0 || ConstantIndex + ParamNum > 16 )
 		return -1 ;
 
-	// ’è”XV
+	// å®šæ•°æ›´æ–°
 	Graphics_Hardware_Shader_SetConst_PF( DX_SHADERCONSTANTTYPE_VS_INT, DX_SHADERCONSTANTSET_USER, ConstantIndex, ParamArray, ParamNum, TRUE ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ’¸“_ƒVƒF[ƒ_[‚Ì BOOL Œ^’è”‚ğİ’è‚·‚é( ”z—ñ‚ğg‚Á‚Ä˜A”ÔƒCƒ“ƒfƒbƒNƒX‚Éˆê“x‚Éİ’è )
+// é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã® BOOL å‹å®šæ•°ã‚’è¨­å®šã™ã‚‹( é…åˆ—ã‚’ä½¿ã£ã¦é€£ç•ªã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã«ä¸€åº¦ã«è¨­å®š )
 extern	int			NS_SetVSConstBArray( int ConstantIndex, const BOOL *ParamArray, int ParamNum )
 {
-	// ƒVƒF[ƒ_[‚ªg‚¦‚È‚¢ê‡‚Í‰½‚à‚µ‚È‚¢
+	// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãŒä½¿ãˆãªã„å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( GSYS.HardInfo.UseShader == FALSE )
 		return 0 ;
 
-	// ”ÍˆÍ‰z‚¦ƒ`ƒFƒbƒN
+	// ç¯„å›²è¶Šãˆãƒã‚§ãƒƒã‚¯
 	if( ConstantIndex < 0 || ConstantIndex + ParamNum > 16 )
 		return -1 ;
 
-	// ’è”XV
+	// å®šæ•°æ›´æ–°
 	Graphics_Hardware_Shader_SetConst_PF( DX_SHADERCONSTANTTYPE_VS_BOOL, DX_SHADERCONSTANTSET_USER, ConstantIndex, ParamArray, ParamNum, TRUE ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ’¸“_ƒVƒF[ƒ_[‚Ì float Œ^’è”‚Ìİ’è‚ğƒŠƒZƒbƒg‚·‚é
+// é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã® float å‹å®šæ•°ã®è¨­å®šã‚’ãƒªã‚»ãƒƒãƒˆã™ã‚‹
 extern	int			NS_ResetVSConstF( int ConstantIndex, int ParamNum )
 {
-	// ƒVƒF[ƒ_[‚ªg‚¦‚È‚¢ê‡‚Í‰½‚à‚µ‚È‚¢
+	// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãŒä½¿ãˆãªã„å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( GSYS.HardInfo.UseShader == FALSE )
 		return 0 ;
 
-	// ”ÍˆÍ‰z‚¦ƒ`ƒFƒbƒN
+	// ç¯„å›²è¶Šãˆãƒã‚§ãƒƒã‚¯
 	if( ConstantIndex < 0 || ConstantIndex + ParamNum > 256 )
 		return -1 ;
 
-	// ’è”ƒŠƒZƒbƒg
+	// å®šæ•°ãƒªã‚»ãƒƒãƒˆ
 	Graphics_Hardware_Shader_ResetConst_PF( DX_SHADERCONSTANTTYPE_VS_FLOAT, DX_SHADERCONSTANTSET_USER, ConstantIndex, ParamNum ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ’¸“_ƒVƒF[ƒ_[‚Ì int Œ^’è”‚Ìİ’è‚ğƒŠƒZƒbƒg‚·‚é
+// é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã® int å‹å®šæ•°ã®è¨­å®šã‚’ãƒªã‚»ãƒƒãƒˆã™ã‚‹
 extern	int			NS_ResetVSConstI( int ConstantIndex, int ParamNum )
 {
-	// ƒVƒF[ƒ_[‚ªg‚¦‚È‚¢ê‡‚Í‰½‚à‚µ‚È‚¢
+	// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãŒä½¿ãˆãªã„å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( GSYS.HardInfo.UseShader == FALSE )
 		return 0 ;
 
-	// ”ÍˆÍ‰z‚¦ƒ`ƒFƒbƒN
+	// ç¯„å›²è¶Šãˆãƒã‚§ãƒƒã‚¯
 	if( ConstantIndex < 0 || ConstantIndex + ParamNum > 16 )
 		return -1 ;
 
-	// ’è”ƒŠƒZƒbƒg
+	// å®šæ•°ãƒªã‚»ãƒƒãƒˆ
 	Graphics_Hardware_Shader_ResetConst_PF( DX_SHADERCONSTANTTYPE_VS_INT, DX_SHADERCONSTANTSET_USER, ConstantIndex, ParamNum ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ’¸“_ƒVƒF[ƒ_[‚Ì BOOL Œ^’è”‚Ìİ’è‚ğƒŠƒZƒbƒg‚·‚é
+// é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã® BOOL å‹å®šæ•°ã®è¨­å®šã‚’ãƒªã‚»ãƒƒãƒˆã™ã‚‹
 extern	int			NS_ResetVSConstB( int ConstantIndex, int ParamNum )
 {
-	// ƒVƒF[ƒ_[‚ªg‚¦‚È‚¢ê‡‚Í‰½‚à‚µ‚È‚¢
+	// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãŒä½¿ãˆãªã„å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( GSYS.HardInfo.UseShader == FALSE )
 		return 0 ;
 
-	// ”ÍˆÍ‰z‚¦ƒ`ƒFƒbƒN
+	// ç¯„å›²è¶Šãˆãƒã‚§ãƒƒã‚¯
 	if( ConstantIndex < 0 || ConstantIndex + ParamNum > 16 )
 		return -1 ;
 
-	// ’è”ƒŠƒZƒbƒg
+	// å®šæ•°ãƒªã‚»ãƒƒãƒˆ
 	Graphics_Hardware_Shader_ResetConst_PF( DX_SHADERCONSTANTTYPE_VS_BOOL, DX_SHADERCONSTANTSET_USER, ConstantIndex, ParamNum ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒsƒNƒZƒ‹ƒVƒF[ƒ_[‚Ì float Œ^’è”‚ğİ’è‚·‚é
+// ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã® float å‹å®šæ•°ã‚’è¨­å®šã™ã‚‹
 extern	int			NS_SetPSConstSF( int ConstantIndex, float Param )
 {
 	FLOAT4 ParamF4 ;
 
-	// ƒVƒF[ƒ_[‚ªg‚¦‚È‚¢ê‡‚Í‰½‚à‚µ‚È‚¢
+	// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãŒä½¿ãˆãªã„å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( GSYS.HardInfo.UseShader == FALSE )
 		return 0 ;
 
-	// ”ÍˆÍ‰z‚¦ƒ`ƒFƒbƒN
+	// ç¯„å›²è¶Šãˆãƒã‚§ãƒƒã‚¯
 	if( ConstantIndex < 0 || ConstantIndex >= 224 )
 		return -1 ;
 
-	// ’è”XV
+	// å®šæ•°æ›´æ–°
 	ParamF4.x = Param ;
 	ParamF4.y = Param ;
 	ParamF4.z = Param ;
 	ParamF4.w = Param ;
 	Graphics_Hardware_Shader_SetConst_PF( DX_SHADERCONSTANTTYPE_PS_FLOAT, DX_SHADERCONSTANTSET_USER, ConstantIndex, &ParamF4, 1, TRUE ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒsƒNƒZƒ‹ƒVƒF[ƒ_[‚Ì float Œ^’è”‚ğİ’è‚·‚é
+// ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã® float å‹å®šæ•°ã‚’è¨­å®šã™ã‚‹
 extern	int			NS_SetPSConstF( int ConstantIndex, FLOAT4 Param )
 {
-	// ƒVƒF[ƒ_[‚ªg‚¦‚È‚¢ê‡‚Í‰½‚à‚µ‚È‚¢
+	// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãŒä½¿ãˆãªã„å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( GSYS.HardInfo.UseShader == FALSE )
 		return 0 ;
 
-	// ”ÍˆÍ‰z‚¦ƒ`ƒFƒbƒN
+	// ç¯„å›²è¶Šãˆãƒã‚§ãƒƒã‚¯
 	if( ConstantIndex < 0 || ConstantIndex >= 224 )
 		return -1 ;
 
-	// ’è”XV
+	// å®šæ•°æ›´æ–°
 	Graphics_Hardware_Shader_SetConst_PF( DX_SHADERCONSTANTTYPE_PS_FLOAT, DX_SHADERCONSTANTSET_USER, ConstantIndex, &Param, 1, TRUE ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒsƒNƒZƒ‹ƒVƒF[ƒ_[‚Ì float Œ^’è”‚És—ñ‚ğİ’è‚·‚é
+// ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã® float å‹å®šæ•°ã«è¡Œåˆ—ã‚’è¨­å®šã™ã‚‹
 extern	int			NS_SetPSConstFMtx( int ConstantIndex, MATRIX Param )
 {
-	// ƒVƒF[ƒ_[‚ªg‚¦‚È‚¢ê‡‚Í‰½‚à‚µ‚È‚¢
+	// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãŒä½¿ãˆãªã„å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( GSYS.HardInfo.UseShader == FALSE )
 		return 0 ;
 
-	// ”ÍˆÍ‰z‚¦ƒ`ƒFƒbƒN
+	// ç¯„å›²è¶Šãˆãƒã‚§ãƒƒã‚¯
 	if( ConstantIndex < 0 || ConstantIndex + 4 > 224 )
 		return -1 ;
 
-	// ’è”XV
+	// å®šæ•°æ›´æ–°
 	Graphics_Hardware_Shader_SetConst_PF( DX_SHADERCONSTANTTYPE_PS_FLOAT, DX_SHADERCONSTANTSET_USER, ConstantIndex, ( FLOAT4 * )&Param, 4, TRUE ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒsƒNƒZƒ‹ƒVƒF[ƒ_[‚Ì float Œ^’è”‚É“]’u‚µ‚½s—ñ‚ğİ’è‚·‚é
+// ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã® float å‹å®šæ•°ã«è»¢ç½®ã—ãŸè¡Œåˆ—ã‚’è¨­å®šã™ã‚‹
 extern	int			NS_SetPSConstFMtxT( int ConstantIndex, MATRIX Param )
 {
 	MATRIX Transpose ;
 
-	// ƒVƒF[ƒ_[‚ªg‚¦‚È‚¢ê‡‚Í‰½‚à‚µ‚È‚¢
+	// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãŒä½¿ãˆãªã„å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( GSYS.HardInfo.UseShader == FALSE )
 		return 0 ;
 
-	// ”ÍˆÍ‰z‚¦ƒ`ƒFƒbƒN
+	// ç¯„å›²è¶Šãˆãƒã‚§ãƒƒã‚¯
 	if( ConstantIndex < 0 || ConstantIndex + 4 > 224 )
 		return -1 ;
 
-	// ’è”XV
+	// å®šæ•°æ›´æ–°
 	CreateTransposeMatrix( &Transpose, &Param ) ;
 	Graphics_Hardware_Shader_SetConst_PF( DX_SHADERCONSTANTTYPE_PS_FLOAT, DX_SHADERCONSTANTSET_USER, ConstantIndex, ( FLOAT4 * )&Transpose, 4, TRUE ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
 
-// ƒsƒNƒZƒ‹ƒVƒF[ƒ_[‚Ì int Œ^’è”‚ğİ’è‚·‚é
+// ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã® int å‹å®šæ•°ã‚’è¨­å®šã™ã‚‹
 extern	int			NS_SetPSConstSI( int ConstantIndex, int Param )
 {
 	INT4 ParamI4 ;
 
-	// ƒVƒF[ƒ_[‚ªg‚¦‚È‚¢ê‡‚Í‰½‚à‚µ‚È‚¢
+	// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãŒä½¿ãˆãªã„å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( GSYS.HardInfo.UseShader == FALSE )
 		return 0 ;
 
-	// ”ÍˆÍ‰z‚¦ƒ`ƒFƒbƒN
+	// ç¯„å›²è¶Šãˆãƒã‚§ãƒƒã‚¯
 	if( ConstantIndex < 0 || ConstantIndex >= 16 )
 		return -1 ;
 
-	// ’è”XV
+	// å®šæ•°æ›´æ–°
 	ParamI4.x = Param ;
 	ParamI4.y = Param ;
 	ParamI4.z = Param ;
 	ParamI4.w = Param ;
 	Graphics_Hardware_Shader_SetConst_PF( DX_SHADERCONSTANTTYPE_PS_INT, DX_SHADERCONSTANTSET_USER, ConstantIndex, &ParamI4, 1, TRUE ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒsƒNƒZƒ‹ƒVƒF[ƒ_[‚Ì int Œ^’è”‚ğİ’è‚·‚é
+// ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã® int å‹å®šæ•°ã‚’è¨­å®šã™ã‚‹
 extern	int			NS_SetPSConstI( int ConstantIndex, INT4 Param )
 {
-	// ƒVƒF[ƒ_[‚ªg‚¦‚È‚¢ê‡‚Í‰½‚à‚µ‚È‚¢
+	// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãŒä½¿ãˆãªã„å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( GSYS.HardInfo.UseShader == FALSE )
 		return 0 ;
 
-	// ”ÍˆÍ‰z‚¦ƒ`ƒFƒbƒN
+	// ç¯„å›²è¶Šãˆãƒã‚§ãƒƒã‚¯
 	if( ConstantIndex < 0 || ConstantIndex >= 16 )
 		return -1 ;
 
-	// ’è”XV
+	// å®šæ•°æ›´æ–°
 	Graphics_Hardware_Shader_SetConst_PF( DX_SHADERCONSTANTTYPE_PS_INT, DX_SHADERCONSTANTSET_USER, ConstantIndex, &Param, 1, TRUE ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒsƒNƒZƒ‹ƒVƒF[ƒ_[‚Ì BOOL Œ^’è”‚ğİ’è‚·‚é
+// ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã® BOOL å‹å®šæ•°ã‚’è¨­å®šã™ã‚‹
 extern	int			NS_SetPSConstB( int ConstantIndex, BOOL Param )
 {
-	// ƒVƒF[ƒ_[‚ªg‚¦‚È‚¢ê‡‚Í‰½‚à‚µ‚È‚¢
+	// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãŒä½¿ãˆãªã„å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( GSYS.HardInfo.UseShader == FALSE )
 		return 0 ;
 
-	// ”ÍˆÍ‰z‚¦ƒ`ƒFƒbƒN
+	// ç¯„å›²è¶Šãˆãƒã‚§ãƒƒã‚¯
 	if( ConstantIndex < 0 || ConstantIndex >= 16 )
 		return -1 ;
 
-	// ’è”XV
+	// å®šæ•°æ›´æ–°
 	Graphics_Hardware_Shader_SetConst_PF( DX_SHADERCONSTANTTYPE_PS_BOOL, DX_SHADERCONSTANTSET_USER, ConstantIndex, &Param, 1, TRUE ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒsƒNƒZƒ‹ƒVƒF[ƒ_[‚Ì float Œ^’è”‚ğİ’è‚·‚é( ”z—ñ‚ğg‚Á‚Ä˜A”ÔƒCƒ“ƒfƒbƒNƒX‚Éˆê“x‚Éİ’è )
+// ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã® float å‹å®šæ•°ã‚’è¨­å®šã™ã‚‹( é…åˆ—ã‚’ä½¿ã£ã¦é€£ç•ªã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã«ä¸€åº¦ã«è¨­å®š )
 extern	int			NS_SetPSConstSFArray( int ConstantIndex, const float *ParamArray, int ParamNum )
 {
 	FLOAT4 ParamArrayF4[ 256 ] ;
 	int i ;
 
-	// ƒVƒF[ƒ_[‚ªg‚¦‚È‚¢ê‡‚Í‰½‚à‚µ‚È‚¢
+	// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãŒä½¿ãˆãªã„å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( GSYS.HardInfo.UseShader == FALSE )
 		return 0 ;
 
-	// ”ÍˆÍ‰z‚¦ƒ`ƒFƒbƒN
+	// ç¯„å›²è¶Šãˆãƒã‚§ãƒƒã‚¯
 	if( ConstantIndex < 0 || ConstantIndex + ParamNum > 224 )
 		return -1 ;
 
-	// ”z—ñ‚ÉƒZƒbƒg
+	// é…åˆ—ã«ã‚»ãƒƒãƒˆ
 	for( i = 0 ; i < ParamNum ; i ++ )
 	{
 		ParamArrayF4[ i ].x = ParamArray[ i ] ;
@@ -22799,64 +22799,64 @@ extern	int			NS_SetPSConstSFArray( int ConstantIndex, const float *ParamArray, i
 		ParamArrayF4[ i ].w = ParamArray[ i ] ;
 	}
 
-	// ’è”XV
+	// å®šæ•°æ›´æ–°
 	Graphics_Hardware_Shader_SetConst_PF( DX_SHADERCONSTANTTYPE_PS_FLOAT, DX_SHADERCONSTANTSET_USER, ConstantIndex, ParamArrayF4, ParamNum, TRUE ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒsƒNƒZƒ‹ƒVƒF[ƒ_[‚Ì float Œ^’è”‚ğİ’è‚·‚é( ”z—ñ‚ğg‚Á‚Ä˜A”ÔƒCƒ“ƒfƒbƒNƒX‚Éˆê“x‚Éİ’è )
+// ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã® float å‹å®šæ•°ã‚’è¨­å®šã™ã‚‹( é…åˆ—ã‚’ä½¿ã£ã¦é€£ç•ªã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã«ä¸€åº¦ã«è¨­å®š )
 extern	int			NS_SetPSConstFArray( int ConstantIndex, const FLOAT4 *ParamArray, int ParamNum )
 {
-	// ƒVƒF[ƒ_[‚ªg‚¦‚È‚¢ê‡‚Í‰½‚à‚µ‚È‚¢
+	// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãŒä½¿ãˆãªã„å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( GSYS.HardInfo.UseShader == FALSE )
 		return 0 ;
 
-	// ”ÍˆÍ‰z‚¦ƒ`ƒFƒbƒN
+	// ç¯„å›²è¶Šãˆãƒã‚§ãƒƒã‚¯
 	if( ConstantIndex < 0 || ConstantIndex + ParamNum > 224 )
 		return -1 ;
 
-	// ’è”XV
+	// å®šæ•°æ›´æ–°
 	Graphics_Hardware_Shader_SetConst_PF( DX_SHADERCONSTANTTYPE_PS_FLOAT, DX_SHADERCONSTANTSET_USER, ConstantIndex, ParamArray, ParamNum, TRUE ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒsƒNƒZƒ‹ƒVƒF[ƒ_[‚Ì float Œ^’è”‚És—ñ‚ğİ’è‚·‚é( ”z—ñ‚ğg‚Á‚Ä˜A”ÔƒCƒ“ƒfƒbƒNƒX‚Éˆê“x‚Éİ’è )
+// ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã® float å‹å®šæ•°ã«è¡Œåˆ—ã‚’è¨­å®šã™ã‚‹( é…åˆ—ã‚’ä½¿ã£ã¦é€£ç•ªã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã«ä¸€åº¦ã«è¨­å®š )
 extern	int			NS_SetPSConstFMtxArray( int ConstantIndex, const MATRIX *ParamArray, int ParamNum )
 {
-	// ƒVƒF[ƒ_[‚ªg‚¦‚È‚¢ê‡‚Í‰½‚à‚µ‚È‚¢
+	// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãŒä½¿ãˆãªã„å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( GSYS.HardInfo.UseShader == FALSE )
 		return 0 ;
 
-	// ”ÍˆÍ‰z‚¦ƒ`ƒFƒbƒN
+	// ç¯„å›²è¶Šãˆãƒã‚§ãƒƒã‚¯
 	if( ConstantIndex < 0 || ConstantIndex + ParamNum * 4 > 224 )
 		return -1 ;
 
-	// ’è”XV
+	// å®šæ•°æ›´æ–°
 	Graphics_Hardware_Shader_SetConst_PF( DX_SHADERCONSTANTTYPE_PS_FLOAT, DX_SHADERCONSTANTSET_USER, ConstantIndex, ParamArray, ParamNum * 4, TRUE ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒsƒNƒZƒ‹ƒVƒF[ƒ_[‚Ì float Œ^’è”‚É“]’u‚µ‚½s—ñ‚ğİ’è‚·‚é( ”z—ñ‚ğg‚Á‚Ä˜A”ÔƒCƒ“ƒfƒbƒNƒX‚Éˆê“x‚Éİ’è )
+// ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã® float å‹å®šæ•°ã«è»¢ç½®ã—ãŸè¡Œåˆ—ã‚’è¨­å®šã™ã‚‹( é…åˆ—ã‚’ä½¿ã£ã¦é€£ç•ªã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã«ä¸€åº¦ã«è¨­å®š )
 extern	int			NS_SetPSConstFMtxTArray( int ConstantIndex, const MATRIX *ParamArray, int ParamNum )
 {
 	int i ;
 	MATRIX Transpose[ 224 / 4 ] ;
 
-	// ƒVƒF[ƒ_[‚ªg‚¦‚È‚¢ê‡‚Í‰½‚à‚µ‚È‚¢
+	// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãŒä½¿ãˆãªã„å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( GSYS.HardInfo.UseShader == FALSE )
 		return 0 ;
 
-	// ”ÍˆÍ‰z‚¦ƒ`ƒFƒbƒN
+	// ç¯„å›²è¶Šãˆãƒã‚§ãƒƒã‚¯
 	if( ConstantIndex < 0 || ConstantIndex + ParamNum * 4 > 224 )
 		return -1 ;
 
-	// ’è”XV
+	// å®šæ•°æ›´æ–°
 	for( i = 0 ; i < ParamNum ; i ++ )
 	{
 		Transpose[ i ].m[ 0 ][ 0 ] = ParamArray[ i ].m[ 0 ][ 0 ] ;
@@ -22881,25 +22881,25 @@ extern	int			NS_SetPSConstFMtxTArray( int ConstantIndex, const MATRIX *ParamArra
 	}
 	Graphics_Hardware_Shader_SetConst_PF( DX_SHADERCONSTANTTYPE_PS_FLOAT, DX_SHADERCONSTANTSET_USER, ConstantIndex, Transpose, ParamNum * 4, TRUE ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒsƒNƒZƒ‹ƒVƒF[ƒ_[‚Ì int Œ^’è”‚ğİ’è‚·‚é( ”z—ñ‚ğg‚Á‚Ä˜A”ÔƒCƒ“ƒfƒbƒNƒX‚Éˆê“x‚Éİ’è )
+// ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã® int å‹å®šæ•°ã‚’è¨­å®šã™ã‚‹( é…åˆ—ã‚’ä½¿ã£ã¦é€£ç•ªã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã«ä¸€åº¦ã«è¨­å®š )
 extern	int			NS_SetPSConstSIArray( int ConstantIndex, const int *ParamArray, int ParamNum )
 {
 	INT4 ParamArrayI4[ 16 ] ;
 	int i ;
 
-	// ƒVƒF[ƒ_[‚ªg‚¦‚È‚¢ê‡‚Í‰½‚à‚µ‚È‚¢
+	// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãŒä½¿ãˆãªã„å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( GSYS.HardInfo.UseShader == FALSE )
 		return 0 ;
 
-	// ”ÍˆÍ‰z‚¦ƒ`ƒFƒbƒN
+	// ç¯„å›²è¶Šãˆãƒã‚§ãƒƒã‚¯
 	if( ConstantIndex < 0 || ConstantIndex + ParamNum > 16 )
 		return -1 ;
 
-	// ”z—ñ‚Éƒpƒ‰ƒ[ƒ^‚ğƒZƒbƒg
+	// é…åˆ—ã«ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆ
 	for( i = 0 ; i < ParamNum ; i ++ )
 	{
 		ParamArrayI4[ i ].x = ParamArray[ i ] ;
@@ -22908,123 +22908,123 @@ extern	int			NS_SetPSConstSIArray( int ConstantIndex, const int *ParamArray, int
 		ParamArrayI4[ i ].w = ParamArray[ i ] ;
 	}
 
-	// ’è”XV
+	// å®šæ•°æ›´æ–°
 	Graphics_Hardware_Shader_SetConst_PF( DX_SHADERCONSTANTTYPE_PS_INT, DX_SHADERCONSTANTSET_USER, ConstantIndex, ParamArrayI4, ParamNum, TRUE ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒsƒNƒZƒ‹ƒVƒF[ƒ_[‚Ì int Œ^’è”‚ğİ’è‚·‚é( ”z—ñ‚ğg‚Á‚Ä˜A”ÔƒCƒ“ƒfƒbƒNƒX‚Éˆê“x‚Éİ’è )
+// ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã® int å‹å®šæ•°ã‚’è¨­å®šã™ã‚‹( é…åˆ—ã‚’ä½¿ã£ã¦é€£ç•ªã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã«ä¸€åº¦ã«è¨­å®š )
 extern	int			NS_SetPSConstIArray( int ConstantIndex, const INT4 *ParamArray, int ParamNum )
 {
-	// ƒVƒF[ƒ_[‚ªg‚¦‚È‚¢ê‡‚Í‰½‚à‚µ‚È‚¢
+	// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãŒä½¿ãˆãªã„å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( GSYS.HardInfo.UseShader == FALSE )
 		return 0 ;
 
-	// ”ÍˆÍ‰z‚¦ƒ`ƒFƒbƒN
+	// ç¯„å›²è¶Šãˆãƒã‚§ãƒƒã‚¯
 	if( ConstantIndex < 0 || ConstantIndex + ParamNum > 16 )
 		return -1 ;
 
-	// ’è”XV
+	// å®šæ•°æ›´æ–°
 	Graphics_Hardware_Shader_SetConst_PF( DX_SHADERCONSTANTTYPE_PS_INT, DX_SHADERCONSTANTSET_USER, ConstantIndex, ParamArray, ParamNum, TRUE ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒsƒNƒZƒ‹ƒVƒF[ƒ_[‚Ì BOOL Œ^’è”‚ğİ’è‚·‚é( ”z—ñ‚ğg‚Á‚Ä˜A”ÔƒCƒ“ƒfƒbƒNƒX‚Éˆê“x‚Éİ’è )
+// ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã® BOOL å‹å®šæ•°ã‚’è¨­å®šã™ã‚‹( é…åˆ—ã‚’ä½¿ã£ã¦é€£ç•ªã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã«ä¸€åº¦ã«è¨­å®š )
 extern	int			NS_SetPSConstBArray( int ConstantIndex, const BOOL *ParamArray, int ParamNum )
 {
-	// ƒVƒF[ƒ_[‚ªg‚¦‚È‚¢ê‡‚Í‰½‚à‚µ‚È‚¢
+	// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãŒä½¿ãˆãªã„å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( GSYS.HardInfo.UseShader == FALSE )
 		return 0 ;
 
-	// ”ÍˆÍ‰z‚¦ƒ`ƒFƒbƒN
+	// ç¯„å›²è¶Šãˆãƒã‚§ãƒƒã‚¯
 	if( ConstantIndex < 0 || ConstantIndex + ParamNum > 16 )
 		return -1 ;
 
-	// ’è”XV
+	// å®šæ•°æ›´æ–°
 	Graphics_Hardware_Shader_SetConst_PF( DX_SHADERCONSTANTTYPE_PS_BOOL, DX_SHADERCONSTANTSET_USER, ConstantIndex, ParamArray, ParamNum, TRUE ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒsƒNƒZƒ‹ƒVƒF[ƒ_[‚Ì float Œ^’è”‚Ìİ’è‚ğƒŠƒZƒbƒg‚·‚é
+// ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã® float å‹å®šæ•°ã®è¨­å®šã‚’ãƒªã‚»ãƒƒãƒˆã™ã‚‹
 extern	int			NS_ResetPSConstF( int ConstantIndex, int ParamNum )
 {
-	// ƒVƒF[ƒ_[‚ªg‚¦‚È‚¢ê‡‚Í‰½‚à‚µ‚È‚¢
+	// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãŒä½¿ãˆãªã„å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( GSYS.HardInfo.UseShader == FALSE )
 		return 0 ;
 
-	// ”ÍˆÍ‰z‚¦ƒ`ƒFƒbƒN
+	// ç¯„å›²è¶Šãˆãƒã‚§ãƒƒã‚¯
 	if( ConstantIndex < 0 || ConstantIndex + ParamNum > 256 )
 		return -1 ;
 
-	// ’è”ƒŠƒZƒbƒg
+	// å®šæ•°ãƒªã‚»ãƒƒãƒˆ
 	Graphics_Hardware_Shader_ResetConst_PF( DX_SHADERCONSTANTTYPE_PS_FLOAT, DX_SHADERCONSTANTSET_USER, ConstantIndex, ParamNum ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒsƒNƒZƒ‹ƒVƒF[ƒ_[‚Ì int Œ^’è”‚Ìİ’è‚ğƒŠƒZƒbƒg‚·‚é
+// ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã® int å‹å®šæ•°ã®è¨­å®šã‚’ãƒªã‚»ãƒƒãƒˆã™ã‚‹
 extern	int			NS_ResetPSConstI( int ConstantIndex, int ParamNum )
 {
-	// ƒVƒF[ƒ_[‚ªg‚¦‚È‚¢ê‡‚Í‰½‚à‚µ‚È‚¢
+	// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãŒä½¿ãˆãªã„å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( GSYS.HardInfo.UseShader == FALSE )
 		return 0 ;
 
-	// ”ÍˆÍ‰z‚¦ƒ`ƒFƒbƒN
+	// ç¯„å›²è¶Šãˆãƒã‚§ãƒƒã‚¯
 	if( ConstantIndex < 0 || ConstantIndex + ParamNum > 16 )
 		return -1 ;
 
-	// ’è”ƒŠƒZƒbƒg
+	// å®šæ•°ãƒªã‚»ãƒƒãƒˆ
 	Graphics_Hardware_Shader_ResetConst_PF( DX_SHADERCONSTANTTYPE_PS_INT, DX_SHADERCONSTANTSET_USER, ConstantIndex, ParamNum ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒsƒNƒZƒ‹ƒVƒF[ƒ_[‚Ì BOOL Œ^’è”‚Ìİ’è‚ğƒŠƒZƒbƒg‚·‚é
+// ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã® BOOL å‹å®šæ•°ã®è¨­å®šã‚’ãƒªã‚»ãƒƒãƒˆã™ã‚‹
 extern	int			NS_ResetPSConstB( int ConstantIndex, int ParamNum )
 {
-	// ƒVƒF[ƒ_[‚ªg‚¦‚È‚¢ê‡‚Í‰½‚à‚µ‚È‚¢
+	// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãŒä½¿ãˆãªã„å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( GSYS.HardInfo.UseShader == FALSE )
 		return 0 ;
 
-	// ”ÍˆÍ‰z‚¦ƒ`ƒFƒbƒN
+	// ç¯„å›²è¶Šãˆãƒã‚§ãƒƒã‚¯
 	if( ConstantIndex < 0 || ConstantIndex + ParamNum > 16 )
 		return -1 ;
 
-	// ’è”ƒŠƒZƒbƒg
+	// å®šæ•°ãƒªã‚»ãƒƒãƒˆ
 	Graphics_Hardware_Shader_ResetConst_PF( DX_SHADERCONSTANTTYPE_PS_BOOL, DX_SHADERCONSTANTSET_USER, ConstantIndex, ParamNum ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒVƒF[ƒ_[•`‰æ‚Å‚Ì•`‰ææ‚ğİ’è‚·‚é
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼æç”»ã§ã®æç”»å…ˆã‚’è¨­å®šã™ã‚‹
 extern int NS_SetRenderTargetToShader( int TargetIndex, int DrawScreen, int SurfaceIndex , int MipLevel )
 {
 	int OldScreen ;
 
-	// ƒ^[ƒQƒbƒgƒCƒ“ƒfƒbƒNƒX‚Ì”ÍˆÍƒ`ƒFƒbƒN
+	// ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã®ç¯„å›²ãƒã‚§ãƒƒã‚¯
 	if( TargetIndex < 0 || TargetIndex >= GSYS.HardInfo.RenderTargetNum )
 		return -1 ;
 
-	// ’l‚ª“¯‚¶ê‡‚Í‰½‚à‚¹‚¸I—¹
+	// å€¤ãŒåŒã˜å ´åˆã¯ä½•ã‚‚ã›ãšçµ‚äº†
 //	if( GSYS.DrawSetting.TargetScreen[ TargetIndex ] == DrawScreen && GSYS.DrawSetting.TargetScreenSurface[ TargetIndex ] == SurfaceIndex )
 //		return 0 ;
 
-	// ƒ^[ƒQƒbƒg‚ª‚O‚ÅƒT[ƒtƒFƒXƒCƒ“ƒfƒbƒNƒX‚à‚O‚Ìê‡‚Í SetDrawScreen ‚É”C‚¹‚é
+	// ã‚¿ãƒ¼ã‚²ãƒƒãƒˆãŒï¼ã§ã‚µãƒ¼ãƒ•ã‚§ã‚¹ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚‚ï¼ã®å ´åˆã¯ SetDrawScreen ã«ä»»ã›ã‚‹
 	if( TargetIndex == 0 && SurfaceIndex == 0 && MipLevel == 0 )
 	{
 		return NS_SetDrawScreen( DrawScreen ) ;
 	}
 
-	// ƒn[ƒhƒEƒGƒA‚Å“®ì‚µ‚Ä‚¢‚È‚¢ê‡‚Í‰½‚à‚µ‚È‚¢
+	// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã§å‹•ä½œã—ã¦ã„ãªã„å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( GSYS.Setting.ValidHardware == FALSE || GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode )
 	{
 		return -1 ;
@@ -23032,12 +23032,12 @@ extern int NS_SetRenderTargetToShader( int TargetIndex, int DrawScreen, int Surf
 
 	OldScreen = GSYS.DrawSetting.TargetScreen[ TargetIndex ] ;
 
-	// ‰æ‘œƒnƒ“ƒhƒ‹‚ğ•Û‘¶
+	// ç”»åƒãƒãƒ³ãƒ‰ãƒ«ã‚’ä¿å­˜
 	GSYS.DrawSetting.TargetScreen[ TargetIndex ] = DrawScreen ;
 	GSYS.DrawSetting.TargetScreenSurface[ TargetIndex ] = SurfaceIndex ;
 	GSYS.DrawSetting.TargetScreenMipLevel[ TargetIndex ] = MipLevel ;
 
-	// ƒ^[ƒQƒbƒg‚ª 0 ‚¾‚Á‚½ê‡‚Í•`‰æ‰Â”\ƒTƒCƒY‚Ìæ“¾
+	// ã‚¿ãƒ¼ã‚²ãƒƒãƒˆãŒ 0 ã ã£ãŸå ´åˆã¯æç”»å¯èƒ½ã‚µã‚¤ã‚ºã®å–å¾—
 	if( TargetIndex == 0 )
 	{
 		NS_GetGraphSize( DrawScreen, &GSYS.DrawSetting.DrawSizeX, &GSYS.DrawSetting.DrawSizeY ) ;
@@ -23047,33 +23047,33 @@ extern int NS_SetRenderTargetToShader( int TargetIndex, int DrawScreen, int Surf
 		}
 	}
 
-	// •`‰ææ‚É³‚µ‚¢ƒ¿’l‚ğ‘‚«‚Ş‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğXV‚·‚é
+	// æç”»å…ˆã«æ­£ã—ã„Î±å€¤ã‚’æ›¸ãè¾¼ã‚€ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’æ›´æ–°ã™ã‚‹
 	Graphics_DrawSetting_RefreshAlphaChDrawMode() ;
 
-	// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒVƒ‡ƒ“•Ê‚Ìˆ—‚ğÀs‚·‚é
+	// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³åˆ¥ã®å‡¦ç†ã‚’å®Ÿè¡Œã™ã‚‹
 	if( Graphics_Hardware_SetRenderTargetToShader_PF( TargetIndex, DrawScreen, SurfaceIndex, MipLevel ) < 0 )
 	{
 		return -1 ;
 	}
 
-	// ƒ^[ƒQƒbƒg‚ª 0 ‚¾‚Á‚½ê‡‚Í•`‰æ”ÍˆÍ‚Ìİ’è‚âƒJƒƒ‰‚Ìİ’è‚ğs‚¤
+	// ã‚¿ãƒ¼ã‚²ãƒƒãƒˆãŒ 0 ã ã£ãŸå ´åˆã¯æç”»ç¯„å›²ã®è¨­å®šã‚„ã‚«ãƒ¡ãƒ©ã®è¨­å®šã‚’è¡Œã†
 	if( TargetIndex == 0 )
 	{
 		Graphics_DrawSetting_SetupDefaultDrawAreaAndCamera( OldScreen ) ;
 	}
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// ƒVƒF[ƒ_[•`‰æ‚Åg—p‚·‚éƒOƒ‰ƒtƒBƒbƒN‚ğİ’è‚·‚é
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼æç”»ã§ä½¿ç”¨ã™ã‚‹ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚’è¨­å®šã™ã‚‹
 extern	int			NS_SetUseTextureToShader( int StageIndex, int GraphHandle )
 {
-	// —LŒø”ÍˆÍƒ`ƒFƒbƒN
+	// æœ‰åŠ¹ç¯„å›²ãƒã‚§ãƒƒã‚¯
 	if( StageIndex < 0 || StageIndex >= USE_TEXTURESTAGE_NUM )
 		return -1 ;
 
-	// ƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹ƒ`ƒFƒbƒN
+	// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ãƒã‚§ãƒƒã‚¯
 	if( GraphHandle != -1 )
 	{
 		IMAGEDATA *Image ;
@@ -23083,20 +23083,20 @@ extern	int			NS_SetUseTextureToShader( int StageIndex, int GraphHandle )
 			SHADOWMAPCHKFULL( GraphHandle, ShadowMap ) )
 			return -1 ;
 
-		// ƒnƒ“ƒhƒ‹‚ğ•Û‘¶
+		// ãƒãƒ³ãƒ‰ãƒ«ã‚’ä¿å­˜
 		GSYS.DrawSetting.UserShaderRenderInfo.SetTextureGraphHandle[ StageIndex ] = GraphHandle ;
 	}
 	else
 	{
-		// ƒnƒ“ƒhƒ‹‚ğƒŠƒZƒbƒg
+		// ãƒãƒ³ãƒ‰ãƒ«ã‚’ãƒªã‚»ãƒƒãƒˆ
 		GSYS.DrawSetting.UserShaderRenderInfo.SetTextureGraphHandle[ StageIndex ] = 0 ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒVƒF[ƒ_[•`‰æ‚Ég—p‚·‚é’¸“_ƒVƒF[ƒ_[‚ğİ’è‚·‚é
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼æç”»ã«ä½¿ç”¨ã™ã‚‹é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’è¨­å®šã™ã‚‹
 extern	int			NS_SetUseVertexShader( int ShaderHandle )
 {
 	SHADERHANDLEDATA *VertexShader ;
@@ -23104,14 +23104,14 @@ extern	int			NS_SetUseVertexShader( int ShaderHandle )
 	if( ShaderHandle > 0 && ( SHADERCHK( ShaderHandle, VertexShader ) || VertexShader->ShaderType != DX_SHADERTYPE_VERTEX ) )
 		return -1 ;
 
-	// ƒnƒ“ƒhƒ‹‚ğƒZƒbƒg
+	// ãƒãƒ³ãƒ‰ãƒ«ã‚’ã‚»ãƒƒãƒˆ
 	GSYS.DrawSetting.UserShaderRenderInfo.SetVertexShaderHandle = ShaderHandle <= 0 ? 0 : ShaderHandle ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒVƒF[ƒ_[‚ğg—p‚µ‚½•`‰æ‚Ég—p‚·‚éƒWƒIƒƒgƒŠƒVƒF[ƒ_[‚ğİ’è‚·‚é( -1‚ğ“n‚·‚Æ‰ğœ )
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ä½¿ç”¨ã—ãŸæç”»ã«ä½¿ç”¨ã™ã‚‹ã‚¸ã‚ªãƒ¡ãƒˆãƒªã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’è¨­å®šã™ã‚‹( -1ã‚’æ¸¡ã™ã¨è§£é™¤ )
 extern	int			NS_SetUseGeometryShader( int ShaderHandle )
 {
 	SHADERHANDLEDATA *GeometryShader ;
@@ -23119,14 +23119,14 @@ extern	int			NS_SetUseGeometryShader( int ShaderHandle )
 	if( ShaderHandle > 0 && ( SHADERCHK( ShaderHandle, GeometryShader ) || GeometryShader->ShaderType != DX_SHADERTYPE_GEOMETRY ) )
 		return -1 ;
 
-	// ƒnƒ“ƒhƒ‹‚ğƒZƒbƒg
+	// ãƒãƒ³ãƒ‰ãƒ«ã‚’ã‚»ãƒƒãƒˆ
 	GSYS.DrawSetting.UserShaderRenderInfo.SetGeometryShaderHandle = ShaderHandle <= 0 ? 0 : ShaderHandle ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒVƒF[ƒ_[•`‰æ‚Ég—p‚·‚éƒsƒNƒZƒ‹ƒVƒF[ƒ_[‚ğİ’è‚·‚é
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼æç”»ã«ä½¿ç”¨ã™ã‚‹ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’è¨­å®šã™ã‚‹
 extern	int			NS_SetUsePixelShader( int ShaderHandle )
 {
 	SHADERHANDLEDATA *PixelShader ;
@@ -23134,14 +23134,14 @@ extern	int			NS_SetUsePixelShader( int ShaderHandle )
 	if( ShaderHandle > 0 && ( SHADERCHK( ShaderHandle, PixelShader ) || PixelShader->ShaderType != DX_SHADERTYPE_PIXEL ) )
 		return -1 ;
 
-	// ƒnƒ“ƒhƒ‹‚ğƒZƒbƒg
+	// ãƒãƒ³ãƒ‰ãƒ«ã‚’ã‚»ãƒƒãƒˆ
 	GSYS.DrawSetting.UserShaderRenderInfo.SetPixelShaderHandle = ShaderHandle <= 0 ? 0 : ShaderHandle  ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒ|ƒŠƒSƒ“‚Ì’¸“_‚ÌÚü‚Æ]–@ü‚ğ‚t‚uÀ•W‚©‚çŒvZ‚µ‚ÄƒZƒbƒg‚·‚é
+// ãƒãƒªã‚´ãƒ³ã®é ‚ç‚¹ã®æ¥ç·šã¨å¾“æ³•ç·šã‚’ï¼µï¼¶åº§æ¨™ã‹ã‚‰è¨ˆç®—ã—ã¦ã‚»ãƒƒãƒˆã™ã‚‹
 extern int NS_CalcPolygonBinormalAndTangentsToShader( VERTEX3DSHADER *Vertex, int PolygonNum )
 {
 	unsigned short *Indices ;
@@ -23154,27 +23154,27 @@ extern int NS_CalcPolygonBinormalAndTangentsToShader( VERTEX3DSHADER *Vertex, in
 	Indices = ( unsigned short * )DXALLOC( IndexNum * sizeof( unsigned short ) ) ;
 	if( Indices == NULL )
 	{
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\x02\x98\xb9\x70\xa4\x30\xf3\x30\xc7\x30\xc3\x30\xaf\x30\xb9\x30\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"’¸“_ƒCƒ“ƒfƒbƒNƒX‚ğŠi”[‚·‚éƒƒ‚ƒŠ—Ìˆæ‚ÌŠm•Û‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\x02\x98\xb9\x70\xa4\x30\xf3\x30\xc7\x30\xc3\x30\xaf\x30\xb9\x30\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"é ‚ç‚¹ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’æ ¼ç´ã™ã‚‹ãƒ¡ãƒ¢ãƒªé ˜åŸŸã®ç¢ºä¿ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ )) ;
 		return -1 ;
 	}
 
-	// ’¸“_ƒCƒ“ƒfƒbƒNƒX‚ğƒZƒbƒg
+	// é ‚ç‚¹ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’ã‚»ãƒƒãƒˆ
 	for( i = 0 ; i < IndexNum ; i ++ )
 	{
 		Indices[ i ] = ( unsigned short )i ;
 	}
 
-	// Úü‚Æ]–@ü‚ğŒvZ
+	// æ¥ç·šã¨å¾“æ³•ç·šã‚’è¨ˆç®—
 	Result = NS_CalcPolygonIndexedBinormalAndTangentsToShader( Vertex, IndexNum, Indices, PolygonNum ) ;
 
-	// ’¸“_ƒCƒ“ƒfƒbƒNƒX‚ğŠi”[‚µ‚Ä‚¢‚½ƒƒ‚ƒŠ—Ìˆæ‚ğŠJ•ú
+	// é ‚ç‚¹ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’æ ¼ç´ã—ã¦ã„ãŸãƒ¡ãƒ¢ãƒªé ˜åŸŸã‚’é–‹æ”¾
 	DXFREE( Indices ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return Result ;
 }
 
-// ƒ|ƒŠƒSƒ“‚Ì’¸“_‚ÌÚü‚Æ]–@ü‚ğ‚t‚uÀ•W‚©‚çŒvZ‚µ‚ÄƒZƒbƒg‚·‚é(ƒCƒ“ƒfƒbƒNƒX)
+// ãƒãƒªã‚´ãƒ³ã®é ‚ç‚¹ã®æ¥ç·šã¨å¾“æ³•ç·šã‚’ï¼µï¼¶åº§æ¨™ã‹ã‚‰è¨ˆç®—ã—ã¦ã‚»ãƒƒãƒˆã™ã‚‹(ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹)
 extern int NS_CalcPolygonIndexedBinormalAndTangentsToShader( VERTEX3DSHADER *Vertex, int VertexNum, const unsigned short *Indices, int PolygonNum )
 {
 	int i ;
@@ -23184,12 +23184,12 @@ extern int NS_CalcPolygonIndexedBinormalAndTangentsToShader( VERTEX3DSHADER *Ver
 	int IndexNum ;
 	VERTEX3DSHADER *Vert[ 3 ] ;
 
-	// g—p‚µ‚Ä‚¢‚é’¸“_‚Ìƒe[ƒuƒ‹‚ğì¬‚·‚é
+	// ä½¿ç”¨ã—ã¦ã„ã‚‹é ‚ç‚¹ã®ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’ä½œæˆã™ã‚‹
 	{
 		UseFlag = ( BYTE * )DXALLOC( sizeof( BYTE ) * VertexNum ) ;
 		if( UseFlag == NULL )
 		{
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\x02\x98\xb9\x70\x6e\x30\xa5\x63\xda\x7d\x68\x30\x93\x5f\xd5\x6c\xda\x7d\x6e\x30\x5c\x4f\x10\x62\x5c\x4f\x6d\x69\x6b\x30\xc5\x5f\x81\x89\x6a\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"’¸“_‚ÌÚü‚Æ]–@ü‚Ìì¬ì‹Æ‚É•K—v‚Èƒƒ‚ƒŠ—Ìˆæ‚ÌŠm•Û‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ )) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\x02\x98\xb9\x70\x6e\x30\xa5\x63\xda\x7d\x68\x30\x93\x5f\xd5\x6c\xda\x7d\x6e\x30\x5c\x4f\x10\x62\x5c\x4f\x6d\x69\x6b\x30\xc5\x5f\x81\x89\x6a\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"é ‚ç‚¹ã®æ¥ç·šã¨å¾“æ³•ç·šã®ä½œæˆä½œæ¥­ã«å¿…è¦ãªãƒ¡ãƒ¢ãƒªé ˜åŸŸã®ç¢ºä¿ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ )) ;
 			return -1 ;
 		}
 		_MEMSET( UseFlag, 0, ( size_t )VertexNum ) ;
@@ -23201,7 +23201,7 @@ extern int NS_CalcPolygonIndexedBinormalAndTangentsToShader( VERTEX3DSHADER *Ver
 		}
 	}
 
-	// Úü‚Æ]–@ü‚Ì‰Šú‰»
+	// æ¥ç·šã¨å¾“æ³•ç·šã®åˆæœŸåŒ–
 	for( i = 0 ; i < VertexNum ; i ++ )
 	{
 		if( UseFlag[ i ] == 0 ) continue ;
@@ -23213,7 +23213,7 @@ extern int NS_CalcPolygonIndexedBinormalAndTangentsToShader( VERTEX3DSHADER *Ver
 		Vertex[ i ].tan.z = 0.0f ;
 	}
 
-	// ‘S‚Ä‚Ì–Ê‚Ì”‚¾‚¯ŒJ‚è•Ô‚µ
+	// å…¨ã¦ã®é¢ã®æ•°ã ã‘ç¹°ã‚Šè¿”ã—
 	Index = Indices ;
 	for( i = 0 ; i < PolygonNum ; i ++, Index += 3 )
 	{
@@ -23268,7 +23268,7 @@ extern int NS_CalcPolygonIndexedBinormalAndTangentsToShader( VERTEX3DSHADER *Ver
 		VectorAdd( &Vert[ 2 ]->binorm, &Vert[ 2 ]->binorm, &dv ) ;
 	}
 
-	// –@ü‚ÌZo‚Æ³‹K‰»
+	// æ³•ç·šã®ç®—å‡ºã¨æ­£è¦åŒ–
 	for( i = 0 ; i < VertexNum ; i ++ )
 	{
 		if( UseFlag[ i ] == 0 ) continue ;
@@ -23277,19 +23277,19 @@ extern int NS_CalcPolygonIndexedBinormalAndTangentsToShader( VERTEX3DSHADER *Ver
 		vn = VNorm( VCross( vt, Vertex[ i ].binorm ) ) ;
 		vb = VNorm( VCross( vn, vt ) ) ;
 
-		// ³‹K‰»
+		// æ­£è¦åŒ–
 		Vertex[ i ].tan    = vt ;
 		Vertex[ i ].binorm = vb ;
 	}
 
-	// ƒƒ‚ƒŠ‚Ì‰ğ•ú
+	// ãƒ¡ãƒ¢ãƒªã®è§£æ”¾
 	DXFREE( UseFlag ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒ|ƒŠƒSƒ“‚Ì’¸“_‚ÌÚü‚Æ]–@ü‚ğ‚t‚uÀ•W‚©‚çŒvZ‚µ‚ÄƒZƒbƒg‚·‚é(ƒCƒ“ƒfƒbƒNƒX)
+// ãƒãƒªã‚´ãƒ³ã®é ‚ç‚¹ã®æ¥ç·šã¨å¾“æ³•ç·šã‚’ï¼µï¼¶åº§æ¨™ã‹ã‚‰è¨ˆç®—ã—ã¦ã‚»ãƒƒãƒˆã™ã‚‹(ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹)
 extern int NS_CalcPolygon32bitIndexedBinormalAndTangentsToShader( VERTEX3DSHADER *Vertex, int VertexNum, const unsigned int *Indices, int PolygonNum )
 {
 	int i ;
@@ -23299,12 +23299,12 @@ extern int NS_CalcPolygon32bitIndexedBinormalAndTangentsToShader( VERTEX3DSHADER
 	int IndexNum ;
 	VERTEX3DSHADER *Vert[ 3 ] ;
 
-	// g—p‚µ‚Ä‚¢‚é’¸“_‚Ìƒe[ƒuƒ‹‚ğì¬‚·‚é
+	// ä½¿ç”¨ã—ã¦ã„ã‚‹é ‚ç‚¹ã®ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’ä½œæˆã™ã‚‹
 	{
 		UseFlag = ( BYTE * )DXALLOC( sizeof( BYTE ) * VertexNum ) ;
 		if( UseFlag == NULL )
 		{
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\x02\x98\xb9\x70\x6e\x30\xa5\x63\xda\x7d\x68\x30\x93\x5f\xd5\x6c\xda\x7d\x6e\x30\x5c\x4f\x10\x62\x5c\x4f\x6d\x69\x6b\x30\xc5\x5f\x81\x89\x6a\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"’¸“_‚ÌÚü‚Æ]–@ü‚Ìì¬ì‹Æ‚É•K—v‚Èƒƒ‚ƒŠ—Ìˆæ‚ÌŠm•Û‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ )) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\x02\x98\xb9\x70\x6e\x30\xa5\x63\xda\x7d\x68\x30\x93\x5f\xd5\x6c\xda\x7d\x6e\x30\x5c\x4f\x10\x62\x5c\x4f\x6d\x69\x6b\x30\xc5\x5f\x81\x89\x6a\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"é ‚ç‚¹ã®æ¥ç·šã¨å¾“æ³•ç·šã®ä½œæˆä½œæ¥­ã«å¿…è¦ãªãƒ¡ãƒ¢ãƒªé ˜åŸŸã®ç¢ºä¿ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ )) ;
 			return -1 ;
 		}
 		_MEMSET( UseFlag, 0, ( size_t )VertexNum ) ;
@@ -23316,7 +23316,7 @@ extern int NS_CalcPolygon32bitIndexedBinormalAndTangentsToShader( VERTEX3DSHADER
 		}
 	}
 
-	// Úü‚Æ]–@ü‚Ì‰Šú‰»
+	// æ¥ç·šã¨å¾“æ³•ç·šã®åˆæœŸåŒ–
 	for( i = 0 ; i < VertexNum ; i ++ )
 	{
 		if( UseFlag[ i ] == 0 ) continue ;
@@ -23328,7 +23328,7 @@ extern int NS_CalcPolygon32bitIndexedBinormalAndTangentsToShader( VERTEX3DSHADER
 		Vertex[ i ].tan.z = 0.0f ;
 	}
 
-	// ‘S‚Ä‚Ì–Ê‚Ì”‚¾‚¯ŒJ‚è•Ô‚µ
+	// å…¨ã¦ã®é¢ã®æ•°ã ã‘ç¹°ã‚Šè¿”ã—
 	Index = Indices ;
 	for( i = 0 ; i < PolygonNum ; i ++, Index += 3 )
 	{
@@ -23383,7 +23383,7 @@ extern int NS_CalcPolygon32bitIndexedBinormalAndTangentsToShader( VERTEX3DSHADER
 		VectorAdd( &Vert[ 2 ]->binorm, &Vert[ 2 ]->binorm, &dv ) ;
 	}
 
-	// –@ü‚ÌZo‚Æ³‹K‰»
+	// æ³•ç·šã®ç®—å‡ºã¨æ­£è¦åŒ–
 	for( i = 0 ; i < VertexNum ; i ++ )
 	{
 		if( UseFlag[ i ] == 0 ) continue ;
@@ -23392,20 +23392,20 @@ extern int NS_CalcPolygon32bitIndexedBinormalAndTangentsToShader( VERTEX3DSHADER
 		vn = VNorm( VCross( vt, Vertex[ i ].binorm ) ) ;
 		vb = VNorm( VCross( vn, vt ) ) ;
 
-		// ³‹K‰»
+		// æ­£è¦åŒ–
 		Vertex[ i ].tan    = vt ;
 		Vertex[ i ].binorm = vb ;
 	}
 
-	// ƒƒ‚ƒŠ‚Ì‰ğ•ú
+	// ãƒ¡ãƒ¢ãƒªã®è§£æ”¾
 	DXFREE( UseFlag ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
 
-// ƒVƒF[ƒ_[‚ğg‚Á‚Äƒrƒ‹ƒ{[ƒh‚ğ•`‰æ‚·‚é
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ä½¿ã£ã¦ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚’æç”»ã™ã‚‹
 extern	int NS_DrawBillboard3DToShader( VECTOR Pos, float cx, float cy, float Size, float Angle, int GrHandle, int /*TransFlag*/, int ReverseXFlag, int ReverseYFlag )
 {
 	IMAGEDATA_HARD_DRAW *DrawTex ;
@@ -23423,20 +23423,20 @@ extern	int NS_DrawBillboard3DToShader( VECTOR Pos, float cx, float cy, float Siz
 	IMAGEDATA *Image ;
 	VERTEX3DSHADER DrawVect3D[ 6 ] ;
 
-	// ‰Šú‰»”»’è
+	// åˆæœŸåŒ–åˆ¤å®š
 	if( DxSysData.DxLib_InitializeFlag == FALSE ) return -1 ;
 
-	// ”ñ•`‰æİ’è‚ª‚³‚ê‚Ä‚¢‚éê‡‚Í‰½‚à‚¹‚¸I—¹
+	// éæç”»è¨­å®šãŒã•ã‚Œã¦ã„ã‚‹å ´åˆã¯ä½•ã‚‚ã›ãšçµ‚äº†
 	if( /* GSYS.NotDrawFlag || */ GSYS.DrawSetting.NotDrawFlagInSetDrawArea )
 		return 0 ;
 
-	// g—p‚·‚éƒeƒNƒXƒ`ƒƒ‚O”Ô‚Æ‚µ‚ÄƒZƒbƒg
+	// ä½¿ç”¨ã™ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ï¼ç•ªã¨ã—ã¦ã‚»ãƒƒãƒˆ
 	NS_SetUseTextureToShader( 0, GrHandle ) ;
 
-	// ƒ\ƒtƒg‚ª”ñƒAƒNƒeƒBƒu‚Ìê‡‚ÍƒAƒNƒeƒBƒu‚É‚È‚é‚Ü‚Å‘Ò‚Â
+	// ã‚½ãƒ•ãƒˆãŒéã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã®å ´åˆã¯ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ãªã‚‹ã¾ã§å¾…ã¤
 	CheckActiveState() ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( GRAPHCHK( GrHandle, Image ) )
 		return -1 ;
 
@@ -23449,13 +23449,13 @@ extern	int NS_DrawBillboard3DToShader( VECTOR Pos, float cx, float cy, float Siz
 
 	if( Graphics_Hardware_CheckValid_PF() == 0 ) return -1 ;
 
-	// •`‰æî•ñ”z—ñ‚ÌƒAƒhƒŒƒX‚ğƒZƒbƒg‚µ‚Ä‚¨‚­
+	// æç”»æƒ…å ±é…åˆ—ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ã‚»ãƒƒãƒˆã—ã¦ãŠã
 	DrawTex = Image->Hard.Draw ;
 
-	// ’¸“_ƒf[ƒ^‚ğæ“¾
+	// é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
 	DiffuseColor = GetDiffuseColor() ;
 
-	// ƒTƒCƒY‚ÆÀ•WŠÖŒW‚Ì–‘OŒvZ
+	// ã‚µã‚¤ã‚ºã¨åº§æ¨™é–¢ä¿‚ã®äº‹å‰è¨ˆç®—
 	SizeX = Size ;
 	SizeY = Size * Image->HeightF / Image->WidthF ;
 
@@ -23464,7 +23464,7 @@ extern	int NS_DrawBillboard3DToShader( VECTOR Pos, float cx, float cy, float Siz
 	cx *= Image->WidthF ;
 	cy *= Image->HeightF ;
 
-	// ‰ñ“]‚·‚éê‡‚Í‰ñ“]’l‚ğ‹‚ß‚Ä‚¨‚­
+	// å›è»¢ã™ã‚‹å ´åˆã¯å›è»¢å€¤ã‚’æ±‚ã‚ã¦ãŠã
 	if( Angle != 0.0 )
 	{
 		_SINCOS_PLATFORM( (float)Angle, &Sin, &Cos ) ;
@@ -23472,17 +23472,17 @@ extern	int NS_DrawBillboard3DToShader( VECTOR Pos, float cx, float cy, float Siz
 
 	TexVect = DrawTex->Vertex ;
 
-	// ‰ñ“]‚·‚éê‡‚Æ‚µ‚È‚¢ê‡‚Åˆ—‚ğ•ªŠò
+	// å›è»¢ã™ã‚‹å ´åˆã¨ã—ãªã„å ´åˆã§å‡¦ç†ã‚’åˆ†å²
 	if( Angle != 0.0 )
 	{
-		// ƒ[ƒJƒ‹À•W€”õ
+		// ãƒ­ãƒ¼ã‚«ãƒ«åº§æ¨™æº–å‚™
 		SrcVec[2].x = SrcVec[0].x = ( -cx + TexVect[0].x ) * ScaleX ;
 		SrcVec[3].x = SrcVec[1].x = ( -cx + TexVect[1].x ) * ScaleX ;
 
 		SrcVec[1].y = SrcVec[0].y = ( -cy + Image->HeightF - TexVect[0].y ) * ScaleY ;
 		SrcVec[3].y = SrcVec[2].y = ( -cy + Image->HeightF - TexVect[2].y ) * ScaleY ;
 
-		// ‰ñ“]ŒvZ
+		// å›è»¢è¨ˆç®—
 		f             = SrcVec[ 0 ].x * Cos - SrcVec[ 0 ].y * Sin ;	
 		SrcVec[ 0 ].y = SrcVec[ 0 ].x * Sin + SrcVec[ 0 ].y * Cos ;
 		SrcVec[ 0 ].x = f ;
@@ -23499,7 +23499,7 @@ extern	int NS_DrawBillboard3DToShader( VECTOR Pos, float cx, float cy, float Siz
 		SrcVec[ 3 ].y = SrcVec[ 3 ].x * Sin + SrcVec[ 3 ].y * Cos ;
 		SrcVec[ 3 ].x = f ;
 
-		// ƒrƒ‹ƒ{[ƒhÀ•W‚ğƒ[ƒ‹ƒhÀ•W‚Ö•ÏŠ·
+		// ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰åº§æ¨™ã‚’ãƒ¯ãƒ¼ãƒ«ãƒ‰åº§æ¨™ã¸å¤‰æ›
 		DrawVect3D[ 0 ].pos.x = SrcVec[ 0 ].x * GSYS.DrawSetting.BillboardMatrixF.m[0][0] + SrcVec[ 0 ].y * GSYS.DrawSetting.BillboardMatrixF.m[1][0] + Pos.x ;
 		DrawVect3D[ 0 ].pos.y = SrcVec[ 0 ].x * GSYS.DrawSetting.BillboardMatrixF.m[0][1] + SrcVec[ 0 ].y * GSYS.DrawSetting.BillboardMatrixF.m[1][1] + Pos.y ;
 		DrawVect3D[ 0 ].pos.z = SrcVec[ 0 ].x * GSYS.DrawSetting.BillboardMatrixF.m[0][2] + SrcVec[ 0 ].y * GSYS.DrawSetting.BillboardMatrixF.m[1][2] + Pos.z ;
@@ -23520,14 +23520,14 @@ extern	int NS_DrawBillboard3DToShader( VECTOR Pos, float cx, float cy, float Siz
 	{
 		VECTOR TempVecX[ 2 ], TempVecY[ 2 ] ;
 
-		// ƒ[ƒJƒ‹À•W€”õ
+		// ãƒ­ãƒ¼ã‚«ãƒ«åº§æ¨™æº–å‚™
 		SrcVec[0].x = ( -cx + TexVect[0].x ) * ScaleX ;
 		SrcVec[1].x = ( -cx + TexVect[1].x ) * ScaleX ;
 
 		SrcVec[0].y = ( -cy + Image->HeightF - TexVect[0].y ) * ScaleY ;
 		SrcVec[2].y = ( -cy + Image->HeightF - TexVect[2].y ) * ScaleY ;
 
-		// ƒrƒ‹ƒ{[ƒhÀ•W‚ğƒ[ƒ‹ƒhÀ•W‚Ö•ÏŠ·
+		// ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰åº§æ¨™ã‚’ãƒ¯ãƒ¼ãƒ«ãƒ‰åº§æ¨™ã¸å¤‰æ›
 		TempVecX[ 0 ].x = SrcVec[ 0 ].x * GSYS.DrawSetting.BillboardMatrixF.m[0][0] + Pos.x ;
 		TempVecX[ 0 ].y = SrcVec[ 0 ].x * GSYS.DrawSetting.BillboardMatrixF.m[0][1] + Pos.y ;
 		TempVecX[ 0 ].z = SrcVec[ 0 ].x * GSYS.DrawSetting.BillboardMatrixF.m[0][2] + Pos.z ;
@@ -23648,256 +23648,256 @@ extern	int NS_DrawBillboard3DToShader( VECTOR Pos, float cx, float cy, float Siz
 
 	NS_DrawPrimitive3DToShader( DrawVect3D, 6, DX_PRIMTYPE_TRIANGLELIST ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒVƒF[ƒ_[‚ğg‚Á‚Ä‚Q‚cƒ|ƒŠƒSƒ“‚ğ•`‰æ‚·‚é
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ä½¿ã£ã¦ï¼’ï¼¤ãƒãƒªã‚´ãƒ³ã‚’æç”»ã™ã‚‹
 extern	int			NS_DrawPolygon2DToShader( const VERTEX2DSHADER *Vertex, int PolygonNum )
 {
 	return NS_DrawPrimitive2DToShader( Vertex, PolygonNum * 3, DX_PRIMTYPE_TRIANGLELIST ) ;
 }
 
-// ƒVƒF[ƒ_[‚ğg‚Á‚Ä‚R‚cƒ|ƒŠƒSƒ“‚ğ•`‰æ‚·‚é
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ä½¿ã£ã¦ï¼“ï¼¤ãƒãƒªã‚´ãƒ³ã‚’æç”»ã™ã‚‹
 extern	int			NS_DrawPolygon3DToShader( const VERTEX3DSHADER *Vertex, int PolygonNum )
 {
 	return NS_DrawPrimitive3DToShader( Vertex, PolygonNum * 3, DX_PRIMTYPE_TRIANGLELIST ) ;
 }
 
-// ƒVƒF[ƒ_[‚ğg‚Á‚Ä‚Q‚cƒ|ƒŠƒSƒ“‚ğ•`‰æ‚·‚é(ƒCƒ“ƒfƒbƒNƒX)
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ä½¿ã£ã¦ï¼’ï¼¤ãƒãƒªã‚´ãƒ³ã‚’æç”»ã™ã‚‹(ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹)
 extern	int			NS_DrawPolygonIndexed2DToShader( const VERTEX2DSHADER *Vertex, int VertexNum, const unsigned short *Indices, int PolygonNum )
 {
 	return NS_DrawPrimitiveIndexed2DToShader( Vertex, VertexNum, Indices, PolygonNum * 3, DX_PRIMTYPE_TRIANGLELIST ) ;
 }
 
-// ƒVƒF[ƒ_[‚ğg‚Á‚Ä‚Q‚cƒ|ƒŠƒSƒ“‚ğ•`‰æ‚·‚é(ƒCƒ“ƒfƒbƒNƒX)
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ä½¿ã£ã¦ï¼’ï¼¤ãƒãƒªã‚´ãƒ³ã‚’æç”»ã™ã‚‹(ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹)
 extern	int			NS_DrawPolygon32bitIndexed2DToShader( const VERTEX2DSHADER *Vertex, int VertexNum, const unsigned int *Indices, int PolygonNum )
 {
 	return NS_DrawPrimitive32bitIndexed2DToShader( Vertex, VertexNum, Indices, PolygonNum * 3, DX_PRIMTYPE_TRIANGLELIST ) ;
 }
 
-// ƒVƒF[ƒ_[‚ğg‚Á‚Ä‚R‚cƒ|ƒŠƒSƒ“‚ğ•`‰æ‚·‚é(ƒCƒ“ƒfƒbƒNƒX)
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ä½¿ã£ã¦ï¼“ï¼¤ãƒãƒªã‚´ãƒ³ã‚’æç”»ã™ã‚‹(ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹)
 extern	int			NS_DrawPolygonIndexed3DToShader( const VERTEX3DSHADER *Vertex, int VertexNum, const unsigned short *Indices, int PolygonNum )
 {
 	return NS_DrawPrimitiveIndexed3DToShader( Vertex, VertexNum, Indices, PolygonNum * 3, DX_PRIMTYPE_TRIANGLELIST ) ;
 }
 
-// ƒVƒF[ƒ_[‚ğg‚Á‚Ä‚R‚cƒ|ƒŠƒSƒ“‚ğ•`‰æ‚·‚é(ƒCƒ“ƒfƒbƒNƒX)
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ä½¿ã£ã¦ï¼“ï¼¤ãƒãƒªã‚´ãƒ³ã‚’æç”»ã™ã‚‹(ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹)
 extern	int			NS_DrawPolygon32bitIndexed3DToShader( const VERTEX3DSHADER *Vertex, int VertexNum, const unsigned int *Indices, int PolygonNum )
 {
 	return NS_DrawPrimitive32bitIndexed3DToShader( Vertex, VertexNum, Indices, PolygonNum * 3, DX_PRIMTYPE_TRIANGLELIST ) ;
 }
 
-// ƒVƒF[ƒ_[‚ğg‚Á‚Ä‚Q‚cƒvƒŠƒ~ƒeƒBƒu‚ğ•`‰æ‚·‚é
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ä½¿ã£ã¦ï¼’ï¼¤ãƒ—ãƒªãƒŸãƒ†ã‚£ãƒ–ã‚’æç”»ã™ã‚‹
 extern	int			NS_DrawPrimitive2DToShader( const VERTEX2DSHADER *Vertex, int VertexNum, int PrimitiveType )
 {
-	// ‚Q‚cs—ñ‚ğƒn[ƒhƒEƒGƒA‚É”½‰f‚·‚é
+	// ï¼’ï¼¤è¡Œåˆ—ã‚’ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã«åæ˜ ã™ã‚‹
 	if( GSYS.DrawSetting.MatchHardware_2DMatrix == FALSE && GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )
 		Graphics_DrawSetting_ApplyLib2DMatrixToHardware() ;
 
 #ifndef DX_NON_MOVIE
-	// ƒZƒbƒg‚³‚ê‚Ä‚¢‚éƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚Ì“®‰æ‚ğXV‚·‚é
+	// ã‚»ãƒƒãƒˆã•ã‚Œã¦ã„ã‚‹ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã®å‹•ç”»ã‚’æ›´æ–°ã™ã‚‹
 	Graphics_DrawSetting_UpdateUserTextureMovie() ;
 #endif // DX_NON_MOVIE
 
 	return Graphics_Hardware_DrawPrimitive2DToShader_PF( Vertex, VertexNum, PrimitiveType ) ;
 }
 
-// ƒVƒF[ƒ_[‚ğg‚Á‚Ä‚R‚cƒvƒŠƒ~ƒeƒBƒu‚ğ•`‰æ‚·‚é
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ä½¿ã£ã¦ï¼“ï¼¤ãƒ—ãƒªãƒŸãƒ†ã‚£ãƒ–ã‚’æç”»ã™ã‚‹
 extern	int			NS_DrawPrimitive3DToShader( const VERTEX3DSHADER *Vertex, int VertexNum, int PrimitiveType )
 {
 #ifndef DX_NON_MOVIE
-	// ƒZƒbƒg‚³‚ê‚Ä‚¢‚éƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚Ì“®‰æ‚ğXV‚·‚é
+	// ã‚»ãƒƒãƒˆã•ã‚Œã¦ã„ã‚‹ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã®å‹•ç”»ã‚’æ›´æ–°ã™ã‚‹
 	Graphics_DrawSetting_UpdateUserTextureMovie() ;
 #endif // DX_NON_MOVIE
 
 	return Graphics_Hardware_DrawPrimitive3DToShader_PF( Vertex, VertexNum, PrimitiveType ) ;
 }
 
-// ƒVƒF[ƒ_[‚ğg‚Á‚Ä‚Q‚cƒvƒŠƒ~ƒeƒBƒu‚ğ•`‰æ‚·‚é(ƒCƒ“ƒfƒbƒNƒX)
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ä½¿ã£ã¦ï¼’ï¼¤ãƒ—ãƒªãƒŸãƒ†ã‚£ãƒ–ã‚’æç”»ã™ã‚‹(ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹)
 extern	int			NS_DrawPrimitiveIndexed2DToShader( const VERTEX2DSHADER *Vertex, int VertexNum, const unsigned short *Indices, int IndexNum, int PrimitiveType )
 {
-	// ‚Q‚cs—ñ‚ğƒn[ƒhƒEƒGƒA‚É”½‰f‚·‚é
+	// ï¼’ï¼¤è¡Œåˆ—ã‚’ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã«åæ˜ ã™ã‚‹
 	if( GSYS.DrawSetting.MatchHardware_2DMatrix == FALSE && GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )
 		Graphics_DrawSetting_ApplyLib2DMatrixToHardware() ;
 
 #ifndef DX_NON_MOVIE
-	// ƒZƒbƒg‚³‚ê‚Ä‚¢‚éƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚Ì“®‰æ‚ğXV‚·‚é
+	// ã‚»ãƒƒãƒˆã•ã‚Œã¦ã„ã‚‹ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã®å‹•ç”»ã‚’æ›´æ–°ã™ã‚‹
 	Graphics_DrawSetting_UpdateUserTextureMovie() ;
 #endif // DX_NON_MOVIE
 
 	return Graphics_Hardware_DrawPrimitiveIndexed2DToShader_PF( Vertex, VertexNum, Indices, IndexNum, PrimitiveType ) ;
 }
 
-// ƒVƒF[ƒ_[‚ğg‚Á‚Ä‚Q‚cƒvƒŠƒ~ƒeƒBƒu‚ğ•`‰æ‚·‚é(ƒCƒ“ƒfƒbƒNƒX)
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ä½¿ã£ã¦ï¼’ï¼¤ãƒ—ãƒªãƒŸãƒ†ã‚£ãƒ–ã‚’æç”»ã™ã‚‹(ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹)
 extern	int			NS_DrawPrimitive32bitIndexed2DToShader( const VERTEX2DSHADER *Vertex, int VertexNum, const unsigned int *Indices, int IndexNum, int PrimitiveType )
 {
-	// ‚Q‚cs—ñ‚ğƒn[ƒhƒEƒGƒA‚É”½‰f‚·‚é
+	// ï¼’ï¼¤è¡Œåˆ—ã‚’ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã«åæ˜ ã™ã‚‹
 	if( GSYS.DrawSetting.MatchHardware_2DMatrix == FALSE && GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )
 		Graphics_DrawSetting_ApplyLib2DMatrixToHardware() ;
 
 #ifndef DX_NON_MOVIE
-	// ƒZƒbƒg‚³‚ê‚Ä‚¢‚éƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚Ì“®‰æ‚ğXV‚·‚é
+	// ã‚»ãƒƒãƒˆã•ã‚Œã¦ã„ã‚‹ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã®å‹•ç”»ã‚’æ›´æ–°ã™ã‚‹
 	Graphics_DrawSetting_UpdateUserTextureMovie() ;
 #endif // DX_NON_MOVIE
 
 	return Graphics_Hardware_DrawPrimitive32bitIndexed2DToShader_PF( Vertex, VertexNum, Indices, IndexNum, PrimitiveType ) ;
 }
 
-// ƒVƒF[ƒ_[‚ğg‚Á‚Ä‚R‚cƒvƒŠƒ~ƒeƒBƒu‚ğ•`‰æ‚·‚é(ƒCƒ“ƒfƒbƒNƒX)
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ä½¿ã£ã¦ï¼“ï¼¤ãƒ—ãƒªãƒŸãƒ†ã‚£ãƒ–ã‚’æç”»ã™ã‚‹(ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹)
 extern	int			NS_DrawPrimitiveIndexed3DToShader( const VERTEX3DSHADER *Vertex, int VertexNum, const unsigned short *Indices, int IndexNum, int PrimitiveType )
 {
 #ifndef DX_NON_MOVIE
-	// ƒZƒbƒg‚³‚ê‚Ä‚¢‚éƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚Ì“®‰æ‚ğXV‚·‚é
+	// ã‚»ãƒƒãƒˆã•ã‚Œã¦ã„ã‚‹ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã®å‹•ç”»ã‚’æ›´æ–°ã™ã‚‹
 	Graphics_DrawSetting_UpdateUserTextureMovie() ;
 #endif // DX_NON_MOVIE
 
 	return Graphics_Hardware_DrawPrimitiveIndexed3DToShader_PF( Vertex, VertexNum, Indices, IndexNum, PrimitiveType ) ;
 }
 
-// ƒVƒF[ƒ_[‚ğg‚Á‚Ä‚R‚cƒvƒŠƒ~ƒeƒBƒu‚ğ•`‰æ‚·‚é(ƒCƒ“ƒfƒbƒNƒX)
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ä½¿ã£ã¦ï¼“ï¼¤ãƒ—ãƒªãƒŸãƒ†ã‚£ãƒ–ã‚’æç”»ã™ã‚‹(ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹)
 extern	int			NS_DrawPrimitive32bitIndexed3DToShader( const VERTEX3DSHADER *Vertex, int VertexNum, const unsigned int *Indices, int IndexNum, int PrimitiveType )
 {
 #ifndef DX_NON_MOVIE
-	// ƒZƒbƒg‚³‚ê‚Ä‚¢‚éƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚Ì“®‰æ‚ğXV‚·‚é
+	// ã‚»ãƒƒãƒˆã•ã‚Œã¦ã„ã‚‹ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã®å‹•ç”»ã‚’æ›´æ–°ã™ã‚‹
 	Graphics_DrawSetting_UpdateUserTextureMovie() ;
 #endif // DX_NON_MOVIE
 
 	return Graphics_Hardware_DrawPrimitive32bitIndexed3DToShader_PF( Vertex, VertexNum, Indices, IndexNum, PrimitiveType ) ;
 }
 
-// ƒVƒF[ƒ_[‚ğg‚Á‚Ä‚Q‚cƒ|ƒŠƒSƒ“‚ğ•`‰æ‚·‚é
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ä½¿ã£ã¦ï¼’ï¼¤ãƒãƒªã‚´ãƒ³ã‚’æç”»ã™ã‚‹
 extern	int			NS_DrawPolygon2DToShader2( const VERTEX2D *Vertex, int PolygonNum )
 {
 	return NS_DrawPrimitive2DToShader2( Vertex, PolygonNum * 3, DX_PRIMTYPE_TRIANGLELIST ) ;
 }
 
-// ƒVƒF[ƒ_[‚ğg‚Á‚Ä‚R‚cƒ|ƒŠƒSƒ“‚ğ•`‰æ‚·‚é
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ä½¿ã£ã¦ï¼“ï¼¤ãƒãƒªã‚´ãƒ³ã‚’æç”»ã™ã‚‹
 extern	int			NS_DrawPolygon3DToShader2( const VERTEX3D *Vertex, int PolygonNum )
 {
 	return NS_DrawPrimitive3DToShader2( Vertex, PolygonNum * 3, DX_PRIMTYPE_TRIANGLELIST ) ;
 }
 
-// ƒVƒF[ƒ_[‚ğg‚Á‚Ä‚Q‚cƒ|ƒŠƒSƒ“‚ğ•`‰æ‚·‚é(ƒCƒ“ƒfƒbƒNƒX)
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ä½¿ã£ã¦ï¼’ï¼¤ãƒãƒªã‚´ãƒ³ã‚’æç”»ã™ã‚‹(ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹)
 extern	int			NS_DrawPolygonIndexed2DToShader2( const VERTEX2D *Vertex, int VertexNum, const unsigned short *Indices, int PolygonNum )
 {
 	return NS_DrawPrimitiveIndexed2DToShader2( Vertex, VertexNum, Indices, PolygonNum * 3, DX_PRIMTYPE_TRIANGLELIST ) ;
 }
 
-// ƒVƒF[ƒ_[‚ğg‚Á‚Ä‚Q‚cƒ|ƒŠƒSƒ“‚ğ•`‰æ‚·‚é(ƒCƒ“ƒfƒbƒNƒX)
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ä½¿ã£ã¦ï¼’ï¼¤ãƒãƒªã‚´ãƒ³ã‚’æç”»ã™ã‚‹(ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹)
 extern	int			NS_DrawPolygon32bitIndexed2DToShader2( const VERTEX2D *Vertex, int VertexNum, const unsigned int *Indices, int PolygonNum )
 {
 	return NS_DrawPrimitive32bitIndexed2DToShader2( Vertex, VertexNum, Indices, PolygonNum * 3, DX_PRIMTYPE_TRIANGLELIST ) ;
 }
 
-// ƒVƒF[ƒ_[‚ğg‚Á‚Ä‚R‚cƒ|ƒŠƒSƒ“‚ğ•`‰æ‚·‚é(ƒCƒ“ƒfƒbƒNƒX)
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ä½¿ã£ã¦ï¼“ï¼¤ãƒãƒªã‚´ãƒ³ã‚’æç”»ã™ã‚‹(ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹)
 extern	int			NS_DrawPolygonIndexed3DToShader2( const VERTEX3D *Vertex, int VertexNum, const unsigned short *Indices, int PolygonNum )
 {
 	return NS_DrawPrimitiveIndexed3DToShader2( Vertex, VertexNum, Indices, PolygonNum * 3, DX_PRIMTYPE_TRIANGLELIST ) ;
 }
 
-// ƒVƒF[ƒ_[‚ğg‚Á‚Ä‚R‚cƒ|ƒŠƒSƒ“‚ğ•`‰æ‚·‚é(ƒCƒ“ƒfƒbƒNƒX)
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ä½¿ã£ã¦ï¼“ï¼¤ãƒãƒªã‚´ãƒ³ã‚’æç”»ã™ã‚‹(ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹)
 extern	int			NS_DrawPolygon32bitIndexed3DToShader2( const VERTEX3D *Vertex, int VertexNum, const unsigned int *Indices, int PolygonNum )
 {
 	return NS_DrawPrimitive32bitIndexed3DToShader2( Vertex, VertexNum, Indices, PolygonNum * 3, DX_PRIMTYPE_TRIANGLELIST ) ;
 }
 
-// ƒVƒF[ƒ_[‚ğg‚Á‚Ä‚Q‚cƒvƒŠƒ~ƒeƒBƒu‚ğ•`‰æ‚·‚é
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ä½¿ã£ã¦ï¼’ï¼¤ãƒ—ãƒªãƒŸãƒ†ã‚£ãƒ–ã‚’æç”»ã™ã‚‹
 extern	int			NS_DrawPrimitive2DToShader2( const VERTEX2D *Vertex, int VertexNum, int PrimitiveType )
 {
-	// ‚Q‚cs—ñ‚ğƒn[ƒhƒEƒGƒA‚É”½‰f‚·‚é
+	// ï¼’ï¼¤è¡Œåˆ—ã‚’ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã«åæ˜ ã™ã‚‹
 	if( GSYS.DrawSetting.MatchHardware_2DMatrix == FALSE && GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )
 		Graphics_DrawSetting_ApplyLib2DMatrixToHardware() ;
 
 #ifndef DX_NON_MOVIE
-	// ƒZƒbƒg‚³‚ê‚Ä‚¢‚éƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚Ì“®‰æ‚ğXV‚·‚é
+	// ã‚»ãƒƒãƒˆã•ã‚Œã¦ã„ã‚‹ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã®å‹•ç”»ã‚’æ›´æ–°ã™ã‚‹
 	Graphics_DrawSetting_UpdateUserTextureMovie() ;
 #endif // DX_NON_MOVIE
 
 	return Graphics_Hardware_DrawPrimitive2DToShader2_PF( Vertex, VertexNum, PrimitiveType ) ;
 }
 
-// ƒVƒF[ƒ_[‚ğg‚Á‚Ä‚R‚cƒvƒŠƒ~ƒeƒBƒu‚ğ•`‰æ‚·‚é
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ä½¿ã£ã¦ï¼“ï¼¤ãƒ—ãƒªãƒŸãƒ†ã‚£ãƒ–ã‚’æç”»ã™ã‚‹
 extern	int			NS_DrawPrimitive3DToShader2( const VERTEX3D *Vertex, int VertexNum, int PrimitiveType )
 {
 #ifndef DX_NON_MOVIE
-	// ƒZƒbƒg‚³‚ê‚Ä‚¢‚éƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚Ì“®‰æ‚ğXV‚·‚é
+	// ã‚»ãƒƒãƒˆã•ã‚Œã¦ã„ã‚‹ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã®å‹•ç”»ã‚’æ›´æ–°ã™ã‚‹
 	Graphics_DrawSetting_UpdateUserTextureMovie() ;
 #endif // DX_NON_MOVIE
 
 	return Graphics_Hardware_DrawPrimitive3DToShader2_PF( Vertex, VertexNum, PrimitiveType ) ;
 }
 
-// ƒVƒF[ƒ_[‚ğg‚Á‚Ä‚Q‚cƒvƒŠƒ~ƒeƒBƒu‚ğ•`‰æ‚·‚é(ƒCƒ“ƒfƒbƒNƒX)
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ä½¿ã£ã¦ï¼’ï¼¤ãƒ—ãƒªãƒŸãƒ†ã‚£ãƒ–ã‚’æç”»ã™ã‚‹(ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹)
 extern	int			NS_DrawPrimitiveIndexed2DToShader2( const VERTEX2D *Vertex, int VertexNum, const unsigned short *Indices, int IndexNum, int PrimitiveType )
 {
-	// ‚Q‚cs—ñ‚ğƒn[ƒhƒEƒGƒA‚É”½‰f‚·‚é
+	// ï¼’ï¼¤è¡Œåˆ—ã‚’ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã«åæ˜ ã™ã‚‹
 	if( GSYS.DrawSetting.MatchHardware_2DMatrix == FALSE && GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )
 		Graphics_DrawSetting_ApplyLib2DMatrixToHardware() ;
 
 #ifndef DX_NON_MOVIE
-	// ƒZƒbƒg‚³‚ê‚Ä‚¢‚éƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚Ì“®‰æ‚ğXV‚·‚é
+	// ã‚»ãƒƒãƒˆã•ã‚Œã¦ã„ã‚‹ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã®å‹•ç”»ã‚’æ›´æ–°ã™ã‚‹
 	Graphics_DrawSetting_UpdateUserTextureMovie() ;
 #endif // DX_NON_MOVIE
 
 	return Graphics_Hardware_DrawPrimitiveIndexed2DToShader2_PF( Vertex, VertexNum, Indices, IndexNum, PrimitiveType ) ;
 }
 
-// ƒVƒF[ƒ_[‚ğg‚Á‚Ä‚Q‚cƒvƒŠƒ~ƒeƒBƒu‚ğ•`‰æ‚·‚é(ƒCƒ“ƒfƒbƒNƒX)
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ä½¿ã£ã¦ï¼’ï¼¤ãƒ—ãƒªãƒŸãƒ†ã‚£ãƒ–ã‚’æç”»ã™ã‚‹(ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹)
 extern	int			NS_DrawPrimitive32bitIndexed2DToShader2( const VERTEX2D *Vertex, int VertexNum, const unsigned int *Indices, int IndexNum, int PrimitiveType )
 {
-	// ‚Q‚cs—ñ‚ğƒn[ƒhƒEƒGƒA‚É”½‰f‚·‚é
+	// ï¼’ï¼¤è¡Œåˆ—ã‚’ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã«åæ˜ ã™ã‚‹
 	if( GSYS.DrawSetting.MatchHardware_2DMatrix == FALSE && GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )
 		Graphics_DrawSetting_ApplyLib2DMatrixToHardware() ;
 
 #ifndef DX_NON_MOVIE
-	// ƒZƒbƒg‚³‚ê‚Ä‚¢‚éƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚Ì“®‰æ‚ğXV‚·‚é
+	// ã‚»ãƒƒãƒˆã•ã‚Œã¦ã„ã‚‹ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã®å‹•ç”»ã‚’æ›´æ–°ã™ã‚‹
 	Graphics_DrawSetting_UpdateUserTextureMovie() ;
 #endif // DX_NON_MOVIE
 
 	return Graphics_Hardware_DrawPrimitive32bitIndexed2DToShader2_PF( Vertex, VertexNum, Indices, IndexNum, PrimitiveType ) ;
 }
 
-// ƒVƒF[ƒ_[‚ğg‚Á‚Ä‚R‚cƒvƒŠƒ~ƒeƒBƒu‚ğ•`‰æ‚·‚é(ƒCƒ“ƒfƒbƒNƒX)
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ä½¿ã£ã¦ï¼“ï¼¤ãƒ—ãƒªãƒŸãƒ†ã‚£ãƒ–ã‚’æç”»ã™ã‚‹(ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹)
 extern	int			NS_DrawPrimitiveIndexed3DToShader2( const VERTEX3D *Vertex, int VertexNum, const unsigned short *Indices, int IndexNum, int PrimitiveType )
 {
 #ifndef DX_NON_MOVIE
-	// ƒZƒbƒg‚³‚ê‚Ä‚¢‚éƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚Ì“®‰æ‚ğXV‚·‚é
+	// ã‚»ãƒƒãƒˆã•ã‚Œã¦ã„ã‚‹ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã®å‹•ç”»ã‚’æ›´æ–°ã™ã‚‹
 	Graphics_DrawSetting_UpdateUserTextureMovie() ;
 #endif // DX_NON_MOVIE
 
 	return Graphics_Hardware_DrawPrimitiveIndexed3DToShader2_PF( Vertex, VertexNum, Indices, IndexNum, PrimitiveType ) ;
 }
 
-// ƒVƒF[ƒ_[‚ğg‚Á‚Ä‚R‚cƒvƒŠƒ~ƒeƒBƒu‚ğ•`‰æ‚·‚é(ƒCƒ“ƒfƒbƒNƒX)
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ä½¿ã£ã¦ï¼“ï¼¤ãƒ—ãƒªãƒŸãƒ†ã‚£ãƒ–ã‚’æç”»ã™ã‚‹(ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹)
 extern	int			NS_DrawPrimitive32bitIndexed3DToShader2( const VERTEX3D *Vertex, int VertexNum, const unsigned int *Indices, int IndexNum, int PrimitiveType )
 {
 #ifndef DX_NON_MOVIE
-	// ƒZƒbƒg‚³‚ê‚Ä‚¢‚éƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚Ì“®‰æ‚ğXV‚·‚é
+	// ã‚»ãƒƒãƒˆã•ã‚Œã¦ã„ã‚‹ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã®å‹•ç”»ã‚’æ›´æ–°ã™ã‚‹
 	Graphics_DrawSetting_UpdateUserTextureMovie() ;
 #endif // DX_NON_MOVIE
 
 	return Graphics_Hardware_DrawPrimitive32bitIndexed3DToShader2_PF( Vertex, VertexNum, Indices, IndexNum, PrimitiveType ) ;
 }
 
-// ƒVƒF[ƒ_[‚ğg‚Á‚Ä‚R‚cƒ|ƒŠƒSƒ“‚ğ•`‰æ‚·‚é( ’¸“_ƒoƒbƒtƒ@g—p”Å )
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ä½¿ã£ã¦ï¼“ï¼¤ãƒãƒªã‚´ãƒ³ã‚’æç”»ã™ã‚‹( é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ä½¿ç”¨ç‰ˆ )
 extern	int			NS_DrawPolygon3DToShader_UseVertexBuffer( int VertexBufHandle )
 {
 	return NS_DrawPrimitive3DToShader_UseVertexBuffer( VertexBufHandle, DX_PRIMTYPE_TRIANGLELIST ) ;
 }
 
-// ƒVƒF[ƒ_[‚ğg‚Á‚Ä‚R‚cƒ|ƒŠƒSƒ“‚ğ•`‰æ‚·‚é( ’¸“_ƒoƒbƒtƒ@‚ÆƒCƒ“ƒfƒbƒNƒXƒoƒbƒtƒ@g—p”Å )
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ä½¿ã£ã¦ï¼“ï¼¤ãƒãƒªã‚´ãƒ³ã‚’æç”»ã™ã‚‹( é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã¨ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒãƒƒãƒ•ã‚¡ä½¿ç”¨ç‰ˆ )
 extern	int			NS_DrawPolygonIndexed3DToShader_UseVertexBuffer( int VertexBufHandle, int IndexBufHandle )
 {
 	return NS_DrawPrimitiveIndexed3DToShader_UseVertexBuffer( VertexBufHandle, IndexBufHandle, DX_PRIMTYPE_TRIANGLELIST ) ;
 }
 
-// ƒVƒF[ƒ_[‚ğg‚Á‚Ä‚R‚cƒvƒŠƒ~ƒeƒBƒu‚ğ•`‰æ‚·‚é( ’¸“_ƒoƒbƒtƒ@g—p”Å )
-extern	int			NS_DrawPrimitive3DToShader_UseVertexBuffer( int VertexBufHandle, int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST “™ */ )
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ä½¿ã£ã¦ï¼“ï¼¤ãƒ—ãƒªãƒŸãƒ†ã‚£ãƒ–ã‚’æç”»ã™ã‚‹( é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ä½¿ç”¨ç‰ˆ )
+extern	int			NS_DrawPrimitive3DToShader_UseVertexBuffer( int VertexBufHandle, int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST ç­‰ */ )
 {
 	VERTEXBUFFERHANDLEDATA *VertexBuffer ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( VERTEXBUFFERCHK( VertexBufHandle, VertexBuffer ) )
 	{
 		return -1 ;
@@ -23906,24 +23906,24 @@ extern	int			NS_DrawPrimitive3DToShader_UseVertexBuffer( int VertexBufHandle, in
 	return NS_DrawPrimitive3DToShader_UseVertexBuffer2( VertexBufHandle, PrimitiveType, 0, VertexBuffer->Num ) ;
 }
 
-// ƒVƒF[ƒ_[‚ğg‚Á‚Ä‚R‚cƒvƒŠƒ~ƒeƒBƒu‚ğ•`‰æ‚·‚é( ’¸“_ƒoƒbƒtƒ@g—p”Å )
-extern	int			NS_DrawPrimitive3DToShader_UseVertexBuffer2( int VertexBufHandle, int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST “™ */, int StartVertex, int UseVertexNum )
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ä½¿ã£ã¦ï¼“ï¼¤ãƒ—ãƒªãƒŸãƒ†ã‚£ãƒ–ã‚’æç”»ã™ã‚‹( é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ä½¿ç”¨ç‰ˆ )
+extern	int			NS_DrawPrimitive3DToShader_UseVertexBuffer2( int VertexBufHandle, int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST ç­‰ */, int StartVertex, int UseVertexNum )
 {
 #ifndef DX_NON_MOVIE
-	// ƒZƒbƒg‚³‚ê‚Ä‚¢‚éƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚Ì“®‰æ‚ğXV‚·‚é
+	// ã‚»ãƒƒãƒˆã•ã‚Œã¦ã„ã‚‹ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã®å‹•ç”»ã‚’æ›´æ–°ã™ã‚‹
 	Graphics_DrawSetting_UpdateUserTextureMovie() ;
 #endif // DX_NON_MOVIE
 
 	return Graphics_Hardware_DrawPrimitive3DToShader_UseVertexBuffer2_PF( VertexBufHandle, PrimitiveType, StartVertex, UseVertexNum ) ;
 }
 
-// ƒVƒF[ƒ_[‚ğg‚Á‚Ä‚R‚cƒvƒŠƒ~ƒeƒBƒu‚ğ•`‰æ‚·‚é( ’¸“_ƒoƒbƒtƒ@‚ÆƒCƒ“ƒfƒbƒNƒXƒoƒbƒtƒ@g—p”Å )
-extern	int			NS_DrawPrimitiveIndexed3DToShader_UseVertexBuffer( int VertexBufHandle, int IndexBufHandle, int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST “™ */ )
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ä½¿ã£ã¦ï¼“ï¼¤ãƒ—ãƒªãƒŸãƒ†ã‚£ãƒ–ã‚’æç”»ã™ã‚‹( é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã¨ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒãƒƒãƒ•ã‚¡ä½¿ç”¨ç‰ˆ )
+extern	int			NS_DrawPrimitiveIndexed3DToShader_UseVertexBuffer( int VertexBufHandle, int IndexBufHandle, int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST ç­‰ */ )
 {
 	VERTEXBUFFERHANDLEDATA *VertexBuffer ;
 	INDEXBUFFERHANDLEDATA  *IndexBuffer ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( VERTEXBUFFERCHK( VertexBufHandle, VertexBuffer ) )
 	{
 		return -1 ;
@@ -23936,11 +23936,11 @@ extern	int			NS_DrawPrimitiveIndexed3DToShader_UseVertexBuffer( int VertexBufHan
 	return NS_DrawPrimitiveIndexed3DToShader_UseVertexBuffer2( VertexBufHandle, IndexBufHandle, PrimitiveType, 0, 0, VertexBuffer->Num, 0, IndexBuffer->Num ) ;
 }
 
-// ƒVƒF[ƒ_[‚ğg‚Á‚Ä‚R‚cƒvƒŠƒ~ƒeƒBƒu‚ğ•`‰æ‚·‚é( ’¸“_ƒoƒbƒtƒ@‚ÆƒCƒ“ƒfƒbƒNƒXƒoƒbƒtƒ@g—p”Å )
-extern	int			NS_DrawPrimitiveIndexed3DToShader_UseVertexBuffer2( int VertexBufHandle, int IndexBufHandle, int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST “™ */, int BaseVertex, int StartVertex, int UseVertexNum, int StartIndex, int UseIndexNum )
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’ä½¿ã£ã¦ï¼“ï¼¤ãƒ—ãƒªãƒŸãƒ†ã‚£ãƒ–ã‚’æç”»ã™ã‚‹( é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã¨ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒãƒƒãƒ•ã‚¡ä½¿ç”¨ç‰ˆ )
+extern	int			NS_DrawPrimitiveIndexed3DToShader_UseVertexBuffer2( int VertexBufHandle, int IndexBufHandle, int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST ç­‰ */, int BaseVertex, int StartVertex, int UseVertexNum, int StartIndex, int UseIndexNum )
 {
 #ifndef DX_NON_MOVIE
-	// ƒZƒbƒg‚³‚ê‚Ä‚¢‚éƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚Ì“®‰æ‚ğXV‚·‚é
+	// ã‚»ãƒƒãƒˆã•ã‚Œã¦ã„ã‚‹ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã®å‹•ç”»ã‚’æ›´æ–°ã™ã‚‹
 	Graphics_DrawSetting_UpdateUserTextureMovie() ;
 #endif // DX_NON_MOVIE
 
@@ -23968,9 +23968,9 @@ extern	int			NS_DrawPrimitiveIndexed3DToShader_UseVertexBuffer2( int VertexBufHa
 
 
 
-// ƒVƒF[ƒ_[—p’è”ƒoƒbƒtƒ@ŠÖŒWŠÖ”
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ç”¨å®šæ•°ãƒãƒƒãƒ•ã‚¡é–¢ä¿‚é–¢æ•°
 
-// ‘S‚Ä‚ÌƒVƒF[ƒ_[—p’è”ƒoƒbƒtƒ@ƒnƒ“ƒhƒ‹‚ğíœ‚·‚é
+// å…¨ã¦ã®ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ç”¨å®šæ•°ãƒãƒƒãƒ•ã‚¡ãƒãƒ³ãƒ‰ãƒ«ã‚’å‰Šé™¤ã™ã‚‹
 extern int NS_InitShaderConstantBuffer( void )
 {
 	if( GSYS.InitializeFlag == FALSE ) return 0 ;
@@ -23978,54 +23978,54 @@ extern int NS_InitShaderConstantBuffer( void )
 	return AllHandleSub( DX_HANDLETYPE_SHADER_CONSTANT_BUFFER ) ;
 }
 
-// ƒVƒF[ƒ_[—p’è”ƒoƒbƒtƒ@ƒnƒ“ƒhƒ‹‚ğ‰Šú‰»‚·‚é
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ç”¨å®šæ•°ãƒãƒƒãƒ•ã‚¡ãƒãƒ³ãƒ‰ãƒ«ã‚’åˆæœŸåŒ–ã™ã‚‹
 extern int NS_CreateShaderConstantBuffer(	int BufferSize )
 {
 	return Graphics_ShaderConstantBuffer_Create( BufferSize, GetASyncLoadFlag() ) ;
 }
 
-// ƒVƒF[ƒ_[—p’è”ƒoƒbƒtƒ@ƒnƒ“ƒhƒ‹‚ÌŒãn––
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ç”¨å®šæ•°ãƒãƒƒãƒ•ã‚¡ãƒãƒ³ãƒ‰ãƒ«ã®å¾Œå§‹æœ«
 extern int NS_DeleteShaderConstantBuffer( int SConstBufHandle )
 {
 	return SubHandle( SConstBufHandle, GetASyncLoadFlag(), FALSE ) ;
 }
 
-// ƒVƒF[ƒ_[—p’è”ƒoƒbƒtƒ@ƒnƒ“ƒhƒ‹‚Ì’è”ƒoƒbƒtƒ@‚ÌƒAƒhƒŒƒX‚ğæ“¾‚·‚é
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ç”¨å®šæ•°ãƒãƒƒãƒ•ã‚¡ãƒãƒ³ãƒ‰ãƒ«ã®å®šæ•°ãƒãƒƒãƒ•ã‚¡ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å–å¾—ã™ã‚‹
 extern void *NS_GetBufferShaderConstantBuffer(	int SConstBufHandle )
 {
 	SHADERCONSTANTBUFFERHANDLEDATA *ShaderConstantBuffer ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( SHADERCONSTANTBUFFERCHK( SConstBufHandle, ShaderConstantBuffer ) )
 		return NULL ;
 
-	// ŠÂ‹«ˆË‘¶ˆ—
+	// ç’°å¢ƒä¾å­˜å‡¦ç†
 	return Graphics_Hardware_ShaderConstantBuffer_GetBuffer_PF( ShaderConstantBuffer ) ;
 }
 
-// ƒVƒF[ƒ_[—p’è”ƒoƒbƒtƒ@ƒnƒ“ƒhƒ‹‚Ì’è”ƒoƒbƒtƒ@‚Ö‚Ì•ÏX‚ğ“K—p‚·‚é
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ç”¨å®šæ•°ãƒãƒƒãƒ•ã‚¡ãƒãƒ³ãƒ‰ãƒ«ã®å®šæ•°ãƒãƒƒãƒ•ã‚¡ã¸ã®å¤‰æ›´ã‚’é©ç”¨ã™ã‚‹
 extern int NS_UpdateShaderConstantBuffer( int SConstBufHandle )
 {
 	SHADERCONSTANTBUFFERHANDLEDATA *ShaderConstantBuffer ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( SHADERCONSTANTBUFFERCHK( SConstBufHandle, ShaderConstantBuffer ) )
 		return -1 ;
 
-	// ŠÂ‹«ˆË‘¶ˆ—
+	// ç’°å¢ƒä¾å­˜å‡¦ç†
 	return Graphics_Hardware_ShaderConstantBuffer_Update_PF( ShaderConstantBuffer ) ;
 }
 
-// ƒVƒF[ƒ_[—p’è”ƒoƒbƒtƒ@ƒnƒ“ƒhƒ‹‚Ì’è”ƒoƒbƒtƒ@‚ğw’è‚ÌƒVƒF[ƒ_[‚Ìw’è‚ÌƒXƒƒbƒg‚ÉƒZƒbƒg‚·‚é
-extern int NS_SetShaderConstantBuffer( int SConstBufHandle, int TargetShader /* DX_SHADERTYPE_VERTEX ‚È‚Ç */ , int Slot )
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ç”¨å®šæ•°ãƒãƒƒãƒ•ã‚¡ãƒãƒ³ãƒ‰ãƒ«ã®å®šæ•°ãƒãƒƒãƒ•ã‚¡ã‚’æŒ‡å®šã®ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®æŒ‡å®šã®ã‚¹ãƒ­ãƒƒãƒˆã«ã‚»ãƒƒãƒˆã™ã‚‹
+extern int NS_SetShaderConstantBuffer( int SConstBufHandle, int TargetShader /* DX_SHADERTYPE_VERTEX ãªã© */ , int Slot )
 {
 	SHADERCONSTANTBUFFERHANDLEDATA *ShaderConstantBuffer ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( SHADERCONSTANTBUFFERCHK( SConstBufHandle, ShaderConstantBuffer ) )
 		return -1 ;
 
-	// ŠÂ‹«ˆË‘¶ˆ—
+	// ç’°å¢ƒä¾å­˜å‡¦ç†
 	return Graphics_Hardware_ShaderConstantBuffer_Set_PF( ShaderConstantBuffer, TargetShader, Slot ) ;
 }
 
@@ -24054,8 +24054,8 @@ extern int NS_SetShaderConstantBuffer( int SConstBufHandle, int TargetShader /* 
 
 #ifndef DX_NON_MOVIE
 
-// ƒ€[ƒr[ƒOƒ‰ƒtƒBƒbƒNŠÖŒWŠÖ”
-// “®‰æƒtƒ@ƒCƒ‹‚ÌÄ¶
+// ãƒ ãƒ¼ãƒ“ãƒ¼ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯é–¢ä¿‚é–¢æ•°
+// å‹•ç”»ãƒ•ã‚¡ã‚¤ãƒ«ã®å†ç”Ÿ
 extern int NS_PlayMovie( const TCHAR *FileName, int ExRate, int PlayType )
 {
 #ifdef UNICODE
@@ -24077,7 +24077,7 @@ extern int NS_PlayMovie( const TCHAR *FileName, int ExRate, int PlayType )
 #endif
 }
 
-// “®‰æƒtƒ@ƒCƒ‹‚ÌÄ¶
+// å‹•ç”»ãƒ•ã‚¡ã‚¤ãƒ«ã®å†ç”Ÿ
 extern int NS_PlayMovieWithStrLen( const TCHAR *FileName, size_t FileNameLength, int ExRate, int PlayType )
 {
 	int Result ;
@@ -24093,8 +24093,8 @@ extern int NS_PlayMovieWithStrLen( const TCHAR *FileName, size_t FileNameLength,
 	return Result ;
 }
 
-// ƒ€[ƒr[ƒOƒ‰ƒtƒBƒbƒNŠÖŒWŠÖ”
-// “®‰æƒtƒ@ƒCƒ‹‚ÌÄ¶
+// ãƒ ãƒ¼ãƒ“ãƒ¼ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯é–¢ä¿‚é–¢æ•°
+// å‹•ç”»ãƒ•ã‚¡ã‚¤ãƒ«ã®å†ç”Ÿ
 extern int PlayMovie_WCHAR_T( const wchar_t *FileName, int ExRate, int PlayType )
 {
 	int MovieHandle ;
@@ -24174,11 +24174,11 @@ extern int PlayMovie_WCHAR_T( const wchar_t *FileName, int ExRate, int PlayType 
 		NS_SetRenderTargetToShader( 0, DrawScreen, DrawScreenSurface, DrawScreenMipLevel ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0;
 }
 
-// “®‰æƒtƒ@ƒCƒ‹‚Ì‰¡ƒsƒNƒZƒ‹”‚ÆcƒsƒNƒZƒ‹”‚ğæ“¾‚·‚é
+// å‹•ç”»ãƒ•ã‚¡ã‚¤ãƒ«ã®æ¨ªãƒ”ã‚¯ã‚»ãƒ«æ•°ã¨ç¸¦ãƒ”ã‚¯ã‚»ãƒ«æ•°ã‚’å–å¾—ã™ã‚‹
 extern int NS_GetMovieImageSize_File( const TCHAR *FileName, int *SizeX, int *SizeY )
 {
 #ifdef UNICODE
@@ -24200,7 +24200,7 @@ extern int NS_GetMovieImageSize_File( const TCHAR *FileName, int *SizeX, int *Si
 #endif
 }
 
-// “®‰æƒtƒ@ƒCƒ‹‚Ì‰¡ƒsƒNƒZƒ‹”‚ÆcƒsƒNƒZƒ‹”‚ğæ“¾‚·‚é
+// å‹•ç”»ãƒ•ã‚¡ã‚¤ãƒ«ã®æ¨ªãƒ”ã‚¯ã‚»ãƒ«æ•°ã¨ç¸¦ãƒ”ã‚¯ã‚»ãƒ«æ•°ã‚’å–å¾—ã™ã‚‹
 extern int NS_GetMovieImageSize_File_WithStrLen( const TCHAR *FileName, size_t FileNameLength, int *SizeX, int *SizeY )
 {
 	int Result ;
@@ -24216,13 +24216,13 @@ extern int NS_GetMovieImageSize_File_WithStrLen( const TCHAR *FileName, size_t F
 	return Result ;
 }
 
-// “®‰æƒtƒ@ƒCƒ‹‚Ì‰¡ƒsƒNƒZƒ‹”‚ÆcƒsƒNƒZƒ‹”‚ğæ“¾‚·‚é
+// å‹•ç”»ãƒ•ã‚¡ã‚¤ãƒ«ã®æ¨ªãƒ”ã‚¯ã‚»ãƒ«æ•°ã¨ç¸¦ãƒ”ã‚¯ã‚»ãƒ«æ•°ã‚’å–å¾—ã™ã‚‹
 extern int GetMovieImageSize_File_WCHAR_T( const wchar_t *FileName, int *SizeX, int *SizeY )
 {
 	int MovieHandle ;
 	OPENMOVIE_GPARAM OpenMovieGParam ;
 
-	// ƒCƒ[ƒWƒTƒCƒY‚Ì‚İ‚ğæ“¾‚·‚éw’è‚Å“®‰æƒtƒ@ƒCƒ‹‚ğƒI[ƒvƒ“
+	// ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚µã‚¤ã‚ºã®ã¿ã‚’å–å¾—ã™ã‚‹æŒ‡å®šã§å‹•ç”»ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ã‚ªãƒ¼ãƒ—ãƒ³
 	Graphics_Image_InitOpenMovieGParam( &OpenMovieGParam ) ;
 	MovieHandle = OpenMovie_UseGParam( -1, &OpenMovieGParam, FileName, NULL, 0, SizeX, SizeY, DX_MOVIESURFACE_NORMAL, TRUE, FALSE ) ;
 	if( MovieHandle < 0 )
@@ -24230,20 +24230,20 @@ extern int GetMovieImageSize_File_WCHAR_T( const wchar_t *FileName, int *SizeX, 
 		return -1 ;
 	}
 
-	// ¬Œ÷‚µ‚½ê‡‚à‚·‚®‚Éƒnƒ“ƒhƒ‹‚ğ•Â‚¶‚é
+	// æˆåŠŸã—ãŸå ´åˆã‚‚ã™ãã«ãƒãƒ³ãƒ‰ãƒ«ã‚’é–‰ã˜ã‚‹
 	CloseMovie( MovieHandle ) ;
 
-	// ¬Œ÷I—¹
+	// æˆåŠŸçµ‚äº†
 	return 0 ;
 }
 
-// ƒƒ‚ƒŠã‚É“WŠJ‚³‚ê‚½“®‰æƒtƒ@ƒCƒ‹‚Ì‰¡ƒsƒNƒZƒ‹”‚ÆcƒsƒNƒZƒ‹”‚ğæ“¾‚·‚é
+// ãƒ¡ãƒ¢ãƒªä¸Šã«å±•é–‹ã•ã‚ŒãŸå‹•ç”»ãƒ•ã‚¡ã‚¤ãƒ«ã®æ¨ªãƒ”ã‚¯ã‚»ãƒ«æ•°ã¨ç¸¦ãƒ”ã‚¯ã‚»ãƒ«æ•°ã‚’å–å¾—ã™ã‚‹
 extern int NS_GetMovieImageSize_Mem( const void *FileImage, int FileImageSize, int *SizeX, int *SizeY )
 {
 	int MovieHandle ;
 	OPENMOVIE_GPARAM OpenMovieGParam ;
 
-	// ƒCƒ[ƒWƒTƒCƒY‚Ì‚İ‚ğæ“¾‚·‚éw’è‚Å“®‰æƒtƒ@ƒCƒ‹‚ğƒI[ƒvƒ“
+	// ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚µã‚¤ã‚ºã®ã¿ã‚’å–å¾—ã™ã‚‹æŒ‡å®šã§å‹•ç”»ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ã‚ªãƒ¼ãƒ—ãƒ³
 	Graphics_Image_InitOpenMovieGParam( &OpenMovieGParam ) ;
 	MovieHandle = OpenMovie_UseGParam( -1, &OpenMovieGParam, NULL, FileImage, FileImageSize, SizeX, SizeY, DX_MOVIESURFACE_NORMAL, TRUE, FALSE ) ;
 	if( MovieHandle < 0 )
@@ -24251,20 +24251,20 @@ extern int NS_GetMovieImageSize_Mem( const void *FileImage, int FileImageSize, i
 		return -1 ;
 	}
 
-	// ¬Œ÷‚µ‚½ê‡‚à‚·‚®‚Éƒnƒ“ƒhƒ‹‚ğ•Â‚¶‚é
+	// æˆåŠŸã—ãŸå ´åˆã‚‚ã™ãã«ãƒãƒ³ãƒ‰ãƒ«ã‚’é–‰ã˜ã‚‹
 	CloseMovie( MovieHandle ) ;
 
-	// ¬Œ÷I—¹
+	// æˆåŠŸçµ‚äº†
 	return 0 ;
 }
 
-// ƒ€[ƒr[‚ğŠJ‚­
+// ãƒ ãƒ¼ãƒ“ãƒ¼ã‚’é–‹ã
 extern int NS_OpenMovieToGraph( const TCHAR *FileName, int FullColor )
 {
 	return NS_LoadBmpToGraph( FileName, FALSE, FALSE, FullColor ? DX_MOVIESURFACE_FULLCOLOR : DX_MOVIESURFACE_NORMAL );
 }
 
-// “®‰æƒtƒ@ƒCƒ‹‚ğŠJ‚­
+// å‹•ç”»ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‹ã
 extern int NS_OpenMovieToGraphWithStrLen( const TCHAR *FileName, size_t FileNameLength, int FullColor )
 {
 	int Result ;
@@ -24274,13 +24274,13 @@ extern int NS_OpenMovieToGraphWithStrLen( const TCHAR *FileName, size_t FileName
 	return Result ;
 }
 
-// ƒ€[ƒr[‚ğŠJ‚­
+// ãƒ ãƒ¼ãƒ“ãƒ¼ã‚’é–‹ã
 extern int OpenMovieToGraph_WCHAR_T( const wchar_t *FileName, int FullColor )
 {
 	return LoadBmpToGraph_WCHAR_T( FileName, FALSE, FALSE, FullColor ? DX_MOVIESURFACE_FULLCOLOR : DX_MOVIESURFACE_NORMAL );
 }
 
-// ƒ€[ƒr[ƒOƒ‰ƒtƒBƒbƒN‚ÉŠÜ‚Ü‚ê‚éƒ€[ƒr[‚ÌÄ¶‚ğŠJn‚·‚é
+// ãƒ ãƒ¼ãƒ“ãƒ¼ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã«å«ã¾ã‚Œã‚‹ãƒ ãƒ¼ãƒ“ãƒ¼ã®å†ç”Ÿã‚’é–‹å§‹ã™ã‚‹
 extern 	int		NS_PlayMovieToGraph( int GraphHandle, int PlayType, int SysPlay  )
 {
 	IMAGEDATA *Image ;
@@ -24293,7 +24293,7 @@ extern 	int		NS_PlayMovieToGraph( int GraphHandle, int PlayType, int SysPlay  )
 	return PlayMovie_( Image->Orig->MovieHandle, PlayType, SysPlay ) ;
 }
 
-// ƒ€[ƒr[ƒOƒ‰ƒtƒBƒbƒN‚ÉŠÜ‚Ü‚ê‚éƒ€[ƒr[‚ÌÄ¶‚ğƒXƒgƒbƒv‚·‚é
+// ãƒ ãƒ¼ãƒ“ãƒ¼ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã«å«ã¾ã‚Œã‚‹ãƒ ãƒ¼ãƒ“ãƒ¼ã®å†ç”Ÿã‚’ã‚¹ãƒˆãƒƒãƒ—ã™ã‚‹
 extern 	int		NS_PauseMovieToGraph( int GraphHandle, int SysPause  )
 {
 	IMAGEDATA *Image ;
@@ -24306,7 +24306,7 @@ extern 	int		NS_PauseMovieToGraph( int GraphHandle, int SysPause  )
 	return PauseMovie( Image->Orig->MovieHandle, SysPause ) ;
 }
 
-// ƒ€[ƒr[‚ÌƒtƒŒ[ƒ€‚ği‚ß‚éA–ß‚·‚±‚Æ‚Ío—ˆ‚È‚¢( ƒ€[ƒr[‚ª’â~ó‘Ô‚ÅAŠ‚Â Ogg Theora ‚Ì‚İ—LŒø )
+// ãƒ ãƒ¼ãƒ“ãƒ¼ã®ãƒ•ãƒ¬ãƒ¼ãƒ ã‚’é€²ã‚ã‚‹ã€æˆ»ã™ã“ã¨ã¯å‡ºæ¥ãªã„( ãƒ ãƒ¼ãƒ“ãƒ¼ãŒåœæ­¢çŠ¶æ…‹ã§ã€ä¸”ã¤ Ogg Theora ã®ã¿æœ‰åŠ¹ )
 extern	int		NS_AddMovieFrameToGraph( int GraphHandle, unsigned int FrameNum )
 {
 	IMAGEDATA *Image ;
@@ -24319,7 +24319,7 @@ extern	int		NS_AddMovieFrameToGraph( int GraphHandle, unsigned int FrameNum )
 	return AddMovieFrame( Image->Orig->MovieHandle, FrameNum ) ;
 }
 
-// ƒ€[ƒr[‚ÌÄ¶ˆÊ’u‚ğİ’è‚·‚é(ƒ~ƒŠ•b’PˆÊ)
+// ãƒ ãƒ¼ãƒ“ãƒ¼ã®å†ç”Ÿä½ç½®ã‚’è¨­å®šã™ã‚‹(ãƒŸãƒªç§’å˜ä½)
 extern	int		NS_SeekMovieToGraph( int GraphHandle, int Time )
 {
 	IMAGEDATA *Image ;
@@ -24332,7 +24332,7 @@ extern	int		NS_SeekMovieToGraph( int GraphHandle, int Time )
 	return SeekMovie( Image->Orig->MovieHandle, Time ) ;
 }
 
-// “®‰æƒtƒ@ƒCƒ‹‚ÌÄ¶‘¬“x‚ğİ’è‚·‚é( 1.0 = “™”{‘¬  2.0 = ‚Q”{‘¬ )Aˆê•”‚Ìƒtƒ@ƒCƒ‹ƒtƒH[ƒ}ƒbƒg‚Ì‚İ‚Å—LŒø‚È‹@”\‚Å‚·
+// å‹•ç”»ãƒ•ã‚¡ã‚¤ãƒ«ã®å†ç”Ÿé€Ÿåº¦ã‚’è¨­å®šã™ã‚‹( 1.0 = ç­‰å€é€Ÿ  2.0 = ï¼’å€é€Ÿ )ã€ä¸€éƒ¨ã®ãƒ•ã‚¡ã‚¤ãƒ«ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®ã¿ã§æœ‰åŠ¹ãªæ©Ÿèƒ½ã§ã™
 extern	int		NS_SetPlaySpeedRateMovieToGraph( int GraphHandle, double SpeedRate )
 {
 	IMAGEDATA *Image ;
@@ -24345,7 +24345,7 @@ extern	int		NS_SetPlaySpeedRateMovieToGraph( int GraphHandle, double SpeedRate )
 	return SetPlaySpeedRateMovie( Image->Orig->MovieHandle, SpeedRate ) ;
 }
 
-// ƒ€[ƒr[‚ÌÄ¶ó‘Ô‚ğ“¾‚é
+// ãƒ ãƒ¼ãƒ“ãƒ¼ã®å†ç”ŸçŠ¶æ…‹ã‚’å¾—ã‚‹
 extern 	int		NS_GetMovieStateToGraph( int GraphHandle )
 {
 	IMAGEDATA *Image ;
@@ -24358,7 +24358,7 @@ extern 	int		NS_GetMovieStateToGraph( int GraphHandle )
 	return GetMovieState( Image->Orig->MovieHandle ) ;
 }
 
-// ƒ€[ƒr[‚Ìƒ{ƒŠƒ…[ƒ€‚ğƒZƒbƒg‚·‚é(0`10000)
+// ãƒ ãƒ¼ãƒ“ãƒ¼ã®ãƒœãƒªãƒ¥ãƒ¼ãƒ ã‚’ã‚»ãƒƒãƒˆã™ã‚‹(0ï½10000)
 extern	int		NS_SetMovieVolumeToGraph( int Volume, int GraphHandle )	
 {
 	IMAGEDATA *Image ;
@@ -24371,7 +24371,7 @@ extern	int		NS_SetMovieVolumeToGraph( int Volume, int GraphHandle )
 	return SetMovieVolume( Volume, Image->Orig->MovieHandle ) ;
 }
 
-// “®‰æƒtƒ@ƒCƒ‹‚Ì‰¹—Ê‚ğæ“¾‚·‚é(0`10000)
+// å‹•ç”»ãƒ•ã‚¡ã‚¤ãƒ«ã®éŸ³é‡ã‚’å–å¾—ã™ã‚‹(0ï½10000)
 extern int NS_GetMovieVolumeToGraph( int GraphHandle )
 {
 	IMAGEDATA *Image ;
@@ -24384,7 +24384,7 @@ extern int NS_GetMovieVolumeToGraph( int GraphHandle )
 	return GetMovieVolume( Image->Orig->MovieHandle ) ;
 }
 
-// ƒ€[ƒr[‚Ìƒ{ƒŠƒ…[ƒ€‚ğƒZƒbƒg‚·‚é(0`255)
+// ãƒ ãƒ¼ãƒ“ãƒ¼ã®ãƒœãƒªãƒ¥ãƒ¼ãƒ ã‚’ã‚»ãƒƒãƒˆã™ã‚‹(0ï½255)
 extern	int		NS_ChangeMovieVolumeToGraph( int Volume, int GraphHandle )
 {
 	IMAGEDATA *Image ;
@@ -24424,7 +24424,7 @@ extern	int		NS_ChangeMovieVolumeToGraph( int Volume, int GraphHandle )
 	return SetMovieVolume( temp, Image->Orig->MovieHandle ) ;
 }
 
-// “®‰æƒtƒ@ƒCƒ‹‚Ì‰¹—Ê‚ğæ“¾‚·‚é(0`255)
+// å‹•ç”»ãƒ•ã‚¡ã‚¤ãƒ«ã®éŸ³é‡ã‚’å–å¾—ã™ã‚‹(0ï½255)
 extern int NS_GetMovieVolumeToGraph2( int GraphHandle )
 {
 	IMAGEDATA *Image ;
@@ -24455,7 +24455,7 @@ extern int NS_GetMovieVolumeToGraph2( int GraphHandle )
 	}
 }
 
-// ƒ€[ƒr[‚ÌŠî–{ƒCƒ[ƒWƒf[ƒ^‚ğæ“¾‚·‚é
+// ãƒ ãƒ¼ãƒ“ãƒ¼ã®åŸºæœ¬ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—ã™ã‚‹
 extern	const BASEIMAGE *NS_GetMovieBaseImageToGraph( int GraphHandle, int *ImageUpdateFlag, int ImageUpdateFlagSetOnly )
 {
 	IMAGEDATA *Image ;
@@ -24468,7 +24468,7 @@ extern	const BASEIMAGE *NS_GetMovieBaseImageToGraph( int GraphHandle, int *Image
 	return GetMovieBaseImage( Image->Orig->MovieHandle, ImageUpdateFlag, ImageUpdateFlagSetOnly ) ;
 }
 
-// ƒ€[ƒr[‚Ì‘ƒtƒŒ[ƒ€”‚ğ“¾‚é( Ogg Theora ‚Å‚Ì‚İ—LŒø )
+// ãƒ ãƒ¼ãƒ“ãƒ¼ã®ç·ãƒ•ãƒ¬ãƒ¼ãƒ æ•°ã‚’å¾—ã‚‹( Ogg Theora ã§ã®ã¿æœ‰åŠ¹ )
 extern	int		NS_GetMovieTotalFrameToGraph( int GraphHandle )
 {
 	IMAGEDATA *Image ;
@@ -24481,7 +24481,7 @@ extern	int		NS_GetMovieTotalFrameToGraph( int GraphHandle )
 	return GetMovieTotalFrame( Image->Orig->MovieHandle ) ;
 }
 
-// ƒ€[ƒr[‚ÌÄ¶ˆÊ’u‚ğæ“¾‚·‚é(ƒ~ƒŠ•b’PˆÊ)
+// ãƒ ãƒ¼ãƒ“ãƒ¼ã®å†ç”Ÿä½ç½®ã‚’å–å¾—ã™ã‚‹(ãƒŸãƒªç§’å˜ä½)
 extern	int		NS_TellMovieToGraph( int GraphHandle )
 {
 	IMAGEDATA *Image ;
@@ -24494,7 +24494,7 @@ extern	int		NS_TellMovieToGraph( int GraphHandle )
 	return TellMovie( Image->Orig->MovieHandle ) ;
 }
 
-// ƒ€[ƒr[‚ÌÄ¶ˆÊ’u‚ğæ“¾‚·‚é(ƒtƒŒ[ƒ€’PˆÊ)
+// ãƒ ãƒ¼ãƒ“ãƒ¼ã®å†ç”Ÿä½ç½®ã‚’å–å¾—ã™ã‚‹(ãƒ•ãƒ¬ãƒ¼ãƒ å˜ä½)
 extern	int		NS_TellMovieToGraphToFrame( int GraphHandle )
 {
 	IMAGEDATA *Image ;
@@ -24507,7 +24507,7 @@ extern	int		NS_TellMovieToGraphToFrame( int GraphHandle )
 	return TellMovieToFrame( Image->Orig->MovieHandle ) ;
 }
 
-// ƒ€[ƒr[‚ÌÄ¶ˆÊ’u‚ğİ’è‚·‚é(ƒtƒŒ[ƒ€’PˆÊ)
+// ãƒ ãƒ¼ãƒ“ãƒ¼ã®å†ç”Ÿä½ç½®ã‚’è¨­å®šã™ã‚‹(ãƒ•ãƒ¬ãƒ¼ãƒ å˜ä½)
 extern	int		NS_SeekMovieToGraphToFrame( int GraphHandle, int Frame )
 {
 	IMAGEDATA *Image ;
@@ -24520,7 +24520,7 @@ extern	int		NS_SeekMovieToGraphToFrame( int GraphHandle, int Frame )
 	return SeekMovieToFrame( Image->Orig->MovieHandle, Frame ) ;
 }
 
-// ƒ€[ƒr[‚Ì‚PƒtƒŒ[ƒ€‚ ‚½‚è‚ÌŠÔ‚ğ“¾‚é
+// ãƒ ãƒ¼ãƒ“ãƒ¼ã®ï¼‘ãƒ•ãƒ¬ãƒ¼ãƒ ã‚ãŸã‚Šã®æ™‚é–“ã‚’å¾—ã‚‹
 extern	LONGLONG NS_GetOneFrameTimeMovieToGraph( int GraphHandle )
 {
 	IMAGEDATA *Image ;
@@ -24533,7 +24533,7 @@ extern	LONGLONG NS_GetOneFrameTimeMovieToGraph( int GraphHandle )
 	return GetOneFrameTimeMovie( Image->Orig->MovieHandle ) ;
 }
 
-// ƒ€[ƒr[‚ÌƒCƒ[ƒW‚ğÅŒã‚ÉXV‚µ‚½ŠÔ‚ğ“¾‚é(ƒ~ƒŠ•b’PˆÊ)
+// ãƒ ãƒ¼ãƒ“ãƒ¼ã®ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’æœ€å¾Œã«æ›´æ–°ã—ãŸæ™‚é–“ã‚’å¾—ã‚‹(ãƒŸãƒªç§’å˜ä½)
 extern int NS_GetLastUpdateTimeMovieToGraph( int GraphHandle )
 {
 	IMAGEDATA *Image ;
@@ -24550,7 +24550,7 @@ extern int NS_GetLastUpdateTimeMovieToGraph( int GraphHandle )
 	return ( int )( Movie->RefreshTime / 1000 ) ;
 }
 
-// “®‰æƒtƒ@ƒCƒ‹‚ÌXVˆ—‚ğs‚¤
+// å‹•ç”»ãƒ•ã‚¡ã‚¤ãƒ«ã®æ›´æ–°å‡¦ç†ã‚’è¡Œã†
 extern int NS_UpdateMovieToGraph( int GraphHandle )
 {
 	IMAGEDATA *Image ;
@@ -24558,10 +24558,10 @@ extern int NS_UpdateMovieToGraph( int GraphHandle )
 	if( GRAPHCHK( GraphHandle, Image ) )
 		return -1 ;
 
-	// “®‰æ‚Å‚Í‚È‚¢ê‡‚ÍƒGƒ‰[
+	// å‹•ç”»ã§ã¯ãªã„å ´åˆã¯ã‚¨ãƒ©ãƒ¼
 	if( Image->Orig->MovieHandle < 0 ) return  -1 ;
 
-	// “®‰æ‚ÌXVˆ—‚ğs‚¤
+	// å‹•ç”»ã®æ›´æ–°å‡¦ç†ã‚’è¡Œã†
 	return UpdateMovie( Image->Orig->MovieHandle, FALSE ) ;
 }
 
@@ -24585,129 +24585,129 @@ extern int NS_UpdateMovieToGraph( int GraphHandle )
 
 
 
-// ƒJƒƒ‰ŠÖŒWŠÖ”
+// ã‚«ãƒ¡ãƒ©é–¢ä¿‚é–¢æ•°
 
-// ƒJƒƒ‰‚Ì NearƒNƒŠƒbƒv–Ê‚Æ FarƒNƒŠƒbƒv–Ê‚Ì‹——£‚ğİ’è‚·‚é
+// ã‚«ãƒ¡ãƒ©ã® Nearã‚¯ãƒªãƒƒãƒ—é¢ã¨ Farã‚¯ãƒªãƒƒãƒ—é¢ã®è·é›¢ã‚’è¨­å®šã™ã‚‹
 extern int NS_SetCameraNearFar( float Near, float Far )
 {
 	return NS_SetCameraNearFarD( Near, Far ) ;
 }
 
-// ƒJƒƒ‰‚Ì NearƒNƒŠƒbƒv–Ê‚Æ FarƒNƒŠƒbƒv–Ê‚Ì‹——£‚ğİ’è‚·‚é
+// ã‚«ãƒ¡ãƒ©ã® Nearã‚¯ãƒªãƒƒãƒ—é¢ã¨ Farã‚¯ãƒªãƒƒãƒ—é¢ã®è·é›¢ã‚’è¨­å®šã™ã‚‹
 extern int NS_SetCameraNearFarD( double Near, double Far )
 {
-	// ƒpƒ‰ƒ[ƒ^‚Ì•Û‘¶
+	// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®ä¿å­˜
 	GSYS.DrawSetting.ProjNear = Near ;
 	GSYS.DrawSetting.ProjFar = Far ;
 
-	// Ë‰es—ñ‚ÌXV
+	// å°„å½±è¡Œåˆ—ã®æ›´æ–°
 	Graphics_DrawSetting_RefreshProjectionMatrix() ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒJƒƒ‰‚Ìİ’è‚ğ‚·‚éA‹“_A’‹“_AƒAƒbƒvƒxƒNƒgƒ‹‚Í‚x²”Å
+// ã‚«ãƒ¡ãƒ©ã®è¨­å®šã‚’ã™ã‚‹ã€è¦–ç‚¹ã€æ³¨è¦–ç‚¹ã€ã‚¢ãƒƒãƒ—ãƒ™ã‚¯ãƒˆãƒ«ã¯ï¼¹è»¸ç‰ˆ
 extern int NS_SetCameraPositionAndTarget_UpVecY( VECTOR Position, VECTOR Target )
 {
 	return NS_SetCameraPositionAndTarget_UpVecYD( VConvFtoD( Position ), VConvFtoD( Target ) ) ;
 }
 
-// ƒJƒƒ‰‚Ìİ’è‚ğ‚·‚éA‹“_A’‹“_AƒAƒbƒvƒxƒNƒgƒ‹‚Í‚x²”Å
+// ã‚«ãƒ¡ãƒ©ã®è¨­å®šã‚’ã™ã‚‹ã€è¦–ç‚¹ã€æ³¨è¦–ç‚¹ã€ã‚¢ãƒƒãƒ—ãƒ™ã‚¯ãƒˆãƒ«ã¯ï¼¹è»¸ç‰ˆ
 extern int NS_SetCameraPositionAndTarget_UpVecYD( VECTOR_D Position, VECTOR_D Target )
 {
 	VECTOR_D Up = { 0.0, 1.0, 0.0 }, Side, Dir ;
 	MATRIX_D LookAt ;
 
-	// ƒZƒbƒgƒAƒbƒvƒ^ƒCƒv‚ğƒZƒbƒg
+	// ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã‚¿ã‚¤ãƒ—ã‚’ã‚»ãƒƒãƒˆ
 	GSYS.Camera.SetupType = CAMERA_SETUPTYPE_POS_TARG ;
 
-	// ‹“_‚Æ’‹“_‚ğ•Û‘¶
+	// è¦–ç‚¹ã¨æ³¨è¦–ç‚¹ã‚’ä¿å­˜
 	GSYS.Camera.Position = Position ;
 	GSYS.Camera.Target   = Target ;
 
-	// ƒAƒbƒvƒxƒNƒgƒ‹‚ğZo
+	// ã‚¢ãƒƒãƒ—ãƒ™ã‚¯ãƒˆãƒ«ã‚’ç®—å‡º
 	VectorSubD( &Dir, &GSYS.Camera.Target, &GSYS.Camera.Position ) ;
 	VectorOuterProductD( &Side, &Dir, &Up ) ;
 	VectorOuterProductD( &GSYS.Camera.Up, &Side, &Dir ) ;
 	VectorNormalizeD( &GSYS.Camera.Up, &GSYS.Camera.Up ) ;
 
-	// s—ñ‚Ìì¬
+	// è¡Œåˆ—ã®ä½œæˆ
 	CreateLookAtMatrixD( &LookAt, &GSYS.Camera.Position, &GSYS.Camera.Target, &GSYS.Camera.Up ) ;
 
-	// ƒrƒ…[s—ñ‚ÉƒZƒbƒg
+	// ãƒ“ãƒ¥ãƒ¼è¡Œåˆ—ã«ã‚»ãƒƒãƒˆ
 	NS_SetTransformToViewD( &LookAt ) ;
 	GSYS.Camera.Matrix = LookAt ;
 
-	// ‰ñ“]Šp“x‚ğZo
+	// å›è»¢è§’åº¦ã‚’ç®—å‡º
 	Graphics_Camera_CalcCameraRollViewMatrix() ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒJƒƒ‰‚Ìİ’è‚ğ‚·‚éA‹“_A’‹“_AƒAƒbƒvƒxƒNƒgƒ‹w’è”Å
+// ã‚«ãƒ¡ãƒ©ã®è¨­å®šã‚’ã™ã‚‹ã€è¦–ç‚¹ã€æ³¨è¦–ç‚¹ã€ã‚¢ãƒƒãƒ—ãƒ™ã‚¯ãƒˆãƒ«æŒ‡å®šç‰ˆ
 extern int NS_SetCameraPositionAndTargetAndUpVec( VECTOR Position, VECTOR Target, VECTOR Up )
 {
 	return NS_SetCameraPositionAndTargetAndUpVecD( VConvFtoD( Position ), VConvFtoD( Target ), VConvFtoD( Up ) ) ;
 }
 
-// ƒJƒƒ‰‚Ìİ’è‚ğ‚·‚éA‹“_A’‹“_AƒAƒbƒvƒxƒNƒgƒ‹w’è”Å
+// ã‚«ãƒ¡ãƒ©ã®è¨­å®šã‚’ã™ã‚‹ã€è¦–ç‚¹ã€æ³¨è¦–ç‚¹ã€ã‚¢ãƒƒãƒ—ãƒ™ã‚¯ãƒˆãƒ«æŒ‡å®šç‰ˆ
 extern int NS_SetCameraPositionAndTargetAndUpVecD( VECTOR_D Position, VECTOR_D Target, VECTOR_D Up )
 {
 	VECTOR_D Side, Dir ;
 	MATRIX_D LookAt ;
 
-	// ƒZƒbƒgƒAƒbƒvƒ^ƒCƒv‚ğƒZƒbƒg
+	// ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã‚¿ã‚¤ãƒ—ã‚’ã‚»ãƒƒãƒˆ
 	GSYS.Camera.SetupType = CAMERA_SETUPTYPE_POS_TARG_UP ;
 
-	// ‹“_‚Æ’‹“_‚ğ•Û‘¶
+	// è¦–ç‚¹ã¨æ³¨è¦–ç‚¹ã‚’ä¿å­˜
 	GSYS.Camera.Position = Position ;
 	GSYS.Camera.Target   = Target ;
 
-	// ƒAƒbƒvƒxƒNƒgƒ‹‚ğZo
+	// ã‚¢ãƒƒãƒ—ãƒ™ã‚¯ãƒˆãƒ«ã‚’ç®—å‡º
 	VectorSubD( &Dir, &Target, &Position ) ;
 	VectorOuterProductD( &Side, &Dir, &Up ) ;
 	VectorOuterProductD( &GSYS.Camera.Up, &Side, &Dir ) ;
 	VectorNormalizeD( &GSYS.Camera.Up, &GSYS.Camera.Up ) ;
 
-	// s—ñ‚Ìì¬
+	// è¡Œåˆ—ã®ä½œæˆ
 	CreateLookAtMatrixD( &LookAt, &GSYS.Camera.Position, &GSYS.Camera.Target, &GSYS.Camera.Up ) ;
 
-	// ƒrƒ…[s—ñ‚ÉƒZƒbƒg
+	// ãƒ“ãƒ¥ãƒ¼è¡Œåˆ—ã«ã‚»ãƒƒãƒˆ
 	NS_SetTransformToViewD( &LookAt ) ;
 	GSYS.Camera.Matrix = LookAt ;
 
-	// ‰ñ“]Šp“x‚ğZo
+	// å›è»¢è§’åº¦ã‚’ç®—å‡º
 	Graphics_Camera_CalcCameraRollViewMatrix() ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒJƒƒ‰‚Ìİ’è‚ğ‚·‚éA‚’¼‰ñ“]Šp“xA…•½‰ñ“]Šp“xA”P‚è‰ñ“]Šp“xA‹“_w’è”Å
+// ã‚«ãƒ¡ãƒ©ã®è¨­å®šã‚’ã™ã‚‹ã€å‚ç›´å›è»¢è§’åº¦ã€æ°´å¹³å›è»¢è§’åº¦ã€æ»ã‚Šå›è»¢è§’åº¦ã€è¦–ç‚¹æŒ‡å®šç‰ˆ
 extern int NS_SetCameraPositionAndAngle( VECTOR Position, float VRotate, float HRotate, float TRotate )
 {
 	return NS_SetCameraPositionAndAngleD( VConvFtoD( Position ), VRotate, HRotate, TRotate ) ;
 }
 
-// ƒJƒƒ‰‚Ìİ’è‚ğ‚·‚éA‚’¼‰ñ“]Šp“xA…•½‰ñ“]Šp“xA”P‚è‰ñ“]Šp“xA‹“_w’è”Å
+// ã‚«ãƒ¡ãƒ©ã®è¨­å®šã‚’ã™ã‚‹ã€å‚ç›´å›è»¢è§’åº¦ã€æ°´å¹³å›è»¢è§’åº¦ã€æ»ã‚Šå›è»¢è§’åº¦ã€è¦–ç‚¹æŒ‡å®šç‰ˆ
 extern int NS_SetCameraPositionAndAngleD( VECTOR_D Position, double VRotate, double HRotate, double TRotate )
 {
 	VECTOR_D ZVec, YVec, XVec, TVec, Target ;
 	MATRIX_D LookAt ;
 	double Sin, Cos ;
 
-	// ƒZƒbƒgƒAƒbƒvƒ^ƒCƒv‚ğƒZƒbƒg
+	// ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã‚¿ã‚¤ãƒ—ã‚’ã‚»ãƒƒãƒˆ
 	GSYS.Camera.SetupType = CAMERA_SETUPTYPE_POS_ANGLE ;
 
-	// …•½‰ñ“]Šp“xA‚’¼‰ñ“]Šp“xA”P‚è‰ñ“]Šp“xA‹“_‚ğ•Û‘¶‚·‚é
+	// æ°´å¹³å›è»¢è§’åº¦ã€å‚ç›´å›è»¢è§’åº¦ã€æ»ã‚Šå›è»¢è§’åº¦ã€è¦–ç‚¹ã‚’ä¿å­˜ã™ã‚‹
 	GSYS.Camera.HRotate = HRotate ;
 	GSYS.Camera.VRotate = VRotate ;
 	GSYS.Camera.TRotate = TRotate ;
 	GSYS.Camera.Position = Position ;
 
-	// s—ñ‚Ìì¬
+	// è¡Œåˆ—ã®ä½œæˆ
 	_SINCOSD( VRotate, &Sin, &Cos ) ;
 	ZVec.x  =  0.0 ;
 	ZVec.y  = -Sin ;
@@ -24736,67 +24736,67 @@ extern int NS_SetCameraPositionAndAngleD( VECTOR_D Position, double VRotate, dou
 	VectorAddD( &Target, &Position, &ZVec ) ;
 	CreateLookAtMatrixD( &LookAt, &Position, &Target, &TVec ) ;
 
-	// ƒrƒ…[s—ñ‚ÉƒZƒbƒg
+	// ãƒ“ãƒ¥ãƒ¼è¡Œåˆ—ã«ã‚»ãƒƒãƒˆ
 	NS_SetTransformToViewD( &LookAt ) ;
 	GSYS.Camera.Matrix = LookAt ;
 
-	// ‹“_‚Æ’‹“_‚ğ•Û‘¶
+	// è¦–ç‚¹ã¨æ³¨è¦–ç‚¹ã‚’ä¿å­˜
 	GSYS.Camera.Position = Position ;
 	GSYS.Camera.Target   = Target ;
 	GSYS.Camera.Up       = TVec ;
 
 //	Graphics_Camera_CalcCameraRollViewMatrix() ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒrƒ…[s—ñ‚ğ’¼Úİ’è‚·‚é
+// ãƒ“ãƒ¥ãƒ¼è¡Œåˆ—ã‚’ç›´æ¥è¨­å®šã™ã‚‹
 extern int NS_SetCameraViewMatrix( MATRIX ViewMatrix )
 {
 	MATRIX_D ViewMatrixD ;
 
 	ConvertMatrixFtoD( &ViewMatrixD, &ViewMatrix ) ;
 
-	// ƒrƒ…[s—ñ‚ÉƒZƒbƒg
+	// ãƒ“ãƒ¥ãƒ¼è¡Œåˆ—ã«ã‚»ãƒƒãƒˆ
 	NS_SetCameraViewMatrixD( ViewMatrixD ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒrƒ…[s—ñ‚ğ’¼Úİ’è‚·‚é
+// ãƒ“ãƒ¥ãƒ¼è¡Œåˆ—ã‚’ç›´æ¥è¨­å®šã™ã‚‹
 extern int NS_SetCameraViewMatrixD( MATRIX_D ViewMatrix )
 {
-	// ƒZƒbƒgƒAƒbƒvƒ^ƒCƒv‚ğƒZƒbƒg
+	// ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã‚¿ã‚¤ãƒ—ã‚’ã‚»ãƒƒãƒˆ
 	GSYS.Camera.SetupType = CAMERA_SETUPTYPE_MATRIX ;
 
-	// ƒpƒ‰ƒ[ƒ^‚ğ•Û‘¶
+	// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ä¿å­˜
 	GSYS.Camera.Matrix = ViewMatrix ;
 
-	// ƒrƒ…[s—ñ‚ÉƒZƒbƒg
+	// ãƒ“ãƒ¥ãƒ¼è¡Œåˆ—ã«ã‚»ãƒƒãƒˆ
 	NS_SetTransformToViewD( &ViewMatrix ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ‰æ–Êã‚É‚¨‚¯‚éƒJƒƒ‰‚ªŒ©‚Ä‚¢‚é‰f‘œ‚Ì’†S‚ÌÀ•W‚ğİ’è‚·‚é
+// ç”»é¢ä¸Šã«ãŠã‘ã‚‹ã‚«ãƒ¡ãƒ©ãŒè¦‹ã¦ã„ã‚‹æ˜ åƒã®ä¸­å¿ƒã®åº§æ¨™ã‚’è¨­å®šã™ã‚‹
 extern int NS_SetCameraScreenCenter( float x, float y )
 {
 	return NS_SetCameraScreenCenterD( x, y ) ;
 }
 
-// ‰æ–Êã‚É‚¨‚¯‚éƒJƒƒ‰‚ªŒ©‚Ä‚¢‚é‰f‘œ‚Ì’†S‚ÌÀ•W‚ğİ’è‚·‚é
+// ç”»é¢ä¸Šã«ãŠã‘ã‚‹ã‚«ãƒ¡ãƒ©ãŒè¦‹ã¦ã„ã‚‹æ˜ åƒã®ä¸­å¿ƒã®åº§æ¨™ã‚’è¨­å®šã™ã‚‹
 extern int NS_SetCameraScreenCenterD( double x, double y )
 {
 	MATRIX_D ViewportMatrix ;
 
-	// ’l‚ğ•Û‘¶
+	// å€¤ã‚’ä¿å­˜
 	GSYS.Camera.ScreenCenterX = x ;
 	GSYS.Camera.ScreenCenterY = y ;
 
-	// ƒrƒ…[ƒ|[ƒgs—ñ‚Ìì¬
+	// ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆè¡Œåˆ—ã®ä½œæˆ
 	CreateViewportMatrixD(
 		&ViewportMatrix,
 		x,
@@ -24804,10 +24804,10 @@ extern int NS_SetCameraScreenCenterD( double x, double y )
 		GSYS.DrawSetting.DrawSizeX * GSYS.DrawSetting.Draw3DScale,
 		GSYS.DrawSetting.DrawSizeY * GSYS.DrawSetting.Draw3DScale ) ;
 
-	// ƒrƒ…[ƒ|[s—ñ‚Æ‚µ‚ÄƒZƒbƒg
+	// ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼è¡Œåˆ—ã¨ã—ã¦ã‚»ãƒƒãƒˆ
 	NS_SetTransformToViewportD( &ViewportMatrix ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
@@ -24816,47 +24816,47 @@ extern int NS_SetCameraScreenCenterD( double x, double y )
 
 
 
-// ‰“‹ß–@ƒJƒƒ‰‚ğƒZƒbƒgƒAƒbƒv‚·‚é
+// é è¿‘æ³•ã‚«ãƒ¡ãƒ©ã‚’ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã™ã‚‹
 extern int NS_SetupCamera_Perspective( float Fov )
 {
 	return NS_SetupCamera_PerspectiveD( Fov ) ;
 }
 
-// ‰“‹ß–@ƒJƒƒ‰‚ğƒZƒbƒgƒAƒbƒv‚·‚é
+// é è¿‘æ³•ã‚«ãƒ¡ãƒ©ã‚’ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã™ã‚‹
 extern int NS_SetupCamera_PerspectiveD( double Fov )
 {
-	// ƒpƒ‰ƒ[ƒ^‚Ì•Û‘¶
+	// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®ä¿å­˜
 	GSYS.DrawSetting.ProjectionMatrixMode = 0 ;
 	GSYS.DrawSetting.ProjFov = Fov ;
 
-	// Ë‰es—ñ‚ÌXV
+	// å°„å½±è¡Œåˆ—ã®æ›´æ–°
 	Graphics_DrawSetting_RefreshProjectionMatrix() ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ³Ë‰eƒJƒƒ‰‚ğƒZƒbƒgƒAƒbƒv‚·‚é
+// æ­£å°„å½±ã‚«ãƒ¡ãƒ©ã‚’ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã™ã‚‹
 extern int NS_SetupCamera_Ortho( float Size )
 {
 	return NS_SetupCamera_OrthoD( Size ) ;
 }
 
-// ³Ë‰eƒJƒƒ‰‚ğƒZƒbƒgƒAƒbƒv‚·‚é
+// æ­£å°„å½±ã‚«ãƒ¡ãƒ©ã‚’ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã™ã‚‹
 extern int NS_SetupCamera_OrthoD( double Size )
 {
-	// ƒpƒ‰ƒ[ƒ^‚Ì•Û‘¶
+	// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®ä¿å­˜
 	GSYS.DrawSetting.ProjectionMatrixMode = 1 ;
 	GSYS.DrawSetting.ProjSize = Size ;
 
-	// Ë‰es—ñ‚ÌXV
+	// å°„å½±è¡Œåˆ—ã®æ›´æ–°
 	Graphics_DrawSetting_RefreshProjectionMatrix() ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// Ë‰es—ñ‚ğİ’è‚·‚é
+// å°„å½±è¡Œåˆ—ã‚’è¨­å®šã™ã‚‹
 extern int NS_SetupCamera_ProjectionMatrix( MATRIX ProjectionMatrix )
 {
 	MATRIX_D ProjectionMatrixD ;
@@ -24866,36 +24866,36 @@ extern int NS_SetupCamera_ProjectionMatrix( MATRIX ProjectionMatrix )
 	return NS_SetupCamera_ProjectionMatrixD( ProjectionMatrixD ) ;
 }
 
-// Ë‰es—ñ‚ğİ’è‚·‚é
+// å°„å½±è¡Œåˆ—ã‚’è¨­å®šã™ã‚‹
 extern int NS_SetupCamera_ProjectionMatrixD( MATRIX_D ProjectionMatrix )
 {
-	// ƒpƒ‰ƒ[ƒ^‚Ì•Û‘¶
+	// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®ä¿å­˜
 	GSYS.DrawSetting.ProjectionMatrixMode = 2 ;
 	GSYS.DrawSetting.ProjMatrix = ProjectionMatrix ;
 
-	// Ë‰es—ñ‚ÌXV
+	// å°„å½±è¡Œåˆ—ã®æ›´æ–°
 	Graphics_DrawSetting_RefreshProjectionMatrix() ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒJƒƒ‰‚ÌƒhƒbƒgƒAƒXƒyƒNƒg”ä‚ğİ’è‚·‚é
+// ã‚«ãƒ¡ãƒ©ã®ãƒ‰ãƒƒãƒˆã‚¢ã‚¹ãƒšã‚¯ãƒˆæ¯”ã‚’è¨­å®šã™ã‚‹
 extern int NS_SetCameraDotAspect( float DotAspect )
 {
 	return NS_SetCameraDotAspectD( DotAspect ) ;
 }
 
-// ƒJƒƒ‰‚ÌƒhƒbƒgƒAƒXƒyƒNƒg”ä‚ğİ’è‚·‚é
+// ã‚«ãƒ¡ãƒ©ã®ãƒ‰ãƒƒãƒˆã‚¢ã‚¹ãƒšã‚¯ãƒˆæ¯”ã‚’è¨­å®šã™ã‚‹
 extern int NS_SetCameraDotAspectD( double DotAspect )
 {
-	// ƒpƒ‰ƒ[ƒ^‚Ì•Û‘¶
+	// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®ä¿å­˜
 	GSYS.DrawSetting.ProjDotAspect = DotAspect ;
 
-	// Ë‰es—ñ‚ÌXV
+	// å°„å½±è¡Œåˆ—ã®æ›´æ–°
 	Graphics_DrawSetting_RefreshProjectionMatrix() ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
@@ -24903,7 +24903,7 @@ extern int NS_SetCameraDotAspectD( double DotAspect )
 
 
 
-// w’è‚ÌÀ•W‚ªƒJƒƒ‰‚Ì‹ŠE‚É“ü‚Á‚Ä‚¢‚é‚©‚Ç‚¤‚©‚ğ”»’è‚·‚é( –ß‚è’l TRUE:‹ŠE‚É“ü‚Á‚Ä‚¢‚È‚¢  FALSE:‹ŠE‚É“ü‚Á‚Ä‚¢‚é )
+// æŒ‡å®šã®åº§æ¨™ãŒã‚«ãƒ¡ãƒ©ã®è¦–ç•Œã«å…¥ã£ã¦ã„ã‚‹ã‹ã©ã†ã‹ã‚’åˆ¤å®šã™ã‚‹( æˆ»ã‚Šå€¤ TRUE:è¦–ç•Œã«å…¥ã£ã¦ã„ãªã„  FALSE:è¦–ç•Œã«å…¥ã£ã¦ã„ã‚‹ )
 extern int NS_CheckCameraViewClip( VECTOR CheckPos )
 {
 	if( GSYS.DrawSetting.ClippingPlane[ 0 ].x * CheckPos.x + GSYS.DrawSetting.ClippingPlane[ 0 ].y * CheckPos.y + GSYS.DrawSetting.ClippingPlane[ 0 ].z * CheckPos.z + GSYS.DrawSetting.ClippingPlane[ 0 ].w < 0.0f ||
@@ -24917,7 +24917,7 @@ extern int NS_CheckCameraViewClip( VECTOR CheckPos )
 	return FALSE ;
 }
 
-// w’è‚ÌÀ•W‚ªƒJƒƒ‰‚Ì‹ŠE‚É“ü‚Á‚Ä‚¢‚é‚©‚Ç‚¤‚©‚ğ”»’è‚·‚é( –ß‚è’l TRUE:‹ŠE‚É“ü‚Á‚Ä‚¢‚È‚¢  FALSE:‹ŠE‚É“ü‚Á‚Ä‚¢‚é )
+// æŒ‡å®šã®åº§æ¨™ãŒã‚«ãƒ¡ãƒ©ã®è¦–ç•Œã«å…¥ã£ã¦ã„ã‚‹ã‹ã©ã†ã‹ã‚’åˆ¤å®šã™ã‚‹( æˆ»ã‚Šå€¤ TRUE:è¦–ç•Œã«å…¥ã£ã¦ã„ãªã„  FALSE:è¦–ç•Œã«å…¥ã£ã¦ã„ã‚‹ )
 extern int NS_CheckCameraViewClipD( VECTOR_D CheckPos )
 {
 	if( GSYS.DrawSetting.ClippingPlane[ 0 ].x * CheckPos.x + GSYS.DrawSetting.ClippingPlane[ 0 ].y * CheckPos.y + GSYS.DrawSetting.ClippingPlane[ 0 ].z * CheckPos.z + GSYS.DrawSetting.ClippingPlane[ 0 ].w < 0.0 ||
@@ -24931,7 +24931,7 @@ extern int NS_CheckCameraViewClipD( VECTOR_D CheckPos )
 	return FALSE ;
 }
 
-// w’è‚ÌÀ•W‚ªƒJƒƒ‰‚Ì‹ŠE‚É“ü‚Á‚Ä‚¢‚é‚©‚Ç‚¤‚©‚ğ”»’è‚·‚éA–ß‚è’l‚ÅŠO‚ê‚Ä‚¢‚é•ûŒü‚à’m‚é‚±‚Æ‚ª‚Å‚«‚é( –ß‚è’l 0:‹ŠE‚É“ü‚Á‚Ä‚¢‚é  0ˆÈŠO:‹ŠE‚É“ü‚Á‚Ä‚¢‚È‚¢( DX_CAMERACLIP_LEFT ‚â DX_CAMERACLIP_RIGHT ‚ª or ‰‰Z‚Å¬‡‚³‚ê‚½‚à‚ÌAand ‰‰Z‚Å•ûŒü‚ğŠm”F‚Å‚«‚é ) )
+// æŒ‡å®šã®åº§æ¨™ãŒã‚«ãƒ¡ãƒ©ã®è¦–ç•Œã«å…¥ã£ã¦ã„ã‚‹ã‹ã©ã†ã‹ã‚’åˆ¤å®šã™ã‚‹ã€æˆ»ã‚Šå€¤ã§å¤–ã‚Œã¦ã„ã‚‹æ–¹å‘ã‚‚çŸ¥ã‚‹ã“ã¨ãŒã§ãã‚‹( æˆ»ã‚Šå€¤ 0:è¦–ç•Œã«å…¥ã£ã¦ã„ã‚‹  0ä»¥å¤–:è¦–ç•Œã«å…¥ã£ã¦ã„ãªã„( DX_CAMERACLIP_LEFT ã‚„ DX_CAMERACLIP_RIGHT ãŒ or æ¼”ç®—ã§æ··åˆã•ã‚ŒãŸã‚‚ã®ã€and æ¼”ç®—ã§æ–¹å‘ã‚’ç¢ºèªã§ãã‚‹ ) )
 extern int NS_CheckCameraViewClip_Dir( VECTOR CheckPos )
 {
 	int clip ;
@@ -24947,7 +24947,7 @@ extern int NS_CheckCameraViewClip_Dir( VECTOR CheckPos )
 	return clip ;
 }
 
-// w’è‚ÌÀ•W‚ªƒJƒƒ‰‚Ì‹ŠE‚É“ü‚Á‚Ä‚¢‚é‚©‚Ç‚¤‚©‚ğ”»’è‚·‚éA–ß‚è’l‚ÅŠO‚ê‚Ä‚¢‚é•ûŒü‚à’m‚é‚±‚Æ‚ª‚Å‚«‚é( –ß‚è’l 0:‹ŠE‚É“ü‚Á‚Ä‚¢‚é  0ˆÈŠO:‹ŠE‚É“ü‚Á‚Ä‚¢‚È‚¢( DX_CAMERACLIP_LEFT ‚â DX_CAMERACLIP_RIGHT ‚ª or ‰‰Z‚Å¬‡‚³‚ê‚½‚à‚ÌAand ‰‰Z‚Å•ûŒü‚ğŠm”F‚Å‚«‚é ) )
+// æŒ‡å®šã®åº§æ¨™ãŒã‚«ãƒ¡ãƒ©ã®è¦–ç•Œã«å…¥ã£ã¦ã„ã‚‹ã‹ã©ã†ã‹ã‚’åˆ¤å®šã™ã‚‹ã€æˆ»ã‚Šå€¤ã§å¤–ã‚Œã¦ã„ã‚‹æ–¹å‘ã‚‚çŸ¥ã‚‹ã“ã¨ãŒã§ãã‚‹( æˆ»ã‚Šå€¤ 0:è¦–ç•Œã«å…¥ã£ã¦ã„ã‚‹  0ä»¥å¤–:è¦–ç•Œã«å…¥ã£ã¦ã„ãªã„( DX_CAMERACLIP_LEFT ã‚„ DX_CAMERACLIP_RIGHT ãŒ or æ¼”ç®—ã§æ··åˆã•ã‚ŒãŸã‚‚ã®ã€and æ¼”ç®—ã§æ–¹å‘ã‚’ç¢ºèªã§ãã‚‹ ) )
 extern int NS_CheckCameraViewClip_DirD( VECTOR_D CheckPos )
 {
 	int clip ;
@@ -24964,7 +24964,7 @@ extern int NS_CheckCameraViewClip_DirD( VECTOR_D CheckPos )
 }
 
 
-// “ñ‚Â‚ÌÀ•W‚Å•\‚³‚ê‚éƒ{ƒbƒNƒX‚ªƒJƒƒ‰‚Ì‹ŠE‚É“ü‚Á‚Ä‚¢‚é‚©‚Ç‚¤‚©‚ğ”»’è‚·‚é( –ß‚è’l TRUE:‹ŠE‚É“ü‚Á‚Ä‚¢‚È‚¢  FALSE:‹ŠE‚É“ü‚Á‚Ä‚¢‚é )
+// äºŒã¤ã®åº§æ¨™ã§è¡¨ã•ã‚Œã‚‹ãƒœãƒƒã‚¯ã‚¹ãŒã‚«ãƒ¡ãƒ©ã®è¦–ç•Œã«å…¥ã£ã¦ã„ã‚‹ã‹ã©ã†ã‹ã‚’åˆ¤å®šã™ã‚‹( æˆ»ã‚Šå€¤ TRUE:è¦–ç•Œã«å…¥ã£ã¦ã„ãªã„  FALSE:è¦–ç•Œã«å…¥ã£ã¦ã„ã‚‹ )
 extern int NS_CheckCameraViewClip_Box( VECTOR BoxPos1, VECTOR BoxPos2 )
 {
 	VECTOR CheckBoxPos[ 8 ] ;
@@ -24982,7 +24982,7 @@ extern int NS_CheckCameraViewClip_Box( VECTOR BoxPos1, VECTOR BoxPos2 )
 	return Graphics_Camera_CheckCameraViewClip_Box_PosDim( CheckBoxPos ) ;
 }
 
-// “ñ‚Â‚ÌÀ•W‚Å•\‚³‚ê‚éƒ{ƒbƒNƒX‚ªƒJƒƒ‰‚Ì‹ŠE‚É“ü‚Á‚Ä‚¢‚é‚©‚Ç‚¤‚©‚ğ”»’è‚·‚é( –ß‚è’l TRUE:‹ŠE‚É“ü‚Á‚Ä‚¢‚È‚¢  FALSE:‹ŠE‚É“ü‚Á‚Ä‚¢‚é )
+// äºŒã¤ã®åº§æ¨™ã§è¡¨ã•ã‚Œã‚‹ãƒœãƒƒã‚¯ã‚¹ãŒã‚«ãƒ¡ãƒ©ã®è¦–ç•Œã«å…¥ã£ã¦ã„ã‚‹ã‹ã©ã†ã‹ã‚’åˆ¤å®šã™ã‚‹( æˆ»ã‚Šå€¤ TRUE:è¦–ç•Œã«å…¥ã£ã¦ã„ãªã„  FALSE:è¦–ç•Œã«å…¥ã£ã¦ã„ã‚‹ )
 extern int NS_CheckCameraViewClip_BoxD( VECTOR_D BoxPos1, VECTOR_D BoxPos2 )
 {
 	VECTOR_D CheckBoxPos[ 8 ] ;
@@ -25000,157 +25000,157 @@ extern int NS_CheckCameraViewClip_BoxD( VECTOR_D BoxPos1, VECTOR_D BoxPos2 )
 	return Graphics_Camera_CheckCameraViewClip_Box_PosDimD( CheckBoxPos ) ;
 }
 
-// ƒJƒƒ‰‚Ì Near ƒNƒŠƒbƒv–Ê‚Ì‹——£‚ğæ“¾‚·‚é
+// ã‚«ãƒ¡ãƒ©ã® Near ã‚¯ãƒªãƒƒãƒ—é¢ã®è·é›¢ã‚’å–å¾—ã™ã‚‹
 extern float NS_GetCameraNear( void )
 {
 	return ( float )GSYS.DrawSetting.ProjNear ;
 }
 
-// ƒJƒƒ‰‚Ì Near ƒNƒŠƒbƒv–Ê‚Ì‹——£‚ğæ“¾‚·‚é
+// ã‚«ãƒ¡ãƒ©ã® Near ã‚¯ãƒªãƒƒãƒ—é¢ã®è·é›¢ã‚’å–å¾—ã™ã‚‹
 extern double NS_GetCameraNearD( void )
 {
 	return GSYS.DrawSetting.ProjNear ;
 }
 
-// ƒJƒƒ‰‚Ì Far ƒNƒŠƒbƒv–Ê‚Ì‹——£‚ğæ“¾‚·‚é
+// ã‚«ãƒ¡ãƒ©ã® Far ã‚¯ãƒªãƒƒãƒ—é¢ã®è·é›¢ã‚’å–å¾—ã™ã‚‹
 extern float NS_GetCameraFar( void )
 {
 	return ( float )GSYS.DrawSetting.ProjFar ;
 }
 
-// ƒJƒƒ‰‚Ì Far ƒNƒŠƒbƒv–Ê‚Ì‹——£‚ğæ“¾‚·‚é
+// ã‚«ãƒ¡ãƒ©ã® Far ã‚¯ãƒªãƒƒãƒ—é¢ã®è·é›¢ã‚’å–å¾—ã™ã‚‹
 extern double NS_GetCameraFarD( void )
 {
 	return GSYS.DrawSetting.ProjFar ;
 }
 
-// ƒJƒƒ‰‚ÌˆÊ’u‚ğæ“¾‚·‚é
+// ã‚«ãƒ¡ãƒ©ã®ä½ç½®ã‚’å–å¾—ã™ã‚‹
 extern	VECTOR	NS_GetCameraPosition( void )
 {
 	return VConvDtoF( GSYS.Camera.Position ) ;
 }
 
-// ƒJƒƒ‰‚ÌˆÊ’u‚ğæ“¾‚·‚é
+// ã‚«ãƒ¡ãƒ©ã®ä½ç½®ã‚’å–å¾—ã™ã‚‹
 extern	VECTOR_D NS_GetCameraPositionD( void )
 {
 	return GSYS.Camera.Position ;
 }
 
-// ƒJƒƒ‰‚Ì’‹“_‚ğæ“¾‚·‚é
+// ã‚«ãƒ¡ãƒ©ã®æ³¨è¦–ç‚¹ã‚’å–å¾—ã™ã‚‹
 extern	VECTOR	NS_GetCameraTarget( void )
 {
 	return VConvDtoF( GSYS.Camera.Target ) ;
 }
 
-// ƒJƒƒ‰‚Ì’‹“_‚ğæ“¾‚·‚é
+// ã‚«ãƒ¡ãƒ©ã®æ³¨è¦–ç‚¹ã‚’å–å¾—ã™ã‚‹
 extern	VECTOR_D NS_GetCameraTargetD( void )
 {
 	return GSYS.Camera.Target ;
 }
 
-// ƒJƒƒ‰‚Ì‹ü‚É‚’¼‚Èã•ûŒü‚ÌƒxƒNƒgƒ‹‚ğ“¾‚é
+// ã‚«ãƒ¡ãƒ©ã®è¦–ç·šã«å‚ç›´ãªä¸Šæ–¹å‘ã®ãƒ™ã‚¯ãƒˆãƒ«ã‚’å¾—ã‚‹
 extern	VECTOR	NS_GetCameraUpVector( void )
 {
 	return VConvDtoF( GSYS.Camera.Up ) ;
 }
 
-// ƒJƒƒ‰‚Ì‹ü‚É‚’¼‚Èã•ûŒü‚ÌƒxƒNƒgƒ‹‚ğ“¾‚é
+// ã‚«ãƒ¡ãƒ©ã®è¦–ç·šã«å‚ç›´ãªä¸Šæ–¹å‘ã®ãƒ™ã‚¯ãƒˆãƒ«ã‚’å¾—ã‚‹
 extern	VECTOR_D NS_GetCameraUpVectorD( void )
 {
 	return GSYS.Camera.Up ;
 }
 
-// ƒJƒƒ‰‚Ì‹ü‚É‚’¼‚È‰º•ûŒü‚ÌƒxƒNƒgƒ‹‚ğ“¾‚é
+// ã‚«ãƒ¡ãƒ©ã®è¦–ç·šã«å‚ç›´ãªä¸‹æ–¹å‘ã®ãƒ™ã‚¯ãƒˆãƒ«ã‚’å¾—ã‚‹
 extern	VECTOR	NS_GetCameraDownVector( void )
 {
 	return VConvDtoF( VScaleD( GSYS.Camera.Up, -1.0 ) ) ;
 }
 
-// ƒJƒƒ‰‚Ì‹ü‚É‚’¼‚È‰º•ûŒü‚ÌƒxƒNƒgƒ‹‚ğ“¾‚é
+// ã‚«ãƒ¡ãƒ©ã®è¦–ç·šã«å‚ç›´ãªä¸‹æ–¹å‘ã®ãƒ™ã‚¯ãƒˆãƒ«ã‚’å¾—ã‚‹
 extern	VECTOR_D NS_GetCameraDownVectorD( void )
 {
 	return VScaleD( GSYS.Camera.Up, -1.0f ) ;
 }
 
-// ƒJƒƒ‰‚Ì‹ü‚É‚’¼‚È‰E•ûŒü‚ÌƒxƒNƒgƒ‹‚ğ“¾‚é
+// ã‚«ãƒ¡ãƒ©ã®è¦–ç·šã«å‚ç›´ãªå³æ–¹å‘ã®ãƒ™ã‚¯ãƒˆãƒ«ã‚’å¾—ã‚‹
 extern	VECTOR	NS_GetCameraRightVector( void )
 {
 	return VConvDtoF( VNormD( VCrossD( GSYS.Camera.Up, VSubD( GSYS.Camera.Target, GSYS.Camera.Position ) ) ) ) ;
 }
 
-// ƒJƒƒ‰‚Ì‹ü‚É‚’¼‚È‰E•ûŒü‚ÌƒxƒNƒgƒ‹‚ğ“¾‚é
+// ã‚«ãƒ¡ãƒ©ã®è¦–ç·šã«å‚ç›´ãªå³æ–¹å‘ã®ãƒ™ã‚¯ãƒˆãƒ«ã‚’å¾—ã‚‹
 extern	VECTOR_D NS_GetCameraRightVectorD( void )
 {
 	return VNormD( VCrossD( GSYS.Camera.Up, VSubD( GSYS.Camera.Target, GSYS.Camera.Position ) ) ) ;
 }
 
-// ƒJƒƒ‰‚Ì‹ü‚É‚’¼‚È¶•ûŒü‚ÌƒxƒNƒgƒ‹‚ğ“¾‚é
+// ã‚«ãƒ¡ãƒ©ã®è¦–ç·šã«å‚ç›´ãªå·¦æ–¹å‘ã®ãƒ™ã‚¯ãƒˆãƒ«ã‚’å¾—ã‚‹
 extern	VECTOR	NS_GetCameraLeftVector( void )
 {
 	return VConvDtoF( VNormD( VCrossD( GSYS.Camera.Up, VSubD( GSYS.Camera.Position, GSYS.Camera.Target ) ) ) ) ;
 }
 
-// ƒJƒƒ‰‚Ì‹ü‚É‚’¼‚È¶•ûŒü‚ÌƒxƒNƒgƒ‹‚ğ“¾‚é
+// ã‚«ãƒ¡ãƒ©ã®è¦–ç·šã«å‚ç›´ãªå·¦æ–¹å‘ã®ãƒ™ã‚¯ãƒˆãƒ«ã‚’å¾—ã‚‹
 extern	VECTOR_D NS_GetCameraLeftVectorD( void )
 {
 	return VNormD( VCrossD( GSYS.Camera.Up, VSubD( GSYS.Camera.Position, GSYS.Camera.Target ) ) ) ;
 }
 
-// ƒJƒƒ‰‚ÌŒü‚¢‚Ä‚¢‚é•ûŒü‚ÌƒxƒNƒgƒ‹‚ğæ“¾‚·‚é
+// ã‚«ãƒ¡ãƒ©ã®å‘ã„ã¦ã„ã‚‹æ–¹å‘ã®ãƒ™ã‚¯ãƒˆãƒ«ã‚’å–å¾—ã™ã‚‹
 extern VECTOR NS_GetCameraFrontVector( void )
 {
 	return VConvDtoF( VNormD( VSubD( GSYS.Camera.Target, GSYS.Camera.Position ) ) ) ;
 }
 
-// ƒJƒƒ‰‚ÌŒü‚¢‚Ä‚¢‚é•ûŒü‚ÌƒxƒNƒgƒ‹‚ğæ“¾‚·‚é
+// ã‚«ãƒ¡ãƒ©ã®å‘ã„ã¦ã„ã‚‹æ–¹å‘ã®ãƒ™ã‚¯ãƒˆãƒ«ã‚’å–å¾—ã™ã‚‹
 extern VECTOR_D NS_GetCameraFrontVectorD( void )
 {
 	return VNormD( VSubD( GSYS.Camera.Target, GSYS.Camera.Position ) ) ;
 }
 
-// ƒJƒƒ‰‚ÌŒã‚ë•ûŒü‚ÌƒxƒNƒgƒ‹‚ğæ“¾‚·‚é
+// ã‚«ãƒ¡ãƒ©ã®å¾Œã‚æ–¹å‘ã®ãƒ™ã‚¯ãƒˆãƒ«ã‚’å–å¾—ã™ã‚‹
 extern VECTOR NS_GetCameraBackVector( void )
 {
 	return VConvDtoF( VNormD( VSubD( GSYS.Camera.Position, GSYS.Camera.Target ) ) ) ;
 }
 
-// ƒJƒƒ‰‚ÌŒã‚ë•ûŒü‚ÌƒxƒNƒgƒ‹‚ğæ“¾‚·‚é
+// ã‚«ãƒ¡ãƒ©ã®å¾Œã‚æ–¹å‘ã®ãƒ™ã‚¯ãƒˆãƒ«ã‚’å–å¾—ã™ã‚‹
 extern VECTOR_D NS_GetCameraBackVectorD( void )
 {
 	return VNormD( VSubD( GSYS.Camera.Position, GSYS.Camera.Target ) ) ;
 }
 
-// ƒJƒƒ‰‚Ì…•½•ûŒü‚ÌŒü‚«‚ğæ“¾‚·‚é
+// ã‚«ãƒ¡ãƒ©ã®æ°´å¹³æ–¹å‘ã®å‘ãã‚’å–å¾—ã™ã‚‹
 extern	float	NS_GetCameraAngleHRotate( void )
 {
 	return ( float )GSYS.Camera.HRotate ;
 }
 
-// ƒJƒƒ‰‚Ì…•½•ûŒü‚ÌŒü‚«‚ğæ“¾‚·‚é
+// ã‚«ãƒ¡ãƒ©ã®æ°´å¹³æ–¹å‘ã®å‘ãã‚’å–å¾—ã™ã‚‹
 extern	double NS_GetCameraAngleHRotateD( void )
 {
 	return GSYS.Camera.HRotate ;
 }
 
-// ƒJƒƒ‰‚Ì‚’¼•ûŒü‚ÌŒü‚«‚ğæ“¾‚·‚é
+// ã‚«ãƒ¡ãƒ©ã®å‚ç›´æ–¹å‘ã®å‘ãã‚’å–å¾—ã™ã‚‹
 extern	float	NS_GetCameraAngleVRotate( void )
 {
 	return ( float )GSYS.Camera.VRotate ;
 }
 
-// ƒJƒƒ‰‚Ì‚’¼•ûŒü‚ÌŒü‚«‚ğæ“¾‚·‚é
+// ã‚«ãƒ¡ãƒ©ã®å‚ç›´æ–¹å‘ã®å‘ãã‚’å–å¾—ã™ã‚‹
 extern	double NS_GetCameraAngleVRotateD( void )
 {
 	return GSYS.Camera.VRotate ;
 }
 
-// ƒJƒƒ‰‚ÌŒü‚«‚Ì”P‚èŠp“x‚ğæ“¾‚·‚é
+// ã‚«ãƒ¡ãƒ©ã®å‘ãã®æ»ã‚Šè§’åº¦ã‚’å–å¾—ã™ã‚‹
 extern	float	NS_GetCameraAngleTRotate( void )
 {
 	return ( float )GSYS.Camera.TRotate ;
 }
 
-// ƒJƒƒ‰‚ÌŒü‚«‚Ì”P‚èŠp“x‚ğæ“¾‚·‚é
+// ã‚«ãƒ¡ãƒ©ã®å‘ãã®æ»ã‚Šè§’åº¦ã‚’å–å¾—ã™ã‚‹
 extern	double NS_GetCameraAngleTRotateD( void )
 {
 	return GSYS.Camera.TRotate ;
@@ -25159,7 +25159,7 @@ extern	double NS_GetCameraAngleTRotateD( void )
 
 
 
-// ƒrƒ…[s—ñ‚ğæ“¾‚·‚é
+// ãƒ“ãƒ¥ãƒ¼è¡Œåˆ—ã‚’å–å¾—ã™ã‚‹
 extern MATRIX NS_GetCameraViewMatrix( void )
 {
 	MATRIX Result ;
@@ -25168,25 +25168,25 @@ extern MATRIX NS_GetCameraViewMatrix( void )
 	return Result ;
 }
 
-// ƒrƒ…[s—ñ‚ğæ“¾‚·‚é
+// ãƒ“ãƒ¥ãƒ¼è¡Œåˆ—ã‚’å–å¾—ã™ã‚‹
 extern MATRIX_D NS_GetCameraViewMatrixD( void )
 {
 	return GSYS.DrawSetting.ViewMatrix ;
 }
 
-// ƒrƒ‹ƒ{[ƒhs—ñ‚ğæ“¾‚·‚é
+// ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰è¡Œåˆ—ã‚’å–å¾—ã™ã‚‹
 extern MATRIX NS_GetCameraBillboardMatrix( void )
 {
 	return GSYS.DrawSetting.BillboardMatrixF ;
 }
 
-// ƒrƒ‹ƒ{[ƒhs—ñ‚ğæ“¾‚·‚é
+// ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰è¡Œåˆ—ã‚’å–å¾—ã™ã‚‹
 extern MATRIX_D NS_GetCameraBillboardMatrixD( void )
 {
 	return GSYS.DrawSetting.BillboardMatrix ;
 }
 
-// ‰æ–Êã‚É‚¨‚¯‚éƒJƒƒ‰‚ªŒ©‚Ä‚¢‚é‰f‘œ‚Ì’†S‚ÌÀ•W‚ğæ“¾‚·‚é
+// ç”»é¢ä¸Šã«ãŠã‘ã‚‹ã‚«ãƒ¡ãƒ©ãŒè¦‹ã¦ã„ã‚‹æ˜ åƒã®ä¸­å¿ƒã®åº§æ¨™ã‚’å–å¾—ã™ã‚‹
 extern int NS_GetCameraScreenCenter( float  *x, float  *y )
 {
 	if( x != NULL )
@@ -25202,7 +25202,7 @@ extern int NS_GetCameraScreenCenter( float  *x, float  *y )
 	return 0 ;
 }
 
-// ‰æ–Êã‚É‚¨‚¯‚éƒJƒƒ‰‚ªŒ©‚Ä‚¢‚é‰f‘œ‚Ì’†S‚ÌÀ•W‚ğæ“¾‚·‚é
+// ç”»é¢ä¸Šã«ãŠã‘ã‚‹ã‚«ãƒ¡ãƒ©ãŒè¦‹ã¦ã„ã‚‹æ˜ åƒã®ä¸­å¿ƒã®åº§æ¨™ã‚’å–å¾—ã™ã‚‹
 extern int NS_GetCameraScreenCenterD( double *x, double *y )
 {
 	if( x != NULL )
@@ -25218,73 +25218,73 @@ extern int NS_GetCameraScreenCenterD( double *x, double *y )
 	return 0 ;
 }
 
-// ƒJƒƒ‰‚Ì‹–ìŠp‚ğæ“¾‚·‚é
+// ã‚«ãƒ¡ãƒ©ã®è¦–é‡è§’ã‚’å–å¾—ã™ã‚‹
 extern float NS_GetCameraFov( void )
 {
 	return ( float )GSYS.DrawSetting.ProjFov ;
 }
 
-// ƒJƒƒ‰‚Ì‹–ìŠp‚ğæ“¾‚·‚é
+// ã‚«ãƒ¡ãƒ©ã®è¦–é‡è§’ã‚’å–å¾—ã™ã‚‹
 extern double NS_GetCameraFovD( void )
 {
 	return GSYS.DrawSetting.ProjFov ;
 }
 
-// ƒJƒƒ‰‚Ì‹–ìƒTƒCƒY‚ğæ“¾‚·‚é
+// ã‚«ãƒ¡ãƒ©ã®è¦–é‡ã‚µã‚¤ã‚ºã‚’å–å¾—ã™ã‚‹
 extern float NS_GetCameraSize( void )
 {
 	return ( float )GSYS.DrawSetting.ProjSize ;
 }
 
-// ƒJƒƒ‰‚Ì‹–ìƒTƒCƒY‚ğæ“¾‚·‚é
+// ã‚«ãƒ¡ãƒ©ã®è¦–é‡ã‚µã‚¤ã‚ºã‚’å–å¾—ã™ã‚‹
 extern double NS_GetCameraSizeD( void )
 {
 	return GSYS.DrawSetting.ProjSize ;
 }
 
-// Ë‰es—ñ‚ğæ“¾‚·‚é
+// å°„å½±è¡Œåˆ—ã‚’å–å¾—ã™ã‚‹
 extern MATRIX NS_GetCameraProjectionMatrix( void )
 {
 	return GSYS.DrawSetting.ProjectionMatrixF ;
 }
 
-// Ë‰es—ñ‚ğæ“¾‚·‚é
+// å°„å½±è¡Œåˆ—ã‚’å–å¾—ã™ã‚‹
 extern MATRIX_D NS_GetCameraProjectionMatrixD( void )
 {
 	return GSYS.DrawSetting.ProjectionMatrix ;
 }
 
-// ƒJƒƒ‰‚ÌƒhƒbƒgƒAƒXƒyƒNƒg”ä‚ğ“¾‚é
+// ã‚«ãƒ¡ãƒ©ã®ãƒ‰ãƒƒãƒˆã‚¢ã‚¹ãƒšã‚¯ãƒˆæ¯”ã‚’å¾—ã‚‹
 extern float NS_GetCameraDotAspect( void )
 {
 	return ( float )GSYS.DrawSetting.ProjDotAspect ;
 }
 
-// ƒJƒƒ‰‚ÌƒhƒbƒgƒAƒXƒyƒNƒg”ä‚ğ“¾‚é
+// ã‚«ãƒ¡ãƒ©ã®ãƒ‰ãƒƒãƒˆã‚¢ã‚¹ãƒšã‚¯ãƒˆæ¯”ã‚’å¾—ã‚‹
 extern double NS_GetCameraDotAspectD( void )
 {
 	return GSYS.DrawSetting.ProjDotAspect ;
 }
 
-// ƒrƒ…[ƒ|[ƒgs—ñ‚ğæ“¾‚·‚é
+// ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆè¡Œåˆ—ã‚’å–å¾—ã™ã‚‹
 extern MATRIX NS_GetCameraViewportMatrix( void )
 {
 	return GSYS.DrawSetting.ViewportMatrixF ;
 }
 
-// ƒrƒ…[ƒ|[ƒgs—ñ‚ğæ“¾‚·‚é
+// ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆè¡Œåˆ—ã‚’å–å¾—ã™ã‚‹
 extern MATRIX_D NS_GetCameraViewportMatrixD( void )
 {
 	return GSYS.DrawSetting.ViewportMatrix ;
 }
 
-// Direct3D‚Å©“®“K—p‚³‚ê‚éƒrƒ…[ƒ|[ƒgs—ñ‚ğæ“¾‚·‚é
+// Direct3Dã§è‡ªå‹•é©ç”¨ã•ã‚Œã‚‹ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆè¡Œåˆ—ã‚’å–å¾—ã™ã‚‹
 extern MATRIX NS_GetCameraAPIViewportMatrix( void )
 {
 	return GSYS.DrawSetting.Direct3DViewportMatrixF ;
 }
 
-// Direct3D‚Å©“®“K—p‚³‚ê‚éƒrƒ…[ƒ|[ƒgs—ñ‚ğæ“¾‚·‚é
+// Direct3Dã§è‡ªå‹•é©ç”¨ã•ã‚Œã‚‹ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆè¡Œåˆ—ã‚’å–å¾—ã™ã‚‹
 extern MATRIX_D NS_GetCameraAPIViewportMatrixD( void )
 {
 	return GSYS.DrawSetting.Direct3DViewportMatrix ;
@@ -25316,78 +25316,78 @@ extern MATRIX_D NS_GetCameraAPIViewportMatrixD( void )
 
 
 
-// ƒ‰ƒCƒgŠÖŒWŠÖ”
+// ãƒ©ã‚¤ãƒˆé–¢ä¿‚é–¢æ•°
 
-// ƒ‰ƒCƒeƒBƒ“ƒOŒvZ‹@”\‚ğg—p‚·‚é‚©‚Ç‚¤‚©‚ğİ’è‚·‚é
+// ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°è¨ˆç®—æ©Ÿèƒ½ã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹
 extern int NS_SetUseLighting( int Flag )
 {
 //	if( GSYS.Light.ProcessDisable == !Flag )
 //		return 0 ;
 	GSYS.Light.ProcessDisable = Flag ? FALSE : TRUE ;
 
-	// ƒZƒbƒg
+	// ã‚»ãƒƒãƒˆ
 	Graphics_Hardware_Light_SetUse_PF( Flag ) ;
 
-	// ƒ‰ƒCƒg‚Ìİ’è‚ª•ÏX‚³‚ê‚½ƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// ãƒ©ã‚¤ãƒˆã®è¨­å®šãŒå¤‰æ›´ã•ã‚ŒãŸãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	GSYS.Light.HardwareChange = TRUE ;
 
-	// İ’è‚ª•ÏX‚³‚ê‚½‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// è¨­å®šãŒå¤‰æ›´ã•ã‚ŒãŸã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	GSYS.ChangeSettingFlag = TRUE ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒ‰ƒCƒeƒBƒ“ƒOŒvZ‚É’¸“_ƒJƒ‰[‚ÌƒfƒBƒtƒ…[ƒYƒJƒ‰[‚ğg—p‚·‚é‚©‚Ç‚¤‚©‚ğİ’è‚·‚é
+// ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°è¨ˆç®—ã«é ‚ç‚¹ã‚«ãƒ©ãƒ¼ã®ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚«ãƒ©ãƒ¼ã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹
 extern int NS_SetMaterialUseVertDifColor( int UseFlag )
 {
 	GSYS.Light.MaterialNotUseVertexDiffuseColor = UseFlag ? FALSE : TRUE ;
 	
-	// İ’è‚ª•ÏX‚³‚ê‚½‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// è¨­å®šãŒå¤‰æ›´ã•ã‚ŒãŸã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	GSYS.ChangeSettingFlag = TRUE ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒ‰ƒCƒeƒBƒ“ƒOŒvZ‚É’¸“_ƒJƒ‰[‚ÌƒXƒyƒLƒ…ƒ‰ƒJƒ‰[‚ğg—p‚·‚é‚©‚Ç‚¤‚©‚ğİ’è‚·‚é
+// ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°è¨ˆç®—ã«é ‚ç‚¹ã‚«ãƒ©ãƒ¼ã®ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã‚«ãƒ©ãƒ¼ã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹
 extern int NS_SetMaterialUseVertSpcColor( int UseFlag )
 {
 	GSYS.Light.MaterialNotUseVertexSpecularColor = UseFlag ? FALSE : TRUE ;
 
-	// İ’è‚ª•ÏX‚³‚ê‚½‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// è¨­å®šãŒå¤‰æ›´ã•ã‚ŒãŸã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	GSYS.ChangeSettingFlag = TRUE ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒ‰ƒCƒeƒBƒ“ƒOŒvZ‚Ég—p‚·‚éƒ}ƒeƒŠƒAƒ‹ƒpƒ‰ƒ[ƒ^‚ğİ’è‚·‚é
+// ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°è¨ˆç®—ã«ä½¿ç”¨ã™ã‚‹ãƒãƒ†ãƒªã‚¢ãƒ«ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’è¨­å®šã™ã‚‹
 extern int NS_SetMaterialParam( MATERIALPARAM Material )
 {
 	GSYS.Light.ChangeMaterial = 1 ;
 	GSYS.Light.Material = Material ;
 
-	// İ’è‚ª•ÏX‚³‚ê‚½‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// è¨­å®šãŒå¤‰æ›´ã•ã‚ŒãŸã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	GSYS.ChangeSettingFlag = TRUE ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ‚R‚c}Œ`•`‰æ‚ÉƒXƒyƒLƒ…ƒ‰‚ğg—p‚·‚é‚©‚Ç‚¤‚©‚ğİ’è‚·‚é
+// ï¼“ï¼¤å›³å½¢æç”»ã«ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹
 extern int NS_SetUseSpecular( int UseFlag )
 {
 	GSYS.DrawSetting.NotUseSpecular = UseFlag ? FALSE : TRUE ;
 
-	// İ’è‚ª•ÏX‚³‚ê‚½‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// è¨­å®šãŒå¤‰æ›´ã•ã‚ŒãŸã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	GSYS.ChangeSettingFlag = TRUE ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒOƒ[ƒoƒ‹ƒAƒ“ƒrƒGƒ“ƒgƒ‰ƒCƒgƒJƒ‰[‚ğİ’è‚·‚é
+// ã‚°ãƒ­ãƒ¼ãƒãƒ«ã‚¢ãƒ³ãƒ“ã‚¨ãƒ³ãƒˆãƒ©ã‚¤ãƒˆã‚«ãƒ©ãƒ¼ã‚’è¨­å®šã™ã‚‹
 extern int NS_SetGlobalAmbientLight( COLOR_F Color )
 {
 	     if( Color.r < 0.0f ) Color.r = 0.0f ;
@@ -25397,53 +25397,53 @@ extern int NS_SetGlobalAmbientLight( COLOR_F Color )
 	     if( Color.b < 0.0f ) Color.b = 0.0f ;
 	else if( Color.b > 1.0f ) Color.b = 1.0f ;
 
-	// ƒn[ƒhƒEƒGƒA‚Éİ’è‚·‚é
+	// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã«è¨­å®šã™ã‚‹
 	Graphics_Hardware_Light_GlobalAmbient_PF( &Color ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ‚R‚c•`‰æ‚Ìƒ‰ƒCƒeƒBƒ“ƒOŒvZ‚ÅŠp“xŒ¸Š‚ğs‚¤‚©‚Ç‚¤‚©‚ğİ’è‚·‚é( TRUE:Šp“xŒ¸Š‚ğs‚¤( ƒfƒtƒHƒ‹ƒg )  FALSE:Šp“xŒ¸Š‚ğs‚í‚È‚¢ )
+// ï¼“ï¼¤æç”»ã®ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°è¨ˆç®—ã§è§’åº¦æ¸›è¡°ã‚’è¡Œã†ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹( TRUE:è§’åº¦æ¸›è¡°ã‚’è¡Œã†( ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ )  FALSE:è§’åº¦æ¸›è¡°ã‚’è¡Œã‚ãªã„ )
 extern int NS_SetUseLightAngleAttenuation( int UseFlag )
 {
-	// ’l‚ª“¯‚¶ê‡‚Í‰½‚à‚¹‚¸I—¹
+	// å€¤ãŒåŒã˜å ´åˆã¯ä½•ã‚‚ã›ãšçµ‚äº†
 	if( ( GSYS.Light.NoLightAngleAttenuation == FALSE && UseFlag == TRUE  ) ||
 		( GSYS.Light.NoLightAngleAttenuation == TRUE  && UseFlag == FALSE ) )
 	{
 		return 0 ;
 	}
 
-	// ’l‚ğ•Û‘¶
+	// å€¤ã‚’ä¿å­˜
 	GSYS.Light.NoLightAngleAttenuation = UseFlag ? FALSE : TRUE ;
 
-	// ƒn[ƒhƒEƒFƒA‚Éİ’è‚·‚é
+	// ãƒãƒ¼ãƒ‰ã‚¦ã‚§ã‚¢ã«è¨­å®šã™ã‚‹
 	Graphics_Hardware_Light_SetNoAngleAttenuation_PF( GSYS.Light.NoLightAngleAttenuation ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ‚R‚c•`‰æ‚Ìƒ‰ƒCƒeƒBƒ“ƒOŒvZ‚Åƒn[ƒtƒ‰ƒ“ƒo[ƒg‚ğg—p‚·‚é‚©‚Ç‚¤‚©‚ğİ’è‚·‚é( TRUE:ƒn[ƒtƒ‰ƒ“ƒo[ƒg‚ğg—p‚·‚é  FALSE:ƒn[ƒtƒ‰ƒ“ƒo[ƒg‚ğg—p‚µ‚È‚¢( ƒfƒtƒHƒ‹ƒg ) )
+// ï¼“ï¼¤æç”»ã®ãƒ©ã‚¤ãƒ†ã‚£ãƒ³ã‚°è¨ˆç®—ã§ãƒãƒ¼ãƒ•ãƒ©ãƒ³ãƒãƒ¼ãƒˆã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹( TRUE:ãƒãƒ¼ãƒ•ãƒ©ãƒ³ãƒãƒ¼ãƒˆã‚’ä½¿ç”¨ã™ã‚‹  FALSE:ãƒãƒ¼ãƒ•ãƒ©ãƒ³ãƒãƒ¼ãƒˆã‚’ä½¿ç”¨ã—ãªã„( ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ ) )
 extern int NS_SetUseHalfLambertLighting( int UseFlag )
 {
-	// ’l‚ª“¯‚¶ê‡‚Í‰½‚à‚¹‚¸I—¹
+	// å€¤ãŒåŒã˜å ´åˆã¯ä½•ã‚‚ã›ãšçµ‚äº†
 	if( GSYS.Light.UseHalfLambert == UseFlag )
 	{
 		return 0 ;
 	}
 
-	// ’l‚ğ•Û‘¶
+	// å€¤ã‚’ä¿å­˜
 	GSYS.Light.UseHalfLambert = UseFlag ? TRUE : FALSE ;
 
-	// ƒn[ƒhƒEƒFƒA‚Éİ’è‚·‚é
+	// ãƒãƒ¼ãƒ‰ã‚¦ã‚§ã‚¢ã«è¨­å®šã™ã‚‹
 	Graphics_Hardware_Light_SetUseHalfLambert_PF( GSYS.Light.UseHalfLambert ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒ‰ƒCƒg‚Ìƒ^ƒCƒv‚ğƒfƒBƒŒƒNƒVƒ‡ƒiƒ‹ƒ‰ƒCƒg‚É‚·‚é
+// ãƒ©ã‚¤ãƒˆã®ã‚¿ã‚¤ãƒ—ã‚’ãƒ‡ã‚£ãƒ¬ã‚¯ã‚·ãƒ§ãƒŠãƒ«ãƒ©ã‚¤ãƒˆã«ã™ã‚‹
 extern int NS_ChangeLightTypeDir( VECTOR Direction )
 {
 	LIGHT_HANDLE *pLH ;
@@ -25451,28 +25451,28 @@ extern int NS_ChangeLightTypeDir( VECTOR Direction )
 
 	LIGHTCHK( GSYS.Light.DefaultHandle, pLH, -1 ) ;
 
-	// ƒ^ƒCƒv‚ğ•ÏX
+	// ã‚¿ã‚¤ãƒ—ã‚’å¤‰æ›´
 	pLH->Param.LightType = DX_LIGHTTYPE_D3DLIGHT_DIRECTIONAL ;
 
-	// Œü‚«‚ğƒZƒbƒg
+	// å‘ãã‚’ã‚»ãƒƒãƒˆ
 	Length = _SQRT( VectorInnerProduct( &Direction, &Direction ) ) ;
 	Direction.x /= Length ;
 	Direction.y /= Length ;
 	Direction.z /= Length ;
 	pLH->Param.Direction = Direction ;
 
-	// •ÏXƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// å¤‰æ›´ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	pLH->HardwareChangeFlag = TRUE ;
 	GSYS.Light.HardwareChange = TRUE ;
 
-	// İ’è‚ª•ÏX‚³‚ê‚½‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// è¨­å®šãŒå¤‰æ›´ã•ã‚ŒãŸã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	GSYS.ChangeSettingFlag = TRUE ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒ‰ƒCƒg‚Ìƒ^ƒCƒv‚ğƒXƒ|ƒbƒgƒ‰ƒCƒg‚É‚·‚é
+// ãƒ©ã‚¤ãƒˆã®ã‚¿ã‚¤ãƒ—ã‚’ã‚¹ãƒãƒƒãƒˆãƒ©ã‚¤ãƒˆã«ã™ã‚‹
 extern int NS_ChangeLightTypeSpot( VECTOR Position, VECTOR Direction, float OutAngle, float InAngle/*, float Falloff*/, float Range, float Atten0, float Atten1, float Atten2 )
 {
 	float Falloff = 1.0f ;
@@ -25480,10 +25480,10 @@ extern int NS_ChangeLightTypeSpot( VECTOR Position, VECTOR Direction, float OutA
 	LIGHT_HANDLE *pLH ;
 	LIGHTCHK( GSYS.Light.DefaultHandle, pLH, -1 ) ;
 
-	// ƒ^ƒCƒv‚ğƒZƒbƒg
+	// ã‚¿ã‚¤ãƒ—ã‚’ã‚»ãƒƒãƒˆ
 	pLH->Param.LightType = DX_LIGHTTYPE_D3DLIGHT_SPOT ;
 
-	// ƒpƒ‰ƒ[ƒ^‚ğƒZƒbƒg
+	// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆ
 	pLH->Param.Position = Position ;
 	pLH->Param.Direction = Direction ;
 	pLH->Param.Phi = OutAngle ;
@@ -25494,192 +25494,192 @@ extern int NS_ChangeLightTypeSpot( VECTOR Position, VECTOR Direction, float OutA
 	pLH->Param.Attenuation1 = Atten1 ;
 	pLH->Param.Attenuation2 = Atten2 ;
 
-	// •ÏXƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// å¤‰æ›´ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	pLH->HardwareChangeFlag = TRUE ;
 	GSYS.Light.HardwareChange = TRUE ;
 
-	// İ’è‚ª•ÏX‚³‚ê‚½‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// è¨­å®šãŒå¤‰æ›´ã•ã‚ŒãŸã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	GSYS.ChangeSettingFlag = TRUE ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒ‰ƒCƒg‚Ìƒ^ƒCƒv‚ğƒ|ƒCƒ“ƒgƒ‰ƒCƒg‚É‚·‚é
+// ãƒ©ã‚¤ãƒˆã®ã‚¿ã‚¤ãƒ—ã‚’ãƒã‚¤ãƒ³ãƒˆãƒ©ã‚¤ãƒˆã«ã™ã‚‹
 extern int NS_ChangeLightTypePoint( VECTOR Position, float Range, float Atten0, float Atten1, float Atten2 )
 {
 	LIGHT_HANDLE *pLH ;
 	LIGHTCHK( GSYS.Light.DefaultHandle, pLH, -1 ) ;
 
-	// ƒ^ƒCƒv‚ğƒZƒbƒg
+	// ã‚¿ã‚¤ãƒ—ã‚’ã‚»ãƒƒãƒˆ
 	pLH->Param.LightType = DX_LIGHTTYPE_D3DLIGHT_POINT ;
 
-	// ƒpƒ‰ƒ[ƒ^‚ğƒZƒbƒg
+	// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆ
 	pLH->Param.Range = Range ;
 	pLH->Param.Position = Position ;
 	pLH->Param.Attenuation0 = Atten0 ;
 	pLH->Param.Attenuation1 = Atten1 ;
 	pLH->Param.Attenuation2 = Atten2 ;
 
-	// •ÏXƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// å¤‰æ›´ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	pLH->HardwareChangeFlag = TRUE ;
 	GSYS.Light.HardwareChange = TRUE ;
 
-	// İ’è‚ª•ÏX‚³‚ê‚½‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// è¨­å®šãŒå¤‰æ›´ã•ã‚ŒãŸã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	GSYS.ChangeSettingFlag = TRUE ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒ‰ƒCƒgƒnƒ“ƒhƒ‹‚Ìƒ‰ƒCƒg‚Ìƒ^ƒCƒv‚ğæ“¾‚·‚é( –ß‚è’l‚Í DX_LIGHTTYPE_DIRECTIONAL “™ )
+// ãƒ©ã‚¤ãƒˆãƒãƒ³ãƒ‰ãƒ«ã®ãƒ©ã‚¤ãƒˆã®ã‚¿ã‚¤ãƒ—ã‚’å–å¾—ã™ã‚‹( æˆ»ã‚Šå€¤ã¯ DX_LIGHTTYPE_DIRECTIONAL ç­‰ )
 extern	int NS_GetLightType( void )
 {
 	return NS_GetLightTypeHandle( GSYS.Light.DefaultHandle ) ;
 }
 
-// ƒ‰ƒCƒg‚Ì—LŒøA–³Œø‚ğƒZƒbƒg‚·‚é
+// ãƒ©ã‚¤ãƒˆã®æœ‰åŠ¹ã€ç„¡åŠ¹ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern int NS_SetLightEnable( int EnableFlag )
 {
 	return NS_SetLightEnableHandle( GSYS.Light.DefaultHandle, EnableFlag ) ;
 }
 
-// ƒ‰ƒCƒgƒnƒ“ƒhƒ‹‚Ìƒ‰ƒCƒgŒø‰Ê‚Ì—LŒøA–³Œø‚ğİ’è‚·‚é( TRUE:—LŒø  FALSE:–³Œø )
+// ãƒ©ã‚¤ãƒˆãƒãƒ³ãƒ‰ãƒ«ã®ãƒ©ã‚¤ãƒˆåŠ¹æœã®æœ‰åŠ¹ã€ç„¡åŠ¹ã‚’è¨­å®šã™ã‚‹( TRUE:æœ‰åŠ¹  FALSE:ç„¡åŠ¹ )
 extern	int NS_GetLightEnable( void )
 {
 	return NS_GetLightEnableHandle( GSYS.Light.DefaultHandle ) ;
 }
 
-// ƒ‰ƒCƒg‚ÌƒfƒBƒtƒ…[ƒYƒJƒ‰[‚ğİ’è‚·‚é
+// ãƒ©ã‚¤ãƒˆã®ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚«ãƒ©ãƒ¼ã‚’è¨­å®šã™ã‚‹
 extern int NS_SetLightDifColor( COLOR_F Color )
 {
 	return NS_SetLightDifColorHandle( GSYS.Light.DefaultHandle, Color ) ;
 }
 
-// ƒ‰ƒCƒgƒnƒ“ƒhƒ‹‚Ìƒ‰ƒCƒg‚ÌƒfƒBƒtƒ…[ƒYƒJƒ‰[‚ğİ’è‚·‚é
+// ãƒ©ã‚¤ãƒˆãƒãƒ³ãƒ‰ãƒ«ã®ãƒ©ã‚¤ãƒˆã®ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚«ãƒ©ãƒ¼ã‚’è¨­å®šã™ã‚‹
 extern COLOR_F NS_GetLightDifColor( void )
 {
 	return NS_GetLightDifColorHandle( GSYS.Light.DefaultHandle ) ;
 }
 
-// ƒ‰ƒCƒg‚ÌƒXƒyƒLƒ…ƒ‰ƒJƒ‰[‚ğİ’è‚·‚é
+// ãƒ©ã‚¤ãƒˆã®ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã‚«ãƒ©ãƒ¼ã‚’è¨­å®šã™ã‚‹
 extern int NS_SetLightSpcColor( COLOR_F Color )
 {
 	return NS_SetLightSpcColorHandle( GSYS.Light.DefaultHandle, Color ) ;
 }
 
-// ƒ‰ƒCƒgƒnƒ“ƒhƒ‹‚Ìƒ‰ƒCƒg‚ÌƒXƒyƒLƒ…ƒ‰ƒJƒ‰[‚ğİ’è‚·‚é
+// ãƒ©ã‚¤ãƒˆãƒãƒ³ãƒ‰ãƒ«ã®ãƒ©ã‚¤ãƒˆã®ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã‚«ãƒ©ãƒ¼ã‚’è¨­å®šã™ã‚‹
 extern COLOR_F NS_GetLightSpcColor(  void )
 {
 	return NS_GetLightSpcColorHandle( GSYS.Light.DefaultHandle ) ;
 }
 
-// ƒ‰ƒCƒg‚ÌƒAƒ“ƒrƒGƒ“ƒgƒJƒ‰[‚ğİ’è‚·‚é
+// ãƒ©ã‚¤ãƒˆã®ã‚¢ãƒ³ãƒ“ã‚¨ãƒ³ãƒˆã‚«ãƒ©ãƒ¼ã‚’è¨­å®šã™ã‚‹
 extern int NS_SetLightAmbColor( COLOR_F Color )
 {
 	return NS_SetLightAmbColorHandle( GSYS.Light.DefaultHandle, Color ) ;
 }
 
-// ƒ‰ƒCƒgƒnƒ“ƒhƒ‹‚Ìƒ‰ƒCƒg‚ÌƒAƒ“ƒrƒGƒ“ƒgƒJƒ‰[‚ğİ’è‚·‚é
+// ãƒ©ã‚¤ãƒˆãƒãƒ³ãƒ‰ãƒ«ã®ãƒ©ã‚¤ãƒˆã®ã‚¢ãƒ³ãƒ“ã‚¨ãƒ³ãƒˆã‚«ãƒ©ãƒ¼ã‚’è¨­å®šã™ã‚‹
 extern COLOR_F NS_GetLightAmbColor(  void )
 {
 	return NS_GetLightAmbColorHandle( GSYS.Light.DefaultHandle ) ;
 }
 
-// ƒ‰ƒCƒg‚Ì•ûŒü‚ğİ’è‚·‚é
+// ãƒ©ã‚¤ãƒˆã®æ–¹å‘ã‚’è¨­å®šã™ã‚‹
 extern int NS_SetLightDirection( VECTOR Direction )
 {
 	return NS_SetLightDirectionHandle( GSYS.Light.DefaultHandle, Direction ) ;
 }
 
-// ƒ‰ƒCƒgƒnƒ“ƒhƒ‹‚Ìƒ‰ƒCƒg‚Ì•ûŒü‚ğİ’è‚·‚é
+// ãƒ©ã‚¤ãƒˆãƒãƒ³ãƒ‰ãƒ«ã®ãƒ©ã‚¤ãƒˆã®æ–¹å‘ã‚’è¨­å®šã™ã‚‹
 extern	VECTOR NS_GetLightDirection( void )
 {
 	return NS_GetLightDirectionHandle( GSYS.Light.DefaultHandle ) ;
 }
 
-// ƒ‰ƒCƒg‚ÌˆÊ’u‚ğİ’è‚·‚é
+// ãƒ©ã‚¤ãƒˆã®ä½ç½®ã‚’è¨­å®šã™ã‚‹
 extern int NS_SetLightPosition( VECTOR Position )
 {
 	return NS_SetLightPositionHandle( GSYS.Light.DefaultHandle, Position ) ;
 }
 
-// ƒ‰ƒCƒgƒnƒ“ƒhƒ‹‚Ìƒ‰ƒCƒg‚ÌˆÊ’u‚ğİ’è‚·‚é
+// ãƒ©ã‚¤ãƒˆãƒãƒ³ãƒ‰ãƒ«ã®ãƒ©ã‚¤ãƒˆã®ä½ç½®ã‚’è¨­å®šã™ã‚‹
 extern	VECTOR NS_GetLightPosition( void )
 {
 	return NS_GetLightPositionHandle( GSYS.Light.DefaultHandle ) ;
 }
 
-// ƒ‰ƒCƒg‚Ì‹——£Œ¸Šƒpƒ‰ƒ[ƒ^‚ğİ’è‚·‚é( —LŒø‹——£A‹——£Œ¸ŠŒW”‚OA‚PA‚Q )
+// ãƒ©ã‚¤ãƒˆã®è·é›¢æ¸›è¡°ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’è¨­å®šã™ã‚‹( æœ‰åŠ¹è·é›¢ã€è·é›¢æ¸›è¡°ä¿‚æ•°ï¼ã€ï¼‘ã€ï¼’ )
 extern int NS_SetLightRangeAtten( float Range, float Atten0, float Atten1, float Atten2 )
 {
 	return NS_SetLightRangeAttenHandle( GSYS.Light.DefaultHandle, Range,  Atten0,  Atten1,  Atten2 ) ;
 }
 
-// ƒ‰ƒCƒg‚Ì‹——£Œ¸Šƒpƒ‰ƒ[ƒ^‚ğæ“¾‚·‚é( —LŒø‹——£A‹——£Œ¸ŠŒW”‚OA‚PA‚Q )
+// ãƒ©ã‚¤ãƒˆã®è·é›¢æ¸›è¡°ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’å–å¾—ã™ã‚‹( æœ‰åŠ¹è·é›¢ã€è·é›¢æ¸›è¡°ä¿‚æ•°ï¼ã€ï¼‘ã€ï¼’ )
 extern int NS_GetLightRangeAtten( float *Range, float *Atten0, float *Atten1, float *Atten2 )
 {
 	return NS_GetLightRangeAttenHandle( GSYS.Light.DefaultHandle, Range, Atten0, Atten1, Atten2 ) ;
 }
 
-// ƒ‰ƒCƒg‚ÌƒXƒ|ƒbƒgƒ‰ƒCƒg‚Ìƒpƒ‰ƒ[ƒ^‚ğİ’è‚·‚é( ŠO•”ƒR[ƒ“Šp“xA“à•”ƒR[ƒ“Šp“xAƒtƒH[ƒ‹ƒIƒt( 1.0f ‚ğ„§ ) )
+// ãƒ©ã‚¤ãƒˆã®ã‚¹ãƒãƒƒãƒˆãƒ©ã‚¤ãƒˆã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’è¨­å®šã™ã‚‹( å¤–éƒ¨ã‚³ãƒ¼ãƒ³è§’åº¦ã€å†…éƒ¨ã‚³ãƒ¼ãƒ³è§’åº¦ã€ãƒ•ã‚©ãƒ¼ãƒ«ã‚ªãƒ•( 1.0f ã‚’æ¨å¥¨ ) )
 extern int NS_SetLightAngle( float OutAngle, float InAngle /*, float Falloff */ )
 {
 	return NS_SetLightAngleHandle( GSYS.Light.DefaultHandle,  OutAngle,  InAngle /*,  Falloff */ ) ;
 }
 
-// ƒ‰ƒCƒg‚ÌƒXƒ|ƒbƒgƒ‰ƒCƒg‚Ìƒpƒ‰ƒ[ƒ^‚ğæ“¾‚·‚é( ŠO•”ƒR[ƒ“Šp“xA“à•”ƒR[ƒ“Šp“xAƒtƒH[ƒ‹ƒIƒt )
+// ãƒ©ã‚¤ãƒˆã®ã‚¹ãƒãƒƒãƒˆãƒ©ã‚¤ãƒˆã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’å–å¾—ã™ã‚‹( å¤–éƒ¨ã‚³ãƒ¼ãƒ³è§’åº¦ã€å†…éƒ¨ã‚³ãƒ¼ãƒ³è§’åº¦ã€ãƒ•ã‚©ãƒ¼ãƒ«ã‚ªãƒ• )
 extern int NS_GetLightAngle( float *OutAngle, float *InAngle /*, float *Falloff */ )
 {
 	return NS_GetLightAngleHandle( GSYS.Light.DefaultHandle, OutAngle, InAngle /*, Falloff */ ) ;
 }
 
-// ƒfƒtƒHƒ‹ƒgƒ‰ƒCƒg‚É SetUseShadowMap ‚Åw’è‚µ‚½ƒVƒƒƒhƒEƒ}ƒbƒv‚ğ“K—p‚·‚é‚©‚Ç‚¤‚©‚ğİ’è‚·‚é( SmSlotIndex:ƒVƒƒƒhƒEƒ}ƒbƒvƒXƒƒbƒg( SetUseShadowMap ‚Ì‘æˆêˆø”‚Éİ’è‚·‚é’l ) UseFlag:“K—p‚É‚·‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO( TRUE:“K—p‚·‚é( ƒfƒtƒHƒ‹ƒg )  FALSE:“K—p‚µ‚È‚¢ ) )
+// ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãƒ©ã‚¤ãƒˆã« SetUseShadowMap ã§æŒ‡å®šã—ãŸã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ã‚’é©ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹( SmSlotIndex:ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ã‚¹ãƒ­ãƒƒãƒˆ( SetUseShadowMap ã®ç¬¬ä¸€å¼•æ•°ã«è¨­å®šã™ã‚‹å€¤ ) UseFlag:é©ç”¨ã«ã™ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°( TRUE:é©ç”¨ã™ã‚‹( ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ )  FALSE:é©ç”¨ã—ãªã„ ) )
 extern int NS_SetLightUseShadowMap( int SmSlotIndex, int UseFlag )
 {
 	return NS_SetLightUseShadowMapHandle( GSYS.Light.DefaultHandle, SmSlotIndex, UseFlag ) ;
 }
 
-// ƒfƒBƒŒƒNƒVƒ‡ƒiƒ‹ƒ‰ƒCƒgƒnƒ“ƒhƒ‹‚ğì¬‚·‚é
+// ãƒ‡ã‚£ãƒ¬ã‚¯ã‚·ãƒ§ãƒŠãƒ«ãƒ©ã‚¤ãƒˆãƒãƒ³ãƒ‰ãƒ«ã‚’ä½œæˆã™ã‚‹
 extern int NS_CreateDirLightHandle( VECTOR Direction )
 {
 	int LHandle ;
 	LIGHT_HANDLE *pLH ;
 	float Length ;
 
-	// V‚µ‚¢ƒnƒ“ƒhƒ‹‚Ì’Ç‰Á
+	// æ–°ã—ã„ãƒãƒ³ãƒ‰ãƒ«ã®è¿½åŠ 
 	LHandle = Graphics_Light_AddHandle() ;
 	LIGHTCHK( LHandle, pLH, -1 ) ;
 
-	// ƒ^ƒCƒv‚ğƒZƒbƒg
+	// ã‚¿ã‚¤ãƒ—ã‚’ã‚»ãƒƒãƒˆ
 	pLH->Param.LightType = DX_LIGHTTYPE_D3DLIGHT_DIRECTIONAL ;
 
-	// Œü‚«‚ğƒZƒbƒg
+	// å‘ãã‚’ã‚»ãƒƒãƒˆ
 	Length = _SQRT( VectorInnerProduct( &Direction, &Direction ) ) ;
 	Direction.x /= Length ;
 	Direction.y /= Length ;
 	Direction.z /= Length ;
 	pLH->Param.Direction = Direction ;
 
-	// ƒnƒ“ƒhƒ‹‚ğ•Ô‚·
+	// ãƒãƒ³ãƒ‰ãƒ«ã‚’è¿”ã™
 	return LHandle ;
 }
 
-// ƒXƒ|ƒbƒgƒ‰ƒCƒgƒnƒ“ƒhƒ‹‚ğì¬‚·‚é
+// ã‚¹ãƒãƒƒãƒˆãƒ©ã‚¤ãƒˆãƒãƒ³ãƒ‰ãƒ«ã‚’ä½œæˆã™ã‚‹
 extern int NS_CreateSpotLightHandle( VECTOR Position, VECTOR Direction, float OutAngle, float InAngle/*, float Falloff*/, float Range, float Atten0, float Atten1, float Atten2 )
 {
 	float Falloff = 1.0f ;
 	int LHandle ;
 	LIGHT_HANDLE *pLH ;
 
-	// V‚µ‚¢ƒnƒ“ƒhƒ‹‚Ì’Ç‰Á
+	// æ–°ã—ã„ãƒãƒ³ãƒ‰ãƒ«ã®è¿½åŠ 
 	LHandle = Graphics_Light_AddHandle() ;
 	LIGHTCHK( LHandle, pLH, -1 ) ;
 
-	// ƒ^ƒCƒv‚ğƒZƒbƒg
+	// ã‚¿ã‚¤ãƒ—ã‚’ã‚»ãƒƒãƒˆ
 	pLH->Param.LightType = DX_LIGHTTYPE_D3DLIGHT_SPOT ;
 
-	// ƒpƒ‰ƒ[ƒ^‚ğƒZƒbƒg
+	// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆ
 	pLH->Param.Position = Position ;
 	pLH->Param.Direction = Direction ;
 	pLH->Param.Phi = OutAngle ;
@@ -25690,46 +25690,46 @@ extern int NS_CreateSpotLightHandle( VECTOR Position, VECTOR Direction, float Ou
 	pLH->Param.Attenuation1 = Atten1 ;
 	pLH->Param.Attenuation2 = Atten2 ;
 
-	// ƒnƒ“ƒhƒ‹‚ğ•Ô‚·
+	// ãƒãƒ³ãƒ‰ãƒ«ã‚’è¿”ã™
 	return LHandle ;
 }
 
-// ƒ|ƒCƒ“ƒgƒ‰ƒCƒgƒnƒ“ƒhƒ‹‚ğì¬‚·‚é
+// ãƒã‚¤ãƒ³ãƒˆãƒ©ã‚¤ãƒˆãƒãƒ³ãƒ‰ãƒ«ã‚’ä½œæˆã™ã‚‹
 extern int NS_CreatePointLightHandle( VECTOR Position, float Range, float Atten0, float Atten1, float Atten2 )
 {
 	int LHandle ;
 	LIGHT_HANDLE *pLH ;
 
-	// V‚µ‚¢ƒnƒ“ƒhƒ‹‚Ì’Ç‰Á
+	// æ–°ã—ã„ãƒãƒ³ãƒ‰ãƒ«ã®è¿½åŠ 
 	LHandle = Graphics_Light_AddHandle() ;
 	LIGHTCHK( LHandle, pLH, -1 ) ;
 
-	// ƒ^ƒCƒv‚ğƒZƒbƒg
+	// ã‚¿ã‚¤ãƒ—ã‚’ã‚»ãƒƒãƒˆ
 	pLH->Param.LightType = DX_LIGHTTYPE_D3DLIGHT_POINT ;
 
-	// ƒpƒ‰ƒ[ƒ^‚ğƒZƒbƒg
+	// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆ
 	pLH->Param.Position = Position ;
 	pLH->Param.Range = Range ;
 	pLH->Param.Attenuation0 = Atten0 ;
 	pLH->Param.Attenuation1 = Atten1 ;
 	pLH->Param.Attenuation2 = Atten2 ;
 
-	// ƒnƒ“ƒhƒ‹‚ğ•Ô‚·
+	// ãƒãƒ³ãƒ‰ãƒ«ã‚’è¿”ã™
 	return LHandle ;
 }
 
-// ƒ‰ƒCƒgƒnƒ“ƒhƒ‹‚ğíœ‚·‚é
+// ãƒ©ã‚¤ãƒˆãƒãƒ³ãƒ‰ãƒ«ã‚’å‰Šé™¤ã™ã‚‹
 extern int NS_DeleteLightHandle( int LHandle )
 {
 	LIGHT_HANDLE *pLH ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	LIGHTCHK( LHandle, pLH, -1 ) ;
 
-	// ƒ‰ƒCƒgƒnƒ“ƒhƒ‹‚Ì‘”‚ğŒ¸‚ç‚·
+	// ãƒ©ã‚¤ãƒˆãƒãƒ³ãƒ‰ãƒ«ã®ç·æ•°ã‚’æ¸›ã‚‰ã™
 	GSYS.Light.Num -- ;
 
-	// —LŒø‚Èƒ‰ƒCƒgƒnƒ“ƒhƒ‹‚ª‘¶İ‚·‚é”ÍˆÍ‚ÌXV
+	// æœ‰åŠ¹ãªãƒ©ã‚¤ãƒˆãƒãƒ³ãƒ‰ãƒ«ãŒå­˜åœ¨ã™ã‚‹ç¯„å›²ã®æ›´æ–°
 	if( ( LHandle & DX_HANDLEINDEX_MASK ) == GSYS.Light.Area - 1 )
 	{
 		if( GSYS.Light.Num == 0 )
@@ -25743,29 +25743,29 @@ extern int NS_DeleteLightHandle( int LHandle )
 		}
 	}
 
-	// ƒf[ƒ^—Ìˆæ‚ğ‰ğ•ú‚·‚é
+	// ãƒ‡ãƒ¼ã‚¿é ˜åŸŸã‚’è§£æ”¾ã™ã‚‹
 	DXFREE( pLH ) ;
 
-	// ƒe[ƒuƒ‹‚É NULL ‚ğƒZƒbƒg‚·‚é
+	// ãƒ†ãƒ¼ãƒ–ãƒ«ã« NULL ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 	GSYS.Light.Data[ LHandle & DX_HANDLEINDEX_MASK ] = NULL ;
 
-	// •ÏXƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// å¤‰æ›´ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	GSYS.Light.HardwareChange = TRUE ;
 
-	// İ’è‚ª•ÏX‚³‚ê‚½‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// è¨­å®šãŒå¤‰æ›´ã•ã‚ŒãŸã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	GSYS.ChangeSettingFlag = TRUE ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒ‰ƒCƒgƒnƒ“ƒhƒ‹‚ğ‘S‚Äíœ‚·‚é
+// ãƒ©ã‚¤ãƒˆãƒãƒ³ãƒ‰ãƒ«ã‚’å…¨ã¦å‰Šé™¤ã™ã‚‹
 extern int NS_DeleteLightHandleAll( void )
 {
 	int i ;
 	LIGHT_HANDLE **ppLH ;
 
-	// •W€ƒ‰ƒCƒgˆÈŠO‚Ì‚·‚×‚Ä‚Ìƒ‰ƒCƒgƒf[ƒ^‚ğíœ‚·‚é
+	// æ¨™æº–ãƒ©ã‚¤ãƒˆä»¥å¤–ã®ã™ã¹ã¦ã®ãƒ©ã‚¤ãƒˆãƒ‡ãƒ¼ã‚¿ã‚’å‰Šé™¤ã™ã‚‹
 	ppLH = GSYS.Light.Data ;
 	for( i = 0 ; i < GSYS.Light.Area ; i ++, ppLH ++ )
 	{
@@ -25773,188 +25773,188 @@ extern int NS_DeleteLightHandleAll( void )
 			NS_DeleteLightHandle( ( *ppLH )->Handle ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒ‰ƒCƒgƒnƒ“ƒhƒ‹‚Ìƒ‰ƒCƒg‚Ìƒ^ƒCƒv‚ğ•ÏX‚·‚é( DX_LIGHTTYPE_DIRECTIONAL “™ )
+// ãƒ©ã‚¤ãƒˆãƒãƒ³ãƒ‰ãƒ«ã®ãƒ©ã‚¤ãƒˆã®ã‚¿ã‚¤ãƒ—ã‚’å¤‰æ›´ã™ã‚‹( DX_LIGHTTYPE_DIRECTIONAL ç­‰ )
 extern int NS_SetLightTypeHandle( int LHandle, int LightType )
 {
 	LIGHT_HANDLE *pLH ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	LIGHTCHK( LHandle, pLH, -1 ) ;
 
-	// ƒ‰ƒCƒgƒ^ƒCƒv‚ª•s³‚¾‚Á‚½ê‡‚ÍƒGƒ‰[
+	// ãƒ©ã‚¤ãƒˆã‚¿ã‚¤ãƒ—ãŒä¸æ­£ã ã£ãŸå ´åˆã¯ã‚¨ãƒ©ãƒ¼
 	if( LightType != DX_LIGHTTYPE_DIRECTIONAL &&
 		LightType != DX_LIGHTTYPE_SPOT &&
 		LightType != DX_LIGHTTYPE_POINT )
 		return -1 ;
 
-	// ƒ^ƒCƒv‚ğƒZƒbƒg
+	// ã‚¿ã‚¤ãƒ—ã‚’ã‚»ãƒƒãƒˆ
 	pLH->Param.LightType = LightType ;
 
-	// •ÏXƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// å¤‰æ›´ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	pLH->HardwareChangeFlag = TRUE ;
 	GSYS.Light.HardwareChange = TRUE ;
 
-	// İ’è‚ª•ÏX‚³‚ê‚½‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// è¨­å®šãŒå¤‰æ›´ã•ã‚ŒãŸã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	GSYS.ChangeSettingFlag = TRUE ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒ‰ƒCƒgƒnƒ“ƒhƒ‹‚Ìƒ‰ƒCƒg‚Ì—LŒøA–³Œø‚ğİ’è‚·‚é( TRUE:—LŒø  FALSE:–³Œø )
+// ãƒ©ã‚¤ãƒˆãƒãƒ³ãƒ‰ãƒ«ã®ãƒ©ã‚¤ãƒˆã®æœ‰åŠ¹ã€ç„¡åŠ¹ã‚’è¨­å®šã™ã‚‹( TRUE:æœ‰åŠ¹  FALSE:ç„¡åŠ¹ )
 extern int NS_SetLightEnableHandle( int LHandle, int EnableFlag )
 {
 	LIGHT_HANDLE *pLH ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	LIGHTCHK( LHandle, pLH, -1 ) ;
 
-	// ¡‚Ü‚Å‚Æ“¯‚¶ê‡‚Í‰½‚à‚¹‚¸‚ÉI—¹
+	// ä»Šã¾ã§ã¨åŒã˜å ´åˆã¯ä½•ã‚‚ã›ãšã«çµ‚äº†
 	if( pLH->EnableFlag == EnableFlag )
 		return 0 ;
 
-	// ƒtƒ‰ƒO‚ğ•Û‘¶
+	// ãƒ•ãƒ©ã‚°ã‚’ä¿å­˜
 	pLH->EnableFlag = EnableFlag ;
 	if( EnableFlag == FALSE )
 	{
 		pLH->SetHardwareIndex = -1 ;
 	}
 
-	// •ÏXƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// å¤‰æ›´ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	pLH->HardwareChangeFlag = TRUE ;
 	GSYS.Light.HardwareChange = TRUE ;
 
-	// İ’è‚ª•ÏX‚³‚ê‚½‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// è¨­å®šãŒå¤‰æ›´ã•ã‚ŒãŸã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	GSYS.ChangeSettingFlag = TRUE ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒ‰ƒCƒgƒnƒ“ƒhƒ‹‚Ìƒ‰ƒCƒg‚ÌƒfƒBƒtƒ…[ƒYƒJƒ‰[‚ğİ’è‚·‚é
+// ãƒ©ã‚¤ãƒˆãƒãƒ³ãƒ‰ãƒ«ã®ãƒ©ã‚¤ãƒˆã®ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚«ãƒ©ãƒ¼ã‚’è¨­å®šã™ã‚‹
 extern int NS_SetLightDifColorHandle( int LHandle, COLOR_F Color )
 {
 	LIGHT_HANDLE *pLH ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	LIGHTCHK( LHandle, pLH, -1 ) ;
 
 	Color.a = 0.0f ;
 	pLH->Param.Diffuse = Color ;
 
-	// •ÏXƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// å¤‰æ›´ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	pLH->HardwareChangeFlag = TRUE ;
 	GSYS.Light.HardwareChange = TRUE ;
 
-	// İ’è‚ª•ÏX‚³‚ê‚½‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// è¨­å®šãŒå¤‰æ›´ã•ã‚ŒãŸã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	GSYS.ChangeSettingFlag = TRUE ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒ‰ƒCƒgƒnƒ“ƒhƒ‹‚Ìƒ‰ƒCƒg‚ÌƒXƒyƒLƒ…ƒ‰ƒJƒ‰[‚ğİ’è‚·‚é
+// ãƒ©ã‚¤ãƒˆãƒãƒ³ãƒ‰ãƒ«ã®ãƒ©ã‚¤ãƒˆã®ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã‚«ãƒ©ãƒ¼ã‚’è¨­å®šã™ã‚‹
 extern int NS_SetLightSpcColorHandle( int LHandle, COLOR_F Color )
 {
 	LIGHT_HANDLE *pLH ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	LIGHTCHK( LHandle, pLH, -1 ) ;
 
 	Color.a = 0.0f ;
 	pLH->Param.Specular = Color ;
 
-	// •ÏXƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// å¤‰æ›´ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	pLH->HardwareChangeFlag = TRUE ;
 	GSYS.Light.HardwareChange = TRUE ;
 
-	// İ’è‚ª•ÏX‚³‚ê‚½‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// è¨­å®šãŒå¤‰æ›´ã•ã‚ŒãŸã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	GSYS.ChangeSettingFlag = TRUE ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒ‰ƒCƒgƒnƒ“ƒhƒ‹‚Ìƒ‰ƒCƒg‚ÌƒAƒ“ƒrƒGƒ“ƒgƒJƒ‰[‚ğİ’è‚·‚é
+// ãƒ©ã‚¤ãƒˆãƒãƒ³ãƒ‰ãƒ«ã®ãƒ©ã‚¤ãƒˆã®ã‚¢ãƒ³ãƒ“ã‚¨ãƒ³ãƒˆã‚«ãƒ©ãƒ¼ã‚’è¨­å®šã™ã‚‹
 extern int NS_SetLightAmbColorHandle( int LHandle, COLOR_F Color )
 {
 	LIGHT_HANDLE *pLH ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	LIGHTCHK( LHandle, pLH, -1 ) ;
 
 	Color.a = 0.0f ;
 	pLH->Param.Ambient = Color ;
 
-	// •ÏXƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// å¤‰æ›´ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	pLH->HardwareChangeFlag = TRUE ;
 	GSYS.Light.HardwareChange = TRUE ;
 
-	// İ’è‚ª•ÏX‚³‚ê‚½‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// è¨­å®šãŒå¤‰æ›´ã•ã‚ŒãŸã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	GSYS.ChangeSettingFlag = TRUE ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒ‰ƒCƒgƒnƒ“ƒhƒ‹‚Ìƒ‰ƒCƒg‚Ì•ûŒü‚ğİ’è‚·‚é
+// ãƒ©ã‚¤ãƒˆãƒãƒ³ãƒ‰ãƒ«ã®ãƒ©ã‚¤ãƒˆã®æ–¹å‘ã‚’è¨­å®šã™ã‚‹
 extern int NS_SetLightDirectionHandle( int LHandle, VECTOR Direction )
 {
 	LIGHT_HANDLE *pLH ;
 	float Length ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	LIGHTCHK( LHandle, pLH, -1 ) ;
 
-	// Œü‚«‚ğ•Û‘¶‚·‚é
+	// å‘ãã‚’ä¿å­˜ã™ã‚‹
 	Length = _SQRT( VectorInnerProduct( &Direction, &Direction ) ) ;
 	Direction.x /= Length ;
 	Direction.y /= Length ;
 	Direction.z /= Length ;
 	pLH->Param.Direction = Direction ;
 
-	// •ÏXƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// å¤‰æ›´ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	pLH->HardwareChangeFlag = TRUE ;
 	GSYS.Light.HardwareChange = TRUE ;
 
-	// İ’è‚ª•ÏX‚³‚ê‚½‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// è¨­å®šãŒå¤‰æ›´ã•ã‚ŒãŸã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	GSYS.ChangeSettingFlag = TRUE ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒ‰ƒCƒgƒnƒ“ƒhƒ‹‚Ìƒ‰ƒCƒg‚ÌˆÊ’u‚ğİ’è‚·‚é
+// ãƒ©ã‚¤ãƒˆãƒãƒ³ãƒ‰ãƒ«ã®ãƒ©ã‚¤ãƒˆã®ä½ç½®ã‚’è¨­å®šã™ã‚‹
 extern int NS_SetLightPositionHandle( int LHandle, VECTOR Position )
 {
 	LIGHT_HANDLE *pLH ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	LIGHTCHK( LHandle, pLH, -1 ) ;
 
 	pLH->Param.Position = Position ;
 
-	// •ÏXƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// å¤‰æ›´ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	pLH->HardwareChangeFlag = TRUE ;
 	GSYS.Light.HardwareChange = TRUE ;
 
-	// İ’è‚ª•ÏX‚³‚ê‚½‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// è¨­å®šãŒå¤‰æ›´ã•ã‚ŒãŸã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	GSYS.ChangeSettingFlag = TRUE ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒ‰ƒCƒgƒnƒ“ƒhƒ‹‚Ìƒ‰ƒCƒg‚Ì‹——£Œ¸Šƒpƒ‰ƒ[ƒ^‚ğİ’è‚·‚é( —LŒø‹——£A‹——£Œ¸ŠŒW”‚OA‚PA‚Q )
+// ãƒ©ã‚¤ãƒˆãƒãƒ³ãƒ‰ãƒ«ã®ãƒ©ã‚¤ãƒˆã®è·é›¢æ¸›è¡°ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’è¨­å®šã™ã‚‹( æœ‰åŠ¹è·é›¢ã€è·é›¢æ¸›è¡°ä¿‚æ•°ï¼ã€ï¼‘ã€ï¼’ )
 extern int NS_SetLightRangeAttenHandle( int LHandle, float Range, float Atten0, float Atten1, float Atten2 )
 {
 	LIGHT_HANDLE *pLH ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	LIGHTCHK( LHandle, pLH, -1 ) ;
 
 	pLH->Param.Range = Range ;
@@ -25962,162 +25962,162 @@ extern int NS_SetLightRangeAttenHandle( int LHandle, float Range, float Atten0, 
 	pLH->Param.Attenuation1 = Atten1 ;
 	pLH->Param.Attenuation2 = Atten2 ;
 
-	// •ÏXƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// å¤‰æ›´ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	pLH->HardwareChangeFlag = TRUE ;
 	GSYS.Light.HardwareChange = TRUE ;
 
-	// İ’è‚ª•ÏX‚³‚ê‚½‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// è¨­å®šãŒå¤‰æ›´ã•ã‚ŒãŸã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	GSYS.ChangeSettingFlag = TRUE ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒ‰ƒCƒgƒnƒ“ƒhƒ‹‚Ìƒ‰ƒCƒg‚ÌƒXƒ|ƒbƒgƒ‰ƒCƒg‚Ìƒpƒ‰ƒ[ƒ^‚ğİ’è‚·‚é( ŠO•”ƒR[ƒ“Šp“xA“à•”ƒR[ƒ“Šp“xAƒtƒH[ƒ‹ƒIƒt( 1.0f ‚ğ„§ ) )
+// ãƒ©ã‚¤ãƒˆãƒãƒ³ãƒ‰ãƒ«ã®ãƒ©ã‚¤ãƒˆã®ã‚¹ãƒãƒƒãƒˆãƒ©ã‚¤ãƒˆã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’è¨­å®šã™ã‚‹( å¤–éƒ¨ã‚³ãƒ¼ãƒ³è§’åº¦ã€å†…éƒ¨ã‚³ãƒ¼ãƒ³è§’åº¦ã€ãƒ•ã‚©ãƒ¼ãƒ«ã‚ªãƒ•( 1.0f ã‚’æ¨å¥¨ ) )
 extern int NS_SetLightAngleHandle( int LHandle, float OutAngle, float InAngle /*, float Falloff */ )
 {
 	LIGHT_HANDLE *pLH ;
 	float Falloff = 1.0f ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	LIGHTCHK( LHandle, pLH, -1 ) ;
 
 	pLH->Param.Phi = OutAngle ;
 	pLH->Param.Theta = InAngle ;
 	pLH->Param.Falloff = Falloff ;
 
-	// •ÏXƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// å¤‰æ›´ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	pLH->HardwareChangeFlag = TRUE ;
 	GSYS.Light.HardwareChange = TRUE ;
 
-	// İ’è‚ª•ÏX‚³‚ê‚½‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// è¨­å®šãŒå¤‰æ›´ã•ã‚ŒãŸã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	GSYS.ChangeSettingFlag = TRUE ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒ‰ƒCƒgƒnƒ“ƒhƒ‹‚Ìƒ‰ƒCƒg‚É SetUseShadowMap ‚Åw’è‚µ‚½ƒVƒƒƒhƒEƒ}ƒbƒv‚ğ“K—p‚·‚é‚©‚Ç‚¤‚©‚ğİ’è‚·‚é
-// ( SmSlotIndex:ƒVƒƒƒhƒEƒ}ƒbƒvƒXƒƒbƒg( SetUseShadowMap ‚Ì‘æˆêˆø”‚Éİ’è‚·‚é’l )
-//   UseFlag:“K—p‚É‚·‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO( TRUE:“K—p‚·‚é( ƒfƒtƒHƒ‹ƒg )  FALSE:“K—p‚µ‚È‚¢ ) )
+// ãƒ©ã‚¤ãƒˆãƒãƒ³ãƒ‰ãƒ«ã®ãƒ©ã‚¤ãƒˆã« SetUseShadowMap ã§æŒ‡å®šã—ãŸã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ã‚’é©ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹
+// ( SmSlotIndex:ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ã‚¹ãƒ­ãƒƒãƒˆ( SetUseShadowMap ã®ç¬¬ä¸€å¼•æ•°ã«è¨­å®šã™ã‚‹å€¤ )
+//   UseFlag:é©ç”¨ã«ã™ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°( TRUE:é©ç”¨ã™ã‚‹( ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ )  FALSE:é©ç”¨ã—ãªã„ ) )
 extern int NS_SetLightUseShadowMapHandle( int LHandle, int SmSlotIndex, int UseFlag )
 {
 	LIGHT_HANDLE *pLH ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	LIGHTCHK( LHandle, pLH, -1 ) ;
 
-	// ƒGƒ‰[ƒ`ƒFƒbƒN
+	// ã‚¨ãƒ©ãƒ¼ãƒã‚§ãƒƒã‚¯
 	if( SmSlotIndex < 0 || SmSlotIndex >= MAX_USE_SHADOWMAP_NUM )
 	{
 		return -1 ;
 	}
 
-	// ƒtƒ‰ƒOƒZƒbƒg
+	// ãƒ•ãƒ©ã‚°ã‚»ãƒƒãƒˆ
 	pLH->ShadowMapSlotDisableFlag[ SmSlotIndex ] = UseFlag == FALSE ? TRUE : FALSE ;
 
-	// •ÏXƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// å¤‰æ›´ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	pLH->HardwareChangeFlag = TRUE ;
 	GSYS.Light.HardwareChange = TRUE ;
 
-	// İ’è‚ª•ÏX‚³‚ê‚½‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// è¨­å®šãŒå¤‰æ›´ã•ã‚ŒãŸã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	GSYS.ChangeSettingFlag = TRUE ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒ‰ƒCƒgƒnƒ“ƒhƒ‹‚Ìƒ‰ƒCƒg‚Ìƒ^ƒCƒv‚ğæ“¾‚·‚é( –ß‚è’l‚Í DX_LIGHTTYPE_DIRECTIONAL “™ )
+// ãƒ©ã‚¤ãƒˆãƒãƒ³ãƒ‰ãƒ«ã®ãƒ©ã‚¤ãƒˆã®ã‚¿ã‚¤ãƒ—ã‚’å–å¾—ã™ã‚‹( æˆ»ã‚Šå€¤ã¯ DX_LIGHTTYPE_DIRECTIONAL ç­‰ )
 extern int NS_GetLightTypeHandle( int LHandle )
 {
 	LIGHT_HANDLE *pLH ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	LIGHTCHK( LHandle, pLH, -1 ) ;
 
 	return pLH->Param.LightType ;
 }
 
-// ƒ‰ƒCƒgƒnƒ“ƒhƒ‹‚Ìƒ‰ƒCƒgŒø‰Ê‚Ì—LŒøA–³Œø‚ğæ“¾‚·‚é( TRUE:—LŒø  FALSE:–³Œø )
+// ãƒ©ã‚¤ãƒˆãƒãƒ³ãƒ‰ãƒ«ã®ãƒ©ã‚¤ãƒˆåŠ¹æœã®æœ‰åŠ¹ã€ç„¡åŠ¹ã‚’å–å¾—ã™ã‚‹( TRUE:æœ‰åŠ¹  FALSE:ç„¡åŠ¹ )
 extern int NS_GetLightEnableHandle( int LHandle )
 {
 	LIGHT_HANDLE *pLH ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	LIGHTCHK( LHandle, pLH, -1 ) ;
 
 	return pLH->EnableFlag ;
 }
 
-// ƒ‰ƒCƒgƒnƒ“ƒhƒ‹‚Ìƒ‰ƒCƒg‚ÌƒfƒBƒtƒ…[ƒYƒJƒ‰[‚ğæ“¾‚·‚é
+// ãƒ©ã‚¤ãƒˆãƒãƒ³ãƒ‰ãƒ«ã®ãƒ©ã‚¤ãƒˆã®ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚«ãƒ©ãƒ¼ã‚’å–å¾—ã™ã‚‹
 extern COLOR_F NS_GetLightDifColorHandle( int LHandle )
 {
 	COLOR_F ErrorResult = { -1.0f, -1.0f, -1.0f, -1.0f } ;
 	LIGHT_HANDLE *pLH ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	LIGHTCHK( LHandle, pLH, ErrorResult ) ;
 
-	// F‚ğ•Ô‚·
+	// è‰²ã‚’è¿”ã™
 	return pLH->Param.Diffuse ;
 }
 
-// ƒ‰ƒCƒgƒnƒ“ƒhƒ‹‚Ìƒ‰ƒCƒg‚ÌƒXƒyƒLƒ…ƒ‰ƒJƒ‰[‚ğæ“¾‚·‚é
+// ãƒ©ã‚¤ãƒˆãƒãƒ³ãƒ‰ãƒ«ã®ãƒ©ã‚¤ãƒˆã®ã‚¹ãƒšã‚­ãƒ¥ãƒ©ã‚«ãƒ©ãƒ¼ã‚’å–å¾—ã™ã‚‹
 extern COLOR_F NS_GetLightSpcColorHandle( int LHandle )
 {
 	COLOR_F ErrorResult = { -1.0f, -1.0f, -1.0f, -1.0f } ;
 	LIGHT_HANDLE *pLH ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	LIGHTCHK( LHandle, pLH, ErrorResult ) ;
 
-	// F‚ğ•Ô‚·
+	// è‰²ã‚’è¿”ã™
 	return pLH->Param.Specular ;
 }
 
-// ƒ‰ƒCƒgƒnƒ“ƒhƒ‹‚Ìƒ‰ƒCƒg‚ÌƒAƒ“ƒrƒGƒ“ƒgƒJƒ‰[‚ğæ“¾‚·‚é
+// ãƒ©ã‚¤ãƒˆãƒãƒ³ãƒ‰ãƒ«ã®ãƒ©ã‚¤ãƒˆã®ã‚¢ãƒ³ãƒ“ã‚¨ãƒ³ãƒˆã‚«ãƒ©ãƒ¼ã‚’å–å¾—ã™ã‚‹
 extern COLOR_F NS_GetLightAmbColorHandle( int LHandle )
 {
 	COLOR_F ErrorResult = { -1.0f, -1.0f, -1.0f, -1.0f } ;
 	LIGHT_HANDLE *pLH ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	LIGHTCHK( LHandle, pLH, ErrorResult ) ;
 
-	// F‚ğ•Ô‚·
+	// è‰²ã‚’è¿”ã™
 	return pLH->Param.Ambient ;
 }
 
-// ƒ‰ƒCƒgƒnƒ“ƒhƒ‹‚Ìƒ‰ƒCƒg‚Ì•ûŒü‚ğæ“¾‚·‚é
+// ãƒ©ã‚¤ãƒˆãƒãƒ³ãƒ‰ãƒ«ã®ãƒ©ã‚¤ãƒˆã®æ–¹å‘ã‚’å–å¾—ã™ã‚‹
 extern VECTOR NS_GetLightDirectionHandle( int LHandle )
 {
 	LIGHT_HANDLE *pLH ;
 	VECTOR ErrorResult = { -1.0f, -1.0f, -1.0f } ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	LIGHTCHK( LHandle, pLH, ErrorResult ) ;
 
 	return pLH->Param.Direction ;
 }
 
-// ƒ‰ƒCƒgƒnƒ“ƒhƒ‹‚Ìƒ‰ƒCƒg‚ÌˆÊ’u‚ğæ“¾‚·‚é
+// ãƒ©ã‚¤ãƒˆãƒãƒ³ãƒ‰ãƒ«ã®ãƒ©ã‚¤ãƒˆã®ä½ç½®ã‚’å–å¾—ã™ã‚‹
 extern VECTOR NS_GetLightPositionHandle( int LHandle )
 {
 	LIGHT_HANDLE *pLH ;
 	VECTOR ErrorResult = { -1.0f, -1.0f, -1.0f } ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	LIGHTCHK( LHandle, pLH, ErrorResult ) ;
 
 	return pLH->Param.Position ;
 }
 
-// ƒ‰ƒCƒgƒnƒ“ƒhƒ‹‚Ìƒ‰ƒCƒg‚Ì‹——£Œ¸Šƒpƒ‰ƒ[ƒ^‚ğæ“¾‚·‚é( —LŒø‹——£A‹——£Œ¸ŠŒW”‚OA‚PA‚Q )
+// ãƒ©ã‚¤ãƒˆãƒãƒ³ãƒ‰ãƒ«ã®ãƒ©ã‚¤ãƒˆã®è·é›¢æ¸›è¡°ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’å–å¾—ã™ã‚‹( æœ‰åŠ¹è·é›¢ã€è·é›¢æ¸›è¡°ä¿‚æ•°ï¼ã€ï¼‘ã€ï¼’ )
 extern int NS_GetLightRangeAttenHandle( int LHandle, float *Range, float *Atten0, float *Atten1, float *Atten2 )
 {
 	LIGHT_HANDLE *pLH ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	LIGHTCHK( LHandle, pLH, -1 ) ;
 
 	if( Range ) *Range = pLH->Param.Range ;
@@ -26125,57 +26125,57 @@ extern int NS_GetLightRangeAttenHandle( int LHandle, float *Range, float *Atten0
 	if( Atten1 ) *Atten1 = pLH->Param.Attenuation1 ;
 	if( Atten2 ) *Atten2 = pLH->Param.Attenuation2 ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒ‰ƒCƒgƒnƒ“ƒhƒ‹‚Ìƒ‰ƒCƒg‚ÌƒXƒ|ƒbƒgƒ‰ƒCƒg‚Ìƒpƒ‰ƒ[ƒ^‚ğæ“¾‚·‚é( ŠO•”ƒR[ƒ“Šp“xA“à•”ƒR[ƒ“Šp“xAƒtƒH[ƒ‹ƒIƒt )
+// ãƒ©ã‚¤ãƒˆãƒãƒ³ãƒ‰ãƒ«ã®ãƒ©ã‚¤ãƒˆã®ã‚¹ãƒãƒƒãƒˆãƒ©ã‚¤ãƒˆã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’å–å¾—ã™ã‚‹( å¤–éƒ¨ã‚³ãƒ¼ãƒ³è§’åº¦ã€å†…éƒ¨ã‚³ãƒ¼ãƒ³è§’åº¦ã€ãƒ•ã‚©ãƒ¼ãƒ«ã‚ªãƒ• )
 extern int NS_GetLightAngleHandle( int LHandle, float *OutAngle, float *InAngle /*, float *Falloff */ )
 {
 	LIGHT_HANDLE *pLH ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	LIGHTCHK( LHandle, pLH, -1 ) ;
 
 	if( OutAngle ) *OutAngle = pLH->Param.Phi ;
 	if( InAngle  ) *InAngle  = pLH->Param.Theta ;
 //	if( Falloff  ) *Falloff  = pLH->Param.Falloff ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// —LŒø‚É‚È‚Á‚Ä‚¢‚éƒ‰ƒCƒgƒnƒ“ƒhƒ‹‚Ì”‚ğæ“¾‚·‚é
+// æœ‰åŠ¹ã«ãªã£ã¦ã„ã‚‹ãƒ©ã‚¤ãƒˆãƒãƒ³ãƒ‰ãƒ«ã®æ•°ã‚’å–å¾—ã™ã‚‹
 extern int NS_GetEnableLightHandleNum( void )
 {
-	// XVƒtƒ‰ƒO‚ª—§‚Á‚Ä‚¢‚½‚çî•ñ‚ğXV‚·‚é
+	// æ›´æ–°ãƒ•ãƒ©ã‚°ãŒç«‹ã£ã¦ã„ãŸã‚‰æƒ…å ±ã‚’æ›´æ–°ã™ã‚‹
 	if( GSYS.Light.HardwareChange )
 	{
 		Graphics_Light_RefreshState() ;
 	}
 
-	// —LŒø‚É‚È‚Á‚Ä‚¢‚éƒ‰ƒCƒgƒnƒ“ƒhƒ‹‚Ì”‚ğ•Ô‚·
+	// æœ‰åŠ¹ã«ãªã£ã¦ã„ã‚‹ãƒ©ã‚¤ãƒˆãƒãƒ³ãƒ‰ãƒ«ã®æ•°ã‚’è¿”ã™
 	return GSYS.Light.EnableNum ;
 }
 
-// —LŒø‚É‚È‚Á‚Ä‚¢‚éƒ‰ƒCƒgƒnƒ“ƒhƒ‹‚ğæ“¾‚·‚é
+// æœ‰åŠ¹ã«ãªã£ã¦ã„ã‚‹ãƒ©ã‚¤ãƒˆãƒãƒ³ãƒ‰ãƒ«ã‚’å–å¾—ã™ã‚‹
 extern int NS_GetEnableLightHandle( int Index )
 {
-	// ƒCƒ“ƒfƒbƒNƒXƒ`ƒFƒbƒN
+	// ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒã‚§ãƒƒã‚¯
 	if( Index < 0 || Index >= MAX_HARDWAREENABLELIGHTINDEX_NUM )
 		return -1 ;
 
-	// XVƒtƒ‰ƒO‚ª—§‚Á‚Ä‚¢‚½‚çî•ñ‚ğXV‚·‚é
+	// æ›´æ–°ãƒ•ãƒ©ã‚°ãŒç«‹ã£ã¦ã„ãŸã‚‰æƒ…å ±ã‚’æ›´æ–°ã™ã‚‹
 	if( GSYS.Light.HardwareChange )
 	{
 		Graphics_Light_RefreshState() ;
 	}
 
-	// ”ÍˆÍŠO‚Ìê‡‚ÍƒGƒ‰[
+	// ç¯„å›²å¤–ã®å ´åˆã¯ã‚¨ãƒ©ãƒ¼
 	if( Index >= GSYS.Light.EnableNum )
 		return -1 ;
 
-	// ƒnƒ“ƒhƒ‹’l‚ğ•Ô‚·
+	// ãƒãƒ³ãƒ‰ãƒ«å€¤ã‚’è¿”ã™
 	return GSYS.Light.Data[ GSYS.Light.EnableHardwareIndex[ Index ] ]->Handle ;
 }
 
@@ -26203,9 +26203,9 @@ extern int NS_GetEnableLightHandle( int Index )
 
 
 
-// Fî•ñæ“¾—pŠÖ”
+// è‰²æƒ…å ±å–å¾—ç”¨é–¢æ•°
 
-// ƒeƒNƒXƒ`ƒƒƒtƒH[ƒ}ƒbƒg‚ÌƒCƒ“ƒfƒbƒNƒX‚ğ“¾‚é
+// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’å¾—ã‚‹
 extern int NS_GetTexFormatIndex( const IMAGEFORMATDESC *Format )
 {
 	int Result = DX_GRAPHICSIMAGE_FORMAT_3D_ALPHA_RGB32 ;
@@ -26590,7 +26590,7 @@ extern int NS_GetTexFormatIndex( const IMAGEFORMATDESC *Format )
 
 #ifdef WINDOWS_DESKTOP_OS
 
-// Fî•ñ‰ğÍ
+// è‰²æƒ…å ±è§£æ
 extern int NS_ColorKaiseki( const void *PixelData, LPCOLORDATA ColorData )
 {
 	D_DDPIXELFORMAT *PData = ( D_DDPIXELFORMAT * )PixelData ;
@@ -26602,15 +26602,15 @@ extern int NS_ColorKaiseki( const void *PixelData, LPCOLORDATA ColorData )
 	unsigned char *ColorWidthBuf[ 5 ] ;
 	unsigned char *ColorLocBuf[ 5 ] ;
 
-	// ƒrƒbƒgƒfƒvƒX‚ğ•Û‘¶
+	// ãƒ“ãƒƒãƒˆãƒ‡ãƒ—ã‚¹ã‚’ä¿å­˜
 	ColorData->ColorBitDepth = ( unsigned char )PData->dwRGBBitCount ;
 
-	// ƒsƒNƒZƒ‹‚ ‚½‚è‚ÌƒoƒCƒg”‚ğ•Û‘¶
+	// ãƒ”ã‚¯ã‚»ãƒ«ã‚ãŸã‚Šã®ãƒã‚¤ãƒˆæ•°ã‚’ä¿å­˜
 	ColorData->PixelByte = ( unsigned char )( ColorData->ColorBitDepth / 8 ) ;
 
-	// Fî•ñ‚ğ‰ğÍ‚·‚é
+	// è‰²æƒ…å ±ã‚’è§£æã™ã‚‹
 	{
-		// ƒJƒ‰[ƒ}ƒXƒNî•ñ‚ğ“¾‚é€”õ‚ğ‚·‚é
+		// ã‚«ãƒ©ãƒ¼ãƒã‚¹ã‚¯æƒ…å ±ã‚’å¾—ã‚‹æº–å‚™ã‚’ã™ã‚‹
 		ColorData->RedMask		= PData->dwRBitMask;
 		ColorMaskBuf[ 0 ]		= ColorData->RedMask ;
 		ColorWidthBuf[ 0 ]		= &ColorData->RedWidth ;
@@ -26639,10 +26639,10 @@ extern int NS_ColorKaiseki( const void *PixelData, LPCOLORDATA ColorData )
 		ColorLocBuf[ 4 ]		= &ColorData->NoneLoc ;
 	}
 
-	// F‚Ì‰ğÍŠJn
+	// è‰²ã®è§£æé–‹å§‹
  	for( j = 0 ; j < 5 ; j ++ )
 	{
-		// ƒJƒ‰[ƒ}ƒXƒN‚ğæ“¾
+		// ã‚«ãƒ©ãƒ¼ãƒã‚¹ã‚¯ã‚’å–å¾—
 		ColorMask = ColorMaskBuf[ j ] ;
 
 		if( ColorMask == 0 )
@@ -26652,14 +26652,14 @@ extern int NS_ColorKaiseki( const void *PixelData, LPCOLORDATA ColorData )
 			continue ;
 		}
 
-		// ƒJƒ‰[î•ñ‚Ìæ“ªƒrƒbƒg‚Ü‚Å‚Ìƒrƒbƒg”‚Æƒrƒbƒg•‚Ì‰Šú‰»
+		// ã‚«ãƒ©ãƒ¼æƒ…å ±ã®å…ˆé ­ãƒ“ãƒƒãƒˆã¾ã§ã®ãƒ“ãƒƒãƒˆæ•°ã¨ãƒ“ãƒƒãƒˆå¹…ã®åˆæœŸåŒ–
 		ColorLoc = 0 ;
 		ColorWidth = 0 ;
 
-		// ƒJƒ‰[î•ñ‚Ì‚ ‚éæ“ªƒrƒbƒg‚Ü‚Å‚Ìƒrƒbƒg”‚ğ‰ğÍ
+		// ã‚«ãƒ©ãƒ¼æƒ…å ±ã®ã‚ã‚‹å…ˆé ­ãƒ“ãƒƒãƒˆã¾ã§ã®ãƒ“ãƒƒãƒˆæ•°ã‚’è§£æ
 		for( i = 0 ; i < 32 ; i ++ )
 		{
-			// æ“ªƒrƒbƒg‚É“’B‚µ‚È‚¢ŠÔ‚ÍŒJ‚è•Ô‚·
+			// å…ˆé ­ãƒ“ãƒƒãƒˆã«åˆ°é”ã—ãªã„é–“ã¯ç¹°ã‚Šè¿”ã™
 			if( ColorMask & 1 )
 			{	
 				ColorLoc = i ;
@@ -26667,13 +26667,13 @@ extern int NS_ColorKaiseki( const void *PixelData, LPCOLORDATA ColorData )
 			}
 			ColorMask >>= 1 ;
 		}
-		// ‚à‚µƒJƒ‰[î•ñ‚ª‚È‚¯‚ê‚ÎˆÙíI—¹
+		// ã‚‚ã—ã‚«ãƒ©ãƒ¼æƒ…å ±ãŒãªã‘ã‚Œã°ç•°å¸¸çµ‚äº†
 		if( i == 32 ) return -1 ;
 
-		// ƒJƒ‰[î•ñ‚Ìƒrƒbƒg•‚ğ’²‚×‚é
+		// ã‚«ãƒ©ãƒ¼æƒ…å ±ã®ãƒ“ãƒƒãƒˆå¹…ã‚’èª¿ã¹ã‚‹
 		for( i = 0 ; i < 32 ; i ++ )
 		{
-			// ƒrƒbƒg‚ª“rØ‚ê‚È‚¢ŠÔŒJ‚è•Ô‚·
+			// ãƒ“ãƒƒãƒˆãŒé€”åˆ‡ã‚Œãªã„é–“ç¹°ã‚Šè¿”ã™
 			if( !( ColorMask & 1 ) ) 
 			{
 				ColorWidth = i ;
@@ -26682,15 +26682,15 @@ extern int NS_ColorKaiseki( const void *PixelData, LPCOLORDATA ColorData )
 			ColorMask >>= 1 ;
 		}
 
-		// ‰ğÍŒ‹‰Ê‚ğ•Û‘¶‚·‚é
+		// è§£æçµæœã‚’ä¿å­˜ã™ã‚‹
 		*ColorLocBuf[ j ] = ( unsigned char )ColorLoc ;
 		*ColorWidthBuf[ j ] = ( unsigned char )ColorWidth ;
 	}
 
-	// ‚È‚ñ‚Ì‹@”\‚àŠ„‚è•t‚¯‚ç‚ê‚Ä‚¢‚È‚¢ƒrƒbƒg‚Ìƒ}ƒXƒN‚ğƒZƒbƒg‚·‚é
+	// ãªã‚“ã®æ©Ÿèƒ½ã‚‚å‰²ã‚Šä»˜ã‘ã‚‰ã‚Œã¦ã„ãªã„ãƒ“ãƒƒãƒˆã®ãƒã‚¹ã‚¯ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 //	NS_SetColorDataNoneMask( ColorData ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
@@ -26716,100 +26716,100 @@ extern int NS_ColorKaiseki( const void *PixelData, LPCOLORDATA ColorData )
 
 
 
-// •¶š—ñ•`‰æŠÖ”
+// æ–‡å­—åˆ—æç”»é–¢æ•°
 
 #ifndef DX_NON_FONT
 
-// ‚yƒoƒbƒtƒ@‚É‘Î‚µ‚Ä•¶š—ñ‚Ì•`‰æ
-extern int NS_DrawStringToZBuffer( int x, int y, const TCHAR *String, int WriteZMode /* DX_ZWRITE_MASK “™ */ )
+// ï¼ºãƒãƒƒãƒ•ã‚¡ã«å¯¾ã—ã¦æ–‡å­—åˆ—ã®æç”»
+extern int NS_DrawStringToZBuffer( int x, int y, const TCHAR *String, int WriteZMode /* DX_ZWRITE_MASK ç­‰ */ )
 {
 	DrawZBuffer_Pre( WriteZMode );
 	NS_DrawString(  x,  y, String,  GetColor( 255,255,255 ),  GetColor( 0,0,0 ) );
 	DrawZBuffer_Post();
 
-	// I—¹
+	// çµ‚äº†
 	return 0;
 }
 
-// ‚yƒoƒbƒtƒ@‚É‘Î‚µ‚Ä•¶š—ñ‚Ì•`‰æ
-extern int NS_DrawNStringToZBuffer( int x, int y, const TCHAR *String, size_t StringLength, int WriteZMode /* DX_ZWRITE_MASK “™ */ )
+// ï¼ºãƒãƒƒãƒ•ã‚¡ã«å¯¾ã—ã¦æ–‡å­—åˆ—ã®æç”»
+extern int NS_DrawNStringToZBuffer( int x, int y, const TCHAR *String, size_t StringLength, int WriteZMode /* DX_ZWRITE_MASK ç­‰ */ )
 {
 	DrawZBuffer_Pre( WriteZMode );
 	NS_DrawNString(  x,  y, String, StringLength, GetColor( 255,255,255 ),  GetColor( 0,0,0 ) );
 	DrawZBuffer_Post();
 
-	// I—¹
+	// çµ‚äº†
 	return 0;
 }
 
-// ‚yƒoƒbƒtƒ@‚É‘Î‚µ‚Ä•¶š—ñ‚Ì•`‰æ
-extern int NS_DrawVStringToZBuffer( int x, int y, const TCHAR *String, int WriteZMode /* DX_ZWRITE_MASK “™ */ )
+// ï¼ºãƒãƒƒãƒ•ã‚¡ã«å¯¾ã—ã¦æ–‡å­—åˆ—ã®æç”»
+extern int NS_DrawVStringToZBuffer( int x, int y, const TCHAR *String, int WriteZMode /* DX_ZWRITE_MASK ç­‰ */ )
 {
 	DrawZBuffer_Pre( WriteZMode );
 	NS_DrawVString(  x,  y, String,  GetColor( 255,255,255 ),  GetColor( 0,0,0 ) );
 	DrawZBuffer_Post();
 
-	// I—¹
+	// çµ‚äº†
 	return 0;
 }
 
-// ‚yƒoƒbƒtƒ@‚É‘Î‚µ‚Ä•¶š—ñ‚Ì•`‰æ
-extern int NS_DrawNVStringToZBuffer( int x, int y, const TCHAR *String, size_t StringLength, int WriteZMode /* DX_ZWRITE_MASK “™ */ )
+// ï¼ºãƒãƒƒãƒ•ã‚¡ã«å¯¾ã—ã¦æ–‡å­—åˆ—ã®æç”»
+extern int NS_DrawNVStringToZBuffer( int x, int y, const TCHAR *String, size_t StringLength, int WriteZMode /* DX_ZWRITE_MASK ç­‰ */ )
 {
 	DrawZBuffer_Pre( WriteZMode );
 	NS_DrawNVString(  x,  y, String, StringLength,  GetColor( 255,255,255 ),  GetColor( 0,0,0 ) );
 	DrawZBuffer_Post();
 
-	// I—¹
+	// çµ‚äº†
 	return 0;
 }
 
-// ‚yƒoƒbƒtƒ@‚É‘Î‚µ‚Ä•¶š—ñ‚ğ•`‰æ‚·‚é
-extern int NS_DrawStringToHandleToZBuffer( int x, int y, const TCHAR *String, int FontHandle, int WriteZMode /* DX_ZWRITE_MASK “™ */ , int VerticalFlag )
+// ï¼ºãƒãƒƒãƒ•ã‚¡ã«å¯¾ã—ã¦æ–‡å­—åˆ—ã‚’æç”»ã™ã‚‹
+extern int NS_DrawStringToHandleToZBuffer( int x, int y, const TCHAR *String, int FontHandle, int WriteZMode /* DX_ZWRITE_MASK ç­‰ */ , int VerticalFlag )
 {
 	DrawZBuffer_Pre( WriteZMode );
 	NS_DrawStringToHandle(  x,  y, String,  GetColor( 255,255,255 ),  FontHandle,  GetColor( 0,0,0 ) ,  VerticalFlag );
 	DrawZBuffer_Post();
 
-	// I—¹
+	// çµ‚äº†
 	return 0;
 }
 
-// ‚yƒoƒbƒtƒ@‚É‘Î‚µ‚Ä•¶š—ñ‚ğ•`‰æ‚·‚é
-extern int NS_DrawNStringToHandleToZBuffer( int x, int y, const TCHAR *String, size_t StringLength, int FontHandle, int WriteZMode /* DX_ZWRITE_MASK “™ */ , int VerticalFlag )
+// ï¼ºãƒãƒƒãƒ•ã‚¡ã«å¯¾ã—ã¦æ–‡å­—åˆ—ã‚’æç”»ã™ã‚‹
+extern int NS_DrawNStringToHandleToZBuffer( int x, int y, const TCHAR *String, size_t StringLength, int FontHandle, int WriteZMode /* DX_ZWRITE_MASK ç­‰ */ , int VerticalFlag )
 {
 	DrawZBuffer_Pre( WriteZMode );
 	NS_DrawNStringToHandle(  x,  y, String, StringLength,  GetColor( 255,255,255 ),  FontHandle,  GetColor( 0,0,0 ) ,  VerticalFlag );
 	DrawZBuffer_Post();
 
-	// I—¹
+	// çµ‚äº†
 	return 0;
 }
 
-// ‚yƒoƒbƒtƒ@‚É‘Î‚µ‚Ä•¶š—ñ‚ğ•`‰æ‚·‚é
-extern int NS_DrawVStringToHandleToZBuffer( int x, int y, const TCHAR *String, int FontHandle, int WriteZMode /* DX_ZWRITE_MASK “™ */ )
+// ï¼ºãƒãƒƒãƒ•ã‚¡ã«å¯¾ã—ã¦æ–‡å­—åˆ—ã‚’æç”»ã™ã‚‹
+extern int NS_DrawVStringToHandleToZBuffer( int x, int y, const TCHAR *String, int FontHandle, int WriteZMode /* DX_ZWRITE_MASK ç­‰ */ )
 {
 	DrawZBuffer_Pre( WriteZMode );
 	NS_DrawVStringToHandle(  x,  y, String,  GetColor( 255,255,255 ),  FontHandle,  GetColor( 0,0,0 ) );
 	DrawZBuffer_Post();
 
-	// I—¹
+	// çµ‚äº†
 	return 0;
 }
 
-// ‚yƒoƒbƒtƒ@‚É‘Î‚µ‚Ä•¶š—ñ‚ğ•`‰æ‚·‚é
-extern int NS_DrawNVStringToHandleToZBuffer( int x, int y, const TCHAR *String, size_t StringLength, int FontHandle, int WriteZMode /* DX_ZWRITE_MASK “™ */ )
+// ï¼ºãƒãƒƒãƒ•ã‚¡ã«å¯¾ã—ã¦æ–‡å­—åˆ—ã‚’æç”»ã™ã‚‹
+extern int NS_DrawNVStringToHandleToZBuffer( int x, int y, const TCHAR *String, size_t StringLength, int FontHandle, int WriteZMode /* DX_ZWRITE_MASK ç­‰ */ )
 {
 	DrawZBuffer_Pre( WriteZMode );
 	NS_DrawNVStringToHandle(  x,  y, String, StringLength,  GetColor( 255,255,255 ),  FontHandle,  GetColor( 0,0,0 ) );
 	DrawZBuffer_Post();
 
-	// I—¹
+	// çµ‚äº†
 	return 0;
 }
 
-// ‚yƒoƒbƒtƒ@‚É‘Î‚µ‚Ä‘®w’è•¶š—ñ‚ğ•`‰æ‚·‚é
-extern int NS_DrawFormatStringToZBuffer( int x, int y, int WriteZMode /* DX_ZWRITE_MASK “™ */, const TCHAR *FormatString, ... )
+// ï¼ºãƒãƒƒãƒ•ã‚¡ã«å¯¾ã—ã¦æ›¸å¼æŒ‡å®šæ–‡å­—åˆ—ã‚’æç”»ã™ã‚‹
+extern int NS_DrawFormatStringToZBuffer( int x, int y, int WriteZMode /* DX_ZWRITE_MASK ç­‰ */, const TCHAR *FormatString, ... )
 {
 	va_list VaList ;
 	TCHAR String[ 2048 ] ;
@@ -26822,12 +26822,12 @@ extern int NS_DrawFormatStringToZBuffer( int x, int y, int WriteZMode /* DX_ZWRI
 	NS_DrawString(  x,  y, String,  GetColor( 255,255,255 ), 0 );
 	DrawZBuffer_Post();
 
-	// I—¹
+	// çµ‚äº†
 	return 0;
 }
 
-// ‚yƒoƒbƒtƒ@‚É‘Î‚µ‚Ä‘®w’è•¶š—ñ‚ğ•`‰æ‚·‚é
-extern int NS_DrawFormatVStringToZBuffer( int x, int y, int WriteZMode /* DX_ZWRITE_MASK “™ */, const TCHAR *FormatString, ... )
+// ï¼ºãƒãƒƒãƒ•ã‚¡ã«å¯¾ã—ã¦æ›¸å¼æŒ‡å®šæ–‡å­—åˆ—ã‚’æç”»ã™ã‚‹
+extern int NS_DrawFormatVStringToZBuffer( int x, int y, int WriteZMode /* DX_ZWRITE_MASK ç­‰ */, const TCHAR *FormatString, ... )
 {
 	va_list VaList ;
 	TCHAR String[ 2048 ] ;
@@ -26840,12 +26840,12 @@ extern int NS_DrawFormatVStringToZBuffer( int x, int y, int WriteZMode /* DX_ZWR
 	NS_DrawVString(  x,  y, String,  GetColor( 255,255,255 ), 0 );
 	DrawZBuffer_Post();
 
-	// I—¹
+	// çµ‚äº†
 	return 0;
 }
 
-// ‚yƒoƒbƒtƒ@‚É‘Î‚µ‚Ä‘®w’è•¶š—ñ‚ğ•`‰æ‚·‚é
-extern int NS_DrawFormatStringToHandleToZBuffer( int x, int y, int FontHandle, int WriteZMode /* DX_ZWRITE_MASK “™ */, const TCHAR *FormatString, ... )
+// ï¼ºãƒãƒƒãƒ•ã‚¡ã«å¯¾ã—ã¦æ›¸å¼æŒ‡å®šæ–‡å­—åˆ—ã‚’æç”»ã™ã‚‹
+extern int NS_DrawFormatStringToHandleToZBuffer( int x, int y, int FontHandle, int WriteZMode /* DX_ZWRITE_MASK ç­‰ */, const TCHAR *FormatString, ... )
 {
 	va_list VaList ;
 	TCHAR String[ 2048 ] ;
@@ -26858,12 +26858,12 @@ extern int NS_DrawFormatStringToHandleToZBuffer( int x, int y, int FontHandle, i
 	NS_DrawStringToHandle(  x,  y, String,  GetColor( 255,255,255 ), FontHandle, 0, FALSE );
 	DrawZBuffer_Post();
 
-	// I—¹
+	// çµ‚äº†
 	return 0;
 }
 
-// ‚yƒoƒbƒtƒ@‚É‘Î‚µ‚Ä‘®w’è•¶š—ñ‚ğ•`‰æ‚·‚é
-extern int NS_DrawFormatVStringToHandleToZBuffer( int x, int y, int FontHandle, int WriteZMode /* DX_ZWRITE_MASK “™ */, const TCHAR *FormatString, ... )
+// ï¼ºãƒãƒƒãƒ•ã‚¡ã«å¯¾ã—ã¦æ›¸å¼æŒ‡å®šæ–‡å­—åˆ—ã‚’æç”»ã™ã‚‹
+extern int NS_DrawFormatVStringToHandleToZBuffer( int x, int y, int FontHandle, int WriteZMode /* DX_ZWRITE_MASK ç­‰ */, const TCHAR *FormatString, ... )
 {
 	va_list VaList ;
 	TCHAR String[ 2048 ] ;
@@ -26876,100 +26876,100 @@ extern int NS_DrawFormatVStringToHandleToZBuffer( int x, int y, int FontHandle, 
 	NS_DrawVStringToHandle(  x,  y, String,  GetColor( 255,255,255 ), FontHandle, 0 );
 	DrawZBuffer_Post();
 
-	// I—¹
+	// çµ‚äº†
 	return 0;
 }
 
-// ‚yƒoƒbƒtƒ@‚É‘Î‚µ‚Ä•¶š—ñ‚ÌŠg‘å•`‰æ
-extern int NS_DrawExtendStringToZBuffer( int x, int y, double ExRateX, double ExRateY, const TCHAR *String, int WriteZMode /* DX_ZWRITE_MASK “™ */ )
+// ï¼ºãƒãƒƒãƒ•ã‚¡ã«å¯¾ã—ã¦æ–‡å­—åˆ—ã®æ‹¡å¤§æç”»
+extern int NS_DrawExtendStringToZBuffer( int x, int y, double ExRateX, double ExRateY, const TCHAR *String, int WriteZMode /* DX_ZWRITE_MASK ç­‰ */ )
 {
 	DrawZBuffer_Pre( WriteZMode );
 	NS_DrawExtendString(  x,  y,  ExRateX,  ExRateY, String,  GetColor( 255,255,255 ),  GetColor( 0,0,0 ) );
 	DrawZBuffer_Post();
 
-	// I—¹
+	// çµ‚äº†
 	return 0;
 }
 
-// ‚yƒoƒbƒtƒ@‚É‘Î‚µ‚Ä•¶š—ñ‚ÌŠg‘å•`‰æ
-extern int NS_DrawExtendNStringToZBuffer( int x, int y, double ExRateX, double ExRateY, const TCHAR *String, size_t StringLength, int WriteZMode /* DX_ZWRITE_MASK “™ */ )
+// ï¼ºãƒãƒƒãƒ•ã‚¡ã«å¯¾ã—ã¦æ–‡å­—åˆ—ã®æ‹¡å¤§æç”»
+extern int NS_DrawExtendNStringToZBuffer( int x, int y, double ExRateX, double ExRateY, const TCHAR *String, size_t StringLength, int WriteZMode /* DX_ZWRITE_MASK ç­‰ */ )
 {
 	DrawZBuffer_Pre( WriteZMode );
 	NS_DrawExtendNString(  x,  y,  ExRateX,  ExRateY, String, StringLength,  GetColor( 255,255,255 ),  GetColor( 0,0,0 ) );
 	DrawZBuffer_Post();
 
-	// I—¹
+	// çµ‚äº†
 	return 0;
 }
 
-// ‚yƒoƒbƒtƒ@‚É‘Î‚µ‚Ä•¶š—ñ‚ÌŠg‘å•`‰æ
-extern int NS_DrawExtendVStringToZBuffer( int x, int y, double ExRateX, double ExRateY, const TCHAR *String, int WriteZMode /* DX_ZWRITE_MASK “™ */ )
+// ï¼ºãƒãƒƒãƒ•ã‚¡ã«å¯¾ã—ã¦æ–‡å­—åˆ—ã®æ‹¡å¤§æç”»
+extern int NS_DrawExtendVStringToZBuffer( int x, int y, double ExRateX, double ExRateY, const TCHAR *String, int WriteZMode /* DX_ZWRITE_MASK ç­‰ */ )
 {
 	DrawZBuffer_Pre( WriteZMode );
 	NS_DrawExtendVString(  x,  y,  ExRateX,  ExRateY, String,  GetColor( 255,255,255 ),  GetColor( 0,0,0 ) );
 	DrawZBuffer_Post();
 
-	// I—¹
+	// çµ‚äº†
 	return 0;
 }
 
-// ‚yƒoƒbƒtƒ@‚É‘Î‚µ‚Ä•¶š—ñ‚ÌŠg‘å•`‰æ
-extern int NS_DrawExtendNVStringToZBuffer( int x, int y, double ExRateX, double ExRateY, const TCHAR *String, size_t StringLength, int WriteZMode /* DX_ZWRITE_MASK “™ */ )
+// ï¼ºãƒãƒƒãƒ•ã‚¡ã«å¯¾ã—ã¦æ–‡å­—åˆ—ã®æ‹¡å¤§æç”»
+extern int NS_DrawExtendNVStringToZBuffer( int x, int y, double ExRateX, double ExRateY, const TCHAR *String, size_t StringLength, int WriteZMode /* DX_ZWRITE_MASK ç­‰ */ )
 {
 	DrawZBuffer_Pre( WriteZMode );
 	NS_DrawExtendNVString(  x,  y,  ExRateX,  ExRateY, String, StringLength,  GetColor( 255,255,255 ),  GetColor( 0,0,0 ) );
 	DrawZBuffer_Post();
 
-	// I—¹
+	// çµ‚äº†
 	return 0;
 }
 
-// ‚yƒoƒbƒtƒ@‚É‘Î‚µ‚Ä•¶š—ñ‚ğŠg‘å•`‰æ‚·‚é
-extern int NS_DrawExtendStringToHandleToZBuffer( int x, int y, double ExRateX, double ExRateY, const TCHAR *String, int FontHandle, int WriteZMode /* DX_ZWRITE_MASK “™ */ , int VerticalFlag )
+// ï¼ºãƒãƒƒãƒ•ã‚¡ã«å¯¾ã—ã¦æ–‡å­—åˆ—ã‚’æ‹¡å¤§æç”»ã™ã‚‹
+extern int NS_DrawExtendStringToHandleToZBuffer( int x, int y, double ExRateX, double ExRateY, const TCHAR *String, int FontHandle, int WriteZMode /* DX_ZWRITE_MASK ç­‰ */ , int VerticalFlag )
 {
 	DrawZBuffer_Pre( WriteZMode );
 	NS_DrawExtendStringToHandle(  x,  y,  ExRateX,  ExRateY, String,  GetColor( 255,255,255 ),  FontHandle,  GetColor( 0,0,0 ) ,  VerticalFlag );
 	DrawZBuffer_Post();
 
-	// I—¹
+	// çµ‚äº†
 	return 0;
 }
 
-// ‚yƒoƒbƒtƒ@‚É‘Î‚µ‚Ä•¶š—ñ‚ğŠg‘å•`‰æ‚·‚é
-extern int NS_DrawExtendNStringToHandleToZBuffer( int x, int y, double ExRateX, double ExRateY, const TCHAR *String, size_t StringLength, int FontHandle, int WriteZMode /* DX_ZWRITE_MASK “™ */ , int VerticalFlag )
+// ï¼ºãƒãƒƒãƒ•ã‚¡ã«å¯¾ã—ã¦æ–‡å­—åˆ—ã‚’æ‹¡å¤§æç”»ã™ã‚‹
+extern int NS_DrawExtendNStringToHandleToZBuffer( int x, int y, double ExRateX, double ExRateY, const TCHAR *String, size_t StringLength, int FontHandle, int WriteZMode /* DX_ZWRITE_MASK ç­‰ */ , int VerticalFlag )
 {
 	DrawZBuffer_Pre( WriteZMode );
 	NS_DrawExtendNStringToHandle(  x,  y,  ExRateX,  ExRateY, String, StringLength,  GetColor( 255,255,255 ),  FontHandle,  GetColor( 0,0,0 ) ,  VerticalFlag );
 	DrawZBuffer_Post();
 
-	// I—¹
+	// çµ‚äº†
 	return 0;
 }
 
-// ‚yƒoƒbƒtƒ@‚É‘Î‚µ‚Ä•¶š—ñ‚ğŠg‘å•`‰æ‚·‚é
-extern int NS_DrawExtendVStringToHandleToZBuffer( int x, int y, double ExRateX, double ExRateY, const TCHAR *String, int FontHandle, int WriteZMode /* DX_ZWRITE_MASK “™ */ )
+// ï¼ºãƒãƒƒãƒ•ã‚¡ã«å¯¾ã—ã¦æ–‡å­—åˆ—ã‚’æ‹¡å¤§æç”»ã™ã‚‹
+extern int NS_DrawExtendVStringToHandleToZBuffer( int x, int y, double ExRateX, double ExRateY, const TCHAR *String, int FontHandle, int WriteZMode /* DX_ZWRITE_MASK ç­‰ */ )
 {
 	DrawZBuffer_Pre( WriteZMode );
 	NS_DrawExtendVStringToHandle(  x,  y,  ExRateX,  ExRateY, String,  GetColor( 255,255,255 ),  FontHandle,  GetColor( 0,0,0 ) );
 	DrawZBuffer_Post();
 
-	// I—¹
+	// çµ‚äº†
 	return 0;
 }
 
-// ‚yƒoƒbƒtƒ@‚É‘Î‚µ‚Ä•¶š—ñ‚ğŠg‘å•`‰æ‚·‚é
-extern int NS_DrawExtendNVStringToHandleToZBuffer( int x, int y, double ExRateX, double ExRateY, const TCHAR *String, size_t StringLength, int FontHandle, int WriteZMode /* DX_ZWRITE_MASK “™ */ )
+// ï¼ºãƒãƒƒãƒ•ã‚¡ã«å¯¾ã—ã¦æ–‡å­—åˆ—ã‚’æ‹¡å¤§æç”»ã™ã‚‹
+extern int NS_DrawExtendNVStringToHandleToZBuffer( int x, int y, double ExRateX, double ExRateY, const TCHAR *String, size_t StringLength, int FontHandle, int WriteZMode /* DX_ZWRITE_MASK ç­‰ */ )
 {
 	DrawZBuffer_Pre( WriteZMode );
 	NS_DrawExtendNVStringToHandle(  x,  y,  ExRateX,  ExRateY, String, StringLength,  GetColor( 255,255,255 ),  FontHandle,  GetColor( 0,0,0 ) );
 	DrawZBuffer_Post();
 
-	// I—¹
+	// çµ‚äº†
 	return 0;
 }
 
-// ‚yƒoƒbƒtƒ@‚É‘Î‚µ‚Ä‘®w’è•¶š—ñ‚ğŠg‘å•`‰æ‚·‚é
-extern int NS_DrawExtendFormatStringToZBuffer( int x, int y, double ExRateX, double ExRateY, int WriteZMode /* DX_ZWRITE_MASK “™ */, const TCHAR *FormatString, ... )
+// ï¼ºãƒãƒƒãƒ•ã‚¡ã«å¯¾ã—ã¦æ›¸å¼æŒ‡å®šæ–‡å­—åˆ—ã‚’æ‹¡å¤§æç”»ã™ã‚‹
+extern int NS_DrawExtendFormatStringToZBuffer( int x, int y, double ExRateX, double ExRateY, int WriteZMode /* DX_ZWRITE_MASK ç­‰ */, const TCHAR *FormatString, ... )
 {
 	va_list VaList ;
 	TCHAR String[ 2048 ] ;
@@ -26982,12 +26982,12 @@ extern int NS_DrawExtendFormatStringToZBuffer( int x, int y, double ExRateX, dou
 	NS_DrawExtendString(  x,  y, ExRateX, ExRateY, String,  GetColor( 255,255,255 ), 0 );
 	DrawZBuffer_Post();
 
-	// I—¹
+	// çµ‚äº†
 	return 0;
 }
 
-// ‚yƒoƒbƒtƒ@‚É‘Î‚µ‚Ä‘®w’è•¶š—ñ‚ğŠg‘å•`‰æ‚·‚é
-extern int NS_DrawExtendFormatVStringToZBuffer( int x, int y, double ExRateX, double ExRateY, int WriteZMode /* DX_ZWRITE_MASK “™ */, const TCHAR *FormatString, ... )
+// ï¼ºãƒãƒƒãƒ•ã‚¡ã«å¯¾ã—ã¦æ›¸å¼æŒ‡å®šæ–‡å­—åˆ—ã‚’æ‹¡å¤§æç”»ã™ã‚‹
+extern int NS_DrawExtendFormatVStringToZBuffer( int x, int y, double ExRateX, double ExRateY, int WriteZMode /* DX_ZWRITE_MASK ç­‰ */, const TCHAR *FormatString, ... )
 {
 	va_list VaList ;
 	TCHAR String[ 2048 ] ;
@@ -27000,12 +27000,12 @@ extern int NS_DrawExtendFormatVStringToZBuffer( int x, int y, double ExRateX, do
 	NS_DrawExtendVString(  x,  y, ExRateX, ExRateY, String,  GetColor( 255,255,255 ), 0 );
 	DrawZBuffer_Post();
 
-	// I—¹
+	// çµ‚äº†
 	return 0;
 }
 
-// ‚yƒoƒbƒtƒ@‚É‘Î‚µ‚Ä‘®w’è•¶š—ñ‚ğŠg‘å•`‰æ‚·‚é
-extern int NS_DrawExtendFormatStringToHandleToZBuffer( int x, int y, double ExRateX, double ExRateY, int FontHandle, int WriteZMode /* DX_ZWRITE_MASK “™ */, const TCHAR *FormatString, ... )
+// ï¼ºãƒãƒƒãƒ•ã‚¡ã«å¯¾ã—ã¦æ›¸å¼æŒ‡å®šæ–‡å­—åˆ—ã‚’æ‹¡å¤§æç”»ã™ã‚‹
+extern int NS_DrawExtendFormatStringToHandleToZBuffer( int x, int y, double ExRateX, double ExRateY, int FontHandle, int WriteZMode /* DX_ZWRITE_MASK ç­‰ */, const TCHAR *FormatString, ... )
 {
 	va_list VaList ;
 	TCHAR String[ 2048 ] ;
@@ -27018,12 +27018,12 @@ extern int NS_DrawExtendFormatStringToHandleToZBuffer( int x, int y, double ExRa
 	NS_DrawExtendStringToHandle(  x,  y, ExRateX, ExRateY, String,  GetColor( 255,255,255 ), FontHandle, 0, FALSE );
 	DrawZBuffer_Post();
 
-	// I—¹
+	// çµ‚äº†
 	return 0;
 }
 
-// ‚yƒoƒbƒtƒ@‚É‘Î‚µ‚Ä‘®w’è•¶š—ñ‚ğŠg‘å•`‰æ‚·‚é
-extern int NS_DrawExtendFormatVStringToHandleToZBuffer( int x, int y, double ExRateX, double ExRateY, int FontHandle, int WriteZMode /* DX_ZWRITE_MASK “™ */, const TCHAR *FormatString, ... )
+// ï¼ºãƒãƒƒãƒ•ã‚¡ã«å¯¾ã—ã¦æ›¸å¼æŒ‡å®šæ–‡å­—åˆ—ã‚’æ‹¡å¤§æç”»ã™ã‚‹
+extern int NS_DrawExtendFormatVStringToHandleToZBuffer( int x, int y, double ExRateX, double ExRateY, int FontHandle, int WriteZMode /* DX_ZWRITE_MASK ç­‰ */, const TCHAR *FormatString, ... )
 {
 	va_list VaList ;
 	TCHAR String[ 2048 ] ;
@@ -27036,56 +27036,56 @@ extern int NS_DrawExtendFormatVStringToHandleToZBuffer( int x, int y, double ExR
 	NS_DrawExtendVStringToHandle(  x,  y, ExRateX, ExRateY, String,  GetColor( 255,255,255 ), FontHandle, 0 );
 	DrawZBuffer_Post();
 
-	// I—¹
+	// çµ‚äº†
 	return 0;
 }
 
-// ƒfƒtƒHƒ‹ƒgƒtƒHƒ“ƒgƒnƒ“ƒhƒ‹‚ğg—p‚µ‚Ä‚yƒoƒbƒtƒ@‚É‘Î‚µ‚Ä•¶š—ñ‚ğ‰ñ“]•`‰æ‚·‚é
-extern int NS_DrawRotaStringToZBuffer( int x, int y, double ExRateX, double ExRateY, double RotCenterX, double RotCenterY, double RotAngle, int WriteZMode /* DX_ZWRITE_MASK “™ */ , int VerticalFlag , const TCHAR *String )
+// ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãƒ•ã‚©ãƒ³ãƒˆãƒãƒ³ãƒ‰ãƒ«ã‚’ä½¿ç”¨ã—ã¦ï¼ºãƒãƒƒãƒ•ã‚¡ã«å¯¾ã—ã¦æ–‡å­—åˆ—ã‚’å›è»¢æç”»ã™ã‚‹
+extern int NS_DrawRotaStringToZBuffer( int x, int y, double ExRateX, double ExRateY, double RotCenterX, double RotCenterY, double RotAngle, int WriteZMode /* DX_ZWRITE_MASK ç­‰ */ , int VerticalFlag , const TCHAR *String )
 {
 	DrawZBuffer_Pre( WriteZMode );
 	NS_DrawRotaString(  x,  y,  ExRateX,  ExRateY, RotCenterX, RotCenterY, RotAngle,  GetColor( 255,255,255 ), GetColor( 0,0,0 ), VerticalFlag, String ) ;
 	DrawZBuffer_Post();
 
-	// I—¹
+	// çµ‚äº†
 	return 0;
 }
 
-// ƒfƒtƒHƒ‹ƒgƒtƒHƒ“ƒgƒnƒ“ƒhƒ‹‚ğg—p‚µ‚Ä‚yƒoƒbƒtƒ@‚É‘Î‚µ‚Ä•¶š—ñ‚ğ‰ñ“]•`‰æ‚·‚é
-extern int NS_DrawRotaNStringToZBuffer( int x, int y, double ExRateX, double ExRateY, double RotCenterX, double RotCenterY, double RotAngle, int WriteZMode /* DX_ZWRITE_MASK “™ */ , int VerticalFlag , const TCHAR *String, size_t StringLength )
+// ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãƒ•ã‚©ãƒ³ãƒˆãƒãƒ³ãƒ‰ãƒ«ã‚’ä½¿ç”¨ã—ã¦ï¼ºãƒãƒƒãƒ•ã‚¡ã«å¯¾ã—ã¦æ–‡å­—åˆ—ã‚’å›è»¢æç”»ã™ã‚‹
+extern int NS_DrawRotaNStringToZBuffer( int x, int y, double ExRateX, double ExRateY, double RotCenterX, double RotCenterY, double RotAngle, int WriteZMode /* DX_ZWRITE_MASK ç­‰ */ , int VerticalFlag , const TCHAR *String, size_t StringLength )
 {
 	DrawZBuffer_Pre( WriteZMode );
 	NS_DrawRotaNString(  x,  y,  ExRateX,  ExRateY, RotCenterX, RotCenterY, RotAngle,  GetColor( 255,255,255 ), GetColor( 0,0,0 ), VerticalFlag, String, StringLength ) ;
 	DrawZBuffer_Post();
 
-	// I—¹
+	// çµ‚äº†
 	return 0;
 }
 
-// ƒtƒHƒ“ƒgƒnƒ“ƒhƒ‹‚ğg—p‚µ‚Ä‚yƒoƒbƒtƒ@‚É‘Î‚µ‚Ä•¶š—ñ‚ğ‰ñ“]•`‰æ‚·‚é
-extern int NS_DrawRotaStringToHandleToZBuffer( int x, int y, double ExRateX, double ExRateY, double RotCenterX, double RotCenterY, double RotAngle, int FontHandle, int WriteZMode /* DX_ZWRITE_MASK “™ */ , int VerticalFlag , const TCHAR *String )
+// ãƒ•ã‚©ãƒ³ãƒˆãƒãƒ³ãƒ‰ãƒ«ã‚’ä½¿ç”¨ã—ã¦ï¼ºãƒãƒƒãƒ•ã‚¡ã«å¯¾ã—ã¦æ–‡å­—åˆ—ã‚’å›è»¢æç”»ã™ã‚‹
+extern int NS_DrawRotaStringToHandleToZBuffer( int x, int y, double ExRateX, double ExRateY, double RotCenterX, double RotCenterY, double RotAngle, int FontHandle, int WriteZMode /* DX_ZWRITE_MASK ç­‰ */ , int VerticalFlag , const TCHAR *String )
 {
 	DrawZBuffer_Pre( WriteZMode );
 	NS_DrawRotaStringToHandle(  x,  y,  ExRateX,  ExRateY, RotCenterX, RotCenterY, RotAngle,  GetColor( 255,255,255 ), FontHandle, GetColor( 0,0,0 ), VerticalFlag, String ) ;
 	DrawZBuffer_Post();
 
-	// I—¹
+	// çµ‚äº†
 	return 0;
 }
 
-// ƒtƒHƒ“ƒgƒnƒ“ƒhƒ‹‚ğg—p‚µ‚Ä‚yƒoƒbƒtƒ@‚É‘Î‚µ‚Ä•¶š—ñ‚ğ‰ñ“]•`‰æ‚·‚é
-extern int NS_DrawRotaNStringToHandleToZBuffer( int x, int y, double ExRateX, double ExRateY, double RotCenterX, double RotCenterY, double RotAngle, int FontHandle, int WriteZMode /* DX_ZWRITE_MASK “™ */ , int VerticalFlag , const TCHAR *String, size_t StringLength )
+// ãƒ•ã‚©ãƒ³ãƒˆãƒãƒ³ãƒ‰ãƒ«ã‚’ä½¿ç”¨ã—ã¦ï¼ºãƒãƒƒãƒ•ã‚¡ã«å¯¾ã—ã¦æ–‡å­—åˆ—ã‚’å›è»¢æç”»ã™ã‚‹
+extern int NS_DrawRotaNStringToHandleToZBuffer( int x, int y, double ExRateX, double ExRateY, double RotCenterX, double RotCenterY, double RotAngle, int FontHandle, int WriteZMode /* DX_ZWRITE_MASK ç­‰ */ , int VerticalFlag , const TCHAR *String, size_t StringLength )
 {
 	DrawZBuffer_Pre( WriteZMode );
 	NS_DrawRotaNStringToHandle(  x,  y,  ExRateX,  ExRateY, RotCenterX, RotCenterY, RotAngle,  GetColor( 255,255,255 ), FontHandle, GetColor( 0,0,0 ), VerticalFlag, String, StringLength ) ;
 	DrawZBuffer_Post();
 
-	// I—¹
+	// çµ‚äº†
 	return 0;
 }
 
-// ƒfƒtƒHƒ‹ƒgƒtƒHƒ“ƒgƒnƒ“ƒhƒ‹‚ğg—p‚µ‚Ä‚yƒoƒbƒtƒ@‚É‘Î‚µ‚Ä‘®w’è•¶š—ñ‚ğ‰ñ“]•`‰æ‚·‚é
-extern int NS_DrawRotaFormatStringToZBuffer( int x, int y, double ExRateX, double ExRateY, double RotCenterX, double RotCenterY, double RotAngle, int WriteZMode /* DX_ZWRITE_MASK “™ */ , int VerticalFlag, const TCHAR *FormatString , ... )
+// ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãƒ•ã‚©ãƒ³ãƒˆãƒãƒ³ãƒ‰ãƒ«ã‚’ä½¿ç”¨ã—ã¦ï¼ºãƒãƒƒãƒ•ã‚¡ã«å¯¾ã—ã¦æ›¸å¼æŒ‡å®šæ–‡å­—åˆ—ã‚’å›è»¢æç”»ã™ã‚‹
+extern int NS_DrawRotaFormatStringToZBuffer( int x, int y, double ExRateX, double ExRateY, double RotCenterX, double RotCenterY, double RotAngle, int WriteZMode /* DX_ZWRITE_MASK ç­‰ */ , int VerticalFlag, const TCHAR *FormatString , ... )
 {
 	va_list VaList ;
 	TCHAR String[ 2048 ] ;
@@ -27098,12 +27098,12 @@ extern int NS_DrawRotaFormatStringToZBuffer( int x, int y, double ExRateX, doubl
 	NS_DrawRotaString(  x,  y,  ExRateX,  ExRateY, RotCenterX, RotCenterY, RotAngle,  GetColor( 255,255,255 ), GetColor( 0,0,0 ), VerticalFlag, String ) ;
 	DrawZBuffer_Post();
 
-	// I—¹
+	// çµ‚äº†
 	return 0;
 }
 
-// ƒtƒHƒ“ƒgƒnƒ“ƒhƒ‹‚ğg—p‚µ‚Ä‚yƒoƒbƒtƒ@‚É‘Î‚µ‚Ä‘®w’è•¶š—ñ‚ğ‰ñ“]•`‰æ‚·‚é
-extern int NS_DrawRotaFormatStringToHandleToZBuffer( int x, int y, double ExRateX, double ExRateY, double RotCenterX, double RotCenterY, double RotAngle, int FontHandle, int WriteZMode /* DX_ZWRITE_MASK “™ */ , int VerticalFlag, const TCHAR *FormatString, ... )
+// ãƒ•ã‚©ãƒ³ãƒˆãƒãƒ³ãƒ‰ãƒ«ã‚’ä½¿ç”¨ã—ã¦ï¼ºãƒãƒƒãƒ•ã‚¡ã«å¯¾ã—ã¦æ›¸å¼æŒ‡å®šæ–‡å­—åˆ—ã‚’å›è»¢æç”»ã™ã‚‹
+extern int NS_DrawRotaFormatStringToHandleToZBuffer( int x, int y, double ExRateX, double ExRateY, double RotCenterX, double RotCenterY, double RotAngle, int FontHandle, int WriteZMode /* DX_ZWRITE_MASK ç­‰ */ , int VerticalFlag, const TCHAR *FormatString, ... )
 {
 	va_list VaList ;
 	TCHAR String[ 2048 ] ;
@@ -27116,57 +27116,57 @@ extern int NS_DrawRotaFormatStringToHandleToZBuffer( int x, int y, double ExRate
 	NS_DrawRotaStringToHandle(  x,  y,  ExRateX,  ExRateY, RotCenterX, RotCenterY, RotAngle,  GetColor( 255,255,255 ), FontHandle, GetColor( 0,0,0 ), VerticalFlag, String ) ;
 	DrawZBuffer_Post();
 
-	// I—¹
+	// çµ‚äº†
 	return 0;
 }
 
 
-// ƒfƒtƒHƒ‹ƒgƒtƒHƒ“ƒgƒnƒ“ƒhƒ‹‚ğg—p‚µ‚Ä‚yƒoƒbƒtƒ@‚É‘Î‚µ‚Ä•¶š—ñ‚ğ•ÏŒ`•`‰æ‚·‚é
-extern int NS_DrawModiStringToZBuffer( int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4, int WriteZMode /* DX_ZWRITE_MASK “™ */ , int VerticalFlag , const TCHAR *String )
+// ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãƒ•ã‚©ãƒ³ãƒˆãƒãƒ³ãƒ‰ãƒ«ã‚’ä½¿ç”¨ã—ã¦ï¼ºãƒãƒƒãƒ•ã‚¡ã«å¯¾ã—ã¦æ–‡å­—åˆ—ã‚’å¤‰å½¢æç”»ã™ã‚‹
+extern int NS_DrawModiStringToZBuffer( int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4, int WriteZMode /* DX_ZWRITE_MASK ç­‰ */ , int VerticalFlag , const TCHAR *String )
 {
 	DrawZBuffer_Pre( WriteZMode );
 	NS_DrawModiString( x1, y1, x2, y2, x3, y3, x4, y4,  GetColor( 255,255,255 ), GetColor( 0,0,0 ), VerticalFlag, String ) ;
 	DrawZBuffer_Post();
 
-	// I—¹
+	// çµ‚äº†
 	return 0;
 }
 
-// ƒfƒtƒHƒ‹ƒgƒtƒHƒ“ƒgƒnƒ“ƒhƒ‹‚ğg—p‚µ‚Ä‚yƒoƒbƒtƒ@‚É‘Î‚µ‚Ä•¶š—ñ‚ğ•ÏŒ`•`‰æ‚·‚é
-extern int NS_DrawModiNStringToZBuffer( int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4, int WriteZMode /* DX_ZWRITE_MASK “™ */ , int VerticalFlag , const TCHAR *String, size_t StringLength )
+// ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãƒ•ã‚©ãƒ³ãƒˆãƒãƒ³ãƒ‰ãƒ«ã‚’ä½¿ç”¨ã—ã¦ï¼ºãƒãƒƒãƒ•ã‚¡ã«å¯¾ã—ã¦æ–‡å­—åˆ—ã‚’å¤‰å½¢æç”»ã™ã‚‹
+extern int NS_DrawModiNStringToZBuffer( int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4, int WriteZMode /* DX_ZWRITE_MASK ç­‰ */ , int VerticalFlag , const TCHAR *String, size_t StringLength )
 {
 	DrawZBuffer_Pre( WriteZMode );
 	NS_DrawModiNString( x1, y1, x2, y2, x3, y3, x4, y4,  GetColor( 255,255,255 ), GetColor( 0,0,0 ), VerticalFlag, String, StringLength ) ;
 	DrawZBuffer_Post();
 
-	// I—¹
+	// çµ‚äº†
 	return 0;
 }
 
-// ƒtƒHƒ“ƒgƒnƒ“ƒhƒ‹‚ğg—p‚µ‚Ä‚yƒoƒbƒtƒ@‚É‘Î‚µ‚Ä•¶š—ñ‚ğ•ÏŒ`•`‰æ‚·‚é
-extern int NS_DrawModiStringToHandleToZBuffer( int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4, int FontHandle, int WriteZMode /* DX_ZWRITE_MASK “™ */ , int VerticalFlag , const TCHAR *String )
+// ãƒ•ã‚©ãƒ³ãƒˆãƒãƒ³ãƒ‰ãƒ«ã‚’ä½¿ç”¨ã—ã¦ï¼ºãƒãƒƒãƒ•ã‚¡ã«å¯¾ã—ã¦æ–‡å­—åˆ—ã‚’å¤‰å½¢æç”»ã™ã‚‹
+extern int NS_DrawModiStringToHandleToZBuffer( int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4, int FontHandle, int WriteZMode /* DX_ZWRITE_MASK ç­‰ */ , int VerticalFlag , const TCHAR *String )
 {
 	DrawZBuffer_Pre( WriteZMode );
 	NS_DrawModiStringToHandle(  x1, y1, x2, y2, x3, y3, x4, y4,  GetColor( 255,255,255 ), FontHandle, GetColor( 0,0,0 ), VerticalFlag, String ) ;
 	DrawZBuffer_Post();
 
-	// I—¹
+	// çµ‚äº†
 	return 0;
 }
 
-// ƒtƒHƒ“ƒgƒnƒ“ƒhƒ‹‚ğg—p‚µ‚Ä‚yƒoƒbƒtƒ@‚É‘Î‚µ‚Ä•¶š—ñ‚ğ•ÏŒ`•`‰æ‚·‚é
-extern int NS_DrawModiNStringToHandleToZBuffer( int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4, int FontHandle, int WriteZMode /* DX_ZWRITE_MASK “™ */ , int VerticalFlag , const TCHAR *String, size_t StringLength )
+// ãƒ•ã‚©ãƒ³ãƒˆãƒãƒ³ãƒ‰ãƒ«ã‚’ä½¿ç”¨ã—ã¦ï¼ºãƒãƒƒãƒ•ã‚¡ã«å¯¾ã—ã¦æ–‡å­—åˆ—ã‚’å¤‰å½¢æç”»ã™ã‚‹
+extern int NS_DrawModiNStringToHandleToZBuffer( int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4, int FontHandle, int WriteZMode /* DX_ZWRITE_MASK ç­‰ */ , int VerticalFlag , const TCHAR *String, size_t StringLength )
 {
 	DrawZBuffer_Pre( WriteZMode );
 	NS_DrawModiNStringToHandle(  x1, y1, x2, y2, x3, y3, x4, y4,  GetColor( 255,255,255 ), FontHandle, GetColor( 0,0,0 ), VerticalFlag, String, StringLength ) ;
 	DrawZBuffer_Post();
 
-	// I—¹
+	// çµ‚äº†
 	return 0;
 }
 
-// ƒfƒtƒHƒ‹ƒgƒtƒHƒ“ƒgƒnƒ“ƒhƒ‹‚ğg—p‚µ‚Ä‚yƒoƒbƒtƒ@‚É‘Î‚µ‚Ä‘®w’è•¶š—ñ‚ğ•ÏŒ`•`‰æ‚·‚é
-extern int NS_DrawModiFormatStringToZBuffer( int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4, int WriteZMode /* DX_ZWRITE_MASK “™ */ , int VerticalFlag, const TCHAR *FormatString , ... )
+// ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãƒ•ã‚©ãƒ³ãƒˆãƒãƒ³ãƒ‰ãƒ«ã‚’ä½¿ç”¨ã—ã¦ï¼ºãƒãƒƒãƒ•ã‚¡ã«å¯¾ã—ã¦æ›¸å¼æŒ‡å®šæ–‡å­—åˆ—ã‚’å¤‰å½¢æç”»ã™ã‚‹
+extern int NS_DrawModiFormatStringToZBuffer( int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4, int WriteZMode /* DX_ZWRITE_MASK ç­‰ */ , int VerticalFlag, const TCHAR *FormatString , ... )
 {
 	va_list VaList ;
 	TCHAR String[ 2048 ] ;
@@ -27179,12 +27179,12 @@ extern int NS_DrawModiFormatStringToZBuffer( int x1, int y1, int x2, int y2, int
 	NS_DrawModiString(  x1, y1, x2, y2, x3, y3, x4, y4,  GetColor( 255,255,255 ), GetColor( 0,0,0 ), VerticalFlag, String ) ;
 	DrawZBuffer_Post();
 
-	// I—¹
+	// çµ‚äº†
 	return 0;
 }
 
-// ƒtƒHƒ“ƒgƒnƒ“ƒhƒ‹‚ğg—p‚µ‚Ä‚yƒoƒbƒtƒ@‚É‘Î‚µ‚Ä‘®w’è•¶š—ñ‚ğ•ÏŒ`•`‰æ‚·‚é
-extern int NS_DrawModiFormatStringToHandleToZBuffer( int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4, int FontHandle, int WriteZMode /* DX_ZWRITE_MASK “™ */ , int VerticalFlag, const TCHAR *FormatString, ... )
+// ãƒ•ã‚©ãƒ³ãƒˆãƒãƒ³ãƒ‰ãƒ«ã‚’ä½¿ç”¨ã—ã¦ï¼ºãƒãƒƒãƒ•ã‚¡ã«å¯¾ã—ã¦æ›¸å¼æŒ‡å®šæ–‡å­—åˆ—ã‚’å¤‰å½¢æç”»ã™ã‚‹
+extern int NS_DrawModiFormatStringToHandleToZBuffer( int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4, int FontHandle, int WriteZMode /* DX_ZWRITE_MASK ç­‰ */ , int VerticalFlag, const TCHAR *FormatString, ... )
 {
 	va_list VaList ;
 	TCHAR String[ 2048 ] ;
@@ -27197,12 +27197,12 @@ extern int NS_DrawModiFormatStringToHandleToZBuffer( int x1, int y1, int x2, int
 	NS_DrawModiStringToHandle(  x1, y1, x2, y2, x3, y3, x4, y4,  GetColor( 255,255,255 ), FontHandle, GetColor( 0,0,0 ), VerticalFlag, String ) ;
 	DrawZBuffer_Post();
 
-	// I—¹
+	// çµ‚äº†
 	return 0;
 }
 
-// ƒfƒtƒHƒ‹ƒgƒtƒHƒ“ƒgƒnƒ“ƒhƒ‹‚ğg—p‚µ‚Ä‚yƒoƒbƒtƒ@‚É‘Î‚µ‚Ä‘®w’è•¶š—ñ‚ğ•`‰æ‚·‚é
-extern int DrawFormatStringToZBuffer_VaList( int x, int y, int WriteZMode /* DX_ZWRITE_MASK “™ */ , const TCHAR *FormatString, va_list VaList )
+// ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãƒ•ã‚©ãƒ³ãƒˆãƒãƒ³ãƒ‰ãƒ«ã‚’ä½¿ç”¨ã—ã¦ï¼ºãƒãƒƒãƒ•ã‚¡ã«å¯¾ã—ã¦æ›¸å¼æŒ‡å®šæ–‡å­—åˆ—ã‚’æç”»ã™ã‚‹
+extern int DrawFormatStringToZBuffer_VaList( int x, int y, int WriteZMode /* DX_ZWRITE_MASK ç­‰ */ , const TCHAR *FormatString, va_list VaList )
 {
 	TCHAR String[ 2048 ] ;
 
@@ -27212,12 +27212,12 @@ extern int DrawFormatStringToZBuffer_VaList( int x, int y, int WriteZMode /* DX_
 	NS_DrawString(  x,  y, String,  GetColor( 255,255,255 ), 0 );
 	DrawZBuffer_Post();
 
-	// I—¹
+	// çµ‚äº†
 	return 0;
 }
 
-// ƒfƒtƒHƒ‹ƒgƒtƒHƒ“ƒgƒnƒ“ƒhƒ‹‚ğg—p‚µ‚Ä‚yƒoƒbƒtƒ@‚É‘Î‚µ‚Ä‘®w’è•¶š—ñ‚ğ•`‰æ‚·‚é( c‘‚« )
-extern int DrawFormatVStringToZBuffer_VaList( int x, int y, int WriteZMode /* DX_ZWRITE_MASK “™ */ , const TCHAR *FormatString, va_list VaList )
+// ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãƒ•ã‚©ãƒ³ãƒˆãƒãƒ³ãƒ‰ãƒ«ã‚’ä½¿ç”¨ã—ã¦ï¼ºãƒãƒƒãƒ•ã‚¡ã«å¯¾ã—ã¦æ›¸å¼æŒ‡å®šæ–‡å­—åˆ—ã‚’æç”»ã™ã‚‹( ç¸¦æ›¸ã )
+extern int DrawFormatVStringToZBuffer_VaList( int x, int y, int WriteZMode /* DX_ZWRITE_MASK ç­‰ */ , const TCHAR *FormatString, va_list VaList )
 {
 	TCHAR String[ 2048 ] ;
 
@@ -27227,12 +27227,12 @@ extern int DrawFormatVStringToZBuffer_VaList( int x, int y, int WriteZMode /* DX
 	NS_DrawVString(  x,  y, String,  GetColor( 255,255,255 ), 0 );
 	DrawZBuffer_Post();
 
-	// I—¹
+	// çµ‚äº†
 	return 0;
 }
 
-// ƒfƒtƒHƒ‹ƒgƒtƒHƒ“ƒgƒnƒ“ƒhƒ‹‚ğg—p‚µ‚Ä‚yƒoƒbƒtƒ@‚É‘Î‚µ‚Ä‘®w’è•¶š—ñ‚ğŠg‘å•`‰æ‚·‚é
-extern int DrawExtendFormatStringToZBuffer_VaList( int x, int y, double ExRateX, double ExRateY, int WriteZMode /* DX_ZWRITE_MASK “™ */ , const TCHAR *FormatString, va_list VaList )
+// ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãƒ•ã‚©ãƒ³ãƒˆãƒãƒ³ãƒ‰ãƒ«ã‚’ä½¿ç”¨ã—ã¦ï¼ºãƒãƒƒãƒ•ã‚¡ã«å¯¾ã—ã¦æ›¸å¼æŒ‡å®šæ–‡å­—åˆ—ã‚’æ‹¡å¤§æç”»ã™ã‚‹
+extern int DrawExtendFormatStringToZBuffer_VaList( int x, int y, double ExRateX, double ExRateY, int WriteZMode /* DX_ZWRITE_MASK ç­‰ */ , const TCHAR *FormatString, va_list VaList )
 {
 	TCHAR String[ 2048 ] ;
 
@@ -27242,12 +27242,12 @@ extern int DrawExtendFormatStringToZBuffer_VaList( int x, int y, double ExRateX,
 	NS_DrawExtendString(  x,  y, ExRateX, ExRateY, String,  GetColor( 255,255,255 ), 0 );
 	DrawZBuffer_Post();
 
-	// I—¹
+	// çµ‚äº†
 	return 0;
 }
 
-// ƒfƒtƒHƒ‹ƒgƒtƒHƒ“ƒgƒnƒ“ƒhƒ‹‚ğg—p‚µ‚Ä‚yƒoƒbƒtƒ@‚É‘Î‚µ‚Ä‘®w’è•¶š—ñ‚ğŠg‘å•`‰æ‚·‚é( c‘‚« )
-extern int DrawExtendFormatVStringToZBuffer_VaList( int x, int y, double ExRateX, double ExRateY, int WriteZMode /* DX_ZWRITE_MASK “™ */ , const TCHAR *FormatString, va_list VaList )
+// ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãƒ•ã‚©ãƒ³ãƒˆãƒãƒ³ãƒ‰ãƒ«ã‚’ä½¿ç”¨ã—ã¦ï¼ºãƒãƒƒãƒ•ã‚¡ã«å¯¾ã—ã¦æ›¸å¼æŒ‡å®šæ–‡å­—åˆ—ã‚’æ‹¡å¤§æç”»ã™ã‚‹( ç¸¦æ›¸ã )
+extern int DrawExtendFormatVStringToZBuffer_VaList( int x, int y, double ExRateX, double ExRateY, int WriteZMode /* DX_ZWRITE_MASK ç­‰ */ , const TCHAR *FormatString, va_list VaList )
 {
 	TCHAR String[ 2048 ] ;
 
@@ -27257,12 +27257,12 @@ extern int DrawExtendFormatVStringToZBuffer_VaList( int x, int y, double ExRateX
 	NS_DrawExtendVString(  x,  y, ExRateX, ExRateY, String,  GetColor( 255,255,255 ), 0 );
 	DrawZBuffer_Post();
 
-	// I—¹
+	// çµ‚äº†
 	return 0;
 }
 
-// ƒfƒtƒHƒ‹ƒgƒtƒHƒ“ƒgƒnƒ“ƒhƒ‹‚ğg—p‚µ‚Ä‚yƒoƒbƒtƒ@‚É‘Î‚µ‚Ä‘®w’è•¶š—ñ‚ğ‰ñ“]•`‰æ‚·‚é
-extern int DrawRotaFormatStringToZBuffer_VaList( int x, int y, double ExRateX, double ExRateY, double RotCenterX, double RotCenterY, double RotAngle, int WriteZMode /* DX_ZWRITE_MASK “™ */ , int VerticalFlag , const TCHAR *FormatString , va_list VaList )
+// ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãƒ•ã‚©ãƒ³ãƒˆãƒãƒ³ãƒ‰ãƒ«ã‚’ä½¿ç”¨ã—ã¦ï¼ºãƒãƒƒãƒ•ã‚¡ã«å¯¾ã—ã¦æ›¸å¼æŒ‡å®šæ–‡å­—åˆ—ã‚’å›è»¢æç”»ã™ã‚‹
+extern int DrawRotaFormatStringToZBuffer_VaList( int x, int y, double ExRateX, double ExRateY, double RotCenterX, double RotCenterY, double RotAngle, int WriteZMode /* DX_ZWRITE_MASK ç­‰ */ , int VerticalFlag , const TCHAR *FormatString , va_list VaList )
 {
 	TCHAR String[ 2048 ] ;
 
@@ -27272,12 +27272,12 @@ extern int DrawRotaFormatStringToZBuffer_VaList( int x, int y, double ExRateX, d
 	NS_DrawRotaString(  x,  y,  ExRateX,  ExRateY, RotCenterX, RotCenterY, RotAngle,  GetColor( 255,255,255 ), GetColor( 0,0,0 ), VerticalFlag, String ) ;
 	DrawZBuffer_Post();
 
-	// I—¹
+	// çµ‚äº†
 	return 0;
 }
 
-// ƒfƒtƒHƒ‹ƒgƒtƒHƒ“ƒgƒnƒ“ƒhƒ‹‚ğg—p‚µ‚Ä‚yƒoƒbƒtƒ@‚É‘Î‚µ‚Ä‘®w’è•¶š—ñ‚ğ•ÏŒ`•`‰æ‚·‚é
-extern int DrawModiFormatStringToZBuffer_VaList( int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4, int WriteZMode /* DX_ZWRITE_MASK “™ */ , int VerticalFlag , const TCHAR *FormatString , va_list VaList )
+// ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãƒ•ã‚©ãƒ³ãƒˆãƒãƒ³ãƒ‰ãƒ«ã‚’ä½¿ç”¨ã—ã¦ï¼ºãƒãƒƒãƒ•ã‚¡ã«å¯¾ã—ã¦æ›¸å¼æŒ‡å®šæ–‡å­—åˆ—ã‚’å¤‰å½¢æç”»ã™ã‚‹
+extern int DrawModiFormatStringToZBuffer_VaList( int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4, int WriteZMode /* DX_ZWRITE_MASK ç­‰ */ , int VerticalFlag , const TCHAR *FormatString , va_list VaList )
 {
 	TCHAR String[ 2048 ] ;
 
@@ -27287,12 +27287,12 @@ extern int DrawModiFormatStringToZBuffer_VaList( int x1, int y1, int x2, int y2,
 	NS_DrawModiString(  x1, y1, x2, y2, x3, y3, x4, y4,  GetColor( 255,255,255 ), GetColor( 0,0,0 ), VerticalFlag, String ) ;
 	DrawZBuffer_Post();
 
-	// I—¹
+	// çµ‚äº†
 	return 0;
 }
 
-// ƒtƒHƒ“ƒgƒnƒ“ƒhƒ‹‚ğg—p‚µ‚Ä‚yƒoƒbƒtƒ@‚É‘Î‚µ‚Ä‘®w’è•¶š—ñ‚ğ•`‰æ‚·‚é
-extern int DrawFormatStringToHandleToZBuffer_VaList( int x, int y, int FontHandle, int WriteZMode /* DX_ZWRITE_MASK “™ */ , const TCHAR *FormatString, va_list VaList )
+// ãƒ•ã‚©ãƒ³ãƒˆãƒãƒ³ãƒ‰ãƒ«ã‚’ä½¿ç”¨ã—ã¦ï¼ºãƒãƒƒãƒ•ã‚¡ã«å¯¾ã—ã¦æ›¸å¼æŒ‡å®šæ–‡å­—åˆ—ã‚’æç”»ã™ã‚‹
+extern int DrawFormatStringToHandleToZBuffer_VaList( int x, int y, int FontHandle, int WriteZMode /* DX_ZWRITE_MASK ç­‰ */ , const TCHAR *FormatString, va_list VaList )
 {
 	TCHAR String[ 2048 ] ;
 
@@ -27302,12 +27302,12 @@ extern int DrawFormatStringToHandleToZBuffer_VaList( int x, int y, int FontHandl
 	NS_DrawStringToHandle(  x,  y, String,  GetColor( 255,255,255 ), FontHandle, 0, FALSE );
 	DrawZBuffer_Post();
 
-	// I—¹
+	// çµ‚äº†
 	return 0;
 }
 
-// ƒtƒHƒ“ƒgƒnƒ“ƒhƒ‹‚ğg—p‚µ‚Ä‚yƒoƒbƒtƒ@‚É‘Î‚µ‚Ä‘®w’è•¶š—ñ‚ğ•`‰æ‚·‚é( c‘‚« )
-extern int DrawFormatVStringToHandleToZBuffer_VaList( int x, int y, int FontHandle, int WriteZMode /* DX_ZWRITE_MASK “™ */ , const TCHAR *FormatString, va_list VaList )
+// ãƒ•ã‚©ãƒ³ãƒˆãƒãƒ³ãƒ‰ãƒ«ã‚’ä½¿ç”¨ã—ã¦ï¼ºãƒãƒƒãƒ•ã‚¡ã«å¯¾ã—ã¦æ›¸å¼æŒ‡å®šæ–‡å­—åˆ—ã‚’æç”»ã™ã‚‹( ç¸¦æ›¸ã )
+extern int DrawFormatVStringToHandleToZBuffer_VaList( int x, int y, int FontHandle, int WriteZMode /* DX_ZWRITE_MASK ç­‰ */ , const TCHAR *FormatString, va_list VaList )
 {
 	TCHAR String[ 2048 ] ;
 
@@ -27317,12 +27317,12 @@ extern int DrawFormatVStringToHandleToZBuffer_VaList( int x, int y, int FontHand
 	NS_DrawVStringToHandle(  x,  y, String,  GetColor( 255,255,255 ), FontHandle, 0 );
 	DrawZBuffer_Post();
 
-	// I—¹
+	// çµ‚äº†
 	return 0;
 }
 
-// ƒtƒHƒ“ƒgƒnƒ“ƒhƒ‹‚ğg—p‚µ‚Ä‚yƒoƒbƒtƒ@‚É‘Î‚µ‚Ä‘®w’è•¶š—ñ‚ğŠg‘å•`‰æ‚·‚é
-extern int DrawExtendFormatStringToHandleToZBuffer_VaList( int x, int y, double ExRateX, double ExRateY, int FontHandle, int WriteZMode /* DX_ZWRITE_MASK “™ */ , const TCHAR *FormatString, va_list VaList )
+// ãƒ•ã‚©ãƒ³ãƒˆãƒãƒ³ãƒ‰ãƒ«ã‚’ä½¿ç”¨ã—ã¦ï¼ºãƒãƒƒãƒ•ã‚¡ã«å¯¾ã—ã¦æ›¸å¼æŒ‡å®šæ–‡å­—åˆ—ã‚’æ‹¡å¤§æç”»ã™ã‚‹
+extern int DrawExtendFormatStringToHandleToZBuffer_VaList( int x, int y, double ExRateX, double ExRateY, int FontHandle, int WriteZMode /* DX_ZWRITE_MASK ç­‰ */ , const TCHAR *FormatString, va_list VaList )
 {
 	TCHAR String[ 2048 ] ;
 
@@ -27332,12 +27332,12 @@ extern int DrawExtendFormatStringToHandleToZBuffer_VaList( int x, int y, double 
 	NS_DrawExtendStringToHandle(  x,  y, ExRateX, ExRateY, String,  GetColor( 255,255,255 ), FontHandle, 0, FALSE );
 	DrawZBuffer_Post();
 
-	// I—¹
+	// çµ‚äº†
 	return 0;
 }
 
-// ƒtƒHƒ“ƒgƒnƒ“ƒhƒ‹‚ğg—p‚µ‚Ä‚yƒoƒbƒtƒ@‚É‘Î‚µ‚Ä‘®w’è•¶š—ñ‚ğŠg‘å•`‰æ‚·‚é( c‘‚« )
-extern int DrawExtendFormatVStringToHandleToZBuffer_VaList( int x, int y, double ExRateX, double ExRateY, int FontHandle, int WriteZMode /* DX_ZWRITE_MASK “™ */ , const TCHAR *FormatString, va_list VaList )
+// ãƒ•ã‚©ãƒ³ãƒˆãƒãƒ³ãƒ‰ãƒ«ã‚’ä½¿ç”¨ã—ã¦ï¼ºãƒãƒƒãƒ•ã‚¡ã«å¯¾ã—ã¦æ›¸å¼æŒ‡å®šæ–‡å­—åˆ—ã‚’æ‹¡å¤§æç”»ã™ã‚‹( ç¸¦æ›¸ã )
+extern int DrawExtendFormatVStringToHandleToZBuffer_VaList( int x, int y, double ExRateX, double ExRateY, int FontHandle, int WriteZMode /* DX_ZWRITE_MASK ç­‰ */ , const TCHAR *FormatString, va_list VaList )
 {
 	TCHAR String[ 2048 ] ;
 
@@ -27347,12 +27347,12 @@ extern int DrawExtendFormatVStringToHandleToZBuffer_VaList( int x, int y, double
 	NS_DrawExtendVStringToHandle(  x,  y, ExRateX, ExRateY, String,  GetColor( 255,255,255 ), FontHandle, 0 );
 	DrawZBuffer_Post();
 
-	// I—¹
+	// çµ‚äº†
 	return 0;
 }
 
-// ƒtƒHƒ“ƒgƒnƒ“ƒhƒ‹‚ğg—p‚µ‚Ä‚yƒoƒbƒtƒ@‚É‘Î‚µ‚Ä‘®w’è•¶š—ñ‚ğ‰ñ“]•`‰æ‚·‚é
-extern int DrawRotaFormatStringToHandleToZBuffer_VaList( int x, int y, double ExRateX, double ExRateY, double RotCenterX, double RotCenterY, double RotAngle, int FontHandle, int WriteZMode /* DX_ZWRITE_MASK “™ */ , int VerticalFlag, const TCHAR *FormatString, va_list VaList )
+// ãƒ•ã‚©ãƒ³ãƒˆãƒãƒ³ãƒ‰ãƒ«ã‚’ä½¿ç”¨ã—ã¦ï¼ºãƒãƒƒãƒ•ã‚¡ã«å¯¾ã—ã¦æ›¸å¼æŒ‡å®šæ–‡å­—åˆ—ã‚’å›è»¢æç”»ã™ã‚‹
+extern int DrawRotaFormatStringToHandleToZBuffer_VaList( int x, int y, double ExRateX, double ExRateY, double RotCenterX, double RotCenterY, double RotAngle, int FontHandle, int WriteZMode /* DX_ZWRITE_MASK ç­‰ */ , int VerticalFlag, const TCHAR *FormatString, va_list VaList )
 {
 	TCHAR String[ 2048 ] ;
 
@@ -27362,12 +27362,12 @@ extern int DrawRotaFormatStringToHandleToZBuffer_VaList( int x, int y, double Ex
 	NS_DrawRotaStringToHandle(  x,  y,  ExRateX,  ExRateY, RotCenterX, RotCenterY, RotAngle,  GetColor( 255,255,255 ), FontHandle, GetColor( 0,0,0 ), VerticalFlag, String ) ;
 	DrawZBuffer_Post();
 
-	// I—¹
+	// çµ‚äº†
 	return 0;
 }
 
-// ƒtƒHƒ“ƒgƒnƒ“ƒhƒ‹‚ğg—p‚µ‚Ä‚yƒoƒbƒtƒ@‚É‘Î‚µ‚Ä‘®w’è•¶š—ñ‚ğ•ÏŒ`•`‰æ‚·‚é
-extern int DrawModiFormatStringToHandleToZBuffer_VaList( int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4, int FontHandle, int WriteZMode /* DX_ZWRITE_MASK “™ */ , int VerticalFlag, const TCHAR *FormatString, va_list VaList )
+// ãƒ•ã‚©ãƒ³ãƒˆãƒãƒ³ãƒ‰ãƒ«ã‚’ä½¿ç”¨ã—ã¦ï¼ºãƒãƒƒãƒ•ã‚¡ã«å¯¾ã—ã¦æ›¸å¼æŒ‡å®šæ–‡å­—åˆ—ã‚’å¤‰å½¢æç”»ã™ã‚‹
+extern int DrawModiFormatStringToHandleToZBuffer_VaList( int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4, int FontHandle, int WriteZMode /* DX_ZWRITE_MASK ç­‰ */ , int VerticalFlag, const TCHAR *FormatString, va_list VaList )
 {
 	TCHAR String[ 2048 ] ;
 
@@ -27377,7 +27377,7 @@ extern int DrawModiFormatStringToHandleToZBuffer_VaList( int x1, int y1, int x2,
 	NS_DrawModiStringToHandle(  x1, y1, x2, y2, x3, y3, x4, y4,  GetColor( 255,255,255 ), FontHandle, GetColor( 0,0,0 ), VerticalFlag, String ) ;
 	DrawZBuffer_Post();
 
-	// I—¹
+	// çµ‚äº†
 	return 0;
 }
 
@@ -27406,9 +27406,9 @@ extern int DrawModiFormatStringToHandleToZBuffer_VaList( int x1, int y1, int x2,
 
 
 
-// Šî–{ƒCƒ[ƒW•`‰æ
+// åŸºæœ¬ã‚¤ãƒ¡ãƒ¼ã‚¸æç”»
 
-// Šî–{ƒCƒ[ƒWƒf[ƒ^‚ğ•`‰æ‚·‚é
+// åŸºæœ¬ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ã‚’æç”»ã™ã‚‹
 extern	int		NS_DrawBaseImage( int x, int y, BASEIMAGE *BaseImage )
 {
 	int TempHandle ;
@@ -27465,33 +27465,33 @@ extern	int		NS_DrawBaseImage( int x, int y, BASEIMAGE *BaseImage )
 
 
 
-// Šî–{ƒCƒ[ƒWƒf[ƒ^\‘¢‘ÌŠÖŒW
+// åŸºæœ¬ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“é–¢ä¿‚
 
-// •`‰æ‘ÎÛ‚Ì‰æ–Ê‚©‚çw’è—Ìˆæ‚ÌƒOƒ‰ƒtƒBƒbƒN‚ğŠî–{ƒCƒ[ƒWƒf[ƒ^‚É“]‘—‚·‚é
+// æç”»å¯¾è±¡ã®ç”»é¢ã‹ã‚‰æŒ‡å®šé ˜åŸŸã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚’åŸºæœ¬ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ã«è»¢é€ã™ã‚‹
 extern int NS_GetDrawScreenBaseImage( int x1, int y1, int x2, int y2, BASEIMAGE *BaseImage )
 {
 	return NS_GetDrawScreenBaseImageDestPos( x1, y1, x2, y2, BaseImage, 0, 0 ) ;
 }
 
-// •`‰æ‘ÎÛ‚Ì‰æ–Ê‚©‚çw’è—Ìˆæ‚ğŠî–{ƒCƒ[ƒWƒf[ƒ^‚É“]‘—‚·‚é( “]‘—æÀ•Ww’è”Å )
+// æç”»å¯¾è±¡ã®ç”»é¢ã‹ã‚‰æŒ‡å®šé ˜åŸŸã‚’åŸºæœ¬ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ã«è»¢é€ã™ã‚‹( è»¢é€å…ˆåº§æ¨™æŒ‡å®šç‰ˆ )
 extern	int NS_GetDrawScreenBaseImageDestPos( int x1, int y1, int x2, int y2, BASEIMAGE *BaseImage, int DestX, int DestY )
 {
 	RECT SrcRect ;
 	BASEIMAGE BufferImage ;
 
-	// À•Wƒ`ƒFƒbƒN
+	// åº§æ¨™ãƒã‚§ãƒƒã‚¯
 	if( x1 < 0 || y1 < 0 || x1 >= x2 || y1 >= y2 )
 	{
 		return -1 ;
 	}
 
-	// æ‚è‚İƒTƒCƒY‚Ææ‚è‚İæ‚ª‰æ‘œƒTƒCƒY‚æ‚è‘å‚«‚¢ê‡‚ÍƒGƒ‰[
+	// å–ã‚Šè¾¼ã¿ã‚µã‚¤ã‚ºã¨å–ã‚Šè¾¼ã¿å…ˆãŒç”»åƒã‚µã‚¤ã‚ºã‚ˆã‚Šå¤§ãã„å ´åˆã¯ã‚¨ãƒ©ãƒ¼
 	if( BaseImage->Width < DestX + x2 - x1 || BaseImage->Height < DestY + y2 - y1 )
 	{
 		return -1 ;
 	}
 
-	// •`‰ææƒoƒbƒtƒ@‚ğƒƒbƒN
+	// æç”»å…ˆãƒãƒƒãƒ•ã‚¡ã‚’ãƒ­ãƒƒã‚¯
 	SrcRect.left   = x1 ;
 	SrcRect.right  = x2 ;
 	SrcRect.top    = y1 ;
@@ -27501,16 +27501,16 @@ extern	int NS_GetDrawScreenBaseImageDestPos( int x1, int y1, int x2, int y2, BAS
 		return -1 ;
 	}
 
-//	// æ‚è‚İƒTƒCƒY‚Æ‰æ‘œƒTƒCƒY‚ªˆá‚¤ê‡‚ÍƒGƒ‰[
+//	// å–ã‚Šè¾¼ã¿ã‚µã‚¤ã‚ºã¨ç”»åƒã‚µã‚¤ã‚ºãŒé•ã†å ´åˆã¯ã‚¨ãƒ©ãƒ¼
 //	if( BaseImage->Width != BufferImage.Width || BaseImage->Height != BufferImage.Height ) return -1 ;
 
-	// ƒf[ƒ^‚ğ“]‘—
+	// ãƒ‡ãƒ¼ã‚¿ã‚’è»¢é€
 	NS_BltBaseImage2( DestX, DestY, &BufferImage, BaseImage ) ;
 
-	// •`‰ææƒoƒbƒtƒ@‚ğƒAƒ“ƒƒbƒN
+	// æç”»å…ˆãƒãƒƒãƒ•ã‚¡ã‚’ã‚¢ãƒ³ãƒ­ãƒƒã‚¯
 	Graphics_Screen_UnlockDrawScreen() ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
@@ -27536,21 +27536,21 @@ extern	int NS_GetDrawScreenBaseImageDestPos( int x1, int y1, int x2, int y2, BAS
 
 
 
-// ƒOƒ‰ƒtƒBƒbƒNŠÖ˜A‚Ì‰Šú‰»‚ÆŒãn––
+// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯é–¢é€£ã®åˆæœŸåŒ–ã¨å¾Œå§‹æœ«
 
-// ƒOƒ‰ƒtƒBƒbƒNƒXƒVƒXƒeƒ€‚Ì‰Šú‰»
+// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¹ã‚·ã‚¹ãƒ†ãƒ ã®åˆæœŸåŒ–
 extern int Graphics_Initialize( void )
 {
-	// Šù‚É‰Šú‰»Ï‚İ‚Ìê‡‚Í‰½‚à‚µ‚È‚¢
+	// æ—¢ã«åˆæœŸåŒ–æ¸ˆã¿ã®å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( GSYS.InitializeFlag == TRUE ) return 0 ;
 
-	// ‰æ–Ê‚Ìİ’è‚ğ‰Šú‰»
+	// ç”»é¢ã®è¨­å®šã‚’åˆæœŸåŒ–
 	if( GSYS.Screen.MainScreenSizeX == 0 || GSYS.Screen.MainScreenSizeY == 0 )
 	{
 		Graphics_Screen_SetMainScreenSize( DEFAULT_SCREEN_SIZE_X, DEFAULT_SCREEN_SIZE_Y ) ;
 	}
 
-	// SetUserScreenImage ‚ªg—p‚³‚ê‚Ä‚¢‚éê‡‚ÍƒJƒ‰[ƒrƒbƒg[“x‚à‡‚í‚¹‚é
+	// SetUserScreenImage ãŒä½¿ç”¨ã•ã‚Œã¦ã„ã‚‹å ´åˆã¯ã‚«ãƒ©ãƒ¼ãƒ“ãƒƒãƒˆæ·±åº¦ã‚‚åˆã‚ã›ã‚‹
 	if( GSYS.Screen.UserScreenImage != NULL )
 	{
 		if( GSYS.Screen.UserScreenImagePixelFormat == DX_USER_SCREEN_PIXEL_FORMAT_R5G6B5 ||
@@ -27565,163 +27565,163 @@ extern int Graphics_Initialize( void )
 		}
 	}
 
-	// ƒJƒ‰[ƒrƒbƒg[“x‚ªİ’è‚³‚ê‚Ä‚¢‚È‚©‚Á‚½‚çƒfƒtƒHƒ‹ƒg’l‚ğİ’è‚·‚é
+	// ã‚«ãƒ©ãƒ¼ãƒ“ãƒƒãƒˆæ·±åº¦ãŒè¨­å®šã•ã‚Œã¦ã„ãªã‹ã£ãŸã‚‰ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå€¤ã‚’è¨­å®šã™ã‚‹
 	if( GSYS.Screen.MainScreenColorBitDepth == 0 )
 	{
 		GSYS.Screen.MainScreenColorBitDepth = DEFAULT_COLOR_BITDEPTH ;
 		SetMemImgDefaultColorType( 0 ) ;
 	}
 
-	// ƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹ŠÇ—î•ñ‚Ì‰Šú‰»
+	// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ç®¡ç†æƒ…å ±ã®åˆæœŸåŒ–
 	InitializeHandleManage( DX_HANDLETYPE_GRAPH, sizeof( IMAGEDATA ), MAX_IMAGE_NUM, Graphics_Image_InitializeHandle, Graphics_Image_TerminateHandle, Graphics_Image_DumpInfoHandle, L"Graph" ) ;
 
-	// ƒVƒF[ƒ_[ƒnƒ“ƒhƒ‹ŠÇ—î•ñ‚Ì‰Šú‰»
+	// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒãƒ³ãƒ‰ãƒ«ç®¡ç†æƒ…å ±ã®åˆæœŸåŒ–
 	InitializeHandleManage( DX_HANDLETYPE_SHADER, sizeof( SHADERHANDLEDATA ) + sizeof( SHADERHANDLEDATA_PF ) , MAX_SHADER_NUM, Graphics_Shader_InitializeHandle, Graphics_Shader_TerminateHandle, NULL, L"Shader" ) ;
 
-	// ƒVƒF[ƒ_[—p’è”ƒoƒbƒtƒ@ƒnƒ“ƒhƒ‹ŠÇ—î•ñ‚Ì‰Šú‰»
+	// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ç”¨å®šæ•°ãƒãƒƒãƒ•ã‚¡ãƒãƒ³ãƒ‰ãƒ«ç®¡ç†æƒ…å ±ã®åˆæœŸåŒ–
 	InitializeHandleManage( DX_HANDLETYPE_SHADER_CONSTANT_BUFFER, sizeof( SHADERCONSTANTBUFFERHANDLEDATA ) + sizeof( SHADERCONSTANTBUFFERHANDLEDATA_PF ) , MAX_CONSTANT_BUFFER_NUM, Graphics_ShaderConstantBuffer_InitializeHandle, Graphics_ShaderConstantBuffer_TerminateHandle, NULL, L"ShaderConstantBuffer" ) ;
 
-	// ’¸“_ƒoƒbƒtƒ@ƒnƒ“ƒhƒ‹ŠÇ—î•ñ‚Ì‰Šú‰»
+	// é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ãƒãƒ³ãƒ‰ãƒ«ç®¡ç†æƒ…å ±ã®åˆæœŸåŒ–
 	InitializeHandleManage( DX_HANDLETYPE_VERTEX_BUFFER, sizeof( VERTEXBUFFERHANDLEDATA ) + sizeof( VERTEXBUFFERHANDLEDATA_PF ), MAX_VERTEX_BUFFER_NUM, Graphics_VertexBuffer_InitializeHandle, Graphics_VertexBuffer_TerminateHandle, NULL, L"VertexBuffer" ) ;
 
-	// ƒCƒ“ƒfƒbƒNƒXƒoƒbƒtƒ@ƒnƒ“ƒhƒ‹ŠÇ—î•ñ‚Ì‰Šú‰»
+	// ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒãƒƒãƒ•ã‚¡ãƒãƒ³ãƒ‰ãƒ«ç®¡ç†æƒ…å ±ã®åˆæœŸåŒ–
 	InitializeHandleManage( DX_HANDLETYPE_INDEX_BUFFER, sizeof( INDEXBUFFERHANDLEDATA ) + sizeof( INDEXBUFFERHANDLEDATA_PF ), MAX_INDEX_BUFFER_NUM, Graphics_IndexBuffer_InitializeHandle, Graphics_IndexBuffer_TerminateHandle, NULL, L"IndexBuffer" ) ;
 
-	// ƒVƒƒƒhƒEƒ}ƒbƒvƒnƒ“ƒhƒ‹ŠÇ—î•ñ‚Ì‰Šú‰»
+	// ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ãƒãƒ³ãƒ‰ãƒ«ç®¡ç†æƒ…å ±ã®åˆæœŸåŒ–
 	InitializeHandleManage( DX_HANDLETYPE_SHADOWMAP, sizeof( SHADOWMAPDATA ) + sizeof( SHADOWMAPDATA_PF ), MAX_SHADOWMAP_NUM, Graphics_ShadowMap_InitializeHandle, Graphics_ShadowMap_TerminateHandle, NULL, L"ShadowMap" ) ;
 
-	// •`‰æˆ—‚ÌŠÂ‹«ˆË‘¶•”•ª‚Ì‰Šú‰»‚»‚Ì‚P
+	// æç”»å‡¦ç†ã®ç’°å¢ƒä¾å­˜éƒ¨åˆ†ã®åˆæœŸåŒ–ãã®ï¼‘
 	if( Graphics_Initialize_Timing0_PF() < 0 )
 	{
 		goto ERR ;
 	}
 
-	// ‰Šú‰»Ï‚İƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// åˆæœŸåŒ–æ¸ˆã¿ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	GSYS.InitializeFlag = TRUE ;
 
-	// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒ^‚ªg—p‚Å‚«‚éê‡
-	// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒ^ü‚è‚Ì‰Šú‰»‚ğs‚¤
+	// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚¿ãŒä½¿ç”¨ã§ãã‚‹å ´åˆ
+	// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚¿å‘¨ã‚Šã®åˆæœŸåŒ–ã‚’è¡Œã†
 	if( GSYS.Setting.ValidHardware == TRUE )
 	{
 		Graphics_Hardware_Initialize_PF() ;
 
-		// SetUserScreenImage ‚Å‰æ–Ê‚ğİ’è‚³‚ê‚Ä‚¢‚ÄAŠ‚ÂƒsƒNƒZƒ‹ƒtƒH[ƒ}ƒbƒg‚ª
-		// ƒ\ƒtƒgƒEƒFƒAƒŒƒ“ƒ_ƒŠƒ“ƒOƒ‚[ƒh‚É‘Î‰‚µ‚Ä‚¢‚éê‡‚Íƒ\ƒtƒgƒEƒFƒAƒŒƒ“ƒ_ƒŠƒ“ƒO‚Ì‰Šú‰»‚às‚¤
+		// SetUserScreenImage ã§ç”»é¢ã‚’è¨­å®šã•ã‚Œã¦ã„ã¦ã€ä¸”ã¤ãƒ”ã‚¯ã‚»ãƒ«ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆãŒ
+		// ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ãƒ¢ãƒ¼ãƒ‰ã«å¯¾å¿œã—ã¦ã„ã‚‹å ´åˆã¯ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã®åˆæœŸåŒ–ã‚‚è¡Œã†
 		if( GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode )
 		{
 			Graphics_Software_Initialize() ;
 		}
 	}
 	else
-	// ‚»‚êˆÈŠO‚Ìê‡‚Íƒ\ƒtƒgƒEƒGƒAƒŒƒ“ƒ_ƒŠƒ“ƒOü‚è‚Ì‰Šú‰»‚ğs‚¤
+	// ãã‚Œä»¥å¤–ã®å ´åˆã¯ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°å‘¨ã‚Šã®åˆæœŸåŒ–ã‚’è¡Œã†
 	{
 		Graphics_Software_Initialize() ;
 	}
 
-	// ƒOƒ‰ƒtƒBƒbƒN•`‰æİ’èŠÖŒW‚Ìî•ñ‚ğ‰Šú‰»
+	// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯æç”»è¨­å®šé–¢ä¿‚ã®æƒ…å ±ã‚’åˆæœŸåŒ–
 	Graphics_DrawSetting_Initialize() ;
 
-	// MEMIMG ‚Ì‰Šú‰»
+	// MEMIMG ã®åˆæœŸåŒ–
 	InitializeMemImgManage() ;
 
 #ifndef DX_NON_FONT
-	// ƒtƒHƒ“ƒg‚Ì‰Šú‰»‚ğs‚¤
+	// ãƒ•ã‚©ãƒ³ãƒˆã®åˆæœŸåŒ–ã‚’è¡Œã†
 	InitFontManage() ;
 #endif
 
 #ifndef DX_NON_MASK
-	// ƒ}ƒXƒNˆ—‚Ì‰Šú‰»
+	// ãƒã‚¹ã‚¯å‡¦ç†ã®åˆæœŸåŒ–
 	Mask_Initialize() ;
 #endif
 
-	// •`‰æˆ—‚ÌŠÂ‹«ˆË‘¶•”•ª‚Ì‰Šú‰»‚»‚Ì‚Q
+	// æç”»å‡¦ç†ã®ç’°å¢ƒä¾å­˜éƒ¨åˆ†ã®åˆæœŸåŒ–ãã®ï¼’
 	if( Graphics_Initialize_Timing1_PF() < 0 )
 	{
 		goto ERR ;
 	}
 
-	// GetFPS ‚Ì’l‚ÌˆÀ’è‰»‚Ìˆ×‚ÉScreenFlip‚ğ6‰ñ‚Ù‚ÇÀs‚·‚é
+	// GetFPS ã®å€¤ã®å®‰å®šåŒ–ã®ç‚ºã«ScreenFlipã‚’6å›ã»ã©å®Ÿè¡Œã™ã‚‹
 	{
 		int i ;
 		for( i = 0 ; i < 6 ; i ++ )
 		{
 			NS_ClearDrawScreen( NULL ) ;
 
-			// ‚Ü‚¾‚c‚wƒ‰ƒCƒuƒ‰ƒŠ‚Ì‰Šú‰»‚ªI‚í‚Á‚Ä‚¢‚È‚¢‚Ì‚ÅŠÂ‹«ˆË‘¶ŠÖ”‚ğ’¼ÚŒÄ‚Ô
+			// ã¾ã ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®åˆæœŸåŒ–ãŒçµ‚ã‚ã£ã¦ã„ãªã„ã®ã§ç’°å¢ƒä¾å­˜é–¢æ•°ã‚’ç›´æ¥å‘¼ã¶
 			GSYS.Screen.ScreenFlipFlag = TRUE ;
 			Graphics_ScreenFlipBase_PF() ;
 			GSYS.Screen.ScreenFlipFlag = FALSE ;
 
-			// ScreenFlip ‚ªŒÄ‚Î‚ê‚½ŠÔ‚ğ•Û‘¶
+			// ScreenFlip ãŒå‘¼ã°ã‚ŒãŸæ™‚é–“ã‚’ä¿å­˜
 			Graphics_Screen_UpdateFlipTime() ;
 		}
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 
-	// ƒGƒ‰[ˆ—
+	// ã‚¨ãƒ©ãƒ¼å‡¦ç†
 ERR:
 	Graphics_Terminate() ;
 
 	return -1;
 }
 
-// ƒOƒ‰ƒtƒBƒbƒNƒVƒXƒeƒ€‚ÌŒãn––
+// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚·ã‚¹ãƒ†ãƒ ã®å¾Œå§‹æœ«
 extern int Graphics_Terminate( void )
 {
 #ifndef DX_NON_FONT
-	// ƒtƒHƒ“ƒgƒLƒƒƒbƒVƒ…‚ÌŠÇ—Œn‚ğI—¹
+	// ãƒ•ã‚©ãƒ³ãƒˆã‚­ãƒ£ãƒƒã‚·ãƒ¥ã®ç®¡ç†ç³»ã‚’çµ‚äº†
 	TermFontManage() ;
 #endif
 
-	// Šù‚ÉŒãn––Ï‚İ‚Ìê‡‚Í‰½‚à‚µ‚È‚¢
+	// æ—¢ã«å¾Œå§‹æœ«æ¸ˆã¿ã®å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( GSYS.InitializeFlag == FALSE ) return 0 ;
 
-	// Œãn––’†ƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// å¾Œå§‹æœ«ä¸­ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	GSYS.TerminateNowFlag = TRUE ;
 
 #ifndef DX_NON_MASK
-	// ƒ}ƒXƒNˆ—‚ÌŒãn––
+	// ãƒã‚¹ã‚¯å‡¦ç†ã®å¾Œå§‹æœ«
 	Mask_Terminate() ;
 #endif
 
 #ifndef DX_NON_MODEL
-	// ‚·‚×‚Ä‚Ìƒ‚ƒfƒ‹‚ğíœ
+	// ã™ã¹ã¦ã®ãƒ¢ãƒ‡ãƒ«ã‚’å‰Šé™¤
 	NS_MV1InitModel() ;
 	MV1InitModelBase() ;
 #endif
 
 #ifndef DX_NON_LIVE2D_CUBISM4
-	// ‚·‚×‚Ä‚ÌLive2Dƒ‚ƒfƒ‹‚ğíœ
+	// ã™ã¹ã¦ã®Live2Dãƒ¢ãƒ‡ãƒ«ã‚’å‰Šé™¤
 	NS_Live2D_InitModel() ;
 #endif
 
-	// ‘S‚Ä‚Ì‰æ‘œ‚ğíœ
+	// å…¨ã¦ã®ç”»åƒã‚’å‰Šé™¤
 	NS_InitGraph() ;
 
-	// ‚·‚×‚Ä‚Ì’¸“_ƒf[ƒ^‚ÆƒCƒ“ƒfƒbƒNƒXƒf[ƒ^‚ğíœ
+	// ã™ã¹ã¦ã®é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ã¨ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿ã‚’å‰Šé™¤
 	NS_InitVertexBuffer() ;
 	NS_InitIndexBuffer() ;
 
-	// ‘S‚Ä‚ÌƒVƒF[ƒ_[—p’è”ƒoƒbƒtƒ@‚ğíœ
+	// å…¨ã¦ã®ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ç”¨å®šæ•°ãƒãƒƒãƒ•ã‚¡ã‚’å‰Šé™¤
 	NS_InitShaderConstantBuffer() ;
 
-	// ‘S‚Ä‚ÌƒVƒF[ƒ_[‚ğíœ
+	// å…¨ã¦ã®ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’å‰Šé™¤
 	NS_InitShader() ;
 
-	// ƒ‰ƒCƒg‚ğ‘S‚Äíœ
+	// ãƒ©ã‚¤ãƒˆã‚’å…¨ã¦å‰Šé™¤
 	NS_DeleteLightHandleAll() ;
 	NS_DeleteLightHandle( GSYS.Light.DefaultHandle ) ;
 	GSYS.Light.DefaultHandle = -1 ;
 
-	// ƒ\ƒtƒgƒEƒGƒAƒŒƒ“ƒ_ƒŠƒ“ƒO‹@”\‚ÌŒãn––
+	// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°æ©Ÿèƒ½ã®å¾Œå§‹æœ«
 	Graphics_Software_Terminate() ;
 
-	// •`‰æˆ—‚ÌŠÂ‹«ˆË‘¶•”•ª‚ÌŒãn––
+	// æç”»å‡¦ç†ã®ç’°å¢ƒä¾å­˜éƒ¨åˆ†ã®å¾Œå§‹æœ«
 	Graphics_Terminate_PF() ;
 
-	// ’¸“_‚ğˆê“I‚É•Û‘¶‚·‚éƒƒ‚ƒŠ—Ìˆæ‚Ì‰ğ•ú
+	// é ‚ç‚¹ã‚’ä¸€æ™‚çš„ã«ä¿å­˜ã™ã‚‹ãƒ¡ãƒ¢ãƒªé ˜åŸŸã®è§£æ”¾
 	if( GSYS.Resource.TempVertexBuffer )
 	{
 		DXFREE( GSYS.Resource.TempVertexBuffer ) ;
@@ -27729,7 +27729,7 @@ extern int Graphics_Terminate( void )
 		GSYS.Resource.TempVertexBufferSize = 0 ;
 	}
 
-	// DrawCubeSet3D—p‚Ì’¸“_‚ğˆê“I‚É•Û‘¶‚·‚éƒƒ‚ƒŠ—Ìˆæ‚Ì‰ğ•ú
+	// DrawCubeSet3Dç”¨ã®é ‚ç‚¹ã‚’ä¸€æ™‚çš„ã«ä¿å­˜ã™ã‚‹ãƒ¡ãƒ¢ãƒªé ˜åŸŸã®è§£æ”¾
 	{
 		int i ;
 		for( i = 0 ; i < 2 ; i ++ )
@@ -27750,7 +27750,7 @@ extern int Graphics_Terminate( void )
 		}
 	}
 
-	// ì¬‚·‚é•ªŠ„‰æ‘œ‚ÉŠ„‚è“–‚Ä‚éƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹—p‚Ìƒƒ‚ƒŠ‚ªŠm•Û‚³‚ê‚Ä‚¢‚½‚ç‰ğ•ú
+	// ä½œæˆã™ã‚‹åˆ†å‰²ç”»åƒã«å‰²ã‚Šå½“ã¦ã‚‹ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ç”¨ã®ãƒ¡ãƒ¢ãƒªãŒç¢ºä¿ã•ã‚Œã¦ã„ãŸã‚‰è§£æ”¾
 	if( GSYS.CreateImage.CreateDivGraphHandle != NULL )
 	{
 		DXFREE( GSYS.CreateImage.CreateDivGraphHandle ) ;
@@ -27758,46 +27758,46 @@ extern int Graphics_Terminate( void )
 	}
 	GSYS.CreateImage.CreateDivGraphHandleNum = 0 ;
 
-	// ƒVƒƒƒhƒEƒ}ƒbƒvƒnƒ“ƒhƒ‹ŠÇ—î•ñ‚ÌŒãn––
+	// ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ãƒãƒ³ãƒ‰ãƒ«ç®¡ç†æƒ…å ±ã®å¾Œå§‹æœ«
 	TerminateHandleManage( DX_HANDLETYPE_SHADOWMAP ) ;
 
-	// ’¸“_ƒoƒbƒtƒ@ƒnƒ“ƒhƒ‹ŠÇ—î•ñ‚ÌŒãn––
+	// é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ãƒãƒ³ãƒ‰ãƒ«ç®¡ç†æƒ…å ±ã®å¾Œå§‹æœ«
 	TerminateHandleManage( DX_HANDLETYPE_VERTEX_BUFFER ) ;
 
-	// ƒCƒ“ƒfƒbƒNƒXƒoƒbƒtƒ@ƒnƒ“ƒhƒ‹ŠÇ—î•ñ‚ÌŒãn––
+	// ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒãƒƒãƒ•ã‚¡ãƒãƒ³ãƒ‰ãƒ«ç®¡ç†æƒ…å ±ã®å¾Œå§‹æœ«
 	TerminateHandleManage( DX_HANDLETYPE_INDEX_BUFFER ) ;
 
-	// ƒVƒF[ƒ_[ƒnƒ“ƒhƒ‹ŠÇ—î•ñ‚ÌŒãn––
+	// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒãƒ³ãƒ‰ãƒ«ç®¡ç†æƒ…å ±ã®å¾Œå§‹æœ«
 	TerminateHandleManage( DX_HANDLETYPE_SHADER ) ;
 
-	// ƒVƒF[ƒ_[—p’è”ƒoƒbƒtƒ@ƒnƒ“ƒhƒ‹ŠÇ—î•ñ‚ÌŒãn––
+	// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ç”¨å®šæ•°ãƒãƒƒãƒ•ã‚¡ãƒãƒ³ãƒ‰ãƒ«ç®¡ç†æƒ…å ±ã®å¾Œå§‹æœ«
 	TerminateHandleManage( DX_HANDLETYPE_SHADER_CONSTANT_BUFFER ) ;
 
-	// ƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹ŠÇ—î•ñ‚ÌŒãn––
+	// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ç®¡ç†æƒ…å ±ã®å¾Œå§‹æœ«
 	TerminateHandleManage( DX_HANDLETYPE_GRAPH ) ;
 
-	// ”Ä—pƒoƒbƒtƒ@‚Ì‰ğ•ú
+	// æ±ç”¨ãƒãƒƒãƒ•ã‚¡ã®è§£æ”¾
 	Graphics_Other_TerminateCommonBuffer() ;
 
-	// Œãn––’†ƒtƒ‰ƒO‚ğ“|‚·
+	// å¾Œå§‹æœ«ä¸­ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 	GSYS.TerminateNowFlag = FALSE ;
 
-	// ‰Šú‰»Ï‚İƒtƒ‰ƒO‚ğ“|‚·
+	// åˆæœŸåŒ–æ¸ˆã¿ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 	GSYS.InitializeFlag = FALSE ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒOƒ‰ƒtƒBƒbƒNƒXƒVƒXƒeƒ€‚Ì•œ‹AA–”‚Í•ÏX•t‚«‚ÌÄƒZƒbƒgƒAƒbƒv‚ğs‚¤
+// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¹ã‚·ã‚¹ãƒ†ãƒ ã®å¾©å¸°ã€åˆã¯å¤‰æ›´ä»˜ãã®å†ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã‚’è¡Œã†
 extern int Graphics_RestoreOrChangeSetupGraphSystem( int Change, int ScreenSizeX, int ScreenSizeY, int ColorBitDepth, int RefreshRate )
 {
 	int Result ;
 
-	// ŠÂ‹«ˆË‘¶‚Ìˆ—‚ğs‚¤
+	// ç’°å¢ƒä¾å­˜ã®å‡¦ç†ã‚’è¡Œã†
 	Result = Graphics_RestoreOrChangeSetupGraphSystem_PF( Change, ScreenSizeX, ScreenSizeY, ColorBitDepth, RefreshRate ) ;
 
-	// ƒ€[ƒr[ƒOƒ‰ƒtƒBƒbƒN‚ÌÄ¶
+	// ãƒ ãƒ¼ãƒ“ãƒ¼ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®å†ç”Ÿ
 	if( DxSysData.NotDrawFlag == FALSE )
 	{
 #ifndef DX_NON_MOVIE
@@ -27806,7 +27806,7 @@ extern int Graphics_RestoreOrChangeSetupGraphSystem( int Change, int ScreenSizeX
 	}
 
 
-	// I—¹
+	// çµ‚äº†
 	return Result ;
 }
 
@@ -27832,9 +27832,9 @@ extern int Graphics_RestoreOrChangeSetupGraphSystem( int Change, int ScreenSizeX
 
 
 
-// ‰æ–ÊŠÖŒWŠÖ”
+// ç”»é¢é–¢ä¿‚é–¢æ•°
 
-// ƒtƒ‹ƒXƒNƒŠ[ƒ“ƒ‚[ƒh‚Ìƒ‚[ƒh‚Ìƒ`ƒFƒbƒN‚âg—p‚·‚é‰ğ‘œ“x‚ğ‚ÌŒˆ’è‚ğs‚¤
+// ãƒ•ãƒ«ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ¢ãƒ¼ãƒ‰ã®ãƒ¢ãƒ¼ãƒ‰ã®ãƒã‚§ãƒƒã‚¯ã‚„ä½¿ç”¨ã™ã‚‹è§£åƒåº¦ã‚’ã®æ±ºå®šã‚’è¡Œã†
 extern	int		Graphics_Screen_SetupFullScreenModeInfo( void )
 {
 	int             DispModeNum ;
@@ -27849,22 +27849,22 @@ extern	int		Graphics_Screen_SetupFullScreenModeInfo( void )
 	DISPLAYMODEDATA DispModeData = { 0 } ;
 	int				UseDisplayIndex ;
 
-	// ‰æ–Ê‰ğ‘œ“x‚ªİ’è‚³‚ê‚Ä‚¢‚È‚©‚Á‚½‚çƒfƒtƒHƒ‹ƒg’l‚ğƒZƒbƒg
+	// ç”»é¢è§£åƒåº¦ãŒè¨­å®šã•ã‚Œã¦ã„ãªã‹ã£ãŸã‚‰ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå€¤ã‚’ã‚»ãƒƒãƒˆ
 	if( GSYS.Screen.MainScreenSizeX == 0 || GSYS.Screen.MainScreenSizeY == 0 )
 	{
 		Graphics_Screen_SetMainScreenSize( DEFAULT_SCREEN_SIZE_X, DEFAULT_SCREEN_SIZE_Y ) ;
 	}
 
-	// ‰æ–Êî•ñ‚ªƒZƒbƒgƒAƒbƒv‚³‚ê‚Ä‚¢‚È‚©‚Á‚½‚çƒZƒbƒgƒAƒbƒv
+	// ç”»é¢æƒ…å ±ãŒã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã•ã‚Œã¦ã„ãªã‹ã£ãŸã‚‰ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 	if( GSYS.Screen.DisplayInfo == NULL )
 	{
 		Graphics_SetupDisplayInfo_PF() ;
 	}
 
-	// g—p‚·‚éƒfƒBƒXƒvƒŒƒC”Ô†‚ğ€”õ
+	// ä½¿ç”¨ã™ã‚‹ãƒ‡ã‚£ã‚¹ãƒ—ãƒ¬ã‚¤ç•ªå·ã‚’æº–å‚™
 	UseDisplayIndex = GSYS.Screen.ValidUseDisplayIndex ? GSYS.Screen.UseDisplayIndex : GSYS.Screen.PrimaryDisplayIndex ;
 
-	// ‰æ–Ê‚ÌƒJƒ‰[ƒrƒbƒg[“x‚ª‚ªİ’è‚³‚ê‚Ä‚¢‚È‚©‚Á‚½‚çƒfƒtƒHƒ‹ƒg’l‚ğƒZƒbƒg
+	// ç”»é¢ã®ã‚«ãƒ©ãƒ¼ãƒ“ãƒƒãƒˆæ·±åº¦ãŒãŒè¨­å®šã•ã‚Œã¦ã„ãªã‹ã£ãŸã‚‰ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå€¤ã‚’ã‚»ãƒƒãƒˆ
 	if( GSYS.Screen.MainScreenColorBitDepth == 0 )
 	{
 		GSYS.Screen.MainScreenColorBitDepth = DEFAULT_COLOR_BITDEPTH ;
@@ -27894,7 +27894,7 @@ LABEL_FULLSCREENMODE_SWITCH :
 			}
 		}
 
-		// ƒfƒXƒNƒgƒbƒv‚ÌƒTƒCƒY‚ğƒZƒbƒg
+		// ãƒ‡ã‚¹ã‚¯ãƒˆãƒƒãƒ—ã®ã‚µã‚¤ã‚ºã‚’ã‚»ãƒƒãƒˆ
 		GSYS.Screen.FullScreenUseDispModeData.Width         = GSYS.Screen.DisplayInfo[ UseDisplayIndex ].DesktopSizeX ;
 		GSYS.Screen.FullScreenUseDispModeData.Height        = GSYS.Screen.DisplayInfo[ UseDisplayIndex ].DesktopSizeY ;
 		GSYS.Screen.FullScreenUseDispModeData.ColorBitDepth = GSYS.Screen.DisplayInfo[ UseDisplayIndex ].DesktopColorBitDepth ;
@@ -27906,7 +27906,7 @@ LABEL_FULLSCREENMODE_SWITCH :
 		break ;
 
 	case DX_FSRESOLUTIONMODE_NATIVE :
-		// w’è‚Ì‰æ–Êƒ‚[ƒh‚É‘Î‰‚µ‚Ä‚¢‚é‚©’²‚×‚é
+		// æŒ‡å®šã®ç”»é¢ãƒ¢ãƒ¼ãƒ‰ã«å¯¾å¿œã—ã¦ã„ã‚‹ã‹èª¿ã¹ã‚‹
 		DispModeNum = NS_GetDisplayModeNum( UseDisplayIndex ) ;
 		ResolutionMatchIndex                               = -1 ;
 		ResolutionMatchIntMulNum                           = -1 ;
@@ -27918,42 +27918,42 @@ LABEL_FULLSCREENMODE_SWITCH :
 		{
 			DispModeData = NS_GetDisplayMode( i, UseDisplayIndex ) ;
 
-			// w’è‚Ì‰ğ‘œ“x‚Æˆê’v‚µ‚Ä‚¢‚é‚©Aá‚µ‚­‚Íw’è‚Ì‰ğ‘œ“x‚Ì®””{‚Ì‰ğ‘œ“x‚©‚Ç‚¤‚©‚Å•ªŠò
+			// æŒ‡å®šã®è§£åƒåº¦ã¨ä¸€è‡´ã—ã¦ã„ã‚‹ã‹ã€è‹¥ã—ãã¯æŒ‡å®šã®è§£åƒåº¦ã®æ•´æ•°å€ã®è§£åƒåº¦ã‹ã©ã†ã‹ã§åˆ†å²
 			if( DispModeData.Width  % GSYS.Screen.MainScreenSizeX == 0 &&
 				DispModeData.Height % GSYS.Screen.MainScreenSizeY == 0 &&
 				( DispModeData.Width  / GSYS.Screen.MainScreenSizeX == DispModeData.Height / GSYS.Screen.MainScreenSizeY ) )
 			{
-				// w’è‚Ì‰ğ‘œ“x‚Ì‰½”{‚©‚ğZo
+				// æŒ‡å®šã®è§£åƒåº¦ã®ä½•å€ã‹ã‚’ç®—å‡º
 				IntMulNum = DispModeData.Width  / GSYS.Screen.MainScreenSizeX ;
 
-				// Å‰‚ÉŒ©‚Â‚¯‚½‰æ–Êƒ‚[ƒh‚©Aá‚µ‚­‚Í¡‚Ü‚ÅŒ©‚Â‚¯‚½‰æ–Êƒ‚[ƒh‚æ‚è‚à‰ğ‘œ“x”{”‚ª¬‚³‚¢ê‡‚Í‹L‰¯
+				// æœ€åˆã«è¦‹ã¤ã‘ãŸç”»é¢ãƒ¢ãƒ¼ãƒ‰ã‹ã€è‹¥ã—ãã¯ä»Šã¾ã§è¦‹ã¤ã‘ãŸç”»é¢ãƒ¢ãƒ¼ãƒ‰ã‚ˆã‚Šã‚‚è§£åƒåº¦å€æ•°ãŒå°ã•ã„å ´åˆã¯è¨˜æ†¶
 				if( ResolutionMatchIntMulNum < 0 || IntMulNum < ResolutionMatchIntMulNum )
 				{
 					ResolutionMatchIndex     = i ;
 					ResolutionMatchIntMulNum = IntMulNum ;
 				}
 
-				// w’è‚ÌƒJƒ‰[ƒrƒbƒg[“x‚Æˆê’v‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©‚Å•ªŠò
+				// æŒ‡å®šã®ã‚«ãƒ©ãƒ¼ãƒ“ãƒƒãƒˆæ·±åº¦ã¨ä¸€è‡´ã—ã¦ã„ã‚‹ã‹ã©ã†ã‹ã§åˆ†å²
 				if( GSYS.Screen.MainScreenColorBitDepth == DispModeData.ColorBitDepth )
 				{
-					// Å‰‚ÉŒ©‚Â‚¯‚½‰æ–Êƒ‚[ƒh‚©Aá‚µ‚­‚Í¡‚Ü‚ÅŒ©‚Â‚¯‚½‰æ–Êƒ‚[ƒh‚æ‚è‚à‰ğ‘œ“x”{”‚ª¬‚³‚¢ê‡‚Í‹L‰¯
+					// æœ€åˆã«è¦‹ã¤ã‘ãŸç”»é¢ãƒ¢ãƒ¼ãƒ‰ã‹ã€è‹¥ã—ãã¯ä»Šã¾ã§è¦‹ã¤ã‘ãŸç”»é¢ãƒ¢ãƒ¼ãƒ‰ã‚ˆã‚Šã‚‚è§£åƒåº¦å€æ•°ãŒå°ã•ã„å ´åˆã¯è¨˜æ†¶
 					if( ColorBitDepthResolutionMatchIntMulNum < 0 || IntMulNum < ColorBitDepthResolutionMatchIntMulNum )
 					{
 						ColorBitDepthResolutionMatchIndex     = i ;
 						ColorBitDepthResolutionMatchIntMulNum = IntMulNum ;
 					}
 
-					// ƒŠƒtƒŒƒbƒVƒ…ƒŒ[ƒg‚Ìw’è‚ª–³‚¢‚©Aw’è‚ÌƒŠƒtƒŒƒbƒVƒ…ƒŒ[ƒg‚Æˆê’v‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©‚Å•ªŠò
+					// ãƒªãƒ•ãƒ¬ãƒƒã‚·ãƒ¥ãƒ¬ãƒ¼ãƒˆã®æŒ‡å®šãŒç„¡ã„ã‹ã€æŒ‡å®šã®ãƒªãƒ•ãƒ¬ãƒƒã‚·ãƒ¥ãƒ¬ãƒ¼ãƒˆã¨ä¸€è‡´ã—ã¦ã„ã‚‹ã‹ã©ã†ã‹ã§åˆ†å²
 					if( GSYS.Screen.MainScreenRefreshRate == 0 ||
 						GSYS.Screen.MainScreenRefreshRate == DispModeData.RefreshRate )
 					{
-						// Å‰‚ÉŒ©‚Â‚¯‚½‰æ–Êƒ‚[ƒh‚©Aá‚µ‚­‚Í¡‚Ü‚ÅŒ©‚Â‚¯‚½‰æ–Êƒ‚[ƒh‚æ‚è‚à‰ğ‘œ“x”{”‚ª¬‚³‚¢ê‡‚Í‹L‰¯
+						// æœ€åˆã«è¦‹ã¤ã‘ãŸç”»é¢ãƒ¢ãƒ¼ãƒ‰ã‹ã€è‹¥ã—ãã¯ä»Šã¾ã§è¦‹ã¤ã‘ãŸç”»é¢ãƒ¢ãƒ¼ãƒ‰ã‚ˆã‚Šã‚‚è§£åƒåº¦å€æ•°ãŒå°ã•ã„å ´åˆã¯è¨˜æ†¶
 						if( RefreshRateColorBitDepthResolutionMatchIntMulNum < 0 || IntMulNum < RefreshRateColorBitDepthResolutionMatchIntMulNum )
 						{
 							RefreshRateColorBitDepthResolutionMatchIndex     = i ;
 							RefreshRateColorBitDepthResolutionMatchIntMulNum = IntMulNum ;
 
-							// ‚à‚µ‰ğ‘œ“x”{”‚ª‚P‚Ì‚Æ‚«‚ÍAw’è‚Ì‰æ–Êƒ‚[ƒh‚ÉŠ®‘S‚Éˆê’v‚µ‚Ä‚¢‚é‚Æ‚¢‚¤‚±‚Æ‚È‚Ì‚ÅAƒ‹[ƒv‚©‚ç”²‚¯‚é
+							// ã‚‚ã—è§£åƒåº¦å€æ•°ãŒï¼‘ã®ã¨ãã¯ã€æŒ‡å®šã®ç”»é¢ãƒ¢ãƒ¼ãƒ‰ã«å®Œå…¨ã«ä¸€è‡´ã—ã¦ã„ã‚‹ã¨ã„ã†ã“ã¨ãªã®ã§ã€ãƒ«ãƒ¼ãƒ—ã‹ã‚‰æŠœã‘ã‚‹
 							if( IntMulNum == 1 )
 							{
 								break ;
@@ -27964,31 +27964,31 @@ LABEL_FULLSCREENMODE_SWITCH :
 			}
 		}
 
-		// ‰ğ‘œ“x‚ªw’è’Ê‚èAá‚µ‚­‚Í®””{‚ÅAƒŠƒtƒŒƒbƒVƒ…ƒŒ[ƒgEƒJƒ‰[ƒrƒbƒg[“x‚ªw’è‚Ì’Ê‚è‚Ì‰æ–Êƒ‚[ƒh‚ª‚ ‚Á‚½ê‡‚ÍA‚»‚ê‚É‚·‚é
+		// è§£åƒåº¦ãŒæŒ‡å®šé€šã‚Šã€è‹¥ã—ãã¯æ•´æ•°å€ã§ã€ãƒªãƒ•ãƒ¬ãƒƒã‚·ãƒ¥ãƒ¬ãƒ¼ãƒˆãƒ»ã‚«ãƒ©ãƒ¼ãƒ“ãƒƒãƒˆæ·±åº¦ãŒæŒ‡å®šã®é€šã‚Šã®ç”»é¢ãƒ¢ãƒ¼ãƒ‰ãŒã‚ã£ãŸå ´åˆã¯ã€ãã‚Œã«ã™ã‚‹
 		if( RefreshRateColorBitDepthResolutionMatchIndex != -1 )
 		{
 			GSYS.Screen.FullScreenUseDispModeData = NS_GetDisplayMode( RefreshRateColorBitDepthResolutionMatchIndex, UseDisplayIndex ) ;
 		}
 		else
-		// ‰ğ‘œ“x‚ªw’è’Ê‚èAá‚µ‚­‚Í®””{‚ÅAƒJƒ‰[ƒrƒbƒg[“x‚àw’è’Ê‚è‚Ì‰æ–Êƒ‚[ƒh‚ª‚ ‚Á‚½ê‡‚ÍA‚»‚ê‚É‚·‚é
+		// è§£åƒåº¦ãŒæŒ‡å®šé€šã‚Šã€è‹¥ã—ãã¯æ•´æ•°å€ã§ã€ã‚«ãƒ©ãƒ¼ãƒ“ãƒƒãƒˆæ·±åº¦ã‚‚æŒ‡å®šé€šã‚Šã®ç”»é¢ãƒ¢ãƒ¼ãƒ‰ãŒã‚ã£ãŸå ´åˆã¯ã€ãã‚Œã«ã™ã‚‹
 		if( ColorBitDepthResolutionMatchIndex != -1 )
 		{
 			GSYS.Screen.FullScreenUseDispModeData = NS_GetDisplayMode( ColorBitDepthResolutionMatchIndex, UseDisplayIndex ) ;
 		}
 		else
-		// ‰ğ‘œ“x‚ªw’è’Ê‚èAá‚µ‚­‚Í®””{‚Ì‰æ–Êƒ‚[ƒh‚ª‚ ‚Á‚½ê‡‚ÍA‚»‚ê‚É‚·‚é
+		// è§£åƒåº¦ãŒæŒ‡å®šé€šã‚Šã€è‹¥ã—ãã¯æ•´æ•°å€ã®ç”»é¢ãƒ¢ãƒ¼ãƒ‰ãŒã‚ã£ãŸå ´åˆã¯ã€ãã‚Œã«ã™ã‚‹
 		if( ResolutionMatchIndex != -1 )
 		{
 			GSYS.Screen.FullScreenUseDispModeData = NS_GetDisplayMode( ResolutionMatchIndex, UseDisplayIndex ) ;
 		}
 		else
-		// ‰ğ‘œ“x‚ªw’è’Ê‚èAá‚µ‚­‚Í®””{‚Ì‰æ–Êƒ‚[ƒh‚ª–³‚©‚Á‚½ê‡‚Íƒtƒ‹ƒXƒNƒŠ[ƒ“‰ğ‘œ“xƒ‚[ƒh‚ğ DX_FSRESOLUTIONMODE_DESKTOP ‚É•ÏX‚·‚é
+		// è§£åƒåº¦ãŒæŒ‡å®šé€šã‚Šã€è‹¥ã—ãã¯æ•´æ•°å€ã®ç”»é¢ãƒ¢ãƒ¼ãƒ‰ãŒç„¡ã‹ã£ãŸå ´åˆã¯ãƒ•ãƒ«ã‚¹ã‚¯ãƒªãƒ¼ãƒ³è§£åƒåº¦ãƒ¢ãƒ¼ãƒ‰ã‚’ DX_FSRESOLUTIONMODE_DESKTOP ã«å¤‰æ›´ã™ã‚‹
 		{
 			GSYS.Screen.FullScreenResolutionModeAct = DX_FSRESOLUTIONMODE_DESKTOP ;
 			goto LABEL_FULLSCREENMODE_SWITCH ;
 		}
 
-		// ‰æ–Êƒ‚[ƒh‚ªw’è‚ÉŠ®‘Sˆê’v‚µ‚Ä‚¢‚È‚¢ê‡‚ÍAƒtƒ‹ƒXƒNƒŠ[ƒ“‰ğ‘œ“xƒ‚[ƒh‚ğ DX_FSRESOLUTIONMODE_MAXIMUM ‚É‚·‚é
+		// ç”»é¢ãƒ¢ãƒ¼ãƒ‰ãŒæŒ‡å®šã«å®Œå…¨ä¸€è‡´ã—ã¦ã„ãªã„å ´åˆã¯ã€ãƒ•ãƒ«ã‚¹ã‚¯ãƒªãƒ¼ãƒ³è§£åƒåº¦ãƒ¢ãƒ¼ãƒ‰ã‚’ DX_FSRESOLUTIONMODE_MAXIMUM ã«ã™ã‚‹
 		if( RefreshRateColorBitDepthResolutionMatchIndex == -1 || 
 			RefreshRateColorBitDepthResolutionMatchIntMulNum != 1 )
 		{
@@ -27999,7 +27999,7 @@ LABEL_FULLSCREENMODE_SWITCH :
 	case DX_FSRESOLUTIONMODE_DESKTOP :
 		if( GSYS.Screen.DisplayInfo == NULL )
 		{
-			// ƒfƒBƒXƒvƒŒƒCî•ñ‚Ìæ“¾‚É¸”s‚µ‚½‚ç DX_FSRESOLUTIONMODE_MAXIMUM ‚ğg—p‚·‚é
+			// ãƒ‡ã‚£ã‚¹ãƒ—ãƒ¬ã‚¤æƒ…å ±ã®å–å¾—ã«å¤±æ•—ã—ãŸã‚‰ DX_FSRESOLUTIONMODE_MAXIMUM ã‚’ä½¿ç”¨ã™ã‚‹
 			if( Graphics_SetupDisplayInfo_PF() < 0 )
 			{
 				GSYS.Screen.FullScreenResolutionModeAct = DX_FSRESOLUTIONMODE_MAXIMUM ;
@@ -28007,7 +28007,7 @@ LABEL_FULLSCREENMODE_SWITCH :
 			}
 		}
 
-		// w’è‚Ì‰ğ‘œ“x‚ªƒfƒXƒNƒgƒbƒv‰æ–Ê‚æ‚è‚‚¢ê‡‚Í DX_FSRESOLUTIONMODE_MAXIMUM ‚É•ÏX
+		// æŒ‡å®šã®è§£åƒåº¦ãŒãƒ‡ã‚¹ã‚¯ãƒˆãƒƒãƒ—ç”»é¢ã‚ˆã‚Šé«˜ã„å ´åˆã¯ DX_FSRESOLUTIONMODE_MAXIMUM ã«å¤‰æ›´
 		if( GSYS.Screen.DisplayInfo[ UseDisplayIndex ].DesktopSizeX < GSYS.Screen.MainScreenSizeX ||
 			GSYS.Screen.DisplayInfo[ UseDisplayIndex ].DesktopSizeY < GSYS.Screen.MainScreenSizeY )
 		{
@@ -28015,7 +28015,7 @@ LABEL_FULLSCREENMODE_SWITCH :
 			goto LABEL_FULLSCREENMODE_SWITCH ;
 		}
 
-		// ƒfƒXƒNƒgƒbƒv‚ÌƒTƒCƒY‚ğƒZƒbƒg
+		// ãƒ‡ã‚¹ã‚¯ãƒˆãƒƒãƒ—ã®ã‚µã‚¤ã‚ºã‚’ã‚»ãƒƒãƒˆ
 		GSYS.Screen.FullScreenUseDispModeData.Width         = GSYS.Screen.DisplayInfo[ UseDisplayIndex ].DesktopSizeX ;
 		GSYS.Screen.FullScreenUseDispModeData.Height        = GSYS.Screen.DisplayInfo[ UseDisplayIndex ].DesktopSizeY ;
 		GSYS.Screen.FullScreenUseDispModeData.ColorBitDepth = GSYS.Screen.DisplayInfo[ UseDisplayIndex ].DesktopColorBitDepth ;
@@ -28023,7 +28023,7 @@ LABEL_FULLSCREENMODE_SWITCH :
 		break ;
 
 	case DX_FSRESOLUTIONMODE_MAXIMUM :
-		// Å‘å‰ğ‘œ“x‚ğæ“¾‚·‚é
+		// æœ€å¤§è§£åƒåº¦ã‚’å–å¾—ã™ã‚‹
 		{
 			int MatchDispModeIndex ;
 			int MatchDispModeWidth ;
@@ -28101,14 +28101,14 @@ LABEL_FULLSCREENMODE_SWITCH :
 		break ;
 	}
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// GSYS.Screen.FullScreenScalingDestRect ‚Ì’l‚ğƒZƒbƒgƒAƒbƒv‚·‚é
+// GSYS.Screen.FullScreenScalingDestRect ã®å€¤ã‚’ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã™ã‚‹
 extern	int		Graphics_Screen_SetupFullScreenScalingDestRect( void )
 {
-	// DX_FSRESOLUTIONMODE_NATIVE ˆÈŠO‚Ìê‡‚Í‚±‚±‚Å“]‘—æ‹éŒ`‚ÌZo
+	// DX_FSRESOLUTIONMODE_NATIVE ä»¥å¤–ã®å ´åˆã¯ã“ã“ã§è»¢é€å…ˆçŸ©å½¢ã®ç®—å‡º
 	switch( GSYS.Screen.FullScreenResolutionModeAct )
 	{
 	case DX_FSRESOLUTIONMODE_NATIVE :
@@ -28117,7 +28117,7 @@ extern	int		Graphics_Screen_SetupFullScreenScalingDestRect( void )
 	case DX_FSRESOLUTIONMODE_MAXIMUM :
 	case DX_FSRESOLUTIONMODE_DESKTOP :
 	case DX_FSRESOLUTIONMODE_BORDERLESS_WINDOW :
-		// ƒTƒuƒoƒbƒNƒoƒbƒtƒ@‚Ì“à—e‚ğƒsƒNƒZƒ‹‚Ìc‰¡”ä‚ğ‚PF‚P‚É•Û‚¿‚Â‚ÂƒoƒbƒNƒoƒbƒtƒ@‚ÉÅ‘å‚Ü‚ÅŠg‘å‚µ‚Ä“]‘—‚·‚é‹éŒ`‚ÌZo
+		// ã‚µãƒ–ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã®å†…å®¹ã‚’ãƒ”ã‚¯ã‚»ãƒ«ã®ç¸¦æ¨ªæ¯”ã‚’ï¼‘ï¼šï¼‘ã«ä¿ã¡ã¤ã¤ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã«æœ€å¤§ã¾ã§æ‹¡å¤§ã—ã¦è»¢é€ã™ã‚‹çŸ©å½¢ã®ç®—å‡º
 		{
 			int DestSizeX ;
 			int DestSizeY ;
@@ -28130,7 +28130,7 @@ extern	int		Graphics_Screen_SetupFullScreenScalingDestRect( void )
 			static int MainScreenSizeXBackup = -1000 ;
 			static int MainScreenSizeYBackup = -1000 ;
 
-			// “]‘—æ‚ÌƒTƒCƒY‚ğƒZƒbƒg
+			// è»¢é€å…ˆã®ã‚µã‚¤ã‚ºã‚’ã‚»ãƒƒãƒˆ
 			if( GSYS.Screen.FullScreenResolutionModeAct == DX_FSRESOLUTIONMODE_DESKTOP ||
 				GSYS.Screen.FullScreenResolutionModeAct == DX_FSRESOLUTIONMODE_BORDERLESS_WINDOW )
 			{
@@ -28160,7 +28160,7 @@ extern	int		Graphics_Screen_SetupFullScreenScalingDestRect( void )
 				{
 					DestSizeXBackup = DestSizeX ;
 					DestSizeYBackup = DestSizeY ;
-//					DXST_LOGFILEFMT_ADDUTF16LE(( "\x11\xff\x20\x00\x20\x00\x44\x00\x65\x00\x73\x00\x74\x00\x53\x00\x69\x00\x7a\x00\x65\x00\x58\x00\x3a\x00\x25\x00\x64\x00\x20\x00\x20\x00\x44\x00\x65\x00\x73\x00\x74\x00\x53\x00\x69\x00\x7a\x00\x65\x00\x59\x00\x3a\x00\x25\x00\x64\x00\x00"/*@ L"‚P  DestSizeX:%d  DestSizeY:%d" @*/, DestSizeX, DestSizeY )) ;
+//					DXST_LOGFILEFMT_ADDUTF16LE(( "\x11\xff\x20\x00\x20\x00\x44\x00\x65\x00\x73\x00\x74\x00\x53\x00\x69\x00\x7a\x00\x65\x00\x58\x00\x3a\x00\x25\x00\x64\x00\x20\x00\x20\x00\x44\x00\x65\x00\x73\x00\x74\x00\x53\x00\x69\x00\x7a\x00\x65\x00\x59\x00\x3a\x00\x25\x00\x64\x00\x00"/*@ L"ï¼‘  DestSizeX:%d  DestSizeY:%d" @*/, DestSizeX, DestSizeY )) ;
 				}
 			}
 			else
@@ -28172,11 +28172,11 @@ extern	int		Graphics_Screen_SetupFullScreenScalingDestRect( void )
 				{
 					DestSizeXBackup = DestSizeX ;
 					DestSizeYBackup = DestSizeY ;
-//					DXST_LOGFILEFMT_ADDUTF16LE(( "\x12\xff\x20\x00\x20\x00\x44\x00\x65\x00\x73\x00\x74\x00\x53\x00\x69\x00\x7a\x00\x65\x00\x58\x00\x3a\x00\x25\x00\x64\x00\x20\x00\x20\x00\x44\x00\x65\x00\x73\x00\x74\x00\x53\x00\x69\x00\x7a\x00\x65\x00\x59\x00\x3a\x00\x25\x00\x64\x00\x00"/*@ L"‚Q  DestSizeX:%d  DestSizeY:%d" @*/, DestSizeX, DestSizeY )) ;
+//					DXST_LOGFILEFMT_ADDUTF16LE(( "\x12\xff\x20\x00\x20\x00\x44\x00\x65\x00\x73\x00\x74\x00\x53\x00\x69\x00\x7a\x00\x65\x00\x58\x00\x3a\x00\x25\x00\x64\x00\x20\x00\x20\x00\x44\x00\x65\x00\x73\x00\x74\x00\x53\x00\x69\x00\x7a\x00\x65\x00\x59\x00\x3a\x00\x25\x00\x64\x00\x00"/*@ L"ï¼’  DestSizeX:%d  DestSizeY:%d" @*/, DestSizeX, DestSizeY )) ;
 				}
 			}
 
-			// “]‘—Œã‚ÌƒTƒCƒY‚ğŒˆ’è
+			// è»¢é€å¾Œã®ã‚µã‚¤ã‚ºã‚’æ±ºå®š
 			if( GSYS.Screen.MainScreenSizeX == 0 )
 			{
 				GSYS.Screen.MainScreenSizeX = DEFAULT_SCREEN_SIZE_X ;
@@ -28205,12 +28205,12 @@ extern	int		Graphics_Screen_SetupFullScreenScalingDestRect( void )
 				ScalingSizeYBackup = ScalingSizeY ;
 				MainScreenSizeXBackup = GSYS.Screen.MainScreenSizeX ;
 				MainScreenSizeYBackup = GSYS.Screen.MainScreenSizeY ;
-//				DXST_LOGFILEFMT_ADDUTF16LE(( "\x53\x00\x63\x00\x61\x00\x6c\x00\x69\x00\x6e\x00\x67\x00\x53\x00\x69\x00\x7a\x00\x65\x00\x58\x00\x3a\x00\x25\x00\x64\x00\x00\x30\x53\x00\x63\x00\x61\x00\x6c\x00\x69\x00\x6e\x00\x67\x00\x53\x00\x69\x00\x7a\x00\x65\x00\x59\x00\x3a\x00\x25\x00\x64\x00\x20\x00\x20\x00\x4d\x00\x61\x00\x69\x00\x6e\x00\x53\x00\x63\x00\x72\x00\x65\x00\x65\x00\x6e\x00\x53\x00\x69\x00\x7a\x00\x65\x00\x58\x00\x3a\x00\x25\x00\x64\x00\x20\x00\x20\x00\x4d\x00\x61\x00\x69\x00\x6e\x00\x53\x00\x63\x00\x72\x00\x65\x00\x65\x00\x6e\x00\x53\x00\x69\x00\x7a\x00\x65\x00\x59\x00\x3a\x00\x25\x00\x64\x00\x00"/*@ L"ScalingSizeX:%d@ScalingSizeY:%d  MainScreenSizeX:%d  MainScreenSizeY:%d" @*/,
+//				DXST_LOGFILEFMT_ADDUTF16LE(( "\x53\x00\x63\x00\x61\x00\x6c\x00\x69\x00\x6e\x00\x67\x00\x53\x00\x69\x00\x7a\x00\x65\x00\x58\x00\x3a\x00\x25\x00\x64\x00\x00\x30\x53\x00\x63\x00\x61\x00\x6c\x00\x69\x00\x6e\x00\x67\x00\x53\x00\x69\x00\x7a\x00\x65\x00\x59\x00\x3a\x00\x25\x00\x64\x00\x20\x00\x20\x00\x4d\x00\x61\x00\x69\x00\x6e\x00\x53\x00\x63\x00\x72\x00\x65\x00\x65\x00\x6e\x00\x53\x00\x69\x00\x7a\x00\x65\x00\x58\x00\x3a\x00\x25\x00\x64\x00\x20\x00\x20\x00\x4d\x00\x61\x00\x69\x00\x6e\x00\x53\x00\x63\x00\x72\x00\x65\x00\x65\x00\x6e\x00\x53\x00\x69\x00\x7a\x00\x65\x00\x59\x00\x3a\x00\x25\x00\x64\x00\x00"/*@ L"ScalingSizeX:%dã€€ScalingSizeY:%d  MainScreenSizeX:%d  MainScreenSizeY:%d" @*/,
 //					ScalingSizeX, ScalingSizeY,
 //					GSYS.Screen.MainScreenSizeX, GSYS.Screen.MainScreenSizeY )) ;
 			}
 
-			// “]‘—æ‚Ì‹éŒ`‚ğŒˆ’è
+			// è»¢é€å…ˆã®çŸ©å½¢ã‚’æ±ºå®š
 			GSYS.Screen.FullScreenScalingDestRect.left   = ( DestSizeX - ScalingSizeX ) / 2 ;
 			GSYS.Screen.FullScreenScalingDestRect.top    = ( DestSizeY - ScalingSizeY ) / 2 ;
 			GSYS.Screen.FullScreenScalingDestRect.right  = GSYS.Screen.FullScreenScalingDestRect.left + ScalingSizeX ;
@@ -28219,11 +28219,11 @@ extern	int		Graphics_Screen_SetupFullScreenScalingDestRect( void )
 		break ;
 	}
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// ƒXƒNƒŠ[ƒ“À•W‚ğƒTƒuƒoƒbƒNƒoƒbƒtƒ@[À•W‚É•ÏŠ·‚·‚é
+// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³åº§æ¨™ã‚’ã‚µãƒ–ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ãƒ¼åº§æ¨™ã«å¤‰æ›ã™ã‚‹
 extern int Graphics_Screen_ScreenPosConvSubBackbufferPos( int ScreenPosX, int ScreenPosY, int *BackBufferPosX, int *BackBufferPosY )
 {
 	ScreenPosX -= GSYS.Screen.FullScreenDesktopRect.left ;
@@ -28266,7 +28266,7 @@ extern int Graphics_Screen_ScreenPosConvSubBackbufferPos( int ScreenPosX, int Sc
 	return 0 ;
 }
 
-// ƒTƒuƒoƒbƒNƒoƒbƒtƒ@[À•W‚ğƒXƒNƒŠ[ƒ“À•W‚É•ÏŠ·‚·‚é
+// ã‚µãƒ–ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ãƒ¼åº§æ¨™ã‚’ã‚¹ã‚¯ãƒªãƒ¼ãƒ³åº§æ¨™ã«å¤‰æ›ã™ã‚‹
 extern int Graphics_Screen_SubBackbufferPosConvScreenPos( int BackBufferPosX, int BackBufferPosY, int *ScreenPosX, int *ScreenPosY )
 {
 	switch( GSYS.Screen.FullScreenResolutionModeAct )
@@ -28306,19 +28306,19 @@ extern int Graphics_Screen_SubBackbufferPosConvScreenPos( int BackBufferPosX, in
 	return 0 ;
 }
 
-// ƒƒCƒ“‰æ–Ê‚Ì‚yƒoƒbƒtƒ@‚Ìİ’è‚ğ•ÏX‚·‚é
+// ãƒ¡ã‚¤ãƒ³ç”»é¢ã®ï¼ºãƒãƒƒãƒ•ã‚¡ã®è¨­å®šã‚’å¤‰æ›´ã™ã‚‹
 extern int Graphics_Screen_SetZBufferMode( int ZBufferSizeX, int ZBufferSizeY, int ZBufferBitDepth )
 {
 	return Graphics_Hardware_SetZBufferMode_PF( ZBufferSizeX, ZBufferSizeY, ZBufferBitDepth ) ;
 }
 
-// İ’è‚ÉŠî‚Ã‚¢‚Äg—p‚·‚é‚yƒoƒbƒtƒ@‚ğƒZƒbƒg‚·‚é
+// è¨­å®šã«åŸºã¥ã„ã¦ä½¿ç”¨ã™ã‚‹ï¼ºãƒãƒƒãƒ•ã‚¡ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern int Graphics_Screen_SetupUseZBuffer( void )
 {
 	return Graphics_Hardware_SetupUseZBuffer_PF() ;
 }
 
-// ƒƒCƒ“‰æ–Ê‚ÌƒTƒCƒY’l‚ğ•ÏX‚·‚é
+// ãƒ¡ã‚¤ãƒ³ç”»é¢ã®ã‚µã‚¤ã‚ºå€¤ã‚’å¤‰æ›´ã™ã‚‹
 extern void Graphics_Screen_SetMainScreenSize( int SizeX, int SizeY )
 {
 	GSYS.Screen.MainScreenSizeX = SizeX ;
@@ -28330,7 +28330,7 @@ extern void Graphics_Screen_SetMainScreenSize( int SizeX, int SizeY )
 	SetMathScreenSize( GSYS.Screen.MainScreenSizeX_Result, GSYS.Screen.MainScreenSizeY_Result ) ;
 }
 
-// ‰æ–Êƒ‚[ƒh‚Ì•ÏX‚Q
+// ç”»é¢ãƒ¢ãƒ¼ãƒ‰ã®å¤‰æ›´ï¼’
 extern int Graphics_Screen_ChangeMode( int ScreenSizeX, int ScreenSizeY, int ColorBitDepth, int ChangeWindowFlag, int RefreshRate, int AlwaysRunFlag )
 {
 	int BackScSizeX, BackScSizeY, BackScColorBitDepth, BackRefreshRate ;
@@ -28350,22 +28350,22 @@ extern int Graphics_Screen_ChangeMode( int ScreenSizeX, int ScreenSizeY, int Col
 	int Result ;
 	int i ;
 
-	// Graphics_Screen_ChangeModeÀs’†ƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// Graphics_Screen_ChangeModeå®Ÿè¡Œä¸­ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	GSYS.Screen.Graphics_Screen_ChangeModeFlag = TRUE ;
 
-	// •`‰æ‘Ò‹@‚µ‚Ä‚¢‚é•`‰æ•¨‚ğ•`‰æ
+	// æç”»å¾…æ©Ÿã—ã¦ã„ã‚‹æç”»ç‰©ã‚’æç”»
 	DRAWSTOCKINFO
 
-	// Šù‚É‰Šú‰»Ï‚İ‚©‚Ç‚¤‚©‚ğæ“¾‚µ‚Ä‚¨‚­
+	// æ—¢ã«åˆæœŸåŒ–æ¸ˆã¿ã‹ã©ã†ã‹ã‚’å–å¾—ã—ã¦ãŠã
 	InitFlag = GSYS.InitializeFlag ;
 
-	// -1 ‚¾‚Á‚½•”•ª‚ÍŠù‘¶‚Ì’l‚Å‘ã—p
+	// -1 ã ã£ãŸéƒ¨åˆ†ã¯æ—¢å­˜ã®å€¤ã§ä»£ç”¨
 	if( ScreenSizeX		== -1 ) ScreenSizeX   = GSYS.Screen.MainScreenSizeX ;
 	if( ScreenSizeY		== -1 ) ScreenSizeY   = GSYS.Screen.MainScreenSizeY ;
 	if( ColorBitDepth	== -1 ) ColorBitDepth = GSYS.Screen.MainScreenColorBitDepth ;
 	if( RefreshRate		== -1 ) RefreshRate   = GSYS.Screen.MainScreenRefreshRate ;
 
-	// ‚à‚µˆÈ‘O‚Æ‰æ–Êƒ‚[ƒh‚ª‘S‚­“¯‚¶ê‡‚Í‰½‚à‚¹‚¸I—¹
+	// ã‚‚ã—ä»¥å‰ã¨ç”»é¢ãƒ¢ãƒ¼ãƒ‰ãŒå…¨ãåŒã˜å ´åˆã¯ä½•ã‚‚ã›ãšçµ‚äº†
 	if( ScreenSizeX      == GSYS.Screen.MainScreenSizeX &&
 		ScreenSizeY      == GSYS.Screen.MainScreenSizeY &&
 		ColorBitDepth    == GSYS.Screen.MainScreenColorBitDepth &&
@@ -28376,12 +28376,12 @@ extern int Graphics_Screen_ChangeMode( int ScreenSizeX, int ScreenSizeY, int Col
 		goto END ;
 	}
 
-	DXST_LOGFILE_ADDUTF16LE( "\x3b\x75\x62\x97\xe2\x30\xfc\x30\xc9\x30\x09\x59\xf4\x66\xe6\x51\x06\x74\x92\x30\x8b\x95\xcb\x59\x57\x30\x7e\x30\x59\x30\x0a\x00\x00"/*@ L"‰æ–Êƒ‚[ƒh•ÏXˆ—‚ğŠJn‚µ‚Ü‚·\n" @*/ ) ;
+	DXST_LOGFILE_ADDUTF16LE( "\x3b\x75\x62\x97\xe2\x30\xfc\x30\xc9\x30\x09\x59\xf4\x66\xe6\x51\x06\x74\x92\x30\x8b\x95\xcb\x59\x57\x30\x7e\x30\x59\x30\x0a\x00\x00"/*@ L"ç”»é¢ãƒ¢ãƒ¼ãƒ‰å¤‰æ›´å‡¦ç†ã‚’é–‹å§‹ã—ã¾ã™\n" @*/ ) ;
 	DXST_LOGFILE_TABADD ;
 
 #ifndef DX_NON_FONT
 
-	// Šù‚É‰Šú‰»‚³‚ê‚Ä‚¢‚½‚çƒtƒHƒ“ƒg‚Ìî•ñ‚ğ‚Æ‚Á‚Ä‚¨‚­
+	// æ—¢ã«åˆæœŸåŒ–ã•ã‚Œã¦ã„ãŸã‚‰ãƒ•ã‚©ãƒ³ãƒˆã®æƒ…å ±ã‚’ã¨ã£ã¦ãŠã
 	if( InitFlag && NS_CheckFontHandleValid( NS_GetDefaultFontHandle() ) )
 	{
 		GetFontStateToHandle_WCHAR_T( FontName, &FontSize, &FontThick, DX_DEFAULT_FONT_HANDLE, &FontType, &FontCharSet, &FontEdgeSize, &FontItalic ) ;
@@ -28391,7 +28391,7 @@ extern int Graphics_Screen_ChangeMode( int ScreenSizeX, int ScreenSizeY, int Col
 
 #endif // DX_NON_FONT
 
-	// Šù‘¶‚Ì‰æ–Êƒ‚[ƒh‚Ìƒpƒ‰ƒ[ƒ^‚ğ‚Æ‚Á‚Ä‚¨‚­
+	// æ—¢å­˜ã®ç”»é¢ãƒ¢ãƒ¼ãƒ‰ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ã¨ã£ã¦ãŠã
 	GSYS.Screen.Graphics_Screen_Change_BackScreenW = GSYS.Screen.MainScreenSizeX ;
 	GSYS.Screen.Graphics_Screen_Change_BackScreenH = GSYS.Screen.MainScreenSizeY ;
 	BackScSizeX			= GSYS.Screen.MainScreenSizeX ; 
@@ -28399,30 +28399,30 @@ extern int Graphics_Screen_ChangeMode( int ScreenSizeX, int ScreenSizeY, int Col
 	BackScColorBitDepth	= GSYS.Screen.MainScreenColorBitDepth ;
 	BackRefreshRate		= GSYS.Screen.MainScreenRefreshRate ;
 
-	// ‚c‚wƒ‰ƒCƒuƒ‰ƒŠ‚Ì‰Šú‰»‘O‚ÍÀs‚Å‚«‚È‚¢
+	// ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®åˆæœŸåŒ–å‰ã¯å®Ÿè¡Œã§ããªã„
 	if( DxSysData.DxLib_RunInitializeFlag == FALSE && DxSysData.DxLib_InitializeFlag == FALSE )
 	{
 		goto END ;
 	}
 
-	// ‰æ–Êƒ‚[ƒh•ÏX‚ÉƒOƒ‰ƒtƒBƒbƒNƒXƒVƒXƒeƒ€‚ğƒŠƒZƒbƒg‚·‚é‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+	// ç”»é¢ãƒ¢ãƒ¼ãƒ‰å¤‰æ›´æ™‚ã«ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¹ã‚·ã‚¹ãƒ†ãƒ ã‚’ãƒªã‚»ãƒƒãƒˆã™ã‚‹ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 	if( GSYS.Setting.ChangeScreenModeNotGraphicsSystemFlag )
 	{
-		// ƒŠƒZƒbƒg‚µ‚È‚¢ê‡
+		// ãƒªã‚»ãƒƒãƒˆã—ãªã„å ´åˆ
 
 // #ifdef WINDOWS_DESKTOP_OS
-// 		// ƒEƒCƒ“ƒhƒEƒ‚[ƒh‚Ìê‡‚Íw’è‚Ì‰ğ‘œ“x‚ªƒfƒXƒNƒgƒbƒv‚ÌƒTƒCƒY‚ğ’´‚¦‚Ä‚¢‚È‚¢‚©‚Ç‚¤‚©‚ğ’²‚×‚é
+// 		// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ¢ãƒ¼ãƒ‰ã®å ´åˆã¯æŒ‡å®šã®è§£åƒåº¦ãŒãƒ‡ã‚¹ã‚¯ãƒˆãƒƒãƒ—ã®ã‚µã‚¤ã‚ºã‚’è¶…ãˆã¦ã„ãªã„ã‹ã©ã†ã‹ã‚’èª¿ã¹ã‚‹
 // 		if( NS_GetWindowModeFlag() == TRUE || NS_GetUseFullScreenResolutionMode() == DX_FSRESOLUTIONMODE_BORDERLESS_WINDOW )
 // 		{
 // 			GRAPHICSSYS_DISPLAYINFO *DisplayInfo ;
 // 
-// 			// ‰æ–Êî•ñ‚ªƒZƒbƒgƒAƒbƒv‚³‚ê‚Ä‚¢‚È‚©‚Á‚½‚çƒZƒbƒgƒAƒbƒv
+// 			// ç”»é¢æƒ…å ±ãŒã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã•ã‚Œã¦ã„ãªã‹ã£ãŸã‚‰ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 // 			if( GSYS.Screen.DisplayInfo == NULL )
 // 			{
 // 				Graphics_SetupDisplayInfo_PF() ;
 // 			}
 // 
-// 			// ƒfƒBƒXƒvƒŒƒC‚Ìw’è‚ª‚ ‚éê‡‚Íw’è‚ÌƒfƒBƒXƒvƒŒƒC‚ÌƒTƒCƒY‚Ì‚İ‚ğƒ`ƒFƒbƒN
+// 			// ãƒ‡ã‚£ã‚¹ãƒ—ãƒ¬ã‚¤ã®æŒ‡å®šãŒã‚ã‚‹å ´åˆã¯æŒ‡å®šã®ãƒ‡ã‚£ã‚¹ãƒ—ãƒ¬ã‚¤ã®ã‚µã‚¤ã‚ºã®ã¿ã‚’ãƒã‚§ãƒƒã‚¯
 // 			if( GSYS.Screen.ValidUseDisplayIndex )
 // 			{
 // 				DisplayInfo = &GSYS.Screen.DisplayInfo[ GSYS.Screen.UseDisplayIndex ] ;
@@ -28433,7 +28433,7 @@ extern int Graphics_Screen_ChangeMode( int ScreenSizeX, int ScreenSizeY, int Col
 // 			}
 // 			else
 // 			{
-// 				// ‚È‚¢ê‡‚Í‘S‚Ä‚ÌƒfƒBƒXƒvƒŒƒC‚ÌÅ‘åƒTƒCƒY‚Æ”äŠr
+// 				// ãªã„å ´åˆã¯å…¨ã¦ã®ãƒ‡ã‚£ã‚¹ãƒ—ãƒ¬ã‚¤ã®æœ€å¤§ã‚µã‚¤ã‚ºã¨æ¯”è¼ƒ
 // 				int MaxWidth = 0, MaxHeight = 0 ;
 // 				for( i = 0 ; i < GSYS.Screen.DisplayNum ; i ++ )
 // 				{
@@ -28463,10 +28463,10 @@ extern int Graphics_Screen_ChangeMode( int ScreenSizeX, int ScreenSizeY, int Col
 // 		}
 // #endif // WINDOWS_DESKTOP_OS
 
-		// ƒ`ƒFƒ“ƒW
+		// ãƒã‚§ãƒ³ã‚¸
 		Graphics_RestoreOrChangeSetupGraphSystem( TRUE, ScreenSizeX, ScreenSizeY, ColorBitDepth, RefreshRate ) ;
 
-		// •`‰ææ‚ª— ‰æ–Ê–”‚Í•\‰æ–Ê‚Ìê‡‚Í•`‰ææƒTƒCƒY‚ğXV‚·‚é
+		// æç”»å…ˆãŒè£ç”»é¢åˆã¯è¡¨ç”»é¢ã®å ´åˆã¯æç”»å…ˆã‚µã‚¤ã‚ºã‚’æ›´æ–°ã™ã‚‹
 		if( GSYS.DrawSetting.TargetScreen[ 0 ] == DX_SCREEN_FRONT ||
 			GSYS.DrawSetting.TargetScreen[ 0 ] == DX_SCREEN_BACK )
 		{
@@ -28474,7 +28474,7 @@ extern int Graphics_Screen_ChangeMode( int ScreenSizeX, int ScreenSizeY, int Col
 			GSYS.DrawSetting.DrawSizeY = ScreenSizeY ;
 		}
 
-		// ƒ\ƒtƒgƒEƒGƒAƒŒƒ“ƒ_ƒŠƒ“ƒO‚Ìê‡‚±‚±‚ÅŒãn––‚Æ‰Šú‰»‚ğs‚¤
+		// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã®å ´åˆã“ã“ã§å¾Œå§‹æœ«ã¨åˆæœŸåŒ–ã‚’è¡Œã†
 		if( GSYS.Setting.ValidHardware == FALSE || GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode )
 		{
 			Graphics_Software_Terminate() ;
@@ -28482,7 +28482,7 @@ extern int Graphics_Screen_ChangeMode( int ScreenSizeX, int ScreenSizeY, int Col
 		}
 
 #ifdef WINDOWS_DESKTOP_OS
-		// ƒEƒCƒ“ƒhƒEƒXƒ^ƒCƒ‹ƒZƒbƒg
+		// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚¹ã‚¿ã‚¤ãƒ«ã‚»ãƒƒãƒˆ
 		if( NS_GetWindowModeFlag() == TRUE || NS_GetUseFullScreenResolutionMode() == DX_FSRESOLUTIONMODE_BORDERLESS_WINDOW )
 		{
 			SetWindowStyle() ;
@@ -28490,64 +28490,64 @@ extern int Graphics_Screen_ChangeMode( int ScreenSizeX, int ScreenSizeY, int Col
 #endif // WINDOWS_DESKTOP_OS
 
 		DXST_LOGFILE_TABSUB ;
-		DXST_LOGFILE_ADDUTF16LE( "\x3b\x75\x62\x97\xe2\x30\xfc\x30\xc9\x30\x09\x59\xf4\x66\xe6\x51\x06\x74\x6f\x30\x63\x6b\x38\x5e\x6b\x30\x42\x7d\x86\x4e\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"‰æ–Êƒ‚[ƒh•ÏXˆ—‚Í³í‚ÉI—¹‚µ‚Ü‚µ‚½\n" @*/ ) ;
+		DXST_LOGFILE_ADDUTF16LE( "\x3b\x75\x62\x97\xe2\x30\xfc\x30\xc9\x30\x09\x59\xf4\x66\xe6\x51\x06\x74\x6f\x30\x63\x6b\x38\x5e\x6b\x30\x42\x7d\x86\x4e\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ç”»é¢ãƒ¢ãƒ¼ãƒ‰å¤‰æ›´å‡¦ç†ã¯æ­£å¸¸ã«çµ‚äº†ã—ã¾ã—ãŸ\n" @*/ ) ;
 	}
 	else
-	// ‰æ–Êƒ‚[ƒh‚Ì•ÏX‚ÍƒTƒuƒoƒbƒNƒoƒbƒtƒ@‚Ì•ÏX‚Ì‚İ‚Ås‚¤ê‡‚Íˆ—‚ğ•ªŠò
+	// ç”»é¢ãƒ¢ãƒ¼ãƒ‰ã®å¤‰æ›´ã¯ã‚µãƒ–ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã®å¤‰æ›´ã®ã¿ã§è¡Œã†å ´åˆã¯å‡¦ç†ã‚’åˆ†å²
 	if( GSYS.HardInfo.ChangeGraphModeOnlyChangeSubBackbuffer )
 	{
-		// ‚·‚×‚Ä‚Ì‰æ‘œƒnƒ“ƒhƒ‹‚ğíœ
+		// ã™ã¹ã¦ã®ç”»åƒãƒãƒ³ãƒ‰ãƒ«ã‚’å‰Šé™¤
 		NS_InitGraph() ;
 
 #ifndef DX_NON_FONT
-		// ‚·‚×‚Ä‚ÌƒtƒHƒ“ƒgƒnƒ“ƒhƒ‹‚ğíœ
+		// ã™ã¹ã¦ã®ãƒ•ã‚©ãƒ³ãƒˆãƒãƒ³ãƒ‰ãƒ«ã‚’å‰Šé™¤
 		NS_InitFontToHandle() ;
 #endif // DX_NON_FONT
 
 #ifndef DX_NON_MASK
-		// ‚·‚×‚Ä‚Ìƒ}ƒXƒNƒnƒ“ƒhƒ‹‚ğíœ
+		// ã™ã¹ã¦ã®ãƒã‚¹ã‚¯ãƒãƒ³ãƒ‰ãƒ«ã‚’å‰Šé™¤
 		NS_InitMask() ;
 #endif // DX_NON_MASK
 
 #ifndef DX_NON_MODEL
-		// ‚·‚×‚Ä‚Ìƒ‚ƒfƒ‹ƒnƒ“ƒhƒ‹‚ğíœ
+		// ã™ã¹ã¦ã®ãƒ¢ãƒ‡ãƒ«ãƒãƒ³ãƒ‰ãƒ«ã‚’å‰Šé™¤
 		NS_MV1InitModel() ;
 #endif // DX_NON_MODEL
 
 #ifndef DX_NON_LIVE2D_CUBISM4
-		// ‚·‚×‚Ä‚ÌLive2Dƒ‚ƒfƒ‹ƒnƒ“ƒhƒ‹‚ğíœ
+		// ã™ã¹ã¦ã®Live2Dãƒ¢ãƒ‡ãƒ«ãƒãƒ³ãƒ‰ãƒ«ã‚’å‰Šé™¤
 		NS_Live2D_InitModel() ;
 #endif // DX_NON_LIVE2D_CUBISM4
 
 #ifndef DX_NON_SOFTIMAGE
-		// ‚·‚×‚Ä‚Ìƒ\ƒtƒgƒEƒGƒAƒCƒ[ƒWƒnƒ“ƒhƒ‹‚ğíœ
+		// ã™ã¹ã¦ã®ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒãƒ³ãƒ‰ãƒ«ã‚’å‰Šé™¤
 		NS_InitSoftImage() ;
 #endif // DX_NON_SOFTIMAGE
 
-		// ‚·‚×‚Ä‚Ì’¸“_ƒf[ƒ^‚ÆƒCƒ“ƒfƒbƒNƒXƒf[ƒ^‚ğíœ
+		// ã™ã¹ã¦ã®é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ã¨ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿ã‚’å‰Šé™¤
 		NS_InitVertexBuffer() ;
 		NS_InitIndexBuffer() ;
 
-		// ‘S‚Ä‚ÌƒVƒF[ƒ_[—p’è”ƒoƒbƒtƒ@‚ğíœ
+		// å…¨ã¦ã®ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ç”¨å®šæ•°ãƒãƒƒãƒ•ã‚¡ã‚’å‰Šé™¤
 		NS_InitShaderConstantBuffer() ;
 
-		// ‘S‚Ä‚ÌƒVƒF[ƒ_[‚ğíœ
+		// å…¨ã¦ã®ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’å‰Šé™¤
 		NS_InitShader() ;
 
-		// ƒ‰ƒCƒg‚ğ‘S‚Äíœ
+		// ãƒ©ã‚¤ãƒˆã‚’å…¨ã¦å‰Šé™¤
 		NS_DeleteLightHandleAll() ;
 
-		// ƒ`ƒFƒ“ƒW
+		// ãƒã‚§ãƒ³ã‚¸
 		Graphics_RestoreOrChangeSetupGraphSystem( TRUE, ScreenSizeX, ScreenSizeY, ColorBitDepth, RefreshRate ) ;
 
-		// ƒ\ƒtƒgƒEƒGƒAƒŒƒ“ƒ_ƒŠƒ“ƒO‚Ìê‡‚±‚±‚ÅŒãn––‚Æ‰Šú‰»‚ğs‚¤
+		// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã®å ´åˆã“ã“ã§å¾Œå§‹æœ«ã¨åˆæœŸåŒ–ã‚’è¡Œã†
 		if( GSYS.Setting.ValidHardware == FALSE || GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode )
 		{
 			Graphics_Software_Terminate() ;
 			Graphics_Software_Initialize() ;
 		}
 
-		// ƒOƒ‰ƒtƒBƒbƒNƒXİ’è‚Ì‰Šú‰»
+		// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¹è¨­å®šã®åˆæœŸåŒ–
 		NS_SetDrawScreen( DX_SCREEN_FRONT ) ;
 		NS_SetDrawArea( 0, 0, ScreenSizeX, ScreenSizeY ) ;
 		NS_SetDrawBlendMode( DX_BLENDMODE_NOBLEND, 255 ) ;
@@ -28556,19 +28556,19 @@ extern int Graphics_Screen_ChangeMode( int ScreenSizeX, int ScreenSizeY, int Col
 		NS_SetBlendGraphParam( -1, 0 ) ;
 
 		DXST_LOGFILE_TABSUB ;
-		DXST_LOGFILE_ADDUTF16LE( "\x3b\x75\x62\x97\xe2\x30\xfc\x30\xc9\x30\x09\x59\xf4\x66\xe6\x51\x06\x74\x6f\x30\x63\x6b\x38\x5e\x6b\x30\x42\x7d\x86\x4e\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"‰æ–Êƒ‚[ƒh•ÏXˆ—‚Í³í‚ÉI—¹‚µ‚Ü‚µ‚½\n" @*/ ) ;
+		DXST_LOGFILE_ADDUTF16LE( "\x3b\x75\x62\x97\xe2\x30\xfc\x30\xc9\x30\x09\x59\xf4\x66\xe6\x51\x06\x74\x6f\x30\x63\x6b\x38\x5e\x6b\x30\x42\x7d\x86\x4e\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ç”»é¢ãƒ¢ãƒ¼ãƒ‰å¤‰æ›´å‡¦ç†ã¯æ­£å¸¸ã«çµ‚äº†ã—ã¾ã—ãŸ\n" @*/ ) ;
 	}
 	else
 	{
-		// ƒŠƒZƒbƒg‚·‚éê‡
+		// ãƒªã‚»ãƒƒãƒˆã™ã‚‹å ´åˆ
 
-		// ƒOƒ‰ƒtƒBƒNƒXƒVƒXƒeƒ€‚ÌI—¹
+		// ã‚°ãƒ©ãƒ•ã‚£ã‚¯ã‚¹ã‚·ã‚¹ãƒ†ãƒ ã®çµ‚äº†
 		if( GSYS.InitializeFlag )
 		{
 			Graphics_Terminate() ;
 		}
 
-		// ‰æ–Êƒ‚[ƒh‚ÌƒZƒbƒg
+		// ç”»é¢ãƒ¢ãƒ¼ãƒ‰ã®ã‚»ãƒƒãƒˆ
 		Graphics_Screen_SetMainScreenSize( ScreenSizeX, ScreenSizeY ) ;
 		GSYS.Screen.FullScreenResolutionModeAct = GSYS.Screen.FullScreenResolutionMode ;
 		GSYS.Screen.MainScreenColorBitDepth     = ColorBitDepth ;
@@ -28576,7 +28576,7 @@ extern int Graphics_Screen_ChangeMode( int ScreenSizeX, int ScreenSizeY, int Col
 		SetMemImgDefaultColorType( ColorBitDepth == 32 ? 1 : 0 ) ;
 
 #ifndef DX_NON_FONT
-		// ƒfƒtƒHƒ‹ƒgƒtƒHƒ“ƒg‚Ìİ’è‚ğƒZƒbƒg
+		// ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãƒ•ã‚©ãƒ³ãƒˆã®è¨­å®šã‚’ã‚»ãƒƒãƒˆ
 		if( FontUse == TRUE )
 		{
 			SetDefaultFontState_WCHAR_T( FontName, FontSize, FontThick, FontType, FontCharSet, FontEdgeSize, FontItalic ) ;
@@ -28584,14 +28584,14 @@ extern int Graphics_Screen_ChangeMode( int ScreenSizeX, int ScreenSizeY, int Col
 		}
 #endif // DX_NON_FONT
 
-		// ƒOƒ‰ƒtƒBƒbƒNƒVƒXƒeƒ€‚ÌÄ‰Šú‰»
+		// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚·ã‚¹ãƒ†ãƒ ã®å†åˆæœŸåŒ–
 		Result = Graphics_Initialize() ;
 
-		// ¸”s‚µ‚½ê‡‚Ìˆ—
+		// å¤±æ•—ã—ãŸå ´åˆã®å‡¦ç†
 		if( Result == -1 )
 		{
-			// ƒGƒ‰[‚ª”­¶‚µ‚½ê‡‚Å‰æ–Êƒ‚[ƒh‚ª 320x240 ‚¾‚Á‚½ê‡‚Í
-			// ‹[— 320x240 ƒ‚[ƒh‚Å‚·
+			// ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ãŸå ´åˆã§ç”»é¢ãƒ¢ãƒ¼ãƒ‰ãŒ 320x240 ã ã£ãŸå ´åˆã¯
+			// æ“¬ä¼¼ 320x240 ãƒ¢ãƒ¼ãƒ‰ã§è©¦ã™
 			if( GSYS.Screen.MainScreenSizeX == 320 && GSYS.Screen.MainScreenSizeY == 240 )
 			{
 				Graphics_Screen_SetMainScreenSize( 640, 480 ) ;
@@ -28599,7 +28599,7 @@ extern int Graphics_Screen_ChangeMode( int ScreenSizeX, int ScreenSizeY, int Col
 				Result = Graphics_Initialize() ;
 			}
 
-			// ƒGƒ‰[‚ª”­¶‚µ‚½ê‡‚ÍŒ³‚Ì‰æ–Êƒ‚[ƒh‚É–ß‚·
+			// ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ãŸå ´åˆã¯å…ƒã®ç”»é¢ãƒ¢ãƒ¼ãƒ‰ã«æˆ»ã™
 			if( Result == -1 )
 			{
 				Graphics_Screen_SetMainScreenSize( BackScSizeX, BackScSizeY ) ;
@@ -28608,14 +28608,14 @@ extern int Graphics_Screen_ChangeMode( int ScreenSizeX, int ScreenSizeY, int Col
 				SetMemImgDefaultColorType( BackScColorBitDepth == 32 ? 1 : 0 ) ;
 				if( Graphics_Initialize() == -1 )
 				{
-					// ‚»‚ê‚Å‚à‘Ê–Ú‚¾‚Á‚½ê‡‚Í‚c‚wƒ‰ƒCƒuƒ‰ƒŠ‚ÌƒfƒtƒHƒ‹ƒg‚Ì‰æ–Êƒ‚[ƒh‚É•ÏX
+					// ãã‚Œã§ã‚‚é§„ç›®ã ã£ãŸå ´åˆã¯ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®ç”»é¢ãƒ¢ãƒ¼ãƒ‰ã«å¤‰æ›´
 					Graphics_Screen_SetMainScreenSize( DEFAULT_SCREEN_SIZE_X, DEFAULT_SCREEN_SIZE_Y ) ;
 					GSYS.Screen.MainScreenColorBitDepth = DEFAULT_COLOR_BITDEPTH ;
 					GSYS.Screen.MainScreenRefreshRate   = 0 ;
 					SetMemImgDefaultColorType( 0 ) ;
 					if( Graphics_Initialize() == -1 )
 					{
-						// ‚»‚ê‚Å‚à‘Ê–Ú‚¾‚Á‚½ê‡‚Í640x480 32bit ‚ğ‚·
+						// ãã‚Œã§ã‚‚é§„ç›®ã ã£ãŸå ´åˆã¯640x480 32bit ã‚’è©¦ã™
 						Graphics_Screen_SetMainScreenSize( DEFAULT_SCREEN_SIZE_X, DEFAULT_SCREEN_SIZE_Y ) ;
 						GSYS.Screen.MainScreenColorBitDepth = 32 ;
 						GSYS.Screen.MainScreenRefreshRate   = 0 ;
@@ -28623,7 +28623,7 @@ extern int Graphics_Screen_ChangeMode( int ScreenSizeX, int ScreenSizeY, int Col
 						if( Graphics_Initialize() == -1 )
 						{
 							Ret = -1 ;
-							DXST_LOGFILE_ADDUTF16LE( "\x88\x4e\x1f\x67\x5b\x30\x6c\x30\x3b\x75\x62\x97\xe2\x30\xfc\x30\xc9\x30\x09\x59\xf4\x66\x0d\x4e\xfd\x80\xfe\x73\x61\x8c\x4c\x30\x77\x8d\x4d\x30\x7e\x30\x57\x30\x5f\x30\x32\x00\x0a\x00\x00"/*@ L"—\Šú‚¹‚Ê‰æ–Êƒ‚[ƒh•ÏX•s”\Œ»Û‚ª‹N‚«‚Ü‚µ‚½2\n" @*/ ) ;
+							DXST_LOGFILE_ADDUTF16LE( "\x88\x4e\x1f\x67\x5b\x30\x6c\x30\x3b\x75\x62\x97\xe2\x30\xfc\x30\xc9\x30\x09\x59\xf4\x66\x0d\x4e\xfd\x80\xfe\x73\x61\x8c\x4c\x30\x77\x8d\x4d\x30\x7e\x30\x57\x30\x5f\x30\x32\x00\x0a\x00\x00"/*@ L"äºˆæœŸã›ã¬ç”»é¢ãƒ¢ãƒ¼ãƒ‰å¤‰æ›´ä¸èƒ½ç¾è±¡ãŒèµ·ãã¾ã—ãŸ2\n" @*/ ) ;
 							goto END ;
 						}
 					}
@@ -28632,7 +28632,7 @@ extern int Graphics_Screen_ChangeMode( int ScreenSizeX, int ScreenSizeY, int Col
 		}
 
 #ifdef WINDOWS_DESKTOP_OS
-		// ƒEƒCƒ“ƒhƒEƒXƒ^ƒCƒ‹ƒZƒbƒg
+		// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚¹ã‚¿ã‚¤ãƒ«ã‚»ãƒƒãƒˆ
 		if( NS_GetWindowModeFlag() == TRUE || NS_GetUseFullScreenResolutionMode() == DX_FSRESOLUTIONMODE_BORDERLESS_WINDOW /*|| GSYS.Setting.ValidHardware == FALSE*/ )
 		{
 			SetWindowStyle() ;
@@ -28640,12 +28640,12 @@ extern int Graphics_Screen_ChangeMode( int ScreenSizeX, int ScreenSizeY, int Col
 #endif // WINDOWS_DESKTOP_OS
 
 		DXST_LOGFILE_TABSUB ;
-		DXST_LOGFILE_ADDUTF16LE( "\x3b\x75\x62\x97\xe2\x30\xfc\x30\xc9\x30\x09\x59\xf4\x66\xe6\x51\x06\x74\x6f\x30\x63\x6b\x38\x5e\x6b\x30\x42\x7d\x86\x4e\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"‰æ–Êƒ‚[ƒh•ÏXˆ—‚Í³í‚ÉI—¹‚µ‚Ü‚µ‚½\n" @*/ ) ;
+		DXST_LOGFILE_ADDUTF16LE( "\x3b\x75\x62\x97\xe2\x30\xfc\x30\xc9\x30\x09\x59\xf4\x66\xe6\x51\x06\x74\x6f\x30\x63\x6b\x38\x5e\x6b\x30\x42\x7d\x86\x4e\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ç”»é¢ãƒ¢ãƒ¼ãƒ‰å¤‰æ›´å‡¦ç†ã¯æ­£å¸¸ã«çµ‚äº†ã—ã¾ã—ãŸ\n" @*/ ) ;
 
-		// ƒƒbƒZ[ƒWˆ—
+		// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å‡¦ç†
 		NS_ProcessMessage() ;
 
-		// •`‰ææ‚Ìİ’è‚µ‚È‚¨‚µ
+		// æç”»å…ˆã®è¨­å®šã—ãªãŠã—
 		NS_SetRenderTargetToShader( 0, GSYS.DrawSetting.TargetScreen[ 0 ], GSYS.DrawSetting.TargetScreenSurface[ 0 ], GSYS.DrawSetting.TargetScreenMipLevel[ 0 ] ) ;
 		for( i = 1 ; i < GSYS.HardInfo.RenderTargetNum ; i ++ )
 		{
@@ -28654,26 +28654,26 @@ extern int Graphics_Screen_ChangeMode( int ScreenSizeX, int ScreenSizeY, int Col
 	}
 
 #ifdef WINDOWS_DESKTOP_OS
-	// ƒhƒ‰ƒbƒO•ƒhƒƒbƒv‚Ìİ’è‚ğ‚µ’¼‚·
+	// ãƒ‰ãƒ©ãƒƒã‚°ï¼†ãƒ‰ãƒ­ãƒƒãƒ—ã®è¨­å®šã‚’ã—ç›´ã™
 	RefreshDragFileValidFlag() ;
 #endif // WINDOWS_DESKTOP_OS
 
 END:
-	// Graphics_Screen_ChangeMode Às’†ƒtƒ‰ƒO‚ğ“|‚·
+	// Graphics_Screen_ChangeMode å®Ÿè¡Œä¸­ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 	GSYS.Screen.Graphics_Screen_ChangeModeFlag = FALSE ;
 
-	// I—¹
+	// çµ‚äº†
 	return Ret ;
 }
 
-// •`‰ææƒoƒbƒtƒ@‚ğƒƒbƒN‚·‚é
+// æç”»å…ˆãƒãƒƒãƒ•ã‚¡ã‚’ãƒ­ãƒƒã‚¯ã™ã‚‹
 extern int Graphics_Screen_LockDrawScreen( RECT *LockRect, BASEIMAGE *BaseImage, int TargetScreen, int TargetScreenSurface, int TargetScreenMipLevel, int ReadOnly, int TargetScreenTextureNo )
 {
 	IMAGEDATA *TargImage ;
 	int TargetScreenWidth ;
 	int TargetScreenHeight ;
 
-	// •`‰ææ‚Ì‰æ‘œƒf[ƒ^ƒAƒhƒŒƒX‚ğæ“¾‚·‚é
+	// æç”»å…ˆã®ç”»åƒãƒ‡ãƒ¼ã‚¿ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å–å¾—ã™ã‚‹
 	if( TargetScreen == -1 )
 	{
 		TargetScreen         = GSYS.DrawSetting.TargetScreen[ 0 ] ;
@@ -28703,16 +28703,16 @@ extern int Graphics_Screen_LockDrawScreen( RECT *LockRect, BASEIMAGE *BaseImage,
 		Graphics_Image_CalcMipSize( TargImage->WidthI, TargImage->HeightI, TargetScreenMipLevel, &TargetScreenWidth, &TargetScreenHeight ) ;
 	}
 
-	// ‹éŒ`‚Ìƒf[ƒ^‚ª•s³‚¾‚Á‚½ê‡ƒGƒ‰[
+	// çŸ©å½¢ã®ãƒ‡ãƒ¼ã‚¿ãŒä¸æ­£ã ã£ãŸå ´åˆã‚¨ãƒ©ãƒ¼
 	if( LockRect->left < 0 || LockRect->left >= LockRect->right  ||
 		LockRect->top  < 0 || LockRect->top  >= LockRect->bottom ||
 		LockRect->right  > TargetScreenWidth ||
 		LockRect->bottom > TargetScreenHeight ) return -1 ;
 
-	// ƒn[ƒhƒEƒGƒA‚ğg—p‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+	// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 	if( GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )
 	{
-		// ƒn[ƒhƒEƒFƒAƒAƒNƒZƒ‰ƒŒ[ƒ^‚ğg—p‚·‚éê‡
+		// ãƒãƒ¼ãƒ‰ã‚¦ã‚§ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚¿ã‚’ä½¿ç”¨ã™ã‚‹å ´åˆ
 		if( Graphics_Hardware_LockDrawScreenBuffer_PF( LockRect, BaseImage, TargetScreen, TargImage, TargetScreenSurface, TargetScreenMipLevel, ReadOnly, TargetScreenTextureNo ) < 0 )
 		{
 			return -1 ;
@@ -28722,12 +28722,12 @@ extern int Graphics_Screen_LockDrawScreen( RECT *LockRect, BASEIMAGE *BaseImage,
 	{
 		int Width, Height ;
 
-		// ƒ\ƒtƒgƒEƒGƒAƒŒƒ“ƒ_ƒŠƒ“ƒO‚Ìê‡
+		// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã®å ´åˆ
 
 		Width  = LockRect->right  - LockRect->left ;
 		Height = LockRect->bottom - LockRect->top ;
 
-		// ƒf[ƒ^‚ğƒZƒbƒg
+		// ãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆ
 		if( TargImage )
 		{
 			BaseImage->ColorData = *TargImage->Soft.MemImg.Base->ColorDataP ;
@@ -28746,20 +28746,20 @@ extern int Graphics_Screen_LockDrawScreen( RECT *LockRect, BASEIMAGE *BaseImage,
 		BaseImage->GraphDataCount = 0 ;
 	}
 
-	// ƒƒbƒN’†ƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// ãƒ­ãƒƒã‚¯ä¸­ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	GSYS.Screen.DrawScreenBufferLockFlag = TRUE ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// •`‰ææƒoƒbƒtƒ@‚ğƒAƒ“ƒƒbƒN‚·‚é
+// æç”»å…ˆãƒãƒƒãƒ•ã‚¡ã‚’ã‚¢ãƒ³ãƒ­ãƒƒã‚¯ã™ã‚‹
 extern int Graphics_Screen_UnlockDrawScreen( void )
 {
-	// ƒƒbƒN‚µ‚Ä‚¢‚È‚©‚Á‚½‚ç‰½‚à‚¹‚¸‚ÉI—¹
+	// ãƒ­ãƒƒã‚¯ã—ã¦ã„ãªã‹ã£ãŸã‚‰ä½•ã‚‚ã›ãšã«çµ‚äº†
 	if( GSYS.Screen.DrawScreenBufferLockFlag == FALSE ) return 0 ;
 
-	// ƒn[ƒhƒEƒGƒA‚ğg—p‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+	// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 	if( GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )
 	{
 		Graphics_Hardware_UnlockDrawScreenBuffer_PF() ;
@@ -28768,22 +28768,22 @@ extern int Graphics_Screen_UnlockDrawScreen( void )
 	{
 	}
 
-	// ƒƒbƒN’†ƒtƒ‰ƒO‚ğ“|‚·
+	// ãƒ­ãƒƒã‚¯ä¸­ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 	GSYS.Screen.DrawScreenBufferLockFlag = FALSE ;
 
 	return 0 ;
 }
 
-// ScreenFlipTime‚ÌXV
+// ScreenFlipTimeã®æ›´æ–°
 static void Graphics_Screen_UpdateFlipTime( void )
 {
-	// ScreenFlip ‚ªŒÄ‚Î‚ê‚½ŠÔ‚ğ•Û‘¶
+	// ScreenFlip ãŒå‘¼ã°ã‚ŒãŸæ™‚é–“ã‚’ä¿å­˜
 	GSYS.PerformanceInfo.ScreenFlipTime[ 1 ] = GSYS.PerformanceInfo.ScreenFlipTime[ 0 ] ;
 	GSYS.PerformanceInfo.ScreenFlipTime[ 0 ] = NS_GetNowSysPerformanceCount() ;
 }
 
-// — ‰æ–Ê‚Æ•\‰æ–Ê‚ğŒğŠ·‚·‚é
-// •\‰æ–Ê‚ª— ‰æ–Ê‚©‚ç‚ÌƒXƒP[ƒŠƒ“ƒO‚Ìê‡‚ÍACopyRect ‚ÍƒRƒs[æ‹éŒ` )
+// è£ç”»é¢ã¨è¡¨ç”»é¢ã‚’äº¤æ›ã™ã‚‹
+// è¡¨ç”»é¢ãŒè£ç”»é¢ã‹ã‚‰ã®ã‚¹ã‚±ãƒ¼ãƒªãƒ³ã‚°ã®å ´åˆã¯ã€CopyRect ã¯ã‚³ãƒ”ãƒ¼å…ˆçŸ©å½¢ )
 extern int Graphics_Screen_FlipBase( void )
 {
 	static int EndFlag = FALSE ;
@@ -28791,23 +28791,23 @@ extern int Graphics_Screen_FlipBase( void )
 
 	GSYS.Screen.ScreenFlipFlag = TRUE ;
 
-	// ‚à‚µƒtƒ‰ƒO‚ª‚½‚Á‚Ä‚¢‚½‚ç‚È‚É‚à‚¹‚¸I—¹
+	// ã‚‚ã—ãƒ•ãƒ©ã‚°ãŒãŸã£ã¦ã„ãŸã‚‰ãªã«ã‚‚ã›ãšçµ‚äº†
 	if( EndFlag )
 	{
 		goto END ;
 	}
 
-	// ‰Šú‰»”»’è
+	// åˆæœŸåŒ–åˆ¤å®š
 	if( DxSysData.DxLib_InitializeFlag == FALSE || DxLib_GetEndRequest() )
 	{
 		goto ERR ;
 	}
 
-	// ƒtƒ‹ƒXƒNƒŠ[ƒ“ƒ}ƒXƒNˆ—‚ğs‚Á‚Ä‚¢‚éê‡‚Íƒ}ƒXƒN•`‰æ‚ÌŒ‹‰Ê‚ğ”½‰f‚³‚¹‚é
+	// ãƒ•ãƒ«ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒã‚¹ã‚¯å‡¦ç†ã‚’è¡Œã£ã¦ã„ã‚‹å ´åˆã¯ãƒã‚¹ã‚¯æç”»ã®çµæœã‚’åæ˜ ã•ã›ã‚‹
 	MASK_FULLSCREEN_MASKUPDATE
 
 #if !defined( DX_NON_LOG ) && !defined( DX_NON_PRINTF_DX )
-	// ƒƒOo—Í‚ğs‚¤İ’è‚Ìê‡‚Ì‚İƒƒOo—Í‚ğs‚¤
+	// ãƒ­ã‚°å‡ºåŠ›ã‚’è¡Œã†è¨­å®šã®å ´åˆã®ã¿ãƒ­ã‚°å‡ºåŠ›ã‚’è¡Œã†
 	if( NS_GetLogDrawFlag() )
 	{
 		int BlendMode, BlendParam, RedBright, GreenBright, BlueBright ;
@@ -28822,35 +28822,35 @@ extern int Graphics_Screen_FlipBase( void )
 
 		NS_SetDrawArea( 0, 0, GSYS.Screen.MainScreenSizeX, GSYS.Screen.MainScreenSizeY ) ;
 
-		// •`‰æƒ‚[ƒh‚ğƒm[ƒuƒŒƒ“ƒh‚ÉƒZƒbƒg
+		// æç”»ãƒ¢ãƒ¼ãƒ‰ã‚’ãƒãƒ¼ãƒ–ãƒ¬ãƒ³ãƒ‰ã«ã‚»ãƒƒãƒˆ
 		NS_SetDrawBlendMode( DX_BLENDMODE_NOBLEND, 0 ) ;
 
-		// ‹P“x‚ğ‚P‚O‚O“‚ÉƒZƒbƒg
+		// è¼åº¦ã‚’ï¼‘ï¼ï¼ï¼…ã«ã‚»ãƒƒãƒˆ
 		NS_SetDrawBright( 255,255,255 ) ;
 
-		// ƒtƒ‰ƒO‚ğ‚½‚Ä‚é
+		// ãƒ•ãƒ©ã‚°ã‚’ãŸã¦ã‚‹
 		EndFlag = TRUE ;
 
-		// ƒƒO•`‰æ
+		// ãƒ­ã‚°æç”»
 		DrawLog() ;
 
-		// ƒtƒ‰ƒO‚ğ“|‚·
+		// ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 		EndFlag = FALSE ;
 
-		// İ’è‚ğŒ³‚É–ß‚·
+		// è¨­å®šã‚’å…ƒã«æˆ»ã™
 		NS_SetDrawArea( DrawRect.left, DrawRect.top, DrawRect.right, DrawRect.bottom ) ; 
 		NS_SetDrawBlendMode( BlendMode, BlendParam ) ;
 		NS_SetDrawBright( RedBright, GreenBright, BlueBright ) ;
 	}
 #endif
 
-	// ŠÂ‹«ˆË‘¶ˆ—
+	// ç’°å¢ƒä¾å­˜å‡¦ç†
 	Result = Graphics_ScreenFlipBase_PF() ;
 
-	// ScreenFlip ‚ªŒÄ‚Î‚ê‚½ŠÔ‚ğ•Û‘¶
+	// ScreenFlip ãŒå‘¼ã°ã‚ŒãŸæ™‚é–“ã‚’ä¿å­˜
 	Graphics_Screen_UpdateFlipTime() ;
 
-	// •`‰æƒR[ƒ‹‰ñ”‚Ìˆ—
+	// æç”»ã‚³ãƒ¼ãƒ«å›æ•°ã®å‡¦ç†
 	GSYS.PerformanceInfo.PrevFrameDrawCallCount = GSYS.PerformanceInfo.NowFrameDrawCallCount ;
 	GSYS.PerformanceInfo.NowFrameDrawCallCount = 0 ;
 
@@ -28858,14 +28858,14 @@ extern int Graphics_Screen_FlipBase( void )
 END:
 	GSYS.Screen.ScreenFlipFlag = FALSE ;
 
-	// I—¹
+	// çµ‚äº†
 	return Result ;
 
 
 ERR:
 	GSYS.Screen.ScreenFlipFlag = FALSE ;
 
-	// ƒGƒ‰[I—¹
+	// ã‚¨ãƒ©ãƒ¼çµ‚äº†
 	return -1 ;
 }
 
@@ -28888,9 +28888,9 @@ ERR:
 
 
 
-// ‰æ‘œŠÖŒWŠÖ”
+// ç”»åƒé–¢ä¿‚é–¢æ•°
 
-// ƒtƒH[ƒ}ƒbƒgî•ñ‚ğƒZƒbƒgƒAƒbƒv‚·‚é
+// ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆæƒ…å ±ã‚’ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã™ã‚‹
 extern int Graphics_Image_SetupFormatDesc( 
 	IMAGEFORMATDESC *Format,
 	SETUP_GRAPHHANDLE_GPARAM *GParam,
@@ -28903,28 +28903,28 @@ extern int Graphics_Image_SetupFormatDesc(
 	int MipMapCount
 )
 {
-	// ƒtƒH[ƒ}ƒbƒgî•ñ‚ğ‰Šú‰»
+	// ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆæƒ…å ±ã‚’åˆæœŸåŒ–
 	_MEMSET( Format, 0, sizeof( *Format ) ) ;
 
-	// ƒeƒNƒXƒ`ƒƒƒtƒH[ƒ}ƒbƒg‚©‚Ç‚¤‚©‚ğƒZƒbƒg
+	// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã‹ã©ã†ã‹ã‚’ã‚»ãƒƒãƒˆ
 	Format->TextureFlag = ( unsigned char )( GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE ) ;
 
-	// DirectX ‚ªŠÇ—‚·‚éƒeƒNƒXƒ`ƒƒ‚É‚µ‚È‚¢‚©‚Ç‚¤‚©‚ğƒZƒbƒg
+	// DirectX ãŒç®¡ç†ã™ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ã«ã—ãªã„ã‹ã©ã†ã‹ã‚’ã‚»ãƒƒãƒˆ
 	Format->UseManagedTextureFlag = ( unsigned char )GParam->UseManagedTextureFlag ;
 
-	// ƒLƒ…[ƒuƒ}ƒbƒv‚©‚Ç‚¤‚©‚ğƒZƒbƒg
+	// ã‚­ãƒ¥ãƒ¼ãƒ–ãƒãƒƒãƒ—ã‹ã©ã†ã‹ã‚’ã‚»ãƒƒãƒˆ
 	Format->CubeMapTextureFlag = ( unsigned char )GParam->CubeMapTextureCreateFlag ;
 
-	// ƒŠƒjƒAƒƒ‚ƒŠ”z’u‚ÌƒeƒNƒXƒ`ƒƒ‚ğg—p‚·‚é‚©‚Ç‚¤‚©‚ğƒZƒbƒg
+	// ãƒªãƒ‹ã‚¢ãƒ¡ãƒ¢ãƒªé…ç½®ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã‚’ã‚»ãƒƒãƒˆ
 	Format->UseLinearMapTextureFlag = ( unsigned char )GParam->UseLinearMapTextureFlag ;
 
-	// ƒeƒNƒXƒ`ƒƒƒtƒH[ƒ}ƒbƒg’¼Úw’èî•ñ‚ğƒZƒbƒg
+	// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆç›´æ¥æŒ‡å®šæƒ…å ±ã‚’ã‚»ãƒƒãƒˆ
 	Format->PlatformTextureFormat = ( unsigned char )GParam->PlatformTextureFormat ;
 
-	// Šî–{ƒtƒH[ƒ}ƒbƒg‚ÌƒZƒbƒg
+	// åŸºæœ¬ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®ã‚»ãƒƒãƒˆ
 	Format->BaseFormat = ( unsigned char )BaseFormat ;
 
-	// ƒ~ƒbƒvƒ}ƒbƒv‚Ì”‚ğ•Û‘¶
+	// ãƒŸãƒƒãƒ—ãƒãƒƒãƒ—ã®æ•°ã‚’ä¿å­˜
 	if( MipMapCount != -1 )
 	{
 		Format->MipMapCount = ( unsigned char )MipMapCount ;
@@ -28954,49 +28954,49 @@ extern int Graphics_Image_SetupFormatDesc(
 		}
 	}
 
-	// •`‰æ‰Â”\‰æ‘œ‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+	// æç”»å¯èƒ½ç”»åƒã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 	if( GParam->DrawValidImageCreateFlag == TRUE )
 	{
-		// •`‰æ‰Â”\‚Èê‡‚ÍƒAƒ‹ƒtƒ@ƒeƒXƒgAƒuƒŒƒ“ƒhƒOƒ‰ƒtƒBƒbƒN‚Í–³‚µ‚ÅA
-		// ƒAƒ‹ƒtƒ@ƒ`ƒƒƒ“ƒlƒ‹‚ª’…‚­‚©‚Ç‚¤‚©‚Í GSYS.CreateImage.DrawValidAlphaFlag ‚Ì’l‚É]‚¤
-		// Šî–{ƒtƒH[ƒ}ƒbƒg‚Í‹­§“I‚É DX_BASEIMAGE_FORMAT_NORMAL
+		// æç”»å¯èƒ½ãªå ´åˆã¯ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆã€ãƒ–ãƒ¬ãƒ³ãƒ‰ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã¯ç„¡ã—ã§ã€
+		// ã‚¢ãƒ«ãƒ•ã‚¡ãƒãƒ£ãƒ³ãƒãƒ«ãŒç€ãã‹ã©ã†ã‹ã¯ GSYS.CreateImage.DrawValidAlphaFlag ã®å€¤ã«å¾“ã†
+		// åŸºæœ¬ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã¯å¼·åˆ¶çš„ã« DX_BASEIMAGE_FORMAT_NORMAL
 		Format->DrawValidFlag         = TRUE ;
 		Format->AlphaChFlag           = ( unsigned char )GParam->DrawValidAlphaImageCreateFlag ;
-		Format->AlphaTestFlag         = FALSE ;		// •`‰æ‰Â”\‚Èê‡‚ÍƒAƒ‹ƒtƒ@ƒeƒXƒg‚Í–³‚µ
-		Format->BlendGraphFlag        = FALSE ;		// •`‰æ‰Â”\‚Èê‡‚ÍƒuƒŒƒ“ƒh‰æ‘œ‚à–³‚µ
+		Format->AlphaTestFlag         = FALSE ;		// æç”»å¯èƒ½ãªå ´åˆã¯ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆã¯ç„¡ã—
+		Format->BlendGraphFlag        = FALSE ;		// æç”»å¯èƒ½ãªå ´åˆã¯ãƒ–ãƒ¬ãƒ³ãƒ‰ç”»åƒã‚‚ç„¡ã—
 		Format->UseManagedTextureFlag = FALSE ;
 		Format->MipMapCount           = 1 ;
 	}
 	else
 	{
-		// •`‰æ‰Â”\w’è‚ª–³‚¢ê‡‚ÍƒAƒ‹ƒtƒ@ƒ`ƒƒƒ“ƒlƒ‹‚ğ•t‚¯‚é‚©‚Ç‚¤‚©‚Íˆø”‚É
-		// ƒAƒ‹ƒtƒ@ƒeƒXƒg‚ğ•t‚¯‚é‚©‚Ç‚¤‚©‚Í GSYS.CreateImage.AlphaTestFlag ‚É
-		// ƒuƒŒƒ“ƒh‰æ‘œ‚É‚·‚é‚©‚Ç‚¤‚©‚Í GSYS.CreateImage.BlendImageFlag ‚É]‚¤
+		// æç”»å¯èƒ½æŒ‡å®šãŒç„¡ã„å ´åˆã¯ã‚¢ãƒ«ãƒ•ã‚¡ãƒãƒ£ãƒ³ãƒãƒ«ã‚’ä»˜ã‘ã‚‹ã‹ã©ã†ã‹ã¯å¼•æ•°ã«
+		// ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆã‚’ä»˜ã‘ã‚‹ã‹ã©ã†ã‹ã¯ GSYS.CreateImage.AlphaTestFlag ã«
+		// ãƒ–ãƒ¬ãƒ³ãƒ‰ç”»åƒã«ã™ã‚‹ã‹ã©ã†ã‹ã¯ GSYS.CreateImage.BlendImageFlag ã«å¾“ã†
 		Format->DrawValidFlag  = FALSE ;
 		Format->AlphaChFlag    = ( unsigned char )AlphaValidFlag ;
 		Format->AlphaTestFlag  = ( unsigned char )GParam->AlphaTestImageCreateFlag ;
 		Format->BlendGraphFlag = ( unsigned char )GParam->BlendImageCreateFlag ;
 	}
 
-	// ƒeƒNƒXƒ`ƒƒ‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+	// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 	if( Format->TextureFlag == TRUE )
 	{
-		// ƒeƒNƒXƒ`ƒƒ‚Ìê‡
+		// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®å ´åˆ
 
-		// ƒJƒ‰[ƒrƒbƒg[“x‚ÌŒˆ’è
+		// ã‚«ãƒ©ãƒ¼ãƒ“ãƒƒãƒˆæ·±åº¦ã®æ±ºå®š
 		Format->ColorBitDepth   = ( unsigned char )( GParam->CreateImageColorBitDepth == 0 ? ( AlphaValidFlag == TRUE ? 32 : GSYS.Screen.MainScreenColorBitDepth ) : GParam->CreateImageColorBitDepth ) ;
 		Format->ChannelNum      = ( unsigned char )GParam->CreateImageChannelNum ;
 		Format->ChannelBitDepth = ( unsigned char )( GParam->CreateImageChannelNum > 0 ? GParam->CreateImageChannelBitDepth : 0 ) ;
 		Format->FloatTypeFlag   = ( unsigned char )GParam->FloatTypeGraphCreateFlag ;
 		Format->SystemMemFlag   = FALSE ;
 
-		// ƒAƒ‹ƒtƒ@ƒ`ƒƒƒ“ƒlƒ‹‚ ‚è‚Ìê‡‚ÍƒAƒ‹ƒtƒ@ƒeƒXƒg‚Í–³‚µ
+		// ã‚¢ãƒ«ãƒ•ã‚¡ãƒãƒ£ãƒ³ãƒãƒ«ã‚ã‚Šã®å ´åˆã¯ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆã¯ç„¡ã—
 		if( Format->AlphaChFlag )
 		{
 			Format->AlphaTestFlag = FALSE ;
 		}
 
-		// ƒuƒŒƒ“ƒh‰æ‘œ‚Ìê‡‚ÍƒtƒH[ƒ}ƒbƒg‚ÍŒÅ’è‚³‚ê‚é
+		// ãƒ–ãƒ¬ãƒ³ãƒ‰ç”»åƒã®å ´åˆã¯ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã¯å›ºå®šã•ã‚Œã‚‹
 		if( Format->BlendGraphFlag == TRUE )
 		{
 			Format->ColorBitDepth = 32 ;
@@ -29005,7 +29005,7 @@ extern int Graphics_Image_SetupFormatDesc(
 			Format->DrawValidFlag = FALSE ;
 		}
 		else
-		// •`‰æ‰Â”\‰æ‘œ‚Ìê‡‚Íƒ`ƒƒƒ“ƒlƒ‹”‚Æƒ`ƒƒƒ“ƒlƒ‹•Ó‚è‚Ìƒrƒbƒg”A•‚“®¬”“_Œ^‚©‚Ç‚¤‚©‚È‚Ç‚ğİ’è‚·‚é
+		// æç”»å¯èƒ½ç”»åƒã®å ´åˆã¯ãƒãƒ£ãƒ³ãƒãƒ«æ•°ã¨ãƒãƒ£ãƒ³ãƒãƒ«è¾ºã‚Šã®ãƒ“ãƒƒãƒˆæ•°ã€æµ®å‹•å°æ•°ç‚¹å‹ã‹ã©ã†ã‹ãªã©ã‚’è¨­å®šã™ã‚‹
 		if( GParam->DrawValidImageCreateFlag == TRUE )
 		{
 			Format->MipMapCount     = ( unsigned char )( GParam->CreateDrawValidGraphMipLevels > 0 ? GParam->CreateDrawValidGraphMipLevels : 1 ) ;
@@ -29016,7 +29016,7 @@ extern int Graphics_Image_SetupFormatDesc(
 			Format->MSQuality       = ( unsigned char )GParam->DrawValidMSQuality ;
 		}
 		else
-		// ƒuƒŒƒ“ƒh‰æ‘œ‚Å‚à•`‰æ‰Â”\‰æ‘œ‚Å‚à‚È‚¢ê‡‚Ì‚İƒpƒŒƒbƒg‰æ‘œ‚ğg—p‚Å‚«‚é
+		// ãƒ–ãƒ¬ãƒ³ãƒ‰ç”»åƒã§ã‚‚æç”»å¯èƒ½ç”»åƒã§ã‚‚ãªã„å ´åˆã®ã¿ãƒ‘ãƒ¬ãƒƒãƒˆç”»åƒã‚’ä½¿ç”¨ã§ãã‚‹
 		if( UsePaletteFlag )
 		{
 			Format->ColorBitDepth = ( unsigned char )( PaletteBitDepth == 4 ? 4 : 8 ) ;
@@ -29024,7 +29024,7 @@ extern int Graphics_Image_SetupFormatDesc(
 	}
 	else
 	{
-		// ƒeƒNƒXƒ`ƒƒ‚Å‚Í‚È‚¢ê‡
+		// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã§ã¯ãªã„å ´åˆ
 		Format->BaseFormat            = DX_BASEIMAGE_FORMAT_NORMAL ;
 		Format->ColorBitDepth         = ( unsigned char )( GParam->CreateImageColorBitDepth == 0 ? GSYS.Screen.MainScreenColorBitDepth : GParam->CreateImageColorBitDepth ) ;
 		Format->ChannelNum            = 0 ;
@@ -29033,19 +29033,19 @@ extern int Graphics_Image_SetupFormatDesc(
 		Format->SystemMemFlag         = TRUE ;
 		Format->CubeMapTextureFlag    = FALSE ;
 		Format->UsePaletteFlag        = ( unsigned char )UsePaletteFlag ;
-		Format->UseManagedTextureFlag = FALSE ;		// DirectX ‚ÌŠÇ—‚à–³‚µ
-		Format->AlphaTestFlag         = FALSE ;		// ƒAƒ‹ƒtƒ@ƒeƒXƒg‚Í–³‚µ
-		Format->DrawValidFlag         = ( unsigned char )( Format->BlendGraphFlag ? FALSE : TRUE ) ;	// •’Ê‚Ì‰æ‘œ‚Ìê‡‚ÍƒuƒŒƒ“ƒh‰æ‘œ‚Å‚Í‚È‚¯‚ê‚Î•`‰æ‰Â”\@ 
+		Format->UseManagedTextureFlag = FALSE ;		// DirectX ã®ç®¡ç†ã‚‚ç„¡ã—
+		Format->AlphaTestFlag         = FALSE ;		// ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆã¯ç„¡ã—
+		Format->DrawValidFlag         = ( unsigned char )( Format->BlendGraphFlag ? FALSE : TRUE ) ;	// æ™®é€šã®ç”»åƒã®å ´åˆã¯ãƒ–ãƒ¬ãƒ³ãƒ‰ç”»åƒã§ã¯ãªã‘ã‚Œã°æç”»å¯èƒ½ã€€ 
 		Format->MipMapCount           = 0 ;
 		Format->MSSamples             = 0 ;
 		Format->MSQuality             = 0 ;
 	}
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// ƒfƒoƒCƒXƒƒXƒg”­¶‚Éíœ‚·‚éƒtƒ‰ƒO‚ª—§‚Á‚Ä‚¢‚éƒOƒ‰ƒtƒBƒbƒN‚ğíœ‚·‚é
+// ãƒ‡ãƒã‚¤ã‚¹ãƒ­ã‚¹ãƒˆç™ºç”Ÿæ™‚ã«å‰Šé™¤ã™ã‚‹ãƒ•ãƒ©ã‚°ãŒç«‹ã£ã¦ã„ã‚‹ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚’å‰Šé™¤ã™ã‚‹
 extern int Graphics_Image_DeleteDeviceLostDelete( void )
 {
 	int i ;
@@ -29065,11 +29065,11 @@ extern int Graphics_Image_DeleteDeviceLostDelete( void )
 		}
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ‚l‚r‚`‚`‚ğg—p‚·‚é•`‰æ‰Â”\‰æ‘œ‚©‚Ç‚¤‚©‚ğ’²‚×‚é( TRUE:MSAA‰æ‘œ  FALSE:MSAA‰æ‘œ‚Å‚Í‚È‚¢ )
+// ï¼­ï¼³ï¼¡ï¼¡ã‚’ä½¿ç”¨ã™ã‚‹æç”»å¯èƒ½ç”»åƒã‹ã©ã†ã‹ã‚’èª¿ã¹ã‚‹( TRUE:MSAAç”»åƒ  FALSE:MSAAç”»åƒã§ã¯ãªã„ )
 extern int Graphics_Image_CheckMultiSampleDrawValid( int GrHandle )
 {
 	IMAGEDATA *Image ;
@@ -29083,13 +29083,13 @@ extern int Graphics_Image_CheckMultiSampleDrawValid( int GrHandle )
 	return Image->Orig->FormatDesc.MSSamples != 0 ? TRUE : FALSE ;
 }
 
-// V‚µ‚¢ƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ğŠm•Û‚·‚é
+// æ–°ã—ã„ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã‚’ç¢ºä¿ã™ã‚‹
 extern int Graphics_Image_AddHandle( int GrHandle, int ASyncThread )
 {
 	return AddHandle( DX_HANDLETYPE_GRAPH, ASyncThread, GrHandle );
 }
 
-// ƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ğ‰Šú‰»‚·‚é
+// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã‚’åˆæœŸåŒ–ã™ã‚‹
 extern int Graphics_Image_SetupHandle_UseGParam(
 	SETUP_GRAPHHANDLE_GPARAM *GParam,
 	int GrHandle,
@@ -29127,19 +29127,19 @@ extern int Graphics_Image_SetupHandle_UseGParam(
 	IMAGEFORMATDESC				Format ;
 	IMAGEDATA_ORIG_HARD_TEX_PF	*OrigTexPF ;
 
-	// ƒAƒhƒŒƒX‚Ìæ“¾
+	// ã‚¢ãƒ‰ãƒ¬ã‚¹ã®å–å¾—
 	if( GRAPHCHK_ASYNC( GrHandle, Image ) )
 	{
 		return -1 ;
 	}
 
-	// ƒeƒNƒXƒ`ƒƒ‚©‚Ç‚¤‚©‚ğŒˆ’è‚·‚é
+	// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‹ã©ã†ã‹ã‚’æ±ºå®šã™ã‚‹
 	IsTex = GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE ;
 
-	// ƒtƒH[ƒ}ƒbƒgî•ñ‚ğƒZƒbƒg‚·‚é
+	// ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆæƒ…å ±ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 	Graphics_Image_SetupFormatDesc( &Format, GParam, Width, Height, AlphaValidFlag, UsePaletteFlag, PaletteBitDepth, BaseFormat, MipMapCount ) ;
 
-	// DXTˆ³k‚©‚Ç‚¤‚©‚ğƒZƒbƒg
+	// DXTåœ§ç¸®ã‹ã©ã†ã‹ã‚’ã‚»ãƒƒãƒˆ
 	IsDXT =
 		( Format.BaseFormat == DX_BASEIMAGE_FORMAT_DXT1 ||
 		  Format.BaseFormat == DX_BASEIMAGE_FORMAT_DXT2 ||
@@ -29149,10 +29149,10 @@ extern int Graphics_Image_SetupHandle_UseGParam(
 		  Format.BaseFormat == DX_BASEIMAGE_FORMAT_BC7_UNORM ||
 		  Format.BaseFormat == DX_BASEIMAGE_FORMAT_BC7_UNORM_SRGB ) ? TRUE : FALSE ;
 
-	// ƒeƒNƒXƒ`ƒƒ‚Ìê‡‚Í‰½•ªŠ„‚É‚È‚é‚©’²‚×‚é
+	// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®å ´åˆã¯ä½•åˆ†å‰²ã«ãªã‚‹ã‹èª¿ã¹ã‚‹
 	if( IsTex )
 	{
-		// •ªŠ„”‚ğ’²‚×‚é‚Ì‚Íƒ†[ƒU[w’è‚ÌƒeƒNƒXƒ`ƒƒ‚Å‚Í‚È‚¢ê‡‚Ì‚İ
+		// åˆ†å‰²æ•°ã‚’èª¿ã¹ã‚‹ã®ã¯ãƒ¦ãƒ¼ã‚¶ãƒ¼æŒ‡å®šã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ã§ã¯ãªã„å ´åˆã®ã¿
 		if( GParam->UserPlatformTexture != NULL )
 		{
 			DivNum = 1 ;
@@ -29161,29 +29161,29 @@ extern int Graphics_Image_SetupHandle_UseGParam(
 		{
 			int IsPow2 = FALSE ;
 
-	//		// •`‰ææ‚É‚Å‚«‚é‰æ‘œ‚Ìê‡‚Í‚Q‚Ìæ”ƒTƒCƒY‚É‚µ‚È‚¢
+	//		// æç”»å…ˆã«ã§ãã‚‹ç”»åƒã®å ´åˆã¯ï¼’ã®ä¹—æ•°ã‚µã‚¤ã‚ºã«ã—ãªã„
 	//		if( Format.DrawValidFlag )
 	//		{
 	//			IsPow2 = FALSE ;
 	//		}
 
-			// ì¬‚·‚éƒeƒNƒXƒ`ƒƒ‚ÌƒTƒCƒY‚ğƒŠƒXƒgƒAƒbƒv
+			// ä½œæˆã™ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ã‚µã‚¤ã‚ºã‚’ãƒªã‚¹ãƒˆã‚¢ãƒƒãƒ—
 	//		DivXNum = Graphics_Image_ListUpTexSize( Width,  XList, Format.DrawValidFlag | Format.BlendGraphFlag | GParam->NotUseDivFlag, Format.DrawValidFlag == FALSE, GParam->UserMaxTextureSize ) ;
 	//		DivYNum = Graphics_Image_ListUpTexSize( Height, YList, Format.DrawValidFlag | Format.BlendGraphFlag | GParam->NotUseDivFlag, Format.DrawValidFlag == FALSE, GParam->UserMaxTextureSize ) ;
-			// •ªŠ„‚·‚é•û‚ªƒfƒƒŠƒbƒg‚ª‘å‚«‚­‚È‚Á‚Ä‚«‚½‚Ì‚ÅAŠî–{“I‚ÉÅ‘åƒeƒNƒXƒ`ƒƒ[ƒTƒCƒY‚Éû‚Ü‚éŒÀ‚è‚Í‚P–‡‚ÅÏ‚Ü‚·‚æ‚¤‚Éˆ—‚ğ•ÏX
+			// åˆ†å‰²ã™ã‚‹æ–¹ãŒãƒ‡ãƒ¡ãƒªãƒƒãƒˆãŒå¤§ãããªã£ã¦ããŸã®ã§ã€åŸºæœ¬çš„ã«æœ€å¤§ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã‚µã‚¤ã‚ºã«åã¾ã‚‹é™ã‚Šã¯ï¼‘æšã§æ¸ˆã¾ã™ã‚ˆã†ã«å‡¦ç†ã‚’å¤‰æ›´
 			DivXNum = Graphics_Image_ListUpTexSize( Width,  XList, TRUE, IsPow2, GParam->UserMaxTextureSize, IsDXT ) ;
 			DivYNum = Graphics_Image_ListUpTexSize( Height, YList, TRUE, IsPow2, GParam->UserMaxTextureSize, IsDXT ) ;
 
-			// •ªŠ„”‚ğƒZƒbƒg
+			// åˆ†å‰²æ•°ã‚’ã‚»ãƒƒãƒˆ
 			DivNum = DivXNum * DivYNum ;
 
-			// •`‰æ‰Â”\‚Ìê‡‚Å‚P–‡‚Éû‚Ü‚ç‚È‚©‚Á‚½ê‡‚ÍƒGƒ‰[
+			// æç”»å¯èƒ½ã®å ´åˆã§ï¼‘æšã«åã¾ã‚‰ãªã‹ã£ãŸå ´åˆã¯ã‚¨ãƒ©ãƒ¼
 			if( Format.DrawValidFlag && DivNum > 1 )
 			{
 				goto ERR ;
 			}
 
-			// ˆÊ’u‚ÆƒTƒCƒY‚ğƒZƒbƒg‚·‚é
+			// ä½ç½®ã¨ã‚µã‚¤ã‚ºã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 			YPos = 0 ;
 			for( i = 0 ; i < DivYNum ; i ++ )
 			{
@@ -29201,7 +29201,7 @@ extern int Graphics_Image_SetupHandle_UseGParam(
 				YPos += YList[ i ] ;
 			}
 
-			// ƒn[ƒhƒEƒFƒA§ŒÀ‚É‰‚¶‚ÄƒeƒNƒXƒ`ƒƒ‚ğ³•ûŒ`‚É‚·‚é
+			// ãƒãƒ¼ãƒ‰ã‚¦ã‚§ã‚¢åˆ¶é™ã«å¿œã˜ã¦ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’æ­£æ–¹å½¢ã«ã™ã‚‹
 			if( GSYS.HardInfo.TextureSquareOnly )
 			{
 				int Size ;
@@ -29253,7 +29253,7 @@ extern int Graphics_Image_SetupHandle_UseGParam(
 		}
 	}
 
-	// Šm•Ûƒƒ‚ƒŠ‚ÌŠm’è
+	// ç¢ºä¿ãƒ¡ãƒ¢ãƒªã®ç¢ºå®š
 	BaseAllocSize = sizeof( IMAGEDATA_ORIG ) - ( ( sizeof( IMAGEDATA_ORIG_SOFT ) > sizeof( IMAGEDATA_ORIG_HARD ) ? sizeof( IMAGEDATA_ORIG_SOFT ) : sizeof( IMAGEDATA_ORIG_HARD ) ) ) ;
 	if( IsTex )
 	{
@@ -29264,16 +29264,16 @@ extern int Graphics_Image_SetupHandle_UseGParam(
 		AllocSize = sizeof( IMAGEDATA_ORIG_SOFT ) ;
 	}
 
-	// ƒIƒŠƒWƒiƒ‹‰æ‘œî•ñ\‘¢‘Ì—p‚Ìƒƒ‚ƒŠ‚ÌŠm•Û
+	// ã‚ªãƒªã‚¸ãƒŠãƒ«ç”»åƒæƒ…å ±æ§‹é€ ä½“ç”¨ã®ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿
 	Image->Orig = ( IMAGEDATA_ORIG * )DXCALLOC( AllocSize + BaseAllocSize ) ;
 	if( Image->Orig == NULL )
 	{
-		DXST_LOGFILE_ADDUTF16LE( "\xb0\x30\xe9\x30\xd5\x30\xa3\x30\xc3\x30\xaf\x30\x6e\x30\xaa\x30\xea\x30\xb8\x30\xca\x30\xeb\x30\x3b\x75\xcf\x50\xc7\x30\xfc\x30\xbf\x30\xdd\x4f\x58\x5b\x28\x75\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ƒOƒ‰ƒtƒBƒbƒN‚ÌƒIƒŠƒWƒiƒ‹‰æ‘œƒf[ƒ^•Û‘¶—pƒƒ‚ƒŠ‚ÌŠm•Û‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+		DXST_LOGFILE_ADDUTF16LE( "\xb0\x30\xe9\x30\xd5\x30\xa3\x30\xc3\x30\xaf\x30\x6e\x30\xaa\x30\xea\x30\xb8\x30\xca\x30\xeb\x30\x3b\x75\xcf\x50\xc7\x30\xfc\x30\xbf\x30\xdd\x4f\x58\x5b\x28\x75\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®ã‚ªãƒªã‚¸ãƒŠãƒ«ç”»åƒãƒ‡ãƒ¼ã‚¿ä¿å­˜ç”¨ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 		goto ERR ;
 	}
 	Orig = Image->Orig ;
 
-	// ƒeƒNƒXƒ`ƒƒ‚Ìê‡‚ÍŠÂ‹«ˆË‘¶ƒf[ƒ^‚ÌƒAƒhƒŒƒX‚ğƒZƒbƒg
+	// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®å ´åˆã¯ç’°å¢ƒä¾å­˜ãƒ‡ãƒ¼ã‚¿ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ã‚»ãƒƒãƒˆ
 	if( IsTex )
 	{
 		OrigTexPF = ( IMAGEDATA_ORIG_HARD_TEX_PF * )( ( BYTE * )Orig + BaseAllocSize + sizeof( IMAGEDATA_ORIG_HARD ) + ( DivNum - 4 ) * sizeof( IMAGEDATA_ORIG_HARD_TEX ) ) ;
@@ -29285,24 +29285,24 @@ extern int Graphics_Image_SetupHandle_UseGParam(
 	}
 
 #ifndef DX_NON_MOVIE
-	// ƒ€[ƒr[ƒnƒ“ƒhƒ‹‚Í–³‚µ
+	// ãƒ ãƒ¼ãƒ“ãƒ¼ãƒãƒ³ãƒ‰ãƒ«ã¯ç„¡ã—
 	Orig->MovieHandle = -1 ;
 #endif
 
-	// ƒtƒH[ƒ}ƒbƒg‚ğƒZƒbƒg
+	// ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã‚’ã‚»ãƒƒãƒˆ
 	Orig->FormatDesc = Format ;
 
-	// “§‰ßF‚ğƒZƒbƒg
+	// é€éè‰²ã‚’ã‚»ãƒƒãƒˆ
 	Orig->TransCode = GParam->TransColor ;
 
-	// ŠÂ‹«ˆË‘¶ƒeƒNƒXƒ`ƒƒ‚ÌƒZƒbƒg
+	// ç’°å¢ƒä¾å­˜ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ã‚»ãƒƒãƒˆ
 	Orig->UserPlatformTexture = GParam->UserPlatformTexture ;
 
-	// InitGraph ‚Åíœ‚·‚é‚©‚Ç‚¤‚©‚ğƒZƒbƒg
+	// InitGraph ã§å‰Šé™¤ã™ã‚‹ã‹ã©ã†ã‹ã‚’ã‚»ãƒƒãƒˆ
 	Image->NotInitGraphDelete = GParam->NotInitGraphDelete ;
 	Image->NotInitGraphDeleteUser = GParam->NotInitGraphDeleteUser ;
 
-	// •‚Æ‚‚³‚ğ•Û‘¶
+	// å¹…ã¨é«˜ã•ã‚’ä¿å­˜
 	Image->UseOrigXI    = 0 ;
 	Image->UseOrigXF    = 0.0f ;
 	Image->UseOrigYI    = 0 ;
@@ -29314,21 +29314,21 @@ extern int Graphics_Image_SetupHandle_UseGParam(
 	Image->Orig->Width  = Width ;
 	Image->Orig->Height = Height ;
 
-	// QÆ”‚ğ‰Šú‰»
+	// å‚ç…§æ•°ã‚’åˆæœŸåŒ–
 	Image->Orig->RefCount = 1 ;
 
-	// ƒIƒŠƒWƒiƒ‹‰æ‘œî•ñ‚Ì‰Šú‰»
+	// ã‚ªãƒªã‚¸ãƒŠãƒ«ç”»åƒæƒ…å ±ã®åˆæœŸåŒ–
 	if( Orig->FormatDesc.TextureFlag )
 	{
-		// ƒeƒNƒXƒ`ƒƒ‚Ìê‡
+		// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®å ´åˆ
 
-		// ƒtƒH[ƒ}ƒbƒg‚ÌŒˆ’è
+		// ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®æ±ºå®š
 		Orig->ColorFormat = NS_GetTexFormatIndex( &Orig->FormatDesc ) ;
 
-		// ƒeƒNƒXƒ`ƒƒ•ªŠ„”‚É‡‚í‚¹‚ÄƒeƒNƒXƒ`ƒƒî•ñƒŠƒXƒg—p‚Ìƒƒ‚ƒŠ‚ğŠm•Û‚·‚é
+		// ãƒ†ã‚¯ã‚¹ãƒãƒ£åˆ†å‰²æ•°ã«åˆã‚ã›ã¦ãƒ†ã‚¯ã‚¹ãƒãƒ£æƒ…å ±ãƒªã‚¹ãƒˆç”¨ã®ãƒ¡ãƒ¢ãƒªã‚’ç¢ºä¿ã™ã‚‹
 		Orig->Hard.TexNum = DivNum ;
 
-		// ƒ~ƒbƒvƒ}ƒbƒv‚Ì”‚ğƒZƒbƒg
+		// ãƒŸãƒƒãƒ—ãƒãƒƒãƒ—ã®æ•°ã‚’ã‚»ãƒƒãƒˆ
 //		Orig->Hard.MipMap = Orig->FormatDesc.DrawValidFlag ? FALSE : GRH.MipMapFlag ;
 /*		if( Orig->ColorFormat == DX_GRAPHICSIMAGE_FORMAT_3D_DXT1 ||
 			Orig->ColorFormat == DX_GRAPHICSIMAGE_FORMAT_3D_DXT2 ||
@@ -29343,7 +29343,7 @@ extern int Graphics_Image_SetupHandle_UseGParam(
 			Orig->Hard.MipMapCount = Format.MipMapCount ;
 		}
 
-		// Œˆ’è‚µ‚½ƒeƒNƒXƒ`ƒƒ[ƒTƒCƒY‚ÅƒeƒNƒXƒ`ƒƒ[î•ñ‚ğ‰Šú‰»‚·‚é
+		// æ±ºå®šã—ãŸãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã‚µã‚¤ã‚ºã§ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼æƒ…å ±ã‚’åˆæœŸåŒ–ã™ã‚‹
 		OrigTex = Orig->Hard.Tex ;
 		if( GParam->UserPlatformTexture != NULL )
 		{
@@ -29374,7 +29374,7 @@ extern int Graphics_Image_SetupHandle_UseGParam(
 		}
 
 /*
-		// •`‰æ‰Â”\‚Å‰ğ‘œ“x‚ªƒoƒbƒNƒoƒbƒtƒ@ˆÈã‚Ìê‡‚Íê—p‚Ì‚yƒoƒbƒtƒ@‚ğ‚Â
+		// æç”»å¯èƒ½ã§è§£åƒåº¦ãŒãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ä»¥ä¸Šã®å ´åˆã¯å°‚ç”¨ã®ï¼ºãƒãƒƒãƒ•ã‚¡ã‚’æŒã¤
 		if( Orig->FormatDesc.DrawValidFlag &&
 			( Orig->Hard.Tex[ 0 ].TexWidth  > GSYS.Screen.MainScreenSizeX ||
 			  Orig->Hard.Tex[ 0 ].TexHeight > GSYS.Screen.MainScreenSizeY ) )
@@ -29382,7 +29382,7 @@ extern int Graphics_Image_SetupHandle_UseGParam(
 			Orig->ZBufferFlag = TRUE ;
 		}
 */
-		// •`‰æ‰Â”\‚Èê‡‚Å‚yƒoƒbƒtƒ@‚ğì¬‚·‚éƒtƒ‰ƒO‚ª—§‚Á‚Ä‚¢‚éê‡‚Í‚yƒoƒbƒtƒ@‚ğ‚Â
+		// æç”»å¯èƒ½ãªå ´åˆã§ï¼ºãƒãƒƒãƒ•ã‚¡ã‚’ä½œæˆã™ã‚‹ãƒ•ãƒ©ã‚°ãŒç«‹ã£ã¦ã„ã‚‹å ´åˆã¯ï¼ºãƒãƒƒãƒ•ã‚¡ã‚’æŒã¤
 		if( Orig->FormatDesc.DrawValidFlag && GParam->DrawValidGraphCreateZBufferFlag )
 		{
 			Orig->ZBufferFlag = TRUE ;
@@ -29395,7 +29395,7 @@ extern int Graphics_Image_SetupHandle_UseGParam(
 			}
 		}
 
-		// ƒeƒNƒXƒ`ƒƒ‚Ìì¬
+		// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ä½œæˆ
 		if( Graphics_Hardware_CreateOrigTexture_PF( Orig, ASyncThread ) == -1 )
 		{
 			goto ERR ;
@@ -29403,15 +29403,15 @@ extern int Graphics_Image_SetupHandle_UseGParam(
 	}
 	else
 	{
-		// ƒeƒNƒXƒ`ƒƒ‚Å‚Í‚È‚¢ê‡
+		// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã§ã¯ãªã„å ´åˆ
 
-		// ƒuƒŒƒ“ƒh—p‰æ‘œ‚Ìê‡‚Æ‚»‚êˆÈŠO‚Åˆ—‚ğ•ªŠò
+		// ãƒ–ãƒ¬ãƒ³ãƒ‰ç”¨ç”»åƒã®å ´åˆã¨ãã‚Œä»¥å¤–ã§å‡¦ç†ã‚’åˆ†å²
 		if( Orig->FormatDesc.BlendGraphFlag == TRUE )
 		{
-			// ƒCƒ[ƒW‚Ìì¬
+			// ã‚¤ãƒ¡ãƒ¼ã‚¸ã®ä½œæˆ
 			if( InitializeMemImg( &Orig->Soft.MemImg, Orig->Width, Orig->Height, -1, 0, 2, FALSE, FALSE, FALSE ) < 0 )
 			{
-				DXST_LOGFILE_ADDUTF16LE( "\xd6\x30\xec\x30\xf3\x30\xc9\x30\x3b\x75\xcf\x50\x28\x75\xe1\x30\xe2\x30\xea\x30\xa4\x30\xe1\x30\xfc\x30\xb8\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ƒuƒŒƒ“ƒh‰æ‘œ—pƒƒ‚ƒŠƒCƒ[ƒW‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+				DXST_LOGFILE_ADDUTF16LE( "\xd6\x30\xec\x30\xf3\x30\xc9\x30\x3b\x75\xcf\x50\x28\x75\xe1\x30\xe2\x30\xea\x30\xa4\x30\xe1\x30\xfc\x30\xb8\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ãƒ–ãƒ¬ãƒ³ãƒ‰ç”»åƒç”¨ãƒ¡ãƒ¢ãƒªã‚¤ãƒ¡ãƒ¼ã‚¸ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 				goto ERR ;
 			}
 		}
@@ -29419,7 +29419,7 @@ extern int Graphics_Image_SetupHandle_UseGParam(
 		{
 			DWORD TransColor ;
 
-			// ƒsƒNƒZƒ‹ƒtƒH[ƒ}ƒbƒg‚ÌƒCƒ“ƒfƒbƒNƒX‚ğƒZƒbƒg
+			// ãƒ”ã‚¯ã‚»ãƒ«ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’ã‚»ãƒƒãƒˆ
 			if( Orig->FormatDesc.ColorBitDepth == 16 )
 			{
 				if( Orig->FormatDesc.AlphaChFlag )	Orig->ColorFormat = DX_GRAPHICSIMAGE_FORMAT_X8A8R5G6B5 ;
@@ -29445,7 +29445,7 @@ extern int Graphics_Image_SetupHandle_UseGParam(
 						0xff ) ;
 			}
 
-			// ƒCƒ[ƒW‚Ìì¬
+			// ã‚¤ãƒ¡ãƒ¼ã‚¸ã®ä½œæˆ
 			if( InitializeMemImg(
 					&Orig->Soft.MemImg,
 					Orig->Width,
@@ -29458,46 +29458,46 @@ extern int Graphics_Image_SetupHandle_UseGParam(
 					FALSE
 				) < 0 )
 			{
-				DXST_LOGFILE_ADDUTF16LE( "\xe1\x30\xe2\x30\xea\x30\xa4\x30\xe1\x30\xfc\x30\xb8\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ƒƒ‚ƒŠƒCƒ[ƒW‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+				DXST_LOGFILE_ADDUTF16LE( "\xe1\x30\xe2\x30\xea\x30\xa4\x30\xe1\x30\xfc\x30\xb8\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ãƒ¡ãƒ¢ãƒªã‚¤ãƒ¡ãƒ¼ã‚¸ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 				goto ERR ;
 			}
 		}
 	}
 
-	// •`‰æî•ñ‚Ì‰Šú‰»
+	// æç”»æƒ…å ±ã®åˆæœŸåŒ–
 	if( Graphics_Image_InitializeDrawInfo( GrHandle, FALSE, ASyncThread ) < 0 )
 	{
 		goto ERR ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 
-	// ƒGƒ‰[I—¹
+	// ã‚¨ãƒ©ãƒ¼çµ‚äº†
 ERR :
 //	NS_DeleteGraph( GrHandle ) ;
 
 	return -1 ;
 }
 
-// w’è‚ÌƒeƒNƒXƒ`ƒƒ[ƒTƒCƒY‚ğãè‚­•ªŠ„‚·‚é
+// æŒ‡å®šã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã‚µã‚¤ã‚ºã‚’ä¸Šæ‰‹ãåˆ†å‰²ã™ã‚‹
 extern int Graphics_Image_ListUpTexSize( int Size, short *SizeList, int NotDivFlag, int Pow2Flag, int MaxTextureSize, int IsDXT )
 {
 	int DivNum ;
 	int TexSize, GraphSize, MinTexSize, MaxTexSize ;
 
-	// Å¬ƒTƒCƒY‚ÆÅ‘åƒTƒCƒY‚ğƒZƒbƒg
+	// æœ€å°ã‚µã‚¤ã‚ºã¨æœ€å¤§ã‚µã‚¤ã‚ºã‚’ã‚»ãƒƒãƒˆ
 	MinTexSize = IsDXT ? 4 : MIN_TEXTURE_SIZE ;
 	MaxTexSize = MaxTextureSize != 0 ? MaxTextureSize : GSYS.HardInfo.MaxTextureSize ;
 
-	// ‚Q‚Ì‚æ‚Å‚Í‚È‚­‚Ä—Ç‚¢ê‡‚Íw’è‚ÌƒTƒCƒY‚ªÅ‘åƒeƒNƒXƒ`ƒƒƒTƒCƒYˆÈ‰º‚¾‚Á‚½‚ç‚»‚Ì‚Ü‚Ü•Ô‚·
+	// ï¼’ã®ï½ä¹—ã§ã¯ãªãã¦è‰¯ã„å ´åˆã¯æŒ‡å®šã®ã‚µã‚¤ã‚ºãŒæœ€å¤§ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚µã‚¤ã‚ºä»¥ä¸‹ã ã£ãŸã‚‰ãã®ã¾ã¾è¿”ã™
 	if( Pow2Flag == FALSE && ( GSYS.HardInfo.TextureSizePow2 == FALSE || GSYS.HardInfo.TextureSizeNonPow2Conditional ) )
 	{
 		if( Size <= MaxTexSize )
 		{
 			if( SizeList )
 			{
-				// DXT ˆ³k‚Ìê‡‚Í 4 ‚Ì”{”‚É‚·‚é
+				// DXT åœ§ç¸®ã®å ´åˆã¯ 4 ã®å€æ•°ã«ã™ã‚‹
 				if( IsDXT )
 				{
 					SizeList[ 0 ] = ( short )( ( Size + 3 ) / 4 * 4 ) ;
@@ -29511,14 +29511,14 @@ extern int Graphics_Image_ListUpTexSize( int Size, short *SizeList, int NotDivFl
 		}
 	}
 
-	// •ªŠ„‚ğs‚¤Å¬ƒTƒCƒY‚ÌƒeƒNƒXƒ`ƒƒ‚æ‚è¬‚³‚¢ê‡‚ÍÅ¬ƒTƒCƒY‚ğƒZƒbƒg‚µ‚Ä‚P‚ğ•Ô‚·
+	// åˆ†å‰²ã‚’è¡Œã†æœ€å°ã‚µã‚¤ã‚ºã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚ˆã‚Šå°ã•ã„å ´åˆã¯æœ€å°ã‚µã‚¤ã‚ºã‚’ã‚»ãƒƒãƒˆã—ã¦ï¼‘ã‚’è¿”ã™
 	if( MinTexSize >= Size )
 	{
 		if( SizeList ) SizeList[ 0 ] = ( short )MinTexSize ;
 		return 1 ;
 	}
 
-	// ‚P”ÔÅ‰‚ÌƒeƒNƒXƒ`ƒƒ[‚Íw’èƒTƒCƒY‚Éû‚Ü‚éo‚«‚é‚¾‚¯‘å‚«‚¢ƒeƒNƒXƒ`ƒƒ[‚É‚·‚é
+	// ï¼‘ç•ªæœ€åˆã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã¯æŒ‡å®šã‚µã‚¤ã‚ºã«åã¾ã‚‹å‡ºãã‚‹ã ã‘å¤§ãã„ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã«ã™ã‚‹
 	DivNum = 0 ;
 	TexSize = MaxTexSize ;
 	while( TexSize > MinTexSize )
@@ -29527,7 +29527,7 @@ extern int Graphics_Image_ListUpTexSize( int Size, short *SizeList, int NotDivFl
 		TexSize >>= 1 ;
 	}
 
-	// •ªŠ„‚ğs‚í‚È‚¢ê‡‚Íˆê–‡‚Åû‚ß‚ç‚ê‚éê‡‚Íû‚ß‚ÄI—¹
+	// åˆ†å‰²ã‚’è¡Œã‚ãªã„å ´åˆã¯ä¸€æšã§åã‚ã‚‰ã‚Œã‚‹å ´åˆã¯åã‚ã¦çµ‚äº†
 	if( NotDivFlag != FALSE )
 	{
 		if( ( TexSize << 1 ) <= MaxTexSize )
@@ -29538,9 +29538,9 @@ extern int Graphics_Image_ListUpTexSize( int Size, short *SizeList, int NotDivFl
 		}
 	}
 	else
-	// •ªŠ„‚ğs‚¤w’è‚Ìê‡‚Å‚àì¬‚·‚é‰æ‘œ‚ÌƒTƒCƒY‚ª
-	// ‰æ–Ê‚Æ“¯‚¶‚©‚»‚ê‚æ‚è‚à¬‚³‚­AŠ‚Âƒ†[ƒU[w’è‚ÌƒTƒCƒY‚ª–³‚¢ê‡‚Í
-	// ‚È‚é‚×‚­•ªŠ„‚ğs‚í‚È‚¢
+	// åˆ†å‰²ã‚’è¡Œã†æŒ‡å®šã®å ´åˆã§ã‚‚ä½œæˆã™ã‚‹ç”»åƒã®ã‚µã‚¤ã‚ºãŒ
+	// ç”»é¢ã¨åŒã˜ã‹ãã‚Œã‚ˆã‚Šã‚‚å°ã•ãã€ä¸”ã¤ãƒ¦ãƒ¼ã‚¶ãƒ¼æŒ‡å®šã®ã‚µã‚¤ã‚ºãŒç„¡ã„å ´åˆã¯
+	// ãªã‚‹ã¹ãåˆ†å‰²ã‚’è¡Œã‚ãªã„
 	if( MaxTextureSize == 0 )
 	{
 		if( Size <= GSYS.Screen.MainScreenSizeX )
@@ -29554,7 +29554,7 @@ extern int Graphics_Image_ListUpTexSize( int Size, short *SizeList, int NotDivFl
 		}
 	}
 
-	// •ªŠ„ˆ—
+	// åˆ†å‰²å‡¦ç†
 	GraphSize = Size ;
 	for(;;)
 	{
@@ -29563,7 +29563,7 @@ extern int Graphics_Image_ListUpTexSize( int Size, short *SizeList, int NotDivFl
 
 		if( GraphSize <= 0 ) break ;
 
-		// ‚à‚¤ˆê‚ÂƒeƒNƒXƒ`ƒƒ[‚ğì‚é‚æ‚èƒTƒCƒY‚ğ‚Q”{‚É‚µ‚½‚Ù‚¤‚ª‚¢‚¢ê‡‚ğ”»’è
+		// ã‚‚ã†ä¸€ã¤ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã‚’ä½œã‚‹ã‚ˆã‚Šã‚µã‚¤ã‚ºã‚’ï¼’å€ã«ã—ãŸã»ã†ãŒã„ã„å ´åˆã‚’åˆ¤å®š
 		if( ( GraphSize > TexSize * 3 / 4 ) && ( TexSize < MaxTexSize ) )
 		{
 			if( SizeList ) SizeList[ DivNum ] = ( short )( TexSize << 1 ) ;
@@ -29571,7 +29571,7 @@ extern int Graphics_Image_ListUpTexSize( int Size, short *SizeList, int NotDivFl
 		}
 		else
 		{
-			// ƒeƒNƒXƒ`ƒƒ[‚ÌƒTƒCƒY‚ğc‚èƒOƒ‰ƒtƒBƒbƒNƒTƒCƒY‚É‡‚í‚¹‚Ä•â³‚·‚é
+			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã®ã‚µã‚¤ã‚ºã‚’æ®‹ã‚Šã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚µã‚¤ã‚ºã«åˆã‚ã›ã¦è£œæ­£ã™ã‚‹
 			if( GraphSize < TexSize )
 			{
 				while( GraphSize < TexSize  &&  TexSize > MinTexSize )
@@ -29585,8 +29585,8 @@ extern int Graphics_Image_ListUpTexSize( int Size, short *SizeList, int NotDivFl
 		DivNum ++ ;
 	}
 
-	// ÅŒã‚ÌƒTƒCƒY‚ªA‚à‚µÅŒã‚Ìˆê‚Â‘O‚ÌƒTƒCƒY‚Æ“™‚µ‚¢ê‡‚Í
-	// ÅŒã‚Ìˆê‚Â‘O‚ÌƒTƒCƒY‚ğ‚Q”{‚É‚µ‚Ä•ªŠ„î•ñ‚ğˆê‚ÂŒ¸‚ç‚·
+	// æœ€å¾Œã®ã‚µã‚¤ã‚ºãŒã€ã‚‚ã—æœ€å¾Œã®ä¸€ã¤å‰ã®ã‚µã‚¤ã‚ºã¨ç­‰ã—ã„å ´åˆã¯
+	// æœ€å¾Œã®ä¸€ã¤å‰ã®ã‚µã‚¤ã‚ºã‚’ï¼’å€ã«ã—ã¦åˆ†å‰²æƒ…å ±ã‚’ä¸€ã¤æ¸›ã‚‰ã™
 	if( DivNum > 0 && SizeList[ DivNum - 1 ] == SizeList[ DivNum ] &&
 		( SizeList[ DivNum - 1 ] << 1 ) <= MaxTexSize )
 	{
@@ -29594,24 +29594,24 @@ extern int Graphics_Image_ListUpTexSize( int Size, short *SizeList, int NotDivFl
 		SizeList[ DivNum ] <<= 1 ;
 	}
 
-	// •ªŠ„”‚ğ•Ô‚·
+	// åˆ†å‰²æ•°ã‚’è¿”ã™
 	return DivNum + 1 ;
 }
 
-// ƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚Ì‰Šú‰»
+// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã®åˆæœŸåŒ–
 extern int Graphics_Image_InitializeHandle( HANDLEINFO * /*HandleInfo*/ )
 {
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ÌŒãn––
+// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã®å¾Œå§‹æœ«
 extern int Graphics_Image_TerminateHandle( HANDLEINFO *HandleInfo )
 {
 	IMAGEDATA *Image = ( IMAGEDATA * )HandleInfo ;
 	int i ;
 
-	// •`‰ææ‚É‚È‚Á‚Ä‚¢‚½‚ç•`‰ææ‚ğ•\‰æ–Ê‚É‚·‚é
+	// æç”»å…ˆã«ãªã£ã¦ã„ãŸã‚‰æç”»å…ˆã‚’è¡¨ç”»é¢ã«ã™ã‚‹
 	for( i = 0 ; i < GSYS.HardInfo.RenderTargetNum ; i ++ )
 	{
 		if( GSYS.DrawSetting.TargetScreen[ i ] == Image->HandleInfo.Handle )
@@ -29620,108 +29620,108 @@ extern int Graphics_Image_TerminateHandle( HANDLEINFO *HandleInfo )
 		}
 	}
 
-	// •`‰ææ‚yƒoƒbƒtƒ@‚É‚È‚Á‚Ä‚¢‚½‚ç•`‰ææ‚ğ— ‰æ–Ê‚É‚·‚é
+	// æç”»å…ˆï¼ºãƒãƒƒãƒ•ã‚¡ã«ãªã£ã¦ã„ãŸã‚‰æç”»å…ˆã‚’è£ç”»é¢ã«ã™ã‚‹
 	if( GSYS.DrawSetting.TargetZBuffer == Image->HandleInfo.Handle )
 	{
 		NS_SetDrawZBuffer( DX_SCREEN_BACK ) ;
 	}
 
-	// ƒIƒŠƒWƒiƒ‹ƒf[ƒ^‚ª‚ ‚éê‡‚ÍƒIƒŠƒWƒiƒ‹ƒf[ƒ^‚Ì‰ğ•úˆ—‚ğs‚¤
+	// ã‚ªãƒªã‚¸ãƒŠãƒ«ãƒ‡ãƒ¼ã‚¿ãŒã‚ã‚‹å ´åˆã¯ã‚ªãƒªã‚¸ãƒŠãƒ«ãƒ‡ãƒ¼ã‚¿ã®è§£æ”¾å‡¦ç†ã‚’è¡Œã†
 	if( Image->Orig )
 	{
-		// ƒeƒNƒXƒ`ƒƒ‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+		// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 		if( Image->Orig->FormatDesc.TextureFlag )
 		{
-			// ƒeƒNƒXƒ`ƒƒ‚Ìê‡
+			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®å ´åˆ
 		}
 		else
 		{
-			// ƒeƒNƒXƒ`ƒƒ‚Å‚Í–³‚¢ê‡
+			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã§ã¯ç„¡ã„å ´åˆ
 
-			// •`‰æ—p MEMIMG ‚ÌŒãn––
+			// æç”»ç”¨ MEMIMG ã®å¾Œå§‹æœ«
 			TerminateMemImg( &Image->Soft.MemImg ) ;
 		}
 
-		// ƒIƒŠƒWƒiƒ‹ƒf[ƒ^‚ÌQÆ”‚ğƒfƒNƒŠƒƒ“ƒg
+		// ã‚ªãƒªã‚¸ãƒŠãƒ«ãƒ‡ãƒ¼ã‚¿ã®å‚ç…§æ•°ã‚’ãƒ‡ã‚¯ãƒªãƒ¡ãƒ³ãƒˆ
 		Image->Orig->RefCount -- ;
 
-		// ‚O‚É‚È‚Á‚½‚çƒIƒŠƒWƒiƒ‹ƒf[ƒ^‚Ì‰ğ•úˆ—‚ğs‚¤
+		// ï¼ã«ãªã£ãŸã‚‰ã‚ªãƒªã‚¸ãƒŠãƒ«ãƒ‡ãƒ¼ã‚¿ã®è§£æ”¾å‡¦ç†ã‚’è¡Œã†
 		if( Image->Orig->RefCount == 0 )
 		{
-			// ‚yƒoƒbƒtƒ@‚ğ‰ğ•ú‚·‚é
+			// ï¼ºãƒãƒƒãƒ•ã‚¡ã‚’è§£æ”¾ã™ã‚‹
 			//ReleaseOrigZBuffer_PF( Image->Orig ) ;
 
-			// ƒ€[ƒr[ƒOƒ‰ƒtƒBƒbƒN‚¾‚Á‚½ê‡‚»‚ÌŒãn––‚ğs‚¤
+			// ãƒ ãƒ¼ãƒ“ãƒ¼ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã ã£ãŸå ´åˆãã®å¾Œå§‹æœ«ã‚’è¡Œã†
 #ifndef DX_NON_MOVIE
 			CloseMovie( Image->Orig->MovieHandle ) ;
 #endif
 
-			// ƒeƒNƒXƒ`ƒƒ‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 			if( Image->Orig->FormatDesc.TextureFlag )
 			{
-				// ƒeƒNƒXƒ`ƒƒ‚Ìê‡
+				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®å ´åˆ
 
-				// ƒeƒNƒXƒ`ƒƒƒIƒuƒWƒFƒNƒg‚Ì‰ğ•ú
+				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®è§£æ”¾
 				Graphics_Hardware_ReleaseOrigTexture_PF( Image->Orig ) ;
 			}
 			else
 			{
-				// ƒeƒNƒXƒ`ƒƒ‚Å‚Í–³‚¢ê‡
+				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã§ã¯ç„¡ã„å ´åˆ
 
-				// MEMIMG ‚ğ‰ğ•ú‚·‚é
+				// MEMIMG ã‚’è§£æ”¾ã™ã‚‹
 				TerminateMemImg( &Image->Orig->Soft.MemImg ) ;
 			}
 
-			// ƒIƒŠƒWƒiƒ‹‰æ‘œƒf[ƒ^—p‚ÉŠm•Û‚µ‚½ƒƒ‚ƒŠ—Ìˆæ‚ğŠJ•ú
+			// ã‚ªãƒªã‚¸ãƒŠãƒ«ç”»åƒãƒ‡ãƒ¼ã‚¿ç”¨ã«ç¢ºä¿ã—ãŸãƒ¡ãƒ¢ãƒªé ˜åŸŸã‚’é–‹æ”¾
 			DXFREE( Image->Orig ) ;
 		}
 
 		Image->Orig = NULL ;
 	}
 
-	// ƒtƒ‹ƒJƒ‰[ƒCƒ[ƒW‚ª‚ ‚éê‡‚Í‰ğ•ú
+	// ãƒ•ãƒ«ã‚«ãƒ©ãƒ¼ã‚¤ãƒ¡ãƒ¼ã‚¸ãŒã‚ã‚‹å ´åˆã¯è§£æ”¾
 	if( Image->FullColorImage != NULL )
 	{
 		DXFREE( Image->FullColorImage ) ;
 		Image->FullColorImage = NULL ;
 	}
 
-	// ƒƒbƒNƒCƒ[ƒW‚ª‚ ‚éê‡‚Í‰ğ•ú
+	// ãƒ­ãƒƒã‚¯ã‚¤ãƒ¡ãƒ¼ã‚¸ãŒã‚ã‚‹å ´åˆã¯è§£æ”¾
 	if( Image->LockImage != NULL )
 	{
 		DXFREE( Image->LockImage ) ;
 		Image->LockImage = NULL ;
 	}
 
-	// ƒtƒ@ƒCƒ‹–¼•Û‘¶—p‚Éƒƒ‚ƒŠ‚ğŠm•Û‚µ‚Ä‚¢‚½ê‡‚Í‰ğ•ú
+	// ãƒ•ã‚¡ã‚¤ãƒ«åä¿å­˜ç”¨ã«ãƒ¡ãƒ¢ãƒªã‚’ç¢ºä¿ã—ã¦ã„ãŸå ´åˆã¯è§£æ”¾
 	Graphics_Image_SetGraphBaseInfo( Image->HandleInfo.Handle, NULL, NULL, NULL, NULL, NULL, 0, NULL, 0, NULL, NULL, FALSE, FALSE, FALSE, -1, FALSE ) ;
 
-	// ‰ğ•ú‚É—§‚Ä‚éƒtƒ‰ƒO‚Ö‚Ìƒ|ƒCƒ“ƒ^‚ª—LŒø‚Å‚ ‚éê‡‚Í—§‚Ä‚é
+	// è§£æ”¾æ™‚ã«ç«‹ã¦ã‚‹ãƒ•ãƒ©ã‚°ã¸ã®ãƒã‚¤ãƒ³ã‚¿ãŒæœ‰åŠ¹ã§ã‚ã‚‹å ´åˆã¯ç«‹ã¦ã‚‹
 	if( Image->LostFlag != NULL )
 		*Image->LostFlag = TRUE ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚Ìî•ño—Í
+// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã®æƒ…å ±å‡ºåŠ›
 extern int Graphics_Image_DumpInfoHandle( HANDLEINFO *HandleInfo )
 {
 	IMAGEDATA *Image = ( IMAGEDATA * )HandleInfo ;
 
 	DXST_LOGFILEFMT_ADDW(( L"Handle:0x%08x Size:%dx%d UsePos:%d,%d File:%s", HandleInfo->Handle, Image->WidthI, Image->HeightI, Image->UseOrigXI, Image->UseOrigYI, Image->ReadBase != NULL && Image->ReadBase->FileName != NULL ? Image->ReadBase->FileName : L"None" )) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// w’è•”•ª‚¾‚¯‚ğ”²‚«o‚µ‚½ƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ğ‰Šú‰»‚·‚é
+// æŒ‡å®šéƒ¨åˆ†ã ã‘ã‚’æŠœãå‡ºã—ãŸã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã‚’åˆæœŸåŒ–ã™ã‚‹
 extern int Graphics_Image_InitializeDerivationHandle( int GrHandle, int IsFloat, int SrcXI, float SrcXF, int SrcYI, float SrcYF, int WidthI, float WidthF, int HeightI, float HeightF, int SrcGrHandle, int ASyncThread )
 {
 	IMAGEDATA *Image, *SrcImage ;
 	IMAGEDATA_ORIG *Orig ;
 
-	// ƒAƒhƒŒƒX‚Ìæ“¾‚“
+	// ã‚¢ãƒ‰ãƒ¬ã‚¹ã®å–å¾—ï½“
 	if( ASyncThread )
 	{
 		if( GRAPHCHK_ASYNC( GrHandle, Image ) ||
@@ -29738,41 +29738,41 @@ extern int Graphics_Image_InitializeDerivationHandle( int GrHandle, int IsFloat,
 	}
 	Orig = SrcImage->Orig ;
 
-	// ƒIƒŠƒWƒiƒ‹‰æ‘œ‚ÌQÆ”‚ğƒCƒ“ƒNƒŠƒƒ“ƒg‚·‚é
+	// ã‚ªãƒªã‚¸ãƒŠãƒ«ç”»åƒã®å‚ç…§æ•°ã‚’ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆã™ã‚‹
 	Image->Orig = Orig ;
 	Orig->RefCount ++ ;
 
-	// ƒtƒ@ƒCƒ‹‚Ìî•ñ‚ğƒRƒs[‚·‚é
+	// ãƒ•ã‚¡ã‚¤ãƒ«ã®æƒ…å ±ã‚’ã‚³ãƒ”ãƒ¼ã™ã‚‹
 	Graphics_Image_SetName( GrHandle, NULL, FALSE, FALSE, FALSE, SrcGrHandle, ASyncThread ) ;
 	Image->UseBaseXI = SrcImage->UseBaseXI + SrcXI ;
 	Image->UseBaseXF = SrcImage->UseBaseXF + SrcXF ;
 	Image->UseBaseYI = SrcImage->UseBaseYI + SrcYI ;
 	Image->UseBaseYF = SrcImage->UseBaseYF + SrcYF ;
 
-	// ƒIƒŠƒWƒiƒ‹‰æ‘œ’†‚ÌQÆÀ•W‚ğƒZƒbƒg
+	// ã‚ªãƒªã‚¸ãƒŠãƒ«ç”»åƒä¸­ã®å‚ç…§åº§æ¨™ã‚’ã‚»ãƒƒãƒˆ
 	Image->UseOrigXI = SrcImage->UseOrigXI + SrcXI ;
 	Image->UseOrigXF = SrcImage->UseOrigXF + SrcXF ;
 	Image->UseOrigYI = SrcImage->UseOrigYI + SrcYI ;
 	Image->UseOrigYF = SrcImage->UseOrigYF + SrcYF ;
 
-	// ƒTƒCƒY‚ğ•Û‘¶
+	// ã‚µã‚¤ã‚ºã‚’ä¿å­˜
 	Image->WidthI = WidthI ;
 	Image->WidthF = WidthF ;
 	Image->HeightI = HeightI ;
 	Image->HeightF = HeightF ;
 
-	// InitGraph ‚Åíœ‚·‚é‚©‚Ç‚¤‚©‚ğ•Û‘¶
+	// InitGraph ã§å‰Šé™¤ã™ã‚‹ã‹ã©ã†ã‹ã‚’ä¿å­˜
 	Image->NotInitGraphDelete = SrcImage->NotInitGraphDelete ;
 	Image->NotInitGraphDeleteUser = SrcImage->NotInitGraphDeleteUser ;
 
-	//•`‰æî•ñ‚Ì‰Šú‰»
+	//æç”»æƒ…å ±ã®åˆæœŸåŒ–
 	Graphics_Image_InitializeDrawInfo( GrHandle, IsFloat, ASyncThread ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚Ì•`‰æî•ñ‚ğ‰Šú‰»‚·‚é
+// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã®æç”»æƒ…å ±ã‚’åˆæœŸåŒ–ã™ã‚‹
 extern int Graphics_Image_InitializeDrawInfo( int GrHandle, int IsFloat, int ASyncThread )
 {
 	IMAGEDATA				*Image ;
@@ -29786,7 +29786,7 @@ extern int Graphics_Image_InitializeDrawInfo( int GrHandle, int IsFloat, int ASy
 	bool					List[ 256 ] ;
 	float					d ;
 
-	// ƒAƒhƒŒƒX‚Ìæ“¾
+	// ã‚¢ãƒ‰ãƒ¬ã‚¹ã®å–å¾—
 	if( ASyncThread )
 	{
 		if( GRAPHCHK_ASYNC( GrHandle, Image ) )
@@ -29804,15 +29804,15 @@ extern int Graphics_Image_InitializeDrawInfo( int GrHandle, int IsFloat, int ASy
 	Orig   = Image->Orig ;
 	Handle = Image->HandleInfo.Handle ;
 
-	// Šî–{Šm•Ûƒƒ‚ƒŠ‚ÌZo
+	// åŸºæœ¬ç¢ºä¿ãƒ¡ãƒ¢ãƒªã®ç®—å‡º
 	Size = sizeof( IMAGEDATA ) - ( ( sizeof( IMAGEDATA_SOFT ) > sizeof( IMAGEDATA_HARD ) ? sizeof( IMAGEDATA_SOFT ) : sizeof( IMAGEDATA_HARD ) ) ) ;
 
-	// ƒeƒNƒXƒ`ƒƒ‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+	// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 	if( Orig->FormatDesc.TextureFlag )
 	{
-		// ƒeƒNƒXƒ`ƒƒ‚Ìê‡
+		// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®å ´åˆ
 
-		// Œ³‰æ‘œ‚©‚ç”í‚é•”•ª‚Ì”‚ğ”‚¦‚é
+		// å…ƒç”»åƒã‹ã‚‰è¢«ã‚‹éƒ¨åˆ†ã®æ•°ã‚’æ•°ãˆã‚‹
 		OrigTex = Orig->Hard.Tex ;
 		Num = 0 ;
 		for( i = 0 ; i < Orig->Hard.TexNum ; i ++, OrigTex ++ )
@@ -29885,19 +29885,19 @@ extern int Graphics_Image_InitializeDrawInfo( int GrHandle, int IsFloat, int ASy
 			}
 		}
 
-		// ”í‚é•”•ª‚ª‚O‚Ìê‡‚ÍƒGƒ‰[
+		// è¢«ã‚‹éƒ¨åˆ†ãŒï¼ã®å ´åˆã¯ã‚¨ãƒ©ãƒ¼
 		if( Num == 0 )
 		{
-			DXST_LOGFILE_ADDUTF16LE( "\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\xcf\x63\x3b\x75\xc5\x60\x31\x58\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ƒeƒNƒXƒ`ƒƒ•`‰æî•ñ‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+			DXST_LOGFILE_ADDUTF16LE( "\xc6\x30\xaf\x30\xb9\x30\xc1\x30\xe3\x30\xcf\x63\x3b\x75\xc5\x60\x31\x58\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ãƒ†ã‚¯ã‚¹ãƒãƒ£æç”»æƒ…å ±ã®ä½œæˆã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 			return -1 ;
 		}
 
-		// •`‰æî•ñ‚ğŠi”[‚·‚éƒƒ‚ƒŠ—Ìˆæ‚ª‘«‚è‚È‚¢ê‡‚ÍÄŠm•Û
+		// æç”»æƒ…å ±ã‚’æ ¼ç´ã™ã‚‹ãƒ¡ãƒ¢ãƒªé ˜åŸŸãŒè¶³ã‚Šãªã„å ´åˆã¯å†ç¢ºä¿
 		if( Num > 4 )
 		{
 			if( ReallocHandle( Handle, Size + sizeof( IMAGEDATA_HARD ) + ( Num - 4 ) * sizeof( IMAGEDATA_HARD_DRAW ) ) < 0 )
 			{
-				DXST_LOGFILE_ADDUTF16LE( "\x3b\x75\xcf\x50\xcf\x63\x3b\x75\xc5\x60\x31\x58\x3c\x68\x0d\x7d\x28\x75\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"‰æ‘œ•`‰æî•ñŠi”[—pƒƒ‚ƒŠ‚ÌŠm•Û‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+				DXST_LOGFILE_ADDUTF16LE( "\x3b\x75\xcf\x50\xcf\x63\x3b\x75\xc5\x60\x31\x58\x3c\x68\x0d\x7d\x28\x75\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ç”»åƒæç”»æƒ…å ±æ ¼ç´ç”¨ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 				return -1 ;
 			}
 			Image = ( IMAGEDATA * )GetHandleInfo( Handle ) ;
@@ -29906,7 +29906,7 @@ extern int Graphics_Image_InitializeDrawInfo( int GrHandle, int IsFloat, int ASy
 
 		Image->Hard.DrawNum = Num ;
 
-		// •`‰æî•ñ‚ğƒZƒbƒg‚·‚é
+		// æç”»æƒ…å ±ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 		d = Image->HeightF / Image->WidthF ;
 		OrigTex = Orig->Hard.Tex ;
 		DrawTex = Image->Hard.Draw ;
@@ -29915,10 +29915,10 @@ extern int Graphics_Image_InitializeDrawInfo( int GrHandle, int IsFloat, int ASy
 		{
 			if( List[ i ] == false ) continue ;
 
-			// g—p‚·‚éƒIƒŠƒWƒiƒ‹‰æ‘œƒeƒNƒXƒ`ƒƒî•ñ‚ÌƒAƒhƒŒƒX‚ğƒZƒbƒg
+			// ä½¿ç”¨ã™ã‚‹ã‚ªãƒªã‚¸ãƒŠãƒ«ç”»åƒãƒ†ã‚¯ã‚¹ãƒãƒ£æƒ…å ±ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ã‚»ãƒƒãƒˆ
 			DrawTex->Tex = OrigTex ;
 
-			// ƒIƒŠƒWƒiƒ‹‰æ‘œƒeƒNƒXƒ`ƒƒ’†‚Ì‚Ç‚Ì•”•ª‚ğg—p‚·‚é‚©A‚È‚Ç‚Ìî•ñ‚ğƒZƒbƒg
+			// ã‚ªãƒªã‚¸ãƒŠãƒ«ç”»åƒãƒ†ã‚¯ã‚¹ãƒãƒ£ä¸­ã®ã©ã®éƒ¨åˆ†ã‚’ä½¿ç”¨ã™ã‚‹ã‹ã€ãªã©ã®æƒ…å ±ã‚’ã‚»ãƒƒãƒˆ
 			if( IsFloat )
 			{
 				if( OrigTex->OrigPosX > Image->UseOrigXF )
@@ -29979,7 +29979,7 @@ extern int Graphics_Image_InitializeDrawInfo( int GrHandle, int IsFloat, int ASy
 					}
 				}
 
-				// ®”’l‚ÌŠ„‚èo‚µ
+				// æ•´æ•°å€¤ã®å‰²ã‚Šå‡ºã—
 				{
 					float lTempWidthF ;
 					float lTempHeightF ;
@@ -30073,7 +30073,7 @@ extern int Graphics_Image_InitializeDrawInfo( int GrHandle, int IsFloat, int ASy
 					}
 				}
 
-				// •‚“®¬”“_’l‚ÌƒZƒbƒg
+				// æµ®å‹•å°æ•°ç‚¹å€¤ã®ã‚»ãƒƒãƒˆ
 				{
 					DrawTex->DrawPosXF = ( float )DrawTex->DrawPosXI ;
 					DrawTex->DrawPosYF = ( float )DrawTex->DrawPosYI ;
@@ -30084,7 +30084,7 @@ extern int Graphics_Image_InitializeDrawInfo( int GrHandle, int IsFloat, int ASy
 				}
 			}
 
-			// Zo‚µ‚½g—pˆæî•ñ‚©‚ç’¸“_ƒf[ƒ^‚Ég—p‚·‚é’l‚ÌŠ„‚èo‚µ
+			// ç®—å‡ºã—ãŸä½¿ç”¨åŸŸæƒ…å ±ã‹ã‚‰é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ã«ä½¿ç”¨ã™ã‚‹å€¤ã®å‰²ã‚Šå‡ºã—
 			DrawTex->Vertex[ 0 ].x =   DrawTex->DrawPosXF ;
 			DrawTex->Vertex[ 1 ].x = ( DrawTex->DrawPosXF + DrawTex->WidthF ) ;
 			DrawTex->Vertex[ 2 ].x =   DrawTex->DrawPosXF ;
@@ -30105,7 +30105,7 @@ extern int Graphics_Image_InitializeDrawInfo( int GrHandle, int IsFloat, int ASy
 			DrawTex->Vertex[ 2 ].v = ( DrawTex->UsePosYF + DrawTex->HeightF ) / ( float )OrigTex->TexHeight ;
 			DrawTex->Vertex[ 3 ].v = ( DrawTex->UsePosYF + DrawTex->HeightF ) / ( float )OrigTex->TexHeight ;
 
-			// ’¸“_ƒ^ƒCƒv‚ÌƒZƒbƒg
+			// é ‚ç‚¹ã‚¿ã‚¤ãƒ—ã®ã‚»ãƒƒãƒˆ
 			DrawTex->VertType[ 0 ] = ( unsigned char )( DrawTex->Vertex[ 0 ].y <= Image->HeightF - ( d * DrawTex->Vertex[ 0 ].x ) ? 1 : 0 ) ;
 			DrawTex->VertType[ 1 ] = ( unsigned char )( DrawTex->Vertex[ 1 ].y <= Image->HeightF - ( d * DrawTex->Vertex[ 1 ].x ) ? 1 : 0 ) ;
 			DrawTex->VertType[ 2 ] = ( unsigned char )( DrawTex->Vertex[ 2 ].y <= Image->HeightF - ( d * DrawTex->Vertex[ 2 ].x ) ? 1 : 0 ) ;
@@ -30116,30 +30116,30 @@ extern int Graphics_Image_InitializeDrawInfo( int GrHandle, int IsFloat, int ASy
 	}
 	else
 	{
-		// ƒeƒNƒXƒ`ƒƒ‚Å‚Í‚È‚¢ê‡
+		// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã§ã¯ãªã„å ´åˆ
 
-		// •`‰æ—p MEMIMG ‚Ì€”õ
+		// æç”»ç”¨ MEMIMG ã®æº–å‚™
 		DerivationMemImg( &Image->Soft.MemImg, &Orig->Soft.MemImg, Image->UseOrigXI, Image->UseOrigYI, Image->WidthI, Image->HeightI ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ª—LŒø‚©‚Ç‚¤‚©‚ğ’²‚×‚é( TRUE:—LŒø  FALSE:–³Œø )
+// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ãŒæœ‰åŠ¹ã‹ã©ã†ã‹ã‚’èª¿ã¹ã‚‹( TRUE:æœ‰åŠ¹  FALSE:ç„¡åŠ¹ )
 extern	int Graphics_Image_IsValidHandle( int GrHandle )
 {
 	IMAGEDATA *Image ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( GRAPHCHKFULL( GrHandle, Image ) )
 		return FALSE ;
 
-	// I—¹
+	// çµ‚äº†
 	return TRUE ;
 }
 
-// GraphImage ƒf[ƒ^‚©‚çƒTƒCƒY‚ğŠ„‚èo‚µA‚»‚ê‚É‡‚Á‚½ƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ğì¬‚·‚é
+// GraphImage ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰ã‚µã‚¤ã‚ºã‚’å‰²ã‚Šå‡ºã—ã€ãã‚Œã«åˆã£ãŸã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã‚’ä½œæˆã™ã‚‹
 extern int Graphics_Image_CreateDXGraph_UseGParam(
 	SETUP_GRAPHHANDLE_GPARAM *GParam,
 	int GrHandle,
@@ -30158,19 +30158,19 @@ extern int Graphics_Image_CreateDXGraph_UseGParam(
 		CheckActiveState() ;
 	}
 
-	// “ñ‚Â‚ÌƒOƒ‰ƒtƒBƒbƒN‚ÌƒTƒCƒY‚ªˆá‚Á‚½ê‡‚ÍƒGƒ‰[
+	// äºŒã¤ã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®ã‚µã‚¤ã‚ºãŒé•ã£ãŸå ´åˆã¯ã‚¨ãƒ©ãƒ¼
 	if( AlphaBaseImage != NULL && ( RgbBaseImage->Width != AlphaBaseImage->Width || RgbBaseImage->Height != AlphaBaseImage->Height ) )
 		return -1 ;
 
-	// ƒLƒ…[ƒuƒ}ƒbƒvƒeƒNƒXƒ`ƒƒ‚ğì¬‚·‚é‚©‚Ç‚¤‚©‚ğƒZƒbƒg
+	// ã‚­ãƒ¥ãƒ¼ãƒ–ãƒãƒƒãƒ—ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ä½œæˆã™ã‚‹ã‹ã©ã†ã‹ã‚’ã‚»ãƒƒãƒˆ
 	GParam->CubeMapTextureCreateFlag = RgbBaseImage->GraphDataCount == CUBEMAP_SURFACE_NUM ? TRUE : FALSE ;
 
-	// ƒnƒ“ƒhƒ‹‚Ì‰Šú‰»
+	// ãƒãƒ³ãƒ‰ãƒ«ã®åˆæœŸåŒ–
 	{
 		int UsePaletteFlag ;
 		int PaletteColorBitDepth = 0 ;
 
-		// ƒpƒŒƒbƒgƒeƒNƒXƒ`ƒƒ‚ğg—p‚·‚é‚©‚Ç‚¤‚©‚ğƒZƒbƒg
+		// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã‚’ã‚»ãƒƒãƒˆ
 		UsePaletteFlag = RgbBaseImage->ColorData.PixelByte  == 1 && 
 						 RgbBaseImage->ColorData.RedMask   == 0x00ff0000 &&
 						 RgbBaseImage->ColorData.GreenMask == 0x0000ff00 &&
@@ -30179,8 +30179,8 @@ extern int Graphics_Image_CreateDXGraph_UseGParam(
 						 AlphaBaseImage == NULL &&
 						 GParam->NotUsePaletteGraphFlag == FALSE ;
 
-		// ƒOƒ‰ƒtƒBƒbƒNƒXƒfƒoƒCƒX‚ª4bitƒpƒŒƒbƒgƒeƒNƒXƒ`ƒƒ‚É‘Î‰‚µ‚Ä‚¢‚éê‡‚ÅAŠ‚Â8bitƒJƒ‰[‚Ìê‡‚Í
-		// g—p‚³‚ê‚Ä‚¢‚éÅ‘åƒpƒŒƒbƒg”Ô†‚ª 4bit ‚Éû‚Ü‚é‚©‚Ç‚¤‚©‚ğ’²‚×Aû‚Ü‚éê‡‚Í 4bit ƒpƒŒƒbƒgƒeƒNƒXƒ`ƒƒ‚É‚·‚é
+		// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¹ãƒ‡ãƒã‚¤ã‚¹ãŒ4bitãƒ‘ãƒ¬ãƒƒãƒˆãƒ†ã‚¯ã‚¹ãƒãƒ£ã«å¯¾å¿œã—ã¦ã„ã‚‹å ´åˆã§ã€ä¸”ã¤8bitã‚«ãƒ©ãƒ¼ã®å ´åˆã¯
+		// ä½¿ç”¨ã•ã‚Œã¦ã„ã‚‹æœ€å¤§ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·ãŒ 4bit ã«åã¾ã‚‹ã‹ã©ã†ã‹ã‚’èª¿ã¹ã€åã¾ã‚‹å ´åˆã¯ 4bit ãƒ‘ãƒ¬ãƒƒãƒˆãƒ†ã‚¯ã‚¹ãƒãƒ£ã«ã™ã‚‹
 		if( UsePaletteFlag )
 		{
 			if( GSYS.HardInfo.Support4bitPaletteTexture &&
@@ -30201,7 +30201,7 @@ extern int Graphics_Image_CreateDXGraph_UseGParam(
 			}
 		}
 
-		// BaseImage ‚ÌƒJƒ‰[î•ñ‚Åƒ`ƒƒƒ“ƒlƒ‹”‚âƒ`ƒƒƒ“ƒlƒ‹ƒrƒbƒg”‚ªw’è‚³‚ê‚Ä‚¢‚éê‡‚Í GParam ‚É’l‚ğ”½‰f‚·‚é
+		// BaseImage ã®ã‚«ãƒ©ãƒ¼æƒ…å ±ã§ãƒãƒ£ãƒ³ãƒãƒ«æ•°ã‚„ãƒãƒ£ãƒ³ãƒãƒ«ãƒ“ãƒƒãƒˆæ•°ãŒæŒ‡å®šã•ã‚Œã¦ã„ã‚‹å ´åˆã¯ GParam ã«å€¤ã‚’åæ˜ ã™ã‚‹
 		if( RgbBaseImage->ColorData.ChannelNum != 0 &&
 			RgbBaseImage->ColorData.ChannelBitDepth != 0 )
 		{
@@ -30235,11 +30235,11 @@ extern int Graphics_Image_CreateDXGraph_UseGParam(
 			return -1 ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// DerivationGraph ‚ÌƒOƒ[ƒoƒ‹•Ï”‚ÉƒAƒNƒZƒX‚µ‚È‚¢ƒo[ƒWƒ‡ƒ“
+// DerivationGraph ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°ã«ã‚¢ã‚¯ã‚»ã‚¹ã—ãªã„ãƒãƒ¼ã‚¸ãƒ§ãƒ³
 extern int Graphics_Image_DerivationGraph_UseGParam(
 	int IsFloat,
 	int SrcXI,   float SrcXF,
@@ -30254,22 +30254,22 @@ extern int Graphics_Image_DerivationGraph_UseGParam(
 	int NewGraphHandle ;
 	int Result ;
 
-	// DrawRectRotaGraph“™‚Åˆê“I‚É”h¶‚³‚¹‚éê‡‚Í‹¤—LƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ğg—p‚·‚é
+	// DrawRectRotaGraphç­‰ã§ä¸€æ™‚çš„ã«æ´¾ç”Ÿã•ã›ã‚‹å ´åˆã¯å…±æœ‰ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã‚’ä½¿ç”¨ã™ã‚‹
 	if( UseTempGraphHandle )
 	{
-		// ˆê“I‚É”h¶‚³‚¹‚éê‡‚Í”ñ“¯Šúˆ—‚Í–³Œø
+		// ä¸€æ™‚çš„ã«æ´¾ç”Ÿã•ã›ã‚‹å ´åˆã¯éåŒæœŸå‡¦ç†ã¯ç„¡åŠ¹
 		ASyncThread = FALSE ;
 		IMAGEDATA *Image ;
 		if( GRAPHCHK( GSYS.CreateImage.TempDerivationGraphHandle, Image ) )
 		{
-			// –¢ì¬‚¾‚Á‚½ê‡‚ÍV‚½‚É‹¤—LƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ğ’Ç‰Á
+			// æœªä½œæˆã ã£ãŸå ´åˆã¯æ–°ãŸã«å…±æœ‰ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã‚’è¿½åŠ 
 			GSYS.CreateImage.TempDerivationGraphHandle = Graphics_Image_AddHandle( -1, FALSE ) ;
 		}
 		NewGraphHandle = GSYS.CreateImage.TempDerivationGraphHandle ;
 	}
 	else
 	{
-		// V‚½‚ÈƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‚Ì’Ç‰Á
+		// æ–°ãŸãªã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã®è¿½åŠ 
 		NewGraphHandle = Graphics_Image_AddHandle( GSYS.CreateImage.CreateGraphHandle <= 0 ? -1 : GSYS.CreateImage.CreateGraphHandle, ASyncThread ) ;
 	}
 	if( NewGraphHandle == -1 )
@@ -30290,22 +30290,22 @@ extern int Graphics_Image_DerivationGraph_UseGParam(
 		return -1 ;
 	}
 
-	// ƒnƒ“ƒhƒ‹‚ğ•Ô‚·
+	// ãƒãƒ³ãƒ‰ãƒ«ã‚’è¿”ã™
 	return NewGraphHandle ;
 }
 
-// Graphics_Image_DerivationGraph_UseGParam ‚Ìˆø” UseTempGraphHandle ‚ğ TRUE ‚Åì¬‚µ‚½ƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ÌŒãn––‚ğs‚¤
+// Graphics_Image_DerivationGraph_UseGParam ã®å¼•æ•° UseTempGraphHandle ã‚’ TRUE ã§ä½œæˆã—ãŸã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã®å¾Œå§‹æœ«ã‚’è¡Œã†
 extern int Graphics_Image_TempDerivationGraph_Terminate( void )
 {
 	IMAGEDATA *Image ;
 
-	// ƒnƒ“ƒhƒ‹‚ª—LŒø‚Å‚Í‚È‚¢ê‡‚Í‰½‚à‚µ‚È‚¢
+	// ãƒãƒ³ãƒ‰ãƒ«ãŒæœ‰åŠ¹ã§ã¯ãªã„å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if( GRAPHCHK( GSYS.CreateImage.TempDerivationGraphHandle, Image ) )
 	{
 		return -1 ;
 	}
 
-	// Œãn––ˆ—
+	// å¾Œå§‹æœ«å‡¦ç†
 	return Graphics_Image_TerminateHandle( &Image->HandleInfo ) ;
 }
 
@@ -30328,7 +30328,7 @@ extern int Graphics_Image_OpenMovie_UseGParam(
 	MOVIEGRAPH *Movie;
 	IMAGEDATA *Image ;
 
-	// ƒ€[ƒr[ƒOƒ‰ƒtƒBƒbƒN‚Æ‚µ‚Äˆµ‚¨‚¤‚Æ‚µ‚Ä‚İ‚é
+	// ãƒ ãƒ¼ãƒ“ãƒ¼ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã¨ã—ã¦æ‰±ãŠã†ã¨ã—ã¦ã¿ã‚‹
 	MovieHandle = OpenMovie_UseGParam( GrHandle, &GParam->OpenMovieGParam, GraphName, FileImage, FileImageSize, &Width, &Height, SurfaceMode, FALSE, ASyncThread ) ;
 	if( MovieHandle < 0 )
 	{
@@ -30338,7 +30338,7 @@ extern int Graphics_Image_OpenMovie_UseGParam(
 
 	Movie = GetMovieData( MovieHandle );
 
-	// ‰æ–Ê‚ÌƒJƒ‰[ƒrƒbƒgƒfƒvƒX‚Æ‘Î‰‚·‚é‚æ‚¤‚ÉƒZƒbƒgA‹y‚Ñ‚u‚q‚`‚l–¢g—pƒZƒbƒg
+	// ç”»é¢ã®ã‚«ãƒ©ãƒ¼ãƒ“ãƒƒãƒˆãƒ‡ãƒ—ã‚¹ã¨å¯¾å¿œã™ã‚‹ã‚ˆã†ã«ã‚»ãƒƒãƒˆã€åŠã³ï¼¶ï¼²ï¼¡ï¼­æœªä½¿ç”¨ã‚»ãƒƒãƒˆ
 	GParam->CreateGraphGParam.InitHandleGParam.CreateImageColorBitDepth = NS_GetColorBitDepth() ;
 #ifndef DX_NON_DSHOW_MOVIE
 	#ifndef DX_NON_OGGTHEORA
@@ -30390,11 +30390,11 @@ extern int Graphics_Image_OpenMovie_UseGParam(
 		GParam->CreateGraphGParam.InitHandleGParam.DrawValidMSQuality = 0 ;
 	}
 
-	// ƒpƒ‰ƒ[ƒ^‚ÌƒJƒXƒ^ƒ}ƒCƒY
+	// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®ã‚«ã‚¹ã‚¿ãƒã‚¤ã‚º
 	OpenMovie_CustomGraphHandleGParam_PF( Movie, &GParam->CreateGraphGParam.InitHandleGParam ) ;
 
-	// “Ç‚İ‚±‚ñ‚¾ƒrƒbƒgƒ}ƒbƒv‚ÌƒTƒCƒY‚ÌƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‚ğì¬‚·‚é
-	// ‰E‘¤”¼•ª‚ğƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚Æ‚µ‚Äˆµ‚¤ê‡‚Íƒ¿ƒ`ƒƒƒ“ƒlƒ‹•t‚«‰æ‘œ‚É‚·‚é
+	// èª­ã¿ã“ã‚“ã ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã®ã‚µã‚¤ã‚ºã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆã™ã‚‹
+	// å³å´åŠåˆ†ã‚’Î±ãƒãƒ£ãƒ³ãƒãƒ«ã¨ã—ã¦æ‰±ã†å ´åˆã¯Î±ãƒãƒ£ãƒ³ãƒãƒ«ä»˜ãç”»åƒã«ã™ã‚‹
 	if( Graphics_Image_SetupHandle_UseGParam(
 			&GParam->CreateGraphGParam.InitHandleGParam,
 			GrHandle,
@@ -30416,27 +30416,27 @@ extern int Graphics_Image_OpenMovie_UseGParam(
 	Image = Graphics_Image_GetData( GrHandle, ASyncThread ) ;
 	if( Image )
 	{
-		// ƒ€[ƒr[‚Ìƒnƒ“ƒhƒ‹‚ğƒZƒbƒg
+		// ãƒ ãƒ¼ãƒ“ãƒ¼ã®ãƒãƒ³ãƒ‰ãƒ«ã‚’ã‚»ãƒƒãƒˆ
 		Image->Orig->MovieHandle = MovieHandle ;
 
-		// ƒR[ƒ‹ƒoƒbƒNŠÖ”‚ğƒZƒbƒg
+		// ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã‚’ã‚»ãƒƒãƒˆ
 		SetCallbackMovie( MovieHandle, ( void (*)( MOVIEGRAPH *, void * ) )Graphics_Image_UpdateGraphMovie, ( void * )( DWORD_PTR )GrHandle ) ;
 	}
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
 #endif // DX_NON_MOVIE
 
-// ƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ğì¬‚µ‚È‚¢ DerivationGraph
+// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã‚’ä½œæˆã—ãªã„ DerivationGraph
 extern int Graphics_Image_DerivationGraphBase( int GrHandle, int IsFloat, int SrcXI, float SrcXF, int SrcYI, float SrcYF, int WidthI, float WidthF, int HeightI, float HeightF, int SrcGraphHandle, int ASyncThread )
 {
 	IMAGEDATA *Image ;
 
 //	if( GSYS.NotDrawFlag == TRUE ) return 0 ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( ASyncThread )
 	{
 		if( GRAPHCHK_ASYNC( SrcGraphHandle, Image ) )
@@ -30448,7 +30448,7 @@ extern int Graphics_Image_DerivationGraphBase( int GrHandle, int IsFloat, int Sr
 			return -1 ;
 	}
 
-	// •â³
+	// è£œæ­£
 	if( SrcXI < 0 || SrcYI < 0 || SrcXI >= Image->WidthI || SrcYI >= Image->HeightI ||
 		SrcXF < 0 || SrcYF < 0 || SrcXF >= Image->WidthF || SrcYF >= Image->HeightF ) return -1 ;
 	if( SrcXI + WidthI  > Image->WidthI  ) WidthI  = Image->WidthI  - SrcXI ;
@@ -30456,15 +30456,15 @@ extern int Graphics_Image_DerivationGraphBase( int GrHandle, int IsFloat, int Sr
 	if( SrcYI + HeightI > Image->HeightI ) HeightI = Image->HeightI - SrcYI ;
 	if( SrcYF + HeightF > Image->HeightF ) HeightF = Image->HeightF - SrcYF ;
 
-	// ”²‚«o‚µƒOƒ‰ƒtƒBƒbƒN‚Ì‰Šú‰»
+	// æŠœãå‡ºã—ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®åˆæœŸåŒ–
 	if( Graphics_Image_InitializeDerivationHandle( GrHandle, IsFloat, SrcXI, SrcXF, SrcYI, SrcYF, WidthI, WidthF, HeightI, HeightF, SrcGraphHandle, ASyncThread ) == -1 )
 		return -1 ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// Graphics_Image_SetGraphBaseInfo ‚ÌƒOƒ[ƒoƒ‹•Ï”‚ÉƒAƒNƒZƒX‚µ‚È‚¢ƒo[ƒWƒ‡ƒ“
+// Graphics_Image_SetGraphBaseInfo ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°ã«ã‚¢ã‚¯ã‚»ã‚¹ã—ãªã„ãƒãƒ¼ã‚¸ãƒ§ãƒ³
 extern int Graphics_Image_SetBaseInfo_UseGParam(
 	SETGRAPHBASEINFO_GPARAM *GParam,
 	int GrHandle,
@@ -30502,7 +30502,7 @@ extern int Graphics_Image_SetBaseInfo_UseGParam(
 		GRAPHCHKFULL( UnionGrHandle, SrcImage ) ;
 	}
 
-	// Šù‚Éƒtƒ@ƒCƒ‹ƒpƒX—p‚Ìƒƒ‚ƒŠ‚ªŠm•Û‚³‚ê‚Ä‚¢‚½‚ç‰ğ•ú
+	// æ—¢ã«ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹ç”¨ã®ãƒ¡ãƒ¢ãƒªãŒç¢ºä¿ã•ã‚Œã¦ã„ãŸã‚‰è§£æ”¾
 	if( Image->ReadBase )
 	{
 		Image->ReadBase->RefCount -- ;
@@ -30513,7 +30513,7 @@ extern int Graphics_Image_SetBaseInfo_UseGParam(
 		}
 	}
 
-	// ƒrƒbƒgƒ}ƒbƒv‚ª—LŒø‚Èê‡‚Í BASEIMAGE \‘¢‘Ì‚ğ\’z‚·‚é
+	// ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ãŒæœ‰åŠ¹ãªå ´åˆã¯ BASEIMAGE æ§‹é€ ä½“ã‚’æ§‹ç¯‰ã™ã‚‹
 	if( RgbBmp )
 	{
 #ifdef WINDOWS_DESKTOP_OS
@@ -30549,20 +30549,20 @@ extern int Graphics_Image_SetBaseInfo_UseGParam(
 #endif // WINDOWS_DESKTOP_OS
 	}
 
-	// Œ³ƒf[ƒ^‚Ìî•ñ‚ªˆêØ‚È‚¢‚©AƒoƒbƒNƒAƒbƒv‚ğ‹‘”Û‚·‚éƒtƒ‰ƒO‚ª—§‚Á‚Ä‚¢‚½ê‡‚ÍƒoƒbƒNƒAƒbƒv‚ğ‚µ‚È‚¢
+	// å…ƒãƒ‡ãƒ¼ã‚¿ã®æƒ…å ±ãŒä¸€åˆ‡ãªã„ã‹ã€ãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—ã‚’æ‹’å¦ã™ã‚‹ãƒ•ãƒ©ã‚°ãŒç«‹ã£ã¦ã„ãŸå ´åˆã¯ãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—ã‚’ã—ãªã„
 	if( GParam->NotGraphBaseDataBackupFlag || ( FileName == NULL && MemImage == NULL && BaseImage == NULL && SrcImage == NULL ) )
 	{
 		Image->ReadBase = NULL ;
 	}
 	else
 	{
-		// ‹¤—Lƒnƒ“ƒhƒ‹‚Ìw’è‚ª‚ ‚éê‡‚Í‹¤—Lî•ñ‚ğƒZƒbƒg‚·‚é
+		// å…±æœ‰ãƒãƒ³ãƒ‰ãƒ«ã®æŒ‡å®šãŒã‚ã‚‹å ´åˆã¯å…±æœ‰æƒ…å ±ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 		if( SrcImage != NULL )
 		{
-			// ƒtƒ@ƒCƒ‹–¼î•ñ‚ÌƒAƒhƒŒƒX‚ğ–á‚¤
+			// ãƒ•ã‚¡ã‚¤ãƒ«åæƒ…å ±ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’è²°ã†
 			Image->ReadBase = SrcImage->ReadBase ;
 
-			// QÆ”‚ğ‘‚â‚·
+			// å‚ç…§æ•°ã‚’å¢—ã‚„ã™
 			if( SrcImage->ReadBase )
 			{
 				SrcImage->ReadBase->RefCount ++ ;
@@ -30570,39 +30570,39 @@ extern int Graphics_Image_SetBaseInfo_UseGParam(
 		}
 		else
 		{
-			// ƒtƒ@ƒCƒ‹–¼‚ª—LŒø‚Èê‡‚Íƒtƒ@ƒCƒ‹–¼‚ğ•Û‘¶
+			// ãƒ•ã‚¡ã‚¤ãƒ«åãŒæœ‰åŠ¹ãªå ´åˆã¯ãƒ•ã‚¡ã‚¤ãƒ«åã‚’ä¿å­˜
 			if( FileName )
 			{
-				// ƒtƒ‹ƒpƒX‚ğæ“¾
+				// ãƒ•ãƒ«ãƒ‘ã‚¹ã‚’å–å¾—
 				ConvertFullPathW_( FileName, Path, sizeof( Path ) ) ;
 
-				// ƒtƒ@ƒCƒ‹–¼•Û‘¶—p‚Ìƒƒ‚ƒŠ‚ğŠm•Û
+				// ãƒ•ã‚¡ã‚¤ãƒ«åä¿å­˜ç”¨ã®ãƒ¡ãƒ¢ãƒªã‚’ç¢ºä¿
 				Len = ( int )_WCSLEN( Path ) ;
 				Image->ReadBase = ( IMAGEDATA_READBASE * )DXCALLOC( sizeof( IMAGEDATA_READBASE ) + ( Len + 1 ) * sizeof( wchar_t ) ) ;
 				if( Image->ReadBase == NULL )
 				{
-					DXST_LOGFILE_ADDUTF16LE( "\xe2\x8e\x01\x90\x59\x30\x8b\x30\x3b\x75\xcf\x50\xd5\x30\xa1\x30\xa4\x30\xeb\x30\x6e\x30\xd5\x30\xa1\x30\xa4\x30\xeb\x30\x0d\x54\x92\x30\xdd\x4f\x58\x5b\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"“]‘—‚·‚é‰æ‘œƒtƒ@ƒCƒ‹‚Ìƒtƒ@ƒCƒ‹–¼‚ğ•Û‘¶‚·‚éƒƒ‚ƒŠ—Ìˆæ‚ÌŠm•Û‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+					DXST_LOGFILE_ADDUTF16LE( "\xe2\x8e\x01\x90\x59\x30\x8b\x30\x3b\x75\xcf\x50\xd5\x30\xa1\x30\xa4\x30\xeb\x30\x6e\x30\xd5\x30\xa1\x30\xa4\x30\xeb\x30\x0d\x54\x92\x30\xdd\x4f\x58\x5b\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"è»¢é€ã™ã‚‹ç”»åƒãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ•ã‚¡ã‚¤ãƒ«åã‚’ä¿å­˜ã™ã‚‹ãƒ¡ãƒ¢ãƒªé ˜åŸŸã®ç¢ºä¿ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 					return -1 ;
 				}
 				Image->ReadBase->FileName = ( wchar_t * )( Image->ReadBase + 1 ) ;
 
-				// ƒtƒ@ƒCƒ‹ƒpƒX‚ğ•Û‘¶
+				// ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹ã‚’ä¿å­˜
 				_MEMCPY( Image->ReadBase->FileName, Path, ( Len + 1 ) * sizeof( wchar_t ) ) ;
 			}
 			else
-			// ƒƒ‚ƒŠƒCƒ[ƒW‚ª—LŒø‚Èê‡‚Íƒƒ‚ƒŠƒCƒ[ƒW‚ğ•Û‘¶
+			// ãƒ¡ãƒ¢ãƒªã‚¤ãƒ¡ãƒ¼ã‚¸ãŒæœ‰åŠ¹ãªå ´åˆã¯ãƒ¡ãƒ¢ãƒªã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’ä¿å­˜
 			if( MemImage )
 			{
-				// ƒƒ‚ƒŠƒCƒ[ƒW•Û‘¶—p‚Ìƒƒ‚ƒŠ‚ğŠm•Û
+				// ãƒ¡ãƒ¢ãƒªã‚¤ãƒ¡ãƒ¼ã‚¸ä¿å­˜ç”¨ã®ãƒ¡ãƒ¢ãƒªã‚’ç¢ºä¿
 				Image->ReadBase = ( IMAGEDATA_READBASE * )DXALLOC( sizeof( IMAGEDATA_READBASE ) + MemImageSize + AlphaMemImageSize ) ;
 				if( Image->ReadBase == NULL )
 				{
-					DXST_LOGFILE_ADDUTF16LE( "\xe2\x8e\x01\x90\x59\x30\x8b\x30\x3b\x75\xcf\x50\xc7\x30\xfc\x30\xbf\x30\x92\x30\xdd\x4f\x58\x5b\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"“]‘—‚·‚é‰æ‘œƒf[ƒ^‚ğ•Û‘¶‚·‚éƒƒ‚ƒŠ—Ìˆæ‚ÌŠm•Û‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+					DXST_LOGFILE_ADDUTF16LE( "\xe2\x8e\x01\x90\x59\x30\x8b\x30\x3b\x75\xcf\x50\xc7\x30\xfc\x30\xbf\x30\x92\x30\xdd\x4f\x58\x5b\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"è»¢é€ã™ã‚‹ç”»åƒãƒ‡ãƒ¼ã‚¿ã‚’ä¿å­˜ã™ã‚‹ãƒ¡ãƒ¢ãƒªé ˜åŸŸã®ç¢ºä¿ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 					return -1 ;
 				}
 				_MEMSET( Image->ReadBase, 0, sizeof( IMAGEDATA_READBASE ) ) ;
 
-				// ƒƒ‚ƒŠƒCƒ[ƒW‚ğ•Û‘¶
+				// ãƒ¡ãƒ¢ãƒªã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’ä¿å­˜
 				Image->ReadBase->MemImage = Image->ReadBase + 1 ;
 				Image->ReadBase->MemImageSize = MemImageSize ;
 				_MEMCPY( Image->ReadBase->MemImage, MemImage, ( size_t )MemImageSize ) ;
@@ -30615,7 +30615,7 @@ extern int Graphics_Image_SetBaseInfo_UseGParam(
 				}
 			}
 			else
-			// Šî–{ƒCƒ[ƒWƒf[ƒ^‚ª—LŒø‚Èê‡‚ÍŠî–{ƒCƒ[ƒWƒf[ƒ^‚ğ•Û‘¶
+			// åŸºæœ¬ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ãŒæœ‰åŠ¹ãªå ´åˆã¯åŸºæœ¬ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ã‚’ä¿å­˜
 			if( BaseImage )
 			{
 				unsigned int ImageSize, AlphaImageSize = 0 ;
@@ -30629,16 +30629,16 @@ extern int Graphics_Image_SetBaseInfo_UseGParam(
 					AllocSize += AlphaImageSize + sizeof( BASEIMAGE ) ;
 				}
 
-				// Šî–{ƒCƒ[ƒW•Û‘¶—p‚Ìƒƒ‚ƒŠ‚ğŠm•Û
+				// åŸºæœ¬ã‚¤ãƒ¡ãƒ¼ã‚¸ä¿å­˜ç”¨ã®ãƒ¡ãƒ¢ãƒªã‚’ç¢ºä¿
 				Image->ReadBase = ( IMAGEDATA_READBASE * )DXALLOC( sizeof( IMAGEDATA_READBASE ) + AllocSize ) ;
 				if( Image->ReadBase == NULL )
 				{
-					DXST_LOGFILE_ADDUTF16LE( "\xe2\x8e\x01\x90\x59\x30\x8b\x30\xfa\x57\x2c\x67\xa4\x30\xe1\x30\xfc\x30\xb8\x30\x92\x30\xdd\x4f\x58\x5b\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"“]‘—‚·‚éŠî–{ƒCƒ[ƒW‚ğ•Û‘¶‚·‚éƒƒ‚ƒŠ—Ìˆæ‚ÌŠm•Û‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+					DXST_LOGFILE_ADDUTF16LE( "\xe2\x8e\x01\x90\x59\x30\x8b\x30\xfa\x57\x2c\x67\xa4\x30\xe1\x30\xfc\x30\xb8\x30\x92\x30\xdd\x4f\x58\x5b\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"è»¢é€ã™ã‚‹åŸºæœ¬ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’ä¿å­˜ã™ã‚‹ãƒ¡ãƒ¢ãƒªé ˜åŸŸã®ç¢ºä¿ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 					return -1 ;
 				}
 				_MEMSET( Image->ReadBase, 0, sizeof( IMAGEDATA_READBASE ) ) ;
 
-				// Šî–{ƒCƒ[ƒW‚ğƒƒ‚ƒŠ‚É•Û‘¶
+				// åŸºæœ¬ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’ãƒ¡ãƒ¢ãƒªã«ä¿å­˜
 				Image->ReadBase->BaseImage = ( BASEIMAGE * )( Image->ReadBase + 1 ) ;
 				_MEMCPY( Image->ReadBase->BaseImage, BaseImage, sizeof( BASEIMAGE ) ) ;
 				Image->ReadBase->BaseImage->GraphData = Image->ReadBase->BaseImage + 1 ;
@@ -30653,25 +30653,25 @@ extern int Graphics_Image_SetBaseInfo_UseGParam(
 				}
 			}
 
-			// ”½“]ƒtƒ‰ƒO‚ğ•Û‘¶‚·‚é
+			// åè»¢ãƒ•ãƒ©ã‚°ã‚’ä¿å­˜ã™ã‚‹
 			Image->ReadBase->ReverseFlag = ReverseFlag ;
 
-			// æZÏ‚İƒ¿•ÏŠ·ƒtƒ‰ƒO‚ğ•Û‘¶‚·‚é
+			// ä¹—ç®—æ¸ˆã¿Î±å¤‰æ›ãƒ•ãƒ©ã‚°ã‚’ä¿å­˜ã™ã‚‹
 			Image->ReadBase->ConvertPremultipliedAlpha = ConvertPremultipliedAlpha ;
 
-			// “§‰ßF‚ğg—p‚µ‚½‚©‚Ç‚¤‚©‚ğ•Û‘¶‚·‚é
+			// é€éè‰²ã‚’ä½¿ç”¨ã—ãŸã‹ã©ã†ã‹ã‚’ä¿å­˜ã™ã‚‹
 			Image->ReadBase->NotUseTransColor = NotUseTransColor ;
 
-			// QÆ”‚ğ‚P‚É‚·‚é
+			// å‚ç…§æ•°ã‚’ï¼‘ã«ã™ã‚‹
 			Image->ReadBase->RefCount = 1 ;
 		}
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ‰æ‘œ‚ÌŒ³ƒf[ƒ^‚Ìî•ñ‚ğ•Û‘¶‚·‚é
+// ç”»åƒã®å…ƒãƒ‡ãƒ¼ã‚¿ã®æƒ…å ±ã‚’ä¿å­˜ã™ã‚‹
 extern int Graphics_Image_SetGraphBaseInfo(
 	int GrHandle,
 	const wchar_t *FileName,
@@ -30699,13 +30699,13 @@ extern int Graphics_Image_SetGraphBaseInfo(
 										AlphaMemImage, AlphaMemImageSize, BaseImage, AlphaBaseImage, ReverseFlag, ConvertPremultipliedAlpha, NotUseTransColor, UnionGrHandle, ASyncThread ) ;
 }
 
-// “Á’è‚Ìƒtƒ@ƒCƒ‹‚©‚ç‰æ‘œ‚ğ“Ç‚İ‚ñ‚¾ê‡‚Ìƒtƒ@ƒCƒ‹ƒpƒX‚ğƒZƒbƒg‚·‚é
+// ç‰¹å®šã®ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰ç”»åƒã‚’èª­ã¿è¾¼ã‚“ã å ´åˆã®ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern int Graphics_Image_SetName( int GrHandle, const wchar_t *GraphName, int ReverseFlag, int ConvertPremultipliedAlpha, int NotUseTransColor, int UnionGrHandle, int ASyncThread )
 {
 	return Graphics_Image_SetGraphBaseInfo( GrHandle, GraphName, NULL, NULL, NULL, NULL, 0, NULL, 0, NULL, NULL, ReverseFlag, ConvertPremultipliedAlpha, NotUseTransColor, UnionGrHandle, ASyncThread ) ;
 }
 
-// FillGraph ‚ÌƒOƒ[ƒoƒ‹•Ï”‚ÉƒAƒNƒZƒX‚µ‚È‚¢ƒo[ƒWƒ‡ƒ“
+// FillGraph ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°ã«ã‚¢ã‚¯ã‚»ã‚¹ã—ãªã„ãƒãƒ¼ã‚¸ãƒ§ãƒ³
 extern int Graphics_Image_FillGraph_UseGParam(
 	int GrHandle,
 	int Red,
@@ -30719,7 +30719,7 @@ extern int Graphics_Image_FillGraph_UseGParam(
 //	IMAGEDATA_ORIG *Orig ;
 	RECT Rect ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( ASyncThread )
 	{
 		if( GRAPHCHK_ASYNC( GrHandle, Image ) )
@@ -30732,28 +30732,28 @@ extern int Graphics_Image_FillGraph_UseGParam(
 	}
 //	Orig = Image->Orig ;
 
-	// ”h¶‰æ‘œ‚Ìê‡‚Í NS_FillRectGraph ‚ğg—p‚·‚é
+	// æ´¾ç”Ÿç”»åƒã®å ´åˆã¯ NS_FillRectGraph ã‚’ä½¿ç”¨ã™ã‚‹
 	if( Image->Orig->Width != Image->WidthI ||
 		Image->Orig->Height != Image->HeightI )
 	{
 		return NS_FillRectGraph( GrHandle, 0, 0, Image->WidthI, Image->HeightI, Red, Green, Blue, Alpha ) ;
 	}
 
-	// ’l‚Ì•â³
+	// å€¤ã®è£œæ­£
 	if( Red   < 0 ) Red   = 0 ; else if( Red   > 255 ) Red   = 255 ;
 	if( Green < 0 ) Green = 0 ; else if( Green > 255 ) Green = 255 ;
 	if( Blue  < 0 ) Blue  = 0 ; else if( Blue  > 255 ) Blue  = 255 ;
 	if( Alpha < 0 ) Alpha = 0 ; else if( Alpha > 255 ) Alpha = 255 ;
 
-	// ƒeƒNƒXƒ`ƒƒ‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+	// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 	if( Image->Orig->FormatDesc.TextureFlag )
 	{
 		int Result ;
 
-		// ƒeƒNƒXƒ`ƒƒ‚Ìê‡
+		// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®å ´åˆ
 		Result = Graphics_Hardware_FillGraph_PF( Image, Red, Green, Blue, Alpha, ASyncThread ) ;
 
-		// –ß‚è’l‚ª‚Q‚¾‚Á‚½ê‡‚Í•W€ˆ—‚ğs‚¤
+		// æˆ»ã‚Šå€¤ãŒï¼’ã ã£ãŸå ´åˆã¯æ¨™æº–å‡¦ç†ã‚’è¡Œã†
 		if( Result == 2 )
 		{
 			BASEIMAGE TempImage ;
@@ -30777,9 +30777,9 @@ extern int Graphics_Image_FillGraph_UseGParam(
 	}
 	else
 	{
-		// ƒeƒNƒXƒ`ƒƒ‚Å‚Í‚È‚¢ê‡
+		// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã§ã¯ãªã„å ´åˆ
 
-		// DrawFillBoxMemImg ‚Å“h‚è‚Â‚Ô‚·
+		// DrawFillBoxMemImg ã§å¡—ã‚Šã¤ã¶ã™
 		Rect.left   = 0 ;
 		Rect.top    = 0 ;
 		Rect.right  = Image->WidthI ;
@@ -30787,13 +30787,13 @@ extern int Graphics_Image_FillGraph_UseGParam(
 		DrawFillBoxMemImg( &Image->Soft.MemImg, &Rect, NS_GetColor( Red, Green, Blue ) ) ; 
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
 #ifndef DX_NON_MOVIE
 
-// ƒ€[ƒr[‰æ‘œ‚ğXV‚·‚é
+// ãƒ ãƒ¼ãƒ“ãƒ¼ç”»åƒã‚’æ›´æ–°ã™ã‚‹
 extern void Graphics_Image_UpdateGraphMovie( MOVIEGRAPH *Movie, DWORD_PTR GrHandle )
 {
 	IMAGEDATA *Image ;
@@ -30803,18 +30803,18 @@ extern void Graphics_Image_UpdateGraphMovie( MOVIEGRAPH *Movie, DWORD_PTR GrHand
 		return;
 //	Orig = Image->Orig ;
 
-	// ƒeƒNƒXƒ`ƒƒ‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+	// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 	if( Image->Orig->FormatDesc.TextureFlag )
 	{
-		// ƒeƒNƒXƒ`ƒƒ‚Ìê‡
+		// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®å ´åˆ
 
 	//	D_DDSURFACEDESC2 SrcDesc ;
 		BASEIMAGE MovieImage, AlphaBaseImage ;
 		RECT SrcRect ;
 
-		// ƒ€[ƒr[ƒCƒ[ƒW‚Ì\’z
+		// ãƒ ãƒ¼ãƒ“ãƒ¼ã‚¤ãƒ¡ãƒ¼ã‚¸ã®æ§‹ç¯‰
 #ifndef DX_NON_OGGTHEORA
-		// Ogg Theora ‚ğg—p‚µ‚Ä‚¢‚éê‡‚Í‚±‚±‚ÅXVˆ—
+		// Ogg Theora ã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹å ´åˆã¯ã“ã“ã§æ›´æ–°å‡¦ç†
 		if( Movie->TheoraFlag )
 		{
 //			if( Movie->RightAlpha == TRUE )
@@ -30858,17 +30858,17 @@ extern void Graphics_Image_UpdateGraphMovie( MOVIEGRAPH *Movie, DWORD_PTR GrHand
 			}
 		}
 
-		// Theora ‚ğg—p‚µ‚Ä‚¢‚ÄA‰æ‘œ‚Ì‰E‘¤‚ªƒAƒ‹ƒtƒ@î•ñ‚Å‚Í‚È‚­AŠ‚Â YUY2 ƒtƒH[ƒ}ƒbƒg‚ğg—p‚µ‚Ä‚¢‚é‚©‚Åˆ—‚ğ•ªŠò
+		// Theora ã‚’ä½¿ç”¨ã—ã¦ã„ã¦ã€ç”»åƒã®å³å´ãŒã‚¢ãƒ«ãƒ•ã‚¡æƒ…å ±ã§ã¯ãªãã€ä¸”ã¤ YUY2 ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹ã‹ã§å‡¦ç†ã‚’åˆ†å²
 		if( Movie->TheoraFlag && Movie->RightAlpha == FALSE && TheoraDecode_GetYUVImage( Movie->TheoraHandle ) != NULL )
 		{
 			Graphics_Hardware_UpdateGraphMovie_TheoraYUV_PF( Movie, Image ) ;
 			Movie->TheoraSetupGraphHandleImage = TRUE ;
 		}
 		else
-		// Theora ‚ğg—p‚µ‚Ä‚¢‚ÄA‰æ‘œ‚Ì‰E‘¤‚ªƒAƒ‹ƒtƒ@î•ñ‚Å‚Í‚È‚­AŠ‚ÂƒVƒF[ƒ_[‚ªg—p‚Å‚«‚éê‡‚Íˆ—‚ğ•ªŠò
+		// Theora ã‚’ä½¿ç”¨ã—ã¦ã„ã¦ã€ç”»åƒã®å³å´ãŒã‚¢ãƒ«ãƒ•ã‚¡æƒ…å ±ã§ã¯ãªãã€ä¸”ã¤ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãŒä½¿ç”¨ã§ãã‚‹å ´åˆã¯å‡¦ç†ã‚’åˆ†å²
 		if( Movie->TheoraFlag && Movie->NotUseYUVFormatSurfaceFlag == FALSE && GSYS.HardInfo.UseShader )
 		{
-			// ƒtƒBƒ‹ƒ^[‚ğg—p‚µ‚ÄRGBƒJƒ‰[‚É•ÏŠ·‚·‚é
+			// ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ã‚’ä½¿ç”¨ã—ã¦RGBã‚«ãƒ©ãƒ¼ã«å¤‰æ›ã™ã‚‹
 			if( Movie->RightAlpha )
 			{
 				NS_GraphFilterRectBlt(
@@ -30895,7 +30895,7 @@ extern void Graphics_Image_UpdateGraphMovie( MOVIEGRAPH *Movie, DWORD_PTR GrHand
 #ifndef DX_NON_FILTER
 		if( Movie->YGrHandle >= 0 )
 		{
-			// ƒtƒBƒ‹ƒ^[‚ğg—p‚µ‚ÄRGBƒJƒ‰[‚É•ÏŠ·‚·‚é
+			// ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ã‚’ä½¿ç”¨ã—ã¦RGBã‚«ãƒ©ãƒ¼ã«å¤‰æ›ã™ã‚‹
 			if( Movie->RightAlpha )
 			{
 				NS_GraphFilterRectBlt(
@@ -30920,10 +30920,10 @@ extern void Graphics_Image_UpdateGraphMovie( MOVIEGRAPH *Movie, DWORD_PTR GrHand
 #endif // DX_NON_FILTER
 		if( Movie->UseNowImage != NULL )
 		{
-			// ƒ€[ƒr[‚ÌƒCƒ[ƒWî•ñ‚ğì¬‚·‚é
+			// ãƒ ãƒ¼ãƒ“ãƒ¼ã®ã‚¤ãƒ¡ãƒ¼ã‚¸æƒ…å ±ã‚’ä½œæˆã™ã‚‹
 			MovieImage = *Movie->UseNowImage ;
 			
-			// ‰E‘¤”¼•ª‚ªƒAƒ‹ƒtƒ@î•ñ‚Ìê‡‚ÍƒAƒ‹ƒtƒ@î•ñ‚ğ“]‘—‚·‚é€”õ‚ğ‚·‚é
+			// å³å´åŠåˆ†ãŒã‚¢ãƒ«ãƒ•ã‚¡æƒ…å ±ã®å ´åˆã¯ã‚¢ãƒ«ãƒ•ã‚¡æƒ…å ±ã‚’è»¢é€ã™ã‚‹æº–å‚™ã‚’ã™ã‚‹
 			if( Movie->RightAlpha )
 			{
 				MovieImage.Width /= 2;
@@ -30931,10 +30931,10 @@ extern void Graphics_Image_UpdateGraphMovie( MOVIEGRAPH *Movie, DWORD_PTR GrHand
 				AlphaBaseImage.GraphData = (BYTE *)MovieImage.GraphData + MovieImage.Width * MovieImage.ColorData.PixelByte ;
 			}
 
-			// “]‘—Œ³‹éŒ`‚ğƒZƒbƒg
+			// è»¢é€å…ƒçŸ©å½¢ã‚’ã‚»ãƒƒãƒˆ
 			SETRECT( SrcRect, Image->UseOrigXI, Image->UseOrigYI, Image->UseOrigXI + Image->WidthI, Image->UseOrigYI + Image->HeightI ) ;
 
-			// •ªŠ„‚³‚ê‚Ä‚¢‚éƒeƒNƒXƒ`ƒƒ[‚É“\‚è•t‚¯‚é
+			// åˆ†å‰²ã•ã‚Œã¦ã„ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã«è²¼ã‚Šä»˜ã‘ã‚‹
 			Graphics_Image_BltBmpOrBaseImageToGraph3(
 				&SrcRect,
 				0,
@@ -30949,13 +30949,13 @@ extern void Graphics_Image_UpdateGraphMovie( MOVIEGRAPH *Movie, DWORD_PTR GrHand
 	}
 	else
 	{
-		// ƒeƒNƒXƒ`ƒƒ‚Å‚Í–³‚¢ê‡
+		// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã§ã¯ç„¡ã„å ´åˆ
 		MEMIMG *MemImg ;
 
 		MemImg = &Image->Soft.MemImg ;
 
 #ifndef DX_NON_OGGTHEORA
-		// Ogg Theora ‚ğg—p‚µ‚Ä‚¢‚éê‡‚Í‚±‚±‚ÅXV
+		// Ogg Theora ã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹å ´åˆã¯ã“ã“ã§æ›´æ–°
 		if( Movie->TheoraFlag )
 		{
 			if( TheoraDecode_SetupImage( Movie->TheoraHandle, 1, 0, 0 ) == 0 )
@@ -30969,12 +30969,12 @@ extern void Graphics_Image_UpdateGraphMovie( MOVIEGRAPH *Movie, DWORD_PTR GrHand
 		}
 #endif
 
-		// ƒsƒNƒZƒ‹ƒtƒH[ƒ}ƒbƒg‚ªˆá‚¤‚©A‰E‘¤”¼•ª‚ğƒAƒ‹ƒtƒ@î•ñ‚Æ‚µ‚Äˆµ‚¤ê‡‚ÍƒJƒ‰[ƒ}ƒbƒ`ƒ“ƒO“]‘—‚ğs‚¤
+		// ãƒ”ã‚¯ã‚»ãƒ«ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆãŒé•ã†ã‹ã€å³å´åŠåˆ†ã‚’ã‚¢ãƒ«ãƒ•ã‚¡æƒ…å ±ã¨ã—ã¦æ‰±ã†å ´åˆã¯ã‚«ãƒ©ãƒ¼ãƒãƒƒãƒãƒ³ã‚°è»¢é€ã‚’è¡Œã†
 		if( Movie->SurfaceMode == DX_MOVIESURFACE_FULLCOLOR ||
 			MemImg->Base->ColorDataP->ColorBitDepth != Movie->UseNowImage->ColorData.ColorBitDepth ||
 			Movie->RightAlpha == 1 )
 		{
-			// ‰E”¼•ª‚ªƒAƒ‹ƒtƒ@î•ñ‚Å‚Í‚È‚¢ê‡‚ÍŠÈˆÕ“]‘—
+			// å³åŠåˆ†ãŒã‚¢ãƒ«ãƒ•ã‚¡æƒ…å ±ã§ã¯ãªã„å ´åˆã¯ç°¡æ˜“è»¢é€
 			if( Movie->RightAlpha == 0 )
 			{
 				BltBaseImageToMemImg(
@@ -30991,7 +30991,7 @@ extern void Graphics_Image_UpdateGraphMovie( MOVIEGRAPH *Movie, DWORD_PTR GrHand
 			}
 			else
 			{
-				// ‰E”¼•ª‚ªƒAƒ‹ƒtƒ@î•ñ‚Ìê‡‚Í’Êí“]‘—
+				// å³åŠåˆ†ãŒã‚¢ãƒ«ãƒ•ã‚¡æƒ…å ±ã®å ´åˆã¯é€šå¸¸è»¢é€
 				BASEIMAGE MovieImage, AlphaBaseImage;
 //				RECT SrcRect ;
 
@@ -31005,7 +31005,7 @@ extern void Graphics_Image_UpdateGraphMovie( MOVIEGRAPH *Movie, DWORD_PTR GrHand
 				AlphaBaseImage = MovieImage;
 				AlphaBaseImage.GraphData = (BYTE *)MovieImage.GraphData + MovieImage.Width * MovieImage.ColorData.PixelByte ;
 
-				// ƒOƒ‰ƒtƒBƒbƒN‚Ì“]‘—
+				// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®è»¢é€
 				BltBaseImageToMemImg(
 					&MovieImage,
 					&AlphaBaseImage,
@@ -31021,7 +31021,7 @@ extern void Graphics_Image_UpdateGraphMovie( MOVIEGRAPH *Movie, DWORD_PTR GrHand
 		}
 		else
 		{
-			// ‚‘¬“]‘—ˆ—ƒvƒƒOƒ‰ƒ€
+			// é«˜é€Ÿè»¢é€å‡¦ç†ãƒ—ãƒ­ã‚°ãƒ©ãƒ 
 			void *DestP, *SrcP ;
 			int SrcAddPitch, DestAddPitch ;
 			int DwMoveSetNum, NokoriMoveSetNum ;
@@ -31029,31 +31029,31 @@ extern void Graphics_Image_UpdateGraphMovie( MOVIEGRAPH *Movie, DWORD_PTR GrHand
 			int PixelByte ;
 			int BltHeight ;
 
-			// “]‘—‚·‚éƒ‰ƒCƒ“”‚ğƒZƒbƒg
+			// è»¢é€ã™ã‚‹ãƒ©ã‚¤ãƒ³æ•°ã‚’ã‚»ãƒƒãƒˆ
 			BltHeight = Movie->Height ;
 
-			// Fƒrƒbƒg”‚ğƒZƒbƒg
+			// è‰²ãƒ“ãƒƒãƒˆæ•°ã‚’ã‚»ãƒƒãƒˆ
 			ColorBitDepth = NS_GetColorBitDepth() ;
 
-			// ‚Pƒhƒbƒg“–‚½‚è‚ÌƒoƒCƒg”æ“¾
+			// ï¼‘ãƒ‰ãƒƒãƒˆå½“ãŸã‚Šã®ãƒã‚¤ãƒˆæ•°å–å¾—
 			PixelByte = ColorBitDepth / 8 ;
 
-			// ‚Pƒ‰ƒCƒ““–‚½‚è‚Ì“]‘—ƒTƒCƒY‚ğƒZƒbƒg
+			// ï¼‘ãƒ©ã‚¤ãƒ³å½“ãŸã‚Šã®è»¢é€ã‚µã‚¤ã‚ºã‚’ã‚»ãƒƒãƒˆ
 			MoveLineByte = Movie->Width * PixelByte ;
 
-			// “]‘—Œ³AæƒAƒhƒŒƒXƒZƒbƒg
+			// è»¢é€å…ƒã€å…ˆã‚¢ãƒ‰ãƒ¬ã‚¹ã‚»ãƒƒãƒˆ
 			DestP = MemImg->UseImage ;
 			SrcP = Movie->UseNowImage->GraphData ;
 
-			// ‚Pƒ‰ƒCƒ““]‘—ŒãAŸ‚Ì“]‘—Œ³ƒAƒhƒŒƒX‚Ü‚Å‚ÌƒoƒCƒg”ŒvZ
+			// ï¼‘ãƒ©ã‚¤ãƒ³è»¢é€å¾Œã€æ¬¡ã®è»¢é€å…ƒã‚¢ãƒ‰ãƒ¬ã‚¹ã¾ã§ã®ãƒã‚¤ãƒˆæ•°è¨ˆç®—
 			DestAddPitch = ( int )( MemImg->Base->Pitch - MoveLineByte ) ;
 			SrcAddPitch  = Movie->UseNowImage->Pitch - MoveLineByte ;
 
-			// ‚SƒoƒCƒg“]‘—‰½‰ñA‚»‚ÌŒã‚ ‚Ü‚é“]‘—•ª‚ª‰½ƒsƒNƒZƒ‹•ª‚ ‚é‚©Zo
+			// ï¼”ãƒã‚¤ãƒˆè»¢é€ä½•å›ã€ãã®å¾Œã‚ã¾ã‚‹è»¢é€åˆ†ãŒä½•ãƒ”ã‚¯ã‚»ãƒ«åˆ†ã‚ã‚‹ã‹ç®—å‡º
 			DwMoveSetNum = MoveLineByte / 4 ;
 			NokoriMoveSetNum = ( MoveLineByte - DwMoveSetNum * 4 ) / PixelByte ;
 
-			// “]‘—ˆ—
+			// è»¢é€å‡¦ç†
 #ifndef DX_NON_INLINE_ASM
 			_asm{
 				PUSHF
@@ -31176,7 +31176,7 @@ extern void Graphics_Image_UpdateGraphMovie( MOVIEGRAPH *Movie, DWORD_PTR GrHand
 
 #endif
 
-// w’è‚Ì MipLevel ‚ÌƒTƒCƒY‚ğŒvZ‚·‚é
+// æŒ‡å®šã® MipLevel ã®ã‚µã‚¤ã‚ºã‚’è¨ˆç®—ã™ã‚‹
 extern int Graphics_Image_CalcMipSize( int OrigWidth, int OrigHeight, int MipLevel, int *CalcWidth, int *CalcHeight )
 {
 	int i ;
@@ -31208,7 +31208,7 @@ extern int Graphics_Image_CalcMipSize( int OrigWidth, int OrigHeight, int MipLev
 	return 0 ;
 }
 
-// BltBmpOrGraphImageToGraph ‚Ì“à•”ŠÖ”
+// BltBmpOrGraphImageToGraph ã®å†…éƒ¨é–¢æ•°
 extern int Graphics_Image_BltBmpOrGraphImageToGraphBase(
 	const BASEIMAGE		*RgbBaseImage,
 	const BASEIMAGE		*AlphaBaseImage,
@@ -31228,7 +31228,7 @@ extern int Graphics_Image_BltBmpOrGraphImageToGraphBase(
 		return -1 ;
 	}
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( ASyncThread )
 	{
 		if( GRAPHCHK_ASYNC( GrHandle, Image ) )
@@ -31241,19 +31241,19 @@ extern int Graphics_Image_BltBmpOrGraphImageToGraphBase(
 	}
 	Orig = Image->Orig ;
 
-	// “]‘—Œ³‹éŒ`‚Ì€”õ
+	// è»¢é€å…ƒçŸ©å½¢ã®æº–å‚™
 	SrcRect.left   = CopyPointX ;
 	SrcRect.top    = CopyPointY ;
 	SrcRect.right  = CopyPointX + RgbBaseImage->Width ;
 	SrcRect.bottom = CopyPointY + RgbBaseImage->Height ;
 
-	// g—p‚·‚é—Ìˆæ‚ğ•Û‘¶
+	// ä½¿ç”¨ã™ã‚‹é ˜åŸŸã‚’ä¿å­˜
 	Image->UseBaseXI =          SrcRect.left ;
 	Image->UseBaseXF = ( float )SrcRect.left ;
 	Image->UseBaseYI =          SrcRect.top ; 
 	Image->UseBaseYF = ( float )SrcRect.top ; 
 
-	// ‰æ‘œ‚Ì“]‘—
+	// ç”»åƒã®è»¢é€
 	return Graphics_Image_BltBmpOrBaseImageToGraph3(
 				&SrcRect,
 				0,
@@ -31268,7 +31268,7 @@ extern int Graphics_Image_BltBmpOrGraphImageToGraphBase(
 			) ;
 }
 
-// BltBmpOrGraphImageToGraph2 ‚Ì“à•”ŠÖ”
+// BltBmpOrGraphImageToGraph2 ã®å†…éƒ¨é–¢æ•°
 extern int Graphics_Image_BltBmpOrGraphImageToGraph2Base(
 	const BASEIMAGE		*RgbBaseImage,
 	const BASEIMAGE		*AlphaBaseImage,
@@ -31288,7 +31288,7 @@ extern int Graphics_Image_BltBmpOrGraphImageToGraph2Base(
 		return -1 ;
 	}
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( ASyncThread )
 	{
 		if( GRAPHCHK_ASYNC( GrHandle, Image ) )
@@ -31301,13 +31301,13 @@ extern int Graphics_Image_BltBmpOrGraphImageToGraph2Base(
 	}
 	Orig = Image->Orig ;
 
-	// g—p‚·‚é—Ìˆæ‚ğ•Û‘¶
+	// ä½¿ç”¨ã™ã‚‹é ˜åŸŸã‚’ä¿å­˜
 	Image->UseBaseXI =            SrcRect->left - DestX   ;
 	Image->UseBaseXF = ( float )( SrcRect->left - DestX ) ;
 	Image->UseBaseYI =            SrcRect->top  - DestY   ; 
 	Image->UseBaseYF = ( float )( SrcRect->top  - DestY ) ; 
 
-	// ‰æ‘œ‚Ì“]‘—
+	// ç”»åƒã®è»¢é€
 	return Graphics_Image_BltBmpOrBaseImageToGraph3(
 				SrcRect,
 				DestX,
@@ -31322,7 +31322,7 @@ extern int Graphics_Image_BltBmpOrGraphImageToGraph2Base(
 			) ;
 }
 
-// BltBmpOrGraphImageToDivGraph ‚Ì“à•”ŠÖ”
+// BltBmpOrGraphImageToDivGraph ã®å†…éƒ¨é–¢æ•°
 extern int Graphics_Image_BltBmpOrGraphImageToDivGraphBase(
 	const BASEIMAGE	*RgbBaseImage,
 	const BASEIMAGE	*AlphaBaseImage,
@@ -31353,7 +31353,7 @@ extern int Graphics_Image_BltBmpOrGraphImageToDivGraphBase(
 	int				x ;
 	int				y ;
 
-	// XNum, YNum ‚ÌæZ’l‚ª AllNum ‚É–‚½‚È‚©‚Á‚½‚çƒGƒ‰[
+	// XNum, YNum ã®ä¹—ç®—å€¤ãŒ AllNum ã«æº€ãŸãªã‹ã£ãŸã‚‰ã‚¨ãƒ©ãƒ¼
 	if( XNum * YNum < AllNum )
 	{
 		return -1 ;
@@ -31364,7 +31364,7 @@ extern int Graphics_Image_BltBmpOrGraphImageToDivGraphBase(
 		return -1 ;
 	}
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( ASyncThread )
 	{
 		if( GRAPHCHK_ASYNC( GrHandle[ 0 ], Image ) )
@@ -31377,20 +31377,20 @@ extern int Graphics_Image_BltBmpOrGraphImageToDivGraphBase(
 	}
 	Orig = Image->Orig ;
 
-	// Å‰‚Ì‰æ‘œ‚Éƒtƒ@ƒCƒ‹î•ñ‚ğƒZƒbƒg
+	// æœ€åˆã®ç”»åƒã«ãƒ•ã‚¡ã‚¤ãƒ«æƒ…å ±ã‚’ã‚»ãƒƒãƒˆ
 	Image->UseBaseXI = 0    ;
 	Image->UseBaseXF = 0.0f ;
 	Image->UseBaseYI = 0    ;
 	Image->UseBaseYF = 0.0f ;
 
-	// ƒtƒ@ƒCƒ‹‚Éî•ñ‚ğƒZƒbƒg‚µ‚È‚ª‚ç‚·‚×‚Ä‚Ì‰æ‘œ‚ª“¯‚¶
-	// ƒIƒŠƒWƒiƒ‹‰æ‘œ‚ğg—p‚µ‚Ä‚¢‚é‚©’²‚×‚é
+	// ãƒ•ã‚¡ã‚¤ãƒ«ã«æƒ…å ±ã‚’ã‚»ãƒƒãƒˆã—ãªãŒã‚‰ã™ã¹ã¦ã®ç”»åƒãŒåŒã˜
+	// ã‚ªãƒªã‚¸ãƒŠãƒ«ç”»åƒã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹ã‹èª¿ã¹ã‚‹
 	Count = 1 ;
 	x     = 0 ;
 	y     = 0 ;
 	for( i = 1 ; i < AllNum ; i ++ )
 	{
-		// ‰æ‘œî•ñ‚ÌƒAƒhƒŒƒX‚ğæ“¾
+		// ç”»åƒæƒ…å ±ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å–å¾—
 		if( ASyncThread )
 		{
 			if( GRAPHCHK_ASYNC( GrHandle[ i ], DivImage ) )
@@ -31402,10 +31402,10 @@ extern int Graphics_Image_BltBmpOrGraphImageToDivGraphBase(
 				return -1 ;
 		}
 
-		// “¯‚¶ƒIƒŠƒWƒiƒ‹‰æ‘œ‚ğg—p‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©’²‚×‚é
+		// åŒã˜ã‚ªãƒªã‚¸ãƒŠãƒ«ç”»åƒã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹ã‹ã©ã†ã‹èª¿ã¹ã‚‹
 		if( DivImage->Orig == Orig ) Count ++ ;
 
-		// ƒtƒ@ƒCƒ‹î•ñ‚ğƒZƒbƒg
+		// ãƒ•ã‚¡ã‚¤ãƒ«æƒ…å ±ã‚’ã‚»ãƒƒãƒˆ
 		if( ReverseFlag )
 		{
 			DivImage->UseBaseXI = ( ( XNum - 1 ) - x ) * StrideWI ;
@@ -31426,13 +31426,13 @@ extern int Graphics_Image_BltBmpOrGraphImageToDivGraphBase(
 		}
 	}
 
-	// ‚·‚×‚Ä‚ÌƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ª“¯‚¶ƒIƒŠƒWƒiƒ‹‰æ‘œ‚ğ
-	// g—p‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+	// ã™ã¹ã¦ã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ãŒåŒã˜ã‚ªãƒªã‚¸ãƒŠãƒ«ç”»åƒã‚’
+	// ä½¿ç”¨ã—ã¦ã„ã‚‹ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 	if( AllNum == Count )
 	{
-		// “¯‚¶ƒIƒŠƒWƒiƒ‹‰æ‘œ‚ğg—p‚µ‚Ä‚¢‚éê‡
+		// åŒã˜ã‚ªãƒªã‚¸ãƒŠãƒ«ç”»åƒã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹å ´åˆ
 
-		// ƒIƒŠƒWƒiƒ‹‰æ‘œ‚ğÅ‰‚ÌƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚É“]‘—
+		// ã‚ªãƒªã‚¸ãƒŠãƒ«ç”»åƒã‚’æœ€åˆã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã«è»¢é€
 		Rect.left   = 0 ;
 		Rect.right  = Image->Orig->Width ;
 		Rect.top    = 0 ;
@@ -31450,12 +31450,12 @@ extern int Graphics_Image_BltBmpOrGraphImageToDivGraphBase(
 	}
 	else
 	{
-		// “¯‚¶ƒIƒŠƒWƒiƒ‹‰æ‘œ‚ğg—p‚µ‚Ä‚¢‚È‚¢ê‡
+		// åŒã˜ã‚ªãƒªã‚¸ãƒŠãƒ«ç”»åƒã‚’ä½¿ç”¨ã—ã¦ã„ãªã„å ´åˆ
 
-		// ‚·‚×‚Ä‚ÌƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ÉŒÂ•Ê‚É“]‘—‚·‚é
+		// ã™ã¹ã¦ã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã«å€‹åˆ¥ã«è»¢é€ã™ã‚‹
 		for( i = 0 ; i < AllNum ; i ++ )
 		{
-			// ‰æ‘œî•ñ‚ÌƒAƒhƒŒƒX‚ğæ“¾
+			// ç”»åƒæƒ…å ±ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å–å¾—
 			if( ASyncThread )
 			{
 				if( GRAPHCHK_ASYNC( GrHandle[ i ], DivImage ) )
@@ -31467,13 +31467,13 @@ extern int Graphics_Image_BltBmpOrGraphImageToDivGraphBase(
 					return -1 ;
 			}
 
-			// “]‘—Œ³‹éŒ`‚ÌƒZƒbƒg
+			// è»¢é€å…ƒçŸ©å½¢ã®ã‚»ãƒƒãƒˆ
 			Rect.left   = DivImage->UseBaseXI ;
 			Rect.top    = DivImage->UseBaseYI ;
 			Rect.right  = Rect.left + DivImage->WidthI ;
 			Rect.bottom = Rect.top  + DivImage->HeightI ;
 
-			// ‰æ‘œ‚ğ“]‘—
+			// ç”»åƒã‚’è»¢é€
 			Graphics_Image_BltBmpOrBaseImageToGraph3(
 				&Rect,
 				0, 0,
@@ -31487,11 +31487,11 @@ extern int Graphics_Image_BltBmpOrGraphImageToDivGraphBase(
 		}
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚É‰æ‘œƒf[ƒ^‚ğ“]‘—‚·‚é‚½‚ß‚ÌŠÖ”
+// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã«ç”»åƒãƒ‡ãƒ¼ã‚¿ã‚’è»¢é€ã™ã‚‹ãŸã‚ã®é–¢æ•°
 extern int Graphics_Image_BltBmpOrBaseImageToGraph3(
 	const RECT		*SrcRect,
 	      int		DestX,
@@ -31522,7 +31522,7 @@ extern int Graphics_Image_BltBmpOrBaseImageToGraph3(
 		return -1 ;
 	}
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( ASyncThread )
 	{
 		if( GRAPHCHK_ASYNC( GrHandle, Image ) )
@@ -31535,7 +31535,7 @@ extern int Graphics_Image_BltBmpOrBaseImageToGraph3(
 	}
 	Orig = Image->Orig ;
 
-	// “]‘—Œ³‚Ìî•ñ‚ğƒZƒbƒg
+	// è»¢é€å…ƒã®æƒ…å ±ã‚’ã‚»ãƒƒãƒˆ
 	_MEMSET( &TempBaseAlpha, 0, sizeof( TempBaseAlpha ) ) ;
 	RequiredReleaseBaseRGB   = FALSE ;
 	RequiredReleaseBaseAlpha = FALSE ;
@@ -31557,7 +31557,7 @@ extern int Graphics_Image_BltBmpOrBaseImageToGraph3(
 		  TempBaseRGB.ColorData.Format == DX_BASEIMAGE_FORMAT_BC7_UNORM ||
 		  TempBaseRGB.ColorData.Format == DX_BASEIMAGE_FORMAT_BC7_UNORM_SRGB ) ? TRUE : FALSE ;
 
-	// DXT ˆ³k‚Ìê‡‚Í“]‘—Œ³‚Ì‰æ‘œ‚Í 4 ‚Ì”{”‚Æ‚È‚é
+	// DXT åœ§ç¸®ã®å ´åˆã¯è»¢é€å…ƒã®ç”»åƒã¯ 4 ã®å€æ•°ã¨ãªã‚‹
 	if( TempBaseRGBIsDXT )
 	{
 		TempBaseRGB.Width  = ( TempBaseRGB.Width  + 3 ) / 4 * 4 ;
@@ -31583,7 +31583,7 @@ extern int Graphics_Image_BltBmpOrBaseImageToGraph3(
 			  TempBaseRGB.ColorData.Format == DX_BASEIMAGE_FORMAT_BC7_UNORM ||
 			  TempBaseRGB.ColorData.Format == DX_BASEIMAGE_FORMAT_BC7_UNORM_SRGB ) ? TRUE : FALSE ;
 
-		// DXT ˆ³k‚Ìê‡‚Í“]‘—Œ³‚Ì‰æ‘œ‚Í 4 ‚Ì”{”‚Æ‚È‚é
+		// DXT åœ§ç¸®ã®å ´åˆã¯è»¢é€å…ƒã®ç”»åƒã¯ 4 ã®å€æ•°ã¨ãªã‚‹
 		if( TempBaseAlphaIsDXT )
 		{
 			TempBaseAlpha.Width  = ( TempBaseAlpha.Width  + 3 ) / 4 * 4 ;
@@ -31591,14 +31591,14 @@ extern int Graphics_Image_BltBmpOrBaseImageToGraph3(
 		}
 	}
 
-	// “]‘—Œ³‚ªƒLƒ…[ƒuƒ}ƒbƒv‚Å“]‘—æ‚ªƒLƒ…[ƒuƒ}ƒbƒv‚Å‚Í‚È‚¢ê‡‚ÍƒGƒ‰[
+	// è»¢é€å…ƒãŒã‚­ãƒ¥ãƒ¼ãƒ–ãƒãƒƒãƒ—ã§è»¢é€å…ˆãŒã‚­ãƒ¥ãƒ¼ãƒ–ãƒãƒƒãƒ—ã§ã¯ãªã„å ´åˆã¯ã‚¨ãƒ©ãƒ¼
 	if( ( TempBaseRGB.GraphDataCount          != 0 ) !=
 		( Orig->FormatDesc.CubeMapTextureFlag != 0 ) )
 	{
 		return -1 ;
 	}
 
-	// “]‘—•‚ğŒvZ‚µ‚Ä‚¨‚­
+	// è»¢é€å¹…ã‚’è¨ˆç®—ã—ã¦ãŠã
 	if( TempBaseRGBIsDXT )
 	{
 		SrcRectTemp.left   = ( SrcRectTemp.left   + 3 ) / 4 * 4 ;
@@ -31613,14 +31613,14 @@ extern int Graphics_Image_BltBmpOrBaseImageToGraph3(
 		return 0 ;
 	}
 
-	// BASEIMAGE ‚ª DXT ‚ÅA“]‘—æ‚ª DXT ‚Å‚Í–³‚¢ê‡‚Í‚±‚±‚Å•W€ƒtƒH[ƒ}ƒbƒg‚É•ÏŠ·‚·‚é
+	// BASEIMAGE ãŒ DXT ã§ã€è»¢é€å…ˆãŒ DXT ã§ã¯ç„¡ã„å ´åˆã¯ã“ã“ã§æ¨™æº–ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã«å¤‰æ›ã™ã‚‹
 	{
 		int RgbConvFlag   = FALSE ;
 		int AlphaConvFlag = FALSE ;
 		int Hr1 = 0 ;
 		int Hr2 = 0 ;
 
-		// ƒeƒNƒXƒ`ƒƒ‚Å‚Í‚È‚¢ê‡‚Í‚c‚w‚sƒtƒH[ƒ}ƒbƒg‚Ìê‡‚Í•W€ƒtƒH[ƒ}ƒbƒg‚É•ÏŠ·‚·‚é
+		// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã§ã¯ãªã„å ´åˆã¯ï¼¤ï¼¸ï¼´ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã®å ´åˆã¯æ¨™æº–ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã«å¤‰æ›ã™ã‚‹
 		if( Orig->FormatDesc.TextureFlag == FALSE )
 		{
 			if( TempBaseRGBIsDXT )
@@ -31667,15 +31667,15 @@ extern int Graphics_Image_BltBmpOrBaseImageToGraph3(
 
 		if( Hr1 < 0 || Hr2 < 0 )
 		{
-			DXST_LOGFILE_ADDUTF16LE( "\x19\x6a\x96\x6e\xa4\x30\xe1\x30\xfc\x30\xb8\x30\x28\x75\x6e\x30\xe1\x30\xe2\x30\xea\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"•W€ƒCƒ[ƒW—p‚Ìƒƒ‚ƒŠŠm•Û‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+			DXST_LOGFILE_ADDUTF16LE( "\x19\x6a\x96\x6e\xa4\x30\xe1\x30\xfc\x30\xb8\x30\x28\x75\x6e\x30\xe1\x30\xe2\x30\xea\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"æ¨™æº–ã‚¤ãƒ¡ãƒ¼ã‚¸ç”¨ã®ãƒ¡ãƒ¢ãƒªç¢ºä¿ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 			goto ERR ;
 		}
 	}
 
-	// ƒeƒNƒXƒ`ƒƒ‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+	// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 	if( Orig->FormatDesc.TextureFlag )
 	{
-		// ƒeƒNƒXƒ`ƒƒ‚Ìê‡‹@íˆË‘¶ŠÖ”‚ğŒÄ‚Ô
+		// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®å ´åˆæ©Ÿç¨®ä¾å­˜é–¢æ•°ã‚’å‘¼ã¶
 		if( Graphics_Hardware_BltBmpOrBaseImageToGraph3_PF(
 			&SrcRectTemp,
 			DestX,
@@ -31693,16 +31693,16 @@ extern int Graphics_Image_BltBmpOrBaseImageToGraph3(
 	}
 	else
 	{
-		// ƒeƒNƒXƒ`ƒƒ‚Å‚Í‚È‚¢ê‡
+		// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã§ã¯ãªã„å ´åˆ
 
-		// MEMIMG ‚Ì“]‘—ˆ—ŠÖ”‚ğg‚¤‚½‚ß‚Ì€”õ‚ğs‚¤
+		// MEMIMG ã®è»¢é€å‡¦ç†é–¢æ•°ã‚’ä½¿ã†ãŸã‚ã®æº–å‚™ã‚’è¡Œã†
 
-		// ƒIƒŠƒWƒiƒ‹‰æ‘œ‚ª‘ÎÛ‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+		// ã‚ªãƒªã‚¸ãƒŠãƒ«ç”»åƒãŒå¯¾è±¡ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 		if( TargetOrig == TRUE )
 		{
-			// ƒIƒŠƒWƒiƒ‹‰æ‘œ‚ª‘ÎÛ‚Ìê‡
+			// ã‚ªãƒªã‚¸ãƒŠãƒ«ç”»åƒãŒå¯¾è±¡ã®å ´åˆ
 
-			// ƒTƒCƒY‚Ì•â³
+			// ã‚µã‚¤ã‚ºã®è£œæ­£
 			if( DestX + SrcWidth  > ( int )Orig->Soft.MemImg.Width  )
 			{
 				SrcWidth  = ( int )( Orig->Soft.MemImg.Width  - DestX ) ;
@@ -31718,7 +31718,7 @@ extern int Graphics_Image_BltBmpOrBaseImageToGraph3(
 				goto ERR ;
 			}
 
-			// ‰æ‘œ‚Ì“]‘—
+			// ç”»åƒã®è»¢é€
 			BltBaseImageToMemImg(
 				&TempBaseRGB,
 				TempBaseAlpha.GraphData == NULL ? NULL : &TempBaseAlpha,
@@ -31734,9 +31734,9 @@ extern int Graphics_Image_BltBmpOrBaseImageToGraph3(
 		}
 		else
 		{
-			// ƒIƒŠƒWƒiƒ‹‰æ‘œ‚ª‘ÎÛ‚Å‚Í‚È‚¢ê‡
+			// ã‚ªãƒªã‚¸ãƒŠãƒ«ç”»åƒãŒå¯¾è±¡ã§ã¯ãªã„å ´åˆ
 
-			// ƒTƒCƒY‚Ì•â³
+			// ã‚µã‚¤ã‚ºã®è£œæ­£
 			if( DestX + SrcWidth  > Image->WidthI  )
 			{
 				SrcWidth  = Image->WidthI  - DestX ;
@@ -31752,7 +31752,7 @@ extern int Graphics_Image_BltBmpOrBaseImageToGraph3(
 				goto ERR ;
 			}
 
-			// ‰æ‘œ‚Ì“]‘—
+			// ç”»åƒã®è»¢é€
 			BltBaseImageToMemImg(
 				&TempBaseRGB,
 				TempBaseAlpha.GraphData == NULL ? NULL : &TempBaseAlpha,
@@ -31767,13 +31767,13 @@ extern int Graphics_Image_BltBmpOrBaseImageToGraph3(
 			) ;
 		}
 
-		// ƒpƒŒƒbƒg‰æ‘œ‚Ìê‡‚Í“§‰ßFƒR[ƒh‚ğ’²®
+		// ãƒ‘ãƒ¬ãƒƒãƒˆç”»åƒã®å ´åˆã¯é€éè‰²ã‚³ãƒ¼ãƒ‰ã‚’èª¿æ•´
 		if( Orig->FormatDesc.UsePaletteFlag == TRUE && Orig->Soft.MemImg.Base->Palette )
 		{
 			int   i ;
 			DWORD TransCode ;
 
-			// “§‰ßF‚Ìæ“¾
+			// é€éè‰²ã®å–å¾—
 			TransCode = NS_GetColor3( 
 					GetMemImgColorData( Orig->FormatDesc.ColorBitDepth == 16 ? 0 : 1, Orig->FormatDesc.AlphaChFlag, FALSE ),
 					( int )( ( GSYS.CreateImage.TransColor >> 16 ) & 0xff ),
@@ -31781,7 +31781,7 @@ extern int Graphics_Image_BltBmpOrBaseImageToGraph3(
 					( int )( ( GSYS.CreateImage.TransColor >> 0  ) & 0xff ),
 					0xff ) ;
 
-			// w’è‚ÌƒJƒ‰[‚ªƒpƒŒƒbƒg‚Ì’†‚É‚ ‚Á‚½‚ç‚»‚ê‚ğ“§‰ßF‚É‚·‚é
+			// æŒ‡å®šã®ã‚«ãƒ©ãƒ¼ãŒãƒ‘ãƒ¬ãƒƒãƒˆã®ä¸­ã«ã‚ã£ãŸã‚‰ãã‚Œã‚’é€éè‰²ã«ã™ã‚‹
 			if( Orig->Soft.MemImg.Base->ColorType == 1 )
 			{
 				TransCode &= 0xffffff;
@@ -31824,10 +31824,10 @@ extern int Graphics_Image_BltBmpOrBaseImageToGraph3(
 		ReleaseBaseImage( &TempBaseAlpha ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 
-	// ƒGƒ‰[I—¹
+	// ã‚¨ãƒ©ãƒ¼çµ‚äº†
 ERR :
 
 	if( RequiredReleaseBaseRGB )
@@ -31843,8 +31843,8 @@ ERR :
 	return -1 ;
 }
 
-// w’è‚ÌƒIƒŠƒWƒiƒ‹‰æ‘œî•ñ‚É“]‘—‚·‚é‹éŒ`î•ñ‚ğì¬‚·‚é
-// –ß‚è’l  -1:”ÍˆÍŠO   0:³íI—¹
+// æŒ‡å®šã®ã‚ªãƒªã‚¸ãƒŠãƒ«ç”»åƒæƒ…å ±ã«è»¢é€ã™ã‚‹çŸ©å½¢æƒ…å ±ã‚’ä½œæˆã™ã‚‹
+// æˆ»ã‚Šå€¤  -1:ç¯„å›²å¤–   0:æ­£å¸¸çµ‚äº†
 extern	int		Graphics_Image_BltBmpOrBaseImageToGraph3_Make_OrigTex_MoveRect(
 	const IMAGEDATA_ORIG_HARD_TEX	*OrigTex,
 	const RECT						*SrcRect,
@@ -31857,7 +31857,7 @@ extern	int		Graphics_Image_BltBmpOrBaseImageToGraph3_Make_OrigTex_MoveRect(
 		  int						IsDXT
 )
 {
-	// ”ÍˆÍŠO‚¾‚Á‚½‚ç‰½‚à‚µ‚È‚¢
+	// ç¯„å›²å¤–ã ã£ãŸã‚‰ä½•ã‚‚ã—ãªã„
 	if( OrigTex->OrigPosX >= DestX + SrcWidth  ||
 		OrigTex->OrigPosY >= DestY + SrcHeight ||
 		DestX >= OrigTex->OrigPosX + OrigTex->UseWidth ||
@@ -31866,7 +31866,7 @@ extern	int		Graphics_Image_BltBmpOrBaseImageToGraph3_Make_OrigTex_MoveRect(
 		return -1 ;
 	}
 
-	// ƒƒbƒN‚·‚é“]‘—”ÍˆÍ‚Æ“]‘—‚·‚é”ÍˆÍ‚ÌŠm’è
+	// ãƒ­ãƒƒã‚¯ã™ã‚‹è»¢é€ç¯„å›²ã¨è»¢é€ã™ã‚‹ç¯„å›²ã®ç¢ºå®š
 	if( OrigTex->OrigPosX > DestX )
 	{
 		DestRect->left = 0 ;
@@ -31911,13 +31911,13 @@ extern	int		Graphics_Image_BltBmpOrBaseImageToGraph3_Make_OrigTex_MoveRect(
 		MoveRect->bottom = SrcHeight ;
 	}
 
-	// Œ³‰æ‘œ‚Ì“]‘——Ìˆæ’l‚ğ‰ÁZ
+	// å…ƒç”»åƒã®è»¢é€é ˜åŸŸå€¤ã‚’åŠ ç®—
 	MoveRect->left   += SrcRect->left ;
 	MoveRect->top    += SrcRect->top ;
 	MoveRect->right  += SrcRect->left ;
 	MoveRect->bottom += SrcRect->top ;
 
-	// DXT Œ`®‚Ìê‡‚Í 4 ‚Ì”{”‚É•â³
+	// DXT å½¢å¼ã®å ´åˆã¯ 4 ã®å€æ•°ã«è£œæ­£
 	if( IsDXT )
 	{
 		DestRect->left   = ( DestRect->left   + 3 ) / 4 * 4 ;
@@ -31931,12 +31931,12 @@ extern	int		Graphics_Image_BltBmpOrBaseImageToGraph3_Make_OrigTex_MoveRect(
 		MoveRect->bottom = ( MoveRect->bottom + 3 ) / 4 * 4 ;
 	}
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// w’è‚Ì•`‰æ—p‰æ‘œî•ñ‚É“]‘—‚·‚é‹éŒ`î•ñ‚ğì¬‚·‚é
-// –ß‚è’l  -1:”ÍˆÍŠO   0:³íI—¹
+// æŒ‡å®šã®æç”»ç”¨ç”»åƒæƒ…å ±ã«è»¢é€ã™ã‚‹çŸ©å½¢æƒ…å ±ã‚’ä½œæˆã™ã‚‹
+// æˆ»ã‚Šå€¤  -1:ç¯„å›²å¤–   0:æ­£å¸¸çµ‚äº†
 extern	int		Graphics_Image_BltBmpOrBaseImageToGraph3_Make_DrawTex_MoveRect(
 	const IMAGEDATA_HARD_DRAW		*DrawTex,
 	const RECT						*SrcRect,
@@ -31949,7 +31949,7 @@ extern	int		Graphics_Image_BltBmpOrBaseImageToGraph3_Make_DrawTex_MoveRect(
 		  int						IsDXT
 )
 {
-	// ”ÍˆÍŠO‚¾‚Á‚½‚ç‰½‚à‚µ‚È‚¢
+	// ç¯„å›²å¤–ã ã£ãŸã‚‰ä½•ã‚‚ã—ãªã„
 	if( DrawTex->DrawPosXI >= DestX + SrcWidth ||
 		DrawTex->DrawPosYI >= DestY + SrcHeight ||
 		DestX >= DrawTex->DrawPosXI + DrawTex->WidthI ||
@@ -31958,7 +31958,7 @@ extern	int		Graphics_Image_BltBmpOrBaseImageToGraph3_Make_DrawTex_MoveRect(
 		return -1 ;
 	}
 
-	// ƒƒbƒN‚·‚é“]‘—”ÍˆÍ‚Æ“]‘—‚·‚é”ÍˆÍ‚ÌŠm’è
+	// ãƒ­ãƒƒã‚¯ã™ã‚‹è»¢é€ç¯„å›²ã¨è»¢é€ã™ã‚‹ç¯„å›²ã®ç¢ºå®š
 	if( DrawTex->DrawPosXI > DestX )
 	{
 		DestRect->left = 0 ;
@@ -32003,19 +32003,19 @@ extern	int		Graphics_Image_BltBmpOrBaseImageToGraph3_Make_DrawTex_MoveRect(
 		MoveRect->bottom = SrcHeight ;
 	}
 
-	// ƒeƒNƒXƒ`ƒƒ‚Ìw’è—Ìˆæ’l‚ğ‰ÁZ
+	// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®æŒ‡å®šé ˜åŸŸå€¤ã‚’åŠ ç®—
 	DestRect->left   += DrawTex->UsePosXI ;
 	DestRect->top    += DrawTex->UsePosYI ;
 	DestRect->right  += DrawTex->UsePosXI ;
 	DestRect->bottom += DrawTex->UsePosYI ;
 
-	// Œ³‰æ‘œ‚Ì“]‘——Ìˆæ’l‚ğ‰ÁZ
+	// å…ƒç”»åƒã®è»¢é€é ˜åŸŸå€¤ã‚’åŠ ç®—
 	MoveRect->left   += SrcRect->left ;
 	MoveRect->top    += SrcRect->top ;
 	MoveRect->right  += SrcRect->left ;
 	MoveRect->bottom += SrcRect->top ;
 
-	// DXT Œ`®‚Ìê‡‚Í 4 ‚Ì”{”‚É•â³
+	// DXT å½¢å¼ã®å ´åˆã¯ 4 ã®å€æ•°ã«è£œæ­£
 	if( IsDXT )
 	{
 		DestRect->left   = ( DestRect->left   + 3 ) / 4 * 4 ;
@@ -32029,11 +32029,11 @@ extern	int		Graphics_Image_BltBmpOrBaseImageToGraph3_Make_DrawTex_MoveRect(
 		MoveRect->bottom = ( MoveRect->bottom + 3 ) / 4 * 4 ;
 	}
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// •`‰æ‰Â”\‰æ‘œ‚âƒoƒbƒNƒoƒbƒtƒ@‚©‚çw’è—Ìˆæ‚ÌƒOƒ‰ƒtƒBƒbƒN‚ğæ“¾‚·‚é
+// æç”»å¯èƒ½ç”»åƒã‚„ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã‹ã‚‰æŒ‡å®šé ˜åŸŸã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚’å–å¾—ã™ã‚‹
 extern	int Graphics_Image_GetDrawScreenGraphBase( int TargetScreen, int TargetScreenSurface, int TargetScreenMipLevel, int x1, int y1, int x2, int y2, int destX, int destY, int GrHandle )
 {
 	IMAGEDATA *Image, *TargImage ;
@@ -32046,11 +32046,11 @@ extern	int Graphics_Image_GetDrawScreenGraphBase( int TargetScreen, int TargetSc
 //	RECT DestBaseRect ;
 //	HRESULT hr ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( GRAPHCHK( GrHandle, Image ) )
 		return -1 ;
 
-	// •`‰ææ‚Ì‰æ‘œƒf[ƒ^ƒAƒhƒŒƒX‚ğæ“¾‚·‚é
+	// æç”»å…ˆã®ç”»åƒãƒ‡ãƒ¼ã‚¿ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å–å¾—ã™ã‚‹
 	if( GRAPHCHKFULL( TargetScreen, TargImage ) )
 	{
 		TargImage = NULL ;
@@ -32063,13 +32063,13 @@ extern	int Graphics_Image_GetDrawScreenGraphBase( int TargetScreen, int TargetSc
 		TargetScreenHeight = TargImage->HeightI ;
 	}
 
-	// ‹éŒ`‚Ìƒf[ƒ^‚ª•s³‚¾‚Á‚½ê‡ƒGƒ‰[
+	// çŸ©å½¢ã®ãƒ‡ãƒ¼ã‚¿ãŒä¸æ­£ã ã£ãŸå ´åˆã‚¨ãƒ©ãƒ¼
 	if( x1 < 0 || x1 >= x2 ||
 		y1 < 0 || y1 >= y2 ||
 		x2 > TargetScreenWidth ||
 		y2 > TargetScreenHeight ) return -1 ;
 
-	// æ‚è‚İæ‚ª‰æ‘œ‚ğ‚Í‚İo‚Ä‚¢‚½‚çƒGƒ‰[
+	// å–ã‚Šè¾¼ã¿å…ˆãŒç”»åƒã‚’ã¯ã¿å‡ºã¦ã„ãŸã‚‰ã‚¨ãƒ©ãƒ¼
 	Width  = x2 - x1 ;
 	Height = y2 - y1 ;
 	if( Image->WidthI < Width + destX || Image->HeightI < Height + destY ) return -1 ;
@@ -32078,10 +32078,10 @@ extern	int Graphics_Image_GetDrawScreenGraphBase( int TargetScreen, int TargetSc
 //	DestBaseRect.right  = destX + Width ;
 //	DestBaseRect.bottom = destY + Height ;
 
-	// ƒeƒNƒXƒ`ƒƒ‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+	// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 	if( Image->Orig->FormatDesc.TextureFlag )
 	{
-		// ƒeƒNƒXƒ`ƒƒ‚Ìê‡
+		// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®å ´åˆ
 		if( Graphics_Hardware_GetDrawScreenGraphBase_PF( Image, TargImage, TargetScreen, TargetScreenSurface, TargetScreenMipLevel, TargetScreenWidth, TargetScreenHeight, x1, y1, x2, y2, destX, destY ) < 0 )
 		{
 			return -1 ;
@@ -32089,9 +32089,9 @@ extern	int Graphics_Image_GetDrawScreenGraphBase( int TargetScreen, int TargetSc
 	}
 	else
 	{
-		// ƒ\ƒtƒgƒEƒGƒAƒŒƒ“ƒ_ƒŠƒ“ƒO‚Ìê‡
+		// ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã®å ´åˆ
 
-		// •`‰æ‘ÎÛ‚©‚ç“]‘—
+		// æç”»å¯¾è±¡ã‹ã‚‰è»¢é€
 		Rect.left   = x1 ;
 		Rect.top    = y1 ;
 		Rect.right  = x2 ;
@@ -32099,16 +32099,16 @@ extern	int Graphics_Image_GetDrawScreenGraphBase( int TargetScreen, int TargetSc
 		BltMemImg( &Image->Soft.MemImg, TargImage ? &TargImage->Soft.MemImg : &GSYS.SoftRender.MainBufferMemImg, &Rect, destX, destY ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒOƒ‰ƒtƒBƒbƒN‚Ìƒf[ƒ^‚ğƒCƒ“ƒfƒbƒNƒX’l‚©‚çæ‚èo‚·
+// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®ãƒ‡ãƒ¼ã‚¿ã‚’ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹å€¤ã‹ã‚‰å–ã‚Šå‡ºã™
 extern IMAGEDATA *Graphics_Image_GetData( int GrHandle, int ASyncThread )
 {
 	IMAGEDATA *Image ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( ASyncThread )
 	{
 		if( GRAPHCHK_ASYNC( GrHandle, Image ) )
@@ -32123,7 +32123,7 @@ extern IMAGEDATA *Graphics_Image_GetData( int GrHandle, int ASyncThread )
 	return Image ;
 }
 
-// ^‚Á”’‚ÌƒeƒNƒXƒ`ƒƒ‚Ìƒnƒ“ƒhƒ‹‚ğæ“¾‚·‚é
+// çœŸã£ç™½ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ãƒãƒ³ãƒ‰ãƒ«ã‚’å–å¾—ã™ã‚‹
 extern int Graphics_Image_GetWhiteTexHandle( void )
 {
 	if( GSYS.Resource.WhiteTexHandle <= 0 )
@@ -32147,7 +32147,7 @@ extern int Graphics_Image_GetWhiteTexHandle( void )
 	return GSYS.Resource.WhiteTexHandle ;
 }
 
-// ƒ‰ƒ“ƒ_ƒ€‚È•ûŒü‚É‰ñ“]‚³‚¹‚éˆ×‚ÌƒmƒCƒYƒeƒNƒXƒ`ƒƒ‚Ìƒnƒ“ƒhƒ‹‚ğæ“¾‚·‚é
+// ãƒ©ãƒ³ãƒ€ãƒ ãªæ–¹å‘ã«å›è»¢ã•ã›ã‚‹ç‚ºã®ãƒã‚¤ã‚ºãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ãƒãƒ³ãƒ‰ãƒ«ã‚’å–å¾—ã™ã‚‹
 extern int Graphics_Image_GetRandomKernelRotationTexHandle( void )
 {
 	if( GSYS.Resource.RandomKernelRotationTexHandle <= 0 )
@@ -32193,7 +32193,7 @@ extern int Graphics_Image_GetRandomKernelRotationTexHandle( void )
 	return GSYS.Resource.RandomKernelRotationTexHandle ;
 }
 
-// ƒAƒ“ƒ`ƒGƒCƒŠƒAƒX•t‚«‚Ìü‚ğ•`‰æ‚·‚é‚½‚ß‚ÌƒeƒNƒXƒ`ƒƒƒnƒ“ƒhƒ‹‚ğæ“¾‚·‚é
+// ã‚¢ãƒ³ãƒã‚¨ã‚¤ãƒªã‚¢ã‚¹ä»˜ãã®ç·šã‚’æç”»ã™ã‚‹ãŸã‚ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒãƒ³ãƒ‰ãƒ«ã‚’å–å¾—ã™ã‚‹
 extern int Graphics_Image_GetLineTexHandle( int IsPMA )
 {
 	if( IsPMA )
@@ -32276,7 +32276,7 @@ extern int Graphics_Image_GetLineTexHandle( int IsPMA )
 	}
 }
 
-// ƒAƒ“ƒ`ƒGƒCƒŠƒAƒX•t‚«‚Ìü‚ğ•`‰æ‚·‚é‚½‚ß‚ÌƒeƒNƒXƒ`ƒƒƒnƒ“ƒhƒ‹‚ğæ“¾‚·‚é( ‘¾‚³1ƒsƒNƒZƒ‹—p )
+// ã‚¢ãƒ³ãƒã‚¨ã‚¤ãƒªã‚¢ã‚¹ä»˜ãã®ç·šã‚’æç”»ã™ã‚‹ãŸã‚ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒãƒ³ãƒ‰ãƒ«ã‚’å–å¾—ã™ã‚‹( å¤ªã•1ãƒ”ã‚¯ã‚»ãƒ«ç”¨ )
 extern int Graphics_Image_GetLineOneThicknessTexHandle( int IsPMA )
 {
 	if( IsPMA )
@@ -32359,7 +32359,7 @@ extern int Graphics_Image_GetLineOneThicknessTexHandle( int IsPMA )
 	}
 }
 
-// ƒAƒ“ƒ`ƒGƒCƒŠƒAƒX•t‚«‚Ìü‹éŒ`‚ğ•`‰æ‚·‚é‚½‚ß‚ÌƒeƒNƒXƒ`ƒƒƒnƒ“ƒhƒ‹‚ğæ“¾‚·‚é
+// ã‚¢ãƒ³ãƒã‚¨ã‚¤ãƒªã‚¢ã‚¹ä»˜ãã®ç·šçŸ©å½¢ã‚’æç”»ã™ã‚‹ãŸã‚ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒãƒ³ãƒ‰ãƒ«ã‚’å–å¾—ã™ã‚‹
 extern int Graphics_Image_GetLineBoxTexHandle( int IsPMA )
 {
 	if( IsPMA )
@@ -32442,7 +32442,7 @@ extern int Graphics_Image_GetLineBoxTexHandle( int IsPMA )
 	}
 }
 
-// ƒAƒ“ƒ`ƒGƒCƒŠƒAƒX•t‚«‚Ìü‹éŒ`‚ğ•`‰æ‚·‚é‚½‚ß‚ÌƒeƒNƒXƒ`ƒƒƒnƒ“ƒhƒ‹‚ğæ“¾‚·‚é( ‘¾‚³1ƒsƒNƒZƒ‹—p )
+// ã‚¢ãƒ³ãƒã‚¨ã‚¤ãƒªã‚¢ã‚¹ä»˜ãã®ç·šçŸ©å½¢ã‚’æç”»ã™ã‚‹ãŸã‚ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒãƒ³ãƒ‰ãƒ«ã‚’å–å¾—ã™ã‚‹( å¤ªã•1ãƒ”ã‚¯ã‚»ãƒ«ç”¨ )
 extern int Graphics_Image_GetLineBoxOneThicknessTexHandle( int IsPMA )
 {
 	if( IsPMA )
@@ -32525,7 +32525,7 @@ extern int Graphics_Image_GetLineBoxOneThicknessTexHandle( int IsPMA )
 	}
 }
 
-// MakeGraph ‚ÌÀˆ—ŠÖ”
+// MakeGraph ã®å®Ÿå‡¦ç†é–¢æ•°
 static int Graphics_Image_MakeGraph_Static(
 	SETUP_GRAPHHANDLE_GPARAM *GParam,
 	int GrHandle,
@@ -32538,7 +32538,7 @@ static int Graphics_Image_MakeGraph_Static(
 	int ASyncThread
 )
 {
-	// ƒnƒ“ƒhƒ‹‚Ì‰Šú‰»
+	// ãƒãƒ³ãƒ‰ãƒ«ã®åˆæœŸåŒ–
 	if( Graphics_Image_SetupHandle_UseGParam(
 			GParam,
 			GrHandle,
@@ -32554,13 +32554,13 @@ static int Graphics_Image_MakeGraph_Static(
 		) == -1 )
 		return -1 ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
 #ifndef DX_NON_ASYNCLOAD
 
-// MakeGraph ‚Ì”ñ“¯Šú“Ç‚İ‚İƒXƒŒƒbƒh‚©‚çŒÄ‚Î‚ê‚éŠÖ”
+// MakeGraph ã®éåŒæœŸèª­ã¿è¾¼ã¿ã‚¹ãƒ¬ãƒƒãƒ‰ã‹ã‚‰å‘¼ã°ã‚Œã‚‹é–¢æ•°
 static void Graphics_Image_MakeGraph_ASync( ASYNCLOADDATA_COMMON *AParam )
 {
 	SETUP_GRAPHHANDLE_GPARAM *GParam ;
@@ -32600,7 +32600,7 @@ static void Graphics_Image_MakeGraph_ASync( ASYNCLOADDATA_COMMON *AParam )
 }
 #endif // DX_NON_ASYNCLOAD
 
-// ‹ó‚ÌƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ğì¬‚·‚éŠÖ”
+// ç©ºã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã‚’ä½œæˆã™ã‚‹é–¢æ•°
 extern int Graphics_Image_MakeGraph_UseGParam(
 	SETUP_GRAPHHANDLE_GPARAM *GParam,
 	int SizeX,
@@ -32616,7 +32616,7 @@ extern int Graphics_Image_MakeGraph_UseGParam(
 
 	CheckActiveState() ;
 
-	// ƒnƒ“ƒhƒ‹‚Ìì¬
+	// ãƒãƒ³ãƒ‰ãƒ«ã®ä½œæˆ
 	GrHandle = Graphics_Image_AddHandle( GSYS.CreateImage.CreateGraphHandle <= 0 ? -1 : GSYS.CreateImage.CreateGraphHandle, ASyncThread ) ;
 	if( GrHandle == -1 )
 	{
@@ -32629,7 +32629,7 @@ extern int Graphics_Image_MakeGraph_UseGParam(
 		ASYNCLOADDATA_COMMON *AParam = NULL ;
 		int Addr ;
 
-		// ƒpƒ‰ƒ[ƒ^‚É•K—v‚Èƒƒ‚ƒŠ‚ÌƒTƒCƒY‚ğZo
+		// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã«å¿…è¦ãªãƒ¡ãƒ¢ãƒªã®ã‚µã‚¤ã‚ºã‚’ç®—å‡º
 		Addr = 0 ;
 		AddASyncLoadParamStruct( NULL, &Addr, GParam, sizeof( *GParam ) ) ;
 		AddASyncLoadParamInt( NULL, &Addr, GrHandle ) ;
@@ -32640,12 +32640,12 @@ extern int Graphics_Image_MakeGraph_UseGParam(
 		AddASyncLoadParamInt( NULL, &Addr, PaletteBitDepth ) ;
 		AddASyncLoadParamInt( NULL, &Addr, GParam->AlphaChannelImageCreateFlag ) ;
 
-		// ƒƒ‚ƒŠ‚ÌŠm•Û
+		// ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿
 		AParam = AllocASyncLoadDataMemory( Addr ) ;
 		if( AParam == NULL )
 			goto ERR ;
 
-		// ˆ—‚É•K—v‚Èî•ñ‚ğƒZƒbƒg
+		// å‡¦ç†ã«å¿…è¦ãªæƒ…å ±ã‚’ã‚»ãƒƒãƒˆ
 		AParam->ProcessFunction = Graphics_Image_MakeGraph_ASync ;
 		Addr = 0 ;
 		AddASyncLoadParamStruct( AParam->Data, &Addr, GParam, sizeof( *GParam ) ) ;
@@ -32657,7 +32657,7 @@ extern int Graphics_Image_MakeGraph_UseGParam(
 		AddASyncLoadParamInt( AParam->Data, &Addr, PaletteBitDepth ) ;
 		AddASyncLoadParamInt( AParam->Data, &Addr, GParam->AlphaChannelImageCreateFlag ) ;
 
-		// ƒf[ƒ^‚ğ’Ç‰Á
+		// ãƒ‡ãƒ¼ã‚¿ã‚’è¿½åŠ 
 		if( AddASyncLoadData( AParam ) < 0 )
 		{
 			DXFREE( AParam ) ;
@@ -32665,7 +32665,7 @@ extern int Graphics_Image_MakeGraph_UseGParam(
 			goto ERR ;
 		}
 
-		// ”ñ“¯Šú“Ç‚İ‚İƒJƒEƒ“ƒg‚ğƒCƒ“ƒNƒŠƒƒ“ƒg
+		// éåŒæœŸèª­ã¿è¾¼ã¿ã‚«ã‚¦ãƒ³ãƒˆã‚’ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆ
 		IncASyncLoadCount( GrHandle, AParam->Index ) ;
 	}
 	else
@@ -32684,7 +32684,7 @@ extern int Graphics_Image_MakeGraph_UseGParam(
 	}
 #endif // DX_NON_ASYNCLOAD
 
-	// I—¹
+	// çµ‚äº†
 	return GrHandle ;
 
 ERR :
@@ -32700,7 +32700,7 @@ ERR :
 	return -1 ;
 }
 
-// CreateGraph ‚ÌÀˆ—ŠÖ”
+// CreateGraph ã®å®Ÿå‡¦ç†é–¢æ•°
 static int Graphics_Image_CreateGraph_Static(
 	LOADGRAPH_PARAM *Param,
 	int ASyncThread
@@ -32710,16 +32710,16 @@ static int Graphics_Image_CreateGraph_Static(
 	int Result = 0 ;
 	CREATEGRAPH_LOADBASEIMAGE_PARAM LParam ;
 
-	// ‰æ‘œƒf[ƒ^‚Ì“Ç‚İ‚İ
+	// ç”»åƒãƒ‡ãƒ¼ã‚¿ã®èª­ã¿è¾¼ã¿
 	Graphics_Image_CreateGraph_LoadBaseImage( Param, &LParam ) ;
 
 	if( LParam.LoadHr == -1 )
 	{
-		// Ä“Ç‚İ‚İ‚Å‚Í‚È‚¢ê‡‚Íƒ€[ƒr[‚Ì‰Â”\«‚ğŒ©‚é
+		// å†èª­ã¿è¾¼ã¿ã§ã¯ãªã„å ´åˆã¯ãƒ ãƒ¼ãƒ“ãƒ¼ã®å¯èƒ½æ€§ã‚’è¦‹ã‚‹
 		if( Param->ReCreateFlag == FALSE && ( Param->FileName != NULL || Param->RgbMemImage != NULL ) )
 		{
 #ifndef DX_NON_MOVIE
-			// ƒtƒ@ƒCƒ‹‚Ìê‡‚Íƒtƒ@ƒCƒ‹‚ª‚ ‚é‚©Šm”F
+			// ãƒ•ã‚¡ã‚¤ãƒ«ã®å ´åˆã¯ãƒ•ã‚¡ã‚¤ãƒ«ãŒã‚ã‚‹ã‹ç¢ºèª
 			if( Param->FileName != NULL )
 			{
 				DWORD_PTR fp ;
@@ -32732,29 +32732,29 @@ static int Graphics_Image_CreateGraph_Static(
 					ConvertFullPathW_( Param->FileName, FullPath_WCHAR_T, sizeof( FullPath_WCHAR_T ) ) ;
 					ConvString( ( const char * )FullPath_WCHAR_T, -1, WCHAR_T_CHARCODEFORMAT, FullPath_UTF16LE, sizeof( FullPath_UTF16LE ), DX_CHARCODEFORMAT_UTF16LE ) ;
 
-					DXST_LOGFILEFMT_ADDUTF16LE(( "\x3b\x75\xcf\x50\xd5\x30\xa1\x30\xa4\x30\xeb\x30\x20\x00\x25\x00\x73\x00\x20\x00\x4c\x30\x42\x30\x8a\x30\x7e\x30\x5b\x30\x93\x30\x00"/*@ L"‰æ‘œƒtƒ@ƒCƒ‹ %s ‚ª‚ ‚è‚Ü‚¹‚ñ" @*/, FullPath_UTF16LE )) ;
+					DXST_LOGFILEFMT_ADDUTF16LE(( "\x3b\x75\xcf\x50\xd5\x30\xa1\x30\xa4\x30\xeb\x30\x20\x00\x25\x00\x73\x00\x20\x00\x4c\x30\x42\x30\x8a\x30\x7e\x30\x5b\x30\x93\x30\x00"/*@ L"ç”»åƒãƒ•ã‚¡ã‚¤ãƒ« %s ãŒã‚ã‚Šã¾ã›ã‚“" @*/, FullPath_UTF16LE )) ;
 					return -1 ;
 				}
 				DX_FCLOSE( fp ) ;
 			}
 
-			// “®‰æ‚ÌƒI[ƒvƒ“‚ğ‚İ‚é
+			// å‹•ç”»ã®ã‚ªãƒ¼ãƒ—ãƒ³ã‚’è©¦ã¿ã‚‹
 			if( Graphics_Image_OpenMovie_UseGParam( &Param->GParam, Param->GrHandle, Param->FileName, Param->RgbMemImage, Param->RgbMemImageSize, Param->TextureFlag, Param->SurfaceMode, FALSE, ASyncThread ) < 0 )
 			{
 				return -1 ;
 			}
 
-			// “®‰æ‰æ‘œ‚ğƒNƒŠƒA‚·‚é
+			// å‹•ç”»ç”»åƒã‚’ã‚¯ãƒªã‚¢ã™ã‚‹
 			NS_FillGraph( Param->GrHandle, 0, 0, 0, 0 ) ;
 
-			// ³íI—¹
+			// æ­£å¸¸çµ‚äº†
 			return 0 ;
 #else	// DX_NON_MOVIE
 			{
 				if( Param->FileName != NULL )
 				{
 					ConvString( ( const char * )Param->FileName, -1, WCHAR_T_CHARCODEFORMAT, FullPath_UTF16LE, sizeof( FullPath_UTF16LE ), DX_CHARCODEFORMAT_UTF16LE ) ;
-					DXST_LOGFILEFMT_ADDUTF16LE(( "\x3b\x75\xcf\x50\xd5\x30\xa1\x30\xa4\x30\xeb\x30\x20\x00\x25\x00\x73\x00\x20\x00\x6e\x30\xaa\x30\xfc\x30\xd7\x30\xf3\x30\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"‰æ‘œƒtƒ@ƒCƒ‹ %s ‚ÌƒI[ƒvƒ“‚É¸”s‚µ‚Ü‚µ‚½" @*/, FullPath_UTF16LE )) ;
+					DXST_LOGFILEFMT_ADDUTF16LE(( "\x3b\x75\xcf\x50\xd5\x30\xa1\x30\xa4\x30\xeb\x30\x20\x00\x25\x00\x73\x00\x20\x00\x6e\x30\xaa\x30\xfc\x30\xd7\x30\xf3\x30\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"ç”»åƒãƒ•ã‚¡ã‚¤ãƒ« %s ã®ã‚ªãƒ¼ãƒ—ãƒ³ã«å¤±æ•—ã—ã¾ã—ãŸ" @*/, FullPath_UTF16LE )) ;
 				}
 				return -1 ;
 			}
@@ -32766,7 +32766,7 @@ static int Graphics_Image_CreateGraph_Static(
 		}
 	}
 
-	// ƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ğì¬‚·‚é
+	// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã‚’ä½œæˆã™ã‚‹
 	Result = Graphics_Image_CreateGraphFromGraphImageBase_UseGParam(
 				&Param->GParam.CreateGraphGParam,
 				Param->ReCreateFlag,
@@ -32777,7 +32777,7 @@ static int Graphics_Image_CreateGraph_Static(
 				ASyncThread
 			) ;
 
-	// ƒtƒ@ƒCƒ‹ƒpƒX‚ğƒZƒbƒg‚·‚é
+	// ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 	if( Result == 0 )
 	{
 		Graphics_Image_SetBaseInfo_UseGParam(
@@ -32801,16 +32801,16 @@ static int Graphics_Image_CreateGraph_Static(
 		) ;
 	}
 
-	// “Ç‚İ‚ñ‚¾ƒOƒ‰ƒtƒBƒbƒN‚ÌŒãn––‚ğ‚·‚é
+	// èª­ã¿è¾¼ã‚“ã ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®å¾Œå§‹æœ«ã‚’ã™ã‚‹
 	Graphics_Image_CreateGraph_TerminateBaseImage( Param, &LParam ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return Result ;
 }
 
 #ifndef DX_NON_ASYNCLOAD
 
-// CreateGraph ‚Ì”ñ“¯Šú“Ç‚İ‚İƒXƒŒƒbƒh‚©‚çŒÄ‚Î‚ê‚éŠÖ”
+// CreateGraph ã®éåŒæœŸèª­ã¿è¾¼ã¿ã‚¹ãƒ¬ãƒƒãƒ‰ã‹ã‚‰å‘¼ã°ã‚Œã‚‹é–¢æ•°
 static void Graphics_Image_CreateGraph_ASync( ASYNCLOADDATA_COMMON *AParam )
 {
 	LOADGRAPH_PARAM *Param ;
@@ -32853,7 +32853,7 @@ static void Graphics_Image_CreateGraph_ASync( ASYNCLOADDATA_COMMON *AParam )
 }
 #endif // DX_NON_ASYNCLOAD
 
-// CreateGraph ‚ÌƒOƒ[ƒoƒ‹•Ï”‚ÉƒAƒNƒZƒX‚µ‚È‚¢ƒo[ƒWƒ‡ƒ“
+// CreateGraph ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°ã«ã‚¢ã‚¯ã‚»ã‚¹ã—ãªã„ãƒãƒ¼ã‚¸ãƒ§ãƒ³
 extern int Graphics_Image_CreateGraph_UseGParam( 
 	LOADGRAPH_PARAM *Param,
 	int ASyncLoadFlag,
@@ -32878,7 +32878,7 @@ extern int Graphics_Image_CreateGraph_UseGParam(
 		else
 		{
 #ifndef DX_NON_ASYNCLOAD
-			// ”ñ“¯Šú“Ç‚İ‚İƒJƒEƒ“ƒg‚ğƒCƒ“ƒNƒŠƒƒ“ƒg
+			// éåŒæœŸèª­ã¿è¾¼ã¿ã‚«ã‚¦ãƒ³ãƒˆã‚’ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆ
 			if( ASyncThread )
 			{
 				IncASyncLoadCount( Param->GrHandle, -1 ) ;
@@ -32894,7 +32894,7 @@ extern int Graphics_Image_CreateGraph_UseGParam(
 			return -1 ;
 		}
 
-		// ”ñ“¯Šú“Ç‚İ‚İƒJƒEƒ“ƒg‚ğƒCƒ“ƒNƒŠƒƒ“ƒg
+		// éåŒæœŸèª­ã¿è¾¼ã¿ã‚«ã‚¦ãƒ³ãƒˆã‚’ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆ
 		if( ASyncThread )
 		{
 			IncASyncLoadCount( Param->GrHandle, -1 ) ;
@@ -32909,7 +32909,7 @@ extern int Graphics_Image_CreateGraph_UseGParam(
 		int Addr ;
 		wchar_t FullPath[ 1024 ] ;
 
-		// ƒpƒ‰ƒ[ƒ^‚É•K—v‚Èƒƒ‚ƒŠ‚ÌƒTƒCƒY‚ğZo
+		// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã«å¿…è¦ãªãƒ¡ãƒ¢ãƒªã®ã‚µã‚¤ã‚ºã‚’ç®—å‡º
 		Addr = 0 ;
 		AddASyncLoadParamStruct( NULL, &Addr, Param, sizeof( *Param ) ) ;
 		if( Param->FileName != NULL )
@@ -32926,12 +32926,12 @@ extern int Graphics_Image_CreateGraph_UseGParam(
 			AddASyncLoadParamStruct( NULL, &Addr, Param->AlphaBaseImage, sizeof( *Param->AlphaBaseImage ) ) ;
 		}
 
-		// ƒƒ‚ƒŠ‚ÌŠm•Û
+		// ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿
 		AParam = AllocASyncLoadDataMemory( Addr ) ;
 		if( AParam == NULL )
 			goto ERR ;
 
-		// ˆ—‚É•K—v‚Èî•ñ‚ğƒZƒbƒg
+		// å‡¦ç†ã«å¿…è¦ãªæƒ…å ±ã‚’ã‚»ãƒƒãƒˆ
 		AParam->ProcessFunction = Graphics_Image_CreateGraph_ASync ;
 		Addr = 0 ;
 		AddASyncLoadParamStruct( AParam->Data, &Addr, Param, sizeof( *Param ) ) ;
@@ -32948,7 +32948,7 @@ extern int Graphics_Image_CreateGraph_UseGParam(
 			AddASyncLoadParamStruct( AParam->Data, &Addr, Param->AlphaBaseImage, sizeof( *Param->AlphaBaseImage ) ) ;
 		}
 
-		// ƒf[ƒ^‚ğ’Ç‰Á
+		// ãƒ‡ãƒ¼ã‚¿ã‚’è¿½åŠ 
 		if( AddASyncLoadData( AParam ) < 0 )
 		{
 			DXFREE( AParam ) ;
@@ -32956,7 +32956,7 @@ extern int Graphics_Image_CreateGraph_UseGParam(
 			goto ERR ;
 		}
 
-		// ”ñ“¯Šú“Ç‚İ‚İƒJƒEƒ“ƒg‚ğƒCƒ“ƒNƒŠƒƒ“ƒg
+		// éåŒæœŸèª­ã¿è¾¼ã¿ã‚«ã‚¦ãƒ³ãƒˆã‚’ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆ
 		IncASyncLoadCount( Param->GrHandle, AParam->Index ) ;
 	}
 	else
@@ -32975,7 +32975,7 @@ extern int Graphics_Image_CreateGraph_UseGParam(
 	}
 #endif // DX_NON_ASYNCLOAD
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return Param->ReCreateFlag == FALSE ? Param->GrHandle : 0 ;
 
 ERR :
@@ -32996,7 +32996,7 @@ ERR :
 }
 
 
-// Graphics_Image_CreateDivGraph ‚ÌÀˆ—ŠÖ”
+// Graphics_Image_CreateDivGraph ã®å®Ÿå‡¦ç†é–¢æ•°
 static int Graphics_Image_CreateDivGraph_Static(
 	LOADGRAPH_PARAM *Param,
 	int ASyncThread
@@ -33006,7 +33006,7 @@ static int Graphics_Image_CreateDivGraph_Static(
 	int i ;
 	CREATEGRAPH_LOADBASEIMAGE_PARAM LParam ;
 
-	// ‰æ‘œƒf[ƒ^‚Ì“Ç‚İ‚İ
+	// ç”»åƒãƒ‡ãƒ¼ã‚¿ã®èª­ã¿è¾¼ã¿
 	Graphics_Image_CreateGraph_LoadBaseImage( Param, &LParam ) ;
 	if( LParam.LoadHr == -1 )
 	{
@@ -33018,12 +33018,12 @@ static int Graphics_Image_CreateDivGraph_Static(
 			ConvertFullPathW_( Param->FileName, FullPath_WCHAR_T, sizeof( FullPath_WCHAR_T ) ) ;
 			ConvString( ( const char * )FullPath_WCHAR_T, -1, WCHAR_T_CHARCODEFORMAT, FullPath_UTF16LE, sizeof( FullPath_UTF16LE ), DX_CHARCODEFORMAT_UTF16LE ) ;
 
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\x3b\x75\xcf\x50\xd5\x30\xa1\x30\xa4\x30\xeb\x30\x20\x00\x25\x00\x73\x00\x20\x00\x6e\x30\xed\x30\xfc\x30\xc9\x30\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"‰æ‘œƒtƒ@ƒCƒ‹ %s ‚Ìƒ[ƒh‚É¸”s‚µ‚Ü‚µ‚½" @*/, FullPath_UTF16LE )) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\x3b\x75\xcf\x50\xd5\x30\xa1\x30\xa4\x30\xeb\x30\x20\x00\x25\x00\x73\x00\x20\x00\x6e\x30\xed\x30\xfc\x30\xc9\x30\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"ç”»åƒãƒ•ã‚¡ã‚¤ãƒ« %s ã®ãƒ­ãƒ¼ãƒ‰ã«å¤±æ•—ã—ã¾ã—ãŸ" @*/, FullPath_UTF16LE )) ;
 		}
 		return -1 ;
 	}
 
-	// •ªŠ„ƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ğì¬‚·‚é
+	// åˆ†å‰²ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã‚’ä½œæˆã™ã‚‹
 	Result = Graphics_Image_CreateDivGraphFromGraphImageBase_UseGParam(
 				&Param->GParam.CreateGraphGParam,
 				Param->ReCreateFlag,
@@ -33048,7 +33048,7 @@ static int Graphics_Image_CreateDivGraph_Static(
 				ASyncThread
 			) ;
 
-	// ƒtƒ@ƒCƒ‹ƒpƒX‚ğƒZƒbƒg‚·‚é
+	// ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 	if( Result == 0 )
 	{
 		Graphics_Image_SetBaseInfo_UseGParam(
@@ -33101,19 +33101,19 @@ static int Graphics_Image_CreateDivGraph_Static(
 		ConvertFullPathW_( Param->FileName, FullPath_WCHAR_T, sizeof( FullPath_WCHAR_T ) ) ;
 		ConvString( ( const char * )FullPath_WCHAR_T, -1, WCHAR_T_CHARCODEFORMAT, FullPath_UTF16LE, sizeof( FullPath_UTF16LE ), DX_CHARCODEFORMAT_UTF16LE ) ;
 
-		DXST_LOGFILEFMT_ADDUTF16LE(( "\x3b\x75\xcf\x50\xd5\x30\xa1\x30\xa4\x30\xeb\x30\x20\x00\x25\x00\x73\x00\x20\x00\x6e\x30\x06\x52\x72\x52\xad\x8a\x7f\x30\xbc\x8f\x7f\x30\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"‰æ‘œƒtƒ@ƒCƒ‹ %s ‚Ì•ªŠ„“Ç‚İ‚İ‚É¸”s‚µ‚Ü‚µ‚½" @*/, FullPath_UTF16LE )) ;
+		DXST_LOGFILEFMT_ADDUTF16LE(( "\x3b\x75\xcf\x50\xd5\x30\xa1\x30\xa4\x30\xeb\x30\x20\x00\x25\x00\x73\x00\x20\x00\x6e\x30\x06\x52\x72\x52\xad\x8a\x7f\x30\xbc\x8f\x7f\x30\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"ç”»åƒãƒ•ã‚¡ã‚¤ãƒ« %s ã®åˆ†å‰²èª­ã¿è¾¼ã¿ã«å¤±æ•—ã—ã¾ã—ãŸ" @*/, FullPath_UTF16LE )) ;
 	}
 
-	// “Ç‚İ‚ñ‚¾ƒOƒ‰ƒtƒBƒbƒN‚ÌŒãn––‚ğ‚·‚é
+	// èª­ã¿è¾¼ã‚“ã ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®å¾Œå§‹æœ«ã‚’ã™ã‚‹
 	Graphics_Image_CreateGraph_TerminateBaseImage( Param, &LParam ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return Result ;
 }
 
 #ifndef DX_NON_ASYNCLOAD
 
-// Graphics_Image_CreateDivGraph ‚Ì”ñ“¯Šú“Ç‚İ‚İƒXƒŒƒbƒh‚©‚çŒÄ‚Î‚ê‚éŠÖ”
+// Graphics_Image_CreateDivGraph ã®éåŒæœŸèª­ã¿è¾¼ã¿ã‚¹ãƒ¬ãƒƒãƒ‰ã‹ã‚‰å‘¼ã°ã‚Œã‚‹é–¢æ•°
 static void Graphics_Image_CreateDivGraph_ASync( ASYNCLOADDATA_COMMON *AParam )
 {
 	LOADGRAPH_PARAM *Param ;
@@ -33173,7 +33173,7 @@ static void Graphics_Image_CreateDivGraph_ASync( ASYNCLOADDATA_COMMON *AParam )
 }
 #endif // DX_NON_ASYNCLOAD
 
-// ‰æ‘œ‚ğ•ªŠ„‚µ‚ÄƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ğì¬‚·‚éŠÖ”
+// ç”»åƒã‚’åˆ†å‰²ã—ã¦ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã‚’ä½œæˆã™ã‚‹é–¢æ•°
 extern int Graphics_Image_CreateDivGraph_UseGParam( 
 	LOADGRAPH_PARAM *Param,
 	int ASyncLoadFlag,
@@ -33190,7 +33190,7 @@ extern int Graphics_Image_CreateDivGraph_UseGParam(
 	Param->BaseHandle = -1 ;
 	if( Param->ReCreateFlag == FALSE )
 	{
-		// ƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚Ìì¬
+		// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã®ä½œæˆ
 		_MEMSET( Param->HandleArray, 0, sizeof( int ) * Param->AllNum ) ;
 		if( Param->GParam.CreateGraphGParam.InitHandleGParam.CreateDivGraphHandle != NULL &&
 			Param->GParam.CreateGraphGParam.InitHandleGParam.CreateDivGraphHandleNum >= Param->AllNum )
@@ -33236,7 +33236,7 @@ extern int Graphics_Image_CreateDivGraph_UseGParam(
 			}
 		}
 
-		// ”ñ“¯Šú“Ç‚İ‚İƒJƒEƒ“ƒg‚ğƒCƒ“ƒNƒŠƒƒ“ƒg
+		// éåŒæœŸèª­ã¿è¾¼ã¿ã‚«ã‚¦ãƒ³ãƒˆã‚’ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆ
 		if( ASyncThread )
 		{
 			IncASyncLoadCount( Param->BaseHandle, -1 ) ;
@@ -33254,7 +33254,7 @@ extern int Graphics_Image_CreateDivGraph_UseGParam(
 		ASYNCLOADDATA_COMMON *AParam = NULL ;
 		int Addr ;
 
-		// ƒpƒ‰ƒ[ƒ^‚É•K—v‚Èƒƒ‚ƒŠ‚ÌƒTƒCƒY‚ğZo
+		// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã«å¿…è¦ãªãƒ¡ãƒ¢ãƒªã®ã‚µã‚¤ã‚ºã‚’ç®—å‡º
 		Addr = 0 ;
 		AddASyncLoadParamStruct( NULL, &Addr, Param, sizeof( *Param ) ) ;
 		AddASyncLoadParamStruct( NULL, &Addr, Param->HandleArray, ( int )( sizeof( int ) * Param->AllNum ) ) ;
@@ -33271,12 +33271,12 @@ extern int Graphics_Image_CreateDivGraph_UseGParam(
 			AddASyncLoadParamStruct( NULL, &Addr, Param->AlphaBaseImage, sizeof( *Param->AlphaBaseImage ) ) ;
 		}
 
-		// ƒƒ‚ƒŠ‚ÌŠm•Û
+		// ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿
 		AParam = AllocASyncLoadDataMemory( Addr ) ;
 		if( AParam == NULL )
 			goto ERR ;
 
-		// ˆ—‚É•K—v‚Èî•ñ‚ğƒZƒbƒg
+		// å‡¦ç†ã«å¿…è¦ãªæƒ…å ±ã‚’ã‚»ãƒƒãƒˆ
 		AParam->ProcessFunction = Graphics_Image_CreateDivGraph_ASync ;
 		Addr = 0 ;
 		AddASyncLoadParamStruct( AParam->Data, &Addr, Param, sizeof( *Param ) ) ;
@@ -33294,7 +33294,7 @@ extern int Graphics_Image_CreateDivGraph_UseGParam(
 			AddASyncLoadParamStruct( AParam->Data, &Addr, Param->AlphaBaseImage, sizeof( *Param->AlphaBaseImage ) ) ;
 		}
 
-		// ƒf[ƒ^‚ğ’Ç‰Á
+		// ãƒ‡ãƒ¼ã‚¿ã‚’è¿½åŠ 
 		if( AddASyncLoadData( AParam ) < 0 )
 		{
 			DXFREE( AParam ) ;
@@ -33302,7 +33302,7 @@ extern int Graphics_Image_CreateDivGraph_UseGParam(
 			goto ERR ;
 		}
 
-		// ”ñ“¯Šú“Ç‚İ‚İƒJƒEƒ“ƒg‚ğƒCƒ“ƒNƒŠƒƒ“ƒg
+		// éåŒæœŸèª­ã¿è¾¼ã¿ã‚«ã‚¦ãƒ³ãƒˆã‚’ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆ
 		for( i = 0 ; i < Param->AllNum ; i ++ )
 			IncASyncLoadCount( Param->HandleArray[ i ], AParam->Index ) ;
 		IncASyncLoadCount( Param->BaseHandle, AParam->Index ) ;
@@ -33322,7 +33322,7 @@ extern int Graphics_Image_CreateDivGraph_UseGParam(
 #ifndef DX_NON_ASYNCLOAD
 	if( ASyncThread )
 	{
-		// ”ñ“¯Šú“Ç‚İ‚İƒJƒEƒ“ƒg‚ğƒfƒNƒŠƒƒ“ƒg
+		// éåŒæœŸèª­ã¿è¾¼ã¿ã‚«ã‚¦ãƒ³ãƒˆã‚’ãƒ‡ã‚¯ãƒªãƒ¡ãƒ³ãƒˆ
 		DecASyncLoadCount( Param->BaseHandle ) ;
 		for( i = 0 ; i < Param->AllNum ; i ++ )
 		{
@@ -33331,14 +33331,14 @@ extern int Graphics_Image_CreateDivGraph_UseGParam(
 	}
 #endif // DX_NON_ASYNCLOAD
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 
 ERR :
 #ifndef DX_NON_ASYNCLOAD
 	if( ASyncThread )
 	{
-		// ”ñ“¯Šú“Ç‚İ‚İƒJƒEƒ“ƒg‚ğƒfƒNƒŠƒƒ“ƒg
+		// éåŒæœŸèª­ã¿è¾¼ã¿ã‚«ã‚¦ãƒ³ãƒˆã‚’ãƒ‡ã‚¯ãƒªãƒ¡ãƒ³ãƒˆ
 		DecASyncLoadCount( Param->BaseHandle ) ;
 		for( i = 0 ; i < Param->AllNum ; i ++ )
 		{
@@ -33361,7 +33361,7 @@ ERR :
 }
 
 
-// LoadBmpToGraph ‚ÌƒOƒ[ƒoƒ‹•Ï”‚ÉƒAƒNƒZƒX‚µ‚È‚¢ƒo[ƒWƒ‡ƒ“
+// LoadBmpToGraph ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°ã«ã‚¢ã‚¯ã‚»ã‚¹ã—ãªã„ãƒãƒ¼ã‚¸ãƒ§ãƒ³
 extern int Graphics_Image_LoadBmpToGraph_UseGParam(
 	LOADGRAPH_GPARAM *GParam,
 	int ReCreateFlag,
@@ -33390,7 +33390,7 @@ extern int Graphics_Image_LoadBmpToGraph_UseGParam(
 	return Graphics_Image_CreateGraph_UseGParam( &Param, ASyncLoadFlag, ASyncThread ) ;
 }
 
-// LoadBmpToGraph ‚ÌƒOƒ[ƒoƒ‹•Ï”‚ÉƒAƒNƒZƒX‚µ‚È‚¢ƒo[ƒWƒ‡ƒ“( Visual C++ 6.0 —p‚Éˆø”‚ğ char Œ^‚É‚µ‚½‚¾‚¯‚Ì‚à‚Ì )
+// LoadBmpToGraph ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°ã«ã‚¢ã‚¯ã‚»ã‚¹ã—ãªã„ãƒãƒ¼ã‚¸ãƒ§ãƒ³( Visual C++ 6.0 ç”¨ã«å¼•æ•°ã‚’ char å‹ã«ã—ãŸã ã‘ã®ã‚‚ã® )
 extern int Graphics_Image_LoadBmpToGraphW_UseGParam(
 	LOADGRAPH_GPARAM *GParam,
 	int ReCreateFlag,
@@ -33407,7 +33407,7 @@ extern int Graphics_Image_LoadBmpToGraphW_UseGParam(
 }
 
 
-// LoadDivBmpToGraph ‚ÌƒOƒ[ƒoƒ‹•Ï”‚ÉƒAƒNƒZƒX‚µ‚È‚¢ƒo[ƒWƒ‡ƒ“
+// LoadDivBmpToGraph ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°ã«ã‚¢ã‚¯ã‚»ã‚¹ã—ãªã„ãƒãƒ¼ã‚¸ãƒ§ãƒ³
 extern int Graphics_Image_LoadDivBmpToGraph_UseGParam(
 	LOADGRAPH_GPARAM *GParam,
 	int ReCreateFlag,
@@ -33458,7 +33458,7 @@ extern int Graphics_Image_LoadDivBmpToGraph_UseGParam(
 	return Graphics_Image_CreateDivGraph_UseGParam( &Param, ASyncLoadFlag, ASyncThread ) ;
 }
 
-// CreateGraphFromMem ‚ÌƒOƒ[ƒoƒ‹•Ï”‚ÉƒAƒNƒZƒX‚µ‚È‚¢ƒo[ƒWƒ‡ƒ“
+// CreateGraphFromMem ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°ã«ã‚¢ã‚¯ã‚»ã‚¹ã—ãªã„ãƒãƒ¼ã‚¸ãƒ§ãƒ³
 extern int Graphics_Image_CreateGraphFromMem_UseGParam( 
 	LOADGRAPH_GPARAM *GParam,
 	int ReCreateFlag,
@@ -33491,7 +33491,7 @@ extern int Graphics_Image_CreateGraphFromMem_UseGParam(
 	return Graphics_Image_CreateGraph_UseGParam( &Param, ASyncLoadFlag ) ;
 }
 
-// CreateDivGraphFromMem ‚ÌƒOƒ[ƒoƒ‹•Ï”‚ÉƒAƒNƒZƒX‚µ‚È‚¢ƒo[ƒWƒ‡ƒ“
+// CreateDivGraphFromMem ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°ã«ã‚¢ã‚¯ã‚»ã‚¹ã—ãªã„ãƒãƒ¼ã‚¸ãƒ§ãƒ³
 extern int Graphics_Image_CreateDivGraphFromMem_UseGParam(
 	LOADGRAPH_GPARAM *GParam,
 	int ReCreateFlag,
@@ -33540,7 +33540,7 @@ extern int Graphics_Image_CreateDivGraphFromMem_UseGParam(
 	return Graphics_Image_CreateDivGraph_UseGParam( &Param, ASyncLoadFlag, ASyncThread ) ;
 }
 
-// CreateGraphFromBmp ‚ÌƒOƒ[ƒoƒ‹•Ï”‚ÉƒAƒNƒZƒX‚µ‚È‚¢ƒo[ƒWƒ‡ƒ“
+// CreateGraphFromBmp ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°ã«ã‚¢ã‚¯ã‚»ã‚¹ã—ãªã„ãƒãƒ¼ã‚¸ãƒ§ãƒ³
 extern int Graphics_Image_CreateGraphFromBmp_UseGParam(
 	LOADGRAPH_GPARAM *GParam,
 	int ReCreateFlag,
@@ -33573,7 +33573,7 @@ extern int Graphics_Image_CreateGraphFromBmp_UseGParam(
 	return Graphics_Image_CreateGraph_UseGParam( &Param, ASyncLoadFlag ) ;
 }
 
-// CreateDivGraphFromBmp ‚ÌƒOƒ[ƒoƒ‹•Ï”‚ÉƒAƒNƒZƒX‚µ‚È‚¢ƒo[ƒWƒ‡ƒ“
+// CreateDivGraphFromBmp ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°ã«ã‚¢ã‚¯ã‚»ã‚¹ã—ãªã„ãƒãƒ¼ã‚¸ãƒ§ãƒ³
 extern int Graphics_Image_CreateDivGraphFromBmp_UseGParam(
 	LOADGRAPH_GPARAM *GParam,
 	int ReCreateFlag,
@@ -33621,7 +33621,7 @@ extern int Graphics_Image_CreateDivGraphFromBmp_UseGParam(
 	return Graphics_Image_CreateDivGraph_UseGParam( &Param, ASyncLoadFlag, FALSE ) ;
 }
 
-// CreateGraphFromGraphImage ‚ÌƒOƒ[ƒoƒ‹•Ï”‚ÉƒAƒNƒZƒX‚µ‚È‚¢ƒo[ƒWƒ‡ƒ“
+// CreateGraphFromGraphImage ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°ã«ã‚¢ã‚¯ã‚»ã‚¹ã—ãªã„ãƒãƒ¼ã‚¸ãƒ§ãƒ³
 extern int Graphics_Image_CreateGraphFromGraphImage_UseGParam(
 	LOADGRAPH_GPARAM *GParam,
 	int ReCreateFlag,
@@ -33651,7 +33651,7 @@ extern int Graphics_Image_CreateGraphFromGraphImage_UseGParam(
 	return Graphics_Image_CreateGraph_UseGParam( &Param, ASyncLoadFlag, ASyncThread ) ;
 }
 
-// CreateDivGraphFromGraphImage ‚ÌƒOƒ[ƒoƒ‹•Ï”‚ÉƒAƒNƒZƒX‚µ‚È‚¢ƒo[ƒWƒ‡ƒ“
+// CreateDivGraphFromGraphImage ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°ã«ã‚¢ã‚¯ã‚»ã‚¹ã—ãªã„ãƒãƒ¼ã‚¸ãƒ§ãƒ³
 extern int Graphics_Image_CreateDivGraphFromGraphImage_UseGParam(
 	LOADGRAPH_GPARAM *GParam,
 	int ReCreateFlag,
@@ -33695,7 +33695,7 @@ extern int Graphics_Image_CreateDivGraphFromGraphImage_UseGParam(
 	return Graphics_Image_CreateDivGraph_UseGParam( &Param, ASyncLoadFlag, FALSE ) ;
 }
 
-// Graphics_Image_CreateGraphFromGraphImageBase ‚ÌƒOƒ[ƒoƒ‹•Ï”‚ÉƒAƒNƒZƒX‚µ‚È‚¢ƒo[ƒWƒ‡ƒ“
+// Graphics_Image_CreateGraphFromGraphImageBase ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°ã«ã‚¢ã‚¯ã‚»ã‚¹ã—ãªã„ãƒãƒ¼ã‚¸ãƒ§ãƒ³
 extern int Graphics_Image_CreateGraphFromGraphImageBase_UseGParam(
 	CREATE_GRAPHHANDLE_AND_BLTGRAPHIMAGE_GPARAM *GParam,
 	int ReCreateFlag,
@@ -33711,10 +33711,10 @@ extern int Graphics_Image_CreateGraphFromGraphImageBase_UseGParam(
 	BASEIMAGE TempImage ;
 	int Result ;
 
-	// Äì¬‚Å‚Í‚È‚¢ê‡‚Í‰æ‘œ‚Ì“§‰ßF‚Ìˆ—‚ğs‚¤
+	// å†ä½œæˆã§ã¯ãªã„å ´åˆã¯ç”»åƒã®é€éè‰²ã®å‡¦ç†ã‚’è¡Œã†
 	if( ReCreateFlag == FALSE )
 	{
-		// “§‰ßFƒJƒ‰[g—p‚ğ‘O’ñ‚Æ‚µ‚½‰æ‘œ‚É‚·‚éê‡‚ÍA‚±‚±‚Å“§‰ßFƒJƒ‰[ˆ—‘O’ñ‰æ‘œ‚ğì¬‚·‚é
+		// é€éè‰²ã‚«ãƒ©ãƒ¼ä½¿ç”¨ã‚’å‰æã¨ã—ãŸç”»åƒã«ã™ã‚‹å ´åˆã¯ã€ã“ã“ã§é€éè‰²ã‚«ãƒ©ãƒ¼å‡¦ç†å‰æç”»åƒã‚’ä½œæˆã™ã‚‹
 		if( GParam->UseTransColorGraphCreateFlag && GParam->NotUseTransColor == FALSE )
 		{
 			int w, h, i, j, r, g, b, a, r2, g2, b2, a2, tr, tg, tb, useAlpha;
@@ -33727,7 +33727,7 @@ extern int Graphics_Image_CreateGraphFromGraphImageBase_UseGParam(
 			useAlpha = BaseImage->ColorData.AlphaWidth != 0;
 			if( NS_CreateARGB8ColorBaseImage( w, h, &TempImage ) == 0 )
 			{
-				// “§‰ßF‚Ìƒ`ƒFƒbƒN‚ğs‚¢‚È‚ª‚ç‰æ‘œ‚ğ“]‘—
+				// é€éè‰²ã®ãƒã‚§ãƒƒã‚¯ã‚’è¡Œã„ãªãŒã‚‰ç”»åƒã‚’è»¢é€
 				for( i = 0; i < h; i++ )
 				{
 					for( j = 0; j < w; j++ )
@@ -33737,7 +33737,7 @@ extern int Graphics_Image_CreateGraphFromGraphImageBase_UseGParam(
 					}
 				}
 
-				// “§‰ßF‚Å‚Í‚È‚¢•”•ª‚ÌF‚ğ“§‰ßF‚Ì•”•ª‚É‘ã“ü‚·‚é
+				// é€éè‰²ã§ã¯ãªã„éƒ¨åˆ†ã®è‰²ã‚’é€éè‰²ã®éƒ¨åˆ†ã«ä»£å…¥ã™ã‚‹
 				for( i = 0; i < h; i++ )
 				{
 					for( j = 0; j < w; j++ )
@@ -33753,24 +33753,24 @@ extern int Graphics_Image_CreateGraphFromGraphImageBase_UseGParam(
 					}
 				}
 
-				// V‚µ‚¢ƒCƒ[ƒW‚Ìî•ñ‚ğƒZƒbƒg
+				// æ–°ã—ã„ã‚¤ãƒ¡ãƒ¼ã‚¸ã®æƒ…å ±ã‚’ã‚»ãƒƒãƒˆ
 				BaseImage = &TempImage;
 
-				// ‰¼‰æ‘œ‚ğg—p‚µ‚Ä‚¢‚éƒtƒ‰ƒO‚ğ—§‚Ä‚é
+				// ä»®ç”»åƒã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 				UseTempImage = TRUE ;
 			}
 		}
 	}
 
-	// ‚È‚ñ‚Ì‹@”\‚àŠ„‚è•t‚¯‚ç‚ê‚Ä‚¢‚È‚¢ƒrƒbƒg‚Ìƒ}ƒXƒN‚ğƒZƒbƒg‚·‚é
-	// (NoneMask ‚Í“r’†‚©‚ç“ü‚ê‚½ƒƒ“ƒo•Ï”‚È‚Ì‚ÅA‰ºˆÊŒİŠ·«‚ğ‚½‚¹‚é‚½‚ß‚ÉEEE)
+	// ãªã‚“ã®æ©Ÿèƒ½ã‚‚å‰²ã‚Šä»˜ã‘ã‚‰ã‚Œã¦ã„ãªã„ãƒ“ãƒƒãƒˆã®ãƒã‚¹ã‚¯ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
+	// (NoneMask ã¯é€”ä¸­ã‹ã‚‰å…¥ã‚ŒãŸãƒ¡ãƒ³ãƒå¤‰æ•°ãªã®ã§ã€ä¸‹ä½äº’æ›æ€§ã‚’æŒãŸã›ã‚‹ãŸã‚ã«ãƒ»ãƒ»ãƒ»)
 	NS_SetColorDataNoneMask( ( COLORDATA * )&BaseImage->ColorData ) ;
 	if( AlphaBaseImage != NULL ) NS_SetColorDataNoneMask( ( COLORDATA * )&AlphaBaseImage->ColorData ) ;
 
-	// Äì¬‚Ìê‡‚ÍƒTƒCƒY‚ª“¯ˆê‚©ƒ`ƒFƒbƒN‚·‚é
+	// å†ä½œæˆã®å ´åˆã¯ã‚µã‚¤ã‚ºãŒåŒä¸€ã‹ãƒã‚§ãƒƒã‚¯ã™ã‚‹
 	if( ReCreateFlag )
 	{
-		// ƒTƒCƒY‚ªˆá‚Á‚½‚çƒGƒ‰[
+		// ã‚µã‚¤ã‚ºãŒé•ã£ãŸã‚‰ã‚¨ãƒ©ãƒ¼
 		if( NS_GetGraphSize( GrHandle, &SizeX, &SizeY ) == -1 )
 		{
 			return -1 ;
@@ -33794,7 +33794,7 @@ extern int Graphics_Image_CreateGraphFromGraphImageBase_UseGParam(
 	{
 		LUTRANS_GPARAM( GParam, BaseImage ) ;
 
-		// ƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚ğì¬‚·‚é
+		// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã‚’ä½œæˆã™ã‚‹
 		Result = Graphics_Image_CreateDXGraph_UseGParam( &GParam->InitHandleGParam, GrHandle, BaseImage, AlphaBaseImage, TextureFlag, ASyncThread ) ;
 	}
 
@@ -33811,17 +33811,17 @@ extern int Graphics_Image_CreateGraphFromGraphImageBase_UseGParam(
 		) ;
 	}
 
-	// ‰¼‰æ‘œ‚ğg—p‚µ‚Ä‚¢‚½ê‡‚Í‰ğ•ú‚·‚é
+	// ä»®ç”»åƒã‚’ä½¿ç”¨ã—ã¦ã„ãŸå ´åˆã¯è§£æ”¾ã™ã‚‹
 	if( UseTempImage )
 	{
 		NS_ReleaseBaseImage( &TempImage );
 	}
 
-	// ¬Œ÷‚©¸”s‚©‚ğ•Ô‚·
+	// æˆåŠŸã‹å¤±æ•—ã‹ã‚’è¿”ã™
 	return Result ;
 }
 
-// Graphics_Image_CreateDivGraphFromGraphImageBase ‚ÌƒOƒ[ƒoƒ‹•Ï”‚ÉƒAƒNƒZƒX‚µ‚È‚¢ƒo[ƒWƒ‡ƒ“
+// Graphics_Image_CreateDivGraphFromGraphImageBase ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°ã«ã‚¢ã‚¯ã‚»ã‚¹ã—ãªã„ãƒãƒ¼ã‚¸ãƒ§ãƒ³
 extern int Graphics_Image_CreateDivGraphFromGraphImageBase_UseGParam(
 	CREATE_GRAPHHANDLE_AND_BLTGRAPHIMAGE_GPARAM *GParam,
 	int ReCreateFlag,
@@ -33849,7 +33849,7 @@ extern int Graphics_Image_CreateDivGraphFromGraphImageBase_UseGParam(
 	int Result ;
 	int GrSizeX, GrSizeY ;
 
-	// XNum, YNum ‚ÌæZ’l‚ª AllNum ‚É–‚½‚È‚©‚Á‚½‚çƒGƒ‰[
+	// XNum, YNum ã®ä¹—ç®—å€¤ãŒ AllNum ã«æº€ãŸãªã‹ã£ãŸã‚‰ã‚¨ãƒ©ãƒ¼
 	if( XNum * YNum < AllNum )
 	{
 		return -1 ;
@@ -33881,7 +33881,7 @@ extern int Graphics_Image_CreateDivGraphFromGraphImageBase_UseGParam(
 		int basexI, addxI ;
 		float basexF, addxF ;
 
-		// •’Ê‚ÉƒOƒ‰ƒtƒBƒbƒN‚ğì¬‚·‚é
+		// æ™®é€šã«ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚’ä½œæˆã™ã‚‹
 		if( Graphics_Image_CreateGraphFromGraphImageBase_UseGParam( GParam, FALSE, BaseHandle, BaseImage, AlphaBaseImage, TextureFlag, ASyncThread ) < 0 )
 			return -1 ;
 
@@ -33900,18 +33900,18 @@ extern int Graphics_Image_CreateDivGraphFromGraphImageBase_UseGParam(
 			addxF = StrideXF ;
 		}
 
-		// w’è‚Ì–‡”‚É•ªŠ„‚·‚é
+		// æŒ‡å®šã®æšæ•°ã«åˆ†å‰²ã™ã‚‹
 		k = 0 ;
 		for( i = 0 ; k < AllNum && i < YNum ; i ++ )
 		{
 			for( j = 0 ; k < AllNum && j < XNum ; j ++, k ++ )
 			{
-				// ƒTƒCƒY‚Ìƒ`ƒFƒbƒN
+				// ã‚µã‚¤ã‚ºã®ãƒã‚§ãƒƒã‚¯
 				if( GSYS.CreateImage.NotUseLoadDivGraphSizeCheck == FALSE &&
 					( ( BaseImage->Width  < basexI   + addxI * j + StrideXI ) ||
 					  ( BaseImage->Height < StrideYI         * i + StrideYI ) ) )
 				{
-					DXST_LOGFILE_ADDUTF16LE( "\xb0\x30\xe9\x30\xd5\x30\xa3\x30\xc3\x30\xaf\x30\x6e\x30\x06\x52\x72\x52\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x02\x30\x06\x52\x72\x52\x8c\x5f\x6e\x30\xcf\x7d\xb5\x30\xa4\x30\xba\x30\x4c\x30\x06\x52\x72\x52\x43\x51\x6e\x30\x3b\x75\xcf\x50\x88\x30\x8a\x30\x82\x30\x27\x59\x4d\x30\x44\x30\x07\x63\x9a\x5b\x6b\x30\x6a\x30\x63\x30\x66\x30\x57\x30\x7e\x30\x63\x30\x66\x30\x44\x30\x7e\x30\x59\x30\x02\x30\x20\x00\x69\x00\x6e\x00\x20\x00\x43\x00\x72\x00\x65\x00\x61\x00\x74\x00\x65\x00\x44\x00\x69\x00\x76\x00\x47\x00\x72\x00\x61\x00\x70\x00\x68\x00\x46\x00\x72\x00\x6f\x00\x6d\x00\x47\x00\x72\x00\x61\x00\x70\x00\x68\x00\x49\x00\x6d\x00\x61\x00\x67\x00\x65\x00\x0a\x00\x00"/*@ L"ƒOƒ‰ƒtƒBƒbƒN‚Ì•ªŠ„‚É¸”s‚µ‚Ü‚µ‚½B•ªŠ„Œã‚Ì‘ƒTƒCƒY‚ª•ªŠ„Œ³‚Ì‰æ‘œ‚æ‚è‚à‘å‚«‚¢w’è‚É‚È‚Á‚Ä‚µ‚Ü‚Á‚Ä‚¢‚Ü‚·B in CreateDivGraphFromGraphImage\n" @*/ ) ;
+					DXST_LOGFILE_ADDUTF16LE( "\xb0\x30\xe9\x30\xd5\x30\xa3\x30\xc3\x30\xaf\x30\x6e\x30\x06\x52\x72\x52\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x02\x30\x06\x52\x72\x52\x8c\x5f\x6e\x30\xcf\x7d\xb5\x30\xa4\x30\xba\x30\x4c\x30\x06\x52\x72\x52\x43\x51\x6e\x30\x3b\x75\xcf\x50\x88\x30\x8a\x30\x82\x30\x27\x59\x4d\x30\x44\x30\x07\x63\x9a\x5b\x6b\x30\x6a\x30\x63\x30\x66\x30\x57\x30\x7e\x30\x63\x30\x66\x30\x44\x30\x7e\x30\x59\x30\x02\x30\x20\x00\x69\x00\x6e\x00\x20\x00\x43\x00\x72\x00\x65\x00\x61\x00\x74\x00\x65\x00\x44\x00\x69\x00\x76\x00\x47\x00\x72\x00\x61\x00\x70\x00\x68\x00\x46\x00\x72\x00\x6f\x00\x6d\x00\x47\x00\x72\x00\x61\x00\x70\x00\x68\x00\x49\x00\x6d\x00\x61\x00\x67\x00\x65\x00\x0a\x00\x00"/*@ L"ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®åˆ†å‰²ã«å¤±æ•—ã—ã¾ã—ãŸã€‚åˆ†å‰²å¾Œã®ç·ã‚µã‚¤ã‚ºãŒåˆ†å‰²å…ƒã®ç”»åƒã‚ˆã‚Šã‚‚å¤§ãã„æŒ‡å®šã«ãªã£ã¦ã—ã¾ã£ã¦ã„ã¾ã™ã€‚ in CreateDivGraphFromGraphImage\n" @*/ ) ;
 					return -1 ;
 				}
 
@@ -33929,7 +33929,7 @@ extern int Graphics_Image_CreateDivGraphFromGraphImageBase_UseGParam(
 						BaseHandle,
 						ASyncThread ) < 0 )
 				{
-					DXST_LOGFILE_ADDUTF16LE( "\xb0\x30\xe9\x30\xd5\x30\xa3\x30\xc3\x30\xaf\x30\x6e\x30\x06\x52\x72\x52\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x20\x00\x69\x00\x6e\x00\x20\x00\x43\x00\x72\x00\x65\x00\x61\x00\x74\x00\x65\x00\x44\x00\x69\x00\x76\x00\x47\x00\x72\x00\x61\x00\x70\x00\x68\x00\x46\x00\x72\x00\x6f\x00\x6d\x00\x47\x00\x72\x00\x61\x00\x70\x00\x68\x00\x49\x00\x6d\x00\x61\x00\x67\x00\x65\x00\x0a\x00\x00"/*@ L"ƒOƒ‰ƒtƒBƒbƒN‚Ì•ªŠ„‚É¸”s‚µ‚Ü‚µ‚½ in CreateDivGraphFromGraphImage\n" @*/ ) ;
+					DXST_LOGFILE_ADDUTF16LE( "\xb0\x30\xe9\x30\xd5\x30\xa3\x30\xc3\x30\xaf\x30\x6e\x30\x06\x52\x72\x52\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x20\x00\x69\x00\x6e\x00\x20\x00\x43\x00\x72\x00\x65\x00\x61\x00\x74\x00\x65\x00\x44\x00\x69\x00\x76\x00\x47\x00\x72\x00\x61\x00\x70\x00\x68\x00\x46\x00\x72\x00\x6f\x00\x6d\x00\x47\x00\x72\x00\x61\x00\x70\x00\x68\x00\x49\x00\x6d\x00\x61\x00\x67\x00\x65\x00\x0a\x00\x00"/*@ L"ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®åˆ†å‰²ã«å¤±æ•—ã—ã¾ã—ãŸ in CreateDivGraphFromGraphImage\n" @*/ ) ;
 					return -1 ;
 				}
 			}
@@ -33938,19 +33938,19 @@ extern int Graphics_Image_CreateDivGraphFromGraphImageBase_UseGParam(
 	}
 	else
 	{
-		// ‚È‚ñ‚Ì‹@”\‚àŠ„‚è•t‚¯‚ç‚ê‚Ä‚¢‚È‚¢ƒrƒbƒg‚Ìƒ}ƒXƒN‚ğƒZƒbƒg‚·‚é
-		// (NoneMask ‚Í“r’†‚©‚ç“ü‚ê‚½ƒƒ“ƒo•Ï”‚È‚Ì‚ÅA‰ºˆÊŒİŠ·«‚ğ‚½‚¹‚é‚½‚ß‚ÉEEE)
+		// ãªã‚“ã®æ©Ÿèƒ½ã‚‚å‰²ã‚Šä»˜ã‘ã‚‰ã‚Œã¦ã„ãªã„ãƒ“ãƒƒãƒˆã®ãƒã‚¹ã‚¯ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
+		// (NoneMask ã¯é€”ä¸­ã‹ã‚‰å…¥ã‚ŒãŸãƒ¡ãƒ³ãƒå¤‰æ•°ãªã®ã§ã€ä¸‹ä½äº’æ›æ€§ã‚’æŒãŸã›ã‚‹ãŸã‚ã«ãƒ»ãƒ»ãƒ»)
 		NS_SetColorDataNoneMask( ( COLORDATA * )&BaseImage->ColorData ) ;
 		if( AlphaBaseImage != NULL ) NS_SetColorDataNoneMask( ( COLORDATA * )&AlphaBaseImage->ColorData ) ;
 
-		// ƒTƒCƒY‚ªˆá‚Á‚½‚çƒGƒ‰[
+		// ã‚µã‚¤ã‚ºãŒé•ã£ãŸã‚‰ã‚¨ãƒ©ãƒ¼
 		if( NS_GetGraphSize( HandleArray[ 0 ], &GrSizeX, &GrSizeY ) == -1 ) return -1 ;
 		if( BaseImage->Width < XNum * StrideXI || BaseImage->Height < YNum * StrideYI ) return -1 ;
 		if( AlphaBaseImage != NULL && ( AlphaBaseImage->Width != BaseImage->Width || AlphaBaseImage->Height != BaseImage->Height ) ) return -1 ;
 
 		LUTRANS_RE_DIV_GPARAM( GParam, BaseImage, HandleArray, AllNum )
 
-		// •ªŠ„ƒOƒ‰ƒtƒBƒbƒN‚ğƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚É“]‘—‚·‚é
+		// åˆ†å‰²ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚’ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã«è»¢é€ã™ã‚‹
 		Result = Graphics_Image_BltBmpOrGraphImageToDivGraphBase(
 				BaseImage,
 				AlphaBaseImage,
@@ -33973,11 +33973,11 @@ extern int Graphics_Image_CreateDivGraphFromGraphImageBase_UseGParam(
 		) ; 
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return Result ;
 }
 
-// CreateGraphFromGraphImage ‚Ì“à•”ŠÖ”
+// CreateGraphFromGraphImage ã®å†…éƒ¨é–¢æ•°
 extern int Graphics_Image_CreateGraphFromGraphImageBase( BASEIMAGE *BaseImage, const BASEIMAGE *AlphaBaseImage, int TextureFlag, int ASyncThread )
 {
 	CREATE_GRAPHHANDLE_AND_BLTGRAPHIMAGE_GPARAM GParam ;
@@ -34010,7 +34010,7 @@ extern int Graphics_Image_CreateGraphFromGraphImageBase( BASEIMAGE *BaseImage, c
 	return GrHandle ;
 }
 
-// CreateDivGraphFromGraphImage ‚Ì“à•”ŠÖ”
+// CreateDivGraphFromGraphImage ã®å†…éƒ¨é–¢æ•°
 extern int Graphics_Image_CreateDivGraphFromGraphImageBase(
 	BASEIMAGE *BaseImage,
 	const BASEIMAGE *AlphaBaseImage,
@@ -34030,20 +34030,20 @@ extern int Graphics_Image_CreateDivGraphFromGraphImageBase(
 	int BaseHandle, i ;
 	CREATE_GRAPHHANDLE_AND_BLTGRAPHIMAGE_GPARAM GParam ;
 
-	// •ªŠ„ƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚Ì’l‚ğ‰Šú‰»
+	// åˆ†å‰²ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã®å€¤ã‚’åˆæœŸåŒ–
 	for( i = 0 ; i < AllNum ; i ++ )
 	{
 		HandleArray[ i ] = -1 ;
 	}
 
-	// Šî–{ƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚Ìì¬
+	// åŸºæœ¬ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã®ä½œæˆ
 	BaseHandle = Graphics_Image_AddHandle( -1, FALSE ) ;
 	if( BaseHandle == -1 )
 	{
 		return -1 ;
 	}
 
-	// •ªŠ„ƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚Ìì¬
+	// åˆ†å‰²ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã®ä½œæˆ
 	_MEMSET( HandleArray, 0, AllNum * sizeof( int ) ) ;
 	for( i = 0 ; i < AllNum ; i ++ )
 	{
@@ -34054,17 +34054,17 @@ extern int Graphics_Image_CreateDivGraphFromGraphImageBase(
 		}
 	}
 
-	// ‰Šú‰»—pƒf[ƒ^‚Ì€”õ
+	// åˆæœŸåŒ–ç”¨ãƒ‡ãƒ¼ã‚¿ã®æº–å‚™
 	Graphics_Image_InitCreateGraphHandleAndBltGraphImageGParam( &GParam ) ;
 
-	// •ªŠ„ƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹‚Ìì¬
+	// åˆ†å‰²ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«ã®ä½œæˆ
 	if( Graphics_Image_CreateDivGraphFromGraphImageBase_UseGParam( &GParam, FALSE, BaseHandle, BaseImage, AlphaBaseImage, AllNum, XNum, YNum, IsFloat, SizeXI, SizeXF, SizeYI, SizeYF, 0, 0.0f, 0, 0.0f, HandleArray, TextureFlag, ReverseFlag, FALSE ) < 0 )
 		goto ERR ;
 	
-	// Œ³‚Æ‚È‚Á‚½ƒnƒ“ƒhƒ‹‚ğ‰ğ•ú
+	// å…ƒã¨ãªã£ãŸãƒãƒ³ãƒ‰ãƒ«ã‚’è§£æ”¾
 	SubHandle( BaseHandle, FALSE, FALSE ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 	
 ERR :
@@ -34074,11 +34074,11 @@ ERR :
 	}
 	SubHandle( BaseHandle, FALSE, FALSE ) ;
 
-	// ƒGƒ‰[I—¹	
+	// ã‚¨ãƒ©ãƒ¼çµ‚äº†	
 	return -1 ;
 }
 
-// ReCreateGraphFromGraphImage ‚Ì“à•”ŠÖ”
+// ReCreateGraphFromGraphImage ã®å†…éƒ¨é–¢æ•°
 extern int Graphics_Image_ReCreateGraphFromGraphImageBase( BASEIMAGE *BaseImage, const BASEIMAGE *AlphaBaseImage, int GrHandle, int TextureFlag )
 {
 	CREATE_GRAPHHANDLE_AND_BLTGRAPHIMAGE_GPARAM GParam ;
@@ -34093,7 +34093,7 @@ extern int Graphics_Image_ReCreateGraphFromGraphImageBase( BASEIMAGE *BaseImage,
 	return Result ;
 }
 
-// ReCreateDivGraphFromGraphImage ‚Ì“à•”ŠÖ”
+// ReCreateDivGraphFromGraphImage ã®å†…éƒ¨é–¢æ•°
 extern int Graphics_Image_ReCreateDivGraphFromGraphImageBase( BASEIMAGE *BaseImage, const BASEIMAGE *AlphaBaseImage, int AllNum, int XNum, int YNum, int IsFloat, int SizeXI, float SizeXF, int SizeYI, float SizeYF, const int *HandleArray, int TextureFlag, int ReverseFlag )
 {
 	CREATE_GRAPHHANDLE_AND_BLTGRAPHIMAGE_GPARAM GParam ;
@@ -34105,11 +34105,11 @@ extern int Graphics_Image_ReCreateDivGraphFromGraphImageBase( BASEIMAGE *BaseIma
 
 	Result = Graphics_Image_CreateDivGraphFromGraphImageBase_UseGParam( &GParam, TRUE, -1, BaseImage, AlphaBaseImage, AllNum, XNum, YNum, IsFloat, SizeXI, SizeXF, SizeYI, SizeYF, 0, 0.0f, 0, 0.0f, ( int * )HandleArray, TextureFlag, ReverseFlag, FALSE ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return Result ;
 }
 
-// CREATE_GRAPHHANDLE_AND_BLTGRAPHIMAGE_GPARAM ‚Ìƒf[ƒ^‚ğƒZƒbƒg‚·‚é
+// CREATE_GRAPHHANDLE_AND_BLTGRAPHIMAGE_GPARAM ã®ãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern void Graphics_Image_InitCreateGraphHandleAndBltGraphImageGParam( CREATE_GRAPHHANDLE_AND_BLTGRAPHIMAGE_GPARAM *GParam )
 {
 	Graphics_Image_InitSetupGraphHandleGParam( &GParam->InitHandleGParam ) ;
@@ -34119,7 +34119,7 @@ extern void Graphics_Image_InitCreateGraphHandleAndBltGraphImageGParam( CREATE_G
 	GParam->LeftUpColorIsTransColorFlag		= GSYS.CreateImage.LeftUpColorIsTransColorFlag ;
 }
 
-// SETUP_GRAPHHANDLE_GPARAM ‚Ìƒf[ƒ^‚ğƒZƒbƒg‚·‚é
+// SETUP_GRAPHHANDLE_GPARAM ã®ãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern void Graphics_Image_InitSetupGraphHandleGParam( SETUP_GRAPHHANDLE_GPARAM *GParam )
 {
 	GParam->TransColor							= GSYS.CreateImage.TransColor ;
@@ -34159,7 +34159,7 @@ extern void Graphics_Image_InitSetupGraphHandleGParam( SETUP_GRAPHHANDLE_GPARAM 
 		GParam->CreateDivGraphHandle = ( int * )DXALLOC( sizeof( int ) * GSYS.CreateImage.CreateDivGraphHandleNum ) ;
 		if( GParam->CreateDivGraphHandle == NULL )
 		{
-			DXST_LOGFILEFMT_ADDUTF16LE(( "\x06\x52\x72\x52\x3b\x75\xcf\x50\xb0\x30\xe9\x30\xd5\x30\xa3\x30\xc3\x30\xaf\x30\xcf\x30\xf3\x30\xc9\x30\xeb\x30\x24\x50\x07\x63\x9a\x5b\x28\x75\x4d\x91\x17\x52\x6e\x30\xe1\x30\xe2\x30\xea\x30\x20\x00\x25\x00\x64\x00\x62\x00\x79\x00\x74\x00\x65\x00\x20\x00\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"•ªŠ„‰æ‘œƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹’lw’è—p”z—ñ‚Ìƒƒ‚ƒŠ %dbyte ‚ÌŠm•Û‚É¸”s‚µ‚Ü‚µ‚½" @*/, sizeof( int ) * GSYS.CreateImage.CreateDivGraphHandleNum )) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\x06\x52\x72\x52\x3b\x75\xcf\x50\xb0\x30\xe9\x30\xd5\x30\xa3\x30\xc3\x30\xaf\x30\xcf\x30\xf3\x30\xc9\x30\xeb\x30\x24\x50\x07\x63\x9a\x5b\x28\x75\x4d\x91\x17\x52\x6e\x30\xe1\x30\xe2\x30\xea\x30\x20\x00\x25\x00\x64\x00\x62\x00\x79\x00\x74\x00\x65\x00\x20\x00\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"åˆ†å‰²ç”»åƒã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«å€¤æŒ‡å®šç”¨é…åˆ—ã®ãƒ¡ãƒ¢ãƒª %dbyte ã®ç¢ºä¿ã«å¤±æ•—ã—ã¾ã—ãŸ" @*/, sizeof( int ) * GSYS.CreateImage.CreateDivGraphHandleNum )) ;
 			GParam->CreateDivGraphHandleNum = 0 ;
 		}
 		else
@@ -34253,13 +34253,13 @@ extern void Graphics_Image_InitSetupGraphHandleGParam_Normal_DrawValid_NoneZBuff
 	GParam->UserPlatformTexture					= NULL ;
 }
 
-// SETGRAPHBASEINFO_GPARAM ‚Ìƒf[ƒ^‚ğƒZƒbƒg‚·‚é
+// SETGRAPHBASEINFO_GPARAM ã®ãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern void Graphics_Image_InitSetGraphBaseInfoGParam( SETGRAPHBASEINFO_GPARAM *GParam )
 {
 	GParam->NotGraphBaseDataBackupFlag = GSYS.CreateImage.NotGraphBaseDataBackupFlag ;
 }
 
-// LOADGRAPH_GPARAM ‚Ìƒf[ƒ^‚ğƒZƒbƒg‚·‚é
+// LOADGRAPH_GPARAM ã®ãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern void Graphics_Image_InitLoadGraphGParam( LOADGRAPH_GPARAM *GParam )
 {
 	InitLoadBaseImageGParam( &GParam->LoadBaseImageGParam, FALSE ) ;
@@ -34292,9 +34292,9 @@ extern void Graphics_Image_InitLoadGraphGParam( LOADGRAPH_GPARAM *GParam )
 
 
 
-// •`‰æİ’èŠÖŒWŠÖ”
+// æç”»è¨­å®šé–¢ä¿‚é–¢æ•°
 
-// ƒOƒ‰ƒtƒBƒbƒN•`‰æİ’èŠÖŒW‚Ìî•ñ‚ğ‰Šú‰»
+// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯æç”»è¨­å®šé–¢ä¿‚ã®æƒ…å ±ã‚’åˆæœŸåŒ–
 extern	int		Graphics_DrawSetting_Initialize( void )
 {
 	int i ;
@@ -34308,7 +34308,7 @@ extern	int		Graphics_DrawSetting_Initialize( void )
 	int Large3DPositionSupport                 = GSYS.DrawSetting.Large3DPositionSupport ;
 	int UseReversedZFlag                       = GSYS.DrawSetting.UseReversedZFlag ;
 
-	// ƒ[ƒ‰Šú‰»
+	// ã‚¼ãƒ­åˆæœŸåŒ–
 	_MEMSET( &GSYS.DrawSetting, 0, sizeof( GSYS.DrawSetting ) ) ;
 	_MEMSET( &GSYS.Camera,      0, sizeof( GSYS.Camera      ) ) ;
 //	_MEMSET( &GSYS.CreateImage, 0, sizeof( GSYS.CreateImage ) ) ;
@@ -34322,7 +34322,7 @@ extern	int		Graphics_DrawSetting_Initialize( void )
 	GSYS.DrawSetting.Large3DPositionSupport     = Large3DPositionSupport ;
 	GSYS.DrawSetting.UseReversedZFlag           = UseReversedZFlag ;
 
-	// ƒeƒNƒXƒ`ƒƒƒAƒhƒŒƒXƒ‚[ƒh‚Ì‰Šúİ’è
+	// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¢ãƒ‰ãƒ¬ã‚¹ãƒ¢ãƒ¼ãƒ‰ã®åˆæœŸè¨­å®š
 	for( i = 0 ; i < USE_TEXTURESTAGE_NUM ; i ++ )
 	{
 		if( GSYS.DrawSetting.TexAddressModeU[ i ] == 0 )
@@ -34333,79 +34333,79 @@ extern	int		Graphics_DrawSetting_Initialize( void )
 			GSYS.DrawSetting.TexAddressModeW[ i ] = DX_TEXADDRESS_CLAMP ;
 	}
 
-	// ƒuƒŒƒ“ƒh‰æ‘œ‚Íİ’è‚³‚ê‚Ä‚¢‚È‚¢ó‘Ô‚É‚·‚é
+	// ãƒ–ãƒ¬ãƒ³ãƒ‰ç”»åƒã¯è¨­å®šã•ã‚Œã¦ã„ãªã„çŠ¶æ…‹ã«ã™ã‚‹
 	GSYS.DrawSetting.BlendGraph = -1 ;
 
-	// ‚yƒoƒbƒtƒ@‚Ì‰Šúİ’è
+	// ï¼ºãƒãƒƒãƒ•ã‚¡ã®åˆæœŸè¨­å®š
 	GSYS.DrawSetting.EnableZBufferFlag2D = FALSE ;
 	GSYS.DrawSetting.WriteZBufferFlag2D  = FALSE ;
 	GSYS.DrawSetting.EnableZBufferFlag3D = FALSE ;
 	GSYS.DrawSetting.WriteZBufferFlag3D  = FALSE ;
 
-	// ƒ‰ƒCƒg‚Ìİ’è‚ğƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒ^‚É”½‰f‚·‚é‚æ‚¤‚Éƒtƒ‰ƒO‚ğƒZƒbƒg
+	// ãƒ©ã‚¤ãƒˆã®è¨­å®šã‚’ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚¿ã«åæ˜ ã™ã‚‹ã‚ˆã†ã«ãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆ
 	GSYS.Light.HardwareChange = TRUE ;
 
-	// İ’è‚ª•ÏX‚³‚ê‚½‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// è¨­å®šãŒå¤‰æ›´ã•ã‚ŒãŸã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	GSYS.ChangeSettingFlag = TRUE ;
 
-	// •`‰æ‚y’l‚ğƒZƒbƒg
+	// æç”»ï¼ºå€¤ã‚’ã‚»ãƒƒãƒˆ
 	GSYS.DrawSetting.DrawZ = 0.2f;
 
-	// ‰Šú‚y”äŠrƒ‚[ƒh‚ğƒZƒbƒg
+	// åˆæœŸï¼ºæ¯”è¼ƒãƒ¢ãƒ¼ãƒ‰ã‚’ã‚»ãƒƒãƒˆ
 	GSYS.DrawSetting.ZBufferCmpType2D = GSYS.DrawSetting.UseReversedZFlag ? DX_CMP_GREATEREQUAL : DX_CMP_LESSEQUAL;
 	GSYS.DrawSetting.ZBufferCmpType3D = GSYS.DrawSetting.UseReversedZFlag ? DX_CMP_GREATEREQUAL : DX_CMP_LESSEQUAL;
 
-	// ‰Šú‚ÍƒeƒNƒXƒ`ƒƒƒT[ƒtƒFƒX‚ğì¬‚·‚é•ûŒü‚Å
+	// åˆæœŸã¯ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚µãƒ¼ãƒ•ã‚§ã‚¹ã‚’ä½œæˆã™ã‚‹æ–¹å‘ã§
 //	GSYS.TextureImageCreateFlag = TRUE ;
 
-	// “§‰ßF‚ÉƒAƒ‹ƒtƒ@ƒeƒXƒg‚ğg—p‚·‚é
+	// é€éè‰²ã«ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆã‚’ä½¿ç”¨ã™ã‚‹
 	GSYS.CreateImage.AlphaTestFlag = TRUE ;
 	BASEIM.AlphaTestImageCreateFlag = TRUE ;
 
-	// •`‰æƒ‚[ƒh‚ğƒlƒAƒŒƒXƒgƒlƒCƒo[‚ÉƒZƒbƒg
+	// æç”»ãƒ¢ãƒ¼ãƒ‰ã‚’ãƒã‚¢ãƒ¬ã‚¹ãƒˆãƒã‚¤ãƒãƒ¼ã«ã‚»ãƒƒãƒˆ
 	GSYS.DrawSetting.DrawMode = DX_DRAWMODE_NEAREST ;
 
-	// Å‘åˆÙ•û«‚ğ‚P‚ÉƒZƒbƒg
+	// æœ€å¤§ç•°æ–¹æ€§ã‚’ï¼‘ã«ã‚»ãƒƒãƒˆ
 	GSYS.DrawSetting.MaxAnisotropy = 1 ;
 
-	// ƒtƒBƒ‹ƒ‚[ƒh‚Íƒ|ƒŠƒSƒ“•`‰æ
+	// ãƒ•ã‚£ãƒ«ãƒ¢ãƒ¼ãƒ‰ã¯ãƒãƒªã‚´ãƒ³æç”»
 	GSYS.DrawSetting.FillMode = DX_FILL_SOLID ;
 
-	// ƒuƒŒƒ“ƒhƒ‚[ƒh‚ğƒ¿ƒuƒŒƒ“ƒh‚ÉƒZƒbƒg
+	// ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã‚’Î±ãƒ–ãƒ¬ãƒ³ãƒ‰ã«ã‚»ãƒƒãƒˆ
 	GSYS.DrawSetting.BlendMode = DX_BLENDMODE_NOBLEND ;
 
-	// ƒAƒ‹ƒtƒ@ƒeƒXƒgƒ‚[ƒh‚ÍƒfƒtƒHƒ‹ƒg“®ì
+	// ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆãƒ¢ãƒ¼ãƒ‰ã¯ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå‹•ä½œ
 	GSYS.DrawSetting.AlphaTestMode = -1 ;
 
-	// •`‰æ‹P“x‚ğƒZƒbƒg
+	// æç”»è¼åº¦ã‚’ã‚»ãƒƒãƒˆ
 	NS_SetDrawBright( 255, 255, 255 ) ;
 //	GSYS.DrawSetting.bDrawBright = 0xffffff ;
 
-	// ‰ÁZF‚ğƒZƒbƒg
+	// åŠ ç®—è‰²ã‚’ã‚»ãƒƒãƒˆ
 	NS_SetDrawAddColor( 0, 0, 0 ) ;
 
-	// ƒtƒHƒO‚Ì‰Šúİ’è
+	// ãƒ•ã‚©ã‚°ã®åˆæœŸè¨­å®š
 	NS_SetFogMode( DX_FOGMODE_LINEAR ) ;
 	NS_SetFogColor( 255, 255, 255 ) ;
 	NS_SetFogStartEnd( 0.0f, 1500.0f ) ;
 
-	// g—p‚·‚éƒsƒNƒZƒ‹ƒtƒH[ƒ}ƒbƒg‚ğƒZƒbƒg
+	// ä½¿ç”¨ã™ã‚‹ãƒ”ã‚¯ã‚»ãƒ«ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã‚’ã‚»ãƒƒãƒˆ
 //	SetCreateGraphColorBitDepth( COLORBITDEPTH ) ;
 	NS_SetCreateGraphColorBitDepth( 0 ) ;
 
 #ifndef DX_NON_MASK
-	// ƒ}ƒXƒN‚Íg—p‚·‚é‚ÉƒZƒbƒg
+	// ãƒã‚¹ã‚¯ã¯ä½¿ç”¨ã™ã‚‹ã«ã‚»ãƒƒãƒˆ
 	MASKD.MaskUseFlag = TRUE ;
 	MASKD.MaskValidFlag = FALSE ;
 #endif
 
-	// •`‰ææƒXƒNƒŠ[ƒ“—Ìˆæ‚ğƒZƒbƒg
+	// æç”»å…ˆã‚¹ã‚¯ãƒªãƒ¼ãƒ³é ˜åŸŸã‚’ã‚»ãƒƒãƒˆ
 	GSYS.DrawSetting.TargetScreen[ 0 ] = DX_SCREEN_BACK ;
 	GSYS.DrawSetting.TargetScreenSurface[ 0 ] = 0 ;
 	GSYS.DrawSetting.TargetScreenMipLevel[ 0 ] = 0 ;
 	NS_SetDrawScreen( DX_SCREEN_FRONT ) ;
 
-	// •`‰æ‰Â”\—Ìˆæ‚ğİ’è
+	// æç”»å¯èƒ½é ˜åŸŸã‚’è¨­å®š
 	{
 		int Width, Height ;
 
@@ -34413,13 +34413,13 @@ extern	int		Graphics_DrawSetting_Initialize( void )
 		NS_SetDrawArea( 0, 0, Width, Height ) ;
 	}
 
-	// •W€‚ğƒ¿ƒuƒŒƒ“ƒh‚É‚·‚é
+	// æ¨™æº–ã‚’Î±ãƒ–ãƒ¬ãƒ³ãƒ‰ã«ã™ã‚‹
 //	NS_SetDrawBlendMode( DX_BLENDMODE_ALPHA, 255 ) ;
 	
-	// •`‰æ‚ğ‰Â”\‚Èó‘Ô‚É‚·‚é
+	// æç”»ã‚’å¯èƒ½ãªçŠ¶æ…‹ã«ã™ã‚‹
 //	GSYS.NotDrawFlag = FALSE ;
 
-	// ƒfƒtƒHƒ‹ƒg‚Ìƒ‰ƒCƒg‚ğì¬
+	// ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®ãƒ©ã‚¤ãƒˆã‚’ä½œæˆ
 	{
 		VECTOR Dir ;
 
@@ -34429,7 +34429,7 @@ extern	int		Graphics_DrawSetting_Initialize( void )
 		GSYS.Light.DefaultHandle = NS_CreateDirLightHandle( Dir ) ;
 	}
 
-	// Šeís—ñ‚É’PˆÊs—ñ‚ÌƒZƒbƒg
+	// å„ç¨®è¡Œåˆ—ã«å˜ä½è¡Œåˆ—ã®ã‚»ãƒƒãƒˆ
 	CreateIdentityMatrixD( &GSYS.DrawSetting._2DMatrix ) ;
 	CreateIdentityMatrix(  &GSYS.DrawSetting._2DMatrixF ) ;
 	CreateIdentityMatrixD( &GSYS.DrawSetting.WorldMatrix ) ;
@@ -34455,7 +34455,7 @@ extern	int		Graphics_DrawSetting_Initialize( void )
 	CreateIdentityMatrixD( &GSYS.DrawSetting.ConvScreenPosToWorldPosMatrix ) ;
 	CreateIdentityMatrix(  &GSYS.DrawSetting.TextureAddressTransformMatrix ) ;
 
-	// Ë‰es—ñ‚Ìİ’è‚ğ‰Šú‰»
+	// å°„å½±è¡Œåˆ—ã®è¨­å®šã‚’åˆæœŸåŒ–
 	GSYS.DrawSetting.ProjectionMatrixMode = 0 ;
 	GSYS.DrawSetting.ProjNear             = 10.0 ;
 	GSYS.DrawSetting.ProjFar              = 10000.0 ;
@@ -34464,7 +34464,7 @@ extern	int		Graphics_DrawSetting_Initialize( void )
 	GSYS.DrawSetting.ProjSize             = 1.0 ;
 	CreateIdentityMatrixD( &GSYS.DrawSetting.ProjMatrix ) ;
 
-	// ƒ}ƒeƒŠƒAƒ‹‚Ì‰Šú’l‚ğƒZƒbƒg
+	// ãƒãƒ†ãƒªã‚¢ãƒ«ã®åˆæœŸå€¤ã‚’ã‚»ãƒƒãƒˆ
 	GSYS.Light.ChangeMaterial    = 1 ;
 	GSYS.Light.Material.Diffuse  = GetColorF( 0.8f, 0.8f, 0.8f, 1.0f ) ;
 	GSYS.Light.Material.Specular = GetColorF( 0.8f, 0.8f, 0.8f, 0.0f ) ;
@@ -34472,17 +34472,17 @@ extern	int		Graphics_DrawSetting_Initialize( void )
 	GSYS.Light.Material.Emissive = GetColorF( 0.0f, 0.0f, 0.0f, 0.0f ) ;
 	GSYS.Light.Material.Power    = 20.0f ;
 
-	// ‚R‚c•`‰æƒXƒP[ƒ‹’l‚ğ‰Šú‰»
+	// ï¼“ï¼¤æç”»ã‚¹ã‚±ãƒ¼ãƒ«å€¤ã‚’åˆæœŸåŒ–
 	GSYS.DrawSetting.Draw3DScale = 1.0f ;
 
-	// İ’è‚ª•ÏX‚³‚ê‚½‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// è¨­å®šãŒå¤‰æ›´ã•ã‚ŒãŸã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	GSYS.ChangeSettingFlag = TRUE ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// •â•ŠÖ”
+// è£œåŠ©é–¢æ•°
 extern void FASTCALL Graphics_DrawSetting_BlendModeSub_Pre( RECT *DrawRect )
 {
 	DWORD Bright ;
@@ -34521,13 +34521,13 @@ extern void FASTCALL Graphics_DrawSetting_BlendModeSub_Post( RECT *DrawRect )
 	NS_SetDrawBlendMode( DX_BLENDMODE_SUB, BlendParam ) ;
 }
 
-// SetBlendGraphParam ‚Ì‰Â•Ï’·ˆø”ƒpƒ‰ƒ[ƒ^•t‚«
+// SetBlendGraphParam ã®å¯å¤‰é•·å¼•æ•°ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ä»˜ã
 extern int Graphics_DrawSetting_SetBlendGraphParamBase( int BlendGraph, int BlendType, va_list ParamList )
 {
 	IMAGEDATA *BlendImage ;
 	int Param[ 16 ] ;
 
-	// ƒuƒŒƒ“ƒh‚·‚é‰æ‘œ‚ª -1 ‚¾‚Á‚½‚çƒuƒŒƒ“ƒh‰æ‘œˆ—‚ğ~‚ß‚é‚Æ‚¢‚¤‚±‚Æ
+	// ãƒ–ãƒ¬ãƒ³ãƒ‰ã™ã‚‹ç”»åƒãŒ -1 ã ã£ãŸã‚‰ãƒ–ãƒ¬ãƒ³ãƒ‰ç”»åƒå‡¦ç†ã‚’æ­¢ã‚ã‚‹ã¨ã„ã†ã“ã¨
 	if( BlendGraph <= 0 )
 	{
 		BlendImage = NULL ;
@@ -34535,7 +34535,7 @@ extern int Graphics_DrawSetting_SetBlendGraphParamBase( int BlendGraph, int Blen
 	}
 	else
 	{
-		// ƒGƒ‰[”»’è
+		// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 		if( GRAPHCHK( BlendGraph, BlendImage ) )
 			return -1 ;
 		GSYS.DrawSetting.BlendGraph = BlendGraph ;
@@ -34577,10 +34577,10 @@ extern int Graphics_DrawSetting_SetBlendGraphParamBase( int BlendGraph, int Blen
 			Param[ 0 ] = GSYS.DrawSetting.BlendGraphBorderParam = BorderParam ;
 			Param[ 1 ] = GSYS.DrawSetting.BlendGraphBorderRange = BorderRange ;
 
-			// Direct3D ‚ğg—p‚µ‚Ä‚¢‚È‚¢ê‡‚Ì‚İˆ—‚ğ•ªŠò
+			// Direct3D ã‚’ä½¿ç”¨ã—ã¦ã„ãªã„å ´åˆã®ã¿å‡¦ç†ã‚’åˆ†å²
 			if( GSYS.Setting.ValidHardware == FALSE || GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode )
 			{
-				// MEMIMG ƒVƒXƒeƒ€‚Ö‚Ìİ’è
+				// MEMIMG ã‚·ã‚¹ãƒ†ãƒ ã¸ã®è¨­å®š
 				SetBlendGraphParamMemImg( BorderParam, BorderRange ) ;
 			}
 			break ;
@@ -34590,56 +34590,56 @@ extern int Graphics_DrawSetting_SetBlendGraphParamBase( int BlendGraph, int Blen
 		}
 	}
 
-	// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒVƒ‡ƒ“‚ğg—p‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©‚Åˆ—‚ğ•ªŠò
+	// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 	if( GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )
 	{
-		// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒVƒ‡ƒ“‚ğg—p‚µ‚Ä‚¢‚éê‡‚Ìˆ—
+		// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹å ´åˆã®å‡¦ç†
 		Graphics_Hardware_SetBlendGraphParamBase_PF( BlendImage, BlendType, Param ) ;
 	}
 	else
 	{
-		// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒVƒ‡ƒ“‚ğg—p‚µ‚Ä‚¢‚È‚¢ê‡‚Ìˆ—
+		// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ã‚’ä½¿ç”¨ã—ã¦ã„ãªã„å ´åˆã®å‡¦ç†
 
-		// ƒuƒŒƒ“ƒhƒOƒ‰ƒtƒBƒbƒN‚ÌƒAƒhƒŒƒX‚ğİ’è
+		// ãƒ–ãƒ¬ãƒ³ãƒ‰ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’è¨­å®š
 		GSYS.SoftRender.BlendMemImg = GSYS.DrawSetting.BlendGraph <= 0 ? NULL : &BlendImage->Orig->Soft.MemImg ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// •`‰ææ‚É³‚µ‚¢ƒ¿’l‚ğ‘‚«‚Ş‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğXV‚·‚é
+// æç”»å…ˆã«æ­£ã—ã„Î±å€¤ã‚’æ›¸ãè¾¼ã‚€ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’æ›´æ–°ã™ã‚‹
 extern	int Graphics_DrawSetting_RefreshAlphaChDrawMode( void )
 {
 	return Graphics_Hardware_RefreshAlphaChDrawMode_PF() ;
 }
 
-// Šî–{ƒf[ƒ^‚Éİ’è‚³‚ê‚Ä‚¢‚é‚Q‚cs—ñ‚ğƒn[ƒhƒEƒGƒA‚É”½‰f‚·‚é
+// åŸºæœ¬ãƒ‡ãƒ¼ã‚¿ã«è¨­å®šã•ã‚Œã¦ã„ã‚‹ï¼’ï¼¤è¡Œåˆ—ã‚’ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã«åæ˜ ã™ã‚‹
 extern void Graphics_DrawSetting_ApplyLib2DMatrixToHardware( void )
 {
 	if( GSYS.Setting.ValidHardware == FALSE || GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode ) return ;
 
 	if( GSYS.DrawSetting.MatchHardware_2DMatrix == FALSE )
 	{
-		// •`‰æ‘Ò‹@‚µ‚Ä‚¢‚é•`‰æ•¨‚ğ•`‰æ
+		// æç”»å¾…æ©Ÿã—ã¦ã„ã‚‹æç”»ç‰©ã‚’æç”»
 		DRAWSTOCKINFO
 
-		// Graphics_Hardware_SetTransformToProjection_PF ‚ğŒÄ‚Ô‘O‚É MatchHardware_2DMatrix ‚ğ TRUE ‚É‚µ‚Ä‚¨‚­•K—v‚ ‚è
+		// Graphics_Hardware_SetTransformToProjection_PF ã‚’å‘¼ã¶å‰ã« MatchHardware_2DMatrix ã‚’ TRUE ã«ã—ã¦ãŠãå¿…è¦ã‚ã‚Š
 		GSYS.DrawSetting.MatchHardware_2DMatrix = TRUE ;
 
-		// ‹L‰¯ˆæ‚ğ‹¤—L‚µ‚Ä‚¢‚éË‰es—ñ‚ğ–³Œø‚É‚·‚é
+		// è¨˜æ†¶åŸŸã‚’å…±æœ‰ã—ã¦ã„ã‚‹å°„å½±è¡Œåˆ—ã‚’ç„¡åŠ¹ã«ã™ã‚‹
 		GSYS.DrawSetting.MatchHardware3DMatrix = FALSE ;
 		GSYS.DrawSetting.MatchHardwareProjectionMatrix = FALSE ;
 
-		// ‚R‚cs—ñ‚ÌË‰es—ñ‚É‚Q‚cs—ñ‚ğƒZƒbƒg‚·‚é
+		// ï¼“ï¼¤è¡Œåˆ—ã®å°„å½±è¡Œåˆ—ã«ï¼’ï¼¤è¡Œåˆ—ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 		Graphics_Hardware_SetTransformToProjection_PF( &GSYS.DrawSetting._2DMatrixF ) ;
 
-		// ƒn[ƒhƒEƒFƒAˆË‘¶ˆ—
+		// ãƒãƒ¼ãƒ‰ã‚¦ã‚§ã‚¢ä¾å­˜å‡¦ç†
 		Graphics_DrawSetting_ApplyLib2DMatrixToHardware_PF() ;
 	}
 }
 
-// Šî–{ƒf[ƒ^‚Éİ’è‚³‚ê‚Ä‚¢‚é‚R‚cs—ñ‚ğƒn[ƒhƒEƒGƒA‚É”½‰f‚·‚é
+// åŸºæœ¬ãƒ‡ãƒ¼ã‚¿ã«è¨­å®šã•ã‚Œã¦ã„ã‚‹ï¼“ï¼¤è¡Œåˆ—ã‚’ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã«åæ˜ ã™ã‚‹
 extern void Graphics_DrawSetting_ApplyLib3DMatrixToHardware( int IgnoreWorldMatrix )
 {
 	if( GSYS.DrawSetting.MatchHardware3DMatrix == TRUE ) return ;
@@ -34661,14 +34661,14 @@ extern void Graphics_DrawSetting_ApplyLib3DMatrixToHardware( int IgnoreWorldMatr
 
 	if( GSYS.DrawSetting.MatchHardwareProjectionMatrix == FALSE )
 	{
-		// •`‰æ‘Ò‹@‚µ‚Ä‚¢‚é•`‰æ•¨‚ğ•`‰æ
+		// æç”»å¾…æ©Ÿã—ã¦ã„ã‚‹æç”»ç‰©ã‚’æç”»
 		DRAWSTOCKINFO
 
-		// ‹L‰¯ˆæ‚ğ‹¤—L‚µ‚Ä‚¢‚é‚Q‚cs—ñ‚ğ–³Œø‚É‚·‚é
+		// è¨˜æ†¶åŸŸã‚’å…±æœ‰ã—ã¦ã„ã‚‹ï¼’ï¼¤è¡Œåˆ—ã‚’ç„¡åŠ¹ã«ã™ã‚‹
 		GSYS.DrawSetting.MatchHardware_2DMatrix = FALSE ;
 		GSYS.DrawSetting.MatchHardwareProjectionMatrix = TRUE ;
 
-		// ‚R‚cs—ñ‚ÌË‰es—ñ‚ğƒZƒbƒg‚·‚é
+		// ï¼“ï¼¤è¡Œåˆ—ã®å°„å½±è¡Œåˆ—ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 		Graphics_Hardware_SetTransformToProjection_PF( &GSYS.DrawSetting.ProjectionMatrixF ) ;
 	}
 
@@ -34680,74 +34680,74 @@ extern void Graphics_DrawSetting_ApplyLib3DMatrixToHardware( int IgnoreWorldMatr
 
 	GSYS.DrawSetting.MatchHardware3DMatrix = GSYS.DrawSetting.MatchHardwareWorldMatrix == TRUE ? TRUE : FALSE ;
 
-	// ƒn[ƒhƒEƒFƒAˆË‘¶ˆ—
+	// ãƒãƒ¼ãƒ‰ã‚¦ã‚§ã‚¢ä¾å­˜å‡¦ç†
 	Graphics_DrawSetting_ApplyLib3DMatrixToHardware_PF( IgnoreWorldMatrix ) ;
 }
 
-// Šî–{ƒf[ƒ^‚Éİ’è‚³‚ê‚Ä‚¢‚éƒtƒHƒOî•ñ‚ğƒn[ƒhƒEƒFƒA‚É”½‰f‚·‚é
+// åŸºæœ¬ãƒ‡ãƒ¼ã‚¿ã«è¨­å®šã•ã‚Œã¦ã„ã‚‹ãƒ•ã‚©ã‚°æƒ…å ±ã‚’ãƒãƒ¼ãƒ‰ã‚¦ã‚§ã‚¢ã«åæ˜ ã™ã‚‹
 extern void Graphics_DrawSetting_ApplyLibFogToHardware( void )
 {
 	Graphics_Hardware_ApplyLigFogToHardware_PF() ;
 }
 
-// ƒeƒNƒXƒ`ƒƒÀ•W•ÏŠ·s—ñ‚ğƒZƒbƒg‚·‚é
+// ãƒ†ã‚¯ã‚¹ãƒãƒ£åº§æ¨™å¤‰æ›è¡Œåˆ—ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern int Graphics_DrawSetting_SetTextureAddressTransformMatrix_Direct( int Use, MATRIX *Matrix, int Stage )
 {
 	Graphics_Hardware_SetTextureAddressTransformMatrix_PF( Use, Matrix, Stage ) ;
 	GSYS.DrawSetting.MatchHardwareTextureAddressTransformMatrix = FALSE ;
 	GSYS.DrawSetting.MatchHardware3DMatrix = FALSE ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒ[ƒJƒ‹¨ƒ[ƒ‹ƒhs—ñ‚ğ•ÏX‚·‚é
+// ãƒ­ãƒ¼ã‚«ãƒ«â†’ãƒ¯ãƒ¼ãƒ«ãƒ‰è¡Œåˆ—ã‚’å¤‰æ›´ã™ã‚‹
 extern int Graphics_DrawSetting_SetTransformToWorld_Direct( MATRIX *Matrix )
 {
 	Graphics_Hardware_DeviceDirect_SetWorldMatrix_PF( Matrix ) ;
 	GSYS.DrawSetting.MatchHardwareWorldMatrix = FALSE ;
 	GSYS.DrawSetting.MatchHardware3DMatrix = FALSE ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// “Š‰e•ÏŠ·—ps—ñ‚ğƒZƒbƒg‚·‚é
+// æŠ•å½±å¤‰æ›ç”¨è¡Œåˆ—ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern	int Graphics_DrawSetting_SetTransformToProjection_Direct( const MATRIX_D *Matrix )
 {
-	// •`‰æ‘Ò‹@‚µ‚Ä‚¢‚é•`‰æ•¨‚ğ•`‰æ
+	// æç”»å¾…æ©Ÿã—ã¦ã„ã‚‹æç”»ç‰©ã‚’æç”»
 	DRAWSTOCKINFO
 
-	// ƒf[ƒ^‚ğ•Û‘¶
+	// ãƒ‡ãƒ¼ã‚¿ã‚’ä¿å­˜
 	GSYS.DrawSetting.ProjectionMatrix = *Matrix ;
 	ConvertMatrixDtoF( &GSYS.DrawSetting.ProjectionMatrixF, &GSYS.DrawSetting.ProjectionMatrix ) ;
 	GSYS.DrawSetting.ValidBlend3DMatrix = FALSE ;
 
-	// ‘S‚Ä‚Ì‚R‚cs—ñ‚ğŠ|‚¯‡‚í‚¹‚½s—ñ‚ğXV
+	// å…¨ã¦ã®ï¼“ï¼¤è¡Œåˆ—ã‚’æ›ã‘åˆã‚ã›ãŸè¡Œåˆ—ã‚’æ›´æ–°
 	Graphics_DrawSetting_RefreshBlend3DTransformMatrix() ;
 
-	// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒVƒ‡ƒ“‚Éİ’è
+	// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ã«è¨­å®š
 	if( GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )
 	{
-		// •`‰æ‘Ò‹@‚µ‚Ä‚¢‚é•`‰æ•¨‚ğ•`‰æ
+		// æç”»å¾…æ©Ÿã—ã¦ã„ã‚‹æç”»ç‰©ã‚’æç”»
 		DRAWSTOCKINFO
 
-		// ‹L‰¯ˆæ‚ğ‹¤—L‚µ‚Ä‚¢‚é‚Q‚cs—ñ‚ğ–³Œø‚É‚·‚é
+		// è¨˜æ†¶åŸŸã‚’å…±æœ‰ã—ã¦ã„ã‚‹ï¼’ï¼¤è¡Œåˆ—ã‚’ç„¡åŠ¹ã«ã™ã‚‹
 		GSYS.DrawSetting.MatchHardware_2DMatrix = FALSE ;
 		GSYS.DrawSetting.MatchHardwareProjectionMatrix = TRUE ;
 
-		// ‚R‚cs—ñ‚ÌË‰es—ñ‚ğƒZƒbƒg‚·‚é
+		// ï¼“ï¼¤è¡Œåˆ—ã®å°„å½±è¡Œåˆ—ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 		Graphics_Hardware_SetTransformToProjection_PF( &GSYS.DrawSetting.ProjectionMatrixF ) ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// SetDrawScreen Às‚És‚¤•`‰æ”ÍˆÍİ’èAƒJƒƒ‰İ’è‚ğs‚¤
+// SetDrawScreen å®Ÿè¡Œæ™‚ã«è¡Œã†æç”»ç¯„å›²è¨­å®šã€ã‚«ãƒ¡ãƒ©è¨­å®šã‚’è¡Œã†
 extern int Graphics_DrawSetting_SetupDefaultDrawAreaAndCamera( int OldScreen )
 {
-	// •`‰æ—Ìˆæ‚ğXV
+	// æç”»é ˜åŸŸã‚’æ›´æ–°
 	{
 		RECT SrcRect ;
 		int NewWidth = 0, NewHeight = 0, OldWidth = 0, OldHeight = 0 ;
@@ -34790,25 +34790,25 @@ extern int Graphics_DrawSetting_SetupDefaultDrawAreaAndCamera( int OldScreen )
 		}
 	}
 		
-	// ‚R‚c•`‰æˆ——p‚Ìs—ñİ’è‚Ì‰Šú‰»‚ğs‚¤
+	// ï¼“ï¼¤æç”»å‡¦ç†ç”¨ã®è¡Œåˆ—è¨­å®šã®åˆæœŸåŒ–ã‚’è¡Œã†
 	if( GSYS.DrawSetting.SetDrawScreenNoSettingResetFlag == FALSE )
 	{
 		MATRIX mat ;
 		float D ;
 
-		// ƒhƒbƒgƒAƒXƒyƒNƒg‚ğ‚PD‚O‚É–ß‚·
+		// ãƒ‰ãƒƒãƒˆã‚¢ã‚¹ãƒšã‚¯ãƒˆã‚’ï¼‘ï¼ï¼ã«æˆ»ã™
 		NS_SetCameraDotAspect( 1.0f ) ;
 
-		// ƒ[ƒ‹ƒh•ÏŠ·s—ñ‚Í’PˆÊs—ñ
+		// ãƒ¯ãƒ¼ãƒ«ãƒ‰å¤‰æ›è¡Œåˆ—ã¯å˜ä½è¡Œåˆ—
 		CreateIdentityMatrix( &mat ) ;
 		NS_SetTransformToWorld( &mat ) ;
 
-		// ƒ‰ƒCƒuƒ‰ƒŠŠÇ—‚Ìƒrƒ…[ƒ|[ƒgs—ñ‚ğXV
+		// ãƒ©ã‚¤ãƒ–ãƒ©ãƒªç®¡ç†ã®ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆè¡Œåˆ—ã‚’æ›´æ–°
 		GSYS.Camera.ScreenCenterX = ( double )GSYS.DrawSetting.DrawSizeX / 2.0 ;
 		GSYS.Camera.ScreenCenterY = ( double )GSYS.DrawSetting.DrawSizeY / 2.0 ;
 		NS_SetCameraScreenCenterD( GSYS.Camera.ScreenCenterX, GSYS.Camera.ScreenCenterY ) ;
 
-		// ƒrƒ…[s—ñ‚Í z = 0.0 ‚Ì‚É’š“xƒXƒNƒŠ[ƒ“‘S‘Ì‚ªÊ‚éˆÊ’u‚Æ•ûŒü‚ğ‚ÂƒJƒƒ‰‚ğ
+		// ãƒ“ãƒ¥ãƒ¼è¡Œåˆ—ã¯ z = 0.0 ã®æ™‚ã«ä¸åº¦ã‚¹ã‚¯ãƒªãƒ¼ãƒ³å…¨ä½“ãŒå†™ã‚‹ä½ç½®ã¨æ–¹å‘ã‚’æŒã¤ã‚«ãƒ¡ãƒ©ã‚’
 		{
 			VECTOR up, at, eye ;
 
@@ -34831,7 +34831,7 @@ extern int Graphics_DrawSetting_SetupDefaultDrawAreaAndCamera( int OldScreen )
 //			NS_SetTransformToView( &mat ) ;
 		}
 
-		// ƒvƒƒWƒFƒNƒVƒ‡ƒ“s—ñ‚Í•’Ê‚É
+		// ãƒ—ãƒ­ã‚¸ã‚§ã‚¯ã‚·ãƒ§ãƒ³è¡Œåˆ—ã¯æ™®é€šã«
 		NS_SetupCamera_Perspective( DEFAULT_FOV ) ;
 		NS_SetCameraNearFar( D * 0.1f + DEFAULT_NEAR, D + DEFAULT_FAR ) ;
 	}
@@ -34839,7 +34839,7 @@ extern int Graphics_DrawSetting_SetupDefaultDrawAreaAndCamera( int OldScreen )
 	return 0 ;
 }
 
-// Ë‰es—ñƒpƒ‰ƒ[ƒ^‚ÉŠî‚Ã‚¢‚ÄË‰es—ñ‚ğ\’z‚·‚é
+// å°„å½±è¡Œåˆ—ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã«åŸºã¥ã„ã¦å°„å½±è¡Œåˆ—ã‚’æ§‹ç¯‰ã™ã‚‹
 extern void Graphics_DrawSetting_RefreshProjectionMatrix( void )
 {
 	double Aspect = 1.0 ;
@@ -34851,10 +34851,10 @@ extern void Graphics_DrawSetting_RefreshProjectionMatrix( void )
 
 	switch( GSYS.DrawSetting.ProjectionMatrixMode )
 	{
-	case 0 :	// ‰“‹ß–@
+	case 0 :	// é è¿‘æ³•
 		CreatePerspectiveFovMatrixD( &GSYS.DrawSetting.ProjMatrix, GSYS.DrawSetting.ProjFov, GSYS.DrawSetting.ProjNear, GSYS.DrawSetting.ProjFar, Aspect ) ;
 
-		// ƒŠƒo[ƒX‚y‚Ìê‡‚ÍƒŠƒo[ƒX‚ys—ñ‚É•ÏŠ·
+		// ãƒªãƒãƒ¼ã‚¹ï¼ºã®å ´åˆã¯ãƒªãƒãƒ¼ã‚¹ï¼ºè¡Œåˆ—ã«å¤‰æ›
 		if( GSYS.DrawSetting.UseReversedZFlag )
 		{
 			MATRIX_D MulMatrix ;
@@ -34874,10 +34874,10 @@ extern void Graphics_DrawSetting_RefreshProjectionMatrix( void )
 //		}
 		break ;
 
-	case 1 :	// ³Ë‰e
+	case 1 :	// æ­£å°„å½±
 		CreateOrthoMatrixD( &GSYS.DrawSetting.ProjMatrix, GSYS.DrawSetting.ProjSize, GSYS.DrawSetting.ProjNear, GSYS.DrawSetting.ProjFar, Aspect ) ;
 
-		// ƒŠƒo[ƒX‚y‚Ìê‡‚ÍƒŠƒo[ƒX‚ys—ñ‚É•ÏŠ·
+		// ãƒªãƒãƒ¼ã‚¹ï¼ºã®å ´åˆã¯ãƒªãƒãƒ¼ã‚¹ï¼ºè¡Œåˆ—ã«å¤‰æ›
 		if( GSYS.DrawSetting.UseReversedZFlag )
 		{
 			MATRIX_D MulMatrix ;
@@ -34889,15 +34889,15 @@ extern void Graphics_DrawSetting_RefreshProjectionMatrix( void )
 		}
 		break ;
 
-	case 2 :	// s—ñ’¼w’è
+	case 2 :	// è¡Œåˆ—ç›´æŒ‡å®š
 		break ;
 	}
 
-	// ƒn[ƒhƒEƒGƒA‚É”½‰f‚·‚é
+	// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã«åæ˜ ã™ã‚‹
 	Graphics_DrawSetting_SetTransformToProjection_Direct( &GSYS.DrawSetting.ProjMatrix ) ;
 }
 
-// ‚R‚c—p‚Ì’¸“_•ÏŠ·s—ñ‚ğŠ|‚¯‡‚í‚¹‚½s—ñ‚ğXV‚·‚é
+// ï¼“ï¼¤ç”¨ã®é ‚ç‚¹å¤‰æ›è¡Œåˆ—ã‚’æ›ã‘åˆã‚ã›ãŸè¡Œåˆ—ã‚’æ›´æ–°ã™ã‚‹
 extern void Graphics_DrawSetting_RefreshBlend3DTransformMatrix( void )
 {
 	if( GSYS.DrawSetting.ValidBlend3DMatrix == TRUE ) return ;
@@ -34963,21 +34963,21 @@ extern void Graphics_DrawSetting_RefreshBlend3DTransformMatrix( void )
 
 		VECTOR_D Normal ;
 
-		// ‚w‚y•½–Ê
+		// ï¼¸ï¼ºå¹³é¢
 		Normal = VCrossD( VSubD( GSYS.DrawSetting.ViewClipPos[ 1 ][ 0 ][ 0 ], GSYS.DrawSetting.ViewClipPos[ 0 ][ 0 ][ 0 ] ), VSubD( GSYS.DrawSetting.ViewClipPos[ 0 ][ 1 ][ 0 ], GSYS.DrawSetting.ViewClipPos[ 0 ][ 0 ][ 0 ] ) ) ;
 		CreateNormalizePlaneD( &GSYS.DrawSetting.ClippingPlane[ 0 ], &GSYS.DrawSetting.ViewClipPos[ 0 ][ 0 ][ 0 ], &Normal ) ;
 
 		Normal = VCrossD( VSubD( GSYS.DrawSetting.ViewClipPos[ 0 ][ 1 ][ 1 ], GSYS.DrawSetting.ViewClipPos[ 0 ][ 0 ][ 1 ] ), VSubD( GSYS.DrawSetting.ViewClipPos[ 1 ][ 0 ][ 1 ], GSYS.DrawSetting.ViewClipPos[ 0 ][ 0 ][ 1 ] ) ) ;
 		CreateNormalizePlaneD( &GSYS.DrawSetting.ClippingPlane[ 1 ], &GSYS.DrawSetting.ViewClipPos[ 0 ][ 0 ][ 1 ], &Normal ) ;
 
-		// ‚x‚y•½–Ê
+		// ï¼¹ï¼ºå¹³é¢
 		Normal = VCrossD( VSubD( GSYS.DrawSetting.ViewClipPos[ 1 ][ 1 ][ 0 ], GSYS.DrawSetting.ViewClipPos[ 0 ][ 1 ][ 0 ] ), VSubD( GSYS.DrawSetting.ViewClipPos[ 0 ][ 1 ][ 1 ], GSYS.DrawSetting.ViewClipPos[ 0 ][ 1 ][ 0 ] ) ) ;
 		CreateNormalizePlaneD( &GSYS.DrawSetting.ClippingPlane[ 2 ], &GSYS.DrawSetting.ViewClipPos[ 0 ][ 1 ][ 0 ], &Normal ) ;
 
 		Normal = VCrossD( VSubD( GSYS.DrawSetting.ViewClipPos[ 0 ][ 0 ][ 1 ], GSYS.DrawSetting.ViewClipPos[ 0 ][ 0 ][ 0 ] ), VSubD( GSYS.DrawSetting.ViewClipPos[ 1 ][ 0 ][ 0 ], GSYS.DrawSetting.ViewClipPos[ 0 ][ 0 ][ 0 ] ) ) ;
 		CreateNormalizePlaneD( &GSYS.DrawSetting.ClippingPlane[ 3 ], &GSYS.DrawSetting.ViewClipPos[ 0 ][ 0 ][ 0 ], &Normal ) ;
 
-		// ‚w‚x•½–Ê
+		// ï¼¸ï¼¹å¹³é¢
 		Normal = VCrossD( VSubD( GSYS.DrawSetting.ViewClipPos[ 0 ][ 1 ][ 0 ], GSYS.DrawSetting.ViewClipPos[ 0 ][ 0 ][ 0 ] ), VSubD( GSYS.DrawSetting.ViewClipPos[ 0 ][ 0 ][ 1 ], GSYS.DrawSetting.ViewClipPos[ 0 ][ 0 ][ 0 ] ) ) ;
 		CreateNormalizePlaneD( &GSYS.DrawSetting.ClippingPlane[ 4 ], &GSYS.DrawSetting.ViewClipPos[ 0 ][ 0 ][ 0 ], &Normal ) ;
 
@@ -34986,7 +34986,7 @@ extern void Graphics_DrawSetting_RefreshBlend3DTransformMatrix( void )
 	}
 }
 
-// g—p‚·‚éË‰es—ñ‚ğ‚R‚c—p‚É‚·‚é‚©‚Q‚c—p‚É‚·‚é‚©‚ğİ’è‚·‚é
+// ä½¿ç”¨ã™ã‚‹å°„å½±è¡Œåˆ—ã‚’ï¼“ï¼¤ç”¨ã«ã™ã‚‹ã‹ï¼’ï¼¤ç”¨ã«ã™ã‚‹ã‹ã‚’è¨­å®šã™ã‚‹
 //extern void Graphics_DrawSetting_SetUse2DProjectionMatrix( int Use2DProjectionMatrix )
 //{
 //	if( Use2DProjectionMatrix == GSYS.DrawSetting.UseProjectionMatrix2D )
@@ -34994,25 +34994,25 @@ extern void Graphics_DrawSetting_RefreshBlend3DTransformMatrix( void )
 //		return ;
 //	}
 //
-//	// •`‰æ‘Ò‹@‚µ‚Ä‚¢‚é•`‰æ•¨‚ğ•`‰æ
+//	// æç”»å¾…æ©Ÿã—ã¦ã„ã‚‹æç”»ç‰©ã‚’æç”»
 //	DRAWSTOCKINFO
 //
-//	// ƒtƒ‰ƒO‚ğ•Û‘¶
+//	// ãƒ•ãƒ©ã‚°ã‚’ä¿å­˜
 //	GSYS.DrawSetting.UseProjectionMatrix2D = Use2DProjectionMatrix ;
 //
-//	// ƒn[ƒhƒEƒGƒAƒAƒNƒZƒ‰ƒŒ[ƒVƒ‡ƒ“‚Éİ’è
+//	// ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ã«è¨­å®š
 //	if( GSYS.Setting.ValidHardware )
 //	{
 //		Graphics_Hardware_SetUse2DProjectionMatrix_PF( Use2DProjectionMatrix ) ;
 //	}
 //}
 
-// ‚c‚wƒ‰ƒCƒuƒ‰ƒŠ“à•”‚Å SetDrawScreen ‚ğg—p‚µ‚Ä•`‰ææ‚ğ•ÏX‚·‚éÛ‚ÌAŒ³‚ÌƒJƒƒ‰İ’è‚â•`‰æ—Ìˆæ‚ğ•œŒ³‚·‚éˆ×‚Ìî•ñ‚ğæ“¾‚·‚éˆ—‚ğs‚¤
+// ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªå†…éƒ¨ã§ SetDrawScreen ã‚’ä½¿ç”¨ã—ã¦æç”»å…ˆã‚’å¤‰æ›´ã™ã‚‹éš›ã®ã€å…ƒã®ã‚«ãƒ¡ãƒ©è¨­å®šã‚„æç”»é ˜åŸŸã‚’å¾©å…ƒã™ã‚‹ç‚ºã®æƒ…å ±ã‚’å–å¾—ã™ã‚‹å‡¦ç†ã‚’è¡Œã†
 extern int Graphics_DrawSetting_GetScreenDrawSettingInfo( SCREENDRAWSETTINGINFO *ScreenDrawSettingInfo )
 {
 	int i ;
 
-	// Šeíƒf[ƒ^•Û‘¶
+	// å„ç¨®ãƒ‡ãƒ¼ã‚¿ä¿å­˜
 	ScreenDrawSettingInfo->Use3DFlag			= NS_GetUse3DFlag() ;
 	ScreenDrawSettingInfo->UseSysMemFlag		= NS_GetUseSystemMemGraphCreateFlag() ;
 	ScreenDrawSettingInfo->BackgroundRed		= GSYS.Screen.BackgroundRed ;
@@ -35044,19 +35044,19 @@ extern int Graphics_DrawSetting_GetScreenDrawSettingInfo( SCREENDRAWSETTINGINFO 
 	ScreenDrawSettingInfo->MaxAnisotropy		= GSYS.DrawSetting.MaxAnisotropy ;
 	ScreenDrawSettingInfo->CullMode				= GSYS.DrawSetting.CullMode ;
 	
-	// •`‰æ—Ìˆæ‚ğ“¾‚é
+	// æç”»é ˜åŸŸã‚’å¾—ã‚‹
 	NS_GetDrawArea( &ScreenDrawSettingInfo->DrawRect ) ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// ‚c‚wƒ‰ƒCƒuƒ‰ƒŠ“à•”‚Å SetDrawScreen ‚ğg—p‚µ‚Ä•`‰ææ‚ğ•ÏX‚·‚éÛ‚ÌAŒ³‚ÌƒJƒƒ‰İ’è‚â•`‰æ—Ìˆæ‚ğ•œŒ³‚·‚éˆ—‚ğs‚¤
+// ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªå†…éƒ¨ã§ SetDrawScreen ã‚’ä½¿ç”¨ã—ã¦æç”»å…ˆã‚’å¤‰æ›´ã™ã‚‹éš›ã®ã€å…ƒã®ã‚«ãƒ¡ãƒ©è¨­å®šã‚„æç”»é ˜åŸŸã‚’å¾©å…ƒã™ã‚‹å‡¦ç†ã‚’è¡Œã†
 extern int Graphics_DrawSetting_SetScreenDrawSettingInfo( const SCREENDRAWSETTINGINFO *ScreenDrawSettingInfo )
 {
 	int i ;
 
-	// •Û‘¶‚µ‚Ä‚¨‚¢‚½İ’è‚ğ”½‰f‚³‚¹‚é
+	// ä¿å­˜ã—ã¦ãŠã„ãŸè¨­å®šã‚’åæ˜ ã•ã›ã‚‹
 	NS_SetBackgroundColor( ScreenDrawSettingInfo->BackgroundRed, ScreenDrawSettingInfo->BackgroundGreen, ScreenDrawSettingInfo->BackgroundBlue, ScreenDrawSettingInfo->BackgroundAlpha ) ;
 	NS_SetDrawBlendMode( ScreenDrawSettingInfo->DrawBlendMode, ScreenDrawSettingInfo->DrawBlendParam ) ;
 	NS_SetDrawMode( ScreenDrawSettingInfo->DrawMode ) ;
@@ -35070,15 +35070,15 @@ extern int Graphics_DrawSetting_SetScreenDrawSettingInfo( const SCREENDRAWSETTIN
 	NS_SetTransformToViewD( &ScreenDrawSettingInfo->ViewMatrix );
 	switch( ScreenDrawSettingInfo->ProjectionMatrixMode )
 	{
-	case 0 :	// ‰“‹ß–@
+	case 0 :	// é è¿‘æ³•
 		NS_SetupCamera_PerspectiveD( ScreenDrawSettingInfo->ProjFov ) ;
 		break ;
 
-	case 1 :	// ³Ë‰e
+	case 1 :	// æ­£å°„å½±
 		NS_SetupCamera_OrthoD( ScreenDrawSettingInfo->ProjSize ) ;
 		break ;
 
-	case 2 :	// s—ñ’¼w’è
+	case 2 :	// è¡Œåˆ—ç›´æŒ‡å®š
 		NS_SetupCamera_ProjectionMatrixD( ScreenDrawSettingInfo->ProjMatrix ) ;
 		break ;
 	}
@@ -35095,12 +35095,12 @@ extern int Graphics_DrawSetting_SetScreenDrawSettingInfo( const SCREENDRAWSETTIN
 	NS_SetUseCullingFlag( ScreenDrawSettingInfo->CullMode ) ;
 	NS_SetMaxAnisotropy( ScreenDrawSettingInfo->MaxAnisotropy ) ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
 #ifndef DX_NON_MOVIE
-// ƒVƒF[ƒ_[‚Éİ’è‚³‚ê‚Ä‚¢‚éƒeƒNƒXƒ`ƒƒ‚Ì“®‰æ‚ğXV‚·‚é
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã«è¨­å®šã•ã‚Œã¦ã„ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®å‹•ç”»ã‚’æ›´æ–°ã™ã‚‹
 extern int Graphics_DrawSetting_UpdateUserTextureMovie( void )
 {
 	int i ;
@@ -35120,7 +35120,7 @@ extern int Graphics_DrawSetting_UpdateUserTextureMovie( void )
 		}
 	}
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 #endif // DX_NON_MOVIE
@@ -35147,7 +35147,7 @@ extern int Graphics_DrawSetting_UpdateUserTextureMovie( void )
 
 
 
-// •`‰æŠÖŒWŠÖ”
+// æç”»é–¢ä¿‚é–¢æ•°
 
 #define DX_CIRCLE_THICKNESS_R_MAX_LEFT_CHECK									\
 	if( y1 >= DrawRect.top && y1 < DrawRect.bottom )							\
@@ -35189,7 +35189,7 @@ extern int Graphics_DrawSetting_UpdateUserTextureMovie( void )
 		}																		\
 	}
 
-// ü‚Ì••t‚«‰~‚Ì•`‰æ—p’¸“_‚ğæ“¾‚·‚éŠÖ”
+// ç·šã®å¹…ä»˜ãå††ã®æç”»ç”¨é ‚ç‚¹ã‚’å–å¾—ã™ã‚‹é–¢æ•°
 extern int	Graphics_Draw_GetCircle_ThicknessDrawPosition( int x, int y, int r, int Thickness, short ( *CirclePos )[ 5 ] )
 {
 	int rmax, rmin ;
@@ -35199,7 +35199,7 @@ extern int	Graphics_Draw_GetCircle_ThicknessDrawPosition( int x, int y, int r, i
 
 	DrawRect = GSYS.DrawSetting.DrawArea ;
 
-	// Šeü‚Ì‘¾‚³‚ğZo
+	// å„ç·šã®å¤ªã•ã‚’ç®—å‡º
 	rmax = r + Thickness / 2 ;
 	rmin = r - Thickness / 2 ;
 	if( rmax - rmin + 1 > Thickness )
@@ -35207,12 +35207,12 @@ extern int	Graphics_Draw_GetCircle_ThicknessDrawPosition( int x, int y, int r, i
 		rmin ++ ;
 	}
 
-	// ŠO‘¤‰~‚ÌÀ•WƒŠƒXƒgì¬
+	// å¤–å´å††ã®åº§æ¨™ãƒªã‚¹ãƒˆä½œæˆ
 	{
-		// ‰Šú’lƒZƒbƒg
+		// åˆæœŸå€¤ã‚»ãƒƒãƒˆ
 		Dx = rmax ; Dy = 0 ; F = -2 * rmax + 3 ;
 
-		// Å‰‚Ì“_
+		// æœ€åˆã®ç‚¹
 		{
 			x1 = -Dx + x ; y1 = Dy + y ;
 			DX_CIRCLE_THICKNESS_R_MAX_LEFT_CHECK ;
@@ -35227,7 +35227,7 @@ extern int	Graphics_Draw_GetCircle_ThicknessDrawPosition( int x, int y, int r, i
 			DX_CIRCLE_THICKNESS_R_MAX_LEFT_CHECK ;
 			DX_CIRCLE_THICKNESS_R_MAX_RIGHT_CHECK ;
 
-			// À•Wƒf[ƒ^‚ği‚ß‚é
+			// åº§æ¨™ãƒ‡ãƒ¼ã‚¿ã‚’é€²ã‚ã‚‹
 			if( F >= 0 )
 			{
 				Dx -- ;
@@ -35260,7 +35260,7 @@ extern int	Graphics_Draw_GetCircle_ThicknessDrawPosition( int x, int y, int r, i
 			x1 = -Dy + x ; 
 			DX_CIRCLE_THICKNESS_R_MAX_LEFT_CHECK ;
 
-			// À•Wƒf[ƒ^‚ği‚ß‚é
+			// åº§æ¨™ãƒ‡ãƒ¼ã‚¿ã‚’é€²ã‚ã‚‹
 			if( F >= 0 )
 			{
 				Dx -- ;
@@ -35272,12 +35272,12 @@ extern int	Graphics_Draw_GetCircle_ThicknessDrawPosition( int x, int y, int r, i
 		}
 	}
 
-	// “à‘¤‰~‚ÌÀ•WƒŠƒXƒgì¬
+	// å†…å´å††ã®åº§æ¨™ãƒªã‚¹ãƒˆä½œæˆ
 	{
-		// ‰Šú’lƒZƒbƒg
+		// åˆæœŸå€¤ã‚»ãƒƒãƒˆ
 		Dx = rmin ; Dy = 0 ; F = -2 * rmin + 3 ;
 
-		// Å‰‚Ì“_
+		// æœ€åˆã®ç‚¹
 		{
 			x1 = -Dx + x ; y1 = Dy + y ;
 			DX_CIRCLE_THICKNESS_R_MIN_LEFT_CHECK ;
@@ -35292,7 +35292,7 @@ extern int	Graphics_Draw_GetCircle_ThicknessDrawPosition( int x, int y, int r, i
 			DX_CIRCLE_THICKNESS_R_MIN_LEFT_CHECK ;
 			DX_CIRCLE_THICKNESS_R_MIN_RIGHT_CHECK ;
 
-			// À•Wƒf[ƒ^‚ği‚ß‚é
+			// åº§æ¨™ãƒ‡ãƒ¼ã‚¿ã‚’é€²ã‚ã‚‹
 			if( F >= 0 )
 			{
 				Dx -- ;
@@ -35325,7 +35325,7 @@ extern int	Graphics_Draw_GetCircle_ThicknessDrawPosition( int x, int y, int r, i
 			x1 = -Dy + x ; 
 			DX_CIRCLE_THICKNESS_R_MIN_LEFT_CHECK ;
 
-			// À•Wƒf[ƒ^‚ği‚ß‚é
+			// åº§æ¨™ãƒ‡ãƒ¼ã‚¿ã‚’é€²ã‚ã‚‹
 			if( F >= 0 )
 			{
 				Dx -- ;
@@ -35337,11 +35337,11 @@ extern int	Graphics_Draw_GetCircle_ThicknessDrawPosition( int x, int y, int r, i
 		}
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ü‚Ì••t‚«‘È‰~‚Ì•`‰æ—p’¸“_‚ğæ“¾‚·‚éŠÖ”
+// ç·šã®å¹…ä»˜ãæ¥•å††ã®æç”»ç”¨é ‚ç‚¹ã‚’å–å¾—ã™ã‚‹é–¢æ•°
 extern int	Graphics_Draw_GetOval_ThicknessDrawPosition( int x, int y, int rx, int ry, int Thickness, short ( *CirclePos )[ 5 ] )
 {
 	int x1, y1 ;
@@ -35352,7 +35352,7 @@ extern int	Graphics_Draw_GetOval_ThicknessDrawPosition( int x, int y, int rx, in
 
 	DrawRect = GSYS.DrawSetting.DrawArea ;
 
-	// Šeü‚Ì‘¾‚³‚ğZo
+	// å„ç·šã®å¤ªã•ã‚’ç®—å‡º
 	rxmax = rx + Thickness / 2 ;
 	rxmin = rx - Thickness / 2 ;
 	if( rxmax - rxmin + 1 > Thickness )
@@ -35372,11 +35372,11 @@ extern int	Graphics_Draw_GetOval_ThicknessDrawPosition( int x, int y, int rx, in
 		return -1 ;
 	}
 
-	// ŠO‘¤‰~‚ÌÀ•WƒŠƒXƒgì¬
+	// å¤–å´å††ã®åº§æ¨™ãƒªã‚¹ãƒˆä½œæˆ
 	{
 		if( rxmax >= rymax )
 		{
-			// ‰Šú’l‚ğƒZƒbƒg
+			// åˆæœŸå€¤ã‚’ã‚»ãƒƒãƒˆ
 			rc = ( rxmax * rxmax ) / rymax ;
 
 			xc = 0 ; yc = 0 ;
@@ -35388,7 +35388,7 @@ extern int	Graphics_Draw_GetOval_ThicknessDrawPosition( int x, int y, int rx, in
 			F = -2 * r + 1 + 2 * 1;
 			H = -4 * r + 2 + 1;
 
-			// Å‰‚Ì“_‚ğ•`‚­
+			// æœ€åˆã®ç‚¹ã‚’æã
 			{
 				x1 = -Dx + x ; y1 = Dy + y ;
 				DX_CIRCLE_THICKNESS_R_MAX_LEFT_CHECK ;
@@ -35397,7 +35397,7 @@ extern int	Graphics_Draw_GetOval_ThicknessDrawPosition( int x, int y, int rx, in
 
 				Df = 0 ;
 
-				// À•Wƒf[ƒ^‚ği‚ß‚é
+				// åº§æ¨™ãƒ‡ãƒ¼ã‚¿ã‚’é€²ã‚ã‚‹
 				if( F < 0 )
 				{
 					yc += rymax ;
@@ -35453,7 +35453,7 @@ extern int	Graphics_Draw_GetOval_ThicknessDrawPosition( int x, int y, int rx, in
 
 				Df = 0 ;
 
-				// À•Wƒf[ƒ^‚ği‚ß‚é
+				// åº§æ¨™ãƒ‡ãƒ¼ã‚¿ã‚’é€²ã‚ã‚‹
 				if( F < 0 )
 				{
 					yc += rymax ;
@@ -35490,7 +35490,7 @@ extern int	Graphics_Draw_GetOval_ThicknessDrawPosition( int x, int y, int rx, in
 				}
 			}
 
-			// ÅŒã‚Ì“_‚ğ•`‚­
+			// æœ€å¾Œã®ç‚¹ã‚’æã
 			x1 = Dx + x ; y1 = -Dy + y;
 			DX_CIRCLE_THICKNESS_R_MAX_LEFT_CHECK ;
 			DX_CIRCLE_THICKNESS_R_MAX_RIGHT_CHECK ;
@@ -35501,7 +35501,7 @@ extern int	Graphics_Draw_GetOval_ThicknessDrawPosition( int x, int y, int rx, in
 		}
 		else
 		{
-			// ‰Šú’l‚ğƒZƒbƒg
+			// åˆæœŸå€¤ã‚’ã‚»ãƒƒãƒˆ
 			rc = ( rymax * rymax ) / rxmax ;
 
 			xc = 0 ; yc = 0 ;
@@ -35513,9 +35513,9 @@ extern int	Graphics_Draw_GetOval_ThicknessDrawPosition( int x, int y, int rx, in
 			F = -2 * r + 1 + 2 * 1;
 			H = -4 * r + 2 + 1;
 
-			// Å‰‚Ìü‚ğ•`‚­
+			// æœ€åˆã®ç·šã‚’æã
 			{
-				// À•Wƒf[ƒ^‚ği‚ß‚é
+				// åº§æ¨™ãƒ‡ãƒ¼ã‚¿ã‚’é€²ã‚ã‚‹
 				if( F < 0 )
 				{
 					xc += rxmax ;
@@ -35552,7 +35552,7 @@ extern int	Graphics_Draw_GetOval_ThicknessDrawPosition( int x, int y, int rx, in
 
 			while( Dy >= 0 )
 			{
-				// À•Wƒf[ƒ^‚ği‚ß‚é
+				// åº§æ¨™ãƒ‡ãƒ¼ã‚¿ã‚’é€²ã‚ã‚‹
 				if( F < 0 )
 				{
 					xc += rxmax ;
@@ -35599,11 +35599,11 @@ extern int	Graphics_Draw_GetOval_ThicknessDrawPosition( int x, int y, int rx, in
 		}
 	}
 
-	// “à‘¤‰~‚ÌÀ•WƒŠƒXƒgì¬
+	// å†…å´å††ã®åº§æ¨™ãƒªã‚¹ãƒˆä½œæˆ
 	{
 		if( rxmin >= rymin )
 		{
-			// ‰Šú’l‚ğƒZƒbƒg
+			// åˆæœŸå€¤ã‚’ã‚»ãƒƒãƒˆ
 			rc = ( rxmin * rxmin ) / rymin ;
 
 			xc = 0 ; yc = 0 ;
@@ -35615,7 +35615,7 @@ extern int	Graphics_Draw_GetOval_ThicknessDrawPosition( int x, int y, int rx, in
 			F = -2 * r + 1 + 2 * 1;
 			H = -4 * r + 2 + 1;
 
-			// Å‰‚Ì“_‚ğ•`‚­
+			// æœ€åˆã®ç‚¹ã‚’æã
 			{
 				x1 = -Dx + x ; y1 = Dy + y ;
 				DX_CIRCLE_THICKNESS_R_MIN_LEFT_CHECK ;
@@ -35624,7 +35624,7 @@ extern int	Graphics_Draw_GetOval_ThicknessDrawPosition( int x, int y, int rx, in
 
 				Df = 0 ;
 
-				// À•Wƒf[ƒ^‚ği‚ß‚é
+				// åº§æ¨™ãƒ‡ãƒ¼ã‚¿ã‚’é€²ã‚ã‚‹
 				if( F < 0 )
 				{
 					yc += rymin ;
@@ -35680,7 +35680,7 @@ extern int	Graphics_Draw_GetOval_ThicknessDrawPosition( int x, int y, int rx, in
 
 				Df = 0 ;
 
-				// À•Wƒf[ƒ^‚ği‚ß‚é
+				// åº§æ¨™ãƒ‡ãƒ¼ã‚¿ã‚’é€²ã‚ã‚‹
 				if( F < 0 )
 				{
 					yc += rymin ;
@@ -35719,7 +35719,7 @@ extern int	Graphics_Draw_GetOval_ThicknessDrawPosition( int x, int y, int rx, in
 				}
 			}
 
-			// ÅŒã‚Ì“_‚ğ•`‚­
+			// æœ€å¾Œã®ç‚¹ã‚’æã
 			x1 = Dx + x ; y1 = -Dy + y;
 			DX_CIRCLE_THICKNESS_R_MIN_LEFT_CHECK ;
 			DX_CIRCLE_THICKNESS_R_MIN_RIGHT_CHECK ;
@@ -35730,7 +35730,7 @@ extern int	Graphics_Draw_GetOval_ThicknessDrawPosition( int x, int y, int rx, in
 		}
 		else
 		{
-			// ‰Šú’l‚ğƒZƒbƒg
+			// åˆæœŸå€¤ã‚’ã‚»ãƒƒãƒˆ
 			rc = ( rymin * rymin ) / rxmin ;
 
 			xc = 0 ; yc = 0 ;
@@ -35742,9 +35742,9 @@ extern int	Graphics_Draw_GetOval_ThicknessDrawPosition( int x, int y, int rx, in
 			F = -2 * r + 1 + 2 * 1;
 			H = -4 * r + 2 + 1;
 
-			// Å‰‚Ìü‚ğ•`‚­
+			// æœ€åˆã®ç·šã‚’æã
 			{
-				// À•Wƒf[ƒ^‚ği‚ß‚é
+				// åº§æ¨™ãƒ‡ãƒ¼ã‚¿ã‚’é€²ã‚ã‚‹
 				if( F < 0 )
 				{
 					xc += rxmin ;
@@ -35781,7 +35781,7 @@ extern int	Graphics_Draw_GetOval_ThicknessDrawPosition( int x, int y, int rx, in
 
 			while( Dy >= 0 )
 			{
-				// À•Wƒf[ƒ^‚ği‚ß‚é
+				// åº§æ¨™ãƒ‡ãƒ¼ã‚¿ã‚’é€²ã‚ã‚‹
 				if( F < 0 )
 				{
 					xc += rxmin ;
@@ -35828,11 +35828,11 @@ extern int	Graphics_Draw_GetOval_ThicknessDrawPosition( int x, int y, int rx, in
 		}
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// À•W•â³‚ğs‚í‚È‚¢‚Qƒ|ƒŠƒSƒ“•`‰æ‚ğs‚¤( ‚PƒeƒNƒXƒ`ƒƒ‰æ‘œ‚Ì‚İ—LŒø )
+// åº§æ¨™è£œæ­£ã‚’è¡Œã‚ãªã„ï¼’ãƒãƒªã‚´ãƒ³æç”»ã‚’è¡Œã†( ï¼‘ãƒ†ã‚¯ã‚¹ãƒãƒ£ç”»åƒã®ã¿æœ‰åŠ¹ )
 
 #define SETDRAWRECTCODE\
 	int MaxX, MaxY, MinX, MinY ;\
@@ -35856,22 +35856,22 @@ extern int Graphics_Draw_DrawSimpleQuadrangleGraphF( const GRAPHICS_DRAW_DRAWSIM
 	IMAGEDATA *BlendImage ;
 	int Ret ;
 
-	// ‰Šú‰»”»’è
+	// åˆæœŸåŒ–åˆ¤å®š
 	if( DxSysData.DxLib_InitializeFlag == FALSE )
 	{
 		return -1 ;
 	}
 
-	// ”ñ•`‰æİ’è‚ª‚³‚ê‚Ä‚¢‚éê‡‚Í‰½‚à‚¹‚¸I—¹
+	// éæç”»è¨­å®šãŒã•ã‚Œã¦ã„ã‚‹å ´åˆã¯ä½•ã‚‚ã›ãšçµ‚äº†
 	if( /* GSYS.NotDrawFlag || */ GSYS.DrawSetting.NotDrawFlagInSetDrawArea )
 	{
 		return 0 ;
 	}
 
-	// ƒ\ƒtƒg‚ª”ñƒAƒNƒeƒBƒu‚Ìê‡‚ÍƒAƒNƒeƒBƒu‚É‚È‚é‚Ü‚Å‘Ò‚Â
+	// ã‚½ãƒ•ãƒˆãŒéã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã®å ´åˆã¯ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ãªã‚‹ã¾ã§å¾…ã¤
 	CheckActiveState() ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( GRAPHCHK( Param->GraphHandle, Image ) )
 	{
 		return -1 ;
@@ -35881,7 +35881,7 @@ extern int Graphics_Draw_DrawSimpleQuadrangleGraphF( const GRAPHICS_DRAW_DRAWSIM
 	{
 		GRAPHCHK( GSYS.DrawSetting.BlendGraph, BlendImage ) ;
 
-		// ƒuƒŒƒ“ƒhƒeƒNƒXƒ`ƒƒ‚ğg—p‚·‚éê‡A•`‰æ‰æ‘œ‚æ‚è‚à¬‚³‚©‚Á‚½‚çƒGƒ‰[
+		// ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ä½¿ç”¨ã™ã‚‹å ´åˆã€æç”»ç”»åƒã‚ˆã‚Šã‚‚å°ã•ã‹ã£ãŸã‚‰ã‚¨ãƒ©ãƒ¼
 		if( Graphics_Image_CheckBlendGraphSize( Image ) )
 		{
 			return -1 ;
@@ -35895,11 +35895,11 @@ extern int Graphics_Draw_DrawSimpleQuadrangleGraphF( const GRAPHICS_DRAW_DRAWSIM
 	}
 #endif
 
-	// ‚Q‚cs—ñ‚ğƒn[ƒhƒEƒGƒA‚É”½‰f‚·‚é
+	// ï¼’ï¼¤è¡Œåˆ—ã‚’ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã«åæ˜ ã™ã‚‹
 	if( GSYS.DrawSetting.MatchHardware_2DMatrix == FALSE && GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )
 		Graphics_DrawSetting_ApplyLib2DMatrixToHardware() ;
 
-	// •`‰æ
+	// æç”»
 	DRAW_DEF( 
 		Graphics_Hardware_DrawSimpleQuadrangleGraphF_PF( Param, Image, BlendImage ),
 		0,
@@ -35908,14 +35908,14 @@ extern int Graphics_Draw_DrawSimpleQuadrangleGraphF( const GRAPHICS_DRAW_DRAWSIM
 		Image->Orig->FormatDesc.TextureFlag
 	)
 
-	// I—¹
+	// çµ‚äº†
 	return Ret ;
 }
 
 #undef SETDRAWRECTCODE
 
 
-// À•W•â³‚ğs‚í‚È‚¢‚Pƒ|ƒŠƒSƒ“•`‰æ‚ğs‚¤( ‚PƒeƒNƒXƒ`ƒƒ‰æ‘œ‚Ì‚İ—LŒø )
+// åº§æ¨™è£œæ­£ã‚’è¡Œã‚ãªã„ï¼‘ãƒãƒªã‚´ãƒ³æç”»ã‚’è¡Œã†( ï¼‘ãƒ†ã‚¯ã‚¹ãƒãƒ£ç”»åƒã®ã¿æœ‰åŠ¹ )
 
 #define SETDRAWRECTCODE\
 	int MaxX, MaxY, MinX, MinY ;\
@@ -35941,22 +35941,22 @@ extern int Graphics_Draw_DrawSimpleTriangleGraphF( const GRAPHICS_DRAW_DRAWSIMPL
 	IMAGEDATA *BlendImage ;
 	int Ret ;
 
-	// ‰Šú‰»”»’è
+	// åˆæœŸåŒ–åˆ¤å®š
 	if( DxSysData.DxLib_InitializeFlag == FALSE )
 	{
 		return -1 ;
 	}
 
-	// ”ñ•`‰æİ’è‚ª‚³‚ê‚Ä‚¢‚éê‡‚Í‰½‚à‚¹‚¸I—¹
+	// éæç”»è¨­å®šãŒã•ã‚Œã¦ã„ã‚‹å ´åˆã¯ä½•ã‚‚ã›ãšçµ‚äº†
 	if( /* GSYS.NotDrawFlag || */ GSYS.DrawSetting.NotDrawFlagInSetDrawArea )
 	{
 		return 0 ;
 	}
 
-	// ƒ\ƒtƒg‚ª”ñƒAƒNƒeƒBƒu‚Ìê‡‚ÍƒAƒNƒeƒBƒu‚É‚È‚é‚Ü‚Å‘Ò‚Â
+	// ã‚½ãƒ•ãƒˆãŒéã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã®å ´åˆã¯ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ãªã‚‹ã¾ã§å¾…ã¤
 	CheckActiveState() ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( GRAPHCHK( Param->GraphHandle, Image ) )
 	{
 		return -1 ;
@@ -35966,7 +35966,7 @@ extern int Graphics_Draw_DrawSimpleTriangleGraphF( const GRAPHICS_DRAW_DRAWSIMPL
 	{
 		GRAPHCHK( GSYS.DrawSetting.BlendGraph, BlendImage ) ;
 
-		// ƒuƒŒƒ“ƒhƒeƒNƒXƒ`ƒƒ‚ğg—p‚·‚éê‡A•`‰æ‰æ‘œ‚æ‚è‚à¬‚³‚©‚Á‚½‚çƒGƒ‰[
+		// ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ä½¿ç”¨ã™ã‚‹å ´åˆã€æç”»ç”»åƒã‚ˆã‚Šã‚‚å°ã•ã‹ã£ãŸã‚‰ã‚¨ãƒ©ãƒ¼
 		if( Graphics_Image_CheckBlendGraphSize( Image ) )
 		{
 			return -1 ;
@@ -35980,11 +35980,11 @@ extern int Graphics_Draw_DrawSimpleTriangleGraphF( const GRAPHICS_DRAW_DRAWSIMPL
 	}
 #endif
 
-	// ‚Q‚cs—ñ‚ğƒn[ƒhƒEƒGƒA‚É”½‰f‚·‚é
+	// ï¼’ï¼¤è¡Œåˆ—ã‚’ãƒãƒ¼ãƒ‰ã‚¦ã‚¨ã‚¢ã«åæ˜ ã™ã‚‹
 	if( GSYS.DrawSetting.MatchHardware_2DMatrix == FALSE && GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )
 		Graphics_DrawSetting_ApplyLib2DMatrixToHardware() ;
 
-	// •`‰æ
+	// æç”»
 	DRAW_DEF( 
 		Graphics_Hardware_DrawSimpleTriangleGraphF_PF( Param, Image, BlendImage ),
 		0,
@@ -35993,7 +35993,7 @@ extern int Graphics_Draw_DrawSimpleTriangleGraphF( const GRAPHICS_DRAW_DRAWSIMPL
 		Image->Orig->FormatDesc.TextureFlag
 	)
 
-	// I—¹
+	// çµ‚äº†
 	return Ret ;
 }
 
@@ -36025,16 +36025,16 @@ extern int Graphics_Draw_DrawSimpleTriangleGraphF( const GRAPHICS_DRAW_DRAWSIMPL
 
 
 
-// ƒJƒƒ‰ŠÖŒWŠÖ”
+// ã‚«ãƒ¡ãƒ©é–¢ä¿‚é–¢æ•°
 
-// ‚WÀ•W‚ÅŒ`ì‚éƒ{ƒbƒNƒX‚ªƒJƒƒ‰‚Ì‹ŠE‚É“ü‚Á‚Ä‚¢‚é‚©‚Ç‚¤‚©‚ğ”»’è‚·‚é( –ß‚è’l TRUE:‹ŠE‚É“ü‚Á‚Ä‚¢‚È‚¢  FALSE:‹ŠE‚É“ü‚Á‚Ä‚¢‚é )( CheckPos‚Í VECTOR 8ŒÂ•ª‚Ì”z—ñ‚Ìæ“ªƒAƒhƒŒƒXA”z—ñ‚ÌŠe—v‘f”Ô†‚Ì“à—e 0:+x +y +z   1:-x +y +z   2:-x -y +z   3:+x -y +z   4:+x -y -z   5:+x +y -z   6:-x +y -z   7:-x -y -z )
+// ï¼˜åº§æ¨™ã§å½¢ä½œã‚‹ãƒœãƒƒã‚¯ã‚¹ãŒã‚«ãƒ¡ãƒ©ã®è¦–ç•Œã«å…¥ã£ã¦ã„ã‚‹ã‹ã©ã†ã‹ã‚’åˆ¤å®šã™ã‚‹( æˆ»ã‚Šå€¤ TRUE:è¦–ç•Œã«å…¥ã£ã¦ã„ãªã„  FALSE:è¦–ç•Œã«å…¥ã£ã¦ã„ã‚‹ )( CheckPosã¯ VECTOR 8å€‹åˆ†ã®é…åˆ—ã®å…ˆé ­ã‚¢ãƒ‰ãƒ¬ã‚¹ã€é…åˆ—ã®å„è¦ç´ ç•ªå·ã®å†…å®¹ 0:+x +y +z   1:-x +y +z   2:-x -y +z   3:+x -y +z   4:+x -y -z   5:+x +y -z   6:-x +y -z   7:-x -y -z )
 extern int Graphics_Camera_CheckCameraViewClip_Box_PosDim( VECTOR *CheckBoxPos )
 {
 	BYTE clip[ 8 ] ;
 	VECTOR *pos ;
 	int i ;
 
-	// Še’¸“_‚ª‰Â‹—Ìˆæ‚É“ü‚Á‚Ä‚¢‚é‚©‚Ç‚¤‚©‚ğ’²‚×‚é
+	// å„é ‚ç‚¹ãŒå¯è¦–é ˜åŸŸã«å…¥ã£ã¦ã„ã‚‹ã‹ã©ã†ã‹ã‚’èª¿ã¹ã‚‹
 	pos = CheckBoxPos ;
 	for( i = 0 ; i < 8 ; i ++, pos ++ )
 	{
@@ -36048,7 +36048,7 @@ extern int Graphics_Camera_CheckCameraViewClip_Box_PosDim( VECTOR *CheckBoxPos )
 		if( clip[ i ] == 0 ) return FALSE ;
 	}
 
-	// ‚Ç‚ê‚©‚Ì‘¤‚É‘S‚Ä‚Ì’¸“_‚ªŠñ‚Á‚Ä‚¢‚éê‡‚Í‚P‚O‚O“‰Â‹—Ìˆæ‚É“ü‚Á‚Ä‚¢‚È‚¢
+	// ã©ã‚Œã‹ã®å´ã«å…¨ã¦ã®é ‚ç‚¹ãŒå¯„ã£ã¦ã„ã‚‹å ´åˆã¯ï¼‘ï¼ï¼ï¼…å¯è¦–é ˜åŸŸã«å…¥ã£ã¦ã„ãªã„
 	if( ( ( clip[0] & CLIP_XP ) && ( clip[1] & CLIP_XP ) &&
 		  ( clip[2] & CLIP_XP ) && ( clip[3] & CLIP_XP ) &&
 		  ( clip[4] & CLIP_XP ) && ( clip[5] & CLIP_XP ) &&
@@ -36075,18 +36075,18 @@ extern int Graphics_Camera_CheckCameraViewClip_Box_PosDim( VECTOR *CheckBoxPos )
 		  ( clip[6] & CLIP_ZM ) && ( clip[7] & CLIP_ZM ) ) )
 		  return TRUE ;
 
-	// ‚±‚±‚É‚«‚½‚çŒ©‚¦‚Ä‚¢‚é‚Æ‚¢‚¤‚±‚Æ
+	// ã“ã“ã«ããŸã‚‰è¦‹ãˆã¦ã„ã‚‹ã¨ã„ã†ã“ã¨
 	return FALSE ;
 }
 
-// ‚WÀ•W‚ÅŒ`ì‚éƒ{ƒbƒNƒX‚ªƒJƒƒ‰‚Ì‹ŠE‚É“ü‚Á‚Ä‚¢‚é‚©‚Ç‚¤‚©‚ğ”»’è‚·‚é( –ß‚è’l TRUE:‹ŠE‚É“ü‚Á‚Ä‚¢‚È‚¢  FALSE:‹ŠE‚É“ü‚Á‚Ä‚¢‚é )( CheckPos‚Í VECTOR 8ŒÂ•ª‚Ì”z—ñ‚Ìæ“ªƒAƒhƒŒƒXA”z—ñ‚ÌŠe—v‘f”Ô†‚Ì“à—e 0:+x +y +z   1:-x +y +z   2:-x -y +z   3:+x -y +z   4:+x -y -z   5:+x +y -z   6:-x +y -z   7:-x -y -z )
+// ï¼˜åº§æ¨™ã§å½¢ä½œã‚‹ãƒœãƒƒã‚¯ã‚¹ãŒã‚«ãƒ¡ãƒ©ã®è¦–ç•Œã«å…¥ã£ã¦ã„ã‚‹ã‹ã©ã†ã‹ã‚’åˆ¤å®šã™ã‚‹( æˆ»ã‚Šå€¤ TRUE:è¦–ç•Œã«å…¥ã£ã¦ã„ãªã„  FALSE:è¦–ç•Œã«å…¥ã£ã¦ã„ã‚‹ )( CheckPosã¯ VECTOR 8å€‹åˆ†ã®é…åˆ—ã®å…ˆé ­ã‚¢ãƒ‰ãƒ¬ã‚¹ã€é…åˆ—ã®å„è¦ç´ ç•ªå·ã®å†…å®¹ 0:+x +y +z   1:-x +y +z   2:-x -y +z   3:+x -y +z   4:+x -y -z   5:+x +y -z   6:-x +y -z   7:-x -y -z )
 extern int Graphics_Camera_CheckCameraViewClip_Box_PosDimD( VECTOR_D *CheckBoxPos )
 {
 	BYTE clip[ 8 ] ;
 	VECTOR_D *pos ;
 	int i ;
 
-	// Še’¸“_‚ª‰Â‹—Ìˆæ‚É“ü‚Á‚Ä‚¢‚é‚©‚Ç‚¤‚©‚ğ’²‚×‚é
+	// å„é ‚ç‚¹ãŒå¯è¦–é ˜åŸŸã«å…¥ã£ã¦ã„ã‚‹ã‹ã©ã†ã‹ã‚’èª¿ã¹ã‚‹
 	pos = CheckBoxPos ;
 	for( i = 0 ; i < 8 ; i ++, pos ++ )
 	{
@@ -36100,7 +36100,7 @@ extern int Graphics_Camera_CheckCameraViewClip_Box_PosDimD( VECTOR_D *CheckBoxPo
 		if( clip[ i ] == 0 ) return FALSE ;
 	}
 
-	// ‚Ç‚ê‚©‚Ì‘¤‚É‘S‚Ä‚Ì’¸“_‚ªŠñ‚Á‚Ä‚¢‚éê‡‚Í‚P‚O‚O“‰Â‹—Ìˆæ‚É“ü‚Á‚Ä‚¢‚È‚¢
+	// ã©ã‚Œã‹ã®å´ã«å…¨ã¦ã®é ‚ç‚¹ãŒå¯„ã£ã¦ã„ã‚‹å ´åˆã¯ï¼‘ï¼ï¼ï¼…å¯è¦–é ˜åŸŸã«å…¥ã£ã¦ã„ãªã„
 	if( ( ( clip[0] & CLIP_XP ) && ( clip[1] & CLIP_XP ) &&
 		  ( clip[2] & CLIP_XP ) && ( clip[3] & CLIP_XP ) &&
 		  ( clip[4] & CLIP_XP ) && ( clip[5] & CLIP_XP ) &&
@@ -36127,11 +36127,11 @@ extern int Graphics_Camera_CheckCameraViewClip_Box_PosDimD( VECTOR_D *CheckBoxPo
 		  ( clip[6] & CLIP_ZM ) && ( clip[7] & CLIP_ZM ) ) )
 		  return TRUE ;
 
-	// ‚±‚±‚É‚«‚½‚çŒ©‚¦‚Ä‚¢‚é‚Æ‚¢‚¤‚±‚Æ
+	// ã“ã“ã«ããŸã‚‰è¦‹ãˆã¦ã„ã‚‹ã¨ã„ã†ã“ã¨
 	return FALSE ;
 }
 
-// ƒrƒ…[s—ñ‚©‚ç…•½A‚’¼A”P‚èŠp“x‚ğZo‚·‚é
+// ãƒ“ãƒ¥ãƒ¼è¡Œåˆ—ã‹ã‚‰æ°´å¹³ã€å‚ç›´ã€æ»ã‚Šè§’åº¦ã‚’ç®—å‡ºã™ã‚‹
 extern void Graphics_Camera_CalcCameraRollViewMatrix( void )
 {
 	VECTOR_D XVec, YVec, ZVec ;
@@ -36252,15 +36252,15 @@ extern void Graphics_Camera_CalcCameraRollViewMatrix( void )
 
 
 
-// ƒ‰ƒCƒgŠÖŒWŠÖ”
+// ãƒ©ã‚¤ãƒˆé–¢ä¿‚é–¢æ•°
 
-// ƒ‰ƒCƒgƒnƒ“ƒhƒ‹‚Ì’Ç‰Á
+// ãƒ©ã‚¤ãƒˆãƒãƒ³ãƒ‰ãƒ«ã®è¿½åŠ 
 extern int Graphics_Light_AddHandle( void )
 {
 	LIGHT_HANDLE *pLH, **ppLH ;
 	int i ;
 
-	// g—p‚³‚ê‚Ä‚¢‚È‚¢ƒ‰ƒCƒgƒnƒ“ƒhƒ‹‚ğ’T‚·
+	// ä½¿ç”¨ã•ã‚Œã¦ã„ãªã„ãƒ©ã‚¤ãƒˆãƒãƒ³ãƒ‰ãƒ«ã‚’æ¢ã™
 	if( GSYS.Light.Area != MAX_LIGHT_NUM )
 	{
 		ppLH = &GSYS.Light.Data[ GSYS.Light.Area ] ;
@@ -36272,14 +36272,14 @@ extern int Graphics_Light_AddHandle( void )
 		for( i = 0 ; *ppLH != NULL ; i ++, ppLH ++ ){}
 	}
 
-	// ƒf[ƒ^—Ìˆæ‚ğŠm•Û‚·‚é
+	// ãƒ‡ãƒ¼ã‚¿é ˜åŸŸã‚’ç¢ºä¿ã™ã‚‹
 	if( ( pLH = *ppLH = ( LIGHT_HANDLE * )DXCALLOC( sizeof( LIGHT_HANDLE ) ) ) == NULL )
-		return DXST_LOGFILE_ADDUTF16LE( "\xe9\x30\xa4\x30\xc8\x30\x28\x75\x6e\x30\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"ƒ‰ƒCƒg—p‚Ìƒƒ‚ƒŠ‚ÌŠm•Û‚É¸”s‚µ‚Ü‚µ‚½" @*/ ) ;
+		return DXST_LOGFILE_ADDUTF16LE( "\xe9\x30\xa4\x30\xc8\x30\x28\x75\x6e\x30\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"ãƒ©ã‚¤ãƒˆç”¨ã®ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿ã«å¤±æ•—ã—ã¾ã—ãŸ" @*/ ) ;
 
-	// ƒ[ƒ‰Šú‰»
+	// ã‚¼ãƒ­åˆæœŸåŒ–
 	_MEMSET( pLH, 0, sizeof( LIGHT_HANDLE ) ) ;
 
-	// ‰Šú’l‚ğƒZƒbƒg
+	// åˆæœŸå€¤ã‚’ã‚»ãƒƒãƒˆ
 	pLH->Param.Ambient.r = 0.33f ;
 	pLH->Param.Ambient.g = 0.33f ;
 	pLH->Param.Ambient.b = 0.33f ;
@@ -36303,44 +36303,44 @@ extern int Graphics_Light_AddHandle( void )
 	pLH->SetHardwareIndex = -1 ;
 	pLH->HardwareChangeFlag = FALSE ;
 
-	// ƒGƒ‰[ƒ`ƒFƒbƒN—p‚h‚c‚Ìİ’è
+	// ã‚¨ãƒ©ãƒ¼ãƒã‚§ãƒƒã‚¯ç”¨ï¼©ï¼¤ã®è¨­å®š
 	pLH->ID = ( unsigned int )GSYS.Light.HandleID ;
 	GSYS.Light.HandleID ++ ;
 	if( GSYS.Light.HandleID >= ( DX_HANDLECHECK_MASK >> DX_HANDLECHECK_ADDRESS ) )
 		GSYS.Light.HandleID = 0 ;
 
-	// ƒnƒ“ƒhƒ‹’l‚ğƒZƒbƒg
+	// ãƒãƒ³ãƒ‰ãƒ«å€¤ã‚’ã‚»ãƒƒãƒˆ
 	pLH->Handle = ( int )( i | DX_HANDLETYPE_MASK_LIGHT | ( pLH->ID << DX_HANDLECHECK_ADDRESS ) ) ;
 
-	// ƒ‰ƒCƒg‚Ì”‚ğ‘‚â‚·
+	// ãƒ©ã‚¤ãƒˆã®æ•°ã‚’å¢—ã‚„ã™
 	GSYS.Light.Num ++ ;
 
-	// g—p‚³‚ê‚Ä‚¢‚éƒ‰ƒCƒgƒnƒ“ƒhƒ‹‚ª‘¶İ‚·‚é”ÍˆÍ‚ğXV‚·‚é
+	// ä½¿ç”¨ã•ã‚Œã¦ã„ã‚‹ãƒ©ã‚¤ãƒˆãƒãƒ³ãƒ‰ãƒ«ãŒå­˜åœ¨ã™ã‚‹ç¯„å›²ã‚’æ›´æ–°ã™ã‚‹
 	if( GSYS.Light.Area == i ) GSYS.Light.Area ++ ;
 
-	// —LŒø‚É‚·‚é
+	// æœ‰åŠ¹ã«ã™ã‚‹
 	NS_SetLightEnableHandle( pLH->Handle, TRUE ) ;
 
-	// ƒnƒ“ƒhƒ‹‚ğ•Ô‚·
+	// ãƒãƒ³ãƒ‰ãƒ«ã‚’è¿”ã™
 	return pLH->Handle ;
 }
 
-// ƒ‰ƒCƒg‚Ì•ÏX‚ğ”½‰f‚·‚é
+// ãƒ©ã‚¤ãƒˆã®å¤‰æ›´ã‚’åæ˜ ã™ã‚‹
 extern int Graphics_Light_RefreshState( void )
 {
 	int i, j, k/*, OldEnableNum*/, OldMaxIndex ;
 	LIGHT_HANDLE *pLH ;
 
-	// ƒ‰ƒCƒg‚Ìİ’è‚ğ”½‰f‚·‚é
+	// ãƒ©ã‚¤ãƒˆã®è¨­å®šã‚’åæ˜ ã™ã‚‹
 	Graphics_Hardware_Light_SetUse_PF( GSYS.Light.ProcessDisable ? FALSE : TRUE ) ;
 
-	// İ’è‚ª•ÏX‚³‚ê‚Ä‚¢‚È‚©‚Á‚½‚ç‰½‚à‚µ‚È‚¢
+	// è¨­å®šãŒå¤‰æ›´ã•ã‚Œã¦ã„ãªã‹ã£ãŸã‚‰ä½•ã‚‚ã—ãªã„
 	if( GSYS.Light.HardwareChange == FALSE && GSYS.Light.HardwareRefresh == FALSE )
 	{
 		return 0 ;
 	}
 
-	// —LŒø‚Èƒ‰ƒCƒg‚ğ‡”Ô‚É”½‰f‚·‚é
+	// æœ‰åŠ¹ãªãƒ©ã‚¤ãƒˆã‚’é †ç•ªã«åæ˜ ã™ã‚‹
 //	OldEnableNum                      = GSYS.Light.EnableNum ;
 	OldMaxIndex                       = GSYS.Light.MaxHardwareEnableIndex ;
 	GSYS.Light.EnableNum              = 0 ;
@@ -36382,26 +36382,26 @@ extern int Graphics_Light_RefreshState( void )
 		}
 	}
 
-	// ‘O‰ñ‚æ‚è—LŒø‚Èƒ‰ƒCƒg‚Ì”‚ª­‚È‚¢ê‡‚Í—LŒø‚Èƒ‰ƒCƒg‚ğOFF‚É‚·‚é
+	// å‰å›ã‚ˆã‚Šæœ‰åŠ¹ãªãƒ©ã‚¤ãƒˆã®æ•°ãŒå°‘ãªã„å ´åˆã¯æœ‰åŠ¹ãªãƒ©ã‚¤ãƒˆã‚’OFFã«ã™ã‚‹
 	for( i = GSYS.Light.MaxHardwareEnableIndex + 1 ; i <= OldMaxIndex ; i ++ )
 	{
 //		D_SetLightParam( i, FALSE, NULL ) ;
 		Graphics_Hardware_Light_SetEnable_PF( i, FALSE ) ;
 	}
 
-	// İ’è‚ª•ÏX‚³‚ê‚½ƒtƒ‰ƒO‚ğ“|‚·
+	// è¨­å®šãŒå¤‰æ›´ã•ã‚ŒãŸãƒ•ãƒ©ã‚°ã‚’å€’ã™
 	GSYS.Light.HardwareChange = FALSE ;
 
-	// İ’è‚ª•ÏX‚³‚ê‚½‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	// è¨­å®šãŒå¤‰æ›´ã•ã‚ŒãŸã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	GSYS.ChangeSettingFlag = TRUE ;
 
-	// İ’è‚ÌÛ”½‰f‚ª•K—v‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ğ“|‚·
+	// è¨­å®šã®éš›åæ˜ ãŒå¿…è¦ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’å€’ã™
 	GSYS.Light.HardwareRefresh = FALSE ;
 
-	// ƒsƒNƒZƒ‹ƒVƒF[ƒ_[‚Éİ’è‚·‚éƒVƒƒƒhƒEƒ}ƒbƒv‚Ìî•ñ‚ğXV‚·‚é
+	// ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã«è¨­å®šã™ã‚‹ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ã®æƒ…å ±ã‚’æ›´æ–°ã™ã‚‹
 	Graphics_ShadowMap_RefreshPSParam() ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
@@ -36426,22 +36426,22 @@ extern int Graphics_Light_RefreshState( void )
 
 
 
-// ƒVƒF[ƒ_[ŠÖŒWŠÖ”
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼é–¢ä¿‚é–¢æ•°
 
-// ƒVƒF[ƒ_[ƒnƒ“ƒhƒ‹‚ğì¬‚·‚é
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒãƒ³ãƒ‰ãƒ«ã‚’ä½œæˆã™ã‚‹
 extern int Graphics_Shader_CreateHandle( int ASyncThread )
 {
 	if( GSYS.InitializeFlag == FALSE )
 		return -1 ;
 
-	// ƒVƒF[ƒ_‚ªg‚¦‚È‚¢ê‡‚Í¸”s
+	// ã‚·ã‚§ãƒ¼ãƒ€ãŒä½¿ãˆãªã„å ´åˆã¯å¤±æ•—
 	if( GSYS.HardInfo.UseShader == FALSE )
 		return -1 ;
 
 	return AddHandle( DX_HANDLETYPE_SHADER, ASyncThread, -1 ) ;
 }
 
-// CreateShader ‚ÌÀˆ—ŠÖ”
+// CreateShader ã®å®Ÿå‡¦ç†é–¢æ•°
 static int Graphics_Shader_CreateHandle_Static(
 	int ShaderHandle,
 	int ShaderType,
@@ -36456,7 +36456,7 @@ static int Graphics_Shader_CreateHandle_Static(
 
 #ifndef DX_NON_ASYNCLOAD
 
-// CreateShader ‚Ì”ñ“¯Šú“Ç‚İ‚İƒXƒŒƒbƒh‚©‚çŒÄ‚Î‚ê‚éŠÖ”
+// CreateShader ã®éåŒæœŸèª­ã¿è¾¼ã¿ã‚¹ãƒ¬ãƒƒãƒ‰ã‹ã‚‰å‘¼ã°ã‚Œã‚‹é–¢æ•°
 static void Graphics_Shader_CreateHandle_ASync( ASYNCLOADDATA_COMMON *AParam )
 {
 	int   ShaderHandle ;
@@ -36489,7 +36489,7 @@ static void Graphics_Shader_CreateHandle_ASync( ASYNCLOADDATA_COMMON *AParam )
 
 #endif // DX_NON_ASYNCLOAD
 
-// ƒVƒF[ƒ_[ƒnƒ“ƒhƒ‹‚ğì¬‚·‚é
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒãƒ³ãƒ‰ãƒ«ã‚’ä½œæˆã™ã‚‹
 extern int Graphics_Shader_CreateHandle_UseGParam(
 	int ShaderType,
 	void *Image,
@@ -36501,7 +36501,7 @@ extern int Graphics_Shader_CreateHandle_UseGParam(
 {
 	int ShaderHandle = -1 ;
 
-	// ƒVƒF[ƒ_‚ªg‚¦‚È‚¢ê‡‚Í¸”s
+	// ã‚·ã‚§ãƒ¼ãƒ€ãŒä½¿ãˆãªã„å ´åˆã¯å¤±æ•—
 	if( Graphics_Hardware_CheckValid_PF() == 0 || GSYS.HardInfo.UseShader == FALSE )
 		return -1 ;
 
@@ -36515,7 +36515,7 @@ extern int Graphics_Shader_CreateHandle_UseGParam(
 		ASYNCLOADDATA_COMMON *AParam = NULL ;
 		int Addr ;
 
-		// ƒpƒ‰ƒ[ƒ^‚É•K—v‚Èƒƒ‚ƒŠ‚ÌƒTƒCƒY‚ğZo
+		// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã«å¿…è¦ãªãƒ¡ãƒ¢ãƒªã®ã‚µã‚¤ã‚ºã‚’ç®—å‡º
 		Addr = 0 ;
 		AddASyncLoadParamInt( NULL, &Addr, ShaderHandle ) ;
 		AddASyncLoadParamInt( NULL, &Addr, ShaderType ) ;
@@ -36523,12 +36523,12 @@ extern int Graphics_Shader_CreateHandle_UseGParam(
 		AddASyncLoadParamInt( NULL, &Addr, ImageSize ) ;
 		AddASyncLoadParamInt( NULL, &Addr, ImageAfterFree ) ;
 
-		// ƒƒ‚ƒŠ‚ÌŠm•Û
+		// ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿
 		AParam = AllocASyncLoadDataMemory( Addr ) ;
 		if( AParam == NULL )
 			goto ERR ;
 
-		// ˆ—‚É•K—v‚Èî•ñ‚ğƒZƒbƒg
+		// å‡¦ç†ã«å¿…è¦ãªæƒ…å ±ã‚’ã‚»ãƒƒãƒˆ
 		AParam->ProcessFunction = Graphics_Shader_CreateHandle_ASync ;
 		Addr = 0 ;
 		AddASyncLoadParamInt( AParam->Data, &Addr, ShaderHandle ) ;
@@ -36537,7 +36537,7 @@ extern int Graphics_Shader_CreateHandle_UseGParam(
 		AddASyncLoadParamInt( AParam->Data, &Addr, ImageSize ) ;
 		AddASyncLoadParamInt( AParam->Data, &Addr, ImageAfterFree ) ;
 
-		// ƒf[ƒ^‚ğ’Ç‰Á
+		// ãƒ‡ãƒ¼ã‚¿ã‚’è¿½åŠ 
 		if( AddASyncLoadData( AParam ) < 0 )
 		{
 			DXFREE( AParam ) ;
@@ -36545,7 +36545,7 @@ extern int Graphics_Shader_CreateHandle_UseGParam(
 			goto ERR ;
 		}
 
-		// ”ñ“¯Šú“Ç‚İ‚İƒJƒEƒ“ƒg‚ğƒCƒ“ƒNƒŠƒƒ“ƒg
+		// éåŒæœŸèª­ã¿è¾¼ã¿ã‚«ã‚¦ãƒ³ãƒˆã‚’ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆ
 		IncASyncLoadCount( ShaderHandle, AParam->Index ) ;
 	}
 	else
@@ -36562,7 +36562,7 @@ extern int Graphics_Shader_CreateHandle_UseGParam(
 	}
 #endif // DX_NON_ASYNCLOAD
 
-	// ƒnƒ“ƒhƒ‹‚ğ•Ô‚·
+	// ãƒãƒ³ãƒ‰ãƒ«ã‚’è¿”ã™
 	return ShaderHandle ;
 
 ERR :
@@ -36576,11 +36576,11 @@ ERR :
 	SubHandle( ShaderHandle, FALSE, ASyncThread ) ;
 	ShaderHandle = -1 ;
 
-	// I—¹
+	// çµ‚äº†
 	return -1 ;
 }
 
-// LoadShader ‚ÌÀˆ—ŠÖ”
+// LoadShader ã®å®Ÿå‡¦ç†é–¢æ•°
 static int Graphics_Shader_LoadShader_Static( int ShaderHandle, int ShaderType, const wchar_t *FileName, int ASyncThread )
 {
 	SHADERHANDLEDATA *pShader ;
@@ -36588,7 +36588,7 @@ static int Graphics_Shader_LoadShader_Static( int ShaderHandle, int ShaderType, 
 	LONGLONG size ;
 	void *buffer ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( ASyncThread )
 	{
 		if( SHADERCHK_ASYNC( ShaderHandle, pShader ) )
@@ -36608,7 +36608,7 @@ static int Graphics_Shader_LoadShader_Static( int ShaderHandle, int ShaderType, 
 	buffer = DXALLOC( ( size_t )size ) ;
 	if( buffer == NULL )
 	{
-		DXST_LOGFILE_ADDUTF16LE( "\xb7\x30\xa7\x30\xfc\x30\xc0\x30\xfc\x30\x6e\x30\xd0\x30\xa4\x30\xca\x30\xea\x30\xc7\x30\xfc\x30\xbf\x30\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ƒVƒF[ƒ_[‚ÌƒoƒCƒiƒŠƒf[ƒ^‚ğŠi”[‚·‚éƒƒ‚ƒŠ—Ìˆæ‚ÌŠm•Û‚É¸”s‚µ‚Ü‚µ‚½\n" @*/ ) ;
+		DXST_LOGFILE_ADDUTF16LE( "\xb7\x30\xa7\x30\xfc\x30\xc0\x30\xfc\x30\x6e\x30\xd0\x30\xa4\x30\xca\x30\xea\x30\xc7\x30\xfc\x30\xbf\x30\x92\x30\x3c\x68\x0d\x7d\x59\x30\x8b\x30\xe1\x30\xe2\x30\xea\x30\x18\x98\xdf\x57\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ãƒã‚¤ãƒŠãƒªãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹ãƒ¡ãƒ¢ãƒªé ˜åŸŸã®ç¢ºä¿ã«å¤±æ•—ã—ã¾ã—ãŸ\n" @*/ ) ;
 		return -1 ;
 	}
 	DX_FREAD( buffer, size, 1, fp ) ;
@@ -36619,7 +36619,7 @@ static int Graphics_Shader_LoadShader_Static( int ShaderHandle, int ShaderType, 
 
 #ifndef DX_NON_ASYNCLOAD
 
-// Graphics_Shader_LoadShader ‚Ì”ñ“¯Šú“Ç‚İ‚İƒXƒŒƒbƒh‚©‚çŒÄ‚Î‚ê‚éŠÖ”
+// Graphics_Shader_LoadShader ã®éåŒæœŸèª­ã¿è¾¼ã¿ã‚¹ãƒ¬ãƒƒãƒ‰ã‹ã‚‰å‘¼ã°ã‚Œã‚‹é–¢æ•°
 static void Graphics_Shader_LoadShader_ASync( ASYNCLOADDATA_COMMON *AParam )
 {
 	int          ShaderHandle ;
@@ -36648,12 +36648,12 @@ static void Graphics_Shader_LoadShader_ASync( ASYNCLOADDATA_COMMON *AParam )
 
 #endif // DX_NON_ASYNCLOAD
 
-// ƒVƒF[ƒ_[ƒoƒCƒiƒŠ‚ğƒtƒ@ƒCƒ‹‚©‚ç“Ç‚İ‚Ş
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒã‚¤ãƒŠãƒªã‚’ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰èª­ã¿è¾¼ã‚€
 extern int Graphics_Shader_LoadShader_UseGParam( int ShaderType, const wchar_t *FileName, int ASyncLoadFlag )
 {
 	int ShaderHandle = -1 ;
 
-	// ƒVƒF[ƒ_‚ªg‚¦‚È‚¢ê‡‚Í¸”s
+	// ã‚·ã‚§ãƒ¼ãƒ€ãŒä½¿ãˆãªã„å ´åˆã¯å¤±æ•—
 	if( Graphics_Hardware_CheckValid_PF() == 0 || GSYS.HardInfo.UseShader == FALSE )
 		return -1 ;
 
@@ -36670,25 +36670,25 @@ extern int Graphics_Shader_LoadShader_UseGParam( int ShaderType, const wchar_t *
 
 		ConvertFullPathW_( FileName, FullPath, sizeof( FullPath ) ) ;
 
-		// ƒpƒ‰ƒ[ƒ^‚É•K—v‚Èƒƒ‚ƒŠ‚ÌƒTƒCƒY‚ğZo
+		// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã«å¿…è¦ãªãƒ¡ãƒ¢ãƒªã®ã‚µã‚¤ã‚ºã‚’ç®—å‡º
 		Addr = 0 ;
 		AddASyncLoadParamInt( NULL, &Addr, ShaderHandle ) ;
 		AddASyncLoadParamInt( NULL, &Addr, ShaderType ) ;
 		AddASyncLoadParamString( NULL, &Addr, FullPath ) ;
 
-		// ƒƒ‚ƒŠ‚ÌŠm•Û
+		// ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿
 		AParam = AllocASyncLoadDataMemory( Addr ) ;
 		if( AParam == NULL )
 			goto ERR ;
 
-		// ˆ—‚É•K—v‚Èî•ñ‚ğƒZƒbƒg
+		// å‡¦ç†ã«å¿…è¦ãªæƒ…å ±ã‚’ã‚»ãƒƒãƒˆ
 		AParam->ProcessFunction = Graphics_Shader_LoadShader_ASync ;
 		Addr = 0 ;
 		AddASyncLoadParamInt( AParam->Data, &Addr, ShaderHandle ) ;
 		AddASyncLoadParamInt( AParam->Data, &Addr, ShaderType ) ;
 		AddASyncLoadParamString( AParam->Data, &Addr, FullPath ) ;
 
-		// ƒf[ƒ^‚ğ’Ç‰Á
+		// ãƒ‡ãƒ¼ã‚¿ã‚’è¿½åŠ 
 		if( AddASyncLoadData( AParam ) < 0 )
 		{
 			DXFREE( AParam ) ;
@@ -36696,7 +36696,7 @@ extern int Graphics_Shader_LoadShader_UseGParam( int ShaderType, const wchar_t *
 			goto ERR ;
 		}
 
-		// ”ñ“¯Šú“Ç‚İ‚İƒJƒEƒ“ƒg‚ğƒCƒ“ƒNƒŠƒƒ“ƒg
+		// éåŒæœŸèª­ã¿è¾¼ã¿ã‚«ã‚¦ãƒ³ãƒˆã‚’ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆ
 		IncASyncLoadCount( ShaderHandle, AParam->Index ) ;
 	}
 	else
@@ -36706,35 +36706,35 @@ extern int Graphics_Shader_LoadShader_UseGParam( int ShaderType, const wchar_t *
 			goto ERR ;
 	}
 
-	// ƒnƒ“ƒhƒ‹‚ğ•Ô‚·
+	// ãƒãƒ³ãƒ‰ãƒ«ã‚’è¿”ã™
 	return ShaderHandle ;
 
 ERR :
 	SubHandle( ShaderHandle, FALSE, FALSE ) ;
 	ShaderHandle = -1 ;
 
-	// I—¹
+	// çµ‚äº†
 	return -1 ;
 }
 
-// ƒVƒF[ƒ_[ƒnƒ“ƒhƒ‹‚Ì‰Šú‰»
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒãƒ³ãƒ‰ãƒ«ã®åˆæœŸåŒ–
 extern int Graphics_Shader_InitializeHandle( HANDLEINFO *HandleInfo )
 {
 	SHADERHANDLEDATA *Shader = ( SHADERHANDLEDATA * )HandleInfo ;
 
-	// ŠÂ‹«ˆË‘¶ƒf[ƒ^‚ÌƒAƒhƒŒƒX‚ğƒZƒbƒg
+	// ç’°å¢ƒä¾å­˜ãƒ‡ãƒ¼ã‚¿ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ã‚»ãƒƒãƒˆ
 	Shader->PF = ( SHADERHANDLEDATA_PF * )( Shader + 1 ) ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// ƒVƒF[ƒ_[ƒnƒ“ƒhƒ‹‚ÌŒãn––
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒãƒ³ãƒ‰ãƒ«ã®å¾Œå§‹æœ«
 extern int Graphics_Shader_TerminateHandle( HANDLEINFO *HandleInfo )
 {
 	SHADERHANDLEDATA *Shader = ( SHADERHANDLEDATA * )HandleInfo ;
 
-	// g—p‚·‚éƒVƒF[ƒ_[‚Æ‚µ‚ÄƒZƒbƒg‚³‚ê‚Ä‚¢‚½‚çŠO‚·
+	// ä½¿ç”¨ã™ã‚‹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã¨ã—ã¦ã‚»ãƒƒãƒˆã•ã‚Œã¦ã„ãŸã‚‰å¤–ã™
 	if( GSYS.DrawSetting.UserShaderRenderInfo.SetVertexShaderHandle == HandleInfo->Handle )
 	{
 		NS_SetUseVertexShader( -1 ) ;
@@ -36748,26 +36748,26 @@ extern int Graphics_Shader_TerminateHandle( HANDLEINFO *HandleInfo )
 		NS_SetUsePixelShader( -1 ) ;
 	}
 
-	// ƒVƒF[ƒ_[‚ÌƒoƒCƒiƒŠƒf[ƒ^‚ğ‰ğ•ú
+	// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ãƒã‚¤ãƒŠãƒªãƒ‡ãƒ¼ã‚¿ã‚’è§£æ”¾
 	if( Shader->FunctionCode != NULL )
 	{
 		DXFREE( Shader->FunctionCode ) ;
 		Shader->FunctionCode = NULL ;
 	}
 
-	// ŠÂ‹«ˆË‘¶‚ÌŒãn––ˆ—‚ğÀs
+	// ç’°å¢ƒä¾å­˜ã®å¾Œå§‹æœ«å‡¦ç†ã‚’å®Ÿè¡Œ
 	Graphics_Hardware_Shader_TerminateHandle_PF( Shader ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒVƒF[ƒ_[ƒf[ƒ^‚ğƒnƒ“ƒhƒ‹’l‚©‚çæ‚èo‚·
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒ‡ãƒ¼ã‚¿ã‚’ãƒãƒ³ãƒ‰ãƒ«å€¤ã‹ã‚‰å–ã‚Šå‡ºã™
 extern	SHADERHANDLEDATA *Graphics_Shader_GetData( int ShaderHandle, int ASyncThread )
 {
 	SHADERHANDLEDATA *Shader ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( ASyncThread )
 	{
 		if( SHADERCHK_ASYNC( ShaderHandle, Shader ) )
@@ -36804,15 +36804,15 @@ extern	SHADERHANDLEDATA *Graphics_Shader_GetData( int ShaderHandle, int ASyncThr
 
 
 
-// ’è”ƒoƒbƒtƒ@ŠÖŒWŠÖ”
+// å®šæ•°ãƒãƒƒãƒ•ã‚¡é–¢ä¿‚é–¢æ•°
 
-// ƒVƒF[ƒ_[—p’è”ƒoƒbƒtƒ@ƒnƒ“ƒhƒ‹‚ğì¬‚·‚é
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ç”¨å®šæ•°ãƒãƒƒãƒ•ã‚¡ãƒãƒ³ãƒ‰ãƒ«ã‚’ä½œæˆã™ã‚‹
 extern int Graphics_ShaderConstantBuffer_CreateHandle( int ASyncThread )
 {
 	if( GSYS.InitializeFlag == FALSE )
 		return -1 ;
 
-	// ƒVƒF[ƒ_‚ªg‚¦‚È‚¢ê‡‚Í¸”s
+	// ã‚·ã‚§ãƒ¼ãƒ€ãŒä½¿ãˆãªã„å ´åˆã¯å¤±æ•—
 	if( GSYS.HardInfo.UseShader == FALSE )
 		return -1 ;
 
@@ -36820,7 +36820,7 @@ extern int Graphics_ShaderConstantBuffer_CreateHandle( int ASyncThread )
 }
 
 
-// Graphics_ShaderConstantBuffer_CreateHandle ‚ÌÀˆ—ŠÖ”
+// Graphics_ShaderConstantBuffer_CreateHandle ã®å®Ÿå‡¦ç†é–¢æ•°
 static int Graphics_ShaderConstantBuffer_CreateHandle_Static(
 	int ShaderConstantBufferHandle,
 	int BufferSize,
@@ -36832,7 +36832,7 @@ static int Graphics_ShaderConstantBuffer_CreateHandle_Static(
 
 #ifndef DX_NON_ASYNCLOAD
 
-// Graphics_ShaderConstantBuffer_CreateHandle ‚Ì”ñ“¯Šú“Ç‚İ‚İƒXƒŒƒbƒh‚©‚çŒÄ‚Î‚ê‚éŠÖ”
+// Graphics_ShaderConstantBuffer_CreateHandle ã®éåŒæœŸèª­ã¿è¾¼ã¿ã‚¹ãƒ¬ãƒƒãƒ‰ã‹ã‚‰å‘¼ã°ã‚Œã‚‹é–¢æ•°
 static void Graphics_ShaderConstantBuffer_CreateHandle_ASync( ASYNCLOADDATA_COMMON *AParam )
 {
 	int   ShaderConstantBufferHandle ;
@@ -36859,12 +36859,12 @@ static void Graphics_ShaderConstantBuffer_CreateHandle_ASync( ASYNCLOADDATA_COMM
 
 #endif // DX_NON_ASYNCLOAD
 
-// ƒVƒF[ƒ_[—p’è”ƒoƒbƒtƒ@ƒnƒ“ƒhƒ‹‚ğì¬‚·‚é
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ç”¨å®šæ•°ãƒãƒƒãƒ•ã‚¡ãƒãƒ³ãƒ‰ãƒ«ã‚’ä½œæˆã™ã‚‹
 extern int Graphics_ShaderConstantBuffer_Create( int BufferSize, int ASyncLoadFlag, int ASyncThread )
 {
 	int ShaderConstantBufferHandle = -1 ;
 
-	// ƒVƒF[ƒ_‚ªg‚¦‚È‚¢ê‡‚Í¸”s
+	// ã‚·ã‚§ãƒ¼ãƒ€ãŒä½¿ãˆãªã„å ´åˆã¯å¤±æ•—
 	if( Graphics_Hardware_CheckValid_PF() == 0 || GSYS.HardInfo.UseShader == FALSE )
 		return -1 ;
 
@@ -36878,23 +36878,23 @@ extern int Graphics_ShaderConstantBuffer_Create( int BufferSize, int ASyncLoadFl
 		ASYNCLOADDATA_COMMON *AParam = NULL ;
 		int Addr ;
 
-		// ƒpƒ‰ƒ[ƒ^‚É•K—v‚Èƒƒ‚ƒŠ‚ÌƒTƒCƒY‚ğZo
+		// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã«å¿…è¦ãªãƒ¡ãƒ¢ãƒªã®ã‚µã‚¤ã‚ºã‚’ç®—å‡º
 		Addr = 0 ;
 		AddASyncLoadParamInt( NULL, &Addr, ShaderConstantBufferHandle ) ;
 		AddASyncLoadParamInt( NULL, &Addr, BufferSize ) ;
 
-		// ƒƒ‚ƒŠ‚ÌŠm•Û
+		// ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿
 		AParam = AllocASyncLoadDataMemory( Addr ) ;
 		if( AParam == NULL )
 			goto ERR ;
 
-		// ˆ—‚É•K—v‚Èî•ñ‚ğƒZƒbƒg
+		// å‡¦ç†ã«å¿…è¦ãªæƒ…å ±ã‚’ã‚»ãƒƒãƒˆ
 		AParam->ProcessFunction = Graphics_ShaderConstantBuffer_CreateHandle_ASync ;
 		Addr = 0 ;
 		AddASyncLoadParamInt( AParam->Data, &Addr, ShaderConstantBufferHandle ) ;
 		AddASyncLoadParamInt( AParam->Data, &Addr, BufferSize ) ;
 
-		// ƒf[ƒ^‚ğ’Ç‰Á
+		// ãƒ‡ãƒ¼ã‚¿ã‚’è¿½åŠ 
 		if( AddASyncLoadData( AParam ) < 0 )
 		{
 			DXFREE( AParam ) ;
@@ -36902,7 +36902,7 @@ extern int Graphics_ShaderConstantBuffer_Create( int BufferSize, int ASyncLoadFl
 			goto ERR ;
 		}
 
-		// ”ñ“¯Šú“Ç‚İ‚İƒJƒEƒ“ƒg‚ğƒCƒ“ƒNƒŠƒƒ“ƒg
+		// éåŒæœŸèª­ã¿è¾¼ã¿ã‚«ã‚¦ãƒ³ãƒˆã‚’ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆ
 		IncASyncLoadCount( ShaderConstantBufferHandle, AParam->Index ) ;
 	}
 	else
@@ -36919,7 +36919,7 @@ extern int Graphics_ShaderConstantBuffer_Create( int BufferSize, int ASyncLoadFl
 	}
 #endif // DX_NON_ASYNCLOAD
 
-	// ƒnƒ“ƒhƒ‹‚ğ•Ô‚·
+	// ãƒãƒ³ãƒ‰ãƒ«ã‚’è¿”ã™
 	return ShaderConstantBufferHandle ;
 
 ERR :
@@ -36933,31 +36933,31 @@ ERR :
 	SubHandle( ShaderConstantBufferHandle, FALSE, ASyncThread ) ;
 	ShaderConstantBufferHandle = -1 ;
 
-	// I—¹
+	// çµ‚äº†
 	return -1 ;
 }
 
-// ƒVƒF[ƒ_[—p’è”ƒoƒbƒtƒ@ƒnƒ“ƒhƒ‹‚Ì‰Šú‰»
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ç”¨å®šæ•°ãƒãƒƒãƒ•ã‚¡ãƒãƒ³ãƒ‰ãƒ«ã®åˆæœŸåŒ–
 extern int Graphics_ShaderConstantBuffer_InitializeHandle( HANDLEINFO *HandleInfo )
 {
 	SHADERCONSTANTBUFFERHANDLEDATA *ShaderConstantBuffer = ( SHADERCONSTANTBUFFERHANDLEDATA * )HandleInfo ;
 
-	// ŠÂ‹«ˆË‘¶ƒf[ƒ^‚ÌƒAƒhƒŒƒX‚ğƒZƒbƒg
+	// ç’°å¢ƒä¾å­˜ãƒ‡ãƒ¼ã‚¿ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ã‚»ãƒƒãƒˆ
 	ShaderConstantBuffer->PF = ( SHADERCONSTANTBUFFERHANDLEDATA_PF * )( ShaderConstantBuffer + 1 ) ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// ƒVƒF[ƒ_[—p’è”ƒoƒbƒtƒ@ƒnƒ“ƒhƒ‹‚ÌŒãn––
+// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ç”¨å®šæ•°ãƒãƒƒãƒ•ã‚¡ãƒãƒ³ãƒ‰ãƒ«ã®å¾Œå§‹æœ«
 extern int Graphics_ShaderConstantBuffer_TerminateHandle( HANDLEINFO *HandleInfo )
 {
 	SHADERCONSTANTBUFFERHANDLEDATA *ShaderConstantBuffer = ( SHADERCONSTANTBUFFERHANDLEDATA * )HandleInfo ;
 
-	// ŠÂ‹«ˆË‘¶‚ÌŒãn––ˆ—‚ğÀs
+	// ç’°å¢ƒä¾å­˜ã®å¾Œå§‹æœ«å‡¦ç†ã‚’å®Ÿè¡Œ
 	Graphics_Hardware_ShaderConstantBuffer_TerminateHandle_PF( ShaderConstantBuffer ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
@@ -36988,22 +36988,22 @@ extern int Graphics_ShaderConstantBuffer_TerminateHandle( HANDLEINFO *HandleInfo
 
 
 
-// ’¸“_ƒoƒbƒtƒ@EƒCƒ“ƒfƒbƒNƒXƒoƒbƒtƒ@ŠÖŒWŠÖ”
+// é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ãƒ»ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒãƒƒãƒ•ã‚¡é–¢ä¿‚é–¢æ•°
 
-// ’¸“_ƒoƒbƒtƒ@‚ğì¬‚·‚é
-extern int Graphics_VertexBuffer_Create( int VertexNum, int VertexType /* DX_VERTEX_TYPE_NORMAL_3D “™ */, int ASyncThread )
+// é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã‚’ä½œæˆã™ã‚‹
+extern int Graphics_VertexBuffer_Create( int VertexNum, int VertexType /* DX_VERTEX_TYPE_NORMAL_3D ç­‰ */, int ASyncThread )
 {
 	int NewHandle ;
 	int Result ;
 
-	// V‚µ‚¢ƒnƒ“ƒhƒ‹‚ğì¬‚·‚é
+	// æ–°ã—ã„ãƒãƒ³ãƒ‰ãƒ«ã‚’ä½œæˆã™ã‚‹
 	NewHandle = AddHandle( DX_HANDLETYPE_VERTEX_BUFFER, ASyncThread, -1 ) ;
 	if( NewHandle < 0 )
 	{
 		return -1 ;
 	}
 
-	// ƒnƒ“ƒhƒ‹‚ÌƒZƒbƒgƒAƒbƒv
+	// ãƒãƒ³ãƒ‰ãƒ«ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 	Result = Graphics_VertexBuffer_SetupHandle( NewHandle, VertexNum, VertexType ) ;
 #ifndef DX_NON_ASYNCLOAD
 	if( ASyncThread )
@@ -37017,21 +37017,21 @@ extern int Graphics_VertexBuffer_Create( int VertexNum, int VertexType /* DX_VER
 		return -1 ;
 	}
 
-	// ƒnƒ“ƒhƒ‹‚ğ•Ô‚·
+	// ãƒãƒ³ãƒ‰ãƒ«ã‚’è¿”ã™
 	return NewHandle ;
 }
 
-// ’¸“_ƒoƒbƒtƒ@ƒnƒ“ƒhƒ‹‚ÌƒZƒbƒgƒAƒbƒv‚ğs‚¤
-extern int Graphics_VertexBuffer_SetupHandle( int VertexBufHandle, int VertexNum, int VertexType /* DX_VERTEX_TYPE_NORMAL_3D “™ */ )
+// é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ãƒãƒ³ãƒ‰ãƒ«ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã‚’è¡Œã†
+extern int Graphics_VertexBuffer_SetupHandle( int VertexBufHandle, int VertexNum, int VertexType /* DX_VERTEX_TYPE_NORMAL_3D ç­‰ */ )
 {
 	VERTEXBUFFERHANDLEDATA *VertexBuffer ;
 	int VertexSize ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( VERTEXBUFFERCHK( VertexBufHandle, VertexBuffer ) )
 		return -1 ;
 
-	// ‘Î‰‚µ‚Ä‚¢‚È‚¢ƒ^ƒCƒv‚Ìê‡‚ÍƒGƒ‰[
+	// å¯¾å¿œã—ã¦ã„ãªã„ã‚¿ã‚¤ãƒ—ã®å ´åˆã¯ã‚¨ãƒ©ãƒ¼
 	switch( VertexType )
 	{
 	case DX_VERTEX_TYPE_NORMAL_3D :
@@ -37041,84 +37041,84 @@ extern int Graphics_VertexBuffer_SetupHandle( int VertexBufHandle, int VertexNum
 	case DX_VERTEX_TYPE_SHADER_3D :
 		VertexSize = sizeof( VERTEX3DSHADER ) ;
 
-		// ƒVƒF[ƒ_[‚ªg‚¦‚È‚¢ê‡‚Í¸”s
+		// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãŒä½¿ãˆãªã„å ´åˆã¯å¤±æ•—
 		if( GSYS.HardInfo.UseShader == FALSE )
 			return -1 ;
 		break ;
 
 	default :
-		DXST_LOGFILE_ADDUTF16LE( "\x02\x98\xb9\x70\xbf\x30\xa4\x30\xd7\x30\x6e\x30\x24\x50\x4c\x30\x0d\x4e\x63\x6b\x67\x30\x59\x30\x0a\x00\x00"/*@ L"’¸“_ƒ^ƒCƒv‚Ì’l‚ª•s³‚Å‚·\n" @*/ ) ;
+		DXST_LOGFILE_ADDUTF16LE( "\x02\x98\xb9\x70\xbf\x30\xa4\x30\xd7\x30\x6e\x30\x24\x50\x4c\x30\x0d\x4e\x63\x6b\x67\x30\x59\x30\x0a\x00\x00"/*@ L"é ‚ç‚¹ã‚¿ã‚¤ãƒ—ã®å€¤ãŒä¸æ­£ã§ã™\n" @*/ ) ;
 		return -1 ;
 	}
 
-	// ƒ^ƒCƒv‚ğ•Û‘¶
+	// ã‚¿ã‚¤ãƒ—ã‚’ä¿å­˜
 	VertexBuffer->Type = VertexType ;
 
-	// ’¸“_”‚ğ•Û‘¶
+	// é ‚ç‚¹æ•°ã‚’ä¿å­˜
 	VertexBuffer->Num = VertexNum ;
 
-	// ’¸“_ƒf[ƒ^ˆê‚Â•Ó‚è‚ÌƒoƒCƒg”‚ğ•Û‘¶
+	// é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ä¸€ã¤è¾ºã‚Šã®ãƒã‚¤ãƒˆæ•°ã‚’ä¿å­˜
 	VertexBuffer->UnitSize = VertexSize ;
 
-	// ŠÂ‹«ˆË‘¶‚Ì’¸“_ƒoƒbƒtƒ@ì¬ˆ—
+	// ç’°å¢ƒä¾å­˜ã®é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ä½œæˆå‡¦ç†
 	if( Graphics_Hardware_VertexBuffer_Create_PF( VertexBuffer ) < 0 )
 	{
 		return -1 ;
 	}
 
-	// ƒf[ƒ^—Ìˆæ‚ğŠm•Û‚·‚é
+	// ãƒ‡ãƒ¼ã‚¿é ˜åŸŸã‚’ç¢ºä¿ã™ã‚‹
 	if( ReallocHandle( VertexBufHandle, sizeof( VERTEXBUFFERHANDLEDATA ) + sizeof( VERTEXBUFFERHANDLEDATA_PF ) + VertexSize * VertexNum + 32 ) < 0 )
 	{
-		DXST_LOGFILE_ADDUTF16LE( "\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"ƒƒ‚ƒŠ‚ÌŠm•Û‚É¸”s‚µ‚Ü‚µ‚½" @*/ ) ;
+		DXST_LOGFILE_ADDUTF16LE( "\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿ã«å¤±æ•—ã—ã¾ã—ãŸ" @*/ ) ;
 		return -1 ;
 	}
 	VertexBuffer     = ( VERTEXBUFFERHANDLEDATA *    )GetHandleInfo( VertexBufHandle ) ;
 	VertexBuffer->PF = ( VERTEXBUFFERHANDLEDATA_PF * )( VertexBuffer + 1 ) ;
 
-	// ƒVƒXƒeƒ€ƒƒ‚ƒŠã‚Ì’¸“_ƒf[ƒ^‚ğ•Û‘¶‚·‚éƒAƒhƒŒƒX‚ğƒZƒbƒg
+	// ã‚·ã‚¹ãƒ†ãƒ ãƒ¡ãƒ¢ãƒªä¸Šã®é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ã‚’ä¿å­˜ã™ã‚‹ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ã‚»ãƒƒãƒˆ
 	VertexBuffer->Buffer = ( void * )( ( ( DWORD_PTR )VertexBuffer + sizeof( VERTEXBUFFERHANDLEDATA ) + sizeof( VERTEXBUFFERHANDLEDATA_PF ) + 31 ) / 32 * 32 ) ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// ’¸“_ƒoƒbƒtƒ@ƒnƒ“ƒhƒ‹‚Ì‰Šú‰»
+// é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ãƒãƒ³ãƒ‰ãƒ«ã®åˆæœŸåŒ–
 extern int Graphics_VertexBuffer_InitializeHandle( HANDLEINFO *HandleInfo )
 {
 	VERTEXBUFFERHANDLEDATA *VertexBuffer = ( VERTEXBUFFERHANDLEDATA * )HandleInfo ;
 
 	VertexBuffer->PF = ( VERTEXBUFFERHANDLEDATA_PF * )( VertexBuffer + 1 ) ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// ’¸“_ƒoƒbƒtƒ@ƒnƒ“ƒhƒ‹‚ÌŒãn––
+// é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ãƒãƒ³ãƒ‰ãƒ«ã®å¾Œå§‹æœ«
 extern int Graphics_VertexBuffer_TerminateHandle( HANDLEINFO *HandleInfo )
 {
 	VERTEXBUFFERHANDLEDATA *VertexBuffer = ( VERTEXBUFFERHANDLEDATA * )HandleInfo ;
 
-	// ŠÂ‹«ˆË‘¶Œãn––ˆ—
+	// ç’°å¢ƒä¾å­˜å¾Œå§‹æœ«å‡¦ç†
 	Graphics_Hardware_VertexBuffer_Terminate_PF( VertexBuffer ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒCƒ“ƒfƒbƒNƒXƒoƒbƒtƒ@‚ğì¬‚·‚é
-extern int Graphics_IndexBuffer_Create( int IndexNum, int IndexType /* DX_INDEX_TYPE_16BIT “™ */, int ASyncThread )
+// ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒãƒƒãƒ•ã‚¡ã‚’ä½œæˆã™ã‚‹
+extern int Graphics_IndexBuffer_Create( int IndexNum, int IndexType /* DX_INDEX_TYPE_16BIT ç­‰ */, int ASyncThread )
 {
 	int NewHandle ;
 	int Result ;
 
-	// V‚µ‚¢ƒnƒ“ƒhƒ‹‚ğì¬‚·‚é
+	// æ–°ã—ã„ãƒãƒ³ãƒ‰ãƒ«ã‚’ä½œæˆã™ã‚‹
 	NewHandle = AddHandle( DX_HANDLETYPE_INDEX_BUFFER, ASyncThread, -1 ) ;
 	if( NewHandle < 0 )
 	{
 		return -1 ;
 	}
 
-	// ƒnƒ“ƒhƒ‹‚ÌƒZƒbƒgƒAƒbƒv
+	// ãƒãƒ³ãƒ‰ãƒ«ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 	Result = Graphics_IndexBuffer_SetupHandle( NewHandle, IndexNum, IndexType ) ;
 #ifndef DX_NON_ASYNCLOAD
 	if( ASyncThread )
@@ -37132,21 +37132,21 @@ extern int Graphics_IndexBuffer_Create( int IndexNum, int IndexType /* DX_INDEX_
 		return -1 ;
 	}
 
-	// ƒnƒ“ƒhƒ‹‚ğ•Ô‚·
+	// ãƒãƒ³ãƒ‰ãƒ«ã‚’è¿”ã™
 	return NewHandle ;
 }
 
-// ƒCƒ“ƒfƒbƒNƒXƒoƒbƒtƒ@ƒnƒ“ƒhƒ‹‚ÌƒZƒbƒgƒAƒbƒv‚ğs‚¤
-extern int Graphics_IndexBuffer_SetupHandle( int IndexBufHandle, int IndexNum, int IndexType /* DX_INDEX_TYPE_16BIT “™ */ )
+// ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒãƒƒãƒ•ã‚¡ãƒãƒ³ãƒ‰ãƒ«ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã‚’è¡Œã†
+extern int Graphics_IndexBuffer_SetupHandle( int IndexBufHandle, int IndexNum, int IndexType /* DX_INDEX_TYPE_16BIT ç­‰ */ )
 {
 	INDEXBUFFERHANDLEDATA *IndexBuffer ;
 	int IndexSize ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( INDEXBUFFERCHK( IndexBufHandle, IndexBuffer ) )
 		return -1 ;
 
-	// ‘Î‰‚µ‚Ä‚¢‚È‚¢ƒ^ƒCƒv‚Ìê‡‚ÍƒGƒ‰[
+	// å¯¾å¿œã—ã¦ã„ãªã„ã‚¿ã‚¤ãƒ—ã®å ´åˆã¯ã‚¨ãƒ©ãƒ¼
 	switch( IndexType )
 	{
 	case DX_INDEX_TYPE_16BIT :
@@ -37158,61 +37158,61 @@ extern int Graphics_IndexBuffer_SetupHandle( int IndexBufHandle, int IndexNum, i
 		break ;
 
 	default :
-		DXST_LOGFILE_ADDUTF16LE( "\xa4\x30\xf3\x30\xc7\x30\xc3\x30\xaf\x30\xb9\x30\xbf\x30\xa4\x30\xd7\x30\x6e\x30\x24\x50\x4c\x30\x0d\x4e\x63\x6b\x67\x30\x59\x30\x0a\x00\x00"/*@ L"ƒCƒ“ƒfƒbƒNƒXƒ^ƒCƒv‚Ì’l‚ª•s³‚Å‚·\n" @*/ ) ;
+		DXST_LOGFILE_ADDUTF16LE( "\xa4\x30\xf3\x30\xc7\x30\xc3\x30\xaf\x30\xb9\x30\xbf\x30\xa4\x30\xd7\x30\x6e\x30\x24\x50\x4c\x30\x0d\x4e\x63\x6b\x67\x30\x59\x30\x0a\x00\x00"/*@ L"ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚¿ã‚¤ãƒ—ã®å€¤ãŒä¸æ­£ã§ã™\n" @*/ ) ;
 		return -1 ;
 	}
 
-	// ƒ^ƒCƒv‚ğ•Û‘¶
+	// ã‚¿ã‚¤ãƒ—ã‚’ä¿å­˜
 	IndexBuffer->Type = IndexType ;
 
-	// ƒCƒ“ƒfƒbƒNƒXƒf[ƒ^ˆê‚Â•Ó‚è‚ÌƒoƒCƒg”‚ğ•Û‘¶
+	// ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿ä¸€ã¤è¾ºã‚Šã®ãƒã‚¤ãƒˆæ•°ã‚’ä¿å­˜
 	IndexBuffer->UnitSize = IndexSize ;
 
-	// ƒCƒ“ƒfƒbƒNƒX”‚ğ•Û‘¶
+	// ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹æ•°ã‚’ä¿å­˜
 	IndexBuffer->Num = IndexNum ;
 
-	// ŠÂ‹«ˆË‘¶‚ÌƒCƒ“ƒfƒbƒNƒXƒoƒbƒtƒ@ì¬ˆ—
+	// ç’°å¢ƒä¾å­˜ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒãƒƒãƒ•ã‚¡ä½œæˆå‡¦ç†
 	if( Graphics_Hardware_IndexBuffer_Create_PF( IndexBuffer ) < 0 )
 	{
 		return -1 ;
 	}
 
-	// ƒf[ƒ^—Ìˆæ‚ğŠm•Û‚·‚é
+	// ãƒ‡ãƒ¼ã‚¿é ˜åŸŸã‚’ç¢ºä¿ã™ã‚‹
 	if( ReallocHandle( IndexBufHandle, sizeof( INDEXBUFFERHANDLEDATA ) + sizeof( INDEXBUFFERHANDLEDATA_PF ) + IndexSize * IndexNum + 32 ) < 0 )
 	{
-		DXST_LOGFILE_ADDUTF16LE( "\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"ƒƒ‚ƒŠ‚ÌŠm•Û‚É¸”s‚µ‚Ü‚µ‚½" @*/ ) ;
+		DXST_LOGFILE_ADDUTF16LE( "\xe1\x30\xe2\x30\xea\x30\x6e\x30\xba\x78\xdd\x4f\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x00"/*@ L"ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿ã«å¤±æ•—ã—ã¾ã—ãŸ" @*/ ) ;
 		return -1 ;
 	}
 	IndexBuffer     = ( INDEXBUFFERHANDLEDATA *    )GetHandleInfo( IndexBufHandle ) ;
 	IndexBuffer->PF = ( INDEXBUFFERHANDLEDATA_PF * )( IndexBuffer + 1 ) ;
 
-	// ƒVƒXƒeƒ€ƒƒ‚ƒŠã‚ÌƒCƒ“ƒfƒbƒNƒXƒf[ƒ^‚ğ•Û‘¶‚·‚éƒAƒhƒŒƒX‚ğƒZƒbƒg
+	// ã‚·ã‚¹ãƒ†ãƒ ãƒ¡ãƒ¢ãƒªä¸Šã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿ã‚’ä¿å­˜ã™ã‚‹ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ã‚»ãƒƒãƒˆ
 	IndexBuffer->Buffer = ( void * )( ( ( DWORD_PTR )IndexBuffer + sizeof( INDEXBUFFERHANDLEDATA ) + sizeof( INDEXBUFFERHANDLEDATA_PF ) + 31 ) / 32 * 32 ) ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// ƒCƒ“ƒfƒbƒNƒXƒoƒbƒtƒ@ƒnƒ“ƒhƒ‹‚Ì‰Šú‰»
+// ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒãƒƒãƒ•ã‚¡ãƒãƒ³ãƒ‰ãƒ«ã®åˆæœŸåŒ–
 extern int Graphics_IndexBuffer_InitializeHandle( HANDLEINFO *HandleInfo )
 {
 	INDEXBUFFERHANDLEDATA *IndexBuffer = ( INDEXBUFFERHANDLEDATA * )HandleInfo ;
 
 	IndexBuffer->PF = ( INDEXBUFFERHANDLEDATA_PF * )( IndexBuffer + 1 ) ;
 
-	// ³íI—¹
+	// æ­£å¸¸çµ‚äº†
 	return 0 ;
 }
 
-// ƒCƒ“ƒfƒbƒNƒXƒoƒbƒtƒ@ƒnƒ“ƒhƒ‹‚ÌŒãn––
+// ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒãƒƒãƒ•ã‚¡ãƒãƒ³ãƒ‰ãƒ«ã®å¾Œå§‹æœ«
 extern int Graphics_IndexBuffer_TerminateHandle( HANDLEINFO *HandleInfo )
 {
 	INDEXBUFFERHANDLEDATA *IndexBuffer = ( INDEXBUFFERHANDLEDATA * )HandleInfo ;
 
-	// ŠÂ‹«ˆË‘¶Œãn––ˆ—
+	// ç’°å¢ƒä¾å­˜å¾Œå§‹æœ«å‡¦ç†
 	Graphics_Hardware_IndexBuffer_Terminate_PF( IndexBuffer ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
@@ -37242,9 +37242,9 @@ extern int Graphics_IndexBuffer_TerminateHandle( HANDLEINFO *HandleInfo )
 
 
 
-// ƒVƒƒƒhƒEƒ}ƒbƒvŠÖŒWŠÖ”
+// ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—é–¢ä¿‚é–¢æ•°
 
-// MakeShadowMap ‚ÌÀˆ—ŠÖ”
+// MakeShadowMap ã®å®Ÿå‡¦ç†é–¢æ•°
 static int Graphics_ShadowMap_MakeShadowMap_Static(
 	SETUP_SHADOWMAPHANDLE_GPARAM *GParam,
 	int SmHandle,
@@ -37253,7 +37253,7 @@ static int Graphics_ShadowMap_MakeShadowMap_Static(
 	int ASyncThread
 )
 {
-	// ƒnƒ“ƒhƒ‹‚Ì‰Šú‰»
+	// ãƒãƒ³ãƒ‰ãƒ«ã®åˆæœŸåŒ–
 	if( Graphics_ShadowMap_SetupHandle_UseGParam(
 			GParam,
 			SmHandle,
@@ -37265,13 +37265,13 @@ static int Graphics_ShadowMap_MakeShadowMap_Static(
 		) == -1 )
 		return -1 ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
 #ifndef DX_NON_ASYNCLOAD
 
-// MakeShadowMap ‚Ì”ñ“¯Šú“Ç‚İ‚İƒXƒŒƒbƒh‚©‚çŒÄ‚Î‚ê‚éŠÖ”
+// MakeShadowMap ã®éåŒæœŸèª­ã¿è¾¼ã¿ã‚¹ãƒ¬ãƒƒãƒ‰ã‹ã‚‰å‘¼ã°ã‚Œã‚‹é–¢æ•°
 static void Graphics_ShadowMap_MakeShadowMap_ASync( ASYNCLOADDATA_COMMON *AParam )
 {
 	SETUP_SHADOWMAPHANDLE_GPARAM *GParam ;
@@ -37301,7 +37301,7 @@ static void Graphics_ShadowMap_MakeShadowMap_ASync( ASYNCLOADDATA_COMMON *AParam
 }
 #endif // DX_NON_ASYNCLOAD
 
-// ƒVƒƒƒhƒEƒ}ƒbƒvƒnƒ“ƒhƒ‹‚ğì¬‚·‚éŠÖ”
+// ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ãƒãƒ³ãƒ‰ãƒ«ã‚’ä½œæˆã™ã‚‹é–¢æ•°
 extern int Graphics_ShadowMap_MakeShadowMap_UseGParam(
 	SETUP_SHADOWMAPHANDLE_GPARAM *GParam,
 	int SizeX,
@@ -37314,7 +37314,7 @@ extern int Graphics_ShadowMap_MakeShadowMap_UseGParam(
 
 	CheckActiveState() ;
 
-	// ƒnƒ“ƒhƒ‹‚Ìì¬
+	// ãƒãƒ³ãƒ‰ãƒ«ã®ä½œæˆ
 	SmHandle = Graphics_ShadowMap_AddHandle( ASyncThread ) ;
 	if( SmHandle == -1 )
 	{
@@ -37327,19 +37327,19 @@ extern int Graphics_ShadowMap_MakeShadowMap_UseGParam(
 		ASYNCLOADDATA_COMMON *AParam = NULL ;
 		int Addr ;
 
-		// ƒpƒ‰ƒ[ƒ^‚É•K—v‚Èƒƒ‚ƒŠ‚ÌƒTƒCƒY‚ğZo
+		// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã«å¿…è¦ãªãƒ¡ãƒ¢ãƒªã®ã‚µã‚¤ã‚ºã‚’ç®—å‡º
 		Addr = 0 ;
 		AddASyncLoadParamStruct( NULL, &Addr, GParam, sizeof( *GParam ) ) ;
 		AddASyncLoadParamInt( NULL, &Addr, SmHandle ) ;
 		AddASyncLoadParamInt( NULL, &Addr, SizeX ) ;
 		AddASyncLoadParamInt( NULL, &Addr, SizeY ) ;
 
-		// ƒƒ‚ƒŠ‚ÌŠm•Û
+		// ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿
 		AParam = AllocASyncLoadDataMemory( Addr ) ;
 		if( AParam == NULL )
 			goto ERR ;
 
-		// ˆ—‚É•K—v‚Èî•ñ‚ğƒZƒbƒg
+		// å‡¦ç†ã«å¿…è¦ãªæƒ…å ±ã‚’ã‚»ãƒƒãƒˆ
 		AParam->ProcessFunction = Graphics_ShadowMap_MakeShadowMap_ASync ;
 		Addr = 0 ;
 		AddASyncLoadParamStruct( AParam->Data, &Addr, GParam, sizeof( *GParam ) ) ;
@@ -37347,7 +37347,7 @@ extern int Graphics_ShadowMap_MakeShadowMap_UseGParam(
 		AddASyncLoadParamInt( AParam->Data, &Addr, SizeX ) ;
 		AddASyncLoadParamInt( AParam->Data, &Addr, SizeY ) ;
 
-		// ƒf[ƒ^‚ğ’Ç‰Á
+		// ãƒ‡ãƒ¼ã‚¿ã‚’è¿½åŠ 
 		if( AddASyncLoadData( AParam ) < 0 )
 		{
 			DXFREE( AParam ) ;
@@ -37355,7 +37355,7 @@ extern int Graphics_ShadowMap_MakeShadowMap_UseGParam(
 			goto ERR ;
 		}
 
-		// ”ñ“¯Šú“Ç‚İ‚İƒJƒEƒ“ƒg‚ğƒCƒ“ƒNƒŠƒƒ“ƒg
+		// éåŒæœŸèª­ã¿è¾¼ã¿ã‚«ã‚¦ãƒ³ãƒˆã‚’ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆ
 		IncASyncLoadCount( SmHandle, AParam->Index ) ;
 	}
 	else
@@ -37372,7 +37372,7 @@ extern int Graphics_ShadowMap_MakeShadowMap_UseGParam(
 	}
 #endif // DX_NON_ASYNCLOAD
 
-	// I—¹
+	// çµ‚äº†
 	return SmHandle ;
 
 ERR :
@@ -37388,62 +37388,62 @@ ERR :
 	return -1 ;
 }
 
-// V‚µ‚¢ƒVƒƒƒhƒEƒ}ƒbƒvƒnƒ“ƒhƒ‹‚ğŠm•Û‚·‚é
+// æ–°ã—ã„ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ãƒãƒ³ãƒ‰ãƒ«ã‚’ç¢ºä¿ã™ã‚‹
 extern int Graphics_ShadowMap_AddHandle( int ASyncThread )
 {
 	return AddHandle( DX_HANDLETYPE_SHADOWMAP, ASyncThread, -1 );
 }
 
-// ƒVƒƒƒhƒEƒ}ƒbƒvƒnƒ“ƒhƒ‹‚ÌƒZƒbƒgƒAƒbƒv‚ğs‚¤
+// ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ãƒãƒ³ãƒ‰ãƒ«ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã‚’è¡Œã†
 extern int Graphics_ShadowMap_SetupHandle_UseGParam( SETUP_SHADOWMAPHANDLE_GPARAM * /* GParam */, int SmHandle, int SizeX, int SizeY, int TexFormat_Float, int TexFormat_BitDepth, int ASyncThread )
 {
 	SHADOWMAPDATA *ShadowMap ;
 
-	// ƒAƒhƒŒƒX‚Ìæ“¾
+	// ã‚¢ãƒ‰ãƒ¬ã‚¹ã®å–å¾—
 	if( SHADOWMAPCHK_ASYNC( SmHandle, ShadowMap ) )
 		return -1 ;
 
-	// ƒpƒ‰ƒ[ƒ^‚Ì•Û‘¶
+	// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®ä¿å­˜
 	ShadowMap->TexFormat_Float = TexFormat_Float ;
 	ShadowMap->TexFormat_BitDepth = TexFormat_BitDepth ;
 	ShadowMap->BaseSizeX = SizeX ;
 	ShadowMap->BaseSizeY = SizeY ;
 	ShadowMap->ShadowMapViewMatrix.m[ 3 ][ 3 ] = 1.0f ;
 
-	// ƒeƒNƒXƒ`ƒƒ‚Ìì¬
+	// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ä½œæˆ
 	if( Graphics_ShadowMap_CreateTexture( ShadowMap ) == -1 )
 	{
 		goto ERR ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 
-	// ƒGƒ‰[I—¹
+	// ã‚¨ãƒ©ãƒ¼çµ‚äº†
 ERR :
 	SubHandle( SmHandle, FALSE, ASyncThread ) ;
 
 	return -1 ;
 }
 
-// ƒVƒƒƒhƒEƒ}ƒbƒvƒf[ƒ^‚É•K—v‚ÈƒeƒNƒXƒ`ƒƒ‚ğì¬‚·‚é
+// ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ã«å¿…è¦ãªãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ä½œæˆã™ã‚‹
 extern int Graphics_ShadowMap_CreateTexture( SHADOWMAPDATA *ShadowMap, int ASyncThread )
 {
 	return Graphics_Hardware_ShadowMap_CreateTexture_PF( ShadowMap, ASyncThread ) ;
 }
 
-// ƒVƒƒƒhƒEƒ}ƒbƒvƒf[ƒ^‚É•K—v‚ÈƒeƒNƒXƒ`ƒƒ‚ğ‰ğ•ú‚·‚é
+// ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ã«å¿…è¦ãªãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’è§£æ”¾ã™ã‚‹
 extern int Graphics_ShadowMap_ReleaseTexture( SHADOWMAPDATA *ShadowMap )
 {
 	return Graphics_Hardware_ShadowMap_ReleaseTexture_PF( ShadowMap ) ;
 }
 
-// ƒVƒƒƒhƒEƒ}ƒbƒvƒf[ƒ^‚ğƒnƒ“ƒhƒ‹’l‚©‚çæ‚èo‚·
+// ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ã‚’ãƒãƒ³ãƒ‰ãƒ«å€¤ã‹ã‚‰å–ã‚Šå‡ºã™
 extern SHADOWMAPDATA *Graphics_ShadowMap_GetData( int SmHandle, int ASyncThread )
 {
 	SHADOWMAPDATA *ShadowMap ;
 
-	// ƒGƒ‰[”»’è
+	// ã‚¨ãƒ©ãƒ¼åˆ¤å®š
 	if( ASyncThread )
 	{
 		if( SHADOWMAPCHK_ASYNC( SmHandle, ShadowMap ) )
@@ -37458,13 +37458,13 @@ extern SHADOWMAPDATA *Graphics_ShadowMap_GetData( int SmHandle, int ASyncThread 
 	return ShadowMap ;
 }
 
-// ’¸“_ƒVƒF[ƒ_[‚Éİ’è‚·‚éƒVƒƒƒhƒEƒ}ƒbƒv‚Ìî•ñ‚ğXV‚·‚é
+// é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã«è¨­å®šã™ã‚‹ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ã®æƒ…å ±ã‚’æ›´æ–°ã™ã‚‹
 extern void Graphics_ShadowMap_RefreshVSParam( void )
 {
 	Graphics_Hardware_ShadowMap_RefreshVSParam_PF() ;
 }
 
-// ƒsƒNƒZƒ‹ƒVƒF[ƒ_[‚Éİ’è‚·‚éƒVƒƒƒhƒEƒ}ƒbƒv‚Ìî•ñ‚ğXV‚·‚é
+// ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã«è¨­å®šã™ã‚‹ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ã®æƒ…å ±ã‚’æ›´æ–°ã™ã‚‹
 extern void Graphics_ShadowMap_RefreshPSParam( void )
 {
 	Graphics_Light_RefreshState() ;
@@ -37472,7 +37472,7 @@ extern void Graphics_ShadowMap_RefreshPSParam( void )
 	Graphics_Hardware_ShadowMap_RefreshPSParam_PF() ;
 }
 
-// ƒVƒƒƒhƒEƒ}ƒbƒv‚Ö‚ÌƒŒƒ“ƒ_ƒŠƒ“ƒO‚Åg—p‚·‚és—ñ‚Ìî•ñ‚ğXV‚·‚é
+// ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ã¸ã®ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã§ä½¿ç”¨ã™ã‚‹è¡Œåˆ—ã®æƒ…å ±ã‚’æ›´æ–°ã™ã‚‹
 extern int Graphics_ShadowMap_RefreshMatrix( SHADOWMAPDATA *ShadowMap )
 {
 	VECTOR TempPos ;
@@ -37483,7 +37483,7 @@ extern int Graphics_ShadowMap_RefreshMatrix( SHADOWMAPDATA *ShadowMap )
 	VECTOR AreaSize ;
 	int i ;
 
-	// ƒ‰ƒCƒgn“_‚©‚ç‚ÌÅ‘åÀ•W‚ÆÅ¬À•W‚ğŠ„‚èo‚·
+	// ãƒ©ã‚¤ãƒˆå§‹ç‚¹ã‹ã‚‰ã®æœ€å¤§åº§æ¨™ã¨æœ€å°åº§æ¨™ã‚’å‰²ã‚Šå‡ºã™
 	SrcPos = ShadowMap->EnableDrawArea ? ShadowMap->DrawAreaViewClipPos : ShadowMap->DefaultViewClipPos ;
 	MinPos.x =  100000000.0f ;
 	MinPos.y =  100000000.0f ;
@@ -37504,7 +37504,7 @@ extern int Graphics_ShadowMap_RefreshMatrix( SHADOWMAPDATA *ShadowMap )
 		if( MaxPos.z < TempPos.z ) MaxPos.z = TempPos.z ;
 	}
 
-	// ƒVƒƒƒhƒEƒ}ƒbƒv•`‰æ—pƒrƒ…[s—ñ‚Ì•½sˆÚ“®¬•ª‚ğİ’è
+	// ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—æç”»ç”¨ãƒ“ãƒ¥ãƒ¼è¡Œåˆ—ã®å¹³è¡Œç§»å‹•æˆåˆ†ã‚’è¨­å®š
 	EyePos.x = ( MaxPos.x + MinPos.x ) / 2.0f ;
 	EyePos.y = ( MaxPos.y + MinPos.y ) / 2.0f ;
 	EyePos.z = MinPos.z ;
@@ -37512,24 +37512,24 @@ extern int Graphics_ShadowMap_RefreshMatrix( SHADOWMAPDATA *ShadowMap )
 	ShadowMap->ShadowMapViewMatrix.m[ 3 ][ 1 ] = -EyePos.y ;
 	ShadowMap->ShadowMapViewMatrix.m[ 3 ][ 2 ] = -EyePos.z ;
 
-	// ƒVƒƒƒhƒEƒ}ƒbƒv•`‰æ—p‚ÌË‰es—ñ‚ÌŠg‘å¬•ª‚ğİ’è
+	// ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—æç”»ç”¨ã®å°„å½±è¡Œåˆ—ã®æ‹¡å¤§æˆåˆ†ã‚’è¨­å®š
 	AreaSize = VSub( MaxPos, MinPos ) ;
 	ShadowMap->ShadowMapProjectionMatrix.m[ 0 ][ 0 ] = 2.0f / AreaSize.x ;
 	ShadowMap->ShadowMapProjectionMatrix.m[ 1 ][ 1 ] = 2.0f / AreaSize.y ;
 	ShadowMap->ShadowMapProjectionMatrix.m[ 2 ][ 2 ] = 1.0f / ( MaxPos.z - MinPos.z ) ;
 
-	// ƒVƒƒƒhƒEƒ}ƒbƒv•`‰æ—pƒrƒ…[s—ñ‚ÆƒVƒƒƒhƒEƒ}ƒbƒv•`‰æ—pË‰es—ñ‚ğæZ‚µ‚½‚à‚Ì‚ğ•Û‘¶
+	// ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—æç”»ç”¨ãƒ“ãƒ¥ãƒ¼è¡Œåˆ—ã¨ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—æç”»ç”¨å°„å½±è¡Œåˆ—ã‚’ä¹—ç®—ã—ãŸã‚‚ã®ã‚’ä¿å­˜
 	CreateMultiplyMatrix( &ShadowMap->ShadowMapViewProjectionMatrix, &ShadowMap->ShadowMapViewMatrix, &ShadowMap->ShadowMapProjectionMatrix ) ;
 
-	// ƒrƒ…[s—ñ‚ÆË‰es—ñ‚ÌƒZƒbƒg
+	// ãƒ“ãƒ¥ãƒ¼è¡Œåˆ—ã¨å°„å½±è¡Œåˆ—ã®ã‚»ãƒƒãƒˆ
 	NS_SetTransformToView( &ShadowMap->ShadowMapViewMatrix ) ;
 	NS_SetTransformToProjection( &ShadowMap->ShadowMapProjectionMatrix ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒVƒƒƒhƒEƒ}ƒbƒvƒnƒ“ƒhƒ‹‚Ì‰Šú‰»
+// ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ãƒãƒ³ãƒ‰ãƒ«ã®åˆæœŸåŒ–
 extern int Graphics_ShadowMap_InitializeHandle( HANDLEINFO *HandleInfo )
 {
 	SHADOWMAPDATA *ShadowMap = ( SHADOWMAPDATA * )HandleInfo ;
@@ -37547,20 +37547,20 @@ extern int Graphics_ShadowMap_InitializeHandle( HANDLEINFO *HandleInfo )
 	ShadowMap->ShadowMapProjectionMatrix.m[ 3 ][ 3 ] = 1.0f ;
 	CreateMultiplyMatrix( &ShadowMap->ShadowMapViewProjectionMatrix, &ShadowMap->ShadowMapViewMatrix, &ShadowMap->ShadowMapProjectionMatrix ) ;
 
-	// ‰Šúƒ‰ƒCƒg•ûŒü‚Ìİ’è
+	// åˆæœŸãƒ©ã‚¤ãƒˆæ–¹å‘ã®è¨­å®š
 	NS_SetShadowMapLightDirection( HandleInfo->Handle, VGet( 0.0f, -1.0f, 0.0f ) ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
-// ƒVƒƒƒhƒEƒ}ƒbƒvƒnƒ“ƒhƒ‹‚ÌŒãn––
+// ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ãƒãƒ³ãƒ‰ãƒ«ã®å¾Œå§‹æœ«
 extern int Graphics_ShadowMap_TerminateHandle( HANDLEINFO *HandleInfo )
 {
 	SHADOWMAPDATA *ShadowMap = ( SHADOWMAPDATA * )HandleInfo ;
 	int i ;
 
-	// •`‰æ‚Åg—p‚·‚éƒVƒƒƒhƒEƒ}ƒbƒv‚Éİ’è‚³‚ê‚Ä‚¢‚½‚ç‰ğœ
+	// æç”»ã§ä½¿ç”¨ã™ã‚‹ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ã«è¨­å®šã•ã‚Œã¦ã„ãŸã‚‰è§£é™¤
 	for( i = 0 ; i < MAX_USE_SHADOWMAP_NUM ; i ++ )
 	{
 		if( GSYS.DrawSetting.ShadowMap[ i ] == HandleInfo->Handle )
@@ -37569,20 +37569,20 @@ extern int Graphics_ShadowMap_TerminateHandle( HANDLEINFO *HandleInfo )
 		}
 	}
 
-	// ƒVƒƒƒhƒEƒ}ƒbƒv‚Ì•`‰æ€”õ‚ªs‚í‚ê‚Ä‚¢‚½‚ç‰ğœ‚·‚é
+	// ã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ã®æç”»æº–å‚™ãŒè¡Œã‚ã‚Œã¦ã„ãŸã‚‰è§£é™¤ã™ã‚‹
 	if( ShadowMap->DrawSetupFlag )
 	{
 		NS_ShadowMap_DrawEnd() ;
 	}
 
-	// ƒT[ƒtƒFƒX‚âƒeƒNƒXƒ`ƒƒ‚ğ‰ğ•ú
+	// ã‚µãƒ¼ãƒ•ã‚§ã‚¹ã‚„ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’è§£æ”¾
 	Graphics_ShadowMap_ReleaseTexture( ShadowMap ) ;
 
-	// ‰ğ•ú‚É—§‚Ä‚éƒtƒ‰ƒO‚Ö‚Ìƒ|ƒCƒ“ƒ^‚ª—LŒø‚Å‚ ‚éê‡‚Í—§‚Ä‚é
+	// è§£æ”¾æ™‚ã«ç«‹ã¦ã‚‹ãƒ•ãƒ©ã‚°ã¸ã®ãƒã‚¤ãƒ³ã‚¿ãŒæœ‰åŠ¹ã§ã‚ã‚‹å ´åˆã¯ç«‹ã¦ã‚‹
 	if( ShadowMap->LostFlag != NULL )
 		*ShadowMap->LostFlag = TRUE ;
 
-	// I—¹
+	// çµ‚äº†
 	return 0 ;
 }
 
@@ -37613,9 +37613,9 @@ extern int Graphics_ShadowMap_TerminateHandle( HANDLEINFO *HandleInfo )
 
 
 
-// •â•ŠÖŒWŠÖ”
+// è£œåŠ©é–¢ä¿‚é–¢æ•°
 
-// ‹¤—Lƒƒ‚ƒŠ‚ÌŠm•Û
+// å…±æœ‰ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿
 extern int Graphics_Other_AllocCommonBuffer( int Index, DWORD Size )
 {
 	if( Index >= COMMON_BUFFER_NUM || Index < 0 )
@@ -37638,7 +37638,7 @@ extern int Graphics_Other_AllocCommonBuffer( int Index, DWORD Size )
 	return 0 ;
 }
 
-// ‹¤—Lƒƒ‚ƒŠ‚Ì‰ğ•ú
+// å…±æœ‰ãƒ¡ãƒ¢ãƒªã®è§£æ”¾
 extern int Graphics_Other_TerminateCommonBuffer( void ) 
 {
 	int i ;
@@ -37692,9 +37692,9 @@ extern int Graphics_Other_TerminateCommonBuffer( void )
 
 
 
-// va_list ŠÖ”
+// va_list é–¢æ•°
 
-// •`‰æˆ—‚É•`‰æ‚·‚é‰æ‘œ‚ÆƒuƒŒƒ“ƒh‚·‚é‰æ‘œ‚ÌƒuƒŒƒ“ƒhİ’è‚ğs‚¤ABlendGraph ‚ğ -1 ‚É‚·‚ê‚Îİ’è‚ğ‰ğœA‚»‚Ìê‡ BlendType ‚Æ‚»‚ÌŒã‚ë‚Ìƒpƒ‰ƒ[ƒ^‚Í–³‹‚³‚ê‚é
+// æç”»å‡¦ç†æ™‚ã«æç”»ã™ã‚‹ç”»åƒã¨ãƒ–ãƒ¬ãƒ³ãƒ‰ã™ã‚‹ç”»åƒã®ãƒ–ãƒ¬ãƒ³ãƒ‰è¨­å®šã‚’è¡Œã†ã€BlendGraph ã‚’ -1 ã«ã™ã‚Œã°è¨­å®šã‚’è§£é™¤ã€ãã®å ´åˆ BlendType ã¨ãã®å¾Œã‚ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¯ç„¡è¦–ã•ã‚Œã‚‹
 extern int SetBlendGraphParam_VaList( int BlendGraph, int BlendType, va_list VaList )
 {
 	int Result ;

@@ -1,12 +1,12 @@
 // ----------------------------------------------------------------------------
 //
-//		‚c‚wƒ‰ƒCƒuƒ‰ƒŠ		DirectX ŠÖ˜A’è‹`—pƒwƒbƒ_ƒtƒ@ƒCƒ‹
+//		ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒª		DirectX é–¢é€£å®šç¾©ç”¨ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«
 //
 //				Ver 3.25a
 //
 // ----------------------------------------------------------------------------
 
-// ‘½dƒCƒ“ƒNƒ‹[ƒh–h~—pƒ}ƒNƒ
+// å¤šé‡ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰é˜²æ­¢ç”¨ãƒã‚¯ãƒ­
 #ifndef DX_DIRECTX_H
 #define DX_DIRECTX_H
 
@@ -70,7 +70,7 @@ public:
 	virtual HRESULT	__stdcall Invoke					( DISPID dispIdMember, REFIID riid, LCID lcid, WORD wFlags, DISPPARAMS *pDispParams, VARIANT *pVarResult, EXCEPINFO *pExcepInfo, UINT *puArgErr ) = 0 ;
 } ;
 
-// ‚c‚‰‚’‚…‚ƒ‚”‚r‚‚•‚‚„ -----------------------------------------------------
+// ï¼¤ï½‰ï½’ï½…ï½ƒï½”ï¼³ï½ï½•ï½ï½„ -----------------------------------------------------
 
 #define D_DS_OK									(S_OK)
 
@@ -223,7 +223,7 @@ public :
 	virtual HRESULT __stdcall SetNotificationPositions	( DWORD dwPositionNotifies, const D_DSBPOSITIONNOTIFY *pcPositionNotifies ) = 0 ;
 } ;
 
-// ‚w‚R‚c‚`‚•‚„‚‰‚ -----------------------------------------------------------
+// ï¼¸ï¼“ï¼¤ï¼¡ï½•ï½„ï½‰ï½ -----------------------------------------------------------
 
 #if !defined(D__SPEAKER_POSITIONS_)
 	#define D__SPEAKER_POSITIONS_
@@ -588,7 +588,7 @@ typedef struct tagD_XAUDIO2FX_REVERB_I3DL2_PARAMETERS
 #endif
 
 
-// ‚w‚`‚•‚„‚‰‚ ---------------------------------------------------------------
+// ï¼¸ï¼¡ï½•ï½„ï½‰ï½ ---------------------------------------------------------------
 
 #ifndef DX_GCC_COMPILE
 #pragma pack(push)
@@ -994,12 +994,12 @@ public:
 #pragma pack(pop)
 #endif
 
-// ‚v‚`‚r‚`‚o‚h ---------------------------------------------------------------
+// ï¼·ï¼¡ï¼³ï¼¡ï¼°ï¼© ---------------------------------------------------------------
 
 typedef long									D_MUSIC_TIME ;
 typedef LONGLONG								D_REFERENCE_TIME ;
 
-// ‚c‚‰‚’‚…‚ƒ‚”‚l‚•‚“‚‰‚ƒ -----------------------------------------------------
+// ï¼¤ï½‰ï½’ï½…ï½ƒï½”ï¼­ï½•ï½“ï½‰ï½ƒ -----------------------------------------------------
 
 #define D_DMUS_APATH_SHARED_STEREOPLUSREVERB	(1)
 #define D_DMUS_APATH_DYNAMIC_3D					(6)
@@ -1260,7 +1260,7 @@ public :
 	virtual HRESULT __stdcall NonUse39					( void ) = 0 ;				// GetParamEx( REFGUID rguidType, DWORD dwTrackID, DWORD dwGroupBits, DWORD dwIndex, MUSIC_TIME mtTime, MUSIC_TIME* pmtNext, void* pParam ) = 0 ;
 } ;
 
-// ‚c‚‰‚’‚…‚ƒ‚”‚c‚’‚‚— -------------------------------------------------------
+// ï¼¤ï½‰ï½’ï½…ï½ƒï½”ï¼¤ï½’ï½ï½— -------------------------------------------------------
 
 #define D_DD_OK									S_OK
 
@@ -2001,7 +2001,7 @@ public :
 
 
 
-// ‚c‚‰‚’‚…‚ƒ‚”‚R‚c‚P‚P -------------------------------------------------------
+// ï¼¤ï½‰ï½’ï½…ï½ƒï½”ï¼“ï¼¤ï¼‘ï¼‘ -------------------------------------------------------
 
 #define D_D3D10_SHADER_DEBUG							(1 << 0)
 #define D_D3D10_SHADER_SKIP_VALIDATION					(1 << 1)
@@ -4568,7 +4568,7 @@ public:
 
 
 
-// ‚c‚‰‚’‚…‚ƒ‚”‚R‚c‚XˆÈ‘O -----------------------------------------------------
+// ï¼¤ï½‰ï½’ï½…ï½ƒï½”ï¼“ï¼¤ï¼™ä»¥å‰ -----------------------------------------------------
 
 #define D_D3D_OK								(D_DD_OK)
 
@@ -6582,7 +6582,7 @@ public :
 	virtual HRESULT __stdcall SetMatrixTransposePointerArray( D_IDirect3DDevice9 *pDevice, UINT_PTR hConstant, CONST FLOAT /* D3DXMATRIX */** ppMatrix, UINT Count ) = 0 ;
 } ;
 
-// ‚w‚h‚‚‚•‚” ---------------------------------------------------------------
+// ï¼¸ï¼©ï½ï½ï½•ï½” ---------------------------------------------------------------
 
 #define D_XINPUT_GAMEPAD_DPAD_UP				(0x00000001)
 #define D_XINPUT_GAMEPAD_DPAD_DOWN				(0x00000002)
@@ -6622,7 +6622,7 @@ typedef struct tagD_XINPUT_VIBRATION
     WORD										wRightMotorSpeed;
 } D_XINPUT_VIBRATION ;
 
-// ‚c‚‰‚’‚…‚ƒ‚”‚h‚‚‚•‚” -----------------------------------------------------
+// ï¼¤ï½‰ï½’ï½…ï½ƒï½”ï¼©ï½ï½ï½•ï½” -----------------------------------------------------
 
 #define D_DI_OK									(S_OK)
 #define D_DIDEVTYPE_KEYBOARD					(3)
@@ -7854,7 +7854,7 @@ inline HRESULT D_MFSetAttributeRatio( D_IMFAttributes* pAttributes, REFGUID guid
     return D_MFSetAttribute2UINT32asUINT64( pAttributes, guidKey, unNumerator, unDenominator ) ;
 }
 
-// WASAPIŠÖ˜A -----------------------------------------------------------------
+// WASAPIé–¢é€£ -----------------------------------------------------------------
 
 enum D_EDataFlow
 {
@@ -7981,7 +7981,7 @@ public:
 	virtual HRESULT __stdcall GetService				( REFIID riid, void **ppv ) = 0 ;
 } ;
 
-// ASIOŠÖ˜A ---------------------------------------------------------------------
+// ASIOé–¢é€£ ---------------------------------------------------------------------
 
 enum D_ASIOTimeCodeFlags
 {
@@ -8131,7 +8131,7 @@ public :
 	virtual	long			  outputReady				( void ) = 0 ;
 };
 
-// WbemŠÖ˜A ---------------------------------------------------------------------
+// Wbemé–¢é€£ ---------------------------------------------------------------------
 
 typedef enum tagD_EOLE_AUTHENTICATION_CAPABILITIES
 {

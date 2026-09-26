@@ -1,15 +1,15 @@
 // -------------------------------------------------------------------------------
 // 
-// 		‚c‚wƒ‰ƒCƒuƒ‰ƒŠ		ƒƒ‚ƒŠƒCƒ[ƒW§Œä—pƒvƒƒOƒ‰ƒ€
+// 		ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒª		ãƒ¡ãƒ¢ãƒªã‚¤ãƒ¡ãƒ¼ã‚¸åˆ¶å¾¡ç”¨ãƒ—ãƒ­ã‚°ãƒ©ãƒ 
 // 
 // 				Ver 3.25a
 // 
 // -------------------------------------------------------------------------------
 
-// ‚c‚wƒ‰ƒCƒuƒ‰ƒŠì¬Žž—p’è‹`
+// ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒªä½œæˆæ™‚ç”¨å®šç¾©
 #define DX_MAKE
 
-// ƒCƒ“ƒNƒ‹[ƒh----------------------------------------------------------------
+// ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰----------------------------------------------------------------
 #include "DxMemImg.h"
 #include "DxMath.h"
 #include "DxLib.h"
@@ -24,21 +24,21 @@ namespace DxLib
 
 #endif // DX_NON_NAMESPACE
 
-// ƒ}ƒNƒ’è‹`------------------------------------------------------------------
+// ãƒžã‚¯ãƒ­å®šç¾©------------------------------------------------------------------
 
-// ƒf[ƒ^Œ^’è‹`----------------------------------------------------------------
+// ãƒ‡ãƒ¼ã‚¿åž‹å®šç¾©----------------------------------------------------------------
 
-// ƒyƒCƒ“ƒg—pƒf[ƒ^
+// ãƒšã‚¤ãƒ³ãƒˆç”¨ãƒ‡ãƒ¼ã‚¿
 struct PAINTDATA
 {
-	short					x, y ;								// —v‘f“_
+	short					x, y ;								// è¦ç´ ç‚¹
 } ;
 
-// ƒf[ƒ^éŒ¾------------------------------------------------------------------
+// ãƒ‡ãƒ¼ã‚¿å®£è¨€------------------------------------------------------------------
 
-// ŠÖ”ƒvƒƒgƒ^ƒCƒvéŒ¾--------------------------------------------------------
+// é–¢æ•°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€--------------------------------------------------------
 
-// ƒvƒƒOƒ‰ƒ€------------------------------------------------------------------
+// ãƒ—ãƒ­ã‚°ãƒ©ãƒ ------------------------------------------------------------------
 
 #ifdef DX_NON_2DDRAW
 
@@ -95,23 +95,23 @@ extern void DrawOvalMemImg( MEMIMG *DestImg, int x, int y, int rx, int ry, unsig
 #else
 
 #define PAINTMEMIMG_ND( TYPE, ADDNUM )	\
-/* •`‰æƒ‹[ƒv‚ÉŠ|‚¯‚é */\
+/* æç”»ãƒ«ãƒ¼ãƒ—ã«æŽ›ã‘ã‚‹ */\
 while( PWriteIndex != PReadIndex )\
 {\
-	/* ƒXƒ^ƒbƒN‚É‹l‚Ü‚ê‚½ƒf[ƒ^‚ð“Ç‚Ýo‚· */\
+	/* ã‚¹ã‚¿ãƒƒã‚¯ã«è©°ã¾ã‚ŒãŸãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿å‡ºã™ */\
 	x2 = PData[PReadIndex].x ;\
 	y2 = PData[PReadIndex].y ;\
 	PReadIndex ++ ;\
 	if( PReadIndex == PAINTBUFFERSIZE ) PReadIndex = 0 ;\
 \
-	/* ƒT[ƒ`ƒAƒhƒŒƒX‚ðŽZo */\
+	/* ã‚µãƒ¼ãƒã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ç®—å‡º */\
 	SrcBPT  = SrcBP  + ( x2 * (ADDNUM) ) + y2 * SrcPitch  ;\
 	DestBPT = DestBP + ( x2 * (ADDNUM) ) + y2 * DestPitch ;\
 \
-	/* ‚à‚µŠù‚ÉƒT[ƒ`‚³‚êI‚í‚Á‚Ä‚¢‚½‚çŽŸ‚ÉˆÚ‚é */\
+	/* ã‚‚ã—æ—¢ã«ã‚µãƒ¼ãƒã•ã‚Œçµ‚ã‚ã£ã¦ã„ãŸã‚‰æ¬¡ã«ç§»ã‚‹ */\
 	if( *((TYPE *)SrcBPT) == (DWORD)BoundaryColorD ) continue ;\
 \
-	/* ¶’[‚Ü‚ÅˆÚ“® */\
+	/* å·¦ç«¯ã¾ã§ç§»å‹• */\
 	while( *((TYPE *)SrcBPT) != (DWORD)BoundaryColorD && x2 > MemImgManage.DrawArea.left )\
 	{\
 		x2 -- ;\
@@ -125,18 +125,18 @@ while( PWriteIndex != PReadIndex )\
 		DestBPT += (ADDNUM) ;\
 	}\
 \
-	/* ƒtƒ‰ƒO‰Šú‰» */\
+	/* ãƒ•ãƒ©ã‚°åˆæœŸåŒ– */\
 	UpSarchFlag = DownSarchFlag = FALSE ;\
 \
-	/* ‰E‚ÉŒü‚©‚Á‚Ä‘–¸ŠJŽn */\
+	/* å³ã«å‘ã‹ã£ã¦èµ°æŸ»é–‹å§‹ */\
 	while( MemImgManage.DrawArea.right > x2 && *((TYPE *)SrcBPT) != (DWORD)BoundaryColorD )\
 	{\
-		/* Œ»Ý‚ÌÀ•W‚ð“h‚é */\
+		/* ç¾åœ¨ã®åº§æ¨™ã‚’å¡—ã‚‹ */\
 		*((TYPE *)SrcBPT)  = (TYPE)BoundaryColorD ;\
 		*((TYPE *)DestBPT) = (TYPE)FillColor ;\
 \
-		/* ã’²‚×ƒtƒ‰ƒO‚ª“|‚ê‚Ä‚¢‚ÄAX‚Éã‚É‹«ŠEF‚ª‚È‚¢ê‡‚ÍAã‚ÌƒsƒNƒZƒ‹‚ð */\
-		/* V‚½‚ÈƒT[ƒ`ƒ|ƒCƒ“ƒg‚Æ‚µ‚ÄƒXƒ^ƒbƒN‚ÉÏ‚Þ */\
+		/* ä¸Šèª¿ã¹ãƒ•ãƒ©ã‚°ãŒå€’ã‚Œã¦ã„ã¦ã€æ›´ã«ä¸Šã«å¢ƒç•Œè‰²ãŒãªã„å ´åˆã¯ã€ä¸Šã®ãƒ”ã‚¯ã‚»ãƒ«ã‚’ */\
+		/* æ–°ãŸãªã‚µãƒ¼ãƒãƒã‚¤ãƒ³ãƒˆã¨ã—ã¦ã‚¹ã‚¿ãƒƒã‚¯ã«ç©ã‚€ */\
 		if( y2 - 1 >= MemImgManage.DrawArea.top )\
 		{\
 			if( *((TYPE *)( SrcBPT - SrcPitch )) != (DWORD)BoundaryColorD )\
@@ -157,8 +157,8 @@ while( PWriteIndex != PReadIndex )\
 			}\
 		}\
 \
-		/* ‰º’²‚×ƒtƒ‰ƒO‚ª“|‚ê‚Ä‚¢‚ÄAX‚É‰º‚É‹«ŠEF‚ª‚È‚¢ê‡‚ÍA‰º‚ÌƒsƒNƒZƒ‹‚ð */\
-		/* V‚½‚ÈƒT[ƒ`ƒ|ƒCƒ“ƒg‚Æ‚µ‚ÄƒXƒ^ƒbƒN‚ÉÏ‚Þ */\
+		/* ä¸‹èª¿ã¹ãƒ•ãƒ©ã‚°ãŒå€’ã‚Œã¦ã„ã¦ã€æ›´ã«ä¸‹ã«å¢ƒç•Œè‰²ãŒãªã„å ´åˆã¯ã€ä¸‹ã®ãƒ”ã‚¯ã‚»ãƒ«ã‚’ */\
+		/* æ–°ãŸãªã‚µãƒ¼ãƒãƒã‚¤ãƒ³ãƒˆã¨ã—ã¦ã‚¹ã‚¿ãƒƒã‚¯ã«ç©ã‚€ */\
 		if( y2 + 1 < MemImgManage.DrawArea.bottom )\
 		{\
 			if( *((TYPE *)( SrcBPT + SrcPitch )) != (DWORD)BoundaryColorD )\
@@ -179,7 +179,7 @@ while( PWriteIndex != PReadIndex )\
 			}\
 		}\
 \
-		/* ƒAƒhƒŒƒXƒCƒ“ƒNƒŠƒƒ“ƒg */\
+		/* ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆ */\
 		SrcBPT  += (ADDNUM) ;\
 		DestBPT += (ADDNUM) ;\
 		x2 ++ ;\
@@ -188,26 +188,26 @@ while( PWriteIndex != PReadIndex )\
 
 
 #define PAINTMEMIMG2_ND( TYPE, ADDNUM )	\
-/* Žw’è“_‚ÌF‚ðŽæ“¾‚·‚é */\
+/* æŒ‡å®šç‚¹ã®è‰²ã‚’å–å¾—ã™ã‚‹ */\
 BoundaryColorD = (DWORD)*((TYPE *)(DestBP  + ( x * (ADDNUM) ) + y * DestPitch))  ;\
 if( FillColor != BoundaryColorD )\
 {\
-	/* •`‰æƒ‹[ƒv‚ÉŠ|‚¯‚é */\
+	/* æç”»ãƒ«ãƒ¼ãƒ—ã«æŽ›ã‘ã‚‹ */\
 	while( PWriteIndex != PReadIndex )\
 	{\
-		/* ƒXƒ^ƒbƒN‚É‹l‚Ü‚ê‚½ƒf[ƒ^‚ð“Ç‚Ýo‚· */\
+		/* ã‚¹ã‚¿ãƒƒã‚¯ã«è©°ã¾ã‚ŒãŸãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿å‡ºã™ */\
 		x2 = PData[PReadIndex].x ;\
 		y2 = PData[PReadIndex].y ;\
 		PReadIndex ++ ;\
 		if( PReadIndex == PAINTBUFFERSIZE ) PReadIndex = 0 ;\
 	\
-		/* ƒT[ƒ`ƒAƒhƒŒƒX‚ðŽZo */\
+		/* ã‚µãƒ¼ãƒã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ç®—å‡º */\
 		DestBPT = DestBP + ( x2 * (ADDNUM) ) + y2 * DestPitch ;\
 	\
-		/* ‚à‚µŠù‚ÉƒT[ƒ`‚³‚êI‚í‚Á‚Ä‚¢‚½‚çŽŸ‚ÉˆÚ‚é */\
+		/* ã‚‚ã—æ—¢ã«ã‚µãƒ¼ãƒã•ã‚Œçµ‚ã‚ã£ã¦ã„ãŸã‚‰æ¬¡ã«ç§»ã‚‹ */\
 		if( *((TYPE *)DestBPT) != (DWORD)BoundaryColorD ) continue ;\
 	\
-		/* ¶’[‚Ü‚ÅˆÚ“® */\
+		/* å·¦ç«¯ã¾ã§ç§»å‹• */\
 		while( *((TYPE *)DestBPT) == (DWORD)BoundaryColorD && x2 > MemImgManage.DrawArea.left )\
 		{\
 			x2 -- ;\
@@ -219,17 +219,17 @@ if( FillColor != BoundaryColorD )\
 			DestBPT += (ADDNUM) ;\
 		}\
 	\
-		/* ƒtƒ‰ƒO‰Šú‰» */\
+		/* ãƒ•ãƒ©ã‚°åˆæœŸåŒ– */\
 		UpSarchFlag = DownSarchFlag = FALSE ;\
 	\
-		/* ‰E‚ÉŒü‚©‚Á‚Ä‘–¸ŠJŽn */\
+		/* å³ã«å‘ã‹ã£ã¦èµ°æŸ»é–‹å§‹ */\
 		while( MemImgManage.DrawArea.right > x2 && *((TYPE *)DestBPT) == (DWORD)BoundaryColorD )\
 		{\
-			/* Œ»Ý‚ÌÀ•W‚ð“h‚é */\
+			/* ç¾åœ¨ã®åº§æ¨™ã‚’å¡—ã‚‹ */\
 			*((TYPE *)DestBPT) = (TYPE)FillColor ;\
 	\
-			/* ã’²‚×ƒtƒ‰ƒO‚ª“|‚ê‚Ä‚¢‚ÄAX‚Éã‚É‹«ŠEF‚ª‚È‚¢ê‡‚ÍAã‚ÌƒsƒNƒZƒ‹‚ð */\
-			/* V‚½‚ÈƒT[ƒ`ƒ|ƒCƒ“ƒg‚Æ‚µ‚ÄƒXƒ^ƒbƒN‚ÉÏ‚Þ */\
+			/* ä¸Šèª¿ã¹ãƒ•ãƒ©ã‚°ãŒå€’ã‚Œã¦ã„ã¦ã€æ›´ã«ä¸Šã«å¢ƒç•Œè‰²ãŒãªã„å ´åˆã¯ã€ä¸Šã®ãƒ”ã‚¯ã‚»ãƒ«ã‚’ */\
+			/* æ–°ãŸãªã‚µãƒ¼ãƒãƒã‚¤ãƒ³ãƒˆã¨ã—ã¦ã‚¹ã‚¿ãƒƒã‚¯ã«ç©ã‚€ */\
 			if( y2 - 1 >= MemImgManage.DrawArea.top )\
 			{\
 				if( *((TYPE *)( DestBPT - DestPitch )) == (DWORD)BoundaryColorD )\
@@ -250,8 +250,8 @@ if( FillColor != BoundaryColorD )\
 				}\
 			}\
 	\
-			/* ‰º’²‚×ƒtƒ‰ƒO‚ª“|‚ê‚Ä‚¢‚ÄAX‚É‰º‚É‹«ŠEF‚ª‚È‚¢ê‡‚ÍA‰º‚ÌƒsƒNƒZƒ‹‚ð */\
-			/* V‚½‚ÈƒT[ƒ`ƒ|ƒCƒ“ƒg‚Æ‚µ‚ÄƒXƒ^ƒbƒN‚ÉÏ‚Þ */\
+			/* ä¸‹èª¿ã¹ãƒ•ãƒ©ã‚°ãŒå€’ã‚Œã¦ã„ã¦ã€æ›´ã«ä¸‹ã«å¢ƒç•Œè‰²ãŒãªã„å ´åˆã¯ã€ä¸‹ã®ãƒ”ã‚¯ã‚»ãƒ«ã‚’ */\
+			/* æ–°ãŸãªã‚µãƒ¼ãƒãƒã‚¤ãƒ³ãƒˆã¨ã—ã¦ã‚¹ã‚¿ãƒƒã‚¯ã«ç©ã‚€ */\
 			if( y2 + 1 < MemImgManage.DrawArea.bottom )\
 			{\
 				if( *((TYPE *)( DestBPT + DestPitch )) == (DWORD)BoundaryColorD )\
@@ -272,14 +272,14 @@ if( FillColor != BoundaryColorD )\
 				}\
 			}\
 	\
-			/* ƒAƒhƒŒƒXƒCƒ“ƒNƒŠƒƒ“ƒg */\
+			/* ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆ */\
 			DestBPT += (ADDNUM) ;\
 			x2 ++ ;\
 		}\
 	}\
 }
 
-// Žw’è“_‚©‚ç‹«ŠEF‚ª‚ ‚é‚Æ‚±‚ë‚Ü‚Å“h‚è‚Â‚Ô‚·
+// æŒ‡å®šç‚¹ã‹ã‚‰å¢ƒç•Œè‰²ãŒã‚ã‚‹ã¨ã“ã‚ã¾ã§å¡—ã‚Šã¤ã¶ã™
 extern void PaintMemImg( MEMIMG *DestImg, int x, int y, unsigned int FillColor, ULONGLONG BoundaryColor )
 {
 	int x2, y2 ;
@@ -315,28 +315,28 @@ extern void PaintMemImg( MEMIMG *DestImg, int x, int y, unsigned int FillColor, 
 		DWORD *DestDP ;
 	} ;
 	
-	// •`‰ææ‚ªƒ¿ƒ`ƒƒƒ“ƒlƒ‹•t‚©ƒpƒŒƒbƒg•t‚«‚¾‚Á‚½ê‡‚ÍƒGƒ‰[
+	// æç”»å…ˆãŒÎ±ãƒãƒ£ãƒ³ãƒãƒ«ä»˜ã‹ãƒ‘ãƒ¬ãƒƒãƒˆä»˜ãã ã£ãŸå ´åˆã¯ã‚¨ãƒ©ãƒ¼
 	if( DestImg->Base->UsePalette == 1 || DestImg->Base->UseAlpha == 1 ) return ;
 
-	// ƒoƒbƒtƒ@‚ÌŠm•Û
+	// ãƒãƒƒãƒ•ã‚¡ã®ç¢ºä¿
 	PData = ( PAINTDATA * )DXALLOC( sizeof( PAINTDATA ) * PAINTBUFFERSIZE ) ;
 	if( PData == NULL ) return;
 
-	// ƒCƒ“ƒfƒbƒNƒXƒJƒEƒ“ƒ^‰Šú‰»
+	// ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚«ã‚¦ãƒ³ã‚¿åˆæœŸåŒ–
 	PWriteIndex = PReadIndex = 0 ;
 
-	// Å‰‚Ì‘–¸ƒf[ƒ^‚ð“ü‚ê‚é
+	// æœ€åˆã®èµ°æŸ»ãƒ‡ãƒ¼ã‚¿ã‚’å…¥ã‚Œã‚‹
 	PData[0].x = ( short )x ;
 	PData[0].y = ( short )y ;
 	PWriteIndex ++ ;
 
-	// •`‰æ
+	// æç”»
 	if( BoundaryColor == -1 )
 	{
-		// ‚Pƒ‰ƒCƒ“‚Ìƒsƒbƒ`’·‚ð•Û‘¶
+		// ï¼‘ãƒ©ã‚¤ãƒ³ã®ãƒ”ãƒƒãƒé•·ã‚’ä¿å­˜
 		DestPitch = ( int )DestImg->Base->Pitch ;
 
-		// •`‰ææ‚Æ•`‰æŒ³‚ÌŠî“_ƒf[ƒ^ƒAƒhƒŒƒX‚ðŽæ“¾
+		// æç”»å…ˆã¨æç”»å…ƒã®åŸºç‚¹ãƒ‡ãƒ¼ã‚¿ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å–å¾—
 		DestBP = DestImg->UseImage ;
 
 		switch( DestImg->Base->ColorType )
@@ -352,20 +352,20 @@ extern void PaintMemImg( MEMIMG *DestImg, int x, int y, unsigned int FillColor, 
 	}
 	else
 	{
-		// ì‹Æ—pƒCƒ[ƒW‚ðì¬‚·‚é
+		// ä½œæ¥­ç”¨ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’ä½œæˆã™ã‚‹
 		_MEMSET( &WorkImg, 0, sizeof( WorkImg ) ) ;
 		if( InitializeMemImg( &WorkImg, ( int )DestImg->Width, ( int )DestImg->Height, -1, 0, DestImg->Base->ColorType, FALSE, FALSE ) == -1 )
 			return ;
 
-		// ‚Pƒ‰ƒCƒ“‚Ìƒsƒbƒ`’·‚ð•Û‘¶
+		// ï¼‘ãƒ©ã‚¤ãƒ³ã®ãƒ”ãƒƒãƒé•·ã‚’ä¿å­˜
 		SrcPitch  = ( int )WorkImg.Base->Pitch ;
 		DestPitch = ( int )DestImg->Base->Pitch ;
 
-		// •`‰ææ‚Æ•`‰æŒ³‚ÌŠî“_ƒf[ƒ^ƒAƒhƒŒƒX‚ðŽæ“¾
+		// æç”»å…ˆã¨æç”»å…ƒã®åŸºç‚¹ãƒ‡ãƒ¼ã‚¿ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å–å¾—
 		SrcBP  = WorkImg.UseImage ;
 		DestBP = DestImg->UseImage ;
 
-		// ì‹Æ—pƒCƒ[ƒW—Ìˆæ‚É•`‰ææ‚Ì“à—e‚ðƒRƒs[‚·‚é
+		// ä½œæ¥­ç”¨ã‚¤ãƒ¡ãƒ¼ã‚¸é ˜åŸŸã«æç”»å…ˆã®å†…å®¹ã‚’ã‚³ãƒ”ãƒ¼ã™ã‚‹
 		BltMemImg( &WorkImg, DestImg, NULL, 0, 0 ) ;
 
 		switch( DestImg->Base->ColorType )
@@ -379,18 +379,18 @@ extern void PaintMemImg( MEMIMG *DestImg, int x, int y, unsigned int FillColor, 
 			break ;
 		}
 
-		// ì‹Æ—pƒCƒ[ƒW‚ðíœ
+		// ä½œæ¥­ç”¨ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’å‰Šé™¤
 		TerminateMemImg( &WorkImg ) ;
 	}
 
-	// ƒƒ‚ƒŠ‚Ì‰ð•ú
+	// ãƒ¡ãƒ¢ãƒªã®è§£æ”¾
 	DXFREE( PData ) ;
 
-	// I—¹
+	// çµ‚äº†
 	return ;
 }
 
-// ƒCƒ[ƒW‚É“_‚ð•`‰æ‚·‚é
+// ã‚¤ãƒ¡ãƒ¼ã‚¸ã«ç‚¹ã‚’æç”»ã™ã‚‹
 #define DST16	*DestWP
 #define SRC16	Color
 #define DSTP16	DestWP
@@ -414,25 +414,25 @@ extern void DrawPixelMemImg( MEMIMG *DestImg, int x, int y, unsigned int Color )
 		DWORD *DestDP ;
 	} ;
 	
-	// •`‰ææ‚ªƒ¿ƒ`ƒƒƒ“ƒlƒ‹•t‚©ƒpƒŒƒbƒg•t‚«‚¾‚Á‚½ê‡‚ÍƒGƒ‰[
+	// æç”»å…ˆãŒÎ±ãƒãƒ£ãƒ³ãƒãƒ«ä»˜ã‹ãƒ‘ãƒ¬ãƒƒãƒˆä»˜ãã ã£ãŸå ´åˆã¯ã‚¨ãƒ©ãƒ¼
 	if( DestImg->Base->UsePalette == 1 || DestImg->Base->UseAlpha == 1 ) return ;
 
-	// ‚Í‚Ýo‚µ”»’è
+	// ã¯ã¿å‡ºã—åˆ¤å®š
 	if( (DWORD)( ( x - MemImgManage.DrawArea.left ) | ( ( MemImgManage.DrawArea.right  - 1 ) - x ) | 
 		         ( y - MemImgManage.DrawArea.top  ) | ( ( MemImgManage.DrawArea.bottom - 1 ) - y ) ) & 0x80000000 ) return ;
 	
-	// •`‰ææƒAƒhƒŒƒX‚ðƒZƒbƒg
+	// æç”»å…ˆã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ã‚»ãƒƒãƒˆ
 	DestBP = DestImg->UseImage + x * DestImg->Base->ColorDataP->PixelByte + y * DestImg->Base->Pitch ;
 	
-	// •`‰æ‚Ì€”õ
+	// æç”»ã®æº–å‚™
 	RateTable1 = MemImgManage.RateTable[MemImgManage.BlendParam] ;
 	RateTable2 = &MemImgManage.RateTable2[MemImgManage.BlendParam][256] ;
 
-	// “_‚ð•`‰æ‚·‚é
+	// ç‚¹ã‚’æç”»ã™ã‚‹
 	switch( DestImg->Base->ColorType )
 	{
-	case 0 :	// 16bit ƒ‚[ƒh
-		// •`‰æ‹P“x‚ð”½‰f
+	case 0 :	// 16bit ãƒ¢ãƒ¼ãƒ‰
+		// æç”»è¼åº¦ã‚’åæ˜ 
 		if( ( MemImgManage.bDrawBright & 0xffffff ) != 0xffffff )
 		{
 			Color = RUP16( ( RBOT16( Color ) * MemImgManage.DrawBright.Red   ) >> 8 ) |
@@ -440,15 +440,15 @@ extern void DrawPixelMemImg( MEMIMG *DestImg, int x, int y, unsigned int Color )
 					BUP16( ( BBOT16( Color ) * MemImgManage.DrawBright.Blue  ) >> 8 ) ;
 		}
 		
-		// ƒuƒŒƒ“ƒhƒ‚[ƒh‚É‚æ‚Á‚Äˆ—‚ð•ªŠò
+		// ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã«ã‚ˆã£ã¦å‡¦ç†ã‚’åˆ†å²
 		switch( MemImgManage.BlendMode )
 		{
-		case DX_BLENDMODE_NOBLEND :		// ƒuƒŒƒ“ƒh–³‚µ
+		case DX_BLENDMODE_NOBLEND :		// ãƒ–ãƒ¬ãƒ³ãƒ‰ç„¡ã—
 NOTEX_NOMALDRAW_C16_NOPAL_BNO:
 			CODE_NBI_C16_NBR_NAC_BNO( SRC16, DST16, DSTP16 )
 			break ;
 
-		case DX_BLENDMODE_ALPHA :		// ƒ¿ƒuƒŒƒ“ƒh
+		case DX_BLENDMODE_ALPHA :		// Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
 			if( MemImgManage.BlendParam == 255 ) goto NOTEX_NOMALDRAW_C16_NOPAL_BNO ;
 			else
 			if( MemImgManage.BlendParam == 0 ) return ;
@@ -456,34 +456,34 @@ NOTEX_NOMALDRAW_C16_NOPAL_BNO:
 			CODE_NBI_C16_NBR_NAC_BAL( SRC16, DST16, DSTP16 )
 			break ;
 
-		case DX_BLENDMODE_ADD :		// ‰ÁŽZƒuƒŒƒ“ƒh
+		case DX_BLENDMODE_ADD :		// åŠ ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 			if( MemImgManage.BlendParam == 0 ) return ;
 			
 			CODE_NBI_C16_NBR_NAC_BAD( SRC16, DST16, DSTP16 )
 			break ;
 
-		case DX_BLENDMODE_SUB :		// Œ¸ŽZƒuƒŒƒ“ƒh
+		case DX_BLENDMODE_SUB :		// æ¸›ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 			if( MemImgManage.BlendParam == 0 ) return ;
 			
 			CODE_NBI_C16_NBR_NAC_BSB( SRC16, DST16, DSTP16 )
 			break ;
 
-		case DX_BLENDMODE_MUL :		// æŽZƒuƒŒƒ“ƒh
+		case DX_BLENDMODE_MUL :		// ä¹—ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 			CODE_NBI_C16_NBR_NAC_BML( SRC16, DST16, DSTP16 )
 			break ;
 
-		case DX_BLENDMODE_MULA :	// æŽZ+ƒ¿ƒuƒŒƒ“ƒh
+		case DX_BLENDMODE_MULA :	// ä¹—ç®—+Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
 			CODE_NBI_C16_NBR_NAC_BMA( SRC16, DST16, DSTP16 )
 			break ;
 
-		case DX_BLENDMODE_INVSRC :	// •`‰æŒ³‚ÌF‚ð”½“]{ƒ¿ƒuƒŒƒ“ƒh
+		case DX_BLENDMODE_INVSRC :	// æç”»å…ƒã®è‰²ã‚’åè»¢ï¼‹Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
 			CODE_NBI_C16_NBR_NAC_BIS( SRC16, DST16, DSTP16 )
 			break ;
 		}
 		break ;
 		
-	case 1 :	// 32bit ƒ‚[ƒh
-		// •`‰æ‹P“x‚ð”½‰f
+	case 1 :	// 32bit ãƒ¢ãƒ¼ãƒ‰
+		// æç”»è¼åº¦ã‚’åæ˜ 
 		if( ( MemImgManage.bDrawBright & 0xffffff ) != 0xffffff )
 		{
 			((BYTE *)&Color)[2] = ( BYTE )( ( ((BYTE *)&Color)[2] * MemImgManage.DrawBright.Red   ) >> 8 ) ;
@@ -491,15 +491,15 @@ NOTEX_NOMALDRAW_C16_NOPAL_BNO:
 			((BYTE *)&Color)[0] = ( BYTE )( ( ((BYTE *)&Color)[0] * MemImgManage.DrawBright.Blue  ) >> 8 ) ;
 		}
 		
-		// ƒuƒŒƒ“ƒhƒ‚[ƒh‚É‚æ‚Á‚Äˆ—‚ð•ªŠò
+		// ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã«ã‚ˆã£ã¦å‡¦ç†ã‚’åˆ†å²
 		switch( MemImgManage.BlendMode )
 		{
-		case DX_BLENDMODE_NOBLEND :		// ƒuƒŒƒ“ƒh–³‚µ
+		case DX_BLENDMODE_NOBLEND :		// ãƒ–ãƒ¬ãƒ³ãƒ‰ç„¡ã—
 NOTEX_NOMALDRAW_C32_NOPAL_BNO:
 			CODE_NBI_C32_NBR_NAC_BNO( SRCP32, DSTP32 )
 			break ;
 
-		case DX_BLENDMODE_ALPHA :		// ƒ¿ƒuƒŒƒ“ƒh
+		case DX_BLENDMODE_ALPHA :		// Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
 			if( MemImgManage.BlendParam == 255 ) goto NOTEX_NOMALDRAW_C32_NOPAL_BNO ;
 			else
 			if( MemImgManage.BlendParam == 0 ) return ;
@@ -507,34 +507,34 @@ NOTEX_NOMALDRAW_C32_NOPAL_BNO:
 			CODE_NBI_C32_NBR_NAC_BAL( SRCP32, DSTP32 )
 			break ;
 
-		case DX_BLENDMODE_ADD :		// ‰ÁŽZƒuƒŒƒ“ƒh
+		case DX_BLENDMODE_ADD :		// åŠ ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 			if( MemImgManage.BlendParam == 0 ) return ;
 			
 			CODE_NBI_C32_NBR_NAC_BAD( SRCP32, DSTP32 )
 			break ;
 
-		case DX_BLENDMODE_SUB :		// Œ¸ŽZƒuƒŒƒ“ƒh
+		case DX_BLENDMODE_SUB :		// æ¸›ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 			if( MemImgManage.BlendParam == 0 ) return ;
 			
 			CODE_NBI_C32_NBR_NAC_BSB( SRCP32, DSTP32 )
 			break ;
 
-		case DX_BLENDMODE_MUL :		// æŽZƒuƒŒƒ“ƒh
+		case DX_BLENDMODE_MUL :		// ä¹—ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 			CODE_NBI_C32_NBR_NAC_BML( SRCP32, DSTP32 )
 			break ;
 
-		case DX_BLENDMODE_MULA :	// æŽZ+ƒ¿ƒuƒŒƒ“ƒh
+		case DX_BLENDMODE_MULA :	// ä¹—ç®—+Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
 			CODE_NBI_C32_NBR_NAC_BMA( SRCP32, DSTP32 )
 			break ;
 
-		case DX_BLENDMODE_INVSRC :	// •`‰æŒ³‚ÌF‚ð”½“]{ƒ¿ƒuƒŒƒ“ƒh
+		case DX_BLENDMODE_INVSRC :	// æç”»å…ƒã®è‰²ã‚’åè»¢ï¼‹Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
 			CODE_NBI_C32_NBR_NAC_BIS( SRCP32, DSTP32 )
 			break ;
 		}
 		break ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return ;
 }
 #undef DST16
@@ -546,7 +546,7 @@ NOTEX_NOMALDRAW_C32_NOPAL_BNO:
 
 
 
-// ƒCƒ[ƒW‚É’†g‚Ì‚ ‚éƒ{ƒbƒNƒX‚ð•`‰æ‚·‚é
+// ã‚¤ãƒ¡ãƒ¼ã‚¸ã«ä¸­èº«ã®ã‚ã‚‹ãƒœãƒƒã‚¯ã‚¹ã‚’æç”»ã™ã‚‹
 extern void DrawFillBoxMemImg( MEMIMG *DestImg, int x1, int y1, int x2, int y2, unsigned int Color )
 {
 	RECT rect ;
@@ -570,7 +570,7 @@ do{\
 }while( -- Height ) ;
 
 
-// ƒCƒ[ƒW‚É’†g‚Ì‚ ‚éƒ{ƒbƒNƒX‚ð•`‰æ‚·‚é
+// ã‚¤ãƒ¡ãƒ¼ã‚¸ã«ä¸­èº«ã®ã‚ã‚‹ãƒœãƒƒã‚¯ã‚¹ã‚’æç”»ã™ã‚‹
 #define DST16	*DestWP
 #define SRC16	Color
 #define DSTP16	DestWP
@@ -598,10 +598,10 @@ extern void DrawFillBoxMemImg( MEMIMG *DestImg, const RECT *FillRect, unsigned i
 		DWORD *DestDP ;
 	} ;
 
-	// •`‰ææ‚ªƒ¿ƒ`ƒƒƒ“ƒlƒ‹•t‚©ƒpƒŒƒbƒg•t‚«‚¾‚Á‚½ê‡‚ÍƒGƒ‰[
+	// æç”»å…ˆãŒÎ±ãƒãƒ£ãƒ³ãƒãƒ«ä»˜ã‹ãƒ‘ãƒ¬ãƒƒãƒˆä»˜ãã ã£ãŸå ´åˆã¯ã‚¨ãƒ©ãƒ¼
 	if( DestImg->Base->UsePalette == 1 || DestImg->Base->UseAlpha == 1 ) return ;
 
-	// ‹éŒ`‚ª NULL ‚¾‚Á‚½‚ç‘S‘Ì
+	// çŸ©å½¢ãŒ NULL ã ã£ãŸã‚‰å…¨ä½“
 	if( FillRect == NULL )
 	{
 		FillRect = &TempRect ;
@@ -613,7 +613,7 @@ extern void DrawFillBoxMemImg( MEMIMG *DestImg, const RECT *FillRect, unsigned i
 	}
 	else
 	{
-		// •`‰æ‹éŒ`‚ÌƒZƒbƒg
+		// æç”»çŸ©å½¢ã®ã‚»ãƒƒãƒˆ
 		if( FillRect->left > FillRect->right )
 		{
 			DrawRect.right = FillRect->left ;
@@ -637,26 +637,26 @@ extern void DrawFillBoxMemImg( MEMIMG *DestImg, const RECT *FillRect, unsigned i
 		}
 	}
 
-	// ƒNƒŠƒbƒsƒ“ƒO
+	// ã‚¯ãƒªãƒƒãƒ”ãƒ³ã‚°
 	RectClipping_Inline( &DrawRect , &MemImgManage.DrawArea ) ;
 	Width  = ( DWORD )( DrawRect.right  - DrawRect.left ) ;
 	Height = ( DWORD )( DrawRect.bottom - DrawRect.top  ) ;
 	if( ( Width == 0 ) || ( Height == 0 ) ) return ;
 
-	// “]‘—æƒAƒhƒŒƒX‚ÌƒZƒbƒg
+	// è»¢é€å…ˆã‚¢ãƒ‰ãƒ¬ã‚¹ã®ã‚»ãƒƒãƒˆ
 	DestBP       = DestImg->UseImage + DrawRect.left * DestImg->Base->ColorDataP->PixelByte + DrawRect.top * DestImg->Base->Pitch ;
 	DestAddPitch = DestImg->Base->Pitch - Width * DestImg->Base->ColorDataP->PixelByte ;
 	DestPP		 = (DWORD_PTR)DestBP ;
 
-	// •`‰æ‚Ì€”õ
+	// æç”»ã®æº–å‚™
 	RateTable1 = MemImgManage.RateTable[MemImgManage.BlendParam] ;
 	RateTable2 = &MemImgManage.RateTable2[MemImgManage.BlendParam][256] ;
 
-	// ƒJƒ‰[ƒ‚[ƒh‚É‚æ‚Á‚Äˆ—‚ð•ªŠò
+	// ã‚«ãƒ©ãƒ¼ãƒ¢ãƒ¼ãƒ‰ã«ã‚ˆã£ã¦å‡¦ç†ã‚’åˆ†å²
 	switch( DestImg->Base->ColorType )
 	{
-	case 0 :	// 16bit ƒ‚[ƒh
-		// •`‰æ‹P“x‚ð”½‰f
+	case 0 :	// 16bit ãƒ¢ãƒ¼ãƒ‰
+		// æç”»è¼åº¦ã‚’åæ˜ 
 		if( ( MemImgManage.bDrawBright & 0xffffff ) != 0xffffff )
 		{
 			Color = RUP16( ( RBOT16( Color ) * MemImgManage.DrawBright.Red   ) >> 8 ) |
@@ -664,10 +664,10 @@ extern void DrawFillBoxMemImg( MEMIMG *DestImg, const RECT *FillRect, unsigned i
 					BUP16( ( BBOT16( Color ) * MemImgManage.DrawBright.Blue  ) >> 8 ) ;
 		}
 		
-		// ƒuƒŒƒ“ƒhƒ‚[ƒh‚É‚æ‚Á‚Äˆ—‚ð•ªŠò
+		// ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã«ã‚ˆã£ã¦å‡¦ç†ã‚’åˆ†å²
 		switch( MemImgManage.BlendMode )
 		{
-		case DX_BLENDMODE_NOBLEND :		// ƒuƒŒƒ“ƒh–³‚µ
+		case DX_BLENDMODE_NOBLEND :		// ãƒ–ãƒ¬ãƒ³ãƒ‰ç„¡ã—
 NOTEX_NOMALDRAW_C16_NOPAL_BNO:
 #ifdef DX_NON_INLINE_ASM
 			DRAWFILLBOXMEMIMG_ND( CODE_NBI_C16_NBR_NAC_BNO( SRC16, DST16, DSTP16 ), 2 )
@@ -703,7 +703,7 @@ NOTEX_NOMALDRAW_C16_NOPAL_BNO:
 #endif
 			break ;
 
-		case DX_BLENDMODE_ALPHA :		// ƒ¿ƒuƒŒƒ“ƒh
+		case DX_BLENDMODE_ALPHA :		// Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
 			if( MemImgManage.BlendParam == 255 ) goto NOTEX_NOMALDRAW_C16_NOPAL_BNO ;
 			else
 			if( MemImgManage.BlendParam == 0 ) return ;
@@ -711,33 +711,33 @@ NOTEX_NOMALDRAW_C16_NOPAL_BNO:
 			DRAWFILLBOXMEMIMG_ND( CODE_NBI_C16_NBR_NAC_BAL( SRC16, DST16, DSTP16 ), 2 )
 			break ;
 
-		case DX_BLENDMODE_ADD :		// ‰ÁŽZƒuƒŒƒ“ƒh
+		case DX_BLENDMODE_ADD :		// åŠ ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 			if( MemImgManage.BlendParam == 0 ) return ;
 			
 			DRAWFILLBOXMEMIMG_ND( CODE_NBI_C16_NBR_NAC_BAD( SRC16, DST16, DSTP16 ), 2 )
 			break ;
 
-		case DX_BLENDMODE_SUB :		// Œ¸ŽZƒuƒŒƒ“ƒh
+		case DX_BLENDMODE_SUB :		// æ¸›ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 			if( MemImgManage.BlendParam == 0 ) return ;
 			
 			DRAWFILLBOXMEMIMG_ND( CODE_NBI_C16_NBR_NAC_BSB( SRC16, DST16, DSTP16 ), 2 )
 			break ;
 
-		case DX_BLENDMODE_MUL :		// æŽZƒuƒŒƒ“ƒh
+		case DX_BLENDMODE_MUL :		// ä¹—ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 			DRAWFILLBOXMEMIMG_ND( CODE_NBI_C16_NBR_NAC_BML( SRC16, DST16, DSTP16 ), 2 )
 			break ;
 
-		case DX_BLENDMODE_MULA :	// æŽZ+ƒ¿ƒuƒŒƒ“ƒh
+		case DX_BLENDMODE_MULA :	// ä¹—ç®—+Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
 			DRAWFILLBOXMEMIMG_ND( CODE_NBI_C16_NBR_NAC_BMA( SRC16, DST16, DSTP16 ), 2 )
 			break ;
 
-		case DX_BLENDMODE_INVSRC :	// •`‰æŒ³‚ÌF‚ð”½“]{ƒ¿ƒuƒŒƒ“ƒh
+		case DX_BLENDMODE_INVSRC :	// æç”»å…ƒã®è‰²ã‚’åè»¢ï¼‹Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
 			DRAWFILLBOXMEMIMG_ND( CODE_NBI_C16_NBR_NAC_BIS( SRC16, DST16, DSTP16 ), 2 )
 			break ;
 		}
 		break ;
 		
-	case 1 :	// 32bit ƒ‚[ƒh
+	case 1 :	// 32bit ãƒ¢ãƒ¼ãƒ‰
 		if( ( MemImgManage.bDrawBright & 0xffffff ) != 0xffffff )
 		{
 			((BYTE *)&Color)[2] = ( BYTE )( ( ((BYTE *)&Color)[2] * MemImgManage.DrawBright.Red   ) >> 8 ) ;
@@ -745,10 +745,10 @@ NOTEX_NOMALDRAW_C16_NOPAL_BNO:
 			((BYTE *)&Color)[0] = ( BYTE )( ( ((BYTE *)&Color)[0] * MemImgManage.DrawBright.Blue  ) >> 8 ) ;
 		}
 		
-		// ƒuƒŒƒ“ƒhƒ‚[ƒh‚É‚æ‚Á‚Äˆ—‚ð•ªŠò
+		// ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã«ã‚ˆã£ã¦å‡¦ç†ã‚’åˆ†å²
 		switch( MemImgManage.BlendMode )
 		{
-		case DX_BLENDMODE_NOBLEND :		// ƒuƒŒƒ“ƒh–³‚µ
+		case DX_BLENDMODE_NOBLEND :		// ãƒ–ãƒ¬ãƒ³ãƒ‰ç„¡ã—
 NOTEX_NOMALDRAW_C32_NOPAL_BNO:
 #ifdef DX_NON_INLINE_ASM
 			DRAWFILLBOXMEMIMG_ND( CODE_NBI_C32_NBR_NAC_BNO( SRCP32, DSTP32 ), 4 )
@@ -772,7 +772,7 @@ NOTEX_NOMALDRAW_C32_NOPAL_BNO:
 #endif
 			break ;
 
-		case DX_BLENDMODE_ALPHA :		// ƒ¿ƒuƒŒƒ“ƒh
+		case DX_BLENDMODE_ALPHA :		// Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
 			if( MemImgManage.BlendParam == 255 ) goto NOTEX_NOMALDRAW_C32_NOPAL_BNO ;
 			else
 			if( MemImgManage.BlendParam == 0 ) return ;
@@ -780,34 +780,34 @@ NOTEX_NOMALDRAW_C32_NOPAL_BNO:
 			DRAWFILLBOXMEMIMG_ND( CODE_NBI_C32_NBR_NAC_BAL( SRCP32, DSTP32 ), 4 )
 			break ;
 
-		case DX_BLENDMODE_ADD :		// ‰ÁŽZƒuƒŒƒ“ƒh
+		case DX_BLENDMODE_ADD :		// åŠ ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 			if( MemImgManage.BlendParam == 0 ) return ;
 			
 			DRAWFILLBOXMEMIMG_ND( CODE_NBI_C32_NBR_NAC_BAD( SRCP32, DSTP32 ), 4 )
 			break ;
 
-		case DX_BLENDMODE_SUB :		// Œ¸ŽZƒuƒŒƒ“ƒh
+		case DX_BLENDMODE_SUB :		// æ¸›ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 			if( MemImgManage.BlendParam == 0 ) return ;
 			
 			DRAWFILLBOXMEMIMG_ND( CODE_NBI_C32_NBR_NAC_BSB( SRCP32, DSTP32 ), 4 )
 			break ;
 
-		case DX_BLENDMODE_MUL :		// æŽZƒuƒŒƒ“ƒh
+		case DX_BLENDMODE_MUL :		// ä¹—ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 			DRAWFILLBOXMEMIMG_ND( CODE_NBI_C32_NBR_NAC_BML( SRCP32, DSTP32 ), 4 )
 			break ;
 
-		case DX_BLENDMODE_MULA :	// æŽZ+ƒ¿ƒuƒŒƒ“ƒh
+		case DX_BLENDMODE_MULA :	// ä¹—ç®—+Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
 			DRAWFILLBOXMEMIMG_ND( CODE_NBI_C32_NBR_NAC_BMA( SRCP32, DSTP32 ), 4 )
 			break ;
 
-		case DX_BLENDMODE_INVSRC :	// •`‰æŒ³‚ÌF‚ð”½“]{ƒ¿ƒuƒŒƒ“ƒh
+		case DX_BLENDMODE_INVSRC :	// æç”»å…ƒã®è‰²ã‚’åè»¢ï¼‹Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
 			DRAWFILLBOXMEMIMG_ND( CODE_NBI_C32_NBR_NAC_BIS( SRCP32, DSTP32 ), 4 )
 			break ;
 		}
 		break ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return ;
 }
 #undef DST16
@@ -850,7 +850,7 @@ NOTEX_NOMALDRAW_C32_NOPAL_BNO:
 	}\
 }
 
-// ƒCƒ[ƒW‚Éü‚ð•`‰æ‚·‚é
+// ã‚¤ãƒ¡ãƒ¼ã‚¸ã«ç·šã‚’æç”»ã™ã‚‹
 #define DST16	*DestWP
 #define SRC16	Color
 #define DSTP16	DestWP
@@ -881,12 +881,12 @@ extern void DrawLineMemImg( MEMIMG *DestImg, int x1, int y1, int x2, int y2, uns
 
 	DrawArea = MemImgManage.DrawArea ;
 
-	// ƒNƒŠƒbƒsƒ“ƒOˆ—
+	// ã‚¯ãƒªãƒƒãƒ”ãƒ³ã‚°å‡¦ç†
 	{
 		double d1 , d2 ;
 		double b1 , b2 ;
 
-		// •`‰æƒGƒŠƒA‚ðŠO‚ê‚Ä‚¢‚½ê‡‚Í•`‰æ‚µ‚È‚¢
+		// æç”»ã‚¨ãƒªã‚¢ã‚’å¤–ã‚Œã¦ã„ãŸå ´åˆã¯æç”»ã—ãªã„
 		{
 			int HiX , LwX , LwY , HiY ;
 
@@ -899,7 +899,7 @@ extern void DrawLineMemImg( MEMIMG *DestImg, int x1, int y1, int x2, int y2, uns
 //				DrawArea.right <= LwX || DrawArea.bottom <= LwY ) return ;
 		}
 
-		// ü‚ÌŒX‚«‚ðŽæ“¾
+		// ç·šã®å‚¾ãã‚’å–å¾—
 		d1 = ( y2 == y1 ) ? 0 : ( x2 - x1 ) / ( double )( y2 - y1 ) ;	// x
 		d2 = ( x2 == x1 ) ? 0 : ( y2 - y1 ) / ( double )( x2 - x1 ) ;	// y
 		b1 = ( x1 - d1 * y1 ) ;		// x
@@ -938,31 +938,31 @@ extern void DrawLineMemImg( MEMIMG *DestImg, int x1, int y1, int x2, int y2, uns
 		if( DrawArea.bottom <= y2 )	 y2 = DrawArea.bottom  ; 
 	}
 
-	// •`‰æƒTƒCƒY‚ðŽæ“¾
+	// æç”»ã‚µã‚¤ã‚ºã‚’å–å¾—
 	DrawSizeX = x2 - x1 ;
 	DrawSizeY = y2 - y1 ;
 	if( DrawSizeX == 0 && DrawSizeY == 0 ) return ; 
 
-	// is•ûŒü‚ðƒZƒbƒg
+	// é€²è¡Œæ–¹å‘ã‚’ã‚»ãƒƒãƒˆ
 	if( DrawSizeX < 0 ){ AddX = -1 ; DrawSizeX = -DrawSizeX ; }else{ AddX = 1 ; }
 	if( DrawSizeY < 0 ){ AddY = -1 ; DrawSizeY = -DrawSizeY ; }else{ AddY = 1 ; }
 	AddX *= DestImg->Base->ColorDataP->PixelByte ;
 	AddY *= DestImg->Base->Pitch ;
 
-	// “]‘—æ‚ÌƒAƒhƒŒƒX‚È‚Ç‚ðƒZƒbƒg
+	// è»¢é€å…ˆã®ã‚¢ãƒ‰ãƒ¬ã‚¹ãªã©ã‚’ã‚»ãƒƒãƒˆ
 	DestBP    = DestImg->UseImage + x1 * DestImg->Base->ColorDataP->PixelByte + y1 * DestImg->Base->Pitch ;
 	DestPitch = DestImg->Base->Pitch ;
 
-	// •`‰æ‚Ì€”õ
+	// æç”»ã®æº–å‚™
 	j = 0 ;
 	RateTable1 = MemImgManage.RateTable[MemImgManage.BlendParam] ;
 	RateTable2 = &MemImgManage.RateTable2[MemImgManage.BlendParam][256] ;
 
-	// ƒJƒ‰[ƒ‚[ƒh‚É‚æ‚Á‚Äˆ—‚ð•ªŠò
+	// ã‚«ãƒ©ãƒ¼ãƒ¢ãƒ¼ãƒ‰ã«ã‚ˆã£ã¦å‡¦ç†ã‚’åˆ†å²
 	switch( DestImg->Base->ColorType )
 	{
-	case 0 :	// 16bit ƒ‚[ƒh
-		// •`‰æ‹P“x‚ð”½‰f
+	case 0 :	// 16bit ãƒ¢ãƒ¼ãƒ‰
+		// æç”»è¼åº¦ã‚’åæ˜ 
 		if( ( MemImgManage.bDrawBright & 0xffffff ) != 0xffffff )
 		{
 			Color = RUP16( ( RBOT16( Color ) * MemImgManage.DrawBright.Red   ) >> 8 ) |
@@ -970,15 +970,15 @@ extern void DrawLineMemImg( MEMIMG *DestImg, int x1, int y1, int x2, int y2, uns
 					BUP16( ( BBOT16( Color ) * MemImgManage.DrawBright.Blue  ) >> 8 ) ;
 		}
 		
-		// ƒuƒŒƒ“ƒhƒ‚[ƒh‚É‚æ‚Á‚Äˆ—‚ð•ªŠò
+		// ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã«ã‚ˆã£ã¦å‡¦ç†ã‚’åˆ†å²
 		switch( MemImgManage.BlendMode )
 		{
-		case DX_BLENDMODE_NOBLEND :		// ƒuƒŒƒ“ƒh–³‚µ
+		case DX_BLENDMODE_NOBLEND :		// ãƒ–ãƒ¬ãƒ³ãƒ‰ç„¡ã—
 NOTEX_NOMALDRAW_C16_NOPAL_BNO:
 			DRAWLINEMEMIMG_ND( CODE_NBI_C16_NBR_NAC_BNO( SRC16, DST16, DSTP16 ) )
 			break ;
 
-		case DX_BLENDMODE_ALPHA :		// ƒ¿ƒuƒŒƒ“ƒh
+		case DX_BLENDMODE_ALPHA :		// Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
 			if( MemImgManage.BlendParam == 255 ) goto NOTEX_NOMALDRAW_C16_NOPAL_BNO ;
 			else
 			if( MemImgManage.BlendParam == 0 ) return ;
@@ -986,34 +986,34 @@ NOTEX_NOMALDRAW_C16_NOPAL_BNO:
 			DRAWLINEMEMIMG_ND( CODE_NBI_C16_NBR_NAC_BAL( SRC16, DST16, DSTP16 ) )
 			break ;
 
-		case DX_BLENDMODE_ADD :		// ‰ÁŽZƒuƒŒƒ“ƒh
+		case DX_BLENDMODE_ADD :		// åŠ ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 			if( MemImgManage.BlendParam == 0 ) return ;
 			
 			DRAWLINEMEMIMG_ND( CODE_NBI_C16_NBR_NAC_BAD( SRC16, DST16, DSTP16 ) )
 			break ;
 
-		case DX_BLENDMODE_SUB :		// Œ¸ŽZƒuƒŒƒ“ƒh
+		case DX_BLENDMODE_SUB :		// æ¸›ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 			if( MemImgManage.BlendParam == 0 ) return ;
 			
 			DRAWLINEMEMIMG_ND( CODE_NBI_C16_NBR_NAC_BSB( SRC16, DST16, DSTP16 ) )
 			break ;
 
-		case DX_BLENDMODE_MUL :		// æŽZƒuƒŒƒ“ƒh
+		case DX_BLENDMODE_MUL :		// ä¹—ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 			DRAWLINEMEMIMG_ND( CODE_NBI_C16_NBR_NAC_BML( SRC16, DST16, DSTP16 ) )
 			break ;
 
-		case DX_BLENDMODE_MULA :	// æŽZ+ƒ¿ƒuƒŒƒ“ƒh
+		case DX_BLENDMODE_MULA :	// ä¹—ç®—+Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
 			DRAWLINEMEMIMG_ND( CODE_NBI_C16_NBR_NAC_BMA( SRC16, DST16, DSTP16 ) )
 			break ;
 
-		case DX_BLENDMODE_INVSRC :	// •`‰æŒ³‚ÌF‚ð”½“]{ƒ¿ƒuƒŒƒ“ƒh
+		case DX_BLENDMODE_INVSRC :	// æç”»å…ƒã®è‰²ã‚’åè»¢ï¼‹Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
 			DRAWLINEMEMIMG_ND( CODE_NBI_C16_NBR_NAC_BIS( SRC16, DST16, DSTP16 ) )
 			break ;
 		}
 		break ;
 		
-	case 1 :	// 32bit ƒ‚[ƒh
-		// •`‰æ‹P“x‚ð”½‰f
+	case 1 :	// 32bit ãƒ¢ãƒ¼ãƒ‰
+		// æç”»è¼åº¦ã‚’åæ˜ 
 		if( ( MemImgManage.bDrawBright & 0xffffff ) != 0xffffff )
 		{
 			((BYTE *)&Color)[2] = ( BYTE )( ( ((BYTE *)&Color)[2] * MemImgManage.DrawBright.Red   ) >> 8 ) ;
@@ -1021,15 +1021,15 @@ NOTEX_NOMALDRAW_C16_NOPAL_BNO:
 			((BYTE *)&Color)[0] = ( BYTE )( ( ((BYTE *)&Color)[0] * MemImgManage.DrawBright.Blue  ) >> 8 ) ;
 		}
 		
-		// ƒuƒŒƒ“ƒhƒ‚[ƒh‚É‚æ‚Á‚Äˆ—‚ð•ªŠò
+		// ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã«ã‚ˆã£ã¦å‡¦ç†ã‚’åˆ†å²
 		switch( MemImgManage.BlendMode )
 		{
-		case DX_BLENDMODE_NOBLEND :		// ƒuƒŒƒ“ƒh–³‚µ
+		case DX_BLENDMODE_NOBLEND :		// ãƒ–ãƒ¬ãƒ³ãƒ‰ç„¡ã—
 NOTEX_NOMALDRAW_C32_NOPAL_BNO:
 			DRAWLINEMEMIMG_ND( CODE_NBI_C32_NBR_NAC_BNO( SRCP32, DSTP32 ) )
 			break ;
 
-		case DX_BLENDMODE_ALPHA :		// ƒ¿ƒuƒŒƒ“ƒh
+		case DX_BLENDMODE_ALPHA :		// Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
 			if( MemImgManage.BlendParam == 255 ) goto NOTEX_NOMALDRAW_C32_NOPAL_BNO ;
 			else
 			if( MemImgManage.BlendParam == 0 ) return ;
@@ -1037,34 +1037,34 @@ NOTEX_NOMALDRAW_C32_NOPAL_BNO:
 			DRAWLINEMEMIMG_ND( CODE_NBI_C32_NBR_NAC_BAL( SRCP32, DSTP32 ) )
 			break ;
 
-		case DX_BLENDMODE_ADD :		// ‰ÁŽZƒuƒŒƒ“ƒh
+		case DX_BLENDMODE_ADD :		// åŠ ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 			if( MemImgManage.BlendParam == 0 ) return ;
 			
 			DRAWLINEMEMIMG_ND( CODE_NBI_C32_NBR_NAC_BAD( SRCP32, DSTP32 ) )
 			break ;
 
-		case DX_BLENDMODE_SUB :		// Œ¸ŽZƒuƒŒƒ“ƒh
+		case DX_BLENDMODE_SUB :		// æ¸›ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 			if( MemImgManage.BlendParam == 0 ) return ;
 			
 			DRAWLINEMEMIMG_ND( CODE_NBI_C32_NBR_NAC_BSB( SRCP32, DSTP32 ) )
 			break ;
 
-		case DX_BLENDMODE_MUL :		// æŽZƒuƒŒƒ“ƒh
+		case DX_BLENDMODE_MUL :		// ä¹—ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 			DRAWLINEMEMIMG_ND( CODE_NBI_C32_NBR_NAC_BML( SRCP32, DSTP32 ) )
 			break ;
 
-		case DX_BLENDMODE_MULA :	// æŽZ+ƒ¿ƒuƒŒƒ“ƒh
+		case DX_BLENDMODE_MULA :	// ä¹—ç®—+Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
 			DRAWLINEMEMIMG_ND( CODE_NBI_C32_NBR_NAC_BMA( SRCP32, DSTP32 ) )
 			break ;
 
-		case DX_BLENDMODE_INVSRC :	// •`‰æŒ³‚ÌF‚ð”½“]{ƒ¿ƒuƒŒƒ“ƒh
+		case DX_BLENDMODE_INVSRC :	// æç”»å…ƒã®è‰²ã‚’åè»¢ï¼‹Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
 			DRAWLINEMEMIMG_ND( CODE_NBI_C32_NBR_NAC_BIS( SRCP32, DSTP32 ) )
 			break ;
 		}
 		break ;
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return ;
 }
 #undef DST16
@@ -1075,7 +1075,7 @@ NOTEX_NOMALDRAW_C32_NOPAL_BNO:
 #undef DSTP32
 
 
-// ƒCƒ[ƒW‚É˜g‚¾‚¯‚Ìƒ{ƒbƒNƒX‚ð•`‰æ‚·‚é
+// ã‚¤ãƒ¡ãƒ¼ã‚¸ã«æž ã ã‘ã®ãƒœãƒƒã‚¯ã‚¹ã‚’æç”»ã™ã‚‹
 extern void DrawLineBoxMemImg( MEMIMG *DestImg, int x1, int y1, int x2, int y2, unsigned int Color )
 {
 	DrawLineMemImg( DestImg, x1,		y1,		x2,		y1,		Color ) ;
@@ -1084,7 +1084,7 @@ extern void DrawLineBoxMemImg( MEMIMG *DestImg, int x1, int y1, int x2, int y2, 
 	DrawLineMemImg( DestImg, x1,		y1 + 1,	x1,		y2 - 1,	Color ) ;
 }
 
-// ƒCƒ[ƒW‚É“_‚ÌW‡‚ð•`‰æ‚·‚é
+// ã‚¤ãƒ¡ãƒ¼ã‚¸ã«ç‚¹ã®é›†åˆã‚’æç”»ã™ã‚‹
 extern void DrawPixelSetMemImg( MEMIMG *DestImg, const POINTDATA *PointData, int Num )
 {
 	int i ;
@@ -1125,7 +1125,7 @@ extern void DrawPixelSetMemImg( MEMIMG *DestImg, const POINTDATA *PointData, int
 	}
 }
 
-// ƒCƒ[ƒW‚Éü‚ÌW‡‚ð•`‰æ‚·‚é
+// ã‚¤ãƒ¡ãƒ¼ã‚¸ã«ç·šã®é›†åˆã‚’æç”»ã™ã‚‹
 extern void DrawLineSetMemImg( MEMIMG *DestImg, const LINEDATA *LineData, int Num )
 {
 	int i ;
@@ -1135,7 +1135,7 @@ extern void DrawLineSetMemImg( MEMIMG *DestImg, const LINEDATA *LineData, int Nu
 	}
 }
 
-// ƒCƒ[ƒW‚É‹éŒ`‚ÌW‡‚ð•`‰æ‚·‚é
+// ã‚¤ãƒ¡ãƒ¼ã‚¸ã«çŸ©å½¢ã®é›†åˆã‚’æç”»ã™ã‚‹
 extern void DrawBoxSetMemImg( MEMIMG *DestImg, const RECTDATA *RectData, int Num )
 {
 	int i ;
@@ -1295,7 +1295,7 @@ extern void DrawBoxSetMemImg( MEMIMG *DestImg, const RECTDATA *RectData, int Num
 
 
 
-// ƒCƒ[ƒW‚É‰~‚ð•`‰æ‚·‚é
+// ã‚¤ãƒ¡ãƒ¼ã‚¸ã«å††ã‚’æç”»ã™ã‚‹
 #define DST16	*DrawWP
 #define SRC16	Color
 #define DSTP16	DrawWP
@@ -1333,35 +1333,35 @@ extern void DrawCircleMemImg( MEMIMG *DestImg, int x, int y, int r, unsigned int
 	Rx_One_Minus = Rx_One_Minus ? 1 : 0 ;
 	Ry_One_Minus = Ry_One_Minus ? 1 : 0 ;
 
-	// •`‰æ—Ìˆæ‚ÌƒZƒbƒg
+	// æç”»é ˜åŸŸã®ã‚»ãƒƒãƒˆ
 	DrawArea = MemImgManage.DrawArea ;
 	DrawArea.right  -- ;
 	DrawArea.bottom -- ;
 
-	// “]‘—æ‚ÌƒAƒhƒŒƒX‚ðƒZƒbƒg
+	// è»¢é€å…ˆã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ã‚»ãƒƒãƒˆ
 	DestBP    = DestImg->UseImage ;
 	DestPitch = DestImg->Base->Pitch ;
 
-	// •`‰æ‚Ì€”õ
+	// æç”»ã®æº–å‚™
 	RateTable1 = MemImgManage.RateTable[MemImgManage.BlendParam] ;
 	RateTable2 = &MemImgManage.RateTable2[MemImgManage.BlendParam][256] ;
 
-	// ‰Šú’lƒZƒbƒg
+	// åˆæœŸå€¤ã‚»ãƒƒãƒˆ
 	Dx = r ;
 	Dy = 0 ;
 	F = -2 * r + 3 ;
 
-	// “h‚è‚Â‚Ô‚·‚©‚Ç‚¤‚©‚Åˆ—‚ð•ªŠò
+	// å¡—ã‚Šã¤ã¶ã™ã‹ã©ã†ã‹ã§å‡¦ç†ã‚’åˆ†å²
 	if( FillFlag )
 	{
 		if( ( LineDrawBuf = (BYTE *)DXCALLOC( ( size_t )( DrawArea.bottom + 1 ) ) ) == NULL )
 			return ;
 
-		// ƒJƒ‰[ƒ‚[ƒh‚É‚æ‚Á‚Äˆ—‚ð•ªŠò
+		// ã‚«ãƒ©ãƒ¼ãƒ¢ãƒ¼ãƒ‰ã«ã‚ˆã£ã¦å‡¦ç†ã‚’åˆ†å²
 		switch( DestImg->Base->ColorType )
 		{
-		case 0 :	// 16bit ƒ‚[ƒh
-			// •`‰æ‹P“x‚ð”½‰f
+		case 0 :	// 16bit ãƒ¢ãƒ¼ãƒ‰
+			// æç”»è¼åº¦ã‚’åæ˜ 
 			if( ( MemImgManage.bDrawBright & 0xffffff ) != 0xffffff )
 			{
 				Color = RUP16( ( RBOT16( Color ) * MemImgManage.DrawBright.Red   ) >> 8 ) |
@@ -1369,15 +1369,15 @@ extern void DrawCircleMemImg( MEMIMG *DestImg, int x, int y, int r, unsigned int
 						BUP16( ( BBOT16( Color ) * MemImgManage.DrawBright.Blue  ) >> 8 ) ;
 			}
 			
-			// ƒuƒŒƒ“ƒhƒ‚[ƒh‚É‚æ‚Á‚Äˆ—‚ð•ªŠò
+			// ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã«ã‚ˆã£ã¦å‡¦ç†ã‚’åˆ†å²
 			switch( MemImgManage.BlendMode )
 			{
-			case DX_BLENDMODE_NOBLEND :		// ƒuƒŒƒ“ƒh–³‚µ
+			case DX_BLENDMODE_NOBLEND :		// ãƒ–ãƒ¬ãƒ³ãƒ‰ç„¡ã—
 FILL_NOMALDRAW_C16_NOPAL_BNO:
 				DRAWCIRCLEMEMIMG_FILL_ND( CODE_NBI_C16_NBR_NAC_BNO( SRC16, DST16, DSTP16 ), 2 )
 				break ;
 
-			case DX_BLENDMODE_ALPHA :		// ƒ¿ƒuƒŒƒ“ƒh
+			case DX_BLENDMODE_ALPHA :		// Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
 				if( MemImgManage.BlendParam == 255 ) goto FILL_NOMALDRAW_C16_NOPAL_BNO ;
 				else
 				if( MemImgManage.BlendParam == 0 ) goto LINEEND ;
@@ -1385,33 +1385,33 @@ FILL_NOMALDRAW_C16_NOPAL_BNO:
 				DRAWCIRCLEMEMIMG_FILL_ND( CODE_NBI_C16_NBR_NAC_BAL( SRC16, DST16, DSTP16 ), 2 )
 				break ;
 
-			case DX_BLENDMODE_ADD :		// ‰ÁŽZƒuƒŒƒ“ƒh
+			case DX_BLENDMODE_ADD :		// åŠ ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 				if( MemImgManage.BlendParam == 0 ) goto LINEEND ;
 				
 				DRAWCIRCLEMEMIMG_FILL_ND( CODE_NBI_C16_NBR_NAC_BAD( SRC16, DST16, DSTP16 ), 2 )
 				break ;
 
-			case DX_BLENDMODE_SUB :		// Œ¸ŽZƒuƒŒƒ“ƒh
+			case DX_BLENDMODE_SUB :		// æ¸›ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 				if( MemImgManage.BlendParam == 0 ) goto LINEEND ;
 				
 				DRAWCIRCLEMEMIMG_FILL_ND( CODE_NBI_C16_NBR_NAC_BSB( SRC16, DST16, DSTP16 ), 2 )
 				break ;
 
-			case DX_BLENDMODE_MUL :		// æŽZƒuƒŒƒ“ƒh
+			case DX_BLENDMODE_MUL :		// ä¹—ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 				DRAWCIRCLEMEMIMG_FILL_ND( CODE_NBI_C16_NBR_NAC_BML( SRC16, DST16, DSTP16 ), 2 )
 				break ;
 
-			case DX_BLENDMODE_MULA :	// æŽZ+ƒ¿ƒuƒŒƒ“ƒh
+			case DX_BLENDMODE_MULA :	// ä¹—ç®—+Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
 				DRAWCIRCLEMEMIMG_FILL_ND( CODE_NBI_C16_NBR_NAC_BMA( SRC16, DST16, DSTP16 ), 2 )
 				break ;
 
-			case DX_BLENDMODE_INVSRC :	// •`‰æŒ³‚ÌF‚ð”½“]{ƒ¿ƒuƒŒƒ“ƒh
+			case DX_BLENDMODE_INVSRC :	// æç”»å…ƒã®è‰²ã‚’åè»¢ï¼‹Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
 				DRAWCIRCLEMEMIMG_FILL_ND( CODE_NBI_C16_NBR_NAC_BIS( SRC16, DST16, DSTP16 ), 2 )
 				break ;
 			}
 			break ;
 			
-		case 1 :	// 32bit ƒ‚[ƒh
+		case 1 :	// 32bit ãƒ¢ãƒ¼ãƒ‰
 			if( ( MemImgManage.bDrawBright & 0xffffff ) != 0xffffff )
 			{
 				((BYTE *)&Color)[2] = ( BYTE )( ( ((BYTE *)&Color)[2] * MemImgManage.DrawBright.Red   ) >> 8 ) ;
@@ -1419,15 +1419,15 @@ FILL_NOMALDRAW_C16_NOPAL_BNO:
 				((BYTE *)&Color)[0] = ( BYTE )( ( ((BYTE *)&Color)[0] * MemImgManage.DrawBright.Blue  ) >> 8 ) ;
 			}
 			
-			// ƒuƒŒƒ“ƒhƒ‚[ƒh‚É‚æ‚Á‚Äˆ—‚ð•ªŠò
+			// ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã«ã‚ˆã£ã¦å‡¦ç†ã‚’åˆ†å²
 			switch( MemImgManage.BlendMode )
 			{
-			case DX_BLENDMODE_NOBLEND :		// ƒuƒŒƒ“ƒh–³‚µ
+			case DX_BLENDMODE_NOBLEND :		// ãƒ–ãƒ¬ãƒ³ãƒ‰ç„¡ã—
 FILL_NOMALDRAW_C32_NOPAL_BNO:
 				DRAWCIRCLEMEMIMG_FILL_ND( CODE_NBI_C32_NBR_NAC_BNO( SRCP32, DSTP32 ), 4 )
 				break ;
 
-			case DX_BLENDMODE_ALPHA :		// ƒ¿ƒuƒŒƒ“ƒh
+			case DX_BLENDMODE_ALPHA :		// Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
 				if( MemImgManage.BlendParam == 255 ) goto FILL_NOMALDRAW_C32_NOPAL_BNO ;
 				else
 				if( MemImgManage.BlendParam == 0 ) goto LINEEND ;
@@ -1435,27 +1435,27 @@ FILL_NOMALDRAW_C32_NOPAL_BNO:
 				DRAWCIRCLEMEMIMG_FILL_ND( CODE_NBI_C32_NBR_NAC_BAL( SRCP32, DSTP32 ), 4 )
 				break ;
 
-			case DX_BLENDMODE_ADD :		// ‰ÁŽZƒuƒŒƒ“ƒh
+			case DX_BLENDMODE_ADD :		// åŠ ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 				if( MemImgManage.BlendParam == 0 ) goto LINEEND ;
 				
 				DRAWCIRCLEMEMIMG_FILL_ND( CODE_NBI_C32_NBR_NAC_BAD( SRCP32, DSTP32 ), 4 )
 				break ;
 
-			case DX_BLENDMODE_SUB :		// Œ¸ŽZƒuƒŒƒ“ƒh
+			case DX_BLENDMODE_SUB :		// æ¸›ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 				if( MemImgManage.BlendParam == 0 ) goto LINEEND ;
 				
 				DRAWCIRCLEMEMIMG_FILL_ND( CODE_NBI_C32_NBR_NAC_BSB( SRCP32, DSTP32 ), 4 )
 				break ;
 
-			case DX_BLENDMODE_MUL :		// æŽZƒuƒŒƒ“ƒh
+			case DX_BLENDMODE_MUL :		// ä¹—ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 				DRAWCIRCLEMEMIMG_FILL_ND( CODE_NBI_C32_NBR_NAC_BML( SRCP32, DSTP32 ), 4 )
 				break ;
 
-			case DX_BLENDMODE_MULA :	// æŽZ+ƒ¿ƒuƒŒƒ“ƒh
+			case DX_BLENDMODE_MULA :	// ä¹—ç®—+Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
 				DRAWCIRCLEMEMIMG_FILL_ND( CODE_NBI_C32_NBR_NAC_BMA( SRCP32, DSTP32 ), 4 )
 				break ;
 
-			case DX_BLENDMODE_INVSRC :	// •`‰æŒ³‚ÌF‚ð”½“]{ƒ¿ƒuƒŒƒ“ƒh
+			case DX_BLENDMODE_INVSRC :	// æç”»å…ƒã®è‰²ã‚’åè»¢ï¼‹Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
 				DRAWCIRCLEMEMIMG_FILL_ND( CODE_NBI_C32_NBR_NAC_BIS( SRCP32, DSTP32 ), 4 )
 				break ;
 			}
@@ -1467,11 +1467,11 @@ LINEEND:
 	}
 	else
 	{
-		// ƒJƒ‰[ƒ‚[ƒh‚É‚æ‚Á‚Äˆ—‚ð•ªŠò
+		// ã‚«ãƒ©ãƒ¼ãƒ¢ãƒ¼ãƒ‰ã«ã‚ˆã£ã¦å‡¦ç†ã‚’åˆ†å²
 		switch( DestImg->Base->ColorType )
 		{
-		case 0 :	// 16bit ƒ‚[ƒh
-			// •`‰æ‹P“x‚ð”½‰f
+		case 0 :	// 16bit ãƒ¢ãƒ¼ãƒ‰
+			// æç”»è¼åº¦ã‚’åæ˜ 
 			if( ( MemImgManage.bDrawBright & 0xffffff ) != 0xffffff )
 			{
 				Color = RUP16( ( RBOT16( Color ) * MemImgManage.DrawBright.Red   ) >> 8 ) |
@@ -1479,15 +1479,15 @@ LINEEND:
 						BUP16( ( BBOT16( Color ) * MemImgManage.DrawBright.Blue  ) >> 8 ) ;
 			}
 			
-			// ƒuƒŒƒ“ƒhƒ‚[ƒh‚É‚æ‚Á‚Äˆ—‚ð•ªŠò
+			// ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã«ã‚ˆã£ã¦å‡¦ç†ã‚’åˆ†å²
 			switch( MemImgManage.BlendMode )
 			{
-			case DX_BLENDMODE_NOBLEND :		// ƒuƒŒƒ“ƒh–³‚µ
+			case DX_BLENDMODE_NOBLEND :		// ãƒ–ãƒ¬ãƒ³ãƒ‰ç„¡ã—
 PSET_NOMALDRAW_C16_NOPAL_BNO:
 				DRAWCIRCLEMEMIMG_PSET_ND( CODE_NBI_C16_NBR_NAC_BNO( SRC16, DST16, DSTP16 ), 2 )
 				break ;
 
-			case DX_BLENDMODE_ALPHA :		// ƒ¿ƒuƒŒƒ“ƒh
+			case DX_BLENDMODE_ALPHA :		// Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
 				if( MemImgManage.BlendParam == 255 ) goto PSET_NOMALDRAW_C16_NOPAL_BNO ;
 				else
 				if( MemImgManage.BlendParam == 0 ) return ;
@@ -1495,33 +1495,33 @@ PSET_NOMALDRAW_C16_NOPAL_BNO:
 				DRAWCIRCLEMEMIMG_PSET_ND( CODE_NBI_C16_NBR_NAC_BAL( SRC16, DST16, DSTP16 ), 2 )
 				break ;
 
-			case DX_BLENDMODE_ADD :		// ‰ÁŽZƒuƒŒƒ“ƒh
+			case DX_BLENDMODE_ADD :		// åŠ ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 				if( MemImgManage.BlendParam == 0 ) return ;
 				
 				DRAWCIRCLEMEMIMG_PSET_ND( CODE_NBI_C16_NBR_NAC_BAD( SRC16, DST16, DSTP16 ), 2 )
 				break ;
 
-			case DX_BLENDMODE_SUB :		// Œ¸ŽZƒuƒŒƒ“ƒh
+			case DX_BLENDMODE_SUB :		// æ¸›ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 				if( MemImgManage.BlendParam == 0 ) return ;
 				
 				DRAWCIRCLEMEMIMG_PSET_ND( CODE_NBI_C16_NBR_NAC_BSB( SRC16, DST16, DSTP16 ), 2 )
 				break ;
 
-			case DX_BLENDMODE_MUL :		// æŽZƒuƒŒƒ“ƒh
+			case DX_BLENDMODE_MUL :		// ä¹—ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 				DRAWCIRCLEMEMIMG_PSET_ND( CODE_NBI_C16_NBR_NAC_BML( SRC16, DST16, DSTP16 ), 2 )
 				break ;
 
-			case DX_BLENDMODE_MULA :	// æŽZ+ƒ¿ƒuƒŒƒ“ƒh
+			case DX_BLENDMODE_MULA :	// ä¹—ç®—+Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
 				DRAWCIRCLEMEMIMG_PSET_ND( CODE_NBI_C16_NBR_NAC_BMA( SRC16, DST16, DSTP16 ), 2 )
 				break ;
 
-			case DX_BLENDMODE_INVSRC :	// •`‰æŒ³‚ÌF‚ð”½“]{ƒ¿ƒuƒŒƒ“ƒh
+			case DX_BLENDMODE_INVSRC :	// æç”»å…ƒã®è‰²ã‚’åè»¢ï¼‹Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
 				DRAWCIRCLEMEMIMG_PSET_ND( CODE_NBI_C16_NBR_NAC_BIS( SRC16, DST16, DSTP16 ), 2 )
 				break ;
 			}
 			break ;
 			
-		case 1 :	// 32bit ƒ‚[ƒh
+		case 1 :	// 32bit ãƒ¢ãƒ¼ãƒ‰
 			if( ( MemImgManage.bDrawBright & 0xffffff ) != 0xffffff )
 			{
 				((BYTE *)&Color)[2] = ( BYTE )( ( ((BYTE *)&Color)[2] * MemImgManage.DrawBright.Red   ) >> 8 ) ;
@@ -1529,15 +1529,15 @@ PSET_NOMALDRAW_C16_NOPAL_BNO:
 				((BYTE *)&Color)[0] = ( BYTE )( ( ((BYTE *)&Color)[0] * MemImgManage.DrawBright.Blue  ) >> 8 ) ;
 			}
 			
-			// ƒuƒŒƒ“ƒhƒ‚[ƒh‚É‚æ‚Á‚Äˆ—‚ð•ªŠò
+			// ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã«ã‚ˆã£ã¦å‡¦ç†ã‚’åˆ†å²
 			switch( MemImgManage.BlendMode )
 			{
-			case DX_BLENDMODE_NOBLEND :		// ƒuƒŒƒ“ƒh–³‚µ
+			case DX_BLENDMODE_NOBLEND :		// ãƒ–ãƒ¬ãƒ³ãƒ‰ç„¡ã—
 PSET_NOMALDRAW_C32_NOPAL_BNO:
 				DRAWCIRCLEMEMIMG_PSET_ND( CODE_NBI_C32_NBR_NAC_BNO( SRCP32, DSTP32 ), 4 )
 				break ;
 
-			case DX_BLENDMODE_ALPHA :		// ƒ¿ƒuƒŒƒ“ƒh
+			case DX_BLENDMODE_ALPHA :		// Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
 				if( MemImgManage.BlendParam == 255 ) goto PSET_NOMALDRAW_C32_NOPAL_BNO ;
 				else
 				if( MemImgManage.BlendParam == 0 ) return ;
@@ -1545,27 +1545,27 @@ PSET_NOMALDRAW_C32_NOPAL_BNO:
 				DRAWCIRCLEMEMIMG_PSET_ND( CODE_NBI_C32_NBR_NAC_BAL( SRCP32, DSTP32 ), 4 )
 				break ;
 
-			case DX_BLENDMODE_ADD :		// ‰ÁŽZƒuƒŒƒ“ƒh
+			case DX_BLENDMODE_ADD :		// åŠ ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 				if( MemImgManage.BlendParam == 0 ) return ;
 				
 				DRAWCIRCLEMEMIMG_PSET_ND( CODE_NBI_C32_NBR_NAC_BAD( SRCP32, DSTP32 ), 4 )
 				break ;
 
-			case DX_BLENDMODE_SUB :		// Œ¸ŽZƒuƒŒƒ“ƒh
+			case DX_BLENDMODE_SUB :		// æ¸›ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 				if( MemImgManage.BlendParam == 0 ) return ;
 				
 				DRAWCIRCLEMEMIMG_PSET_ND( CODE_NBI_C32_NBR_NAC_BSB( SRCP32, DSTP32 ), 4 )
 				break ;
 
-			case DX_BLENDMODE_MUL :		// æŽZƒuƒŒƒ“ƒh
+			case DX_BLENDMODE_MUL :		// ä¹—ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 				DRAWCIRCLEMEMIMG_PSET_ND( CODE_NBI_C32_NBR_NAC_BML( SRCP32, DSTP32 ), 4 )
 				break ;
 
-			case DX_BLENDMODE_MULA :	// æŽZ+ƒ¿ƒuƒŒƒ“ƒh
+			case DX_BLENDMODE_MULA :	// ä¹—ç®—+Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
 				DRAWCIRCLEMEMIMG_PSET_ND( CODE_NBI_C32_NBR_NAC_BMA( SRCP32, DSTP32 ), 4 )
 				break ;
 
-			case DX_BLENDMODE_INVSRC :	// •`‰æŒ³‚ÌF‚ð”½“]{ƒ¿ƒuƒŒƒ“ƒh
+			case DX_BLENDMODE_INVSRC :	// æç”»å…ƒã®è‰²ã‚’åè»¢ï¼‹Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
 				DRAWCIRCLEMEMIMG_PSET_ND( CODE_NBI_C32_NBR_NAC_BIS( SRCP32, DSTP32 ), 4 )
 				break ;
 			}
@@ -1573,7 +1573,7 @@ PSET_NOMALDRAW_C32_NOPAL_BNO:
 		}
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return ;
 }
 #undef DST16
@@ -1959,7 +1959,7 @@ PSET_NOMALDRAW_C32_NOPAL_BNO:
 
 
 
-// ƒCƒ[ƒW‚É‘È‰~‚ð•`‰æ‚·‚é
+// ã‚¤ãƒ¡ãƒ¼ã‚¸ã«æ¥•å††ã‚’æç”»ã™ã‚‹
 #define DST16	*DrawWP
 #define SRC16	Color
 #define DSTP16	DrawWP
@@ -1999,24 +1999,24 @@ extern void DrawOvalMemImg( MEMIMG *DestImg, int x, int y, int rx, int ry, unsig
 
 	if( ( rx == 0 ) | ( ry == 0 ) ) return ; 
 
-	// •`‰æ—Ìˆæ‚ÌƒZƒbƒg
+	// æç”»é ˜åŸŸã®ã‚»ãƒƒãƒˆ
 	DrawArea = MemImgManage.DrawArea ;
 	DrawArea.right  -- ;
 	DrawArea.bottom -- ;
 	
-	// •â³
+	// è£œæ­£
 	if( rx < 0 ) rx = -rx ;
 	if( ry < 0 ) ry = -ry ;
 
-	// “]‘—æ‚ÌƒAƒhƒŒƒX‚ðƒZƒbƒg
+	// è»¢é€å…ˆã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ã‚»ãƒƒãƒˆ
 	DestBP    = DestImg->UseImage ;
 	DestPitch = ( int )DestImg->Base->Pitch ;
 
-	// •`‰æ‚Ì€”õ
+	// æç”»ã®æº–å‚™
 	RateTable1 = MemImgManage.RateTable[MemImgManage.BlendParam] ;
 	RateTable2 = &MemImgManage.RateTable2[MemImgManage.BlendParam][256] ;
 
-	// •`‰æŠJŽn
+	// æç”»é–‹å§‹
 	if( FillFlag )
 	{
 		if( ( LineDrawBuf = ( BYTE * )DXCALLOC( ( size_t )( DrawArea.bottom + 1 ) ) ) == NULL )
@@ -2024,7 +2024,7 @@ extern void DrawOvalMemImg( MEMIMG *DestImg, int x, int y, int rx, int ry, unsig
 
 		if( rx >= ry )
 		{
-			// ‰Šú’l‚ðƒZƒbƒg
+			// åˆæœŸå€¤ã‚’ã‚»ãƒƒãƒˆ
 			rc = ( rx * rx ) / ry ;
 
 			xc = 0 ; yc = 0 ;
@@ -2036,11 +2036,11 @@ extern void DrawOvalMemImg( MEMIMG *DestImg, int x, int y, int rx, int ry, unsig
 			F = -2 * r + 1 + 2 * 1;
 			H = -4 * r + 2 + 1;
 			
-			// ƒJƒ‰[ƒ‚[ƒh‚É‚æ‚Á‚Äˆ—‚ð•ªŠò
+			// ã‚«ãƒ©ãƒ¼ãƒ¢ãƒ¼ãƒ‰ã«ã‚ˆã£ã¦å‡¦ç†ã‚’åˆ†å²
 			switch( DestImg->Base->ColorType )
 			{
-			case 0 :	// 16bit ƒ‚[ƒh
-				// •`‰æ‹P“x‚ð”½‰f
+			case 0 :	// 16bit ãƒ¢ãƒ¼ãƒ‰
+				// æç”»è¼åº¦ã‚’åæ˜ 
 				if( ( MemImgManage.bDrawBright & 0xffffff ) != 0xffffff )
 				{
 					Color = RUP16( ( RBOT16( Color ) * MemImgManage.DrawBright.Red   ) >> 8 ) |
@@ -2048,15 +2048,15 @@ extern void DrawOvalMemImg( MEMIMG *DestImg, int x, int y, int rx, int ry, unsig
 							BUP16( ( BBOT16( Color ) * MemImgManage.DrawBright.Blue  ) >> 8 ) ;
 				}
 				
-				// ƒuƒŒƒ“ƒhƒ‚[ƒh‚É‚æ‚Á‚Äˆ—‚ð•ªŠò
+				// ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã«ã‚ˆã£ã¦å‡¦ç†ã‚’åˆ†å²
 				switch( MemImgManage.BlendMode )
 				{
-				case DX_BLENDMODE_NOBLEND :		// ƒuƒŒƒ“ƒh–³‚µ
+				case DX_BLENDMODE_NOBLEND :		// ãƒ–ãƒ¬ãƒ³ãƒ‰ç„¡ã—
 FILL_RX_NOMALDRAW_C16_NOPAL_BNO:
 					DRAWOVALMEMIMG_FILL_RX_ND( CODE_NBI_C16_NBR_NAC_BNO( SRC16, DST16, DSTP16 ), 2 )
 					break ;
 
-				case DX_BLENDMODE_ALPHA :		// ƒ¿ƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_ALPHA :		// Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
 					if( MemImgManage.BlendParam == 255 ) goto FILL_RX_NOMALDRAW_C16_NOPAL_BNO ;
 					else
 					if( MemImgManage.BlendParam == 0 ) goto LINEEND ;
@@ -2064,33 +2064,33 @@ FILL_RX_NOMALDRAW_C16_NOPAL_BNO:
 					DRAWOVALMEMIMG_FILL_RX_ND( CODE_NBI_C16_NBR_NAC_BAL( SRC16, DST16, DSTP16 ), 2 )
 					break ;
 
-				case DX_BLENDMODE_ADD :		// ‰ÁŽZƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_ADD :		// åŠ ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 					if( MemImgManage.BlendParam == 0 ) goto LINEEND ;
 					
 					DRAWOVALMEMIMG_FILL_RX_ND( CODE_NBI_C16_NBR_NAC_BAD( SRC16, DST16, DSTP16 ), 2 )
 					break ;
 
-				case DX_BLENDMODE_SUB :		// Œ¸ŽZƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_SUB :		// æ¸›ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 					if( MemImgManage.BlendParam == 0 ) goto LINEEND ;
 					
 					DRAWOVALMEMIMG_FILL_RX_ND( CODE_NBI_C16_NBR_NAC_BSB( SRC16, DST16, DSTP16 ), 2 )
 					break ;
 
-				case DX_BLENDMODE_MUL :		// æŽZƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_MUL :		// ä¹—ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 					DRAWOVALMEMIMG_FILL_RX_ND( CODE_NBI_C16_NBR_NAC_BML( SRC16, DST16, DSTP16 ), 2 )
 					break ;
 
-				case DX_BLENDMODE_MULA :	// æŽZ+ƒ¿ƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_MULA :	// ä¹—ç®—+Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
 					DRAWOVALMEMIMG_FILL_RX_ND( CODE_NBI_C16_NBR_NAC_BMA( SRC16, DST16, DSTP16 ), 2 )
 					break ;
 
-				case DX_BLENDMODE_INVSRC :	// •`‰æŒ³‚ÌF‚ð”½“]{ƒ¿ƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_INVSRC :	// æç”»å…ƒã®è‰²ã‚’åè»¢ï¼‹Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
 					DRAWOVALMEMIMG_FILL_RX_ND( CODE_NBI_C16_NBR_NAC_BIS( SRC16, DST16, DSTP16 ), 2 )
 					break ;
 				}
 				break ;
 				
-			case 1 :	// 32bit ƒ‚[ƒh
+			case 1 :	// 32bit ãƒ¢ãƒ¼ãƒ‰
 				if( ( MemImgManage.bDrawBright & 0xffffff ) != 0xffffff )
 				{
 					((BYTE *)&Color)[2] = ( BYTE )( ( ((BYTE *)&Color)[2] * MemImgManage.DrawBright.Red   ) >> 8 ) ;
@@ -2098,15 +2098,15 @@ FILL_RX_NOMALDRAW_C16_NOPAL_BNO:
 					((BYTE *)&Color)[0] = ( BYTE )( ( ((BYTE *)&Color)[0] * MemImgManage.DrawBright.Blue  ) >> 8 ) ;
 				}
 				
-				// ƒuƒŒƒ“ƒhƒ‚[ƒh‚É‚æ‚Á‚Äˆ—‚ð•ªŠò
+				// ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã«ã‚ˆã£ã¦å‡¦ç†ã‚’åˆ†å²
 				switch( MemImgManage.BlendMode )
 				{
-				case DX_BLENDMODE_NOBLEND :		// ƒuƒŒƒ“ƒh–³‚µ
+				case DX_BLENDMODE_NOBLEND :		// ãƒ–ãƒ¬ãƒ³ãƒ‰ç„¡ã—
 FILL_RX_NOMALDRAW_C32_NOPAL_BNO:
 					DRAWOVALMEMIMG_FILL_RX_ND( CODE_NBI_C32_NBR_NAC_BNO( SRCP32, DSTP32 ), 4 )
 					break ;
 
-				case DX_BLENDMODE_ALPHA :		// ƒ¿ƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_ALPHA :		// Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
 					if( MemImgManage.BlendParam == 255 ) goto FILL_RX_NOMALDRAW_C32_NOPAL_BNO ;
 					else
 					if( MemImgManage.BlendParam == 0 ) goto LINEEND ;
@@ -2114,27 +2114,27 @@ FILL_RX_NOMALDRAW_C32_NOPAL_BNO:
 					DRAWOVALMEMIMG_FILL_RX_ND( CODE_NBI_C32_NBR_NAC_BAL( SRCP32, DSTP32 ), 4 )
 					break ;
 
-				case DX_BLENDMODE_ADD :		// ‰ÁŽZƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_ADD :		// åŠ ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 					if( MemImgManage.BlendParam == 0 ) goto LINEEND ;
 					
 					DRAWOVALMEMIMG_FILL_RX_ND( CODE_NBI_C32_NBR_NAC_BAD( SRCP32, DSTP32 ), 4 )
 					break ;
 
-				case DX_BLENDMODE_SUB :		// Œ¸ŽZƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_SUB :		// æ¸›ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 					if( MemImgManage.BlendParam == 0 ) goto LINEEND ;
 					
 					DRAWOVALMEMIMG_FILL_RX_ND( CODE_NBI_C32_NBR_NAC_BSB( SRCP32, DSTP32 ), 4 )
 					break ;
 
-				case DX_BLENDMODE_MUL :		// æŽZƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_MUL :		// ä¹—ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 					DRAWOVALMEMIMG_FILL_RX_ND( CODE_NBI_C32_NBR_NAC_BML( SRCP32, DSTP32 ), 4 )
 					break ;
 
-				case DX_BLENDMODE_MULA :	// æŽZ+ƒ¿ƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_MULA :	// ä¹—ç®—+Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
 					DRAWOVALMEMIMG_FILL_RX_ND( CODE_NBI_C32_NBR_NAC_BMA( SRCP32, DSTP32 ), 4 )
 					break ;
 
-				case DX_BLENDMODE_INVSRC :	// •`‰æŒ³‚ÌF‚ð”½“]{ƒ¿ƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_INVSRC :	// æç”»å…ƒã®è‰²ã‚’åè»¢ï¼‹Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
 					DRAWOVALMEMIMG_FILL_RX_ND( CODE_NBI_C32_NBR_NAC_BIS( SRCP32, DSTP32 ), 4 )
 					break ;
 				}
@@ -2143,7 +2143,7 @@ FILL_RX_NOMALDRAW_C32_NOPAL_BNO:
 		}
 		else
 		{
-			// ‰Šú’l‚ðƒZƒbƒg
+			// åˆæœŸå€¤ã‚’ã‚»ãƒƒãƒˆ
 			rc = ( ry * ry ) / rx ;
 
 			yc = 0 ; xc = 0 ;
@@ -2154,11 +2154,11 @@ FILL_RX_NOMALDRAW_C32_NOPAL_BNO:
 			F = -2 * r + 1 + 2 * 1;
 			H = -4 * r + 2 + 1;
 
-			// ƒJƒ‰[ƒ‚[ƒh‚É‚æ‚Á‚Äˆ—‚ð•ªŠò
+			// ã‚«ãƒ©ãƒ¼ãƒ¢ãƒ¼ãƒ‰ã«ã‚ˆã£ã¦å‡¦ç†ã‚’åˆ†å²
 			switch( DestImg->Base->ColorType )
 			{
-			case 0 :	// 16bit ƒ‚[ƒh
-				// •`‰æ‹P“x‚ð”½‰f
+			case 0 :	// 16bit ãƒ¢ãƒ¼ãƒ‰
+				// æç”»è¼åº¦ã‚’åæ˜ 
 				if( ( MemImgManage.bDrawBright & 0xffffff ) != 0xffffff )
 				{
 					Color = RUP16( ( RBOT16( Color ) * MemImgManage.DrawBright.Red   ) >> 8 ) |
@@ -2166,15 +2166,15 @@ FILL_RX_NOMALDRAW_C32_NOPAL_BNO:
 							BUP16( ( BBOT16( Color ) * MemImgManage.DrawBright.Blue  ) >> 8 ) ;
 				}
 				
-				// ƒuƒŒƒ“ƒhƒ‚[ƒh‚É‚æ‚Á‚Äˆ—‚ð•ªŠò
+				// ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã«ã‚ˆã£ã¦å‡¦ç†ã‚’åˆ†å²
 				switch( MemImgManage.BlendMode )
 				{
-				case DX_BLENDMODE_NOBLEND :		// ƒuƒŒƒ“ƒh–³‚µ
+				case DX_BLENDMODE_NOBLEND :		// ãƒ–ãƒ¬ãƒ³ãƒ‰ç„¡ã—
 FILL_RY_NOMALDRAW_C16_NOPAL_BNO:
 					DRAWOVALMEMIMG_FILL_RY_ND( CODE_NBI_C16_NBR_NAC_BNO( SRC16, DST16, DSTP16 ), 2 )
 					break ;
 
-				case DX_BLENDMODE_ALPHA :		// ƒ¿ƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_ALPHA :		// Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
 					if( MemImgManage.BlendParam == 255 ) goto FILL_RY_NOMALDRAW_C16_NOPAL_BNO ;
 					else
 					if( MemImgManage.BlendParam == 0 ) goto LINEEND ;
@@ -2182,33 +2182,33 @@ FILL_RY_NOMALDRAW_C16_NOPAL_BNO:
 					DRAWOVALMEMIMG_FILL_RY_ND( CODE_NBI_C16_NBR_NAC_BAL( SRC16, DST16, DSTP16 ), 2 )
 					break ;
 
-				case DX_BLENDMODE_ADD :		// ‰ÁŽZƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_ADD :		// åŠ ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 					if( MemImgManage.BlendParam == 0 ) goto LINEEND ;
 					
 					DRAWOVALMEMIMG_FILL_RY_ND( CODE_NBI_C16_NBR_NAC_BAD( SRC16, DST16, DSTP16 ), 2 )
 					break ;
 
-				case DX_BLENDMODE_SUB :		// Œ¸ŽZƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_SUB :		// æ¸›ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 					if( MemImgManage.BlendParam == 0 ) goto LINEEND ;
 					
 					DRAWOVALMEMIMG_FILL_RY_ND( CODE_NBI_C16_NBR_NAC_BSB( SRC16, DST16, DSTP16 ), 2 )
 					break ;
 
-				case DX_BLENDMODE_MUL :		// æŽZƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_MUL :		// ä¹—ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 					DRAWOVALMEMIMG_FILL_RY_ND( CODE_NBI_C16_NBR_NAC_BML( SRC16, DST16, DSTP16 ), 2 )
 					break ;
 
-				case DX_BLENDMODE_MULA :	// æŽZ+ƒ¿ƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_MULA :	// ä¹—ç®—+Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
 					DRAWOVALMEMIMG_FILL_RY_ND( CODE_NBI_C16_NBR_NAC_BMA( SRC16, DST16, DSTP16 ), 2 )
 					break ;
 
-				case DX_BLENDMODE_INVSRC :	// •`‰æŒ³‚ÌF‚ð”½“]{ƒ¿ƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_INVSRC :	// æç”»å…ƒã®è‰²ã‚’åè»¢ï¼‹Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
 					DRAWOVALMEMIMG_FILL_RY_ND( CODE_NBI_C16_NBR_NAC_BIS( SRC16, DST16, DSTP16 ), 2 )
 					break ;
 				}
 				break ;
 				
-			case 1 :	// 32bit ƒ‚[ƒh
+			case 1 :	// 32bit ãƒ¢ãƒ¼ãƒ‰
 				if( ( MemImgManage.bDrawBright & 0xffffff ) != 0xffffff )
 				{
 					((BYTE *)&Color)[2] = ( BYTE )( ( ((BYTE *)&Color)[2] * MemImgManage.DrawBright.Red   ) >> 8 ) ;
@@ -2216,15 +2216,15 @@ FILL_RY_NOMALDRAW_C16_NOPAL_BNO:
 					((BYTE *)&Color)[0] = ( BYTE )( ( ((BYTE *)&Color)[0] * MemImgManage.DrawBright.Blue  ) >> 8 ) ;
 				}
 				
-				// ƒuƒŒƒ“ƒhƒ‚[ƒh‚É‚æ‚Á‚Äˆ—‚ð•ªŠò
+				// ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã«ã‚ˆã£ã¦å‡¦ç†ã‚’åˆ†å²
 				switch( MemImgManage.BlendMode )
 				{
-				case DX_BLENDMODE_NOBLEND :		// ƒuƒŒƒ“ƒh–³‚µ
+				case DX_BLENDMODE_NOBLEND :		// ãƒ–ãƒ¬ãƒ³ãƒ‰ç„¡ã—
 FILL_RY_NOMALDRAW_C32_NOPAL_BNO:
 					DRAWOVALMEMIMG_FILL_RY_ND( CODE_NBI_C32_NBR_NAC_BNO( SRCP32, DSTP32 ), 4 )
 					break ;
 
-				case DX_BLENDMODE_ALPHA :		// ƒ¿ƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_ALPHA :		// Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
 					if( MemImgManage.BlendParam == 255 ) goto FILL_RY_NOMALDRAW_C32_NOPAL_BNO ;
 					else
 					if( MemImgManage.BlendParam == 0 ) goto LINEEND ;
@@ -2232,27 +2232,27 @@ FILL_RY_NOMALDRAW_C32_NOPAL_BNO:
 					DRAWOVALMEMIMG_FILL_RY_ND( CODE_NBI_C32_NBR_NAC_BAL( SRCP32, DSTP32 ), 4 )
 					break ;
 
-				case DX_BLENDMODE_ADD :		// ‰ÁŽZƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_ADD :		// åŠ ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 					if( MemImgManage.BlendParam == 0 ) goto LINEEND ;
 					
 					DRAWOVALMEMIMG_FILL_RY_ND( CODE_NBI_C32_NBR_NAC_BAD( SRCP32, DSTP32 ), 4 )
 					break ;
 
-				case DX_BLENDMODE_SUB :		// Œ¸ŽZƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_SUB :		// æ¸›ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 					if( MemImgManage.BlendParam == 0 ) goto LINEEND ;
 					
 					DRAWOVALMEMIMG_FILL_RY_ND( CODE_NBI_C32_NBR_NAC_BSB( SRCP32, DSTP32 ), 4 )
 					break ;
 
-				case DX_BLENDMODE_MUL :		// æŽZƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_MUL :		// ä¹—ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 					DRAWOVALMEMIMG_FILL_RY_ND( CODE_NBI_C32_NBR_NAC_BML( SRCP32, DSTP32 ), 4 )
 					break ;
 
-				case DX_BLENDMODE_MULA :	// æŽZ+ƒ¿ƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_MULA :	// ä¹—ç®—+Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
 					DRAWOVALMEMIMG_FILL_RY_ND( CODE_NBI_C32_NBR_NAC_BMA( SRCP32, DSTP32 ), 4 )
 					break ;
 
-				case DX_BLENDMODE_INVSRC :	// •`‰æŒ³‚ÌF‚ð”½“]{ƒ¿ƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_INVSRC :	// æç”»å…ƒã®è‰²ã‚’åè»¢ï¼‹Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
 					DRAWOVALMEMIMG_FILL_RY_ND( CODE_NBI_C32_NBR_NAC_BIS( SRCP32, DSTP32 ), 4 )
 					break ;
 				}
@@ -2267,7 +2267,7 @@ LINEEND:
 	{
 		if( rx >= ry )
 		{
-			// ‰Šú’l‚ðƒZƒbƒg
+			// åˆæœŸå€¤ã‚’ã‚»ãƒƒãƒˆ
 			rc = ( rx * rx ) / ry ;
 
 			xc = 0 ; yc = 0 ;
@@ -2279,11 +2279,11 @@ LINEEND:
 			F = -2 * r + 1 + 2 * 1;
 			H = -4 * r + 2 + 1;
 
-			// ƒJƒ‰[ƒ‚[ƒh‚É‚æ‚Á‚Äˆ—‚ð•ªŠò
+			// ã‚«ãƒ©ãƒ¼ãƒ¢ãƒ¼ãƒ‰ã«ã‚ˆã£ã¦å‡¦ç†ã‚’åˆ†å²
 			switch( DestImg->Base->ColorType )
 			{
-			case 0 :	// 16bit ƒ‚[ƒh
-				// •`‰æ‹P“x‚ð”½‰f
+			case 0 :	// 16bit ãƒ¢ãƒ¼ãƒ‰
+				// æç”»è¼åº¦ã‚’åæ˜ 
 				if( ( MemImgManage.bDrawBright & 0xffffff ) != 0xffffff )
 				{
 					Color = RUP16( ( RBOT16( Color ) * MemImgManage.DrawBright.Red   ) >> 8 ) |
@@ -2291,15 +2291,15 @@ LINEEND:
 							BUP16( ( BBOT16( Color ) * MemImgManage.DrawBright.Blue  ) >> 8 ) ;
 				}
 				
-				// ƒuƒŒƒ“ƒhƒ‚[ƒh‚É‚æ‚Á‚Äˆ—‚ð•ªŠò
+				// ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã«ã‚ˆã£ã¦å‡¦ç†ã‚’åˆ†å²
 				switch( MemImgManage.BlendMode )
 				{
-				case DX_BLENDMODE_NOBLEND :		// ƒuƒŒƒ“ƒh–³‚µ
+				case DX_BLENDMODE_NOBLEND :		// ãƒ–ãƒ¬ãƒ³ãƒ‰ç„¡ã—
 PSET_RX_NOMALDRAW_C16_NOPAL_BNO:
 					DRAWOVALMEMIMG_PSET_RX_ND( CODE_NBI_C16_NBR_NAC_BNO( SRC16, DST16, DSTP16 ), 2 )
 					break ;
 
-				case DX_BLENDMODE_ALPHA :		// ƒ¿ƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_ALPHA :		// Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
 					if( MemImgManage.BlendParam == 255 ) goto PSET_RX_NOMALDRAW_C16_NOPAL_BNO ;
 					else
 					if( MemImgManage.BlendParam == 0 ) return ;
@@ -2307,33 +2307,33 @@ PSET_RX_NOMALDRAW_C16_NOPAL_BNO:
 					DRAWOVALMEMIMG_PSET_RX_ND( CODE_NBI_C16_NBR_NAC_BAL( SRC16, DST16, DSTP16 ), 2 )
 					break ;
 
-				case DX_BLENDMODE_ADD :		// ‰ÁŽZƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_ADD :		// åŠ ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 					if( MemImgManage.BlendParam == 0 ) return ;
 					
 					DRAWOVALMEMIMG_PSET_RX_ND( CODE_NBI_C16_NBR_NAC_BAD( SRC16, DST16, DSTP16 ), 2 )
 					break ;
 
-				case DX_BLENDMODE_SUB :		// Œ¸ŽZƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_SUB :		// æ¸›ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 					if( MemImgManage.BlendParam == 0 ) return ;
 					
 					DRAWOVALMEMIMG_PSET_RX_ND( CODE_NBI_C16_NBR_NAC_BSB( SRC16, DST16, DSTP16 ), 2 )
 					break ;
 
-				case DX_BLENDMODE_MUL :		// æŽZƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_MUL :		// ä¹—ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 					DRAWOVALMEMIMG_PSET_RX_ND( CODE_NBI_C16_NBR_NAC_BML( SRC16, DST16, DSTP16 ), 2 )
 					break ;
 
-				case DX_BLENDMODE_MULA :	// æŽZ+ƒ¿ƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_MULA :	// ä¹—ç®—+Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
 					DRAWOVALMEMIMG_PSET_RX_ND( CODE_NBI_C16_NBR_NAC_BMA( SRC16, DST16, DSTP16 ), 2 )
 					break ;
 
-				case DX_BLENDMODE_INVSRC :	// •`‰æŒ³‚ÌF‚ð”½“]{ƒ¿ƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_INVSRC :	// æç”»å…ƒã®è‰²ã‚’åè»¢ï¼‹Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
 					DRAWOVALMEMIMG_PSET_RX_ND( CODE_NBI_C16_NBR_NAC_BIS( SRC16, DST16, DSTP16 ), 2 )
 					break ;
 				}
 				break ;
 				
-			case 1 :	// 32bit ƒ‚[ƒh
+			case 1 :	// 32bit ãƒ¢ãƒ¼ãƒ‰
 				if( ( MemImgManage.bDrawBright & 0xffffff ) != 0xffffff )
 				{
 					((BYTE *)&Color)[2] = ( BYTE )( ( ((BYTE *)&Color)[2] * MemImgManage.DrawBright.Red   ) >> 8 ) ;
@@ -2341,15 +2341,15 @@ PSET_RX_NOMALDRAW_C16_NOPAL_BNO:
 					((BYTE *)&Color)[0] = ( BYTE )( ( ((BYTE *)&Color)[0] * MemImgManage.DrawBright.Blue  ) >> 8 ) ;
 				}
 				
-				// ƒuƒŒƒ“ƒhƒ‚[ƒh‚É‚æ‚Á‚Äˆ—‚ð•ªŠò
+				// ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã«ã‚ˆã£ã¦å‡¦ç†ã‚’åˆ†å²
 				switch( MemImgManage.BlendMode )
 				{
-				case DX_BLENDMODE_NOBLEND :		// ƒuƒŒƒ“ƒh–³‚µ
+				case DX_BLENDMODE_NOBLEND :		// ãƒ–ãƒ¬ãƒ³ãƒ‰ç„¡ã—
 PSET_RX_NOMALDRAW_C32_NOPAL_BNO:
 					DRAWOVALMEMIMG_PSET_RX_ND( CODE_NBI_C32_NBR_NAC_BNO( SRCP32, DSTP32 ), 4 )
 					break ;
 
-				case DX_BLENDMODE_ALPHA :		// ƒ¿ƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_ALPHA :		// Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
 					if( MemImgManage.BlendParam == 255 ) goto PSET_RX_NOMALDRAW_C32_NOPAL_BNO ;
 					else
 					if( MemImgManage.BlendParam == 0 ) return ;
@@ -2357,27 +2357,27 @@ PSET_RX_NOMALDRAW_C32_NOPAL_BNO:
 					DRAWOVALMEMIMG_PSET_RX_ND( CODE_NBI_C32_NBR_NAC_BAL( SRCP32, DSTP32 ), 4 )
 					break ;
 
-				case DX_BLENDMODE_ADD :		// ‰ÁŽZƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_ADD :		// åŠ ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 					if( MemImgManage.BlendParam == 0 ) return ;
 					
 					DRAWOVALMEMIMG_PSET_RX_ND( CODE_NBI_C32_NBR_NAC_BAD( SRCP32, DSTP32 ), 4 )
 					break ;
 
-				case DX_BLENDMODE_SUB :		// Œ¸ŽZƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_SUB :		// æ¸›ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 					if( MemImgManage.BlendParam == 0 ) return ;
 					
 					DRAWOVALMEMIMG_PSET_RX_ND( CODE_NBI_C32_NBR_NAC_BSB( SRCP32, DSTP32 ), 4 )
 					break ;
 
-				case DX_BLENDMODE_MUL :		// æŽZƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_MUL :		// ä¹—ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 					DRAWOVALMEMIMG_PSET_RX_ND( CODE_NBI_C32_NBR_NAC_BML( SRCP32, DSTP32 ), 4 )
 					break ;
 
-				case DX_BLENDMODE_MULA :	// æŽZ+ƒ¿ƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_MULA :	// ä¹—ç®—+Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
 					DRAWOVALMEMIMG_PSET_RX_ND( CODE_NBI_C32_NBR_NAC_BMA( SRCP32, DSTP32 ), 4 )
 					break ;
 
-				case DX_BLENDMODE_INVSRC :	// •`‰æŒ³‚ÌF‚ð”½“]{ƒ¿ƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_INVSRC :	// æç”»å…ƒã®è‰²ã‚’åè»¢ï¼‹Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
 					DRAWOVALMEMIMG_PSET_RX_ND( CODE_NBI_C32_NBR_NAC_BIS( SRCP32, DSTP32 ), 4 )
 					break ;
 				}
@@ -2386,7 +2386,7 @@ PSET_RX_NOMALDRAW_C32_NOPAL_BNO:
 		}
 		else
 		{
-			// ‰Šú’l‚ðƒZƒbƒg
+			// åˆæœŸå€¤ã‚’ã‚»ãƒƒãƒˆ
 			rc = ( ry * ry ) / rx ;
 
 			xc = 0 ; yc = 0 ;
@@ -2398,11 +2398,11 @@ PSET_RX_NOMALDRAW_C32_NOPAL_BNO:
 			F = -2 * r + 1 + 2 * 1;
 			H = -4 * r + 2 + 1;
 
-			// ƒJƒ‰[ƒ‚[ƒh‚É‚æ‚Á‚Äˆ—‚ð•ªŠò
+			// ã‚«ãƒ©ãƒ¼ãƒ¢ãƒ¼ãƒ‰ã«ã‚ˆã£ã¦å‡¦ç†ã‚’åˆ†å²
 			switch( DestImg->Base->ColorType )
 			{
-			case 0 :	// 16bit ƒ‚[ƒh
-				// •`‰æ‹P“x‚ð”½‰f
+			case 0 :	// 16bit ãƒ¢ãƒ¼ãƒ‰
+				// æç”»è¼åº¦ã‚’åæ˜ 
 				if( ( MemImgManage.bDrawBright & 0xffffff ) != 0xffffff )
 				{
 					Color = RUP16( ( RBOT16( Color ) * MemImgManage.DrawBright.Red   ) >> 8 ) |
@@ -2410,15 +2410,15 @@ PSET_RX_NOMALDRAW_C32_NOPAL_BNO:
 							BUP16( ( BBOT16( Color ) * MemImgManage.DrawBright.Blue  ) >> 8 ) ;
 				}
 				
-				// ƒuƒŒƒ“ƒhƒ‚[ƒh‚É‚æ‚Á‚Äˆ—‚ð•ªŠò
+				// ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã«ã‚ˆã£ã¦å‡¦ç†ã‚’åˆ†å²
 				switch( MemImgManage.BlendMode )
 				{
-				case DX_BLENDMODE_NOBLEND :		// ƒuƒŒƒ“ƒh–³‚µ
+				case DX_BLENDMODE_NOBLEND :		// ãƒ–ãƒ¬ãƒ³ãƒ‰ç„¡ã—
 PSET_RY_NOMALDRAW_C16_NOPAL_BNO:
 					DRAWOVALMEMIMG_PSET_RY_ND( CODE_NBI_C16_NBR_NAC_BNO( SRC16, DST16, DSTP16 ), 2 )
 					break ;
 
-				case DX_BLENDMODE_ALPHA :		// ƒ¿ƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_ALPHA :		// Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
 					if( MemImgManage.BlendParam == 255 ) goto PSET_RY_NOMALDRAW_C16_NOPAL_BNO ;
 					else
 					if( MemImgManage.BlendParam == 0 ) return ;
@@ -2426,33 +2426,33 @@ PSET_RY_NOMALDRAW_C16_NOPAL_BNO:
 					DRAWOVALMEMIMG_PSET_RY_ND( CODE_NBI_C16_NBR_NAC_BAL( SRC16, DST16, DSTP16 ), 2 )
 					break ;
 
-				case DX_BLENDMODE_ADD :		// ‰ÁŽZƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_ADD :		// åŠ ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 					if( MemImgManage.BlendParam == 0 ) return ;
 					
 					DRAWOVALMEMIMG_PSET_RY_ND( CODE_NBI_C16_NBR_NAC_BAD( SRC16, DST16, DSTP16 ), 2 )
 					break ;
 
-				case DX_BLENDMODE_SUB :		// Œ¸ŽZƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_SUB :		// æ¸›ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 					if( MemImgManage.BlendParam == 0 ) return ;
 					
 					DRAWOVALMEMIMG_PSET_RY_ND( CODE_NBI_C16_NBR_NAC_BSB( SRC16, DST16, DSTP16 ), 2 )
 					break ;
 
-				case DX_BLENDMODE_MUL :		// æŽZƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_MUL :		// ä¹—ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 					DRAWOVALMEMIMG_PSET_RY_ND( CODE_NBI_C16_NBR_NAC_BML( SRC16, DST16, DSTP16 ), 2 )
 					break ;
 
-				case DX_BLENDMODE_MULA :	// æŽZ+ƒ¿ƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_MULA :	// ä¹—ç®—+Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
 					DRAWOVALMEMIMG_PSET_RY_ND( CODE_NBI_C16_NBR_NAC_BMA( SRC16, DST16, DSTP16 ), 2 )
 					break ;
 
-				case DX_BLENDMODE_INVSRC :	// •`‰æŒ³‚ÌF‚ð”½“]{ƒ¿ƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_INVSRC :	// æç”»å…ƒã®è‰²ã‚’åè»¢ï¼‹Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
 					DRAWOVALMEMIMG_PSET_RY_ND( CODE_NBI_C16_NBR_NAC_BIS( SRC16, DST16, DSTP16 ), 2 )
 					break ;
 				}
 				break ;
 				
-			case 1 :	// 32bit ƒ‚[ƒh
+			case 1 :	// 32bit ãƒ¢ãƒ¼ãƒ‰
 				if( ( MemImgManage.bDrawBright & 0xffffff ) != 0xffffff )
 				{
 					((BYTE *)&Color)[2] = ( BYTE )( ( ((BYTE *)&Color)[2] * MemImgManage.DrawBright.Red   ) >> 8 ) ;
@@ -2460,15 +2460,15 @@ PSET_RY_NOMALDRAW_C16_NOPAL_BNO:
 					((BYTE *)&Color)[0] = ( BYTE )( ( ((BYTE *)&Color)[0] * MemImgManage.DrawBright.Blue  ) >> 8 ) ;
 				}
 				
-				// ƒuƒŒƒ“ƒhƒ‚[ƒh‚É‚æ‚Á‚Äˆ—‚ð•ªŠò
+				// ãƒ–ãƒ¬ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã«ã‚ˆã£ã¦å‡¦ç†ã‚’åˆ†å²
 				switch( MemImgManage.BlendMode )
 				{
-				case DX_BLENDMODE_NOBLEND :		// ƒuƒŒƒ“ƒh–³‚µ
+				case DX_BLENDMODE_NOBLEND :		// ãƒ–ãƒ¬ãƒ³ãƒ‰ç„¡ã—
 PSET_RY_NOMALDRAW_C32_NOPAL_BNO:
 					DRAWOVALMEMIMG_PSET_RY_ND( CODE_NBI_C32_NBR_NAC_BNO( SRCP32, DSTP32 ), 4 )
 					break ;
 
-				case DX_BLENDMODE_ALPHA :		// ƒ¿ƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_ALPHA :		// Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
 					if( MemImgManage.BlendParam == 255 ) goto PSET_RY_NOMALDRAW_C32_NOPAL_BNO ;
 					else
 					if( MemImgManage.BlendParam == 0 ) return ;
@@ -2476,27 +2476,27 @@ PSET_RY_NOMALDRAW_C32_NOPAL_BNO:
 					DRAWOVALMEMIMG_PSET_RY_ND( CODE_NBI_C32_NBR_NAC_BAL( SRCP32, DSTP32 ), 4 )
 					break ;
 
-				case DX_BLENDMODE_ADD :		// ‰ÁŽZƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_ADD :		// åŠ ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 					if( MemImgManage.BlendParam == 0 ) return ;
 					
 					DRAWOVALMEMIMG_PSET_RY_ND( CODE_NBI_C32_NBR_NAC_BAD( SRCP32, DSTP32 ), 4 )
 					break ;
 
-				case DX_BLENDMODE_SUB :		// Œ¸ŽZƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_SUB :		// æ¸›ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 					if( MemImgManage.BlendParam == 0 ) return ;
 					
 					DRAWOVALMEMIMG_PSET_RY_ND( CODE_NBI_C32_NBR_NAC_BSB( SRCP32, DSTP32 ), 4 )
 					break ;
 
-				case DX_BLENDMODE_MUL :		// æŽZƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_MUL :		// ä¹—ç®—ãƒ–ãƒ¬ãƒ³ãƒ‰
 					DRAWOVALMEMIMG_PSET_RY_ND( CODE_NBI_C32_NBR_NAC_BML( SRCP32, DSTP32 ), 4 )
 					break ;
 
-				case DX_BLENDMODE_MULA :	// æŽZ+ƒ¿ƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_MULA :	// ä¹—ç®—+Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
 					DRAWOVALMEMIMG_PSET_RY_ND( CODE_NBI_C32_NBR_NAC_BMA( SRCP32, DSTP32 ), 4 )
 					break ;
 
-				case DX_BLENDMODE_INVSRC :	// •`‰æŒ³‚ÌF‚ð”½“]{ƒ¿ƒuƒŒƒ“ƒh
+				case DX_BLENDMODE_INVSRC :	// æç”»å…ƒã®è‰²ã‚’åè»¢ï¼‹Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
 					DRAWOVALMEMIMG_PSET_RY_ND( CODE_NBI_C32_NBR_NAC_BIS( SRCP32, DSTP32 ), 4 )
 					break ;
 				}
@@ -2505,7 +2505,7 @@ PSET_RY_NOMALDRAW_C32_NOPAL_BNO:
 		}
 	}
 
-	// I—¹
+	// çµ‚äº†
 	return ;
 }
 #undef DST16

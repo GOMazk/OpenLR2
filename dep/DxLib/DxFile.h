@@ -1,6 +1,6 @@
 // -------------------------------------------------------------------------------
 // 
-// 		‚c‚wƒ‰ƒCƒuƒ‰ƒŠ		ƒtƒ@ƒCƒ‹ƒAƒNƒZƒXƒvƒƒOƒ‰ƒ€ƒwƒbƒ_ƒtƒ@ƒCƒ‹
+// 		ï¼¤ï¼¸ãƒ©ã‚¤ãƒ–ãƒ©ãƒª		ãƒ•ã‚¡ã‚¤ãƒ«ã‚¢ã‚¯ã‚»ã‚¹ãƒ—ãƒ­ã‚°ãƒ©ãƒ ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«
 // 
 // 				Ver 3.25a
 // 
@@ -9,7 +9,7 @@
 #ifndef DX_FILE_H
 #define DX_FILE_H
 
-// ƒCƒ“ƒNƒ‹[ƒh ------------------------------------------------------------------
+// ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ ------------------------------------------------------------------
 #include "DxCompileConfig.h"
 #include "DxLib.h"
 #include "DxStatic.h"
@@ -17,9 +17,9 @@
 #include <stdarg.h>
 
 
-// ƒ}ƒNƒ’è‹` --------------------------------------------------------------------
+// ãƒã‚¯ãƒ­å®šç¾© --------------------------------------------------------------------
 
-// ƒ‰ƒCƒuƒ‰ƒŠ“à•”‚Åg—p‚·‚éƒtƒ@ƒCƒ‹ƒAƒNƒZƒX—pŠÖ”
+// ãƒ©ã‚¤ãƒ–ãƒ©ãƒªå†…éƒ¨ã§ä½¿ç”¨ã™ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«ã‚¢ã‚¯ã‚»ã‚¹ç”¨é–¢æ•°
 #define DX_FSYNC( handle )							{while( DX_FIDLECHK( handle ) == FALSE ) Thread_Sleep(0);}
 #define DX_FOPEN( path )							StreamOpen( (path), FALSE, TRUE, FALSE )
 #define DX_FOPENW( path )							StreamOpenW( (path), FALSE, TRUE, FALSE )
@@ -39,7 +39,7 @@
 #define DX_FFINDNEXT( handle, buffer )				StreamFindNext( (DWORD_PTR)(handle), (buffer) )
 #define DX_FFINDCLOSE( handle )						StreamFindClose( (DWORD_PTR)(handle) )
 
-// STREAMDATA —pƒwƒ‹ƒp[’è‹`
+// STREAMDATA ç”¨ãƒ˜ãƒ«ãƒ‘ãƒ¼å®šç¾©
 #define STREAMDATA_READ_BYTE(   stream_data, buffer )		( ( stream_data ).ReadShred.Read( ( buffer ),        1, 1, ( stream_data ).DataPoint ) != 1 ? FALSE : TRUE )
 #define STREAMDATA_READ_WORD(   stream_data, buffer )		( ( stream_data ).ReadShred.Read( ( buffer ),        2, 1, ( stream_data ).DataPoint ) != 1 ? FALSE : TRUE )
 #define STREAMDATA_READ_DWORD(  stream_data, buffer )		( ( stream_data ).ReadShred.Read( ( buffer ),        4, 1, ( stream_data ).DataPoint ) != 1 ? FALSE : TRUE )
@@ -48,24 +48,24 @@
 #define STREAMDATA_READ_DOUBLE( stream_data, buffer )		( ( stream_data ).ReadShred.Read( ( buffer ),        8, 1, ( stream_data ).DataPoint ) != 1 ? FALSE : TRUE )
 #define STREAMDATA_READ_OTHER(  stream_data, buffer, size )	( ( stream_data ).ReadShred.Read( ( buffer ), ( size ), 1, ( stream_data ).DataPoint ) != 1 ? FALSE : TRUE )
 
-// ƒtƒ@ƒCƒ‹ƒAƒNƒZƒXê—pƒXƒŒƒbƒh‚Ö‚Ìw—ß
-#define FILEACCESSTHREAD_FUNCTION_OPEN		(0)				// ƒtƒ@ƒCƒ‹‚ğŠJ‚¯
-#define FILEACCESSTHREAD_FUNCTION_CLOSE		(1)				// ƒtƒ@ƒCƒ‹‚ğ•Â‚¶‚ë
-#define FILEACCESSTHREAD_FUNCTION_READ		(2)				// ƒtƒ@ƒCƒ‹‚ğ“Ç‚İ‚ß
-#define FILEACCESSTHREAD_FUNCTION_SEEK		(3)				// ƒtƒ@ƒCƒ‹ƒ|ƒCƒ“ƒ^‚ğˆÚ“®‚µ‚ë
-#define FILEACCESSTHREAD_FUNCTION_EXIT		(4)				// I—¹‚µ‚ë
+// ãƒ•ã‚¡ã‚¤ãƒ«ã‚¢ã‚¯ã‚»ã‚¹å°‚ç”¨ã‚¹ãƒ¬ãƒƒãƒ‰ã¸ã®æŒ‡ä»¤
+#define FILEACCESSTHREAD_FUNCTION_OPEN		(0)				// ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‹ã‘
+#define FILEACCESSTHREAD_FUNCTION_CLOSE		(1)				// ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‰ã˜ã‚
+#define FILEACCESSTHREAD_FUNCTION_READ		(2)				// ãƒ•ã‚¡ã‚¤ãƒ«ã‚’èª­ã¿è¾¼ã‚
+#define FILEACCESSTHREAD_FUNCTION_SEEK		(3)				// ãƒ•ã‚¡ã‚¤ãƒ«ãƒã‚¤ãƒ³ã‚¿ã‚’ç§»å‹•ã—ã‚
+#define FILEACCESSTHREAD_FUNCTION_EXIT		(4)				// çµ‚äº†ã—ã‚
 
-#define FILEACCESSTHREAD_DEFAULT_CACHESIZE	(128 * 1024)	// ƒfƒtƒHƒ‹ƒg‚ÌƒLƒƒƒbƒVƒ…ƒTƒCƒY
+#define FILEACCESSTHREAD_DEFAULT_CACHESIZE	(128 * 1024)	// ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã‚µã‚¤ã‚º
 
-// ƒnƒ“ƒhƒ‹ƒ^ƒCƒv
-#define FILEHANDLETYPE_NORMAL				(0)				// ’Êí‚Ìƒtƒ@ƒCƒ‹ƒnƒ“ƒhƒ‹
-#define FILEHANDLETYPE_FULLYLOAD			(1)				// ƒtƒ@ƒCƒ‹‚Ì“à—e‚ğƒƒ‚ƒŠ‚É“Ç‚İ‚ñ‚¾ˆ——p‚Ìƒnƒ“ƒhƒ‹
+// ãƒãƒ³ãƒ‰ãƒ«ã‚¿ã‚¤ãƒ—
+#define FILEHANDLETYPE_NORMAL				(0)				// é€šå¸¸ã®ãƒ•ã‚¡ã‚¤ãƒ«ãƒãƒ³ãƒ‰ãƒ«
+#define FILEHANDLETYPE_FULLYLOAD			(1)				// ãƒ•ã‚¡ã‚¤ãƒ«ã®å†…å®¹ã‚’ãƒ¡ãƒ¢ãƒªã«èª­ã¿è¾¼ã‚“ã å‡¦ç†ç”¨ã®ãƒãƒ³ãƒ‰ãƒ«
 
-// ƒtƒ@ƒCƒ‹ƒpƒX‚ÌÅ‘å’·
+// ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹ã®æœ€å¤§é•·
 #define FILEPATH_MAX						(512 * 3)
 
 
-// ŠÂ‹«ˆË‘¶’è‹`ƒwƒbƒ_ƒtƒ@ƒCƒ‹‚ÌƒCƒ“ƒNƒ‹[ƒh --------------------------------------
+// ç’°å¢ƒä¾å­˜å®šç¾©ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ --------------------------------------
 
 #ifdef WINDOWS_DESKTOP_OS
 #include "Windows/DxFileWin.h"
@@ -94,67 +94,67 @@ namespace DxLib
 
 #endif // DX_NON_NAMESPACE
 
-// \‘¢‘Ì’è‹` --------------------------------------------------------------------
+// æ§‹é€ ä½“å®šç¾© --------------------------------------------------------------------
 
-// ƒtƒ@ƒCƒ‹ƒAƒNƒZƒXƒnƒ“ƒhƒ‹î•ñ
+// ãƒ•ã‚¡ã‚¤ãƒ«ã‚¢ã‚¯ã‚»ã‚¹ãƒãƒ³ãƒ‰ãƒ«æƒ…å ±
 struct FILEACCESSINFO
 {
-	HANDLEINFO				HandleInfo ;						// ƒnƒ“ƒhƒ‹‹¤’Êƒf[ƒ^
-	int						HandleType ;						// ƒnƒ“ƒhƒ‹ƒ^ƒCƒv( FILEHANDLETYPE_NORMAL ‚È‚Ç )
+	HANDLEINFO				HandleInfo ;						// ãƒãƒ³ãƒ‰ãƒ«å…±é€šãƒ‡ãƒ¼ã‚¿
+	int						HandleType ;						// ãƒãƒ³ãƒ‰ãƒ«ã‚¿ã‚¤ãƒ—( FILEHANDLETYPE_NORMAL ãªã© )
 
-	STREAMDATA				StreamData ;						// “Ç‚İ‚İˆ——pƒf[ƒ^
+	STREAMDATA				StreamData ;						// èª­ã¿è¾¼ã¿å‡¦ç†ç”¨ãƒ‡ãƒ¼ã‚¿
 
-	int						CharCodeFormat ;					// ƒeƒLƒXƒgƒtƒ@ƒCƒ‹‚Ìê‡‚ÌƒR[ƒhƒtƒH[ƒ}ƒbƒg( 0 ‚Ìê‡‚Í–³Œø )
+	int						CharCodeFormat ;					// ãƒ†ã‚­ã‚¹ãƒˆãƒ•ã‚¡ã‚¤ãƒ«ã®å ´åˆã®ã‚³ãƒ¼ãƒ‰ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆ( 0 ã®å ´åˆã¯ç„¡åŠ¹ )
 
-	// FILEHANDLETYPE_NORMAL ‚Å‚Ì‚İg—p
-	DWORD_PTR				FilePointer ;						// ƒtƒ@ƒCƒ‹ƒ|ƒCƒ“ƒ^
+	// FILEHANDLETYPE_NORMAL ã§ã®ã¿ä½¿ç”¨
+	DWORD_PTR				FilePointer ;						// ãƒ•ã‚¡ã‚¤ãƒ«ãƒã‚¤ãƒ³ã‚¿
 
-	// FILEHANDLETYPE_FULLYLOAD ‚Å‚Ì‚İg—p
-	int						AllocFileImage ;					// ƒtƒ@ƒCƒ‹‚ğ“Ç‚İ‚Şƒƒ‚ƒŠ—Ìˆæ‚ğŠm•Û‚µ‚½‚©‚Ç‚¤‚©( TRUE:Šm•Û‚µ‚½  FALSE:Šm•Û‚µ‚Ä‚¢‚È‚¢ )
-	void					*FileImage ;						// “Ç‚İ‚ñ‚¾ƒtƒ@ƒCƒ‹‚ğŠi”[‚µ‚½ƒƒ‚ƒŠ—Ìˆæ‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	LONGLONG				FileSize ;							// ƒtƒ@ƒCƒ‹ƒTƒCƒY
+	// FILEHANDLETYPE_FULLYLOAD ã§ã®ã¿ä½¿ç”¨
+	int						AllocFileImage ;					// ãƒ•ã‚¡ã‚¤ãƒ«ã‚’èª­ã¿è¾¼ã‚€ãƒ¡ãƒ¢ãƒªé ˜åŸŸã‚’ç¢ºä¿ã—ãŸã‹ã©ã†ã‹( TRUE:ç¢ºä¿ã—ãŸ  FALSE:ç¢ºä¿ã—ã¦ã„ãªã„ )
+	void					*FileImage ;						// èª­ã¿è¾¼ã‚“ã ãƒ•ã‚¡ã‚¤ãƒ«ã‚’æ ¼ç´ã—ãŸãƒ¡ãƒ¢ãƒªé ˜åŸŸã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	LONGLONG				FileSize ;							// ãƒ•ã‚¡ã‚¤ãƒ«ã‚µã‚¤ã‚º
 } ;
 
-// ƒtƒ@ƒCƒ‹ƒAƒNƒZƒXˆ——p\‘¢‘Ì
+// ãƒ•ã‚¡ã‚¤ãƒ«ã‚¢ã‚¯ã‚»ã‚¹å‡¦ç†ç”¨æ§‹é€ ä½“
 struct FILEACCESS
 {
-	int						EofFlag ;							// I’[ƒ`ƒFƒbƒNƒtƒ‰ƒO
-	ULONGLONG				Position ;							// ƒAƒNƒZƒXˆÊ’u
-	ULONGLONG				Size ;								// ƒTƒCƒY
-	int						UseASyncReadFlag ;					// ”ñ“¯Šú“Ç‚İ‚İ‚ğs‚¤‚©‚Ç‚¤‚©
+	int						EofFlag ;							// çµ‚ç«¯ãƒã‚§ãƒƒã‚¯ãƒ•ãƒ©ã‚°
+	ULONGLONG				Position ;							// ã‚¢ã‚¯ã‚»ã‚¹ä½ç½®
+	ULONGLONG				Size ;								// ã‚µã‚¤ã‚º
+	int						UseASyncReadFlag ;					// éåŒæœŸèª­ã¿è¾¼ã¿ã‚’è¡Œã†ã‹ã©ã†ã‹
 
-	FILEACCESS_PF			PF ;								// ŠÂ‹«ˆË‘¶î•ñ
+	FILEACCESS_PF			PF ;								// ç’°å¢ƒä¾å­˜æƒ…å ±
 } ;
 
-// ƒtƒ@ƒCƒ‹ŒŸõˆ——p\‘¢‘Ì
+// ãƒ•ã‚¡ã‚¤ãƒ«æ¤œç´¢å‡¦ç†ç”¨æ§‹é€ ä½“
 struct FINDINFO
 {
-	FINDINFO_PF				PF ;								// ŠÂ‹«ˆË‘¶î•ñ
+	FINDINFO_PF				PF ;								// ç’°å¢ƒä¾å­˜æƒ…å ±
 } ;
 
-// ƒtƒ@ƒCƒ‹ƒAƒNƒZƒXˆ—‚ªg—p‚·‚éƒOƒ[ƒoƒ‹ƒf[ƒ^‚Ì\‘¢‘Ì
+// ãƒ•ã‚¡ã‚¤ãƒ«ã‚¢ã‚¯ã‚»ã‚¹å‡¦ç†ãŒä½¿ç”¨ã™ã‚‹ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿ã®æ§‹é€ ä½“
 struct FILEMANAGEDATA
 {
-	int						InitializeFlag ;					// ‰Šú‰»ƒtƒ‰ƒO
+	int						InitializeFlag ;					// åˆæœŸåŒ–ãƒ•ãƒ©ã‚°
 
-	FILEMANAGEDATA_PF		PF ;								// ŠÂ‹«ˆË‘¶î•ñ
+	FILEMANAGEDATA_PF		PF ;								// ç’°å¢ƒä¾å­˜æƒ…å ±
 } ;
 
-// “à•”‘åˆæ•Ï”éŒ¾ --------------------------------------------------------------
+// å†…éƒ¨å¤§åŸŸå¤‰æ•°å®£è¨€ --------------------------------------------------------------
 
-// ƒtƒ@ƒCƒ‹ƒAƒNƒZƒXˆ—‚ªg—p‚·‚éƒOƒ[ƒoƒ‹ƒf[ƒ^‚Ì\‘¢‘Ì
+// ãƒ•ã‚¡ã‚¤ãƒ«ã‚¢ã‚¯ã‚»ã‚¹å‡¦ç†ãŒä½¿ç”¨ã™ã‚‹ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿ã®æ§‹é€ ä½“
 extern FILEMANAGEDATA GFileData ;
 
-// ƒfƒtƒHƒ‹ƒgƒXƒgƒŠ[ƒ€ƒtƒ@ƒ“ƒNƒVƒ‡ƒ“
+// ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã‚¹ãƒˆãƒªãƒ¼ãƒ ãƒ•ã‚¡ãƒ³ã‚¯ã‚·ãƒ§ãƒ³
 extern STREAMDATASHREDTYPE2W StreamFunctionW ;
 
-// ŠÖ”ƒvƒƒgƒ^ƒCƒvéŒ¾-----------------------------------------------------------
+// é–¢æ•°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€-----------------------------------------------------------
 
-// ƒtƒ@ƒCƒ‹ƒAƒNƒZƒXˆ—‚Ì‰Šú‰»EI—¹ŠÖ”
-extern	int			InitializeFile( void ) ;														// ƒtƒ@ƒCƒ‹ƒAƒNƒZƒXˆ—‚Ì‰Šú‰»
-extern	int			TerminateFile( void ) ;															// ƒtƒ@ƒCƒ‹ƒAƒNƒZƒXˆ—‚ÌŒãn––
+// ãƒ•ã‚¡ã‚¤ãƒ«ã‚¢ã‚¯ã‚»ã‚¹å‡¦ç†ã®åˆæœŸåŒ–ãƒ»çµ‚äº†é–¢æ•°
+extern	int			InitializeFile( void ) ;														// ãƒ•ã‚¡ã‚¤ãƒ«ã‚¢ã‚¯ã‚»ã‚¹å‡¦ç†ã®åˆæœŸåŒ–
+extern	int			TerminateFile( void ) ;															// ãƒ•ã‚¡ã‚¤ãƒ«ã‚¢ã‚¯ã‚»ã‚¹å‡¦ç†ã®å¾Œå§‹æœ«
 
-// “Ç‚İ‚İê—pƒtƒ@ƒCƒ‹ƒAƒNƒZƒXŠÖ”
+// èª­ã¿è¾¼ã¿å°‚ç”¨ãƒ•ã‚¡ã‚¤ãƒ«ã‚¢ã‚¯ã‚»ã‚¹é–¢æ•°
 extern	DWORD_PTR	ReadOnlyFileAccessOpen( const wchar_t *Path, int UseCacheFlag, int BlockReadFlag, int UseASyncReadFlag  ) ;
 extern	int			ReadOnlyFileAccessClose( DWORD_PTR Handle ) ;
 extern	LONGLONG	ReadOnlyFileAccessTell( DWORD_PTR Handle ) ;
@@ -166,22 +166,22 @@ extern	int			ReadOnlyFileAccessIsDXA( DWORD_PTR Handle ) ;
 extern	int			ReadOnlyFileAccessChDir( const wchar_t *Path ) ;
 extern	int			ReadOnlyFileAccessGetDir( wchar_t *Buffer ) ;
 extern	int			ReadOnlyFileAccessGetDirS( wchar_t *Buffer, size_t BufferBytes ) ;
-extern	DWORD_PTR	ReadOnlyFileAccessFindFirst( const wchar_t *FilePath, FILEINFOW *Buffer ) ;				// –ß‚è’l: -1=ƒGƒ‰[  -1ˆÈŠO=FindHandle
-extern	int			ReadOnlyFileAccessFindNext( DWORD_PTR FindHandle, FILEINFOW *Buffer ) ;					// –ß‚è’l: -1=ƒGƒ‰[  0=¬Œ÷
-extern	int			ReadOnlyFileAccessFindClose( DWORD_PTR FindHandle ) ;									// –ß‚è’l: -1=ƒGƒ‰[  0=¬Œ÷
+extern	DWORD_PTR	ReadOnlyFileAccessFindFirst( const wchar_t *FilePath, FILEINFOW *Buffer ) ;				// æˆ»ã‚Šå€¤: -1=ã‚¨ãƒ©ãƒ¼  -1ä»¥å¤–=FindHandle
+extern	int			ReadOnlyFileAccessFindNext( DWORD_PTR FindHandle, FILEINFOW *Buffer ) ;					// æˆ»ã‚Šå€¤: -1=ã‚¨ãƒ©ãƒ¼  0=æˆåŠŸ
+extern	int			ReadOnlyFileAccessFindClose( DWORD_PTR FindHandle ) ;									// æˆ»ã‚Šå€¤: -1=ã‚¨ãƒ©ãƒ¼  0=æˆåŠŸ
 
-// ‘‚«‚İê—pƒtƒ@ƒCƒ‹ƒAƒNƒZƒXŠÖ”
+// æ›¸ãè¾¼ã¿å°‚ç”¨ãƒ•ã‚¡ã‚¤ãƒ«ã‚¢ã‚¯ã‚»ã‚¹é–¢æ•°
 extern	int			WriteOnlyFileAccessDelete( const wchar_t *Path ) ;
 extern	DWORD_PTR	WriteOnlyFileAccessOpen( const wchar_t *Path ) ;
-extern	DWORD_PTR	WriteOnlyFileAccessOpenWCHAR( const char *Path ) ; // Visual C++ 6.0 —p‚Éˆø”‚ğ char Œ^‚É‚µ‚½‚¾‚¯‚Ì‚à‚Ì
+extern	DWORD_PTR	WriteOnlyFileAccessOpenWCHAR( const char *Path ) ; // Visual C++ 6.0 ç”¨ã«å¼•æ•°ã‚’ char å‹ã«ã—ãŸã ã‘ã®ã‚‚ã®
 extern	int			WriteOnlyFileAccessClose( DWORD_PTR Handle ) ;
 extern	int			WriteOnlyFileAccessSeek( DWORD_PTR Handle, LONGLONG SeekPoint, int SeekType ) ;
 extern	int			WriteOnlyFileAccessWrite( DWORD_PTR Handle, void *Buffer, size_t WriteSize, size_t *GetWriteSize = NULL ) ;
 extern	int			WriteOnlyFileAccessPrintf( DWORD_PTR Handle, const char *FormatString, ... ) ;
 
-// ƒXƒgƒŠ[ƒ€ƒf[ƒ^ƒAƒNƒZƒXŠÖ”
+// ã‚¹ãƒˆãƒªãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿ã‚¢ã‚¯ã‚»ã‚¹é–¢æ•°
 extern	DWORD_PTR	StreamOpen(  const wchar_t *Path,  int UseCacheFlag, int BlockFlag, int UseASyncReadFlag ) ;
-extern	DWORD_PTR	StreamOpenW( const char    *PathW, int UseCacheFlag, int BlockFlag, int UseASyncReadFlag ) ; // Visual C++ 6.0 —p‚Éˆø”‚ğ char Œ^‚É‚µ‚½‚¾‚¯‚Ì‚à‚Ì
+extern	DWORD_PTR	StreamOpenW( const char    *PathW, int UseCacheFlag, int BlockFlag, int UseASyncReadFlag ) ; // Visual C++ 6.0 ç”¨ã«å¼•æ•°ã‚’ char å‹ã«ã—ãŸã ã‘ã®ã‚‚ã®
 extern	DWORD_PTR	StreamOpenT( const TCHAR   *Path,  int UseCacheFlag, int BlockFlag, int UseASyncReadFlag ) ;
 extern	int			StreamClose( DWORD_PTR Handle ) ;
 extern	LONGLONG	StreamTell( DWORD_PTR Handle ) ;
@@ -194,62 +194,62 @@ extern	int			StreamChDir(  const wchar_t *Path ) ;
 extern	int			StreamChDirT( const TCHAR   *Path ) ;
 extern	int			StreamGetDirS(  wchar_t *Buffer, size_t BufferBytes ) ;
 extern	int			StreamGetDirTS( TCHAR   *Buffer, size_t BufferBytes ) ;
-extern	DWORD_PTR	StreamFindFirst(  const wchar_t *FilePath, FILEINFOW *Buffer ) ;		// –ß‚è’l: -1=ƒGƒ‰[  -1ˆÈŠO=FindHandle
-extern	DWORD_PTR	StreamFindFirstT( const TCHAR   *FilePath, FILEINFO  *Buffer ) ;		// –ß‚è’l: -1=ƒGƒ‰[  -1ˆÈŠO=FindHandle
-extern	int			StreamFindNext(  DWORD_PTR FindHandle, FILEINFOW *Buffer ) ;			// –ß‚è’l: -1=ƒGƒ‰[  0=¬Œ÷
-extern	int			StreamFindNextT( DWORD_PTR FindHandle, FILEINFO  *Buffer ) ;			// –ß‚è’l: -1=ƒGƒ‰[  0=¬Œ÷
-extern	int			StreamFindClose( DWORD_PTR FindHandle ) ;								// –ß‚è’l: -1=ƒGƒ‰[  0=¬Œ÷
+extern	DWORD_PTR	StreamFindFirst(  const wchar_t *FilePath, FILEINFOW *Buffer ) ;		// æˆ»ã‚Šå€¤: -1=ã‚¨ãƒ©ãƒ¼  -1ä»¥å¤–=FindHandle
+extern	DWORD_PTR	StreamFindFirstT( const TCHAR   *FilePath, FILEINFO  *Buffer ) ;		// æˆ»ã‚Šå€¤: -1=ã‚¨ãƒ©ãƒ¼  -1ä»¥å¤–=FindHandle
+extern	int			StreamFindNext(  DWORD_PTR FindHandle, FILEINFOW *Buffer ) ;			// æˆ»ã‚Šå€¤: -1=ã‚¨ãƒ©ãƒ¼  0=æˆåŠŸ
+extern	int			StreamFindNextT( DWORD_PTR FindHandle, FILEINFO  *Buffer ) ;			// æˆ»ã‚Šå€¤: -1=ã‚¨ãƒ©ãƒ¼  0=æˆåŠŸ
+extern	int			StreamFindClose( DWORD_PTR FindHandle ) ;								// æˆ»ã‚Šå€¤: -1=ã‚¨ãƒ©ãƒ¼  0=æˆåŠŸ
 extern	const STREAMDATASHREDTYPE2W *StreamGetStruct( void ) ;
 
-// ƒtƒ@ƒCƒ‹î•ñ‚Ì wchar_t ”Å‚Æ TCHAR ”Å‚Ìƒf[ƒ^•ÏŠ·ŠÖ”
+// ãƒ•ã‚¡ã‚¤ãƒ«æƒ…å ±ã® wchar_t ç‰ˆã¨ TCHAR ç‰ˆã®ãƒ‡ãƒ¼ã‚¿å¤‰æ›é–¢æ•°
 extern	int			ConvFileIntoToFileInfoW( FILEINFO  *Src, FILEINFOW *Dest ) ;
 extern	int			ConvFileIntoWToFileInfo( FILEINFOW *Src, FILEINFO  *Dest ) ;
 
-// ƒXƒgƒŠ[ƒ€ƒf[ƒ^ƒAƒNƒZƒX—pŠÖ”\‘¢‘ÌŠÖŒW
-extern	STREAMDATASHRED *GetFileStreamDataShredStruct( void ) ;								// ƒXƒgƒŠ[ƒ€ƒf[ƒ^“Ç‚İ‚±‚İ§Œä—pŠÖ”ƒ|ƒCƒ“ƒ^\‘¢‘Ì‚Ìƒtƒ@ƒCƒ‹—p\‘¢‘Ì‚ğ“¾‚é
-extern	STREAMDATASHRED *GetMemStreamDataShredStruct( void ) ;								// ƒXƒgƒŠ[ƒ€ƒf[ƒ^“Ç‚İ‚±‚İ§Œä—pŠÖ”ƒ|ƒCƒ“ƒ^\‘¢‘Ì‚ÌÒÓØ—p\‘¢‘Ì‚ğ“¾‚é
+// ã‚¹ãƒˆãƒªãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿ã‚¢ã‚¯ã‚»ã‚¹ç”¨é–¢æ•°æ§‹é€ ä½“é–¢ä¿‚
+extern	STREAMDATASHRED *GetFileStreamDataShredStruct( void ) ;								// ã‚¹ãƒˆãƒªãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿èª­ã¿ã“ã¿åˆ¶å¾¡ç”¨é–¢æ•°ãƒã‚¤ãƒ³ã‚¿æ§‹é€ ä½“ã®ãƒ•ã‚¡ã‚¤ãƒ«ç”¨æ§‹é€ ä½“ã‚’å¾—ã‚‹
+extern	STREAMDATASHRED *GetMemStreamDataShredStruct( void ) ;								// ã‚¹ãƒˆãƒªãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿èª­ã¿ã“ã¿åˆ¶å¾¡ç”¨é–¢æ•°ãƒã‚¤ãƒ³ã‚¿æ§‹é€ ä½“ã®ï¾’ï¾“ï¾˜ç”¨æ§‹é€ ä½“ã‚’å¾—ã‚‹
 
 
 
 
-// ƒtƒ@ƒCƒ‹ƒnƒ“ƒhƒ‹ŠÖ”
-extern	int			FileRead_open_UseGParam( const wchar_t *FilePath, int ASync, int ASyncLoadFlag = FALSE ) ;				// ƒtƒ@ƒCƒ‹‚ğŠJ‚­
-extern	int			FileRead_seek_UseGParam( int FileHandle, LONGLONG Offset, int Origin, int ASyncLoadFlag = FALSE ) ;		// ƒtƒ@ƒCƒ‹ƒ|ƒCƒ“ƒ^‚ÌˆÊ’u‚ğ•ÏX‚·‚é
-extern	int			FileRead_read_UseGParam( int FileHandle, void *Buffer, int ReadSize, int ASyncLoadFlag = FALSE ) ;		// ƒtƒ@ƒCƒ‹‚©‚çƒf[ƒ^‚ğ“Ç‚İ‚Ş
-extern	int			FileRead_fullyLoad_UseGParam( const wchar_t *FilePath, int ASyncLoadFlag = FALSE ) ;					// w’è‚Ìƒtƒ@ƒCƒ‹‚Ì“à—e‚ğ‘S‚Äƒƒ‚ƒŠ‚É“Ç‚İ‚İA‚»‚Ìî•ñ‚ÌƒAƒNƒZƒX‚É•K—v‚Èƒnƒ“ƒhƒ‹‚ğ•Ô‚·( –ß‚è’l  -1:ƒGƒ‰[  -1ˆÈŠO:ƒnƒ“ƒhƒ‹ )Ag‚¢I‚í‚Á‚½‚çƒnƒ“ƒhƒ‹‚Í FileRead_fullyLoad_delete ‚Åíœ‚·‚é•K—v‚ª‚ ‚è‚Ü‚·
-extern	int			FileRead_scanf_base(        int         FileHandle, const void  *Format,        va_list Param ) ;	// ƒtƒ@ƒCƒ‹‚©‚ç‘®‰»‚³‚ê‚½ƒf[ƒ^‚ğ“Ç‚İo‚·
-extern	int			FileRead_scanf_baseCHAR(    FILEACCESSINFO *FileInfo, const char  *Format,        va_list Param ) ;	// ƒtƒ@ƒCƒ‹‚©‚ç‘®‰»‚³‚ê‚½ƒf[ƒ^‚ğ“Ç‚İo‚·
-extern	int			FileRead_scanf_baseUTF16LE( FILEACCESSINFO *FileInfo, const WORD  *FormatUTF16LE, va_list Param ) ;	// ƒtƒ@ƒCƒ‹‚©‚ç‘®‰»‚³‚ê‚½ƒf[ƒ^‚ğ“Ç‚İo‚·
+// ãƒ•ã‚¡ã‚¤ãƒ«ãƒãƒ³ãƒ‰ãƒ«é–¢æ•°
+extern	int			FileRead_open_UseGParam( const wchar_t *FilePath, int ASync, int ASyncLoadFlag = FALSE ) ;				// ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‹ã
+extern	int			FileRead_seek_UseGParam( int FileHandle, LONGLONG Offset, int Origin, int ASyncLoadFlag = FALSE ) ;		// ãƒ•ã‚¡ã‚¤ãƒ«ãƒã‚¤ãƒ³ã‚¿ã®ä½ç½®ã‚’å¤‰æ›´ã™ã‚‹
+extern	int			FileRead_read_UseGParam( int FileHandle, void *Buffer, int ReadSize, int ASyncLoadFlag = FALSE ) ;		// ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰ãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿è¾¼ã‚€
+extern	int			FileRead_fullyLoad_UseGParam( const wchar_t *FilePath, int ASyncLoadFlag = FALSE ) ;					// æŒ‡å®šã®ãƒ•ã‚¡ã‚¤ãƒ«ã®å†…å®¹ã‚’å…¨ã¦ãƒ¡ãƒ¢ãƒªã«èª­ã¿è¾¼ã¿ã€ãã®æƒ…å ±ã®ã‚¢ã‚¯ã‚»ã‚¹ã«å¿…è¦ãªãƒãƒ³ãƒ‰ãƒ«ã‚’è¿”ã™( æˆ»ã‚Šå€¤  -1:ã‚¨ãƒ©ãƒ¼  -1ä»¥å¤–:ãƒãƒ³ãƒ‰ãƒ« )ã€ä½¿ã„çµ‚ã‚ã£ãŸã‚‰ãƒãƒ³ãƒ‰ãƒ«ã¯ FileRead_fullyLoad_delete ã§å‰Šé™¤ã™ã‚‹å¿…è¦ãŒã‚ã‚Šã¾ã™
+extern	int			FileRead_scanf_base(        int         FileHandle, const void  *Format,        va_list Param ) ;	// ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰æ›¸å¼åŒ–ã•ã‚ŒãŸãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿å‡ºã™
+extern	int			FileRead_scanf_baseCHAR(    FILEACCESSINFO *FileInfo, const char  *Format,        va_list Param ) ;	// ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰æ›¸å¼åŒ–ã•ã‚ŒãŸãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿å‡ºã™
+extern	int			FileRead_scanf_baseUTF16LE( FILEACCESSINFO *FileInfo, const WORD  *FormatUTF16LE, va_list Param ) ;	// ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰æ›¸å¼åŒ–ã•ã‚ŒãŸãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿å‡ºã™
 
 
 
-// ƒƒ‚ƒŠ‚É’u‚©‚ê‚½ƒf[ƒ^‚ğƒtƒ@ƒCƒ‹‚Ìƒf[ƒ^‚É—á‚¦‚Ä‚Â‚©‚¤‚½‚ß‚ÌŠÖ”
+// ãƒ¡ãƒ¢ãƒªã«ç½®ã‹ã‚ŒãŸãƒ‡ãƒ¼ã‚¿ã‚’ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ‡ãƒ¼ã‚¿ã«ä¾‹ãˆã¦ã¤ã‹ã†ãŸã‚ã®é–¢æ•°
 extern	DWORD_PTR	MemStreamOpen( const void *DataBuffer, size_t DataSize ) ;
 extern	int			MemStreamClose( DWORD_PTR StreamDataPoint ) ;
 
 
 
-// ƒtƒ@ƒCƒ‹ƒpƒXŠÖŒW
+// ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹é–¢ä¿‚
 
-// ƒtƒ‹ƒpƒX‚Å‚Í‚È‚¢ƒpƒX•¶š—ñ‚ğƒtƒ‹ƒpƒX‚É•ÏŠ·‚·‚é
-// ( CurrentDir ‚Íƒtƒ‹ƒpƒX‚Å‚ ‚é•K—v‚ª‚ ‚é(Œê”ö‚Éw\x‚ª‚ ‚Á‚Ä‚à–³‚­‚Ä‚à—Ç‚¢) )
-// ( CurrentDir ‚ª NULL ‚Ìê‡‚ÍŒ»İ‚ÌƒJƒŒƒ“ƒgƒfƒBƒŒƒNƒgƒŠ‚ğg—p‚·‚é )
+// ãƒ•ãƒ«ãƒ‘ã‚¹ã§ã¯ãªã„ãƒ‘ã‚¹æ–‡å­—åˆ—ã‚’ãƒ•ãƒ«ãƒ‘ã‚¹ã«å¤‰æ›ã™ã‚‹
+// ( CurrentDir ã¯ãƒ•ãƒ«ãƒ‘ã‚¹ã§ã‚ã‚‹å¿…è¦ãŒã‚ã‚‹(èªå°¾ã«ã€\ã€ãŒã‚ã£ã¦ã‚‚ç„¡ãã¦ã‚‚è‰¯ã„) )
+// ( CurrentDir ãŒ NULL ã®å ´åˆã¯ç¾åœ¨ã®ã‚«ãƒ¬ãƒ³ãƒˆãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã‚’ä½¿ç”¨ã™ã‚‹ )
 //extern int			ConvertFullPath_( const char *Src, char *Dest, const char *CurrentDir = NULL ) ; 
 extern int			ConvertFullPathA_( const char    *Src, char    *Dest, size_t BufferBytes, const char    *CurrentDir = NULL ) ; 
 extern int			ConvertFullPathW_( const wchar_t *Src, wchar_t *Dest, size_t BufferBytes, const wchar_t *CurrentDir = NULL ) ; 
 extern int			ConvertFullPathT_( const TCHAR   *Src, TCHAR   *Dest, size_t BufferBytes, const TCHAR   *CurrentDir = NULL ) ; 
 
-// w’è‚Ìƒtƒ@ƒCƒ‹ƒpƒX‚ğw’è‚ÌƒtƒHƒ‹ƒ_ƒpƒX‚©‚ç‘Š‘ÎƒAƒNƒZƒX‚·‚é‚½‚ß‚Ì‘Š‘ÎƒpƒX‚ğì¬‚·‚é
-// ( FilePath ‚â StartFolderPath ‚ªƒtƒ‹ƒpƒX‚Å‚Í‚È‚©‚Á‚½ê‡‚ÍŠÖ”“à‚Åƒtƒ‹ƒpƒX‰»‚³‚ê‚Ü‚· )
-// StartFolderPath ‚Ì––’[‚É / or \ ‚ª‚ ‚Á‚Ä‚à–â‘è‚ ‚è‚Ü‚¹‚ñ
+// æŒ‡å®šã®ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹ã‚’æŒ‡å®šã®ãƒ•ã‚©ãƒ«ãƒ€ãƒ‘ã‚¹ã‹ã‚‰ç›¸å¯¾ã‚¢ã‚¯ã‚»ã‚¹ã™ã‚‹ãŸã‚ã®ç›¸å¯¾ãƒ‘ã‚¹ã‚’ä½œæˆã™ã‚‹
+// ( FilePath ã‚„ StartFolderPath ãŒãƒ•ãƒ«ãƒ‘ã‚¹ã§ã¯ãªã‹ã£ãŸå ´åˆã¯é–¢æ•°å†…ã§ãƒ•ãƒ«ãƒ‘ã‚¹åŒ–ã•ã‚Œã¾ã™ )
+// StartFolderPath ã®æœ«ç«¯ã« / or \ ãŒã‚ã£ã¦ã‚‚å•é¡Œã‚ã‚Šã¾ã›ã‚“
 //extern int			CreateRelativePath_( const char *FilePath, const char *StartFolderPath, char *Dest ) ;
 extern int			CreateRelativePathW_( const wchar_t *FilePath, const wchar_t *StartFolderPath, wchar_t *Dest, size_t BufferBytes ) ;
 extern int			CreateRelativePathT_( const TCHAR   *FilePath, const TCHAR   *StartFolderPath, TCHAR   *Dest, size_t BufferBytes ) ;
 
-// “Á’è‚ÌƒpƒX•¶š—ñ‚©‚çFX‚Èî•ñ‚ğæ“¾‚·‚é
-// ( CurrentDir ‚Íƒtƒ‹ƒpƒX‚Å‚ ‚é•K—v‚ª‚ ‚é(Œê”ö‚Éw\x‚ª‚ ‚Á‚Ä‚à–³‚­‚Ä‚à—Ç‚¢) )
-// ( CurrentDir ‚ª 0 ‚Ìê‡‚ÍÀÛ‚ÌƒJƒŒƒ“ƒgƒfƒBƒŒƒNƒgƒŠ‚ğg—p‚·‚é )
-// DirPath ‚ÌI’[‚É‚Í \ ‚Í•t‚©‚È‚¢
+// ç‰¹å®šã®ãƒ‘ã‚¹æ–‡å­—åˆ—ã‹ã‚‰è‰²ã€…ãªæƒ…å ±ã‚’å–å¾—ã™ã‚‹
+// ( CurrentDir ã¯ãƒ•ãƒ«ãƒ‘ã‚¹ã§ã‚ã‚‹å¿…è¦ãŒã‚ã‚‹(èªå°¾ã«ã€\ã€ãŒã‚ã£ã¦ã‚‚ç„¡ãã¦ã‚‚è‰¯ã„) )
+// ( CurrentDir ãŒ 0 ã®å ´åˆã¯å®Ÿéš›ã®ã‚«ãƒ¬ãƒ³ãƒˆãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã‚’ä½¿ç”¨ã™ã‚‹ )
+// DirPath ã®çµ‚ç«¯ã«ã¯ \ ã¯ä»˜ã‹ãªã„
 extern int AnalyseFilePathW_(
 	const wchar_t *Src,
 	wchar_t *FullPath,	size_t FullPathBytes,
@@ -269,62 +269,62 @@ extern int AnalyseFilePathT_(
 	const TCHAR *CurrentDir = 0
 ) ;
 
-// ƒtƒ@ƒCƒ‹–¼‚àˆê‚É‚È‚Á‚Ä‚¢‚é‚Æ•ª‚©‚Á‚Ä‚¢‚éƒpƒX’†‚©‚çƒtƒ@ƒCƒ‹–¼‚ÆƒfƒBƒŒƒNƒgƒŠƒpƒX‚ğ•ªŠ„‚·‚é
-// ƒtƒ‹ƒpƒX‚Å‚ ‚é•K—v‚Í–³‚¢Aƒtƒ@ƒCƒ‹–¼‚¾‚¯‚Å‚à—Ç‚¢
-// DirPath ‚ÌI’[‚É  ƒ}[ƒN‚Í•t‚©‚È‚¢
+// ãƒ•ã‚¡ã‚¤ãƒ«åã‚‚ä¸€ç·’ã«ãªã£ã¦ã„ã‚‹ã¨åˆ†ã‹ã£ã¦ã„ã‚‹ãƒ‘ã‚¹ä¸­ã‹ã‚‰ãƒ•ã‚¡ã‚¤ãƒ«åã¨ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªãƒ‘ã‚¹ã‚’åˆ†å‰²ã™ã‚‹
+// ãƒ•ãƒ«ãƒ‘ã‚¹ã§ã‚ã‚‹å¿…è¦ã¯ç„¡ã„ã€ãƒ•ã‚¡ã‚¤ãƒ«åã ã‘ã§ã‚‚è‰¯ã„
+// DirPath ã®çµ‚ç«¯ã« ï¿¥ ãƒãƒ¼ã‚¯ã¯ä»˜ã‹ãªã„
 //extern int		AnalysisFileNameAndDirPath_( const char *Src, char *FileName = 0, char *DirPath = 0 ) ;
 extern int			AnalysisFileNameAndDirPathW_( const wchar_t *Src, wchar_t *FileName, size_t FileNameBytes, wchar_t *DirPath, size_t DirPathBytes ) ;
 extern int			AnalysisFileNameAndDirPathT_( const TCHAR   *Src, TCHAR   *FileName, size_t FileNameBytes, TCHAR   *DirPath, size_t DirPathBytes ) ;
 
-// ƒtƒ@ƒCƒ‹ƒpƒX‚©‚çƒtƒ@ƒCƒ‹–¼‚ÆŠg’£q‚ğæ“¾‚·‚é
+// ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹ã‹ã‚‰ãƒ•ã‚¡ã‚¤ãƒ«åã¨æ‹¡å¼µå­ã‚’å–å¾—ã™ã‚‹
 //extern int		AnalysisFileNameAndExeName_( const char *Src, char *Name = 0, char *ExeName = 0 ) ;
 extern int			AnalysisFileNameAndExeNameW_( const wchar_t *Src, wchar_t *Name, size_t NameBytes, wchar_t *ExeName, size_t ExeNameBytes ) ;
 extern int			AnalysisFileNameAndExeNameT_( const TCHAR   *Src, TCHAR   *Name, size_t NameBytes, TCHAR   *ExeName, size_t ExeNameBytes ) ;
 
-// ƒtƒ@ƒCƒ‹ƒpƒX‚ÌŠg’£q‚ğ•Ï‚¦‚½•¶š—ñ‚ğ“¾‚é
+// ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹ã®æ‹¡å¼µå­ã‚’å¤‰ãˆãŸæ–‡å­—åˆ—ã‚’å¾—ã‚‹
 //extern int		GetChangeExeNamePath_( const char *Src, char *Dest, const char *ExeName ) ;
 
-extern void			SetEnMarkT_( TCHAR   *PathBuf, size_t BufferBytes ) ;	// Œê”ö‚Éw\x‚ª‚Â‚¢‚Ä‚¢‚È‚¢ê‡‚Í•t‚¯‚é
-extern void			SetEnMarkW_( wchar_t *PathBuf, size_t BufferBytes ) ;	// Œê”ö‚Éw\x‚ª‚Â‚¢‚Ä‚¢‚È‚¢ê‡‚Í•t‚¯‚é
+extern void			SetEnMarkT_( TCHAR   *PathBuf, size_t BufferBytes ) ;	// èªå°¾ã«ã€\ã€ãŒã¤ã„ã¦ã„ãªã„å ´åˆã¯ä»˜ã‘ã‚‹
+extern void			SetEnMarkW_( wchar_t *PathBuf, size_t BufferBytes ) ;	// èªå°¾ã«ã€\ã€ãŒã¤ã„ã¦ã„ãªã„å ´åˆã¯ä»˜ã‘ã‚‹
 
-extern void			ChangeEnMarkToSlashT_( TCHAR   *PathBuf ) ;				// ƒpƒX•¶š—ñ’†‚Ìw\x‚ğw/x‚É•ÏŠ·‚·‚é
-extern void			ChangeEnMarkToSlashW_( wchar_t *PathBuf ) ;				// ƒpƒX•¶š—ñ’†‚Ìw\x‚ğw/x‚É•ÏŠ·‚·‚é
+extern void			ChangeEnMarkToSlashT_( TCHAR   *PathBuf ) ;				// ãƒ‘ã‚¹æ–‡å­—åˆ—ä¸­ã®ã€\ã€ã‚’ã€/ã€ã«å¤‰æ›ã™ã‚‹
+extern void			ChangeEnMarkToSlashW_( wchar_t *PathBuf ) ;				// ãƒ‘ã‚¹æ–‡å­—åˆ—ä¸­ã®ã€\ã€ã‚’ã€/ã€ã«å¤‰æ›ã™ã‚‹
 
-extern int			Strcmp_Str2_WildcardT_( TCHAR   *Str1, TCHAR   *Str2 ) ;	// “ñ‚Â‚Ì•¶š—ñ‚ğ”äŠr‚·‚é( Str2 ‚É‚ÍƒƒCƒ‹ƒhƒJ[ƒh‚Ìg—p‚ª‰Â”\ )
-extern int			Strcmp_Str2_WildcardW_( wchar_t *Str1, wchar_t *Str2 ) ;	// “ñ‚Â‚Ì•¶š—ñ‚ğ”äŠr‚·‚é( Str2 ‚É‚ÍƒƒCƒ‹ƒhƒJ[ƒh‚Ìg—p‚ª‰Â”\ )
+extern int			Strcmp_Str2_WildcardT_( TCHAR   *Str1, TCHAR   *Str2 ) ;	// äºŒã¤ã®æ–‡å­—åˆ—ã‚’æ¯”è¼ƒã™ã‚‹( Str2 ã«ã¯ãƒ¯ã‚¤ãƒ«ãƒ‰ã‚«ãƒ¼ãƒ‰ã®ä½¿ç”¨ãŒå¯èƒ½ )
+extern int			Strcmp_Str2_WildcardW_( wchar_t *Str1, wchar_t *Str2 ) ;	// äºŒã¤ã®æ–‡å­—åˆ—ã‚’æ¯”è¼ƒã™ã‚‹( Str2 ã«ã¯ãƒ¯ã‚¤ãƒ«ãƒ‰ã‚«ãƒ¼ãƒ‰ã®ä½¿ç”¨ãŒå¯èƒ½ )
 
-// “n‚³‚ê‚½•¶š—ñ‚ğƒtƒ‹ƒpƒX•¶š—ñ‚Æ‚µ‚Äˆµ‚¢Aƒhƒ‰ƒCƒu–¼( :\ or :/ ‚Ì‘O‚Ü‚Å )
-// –”‚Íƒlƒbƒgƒ[ƒNƒtƒHƒ‹ƒ_–¼( \ or / ‚Ì‘O‚Ü‚Å )‚ğæ“¾‚·‚é
-// ƒlƒbƒgƒ[ƒNƒtƒHƒ‹ƒ_‚¾‚Á‚½ê‡‚ÍÅ‰‚Ì \\ ‚àŠÜ‚ß‚é
-// –ß‚è’l‚Íæ“¾‚µ‚½•¶š—ñ‚Ì’·‚³( ƒlƒbƒgƒ[ƒNƒtƒHƒ‹ƒ_‚Ìê‡‚Í \\ ‚à•¶š—ñ—Ê‚ÉŠÜ‚Ü‚ê‚Ü‚· )
-// Src ‚Íƒtƒ‹ƒpƒX‚Å‚ ‚é•K—v‚ª‚ ‚è‚Ü‚·A‘Š‘ÎƒpƒX‚Å‚Í³í‚É“®ì‚µ‚Ü‚¹‚ñ
+// æ¸¡ã•ã‚ŒãŸæ–‡å­—åˆ—ã‚’ãƒ•ãƒ«ãƒ‘ã‚¹æ–‡å­—åˆ—ã¨ã—ã¦æ‰±ã„ã€ãƒ‰ãƒ©ã‚¤ãƒ–å( :\ or :/ ã®å‰ã¾ã§ )
+// åˆã¯ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ãƒ•ã‚©ãƒ«ãƒ€å( \ or / ã®å‰ã¾ã§ )ã‚’å–å¾—ã™ã‚‹
+// ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ãƒ•ã‚©ãƒ«ãƒ€ã ã£ãŸå ´åˆã¯æœ€åˆã® \\ ã‚‚å«ã‚ã‚‹
+// æˆ»ã‚Šå€¤ã¯å–å¾—ã—ãŸæ–‡å­—åˆ—ã®é•·ã•( ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ãƒ•ã‚©ãƒ«ãƒ€ã®å ´åˆã¯ \\ ã‚‚æ–‡å­—åˆ—é‡ã«å«ã¾ã‚Œã¾ã™ )
+// Src ã¯ãƒ•ãƒ«ãƒ‘ã‚¹ã§ã‚ã‚‹å¿…è¦ãŒã‚ã‚Šã¾ã™ã€ç›¸å¯¾ãƒ‘ã‚¹ã§ã¯æ­£å¸¸ã«å‹•ä½œã—ã¾ã›ã‚“
 //extern int		AnalysisDriveName_( const char *Src, char *Dest ) ;
 extern int			AnalysisDriveNameW_( const wchar_t *Src, wchar_t *Dest, size_t BufferBytes ) ;
 
-// “n‚³‚ê‚½•¶š—ñ‚ğƒtƒHƒ‹ƒ_ƒpƒX•¶š—ñ‚Æ‚µ‚Äˆµ‚¢AƒtƒHƒ‹ƒ_–¼( \ or / ‚Ì‘O‚Ü‚Å )‚ğæ“¾‚µ‚Ü‚·
-// “n‚·•¶š—ñ‚ªƒtƒ‹ƒpƒX‚ÅAÅ‰‚Éƒhƒ‰ƒCƒu–¼‚ª‘‚©‚ê‚Ä‚¢‚½‚ç³í‚ÈŒ‹‰Ê‚ª“¾‚ç‚ê‚Ü‚¹‚ñ
-// ../ “™‚Ì‰ºˆÊƒtƒHƒ‹ƒ_‚É~‚è‚é•¶š—ñ‚ª‚ ‚Á‚½ê‡‚Í .. “™‚ªo—Í‚³‚ê‚Ü‚·
-// –ß‚è’l‚Íæ“¾‚µ‚½•¶š—ñ‚Ì’·‚³‚Å‚·
+// æ¸¡ã•ã‚ŒãŸæ–‡å­—åˆ—ã‚’ãƒ•ã‚©ãƒ«ãƒ€ãƒ‘ã‚¹æ–‡å­—åˆ—ã¨ã—ã¦æ‰±ã„ã€ãƒ•ã‚©ãƒ«ãƒ€å( \ or / ã®å‰ã¾ã§ )ã‚’å–å¾—ã—ã¾ã™
+// æ¸¡ã™æ–‡å­—åˆ—ãŒãƒ•ãƒ«ãƒ‘ã‚¹ã§ã€æœ€åˆã«ãƒ‰ãƒ©ã‚¤ãƒ–åãŒæ›¸ã‹ã‚Œã¦ã„ãŸã‚‰æ­£å¸¸ãªçµæœãŒå¾—ã‚‰ã‚Œã¾ã›ã‚“
+// ../ ç­‰ã®ä¸‹ä½ãƒ•ã‚©ãƒ«ãƒ€ã«é™ã‚Šã‚‹æ–‡å­—åˆ—ãŒã‚ã£ãŸå ´åˆã¯ .. ç­‰ãŒå‡ºåŠ›ã•ã‚Œã¾ã™
+// æˆ»ã‚Šå€¤ã¯å–å¾—ã—ãŸæ–‡å­—åˆ—ã®é•·ã•ã§ã™
 //extern int		AnalysisDirectoryName_( const char *Src, char *Dest ) ;
 extern int			AnalysisDirectoryNameW_( const wchar_t *Src, wchar_t *Dest, size_t BufferBytes ) ;
 
 
 
 
-// va_list ŠÖ”
-extern	int			FileRead_scanf_VaList( int FileHandle , const TCHAR *Format , va_list VaList ) ;					// ƒtƒ@ƒCƒ‹‚©‚ç‘®‰»‚³‚ê‚½ƒf[ƒ^‚ğ“Ç‚İo‚·
+// va_list é–¢æ•°
+extern	int			FileRead_scanf_VaList( int FileHandle , const TCHAR *Format , va_list VaList ) ;					// ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰æ›¸å¼åŒ–ã•ã‚ŒãŸãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿å‡ºã™
 
 
 
 
 
-// ŠÂ‹«ˆË‘¶ˆ——pŠÖ”
+// ç’°å¢ƒä¾å­˜å‡¦ç†ç”¨é–¢æ•°
 
-// ƒtƒ@ƒCƒ‹ƒAƒNƒZƒXˆ—‚Ì‰Šú‰»EI—¹ŠÖ”
-extern	int			InitializeFile_PF( void ) ;														// ƒtƒ@ƒCƒ‹ƒAƒNƒZƒXˆ—‚Ì‰Šú‰»ŠÖ”‚ÌŠÂ‹«ˆË‘¶‚Ìˆ—‚ğs‚¤ŠÖ”
-extern	int			TerminateFile_PF( void ) ;														// ƒtƒ@ƒCƒ‹ƒAƒNƒZƒXˆ—‚ÌŒãn––ŠÖ”‚ÌŠÂ‹«ˆË‘¶‚Ìˆ—‚ğs‚¤ŠÖ”
+// ãƒ•ã‚¡ã‚¤ãƒ«ã‚¢ã‚¯ã‚»ã‚¹å‡¦ç†ã®åˆæœŸåŒ–ãƒ»çµ‚äº†é–¢æ•°
+extern	int			InitializeFile_PF( void ) ;														// ãƒ•ã‚¡ã‚¤ãƒ«ã‚¢ã‚¯ã‚»ã‚¹å‡¦ç†ã®åˆæœŸåŒ–é–¢æ•°ã®ç’°å¢ƒä¾å­˜ã®å‡¦ç†ã‚’è¡Œã†é–¢æ•°
+extern	int			TerminateFile_PF( void ) ;														// ãƒ•ã‚¡ã‚¤ãƒ«ã‚¢ã‚¯ã‚»ã‚¹å‡¦ç†ã®å¾Œå§‹æœ«é–¢æ•°ã®ç’°å¢ƒä¾å­˜ã®å‡¦ç†ã‚’è¡Œã†é–¢æ•°
 
-// ƒtƒ@ƒCƒ‹ƒAƒNƒZƒXŠÖ”
+// ãƒ•ã‚¡ã‚¤ãƒ«ã‚¢ã‚¯ã‚»ã‚¹é–¢æ•°
 extern	int			ReadOnlyFileAccessOpen_PF(		FILEACCESS *FileAccess, const wchar_t *Path, int UseCacheFlag, int BlockReadFlag ) ;
 extern	int			ReadOnlyFileAccessClose_PF(		FILEACCESS *FileAccess ) ;
 extern	LONGLONG	ReadOnlyFileAccessTell_PF(		FILEACCESS *FileAccess ) ;
@@ -337,7 +337,7 @@ extern	int			ReadOnlyFileAccessFindFirst_PF(	FINDINFO *FindInfo, const wchar_t *
 extern	int			ReadOnlyFileAccessFindNext_PF(	FINDINFO *FindInfo, FILEINFOW *Buffer ) ;
 extern	int			ReadOnlyFileAccessFindClose_PF(	FINDINFO *FindInfo ) ;
 
-// ‘‚«‚İê—pƒtƒ@ƒCƒ‹ƒAƒNƒZƒXŠÖ”
+// æ›¸ãè¾¼ã¿å°‚ç”¨ãƒ•ã‚¡ã‚¤ãƒ«ã‚¢ã‚¯ã‚»ã‚¹é–¢æ•°
 extern	int			WriteOnlyFileAccessDelete_PF( const wchar_t *Path ) ;
 extern	DWORD_PTR	WriteOnlyFileAccessOpen_PF(  const wchar_t *Path ) ;
 extern	int			WriteOnlyFileAccessClose_PF( DWORD_PTR Handle ) ;

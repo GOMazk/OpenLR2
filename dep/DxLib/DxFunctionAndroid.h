@@ -1,6 +1,6 @@
 // -------------------------------------------------------------------------------
 // 
-// 		�c�w���C�u����		Android��p�֐��v���g�^�C�v�錾�p�w�b�_�t�@�C��
+// 		ＤＸライブラリ		Android専用関数プロトタイプ宣言用ヘッダファイル
 // 
 // 				Ver 3.25a
 // 
@@ -9,13 +9,13 @@
 #ifndef DX_FUNCTIONANDROID_H
 #define DX_FUNCTIONANDROID_H
 
-// �C���N���[�h ------------------------------------------------------------------
+// インクルード ------------------------------------------------------------------
 #include <android/native_activity.h>
 #include <android/window.h>
 
-// ��`---------------------------------------------------------------------------
+// 定義---------------------------------------------------------------------------
 
-// �֐��v���g�^�C�v�錾-----------------------------------------------------------
+// 関数プロトタイプ宣言-----------------------------------------------------------
 
 #ifndef DX_NON_NAMESPACE
 
@@ -25,147 +25,147 @@ namespace DxLib
 #endif // DX_NON_NAMESPACE
 
 
-// �A�v���Ŏg�p���Ă��� NativeActivity ���擾����
+// アプリで使用している NativeActivity を取得する
 extern const ANativeActivity *GetNativeActivity( void ) ;
 
-// �A�v���� ANativeWindow ���擾����
+// アプリの ANativeWindow を取得する
 extern const ANativeWindow *GetNativeWindow( void ) ;
 
-// �A�v���̓��̓C�x���g���t�b�N����R�[���o�b�N�֐���o�^���� 
-// CallbackFunction : ���̓C�x���g�������ɌĂ΂��R�[���o�b�N�֐��ANULL ��n���Ɛݒ����
-// InputEvent : �����������̓C�x���g�� AInputEvent
-// Data : �R�[���o�b�N�֐��ɓn���A�h���X�A�s�v�ȏꍇ�� NULL
+// アプリの入力イベントをフックするコールバック関数を登録する 
+// CallbackFunction : 入力イベント発生時に呼ばれるコールバック関数、NULL を渡すと設定解除
+// InputEvent : 発生した入力イベントの AInputEvent
+// Data : コールバック関数に渡すアドレス、不要な場合は NULL
 extern int SetAndroidInputEventFookFunction( int32_t ( *CallbackFunction )( AInputEvent *InputEvent, void *Data ), void *Data ) ;
 
-// Android �� API���x�����擾����
+// Android の APIレベルを取得する
 extern int GetAndroidAPILevel( void ) ;
 
-// �\�t�g�̃f�[�^�ۑ��p�̃f�B���N�g���p�X���擾����
+// ソフトのデータ保存用のディレクトリパスを取得する
 extern int GetInternalDataPath( TCHAR *PathBuffer, int PathBufferBytes ) ;
 
-// �\�t�g�̊O���f�[�^�ۑ��p�̃f�B���N�g���p�X���擾����
-// PathBuffer : �p�X��ۑ�����o�b�t�@
-// PathBufferBytes : �p�X��ۑ�����o�b�t�@�̃T�C�Y( �P�ʁF�o�C�g )
-// PathIndex : �O���f�[�^�ۑ��p�̃f�B���N�g���p�X�̔ԍ�( ��������ꍇ������̂� )
-// IsRemovableFlag : PathIndex �Ŏw�肵���p�X�����O���\�ȃf�o�C�X���ǂ�����ۑ����� int�^�ϐ��̃A�h���X( �i�[���ꂽ�l�@TRUE:���O���\( SD�J�[�h�� )  FALSE:���O���s�\( �����X�g���[�W�� ) )
+// ソフトの外部データ保存用のディレクトリパスを取得する
+// PathBuffer : パスを保存するバッファ
+// PathBufferBytes : パスを保存するバッファのサイズ( 単位：バイト )
+// PathIndex : 外部データ保存用のディレクトリパスの番号( 複数個ある場合があるので )
+// IsRemovableFlag : PathIndex で指定したパスが取り外し可能なデバイスかどうかを保存する int型変数のアドレス( 格納された値　TRUE:取り外し可能( SDカード等 )  FALSE:取り外し不可能( 内蔵ストレージ等 ) )
 extern int GetExternalDataPath( TCHAR *PathBuffer, int PathBufferBytes, int PathIndex DEFAULTPARAM( = 0 ), int *IsRemovableFlag DEFAULTPARAM( = NULL ) ) ;
 
-// �\�t�g�̊O���f�[�^�ۑ��p�̃f�B���N�g���p�X�̐����擾����
+// ソフトの外部データ保存用のディレクトリパスの数を取得する
 extern int GetExternalDataPathNum( void ) ;
 
-// �[���ɐݒ肳��Ă��錾����擾����( �߂�l�@-1�F�G���[�@0�ȏ�F���ꖼ������̊i�[�ɕK�v�ȃo�C�g�� )
+// 端末に設定されている言語を取得する( 戻り値　-1：エラー　0以上：言語名文字列の格納に必要なバイト数 )
 extern int GetLanguage( TCHAR *StringBuffer, int StringBufferSize ) ;
 
-// �[���ɐݒ肳��Ă��鍑���擾����( �߂�l�@-1�F�G���[�@0�ȏ�F����������̊i�[�ɕK�v�ȃo�C�g�� )
+// 端末に設定されている国を取得する( 戻り値　-1：エラー　0以上：国名文字列の格納に必要なバイト数 )
 extern int GetCountry( TCHAR *StringBuffer, int StringBufferSize ) ;
 
-// �����������擾����
-// TotalMemory : ���������e�ʂ�������ϐ�( �P�ʁFbyte )�A( ���̎擾���s�v�ȏꍇ�� NULL ��n�� )
-// FreeMrmoyy : �󂫃������e�ʂ�������ϐ�( �P�ʁFbyte )�A( ���̎擾���s�v�ȏꍇ�� NULL ��n�� )
-// UseMemory : �A�v�����g�p���Ă��郁�����e�ʂ�������ϐ�( �P��:byte )�A( ���̎擾���s�v�ȏꍇ�� NULL ��n�� )�A( �g�p�������ʂ̎擾�͔��ɏ������ׂ������̂ŁA�s�v�ȏꍇ�͕K�� NULL ��n���悤�ɂ��Ă������� )
+// メモリ情報を取得する
+// TotalMemory : 総メモリ容量を代入する変数( 単位：byte )、( 情報の取得が不要な場合は NULL を渡す )
+// FreeMrmoyy : 空きメモリ容量を代入する変数( 単位：byte )、( 情報の取得が不要な場合は NULL を渡す )
+// UseMemory : アプリが使用しているメモリ容量を代入する変数( 単位:byte )、( 情報の取得が不要な場合は NULL を渡す )、( 使用メモリ量の取得は非常に処理負荷が高いので、不要な場合は必ず NULL を渡すようにしてください )
 extern int GetAndroidMemoryInfo( LONGLONG *TotalMemory, LONGLONG *FreeMemory, LONGLONG *UseMemory ) ;
 
-// �f�B�X�v���C�̉𑜓x���擾����
+// ディスプレイの解像度を取得する
 extern int GetAndroidDisplayResolution( int *SizeX, int *SizeY ) ;
 
-// �f�B�X�v���C��{�̐ݒ�ɏ]���Ď��Ԍo�߂ŃX���[�v��ԂɂȂ邱�Ƃ������邩�ǂ�����ݒ肷��( Flag  TRUE = �X���[�v��ԂɂȂ邱�Ƃ������Ȃ�  FALSE = �X���[�v��Ԃ�������( �f�t�H���g ) )
+// ディスプレイを本体設定に従って時間経過でスリープ状態になることを許可するかどうかを設定する( Flag  TRUE = スリープ状態になることを許可しない  FALSE = スリープ状態を許可する( デフォルト ) )
 extern int SetKeepScreenOnFlag( int Flag ) ;
 
-// �f�B�X�v���C�J�b�g�A�E�g�̈�̐����擾����
+// ディスプレイカットアウト領域の数を取得する
 extern int GetDisplayCutoutRectCount( void ) ;
 
-// �f�B�X�v���C�J�b�g�A�E�g�̈�̋�`���擾����( ������ No �̓J�b�g�A�E�g�̈�̔ԍ� )
+// ディスプレイカットアウト領域の矩形を取得する( 引数の No はカットアウト領域の番号 )
 extern RECT GetDisplayCutoutRect( int No ) ;
 
-// �����x�Z���T�[�̃x�N�g���l���擾����
+// 加速度センサーのベクトル値を取得する
 extern VECTOR GetAccelerometerVector( void ) ;
 
-// �Z���T�[���瓾������p���擾����
-// �c����( �n�ʂɑ΂��Ē[���𐂒��Ɏ�������� )�̏ꍇ�ɐ������l���擾�ł��܂�
-// �߂�l�� x:���p( �P�ʁF���W�A��  0.0f:�k  ��/2.0f:��  -��/2.0f:��  -�� or ��:�� )
-// �߂�l�� y:�O��̌X��( �P�ʁF���W�A��  0.0f:�[�����c�����Ő���( �t���܂Ő����̏ꍇ�܂� )�̏��  ��/2.0f:�O��������90�x�|�������( ��ʂ���������Ă����� )  -��/2.0f:���������90�x�|�������( ��ʂ��n�ʂ������Ă����� ) )
-// �߂�l�� z:���E�̌X��( �P�ʁF���W�A��  0.0f:�[�����c�����Ő����̏��  ��/2.0f:�E������90�x�|�������  -��/2.0f:��������90�x�|�������  -�� or ��:�[�����㉺�������܂Ő����̏�� )
+// センサーから得られる方角を取得する
+// 縦持ち( 地面に対して端末を垂直に持った状態 )の場合に正しく値が取得できます
+// 戻り値の x:方角( 単位：ラジアン  0.0f:北  π/2.0f:東  -π/2.0f:西  -π or π:南 )
+// 戻り値の y:前後の傾斜( 単位：ラジアン  0.0f:端末が縦持ちで垂直( 逆さまで垂直の場合含む )の状態  π/2.0f:前方方向に90度倒した状態( 画面が空を向いている状態 )  -π/2.0f:後方方向に90度倒した状態( 画面が地面を向いている状態 ) )
+// 戻り値の z:左右の傾斜( 単位：ラジアン  0.0f:端末が縦持ちで垂直の状態  π/2.0f:右方向に90度倒した状態  -π/2.0f:左方向に90度倒した状態  -π or π:端末が上下さかさまで垂直の状態 )
 extern VECTOR GetOrientationVector( void ) ;
 
-// �Z���T�[�̃x�N�g���l���擾����
-extern VECTOR GetAndroidSensorVector( int SensorType /* DX_ANDROID_SENSOR_ACCELEROMETER �Ȃ� */ ) ;
+// センサーのベクトル値を取得する
+extern VECTOR GetAndroidSensorVector( int SensorType /* DX_ANDROID_SENSOR_ACCELEROMETER など */ ) ;
 
-// �Z���T�[���L�����ǂ������擾����( �߂�l�@TRUE�F�L���@FALSE�F���� )
-extern int CheckAndroidSensor( int SensorType /* DX_ANDROID_SENSOR_ACCELEROMETER �Ȃ� */ ) ;
+// センサーが有効かどうかを取得する( 戻り値　TRUE：有効　FALSE：無効 )
+extern int CheckAndroidSensor( int SensorType /* DX_ANDROID_SENSOR_ACCELEROMETER など */ ) ;
 
 
 
-// �U���@�\�֌W( �g�p����ɂ� AndroidManifest.xml �� <uses-permission android:name="android.permission.VIBRATE" /> ������������K�v������܂� )
+// 振動機能関係( 使用するには AndroidManifest.xml に <uses-permission android:name="android.permission.VIBRATE" /> を書き加える必要があります )
 
-// �U���@�\�����邩�擾����( �߂�l�@TRUE : �U���@�\����  FALSE : �U���@�\�Ȃ� )
+// 振動機能があるか取得する( 戻り値　TRUE : 振動機能あり  FALSE : 振動機能なし )
 extern int Vibrator_hasVibrator( void ) ;
 
-// �U���@�\�ɐU������( �U���̋������� )�@�\�����邩�ǂ������擾����( �߂�l�@TRUE : �U�����䂪�ł���  FALSE : �U������͂ł��Ȃ� )
+// 振動機能に振幅制御( 振動の強さ制御 )機能があるかどうかを取得する( 戻り値　TRUE : 振幅制御ができる  FALSE : 振幅制御はできない )
 extern int Vibrator_hasAmplitudeControl( void ) ;
 
-// �U�����J�n����
-// Milliseconds : �U�������鎞��( �P�ʁF�~���b )
-// Amplitude : �U���̋���( 0( �U���Ȃ� ) �` 255( �ő�U�� ) )�A�U���̋����̐���ɑΉ����Ă��Ȃ��ꍇ�͖�������܂�
+// 振動を開始する
+// Milliseconds : 振動させる時間( 単位：ミリ秒 )
+// Amplitude : 振動の強さ( 0( 振動なし ) ～ 255( 最大振幅 ) )、振動の強さの制御に対応していない場合は無視されます
 extern int Vibrator_vibrate( int Milliseconds, int Amplitude ) ;
 
-// �U���p�^�[���t���̐U�����J�n����
-// Timings : �U���p�^�[�����`���鎞��( �P�ʁF�~���b )�̔z��( Timings[0]:�U�����J�n����܂ł̑҂����ԁATimings[1]:�U���������鎞�ԁATimings[2]:�U�����~���Ă��鎞�ԁATimings[3]:�U���������鎞�ԁATimings[4]:�U�����~���Ă��鎞�ԁ@�@�ȉ��J��Ԃ� )
-// TimingsLength : Timings �̔z��̒���
-// Repeat : �U���p�^�[�����J��Ԃ��ꍇ�̔z��̗v�f�ԍ�( ��@0=�ŏ�����J��Ԃ�  1:�z��v�f��1����J��Ԃ� )�A-1 �ŌJ��Ԃ�����
+// 振動パターン付きの振動を開始する
+// Timings : 振動パターンを定義する時間( 単位：ミリ秒 )の配列( Timings[0]:振動を開始するまでの待ち時間、Timings[1]:振動し続ける時間、Timings[2]:振動を停止している時間、Timings[3]:振動し続ける時間、Timings[4]:振動を停止している時間　　以下繰り返し )
+// TimingsLength : Timings の配列の長さ
+// Repeat : 振動パターンを繰り返す場合の配列の要素番号( 例　0=最初から繰り返し  1:配列要素の1から繰り返し )、-1 で繰り返し無し
 extern int Vibrator_vibrate_with_OnOffTimings( int *Timings, int TimingsLength, int Repeat ) ;
 
-// �U������t��( �U���̋����w��t�� )�U�����J�n����( Vibrator_hasAmplitudeControl �̖߂�l�� TRUE �̏ꍇ�̂ݎg�p�\ )
-// Timings : �U���̋�����ύX����^�C�~���O( �P�ʁF�~���b )�̔z��
-// Amplitudes : �U���̋���( 0( �U���Ȃ� ) �` 255( �ő�U�� ) )�̔z��
-// ArrayLength : Timings �� Amplitudes �̔z��̒���( �z��̒����͂ǂ���������ł���K�v������܂� )
-// Repeat : Timings �� Amplitudes �Ŏ������U���p�^�[�����J��Ԃ��ꍇ�̔z��̗v�f�ԍ�( ��@0=�ŏ�����J��Ԃ�  1:�z��v�f��1����J��Ԃ� )�A-1 �ŌJ��Ԃ�����
+// 振幅制御付き( 振動の強さ指定付き )振動を開始する( Vibrator_hasAmplitudeControl の戻り値が TRUE の場合のみ使用可能 )
+// Timings : 振動の強さを変更するタイミング( 単位：ミリ秒 )の配列
+// Amplitudes : 振動の強さ( 0( 振動なし ) ～ 255( 最大振幅 ) )の配列
+// ArrayLength : Timings と Amplitudes の配列の長さ( 配列の長さはどちらも同じである必要があります )
+// Repeat : Timings と Amplitudes で示される振動パターンを繰り返す場合の配列の要素番号( 例　0=最初から繰り返し  1:配列要素の1から繰り返し )、-1 で繰り返し無し
 extern int Vibrator_vibrate_with_Amplitudes( int *Timings, int *Amplitudes, int ArrayLength, int Repeat ) ;
 
-// �U���𒆒f����
+// 振動を中断する
 extern int Vibrator_cancel( void ) ;
 
 
 
-// �j����T�Ɋւ�������擾����
-// DayOfWeek : �j��( 1:���j�� 2:���j�� 3:�Ηj�� 4:���j�� 5:�ؗj�� 6:���j�� 7:�y�j�� )
-// WeekOfMonth : �����������̉��T�ڂȂ̂��̒l( 1:�P�T��  2:�Q�T��  3:�R�T��  4:�S�T��  5:�T�T�� )
-// DayOfWeekInMonth : �����̗j������������ڂɓ����邩�A�̒l( 1:�P���  2:�Q���  3:�R���  4:�S��� ... )
+// 曜日や週に関する情報を取得する
+// DayOfWeek : 曜日( 1:日曜日 2:月曜日 3:火曜日 4:水曜日 5:木曜日 6:金曜日 7:土曜日 )
+// WeekOfMonth : 今日が今月の何週目なのかの値( 1:１週目  2:２週目  3:３週目  4:４週目  5:５週目 )
+// DayOfWeekInMonth : 今日の曜日が今月何回目に当たるか、の値( 1:１回目  2:２回目  3:３回目  4:４回目 ... )
 extern int GetAndroidWeekInfo( int *DayOfWeek, int *WeekOfMonth, int *DayOfWeekInMonth ) ;
 
-// res/values/strings.xml �� string ���\�[�X���擾����
-// ValueName�Fstring ���
-// StringBuffer�FValueName ��������������i�[����o�b�t�@�̐擪�A�h���X
-// StringBufferBytes�FStringBuffer �̃T�C�Y( �P�ʁF�o�C�g )
-// �߂�l�@�@-1�F�w��� string ���͖��������@�@-1�ȊO�FStringBuffer �ɕK�v�ȃo�b�t�@�̃T�C�Y( �P�ʁF�o�C�g )
+// res/values/strings.xml の string リソースを取得する
+// ValueName：string 情報名
+// StringBuffer：ValueName が示す文字列を格納するバッファの先頭アドレス
+// StringBufferBytes：StringBuffer のサイズ( 単位：バイト )
+// 戻り値　　-1：指定の string 情報は無かった　　-1以外：StringBuffer に必要なバッファのサイズ( 単位：バイト )
 extern int GetAndroidResource_Strings_String(           const TCHAR *ValueName,                         TCHAR *StringBuffer, int StringBufferBytes ) ;
 extern int GetAndroidResource_Strings_StringWithStrLen( const TCHAR *ValueName, size_t ValueNameLength, TCHAR *StringBuffer, int StringBufferBytes ) ;
 
-// AndroidManifest.xml �ɏ����ꂽ <meta-data android:name="test0" android:value="abcde" /> �Ȃǂ̃��^�f�[�^�̕�������擾����
-// ValueName�F���^�f�[�^��
-// StringBuffer�FValueName ��������������i�[����o�b�t�@�̐擪�A�h���X
-// StringBufferBytes�FStringBuffer �̃T�C�Y( �P�ʁF�o�C�g )
-// �߂�l�@�@-1�F�w��̃��^�f�[�^�͖��������@�@-1�ȊO�FStringBuffer �ɕK�v�ȃo�b�t�@�̃T�C�Y( �P�ʁF�o�C�g )
+// AndroidManifest.xml に書かれた <meta-data android:name="test0" android:value="abcde" /> などのメタデータの文字列を取得する
+// ValueName：メタデータ名
+// StringBuffer：ValueName が示す文字列を格納するバッファの先頭アドレス
+// StringBufferBytes：StringBuffer のサイズ( 単位：バイト )
+// 戻り値　　-1：指定のメタデータは無かった　　-1以外：StringBuffer に必要なバッファのサイズ( 単位：バイト )
 extern int GetAndroidMetaData_String(           const TCHAR *ValueName,                         TCHAR *StringBuffer, int StringBufferBytes ) ;
 extern int GetAndroidMetaData_StringWithStrLen( const TCHAR *ValueName, size_t ValueNameLength, TCHAR *StringBuffer, int StringBufferBytes ) ;
 
-// AndroidManifest.xml �ɏ����ꂽ <meta-data android:name="bool0" android:value="true" /> �Ȃǂ� Boolean�^�̃��^�f�[�^���擾����
-// ValueName�F���^�f�[�^��
-// �߂�l�@�@-1�F�w��̃��^�f�[�^�͖��������@�@TRUE�F�w��̃��^�f�[�^�� true ������   FALSE�F�w��̃��^�f�[�^�� false ������
+// AndroidManifest.xml に書かれた <meta-data android:name="bool0" android:value="true" /> などの Boolean型のメタデータを取得する
+// ValueName：メタデータ名
+// 戻り値　　-1：指定のメタデータは無かった　　TRUE：指定のメタデータは true だった   FALSE：指定のメタデータは false だった
 // extern int GetAndroidMetaData_Boolean(           const TCHAR *ValueName                         ) ;
 // extern int GetAndroidMetaData_BooleanWithStrLen( const TCHAR *ValueName, size_t ValueNameLength ) ;
 
-// �ʒm�𔭍s����
-// Title         : �^�C�g��
-// SubTitle      : �T�u�^�C�g��
-// Icon          : �A�C�R�� ( -1 �Ńf�t�H���g�̃A�C�R�� )
-// ShowWhen      : �ʒm������\�����邩 ( TRUE : �\������  FALSE : �\�����Ȃ� )
-// AutoCancel    : �ʒm���^�b�v���ꂽ��ʒm���폜���邩 ( TRUE : �^�b�v���ꂽ��ʒm���폜����   FALSE : Cancel �����܂Œʒm���폜���Ȃ� )
-// NotifyID      : �ʒmID
-// Vibrate       : �U���p�^�[���p�� int�^�z��( ���Ԃ̒P�ʂ̓~���b )�ANULL �̏ꍇ�͐U���Ȃ�( Vibrate[0]:�U����~����  Vibrate[1]:�U������  Vibrate[2]:�U����~����  Vibrate[3]:�U������  ... �ȉ��J��Ԃ� )
-// VibrateLength : Vibrate �z��̗v�f��
-// LightColor    : �ʒm���̃��C�g�̐F( GetColor �Ŏ擾 )�ALightOnTime �� LightOffTime �� 0 �̏ꍇ�̓��C�g�̓_������
-// LightOnTime   : ���C�g�̓_������( �P�ʁF�~���b )
-// LightOffTime  : ���C�g�̏�������( �P�ʁF�~���b )
+// 通知を発行する
+// Title         : タイトル
+// SubTitle      : サブタイトル
+// Icon          : アイコン ( -1 でデフォルトのアイコン )
+// ShowWhen      : 通知時刻を表示するか ( TRUE : 表示する  FALSE : 表示しない )
+// AutoCancel    : 通知がタップされたら通知を削除するか ( TRUE : タップされたら通知を削除する   FALSE : Cancel されるまで通知を削除しない )
+// NotifyID      : 通知ID
+// Vibrate       : 振動パターン用の int型配列( 時間の単位はミリ秒 )、NULL の場合は振動なし( Vibrate[0]:振動停止時間  Vibrate[1]:振動時間  Vibrate[2]:振動停止時間  Vibrate[3]:振動時間  ... 以下繰り返し )
+// VibrateLength : Vibrate 配列の要素数
+// LightColor    : 通知時のライトの色( GetColor で取得 )、LightOnTime か LightOffTime が 0 の場合はライトの点灯無し
+// LightOnTime   : ライトの点灯時間( 単位：ミリ秒 )
+// LightOffTime  : ライトの消灯時間( 単位：ミリ秒 )
 extern int AndroidNotification(
 	const TCHAR *Title, const TCHAR *SubTitle, int Icon DEFAULTPARAM( = -1 ), int ShowWhen DEFAULTPARAM( = TRUE ),
 	int AutoCancel DEFAULTPARAM( = TRUE ), int NotifyId DEFAULTPARAM( = 0 ), int *Vibrate DEFAULTPARAM( = NULL ), int VibrateLength DEFAULTPARAM( = 0 ),
@@ -175,36 +175,36 @@ extern int AndroidNotificationWithStrLen(
 	int AutoCancel DEFAULTPARAM( = TRUE ), int NotifyId DEFAULTPARAM( = 0 ), int *Vibrate DEFAULTPARAM( = NULL ), int VibrateLength DEFAULTPARAM( = 0 ),
 	unsigned int LightColor DEFAULTPARAM( = 0 ), int LightOnTime DEFAULTPARAM( = 0 ), int LightOffTime DEFAULTPARAM( = 0 ) ) ;
 
-// �ʒm���L�����Z������
-// NotifyID : �ʒmID
+// 通知をキャンセルする
+// NotifyID : 通知ID
 extern int AndroidNotificationCancel( int NotifyId ) ;
 
-// �S�Ă̒ʒm���L�����Z������
+// 全ての通知をキャンセルする
 extern int AndroidNotificationCancelAll( void ) ;
 
-// �w��� URL ���u���E�U�ŊJ��( BrowserAppPackageName �� BrowserAppClassName �� NULL �̏ꍇ�͕W���u���E�U�ŊJ�� )
-// URL                   : �J��URL
-// BrowserAppPackageName : �u���E�U�̃p�b�P�[�W��( NULL �ŕW���u���E�U )
-// BrowserAppClassName   : �u���E�U�̃N���X��( NULL �ŕW���u���E�U )
+// 指定の URL をブラウザで開く( BrowserAppPackageName か BrowserAppClassName が NULL の場合は標準ブラウザで開く )
+// URL                   : 開くURL
+// BrowserAppPackageName : ブラウザのパッケージ名( NULL で標準ブラウザ )
+// BrowserAppClassName   : ブラウザのクラス名( NULL で標準ブラウザ )
 extern int AndroidJumpURL(           const TCHAR *URL,                   const TCHAR *BrowserAppPackageName DEFAULTPARAM( = NULL ),                                                         const TCHAR *BrowserAppClassName DEFAULTPARAM( = NULL )                                                       ) ;
 extern int AndroidJumpURLWithStrLen( const TCHAR *URL, size_t URLLength, const TCHAR *BrowserAppPackageName DEFAULTPARAM( = NULL ), size_t BrowserAppPackageNameLength DEFAULTPARAM( = 0 ), const TCHAR *BrowserAppClassName DEFAULTPARAM( = NULL ), size_t BrowserAppClassNameLength DEFAULTPARAM( = 0 ) ) ;
 
-// Wifi �̓d�g���x���擾����( �߂�l�F�d�g�̋��x 0 �` 100 )
-// ( �g�p����ɂ� AndroidManifest.xml �� <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" /> ������������K�v������܂� )
+// Wifi の電波強度を取得する( 戻り値：電波の強度 0 ～ 100 )
+// ( 使用するには AndroidManifest.xml に <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" /> を書き加える必要があります )
 extern int GetWifiSignalLevel( void ) ;
 
-// �A�v������A�N�e�B�u�ɂȂ����ۂɌĂ΂��R�[���o�b�N�֐���o�^����
+// アプリが非アクティブになった際に呼ばれるコールバック関数を登録する
 extern int SetAndroidLostFocusCallbackFunction( void (* Callback )( void *Data ), void *CallbackData ) ;
 
-// �A�v�����A�N�e�B�u�ɂȂ����ۂɌĂ΂��R�[���o�b�N�֐���o�^����
+// アプリがアクティブになった際に呼ばれるコールバック関数を登録する
 extern int SetAndroidGainedFocusCallbackFunction( void (* Callback )( void *Data ), void *CallbackData ) ;
 
-// �A�v�����I�������ۂɁA�v���Z�X�����S�ɏI�����邩��ݒ肷��( KillProcessFlag  TRUE : �A�v�����I��������A�v���Z�X�����S�ɏI������  FALSE : �A�v�����I�����Ă��A�v���Z�X�͊��S�ɂ͏I������Ȃ�( �f�t�H���g ) )
+// アプリを終了した際に、プロセスを完全に終了するかを設定する( KillProcessFlag  TRUE : アプリを終了したら、プロセスを完全に終了する  FALSE : アプリを終了しても、プロセスは完全には終了されない( デフォルト ) )
 extern int SetUseAndroidKillProcessFlag( int KillProcessFlag ) ;
 
 
 
-// OpenGL �֌W�̏����擾����
+// OpenGL 関係の情報を取得する
 extern int GetOpenGLInfo(
 	TCHAR **Version DEFAULTPARAM( = NULL ),
 	TCHAR **Renderer DEFAULTPARAM( = NULL ),
@@ -220,33 +220,33 @@ extern int GetOpenGLInfo(
 	int *Shader_Max_Fragment_Uniform_Vectors DEFAULTPARAM( = NULL )				// GL_MAX_FRAGMENT_UNIFORM_VECTORS
 ) ;
 
-// �O���t�B�b�N�n���h���̃e�N�X�`���I�u�W�F�N�g���擾����
+// グラフィックハンドルのテクスチャオブジェクトを取得する
 extern unsigned int GetGraphOpenGLESTextureObject( int GrHandle ) ;
 
-// �T�u�o�b�N�o�b�t�@�e�N�X�`���̃e�N�X�`���I�u�W�F�N�g���擾����
+// サブバックバッファテクスチャのテクスチャオブジェクトを取得する
 extern unsigned int GetSubBackbufferOpenGLESTextureObject( void ) ;
 
-// �c�w���C�u�������s���� OpenGL ES �̐ݒ���ēx�s��( ����p�r )
+// ＤＸライブラリが行った OpenGL ES の設定を再度行う( 特殊用途 )
 extern int RefreshDxLibOpenGLESSetting( void ) ;
 
 
 
 
-// �C�R���C�U�[�@�\���g�p���邩�ǂ�����ݒ肷��( DxLib_Init �Ăяo���O�̂ݎ��s�\ )
-// UseFlag  TRUE:�g�p����  FALSE:�g�p���Ȃ�
+// イコライザー機能を使用するかどうかを設定する( DxLib_Init 呼び出し前のみ実行可能 )
+// UseFlag  TRUE:使用する  FALSE:使用しない
 extern int          SetUseEqualizer( int UseFlag ) ;
 
-// �C�R���C�U�[�֌W�֐�
-extern int			SearchEqualizerBandIndex( int Frequency ) ;							// �C�R���C�U�[�̗^����ꂽ���g���ɍł��e����^������g���ш���擾���܂�( �߂�l�@-1:�G���[  0�ȏ�F���g���ш�C���f�b�N�X )
-extern int			GetEqualizerBandNum( void ) ;										// �C�R���C�U�[�Ɏw��ł�����g���ш�̐����擾����
-extern int			SetEqualizerBandLevel( int BandIndex, int Level ) ;					// �^����ꂽ�C�R���C�U�[�̎��g���ш��^����ꂽ�Q�C���l�ɐݒ肵�܂�
-extern int			GetEqualizerBandLevel( int BandIndex ) ;							// �C�R���C�U�[�̎w�肳�ꂽ���g���ш�̃Q�C���l���擾���܂�
-extern int			GetEqualizerBandFreqRange( int BandIndex, int *pMin, int *pMax ) ;	// �C�R���C�U�[�̎w�肳�ꂽ���g���ш�̎��g���͈͂��擾���܂�( pMin �� pMax �ɍŏ����g���ƍő���g�����i�[����܂�( �P�ʁF�w���c ) )
-extern int			GetEqualizerBandCenterFreq( int BandIndex ) ;						// �C�R���C�U�[�̎w�肳�ꂽ���g���ш�̒��S���g�����擾���܂�( �߂�l�@���S���g��( �P�ʁF�w���c ) )
-extern int			GetEqualizerCurrentPreset( void ) ;									// �C�R���C�U�[�̌��݂̃v���Z�b�g���擾���܂�( �߂�l�@�v���Z�b�g�ԍ� )
-extern int			GetEqualizerPresetNum( void ) ;										// �C�R���C�U�[�̃v���Z�b�g�̐����擾���܂�( �߂�l�@�v���Z�b�g�̐� )
-extern const TCHAR *GetEqualizerPresetName( int PresetIndex ) ;							// �C�R���C�U�[�̃v���Z�b�g�����擾���܂�( �߂�l�@�v���Z�b�g���̕����񂪊i�[���ꂽ�������̈�̐擪�A�h���X )
-extern int			SetUseEqualizerPreset( int PresetIndex ) ;							// �w�肵���v���Z�b�g�ɏ]���ăC�R���C�U�[��ݒ肵�܂�
+// イコライザー関係関数
+extern int			SearchEqualizerBandIndex( int Frequency ) ;							// イコライザーの与えられた周波数に最も影響を与える周波数帯域を取得します( 戻り値　-1:エラー  0以上：周波数帯域インデックス )
+extern int			GetEqualizerBandNum( void ) ;										// イコライザーに指定できる周波数帯域の数を取得する
+extern int			SetEqualizerBandLevel( int BandIndex, int Level ) ;					// 与えられたイコライザーの周波数帯域を与えられたゲイン値に設定します
+extern int			GetEqualizerBandLevel( int BandIndex ) ;							// イコライザーの指定された周波数帯域のゲイン値を取得します
+extern int			GetEqualizerBandFreqRange( int BandIndex, int *pMin, int *pMax ) ;	// イコライザーの指定された周波数帯域の周波数範囲を取得します( pMin と pMax に最小周波数と最大周波数が格納されます( 単位：ヘルツ ) )
+extern int			GetEqualizerBandCenterFreq( int BandIndex ) ;						// イコライザーの指定された周波数帯域の中心周波数を取得します( 戻り値　中心周波数( 単位：ヘルツ ) )
+extern int			GetEqualizerCurrentPreset( void ) ;									// イコライザーの現在のプリセットを取得します( 戻り値　プリセット番号 )
+extern int			GetEqualizerPresetNum( void ) ;										// イコライザーのプリセットの数を取得します( 戻り値　プリセットの数 )
+extern const TCHAR *GetEqualizerPresetName( int PresetIndex ) ;							// イコライザーのプリセット名を取得します( 戻り値　プリセット名の文字列が格納されたメモリ領域の先頭アドレス )
+extern int			SetUseEqualizerPreset( int PresetIndex ) ;							// 指定したプリセットに従ってイコライザーを設定します
 
 
 
