@@ -1,8 +1,8 @@
-﻿//-----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 // 
 // 		ＤＸライブラリ		WindowsOS用描画処理プログラム
 // 
-//  	Ver 3.24f
+//  	Ver 3.25a
 // 
 //-----------------------------------------------------------------------------
 
@@ -603,6 +603,40 @@ extern int LoadDivGraphFToResource_WCHAR_T( const wchar_t *ResourceName, const w
 
 
 // 画像情報関係関数
+
+// グラフィックハンドルが持つ IDirect3DTexture9 を取得する( Direct3D9 を使用している場合のみ有効 )( 戻り値を IDirect3DTexture9 * にキャストしてください )
+extern	const void*	NS_GetGraphIDirect3DTexture9( int GrHandle )
+{
+	IMAGEDATA *Image ;
+
+	// 初期化判定
+	if( DxSysData.DxLib_InitializeFlag == FALSE )
+	{
+		return NULL ;
+	}
+
+	// エラー判定
+	if( GRAPHCHK( GrHandle, Image ) )
+	{
+		return NULL ;
+	}
+
+	switch( GRAWIN.Setting.UseGraphicsAPI )
+	{
+#ifndef DX_NON_DIRECT3D11
+	case GRAPHICS_API_DIRECT3D11_WIN32 :
+		return NULL ;
+#endif // DX_NON_DIRECT3D11
+
+#ifndef DX_NON_DIRECT3D9
+	case GRAPHICS_API_DIRECT3D9_WIN32 :
+		return Graphics_Hardware_D3D9_GetGraphIDirect3DTexture9_PF( Image ) ;
+#endif // DX_NON_DIRECT3D9
+
+	default :
+		return NULL ;
+	}
+}
 
 // グラフィックハンドルが持つ ID3D11Texture2D を取得する( Direct3D11 を使用している場合のみ有効 )( 戻り値を ID3D11Texture2D * にキャストしてください )
 extern	const void*	NS_GetGraphID3D11Texture2D( int GrHandle )
@@ -1710,7 +1744,7 @@ extern int NS_SetDrawScreen_ID3D11RenderTargetView( const void *pID3D11RenderTar
 }
 
 // Direct3D11 を使用した場合の SwapEffect を指定する
-extern int SetUseDirect3D11SwapEffect( int SwapEffect /* DX_SWAP_EFFECT_DISCARD 等 */ )
+extern int NS_SetUseDirect3D11SwapEffect( int SwapEffect /* DX_SWAP_EFFECT_DISCARD 等 */ )
 {
 #ifndef DX_NON_DIRECT3D11
 	return Graphics_Hardware_D3D11_SetUseSwapEffect_PF( ( D_DXGI_SWAP_EFFECT )SwapEffect ) ;
@@ -1737,6 +1771,16 @@ extern int Graphics_Hardware_RefreshSetting_PF( void )
 	default :
 		return 0 ;
 	}
+}
+
+// 基本データに設定されている２Ｄ行列をハードウエアに反映する
+extern void Graphics_DrawSetting_ApplyLib2DMatrixToHardware_PF( void )
+{
+}
+
+// 基本データに設定されている３Ｄ行列をハードウエアに反映する
+extern void Graphics_DrawSetting_ApplyLib3DMatrixToHardware_PF( int IgnoreWorldMatrix )
+{
 }
 
 // ＤＸライブラリのＤｉｒｅｃｔ３Ｄ設定をしなおす
@@ -1995,25 +2039,6 @@ extern	int		Graphics_Hardware_Initialize_PF( void )
 	}
 }
 
-extern int Graphics_Reset_PF(void)
-{
-	switch (GRAWIN.Setting.UseGraphicsAPI)
-	{
-#ifndef DX_NON_DIRECT3D11
-	case GRAPHICS_API_DIRECT3D11_WIN32:
-		return Graphics_D3D11_Reset_PF();
-#endif // DX_NON_DIRECT3D11
-
-#ifndef DX_NON_DIRECT3D9
-	case GRAPHICS_API_DIRECT3D9_WIN32:
-		return Graphics_D3D9_Reset_PF();
-#endif // DX_NON_DIRECT3D9
-
-	default:
-		return 0;
-	}
-}
-
 // 描画処理の環境依存部分の後始末を行う関数
 extern	int		Graphics_Terminate_PF( void )
 {
@@ -2189,7 +2214,7 @@ extern int Graphics_Hardware_CheckValid_PF( void )
 
 // 環境依存描画設定関係
 
-// メインウインドウの背景色を設定する( Red,Green,Blue:それぞれ ０〜２５５ )
+// メインウインドウの背景色を設定する( Red,Green,Blue:それぞれ ０～２５５ )
 extern	int		Graphics_Hardware_SetBackgroundColor_PF( int /*Red*/, int /*Green*/, int /*Blue*/, int /*Alpha*/  )
 {
 	return 0 ;
@@ -2595,7 +2620,7 @@ extern	int		Graphics_Hardware_SetFogColor_PF( DWORD FogColor )
 	}
 }
 
-// フォグが始まる距離と終了する距離を設定する( 0.0f 〜 1.0f )
+// フォグが始まる距離と終了する距離を設定する( 0.0f ～ 1.0f )
 extern	int		Graphics_Hardware_SetFogStartEnd_PF( float start, float end )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -2615,7 +2640,7 @@ extern	int		Graphics_Hardware_SetFogStartEnd_PF( float start, float end )
 	}
 }
 
-// フォグの密度を設定する( 0.0f 〜 1.0f )
+// フォグの密度を設定する( 0.0f ～ 1.0f )
 extern	int		Graphics_Hardware_SetFogDensity_PF( float density )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -2711,7 +2736,7 @@ extern	int		Graphics_Hardware_SetVerticalFogColor_PF( DWORD FogColor )
 	}
 }
 
-// 高さフォグが始まる距離と終了する距離を設定する( 0.0f 〜 1.0f )
+// 高さフォグが始まる距離と終了する距離を設定する( 0.0f ～ 1.0f )
 extern	int		Graphics_Hardware_SetVerticalFogStartEnd_PF( float start, float end )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -2731,7 +2756,7 @@ extern	int		Graphics_Hardware_SetVerticalFogStartEnd_PF( float start, float end 
 	}
 }
 
-// 高さフォグの密度を設定する( 0.0f 〜 1.0f )
+// 高さフォグの密度を設定する( 0.0f ～ 1.0f )
 extern	int		Graphics_Hardware_SetVerticalFogDensity_PF( float start, float density )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
@@ -5479,18 +5504,18 @@ extern	int		Graphics_Hardware_RenderVertex( int ASyncThread )
 }
 
 // ハードウエアアクセラレータ使用版 DrawBillboard3D
-extern	int		Graphics_Hardware_DrawBillboard3D_PF( VECTOR Pos, float cx, float cy, float Size, float Angle, IMAGEDATA *Image, IMAGEDATA *BlendImage, int TransFlag, int ReverseXFlag, int ReverseYFlag, int DrawFlag, RECT *DrawArea )
+extern	int		Graphics_Hardware_DrawBillboard3D_PF( VECTOR Pos, float cx, float cy, float SizeX, float SizeY, float Angle, IMAGEDATA *Image, IMAGEDATA *BlendImage, int TransFlag, int ReverseXFlag, int ReverseYFlag, int DrawFlag, RECT *DrawArea )
 {
 	switch( GRAWIN.Setting.UseGraphicsAPI )
 	{
 #ifndef DX_NON_DIRECT3D11
 	case GRAPHICS_API_DIRECT3D11_WIN32 :
-		return Graphics_D3D11_DrawBillboard3D( Pos,  cx,  cy,  Size,  Angle, Image, BlendImage,  TransFlag,  ReverseXFlag, ReverseYFlag, DrawFlag, DrawArea ) ;
+		return Graphics_D3D11_DrawBillboard3D( Pos,  cx,  cy,  SizeX, SizeY, Angle, Image, BlendImage,  TransFlag,  ReverseXFlag, ReverseYFlag, DrawFlag, DrawArea ) ;
 #endif // DX_NON_DIRECT3D11
 
 #ifndef DX_NON_DIRECT3D9
 	case GRAPHICS_API_DIRECT3D9_WIN32 :
-		return Graphics_D3D9_DrawBillboard3D( Pos,  cx,  cy,  Size,  Angle, Image, BlendImage,  TransFlag,  ReverseXFlag, ReverseYFlag,  DrawFlag, DrawArea ) ;
+		return Graphics_D3D9_DrawBillboard3D( Pos,  cx,  cy,  SizeX, SizeY, Angle, Image, BlendImage,  TransFlag,  ReverseXFlag, ReverseYFlag,  DrawFlag, DrawArea ) ;
 #endif // DX_NON_DIRECT3D9
 
 	default :
@@ -6361,6 +6386,126 @@ extern	int		Graphics_Hardware_DrawPrimitive32bitIndexed3DToShader_PF( const VERT
 #ifndef DX_NON_DIRECT3D9
 	case GRAPHICS_API_DIRECT3D9_WIN32 :
 		return Graphics_D3D9_DrawPrimitive32bitIndexed3DToShader( Vertex,  VertexNum, Indices,  IndexNum,  PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST 等 */ ) ;
+#endif // DX_NON_DIRECT3D9
+
+	default :
+		return 0 ;
+	}
+}
+
+// シェーダーを使って２Ｄプリミティブを描画する
+extern	int		Graphics_Hardware_DrawPrimitive2DToShader2_PF(        const VERTEX2D *Vertex, int VertexNum,                                              int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST 等 */ )
+{
+	switch( GRAWIN.Setting.UseGraphicsAPI )
+	{
+#ifndef DX_NON_DIRECT3D11
+	case GRAPHICS_API_DIRECT3D11_WIN32 :
+		return Graphics_D3D11_DrawPrimitive2DToShader2(        Vertex,  VertexNum,                                               PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST 等 */ ) ;
+#endif // DX_NON_DIRECT3D11
+
+#ifndef DX_NON_DIRECT3D9
+	case GRAPHICS_API_DIRECT3D9_WIN32 :
+		return Graphics_D3D9_DrawPrimitive2DToShader2(        Vertex,  VertexNum,                                               PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST 等 */ ) ;
+#endif // DX_NON_DIRECT3D9
+
+	default :
+		return 0 ;
+	}
+}
+
+// シェーダーを使って３Ｄプリミティブを描画する
+extern	int		Graphics_Hardware_DrawPrimitive3DToShader2_PF(        const VERTEX3D *Vertex, int VertexNum,                                              int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST 等 */ )
+{
+	switch( GRAWIN.Setting.UseGraphicsAPI )
+	{
+#ifndef DX_NON_DIRECT3D11
+	case GRAPHICS_API_DIRECT3D11_WIN32 :
+		return Graphics_D3D11_DrawPrimitive3DToShader2(        Vertex,  VertexNum,                                               PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST 等 */ ) ;
+#endif // DX_NON_DIRECT3D11
+
+#ifndef DX_NON_DIRECT3D9
+	case GRAPHICS_API_DIRECT3D9_WIN32 :
+		return Graphics_D3D9_DrawPrimitive3DToShader2(        Vertex,  VertexNum,                                               PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST 等 */ ) ;
+#endif // DX_NON_DIRECT3D9
+
+	default :
+		return 0 ;
+	}
+}
+
+// シェーダーを使って２Ｄプリミティブを描画する( 頂点インデックスを使用する )
+extern	int		Graphics_Hardware_DrawPrimitiveIndexed2DToShader2_PF( const VERTEX2D *Vertex, int VertexNum, const unsigned short *Indices, int IndexNum, int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST 等 */ )
+{
+	switch( GRAWIN.Setting.UseGraphicsAPI )
+	{
+#ifndef DX_NON_DIRECT3D11
+	case GRAPHICS_API_DIRECT3D11_WIN32 :
+		return Graphics_D3D11_DrawPrimitiveIndexed2DToShader2( Vertex,  VertexNum, Indices,  IndexNum,  PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST 等 */ ) ;
+#endif // DX_NON_DIRECT3D11
+
+#ifndef DX_NON_DIRECT3D9
+	case GRAPHICS_API_DIRECT3D9_WIN32 :
+		return Graphics_D3D9_DrawPrimitiveIndexed2DToShader2( Vertex,  VertexNum, Indices,  IndexNum,  PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST 等 */ ) ;
+#endif // DX_NON_DIRECT3D9
+
+	default :
+		return 0 ;
+	}
+}
+
+// シェーダーを使って２Ｄプリミティブを描画する( 頂点インデックスを使用する )
+extern	int		Graphics_Hardware_DrawPrimitive32bitIndexed2DToShader2_PF( const VERTEX2D *Vertex, int VertexNum, const unsigned int *Indices, int IndexNum, int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST 等 */ )
+{
+	switch( GRAWIN.Setting.UseGraphicsAPI )
+	{
+#ifndef DX_NON_DIRECT3D11
+	case GRAPHICS_API_DIRECT3D11_WIN32 :
+		return Graphics_D3D11_DrawPrimitive32bitIndexed2DToShader2( Vertex,  VertexNum, Indices,  IndexNum,  PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST 等 */ ) ;
+#endif // DX_NON_DIRECT3D11
+
+#ifndef DX_NON_DIRECT3D9
+	case GRAPHICS_API_DIRECT3D9_WIN32 :
+		return Graphics_D3D9_DrawPrimitive32bitIndexed2DToShader2( Vertex,  VertexNum, Indices,  IndexNum,  PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST 等 */ ) ;
+#endif // DX_NON_DIRECT3D9
+
+	default :
+		return 0 ;
+	}
+}
+
+// シェーダーを使って３Ｄプリミティブを描画する( 頂点インデックスを使用する )
+extern	int		Graphics_Hardware_DrawPrimitiveIndexed3DToShader2_PF( const VERTEX3D *Vertex, int VertexNum, const unsigned short *Indices, int IndexNum, int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST 等 */ )
+{
+	switch( GRAWIN.Setting.UseGraphicsAPI )
+	{
+#ifndef DX_NON_DIRECT3D11
+	case GRAPHICS_API_DIRECT3D11_WIN32 :
+		return Graphics_D3D11_DrawPrimitiveIndexed3DToShader2( Vertex,  VertexNum, Indices,  IndexNum,  PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST 等 */ ) ;
+#endif // DX_NON_DIRECT3D11
+
+#ifndef DX_NON_DIRECT3D9
+	case GRAPHICS_API_DIRECT3D9_WIN32 :
+		return Graphics_D3D9_DrawPrimitiveIndexed3DToShader2( Vertex,  VertexNum, Indices,  IndexNum,  PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST 等 */ ) ;
+#endif // DX_NON_DIRECT3D9
+
+	default :
+		return 0 ;
+	}
+}
+
+// シェーダーを使って３Ｄプリミティブを描画する( 頂点インデックスを使用する )
+extern	int		Graphics_Hardware_DrawPrimitive32bitIndexed3DToShader2_PF( const VERTEX3D *Vertex, int VertexNum, const unsigned int *Indices, int IndexNum, int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST 等 */ )
+{
+	switch( GRAWIN.Setting.UseGraphicsAPI )
+	{
+#ifndef DX_NON_DIRECT3D11
+	case GRAPHICS_API_DIRECT3D11_WIN32 :
+		return Graphics_D3D11_DrawPrimitive32bitIndexed3DToShader2( Vertex,  VertexNum, Indices,  IndexNum,  PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST 等 */ ) ;
+#endif // DX_NON_DIRECT3D11
+
+#ifndef DX_NON_DIRECT3D9
+	case GRAPHICS_API_DIRECT3D9_WIN32 :
+		return Graphics_D3D9_DrawPrimitive32bitIndexed3DToShader2( Vertex,  VertexNum, Indices,  IndexNum,  PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST 等 */ ) ;
 #endif // DX_NON_DIRECT3D9
 
 	default :

@@ -1,8 +1,8 @@
-﻿// -------------------------------------------------------------------------------
+// -------------------------------------------------------------------------------
 // 
 // 		ＤＸライブラリ		Windows用システムプログラム
 // 
-// 				Ver 3.24f
+// 				Ver 3.25a
 // 
 // -------------------------------------------------------------------------------
 
@@ -826,20 +826,13 @@ extern int NS_ProcessMessage( void )
 #endif // DX_NON_SOUND
 
 #ifndef DX_NON_INPUT
-	// WM_DEVICECHANGE: optionally resync joypads (can hitch; gate with SetUseJoypadDeviceChangeResyncFlag).
+	// WM_DEVICECHANGE メッセージが来ていたらパッドの再セットアップを行う
 	if( WinData.RecvWM_DEVICECHANGEFlag )
 	{
 		WinData.RecvWM_DEVICECHANGEFlag = FALSE ;
 		if( WinData.QuitMessageFlag == FALSE )
 		{
-			if( InputSysData.NoUseDeviceChangeJoypadResyncFlag == FALSE )
-			{
-				NS_ReSetupJoypad() ;
-			}
-			else
-			{
-				WinData.PendingJoypadDeviceChangeResyncFlag = TRUE ;
-			}
+			NS_ReSetupJoypad() ;
 		}
 	}
 

@@ -1,8 +1,8 @@
-﻿//-----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 // 
 // 		ＤＸライブラリ		描画処理プログラム( Direct3D9 )
 // 
-//  	Ver 3.24f
+//  	Ver 3.25a
 // 
 //-----------------------------------------------------------------------------
 
@@ -706,44 +706,8 @@ extern BYTE DxShaderCodeBin_Base3D_D3D9[] ;
 
 #else // DX_NON_SHADERCODE_BINARY
 
-extern unsigned char ShaderTxt_Base_D3D9[];
-extern unsigned int ShaderTxt_Base_D3D9_len;
-
-extern unsigned char ShaderTxt_BaseVertexShader_D3D9[];
-extern unsigned int ShaderTxt_BaseVertexShader_D3D9_len;
-
-extern unsigned char ShaderTxt_Base_3D_PixelLighting_PS_D3D9[];
-extern unsigned int ShaderTxt_Base_3D_PixelLighting_PS_D3D9_len;
-
-extern unsigned char ShaderTxt_Base_3D_PixelLighting_VS_D3D9[];
-extern unsigned int ShaderTxt_Base_3D_PixelLighting_VS_D3D9_len;
-
-extern unsigned char ShaderTxt_Base_3D_VertexLighting_PS_D3D9[];
-extern unsigned int ShaderTxt_Base_3D_VertexLighting_PS_D3D9_len;
-
-extern unsigned char ShaderTxt_Base_3D_VertexLighting_VS_D3D9[];
-extern unsigned int ShaderTxt_Base_3D_VertexLighting_VS_D3D9_len;
-
-extern unsigned char ShaderTxt_PixelLighting_PSInclude_D3D9[];
-extern unsigned int ShaderTxt_PixelLighting_PSInclude_D3D9_len;
-
-extern unsigned char ShaderTxt_PixelLighting_VSInclude_D3D9[];
-extern unsigned int ShaderTxt_PixelLighting_VSInclude_D3D9_len;
-
-extern unsigned char ShaderTxt_VertexLighting_PSInclude_D3D9[];
-extern unsigned int ShaderTxt_VertexLighting_PSInclude_D3D9_len;
-
-extern unsigned char ShaderTxt_VertexLighting_VSInclude_D3D9[];
-extern unsigned int ShaderTxt_VertexLighting_VSInclude_D3D9_len;
-
-extern unsigned char ShaderTxt_PSInclude_D3D9[];
-extern unsigned int ShaderTxt_PSInclude_D3D9_len;
-
-extern unsigned char ShaderTxt_VSInclude_D3D9[];
-extern unsigned int ShaderTxt_VSInclude_D3D9_len;
-
-extern unsigned char ShaderTxt_CRT_Geom_D3D9[];
-extern unsigned int ShaderTxt_CRT_Geom_D3D9_len;
+extern int  DxShaderCodeTxt_D3D9Convert ;
+extern BYTE DxShaderCodeTxt_D3D9[] ;
 
 #endif // DX_NON_SHADERCODE_BINARY
 
@@ -878,11 +842,12 @@ HRESULT	__stdcall Graphics_D3D9_ShaderCompilerIncludeClass::Open( D_D3D_INCLUDE_
 	}
 
 	// シェーダーソースファイルを取得する
-	auto& code = ShaderCode->Base.ShaderTxt[UseP];
-	if (code.len == 0) return S_FALSE;
-	Size = code.len;
+	if( DXA_GetFileInfo( &ShaderCode->Base.ShaderTxtDxa, DX_CHARCODEFORMAT_ASCII, UseP, &Addr, &Size ) != 0 )
+	{
+		return S_FALSE ;
+	}
 
-	*ppData = code.data;
+	*ppData = ( void * )( ( BYTE * )DXA_GetFileImage( &ShaderCode->Base.ShaderTxtDxa ) + Addr ) ;
 	*pBytes = ( size_t )Size ;
 
 	return S_OK ;
@@ -1253,117 +1218,6 @@ ERR :
 	return -1 ;
 }
 
-extern int Graphics_D3D9_Reset(void)
-{
-	// Partial terminate
-
-	SETUP_WIN_API
-
-	GD3D9.Device.DrawInfo.BeginSceneFlag = FALSE;
-
-	if (GD3D9.Device.Setting.DeviceLostCallbackFunction)
-	{
-		GD3D9.Device.Setting.DeviceLostCallbackFunction(GD3D9.Device.Setting.DeviceLostCallbackData);
-	}
-
-	// Zバッファ の解放
-	if (GD3D9.Device.Screen.ZBufferSurface)
-	{
-		Direct3D9_ObjectRelease(GD3D9.Device.Screen.ZBufferSurface);
-		GD3D9.Device.Screen.ZBufferSurface = NULL;
-	}
-
-	// サブバックバッファの解放
-	if (GD3D9.Device.Screen.SubBackBufferSurface)
-	{
-		Direct3D9_ObjectRelease(GD3D9.Device.Screen.SubBackBufferSurface);
-		GD3D9.Device.Screen.SubBackBufferSurface = NULL;
-	}
-	if (GD3D9.Device.Screen.SubBackBufferTexture)
-	{
-		Direct3D9_ObjectRelease(GD3D9.Device.Screen.SubBackBufferTexture);
-		GD3D9.Device.Screen.SubBackBufferTexture = NULL;
-	}
-
-	// バックバッファの解放
-	if (GD3D9.Device.Screen.BackBufferSurface)
-	{
-		Direct3D9_ObjectRelease(GD3D9.Device.Screen.BackBufferSurface);
-		GD3D9.Device.Screen.BackBufferSurface = NULL;
-	}
-#ifndef DX_NON_MASK
-	// マスクサーフェスを一時削除
-	Mask_ReleaseSurface();
-#endif
-	Graphics_D3D9_ReleaseObjectAll(true);
-
-	// Reset
-
-	int Ret;
-
-	GSYS.Setting.ValidHardware = FALSE;
-
-	Ret = Direct3DDevice9_Reset();
-	if (Ret == -2)
-	{
-		goto ERR;
-	}
-	else
-	{
-		if (Ret != 0)
-		{
-			goto ERR;
-		}
-		else
-		{
-			Direct3DDevice9_GetBackBuffer(0, 0, D_D3DBACKBUFFER_TYPE_MONO, &GD3D9.Device.Screen.BackBufferSurface);
-		}
-	}
-
-	Graphics_D3D9_CreateObjectAll(true);
-#ifndef DX_NON_MASK
-	// マスクサーフェスの再作成
-	Mask_ReCreateSurface();
-#endif
-	// Zバッファ の作成を試みる
-	if (Graphics_D3D9_CreateZBuffer() != 0)
-	{
-		goto ERR;
-	}
-
-	// シェーダーが使用できる場合とできない場合で処理を分岐
-	if (GSYS.HardInfo.UseShader)
-	{
-		// フルスクリーンモードの場合はサブバックバッファのセットアップを行う
-		if (GetWindowModeFlag() == FALSE && NS_GetUseFullScreenResolutionMode() != DX_FSRESOLUTIONMODE_BORDERLESS_WINDOW)
-		{
-			Graphics_D3D9_SetupSubBackBuffer();
-		}
-	}
-
-	GSYS.Setting.ValidHardware = TRUE;
-
-	Graphics_D3D9_Device_ReInitialize();
-
-
-	// 描画範囲を再設定する
-	NS_SetDrawArea(0, 0, GSYS.Screen.MainScreenSizeX, GSYS.Screen.MainScreenSizeY);
-
-	if (GD3D9.Device.Setting.DeviceRestoreCallbackFunction)
-	{
-		GD3D9.Device.Setting.DeviceRestoreCallbackFunction(GD3D9.Device.Setting.DeviceRestoreCallbackData);
-	}
-
-	NS_RunRestoreShred(true);
-
-
-	// 終了
-	return 0;
-
-ERR:
-	return -1;
-}
-
 // Direct3D9 を使用したグラフィックス処理の後始末を行う
 extern	int		Graphics_D3D9_Terminate( void )
 {
@@ -1452,7 +1306,7 @@ extern	int		Graphics_D3D9_Terminate( void )
 
 
 // すべての Direct3D9 系オブジェクトを解放する
-extern	int		Graphics_D3D9_ReleaseObjectAll( bool onlyUnmanaged )
+extern	int		Graphics_D3D9_ReleaseObjectAll( void )
 {
 	int i ;
 	SHADERHANDLEDATA                          *Shader ;
@@ -1475,7 +1329,6 @@ extern	int		Graphics_D3D9_ReleaseObjectAll( bool onlyUnmanaged )
 #endif
 
 			if( Image->Orig == NULL ) continue ;
-			if (onlyUnmanaged && Image->Orig->FormatDesc.UseManagedTextureFlag) continue;
 			Graphics_Hardware_ReleaseOrigTexture_PF( Image->Orig ) ;
 
 #ifndef DX_NON_MOVIE
@@ -1598,7 +1451,7 @@ extern	int		Graphics_D3D9_ReleaseObjectAll( bool onlyUnmanaged )
 
 
 // すべての Direct3D9 系オブジェクトを作成する
-extern	int		Graphics_D3D9_CreateObjectAll( bool onlyUnmanaged )
+extern	int		Graphics_D3D9_CreateObjectAll( void )
 {
 	int                                       i ;
 	SHADERHANDLEDATA                          *Shader ;
@@ -1639,7 +1492,6 @@ extern	int		Graphics_D3D9_CreateObjectAll( bool onlyUnmanaged )
 
 			if( Image == NULL ) continue ;
 			if( Image->Orig == NULL ) continue ;
-			if (onlyUnmanaged && Image->Orig->FormatDesc.UseManagedTextureFlag) continue;
 			Graphics_Hardware_CreateOrigTexture_PF( Image->Orig ) ;
 		}
 	}
@@ -1916,7 +1768,7 @@ extern int Graphics_D3D9_ShaderCode_Base_Initialize( void )
 		if( DxShaderCodeBin_Base_D3D9Convert == 0 )
 		{
 			DxShaderCodeBin_Base_D3D9Convert = 1 ;
-			Char128ToBin( DxShaderCodeBin_Base_D3D9, DxShaderCodeBin_Base_D3D9 ) ;
+			Base64ToBin( DxShaderCodeBin_Base_D3D9, DxShaderCodeBin_Base_D3D9 ) ;
 		}
 		Size = DXA_Decode( DxShaderCodeBin_Base_D3D9, NULL ) ;
 		SCBASE->BaseShaderBinDxaImage = DXALLOC( ( size_t )Size ) ;
@@ -1939,21 +1791,30 @@ extern int Graphics_D3D9_ShaderCode_Base_Initialize( void )
 	// シェーダーコンパイラのインクルード処理用クラスを作成
 	SCBASE->ShaderCompilerIncludeClass = new Graphics_D3D9_ShaderCompilerIncludeClass ;
 
+	SCBASE->ShaderTxtDxaImage = NULL ;
+
 	// 基本シェーダーオブジェクトファイルＤＸＡを圧縮したデータを解凍する
 	{
-		SCBASE->ShaderTxt["Base.fx"] = { ShaderTxt_Base_D3D9, ShaderTxt_Base_D3D9_len };
-		SCBASE->ShaderTxt["BaseVertexShader.fx"] = { ShaderTxt_BaseVertexShader_D3D9, ShaderTxt_BaseVertexShader_D3D9_len };
-		SCBASE->ShaderTxt["Base_3D_PixelLighting_PS.fx"] = { ShaderTxt_Base_3D_PixelLighting_PS_D3D9, ShaderTxt_Base_3D_PixelLighting_PS_D3D9_len };
-		SCBASE->ShaderTxt["Base_3D_PixelLighting_VS.fx"] = { ShaderTxt_Base_3D_PixelLighting_VS_D3D9, ShaderTxt_Base_3D_PixelLighting_VS_D3D9_len };
-		SCBASE->ShaderTxt["Base_3D_VertexLighting_PS.fx"] = { ShaderTxt_Base_3D_VertexLighting_PS_D3D9, ShaderTxt_Base_3D_VertexLighting_PS_D3D9_len };
-		SCBASE->ShaderTxt["Base_3D_VertexLighting_VS.fx"] = { ShaderTxt_Base_3D_VertexLighting_VS_D3D9, ShaderTxt_Base_3D_VertexLighting_VS_D3D9_len };
-		SCBASE->ShaderTxt["DxShader_PS_D3D9.h"] = { ShaderTxt_PSInclude_D3D9, ShaderTxt_PSInclude_D3D9_len };
-		SCBASE->ShaderTxt["DxShader_VS_D3D9.h"] = { ShaderTxt_VSInclude_D3D9, ShaderTxt_VSInclude_D3D9_len };
-		SCBASE->ShaderTxt["PixelLighting_PS.h"] = { ShaderTxt_PixelLighting_PSInclude_D3D9, ShaderTxt_PixelLighting_PSInclude_D3D9_len };
-		SCBASE->ShaderTxt["PixelLighting_VS.h"] = { ShaderTxt_PixelLighting_VSInclude_D3D9, ShaderTxt_PixelLighting_VSInclude_D3D9_len };
-		SCBASE->ShaderTxt["VertexLighting_PS.h"] = { ShaderTxt_VertexLighting_PSInclude_D3D9, ShaderTxt_VertexLighting_PSInclude_D3D9_len };
-		SCBASE->ShaderTxt["VertexLighting_VS.h"] = { ShaderTxt_VertexLighting_VSInclude_D3D9, ShaderTxt_VertexLighting_VSInclude_D3D9_len };
-		SCBASE->ShaderTxt["CRT_Geom.hlsl"] = { ShaderTxt_CRT_Geom_D3D9 , ShaderTxt_CRT_Geom_D3D9_len };
+		if( DxShaderCodeTxt_D3D9Convert == 0 )
+		{
+			DxShaderCodeTxt_D3D9Convert = 1 ;
+			Base64ToBin( DxShaderCodeTxt_D3D9, DxShaderCodeTxt_D3D9 ) ;
+		}
+		Size = DXA_Decode( DxShaderCodeTxt_D3D9, NULL ) ;
+		SCBASE->ShaderTxtDxaImage = DXALLOC( ( size_t )Size ) ;
+		if( SCBASE->ShaderTxtDxaImage == NULL )
+		{
+			goto ERR ;
+		}
+
+		DXA_Decode( DxShaderCodeTxt_D3D9, SCBASE->ShaderTxtDxaImage ) ;
+
+		// ＤＸＡファイルをオープンする
+		DXA_Initialize( &SCBASE->ShaderTxtDxa ) ;
+		if( DXA_OpenArchiveFromMem( &SCBASE->ShaderTxtDxa, SCBASE->ShaderTxtDxaImage, Size, FALSE, FALSE ) != 0 )
+		{
+			goto ERR ;
+		}
 	}
 
 #endif // DX_NON_SHADERCODE_BINARY
@@ -1969,7 +1830,7 @@ extern int Graphics_D3D9_ShaderCode_Base_Initialize( void )
 		if( DxShaderCodeBin_RgbaMixConvert == 0 )
 		{
 			DxShaderCodeBin_RgbaMixConvert = 1 ;
-			Char128ToBin( DxShaderCodeBin_RgbaMix, DxShaderCodeBin_RgbaMix ) ;
+			Base64ToBin( DxShaderCodeBin_RgbaMix, DxShaderCodeBin_RgbaMix ) ;
 		}
 		Size = DXA_Decode( DxShaderCodeBin_RgbaMix, NULL ) ;
 		SCBASE->RGBAMixS_ShaderPackImage = DXALLOC( ( size_t )Size ) ;
@@ -2002,7 +1863,7 @@ extern int Graphics_D3D9_ShaderCode_Base_Initialize( void )
 		if( DxShaderCodeBin_FilterConvert == 0 )
 		{
 			DxShaderCodeBin_FilterConvert = 1 ;
-			Char128ToBin( DxShaderCodeBin_Filter, DxShaderCodeBin_Filter ) ;
+			Base64ToBin( DxShaderCodeBin_Filter, DxShaderCodeBin_Filter ) ;
 		}
 		Size = DXA_Decode( DxShaderCodeBin_Filter, NULL ) ;
 		SCBASE->FilterShaderBinDxaImage = DXALLOC( ( size_t )Size ) ;
@@ -2028,8 +1889,8 @@ extern int Graphics_D3D9_ShaderCode_Base_Initialize( void )
 	// 正常終了
 	return TRUE ;
 
-ERR:
 #ifndef DX_NON_NORMAL_DRAW_SHADER
+ERR :
 #ifndef DX_NON_SHADERCODE_BINARY
 	if( SCBASE->BaseShaderBinDxaImage != NULL )
 	{
@@ -2044,7 +1905,11 @@ ERR:
 		SCBASE->ShaderCompilerIncludeClass = NULL ;
 	}
 
-	SCBASE->ShaderTxt.clear();
+	if( SCBASE->ShaderTxtDxaImage != NULL )
+	{
+		DXFREE( SCBASE->ShaderTxtDxaImage ) ;
+		SCBASE->ShaderTxtDxaImage = NULL ;
+	}
 #endif // DX_NON_SHADERCODE_BINARY
 #endif // DX_NON_NORMAL_DRAW_SHADER
 
@@ -2095,7 +1960,15 @@ extern int Graphics_D3D9_ShaderCode_Base_Terminate( void )
 		SCBASE->ShaderCompilerIncludeClass = NULL ;
 	}
 
-	SCBASE->ShaderTxt.clear();
+	// シェーダーコード用ＤＸＡの後始末
+	DXA_Terminate( &SCBASE->ShaderTxtDxa ) ;
+
+	// 解凍したシェーダーコードを格納していたメモリの解放
+	if( SCBASE->ShaderTxtDxaImage != NULL )
+	{
+		DXFREE( SCBASE->ShaderTxtDxaImage ) ;
+		SCBASE->ShaderTxtDxaImage = NULL ;
+	}
 #endif // DX_NON_SHADERCODE_BINARY
 #endif // DX_NON_NORMAL_DRAW_SHADER
 
@@ -2160,7 +2033,7 @@ extern int Graphics_D3D9_ShaderCode_Base3D_Initialize( void )
 		if( DxShaderCodeBin_Base3D_D3D9Convert == 0 )
 		{
 			DxShaderCodeBin_Base3D_D3D9Convert = 1 ;
-			Char128ToBin( DxShaderCodeBin_Base3D_D3D9, DxShaderCodeBin_Base3D_D3D9 ) ;
+			Base64ToBin( DxShaderCodeBin_Base3D_D3D9, DxShaderCodeBin_Base3D_D3D9 ) ;
 		}
 		Size = DXA_Decode( DxShaderCodeBin_Base3D_D3D9, NULL ) ;
 		SCBASE3D->Base3DShaderPackageImage = DXCALLOC( ( size_t )Size ) ;
@@ -2273,7 +2146,7 @@ extern int Graphics_D3D9_ShaderCode_Model_Initialize( void )
 	if( DxShaderCodeBin_ModelConvert == 0 )
 	{
 		DxShaderCodeBin_ModelConvert = 1 ;
-		Char128ToBin( DxShaderCodeBin_Model, DxShaderCodeBin_Model ) ;
+		Base64ToBin( DxShaderCodeBin_Model, DxShaderCodeBin_Model ) ;
 	}
 
 	Size = DXA_Decode( DxShaderCodeBin_Model, NULL ) ;
@@ -2391,10 +2264,11 @@ extern int Graphics_D3D9_CompileShader( const char *FileName, const char *EntryP
 	D_ID3DBlob *ErrorD3D11 = NULL ;
 
 	// シェーダーソースファイルを取得する
-	auto& code = ShaderCode->Base.ShaderTxt[FileName];
-	if (code.len == 0) return -1;
-	Size = code.len;
-	DataImage = code.data;
+	if( DXA_GetFileInfo( &ShaderCode->Base.ShaderTxtDxa, DX_CHARCODEFORMAT_ASCII, FileName, &Addr, &Size ) != 0 )
+	{
+		return -1 ;
+	}
+	DataImage = ( BYTE * )DXA_GetFileImage( &ShaderCode->Base.ShaderTxtDxa ) + Addr ;
 
 	// D3DX9 の DLL があるかどうかで処理を分岐
 	if( WinAPIData.Win32Func.D3DXCompileShaderFunc != NULL )
@@ -4578,10 +4452,6 @@ extern int Graphics_D3D9_Shader_Initialize( void )
 					}
 				}
 			}
-			if (Graphics_D3D9_CompilePixelShader("CRT_Geom.hlsl", "Pass1", NULL, &Shader->Base.CrtGeomPixelShader) != 0)
-			{
-				DXST_LOGFILE_ADDA("Couldn't compile CRT_Geom pixel shader\n");
-			}
 		}
 #endif // DX_NON_SHADERCODE_BINARY
 #endif // DX_NON_NORMAL_DRAW_SHADER
@@ -4721,12 +4591,6 @@ extern int Graphics_D3D9_Shader_Terminate( void )
 	Graphics_D3D9_PixelShaderArray_Release(  ( D_IDirect3DPixelShader9  ** )Shader->Model.MV1_VertexLighting_Normal_PS,	sizeof( Shader->Model.MV1_VertexLighting_Normal_PS	) / sizeof( D_IDirect3DPixelShader9 *	) ) ;
 
 #endif // DX_NON_MODEL
-
-	if (Shader->Base.CrtGeomPixelShader)
-	{
-		Direct3D9_ObjectRelease(Shader->Base.CrtGeomPixelShader);
-		Shader->Base.CrtGeomPixelShader = NULL;
-	}
 
 	// 正常終了
 	return 0 ;
@@ -9507,7 +9371,7 @@ extern int  Graphics_D3D9_DeviceState_SetFogColor( unsigned int Color )
 	return Direct3DDevice9_SetRenderState( D_D3DRS_FOGCOLOR, Color ) == D_D3D_OK ? 0 : -1 ;
 }
 
-// フォグが始まる距離と終了する距離を設定する( 0.0f 〜 1.0f )
+// フォグが始まる距離と終了する距離を設定する( 0.0f ～ 1.0f )
 extern int  Graphics_D3D9_DeviceState_SetFogStartEnd( float Start, float End )
 {
 	float Data[ 4 ] ;
@@ -9569,7 +9433,7 @@ extern int  Graphics_D3D9_DeviceState_SetFogStartEnd( float Start, float End )
 	return 0 ;
 }
 
-// フォグの密度を設定する( 0.0f 〜 1.0f )
+// フォグの密度を設定する( 0.0f ～ 1.0f )
 extern int  Graphics_D3D9_DeviceState_SetFogDensity( float Density )
 {
 	float Data[ 4 ] ;
@@ -9713,7 +9577,7 @@ extern int  Graphics_D3D9_DeviceState_SetVerticalFogColor( unsigned int Color )
 	return 0 ;
 }
 
-// 高さフォグが始まる距離と終了する距離を設定する( 0.0f 〜 1.0f )
+// 高さフォグが始まる距離と終了する距離を設定する( 0.0f ～ 1.0f )
 extern int  Graphics_D3D9_DeviceState_SetVerticalFogStartEnd( float Start, float End )
 {
 	float Data[ 4 ] ;
@@ -9750,7 +9614,7 @@ extern int  Graphics_D3D9_DeviceState_SetVerticalFogStartEnd( float Start, float
 	return 0 ;
 }
 
-// 高さフォグの密度を設定する( 0.0f 〜 1.0f )
+// 高さフォグの密度を設定する( 0.0f ～ 1.0f )
 extern int  Graphics_D3D9_DeviceState_SetVerticalFogDensity( float start, float Density )
 {
 	float Data[ 4 ] ;
@@ -17315,7 +17179,7 @@ extern void Graphics_D3D9_EndScene( void )
 // Direct3D9 を使った描画関係
 
 // ハードウエアアクセラレータ使用版 DrawBillboard3D
-extern	int		Graphics_D3D9_DrawBillboard3D( VECTOR Pos, float cx, float cy, float Size, float Angle, IMAGEDATA *Image, IMAGEDATA *BlendImage, int TransFlag, int ReverseXFlag, int ReverseYFlag, int DrawFlag, RECT *DrawArea )
+extern	int		Graphics_D3D9_DrawBillboard3D( VECTOR Pos, float cx, float cy, float SizeX, float SizeY, float Angle, IMAGEDATA *Image, IMAGEDATA *BlendImage, int TransFlag, int ReverseXFlag, int ReverseYFlag, int DrawFlag, RECT *DrawArea )
 {
 	VERTEX_2D *DrawVert ;
 	VERTEX_2D TempVert[ 6 ] ;
@@ -17332,8 +17196,6 @@ extern	int		Graphics_D3D9_DrawBillboard3D( VECTOR Pos, float cx, float cy, float
 	int i ;
 	int Flag ;
 	int BlendGraphNoIncFlag ;
-	float SizeX ;
-	float SizeY ;
 	float f ;
 	VECTOR SrcVec[ 4 ] ;
 	VECTOR SrcVec2[ 4 ] ;
@@ -17391,9 +17253,6 @@ extern	int		Graphics_D3D9_DrawBillboard3D( VECTOR Pos, float cx, float cy, float
 	}
 
 	// サイズと座標関係の事前計算
-	SizeX = Size ;
-	SizeY = Size * ( float )Image->HeightF / ( float )Image->WidthF ;
-
 	ScaleX = SizeX / Image->WidthF ;
 	ScaleY = SizeY / Image->HeightF ;
 	cx *= Image->WidthF ;
@@ -25100,7 +24959,7 @@ extern	int		Graphics_D3D9_Draw32bitIndexedPrimitive2DUser( const VERTEX2D *Verte
 
 
 // シェーダー描画用描画前セットアップ関数
-extern void Graphics_D3D9_DrawPreparationToShader( int ParamFlag, int UseVertexShaderNo, int Is2D, int UseLibSubShaderConst )
+extern void Graphics_D3D9_DrawPreparationToShader( int ParamFlag, int UseVertexShaderNo, int Is2D, int UseLibSubShaderConst, int UseNormalVertex )
 {
 	GRAPHICS_HARDDATA_DIRECT3D9_BLENDINFO BlendInfo ;
 	int i, Flag ;
@@ -25185,7 +25044,23 @@ extern void Graphics_D3D9_DrawPreparationToShader( int ParamFlag, int UseVertexS
 	if( UseVertexShaderNo >= 0 )
 	{
 		// 使用する頂点データフォーマットを更新
-		Graphics_D3D9_DeviceState_SetVertexDeclaration( GD3D9.Device.VertexDeclaration.UserShaderDeclaration[ UseVertexShaderNo ] ) ;
+		if( UseNormalVertex )
+		{
+			// 通常頂点データを使用する場合
+			if( Is2D )
+			{
+				Graphics_D3D9_DeviceState_SetVertexDeclaration( GD3D9.Device.VertexDeclaration.Base2DDeclaration[ VERTEXFVF_DECL_2D ] ) ;
+			}
+			else
+			{
+				Graphics_D3D9_DeviceState_SetVertexDeclaration( GD3D9.Device.VertexDeclaration.Base2DDeclaration[ VERTEXFVF_DECL_3D_LIGHT ] ) ;
+			}
+		}
+		else
+		{
+			// ユーザーシェーダー用頂点データを使用する場合
+			Graphics_D3D9_DeviceState_SetVertexDeclaration( GD3D9.Device.VertexDeclaration.UserShaderDeclaration[ UseVertexShaderNo ] ) ;
+		}
 
 		// 使用する頂点シェーダーを更新
 		Graphics_D3D9_DeviceState_SetVertexShaderToHandle( GSYS.DrawSetting.UserShaderRenderInfo.SetVertexShaderHandle ) ;
@@ -25344,6 +25219,144 @@ extern	int		Graphics_D3D9_DrawPrimitive32bitIndexed3DToShader( const VERTEX3DSHA
 
 	// 描画
 	Direct3DDevice9_DrawIndexedPrimitiveUP( ( D_D3DPRIMITIVETYPE )PrimitiveType, 0, ( UINT )VertexNum, GETPRIMNUM( PrimitiveType, IndexNum ), Indices, D_D3DFMT_INDEX32, Vertex, sizeof( VERTEX3DSHADER ) ) ;
+	GSYS.PerformanceInfo.NowFrameDrawCallCount ++ ;
+
+	// 終了
+	return 0 ;
+}
+
+// シェーダーを使って２Ｄプリミティブを描画する
+extern	int		Graphics_D3D9_DrawPrimitive2DToShader2(        const VERTEX2D *Vertex, int VertexNum,                                              int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST 等 */ )
+{
+	if( GAPIWin.Direct3DDevice9Object == NULL ) return -1 ;
+	if( GSYS.HardInfo.UseShader == FALSE ) return -1 ;
+
+	// 描画待機している描画物を描画
+	DRAWSTOCKINFO
+
+	// 描画の準備
+	Graphics_D3D9_BeginScene() ;
+	Graphics_D3D9_DrawPreparationToShader( DX_D3D9_DRAWPREP_GOURAUDSHADE | DX_D3D9_DRAWPREP_PERSPECTIVE, -1, TRUE, FALSE, TRUE ) ;
+
+	// 描画
+	Direct3DDevice9_DrawPrimitiveUP( ( D_D3DPRIMITIVETYPE )PrimitiveType, GETPRIMNUM( PrimitiveType, VertexNum ), Vertex, sizeof( VERTEX2D ) ) ;
+	GSYS.PerformanceInfo.NowFrameDrawCallCount ++ ;
+
+	// 終了
+	return 0 ;
+}
+
+// シェーダーを使って３Ｄプリミティブを描画する
+extern	int		Graphics_D3D9_DrawPrimitive3DToShader2(        const VERTEX3D *Vertex, int VertexNum,                                              int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST 等 */ )
+{
+	if( GAPIWin.Direct3DDevice9Object == NULL ) return -1 ;
+	if( GSYS.HardInfo.UseShader == FALSE ) return -1 ;
+
+	// 描画待機している描画物を描画
+	DRAWSTOCKINFO
+
+	// 描画の準備
+	Graphics_D3D9_BeginScene() ;
+	Graphics_D3D9_DrawPreparationToShader( DX_D3D9_DRAWPREP_3D | DX_D3D9_DRAWPREP_GOURAUDSHADE | DX_D3D9_DRAWPREP_FOG | DX_D3D9_DRAWPREP_PERSPECTIVE | DX_D3D9_DRAWPREP_LIGHTING, DX_VERTEX_TYPE_SHADER_3D, FALSE, FALSE, TRUE ) ;
+
+	// ３Ｄ行列をハードウエアに反映する
+	if( GSYS.DrawSetting.MatchHardware3DMatrix == FALSE )
+		Graphics_DrawSetting_ApplyLib3DMatrixToHardware() ;
+
+	// 描画
+	Direct3DDevice9_DrawPrimitiveUP( ( D_D3DPRIMITIVETYPE )PrimitiveType, GETPRIMNUM( PrimitiveType, VertexNum ), Vertex, sizeof( VERTEX3D ) ) ;
+	GSYS.PerformanceInfo.NowFrameDrawCallCount ++ ;
+
+	// 終了
+	return 0 ;
+}
+
+// シェーダーを使って２Ｄプリミティブを描画する( 頂点インデックスを使用する )
+extern	int		Graphics_D3D9_DrawPrimitiveIndexed2DToShader2( const VERTEX2D *Vertex, int VertexNum, const unsigned short *Indices, int IndexNum, int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST 等 */ )
+{
+	if( GAPIWin.Direct3DDevice9Object == NULL ) return -1 ;
+	if( GSYS.HardInfo.UseShader == FALSE ) return -1 ;
+
+	// 描画待機している描画物を描画
+	DRAWSTOCKINFO
+
+	// 描画の準備
+	Graphics_D3D9_BeginScene() ;
+	Graphics_D3D9_DrawPreparationToShader( DX_D3D9_DRAWPREP_GOURAUDSHADE | DX_D3D9_DRAWPREP_PERSPECTIVE, -1, TRUE, FALSE, TRUE ) ;
+
+	// 描画
+	Direct3DDevice9_DrawIndexedPrimitiveUP( ( D_D3DPRIMITIVETYPE )PrimitiveType, 0, ( UINT )VertexNum, GETPRIMNUM( PrimitiveType, IndexNum ), Indices, D_D3DFMT_INDEX16, Vertex, sizeof( VERTEX2D ) ) ;
+	GSYS.PerformanceInfo.NowFrameDrawCallCount ++ ;
+
+	// 終了
+	return 0 ;
+}
+
+// シェーダーを使って２Ｄプリミティブを描画する( 頂点インデックスを使用する )
+extern	int		Graphics_D3D9_DrawPrimitive32bitIndexed2DToShader2( const VERTEX2D *Vertex, int VertexNum, const unsigned int *Indices, int IndexNum, int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST 等 */ )
+{
+	if( GAPIWin.Direct3DDevice9Object == NULL ) return -1 ;
+	if( GSYS.HardInfo.UseShader == FALSE ) return -1 ;
+
+	// 描画待機している描画物を描画
+	DRAWSTOCKINFO
+
+	// 描画の準備
+	Graphics_D3D9_BeginScene() ;
+	Graphics_D3D9_DrawPreparationToShader( DX_D3D9_DRAWPREP_GOURAUDSHADE | DX_D3D9_DRAWPREP_PERSPECTIVE, -1, TRUE, FALSE, TRUE ) ;
+
+	// 描画
+	Direct3DDevice9_DrawIndexedPrimitiveUP( ( D_D3DPRIMITIVETYPE )PrimitiveType, 0, ( UINT )VertexNum, GETPRIMNUM( PrimitiveType, IndexNum ), Indices, D_D3DFMT_INDEX32, Vertex, sizeof( VERTEX2D ) ) ;
+	GSYS.PerformanceInfo.NowFrameDrawCallCount ++ ;
+
+	// 終了
+	return 0 ;
+}
+
+// シェーダーを使って３Ｄプリミティブを描画する( 頂点インデックスを使用する )
+extern	int		Graphics_D3D9_DrawPrimitiveIndexed3DToShader2( const VERTEX3D *Vertex, int VertexNum, const unsigned short *Indices, int IndexNum, int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST 等 */ )
+{
+	if( GAPIWin.Direct3DDevice9Object == NULL ) return -1 ;
+	if( GSYS.HardInfo.UseShader == FALSE ) return -1 ;
+
+	// 描画待機している描画物を描画
+	DRAWSTOCKINFO
+
+	// 描画の準備
+	Graphics_D3D9_BeginScene() ;
+	Graphics_D3D9_DrawPreparationToShader( DX_D3D9_DRAWPREP_3D | DX_D3D9_DRAWPREP_GOURAUDSHADE | DX_D3D9_DRAWPREP_FOG | DX_D3D9_DRAWPREP_PERSPECTIVE | DX_D3D9_DRAWPREP_LIGHTING, DX_VERTEX_TYPE_SHADER_3D, FALSE, FALSE, TRUE ) ;
+
+	// ３Ｄ行列をハードウエアに反映する
+	if( GSYS.DrawSetting.MatchHardware3DMatrix == FALSE )
+		Graphics_DrawSetting_ApplyLib3DMatrixToHardware() ;
+
+	// 描画
+	Direct3DDevice9_DrawIndexedPrimitiveUP( ( D_D3DPRIMITIVETYPE )PrimitiveType, 0, ( UINT )VertexNum, GETPRIMNUM( PrimitiveType, IndexNum ), Indices, D_D3DFMT_INDEX16, Vertex, sizeof( VERTEX3D ) ) ;
+	GSYS.PerformanceInfo.NowFrameDrawCallCount ++ ;
+
+	// 終了
+	return 0 ;
+}
+
+// シェーダーを使って３Ｄプリミティブを描画する( 頂点インデックスを使用する )
+extern	int		Graphics_D3D9_DrawPrimitive32bitIndexed3DToShader2( const VERTEX3D *Vertex, int VertexNum, const unsigned int *Indices, int IndexNum, int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST 等 */ )
+{
+	if( GAPIWin.Direct3DDevice9Object == NULL ) return -1 ;
+	if( GSYS.HardInfo.UseShader == FALSE ) return -1 ;
+
+	// 描画待機している描画物を描画
+	DRAWSTOCKINFO
+
+	// 描画の準備
+	Graphics_D3D9_BeginScene() ;
+	Graphics_D3D9_DrawPreparationToShader( DX_D3D9_DRAWPREP_3D | DX_D3D9_DRAWPREP_GOURAUDSHADE | DX_D3D9_DRAWPREP_FOG | DX_D3D9_DRAWPREP_PERSPECTIVE | DX_D3D9_DRAWPREP_LIGHTING, DX_VERTEX_TYPE_SHADER_3D, FALSE, FALSE, TRUE ) ;
+
+	// ３Ｄ行列をハードウエアに反映する
+	if( GSYS.DrawSetting.MatchHardware3DMatrix == FALSE )
+		Graphics_DrawSetting_ApplyLib3DMatrixToHardware() ;
+
+	// 描画
+	Direct3DDevice9_DrawIndexedPrimitiveUP( ( D_D3DPRIMITIVETYPE )PrimitiveType, 0, ( UINT )VertexNum, GETPRIMNUM( PrimitiveType, IndexNum ), Indices, D_D3DFMT_INDEX32, Vertex, sizeof( VERTEX3D ) ) ;
 	GSYS.PerformanceInfo.NowFrameDrawCallCount ++ ;
 
 	// 終了
@@ -25627,11 +25640,6 @@ extern	int		Graphics_D3D9_Initialize_Timing1_PF( void )
 extern	int		Graphics_D3D9_Hardware_Initialize_PF( void )
 {
 	return Graphics_D3D9_Device_Initialize() ;
-}
-
-extern int Graphics_D3D9_Reset_PF(void)
-{
-	return Graphics_D3D9_Reset();
 }
 
 // 描画処理の環境依存部分の後始末を行う関数
@@ -26206,7 +26214,7 @@ extern	int		Graphics_Hardware_D3D9_SetFogColor_PF( DWORD FogColor )
 	return 0 ;
 }
 
-// フォグが始まる距離と終了する距離を設定する( 0.0f 〜 1.0f )
+// フォグが始まる距離と終了する距離を設定する( 0.0f ～ 1.0f )
 extern	int		Graphics_Hardware_D3D9_SetFogStartEnd_PF( float start, float end )
 {
 	Graphics_D3D9_DeviceState_SetFogStartEnd( start, end ) ;
@@ -26215,7 +26223,7 @@ extern	int		Graphics_Hardware_D3D9_SetFogStartEnd_PF( float start, float end )
 	return 0 ;
 }
 
-// フォグの密度を設定する( 0.0f 〜 1.0f )
+// フォグの密度を設定する( 0.0f ～ 1.0f )
 extern	int		Graphics_Hardware_D3D9_SetFogDensity_PF( float density )
 {
 	Graphics_D3D9_DeviceState_SetFogDensity( density ) ;
@@ -26251,7 +26259,7 @@ extern	int		Graphics_Hardware_D3D9_SetVerticalFogColor_PF( DWORD VerticalFogColo
 	return 0 ;
 }
 
-// 高さフォグが始まる距離と終了する距離を設定する( 0.0f 〜 1.0f )
+// 高さフォグが始まる距離と終了する距離を設定する( 0.0f ～ 1.0f )
 extern	int		Graphics_Hardware_D3D9_SetVerticalFogStartEnd_PF( float start, float end )
 {
 	Graphics_D3D9_DeviceState_SetVerticalFogStartEnd( start, end ) ;
@@ -26260,7 +26268,7 @@ extern	int		Graphics_Hardware_D3D9_SetVerticalFogStartEnd_PF( float start, float
 	return 0 ;
 }
 
-// 高さフォグの密度を設定する( 0.0f 〜 1.0f )
+// 高さフォグの密度を設定する( 0.0f ～ 1.0f )
 extern	int		Graphics_Hardware_D3D9_SetVerticalFogDensity_PF( float start, float density )
 {
 	Graphics_D3D9_DeviceState_SetVerticalFogDensity( start, density ) ;
@@ -27348,6 +27356,11 @@ extern	int		Graphics_Hardware_D3D9_SetDrawZBuffer_PF( int /* DrawScreen */, IMAG
 	return 0 ;
 }
 
+// グラフィックハンドルが持つ IDirect3DTexture9 を取得する( Direct3D9 を使用している場合のみ有効 )( 戻り値を IDirect3DTexture9 * にキャストしてください )
+extern	const void*	Graphics_Hardware_D3D9_GetGraphIDirect3DTexture9_PF( IMAGEDATA *Image )
+{
+	return Image->Hard.Draw[ 0 ].Tex->PF->D3D9.Texture ;
+}
 
 
 

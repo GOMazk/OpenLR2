@@ -1,8 +1,8 @@
-﻿// -------------------------------------------------------------------------------
+// -------------------------------------------------------------------------------
 // 
 // 		ＤＸライブラリ		Android用システムプログラム
 // 
-// 				Ver 3.24f
+// 				Ver 3.25a
 // 
 // -------------------------------------------------------------------------------
 
@@ -1885,7 +1885,7 @@ extern int NS_ProcessMessage( void )
 		void *source ;
 
 		// イベントの取得、ソフト実行用スレッドが待ち状態の場合はイベントが来るまで延々と待つ
-		int ident = ALooper_pollAll( ( g_AndroidSys.SoftThreadWait && g_AndroidSys.NonActiveRunFlag == FALSE ) ? -1 : 0, NULL, &events, &source ) ;
+		int ident = ALooper_pollOnce( ( g_AndroidSys.SoftThreadWait && g_AndroidSys.NonActiveRunFlag == FALSE ) ? -1 : 0, NULL, &events, &source ) ;
 		if( ident < 0 ) 
 		{
 			break ;
@@ -3543,7 +3543,7 @@ END :
 
 // 振動を開始する
 // Milliseconds : 振動させる時間( 単位：ミリ秒 )
-// Amplitude : 振動の強さ( 0( 振動なし ) 〜 255( 最大振幅 ) )、振動の強さの制御に対応していない場合は無視されます
+// Amplitude : 振動の強さ( 0( 振動なし ) ～ 255( 最大振幅 ) )、振動の強さの制御に対応していない場合は無視されます
 extern int Vibrator_vibrate( int Milliseconds, int Amplitude )
 {
 	JNIEnv *env ;
@@ -3712,7 +3712,7 @@ END :
 
 // 振幅制御付き( 振動の強さ指定付き )振動を開始する( Vibrator_hasAmplitudeControl の戻り値が TRUE の場合のみ使用可能 )
 // Timings : 振動の強さを変更するタイミング( 単位：ミリ秒 )の配列
-// Amplitudes : 振動の強さ( 0( 振動なし ) 〜 255( 最大振幅 ) )の配列
+// Amplitudes : 振動の強さ( 0( 振動なし ) ～ 255( 最大振幅 ) )の配列
 // ArrayLength : Timings と Amplitudes の配列の長さ( 配列の長さはどちらも同じである必要があります )
 // Repeat : Timings と Amplitudes で示される振動パターンを繰り返す回数、-1 で繰り返し無し
 extern int Vibrator_vibrate_with_Amplitudes( int *Timings, int *Amplitudes, int ArrayLength, int Repeat )
@@ -5410,7 +5410,7 @@ END :
 
 
 
-// Wifi の電波強度を取得する( 戻り値：電波の強度 0 〜 100 )
+// Wifi の電波強度を取得する( 戻り値：電波の強度 0 ～ 100 )
 extern int GetWifiSignalLevel( void )
 {
 	jobject object_WifiManager = NULL ;

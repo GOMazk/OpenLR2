@@ -985,7 +985,7 @@ int main(int argc, char** argv) {
 			std::ofstream("nowstate.json") << get_scene_status_string(gs);
 
 			// Disable DEVICECHANGE joypad resync only while playing (avoids mid-chart hitch).
-			SetUseJoypadDeviceChangeResyncFlag(gs.procSelecter != SCENE_PLAY);
+			//SetUseJoypadDeviceChangeResyncFlag(gs.procSelecter != SCENE_PLAY); //TEST 3.25a
 
 			InitFade(&gs.audio);
 			gs.gameplay.flag_closingPhase = 1;

@@ -1,8 +1,8 @@
-﻿// -------------------------------------------------------------------------------
+// -------------------------------------------------------------------------------
 // 
 // 		ＤＸライブラリ		描画プログラムヘッダファイル
 // 
-// 				Ver 3.24f
+// 				Ver 3.25a
 // 
 // -------------------------------------------------------------------------------
 
@@ -890,8 +890,8 @@ struct GRAPHICSSYS_DRAWSETTINGDATA
 	int						BlendGraph ;							// ブレンドグラフィックハンドル
 //	int						BlendGraphType ;						// ブレンドグラフィックタイプ
 //	int						BlendGraphFadeRatio ;					// ブレンドグラフィックのフェードパラメータ
-	int						BlendGraphBorderParam ;					// ブレンドグラフィックハンドルのブレンド境界値(0〜255)
-	int						BlendGraphBorderRange ;					// ブレンドグラフィックハンドルの境界部分の幅(0〜255)
+	int						BlendGraphBorderParam ;					// ブレンドグラフィックハンドルのブレンド境界値(0～255)
+	int						BlendGraphBorderRange ;					// ブレンドグラフィックハンドルの境界部分の幅(0～255)
 	int						BlendGraphX, BlendGraphY ;				// ブレンドグラフィックの起点座標
 	int						BlendGraphPosMode ;						// ブレンドグラフィックの座標モード( DX_BLENDGRAPH_POSMODE_DRAWGRAPH など )
 
@@ -1019,6 +1019,7 @@ struct GRAPHICSSYS_CREATEIMAGEDATA
 	int *					CreateDivGraphHandle ;					// 作成するグラフィックハンドルとして使用するグラフィックハンドル値、分割画像用
 	int						CreateDivGraphHandleNum ;				// 作成するグラフィックハンドルとして使用するグラフィックハンドル値、分割画像用のハンドル数
 	int						PlatformTextureFormat ;					// 環境依存のテクスチャフォーマットを直接指定するために使用するための変数( DX_TEXTUREFORMAT_DIRECT3D9_R8G8B8 など )
+	int						TempDerivationGraphHandle ;				// DrawRectRotaGraph 等で一時的に DerivationGraph で使用するグラフィックハンドル
 
 	int						DrawValidFlag ;							// 描画可能画像作成指定フラグ( テクスチャサーフェスのみ )
 	int						DrawValidAlphaFlag ;					// 描画可能なαチャンネル付き画像作成指定フラグ( テクスチャサーフェスのみ )
@@ -1249,7 +1250,6 @@ extern GRAPHICSSYSTEMDATA GraphicsSysData ;
 
 // グラフィック関連の初期化と後始末
 extern	int		Graphics_Initialize( void ) ;					// グラフィックスシステムの初期化
-extern	int		Graphics_Reset(void);
 extern	int		Graphics_Terminate( void ) ;					// グラフィックシステムの後始末
 extern	int		Graphics_RestoreOrChangeSetupGraphSystem( int Change, int ScreenSizeX = -1, int ScreenSizeY = -1, int ColorBitDepth = -1, int RefreshRate = -1 ) ;		// グラフィックスシステムの復帰、又は変更付きの再セットアップを行う
 
@@ -1297,7 +1297,8 @@ extern	int		Graphics_Image_InitializeDerivationHandle( int GrHandle, int IsFloat
 extern	int		Graphics_Image_InitializeDrawInfo( int GrHandle, int IsFloat, int ASyncThread = FALSE ) ;			// グラフィックハンドルの描画情報を初期化する
 extern	int		Graphics_Image_IsValidHandle( int GrHandle ) ;															// グラフィックハンドルが有効かどうかを調べる( TRUE:有効  FALSE:無効 )
 extern	int		Graphics_Image_CreateDXGraph_UseGParam( SETUP_GRAPHHANDLE_GPARAM *GParam, int GrHandle, const BASEIMAGE *RgbBaseImage, const BASEIMAGE *AlphaBaseImage, int TextureFlag, int ASyncThread = FALSE ) ;																										// CreateDXGraph のグローバル変数にアクセスしないバージョン
-extern	int		Graphics_Image_DerivationGraph_UseGParam( int IsFloat, int SrcXI, float SrcXF, int SrcYI, float SrcYF, int WidthI, float WidthF, int HeightI, float HeightF, int SrcGraphHandle, int ASyncThread = FALSE ) ;																																								// DerivationGraph のグローバル変数にアクセスしないバージョン
+extern	int		Graphics_Image_DerivationGraph_UseGParam( int IsFloat, int SrcXI, float SrcXF, int SrcYI, float SrcYF, int WidthI, float WidthF, int HeightI, float HeightF, int SrcGraphHandle, int UseTempGraphHandle, int ASyncThread = FALSE ) ;						// DerivationGraph のグローバル変数にアクセスしないバージョン
+extern	int		Graphics_Image_TempDerivationGraph_Terminate( void ) ;																																																		// Graphics_Image_DerivationGraph_UseGParam の引数 UseTempGraphHandle を TRUE で作成したグラフィックハンドルの後始末を行う
 #ifndef DX_NON_MOVIE
 extern	int		Graphics_Image_OpenMovie_UseGParam( LOADGRAPH_GPARAM *GParam, int GrHandle, const wchar_t *GraphName, const void *FileImage, size_t FileImageSize, int TextureFlag, int SurfaceMode = DX_MOVIESURFACE_NORMAL, int ImageSizeGetOnly = FALSE, int ASyncThread = FALSE ) ;
 #endif
@@ -1589,7 +1590,6 @@ extern	int		Graphics_Other_TerminateCommonBuffer( void ) ;									// 共有メ�
 extern	int		Graphics_Initialize_Timing0_PF( void ) ;										// 描画処理の環境依存部分の初期化を行う関数( 実行箇所区別０ )
 extern	int		Graphics_Initialize_Timing1_PF( void ) ;										// 描画処理の環境依存部分の初期化を行う関数( 実行箇所区別２ )
 extern	int		Graphics_Hardware_Initialize_PF( void ) ;										// ハードウエアアクセラレータを使用する場合の環境依存の初期化処理を行う
-extern	int		Graphics_Reset_PF(void);
 extern	int		Graphics_Terminate_PF( void ) ;													// 描画処理の環境依存部分の後始末を行う関数
 extern	int		Graphics_RestoreOrChangeSetupGraphSystem_PF( int Change, int ScreenSizeX = -1, int ScreenSizeY = -1, int ColorBitDepth = -1, int RefreshRate = -1 ) ;		// グラフィックスシステムの復帰、又は変更付きの再セットアップを行う
 extern	int		Graphics_Hardware_CheckValid_PF( void ) ;										// 描画用デバイスが有効かどうかを取得する( 戻り値  TRUE:有効  FALSE:無効 )
@@ -1602,7 +1602,7 @@ extern	int		Graphics_Hardware_CheckValid_PF( void ) ;										// 描画用デ�
 
 // 環境依存描画設定関係
 extern	int		Graphics_Hardware_SetRenderTargetToShader_PF( int TargetIndex, int DrawScreen, int SurfaceIndex , int MipLevel ) ;		// シェーダー描画での描画先を設定する
-extern	int		Graphics_Hardware_SetBackgroundColor_PF( int Red, int Green, int Blue, int Alpha ) ;					// メインウインドウの背景色を設定する( Red,Green,Blue:それぞれ ０〜２５５ )
+extern	int		Graphics_Hardware_SetBackgroundColor_PF( int Red, int Green, int Blue, int Alpha ) ;					// メインウインドウの背景色を設定する( Red,Green,Blue:それぞれ ０～２５５ )
 extern	int		Graphics_Hardware_SetDrawBrightToOneParam_PF( DWORD Bright ) ;											// SetDrawBright の引数が一つ版
 extern	int		Graphics_Hardware_SetDrawBlendMode_PF( int BlendMode, int BlendParam ) ;								// 描画ブレンドモードをセットする
 extern	int		Graphics_Hardware_SetDrawCustomBlendMode_PF( int BlendEnable, int SrcBlendRGB, int DestBlendRGB, int BlendOpRGB, int SrcBlendA, int DestBlendA, int BlendOpA, int BlendParam ) ; // カスタムブレンドモードを設定する
@@ -1622,13 +1622,13 @@ extern	int		Graphics_Hardware_SetTextureAddressTransformMatrix_PF( int UseFlag, 
 extern	int		Graphics_Hardware_SetFogEnable_PF( int Flag ) ;															// フォグを有効にするかどうかを設定する( TRUE:有効  FALSE:無効 )
 extern	int		Graphics_Hardware_SetFogMode_PF( int Mode /* DX_FOGMODE_NONE 等 */ ) ;									// フォグモードを設定する
 extern	int		Graphics_Hardware_SetFogColor_PF( DWORD FogColor ) ;													// フォグカラーを変更する
-extern	int		Graphics_Hardware_SetFogStartEnd_PF( float start, float end ) ;											// フォグが始まる距離と終了する距離を設定する( 0.0f 〜 1.0f )
-extern	int		Graphics_Hardware_SetFogDensity_PF( float density ) ;													// フォグの密度を設定する( 0.0f 〜 1.0f )
+extern	int		Graphics_Hardware_SetFogStartEnd_PF( float start, float end ) ;											// フォグが始まる距離と終了する距離を設定する( 0.0f ～ 1.0f )
+extern	int		Graphics_Hardware_SetFogDensity_PF( float density ) ;													// フォグの密度を設定する( 0.0f ～ 1.0f )
 extern	int		Graphics_Hardware_SetVerticalFogEnable_PF( int Flag ) ;													// 高さフォグを有効にするかどうかを設定する( TRUE:有効  FALSE:無効 )
 extern	int		Graphics_Hardware_SetVerticalFogMode_PF( int Mode /* DX_FOGMODE_NONE 等 */ ) ;							// 高さフォグモードを設定する
 extern	int		Graphics_Hardware_SetVerticalFogColor_PF( DWORD FogColor ) ;											// 高さフォグカラーを変更する
-extern	int		Graphics_Hardware_SetVerticalFogStartEnd_PF( float start, float end ) ;									// 高さフォグが始まる距離と終了する距離を設定する( 0.0f 〜 1.0f )
-extern	int		Graphics_Hardware_SetVerticalFogDensity_PF( float start, float density ) ;								// 高さフォグの密度を設定する( 0.0f 〜 1.0f )
+extern	int		Graphics_Hardware_SetVerticalFogStartEnd_PF( float start, float end ) ;									// 高さフォグが始まる距離と終了する距離を設定する( 0.0f ～ 1.0f )
+extern	int		Graphics_Hardware_SetVerticalFogDensity_PF( float start, float density ) ;								// 高さフォグの密度を設定する( 0.0f ～ 1.0f )
 extern	int		Graphics_Hardware_DeviceDirect_SetWorldMatrix_PF( const MATRIX *Matrix ) ;								// ワールド変換用行列をセットする
 extern	int		Graphics_Hardware_DeviceDirect_SetViewMatrix_PF( const MATRIX *Matrix ) ;								// ビュー変換用行列をセットする
 extern	int		Graphics_Hardware_DeviceDirect_SetProjectionMatrix_PF( const MATRIX *Matrix ) ;							// 投影変換用行列をセットする
@@ -1637,6 +1637,8 @@ extern	int		Graphics_Hardware_SetUseOldDrawModiGraphCodeFlag_PF( int Flag ) ;			
 extern	int		Graphics_Hardware_RefreshAlphaChDrawMode_PF( void ) ;													// 描画先に正しいα値を書き込むかどうかのフラグを更新する
 //extern	void	Graphics_Hardware_SetUse2DProjectionMatrix_PF( int Use2DProjectionMatrix ) ;							// 使用する射影行列を３Ｄ用にするか２Ｄ用にするかを設定する
 extern	int		Graphics_Hardware_RefreshSetting_PF( void ) ;															// ミドルウェア等を使用した後に Direct3D や OpenGL のＤＸライブラリ用の設定を再度行うための関数
+extern	void	Graphics_DrawSetting_ApplyLib2DMatrixToHardware_PF( void ) ;											// 基本データに設定されている２Ｄ行列をハードウエアに反映する
+extern	void	Graphics_DrawSetting_ApplyLib3DMatrixToHardware_PF( int IgnoreWorldMatrix = FALSE ) ;					// 基本データに設定されている３Ｄ行列をハードウエアに反映する
 
 
 
@@ -1862,7 +1864,7 @@ extern	int		Graphics_Hardware_ShaderConstantBuffer_Set_PF( SHADERCONSTANTBUFFERH
 // 環境依存描画関係
 extern	int		Graphics_Hardware_RenderVertex( int ASyncThread = FALSE ) ;																							// 頂点バッファに溜まった頂点データをレンダリングする
 
-extern	int		Graphics_Hardware_DrawBillboard3D_PF(     VECTOR Pos, float cx, float cy, float Size, float Angle,                                    IMAGEDATA *Image, IMAGEDATA *BlendImage, int TransFlag, int ReverseXFlag, int ReverseYFlag, int DrawFlag = TRUE, RECT *DrawArea = NULL ) ;	// ハードウエアアクセラレータ使用版 DrawBillboard3D
+extern	int		Graphics_Hardware_DrawBillboard3D_PF(     VECTOR Pos, float cx, float cy, float SizeX, float SizeY, float Angle,                      IMAGEDATA *Image, IMAGEDATA *BlendImage, int TransFlag, int ReverseXFlag, int ReverseYFlag, int DrawFlag = TRUE, RECT *DrawArea = NULL ) ;	// ハードウエアアクセラレータ使用版 DrawBillboard3D
 extern	int		Graphics_Hardware_DrawModiBillboard3D_PF( VECTOR Pos, float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4, IMAGEDATA *Image, IMAGEDATA *BlendImage, int TransFlag,               int DrawFlag = TRUE, RECT *DrawArea = NULL ) ;	// ハードウエアアクセラレータ使用版 DrawModiBillboard3D
 extern	int		Graphics_Hardware_DrawGraph_PF(           int x,  int y, float xf, float yf,                                                          IMAGEDATA *Image, IMAGEDATA *BlendImage, int TransFlag, int IntFlag ) ;				// ハードウエアアクセラレータ使用版 DrawGraph
 extern	int		Graphics_Hardware_DrawExtendGraph_PF(     int x1, int y1, int x2, int y2, float x1f, float y1f, float x2f, float y2f,                 IMAGEDATA *Image, IMAGEDATA *BlendImage, int TransFlag, int IntFlag ) ;				// ハードウエアアクセラレータ使用版 DrawExtendGraph
@@ -1904,14 +1906,20 @@ extern	int		Graphics_Hardware_DrawPrimitive2DUser_PF(                       cons
 extern	int		Graphics_Hardware_DrawIndexedPrimitive2DUser_PF(                const VERTEX2D  *Vertex, int VertexNum, const WORD  *Indices, int IndexNum, int PrimitiveType, IMAGEDATA *Image, int TransFlag ) ;
 extern	int		Graphics_Hardware_Draw32bitIndexedPrimitive2DUser_PF(           const VERTEX2D  *Vertex, int VertexNum, const DWORD *Indices, int IndexNum, int PrimitiveType, IMAGEDATA *Image, int TransFlag ) ;
 
-extern	int		Graphics_Hardware_DrawPolygon3DToShader_PF(               const VERTEX3DSHADER *Vertex, int PolygonNum ) ;																										// シェーダーを使って３Ｄポリゴンを描画する
-extern	int		Graphics_Hardware_DrawPolygonIndexed3DToShader_PF(        const VERTEX3DSHADER *Vertex, int VertexNum, const unsigned short *Indices, int PolygonNum ) ;														// シェーダーを使って３Ｄポリゴンを描画する( 頂点インデックスを使用する )
-extern	int		Graphics_Hardware_DrawPrimitive2DToShader_PF(             const VERTEX2DSHADER *Vertex, int VertexNum,                                              int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST 等 */ ) ;		// シェーダーを使って２Ｄプリミティブを描画する
-extern	int		Graphics_Hardware_DrawPrimitive3DToShader_PF(             const VERTEX3DSHADER *Vertex, int VertexNum,                                              int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST 等 */ ) ;		// シェーダーを使って３Ｄプリミティブを描画する
-extern	int		Graphics_Hardware_DrawPrimitiveIndexed2DToShader_PF(      const VERTEX2DSHADER *Vertex, int VertexNum, const unsigned short *Indices, int IndexNum, int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST 等 */ ) ;		// シェーダーを使って２Ｄプリミティブを描画する( 頂点インデックスを使用する )
-extern	int		Graphics_Hardware_DrawPrimitive32bitIndexed2DToShader_PF( const VERTEX2DSHADER *Vertex, int VertexNum, const unsigned int   *Indices, int IndexNum, int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST 等 */ ) ;		// シェーダーを使って２Ｄプリミティブを描画する( 頂点インデックスを使用する )
-extern	int		Graphics_Hardware_DrawPrimitiveIndexed3DToShader_PF(      const VERTEX3DSHADER *Vertex, int VertexNum, const unsigned short *Indices, int IndexNum, int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST 等 */ ) ;		// シェーダーを使って３Ｄプリミティブを描画する( 頂点インデックスを使用する )
-extern	int		Graphics_Hardware_DrawPrimitive32bitIndexed3DToShader_PF( const VERTEX3DSHADER *Vertex, int VertexNum, const unsigned int   *Indices, int IndexNum, int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST 等 */ ) ;		// シェーダーを使って３Ｄプリミティブを描画する( 頂点インデックスを使用する )
+extern	int		Graphics_Hardware_DrawPolygon3DToShader_PF(                const VERTEX3DSHADER *Vertex, int PolygonNum ) ;																										// シェーダーを使って３Ｄポリゴンを描画する
+extern	int		Graphics_Hardware_DrawPolygonIndexed3DToShader_PF(         const VERTEX3DSHADER *Vertex, int VertexNum, const unsigned short *Indices, int PolygonNum ) ;														// シェーダーを使って３Ｄポリゴンを描画する( 頂点インデックスを使用する )
+extern	int		Graphics_Hardware_DrawPrimitive2DToShader_PF(              const VERTEX2DSHADER *Vertex, int VertexNum,                                              int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST 等 */ ) ;		// シェーダーを使って２Ｄプリミティブを描画する
+extern	int		Graphics_Hardware_DrawPrimitive3DToShader_PF(              const VERTEX3DSHADER *Vertex, int VertexNum,                                              int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST 等 */ ) ;		// シェーダーを使って３Ｄプリミティブを描画する
+extern	int		Graphics_Hardware_DrawPrimitiveIndexed2DToShader_PF(       const VERTEX2DSHADER *Vertex, int VertexNum, const unsigned short *Indices, int IndexNum, int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST 等 */ ) ;		// シェーダーを使って２Ｄプリミティブを描画する( 頂点インデックスを使用する )
+extern	int		Graphics_Hardware_DrawPrimitive32bitIndexed2DToShader_PF(  const VERTEX2DSHADER *Vertex, int VertexNum, const unsigned int   *Indices, int IndexNum, int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST 等 */ ) ;		// シェーダーを使って２Ｄプリミティブを描画する( 頂点インデックスを使用する )
+extern	int		Graphics_Hardware_DrawPrimitiveIndexed3DToShader_PF(       const VERTEX3DSHADER *Vertex, int VertexNum, const unsigned short *Indices, int IndexNum, int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST 等 */ ) ;		// シェーダーを使って３Ｄプリミティブを描画する( 頂点インデックスを使用する )
+extern	int		Graphics_Hardware_DrawPrimitive32bitIndexed3DToShader_PF(  const VERTEX3DSHADER *Vertex, int VertexNum, const unsigned int   *Indices, int IndexNum, int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST 等 */ ) ;		// シェーダーを使って３Ｄプリミティブを描画する( 頂点インデックスを使用する )
+extern	int		Graphics_Hardware_DrawPrimitive2DToShader2_PF(             const VERTEX2D *Vertex, int VertexNum,                                              int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST 等 */ ) ;		// シェーダーを使って２Ｄプリミティブを描画する
+extern	int		Graphics_Hardware_DrawPrimitive3DToShader2_PF(             const VERTEX3D *Vertex, int VertexNum,                                              int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST 等 */ ) ;		// シェーダーを使って３Ｄプリミティブを描画する
+extern	int		Graphics_Hardware_DrawPrimitiveIndexed2DToShader2_PF(      const VERTEX2D *Vertex, int VertexNum, const unsigned short *Indices, int IndexNum, int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST 等 */ ) ;		// シェーダーを使って２Ｄプリミティブを描画する( 頂点インデックスを使用する )
+extern	int		Graphics_Hardware_DrawPrimitive32bitIndexed2DToShader2_PF( const VERTEX2D *Vertex, int VertexNum, const unsigned int   *Indices, int IndexNum, int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST 等 */ ) ;		// シェーダーを使って２Ｄプリミティブを描画する( 頂点インデックスを使用する )
+extern	int		Graphics_Hardware_DrawPrimitiveIndexed3DToShader2_PF(      const VERTEX3D *Vertex, int VertexNum, const unsigned short *Indices, int IndexNum, int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST 等 */ ) ;		// シェーダーを使って３Ｄプリミティブを描画する( 頂点インデックスを使用する )
+extern	int		Graphics_Hardware_DrawPrimitive32bitIndexed3DToShader2_PF( const VERTEX3D *Vertex, int VertexNum, const unsigned int   *Indices, int IndexNum, int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST 等 */ ) ;		// シェーダーを使って３Ｄプリミティブを描画する( 頂点インデックスを使用する )
 
 extern	int		Graphics_Hardware_DrawPrimitive3DToShader_UseVertexBuffer2_PF(        int VertexBufHandle,                     int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST 等 */, int StartVertex, int UseVertexNum ) ;	// シェーダーを使って３Ｄプリミティブを描画する( 頂点バッファ使用版 )
 extern	int		Graphics_Hardware_DrawPrimitiveIndexed3DToShader_UseVertexBuffer2_PF( int VertexBufHandle, int IndexBufHandle, int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST 等 */, int BaseVertex, int StartVertex, int UseVertexNum, int StartIndex, int UseIndexNum ) ;	// シェーダーを使って３Ｄプリミティブを描画する( 頂点バッファとインデックスバッファ使用版 )
@@ -2010,5 +2018,13 @@ extern	int			SetBlendGraphParam_VaList(	int BlendGraph, int BlendType, va_list V
 #endif // DX_NON_GRAPHICS
 
 #endif // DX_GRAPHICS_H
+
+
+
+
+
+
+
+
 
 

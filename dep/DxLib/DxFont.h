@@ -1,8 +1,8 @@
-﻿// -------------------------------------------------------------------------------
+// -------------------------------------------------------------------------------
 // 
 // 		ＤＸライブラリ		フォント処理用プログラムヘッダファイル
 // 
-// 				Ver 3.24f
+// 				Ver 3.25a
 // 
 // -------------------------------------------------------------------------------
 
@@ -62,11 +62,11 @@ FONTDATAFILEHEADER
 #define DX_FONT_SRCIMAGETYPE_1BIT_SCALE4		(1)					// 1ピクセル1ビット、画像解像度4倍
 #define DX_FONT_SRCIMAGETYPE_1BIT_SCALE8		(2)					// 1ピクセル1ビット、画像解像度8倍
 #define DX_FONT_SRCIMAGETYPE_1BIT_SCALE16		(3)					// 1ピクセル1ビット、画像解像度16倍
-#define DX_FONT_SRCIMAGETYPE_4BIT_MAX15			(4)					// 1ピクセル4ビット、値の範囲は0〜15
+#define DX_FONT_SRCIMAGETYPE_4BIT_MAX15			(4)					// 1ピクセル4ビット、値の範囲は0～15
 #define DX_FONT_SRCIMAGETYPE_8BIT_ON_OFF		(5)					// 1ピクセル8ビット、値の範囲は0又は0以外
-#define DX_FONT_SRCIMAGETYPE_8BIT_MAX16			(6)					// 1ピクセル8ビット、値の範囲は0〜16
-#define DX_FONT_SRCIMAGETYPE_8BIT_MAX64			(7)					// 1ピクセル8ビット、値の範囲は0〜64
-#define DX_FONT_SRCIMAGETYPE_8BIT_MAX255		(8)					// 1ピクセル8ビット、値の範囲は0〜255
+#define DX_FONT_SRCIMAGETYPE_8BIT_MAX16			(6)					// 1ピクセル8ビット、値の範囲は0～16
+#define DX_FONT_SRCIMAGETYPE_8BIT_MAX64			(7)					// 1ピクセル8ビット、値の範囲は0～64
+#define DX_FONT_SRCIMAGETYPE_8BIT_MAX255		(8)					// 1ピクセル8ビット、値の範囲は0～255
 
 #define FONT_CACHE_MAXNUM						(2024)				// フォントキャッシュに格納できる最大文字数
 #define FONT_CACHE_EX_NUM						(1024)				// 0xffff を超えるコードの文字データアドレスを保持する数
@@ -219,7 +219,7 @@ struct FONTDATAFILEUSEINFO
 	FONTDATAFILECHARADATA *	Chara ;								// フォントデータファイル内の各文字の情報
 	BYTE *					Image ;								// フォントデータファイルの画像データのアドレス
 	int						ImageType ;							// フォントデータファイルのイメージデータタイプ( DX_FONT_SRCIMAGETYPE_1BIT 等 )
-	FONTDATAFILECHARADATA **CharaTable ;						// フォントデータファイル内の各文字の情報へのアドレスのテーブル( コード 0x0000〜0xffff の範囲 )
+	FONTDATAFILECHARADATA **CharaTable ;						// フォントデータファイル内の各文字の情報へのアドレスのテーブル( コード 0x0000～0xffff の範囲 )
 	FONTDATAFILECHARADATA **CharaExArray ;						// 0xffff を超える文字コードの文字情報へのアドレス
 	void *					PressImageDecodeBuffer ;			// 解凍した文字イメージを格納するバッファ
 } ;
@@ -313,10 +313,10 @@ struct FONTSYSTEM
 	int						OnlyDrawType ;						// フォントの描画で縁のみ、又は本体のみ描画を行うための設定( OnlyType  0:通常描画 1:本体のみ描画 2:縁のみ描画 )
 	int						IgnoreLFFlag ;						// \n を無視するかどうかのフラグ( TRUE:無視する  FALSE:無視しない )
 	BYTE					BitCountTable[ 256 ] ;				// ビットカウントテーブル
-	BYTE					MAX15ToMAX16[ 16 ] ;				// 0〜15  の値を 0〜16 に変換するためのテーブル
-	BYTE					MAX255ToMAX16[ 256 ] ;				// 0〜255 の値を 0〜16 に変換するためのテーブル
-	BYTE					MAX15ToMAX64[ 16 ] ;				// 0〜15  の値を 0〜64 に変換するためのテーブル
-	BYTE					MAX255ToMAX64[ 256 ] ;				// 0〜255 の値を 0〜64 に変換するためのテーブル
+	BYTE					MAX15ToMAX16[ 16 ] ;				// 0～15  の値を 0～16 に変換するためのテーブル
+	BYTE					MAX255ToMAX16[ 256 ] ;				// 0～255 の値を 0～16 に変換するためのテーブル
+	BYTE					MAX15ToMAX64[ 16 ] ;				// 0～15  の値を 0～64 に変換するためのテーブル
+	BYTE					MAX255ToMAX64[ 256 ] ;				// 0～255 の値を 0～64 に変換するためのテーブル
 
 	wchar_t					DoubleByteSpaceCharCode ;			// 全角スペースの wchar_t コード
 

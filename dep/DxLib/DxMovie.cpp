@@ -1,8 +1,8 @@
-﻿// ----------------------------------------------------------------------------
+// ----------------------------------------------------------------------------
 //
 //		ＤＸライブラリ　ムービー再生処理用プログラム
 //
-//				Ver 3.24f
+//				Ver 3.25a
 //
 // ----------------------------------------------------------------------------
 
@@ -682,7 +682,7 @@ extern int GetMovieState( int MovieHandle )
 	}
 }
 
-// ムービーのボリュームをセットする(0〜10000)
+// ムービーのボリュームをセットする(0～10000)
 extern int SetMovieVolume( int Volume, int MovieHandle )
 {
 	MOVIEGRAPH * Movie ;
@@ -717,7 +717,7 @@ extern int SetMovieVolume( int Volume, int MovieHandle )
 	return 0 ;
 }
 
-// ムービーのボリュームを取得する(0〜10000)
+// ムービーのボリュームを取得する(0～10000)
 extern int GetMovieVolume( int MovieHandle )
 {
 	MOVIEGRAPH * Movie ;

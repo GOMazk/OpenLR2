@@ -1,8 +1,8 @@
-﻿//-----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 // 
 // 		ＤＸライブラリ		WindowsOS用動画プログラム
 // 
-//  	Ver 3.24f
+//  	Ver 3.25a
 // 
 //-----------------------------------------------------------------------------
 
@@ -1672,7 +1672,7 @@ extern int GetMovieState_PF( MOVIEGRAPH * Movie )
 	return Movie->PlayFlag ;
 }
 
-// ムービーのボリュームをセットする(0〜10000)処理の環境依存処理
+// ムービーのボリュームをセットする(0～10000)処理の環境依存処理
 extern int SetMovieVolume_PF( MOVIEGRAPH * Movie, int Volume )
 {
 	// 音量補正
@@ -2258,8 +2258,7 @@ extern int UpdateMovie_PF( MOVIEGRAPH * Movie, int /*AlwaysFlag*/ )
 		if( Movie->PF.pMediaSeeking && Movie->PF.pMediaControl )
 		{
 			Movie->PF.pMediaSeeking->GetCurrentPosition( &Now ) ;
-			// Requires +1 because there is a 1 unit discrepancy between Now and StopTime on last frame.
-			if( Now + 1 >= Movie->StopTime )
+			if( Now >= Movie->StopTime )
 			{
 				if( Movie->PlayType & DX_PLAYTYPE_LOOPBIT )
 				{

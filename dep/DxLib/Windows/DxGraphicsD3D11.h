@@ -1,8 +1,8 @@
-﻿// -------------------------------------------------------------------------------
+// -------------------------------------------------------------------------------
 // 
 // 		ＤＸライブラリ		描画処理プログラム( Direct3D11 )ヘッダファイル
 // 
-// 				Ver 3.24f
+// 				Ver 3.25a
 // 
 // -------------------------------------------------------------------------------
 
@@ -23,9 +23,6 @@
 #include "DxShader_DataType_D3D11.h"
 #include "DxShader_PS_D3D11.h"
 #include "DxShader_VS_D3D11.h"
-
-#include <unordered_map>
-#include <string>
 
 #ifndef DX_NON_NAMESPACE
 
@@ -242,8 +239,6 @@ struct GRAPHICS_HARDWARE_DIRECT3D11_SHADER_BASE
 	D_ID3D11VertexShader					*StretchRect_VS ;
 	D_ID3D11VertexShader					*StretchRectTex8_VS ;
 	D_ID3D11PixelShader						*StretchRect_PS ;
-
-	D_ID3D11PixelShader* CrtGeomPixelShader;
 } ;
 
 // Direct3D11 の標準３Ｄ描画用のシェーダーを纏めた構造体
@@ -729,7 +724,7 @@ struct GRAPHICS_HARDDATA_DIRECT3D11_DRAWSETTING
 	int								BlendGraphType ;						// ブレンド画像タイプ
 	int								BlendGraphFadeRatio ;					// ブレンド画像のフェードパラメータ
 	int								BlendGraphBorderParam ;					// ブレンド画像の境界パラメータ(０(ブレンド画像の影響０)　←　(ブレンド画像の影響少ない)　←　１２８(ブレンド画像の影響１００％)　→　(ブレンド画像の影響を超えて非描画部分が増える)　→２５５(全く描画されない) )
-	int								BlendGraphBorderRange ;					// ブレンド画像の境界幅(０〜２５５　狭い〜広い　しかし４段階)
+	int								BlendGraphBorderRange ;					// ブレンド画像の境界幅(０～２５５　狭い～広い　しかし４段階)
 	float							BlendTextureWidth ;						// ブレンドテクスチャの幅
 	float							BlendTextureHeight ;					// ブレンドテクスチャの高さ
 	float							InvBlendTextureWidth ;					// ブレンドテクスチャの幅の逆数
@@ -883,11 +878,8 @@ struct GRAPHICS_HARDWARE_DIRECT3D11_SHADERCODE_BASE
 
 	Graphics_D3D11_ShaderCompilerIncludeClass *ShaderCompilerIncludeClass ;	// シェーダーコンパイラのインクルード処理用クラス
 
-	struct ShaderCode {
-		unsigned char* data = nullptr;
-		unsigned int len = 0;
-	};
-	std::unordered_map<std::string, ShaderCode> ShaderTxt;
+	DXARC					ShaderTxtDxa ;							// シェーダーコードファイルＤＸＡ構造体
+	void					*ShaderTxtDxaImage ;					// シェーダーコードファイルＤＸＡのバイナリイメージ
 
 #endif // DX_NON_SHADERCODE_BINARY
 
@@ -1203,7 +1195,6 @@ extern GRAPHICS_HARDDATA_DIRECT3D11 GraphicsHardDataDirect3D11 ;
 
 // Direct3D11 の初期化関係
 extern	int		Graphics_D3D11_Initialize( void ) ;								// Direct3D11 を使用したグラフィックス処理の初期化を行う( 0:成功 -1:失敗 )
-extern	int		Graphics_D3D11_Reset(void);
 extern	int		Graphics_D3D11_Terminate( void ) ;								// Direct3D11 を使用したグラフィックス処理の後始末を行う
 
 extern	int		Graphics_D3D11_ReleaseObjectAll( void ) ;						// すべての Direct3D11 系オブジェクトを解放する
@@ -1430,13 +1421,13 @@ extern	int		Graphics_D3D11_DeviceState_SetTextureAddressTransformMatrix( int Use
 extern	int		Graphics_D3D11_DeviceState_SetFogEnable( int Flag ) ;												// フォグを有効にするかどうかを設定する( TRUE:有効  FALSE:無効 )
 extern	int		Graphics_D3D11_DeviceState_SetFogVertexMode( int Mode /* DX_FOGMODE_NONE 等 */ ) ;					// フォグモードを設定する
 extern	int		Graphics_D3D11_DeviceState_SetFogColor( unsigned int Color ) ;												// フォグカラーを変更する
-extern	int		Graphics_D3D11_DeviceState_SetFogStartEnd( float Start, float End ) ;								// フォグが始まる距離と終了する距離を設定する( 0.0f 〜 1.0f )
-extern	int		Graphics_D3D11_DeviceState_SetFogDensity( float Density ) ;											// フォグの密度を設定する( 0.0f 〜 1.0f )
+extern	int		Graphics_D3D11_DeviceState_SetFogStartEnd( float Start, float End ) ;								// フォグが始まる距離と終了する距離を設定する( 0.0f ～ 1.0f )
+extern	int		Graphics_D3D11_DeviceState_SetFogDensity( float Density ) ;											// フォグの密度を設定する( 0.0f ～ 1.0f )
 extern	int		Graphics_D3D11_DeviceState_SetVerticalFogEnable( int Flag ) ;										// 高さフォグを有効にするかどうかを設定する( TRUE:有効  FALSE:無効 )
 extern	int		Graphics_D3D11_DeviceState_SetVerticalFogVertexMode( int Mode /* DX_FOGMODE_NONE 等 */ ) ;			// 高さフォグモードを設定する
 extern	int		Graphics_D3D11_DeviceState_SetVerticalFogColor( unsigned int Color ) ;								// 高さフォグカラーを変更する
-extern	int		Graphics_D3D11_DeviceState_SetVerticalFogStartEnd( float Start, float End ) ;						// 高さフォグが始まる距離と終了する距離を設定する( 0.0f 〜 1.0f )
-extern	int		Graphics_D3D11_DeviceState_SetVerticalFogDensity( float start, float Density ) ;					// 高さフォグの密度を設定する( 0.0f 〜 1.0f )
+extern	int		Graphics_D3D11_DeviceState_SetVerticalFogStartEnd( float Start, float End ) ;						// 高さフォグが始まる距離と終了する距離を設定する( 0.0f ～ 1.0f )
+extern	int		Graphics_D3D11_DeviceState_SetVerticalFogDensity( float start, float Density ) ;					// 高さフォグの密度を設定する( 0.0f ～ 1.0f )
 extern	int		Graphics_D3D11_DeviceState_SetLighting( int UseFlag ) ;												// ライティングの有無フラグをセットする
 extern	int		Graphics_D3D11_DeviceState_SetMaxAnisotropy( int MaxAnisotropy, int Sampler = -1 ) ;				// 最大異方性をセットする
 extern	int		Graphics_D3D11_DeviceState_SetViewport( D_D3D11_VIEWPORT *Viewport ) ;								// ビューポートをセットする
@@ -1579,7 +1570,7 @@ extern	void	Graphics_D3D11_RenderEnd( void ) ;													// 描画コマンド
 
 
 // Direct3D11 を使った描画関係
-extern	int		Graphics_D3D11_DrawBillboard3D( VECTOR Pos, float cx, float cy, float Size, float Angle, IMAGEDATA *Image, IMAGEDATA *BlendImage, int TransFlag, int ReverseXFlag, int ReverseYFlag, int DrawFlag = TRUE, RECT *DrawArea = NULL ) ;	// ハードウエアアクセラレータ使用版 DrawBillboard3D
+extern	int		Graphics_D3D11_DrawBillboard3D( VECTOR Pos, float cx, float cy, float SizeX, float SizeY, float Angle, IMAGEDATA *Image, IMAGEDATA *BlendImage, int TransFlag, int ReverseXFlag, int ReverseYFlag, int DrawFlag = TRUE, RECT *DrawArea = NULL ) ;	// ハードウエアアクセラレータ使用版 DrawBillboard3D
 extern	int		Graphics_D3D11_DrawModiBillboard3D( VECTOR Pos, float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4, IMAGEDATA *Image, IMAGEDATA *BlendImage, int TransFlag, int DrawFlag = TRUE, RECT *DrawArea = NULL ) ;	// ハードウエアアクセラレータ使用版 DrawModiBillboard3D
 extern	int		Graphics_D3D11_DrawGraph( int x, int y, float xf, float yf, IMAGEDATA *Image, IMAGEDATA *BlendImage, int TransFlag, int IntFlag ) ;																// ハードウエアアクセラレータ使用版 DrawGraph
 extern	int		Graphics_D3D11_DrawExtendGraph( int x1, int y1, int x2, int y2, float x1f, float y1f, float x2f, float y2f, IMAGEDATA *Image, IMAGEDATA *BlendImage, int TransFlag, int IntFlag ) ;				// ハードウエアアクセラレータ使用版 DrawExtendGraph
@@ -1631,6 +1622,13 @@ extern	int		Graphics_D3D11_DrawPrimitive32bitIndexed2DToShader( const VERTEX2DSH
 extern	int		Graphics_D3D11_DrawPrimitiveIndexed3DToShader(      const VERTEX3DSHADER *Vertex, int VertexNum, const unsigned short *Indices, int IndexNum, int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST 等 */ ) ;		// シェーダーを使って３Ｄプリミティブを描画する( 頂点インデックスを使用する )
 extern	int		Graphics_D3D11_DrawPrimitive32bitIndexed3DToShader( const VERTEX3DSHADER *Vertex, int VertexNum, const unsigned int   *Indices, int IndexNum, int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST 等 */ ) ;		// シェーダーを使って３Ｄプリミティブを描画する( 頂点インデックスを使用する )
 
+extern	int		Graphics_D3D11_DrawPrimitive2DToShader2(             const VERTEX2D *Vertex, int VertexNum,                                              int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST 等 */ ) ;		// シェーダーを使って２Ｄプリミティブを描画する
+extern	int		Graphics_D3D11_DrawPrimitive3DToShader2(             const VERTEX3D *Vertex, int VertexNum,                                              int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST 等 */ ) ;		// シェーダーを使って３Ｄプリミティブを描画する
+extern	int		Graphics_D3D11_DrawPrimitiveIndexed2DToShader2(      const VERTEX2D *Vertex, int VertexNum, const unsigned short *Indices, int IndexNum, int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST 等 */ ) ;		// シェーダーを使って２Ｄプリミティブを描画する( 頂点インデックスを使用する )
+extern	int		Graphics_D3D11_DrawPrimitive32bitIndexed2DToShader2( const VERTEX2D *Vertex, int VertexNum, const unsigned int   *Indices, int IndexNum, int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST 等 */ ) ;		// シェーダーを使って２Ｄプリミティブを描画する( 頂点インデックスを使用する )
+extern	int		Graphics_D3D11_DrawPrimitiveIndexed3DToShader2(      const VERTEX3D *Vertex, int VertexNum, const unsigned short *Indices, int IndexNum, int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST 等 */ ) ;		// シェーダーを使って３Ｄプリミティブを描画する( 頂点インデックスを使用する )
+extern	int		Graphics_D3D11_DrawPrimitive32bitIndexed3DToShader2( const VERTEX3D *Vertex, int VertexNum, const unsigned int   *Indices, int IndexNum, int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST 等 */ ) ;		// シェーダーを使って３Ｄプリミティブを描画する( 頂点インデックスを使用する )
+
 extern	int		Graphics_D3D11_DrawPrimitive3DToShader_UseVertexBuffer2(        int VertexBufHandle,                     int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST 等 */, int StartVertex, int UseVertexNum ) ;	// シェーダーを使って３Ｄプリミティブを描画する( 頂点バッファ使用版 )
 extern	int		Graphics_D3D11_DrawPrimitiveIndexed3DToShader_UseVertexBuffer2( int VertexBufHandle, int IndexBufHandle, int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST 等 */, int BaseVertex, int StartVertex, int UseVertexNum, int StartIndex, int UseIndexNum ) ;	// シェーダーを使って３Ｄプリミティブを描画する( 頂点バッファとインデックスバッファ使用版 )
 
@@ -1645,7 +1643,6 @@ extern	int		Graphics_D3D11_DrawPrimitiveIndexed3DToShader_UseVertexBuffer2( int 
 extern	int		Graphics_D3D11_Initialize_Timing0_PF( void ) ;											// 描画処理の環境依存部分の初期化を行う関数( 実行箇所区別０ )
 extern	int		Graphics_D3D11_Initialize_Timing1_PF( void ) ;											// 描画処理の環境依存部分の初期化を行う関数( 実行箇所区別２ )
 extern	int		Graphics_D3D11_Hardware_Initialize_PF( void ) ;											// ハードウエアアクセラレータを使用する場合の環境依存の初期化処理を行う
-extern	int		Graphics_D3D11_Reset_PF(void);
 extern	int		Graphics_D3D11_Terminate_PF( void ) ;													// 描画処理の環境依存部分の後始末を行う関数
 extern	int		Graphics_D3D11_RestoreOrChangeSetupGraphSystem_PF( int Change, int ScreenSizeX = -1, int ScreenSizeY = -1, int ColorBitDepth = -1, int RefreshRate = -1 ) ;		// グラフィックスシステムの復帰、又は変更付きの再セットアップを行う
 extern	int		Graphics_D3D11_Hardware_CheckValid_PF( void ) ;											// 描画用デバイスが有効かどうかを取得する( 戻り値  TRUE:有効  FALSE:無効 )
@@ -1690,13 +1687,13 @@ extern	int		Graphics_Hardware_D3D11_SetTextureAddressTransformMatrix_PF( int Use
 extern	int		Graphics_Hardware_D3D11_SetFogEnable_PF( int Flag ) ;														// フォグを有効にするかどうかを設定する( TRUE:有効  FALSE:無効 )
 extern	int		Graphics_Hardware_D3D11_SetFogMode_PF( int Mode /* DX_FOGMODE_NONE 等 */ ) ;								// フォグモードを設定する
 extern	int		Graphics_Hardware_D3D11_SetFogColor_PF( DWORD FogColor ) ;													// フォグカラーを変更する
-extern	int		Graphics_Hardware_D3D11_SetFogStartEnd_PF( float start, float end ) ;										// フォグが始まる距離と終了する距離を設定する( 0.0f 〜 1.0f )
-extern	int		Graphics_Hardware_D3D11_SetFogDensity_PF( float density ) ;													// フォグの密度を設定する( 0.0f 〜 1.0f )
+extern	int		Graphics_Hardware_D3D11_SetFogStartEnd_PF( float start, float end ) ;										// フォグが始まる距離と終了する距離を設定する( 0.0f ～ 1.0f )
+extern	int		Graphics_Hardware_D3D11_SetFogDensity_PF( float density ) ;													// フォグの密度を設定する( 0.0f ～ 1.0f )
 extern	int		Graphics_Hardware_D3D11_SetVerticalFogEnable_PF( int Flag ) ;												// フォグを有効にするかどうかを設定する( TRUE:有効  FALSE:無効 )
 extern	int		Graphics_Hardware_D3D11_SetVerticalFogMode_PF( int Mode /* DX_FOGMODE_NONE 等 */ ) ;						// フォグモードを設定する
 extern	int		Graphics_Hardware_D3D11_SetVerticalFogColor_PF( DWORD FogColor ) ;											// フォグカラーを変更する
-extern	int		Graphics_Hardware_D3D11_SetVerticalFogStartEnd_PF( float start, float end ) ;								// フォグが始まる距離と終了する距離を設定する( 0.0f 〜 1.0f )
-extern	int		Graphics_Hardware_D3D11_SetVerticalFogDensity_PF( float start, float density ) ;							// フォグの密度を設定する( 0.0f 〜 1.0f )
+extern	int		Graphics_Hardware_D3D11_SetVerticalFogStartEnd_PF( float start, float end ) ;								// フォグが始まる距離と終了する距離を設定する( 0.0f ～ 1.0f )
+extern	int		Graphics_Hardware_D3D11_SetVerticalFogDensity_PF( float start, float density ) ;							// フォグの密度を設定する( 0.0f ～ 1.0f )
 extern	int		Graphics_Hardware_D3D11_ApplyLigFogToHardware_PF( void ) ;													// 基本データに設定されているフォグ情報をハードウェアに反映する
 extern	int		Graphics_Hardware_D3D11_SetUseOldDrawModiGraphCodeFlag_PF( int Flag ) ;										// 以前の DrawModiGraph 関数のコードを使用するかどうかのフラグをセットする
 extern	int		Graphics_Hardware_D3D11_RefreshAlphaChDrawMode_PF( void ) ;													// 描画先に正しいα値を書き込むかどうかのフラグを更新する

@@ -1,8 +1,8 @@
-﻿// -------------------------------------------------------------------------------
+// -------------------------------------------------------------------------------
 // 
 // 		ＤＸライブラリ		標準Ｃライブラリ使用コード　Live2D Cubism4 関係ヘッダファイル
 // 
-// 				Ver 3.24f
+// 				Ver 3.25a
 // 
 // -------------------------------------------------------------------------------
 
@@ -2389,7 +2389,7 @@ public:
 	void						ReloadRenderer( int ASyncThread ) ;							// レンダラを再構築する
 	void						Update( float deltaTimeSeconds ) ;							// モデルの更新処理。モデルのパラメータから描画状態を決定する。
 	void						Draw( D_CubismMatrix44& matrix, bool isMultModelMatrix ) ;	// モデルを描画する処理。モデルを描画する空間のView-Projection行列を渡す。
-	D_CubismMotionQueueEntryHandle StartMotion( const char* group, int no, int priority, float fadeInSeconds, float fadeOutSeconds, bool isLoopFadeIn = true ) ;	// 引数で指定したモーションの再生を開始する。
+	D_CubismMotionQueueEntryHandle StartMotion( const char* group, int no, int priority, float fadeInSeconds, float fadeOutSeconds, bool isLoopFadeIn = true, bool isLoop = false ) ;	// 引数で指定したモーションの再生を開始する。
 	D_CubismMotionQueueEntryHandle StartRandomMotion( const char* group, int priority ) ;	// ランダムに選ばれたモーションの再生を開始する。
 	void						SetExpression( const BYTE/*wchar_t*/ * expressionID ) ;		// 引数で指定した表情モーションをセットする
 	void						SetRandomExpression() ;										// ランダムに選ばれた表情モーションをセットする

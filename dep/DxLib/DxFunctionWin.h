@@ -1,8 +1,8 @@
-﻿// -------------------------------------------------------------------------------
+// -------------------------------------------------------------------------------
 // 
 // 		ＤＸライブラリ		Windows専用関数プロトタイプ宣言用ヘッダファイル
 // 
-// 				Ver 3.24f
+// 				Ver 3.25a
 // 
 // -------------------------------------------------------------------------------
 
@@ -104,9 +104,6 @@ extern	int			SubMessageTakeOverWindow(				HWND Window ) ;																		// �
 
 extern	int			SetWindowInitPosition(					int x , int y ) ;																	// メインウインドウの初期位置を設定する
 extern	int			SetNotWinFlag(							int Flag ) ;																		// ＤＸライブラリのウインドウ関連の機能を使用しないかどうかを設定する( TRUE:使用しない  FALSE:使用する( デフォルト ) )
-extern	int			SetNotDrawFlag(							int Flag ) ;																		// ＤＸライブラリの描画機能を使うかどうかを設定する( TRUE:使用しない  FALSE:使用する( デフォルト ) )
-extern	int			SetNotSoundFlag(						int Flag ) ;																		// ＤＸライブラリのサウンド機能を使うかどうかを設定する( TRUE:使用しない  FALSE:使用する( デフォルト ) )
-extern	int			SetNotInputFlag(						int Flag ) ;																		// ＤＸライブラリの入力状態の取得機能を使うかどうかを設定する( TRUE:使用しない  FALSE:使用する( デフォルト ) )
 extern	int			SetDialogBoxHandle(						HWND WindowHandle ) ;																// ＤＸライブラリでメッセージ処理を行うダイアログボックスを登録する
 extern	int			SetWindowVisibleFlag(					int Flag ) ;																		// メインウインドウを表示するかどうかを設定する( TRUE:表示する  FALSE:表示しない )
 extern	int			SetWindowMinimizeFlag(					int Flag ) ;																		// メインウインドウを最小化するかどうかを設定する( TRUE:最小化する  FALSE:最小化を解除 )
@@ -274,7 +271,6 @@ extern	int			SetKeyboardNotDirectInputFlag(			int Flag ) ;															// キ�
 extern	int			SetUseDirectInputFlag(					int UseFlag ) ;															// 入力処理に DirectInput を使用するかどうかを設定する( TRUE:DirectInput を使用する　　FALSE:DirectInput を使わず、Windows標準機能を使用する )
 extern	int			SetDirectInputMouseMode(				int Mode ) ;															// マウスの入力処理に DirectInput を使用する場合の動作モードを設定する( 0:ウィンドウがアクティブな場合のみ DirectInput を使用する  1:ウィンドウのアクティブ状態に関係なく DirectInput を使用する )
 extern	int			SetUseXInputFlag(						int Flag ) ;															// Xbox360コントローラの入力処理に XInput を使用するかどうかを設定する( TRUE:XInput を使用する( デフォルト )　　FALSE:XInput を使用しない )
-extern	int			SetUseJoypadDeviceChangeResyncFlag(		int Flag ) ;															// Whether to resync joypads on WM_DEVICECHANGE ( TRUE: do it (default)  FALSE: skip ). DEVICECHANGE while FALSE is pending and flushed when set back to TRUE
 extern	int			SetUseXboxControllerDirectInputFlag(	int Flag ) ;															// Xbox360コントローラや Xbox Oneコントローラを DirectInputコントローラとしても検出するかどうかを設定する( TRUE:DirectInputコントローラとしても検出する  FALSE:DirectInputコントローラとしては検出しない(デフォルト) )、DxLib_Init の呼び出し前でのみ実行可能
 extern	int			GetJoypadGUID(							int PadIndex, GUID *GuidInstanceBuffer, GUID *GuidProductBuffer DEFAULTPARAM( = NULL ) ) ;	// ジョイパッドのＧＵIＤを得る
 extern	int			GetJoypadName(							int InputType, TCHAR *InstanceNameBuffer, TCHAR *ProductNameBuffer ) ;	// ジョイパッドのデバイス登録名と製品登録名を取得する( InstanceNameBuffer, ProductNameBuffer 共に 260 以上のバッファサイズが必要 )
@@ -318,6 +314,7 @@ extern	int			CreateGraphFromID3D11Texture2D(     const void *pID3D11Texture2D ) 
 #endif // DX_NON_DIRECT3D11
 
 // 画像情報関係関数
+extern	const void*	GetGraphIDirect3DTexture9(		int GrHandle ) ;												// グラフィックハンドルが持つ IDirect3DTexture9 を取得する( Direct3D9 を使用している場合のみ有効 )( 戻り値を IDirect3DTexture9 * にキャストしてください )
 extern	const void*	GetGraphID3D11Texture2D(		int GrHandle ) ;												// グラフィックハンドルが持つ ID3D11Texture2D を取得する( Direct3D11 を使用している場合のみ有効 )( 戻り値を ID3D11Texture2D * にキャストしてください )
 extern	const void*	GetGraphID3D11RenderTargetView(	int GrHandle ) ;												// グラフィックハンドルが持つ ID3D11RenderTargetView を取得する( Direct3D11 を使用していて、且つ MakeScreen で作成したグラフィックハンドルでのみ有効 )( 戻り値を ID3D11RenderTargetView * にキャストしてください )
 extern	const void*	GetGraphID3D11DepthStencilView(	int GrHandle ) ;												// グラフィックハンドルが持つ ID3D11DepthStencilView を取得する( Direct3D11 を使用していて、且つ MakeScreen で作成したグラフィックハンドルでのみ有効 )( 戻り値を ID3D11DepthStencilView * にキャストしてください )

@@ -2,7 +2,7 @@
 // 
 // 		ＤＸライブラリ		iOS用GraphFilter系プログラム
 // 
-//  	Ver 3.24f
+//  	Ver 3.25a
 // 
 //-----------------------------------------------------------------------------
 
@@ -1145,6 +1145,12 @@ extern int	GraphFilter_Replacement_PF(    GRAPHFILTER_INFO *Info, COLOR_U8 Targe
 	IOS_FilterStretchBlt( UseAndrShader, Info, FALSE ) ;
 
 	// 正常終了
+	return 0 ;
+}
+
+extern int	GraphFilter_BilateralBlur_PF(    GRAPHFILTER_INFO *Info, int IsPMA )
+{
+	// 未実装
 	return 0 ;
 }
 

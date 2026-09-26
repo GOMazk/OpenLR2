@@ -1,8 +1,8 @@
-﻿// -------------------------------------------------------------------------------
+// -------------------------------------------------------------------------------
 // 
 // 		ＤＸライブラリ		ＤｉｒｅｃｔＸ周りのＧＵＩＤ定義ヘッダファイル
 // 
-// 				Ver 3.24f
+// 				Ver 3.25a
 // 
 // -------------------------------------------------------------------------------
 
@@ -299,6 +299,7 @@ extern GUID GUID_SWITCH_JOY_CON_L ;
 extern GUID GUID_SWITCH_JOY_CON_R ;
 extern GUID GUID_SWITCH_PRO_CONTROLLER ;
 extern GUID GUID_SWITCH_HORI_PAD_S ;
+extern GUID GUID_SWITCH_HORI_PAD_S_2 ;
 
 extern GUID IID_IMMDEVICECOLLECTION ;
 extern GUID IID_IMMDEVICEENUMERATOR ;

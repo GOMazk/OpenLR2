@@ -3,9 +3,81 @@
 //　ＤＸライブラリ　非公式ログ
 //
 //　Creator : 山田　巧
-//  Last Access : 2025/3/21
+//  Last Access : 2026/8/21
 // ============================================================================
 
+Ver 3.25a	　正式公開のためにバージョン番号を変更。
+Ver 3.25	　関数 GetChannelVolumeSoundMem2 の戻り値が 0～255 ではなく 0～256 に
+			なってしまっていたバグを修正。
+			　iOS版：OpenAL を使用したサウンド処理を行った場合、デッドロックが
+			発生してしまうことがあるバグを修正。
+			　Windows版：SetKeyboardNotDirectInputFlag( TRUE ); でキー押下状態の
+			取得に DirectInput を使用しない設定にした上で SetSysCommandOffFlag( TRUE );
+			を実行すると、押したキーを離しても CheckHitKey 等の戻り値が 0 に
+			戻らないバグを修正。
+			　CreateMaskScreen(); でマスクスクリーンを有効にした状態で
+			DrawVString 等の文字列縦向き描画を行うと文字の左端が描画されない
+			バグを修正。
+			　GetRand を Live2D 関係の処理で使用してしまっていたので、使用しない
+			ように処理を変更。
+			　SetUseASyncLoadFlag( TRUE ); を実行して非同期読み込みの状態で
+			MV1DuplicateModel で作成した３Ｄモデルハンドルを削除すると
+			派生元の３Ｄモデルハンドルの情報を壊してしまうバグを修正。
+			　VERTEX3DSHADER の代わりに VERTEX3D を使用する DrawPolygon3DToShader2
+			等の関数を追加。
+			　Live2D_Model_SetParameterValue を使用する度に徐々にメモリ使用量が
+			増え、処理負荷も上がるバグを修正。
+			　GraphFilter にバイラテラルブラー( DX_GRAPH_FILTER_BILATERAL_BLUR )を追加。
+			　Direct3D 11 使用時は MV1SetMaterialDrawAlphaTest の引数 Mode に
+			DX_CMP_GREATER 以外を指定すると正常に動作しなかったバグを修正。
+			　SetFontCacheUsePremulAlphaFlag( TRUE ); を実行した状態で作成した
+			乗算済みアルファ対応フォントが正常に描画できない状態となっていた
+			バグを修正。
+			　CreateDXFontData.exe で /B4 オプションで作成したフォントデータが
+			僅かに半透明になってしまうバグを修正。
+			　SetUseSetDrawScreenSettingReset( FALSE ); を実行した状態で
+			ShadowMap_DrawSetup によるシャドウマップへの描画を行うと
+			正常にシャドウマップが描画されないバグを修正。
+			　fbxファイルから Emissiveテクスチャ、Shininessテクスチャ、
+			ReflectionFactorテクスチャも読み込むように処理を追加。
+			　３Ｄモデルに含まれる Emissiveテクスチャ、Shininessテクスチャ、
+			ReflectionFactorテクスチャを取得するための関数
+			MV1GetMaterialEmissiveMapTexture、MV1GetMaterialShininessMapTexture、
+			MV1GetMaterialReflectionFactorMapTexture を追加。
+			　DXA_Encode の挙動を LzEncode.exe と同じになるように処理を変更。
+			　DrawRectRotaGraph、DrawRectModiGraph 等の内部で DerivationGraph を
+			使用している関数の高速化。
+			　画像の一部分を３Ｄ上に描画する関数 DrawRectBillboard3D を追加。
+			　MV1SetUseOrigShader( TRUE ); を実行した後、SetUsePixelShader や
+			SetUseVertexShader でオリジナルシェーダーを設定しないまま
+			MV1DrawModel を実行すると、その後のグラフィック関連処理が正常に
+			動作しなくなることがあるバグを修正。
+			　Android版:ＤＸライブラリのサンプルを改造して作成したアプリを
+			配信した場合、Appストアからインストールして実行するとアプリが
+			落ちてしまうバグを修正。
+			　関数 Live2D_Model_StartMotion にループするかどうかの引数
+			isLoop を追加。
+			　塗りつぶし有りの DrawQuadrangleAA で5ドット以下の辺があった場合は
+			アンチエイリアス無しの描画を行っていた処理を削除。
+			　頂点シェーダー用にもテクスチャサンプラーを設定するように処理を追加。
+			　サブディスプレイを縦向きにしている場合、SetWindowSizeExtendRate を
+			使用するとソフトのウィンドウが画面左上に固定されてしまうバグを修正。
+			　テクスチャ設定を頂点シェーダーとジオメトリシェーダーにも常に行う
+			ように処理を変更。
+			　Windows版：グラフィックスデバイスが何らかの原因でロストすると
+			以降画面描画が一切行われなくなるバグを修正。
+			　Windows版：Switch用 HORI PAD として認識される種類を一つ追加。
+			　振動に対応していないゲームパッドに対して StartJoypadVibration を
+			実行しても戻り値が 0 となっていたバグを修正。
+			　Windows版：Direct3D 11 を使用した際にミップマップ付き画像を
+			読み込むと、画像の色が正常ではない状態になってしまう事があるバグを修正。
+			　Windows版：セキュリティソフトにマルウェア判定される確率が
+			上がってしまう為、デフォルトでは SetSysCommandOffFlag の機能を停止。
+			　Windows版：C#版ＤＸライブラリで MV1_COLL_RESULT_POLY を使用する
+			関数が正常に動作していなかったバグを修正。
+			　MV1SaveModelToMV1File や MV1SaveModelToXFile で３Ｄモデルを
+			ファイル保存する際に保存対象から除外するトップ階層のフレームを
+			設定するための関数 MV1SetNotSaveTopFrameName を追加。
 Ver 3.24f	　正式公開のためにバージョン番号を変更。
 Ver 3.24e	　円柱を描画する為の関数 DrawCylinder3D を追加。
 			　筒を描画する為の関数 DrawTube3D を追加。
