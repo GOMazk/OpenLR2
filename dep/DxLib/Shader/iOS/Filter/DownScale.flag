@@ -1,0 +1,50 @@
+precision mediump float;
+
+uniform mediump	vec4	uPixelOffset[ 8 ] ;
+
+uniform sampler2D		uSrcTex ;
+varying mediump	vec2	vTexUV0 ;
+
+void Down_2_FS( void )
+{   
+	gl_FragColor = texture2D( uSrcTex, vTexUV0 + uPixelOffset[0].xy ) ;
+}
+
+
+void Down_4_FS( void )
+{   
+    mediump vec4 Color;
+
+    Color  = texture2D( uSrcTex, vTexUV0 + uPixelOffset[0].xy ) ;
+    Color += texture2D( uSrcTex, vTexUV0 + uPixelOffset[0].zw ) ;
+    Color += texture2D( uSrcTex, vTexUV0 + uPixelOffset[1].xy ) ;
+    Color += texture2D( uSrcTex, vTexUV0 + uPixelOffset[1].zw ) ;
+
+    gl_FragColor = Color / 4.0 ;
+}
+
+
+void Down_8_FS( void )
+{   
+    mediump vec4 Color;
+
+    Color  = texture2D( uSrcTex, vTexUV0 + uPixelOffset[0].xy ) ;
+    Color += texture2D( uSrcTex, vTexUV0 + uPixelOffset[0].zw ) ;
+    Color += texture2D( uSrcTex, vTexUV0 + uPixelOffset[1].xy ) ;
+    Color += texture2D( uSrcTex, vTexUV0 + uPixelOffset[1].zw ) ;
+    Color += texture2D( uSrcTex, vTexUV0 + uPixelOffset[2].xy ) ;
+    Color += texture2D( uSrcTex, vTexUV0 + uPixelOffset[2].zw ) ;
+    Color += texture2D( uSrcTex, vTexUV0 + uPixelOffset[3].xy ) ;
+    Color += texture2D( uSrcTex, vTexUV0 + uPixelOffset[3].zw ) ;
+    Color += texture2D( uSrcTex, vTexUV0 + uPixelOffset[4].xy ) ;
+    Color += texture2D( uSrcTex, vTexUV0 + uPixelOffset[4].zw ) ;
+    Color += texture2D( uSrcTex, vTexUV0 + uPixelOffset[5].xy ) ;
+    Color += texture2D( uSrcTex, vTexUV0 + uPixelOffset[5].zw ) ;
+    Color += texture2D( uSrcTex, vTexUV0 + uPixelOffset[6].xy ) ;
+    Color += texture2D( uSrcTex, vTexUV0 + uPixelOffset[6].zw ) ;
+    Color += texture2D( uSrcTex, vTexUV0 + uPixelOffset[7].xy ) ;
+    Color += texture2D( uSrcTex, vTexUV0 + uPixelOffset[7].zw ) ;
+
+    gl_FragColor = Color / 16.0 ;
+}
+

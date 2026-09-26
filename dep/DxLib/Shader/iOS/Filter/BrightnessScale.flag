@@ -1,0 +1,137 @@
+precision mediump float;
+
+uniform mediump	vec4	uMinB_ScaleB ;
+
+uniform sampler2D		uSrcTex ;
+varying mediump	vec2	vTexUV0 ;
+
+void BrightnessScale_FS( void )
+{
+	mediump vec4 Color;
+	mediump vec3 Hsb;
+	mediump vec3 Rgb;
+	mediump float Max;
+	mediump float Min;
+	mediump float Delta;
+	mediump vec3 Half;
+	mediump vec3 One;
+	mediump vec3 tRGB;
+	mediump float t;
+
+	Half = vec3( 0.5, 0.5, 0.5 ) ;
+	One  = vec3( 1.0, 1.0, 1.0 ) ;
+
+	Color = texture2D( uSrcTex, vTexUV0 ) ;
+	
+#ifdef PMA_IMAGE
+	if( Color.a < 0.001 )
+	{
+		Color.r = 0.0 ;
+		Color.g = 0.0 ;
+		Color.b = 0.0 ;
+	}
+	else
+	{
+		Color.rgb = Color.rgb / Color.a;
+	}
+#endif
+	
+	Rgb = Color.rgb;
+	
+	Max = max( Rgb.r, max( Rgb.g, Rgb.b ) );
+	Min = min( Rgb.r, min( Rgb.g, Rgb.b ) );
+	Delta = Max - Min;
+
+	Hsb.z = ( Max + Min ) / 2.0;
+	if( Max == Min )
+	{
+		Hsb.y = 0.0;
+		
+		Rgb.r = 1.0;
+		Rgb.g = 0.0;
+		Rgb.b = 0.0;
+	}
+	else
+	{
+		if( Hsb.z > 0.5 )
+		{
+			Hsb.y = 2.0 - Max - Min; 
+		}
+		else
+		{
+			Hsb.y = Max + Min;
+		}
+		Hsb.y = Delta / Hsb.y;
+		
+		tRGB = ( vec3( Max, Max, Max ) - Rgb ) / Delta;
+		if( Rgb.r == Max )
+		{
+			Rgb.r = 1.0;
+			t = tRGB.b - tRGB.g;
+			if( tRGB.b > tRGB.g )
+			{
+				Rgb.b = 0.0;
+				Rgb.g = t ;
+			}
+			else
+			{
+				Rgb.b = -t ;
+				Rgb.g = 0.0;
+			}
+		}
+		else
+		if( Rgb.g == Max )
+		{
+			Rgb.g = 1.0;
+			t = tRGB.r - tRGB.b;
+			if( tRGB.r > tRGB.b )
+			{
+				Rgb.r = 0.0;
+				Rgb.b = t ;
+			}
+			else
+			{
+				Rgb.r = -t ;
+				Rgb.b = 0.0;
+			}
+		}
+		else
+		{
+			Rgb.b = 1.0;
+			t = tRGB.g - tRGB.r;
+			if( tRGB.g > tRGB.r )
+			{
+				Rgb.g = 0.0;
+				Rgb.r = t ;
+			}
+			else
+			{
+				Rgb.g = -t ;
+				Rgb.r = 0.0 ;
+			}
+		}
+	}
+
+	Rgb += ( Half - Rgb ) * ( 1.0 - Hsb.y );
+
+	Hsb.z = clamp( ( Hsb.z - uMinB_ScaleB.x ) * uMinB_ScaleB.y, 0.0, 1.0 ) ;
+
+	if( Hsb.z <= 0.5 )
+	{
+		Rgb *= Hsb.z * 2.0;
+	}
+	else
+	{
+		Rgb += ( One - Rgb ) * ( ( Hsb.z - 0.5 ) * 2.0 );
+	}
+	
+	Color.r = Rgb.r;
+	Color.g = Rgb.g;
+	Color.b = Rgb.b;
+	
+#ifdef PMA_IMAGE
+	Color.rgb *= Color.a;
+#endif
+	
+	gl_FragColor = Color ;
+}

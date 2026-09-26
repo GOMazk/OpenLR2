@@ -1,0 +1,28 @@
+precision mediump float;
+
+uniform mediump	vec4	uRGBToY     ;
+uniform mediump	vec4	uYCbCrToRGB ;
+
+uniform sampler2D		uSrcTex ;
+varying mediump	vec2	vTexUV0 ;
+
+void Mono_FS( void )
+{
+	mediump vec4 Color;
+	mediump vec3 Rgb;
+	mediump vec3 RGBToY_F3;
+	mediump vec3 YCbCrToRGB_F3;
+
+	RGBToY_F3     = uRGBToY.rgb;
+	YCbCrToRGB_F3 = uYCbCrToRGB.rgb;
+
+	Color = texture2D( uSrcTex, vTexUV0 ) ;
+	Rgb = Color.rgb;
+
+	Rgb.r = dot( Rgb, RGBToY_F3 );
+	Rgb.g = Rgb.r ;
+	Rgb.b = Rgb.r ;
+	Color.rgb = Rgb + YCbCrToRGB_F3;
+	
+	gl_FragColor = Color ;
+}

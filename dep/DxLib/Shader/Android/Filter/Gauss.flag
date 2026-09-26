@@ -1,0 +1,60 @@
+precision mediump float;
+
+uniform mediump	vec4	uPixelWeight[ 4 ] ;
+uniform mediump	vec4	uPixelOffset[ 8 ] ;
+
+uniform sampler2D		uSrcTex ;
+varying mediump	vec2	vTexUV0 ;
+
+void Gauss_8pixel_FS( void )
+{   
+    mediump vec4 Color;
+	
+    Color  = uPixelWeight[0].x *   texture2D( uSrcTex, vTexUV0 );
+    Color += uPixelWeight[0].y * ( texture2D( uSrcTex, vTexUV0 + uPixelOffset[ 0 ].zw ) +  texture2D( uSrcTex, vTexUV0 - uPixelOffset[ 0 ].zw ) );
+    Color += uPixelWeight[0].z * ( texture2D( uSrcTex, vTexUV0 + uPixelOffset[ 1 ].xy ) +  texture2D( uSrcTex, vTexUV0 - uPixelOffset[ 1 ].xy ) );
+    Color += uPixelWeight[0].w * ( texture2D( uSrcTex, vTexUV0 + uPixelOffset[ 1 ].zw ) +  texture2D( uSrcTex, vTexUV0 - uPixelOffset[ 1 ].zw ) );
+    
+    gl_FragColor = Color ;
+}
+
+void Gauss_16pixel_FS( void )
+{   
+    mediump vec4 Color;
+	
+    Color  = uPixelWeight[0].x *   texture2D( uSrcTex, vTexUV0 );
+    Color += uPixelWeight[0].y * ( texture2D( uSrcTex, vTexUV0 + uPixelOffset[ 0 ].zw ) +  texture2D( uSrcTex, vTexUV0 - uPixelOffset[ 0 ].zw ) );
+    Color += uPixelWeight[0].z * ( texture2D( uSrcTex, vTexUV0 + uPixelOffset[ 1 ].xy ) +  texture2D( uSrcTex, vTexUV0 - uPixelOffset[ 1 ].xy ) );
+    Color += uPixelWeight[0].w * ( texture2D( uSrcTex, vTexUV0 + uPixelOffset[ 1 ].zw ) +  texture2D( uSrcTex, vTexUV0 - uPixelOffset[ 1 ].zw ) );
+    Color += uPixelWeight[1].x * ( texture2D( uSrcTex, vTexUV0 + uPixelOffset[ 2 ].xy ) +  texture2D( uSrcTex, vTexUV0 - uPixelOffset[ 2 ].xy ) );
+    Color += uPixelWeight[1].y * ( texture2D( uSrcTex, vTexUV0 + uPixelOffset[ 2 ].zw ) +  texture2D( uSrcTex, vTexUV0 - uPixelOffset[ 2 ].zw ) );
+    Color += uPixelWeight[1].z * ( texture2D( uSrcTex, vTexUV0 + uPixelOffset[ 3 ].xy ) +  texture2D( uSrcTex, vTexUV0 - uPixelOffset[ 3 ].xy ) );
+    Color += uPixelWeight[1].w * ( texture2D( uSrcTex, vTexUV0 + uPixelOffset[ 3 ].zw ) +  texture2D( uSrcTex, vTexUV0 - uPixelOffset[ 3 ].zw ) );
+    
+    gl_FragColor = Color ;
+}
+
+void Gauss_32pixel_FS( void )
+{   
+    mediump vec4 Color;
+	
+    Color  = uPixelWeight[0].x *   texture2D( uSrcTex, vTexUV0 );
+    Color += uPixelWeight[0].y * ( texture2D( uSrcTex, vTexUV0 + uPixelOffset[ 0 ].zw ) +  texture2D( uSrcTex, vTexUV0 - uPixelOffset[ 0 ].zw ) );
+    Color += uPixelWeight[0].z * ( texture2D( uSrcTex, vTexUV0 + uPixelOffset[ 1 ].xy ) +  texture2D( uSrcTex, vTexUV0 - uPixelOffset[ 1 ].xy ) );
+    Color += uPixelWeight[0].w * ( texture2D( uSrcTex, vTexUV0 + uPixelOffset[ 1 ].zw ) +  texture2D( uSrcTex, vTexUV0 - uPixelOffset[ 1 ].zw ) );
+    Color += uPixelWeight[1].x * ( texture2D( uSrcTex, vTexUV0 + uPixelOffset[ 2 ].xy ) +  texture2D( uSrcTex, vTexUV0 - uPixelOffset[ 2 ].xy ) );
+    Color += uPixelWeight[1].y * ( texture2D( uSrcTex, vTexUV0 + uPixelOffset[ 2 ].zw ) +  texture2D( uSrcTex, vTexUV0 - uPixelOffset[ 2 ].zw ) );
+    Color += uPixelWeight[1].z * ( texture2D( uSrcTex, vTexUV0 + uPixelOffset[ 3 ].xy ) +  texture2D( uSrcTex, vTexUV0 - uPixelOffset[ 3 ].xy ) );
+    Color += uPixelWeight[1].w * ( texture2D( uSrcTex, vTexUV0 + uPixelOffset[ 3 ].zw ) +  texture2D( uSrcTex, vTexUV0 - uPixelOffset[ 3 ].zw ) );
+    Color += uPixelWeight[2].x * ( texture2D( uSrcTex, vTexUV0 + uPixelOffset[ 4 ].xy ) +  texture2D( uSrcTex, vTexUV0 - uPixelOffset[ 4 ].xy ) );
+    Color += uPixelWeight[2].y * ( texture2D( uSrcTex, vTexUV0 + uPixelOffset[ 4 ].zw ) +  texture2D( uSrcTex, vTexUV0 - uPixelOffset[ 4 ].zw ) );
+    Color += uPixelWeight[2].z * ( texture2D( uSrcTex, vTexUV0 + uPixelOffset[ 5 ].xy ) +  texture2D( uSrcTex, vTexUV0 - uPixelOffset[ 5 ].xy ) );
+    Color += uPixelWeight[2].w * ( texture2D( uSrcTex, vTexUV0 + uPixelOffset[ 5 ].zw ) +  texture2D( uSrcTex, vTexUV0 - uPixelOffset[ 5 ].zw ) );
+    Color += uPixelWeight[3].x * ( texture2D( uSrcTex, vTexUV0 + uPixelOffset[ 6 ].xy ) +  texture2D( uSrcTex, vTexUV0 - uPixelOffset[ 6 ].xy ) );
+    Color += uPixelWeight[3].y * ( texture2D( uSrcTex, vTexUV0 + uPixelOffset[ 6 ].zw ) +  texture2D( uSrcTex, vTexUV0 - uPixelOffset[ 6 ].zw ) );
+    Color += uPixelWeight[3].z * ( texture2D( uSrcTex, vTexUV0 + uPixelOffset[ 7 ].xy ) +  texture2D( uSrcTex, vTexUV0 - uPixelOffset[ 7 ].xy ) );
+    Color += uPixelWeight[3].w * ( texture2D( uSrcTex, vTexUV0 + uPixelOffset[ 7 ].zw ) +  texture2D( uSrcTex, vTexUV0 - uPixelOffset[ 7 ].zw ) );
+    
+    gl_FragColor = Color ;
+}
+

@@ -1,0 +1,38 @@
+precision mediump float;
+
+uniform lowp	float	uATestRef ;
+
+#ifdef ALPHATEST_MIX
+uniform int				uATestCmpMode ;
+#endif
+
+varying	lowp	vec4	vDif ;
+
+#include "../FragmentShader.h"
+
+// テクスチャなし
+void fs_notex_normal( void )
+{
+	lowp vec4 lColor ;
+
+#ifdef INVERSE_COLOR
+	lColor.rgb = 1.0 - vDif.rgb ;
+	lColor.a   = vDif.a ;
+#else
+	lColor = vDif ;
+#endif
+
+#ifdef PRE_MUL_ALPHA
+	lColor.rgb *= vDif.a ;
+#endif
+
+#ifdef MUL_X_4
+	lColor.rgb *= 4.0 ;
+#endif
+#ifdef MUL_BLEND
+	lColor = ( lColor - 1.0 ) * lColor.a + 1.0 ;
+#endif
+
+	AlphaTest( lColor.a );
+	gl_FragColor = lColor ;
+}

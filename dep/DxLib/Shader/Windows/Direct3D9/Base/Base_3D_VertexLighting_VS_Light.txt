@@ -1,0 +1,197 @@
+// ライト@0@の処理 ***********************************************************************************************************************************( 開始 )
+#if LG@0@_USE
+
+	#ifdef ALL_VS
+		if( cbLightBool[ @0@ ].Use )
+		{
+	#endif
+
+	// ディフューズカラー角度減衰計算用のライトの方向を事前計算 ======( 開始 )
+
+	#if LG@0@_DIR
+
+		// ライトの方向計算
+		lLightDir = cfLight[ @0@ ].Direction ;
+
+	#else  // LG@0@_DIR
+
+		// ライト方向ベクトルの計算
+		lLightDir = normalize( lViewPosition.xyz - cfLight[ @0@ ].Position.xyz ) ;
+
+	#endif  // LG@0@_DIR
+
+	// ライトの情報を初期化
+	VSOutput.Light@0@_Dir_Gen = ZERO ;
+
+	// ライトの向きの逆ベクトルを接地空間に変換
+	#ifdef BUMPMAP
+
+		VSOutput.Light@0@_Dir_Gen.x = dot( lViewTan, -lLightDir ) ;
+		VSOutput.Light@0@_Dir_Gen.y = dot( lViewBin, -lLightDir ) ;
+		VSOutput.Light@0@_Dir_Gen.z = dot( lViewNrm, -lLightDir ) ;
+
+	#elif PHONG // BUMPMAP
+
+		// ライトの向きの逆ベクトルを保存
+		VSOutput.Light@0@_Dir_Gen.xyz = -lLightDir ;
+
+	#endif // BUMPMAP
+
+	// ディフューズカラー角度減衰計算用のライトの方向を事前計算 ======( 終了 )
+
+
+	// 距離・スポットライト減衰値計算 ==========================( 開始 )
+	#if LG@0@_SPOT || LG@0@_POINT
+
+		#ifdef ALL_VS
+			lTotalGen = 1.0f;
+			if( cbLightBool[ @0@ ].Point_Or_Spot )
+			{
+		#endif // ALL_VS
+
+		// 距離減衰計算 ------------------
+
+		// 頂点とライト位置との距離の二乗を求める lLightTemp.x = ( POS - L@0@_POS ) * ( POS - L@0@_POS )
+		lLightTemp = lViewPosition - cfLight[ @0@ ].Position ;
+		lLightTemp.w = 0.0f;
+		lLightDistancePow2 = dot( lLightTemp, lLightTemp ) ;
+
+		// 減衰率の計算 lLightGen = 1 / ( 減衰値0 + 減衰値1 * 距離 + 減衰値2 * ( 距離 * 距離 ) )
+		lLightGen = 1.0f / ( cfLight[ @0@ ].Range_FallOff_AT0_AT1.z + cfLight[ @0@ ].Range_FallOff_AT0_AT1.w * sqrt( lLightDistancePow2 ) + cfLight[ @0@ ].AT2_SpotP0_SpotP1.x * lLightDistancePow2 ) ;
+
+		// スポットライト減衰計算 --------
+
+		#if LG@0@_SPOT
+
+			#ifdef ALL_VS
+				if( cbLightBool[ @0@ ].Spot )
+				{
+			#endif // ALL_VS
+
+			// ライト方向ベクトルとライト位置から頂点位置へのベクトルの内積( 即ち Cos a )を計算 
+			lLightDirectionCosA = dot( lLightDir, cfLight[ @0@ ].Direction ) ;
+
+			// スポットライト減衰計算  pow( falloff, ( ( Cos a - Cos f ) / ( Cos q - Cos f ) ) )
+			lLightGen *= saturate( pow( abs( max( lLightDirectionCosA - cfLight[ @0@ ].AT2_SpotP0_SpotP1.y, 0.0f ) * cfLight[ @0@ ].AT2_SpotP0_SpotP1.z ), cfLight[ @0@ ].Range_FallOff_AT0_AT1.y ) ) ;
+
+			#ifdef ALL_VS
+				} // if( cbLightBool[ @0@ ].Spot )
+			#endif
+
+		#endif // LG@0@_SPOT
+
+		// 有効距離外だったら減衰率を最大にする処理
+		lLightGen *= step( lLightDistancePow2, cfLight[ @0@ ].Range_FallOff_AT0_AT1.x ) ;
+
+		// バンプマップ or フォンシェーディング用に減衰率を保存する
+		#if PHONG || BUMPMAP
+			VSOutput.Light@0@_Dir_Gen.w = lLightGen ;
+		#endif // PHONG || BUMPMAP
+
+		#ifdef ALL_VS
+			} // if( cbLightBool[ @0@ ].Point_Or_Spot )
+		#endif
+
+	#endif // LG@0@_SPOT || LG@0@_POINT
+	// 距離・スポットライト減衰値計算 =========================( 終了 )
+
+
+
+
+	// ディフューズライトとスペキュラライトの角度減衰計算 =======( 開始 )
+	#if BUMPMAP == 0 && PHONG == 0
+
+		// 法線とライトの逆方向ベクトルとの内積を lLightLitParam.x にセット
+		lLightLitParam.x = dot( lViewNrm, -lLightDir ) ;
+
+		#ifdef USE_SPE
+
+			// ハーフベクトルの計算 norm( ( norm( 頂点位置から視点へのベクトル ) + ライトの方向 ) )
+			lLightHalfVec = normalize( normalize( -lViewPosition.xyz ) - lLightDir ) ;
+
+			// 法線とハーフベクトルの内積を lLightLitParam.y にセット
+			lLightLitParam.y = dot( lLightHalfVec, lViewNrm ) ;
+
+			// スペキュラ反射率を lLightLitParam.w にセット
+			lLightLitParam.w = cfMaterial.Power.x ;
+
+			// ライト計算
+			lLightLitDest = lit( lLightLitParam.x, lLightLitParam.y, lLightLitParam.w ) ;
+
+		#else // USE_SPE
+
+			lLightLitDest.y = max( lLightLitParam.x, 0.0f ) ;
+
+		#endif // USE_SPE
+
+	#endif // BUMPMAP == 0 && PHONG == 0
+	// ディフューズライトとスペキュラライトの角度減衰計算 =======( 終了 )
+
+
+
+
+
+	// ディフューズカラー計算 =======================================( 開始 )
+
+	#if BUMPMAP == 0 && PHONG == 0
+
+		#if LG@0@_SPOT || LG@0@_POINT
+
+			// ディフューズライト蓄積値 += 距離・スポットライト角度減衰値 * ( ディフューズ角度減衰計算結果 * ディフューズカラー * ライトのディフューズカラー + ライトのアンビエントカラーとマテリアルのアンビエントカラーを乗算したもの )
+			lTotalDiffuse += lLightGen * ( lLightLitDest.y * cfLight[ @0@ ].Diffuse * lDifColor + cfLight[ @0@ ].Ambient ) ;
+
+		#else  // LG@0@_SPOT || LG@0@_POINT
+
+			// ディフューズライト蓄積値 += ディフューズ角度減衰計算結果 * ディフューズカラー * ライトのディフューズカラー + ライトのアンビエントカラーとマテリアルのアンビエントカラーを乗算したもの
+			lTotalDiffuse += lLightLitDest.y * cfLight[ @0@ ].Diffuse * lDifColor + cfLight[ @0@ ].Ambient ;
+
+		#endif // LG@0@_SPOT || LG@0@_POINT
+
+	#endif // BUMPMAP == 0 && PHONG == 0
+
+	// ディフューズカラー計算 =======================================( 終了 )
+
+
+
+
+
+	// スペキュラカラー計算 =======================================( 開始 )
+
+	#ifdef USE_SPE
+
+		#if BUMPMAP == 0 && PHONG == 0
+
+			#if LG@0@_SPOT || LG@0@_POINT || ALL_VS
+
+				// スペキュラライト蓄積値 += スペキュラ角度減衰計算結果 * 距離・スポットライト減衰 * ライトのスペキュラカラー
+				lTotalSpecular += lLightGen * lLightLitDest.z * cfLight[ @0@ ].Specular ;
+
+			#else	// LG@0@_SPOT || LG@0@_POINT || ALL_VS
+
+				// スペキュラライト蓄積値 += スペキュラ角度減衰計算結果 * ライトのスペキュラカラー
+				lTotalSpecular += lLightLitDest.z * cfLight[ @0@ ].Specular ;
+
+			#endif	// LG@0@_SPOT || LG@0@_POINT || ALL_VS
+
+		#endif // BUMPMAP == 0 && PHONG == 0
+
+	#endif // USE_SPE
+
+	// スペキュラカラー計算 =======================================( 終了 )
+
+
+
+
+	#ifdef ALL_VS
+		} // if( cbLightBool[ @0@ ].Use )
+	#endif
+
+#endif  // LG@0@_USE
+// ライト@0@の処理 ***********************************************************************************************************************************( 終了 )
+
+
+
+
+
+
+

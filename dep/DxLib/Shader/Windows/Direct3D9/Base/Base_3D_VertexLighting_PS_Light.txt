@@ -1,0 +1,65 @@
+
+// ライト@0@の処理 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++( 開始 )
+#if LG@0@_USE
+
+	// ディフューズ色計算
+
+	// DiffuseAngleGen = ディフューズ角度減衰率計算
+	DiffuseAngleGen = saturate( dot( Normal, PSInput.Light@0@_Dir_Gen.xyz ) ) ;
+	
+	// 影による減衰率算出
+	ShadowGen = max( ShadowRate.x, SHADOWMAP1_ENABLE_LGT@0@ ) *
+	            max( ShadowRate.y, SHADOWMAP2_ENABLE_LGT@0@ ) *
+	            max( ShadowRate.z, SHADOWMAP3_ENABLE_LGT@0@ ) ;
+
+	#if LG@0@_DIR
+
+		// ディフューズカラー蓄積値 += ライトのディフューズカラー * ディフューズカラー * ディフューズカラー角度減衰率 + ライトのアンビエントカラーとマテリアルのアンビエントカラーを乗算したもの 
+		TotalDiffuse += cfLight[ @0@ ].Diffuse * PSInput.Diffuse * DiffuseAngleGen * ShadowGen + cfLight[ @0@ ].Ambient ;
+
+	#else // LG@0@_DIR
+
+		// ディフューズカラー蓄積値 += ( ライトのディフューズカラー * ディフューズカラー * ディフューズカラー角度減衰率 + ライトのアンビエントカラーとマテリアルのアンビエントカラーを乗算したもの  ) * 距離・スポットライトの角度減衰率
+		TotalDiffuse += ( cfLight[ @0@ ].Diffuse * PSInput.Diffuse * DiffuseAngleGen * ShadowGen + cfLight[ @0@ ].Ambient ) * PSInput.Light@0@_Dir_Gen.w ;
+
+	#endif // LG@0@_DIR
+
+
+	// スペキュラカラー計算
+	#ifdef USE_SPE
+
+		// ハーフベクトルの計算
+		TempF3 = PSInput.V_to_Eye_ShadowMap3PosZ.xyz + PSInput.Light@0@_Dir_Gen.xyz ;
+		#ifdef    PHONG
+			TempF3 = normalize( TempF3 ) ;
+		#else  // PHONG
+			TempF3 *= 0.5f ;
+		#endif // PHONG
+
+		// Temp = pow( max( 0.0f, N * H ), cfMaterial.Power.x )
+		Temp = pow( max( 0.0f, dot( Normal, TempF3 ) ), cfMaterial.Power.x ) ;
+
+		#if LG@0@_DIR
+
+			// スペキュラカラー蓄積値 += Temp * ライトのスペキュラカラー
+			TotalSpecular += Temp * cfLight[ @0@ ].Specular * ShadowGen ;
+
+		#else // LG@0@_DIR
+
+			// スペキュラカラー蓄積値 += Temp * 距離・スポットライトの角度減衰率 * ライトのスペキュラカラー
+			TotalSpecular += Temp * PSInput.Light@0@_Dir_Gen.w * cfLight[ @0@ ].Specular * ShadowGen ;
+
+		#endif // LG@0@_DIR
+
+	#endif // USE_SPE
+
+#endif // LG@0@_USE
+// ライト@0@の処理 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++( 終了 )
+
+
+
+
+
+
+
+

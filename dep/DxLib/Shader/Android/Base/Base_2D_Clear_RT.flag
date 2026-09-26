@@ -1,0 +1,10 @@
+precision mediump float;
+
+uniform	lowp	vec4	uClearColor ;
+
+// レンダーターゲットクリア用フラグメントシェーダー
+void ClearRT_FS( void )
+{
+	gl_FragColor = uClearColor ;
+}
+

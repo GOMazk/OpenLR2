@@ -1,0 +1,5 @@
+・Borland C++ 版のコンパイルについて
+
+	　Borland C++ 版の DxLib.lib をコンパイルするには C++ BuilderX Personal に
+	入っている bcc32.exe か、それ以上のバージョンのコンパイラが必要です。
+	(Borland C++ Compiler 5.5 ではコンパイル出来ません)

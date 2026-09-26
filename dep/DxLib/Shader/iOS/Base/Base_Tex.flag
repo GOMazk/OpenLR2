@@ -1,0 +1,52 @@
+precision mediump float;
+
+uniform sampler2D		uSrcTex ;
+
+uniform lowp	float	uATestRef ;
+
+#ifdef ALPHATEST_MIX
+uniform int				uATestCmpMode ;
+#endif
+
+varying	lowp	vec4	vDif ;
+varying	mediump	vec2	vTexUV0 ;
+
+#include "../FragmentShader.h"
+
+// ブレンドテクスチャ無し
+void fs_normal( void )
+{
+	lowp vec4 lTexColor ;
+	lowp vec4 lColor ;
+
+	lTexColor = texture2D( uSrcTex, vTexUV0 ) ;
+
+#ifdef IGNORE_COLOR
+	lTexColor.r = 1.0;
+	lTexColor.g = 1.0;
+	lTexColor.b = 1.0;
+#endif
+#ifdef INVERSE_COLOR
+	lTexColor.rgb = 1.0 - lTexColor.rgb;
+#endif
+
+	lColor = lTexColor * vDif ;
+
+#ifdef IGNORE_TEXALPHA
+	lColor.a = vDif.a ;
+#endif
+
+#ifdef PRE_MUL_ALPHA
+	lColor.rgb *= vDif.a ;
+#endif
+
+#ifdef MUL_X_4
+	lColor.rgb *= 4.0 ;
+#endif
+#ifdef MUL_BLEND
+	lColor = ( lColor - 1.0 ) * lColor.a + 1.0 ;
+#endif
+
+	AlphaTest( lColor.a ) ;
+	gl_FragColor = lColor ;
+}

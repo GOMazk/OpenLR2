@@ -1,0 +1,47 @@
+precision mediump float;
+
+uniform mediump	vec4	uMin_LenRev_AfterMin_AfterMax ;
+
+uniform sampler2D		uSrcTex ;
+uniform sampler2D		uGammaTex ;
+varying mediump	vec2	vTexUV0 ;
+
+void Level_FS( void )
+{
+	mediump vec4 Color;
+	mediump vec3 Rgb;
+	mediump float Ratio;
+
+	Color = texture2D( uSrcTex, vTexUV0 ) ;
+
+#ifdef PMA_IMAGE
+	if( Color.a < 0.001 )
+	{
+		Color.r = 0.0 ;
+		Color.g = 0.0 ;
+		Color.b = 0.0 ;
+	}
+	else
+	{
+		Color.rgb = Color.rgb / Color.a;
+	}
+#endif
+
+	Rgb.rgb = clamp( ( Color.rgb - uMin_LenRev_AfterMin_AfterMax.xxx ) * uMin_LenRev_AfterMin_AfterMax.y, 0.0, 1.0 );
+
+	Ratio = texture2D( uGammaTex, vec2( Rgb.r, 0.0 ) ).r ;
+	Color.r = uMin_LenRev_AfterMin_AfterMax.z + Ratio * ( uMin_LenRev_AfterMin_AfterMax.w - uMin_LenRev_AfterMin_AfterMax.z ) ;
+
+	Ratio = texture2D( uGammaTex, vec2( Rgb.g, 0.0 ) ).r ;
+	Color.g = uMin_LenRev_AfterMin_AfterMax.z + Ratio * ( uMin_LenRev_AfterMin_AfterMax.w - uMin_LenRev_AfterMin_AfterMax.z ) ;
+
+	Ratio = texture2D( uGammaTex, vec2( Rgb.b, 0.0 ) ).r ;
+	Color.b = uMin_LenRev_AfterMin_AfterMax.z + Ratio * ( uMin_LenRev_AfterMin_AfterMax.w - uMin_LenRev_AfterMin_AfterMax.z ) ;
+
+#ifdef PMA_IMAGE
+	Color.rgb *= Color.a;
+#endif
+	
+	gl_FragColor = Color ;
+}
+

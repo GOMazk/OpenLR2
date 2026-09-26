@@ -1,0 +1,14 @@
+precision mediump float;
+
+uniform sampler2D		uSrcTex ;
+varying mediump	vec2	vTexUV0 ;
+
+// 単純転送用フラグメントシェーダー
+void StretchRect_FS( void )
+{
+	gl_FragColor = texture2D( uSrcTex, vTexUV0 ) ;
+}
+
+
+
+

@@ -1,0 +1,120 @@
+precision mediump float;
+
+// 音宮志久様の「PixelShaderを使った画像補間 (3) Lanczosフィルタによる補間」のコードを元にしています
+uniform mediump	vec4	uTexSize_X1PixelU ;
+
+uniform sampler2D		uSrcTex ;
+varying mediump	vec2	vTexUV0 ;
+varying mediump	vec2	vTexUV1 ;
+varying mediump	vec2	vTexUV2 ;
+varying mediump	vec2	vTexUV3 ;
+varying mediump	vec2	vTexUV4 ;
+varying mediump	vec2	vTexUV5 ;
+
+void Lanczos3Scale_FS( void )
+{
+	mediump vec4 clr ;
+	mediump vec2 w[ 6 ] ;
+	mediump vec2 p[ 6 ] ;
+	mediump vec2 t0, t1 ;
+	mediump float M_PI ;
+	mediump vec2 TexDiff ;
+
+	M_PI = 3.14159265358979324 ;
+
+	TexDiff.x = 1.0 ;
+	TexDiff.y = 1.0 ;
+
+	p[ 2 ] = -fract( vTexUV2 * uTexSize_X1PixelU.xy ) ;
+	p[ 3 ] = p[ 2 ] + TexDiff ;
+	p[ 1 ] = p[ 2 ] - TexDiff ;
+	p[ 4 ] = p[ 3 ] + TexDiff ;
+	p[ 0 ] = p[ 1 ] - TexDiff ;
+	p[ 5 ] = p[ 4 ] + TexDiff ;
+
+	t0 = p[ 0 ] * M_PI ;
+	t1 = t0 / 3.0 ;
+	w[ 0 ].x = ( t0.x != 0.0 ? ( ( sin( t0.x ) / t0.x ) * ( sin( t1.x ) / t1.x ) ) : 1.0 ) ;
+	w[ 0 ].y = ( t0.y != 0.0 ? ( ( sin( t0.y ) / t0.y ) * ( sin( t1.y ) / t1.y ) ) : 1.0 ) ;
+//	w[ 0 ] = ( t0 != 0.0 ? ( ( sin( t0 ) / t0 ) * ( sin( t1 ) / t1 ) ) : 1.0 ) ;
+	p[ 0 ] = uTexSize_X1PixelU.zw * ( 0.0 - 2.0 ) ;
+
+	t0 = p[ 1 ] * M_PI ;
+	t1 = t0 / 3.0 ;
+	w[ 1 ].x = ( t0.x != 0.0 ? ( ( sin( t0.x ) / t0.x ) * ( sin( t1.x ) / t1.x ) ) : 1.0 ) ;
+	w[ 1 ].y = ( t0.y != 0.0 ? ( ( sin( t0.y ) / t0.y ) * ( sin( t1.y ) / t1.y ) ) : 1.0 ) ;
+//	w[ 1 ] = ( t0 != 0.0 ? ( ( sin( t0 ) / t0 ) * ( sin( t1 ) / t1 ) ) : 1.0 ) ;
+	p[ 1 ] = uTexSize_X1PixelU.zw * ( 1.0 - 2.0 ) ;
+
+	t0 = p[ 2 ] * M_PI ;
+	t1 = t0 / 3.0 ;
+	w[ 2 ].x = ( t0.x != 0.0 ? ( ( sin( t0.x ) / t0.x ) * ( sin( t1.x ) / t1.x ) ) : 1.0 ) ;
+	w[ 2 ].y = ( t0.y != 0.0 ? ( ( sin( t0.y ) / t0.y ) * ( sin( t1.y ) / t1.y ) ) : 1.0 ) ;
+//	w[ 2 ] = ( t0 != 0.0 ? ( ( sin( t0 ) / t0 ) * ( sin( t1 ) / t1 ) ) : 1.0 ) ;
+	p[ 2 ] = uTexSize_X1PixelU.zw * ( 2.0 - 2.0 ) ;
+
+	t0 = p[ 3 ] * M_PI ;
+	t1 = t0 / 3.0 ;
+	w[ 3 ].x = ( t0.x != 0.0 ? ( ( sin( t0.x ) / t0.x ) * ( sin( t1.x ) / t1.x ) ) : 1.0 ) ;
+	w[ 3 ].y = ( t0.y != 0.0 ? ( ( sin( t0.y ) / t0.y ) * ( sin( t1.y ) / t1.y ) ) : 1.0 ) ;
+//	w[ 3 ] = ( t0 != 0.0 ? ( ( sin( t0 ) / t0 ) * ( sin( t1 ) / t1 ) ) : 1.0 ) ;
+	p[ 3 ] = uTexSize_X1PixelU.zw * ( 3.0 - 2.0 ) ;
+
+	t0 = p[ 4 ] * M_PI ;
+	t1 = t0 / 3.0 ;
+	w[ 4 ].x = ( t0.x != 0.0 ? ( ( sin( t0.x ) / t0.x ) * ( sin( t1.x ) / t1.x ) ) : 1.0 ) ;
+	w[ 4 ].y = ( t0.y != 0.0 ? ( ( sin( t0.y ) / t0.y ) * ( sin( t1.y ) / t1.y ) ) : 1.0 ) ;
+//	w[ 4 ] = ( t0 != 0.0 ? ( ( sin( t0 ) / t0 ) * ( sin( t1 ) / t1 ) ) : 1.0 ) ;
+	p[ 4 ] = uTexSize_X1PixelU.zw * ( 4.0 - 2.0 ) ;
+
+	t0 = p[ 5 ] * M_PI ;
+	t1 = t0 / 3.0 ;
+	w[ 5 ].x = ( t0.x != 0.0 ? ( ( sin( t0.x ) / t0.x ) * ( sin( t1.x ) / t1.x ) ) : 1.0 ) ;
+	w[ 5 ].y = ( t0.y != 0.0 ? ( ( sin( t0.y ) / t0.y ) * ( sin( t1.y ) / t1.y ) ) : 1.0 ) ;
+//	w[ 5 ] = ( t0 != 0.0 ? ( ( sin( t0 ) / t0 ) * ( sin( t1 ) / t1 ) ) : 1.0 ) ;
+	p[ 5 ] = uTexSize_X1PixelU.zw * ( 5.0 - 2.0 ) ;
+
+	gl_FragColor = clamp(
+				(	texture2D( uSrcTex, vTexUV0 + p[ 0 ] ) * w[ 0 ].x +
+					texture2D( uSrcTex, vTexUV0 + p[ 1 ] ) * w[ 1 ].x +
+					texture2D( uSrcTex, vTexUV0          ) * w[ 2 ].x +
+					texture2D( uSrcTex, vTexUV0 + p[ 3 ] ) * w[ 3 ].x +
+					texture2D( uSrcTex, vTexUV0 + p[ 4 ] ) * w[ 4 ].x +
+					texture2D( uSrcTex, vTexUV0 + p[ 5 ] ) * w[ 5 ].x ) * w[ 0 ].y +
+	
+				(	texture2D( uSrcTex, vTexUV1 + p[ 0 ] ) * w[ 0 ].x +
+					texture2D( uSrcTex, vTexUV1 + p[ 1 ] ) * w[ 1 ].x +
+					texture2D( uSrcTex, vTexUV1          ) * w[ 2 ].x +
+					texture2D( uSrcTex, vTexUV1 + p[ 3 ] ) * w[ 3 ].x +
+					texture2D( uSrcTex, vTexUV1 + p[ 4 ] ) * w[ 4 ].x +
+					texture2D( uSrcTex, vTexUV1 + p[ 5 ] ) * w[ 5 ].x ) * w[ 1 ].y +
+	
+				(	texture2D( uSrcTex, vTexUV2 + p[ 0 ] ) * w[ 0 ].x +
+					texture2D( uSrcTex, vTexUV2 + p[ 1 ] ) * w[ 1 ].x +
+					texture2D( uSrcTex, vTexUV2          ) * w[ 2 ].x +
+					texture2D( uSrcTex, vTexUV2 + p[ 3 ] ) * w[ 3 ].x +
+					texture2D( uSrcTex, vTexUV2 + p[ 4 ] ) * w[ 4 ].x +
+					texture2D( uSrcTex, vTexUV2 + p[ 5 ] ) * w[ 5 ].x ) * w[ 2 ].y +
+	
+				(	texture2D( uSrcTex, vTexUV3 + p[ 0 ] ) * w[ 0 ].x +
+					texture2D( uSrcTex, vTexUV3 + p[ 1 ] ) * w[ 1 ].x +
+					texture2D( uSrcTex, vTexUV3          ) * w[ 2 ].x +
+					texture2D( uSrcTex, vTexUV3 + p[ 3 ] ) * w[ 3 ].x +
+					texture2D( uSrcTex, vTexUV3 + p[ 4 ] ) * w[ 4 ].x +
+					texture2D( uSrcTex, vTexUV3 + p[ 5 ] ) * w[ 5 ].x ) * w[ 3 ].y +
+		
+				(	texture2D( uSrcTex, vTexUV4 + p[ 0 ] ) * w[ 0 ].x +
+					texture2D( uSrcTex, vTexUV4 + p[ 1 ] ) * w[ 1 ].x +
+					texture2D( uSrcTex, vTexUV4          ) * w[ 2 ].x +
+					texture2D( uSrcTex, vTexUV4 + p[ 3 ] ) * w[ 3 ].x +
+					texture2D( uSrcTex, vTexUV4 + p[ 4 ] ) * w[ 4 ].x +
+					texture2D( uSrcTex, vTexUV4 + p[ 5 ] ) * w[ 5 ].x ) * w[ 4 ].y +
+		
+				(	texture2D( uSrcTex, vTexUV5 + p[ 0 ] ) * w[ 0 ].x +
+					texture2D( uSrcTex, vTexUV5 + p[ 1 ] ) * w[ 1 ].x +
+					texture2D( uSrcTex, vTexUV5          ) * w[ 2 ].x +
+					texture2D( uSrcTex, vTexUV5 + p[ 3 ] ) * w[ 3 ].x +
+					texture2D( uSrcTex, vTexUV5 + p[ 4 ] ) * w[ 4 ].x +
+					texture2D( uSrcTex, vTexUV5 + p[ 5 ] ) * w[ 5 ].x ) * w[ 5 ].y, 0.0, 1.0 ) ;
+}
+

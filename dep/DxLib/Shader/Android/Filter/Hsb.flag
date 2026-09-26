@@ -1,0 +1,779 @@
+precision mediump float;
+
+uniform mediump	vec4	uParam ;
+
+uniform sampler2D		uSrcTex ;
+uniform sampler2D		uBlendTex ;
+varying mediump	vec2	vTexUV0 ;
+varying mediump	vec2	vTexUV1 ;
+
+void RGB_To_HSB_FS( void )
+{
+	mediump vec4 Color;
+	mediump vec3 Hsb;
+	mediump vec3 Rgb;
+	mediump	vec3 tRGB;
+	mediump float Max;
+	mediump float Min;
+	mediump float Delta;
+	mediump vec3 One;
+
+	One  = vec3( 1.0, 1.0, 1.0 ) ;
+
+	Color = texture2D( uSrcTex, vTexUV0 ) ;
+	
+#ifdef PMA_IMAGE
+	if( Color.a < 0.001 )
+	{
+		Color.r = 0.0 ;
+		Color.g = 0.0 ;
+		Color.b = 0.0 ;
+	}
+	else
+	{
+		Color.rgb = Color.rgb / Color.a;
+	}
+#endif
+	
+	Rgb = Color.rgb;
+	
+	if( uParam.z > 0.0 )
+	{
+		Rgb += ( One - Rgb ) * uParam.z;
+	}
+	else
+	{
+		Rgb *= 1.0 + uParam.z;
+	}
+	Rgb = clamp( Rgb, 0.0, 1.0 );
+
+	Max = max( Rgb.r, max( Rgb.g, Rgb.b ) );
+	Min = min( Rgb.r, min( Rgb.g, Rgb.b ) );
+	Delta = Max - Min;
+
+	Hsb.z = ( Max + Min ) / 2.0;
+	if( Max == Min )
+	{
+		Hsb.x = 0.0;
+		Hsb.y = 0.0;
+	}
+	else
+	{
+		if( Hsb.z > 0.5 )
+		{
+			Hsb.y = 2.0 - Max - Min; 
+		}
+		else
+		{
+			Hsb.y = Max + Min;
+		}
+		Hsb.y = Delta / Hsb.y;
+		
+		tRGB = ( vec3( Max, Max, Max ) - Rgb ) / Delta;
+		if( Rgb.r == Max )
+		{
+			Hsb.x = tRGB.b - tRGB.g;
+		}
+		else
+		if( Rgb.g == Max )
+		{
+			Hsb.x = 2.0 + tRGB.r - tRGB.b;
+		}
+		else
+		{
+			Hsb.x = 4.0 + tRGB.g - tRGB.r;
+		}
+		if( Hsb.x < 0.0 )
+		{
+			Hsb.x += 6.0;
+		}
+		Hsb.x /= 6.0;
+	}
+
+	Color.r = Hsb.x;
+	Color.g = Hsb.y;
+	Color.b = Hsb.z;
+	gl_FragColor = Color ;
+}
+
+void HSB_HLOCK_FS( void )
+{
+	mediump vec4 Color;
+	mediump vec3 Hsb;
+	mediump vec3 Rgb;
+	mediump float Max;
+	mediump float Min;
+	mediump float Delta;
+	mediump vec3 Half;
+	mediump vec3 One;
+
+	Half = vec3( 0.5, 0.5, 0.5 ) ;
+	One  = vec3( 1.0, 1.0, 1.0 ) ;
+
+	Color = texture2D( uSrcTex, vTexUV0 ) ;
+
+#ifdef PMA_IMAGE
+	if( Color.a < 0.001 )
+	{
+		Color.r = 0.0 ;
+		Color.g = 0.0 ;
+		Color.b = 0.0 ;
+	}
+	else
+	{
+		Color.rgb = Color.rgb / Color.a;
+	}
+#endif
+	
+	Rgb = Color.rgb;
+	
+	if( uParam.z > 0.0 )
+	{
+		Rgb += ( One - Rgb ) * uParam.z;
+	}
+	else
+	{
+		Rgb *= 1.0 + uParam.z;
+	}
+	Rgb = clamp( Rgb, 0.0, 1.0 );
+
+	Max = max( Rgb.r, max( Rgb.g, Rgb.b ) );
+	Min = min( Rgb.r, min( Rgb.g, Rgb.b ) );
+	Delta = Max - Min;
+
+	Hsb.z = ( Max + Min ) / 2.0;
+	if( Max == Min )
+	{
+		Hsb.y = 0.0;
+	}
+	else
+	{
+		if( Hsb.z > 0.5 )
+		{
+			Hsb.y = 2.0 - Max - Min; 
+		}
+		else
+		{
+			Hsb.y = Max + Min;
+		}
+		Hsb.y = Delta / Hsb.y;
+	}
+	
+	Hsb.y = clamp( Hsb.y * ( 1.0 + uParam.y ), 0.0, 1.0 );
+
+	if( uParam.x < 1.0 )
+	{
+		Rgb.r = 1.0 ;
+		Rgb.g = uParam.x ;
+		Rgb.b = 0.0 ;
+	}
+	else
+	if( uParam.x < 2.0 )
+	{
+		Rgb.r = 1.0 - ( uParam.x - 1.0 ) ;
+		Rgb.g = 1.0 ;
+		Rgb.b = 0.0 ;
+	}
+	else
+	if( uParam.x < 3.0 )
+	{
+		Rgb.r = 0.0 ;
+		Rgb.g = 1.0 ;
+		Rgb.b = uParam.x - 2.0 ;
+	}
+	else
+	if( uParam.x < 4.0 )
+	{
+		Rgb.r = 0.0 ;
+		Rgb.g = 1.0 - ( uParam.x - 3.0 ) ;
+		Rgb.b = 1.0 ;
+	}
+	else
+	if( uParam.x < 5.0 )
+	{
+		Rgb.r = uParam.x - 4.0 ;
+		Rgb.g = 0.0 ;
+		Rgb.b = 1.0 ;
+	}
+	else
+	{
+		Rgb.r = 1.0 ;
+		Rgb.g = 0.0 ;
+		Rgb.b = 1.0 - ( uParam.x - 5.0 ) ;
+	}
+
+	Rgb += ( Half - Rgb ) * ( 1.0 - Hsb.y );
+
+	if( Hsb.z <= 0.5 )
+	{
+		Rgb *= Hsb.z * 2.0;
+	}
+	else
+	{
+		Rgb += ( One - Rgb ) * ( ( Hsb.z - 0.5 ) * 2.0 );
+	}
+
+	Color.r = Rgb.r;
+	Color.g = Rgb.g;
+	Color.b = Rgb.b;
+	
+#ifdef PMA_IMAGE
+	Color.rgb *= Color.a;
+#endif
+	
+	gl_FragColor = Color ;
+}
+
+void HSB_To_RGB_FS( void )
+{
+	mediump vec4 Color;
+	mediump vec3 Hsb;
+	mediump vec3 Rgb;
+	mediump float Max;
+	mediump float Min;
+	mediump float Delta;
+	mediump vec3 Half;
+	mediump vec3 One;
+
+	Half = vec3( 0.5, 0.5, 0.5 ) ;
+	One  = vec3( 1.0, 1.0, 1.0 ) ;
+
+	Color = texture2D( uSrcTex, vTexUV0 ) ;
+	Hsb = Color.rgb;
+
+	Hsb.x *= 6.0;
+	Hsb.x += uParam.x;
+	if( Hsb.x < 0.0 )
+	{
+		Hsb.x += 6.0;
+	}
+	else
+	if( Hsb.x >= 6.0 )
+	{
+		Hsb.x -= 6.0;
+	}
+
+	Hsb.y = clamp( Hsb.y * ( 1.0 + uParam.y ), 0.0, 1.0 );
+
+	if( Hsb.x < 1.0 )
+	{
+		Rgb.r = 1.0 ;
+		Rgb.g = Hsb.x ;
+		Rgb.b = 0.0 ;
+	}
+	else
+	if( Hsb.x < 2.0 )
+	{
+		Rgb.r = 1.0 - ( Hsb.x - 1.0 ) ;
+		Rgb.g = 1.0 ;
+		Rgb.b = 0.0 ;
+	}
+	else
+	if( Hsb.x < 3.0 )
+	{
+		Rgb.r = 0.0 ;
+		Rgb.g = 1.0 ;
+		Rgb.b = Hsb.x - 2.0 ;
+	}
+	else
+	if( Hsb.x < 4.0 )
+	{
+		Rgb.r = 0.0 ;
+		Rgb.g = 1.0 - ( Hsb.x - 3.0 ) ;
+		Rgb.b = 1.0 ;
+	}
+	else
+	if( Hsb.x < 5.0 )
+	{
+		Rgb.r = Hsb.x - 4.0 ;
+		Rgb.g = 0.0 ;
+		Rgb.b = 1.0 ;
+	}
+	else
+	{
+		Rgb.r = 1.0 ;
+		Rgb.g = 0.0 ;
+		Rgb.b = 1.0 - ( Hsb.x - 5.0 ) ;
+	}
+
+	Rgb += ( Half - Rgb ) * ( 1.0 - Hsb.y );
+
+	if( Hsb.z <= 0.5 )
+	{
+		Rgb *= Hsb.z * 2.0;
+	}
+	else
+	{
+		Rgb += ( One - Rgb ) * ( ( Hsb.z - 0.5 ) * 2.0 );
+	}
+	
+	Color.r = Rgb.r;
+	Color.g = Rgb.g;
+	Color.b = Rgb.b;
+	
+#ifdef PMA_IMAGE
+	Color.rgb *= Color.a;
+#endif
+	
+	gl_FragColor = Color ;
+}
+
+
+
+
+
+
+void HSB_Base_FS( void )
+{
+	mediump vec4 Color;
+	mediump vec3 Hsb;
+	mediump vec3 Rgb;
+	mediump	vec3 tRGB;
+	mediump float Max;
+	mediump float Min;
+	mediump float Delta;
+	mediump vec3 Half;
+	mediump vec3 One;
+
+	Half = vec3( 0.5, 0.5, 0.5 ) ;
+	One  = vec3( 1.0, 1.0, 1.0 ) ;
+
+	Color = texture2D( uSrcTex, vTexUV0 ) ;
+	
+#ifdef PMA_IMAGE
+	if( Color.a < 0.001 )
+	{
+		Color.r = 0.0 ;
+		Color.g = 0.0 ;
+		Color.b = 0.0 ;
+	}
+	else
+	{
+		Color.rgb = Color.rgb / Color.a;
+	}
+#endif
+	
+	Rgb = Color.rgb;
+	
+	if( uParam.z > 0.0 )
+	{
+		Rgb += ( One - Rgb ) * uParam.z;
+	}
+	else
+	{
+		Rgb *= 1.0 + uParam.z;
+	}
+	Rgb = clamp( Rgb, 0.0, 1.0 );
+
+	Max = max( Rgb.r, max( Rgb.g, Rgb.b ) );
+	Min = min( Rgb.r, min( Rgb.g, Rgb.b ) );
+	Delta = Max - Min;
+
+	Hsb.z = ( Max + Min ) / 2.0;
+	if( Max == Min )
+	{
+		Hsb.x = 0.0;
+		Hsb.y = 0.0;
+	}
+	else
+	{
+		if( Hsb.z > 0.5 )
+		{
+			Hsb.y = 2.0 - Max - Min; 
+		}
+		else
+		{
+			Hsb.y = Max + Min;
+		}
+		Hsb.y = Delta / Hsb.y;
+		
+		tRGB = ( vec3( Max, Max, Max ) - Rgb ) / Delta;
+		if( Rgb.r == Max )
+		{
+			Hsb.x = tRGB.b - tRGB.g;
+		}
+		else
+		if( Rgb.g == Max )
+		{
+			Hsb.x = 2.0 + tRGB.r - tRGB.b;
+		}
+		else
+		{
+			Hsb.x = 4.0 + tRGB.g - tRGB.r;
+		}
+		if( Hsb.x < 0.0 )
+		{
+			Hsb.x += 6.0;
+		}
+	}
+
+	Hsb.x += uParam.x;
+	if( Hsb.x < 0.0 )
+	{
+		Hsb.x += 6.0;
+	}
+	else
+	if( Hsb.x >= 6.0 )
+	{
+		Hsb.x -= 6.0;
+	}
+
+	Hsb.y = clamp( Hsb.y * ( 1.0 + uParam.y ), 0.0, 1.0 );
+
+	if( Hsb.x < 1.0 )
+	{
+		Rgb.r = 1.0 ;
+		Rgb.g = Hsb.x ;
+		Rgb.b = 0.0 ;
+	}
+	else
+	if( Hsb.x < 2.0 )
+	{
+		Rgb.r = 1.0 - ( Hsb.x - 1.0 ) ;
+		Rgb.g = 1.0 ;
+		Rgb.b = 0.0 ;
+	}
+	else
+	if( Hsb.x < 3.0 )
+	{
+		Rgb.r = 0.0 ;
+		Rgb.g = 1.0 ;
+		Rgb.b = Hsb.x - 2.0 ;
+	}
+	else
+	if( Hsb.x < 4.0 )
+	{
+		Rgb.r = 0.0 ;
+		Rgb.g = 1.0 - ( Hsb.x - 3.0 ) ;
+		Rgb.b = 1.0 ;
+	}
+	else
+	if( Hsb.x < 5.0 )
+	{
+		Rgb.r = Hsb.x - 4.0 ;
+		Rgb.g = 0.0 ;
+		Rgb.b = 1.0 ;
+	}
+	else
+	{
+		Rgb.r = 1.0 ;
+		Rgb.g = 0.0 ;
+		Rgb.b = 1.0 - ( Hsb.x - 5.0 ) ;
+	}
+
+	Rgb += ( Half - Rgb ) * ( 1.0 - Hsb.y );
+
+	if( Hsb.z <= 0.5 )
+	{
+		Rgb *= Hsb.z * 2.0;
+	}
+	else
+	{
+		Rgb += ( One - Rgb ) * ( ( Hsb.z - 0.5 ) * 2.0 );
+	}
+	
+	Color.r = Rgb.r;
+	Color.g = Rgb.g;
+	Color.b = Rgb.b;
+	
+#ifdef PMA_IMAGE
+	Color.rgb *= Color.a;
+#endif
+	
+	gl_FragColor = Color ;
+}
+
+
+
+
+
+
+void HSB_Blend_Hue_FS( void )
+{
+	mediump vec4 Color;
+	mediump vec4 BlendColor;
+	mediump vec3 Hsb;
+	mediump vec3 Rgb;
+	mediump	vec3 tRGB;
+	mediump vec3 DestRgb;
+	mediump vec2 Max;
+	mediump vec2 Min;
+	mediump vec2 Delta;
+	mediump vec3 Half;
+	mediump vec3 One;
+
+	Half = vec3( 0.5, 0.5, 0.5 ) ;
+	One  = vec3( 1.0, 1.0, 1.0 ) ;
+
+	Color      = texture2D( uSrcTex, vTexUV0 ) ;
+	BlendColor = texture2D( uBlendTex, vTexUV1 ) ;
+	
+#ifdef PMA_IMAGE
+	if( Color.a < 0.001 )
+	{
+		Color.r = 0.0 ;
+		Color.g = 0.0 ;
+		Color.b = 0.0 ;
+	}
+	else
+	{
+		Color.rgb = Color.rgb / Color.a;
+	}
+	
+	if( BlendColor.a < 0.001 )
+	{
+		BlendColor.r = 0.0 ;
+		BlendColor.g = 0.0 ;
+		BlendColor.b = 0.0 ;
+	}
+	else
+	{
+		BlendColor.rgb = BlendColor.rgb / BlendColor.a;
+	}
+#endif
+	
+	Rgb = Color.rgb;
+	
+	Max.x = max( Rgb.r, max( Rgb.g, Rgb.b ) );
+	Min.x = min( Rgb.r, min( Rgb.g, Rgb.b ) );
+	Delta.x = Max.x - Min.x;
+
+	Max.y = max( BlendColor.r, max( BlendColor.g, BlendColor.b ) );
+	Min.y = min( BlendColor.r, min( BlendColor.g, BlendColor.b ) );
+	Delta.y = Max.y - Min.y;
+
+	Hsb.z = ( Max.x + Min.x ) / 2.0;
+	if( Max.x != Min.x )
+	{
+		if( Hsb.z > 0.5 )
+		{
+			Hsb.y = 2.0 - Max.x - Min.x;
+		}
+		else
+		{
+			Hsb.y = Max.x + Min.x;
+		}
+		Hsb.y = Delta.x / Hsb.y;
+	}
+	
+	if( Max.y != Min.y )
+	{
+		tRGB = ( Max.yyy - BlendColor.rgb ) / Delta.y;
+		if( BlendColor.r == Max.y )
+		{
+			Hsb.x = tRGB.b - tRGB.g;
+		}
+		else
+		if( BlendColor.g == Max.y )
+		{
+			Hsb.x = 2.0 + tRGB.r - tRGB.b;
+		}
+		else
+		{
+			Hsb.x = 4.0 + tRGB.g - tRGB.r;
+		}
+		if( Hsb.x < 0.0 )
+		{
+			Hsb.x += 6.0;
+		}
+	}
+
+	if( Hsb.x < 1.0 )
+	{
+		DestRgb.r = 1.0 ;
+		DestRgb.g = Hsb.x ;
+	}
+	else
+	if( Hsb.x < 2.0 )
+	{
+		DestRgb.r = 1.0 - ( Hsb.x - 1.0 ) ;
+		DestRgb.g = 1.0 ;
+	}
+	else
+	if( Hsb.x < 3.0 )
+	{
+		DestRgb.g = 1.0 ;
+		DestRgb.b = Hsb.x - 2.0 ;
+	}
+	else
+	if( Hsb.x < 4.0 )
+	{
+		DestRgb.g = 1.0 - ( Hsb.x - 3.0 ) ;
+		DestRgb.b = 1.0 ;
+	}
+	else
+	if( Hsb.x < 5.0 )
+	{
+		DestRgb.r = Hsb.x - 4.0 ;
+		DestRgb.b = 1.0 ;
+	}
+	else
+	{
+		DestRgb.r = 1.0 ;
+		DestRgb.b = 1.0 - ( Hsb.x - 5.0 ) ;
+	}
+
+	DestRgb.rgb += ( Half.rgb - DestRgb.rgb ) * ( 1.0 - Hsb.y );
+
+	if( Hsb.z <= 0.5 )
+	{
+		DestRgb.rgb *= Hsb.z * 2.0;
+	}
+	else
+	{
+		DestRgb.rgb += ( One.rgb - DestRgb.rgb ) * ( ( Hsb.z - 0.5 ) * 2.0 );
+	}
+	
+	Color.rgb = Color.rgb + ( uParam.x/*BlendRatio*/ * BlendColor.a ) * ( DestRgb.rgb - Color.rgb ) ;
+	
+#ifdef PMA_IMAGE
+	Color.rgb *= Color.a;
+#endif
+	
+	gl_FragColor = Color ;
+}
+
+void HSB_Blend_Saturation_FS( void )
+{
+	mediump vec4 Color;
+	mediump vec4 BlendColor;
+	mediump vec3 Hsb;
+	mediump vec3 Rgb;
+	mediump	vec3 tRGB;
+	mediump vec3 DestRgb;
+	mediump vec2 Max;
+	mediump vec2 Min;
+	mediump vec2 Delta;
+	mediump vec3 Half;
+	mediump vec3 One;
+
+	Half = vec3( 0.5, 0.5, 0.5 ) ;
+	One  = vec3( 1.0, 1.0, 1.0 ) ;
+
+	Color      = texture2D( uSrcTex, vTexUV0 ) ;
+	BlendColor = texture2D( uBlendTex, vTexUV1 ) ;
+	
+#ifdef PMA_IMAGE
+	if( Color.a < 0.001 )
+	{
+		Color.r = 0.0 ;
+		Color.g = 0.0 ;
+		Color.b = 0.0 ;
+	}
+	else
+	{
+		Color.rgb = Color.rgb / Color.a;
+	}
+	
+	if( BlendColor.a < 0.001 )
+	{
+		BlendColor.r = 0.0 ;
+		BlendColor.g = 0.0 ;
+		BlendColor.b = 0.0 ;
+	}
+	else
+	{
+		BlendColor.rgb = BlendColor.rgb / BlendColor.a;
+	}
+#endif
+	
+	Rgb = Color.rgb;
+	
+	Max.x = max( Rgb.r, max( Rgb.g, Rgb.b ) );
+	Min.x = min( Rgb.r, min( Rgb.g, Rgb.b ) );
+	Delta.x = Max.x - Min.x;
+
+	Max.y = max( BlendColor.r, max( BlendColor.g, BlendColor.b ) );
+	Min.y = min( BlendColor.r, min( BlendColor.g, BlendColor.b ) );
+	Delta.y = Max.y - Min.y;
+
+	Hsb.z = Max.x + Min.x;
+	if( Max.x != Min.x )
+	{
+		tRGB = ( Max.xxx - Color.rgb ) / Delta.x;
+		if( Color.r == Max.x )
+		{
+			Hsb.x = tRGB.b - tRGB.g;
+		}
+		else
+		if( Color.g == Max.x )
+		{
+			Hsb.x = 2.0 + tRGB.r - tRGB.b;
+		}
+		else
+		{
+			Hsb.x = 4.0 + tRGB.g - tRGB.r;
+		}
+		if( Hsb.x < 0.0 )
+		{
+			Hsb.x += 6.0;
+		}
+	}
+	
+	if( Max.y != Min.y )
+	{
+		if( Max.y + Min.y > 1.0 )
+		{
+			Hsb.y = 2.0 - ( Max.y + Min.y );
+		}
+		else
+		{
+			Hsb.y = Max.y + Min.y;
+		}
+		Hsb.y = Delta.y / Hsb.y;
+	}
+
+	if( Hsb.x < 1.0 )
+	{
+		DestRgb.r = 1.0 ;
+		DestRgb.g = Hsb.x ;
+	}
+	else
+	if( Hsb.x < 2.0 )
+	{
+		DestRgb.r = 1.0 - ( Hsb.x - 1.0 ) ;
+		DestRgb.g = 1.0 ;
+	}
+	else
+	if( Hsb.x < 3.0 )
+	{
+		DestRgb.g = 1.0 ;
+		DestRgb.b = Hsb.x - 2.0 ;
+	}
+	else
+	if( Hsb.x < 4.0 )
+	{
+		DestRgb.g = 1.0 - ( Hsb.x - 3.0 ) ;
+		DestRgb.b = 1.0 ;
+	}
+	else
+	if( Hsb.x < 5.0 )
+	{
+		DestRgb.r = Hsb.x - 4.0 ;
+		DestRgb.b = 1.0 ;
+	}
+	else
+	{
+		DestRgb.r = 1.0 ;
+		DestRgb.b = 1.0 - ( Hsb.x - 5.0 ) ;
+	}
+
+	DestRgb.rgb += ( Half.rgb - DestRgb.rgb ) * ( 1.0 - Hsb.y );
+
+	if( Hsb.z < 1.0 )
+	{
+		DestRgb.rgb *= Hsb.z;
+	}
+	else
+	{
+		DestRgb.rgb += ( One.rgb - DestRgb.rgb ) * ( Hsb.z - 1.0 );
+	}
+	
+	Color.rgb = Color.rgb + ( uParam.x/*BlendRatio*/ * BlendColor.a ) * ( DestRgb.rgb - Color.rgb ) ;
+	
+#ifdef PMA_IMAGE
+	Color.rgb *= Color.a;
+#endif
+	
+	gl_FragColor = Color ;
+}

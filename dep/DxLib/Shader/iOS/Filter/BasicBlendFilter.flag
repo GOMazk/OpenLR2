@@ -1,0 +1,842 @@
+precision mediump float;
+
+uniform lowp	vec4	uBlendRatio ;
+
+uniform sampler2D		uSrcTex ;
+uniform sampler2D		uBlendTex ;
+varying mediump	vec2	vTexUV0 ;
+varying mediump	vec2	vTexUV1 ;
+
+void Normal_FS( void )
+{
+	mediump vec4 Color;
+	mediump vec4 BlendColor;
+
+	Color      = texture2D(   uSrcTex, vTexUV0 );
+	BlendColor = texture2D( uBlendTex, vTexUV1 );
+
+#ifdef PMA_IMAGE
+	if( Color.a < 0.001 )
+	{
+		Color.r = 0.0 ;
+		Color.g = 0.0 ;
+		Color.b = 0.0 ;
+	}
+	else
+	{
+		Color.rgb = Color.rgb / Color.a;
+	}
+	
+	if( BlendColor.a < 0.001 )
+	{
+		BlendColor.r = 0.0 ;
+		BlendColor.g = 0.0 ;
+		BlendColor.b = 0.0 ;
+	}
+	else
+	{
+		BlendColor.rgb = BlendColor.rgb / BlendColor.a;
+	}
+#endif
+	
+	Color.rgb  = Color.rgb + ( uBlendRatio.r * BlendColor.a ) * ( BlendColor.rgb - Color.rgb ) ;
+	
+#ifdef PMA_IMAGE
+	Color.rgb *= Color.a;
+#endif
+	
+	gl_FragColor = Color ;
+}
+
+void Normal_AlphaCh_FS( void )
+{
+	mediump vec4 Color;
+	mediump vec4 BlendColor;
+	mediump float  Ta;
+	mediump float  RSa;
+
+	Color         = texture2D(   uSrcTex,   vTexUV0 );
+	BlendColor    = texture2D( uBlendTex, vTexUV1 );
+
+#ifdef PMA_IMAGE
+	if( Color.a < 0.001 )
+	{
+		Color.r = 0.0 ;
+		Color.g = 0.0 ;
+		Color.b = 0.0 ;
+	}
+	else
+	{
+		Color.rgb = Color.rgb / Color.a;
+	}
+	
+	if( BlendColor.a < 0.001 )
+	{
+		BlendColor.r = 0.0 ;
+		BlendColor.g = 0.0 ;
+		BlendColor.b = 0.0 ;
+	}
+	else
+	{
+		BlendColor.rgb = BlendColor.rgb / BlendColor.a;
+	}
+#endif
+
+	BlendColor.a *= uBlendRatio.r;
+
+	RSa     = ( 1.0 - BlendColor.a );
+	Ta      =   RSa * Color.a         + BlendColor.a;
+	Color   = ( RSa * Color.a * Color + BlendColor.a * BlendColor ) / Ta;
+	Color.a = Ta;
+	
+#ifdef PMA_IMAGE
+	Color.rgb *= Color.a;
+#endif
+	
+	gl_FragColor = Color ;
+}
+
+void Add_AlphaCh_FS( void )
+{
+	mediump vec4 Color;
+	mediump vec4 BlendColor;
+	mediump float  Ta;
+	mediump float  RSa;
+
+	Color         = texture2D(   uSrcTex,   vTexUV0 );
+	BlendColor    = texture2D( uBlendTex, vTexUV1 );
+
+#ifdef PMA_IMAGE
+	if( Color.a < 0.001 )
+	{
+		Color.r = 0.0 ;
+		Color.g = 0.0 ;
+		Color.b = 0.0 ;
+	}
+	else
+	{
+		Color.rgb = Color.rgb / Color.a;
+	}
+	
+	if( BlendColor.a < 0.001 )
+	{
+		BlendColor.r = 0.0 ;
+		BlendColor.g = 0.0 ;
+		BlendColor.b = 0.0 ;
+	}
+	else
+	{
+		BlendColor.rgb = BlendColor.rgb / BlendColor.a;
+	}
+#endif
+
+	BlendColor.a *= uBlendRatio.r;
+
+	RSa     = ( 1.0 - BlendColor.a );
+	Ta      =   Color.a * RSa   + BlendColor.a;
+	Color   = ( Color.a * Color + BlendColor.a * BlendColor ) / Ta;
+	Color.a = Ta;
+	Color   = clamp( Color, 0.0, 1.0 );
+	
+#ifdef PMA_IMAGE
+	Color.rgb *= Color.a;
+#endif
+	
+	gl_FragColor = Color ;
+}
+
+void Multiple_FS( void )
+{
+	mediump vec4 Color;
+	mediump vec4 BlendColor;
+
+	Color      = texture2D(   uSrcTex,   vTexUV0 );
+	BlendColor = texture2D( uBlendTex, vTexUV1 );
+
+#ifdef PMA_IMAGE
+	if( Color.a < 0.001 )
+	{
+		Color.r = 0.0 ;
+		Color.g = 0.0 ;
+		Color.b = 0.0 ;
+	}
+	else
+	{
+		Color.rgb = Color.rgb / Color.a;
+	}
+	
+	if( BlendColor.a < 0.001 )
+	{
+		BlendColor.r = 0.0 ;
+		BlendColor.g = 0.0 ;
+		BlendColor.b = 0.0 ;
+	}
+	else
+	{
+		BlendColor.rgb = BlendColor.rgb / BlendColor.a;
+	}
+#endif
+
+	Color.rgb  = Color.rgb + ( uBlendRatio.r * BlendColor.a ) * ( Color.rgb * BlendColor.rgb - Color.rgb ) ;
+	
+#ifdef PMA_IMAGE
+	Color.rgb *= Color.a;
+#endif
+	
+	gl_FragColor = Color ;
+}
+
+void Difference_FS( void )
+{
+	mediump vec4 Color;
+	mediump vec4 BlendColor;
+
+	Color      = texture2D(   uSrcTex,   vTexUV0 );
+	BlendColor = texture2D( uBlendTex, vTexUV1 );
+
+#ifdef PMA_IMAGE
+	if( Color.a < 0.001 )
+	{
+		Color.r = 0.0 ;
+		Color.g = 0.0 ;
+		Color.b = 0.0 ;
+	}
+	else
+	{
+		Color.rgb = Color.rgb / Color.a;
+	}
+	
+	if( BlendColor.a < 0.001 )
+	{
+		BlendColor.r = 0.0 ;
+		BlendColor.g = 0.0 ;
+		BlendColor.b = 0.0 ;
+	}
+	else
+	{
+		BlendColor.rgb = BlendColor.rgb / BlendColor.a;
+	}
+#endif
+
+	Color.rgb  = Color.rgb + ( uBlendRatio.r * BlendColor.a ) * ( clamp( Color.rgb - BlendColor.rgb, 0.0, 1.0 ) - Color.rgb ) ;
+	
+#ifdef PMA_IMAGE
+	Color.rgb *= Color.a;
+#endif
+	
+	gl_FragColor = Color ;
+}
+
+void Add_FS( void )
+{
+	mediump vec4 Color;
+	mediump vec4 BlendColor;
+
+	Color      = texture2D(   uSrcTex,   vTexUV0 );
+	BlendColor = texture2D( uBlendTex, vTexUV1 );
+
+#ifdef PMA_IMAGE
+	if( Color.a < 0.001 )
+	{
+		Color.r = 0.0 ;
+		Color.g = 0.0 ;
+		Color.b = 0.0 ;
+	}
+	else
+	{
+		Color.rgb = Color.rgb / Color.a;
+	}
+	
+	if( BlendColor.a < 0.001 )
+	{
+		BlendColor.r = 0.0 ;
+		BlendColor.g = 0.0 ;
+		BlendColor.b = 0.0 ;
+	}
+	else
+	{
+		BlendColor.rgb = BlendColor.rgb / BlendColor.a;
+	}
+#endif
+
+	Color.rgb  = Color.rgb + ( uBlendRatio.r * BlendColor.a ) * ( clamp( Color.rgb + BlendColor.rgb, 0.0, 1.0 ) - Color.rgb ) ;
+	
+#ifdef PMA_IMAGE
+	Color.rgb *= Color.a;
+#endif
+	
+	gl_FragColor = Color ;
+}
+
+void Screen_FS( void )
+{
+	mediump vec4 Color;
+	mediump vec4 BlendColor;
+	mediump vec3 One;
+
+	One        = vec3( 1.0, 1.0, 1.0 );
+	Color      = texture2D(   uSrcTex,   vTexUV0 );
+	BlendColor = texture2D( uBlendTex, vTexUV1 );
+
+#ifdef PMA_IMAGE
+	if( Color.a < 0.001 )
+	{
+		Color.r = 0.0 ;
+		Color.g = 0.0 ;
+		Color.b = 0.0 ;
+	}
+	else
+	{
+		Color.rgb = Color.rgb / Color.a;
+	}
+	
+	if( BlendColor.a < 0.001 )
+	{
+		BlendColor.r = 0.0 ;
+		BlendColor.g = 0.0 ;
+		BlendColor.b = 0.0 ;
+	}
+	else
+	{
+		BlendColor.rgb = BlendColor.rgb / BlendColor.a;
+	}
+#endif
+
+	Color.rgb = Color.rgb + ( uBlendRatio.r * BlendColor.a ) * ( ( One - (( One - Color.rgb ) * ( One - BlendColor.rgb )) ) - Color.rgb ) ;
+	
+#ifdef PMA_IMAGE
+	Color.rgb *= Color.a;
+#endif
+	
+	gl_FragColor = Color ;
+}
+
+void Overlay_FS( void )
+{
+	mediump vec4 Color;
+	mediump vec4 BlendColor;
+
+	Color      = texture2D(   uSrcTex,   vTexUV0 );
+	BlendColor = texture2D( uBlendTex, vTexUV1 );
+
+#ifdef PMA_IMAGE
+	if( Color.a < 0.001 )
+	{
+		Color.r = 0.0 ;
+		Color.g = 0.0 ;
+		Color.b = 0.0 ;
+	}
+	else
+	{
+		Color.rgb = Color.rgb / Color.a;
+	}
+	
+	if( BlendColor.a < 0.001 )
+	{
+		BlendColor.r = 0.0 ;
+		BlendColor.g = 0.0 ;
+		BlendColor.b = 0.0 ;
+	}
+	else
+	{
+		BlendColor.rgb = BlendColor.rgb / BlendColor.a;
+	}
+#endif
+
+	if( Color.r < 0.5 )
+	{
+		BlendColor.r = Color.r * BlendColor.r * 2.0;
+	}
+	else
+	{
+		BlendColor.r = 2.0 * ( Color.r + BlendColor.r - Color.r * BlendColor.r ) - 1.0;
+	}
+
+	if( Color.g < 0.5 )
+	{
+		BlendColor.g = Color.g * BlendColor.g * 2.0;
+	}
+	else
+	{
+		BlendColor.g = 2.0 * ( Color.g + BlendColor.g - Color.g * BlendColor.g ) - 1.0;
+	}
+
+	if( Color.b < 0.5 )
+	{
+		BlendColor.b = Color.b * BlendColor.b * 2.0;
+	}
+	else
+	{
+		BlendColor.b = 2.0 * ( Color.b + BlendColor.b - Color.b * BlendColor.b ) - 1.0;
+	}
+	BlendColor = clamp( BlendColor, 0.0, 1.0 );
+
+	Color.rgb = Color.rgb + ( uBlendRatio.r * BlendColor.a ) * ( BlendColor.rgb - Color.rgb ) ;
+	
+#ifdef PMA_IMAGE
+	Color.rgb *= Color.a;
+#endif
+	
+	gl_FragColor = Color ;
+}
+
+void Dodge_FS( void )
+{
+	mediump vec4 Color;
+	mediump vec4 BlendColor;
+
+	Color      = texture2D(   uSrcTex,   vTexUV0 );
+	BlendColor = texture2D( uBlendTex, vTexUV1 );
+
+#ifdef PMA_IMAGE
+	if( Color.a < 0.001 )
+	{
+		Color.r = 0.0 ;
+		Color.g = 0.0 ;
+		Color.b = 0.0 ;
+	}
+	else
+	{
+		Color.rgb = Color.rgb / Color.a;
+	}
+	
+	if( BlendColor.a < 0.001 )
+	{
+		BlendColor.r = 0.0 ;
+		BlendColor.g = 0.0 ;
+		BlendColor.b = 0.0 ;
+	}
+	else
+	{
+		BlendColor.rgb = BlendColor.rgb / BlendColor.a;
+	}
+#endif
+
+	if( BlendColor.r <= 0.999 )
+	{
+		BlendColor.r = Color.r / ( 1.0 - BlendColor.r );
+	}
+	else
+	{
+		BlendColor.r = 1.0;
+	}
+
+	if( BlendColor.g <= 0.999 )
+	{
+		BlendColor.g = Color.g / ( 1.0 - BlendColor.g );
+	}
+	else
+	{
+		BlendColor.g = 1.0;
+	}
+
+	if( BlendColor.b <= 0.999 )
+	{
+		BlendColor.b = Color.b / ( 1.0 - BlendColor.b );
+	}
+	else
+	{
+		BlendColor.b = 1.0;
+	}
+
+	BlendColor = clamp( BlendColor, 0.0, 1.0 );
+
+	Color.rgb = Color.rgb + ( uBlendRatio.r * BlendColor.a ) * ( BlendColor.rgb - Color.rgb ) ;
+	
+#ifdef PMA_IMAGE
+	Color.rgb *= Color.a;
+#endif
+	
+	gl_FragColor = Color ;
+}
+
+void Burn_FS( void )
+{
+	mediump vec4 Color;
+	mediump vec4 BlendColor;
+
+	Color      = texture2D(   uSrcTex,   vTexUV0 );
+	BlendColor = texture2D( uBlendTex, vTexUV1 );
+
+#ifdef PMA_IMAGE
+	if( Color.a < 0.001 )
+	{
+		Color.r = 0.0 ;
+		Color.g = 0.0 ;
+		Color.b = 0.0 ;
+	}
+	else
+	{
+		Color.rgb = Color.rgb / Color.a;
+	}
+	
+	if( BlendColor.a < 0.001 )
+	{
+		BlendColor.r = 0.0 ;
+		BlendColor.g = 0.0 ;
+		BlendColor.b = 0.0 ;
+	}
+	else
+	{
+		BlendColor.rgb = BlendColor.rgb / BlendColor.a;
+	}
+#endif
+
+	if( BlendColor.r > 0.0001 )
+	{
+		BlendColor.r = 1.0 - ( 1.0 - Color.r ) / BlendColor.r ;
+	}
+
+	if( BlendColor.g > 0.0001 )
+	{
+		BlendColor.g = 1.0 - ( 1.0 - Color.g ) / BlendColor.g ;
+	}
+
+	if( BlendColor.b > 0.0001 )
+	{
+		BlendColor.b = 1.0 - ( 1.0 - Color.b ) / BlendColor.b ;
+	}
+
+	BlendColor = clamp( BlendColor, 0.0, 1.0 );
+
+	Color.rgb = Color.rgb + ( uBlendRatio.r * BlendColor.a ) * ( BlendColor.rgb - Color.rgb ) ;
+	
+#ifdef PMA_IMAGE
+	Color.rgb *= Color.a;
+#endif
+	
+	gl_FragColor = Color ;
+}
+
+void Darken_FS( void )
+{
+	mediump vec4 Color;
+	mediump vec4 BlendColor;
+
+	Color      = texture2D(   uSrcTex,   vTexUV0 );
+	BlendColor = texture2D( uBlendTex, vTexUV1 );
+
+#ifdef PMA_IMAGE
+	if( Color.a < 0.001 )
+	{
+		Color.r = 0.0 ;
+		Color.g = 0.0 ;
+		Color.b = 0.0 ;
+	}
+	else
+	{
+		Color.rgb = Color.rgb / Color.a;
+	}
+	
+	if( BlendColor.a < 0.001 )
+	{
+		BlendColor.r = 0.0 ;
+		BlendColor.g = 0.0 ;
+		BlendColor.b = 0.0 ;
+	}
+	else
+	{
+		BlendColor.rgb = BlendColor.rgb / BlendColor.a;
+	}
+#endif
+
+	if( Color.r < BlendColor.r )
+	{
+		BlendColor.r = Color.r ;
+	}
+
+	if( Color.g < BlendColor.g )
+	{
+		BlendColor.g = Color.g ;
+	}
+
+	if( Color.b < BlendColor.b )
+	{
+		BlendColor.b = Color.b ;
+	}
+
+	Color.rgb = Color.rgb + ( uBlendRatio.r * BlendColor.a ) * ( BlendColor.rgb - Color.rgb ) ;
+	
+#ifdef PMA_IMAGE
+	Color.rgb *= Color.a;
+#endif
+	
+	gl_FragColor = Color ;
+}
+
+void Lighten_FS( void )
+{
+	mediump vec4 Color;
+	mediump vec4 BlendColor;
+
+	Color      = texture2D(   uSrcTex,   vTexUV0 );
+	BlendColor = texture2D( uBlendTex, vTexUV1 );
+
+#ifdef PMA_IMAGE
+	if( Color.a < 0.001 )
+	{
+		Color.r = 0.0 ;
+		Color.g = 0.0 ;
+		Color.b = 0.0 ;
+	}
+	else
+	{
+		Color.rgb = Color.rgb / Color.a;
+	}
+	
+	if( BlendColor.a < 0.001 )
+	{
+		BlendColor.r = 0.0 ;
+		BlendColor.g = 0.0 ;
+		BlendColor.b = 0.0 ;
+	}
+	else
+	{
+		BlendColor.rgb = BlendColor.rgb / BlendColor.a;
+	}
+#endif
+
+	if( Color.r > BlendColor.r )
+	{
+		BlendColor.r = Color.r ;
+	}
+
+	if( Color.g > BlendColor.g )
+	{
+		BlendColor.g = Color.g ;
+	}
+
+	if( Color.b > BlendColor.b )
+	{
+		BlendColor.b = Color.b ;
+	}
+
+	Color.rgb = Color.rgb + ( uBlendRatio.r * BlendColor.a ) * ( BlendColor.rgb - Color.rgb ) ;
+	
+#ifdef PMA_IMAGE
+	Color.rgb *= Color.a;
+#endif
+	
+	gl_FragColor = Color ;
+}
+
+void SoftLight_FS( void )
+{
+	mediump vec4 Color;
+	mediump vec4 BlendColor;
+
+	Color      = texture2D(   uSrcTex,   vTexUV0 );
+	BlendColor = texture2D( uBlendTex, vTexUV1 );
+
+#ifdef PMA_IMAGE
+	if( Color.a < 0.001 )
+	{
+		Color.r = 0.0 ;
+		Color.g = 0.0 ;
+		Color.b = 0.0 ;
+	}
+	else
+	{
+		Color.rgb = Color.rgb / Color.a;
+	}
+	
+	if( BlendColor.a < 0.001 )
+	{
+		BlendColor.r = 0.0 ;
+		BlendColor.g = 0.0 ;
+		BlendColor.b = 0.0 ;
+	}
+	else
+	{
+		BlendColor.rgb = BlendColor.rgb / BlendColor.a;
+	}
+#endif
+
+	if( BlendColor.r < 0.5 )
+	{
+		BlendColor.r = pow( Color.r, ( 1.0 - BlendColor.r ) * 2.0 ) ;
+	}
+	else
+	{
+		BlendColor.r = pow( Color.r, 0.5 / BlendColor.r );
+	}
+
+	if( BlendColor.g < 0.5 )
+	{
+		BlendColor.g = pow( Color.g, ( 1.0 - BlendColor.g ) * 2.0 ) ;
+	}
+	else
+	{
+		BlendColor.g = pow( Color.g, 0.5 / BlendColor.g );
+	}
+
+	if( BlendColor.b < 0.5 )
+	{
+		BlendColor.b = pow( Color.b, ( 1.0 - BlendColor.b ) * 2.0 ) ;
+	}
+	else
+	{
+		BlendColor.b = pow( Color.b, 0.5 / BlendColor.b );
+	}
+
+	Color.rgb = Color.rgb + ( uBlendRatio.r * BlendColor.a ) * ( BlendColor.rgb - Color.rgb ) ;
+	
+#ifdef PMA_IMAGE
+	Color.rgb *= Color.a;
+#endif
+	
+	gl_FragColor = Color ;
+}
+
+void HardLight_FS( void )
+{
+	mediump vec4 Color;
+	mediump vec4 BlendColor;
+
+	Color      = texture2D(   uSrcTex,   vTexUV0 );
+	BlendColor = texture2D( uBlendTex, vTexUV1 );
+
+#ifdef PMA_IMAGE
+	if( Color.a < 0.001 )
+	{
+		Color.r = 0.0 ;
+		Color.g = 0.0 ;
+		Color.b = 0.0 ;
+	}
+	else
+	{
+		Color.rgb = Color.rgb / Color.a;
+	}
+	
+	if( BlendColor.a < 0.001 )
+	{
+		BlendColor.r = 0.0 ;
+		BlendColor.g = 0.0 ;
+		BlendColor.b = 0.0 ;
+	}
+	else
+	{
+		BlendColor.rgb = BlendColor.rgb / BlendColor.a;
+	}
+#endif
+
+	if( BlendColor.r < 0.5 )
+	{
+		BlendColor.r = Color.r * BlendColor.r * 2.0;
+	}
+	else
+	{
+		BlendColor.r = 2.0 * ( Color.r + BlendColor.r - Color.r * BlendColor.r ) - 1.0;
+	}
+
+	if( BlendColor.g < 0.5 )
+	{
+		BlendColor.g = Color.g * BlendColor.g * 2.0;
+	}
+	else
+	{
+		BlendColor.g = 2.0 * ( Color.g + BlendColor.g - Color.g * BlendColor.g ) - 1.0;
+	}
+
+	if( BlendColor.b < 0.5 )
+	{
+		BlendColor.b = Color.b * BlendColor.b * 2.0;
+	}
+	else
+	{
+		BlendColor.b = 2.0 * ( Color.b + BlendColor.b - Color.b * BlendColor.b ) - 1.0;
+	}
+
+	BlendColor = clamp( BlendColor, 0.0, 1.0 );
+
+	Color.rgb = Color.rgb + ( uBlendRatio.r * BlendColor.a ) * ( BlendColor.rgb - Color.rgb ) ;
+	
+#ifdef PMA_IMAGE
+	Color.rgb *= Color.a;
+#endif
+	
+	gl_FragColor = Color ;
+}
+
+void Exclusion_FS( void )
+{
+	mediump vec4 Color;
+	mediump vec4 BlendColor;
+
+	Color      = texture2D(   uSrcTex,   vTexUV0 );
+	BlendColor = texture2D( uBlendTex, vTexUV1 );
+
+#ifdef PMA_IMAGE
+	if( Color.a < 0.001 )
+	{
+		Color.r = 0.0 ;
+		Color.g = 0.0 ;
+		Color.b = 0.0 ;
+	}
+	else
+	{
+		Color.rgb = Color.rgb / Color.a;
+	}
+	
+	if( BlendColor.a < 0.001 )
+	{
+		BlendColor.r = 0.0 ;
+		BlendColor.g = 0.0 ;
+		BlendColor.b = 0.0 ;
+	}
+	else
+	{
+		BlendColor.rgb = BlendColor.rgb / BlendColor.a;
+	}
+#endif
+
+	Color.rgb = Color.rgb + ( uBlendRatio.r * BlendColor.a ) * ( ( Color.rgb + BlendColor.rgb - 2.0 * Color.rgb * BlendColor.rgb ) - Color.rgb ) ;
+	
+#ifdef PMA_IMAGE
+	Color.rgb *= Color.a;
+#endif
+	
+	gl_FragColor = Color ;
+}
+
+void Multiple_AOnly_FS( void )
+{
+	mediump vec4 Color;
+	mediump vec4 BlendColor;
+
+	Color      = texture2D(   uSrcTex,   vTexUV0 );
+	BlendColor = texture2D( uBlendTex, vTexUV1 );
+
+#ifdef PMA_IMAGE
+	if( Color.a < 0.001 )
+	{
+		Color.r = 0.0 ;
+		Color.g = 0.0 ;
+		Color.b = 0.0 ;
+	}
+	else
+	{
+		Color.rgb = Color.rgb / Color.a;
+	}
+	
+	if( BlendColor.a < 0.001 )
+	{
+		BlendColor.r = 0.0 ;
+		BlendColor.g = 0.0 ;
+		BlendColor.b = 0.0 ;
+	}
+	else
+	{
+		BlendColor.rgb = BlendColor.rgb / BlendColor.a;
+	}
+#endif
+
+	Color.a = Color.a + uBlendRatio.r * ( ( BlendColor.a * Color.a ) - Color.a ) ;
+	
+#ifdef PMA_IMAGE
+	Color.rgb *= Color.a;
+#endif
+	
+	gl_FragColor = Color ;
+}
+

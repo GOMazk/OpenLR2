@@ -1,0 +1,32 @@
+precision mediump float;
+
+uniform sampler2D		uSrcTex ;
+varying mediump	vec2	vTexUV0 ;
+
+void Invert_FS( void )
+{
+	mediump vec4 Color;
+
+	Color = texture2D( uSrcTex, vTexUV0 ) ;
+
+#ifdef PMA_IMAGE
+	if( Color.a < 0.001 )
+	{
+		Color.r = 0.0 ;
+		Color.g = 0.0 ;
+		Color.b = 0.0 ;
+	}
+	else
+	{
+		Color.rgb = Color.rgb / Color.a;
+	}
+#endif
+
+	Color.rgb = vec3( 1.0, 1.0, 1.0 ) - Color.rgb;
+
+#ifdef PMA_IMAGE
+	Color.rgb *= Color.a;
+#endif
+	
+	gl_FragColor = Color ;
+}

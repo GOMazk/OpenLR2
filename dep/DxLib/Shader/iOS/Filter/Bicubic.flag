@@ -1,0 +1,97 @@
+precision mediump float;
+
+// 今給黎 隆様の「DirectX 9.0:双３次補間サンプリング」のコードを元にしています
+uniform mediump vec4	uTexSize_X2PixelU ;
+
+uniform sampler2D		uSrcTex ;
+varying mediump	vec2	vTexUV0 ;
+varying mediump	vec2	vTexUV1 ;
+varying mediump	vec2	vTexUV2 ;
+varying mediump	vec2	vTexUV3 ;
+varying mediump	vec2	vTexUV4 ;
+varying mediump	vec2	vTexUV5 ;
+varying mediump	vec2	vTexUV6 ;
+varying mediump	vec2	vTexUV7 ;
+
+void BicubicScale_FS( void )
+{   
+    mediump vec4 w3 ;
+    mediump vec4 w2 ;
+    mediump vec4 w1 ;
+    mediump vec4 w0 ;
+    
+	mediump vec2 fUV ;
+	mediump vec2 fUV2 ;
+	mediump vec2 fUV3 ;
+	mediump vec4 u, v ;
+    
+	mediump vec4 col00 ;
+	mediump vec4 col01 ;
+	mediump vec4 col02 ;
+	mediump vec4 col03 ;
+
+	mediump vec4 col10 ;
+	mediump vec4 col11 ;
+	mediump vec4 col12 ;
+	mediump vec4 col13 ;
+
+	mediump vec4 col20 ;
+	mediump vec4 col21 ;
+	mediump vec4 col22 ;
+	mediump vec4 col23 ;
+
+	mediump vec4 col30 ;
+	mediump vec4 col31 ;
+	mediump vec4 col32 ;
+	mediump vec4 col33 ;
+
+	mediump vec4 col0 ;
+	mediump vec4 col1 ;
+	mediump vec4 col2 ;
+	mediump vec4 col3 ;
+	
+//	// Catmull-Rom patch
+//  w3 = vec4( -0.5,  1.5, -1.5,  0.5 ) ;
+//  w2 = vec4(  1.0, -2.5,  2.0, -0.5 ) ;
+//  w1 = vec4( -0.5,  0.0,  0.5,  0.0 ) ;
+//  w0 = vec4(  0.0,  1.0,  0.0,  0.0 ) ;
+    w3 = vec4( -1.0,  1.0, -1.0,  1.0 ) ;
+    w2 = vec4(  2.0, -2.0,  1.0, -1.0 ) ;
+    w1 = vec4( -1.0,  0.0,  1.0,  0.0 ) ;
+    w0 = vec4(  0.0,  1.0,  0.0,  0.0 ) ;
+	
+	fUV  = fract( vTexUV5 * uTexSize_X2PixelU.xy ) ;
+	fUV2 = fUV * fUV ;
+	fUV3 = fUV * fUV2 ;
+	
+	u = fUV3.x * w3 + fUV2.x * w2 + fUV.x * w1 + w0 ;
+	v = fUV3.y * w3 + fUV2.y * w2 + fUV.y * w1 + w0 ;
+	
+	col00 = texture2D( uSrcTex, vTexUV0 ) ;
+	col01 = texture2D( uSrcTex, vTexUV1 ) ;
+	col02 = texture2D( uSrcTex, vTexUV2 ) ;
+	col03 = texture2D( uSrcTex, vTexUV3 ) ;
+
+	col10 = texture2D( uSrcTex, vTexUV4 ) ;
+	col11 = texture2D( uSrcTex, vTexUV5 ) ;
+	col12 = texture2D( uSrcTex, vTexUV6 ) ;
+	col13 = texture2D( uSrcTex, vTexUV7 ) ;
+
+	col20 = texture2D( uSrcTex, vTexUV0 + uTexSize_X2PixelU.zw ) ;
+	col21 = texture2D( uSrcTex, vTexUV1 + uTexSize_X2PixelU.zw ) ;
+	col22 = texture2D( uSrcTex, vTexUV2 + uTexSize_X2PixelU.zw ) ;
+	col23 = texture2D( uSrcTex, vTexUV3 + uTexSize_X2PixelU.zw ) ;
+
+	col30 = texture2D( uSrcTex, vTexUV4 + uTexSize_X2PixelU.zw ) ;
+	col31 = texture2D( uSrcTex, vTexUV5 + uTexSize_X2PixelU.zw ) ;
+	col32 = texture2D( uSrcTex, vTexUV6 + uTexSize_X2PixelU.zw ) ;
+	col33 = texture2D( uSrcTex, vTexUV7 + uTexSize_X2PixelU.zw ) ;
+
+	col0 = u.x * col00 + u.y * col10 + u.z * col20 + u.w * col30 ;
+	col1 = u.x * col01 + u.y * col11 + u.z * col21 + u.w * col31 ;
+	col2 = u.x * col02 + u.y * col12 + u.z * col22 + u.w * col32 ;
+	col3 = u.x * col03 + u.y * col13 + u.z * col23 + u.w * col33 ;
+	
+	gl_FragColor = v.x * col0 + v.y * col1 + v.z * col2 + v.w * col3 ;
+}
+

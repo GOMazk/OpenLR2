@@ -1,0 +1,133 @@
+precision mediump float;
+
+uniform lowp	vec4	uClipBrightness ;
+uniform mediump	vec4	uRGBToY ;
+uniform lowp	vec4	uClipFillColor ;
+	
+uniform sampler2D		uSrcTex ;
+varying mediump	vec2	vTexUV0 ;
+
+
+void Less_FS( void )
+{   
+    mediump vec4 Color;
+
+    Color = texture2D( uSrcTex, vTexUV0 ) ;
+    
+#ifdef PMA_IMAGE
+	if( Color.a < 0.001 )
+	{
+		Color.r = 0.0 ;
+		Color.g = 0.0 ;
+		Color.b = 0.0 ;
+	}
+	else
+	{
+		Color.rgb = Color.rgb / Color.a;
+	}
+#endif
+    
+	if( dot( uRGBToY, Color ) - uClipBrightness.r < 0.0 )
+	{
+		discard;
+	}
+
+#ifdef PMA_IMAGE
+	Color.rgb *= Color.a;
+#endif
+    
+    gl_FragColor = Color ;
+}
+
+void Less_ClipFill_FS( void )
+{   
+    mediump vec4 Color;
+
+    Color = texture2D( uSrcTex, vTexUV0 ) ;
+    
+#ifdef PMA_IMAGE
+	if( Color.a < 0.001 )
+	{
+		Color.r = 0.0 ;
+		Color.g = 0.0 ;
+		Color.b = 0.0 ;
+	}
+	else
+	{
+		Color.rgb = Color.rgb / Color.a;
+	}
+#endif
+ 
+    if( dot( uRGBToY, Color ) < uClipBrightness.r )
+    {
+        Color = uClipFillColor;
+    }
+    
+#ifdef PMA_IMAGE
+	Color.rgb *= Color.a;
+#endif
+
+	gl_FragColor = Color;
+}
+
+void Greater_FS( void )
+{   
+    mediump vec4 Color;
+
+    Color = texture2D( uSrcTex, vTexUV0 ) ;
+
+#ifdef PMA_IMAGE
+	if( Color.a < 0.001 )
+	{
+		Color.r = 0.0 ;
+		Color.g = 0.0 ;
+		Color.b = 0.0 ;
+	}
+	else
+	{
+		Color.rgb = Color.rgb / Color.a;
+	}
+#endif
+
+	if( uClipBrightness.r - dot( uRGBToY, Color ) < 0.0 )
+	{
+		discard;
+	}
+    
+#ifdef PMA_IMAGE
+	Color.rgb *= Color.a;
+#endif
+
+	gl_FragColor = Color;
+}
+
+void Greater_ClipFill_FS( void )
+{   
+    mediump vec4 Color;
+
+    Color = texture2D( uSrcTex, vTexUV0 ) ;
+
+#ifdef PMA_IMAGE
+	if( Color.a < 0.001 )
+	{
+		Color.r = 0.0 ;
+		Color.g = 0.0 ;
+		Color.b = 0.0 ;
+	}
+	else
+	{
+		Color.rgb = Color.rgb / Color.a;
+	}
+#endif
+
+    if( dot( uRGBToY, Color ) > uClipBrightness.r )
+    {
+        Color = uClipFillColor;
+    }
+    
+#ifdef PMA_IMAGE
+	Color.rgb *= Color.a;
+#endif
+
+	gl_FragColor = Color;
+}

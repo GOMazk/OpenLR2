@@ -1,0 +1,23 @@
+precision mediump float;
+
+varying mediump vec2 v_texCoord;
+varying highp   vec4 v_clipPos;
+uniform lowp    vec4 u_channelFlag;
+uniform lowp    vec4 u_baseColor;
+uniform sampler2D uDifMapTex;
+uniform sampler2D uNrmMapTex;
+
+void main( void )
+{
+	mediump vec4  col_formask     = texture2D( uDifMapTex , v_texCoord ) * u_baseColor;
+	              col_formask.rgb = col_formask.rgb  * col_formask.a ;
+	mediump vec4  clipMask        = ( 1.0 - texture2D( uNrmMapTex, v_clipPos.xy / v_clipPos.w ) ) * u_channelFlag;
+	mediump float maskVal         = clipMask.r + clipMask.g + clipMask.b + clipMask.a;
+	              col_formask     = col_formask * maskVal; 
+	              gl_FragColor    = col_formask; 
+
+/*	gl_FragColor.r = 1.0;
+	gl_FragColor.g = 1.0;
+	gl_FragColor.b = 1.0;
+	gl_FragColor.a = 1.0; */
+}

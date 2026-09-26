@@ -1,0 +1,188 @@
+precision mediump float;
+
+uniform sampler2D		uSrcTex ;
+uniform sampler2D		uBlendTex ;
+
+uniform lowp	vec4	uFactorColor ;
+uniform lowp	float	uATestRef ;
+
+#ifdef ALPHATEST_MIX
+uniform int				uATestCmpMode ;
+#endif
+
+varying	lowp	vec4	vDif ;
+varying	mediump	vec2	vTexUV0 ;
+varying	mediump	vec2	vTexUV1 ;
+
+#include "../FragmentShader.h"
+
+//ブレンドテクスチャあり DX_BLENDGRAPHTYPE_NORMAL
+void fs_blend_normal( void )
+{
+	lowp vec4 lTexColor ;
+	lowp vec4 lColor ;
+	lowp vec4 BlendTexColor ;
+#ifdef PRE_MUL_ALPHA
+	lowp vec4 PremulTexColor;
+	lowp vec4 PremulBlendTexColor ;
+#endif
+
+#ifdef PRE_MUL_ALPHA
+	PremulBlendTexColor = texture2D( uBlendTex, vTexUV0 ) ;
+	PremulTexColor      = texture2D( uSrcTex,   vTexUV1 ) ;
+
+	BlendTexColor       = PremulBlendTexColor / PremulBlendTexColor.a;
+	BlendTexColor.a     = PremulBlendTexColor.a;
+	lTexColor           = PremulTexColor      / PremulTexColor.a;
+	lTexColor.a         = PremulTexColor.a;
+#else
+	BlendTexColor       = texture2D( uBlendTex, vTexUV0 ) ;
+	lTexColor           = texture2D(   uSrcTex, vTexUV1 ) ;
+#endif
+
+#ifdef IGNORE_COLOR
+	lTexColor.r = 1.0;
+	lTexColor.g = 1.0;
+	lTexColor.b = 1.0;
+#endif
+#ifdef INVERSE_COLOR
+	lTexColor.rgb = 1.0 - lTexColor.rgb;
+#endif
+
+	lColor = ( ( BlendTexColor - lTexColor ) * uFactorColor.a + lTexColor ) * vDif ;
+
+#ifdef IGNORE_TEXALPHA
+	lColor.a = vDif.a ;
+#endif
+
+#ifdef MUL_X_4
+	lColor.rgb *= 4.0 ;
+#endif
+
+#ifdef MUL_BLEND
+	lColor = ( lColor - 1.0 ) * lColor.a + 1.0 ;
+#endif
+
+#ifdef PRE_MUL_ALPHA
+	lColor.rgb *= lColor.a ;
+#endif
+
+	AlphaTest( lColor.a ) ;
+	gl_FragColor = lColor ;
+}
+
+//ブレンドテクスチャあり DX_BLENDGRAPHTYPE_WIPE
+void fs_blend_wipe( void )
+{
+	lowp vec4 lTexColor ;
+	lowp vec4 lColor ;
+	lowp vec4 BlendTexColor ;
+#ifdef PRE_MUL_ALPHA
+	lowp vec4 PremulTexColor;
+	lowp vec4 PremulBlendTexColor ;
+#endif
+
+#ifdef PRE_MUL_ALPHA
+	PremulBlendTexColor = texture2D( uBlendTex, vTexUV0 ) ;
+	PremulTexColor      = texture2D(   uSrcTex, vTexUV1 ) ;
+
+	BlendTexColor       = PremulBlendTexColor / PremulBlendTexColor.a ;
+	BlendTexColor.a     = PremulBlendTexColor.a ;
+	lTexColor           = PremulTexColor      / PremulTexColor.a ;
+	lTexColor.a         = PremulTexColor.a ;
+#else
+	BlendTexColor       = texture2D( uBlendTex, vTexUV0 ) ;
+	lTexColor           = texture2D(   uSrcTex, vTexUV1 ) ;
+#endif
+
+#ifdef IGNORE_COLOR
+	lTexColor.r = 1.0;
+	lTexColor.g = 1.0;
+	lTexColor.b = 1.0;
+#endif
+#ifdef INVERSE_COLOR
+	lTexColor.rgb = 1.0 - lTexColor.rgb;
+#endif
+
+	lColor = lTexColor * vDif ;
+
+#ifdef IGNORE_TEXALPHA
+	lColor.a = vDif.a ;
+#endif
+
+	lColor.a *= clamp( ( BlendTexColor.a + uFactorColor.a ) * uFactorColor.b, 0.0, 1.0 ) ;
+
+#ifdef MUL_X_4
+	lColor.rgb *= 4.0 ;
+#endif
+
+#ifdef MUL_BLEND
+	lColor = ( lColor - 1.0 ) * lColor.a + 1.0 ;
+#endif
+
+#ifdef PRE_MUL_ALPHA
+	lColor.rgb *= lColor.a ;
+#endif
+
+	AlphaTest( lColor.a ) ;
+	gl_FragColor = lColor ;
+}
+
+//ブレンドテクスチャあり DX_BLENDGRAPHTYPE_ALPHA
+void fs_blend_alpha( void )
+{
+	lowp vec4 lTexColor ;
+	lowp vec4 lColor ;
+	lowp vec4 BlendTexColor ;
+#ifdef PRE_MUL_ALPHA
+	lowp vec4 PremulTexColor;
+	lowp vec4 PremulBlendTexColor ;
+#endif
+
+#ifdef PRE_MUL_ALPHA
+	PremulBlendTexColor = texture2D( uBlendTex, vTexUV0 ) ;
+	PremulTexColor      = texture2D(   uSrcTex, vTexUV1 ) ;
+
+	BlendTexColor       = PremulBlendTexColor / PremulBlendTexColor.a;
+	BlendTexColor.a     = PremulBlendTexColor.a;
+	lTexColor           = PremulTexColor      / PremulTexColor.a;
+	lTexColor.a         = PremulTexColor.a;
+#else
+	BlendTexColor       = texture2D( uBlendTex, vTexUV0 ) ;
+	lTexColor           = texture2D(   uSrcTex, vTexUV1 ) ;
+#endif
+	
+#ifdef IGNORE_COLOR
+	lTexColor.r = 1.0;
+	lTexColor.g = 1.0;
+	lTexColor.b = 1.0;
+#endif
+#ifdef INVERSE_COLOR
+	lTexColor.rgb = 1.0 - lTexColor.rgb;
+#endif
+
+	lColor = lTexColor * vDif ;
+
+#ifdef IGNORE_TEXALPHA
+	lColor.a = vDif.a ;
+#endif
+
+	lColor.a *= BlendTexColor.a ;
+
+#ifdef MUL_X_4
+	lColor.rgb *= 4.0 ;
+#endif
+
+#ifdef MUL_BLEND
+	lColor = ( lColor - 1.0 ) * lColor.a + 1.0 ;
+#endif
+
+#ifdef PRE_MUL_ALPHA
+	lColor.rgb *= lColor.a ;
+#endif
+
+	AlphaTest( lColor.a ) ;
+	gl_FragColor = lColor ;
+}
+
+

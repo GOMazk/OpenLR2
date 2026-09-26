@@ -1,0 +1,86 @@
+precision mediump float;
+
+uniform sampler2D		uSrcTex ;
+uniform sampler2D		uBlendTex ;
+
+varying mediump	vec2	vTexUV0 ;
+varying mediump	vec2	vTexUV1 ;
+
+//マスク処理用シェーダー
+void MaskBlend_FS( void )
+{
+	lowp vec4 BlendTexColor ;
+
+	BlendTexColor = texture2D( uBlendTex, vTexUV1 ) ;
+	if( BlendTexColor.r > 0.001 )
+	{
+		discard ;
+	}
+
+	gl_FragColor = texture2D( uSrcTex, vTexUV0 ) ;
+}
+
+void MaskBlend_ReverseEffect_FS( void )
+{
+	lowp vec4 BlendTexColor ;
+
+	BlendTexColor = texture2D( uBlendTex, vTexUV1 ) ;
+	if( BlendTexColor.r < 0.999 )
+	{
+		discard ;
+	}
+	
+	gl_FragColor = texture2D( uSrcTex, vTexUV0 ) ;
+}
+
+void MaskBlend_UseGraphHandle_FS( void )
+{
+	lowp vec4 TexColor ;
+	lowp vec4 DestColor ;
+	lowp vec4 BlendTexColor ;
+
+	BlendTexColor = texture2D( uBlendTex, vTexUV1 ) ;
+	TexColor      = texture2D(   uSrcTex, vTexUV0 ) ;
+
+	DestColor.rgb = TexColor.rgb ;
+#ifdef MASK_CH_R
+	DestColor.a   = 1.0 - BlendTexColor.r ;
+#endif
+#ifdef MASK_CH_G
+	DestColor.a   = 1.0 - BlendTexColor.g ;
+#endif
+#ifdef MASK_CH_B
+	DestColor.a   = 1.0 - BlendTexColor.b ;
+#endif
+#ifdef MASK_CH_A
+	DestColor.a   = 1.0 - BlendTexColor.a ;
+#endif
+
+	gl_FragColor = DestColor ;
+}
+
+void MaskBlend_UseGraphHandle_ReverseEffect_FS( void )
+{
+	lowp vec4 TexColor ;
+	lowp vec4 DestColor ;
+	lowp vec4 BlendTexColor ;
+
+	BlendTexColor = texture2D( uBlendTex, vTexUV1 ) ;
+	TexColor      = texture2D( uSrcTex,   vTexUV0 ) ;
+
+	DestColor.rgb = TexColor.rgb ;
+#ifdef MASK_CH_R
+	DestColor.a   = BlendTexColor.r ;
+#endif
+#ifdef MASK_CH_G
+	DestColor.a   = BlendTexColor.g ;
+#endif
+#ifdef MASK_CH_B
+	DestColor.a   = BlendTexColor.b ;
+#endif
+#ifdef MASK_CH_A
+	DestColor.a   = BlendTexColor.a ;
+#endif
+
+	gl_FragColor = DestColor ;
+}

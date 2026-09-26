@@ -1,0 +1,558 @@
+precision mediump float;
+
+// ピクセルシェーダーの入力
+varying		mediump	vec4	vDif ;				// ディフューズカラー
+varying		mediump	vec4	vSpc ;				// スペキュラカラー
+varying		mediump	vec4	vTexUV0_1 ;			// xy:テクスチャ座標 zw:サブテクスチャ座標
+
+varying		highp	vec4	vVtoEyeSM2PosZ ;	// 頂点座標から視線へのベクトル( ビュー空間 )とシャドウマップ２のライトZ座標( w )
+varying		highp	vec4	vNrmFog ;			// x.y.z:法線( ビュー空間 )  w:SM3.0用のフォグパラメータ
+
+#if LG0_USE != 0
+varying		highp	vec4	vLight0DirGen ;		// xyz:ライト０の逆ベクトル( ビュー空間 ) w:ライト０減衰情報
+#endif
+#if LG1_USE != 0
+varying		highp	vec4	vLight1DirGen ;		// xyz:ライト１の逆ベクトル( ビュー空間 ) w:ライト１減衰情報
+#endif
+#if LG2_USE != 0
+varying		highp	vec4	vLight2DirGen ;		// xyz:ライト２の逆ベクトル( ビュー空間 ) w:ライト２減衰情報
+#endif
+
+#if SHADOWMAP != 0 || SHADOWMAP_DRAW != 0
+varying		highp	vec4	vSM0Pos_SM2PosX ;	// シャドウマップ０のライト座標( x, y, z )とシャドウマップ２のライトX座標( w )
+#endif
+#if SHADOWMAP != 0
+varying		highp	vec4	vSM1Pos_SM2PosY ;	// シャドウマップ１のライト座標( x, y, z )とシャドウマップ２のライトY座標( w )
+#endif
+
+
+
+uniform sampler2D		uDifMapTex ;		// ディフューズマップテクスチャ
+
+#if BUMPMAP != 0
+uniform sampler2D		uNrmMapTex ;		// 法線マップテクスチャ
+#endif // BUMPMAP
+
+#if USE_SPETEX != 0
+uniform sampler2D		uSpcMapTex ;		// スペキュラマップテクスチャ
+#endif // USE_SPETEX
+
+#if SHADOWMAP != 0
+uniform sampler2D		uShadowMap0Tex ;		// シャドウマップ０テクスチャ
+uniform sampler2D		uShadowMap1Tex ;		// シャドウマップ１テクスチャ
+uniform sampler2D		uShadowMap2Tex ;		// シャドウマップ２テクスチャ
+#endif
+
+
+uniform		lowp	float	uATestRef ;
+
+#ifdef ALPHATEST_MIX
+uniform				int		uATestCmpMode ;
+#endif
+
+uniform		mediump	vec4	uAmb_Emi ;			// エミッシブカラー＋アンビエントカラー( エミッシブカラー + マテリアルアンビエントカラー * グローバルアンビエントカラー )
+
+uniform		mediump	vec4	uMatDif ;			// ディフューズカラー
+uniform		mediump	vec4	uMatSpc ;			// スペキュラカラー
+uniform		mediump	float	uMatPow ;			// スペキュラの強さ
+
+uniform		mediump	vec4	uLightDif[ 3 ] ;					// ディフューズカラー
+uniform		mediump	vec4	uLightSpc[ 3 ] ;					// スペキュラカラー
+uniform		mediump	vec4	uLightAmb[ 3 ] ;					// アンビエントカラー
+
+uniform		lowp	vec4	uFogColor ;			// フォグカラー
+uniform		lowp	vec4	uIgnoreTextureColor ;		// テクスチャカラー無視処理用カラー
+uniform		lowp	vec4	uAddColor ;			// 加算カラー
+
+uniform		lowp	vec4	uShadowMapLightEnable[ 3 ] ;					// シャドウマップ０・１・２のライト有効情報( x:シャドウマップ０でライトnが有効か  y:シャドウマップ１でライトnが有効か  z:シャドウマップ２でライトnが有効か )
+uniform		highp	vec2	uShadowMap_DAdj_Grad[ 3 ] ;						// シャドウマップの情報( x:閾値深度補正値  y:グラデーション範囲  )
+
+#include "../FragmentShader.h"
+
+
+// main関数
+void main( void )
+{
+	mediump	vec4		lTexDifColor ;
+	mediump	vec4		lTexSpcColor ;
+	mediump	vec3		lNrm ;
+	mediump	vec3		lTotalDif ;
+	mediump	vec3		lTotalSpc ;
+	mediump	float		lDifAngleGen ;
+	highp	vec3		lTempF3 ;
+	highp	float		lTemp ;
+	mediump	vec3		lShadowRate ;
+	mediump	float		lShadowGen ;
+	mediump	float		lParamAlpha;
+
+#if SHADOWMAP != 0
+	mediump	vec2		lDepthTexUV ;
+	highp	vec4		lTexDepth ;
+#endif
+
+	lParamAlpha = vDif.a ;
+
+	lTexDifColor = max( texture2D( uDifMapTex, vTexUV0_1.xy ), uIgnoreTextureColor ) ;
+
+// #ifdef IGNORE_COLOR
+// 	lTexDifColor.r = 1.0 ;
+// 	lTexDifColor.g = 1.0 ;
+// 	lTexDifColor.b = 1.0 ;
+// #endif
+// 
+// #ifdef IGNORE_TEXALPHA
+// 	lTexDifColor.a = 1.0 ;
+// #endif
+
+#ifdef INVERSE_COLOR
+	lTexDifColor.rgb = 1.0 - lTexDifColor.rgb;
+#endif
+
+#ifdef USE_SPE
+	#ifdef USE_SPETEX
+	lTexSpcColor = texture2D( uSpcMapTex, vTexUV0_1.xy ) ;
+#ifdef INVERSE_COLOR
+	lTexSpcColor.rgb = 1.0 - lTexSpcColor.rgb;
+#endif
+	#endif // USE_SPETEX
+#endif // USE_SPE
+
+	// ライトを使わない場合はカラーをそのまま出力 *****************************************( 開始 )
+	#ifndef LG_USE
+
+		// シャドウマップへの描画 *********************************************************( 開始 )
+		#if SHADOWMAP_DRAW != 0
+			// 出力α = テクスチャα * ディフューズα * 大域α
+			gl_FragColor.a = lTexDifColor.a * lParamAlpha ;
+			
+			// Ｚ値を色として出力
+			gl_FragColor.r = vSM0Pos_SM2PosX.z;
+			gl_FragColor.g = 0.0 ;
+			gl_FragColor.b = 0.0 ;
+		
+		// シャドウマップへの描画 *********************************************************( 終了 )
+		#else // SHADOWMAP_DRAW
+		
+			#ifdef USE_SPE
+
+				#ifdef USE_SPETEX
+
+					gl_FragColor = vSpc * lTexSpcColor + vDif * lTexDifColor ;
+
+				#else  // USE_SPETEX
+
+					gl_FragColor = vSpc + vDif * lTexDifColor ;
+
+				#endif // USE_SPETEX
+
+			#else  // USE_SPE
+
+				gl_FragColor = vDif * lTexDifColor ;
+
+			#endif // USE_SPE
+
+			gl_FragColor.a = lTexDifColor.a * lParamAlpha ;
+			
+		#endif // SHADOWMAP_DRAW
+
+	// ライトを使わない場合はカラーをそのまま出力 *****************************************( 終了 )
+	#else // LG_USE
+	// ライトを使う場合 *******************************************************************( 開始 )
+
+		// バンプマップ or フォンシェーディングの場合 =========================================( 開始 )
+		#if BUMPMAP != 0 || PHONG != 0
+
+			#if BUMPMAP != 0
+
+				// 法線の 0～1 の値を -1.0～1.0 に変換する
+				lNrm = ( texture2D( uNrmMapTex, vTexUV0_1.xy ).rgb - 0.5 ) * 2.0 ;
+
+			#else // BUMPMAP
+
+				lNrm = vNrmFog.xyz ;
+
+			#endif // BUMPMAP
+
+
+			#ifdef    PHONG
+				lNrm = normalize( lNrm ) ;
+			#endif
+
+			#if	SHADOWMAP != 0
+				// 頂点のテクスチャ座標値が範囲内の場合のみ処理する
+				if( vSM0Pos_SM2PosX.x < -1.0 || vSM0Pos_SM2PosX.x > 1.0 ||
+					vSM0Pos_SM2PosX.y < -1.0 || vSM0Pos_SM2PosX.y > 1.0 ||
+					vSM0Pos_SM2PosX.z <  0.0 || vSM0Pos_SM2PosX.z > 1.0 )
+				{
+					lShadowRate.x = 1.0;
+				}
+				else
+				{
+					// 深度テクスチャの座標を算出
+					// vSM0Pos_SM2PosX.xy は -1.0 ～ 1.0 の値なので、これを 0.0 ～ 1.0 の値にする
+					lDepthTexUV.x = ( vSM0Pos_SM2PosX.x + 1.0 ) / 2.0;
+
+					// yは更に上下反転
+					lDepthTexUV.y = 1.0 - ( vSM0Pos_SM2PosX.y + 1.0 ) / 2.0;
+
+					// 深度バッファテクスチャから深度を取得
+					lTexDepth = texture2D( uShadowMap0Tex, lDepthTexUV );
+
+					// テクスチャに記録されている深度( +補正値 )よりＺ値が大きかったら奥にあるということで減衰率を最大にする
+					lShadowRate.x = smoothstep( vSM0Pos_SM2PosX.z - uShadowMap_DAdj_Grad[ 0 ].y, vSM0Pos_SM2PosX.z, lTexDepth.r + uShadowMap_DAdj_Grad[ 0 ].x ) ;
+				}
+
+				// 頂点のテクスチャ座標値が範囲内の場合のみ処理する
+				if( vSM1Pos_SM2PosY.x < -1.0 || vSM1Pos_SM2PosY.x > 1.0 ||
+					vSM1Pos_SM2PosY.y < -1.0 || vSM1Pos_SM2PosY.y > 1.0 ||
+					vSM1Pos_SM2PosY.z <  0.0 || vSM1Pos_SM2PosY.z > 1.0 )
+				{
+					lShadowRate.y = 1.0;
+				}
+				else
+				{
+					// 深度テクスチャの座標を算出
+					// vSM1Pos_SM2PosY.xy は -1.0 ～ 1.0 の値なので、これを 0.0 ～ 1.0 の値にする
+					lDepthTexUV.x = ( vSM1Pos_SM2PosY.x + 1.0 ) / 2.0;
+
+					// yは更に上下反転
+					lDepthTexUV.y = 1.0 - ( vSM1Pos_SM2PosY.y + 1.0 ) / 2.0;
+
+					// 深度バッファテクスチャから深度を取得
+					lTexDepth = texture2D( uShadowMap1Tex, lDepthTexUV );
+
+					// テクスチャに記録されている深度( +補正値 )よりＺ値が大きかったら奥にあるということで減衰率を最大にする
+					lShadowRate.y = smoothstep( vSM1Pos_SM2PosY.z - uShadowMap_DAdj_Grad[ 1 ].y, vSM1Pos_SM2PosY.z, lTexDepth.r + uShadowMap_DAdj_Grad[ 1 ].x ) ;
+				}
+
+				// 頂点のテクスチャ座標値が範囲内の場合のみ処理する
+				if( vSM0Pos_SM2PosX.w < -1.0 || vSM0Pos_SM2PosX.w > 1.0 ||
+					vSM1Pos_SM2PosY.w < -1.0 || vSM1Pos_SM2PosY.w > 1.0 ||
+					vVtoEyeSM2PosZ.w  <  0.0 || vVtoEyeSM2PosZ.w  > 1.0 )
+				{
+					lShadowRate.z = 1.0;
+				}
+				else
+				{
+					// 深度テクスチャの座標を算出
+					// vSM0Pos_SM2PosX.w と vSM1Pos_SM2PosY.w は -1.0 ～ 1.0 の値なので、これを 0.0 ～ 1.0 の値にする
+					lDepthTexUV.x = ( vSM0Pos_SM2PosX.w + 1.0 ) / 2.0;
+
+					// yは更に上下反転
+					lDepthTexUV.y = 1.0 - ( vSM1Pos_SM2PosY.w + 1.0 ) / 2.0;
+
+					// 深度バッファテクスチャから深度を取得
+					lTexDepth = texture2D( uShadowMap2Tex, lDepthTexUV );
+
+					// テクスチャに記録されている深度( +補正値 )よりＺ値が大きかったら奥にあるということで減衰率を最大にする
+					lShadowRate.z = smoothstep( vVtoEyeSM2PosZ.w - uShadowMap_DAdj_Grad[ 2 ].y, vVtoEyeSM2PosZ.w, lTexDepth.r + uShadowMap_DAdj_Grad[ 2 ].x ) ;
+				}
+
+			#else // SHADOWMAP
+				lShadowRate.x = 1.0 ;
+				lShadowRate.y = 1.0 ;
+				lShadowRate.z = 1.0 ;
+			#endif // SHADOWMAP
+
+			// ディフューズカラーとスペキュラカラーの蓄積値を初期化
+			lTotalDif = vec3( 0.0, 0.0, 0.0 ) ;
+			lTotalSpc = vec3( 0.0, 0.0, 0.0 ) ;
+
+
+
+
+			
+// ライト0の処理 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++( 開始 )
+#if LG0_USE != 0
+
+	// ディフューズ色計算
+
+	// lDifAngleGen = ディフューズ角度減衰率計算
+	lDifAngleGen = clamp( dot( lNrm, vLight0DirGen.xyz ), 0.0, 1.0 ) ;
+	
+	// 影による減衰率算出
+	lShadowGen = max( lShadowRate.x, uShadowMapLightEnable[ 0 ].x ) *
+	             max( lShadowRate.y, uShadowMapLightEnable[ 0 ].y ) *
+	             max( lShadowRate.z, uShadowMapLightEnable[ 0 ].z ) ;
+
+	#if LG0_DIR != 0
+
+		// ディフューズカラー蓄積値 += ライトのディフューズカラー * ディフューズカラー * ディフューズカラー角度減衰率 + ライトのアンビエントカラーとマテリアルのアンビエントカラーを乗算したもの 
+		lTotalDif += uLightDif[ 0 ].xyz * vDif.xyz * lDifAngleGen * lShadowGen + uLightAmb[ 0 ].xyz ;
+
+	#else // LG0_DIR
+
+		// ディフューズカラー蓄積値 += ( ライトのディフューズカラー * ディフューズカラー * ディフューズカラー角度減衰率 + ライトのアンビエントカラーとマテリアルのアンビエントカラーを乗算したもの  ) * 距離・スポットライトの角度減衰率
+		lTotalDif += ( uLightDif[ 0 ].xyz * vDif.xyz * lDifAngleGen * lShadowGen + uLightAmb[ 0 ].xyz ) * vLight0DirGen.w ;
+
+	#endif // LG0_DIR
+
+
+	// スペキュラカラー計算
+	#ifdef USE_SPE
+
+		// ハーフベクトルの計算
+		lTempF3 = vVtoEyeSM2PosZ.xyz + vLight0DirGen.xyz ;
+		#ifdef    PHONG
+			lTempF3 = normalize( lTempF3 ) ;
+		#else  // PHONG
+			lTempF3 *= 0.5 ;
+		#endif // PHONG
+
+		// lTemp = pow( max( 0.0, N * H ), uMatPow )
+		lTemp = pow( max( 0.0, dot( lNrm, lTempF3 ) ), uMatPow ) ;
+
+		#if LG0_DIR != 0
+
+			// スペキュラカラー蓄積値 += lTemp * ライトのスペキュラカラー
+			lTotalSpc += lTemp * uLightSpc[ 0 ].xyz * lShadowGen ;
+
+		#else // LG0_DIR
+
+			// スペキュラカラー蓄積値 += lTemp * 距離・スポットライトの角度減衰率 * ライトのスペキュラカラー
+			lTotalSpc += lTemp * vLight0DirGen.w * uLightSpc[ 0 ].xyz * lShadowGen ;
+
+		#endif // LG0_DIR
+
+	#endif // USE_SPE
+
+#endif // LG0_USE
+// ライト0の処理 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++( 終了 )
+
+
+
+
+
+
+
+
+
+			
+// ライト1の処理 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++( 開始 )
+#if LG1_USE != 0
+
+	// ディフューズ色計算
+
+	// lDifAngleGen = ディフューズ角度減衰率計算
+	lDifAngleGen = clamp( dot( lNrm, vLight1DirGen.xyz ), 0.0, 1.0 ) ;
+	
+	// 影による減衰率算出
+	lShadowGen = max( lShadowRate.x, uShadowMapLightEnable[ 1 ].x ) *
+	             max( lShadowRate.y, uShadowMapLightEnable[ 1 ].y ) *
+	             max( lShadowRate.z, uShadowMapLightEnable[ 1 ].z ) ;
+
+	#if LG1_DIR != 0
+
+		// ディフューズカラー蓄積値 += ライトのディフューズカラー * ディフューズカラー * ディフューズカラー角度減衰率 + ライトのアンビエントカラーとマテリアルのアンビエントカラーを乗算したもの 
+		lTotalDif += uLightDif[ 1 ].xyz * vDif.xyz * lDifAngleGen * lShadowGen + uLightAmb[ 1 ].xyz ;
+
+	#else // LG1_DIR
+
+		// ディフューズカラー蓄積値 += ( ライトのディフューズカラー * ディフューズカラー * ディフューズカラー角度減衰率 + ライトのアンビエントカラーとマテリアルのアンビエントカラーを乗算したもの  ) * 距離・スポットライトの角度減衰率
+		lTotalDif += ( uLightDif[ 1 ].xyz * vDif.xyz * lDifAngleGen * lShadowGen + uLightAmb[ 1 ].xyz ) * vLight1DirGen.w ;
+
+	#endif // LG1_DIR
+
+
+	// スペキュラカラー計算
+	#ifdef USE_SPE
+
+		// ハーフベクトルの計算
+		lTempF3 = vVtoEyeSM2PosZ.xyz + vLight1DirGen.xyz ;
+		#ifdef    PHONG
+			lTempF3 = normalize( lTempF3 ) ;
+		#else  // PHONG
+			lTempF3 *= 0.5 ;
+		#endif // PHONG
+
+		// lTemp = pow( max( 0.0, N * H ), uMatPow )
+		lTemp = pow( max( 0.0, dot( lNrm, lTempF3 ) ), uMatPow ) ;
+
+		#if LG1_DIR != 0
+
+			// スペキュラカラー蓄積値 += lTemp * ライトのスペキュラカラー
+			lTotalSpc += lTemp * uLightSpc[ 1 ].xyz * lShadowGen ;
+
+		#else // LG1_DIR
+
+			// スペキュラカラー蓄積値 += lTemp * 距離・スポットライトの角度減衰率 * ライトのスペキュラカラー
+			lTotalSpc += lTemp * vLight1DirGen.w * uLightSpc[ 1 ].xyz * lShadowGen ;
+
+		#endif // LG1_DIR
+
+	#endif // USE_SPE
+
+#endif // LG1_USE
+// ライト1の処理 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++( 終了 )
+
+
+
+
+
+
+
+
+
+			
+// ライト2の処理 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++( 開始 )
+#if LG2_USE != 0
+
+	// ディフューズ色計算
+
+	// lDifAngleGen = ディフューズ角度減衰率計算
+	lDifAngleGen = clamp( dot( lNrm, vLight2DirGen.xyz ), 0.0, 1.0 ) ;
+	
+	// 影による減衰率算出
+	lShadowGen = max( lShadowRate.x, uShadowMapLightEnable[ 2 ].x ) *
+	             max( lShadowRate.y, uShadowMapLightEnable[ 2 ].y ) *
+	             max( lShadowRate.z, uShadowMapLightEnable[ 2 ].z ) ;
+
+	#if LG2_DIR != 0
+
+		// ディフューズカラー蓄積値 += ライトのディフューズカラー * ディフューズカラー * ディフューズカラー角度減衰率 + ライトのアンビエントカラーとマテリアルのアンビエントカラーを乗算したもの 
+		lTotalDif += uLightDif[ 2 ].xyz * vDif.xyz * lDifAngleGen * lShadowGen + uLightAmb[ 2 ].xyz ;
+
+	#else // LG2_DIR
+
+		// ディフューズカラー蓄積値 += ( ライトのディフューズカラー * ディフューズカラー * ディフューズカラー角度減衰率 + ライトのアンビエントカラーとマテリアルのアンビエントカラーを乗算したもの  ) * 距離・スポットライトの角度減衰率
+		lTotalDif += ( uLightDif[ 2 ].xyz * vDif.xyz * lDifAngleGen * lShadowGen + uLightAmb[ 2 ].xyz ) * vLight2DirGen.w ;
+
+	#endif // LG2_DIR
+
+
+	// スペキュラカラー計算
+	#ifdef USE_SPE
+
+		// ハーフベクトルの計算
+		lTempF3 = vVtoEyeSM2PosZ.xyz + vLight2DirGen.xyz ;
+		#ifdef    PHONG
+			lTempF3 = normalize( lTempF3 ) ;
+		#else  // PHONG
+			lTempF3 *= 0.5 ;
+		#endif // PHONG
+
+		// lTemp = pow( max( 0.0, N * H ), uMatPow )
+		lTemp = pow( max( 0.0, dot( lNrm, lTempF3 ) ), uMatPow ) ;
+
+		#if LG2_DIR != 0
+
+			// スペキュラカラー蓄積値 += lTemp * ライトのスペキュラカラー
+			lTotalSpc += lTemp * uLightSpc[ 2 ].xyz * lShadowGen ;
+
+		#else // LG2_DIR
+
+			// スペキュラカラー蓄積値 += lTemp * 距離・スポットライトの角度減衰率 * ライトのスペキュラカラー
+			lTotalSpc += lTemp * vLight2DirGen.w * uLightSpc[ 2 ].xyz * lShadowGen ;
+
+		#endif // LG2_DIR
+
+	#endif // USE_SPE
+
+#endif // LG2_USE
+// ライト2の処理 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++( 終了 )
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+			// 出力カラー計算 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++( 開始 )
+
+			// ライトディフューズカラー蓄積値 + ( マテリアルのアンビエントカラーとグローバルアンビエントカラーを乗算したものとマテリアルエミッシブカラーを加算したもの )
+			lTotalDif += uAmb_Emi.rgb ;
+
+			#ifdef USE_SPE
+
+				#ifdef USE_SPETEX
+					// lTexSpcColor = ライトのスペキュラカラー蓄積値 * スペキュラカラー * スペキュラテクスチャカラー
+					lTexSpcColor.xyz = texture2D( uSpcMapTex, vTexUV0_1.xy ).xyz * lTotalSpc * vSpc.xyz ;
+				#else  // USE_SPETEX
+					// lTexSpcColor = ライトのスペキュラカラー蓄積値 * スペキュラカラー
+					lTexSpcColor.xyz = lTotalSpc.xyz * vSpc.xyz ;
+				#endif // USE_SPETEX
+
+				// 出力カラー = lTotalDif * テクスチャカラー + lTexSpcColor
+				gl_FragColor.rgb = lTexDifColor.rgb * lTotalDif + lTexSpcColor.rgb ;
+
+				// 出力α = テクスチャα * ディフューズα * 大域α
+				gl_FragColor.a = lTexDifColor.a * lParamAlpha ;
+
+			#else  // USE_SPE
+
+				// 出力カラー = lTotalDif * テクスチャカラー
+				gl_FragColor.rgb = lTotalDif * lTexDifColor.rgb ;
+
+				// 出力α = テクスチャα * ディフューズα * 大域α
+				gl_FragColor.a = lTexDifColor.a * lParamAlpha ;
+
+			#endif // USE_SPE
+
+			// 出力カラー計算 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++( 終了 )
+
+
+		// バンプマップ or フォンシェーディングの場合 =========================================( 終了 )
+		#else  // BUMPMAP || PHONG
+			// バンプマップ or フォンシェーディングではない場合 ===================================( 開始 )
+
+			#ifdef USE_SPE
+
+				#ifdef USE_SPETEX
+
+					gl_FragColor.rgb = lTexDifColor.rgb * vDif.rgb + lTexSpcColor.rgb * vSpc.rgb ;
+
+				#else  // USE_SPETEX
+
+					gl_FragColor.rgb = lTexDifColor.rgb * vDif.rgb + vSpc.rgb ;
+
+				#endif // USE_SPETEX
+
+			#else  // USE_SPE
+
+				gl_FragColor.rgb = lTexDifColor.rgb * vDif.rgb ;
+
+			#endif // USE_SPE
+
+			gl_FragColor.a   = lTexDifColor.a * lParamAlpha ;
+
+		#endif // BUMPMAP || PHONG
+		// バンプマップ or フォンシェーディングではない場合 ===================================( 終了 )
+
+	#endif // LG_USE
+	// ライトを使う場合 *******************************************************************( 終了 )
+
+#ifdef PRE_MUL_ALPHA
+	gl_FragColor.rgb *= vDif.a ;
+#endif
+
+#ifdef MUL_X_4
+	gl_FragColor.rgb *= 4.0 ;
+#endif
+
+#ifdef MUL_BLEND
+	gl_FragColor = 1.0 + gl_FragColor.a * ( gl_FragColor - 1.0 ) ;
+#endif
+
+	// アルファテスト
+	AlphaTest( gl_FragColor.a ) ;
+
+	// フォグ効果
+	gl_FragColor.rgb = uFogColor.rgb + clamp( vNrmFog.w, 0.0, 1.0 ) * ( gl_FragColor.rgb - uFogColor.rgb ) ;
+
+	// 単純色加算
+	gl_FragColor.r += uAddColor.r ;
+	gl_FragColor.g += uAddColor.g ;
+	gl_FragColor.b += uAddColor.b ;
+}
+

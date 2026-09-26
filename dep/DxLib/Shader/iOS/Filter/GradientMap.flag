@@ -1,0 +1,95 @@
+precision mediump float;
+
+uniform mediump	vec4	uRGBToY ;
+
+uniform sampler2D		uSrcTex ;
+uniform sampler2D		uGradMapTex ;
+varying mediump	vec2	vTexUV0 ;
+
+void GradientMap_FS( void )
+{
+	mediump vec4 SrcColor ;
+	mediump vec4 DestColor ;
+
+	SrcColor = texture2D( uSrcTex, vTexUV0 ) ;
+	
+#ifdef PMA_IMAGE
+	if( SrcColor.a < 0.001 )
+	{
+		SrcColor.r = 0.0 ;
+		SrcColor.g = 0.0 ;
+		SrcColor.b = 0.0 ;
+	}
+	else
+	{
+		SrcColor.rgb = SrcColor.rgb / SrcColor.a;
+	}
+#endif
+	
+	DestColor = texture2D( uGradMapTex, vec2( dot( SrcColor.rgb, uRGBToY.rgb ), 0 ) ) ;
+	
+#ifdef PMA_IMAGE
+	if( DestColor.a < 0.001 )
+	{
+		DestColor.r = 0.0 ;
+		DestColor.g = 0.0 ;
+		DestColor.b = 0.0 ;
+	}
+	else
+	{
+		DestColor.rgb = DestColor.rgb / DestColor.a;
+	}
+#endif
+	
+	DestColor.a *= SrcColor.a ;
+	
+#ifdef PMA_IMAGE
+	DestColor.rgb *= DestColor.a;
+#endif
+
+	gl_FragColor = DestColor ;
+}
+
+void GradientMapRev_FS( void )
+{
+	mediump vec4 SrcColor ;
+	mediump vec4 DestColor ;
+
+	SrcColor = texture2D( uSrcTex, vTexUV0 ) ;
+	
+#ifdef PMA_IMAGE
+	if( SrcColor.a < 0.001 )
+	{
+		SrcColor.r = 0.0 ;
+		SrcColor.g = 0.0 ;
+		SrcColor.b = 0.0 ;
+	}
+	else
+	{
+		SrcColor.rgb = SrcColor.rgb / SrcColor.a;
+	}
+#endif
+	
+	DestColor = texture2D( uGradMapTex, vec2( 1.0 - dot( SrcColor.rgb, uRGBToY.rgb ), 0 ) ) ;
+	
+#ifdef PMA_IMAGE
+	if( DestColor.a < 0.001 )
+	{
+		DestColor.r = 0.0 ;
+		DestColor.g = 0.0 ;
+		DestColor.b = 0.0 ;
+	}
+	else
+	{
+		DestColor.rgb = DestColor.rgb / DestColor.a;
+	}
+#endif
+	
+	DestColor.a *= SrcColor.a ;
+	
+#ifdef PMA_IMAGE
+	DestColor.rgb *= DestColor.a;
+#endif
+
+	gl_FragColor = DestColor ;
+}

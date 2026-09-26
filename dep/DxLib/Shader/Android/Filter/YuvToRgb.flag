@@ -1,0 +1,85 @@
+precision mediump float;
+
+uniform mediump	vec4	uUVTexUVScale_RRA_Add_U ;
+
+uniform sampler2D		uSrcTex ;
+uniform sampler2D		uUVTex ;
+varying mediump	vec2	vTexUV0 ;
+
+void Y2UV2toRGB_FS( void )
+{
+	mediump vec4 YUVColor ;
+
+	YUVColor = texture2D( uSrcTex, vTexUV0 ) ;
+
+	gl_FragColor.r = clamp( 1.164 * ( YUVColor.r - 0.0625 ) + 1.596 * ( YUVColor.b - 0.5 ), 0.0, 1.0 ) ;
+	gl_FragColor.g = clamp( 1.164 * ( YUVColor.r - 0.0625 ) - 0.391 * ( YUVColor.g - 0.5 ) - 0.813 * ( YUVColor.b - 0.5 ), 0.0, 1.0 ) ;
+	gl_FragColor.b = clamp( 1.164 * ( YUVColor.r - 0.0625 ) + 2.018 * ( YUVColor.g - 0.5 ), 0.0, 1.0 ) ;
+	gl_FragColor.a = 1.0 ;
+}
+
+void Y2UV2toRGB_RRA_FS( void )
+{
+	mediump vec4 YUVColor ;
+	mediump vec4 A_YUVColor ;
+	mediump vec2 A_TexCoords ;
+
+	YUVColor = texture2D( uSrcTex, vTexUV0 ) ;
+
+	A_TexCoords = vTexUV0 ;
+	A_TexCoords.x += uUVTexUVScale_RRA_Add_U.z ;
+	A_YUVColor = texture2D( uSrcTex, A_TexCoords ) ;
+
+	gl_FragColor.r = clamp( 1.164 * ( YUVColor.r   - 0.0625 ) + 1.596 * ( YUVColor.b   - 0.5 ), 0.0, 1.0 ) ;
+	gl_FragColor.g = clamp( 1.164 * ( YUVColor.r   - 0.0625 ) - 0.391 * ( YUVColor.g   - 0.5 ) - 0.813 * ( YUVColor.b - 0.5 ), 0.0, 1.0 ) ;
+	gl_FragColor.b = clamp( 1.164 * ( YUVColor.r   - 0.0625 ) + 2.018 * ( YUVColor.g   - 0.5 ), 0.0, 1.0 ) ;
+	gl_FragColor.a = clamp( 1.164 * ( A_YUVColor.r - 0.0625 ) + 1.596 * ( A_YUVColor.b - 0.5 ), 0.0, 1.0 ) ;
+}
+
+void Y2UV1toRGB_FS( void )
+{
+	mediump vec4 YColor ;
+	mediump vec4 UVColor ;
+	mediump vec2 UVTexCoord ;
+
+	YColor  = texture2D( uSrcTex, vTexUV0 ) ;
+	UVTexCoord = vTexUV0 ;
+	UVTexCoord.x *= uUVTexUVScale_RRA_Add_U.x ;
+	UVTexCoord.y *= uUVTexUVScale_RRA_Add_U.y ;
+	UVColor = texture2D( uUVTex, UVTexCoord ) ;
+
+	gl_FragColor.r = clamp( 1.164 * ( YColor.r - 0.0625 ) + 1.596 * ( UVColor.g - 0.5 ), 0.0, 1.0 ) ;
+	gl_FragColor.g = clamp( 1.164 * ( YColor.r - 0.0625 ) - 0.391 * ( UVColor.r - 0.5 ) - 0.813 * ( UVColor.g - 0.5 ), 0.0, 1.0 ) ;
+	gl_FragColor.b = clamp( 1.164 * ( YColor.r - 0.0625 ) + 2.018 * ( UVColor.r - 0.5 ), 0.0, 1.0 ) ;
+	gl_FragColor.a = 1.0 ;
+}
+
+void Y2UV1toRGB_RRA_FS( void )
+{
+	mediump vec4 YColor ;
+	mediump vec4 UVColor ;
+	mediump vec2 UVTexCoord ;
+	mediump vec4 A_YColor ;
+	mediump vec4 A_UVColor ;
+	mediump vec2 A_TexCoords ;
+
+	YColor  = texture2D( uSrcTex, vTexUV0 ) ;
+	UVTexCoord = vTexUV0 ;
+	UVTexCoord.x *= uUVTexUVScale_RRA_Add_U.x ;
+	UVTexCoord.y *= uUVTexUVScale_RRA_Add_U.y ;
+	UVColor = texture2D( uUVTex, UVTexCoord ) ;
+	
+	A_TexCoords = vTexUV0 ;
+	A_TexCoords.x += uUVTexUVScale_RRA_Add_U.z ;
+	A_YColor = texture2D( uSrcTex, A_TexCoords ) ;
+	A_TexCoords = vTexUV0 ;
+	A_TexCoords.x *= uUVTexUVScale_RRA_Add_U.x ;
+	A_TexCoords.y *= uUVTexUVScale_RRA_Add_U.y ;
+	A_TexCoords.x += uUVTexUVScale_RRA_Add_U.w ;
+	A_UVColor = texture2D( uUVTex, A_TexCoords ) ;
+
+	gl_FragColor.r = clamp( 1.164 * ( YColor.r - 0.0625 ) + 1.596 * ( UVColor.g - 0.5 ), 0.0, 1.0 ) ;
+	gl_FragColor.g = clamp( 1.164 * ( YColor.r - 0.0625 ) - 0.391 * ( UVColor.r - 0.5 ) - 0.813 * ( UVColor.g - 0.5 ), 0.0, 1.0 ) ;
+	gl_FragColor.b = clamp( 1.164 * ( YColor.r - 0.0625 ) + 2.018 * ( UVColor.r - 0.5 ), 0.0, 1.0 ) ;
+	gl_FragColor.a = clamp( 1.164 * ( A_YColor.r - 0.0625 ) + 1.596 * ( A_UVColor.g - 0.5 ), 0.0, 1.0 ) ;
+}
