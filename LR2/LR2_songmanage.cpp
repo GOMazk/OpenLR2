@@ -2844,9 +2844,8 @@ int LoadLR2CustomFolder(sqlite3 *sql, CONFIG_JUKEBOX *jb, CSTR scoreDBpath, char
 			SQL_Run(fs::make_preferred("DELETE FROM folder WHERE path LIKE \'LR2files/Rival/%\'").data(), sql);
 			SQL_Run(fs::make_preferred("DELETE FROM folder WHERE path LIKE \'LR2files/CustomIRRival/%\'").data(), sql);
 
-			const auto customRivals = customIR.RivalEntries();
-			if (!customRivals.empty()) {
-				for (const auto& [rivalId, rivalStem] : customRivals) {
+			if (customIR.IsDisplayRivalActive()) {
+				for (const auto& [rivalId, rivalStem] : customIR.RivalEntries()) {
 					if (rivalId < 1) continue;
 					std::filesystem::path folderPath = rivalStem;
 					folderPath += ".lr2folder";

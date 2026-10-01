@@ -961,7 +961,7 @@ int NETWORK::LR2IR_Login(int isDirectPlay) {
 			for (int i = 0; i < 20; i++) this->rivals[i] = 0;
 			this->rivalcount = 0;
 
-			if (this->getRival) {
+			if (this->getRival && !this->customIR.IsDisplayRivalActive()) {
 				for(int cur= 0 ; cur < 20; cur++) {
 					if (GetMouseInput()) {
 						printfDx("ライバルデータの取得をスキップしました。\n");

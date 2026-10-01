@@ -66,15 +66,20 @@ public:
 	RivalSyncBatch SyncRivals();
 	// Applies ready tasks only. Incomplete futures are parked (soft skip / no WinHTTP abort).
 	// Writes LR2files/CustomIRRival/<provider>/ for every provider; mRivalPaths only for display IR.
-	// Returns true if the display IR GetRivals succeeded (active CustomIR rival folders).
+	// Returns true if the display IR GetRivals succeeded (CustomIR owns rivals, even if the list is empty).
 	bool ApplyRivalSyncResults(RivalSyncBatch& sync);
-	// Set only after successful ApplyRivalSyncResults. Empty = not active for this rival; use legacy LR2files/Rival.
+	// True after display IR GetRivals Ok. Empty list still counts; do not fall back to legacy LR2IR rivals.
+	[[nodiscard]] bool IsDisplayRivalActive() const { return mDisplayRivalActive; }
+	// Set only after successful ApplyRivalSyncResults. Empty = not active for this rival; use legacy LR2files/Rival
+	// only when IsDisplayRivalActive() is also false.
 	[[nodiscard]] std::optional<std::filesystem::path> RivalPath(int rivalId) const;
-	// Synced CustomIR rivals: (id, artifact stem under CustomIRRival/<provider>/). Empty if none active.
+	// Synced CustomIR rivals: (id, artifact stem under CustomIRRival/<provider>/).
+	// May be empty while IsDisplayRivalActive() is true (module reported no rivals).
 	[[nodiscard]] std::span<const std::pair<int, std::filesystem::path>> RivalEntries() const;
 
 private:
 	std::vector<std::pair<int, std::filesystem::path>> mRivalPaths;
+	bool mDisplayRivalActive{};
 	std::vector<std::shared_ptr<CustomIR>> mModules;
 	std::vector<std::future<void>> mSendThreads;
 	std::vector<std::future<std::optional<openlr2::IRRankResult>>> mDiscardedResultIrFutures;

@@ -447,6 +447,7 @@ bool CUSTOMIR_MANAGER::RivalSyncBatch::HasTasks() const {
 CUSTOMIR_MANAGER::RivalSyncBatch CUSTOMIR_MANAGER::SyncRivals() {
 	RivalSyncBatch batch{};
 	mRivalPaths.clear();
+	mDisplayRivalActive = false;
 
 	for (const auto& ir : mModules) {
 		if (!ir->DidLoginSuccessfully()) continue;
@@ -505,6 +506,7 @@ CUSTOMIR_MANAGER::RivalSyncBatch CUSTOMIR_MANAGER::SyncRivals() {
 
 bool CUSTOMIR_MANAGER::ApplyRivalSyncResults(RivalSyncBatch& sync) {
 	mRivalPaths.clear();
+	mDisplayRivalActive = false;
 	cleanUpOldFutures(mDiscardedRivalSyncFutures);
 
 	bool displayListOk = false;
@@ -547,6 +549,7 @@ bool CUSTOMIR_MANAGER::ApplyRivalSyncResults(RivalSyncBatch& sync) {
 			providerCount, provider.providerName.c_str(), isDisplay ? " (display)" : "");
 	}
 
+	mDisplayRivalActive = displayListOk;
 	if (displayListOk) {
 		ErrorLogFmtAdd("CustomIR rival source active (%d rivals)\n", displayCount);
 	}
