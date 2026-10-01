@@ -26,7 +26,7 @@ int ParseBMSMETA(BMSMETA * meta, CSTR filepath, char flag);
 int SearchSongsFromPath(CSTR root, sqlite3 * sql, CSTR path); //into DB
 int ReloadSongsByQuery(CSTR query, sqlite3 * sql, CONFIG_JUKEBOX * jb, ReloadProgress progress = ReloadProgress::None); //check reload condition and run
 int GetFolderDataFromPath(CSTR path, sqlite3 * sql);
-int LoadLR2CustomFolder(sqlite3 * sql, CONFIG_JUKEBOX * jb, CSTR scoreDBpath, char flag_starter, char flag_direct); //not coustomfolder only, but init DB and manage it
+int LoadLR2CustomFolder(sqlite3 * sql, CONFIG_JUKEBOX * jb, CSTR scoreDBpath, char flag_starter, char flag_direct, CUSTOMIR_MANAGER& customIR); //not coustomfolder only, but init DB and manage it
 
 int SetUndefinedDifficulty(sqlite3 * sql);
 
@@ -55,7 +55,7 @@ int LoadBmsListFromDB(CSTR query, sqlite3 * sql, SONGSELECT * ss, int * difficul
 
 int LoadFolderDataFromDB(CSTR query, SONGDATA * song, sqlite3 * sql, int difficulty, int key, int sort, int maxCount, CONFIG_SELECT * cfg_select, char flag);
 
-int LoadFilteredBmsListFromDB(CSTR query, sqlite3 * sql, SONGSELECT * ss, int * diffFilter, int * mode, uint sort, int rivalID, char flag);
+int LoadFilteredBmsListFromDB(CSTR query, sqlite3 * sql, SONGSELECT * ss, int * diffFilter, int * mode, uint sort, int rivalID, char flag, CUSTOMIR_MANAGER& customIR);
 
 namespace openlr2 {
 
