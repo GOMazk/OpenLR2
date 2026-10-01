@@ -1,8 +1,8 @@
-﻿// -------------------------------------------------------------------------------
+// -------------------------------------------------------------------------------
 // 
 // 		ＤＸライブラリ		Android専用関数プロトタイプ宣言用ヘッダファイル
 // 
-// 				Ver 3.24f
+// 				Ver 3.25a
 // 
 // -------------------------------------------------------------------------------
 
@@ -105,7 +105,7 @@ extern int Vibrator_hasAmplitudeControl( void ) ;
 
 // 振動を開始する
 // Milliseconds : 振動させる時間( 単位：ミリ秒 )
-// Amplitude : 振動の強さ( 0( 振動なし ) 〜 255( 最大振幅 ) )、振動の強さの制御に対応していない場合は無視されます
+// Amplitude : 振動の強さ( 0( 振動なし ) ～ 255( 最大振幅 ) )、振動の強さの制御に対応していない場合は無視されます
 extern int Vibrator_vibrate( int Milliseconds, int Amplitude ) ;
 
 // 振動パターン付きの振動を開始する
@@ -116,7 +116,7 @@ extern int Vibrator_vibrate_with_OnOffTimings( int *Timings, int TimingsLength, 
 
 // 振幅制御付き( 振動の強さ指定付き )振動を開始する( Vibrator_hasAmplitudeControl の戻り値が TRUE の場合のみ使用可能 )
 // Timings : 振動の強さを変更するタイミング( 単位：ミリ秒 )の配列
-// Amplitudes : 振動の強さ( 0( 振動なし ) 〜 255( 最大振幅 ) )の配列
+// Amplitudes : 振動の強さ( 0( 振動なし ) ～ 255( 最大振幅 ) )の配列
 // ArrayLength : Timings と Amplitudes の配列の長さ( 配列の長さはどちらも同じである必要があります )
 // Repeat : Timings と Amplitudes で示される振動パターンを繰り返す場合の配列の要素番号( 例　0=最初から繰り返し  1:配列要素の1から繰り返し )、-1 で繰り返し無し
 extern int Vibrator_vibrate_with_Amplitudes( int *Timings, int *Amplitudes, int ArrayLength, int Repeat ) ;
@@ -189,7 +189,7 @@ extern int AndroidNotificationCancelAll( void ) ;
 extern int AndroidJumpURL(           const TCHAR *URL,                   const TCHAR *BrowserAppPackageName DEFAULTPARAM( = NULL ),                                                         const TCHAR *BrowserAppClassName DEFAULTPARAM( = NULL )                                                       ) ;
 extern int AndroidJumpURLWithStrLen( const TCHAR *URL, size_t URLLength, const TCHAR *BrowserAppPackageName DEFAULTPARAM( = NULL ), size_t BrowserAppPackageNameLength DEFAULTPARAM( = 0 ), const TCHAR *BrowserAppClassName DEFAULTPARAM( = NULL ), size_t BrowserAppClassNameLength DEFAULTPARAM( = 0 ) ) ;
 
-// Wifi の電波強度を取得する( 戻り値：電波の強度 0 〜 100 )
+// Wifi の電波強度を取得する( 戻り値：電波の強度 0 ～ 100 )
 // ( 使用するには AndroidManifest.xml に <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" /> を書き加える必要があります )
 extern int GetWifiSignalLevel( void ) ;
 

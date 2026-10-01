@@ -1,8 +1,8 @@
-﻿// -------------------------------------------------------------------------------
+// -------------------------------------------------------------------------------
 // 
 // 		ＤＸライブラリ		WinAPIプログラム
 // 
-// 				Ver 3.24f
+// 				Ver 3.25a
 // 
 // -------------------------------------------------------------------------------
 
@@ -435,8 +435,10 @@ extern int LoadWinAPI( void )
 		WinAPIData.Win32Func.SystemParametersInfoAFunc = ( BOOL ( WINAPI * )( UINT, UINT, PVOID, UINT ) )GetProcAddress( WinAPIData.Win32Func.User32DLL, "SystemParametersInfoA" ) ;
 		WinAPIData.Win32Func.SystemParametersInfoWFunc = ( BOOL ( WINAPI * )( UINT, UINT, PVOID, UINT ) )GetProcAddress( WinAPIData.Win32Func.User32DLL, "SystemParametersInfoW" ) ;
 		WinAPIData.Win32Func.AttachThreadInputFunc = ( BOOL ( WINAPI * )( DWORD, DWORD, BOOL ) )GetProcAddress( WinAPIData.Win32Func.User32DLL, "AttachThreadInput" ) ;
+#ifndef DX_NON_STOPTASKSWITCH
 		WinAPIData.Win32Func.SetWindowsHookExWFunc = ( HHOOK ( WINAPI * )( int, HOOKPROC, HINSTANCE, DWORD ) )GetProcAddress( WinAPIData.Win32Func.User32DLL, "SetWindowsHookExW" ) ;
 		WinAPIData.Win32Func.UnhookWindowsHookExFunc = ( BOOL ( WINAPI * )( HHOOK ) )GetProcAddress( WinAPIData.Win32Func.User32DLL, "UnhookWindowsHookEx" ) ;
+#endif // DX_NON_STOPTASKSWITCH
 		WinAPIData.Win32Func.GetKeyboardStateFunc = ( BOOL ( WINAPI * )( PBYTE ) )GetProcAddress( WinAPIData.Win32Func.User32DLL, "GetKeyboardState" ) ;
 		WinAPIData.Win32Func.KillTimerFunc = ( BOOL ( WINAPI * )( HWND, UINT_PTR ) )GetProcAddress( WinAPIData.Win32Func.User32DLL, "KillTimer" ) ;
 		WinAPIData.Win32Func.EnumDisplaySettingsAFunc = ( BOOL ( WINAPI * )( LPCSTR, DWORD, D_DEVMODEA* ) )GetProcAddress( WinAPIData.Win32Func.User32DLL, "EnumDisplaySettingsA" ) ;
@@ -943,8 +945,10 @@ extern int ReleaseWinAPI( void )
 		WinAPIData.Win32Func.SystemParametersInfoAFunc = NULL ;
 		WinAPIData.Win32Func.SystemParametersInfoWFunc = NULL ;
 		WinAPIData.Win32Func.AttachThreadInputFunc = NULL ;
+#ifndef DX_NON_STOPTASKSWITCH
 		WinAPIData.Win32Func.SetWindowsHookExWFunc = NULL ;
 		WinAPIData.Win32Func.UnhookWindowsHookExFunc = NULL ;
+#endif // DX_NON_STOPTASKSWITCH
 		WinAPIData.Win32Func.GetKeyboardStateFunc = NULL ;
 		WinAPIData.Win32Func.KillTimerFunc = NULL ;
 		WinAPIData.Win32Func.EnumDisplaySettingsAFunc = NULL ;

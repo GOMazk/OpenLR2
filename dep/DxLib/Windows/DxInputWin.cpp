@@ -1,8 +1,8 @@
-﻿//-----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 // 
 // 		ＤＸライブラリ		WindowsOS用入力情報プログラム
 // 
-//  	Ver 3.24f
+//  	Ver 3.25a
 // 
 //-----------------------------------------------------------------------------
 
@@ -842,7 +842,7 @@ const static unsigned short __KeyMap[][3 /* 0:Windows仮想キーコード  1:Di
 	VK_OEM_7,		D_DIK_PREVTRACK,	0,	// ＾キー
 	VK_OEM_8,		D_DIK_GRAVE,		0,	// `キー
 
-	VK_OEM_MINUS,	D_DIK_MINUS,		0,	// −キー
+	VK_OEM_MINUS,	D_DIK_MINUS,		0,	// －キー
 	VK_OEM_5,		D_DIK_YEN,			0,	// ￥キー
 	VK_OEM_PERIOD,	D_DIK_PERIOD,		0,	// ．キー
 	VK_OEM_2,		D_DIK_SLASH,		0,	// ／キー
@@ -869,7 +869,7 @@ const static unsigned short __KeyMap[][3 /* 0:Windows仮想キーコード  1:Di
 	VK_NUMPAD9,		D_DIK_NUMPAD9,		1,	// テンキー９
 	VK_MULTIPLY,	D_DIK_MULTIPLY,		1,	// テンキー＊キー
 	VK_ADD,			D_DIK_ADD,			1,	// テンキー＋キー
-	VK_SUBTRACT,	D_DIK_SUBTRACT,		1,	// テンキー−キー
+	VK_SUBTRACT,	D_DIK_SUBTRACT,		1,	// テンキー－キー
 	VK_DECIMAL,		D_DIK_DECIMAL,		1,	// テンキー．キー
 	VK_DIVIDE,		D_DIK_DIVIDE,		1,	// テンキー／キー
 
@@ -3251,7 +3251,8 @@ extern int GetJoypadType_PF( int InputType )
 	{
 		return DX_PADTYPE_SWITCH_PRO_CTRL ;
 	}
-	if( _MEMCMP( &inst.guidProduct, &GUID_SWITCH_HORI_PAD_S, sizeof( GUID ) ) == 0 )
+	if( _MEMCMP( &inst.guidProduct, &GUID_SWITCH_HORI_PAD_S, sizeof( GUID ) ) == 0 ||
+		_MEMCMP( &inst.guidProduct, &GUID_SWITCH_HORI_PAD_S_2, sizeof( GUID ) ) == 0 )
 	{
 		return DX_PADTYPE_SWITCH_HORI_PAD ;
 	}

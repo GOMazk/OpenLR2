@@ -1,8 +1,8 @@
-﻿// -------------------------------------------------------------------------------
+// -------------------------------------------------------------------------------
 // 
 // 		ＤＸライブラリ		標準関数の互換関数プログラムヘッダファイル
 // 
-// 				Ver 3.24f
+// 				Ver 3.25a
 // 
 // -------------------------------------------------------------------------------
 
@@ -28,6 +28,7 @@
 		#include "iOS/DxBaseFunciOS.h"
     #endif // TARGET_OS_IPHONE
 #endif // __APPLE__
+
 
 
 
@@ -445,6 +446,10 @@ namespace DxLib
 #define GET_MEM_SIGNED_BYTE( ptr )				( ( signed char  )GET_MEM_BYTE( ptr ) )
 #define GET_MEM_SIGNED_WORD( ptr )				( ( signed short )GET_MEM_WORD( ptr ) )
 #define GET_MEM_SIGNED_DWORD( ptr )				( ( signed int   )GET_MEM_DWORD( ptr ) )
+
+#define SET_MEM_BYTE( ptr, num )				( ( BYTE * )ptr )[ 0 ] = ( BYTE )( num ) ;
+#define SET_MEM_WORD( ptr, num )				( ( BYTE * )ptr )[ 0 ] = ( BYTE )( num ) ; ( ( BYTE * )ptr )[ 1 ] = ( BYTE )( ( DWORD )( num ) >> 8 ) ;
+#define SET_MEM_DWORD( ptr, num )				( ( BYTE * )ptr )[ 0 ] = ( BYTE )( num ) ; ( ( BYTE * )ptr )[ 1 ] = ( BYTE )( ( DWORD )( num ) >> 8 ) ; ( ( BYTE * )ptr )[ 2 ] = ( BYTE )( ( DWORD )( num ) >> 16 ) ; ( ( BYTE * )ptr )[ 3 ] = ( BYTE )( ( DWORD )( num ) >> 24 ) ;
 
 #define READ_MEM_1BYTE( dst_ptr, src_ptr )		( ( BYTE * )( dst_ptr ) )[ 0 ] = ( ( BYTE * )( src_ptr ) )[ 0 ] ;
 

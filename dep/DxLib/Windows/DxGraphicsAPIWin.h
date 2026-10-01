@@ -1,8 +1,8 @@
-﻿// -------------------------------------------------------------------------------
+// -------------------------------------------------------------------------------
 // 
 // 		ＤＸライブラリ		描画ＡＰＩプログラムヘッダファイル
 // 
-// 				Ver 3.24f
+// 				Ver 3.25a
 // 
 // -------------------------------------------------------------------------------
 
@@ -225,6 +225,7 @@ extern	void	D3D11DeviceContext_PSSetShaderResources	( UINT StartSlot, UINT NumVi
 extern	void	D3D11DeviceContext_PSSetShader			( D_ID3D11PixelShader *pPixelShader, D_ID3D11ClassInstance *const *ppClassInstances, UINT NumClassInstances ) ;
 extern	void	D3D11DeviceContext_PSSetSamplers		( UINT StartSlot, UINT NumSamplers, D_ID3D11SamplerState *const *ppSamplers ) ;
 extern	void	D3D11DeviceContext_VSSetShader			( D_ID3D11VertexShader *pVertexShader, D_ID3D11ClassInstance *const *ppClassInstances, UINT NumClassInstances ) ;
+extern	void	D3D11DeviceContext_VSSetSamplers		( UINT StartSlot, UINT NumSamplers, D_ID3D11SamplerState *const *ppSamplers ) ;
 extern	void	D3D11DeviceContext_DrawIndexed			( UINT IndexCount, UINT StartIndexLocation, INT BaseVertexLocation ) ;
 extern	void	D3D11DeviceContext_Draw					( UINT VertexCount, UINT StartVertexLocation ) ;
 extern	HRESULT	D3D11DeviceContext_Map					( D_ID3D11Resource *pResource, UINT Subresource, D_D3D11_MAP MapType, UINT MapFlags, D_D3D11_MAPPED_SUBRESOURCE *pMappedResource ) ;

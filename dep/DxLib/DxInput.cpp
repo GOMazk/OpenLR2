@@ -1,8 +1,8 @@
-﻿// -------------------------------------------------------------------------------
+// -------------------------------------------------------------------------------
 // 
 // 		ＤＸライブラリ		ＤｉｒｅｃｔＩｎｐｕｔ制御プログラム
 // 
-// 				Ver 3.24f
+// 				Ver 3.25a
 // 
 // -------------------------------------------------------------------------------
 
@@ -1682,7 +1682,7 @@ extern	int NS_SetJoypadDeadZone( int InputType, double Zone )
 	return 0 ;
 }
 
-// ジョイパッドの無効ゾーンの設定を取得する( InputType:設定を変更するパッドの識別子( DX_INPUT_PAD1等 )   戻り値:無効ゾーン( 0.0 〜 1.0 )
+// ジョイパッドの無効ゾーンの設定を取得する( InputType:設定を変更するパッドの識別子( DX_INPUT_PAD1等 )   戻り値:無効ゾーン( 0.0 ～ 1.0 )
 extern	double NS_GetJoypadDeadZone( int InputType )
 {
 	INPUTPADDATA *pad ;
@@ -1709,7 +1709,7 @@ extern	double NS_GetJoypadDeadZone( int InputType )
 	return pad->DeadZoneD ;
 }
 
-// ジョイパッドのデフォルトの無効ゾーンを設定する( Zone:新しい無効ゾーン( 0.0 〜 1.0 )、デフォルト値は 0.35 )
+// ジョイパッドのデフォルトの無効ゾーンを設定する( Zone:新しい無効ゾーン( 0.0 ～ 1.0 )、デフォルト値は 0.35 )
 extern	int NS_SetJoypadDefaultDeadZoneAll( double Zone )
 {
 	DWORD ZoneI ;
@@ -1765,7 +1765,7 @@ extern	int NS_SetJoypadDefaultDeadZoneAll( double Zone )
 	return 0 ;
 }
 
-// ジョイパッドのデフォルトの無効ゾーンを取得する( 戻り値:無効ゾーン( 0.0 〜 1.0 ) )
+// ジョイパッドのデフォルトの無効ゾーンを取得する( 戻り値:無効ゾーン( 0.0 ～ 1.0 ) )
 extern	double NS_GetJoypadDefaultDeadZoneAll( void )
 {
 	return InputSysData.PadDefaultDeadZoneD ;
@@ -1790,15 +1790,20 @@ extern	int NS_StartJoypadVibration( int InputType, int Power, int Time, int Effe
 	// エラーチェック
 	if( JoypadNum < 0 || JoypadNum >= InputSysData.PadNum )
 	{
-		return 0 ;
+		return -1 ;
 	}
 
 	// EffectIndex がマイナスの場合は処理を分岐
 	if( EffectIndex < 0 )
 	{
+		int Result = 0 ;
+
 		if( Power < 0 )
 		{
-			NS_StartJoypadVibration( InputType, pad->Effect[ DINPUTPAD_MOTOR_LEFT ].Power, Time, DINPUTPAD_MOTOR_LEFT ) ;
+			if( NS_StartJoypadVibration( InputType, pad->Effect[ DINPUTPAD_MOTOR_LEFT ].Power, Time, DINPUTPAD_MOTOR_LEFT ) < 0 )
+			{
+				Result = -1 ;
+			}
 		}
 		else
 		{
@@ -1807,12 +1812,18 @@ extern	int NS_StartJoypadVibration( int InputType, int Power, int Time, int Effe
 			{
 				SetPower = DX_FFNOMINALMAX / 10 ;
 			}
-			NS_StartJoypadVibration( InputType, SetPower, Time, DINPUTPAD_MOTOR_LEFT ) ;
+			if( NS_StartJoypadVibration( InputType, SetPower, Time, DINPUTPAD_MOTOR_LEFT ) < 0 )
+			{
+				Result = -1 ;
+			}
 		}
 
 		if( Power < 0 )
 		{
-			NS_StartJoypadVibration( InputType, pad->Effect[ DINPUTPAD_MOTOR_RIGHT ].Power, Time, DINPUTPAD_MOTOR_RIGHT ) ;
+			if( NS_StartJoypadVibration( InputType, pad->Effect[ DINPUTPAD_MOTOR_RIGHT ].Power, Time, DINPUTPAD_MOTOR_RIGHT ) < 0 )
+			{
+				Result = -1 ;
+			}
 		}
 		else
 		{
@@ -1826,22 +1837,25 @@ extern	int NS_StartJoypadVibration( int InputType, int Power, int Time, int Effe
 			{
 				SetPower = DX_FFNOMINALMAX / 10 ;
 			}
-			NS_StartJoypadVibration( InputType, SetPower, Time, DINPUTPAD_MOTOR_RIGHT ) ;
+			if( NS_StartJoypadVibration( InputType, SetPower, Time, DINPUTPAD_MOTOR_RIGHT ) < 0 )
+			{
+				Result = -1 ;
+			}
 		}
 
 		// 終了
-		return 0 ;
+		return Result ;
 	}
 
-	if( EffectIndex >= DINPUTPAD_MOTOR_NUM )
+	if( EffectIndex < 0 || EffectIndex >= DINPUTPAD_MOTOR_NUM )
 	{
-		return 0 ;
+		return -1 ;
 	}
 
 	// 振動に対応していなければここで終了
 	if( CheckJoypadVibrationEnable_PF( pad, EffectIndex ) == FALSE )
 	{
-		return 0 ;
+		return -1 ;
 	}
 
 	// ゆれの大きさを DirectInput の型に合わせる
