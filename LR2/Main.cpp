@@ -2192,7 +2192,7 @@ int main(int argc, char** argv) {
 			if ( (gs.KeyInput.inputID[KEY_INPUT_F5] == 1 || gs.sSelect.is_buttonIRpage != 0) && gs.sSelect.bmsList[gs.sSelect.cur_song].keymode > 4) {
 				// Both desktop(0) and borderless(2) own the display: drop to windowed(1) before
 				// opening the external browser, otherwise exclusive blocks/crashes the browser show.
-				if (gs.config.system.screenmode == 0 || gs.config.system.screenmode == 2) {
+				if (gs.config.system.screenmode == 0){// || gs.config.system.screenmode == 2) { //temp: borderless no need to change screen
 					gs.config.system.screenmode = 1;
 					SetObjectStrings_SongSelect(&gs);
 					for (int i = 0; i < 200; i++) {
