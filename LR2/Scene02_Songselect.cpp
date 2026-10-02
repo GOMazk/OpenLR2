@@ -1498,7 +1498,12 @@ void CheckNewSong(glb_dbgame *glb) {
 	filDiff = glb->pGame->sSelect.filterDifficulty;
 	filKey = glb->pGame->sSelect.filterKey;
 	jb.numOfPath = 0;
-	if (glb->pGame->sSelect.reloadType >= 1) {
+	if (glb->pGame->sSelect.reloadType == 1 || glb->pGame->sSelect.reloadType == 4) {
+		ErrorLogAdd("曲の更新チェックを行います。\n");
+		const bool isSong = glb->pGame->sSelect.reloadType == 4 && glb->pGame->sSelect.selKey > 0;
+		err = ReloadSongFolder(glb->pGame->sSelect.selFilepath, isSong, glb->pSql, &jb);
+	}
+	else if (glb->pGame->sSelect.reloadType >= 1) {
 		ErrorLogAdd("曲の更新チェックを行います。\n");
 		err = (ReloadSongsByQuery(glb->pGame->sSelect.unk4fa4[0], glb->pSql, &jb) == 2);
 		ErrorLogAdd("フォルダの更新チェックを行います。\n");
@@ -1511,6 +1516,8 @@ void CheckNewSong(glb_dbgame *glb) {
 				err = err || (ReloadSongsByQuery(glb->pGame->sSelect.unk4fa4[3], glb->pSql, &jb) == 2);
 			}
 		}
+	}
+	if (glb->pGame->sSelect.reloadType >= 1) {
 		if (err) {
 			ErrorLogAdd("未設定の#DIFFICULTYを設定します。\n");
 			SetUndefinedDifficulty(glb->pSql);
@@ -1949,20 +1956,12 @@ void SubProcI_Select(game *g, sqlite3 *sql) {
 		if (GetTimeLapse(176, &g->timer1) != -1.0) return;
 
 		if (g->KeyInput.inputID[KEY_INPUT_F8] == 1) {
-			if (g->sSelect.stack_query[g->sSelect.cur].findStrPos("parent") != -1) {
+			SONGDATA *const song = &g->sSelect.bmsList[g->sSelect.cur_song];
+			const CSTR path = song->keymode > 0 ? song->filepath.getDirectory() : song->filepath;
+			std::error_code ec;
+			if (std::filesystem::is_directory(path.body, ec)) {
 				SetBmsFilter(g, sql);
-				g->sSelect.unk4fa4[0] = sqlite3_snprintf(1024, buf, "SELECT path,date FROM song WHERE parent = \'%s\'", g->sSelect.stack_query[g->sSelect.cur].right(9).left(8).body);
-				if (g->sSelect.bmsList[g->sSelect.cur_song].keymode < 1 || g->sSelect.cur < 1) {
-					g->sSelect.reloadType = 3;
-					g->sSelect.unk4fa4[1] = sqlite3_snprintf(1024, buf, "SELECT path,date FROM folder WHERE parent = \'%s\'", g->sSelect.stack_query[g->sSelect.cur].right(9).left(8).body);
-					g->sSelect.unk4fa4[2] = sqlite3_snprintf(1024, buf, "SELECT path, date FROM song WHERE parent = \'%s\'", AssignCRC32(g->sSelect.bmsList[g->sSelect.cur_song].filepath).body);
-					g->sSelect.unk4fa4[3] = sqlite3_snprintf(1024, buf, "SELECT path,date FROM folder WHERE parent = \'%s\'", AssignCRC32(g->sSelect.bmsList[g->sSelect.cur_song].filepath).body);
-				}
-				else {
-					g->sSelect.reloadType = 2;
-					g->sSelect.unk4fa4[1] = sqlite3_snprintf(1024, buf, "SELECT path,date FROM folder WHERE parent = \'%s\'", g->sSelect.stack_query[g->sSelect.cur].right(9).left(8).body);
-					g->sSelect.unk4fa4[2] = sqlite3_snprintf(1024, buf, "SELECT path,date FROM folder WHERE parent = \'%s\'", g->sSelect.stack_query[g->sSelect.cur - 1].right(9).left(8).body);
-				}
+				g->sSelect.reloadType = 4;
 				g->sSelect.filter_clicked = 4;
 			}
 
