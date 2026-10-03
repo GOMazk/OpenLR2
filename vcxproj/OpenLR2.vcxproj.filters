@@ -156,6 +156,9 @@
     <ClInclude Include="..\LR2\En_audio.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\LR2\LR2_panels.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\LR2\En_audio.cpp">
@@ -273,6 +276,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\LR2\strclass.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\LR2\LR2_panels.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -1948,6 +1948,16 @@ void SubProcI_Select(game *g, sqlite3 *sql) {
 		if (GetTimeLapse(175, &g->timer1) != -1.0) return;
 		if (GetTimeLapse(176, &g->timer1) != -1.0) return;
 
+		if (g->skstruct.panelMan.RunSelectorInput(&g->KeyInput, &g->audio)) {
+			if (g->sSelect.panel >= 0) {
+				ResetTimeLapse(20 + g->sSelect.panel, &g->timer1);
+				SetTimeLapse(30 + g->sSelect.panel, &g->timer1);
+				g->sSelect.panel = -1;
+				PlaySound(&g->audio, &g->audio.sysSound.panel_close, g->audio.chnKey, -1);
+			}
+			return;
+		}
+
 		if (g->KeyInput.inputID[KEY_INPUT_F8] == 1) {
 			if (g->sSelect.stack_query[g->sSelect.cur].findStrPos("parent") != -1) {
 				SetBmsFilter(g, sql);
