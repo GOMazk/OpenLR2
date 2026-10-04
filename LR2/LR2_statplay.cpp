@@ -222,11 +222,12 @@ static int GetBestClearedGauge(const gameplay& gameplay, int playerIdx, const CO
 		for (; i < gaugeArr.size(); i++)
 			if (gaugeArr[i] == gameplay.player[playerIdx].clearGaugeTypeCourse)
 				break;
-	auto is_gauge_alive = [](int gaugeIdx, double hp) {
+	// Courses (COURSE/NONSTOP/class) clear on >=2% for all gauges; only single-song groove/easy need 80%.
+	auto is_gauge_alive = [isCourse = gameplay.isCourse](int gaugeIdx, double hp) {
 		switch (gaugeIdx) {
 		case OPTION_GAUGE_GROOVE:
 		case OPTION_GAUGE_EASY:
-			return hp >= 80.;
+			return hp >= (isCourse ? 2. : 80.);
 		default: return hp >= 2.;
 		}
 	};
