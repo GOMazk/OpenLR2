@@ -3606,8 +3606,9 @@ int ParseBmsFile(gameplay *gp, CSTR filename, AUDIO *aud, ConfigStruct* cfg, BMS
 
 						const int mapLane = lane - side * 10;
 						if (intArr[lane] == -1) {
-							pass2 = 0;
+							
 							if (mapAdded[side][mapLane] == 0) break;
+							pass2 = 0;
 							for (int j = startlane; j <= endlane; j++) {
 								if (mapAdded[side][j - side * 10] == 0) pass2 = 1;
 							}
@@ -3616,8 +3617,9 @@ int ParseBmsFile(gameplay *gp, CSTR filename, AUDIO *aud, ConfigStruct* cfg, BMS
 							if(gp->bmsobj.notes[i].realTiming <= gp->bmsobj.notes[intArr[lane]].realTiming_ln || gp->bmsobj.notes[i].realTiming == gp->bmsobj.notes[intArr[lane]].realTiming) 
 								continue;
 
-							pass2 = 0;
+							
 							if (mapAdded[side][mapLane] == 0) break;
+							pass2 = 0;
 							for (int j = startlane; j <= endlane; j++) {
 								if (mapAdded[side][j - side * 10] == 0) pass2 = 1;
 							}
