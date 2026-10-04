@@ -1,8 +1,8 @@
-﻿// -------------------------------------------------------------------------------
+// -------------------------------------------------------------------------------
 // 
 // 		ＤＸライブラリ		モデルデータ読み込みプログラム
 // 
-// 				Ver 3.24f
+// 				Ver 3.25a
 // 
 // -------------------------------------------------------------------------------
 
@@ -6411,16 +6411,22 @@ extern int MV1LoadModelToReadModel(
 				MBMaterial->DrawAddColor.w = 0 ;
 
 				// テクスチャがある場合はテクスチャを読み込む
-				MBMaterial->DiffuseLayerNum  = Material->DiffuseTexNum ;
-				MBMaterial->SpecularLayerNum = Material->SpecularTexNum ;
-				MBMaterial->NormalLayerNum   = Material->NormalTexNum ;
-				for( k = 0 ; k < 3 ; k ++ )
+				MBMaterial->DiffuseLayerNum          = Material->DiffuseTexNum ;
+				MBMaterial->SpecularLayerNum         = Material->SpecularTexNum ;
+				MBMaterial->NormalLayerNum           = Material->NormalTexNum ;
+				MBMaterial->EmissiveLayerNum         = Material->EmissiveTexNum ;
+				MBMaterial->ShininessLayerNum        = Material->ShininessTexNum ;
+				MBMaterial->ReflectionFactorLayerNum = Material->ReflectionFactorTexNum ;
+				for( k = 0 ; k < 6 ; k ++ )
 				{
 					switch( k )
 					{
-					case 0 : num = MBMaterial->DiffuseLayerNum ;  Textures = Material->DiffuseTexs ;  MBMaterialLayer = MBMaterial->DiffuseLayer ;  break ;
-					case 1 : num = MBMaterial->SpecularLayerNum ; Textures = Material->SpecularTexs ; MBMaterialLayer = MBMaterial->SpecularLayer ; break ;
-					case 2 : num = MBMaterial->NormalLayerNum ;   Textures = Material->NormalTexs ;   MBMaterialLayer = MBMaterial->NormalLayer ;   break ;
+					case 0 : num = MBMaterial->DiffuseLayerNum ;          Textures = Material->DiffuseTexs ;          MBMaterialLayer = MBMaterial->DiffuseLayer ;          break ;
+					case 1 : num = MBMaterial->SpecularLayerNum ;         Textures = Material->SpecularTexs ;         MBMaterialLayer = MBMaterial->SpecularLayer ;         break ;
+					case 2 : num = MBMaterial->NormalLayerNum ;           Textures = Material->NormalTexs ;           MBMaterialLayer = MBMaterial->NormalLayer ;           break ;
+					case 3 : num = MBMaterial->EmissiveLayerNum ;         Textures = Material->EmissiveTexs ;         MBMaterialLayer = MBMaterial->EmissiveLayer ;         break ;
+					case 4 : num = MBMaterial->ShininessLayerNum ;        Textures = Material->ShininessTexs ;        MBMaterialLayer = MBMaterial->ShininessLayer ;        break ;
+					case 5 : num = MBMaterial->ReflectionFactorLayerNum ; Textures = Material->ReflectionFactorTexs ; MBMaterialLayer = MBMaterial->ReflectionFactorLayer ; break ;
 					}
 
 					for( j = 0 ; j < num ; j ++ )

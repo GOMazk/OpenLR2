@@ -1,8 +1,8 @@
-﻿//-----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 // 
 // 		ＤＸライブラリ		Android用入力情報プログラム
 // 
-//  	Ver 3.24f
+//  	Ver 3.25a
 // 
 //-----------------------------------------------------------------------------
 
@@ -78,7 +78,7 @@ const static unsigned short g_AndroidKeyToDXInputKey[][ 2 /* 0:Androidキーコ�
 	{ AKEYCODE_INSERT,			KEY_INPUT_INSERT },		// Insertキー
 	{ AKEYCODE_FORWARD_DEL,		KEY_INPUT_DELETE },		// Deleteキー
 
-	{ AKEYCODE_MINUS,			KEY_INPUT_MINUS },		// −キー
+	{ AKEYCODE_MINUS,			KEY_INPUT_MINUS },		// －キー
 	{ AKEYCODE_YEN,				KEY_INPUT_YEN },		// ￥キー
 	{ AKEYCODE_EQUALS,			KEY_INPUT_PREVTRACK },	// ＾キー
 	{ AKEYCODE_PERIOD,			KEY_INPUT_PERIOD },		// ．キー
@@ -117,7 +117,7 @@ const static unsigned short g_AndroidKeyToDXInputKey[][ 2 /* 0:Androidキーコ�
 	{ AKEYCODE_NUMPAD_9,		KEY_INPUT_NUMPAD9 },	// テンキー９
 	{ AKEYCODE_NUMPAD_MULTIPLY,	KEY_INPUT_MULTIPLY },	// テンキー＊キー
 	{ AKEYCODE_NUMPAD_ADD,		KEY_INPUT_ADD },		// テンキー＋キー
-	{ AKEYCODE_NUMPAD_SUBTRACT,	KEY_INPUT_SUBTRACT },	// テンキー−キー
+	{ AKEYCODE_NUMPAD_SUBTRACT,	KEY_INPUT_SUBTRACT },	// テンキー－キー
 	{ AKEYCODE_NUMPAD_DOT,		KEY_INPUT_DECIMAL },	// テンキー．キー
 	{ AKEYCODE_NUMPAD_DIVIDE,	KEY_INPUT_DIVIDE },		// テンキー／キー
 	{ AKEYCODE_NUMPAD_ENTER,	KEY_INPUT_NUMPADENTER },// テンキーのエンターキー

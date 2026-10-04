@@ -1,8 +1,8 @@
-﻿//-----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 // 
 // 		ＤＸライブラリ		描画処理プログラム( Direct3D11 )
 // 
-//  	Ver 3.24f
+//  	Ver 3.25a
 // 
 //-----------------------------------------------------------------------------
 
@@ -1793,7 +1793,7 @@ extern int Graphics_D3D11_ShaderCode_Base_Initialize( void )
 		if( DxShaderCodeBin_Base_D3D11Convert == 0 )
 		{
 			DxShaderCodeBin_Base_D3D11Convert = 1 ;
-			Char128ToBin( DxShaderCodeBin_Base_D3D11, DxShaderCodeBin_Base_D3D11 ) ;
+			Base64ToBin( DxShaderCodeBin_Base_D3D11, DxShaderCodeBin_Base_D3D11 ) ;
 		}
 		Size = DXA_Decode( DxShaderCodeBin_Base_D3D11, NULL ) ;
 		SCBASE->Base2DShaderPackageImage = DXALLOC( ( size_t )Size ) ;
@@ -1864,7 +1864,7 @@ extern int Graphics_D3D11_ShaderCode_Base_Initialize( void )
 		if( DxShaderCodeBin_RgbaMix_D3D11Convert == 0 )
 		{
 			DxShaderCodeBin_RgbaMix_D3D11Convert = 1 ;
-			Char128ToBin( DxShaderCodeBin_RgbaMix_D3D11, DxShaderCodeBin_RgbaMix_D3D11 ) ;
+			Base64ToBin( DxShaderCodeBin_RgbaMix_D3D11, DxShaderCodeBin_RgbaMix_D3D11 ) ;
 		}
 		Size = DXA_Decode( DxShaderCodeBin_RgbaMix_D3D11, NULL ) ;
 		SCBASE->RGBAMixS_ShaderPackImage = DXALLOC( ( size_t )Size ) ;
@@ -1888,7 +1888,7 @@ extern int Graphics_D3D11_ShaderCode_Base_Initialize( void )
 		if( DxShaderCodeBin_Filter_D3D11Convert == 0 )
 		{
 			DxShaderCodeBin_Filter_D3D11Convert = 1 ;
-			Char128ToBin( DxShaderCodeBin_Filter_D3D11, DxShaderCodeBin_Filter_D3D11 ) ;
+			Base64ToBin( DxShaderCodeBin_Filter_D3D11, DxShaderCodeBin_Filter_D3D11 ) ;
 		}
 		Size = DXA_Decode( DxShaderCodeBin_Filter_D3D11, NULL ) ;
 		SCBASE->FilterShaderBinDxaImage = DXALLOC( ( size_t )Size ) ;
@@ -2039,7 +2039,7 @@ extern int Graphics_D3D11_ShaderCode_Base3D_Initialize( void )
 		if( DxShaderCodeBin_Base3D_D3D11Convert == 0 )
 		{
 			DxShaderCodeBin_Base3D_D3D11Convert = 1 ;
-			Char128ToBin( DxShaderCodeBin_Base3D_D3D11, DxShaderCodeBin_Base3D_D3D11 ) ;
+			Base64ToBin( DxShaderCodeBin_Base3D_D3D11, DxShaderCodeBin_Base3D_D3D11 ) ;
 		}
 		Size = DXA_Decode( DxShaderCodeBin_Base3D_D3D11, NULL ) ;
 		SCBASE3D->Base3DShaderPackageImage = DXCALLOC( ( size_t )Size ) ;
@@ -2149,7 +2149,7 @@ extern	int		Graphics_D3D11_ShaderCode_Model_Initialize( void )
 		if( DxShaderCodeBin_Model_D3D11Convert == 0 )
 		{
 			DxShaderCodeBin_Model_D3D11Convert = 1 ;
-			Char128ToBin( DxShaderCodeBin_Model_D3D11, DxShaderCodeBin_Model_D3D11 ) ;
+			Base64ToBin( DxShaderCodeBin_Model_D3D11, DxShaderCodeBin_Model_D3D11 ) ;
 		}
 		Size = DXA_Decode( DxShaderCodeBin_Model_D3D11, NULL ) ;
 		SCMODEL->ModelShaderPackImage = DXCALLOC( ( size_t )Size ) ;
@@ -9991,6 +9991,7 @@ static int Graphics_D3D11_DeviceState_SetupSamplerState( void )
 			if( SetLength > 0 )
 			{
 				D3D11DeviceContext_PSSetSamplers( ( UINT )( i - SetLength ), ( UINT )SetLength, &GD3D11.Device.State.SamplerState[ i - SetLength ] ) ;
+				D3D11DeviceContext_VSSetSamplers( ( UINT )( i - SetLength ), ( UINT )SetLength, &GD3D11.Device.State.SamplerState[ i - SetLength ] ) ;
 				SetLength = 0 ;
 			}
 			continue ;
@@ -10068,6 +10069,7 @@ static int Graphics_D3D11_DeviceState_SetupSamplerState( void )
 	if( SetLength > 0 )
 	{
 		D3D11DeviceContext_PSSetSamplers( ( UINT )( i - SetLength ), ( UINT )SetLength, &GD3D11.Device.State.SamplerState[ i - SetLength ] ) ;
+		D3D11DeviceContext_VSSetSamplers( ( UINT )( i - SetLength ), ( UINT )SetLength, &GD3D11.Device.State.SamplerState[ i - SetLength ] ) ;
 		SetLength = 0 ;
 	}
 
@@ -10988,7 +10990,7 @@ static int Graphics_D3D11_DeviceState_UpdateConstantFogParam( void )
 	return 0 ;
 }
 
-// フォグが始まる距離と終了する距離を設定する( 0.0f 〜 1.0f )
+// フォグが始まる距離と終了する距離を設定する( 0.0f ～ 1.0f )
 extern int  Graphics_D3D11_DeviceState_SetFogStartEnd( float Start, float End )
 {
 	int UpdateFlag ;
@@ -11028,7 +11030,7 @@ extern int  Graphics_D3D11_DeviceState_SetFogStartEnd( float Start, float End )
 	return 0 ;
 }
 
-// フォグの密度を設定する( 0.0f 〜 1.0f )
+// フォグの密度を設定する( 0.0f ～ 1.0f )
 extern int  Graphics_D3D11_DeviceState_SetFogDensity( float Density )
 {
 	if( GAPIWin.D3D11DeviceObject == NULL )
@@ -11192,7 +11194,7 @@ static int Graphics_D3D11_DeviceState_UpdateConstantVerticalFogParam( void )
 	return 0 ;
 }
 
-// 高さフォグが始まる距離と終了する距離を設定する( 0.0f 〜 1.0f )
+// 高さフォグが始まる距離と終了する距離を設定する( 0.0f ～ 1.0f )
 extern int  Graphics_D3D11_DeviceState_SetVerticalFogStartEnd( float Start, float End )
 {
 	int UpdateFlag ;
@@ -11232,7 +11234,7 @@ extern int  Graphics_D3D11_DeviceState_SetVerticalFogStartEnd( float Start, floa
 	return 0 ;
 }
 
-// 高さフォグの密度を設定する( 0.0f 〜 1.0f )
+// 高さフォグの密度を設定する( 0.0f ～ 1.0f )
 extern int  Graphics_D3D11_DeviceState_SetVerticalFogDensity( float Start, float Density )
 {
 	if( GAPIWin.D3D11DeviceObject == NULL )
@@ -12358,17 +12360,23 @@ extern int Graphics_D3D11_DeviceState_SetPSShaderResouceView( int StartSlot, int
 	// ピクセルシェーダーに設定
 	D3D11DeviceContext_PSSetShaderResources( ( UINT )FixStartSlot, ( UINT )FixNum, &ppShaderResourceViews[ FixStartI ] ) ;
 
-	// オリジナル頂点シェーダーを使用していたら頂点シェーダーにも設定
-	if( GSYS.DrawSetting.UserShaderRenderInfo.SetVertexShaderHandle != 0 )
-	{
-		D3D11DeviceContext_VSSetShaderResources( ( UINT )FixStartSlot, ( UINT )FixNum, &ppShaderResourceViews[ FixStartI ] ) ;
-	}
+	// 頂点シェーダーにも設定
+	D3D11DeviceContext_VSSetShaderResources( ( UINT )FixStartSlot, ( UINT )FixNum, &ppShaderResourceViews[ FixStartI ] ) ;
 
-	// オリジナルジオメトリシェーダーを使用していたらジオメトリシェーダーにも設定
-	if( GSYS.DrawSetting.UserShaderRenderInfo.SetGeometryShaderHandle != 0 )
-	{
-		D3D11DeviceContext_GSSetShaderResources( ( UINT )FixStartSlot, ( UINT )FixNum, &ppShaderResourceViews[ FixStartI ] ) ;
-	}
+	// ジオメトリシェーダーにも設定
+	D3D11DeviceContext_GSSetShaderResources( ( UINT )FixStartSlot, ( UINT )FixNum, &ppShaderResourceViews[ FixStartI ] ) ;
+
+	// オリジナル頂点シェーダーを使用していたら頂点シェーダーにも設定
+//	if( GSYS.DrawSetting.UserShaderRenderInfo.SetVertexShaderHandle != 0 )
+//	{
+//		D3D11DeviceContext_VSSetShaderResources( ( UINT )FixStartSlot, ( UINT )FixNum, &ppShaderResourceViews[ FixStartI ] ) ;
+//	}
+
+//	// オリジナルジオメトリシェーダーを使用していたらジオメトリシェーダーにも設定
+//	if( GSYS.DrawSetting.UserShaderRenderInfo.SetGeometryShaderHandle != 0 )
+//	{
+//		D3D11DeviceContext_GSSetShaderResources( ( UINT )FixStartSlot, ( UINT )FixNum, &ppShaderResourceViews[ FixStartI ] ) ;
+//	}
 
 	// 終了
 	return 0 ;
@@ -15125,7 +15133,7 @@ extern	void	Graphics_D3D11_RenderEnd( void )
 // Direct3D11 を使った描画関係
 
 // ハードウエアアクセラレータ使用版 DrawBillboard3D
-extern	int		Graphics_D3D11_DrawBillboard3D( VECTOR Pos, float cx, float cy, float Size, float Angle, IMAGEDATA *Image, IMAGEDATA *BlendImage, int TransFlag, int ReverseXFlag, int ReverseYFlag, int DrawFlag, RECT *DrawArea )
+extern	int		Graphics_D3D11_DrawBillboard3D( VECTOR Pos, float cx, float cy, float SizeX, float SizeY, float Angle, IMAGEDATA *Image, IMAGEDATA *BlendImage, int TransFlag, int ReverseXFlag, int ReverseYFlag, int DrawFlag, RECT *DrawArea )
 {
 	VERTEX_2D *DrawVert ;
 	VERTEX_2D TempVert[ 6 ] ;
@@ -15142,8 +15150,6 @@ extern	int		Graphics_D3D11_DrawBillboard3D( VECTOR Pos, float cx, float cy, floa
 	int i ;
 	int Flag ;
 	int BlendGraphNoIncFlag ;
-	float SizeX ;
-	float SizeY ;
 	float f ;
 	VECTOR SrcVec[ 4 ] ;
 	VECTOR SrcVec2[ 4 ] ;
@@ -15203,9 +15209,6 @@ extern	int		Graphics_D3D11_DrawBillboard3D( VECTOR Pos, float cx, float cy, floa
 	}
 
 	// サイズと座標関係の事前計算
-	SizeX = Size ;
-	SizeY = Size * ( float )Image->HeightF / ( float )Image->WidthF ;
-
 	ScaleX = SizeX / Image->WidthF ;
 	ScaleY = SizeY / Image->HeightF ;
 	cx *= Image->WidthF ;
@@ -23784,6 +23787,189 @@ extern	int		Graphics_D3D11_DrawPrimitive32bitIndexed3DToShader( const VERTEX3DSH
 	return 0 ;
 }
 
+// シェーダーを使って２Ｄプリミティブを描画する
+extern	int		Graphics_D3D11_DrawPrimitive2DToShader2(        const VERTEX2D *Vertex, int VertexNum,                                              int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST 等 */ )
+{
+	if( GAPIWin.D3D11DeviceObject == NULL )
+	{
+		return -1 ;
+	}
+
+	// 描画待機している描画物を描画
+	DRAWSTOCKINFO
+
+	// 描画の準備
+	Graphics_D3D11_DrawPreparationToShader( 0, TRUE ) ;
+
+	// 描画
+	Graphics_D3D11_CommonBuffer_DrawPrimitive(
+		D3D11_VERTEX_INPUTLAYOUT_2D,
+		( D_D3D11_PRIMITIVE_TOPOLOGY )PrimitiveType,
+		Vertex,
+		VertexNum
+	) ;
+
+	// 終了
+	return 0 ;
+}
+
+// シェーダーを使って３Ｄプリミティブを描画する
+extern	int		Graphics_D3D11_DrawPrimitive3DToShader2(        const VERTEX3D *Vertex, int VertexNum,                                              int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST 等 */ )
+{
+	if( GAPIWin.D3D11DeviceObject == NULL )
+	{
+		return -1 ;
+	}
+
+	// 描画待機している描画物を描画
+	DRAWSTOCKINFO
+
+	// 描画の準備
+	Graphics_D3D11_DrawPreparationToShader( DX_D3D11_DRAWPREP_LIGHTING | DX_D3D11_DRAWPREP_FOG, FALSE ) ;
+
+	// ３Ｄ行列をハードウエアに反映する
+	if( GSYS.DrawSetting.MatchHardware3DMatrix == FALSE )
+		Graphics_DrawSetting_ApplyLib3DMatrixToHardware() ;
+
+	// 描画
+	Graphics_D3D11_CommonBuffer_DrawPrimitive(
+		D3D11_VERTEX_INPUTLAYOUT_3D_LIGHT,
+		( D_D3D11_PRIMITIVE_TOPOLOGY )PrimitiveType,
+		Vertex,
+		VertexNum,
+		FALSE
+	) ;
+
+	// 終了
+	return 0 ;
+}
+
+// シェーダーを使って２Ｄプリミティブを描画する( 頂点インデックスを使用する )
+extern	int		Graphics_D3D11_DrawPrimitiveIndexed2DToShader2( const VERTEX2D *Vertex, int VertexNum, const unsigned short *Indices, int IndexNum, int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST 等 */ )
+{
+	if( GAPIWin.D3D11DeviceObject == NULL )
+	{
+		return -1 ;
+	}
+
+	// 描画待機している描画物を描画
+	DRAWSTOCKINFO
+
+	// 描画の準備
+	Graphics_D3D11_DrawPreparationToShader( 0, TRUE ) ;
+
+	// 描画
+	Graphics_D3D11_CommonBuffer_DrawIndexedPrimitive(
+		D3D11_VERTEX_INPUTLAYOUT_2D,
+		( D_D3D11_PRIMITIVE_TOPOLOGY )PrimitiveType,
+		Vertex,
+		VertexNum,
+		Indices,
+		IndexNum,
+		D_DXGI_FORMAT_R16_UINT
+	) ;
+
+	// 終了
+	return 0 ;
+}
+
+// シェーダーを使って２Ｄプリミティブを描画する( 頂点インデックスを使用する )
+extern	int		Graphics_D3D11_DrawPrimitive32bitIndexed2DToShader2( const VERTEX2D *Vertex, int VertexNum, const unsigned int *Indices, int IndexNum, int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST 等 */ )
+{
+	if( GAPIWin.D3D11DeviceObject == NULL )
+	{
+		return -1 ;
+	}
+
+	// 描画待機している描画物を描画
+	DRAWSTOCKINFO
+
+	// 描画の準備
+	Graphics_D3D11_DrawPreparationToShader( 0, TRUE ) ;
+
+	// 描画
+	Graphics_D3D11_CommonBuffer_DrawIndexedPrimitive(
+		D3D11_VERTEX_INPUTLAYOUT_2D,
+		( D_D3D11_PRIMITIVE_TOPOLOGY )PrimitiveType,
+		Vertex,
+		VertexNum,
+		Indices,
+		IndexNum,
+		D_DXGI_FORMAT_R32_UINT
+	) ;
+
+	// 終了
+	return 0 ;
+}
+
+// シェーダーを使って３Ｄプリミティブを描画する( 頂点インデックスを使用する )
+extern	int		Graphics_D3D11_DrawPrimitiveIndexed3DToShader2( const VERTEX3D *Vertex, int VertexNum, const unsigned short *Indices, int IndexNum, int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST 等 */ )
+{
+	if( GAPIWin.D3D11DeviceObject == NULL )
+	{
+		return -1 ;
+	}
+
+	// 描画待機している描画物を描画
+	DRAWSTOCKINFO
+
+	// 描画の準備
+	Graphics_D3D11_DrawPreparationToShader( DX_D3D11_DRAWPREP_LIGHTING | DX_D3D11_DRAWPREP_FOG, FALSE ) ;
+
+	// ３Ｄ行列をハードウエアに反映する
+	if( GSYS.DrawSetting.MatchHardware3DMatrix == FALSE )
+		Graphics_DrawSetting_ApplyLib3DMatrixToHardware() ;
+
+	// 描画
+	Graphics_D3D11_CommonBuffer_DrawIndexedPrimitive(
+		D3D11_VERTEX_INPUTLAYOUT_3D_LIGHT,
+		( D_D3D11_PRIMITIVE_TOPOLOGY )PrimitiveType,
+		Vertex,
+		VertexNum,
+		Indices,
+		IndexNum,
+		D_DXGI_FORMAT_R16_UINT,
+		FALSE
+	) ;
+
+	// 終了
+	return 0 ;
+}
+
+// シェーダーを使って３Ｄプリミティブを描画する( 頂点インデックスを使用する )
+extern	int		Graphics_D3D11_DrawPrimitive32bitIndexed3DToShader2( const VERTEX3D *Vertex, int VertexNum, const unsigned int *Indices, int IndexNum, int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST 等 */ )
+{
+	if( GAPIWin.D3D11DeviceObject == NULL )
+	{
+		return -1 ;
+	}
+
+	// 描画待機している描画物を描画
+	DRAWSTOCKINFO
+
+	// 描画の準備
+	Graphics_D3D11_DrawPreparationToShader( DX_D3D11_DRAWPREP_LIGHTING | DX_D3D11_DRAWPREP_FOG, FALSE ) ;
+
+	// ３Ｄ行列をハードウエアに反映する
+	if( GSYS.DrawSetting.MatchHardware3DMatrix == FALSE )
+		Graphics_DrawSetting_ApplyLib3DMatrixToHardware() ;
+
+	// 描画
+	Graphics_D3D11_CommonBuffer_DrawIndexedPrimitive(
+		D3D11_VERTEX_INPUTLAYOUT_3D_LIGHT,
+		( D_D3D11_PRIMITIVE_TOPOLOGY )PrimitiveType,
+		Vertex,
+		VertexNum,
+		Indices,
+		IndexNum,
+		D_DXGI_FORMAT_R32_UINT,
+		FALSE
+	) ;
+
+	// 終了
+	return 0 ;
+}
+
 // シェーダーを使って３Ｄプリミティブを描画する( 頂点バッファ使用版 )
 extern	int		Graphics_D3D11_DrawPrimitive3DToShader_UseVertexBuffer2(        int VertexBufHandle,                     int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST 等 */, int StartVertex, int UseVertexNum )
 {
@@ -24024,6 +24210,11 @@ extern	int		Graphics_D3D11_RestoreOrChangeSetupGraphSystem_PF( int Change, int S
 		TerminateInputSystem() ;
 		InitializeInputSystem() ;
 #endif // DX_NON_INPUT
+
+		ScreenSizeX = GSYS.Screen.MainScreenSizeX ;
+		ScreenSizeY = GSYS.Screen.MainScreenSizeY ;
+		ColorBitDepth = GSYS.Screen.MainScreenColorBitDepth ;
+		RefreshRate = GSYS.Screen.MainScreenRefreshRate ;
 	}
 
 //	DXST_LOGFILEFMT_ADDUTF16LE(( L"確保メモリ数:%d  確保メモリ総サイズ:%dByte(%dKByte)", NS_DxGetAllocNum(), NS_DxGetAllocSize(), NS_DxGetAllocSize() / 1024 )) ;
@@ -24049,7 +24240,7 @@ extern	int		Graphics_D3D11_RestoreOrChangeSetupGraphSystem_PF( int Change, int S
 #endif
 
 		// 画面モード変更時にはグラフィックシステムの初期化を行わない設定の場合は一部の処理をスキップする
-		if( GSYS.Screen.Graphics_Screen_ChangeModeFlag == FALSE && GSYS.Setting.ChangeScreenModeNotGraphicsSystemFlag )
+		if( GSYS.Screen.Graphics_Screen_ChangeModeFlag == FALSE || GSYS.Setting.ChangeScreenModeNotGraphicsSystemFlag )
 		{
 			// アクティブグラフィックのアドレスを再度設定
 			if( Change == FALSE )
@@ -24539,7 +24730,7 @@ extern	int		Graphics_Hardware_D3D11_SetFogColor_PF( DWORD FogColor )
 	return 0 ;
 }
 
-// フォグが始まる距離と終了する距離を設定する( 0.0f 〜 1.0f )
+// フォグが始まる距離と終了する距離を設定する( 0.0f ～ 1.0f )
 extern	int		Graphics_Hardware_D3D11_SetFogStartEnd_PF( float start, float end )
 {
 	Graphics_D3D11_DeviceState_SetFogStartEnd( start, end ) ;
@@ -24548,7 +24739,7 @@ extern	int		Graphics_Hardware_D3D11_SetFogStartEnd_PF( float start, float end )
 	return 0 ;
 }
 
-// フォグの密度を設定する( 0.0f 〜 1.0f )
+// フォグの密度を設定する( 0.0f ～ 1.0f )
 extern	int		Graphics_Hardware_D3D11_SetFogDensity_PF( float density )
 {
 	Graphics_D3D11_DeviceState_SetFogDensity( density ) ;
@@ -24584,7 +24775,7 @@ extern	int		Graphics_Hardware_D3D11_SetVerticalFogColor_PF( DWORD VerticalFogCol
 	return 0 ;
 }
 
-// 高さフォグが始まる距離と終了する距離を設定する( 0.0f 〜 1.0f )
+// 高さフォグが始まる距離と終了する距離を設定する( 0.0f ～ 1.0f )
 extern	int		Graphics_Hardware_D3D11_SetVerticalFogStartEnd_PF( float start, float end )
 {
 	Graphics_D3D11_DeviceState_SetVerticalFogStartEnd( start, end ) ;
@@ -24593,7 +24784,7 @@ extern	int		Graphics_Hardware_D3D11_SetVerticalFogStartEnd_PF( float start, floa
 	return 0 ;
 }
 
-// 高さフォグの密度を設定する( 0.0f 〜 1.0f )
+// 高さフォグの密度を設定する( 0.0f ～ 1.0f )
 extern	int		Graphics_Hardware_D3D11_SetVerticalFogDensity_PF( float start, float density )
 {
 	Graphics_D3D11_DeviceState_SetVerticalFogDensity( start, density ) ;
@@ -25855,10 +26046,25 @@ extern	int		Graphics_Hardware_D3D11_ScreenFlipBase_PF( void )
 		// フリップ
 		if( OWI->DXGISwapChain )
 		{
+			HRESULT hr ;
+
 			// ( フリップしないと使用メモリが増える現象が発生するので、最小化されている可能性があっても必ずフリップを行う )
-			if( FAILED( DXGISwapChain_Present( OWI->DXGISwapChain, ( UINT )( GSYS.Screen.NotWaitVSyncFlag ? 0 : 1 ), 0 ) ) )
+			hr = DXGISwapChain_Present( OWI->DXGISwapChain, ( UINT )( GSYS.Screen.NotWaitVSyncFlag ? 0 : 1 ), 0 ) ;
+			if( FAILED( hr ) )
 			{
-				goto ERR ;
+				// デバイスロストの場合はデバイスを最初期化する
+				if( hr == 0x887a0005 /* 0x887a0005 は DXGI_ERROR_DEVICE_REMOVED */ )
+				{
+					// デバイスロストの場合は初期化を行う
+					NS_RestoreGraphSystem() ;
+
+					// 一旦関数はすぐ抜ける
+					return 0 ;
+				}
+				else
+				{
+					goto ERR ;
+				}
 			}
 
 			// 非アクティブでも実行する設定で、VSYNC待ちをする指定をしている設定で且つ最小化されている場合はVSYNC待ちをする
@@ -27305,10 +27511,17 @@ static int Graphics_D3D11_BltBmpOrBaseImageToGraph3_MipMapBlt(
 
 	ImageNum = Orig->FormatDesc.CubeMapTextureFlag ? CUBEMAP_SURFACE_NUM : 1 ;
 
-	// 転送先がテクスチャ全体で、且つ転送元にミップマップ情報がある場合は分岐
+	// 転送先がテクスチャ全体で、且つ転送元にミップマップ情報があり、且つフォーマットも一致している場合は分岐
 	if( DestRect->left == 0 && DestRect->right  == TexWidth  &&
 		DestRect->top  == 0 && DestRect->bottom == TexHeight &&
-		RgbBaseImage->MipMapCount >= Orig->Hard.MipMapCount )
+		RgbBaseImage->MipMapCount >= Orig->Hard.MipMapCount && 
+		( IsDXTFormat ||
+		  ( DestColor->FloatTypeFlag == TRUE  && RgbBaseImage->ColorData.FloatTypeFlag == TRUE && DestColor->ChannelNum == RgbBaseImage->ColorData.ChannelNum ) ||
+		  ( DestColor->FloatTypeFlag == FALSE && RgbBaseImage->ColorData.FloatTypeFlag == FALSE &&
+			DestColor->AlphaLoc == RgbBaseImage->ColorData.AlphaLoc && DestColor->AlphaWidth == RgbBaseImage->ColorData.AlphaWidth &&
+			DestColor->RedLoc   == RgbBaseImage->ColorData.RedLoc   && DestColor->RedWidth   == RgbBaseImage->ColorData.RedWidth  &&  
+			DestColor->GreenLoc == RgbBaseImage->ColorData.GreenLoc && DestColor->GreenWidth == RgbBaseImage->ColorData.GreenWidth &&
+			DestColor->BlueLoc  == RgbBaseImage->ColorData.BlueLoc  && DestColor->BlueWidth  == RgbBaseImage->ColorData.BlueWidth  ) ) )
 	{
 		ImageBuffer = RgbBaseImage->GraphData ;
 		if( IsDXTFormat )
