@@ -4,7 +4,7 @@
     {
       "name": "windows-vs-x64",
       "generator": "Visual Studio 17 2022",
-      "binaryDir": "${sourceDir}/out/build/${presetName}",
+      "binaryDir": "${sourceDir}/out/${presetName}",
       "architecture": {
         "value": "x64",
         "strategy": "set"
@@ -30,7 +30,7 @@
     {
       "name": "windows-vs-x86",
       "generator": "Visual Studio 17 2022",
-      "binaryDir": "${sourceDir}/out/build/${presetName}",
+      "binaryDir": "${sourceDir}/out/${presetName}",
       "architecture": {
         "value": "Win32",
         "strategy": "set"

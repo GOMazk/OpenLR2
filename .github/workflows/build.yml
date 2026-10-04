@@ -50,7 +50,7 @@ jobs:
         shell: bash
         run: |
           mkdir -p stage
-          cp "out/build/${{ matrix.preset }}/${{ matrix.config }}/OpenLR2_${{ matrix.arch_suffix }}.exe" stage/
+          cp "out/${{ matrix.preset }}/${{ matrix.config }}/OpenLR2_${{ matrix.arch_suffix }}.exe" stage/
           cp "dep/FMOD/${{ matrix.fmod_dir }}/fmod.dll" stage/
 
       - name: Upload artifact
