@@ -27365,6 +27365,8 @@ int ParseBmsFile(gameplay *gp, CSTR filename, AUDIO *aud, ConfigStruct* cfg, BMS
 
 				int lane = gp->bmsobj.notes[i].op - 10;
 				if (startlane <= lane && lane <= startlane + randLanes) {
+					const int side = (startlane >= 10) ? 1 : 0;
+					const int endlane = startlane + randLanes;
 					bool pass = 1, pass2 = 1;
 					while(pass2){
 						lane = startlane + GetRand(randLanes);
@@ -27379,27 +27381,26 @@ int ParseBmsFile(gameplay *gp, CSTR filename, AUDIO *aud, ConfigStruct* cfg, BMS
 							}
 						}
 
+						const int mapLane = lane - side * 10;
 						if (intArr[lane] == -1) {
+							
+							if (mapAdded[side][mapLane] == 0) break;
 							pass2 = 0;
-							if (mapAdded[0][lane] == 0) break;
-							if (randLanes < startlane) break;
-							for (int j = startlane; j <= randLanes; j++) {
-								if (mapAdded[0][j] == 0) pass2 = 1;
+							for (int j = startlane; j <= endlane; j++) {
+								if (mapAdded[side][j - side * 10] == 0) pass2 = 1;
 							}
 						}
 						else {
 							if(gp->bmsobj.notes[i].realTiming <= gp->bmsobj.notes[intArr[lane]].realTiming_ln || gp->bmsobj.notes[i].realTiming == gp->bmsobj.notes[intArr[lane]].realTiming) 
 								continue;
 
+							if (mapAdded[side][mapLane] == 0) break;
 							pass2 = 0;
-							if (mapAdded[0][lane] == 0) break;
-							if (randLanes < startlane) break;
-							for (int j = startlane; j <= randLanes; j++) {
-								if (mapAdded[0][j] == 0) pass2 = 1;
-							}
+							for (int j = startlane; j <= endlane; j++) {
+								if (mapAdded[side][j - side * 10] == 0) pass2 = 1;
 						}
 					}
-					mapAdded[0][lane] = 1;
+					mapAdded[side][lane - side * 10] = 1;
 					gp->bmsobj.notes[i].op = lane + 10;
 				}
 			}
