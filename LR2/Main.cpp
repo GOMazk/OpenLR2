@@ -317,6 +317,7 @@ int main(int argc, char** argv) {
 		gs.config.jukebox.numOfPath = 1;
 		gs.config.jukebox.path[0].assign("BeatVocaloids/");
 	}
+	clearSortSkipLevel = gs.config.jukebox.clearSortSkipLevel;
 	if (!ReadMIDI(&gs, fs::make_preferred("LR2files/Config/midi.xml").data())) {
 		MessageBoxA(NULL, "Failed to read MIDI key config", "エラー", 0);
 		return -1;

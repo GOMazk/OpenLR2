@@ -7,6 +7,8 @@
 // loading-screen feedback without having to recognise the SQL text.
 enum class ReloadProgress { None, FolderPass, SongPass };
 
+extern bool clearSortSkipLevel;
+
 void COPY_SONGDATA(SONGDATA *self, SONGDATA *other);
 int InitSongData(SONGDATA * song);
 

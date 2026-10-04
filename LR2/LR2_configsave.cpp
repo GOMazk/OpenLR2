@@ -577,6 +577,10 @@ int WriteOpenLr2ConfigXml(game *g, const char *filename){
 	WriteXML_Tab2Int(pFile, "screenmode", (g->config).system.screenmode);
 	fputs("\t</system>\n", pFile);
 
+	fputs("\t<jukebox>\n", pFile);
+	WriteXML_Tab2Int(pFile, "clearsortskiplevel", (g->config).jukebox.clearSortSkipLevel);
+	fputs("\t</jukebox>\n", pFile);
+
 	fputs("\t<play>\n", pFile);
 	WriteXML_Tab2BoolAsInt(pFile, "gaugeautoshift", (g->config).play.m_gas);
 	WriteXML_Tab2BoolAsInt(pFile, "newrandomrestart", (g->config).play.newRandomRestart);
@@ -1174,6 +1178,7 @@ int ReadOpenLr2Config(game* g, const char* filepath) {
 
 	ReadXml_Str("config", "network", "display_ir", "", &g->config.network.displayIr, hXml);
 
+	ReadXml_PositiveIntAsBool("config", "jukebox", "clearsortskiplevel", false, &g->config.jukebox.clearSortSkipLevel, hXml);
 	delete(hXml);
 	return 1;
 }
