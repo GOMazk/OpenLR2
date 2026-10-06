@@ -57,6 +57,18 @@ void EndSongReloadSnapshot() {
 
 // --- Scan progress display (loading screen feedback during autoreload) ------
 
+// Draws LR2's existing loading screen without starting a metadata parse.
+// Folder reloads use this before their recursive scan so the screen updates
+// as soon as a changed folder is discovered.
+void ShowNowLoading(CSTR path) {
+	printfDx("Now Loading...\n%s\n", path.body);
+	if (hBackImage > 0) DrawGraph(0, 0, hBackImage, 0);
+	ScreenFlip();
+	ClsDrawScreen();
+	clsDx();
+	ProcessMessage();
+}
+
 void ShowReloadFolderPassProgress(const size_t processed, const size_t total, CSTR path) {
 	if (total == 0) return;
 	if (processed != total && processed % 64 != 0) { 
@@ -1347,6 +1359,7 @@ int SearchSongsFromPath(CSTR root, sqlite3 *sql, CSTR path) {
 		ErrorLogTabSub();
 		return count;
 	}
+	ShowNowLoading(root);
 	now = GetNowUnixtime();
 	while (1) {
 		if ( ((findFileData.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) == 0) || !(strcmp("..", findFileData.cFileName) && strcmp(".", findFileData.cFileName)) ) { // not directory
@@ -1384,6 +1397,7 @@ int SearchSongsFromPath(CSTR root, sqlite3 *sql, CSTR path) {
 			searchPath = root;
 			searchPath.add(findFileData.cFileName).add("\\");
 			ErrorLogFmtAdd("フォルダを発見しました。　パス:%s\n", searchPath.body);
+			ShowNowLoading(searchPath);
 			
 			CSTR folderinfo(searchPath);
 			folderinfo.add("folderinfo.txt");
@@ -2936,14 +2950,7 @@ int ParseBMSMETA(BMSMETA *meta, CSTR filepath, char flag) {
 	bool flagIf;
 
 	if (flag) {
-		printfDx("Now Loading...\n%s\n",filepath.body);
-		if (hBackImage > 0) {
-			DrawGraph(0, 0, hBackImage, 0);
-		}
-		ScreenFlip();
-		ClsDrawScreen();
-		clsDx();
-		ProcessMessage();
+		ShowNowLoading(filepath);
 	}
 
 	InitBMSMETA(meta);
