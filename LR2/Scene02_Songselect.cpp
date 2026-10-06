@@ -1956,8 +1956,8 @@ void SubProcI_Select(game *g, sqlite3 *sql) {
 		if (GetTimeLapse(176, &g->timer1) != -1.0) return;
 
 		if (g->KeyInput.inputID[KEY_INPUT_F8] == 1) {
-			SONGDATA *const song = &g->sSelect.bmsList[g->sSelect.cur_song];
-			const CSTR path = song->keymode > 0 ? song->filepath.getDirectory() : song->filepath;
+			const SONGDATA& song = g->sSelect.bmsList[g->sSelect.cur_song];
+			const CSTR path = song.keymode > 0 ? song.filepath.getDirectory() : song.filepath;
 			std::error_code ec;
 			if (std::filesystem::is_directory(path.body, ec)) {
 				SetBmsFilter(g, sql);
