@@ -351,7 +351,6 @@ struct CONFIG_JUKEBOX {
 	CSTR newsongfolder;
 	int titleflash{};
 	int rival[20]{};
-	bool clearSortSkipLevel{};
 };
 
 struct CONFIG_NETWORK {

@@ -21,7 +21,6 @@
 #endif // _WIN32
 
 int EnabledInsane;
-bool clearSortSkipLevel;
 
 namespace {
 
@@ -1591,8 +1590,7 @@ int CMP_SongDataByClear(const void* p1, const void* p2) {
 	STATUS s2best = s2->myIRbest.has_value() ? *(s2->myIRbest) : s2->mybest;
 	if (s1best.clear != s2best.clear) return s1best.clear - s2best.clear;
 
-	if (clearSortSkipLevel) return CMP_SongDataByTitle(p1, p2);
-	return CMP_SongDataByDifficulty(p1, p2);
+	return CMP_SongDataByTitle(p1, p2);
 }
 
 int SearchCourseFromDB(sqlite3 *sql, SONGSELECT *ss, int keys, int multistagemode) {
