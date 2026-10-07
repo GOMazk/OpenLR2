@@ -14,4 +14,5 @@ Change note speed without `#BPM`. ([Related Article](https://note.com/numuther/n
 * [$trange Attraktor [Labyrinth]](https://ux.getuploader.com/numuther/download/108)
 * [#GOTO [Oraja Innovation]](https://www.dropbox.com/s/8w4g9h6egbmdrn2/%23GOTO.zip?dl=1)
 
-
+## `#PREVIEW` (From Beatoraja)
+Specifies preview audio for chart.
