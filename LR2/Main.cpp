@@ -44,6 +44,7 @@ static std::filesystem::path GetExecutablePath()
 #else
 
 #include <iostream>
+#include <unistd.h>
 
 static int MessageBoxA(void* /*hwnd*/, const char* title, const char* desc, unsigned type)
 {

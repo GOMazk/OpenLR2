@@ -1,5 +1,6 @@
 ﻿#include "En_recordmovie.h"
 #include "filesystem.h"
+#include <cstdlib>
 #include <cstring>
 
 #include "structure.h"
@@ -377,13 +378,13 @@ bool Mp3toWavP(char *iPath, char *oPath) {
 	FILE* iFile = fopen(iPath, "rb");
 	if (iFile == NULL) {
 		ErrorLogFmtAdd("入力ファイルが開けません(%s)。\n", iPath);
-		_exit(1);
+		std::_Exit(1);
 	}
 
 	FILE* oFile = fopen(oPath, "wb");
 	if (oFile == NULL) {
 		ErrorLogFmtAdd("出力ファイルが開けません(%s)。\n", oPath);
-		_exit(1);
+		std::_Exit(1);
 	}
 
 	return Mp3toWavF(iFile, oFile) == 0;
