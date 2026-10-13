@@ -58,7 +58,7 @@ class CSTR {
 		//CSTR& getSliced(CSTR *oBuf, int pos, int len);
 		CSTR& assign(const CSTR *iBuf); CSTR& operator=(const CSTR *iBuf); CSTR& operator=(CSTR &iBuf);//duplicated by converting man. delete one later
 		CSTR& assign(const char *str); CSTR& operator=(const char *str);//duplicated by converting man. delete one later
-		CSTR getDirectory();
+		CSTR getDirectory() const;
 		CSTR getParentDirectory();
 		CSTR& cutDirectorySeparator();
 		CSTR& lastCut(int len);
