@@ -1,8 +1,8 @@
-﻿// -------------------------------------------------------------------------------
+// -------------------------------------------------------------------------------
 // 
 // 		ＤＸライブラリ		モデルデータ制御プログラム
 // 
-// 				Ver 3.24f
+// 				Ver 3.25a
 // 
 // -------------------------------------------------------------------------------
 
@@ -47,6 +47,7 @@
 		#include "iOS/DxModeliOS.h"
     #endif // TARGET_OS_IPHONE
 #endif // __APPLE__
+
 
 
 
@@ -11210,7 +11211,7 @@ extern int MV1SetMaterialNormalMapTextureBase( int MBHandle, int MaterialIndex, 
 }
 
 // 指定のマテリアルで法線マップとして使用されているテクスチャのインデックスを取得する
-extern int NS_MV1GetMaterialNormalMapTextureBase( int MBHandle, int MaterialIndex )
+extern int MV1GetMaterialNormalMapTextureBase( int MBHandle, int MaterialIndex )
 {
 	MV1BASEMATERIALSTART( MBHandle, ModelBase, Material, MaterialIndex, -1 ) ;
 
@@ -11219,6 +11220,150 @@ extern int NS_MV1GetMaterialNormalMapTextureBase( int MBHandle, int MaterialInde
 
 	return Material->NormalLayer[ 0 ].Texture ;
 }
+
+// 指定のマテリアルで自己発光マップとして使用するテクスチャを指定する
+extern int MV1SetMaterialEmissiveMapTextureBase( int MBHandle, int MaterialIndex, int TexIndex )
+{
+	MV1BASEMATERIALSTART( MBHandle, ModelBase, Material, MaterialIndex, -1 ) ;
+
+	if( TexIndex >= ModelBase->TextureNum )
+		return -1 ;
+
+	// 描画待機している描画物を描画
+	DRAWSTOCKINFO
+
+	// テクスチャインデックスが 0 以下だった場合は法線マップを解除する
+	if( TexIndex < 0 )
+	{
+		Material->EmissiveLayerNum = 0 ;
+	}
+	else
+	{
+		// 自己発光マップの数が０だったら１にする
+		if( Material->EmissiveLayerNum == 0 )
+		{
+			Material->EmissiveLayerNum = 1 ;
+		}
+
+		// 設定
+		Material->EmissiveLayer[ 0 ].Texture = TexIndex ;
+	}
+
+	// 頂点バッファの作り直し
+	MV1_TerminateVertexBufferBase_PF( MBHandle ) ;
+	MV1_SetupVertexBufferBase_PF( MBHandle ) ;
+
+	// 終了
+	return 0 ;
+}
+
+// 指定のマテリアルで自己発光マップとして使用されているテクスチャのインデックスを取得する
+extern int MV1GetMaterialEmissiveMapTextureBase( int MBHandle, int MaterialIndex )
+{
+	MV1BASEMATERIALSTART( MBHandle, ModelBase, Material, MaterialIndex, -1 ) ;
+
+	if( Material->EmissiveLayerNum == 0 )
+		return -1 ;
+
+	return Material->EmissiveLayer[ 0 ].Texture ;
+}
+
+
+// 指定のマテリアルでラフネスマップとして使用するテクスチャを指定する
+extern int MV1SetMaterialShininessMapTextureBase( int MBHandle, int MaterialIndex, int TexIndex )
+{
+	MV1BASEMATERIALSTART( MBHandle, ModelBase, Material, MaterialIndex, -1 ) ;
+
+	if( TexIndex >= ModelBase->TextureNum )
+		return -1 ;
+
+	// 描画待機している描画物を描画
+	DRAWSTOCKINFO
+
+	// テクスチャインデックスが 0 以下だった場合は法線マップを解除する
+	if( TexIndex < 0 )
+	{
+		Material->ShininessLayerNum = 0 ;
+	}
+	else
+	{
+		// ラフネスマップの数が０だったら１にする
+		if( Material->ShininessLayerNum == 0 )
+		{
+			Material->ShininessLayerNum = 1 ;
+		}
+
+		// 設定
+		Material->ShininessLayer[ 0 ].Texture = TexIndex ;
+	}
+
+	// 頂点バッファの作り直し
+	MV1_TerminateVertexBufferBase_PF( MBHandle ) ;
+	MV1_SetupVertexBufferBase_PF( MBHandle ) ;
+
+	// 終了
+	return 0 ;
+}
+
+// 指定のマテリアルでラフネスマップとして使用されているテクスチャのインデックスを取得する
+extern int MV1GetMaterialShininessMapTextureBase( int MBHandle, int MaterialIndex )
+{
+	MV1BASEMATERIALSTART( MBHandle, ModelBase, Material, MaterialIndex, -1 ) ;
+
+	if( Material->ShininessLayerNum == 0 )
+		return -1 ;
+
+	return Material->ShininessLayer[ 0 ].Texture ;
+}
+
+
+// 指定のマテリアルでメタリックマップとして使用するテクスチャを指定する
+extern int MV1SetMaterialReflectionFactorMapTextureBase( int MBHandle, int MaterialIndex, int TexIndex )
+{
+	MV1BASEMATERIALSTART( MBHandle, ModelBase, Material, MaterialIndex, -1 ) ;
+
+	if( TexIndex >= ModelBase->TextureNum )
+		return -1 ;
+
+	// 描画待機している描画物を描画
+	DRAWSTOCKINFO
+
+	// テクスチャインデックスが 0 以下だった場合は法線マップを解除する
+	if( TexIndex < 0 )
+	{
+		Material->ReflectionFactorLayerNum = 0 ;
+	}
+	else
+	{
+		// メタリックマップの数が０だったら１にする
+		if( Material->ReflectionFactorLayerNum == 0 )
+		{
+			Material->ReflectionFactorLayerNum = 1 ;
+		}
+
+		// 設定
+		Material->ReflectionFactorLayer[ 0 ].Texture = TexIndex ;
+	}
+
+	// 頂点バッファの作り直し
+	MV1_TerminateVertexBufferBase_PF( MBHandle ) ;
+	MV1_SetupVertexBufferBase_PF( MBHandle ) ;
+
+	// 終了
+	return 0 ;
+}
+
+// 指定のマテリアルでメタリックマップとして使用されているテクスチャのインデックスを取得する
+extern int MV1GetMaterialReflectionFactorMapTextureBase( int MBHandle, int MaterialIndex )
+{
+	MV1BASEMATERIALSTART( MBHandle, ModelBase, Material, MaterialIndex, -1 ) ;
+
+	if( Material->ReflectionFactorLayerNum == 0 )
+		return -1 ;
+
+	return Material->ReflectionFactorLayer[ 0 ].Texture ;
+}
+
 
 // 指定のマテリアルのタイプ別パラメータを変更する( マテリアルタイプ DX_MATERIAL_TYPE_MAT_SPEC_LUMINANCE_TWO_COLOR などで使用 )
 extern int MV1SetMaterialTypeParamBase( int MBHandle, int MaterialIndex, va_list ParamList )
@@ -11756,7 +11901,7 @@ extern int MV1GetMaterialSphereMapBlendTypeBase( int MBHandle, int MaterialIndex
 	return Material->SphereMapBlendType ;
 }
 
-// 指定のマテリアルのトゥーンレンダリングで使用する輪郭線の太さを設定する( 0.0f 〜 1.0f )
+// 指定のマテリアルのトゥーンレンダリングで使用する輪郭線の太さを設定する( 0.0f ～ 1.0f )
 extern int MV1SetMaterialOutLineWidthBase( int MBHandle, int MaterialIndex, float Width )
 {
 	MV1_MODEL *Model ;
@@ -11798,7 +11943,7 @@ extern int MV1SetMaterialOutLineWidthBase( int MBHandle, int MaterialIndex, floa
 	return 0 ;
 }
 
-// 指定のマテリアルのトゥーンレンダリングで使用する輪郭線の太さを取得する( 0.0f 〜 1.0f )
+// 指定のマテリアルのトゥーンレンダリングで使用する輪郭線の太さを取得する( 0.0f ～ 1.0f )
 extern float MV1GetMaterialOutLineWidthBase( int MBHandle, int MaterialIndex )
 {
 	MV1BASEMATERIALSTART( MBHandle, ModelBase, Material, MaterialIndex, -1 ) ;
@@ -12011,7 +12156,7 @@ extern int MV1GetMaterialDrawBlendParamBase( int MBHandle, int MaterialIndex )
 	return Material->DrawBlendParam ;
 }
 
-// 指定のマテリアルの描画時のアルファテストの設定を行う( Enable:αテストを行うかどうか( TRUE:行う  FALSE:行わない( デフォルト )  Mode:テストモード( DX_CMP_GREATER等 )  Param:描画アルファ値との比較に使用する値( 0〜255 ) )
+// 指定のマテリアルの描画時のアルファテストの設定を行う( Enable:αテストを行うかどうか( TRUE:行う  FALSE:行わない( デフォルト )  Mode:テストモード( DX_CMP_GREATER等 )  Param:描画アルファ値との比較に使用する値( 0～255 ) )
 extern int MV1SetMaterialDrawAlphaTestBase( int MBHandle, int MaterialIndex, int Enable, int Mode, int Param )
 {
 	MV1BASEMATERIALSTART( MBHandle, ModelBase, Material, MaterialIndex, -1 ) ;
@@ -12051,7 +12196,7 @@ extern int MV1GetMaterialDrawAlphaTestModeBase( int MBHandle, int MaterialIndex 
 	return Material->AlphaFunc ;
 }
 
-// 指定のマテリアルの描画時のアルファテストの描画アルファ地との比較に使用する値( 0〜255 )を取得する
+// 指定のマテリアルの描画時のアルファテストの描画アルファ地との比較に使用する値( 0～255 )を取得する
 extern int MV1GetMaterialDrawAlphaTestParamBase( int MBHandle, int MaterialIndex )
 {
 	MV1BASEMATERIALSTART( MBHandle, ModelBase, Material, MaterialIndex, -1 ) ;
@@ -14848,6 +14993,7 @@ extern int MV1LoadModelToMV1( const MV1_MODEL_LOAD_PARAM *LoadParam, int ASyncTh
 	MV1_MATERIAL_LAYER		*MaterialLayer ;
 	MV1_MATERIAL_LAYER_F1	*F1MaterialLayer ;
 	MV1_MATERIAL_TOON_F1	*F1MaterialToon ;
+	MV1_MATERIAL_ADD_INFO_F1*F1MaterialAddInfo ;
 	MV1_LIGHT				*Light ;
 	MV1_LIGHT_F1			*F1Light ;
 	MV1_TEXTURE_BASE		*Texture ;
@@ -15783,6 +15929,38 @@ extern int MV1LoadModelToMV1( const MV1_MODEL_LOAD_PARAM *LoadParam, int ASyncTh
 			Material->OutLineColor = GetColorF( 0.0f, 0.0f, 0.0f, 1.0f ) ;
 			Material->OutLineWidth = 0.0f ;
 			Material->OutLineDotWidth = 0.0f ;
+		}
+
+		if( F1Material->AddInfo )
+		{
+			F1MaterialAddInfo = ( MV1_MATERIAL_ADD_INFO_F1 * )( ( DWORD_PTR )F1Material->AddInfo + ( DWORD_PTR )FHeader ) ;
+
+			Material->EmissiveLayerNum = F1MaterialAddInfo->EmissiveLayerNum ;
+			MaterialLayer      = Material->EmissiveLayer ;
+			F1MaterialLayer    = F1MaterialAddInfo->EmissiveLayer ;
+			for( j = 0 ; j < 8 ; j ++, MaterialLayer ++, F1MaterialLayer ++ )
+			{
+				MaterialLayer->BlendType = F1MaterialLayer->BlendType ;
+				MaterialLayer->Texture = F1MaterialLayer->Texture ;
+			}
+
+			Material->ShininessLayerNum = F1MaterialAddInfo->ShininessLayerNum ;
+			MaterialLayer      = Material->ShininessLayer ;
+			F1MaterialLayer    = F1MaterialAddInfo->ShininessLayer ;
+			for( j = 0 ; j < 8 ; j ++, MaterialLayer ++, F1MaterialLayer ++ )
+			{
+				MaterialLayer->BlendType = F1MaterialLayer->BlendType ;
+				MaterialLayer->Texture = F1MaterialLayer->Texture ;
+			}
+
+			Material->ReflectionFactorLayerNum = F1MaterialAddInfo->ReflectionFactorLayerNum ;
+			MaterialLayer      = Material->ReflectionFactorLayer ;
+			F1MaterialLayer    = F1MaterialAddInfo->ReflectionFactorLayer ;
+			for( j = 0 ; j < 8 ; j ++, MaterialLayer ++, F1MaterialLayer ++ )
+			{
+				MaterialLayer->BlendType = F1MaterialLayer->BlendType ;
+				MaterialLayer->Texture = F1MaterialLayer->Texture ;
+			}
 		}
 	}
 
@@ -17700,7 +17878,7 @@ extern int NS_MV1SetLoadModelUsePackDraw( int Flag )
 	return 0 ;
 }
 
-// 読み込むモデルのひとつのトライアングルリストで使用できる最大ボーン数を設定する( UseMaxBoneNum で指定できる値の範囲は 8 〜 54、 0 を指定するとデフォルト動作に戻る )
+// 読み込むモデルのひとつのトライアングルリストで使用できる最大ボーン数を設定する( UseMaxBoneNum で指定できる値の範囲は 8 ～ 54、 0 を指定するとデフォルト動作に戻る )
 extern int NS_MV1SetLoadModelTriangleListUseMaxBoneNum( int UseMaxBoneNum )
 {
 	// 不正な値の場合はエラー
@@ -17732,6 +17910,8 @@ extern int NS_MV1SetLoadModelIgnoreIK( int IgnoreFlag )
 	// 終了
 	return 0 ;
 }
+
+
 
 
 
@@ -17841,6 +18021,7 @@ extern int MV1SaveModelToMV1File_WCHAR_T(
 	MV1_MATERIAL_LAYER			*MaterialLayer ;
 	MV1_MATERIAL_LAYER_F1		*F1MaterialLayer ;
 	MV1_MATERIAL_TOON_F1		*F1MaterialToonAddr = NULL, *F1MaterialToon ;
+	MV1_MATERIAL_ADD_INFO_F1	*F1MaterialAddInfoAddr = NULL, *F1MaterialAddInfo ;
 	MV1_LIGHT					*Light ;
 	MV1_LIGHT_F1				*F1Light ;
 	MV1_TEXTURE					*Texture ;
@@ -17885,6 +18066,9 @@ extern int MV1SaveModelToMV1File_WCHAR_T(
 	DWORD TempBufferSize, HeaderBufferSize, VertexBufferSize, AnimBufferSize, ChangeDrawMaterialTableBufferSize ;
 	bool MeshSave, AnimSave ;
 	int Err = -1 ;
+	int IgnoreTopFrame = FALSE ;
+	MV1_FRAME_BASE *ModelBase_Frame_Backup = NULL ;
+	MV1_FRAME *Model_Frame_Backup = NULL ;
 
 	MeshSave = ( SaveType & MV1_SAVETYPE_MESH ) ? true : false ;
 	AnimSave = ( SaveType & MV1_SAVETYPE_ANIM ) ? true : false ;
@@ -17911,6 +18095,42 @@ extern int MV1SaveModelToMV1File_WCHAR_T(
 	// 最大頂点座標と最小頂点座標を算出する
 	MV1GetMaxMinPosition( MHandle, NULL, NULL ) ;
 
+	// 指定名のトップフレームを保存しない指定があり、且つトップフレームが一つで、
+	// トップフレームの小フレームも一つで、トップフレームにはメッシュ等が存在しない場合のみ
+	// トップフレームを一旦外す処理を行う
+	if( ModelBase->FrameNum > 0 && _WCSCMP( MV1Man.NotSaveTopFrameName, ModelBase->FirstTopFrame->NameW ) == 0 &&
+		ModelBase->TopFrameNum == 1 &&
+		ModelBase->Frame == ModelBase->FirstTopFrame &&
+		ModelBase->Frame + 1 == ModelBase->FirstTopFrame->FirstChild &&
+		ModelBase->FirstTopFrame == ModelBase->LastTopFrame &&
+		ModelBase->FirstTopFrame->FirstChild != NULL &&
+		ModelBase->FirstTopFrame->FirstChild == ModelBase->FirstTopFrame->LastChild &&
+		ModelBase->FirstTopFrame->MeshNum == 0 &&
+		ModelBase->FirstTopFrame->SkinBoneNum == 0 &&
+		ModelBase->FirstTopFrame->UseSkinBoneNum == 0 &&
+		ModelBase->FirstTopFrame->PositionNum == 0 &&
+		ModelBase->FirstTopFrame->NormalNum == 0 &&
+		ModelBase->FirstTopFrame->ShapeNum == 0 &&
+		Model->TopFrameNum == 1 &&
+		Model->Frame == Model->TopFrameList[ 0 ] &&
+		Model->TopFrameList[ 0 ]->ChildNum == 1 &&
+		Model->TopFrameList[ 0 ]->Mesh == NULL &&
+		Model->TopFrameList[ 0 ]->Shape == NULL )
+	{
+		IgnoreTopFrame = TRUE ;
+
+		ModelBase_Frame_Backup = ModelBase->Frame ;
+		ModelBase->Frame++ ;
+		ModelBase->FirstTopFrame = ModelBase->Frame ;
+		ModelBase->LastTopFrame  = ModelBase->Frame ;
+		ModelBase->Frame->Parent = NULL ;
+		ModelBase->FrameNum-- ;
+
+		Model_Frame_Backup = Model->TopFrameList[ 0 ] ;
+		Model->TopFrameList[ 0 ] = Model->TopFrameList[ 0 ]->ChildList[ 0 ] ;
+		Model->TopFrameList[ 0 ]->Parent = NULL ;
+	}
+
 	// ヘッダサイズの簡易計算
 	{
 		int FrameNum ;
@@ -17924,7 +18144,7 @@ extern int MV1SaveModelToMV1File_WCHAR_T(
 		{
 			HeaderSize +=
 				sizeof( DWORD /*MV1_SKIN_BONE_F1 **/ )         * ModelBase->FrameUseSkinBoneNum +
-				( sizeof( MV1_MATERIAL_F1 ) + sizeof( MV1_MATERIAL_TOON_F1 ) ) * ModelBase->MaterialNum +
+				( sizeof( MV1_MATERIAL_F1 ) + sizeof( MV1_MATERIAL_TOON_F1 ) + sizeof( MV1_MATERIAL_ADD_INFO_F1 ) ) * ModelBase->MaterialNum +
 				sizeof( MV1_LIGHT_F1 )               * ModelBase->LightNum +
 				sizeof( MV1_TEXTURE_F1 )             * ModelBase->TextureNum +
 				sizeof( MV1_MESH_F1 )                * ModelBase->MeshNum +
@@ -17993,28 +18213,28 @@ SAVELOOP :
 	if( TempBufferSize )
 	{
 		TempBuffer = DXALLOC( TempBufferSize ) ;
-		if( TempBuffer == NULL ) return -1 ;
+		if( TempBuffer == NULL ) goto ERRORLABEL ;
 		_MEMSET( TempBuffer, 0, TempBufferSize ) ;
 	}
 
 	if( VertexBufferSize )
 	{
 		VertexBuffer = DXALLOC( VertexBufferSize ) ;
-		if( VertexBuffer == NULL ) return -1 ;
+		if( VertexBuffer == NULL ) goto ERRORLABEL ;
 		_MEMSET( VertexBuffer, 0, VertexBufferSize ) ;
 	}
 
 	if( AnimBufferSize )
 	{
 		AnimBuffer = DXALLOC( AnimBufferSize ) ;
-		if( AnimBuffer == NULL ) return -1 ;
+		if( AnimBuffer == NULL ) goto ERRORLABEL ;
 		_MEMSET( AnimBuffer, 0, AnimBufferSize ) ;
 	}
 
 	if( ChangeDrawMaterialTableBufferSize )
 	{
 		ChangeDrawMaterialTableBuffer = DXALLOC( ChangeDrawMaterialTableBufferSize ) ;
-		if( ChangeDrawMaterialTableBuffer == NULL ) return -1 ;
+		if( ChangeDrawMaterialTableBuffer == NULL ) goto ERRORLABEL ;
 		_MEMSET( ChangeDrawMaterialTableBuffer, 0, ChangeDrawMaterialTableBufferSize ) ;
 	}
 
@@ -18062,6 +18282,8 @@ SAVELOOP :
 		TempBufferUseSize                 += sizeof( MV1_MATERIAL_F1 ) * ModelBase->MaterialNum ;
 		F1MaterialToonAddr                 = ( MV1_MATERIAL_TOON_F1 * )( DWORD_PTR )TempBufferUseSize ;
 		TempBufferUseSize                 += sizeof( MV1_MATERIAL_TOON_F1 ) * ModelBase->MaterialNum ;
+		F1MaterialAddInfoAddr              = ( MV1_MATERIAL_ADD_INFO_F1 * )( DWORD_PTR )TempBufferUseSize ;
+		TempBufferUseSize                 += sizeof( MV1_MATERIAL_ADD_INFO_F1 ) * ModelBase->MaterialNum ;
 
 		FHeader->LightNum                  = ModelBase->LightNum ;
 		FHeader->Light                     = TempBufferUseSize ;
@@ -18371,7 +18593,7 @@ SAVELOOP :
 				}
 				else
 				{
-					// 頂点の行列インデックス値が０〜２５４以内に収まっているかをセットする
+					// 頂点の行列インデックス値が０～２５４以内に収まっているかをセットする
 					if( F1Frame->UseSkinBoneNum > 255 )
 						F1Frame->VertFlag |= MV1_FRAME_MATRIX_INDEX_TYPE_U16 << 4 ;
 
@@ -18764,7 +18986,8 @@ SAVELOOP :
 		MaterialBase = ModelBase->Material ;
 		Material = Model->Material ;
 		F1MaterialToon = ( MV1_MATERIAL_TOON_F1 * )( ( DWORD_PTR )F1MaterialToonAddr + ( DWORD_PTR )FHeader ) ;
-		for( i = 0 ; i < ( DWORD )ModelBase->MaterialNum ; i ++, F1Material ++, F1MaterialToon ++, MaterialBase ++, Material ++ )
+		F1MaterialAddInfo = ( MV1_MATERIAL_ADD_INFO_F1 * )( ( DWORD_PTR )F1MaterialAddInfoAddr + ( DWORD_PTR )FHeader ) ;
+		for( i = 0 ; i < ( DWORD )ModelBase->MaterialNum ; i ++, F1Material ++, F1MaterialToon ++, F1MaterialAddInfo ++, MaterialBase ++, Material ++ )
 		{
 			F1Material->Index = ( int )i ;
 
@@ -18820,7 +19043,8 @@ SAVELOOP :
 			F1Material->DimPrev = i == 0                                   ? 0 : FHeader->Material + sizeof( MV1_MATERIAL_F1 ) * ( i - 1 ) ;
 			F1Material->DimNext = i == ( DWORD )ModelBase->MaterialNum - 1 ? 0 : FHeader->Material + sizeof( MV1_MATERIAL_F1 ) * ( i + 1 ) ;
 
-			F1Material->ToonInfo = ( DWORD )( ( DWORD_PTR )F1MaterialToon - ( DWORD_PTR )FHeader ) ;
+			F1Material->ToonInfo = ( DWORD )( ( DWORD_PTR )F1MaterialToon    - ( DWORD_PTR )FHeader ) ;
+			F1Material->AddInfo  = ( DWORD )( ( DWORD_PTR )F1MaterialAddInfo - ( DWORD_PTR )FHeader ) ;
 
 			F1MaterialToon->Type = ( WORD )MaterialBase->Type ;
 			F1MaterialToon->DiffuseGradTexture = Material->DiffuseGradTexture ;
@@ -18842,6 +19066,33 @@ SAVELOOP :
 				F1MaterialToon->EnableSphereMap = 1 ;
 				F1MaterialToon->SphereMapTexture = ( short )Material->SphereMapTexture ;
 				F1MaterialToon->SphereMapBlendType = ( BYTE )Material->SphereMapBlendType ;
+			}
+
+			F1MaterialAddInfo->EmissiveLayerNum = MaterialBase->EmissiveLayerNum ;
+			F1MaterialLayer = F1MaterialAddInfo->EmissiveLayer ;
+			MaterialLayer = MaterialBase->EmissiveLayer ;
+			for( j = 0 ; j < ( DWORD )MaterialBase->EmissiveLayerNum ; j ++, F1MaterialLayer ++, MaterialLayer ++ )
+			{
+				F1MaterialLayer->BlendType = MaterialLayer->BlendType ;
+				F1MaterialLayer->Texture = MaterialLayer->Texture ;
+			}
+
+			F1MaterialAddInfo->ShininessLayerNum = MaterialBase->ShininessLayerNum ;
+			F1MaterialLayer = F1MaterialAddInfo->ShininessLayer ;
+			MaterialLayer = MaterialBase->ShininessLayer ;
+			for( j = 0 ; j < ( DWORD )MaterialBase->ShininessLayerNum ; j ++, F1MaterialLayer ++, MaterialLayer ++ )
+			{
+				F1MaterialLayer->BlendType = MaterialLayer->BlendType ;
+				F1MaterialLayer->Texture = MaterialLayer->Texture ;
+			}
+
+			F1MaterialAddInfo->ReflectionFactorLayerNum = MaterialBase->ReflectionFactorLayerNum ;
+			F1MaterialLayer = F1MaterialAddInfo->ReflectionFactorLayer ;
+			MaterialLayer = MaterialBase->ReflectionFactorLayer ;
+			for( j = 0 ; j < ( DWORD )MaterialBase->ReflectionFactorLayerNum ; j ++, F1MaterialLayer ++, MaterialLayer ++ )
+			{
+				F1MaterialLayer->BlendType = MaterialLayer->BlendType ;
+				F1MaterialLayer->Texture = MaterialLayer->Texture ;
 			}
 		}
 
@@ -19024,7 +19275,7 @@ SAVELOOP :
 					F1Mesh->VertFlag |= MV1_MESH_VERT_INDEX_TYPE_U32 << 2 ;
 				}
 
-				// UV値が 0.0〜1.0 の範囲内か調べる
+				// UV値が 0.0～1.0 の範囲内か調べる
 				Vert = Mesh->Vertex ;
 				for( j = 0 ; j < ( DWORD )Mesh->VertexNum ; j ++, Vert = ( MV1_MESH_VERTEX * )( ( BYTE * )Vert + Mesh->VertUnitSize ) )
 				{
@@ -19384,7 +19635,7 @@ SAVELOOP :
 			// 回転キーの場合は処理を分岐
 			if( AnimKeySet->DataType >= MV1_ANIMKEY_DATATYPE_ROTATE && AnimKeySet->DataType <= MV1_ANIMKEY_DATATYPE_ROTATE_Z )
 			{
-				// キーデータが回転で -DX_PI〜DX_PI の間に値が収まっているかと、0〜2*DX_PI の間に収まっているかどうかを調べる
+				// キーデータが回転で -DX_PI～DX_PI の間に値が収まっているかと、0～2*DX_PI の間に収まっているかどうかを調べる
 				switch( AnimKeySet->Type )
 				{
 				case MV1_ANIMKEY_TYPE_VECTOR :
@@ -20090,6 +20341,19 @@ SAVELOOP :
 		ChangeDrawMaterialTableBuffer = NULL ;
 	}
 
+	// トップフレーム除外を行っていた場合は元に戻す
+	if( IgnoreTopFrame )
+	{
+		ModelBase->Frame-- ;
+		ModelBase->FirstTopFrame = ModelBase_Frame_Backup ;
+		ModelBase->LastTopFrame = ModelBase_Frame_Backup ;
+		ModelBase->FirstTopFrame->FirstChild->Parent = ModelBase_Frame_Backup ;
+		ModelBase->FrameNum++ ;
+
+		Model->TopFrameList[ 0 ] = Model_Frame_Backup ;
+		Model->TopFrameList[ 0 ]->ChildList[ 0 ]->Parent = Model_Frame_Backup ;
+	}
+
 	// 終了
 	return 0 ;
 
@@ -20118,8 +20382,78 @@ ERRORLABEL :
 		ChangeDrawMaterialTableBuffer = NULL ;
 	}
 
+	// トップフレーム除外を行っていた場合は元に戻す
+	if( IgnoreTopFrame )
+	{
+		ModelBase->Frame-- ;
+		ModelBase->FirstTopFrame = ModelBase_Frame_Backup ;
+		ModelBase->LastTopFrame = ModelBase_Frame_Backup ;
+		ModelBase->FirstTopFrame->FirstChild->Parent = ModelBase_Frame_Backup ;
+		ModelBase->FrameNum++ ;
+
+		Model->TopFrameList[ 0 ] = Model_Frame_Backup ;
+		Model->TopFrameList[ 0 ]->ChildList[ 0 ]->Parent = Model_Frame_Backup ;
+	}
+
 	return Err ;
 }
+
+
+
+
+
+// MV1SaveModelToMV1File で保存を除外するトップフレーム名を設定する
+extern int NS_MV1SetNotSaveTopFrameName( const TCHAR *FrameName )
+{
+#ifdef UNICODE
+	return MV1SetNotSaveTopFrameName_WCHAR_T( FrameName ) ;
+#else
+	int Result ;
+
+	TCHAR_TO_WCHAR_T_STRING_ONE_BEGIN( FrameName, return -1 )
+
+	Result = MV1SetNotSaveTopFrameName_WCHAR_T( UseFrameNameBuffer ) ;
+
+	TCHAR_TO_WCHAR_T_STRING_END( FrameName )
+
+	return Result ;
+#endif
+}
+
+// MV1SaveModelToMV1File で保存を除外するトップフレーム名を設定する
+extern int NS_MV1SetNotSaveTopFrameNameWithStrLen( const TCHAR *FrameName, size_t FrameNameLength )
+{
+	int Result ;
+#ifdef UNICODE
+	WCHAR_T_STRING_WITH_STRLEN_TO_WCHAR_T_STRING_ONE_BEGIN( FrameName, FrameNameLength, return -1 )
+	Result = MV1SetNotSaveTopFrameName_WCHAR_T( UseFrameNameBuffer ) ;
+	WCHAR_T_STRING_WITH_STRLEN_TO_WCHAR_T_STRING_END( FrameName )
+#else
+	TCHAR_STRING_WITH_STRLEN_TO_WCHAR_T_STRING_ONE_BEGIN( FrameName, FrameNameLength, return -1 )
+	Result = MV1SetNotSaveTopFrameName_WCHAR_T( UseFrameNameBuffer ) ;
+	TCHAR_STRING_WITH_STRLEN_TO_WCHAR_T_STRING_END( FrameName )
+#endif
+	return Result ;
+}
+
+extern int MV1SetNotSaveTopFrameName_WCHAR_T( const wchar_t *FrameName )
+{
+	// フレーム名を保存
+	if( FrameName == NULL )
+	{
+		MV1Man.NotSaveTopFrameName[ 0 ] = 0 ;
+	}
+	else
+	{
+		_WCSCPY( MV1Man.NotSaveTopFrameName, FrameName ) ;
+	}
+
+	// 終了
+	return 0 ;
+}
+
+
+
 
 // スペースを _ に変更して返す
 static const char *MV1SaveModelToXFileConvSpace( const char *String )
@@ -21797,7 +22131,7 @@ extern int NS_MV1GetSemiTransState( int MHandle )
 	return Model->SemiTransState ;
 }
 
-// モデルの不透明度を設定する( 不透明 1.0f 〜 透明 0.0f )
+// モデルの不透明度を設定する( 不透明 1.0f ～ 透明 0.0f )
 extern int NS_MV1SetOpacityRate( int MHandle, float Rate )
 {
 	MV1START( MHandle, Model, ModelBase, -1 ) ;
@@ -21824,7 +22158,7 @@ extern int NS_MV1SetOpacityRate( int MHandle, float Rate )
 	return 0 ;
 }
 
-// モデルの不透明度を取得する( 不透明 1.0f 〜 透明 0.0f )
+// モデルの不透明度を取得する( 不透明 1.0f ～ 透明 0.0f )
 extern	float		NS_MV1GetOpacityRate( int MHandle )
 {
 	MV1START( MHandle, Model, ModelBase, -1.0f ) ;
@@ -25947,7 +26281,43 @@ extern int NS_MV1SetMaterialNormalMapTexture( int MHandle, int MaterialIndex, in
 // 指定のマテリアルで法線マップとして使用されているテクスチャのインデックスを取得する
 extern int NS_MV1GetMaterialNormalMapTexture( int MHandle, int MaterialIndex )
 {
-	return NS_MV1GetMaterialNormalMapTextureBase( MV1GetModelBaseHandle( MHandle ), MaterialIndex ) ;
+	return MV1GetMaterialNormalMapTextureBase( MV1GetModelBaseHandle( MHandle ), MaterialIndex ) ;
+}
+
+// 指定のマテリアルでエミッシブマップとして使用するテクスチャを指定する
+extern int NS_MV1SetMaterialEmissiveMapTexture( int MHandle, int MaterialIndex, int TexIndex )
+{
+	return MV1SetMaterialEmissiveMapTextureBase( MV1GetModelBaseHandle( MHandle ), MaterialIndex, TexIndex ) ;
+}
+
+// 指定のマテリアルでエミッシブマップとして使用されているテクスチャのインデックスを取得する
+extern int NS_MV1GetMaterialEmissiveMapTexture( int MHandle, int MaterialIndex )
+{
+	return MV1GetMaterialEmissiveMapTextureBase( MV1GetModelBaseHandle( MHandle ), MaterialIndex ) ;
+}
+
+// 指定のマテリアルでラフネスマップとして使用するテクスチャを指定する
+extern int NS_MV1SetMaterialShininessMapTexture( int MHandle, int MaterialIndex, int TexIndex )
+{
+	return MV1SetMaterialShininessMapTextureBase( MV1GetModelBaseHandle( MHandle ), MaterialIndex, TexIndex ) ;
+}
+
+// 指定のマテリアルでラフネスマップとして使用されているテクスチャのインデックスを取得する
+extern int NS_MV1GetMaterialShininessMapTexture( int MHandle, int MaterialIndex )
+{
+	return MV1GetMaterialShininessMapTextureBase( MV1GetModelBaseHandle( MHandle ), MaterialIndex ) ;
+}
+
+// 指定のマテリアルでメタリックマップとして使用するテクスチャを指定する
+extern int NS_MV1SetMaterialReflectionFactorMapTexture( int MHandle, int MaterialIndex, int TexIndex )
+{
+	return MV1SetMaterialReflectionFactorMapTextureBase( MV1GetModelBaseHandle( MHandle ), MaterialIndex, TexIndex ) ;
+}
+
+// 指定のマテリアルでメタリックマップとして使用されているテクスチャのインデックスを取得する
+extern int NS_MV1GetMaterialReflectionFactorMapTexture( int MHandle, int MaterialIndex )
+{
+	return MV1GetMaterialReflectionFactorMapTextureBase( MV1GetModelBaseHandle( MHandle ), MaterialIndex ) ;
 }
 
 // 指定のマテリアルのディフューズカラーを設定する
@@ -26401,7 +26771,7 @@ extern int NS_MV1GetMaterialSphereMapBlendType(	int MHandle, int MaterialIndex )
 	return Material->SphereMapBlendType ;
 }
 
-// 指定のマテリアルのトゥーンレンダリングで使用する輪郭線の太さを設定する( 0.0f 〜 1.0f )
+// 指定のマテリアルのトゥーンレンダリングで使用する輪郭線の太さを設定する( 0.0f ～ 1.0f )
 extern int NS_MV1SetMaterialOutLineWidth( int MHandle, int MaterialIndex, float Width )
 {
 	MV1_MESH *Mesh ;
@@ -26434,7 +26804,7 @@ extern int NS_MV1SetMaterialOutLineWidth( int MHandle, int MaterialIndex, float 
 	return 0 ;
 }
 
-// 指定のマテリアルのトゥーンレンダリングで使用する輪郭線の太さを取得する( 0.0f 〜 1.0f )
+// 指定のマテリアルのトゥーンレンダリングで使用する輪郭線の太さを取得する( 0.0f ～ 1.0f )
 extern float NS_MV1GetMaterialOutLineWidth( int MHandle, int MaterialIndex )
 {
 	MV1MATERIALSTART( MHandle, Model, ModelBase, Material, MaterialIndex, -1 ) ;
@@ -26611,7 +26981,7 @@ extern int NS_MV1GetMaterialDrawBlendParam( int MHandle, int MaterialIndex )
 	return Material->DrawBlendParam ;
 }
 
-// 指定のマテリアルの描画時のアルファテストの設定を行う( Enable:αテストを行うかどうか( TRUE:行う  FALSE:行わない( デフォルト )  Mode:テストモード( DX_CMP_GREATER等 )  Param:描画アルファ値との比較に使用する値( 0〜255 ) )
+// 指定のマテリアルの描画時のアルファテストの設定を行う( Enable:αテストを行うかどうか( TRUE:行う  FALSE:行わない( デフォルト )  Mode:テストモード( DX_CMP_GREATER等 )  Param:描画アルファ値との比較に使用する値( 0～255 ) )
 extern int NS_MV1SetMaterialDrawAlphaTest( int MHandle, int MaterialIndex,	int Enable, int Mode, int Param )
 {
 	MV1MATERIALSTART( MHandle, Model, ModelBase, Material, MaterialIndex, -1 ) ;
@@ -26651,7 +27021,7 @@ extern int NS_MV1GetMaterialDrawAlphaTestMode( int MHandle, int MaterialIndex )
 	return Material->AlphaFunc ;
 }
 
-// 指定のマテリアルの描画時のアルファテストの描画アルファ地との比較に使用する値( 0〜255 )を取得する
+// 指定のマテリアルの描画時のアルファテストの描画アルファ地との比較に使用する値( 0～255 )を取得する
 extern int NS_MV1GetMaterialDrawAlphaTestParam( int MHandle, int MaterialIndex )
 {
 	MV1MATERIALSTART( MHandle, Model, ModelBase, Material, MaterialIndex, -1 ) ;
@@ -26923,7 +27293,7 @@ extern int NS_MV1SetMaterialDrawBlendParamAll(	int MHandle,     int BlendParam )
 	return 0 ;
 }
 
-// 全てのマテリアルの描画時のアルファテストの設定を行う( Enable:αテストを行うかどうか( TRUE:行う  FALSE:行わない( デフォルト ) ) Mode:テストモード( DX_CMP_GREATER等 )  Param:描画アルファ値との比較に使用する値( 0〜255 ) )
+// 全てのマテリアルの描画時のアルファテストの設定を行う( Enable:αテストを行うかどうか( TRUE:行う  FALSE:行わない( デフォルト ) ) Mode:テストモード( DX_CMP_GREATER等 )  Param:描画アルファ値との比較に使用する値( 0～255 ) )
 extern int NS_MV1SetMaterialDrawAlphaTestAll(		int MHandle, int Enable, int Mode, int Param )
 {
 	int i ;
@@ -29210,7 +29580,7 @@ extern int NS_MV1GetFrameSemiTransState( int MHandle, int FrameIndex )
 }
 
 
-// 指定のフレームの不透明度を設定する( 不透明 1.0f 〜 透明 0.0f )
+// 指定のフレームの不透明度を設定する( 不透明 1.0f ～ 透明 0.0f )
 extern	int			NS_MV1SetFrameOpacityRate( int MHandle, int FrameIndex, float Rate )
 {
 	MV1FRAMESTART( MHandle, Model, ModelBase, Frame, FrameIndex, -1 ) ;
@@ -29229,7 +29599,7 @@ extern	int			NS_MV1SetFrameOpacityRate( int MHandle, int FrameIndex, float Rate 
 	return 0 ;
 }
 
-// 指定のフレームの不透明度を取得する( 不透明 1.0f 〜 透明 0.0f )
+// 指定のフレームの不透明度を取得する( 不透明 1.0f ～ 透明 0.0f )
 extern	float		NS_MV1GetFrameOpacityRate( int MHandle, int FrameIndex )
 {
 	MV1FRAMESTART( MHandle, Model, ModelBase, Frame, FrameIndex, -1.0f ) ;
@@ -29568,7 +29938,7 @@ extern	COLOR_F		NS_MV1GetMeshAmbColorScale( int MHandle, int MeshIndex )
 	return Mesh->DrawMaterial.AmbientScale ;
 }
 
-// 指定のメッシュの不透明度を設定する( 不透明 1.0f 〜 透明 0.0f )
+// 指定のメッシュの不透明度を設定する( 不透明 1.0f ～ 透明 0.0f )
 extern	int			NS_MV1SetMeshOpacityRate( int MHandle, int MeshIndex, float Rate )
 {
 	MV1MESHSTART( MHandle, Model, ModelBase, Mesh, MeshIndex, -1 ) ;
@@ -29588,7 +29958,7 @@ extern	int			NS_MV1SetMeshOpacityRate( int MHandle, int MeshIndex, float Rate )
 }
 
 
-// 指定のメッシュの不透明度を取得する( 不透明 1.0f 〜 透明 0.0f )
+// 指定のメッシュの不透明度を取得する( 不透明 1.0f ～ 透明 0.0f )
 extern	float		NS_MV1GetMeshOpacityRate( int MHandle, int MeshIndex )
 {
 	MV1MESHSTART( MHandle, Model, ModelBase, Mesh, MeshIndex, -1.0f ) ;
@@ -30005,7 +30375,7 @@ extern int NS_MV1GetShapeTargetMesh( int MHandle, int ShapeIndex, int Index )
 	return MV1GetShapeTargetMeshBase( MV1GetModelBaseHandle( MHandle ), ShapeIndex, Index ) ;
 }
 
-// 指定シェイプの有効率を設定する( Rate  0.0f:0% 〜 1.0f:100% )
+// 指定シェイプの有効率を設定する( Rate  0.0f:0% ～ 1.0f:100% )
 extern int NS_MV1SetShapeRate( int MHandle, int ShapeIndex, float Rate, int Type )
 {
 	MV1SHAPESTART( MHandle, Model, ModelBase, Shape, ShapeIndex, -1 ) ;
@@ -30028,7 +30398,7 @@ extern int NS_MV1SetShapeRate( int MHandle, int ShapeIndex, float Rate, int Type
 	return 0 ;
 }
 
-// 指定シェイプの有効率を取得する( 戻り値  0.0f:0% 〜 1.0f:100% )
+// 指定シェイプの有効率を取得する( 戻り値  0.0f:0% ～ 1.0f:100% )
 extern float NS_MV1GetShapeRate( int MHandle, int ShapeIndex )
 {
 	MV1SHAPESTART( MHandle, Model, ModelBase, Shape, ShapeIndex, -1.0f ) ;
@@ -30037,7 +30407,7 @@ extern float NS_MV1GetShapeRate( int MHandle, int ShapeIndex )
 	return Shape->ShapeRate ;
 }
 
-// 指定シェイプの有効率を取得する( 戻り値  0.0f:0% 〜 1.0f:100% )( MV1SetShapeRate で指定した値がそのまま戻り値となる MV1GetShapeRate と異なりアニメーションのシェイプ情報なども加味した値が戻り値となります )
+// 指定シェイプの有効率を取得する( 戻り値  0.0f:0% ～ 1.0f:100% )( MV1SetShapeRate で指定した値がそのまま戻り値となる MV1GetShapeRate と異なりアニメーションのシェイプ情報なども加味した値が戻り値となります )
 extern float NS_MV1GetShapeApplyRate( int MHandle, int ShapeIndex )
 {
 	int i ;

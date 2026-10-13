@@ -1,4 +1,4 @@
-﻿// -------------------------------------------------------------------------------
+// -------------------------------------------------------------------------------
 // 
 // 		ＤＸライブラリ		通信プログラムヘッダファイル
 // 
@@ -24,6 +24,8 @@ namespace DxLib
 // マクロ定義 --------------------------------------------------------------------
 
 // ＤＸアーカイブ関連
+
+
 
 /*
 	データマップ
@@ -351,6 +353,11 @@ extern	int			DXA_Decode(						void *Src, void *Dest ) ;										// データを
 
 extern	DWORD		BinToChar128(					void *Src, DWORD SrcSize, void *Dest ) ;						// バイナリデータを半角文字列に変換する( 戻り値:変換後のデータサイズ )
 extern	DWORD		Char128ToBin(					void *Src, void *Dest ) ;										// 半角文字列をバイナリデータに変換する( 戻り値:変換後のデータサイズ )
+
+extern	DWORD		BinToBase64(void* Src, unsigned int SrcSize, void* Dest);					// バイナリデータをBase64文字列に変換する( 戻り値:変換後のデータサイズ )
+extern	DWORD		Base64ToBin(void* Src, void* Dest);										// Base64文字列をバイナリデータに変換する( 戻り値:変換後のデータサイズ )
+
+extern	void		HashSha256(const void* SrcData, size_t SrcDataSize, void* DestBuffer);
 
 #ifndef DX_NON_NAMESPACE
 

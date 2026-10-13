@@ -1,8 +1,8 @@
-﻿// -------------------------------------------------------------------------------
+// -------------------------------------------------------------------------------
 // 
 // 		ＤＸライブラリ		ハンドル管理プログラム
 // 
-// 				Ver 3.24f
+// 				Ver 3.25a
 // 
 // -------------------------------------------------------------------------------
 
@@ -328,7 +328,20 @@ static int SubHandleBase( int Handle )
 	{
 		// 戻り値が１の場合は削除キャンセル
 		if( HandleManage->TerminateFunction( HandleInfo ) == 1 )
+		{
+			// 削除リクエストされていたら削除リクエストリストから外す
+			if( HandleInfo->DeleteRequestFlag )
+			{
+				HandleInfo->DeleteRequestFlag = FALSE ;
+
+				SubHandleList( &HandleInfo->DeleteRequestList ) ;
+
+				// 削除リクエストされていた数も 1 減らす
+				HandleManage->DeleteRequestHandleNum -- ;
+			}
+
 			goto END ;
+		}
 	}
 
 	// 削除フラグに-1を代入する
@@ -1185,7 +1198,7 @@ extern int NewMemorySimpleList( SIMPLELIST *List, void *Data )
 
 
 
-// ハンドルが削除されたときに−１が設定される変数を登録する
+// ハンドルが削除されたときに－１が設定される変数を登録する
 extern int NS_SetDeleteHandleFlag( int Handle, int *DeleteFlag )
 {
 	HANDLEINFO *HandleInfo ;

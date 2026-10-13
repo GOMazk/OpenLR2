@@ -1,4 +1,4 @@
-﻿// -------------------------------------------------------------------------------
+// -------------------------------------------------------------------------------
 // 
 // 		ＤＸライブラリ		ピクセルシェーダー定義コード
 // 
@@ -110,7 +110,7 @@ LIGHT    cfLight[ 4 ]                   : register( c9 /* DX_PS_CONSTF_LIGHT_STA
 float4   cfShadowMap1_DAdj_Grad_Enbl0_1               : register( c18 /* DX_PS_CONSTF_SHADOW1_DADJ_GRAD_ENBL0_1             */ ) ;		// シャドウマップ１用の情報( x:閾値深度補正値  y:グラデーション範囲  zw:ライト０・１への適用情報)
 float4   cfShadowMap1_Enb2_ShadowMap2_DAdj_Grad_Enbl0 : register( c19 /* DX_PS_CONSTF_SHADOW1_ENBL2_SHADOW2_DADJ_GRAD_ENBL0 */ ) ;		// シャドウマップ１用の情報( x:ライト２への適用情報 )、シャドウマップ２用の情報( y:閾値深度補正値  z:グラデーション範囲  w:ライト０への適用情報 )
 float4   cfShadowMap2_Enbl1_2_ShadowMap3_DAdj_Grad    : register( c20 /* DX_PS_CONSTF_SHADOW2_ENBL1_2_SHADOW3_DADJ_GRAD     */ ) ;		// シャドウマップ２用の情報( xy:ライト１・２への適用情報)、シャドウマップ３用の情報( z:閾値深度補正値  w:グラデーション範囲 )
-float4   cfShadowMap3_Enbl0_1_2_LgtNoGen              : register( c21 /* DX_PS_CONSTF_SHADOW3_ENBL0_1_2_LGT_NO_GEN          */ ) ;		// シャドウマップ３用の情報( xyz:ライト０〜２への適用情報 )
+float4   cfShadowMap3_Enbl0_1_2_LgtNoGen              : register( c21 /* DX_PS_CONSTF_SHADOW3_ENBL0_1_2_LGT_NO_GEN          */ ) ;		// シャドウマップ３用の情報( xyz:ライト０～２への適用情報 )
 float4   cfMulAlphaColorAddColor                      : register( c22 /* DX_PS_CONSTF_MUL_ALPHA_COLOR_ADD_COLOR             */ ) ;		// カラーにアルファ値を乗算するかどうか( x( 0.0f:乗算しない  1.0f:乗算する ) ), 加算する色( RGB=yzw )
 float4   cfIgnoreTextureColor                         : register( c23 /* DX_PS_CONSTF_IGNORE_TEX_COLOR                      */ ) ;		// テクスチャカラー無視処理用カラー
 float4   cfHalfLambert                                : register( c24 /* DX_PS_CONSTF_USE_HALFLAMBERT                       */ ) ;		// テクスチャカラー無視処理用カラー
