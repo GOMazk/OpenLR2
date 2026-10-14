@@ -17,7 +17,7 @@ int SetObjectValue_Button(game *g, skstruct *sk, Timer *T, char flag);
 int MouseOnDSTD(DSTdraw * dstd, int * x, int * y);
 int MouseOnObject(DSTstruct * dst, Timer * T, int * x, int * y);
 int SliderByTime(DrawingBuf * drb, SRCstruct * src, DSTstruct * dst, Timer * T, int min, int max, int * value, inputStructure * input, int objectID);
-int ButtonByInput(DrawingBuf * drb, SRCstruct * src, DSTstruct * dst, Timer * T, inputStructure * input, int * target, int min, int max, int panel);
+int ButtonByInput(skstruct* sk, SRCstruct * src, DSTstruct * dst, Timer * T, inputStructure * input, int * target, int min, int max, int panel);
 
 //text input
 int Proc_Text(game *g, sqlite3 *sql, char flag);

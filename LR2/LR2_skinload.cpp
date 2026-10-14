@@ -149,7 +149,7 @@ static int ReadSRC(SRCstruct *src, CSVbuf *csv, skstruct *sk){
 				src->grHandles[i + csv->val[7]*j] = DerivationGraph(blockX*i + csv->val[3], blockY*j + csv->val[4], blockX, blockY, sk->GrHandle[csv->val[2]]);
 			}
 			else {
-				src->grHandles[i + csv->val[7]*j] =	sk->GrHandle[csv->val[2]];
+				src->grHandles[i + csv->val[7]*j] =	sk->GrHandle[csv->val[2]]; // TOFIX: Handle sharing GG.
 			}
 		}
 	}
@@ -180,7 +180,7 @@ static int ReadSRC_BAR_TITLE(SRCstruct *src, CSVbuf *csv, skstruct *sk){
 
 
 // InitSkin
-int InitSkin(skstruct *sk, int /*unused*/, char font) {
+int InitSkin(skstruct *sk, int /*unused*/, char font, Timer* timers) {
 	SetTransColor(0, 255, 0);
 	sk->startinput_start = 0;
 	sk->startinput_rank = 0;
@@ -419,6 +419,9 @@ int InitSkin(skstruct *sk, int /*unused*/, char font) {
 	for (int i = 0; i < 5; i++) {
 		InitDST(&sk->dst_EVENT_LOADINGBG[i]);
 	}
+
+	sk->panelMan = { timers ? timers : sk->panelMan.GetTimersPtr() }; // Forgive me Father, for I have sinned.
+
 	return 1;
 }
 
@@ -1081,6 +1084,11 @@ int ReadSkin(skstruct *sk,CSTR FilePath, int unused, int skin_num, SkinUser* sku
 						}
 						if (sk->otherObject[1].srcSize > 0 && (sk->otherObject[1].dst[sk->otherObject[1].srcSize - 1].dstCount < 1 || sk->otherObject[1].dst[sk->otherObject[1].srcSize - 1].dataSize < 1)) {
 							ErrorLogFmtAdd("スキン読み込みエラー %d行目\n%s\n(この行のエラーではありません)ひとつ前の#SRC_BUTTONに対応した#DST_BUTTONが存在しないか、登録に失敗したようです\n", line, fBuf.body);
+						}
+						if (csv.val[13] > 9) {
+							if (!sk->panelMan.BindButton(&sk->otherObject[1].src[sk->otherObject[1].srcSize])) {
+								ErrorLogFmtAdd("#SRC_BUTTON at line %d has invalid 'panel' param.\n", line);
+							}
 						}
 						sk->otherObject[1].srcSize++;
 						break;
@@ -1827,6 +1835,13 @@ int ReadSkin(skstruct *sk,CSTR FilePath, int unused, int skin_num, SkinUser* sku
 					}
 					case "#HORIZONTAL"_hash:{
 						sk->horizontal = 1;
+						break;
+					}
+					case "#PANEL"_hash: {
+						SplitCSV(fBuf, &csv, ",");
+						if (!sk->panelMan.AddPanel(csv)) {
+							ErrorLogFmtAdd("#PANEL at line %d ignored: Tried to exceed 50 panels or to use invalid 'panel' param.\n", line);
+						}
 						break;
 					}
 					}
