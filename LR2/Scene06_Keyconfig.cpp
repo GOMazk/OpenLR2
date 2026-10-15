@@ -14,6 +14,9 @@ int ProcS_Keyconfig(game *g) {
 			SetObjectString(40 + i, t, g->txtStruct.objectStr);
 		}
 	}
+	if (g->KeyInput.config_button_inMap > 0 && g->KeyInput.config_key >= 0)
+		SetObjectString(302, g->txtStruct.option_axistype[g->config.input.axisType[g->KeyInput.config_button_inMap][g->KeyInput.config_key]].c_str(), g->txtStruct.objectStr);
+	else SetObjectString(302, "NONE", g->txtStruct.objectStr);
 	return 1;
 }
 
@@ -53,6 +56,7 @@ int ProcI_Keyconfig(game *g) {
 	int fndkey;
 	if (g->KeyInput.config_key >= 0 && g->KeyInput.config_button_inMap > 0) {
 		fndkey = FindPressedKey(&g->KeyInput);
+		if (!fndkey) fndkey = FindPressedAxis(g->KeyInput, g->config.input.axisType[g->KeyInput.config_button_inMap][g->KeyInput.config_key]);
 		if (0 < fndkey && !isBannedInput(fndkey))  {
 			g->config.input.buttonMap[g->KeyInput.config_button_inMap][g->KeyInput.config_key] = (g->KeyInput.inputID[KEY_INPUT_DELETE] == 1)? 0 : fndkey;
 			PlaySound(&g->audio, &g->audio.sysSound.option_change, g->audio.chnKey, -1);
@@ -638,29 +642,72 @@ CSTR GetKeyIDname(int keyID) {
 		default:
 			if (keyID < 0x200) {
 				int joyID = keyID - 0x100;
-				int p = joyID / 32 + 1;
-				int b = joyID % 32;
-
-				if (b == 0) {
-					sprintf(tmpFStr, "%dP:DOWN", p);
-					tmpStr = tmpFStr;
-				}
-				else if (b == 1) {
-					sprintf(tmpFStr, "%dP:LEFT", p);
-					tmpStr = tmpFStr;
-				}
-				else if (b == 2) {
-					sprintf(tmpFStr, "%dP:RIGHT", p);
-					tmpStr = tmpFStr;
-				}
-				else if (b == 3) {
-					sprintf(tmpFStr, "%dP:UP", p);
-					tmpStr = tmpFStr;
+				if (joyID < 32 * 4) {
+					int player = joyID / 32 + 1;
+					int button = joyID % 32;
+					switch (button) {
+					case 0:
+						sprintf(tmpFStr, "%dP:DOWN", player);
+						break;
+					case 1:
+						sprintf(tmpFStr, "%dP:LEFT", player);
+						break;
+					case 2:
+						sprintf(tmpFStr, "%dP:RIGHT", player);
+						break;
+					case 3:
+						sprintf(tmpFStr, "%dP:UP", player);
+						break;
+					default:
+						sprintf(tmpFStr, "%dP:BUTTON%d", player, button - 3);
+					}
 				}
 				else {
-					sprintf(tmpFStr, "%dP:BUTTON%d", p, b - 3);
-					tmpStr = tmpFStr;
+					joyID = joyID - 32 * 4;
+					int player = joyID / 12 + 1;
+					int axis = joyID % 12;
+					switch (axis) {
+					case 0:
+						sprintf(tmpFStr, "%dP:X-", player);
+						break;
+					case 1:
+						sprintf(tmpFStr, "%dP:X+", player);
+						break;
+					case 2:
+						sprintf(tmpFStr, "%dP:Y-", player);
+						break;
+					case 3:
+						sprintf(tmpFStr, "%dP:Y+", player);
+						break;
+					case 4:
+						sprintf(tmpFStr, "%dP:Z-", player);
+						break;
+					case 5:
+						sprintf(tmpFStr, "%dP:Z+", player);
+						break;
+					case 6:
+						sprintf(tmpFStr, "%dP:Rx-", player);
+						break;
+					case 7:
+						sprintf(tmpFStr, "%dP:Rx+", player);
+						break;
+					case 8:
+						sprintf(tmpFStr, "%dP:Ry-", player);
+						break;
+					case 9:
+						sprintf(tmpFStr, "%dP:Ry+", player);
+						break;
+					case 10:
+						sprintf(tmpFStr, "%dP:Rz-", player);
+						break;
+					case 11:
+						sprintf(tmpFStr, "%dP:Rz+", player);
+						break;
+					default:
+						strcpy(tmpFStr, "JOY_UNKNOWN");
+					}
 				}
+				tmpStr = tmpFStr;
 			}
 			else if (keyID < 0x300) {
 				sprintf(tmpFStr, "MIDI NOTE:%s%d", midiName[(keyID-0x200) % 12].body, (keyID - 0x200) / 12);

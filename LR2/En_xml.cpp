@@ -117,7 +117,7 @@ int ReadXml_Int_Multi(const char *level1, const char *level2, const char *level3
 				oBuf[0] = atol(cur->ToElement()->GetText());
 
 				for (int i = 1; i < 16; i++) {
-					cur = cur->NextSiblingElement();
+					cur = cur->NextSiblingElement(level3);
 					if (cur == NULL) {
 						return 1;
 					}

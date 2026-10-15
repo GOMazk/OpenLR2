@@ -3669,6 +3669,7 @@ int SetObjectValue_Button(game *g, skstruct *sk, Timer *T, char flag) {
 				if (isClickSuccess == 2) {
 					PlaySound(&g->audio, &g->audio.sysSound.option_change, g->audio.chnKey, -1);
 					g->KeyInput.config_key = op - 150;
+					ProcS_Keyconfig(g);
 				}
 				break;
 
@@ -4085,6 +4086,38 @@ int SetObjectValue_Button(game *g, skstruct *sk, Timer *T, char flag) {
 				}
 				break;
 			}
+			case 402: {
+				int tmp = 0;
+				int button = g->KeyInput.config_button_inMap;
+				int bind = g->KeyInput.config_key;
+				bool hasBindSelected = button > 0 && bind >= 0;
+				tmp = hasBindSelected ? g->config.input.axisType[button][bind] : 0;
+				isClickSuccess = ButtonByInput(&sk->drBuf, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &tmp, AXISTYPE_STICK, AXISTYPE_LOOPING, g->sSelect.panel);
+				if (isClickSuccess == 2) {
+					PlaySound(&g->audio, &g->audio.sysSound.option_change, g->audio.chnKey, -1);
+					if (hasBindSelected) {
+						g->config.input.axisType[button][bind] = [](int val) {
+							switch (val) {
+							case 0: return AXISTYPE_STICK;
+							case 1: return AXISTYPE_TRIGGER;
+							case 2: return AXISTYPE_LOOPING;
+							default: return AXISTYPE_STICK;
+							}
+						}(tmp);
+						if (g->KeyInput.config_keymode == 0) {
+							WriteKeyConfig(g, fs::make_preferred("LR2files/Config/keyconfig.xml").data(), 7);
+						}
+						else if (g->KeyInput.config_keymode == 1) {
+							WriteKeyConfig(g, fs::make_preferred("LR2files/Config/keyconfig_p.xml").data(), 9);
+						}
+						else if (g->KeyInput.config_keymode == 2) {
+							WriteKeyConfig(g, fs::make_preferred("LR2files/Config/keyconfig_5.xml").data(), 5);
+						}
+						ProcS_Keyconfig(g);
+					}
+				}
+				break;
+			}
 			default:
 				continue;
 		}
@@ -4328,8 +4361,10 @@ static void MakeOLR2StrDefaults(TextStruct& txtStruct) {
 	};
 	constexpr std::array<const char*, 3> fullscreenfilter_defaults{ "BILINEAR", "NEAREST", "CRT" };
 	constexpr std::array<const char*, 2> fullscreenfitstretch_defaults{ "OFF", "ON" };
+	constexpr std::array<const char*, 3> axistype_defaults{ "STICK", "TRIGGER", "LOOPING" };
 	fill_default_vec(txtStruct.option_fullscreenfilter, fullscreenfilter_defaults);
 	fill_default_vec(txtStruct.option_fullscreenfitstretch, fullscreenfitstretch_defaults);
+	fill_default_vec(txtStruct.option_axistype, axistype_defaults);
 }
 
 int ReadOptionstrFile(TextStruct& txtStruct, CSTR filepath) {
@@ -4433,6 +4468,9 @@ int ReadOptionstrFile(TextStruct& txtStruct, CSTR filepath) {
 			}
 			else if (fBuf.starts_with("#FULLSCREEN_FITSTRETCH")) {
 				ReadOptionStrVec(txtStruct.option_fullscreenfitstretch, csv);
+			}
+			else if (fBuf.starts_with("#AXISTYPE")) {
+				ReadOptionStrVec(txtStruct.option_axistype, csv);
 			}
 			*fBuf.atPos(0) = '\0';
 		}
