@@ -285,6 +285,12 @@ enum PLAYER {
 	PLAYER_MAX
 };
 
+enum AXISTYPE {
+	AXISTYPE_STICK = 0,
+	AXISTYPE_TRIGGER,
+	AXISTYPE_LOOPING
+};
+
 struct BMSMETA {
 	CSTR hash;
 	CSTR title;
@@ -339,6 +345,7 @@ struct CONFIG_COURSE {
 
 struct CONFIG_INPUT {
 	int buttonMap[40][16]{};
+	AXISTYPE axisType[40][16]{};
 	int sys_inputinterval{};
 	int midi_control[40]{};
 };
@@ -835,7 +842,15 @@ struct SOUNDDATA {
 };
 
 struct inputStructure {
-	unsigned char inputID[2048]{}; /* 0:keybd 0x100:joypad 0x200:MIDI */
+	unsigned char inputID[2048]{}; /* 0:keybd 0x100:joypad 0x200:MIDI. 384-431 (0x180-0x1AF) reserved to joypad axes */ 
+	struct axis {
+		int X = 0, Y = 0, Z = 0, Rx = 0, Ry = 0, Rz = 0; // -1000 - 1000 range.
+	};
+	std::array<axis, 4> inputAxis{};
+	unsigned char inputAxisState[4][6][2][3]{}; // 4 joypads * 6 axes * 2 directions * 3 types = 144 bytes
+	double inputAxisLoopingDecay[4][6][2]{};
+	double inputAxisDeadzoneAll = 0.;
+	bool inputAxisFirstPoll = true;
 	int inputTime[2048]{}; /* 0:keybd 0x100:joypad 0x200:MIDI */
 	unsigned char p1_buttonInput[20]{}; /* byte100 */
 	unsigned char p2_buttonInput[20]{};
@@ -1259,6 +1274,7 @@ struct TextStruct {
 	struct OptionString option_str[25];
 	std::vector<std::string> option_fullscreenfilter;
 	std::vector<std::string> option_fullscreenfitstretch;
+	std::vector<std::string> option_axistype;
 };
 
 struct REPLAY {

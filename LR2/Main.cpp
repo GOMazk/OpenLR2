@@ -1376,6 +1376,7 @@ int main(int argc, char** argv) {
 					gs.KeyInput.config_button = 1;
 					gs.KeyInput.config_button_inMap = 1;
 					gs.KeyInput.config_key = -1;
+					gs.KeyInput.inputAxisDeadzoneAll = 0.1;
 					ProcS_Keyconfig(&gs);
 					break;
 				case SCENE_SKINSELECT:
@@ -1864,6 +1865,7 @@ int main(int argc, char** argv) {
 					break;
 				case 6:
 					ReadKeyConfig(&gs, fs::make_preferred("LR2files/Config/keyconfig.xml").data());
+					gs.KeyInput.inputAxisDeadzoneAll = 0.;
 					break;
 				case 7:
 					ClearSkinGraph(&gs.skstruct2);

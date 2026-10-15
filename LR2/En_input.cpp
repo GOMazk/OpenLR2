@@ -33,6 +33,9 @@ static MIDI midi;
 #define HIWORD(l) ((WORD)((((DWORD_PTR)(l)) >> 16) & 0xffff))
 #endif
 
+constexpr unsigned int AXIS_RANGE_BEGIN = 0x100 + 32 * 4;
+constexpr unsigned int AXIS_RANGE_END = AXIS_RANGE_BEGIN + 12 * 4;
+
 #ifdef _WIN32
 static void FixMousePointWithClientPosition(int* mouseX, int* mouseY) {
 	if (GetWindowModeFlag() == TRUE && GetUseFullScreenResolutionMode() != DX_FSRESOLUTIONMODE_BORDERLESS_WINDOW) return;
@@ -61,7 +64,7 @@ static void FixMousePointWithClientPosition(int* mouseX, int* mouseY) {
 #endif // _WIN32
 
 // TODO structure array rework
-int InitInputStructure2(inputStructure *is){
+int InitInputStructure2(inputStructure *is){ // Called on scene end
 	is->is_doubleclick = 0;
 	is->mousewheel = 0;
 	is->mouse_buttonL = 0;
@@ -72,6 +75,11 @@ int InitInputStructure2(inputStructure *is){
 	std::ranges::fill(is->p2_buttonInput, 0);
 	std::ranges::fill(is->otherbuttons, 0);
 	std::ranges::fill_n(is->inputID, 0x600, 0);
+	is->inputAxis = {};
+	memset(is->inputAxisState, 0, sizeof(is->inputAxisState));
+	memset(is->inputAxisLoopingDecay, 0, sizeof(is->inputAxisLoopingDecay));
+	is->inputAxisFirstPoll = true;
+	SetJoypadDefaultDeadZoneAll(0.); // should be 0 to detect full range of looping axis. Can't set per-axis.
 	return 1;
 }
 
@@ -136,11 +144,29 @@ static void GetMidiInput(dword msg, dword /*timestamp*/) {
 }
 
 int FindPressedKey(inputStructure *is){
-	
+
 	for (int i = 1; i < 0x600; i++) {
 		if (is->inputID[i] == 1) {
 			return i;
 		}
+	}
+	return 0;
+}
+
+// Uses virtual button index, as if it was present in inputID array. Isn't actually there to not interfere in existing button logic, also it's simply more convenient this way.
+static unsigned char GetAxisState(const inputStructure& is, int idx, AXISTYPE type) {
+	size_t axis_i = idx - AXIS_RANGE_BEGIN;
+	size_t padIdx = axis_i / 12;
+	size_t axisIdx = axis_i % 12;
+	size_t dirIdx = axisIdx % 2;
+	axisIdx = axisIdx / 2;
+	return is.inputAxisState[padIdx][axisIdx][dirIdx][type];
+}
+
+// Separate from FindPressedKey so it's not used in WaitInput calls.
+int FindPressedAxis(const inputStructure& is, AXISTYPE type) {
+	for (size_t i = AXIS_RANGE_BEGIN; i < AXIS_RANGE_END; i++) {
+		if (GetAxisState(is, i, type) == 1) return i;
 	}
 	return 0;
 }
@@ -168,7 +194,7 @@ int CloseMIDI(void){
 	return 1;
 }
 
-static void ProcessInput(inputStructure *is, int interval) {
+static void ProcessInput(inputStructure* is, int interval) {
 
 	int mouseX, mouseY;
 	uint new_joyInput[256];
@@ -264,12 +290,90 @@ static void ProcessInput(inputStructure *is, int interval) {
 	GetTimeWrap();
 	//joypad
 	std::ranges::fill_n(new_joyInput, 0x100, 0);
-	for (int i = 1; i < 4; i++) {
-		int r = GetJoypadInputState(i);
-		for (int j = 0; j < 32; j++) {
-			new_joyInput[0x20 * i + j] = r & (1<<j);
+	for (int padIdx = 0; padIdx < 4; padIdx++) {
+		DINPUT_JOYSTATE state{};
+		if (GetJoypadDirectInputState(padIdx + 1, &state)) continue;
+		new_joyInput[0x20 * padIdx + 0] = state.POV[0] >= 13500 && state.POV[0] <= 22500 ? 1 : 0; // down
+		new_joyInput[0x20 * padIdx + 1] = state.POV[0] >= 22500 && state.POV[0] <= 31500 ? 1 : 0; // left
+		new_joyInput[0x20 * padIdx + 2] = state.POV[0] >= 4500 && state.POV[0] <= 13500 ? 1 : 0; // right
+		new_joyInput[0x20 * padIdx + 3] = (state.POV[0] >= 0 && state.POV[0] <= 4500) || state.POV[0] == 31500 ? 1 : 0; // up
+		for (int j = 4; j < 32; j++) {
+			new_joyInput[0x20 * padIdx + j] = state.Buttons[j - 4] & 0x80; // wowza we support 4 more buttons because GetJoypadInputState only deals 24, but still not all 32 because LR2 said so.
+		}
+		auto& axis = is->inputAxis[padIdx];
+		auto axisPrev = is->inputAxis[padIdx];
+		axis.X = state.X;
+		axis.Y = state.Y;
+		axis.Z = state.Z;
+		axis.Rx = state.Rx;
+		axis.Ry = state.Ry;
+		axis.Rz = state.Rz;
+		for (int axisIdx = 0; axisIdx < 6; axisIdx++) {
+			auto get_val = [&axis, &axisIdx](const inputStructure::axis& axis, int axisIdx) {
+				switch (axisIdx) {
+				case 0: return axis.X;
+				case 1: return axis.Y;
+				case 2: return axis.Z;
+				case 3: return axis.Rx;
+				case 4: return axis.Ry;
+				case 5: return axis.Rz;
+				}
+				return 0;
+			};
+			int val = get_val(axis, axisIdx);
+			int valPrev = is->inputAxisFirstPoll ? val : get_val(axisPrev, axisIdx); // avoids first poll since reset making an input that wasn't actually made.
+			for (int dirIdx = 0; dirIdx < 2; dirIdx++) {
+				bool anyTypePressed = false;
+				auto advance_state = [](unsigned char& state, bool isPressed) {
+					if (isPressed) state = state == 0 || state == 3 ? 1 : 2;
+					else state = state == 0 || state == 3 ? 0 : 3;
+				};
+				// required since dinput doesn't handle deadzone anymore, as looping axis requires that to be set to 0.
+				auto apply_deadzone = [](double val, double zone, double maxval) {
+					if (val <= zone) return 0;
+					double scaled = ((val - zone) / (maxval - zone)) * maxval;
+					return static_cast<int>(scaled);
+				};
+				{
+					int valtmp = dirIdx ? val : -val;
+					valtmp = apply_deadzone(valtmp, 250, 1000);
+					auto& state = is->inputAxisState[padIdx][axisIdx][dirIdx][AXISTYPE_STICK];
+					advance_state(state, valtmp > 0);
+					if (state == 1) anyTypePressed = true;
+				}
+				{
+					int valtmp = dirIdx ? val + 1000 : -val + 1000;
+					valtmp = apply_deadzone(valtmp, 250, 2000);
+					auto& state = is->inputAxisState[padIdx][axisIdx][dirIdx][AXISTYPE_TRIGGER];
+					advance_state(state, valtmp > 0);
+					if (state == 1) anyTypePressed = true;
+				}
+				{
+					int delta = val - valPrev;
+					if (delta > 1000 || delta < -1000) {
+						delta = val + valPrev;
+						valPrev > val ? delta += 1 : delta -= 1;
+					}
+					if (!dirIdx) delta = -delta;
+					auto& state = is->inputAxisState[padIdx][axisIdx][dirIdx][AXISTYPE_LOOPING];
+					auto& stateOpposite = is->inputAxisState[padIdx][axisIdx][dirIdx ? 0 : 1][AXISTYPE_LOOPING];
+					auto& decay = is->inputAxisLoopingDecay[padIdx][axisIdx][dirIdx];
+					if (delta > 0) {
+						decay = GetTimeWrap(); // decay is needed because at high polling rate the encoder is unlikely to update every poll to lack of resolution, unless spun ridiculously fast. This way the continuous motion can be detected.
+						advance_state(state, true);
+						advance_state(stateOpposite, false);
+					}
+					else {
+						if (state == 1) state = 2;
+						if (GetTimeWrap() - decay > 200.) advance_state(state, false);
+					}
+					if (state == 1) anyTypePressed = true;
+				}
+				if (anyTypePressed) is->joypad_presscount++;
+			}
 		}
 	}
+	is->inputAxisFirstPoll = false;
 	//presscount
 	if (keyError != -1) {
 		for (int i = 0; i < 0x100; i++) {
@@ -367,14 +471,19 @@ int InputToButton(inputStructure *is, CONFIG_INPUT *cfg_input, int player, int i
 	}
 
 	if (isReplay == 0) {
+		auto get_bound_state = [](const inputStructure& is, int boundIdx, AXISTYPE axisType) -> unsigned char {
+			if (boundIdx == 0) return 0;
+			if (boundIdx >= AXIS_RANGE_BEGIN && boundIdx < AXIS_RANGE_END)
+				return GetAxisState(is, boundIdx, axisType);
+			return is.inputID[boundIdx];
+		};
 		if (player == 0) {
 			for (int i = 0; i < 20; i++) {
 				unsigned char &button = is->p1_buttonInput[i];
 				button = 0;
 				for (int j = 0; j < 16; j++) {
-					if (button < is->inputID[cfg_input->buttonMap[i][j]] && cfg_input->buttonMap[i][j] != 0) {
-						button = is->inputID[cfg_input->buttonMap[i][j]];
-					}
+					int boundState = get_bound_state(*is, cfg_input->buttonMap[i][j], cfg_input->axisType[i][j]);
+					if (button < boundState) button = boundState;
 				}
 			}
 
@@ -382,9 +491,8 @@ int InputToButton(inputStructure *is, CONFIG_INPUT *cfg_input, int player, int i
 				unsigned char &button = is->p2_buttonInput[i];
 				button = 0;
 				for (int j = 0; j < 16; j++) {
-					if (button < is->inputID[cfg_input->buttonMap[i+20][j]] && cfg_input->buttonMap[i+20][j] != 0) {
-						button = is->inputID[cfg_input->buttonMap[i+20][j]];
-					}
+					int boundState = get_bound_state(*is, cfg_input->buttonMap[i + 20][j], cfg_input->axisType[i + 20][j]);
+					if (button < boundState) button = boundState;
 				}
 			}
 		}
@@ -393,18 +501,16 @@ int InputToButton(inputStructure *is, CONFIG_INPUT *cfg_input, int player, int i
 				unsigned char &button = is->p1_buttonInput[i];
 				button = 0;
 				for (int j = 0; j < 16; j++) {
-					if (button < is->inputID[cfg_input->buttonMap[i][j]] && cfg_input->buttonMap[i][j] != 0) {
-						button = is->inputID[cfg_input->buttonMap[i][j]];
-					}
+					int boundState = get_bound_state(*is, cfg_input->buttonMap[i][j], cfg_input->axisType[i][j]);
+					if (button < boundState) button = boundState;
 				}
 			}
 
 			for (int i = 0; i < 20; i++) {
 				unsigned char &button = is->p1_buttonInput[i];
 				for (int j = 0; j < 16; j++) {
-					if (button < is->inputID[cfg_input->buttonMap[i + 20][j]] && cfg_input->buttonMap[i + 20][j] != 0) {
-						button = is->inputID[cfg_input->buttonMap[i + 20][j]];
-					}
+					int boundState = get_bound_state(*is, cfg_input->buttonMap[i + 20][j], cfg_input->axisType[i + 20][j]);
+					if (button < boundState) button = boundState;
 				}
 			}
 		}
@@ -412,9 +518,8 @@ int InputToButton(inputStructure *is, CONFIG_INPUT *cfg_input, int player, int i
 			for (int i = 0; i < 20; i++) {
 				unsigned char &button = is->p2_buttonInput[i];
 				for (int j = 0; j < 16; j++) {
-					if (button < is->inputID[cfg_input->buttonMap[i][j]] && cfg_input->buttonMap[i][j] != 0) {
-						button = is->inputID[cfg_input->buttonMap[i][j]];
-					}
+					int boundState = get_bound_state(*is, cfg_input->buttonMap[i][j], cfg_input->axisType[i][j]);
+					if (button < boundState) button = boundState;
 				}
 			}
 
@@ -422,9 +527,8 @@ int InputToButton(inputStructure *is, CONFIG_INPUT *cfg_input, int player, int i
 				unsigned char &button = is->p2_buttonInput[i];
 				button = 0; //TOFIX : button = 0 should be up there
 				for (int j = 0; j < 16; j++) {
-					if (button < is->inputID[cfg_input->buttonMap[i + 20][j]] && cfg_input->buttonMap[i + 20][j] != 0) {
-						button = is->inputID[cfg_input->buttonMap[i + 20][j]];
-					}
+					int boundState = get_bound_state(*is, cfg_input->buttonMap[i + 20][j], cfg_input->axisType[i + 20][j]);
+					if (button < boundState) button = boundState;
 				}
 			}
 		}
@@ -483,8 +587,12 @@ static void InitMIDIInput(void){
 #endif // _WIN32
 }
 
-int InitInputStructure(inputStructure *is){
+int InitInputStructure(inputStructure *is){ // called on scene begin
 	std::ranges::fill_n(is->inputID, 0x600, 0);
+	is->inputAxis = {};
+	memset(is->inputAxisState, 0, sizeof(is->inputAxisState));
+	memset(is->inputAxisLoopingDecay, 0, sizeof(is->inputAxisLoopingDecay));
+	is->inputAxisFirstPoll = true;
 	is->mouse_buttonL = 0;
 	is->mouse_buttonR = 0;
 	is->mouse_buttonW = 0;
@@ -495,5 +603,6 @@ int InitInputStructure(inputStructure *is){
 	is->is_doubleclick = 0;
 	is->is_drag_now = -1;
 	InitMIDIInput();
+	SetJoypadDefaultDeadZoneAll(is->inputAxisDeadzoneAll); // required so dinput deadzone can be applied in keyconfig scene, to prevent registering resting axis jitter, detectable in looping mode.
 	return 1;
 }
