@@ -89,6 +89,36 @@ int ReadKeyConfig(game *game, const char *FilePath) {
 	ReadXml_Int_Multi("keyconfig", "key32", "id", (game->config).input.buttonMap[0x20], hXml);
 	ReadXml_Int_Multi("keyconfig", "key33", "id", (game->config).input.buttonMap[0x21], hXml);
 
+	ReadXml_Int_Multi("keyconfig", "key01", "axistype", reinterpret_cast<int*>((game->config).input.axisType[1]), hXml);
+	ReadXml_Int_Multi("keyconfig", "key02", "axistype", reinterpret_cast<int*>((game->config).input.axisType[2]), hXml);
+	ReadXml_Int_Multi("keyconfig", "key03", "axistype", reinterpret_cast<int*>((game->config).input.axisType[3]), hXml);
+	ReadXml_Int_Multi("keyconfig", "key04", "axistype", reinterpret_cast<int*>((game->config).input.axisType[4]), hXml);
+	ReadXml_Int_Multi("keyconfig", "key05", "axistype", reinterpret_cast<int*>((game->config).input.axisType[5]), hXml);
+	ReadXml_Int_Multi("keyconfig", "key06", "axistype", reinterpret_cast<int*>((game->config).input.axisType[6]), hXml);
+	ReadXml_Int_Multi("keyconfig", "key07", "axistype", reinterpret_cast<int*>((game->config).input.axisType[7]), hXml);
+	ReadXml_Int_Multi("keyconfig", "key08", "axistype", reinterpret_cast<int*>((game->config).input.axisType[8]), hXml);
+	ReadXml_Int_Multi("keyconfig", "key09", "axistype", reinterpret_cast<int*>((game->config).input.axisType[9]), hXml);
+	ReadXml_Int_Multi("keyconfig", "key10", "axistype", reinterpret_cast<int*>((game->config).input.axisType[10]), hXml);
+	ReadXml_Int_Multi("keyconfig", "key11", "axistype", reinterpret_cast<int*>((game->config).input.axisType[0xb]), hXml);
+	ReadXml_Int_Multi("keyconfig", "key12", "axistype", reinterpret_cast<int*>((game->config).input.axisType[0xc]), hXml);
+	ReadXml_Int_Multi("keyconfig", "key13", "axistype", reinterpret_cast<int*>((game->config).input.axisType[0xd]), hXml);
+	ReadXml_Int_Multi("keyconfig", "key21", "axistype", reinterpret_cast<int*>((game->config).input.axisType[0x15]), hXml);
+	ReadXml_Int_Multi("keyconfig", "key22", "axistype", reinterpret_cast<int*>((game->config).input.axisType[0x16]), hXml);
+	ReadXml_Int_Multi("keyconfig", "key23", "axistype", reinterpret_cast<int*>((game->config).input.axisType[0x17]), hXml);
+	ReadXml_Int_Multi("keyconfig", "key24", "axistype", reinterpret_cast<int*>((game->config).input.axisType[0x18]), hXml);
+	ReadXml_Int_Multi("keyconfig", "key25", "axistype", reinterpret_cast<int*>((game->config).input.axisType[0x19]), hXml);
+	ReadXml_Int_Multi("keyconfig", "key26", "axistype", reinterpret_cast<int*>((game->config).input.axisType[0x1a]), hXml);
+	ReadXml_Int_Multi("keyconfig", "key27", "axistype", reinterpret_cast<int*>((game->config).input.axisType[0x1b]), hXml);
+	ReadXml_Int_Multi("keyconfig", "key30", "axistype", reinterpret_cast<int*>((game->config).input.axisType[0x1e]), hXml);
+	ReadXml_Int_Multi("keyconfig", "key31", "axistype", reinterpret_cast<int*>((game->config).input.axisType[0x1f]), hXml);
+	ReadXml_Int_Multi("keyconfig", "key32", "axistype", reinterpret_cast<int*>((game->config).input.axisType[0x20]), hXml);
+	ReadXml_Int_Multi("keyconfig", "key33", "axistype", reinterpret_cast<int*>((game->config).input.axisType[0x21]), hXml);
+	for (auto& axisType : game->config.input.axisType) {
+		for (auto& type : axisType) {
+			if (type < AXISTYPE_STICK || type > AXISTYPE_LOOPING) type = AXISTYPE_STICK;
+		}
+	}
+
 	delete(hXml);
 
 	return 1;
@@ -610,6 +640,8 @@ void WriteXML_KeyConfig(FILE *hFile, CONFIG_INPUT cfg_in, const char *tag, int n
 	for (int i = 0; i < 16; i++) {
 		if (cfg_in.buttonMap[num][i]) {
 			sprintf(buf, "\t\t<%s>%d</%s>\n", "id", cfg_in.buttonMap[num][i], "id");
+			fputs(buf, hFile);
+			sprintf(buf, "\t\t<%s>%d</%s>\n", "axistype", cfg_in.axisType[num][i], "axistype"); // TODO: move to olr2 config file
 			fputs(buf, hFile);
 		}
 	}
