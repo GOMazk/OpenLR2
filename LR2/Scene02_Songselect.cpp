@@ -1673,8 +1673,51 @@ static void ThreadProc_RankingAutoUpdate(game* g) {
 	SetObjectStrings_SongSelect(g);
 }
 
-static void ThreadProc_LoadPreview(game *g) {
+static void LoadPreviewFile(game *g, const std::filesystem::path &previewpath) {
+	g->gameplay.flag_closingPhase = 0;
+	StopSound(&g->audio, &g->sSelect.previewSound);
+
+	const auto prevFile = g->sSelect.previewSound.filename.body;
+	if (!g->sSelect.previewSound.load || prevFile == nullptr || previewpath.string() != prevFile) {
+		ReleaseSound(&g->audio, &g->sSelect.previewSound);
+		if (g->gameplay.flag_closingPhase == 0 && g->procSelecter == 2 && g->gameplay.previewStatus == 1) {
+			LoadSound(&g->audio, &g->sSelect.previewSound, previewpath.string().c_str(), true, false, true);
+		}
+	}
+
+	if (g->gameplay.flag_closingPhase == 0 && g->procSelecter == 2 && g->gameplay.previewStatus == 1) {
+		SetFadePreview(&g->audio, 200, 1);
+		PlaySound(&g->audio, &g->sSelect.previewSound, g->audio.chnKey, -1);
+		g->gameplay.previewStatus = 2;
+	} else {
+		g->gameplay.previewStatus = 0;
+		g->gameplay.isPreviewLoad = 0;
+	}
+}
+
+static void ThreadProc_LoadPreview(game *g, sqlite3 *sql) {
 	BMSMETA meta;
+
+	if (!g->config.select.ignorePreviewFiles) {
+		SONGDATA &song = g->sSelect.bmsList[g->sSelect.cur_song];
+		std::filesystem::path folderpath = song.filepath.getDirectory().body;
+
+		if (!song.previewfile) {
+			auto foundFile = openlr2::tryFindPreviewFile(folderpath);
+			if (foundFile) {
+				song.previewfile = foundFile.value();
+				openlr2::updateSongPreview(song.hash.body, song.previewfile.value(), sql);
+			}
+		}
+
+		if (song.previewfile) {
+			const auto previewpath = folderpath / song.previewfile.value();
+			if (std::filesystem::exists(previewpath)) {
+				LoadPreviewFile(g, previewpath.string());
+				return;
+			}
+		}
+	}
 
 	if (!IsFileExist(g->gameplay.previewBMSfilepath)) {
 		g->gameplay.isPreviewLoad = 0;
@@ -2708,7 +2751,7 @@ int ProcI_Select(game *g, sqlite3 *sql) {
 	}
 
 	if(g->config.select.isPreview){
-		if (GetTimeLapse(11, &g->timer1) >= 500.0 && g->gameplay.previewStatus == 0 &&
+		if (GetTimeLapse(11, &g->timer1) >= g->config.select.previewDelay && g->gameplay.previewStatus == 0 &&
 				g->sSelect.bmsList[g->sSelect.cur_song].keymode >= 5 &&
 				g->sSelect.bmsList[g->sSelect.cur_song].courseStageCount == 0 &&
 				(!g->gameplay.hThreadPreview.valid() ||
@@ -2719,7 +2762,7 @@ int ProcI_Select(game *g, sqlite3 *sql) {
 			g->gameplay.previewStatus = 1;
 			g->gameplay.previewBMShash = g->sSelect.bmsList[g->sSelect.cur_song].hash;
 			g->gameplay.previewBMSfilepath = g->sSelect.bmsList[g->sSelect.cur_song].filepath;
-			g->gameplay.hThreadPreview = std::async(std::launch::async, ThreadProc_LoadPreview, g);
+			g->gameplay.hThreadPreview = std::async(std::launch::async, ThreadProc_LoadPreview, g, sql);
 		}
 		else if (g->gameplay.previewStatus) {
 			if (g->gameplay.previewBMShash.isDiff(g->sSelect.bmsList[g->sSelect.cur_song].hash)) {
@@ -2729,11 +2772,15 @@ int ProcI_Select(game *g, sqlite3 *sql) {
 				for (int i = 0; i < SLOTS; i++) {
 					StopSound(&g->audio, &g->gameplay.keysound[i]);
 				}
+				StopSound(&g->audio, &g->sSelect.previewSound);
 				g->gameplay.previewStatus = 0;
 				SetFadePreview(&g->audio, 1000, 0);
 				g->gameplay.previewBMShash = g->sSelect.bmsList[g->sSelect.cur_song].hash;
 				ErrorLogFmtAdd("プレビュー終了\n");
 			}
+		}
+		if (g->procSelecter != 2) { // stop playing preview on scene transition
+			StopSound(&g->audio, &g->sSelect.previewSound);
 		}
 	}
 	g->sSelect.is_mouseOnTextInput = 0;

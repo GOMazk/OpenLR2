@@ -61,4 +61,8 @@ namespace openlr2 {
 
 int adjustFilterKey(CONFIG_SELECT const& cfg_select, int key);
 
+std::optional<std::string> tryFindPreviewFile(const std::filesystem::path& folderpath);
+
+void updateSongPreview(const std::string& hash, const std::string& previewpath, sqlite3* sql);
+
 } // namespace openlr2
