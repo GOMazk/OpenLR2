@@ -499,7 +499,7 @@ CSTR& CSTR::operator=(const char *str) {
 	return assign(str, 0);
 }
 
-CSTR CSTR::getDirectory() {
+CSTR CSTR::getDirectory() const {
 	CSTR out;
 	out.assign(std::filesystem::path{this->body}.parent_path().string().c_str());
 	*out.atPos(out.length() + 1) = '\0';
