@@ -1,8 +1,8 @@
-﻿// -------------------------------------------------------------------------------
+// -------------------------------------------------------------------------------
 // 
 // 		ＤＸライブラリ		WinAPIプログラムヘッダファイル
 // 
-// 				Ver 3.24f
+// 				Ver 3.25a
 // 
 // -------------------------------------------------------------------------------
 
@@ -710,8 +710,10 @@ struct WIN32APIFUNCTION
 	BOOL					( WINAPI *SystemParametersInfoAFunc )( UINT uiAction, UINT uiParam, PVOID pvParam, UINT fWinIni ) ;
 	BOOL					( WINAPI *SystemParametersInfoWFunc )( UINT uiAction, UINT uiParam, PVOID pvParam, UINT fWinIni ) ;
 	BOOL					( WINAPI *AttachThreadInputFunc )( DWORD idAttach, DWORD idAttachTo, BOOL fAttach ) ;
+#ifndef DX_NON_STOPTASKSWITCH
 	HHOOK					( WINAPI *SetWindowsHookExWFunc )( int idHook, HOOKPROC lpfn, HINSTANCE hmod, DWORD dwThreadId ) ;
 	BOOL					( WINAPI *UnhookWindowsHookExFunc )( HHOOK hhk ) ;
+#endif // DX_NON_STOPTASKSWITCH
 	BOOL					( WINAPI *GetKeyboardStateFunc )( PBYTE lpKeyState ) ;
 	BOOL					( WINAPI *KillTimerFunc )( HWND hWnd, UINT_PTR uIDEvent ) ;
 	BOOL					( WINAPI *EnumDisplaySettingsAFunc )( LPCSTR  lpszDeviceName, DWORD iModeNum, D_DEVMODEA* lpDevMode ) ;

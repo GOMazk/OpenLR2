@@ -1,8 +1,8 @@
-﻿// -------------------------------------------------------------------------------
+// -------------------------------------------------------------------------------
 // 
 // 		ＤＸライブラリ		ソフトウェアで扱う画像プログラム
 // 
-// 				Ver 3.24f
+// 				Ver 3.25a
 // 
 // -------------------------------------------------------------------------------
 
@@ -2015,7 +2015,7 @@ extern	void	NS_DrawPixelSoftImage_Unsafe_ARGB8( int SIHandle, int x, int y, int 
 	*((DWORD *)((BYTE *)BaseImage->GraphData + BaseImage->Pitch * y + x * 4)) = ( DWORD )( ( a << 24 ) | ( r << 16 ) | ( g << 8 ) | b ) ;
 }
 
-// ソフトウエアで扱うイメージの指定座標にドットを描画する(パレット画像用、有効値は０〜２５５)
+// ソフトウエアで扱うイメージの指定座標にドットを描画する(パレット画像用、有効値は０～２５５)
 extern	int		NS_DrawPixelPalCodeSoftImage( int SIHandle, int x, int y, int palNo )
 {
 	SOFTIMAGE *SoftImg ;
@@ -2027,7 +2027,7 @@ extern	int		NS_DrawPixelPalCodeSoftImage( int SIHandle, int x, int y, int palNo 
 	return NS_SetPixelPalCodeBaseImage( &SoftImg->BaseImage,  x,  y,  palNo ) ;
 }
 
-// ソフトウエアで扱うイメージの指定座標の色コードを取得する(パレット画像用、戻り値は０〜２５５)
+// ソフトウエアで扱うイメージの指定座標の色コードを取得する(パレット画像用、戻り値は０～２５５)
 extern	int		NS_GetPixelPalCodeSoftImage( int SIHandle, int x, int y )
 {
 	SOFTIMAGE *SoftImg ;
@@ -2112,7 +2112,7 @@ extern	void		NS_GetPixelSoftImage_Unsafe_ARGB8(  int SIHandle, int x, int y, int
 	*b = ( int )(   Color         & 0xff ) ;
 }
 
-// ソフトウエアで扱うイメージの指定座標に線を描画する(各色要素は０〜２５５)
+// ソフトウエアで扱うイメージの指定座標に線を描画する(各色要素は０～２５５)
 extern int NS_DrawLineSoftImage(  int SIHandle, int x1, int y1, int x2, int y2, int r, int g, int b, int a )
 {
 	SOFTIMAGE *SoftImg ;
@@ -2124,7 +2124,7 @@ extern int NS_DrawLineSoftImage(  int SIHandle, int x1, int y1, int x2, int y2, 
 	return NS_DrawLineBaseImage( &SoftImg->BaseImage, x1, y1, x2, y2, r, g, b, a ) ;
 }
 
-// ソフトウエアイメージハンドルの指定座標に円を描画する(各色要素は０〜２５５)
+// ソフトウエアイメージハンドルの指定座標に円を描画する(各色要素は０～２５５)
 extern int NS_DrawCircleSoftImage( int SIHandle, int x, int y, int radius, int r, int g, int b, int a, int FillFlag )
 {
 	SOFTIMAGE *SoftImg ;
@@ -2164,7 +2164,7 @@ extern	int		NS_BltSoftImageWithTransColor( int SrcX, int SrcY, int SrcSizeX, int
 	return NS_BltBaseImageWithTransColor( SrcX, SrcY, SrcSizeX, SrcSizeY, DestX, DestY, &SrcSoftImg->BaseImage, &DestSoftImg->BaseImage, Tr, Tg, Tb, Ta ) ;
 }
 
-// ソフトウエアで扱うイメージをアルファ値のブレンドを考慮した上で転送する( Opacity は透明度 : 0( 完全透明 ) 〜 255( 完全不透明 ) )( 出力先が ARGB8 形式以外の場合はエラーになります )
+// ソフトウエアで扱うイメージをアルファ値のブレンドを考慮した上で転送する( Opacity は透明度 : 0( 完全透明 ) ～ 255( 完全不透明 ) )( 出力先が ARGB8 形式以外の場合はエラーになります )
 extern	int		NS_BltSoftImageWithAlphaBlend( int SrcX, int SrcY, int SrcSizeX, int SrcSizeY, int SrcSIHandle, int DestX, int DestY, int DestSIHandle, int Opacity )
 {
 	SOFTIMAGE *SrcSoftImg, *DestSoftImg ;
@@ -2526,7 +2526,7 @@ extern	int		NS_SaveSoftImageToPng( const TCHAR *FilePath, int SIHandle, int Comp
 	return NS_SaveBaseImageToPng( FilePath, &SoftImg->BaseImage, CompressionLevel ) ;
 }
 
-// ソフトウエアイメージハンドルをＰＮＧ画像ファイルとして保存する CompressionLevel = 圧縮率、値が大きいほど高圧縮率高負荷、０は無圧縮,0〜9
+// ソフトウエアイメージハンドルをＰＮＧ画像ファイルとして保存する CompressionLevel = 圧縮率、値が大きいほど高圧縮率高負荷、０は無圧縮,0～9
 extern int NS_SaveSoftImageToPngWithStrLen( const TCHAR *FilePath, size_t FilePathLength, int SIHandle, int CompressionLevel )
 {
 	int Result ;
@@ -2568,7 +2568,7 @@ extern	int		NS_SaveSoftImageToJpeg( const TCHAR *FilePath, int SIHandle, int Qua
 	return NS_SaveBaseImageToJpeg( FilePath, &SoftImg->BaseImage, Quality, Sample2x1 ) ;
 }
 
-// ソフトウエアイメージハンドルをＪＰＥＧ画像ファイルとして保存する Quality = 画質、値が大きいほど低圧縮高画質,0〜100 
+// ソフトウエアイメージハンドルをＪＰＥＧ画像ファイルとして保存する Quality = 画質、値が大きいほど低圧縮高画質,0～100 
 extern int NS_SaveSoftImageToJpegWithStrLen( const TCHAR *FilePath, size_t FilePathLength, int SIHandle, int Quality, int Sample2x1 )
 {
 	int Result ;

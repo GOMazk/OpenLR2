@@ -1,8 +1,8 @@
-﻿//-----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 // 
 // 		ＤＸライブラリ		GraphFilter系プログラム( Direct3D11 )
 // 
-//  	Ver 3.24f
+//  	Ver 3.25a
 // 
 //-----------------------------------------------------------------------------
 
@@ -1089,6 +1089,54 @@ extern int	GraphFilter_D3D11_Replacement_PF( GRAPHFILTER_INFO *Info, COLOR_U8 Ta
 	Graphics_D3D11_ConstantBuffer_Update( GD3D11.Device.Shader.Constant.ConstBuffer_PS_Filter ) ;
 
 	Direct3D11_FilterStretchBlt( GraphFilterShaderHandle.ReplacementPS[ IsPMA ], Info, FALSE ) ;
+
+	// 正常終了
+	return 0 ;
+}
+
+extern int	GraphFilter_D3D11_BilateralBlur_PF( GRAPHFILTER_INFO *Info, int IsPMA )
+{
+	static const char *PsoFileName[ 2 ] =
+	{
+		"BilateralBlur.pso",
+		"BilateralBlur_PMA.pso",
+	} ;
+	DX_D3D11_SHADER_FLOAT4 *ParamF4 ;
+	int TexSizeX, TexSizeY ;
+
+	if( GAPIWin.D3D11DeviceObject == NULL )
+	{
+		return -1 ;
+	}
+
+	// 使用するシェーダーのセットアップ
+	if( GraphFilterShaderHandle.BilateralBlurPS[ IsPMA ] < 0 )
+	{
+		GraphFilterShaderHandle.BilateralBlurPS[ IsPMA ] = Direct3D11_MemLoadShaderCode( PsoFileName[ IsPMA ], DX_SHADERTYPE_PIXEL ) ;
+		if( GraphFilterShaderHandle.BilateralBlurPS[ IsPMA ] < 0 )
+		{
+			char PathUTF16LE[ 128 ] ;
+
+			ConvString( PsoFileName[ IsPMA ], -1, DX_CHARCODEFORMAT_ASCII, ( char * )PathUTF16LE, sizeof( PathUTF16LE ), DX_CHARCODEFORMAT_UTF16LE ) ;
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\xd5\x30\xa3\x30\xeb\x30\xbf\x30\xfc\x30\x28\x75\xb7\x30\xa7\x30\xfc\x30\xc0\x30\xfc\x30\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x20\x00\x25\x00\x73\x00\x00"/*@ L"フィルター用シェーダーの作成に失敗しました %s" @*/, PathUTF16LE )) ;
+			return -1 ;
+		}
+		NS_SetDeleteHandleFlag( GraphFilterShaderHandle.BilateralBlurPS[ IsPMA ], &GraphFilterShaderHandle.BilateralBlurPS[ IsPMA ] ) ;
+	}
+
+	ParamF4 = ( DX_D3D11_SHADER_FLOAT4 * )GD3D11.Device.Shader.Constant.ConstBuffer_PS_Filter->SysmemBuffer ;
+
+	NS_GetGraphTextureSize( Info->SrcGrHandle, &TexSizeX, &TexSizeY ) ;
+
+	ParamF4[ 0 ][ 0 ] = 1.0f / TexSizeX ;
+	ParamF4[ 0 ][ 1 ] = 1.0f / TexSizeY ;
+	ParamF4[ 0 ][ 2 ] = 0.0f ;
+	ParamF4[ 0 ][ 3 ] = 0.0f ;
+
+	GD3D11.Device.Shader.Constant.ConstBuffer_PS_Filter->ChangeFlag = TRUE ;
+	Graphics_D3D11_ConstantBuffer_Update( GD3D11.Device.Shader.Constant.ConstBuffer_PS_Filter ) ;
+
+	Direct3D11_FilterStretchBlt( GraphFilterShaderHandle.BilateralBlurPS[ IsPMA ], Info, FALSE ) ;
 
 	// 正常終了
 	return 0 ;

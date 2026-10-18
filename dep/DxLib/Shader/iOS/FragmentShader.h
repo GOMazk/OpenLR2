@@ -1,4 +1,4 @@
-﻿
+
 void AlphaTest( lowp float inAlpha )
 {
 #ifdef ALPHATEST_NEVER			// FALSE
