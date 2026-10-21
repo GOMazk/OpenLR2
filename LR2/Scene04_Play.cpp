@@ -1158,11 +1158,6 @@ static void QuickRestart(game& game, bool newRandom) {
 	game.gameplay.flag_retry = newRandom ? 0 : 1;
 	game.gameplay.randomseed = newRandom ? 0 : game.gameplay.randomseed;
 
-	if ((game.gameplay.courseType == 0 || game.gameplay.courseType == 2) && game.gameplay.courseStageNow != 0) {
-		game.gameplay.courseStageNow = 0;
-		game.gameplay.flag_retry = 0;
-	}
-
 	if (game.gameplay.flag_retry == 0) ReleaseBGA(&game); // ugly place for this
 	StopAllKeysound(&game);
 }
@@ -1207,6 +1202,7 @@ int ProcI_Play(game *g) {
 
 	auto proc_quickrestart = [](game& game) {
 		if (game.gameplay.replay.status == 2 || game.gameplay.player[PLAYER_1].totalnotes <= game.gameplay.player[PLAYER_1].note_current || game.config.play.m_isLunaris) return;
+		if ((game.gameplay.courseType == 0 || game.gameplay.courseType == 2) && game.gameplay.courseStageNow != 0) return;
 		if (game.KeyInput.p1_buttonInput[12] == 1 || game.KeyInput.p2_buttonInput[12] == 1) return QuickRestart(game, true);
 		if (game.KeyInput.p1_buttonInput[13] == 1 || game.KeyInput.p2_buttonInput[13] == 1) return QuickRestart(game, false);
 	};
