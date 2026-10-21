@@ -1163,7 +1163,7 @@ int ReadOpenLr2Config(game* g, const char* filepath) {
 		g->config.system.screenmode = 0; // out-of-range
 
 	ReadXml_PositiveIntAsBool("config", "play", "gaugeautoshift", false, &g->config.play.m_gas, hXml);
-	ReadXml_PositiveIntAsBool("config", "play", "newrandomrestart", true, &g->config.play.newRandomRestart, hXml);
+	ReadXml_PositiveIntAsBool("config", "play", "newrandomrestart", false, &g->config.play.newRandomRestart, hXml);
 	ReadXml_Int("config", "play", "lifttype", 0, &g->config.play.lift[PLAYER_1], hXml);
 	if (g->config.play.lift[PLAYER_1] != 0) g->config.play.lift[PLAYER_1] = 1;
 	g->config.play.lift[PLAYER_2] = g->config.play.lift[PLAYER_1];
