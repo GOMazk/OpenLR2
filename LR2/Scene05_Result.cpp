@@ -213,6 +213,11 @@ static void QuickRestart(game& game, bool newRandom) {
 	game.gameplay.flag_retry = newRandom ? 0 : 1;
 	game.gameplay.randomseed = newRandom ? 0 : game.gameplay.randomseed;
 
+	if (game.procSelecter == 13 && (game.gameplay.courseType == 0 || game.gameplay.courseType == 2)) { // restart course
+		game.gameplay.courseStageNow = 0;
+		game.gameplay.flag_retry = 0;
+	}
+
 	if (game.gameplay.flag_retry == 0) ReleaseBGA(&game); // ugly place for this
 	StopAllKeysound(&game);
 }
@@ -311,7 +316,7 @@ int ProcI_Result(game *g) {
 				&& (g->KeyInput.p1_buttonInput[2] == 2 || g->KeyInput.p1_buttonInput[4] == 2 || g->KeyInput.p1_buttonInput[6] == 2 ||
 					g->KeyInput.p2_buttonInput[2] == 2 || g->KeyInput.p2_buttonInput[4] == 2 || g->KeyInput.p2_buttonInput[6] == 2) 
 				&& g->gameplay.replay.status != 2 && !g->config.play.m_isLunaris
-				&& g->gameplay.courseType != 0 && g->gameplay.courseType != 2) {
+				&& (g->procSelecter == 13 || (g->gameplay.courseType != 0 && g->gameplay.courseType != 2))) {
 
 				const bool newRandom = g->config.play.newRandomRestart && (g->KeyInput.p1_buttonInput[2] == 2 || g->KeyInput.p2_buttonInput[2] == 2);
 				QuickRestart(*g, newRandom);
