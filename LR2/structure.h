@@ -849,12 +849,15 @@ struct inputStructure {
 	std::array<axis, 4> inputAxis{};
 	unsigned char inputAxisState[4][6][2][3]{}; // 4 joypads * 6 axes * 2 directions * 3 types = 144 bytes
 	double inputAxisLoopingDecay[4][6][2]{};
+	int inputAxisDelta[4][6]{};
 	double inputAxisDeadzoneAll = 0.;
 	bool inputAxisFirstPoll = true;
 	int inputTime[2048]{}; /* 0:keybd 0x100:joypad 0x200:MIDI */
 	unsigned char p1_buttonInput[20]{}; /* byte100 */
 	unsigned char p2_buttonInput[20]{};
 	unsigned char otherbuttons[60]{};
+	int p1_scratchDelta{};
+	int p2_scratchDelta{};
 	char mouse_buttonL{}; /* 0:not pressed 1:just pressed 2:pressed 3:released */
 	char mouse_buttonR{};
 	char mouse_buttonW{};
