@@ -354,6 +354,8 @@ static void ProcessInput(inputStructure* is, int interval) {
 						delta = val + valPrev;
 						valPrev > val ? delta += 1 : delta -= 1;
 					}
+					auto& deltaAccum = is->inputAxisDelta[padIdx][axisIdx];
+					deltaAccum += delta;
 					if (!dirIdx) delta = -delta;
 					auto& state = is->inputAxisState[padIdx][axisIdx][dirIdx][AXISTYPE_LOOPING];
 					auto& stateOpposite = is->inputAxisState[padIdx][axisIdx][dirIdx ? 0 : 1][AXISTYPE_LOOPING];
@@ -477,6 +479,40 @@ int InputToButton(inputStructure *is, CONFIG_INPUT *cfg_input, int player, int i
 				return GetAxisState(is, boundIdx, axisType);
 			return is.inputID[boundIdx];
 		};
+		auto loopingDeltaStep = [](inputStructure& input) {
+			std::array<std::array<int, 6>, 4> converted{};
+			for (int padIdx = 0; padIdx < 4; padIdx++) {
+				for (int axisIdx = 0; axisIdx < 6; axisIdx++) {
+					auto& delta = input.inputAxisDelta[padIdx][axisIdx];
+					auto& delta_as_step = converted[padIdx][axisIdx];
+					constexpr int step = 60;
+					delta_as_step = delta / step;
+					delta -= delta_as_step * step;
+				}
+			}
+			return converted;
+		}(*is);
+		auto calc_scratch_delta = [&cfg_input, &is, &loopingDeltaStep](int& delta, int side) {
+			for (int j = 0; j < 16; j++) {
+				for (int dir = 0; dir < 2; dir++) {
+					int id = cfg_input->buttonMap[10 + 20 * side + dir][j];
+					if (id < AXIS_RANGE_BEGIN || id >= AXIS_RANGE_END) continue;
+					auto type = cfg_input->axisType[10 + 20 * side + dir][j];
+					if (type != AXISTYPE_LOOPING) continue;
+					size_t axis_i = id - AXIS_RANGE_BEGIN;
+					size_t padIdx = axis_i / 12;
+					size_t axisIdx = axis_i % 12;
+					size_t dirIdx = axisIdx % 2;
+					axisIdx = axisIdx / 2;
+					auto axisState = is->inputAxisState[padIdx][axisIdx][dirIdx][AXISTYPE_LOOPING];
+					if (axisState == 0 || axisState == 3) continue;
+					auto axisDelta = loopingDeltaStep[padIdx][axisIdx];
+					if (dir) delta += std::abs(axisDelta);
+					else delta -= std::abs(axisDelta);
+				}
+			}
+		};
+
 		if (player == 0) {
 			for (int i = 0; i < 20; i++) {
 				unsigned char &button = is->p1_buttonInput[i];
@@ -495,6 +531,13 @@ int InputToButton(inputStructure *is, CONFIG_INPUT *cfg_input, int player, int i
 					if (button < boundState) button = boundState;
 				}
 			}
+
+			auto& scratchDeltaP1 = is->p1_scratchDelta;
+			auto& scratchDeltaP2 = is->p2_scratchDelta;
+			scratchDeltaP1 = 0;
+			scratchDeltaP2 = 0;
+			calc_scratch_delta(scratchDeltaP1, 0);
+			calc_scratch_delta(scratchDeltaP2, 1);
 		}
 		else if (player == 1) {
 			for (int i = 0; i < 20; i++) {
@@ -513,6 +556,11 @@ int InputToButton(inputStructure *is, CONFIG_INPUT *cfg_input, int player, int i
 					if (button < boundState) button = boundState;
 				}
 			}
+
+			auto& scratchDeltaP1 = is->p1_scratchDelta;
+			scratchDeltaP1 = 0;
+			calc_scratch_delta(scratchDeltaP1, 0);
+			calc_scratch_delta(scratchDeltaP1, 1);
 		}
 		else if (player == 2) { //TOFIX: never called
 			for (int i = 0; i < 20; i++) {
@@ -531,6 +579,11 @@ int InputToButton(inputStructure *is, CONFIG_INPUT *cfg_input, int player, int i
 					if (button < boundState) button = boundState;
 				}
 			}
+
+			auto& scratchDeltaP2 = is->p2_scratchDelta;
+			scratchDeltaP2 = 0;
+			calc_scratch_delta(scratchDeltaP2, 0);
+			calc_scratch_delta(scratchDeltaP2, 1);
 		}
 	}
 	else {
