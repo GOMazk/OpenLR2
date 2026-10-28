@@ -1,8 +1,8 @@
-﻿// -------------------------------------------------------------------------------
+// -------------------------------------------------------------------------------
 // 
 // 		ＤＸライブラリ		サウンドプログラムヘッダファイル
 // 
-// 				Ver 3.24f
+// 				Ver 3.25a
 // 
 // -------------------------------------------------------------------------------
 
@@ -36,6 +36,7 @@
 		#include "iOS/DxSoundiOS.h"
     #endif // TARGET_OS_IPHONE
 #endif // __APPLE__
+
 
 
 
@@ -276,8 +277,8 @@ struct SOUND
 	int							PresetReverbParam ;										// ３Ｄサウンド時に設定するプリセットリバーブパラメータ番号( DX_REVERB_PRESET_DEFAULT 等 )
 	SOUND3D_REVERB_PARAM		ReverbParam ;											// ３Ｄサウンド時に設定するリバーブパラメータ( PresetReverbParam が -1 の際に使用 )
 
-	int							BaseVolume[ SOUNDBUFFER_MAX_CHANNEL_NUM ] ;				// 基本ボリューム( 100分の1デシベル単位 0 〜 10000 )( -1:デフォルト )
-	int							BaseVolume8bit[ SOUNDBUFFER_MAX_CHANNEL_NUM ] ;			// 基本ボリューム( 0 〜 255 )( -1:デフォルト )
+	int							BaseVolume[ SOUNDBUFFER_MAX_CHANNEL_NUM ] ;				// 基本ボリューム( 100分の1デシベル単位 0 ～ 10000 )( -1:デフォルト )
+	int							BaseVolume8bit[ SOUNDBUFFER_MAX_CHANNEL_NUM ] ;			// 基本ボリューム( 0 ～ 255 )( -1:デフォルト )
 	int							BasePan ;												// 基本パン( -1:デフォルト )
 	int							BaseFrequency ;											// 基本再生周波数( -1:デフォルト )
 	VECTOR						Base3DPosition ;										// 基本再生位置

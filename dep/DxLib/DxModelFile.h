@@ -1,8 +1,8 @@
-﻿// -------------------------------------------------------------------------------
+// -------------------------------------------------------------------------------
 // 
 // 		ＤＸライブラリ		モデルデータファイル
 // 
-// 				Ver 3.24f
+// 				Ver 3.25a
 // 
 // -------------------------------------------------------------------------------
 
@@ -78,8 +78,8 @@ namespace DxLib
 #define MV1_ANIM_KEYSET_FLAG_TIME_UNIT_UN_W					(0x0040)				// このフラグが立っていたらタイム間隔値はWORD値
 #define MV1_ANIM_KEYSET_FLAG_TIME_BIT16						(0x0080)				// このフラグが立っていたらタイム配列の値が１６ビット値
 #define MV1_ANIM_KEYSET_FLAG_KEY_BIT16						(0x0100)				// このフラグが立っていたらキーは１６ビット値
-#define MV1_ANIM_KEYSET_FLAG_KEY_MP_PP						(0x0200)				// このフラグが立っていたらキーは -PI 〜 PI を 0〜65535 で表したもの
-#define MV1_ANIM_KEYSET_FLAG_KEY_Z_TP						(0x0400)				// このフラグが立っていたらキーは 0.0f 〜 2 * PI を 0〜65535 で表したもの
+#define MV1_ANIM_KEYSET_FLAG_KEY_MP_PP						(0x0200)				// このフラグが立っていたらキーは -PI ～ PI を 0～65535 で表したもの
+#define MV1_ANIM_KEYSET_FLAG_KEY_Z_TP						(0x0400)				// このフラグが立っていたらキーは 0.0f ～ 2 * PI を 0～65535 で表したもの
 
 // 構造体定義 --------------------------------
 
@@ -104,8 +104,8 @@ struct MV1_ROTATE_F1
 // 16bitデータタイプ用補助情報構造体
 struct MV1_ANIM_KEY_16BIT_F1
 {
-	BYTE									Min ;								// 最小値( bit7:０かどうか( 0:0以外 1:0 )  bit6:符号(0:+ 1:-)  bit5:乗数方向(0:+ 1:-) bit4〜0:乗数(最大10の15乗) ) 
-	BYTE									Unit ;								// 16bit値１辺りの値( bit7:乗数方向(0:+ 1:-) bit6〜4:乗数(最大10の7乗) bit3〜0:乗算される値( 0〜15 ) )
+	BYTE									Min ;								// 最小値( bit7:０かどうか( 0:0以外 1:0 )  bit6:符号(0:+ 1:-)  bit5:乗数方向(0:+ 1:-) bit4～0:乗数(最大10の15乗) ) 
+	BYTE									Unit ;								// 16bit値１辺りの値( bit7:乗数方向(0:+ 1:-) bit6～4:乗数(最大10の7乗) bit3～0:乗算される値( 0～15 ) )
 } ;
 
 // アニメーションキー(４×４行列の４列目が(0,0,0,1)固定の行列タイプ)データ構造体
@@ -264,11 +264,11 @@ struct MV1_MATERIAL_TOON_F1
 {
 	int										Type ;								// マテリアルタイプ( DX_MATERIAL_TYPE_NORMAL など )
 
-	int										DiffuseGradTexture ;				// ( トゥーンレンダリングでのみ使用 )ディフューズカラーグラデーションテクスチャインデックス、当たっているライトのディフューズカラーでＵ値が決まるもの、無効の場合は−１( MV1_MODEL_BASE.Textue 配列のインデックス )
-	int										SpecularGradTexture ;				// ( トゥーンレンダリングでのみ使用 )スペキュラカラーグラデーションテクスチャインデックス、当たっているライトのスペキュラカラーでＵ値が決まるもの、無効の場合は−１( MV1_MODEL_BASE.Textue 配列のインデックス )
+	int										DiffuseGradTexture ;				// ( トゥーンレンダリングでのみ使用 )ディフューズカラーグラデーションテクスチャインデックス、当たっているライトのディフューズカラーでＵ値が決まるもの、無効の場合は－１( MV1_MODEL_BASE.Textue 配列のインデックス )
+	int										SpecularGradTexture ;				// ( トゥーンレンダリングでのみ使用 )スペキュラカラーグラデーションテクスチャインデックス、当たっているライトのスペキュラカラーでＵ値が決まるもの、無効の場合は－１( MV1_MODEL_BASE.Textue 配列のインデックス )
 	int										DiffuseGradBlendType ;				// ( トゥーンレンダリングでのみ使用 )ディフューズグラデーションテクスチャのブレンドタイプ( DX_MATERIAL_BLENDTYPE_TRANSLUCENT など )
 	int										SpecularGradBlendType ;				// ( トゥーンレンダリングでのみ使用 )スペキュラグラデーションテクスチャのブレンドタイプ( DX_MATERIAL_BLENDTYPE_ADDITIVE など )
-	float									OutLineWidth ;						// ( トゥーンレンダリングでのみ使用 )輪郭線の幅( 0.0f 〜 1.0f )
+	float									OutLineWidth ;						// ( トゥーンレンダリングでのみ使用 )輪郭線の幅( 0.0f ～ 1.0f )
 	COLOR_F									OutLineColor ;						// ( トゥーンレンダリングでのみ使用 )輪郭線の色
 	float									OutLineDotWidth ;					// ( トゥーンレンダリングでのみ使用 )輪郭線のドット単位での幅
 	BYTE									EnableSphereMap ;					// ( トゥーンレンダリングでのみ使用 )スフィアマップの情報が有効かどうか( 1:有効  0:無効 )
@@ -276,6 +276,19 @@ struct MV1_MATERIAL_TOON_F1
 	short									SphereMapTexture ;					// ( トゥーンレンダリングでのみ使用 )スフィアマップテクスチャインデックス
 
 	DWORD									Padding[ 2 ] ;
+} ;
+
+// マテリアル追加情報構造体
+struct MV1_MATERIAL_ADD_INFO_F1
+{
+	int										EmissiveLayerNum ;					// 自己発光マップのレイヤー数
+	MV1_MATERIAL_LAYER_F1					EmissiveLayer[ 8 ] ;				// 自己発光マップのレイヤー情報( ０レイヤーの BlendType は無視される )
+	int										ShininessLayerNum ;					// ラフネスマップのレイヤー数
+	MV1_MATERIAL_LAYER_F1					ShininessLayer[ 8 ] ;				// ラフネスマップのレイヤー情報( ０レイヤーの BlendType は無視される )
+	int										ReflectionFactorLayerNum ;			// メタリックマップのレイヤー数
+	MV1_MATERIAL_LAYER_F1					ReflectionFactorLayer[ 8 ] ;		// メタリックマップのレイヤー情報( ０レイヤーの BlendType は無視される )
+
+	DWORD									Padding[ 4 ] ;
 } ;
 
 // マテリアル構造体
@@ -309,8 +322,9 @@ struct MV1_MATERIAL_F1
 
 	DWORD									UserData[ 4 ] ;						// 外部定義の情報
 
-	DWORD/*MV1_MATERIAL_TOON_F1* */			ToonInfo ;						// トゥーンレンダリング用の情報、無い場合は NULL
-	DWORD									Padding[ 3 ] ;
+	DWORD/*MV1_MATERIAL_TOON_F1* */			ToonInfo ;							// トゥーンレンダリング用の情報、無い場合は NULL
+	DWORD/*MV1_MATERIAL_ADD_INFO_F1*/		AddInfo ;							// マテリアルの追加情報、無い場合は NULL
+	DWORD									Padding[ 2 ] ;
 } ;
 
 // ライト構造体

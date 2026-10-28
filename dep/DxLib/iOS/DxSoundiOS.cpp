@@ -2,7 +2,7 @@
 // 
 // 		ＤＸライブラリ		iOS用サウンドプログラム
 // 
-//  	Ver 3.24f
+//  	Ver 3.25a
 // 
 //-----------------------------------------------------------------------------
 
@@ -730,6 +730,14 @@ extern int InitializeSoundSystem_PF_Timing0( void )
 
 		DXST_LOGFILE_TABADD ;
 
+		// プレイサウンドバッファ用のクリティカルセクションを初期化
+		if( CriticalSection_Initialize( &SoundSysData.PF.PlaySoundBufferCriticalSection ) < 0 )
+		{
+			DXST_LOGFILEFMT_ADDUTF16LE(( "\x4f\x00\x70\x00\x65\x00\x6e\x00\x41\x00\x4c\x00\x20\x00\x3a\x7e\x6e\xff\x67\x7e\x75\xff\x67\x7e\x66\xff\x5d\x7e\x73\xff\x5d\x7e\xe8\x5c\xf0\x30\x5d\x7e\x00\x00\xf5\x30\x67\x7e\x61\xff\x00\x87\xb2\x54\xfd\x51\x03\x87\x66\xff\x05\x90\x00\x00\x51\x75\x3a\x7e\x6e\xff\x67\x7e\x6f\xff\x5d\x7e\x6a\xff\x5d\x7e\x00\x00\x45\x30\x67\x7e\x6b\xff\x5d\x7e\x6b\xff\x67\x7e\x7b\xff\x67\x7e\x6f\xff\x67\x7e\x77\xff\x5d\x7e\x67\xff\x5d\x7e\x73\xff\x3a\x7e\x6e\xff\xf4\x83\xc8\x61\x00\x00\x3a\x7e\x6b\xff\x9f\x87\x71\xff\x28\x8b\xb1\x52\x20\xff\x3a\x7e\x7e\xff\x3a\x7e\xb1\x52\xc6\x25\x0a\x00\x00"/*@ L"OpenAL のサウンドバッファ再生処理用のクリティカルセクションの作成に失敗しました\n" @*/ )) ;
+			DXST_LOGFILE_TABSUB ;
+			return -1 ;
+		}
+
 		// ストップサウンドバッファ用のクリティカルセクションを初期化
 		if( CriticalSection_Initialize( &SoundSysData.PF.StopSoundBufferCriticalSection ) < 0 )
 		{
@@ -915,6 +923,9 @@ extern	int		TerminateSoundSystem_PF_Timing1( void )
 
 		// ストップサウンドバッファ用のクリティカルセクションを削除
 		CriticalSection_Delete( &SoundSysData.PF.StopSoundBufferCriticalSection ) ;
+
+		// プレイサウンドバッファ用のクリティカルセクションを削除
+		CriticalSection_Delete( &SoundSysData.PF.PlaySoundBufferCriticalSection ) ;
 	}
 
 	// 初期化フラグを倒す
