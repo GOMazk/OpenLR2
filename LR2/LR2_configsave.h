@@ -8,7 +8,7 @@
 
 int Read_JukeboxPath(CONFIG_JUKEBOX *box, TiXmlDocument *xml);
 
-int ReadKeyConfig(game * game, const char * FilePath);
+int ReadKeyConfig(game * game, const char * FilePath, const char* FilePathOlr2 = nullptr);
 void WriteXML_KeyConfig(FILE * hFile, CONFIG_INPUT cfg_in, char * tag, int num);
 int WriteKeyConfig(game * g, const char * filepath, int key);
 

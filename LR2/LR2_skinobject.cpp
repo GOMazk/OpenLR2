@@ -3642,13 +3642,16 @@ int SetObjectValue_Button(game *g, skstruct *sk, Timer *T, char flag) {
 					g->KeyInput.config_key = -1;
 					switch (g->KeyInput.config_keymode) {
 						case 0:
-							ReadKeyConfig(g, fs::make_preferred("LR2files/Config/keyconfig.xml").data());
+							ReadKeyConfig(g, fs::make_preferred("LR2files/Config/keyconfig.xml").data(),
+								fs::make_preferred("LR2files/Config/openlr2-keyconfig.xml").data());
 							break;
 						case 1:
-							ReadKeyConfig(g, fs::make_preferred("LR2files/Config/keyconfig_p.xml").data());
+							ReadKeyConfig(g, fs::make_preferred("LR2files/Config/keyconfig_p.xml").data(),
+								fs::make_preferred("LR2files/Config/openlr2-keyconfig_p.xml").data());
 							break;
 						case 2:
-							ReadKeyConfig(g, fs::make_preferred("LR2files/Config/keyconfig_5.xml").data());
+							ReadKeyConfig(g, fs::make_preferred("LR2files/Config/keyconfig_5.xml").data(),
+								fs::make_preferred("LR2files/Config/openlr2-keyconfig_5.xml").data());
 							break;
 					}
 					ProcS_Keyconfig(g);
@@ -4105,13 +4108,13 @@ int SetObjectValue_Button(game *g, skstruct *sk, Timer *T, char flag) {
 							}
 						}(tmp);
 						if (g->KeyInput.config_keymode == 0) {
-							WriteKeyConfig(g, fs::make_preferred("LR2files/Config/keyconfig.xml").data(), 7);
+							WriteKeyConfig(g, fs::make_preferred("LR2files/Config/openlr2-keyconfig.xml").data(), 7);
 						}
 						else if (g->KeyInput.config_keymode == 1) {
-							WriteKeyConfig(g, fs::make_preferred("LR2files/Config/keyconfig_p.xml").data(), 9);
+							WriteKeyConfig(g, fs::make_preferred("LR2files/Config/openlr2-keyconfig_p.xml").data(), 9);
 						}
 						else if (g->KeyInput.config_keymode == 2) {
-							WriteKeyConfig(g, fs::make_preferred("LR2files/Config/keyconfig_5.xml").data(), 5);
+							WriteKeyConfig(g, fs::make_preferred("LR2files/Config/openlr2-keyconfig_5.xml").data(), 5);
 						}
 						ProcS_Keyconfig(g);
 					}

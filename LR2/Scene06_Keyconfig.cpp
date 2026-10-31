@@ -61,13 +61,13 @@ int ProcI_Keyconfig(game *g) {
 			g->config.input.buttonMap[g->KeyInput.config_button_inMap][g->KeyInput.config_key] = (g->KeyInput.inputID[KEY_INPUT_DELETE] == 1)? 0 : fndkey;
 			PlaySound(&g->audio, &g->audio.sysSound.option_change, g->audio.chnKey, -1);
 			if (g->KeyInput.config_keymode == 0) {
-				WriteKeyConfig(g, fs::make_preferred("LR2files/Config/keyconfig.xml").data(), 7);
+				WriteKeyConfig(g, fs::make_preferred("LR2files/Config/openlr2-keyconfig.xml").data(), 7);
 			}
 			else if(g->KeyInput.config_keymode == 1){
-				WriteKeyConfig(g, fs::make_preferred("LR2files/Config/keyconfig_p.xml").data(), 9);
+				WriteKeyConfig(g, fs::make_preferred("LR2files/Config/openlr2-keyconfig_p.xml").data(), 9);
 			}
 			else if (g->KeyInput.config_keymode == 2) {
-				WriteKeyConfig(g, fs::make_preferred("LR2files/Config/keyconfig_5.xml").data(), 5);
+				WriteKeyConfig(g, fs::make_preferred("LR2files/Config/openlr2-keyconfig_5.xml").data(), 5);
 			}
 			ProcS_Keyconfig(g);
 		}
@@ -78,15 +78,15 @@ int ProcI_Keyconfig(game *g) {
 
 		if (g->KeyInput.config_keymode == 0) {
 			ReadKeyConfig(g, fs::make_preferred("LR2files/Config/keyconfig_def.xml").data());
-			WriteKeyConfig(g, fs::make_preferred("LR2files/Config/keyconfig.xml").data(), 7);
+			WriteKeyConfig(g, fs::make_preferred("LR2files/Config/openlr2-keyconfig.xml").data(), 7);
 		}
 		else if (g->KeyInput.config_keymode == 1) {
 			ReadKeyConfig(g, fs::make_preferred("LR2files/Config/keyconfig_p_def.xml").data());
-			WriteKeyConfig(g, fs::make_preferred("LR2files/Config/keyconfig_p.xml").data(), 9);
+			WriteKeyConfig(g, fs::make_preferred("LR2files/Config/openlr2-keyconfig_p.xml").data(), 9);
 		}
 		else if (g->KeyInput.config_keymode == 2) {
 			ReadKeyConfig(g, fs::make_preferred("LR2files/Config/keyconfig_5_def.xml").data());
-			WriteKeyConfig(g, fs::make_preferred("LR2files/Config/keyconfig_5.xml").data(), 5);
+			WriteKeyConfig(g, fs::make_preferred("LR2files/Config/openlr2-keyconfig_5.xml").data(), 5);
 		}
 		ProcS_Keyconfig(g);
 	}
