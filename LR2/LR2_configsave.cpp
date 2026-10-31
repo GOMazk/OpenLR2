@@ -53,15 +53,25 @@ int Read_JukeboxPath(CONFIG_JUKEBOX *box, TiXmlDocument *xml){
 	return -1;
 }
 
-int ReadKeyConfig(game *game, const char *FilePath) {
+int ReadKeyConfig(game *game, const char *FilePath, const char* FilePathOlr2) {
 	TiXmlDocument *hXml;
 
 	for (auto& a : game->config.input.buttonMap) for (auto& v : a) v = 0;
 
-	hXml = new TiXmlDocument(FilePath);
-	if (!parse_cp932_xml(hXml, FilePath)) {
-		delete(hXml);
-		return 0;
+	hXml = nullptr;
+	bool tryLr2 = true;
+	if (FilePathOlr2) {
+		hXml = new TiXmlDocument(FilePathOlr2);
+		if (parse_cp932_xml(hXml, FilePathOlr2) && std::filesystem::exists(FilePathOlr2))
+			tryLr2 = false;
+		else delete(hXml);
+	}
+	if (tryLr2) {
+		hXml = new TiXmlDocument(FilePath);
+		if (!parse_cp932_xml(hXml, FilePath)) {
+			delete(hXml);
+			return 0;
+		}
 	}
 
 	ReadXml_Int_Multi("keyconfig", "key01", "id", (game->config).input.buttonMap[1], hXml);
@@ -641,7 +651,7 @@ void WriteXML_KeyConfig(FILE *hFile, CONFIG_INPUT cfg_in, const char *tag, int n
 		if (cfg_in.buttonMap[num][i]) {
 			sprintf(buf, "\t\t<%s>%d</%s>\n", "id", cfg_in.buttonMap[num][i], "id");
 			fputs(buf, hFile);
-			sprintf(buf, "\t\t<%s>%d</%s>\n", "axistype", cfg_in.axisType[num][i], "axistype"); // TODO: move to olr2 config file
+			sprintf(buf, "\t\t<%s>%d</%s>\n", "axistype", cfg_in.axisType[num][i], "axistype");
 			fputs(buf, hFile);
 		}
 	}

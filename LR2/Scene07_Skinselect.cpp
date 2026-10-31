@@ -346,7 +346,8 @@ int PlayPreviewSample(game *g) {
 	ReleaseBGA(g);
 	switch (g->skinData.select) {
 		default: //case 0:?
-			ReadKeyConfig(g, fs::make_preferred("LR2files/Config/keyconfig.xml").data());
+			ReadKeyConfig(g, fs::make_preferred("LR2files/Config/keyconfig.xml").data(),
+				fs::make_preferred("LR2files/Config/openlr2-keyconfig.xml").data());
 			g->sSelect.metaSelected.keymode = 7;
 			InitGameplay(&g->gameplay, &tCfg.play);
 			ParseBmsFile(&g->gameplay, fs::make_preferred("LR2files/Config/sample_7.bme").data(), &g->audio, &tCfg, &g->sSelect.metaSelected, 1, scratchSide);
@@ -355,9 +356,11 @@ int PlayPreviewSample(game *g) {
 
 		case 1:
 			if (g->skinData.Data[g->skinData.skinID[1]].type == SKINTYPE_7KEYS) 
-				ReadKeyConfig(g, fs::make_preferred("LR2files/Config/keyconfig.xml").data());
+				ReadKeyConfig(g, fs::make_preferred("LR2files/Config/keyconfig.xml").data(),
+					fs::make_preferred("LR2files/Config/openlr2-keyconfig.xml").data());
 			else 
-				ReadKeyConfig(g, fs::make_preferred("LR2files/Config/keyconfig_5.xml").data());
+				ReadKeyConfig(g, fs::make_preferred("LR2files/Config/keyconfig_5.xml").data(),
+					fs::make_preferred("LR2files/Config/openlr2-keyconfig_5.xml").data());
 			g->sSelect.metaSelected.keymode = 5;
 			InitGameplay(&g->gameplay, &tCfg.play);
 			ParseBmsFile(&g->gameplay, fs::make_preferred("LR2files/Config/sample_5.bme").data(), &g->audio, &tCfg, &g->sSelect.metaSelected, 1, scratchSide);
@@ -365,7 +368,8 @@ int PlayPreviewSample(game *g) {
 			break;
 
 		case 2:
-			ReadKeyConfig(g, fs::make_preferred("LR2files/Config/keyconfig.xml").data());
+			ReadKeyConfig(g, fs::make_preferred("LR2files/Config/keyconfig.xml").data(),
+				fs::make_preferred("LR2files/Config/openlr2-keyconfig.xml").data());
 			g->sSelect.metaSelected.keymode = 14;
 			InitGameplay(&g->gameplay, &tCfg.play);
 			ParseBmsFile(&g->gameplay, fs::make_preferred("LR2files/Config/sample_14.bme").data(), &g->audio, &tCfg, &g->sSelect.metaSelected, 1, scratchSide);
@@ -374,9 +378,11 @@ int PlayPreviewSample(game *g) {
 
 		case 3:
 			if (g->skinData.Data[g->skinData.skinID[3]].type == SKINTYPE_14KEYS)
-				ReadKeyConfig(g, fs::make_preferred("LR2files/Config/keyconfig.xml").data());
+				ReadKeyConfig(g, fs::make_preferred("LR2files/Config/keyconfig.xml").data(),
+					fs::make_preferred("LR2files/Config/openlr2-keyconfig.xml").data());
 			else
-				ReadKeyConfig(g, fs::make_preferred("LR2files/Config/keyconfig_5.xml").data());
+				ReadKeyConfig(g, fs::make_preferred("LR2files/Config/keyconfig_5.xml").data(),
+					fs::make_preferred("LR2files/Config/openlr2-keyconfig_5.xml").data());
 			g->sSelect.metaSelected.keymode = 10;
 			InitGameplay(&g->gameplay, &tCfg.play);
 			ParseBmsFile(&g->gameplay, fs::make_preferred("LR2files/Config/sample_10.bme").data(), &g->audio, &tCfg, &g->sSelect.metaSelected, 1, scratchSide);
@@ -384,7 +390,8 @@ int PlayPreviewSample(game *g) {
 			break;
 
 		case 4:
-			ReadKeyConfig(g, fs::make_preferred("LR2files/Config/keyconfig_p.xml").data());
+			ReadKeyConfig(g, fs::make_preferred("LR2files/Config/keyconfig_p.xml").data(),
+				fs::make_preferred("LR2files/Config/openlr2-keyconfig_p.xml").data());
 			g->sSelect.metaSelected.keymode = 9;
 			InitGameplay(&g->gameplay, &tCfg.play);
 			ParseBmsFile(&g->gameplay, fs::make_preferred("LR2files/Config/sample_9.pms").data(), &g->audio, &tCfg, &g->sSelect.metaSelected, 1, scratchSide);
@@ -393,9 +400,11 @@ int PlayPreviewSample(game *g) {
 
 		case 13:
 			if (g->skinData.Data[g->skinData.skinID[13]].type == SKINTYPE_7KEYSBATTLE)
-				ReadKeyConfig(g, fs::make_preferred("LR2files/Config/keyconfig.xml").data());
+				ReadKeyConfig(g, fs::make_preferred("LR2files/Config/keyconfig.xml").data(),
+					fs::make_preferred("LR2files/Config/openlr2-keyconfig.xml").data());
 			else
-				ReadKeyConfig(g, fs::make_preferred("LR2files/Config/keyconfig_5.xml").data());
+				ReadKeyConfig(g, fs::make_preferred("LR2files/Config/keyconfig_5.xml").data(),
+					fs::make_preferred("LR2files/Config/openlr2-keyconfig_5.xml").data());
 			g->sSelect.metaSelected.keymode = 5;
 			InitGameplay(&g->gameplay, &tCfg.play);
 			ParseBmsFile(&g->gameplay, fs::make_preferred("LR2files/Config/sample_5.bme").data(), &g->audio, &tCfg, &g->sSelect.metaSelected, 1, scratchSide);
