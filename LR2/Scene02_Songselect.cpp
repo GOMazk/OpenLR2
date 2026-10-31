@@ -2011,58 +2011,69 @@ void SubProcI_Select(game *g, sqlite3 *sql) {
 			}
 		}
 
-		if (g->KeyInput.mousewheel) {
-			g->sSelect.nowBar -= g->KeyInput.mousewheel * 1000;
-			g->sSelect.oldBar = g->sSelect.listTopbar;
-			g->sSelect.barMoveStartTime = GetTimeWrap();
-			g->sSelect.barMoveEndTime = GetTimeWrap() + 200;
-			if (g->KeyInput.mousewheel > 0) g->sSelect.scrollDirection = 1;
-			else if (g->KeyInput.mousewheel < 0) g->sSelect.scrollDirection = 2;
-		}
+		// Songwheel proc
+		{
+			static bool moving_analogously = false;
+			auto songwheel_move = [](SONGSELECT& select, int steps, int duration) {
+				select.nowBar += steps * 1000;
+				select.oldBar = select.listTopbar;
+				select.barMoveStartTime = GetTimeWrap();
+				select.barMoveEndTime = GetTimeWrap() + duration;
+				select.scrollDirection = steps >= 0 ? 2 : 1;
+			};
 
-		if ((((g->KeyInput.p1_buttonInput[1] == 1 || g->KeyInput.p2_buttonInput[1] == 1) && g->config.select.buttonselect && !g->config.select.control)
-			|| (g->KeyInput.p1_buttonInput[4] == 1 && g->config.select.control)
-			|| g->KeyInput.p1_buttonInput[10] == 1 || g->KeyInput.p2_buttonInput[10] == 1 || g->KeyInput.inputID[KEY_INPUT_UP] == 1)
-			&& GetTimeWrap() > g->sSelect.barMoveEndTime) {
+			if (g->KeyInput.mousewheel) songwheel_move(g->sSelect, -g->KeyInput.mousewheel, 200);
 
-			g->sSelect.nowBar -= 1000;
-			g->sSelect.oldBar = g->sSelect.listTopbar;
-			g->sSelect.barMoveStartTime = GetTimeWrap();
-			g->sSelect.scrollDirection = 1;
-			g->sSelect.barMoveEndTime = GetTimeWrap() + g->config.select.speedfirst;
-		}
-		else if ((((g->KeyInput.p1_buttonInput[3] == 1 || g->KeyInput.p2_buttonInput[3] == 1) && g->config.select.buttonselect && !g->config.select.control)
-			|| (g->KeyInput.p1_buttonInput[6] == 1 && g->config.select.control)
-			|| g->KeyInput.p1_buttonInput[11] == 1 || g->KeyInput.p2_buttonInput[11] == 1 || g->KeyInput.inputID[KEY_INPUT_DOWN] == 1)
-			&& GetTimeWrap() > g->sSelect.barMoveEndTime) {
+			// let axis-to-button abstraction handle single row move, as it's more reliable than slow delta.
+			if ((g->KeyInput.p1_scratchDelta || g->KeyInput.p2_scratchDelta) && 
+				(g->KeyInput.p1_buttonInput[10] == 2 || g->KeyInput.p2_buttonInput[10] == 2 ||
+				g->KeyInput.p1_buttonInput[11] == 2 || g->KeyInput.p2_buttonInput[11] == 2)) {
+				songwheel_move(g->sSelect, g->KeyInput.p1_scratchDelta + g->KeyInput.p2_scratchDelta, 200);
+				moving_analogously = true;
+			}
 
-			g->sSelect.nowBar += 1000;
-			g->sSelect.oldBar = g->sSelect.listTopbar;
-			g->sSelect.barMoveStartTime = GetTimeWrap();
-			g->sSelect.scrollDirection = 2;
-			g->sSelect.barMoveEndTime = GetTimeWrap() + g->config.select.speedfirst;
-		}
-		else if ((((g->KeyInput.p1_buttonInput[1] == 2 || g->KeyInput.p2_buttonInput[1] == 2) && g->config.select.buttonselect && !g->config.select.control)
-			|| (g->KeyInput.p1_buttonInput[4] == 2 && g->config.select.control)
-			|| g->KeyInput.p1_buttonInput[10] == 2 || g->KeyInput.p2_buttonInput[10] == 2 || g->KeyInput.inputID[KEY_INPUT_UP] == 2)
-			&& GetTimeWrap() > g->sSelect.barMoveEndTime - 20) {
+			enum DIRECTION {
+				DIRECTION_NONE = -1,
+				DIRECTION_UP,
+				DIRECTION_DOWN
+			};
+			auto state = [](SONGSELECT& select, const CONFIG_SELECT& config, const inputStructure& input, bool& moving_analogously) {
+				struct {
+					DIRECTION direction = DIRECTION_NONE;
+					int duration = 0;
+				} state;
+				if (GetTimeWrap() <= select.barMoveEndTime - 20) return state;
+				if (GetTimeWrap() <= select.barMoveEndTime && moving_analogously) return state;
+				moving_analogously = false;
+				auto& keyP1 = input.p1_buttonInput;
+				auto& keyP2 = input.p2_buttonInput;
+				unsigned char lastInput = 0;
+				auto has_input = [&lastInput](unsigned char state) {
+					if (state == 1 || state == 2) {
+						lastInput = state;
+						return true;
+					}
+					return false;
+				};
+				if (config.control) {
+					// wasn't doing P2 before, probably a bug.
+					if (has_input(keyP1[4]) || has_input(keyP2[4])) state.direction = DIRECTION_UP;
+					else if (has_input(keyP1[6]) || has_input(keyP2[6])) state.direction = DIRECTION_DOWN;
+				}
+				else if (config.buttonselect) {
+					if (has_input(keyP1[1]) || has_input(keyP2[1])) state.direction = DIRECTION_UP;
+					else if (has_input(keyP1[3]) || has_input(keyP2[3])) state.direction = DIRECTION_DOWN;
+				}
+				if (state.direction == DIRECTION_NONE) {
+					if (has_input(keyP1[10]) || has_input(keyP2[10]) || has_input(input.inputID[KEY_INPUT_UP])) state.direction = DIRECTION_UP;
+					else if (has_input(keyP1[11]) || has_input(keyP2[11]) || has_input(input.inputID[KEY_INPUT_DOWN])) state.direction = DIRECTION_DOWN;
+				}
+				if (state.direction != DIRECTION_NONE) state.duration = GetTimeWrap() > select.barMoveEndTime && lastInput == 1 ? config.speedfirst : config.speednext;
+				return state;
+			}(g->sSelect, g->config.select, g->KeyInput, moving_analogously);
 
-			g->sSelect.nowBar -= 1000;
-			g->sSelect.oldBar = g->sSelect.listTopbar;
-			g->sSelect.barMoveStartTime = GetTimeWrap();
-			g->sSelect.scrollDirection = 1;
-			g->sSelect.barMoveEndTime = GetTimeWrap() + g->config.select.speednext;
-		}
-		else if ((((g->KeyInput.p1_buttonInput[3] == 2 || g->KeyInput.p2_buttonInput[3] == 2) && g->config.select.buttonselect && !g->config.select.control)
-			|| (g->KeyInput.p1_buttonInput[6] == 2 && g->config.select.control)
-			|| g->KeyInput.p1_buttonInput[11] == 2 || g->KeyInput.p2_buttonInput[11] == 2 || g->KeyInput.inputID[KEY_INPUT_DOWN] == 2)
-			&& GetTimeWrap() > g->sSelect.barMoveEndTime - 20) {
-
-			g->sSelect.nowBar += 1000;
-			g->sSelect.oldBar = g->sSelect.listTopbar;
-			g->sSelect.barMoveStartTime = GetTimeWrap();
-			g->sSelect.scrollDirection = 2;
-			g->sSelect.barMoveEndTime = GetTimeWrap() + g->config.select.speednext;
+			if (state.direction != DIRECTION_NONE)
+				songwheel_move(g->sSelect, state.direction == DIRECTION_UP ? -1 : 1, state.duration);
 		}
 
 		g->sSelect.is_mouseOnSongBars = 0;

@@ -453,7 +453,8 @@ int main(int argc, char** argv) {
 		std::filesystem::create_directories("LR2files/SkinCustomize", ec);
 		std::filesystem::create_directories("screenshot", ec);
 	}
-	ReadKeyConfig(&gs, fs::make_preferred("LR2files/Config/keyconfig.xml").data());
+	ReadKeyConfig(&gs, fs::make_preferred("LR2files/Config/keyconfig.xml").data(),
+		fs::make_preferred("LR2files/Config/openlr2-keyconfig.xml").data());
 	gs.is_clicked_screenModeChange = 0;
 	gs.flag_Screenshot = false;
 	ReadOptionstrFile(gs.txtStruct, fs::make_preferred("LR2files/Config/optionstr.csv").data());
@@ -1054,9 +1055,10 @@ int main(int argc, char** argv) {
 			switch (gs.procSelecter) {
 				case SCENE_SELECT:
 					gs.gameplay.ghostBattle = 0;
-					ReadKeyConfig(&gs, (!gs.config.select.control)
-							? fs::make_preferred("LR2files/Config/keyconfig.xml" ).data()
-							: fs::make_preferred("LR2files/Config/keyconfig_p.xml").data());
+					if (!gs.config.select.control) ReadKeyConfig(&gs, fs::make_preferred("LR2files/Config/keyconfig.xml").data(),
+						fs::make_preferred("LR2files/Config/openlr2-keyconfig.xml").data());
+					else ReadKeyConfig(&gs, fs::make_preferred("LR2files/Config/keyconfig_p.xml").data(),
+						fs::make_preferred("LR2files/Config/openlr2-keyconfig_p.xml").data());
 					DeleteGraph(gs.skstruct.GrHandle[GRHTYPE_STAGE]);
 					gs.skstruct.GrHandle[GRHTYPE_STAGE] = -1;
 					DeleteGraph(gs.skstruct.GrHandle[GRHTYPE_BACKBMP]);
@@ -1242,13 +1244,16 @@ int main(int argc, char** argv) {
 						if (gs.sSelect.bmsList[gs.sSelect.cur_song].keymode == 5) {
 							LoadSceneG(&gs, &gs.skstruct, SKINTYPE_5KEYSBATTLE);
 							if (gs.skinData.Data[gs.skinData.skinID[13]].type != SKINTYPE_5KEYSBATTLE)
-								ReadKeyConfig(&gs, fs::make_preferred("LR2files/Config/keyconfig.xml").data());
+								ReadKeyConfig(&gs, fs::make_preferred("LR2files/Config/keyconfig.xml").data(),
+									fs::make_preferred("LR2files/Config/openlr2-keyconfig.xml").data());
 							else 
-								ReadKeyConfig(&gs, fs::make_preferred("LR2files/Config/keyconfig_5.xml").data());
+								ReadKeyConfig(&gs, fs::make_preferred("LR2files/Config/keyconfig_5.xml").data(),
+									fs::make_preferred("LR2files/Config/openlr2-keyconfig_5.xml").data());
 						}
 						else {
 							LoadSceneG(&gs, &gs.skstruct, SKINTYPE_7KEYSBATTLE);
-							ReadKeyConfig(&gs, fs::make_preferred("LR2files/Config/keyconfig.xml").data());
+							ReadKeyConfig(&gs, fs::make_preferred("LR2files/Config/keyconfig.xml").data(),
+								fs::make_preferred("LR2files/Config/openlr2-keyconfig.xml").data());
 						}
 					}
 					else if (gs.config.select.control && (gs.sSelect.metaSelected.keymode == 5 || gs.sSelect.metaSelected.keymode == 7)) {
@@ -1258,7 +1263,8 @@ int main(int argc, char** argv) {
 						else if (gs.config.play.battle == OPTION_BATTLE_BATTLE) {
 							LoadSceneG(&gs, &gs.skstruct, SKINTYPE_9KEYSBATTLE);
 						}
-						ReadKeyConfig(&gs,fs::make_preferred("LR2files/Config/keyconfig_p.xml").data());
+						ReadKeyConfig(&gs, fs::make_preferred("LR2files/Config/keyconfig_p.xml").data(),
+							fs::make_preferred("LR2files/Config/openlr2-keyconfig_p.xml").data());
 					}
 					else {
 						switch (gs.sSelect.metaSelected.keymode) {
@@ -1266,23 +1272,29 @@ int main(int argc, char** argv) {
 								if (gs.config.play.battle == OPTION_BATTLE_OFF) {
 									LoadSceneG(&gs, &gs.skstruct, SKINTYPE_5KEYS);
 									if (gs.skinData.Data[gs.skinData.skinID[1]].type != SKINTYPE_5KEYS)
-										ReadKeyConfig(&gs, fs::make_preferred("LR2files/Config/keyconfig.xml").data());
+										ReadKeyConfig(&gs, fs::make_preferred("LR2files/Config/keyconfig.xml").data(),
+											fs::make_preferred("LR2files/Config/openlr2-keyconfig.xml").data());
 									else
-										ReadKeyConfig(&gs, fs::make_preferred("LR2files/Config/keyconfig_5.xml").data());
+										ReadKeyConfig(&gs, fs::make_preferred("LR2files/Config/keyconfig_5.xml").data(),
+											fs::make_preferred("LR2files/Config/openlr2-keyconfig_5.xml").data());
 								}
 								else if (gs.config.play.battle == OPTION_BATTLE_BATTLE) {
 									LoadSceneG(&gs, &gs.skstruct, SKINTYPE_5KEYSBATTLE);
 									if (gs.skinData.Data[gs.skinData.skinID[13]].type != SKINTYPE_5KEYSBATTLE)
-										ReadKeyConfig(&gs, fs::make_preferred("LR2files/Config/keyconfig.xml").data());
+										ReadKeyConfig(&gs, fs::make_preferred("LR2files/Config/keyconfig.xml").data(),
+											fs::make_preferred("LR2files/Config/openlr2-keyconfig.xml").data());
 									else
-										ReadKeyConfig(&gs, fs::make_preferred("LR2files/Config/keyconfig_5.xml").data());
+										ReadKeyConfig(&gs, fs::make_preferred("LR2files/Config/keyconfig_5.xml").data(),
+											fs::make_preferred("LR2files/Config/openlr2-keyconfig_5.xml").data());
 								}
 								else if (gs.config.play.battle == OPTION_BATTLE_DBATTLE || gs.config.play.battle == OPTION_BATTLE_SP2DP) {
 									LoadSceneG(&gs, &gs.skstruct, SKINTYPE_10KEYS);
 									if (gs.skinData.Data[gs.skinData.skinID[3]].type != SKINTYPE_10KEYS)
-										ReadKeyConfig(&gs, fs::make_preferred("LR2files/Config/keyconfig.xml").data());
+										ReadKeyConfig(&gs, fs::make_preferred("LR2files/Config/keyconfig.xml").data(),
+											fs::make_preferred("LR2files/Config/openlr2-keyconfig.xml").data());
 									else
-										ReadKeyConfig(&gs, fs::make_preferred("LR2files/Config/keyconfig_5.xml").data());
+										ReadKeyConfig(&gs, fs::make_preferred("LR2files/Config/keyconfig_5.xml").data(),
+											fs::make_preferred("LR2files/Config/openlr2-keyconfig_5.xml").data());
 								}
 								break;
 
@@ -1296,13 +1308,15 @@ int main(int argc, char** argv) {
 								else if (gs.config.play.battle == OPTION_BATTLE_DBATTLE || gs.config.play.battle == OPTION_BATTLE_SP2DP) {
 									LoadSceneG(&gs, &gs.skstruct, SKINTYPE_14KEYS);
 								}
-								ReadKeyConfig(&gs, fs::make_preferred("LR2files/Config/keyconfig.xml").data());
+								ReadKeyConfig(&gs, fs::make_preferred("LR2files/Config/keyconfig.xml").data(),
+									fs::make_preferred("LR2files/Config/openlr2-keyconfig.xml").data());
 								break;
 
 							case 9:
 								if (gs.config.play.battle == OPTION_BATTLE_SP2DP) {
 									LoadSceneG(&gs, &gs.skstruct, SKINTYPE_7KEYS);
-									ReadKeyConfig(&gs, fs::make_preferred("LR2files/Config/keyconfig.xml").data());
+									ReadKeyConfig(&gs, fs::make_preferred("LR2files/Config/keyconfig.xml").data(),
+										fs::make_preferred("LR2files/Config/openlr2-keyconfig.xml").data());
 									break;
 								}
 								else if (gs.config.play.battle == OPTION_BATTLE_OFF || gs.config.play.battle == OPTION_BATTLE_DBATTLE) {
@@ -1311,30 +1325,37 @@ int main(int argc, char** argv) {
 								else if (gs.config.play.battle == OPTION_BATTLE_BATTLE) {
 									LoadSceneG(&gs, &gs.skstruct, SKINTYPE_9KEYSBATTLE);
 								}
-								ReadKeyConfig(&gs, fs::make_preferred("LR2files/Config/keyconfig_p.xml").data());
+								ReadKeyConfig(&gs, fs::make_preferred("LR2files/Config/keyconfig_p.xml").data(),
+									fs::make_preferred("LR2files/Config/openlr2-keyconfig_p.xml").data());
 								break;
 
 							case 10:
 								if (gs.config.play.battle == OPTION_BATTLE_OFF) {
 									LoadSceneG(&gs, &gs.skstruct, SKINTYPE_10KEYS);
 									if (gs.skinData.Data[gs.skinData.skinID[3]].type == SKINTYPE_10KEYS)
-										ReadKeyConfig(&gs, fs::make_preferred("LR2files/Config/keyconfig_5.xml").data()); 
+										ReadKeyConfig(&gs, fs::make_preferred("LR2files/Config/keyconfig_5.xml").data(),
+											fs::make_preferred("LR2files/Config/openlr2-keyconfig_5.xml").data());
 									else
-										ReadKeyConfig(&gs, fs::make_preferred("LR2files/Config/keyconfig.xml").data());
+										ReadKeyConfig(&gs, fs::make_preferred("LR2files/Config/keyconfig.xml").data(),
+											fs::make_preferred("LR2files/Config/openlr2-keyconfig.xml").data());
 								}
 								else if (gs.config.play.battle == OPTION_BATTLE_BATTLE || gs.config.play.battle == OPTION_BATTLE_DBATTLE) {
 									LoadSceneG(&gs, &gs.skstruct, SKINTYPE_5KEYSBATTLE);
 									if (gs.skinData.Data[gs.skinData.skinID[13]].type == SKINTYPE_5KEYSBATTLE)
-										ReadKeyConfig(&gs, fs::make_preferred("LR2files/Config/keyconfig_5.xml").data());
+										ReadKeyConfig(&gs, fs::make_preferred("LR2files/Config/keyconfig_5.xml").data(),
+											fs::make_preferred("LR2files/Config/openlr2-keyconfig_5.xml").data());
 									else
-										ReadKeyConfig(&gs, fs::make_preferred("LR2files/Config/keyconfig.xml").data());
+										ReadKeyConfig(&gs, fs::make_preferred("LR2files/Config/keyconfig.xml").data(),
+											fs::make_preferred("LR2files/Config/openlr2-keyconfig.xml").data());
 								}
 								else if (gs.config.play.battle == OPTION_BATTLE_SP2DP) {
 									LoadSceneG(&gs, &gs.skstruct, SKINTYPE_5KEYS);
 									if (gs.skinData.Data[gs.skinData.skinID[1]].type == SKINTYPE_5KEYS)
-										ReadKeyConfig(&gs, fs::make_preferred("LR2files/Config/keyconfig_5.xml").data());
+										ReadKeyConfig(&gs, fs::make_preferred("LR2files/Config/keyconfig_5.xml").data(),
+											fs::make_preferred("LR2files/Config/openlr2-keyconfig_5.xml").data());
 									else
-										ReadKeyConfig(&gs, fs::make_preferred("LR2files/Config/keyconfig.xml").data());
+										ReadKeyConfig(&gs, fs::make_preferred("LR2files/Config/keyconfig.xml").data(),
+											fs::make_preferred("LR2files/Config/openlr2-keyconfig.xml").data());
 								}
 								break;
 
@@ -1348,14 +1369,16 @@ int main(int argc, char** argv) {
 								else if(gs.config.play.battle == OPTION_BATTLE_SP2DP) {
 									LoadSceneG(&gs, &gs.skstruct, SKINTYPE_7KEYS);
 								}
-								ReadKeyConfig(&gs, fs::make_preferred("LR2files/Config/keyconfig.xml").data());
+								ReadKeyConfig(&gs, fs::make_preferred("LR2files/Config/keyconfig.xml").data(),
+									fs::make_preferred("LR2files/Config/openlr2-keyconfig.xml").data());
 								break;
 						}
 					}
 
 					if (gs.config.play.m_isLunaris) {
 						LoadSceneG(&gs, &gs.skstruct, SKINTYPE_7KEYS);
-						ReadKeyConfig(&gs, fs::make_preferred("LR2files/Config/keyconfig.xml").data());
+						ReadKeyConfig(&gs, fs::make_preferred("LR2files/Config/keyconfig.xml").data(),
+							fs::make_preferred("LR2files/Config/openlr2-keyconfig.xml").data());
 						gs.gameplay.isAutoplay = 0;
 					}
 					for (int i = 0; i < gs.skstruct.num_of_ImageFont; i++) {
@@ -1376,6 +1399,7 @@ int main(int argc, char** argv) {
 					gs.KeyInput.config_button = 1;
 					gs.KeyInput.config_button_inMap = 1;
 					gs.KeyInput.config_key = -1;
+					gs.KeyInput.inputAxisDeadzoneAll = 0.1;
 					ProcS_Keyconfig(&gs);
 					break;
 				case SCENE_SKINSELECT:
@@ -1384,7 +1408,8 @@ int main(int argc, char** argv) {
 					break;
 				case SCENE_LUNARIS:
 					LoadSceneG(&gs, &gs.skstruct, SKINTYPE_7KEYS);
-					ReadKeyConfig(&gs, fs::make_preferred("LR2files/Config/keyconfig.xml").data());
+					ReadKeyConfig(&gs, fs::make_preferred("LR2files/Config/keyconfig.xml").data(),
+						fs::make_preferred("LR2files/Config/openlr2-keyconfig.xml").data());
 					LUNARIS_START(&gs);
 					break;
 				case SCENE_PO4MENU:
@@ -1736,7 +1761,8 @@ int main(int argc, char** argv) {
 						ErrorLogAdd("BMSの音を初期化しました\n");
 					}
 
-					ReadKeyConfig(&gs, fs::make_preferred("LR2files/Config/keyconfig.xml").data());
+					ReadKeyConfig(&gs, fs::make_preferred("LR2files/Config/keyconfig.xml").data(),
+						fs::make_preferred("LR2files/Config/openlr2-keyconfig.xml").data());
 					if (gs.net.rankingData.target_ID != 0) {
 						if(auto& backup = gs.gameplay.playConfigBackupBeforeTargetSomething)
 						{
@@ -1863,7 +1889,9 @@ int main(int argc, char** argv) {
 					}
 					break;
 				case 6:
-					ReadKeyConfig(&gs, fs::make_preferred("LR2files/Config/keyconfig.xml").data());
+					ReadKeyConfig(&gs, fs::make_preferred("LR2files/Config/keyconfig.xml").data(),
+						fs::make_preferred("LR2files/Config/openlr2-keyconfig.xml").data());
+					gs.KeyInput.inputAxisDeadzoneAll = 0.;
 					break;
 				case 7:
 					ClearSkinGraph(&gs.skstruct2);
