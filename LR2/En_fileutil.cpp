@@ -826,6 +826,53 @@ int FindAltSound(CSTR filename, CSTR dir, CSTR *oBuf) {
 	return 0;
 }
 
+// check if the extension is a video file extension.
+static bool IsMovieExtension(std::string_view ext) {
+	static constexpr std::string_view movieExts[] = {
+		".mpg", ".mpeg", ".avi", ".wmv", ".mp4", ".webm", ".m4v", ".mkv", ".mov", ".ogv",
+	};
+	for (auto m : movieExts) {
+		if (ext == m) return true;
+	}
+	return false;
+}
+
+// loading alternative bga file (if exist)
+int FindAltBga(CSTR filename, CSTR dir, CSTR *oBuf) {
+	const std::string_view name = filename.c_str();
+
+	// #BMPxx with an empty name - original lookup handles it.
+	if (name.empty()) return FindAltImage(filename, dir, oBuf);
+
+	// separate file name and extension.
+	const size_t sep = name.find_last_of("/\\");
+	const size_t dot = name.find_last_of('.');
+	const bool hasExt = dot != std::string_view::npos && (sep == std::string_view::npos || dot > sep);
+
+	// compare extensions in lower case.
+	CSTR ext;
+	if (hasExt) {
+		ext.assign(filename.c_str() + dot);
+		ext.lower();
+	}
+
+	// try load video file in modern codec.
+	if (!hasExt || IsMovieExtension(ext.c_str())) {
+		const std::string stem(hasExt ? name.substr(0, dot) : name);
+		for (const char *cand : { ".mp4", ".webm" }) {
+			CSTR path;
+			path.assign(dir).add(stem.c_str()).add(cand);
+			if (IsFileExist(path)) {
+				oBuf->assign(path);
+				return 1;
+			}
+		}
+	}
+
+	// if modern-codec video is not found, try original LR2 lookup (exact file, image alternatives, parent folder).
+	return FindAltImage(filename, dir, oBuf);
+}
+
 CSTR GetRandomFile(CSTR path, char fOnlyName) {
 	CSTR oBuf;
 	int count;
