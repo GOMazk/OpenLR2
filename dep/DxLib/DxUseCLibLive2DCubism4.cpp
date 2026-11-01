@@ -1,8 +1,8 @@
-﻿// -------------------------------------------------------------------------------
+// -------------------------------------------------------------------------------
 // 
 // 		ＤＸライブラリ		標準Ｃライブラリ使用コード　Live2D Cubism4 関係
 // 
-// 				Ver 3.24f
+// 				Ver 3.25a
 // 
 // -------------------------------------------------------------------------------
 
@@ -37,6 +37,7 @@ using namespace DxLib ;
 #include "DxBaseFunc.h"
 #include "DxFile.h"
 #include "DxLog.h"
+#include "DxUseCLib.h"
 #include <float.h>
 #include <math.h>
 #include <new>
@@ -131,6 +132,24 @@ int Live2D_PixelShaderToDxLibShader_Table[ 7 ] =
 // 関数プロトタイプ宣言 ----------------------------------------------------------
 
 // プログラム --------------------------------------------------------------------
+
+static int Live2D_GetRand( int RandMax )
+{
+	static int InitFlag ;
+	static MERSENNE_TWISTER_DATA RandData ;
+
+	// 未初期化の場合は初期化する
+	if( InitFlag == FALSE )
+	{
+		InitFlag = TRUE ;
+
+		// 乱数情報を初期化
+		NS_SRandHandle( ( DWORD_PTR )&RandData, NS_GetRand( 0x7fffffff ) ) ;
+	}
+
+	// 乱数を返す
+	return NS_GetRandHandle( ( DWORD_PTR )&RandData, RandMax ) ;
+}
 
 D_CubismIdManager *new_D_CubismIdManager( void )
 {
@@ -5892,7 +5911,7 @@ D_CubismEyeBlink::~D_CubismEyeBlink()
 
 float D_CubismEyeBlink::DeterminNextBlinkingTiming() const
 {
-	const float r = NS_GetRand( 10000 ) / 10000.0f ;
+	const float r = Live2D_GetRand( 10000 ) / 10000.0f ;
 
 	return _userTimeSeconds + ( r * ( 2.0f * _blinkingIntervalSeconds - 1.0f ) ) ;
 }
@@ -11387,7 +11406,7 @@ void D_LAppModel::Update( float deltaTimeSeconds )
 
 }
 
-D_CubismMotionQueueEntryHandle D_LAppModel::StartMotion( const char* group, int no, int priority, float fadeInSeconds, float fadeOutSeconds, bool isLoopFadeIn )
+D_CubismMotionQueueEntryHandle D_LAppModel::StartMotion( const char* group, int no, int priority, float fadeInSeconds, float fadeOutSeconds, bool isLoopFadeIn, bool isLoop )
 {
 	bool autoDelete = false;
 	D_CubismMotion* motion = NULL ;
@@ -11468,6 +11487,7 @@ D_CubismMotionQueueEntryHandle D_LAppModel::StartMotion( const char* group, int 
 			motion->SetFadeOutTime( fadeOutSeconds ) ;
 		}
 		motion->IsLoopFadeIn( isLoopFadeIn ) ;
+		motion->IsLoop( isLoop );
 	}
 
 //	if( _debugMode )
@@ -11484,7 +11504,7 @@ D_CubismMotionQueueEntryHandle D_LAppModel::StartRandomMotion( const char* group
 		return InvalidMotionQueueEntryHandleValue;
 	}
 
-	int no = NS_GetRand( _modelSetting->GetMotionCount( group ) - 1 ) ;
+	int no = Live2D_GetRand( _modelSetting->GetMotionCount( group ) - 1 ) ;
 
 	return StartMotion( group, no, priority, -1.0f, -1.0f ) ;
 }
@@ -11540,6 +11560,7 @@ void D_LAppModel::SetUserParameter( int parameterIndex, float parameterValue )
 	{
 		if( ( *ite ).parameterIndex == parameterIndex )
 		{
+			Flag = true ;
 			( *ite ).parameterValue = parameterValue ;
 			break ;
 		}
@@ -11589,7 +11610,7 @@ void D_LAppModel::SetRandomExpression()
 		return;
 	}
 
-	int no = NS_GetRand( _expressions.GetSize() - 1 ) ;
+	int no = Live2D_GetRand( _expressions.GetSize() - 1 ) ;
 	D_csmMap<D_csmStringW, D_ACubismMotion*>::const_iterator map_ite;
 	int i = 0;
 	for( map_ite = _expressions.Begin() ; map_ite != _expressions.End() ; map_ite++ )

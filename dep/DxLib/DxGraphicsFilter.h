@@ -1,8 +1,8 @@
-﻿// -------------------------------------------------------------------------------
+// -------------------------------------------------------------------------------
 // 
 // 		ＤＸライブラリ		GraphFilter系プログラムヘッダファイル
 // 
-// 				Ver 3.24f
+// 				Ver 3.25a
 // 
 // -------------------------------------------------------------------------------
 
@@ -137,6 +137,7 @@ struct GRAPHFILTER_SHADER_HANDLE
 	int						TwoColorPS[ 2 ] ;						// ２値化フィルター[ 0:通常用  1:乗算済みアルファ用 ]
 	int						GradientMapPS[ 2 ][ 2 ] ;				// グラデーションマップフィルター[ 0:通常用  1:乗算済みアルファ用 ]
 	int						ReplacementPS[ 2 ] ;					// 色の置換[ 0:通常用  1:乗算済みアルファ用 ]
+	int						BilateralBlurPS[ 2 ] ;					// バイラテラルブラー[ 0:通常用  1:乗算済みアルファ用 ]
 	int						PreMulAlphaPS ;							// 通常画像から乗算済みアルファ画像を作成する為のフィルター
 	int						InterpAlphaPS ;							// 乗算済みアルファ画像から通常画像を作成する為のフィルター
 	int						YUVtoRGBPS[ 4 ] ;						// YUVカラーをRGBカラーに変換するフィルター
@@ -182,6 +183,7 @@ extern int	GraphFilter_Level(           GRAPHFILTER_INFO *Info, float Min, float
 extern int	GraphFilter_TwoColor(        GRAPHFILTER_INFO *Info, float Threshold, COLOR_F *LowColor, COLOR_F *HighColor, int IsPMA ) ;
 extern int	GraphFilter_GradientMap(     GRAPHFILTER_INFO *Info, int MapGrHandle, int Reverse, int IsPMA ) ;
 extern int	GraphFilter_Replacement(     GRAPHFILTER_INFO *Info, COLOR_U8 TargetColor, COLOR_U8 NextColor, int IsPMA ) ;
+extern int	GraphFilter_BilateralBlur(   GRAPHFILTER_INFO *Info, int IsPMA ) ;
 extern int	GraphFilter_PremulAlpha(     GRAPHFILTER_INFO *Info ) ;
 extern int	GraphFilter_InterpAlpha(     GRAPHFILTER_INFO *Info ) ;
 extern int	GraphFilter_YUVtoRGB(        GRAPHFILTER_INFO *Info, int UVGrHandle ) ;
@@ -221,6 +223,7 @@ extern int	GraphFilter_Level_PF(               GRAPHFILTER_INFO *Info, float Min
 extern int	GraphFilter_TwoColor_PF(            GRAPHFILTER_INFO *Info, float Threshold, COLOR_F *LowColor, COLOR_F *HighColor, int IsPMA ) ;
 extern int	GraphFilter_GradientMap_PF(         GRAPHFILTER_INFO *Info, int MapGrHandle, int Reverse, int IsPMA ) ;
 extern int	GraphFilter_Replacement_PF(         GRAPHFILTER_INFO *Info, COLOR_U8 TargetColor, COLOR_U8 NextColor, int IsPMA ) ;
+extern int	GraphFilter_BilateralBlur_PF(       GRAPHFILTER_INFO *Info, int IsPMA ) ;
 extern int	GraphFilter_PremulAlpha_PF(         GRAPHFILTER_INFO *Info ) ;
 extern int	GraphFilter_InterpAlpha_PF(         GRAPHFILTER_INFO *Info ) ;
 extern int	GraphFilter_YUVtoRGB_PF(            GRAPHFILTER_INFO *Info, int UVGrHandle ) ;
