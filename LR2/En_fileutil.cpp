@@ -1,6 +1,8 @@
 ﻿#include "En_fileutil.h"
 #include <md5.h>
 #include <DxLib.h>
+#include <algorithm>
+#include <cctype>
 
 #ifdef _WIN32
 #include <codecvt>
@@ -824,6 +826,51 @@ int FindAltSound(CSTR filename, CSTR dir, CSTR *oBuf) {
 
 	oBuf->fillzero();
 	return 0;
+}
+
+// check if the extension is a video file extension.
+static constexpr std::string_view movieExts[] = {
+	// video file candidates are tried in this order
+		".mp4", ".webm", ".m4v", ".mov", ".mkv", ".ogv", ".wmv", ".avi", ".mpeg", ".mpg",
+}; 
+static bool IsMovieExtension(std::string_view ext) {
+	return std::ranges::contains(movieExts, ext);
+}
+
+// loading alternative bga file (if exist)
+int FindAltBga(CSTR filename, CSTR dir, CSTR *oBuf) {
+	const std::string_view name = filename.c_str();
+
+	// #BMPxx with an empty name - original lookup handles it.
+	if (name.empty()) return FindAltImage(filename, dir, oBuf);
+
+	// separate file name and extension.
+	const size_t sep = name.find_last_of("/\\");
+	const size_t dot = name.find_last_of('.');
+	const bool hasExt = dot != std::string_view::npos && (sep == std::string_view::npos || dot > sep);
+
+	// compare extensions in lower case.
+	std::string ext;
+	if (hasExt) {
+		ext = name.substr(dot);
+		std::ranges::transform(ext, ext.begin(), [](unsigned char c) { return static_cast<char>(std::tolower(c)); });
+	}
+
+	// try load video file in modern codec.
+	if (!hasExt || IsMovieExtension(ext)) {
+		const std::string stem(hasExt ? name.substr(0, dot) : name);
+		for (std::string_view cand : movieExts) {
+			CSTR path;
+			path.assign(dir).add(stem.c_str()).add(std::string(cand).c_str());
+			if (IsFileExist(path)) {
+				oBuf->assign(path);
+				return 1;
+			}
+		}
+	}
+
+	// if modern-codec video is not found, try original LR2 lookup (exact file, image alternatives, parent folder).
+	return FindAltImage(filename, dir, oBuf);
 }
 
 CSTR GetRandomFile(CSTR path, char fOnlyName) {

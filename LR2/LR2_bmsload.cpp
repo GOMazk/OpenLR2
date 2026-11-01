@@ -2548,7 +2548,7 @@ int ParseBmsFile(gameplay *gp, CSTR filename, AUDIO *aud, ConfigStruct* cfg, BMS
 				*fBufOrg.atPos(0) = 0;
 				if (param1 < SINGLESLOTS) {
 					fBuf.lastCut(fBuf.length() - 7);
-					FindAltImage(fBuf, directory, &gp->BMP_filename[stage* SINGLESLOTS + param1]);
+					FindAltBga(fBuf, directory, &gp->BMP_filename[stage* SINGLESLOTS + param1]);
 				}
 			}
 			else {
