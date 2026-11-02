@@ -16,7 +16,7 @@ int InitSRC(SRCstruct * src);
 int InitDST(DSTstruct * dst);
 
 //skin / scene
-int InitSkin(skstruct * sk, int p5, char font);
+int InitSkin(skstruct * sk, int p5, char font, Timer* timers = nullptr);
 bool CheckIndexRange(int index, int min, int max, int line, char * str);
 int ExpandSkinObjectMax(SkinObject * so, int add);
 int FlipSide_Timer(int * n);
