@@ -416,8 +416,8 @@ int DrawNotes(game *g, skstruct *sk, Timer *T, CONFIG_PLAY *cfg) {
 		if ((sk->horizontal == 0 && sk->dst_LINE[PLAYER_1].draw->y + (songtimer_render - g->gameplay.bmsobj_line.notes[i].renderTiming)* speed * g->gameplay.speedmultiplier * (cfg->basespeed / 100.0) / 600.0 > drawStartHeight)
 			|| (sk->horizontal == 1 && (g->gameplay.bmsobj_line.notes[i].renderTiming - songtimer_render)* speed * g->gameplay.speedmultiplier * (cfg->basespeed / 100.0) / 640.0 > drawStartHeight)) { 
 						
-			float p1_lift = GetLiftOffsetY(*sk, *cfg, PLAYER_1);
-			float p2_lift = GetLiftOffsetY(*sk, *cfg, PLAYER_2);
+			const float p1_lift = GetLiftOffsetY(*sk, *cfg, PLAYER_1);
+			const float p2_lift = GetLiftOffsetY(*sk, *cfg, PLAYER_2);
 			float p1_y = sk->adjust.note_y[PLAYER_1] + p1_lift + (songtimer_render - g->gameplay.bmsobj_line.notes[i].renderTiming)* cfg->hiSpeed[PLAYER_1] * g->gameplay.speedmultiplier * (cfg->basespeed / 100.0) / 600.0;
 			float p2_y = sk->adjust.note_y[PLAYER_2] + p2_lift + (songtimer_render - g->gameplay.bmsobj_line.notes[i].renderTiming)* cfg->hiSpeed[PLAYER_1] * g->gameplay.speedmultiplier * (cfg->basespeed / 100.0) / 600.0;
 			//NOTE: comment out these two lines cause measure_lines displayed under judge line. 
@@ -705,13 +705,7 @@ int DrawJudgeCombo(game *g, skstruct *sk, Timer *T, CONFIG_PLAY *cfg){
 			if (judge < 3) {
 				combo = 0;
 			}
-
-			if (p == 0) {
-				AddDrawingBuffer_JudgeCombo(&sk->drBuf, &sk->src_NOWJUDGE[PLAYER_1][judge], &sk->dst_NOWJUDGE[PLAYER_1][judge], &sk->src_NOWCOMBO[PLAYER_1][judge], &sk->dst_NOWCOMBO[PLAYER_1][judge], T, combo, sk->adjust.judge_x, sk->adjust.judge_y + (int)GetLiftOffsetY(*sk, *cfg, PLAYER_1));
-			}
-			else {
-				AddDrawingBuffer_JudgeCombo(&sk->drBuf, &sk->src_NOWJUDGE[PLAYER_2][judge], &sk->dst_NOWJUDGE[PLAYER_2][judge], &sk->src_NOWCOMBO[PLAYER_2][judge], &sk->dst_NOWCOMBO[PLAYER_2][judge], T, combo, sk->adjust.judge_x, sk->adjust.judge_y + (int)GetLiftOffsetY(*sk, *cfg, PLAYER_2));
-			}
+			AddDrawingBuffer_JudgeCombo(&sk->drBuf, &sk->src_NOWJUDGE[p][judge], &sk->dst_NOWJUDGE[p][judge], &sk->src_NOWCOMBO[p][judge], &sk->dst_NOWCOMBO[p][judge], T, combo, sk->adjust.judge_x, sk->adjust.judge_y + (int)GetLiftOffsetY(*sk, *cfg, p));
 		}
 	}
 	return 1;
