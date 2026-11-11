@@ -1293,10 +1293,14 @@ int CmdSearch(game *g, CSTR *cmd, sqlite3 *sql) {
 	else if (cmd->starts_with("/random ")) {
 		auto s = std::string_view{ cmd->body }.substr(std::string_view{ "/random " }.length());
 		unsigned int val;
-		auto [ptr, ec] = std::from_chars(s.data(), s.data() + s.size(), val);
-		if (ec != std::errc()) {
-			*cmd = ("INVALID NUMBER: " + std::string(s)).c_str();
-			return 1;
+		if (s == "last") {
+			val = g->gameplay.randomLayoutForDisplay[0];
+		} else {
+			auto [ptr, ec] = std::from_chars(s.data(), s.data() + s.size(), val);
+			if (ec != std::errc()) {
+				*cmd = ("INVALID NUMBER: " + std::string(s)).c_str();
+				return 1;
+			}
 		}
 		if (val == 0) {
 			g->gameplay.forceRandomLayout = 0;
