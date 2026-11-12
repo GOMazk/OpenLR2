@@ -1,8 +1,8 @@
-﻿// ----------------------------------------------------------------------------
+// ----------------------------------------------------------------------------
 // 
 // 		ＤＸライブラリ		描画ＡＰＩプログラム
 // 
-// 				Ver 3.24f
+// 				Ver 3.25a
 // 
 // ----------------------------------------------------------------------------
 
@@ -2963,6 +2963,11 @@ extern void D3D11DeviceContext_VSSetShader( D_ID3D11VertexShader *pVertexShader,
 	GAPIWin.D3D11DeviceContext->VSSetShader( pVertexShader, ppClassInstances, NumClassInstances ) ;
 }
 
+extern void D3D11DeviceContext_VSSetSamplers( UINT StartSlot, UINT NumSamplers, D_ID3D11SamplerState *const *ppSamplers )
+{
+	GAPIWin.D3D11DeviceContext->VSSetSamplers( StartSlot, NumSamplers, ppSamplers ) ;
+}
+
 extern void D3D11DeviceContext_DrawIndexed( UINT IndexCount, UINT StartIndexLocation, INT BaseVertexLocation )
 {
 	GAPIWin.D3D11DeviceContext->DrawIndexed( IndexCount, StartIndexLocation, BaseVertexLocation ) ;
@@ -5810,14 +5815,26 @@ extern int Direct3DDevice9_Present( void )
 				// ウインドウモードかどうかで処理を分岐
 				if( NS_GetWindowModeFlag() )
 				{
-					if( GAPIWin.Direct3DSwapChain9Object->Present(
+					hr = GAPIWin.Direct3DSwapChain9Object->Present(
 							&ScreenRect,
 							&WindRect,
 							GRAWIN.Setting.ScreenFlipTargetWindow ? GRAWIN.Setting.ScreenFlipTargetWindow : GetDisplayWindowHandle(),
 							NULL,
-							0 ) != D_D3D_OK )
+							0 ) ;
+					if( hr != D_D3D_OK )
 					{
-						goto ERR ;
+						if( hr == 0x88760868 )
+						{
+							// デバイスロストの場合は初期化を行う
+							NS_RestoreGraphSystem() ;
+
+							// 一旦終了
+							return 0 ;
+						}
+						else
+						{
+							goto ERR ;
+						}
 					}
 
 					// ウインドウが最大化されていて、且つ転送先がクライアント領域と等しくない場合は残りの領域を GDI を使って塗りつぶす

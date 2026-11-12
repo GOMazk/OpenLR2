@@ -2,7 +2,7 @@
 // 
 // 		ＤＸライブラリ		描画処理プログラム( iOS )
 // 
-//  	Ver 3.24f
+//  	Ver 3.25a
 // 
 //-----------------------------------------------------------------------------
 
@@ -7978,7 +7978,7 @@ extern	int		Graphics_Hardware_RenderVertex( int ASyncThread )
 }
 
 // ハードウエアアクセラレータ使用版 DrawBillboard3D
-extern	int		Graphics_Hardware_DrawBillboard3D_PF( VECTOR Pos, float cx, float cy, float Size, float Angle, IMAGEDATA *Image, IMAGEDATA *BlendImage, int TransFlag, int ReverseXFlag, int ReverseYFlag, int DrawFlag, RECT *DrawArea )
+extern	int		Graphics_Hardware_DrawBillboard3D_PF( VECTOR Pos, float cx, float cy, float SizeX, float SizeY, float Angle, IMAGEDATA *Image, IMAGEDATA *BlendImage, int TransFlag, int ReverseXFlag, int ReverseYFlag, int DrawFlag, RECT *DrawArea )
 {
 	VERTEX_2D *DrawVert ;
 	VERTEX_2D TempVect[ 4 ] ;
@@ -7995,8 +7995,6 @@ extern	int		Graphics_Hardware_DrawBillboard3D_PF( VECTOR Pos, float cx, float cy
 	int i ;
 	int Flag ;
 	int BlendGraphNoIncFlag ;
-	float SizeX ;
-	float SizeY ;
 	float f ;
 	VECTOR SrcVec[ 4 ] ;
 	VECTOR SrcVec2[ 4 ] ;
@@ -8056,9 +8054,6 @@ extern	int		Graphics_Hardware_DrawBillboard3D_PF( VECTOR Pos, float cx, float cy
 	}
 
 	// サイズと座標関係の事前計算
-	SizeX = Size ;
-	SizeY = Size * ( float )Image->HeightF / ( float )Image->WidthF ;
-
 	ScaleX = SizeX / Image->WidthF ;
 	ScaleY = SizeY / Image->HeightF ;
 	cx *= Image->WidthF ;
@@ -16913,6 +16908,241 @@ extern	int		Graphics_Hardware_DrawPrimitive32bitIndexed3DToShader_PF( const VERT
 	return 0 ;
 }
 
+// シェーダーを使って２Ｄプリミティブを描画する
+extern	int		Graphics_Hardware_DrawPrimitive2DToShader2_PF(        const VERTEX2D *Vertex, int VertexNum,                                              int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST 等 */ )
+{
+	if( IOS_CHECKVALID_HARDWARE == FALSE )
+	{
+		return -1 ;
+	}
+
+	if( PrimitiveType < DX_PRIMTYPE_MIN || PrimitiveType > DX_PRIMTYPE_MAX )
+	{
+		return -1 ;
+	}
+
+	// 描画待機している描画物を描画
+	DRAWSTOCKINFO
+
+	// 描画の準備
+	Graphics_iOS_DrawPreparationToShader( 0, TRUE ) ;
+
+	// Uniform の更新
+	Graphics_iOS_DeviceState_UpdateShaderUniform( GIOS.Device.State.SetShader, 3 ) ;
+
+	// 頂点データのセットアップ
+	Graphics_iOS_DeviceState_SetupShaderVertexData(
+		GIOS.Device.State.SetShader,
+		&g_BaseSimpleVertexShaderInfo[ IOS_VERTEX_INPUTLAYOUT_2D ].InputInfo,
+		Vertex
+	) ;	
+
+	// 描画
+	glDrawArrays( g_DXPrimitiveTypeToGLES2PrimitiveType[ PrimitiveType ], 0, VertexNum ) ;
+	GSYS.PerformanceInfo.NowFrameDrawCallCount ++ ;
+
+	// 終了
+	return 0 ;
+}
+
+// シェーダーを使って３Ｄプリミティブを描画する
+extern	int		Graphics_Hardware_DrawPrimitive3DToShader2_PF(        const VERTEX3D *Vertex, int VertexNum,                                              int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST 等 */ )
+{
+	if( IOS_CHECKVALID_HARDWARE == FALSE )
+	{
+		return -1 ;
+	}
+
+	if( PrimitiveType < DX_PRIMTYPE_MIN || PrimitiveType > DX_PRIMTYPE_MAX )
+	{
+		return -1 ;
+	}
+
+	// 描画待機している描画物を描画
+	DRAWSTOCKINFO
+
+	// 描画の準備
+	Graphics_iOS_DrawPreparationToShader( DX_IOS_DRAWPREP_LIGHTING | DX_IOS_DRAWPREP_FOG, FALSE ) ;
+
+	// ３Ｄ行列をハードウエアに反映する
+	if( GSYS.DrawSetting.MatchHardware3DMatrix == FALSE )
+		Graphics_DrawSetting_ApplyLib3DMatrixToHardware() ;
+
+
+	// Uniform の更新
+	Graphics_iOS_DeviceState_UpdateShaderUniform( GIOS.Device.State.SetShader, 3 ) ;
+
+	// 頂点データのセットアップ
+	Graphics_iOS_DeviceState_SetupShaderVertexData(
+		GIOS.Device.State.SetShader,
+		&g_BaseSimpleVertexShaderInfo[ IOS_VERTEX_INPUTLAYOUT_3D_LIGHT ].InputInfo,
+		Vertex
+	) ;	
+
+	// 描画
+	glDrawArrays( g_DXPrimitiveTypeToGLES2PrimitiveType[ PrimitiveType ], 0, VertexNum ) ;
+	GSYS.PerformanceInfo.NowFrameDrawCallCount ++ ;
+
+	// 終了
+	return 0 ;
+}
+
+// シェーダーを使って２Ｄプリミティブを描画する( 頂点インデックスを使用する )
+extern	int		Graphics_Hardware_DrawPrimitiveIndexed2DToShader2_PF( const VERTEX2D *Vertex, int VertexNum, const unsigned short *Indices, int IndexNum, int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST 等 */ )
+{
+	if( IOS_CHECKVALID_HARDWARE == FALSE )
+	{
+		return -1 ;
+	}
+
+	if( PrimitiveType < DX_PRIMTYPE_MIN || PrimitiveType > DX_PRIMTYPE_MAX )
+	{
+		return -1 ;
+	}
+
+	// 描画待機している描画物を描画
+	DRAWSTOCKINFO
+
+	// 描画の準備
+	Graphics_iOS_DrawPreparationToShader( 0, TRUE ) ;
+
+	// Uniform の更新
+	Graphics_iOS_DeviceState_UpdateShaderUniform( GIOS.Device.State.SetShader, 3 ) ;
+
+	// 頂点データのセットアップ
+	Graphics_iOS_DeviceState_SetupShaderVertexData(
+		GIOS.Device.State.SetShader,
+		&g_BaseSimpleVertexShaderInfo[ IOS_VERTEX_INPUTLAYOUT_2D ].InputInfo,
+		Vertex
+	) ;
+
+	// 描画
+	glDrawElements( g_DXPrimitiveTypeToGLES2PrimitiveType[ PrimitiveType ], IndexNum, GL_UNSIGNED_SHORT, Indices );
+	GSYS.PerformanceInfo.NowFrameDrawCallCount ++ ;
+
+	// 終了
+	return 0 ;
+}
+
+// シェーダーを使って２Ｄプリミティブを描画する( 頂点インデックスを使用する )
+extern	int		Graphics_Hardware_DrawPrimitive32bitIndexed2DToShader2_PF( const VERTEX2D *Vertex, int VertexNum, const unsigned int *Indices, int IndexNum, int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST 等 */ )
+{
+	if( IOS_CHECKVALID_HARDWARE == FALSE )
+	{
+		return -1 ;
+	}
+
+	if( PrimitiveType < DX_PRIMTYPE_MIN || PrimitiveType > DX_PRIMTYPE_MAX )
+	{
+		return -1 ;
+	}
+
+	// 描画待機している描画物を描画
+	DRAWSTOCKINFO
+
+	// 描画の準備
+	Graphics_iOS_DrawPreparationToShader( 0, TRUE ) ;
+
+	// Uniform の更新
+	Graphics_iOS_DeviceState_UpdateShaderUniform( GIOS.Device.State.SetShader, 3 ) ;
+
+	// 頂点データのセットアップ
+	Graphics_iOS_DeviceState_SetupShaderVertexData(
+		GIOS.Device.State.SetShader,
+		&g_BaseSimpleVertexShaderInfo[ IOS_VERTEX_INPUTLAYOUT_2D ].InputInfo,
+		Vertex
+	) ;
+
+	// 描画
+	glDrawElements( g_DXPrimitiveTypeToGLES2PrimitiveType[ PrimitiveType ], IndexNum, GL_UNSIGNED_INT, Indices );
+	GSYS.PerformanceInfo.NowFrameDrawCallCount ++ ;
+
+	// 終了
+	return 0 ;
+}
+
+// シェーダーを使って３Ｄプリミティブを描画する( 頂点インデックスを使用する )
+extern	int		Graphics_Hardware_DrawPrimitiveIndexed3DToShader2_PF( const VERTEX3D *Vertex, int VertexNum, const unsigned short *Indices, int IndexNum, int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST 等 */ )
+{
+	if( IOS_CHECKVALID_HARDWARE == FALSE )
+	{
+		return -1 ;
+	}
+
+	if( PrimitiveType < DX_PRIMTYPE_MIN || PrimitiveType > DX_PRIMTYPE_MAX )
+	{
+		return -1 ;
+	}
+
+	// 描画待機している描画物を描画
+	DRAWSTOCKINFO
+
+	// 描画の準備
+	Graphics_iOS_DrawPreparationToShader( DX_IOS_DRAWPREP_LIGHTING | DX_IOS_DRAWPREP_FOG, FALSE ) ;
+
+	// ３Ｄ行列をハードウエアに反映する
+	if( GSYS.DrawSetting.MatchHardware3DMatrix == FALSE )
+		Graphics_DrawSetting_ApplyLib3DMatrixToHardware() ;
+
+	// Uniform の更新
+	Graphics_iOS_DeviceState_UpdateShaderUniform( GIOS.Device.State.SetShader, 3 ) ;
+
+	// 頂点データのセットアップ
+	Graphics_iOS_DeviceState_SetupShaderVertexData(
+		GIOS.Device.State.SetShader,
+		&g_BaseSimpleVertexShaderInfo[ IOS_VERTEX_INPUTLAYOUT_3D_LIGHT ].InputInfo,
+		Vertex
+	) ;
+
+	// 描画
+	glDrawElements( g_DXPrimitiveTypeToGLES2PrimitiveType[ PrimitiveType ], IndexNum, GL_UNSIGNED_SHORT, Indices );
+	GSYS.PerformanceInfo.NowFrameDrawCallCount ++ ;
+
+	// 終了
+	return 0 ;
+}
+
+// シェーダーを使って３Ｄプリミティブを描画する( 頂点インデックスを使用する )
+extern	int		Graphics_Hardware_DrawPrimitive32bitIndexed3DToShader2_PF( const VERTEX3D *Vertex, int VertexNum, const unsigned int *Indices, int IndexNum, int PrimitiveType /* DX_PRIMTYPE_TRIANGLELIST 等 */ )
+{
+	if( IOS_CHECKVALID_HARDWARE == FALSE )
+	{
+		return -1 ;
+	}
+
+	if( PrimitiveType < DX_PRIMTYPE_MIN || PrimitiveType > DX_PRIMTYPE_MAX )
+	{
+		return -1 ;
+	}
+
+	// 描画待機している描画物を描画
+	DRAWSTOCKINFO
+
+	// 描画の準備
+	Graphics_iOS_DrawPreparationToShader( DX_IOS_DRAWPREP_LIGHTING | DX_IOS_DRAWPREP_FOG, FALSE ) ;
+
+	// ３Ｄ行列をハードウエアに反映する
+	if( GSYS.DrawSetting.MatchHardware3DMatrix == FALSE )
+		Graphics_DrawSetting_ApplyLib3DMatrixToHardware() ;
+
+	// Uniform の更新
+	Graphics_iOS_DeviceState_UpdateShaderUniform( GIOS.Device.State.SetShader, 3 ) ;
+
+	// 頂点データのセットアップ
+	Graphics_iOS_DeviceState_SetupShaderVertexData(
+		GIOS.Device.State.SetShader,
+		&g_BaseSimpleVertexShaderInfo[ IOS_VERTEX_INPUTLAYOUT_3D_LIGHT ].InputInfo,
+		Vertex
+	) ;
+
+	// 描画
+	glDrawElements( g_DXPrimitiveTypeToGLES2PrimitiveType[ PrimitiveType ], IndexNum, GL_UNSIGNED_INT, Indices );
+	GSYS.PerformanceInfo.NowFrameDrawCallCount ++ ;
+
+	// 終了
+	return 0 ;
+}
+
 // シェーダーを使って３Ｄプリミティブを描画する( 頂点バッファ使用版 )
 extern	int		Graphics_Hardware_DrawPrimitive3DToShader_UseVertexBuffer2_PF(
 	int VertexBufHandle,
@@ -17838,6 +18068,16 @@ extern int Graphics_Hardware_RefreshSetting_PF( void )
 
 	// 終了
 	return 0 ;
+}
+
+// 基本データに設定されている２Ｄ行列をハードウエアに反映する
+extern void Graphics_DrawSetting_ApplyLib2DMatrixToHardware_PF( void )
+{
+}
+
+// 基本データに設定されている３Ｄ行列をハードウエアに反映する
+extern void Graphics_DrawSetting_ApplyLib3DMatrixToHardware_PF( int IgnoreWorldMatrix )
+{
 }
 
 

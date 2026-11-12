@@ -1,8 +1,8 @@
-﻿// -------------------------------------------------------------------------------
+// -------------------------------------------------------------------------------
 // 
 // 		ＤＸライブラリ		ヒープ関係プログラムヘッダファイル
 // 
-// 				Ver 3.24f
+// 				Ver 3.25a
 // 
 // -------------------------------------------------------------------------------
 
@@ -32,12 +32,12 @@ namespace DxLib
 
 #ifdef PLATFORM_64BIT
 #define ALLOCMEMTAG_NAMELENGTH					(18)				// 確保メモリの名前
-#define ALLOCMEM_CATEGORY_1_NUM					(64)				// カテゴリー１の数( ただし 0 〜 ALLOCMEM_CATEGORY_2_SHIFT_NUM のカテゴリは使用しない( できない ) )
+#define ALLOCMEM_CATEGORY_1_NUM					(64)				// カテゴリー１の数( ただし 0 ～ ALLOCMEM_CATEGORY_2_SHIFT_NUM のカテゴリは使用しない( できない ) )
 #define ALLOCMEM_SIZE_TYPE						ULONGLONG			// 確保メモリのサイズの型
 #define ALLOCMEMTAG_SIZE						(112)				// ALLOCMEMTAG構造体のサイズ
 #else // PLATFORM_64BIT
 #define ALLOCMEMTAG_NAMELENGTH					(18)				// 確保メモリの名前
-#define ALLOCMEM_CATEGORY_1_NUM					(32)				// カテゴリー１の数( ただし 0 〜 ALLOCMEM_CATEGORY_2_SHIFT_NUM のカテゴリは使用しない( できない ) )
+#define ALLOCMEM_CATEGORY_1_NUM					(32)				// カテゴリー１の数( ただし 0 ～ ALLOCMEM_CATEGORY_2_SHIFT_NUM のカテゴリは使用しない( できない ) )
 #define ALLOCMEM_SIZE_TYPE						DWORD				// 確保メモリのサイズの型
 #define ALLOCMEMTAG_SIZE						(72)				// ALLOCMEMTAG構造体のサイズ
 #endif // PLATFORM_64BIT
