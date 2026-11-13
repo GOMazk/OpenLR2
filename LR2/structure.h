@@ -4,9 +4,12 @@
 #include <future>
 #include <mutex>
 #include <optional>
+#include <random>
+#include <span>
 #include <string>
 #include <thread>
 #include <unordered_map>
+#include <variant>
 #include <vector>
 
 #include "strclass.h"
@@ -289,6 +292,61 @@ enum AXISTYPE {
 	AXISTYPE_STICK = 0,
 	AXISTYPE_TRIGGER,
 	AXISTYPE_LOOPING
+};
+
+namespace KeyLayoutRandomizerImpl
+{
+
+struct Any
+{
+	auto operator<=>(const Any&) const = default;
+};
+struct Blue
+{
+	auto operator<=>(const Blue&) const = default;
+};
+struct White
+{
+	auto operator<=>(const White&) const = default;
+};
+struct Specific
+{
+	auto operator<=>(const Specific&) const = default;
+	// In range 1..NumKeys
+	uint8_t column;
+};
+using ColumnRandom = std::variant<Any, Blue, White, Specific>;
+
+// \retval false - bad input
+[[nodiscard]] bool from_string(std::string_view s, std::span<ColumnRandom> layout);
+[[nodiscard]] std::string to_string(std::span<const ColumnRandom> layout);
+// \return Key layout in form of 123456789, or 0 for an invalid 'layout'
+[[nodiscard]] unsigned int get_layout(std::span<const ColumnRandom> layout, std::mt19937& gen);
+
+} // namespace KeyLayoutRandomizerImpl
+
+template<size_t NumKeys>
+struct KeyLayoutRandomizer
+{
+	static_assert(NumKeys >= 1 && NumKeys <= 9);
+	std::array<KeyLayoutRandomizerImpl::ColumnRandom, NumKeys> value;
+
+	[[nodiscard]] static std::optional<KeyLayoutRandomizer<NumKeys>> from_string(std::string_view s)
+	{
+		KeyLayoutRandomizer<NumKeys> layout;
+		if(!KeyLayoutRandomizerImpl::from_string(s, layout.value))
+			return std::nullopt;
+		return layout;
+	}
+	[[nodiscard]] std::string to_string() const
+	{
+		return KeyLayoutRandomizerImpl::to_string(value);
+	}
+	// \return Key layout in form of 123456789
+	[[nodiscard]] unsigned int get_layout(std::mt19937& gen) const
+	{
+		return KeyLayoutRandomizerImpl::get_layout(value, gen);
+	}
 };
 
 struct BMSMETA {
@@ -1519,7 +1577,8 @@ struct gameplay {
 	char isPreviewLoad;
 	int randomLayoutForDisplay[PLAYER_MAX]{};
 	int totalForDisplay[PLAYER_MAX]{};
-	unsigned int forceRandomLayout{0}; // 0 = disabled
+	std::optional<KeyLayoutRandomizer<5>> forceRandomLayout5k;
+	std::optional<KeyLayoutRandomizer<7>> forceRandomLayout7k;
 	std::future<void> hThreadPreview;
 	int previewStatus; /* 1:start 2:loaded */
 	CSTR previewBMShash;
