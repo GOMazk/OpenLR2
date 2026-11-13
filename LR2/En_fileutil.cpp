@@ -828,17 +828,13 @@ int FindAltSound(CSTR filename, CSTR dir, CSTR *oBuf) {
 	return 0;
 }
 
-// check if the extension is a video file extension.
-static constexpr std::string_view movieExts[] = {
-	// video file candidates are tried in this order
-		".mp4", ".webm", ".m4v", ".mov", ".mkv", ".ogv", ".wmv", ".avi", ".mpeg", ".mpg",
-}; 
-static bool IsMovieExtension(std::string_view ext) {
-	return std::ranges::contains(movieExts, ext);
-}
-
 // loading alternative bga file (if exist)
 int FindAltBga(CSTR filename, CSTR dir, CSTR *oBuf) {
+	// video file candidates are tried in this order
+	static constexpr std::string_view MOVIE_EXTENSIONS[] = {
+		".mp4", ".webm", ".m4v", ".mov", ".mkv", ".ogv", ".wmv", ".avi", ".mpeg", ".mpg",
+	}; 
+
 	const std::string_view name = filename.c_str();
 
 	// #BMPxx with an empty name - original lookup handles it.
@@ -857,11 +853,11 @@ int FindAltBga(CSTR filename, CSTR dir, CSTR *oBuf) {
 	}
 
 	// try load video file in modern codec.
-	if (!hasExt || IsMovieExtension(ext)) {
-		const std::string stem(hasExt ? name.substr(0, dot) : name);
-		for (std::string_view cand : movieExts) {
+	if (!hasExt || std::ranges::contains(MOVIE_EXTENSIONS, ext)) {
+		const std::string_view stem(hasExt ? name.substr(0, dot) : name);
+		for (std::string_view cand : MOVIE_EXTENSIONS) {
 			CSTR path;
-			path.assign(dir).add(stem.c_str()).add(std::string(cand).c_str());
+			path.assign(dir).add(stem.data(), stem.size()).add(cand.data(), cand.size());
 			if (IsFileExist(path)) {
 				oBuf->assign(path);
 				return 1;
