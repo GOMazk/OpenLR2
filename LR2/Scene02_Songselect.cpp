@@ -1296,8 +1296,8 @@ int CmdSearch(game *g, CSTR *cmd, sqlite3 *sql) {
 		if (s == "last") {
 			val = g->gameplay.randomLayoutForDisplay[0];
 		} else {
-			auto [ptr, ec] = std::from_chars(s.data(), s.data() + s.size(), val);
-			if (ec != std::errc()) {
+			const auto [ptr, ec] = std::from_chars(s.data(), s.data() + s.size(), val);
+			if (ec != std::errc() || ptr != s.data() + s.size()) {
 				*cmd = ("INVALID NUMBER: " + std::string(s)).c_str();
 				return 1;
 			}
