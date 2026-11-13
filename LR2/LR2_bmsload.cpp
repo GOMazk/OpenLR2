@@ -9,6 +9,7 @@
 #include <atomic>
 #include <cmath>
 #include <mutex>
+#include <random>
 #include <ranges>
 #include <thread>
 #include <unordered_map>
@@ -2131,11 +2132,13 @@ int ParseBmsFile(gameplay *gp, CSTR filename, AUDIO *aud, ConfigStruct* cfg, BMS
 	}
 	else if (gp->replay.status != 2) {
 		gp->randomseed = 0xFFFF;
-		if (cfg->play.random[PLAYER_1] == OPTION_RANDOM_RANDOM && gp->forceRandomLayout != 0) {
-			ErrorLogFmtAdd("Force random layout %d for keymode %d\n", gp->forceRandomLayout, gp->keymode);
+		if (cfg->play.random[PLAYER_1] == OPTION_RANDOM_RANDOM && gp->forceRandomLayout) {
+			std::mt19937 gen{std::random_device{}()};
+			unsigned int layout = gp->forceRandomLayout->get_layout(gen, gp->keymode);
+			ErrorLogFmtAdd("Force random layout %d (%s) for keymode %d", layout, gp->forceRandomLayout->to_string().c_str(), gp->keymode);
 			switch (gp->keymode) {
-			case 5: gp->randomseed = GetSeed5K(gp->forceRandomLayout); break;
-			case 7: gp->randomseed = GetSeed7K(gp->forceRandomLayout); break;
+			case 5: gp->randomseed = GetSeed5K(layout * 100 + 67); break;
+			case 7: gp->randomseed = GetSeed7K(layout); break;
 			default: ErrorLogAdd("Unsupported keymode for forcing random layout\n"); break;
 			}
 			if (gp->randomseed == 0xFFFF) {

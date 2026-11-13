@@ -13,6 +13,8 @@
 #include <fstream>
 #include <future>
 #include <iterator>
+#include <random>
+#include <source_location>
 #include <string>
 #include <string_view>
 #include <thread>
@@ -138,6 +140,46 @@ static void run_tests_or_die()
 	ASSERT_TRUE(Url::parse("https://ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789?a=b#c").has_value());
 	ASSERT_TRUE(!Url::parse("https:// ").has_value());
 	ASSERT_TRUE(!Url::parse("https://\"").has_value());
+
+	{
+		using Rd = KeyLayoutRandomizer;
+		using Any = Rd::Any;
+		using Blue = Rd::Blue;
+		using S = Rd::Specific;
+		using White = Rd::White;
+		ASSERT_TRUE(Rd::from_string("111111111").has_value());
+		ASSERT_TRUE(!Rd::from_string("1111111111").has_value());
+		ASSERT_TRUE(!Rd::from_string("bad").has_value());
+		ASSERT_EQ(Rd::from_string("123456789").value().to_string(),
+				  (Rd{.value = {S{1}, S{2}, S{3}, S{4}, S{5}, S{6}, S{7}, S{8}, S{9}}}).to_string());
+		ASSERT_EQ(Rd::from_string("1xBbWwX").value().to_string(),
+				  (Rd{.value = {S{1}, Any{}, Blue{}, Blue{}, White{}, White{}}}).to_string());
+		ASSERT_EQ((Rd{.value = {S{1}, Any{}, Blue{}, Blue{}, White{}, White{}}}.to_string()), "1xbbwwxxx");
+
+		std::mt19937 gen;
+		gen = std::mt19937{0xbadfeed};
+		ASSERT_EQ(Rd::from_string("123456789").value().get_layout(gen, 7), 1234567U);
+		gen = std::mt19937{0xbadfeed};
+		ASSERT_EQ(Rd::from_string("1357246").value().get_layout(gen, 7), 1357246U);
+		gen = std::mt19937{0xbadfeed};
+		ASSERT_EQ(Rd::from_string("bbbwwww").value().get_layout(gen, 7), 2645371U);
+		gen = std::mt19937{0xbadfeed};
+		ASSERT_EQ(Rd::from_string("bbbbbbb").value().get_layout(gen, 7), 0U);
+		gen = std::mt19937{0xbadfeed};
+		ASSERT_EQ(Rd::from_string("").value().get_layout(gen, 7), 2653471U);
+		gen = std::mt19937{0xbadfeed};
+		ASSERT_EQ(Rd::from_string("1bxxxww").value().get_layout(gen, 7), 1236475U);
+
+		gen = std::mt19937{0xbadfeed};
+		ASSERT_EQ(Rd::from_string("12345").value().get_layout(gen, 9), 123457968U);
+		gen = std::mt19937{0xbadfeed};
+		ASSERT_EQ(Rd::from_string("bbbbwwwww").value().get_layout(gen, 9), 246859173U);
+
+		gen = std::mt19937{0xbadfeed};
+		ASSERT_EQ(Rd::from_string("12345").value().get_layout(gen, 5), 12345U);
+		gen = std::mt19937{0xbadfeed};
+		ASSERT_EQ(Rd::from_string("bbwww").value().get_layout(gen, 5), 24351U);
+	}
 }
 
 static int g_exclusiveDisplayIndex = -1;

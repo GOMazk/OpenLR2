@@ -4,9 +4,11 @@
 #include <future>
 #include <mutex>
 #include <optional>
+#include <random>
 #include <string>
 #include <thread>
 #include <unordered_map>
+#include <variant>
 #include <vector>
 
 #include "strclass.h"
@@ -289,6 +291,39 @@ enum AXISTYPE {
 	AXISTYPE_STICK = 0,
 	AXISTYPE_TRIGGER,
 	AXISTYPE_LOOPING
+};
+
+struct KeyLayoutRandomizer
+{
+	static constexpr uint8_t MAX_PLAYER_COLUMNS = 9;
+
+	struct Any
+	{
+		auto operator<=>(const Any&) const = default;
+	};
+	struct Blue
+	{
+		auto operator<=>(const Blue&) const = default;
+	};
+	struct White
+	{
+		auto operator<=>(const White&) const = default;
+	};
+	struct Specific
+	{
+		auto operator<=>(const Specific&) const = default;
+		// In range 1..9
+		uint8_t column;
+	};
+	using ColumnRandom = std::variant<Any, Blue, White, Specific>;
+
+	auto operator<=>(const KeyLayoutRandomizer&) const = default;
+
+	std::array<ColumnRandom, MAX_PLAYER_COLUMNS> value;
+
+	[[nodiscard]] static std::optional<KeyLayoutRandomizer> from_string(std::string_view s);
+	[[nodiscard]] std::string to_string() const;
+	[[nodiscard]] unsigned int get_layout(std::mt19937& gen, int keys) const;
 };
 
 struct BMSMETA {
@@ -1518,7 +1553,7 @@ struct gameplay {
 	int bgaMixer[10];
 	char isPreviewLoad;
 	int randomLayoutForDisplay[PLAYER_MAX]{};
-	unsigned int forceRandomLayout{0}; // 0 = disabled
+	std::optional<KeyLayoutRandomizer> forceRandomLayout;
 	std::future<void> hThreadPreview;
 	int previewStatus; /* 1:start 2:loaded */
 	CSTR previewBMShash;
