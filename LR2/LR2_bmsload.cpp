@@ -3465,9 +3465,13 @@ int ParseBmsFile(gameplay *gp, CSTR filename, AUDIO *aud, ConfigStruct* cfg, BMS
 		}
 	}
 
-	for (int p : { PLAYER_1, PLAYER_2 }) {
-		gp->randomLayoutForDisplay[p] = 0;
-		for (int i = 1; i < 1 + key; ++i) gp->randomLayoutForDisplay[p] += std::pow(10, p * 10 + key - noteRandomTable[p][i]) * i;
+	if (gp->isPreviewLoad == 0) {
+		for (int p : { PLAYER_1, PLAYER_2 }) {
+			gp->randomLayoutForDisplay[p] = 0;
+			for (int i = 1; i < 1 + key; ++i) {
+				gp->randomLayoutForDisplay[p] += std::pow(10, p * 10 + key - noteRandomTable[p][i]) * i;
+			}
+		}
 	}
 
 	double p1LastTiming = 0.0, p2LastTiming = 0.0;
