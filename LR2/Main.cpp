@@ -296,10 +296,6 @@ int main(int argc, char** argv) {
 		MessageBoxA(NULL, "Failed to read OpenLR2 config", "エラー", 0);
 		return -1;
 	}
-	if (gs.config.jukebox.numOfPath <= 0 && gs.is_starter == false) {
-		MessageBoxA(NULL, "設定プログラムのJUKEBOX1タブで、\n曲を検索するフォルダの登録を行ってください。", "エラー", 0);
-		return -1;
-	}
 	ErrorLogAdd("成功しました\n");
 	if (gs.is_starter) {
 		gs.config.sound.disableFmod = true;
@@ -416,6 +412,10 @@ int main(int argc, char** argv) {
 		}
 		ErrorLogAdd("tests passed\n");
 		return 0;
+	}
+	if (gs.config.jukebox.numOfPath <= 0 && gs.is_starter == false) {
+		MessageBoxA(NULL, "設定プログラムのJUKEBOX1タブで、\n曲を検索するフォルダの登録を行ってください。", "エラー", 0);
+		return -1;
 	}
 	CSTR pathScoreDB;
 	cstrSprintf(&pathScoreDB, "LR2files/Database/Score/%s.db", gs.config.player.id.body);
