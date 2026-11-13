@@ -175,14 +175,14 @@ bool IsDigitAscii(char ch) {
 	return '0' <= ch && ch <= '9';
 }
 
+// \param out is not modified on error
 bool GetRawBodyInt(std::string_view line, std::string_view head, int& out) {
 	if (!StartsWithICaseAscii(line, head)) return false;
 	if (line.size() <= head.size() + 1) return false;
-
 	int value = 0;
-	const auto result = std::from_chars(line.data() + head.size() + 1, line.data() + line.size(), value);
-	if (result.ec != std::errc()) return false;
-
+	const auto [ptr, ec] = std::from_chars(line.data() + head.size() + 1, line.data() + line.size(), value);
+	// should check ptr but it would be a breaking change
+	if (ec != std::errc()/* || ptr != line.data() + line.size() */) return false;
 	out = value;
 	return true;
 }

@@ -276,6 +276,7 @@ bool GetStringBodyStr(CSTR *str, CSTR head, CSTR *oBuf){
 	return false;
 }
 
+// TODO: remove in favor of GetRawBodyInt
 bool GetStringBodyInt(CSTR *str, CSTR haed, int *oBuf) {
 	if (CheckStringHead(str, &haed)) {
 		*oBuf = atol(str->right(str->length() - haed.length() - 1));
