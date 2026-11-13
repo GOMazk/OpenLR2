@@ -13,6 +13,8 @@
 #include <fstream>
 #include <future>
 #include <iterator>
+#include <random>
+#include <source_location>
 #include <string>
 #include <string_view>
 #include <thread>
@@ -138,6 +140,49 @@ static void run_tests_or_die()
 	ASSERT_TRUE(Url::parse("https://ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789?a=b#c").has_value());
 	ASSERT_TRUE(!Url::parse("https:// ").has_value());
 	ASSERT_TRUE(!Url::parse("https://\"").has_value());
+
+	{
+		using Rd = KeyLayoutRandomizer<9>;
+		using Any = KeyLayoutRandomizerImpl::Any;
+		using Blue = KeyLayoutRandomizerImpl::Blue;
+		using S = KeyLayoutRandomizerImpl::Specific;
+		using White = KeyLayoutRandomizerImpl::White;
+		ASSERT_TRUE(!Rd::from_string("123456789x").has_value()); // too much = fail
+		ASSERT_TRUE(!Rd::from_string("12345678").has_value());	 // too few = fail
+		ASSERT_TRUE(!Rd::from_string("1234?6789").has_value());	 // unknown character = fail
+		ASSERT_TRUE(!Rd::from_string("bbbbbxxxx").has_value());	 // impossible combination = fail (1)
+		ASSERT_TRUE(!Rd::from_string("11xxxxxxx").has_value());	 // impossible combination = fail (2)
+		ASSERT_EQ(Rd::from_string("1xBbWwXxx").value().to_string(), "1xbbwwxxx");
+		ASSERT_EQ((Rd{.value = {S{1}, Any{}, Blue{}, Blue{}, White{}, White{}}}.to_string()), "1xbbwwxxx");
+	}
+	{
+		using Rd = KeyLayoutRandomizer<7>;
+		std::mt19937 gen;
+		gen = std::mt19937{0xbadfeed};
+		ASSERT_EQ(Rd::from_string("1357246").value().get_layout(gen), 1357246U);
+		gen = std::mt19937{0xbadfeed};
+		ASSERT_EQ(Rd::from_string("bbbwwww").value().get_layout(gen), 2645371U);
+		gen = std::mt19937{0xbadfeed};
+		ASSERT_EQ(Rd::from_string("xxxxxxx").value().get_layout(gen), 2653471U);
+		gen = std::mt19937{0xbadfeed};
+		ASSERT_EQ(Rd::from_string("1bxxxww").value().get_layout(gen), 1236475U);
+	}
+	{
+		using Rd = KeyLayoutRandomizer<9>;
+		std::mt19937 gen;
+		gen = std::mt19937{0xbadfeed};
+		ASSERT_EQ(Rd::from_string("12345xxxx").value().get_layout(gen), 123457968U);
+		gen = std::mt19937{0xbadfeed};
+		ASSERT_EQ(Rd::from_string("bbbbwwwww").value().get_layout(gen), 246859173U);
+	}
+	{
+		using Rd = KeyLayoutRandomizer<5>;
+		std::mt19937 gen;
+		gen = std::mt19937{0xbadfeed};
+		ASSERT_EQ(Rd::from_string("12345").value().get_layout(gen), 12345U);
+		gen = std::mt19937{0xbadfeed};
+		ASSERT_EQ(Rd::from_string("bbwww").value().get_layout(gen), 24351U);
+	}
 }
 
 static int g_exclusiveDisplayIndex = -1;
