@@ -8,6 +8,7 @@
 #endif // _WIN32
 
 #include <algorithm>
+#include <cstring>
 
 #ifdef _WIN32
 #include <windows.h>
@@ -309,7 +310,7 @@ static void ProcessInput(inputStructure* is, int interval) {
 		axis.Ry = state.Ry;
 		axis.Rz = state.Rz;
 		for (int axisIdx = 0; axisIdx < 6; axisIdx++) {
-			auto get_val = [&axis, &axisIdx](const inputStructure::axis& axis, int axisIdx) {
+			auto get_val = [](const inputStructure::axis& axis, int axisIdx) {
 				switch (axisIdx) {
 				case 0: return axis.X;
 				case 1: return axis.Y;
