@@ -13,6 +13,8 @@
 #include <fstream>
 #include <future>
 #include <iterator>
+#include <random>
+#include <source_location>
 #include <string>
 #include <string_view>
 #include <thread>
@@ -102,32 +104,82 @@ static consteval bool is_linux()
 #endif
 }
 
-static bool run_tests() {
-	if (CSTR fp = fs::make_preferred("C:\\a\\b\\c\\d.bms").data(); fp.getDirectory().body != std::string_view{fs::make_preferred("C:\\a\\b\\c\\").data()}) {
-		ErrorLogFmtAdd("1: %s\n", fp.getDirectory().body);
-		return false;
+static void assert_eq_impl(auto lv, auto rv, const char* lhs, const char* rhs,
+						   std::source_location pos = std::source_location::current())
+{
+	if(lv != rv)
+	{
+		std::string msg = std::format("Assertion failed at {}:{} : {} != {} : {} != {}", pos.file_name(), pos.line(),
+									  lhs, rhs, lv, rv);
+		ErrorLogFmtAdd("%s", msg.c_str());
+		throw std::runtime_error(msg);
 	}
-	if (CSTR fp = fs::make_preferred("C:\\a\\b\\c\\d.bms").data(); fp.getParentDirectory().body != std::string_view{fs::make_preferred("C:\\a\\b\\").data()}) {
-		ErrorLogFmtAdd("2: %s\n", fp.getParentDirectory().body);
-		return false;
+}
+static void assert_true_impl(const bool res, const char* expr,
+							 std::source_location pos = std::source_location::current())
+{
+	if(!res)
+	{
+		std::string msg = std::format("Assertion failed at {}:{} : {} is false", pos.file_name(), pos.line(), expr);
+		ErrorLogFmtAdd("%s", msg.c_str());
+		throw std::runtime_error(msg);
 	}
-	if (!Url::parse("https://").has_value()) {
-		ErrorLogAdd("3\n");
-		return false;
+}
+
+#define ASSERT_EQ(lhs, rhs) assert_eq_impl((lhs), (rhs), #lhs, #rhs)
+#define ASSERT_TRUE(expr) assert_true_impl((expr), #expr)
+
+static void run_tests_or_die()
+{
+	ASSERT_EQ(CSTR(fs::make_preferred("C:\\a\\b\\c\\d.bms").data()).getDirectory().body,
+			  std::string_view{fs::make_preferred("C:\\a\\b\\c\\").data()});
+	ASSERT_EQ(CSTR(fs::make_preferred("C:\\a\\b\\c\\d.bms").data()).getParentDirectory().body,
+			  std::string_view{fs::make_preferred("C:\\a\\b\\").data()});
+
+	ASSERT_TRUE(Url::parse("https://").has_value());
+	ASSERT_TRUE(Url::parse("https://ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789?a=b#c").has_value());
+	ASSERT_TRUE(!Url::parse("https:// ").has_value());
+	ASSERT_TRUE(!Url::parse("https://\"").has_value());
+
+	{
+		using Rd = KeyLayoutRandomizer;
+		using Any = Rd::Any;
+		using Blue = Rd::Blue;
+		using S = Rd::Specific;
+		using White = Rd::White;
+		ASSERT_TRUE(Rd::from_string("111111111").has_value());
+		ASSERT_TRUE(!Rd::from_string("1111111111").has_value());
+		ASSERT_TRUE(!Rd::from_string("bad").has_value());
+		ASSERT_EQ(Rd::from_string("123456789").value().to_string(),
+				  (Rd{.value = {S{1}, S{2}, S{3}, S{4}, S{5}, S{6}, S{7}, S{8}, S{9}}}).to_string());
+		ASSERT_EQ(Rd::from_string("1xBbWwX").value().to_string(),
+				  (Rd{.value = {S{1}, Any{}, Blue{}, Blue{}, White{}, White{}}}).to_string());
+		ASSERT_EQ((Rd{.value = {S{1}, Any{}, Blue{}, Blue{}, White{}, White{}}}.to_string()), "1xbbwwxxx");
+
+		std::mt19937 gen;
+		gen = std::mt19937{0xbadfeed};
+		ASSERT_EQ(Rd::from_string("123456789").value().get_layout(gen, 7), 1234567U);
+		gen = std::mt19937{0xbadfeed};
+		ASSERT_EQ(Rd::from_string("1357246").value().get_layout(gen, 7), 1357246U);
+		gen = std::mt19937{0xbadfeed};
+		ASSERT_EQ(Rd::from_string("bbbwwww").value().get_layout(gen, 7), 2645371U);
+		gen = std::mt19937{0xbadfeed};
+		ASSERT_EQ(Rd::from_string("bbbbbbb").value().get_layout(gen, 7), 0U);
+		gen = std::mt19937{0xbadfeed};
+		ASSERT_EQ(Rd::from_string("").value().get_layout(gen, 7), 2653471U);
+		gen = std::mt19937{0xbadfeed};
+		ASSERT_EQ(Rd::from_string("1bxxxww").value().get_layout(gen, 7), 1236475U);
+
+		gen = std::mt19937{0xbadfeed};
+		ASSERT_EQ(Rd::from_string("12345").value().get_layout(gen, 9), 123457968U);
+		gen = std::mt19937{0xbadfeed};
+		ASSERT_EQ(Rd::from_string("bbbbwwwww").value().get_layout(gen, 9), 246859173U);
+
+		gen = std::mt19937{0xbadfeed};
+		ASSERT_EQ(Rd::from_string("12345").value().get_layout(gen, 5), 12345U);
+		gen = std::mt19937{0xbadfeed};
+		ASSERT_EQ(Rd::from_string("bbwww").value().get_layout(gen, 5), 24351U);
 	}
-	if (!Url::parse("https://ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789?a=b#c").has_value()) {
-		ErrorLogAdd("4\n");
-		return false;
-	}
-	if (Url::parse("https:// ").has_value()) {
-		ErrorLogAdd("5\n");
-		return false;
-	}
-	if (Url::parse("https://\"").has_value()) {
-		ErrorLogAdd("6\n");
-		return false;
-	}
-	return true;
 }
 
 static int g_exclusiveDisplayIndex = -1;
@@ -296,10 +348,6 @@ int main(int argc, char** argv) {
 		MessageBoxA(NULL, "Failed to read OpenLR2 config", "エラー", 0);
 		return -1;
 	}
-	if (gs.config.jukebox.numOfPath <= 0 && gs.is_starter == false) {
-		MessageBoxA(NULL, "設定プログラムのJUKEBOX1タブで、\n曲を検索するフォルダの登録を行ってください。", "エラー", 0);
-		return -1;
-	}
 	ErrorLogAdd("成功しました\n");
 	if (gs.is_starter) {
 		gs.config.sound.disableFmod = true;
@@ -410,12 +458,13 @@ int main(int argc, char** argv) {
 	}
 	gs.config.system.thread = 0;
 	if (test_mode) {
-		if(!run_tests()) {
-			ErrorLogAdd("tests failed\n");
-			return 1;
-		}
+		run_tests_or_die();
 		ErrorLogAdd("tests passed\n");
 		return 0;
+	}
+	if (gs.config.jukebox.numOfPath <= 0 && gs.is_starter == false) {
+		MessageBoxA(NULL, "設定プログラムのJUKEBOX1タブで、\n曲を検索するフォルダの登録を行ってください。", "エラー", 0);
+		return -1;
 	}
 	CSTR pathScoreDB;
 	cstrSprintf(&pathScoreDB, "LR2files/Database/Score/%s.db", gs.config.player.id.body);

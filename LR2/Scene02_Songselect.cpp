@@ -3,11 +3,18 @@
 #include "LR2.h"
 #include "LR2_songmanage.h"
 #include "filesystem.h"
+#include <algorithm>
+#include <cmath>
 #include <filesystem>
 #include <format>
 #include <functional>
+#include <optional>
+#include <random>
+#include <ranges>
 #include <stdio.h>
 #include <string>
+#include <string_view>
+#include <variant>
 #ifndef _WIN32
 #include "En_dxlibstub.h"
 #endif // _WIN32
@@ -15,6 +22,11 @@
 struct glb_dbgame {
 	struct sqlite3 * pSql;
 	struct game * pGame;
+};
+
+template <class... Ts> struct overloaded : Ts...
+{
+    using Ts::operator()...;
 };
 
 int SetTarget(game *g) {
@@ -1106,6 +1118,131 @@ int SetObjectStrings_SongSelect(game *g) {
 	return 1;
 }
 
+std::optional<KeyLayoutRandomizer> KeyLayoutRandomizer::from_string(std::string_view s)
+{
+	KeyLayoutRandomizer layout;
+	if(s.size() > MAX_PLAYER_COLUMNS)
+		return std::nullopt;
+	for(auto [i, c] : s | std::views::enumerate)
+	{
+		switch(c)
+		{
+		case '1':
+		case '2':
+		case '3':
+		case '4':
+		case '5':
+		case '6':
+		case '7':
+		case '8':
+		case '9': layout.value[i] = Specific{.column = static_cast<uint8_t>(c - '0')}; break;
+		case 'B':
+		case 'b': layout.value[i] = Blue{}; break;
+		case 'W':
+		case 'w': layout.value[i] = White{}; break;
+		case 'X':
+		case 'x': layout.value[i] = Any{}; break;
+		default: return std::nullopt;
+		}
+	}
+	return layout;
+}
+
+std::string KeyLayoutRandomizer::to_string() const
+{
+	std::string out;
+	for(auto column : value)
+		std::visit(overloaded{
+					   [&out](Any v) { out += 'x'; },
+					   [&out](Blue v) { out += 'b'; },
+					   [&out](White v) { out += 'w'; },
+					   [&out](Specific v) { out += std::to_string(v.column); },
+				   },
+				   column);
+	return out;
+}
+
+// std::shuffle algorithm is not standard-defined and differs between standard libraries.
+template <class RandomIt, class URBG> static void platorm_consistent_shuffle(RandomIt first, RandomIt last, URBG&& gen)
+{
+	// https://en.cppreference.com/cpp/algorithm/random_shuffle#Version_3
+	typedef typename std::iterator_traits<RandomIt>::difference_type diff_t;
+	typedef std::uniform_int_distribution<diff_t> distr_t;
+	typedef typename distr_t::param_type param_t;
+	distr_t D;
+    for (diff_t i = last - first - 1; i > 0; --i)
+    {
+        using std::swap;
+        swap(first[i], first[D(gen, param_t(0, i))]);
+    }
+}
+
+unsigned int KeyLayoutRandomizer::get_layout(std::mt19937& gen, int keys) const
+{
+	unsigned int layout{};
+
+	std::vector<uint8_t> free_blue;
+	for(uint8_t blue = 2; blue <= keys; blue += 2)
+		if(!std::ranges::contains(value, ColumnRandom{Specific{blue}}))
+			free_blue.emplace_back(blue);
+	platorm_consistent_shuffle(free_blue.begin(), free_blue.end(), gen);
+
+	std::vector<uint8_t> free_white;
+	for(uint8_t white = 1; white <= keys; white += 2)
+		if(!std::ranges::contains(value, ColumnRandom{Specific{white}}))
+			free_white.emplace_back(white);
+	platorm_consistent_shuffle(free_white.begin(), free_white.end(), gen);
+
+	auto get_random_bool = [roll = std::uniform_int_distribution<int>(1, 100)](std::mt19937& gen) mutable {
+		return roll(gen) <= 50;
+	};
+
+	static constexpr auto pop = [](std::vector<uint8_t>& free_) -> uint8_t {
+		auto v = free_.back();
+		free_.pop_back();
+		return v;
+	};
+	for(auto [i, column] : value | std::views::take(keys) | std::views::enumerate)
+	{
+		auto visitor = overloaded{
+			[](Any v) -> int { return -1; },
+			[&free_blue](Blue v) -> int { return free_blue.empty() ? 0 : pop(free_blue); },
+			[&free_white](White v) -> int { return free_white.empty() ? 0 : pop(free_white); },
+			[](Specific v) -> int { return v.column; },
+		};
+		auto resolved_column = std::visit(visitor, column);
+		if(resolved_column == 0)
+			return 0;
+		if(resolved_column == -1)
+			continue;
+		layout += static_cast<unsigned int>(std::pow(10, keys - i - 1) * resolved_column);
+	}
+	// Any placeholders are resolved later to avoid starving Blue and White placeholders
+	for(auto [i, column] : value | std::views::take(keys) | std::views::enumerate)
+	{
+		auto visitor = overloaded{
+			[&free_blue, &free_white, &get_random_bool, &gen](Any v) -> int {
+				if(!free_blue.empty() && !free_white.empty())
+					return get_random_bool(gen) ? pop(free_blue) : pop(free_white);
+				if(!free_blue.empty())
+					return pop(free_blue);
+				if(!free_white.empty())
+					return pop(free_white);
+				return 0;
+			},
+			[](Blue v) -> int { return -1; },
+			[](White v) -> int { return -1; },
+			[](Specific v) -> int { return -1; },
+		};
+		auto resolved_column = std::visit(visitor, column);
+		if(resolved_column == 0)
+			return 0;
+		if(resolved_column == -1)
+			continue;
+		layout += static_cast<unsigned int>(std::pow(10, keys - i - 1) * resolved_column);
+	}
+	return layout;
+}
 
 int CmdSearch(game *g, CSTR *cmd, sqlite3 *sql) {
 
@@ -1287,32 +1424,28 @@ int CmdSearch(game *g, CSTR *cmd, sqlite3 *sql) {
 		}
 	}
 	else if (cmd->isSame("/random")) {
-		*cmd = g->gameplay.forceRandomLayout == 0 ? "OFF" : std::to_string(g->gameplay.forceRandomLayout).c_str();
+		*cmd = g->gameplay.forceRandomLayout.has_value() ? g->gameplay.forceRandomLayout->to_string().c_str() : "OFF";
 		return 1;
 	}
 	else if (cmd->starts_with("/random ")) {
 		auto s = std::string_view{ cmd->body }.substr(std::string_view{ "/random " }.length());
-		unsigned int val;
-		auto [ptr, ec] = std::from_chars(s.data(), s.data() + s.size(), val);
-		if (ec != std::errc()) {
-			*cmd = ("INVALID NUMBER: " + std::string(s)).c_str();
+		if (s == "0" || s == "off") {
+			g->gameplay.forceRandomLayout = {};
+			*cmd = g->gameplay.forceRandomLayout.has_value() ? g->gameplay.forceRandomLayout->to_string().c_str() : "OFF";
 			return 1;
 		}
-		if (val == 0) {
-			g->gameplay.forceRandomLayout = 0;
-			*cmd = g->gameplay.forceRandomLayout == 0 ? "OFF" : std::to_string(g->gameplay.forceRandomLayout).c_str();
+		std::string last_random;
+		if (s == "last") { // keep it simple
+			last_random = std::to_string(g->gameplay.randomLayoutForDisplay[0]);
+			s = last_random;
 		}
-		else if (val >= 12345 && val <= 54321) {
-			g->gameplay.forceRandomLayout = val * 100 + 67;
-			*cmd = g->gameplay.forceRandomLayout == 0 ? "OFF" : std::to_string(g->gameplay.forceRandomLayout).c_str();
+		auto res = KeyLayoutRandomizer::from_string(s);
+		if (!res) {
+			*cmd = ("INVALID RANDOM: " + std::string(s)).c_str();
+			return 1;
 		}
-		else if (val >= 1234567 && val <= 7654321) {
-			g->gameplay.forceRandomLayout = val;
-			*cmd = g->gameplay.forceRandomLayout == 0 ? "OFF" : std::to_string(g->gameplay.forceRandomLayout).c_str();
-		}
-		else {
-			*cmd = ("OUT OF RANGE NUMBER: " + std::to_string(val)).c_str();
-		}
+		g->gameplay.forceRandomLayout = *res;
+		*cmd = g->gameplay.forceRandomLayout.has_value() ? g->gameplay.forceRandomLayout->to_string().c_str() : "OFF";
 		return 1;
 	}
 	else {
