@@ -1,4 +1,4 @@
-﻿// -------------------------------------------------------------------------------
+// -------------------------------------------------------------------------------
 // 
 // 		ＤＸライブラリ		アーカイブ制御プログラム
 // 
@@ -5272,7 +5272,7 @@ typedef struct LZ_LIST
 } LZ_LIST ;
 
 // データを圧縮する( 戻り値:圧縮後のデータサイズ )
-extern	int	DXA_Encode( void *Src, DWORD SrcSize, void *Dest )
+extern	int	DXA_Encode( void *Src, DWORD SrcSize, void *Dest, int MaxPress, int MaxSearchListNum )
 {
 	int dstsize ;
 	int    bonus,    conbo,    conbosize,    address,    addresssize ;
@@ -5285,7 +5285,16 @@ extern	int	DXA_Encode( void *Src, DWORD SrcSize, void *Dest )
 	DWORD sublistnum, sublistmaxnum ;
 	LZ_LIST *listbuf, *listtemp, *list, *newlist ;
 	BYTE *listfirsttable, *usesublistflagtable, *sublistbuf ;
+	DWORD searchlistnum ;
 	
+	if( MaxSearchListNum <= 0 )
+	{
+		MaxSearchListNum = MAX_SEARCHLISTNUM ;
+	}
+
+	// 最大一致長を捜すためのリストを辿る最大数のセット
+	searchlistnum = MaxPress ? 0xffffffff : MaxSearchListNum ;
+
 	// サブリストのサイズを決める
 	{
 			 if( SrcSize < 100 * 1024 )			sublistmaxnum = 1 ;
@@ -5371,7 +5380,7 @@ extern	int	DXA_Encode( void *Src, DWORD SrcSize, void *Dest )
 	}
 
 	// 圧縮元のサイズをセット
-	((DWORD *)destp)[0] = SrcSize ;
+	SET_MEM_DWORD( &destp[0], SrcSize )
 
 	// キーコードをセット
 	destp[8] = keycode ;
@@ -5389,7 +5398,7 @@ extern	int	DXA_Encode( void *Src, DWORD SrcSize, void *Dest )
 		if( srcaddress + MIN_COMPRESS >= SrcSize ) goto NOENCODE ;
 
 		// リストを取得
-		code = *((WORD *)sp) ;
+		code = GET_MEM_WORD( sp ) ;
 		list = (LZ_LIST *)( listfirsttable + code * sizeof( DWORD_PTR ) ) ;
 		if( usesublistflagtable[code] == 1 )
 		{
@@ -5411,7 +5420,7 @@ extern	int	DXA_Encode( void *Src, DWORD SrcSize, void *Dest )
 		maxconbo   = -1 ;
 		maxaddress = -1 ;
 		maxbonus   = -1 ;
-		for( m = 0, listtemp = list->next ; /*m < MAX_SEARCHLISTNUM &&*/ listtemp != NULL ; listtemp = listtemp->next, m ++ )
+		for( m = 0, listtemp = list->next ; m < searchlistnum/*MAX_SEARCHLISTNUM*/ && listtemp != NULL ; listtemp = listtemp->next, m ++ )
 		{
 			address = ( int )( srcaddress - listtemp->address ) ;
 			if( address >= MAX_POSITION )
@@ -5561,7 +5570,7 @@ NOENCODE:
 				sp2 = &sp[1] ;
 				for( j = 1 ; j < maxconbo && (DWORD_PTR)&sp2[2] - (DWORD_PTR)srcp < SrcSize ; j ++, sp2 ++ )
 				{
-					code = *((WORD *)sp2) ;
+					code = GET_MEM_WORD( sp2 ) ;
 					list = (LZ_LIST *)( listfirsttable + code * sizeof( DWORD_PTR ) ) ;
 					if( usesublistflagtable[code] == 1 )
 					{
@@ -5601,7 +5610,7 @@ NOENCODE:
 	}
 
 	// 圧縮後のデータサイズを保存する
-	*((DWORD *)&destp[4]) = ( DWORD )( dstsize + 9 ) ;
+	SET_MEM_DWORD( &destp[4], dstsize + 9 )
 
 	// 確保したメモリの解放
 	DXFREE( usesublistflagtable ) ;

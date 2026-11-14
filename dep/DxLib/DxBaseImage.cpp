@@ -1,8 +1,8 @@
-﻿// ----------------------------------------------------------------------------
+// ----------------------------------------------------------------------------
 // 
 // 		ＤＸライブラリ		ＢａｓｅＩｍａｇｅプログラム
 // 
-// 				Ver 3.24f
+// 				Ver 3.25a
 // 
 // ----------------------------------------------------------------------------
 
@@ -4113,7 +4113,7 @@ static	int LoadDxLibBaseImage( STREAMDATA *Stream, BASEIMAGE *BaseImage, int Get
 // 	WORD Height ;			// 14:画像の高さ
 // 	BYTE ColorBitDepth ;	// 16:色深度( 16:16ビット  24:24ビット  32:32ビット )
 // 	BYTE Descriptor ;		// 17:その他の情報
-// 							//     bit 0〜3 属性( 16bit画像なら 0 又は 1, 24bit画像なら 0, 32bit画像なら 8 )
+// 							//     bit 0～3 属性( 16bit画像なら 0 又は 1, 24bit画像なら 0, 32bit画像なら 8 )
 // 							//     bit 4 格納方向( 0:左から右  1:右から左 )
 // 							//     bit 5 格納方向( 0:下から上  1:上から下 )
 // 							//     bit 6, 7  未使用
@@ -4141,23 +4141,23 @@ static	int LoadDxLibBaseImage( STREAMDATA *Stream, BASEIMAGE *BaseImage, int Get
 // 	WORD 		Size ;				// フッタ( 495固定 )
 // 	BYTE 		Creator[41] ;		// 作者名( 未使用時は 0 で埋める )
 // 	BYTE 		Comment[4][81] ;	// 作者名や時刻、そのほかの情報
-// 	WORD		CreationDateMonth ;	// 作成日  月 1〜12
-// 	WORD		CreationDateDay ;	// 作成日  日 1〜31
+// 	WORD		CreationDateMonth ;	// 作成日  月 1～12
+// 	WORD		CreationDateDay ;	// 作成日  日 1～31
 // 	WORD		CreationDateYear ;	// 作成日  年 4桁( 2004等 )
-// 	WORD		CreationDateHour ;	// 作成日  時 0〜23
-// 	WORD		CreationDateMinute ;// 作成日  分 0〜59
-// 	WORD		CreationDateSecond ;// 作成日  秒 0〜59
+// 	WORD		CreationDateHour ;	// 作成日  時 0～23
+// 	WORD		CreationDateMinute ;// 作成日  分 0～59
+// 	WORD		CreationDateSecond ;// 作成日  秒 0～59
 // 	BYTE 		JobName[41] ;		// 仕事名( 未使用時は 0 で埋める )
-// 	WORD		CreationTimeHours ;	// 作成時刻  時 0〜65535
-// 	WORD		CreationTimeMinute ;// 作成時刻  分 0〜59
-// 	WORD		CreationTimeSecond ;// 作成時刻  秒 0〜59
+// 	WORD		CreationTimeHours ;	// 作成時刻  時 0～65535
+// 	WORD		CreationTimeMinute ;// 作成時刻  分 0～59
+// 	WORD		CreationTimeSecond ;// 作成時刻  秒 0～59
 // 	BYTE		SoftID[41] ;		// ソフトウエアのＩＤ( 未使用時は 0 で埋める )
 // 	WORD		VersionNumber ;		// バージョンナンバー( 1.01 だったら 101 )
 // 	BYTE		VersionRot ;		// ロット( アスキーコード )
 // 	DWORD		ColorKey ;			// カラーキー
 // 	WORD		AcpectX ;			// ドットのアスペクト比 X (0:無効)
 // 	WORD		AcpectY ;			// ドットのアスペクト比 Y (0:無効)
-// 	WORD		GammaN ;			// ガンマ値 0.0 〜 10.0
+// 	WORD		GammaN ;			// ガンマ値 0.0 ～ 10.0
 // 	WORD		GammaD ;			// ガンマ値 ( 0:ガンマ指定無し )
 // 	DWORD		ColorTableOffset ;	// カラーコレクションテーブルの位置 (0:省略)
 // 	DWORD		StampTableOffset ;	// スタンプテーブルの位置 (0:省略)
@@ -4223,7 +4223,7 @@ static int LoadTargaImage( STREAMDATA *Src, BASEIMAGE *BaseImage, int GetFormatO
  	WORD Height ;				// 14:画像の高さ
  	BYTE ColorBitDepth ;		// 16:色深度( 16:16ビット  24:24ビット  32:32ビット )
  	BYTE Descriptor ;			// 17:その他の情報
- 								//     bit 0〜3 属性( 16bit画像なら 0 又は 1, 24bit画像なら 0, 32bit画像なら 8 )
+ 								//     bit 0～3 属性( 16bit画像なら 0 又は 1, 24bit画像なら 0, 32bit画像なら 8 )
  								//     bit 4 格納方向( 0:左から右  1:右から左 )
  								//     bit 5 格納方向( 0:下から上  1:上から下 )
  								//     bit 6, 7  未使用
@@ -7435,7 +7435,7 @@ extern int NS_GetPixelPalCodeBaseImage( const BASEIMAGE *BaseImage, int x, int y
 	return 0xffffffff;
 }
 
-// 基本イメージデータの指定の座標の色を変更する(各色要素は０〜２５５)
+// 基本イメージデータの指定の座標の色を変更する(各色要素は０～２５５)
 extern int NS_SetPixelBaseImage( BASEIMAGE *BaseImage, int x, int y, int  r, int  g, int  b, int  a )
 {
 	unsigned int Color;
@@ -7624,7 +7624,7 @@ extern int NS_SetPixelBaseImageF( BASEIMAGE *BaseImage, int x, int y, float  r, 
 	return 0;
 }
 
-// 基本イメージデータの指定の座標の色を取得する(各色要素は０〜２５５)
+// 基本イメージデータの指定の座標の色を取得する(各色要素は０～２５５)
 extern int NS_GetPixelBaseImage( const BASEIMAGE *BaseImage, int x, int y, int *r, int *g, int *b, int *a )
 {
 	unsigned int Color;
@@ -7833,7 +7833,7 @@ extern int NS_GetPixelBaseImageF( const BASEIMAGE *BaseImage, int x, int y, floa
 	return 0;
 }
 
-// 基本イメージデータの指定の座標に線を描画する(各色要素は０〜２５５)
+// 基本イメージデータの指定の座標に線を描画する(各色要素は０～２５５)
 extern int NS_DrawLineBaseImage( BASEIMAGE *BaseImage, int x1, int y1, int x2, int y2, int r, int g, int b, int a )
 {
 	unsigned int Color;
@@ -8286,7 +8286,7 @@ extern int NS_DrawLineBaseImage( BASEIMAGE *BaseImage, int x1, int y1, int x2, i
 #define DRAWCIRCLEMEMIMG_DRAW_DWORD		*( ( DWORD * )DrawBP ) = ( DWORD )Color ;
 
 
-// 基本イメージデータの指定の座標に円を描画する(各色要素は０〜２５５)
+// 基本イメージデータの指定の座標に円を描画する(各色要素は０～２５５)
 extern int NS_DrawCircleBaseImage( BASEIMAGE *BaseImage, int x, int y, int radius, int r, int g, int b, int a, int FillFlag )
 {
 	unsigned int Color ;

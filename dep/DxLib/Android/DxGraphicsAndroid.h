@@ -1,8 +1,8 @@
-﻿// -------------------------------------------------------------------------------
+// -------------------------------------------------------------------------------
 // 
 // 		ＤＸライブラリ		描画処理プログラム( Android )ヘッダファイル
 // 
-// 				Ver 3.24f
+// 				Ver 3.25a
 // 
 // -------------------------------------------------------------------------------
 
@@ -951,7 +951,7 @@ struct GRAPHICS_HARDDATA_ANDROID_DRAWSETTING
 	int								BlendGraphType ;						// ブレンド画像タイプ
 	int								BlendGraphFadeRatio ;					// ブレンド画像のフェードパラメータ
 	int								BlendGraphBorderParam ;					// ブレンド画像の境界パラメータ(０(ブレンド画像の影響０)　←　(ブレンド画像の影響少ない)　←　１２８(ブレンド画像の影響１００％)　→　(ブレンド画像の影響を超えて非描画部分が増える)　→２５５(全く描画されない) )
-	int								BlendGraphBorderRange ;					// ブレンド画像の境界幅(０〜２５５　狭い〜広い　しかし４段階)
+	int								BlendGraphBorderRange ;					// ブレンド画像の境界幅(０～２５５　狭い～広い　しかし４段階)
 	float							BlendTextureWidth ;						// ブレンドテクスチャの幅
 	float							BlendTextureHeight ;					// ブレンドテクスチャの高さ
 	float							InvBlendTextureWidth ;					// ブレンドテクスチャの幅の逆数
@@ -1564,8 +1564,8 @@ extern	int		Graphics_Android_DeviceState_SetTextureAddressTransformMatrix( int U
 extern	int		Graphics_Android_DeviceState_SetFogEnable( int Flag ) ;												// フォグを有効にするかどうかを設定する( TRUE:有効  FALSE:無効 )
 extern	int		Graphics_Android_DeviceState_SetFogVertexMode( int Mode /* DX_FOGMODE_NONE 等 */ ) ;				// フォグモードを設定する
 extern	int		Graphics_Android_DeviceState_SetFogColor( unsigned int Color ) ;									// フォグカラーを変更する
-extern	int		Graphics_Android_DeviceState_SetFogStartEnd( float Start, float End ) ;								// フォグが始まる距離と終了する距離を設定する( 0.0f 〜 1.0f )
-extern	int		Graphics_Android_DeviceState_SetFogDensity( float Density ) ;										// フォグの密度を設定する( 0.0f 〜 1.0f )
+extern	int		Graphics_Android_DeviceState_SetFogStartEnd( float Start, float End ) ;								// フォグが始まる距離と終了する距離を設定する( 0.0f ～ 1.0f )
+extern	int		Graphics_Android_DeviceState_SetFogDensity( float Density ) ;										// フォグの密度を設定する( 0.0f ～ 1.0f )
 extern	int		Graphics_Android_DeviceState_SetLighting( int UseFlag ) ;											// ライティングの有無フラグをセットする
 extern	int		Graphics_Android_DeviceState_SetMaxAnisotropy( int MaxAnisotropy, int Sampler = -1 ) ;				// 最大異方性をセットする
 extern	int		Graphics_Android_DeviceState_SetViewport( RECT *Viewport ) ;										// ビューポートをセットする

@@ -1,4 +1,4 @@
-﻿// -------------------------------------------------------------------------------
+// -------------------------------------------------------------------------------
 // 
 // 		ＤＸライブラリ		通信プログラムヘッダファイル
 // 
@@ -346,7 +346,7 @@ extern	int			DXA_DIR_FindClose(				DWORD_PTR FindHandle ) ;										// 戻り�
 
 #endif
 
-extern	int			DXA_Encode(						void *Src, DWORD SrcSize, void *Dest ) ;						// データを圧縮する( 戻り値:圧縮後のデータサイズ )
+extern	int			DXA_Encode(						void *Src, DWORD SrcSize, void *Dest, int MaxPress = FALSE, int MaxSearchListNum = -1 ) ;	// データを圧縮する( 戻り値:圧縮後のデータサイズ )
 extern	int			DXA_Decode(						void *Src, void *Dest ) ;										// データを解凍する( 戻り値:解凍後のデータサイズ )
 
 extern	DWORD		BinToChar128(					void *Src, DWORD SrcSize, void *Dest ) ;						// バイナリデータを半角文字列に変換する( 戻り値:変換後のデータサイズ )

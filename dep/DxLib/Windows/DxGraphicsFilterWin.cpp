@@ -1,8 +1,8 @@
-﻿//-----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 // 
 // 		ＤＸライブラリ		Windows用GraphFilter系プログラム
 // 
-//  	Ver 3.24f
+//  	Ver 3.25a
 // 
 //-----------------------------------------------------------------------------
 
@@ -251,6 +251,24 @@ extern int	GraphFilter_Replacement_PF( GRAPHFILTER_INFO *Info, COLOR_U8 TargetCo
 #ifndef DX_NON_DIRECT3D9
 	case GRAPHICS_API_DIRECT3D9_WIN32 :
 		return GraphFilter_D3D9_Replacement_PF( Info, TargetColor, NextColor, IsPMA ) ;
+#endif // DX_NON_DIRECT3D9
+
+	default :
+		return 0 ;
+	}
+}
+extern int	GraphFilter_BilateralBlur_PF(    GRAPHFILTER_INFO *Info, int IsPMA )
+{
+	switch( GRAWIN.Setting.UseGraphicsAPI )
+	{
+#ifndef DX_NON_DIRECT3D11
+	case GRAPHICS_API_DIRECT3D11_WIN32 :
+		return GraphFilter_D3D11_BilateralBlur_PF( Info, IsPMA ) ;
+#endif // DX_NON_DIRECT3D11
+
+#ifndef DX_NON_DIRECT3D9
+	case GRAPHICS_API_DIRECT3D9_WIN32 :
+		return 0 ;
 #endif // DX_NON_DIRECT3D9
 
 	default :

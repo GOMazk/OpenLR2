@@ -1,8 +1,8 @@
-﻿// ----------------------------------------------------------------------------
+// ----------------------------------------------------------------------------
 // 
 // 		ＤＸライブラリ		描画プログラム
 // 
-// 				Ver 3.24f
+// 				Ver 3.25a
 // 
 // ----------------------------------------------------------------------------
 
@@ -55,6 +55,7 @@
 		#include "iOS/DxGraphicsiOS.h"
     #endif // TARGET_OS_IPHONE
 #endif // __APPLE__
+
 
 
 
@@ -1967,13 +1968,13 @@ extern int NS_MakeScreen( int SizeX, int SizeY, int UseAlphaChannel )
 // 指定のグラフィックの指定部分だけを抜き出して新たなグラフィックハンドルを作成する
 extern int NS_DerivationGraph( int SrcX, int SrcY, int Width, int Height, int SrcGraphHandle )
 {
-	return Graphics_Image_DerivationGraph_UseGParam( FALSE, SrcX, ( float )SrcX, SrcY, ( float )SrcY, Width, ( float )Width, Height, ( float )Height, SrcGraphHandle, FALSE ) ;
+	return Graphics_Image_DerivationGraph_UseGParam( FALSE, SrcX, ( float )SrcX, SrcY, ( float )SrcY, Width, ( float )Width, Height, ( float )Height, SrcGraphHandle, FALSE, FALSE ) ;
 }
 
 // 指定のグラフィックハンドルの指定部分だけを抜き出して新たなグラフィックハンドルを作成する( float版 )
 extern int NS_DerivationGraphF( float SrcX, float SrcY, float Width, float Height, int SrcGraphHandle )
 {
-	return Graphics_Image_DerivationGraph_UseGParam( TRUE, _FTOL( SrcX ), SrcX, _FTOL( SrcY ), SrcY, _FTOL( Width ), Width, _FTOL( Height ), Height, SrcGraphHandle, FALSE ) ;
+	return Graphics_Image_DerivationGraph_UseGParam( TRUE, _FTOL( SrcX ), SrcX, _FTOL( SrcY ), SrcY, _FTOL( Width ), Width, _FTOL( Height ), Height, SrcGraphHandle, FALSE, FALSE ) ;
 }
 
 // 指定のグラフィックデータを削除する
@@ -4842,6 +4843,23 @@ extern int NS_SetCreateDrawValidGraphMultiSample( int Samples, int Quality )
 	// パラメータを保存する
 	GSYS.CreateImage.DrawValidMSSamples = Samples ;
 	GSYS.CreateImage.DrawValidMSQuality = Quality ;
+
+	// 終了
+	return 0 ;
+}
+
+// SetDrawScreen の引数として渡せる( 描画対象として使用できる )グラフィックハンドルに適用するマルチサンプリング( アンチエイリアシング )設定を取得する( Samples:マルチサンプル処理に使用するドット数( 多いほど重くなります )  Quality:マルチサンプル処理の品質 )
+extern int NS_GetCreateDrawValidGraphMultiSample( int *Samples, int *Quality )
+{
+	if( Samples != NULL )
+	{
+		*Samples = GSYS.CreateImage.DrawValidMSSamples ;
+	}
+
+	if( Quality != NULL )
+	{
+		*Quality = GSYS.CreateImage.DrawValidMSQuality ;
+	}
 
 	// 終了
 	return 0 ;
@@ -9124,11 +9142,11 @@ static int DrawQuadrangleFillAA( float x1, float y1, float x2, float y2, float x
 	V1Dir.x  = x2 - x1 ;	V1Dir.y  = y2 - y1 ;	V1Dir.z  = 0.0f ;
 //	V12Dir = V1Dir;
 	Distance = V1Dir.x * V1Dir.x + V1Dir.y * V1Dir.y ;
-	if( Distance < CmpDistance )
-	{
-		NormalDraw = TRUE ;
-		goto END ;
-	}
+//	if( Distance < CmpDistance )
+//	{
+//		NormalDraw = TRUE ;
+//		goto END ;
+//	}
 	Distance = _SQRT( Distance ) ;
 	V1Dir.x /= Distance ;
 	V1Dir.y /= Distance ;
@@ -9145,11 +9163,11 @@ static int DrawQuadrangleFillAA( float x1, float y1, float x2, float y2, float x
 	V2Pos.x  = x2 ;			V2Pos.y  = y2 ;			V2Pos.z  = 0.0f ;
 	V2Dir.x  = x3 - x2 ;	V2Dir.y  = y3 - y2 ;	V2Dir.z  = 0.0f ;
 	Distance = V2Dir.x * V2Dir.x + V2Dir.y * V2Dir.y ;
-	if( Distance < CmpDistance )
-	{
-		NormalDraw = TRUE ;
-		goto END ;
-	}
+//	if( Distance < CmpDistance )
+//	{
+//		NormalDraw = TRUE ;
+//		goto END ;
+//	}
 	Distance = _SQRT( Distance ) ;
 	V2Dir.x /= Distance ;
 	V2Dir.y /= Distance ;
@@ -9166,11 +9184,11 @@ static int DrawQuadrangleFillAA( float x1, float y1, float x2, float y2, float x
 	V3Pos.x  = x3 ;			V3Pos.y  = y3 ;			V3Pos.z  = 0.0f ;
 	V3Dir.x  = x4 - x3 ;	V3Dir.y  = y4 - y3 ;	V3Dir.z  = 0.0f ;
 	Distance = V3Dir.x * V3Dir.x + V3Dir.y * V3Dir.y ;
-	if( Distance < CmpDistance )
-	{
-		NormalDraw = TRUE ;
-		goto END ;
-	}
+//	if( Distance < CmpDistance )
+//	{
+//		NormalDraw = TRUE ;
+//		goto END ;
+//	}
 	Distance = _SQRT( Distance ) ;
 	V3Dir.x /= Distance ;
 	V3Dir.y /= Distance ;
@@ -9187,11 +9205,11 @@ static int DrawQuadrangleFillAA( float x1, float y1, float x2, float y2, float x
 	V4Pos.x  = x4 ;			V4Pos.y  = y4 ;			V4Pos.z  = 0.0f ;
 	V4Dir.x  = x1 - x4 ;	V4Dir.y  = y1 - y4 ;	V4Dir.z  = 0.0f ;
 	Distance = V4Dir.x * V4Dir.x + V4Dir.y * V4Dir.y ;
-	if( Distance < CmpDistance )
-	{
-		NormalDraw = TRUE ;
-		goto END ;
-	}
+//	if( Distance < CmpDistance )
+//	{
+//		NormalDraw = TRUE ;
+//		goto END ;
+//	}
 	Distance = _SQRT( Distance ) ;
 	V4Dir.x /= Distance ;
 	V4Dir.y /= Distance ;
@@ -9322,7 +9340,7 @@ static int DrawQuadrangleFillAA( float x1, float y1, float x2, float y2, float x
 
 	Graphics_Draw_DrawSimpleQuadrangleGraphF( &Param ) ;
 
-END :
+// END :
 
 	AA_DRAW_END
 
@@ -13986,7 +14004,7 @@ extern	int NS_DrawRectGraph( int DestX, int DestY, int SrcX, int SrcY, int Width
 		int TempHandle ;
 
 		// 切り取ったグラフィックを作成
-		TempHandle = NS_DerivationGraph( SrcX, SrcY, Width, Height, GraphHandle ) ;
+		TempHandle = Graphics_Image_DerivationGraph_UseGParam( FALSE, SrcX, ( float )SrcX, SrcY, ( float )SrcY, Width, ( float )Width, Height, ( float )Height, GraphHandle, TRUE, FALSE ) ;
 
 		// 描画
 		if( ReverseXFlag == FALSE && ReverseYFlag == FALSE )
@@ -13999,7 +14017,7 @@ extern	int NS_DrawRectGraph( int DestX, int DestY, int SrcX, int SrcY, int Width
 		}
 
 		// 削除
-		SubHandle( TempHandle, FALSE, FALSE ) ;
+		Graphics_Image_TempDerivationGraph_Terminate() ;
 
 		// 終了
 		return 0 ;
@@ -14125,13 +14143,13 @@ extern	int NS_DrawRectExtendGraph( int DestX1, int DestY1, int DestX2, int DestY
 		int TempHandle ;
 
 		// 切り取ったグラフィックを作成
-		TempHandle = NS_DerivationGraph( SrcX, SrcY, SrcWidth, SrcHeight, GraphHandle ) ;
+		TempHandle = Graphics_Image_DerivationGraph_UseGParam( FALSE, SrcX, ( float )SrcX, SrcY, ( float )SrcY, SrcWidth, ( float )SrcWidth, SrcHeight, ( float )SrcHeight, GraphHandle, TRUE, FALSE ) ;
 
 		// 描画
 		NS_DrawExtendGraph( DestX1, DestY1, DestX2, DestY2, TempHandle, TransFlag ) ;
 
 		// 削除
-		SubHandle( TempHandle, FALSE, FALSE ) ;
+		Graphics_Image_TempDerivationGraph_Terminate() ;
 
 		// 終了
 		return 0 ;
@@ -14196,13 +14214,13 @@ extern	int NS_DrawRectRotaGraph( int X, int Y, int SrcX, int SrcY, int Width, in
 		return -1 ;
 
 	// 切り取ったグラフィックを作成
-	TempHandle = NS_DerivationGraph( SrcX, SrcY, Width, Height, GraphHandle ) ;
+	TempHandle = Graphics_Image_DerivationGraph_UseGParam( FALSE, SrcX, ( float )SrcX, SrcY, ( float )SrcY, Width, ( float )Width, Height, ( float )Height, GraphHandle, TRUE, FALSE ) ;
 
 	// 回転描画
 	NS_DrawRotaGraph( X, Y, ExtRate, Angle, TempHandle, TransFlag, ReverseXFlag, ReverseYFlag ) ;
 
 	// 削除
-	SubHandle( TempHandle, FALSE, FALSE ) ;
+	Graphics_Image_TempDerivationGraph_Terminate() ;
 
 	// 終了
 	return 0 ;
@@ -14217,13 +14235,13 @@ extern int NS_DrawRectRotaGraph2( int x, int y, int SrcX, int SrcY, int Width, i
 		return -1 ;
 
 	// 切り取ったグラフィックを作成
-	TempHandle = NS_DerivationGraph( SrcX, SrcY, Width, Height, GraphHandle ) ;
+	TempHandle = Graphics_Image_DerivationGraph_UseGParam( FALSE, SrcX, ( float )SrcX, SrcY, ( float )SrcY, Width, ( float )Width, Height, ( float )Height, GraphHandle, TRUE, FALSE ) ;
 
 	// 回転描画
 	NS_DrawRotaGraph2( x, y, cx, cy, ExtRate, Angle, TempHandle, TransFlag, ReverseXFlag, ReverseYFlag ) ;
 
 	// 削除
-	SubHandle( TempHandle, FALSE, FALSE ) ;
+	Graphics_Image_TempDerivationGraph_Terminate() ;
 
 	// 終了
 	return 0 ;
@@ -14238,13 +14256,13 @@ extern int NS_DrawRectRotaGraph3(  int x,   int y,   int SrcX, int SrcY, int Wid
 		return -1 ;
 
 	// 切り取ったグラフィックを作成
-	TempHandle = NS_DerivationGraph( SrcX, SrcY, Width, Height, GraphHandle ) ;
+	TempHandle = Graphics_Image_DerivationGraph_UseGParam( FALSE, SrcX, ( float )SrcX, SrcY, ( float )SrcY, Width, ( float )Width, Height, ( float )Height, GraphHandle, TRUE, FALSE ) ;
 
 	// 回転描画
 	NS_DrawRotaGraph3( x, y, cx, cy, ExtRateX, ExtRateY, Angle, TempHandle, TransFlag, ReverseXFlag, ReverseYFlag ) ;
 
 	// 削除
-	SubHandle( TempHandle, FALSE, FALSE ) ;
+	Graphics_Image_TempDerivationGraph_Terminate() ;
 
 	// 終了
 	return 0 ;
@@ -14259,13 +14277,13 @@ extern	int NS_DrawRectRotaGraphFast( int X, int Y, int SrcX, int SrcY, int Width
 		return -1 ;
 
 	// 切り取ったグラフィックを作成
-	TempHandle = NS_DerivationGraph( SrcX, SrcY, Width, Height, GraphHandle ) ;
+	TempHandle = Graphics_Image_DerivationGraph_UseGParam( FALSE, SrcX, ( float )SrcX, SrcY, ( float )SrcY, Width, ( float )Width, Height, ( float )Height, GraphHandle, TRUE, FALSE ) ;
 
 	// 回転描画
 	NS_DrawRotaGraphFast( X, Y, ExtRate, Angle, TempHandle, TransFlag, ReverseXFlag, ReverseYFlag ) ;
 
 	// 削除
-	SubHandle( TempHandle, FALSE, FALSE ) ;
+	Graphics_Image_TempDerivationGraph_Terminate() ;
 
 	// 終了
 	return 0 ;
@@ -14280,13 +14298,13 @@ extern int NS_DrawRectRotaGraphFast2( int x, int y, int SrcX, int SrcY, int Widt
 		return -1 ;
 
 	// 切り取ったグラフィックを作成
-	TempHandle = NS_DerivationGraph( SrcX, SrcY, Width, Height, GraphHandle ) ;
+	TempHandle = Graphics_Image_DerivationGraph_UseGParam( FALSE, SrcX, ( float )SrcX, SrcY, ( float )SrcY, Width, ( float )Width, Height, ( float )Height, GraphHandle, TRUE, FALSE ) ;
 
 	// 回転描画
 	NS_DrawRotaGraphFast2( x, y, cx, cy, ExtRate, Angle, TempHandle, TransFlag, ReverseXFlag, ReverseYFlag ) ;
 
 	// 削除
-	SubHandle( TempHandle, FALSE, FALSE ) ;
+	Graphics_Image_TempDerivationGraph_Terminate() ;
 
 	// 終了
 	return 0 ;
@@ -14301,13 +14319,13 @@ extern int NS_DrawRectRotaGraphFast3(  int x,   int y,   int SrcX, int SrcY, int
 		return -1 ;
 
 	// 切り取ったグラフィックを作成
-	TempHandle = NS_DerivationGraph( SrcX, SrcY, Width, Height, GraphHandle ) ;
+	TempHandle = Graphics_Image_DerivationGraph_UseGParam( FALSE, SrcX, ( float )SrcX, SrcY, ( float )SrcY, Width, ( float )Width, Height, ( float )Height, GraphHandle, TRUE, FALSE ) ;
 
 	// 回転描画
 	NS_DrawRotaGraphFast3( x, y, cx, cy, ExtRateX, ExtRateY, Angle, TempHandle, TransFlag, ReverseXFlag, ReverseYFlag ) ;
 
 	// 削除
-	SubHandle( TempHandle, FALSE, FALSE ) ;
+	Graphics_Image_TempDerivationGraph_Terminate() ;
 
 	// 終了
 	return 0 ;
@@ -14323,13 +14341,13 @@ extern int NS_DrawRectModiGraph( int x1, int y1, int x2, int y2, int x3, int y3,
 		return -1 ;
 
 	// 切り取ったグラフィックを作成
-	TempHandle = NS_DerivationGraph( SrcX, SrcY, Width, Height, GraphHandle ) ;
+	TempHandle = Graphics_Image_DerivationGraph_UseGParam( FALSE, SrcX, ( float )SrcX, SrcY, ( float )SrcY, Width, ( float )Width, Height, ( float )Height, GraphHandle, TRUE, FALSE ) ;
 
 	// 自由変形描画
 	NS_DrawModiGraph( x1, y1, x2, y2, x3, y3, x4, y4, TempHandle, TransFlag ) ;
 
 	// 削除
-	SubHandle( TempHandle, FALSE, FALSE ) ;
+	Graphics_Image_TempDerivationGraph_Terminate() ;
 
 	// 終了
 	return 0 ;
@@ -14420,7 +14438,7 @@ extern int NS_DrawRectGraphF( float DestX, float DestY, int SrcX, int SrcY, int 
 	{
 		int TempGrHandle;
 		
-		TempGrHandle = NS_DerivationGraph( SrcX, SrcY, SrcWidth, SrcHeight, GraphHandle ) ;
+		TempGrHandle = Graphics_Image_DerivationGraph_UseGParam( FALSE, SrcX, ( float )SrcX, SrcY, ( float )SrcY, SrcWidth, ( float )SrcWidth, SrcHeight, ( float )SrcHeight, GraphHandle, TRUE, FALSE ) ;
 
 		if( ReverseXFlag || ReverseYFlag )
 		{
@@ -14431,7 +14449,7 @@ extern int NS_DrawRectGraphF( float DestX, float DestY, int SrcX, int SrcY, int 
 			NS_DrawGraphF( DestX, DestY, TempGrHandle, TransFlag ) ;
 		}
 
-		SubHandle( TempGrHandle, FALSE, FALSE );
+		Graphics_Image_TempDerivationGraph_Terminate() ;
 	}
 
 	return 0 ;
@@ -14522,7 +14540,7 @@ extern int NS_DrawRectGraphF2( float DestX, float DestY, float SrcX, float SrcY,
 	{
 		int TempGrHandle;
 		
-		TempGrHandle = NS_DerivationGraphF( SrcX, SrcY, SrcWidth, SrcHeight, GraphHandle ) ;
+		TempGrHandle = Graphics_Image_DerivationGraph_UseGParam( FALSE, _FTOL( SrcX ), SrcX, _FTOL( SrcY ), SrcY, _FTOL( SrcWidth ), SrcWidth, _FTOL( SrcHeight ), SrcHeight, GraphHandle, TRUE, FALSE ) ;
 
 		if( ReverseXFlag || ReverseYFlag )
 		{
@@ -14533,7 +14551,7 @@ extern int NS_DrawRectGraphF2( float DestX, float DestY, float SrcX, float SrcY,
 			NS_DrawGraphF( DestX, DestY, TempGrHandle, TransFlag ) ;
 		}
 
-		SubHandle( TempGrHandle, FALSE, FALSE );
+		Graphics_Image_TempDerivationGraph_Terminate() ;
 	}
 
 	return 0 ;
@@ -14549,13 +14567,13 @@ extern int NS_DrawRectExtendGraphF( float DestX1, float DestY1, float DestX2, fl
 		return -1 ;
 
 	// 切り取ったグラフィックを作成
-	TempHandle = NS_DerivationGraph( SrcX, SrcY, SrcWidth, SrcHeight, GraphHandle ) ;
+	TempHandle = Graphics_Image_DerivationGraph_UseGParam( FALSE, SrcX, ( float )SrcX, SrcY, ( float )SrcY, SrcWidth, ( float )SrcWidth, SrcHeight, ( float )SrcHeight, GraphHandle, TRUE, FALSE ) ;
 
 	// 拡大描画
 	NS_DrawExtendGraphF( DestX1, DestY1, DestX2, DestY2, TempHandle, TransFlag ) ;
 
 	// 削除
-	SubHandle( TempHandle, FALSE, FALSE ) ;
+	Graphics_Image_TempDerivationGraph_Terminate() ;
 
 	// 終了
 	return 0 ;
@@ -14609,9 +14627,9 @@ extern int NS_DrawRectExtendGraphF2( float DestX1, float DestY1, float DestX2, f
 	{
 		int TempGrHandle;
 		
-		TempGrHandle = NS_DerivationGraphF( SrcX, SrcY, SrcWidth, SrcHeight, GraphHandle ) ;
+		TempGrHandle = Graphics_Image_DerivationGraph_UseGParam( FALSE, _FTOL( SrcX ), SrcX, _FTOL( SrcY ), SrcY, _FTOL( SrcWidth ), SrcWidth, _FTOL( SrcHeight ), SrcHeight, GraphHandle, TRUE, FALSE ) ;
 		NS_DrawExtendGraphF( DestX1, DestY1, DestX2, DestY2, TempGrHandle, TransFlag );
-		SubHandle( TempGrHandle, FALSE, FALSE );
+		Graphics_Image_TempDerivationGraph_Terminate() ;
 	}
 
 	return 0 ;
@@ -14626,13 +14644,13 @@ extern int NS_DrawRectRotaGraphF( float X, float Y, int SrcX, int SrcY, int Widt
 		return -1 ;
 
 	// 切り取ったグラフィックを作成
-	TempHandle = NS_DerivationGraph( SrcX, SrcY, Width, Height, GraphHandle ) ;
+	TempHandle = Graphics_Image_DerivationGraph_UseGParam( FALSE, SrcX, ( float )SrcX, SrcY, ( float )SrcY, Width, ( float )Width, Height, ( float )Height, GraphHandle, TRUE, FALSE ) ;
 
 	// 回転描画
 	NS_DrawRotaGraphF( X, Y, ExtRate, Angle, TempHandle, TransFlag, ReverseXFlag, ReverseYFlag ) ;
 
 	// 削除
-	SubHandle( TempHandle, FALSE, FALSE ) ;
+	Graphics_Image_TempDerivationGraph_Terminate() ;
 
 	// 終了
 	return 0 ;
@@ -14647,13 +14665,13 @@ extern int NS_DrawRectRotaGraph2F( float x, float y, int SrcX, int SrcY, int Wid
 		return -1 ;
 
 	// 切り取ったグラフィックを作成
-	TempHandle = NS_DerivationGraph( SrcX, SrcY, Width, Height, GraphHandle ) ;
+	TempHandle = Graphics_Image_DerivationGraph_UseGParam( FALSE, SrcX, ( float )SrcX, SrcY, ( float )SrcY, Width, ( float )Width, Height, ( float )Height, GraphHandle, TRUE, FALSE ) ;
 
 	// 回転描画
 	NS_DrawRotaGraph2F( x, y, cxf, cyf, ExtRate, Angle, TempHandle, TransFlag, ReverseXFlag, ReverseYFlag ) ;
 
 	// 削除
-	SubHandle( TempHandle, FALSE, FALSE ) ;
+	Graphics_Image_TempDerivationGraph_Terminate() ;
 
 	// 終了
 	return 0 ;
@@ -14668,13 +14686,13 @@ extern int NS_DrawRectRotaGraph3F( float x, float y, int SrcX, int SrcY, int Wid
 		return -1 ;
 
 	// 切り取ったグラフィックを作成
-	TempHandle = NS_DerivationGraph( SrcX, SrcY, Width, Height, GraphHandle ) ;
+	TempHandle = Graphics_Image_DerivationGraph_UseGParam( FALSE, SrcX, ( float )SrcX, SrcY, ( float )SrcY, Width, ( float )Width, Height, ( float )Height, GraphHandle, TRUE, FALSE ) ;
 
 	// 回転描画
 	NS_DrawRotaGraph3F( x, y, cxf, cyf, ExtRateX, ExtRateY, Angle, TempHandle, TransFlag, ReverseXFlag, ReverseYFlag ) ;
 
 	// 削除
-	SubHandle( TempHandle, FALSE, FALSE ) ;
+	Graphics_Image_TempDerivationGraph_Terminate() ;
 
 	// 終了
 	return 0 ;
@@ -14689,13 +14707,13 @@ extern int NS_DrawRectRotaGraphFastF( float X, float Y, int SrcX, int SrcY, int 
 		return -1 ;
 
 	// 切り取ったグラフィックを作成
-	TempHandle = NS_DerivationGraph( SrcX, SrcY, Width, Height, GraphHandle ) ;
+	TempHandle = Graphics_Image_DerivationGraph_UseGParam( FALSE, SrcX, ( float )SrcX, SrcY, ( float )SrcY, Width, ( float )Width, Height, ( float )Height, GraphHandle, TRUE, FALSE ) ;
 
 	// 回転描画
 	NS_DrawRotaGraphFastF( X, Y, ExtRate, Angle, TempHandle, TransFlag, ReverseXFlag, ReverseYFlag ) ;
 
 	// 削除
-	SubHandle( TempHandle, FALSE, FALSE ) ;
+	Graphics_Image_TempDerivationGraph_Terminate() ;
 
 	// 終了
 	return 0 ;
@@ -14710,13 +14728,13 @@ extern int NS_DrawRectRotaGraphFast2F( float x, float y, int SrcX, int SrcY, int
 		return -1 ;
 
 	// 切り取ったグラフィックを作成
-	TempHandle = NS_DerivationGraph( SrcX, SrcY, Width, Height, GraphHandle ) ;
+	TempHandle = Graphics_Image_DerivationGraph_UseGParam( FALSE, SrcX, ( float )SrcX, SrcY, ( float )SrcY, Width, ( float )Width, Height, ( float )Height, GraphHandle, TRUE, FALSE ) ;
 
 	// 回転描画
 	NS_DrawRotaGraphFast2F( x, y, cxf, cyf, ExtRate, Angle, TempHandle, TransFlag, ReverseXFlag, ReverseYFlag ) ;
 
 	// 削除
-	SubHandle( TempHandle, FALSE, FALSE ) ;
+	Graphics_Image_TempDerivationGraph_Terminate() ;
 
 	// 終了
 	return 0 ;
@@ -14731,13 +14749,13 @@ extern int NS_DrawRectRotaGraphFast3F( float x, float y, int SrcX, int SrcY, int
 		return -1 ;
 
 	// 切り取ったグラフィックを作成
-	TempHandle = NS_DerivationGraph( SrcX, SrcY, Width, Height, GraphHandle ) ;
+	TempHandle = Graphics_Image_DerivationGraph_UseGParam( FALSE, SrcX, ( float )SrcX, SrcY, ( float )SrcY, Width, ( float )Width, Height, ( float )Height, GraphHandle, TRUE, FALSE ) ;
 
 	// 回転描画
 	NS_DrawRotaGraphFast3F( x, y, cxf, cyf, ExtRateX, ExtRateY, Angle, TempHandle, TransFlag, ReverseXFlag, ReverseYFlag ) ;
 
 	// 削除
-	SubHandle( TempHandle, FALSE, FALSE ) ;
+	Graphics_Image_TempDerivationGraph_Terminate() ;
 
 	// 終了
 	return 0 ;
@@ -14753,13 +14771,13 @@ extern int NS_DrawRectModiGraphF( float x1, float y1, float x2, float y2, float 
 		return -1 ;
 
 	// 切り取ったグラフィックを作成
-	TempHandle = NS_DerivationGraph( SrcX, SrcY, Width, Height, GraphHandle ) ;
+	TempHandle = Graphics_Image_DerivationGraph_UseGParam( FALSE, SrcX, ( float )SrcX, SrcY, ( float )SrcY, Width, ( float )Width, Height, ( float )Height, GraphHandle, TRUE, FALSE ) ;
 
 	// 自由変形描画
 	NS_DrawModiGraphF( x1, y1, x2, y2, x3, y3, x4, y4, TempHandle, TransFlag ) ;
 
 	// 削除
-	SubHandle( TempHandle, FALSE, FALSE ) ;
+	Graphics_Image_TempDerivationGraph_Terminate() ;
 
 	// 終了
 	return 0 ;
@@ -17429,7 +17447,7 @@ extern int NS_DrawBillboard3D( VECTOR Pos, float cx, float cy, float Size, float
 
 	// 描画
 	DRAW_DEF(
-		Graphics_Hardware_DrawBillboard3D_PF( Pos, cx, cy, Size, Angle, Image, BlendImage, TransFlag, ReverseXFlag, ReverseYFlag ),
+		Graphics_Hardware_DrawBillboard3D_PF( Pos, cx, cy, Size, Size * ( float )Image->HeightF / ( float )Image->WidthF, Angle, Image, BlendImage, TransFlag, ReverseXFlag, ReverseYFlag ),
 		0,
 		DrawRect = GSYS.DrawSetting.DrawArea ;,
 		Ret,
@@ -17440,6 +17458,27 @@ extern int NS_DrawBillboard3D( VECTOR Pos, float cx, float cy, float Size, float
 	return Ret ;
 }
 
+// ３Ｄ空間上に画像を描画( 画像内矩形指定あり )
+extern int NS_DrawRectBillboard3D( VECTOR Pos, int SrcX, int SrcY, int SrcWidth, int SrcHeight, float cx, float cy, float Size, float Angle, int GrHandle, int TransFlag, int ReverseXFlag, int ReverseYFlag )
+{
+	int TempHandle ;
+
+	// サイズ判定
+	if( SrcWidth <= 0 || SrcHeight <= 0 )
+		return -1 ;
+
+	// 切り取ったグラフィックを作成
+	TempHandle = Graphics_Image_DerivationGraph_UseGParam( FALSE, SrcX, ( float )SrcX, SrcY, ( float )SrcY, SrcWidth, ( float )SrcWidth, SrcHeight, ( float )SrcHeight, GrHandle, TRUE, FALSE ) ;
+
+	// 回転描画
+	DrawBillboard3D( Pos, cx, cy, Size, Angle, TempHandle, TransFlag, ReverseXFlag, ReverseYFlag ) ;
+
+	// 削除
+	Graphics_Image_TempDerivationGraph_Terminate() ;
+
+	// 終了
+	return 0 ;
+}
 
 
 
@@ -17629,7 +17668,7 @@ extern	int	NS_SetDrawAlphaTest( int TestMode, int TestParam )
 	return 0 ;
 }
 
-// 描画時のアルファテストの設定を取得する( TestMode:テストモード( DX_CMP_GREATER等 -1でデフォルト動作に戻す )  TestParam:描画アルファ値との比較に使用する値( 0〜255 ) )
+// 描画時のアルファテストの設定を取得する( TestMode:テストモード( DX_CMP_GREATER等 -1でデフォルト動作に戻す )  TestParam:描画アルファ値との比較に使用する値( 0～255 ) )
 extern	int NS_GetDrawAlphaTest( int *TestMode, int *TestParam )
 {
 	if( TestMode  != NULL ) *TestMode  = GSYS.DrawSetting.AlphaTestMode ;
@@ -19376,7 +19415,7 @@ extern	int NS_GetFogColor( int *r, int *g, int *b )
 	return 0 ;
 }
 
-// フォグが始まる距離と終了する距離を設定する( 0.0f 〜 1.0f )
+// フォグが始まる距離と終了する距離を設定する( 0.0f ～ 1.0f )
 extern	int	NS_SetFogStartEnd( float start, float end )
 {
 	if( GSYS.DrawSetting.FogStart == start && GSYS.DrawSetting.FogEnd == end ) return 0 ;
@@ -19397,7 +19436,7 @@ extern	int	NS_SetFogStartEnd( float start, float end )
 	return 0 ;
 }
 
-// フォグが始まる距離と終了する距離を取得する( 0.0f 〜 1.0f )
+// フォグが始まる距離と終了する距離を取得する( 0.0f ～ 1.0f )
 extern	int NS_GetFogStartEnd( float *start, float *end )
 {
 	if( start != NULL )
@@ -19413,7 +19452,7 @@ extern	int NS_GetFogStartEnd( float *start, float *end )
 	return 0 ;
 }
 
-// フォグの密度を設定する( 0.0f 〜 1.0f )
+// フォグの密度を設定する( 0.0f ～ 1.0f )
 extern	int	NS_SetFogDensity( float density )
 {
 	if( GSYS.DrawSetting.FogDensity == density ) return 0;
@@ -19433,7 +19472,7 @@ extern	int	NS_SetFogDensity( float density )
 	return 0 ;
 }
 
-// フォグの密度を取得する( 0.0f 〜 1.0f )
+// フォグの密度を取得する( 0.0f ～ 1.0f )
 extern float NS_GetFogDensity( void )
 {
 	return GSYS.DrawSetting.FogDensity ;
@@ -19535,7 +19574,7 @@ extern int NS_GetVerticalFogColor( int *r, int *g, int *b )
 	return 0 ;
 }
 
-// 高さフォグが始まる距離と終了する距離を設定する( 0.0f 〜 1.0f )
+// 高さフォグが始まる距離と終了する距離を設定する( 0.0f ～ 1.0f )
 extern int NS_SetVerticalFogStartEnd( float  start, float  end )
 {
 	if( GSYS.DrawSetting.VerticalFogStart == start && GSYS.DrawSetting.VerticalFogEnd == end ) return 0 ;
@@ -19556,7 +19595,7 @@ extern int NS_SetVerticalFogStartEnd( float  start, float  end )
 	return 0 ;
 }
 
-// 高さフォグが始まる距離と終了する距離を取得する( 0.0f 〜 1.0f )
+// 高さフォグが始まる距離と終了する距離を取得する( 0.0f ～ 1.0f )
 extern int NS_GetVerticalFogStartEnd( float *start, float *end )
 {
 	if( start != NULL )
@@ -19572,7 +19611,7 @@ extern int NS_GetVerticalFogStartEnd( float *start, float *end )
 	return 0 ;
 }
 
-// 高さフォグが始まる処理と密度を設定する( 0.0f 〜 1.0f )
+// 高さフォグが始まる処理と密度を設定する( 0.0f ～ 1.0f )
 extern int NS_SetVerticalFogDensity( float start, float density )
 {
 	if( GSYS.DrawSetting.VerticalFogDensity == density ) return 0;
@@ -19592,7 +19631,7 @@ extern int NS_SetVerticalFogDensity( float start, float density )
 	return 0 ;
 }
 
-// 高さフォグの始まる処理と密度を取得する( 0.0f 〜 1.0f )
+// 高さフォグの始まる処理と密度を取得する( 0.0f ～ 1.0f )
 extern int NS_GetVerticalFogDensity( float *start, float *density )
 {
 	if( start   != NULL ) *start   = GSYS.DrawSetting.VerticalFogDensityStart ;
@@ -20150,7 +20189,7 @@ extern	int NS_SetDrawScreen( int DrawScreen )
 
 		SrcRect = GSYS.DrawSetting.DrawArea ;
 
-		if( GSYS.DrawSetting.SetDrawScreenNoSettingResetFlag )
+		if( GSYS.DrawSetting.SetDrawScreenNoSettingResetFlag || GSYS.DrawSetting.ShadowMapDrawSetupRequest )
 		{
 			if( GSYS.DrawSetting.ShadowMapDrawSetupRequest )
 			{
@@ -20184,7 +20223,7 @@ extern	int NS_SetDrawScreen( int DrawScreen )
 	}
 		
 	// ３Ｄ描画処理用の行列設定の初期化を行う
-	if( GSYS.DrawSetting.SetDrawScreenNoSettingResetFlag == FALSE )
+	if( GSYS.DrawSetting.SetDrawScreenNoSettingResetFlag == FALSE || GSYS.DrawSetting.ShadowMapDrawSetupRequest )
 	{
 		MATRIX mat ;
 		float D ;
@@ -20791,7 +20830,7 @@ extern int NS_GetDisplayModeNum( int DisplayIndex )
 	return GSYS.Screen.DisplayInfo[ DisplayIndex ].ModeNum ;
 }
 
-// 変更可能なディスプレイモードの情報を取得する( ModeIndex は 0 〜 GetDisplayModeNum の戻り値-1 )
+// 変更可能なディスプレイモードの情報を取得する( ModeIndex は 0 ～ GetDisplayModeNum の戻り値-1 )
 extern DISPLAYMODEDATA NS_GetDisplayMode( int ModeIndex, int DisplayIndex )
 {
 	static DISPLAYMODEDATA ErrorResult = { -1, -1, -1, -1 } ;
@@ -21200,8 +21239,8 @@ extern float NS_GetFPS( void )
 
 #ifndef DX_NON_SAVEFUNCTION
 
-// Jpeg_Quality         = 0:低画質〜100:高画質
-// Png_CompressionLevel = 0:無圧縮〜  9:最高圧縮
+// Jpeg_Quality         = 0:低画質～100:高画質
+// Png_CompressionLevel = 0:無圧縮～  9:最高圧縮
 // 現在描画対象になっている画面を保存する
 extern int NS_SaveDrawScreen( int x1, int y1, int x2, int y2, const TCHAR *FileName, int SaveType, int Jpeg_Quality, int Jpeg_Sample2x1, int Png_CompressionLevel )
 {
@@ -21240,8 +21279,8 @@ extern int NS_SaveDrawScreenWithStrLen( int x1, int y1, int x2, int y2, const TC
 	return Result ;
 }
 
-// Jpeg_Quality         = 0:低画質〜100:高画質
-// Png_CompressionLevel = 0:無圧縮〜  9:最高圧縮
+// Jpeg_Quality         = 0:低画質～100:高画質
+// Png_CompressionLevel = 0:無圧縮～  9:最高圧縮
 // 現在描画対象になっている画面を保存する
 extern int SaveDrawScreen_WCHAR_T( int x1, int y1, int x2, int y2, const wchar_t *FileName, int SaveType, int Jpeg_Quality, int Jpeg_Sample2x1, int Png_CompressionLevel )
 {
@@ -21365,13 +21404,13 @@ extern int SaveDrawScreenToDDS_WCHAR_T( int x1, int y1, int x2, int y2, const wc
 	return SaveDrawScreen_WCHAR_T( x1, y1, x2, y2, FileName, DX_IMAGESAVETYPE_DDS );
 }
 
-// 現在描画対象になっている画面をＪＰＥＧ形式で保存する Quality = 画質、値が大きいほど低圧縮高画質,0〜100 
+// 現在描画対象になっている画面をＪＰＥＧ形式で保存する Quality = 画質、値が大きいほど低圧縮高画質,0～100 
 extern int NS_SaveDrawScreenToJPEG( int x1, int y1, int x2, int y2, const TCHAR *FileName, int Quality, int Sample2x1 )
 {
 	return NS_SaveDrawScreen( x1, y1, x2, y2, FileName, DX_IMAGESAVETYPE_JPEG, Quality, Sample2x1, -1 );
 }
 
-// 現在描画対象になっている画面をＪＰＥＧ形式で保存する Quality = 画質、値が大きいほど低圧縮高画質,0〜100 
+// 現在描画対象になっている画面をＪＰＥＧ形式で保存する Quality = 画質、値が大きいほど低圧縮高画質,0～100 
 extern int NS_SaveDrawScreenToJPEGWithStrLen( int x1, int y1, int x2, int y2, const TCHAR *FileName, size_t FileNameLength, int Quality, int Sample2x1 )
 {
 	int Result ;
@@ -21381,19 +21420,19 @@ extern int NS_SaveDrawScreenToJPEGWithStrLen( int x1, int y1, int x2, int y2, co
 	return Result ;
 }
 
-// 現在描画対象になっている画面をＪＰＥＧ形式で保存する Quality = 画質、値が大きいほど低圧縮高画質,0〜100 
+// 現在描画対象になっている画面をＪＰＥＧ形式で保存する Quality = 画質、値が大きいほど低圧縮高画質,0～100 
 extern int SaveDrawScreenToJPEG_WCHAR_T( int x1, int y1, int x2, int y2, const wchar_t *FileName, int Quality, int Sample2x1 )
 {
 	return SaveDrawScreen_WCHAR_T( x1, y1, x2, y2, FileName, DX_IMAGESAVETYPE_JPEG, Quality, Sample2x1 );
 }
 
-// 現在描画対象になっている画面をＰＮＧ形式で保存する CompressionLevel = 圧縮率、値が大きいほど高圧縮率高負荷、０は無圧縮,0〜9
+// 現在描画対象になっている画面をＰＮＧ形式で保存する CompressionLevel = 圧縮率、値が大きいほど高圧縮率高負荷、０は無圧縮,0～9
 extern int NS_SaveDrawScreenToPNG( int x1, int y1, int x2, int y2, const TCHAR *FileName, int CompressionLevel )
 {
 	return NS_SaveDrawScreen( x1, y1, x2, y2, FileName, DX_IMAGESAVETYPE_PNG, 80, TRUE, CompressionLevel );
 }
 
-// 現在描画対象になっている画面をＰＮＧ形式で保存する CompressionLevel = 圧縮率、値が大きいほど高圧縮率高負荷、０は無圧縮,0〜9
+// 現在描画対象になっている画面をＰＮＧ形式で保存する CompressionLevel = 圧縮率、値が大きいほど高圧縮率高負荷、０は無圧縮,0～9
 extern int NS_SaveDrawScreenToPNGWithStrLen( int x1, int y1, int x2, int y2, const TCHAR *FileName, size_t FileNameLength, int CompressionLevel )
 {
 	int Result ;
@@ -21403,15 +21442,15 @@ extern int NS_SaveDrawScreenToPNGWithStrLen( int x1, int y1, int x2, int y2, con
 	return Result ;
 }
 
-// 現在描画対象になっている画面をＰＮＧ形式で保存する CompressionLevel = 圧縮率、値が大きいほど高圧縮率高負荷、０は無圧縮,0〜9
+// 現在描画対象になっている画面をＰＮＧ形式で保存する CompressionLevel = 圧縮率、値が大きいほど高圧縮率高負荷、０は無圧縮,0～9
 extern int SaveDrawScreenToPNG_WCHAR_T( int x1, int y1, int x2, int y2, const wchar_t *FileName, int CompressionLevel )
 {
 	return SaveDrawScreen_WCHAR_T( x1, y1, x2, y2, FileName, DX_IMAGESAVETYPE_PNG, 80, CompressionLevel );
 }
 
 // 描画対象にできるグラフィックハンドル保存関数
-// Jpeg_Quality         = 0:低画質〜100:高画質
-// Png_CompressionLevel = 0:無圧縮〜  9:最高圧縮
+// Jpeg_Quality         = 0:低画質～100:高画質
+// Png_CompressionLevel = 0:無圧縮～  9:最高圧縮
 
 // 描画対象にできるグラフィックハンドルをファイルで保存する
 extern int NS_SaveDrawValidGraph( int GrHandle, int x1, int y1, int x2, int y2, const TCHAR *FileName, int SaveType, int Jpeg_Quality, int Jpeg_Sample2x1, int Png_CompressionLevel )
@@ -21640,13 +21679,13 @@ extern int SaveDrawValidGraphToDDS_WCHAR_T(  int GrHandle, int x1, int y1, int x
 	return SaveDrawValidGraph_WCHAR_T( GrHandle, x1, y1, x2, y2, FileName, DX_IMAGESAVETYPE_DDS );
 }
 
-// 描画対象にできるグラフィックハンドルをＪＰＥＧ形式で保存する Quality = 画質、値が大きいほど低圧縮高画質,0〜100 
+// 描画対象にできるグラフィックハンドルをＪＰＥＧ形式で保存する Quality = 画質、値が大きいほど低圧縮高画質,0～100 
 extern int NS_SaveDrawValidGraphToJPEG( int GrHandle, int x1, int y1, int x2, int y2, const TCHAR *FileName, int Quality , int Sample2x1 )
 {
 	return NS_SaveDrawValidGraph( GrHandle, x1, y1, x2, y2, FileName, DX_IMAGESAVETYPE_JPEG, Quality, Sample2x1, -1 );
 }
 
-// 描画対象にできるグラフィックハンドルをＪＰＥＧ形式で保存する Quality = 画質、値が大きいほど低圧縮高画質,0〜100 
+// 描画対象にできるグラフィックハンドルをＪＰＥＧ形式で保存する Quality = 画質、値が大きいほど低圧縮高画質,0～100 
 extern int NS_SaveDrawValidGraphToJPEGWithStrLen( int GrHandle, int x1, int y1, int x2, int y2, const TCHAR *FileName, size_t FileNameLength, int Quality, int Sample2x1 )
 {
 	int Result ;
@@ -21661,13 +21700,13 @@ extern int SaveDrawValidGraphToJPEG_WCHAR_T( int GrHandle, int x1, int y1, int x
 	return SaveDrawValidGraph_WCHAR_T( GrHandle, x1, y1, x2, y2, FileName, DX_IMAGESAVETYPE_JPEG, Quality, Sample2x1 );
 }
 
-// 描画対象にできるグラフィックハンドルをＰＮＧ形式で保存する CompressionLevel = 圧縮率、値が大きいほど高圧縮率高負荷、０は無圧縮,0〜9
+// 描画対象にできるグラフィックハンドルをＰＮＧ形式で保存する CompressionLevel = 圧縮率、値が大きいほど高圧縮率高負荷、０は無圧縮,0～9
 extern int NS_SaveDrawValidGraphToPNG(  int GrHandle, int x1, int y1, int x2, int y2, const TCHAR *FileName, int CompressionLevel )
 {
 	return NS_SaveDrawValidGraph( GrHandle, x1, y1, x2, y2, FileName, DX_IMAGESAVETYPE_PNG, 80, TRUE, CompressionLevel );
 }
 
-// 描画対象にできるグラフィックハンドルをＰＮＧ形式で保存する CompressionLevel = 圧縮率、値が大きいほど高圧縮率高負荷、０は無圧縮,0〜9
+// 描画対象にできるグラフィックハンドルをＰＮＧ形式で保存する CompressionLevel = 圧縮率、値が大きいほど高圧縮率高負荷、０は無圧縮,0～9
 extern int NS_SaveDrawValidGraphToPNGWithStrLen( int GrHandle, int x1, int y1, int x2, int y2, const TCHAR *FileName, size_t FileNameLength, int CompressionLevel )
 {
 	int Result ;
@@ -23729,6 +23768,120 @@ extern	int			NS_DrawPrimitive32bitIndexed3DToShader( const VERTEX3DSHADER *Verte
 	return Graphics_Hardware_DrawPrimitive32bitIndexed3DToShader_PF( Vertex, VertexNum, Indices, IndexNum, PrimitiveType ) ;
 }
 
+// シェーダーを使って２Ｄポリゴンを描画する
+extern	int			NS_DrawPolygon2DToShader2( const VERTEX2D *Vertex, int PolygonNum )
+{
+	return NS_DrawPrimitive2DToShader2( Vertex, PolygonNum * 3, DX_PRIMTYPE_TRIANGLELIST ) ;
+}
+
+// シェーダーを使って３Ｄポリゴンを描画する
+extern	int			NS_DrawPolygon3DToShader2( const VERTEX3D *Vertex, int PolygonNum )
+{
+	return NS_DrawPrimitive3DToShader2( Vertex, PolygonNum * 3, DX_PRIMTYPE_TRIANGLELIST ) ;
+}
+
+// シェーダーを使って２Ｄポリゴンを描画する(インデックス)
+extern	int			NS_DrawPolygonIndexed2DToShader2( const VERTEX2D *Vertex, int VertexNum, const unsigned short *Indices, int PolygonNum )
+{
+	return NS_DrawPrimitiveIndexed2DToShader2( Vertex, VertexNum, Indices, PolygonNum * 3, DX_PRIMTYPE_TRIANGLELIST ) ;
+}
+
+// シェーダーを使って２Ｄポリゴンを描画する(インデックス)
+extern	int			NS_DrawPolygon32bitIndexed2DToShader2( const VERTEX2D *Vertex, int VertexNum, const unsigned int *Indices, int PolygonNum )
+{
+	return NS_DrawPrimitive32bitIndexed2DToShader2( Vertex, VertexNum, Indices, PolygonNum * 3, DX_PRIMTYPE_TRIANGLELIST ) ;
+}
+
+// シェーダーを使って３Ｄポリゴンを描画する(インデックス)
+extern	int			NS_DrawPolygonIndexed3DToShader2( const VERTEX3D *Vertex, int VertexNum, const unsigned short *Indices, int PolygonNum )
+{
+	return NS_DrawPrimitiveIndexed3DToShader2( Vertex, VertexNum, Indices, PolygonNum * 3, DX_PRIMTYPE_TRIANGLELIST ) ;
+}
+
+// シェーダーを使って３Ｄポリゴンを描画する(インデックス)
+extern	int			NS_DrawPolygon32bitIndexed3DToShader2( const VERTEX3D *Vertex, int VertexNum, const unsigned int *Indices, int PolygonNum )
+{
+	return NS_DrawPrimitive32bitIndexed3DToShader2( Vertex, VertexNum, Indices, PolygonNum * 3, DX_PRIMTYPE_TRIANGLELIST ) ;
+}
+
+// シェーダーを使って２Ｄプリミティブを描画する
+extern	int			NS_DrawPrimitive2DToShader2( const VERTEX2D *Vertex, int VertexNum, int PrimitiveType )
+{
+	// ２Ｄ行列をハードウエアに反映する
+	if( GSYS.DrawSetting.MatchHardware_2DMatrix == FALSE && GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )
+		Graphics_DrawSetting_ApplyLib2DMatrixToHardware() ;
+
+#ifndef DX_NON_MOVIE
+	// セットされているグラフィックハンドルの動画を更新する
+	Graphics_DrawSetting_UpdateUserTextureMovie() ;
+#endif // DX_NON_MOVIE
+
+	return Graphics_Hardware_DrawPrimitive2DToShader2_PF( Vertex, VertexNum, PrimitiveType ) ;
+}
+
+// シェーダーを使って３Ｄプリミティブを描画する
+extern	int			NS_DrawPrimitive3DToShader2( const VERTEX3D *Vertex, int VertexNum, int PrimitiveType )
+{
+#ifndef DX_NON_MOVIE
+	// セットされているグラフィックハンドルの動画を更新する
+	Graphics_DrawSetting_UpdateUserTextureMovie() ;
+#endif // DX_NON_MOVIE
+
+	return Graphics_Hardware_DrawPrimitive3DToShader2_PF( Vertex, VertexNum, PrimitiveType ) ;
+}
+
+// シェーダーを使って２Ｄプリミティブを描画する(インデックス)
+extern	int			NS_DrawPrimitiveIndexed2DToShader2( const VERTEX2D *Vertex, int VertexNum, const unsigned short *Indices, int IndexNum, int PrimitiveType )
+{
+	// ２Ｄ行列をハードウエアに反映する
+	if( GSYS.DrawSetting.MatchHardware_2DMatrix == FALSE && GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )
+		Graphics_DrawSetting_ApplyLib2DMatrixToHardware() ;
+
+#ifndef DX_NON_MOVIE
+	// セットされているグラフィックハンドルの動画を更新する
+	Graphics_DrawSetting_UpdateUserTextureMovie() ;
+#endif // DX_NON_MOVIE
+
+	return Graphics_Hardware_DrawPrimitiveIndexed2DToShader2_PF( Vertex, VertexNum, Indices, IndexNum, PrimitiveType ) ;
+}
+
+// シェーダーを使って２Ｄプリミティブを描画する(インデックス)
+extern	int			NS_DrawPrimitive32bitIndexed2DToShader2( const VERTEX2D *Vertex, int VertexNum, const unsigned int *Indices, int IndexNum, int PrimitiveType )
+{
+	// ２Ｄ行列をハードウエアに反映する
+	if( GSYS.DrawSetting.MatchHardware_2DMatrix == FALSE && GSYS.Setting.ValidHardware && GSYS.Screen.UserScreenImagePixelFormatMatchSoftRenderMode == FALSE )
+		Graphics_DrawSetting_ApplyLib2DMatrixToHardware() ;
+
+#ifndef DX_NON_MOVIE
+	// セットされているグラフィックハンドルの動画を更新する
+	Graphics_DrawSetting_UpdateUserTextureMovie() ;
+#endif // DX_NON_MOVIE
+
+	return Graphics_Hardware_DrawPrimitive32bitIndexed2DToShader2_PF( Vertex, VertexNum, Indices, IndexNum, PrimitiveType ) ;
+}
+
+// シェーダーを使って３Ｄプリミティブを描画する(インデックス)
+extern	int			NS_DrawPrimitiveIndexed3DToShader2( const VERTEX3D *Vertex, int VertexNum, const unsigned short *Indices, int IndexNum, int PrimitiveType )
+{
+#ifndef DX_NON_MOVIE
+	// セットされているグラフィックハンドルの動画を更新する
+	Graphics_DrawSetting_UpdateUserTextureMovie() ;
+#endif // DX_NON_MOVIE
+
+	return Graphics_Hardware_DrawPrimitiveIndexed3DToShader2_PF( Vertex, VertexNum, Indices, IndexNum, PrimitiveType ) ;
+}
+
+// シェーダーを使って３Ｄプリミティブを描画する(インデックス)
+extern	int			NS_DrawPrimitive32bitIndexed3DToShader2( const VERTEX3D *Vertex, int VertexNum, const unsigned int *Indices, int IndexNum, int PrimitiveType )
+{
+#ifndef DX_NON_MOVIE
+	// セットされているグラフィックハンドルの動画を更新する
+	Graphics_DrawSetting_UpdateUserTextureMovie() ;
+#endif // DX_NON_MOVIE
+
+	return Graphics_Hardware_DrawPrimitive32bitIndexed3DToShader2_PF( Vertex, VertexNum, Indices, IndexNum, PrimitiveType ) ;
+}
+
 // シェーダーを使って３Ｄポリゴンを描画する( 頂点バッファ使用版 )
 extern	int			NS_DrawPolygon3DToShader_UseVertexBuffer( int VertexBufHandle )
 {
@@ -24207,7 +24360,7 @@ extern 	int		NS_GetMovieStateToGraph( int GraphHandle )
 	return GetMovieState( Image->Orig->MovieHandle ) ;
 }
 
-// ムービーのボリュームをセットする(0〜10000)
+// ムービーのボリュームをセットする(0～10000)
 extern	int		NS_SetMovieVolumeToGraph( int Volume, int GraphHandle )	
 {
 	IMAGEDATA *Image ;
@@ -24220,7 +24373,7 @@ extern	int		NS_SetMovieVolumeToGraph( int Volume, int GraphHandle )
 	return SetMovieVolume( Volume, Image->Orig->MovieHandle ) ;
 }
 
-// 動画ファイルの音量を取得する(0〜10000)
+// 動画ファイルの音量を取得する(0～10000)
 extern int NS_GetMovieVolumeToGraph( int GraphHandle )
 {
 	IMAGEDATA *Image ;
@@ -24233,7 +24386,7 @@ extern int NS_GetMovieVolumeToGraph( int GraphHandle )
 	return GetMovieVolume( Image->Orig->MovieHandle ) ;
 }
 
-// ムービーのボリュームをセットする(0〜255)
+// ムービーのボリュームをセットする(0～255)
 extern	int		NS_ChangeMovieVolumeToGraph( int Volume, int GraphHandle )
 {
 	IMAGEDATA *Image ;
@@ -24273,7 +24426,7 @@ extern	int		NS_ChangeMovieVolumeToGraph( int Volume, int GraphHandle )
 	return SetMovieVolume( temp, Image->Orig->MovieHandle ) ;
 }
 
-// 動画ファイルの音量を取得する(0〜255)
+// 動画ファイルの音量を取得する(0～255)
 extern int NS_GetMovieVolumeToGraph2( int GraphHandle )
 {
 	IMAGEDATA *Image ;
@@ -28310,58 +28463,58 @@ extern int Graphics_Screen_ChangeMode( int ScreenSizeX, int ScreenSizeY, int Col
 	{
 		// リセットしない場合
 
-#ifdef WINDOWS_DESKTOP_OS
-		// ウインドウモードの場合は指定の解像度がデスクトップのサイズを超えていないかどうかを調べる
-		if( NS_GetWindowModeFlag() == TRUE || NS_GetUseFullScreenResolutionMode() == DX_FSRESOLUTIONMODE_BORDERLESS_WINDOW )
-		{
-			GRAPHICSSYS_DISPLAYINFO *DisplayInfo ;
-
-			// 画面情報がセットアップされていなかったらセットアップ
-			if( GSYS.Screen.DisplayInfo == NULL )
-			{
-				Graphics_SetupDisplayInfo_PF() ;
-			}
-
-			// ディスプレイの指定がある場合は指定のディスプレイのサイズのみをチェック
-			if( GSYS.Screen.ValidUseDisplayIndex )
-			{
-				DisplayInfo = &GSYS.Screen.DisplayInfo[ GSYS.Screen.UseDisplayIndex ] ;
-				if( DisplayInfo->DesktopSizeX < ScreenSizeX || DisplayInfo->DesktopSizeY < ScreenSizeY )
-				{
-					goto END ;
-				}
-			}
-			else
-			{
-				// ない場合は全てのディスプレイの最大サイズと比較
-				int MaxWidth = 0, MaxHeight = 0 ;
-				for( i = 0 ; i < GSYS.Screen.DisplayNum ; i ++ )
-				{
-					DisplayInfo = &GSYS.Screen.DisplayInfo[ i ] ;
-					if( i == 0 )
-					{
-						MaxWidth  = DisplayInfo->DesktopSizeX ;
-						MaxHeight = DisplayInfo->DesktopSizeY ;
-					}
-					else
-					{
-						if( MaxWidth < DisplayInfo->DesktopSizeX )
-						{
-							MaxWidth = DisplayInfo->DesktopSizeX ;
-						}
-						if( MaxHeight < DisplayInfo->DesktopSizeY )
-						{
-							MaxHeight = DisplayInfo->DesktopSizeY ;
-						}
-					}
-				}
-				if( ScreenSizeX > MaxWidth || ScreenSizeY > MaxHeight )
-				{
-					goto END ;
-				}
-			}
-		}
-#endif // WINDOWS_DESKTOP_OS
+// #ifdef WINDOWS_DESKTOP_OS
+// 		// ウインドウモードの場合は指定の解像度がデスクトップのサイズを超えていないかどうかを調べる
+// 		if( NS_GetWindowModeFlag() == TRUE || NS_GetUseFullScreenResolutionMode() == DX_FSRESOLUTIONMODE_BORDERLESS_WINDOW )
+// 		{
+// 			GRAPHICSSYS_DISPLAYINFO *DisplayInfo ;
+// 
+// 			// 画面情報がセットアップされていなかったらセットアップ
+// 			if( GSYS.Screen.DisplayInfo == NULL )
+// 			{
+// 				Graphics_SetupDisplayInfo_PF() ;
+// 			}
+// 
+// 			// ディスプレイの指定がある場合は指定のディスプレイのサイズのみをチェック
+// 			if( GSYS.Screen.ValidUseDisplayIndex )
+// 			{
+// 				DisplayInfo = &GSYS.Screen.DisplayInfo[ GSYS.Screen.UseDisplayIndex ] ;
+// 				if( DisplayInfo->DesktopSizeX < ScreenSizeX || DisplayInfo->DesktopSizeY < ScreenSizeY )
+// 				{
+// 					goto END ;
+// 				}
+// 			}
+// 			else
+// 			{
+// 				// ない場合は全てのディスプレイの最大サイズと比較
+// 				int MaxWidth = 0, MaxHeight = 0 ;
+// 				for( i = 0 ; i < GSYS.Screen.DisplayNum ; i ++ )
+// 				{
+// 					DisplayInfo = &GSYS.Screen.DisplayInfo[ i ] ;
+// 					if( i == 0 )
+// 					{
+// 						MaxWidth  = DisplayInfo->DesktopSizeX ;
+// 						MaxHeight = DisplayInfo->DesktopSizeY ;
+// 					}
+// 					else
+// 					{
+// 						if( MaxWidth < DisplayInfo->DesktopSizeX )
+// 						{
+// 							MaxWidth = DisplayInfo->DesktopSizeX ;
+// 						}
+// 						if( MaxHeight < DisplayInfo->DesktopSizeY )
+// 						{
+// 							MaxHeight = DisplayInfo->DesktopSizeY ;
+// 						}
+// 					}
+// 				}
+// 				if( ScreenSizeX > MaxWidth || ScreenSizeY > MaxHeight )
+// 				{
+// 					goto END ;
+// 				}
+// 			}
+// 		}
+// #endif // WINDOWS_DESKTOP_OS
 
 		// チェンジ
 		Graphics_RestoreOrChangeSetupGraphSystem( TRUE, ScreenSizeX, ScreenSizeY, ColorBitDepth, RefreshRate ) ;
@@ -30143,14 +30296,31 @@ extern int Graphics_Image_DerivationGraph_UseGParam(
 	int WidthI,  float WidthF,
 	int HeightI, float HeightF,
 	int SrcGraphHandle,
+	int UseTempGraphHandle,
 	int ASyncThread
 )
 {
 	int NewGraphHandle ;
 	int Result ;
 
-	// 新たなグラフィックデータの追加
-	NewGraphHandle = Graphics_Image_AddHandle( GSYS.CreateImage.CreateGraphHandle <= 0 ? -1 : GSYS.CreateImage.CreateGraphHandle, ASyncThread ) ;
+	// DrawRectRotaGraph等で一時的に派生させる場合は共有グラフィックハンドルを使用する
+	if( UseTempGraphHandle )
+	{
+		// 一時的に派生させる場合は非同期処理は無効
+		ASyncThread = FALSE ;
+		IMAGEDATA *Image ;
+		if( GRAPHCHK( GSYS.CreateImage.TempDerivationGraphHandle, Image ) )
+		{
+			// 未作成だった場合は新たに共有グラフィックハンドルを追加
+			GSYS.CreateImage.TempDerivationGraphHandle = Graphics_Image_AddHandle( -1, FALSE ) ;
+		}
+		NewGraphHandle = GSYS.CreateImage.TempDerivationGraphHandle ;
+	}
+	else
+	{
+		// 新たなグラフィックデータの追加
+		NewGraphHandle = Graphics_Image_AddHandle( GSYS.CreateImage.CreateGraphHandle <= 0 ? -1 : GSYS.CreateImage.CreateGraphHandle, ASyncThread ) ;
+	}
 	if( NewGraphHandle == -1 )
 	{
 		return -1 ;
@@ -30171,6 +30341,21 @@ extern int Graphics_Image_DerivationGraph_UseGParam(
 
 	// ハンドルを返す
 	return NewGraphHandle ;
+}
+
+// Graphics_Image_DerivationGraph_UseGParam の引数 UseTempGraphHandle を TRUE で作成したグラフィックハンドルの後始末を行う
+extern int Graphics_Image_TempDerivationGraph_Terminate( void )
+{
+	IMAGEDATA *Image ;
+
+	// ハンドルが有効ではない場合は何もしない
+	if( GRAPHCHK( GSYS.CreateImage.TempDerivationGraphHandle, Image ) )
+	{
+		return -1 ;
+	}
+
+	// 後始末処理
+	return Graphics_Image_TerminateHandle( &Image->HandleInfo ) ;
 }
 
 #ifndef DX_NON_MOVIE
@@ -34499,6 +34684,9 @@ extern void Graphics_DrawSetting_ApplyLib2DMatrixToHardware( void )
 
 		// ３Ｄ行列の射影行列に２Ｄ行列をセットする
 		Graphics_Hardware_SetTransformToProjection_PF( &GSYS.DrawSetting._2DMatrixF ) ;
+
+		// ハードウェア依存処理
+		Graphics_DrawSetting_ApplyLib2DMatrixToHardware_PF() ;
 	}
 }
 
@@ -34542,6 +34730,9 @@ extern void Graphics_DrawSetting_ApplyLib3DMatrixToHardware( int IgnoreWorldMatr
 	}
 
 	GSYS.DrawSetting.MatchHardware3DMatrix = GSYS.DrawSetting.MatchHardwareWorldMatrix == TRUE ? TRUE : FALSE ;
+
+	// ハードウェア依存処理
+	Graphics_DrawSetting_ApplyLib3DMatrixToHardware_PF( IgnoreWorldMatrix ) ;
 }
 
 // 基本データに設定されているフォグ情報をハードウェアに反映する
