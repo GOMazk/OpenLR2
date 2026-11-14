@@ -102,32 +102,42 @@ static consteval bool is_linux()
 #endif
 }
 
-static bool run_tests() {
-	if (CSTR fp = fs::make_preferred("C:\\a\\b\\c\\d.bms").data(); fp.getDirectory().body != std::string_view{fs::make_preferred("C:\\a\\b\\c\\").data()}) {
-		ErrorLogFmtAdd("1: %s\n", fp.getDirectory().body);
-		return false;
+static void assert_eq_impl(auto lv, auto rv, const char* lhs, const char* rhs,
+						   std::source_location pos = std::source_location::current())
+{
+	if(lv != rv)
+	{
+		std::string msg = std::format("Assertion failed at {}:{} : {} != {} : {} != {}", pos.file_name(), pos.line(),
+									  lhs, rhs, lv, rv);
+		ErrorLogFmtAdd("%s", msg.c_str());
+		throw std::runtime_error(msg);
 	}
-	if (CSTR fp = fs::make_preferred("C:\\a\\b\\c\\d.bms").data(); fp.getParentDirectory().body != std::string_view{fs::make_preferred("C:\\a\\b\\").data()}) {
-		ErrorLogFmtAdd("2: %s\n", fp.getParentDirectory().body);
-		return false;
+}
+static void assert_true_impl(const bool res, const char* expr,
+							 std::source_location pos = std::source_location::current())
+{
+	if(!res)
+	{
+		std::string msg = std::format("Assertion failed at {}:{} : {} is false", pos.file_name(), pos.line(), expr);
+		ErrorLogFmtAdd("%s", msg.c_str());
+		throw std::runtime_error(msg);
 	}
-	if (!Url::parse("https://").has_value()) {
-		ErrorLogAdd("3\n");
-		return false;
-	}
-	if (!Url::parse("https://ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789?a=b#c").has_value()) {
-		ErrorLogAdd("4\n");
-		return false;
-	}
-	if (Url::parse("https:// ").has_value()) {
-		ErrorLogAdd("5\n");
-		return false;
-	}
-	if (Url::parse("https://\"").has_value()) {
-		ErrorLogAdd("6\n");
-		return false;
-	}
-	return true;
+}
+
+#define ASSERT_EQ(lhs, rhs) assert_eq_impl((lhs), (rhs), #lhs, #rhs)
+#define ASSERT_TRUE(expr) assert_true_impl((expr), #expr)
+
+static void run_tests_or_die()
+{
+	ASSERT_EQ(CSTR(fs::make_preferred("C:\\a\\b\\c\\d.bms").data()).getDirectory().body,
+			  std::string_view{fs::make_preferred("C:\\a\\b\\c\\").data()});
+	ASSERT_EQ(CSTR(fs::make_preferred("C:\\a\\b\\c\\d.bms").data()).getParentDirectory().body,
+			  std::string_view{fs::make_preferred("C:\\a\\b\\").data()});
+
+	ASSERT_TRUE(Url::parse("https://").has_value());
+	ASSERT_TRUE(Url::parse("https://ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789?a=b#c").has_value());
+	ASSERT_TRUE(!Url::parse("https:// ").has_value());
+	ASSERT_TRUE(!Url::parse("https://\"").has_value());
 }
 
 static int g_exclusiveDisplayIndex = -1;
@@ -406,10 +416,7 @@ int main(int argc, char** argv) {
 	}
 	gs.config.system.thread = 0;
 	if (test_mode) {
-		if(!run_tests()) {
-			ErrorLogAdd("tests failed\n");
-			return 1;
-		}
+		run_tests_or_die();
 		ErrorLogAdd("tests passed\n");
 		return 0;
 	}
