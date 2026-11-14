@@ -2994,7 +2994,7 @@ int SetObjectValue_Button(game *g, skstruct *sk, Timer *T, char flag) {
 			case 7:
 			case 8:
 				iTmp = (g->sSelect.panel == op);
-				isClickSuccess = ButtonByInput(&sk->drBuf, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &iTmp, 0, 1, g->sSelect.panel);
+				isClickSuccess = ButtonByInput(sk, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &iTmp, 0, 1, g->sSelect.panel);
 				if (isClickSuccess == 2	&& g->sSelect.course.isMakingCourse != 1) {
 					if (g->sSelect.panel == op) {
 						g->sSelect.panel = -1;
@@ -3023,7 +3023,7 @@ int SetObjectValue_Button(game *g, skstruct *sk, Timer *T, char flag) {
 			//SongSelect Option
 			case 10:
 				iTmp = g->config.select.difficulty;
-				isClickSuccess = ButtonByInput(&sk->drBuf, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &iTmp, iTmp, iTmp, g->sSelect.panel);
+				isClickSuccess = ButtonByInput(sk, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &iTmp, iTmp, iTmp, g->sSelect.panel);
 				if (isClickSuccess == 2) {
 					filterChanged = 1;
 					g->sSelect.is_clicked_filter = 1;
@@ -3034,7 +3034,7 @@ int SetObjectValue_Button(game *g, skstruct *sk, Timer *T, char flag) {
 
 			case 11:
 				iTmp = g->config.select.key;
-				isClickSuccess = ButtonByInput(&sk->drBuf, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &iTmp, iTmp, iTmp, g->sSelect.panel);
+				isClickSuccess = ButtonByInput(sk, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &iTmp, iTmp, iTmp, g->sSelect.panel);
 				if (isClickSuccess == 2) {
 					filterChanged = 1;
 					g->sSelect.is_clicked_filter = 1;
@@ -3045,7 +3045,7 @@ int SetObjectValue_Button(game *g, skstruct *sk, Timer *T, char flag) {
 
 			case 12:
 				iTmp = g->config.select.sort;
-				isClickSuccess = ButtonByInput(&sk->drBuf, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &iTmp, iTmp, iTmp, g->sSelect.panel);
+				isClickSuccess = ButtonByInput(sk, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &iTmp, iTmp, iTmp, g->sSelect.panel);
 				if (isClickSuccess == 2) {
 					filterChanged = 1;
 					g->sSelect.is_clicked_filter = 1;
@@ -3056,7 +3056,7 @@ int SetObjectValue_Button(game *g, skstruct *sk, Timer *T, char flag) {
 
 			//Buttons
 			case 13:
-				isClickSuccess = ButtonByInput(&sk->drBuf, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &iTmp, 0, 0, g->sSelect.panel);
+				isClickSuccess = ButtonByInput(sk, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &iTmp, 0, 0, g->sSelect.panel);
 				if (isClickSuccess == 2) {
 					if (g->procSelecter == 2) {
 						g->sSelect.is_clicked_keyconfig = 1;
@@ -3065,7 +3065,7 @@ int SetObjectValue_Button(game *g, skstruct *sk, Timer *T, char flag) {
 				break;
 
 			case 14:
-				isClickSuccess = ButtonByInput(&sk->drBuf, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &iTmp, 0, 0, g->sSelect.panel);
+				isClickSuccess = ButtonByInput(sk, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &iTmp, 0, 0, g->sSelect.panel);
 				if (isClickSuccess == 2) {
 					if (g->procSelecter == 2) {
 						g->sSelect.is_clicked_skinselect = 1;
@@ -3074,7 +3074,7 @@ int SetObjectValue_Button(game *g, skstruct *sk, Timer *T, char flag) {
 				break;
 
 			case 15:
-				isClickSuccess = ButtonByInput(&sk->drBuf, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &iTmp, 0, 0, g->sSelect.panel);
+				isClickSuccess = ButtonByInput(sk, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &iTmp, 0, 0, g->sSelect.panel);
 				if (isClickSuccess == 2) {
 					if (g->procSelecter == 2) {
 						if (g->sSelect.bmsList[g->sSelect.cur_song].keymode > 0 || g->sSelect.bmsList[g->sSelect.cur_song].folderType == 9) {
@@ -3086,7 +3086,7 @@ int SetObjectValue_Button(game *g, skstruct *sk, Timer *T, char flag) {
 				break;
 
 			case 16:
-				isClickSuccess = ButtonByInput(&sk->drBuf, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &iTmp, 0, 0, g->sSelect.panel);
+				isClickSuccess = ButtonByInput(sk, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &iTmp, 0, 0, g->sSelect.panel);
 				if (isClickSuccess == 2) {
 					if (g->procSelecter == 2) {
 						if (g->sSelect.bmsList[g->sSelect.cur_song].keymode > 0 || g->sSelect.bmsList[g->sSelect.cur_song].folderType == 9) {
@@ -3098,7 +3098,7 @@ int SetObjectValue_Button(game *g, skstruct *sk, Timer *T, char flag) {
 				break;
 
 			case 17:
-				isClickSuccess = ButtonByInput(&sk->drBuf, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &iTmp, 0, 0, g->sSelect.panel);
+				isClickSuccess = ButtonByInput(sk, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &iTmp, 0, 0, g->sSelect.panel);
 				if (isClickSuccess == 2) {
 					if (g->procSelecter == 2) {
 						ShowReadmes(g);
@@ -3112,7 +3112,7 @@ int SetObjectValue_Button(game *g, skstruct *sk, Timer *T, char flag) {
 				break;
 
 			case 18:
-				isClickSuccess = ButtonByInput(&sk->drBuf, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &iTmp, 0, 0, g->sSelect.panel);
+				isClickSuccess = ButtonByInput(sk, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &iTmp, 0, 0, g->sSelect.panel);
 				if (isClickSuccess == 2) {
 					if (g->procSelecter == 2) {
 						PlaySound(&g->audio, &g->audio.sysSound.option_change, g->audio.chnKey, -1);
@@ -3122,7 +3122,7 @@ int SetObjectValue_Button(game *g, skstruct *sk, Timer *T, char flag) {
 				break;
 
 			case 19:
-				isClickSuccess = ButtonByInput(&sk->drBuf, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &iTmp, 0, 0, g->sSelect.panel);
+				isClickSuccess = ButtonByInput(sk, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &iTmp, 0, 0, g->sSelect.panel);
 				if (isClickSuccess == 2) {
 					if (g->procSelecter == 2 && g->sSelect.bmsList[g->sSelect.cur_song].keymode > 0) {
 						g->gameplay.replay.status = 2;
@@ -3134,7 +3134,7 @@ int SetObjectValue_Button(game *g, skstruct *sk, Timer *T, char flag) {
 			
 			//Option FX
 			case 20:
-				isClickSuccess = ButtonByInput(&sk->drBuf, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->audio.param.fxType[0], 0, 7, g->sSelect.panel);
+				isClickSuccess = ButtonByInput(sk, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->audio.param.fxType[0], 0, 7, g->sSelect.panel);
 				if (isClickSuccess == 2) {
 					InitFxParam(g, 0);
 					if (GetTimeLapse(41, T) > 0.0 && g->gameplay.replay.status == 1) {
@@ -3145,7 +3145,7 @@ int SetObjectValue_Button(game *g, skstruct *sk, Timer *T, char flag) {
 				break;
 
 			case 21:
-				isClickSuccess = ButtonByInput(&sk->drBuf, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->audio.param.fxType[1], 0, 7, g->sSelect.panel);
+				isClickSuccess = ButtonByInput(sk, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->audio.param.fxType[1], 0, 7, g->sSelect.panel);
 				if (isClickSuccess == 2) {
 					InitFxParam(g, 1);
 					if (GetTimeLapse(41, T) > 0.0 && g->gameplay.replay.status == 1) {
@@ -3156,7 +3156,7 @@ int SetObjectValue_Button(game *g, skstruct *sk, Timer *T, char flag) {
 				break;
 
 			case 22:
-				isClickSuccess = ButtonByInput(&sk->drBuf, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->audio.param.fxType[2], 0, 7, g->sSelect.panel);
+				isClickSuccess = ButtonByInput(sk, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->audio.param.fxType[2], 0, 7, g->sSelect.panel);
 				if (isClickSuccess == 2) {
 					InitFxParam(g, 2);
 					if (GetTimeLapse(41, T) > 0.0 && g->gameplay.replay.status == 1) {
@@ -3167,7 +3167,7 @@ int SetObjectValue_Button(game *g, skstruct *sk, Timer *T, char flag) {
 				break;
 
 			case 23:
-				isClickSuccess = ButtonByInput(&sk->drBuf, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->audio.param.fx_on[0], 0, 1, g->sSelect.panel);
+				isClickSuccess = ButtonByInput(sk, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->audio.param.fx_on[0], 0, 1, g->sSelect.panel);
 				if (isClickSuccess == 2) {
 					ApplySoundFX(&g->audio, 1, g->config.sound.disableDSP);
 					if (GetTimeLapse(41, T) > 0.0 && g->gameplay.replay.status == 1) {
@@ -3178,7 +3178,7 @@ int SetObjectValue_Button(game *g, skstruct *sk, Timer *T, char flag) {
 				break;
 
 			case 24:
-				isClickSuccess = ButtonByInput(&sk->drBuf, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->audio.param.fx_on[1], 0, 1, g->sSelect.panel);
+				isClickSuccess = ButtonByInput(sk, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->audio.param.fx_on[1], 0, 1, g->sSelect.panel);
 				if (isClickSuccess == 2) {
 					ApplySoundFX(&g->audio, 1, g->config.sound.disableDSP);
 					if (GetTimeLapse(41, T) > 0.0 && g->gameplay.replay.status == 1) {
@@ -3189,7 +3189,7 @@ int SetObjectValue_Button(game *g, skstruct *sk, Timer *T, char flag) {
 				break;
 
 			case 25:
-				isClickSuccess = ButtonByInput(&sk->drBuf, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->audio.param.fx_on[2], 0, 1, g->sSelect.panel);
+				isClickSuccess = ButtonByInput(sk, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->audio.param.fx_on[2], 0, 1, g->sSelect.panel);
 				if (isClickSuccess == 2) {
 					ApplySoundFX(&g->audio, 1, g->config.sound.disableDSP);
 					if (GetTimeLapse(41, T) > 0.0 && g->gameplay.replay.status == 1) {
@@ -3200,7 +3200,7 @@ int SetObjectValue_Button(game *g, skstruct *sk, Timer *T, char flag) {
 				break;
 
 			case 26:
-				isClickSuccess = ButtonByInput(&sk->drBuf, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->audio.param.fxChannel[0], 0, 2, g->sSelect.panel);
+				isClickSuccess = ButtonByInput(sk, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->audio.param.fxChannel[0], 0, 2, g->sSelect.panel);
 				if (isClickSuccess == 2) {
 					ApplySoundFX(&g->audio, 1, g->config.sound.disableDSP);
 					if (GetTimeLapse(41, T) > 0.0 && g->gameplay.replay.status == 1) {
@@ -3211,7 +3211,7 @@ int SetObjectValue_Button(game *g, skstruct *sk, Timer *T, char flag) {
 				break;
 
 			case 27:
-				isClickSuccess = ButtonByInput(&sk->drBuf, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->audio.param.fxChannel[1], 0, 2, g->sSelect.panel);
+				isClickSuccess = ButtonByInput(sk, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->audio.param.fxChannel[1], 0, 2, g->sSelect.panel);
 				if (isClickSuccess == 2) {
 					ApplySoundFX(&g->audio, 1, g->config.sound.disableDSP);
 					if (GetTimeLapse(41, T) > 0.0 && g->gameplay.replay.status == 1) {
@@ -3222,7 +3222,7 @@ int SetObjectValue_Button(game *g, skstruct *sk, Timer *T, char flag) {
 				break;
 
 			case 28:
-				isClickSuccess = ButtonByInput(&sk->drBuf, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->audio.param.fxChannel[2], 0, 2, g->sSelect.panel);
+				isClickSuccess = ButtonByInput(sk, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->audio.param.fxChannel[2], 0, 2, g->sSelect.panel);
 				if (isClickSuccess == 2) {
 					ApplySoundFX(&g->audio, 1, g->config.sound.disableDSP);
 					if (GetTimeLapse(41, T) > 0.0 && g->gameplay.replay.status == 1) {
@@ -3233,7 +3233,7 @@ int SetObjectValue_Button(game *g, skstruct *sk, Timer *T, char flag) {
 				break;
 
 			case 29:
-				isClickSuccess = ButtonByInput(&sk->drBuf, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->audio.param.eq_on, 0, 1, g->sSelect.panel);
+				isClickSuccess = ButtonByInput(sk, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->audio.param.eq_on, 0, 1, g->sSelect.panel);
 				if (isClickSuccess == 2) {
 					ApplySoundFX(&g->audio, 1, g->config.sound.disableDSP);
 					if (GetTimeLapse(41, T) > 0.0 && g->gameplay.replay.status == 1) {
@@ -3244,14 +3244,14 @@ int SetObjectValue_Button(game *g, skstruct *sk, Timer *T, char flag) {
 				break;
 
 			case 30:
-				isClickSuccess = ButtonByInput(&sk->drBuf, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->audio.param.eq_preset, 0, 5, g->sSelect.panel); //EQ_PRESET is not implemented yet
+				isClickSuccess = ButtonByInput(sk, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->audio.param.eq_preset, 0, 5, g->sSelect.panel); //EQ_PRESET is not implemented yet
 				if (isClickSuccess == 2) {
 					ApplySoundFX(&g->audio, 1, g->config.sound.disableDSP);
 				}
 				break;
 
 			case 31:
-				isClickSuccess = ButtonByInput(&sk->drBuf, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->audio.param.fx_volume_on, 0, 1, g->sSelect.panel);
+				isClickSuccess = ButtonByInput(sk, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->audio.param.fx_volume_on, 0, 1, g->sSelect.panel);
 				if (isClickSuccess == 2) {
 					ApplySoundFX(&g->audio, 1, g->config.sound.disableDSP);
 					if (GetTimeLapse(41, T) > 0.0 && g->gameplay.replay.status == 1) {
@@ -3262,7 +3262,7 @@ int SetObjectValue_Button(game *g, skstruct *sk, Timer *T, char flag) {
 				break;
 
 			case 32:
-				isClickSuccess = ButtonByInput(&sk->drBuf, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->audio.param.pitch_on, 0, 1, g->sSelect.panel);
+				isClickSuccess = ButtonByInput(sk, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->audio.param.pitch_on, 0, 1, g->sSelect.panel);
 				if (isClickSuccess == 2) {
 					ApplySoundFX(&g->audio, 1, g->config.sound.disableDSP);
 					if (GetTimeLapse(41, T) > 0.0 && g->gameplay.replay.status == 1) {
@@ -3273,7 +3273,7 @@ int SetObjectValue_Button(game *g, skstruct *sk, Timer *T, char flag) {
 				break;
 
 			case 33:
-				isClickSuccess = ButtonByInput(&sk->drBuf, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->audio.param.pitch_type, 0, 2, g->sSelect.panel);
+				isClickSuccess = ButtonByInput(sk, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->audio.param.pitch_type, 0, 2, g->sSelect.panel);
 				if (isClickSuccess == 2) {
 					ApplySoundFX(&g->audio, 1, g->config.sound.disableDSP);
 					if (GetTimeLapse(41, T) > 0.0 && g->gameplay.replay.status == 1) {
@@ -3286,8 +3286,8 @@ int SetObjectValue_Button(game *g, skstruct *sk, Timer *T, char flag) {
 			//Option Play
 			case 40:
 				isClickSuccess = g->procSelecter == 4 || g->procSelecter == 5 || g->procSelecter == 13 ?
-					ButtonByInput(&sk->drBuf, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->gameplay.player[PLAYER_1].gaugeType, OPTION_GAUGE_GROOVE, OPTION_GAUGE_END, g->sSelect.panel) :
-					ButtonByInput(&sk->drBuf, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->config.play.gaugeType[PLAYER_1], OPTION_GAUGE_GROOVE, OPTION_GAUGE_END, g->sSelect.panel);
+					ButtonByInput(sk, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->gameplay.player[PLAYER_1].gaugeType, OPTION_GAUGE_GROOVE, OPTION_GAUGE_END, g->sSelect.panel) :
+					ButtonByInput(sk, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->config.play.gaugeType[PLAYER_1], OPTION_GAUGE_GROOVE, OPTION_GAUGE_END, g->sSelect.panel);
 				if (isClickSuccess == 2) {
 					PlaySound(&g->audio, &g->audio.sysSound.option_change, g->audio.chnKey, -1);
 					SetObjectStrings_SongSelect(g);
@@ -3297,8 +3297,8 @@ int SetObjectValue_Button(game *g, skstruct *sk, Timer *T, char flag) {
 			case 41:
 				if (g->config.play.battle == OPTION_BATTLE_BATTLE) {
 					isClickSuccess = g->procSelecter == 4 || g->procSelecter == 5 || g->procSelecter == 13 ?
-						ButtonByInput(&sk->drBuf, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->gameplay.player[PLAYER_2].gaugeType, OPTION_GAUGE_GROOVE, OPTION_GAUGE_END, g->sSelect.panel) :
-						ButtonByInput(&sk->drBuf, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->config.play.gaugeType[PLAYER_2], OPTION_GAUGE_GROOVE, OPTION_GAUGE_END, g->sSelect.panel);
+						ButtonByInput(sk, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->gameplay.player[PLAYER_2].gaugeType, OPTION_GAUGE_GROOVE, OPTION_GAUGE_END, g->sSelect.panel) :
+						ButtonByInput(sk, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->config.play.gaugeType[PLAYER_2], OPTION_GAUGE_GROOVE, OPTION_GAUGE_END, g->sSelect.panel);
 					if (isClickSuccess == 2) {
 						PlaySound(&g->audio, &g->audio.sysSound.option_change, g->audio.chnKey, -1);
 						SetObjectStrings_SongSelect(g);
@@ -3308,7 +3308,7 @@ int SetObjectValue_Button(game *g, skstruct *sk, Timer *T, char flag) {
 				break;
 
 			case 42:
-				isClickSuccess = ButtonByInput(&sk->drBuf, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->config.play.random[PLAYER_1], OPTION_RANDOM_OFF, OPTION_RANDOM_END, g->sSelect.panel);
+				isClickSuccess = ButtonByInput(sk, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->config.play.random[PLAYER_1], OPTION_RANDOM_OFF, OPTION_RANDOM_END, g->sSelect.panel);
 				if (isClickSuccess == 2) {
 					PlaySound(&g->audio, &g->audio.sysSound.option_change, g->audio.chnKey, -1);
 					SetObjectStrings_SongSelect(g);
@@ -3316,7 +3316,7 @@ int SetObjectValue_Button(game *g, skstruct *sk, Timer *T, char flag) {
 				break;
 
 			case 43:
-				isClickSuccess = ButtonByInput(&sk->drBuf, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->config.play.random[PLAYER_2], OPTION_RANDOM_OFF, OPTION_RANDOM_END, g->sSelect.panel);
+				isClickSuccess = ButtonByInput(sk, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->config.play.random[PLAYER_2], OPTION_RANDOM_OFF, OPTION_RANDOM_END, g->sSelect.panel);
 				if (isClickSuccess == 2) {
 					PlaySound(&g->audio, &g->audio.sysSound.option_change, g->audio.chnKey, -1);
 					SetObjectStrings_SongSelect(g);
@@ -3324,7 +3324,7 @@ int SetObjectValue_Button(game *g, skstruct *sk, Timer *T, char flag) {
 				break;
 
 			case 44:
-				isClickSuccess = ButtonByInput(&sk->drBuf, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->config.play.assist[PLAYER_1], 0, 1, g->sSelect.panel);
+				isClickSuccess = ButtonByInput(sk, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->config.play.assist[PLAYER_1], 0, 1, g->sSelect.panel);
 				if (isClickSuccess == 2) {
 					PlaySound(&g->audio, &g->audio.sysSound.option_change, g->audio.chnKey, -1);
 					SetObjectStrings_SongSelect(g);
@@ -3332,7 +3332,7 @@ int SetObjectValue_Button(game *g, skstruct *sk, Timer *T, char flag) {
 				break;
 
 			case 45:
-				isClickSuccess = ButtonByInput(&sk->drBuf, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->config.play.assist[PLAYER_2], 0, 1, g->sSelect.panel);
+				isClickSuccess = ButtonByInput(sk, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->config.play.assist[PLAYER_2], 0, 1, g->sSelect.panel);
 				if (isClickSuccess == 2) {
 					PlaySound(&g->audio, &g->audio.sysSound.option_change, g->audio.chnKey, -1);
 					SetObjectStrings_SongSelect(g);
@@ -3340,7 +3340,7 @@ int SetObjectValue_Button(game *g, skstruct *sk, Timer *T, char flag) {
 				break; 
 				
 			case 46:
-				isClickSuccess = ButtonByInput(&sk->drBuf, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->config.play.lanecover[PLAYER_1], 0, 1, g->sSelect.panel);
+				isClickSuccess = ButtonByInput(sk, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->config.play.lanecover[PLAYER_1], 0, 1, g->sSelect.panel);
 				if (isClickSuccess == 2) {
 					PlaySound(&g->audio, &g->audio.sysSound.option_change, g->audio.chnKey, -1);
 					g->config.play.lanecover[PLAYER_2] = g->config.play.lanecover[PLAYER_1];
@@ -3349,7 +3349,7 @@ int SetObjectValue_Button(game *g, skstruct *sk, Timer *T, char flag) {
 				break;
 			
 			case 50:
-				isClickSuccess = ButtonByInput(&sk->drBuf, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->config.play.m_HIDSUD[PLAYER_1], 0, 3, g->sSelect.panel);
+				isClickSuccess = ButtonByInput(sk, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->config.play.m_HIDSUD[PLAYER_1], 0, 3, g->sSelect.panel);
 				if (isClickSuccess == 2) {
 					PlaySound(&g->audio, &g->audio.sysSound.option_change, g->audio.chnKey, -1);
 					SetObjectStrings_SongSelect(g);
@@ -3357,7 +3357,7 @@ int SetObjectValue_Button(game *g, skstruct *sk, Timer *T, char flag) {
 				break;
 
 			case 51:
-				isClickSuccess = ButtonByInput(&sk->drBuf, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->config.play.m_HIDSUD[PLAYER_2], 0, 3, g->sSelect.panel);
+				isClickSuccess = ButtonByInput(sk, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->config.play.m_HIDSUD[PLAYER_2], 0, 3, g->sSelect.panel);
 				if (isClickSuccess == 2) {
 					PlaySound(&g->audio, &g->audio.sysSound.option_change, g->audio.chnKey, -1);
 					SetObjectStrings_SongSelect(g);
@@ -3366,7 +3366,7 @@ int SetObjectValue_Button(game *g, skstruct *sk, Timer *T, char flag) {
 
 			case 54:
 				iTmp = (int)g->config.play.dpFlip;
-				isClickSuccess = ButtonByInput(&sk->drBuf, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &iTmp, 0, 1, g->sSelect.panel);
+				isClickSuccess = ButtonByInput(sk, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &iTmp, 0, 1, g->sSelect.panel);
 				g->config.play.dpFlip = (iTmp > 0);
 				if (isClickSuccess == 2) {
 					PlaySound(&g->audio, &g->audio.sysSound.option_change, g->audio.chnKey, -1);
@@ -3375,7 +3375,7 @@ int SetObjectValue_Button(game *g, skstruct *sk, Timer *T, char flag) {
 				break;
 
 			case 55:
-				isClickSuccess = ButtonByInput(&sk->drBuf, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->config.play.hsfix, OPTION_HSFIX_OFF, OPTION_HSFIX_END, g->sSelect.panel);
+				isClickSuccess = ButtonByInput(sk, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->config.play.hsfix, OPTION_HSFIX_OFF, OPTION_HSFIX_END, g->sSelect.panel);
 				if (isClickSuccess == 2) {
 					PlaySound(&g->audio, &g->audio.sysSound.option_change, g->audio.chnKey, -1);
 					SetObjectStrings_SongSelect(g);
@@ -3383,7 +3383,7 @@ int SetObjectValue_Button(game *g, skstruct *sk, Timer *T, char flag) {
 				break;
 
 			case 56:
-				isClickSuccess = ButtonByInput(&sk->drBuf, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->config.play.battle, OPTION_BATTLE_OFF, OPTION_BATTLE_END, g->sSelect.panel);
+				isClickSuccess = ButtonByInput(sk, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->config.play.battle, OPTION_BATTLE_OFF, OPTION_BATTLE_END, g->sSelect.panel);
 				if (isClickSuccess == 2) {
 					PlaySound(&g->audio, &g->audio.sysSound.option_change, g->audio.chnKey, -1);
 					SetObjectStrings_SongSelect(g);
@@ -3392,7 +3392,7 @@ int SetObjectValue_Button(game *g, skstruct *sk, Timer *T, char flag) {
 
 			case 57:
 				iTmp = 1;
-				isClickSuccess = ButtonByInput(&sk->drBuf, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &iTmp, 0, 2, g->sSelect.panel);
+				isClickSuccess = ButtonByInput(sk, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &iTmp, 0, 2, g->sSelect.panel);
 				if (isClickSuccess == 2) {
 					PlaySound(&g->audio, &g->audio.sysSound.option_change, g->audio.chnKey, -1);
 				}
@@ -3402,7 +3402,7 @@ int SetObjectValue_Button(game *g, skstruct *sk, Timer *T, char flag) {
 				break;
 			case 58:
 				iTmp = 1;
-				isClickSuccess = ButtonByInput(&sk->drBuf, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &iTmp, 0, 2, g->sSelect.panel);
+				isClickSuccess = ButtonByInput(sk, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &iTmp, 0, 2, g->sSelect.panel);
 				if (isClickSuccess == 2) {
 					PlaySound(&g->audio, &g->audio.sysSound.option_change, g->audio.chnKey, -1);
 				}
@@ -3413,7 +3413,7 @@ int SetObjectValue_Button(game *g, skstruct *sk, Timer *T, char flag) {
 
 			case 70:
 				iTmp = (int)g->config.play.scoreGraph;
-				isClickSuccess = ButtonByInput(&sk->drBuf, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &iTmp, 0, 1, g->sSelect.panel);
+				isClickSuccess = ButtonByInput(sk, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &iTmp, 0, 1, g->sSelect.panel);
 				g->config.play.scoreGraph = (iTmp > 0);
 				if (isClickSuccess == 2) {
 					PlaySound(&g->audio, &g->audio.sysSound.option_change, g->audio.chnKey, -1);
@@ -3422,7 +3422,7 @@ int SetObjectValue_Button(game *g, skstruct *sk, Timer *T, char flag) {
 				break;
 
 			case 71:
-				isClickSuccess = ButtonByInput(&sk->drBuf, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->config.play.play_ghost, 0, 3, g->sSelect.panel);
+				isClickSuccess = ButtonByInput(sk, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->config.play.play_ghost, 0, 3, g->sSelect.panel);
 				if (isClickSuccess == 2) {
 					PlaySound(&g->audio, &g->audio.sysSound.option_change, g->audio.chnKey, -1);
 					SetObjectStrings_SongSelect(g);
@@ -3430,7 +3430,7 @@ int SetObjectValue_Button(game *g, skstruct *sk, Timer *T, char flag) {
 				break;
 
 			case 72:
-				isClickSuccess = ButtonByInput(&sk->drBuf, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->config.play.bga, 0, 2, g->sSelect.panel);
+				isClickSuccess = ButtonByInput(sk, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->config.play.bga, 0, 2, g->sSelect.panel);
 				if (isClickSuccess == 2) {
 					PlaySound(&g->audio, &g->audio.sysSound.option_change, g->audio.chnKey, -1);
 					SetObjectStrings_SongSelect(g);
@@ -3438,7 +3438,7 @@ int SetObjectValue_Button(game *g, skstruct *sk, Timer *T, char flag) {
 				break;
 
 			case 73:
-				isClickSuccess = ButtonByInput(&sk->drBuf, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->config.play.bgasize, 0, 1, g->sSelect.panel);
+				isClickSuccess = ButtonByInput(sk, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->config.play.bgasize, 0, 1, g->sSelect.panel);
 				if (isClickSuccess == 2) {
 					PlaySound(&g->audio, &g->audio.sysSound.option_change, g->audio.chnKey, -1);
 					SetObjectStrings_SongSelect(g);
@@ -3446,7 +3446,7 @@ int SetObjectValue_Button(game *g, skstruct *sk, Timer *T, char flag) {
 				break;
 
 			case 74:
-				isClickSuccess = ButtonByInput(&sk->drBuf, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->config.play.judgetiming, -199, 199, g->sSelect.panel);
+				isClickSuccess = ButtonByInput(sk, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->config.play.judgetiming, -199, 199, g->sSelect.panel);
 				if (isClickSuccess == 2) {
 					PlaySound(&g->audio, &g->audio.sysSound.option_change, g->audio.chnKey, -1);
 					SetObjectStrings_SongSelect(g);
@@ -3454,7 +3454,7 @@ int SetObjectValue_Button(game *g, skstruct *sk, Timer *T, char flag) {
 				break;
 
 			case 75:
-				isClickSuccess = ButtonByInput(&sk->drBuf, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->config.play.autojudge, 0, 2, g->sSelect.panel);
+				isClickSuccess = ButtonByInput(sk, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->config.play.autojudge, 0, 2, g->sSelect.panel);
 				if (isClickSuccess == 2) {
 					PlaySound(&g->audio, &g->audio.sysSound.option_change, g->audio.chnKey, -1);
 					SetObjectStrings_SongSelect(g);
@@ -3462,7 +3462,7 @@ int SetObjectValue_Button(game *g, skstruct *sk, Timer *T, char flag) {
 				break;
 
 			case 76:
-				isClickSuccess = ButtonByInput(&sk->drBuf, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->config.play.target_percent, 50, 100, g->sSelect.panel);
+				isClickSuccess = ButtonByInput(sk, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->config.play.target_percent, 50, 100, g->sSelect.panel);
 				if (isClickSuccess == 2) {
 					PlaySound(&g->audio, &g->audio.sysSound.option_change, g->audio.chnKey, -1);
 					SetObjectStrings_SongSelect(g);
@@ -3470,7 +3470,7 @@ int SetObjectValue_Button(game *g, skstruct *sk, Timer *T, char flag) {
 				break;
 
 			case 77:
-				isClickSuccess = ButtonByInput(&sk->drBuf, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->config.play.p1_target, 0, 8, g->sSelect.panel);
+				isClickSuccess = ButtonByInput(sk, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->config.play.p1_target, 0, 8, g->sSelect.panel);
 				if (isClickSuccess == 2) {
 					PlaySound(&g->audio, &g->audio.sysSound.option_change, g->audio.chnKey, -1);
 					SetTarget(g);
@@ -3480,7 +3480,7 @@ int SetObjectValue_Button(game *g, skstruct *sk, Timer *T, char flag) {
 
 			//Option etc
 			case 80:
-				isClickSuccess = ButtonByInput(&sk->drBuf, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->config.system.screenmode, 0, 2, g->sSelect.panel);
+				isClickSuccess = ButtonByInput(sk, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->config.system.screenmode, 0, 2, g->sSelect.panel);
 				if (isClickSuccess == 2) {
 					PlaySound(&g->audio, &g->audio.sysSound.option_change, g->audio.chnKey, -1);
 					g->is_clicked_screenModeChange = 1;
@@ -3489,7 +3489,7 @@ int SetObjectValue_Button(game *g, skstruct *sk, Timer *T, char flag) {
 				break;
 
 			case 81:
-				isClickSuccess = ButtonByInput(&sk->drBuf, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->config.system.highcolor, 0, 1, g->sSelect.panel);
+				isClickSuccess = ButtonByInput(sk, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->config.system.highcolor, 0, 1, g->sSelect.panel);
 				if (isClickSuccess == 2) {
 					PlaySound(&g->audio, &g->audio.sysSound.option_change, g->audio.chnKey, -1);
 					SetObjectStrings_SongSelect(g);
@@ -3497,7 +3497,7 @@ int SetObjectValue_Button(game *g, skstruct *sk, Timer *T, char flag) {
 				break;
 
 			case 82:
-				isClickSuccess = ButtonByInput(&sk->drBuf, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->config.system.vsync, 0, 1, g->sSelect.panel);
+				isClickSuccess = ButtonByInput(sk, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->config.system.vsync, 0, 1, g->sSelect.panel);
 				if (isClickSuccess == 2) {
 					PlaySound(&g->audio, &g->audio.sysSound.option_change, g->audio.chnKey, -1);
 					SetWaitVSyncFlag(g->config.system.vsync);
@@ -3506,7 +3506,7 @@ int SetObjectValue_Button(game *g, skstruct *sk, Timer *T, char flag) {
 				break;
 
 			case 83:
-				isClickSuccess = ButtonByInput(&sk->drBuf, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->config.play.replay, 0, 4, g->sSelect.panel);
+				isClickSuccess = ButtonByInput(sk, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->config.play.replay, 0, 4, g->sSelect.panel);
 				if (isClickSuccess == 2) {
 					PlaySound(&g->audio, &g->audio.sysSound.option_change, g->audio.chnKey, -1);
 					SetObjectStrings_SongSelect(g);
@@ -3514,7 +3514,7 @@ int SetObjectValue_Button(game *g, skstruct *sk, Timer *T, char flag) {
 				break;
 
 			case 90:
-				isClickSuccess = ButtonByInput(&sk->drBuf, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->sSelect.bmsList[g->sSelect.cur_song].favorite, 0, 2, g->sSelect.panel);
+				isClickSuccess = ButtonByInput(sk, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->sSelect.bmsList[g->sSelect.cur_song].favorite, 0, 2, g->sSelect.panel);
 				if (isClickSuccess == 2) {
 					PlaySound(&g->audio, &g->audio.sysSound.option_change, g->audio.chnKey, -1);
 					g->sSelect.is_tag_edited = 1;
@@ -3530,7 +3530,7 @@ int SetObjectValue_Button(game *g, skstruct *sk, Timer *T, char flag) {
 			case 95:
 			case 96:
 				iTmp = g->config.select.difficulty;
-				isClickSuccess = ButtonByInput(&sk->drBuf, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &iTmp, iTmp, iTmp, g->sSelect.panel);
+				isClickSuccess = ButtonByInput(sk, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &iTmp, iTmp, iTmp, g->sSelect.panel);
 				if (isClickSuccess == 2) {
 					g->sSelect.is_clicked_filter = 1;
 					g->sSelect.filter_clicked = 0;
@@ -3591,7 +3591,7 @@ int SetObjectValue_Button(game *g, skstruct *sk, Timer *T, char flag) {
 			case 138:
 			case 139:
 				iTmp = (g->KeyInput.config_button_inMap == op - 100);
-				isClickSuccess = ButtonByInput(&sk->drBuf, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &iTmp, 0, 1, g->sSelect.panel);
+				isClickSuccess = ButtonByInput(sk, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &iTmp, 0, 1, g->sSelect.panel);
 				if (isClickSuccess == 2) {
 					PlaySound(&g->audio, &g->audio.sysSound.option_change, g->audio.chnKey, -1);
 					g->KeyInput.config_button_inMap = op - 100;
@@ -3609,7 +3609,7 @@ int SetObjectValue_Button(game *g, skstruct *sk, Timer *T, char flag) {
 				break;
 
 			case 140:
-				isClickSuccess = ButtonByInput(&sk->drBuf, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->KeyInput.config_button, 0, 22, g->sSelect.panel);
+				isClickSuccess = ButtonByInput(sk, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->KeyInput.config_button, 0, 22, g->sSelect.panel);
 				if (isClickSuccess == 2) {
 					PlaySound(&g->audio, &g->audio.sysSound.option_change, g->audio.chnKey, -1);
 					g->KeyInput.config_button_inMap  = ConfigButtonToKeyID7(g->KeyInput.config_button);
@@ -3618,7 +3618,7 @@ int SetObjectValue_Button(game *g, skstruct *sk, Timer *T, char flag) {
 				break;
 
 			case 141:
-				isClickSuccess = ButtonByInput(&sk->drBuf, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->KeyInput.config_button, 0, 11, g->sSelect.panel);
+				isClickSuccess = ButtonByInput(sk, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->KeyInput.config_button, 0, 11, g->sSelect.panel);
 				if (isClickSuccess == 2) {
 					PlaySound(&g->audio, &g->audio.sysSound.option_change, g->audio.chnKey, -1);
 					g->KeyInput.config_button_inMap = ConfigButtonToKeyID9(g->KeyInput.config_button);
@@ -3627,7 +3627,7 @@ int SetObjectValue_Button(game *g, skstruct *sk, Timer *T, char flag) {
 				break;
 
 			case 142:
-				isClickSuccess = ButtonByInput(&sk->drBuf, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->KeyInput.config_button, 0, 18, g->sSelect.panel);
+				isClickSuccess = ButtonByInput(sk, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->KeyInput.config_button, 0, 18, g->sSelect.panel);
 				if (isClickSuccess == 2) {
 					PlaySound(&g->audio, &g->audio.sysSound.option_change, g->audio.chnKey, -1);
 					g->KeyInput.config_button_inMap = ConfigButtonToKeyID5(g->KeyInput.config_button);
@@ -3636,7 +3636,7 @@ int SetObjectValue_Button(game *g, skstruct *sk, Timer *T, char flag) {
 				break;
 
 			case 143:
-				isClickSuccess = ButtonByInput(&sk->drBuf, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->KeyInput.config_keymode, 0, 2, g->sSelect.panel);
+				isClickSuccess = ButtonByInput(sk, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->KeyInput.config_keymode, 0, 2, g->sSelect.panel);
 				if (isClickSuccess == 2) {
 					PlaySound(&g->audio, &g->audio.sysSound.option_change, g->audio.chnKey, -1);
 					g->KeyInput.config_button_inMap = 0;
@@ -3670,7 +3670,7 @@ int SetObjectValue_Button(game *g, skstruct *sk, Timer *T, char flag) {
 			case 157: 
 				//TOFIX : keyconfig slot is 10 but clickable button is only 8??
 				iTmp = (g->KeyInput.config_key == op - 150);
-				isClickSuccess = ButtonByInput(&sk->drBuf, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &iTmp, 0, 1, g->sSelect.panel);
+				isClickSuccess = ButtonByInput(sk, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &iTmp, 0, 1, g->sSelect.panel);
 				if (isClickSuccess == 2) {
 					PlaySound(&g->audio, &g->audio.sysSound.option_change, g->audio.chnKey, -1);
 					g->KeyInput.config_key = op - 150;
@@ -3699,7 +3699,7 @@ int SetObjectValue_Button(game *g, skstruct *sk, Timer *T, char flag) {
 			case 187:
 			case 188: {
 				iTmp = (g->skinData.select == op - 170);
-				isClickSuccess = ButtonByInput(&sk->drBuf, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &iTmp, 0, 1, g->sSelect.panel);
+				isClickSuccess = ButtonByInput(sk, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &iTmp, 0, 1, g->sSelect.panel);
 				if(isClickSuccess == 2){
 					PlaySound(&g->audio, &g->audio.sysSound.option_change, g->audio.chnKey, -1);
 					g->skinData.select = op - 170;
@@ -3754,7 +3754,7 @@ int SetObjectValue_Button(game *g, skstruct *sk, Timer *T, char flag) {
 
 			case 190: {
 				iTmp = (g->KeyInput.config_key == op - 150);
-				isClickSuccess = ButtonByInput(&sk->drBuf, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &iTmp, -1, 1, g->sSelect.panel);
+				isClickSuccess = ButtonByInput(sk, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &iTmp, -1, 1, g->sSelect.panel);
 				if (isClickSuccess == 2) {
 					PlaySound(&g->audio, &g->audio.sysSound.option_change, g->audio.chnKey, -1);
 					if (iTmp == 1) SkinPreviewNext(&g->skinData, (SKINTYPE)g->skinData.select);
@@ -3811,7 +3811,7 @@ int SetObjectValue_Button(game *g, skstruct *sk, Timer *T, char flag) {
 			}
 			case 191:
 				iTmp = (g->KeyInput.config_key == op - 150);
-				isClickSuccess = ButtonByInput(&sk->drBuf, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &iTmp, 0, 5, (g->sSelect).panel);
+				isClickSuccess = ButtonByInput(sk, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &iTmp, 0, 5, (g->sSelect).panel);
 				if (isClickSuccess == 2) {
 					PlaySound(&g->audio, &g->audio.sysSound.option_change, g->audio.chnKey, -1);
 					SelectSkin(&g->skinData, g->config.skin.skinFilePath + g->skinData.select);
@@ -3827,7 +3827,7 @@ int SetObjectValue_Button(game *g, skstruct *sk, Timer *T, char flag) {
 			case 207:
 			case 208:
 			case 209:
-				isClickSuccess = ButtonByInput(&sk->drBuf, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &iTmp, 0, 0, (g->sSelect).panel);
+				isClickSuccess = ButtonByInput(sk, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &iTmp, 0, 0, (g->sSelect).panel);
 				if (isClickSuccess == 2) {
 					if (g->procSelecter == 2) {
 						ShowReadme(g,sk->helpfilePath[op-200]);
@@ -3841,7 +3841,7 @@ int SetObjectValue_Button(game *g, skstruct *sk, Timer *T, char flag) {
 				break;
 
 			case 210:
-				isClickSuccess = ButtonByInput(&sk->drBuf, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &iTmp, 0, 0, (g->sSelect).panel);
+				isClickSuccess = ButtonByInput(sk, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &iTmp, 0, 0, (g->sSelect).panel);
 				if (isClickSuccess == 2) {
 					if (g->procSelecter == 2) {
 						g->sSelect.is_buttonIRpage = 1;
@@ -3861,7 +3861,7 @@ int SetObjectValue_Button(game *g, skstruct *sk, Timer *T, char flag) {
 			case 229: {
 				int customIDThis = op - 220;
 				SkinCustom &customThis = g->skinData.Data[g->skinData.previewID].customs[g->skinData.previewCustomID + customIDThis];
-				isClickSuccess = ButtonByInput(&sk->drBuf, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &customThis.dst_op_selected, customThis.dst_op_start, customThis.dst_op_start + customThis.dst_op_count -1, (g->sSelect).panel);
+				isClickSuccess = ButtonByInput(sk, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &customThis.dst_op_selected, customThis.dst_op_start, customThis.dst_op_start + customThis.dst_op_count -1, (g->sSelect).panel);
 				if (isClickSuccess == 2) {
 					SetObjectString(100 + customIDThis, customThis.title, g->txtStruct.objectStr);
 					SetObjectString(110 + customIDThis, customThis.op_label[customThis.dst_op_selected - customThis.dst_op_start], g->txtStruct.objectStr);
@@ -3895,7 +3895,7 @@ int SetObjectValue_Button(game *g, skstruct *sk, Timer *T, char flag) {
 			}
 
 			case 230:
-				isClickSuccess = ButtonByInput(&sk->drBuf, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &iTmp, -1, 1, (g->sSelect).panel);
+				isClickSuccess = ButtonByInput(sk, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &iTmp, -1, 1, (g->sSelect).panel);
 				if (isClickSuccess == 2) {
 					if (g->sSelect.course.count > 0 && g->sSelect.course.isMakingCourse == 1) {
 						ResetTimeLapse(17, &g->timer1);
@@ -3918,7 +3918,7 @@ int SetObjectValue_Button(game *g, skstruct *sk, Timer *T, char flag) {
 				break;
 
 			case 231:
-				isClickSuccess = ButtonByInput(&sk->drBuf, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &iTmp, -1, 1, (g->sSelect).panel);
+				isClickSuccess = ButtonByInput(sk, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &iTmp, -1, 1, (g->sSelect).panel);
 				if (isClickSuccess == 2) {
 					if (g->sSelect.course.isMakingCourse == 1) {
 						ResetTimeLapse(17, &g->timer1);
@@ -3941,7 +3941,7 @@ int SetObjectValue_Button(game *g, skstruct *sk, Timer *T, char flag) {
 				break;
 			//case 232 doesn't exist
 			case 233:
-				isClickSuccess = ButtonByInput(&sk->drBuf, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &iTmp, -1, 1, (g->sSelect).panel);
+				isClickSuccess = ButtonByInput(sk, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &iTmp, -1, 1, (g->sSelect).panel);
 				if (isClickSuccess == 2) {
 					if (g->sSelect.bmsList[g->sSelect.cur_song].folderType == 8) {
 						g->sSelect.course.isDeletingCourse = 1;
@@ -3960,10 +3960,10 @@ int SetObjectValue_Button(game *g, skstruct *sk, Timer *T, char flag) {
 			case 248:
 				if (g->sSelect.bmsList[g->sSelect.cur_song].courseIR == 1 || g->sSelect.bmsList[g->sSelect.cur_song].courseType != 1) {
 					iTmp = g->sSelect.bmsList[g->sSelect.cur_song].courseKeys[op - 240];
-					isClickSuccess = ButtonByInput(&sk->drBuf, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &iTmp, iTmp, iTmp, g->sSelect.panel);
+					isClickSuccess = ButtonByInput(sk, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &iTmp, iTmp, iTmp, g->sSelect.panel);
 				}
 				else {
-					isClickSuccess = ButtonByInput(&sk->drBuf, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->sSelect.bmsList[g->sSelect.cur_song].courseKeys[op-240], 0, 5, g->sSelect.panel);
+					isClickSuccess = ButtonByInput(sk, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->sSelect.bmsList[g->sSelect.cur_song].courseKeys[op-240], 0, 5, g->sSelect.panel);
 					if (isClickSuccess == 2) {
 						PlaySound(&g->audio, &g->audio.sysSound.option_change, g->audio.chnKey, -1);
 						g->sSelect.course.isCourseCreated = 1;
@@ -3976,10 +3976,10 @@ int SetObjectValue_Button(game *g, skstruct *sk, Timer *T, char flag) {
 			case 253:
 				if (g->sSelect.bmsList[g->sSelect.cur_song].courseIR == 1) {
 					iTmp = 1;
-					isClickSuccess = ButtonByInput(&sk->drBuf, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &iTmp, iTmp, iTmp, g->sSelect.panel);
+					isClickSuccess = ButtonByInput(sk, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &iTmp, iTmp, iTmp, g->sSelect.panel);
 				}
 				else {
-					isClickSuccess = ButtonByInput(&sk->drBuf, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->sSelect.bmsList[g->sSelect.cur_song].courseIR, 0, 1, g->sSelect.panel);
+					isClickSuccess = ButtonByInput(sk, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->sSelect.bmsList[g->sSelect.cur_song].courseIR, 0, 1, g->sSelect.panel);
 					if (isClickSuccess == 2) {
 						PlaySound(&g->audio, &g->audio.sysSound.option_change, g->audio.chnKey, -1);
 						g->sSelect.course.isCourseCreated = 1;
@@ -3988,7 +3988,7 @@ int SetObjectValue_Button(game *g, skstruct *sk, Timer *T, char flag) {
 				break;
 
 			case 260:
-				isClickSuccess = ButtonByInput(&sk->drBuf, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->config.course.optimumlevel_7, 0, 99, g->sSelect.panel);
+				isClickSuccess = ButtonByInput(sk, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->config.course.optimumlevel_7, 0, 99, g->sSelect.panel);
 				if (isClickSuccess == 2) {
 					if (g->procSelecter == 2) {
 						PlaySound(&g->audio, &g->audio.sysSound.option_change, g->audio.chnKey, -1);
@@ -3997,7 +3997,7 @@ int SetObjectValue_Button(game *g, skstruct *sk, Timer *T, char flag) {
 				}
 				break;
 			case 261:
-				isClickSuccess = ButtonByInput(&sk->drBuf, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->config.course.maxlevel, 0, 99, g->sSelect.panel);
+				isClickSuccess = ButtonByInput(sk, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->config.course.maxlevel, 0, 99, g->sSelect.panel);
 				if (isClickSuccess == 2) {
 					if (g->procSelecter == 2) {
 						PlaySound(&g->audio, &g->audio.sysSound.option_change, g->audio.chnKey, -1);
@@ -4006,7 +4006,7 @@ int SetObjectValue_Button(game *g, skstruct *sk, Timer *T, char flag) {
 				}
 				break;
 			case 262:
-				isClickSuccess = ButtonByInput(&sk->drBuf, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->config.course.minlevel, 0, 99, g->sSelect.panel);
+				isClickSuccess = ButtonByInput(sk, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->config.course.minlevel, 0, 99, g->sSelect.panel);
 				if (isClickSuccess == 2) {
 					if (g->procSelecter == 2) {
 						PlaySound(&g->audio, &g->audio.sysSound.option_change, g->audio.chnKey, -1);
@@ -4015,7 +4015,7 @@ int SetObjectValue_Button(game *g, skstruct *sk, Timer *T, char flag) {
 				}
 				break;
 			case 263:
-				isClickSuccess = ButtonByInput(&sk->drBuf, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->config.course.bpmrange, 0, 99, g->sSelect.panel);
+				isClickSuccess = ButtonByInput(sk, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->config.course.bpmrange, 0, 99, g->sSelect.panel);
 				if (isClickSuccess == 2) {
 					if (g->procSelecter == 2) {
 						PlaySound(&g->audio, &g->audio.sysSound.option_change, g->audio.chnKey, -1);
@@ -4025,7 +4025,7 @@ int SetObjectValue_Button(game *g, skstruct *sk, Timer *T, char flag) {
 				break;
 			case 264:
 				iTmp = g->config.course.maxbpm / 10;
-				isClickSuccess = ButtonByInput(&sk->drBuf, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &iTmp, 0, 99, g->sSelect.panel);
+				isClickSuccess = ButtonByInput(sk, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &iTmp, 0, 99, g->sSelect.panel);
 				g->config.course.maxbpm = iTmp * 10;
 				if (isClickSuccess == 2) {
 					if (g->procSelecter == 2) {
@@ -4036,7 +4036,7 @@ int SetObjectValue_Button(game *g, skstruct *sk, Timer *T, char flag) {
 				break;
 			case 265:
 				iTmp = g->config.course.minbpm / 10;
-				isClickSuccess = ButtonByInput(&sk->drBuf, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &iTmp, 0, 99, g->sSelect.panel);
+				isClickSuccess = ButtonByInput(sk, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &iTmp, 0, 99, g->sSelect.panel);
 				g->config.course.minbpm = iTmp * 10;
 				if (isClickSuccess == 2) {
 					if (g->procSelecter == 2) {
@@ -4046,7 +4046,7 @@ int SetObjectValue_Button(game *g, skstruct *sk, Timer *T, char flag) {
 				}
 				break;
 			case 266:
-				isClickSuccess = ButtonByInput(&sk->drBuf, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->config.course.stage, 0, 5, g->sSelect.panel);
+				isClickSuccess = ButtonByInput(sk, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->config.course.stage, 0, 5, g->sSelect.panel);
 				if (isClickSuccess == 2) {
 					if (g->procSelecter == 2) {
 						PlaySound(&g->audio, &g->audio.sysSound.option_change, g->audio.chnKey, -1);
@@ -4056,7 +4056,7 @@ int SetObjectValue_Button(game *g, skstruct *sk, Timer *T, char flag) {
 				break;
 
 			case 268:
-				isClickSuccess = ButtonByInput(&sk->drBuf, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->config.course.defaultconnection, 0, 5, (g->sSelect).panel);
+				isClickSuccess = ButtonByInput(sk, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->config.course.defaultconnection, 0, 5, (g->sSelect).panel);
 				if (isClickSuccess == 2) {
 					if (g->procSelecter == 2) {
 						PlaySound(&g->audio, &g->audio.sysSound.option_change, g->audio.chnKey, -1);
@@ -4073,7 +4073,7 @@ int SetObjectValue_Button(game *g, skstruct *sk, Timer *T, char flag) {
 				}
 				break;
 			case 400:
-				isClickSuccess = ButtonByInput(&sk->drBuf, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->config.system.fullscreenfilter, 0, 2, g->sSelect.panel);
+				isClickSuccess = ButtonByInput(sk, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->config.system.fullscreenfilter, 0, 2, g->sSelect.panel);
 				if (isClickSuccess == 2) {
 					PlaySound(&g->audio, &g->audio.sysSound.option_change, g->audio.chnKey, -1);
 					SetFullScreenScalingMode(g->config.system.fullscreenfilter, g->config.system.fullscreenfitstretch ? 1 : 0);
@@ -4082,7 +4082,7 @@ int SetObjectValue_Button(game *g, skstruct *sk, Timer *T, char flag) {
 				break;
 			case 401: {
 				int tmp = g->config.system.fullscreenfitstretch ? 1 : 0;
-				isClickSuccess = ButtonByInput(&sk->drBuf, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &tmp, 0, 1, g->sSelect.panel);
+				isClickSuccess = ButtonByInput(sk, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &tmp, 0, 1, g->sSelect.panel);
 				if (isClickSuccess == 2) {
 					PlaySound(&g->audio, &g->audio.sysSound.option_change, g->audio.chnKey, -1);
 					g->config.system.fullscreenfitstretch = !g->config.system.fullscreenfitstretch;
@@ -4267,7 +4267,7 @@ int SliderByTime(DrawingBuf */*drb*/, SRCstruct *src, DSTstruct *dst, Timer *T, 
 	return 1;
 }
 
-int ButtonByInput(DrawingBuf */*drb*/, SRCstruct *src, DSTstruct *dst, Timer *T, inputStructure *input, int *target, int min, int max, int panel) { //return 1:just clicked 2:changed 0:not changed
+int ButtonByInput(skstruct* sk, SRCstruct *src, DSTstruct *dst, Timer *T, inputStructure *input, int *target, int min, int max, int panel) { //return 1:just clicked 2:changed 0:not changed
 	DSTdraw dstd;
 	int mouse, ret;
 	
@@ -4275,24 +4275,37 @@ int ButtonByInput(DrawingBuf */*drb*/, SRCstruct *src, DSTstruct *dst, Timer *T,
 	if (GetTimeLapse(dst->timer, T) == -1.0) return 0;
 
 	ret = 0;
-	dstd = SetDSTdrawByTime(*dst, GetTimeLapse(dst->timer, T));
-	mouse = MouseOnDSTD(&dstd, &input->mouse_oldX, &input->mouse_oldY);
-	if ( (mouse == 1 && src->op4 == 0) || (mouse != 0 && src->op4 == 1) ) { // right side or plusonly
-		if (src->op2 != 1 || input->mouse_buttonL != 1 || (src->op3 != panel && src->op3 != 0)) {
-			ret = 1;
-	}
-		else {
-			if (min < max) (*target)++;
+	if (int customPanelInput = sk->panelMan.CheckButton(src, input)) {
+		if (src->op2 != 1 || customPanelInput != 1) ret = 1;
+		else if (min < max) {
+			src->op4 == 2 ? (*target)-- : (*target)++;
 			ret = 2;
 		}
 	}
-	else if ( (mouse == 2 && src->op4 == 0) || (mouse != 0 && src->op4 == 2) ) { // left side or plusonly(-)
-		if (src->op2 != 1 || input->mouse_buttonL != 1 || (src->op3 != panel && src->op3 != 0)) {
-			ret = 1;
+	else {
+		bool isPanelActive = src->op3 == 0 ? true :
+			src->op3 < 10 ?
+			src->op3 == panel :
+			sk->panelMan.IsPanelActive(src->op3);
+		dstd = SetDSTdrawByTime(*dst, GetTimeLapse(dst->timer, T));
+		mouse = MouseOnDSTD(&dstd, &input->mouse_oldX, &input->mouse_oldY);
+		if ( (mouse == 1 && src->op4 == 0) || (mouse != 0 && src->op4 == 1) ) { // right side or plusonly
+			if (src->op2 != 1 || input->mouse_buttonL != 1 || !isPanelActive) {
+				ret = 1;
+			}
+			else {
+				if (min < max) (*target)++;
+				ret = 2;
+			}
 		}
-		else {
-			if (min < max) (*target)--;
-			ret = 2;
+		else if ( (mouse == 2 && src->op4 == 0) || (mouse != 0 && src->op4 == 2) ) { // left side or plusonly(-)
+			if (src->op2 != 1 || input->mouse_buttonL != 1 || !isPanelActive) {
+				ret = 1;
+			}
+			else {
+				if (min < max) (*target)--;
+				ret = 2;
+			}
 		}
 	}
 
