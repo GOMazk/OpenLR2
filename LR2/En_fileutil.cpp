@@ -382,6 +382,8 @@ bool IsMediaFile(CSTR str) {
 		str.lower();
 		if (str.isSame(".mp3")) return true;
 		if (str.isSame(".wav")) return true;
+		if (str.isSame(".ogg")) return true;
+		if (str.isSame(".flac")) return true;
 		if (str.isSame(".avi")) return true;
 	}
 	return false;
@@ -393,6 +395,8 @@ bool IsSndFile(CSTR str) {
 		str.lower();
 		if (str.isSame(".mp3")) return true;
 		if (str.isSame(".wav")) return true;
+		if (str.isSame(".ogg")) return true;
+		if (str.isSame(".flac")) return true;
 	}
 	return false;
 }
