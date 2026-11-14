@@ -845,6 +845,22 @@ constexpr size_t static hash(std::string_view s) {
 	return hash(std::string_view{ s, len });
 }
 
+// WARNING for skin maker (inculde AI) : DO NOT USE command like "#IMAGEdummy,". USE "#IMAGE,CONTINUE" instead
+// LR2 matched commands with fBuf.left(N).isSame (prefix). A few skins rely on that
+// quirk — e.g. "#IMAGEdummy,..." was treated as "#IMAGE" and still reserved a slot.
+// Rewrite those lines to a real command before the exact switch hash match.
+static void normalizeLegacySkinCommand(CSTR& fBuf) {
+	std::string_view line(fBuf.c_str());
+	const auto comma = line.find(',');
+	std::string_view token = line.substr(0, comma);
+	while (!token.empty() && (token.back() == ' ' || token.back() == '\t')) {
+		token.remove_suffix(1);
+	}
+	if (token.size() > 6 && token.starts_with("#IMAGE") && token != "#IMAGE") {
+		fBuf.assign("#IMAGE,CONTINUE");
+	}
+}
+
 // ReadSkin // maybe unsatble
 int ReadSkin(skstruct *sk,CSTR FilePath, int unused, int skin_num, SkinUser* sku, char flag_skipFont) {
 	FILE *pFile;
@@ -955,6 +971,7 @@ int ReadSkin(skstruct *sk,CSTR FilePath, int unused, int skin_num, SkinUser* sku
 
 
 				if (!fBuf.left(1).isDiff("#")) {
+					normalizeLegacySkinCommand(fBuf);
 					std::string_view fBufStringView(fBuf.c_str());
 					switch (hash(fBufStringView.substr(0, fBufStringView.find(',')))) {
 					case "#IMAGE"_hash:{
