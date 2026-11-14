@@ -68,6 +68,7 @@ int GetDigitNum(int num, int pos);
 
 int FindAltImage(CSTR filename, CSTR dir, CSTR * oBuf);
 int FindAltSound(CSTR filename, CSTR dir, CSTR * oBuf);
+int FindAltBga(CSTR filename, CSTR dir, CSTR * oBuf);
 CSTR GetRandomFile(CSTR path, char fOnlyName);
 CSTR GetRandomFileNoError(CSTR path, CSTR dir);
 
