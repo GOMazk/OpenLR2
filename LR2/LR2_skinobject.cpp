@@ -2731,6 +2731,7 @@ int SetObjectValue_Slider(game *g, skstruct *sk, Timer *T, char flag) {
 }
 
 int Proc_Text(game *g, sqlite3 *sql, char flag) {
+	static constexpr int input_size = 256;
 
 	char str[1024];
 	uint mouseL = g->KeyInput.mouse_buttonL;
@@ -2773,7 +2774,7 @@ int Proc_Text(game *g, sqlite3 *sql, char flag) {
 						g->txtStruct.hKeyInput = MakeKeyInput(1, 1, 0, 1);
 					}
 					else {
-						g->txtStruct.hKeyInput = MakeKeyInput(64, 1, 0, 0);
+						g->txtStruct.hKeyInput = MakeKeyInput(input_size, 1, 0, 0);
 					}
 
 					SetActiveKeyInput(g->txtStruct.hKeyInput);
@@ -2796,8 +2797,9 @@ int Proc_Text(game *g, sqlite3 *sql, char flag) {
 			//CheckKeyInput() 0:doing 1:done 2:cancle -1:error
 			if (CheckKeyInput(g->txtStruct.hKeyInput) == 1) {
 
-				CSTR buf;
+				CSTR buf(input_size);
 				GetKeyInputString(buf, g->txtStruct.hKeyInput);
+
 				CSTR query;
 
 				switch (g->txtStruct.st_text_num) {
