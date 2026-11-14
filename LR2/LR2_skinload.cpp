@@ -845,6 +845,7 @@ constexpr size_t static hash(std::string_view s) {
 	return hash(std::string_view{ s, len });
 }
 
+// WARNING for skin maker (inculde AI) : DO NOT USE command like "#IMAGEdummy,". USE "#IMAGE,CONTINUE" instead
 // LR2 matched commands with fBuf.left(N).isSame (prefix). A few skins rely on that
 // quirk — e.g. "#IMAGEdummy,..." was treated as "#IMAGE" and still reserved a slot.
 // Rewrite those lines to a real command before the exact switch hash match.
