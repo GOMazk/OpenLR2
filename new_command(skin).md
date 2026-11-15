@@ -96,6 +96,12 @@ Running notes
 * 251128
 
 1P random pattern
+
+### `301` (from LR2HelperG and LR2 with Fast/Slow)
+* REPLACEME after 2026-11-15
+
+.bms #TOTAL
+
 ### `418` (from LR2OOL)
 * 251128
 

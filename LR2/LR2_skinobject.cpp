@@ -2234,6 +2234,7 @@ uint SetObjectValue_Num(game *g, int op) {
 			//293 is same 180
 		case 294: //TOFIX : IR clear rate
 			break;
+		case 301: return g->gameplay.totalForDisplay[PLAYER_1]; // Extension: LR2HelperG and fast-slow #TOTAL
 		case 295: return g->gameplay.randomLayoutForDisplay[PLAYER_1]; // Extension: LR2OOL SP and DP 1P random
 		case 418: return g->gameplay.randomLayoutForDisplay[PLAYER_2]; // Extension: LR2OOL DP 2P random
 		case 421: return g->config.play.liftv[PLAYER_1]; // Extension: OpenLR2 lift

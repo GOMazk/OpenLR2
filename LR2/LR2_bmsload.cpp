@@ -3803,6 +3803,8 @@ int ParseBmsFile(gameplay *gp, CSTR filename, AUDIO *aud, ConfigStruct* cfg, BMS
 			total[p] = newtotalCalc * 0.8;
 		}
 	}
+	gp->totalForDisplay[PLAYER_1] = total[PLAYER_1];
+	gp->totalForDisplay[PLAYER_2] = total[PLAYER_2];
 	for (int p : { PLAYER_1, PLAYER_2 }) {
 		double dmg_notebase;
 		int notes = noteCount[p];
